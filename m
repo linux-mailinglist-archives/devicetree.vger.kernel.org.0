@@ -2,132 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 282766A52D1
-	for <lists+devicetree@lfdr.de>; Tue, 28 Feb 2023 07:05:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7B0526A52A0
+	for <lists+devicetree@lfdr.de>; Tue, 28 Feb 2023 06:27:51 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229437AbjB1GFU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Feb 2023 01:05:20 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39206 "EHLO
+        id S229711AbjB1F1t (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Feb 2023 00:27:49 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48234 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229524AbjB1GFT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Feb 2023 01:05:19 -0500
-Received: from mailout2.samsung.com (mailout2.samsung.com [203.254.224.25])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D42C8231D0
-        for <devicetree@vger.kernel.org>; Mon, 27 Feb 2023 22:05:16 -0800 (PST)
-Received: from epcas5p1.samsung.com (unknown [182.195.41.39])
-        by mailout2.samsung.com (KnoxPortal) with ESMTP id 20230228060513epoutp02f0ae4f1792cb397bff4c6c5cf43fce50~H59r_Bykt0530905309epoutp02b
-        for <devicetree@vger.kernel.org>; Tue, 28 Feb 2023 06:05:13 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.samsung.com 20230228060513epoutp02f0ae4f1792cb397bff4c6c5cf43fce50~H59r_Bykt0530905309epoutp02b
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-        s=mail20170921; t=1677564314;
-        bh=464YQvdb/XSIjOJYt9Ni/UD4zizTki95m9YVtDiqviA=;
-        h=From:To:Cc:In-Reply-To:Subject:Date:References:From;
-        b=ArPD8Tp3WQb44dQRV8w5S9+IWj9guSN/4dwaRN+8A/Ahap8bEbyoAmHcslC95/pnp
-         iVBziW9frDhWdADWkt8lel5xMNsTFivW0+aVRayXpdbAfwl7TkaHLCRbLCFo+Oq4QW
-         38iPbAp/36wE1s8lby6I8hMNEuKAnOqGuU3aRxjo=
-Received: from epsnrtp1.localdomain (unknown [182.195.42.162]) by
-        epcas5p4.samsung.com (KnoxPortal) with ESMTP id
-        20230228060513epcas5p4caae9543fd0365a4e4346337f5afe82a~H59rTsIiF2448424484epcas5p4_;
-        Tue, 28 Feb 2023 06:05:13 +0000 (GMT)
-Received: from epsmges5p2new.samsung.com (unknown [182.195.38.179]) by
-        epsnrtp1.localdomain (Postfix) with ESMTP id 4PQn071X4sz4x9QL; Tue, 28 Feb
-        2023 06:05:11 +0000 (GMT)
-Received: from epcas5p1.samsung.com ( [182.195.41.39]) by
-        epsmges5p2new.samsung.com (Symantec Messaging Gateway) with SMTP id
-        55.47.55678.7999DF36; Tue, 28 Feb 2023 15:05:11 +0900 (KST)
-Received: from epsmtrp2.samsung.com (unknown [182.195.40.14]) by
-        epcas5p4.samsung.com (KnoxPortal) with ESMTPA id
-        20230227113830epcas5p4a46a1faff7a35fb42ac4f55b1aa95022~Hq3YnVA4F0626306263epcas5p4x;
-        Mon, 27 Feb 2023 11:38:30 +0000 (GMT)
-Received: from epsmgms1p1new.samsung.com (unknown [182.195.42.41]) by
-        epsmtrp2.samsung.com (KnoxPortal) with ESMTP id
-        20230227113830epsmtrp23c849389b6df30164dc0c246ef1648a2~Hq3YmM0GO1907919079epsmtrp2I;
-        Mon, 27 Feb 2023 11:38:30 +0000 (GMT)
-X-AuditID: b6c32a4a-6a3ff7000000d97e-fa-63fd999711b2
-Received: from epsmtip1.samsung.com ( [182.195.34.30]) by
-        epsmgms1p1new.samsung.com (Symantec Messaging Gateway) with SMTP id
-        AD.94.05839.5369CF36; Mon, 27 Feb 2023 20:38:30 +0900 (KST)
-Received: from FDSFTE308 (unknown [107.122.81.79]) by epsmtip1.samsung.com
-        (KnoxPortal) with ESMTPA id
-        20230227113826epsmtip1a4635f1ff12826e2124cb7e90c7d8e79~Hq3VjxbVd0772607726epsmtip1k;
-        Mon, 27 Feb 2023 11:38:26 +0000 (GMT)
-From:   "Aakarsh Jain" <aakarsh.jain@samsung.com>
-To:     "'Krzysztof Kozlowski'" <krzysztof.kozlowski@linaro.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-media@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>
-Cc:     <m.szyprowski@samsung.com>, <andrzej.hajda@intel.com>,
-        <mchehab@kernel.org>, <hverkuil-cisco@xs4all.nl>,
-        <ezequiel@vanguardiasur.com.ar>, <jernej.skrabec@gmail.com>,
-        <benjamin.gaignard@collabora.com>,
-        <krzysztof.kozlowski+dt@linaro.org>,
-        <stanimir.varbanov@linaro.org>, <dillon.minfei@gmail.com>,
-        <david.plowman@raspberrypi.com>, <mark.rutland@arm.com>,
-        <robh+dt@kernel.org>, <krzk+dt@kernel.org>, <andi@etezian.org>,
-        <alim.akhtar@samsung.com>, <aswani.reddy@samsung.com>,
-        <pankaj.dubey@samsung.com>
-In-Reply-To: <ef93fea2-e4db-7c28-b911-13b046352214@linaro.org>
-Subject: RE: [Patch v5] dt-bindings: media: s5p-mfc: convert bindings to
- json-schema
-Date:   Mon, 27 Feb 2023 17:08:25 +0530
-Message-ID: <021c01d94aa0$03714d00$0a53e700$@samsung.com>
+        with ESMTP id S229469AbjB1F1s (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Feb 2023 00:27:48 -0500
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DA0C123133;
+        Mon, 27 Feb 2023 21:27:45 -0800 (PST)
+Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 31S1DeCf029148;
+        Tue, 28 Feb 2023 05:27:17 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=i5bXA6ZKAB/LyxjgOJfForvyOfh4jgIzBHG/ngcVv1I=;
+ b=Ih1i8xGmnMlPC0nE7qWCM3tKNdT1pfpaZCCSS7TMbXwwWcx4UhVii0c22emhcrJN1dr7
+ OWJJGuxDMNx3YHuJgWv7wyuZfdhkvzuLana10o+O57knGkfBVLP4IyDSauEFgoifwWMP
+ IblRiqNWuy6qa7nbIR3rRL/QUwipTjGjLo7vaBkFYRObgrkWIL+pQXsuo/WyhsJjSEoQ
+ moXY/2f8gEh8tjJ2b0yEpiKC76oLFTEc1+JjtyJruy4lZYDIU1Fc8wlF7ElZi+q6xSSg
+ P9cNFbWxlbUUnNuazaiRzXZMNcDrcZ44nnnqLMGcbGLqrutZgCkhZyzBCVMttcDzZ4Dm wQ== 
+Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3p17ryrg7n-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 28 Feb 2023 05:27:17 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+        by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 31S5RF7k000879
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 28 Feb 2023 05:27:15 GMT
+Received: from [10.216.43.19] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.41; Mon, 27 Feb
+ 2023 21:27:06 -0800
+Message-ID: <bd153038-4427-1f11-1941-5f13fec01cf7@quicinc.com>
+Date:   Tue, 28 Feb 2023 10:56:53 +0530
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-X-Mailer: Microsoft Outlook 16.0
-Content-Language: en-in
-Thread-Index: AQDV1Pt8NDWrXdQdIVLeYa8OJBqdcQLhSdg4Af7UlIywwpPw0A==
-X-Brightmail-Tracker: H4sIAAAAAAAAA01Ta0xbZRjOd87pacFVj1zkW4ezOW4yMFzKCjudg13YzEExweEas0hqU46A
-        9Ja26JgJQwdjEsZgMA1dZY5rQORSysa4JLWUIEw3kQpeYMCY47JBCJ3aFbbZUlD+Pe/zvk/e
-        5/m+vBzUp5TN46QrdYxGKZWTuDd2tTc4KPTL8seyiHs3cGqy4ipOVTlmEGqiyo5RlrZ2NmWy
-        XUKpun4zi7psvcmirn13B6NaZ13dofJxjJq53ASoOf1tnCqanUKpnvsuhXF6hEUNdxpwqrCl
-        nUV9ax1nUzWjQwhVa1xFqMr2h2wqr8fKpnLPWJEDAXRjRSOgO8arAT1avYzS1/XjbLqqew6h
-        jQ2f4/TYSDdOt1WfovP6nBhdZGoAdIF1FKftxu304F92diL3eMa+NEaawmj4jFKmSklXpsaQ
-        byZJ4iRR0RGCUIGI2kPylVIFE0MeTkgMfT1d7kpP8j+SyjNdVKJUqyXDY/dpVJk6hp+m0upi
-        SEadIlcL1WFaqUKbqUwNUzK6vYKIiMgo1+D7GWnDORVAbX7vxA+OFiQHrMQVAC8OJITQ0VUE
-        3NiH6AKw6byiAHi78DKA7av3cE/xN4B1bc34hsL2y531Rg+AZ/NbEE8xA6D9gZHlnsKJcDgx
-        WMhyN/yIPgAnTVOou0CJfAyW/JyzttGLiIWWiptsN/YlxPCLPDPixhixE86OO107OBwuIYLW
-        07Fumks8DwfK72JujBKvwtor91GPJT589Gcty8MHwL5HhWu8H3EItub2rpmARK8XnL41j3kE
-        h+HZ2/3rYl84329iezAP2hd71nPK4HTl3PqMHDZ3l61r90OzzYC5vaFEMGzuDPfQL8KLg02I
-        x8Oz8NzKXcTDc2FHxQZ+BRrGHCwPDoS939SAYkDqN0XTb4qm3xRH//+2rwHWALYyaq0ildFG
-        qSOVzMf//bhMpTCCtesIeaMDTE0uhVkAwgEWADko6ce98seqzIebIs06yWhUEk2mnNFaQJTr
-        uUtQnr9M5TovpU4iEIoihNHR0ULR7mgBGcANihmQ+RCpUh2TwTBqRrOhQzhevBwk2zmpqt7d
-        mlUaNNZVKf5gsYnDql8NdDQtqmQCnuhIf+myyXrjH/+lMtv+pw/9dr0mSErwL/7Umr/ndPzW
-        XclJfFvywnx1o5N34dL5o9l4/LGU7dbUY4UvXB/ycfzKPbUiGEzfNt0Zpco2iGvOVQ3sCLlQ
-        Utyb88D89oHhAjv43aY/Uf+WyPeTl8zlT7bkzV9bGXp6ZBD7XmhJ4C7mHmfif+S2fChpDJ1+
-        ZzLuzDZSbH156aDktx0G/ojI/yLTbcwNXk70/sp5K3N0TIFtYRUmZ4nrV8fqFhZqExd3/kQP
-        OcvSAiL18KjDa8XUEmgY/uyZ4ufefSy2OE8m6dqfBB/cO1FAYto0qSAE1Wil/wKxpFR8pgQA
-        AA==
-X-Brightmail-Tracker: H4sIAAAAAAAAA02Se0xSYRjG951zOOfook5I8dk9slo3zdblqzUzs3Zy67aKlmsrpmfqEjTo
-        Zlt201pkdDErqLSCtNAuInbFFgg1XFoaYjWxtAgvrVrqhpaVyNr873l/z/s8e/94aVzQS4yi
-        U+Q7OYVcmiomg4n7leJxs+af/50w++9ZgD7m3yeRzufF0AddJ4GsZeUUMjkv4ajoxTMeKrDV
-        8NADSwuBSlv73VqNm0DegjsAtWmbSKRubcZRRUd/wvjJxUNvHl8mUc69ch66bXNT6EZDLYYK
-        jb8xdL28i0LZFTYKZR21YdEitiS/BLAP3XrANuh/4uwjrZtideY2jDUajpNso8tMsmX6A2y2
-        vZdg1SYDYFW2BpLtNI5jq7o7qbX8+ODFiVxqym5OERG1LTjZkzcl3RW/94b+Cn4QZMeoQBAN
-        mbnQWd9CqkAwLWCeAGhv78MCxhj49+hzKqBD4K0/Xiqw5AGwuMAysEQyEfBDVQ7PbwgZB4Cn
-        XmYNDDijIWD96edYIGIBsCyvCvgjQUwUtObX9HfRdAizAf7qnunHBDMZtrp7ST/mMwuh7UiU
-        H/OZ4dCh+Uz4Nc7MgCebs8F/XXitAw9cNwH2eAp5AS6C9p6cAS5kYmBpViXvNAjRDqrSDqrS
-        DqrSDopfBYQBhHLpSlmSTBmZHinn9oQrpTLlLnlSeEKazAgG3mP6tIfggeFHuBVgNLACSONi
-        Ib/R4UsQ8BOlGfs4RdpWxa5UTmkFo2lCLOK/Vjm2Cpgk6U5uO8elc4r/LkYHjTqI1eAjIg8n
-        zXO1576+8l191ZloOfN0wZqbZFM1vb87dY1kWlpNSsPyzsOrRr7DM0dcfP/xbvP4OxnrDMl/
-        hpZUH5PfjFtfappQpImTqKYemtPX9e1adN0Sz5BL0evMMtGkC5n2PfYvLXmm+BN9ZZvxplNb
-        GmO9hNmyVKAZOVES9rlurNYryLmstHo3Ni4wh0b5unYX184Ju/h2kTPCs9kQlKlW1Omr76a4
-        V+qiq9eG9ZrI0LnCBMkO/vcLsXsr1c1cfPEy56bE0a5cXsZEYYXZ2RFjkrZ/8vYI2Hmri86G
-        pcX5vsaKfj0blmmgdO8fye9RxyW+FSVk/XD8XFsucUjjeCUmlMnSyOm4Qin9B+cyaQONAwAA
-X-CMS-MailID: 20230227113830epcas5p4a46a1faff7a35fb42ac4f55b1aa95022
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-Sendblock-Type: REQ_APPROVE
-CMS-TYPE: 105P
-DLP-Filter: Pass
-X-CFilter-Loop: Reflected
-X-CMS-RootMailID: 20230227084748epcas5p2602a39017d3366bdfb5af95088ed89dc
-References: <CGME20230227084748epcas5p2602a39017d3366bdfb5af95088ed89dc@epcas5p2.samsung.com>
-        <20230227084736.89361-1-aakarsh.jain@samsung.com>
-        <ef93fea2-e4db-7c28-b911-13b046352214@linaro.org>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_PASS,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.1
+Subject: Re: [PATCH 1/7] dt-bindings: PCI: qcom: Add IPQ9574 specific
+ compatible
+To:     Manivannan Sadhasivam <mani@kernel.org>
+CC:     <agross@kernel.org>, <andersson@kernel.org>,
+        <konrad.dybcio@linaro.org>, <lpieralisi@kernel.org>,
+        <kw@linux.com>, <robh@kernel.org>, <bhelgaas@google.com>,
+        <krzysztof.kozlowski+dt@linaro.org>, <vkoul@kernel.org>,
+        <kishon@kernel.org>, <mturquette@baylibre.com>, <sboyd@kernel.org>,
+        <p.zabel@pengutronix.de>, <svarbanov@mm-sol.com>,
+        <linux-arm-msm@vger.kernel.org>, <linux-pci@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-phy@lists.infradead.org>, <linux-clk@vger.kernel.org>,
+        <quic_srichara@quicinc.com>, <quic_gokulsri@quicinc.com>,
+        <quic_sjaganat@quicinc.com>, <quic_kathirav@quicinc.com>,
+        <quic_arajkuma@quicinc.com>, <quic_anusha@quicinc.com>
+References: <20230214164135.17039-1-quic_devipriy@quicinc.com>
+ <20230214164135.17039-2-quic_devipriy@quicinc.com>
+ <20230224082332.GA5443@thinkpad>
+Content-Language: en-US
+From:   Devi Priya <quic_devipriy@quicinc.com>
+In-Reply-To: <20230224082332.GA5443@thinkpad>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: oho-CgnQr-z4KvUVh1hmEyhzT-BU0gUB
+X-Proofpoint-GUID: oho-CgnQr-z4KvUVh1hmEyhzT-BU0gUB
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.219,Aquarius:18.0.930,Hydra:6.0.562,FMLib:17.11.170.22
+ definitions=2023-02-28_02,2023-02-27_01,2023-02-09_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxlogscore=999
+ lowpriorityscore=0 bulkscore=0 priorityscore=1501 mlxscore=0 phishscore=0
+ adultscore=0 malwarescore=0 suspectscore=0 clxscore=1015 spamscore=0
+ impostorscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2212070000 definitions=main-2302280038
+X-Spam-Status: No, score=-2.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -136,355 +92,161 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 
 
-> -----Original Message-----
-> From: Krzysztof Kozlowski =5Bmailto:krzysztof.kozlowski=40linaro.org=5D
-> Sent: 27 February 2023 15:21
-> To: Aakarsh Jain <aakarsh.jain=40samsung.com>; linux-arm-
-> kernel=40lists.infradead.org; linux-media=40vger.kernel.org; linux-
-> kernel=40vger.kernel.org; devicetree=40vger.kernel.org
-> Cc: m.szyprowski=40samsung.com; andrzej.hajda=40intel.com;
-> mchehab=40kernel.org; hverkuil-cisco=40xs4all.nl;
-> ezequiel=40vanguardiasur.com.ar; jernej.skrabec=40gmail.com;
-> benjamin.gaignard=40collabora.com; krzysztof.kozlowski+dt=40linaro.org;
-> stanimir.varbanov=40linaro.org; dillon.minfei=40gmail.com;
-> david.plowman=40raspberrypi.com; mark.rutland=40arm.com;
-> robh+dt=40kernel.org; krzk+dt=40kernel.org; andi=40etezian.org;
-> alim.akhtar=40samsung.com; aswani.reddy=40samsung.com;
-> pankaj.dubey=40samsung.com
-> Subject: Re: =5BPatch v5=5D dt-bindings: media: s5p-mfc: convert bindings=
- to json-
-> schema
->=20
-> On 27/02/2023 09:47, Aakarsh Jain wrote:
-> > Convert s5p-mfc bindings to DT schema format using json-schema.
-> >
-> > Signed-off-by: Aakarsh Jain <aakarsh.jain=40samsung.com>
-> > ---
-> > changes since v4:
-> > Removed items from oneOf section
-> > dropped black line
-> > defined the iommus names items as
-> > items:
-> > -const left
-> > -const right
-> >
-> > changes since v3:
-> > fixed dt-schema warnings and errors while running make dtbs_check and
-> > make dt_binding_check for ARMv7 Since, obsolete properties are not part
-> of dt-node so we are not including these properties in dt-schema.
-> >
-> > changes since v2:
-> > changed Commit message from Adds to Convert Removed text =22This file
-> > has moved to samsung,s5p-mfc.yaml=22 from s5p-mfc.txt fixed dt-schema
-> > warnings and errors while running make dtbs_check and make
-> > dt_binding_check
-> >
-> > changes since v1:
-> > fixed dt-schema warnings and errors while running make dtbs_check and
-> > make dt_binding_check Removed description.
-> > Listed items.
-> > Added allOf:if:then for restricting two items to specific compatible
-> >
-> > This patch is independent from the previous MFC v12 patch series for HW=
-3
-> support.
-> >
-> >  .../devicetree/bindings/media/s5p-mfc.txt     =7C  78 ---------
-> >  .../bindings/media/samsung,s5p-mfc.yaml       =7C 148
-> ++++++++++++++++++
-> >  2 files changed, 148 insertions(+), 78 deletions(-)  create mode
-> > 100644 Documentation/devicetree/bindings/media/samsung,s5p-mfc.yaml
-> >
-> > diff --git a/Documentation/devicetree/bindings/media/s5p-mfc.txt
-> > b/Documentation/devicetree/bindings/media/s5p-mfc.txt
-> > index 8eb90c043d5d..e69de29bb2d1 100644
-> > --- a/Documentation/devicetree/bindings/media/s5p-mfc.txt
-> > +++ b/Documentation/devicetree/bindings/media/s5p-mfc.txt
-> > =40=40 -1,78 +0,0 =40=40
-> > -* Samsung Multi Format Codec (MFC)
-> > -
-> > -Multi Format Codec (MFC) is the IP present in Samsung SoCs which
-> > -supports high resolution decoding and encoding functionalities.
-> > -The MFC device driver is a v4l2 driver which can encode/decode -video
-> > raw/elementary streams and has support for all popular -video codecs.
-> > -
-> > -Required properties:
-> > -  - compatible : value should be either one among the following
-> > -	(a) =22samsung,mfc-v5=22 for MFC v5 present in Exynos4 SoCs
-> > -	(b) =22samsung,mfc-v6=22 for MFC v6 present in Exynos5 SoCs
-> > -	(c) =22samsung,exynos3250-mfc=22, =22samsung,mfc-v7=22 for MFC v7
-> > -	     present in Exynos3250 SoC
-> > -	(d) =22samsung,mfc-v7=22 for MFC v7 present in Exynos5420 SoC
-> > -	(e) =22samsung,mfc-v8=22 for MFC v8 present in Exynos5800 SoC
-> > -	(f) =22samsung,exynos5433-mfc=22 for MFC v8 present in Exynos5433 SoC
-> > -	(g) =22samsung,mfc-v10=22 for MFC v10 present in Exynos7880 SoC
-> > -
-> > -  - reg : Physical base address of the IP registers and length of memo=
-ry
-> > -	  mapped region.
-> > -
-> > -  - interrupts : MFC interrupt number to the CPU.
-> > -  - clocks : from common clock binding: handle to mfc clock.
-> > -  - clock-names : from common clock binding: must contain =22mfc=22,
-> > -		  corresponding to entry in the clocks property.
-> > -
-> > -Optional properties:
-> > -  - power-domains : power-domain property defined with a phandle
-> > -			   to respective power domain.
-> > -  - memory-region : from reserved memory binding: phandles to two
-> reserved
-> > -	memory regions, first is for =22left=22 mfc memory bus interfaces,
-> > -	second if for the =22right=22 mfc memory bus, used when no SYSMMU
-> > -	support is available; used only by MFC v5 present in Exynos4 SoCs
-> > -
-> > -Obsolete properties:
-> > -  - samsung,mfc-r, samsung,mfc-l : support removed, please use memory-
-> region
-> > -	property instead
-> > -
-> > -
-> > -Example:
-> > -SoC specific DT entry:
-> > -
-> > -mfc: codec=4013400000 =7B
-> > -	compatible =3D =22samsung,mfc-v5=22;
-> > -	reg =3D <0x13400000 0x10000>;
-> > -	interrupts =3D <0 94 0>;
-> > -	power-domains =3D <&pd_mfc>;
-> > -	clocks =3D <&clock 273>;
-> > -	clock-names =3D =22mfc=22;
-> > -=7D;
-> > -
-> > -Reserved memory specific DT entry for given board (see reserved
-> > memory binding -for more information):
-> > -
-> > -reserved-memory =7B
-> > -	=23address-cells =3D <1>;
-> > -	=23size-cells =3D <1>;
-> > -	ranges;
-> > -
-> > -	mfc_left: region=4051000000 =7B
-> > -		compatible =3D =22shared-dma-pool=22;
-> > -		no-map;
-> > -		reg =3D <0x51000000 0x800000>;
-> > -	=7D;
-> > -
-> > -	mfc_right: region=4043000000 =7B
-> > -		compatible =3D =22shared-dma-pool=22;
-> > -		no-map;
-> > -		reg =3D <0x43000000 0x800000>;
-> > -	=7D;
-> > -=7D;
-> > -
-> > -Board specific DT entry:
-> > -
-> > -codec=4013400000 =7B
-> > -	memory-region =3D <&mfc_left>, <&mfc_right>;
-> > -=7D;
-> > diff --git
-> > a/Documentation/devicetree/bindings/media/samsung,s5p-mfc.yaml
-> > b/Documentation/devicetree/bindings/media/samsung,s5p-mfc.yaml
-> > index 000000000000..b4a289619db0
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/media/samsung,s5p-mfc.yaml
-> > =40=40 -0,0 +1,148 =40=40
-> > +=23 SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause %YAML 1.2
-> > +---
-> > +=24id:
-> > +https://protect2.fireeye.com/v1/url?k=3D854d051c-e4c61026-854c8e53-
-> 74fe
-> > +4860008a-fcfe16271c217cbf&q=3D1&e=3D3cdd6dac-7b8e-46be-97b0-
-> 8dcfc73fae2d&
-> >
-> +u=3Dhttp%3A%2F%2Fdevicetree.org%2Fschemas%2Fmedia%2Fsamsung%2Cs
-> 5p-mfc.y
-> > +aml%23
-> > +=24schema:
-> > +https://protect2.fireeye.com/v1/url?k=3Dc84eeb37-a9c5fe0d-c84f6078-74f=
-e
-> > +4860008a-c1bfcc6b2d35840d&q=3D1&e=3D3cdd6dac-7b8e-46be-97b0-
-> 8dcfc73fae2d&
-> > +u=3Dhttp%3A%2F%2Fdevicetree.org%2Fmeta-schemas%2Fcore.yaml%23
-> > +
-> > +title: Samsung Exynos Multi Format Codec (MFC)
-> > +
-> > +maintainers:
-> > +  - Marek Szyprowski <m.szyprowski=40samsung.com>
-> > +  - Aakarsh Jain <aakarsh.jain=40samsung.com>
-> > +
-> > +description:
-> > +  Multi Format Codec (MFC) is the IP present in Samsung SoCs which
-> > +  supports high resolution decoding and encoding functionalities.
-> > +
-> > +properties:
-> > +  compatible:
-> > +    oneOf:
-> > +      - enum:
-> > +          - samsung,mfc-v5              =23 Exynos4
-> > +          - samsung,mfc-v6              =23 Exynos5
-> > +      - items:
-> > +          - enum:
-> > +              - samsung,exynos3250-mfc  =23 Exynos3250
-> > +          - const: samsung,mfc-v7       =23 Fall back for Exynos3250
-> > +      - enum:
-> > +          - samsung,mfc-v7              =23 Exynos5420
-> > +          - samsung,mfc-v8              =23 Exynos5800
-> > +          - samsung,exynos5433-mfc      =23 Exynos5433
-> > +          - samsung,mfc-v10             =23 Exynos7880
->=20
-> Why this and first enum are separate?  I didn't notice it before...
-> Usually we have only one enum for one-compatible variants. Also, sort the=
-m
-> by compatible.
->=20
-okay.
-I will keep it in this way
-properties:
-  compatible:
-    oneOf:
-      - const: samsung,mfc-v5              =23 Exynos4
-      - const: samsung,mfc-v6              =23 Exynos5
-      - const: samsung,mfc-v7              =23 Exynos5420
-      - const: samsung,mfc-v8              =23 Exynos5800
-      - const: samsung,exynos5433-mfc      =23 Exynos5433
-      - const: samsung,mfc-v10             =23 Exynos7880
-      - items:
-          - const: samsung,exynos3250-mfc  =23 Exynos3250
-          - const: samsung,mfc-v7          =23 Fall back for Exynos3250
-
-Will this be fine?
-> > +
-> > +  reg:
-> > +    maxItems: 1
-> > +
-> > +  clocks:
-> > +    minItems: 1
-> > +    maxItems: 3
-> > +
-> > +  clock-names:
-> > +    minItems: 1
-> > +    maxItems: 3
-> > +
-> > +  interrupts:
-> > +    maxItems: 1
-> > +
-> > +  iommus:
-> > +    minItems: 1
-> > +    maxItems: 2
-> > +
-> > +  iommu-names:
-> > +    items:
-> > +      - const: left
-> > +      - const: right
-> > +
-> > +  power-domains:
-> > +    maxItems: 1
-> > +
-> > +  memory-region:
-> > +    minItems: 1
-> > +    maxItems: 2
-> > +
-> > +required:
-> > +  - compatible
-> > +  - reg
-> > +  - clocks
-> > +  - clock-names
-> > +  - interrupts
-> > +
-> > +additionalProperties: false
-> > +
-> > +allOf:
-> > +  - if:
-> > +      properties:
-> > +        compatible:
-> > +          contains:
-> > +            enum:
-> > +              - samsung,mfc-v5
-> > +              - samsung,exynos3250-mfc
-> > +    then:
-> > +      properties:
-> > +        clocks:
-> > +          maxItems: 2
-> > +        clock-names:
-> > +          items:
-> > +            - const: mfc
-> > +            - const: sclk_mfc
-> > +
-> > +  - if:
-> > +      properties:
-> > +        compatible:
-> > +          contains:
-> > +            enum:
-> > +              - samsung,mfc-v6
-> > +              - samsung,mfc-v8
-> > +    then:
-> > +      properties:
-> > +        clocks:
-> > +          maxItems: 1
-> > +        clock-names:
-> > +          items:
-> > +            - const: mfc
-> > +
-> > +  - if:
-> > +      properties:
-> > +        compatible:
-> > +          contains:
-> > +            enum:
-> > +              - samsung,exynos5433-mfc
-> > +    then:
-> > +      properties:
-> > +        clocks:
-> > +          maxItems: 3
-> > +        clock-names:
-> > +          items:
-> > +            - const: pclk
-> > +            - const: aclk
-> > +            - const: aclk_xiu
->=20
-> What happened to iommus? You were requiring two items, but you dropped
-> that requirement. Is it on purpose?
->=20
- Actually I thought I defined at top via items so it will cover all scenari=
-os.
-I will add it again iommus : maxItems as 2
-> > +
-> > +  - if:
-> > +      properties:
-> > +        compatible:
-> > +          contains:
-> > +            enum:
-> > +              - samsung,mfc-v7
-> > +    then:
-> > +      properties:
-> > +        clocks:
-> > +          minItems: 1
-> > +          maxItems: 2
-> > +
-> > +examples:
-> > +  - =7C
-> > +    =23include <dt-bindings/clock/exynos4.h>
-> > +    =23include <dt-bindings/clock/exynos-audss-clk.h>
-> > +    =23include <dt-bindings/interrupt-controller/arm-gic.h>
-> > +    =23include <dt-bindings/interrupt-controller/irq.h>
-> > +
-> > +    codec=4013400000 =7B
-> > +          compatible =3D =22samsung,mfc-v5=22;
->=20
-> You sill have here odd indentation. Use 4 spaces for DTS example.
->=20
-okay will rearrange .
-
-> > +          reg =3D <0x13400000 0x10000>;
-> > +          interrupts =3D <GIC_SPI 94 IRQ_TYPE_LEVEL_HIGH>;
-> > +          power-domains =3D <&pd_mfc>;
-> > +          clocks =3D <&clock CLK_MFC>, <&clock CLK_SCLK_MFC>;
-> > +          clock-names =3D =22mfc=22, =22sclk_mfc=22;
-> > +          iommus =3D <&sysmmu_mfc_l>, <&sysmmu_mfc_r>;
-> > +          iommu-names =3D =22left=22, =22right=22;
-> > +    =7D;
->=20
-> Best regards,
-> Krzysztof
-
-Thanks for the review.
-
+On 2/24/2023 1:53 PM, Manivannan Sadhasivam wrote:
+> On Tue, Feb 14, 2023 at 10:11:29PM +0530, Devi Priya wrote:
+>> Document the compatible for IPQ9574
+>>
+Hi Mani, Thanks for taking time to review the patch.
+> 
+> You didn't mention about the "msi-parent" property that is being added
+> by this patch
+Sure, will update the commit message in the next spin
+> 
+>> Signed-off-by: Devi Priya <quic_devipriy@quicinc.com>
+>> ---
+>>   .../devicetree/bindings/pci/qcom,pcie.yaml    | 72 ++++++++++++++++++-
+>>   1 file changed, 70 insertions(+), 2 deletions(-)
+>>
+>> diff --git a/Documentation/devicetree/bindings/pci/qcom,pcie.yaml b/Documentation/devicetree/bindings/pci/qcom,pcie.yaml
+>> index 872817d6d2bd..dabdf2684e2d 100644
+>> --- a/Documentation/devicetree/bindings/pci/qcom,pcie.yaml
+>> +++ b/Documentation/devicetree/bindings/pci/qcom,pcie.yaml
+>> @@ -26,6 +26,7 @@ properties:
+>>             - qcom,pcie-ipq8064-v2
+>>             - qcom,pcie-ipq8074
+>>             - qcom,pcie-ipq8074-gen3
+>> +          - qcom,pcie-ipq9574
+>>             - qcom,pcie-msm8996
+>>             - qcom,pcie-qcs404
+>>             - qcom,pcie-sa8540p
+>> @@ -44,11 +45,11 @@ properties:
+>>   
+>>     reg:
+>>       minItems: 4
+>> -    maxItems: 5
+>> +    maxItems: 6
+>>   
+>>     reg-names:
+>>       minItems: 4
+>> -    maxItems: 5
+>> +    maxItems: 6
+>>   
+>>     interrupts:
+>>       minItems: 1
+>> @@ -105,6 +106,8 @@ properties:
+>>       items:
+>>         - const: pciephy
+>>   
+>> +  msi-parent: true
+>> +
+>>     power-domains:
+>>       maxItems: 1
+>>   
+>> @@ -173,6 +176,27 @@ allOf:
+>>               - const: parf # Qualcomm specific registers
+>>               - const: config # PCIe configuration space
+>>   
+>> +  - if:
+>> +      properties:
+>> +        compatible:
+>> +          contains:
+>> +            enum:
+>> +              - qcom,pcie-ipq9574
+>> +    then:
+>> +      properties:
+>> +        reg:
+>> +          minItems: 5
+>> +          maxItems: 6
+>> +        reg-names:
+>> +          minItems: 5
+>> +          items:
+>> +            - const: dbi # DesignWare PCIe registers
+>> +            - const: elbi # External local bus interface registers
+>> +            - const: atu # ATU address space
+>> +            - const: parf # Qualcomm specific registers
+>> +            - const: config # PCIe configuration space
+>> +            - const: aggr_noc #PCIe aggr_noc
+> 
+> Why do you need this region unlike other SoCs? Is the driver making use of it?
+We have the aggr_noc region in ipq9574 to achieve higher throughput & to 
+handle multiple PCIe instances. The driver uses it to rate adapt 1-lane 
+PCIe clocks. My bad, missed it. Will add the driver changes in V2.
+> 
+> Thanks,
+> Mani
+> 
+>> +
+>>     - if:
+>>         properties:
+>>           compatible:
+>> @@ -365,6 +389,39 @@ allOf:
+>>               - const: ahb # AHB Reset
+>>               - const: axi_m_sticky # AXI Master Sticky reset
+>>   
+>> +  - if:
+>> +      properties:
+>> +        compatible:
+>> +          contains:
+>> +            enum:
+>> +              - qcom,pcie-ipq9574
+>> +    then:
+>> +      properties:
+>> +        clocks:
+>> +          minItems: 6
+>> +          maxItems: 6
+>> +        clock-names:
+>> +          items:
+>> +            - const: ahb  # AHB clock
+>> +            - const: aux  # Auxiliary clock
+>> +            - const: axi_m # AXI Master clock
+>> +            - const: axi_s # AXI Slave clock
+>> +            - const: axi_bridge # AXI bridge clock
+>> +            - const: rchng
+>> +        resets:
+>> +          minItems: 8
+>> +          maxItems: 8
+>> +        reset-names:
+>> +          items:
+>> +            - const: pipe # PIPE reset
+>> +            - const: sticky # Core Sticky reset
+>> +            - const: axi_s_sticky # AXI Slave Sticky reset
+>> +            - const: axi_s # AXI Slave reset
+>> +            - const: axi_m_sticky # AXI Master Sticky reset
+>> +            - const: axi_m # AXI Master reset
+>> +            - const: aux # AUX Reset
+>> +            - const: ahb # AHB Reset
+>> +
+>>     - if:
+>>         properties:
+>>           compatible:
+>> @@ -681,6 +738,16 @@ allOf:
+>>           - interconnects
+>>           - interconnect-names
+>>   
+>> +  - if:
+>> +      properties:
+>> +        compatible:
+>> +          contains:
+>> +            enum:
+>> +              - qcom,pcie-ipq9574
+>> +    then:
+>> +      required:
+>> +        - msi-parent
+>> +
+>>     - if:
+>>         not:
+>>           properties:
+>> @@ -693,6 +760,7 @@ allOf:
+>>                   - qcom,pcie-ipq8064v2
+>>                   - qcom,pcie-ipq8074
+>>                   - qcom,pcie-ipq8074-gen3
+>> +                - qcom,pcie-ipq9574
+>>                   - qcom,pcie-qcs404
+>>       then:
+>>         required:
+>> -- 
+>> 2.17.1
+>>
+> 
+Thanks,
+Devi Priya
