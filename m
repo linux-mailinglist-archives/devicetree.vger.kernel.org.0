@@ -2,194 +2,163 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5513A6A5811
-	for <lists+devicetree@lfdr.de>; Tue, 28 Feb 2023 12:29:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AD3BD6A5818
+	for <lists+devicetree@lfdr.de>; Tue, 28 Feb 2023 12:30:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231511AbjB1L3d (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Feb 2023 06:29:33 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53080 "EHLO
+        id S229972AbjB1LaK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Feb 2023 06:30:10 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53192 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231591AbjB1L3b (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Feb 2023 06:29:31 -0500
-Received: from mail-wm1-x32a.google.com (mail-wm1-x32a.google.com [IPv6:2a00:1450:4864:20::32a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E3741199CD
-        for <devicetree@vger.kernel.org>; Tue, 28 Feb 2023 03:29:08 -0800 (PST)
-Received: by mail-wm1-x32a.google.com with SMTP id bg16-20020a05600c3c9000b003eb34e21bdfso5818607wmb.0
-        for <devicetree@vger.kernel.org>; Tue, 28 Feb 2023 03:29:08 -0800 (PST)
+        with ESMTP id S231754AbjB1L3v (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Feb 2023 06:29:51 -0500
+Received: from mail-pj1-x1034.google.com (mail-pj1-x1034.google.com [IPv6:2607:f8b0:4864:20::1034])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0111C2F79C;
+        Tue, 28 Feb 2023 03:29:31 -0800 (PST)
+Received: by mail-pj1-x1034.google.com with SMTP id c23so9442796pjo.4;
+        Tue, 28 Feb 2023 03:29:31 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1677583712;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=oOBHN8SOWfG+6E39W2LRb5Mdzz3QwZLD1qrh4jZE1NY=;
-        b=Ag74R7l9pGf3aD9fmSORY5jTnHtW5Ti/+uDtY+oI0soLyi5X24HUuTq0geN35auA7/
-         paINEYop5l3gS5/N8IYQhngW16h5NO32M6RuFIxrO7+8dOKVcpc+mnYIdIKunamBpjUP
-         gKBR9N4o9PQj7M+yEOBrpr3+g+Hnj0A2P9DUlpU0QMldjArH9BMjp8fggYwl1Ux/YLO2
-         DEQ5nvlWQ8V5qt44dQRQnvhUp6+i5pgOB4iAvRcSiiAY+kMNJBoTEeXtb+dFABkYM/Ig
-         UTwlSK2+DzrdrcKg3pPniZSoC+pYom93m4UMNJ71TSziZ1o0G8swohICA9akBJ1114hg
-         aeFQ==
+        d=gmail.com; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=VGPD9O7xgFtCXS003sZfrOoAyNn9vk4/6H99lAkdu1o=;
+        b=jU/niE1WrfTm1NLwexIPBwLYJ4PBm6RHs5YOAz6xtutaOiRXbzwm/hKC5C5MH3C+xB
+         yDPdTtIxj6gaOT/OJuoKC72bcKyWNOrRwlwsSTz0CXmeEmtCnhH1Nucv4hc/FL2DxdgQ
+         EXco6PIIRTkjVDTViGq4ZJJMYtaDwq6lQnD3FFTsEsGU6R2LFFyMh69IK0ZXu+NeUlbU
+         YVTw8NNuBvUdVVLA6tvnqQ0/DCbMgfhhxaMqRyd0zpoRE0ULBtRUFoDRDkC02jWXknIn
+         npyreAyBny2lbyhL/7JLICbNh9kU1LSDKIJGX7Y56NssgXOhJzeDB1RYDx/mhQrh2Pvo
+         b8/A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1677583712;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=oOBHN8SOWfG+6E39W2LRb5Mdzz3QwZLD1qrh4jZE1NY=;
-        b=5/xY/OMo1y2WlcRWdbekDMaVA4E5zqLaJoolWS/aWkV11Gg9Jr0K7rBXZ6aAEVkPR6
-         pSxBUmnvZ3DAIU1Y2fqZ+ZiYPQ7cLnwP2ricYBV02MGSFrExzWO5TEVqBHdtBmwPJP3M
-         eOtsQwjOJJ6dC+gtsOAfAtC6ss93Pplk4wyeEq67iQS2W6P+phMbNHMvI73vGwf+gMQO
-         3zPyebEZ984uqOARub2j8XQmsTZv3Ik11dqY8mucPZcfvzRRW82ATmFJGlillFJvdplX
-         5rPvZQReCQGFIy27Lkqz/WxJw6IrmHsNapLwSWS8sD4rQOUZAf6vW0ba76H10RMmm5It
-         vdFA==
-X-Gm-Message-State: AO0yUKVVvgMRxYZEPW53Ts1LvagxJe8GCB+ShiMaVFgvr5O/RWJHd5s5
-        EN1DaKB//GeGsZCZ/NwQ6uRXNA==
-X-Google-Smtp-Source: AK7set9i1nyEmV4xklLiWUberN1IuWUGxUCefGBaFmf86XSGGwOVTlVC376se2dRpHJO97E6LEOKBw==
-X-Received: by 2002:a05:600c:4f85:b0:3eb:383c:1876 with SMTP id n5-20020a05600c4f8500b003eb383c1876mr1983616wmq.6.1677583712514;
-        Tue, 28 Feb 2023 03:28:32 -0800 (PST)
-Received: from [192.168.1.20] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id e26-20020a7bc2fa000000b003eb39e60ec9sm9135043wmk.36.2023.02.28.03.28.31
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 28 Feb 2023 03:28:32 -0800 (PST)
-Message-ID: <a0168d89-3c30-55e1-cf4c-37f7fe90aae4@linaro.org>
-Date:   Tue, 28 Feb 2023 12:28:30 +0100
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=VGPD9O7xgFtCXS003sZfrOoAyNn9vk4/6H99lAkdu1o=;
+        b=AD6qIiXcD+cdM4MTWMHKKQ9aEzDN98MBaMSv4AV7ZTI4UkHMUGr7MylRmOQRRrFA7T
+         Dwik6YcuL6Psp2JT/t3TKLcMbLaCT5WaSdeWHtXQUYQSA5ELshyPdLp3cU7hkj32tXor
+         z6SZ6f909gvsSMAZoLI/KEfq5Xa83sFzW9nm6rg2CY9WcMqBthDEzEm2QFWdpit1f7Ej
+         SiElG3UCbHaKS5LwsqCvWDITgl75MK1j/qFIOU9ez3Cp2imXCDvMIvZ8C6mzYfw1QjHg
+         FR3mAjYTvjmpIVil7dIahevZay2aCgvdiQfoBc44qGageHXHD1G0QxiE2d0l5Bc7TjdP
+         ghlA==
+X-Gm-Message-State: AO0yUKWeEbz6NsmsNsgp4Z4jpx+pnz0tCjOQ+PNDiyLj2dsXERXx8dXb
+        2B598JeU8eGJGCU/gfvYj/V07nvBOCH7pG3eYHQ=
+X-Google-Smtp-Source: AK7set86lN+bt338TSYpTLlmOUzXkwHeJZLErNy9rjj31DPGBof8BrA5O7N01GKJPijodPOzi3RDL2dtCpqGcbELmvI=
+X-Received: by 2002:a17:902:efd4:b0:19b:636:b153 with SMTP id
+ ja20-20020a170902efd400b0019b0636b153mr840822plb.6.1677583765027; Tue, 28 Feb
+ 2023 03:29:25 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-Subject: Re: [PATCH v4 4/4] dt-bindings: syscon: Add StarFive syscon doc
-To:     Emil Renner Berthing <emil.renner.berthing@canonical.com>
-Cc:     William Qiu <william.qiu@starfivetech.com>,
-        Rob Herring <robh@kernel.org>, linux-riscv@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-mmc@vger.kernel.org,
+References: <20230227174308.87286-1-marex@denx.de> <20230227174308.87286-5-marex@denx.de>
+ <20230227185949.xaxltai4ksgrczmc@pengutronix.de> <c3b3c08c-989b-3868-c74f-426b8f1733a5@denx.de>
+ <CAHCN7x+Jd+C2B+-igv=Pk0Ab4Tj7ecxRrdV85u5CSZ5DjFs5kA@mail.gmail.com>
+ <3378fb83-d88d-4854-c096-b459672eef08@denx.de> <01f83ee3-51e0-4c7b-8abd-1a8e40abcdf2@denx.de>
+In-Reply-To: <01f83ee3-51e0-4c7b-8abd-1a8e40abcdf2@denx.de>
+From:   Adam Ford <aford173@gmail.com>
+Date:   Tue, 28 Feb 2023 05:29:12 -0600
+Message-ID: <CAHCN7xJC23KB+9XBRK8F8catugayjzFRS0DEdgvAG+GMsmhb9g@mail.gmail.com>
+Subject: Re: [PATCH v5 5/5] arm64: dts: imx8mp: Add analog audio output on
+ i.MX8MP EVK
+To:     Marek Vasut <marex@denx.de>
+Cc:     Marco Felsch <m.felsch@pengutronix.de>, linux-clk@vger.kernel.org,
+        Fabio Estevam <festevam@gmail.com>,
+        Abel Vesa <abelvesa@kernel.org>,
+        Alexander Stein <alexander.stein@ew.tq-group.com>,
+        Jacky Bai <ping.bai@nxp.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jaehoon Chung <jh80.chung@samsung.com>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        linux-kernel@vger.kernel.org
-References: <20230215113249.47727-1-william.qiu@starfivetech.com>
- <20230215113249.47727-5-william.qiu@starfivetech.com>
- <20230220234335.GA615198-robh@kernel.org>
- <348796cc-72d9-4dcf-9f09-4c2aa55cb858@starfivetech.com>
- <20230227222904.GC1048218-robh@kernel.org>
- <f8d2b665-ce5d-81f8-8c55-81f1a4cb62b9@starfivetech.com>
- <54f51fa0-7821-b67b-b782-eb9a35b7bba9@linaro.org>
- <CAJM55Z85fitjBOcCLqad9W-a7h3iN9bxtctVGzPgqCbf5fWobw@mail.gmail.com>
-Content-Language: en-US
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <CAJM55Z85fitjBOcCLqad9W-a7h3iN9bxtctVGzPgqCbf5fWobw@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Luca Ceresoli <luca.ceresoli@bootlin.com>,
+        Lucas Stach <l.stach@pengutronix.de>,
+        Michael Turquette <mturquette@baylibre.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Peng Fan <peng.fan@nxp.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Richard Cochran <richardcochran@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Stephen Boyd <sboyd@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 28/02/2023 12:02, Emil Renner Berthing wrote:
-> On Tue, 28 Feb 2023 at 11:40, Krzysztof Kozlowski
-> <krzysztof.kozlowski@linaro.org> wrote:
->>
->> On 28/02/2023 10:05, William Qiu wrote:
->>>
->>>
->>> On 2023/2/28 6:29, Rob Herring wrote:
->>>> On Tue, Feb 21, 2023 at 10:44:02AM +0800, William Qiu wrote:
->>>>>
->>>>>
->>>>> On 2023/2/21 7:43, Rob Herring wrote:
->>>>>> On Wed, Feb 15, 2023 at 07:32:49PM +0800, William Qiu wrote:
->>>>>>> Add documentation to describe StarFive System Controller Registers.
->>>>>>>
->>>>>>> Signed-off-by: William Qiu <william.qiu@starfivetech.com>
->>>>>>> ---
->>>>>>>  .../bindings/soc/starfive/jh7110-syscon.yaml  | 51 +++++++++++++++++++
->>>>>>>  MAINTAINERS                                   |  5 ++
->>>>>>>  2 files changed, 56 insertions(+)
->>>>>>>  create mode 100644 Documentation/devicetree/bindings/soc/starfive/jh7110-syscon.yaml
->>>>>>>
->>>>>>> diff --git a/Documentation/devicetree/bindings/soc/starfive/jh7110-syscon.yaml b/Documentation/devicetree/bindings/soc/starfive/jh7110-syscon.yaml
->>>>>>> new file mode 100644
->>>>>>> index 000000000000..fa4d8522a454
->>>>>>> --- /dev/null
->>>>>>> +++ b/Documentation/devicetree/bindings/soc/starfive/jh7110-syscon.yaml
->>>>>>> @@ -0,0 +1,51 @@
->>>>>>> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
->>>>>>> +%YAML 1.2
->>>>>>> +---
->>>>>>> +$id: http://devicetree.org/schemas/soc/starfive/jh7110-syscon.yaml#
->>>>>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->>>>>>> +
->>>>>>> +title: StarFive JH7110 SoC system controller
->>>>>>> +
->>>>>>> +maintainers:
->>>>>>> +  - William Qiu <william.qiu@starfivetech.com>
->>>>>>> +
->>>>>>> +description: |
->>>>>>> +  The StarFive JH7110 SoC system controller provides register information such
->>>>>>> +  as offset, mask and shift to configure related modules such as MMC and PCIe.
->>>>>>> +
->>>>>>> +properties:
->>>>>>> +  compatible:
->>>>>>> +    items:
->>>>>>> +      - enum:
->>>>>>> +          - starfive,jh7110-stg-syscon
->>>>>>> +          - starfive,jh7110-sys-syscon
->>>>>>> +          - starfive,jh7110-aon-syscon
->>>>>>
->>>>>> Is 'syscon' really part of what the blocks are called? Is just 'stg',
->>>>>> 'sys' and 'aon' not unique enough?
->>>>>>
->>>>>> Rob
->>>>> Hi Rob,
->>>>>
->>>>> In StarFive SoC, we do have syscrg/aoncrg/stgcrg, which is uesd to be the clock
->>>>> controller, so 'syscon' is added to avoid confusion.
->>>>
->>>> You've only added to my confusion. 'syscrg' and 'sys-syscon' are 2
->>>> different h/w blocks and unrelated to each other? Or 'syscrg' is the
->>>> clock portion of 'sys-syscon'? In that case, 'syscrg' should be a child
->>>> of 'sys-syscon' or possibly just all one node. Please provide details on
->>>> the entire h/w block so we can provide better input on the bindings.
->>>>
->>>> Rob
->>>
->>> Hi Rob,
->>>
->>> It's my description that's problematic.'syscon' here refers to the hardware module
->>> inside our JH7110, which is different from the syscon interface in linux. The syscon
->>> I added now uses the syscon interface of linux to read and write the syscon register
->>> in our JH7110. So we decided to name it that way.
->>
->> You didn't really answer Rob's questions.
->>
->> Also, syscon is Linux term, so are you sure hardware module is called
->> like this? Hardware engineers took pure Linux name and used it?
-> 
-> Yes, from the documentation I could find[1] there are CRG blocks
-> (Clock and Reset Generator) and SYSCON blocks:
-> SYS CRG
-> STG CRG
-> AON CRG
-> SYS SYSCON
-> STG SYSCON
-> AON SYSCON
-> 
-> The CRG blocks contain registers to control clocks and resets that
-> follow a pattern used by the clock and reset drivers. The SYSCON
-> blocks just seem to contain registers to control whatever didn't fit
-> in any other blocks, but might be vaguely related to the peripherals
-> that run off clocks controlled by the corresponding CRG block.
+On Tue, Feb 28, 2023 at 12:48 AM Marek Vasut <marex@denx.de> wrote:
+>
+> On 2/28/23 07:43, Marek Vasut wrote:
+> > On 2/28/23 03:44, Adam Ford wrote:
+> >> On Mon, Feb 27, 2023 at 1:37 PM Marek Vasut <marex@denx.de> wrote:
+> >>>
+> >>> On 2/27/23 19:59, Marco Felsch wrote:
+> >>> [...]
+> >>>
+> >>>>> @@ -344,6 +384,18 @@ &i2c3 {
+> >>>>>       pinctrl-0 = <&pinctrl_i2c3>;
+> >>>>>       status = "okay";
+> >>>>>
+> >>>>> +    wm8960: codec@1a {
+> >>>>> +            #sound-dai-cells = <0>;
+> >>>>> +            compatible = "wlf,wm8960";
+> >>>>> +            reg = <0x1a>;
+> >>>>
+> >>>> The compatible should be the first property followed by the reg
+> >>>> property.
+> >>>
+> >>> See my reply to the mx8mn sound-sai-cells patch , I am not sure here.
+> >>> The rest is fixed in V6.
+> >>>
+> >>>>> +            clocks = <&audio_blk_ctrl
+> >>>>> IMX8MP_CLK_AUDIOMIX_SAI3_MCLK1>;
+> >>>>> +            clock-names = "mclk";
+> >>>>> +            wlf,shared-lrclk;
+> >>>>> +            wlf,hp-cfg = <3 2 3>;
+> >>>>> +            wlf,gpio-cfg = <1 3>;
+> >>>>> +            SPKVDD1-supply = <&reg_audio_pwr>;
+> >>>>> +    };
+> >>>>> +
+> >>>>>       pca6416: gpio@20 {
+> >>>>>               compatible = "ti,tca6416";
+> >>>>>               reg = <0x20>;
+> >>>
+> >>> [...]
+> >>>
+> >>>>> @@ -668,6 +730,18 @@ MX8MP_IOMUXC_UART3_TXD__UART1_DCE_RTS   0x140
+> >>>>>               >;
+> >>>>>       };
+> >>>>>
+> >>>>> +    pinctrl_sai3: sai3grp {
+> >>>>> +            fsl,pins = <
+> >>>>> +
+> >>>>> MX8MP_IOMUXC_SAI3_TXFS__AUDIOMIX_SAI3_TX_SYNC   0xd6
+> >>>>> +
+> >>>>> MX8MP_IOMUXC_SAI3_TXC__AUDIOMIX_SAI3_TX_BCLK    0xd6
+> >>>>> +
+> >>>>> MX8MP_IOMUXC_SAI3_RXD__AUDIOMIX_SAI3_RX_DATA00  0xd6
+> >>>>> +
+> >>>>> MX8MP_IOMUXC_SAI3_TXD__AUDIOMIX_SAI3_TX_DATA00  0xd6
+> >>>>> +
+> >>>>> MX8MP_IOMUXC_SAI3_MCLK__AUDIOMIX_SAI3_MCLK      0xd6
+> >>>>> +
+> >>>>> MX8MP_IOMUXC_SAI3_RXFS__GPIO4_IO28              0xd6
+> >>>>
+> >>>> What is gpio04-io28 used for?
+> >>>
+> >>> Apparently unused, dropped.
+> >>
+> >> Isn't that the headphone detect GPIO?
+> >>
+> >> I think simple-audio-card,hp-det-gpio can reference it.
+> >
+> > Per the schematics of the MX8MP EVK, the pin is not connected on the
+> > board-to-board connector EVK side, right ?
+>
+> Er, correction, that's AUD_NINT, which is WM8960 GPIO1 .
 
-The memory map [1] suggests these are indeed separate address spaces,
-e.g. AON CRG, AON SYSCON and AON GPIO, but now I would argue that this
-might be still one device - AON (or STG, SYS). Just like PCIE0 has four
-address spaces, it does not mean you have four separate PCIE0 devices.
-You have only one PCIE0, just like you have only one AON, one STG and
-one SYS (System).
+I only went by NXP's downstream device tree.  I didn't have the
+schematics in front of me.  Sorry for the noise.
 
-[1] https://doc-en.rvspace.org/JH7110/TRM/JH7110_TRM/system_memory_map.html
-
-
-Best regards,
-Krzysztof
-
+adam
