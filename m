@@ -2,158 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AF5546A60C0
-	for <lists+devicetree@lfdr.de>; Tue, 28 Feb 2023 21:53:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E7D7B6A60D3
+	for <lists+devicetree@lfdr.de>; Tue, 28 Feb 2023 22:01:47 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229800AbjB1UxS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Feb 2023 15:53:18 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42476 "EHLO
+        id S229527AbjB1VBq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Feb 2023 16:01:46 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48110 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229738AbjB1UxR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Feb 2023 15:53:17 -0500
-Received: from ewsoutbound.kpnmail.nl (ewsoutbound.kpnmail.nl [195.121.94.169])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4E60A9EF0
-        for <devicetree@vger.kernel.org>; Tue, 28 Feb 2023 12:53:13 -0800 (PST)
-X-KPN-MessageId: e59fbc5a-b7a9-11ed-afdd-005056abad63
-Received: from smtp.kpnmail.nl (unknown [10.31.155.39])
-        by ewsoutbound.so.kpn.org (Halon) with ESMTPS
-        id e59fbc5a-b7a9-11ed-afdd-005056abad63;
-        Tue, 28 Feb 2023 21:53:04 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=xs4all.nl; s=xs4all01;
-        h=subject:to:from:message-id:date;
-        bh=fudN8ArySQL4WxjTN7QCK9yq0lwyu6+8SisGWmyX75Q=;
-        b=m0ZY7+3tWMyJ6mV02HESHr2l1pOW5Ed2enycOSfnmV68NXwwPvx7n9SY1s3xRXdYdOjYL7Dv/5yrv
-         IhOeKbwTQIp72Feoe0LUy3d29YrgAvnEZBqhQ/dlBpN6hr9KPwU7blmQa5NvrTpZsPJvY8kAEv2+vB
-         NzMiglvb/olKTnwU2wUOiGZEreeC85bnHBRdVOJfHs7SPJX8+2snqtE2gIM9F71Vk2oAKLP+OqsyP8
-         +aeVRILBb2ua33Nqj4D6gZN5G25yhofl0WKz66g7r5ty9dXV8K8bpV0JAs3av9Qb7jotSDD42iVvtv
-         LYTRJP3kGQmaiQY13/JhbDYVU2mkOjQ==
-X-KPN-MID: 33|qw/opIog0L/9cUv1FdHJALWLJ+GSjGOJs5JQpYZ1ewEddOVHknQ7JqPBIPb5etM
- nyGMcY1SMzXWUySHwK25A7xcOIn3ik4pRV0KxPF4B7Hg=
-X-KPN-VerifiedSender: Yes
-X-CMASSUN: 33|TyyRfy9x8DGtrDcN80aGHcz+FyBiGyfilCur4PWFuaPgwVH2U9q9D9JZDF365RQ
- 5+Y79MNe1fW0b87u+FQle2A==
-X-Originating-IP: 80.61.163.207
-Received: from bloch.sibelius.xs4all.nl (80-61-163-207.fixed.kpn.net [80.61.163.207])
-        by smtp.xs4all.nl (Halon) with ESMTPSA
-        id e836b37c-b7a9-11ed-ab4c-005056ab7447;
-        Tue, 28 Feb 2023 21:53:10 +0100 (CET)
-Date:   Tue, 28 Feb 2023 21:53:09 +0100
-Message-Id: <87wn41qzpm.fsf@bloch.sibelius.xs4all.nl>
-From:   Mark Kettenis <mark.kettenis@xs4all.nl>
-To:     Hector Martin <marcan@marcan.st>
-Cc:     sven@svenpeter.dev, fnkl.kernel@gmail.com, alyssa@rosenzweig.io,
-        dmitry.torokhov@gmail.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, asahi@lists.linux.dev,
-        rydberg@bitmath.org, linux-arm-kernel@lists.infradead.org,
-        linux-input@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-In-Reply-To: <1874e194-5210-460b-3e8f-0f48962f8a47@marcan.st> (message from
-        Hector Martin on Tue, 28 Feb 2023 11:58:28 +0900)
-Subject: Re: [PATCH RFC 1/4] dt-bindings: input: touchscreen: Add Z2
- controller bindings.
-References: <20230223-z2-for-ml-v1-0-028f2b85dc15@gmail.com>
- <20230223-z2-for-ml-v1-1-028f2b85dc15@gmail.com>
- <87r0ufs574.fsf@bloch.sibelius.xs4all.nl>
- <CAMT+MTQOUd0aSDJ3DPBMfkVwaic=nbRPtfGgu2nduSdCdydcgg@mail.gmail.com>
- <e6c7eb27-1b60-4894-a623-28ca3bccdea5@app.fastmail.com> <1874e194-5210-460b-3e8f-0f48962f8a47@marcan.st>
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
+        with ESMTP id S229568AbjB1VBp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Feb 2023 16:01:45 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9720A22DF9;
+        Tue, 28 Feb 2023 13:01:44 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 6082DB80E9E;
+        Tue, 28 Feb 2023 21:01:43 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 06B43C433EF;
+        Tue, 28 Feb 2023 21:01:42 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1677618102;
+        bh=PuulFyV4awQbeaORv2ji+l8CrYcwr4rOBMH1Tmw+dtE=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=Avt+N/dHfyW7DzInBLT270f21nSYylFNKA/0Iv5W5TLARLIkzgle0VUkpFUBUCA+e
+         HS8r/UciJYdPwkRQhFVwVMvrPjh5pIcjn5cPcgAEy4BuTlOEZEZ9Uhv6xbZkqAOAej
+         9Y1snhlVSSP9wNoq6omx6gUP5WzPOaJ3qzGdw+Yde0PhxDHrDty2WDjkPeleROklIg
+         U2FUM2UBpv72NLnXSZp7qusAZFSfzbar6OPn9nd5j8x2fDpal0Ga9bJQTcOpacJg61
+         u5iQkA+MYjbiYbazNh3OAXedYMtET1cQqH6XtUaOMt2v2seQYb7EN1CP77U0WfSSaT
+         oQ0f3zsNd3sMA==
+Received: by mail-vs1-f54.google.com with SMTP id x14so17144794vso.9;
+        Tue, 28 Feb 2023 13:01:41 -0800 (PST)
+X-Gm-Message-State: AO0yUKU+4zedN9y7WyF4BHDO4XgUiMEW0+MUj638oCBBKL/4fMwcuFPh
+        1EgSpP+0xtrXb7G/qyIADbsO++K0RInr7qaCXA==
+X-Google-Smtp-Source: AK7set+knSmnKI9hZHw/GCydiY5YXrF1T3UuE2jhcpYZSRIm0PWl9GdSn7NK6uvej168lpg2EjqKn6El4YYdjuqeaj0=
+X-Received: by 2002:a67:e003:0:b0:414:d29b:497c with SMTP id
+ c3-20020a67e003000000b00414d29b497cmr2801654vsl.6.1677618100932; Tue, 28 Feb
+ 2023 13:01:40 -0800 (PST)
+MIME-Version: 1.0
+References: <20230228174019.4004581-1-jjhiblot@traphandler.com> <CAGETcx-w4A3fz_DPqJG+9P6ETGAPv547DcnsO52gqTO1_vijsw@mail.gmail.com>
+In-Reply-To: <CAGETcx-w4A3fz_DPqJG+9P6ETGAPv547DcnsO52gqTO1_vijsw@mail.gmail.com>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Tue, 28 Feb 2023 15:01:29 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqL6qFDC5uC_0PgyM_8OVEwFq+o=gPk2=PRKBDTp9XTzOw@mail.gmail.com>
+Message-ID: <CAL_JsqL6qFDC5uC_0PgyM_8OVEwFq+o=gPk2=PRKBDTp9XTzOw@mail.gmail.com>
+Subject: Re: [PATCH] of: property: Add missing of_node_get() in parse_interrupt()
+To:     Saravana Kannan <saravanak@google.com>
+Cc:     jjhiblot@traphandler.com, frowand.list@gmail.com,
+        gregkh@linuxfoundation.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Marc Zyngier <maz@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> Date: Tue, 28 Feb 2023 11:58:28 +0900
-> From: Hector Martin <marcan@marcan.st>
-> 
-> On 24/02/2023 20.08, Sven Peter wrote:
-> > Hi,
-> > 
-> > 
-> > On Fri, Feb 24, 2023, at 12:04, Sasha Finkelstein wrote:
-> >> On Fri, 24 Feb 2023 at 11:55, Mark Kettenis <mark.kettenis@xs4all.nl> wrote:
-> >>
-> >>> What is the motivation for including the firmware name in the device
-> >>> tree rather than constructing it in the driver like what is done for
-> >>> the broadcom wireless?
-> >> There is no way to identify the device subtype before the firmware is
-> >> uploaded, and so i need some way of figuring out which firmware to use.
-> > 
-> > Some Broadcom bluetooth boards use the compatible of the root node (see
-> > btbcm_get_board_name in drivers/bluetooth/btbcm.c) which would be "apple,jXXX"
-> > for Apple Silicon. I believe the Broadcom WiFi driver has similar logic as well
-> > which marcan had to extend to instead of "brcm,board-type" because different
-> > WiFi boards can me matched to different Apple Silicon boards. I don't think
-> > that's the case for this touchscreen though.
-> 
-> The reason why the brcmfmac stuff needs to construct the firmware name
-> itself is that parts of it come from the OTP contents, so there is no
-> way to know from the bootloader what the right firmware is.
+On Tue, Feb 28, 2023 at 1:07=E2=80=AFPM Saravana Kannan <saravanak@google.c=
+om> wrote:
+>
+> On Tue, Feb 28, 2023 at 9:40=E2=80=AFAM Jean-Jacques Hiblot
+> <jjhiblot@traphandler.com> wrote:
+> >
+> > From: Jean Jacques Hiblot <jjhiblot@traphandler.com>
+> >
+> > As all the other parsers do, parse_interrupt() must increase the refcou=
+nt
+> > of the device_node. Otherwise the refcount is decremented every time
+> > parse_interrupt() is called on this node, leading to a potential
+> > use-after-free.
+> >
+> > This is a regression introduced by commit f265f06af194 ("of: property:
+> > Fix fw_devlink handling of interrupts/interrupts-extended"). The reason=
+ is
+> > that of_irq_parse_one() does not increase the refcount while the previo=
+usly
+> > used of_irq_find_parent() does.
+>
+> Thanks for catching the issue Jean!
+>
+> This feels like a bug in of_irq_parse_one() to me. It's returning a
+> reference to a node without doing a of_node_get() on it.
+>
+> Rob, Marc, Do you agree?
 
-The name of the "nvram" file is constructed as well, and that uses the
-compatible of the machine (the root of the device tree).  I suppose
-what is special in that case is that several files are tried so a
-single 'firmware-name" property wouldn't cut it.
+I think you are right. If we look at the 'interrupts-extended' path,
+it just calls of_parse_phandle_with_args() which does a get.
 
-> That is not the case here, so it makes perfect sense to specify the
-> firmware with `firmware-name` (which is a standard DT property).
+> Jean,
+>
+> If they agree, can you please fix of_irq_parse_one() and add a
+> of_node_put() to existing callers (if they aren't already doing a
+> put()).
 
-It certainly provides the flexibility to cater for all potential
-nonsense names Apple comes up with for future hardware.
+I think it is not that simple. The correct thing for callers may also
+be to hold the ref. We wouldn't want to just blindly do a put that is
+clearly wrong just to keep current behavior. But not having the put
+means we're leaking refcounts as calling the APIs originally had no
+side effect. For example, IIRC, of_irq_get() is called again on each
+deferred probe. There is no of_irq_put() because Linux IRQ numbers
+aren't (or weren't?) refcounted.
 
-> As for the layout, both bare names and paths are in common use:
-> 
-> qcom/sm8450-qrd.dts:    firmware-name = "qcom/sm8450/slpi.mbn";
-> ti/k3-am64-main.dtsi:   firmware-name = "am64-main-r5f0_0-fw";
-> 
-> ... but the bare names in particular, judging by some Google searches,
-> are *actually* mapped to bare files in /lib/firmware anyway. So the
-> firmware-name property contains the firmware path in the linux-firmware
-> standard hierarchy, in every case.
+Really, I'd like to get rid of exposing of_irq_parse_one() in the first pla=
+ce.
 
-Well, I think the device tree should not be tied to a particular OS
-and therefore not be tied to things like linux-firmware.
-
-> I already did the same thing for the touchpad on M2s (which requires
-> analogous Z2 firmware passed to it, just in a different format):
-> 
-> dts/apple/t8112-j413.dts: firmware-name = "apple/tpmtfw-j413.bin";
-> 
-> Why is having a directory a problem for OpenBSD? Regardless of how
-> firmware is handled behind the scenes, it seems logical to organize it
-> by vendor somehow. It seems to me that gratuitously diverging from the
-> standard firmware hierarchy is only going to cause trouble for OpenBSD.
-> Obviously it's fine to store it somewhere other than /lib/firmware or
-> use a completely unrelated mechanism other than files, but why does the
-> *organization* of the firmware have to diverge? There can only be one DT
-> binding, so we need to agree on a way of specifying firmwares that works
-> cross-OS, and I don't see why "apple/foo.bin" couldn't be made to work
-> for everyone in some way or another.
-
-We organize the firmware by driver.  And driver names in *BSD differ
-from Linux since there are different constraints.  The firmware is
-organized by driver because we have separate firmware packages for
-each driver that get installed as-needed by a tool that matches on the
-driver name.
-
-Rather than have the device tree dictate the layout of the firmware
-files, I think it would be better to have the OS driver prepend the
-directory to match the convention of the OS in question.  This is what
-we typically do in OpenBSD.
-
-Now I did indeed forget about the "dockchannel" touchpad firmware that
-I already handle in OpenBSD.  That means I could handle the touchbar
-firmware in the same way.  But that is mostly because these firmwares
-are non-distributable, so we don't have firmware packages for them.
-Instead we rely on the Asahi installer to make the firmware available
-on the EFI partition and the OpenBSD installer to move the firmware in
-place on the root filesystem.
-
-So this isn't a big issue.
-
-Cheers,
-
-Mark
+Rob
