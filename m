@@ -2,107 +2,141 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0609F6A519D
-	for <lists+devicetree@lfdr.de>; Tue, 28 Feb 2023 04:06:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EF8516A5267
+	for <lists+devicetree@lfdr.de>; Tue, 28 Feb 2023 05:44:37 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229523AbjB1DGE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 Feb 2023 22:06:04 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48582 "EHLO
+        id S229659AbjB1Eog (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 Feb 2023 23:44:36 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53130 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229511AbjB1DGD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Feb 2023 22:06:03 -0500
-Received: from mail.marcansoft.com (marcansoft.com [212.63.210.85])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A88F7234CF;
-        Mon, 27 Feb 2023 19:06:02 -0800 (PST)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits))
-        (No client certificate requested)
-        (Authenticated sender: marcan@marcan.st)
-        by mail.marcansoft.com (Postfix) with ESMTPSA id EE7D13FA55;
-        Tue, 28 Feb 2023 03:05:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=marcan.st; s=default;
-        t=1677553560; bh=wVcS342cqA0YYWvmacgIf9QEQsqALNiDVlYfNtFDUa0=;
-        h=Date:To:Cc:References:From:Subject:In-Reply-To;
-        b=WesZhbidz5NnlzU1ruhs6kqvMrgw9FR6q5ZpOXhEMZCiKGClK70ct+JWPWIvdK9JI
-         btsNOSeFIEUGtUFzUahNNEcvEYb1kDbtK9hQRU02Dztg12zTetnsknyIBmShVl+5Ck
-         CPR2kpdchCvo/phvemqAKmRhnRmjAlSp5wYEyRUfLZ62HyiIbL89K0M+hK7gKE5KgU
-         XkyaGM18wDKWxutqMLllXS3LVKS3SLzOnZdhXDqPYIKwVTiERct6CBkv/jneealFu3
-         fHG5/1heaHvKVMHp96rG8Ul/LBKmwEUx6U7spU6FCBr2gKSERqTJnCdKyz/z1PhA6n
-         VXyAu6qfmPOuQ==
-Message-ID: <bb82ed53-3c90-69d2-1c92-d8a6f735fc5f@marcan.st>
-Date:   Tue, 28 Feb 2023 12:05:55 +0900
+        with ESMTP id S229485AbjB1Eoe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Feb 2023 23:44:34 -0500
+Received: from mail-ot1-x32b.google.com (mail-ot1-x32b.google.com [IPv6:2607:f8b0:4864:20::32b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0472ECA3D;
+        Mon, 27 Feb 2023 20:44:34 -0800 (PST)
+Received: by mail-ot1-x32b.google.com with SMTP id m25-20020a05683026d900b006941a2838caso98458otu.7;
+        Mon, 27 Feb 2023 20:44:33 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=bfmYJ0b4hWHKRlFdtuun1P3pZqVYLgA8CJ0d1ZnpCJc=;
+        b=Nun8IwVYUt4tkernIxKDSObpXVAN4e8cBwu2epATj8pUm0q3TzvSaiUCisyzqXQNMN
+         FThh0nzWxEO0jWKbZ3/5JbrNu3KtUDFsBDCD4f8P3s8J/3Fu366+5U8vgbGJ5LDBwsCz
+         mHnAJ5VTSq5SAjih2cwMsbM7wKGEpzk9ElDHeXBInQ+HI4CtkLRYXxXZBNe2wGpHZRU7
+         TQjVNuBHyCNhVmKbnU9fxc+dbORgAmr9sbKusYZR1GNnKB82DYcpZhlIQ3JcJ0qt/s9Q
+         4xoqAz5GB62Z2OBLjgFxiVKWh4Uop0LYcPp/cYXcbFSf/Bffxq9nCO5YbxH9NMKzUt0O
+         yfGQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=bfmYJ0b4hWHKRlFdtuun1P3pZqVYLgA8CJ0d1ZnpCJc=;
+        b=gVmT499byRfgRIPhUlOd2RBJz/oZx9KGvbr/Wk7hExGLUmnrdcnkjbWQwKqjns7tll
+         BFFNcYrtUkoCfu4YXvP7SPBZHDkNjxKUuPfBtDTgWwl38xlYrYW8PJLGBz7+a9wzWf5/
+         pVL7CoTSjFSYywrmBYlshh5pH1pe0uUnbgCpRA7FvYPbPpXAnACEdz9HVDtY7eK1ArVG
+         lw1ZwURbl32GO/c7ZowF57s/FnPiMtTTGA4Au6lpaAt8I+RLsLgmQPFbbiJNNNxI0E08
+         Zqm0Kl5CLgELI9XdfRQ2Pocki4fEkal8cL6n49lowugdx8gXYJJF7NmCfAqD8Fvb9gaD
+         I8kQ==
+X-Gm-Message-State: AO0yUKWufwCnJ0M+5mQ9EmTQ6vP80bEE46ua32rW0rIbmgBnhY/QAPeW
+        RlQGxjsI17yyRyGCZfs0/hcqYJ62X+bWXMsbzkR6b/gT
+X-Google-Smtp-Source: AK7set9408o7HwNQmk1pEZVmQzCN2Uu1vGVHDLMhtP3EEByROmYUfXm5A+HXZsapO/7zHYtBGMcqoPCtllteVJa25wo=
+X-Received: by 2002:a05:6830:244b:b0:68b:e3b2:8ca7 with SMTP id
+ x11-20020a056830244b00b0068be3b28ca7mr466491otr.6.1677559473326; Mon, 27 Feb
+ 2023 20:44:33 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.1
-Content-Language: en-US
-To:     Sasha Finkelstein <fnkl.kernel@gmail.com>,
-        Rob Herring <robh@kernel.org>
-Cc:     Sven Peter <sven@svenpeter.dev>,
-        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        - <asahi@lists.linux.dev>, Henrik Rydberg <rydberg@bitmath.org>,
-        linux-arm-kernel@lists.infradead.org, linux-input@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20230223-z2-for-ml-v1-0-028f2b85dc15@gmail.com>
- <20230223-z2-for-ml-v1-1-028f2b85dc15@gmail.com>
- <20230227195139.GA677578-robh@kernel.org>
- <CAMT+MTRodB_+sMtoPxv-gP_+sJAwNb36XuLOGo=HvuCQq6h+gQ@mail.gmail.com>
- <20230227221426.GA1048218-robh@kernel.org>
- <CAMT+MTTH-DC+1wMFUGNwVM3cYm0B+XVK7wL07khdy1hSjyhDGA@mail.gmail.com>
-From:   Hector Martin <marcan@marcan.st>
-Subject: Re: [PATCH RFC 1/4] dt-bindings: input: touchscreen: Add Z2
- controller bindings.
-In-Reply-To: <CAMT+MTTH-DC+1wMFUGNwVM3cYm0B+XVK7wL07khdy1hSjyhDGA@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+References: <20230214103936.1061078-1-sergio.paracuellos@gmail.com>
+ <20230214103936.1061078-3-sergio.paracuellos@gmail.com> <20230214151101.GB742354@roeck-us.net>
+ <CAMhs-H915iSR7TpuXdcg8NKLV8Scv9cwW36SZaXNK839kA4ybg@mail.gmail.com>
+In-Reply-To: <CAMhs-H915iSR7TpuXdcg8NKLV8Scv9cwW36SZaXNK839kA4ybg@mail.gmail.com>
+From:   Sergio Paracuellos <sergio.paracuellos@gmail.com>
+Date:   Tue, 28 Feb 2023 05:44:21 +0100
+Message-ID: <CAMhs-H_Ce-+MFi5zTMg8v8dSSg5ioaTy+Pw-0QMgK++PVtEViQ@mail.gmail.com>
+Subject: Re: [PATCH v7 2/5] mips: dts: ralink: mt7621: rename watchdog node
+ from 'wdt' into 'watchdog'
+To:     Guenter Roeck <linux@roeck-us.net>
+Cc:     linux-watchdog@vger.kernel.org, wim@linux-watchdog.org,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        matthias.bgg@gmail.com, arinc.unal@arinc9.com,
+        tsbogend@alpha.franken.de, p.zabel@pengutronix.de,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-mips@vger.kernel.org,
+        =?UTF-8?Q?Philippe_Mathieu=2DDaud=C3=A9?= <philmd@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 28/02/2023 07.25, Sasha Finkelstein wrote:
-> On Mon, 27 Feb 2023 at 23:14, Rob Herring <robh@kernel.org> wrote:
->> I know little about libinput, but how would it know about
->> 'apple,z2-device-name'?
->>
-> The idea was to forward the contents of this property
-> into the input device name.
+On Tue, Feb 14, 2023 at 4:12 PM Sergio Paracuellos
+<sergio.paracuellos@gmail.com> wrote:
+>
+> On Tue, Feb 14, 2023 at 4:11 PM Guenter Roeck <linux@roeck-us.net> wrote:
+> >
+> > On Tue, Feb 14, 2023 at 11:39:33AM +0100, Sergio Paracuellos wrote:
+> > > Watchdog nodes must use 'watchdog' for node name. When a 'make dtbs_c=
+heck'
+> > > is performed the following warning appears:
+> > >
+> > > wdt@100: $nodename:0: 'wdt@100' does not match '^watchdog(@.*|-[0-9a-=
+f])?$'
+> > >
+> > > Fix this warning up properly renaming the node into 'watchdog'.
+> > >
+> > > Reviewed-by: Ar=C4=B1n=C3=A7 =C3=9CNAL <arinc.unal@arinc9.com>
+> > > Reviewed-by: Philippe Mathieu-Daud=C3=A9 <philmd@linaro.org>
+> > > Signed-off-by: Sergio Paracuellos <sergio.paracuellos@gmail.com>
+> >
+> > Acked-by: Guenter Roeck <linux@roeck-us.net>
+> >
+> > Note that we can not apply this and the next patch of the series
+> > through the watchdog tree since it crosses a maintainer boundary.
+>
+> I was expecting Thomas to get these two arch/mips patches or get an
+> Acked-by from him in order for you to apply them.
 
-Then you want "label", as Rob said.
+Hi Thomas,
 
-But I also agree with Rob that we want per-device compatibles, even if
-we don't use them upfront in the driver. That's what we do everywhere
-else, and it has served us well. I suggest this hierarchy:
+I think you have missed this series since you have started to apply
+newer stuff in mips-next. Are you ok with taking or Acking patches 2
+and 3 of this series?
 
-compatible = "apple,j293-touchbar", "apple,z2-touchbar",
-"apple,z2-multitouch";
-label = "Apple J293 Touch Bar";
+Thanks,
+    Sergio Paracuellos
 
-Then let's say a hypothetical touchscreen + touchbar MacBook comes out,
-we end up with:
-
-compatible = "apple,j789-touchbar", "apple,z2-touchbar",
-"apple,z2-multitouch";
-label = "Apple J789 Touch Bar";
-
-compatible = "apple,j789-touchscreen", "apple,z2-touchscreen",
-"apple,z2-multitouch";
-label = "Apple J789 Touchscreen";
-
-And it all is nicely future-proof. If libinput needs a hint other than
-the device name to figure out what should be treated as a touchscreen or
-not, the driver can use the "apple,z2-touchbar" vs
-"apple,z2-touchscreen" distinction level for that. And if per-device
-quirks are never necessary, we just ignore the model number compatible,
-which is already what we do all over the place in other drivers (but the
-day it becomes necessary, it's ready for us). And if it turns out we
-don't need any of this for a while, the driver can just bind to
-"apple,z2-multitouch" and call it a day.
-
-- Hector
+>
+> Thanks,
+>     Sergio Paracuellos
+>
+> >
+> > Guenter
+> >
+> > > ---
+> > >  arch/mips/boot/dts/ralink/mt7621.dtsi | 2 +-
+> > >  1 file changed, 1 insertion(+), 1 deletion(-)
+> > >
+> > > diff --git a/arch/mips/boot/dts/ralink/mt7621.dtsi b/arch/mips/boot/d=
+ts/ralink/mt7621.dtsi
+> > > index 5ca40fd21662..ac818fd721ae 100644
+> > > --- a/arch/mips/boot/dts/ralink/mt7621.dtsi
+> > > +++ b/arch/mips/boot/dts/ralink/mt7621.dtsi
+> > > @@ -70,7 +70,7 @@ sysc: syscon@0 {
+> > >                                            "250m", "270m";
+> > >               };
+> > >
+> > > -             wdt: wdt@100 {
+> > > +             wdt: watchdog@100 {
+> > >                       compatible =3D "mediatek,mt7621-wdt";
+> > >                       reg =3D <0x100 0x100>;
+> > >               };
+> > > --
+> > > 2.25.1
+> > >
