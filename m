@@ -2,129 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AD5876A5098
-	for <lists+devicetree@lfdr.de>; Tue, 28 Feb 2023 02:18:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A54C76A50C6
+	for <lists+devicetree@lfdr.de>; Tue, 28 Feb 2023 02:40:38 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229590AbjB1BSp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 Feb 2023 20:18:45 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58894 "EHLO
+        id S229733AbjB1Bkh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 Feb 2023 20:40:37 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45264 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229585AbjB1BSi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Feb 2023 20:18:38 -0500
-Received: from mail-pl1-x631.google.com (mail-pl1-x631.google.com [IPv6:2607:f8b0:4864:20::631])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 50A5A1ACE5
-        for <devicetree@vger.kernel.org>; Mon, 27 Feb 2023 17:18:36 -0800 (PST)
-Received: by mail-pl1-x631.google.com with SMTP id n6so7409587plf.5
-        for <devicetree@vger.kernel.org>; Mon, 27 Feb 2023 17:18:36 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=45w/ePZnYI0/2LLjqhHdpOHZZUZkx2HLxk5IVIXVOTY=;
-        b=VksYiCrOuvmy2dWTmHyMVmqEos+eA1XMxT2L2aN3ljFOVVsxuvyZX737HBCHBuzGwU
-         WXbuaQi59qraaKUR2e7KybHK49lyNip4DeuT7isI+1zMex7x/o8Sbv+ghueRcpGz3kUE
-         ThiBxGrAP0LUjOlTeObA6T+BQo5nCQlwvVV1jDL40gEEjo2Tl7Ga9Exi9kyHrUFhYJkW
-         wQvnijgcJvSRZURNTPIDbcUGBqj46uL73qL49SOO2tqpFD2TZEAsgJsneN06H/E86E/u
-         Tj1GrTRFWXbXhd2zQxa4JaFho16/TZXR5JDLtlbs6Zr/qKbTvRW1/uiZTZf/+6L1iwdE
-         Qvng==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=45w/ePZnYI0/2LLjqhHdpOHZZUZkx2HLxk5IVIXVOTY=;
-        b=DzVMy28IOy+MoxWdrXl83HZ3QMnE0QoSLwA0MArWh7A/0Qfs6cPIh/lgCb/S88Vs1M
-         bZxGxrIDzxbJzAtIi1vlpghy3jjnxLVBRj+ooHB9IwRNHzKufnLbGknoqsylwTRM/vxQ
-         65i37kxWd6V67hY2DivEdmd/4KRdJSMTrflc4ELOv5bhcKd/YPh0d/US6sf1e1rEWd4Q
-         lEB/hHpx0VETjVuPnHmhY2tNlldSuWYaDo5+uEBDfvhO0oLjqBoAyyprpMsyr5wKv7ua
-         MXBFnQQJmsFeW0rcPh86KkKwxmlg+mHSvewGhi4qmgJ1lkQ/HFaOe6VdSwin/RP8WBdp
-         HXww==
-X-Gm-Message-State: AO0yUKV8O2OT21T1Vsd/1mbjqfs/t8JldfXxxmPtWpQt7SFuMHGeM1QR
-        oQMTUwEpHSIjjy8HzMnDZbDP5Q==
-X-Google-Smtp-Source: AK7set+5jx3+Ceo66EApE8SUSKzeARSdv7Ab+Hou1uZOcwtSBj41Kn2dD79VgcqMPUmiRkMYFH+5gg==
-X-Received: by 2002:a17:90b:4b10:b0:230:81e9:ebb4 with SMTP id lx16-20020a17090b4b1000b0023081e9ebb4mr1247690pjb.10.1677547115601;
-        Mon, 27 Feb 2023 17:18:35 -0800 (PST)
-Received: from localhost ([122.172.83.155])
-        by smtp.gmail.com with ESMTPSA id q11-20020a17090a2e0b00b002372107fc3fsm4911667pjd.0.2023.02.27.17.18.34
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 27 Feb 2023 17:18:34 -0800 (PST)
-Date:   Tue, 28 Feb 2023 06:48:32 +0530
-From:   Viresh Kumar <viresh.kumar@linaro.org>
-To:     Thierry Reding <treding@nvidia.com>
-Cc:     Sumit Gupta <sumitg@nvidia.com>, krzysztof.kozlowski@linaro.org,
-        dmitry.osipenko@collabora.com, rafael@kernel.org,
-        jonathanh@nvidia.com, robh+dt@kernel.org, lpieralisi@kernel.org,
-        linux-kernel@vger.kernel.org, linux-tegra@vger.kernel.org,
-        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-pci@vger.kernel.org, mmaddireddy@nvidia.com, kw@linux.com,
-        bhelgaas@google.com, vidyas@nvidia.com, sanjayc@nvidia.com,
-        ksitaraman@nvidia.com, ishah@nvidia.com, bbasu@nvidia.com
-Subject: Re: [Patch v2 7/9] cpufreq: tegra194: add OPP support and set
- bandwidth
-Message-ID: <20230228011832.2h6rfsju4qnwu5oj@vireshk-i7>
-References: <20230220140559.28289-1-sumitg@nvidia.com>
- <20230220140559.28289-8-sumitg@nvidia.com>
- <20230222040317.r2p6zlbumazymluc@vireshk-i7>
- <df054fae-5195-1ef8-c72e-e5afe8d901d3@nvidia.com>
- <Y/ylpaJLMOE6zY8C@orome>
+        with ESMTP id S229511AbjB1Bkh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Feb 2023 20:40:37 -0500
+Received: from fd01.gateway.ufhost.com (fd01.gateway.ufhost.com [61.152.239.71])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8E1B01E1FE;
+        Mon, 27 Feb 2023 17:40:35 -0800 (PST)
+Received: from EXMBX166.cuchost.com (unknown [175.102.18.54])
+        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+        (Client CN "EXMBX166", Issuer "EXMBX166" (not verified))
+        by fd01.gateway.ufhost.com (Postfix) with ESMTP id 169A824E392;
+        Tue, 28 Feb 2023 09:40:34 +0800 (CST)
+Received: from EXMBX061.cuchost.com (172.16.6.61) by EXMBX166.cuchost.com
+ (172.16.6.76) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Tue, 28 Feb
+ 2023 09:40:33 +0800
+Received: from [192.168.125.128] (113.72.145.171) by EXMBX061.cuchost.com
+ (172.16.6.61) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Tue, 28 Feb
+ 2023 09:40:32 +0800
+Message-ID: <f943857c-f3ee-c521-ca84-51942e463d05@starfivetech.com>
+Date:   Tue, 28 Feb 2023 09:40:49 +0800
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <Y/ylpaJLMOE6zY8C@orome>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.8.0
+Subject: Re: [PATCH v2 10/11] riscv: dts: starfive: jh7110: Add DVP and HDMI
+ TX pixel external clocks
+Content-Language: en-US
+To:     Conor Dooley <conor@kernel.org>
+CC:     <linux-riscv@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        "Michael Turquette" <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Emil Renner Berthing <kernel@esmil.dk>,
+        Rob Herring <robh+dt@kernel.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        "Palmer Dabbelt" <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Hal Feng <hal.feng@starfivetech.com>,
+        <linux-kernel@vger.kernel.org>, <linux-clk@vger.kernel.org>
+References: <20230221083323.302471-1-xingyu.wu@starfivetech.com>
+ <20230221083323.302471-11-xingyu.wu@starfivetech.com> <Y/0KyeK3DU8xtL2V@spud>
+From:   Xingyu Wu <xingyu.wu@starfivetech.com>
+In-Reply-To: <Y/0KyeK3DU8xtL2V@spud>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [113.72.145.171]
+X-ClientProxiedBy: EXCAS066.cuchost.com (172.16.6.26) To EXMBX061.cuchost.com
+ (172.16.6.61)
+X-YovoleRuleAgent: yovoleflag
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 27-02-23, 13:44, Thierry Reding wrote:
-> On Thu, Feb 23, 2023 at 03:06:26PM +0530, Sumit Gupta wrote:
-> > On 22/02/23 09:33, Viresh Kumar wrote:
-> > Tried using it and got below crash. It seems to be coming because we don't
-> > have clocks property within CPU node for SoC's having BPMP-FW.
-> > 
-> >  Unable to handle kernel NULL pointer dereference at virtual address
-> > 000000000000002e
-> >  ....
-> >  Call trace:
-> >   clk_round_rate+0x38/0xd8
-> >   dev_pm_opp_set_rate+0xe4/0x1a8
-> >   tegra194_cpufreq_set_target+0x74/0x88
-> >   __cpufreq_driver_target+0x154/0x250
-> >   cpufreq_online+0x7b4/0x9ac
+On 2023/2/28 3:55, Conor Dooley wrote:
+> On Tue, Feb 21, 2023 at 04:33:22PM +0800, Xingyu Wu wrote:
+>> Add DVP and HDMI TX pixel external fixed clocks and the rates are
+>> 74.25MHz and 297MHz.
+>> 
+>> Signed-off-by: Xingyu Wu <xingyu.wu@starfivetech.com>
+>> ---
+>>  .../dts/starfive/jh7110-starfive-visionfive-2.dtsi   |  8 ++++++++
+>>  arch/riscv/boot/dts/starfive/jh7110.dtsi             | 12 ++++++++++++
+>>  2 files changed, 20 insertions(+)
+>> 
+>> diff --git a/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi b/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi
+>> index c2aa8946a0f1..27af817a55aa 100644
+>> --- a/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi
+>> +++ b/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi
+>> @@ -86,6 +86,14 @@ &mclk_ext {
+>>  	clock-frequency = <12288000>;
+>>  };
+>>  
+>> +&dvp_clk {
+>> +	clock-frequency = <74250000>;
+>> +};
+>> +
+>> +&hdmitx0_pixelclk {
+>> +	clock-frequency = <297000000>;
+>> +};
+>> +
+>>  &uart0 {
+>>  	pinctrl-names = "default";
+>>  	pinctrl-0 = <&uart0_pins>;
+>> diff --git a/arch/riscv/boot/dts/starfive/jh7110.dtsi b/arch/riscv/boot/dts/starfive/jh7110.dtsi
+>> index 005ead2624d4..a5e6fb3ad188 100644
+>> --- a/arch/riscv/boot/dts/starfive/jh7110.dtsi
+>> +++ b/arch/riscv/boot/dts/starfive/jh7110.dtsi
+>> @@ -245,6 +245,18 @@ mclk_ext: mclk-ext-clock {
+>>  		#clock-cells = <0>;
+>>  	};
+>>  
+>> +	dvp_clk: dvp-clk-clock {
+>> +		compatible = "fixed-clock";
+>> +		clock-output-names = "dvp_clk";
+>> +		#clock-cells = <0>;
+>> +	};
+>> +
+>> +	hdmitx0_pixelclk: hdmitx0-pixelclk-clock {
+>> +		compatible = "fixed-clock";
+>> +		clock-output-names = "hdmitx0_pixelclk";
+>> +		#clock-cells = <0>;
+>> +	};
+>> +
 > 
-> Can you try to find out what exactly is happening here? The clock
-> framework should be able to deal with NULL clock pointers just fine.
-> Although, looking at the OPP table code, it seems like we don't use
-> clk_get_optional(), so opp_table->clk may end up being a pointer-
-> encoded error. Perhaps we need something like this:
+> Hmm, would you mind adding these entries with no unit addresses in
+> alphanumerical order? Both in the soc & board dtsi files.
 > 
-> --- >8 ---
-> diff --git a/drivers/opp/core.c b/drivers/opp/core.c
-> index e87567dbe99f..d7baeb6ac697 100644
-> --- a/drivers/opp/core.c
-> +++ b/drivers/opp/core.c
-> @@ -1397,6 +1397,7 @@ static struct opp_table *_update_opp_table_clk(struct device *dev,
->  		 * frequency in opp->rates and also parse the entries in DT.
->  		 */
->  		opp_table->clk_count = 1;
-> +		opp_table->clk = NULL;
->  
->  		dev_dbg(dev, "%s: Couldn't find clock: %d\n", __func__, ret);
->  		return opp_table;
 
-I didn't reply earlier as I had nothing more to say and Sumit's
-initial approach was correct. Maybe I should have I have clarified
-this then.
+Oh, It was my negligence. I will adjust it. Thanks.
 
-The OPP core supports dev_pm_opp_set_rate() only for devices that can
-set the rate, for everything else dev_pm_opp_set_opp() is the right
-choice. I suggested dev_pm_opp_set_rate() earlier as I thought rate is
-supported here.
+Best regards,
+Xingyu Wu
 
--- 
-viresh
