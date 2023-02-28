@@ -2,53 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6CC9F6A5D7E
-	for <lists+devicetree@lfdr.de>; Tue, 28 Feb 2023 17:49:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DA3EC6A5D77
+	for <lists+devicetree@lfdr.de>; Tue, 28 Feb 2023 17:49:05 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229831AbjB1Qss (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Feb 2023 11:48:48 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39488 "EHLO
+        id S229819AbjB1Qsu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Feb 2023 11:48:50 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39594 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229811AbjB1Qsl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Feb 2023 11:48:41 -0500
-Received: from mail-pj1-x102a.google.com (mail-pj1-x102a.google.com [IPv6:2607:f8b0:4864:20::102a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D6B01EC72
-        for <devicetree@vger.kernel.org>; Tue, 28 Feb 2023 08:48:10 -0800 (PST)
-Received: by mail-pj1-x102a.google.com with SMTP id m8-20020a17090a4d8800b002377bced051so14376063pjh.0
-        for <devicetree@vger.kernel.org>; Tue, 28 Feb 2023 08:48:10 -0800 (PST)
+        with ESMTP id S229778AbjB1Qst (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Feb 2023 11:48:49 -0500
+Received: from mail-pf1-x431.google.com (mail-pf1-x431.google.com [IPv6:2607:f8b0:4864:20::431])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 584E912BEB
+        for <devicetree@vger.kernel.org>; Tue, 28 Feb 2023 08:48:15 -0800 (PST)
+Received: by mail-pf1-x431.google.com with SMTP id b20so6177399pfo.6
+        for <devicetree@vger.kernel.org>; Tue, 28 Feb 2023 08:48:15 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=Idewr/c6anuiFZ8W+ANFStw5VD2DBWot5T+luCDLkeE=;
-        b=HaEDfnx9/yzRqav9tJjlQHDYW4Aqn7/xGfokNxMrpyWPm661fo87bSmbc3jTGwGJkg
-         5KKX0H21UMvVlnT3IH50T5kUjKwG/vdQUJEqmXMcxYcYKv975/3A3t3QKo4KndgFVVVX
-         Mk+boSqvyHOqYJX1nopulRW5/KQJXAkc8krfofbZmYxDQjmYV21Wh35o0aQlGxVvNY0+
-         vq28EPjvWvULxyqLSXuV852Ib02Fwj6iG2WILIh5KZNBPVrU4qnAFhbeA2swWzgH9uXV
-         25B2sAtPW8MHNU0k1joa4ok13CRc0MBbjPeTbio6ogEwtPG+d4H6yPQf3s8pTXqzFUAq
-         Zy9A==
+        bh=KY8I4J2skzbqy9GlWqlu3bWpe7Ekxx3P3y3p5S5A3tw=;
+        b=PdN4G1yVCyJ30SG5QB9Tch9TYxGiI04Xb2vA5BLPbUVzbSb29SnAaGmR+WW1brpqOe
+         tTOZ2hCCz3ZbAg1sWhhvTuYjka2NjUEqjFi9XokAXMxGmRX5Na1w9ZF5hm74pnx0kCKf
+         ppqHcF/PM1Lu2jatV3Y/Hn3hyFSSI1AKM35fQTaFnU2CNJnmQP4DUoJD9tJfH3HdvH3y
+         mOViwuQu8i92FIBNmGDFAUwzo85aK/Hli97VEyJ0F/jpgUxtKgejWmDU+4VbtZkS+X8I
+         yFU2tiMvQpe6GUhf+Gd7A9wNQr6OlsuiFd6Zue7kaInz+WeoDnBmbWJJWBggJhfaVn8A
+         c4tA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=Idewr/c6anuiFZ8W+ANFStw5VD2DBWot5T+luCDLkeE=;
-        b=04K/4NFJ19ksQHb0lhJVIYelbVvLgIynMjluZYs/ZS2bNqtv+zviCzu65InG+Oym1g
-         y/1x5DwyN+GFwbbozKkCCJdodZjxT5joUE9hVSwQwdRkQ1XytTjmaO66LEQUuCBWb0lL
-         kHltcDWOuItaLCjhpAzxiL0hCKuW41vlU7F6j20hB+YmC2F28KaNkcXkGlqSklXYABq2
-         xzwB0ghr4rmm0zIUjxQj3RoK6DeycEKUT6Jqh3RpcRBeNdEZK2vGpquY4SsTDITKtp4y
-         rbsixN3xuovzDEtxj3tnEaeK39Ftjka75lzvWiccqSeiDkHFGzzh6z3cX3UfGrSkUEnm
-         LXpw==
-X-Gm-Message-State: AO0yUKU1ujiSpPnyGUD/btkl2pfcBvjYFg8ZZNoUEHNZGChRWwLU6u7B
-        +DljmjhEInBGofwkxlVGf0aP
-X-Google-Smtp-Source: AK7set8C0QfAqgl3jK8W5EJAII6wqS0FLRKYLHd/U6ullJGd+tsVTYAtVh8gl1PnzfvnOs0fFCJatA==
-X-Received: by 2002:a05:6a20:3947:b0:cd:fe1b:df8 with SMTP id r7-20020a056a20394700b000cdfe1b0df8mr1489022pzg.56.1677602890307;
-        Tue, 28 Feb 2023 08:48:10 -0800 (PST)
+        bh=KY8I4J2skzbqy9GlWqlu3bWpe7Ekxx3P3y3p5S5A3tw=;
+        b=Rm5fO+bSOjr9d0DFkwrjYqOooyKqpZpR3VSQ0ycufJaDDknD/gBgAsj2XA1I3PPevT
+         kUu+UARPAH5yxM+TES/9l85A8q0sX3iDdxqqC2aee/C87R4FpEbiV10uB2KU/pLj3KWX
+         rQ17T/F/G+cucUfoElFAehVzF8esedZWux9dUSty8Xd+BxB63AdubW8Gt6KtoN2cRrg5
+         ydBYqGsOmcfh8BGqmSWs/pw3256XlmRDEDY+qk9jnLJexuuavJdKTYZoFqNIRbPxQ7KM
+         PKCfI2tNuPiqXNWmQqLNfgl9Pe5IelmjZUoQ/p7XIUS+HjEzoKPjqOjNorzEPfKS3d04
+         8ynQ==
+X-Gm-Message-State: AO0yUKW2iMou9NBeOwfn0KSUKBvSc3lWryAITCW4uEgOd57OzDueswmn
+        3wj+a2JwX2Kyz6Ijw8vfgQr0
+X-Google-Smtp-Source: AK7set+4N3nyCGuHJTmrF9YIz/eNYVHSuk7QeCjmZDyGU5H2tDN0zIccq9+nkayRCwjj71ZU69v6lA==
+X-Received: by 2002:aa7:9d83:0:b0:5cd:d766:8a2b with SMTP id f3-20020aa79d83000000b005cdd7668a2bmr3048405pfq.6.1677602894784;
+        Tue, 28 Feb 2023 08:48:14 -0800 (PST)
 Received: from localhost.localdomain ([103.197.115.185])
-        by smtp.gmail.com with ESMTPSA id z11-20020a6552cb000000b00476dc914262sm5908792pgp.1.2023.02.28.08.48.07
+        by smtp.gmail.com with ESMTPSA id z11-20020a6552cb000000b00476dc914262sm5908792pgp.1.2023.02.28.08.48.11
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 28 Feb 2023 08:48:09 -0800 (PST)
+        Tue, 28 Feb 2023 08:48:14 -0800 (PST)
 From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
 To:     andersson@kernel.org
 Cc:     konrad.dybcio@linaro.org, robh+dt@kernel.org,
@@ -56,9 +56,9 @@ Cc:     konrad.dybcio@linaro.org, robh+dt@kernel.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
         arnd@arndb.de,
         Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Subject: [PATCH 01/16] arm64: dts: qcom: sdm845: Fix the PCI I/O port range
-Date:   Tue, 28 Feb 2023 22:17:37 +0530
-Message-Id: <20230228164752.55682-2-manivannan.sadhasivam@linaro.org>
+Subject: [PATCH 02/16] arm64: dts: qcom: msm8998: Fix the PCI I/O port range
+Date:   Tue, 28 Feb 2023 22:17:38 +0530
+Message-Id: <20230228164752.55682-3-manivannan.sadhasivam@linaro.org>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20230228164752.55682-1-manivannan.sadhasivam@linaro.org>
 References: <20230228164752.55682-1-manivannan.sadhasivam@linaro.org>
@@ -66,7 +66,8 @@ MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -74,44 +75,30 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 For 1MiB of the I/O region, the I/O ports of the legacy PCI devices are
-located in the range of 0x0 to 0x100000. Hence, fix the bogus PCI addresses
-(0x60200000, 0x40200000) specified in the ranges property for I/O region.
+located in the range of 0x0 to 0x100000. Hence, fix the bogus PCI address
+(0x1b200000) specified in the ranges property for I/O region.
 
-While at it, let's use the missing 0x prefix for the addresses.
-
-Fixes: 42ad231338c1 ("arm64: dts: qcom: sdm845: Add second PCIe PHY and controller")
-Fixes: 5c538e09cb19 ("arm64: dts: qcom: sdm845: Add first PCIe controller and PHY")
+Fixes: b84dfd175c09 ("arm64: dts: qcom: msm8998: Add PCIe PHY and RC nodes")
 Reported-by: Arnd Bergmann <arnd@arndb.de>
 Link: https://lore.kernel.org/linux-arm-msm/7c5dfa87-41df-4ba7-b0e4-72c8386402a8@app.fastmail.com/
 Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
 ---
- arch/arm64/boot/dts/qcom/sdm845.dtsi | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
+ arch/arm64/boot/dts/qcom/msm8998.dtsi | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/arch/arm64/boot/dts/qcom/sdm845.dtsi b/arch/arm64/boot/dts/qcom/sdm845.dtsi
-index 479859bd8ab3..1c060ea960ff 100644
---- a/arch/arm64/boot/dts/qcom/sdm845.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sdm845.dtsi
-@@ -2292,8 +2292,8 @@ pcie0: pci@1c00000 {
- 			#address-cells = <3>;
- 			#size-cells = <2>;
+diff --git a/arch/arm64/boot/dts/qcom/msm8998.dtsi b/arch/arm64/boot/dts/qcom/msm8998.dtsi
+index 8bc1c59127e5..5863332962e4 100644
+--- a/arch/arm64/boot/dts/qcom/msm8998.dtsi
++++ b/arch/arm64/boot/dts/qcom/msm8998.dtsi
+@@ -922,7 +922,7 @@ pcie0: pci@1c00000 {
+ 			phy-names = "pciephy";
+ 			status = "disabled";
  
--			ranges = <0x01000000 0x0 0x60200000 0 0x60200000 0x0 0x100000>,
--				 <0x02000000 0x0 0x60300000 0 0x60300000 0x0 0xd00000>;
-+			ranges = <0x01000000 0x0 0x00000000 0x0 0x60200000 0x0 0x100000>,
-+				 <0x02000000 0x0 0x60300000 0x0 0x60300000 0x0 0xd00000>;
+-			ranges = <0x01000000 0x0 0x1b200000 0x1b200000 0x0 0x100000>,
++			ranges = <0x01000000 0x0 0x00000000 0x1b200000 0x0 0x100000>,
+ 				 <0x02000000 0x0 0x1b300000 0x1b300000 0x0 0xd00000>;
  
- 			interrupts = <GIC_SPI 141 IRQ_TYPE_LEVEL_HIGH>;
- 			interrupt-names = "msi";
-@@ -2397,7 +2397,7 @@ pcie1: pci@1c08000 {
- 			#address-cells = <3>;
- 			#size-cells = <2>;
- 
--			ranges = <0x01000000 0x0 0x40200000 0x0 0x40200000 0x0 0x100000>,
-+			ranges = <0x01000000 0x0 0x00000000 0x0 0x40200000 0x0 0x100000>,
- 				 <0x02000000 0x0 0x40300000 0x0 0x40300000 0x0 0x1fd00000>;
- 
- 			interrupts = <GIC_SPI 307 IRQ_TYPE_EDGE_RISING>;
+ 			#interrupt-cells = <1>;
 -- 
 2.25.1
 
