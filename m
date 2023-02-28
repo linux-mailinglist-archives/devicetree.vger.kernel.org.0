@@ -2,118 +2,134 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BD1016A54B9
-	for <lists+devicetree@lfdr.de>; Tue, 28 Feb 2023 09:50:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D9CBB6A54D1
+	for <lists+devicetree@lfdr.de>; Tue, 28 Feb 2023 09:52:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229986AbjB1IuE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Feb 2023 03:50:04 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60826 "EHLO
+        id S230502AbjB1IwR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Feb 2023 03:52:17 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33208 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231251AbjB1IuD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Feb 2023 03:50:03 -0500
-Received: from mx.sberdevices.ru (mx.sberdevices.ru [45.89.227.171])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5BB4C1BD8;
-        Tue, 28 Feb 2023 00:49:56 -0800 (PST)
-Received: from s-lin-edge02.sberdevices.ru (localhost [127.0.0.1])
-        by mx.sberdevices.ru (Postfix) with ESMTP id 6EA825FD02;
-        Tue, 28 Feb 2023 11:49:53 +0300 (MSK)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sberdevices.ru;
-        s=mail; t=1677574193;
-        bh=WTDff+9gxDSiq4AqgGvZY+eqS12sSl1fFBNNtQAELTw=;
-        h=Date:From:To:Subject:Message-ID:MIME-Version:Content-Type;
-        b=DpSD19ZrvLwLCBFstdb7Upko+A112qjp/5Fap0UQ59Akxu4XktCVHzRFV0TNEK4B0
-         Px59EN1UDE19F8/Bxpsvm5hNb/lpyXns5wxqP26+0ijhgV+3JIGtOGfzw9vXIGHu4/
-         wk0G8bLIzriC/v11/nvEv1L+ucV1F6IBqiTHF79wUiIewCQg/ql3N9074QtwHQlqiB
-         7AZ0tJHg/lDcr37PgJ/c0ALbWm+Gi3jNKrsTlIePYT0OyU+O41tF41s1ofhmfnE4mx
-         JNoq9nZ6vJIgCb4HdwzGsen5DCC1EsboUJygGWAUl6gdji4quYMs+Vsb7RW4un5L5c
-         vxR8cO/W6RsPg==
-Received: from S-MS-EXCH01.sberdevices.ru (S-MS-EXCH01.sberdevices.ru [172.16.1.4])
-        by mx.sberdevices.ru (Postfix) with ESMTP;
-        Tue, 28 Feb 2023 11:49:52 +0300 (MSK)
-Date:   Tue, 28 Feb 2023 11:49:52 +0300
-From:   Dmitry Rokosov <ddrokosov@sberdevices.ru>
-To:     Arnd Bergmann <arnd@arndb.de>
-CC:     Neil Armstrong <neil.armstrong@linaro.org>,
-        Alexey Romanov <avromanov@sberdevices.ru>,
-        Rob Herring <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>,
-        Kevin Hilman <khilman@baylibre.com>, <jbrunet@baylibre.com>,
-        <martin.blumenstingl@googlemail.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-amlogic@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <kernel@sberdevices.ru>
-Subject: Re: [PATCH v1 0/3] Meson A1 32-bit support
-Message-ID: <20230228084952.mgx3d3nw65yo5ebu@CAB-WSD-L081021>
-References: <20230222115020.55867-1-avromanov@sberdevices.ru>
- <8e5f9bfa-d612-cd43-d722-d04c40938c62@linaro.org>
- <20230227142809.kujmrraf3pcdhqyn@CAB-WSD-L081021>
- <f3e42012-609c-4085-b4f4-bd32bfc34aff@app.fastmail.com>
- <20230227155100.hhl4yvkyfqfyoa6h@CAB-WSD-L081021>
- <a5fa8b23-4ec8-475f-be5e-538b53d6f82d@app.fastmail.com>
- <33b58877-5167-c453-e686-1d10cdca66c0@linaro.org>
- <20230227165049.4y7jx5nnnlibe6kg@CAB-WSD-L081021>
- <7d29f3fd-b8c8-4687-b6a0-b8956dd39f0b@app.fastmail.com>
+        with ESMTP id S230517AbjB1Ivs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Feb 2023 03:51:48 -0500
+Received: from mail-oi1-x236.google.com (mail-oi1-x236.google.com [IPv6:2607:f8b0:4864:20::236])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 08AE71C5A9;
+        Tue, 28 Feb 2023 00:51:30 -0800 (PST)
+Received: by mail-oi1-x236.google.com with SMTP id bh20so7365047oib.9;
+        Tue, 28 Feb 2023 00:51:29 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=S/c3V+jLIL8AErPhQhVj3MuD4Xgf1yISMny6OChKMbQ=;
+        b=jtOVQpSeChwlzwLOYfl9SKar2uvL7piRUtzTpDvci8ElHvwGrZ+RD/IooeWY7iZSQn
+         Yxrr7GUwn9R1a8rH4QKKboNySg6dGb+OFNmOfiXtCWwpbSvdr7W4HLbjiJBKai4vC5/H
+         gpUICh2ibcKCNjEyjXTn6gIOae7IdyjcrFS08fwPrqmGIqVDz65md00ItPNp2jkYvg0R
+         At0wcUOnjGhV6wAa773muT2u6c3B0MjpLjKkd8bxs4P/M9iClhh/1PVibtmsWLrYxwYp
+         N7riE9xzmSuYxsX6kMwxgN/NW/QVCsuyJlvvPOiTF6lSzibRKm9Fj6bl0R6l6AyrdZSM
+         ayVw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=S/c3V+jLIL8AErPhQhVj3MuD4Xgf1yISMny6OChKMbQ=;
+        b=U2cZxQ+jkHMeWhxfzvkbaLljvMXEDjoekP+Zv2z1QYGM90hfpEq9ryRKZS8/eIOsH8
+         uq/ZM2MIdzeJ2FLVs3Yj+tAWUTNUTgw+m3aCnn9ciepFpIvTMgBhvUpLCUP5ZS8inxB2
+         i9FmNfzbgP78v2clkNhC4htsKf9LLWN2SLcZRpVwASkrclWcouOV8BvtZvwDug81Z0R8
+         igzTvaGV8M9WuJODbA50kigRslXiqN6nUaX3ypKrLgQI9U+o7Qxr+kQSF3jGzpuQy1CB
+         Jyc6DCXdJXGPzwZvFX54rrF8cernP0NB2nFjGSZF28o+ArCJwttdOQaNiPfpZymuEVQM
+         R8ag==
+X-Gm-Message-State: AO0yUKWVSqPkDok0X1PoQ6LbIaUhM2uO9xrsk9j7JoZfWv4oYjFbV18R
+        Idz7gAWGInno/J7z7qvWQvZuo514pKR31oPQnoE=
+X-Google-Smtp-Source: AK7set8KdptM9hhKShfHrowmBSil5eSInpvF2wkbck4H76uhjo1Icx3hsulNEX8wMhpD0tzQB7tsmLFzqfTPRAmpWTY=
+X-Received: by 2002:a54:410d:0:b0:383:bae2:3ac9 with SMTP id
+ l13-20020a54410d000000b00383bae23ac9mr628247oic.2.1677574289226; Tue, 28 Feb
+ 2023 00:51:29 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <7d29f3fd-b8c8-4687-b6a0-b8956dd39f0b@app.fastmail.com>
-User-Agent: NeoMutt/20220415
-X-Originating-IP: [172.16.1.6]
-X-ClientProxiedBy: S-MS-EXCH01.sberdevices.ru (172.16.1.4) To
- S-MS-EXCH01.sberdevices.ru (172.16.1.4)
-X-KSMG-Rule-ID: 4
-X-KSMG-Message-Action: clean
-X-KSMG-AntiSpam-Status: not scanned, disabled by settings
-X-KSMG-AntiSpam-Interceptor-Info: not scanned
-X-KSMG-AntiPhishing: not scanned, disabled by settings
-X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 1.1.2.30, bases: 2023/02/28 06:24:00 #20902806
-X-KSMG-AntiVirus-Status: Clean, skipped
+References: <20230214103936.1061078-1-sergio.paracuellos@gmail.com>
+ <20230214103936.1061078-3-sergio.paracuellos@gmail.com> <20230214151101.GB742354@roeck-us.net>
+ <CAMhs-H915iSR7TpuXdcg8NKLV8Scv9cwW36SZaXNK839kA4ybg@mail.gmail.com>
+ <CAMhs-H_Ce-+MFi5zTMg8v8dSSg5ioaTy+Pw-0QMgK++PVtEViQ@mail.gmail.com> <20230228083920.GA5801@alpha.franken.de>
+In-Reply-To: <20230228083920.GA5801@alpha.franken.de>
+From:   Sergio Paracuellos <sergio.paracuellos@gmail.com>
+Date:   Tue, 28 Feb 2023 09:51:17 +0100
+Message-ID: <CAMhs-H8xGjGs0-qvxb5KgQ3YZw=2=scqaY15K3ZRp50jQcncSg@mail.gmail.com>
+Subject: Re: [PATCH v7 2/5] mips: dts: ralink: mt7621: rename watchdog node
+ from 'wdt' into 'watchdog'
+To:     Thomas Bogendoerfer <tsbogend@alpha.franken.de>
+Cc:     Guenter Roeck <linux@roeck-us.net>, linux-watchdog@vger.kernel.org,
+        wim@linux-watchdog.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, matthias.bgg@gmail.com,
+        arinc.unal@arinc9.com, p.zabel@pengutronix.de,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-mips@vger.kernel.org,
+        =?UTF-8?Q?Philippe_Mathieu=2DDaud=C3=A9?= <philmd@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Feb 27, 2023 at 07:19:38PM +0100, Arnd Bergmann wrote:
-> On Mon, Feb 27, 2023, at 17:50, Dmitry Rokosov wrote:
-> > On Mon, Feb 27, 2023 at 05:38:49PM +0100, Neil Armstrong wrote:
-> >> On 27/02/2023 17:15, Arnd Bergmann wrote:
-> >> > On Mon, Feb 27, 2023, at 16:51, Dmitry Rokosov wrote:
-> >> > 
-> >> > Most of these don't apply in userspace, so the incentive to
-> >> > run smaller 32-bit userland on systems with less than 1GB of
-> >> > RAM usually outweighs the benefits of 64-bit userspace.
-> >> 
-> >> Thanks for the details!
+On Tue, Feb 28, 2023 at 9:41 AM Thomas Bogendoerfer
+<tsbogend@alpha.franken.de> wrote:
+>
+> On Tue, Feb 28, 2023 at 05:44:21AM +0100, Sergio Paracuellos wrote:
+> > On Tue, Feb 14, 2023 at 4:12 PM Sergio Paracuellos
+> > <sergio.paracuellos@gmail.com> wrote:
+> > >
+> > > On Tue, Feb 14, 2023 at 4:11 PM Guenter Roeck <linux@roeck-us.net> wr=
+ote:
+> > > >
+> > > > On Tue, Feb 14, 2023 at 11:39:33AM +0100, Sergio Paracuellos wrote:
+> > > > > Watchdog nodes must use 'watchdog' for node name. When a 'make dt=
+bs_check'
+> > > > > is performed the following warning appears:
+> > > > >
+> > > > > wdt@100: $nodename:0: 'wdt@100' does not match '^watchdog(@.*|-[0=
+-9a-f])?$'
+> > > > >
+> > > > > Fix this warning up properly renaming the node into 'watchdog'.
+> > > > >
+> > > > > Reviewed-by: Ar=C4=B1n=C3=A7 =C3=9CNAL <arinc.unal@arinc9.com>
+> > > > > Reviewed-by: Philippe Mathieu-Daud=C3=A9 <philmd@linaro.org>
+> > > > > Signed-off-by: Sergio Paracuellos <sergio.paracuellos@gmail.com>
+> > > >
+> > > > Acked-by: Guenter Roeck <linux@roeck-us.net>
+> > > >
+> > > > Note that we can not apply this and the next patch of the series
+> > > > through the watchdog tree since it crosses a maintainer boundary.
+> > >
+> > > I was expecting Thomas to get these two arch/mips patches or get an
+> > > Acked-by from him in order for you to apply them.
 > >
-> > Looks like Thomas has already prepared a basic patch series for buildroot,
-> > but maintainers declined it.
+> > Hi Thomas,
 > >
-> > https://lore.kernel.org/all/20220730194331.GA2515056@scaer/
-> 
-> I see. I know very little about buildroot, but it sounds like
-> there are other ways of doing the same thing here. In general,
-> this is pretty much an Arm specific problem. While you clearly
-> want compat mode for small userland on any architecture but don't
-> want 32-bit kernels, arm is the only one that has a different
-> kernel "ARCH=" value and needs a separate gcc toolchain.
-> 
-> If the problem is only the toolchain, an easy way out may
-> be to use clang instead of gcc as your compiler, as a single
-> clang binary can target both 32-bit userland and 64-bit kernel
-> on all supported architectures.
+> > I think you have missed this series since you have started to apply
+> > newer stuff in mips-next. Are you ok with taking or Acking patches 2
+> > and 3 of this series?
+>
+> yes, I sort of missed it. If it's enough to take patch 2/3 I'll do that.
+> If it's better to keep the series, I'm also ok with acking them.
+> What's the best way forward ?
 
-Agreed with you. We will try different local approaches to support
-compat build configurations. For now, prebuilt toolchain (buildroot make
-sdk goal) is best way from my point of view. Anyway, we will try to
-solve this problem in the our sandbox and stay on the 64-bit kernel.
-Thank you for all the helpful details you shared, appreciate it!
+Both trees work for me. The rest of the patches of this series should
+go through the watchdog tree. Guenter, what is better for you?
 
--- 
-Thank you,
-Dmitry
+Thanks,
+    Sergio Paracuellos
+
+>
+> Thomas.
+>
+> --
+> Crap can work. Given enough thrust pigs will fly, but it's not necessaril=
+y a
+> good idea.                                                [ RFC1925, 2.3 =
+]
