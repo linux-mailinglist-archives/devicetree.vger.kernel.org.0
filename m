@@ -2,230 +2,277 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3B94C6A5B39
-	for <lists+devicetree@lfdr.de>; Tue, 28 Feb 2023 16:00:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BBCCB6A5B54
+	for <lists+devicetree@lfdr.de>; Tue, 28 Feb 2023 16:08:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229561AbjB1PAf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Feb 2023 10:00:35 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46982 "EHLO
+        id S229873AbjB1PII (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Feb 2023 10:08:08 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52572 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229529AbjB1PAe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Feb 2023 10:00:34 -0500
-Received: from smtp-relay-internal-1.canonical.com (smtp-relay-internal-1.canonical.com [185.125.188.123])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1E8122CFE6
-        for <devicetree@vger.kernel.org>; Tue, 28 Feb 2023 06:59:57 -0800 (PST)
-Received: from mail-qv1-f69.google.com (mail-qv1-f69.google.com [209.85.219.69])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id B4D4E3F736
-        for <devicetree@vger.kernel.org>; Tue, 28 Feb 2023 14:59:53 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1677596393;
-        bh=sR9+TU4QdZ6QdtGKERfD8tPs5IwyEG556JdFrx7slTk=;
-        h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-         To:Cc:Content-Type;
-        b=pZlgK4PpQoIMDfeVGxlXnb/dNYwbQNKsipiy71/OPBtWtJzWsKLgSf+NxrJjVJXGJ
-         pDPNtBTHR2kVDSDDN65ZA7deTtJf1gCSbQZzVFLS7ei+mF+33vpc7cJ8YvL+jUxUNe
-         2fYJTuu+BA0fYDcetZ6t+qkwjj6QgkgUASvNK0Z+SaRVYDIK6H4pX9AbeUqtRKLIuA
-         bvKOltpfxGSN76GPvOVyfE6tBujtys/DdQIN5tJfvha4JSCf2+csneDhQi+RJJTGTp
-         ZFmIvN7N98DF/sgkGlFOFXumiXZ3tAMLXzfHSvyu8C4PqxlH0h2nXAC7A1DeXdRvEb
-         +QlWfIEVOufTw==
-Received: by mail-qv1-f69.google.com with SMTP id m1-20020a05621402a100b004bb706b3a27so5267007qvv.20
-        for <devicetree@vger.kernel.org>; Tue, 28 Feb 2023 06:59:53 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=sR9+TU4QdZ6QdtGKERfD8tPs5IwyEG556JdFrx7slTk=;
-        b=0GCvjVMDzaJjPJDDPv/UYx7JAXUYN9Pe4J+2O3eKkEDsIpDEBNJpMujP8LnLCDRoF7
-         BercKGS74mehkRuwmNrdxfihfdp9JG06KKGId7CqrDh2m25H8qVanpavGDizzUbrXhWJ
-         jVR1qnHoGH1Pq2jQaF4lx3+EnNT18Wub9HlDOqfb4t4sZHcRfwB1M3wZVmo5RazMn6Ae
-         H9Vf1x4917YDUSD/8QhyWREa7pAB5NHkN+97F2Wpz3RwN05+sGK7iOTpR0shjW14bFmW
-         yKsXNsW1RIVDVVj9yPZpSAg/FvAVGcBtDFkmkBH8eDeQPsF2YQvTySUF+RAO2TDFZ17+
-         xrWA==
-X-Gm-Message-State: AO0yUKVd6E99vZrqPfDBxLMTbP0iZekbBrE1w4bd7wmLVAKT2DJcjvtd
-        0R3bZAeY+NgOU1kOFOLZ7YVp5+EojQMTxT56Akb3o+LsZI2NuHb4k11Pr0Ge7u+vS8kh84TFID3
-        OO1m2mDElw8obRo69pSQAjqBOwHE8gA1NuHDvQcPR157hAsyA7YpqS78=
-X-Received: by 2002:a05:6214:1907:b0:56e:fbea:9e9a with SMTP id er7-20020a056214190700b0056efbea9e9amr883154qvb.0.1677596392454;
-        Tue, 28 Feb 2023 06:59:52 -0800 (PST)
-X-Google-Smtp-Source: AK7set98OeQlNbOvVCz2xGtQT7yvm5Bp1FcodjBI6u1K21A/NvB5+qKnCOMGlj1gPexULiX05yQ8xWlgU7ItfF52m8w=
-X-Received: by 2002:a05:6214:1907:b0:56e:fbea:9e9a with SMTP id
- er7-20020a056214190700b0056efbea9e9amr883147qvb.0.1677596392033; Tue, 28 Feb
- 2023 06:59:52 -0800 (PST)
-MIME-Version: 1.0
-References: <20230215113249.47727-1-william.qiu@starfivetech.com>
- <20230215113249.47727-5-william.qiu@starfivetech.com> <20230220234335.GA615198-robh@kernel.org>
- <348796cc-72d9-4dcf-9f09-4c2aa55cb858@starfivetech.com> <20230227222904.GC1048218-robh@kernel.org>
- <f8d2b665-ce5d-81f8-8c55-81f1a4cb62b9@starfivetech.com> <54f51fa0-7821-b67b-b782-eb9a35b7bba9@linaro.org>
- <CAJM55Z85fitjBOcCLqad9W-a7h3iN9bxtctVGzPgqCbf5fWobw@mail.gmail.com> <a0168d89-3c30-55e1-cf4c-37f7fe90aae4@linaro.org>
-In-Reply-To: <a0168d89-3c30-55e1-cf4c-37f7fe90aae4@linaro.org>
-From:   Emil Renner Berthing <emil.renner.berthing@canonical.com>
-Date:   Tue, 28 Feb 2023 15:59:25 +0100
-Message-ID: <CAJM55Z8dR4TDJNeO-qiS9CurfCWM1ccNigOA1fDb7S1VKCxv2Q@mail.gmail.com>
-Subject: Re: [PATCH v4 4/4] dt-bindings: syscon: Add StarFive syscon doc
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     William Qiu <william.qiu@starfivetech.com>,
-        Rob Herring <robh@kernel.org>, linux-riscv@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-mmc@vger.kernel.org,
+        with ESMTP id S229861AbjB1PIH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Feb 2023 10:08:07 -0500
+Received: from relmlie5.idc.renesas.com (relmlor1.renesas.com [210.160.252.171])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 298E68A65;
+        Tue, 28 Feb 2023 07:08:03 -0800 (PST)
+X-IronPort-AV: E=Sophos;i="5.98,222,1673881200"; 
+   d="scan'208";a="151063408"
+Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
+  by relmlie5.idc.renesas.com with ESMTP; 01 Mar 2023 00:08:03 +0900
+Received: from localhost.localdomain (unknown [10.226.93.131])
+        by relmlir5.idc.renesas.com (Postfix) with ESMTP id 44EAB400F2C8;
+        Wed,  1 Mar 2023 00:07:59 +0900 (JST)
+From:   Biju Das <biju.das.jz@bp.renesas.com>
+To:     Thierry Reding <thierry.reding@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jaehoon Chung <jh80.chung@samsung.com>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        Philipp Zabel <p.zabel@pengutronix.de>
+Cc:     Biju Das <biju.das.jz@bp.renesas.com>,
+        =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= 
+        <u.kleine-koenig@pengutronix.de>, linux-pwm@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Biju Das <biju.das@bp.renesas.com>,
+        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        linux-renesas-soc@vger.kernel.org
+Subject: [PATCH v14 0/4] Add support for RZ/G2L GPT
+Date:   Tue, 28 Feb 2023 15:07:52 +0000
+Message-Id: <20230228150756.482432-1-biju.das.jz@bp.renesas.com>
+X-Mailer: git-send-email 2.25.1
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-0.4 required=5.0 tests=AC_FROM_MANY_DOTS,BAYES_00,
+        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 28 Feb 2023 at 12:28, Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
-> On 28/02/2023 12:02, Emil Renner Berthing wrote:
-> > On Tue, 28 Feb 2023 at 11:40, Krzysztof Kozlowski
-> > <krzysztof.kozlowski@linaro.org> wrote:
-> >>
-> >> On 28/02/2023 10:05, William Qiu wrote:
-> >>>
-> >>>
-> >>> On 2023/2/28 6:29, Rob Herring wrote:
-> >>>> On Tue, Feb 21, 2023 at 10:44:02AM +0800, William Qiu wrote:
-> >>>>>
-> >>>>>
-> >>>>> On 2023/2/21 7:43, Rob Herring wrote:
-> >>>>>> On Wed, Feb 15, 2023 at 07:32:49PM +0800, William Qiu wrote:
-> >>>>>>> Add documentation to describe StarFive System Controller Registers.
-> >>>>>>>
-> >>>>>>> Signed-off-by: William Qiu <william.qiu@starfivetech.com>
-> >>>>>>> ---
-> >>>>>>>  .../bindings/soc/starfive/jh7110-syscon.yaml  | 51 +++++++++++++++++++
-> >>>>>>>  MAINTAINERS                                   |  5 ++
-> >>>>>>>  2 files changed, 56 insertions(+)
-> >>>>>>>  create mode 100644 Documentation/devicetree/bindings/soc/starfive/jh7110-syscon.yaml
-> >>>>>>>
-> >>>>>>> diff --git a/Documentation/devicetree/bindings/soc/starfive/jh7110-syscon.yaml b/Documentation/devicetree/bindings/soc/starfive/jh7110-syscon.yaml
-> >>>>>>> new file mode 100644
-> >>>>>>> index 000000000000..fa4d8522a454
-> >>>>>>> --- /dev/null
-> >>>>>>> +++ b/Documentation/devicetree/bindings/soc/starfive/jh7110-syscon.yaml
-> >>>>>>> @@ -0,0 +1,51 @@
-> >>>>>>> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> >>>>>>> +%YAML 1.2
-> >>>>>>> +---
-> >>>>>>> +$id: http://devicetree.org/schemas/soc/starfive/jh7110-syscon.yaml#
-> >>>>>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> >>>>>>> +
-> >>>>>>> +title: StarFive JH7110 SoC system controller
-> >>>>>>> +
-> >>>>>>> +maintainers:
-> >>>>>>> +  - William Qiu <william.qiu@starfivetech.com>
-> >>>>>>> +
-> >>>>>>> +description: |
-> >>>>>>> +  The StarFive JH7110 SoC system controller provides register information such
-> >>>>>>> +  as offset, mask and shift to configure related modules such as MMC and PCIe.
-> >>>>>>> +
-> >>>>>>> +properties:
-> >>>>>>> +  compatible:
-> >>>>>>> +    items:
-> >>>>>>> +      - enum:
-> >>>>>>> +          - starfive,jh7110-stg-syscon
-> >>>>>>> +          - starfive,jh7110-sys-syscon
-> >>>>>>> +          - starfive,jh7110-aon-syscon
-> >>>>>>
-> >>>>>> Is 'syscon' really part of what the blocks are called? Is just 'stg',
-> >>>>>> 'sys' and 'aon' not unique enough?
-> >>>>>>
-> >>>>>> Rob
-> >>>>> Hi Rob,
-> >>>>>
-> >>>>> In StarFive SoC, we do have syscrg/aoncrg/stgcrg, which is uesd to be the clock
-> >>>>> controller, so 'syscon' is added to avoid confusion.
-> >>>>
-> >>>> You've only added to my confusion. 'syscrg' and 'sys-syscon' are 2
-> >>>> different h/w blocks and unrelated to each other? Or 'syscrg' is the
-> >>>> clock portion of 'sys-syscon'? In that case, 'syscrg' should be a child
-> >>>> of 'sys-syscon' or possibly just all one node. Please provide details on
-> >>>> the entire h/w block so we can provide better input on the bindings.
-> >>>>
-> >>>> Rob
-> >>>
-> >>> Hi Rob,
-> >>>
-> >>> It's my description that's problematic.'syscon' here refers to the hardware module
-> >>> inside our JH7110, which is different from the syscon interface in linux. The syscon
-> >>> I added now uses the syscon interface of linux to read and write the syscon register
-> >>> in our JH7110. So we decided to name it that way.
-> >>
-> >> You didn't really answer Rob's questions.
-> >>
-> >> Also, syscon is Linux term, so are you sure hardware module is called
-> >> like this? Hardware engineers took pure Linux name and used it?
-> >
-> > Yes, from the documentation I could find[1] there are CRG blocks
-> > (Clock and Reset Generator) and SYSCON blocks:
-> > SYS CRG
-> > STG CRG
-> > AON CRG
-> > SYS SYSCON
-> > STG SYSCON
-> > AON SYSCON
-> >
-> > The CRG blocks contain registers to control clocks and resets that
-> > follow a pattern used by the clock and reset drivers. The SYSCON
-> > blocks just seem to contain registers to control whatever didn't fit
-> > in any other blocks, but might be vaguely related to the peripherals
-> > that run off clocks controlled by the corresponding CRG block.
->
-> The memory map [1] suggests these are indeed separate address spaces,
-> e.g. AON CRG, AON SYSCON and AON GPIO, but now I would argue that this
-> might be still one device - AON (or STG, SYS). Just like PCIE0 has four
-> address spaces, it does not mean you have four separate PCIE0 devices.
-> You have only one PCIE0, just like you have only one AON, one STG and
-> one SYS (System).
+RZ/G2L General PWM Timer (GPT) composed of 8 channels with 32-bit timer
+(GPT32E). It supports the following functions
+ * 32 bits × 8 channels
+ * Up-counting or down-counting (saw waves) or up/down-counting
+   (triangle waves) for each counter.
+ * Clock sources independently selectable for each channel
+ * Two I/O pins per channel
+ * Two output compare/input capture registers per channel
+ * For the two output compare/input capture registers of each channel,
+   four registers are provided as buffer registers and are capable of
+   operating as comparison registers when buffering is not in use.
+ * In output compare operation, buffer switching can be at crests or
+   troughs, enabling the generation of laterally asymmetric PWM waveforms.
+ * Registers for setting up frame cycles in each channel (with capability
+   for generating interrupts at overflow or underflow)
+ * Generation of dead times in PWM operation
+ * Synchronous starting, stopping and clearing counters for arbitrary
+   channels
+ * Starting, stopping, clearing and up/down counters in response to input
+   level comparison
+ * Starting, clearing, stopping and up/down counters in response to a
+   maximum of four external triggers
+ * Output pin disable function by dead time error and detected
+   short-circuits between output pins
+ * A/D converter start triggers can be generated (GPT32E0 to GPT32E3)
+ * Enables the noise filter for input capture and external trigger
+   operation
 
-I see what you mean, but if you look into what the registers in the
-SYSCON blocks actually do it's not clear to me that they should be
-grouped with the clocks/resets any more than say the pinctrl/GPIO
-node. Maybe it's my fault for not giving you the full picture. Eg. for
-"system" and "always-on" there are blocks:
+This patch series aims to add basic pwm support for RZ/G2L GPT driver
+by creating separate logical channels for each IOs.
 
-SYS CRG
-SYS SYSCON
-SYS IOMUX
-AON CRG
-AON SYSCON
-AON IOMUX
+v13->v14:
+* Moved the patch from series[1] to here.
+ [1] https://lore.kernel.org/linux-renesas-soc/20221215205843.4074504-1-biju.das.jz@bp.renesas.com/T/#t
+ * Add Rb tag from Rob for patch#2
+ * Removed parenthesis for RZG2L_MAX_HW_CHANNELS and RZG2L_CHANNELS_PER_IO
+ * Removed duty_cycle variable from struct rzg2l_gpt_chip and added comment
+   for cache for prescale variable.
+ * Fixed a bug in rzg2l_gpt_cntr_need_stop().
+ * Reordered rzg2l_gpt_config() just above apply()
+ * Replaced pwm_is_enabled()->pwm->state.enabled in config
+ * Replaced pm_runtime_resume_and_get with unconditional pm_runtime_get_sync()
+   in config().
+ * Restored duty_cycle > period check in rzg2l_gpt_get_state().
+ * Added error check for clk_prepare_enable() in probe() and propagating error
+   to the caller for pm_runtime_resume()
+ * clk_get_rate() is called after enabling the clock and clk_rate_exclusive_get()
+ * Simplified rzg2l_gpt_probe() by removing bitmap variables.
+ * Added pm_runtime_idle() to suspend the device during probe.
+ * Moved overflow condition check from config->probe().
+ * Simplified rzg2l_gpt_reset_assert_pm_disable().
+ * Removed the parenthesis for RZG2L_MAX_POEG_GROUPS.
+ * Renamed rzg2l_gpt_parse_properties()->rzg2l_gpt_poeg_init() as it not only parse
+   the properties but also implements the needed register writes.
+ * Added acomment here about the purpose of the function rzg2l_gpt_poeg_init()
+ * Removed magic numbers from rzg2l_gpt_poeg_init()
+ * Fixed resource leak in rzg2l_gpt_poeg_init().
+v12->v13:
+ * Added test logs in [1] below
+ * Replaced Kconfig dependency from ARCH_RENESAS->ARCH_RZG2L
+ * Sorted #include <linux/limits.h> alphabetically
+ * Added a comment for mutex_lock to fix check patch warning
+ * Replaced data type of duty_cycle from unsigned int->u32 as
+   the maximum value stored is U32_MAX.
+ * Improved rzg2l_gpt_config() by removing unwanted duty_cycle related code.
+ * Improved rzg2l_gpt_get_state() by setting "val = rzg2l_gpt->duty_cycle[pwm->hwpwm];", 
+   and factor "tmp = NSEC_PER_SEC * (u64)val;" out of the if-statement.
+ * Started using DEFINE_RUNTIME_DEV_PM_OPS(), and dropped __maybe_unused
+   from the callbacks.
+v11->v12:
+ * Added return code for get_state()
+ * Cache duty cycle/prescale as the driver cannot read the current duty
+   cycle/prescale from the hardware if the hardware is disabled. Cache the
+   last programmed duty cycle/prescale value to return in that case.
+ * Updated rzg2l_gpt_enable to enable the clocks.
+ * Updated rzg2l_gpt_disable to disable the clocks.
+ * Updated rzg2l_gpt_config() to cache duty cucle/prescale value
+ * Updated rzg2l_gpt_get_state to use cached value of duty cycle/prescale,If the PWM
+   is disabled.
+ * Simplified rzg2l_gpt_apply()
+ * Added comments in rzg2l_gpt_reset_assert_pm_disable()
+v10->v11:
+ * Used bitmap_zero for initializing bitmap varable.
+ * Fixed clock imbalance during remove for the case bootloader turning
+   on PWM and module unload is called just after the boot.
+ * Fixed over flow condition in get_state() for a prescale value of 2 & more.
+ * Improved rzg2l_gpt_cntr_need_stop() based on prescale as it is the
+   only runtime variable.
+ * Added array for Cache variables state_period and prescale
+ * Probe caches the prescale value set by the bootloader.
+ * Updated rzg2l_gpt_config() to make use of array variables.
+v9->v10:
+ * Updated the example gpt4: pwm@10048400-> gpt: pwm@10048000
+ * Keep Rb tag from Rob as the above change is trivial one.
+ * Updated the error handling in probe(), clk_disable_unprepare called
+   on the error path.
+ * Removed ch_en array and started using bitmask instead.
+v8->v9:
+ * Added Rb tag from Rob.
+ * deassert after devm_clk_get() to avoid reset stays deasserted,in case
+   clk_get() fails.
+ * Removed ch_offs from struct rzg2l_gpt_chip and use macro instead.
+ * Updated error handling in probe()
+v7->v8:
+ * Removed Rb tags from Rob and Geert as it modelled as single GPT
+   device handling multiple channels.
+ * Updated description
+ * Updated interrupts and interrupt-names properties
+ * Updated binding example
+ * Modelled as single PWM device handling multiple channels
+ * Replaced shared reset->devm_reset_control_get_exclusive()
+ * Added PM runtime callbacks
+ * Updated PM handling and removed "pwm_enabled_by_bootloader" variable
+ * Replaced iowrite32->writel and ioread32->readl
+ * Updated prescale calculation
+ * Introduced rzg2l_gpt_is_ch_enabled for checking enable status on both
+   IO's
+ * Moved enable/disable output pins from config->enable/disable.
+ * Added rzg2l_gpt_cntr_need_stop() for caching prescalar/mode values.
+v6->v7:
+ * Added the comment for cacheing rzg2l_gpt->state_period.
+ * Fixed boundary values for pv and dc.
+ * Added comment for modifying mode, prescaler, timer counter and buffer enable
+   registers.
+ * Fixed buffer overflow in get_state()
+ * Removed unnecessary assignment of state->period value in get_state().
+ * Fixed state->duty_cycle value in get_state().
+ * Added a limitation for disabling the channels, when both channels used
+v5->v6:
+ * Updated macros RZG2L_GTIOR_GTIOB_OUT_HI_END_TOGGLE_CMP_MATCH and
+   RZG2L_GTIOR_GTIOB_OUT_LO_END_TOGGLE_CMP_MATCH with computation
+   involving FIELD_PREP macro.
+ * Removed struct rzg2l_gpt_phase and started using RZG2L_GTCCR macro
+   for duty_offset.
+ * replaced misnomer real_period->state_period.
+ * Added handling for values >= (1024 << 32) for both period
+   and duty cycle.
+ * Added comments for pwm {en,dis}abled by bootloader during probe.
+v4->v5:
+ * Added Hardware manual details
+ * Replaced the comment GTCNT->Counter
+ * Removed the macros RZG2L_GPT_IO_PER_CHANNEL and chip.npwm directly
+   used in probe.
+ * Removed the unsed macro RZG2L_GTPR_MAX_VALUE
+ * Added driver prefix for the type name and the variable.
+ * Initialization of per_channel data moved from request->probe.
+ * Updated clr parameter for rzg2l_gpt_modify for Start count.
+ * Started using mutex and usage_count for handling shared
+   period and prescalar for the 2 channels.
+ * Updated the comment cycle->period.
+ * Removed clk_disable from rzg2l_gpt_reset_assert_pm_disable()
+ * Replaced pc->rzg2l_gpt.
+ * Updated prescale calculation.
+ * Moved pm_runtime_{get_sync,put} from {request,free}->{enable,disable}
+ * Removed platform_set_drvdata as it is unused
+ * Removed the variable pwm_enabled_by_bootloader 
+ * Added dev_err_probe in various probe error path.
+ * Added an error message, if devm_pwmchip_add fails.
+v3->v4:
+ * Changed the local variable type i from u16->u8 and prescaled_period_
+   cycles from u64->u32 in calculate_prescale().
+ * Replaced mul_u64_u64_div_u64()->mul_u64_u32_div()
+ * Dropped the comma after the sentinel.
+ * Add a variable to track pwm enabled by bootloader and added comments
+   in probe().
+ * Removed unnecessary rzg2l_gpt_reset_assert_pm_disable() from probe.
+ * Replaced devm_clk_get()->devm_clk_get_prepared()
+ * Removed devm_clk_get_optional_enabled()
+v2->v3:
+ * Added Rb tag from Rob for the bindings.
+ * Updated limitation section
+ * Added prefix "RZG2L_" for all macros
+ * Modified prescale calculation
+ * Removed pwm_set_chip_data
+ * Updated comment related to modifying Mode and Prescaler
+ * Updated setting of prescale value in rzg2l_gpt_config()
+ * Removed else branch from rzg2l_gpt_get_state()
+ * removed the err label from rzg2l_gpt_apply()
+ * Added devm_clk_get_optional_enabled() to retain clk on status,
+   in case bootloader turns on the clk of pwm.
+ * Replaced devm_reset_control_get_exclusive->devm_reset_control_get_shared
+   as single reset shared between 8 channels.
+v1->v2:
+ * Added '|' after 'description:' to preserve formatting.
+ * Removed description for pwm_cells as it is common property.
+ * Changed the reg size in example from 0xa4->0x100
+ * Added Rb tag from Geert for bindings.
+ * Added Limitations section
+ * dropped "_MASK" from the define names.
+ * used named initializer for struct phase
+ * Added gpt_pwm_device into a flexible array member in rzg2l_gpt_chip
+ * Revised the logic for prescale
+ * Added .get_state callback
+ * Improved error handling in rzg2l_gpt_apply
+ * Removed .remove callback
+ * Tested the driver with PWM_DEBUG enabled.
 
-..and it really don't see why eg. SYS CRG and SYS SYSCON should be
-thought of as one device, but not include SYS IOMUX then.
+RFC->v1:
+ * Added Description in binding patch
+ * Removed comments from reg and clock
+ * replaced rzg2l_gpt_write_mask()->rzg2l_gpt_modify()
+ * Added rzg2l_gpt_read() and updated macros
+ * Removed dtsi patches, will send it separately
 
-As an examly the SYS SYSCON includes registers to control:
-- remapping of different peripherals from SD controller to video encoders
-- voltage select for certain GPIO pins
-- phy interface selection for ethernet and CAN
-- QuadSPI delay chain and SRAM configuration
-- PLL configuration
-- endian selection for the SD controller
+RFC:
+ * https://lore.kernel.org/linux-renesas-soc/20220430075915.5036-1-biju.das.jz@bp.renesas.com/T/#t
 
-To me this is pretty much exactly described by the syscon device tree binding:
-"System controller node represents a register region containing a set
-of miscellaneous registers. The registers are not cohesive enough to
-represent as any specific type of device. [..]"
-In any case it's clear that however the SYSCON blocks are represented
-in the device tree, a driver for it would need to export registers in
-the SYSCON block for other drivers to use.
+Biju Das (4):
+  dt-bindings: pwm: Add RZ/G2L GPT binding
+  dt-bindings: pwm: rzg2l-gpt: Document renesas,poegs property
+  pwm: Add support for RZ/G2L GPT
+  pwm: rzg2l-gpt: Add support for gpt linking with poeg
 
-/Emil
-
+ .../bindings/pwm/renesas,rzg2l-gpt.yaml       | 401 +++++++++++
+ drivers/pwm/Kconfig                           |  11 +
+ drivers/pwm/Makefile                          |   1 +
+ drivers/pwm/pwm-rzg2l-gpt.c                   | 633 ++++++++++++++++++
+ 4 files changed, 1046 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/pwm/renesas,rzg2l-gpt.yaml
+ create mode 100644 drivers/pwm/pwm-rzg2l-gpt.c
 
 
-> [1] https://doc-en.rvspace.org/JH7110/TRM/JH7110_TRM/system_memory_map.html
->
->
-> Best regards,
-> Krzysztof
->
+base-commit: cf70d01a62c712ee715df1f7892b58c77474bcfb
+-- 
+2.25.1
+
