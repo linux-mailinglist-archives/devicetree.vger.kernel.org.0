@@ -2,129 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 597E16A5DAC
-	for <lists+devicetree@lfdr.de>; Tue, 28 Feb 2023 17:50:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E73F66A5DC1
+	for <lists+devicetree@lfdr.de>; Tue, 28 Feb 2023 17:56:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229997AbjB1QuW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Feb 2023 11:50:22 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41610 "EHLO
+        id S229470AbjB1Q4d (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Feb 2023 11:56:33 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51904 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229984AbjB1QuU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Feb 2023 11:50:20 -0500
-Received: from mail-pl1-x636.google.com (mail-pl1-x636.google.com [IPv6:2607:f8b0:4864:20::636])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 787A919F14
-        for <devicetree@vger.kernel.org>; Tue, 28 Feb 2023 08:49:05 -0800 (PST)
-Received: by mail-pl1-x636.google.com with SMTP id z2so11051125plf.12
-        for <devicetree@vger.kernel.org>; Tue, 28 Feb 2023 08:49:05 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=3eNassO9Vnm8zgaO1p6R8ZkRqE+XYfqCv7XBdpZWD1Y=;
-        b=LCv6//91hcHhzEyZAsytIU78+WAzK+RKLx+VZQAOnBh1cqUyRSNrcDspccX2RyUGFk
-         2/9Yn+GfyJPheITtQKnJxTT6g2t4Ifb9dE+w+uUZtYFAUP2Ffk4x8vSvdiRss+1HrdtX
-         9AMC6VANMxSSuOea51f2eTGiKmX1Ki+rPdJHdqkSrfNAyygf6/99JM2hJfIj+ATXqc2P
-         H/zdtaIJZ34z/6jXBO++hbaz+b/g/GZy5pLS7foyn5EXjv+TOMNF3q1uTMju0cyjtCo+
-         kYmRtO1ZlCa1GqA4SyFNciCNVj78n7RjqecctcCvnh1B1LytkyKBvvkXgWThufOi9cPV
-         F/YQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=3eNassO9Vnm8zgaO1p6R8ZkRqE+XYfqCv7XBdpZWD1Y=;
-        b=USFvc+l7gjgpdJbyl0QOgoficy0k1AfkFEaf6+HC+XmrUa8ilN9J5g+dQowqcHsNEO
-         pQTblMDic0iSicmbZ5Jy2pslGDjLmDO4AbR76jelCAyp81lwHkv7lb8Qm0PxBrYFfNlF
-         KNPB81sarr3XHfbJNw5zxbQlWUyRddHkTA4E/NXzVd1NNeebafMzxXqow9uA0Cgu0mqw
-         Oa9C3VtjDN9C0HDV4ASW1PlqHtjhLCeET/mU4BhtbrzlFiBk6hfITJY78oI6/mjAQh9M
-         UC4GXDxUfA70YbuurUXYXxQDbAPlBHInCleGlcf0DHEc6wQemEOW/MR37i4co71CFG4n
-         oOyw==
-X-Gm-Message-State: AO0yUKWz7Y4QxNE+WgmPSmGMyYEqcpn4DRRh/sFcTON0bd/tnzRf+b9I
-        tr5/YSrHOm30NMNmcCfXgwR2Q5fPxHlK6U8=
-X-Google-Smtp-Source: AK7set9KfUERT3EJgDtWDZi4ewKw09o+m9bxhqSAPTR+TI4pOeNWXbB26QjwfD0A8OGvaEIR9PLrdA==
-X-Received: by 2002:a05:6a20:a11f:b0:cc:32a8:323d with SMTP id q31-20020a056a20a11f00b000cc32a8323dmr10165721pzk.28.1677602943395;
-        Tue, 28 Feb 2023 08:49:03 -0800 (PST)
-Received: from localhost.localdomain ([103.197.115.185])
-        by smtp.gmail.com with ESMTPSA id z11-20020a6552cb000000b00476dc914262sm5908792pgp.1.2023.02.28.08.49.00
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 28 Feb 2023 08:49:03 -0800 (PST)
-From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To:     andersson@kernel.org
-Cc:     konrad.dybcio@linaro.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        arnd@arndb.de,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Subject: [PATCH 16/16] ARM: dts: qcom: ipq8064: Fix the PCI I/O port range
-Date:   Tue, 28 Feb 2023 22:17:52 +0530
-Message-Id: <20230228164752.55682-17-manivannan.sadhasivam@linaro.org>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20230228164752.55682-1-manivannan.sadhasivam@linaro.org>
+        with ESMTP id S229527AbjB1Q4c (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Feb 2023 11:56:32 -0500
+Received: from out3-smtp.messagingengine.com (out3-smtp.messagingengine.com [66.111.4.27])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8ABBA36080;
+        Tue, 28 Feb 2023 08:56:07 -0800 (PST)
+Received: from compute6.internal (compute6.nyi.internal [10.202.2.47])
+        by mailout.nyi.internal (Postfix) with ESMTP id 72B3F5C0181;
+        Tue, 28 Feb 2023 11:55:54 -0500 (EST)
+Received: from imap51 ([10.202.2.101])
+  by compute6.internal (MEProxy); Tue, 28 Feb 2023 11:55:54 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arndb.de; h=cc
+        :cc:content-type:date:date:from:from:in-reply-to:in-reply-to
+        :message-id:mime-version:references:reply-to:sender:subject
+        :subject:to:to; s=fm3; t=1677603354; x=1677689754; bh=D3O9AUaCP9
+        tpAOYmxIG1pQXKHoCpHcgtdW48jYJAEyk=; b=iMjEX4ziqOBY6thDteXk6LobVr
+        8GW57Xr366EZE2GkRMATNS5cOrA2iNXvBvBEv7wJBGhn3Lkul6eyB6hjOv/pSpYT
+        Zhl33op7B0/BduSy7DSflQH/8qnE05JEex2Xj/1huJzhilXcyFAystiB0AZAle0M
+        kF0lzMhLpMo+f2IuxpGy3IHrYrrY0w1jpWh/alcuP8N1kN/VLgPM864IpvjCjvel
+        8hMWjSMhthjWdiUiWIFvlTHIKEAcn1OXDuXo/7mwKuevtNihSi4RnpMHFjPHnO21
+        eF+JLDK5HXUUmjPJIAbBuWJ+1pfiMPEPUncAjlsS1QbA6LdyJXZ0gifpsq7g==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:cc:content-type:date:date:feedback-id
+        :feedback-id:from:from:in-reply-to:in-reply-to:message-id
+        :mime-version:references:reply-to:sender:subject:subject:to:to
+        :x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
+        fm1; t=1677603354; x=1677689754; bh=D3O9AUaCP9tpAOYmxIG1pQXKHoCp
+        HcgtdW48jYJAEyk=; b=VWI/HOjsxeOqtxSgaCYWETXClPxhI9Ty3GWlPAWxdRYe
+        81wxreCo0UbHBRlod5xHM2Ckqw8Hv+JwpsCQsmlLi0ZIGA4LsF1ZcFpP8QlMDm8T
+        4+3FwiePSBvUorFloZDBzJVsb6itaKOmEZsdYG4kEliaLvw27lo0Fu3SctjSlzAu
+        NF12FJ4cWvaxkKrznIbHMzqvhS+305KSdc6AyNffG3zT2iqRjM3hHL+OQclO8TVd
+        gL3QmQvbwWAWARJ6r5sJzIxyBvDzTKOyIZrAkkbhfx/xfo0hLXXC8GpfbWqiz7dt
+        POXD2ffjUSEPeFs4+UdKUL9hDCeh79Oo+NADgKoUcw==
+X-ME-Sender: <xms:GjL-Y6OG2EO9xdgF2pNrwa-wwKTKDhdfkEQLYJoenBb7CAioRzziBQ>
+    <xme:GjL-Y4_hYSx0l9yly-TnpgPM7GfebLp1Lf2E5zil6HJINZ0fzb_eivzUoB1kpFT5t
+    S7ZPwrr-oenUJWO_9E>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvhedrudelfedgfedvucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhepofgfggfkjghffffhvfevufgtsehttdertderredtnecuhfhrohhmpedftehr
+    nhguuceuvghrghhmrghnnhdfuceorghrnhgusegrrhhnuggsrdguvgeqnecuggftrfgrth
+    htvghrnhepffehueegteeihfegtefhjefgtdeugfegjeelheejueethfefgeeghfektdek
+    teffnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomheprg
+    hrnhgusegrrhhnuggsrdguvg
+X-ME-Proxy: <xmx:GjL-YxTch79ljI9nrxV2j485uua9b8p3wAX1jaYnWPGNBf5emULvmg>
+    <xmx:GjL-Y6sY5hvPQvzbtBGi9Xf9Jz5CybvCKQ1LLKNaKbGbdsKD83aswQ>
+    <xmx:GjL-YyfnCd9Qfb4FGOxCOi8prYJLXlzjw0nZwltqlrMuTQrgfWO0YQ>
+    <xmx:GjL-Y_EZFRLhckUY7DHs_sYeH5NRPxruGXSR0_AlWBi6vD9VkJpxIA>
+Feedback-ID: i56a14606:Fastmail
+Received: by mailuser.nyi.internal (Postfix, from userid 501)
+        id 28EF1B60086; Tue, 28 Feb 2023 11:55:54 -0500 (EST)
+X-Mailer: MessagingEngine.com Webmail Interface
+User-Agent: Cyrus-JMAP/3.9.0-alpha0-183-gbf7d00f500-fm-20230220.001-gbf7d00f5
+Mime-Version: 1.0
+Message-Id: <1e69e526-c270-49a0-bf00-8418d1aed121@app.fastmail.com>
+In-Reply-To: <20230228164752.55682-2-manivannan.sadhasivam@linaro.org>
 References: <20230228164752.55682-1-manivannan.sadhasivam@linaro.org>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+ <20230228164752.55682-2-manivannan.sadhasivam@linaro.org>
+Date:   Tue, 28 Feb 2023 17:55:33 +0100
+From:   "Arnd Bergmann" <arnd@arndb.de>
+To:     "Manivannan Sadhasivam" <manivannan.sadhasivam@linaro.org>,
+        "Bjorn Andersson" <andersson@kernel.org>
+Cc:     "Konrad Dybcio" <konrad.dybcio@linaro.org>,
+        "Rob Herring" <robh+dt@kernel.org>,
+        krzysztof.kozlowski+dt@linaro.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 01/16] arm64: dts: qcom: sdm845: Fix the PCI I/O port range
+Content-Type: text/plain
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-For 64KiB of the I/O region, the I/O ports of the legacy PCI devices are
-located in the range of 0x0 to 0x10000. Hence, fix the bogus PCI addresses
-(0x0fe00000, 0x31e00000, 0x35e00000) specified in the ranges property for
-I/O region.
+On Tue, Feb 28, 2023, at 17:47, Manivannan Sadhasivam wrote:
+> For 1MiB of the I/O region, the I/O ports of the legacy PCI devices are
+> located in the range of 0x0 to 0x100000. Hence, fix the bogus PCI addresses
+> (0x60200000, 0x40200000) specified in the ranges property for I/O region.
+> -			ranges = <0x01000000 0x0 0x60200000 0 0x60200000 0x0 0x100000>,
+> -				 <0x02000000 0x0 0x60300000 0 0x60300000 0x0 0xd00000>;
+> +			ranges = <0x01000000 0x0 0x00000000 0x0 0x60200000 0x0 0x100000>,
+> +				 <0x02000000 0x0 0x60300000 0x0 0x60300000 0x0 0xd00000>;
+> 
 
-While at it, let's use the missing 0x prefix for the addresses.
+This fixes the offset, but I wonder if the size of the I/O
+window should be changed as well. The normal size is 64KB
+(0x10000) per bus or less, while this one has 1MB.
 
-Fixes: 93241840b664 ("ARM: dts: qcom: Add pcie nodes for ipq8064")
-Reported-by: Arnd Bergmann <arnd@arndb.de>
-Link: https://lore.kernel.org/linux-arm-msm/7c5dfa87-41df-4ba7-b0e4-72c8386402a8@app.fastmail.com/
-Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
----
- arch/arm/boot/dts/qcom-ipq8064.dtsi | 12 ++++++------
- 1 file changed, 6 insertions(+), 6 deletions(-)
+It's probably harmless since each device would only use
+a few bytes, and most devices don't need any I/O ports
+at all.
 
-diff --git a/arch/arm/boot/dts/qcom-ipq8064.dtsi b/arch/arm/boot/dts/qcom-ipq8064.dtsi
-index 52d77e105957..59fc18c448c4 100644
---- a/arch/arm/boot/dts/qcom-ipq8064.dtsi
-+++ b/arch/arm/boot/dts/qcom-ipq8064.dtsi
-@@ -1081,8 +1081,8 @@ pcie0: pci@1b500000 {
- 			#address-cells = <3>;
- 			#size-cells = <2>;
- 
--			ranges = <0x81000000 0 0x0fe00000 0x0fe00000 0 0x00010000   /* downstream I/O */
--				  0x82000000 0 0x08000000 0x08000000 0 0x07e00000>; /* non-prefetchable memory */
-+			ranges = <0x81000000 0x0 0x00000000 0x0fe00000 0x0 0x00010000   /* I/O */
-+				  0x82000000 0x0 0x08000000 0x08000000 0x0 0x07e00000>; /* MEM */
- 
- 			interrupts = <GIC_SPI 35 IRQ_TYPE_LEVEL_HIGH>;
- 			interrupt-names = "msi";
-@@ -1132,8 +1132,8 @@ pcie1: pci@1b700000 {
- 			#address-cells = <3>;
- 			#size-cells = <2>;
- 
--			ranges = <0x81000000 0 0x31e00000 0x31e00000 0 0x00010000   /* downstream I/O */
--				  0x82000000 0 0x2e000000 0x2e000000 0 0x03e00000>; /* non-prefetchable memory */
-+			ranges = <0x81000000 0x0 0x00000000 0x31e00000 0x0 0x00010000   /* I/O */
-+				  0x82000000 0x0 0x2e000000 0x2e000000 0x0 0x03e00000>; /* MEM */
- 
- 			interrupts = <GIC_SPI 57 IRQ_TYPE_LEVEL_HIGH>;
- 			interrupt-names = "msi";
-@@ -1183,8 +1183,8 @@ pcie2: pci@1b900000 {
- 			#address-cells = <3>;
- 			#size-cells = <2>;
- 
--			ranges = <0x81000000 0 0x35e00000 0x35e00000 0 0x00010000   /* downstream I/O */
--				  0x82000000 0 0x32000000 0x32000000 0 0x03e00000>; /* non-prefetchable memory */
-+			ranges = <0x81000000 0x0 0x00000000 0x35e00000 0x0 0x00010000   /* I/O */
-+				  0x82000000 0x0 0x32000000 0x32000000 0x0 0x03e00000>; /* MEM */
- 
- 			interrupts = <GIC_SPI 71 IRQ_TYPE_LEVEL_HIGH>;
- 			interrupt-names = "msi";
--- 
-2.25.1
-
+     Arnd
