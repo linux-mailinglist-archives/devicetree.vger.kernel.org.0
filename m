@@ -2,223 +2,158 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A196E6A60A3
-	for <lists+devicetree@lfdr.de>; Tue, 28 Feb 2023 21:48:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AF5546A60C0
+	for <lists+devicetree@lfdr.de>; Tue, 28 Feb 2023 21:53:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229831AbjB1Usz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Feb 2023 15:48:55 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38294 "EHLO
+        id S229800AbjB1UxS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Feb 2023 15:53:18 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42476 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229579AbjB1Usy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Feb 2023 15:48:54 -0500
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7956A34333;
-        Tue, 28 Feb 2023 12:48:35 -0800 (PST)
-Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 31SFbwrD031707;
-        Tue, 28 Feb 2023 20:48:26 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : from : to : cc : references : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=cMcsB6IjgClEAqgzly0IrK/kN3Jvv5YLBKrWz3dxJyU=;
- b=b9L5A0xY5hifPDUBjbOK8jMpkk+FX8loiUeMO4bJGry4VhcdwIBK+tV/nckbH0JP/kc2
- Z1jwXNJE6Y7Cqi+dNYY0juuBwdkXq9UsXdj16QDqXw4XAB3zKi+ZOOlh/XEM07ECd5fh
- yInoAVS28rwSIAjwamTfQ+En7Ke3pEAY+jDYR1w65V/GRVioQUOhvUFiEDU8QBblk6gW
- xIxi5TOkpNq1U+6QIKEZdYBdL89ynGKdCaHRh4HRRLhuCE9nmU9tgqdIMhcWPjgzT9pq
- uGRm/hc/yRb5+ckU7aXm4hyN+0objn07zdzyLovY+ghiSIAbyoC3r2fcs+HlcP7m6+PC bg== 
-Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3p17ryu10w-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 28 Feb 2023 20:48:25 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-        by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 31SKmPgG009295
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 28 Feb 2023 20:48:25 GMT
-Received: from [10.216.38.191] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.41; Tue, 28 Feb
- 2023 12:48:18 -0800
-Message-ID: <5a8a7fa1-bba3-50a2-aa39-83d342ba70c1@quicinc.com>
-Date:   Wed, 1 Mar 2023 02:18:15 +0530
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.3.2
-Subject: Re: [Freedreno] [PATCH v3 04/15] drm/msm/a6xx: Extend and explain
- UBWC config
-Content-Language: en-US
-From:   Akhil P Oommen <quic_akhilpo@quicinc.com>
-To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Clark <robdclark@gmail.com>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Sean Paul <sean@poorly.run>, David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>
-CC:     Rob Clark <robdclark@chromium.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <dri-devel@lists.freedesktop.org>,
-        <freedreno@lists.freedesktop.org>
-References: <20230223-topic-gmuwrapper-v3-0-5be55a336819@linaro.org>
- <20230223-topic-gmuwrapper-v3-4-5be55a336819@linaro.org>
- <e19b5cd7-9125-a285-accc-ecf530804cfc@quicinc.com>
- <487a6890-4b8f-d541-e074-5d3ab7424678@linaro.org>
- <26953463-dae1-0f07-9e4e-0314ee8ea81a@quicinc.com>
-In-Reply-To: <26953463-dae1-0f07-9e4e-0314ee8ea81a@quicinc.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: -3SUEj9ZNx1T2QD_JmwOiFrQVvrUeCeH
-X-Proofpoint-GUID: -3SUEj9ZNx1T2QD_JmwOiFrQVvrUeCeH
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.219,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
- definitions=2023-02-28_17,2023-02-28_03,2023-02-09_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxlogscore=999
- lowpriorityscore=0 bulkscore=0 priorityscore=1501 mlxscore=0 phishscore=0
- adultscore=0 malwarescore=0 suspectscore=0 clxscore=1015 spamscore=0
- impostorscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2212070000 definitions=main-2302280171
-X-Spam-Status: No, score=-2.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        with ESMTP id S229738AbjB1UxR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Feb 2023 15:53:17 -0500
+Received: from ewsoutbound.kpnmail.nl (ewsoutbound.kpnmail.nl [195.121.94.169])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4E60A9EF0
+        for <devicetree@vger.kernel.org>; Tue, 28 Feb 2023 12:53:13 -0800 (PST)
+X-KPN-MessageId: e59fbc5a-b7a9-11ed-afdd-005056abad63
+Received: from smtp.kpnmail.nl (unknown [10.31.155.39])
+        by ewsoutbound.so.kpn.org (Halon) with ESMTPS
+        id e59fbc5a-b7a9-11ed-afdd-005056abad63;
+        Tue, 28 Feb 2023 21:53:04 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=xs4all.nl; s=xs4all01;
+        h=subject:to:from:message-id:date;
+        bh=fudN8ArySQL4WxjTN7QCK9yq0lwyu6+8SisGWmyX75Q=;
+        b=m0ZY7+3tWMyJ6mV02HESHr2l1pOW5Ed2enycOSfnmV68NXwwPvx7n9SY1s3xRXdYdOjYL7Dv/5yrv
+         IhOeKbwTQIp72Feoe0LUy3d29YrgAvnEZBqhQ/dlBpN6hr9KPwU7blmQa5NvrTpZsPJvY8kAEv2+vB
+         NzMiglvb/olKTnwU2wUOiGZEreeC85bnHBRdVOJfHs7SPJX8+2snqtE2gIM9F71Vk2oAKLP+OqsyP8
+         +aeVRILBb2ua33Nqj4D6gZN5G25yhofl0WKz66g7r5ty9dXV8K8bpV0JAs3av9Qb7jotSDD42iVvtv
+         LYTRJP3kGQmaiQY13/JhbDYVU2mkOjQ==
+X-KPN-MID: 33|qw/opIog0L/9cUv1FdHJALWLJ+GSjGOJs5JQpYZ1ewEddOVHknQ7JqPBIPb5etM
+ nyGMcY1SMzXWUySHwK25A7xcOIn3ik4pRV0KxPF4B7Hg=
+X-KPN-VerifiedSender: Yes
+X-CMASSUN: 33|TyyRfy9x8DGtrDcN80aGHcz+FyBiGyfilCur4PWFuaPgwVH2U9q9D9JZDF365RQ
+ 5+Y79MNe1fW0b87u+FQle2A==
+X-Originating-IP: 80.61.163.207
+Received: from bloch.sibelius.xs4all.nl (80-61-163-207.fixed.kpn.net [80.61.163.207])
+        by smtp.xs4all.nl (Halon) with ESMTPSA
+        id e836b37c-b7a9-11ed-ab4c-005056ab7447;
+        Tue, 28 Feb 2023 21:53:10 +0100 (CET)
+Date:   Tue, 28 Feb 2023 21:53:09 +0100
+Message-Id: <87wn41qzpm.fsf@bloch.sibelius.xs4all.nl>
+From:   Mark Kettenis <mark.kettenis@xs4all.nl>
+To:     Hector Martin <marcan@marcan.st>
+Cc:     sven@svenpeter.dev, fnkl.kernel@gmail.com, alyssa@rosenzweig.io,
+        dmitry.torokhov@gmail.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, asahi@lists.linux.dev,
+        rydberg@bitmath.org, linux-arm-kernel@lists.infradead.org,
+        linux-input@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+In-Reply-To: <1874e194-5210-460b-3e8f-0f48962f8a47@marcan.st> (message from
+        Hector Martin on Tue, 28 Feb 2023 11:58:28 +0900)
+Subject: Re: [PATCH RFC 1/4] dt-bindings: input: touchscreen: Add Z2
+ controller bindings.
+References: <20230223-z2-for-ml-v1-0-028f2b85dc15@gmail.com>
+ <20230223-z2-for-ml-v1-1-028f2b85dc15@gmail.com>
+ <87r0ufs574.fsf@bloch.sibelius.xs4all.nl>
+ <CAMT+MTQOUd0aSDJ3DPBMfkVwaic=nbRPtfGgu2nduSdCdydcgg@mail.gmail.com>
+ <e6c7eb27-1b60-4894-a623-28ca3bccdea5@app.fastmail.com> <1874e194-5210-460b-3e8f-0f48962f8a47@marcan.st>
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 3/1/2023 2:14 AM, Akhil P Oommen wrote:
-> On 3/1/2023 2:10 AM, Konrad Dybcio wrote:
->> On 28.02.2023 21:23, Akhil P Oommen wrote:
->>> On 2/23/2023 5:36 PM, Konrad Dybcio wrote:
->>>> Rename lower_bit to hbb_lo and explain what it signifies.
->>>> Add explanations (wherever possible to other tunables).
->>>>
->>>> Sort the variable definition and assignment alphabetically.
->>> Sorting based on decreasing order of line length is more readable, isn't it?
->> I can do that.
->>
->>>> Port setting min_access_length, ubwc_mode and hbb_hi from downstream.
->>>> Set default values for all of the tunables to zero, as they should be.
->>>>
->>>> Values were validated against downstream and will be fixed up in
->>>> separate commits so as not to make this one even more messy.
->>>>
->>>> A618 remains untouched (left at hw defaults) in this patch.
->>>>
->>>> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
->>>> ---
->>>>  drivers/gpu/drm/msm/adreno/a6xx_gpu.c | 55 ++++++++++++++++++++++++++++-------
->>>>  1 file changed, 45 insertions(+), 10 deletions(-)
->>>>
->>>> diff --git a/drivers/gpu/drm/msm/adreno/a6xx_gpu.c b/drivers/gpu/drm/msm/adreno/a6xx_gpu.c
->>>> index c5f5d0bb3fdc..bdae341e0a7c 100644
->>>> --- a/drivers/gpu/drm/msm/adreno/a6xx_gpu.c
->>>> +++ b/drivers/gpu/drm/msm/adreno/a6xx_gpu.c
->>>> @@ -786,39 +786,74 @@ static void a6xx_set_cp_protect(struct msm_gpu *gpu)
->>>>  static void a6xx_set_ubwc_config(struct msm_gpu *gpu)
->>>>  {
->>>>  	struct adreno_gpu *adreno_gpu = to_adreno_gpu(gpu);
->>>> -	u32 lower_bit = 2;
->>>> +	/* Unknown, introduced with A640/680 */
->>>>  	u32 amsbc = 0;
->>>> +	/*
->>>> +	 * The Highest Bank Bit value represents the bit of the highest DDR bank.
->>>> +	 * We then subtract 13 from it (13 is the minimum value allowed by hw) and
->>>> +	 * write the lowest two bits of the remaining value as hbb_lo and the
->>>> +	 * one above it as hbb_hi to the hardware. The default values (when HBB is
->>>> +	 * not specified) are 0, 0.
->>>> +	 */
->>>> +	u32 hbb_hi = 0;
->>>> +	u32 hbb_lo = 0;
->>>> +	/* Whether the minimum access length is 64 bits */
->>>> +	u32 min_acc_len = 0;
->>>> +	/* Unknown, introduced with A650 family, related to UBWC mode/ver 4 */
->>>>  	u32 rgb565_predicator = 0;
->>>> +	/* Unknown, introduced with A650 family */
->>>>  	u32 uavflagprd_inv = 0;
->>>> +	/* Entirely magic, per-GPU-gen value */
->>>> +	u32 ubwc_mode = 0;
->>>>  
->>>>  	/* a618 is using the hw default values */
->>>>  	if (adreno_is_a618(adreno_gpu))
->>>>  		return;
->>>>  
->>>> -	if (adreno_is_a640_family(adreno_gpu))
->>>> +	if (adreno_is_a619(adreno_gpu)) {
->>>> +		/* HBB = 14 */
->>>> +		hbb_lo = 1;
->>>> +	}
->>>> +
->>>> +	if (adreno_is_a630(adreno_gpu)) {
->>>> +		/* HBB = 15 */
->>>> +		hbb_lo = 2;
->>>> +	}
->>>> +
->>>> +	if (adreno_is_a640_family(adreno_gpu)) {
->>>>  		amsbc = 1;
->>>> +		/* HBB = 15 */
->>>> +		hbb_lo = 2;
->>>> +	}
->>>>  
->>>>  	if (adreno_is_a650(adreno_gpu) || adreno_is_a660(adreno_gpu)) {
->>>> -		/* TODO: get ddr type from bootloader and use 2 for LPDDR4 */
->>>> -		lower_bit = 3;
->>>>  		amsbc = 1;
->>>> +		/* TODO: get ddr type from bootloader and use 2 for LPDDR4 */
->>>> +		/* HBB = 16 */
->>>> +		hbb_lo = 3;
->>>>  		rgb565_predicator = 1;
->>>>  		uavflagprd_inv = 2;
->>>>  	}
->>>>  
->>>>  	if (adreno_is_7c3(adreno_gpu)) {
->>>> -		lower_bit = 1;
->>>>  		amsbc = 1;
->>>> +		/* HBB is unset in downstream DTS, defaulting to 0 */
->>> This is incorrect. For 7c3 hbb value is 14. So hbb_lo should be 1. FYI, hbb configurations were moved to the driver from DT in recent downstream kernels.
->> Right, seems to have happened with msm-5.10. Though a random kernel I
->> grabbed seems to suggest it's 15 and not 14?
->>
->> https://github.com/sonyxperiadev/kernel/blob/aosp/K.P.1.0.r1/drivers/gpu/msm/adreno-gpulist.h#L1710
-> We override that with 14 in a6xx_init() for LP4 platforms dynamically. Since 7c3 is only supported on LP4, we can hardcode 14 here.
-> In the downstream kernel, there is an api (of_fdt_get_ddrtype()) to detect ddrtype. If we can get something like that in upstream, we should implement a similar logic here.
->
-> -Akhil.
-Also, I haven't closely reviewed other targets configuration you updated, but it is a good idea to leave the existing configurations here as it in this refactor patch. Any update should be a separate patch.
+> Date: Tue, 28 Feb 2023 11:58:28 +0900
+> From: Hector Martin <marcan@marcan.st>
+> 
+> On 24/02/2023 20.08, Sven Peter wrote:
+> > Hi,
+> > 
+> > 
+> > On Fri, Feb 24, 2023, at 12:04, Sasha Finkelstein wrote:
+> >> On Fri, 24 Feb 2023 at 11:55, Mark Kettenis <mark.kettenis@xs4all.nl> wrote:
+> >>
+> >>> What is the motivation for including the firmware name in the device
+> >>> tree rather than constructing it in the driver like what is done for
+> >>> the broadcom wireless?
+> >> There is no way to identify the device subtype before the firmware is
+> >> uploaded, and so i need some way of figuring out which firmware to use.
+> > 
+> > Some Broadcom bluetooth boards use the compatible of the root node (see
+> > btbcm_get_board_name in drivers/bluetooth/btbcm.c) which would be "apple,jXXX"
+> > for Apple Silicon. I believe the Broadcom WiFi driver has similar logic as well
+> > which marcan had to extend to instead of "brcm,board-type" because different
+> > WiFi boards can me matched to different Apple Silicon boards. I don't think
+> > that's the case for this touchscreen though.
+> 
+> The reason why the brcmfmac stuff needs to construct the firmware name
+> itself is that parts of it come from the OTP contents, so there is no
+> way to know from the bootloader what the right firmware is.
 
--Akhil.
->> Konrad
->>> -Akhil.
->>>>  		rgb565_predicator = 1;
->>>>  		uavflagprd_inv = 2;
->>>>  	}
->>>>  
->>>>  	gpu_write(gpu, REG_A6XX_RB_NC_MODE_CNTL,
->>>> -		rgb565_predicator << 11 | amsbc << 4 | lower_bit << 1);
->>>> -	gpu_write(gpu, REG_A6XX_TPL1_NC_MODE_CNTL, lower_bit << 1);
->>>> -	gpu_write(gpu, REG_A6XX_SP_NC_MODE_CNTL,
->>>> -		uavflagprd_inv << 4 | lower_bit << 1);
->>>> -	gpu_write(gpu, REG_A6XX_UCHE_MODE_CNTL, lower_bit << 21);
->>>> +		  rgb565_predicator << 11 | hbb_hi << 10 | amsbc << 4 |
->>>> +		  min_acc_len << 3 | hbb_lo << 1 | ubwc_mode);
->>>> +
->>>> +	gpu_write(gpu, REG_A6XX_TPL1_NC_MODE_CNTL, hbb_hi << 4 |
->>>> +		  min_acc_len << 3 | hbb_lo << 1 | ubwc_mode);
->>>> +
->>>> +	gpu_write(gpu, REG_A6XX_SP_NC_MODE_CNTL, hbb_hi << 10 |
->>>> +		  uavflagprd_inv << 4 | min_acc_len << 3 |
->>>> +		  hbb_lo << 1 | ubwc_mode);
->>>> +
->>>> +	gpu_write(gpu, REG_A6XX_UCHE_MODE_CNTL, min_acc_len << 23 | hbb_lo << 21);
->>>>  }
->>>>  
->>>>  static int a6xx_cp_init(struct msm_gpu *gpu)
->>>>
+The name of the "nvram" file is constructed as well, and that uses the
+compatible of the machine (the root of the device tree).  I suppose
+what is special in that case is that several files are tried so a
+single 'firmware-name" property wouldn't cut it.
 
+> That is not the case here, so it makes perfect sense to specify the
+> firmware with `firmware-name` (which is a standard DT property).
+
+It certainly provides the flexibility to cater for all potential
+nonsense names Apple comes up with for future hardware.
+
+> As for the layout, both bare names and paths are in common use:
+> 
+> qcom/sm8450-qrd.dts:    firmware-name = "qcom/sm8450/slpi.mbn";
+> ti/k3-am64-main.dtsi:   firmware-name = "am64-main-r5f0_0-fw";
+> 
+> ... but the bare names in particular, judging by some Google searches,
+> are *actually* mapped to bare files in /lib/firmware anyway. So the
+> firmware-name property contains the firmware path in the linux-firmware
+> standard hierarchy, in every case.
+
+Well, I think the device tree should not be tied to a particular OS
+and therefore not be tied to things like linux-firmware.
+
+> I already did the same thing for the touchpad on M2s (which requires
+> analogous Z2 firmware passed to it, just in a different format):
+> 
+> dts/apple/t8112-j413.dts: firmware-name = "apple/tpmtfw-j413.bin";
+> 
+> Why is having a directory a problem for OpenBSD? Regardless of how
+> firmware is handled behind the scenes, it seems logical to organize it
+> by vendor somehow. It seems to me that gratuitously diverging from the
+> standard firmware hierarchy is only going to cause trouble for OpenBSD.
+> Obviously it's fine to store it somewhere other than /lib/firmware or
+> use a completely unrelated mechanism other than files, but why does the
+> *organization* of the firmware have to diverge? There can only be one DT
+> binding, so we need to agree on a way of specifying firmwares that works
+> cross-OS, and I don't see why "apple/foo.bin" couldn't be made to work
+> for everyone in some way or another.
+
+We organize the firmware by driver.  And driver names in *BSD differ
+from Linux since there are different constraints.  The firmware is
+organized by driver because we have separate firmware packages for
+each driver that get installed as-needed by a tool that matches on the
+driver name.
+
+Rather than have the device tree dictate the layout of the firmware
+files, I think it would be better to have the OS driver prepend the
+directory to match the convention of the OS in question.  This is what
+we typically do in OpenBSD.
+
+Now I did indeed forget about the "dockchannel" touchpad firmware that
+I already handle in OpenBSD.  That means I could handle the touchbar
+firmware in the same way.  But that is mostly because these firmwares
+are non-distributable, so we don't have firmware packages for them.
+Instead we rely on the Asahi installer to make the firmware available
+on the EFI partition and the OpenBSD installer to move the firmware in
+place on the root filesystem.
+
+So this isn't a big issue.
+
+Cheers,
+
+Mark
