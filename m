@@ -2,130 +2,129 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 352826A508B
-	for <lists+devicetree@lfdr.de>; Tue, 28 Feb 2023 02:14:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AD5876A5098
+	for <lists+devicetree@lfdr.de>; Tue, 28 Feb 2023 02:18:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229733AbjB1BOR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 Feb 2023 20:14:17 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55866 "EHLO
+        id S229590AbjB1BSp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 Feb 2023 20:18:45 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58894 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229523AbjB1BOP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Feb 2023 20:14:15 -0500
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 76FF0F941;
-        Mon, 27 Feb 2023 17:14:14 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1677546854; x=1709082854;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=4UKwAIo3ykTG6MDrcG32IpOsot6nPS5XUQ9f4DsWH3c=;
-  b=cWj7tr02ghsrhVoaSVPHZ79dHeidP7o4ryqnf2JWcm1aQnLmlX1lBnF6
-   nqvNr/b1yI5+QLymmz3O39YdWL0uChlJNz2nhdSEz+5rxpC9aKZth4rmj
-   +BCKnBVpevt0lfG06hdd928eg1m/nUKJFaKl34Q0DveKZm6WG9bK8Uyuu
-   YYsHZrPRkie3cjx2qXNzA0Xo/ZuFDPGVBzNtyVutUq8LG1peavsdH1iDI
-   4AOGFxJQRMv1Xbtn+uz6boqjpdv+14pebvWspPvBuAHrQHjBigg8YPOzg
-   KI9V2sghmW3H50UjBDLZpn1Xk/Vzmxn9e6V0K9k7MG+jNjXWNd2ylH86o
-   w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10634"; a="398793102"
-X-IronPort-AV: E=Sophos;i="5.98,220,1673942400"; 
-   d="scan'208";a="398793102"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
-  by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 27 Feb 2023 17:14:14 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10634"; a="667267732"
-X-IronPort-AV: E=Sophos;i="5.98,220,1673942400"; 
-   d="scan'208";a="667267732"
-Received: from lkp-server01.sh.intel.com (HELO 3895f5c55ead) ([10.239.97.150])
-  by orsmga007.jf.intel.com with ESMTP; 27 Feb 2023 17:14:11 -0800
-Received: from kbuild by 3895f5c55ead with local (Exim 4.96)
-        (envelope-from <lkp@intel.com>)
-        id 1pWoZG-0004xR-2G;
-        Tue, 28 Feb 2023 01:14:10 +0000
-Date:   Tue, 28 Feb 2023 09:13:31 +0800
-From:   kernel test robot <lkp@intel.com>
-To:     Marco Felsch <m.felsch@pengutronix.de>, puranjay12@gmail.com,
-        jic23@kernel.org, lars@metafoo.de, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org
-Cc:     oe-kbuild-all@lists.linux.dev, linux-iio@vger.kernel.org,
-        devicetree@vger.kernel.org, kernel@pengutronix.de
-Subject: Re: [PATCH v5 4/5] iio: temperature: tmp117: add TI TMP116 support
-Message-ID: <202302280821.OXqGp2Tq-lkp@intel.com>
-References: <20230227211230.165073-5-m.felsch@pengutronix.de>
+        with ESMTP id S229585AbjB1BSi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Feb 2023 20:18:38 -0500
+Received: from mail-pl1-x631.google.com (mail-pl1-x631.google.com [IPv6:2607:f8b0:4864:20::631])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 50A5A1ACE5
+        for <devicetree@vger.kernel.org>; Mon, 27 Feb 2023 17:18:36 -0800 (PST)
+Received: by mail-pl1-x631.google.com with SMTP id n6so7409587plf.5
+        for <devicetree@vger.kernel.org>; Mon, 27 Feb 2023 17:18:36 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=45w/ePZnYI0/2LLjqhHdpOHZZUZkx2HLxk5IVIXVOTY=;
+        b=VksYiCrOuvmy2dWTmHyMVmqEos+eA1XMxT2L2aN3ljFOVVsxuvyZX737HBCHBuzGwU
+         WXbuaQi59qraaKUR2e7KybHK49lyNip4DeuT7isI+1zMex7x/o8Sbv+ghueRcpGz3kUE
+         ThiBxGrAP0LUjOlTeObA6T+BQo5nCQlwvVV1jDL40gEEjo2Tl7Ga9Exi9kyHrUFhYJkW
+         wQvnijgcJvSRZURNTPIDbcUGBqj46uL73qL49SOO2tqpFD2TZEAsgJsneN06H/E86E/u
+         Tj1GrTRFWXbXhd2zQxa4JaFho16/TZXR5JDLtlbs6Zr/qKbTvRW1/uiZTZf/+6L1iwdE
+         Qvng==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=45w/ePZnYI0/2LLjqhHdpOHZZUZkx2HLxk5IVIXVOTY=;
+        b=DzVMy28IOy+MoxWdrXl83HZ3QMnE0QoSLwA0MArWh7A/0Qfs6cPIh/lgCb/S88Vs1M
+         bZxGxrIDzxbJzAtIi1vlpghy3jjnxLVBRj+ooHB9IwRNHzKufnLbGknoqsylwTRM/vxQ
+         65i37kxWd6V67hY2DivEdmd/4KRdJSMTrflc4ELOv5bhcKd/YPh0d/US6sf1e1rEWd4Q
+         lEB/hHpx0VETjVuPnHmhY2tNlldSuWYaDo5+uEBDfvhO0oLjqBoAyyprpMsyr5wKv7ua
+         MXBFnQQJmsFeW0rcPh86KkKwxmlg+mHSvewGhi4qmgJ1lkQ/HFaOe6VdSwin/RP8WBdp
+         HXww==
+X-Gm-Message-State: AO0yUKV8O2OT21T1Vsd/1mbjqfs/t8JldfXxxmPtWpQt7SFuMHGeM1QR
+        oQMTUwEpHSIjjy8HzMnDZbDP5Q==
+X-Google-Smtp-Source: AK7set+5jx3+Ceo66EApE8SUSKzeARSdv7Ab+Hou1uZOcwtSBj41Kn2dD79VgcqMPUmiRkMYFH+5gg==
+X-Received: by 2002:a17:90b:4b10:b0:230:81e9:ebb4 with SMTP id lx16-20020a17090b4b1000b0023081e9ebb4mr1247690pjb.10.1677547115601;
+        Mon, 27 Feb 2023 17:18:35 -0800 (PST)
+Received: from localhost ([122.172.83.155])
+        by smtp.gmail.com with ESMTPSA id q11-20020a17090a2e0b00b002372107fc3fsm4911667pjd.0.2023.02.27.17.18.34
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 27 Feb 2023 17:18:34 -0800 (PST)
+Date:   Tue, 28 Feb 2023 06:48:32 +0530
+From:   Viresh Kumar <viresh.kumar@linaro.org>
+To:     Thierry Reding <treding@nvidia.com>
+Cc:     Sumit Gupta <sumitg@nvidia.com>, krzysztof.kozlowski@linaro.org,
+        dmitry.osipenko@collabora.com, rafael@kernel.org,
+        jonathanh@nvidia.com, robh+dt@kernel.org, lpieralisi@kernel.org,
+        linux-kernel@vger.kernel.org, linux-tegra@vger.kernel.org,
+        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-pci@vger.kernel.org, mmaddireddy@nvidia.com, kw@linux.com,
+        bhelgaas@google.com, vidyas@nvidia.com, sanjayc@nvidia.com,
+        ksitaraman@nvidia.com, ishah@nvidia.com, bbasu@nvidia.com
+Subject: Re: [Patch v2 7/9] cpufreq: tegra194: add OPP support and set
+ bandwidth
+Message-ID: <20230228011832.2h6rfsju4qnwu5oj@vireshk-i7>
+References: <20230220140559.28289-1-sumitg@nvidia.com>
+ <20230220140559.28289-8-sumitg@nvidia.com>
+ <20230222040317.r2p6zlbumazymluc@vireshk-i7>
+ <df054fae-5195-1ef8-c72e-e5afe8d901d3@nvidia.com>
+ <Y/ylpaJLMOE6zY8C@orome>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230227211230.165073-5-m.felsch@pengutronix.de>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <Y/ylpaJLMOE6zY8C@orome>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Marco,
+On 27-02-23, 13:44, Thierry Reding wrote:
+> On Thu, Feb 23, 2023 at 03:06:26PM +0530, Sumit Gupta wrote:
+> > On 22/02/23 09:33, Viresh Kumar wrote:
+> > Tried using it and got below crash. It seems to be coming because we don't
+> > have clocks property within CPU node for SoC's having BPMP-FW.
+> > 
+> >  Unable to handle kernel NULL pointer dereference at virtual address
+> > 000000000000002e
+> >  ....
+> >  Call trace:
+> >   clk_round_rate+0x38/0xd8
+> >   dev_pm_opp_set_rate+0xe4/0x1a8
+> >   tegra194_cpufreq_set_target+0x74/0x88
+> >   __cpufreq_driver_target+0x154/0x250
+> >   cpufreq_online+0x7b4/0x9ac
+> 
+> Can you try to find out what exactly is happening here? The clock
+> framework should be able to deal with NULL clock pointers just fine.
+> Although, looking at the OPP table code, it seems like we don't use
+> clk_get_optional(), so opp_table->clk may end up being a pointer-
+> encoded error. Perhaps we need something like this:
+> 
+> --- >8 ---
+> diff --git a/drivers/opp/core.c b/drivers/opp/core.c
+> index e87567dbe99f..d7baeb6ac697 100644
+> --- a/drivers/opp/core.c
+> +++ b/drivers/opp/core.c
+> @@ -1397,6 +1397,7 @@ static struct opp_table *_update_opp_table_clk(struct device *dev,
+>  		 * frequency in opp->rates and also parse the entries in DT.
+>  		 */
+>  		opp_table->clk_count = 1;
+> +		opp_table->clk = NULL;
+>  
+>  		dev_dbg(dev, "%s: Couldn't find clock: %d\n", __func__, ret);
+>  		return opp_table;
 
-Thank you for the patch! Yet something to improve:
+I didn't reply earlier as I had nothing more to say and Sumit's
+initial approach was correct. Maybe I should have I have clarified
+this then.
 
-[auto build test ERROR on v6.2]
-[cannot apply to jic23-iio/togreg linus/master]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
-
-url:    https://github.com/intel-lab-lkp/linux/commits/Marco-Felsch/dt-bindings-iio-ti-tmp117-fix-documentation-link/20230228-051305
-patch link:    https://lore.kernel.org/r/20230227211230.165073-5-m.felsch%40pengutronix.de
-patch subject: [PATCH v5 4/5] iio: temperature: tmp117: add TI TMP116 support
-config: powerpc-allmodconfig (https://download.01.org/0day-ci/archive/20230228/202302280821.OXqGp2Tq-lkp@intel.com/config)
-compiler: powerpc-linux-gcc (GCC) 12.1.0
-reproduce (this is a W=1 build):
-        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
-        chmod +x ~/bin/make.cross
-        # https://github.com/intel-lab-lkp/linux/commit/424113d7fdc257200d20da2991242a4050c04cb3
-        git remote add linux-review https://github.com/intel-lab-lkp/linux
-        git fetch --no-tags linux-review Marco-Felsch/dt-bindings-iio-ti-tmp117-fix-documentation-link/20230228-051305
-        git checkout 424113d7fdc257200d20da2991242a4050c04cb3
-        # save the config file
-        mkdir build_dir && cp config build_dir/.config
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.1.0 make.cross W=1 O=build_dir ARCH=powerpc olddefconfig
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.1.0 make.cross W=1 O=build_dir ARCH=powerpc SHELL=/bin/bash drivers/iio/
-
-If you fix the issue, kindly add following tag where applicable
-| Reported-by: kernel test robot <lkp@intel.com>
-| Link: https://lore.kernel.org/oe-kbuild-all/202302280821.OXqGp2Tq-lkp@intel.com/
-
-All errors (new ones prefixed by >>):
-
->> drivers/iio/temperature/tmp117.c:111:2: error: expected '}' before ';' token
-     111 | };
-         |  ^
-   drivers/iio/temperature/tmp117.c:106:55: note: to match this '{'
-     106 | static const struct iio_chan_spec tmp117_channels[] = {
-         |                                                       ^
-   drivers/iio/temperature/tmp117.c:106:35: warning: 'tmp117_channels' defined but not used [-Wunused-const-variable=]
-     106 | static const struct iio_chan_spec tmp117_channels[] = {
-         |                                   ^~~~~~~~~~~~~~~
-   drivers/iio/temperature/tmp117.c:85:12: warning: 'tmp117_write_raw' defined but not used [-Wunused-function]
-      85 | static int tmp117_write_raw(struct iio_dev *indio_dev,
-         |            ^~~~~~~~~~~~~~~~
-   drivers/iio/temperature/tmp117.c:45:12: warning: 'tmp117_read_raw' defined but not used [-Wunused-function]
-      45 | static int tmp117_read_raw(struct iio_dev *indio_dev,
-         |            ^~~~~~~~~~~~~~~
-
-
-vim +111 drivers/iio/temperature/tmp117.c
-
-   105	
-   106	static const struct iio_chan_spec tmp117_channels[] = {
-   107		{
-   108			.type = IIO_TEMP,
-   109			.info_mask_separate = BIT(IIO_CHAN_INFO_RAW) |
-   110				BIT(IIO_CHAN_INFO_CALIBBIAS) | BIT(IIO_CHAN_INFO_SCALE),
- > 111	};
-   112	
+The OPP core supports dev_pm_opp_set_rate() only for devices that can
+set the rate, for everything else dev_pm_opp_set_opp() is the right
+choice. I suggested dev_pm_opp_set_rate() earlier as I thought rate is
+supported here.
 
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests
+viresh
