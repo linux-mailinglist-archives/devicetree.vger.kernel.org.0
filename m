@@ -2,179 +2,142 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 235A76A52C2
-	for <lists+devicetree@lfdr.de>; Tue, 28 Feb 2023 06:59:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 399576A52FE
+	for <lists+devicetree@lfdr.de>; Tue, 28 Feb 2023 07:32:16 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229840AbjB1F7h (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Feb 2023 00:59:37 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35884 "EHLO
+        id S229633AbjB1GcO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Feb 2023 01:32:14 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54250 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229765AbjB1F7g (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Feb 2023 00:59:36 -0500
-Received: from fd01.gateway.ufhost.com (fd01.gateway.ufhost.com [61.152.239.71])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 168441ADC5;
-        Mon, 27 Feb 2023 21:59:34 -0800 (PST)
-Received: from EXMBX166.cuchost.com (unknown [175.102.18.54])
-        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-        (Client CN "EXMBX166", Issuer "EXMBX166" (not verified))
-        by fd01.gateway.ufhost.com (Postfix) with ESMTP id 004BC24E3DE;
-        Tue, 28 Feb 2023 13:59:33 +0800 (CST)
-Received: from EXMBX068.cuchost.com (172.16.6.68) by EXMBX166.cuchost.com
- (172.16.6.76) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Tue, 28 Feb
- 2023 13:56:58 +0800
-Received: from [192.168.120.55] (171.223.208.138) by EXMBX068.cuchost.com
- (172.16.6.68) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Tue, 28 Feb
- 2023 13:56:57 +0800
-Message-ID: <34512ec5-d110-2817-cd25-fa4bb75989ce@starfivetech.com>
-Date:   Tue, 28 Feb 2023 13:56:57 +0800
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-Subject: Re: [PATCH v4 0/4] StarFive's SDIO/eMMC driver support
-To:     Ulf Hansson <ulf.hansson@linaro.org>
-CC:     <linux-riscv@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-mmc@vger.kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
-        Jaehoon Chung <jh80.chung@samsung.com>,
-        <linux-kernel@vger.kernel.org>
-References: <20230215113249.47727-1-william.qiu@starfivetech.com>
- <CAPDyKFqJxrLh+pgQ-u_Lwxv4_TsH--rga049GBTqKAa_M14_yw@mail.gmail.com>
- <ca9bed19-9809-9443-7ca1-1d11984ded55@starfivetech.com>
- <CAPDyKFpwFq26Tqa-5k7SbQ7Zgk3-AQSrjo7ZSJt6uo6QJR3+5Q@mail.gmail.com>
-Content-Language: en-US
-From:   William Qiu <william.qiu@starfivetech.com>
-In-Reply-To: <CAPDyKFpwFq26Tqa-5k7SbQ7Zgk3-AQSrjo7ZSJt6uo6QJR3+5Q@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [171.223.208.138]
-X-ClientProxiedBy: EXCAS066.cuchost.com (172.16.6.26) To EXMBX068.cuchost.com
- (172.16.6.68)
-X-YovoleRuleAgent: yovoleflag
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        with ESMTP id S229451AbjB1GcN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Feb 2023 01:32:13 -0500
+Received: from spamfilter04.delta.nl (spamfilter04.delta.nl [217.102.255.204])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A898D2057D;
+        Mon, 27 Feb 2023 22:32:11 -0800 (PST)
+Received: from host-ubmmyvj.static.zeelandnet.nl ([217.102.255.198] helo=mail.zeelandnet.nl)
+        by spamfilter04.delta.nl with esmtp (Exim 4.92)
+        (envelope-from <mike.looijmans@topic.nl>)
+        id 1pWtX0-0006dr-W8; Tue, 28 Feb 2023 07:32:07 +0100
+X-Sender-IP: 204.168.188.16
+Received: from phenom.domain_not_set.invalid (016-188-168-204.dynamic.caiway.nl [204.168.188.16])
+        (Authenticated sender: glasveze@delta.nl)
+        by mail.zeelandnet.nl (Postfix) with ESMTPA;
+        Tue, 28 Feb 2023 07:31:52 +0100 (CET)
+From:   Mike Looijmans <mike.looijmans@topic.nl>
+To:     devicetree@vger.kernel.org, linux-iio@vger.kernel.org
+Cc:     Mike Looijmans <mike.looijmans@topic.nl>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org
+Subject: [PATCH v3 1/2] dt-bindings: iio: adc: Add TI ADS1100 and ADS1000
+Date:   Tue, 28 Feb 2023 07:31:50 +0100
+Message-Id: <20230228063151.17598-1-mike.looijmans@topic.nl>
+X-Mailer: git-send-email 2.17.1
+X-Originating-IP: 217.102.255.198
+X-DELTA-Domain: zeelandnet.nl
+X-DELTA-Username: 217.102.255.198
+Authentication-Results: delta.nl; auth=pass smtp.auth=217.102.255.198@zeelandnet.nl
+X-DELTA-Outgoing-Class: ham
+X-DELTA-Outgoing-Evidence: Combined (0.02)
+X-Recommended-Action: accept
+X-Filter-ID: Pt3MvcO5N4iKaDQ5O6lkdGlMVN6RH8bjRMzItlySaT+DcX9mBS87Sjkl3zt5DZ/JPUtbdvnXkggZ
+ 3YnVId/Y5jcf0yeVQAvfjHznO7+bT5xzeemUa7CfwmLuWRw6Ruql9Wrt/oF2ofKYeezPZTW+uL/H
+ seNZtCKdSRRS0Op9pfwEIJgF/Accv4lLtE4TWYNIjgZ0d6t6F7vRFkkblm+Z5L7uq2AYbiB7eX7C
+ A0Ee9FXnLqvnkE9k+JY3j0cID29DoODujL6FEsNqPMBZcb5VIYa36rQUNKpqI1Q4bofNkWUu8fTD
+ ZLzKN6k+QrhjNGJv3vMX8kxfmgvnPiAPWmoBuxmBwTME+9GFGInGiou45HNmtfv+FqJdBAzMzmkl
+ 3RebQxyzcaJWgnTP1X4liYqSLtlnibl3vcBqVmvQB4A18ae2ZUrTg6FOOV02sP442WuqAVXirbLu
+ Jjy3NtnGWLbnBD5wBOYayDY3tUZW3y7uaAiYA/VUAhdIJZFus1IsgsCDp7g8tNbgTOJVkvPWcKve
+ fL+CgfasVEKELzhStrT89iLQPrbYmyedRWSaH5Jq+f9dFu3a+YmrU6Iy71ckAFY+TtvrQQT37tVB
+ F8TuA2zDxdadd1WxHO/mLVgwAb47uaav6rkstLAf90f4v3S1FulD9czOuJQrulh5Fko3Tg7NaUQc
+ YIYdvv9xV5Ex49z0ZSNkjgZ0d6t6F7vRFkkblm+Z5MW9qS2/3RCT5H9A6khsXlWGs9HjdrlYbXkZ
+ KU5GQmOJZsmqX57B1EDhkm+xMEreF4WyYiqdZEM01eRU4ONdoVEFBfQHNmmYaIBwRgEu+hlkUryY
+ cSJLFEwVd01VIyXuC84PLa7Kvs1vJgz+jb+KUZ4ZI4crFqIiLO9pmeAxg3M8BMj+y2IddO0/FlXY
+ D8b+M8bPMsyA7EJ+U7NdS2YrNZ05xOYqJ9Tq2b0GjLr7lMbCDjnM3rdD8NgG/HfNinI857jdWiOx
+ jT+Uoc44sbCX7JxqjLaXu1AD0YHYM/EUhlEfE6TG2ORqQuRwhOvtgDJH0WotQdu7BL5WjlV6WURt
+ Nxb4RqrqGwDerCVKfZxBaa6lpe1/5cEtgGt7CHfC+dbEjaN+/GAFlUDQdIxEvZe3STQis/XYTU9g
+ OFOXr5UdN6W4PtxMTp1vEgkwihjWmfmNVfPvzy/hTW1WrcVDSDSSDu0wxuDU9J+Dmr/6e4fImcm4
+ 9R/2gMGq0KWAzmMf+ibVDqLZPzE7W9Cqnhlc7GZSDtYOqFKIG2trlPUTQYEjbgmVnZqbKIaNWdFw
+ SHKOTj4XQZ8i4WqksVTtjhZSepuHki+xkgmaS1TA/Dv/4AHP2EFtNptbHtgZAQM3rG32ibSwsxBN
+ fS19KOA46lF/j0xwFgg=
+X-Report-Abuse-To: spam@spamfilter03.delta.nl
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_FAIL,
+        SPF_HELO_NONE autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+The ADS1100 is a 16-bit ADC (at 8 samples per second).
+The ADS1000 is similar, but has a fixed data rate.
 
+Signed-off-by: Mike Looijmans <mike.looijmans@topic.nl>
 
-On 2023/2/27 22:53, Ulf Hansson wrote:
-> On Mon, 27 Feb 2023 at 08:47, William Qiu <william.qiu@starfivetech.com> wrote:
->>
->>
->>
->> On 2023/2/15 20:37, Ulf Hansson wrote:
->> > On Wed, 15 Feb 2023 at 12:32, William Qiu <william.qiu@starfivetech.com> wrote:
->> >>
->> >> Hi,
->> >>
->> >> This patchset adds initial rudimentary support for the StarFive
->> >> designware mobile storage host controller driver. And this driver will
->> >> be used in StarFive's VisionFive 2 board. The main purpose of adding
->> >> this driver is to accommodate the ultra-high speed mode of eMMC.
->> >>
->> >> The last patch should be applied after the patchset [1]:
->> >> [1] https://lore.kernel.org/all/20221220011247.35560-1-hal.feng@starfivetech.com/
->> >>
->> >> Changes v3->v4:
->> >> - Added documentation to describe StarFive System Controller Registers.
->> >> - Added aon_syscon and stg_syscon node.
->> >> - Fixed some checkpatch errors/warnings.
->> >>
->> >> Changes v2->v3:
->> >> - Wraped commit message according to Linux coding style.
->> >> - Rephrased the description of the patches.
->> >> - Changed the description of syscon regsiter.
->> >> - Dropped redundant properties.
->> >>
->> >> Changes v1->v2:
->> >> - Renamed the dt-binding 'starfive,jh7110-sdio.yaml' to 'starfive,jh7110-mmc.yaml'.
->> >> - Changed the type of 'starfive,syscon' and modify its description.
->> >> - Deleted unused head files like '#include <linux/gpio.h>'.
->> >> - Added comment for the 'rise_point' and 'fall_point'.
->> >> - Changed the API 'num_caps' to 'common_caps'.
->> >> - Changed the node name 'sys_syscon' to 'syscon'.
->> >> - Changed the node name 'sdio' to 'mmc'.
->> >>
->> >> The patch series is based on v6.1.
->> >>
->> >> William Qiu (4):
->> >>   dt-bindings: mmc: Add StarFive MMC module
->> >>   mmc: starfive: Add sdio/emmc driver support
->> >>   riscv: dts: starfive: Add mmc node
->> >>   dt-bindings: syscon: Add StarFive syscon doc
->> >>
->> >>  .../bindings/mmc/starfive,jh7110-mmc.yaml     |  77 ++++++++
->> >>  .../bindings/soc/starfive/jh7110-syscon.yaml  |  51 +++++
->> >>  MAINTAINERS                                   |  11 ++
->> >>  .../jh7110-starfive-visionfive-2.dtsi         |  23 +++
->> >>  arch/riscv/boot/dts/starfive/jh7110.dtsi      |  47 +++++
->> >>  drivers/mmc/host/Kconfig                      |  10 +
->> >>  drivers/mmc/host/Makefile                     |   1 +
->> >>  drivers/mmc/host/dw_mmc-starfive.c            | 186 ++++++++++++++++++
->> >>  8 files changed, 406 insertions(+)
->> >>  create mode 100644 Documentation/devicetree/bindings/mmc/starfive,jh7110-mmc.yaml
->> >>  create mode 100644 Documentation/devicetree/bindings/soc/starfive/jh7110-syscon.yaml
->> >>  create mode 100644 drivers/mmc/host/dw_mmc-starfive.c
->> >>
->> >
->> > I have dropped the v3 patches and applied patch1 and patch2 from the
->> > v4 series instead, for my next branch, thanks!
->> >
->> > Kind regards
->> > Uffe
->>
->> Hi Uffe,
->>
->> Sorry to bother you.But I found a bug that in drivers/mmc/host/dw_mmc-starfive.c:
->>
->>     47 static int dw_mci_starfive_execute_tuning(struct dw_mci_slot *slot,
->>     48                                              u32 opcode)
->>     49 {
->>     50         static const int grade  = MAX_DELAY_CHAIN;
->>     51         struct dw_mci *host = slot->host;
->>     52         struct starfive_priv *priv = host->priv;
->>     53         int rise_point = -1, fall_point = -1;
->>     54         int err, prev_err;
->>     55         int i;
->>     56         bool found = 0;
->>     57         u32 regval;
->>     58
->>     59         /*
->>     60          * Use grade as the max delay chain, and use the rise_point and
->>     61          * fall_point to ensure the best sampling point of a data input
->>     62          * signals.
->>     63          */
->>     64         for (i = 0; i < grade; i++) {
->>     65                 regval = i << priv->syscon_shift;
->>     66                 err = regmap_update_bits(priv->reg_syscon, priv->syscon_offset,
->>     67                                                 priv->syscon_mask, regval);
->>     68                 if (err)
->>     69                         return err;
->>     70                 mci_writel(host, RINTSTS, ALL_INT_CLR);
->>     71
->>     72                 err = mmc_send_tuning(slot->mmc, opcode, NULL);
->>     73                 if (!err)
->>     74                         found = 1;
->>     75
->>     76                 if (i > 0) {
->> --> 77                         if (err && !prev_err)
->>
->> prev_err was never initialized to zero.
->>
->> So I'm here to ask for your suggestion, should I send a new version
->> to fix it or send you a patch with a fixes tag?
-> 
-> Please send a new incremental patch on top. I will queue it up as a
-> fix for v6.3-rc[n].
-> 
-> Kind regards
-> Uffe
+---
 
-Fine, I'll do it in my next version. Thanks for your apply.
+(no changes since v2)
 
-Best regards
-William
+Changes in v2:
+"reg" property is mandatory.
+Add vdd-supply and #io-channel-cells
+
+ .../bindings/iio/adc/ti,ads1100.yaml          | 46 +++++++++++++++++++
+ 1 file changed, 46 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/iio/adc/ti,ads1100.yaml
+
+diff --git a/Documentation/devicetree/bindings/iio/adc/ti,ads1100.yaml b/Documentation/devicetree/bindings/iio/adc/ti,ads1100.yaml
+new file mode 100644
+index 000000000000..970ccab15e1e
+--- /dev/null
++++ b/Documentation/devicetree/bindings/iio/adc/ti,ads1100.yaml
+@@ -0,0 +1,46 @@
++# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/iio/adc/ti,ads1100.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: TI ADS1100/ADS1000 single channel I2C analog to digital converter
++
++maintainers:
++  - Mike Looijmans <mike.looijmans@topic.nl>
++
++description: |
++  Datasheet at: https://www.ti.com/lit/gpn/ads1100
++
++properties:
++  compatible:
++    enum:
++      - ti,ads1100
++      - ti,ads1000
++
++  reg:
++    maxItems: 1
++
++  vdd-supply: true
++
++  "#io-channel-cells":
++    const: 0
++
++required:
++  - compatible
++  - reg
++
++additionalProperties: false
++
++examples:
++  - |
++    i2c {
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        adc@49 {
++            compatible = "ti,ads1100";
++            reg = <0x49>;
++        };
++    };
++...
+-- 
+2.17.1
+
