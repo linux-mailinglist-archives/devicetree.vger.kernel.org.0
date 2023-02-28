@@ -2,96 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C0DE66A568E
-	for <lists+devicetree@lfdr.de>; Tue, 28 Feb 2023 11:25:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 02FF76A5693
+	for <lists+devicetree@lfdr.de>; Tue, 28 Feb 2023 11:26:42 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229775AbjB1KZO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Feb 2023 05:25:14 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38150 "EHLO
+        id S229627AbjB1K0k (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Feb 2023 05:26:40 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39334 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230164AbjB1KZL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Feb 2023 05:25:11 -0500
-Received: from mail-wm1-x329.google.com (mail-wm1-x329.google.com [IPv6:2a00:1450:4864:20::329])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CDE4A22A1D
-        for <devicetree@vger.kernel.org>; Tue, 28 Feb 2023 02:25:08 -0800 (PST)
-Received: by mail-wm1-x329.google.com with SMTP id r19-20020a05600c459300b003eb3e2a5e7bso3887079wmo.0
-        for <devicetree@vger.kernel.org>; Tue, 28 Feb 2023 02:25:08 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1677579907;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=mgkaj9z/KbMzs8cFTS/37vTg899N24Js9wfGA0s9PBw=;
-        b=fbOYWLgxJVZKeVrkdDxiwN3NSM7QFygLSX/dttpu186Wu1twH0tSgDJ/rfLDtbF9p1
-         D7ui2aZRycpif/n27U9IYZwXwlWj4R72afHqFgD+NytJmx5TQBwecsLlp6DMo737YaGx
-         xC504xNaPupjm1mD+IWnnMoIMssQwkYIqKfuc3ETlmOteplyFn1cBYmPEuu3YAbF7NnT
-         PnSvWDkmDogd++b2Nz6HF9URQiSvHY4HwjutnUbgkwmg5LNCbNKqyrLoiJzYQOSzOQoG
-         jYcw7YvA6nGcOy2O8QSn8OgAoGmZiENw2gCR03xMnEF6APwjffVRQA5eOEERb0PGmZDs
-         48Xg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1677579907;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=mgkaj9z/KbMzs8cFTS/37vTg899N24Js9wfGA0s9PBw=;
-        b=1ZQQi/cLcfcRUr2XLn5Ds9UjnEhKhEkchDGvmmg6kD42/f+MCHmfuGeF/IMzM+pYNj
-         wCjukcszRBG4cPsj2C72qmsx0P+A/0KfRuY5EIFFSL8df8+JhGlbVOAN2mT3WDbuFAHx
-         F106v1RAwzjfZ+GQbbAEpJixMLtrSGiiKNFMdGqic6MlMc56/euQiabY/q6au/cUoDMB
-         EpFI2tRo5nzISVw2fD4TGzMxxXos7jbb5DGGYMLpTA+g7Iiza5ssQIHVw6sZv37YIRsS
-         njULnZQxgLPAJ6S+lSx8WzajLOZ7/+2d2ds3blGgcNeU6zCgMn8NYmVQFhH8RvBG3IOO
-         +Jxg==
-X-Gm-Message-State: AO0yUKXqgBaeVbSOk4J9xnxrwPtbZRhq0dyvNkfYxn/OPeQ69LAlOrdc
-        nHzEWrylNZjLAjDkaAhnQ0ZtDA==
-X-Google-Smtp-Source: AK7set9kSTpOpMfs+oiPL+tox1XHjnaZltE/NY/+ULnAV7QTX1WOcx8ydIKjlBe9PD0f9u+K57nx1Q==
-X-Received: by 2002:a05:600c:4b30:b0:3e0:1a9:b1d7 with SMTP id i48-20020a05600c4b3000b003e001a9b1d7mr1685992wmp.19.1677579907307;
-        Tue, 28 Feb 2023 02:25:07 -0800 (PST)
-Received: from [192.168.1.20] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id f5-20020a1c6a05000000b003d9aa76dc6asm15426295wmc.0.2023.02.28.02.25.05
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 28 Feb 2023 02:25:07 -0800 (PST)
-Message-ID: <08d1e666-cb28-a296-8647-b5e2f9c81276@linaro.org>
-Date:   Tue, 28 Feb 2023 11:25:04 +0100
+        with ESMTP id S229471AbjB1K0i (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Feb 2023 05:26:38 -0500
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B692D231D3;
+        Tue, 28 Feb 2023 02:26:35 -0800 (PST)
+Received: from IcarusMOD.eternityproject.eu (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: kholk11)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id E508D6602F90;
+        Tue, 28 Feb 2023 10:26:32 +0000 (GMT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1677579993;
+        bh=VFa+f+8DW2e7D6mKpQUiXknzxxQ8s0Fg736RhJg9+aQ=;
+        h=From:To:Cc:Subject:Date:From;
+        b=BVlPG6TwFWfmWmTOzq+4wKLJpdKMTDcMH0Ykv43T1b18Qe+wluCePVdBBrXC6Hkbo
+         pKhLkWY3No2PyYisZN6VmkvmMzEARzivyanq2TlND6V1DeTiWx7nhmJpMQ7z0YudGd
+         XX54jwrGdvXTvdKTmWdCZQpPexKTo25vXwTCxUnTCF4jZeNHYHqP9JtUwDGCO0nc5b
+         NlPFJbgfWAF9ESMNgHiN2wCmg2T6NiIQ30RlFzjtiGI8VSgX4O0L20Wv/lcgLstnHd
+         JNl/rmRPgDRFZQfd+XYznZljh3Y/z1IXz0uoD2T2Ozf3iIABkcmc7PlSey5otRRNJ8
+         OUXUvnB67Jb6Q==
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+To:     airlied@gmail.com
+Cc:     daniel@ffwll.ch, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, steven.price@arm.com,
+        alyssa.rosenzweig@collabora.com, matthias.bgg@gmail.com,
+        robh@kernel.org, dri-devel@lists.freedesktop.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, wenst@chromium.org,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+Subject: [PATCH v4 00/12] Panfrost: Improve and add MediaTek SoCs support
+Date:   Tue, 28 Feb 2023 11:25:58 +0100
+Message-Id: <20230228102610.707605-1-angelogioacchino.delregno@collabora.com>
+X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-Subject: Re: [PATCH v2] dt-bindings: fpga: xilinx-spi: convert bindings to
- json-schema
-Content-Language: en-US
-To:     Nava kishore Manne <nava.kishore.manne@amd.com>, mdf@kernel.org,
-        hao.wu@intel.com, yilun.xu@intel.com, trix@redhat.com,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        michal.simek@xilinx.com, linux-fpga@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-References: <20230227110213.291225-1-nava.kishore.manne@amd.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230227110213.291225-1-nava.kishore.manne@amd.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 27/02/2023 12:02, Nava kishore Manne wrote:
-> Convert xilinx-spi bindings to DT schema format using json-schema.
-> 
-> Signed-off-by: Nava kishore Manne <nava.kishore.manne@amd.com>
-> ---
-> Changes for v2:
->               - Removed 'fpga-region.txt' relevant info from the description
->                 and addressed some minor comments as suggested by Krzysztof.
-> 
->  .../bindings/fpga/xilinx-slave-serial.txt     | 51 ------------
->  .../bindings/fpga/xlnx,fpga-slave-serial.yaml | 80 +++++++++++++++++++
->  2 files changed, 80 insertions(+), 51 deletions(-)
+Changes in v4:
+ - Refactored power-domains and power-domain-names exclusions as
+   suggested by Krzysztof
+ - Small changes in MT8192 bindings addition
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Changes in v3:
+ - Changed MT8186 bindings to declare only two power domains
+ - Added a commit introducing MT8186 specific platform data to
+   panfrost_drv
 
-Best regards,
-Krzysztof
+Changes in v2:
+ - Add power-domain-names commit from Chen-Yu to the series
+ - Kept sram-supply in base schema, overridden for non-MediaTek
+ - Added Reviewed-by tags from Steven Price to the driver commits
+   (as released in reply to v1's cover letter - thanks!)
+
+This series adds support for new MediaTek SoCs (MT8186/MT8192/MT8195)
+and improves MT8183 support: since the mtk-regulator-coupler driver
+was picked, it is now useless for Panfrost to look for, and manage,
+two regulators (GPU Vcore and GPU SRAM) on MediaTek;
+
+The aforementioned driver will take care of keeping the voltage
+relation (/constraints) of the two regulators on its own when a
+voltage change request is sent to the Vcore, solving the old time
+issue with not working DVFS on Panfrost+MediaTek (due to devfreq
+supporting only single regulator).
+
+In the specific case of MT8183, in order to not break the ABI, it
+was necessary to add a new compatible for enabling DVFS.
+
+Alyssa Rosenzweig (3):
+  drm/panfrost: Increase MAX_PM_DOMAINS to 5
+  drm/panfrost: Add the MT8192 GPU ID
+  drm/panfrost: Add mediatek,mt8192-mali compatible
+
+AngeloGioacchino Del Regno (9):
+  dt-bindings: gpu: mali-bifrost: Split out MediaTek power-domains
+    variation
+  dt-bindings: gpu: mali-bifrost: Set power-domains maxItems to 5
+  dt-bindings: gpu: mali-bifrost: Fix power-domain-names validation
+  dt-bindings: gpu: mali-bifrost: Add sub-schema for MT8192's power
+    domains
+  dt-bindings: gpu: mali-bifrost: Add new MT8183 compatible
+  dt-bindings: gpu: mali-bifrost: Add support for MediaTek MT8186
+  dt-bindings: gpu: mali-bifrost: Add compatible for MT8195 SoC
+  drm/panfrost: Add new compatible for Mali on the MT8183 SoC
+  drm/panfrost: Add support for Mali on the MT8186 SoC
+
+ .../bindings/gpu/arm,mali-bifrost.yaml        | 80 ++++++++++++++++++-
+ drivers/gpu/drm/panfrost/panfrost_device.h    |  2 +-
+ drivers/gpu/drm/panfrost/panfrost_drv.c       | 37 +++++++++
+ drivers/gpu/drm/panfrost/panfrost_gpu.c       |  8 ++
+ 4 files changed, 123 insertions(+), 4 deletions(-)
+
+-- 
+2.39.2
 
