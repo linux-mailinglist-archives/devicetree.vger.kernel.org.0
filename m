@@ -2,345 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D2F726A5AE5
-	for <lists+devicetree@lfdr.de>; Tue, 28 Feb 2023 15:35:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B16DE6A5AFC
+	for <lists+devicetree@lfdr.de>; Tue, 28 Feb 2023 15:44:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229760AbjB1OfB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Feb 2023 09:35:01 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59234 "EHLO
+        id S229529AbjB1Ook (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Feb 2023 09:44:40 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36428 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229527AbjB1OfA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Feb 2023 09:35:00 -0500
-Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A76F82823F
-        for <devicetree@vger.kernel.org>; Tue, 28 Feb 2023 06:34:29 -0800 (PST)
-Received: by mail-ed1-x535.google.com with SMTP id eg37so40710921edb.12
-        for <devicetree@vger.kernel.org>; Tue, 28 Feb 2023 06:34:29 -0800 (PST)
+        with ESMTP id S229471AbjB1Ooj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Feb 2023 09:44:39 -0500
+Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A53F221296
+        for <devicetree@vger.kernel.org>; Tue, 28 Feb 2023 06:44:38 -0800 (PST)
+Received: by mail-lf1-x133.google.com with SMTP id r27so13503055lfe.10
+        for <devicetree@vger.kernel.org>; Tue, 28 Feb 2023 06:44:38 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1677594867;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=uebId/E2MuuN0Eng4ubkqVVfbCw/rWB/uItWH6yqNNk=;
-        b=SI1irGw+2fPr4/IIo5aLmevlsfiWicfh32tSgX+IUYC71HxA75YDUQ9pb8LkiOS8uT
-         FHAFOt8ewX53zbChepayWL7SwPz9Ayns/9NVnNtndQwYoZXeWgyIPXrlfttmYyVNJFk/
-         AwilCDZRVd3j/dyXG0dT2ud2mSMTz1R7BdSKKbJ/ZAVdLxMaanUrKptrFYs7+vBVj5gO
-         Xe0aHcjcZPBPXoCa9iArNaI8zO/hPBBxw6MWO3m4oNZNpNobFTxlKrtPRe3We6L0e9te
-         a4uMGTwfAlRcSU3KGT+iqr6AM1LcZMmRDKHAJrHgNhQEs0KO+yuGHyyYheLBVS58NNfE
-         JEow==
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=QZVVT1Mods1CC3LcSWFUfhrlLPTbyk1rZyppNmATSPg=;
+        b=ckKQQNQbdWfdjQJnyWRnLdwTsyTVq0xb1jE+G6u/q/he9tZCcx82MXXDpCmm1YadPj
+         +9ynPS6AEttBVd2IJJ4KXgO6Ehi4jI6YI6onRHZp84zz/hg2OoUrAXy/m4Hmy2ZRCc/X
+         w9v9ZmXNe6lQa3JxHsjaLk8IUpyJz2oXqkpY0URiIlubPiDDTLKgyjajO51nq5J1GYlW
+         zaR0sV4BiXL/Lj60MWuikYLPfR0RrJjjV6D2VTuYnrK0WL1n1MadweH83l4tj6e4+uX7
+         YBpO2LcRkDQjgDyOjGnc2WZrNhxAGeN5tLvFlmZQzrbJ3jV4q+ZRCrov/y0HD/YXDOiZ
+         KejA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1677594867;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=uebId/E2MuuN0Eng4ubkqVVfbCw/rWB/uItWH6yqNNk=;
-        b=JkkWNjSFwnPXQROn0qbUYn0OCG/+jraNgXtJGocmfB8g/jGSHYQwiOSgBnZBxxGKJX
-         1hDFlqzA8z0qaG+xKr0HoQNtDzUPiLm9Aot3dtp4p4bIMK1ngeXTIu/mfi+oqYsTHJOh
-         kTYyYOWpoB43/2a1fdjRF6kemR38ZaVe0rgzW/Azw8qnmsuS3KqubDjFpiZTcZu8SZkT
-         S2OgL+dD+7yOC2haZ+NOnpKYQ24zXLCoteOfQq/MQc3twn1GB9oQHLUhF8JqY4l9exWS
-         0U7WtYzXkshTXwRKdJgsCykMp5q+C2uPEyEf7CCs2Q4FyCM9I6+zd7KCXDcnryA4mtZU
-         WdXw==
-X-Gm-Message-State: AO0yUKVM7rWebu6H8UqXC49kUjJmExQbqudo8rysEnXJErUsDZH0rcAF
-        tiEeK9/ie/q3Zq97d0qg8Nrk0g==
-X-Google-Smtp-Source: AK7set8kQ9ata6euqo/6Np+cgIW8IeRuMTqmy4tXn4RTpG4UPnLGLKgbZBqE0j7kjRa/ppTVghc7EQ==
-X-Received: by 2002:aa7:c9d9:0:b0:4ab:1c69:5c4 with SMTP id i25-20020aa7c9d9000000b004ab1c6905c4mr3769925edt.26.1677594867546;
-        Tue, 28 Feb 2023 06:34:27 -0800 (PST)
-Received: from [192.168.1.20] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id qq10-20020a17090720ca00b008e09deb6610sm4518783ejb.200.2023.02.28.06.34.26
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 28 Feb 2023 06:34:27 -0800 (PST)
-Message-ID: <60496973-5382-14de-6c2d-c60b3556defb@linaro.org>
-Date:   Tue, 28 Feb 2023 15:34:25 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-Subject: Re: [PATCH v1 2/2] pwm: starfive: Add PWM driver support
-Content-Language: en-US
-To:     William Qiu <william.qiu@starfivetech.com>,
-        devicetree@vger.kernel.org, linux-pwm@vger.kernel.org,
-        linux-kernel@vger.kernel.org
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=QZVVT1Mods1CC3LcSWFUfhrlLPTbyk1rZyppNmATSPg=;
+        b=JZf4HTRSRHbFBPmG/MzkKLFWb9PZ6MuxM1HPQ4EbHe/azg/qDzrK/JgCRsxmAb8np0
+         G3XkKyBFSHapkJF7RPl/e+fju6nhCAJtU8e1qqMIS6nbZ7YI/Tc65AlXgrB+M1oZe7bG
+         U5daarteiOXM+wGa1uSp0F29yFBdJnacDtwf73tIyPDkC/uGtAO7o/yip0DgBUYVk6b6
+         6rfLuoG57X/2D9bRqqMlNASsfDtgHI3KFnTx/lH0AEMb+N0ozPSLooAOVUyHp717LHJY
+         HCzZ9nRtQ9A6DhGN2rUve4EmOigVusTlpnVHKEpgp/XdHle7vDu/53oXkTT8v0CiXgKQ
+         3nqw==
+X-Gm-Message-State: AO0yUKWdwDbmR+K+eJlLjEz7nVIYNdHR7/y/iE4CD5tZWxxY1WDk407S
+        lDyMzJlqFJeDDYHSUf2Z2cU=
+X-Google-Smtp-Source: AK7set+bm1vzDhG23EKntj/E97vPZSD1WG1LAxLOHySXIxmrQoCkP+3atnL5S42WFI4X2WH7d4vwIg==
+X-Received: by 2002:ac2:5589:0:b0:4db:4fe5:c001 with SMTP id v9-20020ac25589000000b004db4fe5c001mr541607lfg.39.1677595476800;
+        Tue, 28 Feb 2023 06:44:36 -0800 (PST)
+Received: from localhost.lan (ip-194-187-74-233.konfederacka.maverick.com.pl. [194.187.74.233])
+        by smtp.gmail.com with ESMTPSA id b10-20020a056512024a00b00498f67cbfa9sm1365554lfo.22.2023.02.28.06.44.35
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 28 Feb 2023 06:44:36 -0800 (PST)
+From:   =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>
+To:     Florian Fainelli <f.fainelli@gmail.com>
 Cc:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Hal Feng <hal.feng@starfivetech.com>
-References: <20230228091345.70515-1-william.qiu@starfivetech.com>
- <20230228091345.70515-3-william.qiu@starfivetech.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230228091345.70515-3-william.qiu@starfivetech.com>
+        William Zhang <william.zhang@broadcom.com>,
+        Anand Gore <anand.gore@broadcom.com>,
+        Kursad Oney <kursad.oney@broadcom.com>,
+        bcm-kernel-feedback-list@broadcom.com,
+        Brian Norris <briannorris@chromium.org>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>
+Subject: [PATCH 1/3] arm64: dts: broadcom: bcmbca: bcm4908: fix NAND interrupt name
+Date:   Tue, 28 Feb 2023 15:43:58 +0100
+Message-Id: <20230228144400.21689-1-zajec5@gmail.com>
+X-Mailer: git-send-email 2.34.1
+MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 28/02/2023 10:13, William Qiu wrote:
-> Add Pulse Width Modulation driver support for StarFive
-> JH7110 soc.
-> 
-> Signed-off-by: Hal Feng <hal.feng@starfivetech.com>
-> Signed-off-by: William Qiu <william.qiu@starfivetech.com>
-> ---
->  MAINTAINERS                    |   7 +
->  drivers/pwm/Kconfig            |  10 ++
->  drivers/pwm/Makefile           |   1 +
->  drivers/pwm/pwm-starfive-ptc.c | 256 +++++++++++++++++++++++++++++++++
->  4 files changed, 274 insertions(+)
->  create mode 100644 drivers/pwm/pwm-starfive-ptc.c
-> 
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index ac151975d0d3..05b59605d864 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -19929,6 +19929,13 @@ F:	drivers/pinctrl/starfive/pinctrl-starfive-jh71*
->  F:	include/dt-bindings/pinctrl/pinctrl-starfive-jh7100.h
->  F:	include/dt-bindings/pinctrl/starfive,jh7110-pinctrl.h
->  
-> +STARFIVE JH71X0 PWM DRIVERS
-> +M:	William Qiu <william.qiu@starfivetech.com>
-> +M:	Hal Feng <hal.feng@starfivetech.com>
-> +S:	Supported
-> +F:	Documentation/devicetree/bindings/pwm/pwm-starfive.yaml
-> +F:	drivers/pwm/pwm-starfive-ptc.c
-> +
->  STARFIVE JH71X0 RESET CONTROLLER DRIVERS
->  M:	Emil Renner Berthing <kernel@esmil.dk>
->  M:	Hal Feng <hal.feng@starfivetech.com>
-> diff --git a/drivers/pwm/Kconfig b/drivers/pwm/Kconfig
-> index dae023d783a2..2307a0099994 100644
-> --- a/drivers/pwm/Kconfig
-> +++ b/drivers/pwm/Kconfig
-> @@ -536,6 +536,16 @@ config PWM_SPRD
->  	  To compile this driver as a module, choose M here: the module
->  	  will be called pwm-sprd.
->  
-> +config PWM_STARFIVE_PTC
-> +	tristate "StarFive PWM PTC support"
-> +	depends on OF
-> +	depends on COMMON_CLK
-> +	help
-> +	  Generic PWM framework driver for StarFive SoCs.
-> +
-> +	  To compile this driver as a module, choose M here: the module
-> +	  will be called pwm-starfive-ptc.
-> +
->  config PWM_STI
->  	tristate "STiH4xx PWM support"
->  	depends on ARCH_STI || COMPILE_TEST
-> diff --git a/drivers/pwm/Makefile b/drivers/pwm/Makefile
-> index 7bf1a29f02b8..577f69904baa 100644
-> --- a/drivers/pwm/Makefile
-> +++ b/drivers/pwm/Makefile
-> @@ -49,6 +49,7 @@ obj-$(CONFIG_PWM_SIFIVE)	+= pwm-sifive.o
->  obj-$(CONFIG_PWM_SL28CPLD)	+= pwm-sl28cpld.o
->  obj-$(CONFIG_PWM_SPEAR)		+= pwm-spear.o
->  obj-$(CONFIG_PWM_SPRD)		+= pwm-sprd.o
-> +obj-$(CONFIG_PWM_STARFIVE_PTC)	+= pwm-starfive-ptc.o
->  obj-$(CONFIG_PWM_STI)		+= pwm-sti.o
->  obj-$(CONFIG_PWM_STM32)		+= pwm-stm32.o
->  obj-$(CONFIG_PWM_STM32_LP)	+= pwm-stm32-lp.o
-> diff --git a/drivers/pwm/pwm-starfive-ptc.c b/drivers/pwm/pwm-starfive-ptc.c
-> new file mode 100644
-> index 000000000000..58831c600168
-> --- /dev/null
-> +++ b/drivers/pwm/pwm-starfive-ptc.c
-> @@ -0,0 +1,256 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * PWM driver for the StarFive JH7110 SoC
-> + *
-> + * Copyright (C) 2018 StarFive Technology Co., Ltd.
-> + */
-> +
-> +#include <dt-bindings/pwm/pwm.h>
-> +#include <linux/module.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/pwm.h>
-> +#include <linux/slab.h>
-> +#include <linux/clk.h>
-> +#include <linux/reset.h>
-> +#include <linux/io.h>
-> +
-> +/* how many parameters can be transferred to ptc */
-> +#define OF_PWM_N_CELLS			3
-> +
-> +/* PTC Register offsets */
-> +#define REG_RPTC_CNTR			0x0
-> +#define REG_RPTC_HRC			0x4
-> +#define REG_RPTC_LRC			0x8
-> +#define REG_RPTC_CTRL			0xC
-> +
-> +/* Bit for PWM clock */
-> +#define BIT_PWM_CLOCK_EN		31
-> +
-> +/* Bit for clock gen soft reset */
-> +#define BIT_CLK_GEN_SOFT_RESET		13
-> +
-> +#define NS_PER_SECOND			1000000000
-> +#define DEFAULT_FREQ_HZ			2000000
+From: Rafał Miłecki <rafal@milecki.pl>
 
-Drop unused defines.
+This fixes:
+arch/arm64/boot/dts/broadcom/bcmbca/bcm94908.dtb: nand-controller@1800: interrupt-names:0: 'nand_ctlrdy' was expected
+        From schema: Documentation/devicetree/bindings/mtd/brcm,brcmnand.yaml
+arch/arm64/boot/dts/broadcom/bcmbca/bcm94908.dtb: nand-controller@1800: Unevaluated properties are not allowed ('interrupt-names' was unexpected)
+        From schema: Documentation/devicetree/bindings/mtd/brcm,brcmnand.yaml
 
-> +
-> +/*
-> + * Access PTC register (cntr hrc lrc and ctrl),
-> + * need to replace PWM_BASE_ADDR
-> + */
-> +#define REG_PTC_BASE_ADDR_SUB(base, N)	\
-> +((base) + (((N) > 3) ? (((N) % 4) * 0x10 + (1 << 15)) : ((N) * 0x10)))
-> +#define REG_PTC_RPTC_CNTR(base, N)	(REG_PTC_BASE_ADDR_SUB(base, N))
-> +#define REG_PTC_RPTC_HRC(base, N)	(REG_PTC_BASE_ADDR_SUB(base, N) + 0x4)
-> +#define REG_PTC_RPTC_LRC(base, N)	(REG_PTC_BASE_ADDR_SUB(base, N) + 0x8)
-> +#define REG_PTC_RPTC_CTRL(base, N)	(REG_PTC_BASE_ADDR_SUB(base, N) + 0xC)
-> +
-> +/* PTC_RPTC_CTRL */
-> +#define PTC_EN      BIT(0)
-> +#define PTC_ECLK    BIT(1)
-> +#define PTC_NEC     BIT(2)
-> +#define PTC_OE      BIT(3)
-> +#define PTC_SIGNLE  BIT(4)
-> +#define PTC_INTE    BIT(5)
-> +#define PTC_INT     BIT(6)
-> +#define PTC_CNTRRST BIT(7)
-> +#define PTC_CAPTE   BIT(8)
-> +
-> +struct starfive_pwm_ptc_device {
-> +	struct pwm_chip		chip;
-> +	struct clk		*clk;
-> +	struct reset_control	*rst;
-> +	void __iomem		*regs;
-> +	int			irq;
-> +	/*pwm apb clock frequency*/
+Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
+---
+ arch/arm64/boot/dts/broadcom/bcmbca/bcm4908.dtsi | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-Missing spaces. Use Linux coding style.
-
-> +	unsigned int		approx_freq;
-> +};
-> +
-> +static inline struct starfive_pwm_ptc_device *
-> +		chip_to_starfive_ptc(struct pwm_chip *c)
-> +{
-> +	return container_of(c, struct starfive_pwm_ptc_device, chip);
-> +}
-> +
-
-(...)
-
-> +static int starfive_pwm_ptc_probe(struct platform_device *pdev)
-> +{
-> +	struct device *dev = &pdev->dev;
-> +	struct starfive_pwm_ptc_device *pwm;
-> +	struct pwm_chip *chip;
-> +	struct resource *res;
-> +	unsigned int clk_apb_freq;
-> +	int ret;
-> +
-> +	pwm = devm_kzalloc(dev, sizeof(*pwm), GFP_KERNEL);
-> +	if (!pwm)
-> +		return -ENOMEM;
-> +
-> +	chip = &pwm->chip;
-> +	chip->dev = dev;
-> +	chip->ops = &starfive_pwm_ptc_ops;
-> +	chip->npwm = 8;
-> +
-> +	chip->of_pwm_n_cells = OF_PWM_N_CELLS;
-> +	chip->base = -1;
-> +
-> +	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
-> +	pwm->regs = devm_ioremap_resource(dev, res);
-
-Combine these two, there is a helper for it.
-
-> +	if (IS_ERR(pwm->regs)) {
-> +		dev_err(dev, "Unable to map IO resources\n");
-
-return dev_err_probe(), everywhere probably.
-
-> +		return PTR_ERR(pwm->regs);
-> +	}
-> +
-> +	pwm->clk = devm_clk_get(dev, NULL);
-> +	if (IS_ERR(pwm->clk)) {
-> +		dev_err(dev, "Unable to get pwm clock\n");
-> +		return PTR_ERR(pwm->clk);
-> +	}
-> +
-> +	pwm->rst = devm_reset_control_get_exclusive(dev, NULL);
-> +	if (IS_ERR(pwm->rst)) {
-> +		dev_err(dev, "Unable to get pwm reset\n");
-> +		return PTR_ERR(pwm->rst);
-> +	}
-> +
-> +	ret = clk_prepare_enable(pwm->clk);
-> +	if (ret) {
-> +		dev_err(dev,
-> +			"Failed to enable pwm clock, %d\n", ret);
-> +		return ret;
-> +	}
-> +
-> +	reset_control_deassert(pwm->rst);
-> +
-> +	clk_apb_freq = (unsigned int)clk_get_rate(pwm->clk);
-
-Why do you need this local variable? And why the cast?
-
-> +	if (!clk_apb_freq)
-> +		dev_warn(dev,
-> +			 "get pwm apb clock rate failed.\n");
-
-and pwm->approx_freq stays 0 which you later use for dividing. Did you
-actually test it? It should produce big splat...
-
-> +	else
-> +		pwm->approx_freq = clk_apb_freq;
-> +
-> +	ret = pwmchip_add(chip);
-
-devm
-
-> +	if (ret < 0) {
-> +		dev_err(dev, "cannot register PTC: %d\n", ret);
-> +		clk_disable_unprepare(pwm->clk);
-> +		return ret;
-> +	}
-> +
-> +	platform_set_drvdata(pdev, pwm);
-> +
-> +	return 0;
-> +}
-> +
-> +static int starfive_pwm_ptc_remove(struct platform_device *dev)
-> +{
-> +	struct starfive_pwm_ptc_device *pwm = platform_get_drvdata(dev);
-> +	struct pwm_chip *chip = &pwm->chip;
-> +
-> +	pwmchip_remove(chip);
-> +
-> +	return 0;
-> +}
-> +
-> +static const struct of_device_id starfive_pwm_ptc_of_match[] = {
-> +	{ .compatible = "starfive,jh7110-pwm" },
-> +	{},
-> +};
-> +MODULE_DEVICE_TABLE(of, starfive_pwm_ptc_of_match);
-> +
-> +static struct platform_driver starfive_pwm_ptc_driver = {
-> +	.probe = starfive_pwm_ptc_probe,
-> +	.remove = starfive_pwm_ptc_remove,
-> +	.driver = {
-> +		.name = "pwm-starfive-ptc",
-> +		.of_match_table = of_match_ptr(starfive_pwm_ptc_of_match),
-
-of_match_ptr goes with maybe_unused, which you do not have. Anyway I am
-not sure what's the benefit of having it here, so just drop it.
-
-Best regards,
-Krzysztof
+diff --git a/arch/arm64/boot/dts/broadcom/bcmbca/bcm4908.dtsi b/arch/arm64/boot/dts/broadcom/bcmbca/bcm4908.dtsi
+index fc96ee7ab39d..1240fc5fb08c 100644
+--- a/arch/arm64/boot/dts/broadcom/bcmbca/bcm4908.dtsi
++++ b/arch/arm64/boot/dts/broadcom/bcmbca/bcm4908.dtsi
+@@ -556,7 +556,7 @@ nand-controller@1800 {
+ 			reg = <0x1800 0x600>, <0x2000 0x10>;
+ 			reg-names = "nand", "nand-int-base";
+ 			interrupts = <GIC_SPI 37 IRQ_TYPE_LEVEL_HIGH>;
+-			interrupt-names = "nand";
++			interrupt-names = "nand_ctlrdy";
+ 			status = "okay";
+ 
+ 			nandcs: nand@0 {
+-- 
+2.34.1
 
