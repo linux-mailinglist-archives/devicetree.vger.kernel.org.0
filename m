@@ -2,97 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 554356A56D7
-	for <lists+devicetree@lfdr.de>; Tue, 28 Feb 2023 11:35:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0190E6A56DC
+	for <lists+devicetree@lfdr.de>; Tue, 28 Feb 2023 11:36:23 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230328AbjB1KfB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Feb 2023 05:35:01 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50452 "EHLO
+        id S230335AbjB1KgU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Feb 2023 05:36:20 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51964 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230491AbjB1Kew (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Feb 2023 05:34:52 -0500
-Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com [IPv6:2a00:1450:4864:20::434])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4C93E83E9
-        for <devicetree@vger.kernel.org>; Tue, 28 Feb 2023 02:34:51 -0800 (PST)
-Received: by mail-wr1-x434.google.com with SMTP id g3so299276wri.6
-        for <devicetree@vger.kernel.org>; Tue, 28 Feb 2023 02:34:51 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1677580490;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=gcIFZ75GszROWVHc6fhuQ2yZDaxcPc/igDnt5Snznss=;
-        b=hHB4WHESAJnekEReyf6uGCnczOr42Hhw7lkNkUk4gIPwcgTtyCSljxpqnXB2bTA7IG
-         evNkmGEUZ90F7zckzsR2WzojUDk1xfUZrofd693USp+QNttzIv+uLSs9HhYywKNuWYpl
-         hwJ3NuIlexGe3Ob6VZRCZeMbwSqeWb1O3uINVwcs21OkxOzaSK1vVYHiRixf3GRJ/Grb
-         2dl7cgSyLIM2QJf/FUKm6pQvhwL1iVVsSBJzceJkGHgBpNWiN4CX3vcK3kRW8/dtc+ID
-         GOIEROTN3LAiSg1CQzS3u9lHSe4u414Ku7earTvryzXUheZJggMurcPuCRLM/T+qXaMb
-         /Oow==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1677580490;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=gcIFZ75GszROWVHc6fhuQ2yZDaxcPc/igDnt5Snznss=;
-        b=vdxVogrlAkKsy3Nj/WnB/ArAZAr+DxSL+1PtOvglHkQMbNGWFnMqk6FtZZGAg4l62m
-         Df7dmwwaHh4sy+bONgK97kINxPOyZTCWykz5yqP75BA96nPUJfMiggkYIB7g3SjryesV
-         p/uzyJpRMmd/9SYfo5a7KT77eK5nYLWihk+HJDHcH99mUn2wf5ZKblw4KDLZAxCcarkt
-         CG0pZ6fAOS5rEfHgjDl03t/fn7KEVHCPQhHa8SZXuZdCQinNpo7C3hB4UjmZhmDLWAqo
-         TgJ0xGf5WY3Z5Q/Cpa2eJ8tWtcxm8Yor5S/4zgYH6lmjhfwvfGKaXeMnbnKXuRFwiDSi
-         neTA==
-X-Gm-Message-State: AO0yUKW2woKvErzMwKA1PZV7YX9MHUuqDbCMWN90N83Hxks97ILM4ZQ7
-        UCoKMc89H2+rygUTMi83Vj/tVw==
-X-Google-Smtp-Source: AK7set8XI9Z0kByAgnUP5JY/bKFJVG2SMphbFAIpM6vToy46scsdRHYBTPE65nIL2wDnEMD/x8iLBA==
-X-Received: by 2002:a05:6000:190:b0:2c6:e744:cf71 with SMTP id p16-20020a056000019000b002c6e744cf71mr1551763wrx.52.1677580489791;
-        Tue, 28 Feb 2023 02:34:49 -0800 (PST)
-Received: from [192.168.1.20] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id p8-20020adfcc88000000b002c55b0e6ef1sm9772120wrj.4.2023.02.28.02.34.48
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 28 Feb 2023 02:34:49 -0800 (PST)
-Message-ID: <2e3e0f4d-f7ee-4ce5-272e-c3be13da8c8c@linaro.org>
-Date:   Tue, 28 Feb 2023 11:34:48 +0100
+        with ESMTP id S230193AbjB1KgT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Feb 2023 05:36:19 -0500
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CABC620D31;
+        Tue, 28 Feb 2023 02:36:18 -0800 (PST)
+Received: from cryzen.lan (cpc87451-finc19-2-0-cust61.4-2.cable.virginm.net [82.11.51.62])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: tanureal)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 6D8EE66021F9;
+        Tue, 28 Feb 2023 10:36:17 +0000 (GMT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1677580577;
+        bh=76t+fzjT2/wIqxMWU7rwXik9LpuADrrJG6sBa8kaQD4=;
+        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+        b=XeknhX51WTygsqlSaC4hpkGHlVLSTt+duAmPzf4o7+NhUq76fjf9sHzkGPxv5/IJW
+         +w29JoQYS0IUw226UmZySi2XHAbpO1mOGXQdgUr2D/HUU6IJr/WB8PyDZkemWo+h1C
+         DyJVPVlEn0FyhgXleD3KaR/H4Y+zDgkkIMG4q7rTSejzm3vN9trMoe2YtMCVM/GnSJ
+         mr/oSGmyUQESoFPTOMFl1B/a6iSpudWxMkcHiDbmuJn8sutF/7xQ2U1CvcZy0TaP1U
+         sYKxnfUKSaz81GdQTIWtlPugcPtSDAL/vTwNpTqepBHAF01X9Ev9WNgzONc3NGAwhj
+         wLsx+auVGYrfA==
+From:   Lucas Tanure <lucas.tanure@collabora.com>
+To:     lucas.tanure@collabora.com
+Cc:     devicetree@vger.kernel.org, heiko@sntech.de, kernel@collabora.com,
+        krzysztof.kozlowski+dt@linaro.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-mmc@vger.kernel.org, linux-rockchip@lists.infradead.org,
+        robh+dt@kernel.org, shawn.lin@rock-chips.com,
+        ulf.hansson@linaro.org
+Subject: [PATCH v2] arm64: dts: rockchip: rk3588: Add sdmmc node
+Date:   Tue, 28 Feb 2023 10:36:10 +0000
+Message-Id: <20230228103610.25108-1-lucas.tanure@collabora.com>
+X-Mailer: git-send-email 2.39.2
+In-Reply-To: <20230213152740.359055-2-lucas.tanure@collabora.com>
+References: <20230213152740.359055-2-lucas.tanure@collabora.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-Subject: Re: [PATCH v3 1/2] dt-bindings: iio: adc: Add TI ADS1100 and ADS1000
-Content-Language: en-US
-To:     Mike Looijmans <mike.looijmans@topic.nl>,
-        devicetree@vger.kernel.org, linux-iio@vger.kernel.org
-Cc:     Jonathan Cameron <jic23@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org
-References: <20230228063151.17598-1-mike.looijmans@topic.nl>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230228063151.17598-1-mike.looijmans@topic.nl>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 28/02/2023 07:31, Mike Looijmans wrote:
-> The ADS1100 is a 16-bit ADC (at 8 samples per second).
-> The ADS1000 is similar, but has a fixed data rate.
-> 
-> Signed-off-by: Mike Looijmans <mike.looijmans@topic.nl>
-> 
-> ---
-> 
-> (no changes since v2)
-> 
-> Changes in v2:
-> "reg" property is mandatory.
-> Add vdd-supply and #io-channel-cells
+Add SD Card node for RK3588s and RK3588.
 
+Co-developed-by: Shawn Lin <shawn.lin@rock-chips.com>
+Signed-off-by: Shawn Lin <shawn.lin@rock-chips.com>
+Signed-off-by: Lucas Tanure <lucas.tanure@collabora.com>
+---
+Changes Since v1:
+  None. Re-submitting this patch alone as the first patch of this series was
+  already accepted.
+---
+ arch/arm64/boot/dts/rockchip/rk3588s.dtsi | 15 +++++++++++++++
+ 1 file changed, 15 insertions(+)
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
-Best regards,
-Krzysztof
+diff --git a/arch/arm64/boot/dts/rockchip/rk3588s.dtsi b/arch/arm64/boot/dts/rockchip/rk3588s.dtsi
+index 005cde61b4b2..fca8503aed8c 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3588s.dtsi
++++ b/arch/arm64/boot/dts/rockchip/rk3588s.dtsi
+@@ -1099,6 +1099,21 @@ gmac1_mtl_tx_setup: tx-queues-config {
+ 		};
+ 	};
+ 
++	sdmmc: mmc@fe2c0000 {
++		compatible = "rockchip,rk3588-dw-mshc", "rockchip,rk3288-dw-mshc";
++		reg = <0x0 0xfe2c0000 0x0 0x4000>;
++		interrupts = <GIC_SPI 203 IRQ_TYPE_LEVEL_HIGH 0>;
++		clocks = <&scmi_clk SCMI_HCLK_SD>, <&scmi_clk SCMI_CCLK_SD>,
++			 <&cru SCLK_SDMMC_DRV>, <&cru SCLK_SDMMC_SAMPLE>;
++		clock-names = "biu", "ciu", "ciu-drive", "ciu-sample";
++		fifo-depth = <0x100>;
++		max-frequency = <200000000>;
++		pinctrl-names = "default";
++		pinctrl-0 = <&sdmmc_clk &sdmmc_cmd &sdmmc_det &sdmmc_bus4>;
++		power-domains = <&power RK3588_PD_SDMMC>;
++		status = "disabled";
++	};
++
+ 	sdhci: mmc@fe2e0000 {
+ 		compatible = "rockchip,rk3588-dwcmshc";
+ 		reg = <0x0 0xfe2e0000 0x0 0x10000>;
+-- 
+2.39.2
 
