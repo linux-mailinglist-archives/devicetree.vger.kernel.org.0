@@ -2,134 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2950C6A65B9
-	for <lists+devicetree@lfdr.de>; Wed,  1 Mar 2023 03:44:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5F0A56A660F
+	for <lists+devicetree@lfdr.de>; Wed,  1 Mar 2023 04:00:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229787AbjCACof (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Feb 2023 21:44:35 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56632 "EHLO
+        id S229766AbjCADAK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Feb 2023 22:00:10 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40846 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229493AbjCACoe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Feb 2023 21:44:34 -0500
-Received: from mail-ot1-f47.google.com (mail-ot1-f47.google.com [209.85.210.47])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 10AFD10255;
-        Tue, 28 Feb 2023 18:44:34 -0800 (PST)
-Received: by mail-ot1-f47.google.com with SMTP id r23-20020a05683001d700b00690eb18529fso6813283ota.1;
-        Tue, 28 Feb 2023 18:44:34 -0800 (PST)
+        with ESMTP id S229698AbjCADAJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Feb 2023 22:00:09 -0500
+Received: from mail-oi1-f179.google.com (mail-oi1-f179.google.com [209.85.167.179])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3580B18A88;
+        Tue, 28 Feb 2023 19:00:05 -0800 (PST)
+Received: by mail-oi1-f179.google.com with SMTP id bm20so9737577oib.7;
+        Tue, 28 Feb 2023 19:00:04 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=in-reply-to:content-transfer-encoding:content-disposition
          :mime-version:references:message-id:subject:cc:to:from:date
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=v2mASzywLLLz3SL9h6D/hbMI9Q5P67uUV6RN/jUkz1w=;
-        b=OR5zDjVCo2f7Mw833Y+AVPRqP4EgXXGFqkTIS2omfRi+ohz7cJG+2BE49DNocWzB60
-         rw+a6Of7PEAS500edZaZ3AFGguEotHG8TE0LlrG+a50NDz+5aWrW8RJAEd8ZaF/2saqV
-         tqXo0b56AeNUGPPqdZ66oAKYT+LmWICvXAjl7aMsG86dDLPjenfP8/xWjkER1McQ/scY
-         VYdKS96kUTbNFrrneyzCJOVR3KKJiii3nZ4+I72A9GBIWqnIfkIg1myAGPt8GR2Zu4eb
-         1UQjVAscNGuUsLgJ3C2stuXLmdy4laBmK7RPDZsEN7u/eWTMBpTcVQ5SzJDP12oBTSJh
-         tH4g==
-X-Gm-Message-State: AO0yUKW+0PMCwGz1GkK8uaJI3O7zpZ3O/ZjNqjJqT0mQxhr8mvIcv6/q
-        3UURgDYajf6bufmXi6+0Uw==
-X-Google-Smtp-Source: AK7set9UBWbgFA1YWvOE33zjSRJM6L7Ce9rJOQ8u6UdOLH1WrhEbJt1fAwKlmQilm3WSZq+MRsPCWg==
-X-Received: by 2002:a9d:17d0:0:b0:690:ece7:62d2 with SMTP id j74-20020a9d17d0000000b00690ece762d2mr2898278otj.19.1677638673290;
-        Tue, 28 Feb 2023 18:44:33 -0800 (PST)
+        bh=4+hlk9qIUuM3fLnkVidAMNeHVHDdRcnOrwsq/H80HYc=;
+        b=eTEp+ip+z+YjVDjaxcREGkrd5wbt5+EN7MSxL0LgsHJ5TcP7blAsQeLZRi5LxwujYT
+         bk0UDGIhamob2WzWwukuaHQwc0I/ArVxGKZBTTBlGF5vDyGhZAbsSUUmeT8WwhP4HWsH
+         +dT/ynla2CK3cGzZPXZFuonyYGzdwIsZ4QQNKk3NGAP9/T6WLqBXFSEhtkmk17AWpmar
+         zUjpNGQoXPRs4bJAhXT0mQU5sgBlbdszUTagvM5r2Ijd9h5htoT0NZXnf63cOFDmSh+u
+         dsDaTLu6WOmE9vZ35Dc0+wlNIXYTanP/HWqQFiZndpVjP+b8TjWrY6CHunjNMO3Kq9zB
+         C0yA==
+X-Gm-Message-State: AO0yUKXM4m5oy+dbLUrENGuQQ3tY2F2SrVNbqpJIFmOjog2FIUpNT1dP
+        v601F+D8tkzJwJ7LPAk6ow==
+X-Google-Smtp-Source: AK7set+HpWmzeYd1lGPiy8QJl4l7LAmnwcnfvUHV8gqxvp3LQQbCgck/qlm0hfpMFBXzIZ8Apr3ehA==
+X-Received: by 2002:aca:1016:0:b0:383:e383:f265 with SMTP id 22-20020aca1016000000b00383e383f265mr2460854oiq.19.1677639604117;
+        Tue, 28 Feb 2023 19:00:04 -0800 (PST)
 Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id c2-20020a9d75c2000000b0068bd6cf405dsm4451250otl.1.2023.02.28.18.44.32
+        by smtp.gmail.com with ESMTPSA id az2-20020a056808164200b0037d74a4b8fasm5279782oib.56.2023.02.28.19.00.03
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 28 Feb 2023 18:44:32 -0800 (PST)
-Received: (nullmailer pid 260581 invoked by uid 1000);
-        Wed, 01 Mar 2023 02:44:31 -0000
-Date:   Tue, 28 Feb 2023 20:44:31 -0600
+        Tue, 28 Feb 2023 19:00:03 -0800 (PST)
+Received: (nullmailer pid 281189 invoked by uid 1000);
+        Wed, 01 Mar 2023 03:00:03 -0000
+Date:   Tue, 28 Feb 2023 21:00:03 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     =?utf-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>
-Cc:     Sergio Paracuellos <sergio.paracuellos@gmail.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-mediatek@lists.infradead.org, linux-mips@vger.kernel.org,
-        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Sean Wang <sean.wang@kernel.org>,
-        William Dean <williamsukatube@gmail.com>,
-        Daniel Golle <daniel@makrotopia.org>,
-        Daniel Santos <daniel.santos@pobox.com>,
-        Luiz Angelo Daros de Luca <luizluca@gmail.com>,
-        Frank Wunderlich <frank-w@public-files.de>,
-        Landen Chao <Landen.Chao@mediatek.com>,
-        DENG Qingfang <dqfext@gmail.com>,
-        Sean Wang <sean.wang@mediatek.com>, erkin.bozoglu@xeront.com
-Subject: Re: [RFC PATCH 07/16] dt-bindings: pinctrl: ralink: add new
- compatible strings
-Message-ID: <20230301024431.GA251215-robh@kernel.org>
-References: <20230222183932.33267-1-arinc.unal@arinc9.com>
- <20230222183932.33267-8-arinc.unal@arinc9.com>
- <20230227173333.GA496999-robh@kernel.org>
- <d7aea90f-d077-3a41-996c-804c95d72e24@arinc9.com>
+To:     Frank Rowand <frowand.list@gmail.com>
+Cc:     =?iso-8859-1?Q?Cl=E9ment_L=E9ger?= <clement.leger@bootlin.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Lizhi Hou <lizhi.hou@xilinx.com>,
+        Allan Nielsen <allan.nielsen@microchip.com>,
+        Horatiu Vultur <horatiu.vultur@microchip.com>,
+        Steen Hegelund <steen.hegelund@microchip.com>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH v3 1/2] of: create of_root if no dtb provided
+Message-ID: <20230301030003.GA263873-robh@kernel.org>
+References: <20230223213418.891942-1-frowand.list@gmail.com>
+ <20230223213418.891942-2-frowand.list@gmail.com>
+ <CAL_JsqLR9sm+GRU8EP4eO_Ln2UhD=ztdAU834CzP8RSv2s2jQg@mail.gmail.com>
+ <cbf76155-4355-5241-d7a5-816e6721ce1b@gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <d7aea90f-d077-3a41-996c-804c95d72e24@arinc9.com>
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
+In-Reply-To: <cbf76155-4355-5241-d7a5-816e6721ce1b@gmail.com>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
-        autolearn_force=no version=3.4.6
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Feb 28, 2023 at 07:46:36PM +0300, Arınç ÜNAL wrote:
-> On 27/02/2023 20:33, Rob Herring wrote:
-> > On Wed, Feb 22, 2023 at 09:39:23PM +0300, arinc9.unal@gmail.com wrote:
-> > > From: Arınç ÜNAL <arinc.unal@arinc9.com>
-> > > 
-> > > Add the ralink,rt2880-pinmux compatible string. It had been removed from
-> > > the driver which broke the ABI.
-> > > 
-> > > Add the mediatek compatible strings. Change the compatible string on the
-> > > examples with the mediatek compatible strings.
-> > > 
-> > > Signed-off-by: Arınç ÜNAL <arinc.unal@arinc9.com>
-> > > ---
-> > >   .../devicetree/bindings/pinctrl/ralink,mt7620-pinctrl.yaml | 7 +++++--
-> > >   .../devicetree/bindings/pinctrl/ralink,mt7621-pinctrl.yaml | 7 +++++--
-> > >   .../devicetree/bindings/pinctrl/ralink,rt2880-pinctrl.yaml | 7 +++++--
-> > >   .../devicetree/bindings/pinctrl/ralink,rt305x-pinctrl.yaml | 7 +++++--
-> > >   .../devicetree/bindings/pinctrl/ralink,rt3883-pinctrl.yaml | 7 +++++--
-> > >   5 files changed, 25 insertions(+), 10 deletions(-)
-> > > 
-> > > diff --git a/Documentation/devicetree/bindings/pinctrl/ralink,mt7620-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/ralink,mt7620-pinctrl.yaml
-> > > index 1e63ea34146a..531b5f616c3d 100644
-> > > --- a/Documentation/devicetree/bindings/pinctrl/ralink,mt7620-pinctrl.yaml
-> > > +++ b/Documentation/devicetree/bindings/pinctrl/ralink,mt7620-pinctrl.yaml
-> > > @@ -17,7 +17,10 @@ description:
-> > >   properties:
-> > >     compatible:
-> > > -    const: ralink,mt7620-pinctrl
-> > > +    enum:
-> > > +      - mediatek,mt7620-pinctrl
-> > > +      - ralink,mt7620-pinctrl
+On Tue, Feb 28, 2023 at 08:05:58PM -0600, Frank Rowand wrote:
+> On 2/27/23 11:17, Rob Herring wrote:
+> > On Thu, Feb 23, 2023 at 3:34 PM Frank Rowand <frowand.list@gmail.com> wrote:
+> >>
+> >> When enabling CONFIG_OF on a platform where of_root is not populated by
+> >> firmware, we end up without a root node. In order to apply overlays and
+> >> create subnodes of the root node, we need one. Create this root node
+> >> by unflattening an empty builtin dtb.
+> >>
+> >> If firmware provides a flattened device tree (FDT) then the FDT is
+> >> unflattened via setup_arch().  Otherwise, setup_of() which is called
+> >> immediately after setup_arch(), and will create the default root node
+> >> if it does not exist.
 > > 
-> > We don't update compatible strings based on acquistions nor marketing
-> > whims. If you want to use 'mediatek' for new things, then fine.
+> > Why do we need a hook after setup_arch() rather than an initcall?
+> > 
+> > Rob
 > 
-> Understood. Only the SoCs with rtXXXX were rebranded, the mtXXXX SoCs share
-> the same architecture from Ralink, so they were incorrectly called Ralink
-> SoCs.
-> 
-> I can remove the new strings from Ralink SoCs and add them only for MediaTek
-> SoCs. Or you could make an exception for this one, regarding the situation.
-> Whatever you think is best.
+> It might work as an initcall today.  Maybe not in the future as other
+> initcalls are added.
 
-I'm not in a position to make an exception as I know little about this 
-platform. Carrying both strings is a NAK. Either you (and everyone using 
-these platforms) care about the ABI and are stuck with the "wrong" 
-string. In the end, they are just unique identifiers. Or you don't care 
-and break the ABI and rename everything. If you do that, do just that in 
-your patches and make it crystal clear in the commit msg that is your 
-intention and why that is okay.
+That's an argument for never using initcalls (not a bad one either). But 
+we have them and we have little reason not to use them. Also, it's 
+better to do things as late as possible I've found. The earlier you do 
+things, the more architecture specific stuff you hit. That's a big 
+reason for the remaining differences in FDT init across architectures. 
+Maybe after setup_arch is late enough. IDK.
+
+> But my main stream of thinking is that before the patch "we know" that
+> the device tree data structure exists when setup_arch() returns.
+> Adding setup_of() immediately after setup_arch() retains that
+> guarantee, but one line later in start_kernel().
+
+I get the logic. I'd just rather not add another hook between the DT 
+code and the core/arch code. Especially for this niche usecase.
+
+We already have the secondary init when sysfs is up. Can't we just do 
+this there?
+
+> I could have instead put the call to setup_of() into each architectures'
+> setup_arch(), but that would just be duplicating the same code for each
+> architecture, which did not seem like a good choice.
+
+Uhh, no!
 
 Rob
