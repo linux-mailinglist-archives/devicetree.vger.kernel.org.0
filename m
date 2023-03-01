@@ -2,272 +2,124 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 93CAE6A739D
-	for <lists+devicetree@lfdr.de>; Wed,  1 Mar 2023 19:38:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 03DCA6A73C9
+	for <lists+devicetree@lfdr.de>; Wed,  1 Mar 2023 19:50:38 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230004AbjCASi3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 Mar 2023 13:38:29 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45330 "EHLO
+        id S229836AbjCASuf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 Mar 2023 13:50:35 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58518 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229997AbjCASi2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Mar 2023 13:38:28 -0500
-Received: from mx.sberdevices.ru (mx.sberdevices.ru [45.89.227.171])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7AC782D67;
-        Wed,  1 Mar 2023 10:38:26 -0800 (PST)
-Received: from s-lin-edge02.sberdevices.ru (localhost [127.0.0.1])
-        by mx.sberdevices.ru (Postfix) with ESMTP id 210825FD7D;
-        Wed,  1 Mar 2023 21:38:24 +0300 (MSK)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sberdevices.ru;
-        s=mail; t=1677695904;
-        bh=yL115kgbMbWkaM7U3vr5gbAogShZkMVE274c2zrjsaw=;
-        h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type;
-        b=B3GDlAxX8Fs0S7XHDLfatTT3BcPKn0wRa/4y7aAg9QeGwz3fZR5e1H4k9ps6yQ5LV
-         x4RwIYW0I/IAbmHpno3M7bZ/duCnM3THJAKWOC9NlFBQXtJfrRxwvdpA1yd5nGToOv
-         whtpmV/yMaQJRFA2L2FBlUzbfHXZeEjIZ2pTdgzRV3eKBlwJ1Ily2MRcfCD6YViagU
-         esvX+ny6Oyo52F7+F1sPsC98yUqNGMGBO/FnoPQAkEFsR+kpcFZfAJDQs+Ta/I/WcG
-         kc6EVXmnR7/t0Wt7TcyVvAsc7PZWh+sFc8UixkW6OpzHvxvMb23u5lJvzoKasGuVWD
-         QcJlseolgnLZg==
-Received: from S-MS-EXCH01.sberdevices.ru (S-MS-EXCH01.sberdevices.ru [172.16.1.4])
-        by mx.sberdevices.ru (Postfix) with ESMTP;
-        Wed,  1 Mar 2023 21:38:24 +0300 (MSK)
-From:   Dmitry Rokosov <ddrokosov@sberdevices.ru>
-To:     <neil.armstrong@linaro.org>, <jbrunet@baylibre.com>,
-        <mturquette@baylibre.com>, <sboyd@kernel.org>,
-        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <khilman@baylibre.com>, <martin.blumenstingl@googlemail.com>
-CC:     <jian.hu@amlogic.com>, <kernel@sberdevices.ru>,
-        <rockosov@gmail.com>, <linux-amlogic@lists.infradead.org>,
-        <linux-clk@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        Dmitry Rokosov <ddrokosov@sberdevices.ru>
-Subject: [PATCH v9 5/5] dt-bindings: clock: meson: add A1 Peripherals clock controller bindings
-Date:   Wed, 1 Mar 2023 21:37:59 +0300
-Message-ID: <20230301183759.16163-6-ddrokosov@sberdevices.ru>
-X-Mailer: git-send-email 2.36.0
-In-Reply-To: <20230301183759.16163-1-ddrokosov@sberdevices.ru>
-References: <20230301183759.16163-1-ddrokosov@sberdevices.ru>
+        with ESMTP id S229496AbjCASue (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Mar 2023 13:50:34 -0500
+Received: from mail-pl1-x634.google.com (mail-pl1-x634.google.com [IPv6:2607:f8b0:4864:20::634])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C253B196A1
+        for <devicetree@vger.kernel.org>; Wed,  1 Mar 2023 10:50:33 -0800 (PST)
+Received: by mail-pl1-x634.google.com with SMTP id v11so11493402plz.8
+        for <devicetree@vger.kernel.org>; Wed, 01 Mar 2023 10:50:33 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=EjySFxB3u/yJmF2L0v+RXLMEaLGvfkABUreehEPy5PQ=;
+        b=mgDVJNJ8VEJ2ueKGgq3JfaokAscdSPqv2DLxGgE1XmKplb1bc2HUZYl9+pLS0KVVVr
+         IgMXwL71UCpY1a66RblhTCXQVN8AsdlzLOlnlTcV2C2FsCAgOWBpl1dbsaxKSMQwtOKw
+         ahrMcAu2whjZKc9SF8kb99HK8G/03tCImQI8I=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=EjySFxB3u/yJmF2L0v+RXLMEaLGvfkABUreehEPy5PQ=;
+        b=q8/NsiRoin1B1SPhAcVN13vZsuk8Q+IhICKNjA53kwzbfP13NmyRRL2ix7gY7diWT/
+         NilLzfDCMO+wsABk80o5Y8IqFKBU52D15S8ps8j2UgGNWZ1wU8i59qypGcx8nqXhK8ff
+         ZetZOz9uzHYBFGShcSF4kgeMtiY+Tdf76GIc470Y67aQ1pplyYkYJpZvVm+mG8UKBTEr
+         0Ju5/boGyS2+zwG9yq5ETDpIBBGpQgeGTf/gWLDMdQRCKvJF37e30/X76wlTic4OcaCm
+         59/rxQOZoJzHKhBj40AEklUR6NXYkx4ap2u8KC/dXGpbsKpIRF95Xda1Q/ebqA6ajTBS
+         HkmA==
+X-Gm-Message-State: AO0yUKUNMXEnYJ5ITllY4xxPgxW28Ddjl91aNZMICRJEb1C1FjrAwaya
+        xZpeJBo33TwRRFgxvK7Tst34jw==
+X-Google-Smtp-Source: AK7set9xrPfAg/LyDUfuKea8pYAEKZ7H/mBw5ppo/zgswkvRYZSeAVahAYgRDaZHaevxq3qRwaM4xA==
+X-Received: by 2002:a17:902:f54e:b0:19c:da7f:a238 with SMTP id h14-20020a170902f54e00b0019cda7fa238mr9362595plf.31.1677696633278;
+        Wed, 01 Mar 2023 10:50:33 -0800 (PST)
+Received: from tictac2.mtv.corp.google.com ([2620:15c:9d:2:f4ac:1f4d:6f3b:f98])
+        by smtp.gmail.com with ESMTPSA id p5-20020a170902780500b0019a8530c063sm8761982pll.102.2023.03.01.10.50.32
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 01 Mar 2023 10:50:32 -0800 (PST)
+From:   Douglas Anderson <dianders@chromium.org>
+To:     Bjorn Andersson <andersson@kernel.org>
+Cc:     mka@chromium.org, swboyd@chromium.org,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Douglas Anderson <dianders@chromium.org>,
+        Andy Gross <agross@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH 0/4] arm64: dts: qcom: sc7180: Delete a few unused trogdor dts files
+Date:   Wed,  1 Mar 2023 10:50:02 -0800
+Message-Id: <20230301185007.1101006-1-dianders@chromium.org>
+X-Mailer: git-send-email 2.39.2.722.g9855ee24e9-goog
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [172.16.1.6]
-X-ClientProxiedBy: S-MS-EXCH01.sberdevices.ru (172.16.1.4) To
- S-MS-EXCH01.sberdevices.ru (172.16.1.4)
-X-KSMG-Rule-ID: 4
-X-KSMG-Message-Action: clean
-X-KSMG-AntiSpam-Status: not scanned, disabled by settings
-X-KSMG-AntiSpam-Interceptor-Info: not scanned
-X-KSMG-AntiPhishing: not scanned, disabled by settings
-X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 1.1.2.30, bases: 2023/03/01 14:15:00 #20905952
-X-KSMG-AntiVirus-Status: Clean, skipped
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the documentation for Amlogic A1 Peripherals clock driver,
-and A1 Peripherals clock controller bindings.
+In general on ChromeOS we try hard not to throw away perfectly good
+hardware, even if it has a few quirks. Many people keep early versions
+of boards around indefinitely and keep using them for testing /
+development if the feature they're working on doesn't need the latest
+and greatest. This is the reason why there are so many sc7180-trogdor
+device tree files.
 
-Signed-off-by: Jian Hu <jian.hu@amlogic.com>
-Signed-off-by: Dmitry Rokosov <ddrokosov@sberdevices.ru>
----
- .../bindings/clock/amlogic,a1-clkc.yaml       |  73 +++++++++++++
- include/dt-bindings/clock/a1-clkc.h           | 102 ++++++++++++++++++
- 2 files changed, 175 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/clock/amlogic,a1-clkc.yaml
- create mode 100644 include/dt-bindings/clock/a1-clkc.h
+That being said, _very_ early hardware tends not to be kept. -rev0
+hardware tends (not always) to be prototype hardware and often comes
+as a pile of parts. People are really only willing to put up with this
+for so long. Even if it's not a pile of parts, -rev0 tends to be a
+very small production run and isn't widely distributed. That means
+that, by and large, we can eventually drop support for -rev0. Here,
+we'll do that for kingoftown and wormdingler, and lazor.
 
-diff --git a/Documentation/devicetree/bindings/clock/amlogic,a1-clkc.yaml b/Documentation/devicetree/bindings/clock/amlogic,a1-clkc.yaml
-new file mode 100644
-index 000000000000..3dc86e912dea
---- /dev/null
-+++ b/Documentation/devicetree/bindings/clock/amlogic,a1-clkc.yaml
-@@ -0,0 +1,73 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/clock/amlogic,a1-clkc.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Amlogic Meson A/C serials Peripheral Clock Control Unit
-+
-+maintainers:
-+  - Neil Armstrong <neil.armstrong@linaro.org>
-+  - Jerome Brunet <jbrunet@baylibre.com>
-+  - Jian Hu <jian.hu@jian.hu.com>
-+  - Dmitry Rokosov <ddrokosov@sberdevices.ru>
-+
-+properties:
-+  compatible:
-+    const: amlogic,a1-clkc
-+
-+  '#clock-cells':
-+    const: 1
-+
-+  reg:
-+    maxItems: 1
-+
-+  clocks:
-+    items:
-+      - description: input fixed pll div2
-+      - description: input fixed pll div3
-+      - description: input fixed pll div5
-+      - description: input fixed pll div7
-+      - description: input hifi pll
-+      - description: input oscillator (usually at 24MHz)
-+
-+  clock-names:
-+    items:
-+      - const: fclk_div2
-+      - const: fclk_div3
-+      - const: fclk_div5
-+      - const: fclk_div7
-+      - const: hifi_pll
-+      - const: xtal
-+
-+required:
-+  - compatible
-+  - '#clock-cells'
-+  - reg
-+  - clocks
-+  - clock-names
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/clock/a1-pll-clkc.h>
-+    apb {
-+        #address-cells = <2>;
-+        #size-cells = <2>;
-+
-+        clock-controller@800 {
-+            compatible = "amlogic,a1-clkc";
-+            reg = <0 0x800 0 0x104>;
-+            #clock-cells = <1>;
-+            clocks = <&clkc_pll CLKID_FCLK_DIV2>,
-+                     <&clkc_pll CLKID_FCLK_DIV3>,
-+                     <&clkc_pll CLKID_FCLK_DIV5>,
-+                     <&clkc_pll CLKID_FCLK_DIV7>,
-+                     <&clkc_pll CLKID_HIFI_PLL>,
-+                     <&xtal>;
-+            clock-names = "fclk_div2", "fclk_div3",
-+                          "fclk_div5", "fclk_div7",
-+                          "hifi_pll", "xtal";
-+        };
-+    };
-diff --git a/include/dt-bindings/clock/a1-clkc.h b/include/dt-bindings/clock/a1-clkc.h
-new file mode 100644
-index 000000000000..271eefb989f3
---- /dev/null
-+++ b/include/dt-bindings/clock/a1-clkc.h
-@@ -0,0 +1,102 @@
-+/* SPDX-License-Identifier: (GPL-2.0+ OR MIT) */
-+/*
-+ * Copyright (c) 2019 Amlogic, Inc. All rights reserved.
-+ * Author: Jian Hu <jian.hu@amlogic.com>
-+ *
-+ * Copyright (c) 2023, SberDevices. All Rights Reserved.
-+ * Author: Dmitry Rokosov <ddrokosov@sberdevices.ru>
-+ */
-+
-+#ifndef __A1_CLKC_H
-+#define __A1_CLKC_H
-+
-+#define CLKID_FIXPLL_IN		1
-+#define CLKID_USB_PHY_IN	2
-+#define CLKID_USB_CTRL_IN	3
-+#define CLKID_HIFIPLL_IN	4
-+#define CLKID_SYSPLL_IN		5
-+#define CLKID_DDS_IN		6
-+#define CLKID_SYS		7
-+#define CLKID_CLKTREE		8
-+#define CLKID_RESET_CTRL	9
-+#define CLKID_ANALOG_CTRL	10
-+#define CLKID_PWR_CTRL		11
-+#define CLKID_PAD_CTRL		12
-+#define CLKID_SYS_CTRL		13
-+#define CLKID_TEMP_SENSOR	14
-+#define CLKID_AM2AXI_DIV	15
-+#define CLKID_SPICC_B		16
-+#define CLKID_SPICC_A		17
-+#define CLKID_MSR		18
-+#define CLKID_AUDIO		19
-+#define CLKID_JTAG_CTRL		20
-+#define CLKID_SARADC_EN		21
-+#define CLKID_PWM_EF		22
-+#define CLKID_PWM_CD		23
-+#define CLKID_PWM_AB		24
-+#define CLKID_CEC		25
-+#define CLKID_I2C_S		26
-+#define CLKID_IR_CTRL		27
-+#define CLKID_I2C_M_D		28
-+#define CLKID_I2C_M_C		29
-+#define CLKID_I2C_M_B		30
-+#define CLKID_I2C_M_A		31
-+#define CLKID_ACODEC		32
-+#define CLKID_OTP		33
-+#define CLKID_SD_EMMC_A		34
-+#define CLKID_USB_PHY		35
-+#define CLKID_USB_CTRL		36
-+#define CLKID_SYS_DSPB		37
-+#define CLKID_SYS_DSPA		38
-+#define CLKID_DMA		39
-+#define CLKID_IRQ_CTRL		40
-+#define CLKID_NIC		41
-+#define CLKID_GIC		42
-+#define CLKID_UART_C		43
-+#define CLKID_UART_B		44
-+#define CLKID_UART_A		45
-+#define CLKID_SYS_PSRAM		46
-+#define CLKID_RSA		47
-+#define CLKID_CORESIGHT		48
-+#define CLKID_AM2AXI_VAD	49
-+#define CLKID_AUDIO_VAD		50
-+#define CLKID_AXI_DMC		51
-+#define CLKID_AXI_PSRAM		52
-+#define CLKID_RAMB		53
-+#define CLKID_RAMA		54
-+#define CLKID_AXI_SPIFC		55
-+#define CLKID_AXI_NIC		56
-+#define CLKID_AXI_DMA		57
-+#define CLKID_CPU_CTRL		58
-+#define CLKID_ROM		59
-+#define CLKID_PROC_I2C		60
-+#define CLKID_DSPA_SEL		61
-+#define CLKID_DSPB_SEL		62
-+#define CLKID_DSPA_EN		63
-+#define CLKID_DSPA_EN_NIC	64
-+#define CLKID_DSPB_EN		65
-+#define CLKID_DSPB_EN_NIC	66
-+#define CLKID_RTC		67
-+#define CLKID_CECA_32K		68
-+#define CLKID_CECB_32K		69
-+#define CLKID_24M		70
-+#define CLKID_12M		71
-+#define CLKID_FCLK_DIV2_DIVN	72
-+#define CLKID_GEN		73
-+#define CLKID_SARADC_SEL	74
-+#define CLKID_SARADC		75
-+#define CLKID_PWM_A		76
-+#define CLKID_PWM_B		77
-+#define CLKID_PWM_C		78
-+#define CLKID_PWM_D		79
-+#define CLKID_PWM_E		80
-+#define CLKID_PWM_F		81
-+#define CLKID_SPICC		82
-+#define CLKID_TS		83
-+#define CLKID_SPIFC		84
-+#define CLKID_USB_BUS		85
-+#define CLKID_SD_EMMC		86
-+#define CLKID_PSRAM		87
-+#define CLKID_DMC		88
-+
-+#endif /* __A1_CLKC_H */
+While looking at the -rev0 of mrbland, I noticed that mrbland appears
+to be long dead and unlikely to be revived. Let's just fully delete
+it.
+
+
+Douglas Anderson (4):
+  arm64: dts: qcom: sc7180: Delete wormdingler-rev0
+  arm64: dts: qcom: sc7180: Delete kingoftown-rev0
+  arm64: dts: qcom: sc7180: Delete lazor-rev0
+  arm64: dts: qcom: sc7180: Delete mrbland
+
+ arch/arm64/boot/dts/qcom/Makefile             |  10 +-
+ .../dts/qcom/sc7180-trogdor-kingoftown-r0.dts |  38 ---
+ ...n-r1.dts => sc7180-trogdor-kingoftown.dts} |   0
+ .../boot/dts/qcom/sc7180-trogdor-lazor-r0.dts |  34 --
+ .../qcom/sc7180-trogdor-mrbland-rev0-auo.dts  |  22 --
+ .../qcom/sc7180-trogdor-mrbland-rev0-boe.dts  |  22 --
+ .../dts/qcom/sc7180-trogdor-mrbland-rev0.dtsi |  36 --
+ .../qcom/sc7180-trogdor-mrbland-rev1-auo.dts  |  22 --
+ .../qcom/sc7180-trogdor-mrbland-rev1-boe.dts  |  24 --
+ .../boot/dts/qcom/sc7180-trogdor-mrbland.dtsi | 320 ------------------
+ .../sc7180-trogdor-wormdingler-rev0-boe.dts   |  22 --
+ .../sc7180-trogdor-wormdingler-rev0-inx.dts   |  22 --
+ 12 files changed, 1 insertion(+), 571 deletions(-)
+ delete mode 100644 arch/arm64/boot/dts/qcom/sc7180-trogdor-kingoftown-r0.dts
+ rename arch/arm64/boot/dts/qcom/{sc7180-trogdor-kingoftown-r1.dts => sc7180-trogdor-kingoftown.dts} (100%)
+ delete mode 100644 arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r0.dts
+ delete mode 100644 arch/arm64/boot/dts/qcom/sc7180-trogdor-mrbland-rev0-auo.dts
+ delete mode 100644 arch/arm64/boot/dts/qcom/sc7180-trogdor-mrbland-rev0-boe.dts
+ delete mode 100644 arch/arm64/boot/dts/qcom/sc7180-trogdor-mrbland-rev0.dtsi
+ delete mode 100644 arch/arm64/boot/dts/qcom/sc7180-trogdor-mrbland-rev1-auo.dts
+ delete mode 100644 arch/arm64/boot/dts/qcom/sc7180-trogdor-mrbland-rev1-boe.dts
+ delete mode 100644 arch/arm64/boot/dts/qcom/sc7180-trogdor-mrbland.dtsi
+ delete mode 100644 arch/arm64/boot/dts/qcom/sc7180-trogdor-wormdingler-rev0-boe.dts
+ delete mode 100644 arch/arm64/boot/dts/qcom/sc7180-trogdor-wormdingler-rev0-inx.dts
+
 -- 
-2.36.0
+2.39.2.722.g9855ee24e9-goog
 
