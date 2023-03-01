@@ -2,155 +2,250 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F01DD6A6990
-	for <lists+devicetree@lfdr.de>; Wed,  1 Mar 2023 10:13:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8DF7B6A6995
+	for <lists+devicetree@lfdr.de>; Wed,  1 Mar 2023 10:13:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229726AbjCAJNI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 Mar 2023 04:13:08 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35942 "EHLO
+        id S229813AbjCAJNc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 Mar 2023 04:13:32 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34984 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229779AbjCAJND (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Mar 2023 04:13:03 -0500
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 950DB3B3EB
-        for <devicetree@vger.kernel.org>; Wed,  1 Mar 2023 01:12:33 -0800 (PST)
-Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <mfe@pengutronix.de>)
-        id 1pXIVL-00038T-Hd; Wed, 01 Mar 2023 10:12:07 +0100
-Received: from mfe by ptx.hi.pengutronix.de with local (Exim 4.92)
-        (envelope-from <mfe@pengutronix.de>)
-        id 1pXIVK-0003Xz-Vx; Wed, 01 Mar 2023 10:12:06 +0100
-Date:   Wed, 1 Mar 2023 10:12:06 +0100
-From:   Marco Felsch <m.felsch@pengutronix.de>
-To:     Marek Vasut <marex@denx.de>
-Cc:     linux-arm-kernel@lists.infradead.org,
-        Adam Ford <aford173@gmail.com>,
-        Fabio Estevam <festevam@gmail.com>,
-        Abel Vesa <abelvesa@kernel.org>,
-        Alexander Stein <alexander.stein@ew.tq-group.com>,
-        Jacky Bai <ping.bai@nxp.com>,
+        with ESMTP id S229953AbjCAJNV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Mar 2023 04:13:21 -0500
+Received: from mail-wr1-x430.google.com (mail-wr1-x430.google.com [IPv6:2a00:1450:4864:20::430])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1CB1B4EDE
+        for <devicetree@vger.kernel.org>; Wed,  1 Mar 2023 01:12:56 -0800 (PST)
+Received: by mail-wr1-x430.google.com with SMTP id t15so12452561wrz.7
+        for <devicetree@vger.kernel.org>; Wed, 01 Mar 2023 01:12:56 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=9elements.com; s=google; t=1677661971;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=WUPmhliitXmdULS7FNWdqBgJqWmIJnQg9y2FVhSFvHM=;
+        b=EJSTTVirwvWvvzeST5d3o2yqpAthOAO+gB0vORl7BcrNwrTLt3l4Te5GrjM9N1FEQr
+         nZH4vwttJAH6BnM4v2RdIujpQYWD4Dq/6oyuaP9CjYwXDqv+uUP+LO03WSydH00+KQWm
+         pS4OO8dfAVtFrbGA2K/SoQjIMjcZ1eP3NihkrQBwjkI+j7jMOpNbUVs3GxwejFG3hoiZ
+         Vi2Hw7pGdR8B6DC3sXlKX9DMjXdD0x3fdmE48BEtZo6LEm0nnW9SU92Qk3t/qhKAyEEv
+         cYaNxl6vcx4yvkEXDINXz2kLYJY4JsQsyoqnDaGkxIJtMtcrkcAveJy5ljbZ/bFCwLqD
+         QBrw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1677661971;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=WUPmhliitXmdULS7FNWdqBgJqWmIJnQg9y2FVhSFvHM=;
+        b=I1kawMXn7ocoTgtqRQbhwnf+db4kWwjfyeuAvJGMNfUP8II2cQSI1FbPa1oIuySqCc
+         CK8SQhX2xmooDMOvVROWMyPI0NCW0giIFAeBiXDPuOamRL52Iyw+gHyzmSYhuXk3NVP+
+         KJ+P2kCqdPPoT0ocvcatqGsNsat6lOULO3Z6jeMGpxvWNFiYdDydYKGwC0nDXv7vub7X
+         dx+0Thg1DeJCjUkPpKSdsPSs292vqEaxFI8h59lSe7E91pEdtI2fjh1PkeN+FaiFSpFp
+         GshLcZTQOwAUo21JVrvhKOUUSGNfjf2NIyrKV2p59sA8q9/pRjqcjV/gholapkT0YACr
+         Z4Bg==
+X-Gm-Message-State: AO0yUKUXqEFmlQgH7zztpo407Shosr9Qdd1ldBwaP5rnGoXFux746Z5V
+        Cr7RGYtXyqumDOksooqtmNm8xg==
+X-Google-Smtp-Source: AK7set8kUCFn8TSvZslDBxsPVHnFmj9BoFgznJs2gpP17Y6dANqIOXWNBy0KECr+1X8DuAxQ3JHULw==
+X-Received: by 2002:adf:ec47:0:b0:2c9:ee31:962a with SMTP id w7-20020adfec47000000b002c9ee31962amr4385782wrn.64.1677661971327;
+        Wed, 01 Mar 2023 01:12:51 -0800 (PST)
+Received: from stroh80.sec.9e.network (ip-078-094-000-051.um19.pools.vodafone-ip.de. [78.94.0.51])
+        by smtp.gmail.com with ESMTPSA id s8-20020a5d4ec8000000b002c704271b05sm12072232wrv.66.2023.03.01.01.12.50
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 01 Mar 2023 01:12:51 -0800 (PST)
+From:   Naresh Solanki <naresh.solanki@9elements.com>
+X-Google-Original-From: Naresh Solanki <Naresh.Solanki@9elements.com>
+To:     Lee Jones <lee@kernel.org>, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Luca Ceresoli <luca.ceresoli@bootlin.com>,
-        Lucas Stach <l.stach@pengutronix.de>,
-        Michael Turquette <mturquette@baylibre.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Peng Fan <peng.fan@nxp.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Richard Cochran <richardcochran@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Stephen Boyd <sboyd@kernel.org>, devicetree@vger.kernel.org,
-        linux-clk@vger.kernel.org
-Subject: Re: [PATCH v2] arm64: dts: imx8mn: specify #sound-dai-cells for SAI
- nodes
-Message-ID: <20230301091206.3e4qyh57hsorwzrp@pengutronix.de>
-References: <20230228215244.166627-1-marex@denx.de>
+        Patrick Rudolph <patrick.rudolph@9elements.com>
+Cc:     Marcello Sylvester Bauer <sylv@sylv.io>,
+        Naresh Solanki <Naresh.Solanki@9elements.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH 1/2] dt-bindings: mfd: Add MAX5970 and MAX5978
+Date:   Wed,  1 Mar 2023 10:12:33 +0100
+Message-Id: <20230301091234.3159953-1-Naresh.Solanki@9elements.com>
+X-Mailer: git-send-email 2.39.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230228215244.166627-1-marex@denx.de>
-User-Agent: NeoMutt/20180716
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
-X-SA-Exim-Mail-From: mfe@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 23-02-28, Marek Vasut wrote:
-> Add #sound-dai-cells properties to SAI nodes.
-> 
-> Reviewed-by: Adam Ford <aford173@gmail.com>
-> Reviewed-by: Fabio Estevam <festevam@gmail.com>
-> Fixes: 9e9860069725 ("arm64: dts: imx8mn: Add SAI nodes")
-> Signed-off-by: Marek Vasut <marex@denx.de>
+From: Marcello Sylvester Bauer <sylv@sylv.io>
 
-Reviewed-by: Marco Felsch <m.felsch@pengutronix.de>
+The MAX597x is a hot swap controller with configurable fault protection.
+It also has 10bit ADC for current & voltage measurements.
 
-> ---
-> Cc: Abel Vesa <abelvesa@kernel.org>
-> Cc: Alexander Stein <alexander.stein@ew.tq-group.com>
-> Cc: Fabio Estevam <festevam@gmail.com>
-> Cc: Jacky Bai <ping.bai@nxp.com>
-> Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-> Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> Cc: Luca Ceresoli <luca.ceresoli@bootlin.com>
-> Cc: Lucas Stach <l.stach@pengutronix.de>
-> Cc: Marco Felsch <m.felsch@pengutronix.de>
-> Cc: Michael Turquette <mturquette@baylibre.com>
-> Cc: NXP Linux Team <linux-imx@nxp.com>
-> Cc: Peng Fan <peng.fan@nxp.com>
-> Cc: Pengutronix Kernel Team <kernel@pengutronix.de>
-> Cc: Richard Cochran <richardcochran@gmail.com>
-> Cc: Rob Herring <robh+dt@kernel.org>
-> Cc: Sascha Hauer <s.hauer@pengutronix.de>
-> Cc: Shawn Guo <shawnguo@kernel.org>
-> Cc: Stephen Boyd <sboyd@kernel.org>
-> Cc: devicetree@vger.kernel.org
-> Cc: linux-arm-kernel@lists.infradead.org
-> Cc: linux-clk@vger.kernel.org
-> ---
-> V2: - Add RB from Adam and Fabio
->     - Add Fixes tag
->     - Move sound-dai-cells below regs
-> ---
->  arch/arm64/boot/dts/freescale/imx8mn.dtsi | 5 +++++
->  1 file changed, 5 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mn.dtsi b/arch/arm64/boot/dts/freescale/imx8mn.dtsi
-> index ed9ac6c5047c0..9e0ddd6b7a322 100644
-> --- a/arch/arm64/boot/dts/freescale/imx8mn.dtsi
-> +++ b/arch/arm64/boot/dts/freescale/imx8mn.dtsi
-> @@ -296,6 +296,7 @@ spba2: spba-bus@30000000 {
->  				sai2: sai@30020000 {
->  					compatible = "fsl,imx8mn-sai", "fsl,imx8mq-sai";
->  					reg = <0x30020000 0x10000>;
-> +					#sound-dai-cells = <0>;
->  					interrupts = <GIC_SPI 96 IRQ_TYPE_LEVEL_HIGH>;
->  					clocks = <&clk IMX8MN_CLK_SAI2_IPG>,
->  						<&clk IMX8MN_CLK_DUMMY>,
-> @@ -310,6 +311,7 @@ sai2: sai@30020000 {
->  				sai3: sai@30030000 {
->  					compatible = "fsl,imx8mn-sai", "fsl,imx8mq-sai";
->  					reg = <0x30030000 0x10000>;
-> +					#sound-dai-cells = <0>;
->  					interrupts = <GIC_SPI 50 IRQ_TYPE_LEVEL_HIGH>;
->  					clocks = <&clk IMX8MN_CLK_SAI3_IPG>,
->  						 <&clk IMX8MN_CLK_DUMMY>,
-> @@ -324,6 +326,7 @@ sai3: sai@30030000 {
->  				sai5: sai@30050000 {
->  					compatible = "fsl,imx8mn-sai", "fsl,imx8mq-sai";
->  					reg = <0x30050000 0x10000>;
-> +					#sound-dai-cells = <0>;
->  					interrupts = <GIC_SPI 90 IRQ_TYPE_LEVEL_HIGH>;
->  					clocks = <&clk IMX8MN_CLK_SAI5_IPG>,
->  						 <&clk IMX8MN_CLK_DUMMY>,
-> @@ -340,6 +343,7 @@ sai5: sai@30050000 {
->  				sai6: sai@30060000 {
->  					compatible = "fsl,imx8mn-sai", "fsl,imx8mq-sai";
->  					reg = <0x30060000  0x10000>;
-> +					#sound-dai-cells = <0>;
->  					interrupts = <GIC_SPI 90 IRQ_TYPE_LEVEL_HIGH>;
->  					clocks = <&clk IMX8MN_CLK_SAI6_IPG>,
->  						 <&clk IMX8MN_CLK_DUMMY>,
-> @@ -397,6 +401,7 @@ spdif1: spdif@30090000 {
->  				sai7: sai@300b0000 {
->  					compatible = "fsl,imx8mn-sai", "fsl,imx8mq-sai";
->  					reg = <0x300b0000 0x10000>;
-> +					#sound-dai-cells = <0>;
->  					interrupts = <GIC_SPI 111 IRQ_TYPE_LEVEL_HIGH>;
->  					clocks = <&clk IMX8MN_CLK_SAI7_IPG>,
->  						 <&clk IMX8MN_CLK_DUMMY>,
-> -- 
-> 2.39.2
-> 
-> 
+Signed-off-by: Marcello Sylvester Bauer <sylv@sylv.io>
+Co-developed-by: Patrick Rudolph <patrick.rudolph@9elements.com>
+Signed-off-by: Patrick Rudolph <patrick.rudolph@9elements.com>
+Co-developed-by: Naresh Solanki <Naresh.Solanki@9elements.com>
+Signed-off-by: Naresh Solanki <Naresh.Solanki@9elements.com>
+---
+ .../bindings/mfd/maxim,max5970.yaml           | 151 ++++++++++++++++++
+ 1 file changed, 151 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/mfd/maxim,max5970.yaml
+
+diff --git a/Documentation/devicetree/bindings/mfd/maxim,max5970.yaml b/Documentation/devicetree/bindings/mfd/maxim,max5970.yaml
+new file mode 100644
+index 000000000000..6ee269afdab2
+--- /dev/null
++++ b/Documentation/devicetree/bindings/mfd/maxim,max5970.yaml
+@@ -0,0 +1,151 @@
++# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/mfd/maxim,max5970.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Regulator for MAX5970 smart switch from Maxim Integrated.
++
++maintainers:
++  - Patrick Rudolph <patrick.rudolph@9elements.com>
++
++description: |
++  The smart switch provides no output regulation, but independent fault protection
++  and voltage and current sensing.
++  Programming is done through I2C bus.
++
++  Datasheets:
++    https://datasheets.maximintegrated.com/en/ds/MAX5970.pdf
++    https://datasheets.maximintegrated.com/en/ds/MAX5978.pdf
++
++properties:
++  compatible:
++    enum:
++      - maxim,max5970
++      - maxim,max5978
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    maxItems: 1
++
++  leds:
++    type: object
++    description:
++      Properties for four LEDS.
++
++    properties:
++      "#address-cells":
++        const: 1
++
++      "#size-cells":
++        const: 0
++
++    patternProperties:
++      "^led@[0-3]$":
++        $ref: /schemas/leds/common.yaml#
++        type: object
++
++    additionalProperties: false
++
++  vss1-supply:
++    description: Supply of the first channel.
++
++  vss2-supply:
++    description: Supply of the second channel.
++
++  regulators:
++    type: object
++    description:
++      Properties for both hot swap control/switch.
++
++    patternProperties:
++      "^sw[0-1]$":
++        $ref: /schemas/regulator/regulator.yaml#
++        type: object
++        properties:
++          shunt-resistor-micro-ohms:
++            description: |
++              The value of current sense resistor in microohms.
++
++        required:
++          - shunt-resistor-micro-ohms
++
++        unevaluatedProperties: false
++
++    additionalProperties: false
++
++required:
++  - compatible
++  - reg
++  - regulators
++  - vss1-supply
++
++allOf:
++  - if:
++      properties:
++        compatible:
++          enum:
++            - maxim,max5970
++    then:
++      required:
++        - vss2-supply
++
++additionalProperties: false
++
++examples:
++  - |
++    i2c {
++        #address-cells = <1>;
++        #size-cells = <0>;
++        regulator@3a {
++            compatible = "maxim,max5978";
++            reg = <0x3a>;
++            vss1-supply = <&p3v3>;
++
++            regulators {
++                sw0_ref_0: sw0 {
++                    shunt-resistor-micro-ohms = <12000>;
++                };
++            };
++
++            leds {
++                #address-cells = <1>;
++                #size-cells = <0>;
++                led@0 {
++                    reg = <0>;
++                    label = "led0";
++                    default-state = "on";
++                };
++                led@1 {
++                    reg = <1>;
++                    label = "led1";
++                    default-state = "on";
++                };
++            };
++        };
++    };
++
++  - |
++    i2c {
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        regulator@3a {
++            compatible = "maxim,max5970";
++            reg = <0x3a>;
++            vss1-supply = <&p3v3>;
++            vss2-supply = <&p5v>;
++
++            regulators {
++                sw0_ref_1: sw0 {
++                    shunt-resistor-micro-ohms = <12000>;
++                };
++                sw1_ref_1: sw1 {
++                    shunt-resistor-micro-ohms = <10000>;
++                };
++            };
++        };
++    };
++...
+
+base-commit: 59c54c59974649b2e7bc92faae4a21e2b2408db2
+-- 
+2.39.1
+
