@@ -2,189 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4EA656A7400
-	for <lists+devicetree@lfdr.de>; Wed,  1 Mar 2023 20:06:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D18F46A7470
+	for <lists+devicetree@lfdr.de>; Wed,  1 Mar 2023 20:47:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229633AbjCATGg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 Mar 2023 14:06:36 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45372 "EHLO
+        id S229563AbjCATrv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 Mar 2023 14:47:51 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48408 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229560AbjCATGf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Mar 2023 14:06:35 -0500
-Received: from mail-il1-x12a.google.com (mail-il1-x12a.google.com [IPv6:2607:f8b0:4864:20::12a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D7D864C6C2
-        for <devicetree@vger.kernel.org>; Wed,  1 Mar 2023 11:06:32 -0800 (PST)
-Received: by mail-il1-x12a.google.com with SMTP id i12so8944257ila.5
-        for <devicetree@vger.kernel.org>; Wed, 01 Mar 2023 11:06:32 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=4nKAIImYnR4VY+mZrL40T8w+LQbikOjFpNewqlXCyj8=;
-        b=OV8S586G9AFm1/8w9oYCFIsznJuud/neA8wqia26BClD7KXP2fGeGaDSsVRI8TIL37
-         4io6dzUbTNvMTMEN1uTw4P/Dv4z7VnZh6cp25YrBJ2G6r35Jszp2pJQSK3255wnfYC4j
-         h9AZfEPujFC6V+vLfeqxylvCcgQFSaDqrbeN4=
+        with ESMTP id S229481AbjCATru (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Mar 2023 14:47:50 -0500
+Received: from mail-oi1-f180.google.com (mail-oi1-f180.google.com [209.85.167.180])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 653BB48E02;
+        Wed,  1 Mar 2023 11:47:49 -0800 (PST)
+Received: by mail-oi1-f180.google.com with SMTP id s41so10939777oiw.13;
+        Wed, 01 Mar 2023 11:47:49 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=4nKAIImYnR4VY+mZrL40T8w+LQbikOjFpNewqlXCyj8=;
-        b=jW8nHPbuLYCA/1ELpwN5Mr7UnvNB+2j8yJsIDQBGZnV5AeZKV60SqyW4LYR/l6IWMj
-         oJc+rPDmTHNXFlYqi9izmV4o12lxshgKauz9y4jq+jYuYWiXYcwlvasSwaowe9RodDUY
-         LPIBNd1uMtoI1YExhr9rhh6eLQFhILYIO6wVeaT3vto0pYxi7O0hvaYisGcFYpXASv6u
-         AOqYX7BZsOok4In7NiZ3NFZw108NtjyWalIyDnQ9/h9mjyFfePM32uGSNEoIBSVtEPs/
-         f/dQIJjpPfwRGodO4WRWDiIrvgFQ/huKlh+XM0QodZGpt1iuYFYBXLzsj6+SdY2lJEfn
-         i+Sg==
-X-Gm-Message-State: AO0yUKVMuxoQGqr6lwhEEKNmp+bhLeZgqF8j7QKkiDdgymEuklx+liYr
-        /kPCDbXLd1AXeAKfaFOfEti9euy4GAIx/S6B
-X-Google-Smtp-Source: AK7set/SwM3G+4mJX3ZN4qqQsjAiGriac3MUzOB0XgKUfSLUK7OLuCsPnvsMlsqV2htOhohseobG6w==
-X-Received: by 2002:a92:cd8b:0:b0:316:aa65:c094 with SMTP id r11-20020a92cd8b000000b00316aa65c094mr6427129ilb.18.1677697591763;
-        Wed, 01 Mar 2023 11:06:31 -0800 (PST)
-Received: from mail-io1-f51.google.com (mail-io1-f51.google.com. [209.85.166.51])
-        by smtp.gmail.com with ESMTPSA id x16-20020a92dc50000000b0030314a7f039sm3806820ilq.10.2023.03.01.11.06.31
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 01 Mar 2023 11:06:31 -0800 (PST)
-Received: by mail-io1-f51.google.com with SMTP id d12so5801908ioe.10
-        for <devicetree@vger.kernel.org>; Wed, 01 Mar 2023 11:06:31 -0800 (PST)
-X-Received: by 2002:a02:858c:0:b0:3c5:1971:1b7f with SMTP id
- d12-20020a02858c000000b003c519711b7fmr3401570jai.6.1677697590506; Wed, 01 Mar
- 2023 11:06:30 -0800 (PST)
+        h=date:subject:message-id:references:in-reply-to:cc:to:from
+         :mime-version:content-transfer-encoding:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=bp2PGCxGuMgOJ8cORfOtpk4XODU0Ny1bCo8g3l2fvo0=;
+        b=S5rb3DVU/VXoJwTqwBMK1g7eRW3svqC88b0eHpg8BTK21Z69LlqYggk29aw+su4ok7
+         HTgYyThnP0vza9QhLtljc28m1LwUDh25jc+/utGof24PJ8PcppqlvyCtDUbP6CgK4o/M
+         DE9/nbpB2WxRrQQ142FZwR2Ln2SOc2DZX+qgaUxnsTJyWCz4DGUKkeSTP6HX1RGgXDC6
+         /ewKdMHKpTbQRM07qSEjU3p1+sGVQip7LPCy9yFkx8uyord4APa8AcHtWyvbpAHL57CX
+         pv+n17RXQj01WAncwL75OFw/CXUOwBqtE2G8ppuokPa2XXjrhz8Ykr5xIfIoY6+/wjCt
+         B5Ag==
+X-Gm-Message-State: AO0yUKU2YIQN/KRsl63lHDwZk5Gdgj1OqdThZITbrzLmPP+Tv4u37A8A
+        tMnDsSA6XaX0m77kqWv83w==
+X-Google-Smtp-Source: AK7set//WZpJLFD2TfIqVNwVy65QznG09dAJ6oEmCVH3aAhJpxFT6+d2dZsCAvYjXd/LCdpVVdQm9g==
+X-Received: by 2002:a05:6808:8d:b0:384:4621:a3e7 with SMTP id s13-20020a056808008d00b003844621a3e7mr3949011oic.38.1677700067221;
+        Wed, 01 Mar 2023 11:47:47 -0800 (PST)
+Received: from robh_at_kernel.org ([2605:ef80:80e4:92a3:b465:3c5a:901b:f4f7])
+        by smtp.gmail.com with ESMTPSA id i5-20020acaea05000000b00383b8084203sm6173577oih.26.2023.03.01.11.47.43
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 01 Mar 2023 11:47:46 -0800 (PST)
+Received: (nullmailer pid 9115 invoked by uid 1000);
+        Wed, 01 Mar 2023 19:47:42 -0000
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 MIME-Version: 1.0
-References: <1676219337-6526-1-git-send-email-quic_vpolimer@quicinc.com>
-In-Reply-To: <1676219337-6526-1-git-send-email-quic_vpolimer@quicinc.com>
-From:   Doug Anderson <dianders@chromium.org>
-Date:   Wed, 1 Mar 2023 11:06:19 -0800
-X-Gmail-Original-Message-ID: <CAD=FV=XvjFQ-7KNsW2YQQ-LzJonCcHz_rj-oOhB0jh_99ficKA@mail.gmail.com>
-Message-ID: <CAD=FV=XvjFQ-7KNsW2YQQ-LzJonCcHz_rj-oOhB0jh_99ficKA@mail.gmail.com>
-Subject: Re: [PATCH v13 00/13] Add PSR support for eDP
-To:     Vinod Polimera <quic_vpolimer@quicinc.com>
-Cc:     dri-devel@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
-        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, robdclark@gmail.com,
-        swboyd@chromium.org, quic_kalyant@quicinc.com,
-        dmitry.baryshkov@linaro.org, quic_khsieh@quicinc.com,
-        quic_vproddut@quicinc.com, quic_bjorande@quicinc.com,
-        quic_abhinavk@quicinc.com, quic_sbillaka@quicinc.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+From:   Rob Herring <robh@kernel.org>
+To:     Dmitry Rokosov <ddrokosov@sberdevices.ru>
+Cc:     rockosov@gmail.com, mturquette@baylibre.com,
+        martin.blumenstingl@googlemail.com, linux-clk@vger.kernel.org,
+        linux-amlogic@lists.infradead.org, jbrunet@baylibre.com,
+        kernel@sberdevices.ru, khilman@baylibre.com, sboyd@kernel.org,
+        robh+dt@kernel.org, linux-arm-kernel@lists.infradead.org,
+        devicetree@vger.kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        neil.armstrong@linaro.org, linux-kernel@vger.kernel.org,
+        jian.hu@amlogic.com
+In-Reply-To: <20230301183759.16163-4-ddrokosov@sberdevices.ru>
+References: <20230301183759.16163-1-ddrokosov@sberdevices.ru>
+ <20230301183759.16163-4-ddrokosov@sberdevices.ru>
+Message-Id: <167769997208.7087.5344356236212731922.robh@kernel.org>
+Subject: Re: [PATCH v9 3/5] dt-bindings: clock: meson: add A1 PLL clock
+ controller bindings
+Date:   Wed, 01 Mar 2023 13:47:42 -0600
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
 
-On Sun, Feb 12, 2023 at 8:29=E2=80=AFAM Vinod Polimera
-<quic_vpolimer@quicinc.com> wrote:
->
-> Changes in v2:
->   - Use dp bridge to set psr entry/exit instead of dpu_enocder.
->   - Don't modify whitespaces.
->   - Set self refresh aware from atomic_check.
->   - Set self refresh aware only if psr is supported.
->   - Provide a stub for msm_dp_display_set_psr.
->   - Move dp functions to bridge code.
->
-> Changes in v3:
->   - Change callback names to reflect atomic interfaces.
->   - Move bridge callback change to separate patch as suggested by Dmitry.
->   - Remove psr function declaration from msm_drv.h.
->   - Set self_refresh_aware flag only if psr is supported.
->   - Modify the variable names to simpler form.
->   - Define bit fields for PSR settings.
->   - Add comments explaining the steps to enter/exit psr.
->   - Change DRM_INFO to drm_dbg_db.
->
-> Changes in v4:
->   - Move the get crtc functions to drm_atomic.
->   - Add atomic functions for DP bridge too.
->   - Add ternary operator to choose eDP or DP ops.
->   - Return true/false instead of 1/0.
->   - mode_valid missing in the eDP bridge ops.
->   - Move the functions to get crtc into drm_atomic.c.
->   - Fix compilation issues.
->   - Remove dpu_assign_crtc and get crtc from drm_enc instead of dpu_enc.
->   - Check for crtc state enable while reserving resources.
->
-> Changes in v5:
->   - Move the mode_valid changes into a different patch.
->   - Complete psr_op_comp only when isr is set.
->   - Move the DP atomic callback changes to a different patch.
->   - Get crtc from drm connector state crtc.
->   - Move to separate patch for check for crtc state enable while
-> reserving resources.
->
-> Changes in v6:
->   - Remove crtc from dpu_encoder_virt struct.
->   - fix crtc check during vblank toggle crtc.
->   - Misc changes.
->
-> Changes in v7:
->   - Add fix for underrun issue on kasan build.
->
-> Changes in v8:
->   - Drop the enc spinlock as it won't serve any purpose in
-> protetcing conn state.(Dmitry/Doug)
->
-> Changes in v9:
->   - Update commit message and fix alignment using spaces.(Marijn)
->   - Misc changes.(Marijn)
->
-> Changes in v10:
->   - Get crtc cached in dpu_enc during obj init.(Dmitry)
->
-> Changes in v11:
->   - Remove crtc cached in dpu_enc during obj init.
->   - Update dpu_enc crtc state on crtc enable/disable during self refresh.
->
-> Changes in v12:
->   - Update sc7180 intf mask to get intf timing gen status
-> based on DPU_INTF_STATUS_SUPPORTED bit.(Dmitry)
->   - Remove "clear active interface in the datapath cleanup" change
-> as it is already included.
->
-> Changes in v13:
->   - Move core changes to top of the series.(Dmitry)
->   - Drop self refresh aware disable change after psr entry.(Dmitry)
->
-> Vinod Polimera (13):
->   drm: add helper functions to retrieve old and new crtc
->   drm/bridge: use atomic enable/disable callbacks for panel bridge
->   drm/bridge: add psr support for panel bridge callbacks
->   drm/msm/disp/dpu: check for crtc enable rather than crtc active to
->     release shared resources
->   drm/msm/disp/dpu: get timing engine status from intf status register
->   drm/msm/disp/dpu: wait for extra vsync till timing engine status is
->     disabled
->   drm/msm/disp/dpu: reset the datapath after timing engine disable
->   drm/msm/dp: use atomic callbacks for DP bridge ops
->   drm/msm/dp: Add basic PSR support for eDP
->   drm/msm/dp: use the eDP bridge ops to validate eDP modes
->   drm/msm/disp/dpu: use atomic enable/disable callbacks for encoder
->     functions
->   drm/msm/disp/dpu: add PSR support for eDP interface in dpu driver
->   drm/msm/disp/dpu: update dpu_enc crtc state on crtc enable/disable
->     during self refresh
+On Wed, 01 Mar 2023 21:37:57 +0300, Dmitry Rokosov wrote:
+> Add the documentation for Amlogic A1 PLL clock driver, and A1 PLL
+> clock controller bindings.
+> Also include new A1 clock controller dt bindings to MAINTAINERS.
+> 
+> Signed-off-by: Jian Hu <jian.hu@amlogic.com>
+> Signed-off-by: Dmitry Rokosov <ddrokosov@sberdevices.ru>
+> ---
+>  .../bindings/clock/amlogic,a1-pll-clkc.yaml   | 59 +++++++++++++++++++
+>  MAINTAINERS                                   |  1 +
+>  include/dt-bindings/clock/a1-pll-clkc.h       | 20 +++++++
+>  3 files changed, 80 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/clock/amlogic,a1-pll-clkc.yaml
+>  create mode 100644 include/dt-bindings/clock/a1-pll-clkc.h
+> 
 
-I'm curious what the plan is for landing this series. I could land the
-first two in drm-misc if you want, but I'm a lowly committer and so I
-couldn't make an immutable branch for you nor can I officially Ack the
-changes to land in your branch. That means you'd be blocked for an
-extra version. Do you already have a plan? If not, then maybe we need
-to get in touch with one of the maintainers [1] of drm-misc? That's
-documented [2] to be in their set of responsibilities.
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-[1] https://drm.pages.freedesktop.org/maintainer-tools/repositories.html#dr=
-m-misc-repository
-[2] https://drm.pages.freedesktop.org/maintainer-tools/maintainer-drm-misc.=
-html#maintainer-s-duties
+yamllint warnings/errors:
 
--Doug
+dtschema/dtc warnings/errors:
+Documentation/devicetree/bindings/clock/amlogic,a1-pll-clkc.example.dts:18:18: fatal error: dt-bindings/clock/a1-clkc.h: No such file or directory
+   18 |         #include <dt-bindings/clock/a1-clkc.h>
+      |                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+compilation terminated.
+make[1]: *** [scripts/Makefile.lib:434: Documentation/devicetree/bindings/clock/amlogic,a1-pll-clkc.example.dtb] Error 1
+make[1]: *** Waiting for unfinished jobs....
+make: *** [Makefile:1508: dt_binding_check] Error 2
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20230301183759.16163-4-ddrokosov@sberdevices.ru
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
+
