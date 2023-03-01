@@ -2,168 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B68B36A69BE
-	for <lists+devicetree@lfdr.de>; Wed,  1 Mar 2023 10:24:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 652566A69EC
+	for <lists+devicetree@lfdr.de>; Wed,  1 Mar 2023 10:39:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229804AbjCAJYg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 Mar 2023 04:24:36 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46818 "EHLO
+        id S229761AbjCAJjJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 Mar 2023 04:39:09 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54494 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229727AbjCAJYe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Mar 2023 04:24:34 -0500
-Received: from mail-wm1-x331.google.com (mail-wm1-x331.google.com [IPv6:2a00:1450:4864:20::331])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4BD2B36469;
-        Wed,  1 Mar 2023 01:24:27 -0800 (PST)
-Received: by mail-wm1-x331.google.com with SMTP id t25-20020a1c7719000000b003eb052cc5ccso10897185wmi.4;
-        Wed, 01 Mar 2023 01:24:27 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112; t=1677662665;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=AUnzVCWDu3lRbeGs+FSxn4Fag1muzI50SJEiMaHulbI=;
-        b=m9Cv9DcPyZNfzELTtb2jIy4w1Gvf/B6hnYAjz9fBXbEvDuKrhZeV/HY+zL6A0mgSvB
-         EpIBkEQcYfEkc0b3LaduI/+YpJD0Nne+Lh++lqltBRqtlQIcXN2NcPS7ZK1FnK+ugq9B
-         8r6jUuzIrn5SRwngoLj/FMf61hpTD1leFk64QJ/Gv/+ccj3+TLZUlaqgf2lfWBhQA88v
-         QJzWk0X6cBLNEO611+J+QYjTTZ00sd/nidiJ66EvF0qoszIzOPtv/6g3IqofyxHrOQ4l
-         Xo07LKyNjzO2Liy/Kfemz0bU5zKqRRYVrS71vCUvn/urYk8VTJoDWrc3w3WH0wE2YJ7F
-         0EDQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1677662665;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=AUnzVCWDu3lRbeGs+FSxn4Fag1muzI50SJEiMaHulbI=;
-        b=TFoTuGsEiWmL5RZC1/jygFxX29jbA+Ag4g+NtnVxZdcqxXoA7Sx/9JZ++jcC7gEAfx
-         ftHQKOf8I157tE4jLD8BXu3e1B8WpAsrzanIE+nnUUS3gUhwIZ3KyD1+FLv8JxQJGhV5
-         Kmpfn2pUyH3e+8JWdusiRZ+Xn4GIui+La82UMys9VCurJy+Mmbkhq5jxEMsNacry4cAq
-         KCiCNfy/QTKuDwstLWOG9omUNRuXPI+ZhIwZxOa6JeiBP4d3sjwPbsvN3upZHBoUcBhL
-         kVCvtcKGAoKfG9iUtxVWJMq1bDl7QPW8/bfq3/ka7c3hMIEG1pCgK2l01XcJ3n44rXTu
-         nd+A==
-X-Gm-Message-State: AO0yUKUuY23wH8Q8mUXHHi3l5yIlKlhwaLaPg7vE8glkdvnivDwdP3/p
-        qxqT7D/JZm59aX+Ir47SgKdT26XUO9A=
-X-Google-Smtp-Source: AK7set9bVkHz9uAs+RA2DOnhCDZNYyP3u2piu8xNpfyUZr8xaLZFnb4KeCaQKKl9uLn9nTsGtfPNtQ==
-X-Received: by 2002:a05:600c:4fd3:b0:3eb:36fa:b791 with SMTP id o19-20020a05600c4fd300b003eb36fab791mr4372517wmq.31.1677662665405;
-        Wed, 01 Mar 2023 01:24:25 -0800 (PST)
-Received: from localhost.localdomain (106.red-88-13-29.dynamicip.rima-tde.net. [88.13.29.106])
-        by smtp.gmail.com with ESMTPSA id p4-20020a05600c358400b003dc5b59ed7asm16460892wmq.11.2023.03.01.01.24.24
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 01 Mar 2023 01:24:24 -0800 (PST)
-From:   Sergio Paracuellos <sergio.paracuellos@gmail.com>
-To:     devicetree@vger.kernel.org
-Cc:     linux-watchdog@vger.kernel.org, wim@linux-watchdog.org,
-        linux@roeck-us.net, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org
-Subject: [PATCH v2] dt-bindings: watchdog: migrate rt2880 text bindings to YAML
-Date:   Wed,  1 Mar 2023 10:24:22 +0100
-Message-Id: <20230301092422.2824609-1-sergio.paracuellos@gmail.com>
-X-Mailer: git-send-email 2.25.1
+        with ESMTP id S229854AbjCAJjG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Mar 2023 04:39:06 -0500
+X-Greylist: delayed 546 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Wed, 01 Mar 2023 01:39:00 PST
+Received: from smtpout1.mo3004.mail-out.ovh.net (smtpout1.mo3004.mail-out.ovh.net [79.137.123.219])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D741CE063
+        for <devicetree@vger.kernel.org>; Wed,  1 Mar 2023 01:39:00 -0800 (PST)
+Received: from pro2.mail.ovh.net (unknown [10.108.16.78])
+        by mo3004.mail-out.ovh.net (Postfix) with ESMTPS id 760CB243F90;
+        Wed,  1 Mar 2023 09:29:20 +0000 (UTC)
+Received: from [192.168.1.41] (88.161.25.233) by DAG1EX1.emp2.local
+ (172.16.2.1) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.21; Wed, 1 Mar
+ 2023 10:29:19 +0100
+Message-ID: <e335b715-471c-8e25-8eea-95ca1f64d17c@traphandler.com>
+Date:   Wed, 1 Mar 2023 10:29:19 +0100
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.1
+Subject: Re: [PATCH] of: property: Add missing of_node_get() in
+ parse_interrupt()
+Content-Language: en-US
+To:     Saravana Kannan <saravanak@google.com>
+CC:     <robh+dt@kernel.org>, <frowand.list@gmail.com>,
+        <gregkh@linuxfoundation.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, Marc Zyngier <maz@kernel.org>
+References: <20230228174019.4004581-1-jjhiblot@traphandler.com>
+ <CAGETcx-w4A3fz_DPqJG+9P6ETGAPv547DcnsO52gqTO1_vijsw@mail.gmail.com>
+From:   Jean-Jacques Hiblot <jjhiblot@traphandler.com>
+In-Reply-To: <CAGETcx-w4A3fz_DPqJG+9P6ETGAPv547DcnsO52gqTO1_vijsw@mail.gmail.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Originating-IP: [88.161.25.233]
+X-ClientProxiedBy: DAG4EX2.emp2.local (172.16.2.32) To DAG1EX1.emp2.local
+ (172.16.2.1)
+X-Ovh-Tracer-Id: 1941051441226463616
+X-VR-SPAMSTATE: OK
+X-VR-SPAMSCORE: -100
+X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrgedvhedrudelgedguddviecutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfqggfjpdevjffgvefmvefgnecuuegrihhlohhuthemucehtddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpefkffggfgfuvfevfhfhjggtgfhisehtkeertddtfeejnecuhfhrohhmpeflvggrnhdqlfgrtghquhgvshcujfhisghlohhtuceojhhjhhhisghlohhtsehtrhgrphhhrghnughlvghrrdgtohhmqeenucggtffrrghtthgvrhhnpedvfeekudegkeeuuedvueeuveejffdtvdethfelkefhfefftdetteffiefgvddtieenucfkphepuddvjedrtddrtddruddpkeekrdduiedurddvhedrvdeffeenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepihhnvghtpeduvdejrddtrddtrddupdhmrghilhhfrhhomhepoehjjhhhihgslhhothesthhrrghphhgrnhgulhgvrhdrtghomheqpdhnsggprhgtphhtthhopedupdhrtghpthhtohepshgrrhgrvhgrnhgrkhesghhoohhglhgvrdgtohhmpdhrohgshhdoughtsehkvghrnhgvlhdrohhrghdpfhhrohifrghnugdrlhhishhtsehgmhgrihhlrdgtohhmpdhgrhgvghhkhheslhhinhhugihfohhunhgurghtihhonhdrohhrghdpuggvvhhitggvthhrvggvsehvghgvrhdrkhgvrhhnvghlrdhorhhgpdhlihhnuhigqdhkvghrnhgvlhesvhhgvghrrdhkvghrnhgvlhdrohhrghdpmhgriieskhgvrh
+ hnvghlrdhorhhgpdfovfetjfhoshhtpehmoheftddtgedpmhhouggvpehsmhhtphhouhht
+X-Spam-Status: No, score=-0.7 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,RCVD_IN_VALIDITY_RPBL,
+        SPF_HELO_NONE,SPF_NONE autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Ralink RT2880 Watchdog bindings used text format, so migrate them to YAML.
-There are some additions to the binding that were not in the original
-txt file. This binding is used in RT2880, RT3050, RT3352, RT3883, RT5350,
-and MT7620 SoCs. To properly match all dts nodes included in openWRT git
-trees we need to add to the schema 'reset' and 'reset-names'. 'reset-names'
-property is always string 'wdt' so maintain that as const in the schema.
 
-Signed-off-by: Sergio Paracuellos <sergio.paracuellos@gmail.com>
----
-Changes in v2:
- - Fix reg address and size in example.
+On 28/02/2023 20:07, Saravana Kannan wrote:
+> On Tue, Feb 28, 2023 at 9:40 AM Jean-Jacques Hiblot
+> <jjhiblot@traphandler.com> wrote:
+>> From: Jean Jacques Hiblot <jjhiblot@traphandler.com>
+>>
+>> As all the other parsers do, parse_interrupt() must increase the refcount
+>> of the device_node. Otherwise the refcount is decremented every time
+>> parse_interrupt() is called on this node, leading to a potential
+>> use-after-free.
+>>
+>> This is a regression introduced by commit f265f06af194 ("of: property:
+>> Fix fw_devlink handling of interrupts/interrupts-extended"). The reason is
+>> that of_irq_parse_one() does not increase the refcount while the previously
+>> used of_irq_find_parent() does.
+> Thanks for catching the issue Jean!
+>
+> This feels like a bug in of_irq_parse_one() to me. It's returning a
+> reference to a node without doing a of_node_get() on it.
+>
+> Rob, Marc, Do you agree?
 
- .../bindings/watchdog/ralink,rt2880-wdt.yaml  | 47 +++++++++++++++++++
- .../bindings/watchdog/rt2880-wdt.txt          | 18 -------
- 2 files changed, 47 insertions(+), 18 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/watchdog/ralink,rt2880-wdt.yaml
- delete mode 100644 Documentation/devicetree/bindings/watchdog/rt2880-wdt.txt
+Sarvana,
 
-diff --git a/Documentation/devicetree/bindings/watchdog/ralink,rt2880-wdt.yaml b/Documentation/devicetree/bindings/watchdog/ralink,rt2880-wdt.yaml
-new file mode 100644
-index 000000000000..744b4c513c85
---- /dev/null
-+++ b/Documentation/devicetree/bindings/watchdog/ralink,rt2880-wdt.yaml
-@@ -0,0 +1,47 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/watchdog/ralink,rt2880-wdt.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Ralink Watchdog Timers
-+
-+maintainers:
-+  - Sergio Paracuellos <sergio.paracuellos@gmail.com>
-+
-+allOf:
-+  - $ref: watchdog.yaml#
-+
-+properties:
-+  compatible:
-+    const: ralink,rt2880-wdt
-+
-+  reg:
-+    maxItems: 1
-+
-+  resets:
-+    maxItems: 1
-+
-+  reset-names:
-+    items:
-+      - const: wdt
-+
-+  interrupts:
-+    maxItems: 1
-+
-+required:
-+  - compatible
-+  - reg
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    watchdog@100 {
-+      compatible = "ralink,rt2880-wdt";
-+      reg = <0x120 0x10>;
-+      resets = <&rstctrl 8>;
-+      reset-names = "wdt";
-+      interrupt-parent = <&intc>;
-+      interrupts = <1>;
-+    };
-diff --git a/Documentation/devicetree/bindings/watchdog/rt2880-wdt.txt b/Documentation/devicetree/bindings/watchdog/rt2880-wdt.txt
-deleted file mode 100644
-index 05b95bfa2a89..000000000000
---- a/Documentation/devicetree/bindings/watchdog/rt2880-wdt.txt
-+++ /dev/null
-@@ -1,18 +0,0 @@
--Ralink Watchdog Timers
--
--Required properties:
--- compatible: must be "ralink,rt2880-wdt"
--- reg: physical base address of the controller and length of the register range
--
--Optional properties:
--- interrupts: Specify the INTC interrupt number
--
--Example:
--
--	watchdog@120 {
--		compatible = "ralink,rt2880-wdt";
--		reg = <0x120 0x10>;
--
--		interrupt-parent = <&intc>;
--		interrupts = <1>;
--	};
--- 
-2.25.1
+it looks like you're right. The bug seems to be in of_irq_parse_one().
 
+It doesn't behave in the same way for "interrupts-extended" where it 
+does a get() and 'interrupts" where it doesn't.
+
+So please ignore this patch.
+
+Thanks
+
+>
+> Jean,
+>
+> If they agree, can you please fix of_irq_parse_one() and add a
+> of_node_put() to existing callers (if they aren't already doing a
+> put()).
+>
+> Thanks,
+> Saravana
+>
+>> Fixes: f265f06af194 ("of: property: Fix fw_devlink handling of interrupts/interrupts-extended")
+>> Signed-off-by: Jean Jacques Hiblot <jjhiblot@traphandler.com>
+>> ---
+>>   drivers/of/property.c | 5 ++++-
+>>   1 file changed, 4 insertions(+), 1 deletion(-)
+>>
+>> diff --git a/drivers/of/property.c b/drivers/of/property.c
+>> index 134cfc980b70b..1f23bcb765c4e 100644
+>> --- a/drivers/of/property.c
+>> +++ b/drivers/of/property.c
+>> @@ -1380,7 +1380,10 @@ static struct device_node *parse_interrupts(struct device_node *np,
+>>              strcmp(prop_name, "interrupts-extended"))
+>>                  return NULL;
+>>
+>> -       return of_irq_parse_one(np, index, &sup_args) ? NULL : sup_args.np;
+>> +       if (of_irq_parse_one(np, index, &sup_args))
+>> +               return NULL;
+>> +
+>> +       return of_node_get(sup_args.np);
+>>   }
+>>
+>>   static const struct supplier_bindings of_supplier_bindings[] = {
+>> --
+>> 2.25.1
+>>
