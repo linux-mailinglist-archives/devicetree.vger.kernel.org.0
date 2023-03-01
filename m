@@ -2,65 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0B5256A64CC
-	for <lists+devicetree@lfdr.de>; Wed,  1 Mar 2023 02:30:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B87EB6A64D2
+	for <lists+devicetree@lfdr.de>; Wed,  1 Mar 2023 02:31:08 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229544AbjCABaX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Feb 2023 20:30:23 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51834 "EHLO
+        id S229516AbjCABbH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Feb 2023 20:31:07 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52838 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229486AbjCABaV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Feb 2023 20:30:21 -0500
-Received: from mail-ed1-x529.google.com (mail-ed1-x529.google.com [IPv6:2a00:1450:4864:20::529])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DF8789EC9;
-        Tue, 28 Feb 2023 17:30:19 -0800 (PST)
-Received: by mail-ed1-x529.google.com with SMTP id o12so47688556edb.9;
-        Tue, 28 Feb 2023 17:30:19 -0800 (PST)
+        with ESMTP id S229486AbjCABbG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Feb 2023 20:31:06 -0500
+Received: from mail-ed1-x530.google.com (mail-ed1-x530.google.com [IPv6:2a00:1450:4864:20::530])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 51D77C166;
+        Tue, 28 Feb 2023 17:31:05 -0800 (PST)
+Received: by mail-ed1-x530.google.com with SMTP id eg37so47593835edb.12;
+        Tue, 28 Feb 2023 17:31:05 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=jms.id.au; s=google;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=vZS4srdzYPX5rwf8hBmS3h/CSWlxeptJDidxpQ52/rY=;
-        b=jAZJqxNnaCbGp3Cn7I115sC3pbOLIoFPvymD9tvjSPw0mD8MYApBCMMkCAcdj8mh4M
-         CYNw1xXXsUQgDqAQwJSWMhpwGV560MZ6TvUwZPW5XxlgGBOVUQxzgAgWb/FAlfACMBTH
-         MSAmXvY5yDuOu8EgKMsqpKhQTl1+tPDCB02CE=
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=dybzwFbIjgT2tCtgfGWmH+b0sBN7xN33eq9JJI1azg4=;
+        b=J/riPlxooPKy5grH00GRJCM5uKoB0fQ7BcgtmA31Ea8U9JI/gwZgjclb6Z3xaZT0Fo
+         QXV9SSx5KLNPvbMceyjFlh9ND8zhaGPu+k9/cwYb0ZBmwjbPaJT+ELkB6UNuT3j58Y3Y
+         Llee33BEF4XxFxmBMTU/tN3wHDJ5Y1UupTC+w=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=vZS4srdzYPX5rwf8hBmS3h/CSWlxeptJDidxpQ52/rY=;
-        b=QfSPywj9Sd7jh4Rbx/uQ++iJdnn3aL+WzENboIAzjwlAN+Y6mBHQ0C+Hfjt7ui9Bi5
-         cDFbM6IYbAo9d0MGRHgBN8YSxMa2PEt3hBz61+3wIhg2Vv/O6Z6MzNwn6KvhEtHwZfXd
-         s+GrN40HrZYkX2HlvQlYTqYrLE9B4GyQ7ZcQ9klsPWyI/Rlh78SDj5AWOM4wH47AXZTq
-         DKKOO/UFy82WIDatQ+IJDpFd78On5oqLD3eCmArUeyXwyBkxXOeB9CCQmRpMZqvhvNAO
-         2bsrzYvjkPKbzq0XnPLR32T+xVUyZfad2PS4C7LgoBaNWXGB0h0sBTByBrH4OOzUSCeq
-         uTJQ==
-X-Gm-Message-State: AO0yUKU/m86dgsQjJf/EX6Jd45k57thUwMO53CcGMVtJZcYeC6AskzGi
-        Bupypk2HxNJ+RCggHzAci9TA2GGthlNXtRgV2S8=
-X-Google-Smtp-Source: AK7set/PW9p3+rsDwfdQvTVOa0cA7HHEYagI+NeYdL0zp0aQTvVe97kOvNfE5b67MEGgt5lDe1NN/RWcCezxLJstPSQ=
-X-Received: by 2002:a17:906:d82:b0:87b:db55:4887 with SMTP id
- m2-20020a1709060d8200b0087bdb554887mr2237966eji.4.1677634218221; Tue, 28 Feb
- 2023 17:30:18 -0800 (PST)
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=dybzwFbIjgT2tCtgfGWmH+b0sBN7xN33eq9JJI1azg4=;
+        b=jqbZqqmWLFv8lKmpkKt2+Vhn62gxd6Ek09BCt9yJNPWLY99hWbsKqO66vaxbTKksdt
+         eUOWURFu1qY8cBs1qwdIKvy7WcRcFUHzK7AE0EURXa4UfO0I2PSoPRLX9xzwa4E3z/TU
+         vZaTrc4vBcmaa6ubnZff//nUtDu7Hm9KAopfJd41SeZHIUdS9GxQsXOT4w5MYZkYgPKg
+         b907avn3FphtTq6xy60qSSJh+TjleyFXl7bO65J1WhytPmL29tTNmjH/3cBsZO+C/q7s
+         IMQbdQtcNMnrfbhu7cCxqmxhBlP2PdJ3JOLFb/1IVgB/kZfBCbcGYMpSqqITJPs6bwhY
+         h/hg==
+X-Gm-Message-State: AO0yUKUSSUC50et4dWNEEDFwEOFc4GZFRo6bxdMsAKQr6W7j3jLzQKeX
+        Rj6o3KQfHZySEPO1G5hOaBSiELKW8hC7gdra7nA=
+X-Google-Smtp-Source: AK7set8Rn7FrLIlyvtyXdzxIzlBOnS8eTiidZS6gad+90wWt7ADj5drCop6N8jGvqo5xdx0JPax4+93ppbEOjC6kDXc=
+X-Received: by 2002:a50:9f4b:0:b0:4bc:5e2e:592 with SMTP id
+ b69-20020a509f4b000000b004bc5e2e0592mr61110edf.7.1677634263803; Tue, 28 Feb
+ 2023 17:31:03 -0800 (PST)
 MIME-Version: 1.0
-References: <20230224000400.12226-1-zev@bewilderbeest.net> <20230224000400.12226-4-zev@bewilderbeest.net>
-In-Reply-To: <20230224000400.12226-4-zev@bewilderbeest.net>
+References: <20230224000400.12226-1-zev@bewilderbeest.net>
+In-Reply-To: <20230224000400.12226-1-zev@bewilderbeest.net>
 From:   Joel Stanley <joel@jms.id.au>
-Date:   Wed, 1 Mar 2023 01:30:05 +0000
-Message-ID: <CACPK8XdFT=+VJJ=iDhcmWPh9m9of2b+2UYxkrAisp6tdmWOWKg@mail.gmail.com>
-Subject: Re: [PATCH v2 3/3] ARM: dts: aspeed: asrock: Correct firmware flash
- SPI clocks
-To:     Zev Weiss <zev@bewilderbeest.net>,
-        =?UTF-8?Q?C=C3=A9dric_Le_Goater?= <clg@kaod.org>
-Cc:     Andrew Jeffery <andrew@aj.id.au>,
+Date:   Wed, 1 Mar 2023 01:30:51 +0000
+Message-ID: <CACPK8Xe2MA+hv3FH=eQ0toy94hQbtFgLvKxvW5k1vahQpkO+RQ@mail.gmail.com>
+Subject: Re: [PATCH v2 0/3] ARM: dts: aspeed: ASRock BMC updates
+To:     Zev Weiss <zev@bewilderbeest.net>
+Cc:     Andrew Jeffery <andrew@aj.id.au>, openbmc@lists.ozlabs.org,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org,
-        linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org,
-        openbmc@lists.ozlabs.org, stable@vger.kernel.org
+        linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
         HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,
@@ -73,54 +68,36 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 On Fri, 24 Feb 2023 at 00:04, Zev Weiss <zev@bewilderbeest.net> wrote:
 >
-> While I'm not aware of any problems that have occurred running these
-> at 100 MHz, the official word from ASRock is that 50 MHz is the
-> correct speed to use, so let's be safe and use that instead.
+> Hello,
+>
+> This patch series contains a few small device-tree updates for ASRock
+> BMCs: an LED polarity fix for romed8hm3, enabling the ast2500 PECI
+> device on e3c246d4i, and a SPI flash clock frequency fix for both.
 
-:(
+Thanks. I'll apply these once we have a -rc1.
 
-Validated with which driver?
+Cheers,
 
-C=C3=A9dric, do you have any thoughts on this?
+Joel
 
 >
-> Signed-off-by: Zev Weiss <zev@bewilderbeest.net>
-> Cc: stable@vger.kernel.org
-> Fixes: 2b81613ce417 ("ARM: dts: aspeed: Add ASRock E3C246D4I BMC")
-> Fixes: a9a3d60b937a ("ARM: dts: aspeed: Add ASRock ROMED8HM3 BMC")
-> ---
->  arch/arm/boot/dts/aspeed-bmc-asrock-e3c246d4i.dts | 2 +-
->  arch/arm/boot/dts/aspeed-bmc-asrock-romed8hm3.dts | 2 +-
->  2 files changed, 2 insertions(+), 2 deletions(-)
+> Thanks,
+> Zev
 >
-> diff --git a/arch/arm/boot/dts/aspeed-bmc-asrock-e3c246d4i.dts b/arch/arm=
-/boot/dts/aspeed-bmc-asrock-e3c246d4i.dts
-> index 67a75aeafc2b..c4b2efbfdf56 100644
-> --- a/arch/arm/boot/dts/aspeed-bmc-asrock-e3c246d4i.dts
-> +++ b/arch/arm/boot/dts/aspeed-bmc-asrock-e3c246d4i.dts
-> @@ -63,7 +63,7 @@ flash@0 {
->                 status =3D "okay";
->                 m25p,fast-read;
->                 label =3D "bmc";
-> -               spi-max-frequency =3D <100000000>; /* 100 MHz */
-> +               spi-max-frequency =3D <50000000>; /* 50 MHz */
->  #include "openbmc-flash-layout.dtsi"
->         };
->  };
-> diff --git a/arch/arm/boot/dts/aspeed-bmc-asrock-romed8hm3.dts b/arch/arm=
-/boot/dts/aspeed-bmc-asrock-romed8hm3.dts
-> index 00efe1a93a69..4554abf0c7cd 100644
-> --- a/arch/arm/boot/dts/aspeed-bmc-asrock-romed8hm3.dts
-> +++ b/arch/arm/boot/dts/aspeed-bmc-asrock-romed8hm3.dts
-> @@ -51,7 +51,7 @@ flash@0 {
->                 status =3D "okay";
->                 m25p,fast-read;
->                 label =3D "bmc";
-> -               spi-max-frequency =3D <100000000>; /* 100 MHz */
-> +               spi-max-frequency =3D <50000000>; /* 50 MHz */
->  #include "openbmc-flash-layout-64.dtsi"
->         };
->  };
+> Changes since v1 [0]:
+>  - Added patch 3 correcting SPI flash clocks
+>
+> [0] https://lore.kernel.org/linux-devicetree/20230203105405.21942-1-zev@bewilderbeest.net/
+>
+> Zev Weiss (3):
+>   ARM: dts: aspeed: romed8hm3: Fix GPIO polarity of system-fault LED
+>   ARM: dts: aspeed: e3c246d4i: Add PECI device
+>   ARM: dts: aspeed: asrock: Correct firmware flash SPI clocks
+>
+>  arch/arm/boot/dts/aspeed-bmc-asrock-e3c246d4i.dts | 6 +++++-
+>  arch/arm/boot/dts/aspeed-bmc-asrock-romed8hm3.dts | 4 ++--
+>  2 files changed, 7 insertions(+), 3 deletions(-)
+>
 > --
 > 2.39.1.438.gdcb075ea9396.dirty
 >
