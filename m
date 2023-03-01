@@ -2,57 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 38E826A67CB
-	for <lists+devicetree@lfdr.de>; Wed,  1 Mar 2023 07:54:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 681566A6819
+	for <lists+devicetree@lfdr.de>; Wed,  1 Mar 2023 08:27:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229480AbjCAGyy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 Mar 2023 01:54:54 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41662 "EHLO
+        id S229534AbjCAH1M (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 Mar 2023 02:27:12 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34394 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229451AbjCAGyx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Mar 2023 01:54:53 -0500
-Received: from codeconstruct.com.au (pi.codeconstruct.com.au [203.29.241.158])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 85FC5298CA;
-        Tue, 28 Feb 2023 22:54:52 -0800 (PST)
-Received: from pecola.lan (unknown [159.196.93.152])
-        by mail.codeconstruct.com.au (Postfix) with ESMTPSA id CFAAA20034;
-        Wed,  1 Mar 2023 14:54:50 +0800 (AWST)
+        with ESMTP id S229801AbjCAH1B (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Mar 2023 02:27:01 -0500
+Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1B8CB23C65;
+        Tue, 28 Feb 2023 23:27:00 -0800 (PST)
+Received: by mail-lf1-x12a.google.com with SMTP id i9so16422518lfc.6;
+        Tue, 28 Feb 2023 23:27:00 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=codeconstruct.com.au; s=2022a; t=1677653690;
-        bh=7hd2rXTIjthijwypIiEY2EMElVsWDZ7kE82iOJb/pYM=;
-        h=Subject:From:To:Cc:Date:In-Reply-To:References;
-        b=L9TRX5s3EOuTW1uU3uwpVE9xF3X5jVGN9sq/EVoDDGx7Rq3j1OMrsXev+boozONzJ
-         CZIqtLhVWUiiAnRK0m2zLgObXi4h3XV1ubVSaLFBDIzsQi0DiKrM2OFtPfUJebWEHb
-         RiuFpaXVaQWxgi0ploAItX8xEa7u0ipWBBZdWFCkUxyiKURqTVPcsvfitgavyOwuvA
-         ScOtJ7wq1f43ybiHH2YEeVYrWf174OOHKSJzVGH9Rj9V/4XoGPF4an/ejxc9/xN/4O
-         iOmGUsO6ZmEprddiJ0XJALptziBaIXM8XKeR8kf7LylGg4DV+s8yx9kNb6SxHor1M4
-         fqv9pZnOgRc3Q==
-Message-ID: <51803a244c28c53b5adb384effc09df1909dd1e8.camel@codeconstruct.com.au>
-Subject: Re: [PATCH v4 5/5] dt-bindings: clock: ast2600: Add reset config
- for I3C
-From:   Jeremy Kerr <jk@codeconstruct.com.au>
-To:     Joel Stanley <joel@jms.id.au>
-Cc:     linux-aspeed@lists.ozlabs.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Dylan Hung <dylan_hung@aspeedtech.com>,
-        Andrew Jeffery <andrew@aj.id.au>
-Date:   Wed, 01 Mar 2023 14:54:50 +0800
-In-Reply-To: <CACPK8XfRg9vHYjC0rco4dr9pNY03vXTrmXaopOGBgdCq09LybQ@mail.gmail.com>
-References: <20230228091638.206569-1-jk@codeconstruct.com.au>
-         <20230228091638.206569-6-jk@codeconstruct.com.au>
-         <CACPK8XcA_SES=Wo7vuWEJ4U5kTizM5brmb=6ELXD-taCFJQwgA@mail.gmail.com>
-         <cbbb99ce6125048667e4c41412710a61dc4d686f.camel@codeconstruct.com.au>
-         <CACPK8XfRg9vHYjC0rco4dr9pNY03vXTrmXaopOGBgdCq09LybQ@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.46.3-1 
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to:subject
+         :user-agent:mime-version:date:message-id:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=QU2JJyqeQDHRAiz7r1BtWY0f9W6Z9jQhhUFBaal+Aho=;
+        b=JkNQjc1qQeeChOEWGEH8jmKclFqlnE2bnEhKLXwieYjp9l0FgwNVGQu+xa9a++8Lf2
+         NevNTCir3IHwttNdXvucnQGrJ1fpmMWG4SZCMCCxmSc0JhvFbHlMkT8bqQxCLHrtr5+m
+         HgAdzQ0OwAw/NrO8BWNES5AYBTpM6IDyuXIR5YID0YDdDTZHl/lhKzZKTwO/t+fM06Al
+         i7jw/hgs100o6fU6iByZQpcmKWMgKOuyjDxrH0gTGvF78tOcqFEO9uiO8qtzY7FsiWCZ
+         4gDoM54FXcfLk3uEs1tRUpYn6G7GXHJg5/hbN9oH7GyWclR50wdxID5efiYCwA5pKOii
+         clgg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to:subject
+         :user-agent:mime-version:date:message-id:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=QU2JJyqeQDHRAiz7r1BtWY0f9W6Z9jQhhUFBaal+Aho=;
+        b=cqQup+ugBTc4CDhKRkmD8WYxREWR1rhF5hycG9ezfpqG3IJx9EV1LvGDIXwdYUw5RA
+         gXtG/jsVz+WSgW7jay15LlM1z9vcyEdu5F76k4cUKhHye1BJZMUeqnYF/UIdxj/peJYM
+         u70iksSp6AJNgE0oWJIG2qSLcxP1q7HiRQvT1qezzE8abycyOOmnpz6eTVKHEckJcvR4
+         VR4DjB6rue0wbER6VRk0qkAnPa5lUReVn3VTIIXVVRCoxrjthoSvTs7cjQ2ACusq3oRx
+         KIowPJuOWKHNiU6W5GW7EoX/FCbEY7WCUiHHwIFuCPHPGc/FmUL+Sym36I2ZLTj8as4t
+         Y6qw==
+X-Gm-Message-State: AO0yUKUMY2jCE0Z8XYnZF/IxkzHPLhzACuYCxF40pkA7ZuXnxC8tIyLm
+        J2W3wZqQewMPhetTE9T18qg=
+X-Google-Smtp-Source: AK7set/yGt8lJH4sgPH2Zg2qwxm+Et/cj0wfGKBXyKR04qIPwFl8HnPh5cCO3xM49+FzZvzS3EiyOw==
+X-Received: by 2002:ac2:4c0f:0:b0:4cb:1189:285c with SMTP id t15-20020ac24c0f000000b004cb1189285cmr1781797lfq.10.1677655618172;
+        Tue, 28 Feb 2023 23:26:58 -0800 (PST)
+Received: from [192.168.26.149] (ip-194-187-74-233.konfederacka.maverick.com.pl. [194.187.74.233])
+        by smtp.googlemail.com with ESMTPSA id z15-20020ac25def000000b004dda74eccafsm1621198lfq.68.2023.02.28.23.26.56
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 28 Feb 2023 23:26:57 -0800 (PST)
+Message-ID: <e3b20703-f2d4-76b8-ccfb-11cf42d459fd@gmail.com>
+Date:   Wed, 1 Mar 2023 08:26:56 +0100
 MIME-Version: 1.0
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:96.0) Gecko/20100101
+ Thunderbird/96.0
+Subject: Re: [PATCH] dt-bindings: leds: add "usbport" trigger
+To:     Rob Herring <robh@kernel.org>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Pavel Machek <pavel@ucw.cz>, Lee Jones <lee@kernel.org>,
+        Jacek Anaszewski <jacek.anaszewski@gmail.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        devicetree@vger.kernel.org, linux-leds@vger.kernel.org,
+        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
+References: <20230228144933.22614-1-zajec5@gmail.com>
+ <20230301000236.GA20893-robh@kernel.org>
+From:   =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
+In-Reply-To: <20230301000236.GA20893-robh@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -60,47 +78,43 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Joel,
+On 1.03.2023 01:02, Rob Herring wrote:
+> On Tue, Feb 28, 2023 at 03:49:33PM +0100, Rafał Miłecki wrote:
+>> From: Rafał Miłecki <rafal@milecki.pl>
+>>
+>> It's a trigger used on many home routers that have LEDs to indicate
+>> specific USB port state.
+>>
+>> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
+>> ---
+>>   Documentation/devicetree/bindings/leds/common.yaml | 1 +
+>>   1 file changed, 1 insertion(+)
+>>
+>> diff --git a/Documentation/devicetree/bindings/leds/common.yaml b/Documentation/devicetree/bindings/leds/common.yaml
+>> index 15e3f6645682..95b316ee3146 100644
+>> --- a/Documentation/devicetree/bindings/leds/common.yaml
+>> +++ b/Documentation/devicetree/bindings/leds/common.yaml
+>> @@ -99,6 +99,7 @@ properties:
+>>             - pattern
+>>             - usb-gadget
+>>             - usb-host
+>> +          - usbport
+> 
+> Can we stop adding entries which are clearly likely to have multiple
+> instances. We have a better binding to map the trigger source...
 
-> > So I'm not sure what that comment is supposed to signify as to what
-> > qualifies as a "gate" in the context of a reset...
->=20
-> This is poor documentation from the author of the clock driver,
+I'm sorry, I really don't understand this.
+I'm not sure what do you mean by multuple "usbport" instances.
+Could you point me to that better place, please?
 
-Hah, not that guy again!
-
-> which is me.
-
-oh.
-
-> We only expose the reset lines in the device tree for resets that are
-> not associated with a clock line.
->=20
-> This is done because the aspeed docs specify we do a dance when
-> enabling an IP:
->=20
-> =C2=A01. Place IP in reset
-> =C2=A02. Enable clock
-> =C2=A03. Delay
-> =C2=A04. Release reset
->=20
-> So we do this with the aspeed_g6_gates array. The rule is: any gate
-> with a number in the rst column doesn't have that reset line exposed.
-> That's what this cryptic comment in the header is warning about.
-
-That makes sense, and means I can drop the explicit reset control from
-the DTS, and then we don't need these definitions.
-
-> This was documented to some extent in the original commit message for
-> the 2400/2500 driver:
->=20
-> =C2=A0https://git.kernel.org/torvalds/c/15ed8ce5f84e2b
->=20
-> We could hoist that out and put it in the source file(s).
-
-Awesome, thanks for the explanation - I'll add a patch to do so.
-
-Cheers,
+This is probably something obvious but I really can't figure it out
+since yesterday.
 
 
-Jeremy
+>>         - pattern: "^cpu[0-9]*$"
+>>         - pattern: "^hci[0-9]+-power$"
+>>           # LED is triggered by Bluetooth activity
+>> -- 
+>> 2.34.1
+>>
+
