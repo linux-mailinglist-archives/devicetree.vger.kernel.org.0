@@ -2,156 +2,205 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A96ED6A67A4
-	for <lists+devicetree@lfdr.de>; Wed,  1 Mar 2023 07:32:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4DB926A67A7
+	for <lists+devicetree@lfdr.de>; Wed,  1 Mar 2023 07:36:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229618AbjCAGcj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 Mar 2023 01:32:39 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58124 "EHLO
+        id S229607AbjCAGgQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 Mar 2023 01:36:16 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60034 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229617AbjCAGci (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Mar 2023 01:32:38 -0500
-Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1917137557
-        for <devicetree@vger.kernel.org>; Tue, 28 Feb 2023 22:32:35 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1677652356; x=1709188356;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=YzcTS6UvJpAIftBuJ9hqk4GRn2DuoP+6eqYrpPzYvHc=;
-  b=EDboJmo1LpZZuKevSUUYOKmYmg7dZv3n21Zw1KPd/QkuCbFGyuvE7ux1
-   GBgXnCtEYd/hYe3ZvzfYmJvypT67QCqUIG0wrK8inxTPGMQ2PWFnso57v
-   d2x9Knl1DxH/zaawt5aVMar+5PBvebNK6dEcp716+9qTJohFay9z12fw7
-   ZStMN3tDz1K95px/UX9Nr1mBwn2b+Ke32W5+eUWR9yVD/tXhmmBmoxyiv
-   eelfLl/naUI/IxOQjEepl8ylPCCtSI6e+Bd4HEjNfdrqS5fefTq9mJ5So
-   vd2dLdUXlc+GBUNuvJos3GMRBIIdEL/htWcYHnImz9LFdVO4BIyibjyd+
-   A==;
-X-IronPort-AV: E=Sophos;i="5.98,224,1673910000"; 
-   d="scan'208";a="29382744"
-Received: from unknown (HELO tq-pgp-pr1.tq-net.de) ([192.168.6.15])
-  by mx1-pgp.tq-group.com with ESMTP; 01 Mar 2023 07:32:34 +0100
-Received: from mx1.tq-group.com ([192.168.6.7])
-  by tq-pgp-pr1.tq-net.de (PGP Universal service);
-  Wed, 01 Mar 2023 07:32:34 +0100
-X-PGP-Universal: processed;
-        by tq-pgp-pr1.tq-net.de on Wed, 01 Mar 2023 07:32:34 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1677652354; x=1709188354;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=YzcTS6UvJpAIftBuJ9hqk4GRn2DuoP+6eqYrpPzYvHc=;
-  b=VM3b0FBCXVf29nZaSioZ8CxmITd9e+5srnhquFzJc3FoZJQef9KO70Sn
-   9PGQcpmZMe55cpCadlScVt8Y4miiYrGwRYH6/xZIRvAoyMSrKQk0j9u+S
-   nn+HjAe/11vJTimUzTKRektP2qHE7MsGtukd6AoszzbVtvH2HMhs+NXZf
-   J4NK57kV5XcuG6baYpoXMHj/TXZzf6b3c3D5GrD0uCPAPgO2QZQru6cgR
-   6wuxw4a004KJ4L6w3mN1WPyBsxgrv4ExHf5Bw8WWmJCe87z1JIxc3vNEY
-   53Up3gdUXGfaIlyeT48WweDNl89ShP6WMAFM2qRe2BwAFan0+017B90ke
-   A==;
-X-IronPort-AV: E=Sophos;i="5.98,224,1673910000"; 
-   d="scan'208";a="29382743"
-Received: from vtuxmail01.tq-net.de ([10.115.0.20])
-  by mx1.tq-group.com with ESMTP; 01 Mar 2023 07:32:34 +0100
-Received: from steina-w.localnet (unknown [10.123.53.21])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
-        (No client certificate requested)
-        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id DCAFB280056;
-        Wed,  1 Mar 2023 07:32:33 +0100 (CET)
-From:   Alexander Stein <alexander.stein@ew.tq-group.com>
-To:     linux-arm-kernel@lists.infradead.org, Marek Vasut <marex@denx.de>
-Cc:     Marek Vasut <marex@denx.de>, Fabio Estevam <festevam@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Lucas Stach <l.stach@pengutronix.de>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Paul Elder <paul.elder@ideasonboard.com>,
-        Peng Fan <peng.fan@nxp.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Richard Cochran <richardcochran@gmail.com>,
-        Richard Zhu <hongxing.zhu@nxp.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Shawn Guo <shawnguo@kernel.org>, devicetree@vger.kernel.org
-Subject: Re: [PATCH v5 5/5] arm64: dts: imx8mp: Reorder clock and reg properties
-Date:   Wed, 01 Mar 2023 07:32:31 +0100
-Message-ID: <4814723.31r3eYUQgx@steina-w>
-Organization: TQ-Systems GmbH
-In-Reply-To: <20230227155423.40359-5-marex@denx.de>
-References: <20230227155423.40359-1-marex@denx.de> <20230227155423.40359-5-marex@denx.de>
+        with ESMTP id S229568AbjCAGgP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Mar 2023 01:36:15 -0500
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4226328213;
+        Tue, 28 Feb 2023 22:36:14 -0800 (PST)
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3214kSsw011618;
+        Wed, 1 Mar 2023 06:35:58 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=7NsVB4FoS6UbPZUGburrBb4iRVrowgmYEH7O+X/k89k=;
+ b=NPT4abWvPWHwyIY1ZkybN9YmOTCaC5rYsrgrIv/56hCr/eYW04RB643KaoXe3E65zW1f
+ ESRV4RLqOIb0q63cRnjKjtFLjTaeE0p7aVvQ4GLzqiIHhdb9BvRi1N44mksUGbzkovQK
+ c5L5m+9wURsOHufdf5obQ7ITtf1zzR/IF1xz9Jo7LFgc0kYG2Q8xvVwJU2j9or/+6Uvw
+ nHPkZDW5JxSKGbfXbrxUJ6oa7I2WwjBQ/6aZxyUIsGzBkW2AR6pfcEgr8Z1Teoe4VeHz
+ G0Q1oUBKojE7s8u9z0nGfVSbqVB5huM5syBrqG0Sz/QPsBM+GmfaJ61a0+DsQO2Rsgs4 Fw== 
+Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3p1ccxkj6w-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Wed, 01 Mar 2023 06:35:58 +0000
+Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
+        by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3216ZuT3025067
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Wed, 1 Mar 2023 06:35:56 GMT
+Received: from [10.239.133.211] (10.80.80.8) by nalasex01c.na.qualcomm.com
+ (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.41; Tue, 28 Feb
+ 2023 22:35:51 -0800
+Message-ID: <75b61bc3-fb68-cd6e-8849-055e785ceb72@quicinc.com>
+Date:   Wed, 1 Mar 2023 14:35:49 +0800
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="iso-8859-1"
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.1.2
+Subject: Re: [PATCH v2 4/9] coresight-tpdm: Add reset node to TPDM node
+Content-Language: en-US
+To:     Suzuki K Poulose <suzuki.poulose@arm.com>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        Alexander Shishkin <alexander.shishkin@linux.intel.com>,
+        Konrad Dybcio <konradybcio@gmail.com>,
+        Mike Leach <mike.leach@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+CC:     Jinlong Mao <quic_jinlmao@quicinc.com>,
+        Leo Yan <leo.yan@linaro.org>,
+        "Greg Kroah-Hartman" <gregkh@linuxfoundation.org>,
+        <coresight@lists.linaro.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        Tingwei Zhang <quic_tingweiz@quicinc.com>,
+        Yuanfang Zhang <quic_yuanfang@quicinc.com>,
+        Trilok Soni <quic_tsoni@quicinc.com>,
+        Hao Zhang <quic_hazha@quicinc.com>,
+        <linux-arm-msm@vger.kernel.org>, <bjorn.andersson@linaro.org>,
+        Tao Zhang <taozha@qti.qualcomm.com>
+References: <1674114105-16651-1-git-send-email-quic_taozha@quicinc.com>
+ <1674114105-16651-5-git-send-email-quic_taozha@quicinc.com>
+ <89247650-2bff-cb94-eaed-f1d6c343035a@arm.com>
+From:   Tao Zhang <quic_taozha@quicinc.com>
+In-Reply-To: <89247650-2bff-cb94-eaed-f1d6c343035a@arm.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01c.na.qualcomm.com (10.47.97.35)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: XjvoyTtBpyL68DK8mIAlYy7bE4lcsnsz
+X-Proofpoint-ORIG-GUID: XjvoyTtBpyL68DK8mIAlYy7bE4lcsnsz
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.219,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
+ definitions=2023-03-01_01,2023-02-28_03,2023-02-09_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
+ priorityscore=1501 spamscore=0 malwarescore=0 phishscore=0 adultscore=0
+ clxscore=1015 mlxlogscore=999 bulkscore=0 impostorscore=0 suspectscore=0
+ mlxscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2212070000 definitions=main-2303010049
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Am Montag, 27. Februar 2023, 16:54:23 CET schrieb Marek Vasut:
-> Align the clock and reg properties order with example bindings
-> and the rest of the imx8mp.dtsi . No functional change.
->=20
-> Signed-off-by: Marek Vasut <marex@denx.de>
 
-Reviewed-by:  Alexander Stein <alexander.stein@ew.tq-group.com>
+在 2/28/2023 7:22 PM, Suzuki K Poulose 写道:
+> On 19/01/2023 07:41, Tao Zhang wrote:
+>> TPDM device need a node to reset the configurations and status of
+>> it. So as to avoid the previous configurations affecting the
+>> current use, the configurations need to be reset first. And in
+>> some scenarios, it may be necessary to reset the TPDM
+>> configurations to complete the verification of certain function.
+>> This change provides a node to reset the configurations and
+>> disable the TPDM if it has been enabled.
+>>
+>> Signed-off-by: Tao Zhang <quic_taozha@quicinc.com>
+>> Signed-off-by: Tao Zhang <taozha@qti.qualcomm.com>
+>> ---
+>>   drivers/hwtracing/coresight/coresight-tpdm.c | 32 
+>> ++++++++++++++++++++++++++++
+>>   1 file changed, 32 insertions(+)
+>>
+>> diff --git a/drivers/hwtracing/coresight/coresight-tpdm.c 
+>> b/drivers/hwtracing/coresight/coresight-tpdm.c
+>> index 6befc87..c29d667d 100644
+>> --- a/drivers/hwtracing/coresight/coresight-tpdm.c
+>> +++ b/drivers/hwtracing/coresight/coresight-tpdm.c
+>> @@ -161,6 +161,37 @@ static void tpdm_init_default_data(struct 
+>> tpdm_drvdata *drvdata)
+>>       }
+>>   }
+>>   +static ssize_t reset_store(struct device *dev,
+>> +                      struct device_attribute *attr,
+>> +                      const char *buf,
+>> +                      size_t size)
+>> +{
+>> +    int ret = 0;
+>> +    unsigned long val;
+>> +    struct tpdm_drvdata *drvdata = dev_get_drvdata(dev->parent);
+>> +
+>> +    ret = kstrtoul(buf, 0, &val);
+>> +    if (ret || (val != 1))
+>> +        return -EINVAL;
+>> +
+>> +    spin_lock(&drvdata->spinlock);
+>> +    /* Reset all datasets to ZERO */
+>> +    if (drvdata->dsb != NULL)
+>> +        memset(drvdata->dsb, 0, sizeof(struct dsb_dataset));
+>> +
+>> +    /* Init the default data */
+>
+> Code is self explanatory, don't need a comment here.
+OK, got it.
+>
+>> +    tpdm_init_default_data(drvdata);
+>
+> Could this be helper be renamed to
+>
+>     tpdm_reset_dsb_data() ?
+>
+> Because, that is what it does now.
 
-> ---
-> Cc: Alexander Stein <alexander.stein@ew.tq-group.com>
-> Cc: Fabio Estevam <festevam@gmail.com>
-> Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-> Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> Cc: Lucas Stach <l.stach@pengutronix.de>
-> Cc: NXP Linux Team <linux-imx@nxp.com>
-> Cc: Paul Elder <paul.elder@ideasonboard.com>
-> Cc: Peng Fan <peng.fan@nxp.com>
-> Cc: Pengutronix Kernel Team <kernel@pengutronix.de>
-> Cc: Richard Cochran <richardcochran@gmail.com>
-> Cc: Richard Zhu <hongxing.zhu@nxp.com>
-> Cc: Rob Herring <robh+dt@kernel.org>
-> Cc: Sascha Hauer <s.hauer@pengutronix.de>
-> Cc: Shawn Guo <shawnguo@kernel.org>
-> Cc: devicetree@vger.kernel.org
-> Cc: linux-arm-kernel@lists.infradead.org
-> ---
-> V5: New patch
-> ---
->  arch/arm64/boot/dts/freescale/imx8mp.dtsi | 4 ++--
->  1 file changed, 2 insertions(+), 2 deletions(-)
->=20
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-> b/arch/arm64/boot/dts/freescale/imx8mp.dtsi index
-> ca8093ee4d0e4..524b4ccfcc553 100644
-> --- a/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-> +++ b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-> @@ -1202,10 +1202,10 @@ media_blk_ctrl: blk-ctrl@32ec0000 {
->=20
->  				lvds_bridge: bridge@5c {
->  					compatible =3D "fsl,imx8mp-
-ldb";
-> -					clocks =3D <&clk=20
-IMX8MP_CLK_MEDIA_LDB>;
-> -					clock-names =3D "ldb";
->  					reg =3D <0x5c 0x4>, <0x128=20
-0x4>;
->  					reg-names =3D "ldb", "lvds";
-> +					clocks =3D <&clk=20
-IMX8MP_CLK_MEDIA_LDB>;
-> +					clock-names =3D "ldb";
->  					assigned-clocks =3D <&clk=20
-IMX8MP_CLK_MEDIA_LDB>;
->  					assigned-clock-parents =3D=20
-<&clk IMX8MP_VIDEO_PLL1_OUT>;
->  					status =3D "disabled";
+Sure, I will change its name as "tpdm_reset_data()" since DSB is only 
+one of the data type which TPDM supports.
 
+>
+>> +
+>> +    spin_unlock(&drvdata->spinlock);
+>> +
+>> +    /* Disable tpdm if enabled */
+>> +    if (drvdata->enable)
+>> +        coresight_disable(drvdata->csdev);
+>
+> Woh, where did that come from ? Don't you have a disable handle ?
 
-=2D-=20
-TQ-Systems GmbH | M=FChlstra=DFe 2, Gut Delling | 82229 Seefeld, Germany
-Amtsgericht M=FCnchen, HRB 105018
-Gesch=E4ftsf=FChrer: Detlef Schneider, R=FCdiger Stahl, Stefan Schneider
-http://www.tq-group.com/
+The function "coresight_disable" is defined in the file "coresight-core.c".
 
+This is a generic disablement handle.
+
+>
+>> +
+>> +    return size;
+>> +}
+>> +static DEVICE_ATTR_WO(reset);
+>> +
+>
+> This looks a bit pointless to me, given we have separate controls for 
+> all that is being achieved above.
+
+I will move the function of resetting all datasets to zero to 
+"tpdm_disable".
+
+Thanks for your advice.
+
+>
+> Suzuki
+>
+>>   /*
+>>    * value 1: 64 bits test data
+>>    * value 2: 32 bits test data
+>> @@ -201,6 +232,7 @@ static ssize_t integration_test_store(struct 
+>> device *dev,
+>>   static DEVICE_ATTR_WO(integration_test);
+>>     static struct attribute *tpdm_attrs[] = {
+>> +    &dev_attr_reset.attr,
+>>       &dev_attr_integration_test.attr,
+>>       NULL,
+>>   };
+>
+Best,
+
+Tao
 
