@@ -2,140 +2,132 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 82E166A6B2C
-	for <lists+devicetree@lfdr.de>; Wed,  1 Mar 2023 11:58:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C86046A6B7D
+	for <lists+devicetree@lfdr.de>; Wed,  1 Mar 2023 12:13:38 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229816AbjCAK6N (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 Mar 2023 05:58:13 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40384 "EHLO
+        id S229574AbjCALNg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 Mar 2023 06:13:36 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53996 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229805AbjCAK6L (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Mar 2023 05:58:11 -0500
-Received: from mail-pj1-x1035.google.com (mail-pj1-x1035.google.com [IPv6:2607:f8b0:4864:20::1035])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CEFEB14E85;
-        Wed,  1 Mar 2023 02:58:07 -0800 (PST)
-Received: by mail-pj1-x1035.google.com with SMTP id p3-20020a17090ad30300b0023a1cd5065fso712324pju.0;
-        Wed, 01 Mar 2023 02:58:07 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112; t=1677668287;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=FgbtT5VMo9Vg7rJLdgD/z46AIvGTupdTznrZ5pjSr1Y=;
-        b=N/pTfrGBr4o5Yp3FyiP5YRAf92/V//p4ALFOsEF2CBdwzXHbuO64/bjlsvgXSr8WNR
-         PvHSZBjqf+vYRjnCk/Jy5g3wIzoTzSdsDm3RC0lFjUbOAJhRDA9Y+npeyCyV7/LdYL8r
-         Y4J5ipob8rKVW5ftmL81iTCSiChyRPQ94avam0hhL8MoaQvQKYMKVjJqItNEyVW1lLv6
-         VmAZBQh1zoJ/a8eTMxKcs+gJwtMqJ81kkYkHcaqe6kikkokNURXLav/Gx97Zhjk520kF
-         OhtaqYkFSfoUCWdkR/OSdqGweRKCwMJMrt8O5jStggAOrLO7Yefk2/hHkLNJjgmvTNiM
-         mxhg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1677668287;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=FgbtT5VMo9Vg7rJLdgD/z46AIvGTupdTznrZ5pjSr1Y=;
-        b=wh68unDQJfWTCFm3/V3xtB1POvPRRBneCM/JlUCeujcyYehaK8nH2WCB/IsfpJvU5Y
-         blmhgYz1hImy9DYHZuMMG83cn1OhVlSja5QOw7EoLp+qbBgpbdW2ZD3mheXvRiETy/22
-         lIb/us1zBwy8X1DCgmVsgiuqrxSlS27jZUgmiTNeMrkFTyP0ccZYY4pqtxZrmNPkxeIE
-         2OvfTZxY8w2odc2RX5MCoesGQouqaidq2PpMNZTSJn2Lp/Orht2Z6TOBK+koTns6YDCZ
-         dkirU6WLS5YPS4GGNN1DFx4YU4h7+ROdk3acN4xWqn+hFT22/Td2Q5KicBg7J+4982Tw
-         t8og==
-X-Gm-Message-State: AO0yUKVx0GC+R1t/62JtNcNbXlPri4TpCL7OK3ZfYb5KOfi7Yna/mKud
-        EOpCEpGXd+JeYwKFdpzhLLto40J6ypjTDpxqGZk=
-X-Google-Smtp-Source: AK7set+0V4d9xQ7YZHs/VfWrDGTBSguweM3j4JjnjLbFsnJ9h6gqnYrkCKS6U/QvImgf274dK9/tMg0gQ2lpUo+vPhI=
-X-Received: by 2002:a17:90a:4e8a:b0:234:e49:ba9f with SMTP id
- o10-20020a17090a4e8a00b002340e49ba9fmr2316700pjh.4.1677668287312; Wed, 01 Mar
- 2023 02:58:07 -0800 (PST)
+        with ESMTP id S229437AbjCALNf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Mar 2023 06:13:35 -0500
+X-Greylist: delayed 4178 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Wed, 01 Mar 2023 03:13:33 PST
+Received: from 2.mo548.mail-out.ovh.net (2.mo548.mail-out.ovh.net [178.33.255.19])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0ADFD1E9E5
+        for <devicetree@vger.kernel.org>; Wed,  1 Mar 2023 03:13:33 -0800 (PST)
+Received: from mxplan5.mail.ovh.net (unknown [10.109.143.25])
+        by mo548.mail-out.ovh.net (Postfix) with ESMTPS id 6E55B212FB;
+        Wed,  1 Mar 2023 07:34:00 +0000 (UTC)
+Received: from kaod.org (37.59.142.110) by DAG4EX2.mxp5.local (172.16.2.32)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.21; Wed, 1 Mar
+ 2023 08:33:59 +0100
+Authentication-Results: garm.ovh; auth=pass (GARM-110S004a495a9e5-a5cd-4f60-b657-3841be6cd6d6,
+                    BA6511934B6943C3167A88A21852BB5F3FADB7F3) smtp.auth=clg@kaod.org
+X-OVh-ClientIp: 82.64.250.170
+Message-ID: <36da41c9-2396-5dd4-7fef-c85412f23045@kaod.org>
+Date:   Wed, 1 Mar 2023 08:33:58 +0100
 MIME-Version: 1.0
-References: <20230113164449.906002-1-robimarko@gmail.com> <20230113164449.906002-8-robimarko@gmail.com>
- <7c5dfa87-41df-4ba7-b0e4-72c8386402a8@app.fastmail.com> <CAOX2RU5Y642gWMSaK6fJ2tz=9N2AO-1fFhL5=wfLeTWWkVjz7Q@mail.gmail.com>
- <968c056c-74f9-4a8f-b662-51f60df93694@app.fastmail.com> <20230228132043.GC4839@thinkpad>
-In-Reply-To: <20230228132043.GC4839@thinkpad>
-From:   Robert Marko <robimarko@gmail.com>
-Date:   Wed, 1 Mar 2023 11:57:56 +0100
-Message-ID: <CAOX2RU61KotntoxEC+J9vDE1JEfhwDR2B21Z+GDu4nHC+y749g@mail.gmail.com>
-Subject: Re: [PATCH v2 8/9] arm64: dts: qcom: ipq8074: fix Gen3 PCIe node
-To:     Manivannan Sadhasivam <mani@kernel.org>
-Cc:     Arnd Bergmann <arnd@arndb.de>, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>, bhelgaas@google.com,
-        lpieralisi@kernel.org, Rob Herring <robh@kernel.org>,
-        =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>,
-        krzysztof.kozlowski+dt@linaro.org, svarbanov@mm-sol.com,
-        shawn.guo@linaro.org, linux-arm-msm@vger.kernel.org,
-        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Abel Vesa <abelvesa@kernel.org>,
-        Jingoo Han <jingoohan1@gmail.com>,
-        Gustavo Pimentel <gustavo.pimentel@synopsys.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.2
+Subject: Re: [PATCH v2 3/3] ARM: dts: aspeed: asrock: Correct firmware flash
+ SPI clocks
+To:     Joel Stanley <joel@jms.id.au>, Zev Weiss <zev@bewilderbeest.net>
+CC:     Andrew Jeffery <andrew@aj.id.au>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-aspeed@lists.ozlabs.org>, <linux-kernel@vger.kernel.org>,
+        <openbmc@lists.ozlabs.org>, <stable@vger.kernel.org>
+References: <20230224000400.12226-1-zev@bewilderbeest.net>
+ <20230224000400.12226-4-zev@bewilderbeest.net>
+ <CACPK8XdFT=+VJJ=iDhcmWPh9m9of2b+2UYxkrAisp6tdmWOWKg@mail.gmail.com>
+Content-Language: en-US
+From:   =?UTF-8?Q?C=c3=a9dric_Le_Goater?= <clg@kaod.org>
+In-Reply-To: <CACPK8XdFT=+VJJ=iDhcmWPh9m9of2b+2UYxkrAisp6tdmWOWKg@mail.gmail.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Originating-IP: [37.59.142.110]
+X-ClientProxiedBy: DAG2EX1.mxp5.local (172.16.2.11) To DAG4EX2.mxp5.local
+ (172.16.2.32)
+X-Ovh-Tracer-GUID: b1580e2c-5d52-471c-b456-c19902cff7ea
+X-Ovh-Tracer-Id: 18439707202531920885
+X-VR-SPAMSTATE: OK
+X-VR-SPAMSCORE: -100
+X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrgedvhedrudelgedguddtfecutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfqggfjpdevjffgvefmvefgnecuuegrihhlohhuthemucehtddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpefkffggfgfuvfevfhfhjggtgfhisehtkeertddtfeejnecuhfhrohhmpeevrogurhhitgcunfgvucfiohgrthgvrhcuoegtlhhgsehkrghougdrohhrgheqnecuggftrfgrthhtvghrnhepffdufeeliedujeeffffhjeffiefghffhhfdvkeeijeehledvueffhfejtdehgeegnecukfhppeduvdejrddtrddtrddupdefjedrheelrddugedvrdduuddtnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehinhgvthepuddvjedrtddrtddruddpmhgrihhlfhhrohhmpeeotghlgheskhgrohgurdhorhhgqedpnhgspghrtghpthhtohepuddprhgtphhtthhopehjohgvlhesjhhmshdrihgurdgruhdpiigvvhessggvfihilhguvghrsggvvghsthdrnhgvthdprghnughrvgifsegrjhdrihgurdgruhdpkhhriiihshiithhofhdrkhhoiihlohifshhkihdoughtsehlihhnrghrohdrohhrghdprhhosghhodgutheskhgvrhhnvghlrdhorhhgpdguvghvihgtvghtrhgvvgesvhhgvghrrdhkvghrnhgvlhdrohhrghdplhhinhhugidqrghrmhdqkhgvrhhnvghlsehlihhsthhsrdhinhhfrhgruggvrggurdhorhhgpdhlihhnuhigqdgrshhpvg
+ gvugeslhhishhtshdrohiilhgrsghsrdhorhhgpdhlihhnuhigqdhkvghrnhgvlhesvhhgvghrrdhkvghrnhgvlhdrohhrghdpohhpvghnsghmtgeslhhishhtshdrohiilhgrsghsrdhorhhgpdhsthgrsghlvgesvhhgvghrrdhkvghrnhgvlhdrohhrghdpoffvtefjohhsthepmhhoheegkedpmhhouggvpehsmhhtphhouhht
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 28 Feb 2023 at 14:20, Manivannan Sadhasivam <mani@kernel.org> wrote=
-:
->
-> On Thu, Feb 02, 2023 at 10:42:15AM +0100, Arnd Bergmann wrote:
-> > On Thu, Feb 2, 2023, at 10:16, Robert Marko wrote:
-> > > On Mon, 30 Jan 2023 at 18:11, Arnd Bergmann <arnd@arndb.de> wrote:
-> > >> On Fri, Jan 13, 2023, at 17:44, Robert Marko wrote:
-> > >
-> > > As pointed out in the commit description, the ranges property was cop=
-ied
-> > > from the QCA-s downstream 5.4 kernel [1] as I dont have any documenta=
-tion
-> > > on the SoC.
-> > >
-> > > I have runtime tested this on Xiaomi AX3600 which has a QCA9889 card =
-on the
-> > > Gen3 PCIe port, and on Xiaomi AX9000 which has QCA9889 on Gen2 port
-> > > and QCN9074 on the Gen3 port and they are working fine.
-> >
-> > Neither of those use I/O ports though, nor does any other sensible
-> > device that was made in the past decade.
-> >
-> > The compatible string tells me that this is a designware pcie block,
-> > so I think driver actually sets up the mapping based on the ranges
-> > property in DT in dw_pcie_iatu_detect() and dw_pcie_iatu_setup(),
-> > rather than the mapping being determined by hardware or firmware
-> > in advance.
-> >
-> > Not sure about the general policy we have for this case, maybe the
-> > pci controller or pci-dwc maintainers have an idea here. I would
-> > think it's better to either have no I/O ranges in DT or have
-> > sensible ones than ones that are clearly bogus, if the controller
-> > is able to set up the ranges.
-> >
->
-> Just happen to see this thread and I agree that the I/O port range is ind=
-eeed
-> bogus. This is due to the fact that no one tested I/O range with a compat=
-ible
-> device.
->
-> I'm not sure about the PCI policy though but we should fix the mapping ac=
-ross
-> all SoCs. I will send out a series for that.
+On 3/1/23 02:30, Joel Stanley wrote:
+> On Fri, 24 Feb 2023 at 00:04, Zev Weiss <zev@bewilderbeest.net> wrote:
+>>
+>> While I'm not aware of any problems that have occurred running these
+>> at 100 MHz, the official word from ASRock is that 50 MHz is the
+>> correct speed to use, so let's be safe and use that instead.
+> 
+> :(
+> 
+> Validated with which driver?
+> 
+> Cédric, do you have any thoughts on this?
+  
 
-Thanks for sorting this out.
+Transactions on the Firmware SPI controller are usually configured at
+50MHz by U-Boot and Linux to stay on the safe side, specially CE0 from
+which the board boots. The other SPI controllers are generally set at
+a higher freq : 100MHz, because the devices on these buses are not for
+booting the BMC, they are mostly only written to (at a default lower
+freq). There are some exceptions when the devices and the wiring permit
+higher rates.
 
-Regards,
-Robert
->
-> Thanks for spotting, Arnd!
->
-> - Mani
->
-> >      Arnd
->
-> --
-> =E0=AE=AE=E0=AE=A3=E0=AE=BF=E0=AE=B5=E0=AE=A3=E0=AF=8D=E0=AE=A3=E0=AE=A9=
-=E0=AF=8D =E0=AE=9A=E0=AE=A4=E0=AE=BE=E0=AE=9A=E0=AE=BF=E0=AE=B5=E0=AE=AE=
-=E0=AF=8D
+For the record, we lowered the SPI freq on the AST2400 (palmetto)
+because some chips would freak out once in a while at 100MHz.
+
+C.
+
+>> Signed-off-by: Zev Weiss <zev@bewilderbeest.net>
+>> Cc: stable@vger.kernel.org
+>> Fixes: 2b81613ce417 ("ARM: dts: aspeed: Add ASRock E3C246D4I BMC")
+>> Fixes: a9a3d60b937a ("ARM: dts: aspeed: Add ASRock ROMED8HM3 BMC")
+>> ---
+>>   arch/arm/boot/dts/aspeed-bmc-asrock-e3c246d4i.dts | 2 +-
+>>   arch/arm/boot/dts/aspeed-bmc-asrock-romed8hm3.dts | 2 +-
+>>   2 files changed, 2 insertions(+), 2 deletions(-)
+>>
+>> diff --git a/arch/arm/boot/dts/aspeed-bmc-asrock-e3c246d4i.dts b/arch/arm/boot/dts/aspeed-bmc-asrock-e3c246d4i.dts
+>> index 67a75aeafc2b..c4b2efbfdf56 100644
+>> --- a/arch/arm/boot/dts/aspeed-bmc-asrock-e3c246d4i.dts
+>> +++ b/arch/arm/boot/dts/aspeed-bmc-asrock-e3c246d4i.dts
+>> @@ -63,7 +63,7 @@ flash@0 {
+>>                  status = "okay";
+>>                  m25p,fast-read;
+>>                  label = "bmc";
+>> -               spi-max-frequency = <100000000>; /* 100 MHz */
+>> +               spi-max-frequency = <50000000>; /* 50 MHz */
+>>   #include "openbmc-flash-layout.dtsi"
+>>          };
+>>   };
+>> diff --git a/arch/arm/boot/dts/aspeed-bmc-asrock-romed8hm3.dts b/arch/arm/boot/dts/aspeed-bmc-asrock-romed8hm3.dts
+>> index 00efe1a93a69..4554abf0c7cd 100644
+>> --- a/arch/arm/boot/dts/aspeed-bmc-asrock-romed8hm3.dts
+>> +++ b/arch/arm/boot/dts/aspeed-bmc-asrock-romed8hm3.dts
+>> @@ -51,7 +51,7 @@ flash@0 {
+>>                  status = "okay";
+>>                  m25p,fast-read;
+>>                  label = "bmc";
+>> -               spi-max-frequency = <100000000>; /* 100 MHz */
+>> +               spi-max-frequency = <50000000>; /* 50 MHz */
+>>   #include "openbmc-flash-layout-64.dtsi"
+>>          };
+>>   };
+>> --
+>> 2.39.1.438.gdcb075ea9396.dirty
+>>
+
