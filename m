@@ -2,56 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8DEA76A693D
-	for <lists+devicetree@lfdr.de>; Wed,  1 Mar 2023 09:56:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 724886A697A
+	for <lists+devicetree@lfdr.de>; Wed,  1 Mar 2023 10:09:23 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229781AbjCAI4x (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 Mar 2023 03:56:53 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50082 "EHLO
+        id S229589AbjCAJJV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 Mar 2023 04:09:21 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33076 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229660AbjCAI4w (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Mar 2023 03:56:52 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 091A128D2C;
-        Wed,  1 Mar 2023 00:56:52 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 96E3461254;
-        Wed,  1 Mar 2023 08:56:51 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3B49AC433EF;
-        Wed,  1 Mar 2023 08:56:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1677661011;
-        bh=8o/qEmUZeq3CS88LJJhl8I4SiIGxhxTJFc5HiEIcKHM=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=SgMGQQVGjhwZHL+rwWCJFtoFUR/wn9crHR6aQMdFafpBEZ4KFGjXYUZgc1lFiVrsN
-         mGiOREiQKB5Dxal/wozV2D+J6h48VOzzAVVNonP6DaSW7lzTlb/gjRKP/qOxbthrab
-         kWsa73pPSljAA+j7H8/RFIP91L3bZHx2qNQkyZIIWdKIN4b8v8qLuAb8fpWYzsRRTb
-         MmejvP4kpBBoTw/3UWR0RdGg/iY9ZCP8IpFgbRggXRtNZNrBHS8BHPgZ35PQZCri6s
-         oCExO0cltCKgAYPxInpmQoV2KGxquxREpGl70mlCBMso3JDu+EKi+J39bpraFl3aCY
-         b/IqajPaQhUyA==
-Date:   Wed, 1 Mar 2023 08:56:45 +0000
-From:   Lee Jones <lee@kernel.org>
-To:     Pavel Machek <pavel@ucw.cz>
-Cc:     Martin Kurbanov <mmkurbanov@sberdevices.ru>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S229481AbjCAJJU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Mar 2023 04:09:20 -0500
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7AB181BAD6
+        for <devicetree@vger.kernel.org>; Wed,  1 Mar 2023 01:09:19 -0800 (PST)
+Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <mfe@pengutronix.de>)
+        id 1pXISE-0002Ur-2o; Wed, 01 Mar 2023 10:08:54 +0100
+Received: from mfe by ptx.hi.pengutronix.de with local (Exim 4.92)
+        (envelope-from <mfe@pengutronix.de>)
+        id 1pXISB-00030N-Oz; Wed, 01 Mar 2023 10:08:51 +0100
+Date:   Wed, 1 Mar 2023 10:08:51 +0100
+From:   Marco Felsch <m.felsch@pengutronix.de>
+To:     Marek Vasut <marex@denx.de>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        linux-arm-kernel@lists.infradead.org,
+        Abel Vesa <abelvesa@kernel.org>,
+        Alexander Stein <alexander.stein@ew.tq-group.com>,
+        Fabio Estevam <festevam@gmail.com>,
+        Jacky Bai <ping.bai@nxp.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andy Shevchenko <andy.shevchenko@gmail.com>,
-        linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, kernel@sberdevices.ru
-Subject: Re: [PATCH v2 2/2] leds: add aw20xx driver
-Message-ID: <Y/8TTRtoFMJhMWV1@google.com>
-References: <20230228211046.109693-1-mmkurbanov@sberdevices.ru>
- <20230228211046.109693-3-mmkurbanov@sberdevices.ru>
- <Y/5xBGFC3b9Chdtb@duo.ucw.cz>
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Luca Ceresoli <luca.ceresoli@bootlin.com>,
+        Lucas Stach <l.stach@pengutronix.de>,
+        Michael Turquette <mturquette@baylibre.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Peng Fan <peng.fan@nxp.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Richard Cochran <richardcochran@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Stephen Boyd <sboyd@kernel.org>, devicetree@vger.kernel.org,
+        linux-clk@vger.kernel.org
+Subject: Re: [PATCH] arm64: dts: imx8mn: specify #sound-dai-cells for SAI
+ nodes
+Message-ID: <20230301090851.giyqbfh4iwtzys4d@pengutronix.de>
+References: <20230227174535.87657-1-marex@denx.de>
+ <20230227190123.znifdqympsantpt6@pengutronix.de>
+ <a519eb0b-dc40-deec-03d3-676648a52f15@denx.de>
+ <20230227200039.ugmtvpli6gvux3fi@pengutronix.de>
+ <947af937-3178-48ad-998f-b048245f3ffe@linaro.org>
+ <5aa6d956-f00b-faa2-e189-12cf1274962b@denx.de>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <Y/5xBGFC3b9Chdtb@duo.ucw.cz>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+In-Reply-To: <5aa6d956-f00b-faa2-e189-12cf1274962b@denx.de>
+User-Agent: NeoMutt/20180716
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
+X-SA-Exim-Mail-From: mfe@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -59,26 +71,58 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 28 Feb 2023, Pavel Machek wrote:
-
-> Hi!
+On 23-02-28, Marek Vasut wrote:
+> On 2/28/23 09:10, Krzysztof Kozlowski wrote:
+> > On 27/02/2023 21:00, Marco Felsch wrote:
+> > > > > > +					#sound-dai-cells = <0>;
+> > > > > 
+> > > > > Please don't add it in front of the compatible and the reg property.
+> > > > 
+> > > > The #address-cells and #size-cells are also always on top, why should the
+> > > > #sound-dai-cells be any different ? Where should they be ?
+> > > 
+> > > As of now my understanding of specifying a devicetree node was:
+> > > 
+> > > node-name@reg-nr {
+> > > 	compatible = "";
+> > > 	reg = <>;
+> > > 	// all pending properties below
+> > > 	...
+> > > };
+> > > 
+> > > @Rob, @Krzysztof:
+> > > Is this a (unwritten) rule/policy?
+> > > 
+> > 
+> > Each platform has its own coding style around this but I am not aware of
+> > a coding style which puts address and size cells at the top.
 > 
-> > +config LEDS_AW200XX
-> > +	tristate "LED support for Awinic AW20036/AW20054/AW20072"
-> > +	depends on LEDS_CLASS
-> > +	depends on I2C
-> > +	help
-> > +	  This option enables support for the AW20036/AW20054/AW20072 LED driver.
-> > +	  It is a 3x12/6x9/6x12 matrix LED driver programmed via
-> > +	  an I2C interface, up to 36/54/72 LEDs or 12/18/24 RGBs,
-> > +	  3 pattern controllers for auto breathing or group dimming control.
+> DTspec 0.3 and 0.4-rc agrees with the below.
 > 
-> I'm afraid this should be handled as a display, not as an array of
-> individual LEDs.
+> Linux seems to be full of counter-examples though:
+> $ git grep -A 1 ' {$' arch/*/boot/dts/ | grep -B 1 cells
+> 
+> > To me it is
+> > really odd placement. First property is always "compatible", as the most
+> > important. Then for most platforms second is "reg", as the one easiest
+> > to compare with unit address. Some platforms put status as last property.
+> 
+> All right, so:
+> 
+> - compatible
+> - reg
+> - #whatever-cells
+> - properties
+> - status
+> 
+> Does that order look right ?
 
-Just for my own information, where do we draw the line on this?
+I would swap the #whatever-cells with the properties, but that's just my
+opinion. The rest looks good to me. Thanks for the research.
 
-Is 4x4 okay?  How about 6x6?
+Regards,
+  Marco
 
--- 
-Lee Jones [李琼斯]
+> 
+> [...]
+> 
