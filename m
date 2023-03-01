@@ -2,130 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2A1576A771F
-	for <lists+devicetree@lfdr.de>; Wed,  1 Mar 2023 23:53:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6347B6A777F
+	for <lists+devicetree@lfdr.de>; Thu,  2 Mar 2023 00:04:30 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229592AbjCAWxs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 Mar 2023 17:53:48 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33484 "EHLO
+        id S229895AbjCAXE2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 Mar 2023 18:04:28 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41488 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229445AbjCAWxr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Mar 2023 17:53:47 -0500
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1B64F1B2E3;
-        Wed,  1 Mar 2023 14:53:46 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1677711226; x=1709247226;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=TbdI4Y4Wwsm9UOJ+PB3HFSYFJE1MwNlUpSEMRYtwwsg=;
-  b=Z6wIdYGrJkI7l8ASPmJ+GedPxjowkV2QHRjTRjF/YRJDl2hzguj3zB/z
-   Q2ePOQzudSK1dHUcm7XIetaEveePrAHNHjTjT7frM1nadJTdV2/DnlK/J
-   KTBDaAlN+Ilpa6w46fhOJcuiuVrNzhK5iVcwhqCLkZnoXD9v0v0Oj2fXz
-   wSFLay4LbNrJXLqlL7RSA/niLPzjzcTN8rpSIfqITMml8LoAJtOMkG3jA
-   o8Jt4rYXikM2Iwa17AF0LzHGSXkqLFOhhoj7g0WlJoU+gj0rXlBO/5KMH
-   q67ZyCJyCaNTYC8nDhs8pOkj4HZfRtrf0b2g2+S/7kJg+r0AZBFZCWFWo
-   Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10636"; a="362129302"
-X-IronPort-AV: E=Sophos;i="5.98,225,1673942400"; 
-   d="scan'208";a="362129302"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-  by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 01 Mar 2023 14:53:44 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10636"; a="674730270"
-X-IronPort-AV: E=Sophos;i="5.98,225,1673942400"; 
-   d="scan'208";a="674730270"
-Received: from lkp-server01.sh.intel.com (HELO 3895f5c55ead) ([10.239.97.150])
-  by orsmga002.jf.intel.com with ESMTP; 01 Mar 2023 14:53:38 -0800
-Received: from kbuild by 3895f5c55ead with local (Exim 4.96)
-        (envelope-from <lkp@intel.com>)
-        id 1pXVKL-0006Th-0z;
-        Wed, 01 Mar 2023 22:53:37 +0000
-Date:   Thu, 2 Mar 2023 06:53:35 +0800
-From:   kernel test robot <lkp@intel.com>
-To:     Martin =?utf-8?B?WmHFpW92acSN?= <m.zatovic1@gmail.com>,
-        linux-kernel@vger.kernel.org
-Cc:     oe-kbuild-all@lists.linux.dev, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, gregkh@linuxfoundation.org,
-        airlied@redhat.com, dipenp@nvidia.com, treding@nvidia.com,
-        mwen@igalia.com, fmdefrancesco@gmail.com, arnd@arndb.de,
-        bvanassche@acm.org, ogabbay@kernel.org, axboe@kernel.dk,
-        mathieu.poirier@linaro.org, linux@zary.sk, masahiroy@kernel.org,
-        yangyicong@hisilicon.com, dan.j.williams@intel.com,
-        jacek.lawrynowicz@linux.intel.com, benjamin.tissoires@redhat.com,
-        devicetree@vger.kernel.org, furong.zhou@linux.intel.com,
-        andriy.shevchenko@intel.com, linus.walleij@linaro.org,
-        Martin =?utf-8?B?WmHFpW92acSN?= <m.zatovic1@gmail.com>
-Subject: Re: [PATCHv3 2/4] wiegand: add Wiegand bus driver
-Message-ID: <202303020615.0F00suDa-lkp@intel.com>
-References: <20230301142835.19614-3-m.zatovic1@gmail.com>
+        with ESMTP id S229781AbjCAXE1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Mar 2023 18:04:27 -0500
+X-Greylist: delayed 71 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Wed, 01 Mar 2023 15:04:17 PST
+Received: from smtpout1.mo528.mail-out.ovh.net (smtpout1.mo528.mail-out.ovh.net [46.105.34.251])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 99AEB4BEAF;
+        Wed,  1 Mar 2023 15:04:17 -0800 (PST)
+Received: from pro2.mail.ovh.net (unknown [10.109.156.120])
+        by mo528.mail-out.ovh.net (Postfix) with ESMTPS id 694A92195F;
+        Wed,  1 Mar 2023 18:52:58 +0000 (UTC)
+Received: from localhost.localdomain (88.161.25.233) by DAG1EX1.emp2.local
+ (172.16.2.1) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.21; Wed, 1 Mar
+ 2023 19:52:57 +0100
+From:   Jean-Jacques Hiblot <jjhiblot@traphandler.com>
+To:     <saravanak@google.com>, <clement.leger@bootlin.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Russell King <linux@armlinux.org.uk>,
+        Michael Ellerman <mpe@ellerman.id.au>,
+        Nicholas Piggin <npiggin@gmail.com>,
+        Christophe Leroy <christophe.leroy@csgroup.eu>,
+        <zajec5@gmail.com>, Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Claudiu Beznea <claudiu.beznea@microchip.com>,
+        Marc Zyngier <maz@kernel.org>, <afaerber@suse.de>,
+        Manivannan Sadhasivam <mani@kernel.org>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Samuel Holland <samuel@sholland.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Nishanth Menon <nm@ti.com>, <ssantosh@kernel.org>,
+        <mathias.nyman@intel.com>, <gregkh@linuxfoundation.org>,
+        <thierry.reding@gmail.com>, <jonathanh@nvidia.com>
+CC:     <linux-renesas-soc@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <linuxppc-dev@lists.ozlabs.org>,
+        <linux-wireless@vger.kernel.org>,
+        <linux-actions@lists.infradead.org>,
+        <linux-riscv@lists.infradead.org>, <linux-sunxi@lists.linux.dev>,
+        <devicetree@vger.kernel.org>, <linux-pci@vger.kernel.org>,
+        <linux-usb@vger.kernel.org>, <linux-tegra@vger.kernel.org>,
+        Jean-Jacques Hiblot <jjhiblot@traphandler.com>
+Subject: [PATCH 0/3] of: irq: Fixes refcount issues with of_irq_parse_one()/of_irq_parse_raw()
+Date:   Wed, 1 Mar 2023 19:52:06 +0100
+Message-ID: <20230301185209.274134-1-jjhiblot@traphandler.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230301142835.19614-3-m.zatovic1@gmail.com>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7BIT
+Content-Type:   text/plain; charset=US-ASCII
+X-Originating-IP: [88.161.25.233]
+X-ClientProxiedBy: DAG3EX2.emp2.local (172.16.2.22) To DAG1EX1.emp2.local
+ (172.16.2.1)
+X-Ovh-Tracer-Id: 11460535153186650492
+X-VR-SPAMSTATE: OK
+X-VR-SPAMSCORE: -100
+X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrgedvhedrudelhedguddutdcutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfqggfjpdevjffgvefmvefgnecuuegrihhlohhuthemucehtddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpefhvfevufffkffoggfgtghisehtkeertdertddtnecuhfhrohhmpeflvggrnhdqlfgrtghquhgvshcujfhisghlohhtuceojhhjhhhisghlohhtsehtrhgrphhhrghnughlvghrrdgtohhmqeenucggtffrrghtthgvrhhnpeejuefhkeelgffhlefhtefhgeektdevvdfgkeeltdehgeeujeeutdehkeeuhffftdenucfkphepuddvjedrtddrtddruddpkeekrdduiedurddvhedrvdeffeenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepihhnvghtpeduvdejrddtrddtrddupdhmrghilhhfrhhomhepoehjjhhhihgslhhothesthhrrghphhgrnhgulhgvrhdrtghomheqpdhnsggprhgtphhtthhopedupdhrtghpthhtohepshgrrhgrvhgrnhgrkhesghhoohhglhgvrdgtohhmpdhnmhesthhirdgtohhmpdhsshgrnhhtohhshheskhgvrhhnvghlrdhorhhgpdhmrghthhhirghsrdhnhihmrghnsehinhhtvghlrdgtohhmpdhgrhgvghhkhheslhhinhhugihfohhunhgurghtihhonhdrohhrghdpthhhihgvrhhrhidrrhgvughinhhgsehgmhgrihhlrdgtohhmpdhjohhnrghthhgrnhhhsehnvhhiughirgdrtghomhdplhhinhhugidqrh
+ gvnhgvshgrshdqshhotgesvhhgvghrrdhkvghrnhgvlhdrohhrghdplhhinhhugidqrghrmhdqkhgvrhhnvghlsehlihhsthhsrdhinhhfrhgruggvrggurdhorhhgpdhlihhnuhigqdhkvghrnhgvlhesvhhgvghrrdhkvghrnhgvlhdrohhrghdplhhinhhugihpphgtqdguvghvsehlihhsthhsrdhoiihlrggsshdrohhrghdplhhinhhugidqfihirhgvlhgvshhssehvghgvrhdrkhgvrhhnvghlrdhorhhgpdhlihhnuhigqdgrtghtihhonhhssehlihhsthhsrdhinhhfrhgruggvrggurdhorhhgpdhlihhnuhigqdhrihhstghvsehlihhsthhsrdhinhhfrhgruggvrggurdhorhhgpdhlihhnuhigqdhsuhhngihisehlihhsthhsrdhlihhnuhigrdguvghvpdguvghvihgtvghtrhgvvgesvhhgvghrrdhkvghrnhgvlhdrohhrghdplhhinhhugidqphgtihesvhhgvghrrdhkvghrnhgvlhdrohhrghdplhhinhhugidquhhssgesvhhgvghrrdhkvghrnhgvlhdrohhrghdpsghhvghlghgrrghssehgohhoghhlvgdrtghomhdpfhhrohifrghnugdrlhhishhtsehgmhgrihhlrdgtohhmpdhrohgshhdoughtsehkvghrnhgvlhdrohhrghdpshgrmhhuvghlsehshhholhhlrghnugdrohhrghdptghlvghmvghnthdrlhgvghgvrhessghoohhtlhhinhdrtghomhdpghgvvghrthdorhgvnhgvshgrshesghhlihguvghrrdgsvgdpmhgrghhnuhhsrdgurghmmhesghhmrghilhdrtghomhdplhhinhhugiesrghrmhhlihhnuhigrdhorhh
+ grdhukhdpmhhpvgesvghllhgvrhhmrghnrdhiugdrrghupdhnphhighhgihhnsehgmhgrihhlrdgtohhmpdgthhhrihhsthhophhhvgdrlhgvrhhohiestghsghhrohhuphdrvghupdiirghjvggtheesghhmrghilhdrtghomhdplhhinhhugidqthgvghhrrgesvhhgvghrrdhkvghrnhgvlhdrohhrghdpuggrnhhivghlrdhlvgiitggrnhhosehlihhnrghrohdrohhrghdptghlrghuughiuhdrsggviihnvggrsehmihgtrhhotghhihhprdgtohhmpdhmrgiisehkvghrnhgvlhdrohhrghdprghfrggvrhgsvghrsehsuhhsvgdruggvpdhmrghniheskhgvrhhnvghlrdhorhhgpdhprghlmhgvrhesuggrsggsvghlthdrtghomhdpphgruhhlrdifrghlmhhslhgvhiesshhifhhivhgvrdgtohhmpdifvghnshestghsihgvrdhorhhgpdhjvghrnhgvjhdrshhkrhgrsggvtgesghhmrghilhdrtghomhdpthhglhigsehlihhnuhhtrhhonhhigidruggvpdfovfetjfhoshhtpehmohehvdekpdhmohguvgepshhmthhpohhuth
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_NONE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Martin,
+This series attempts to fix refcounting issues related to of_irq_parse_one()
+and of_irq_parse_raw().
 
-I love your patch! Yet something to improve:
+The first issue is simply that most callers of of_irq_parse_one() and
+of_irq_parse_raw() don't call of_node_put() on the returned device node when
+they no longer need it.
 
-[auto build test ERROR on robh/for-next]
-[also build test ERROR on linus/master v6.2 next-20230301]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+The second issue is a double get() happening in of_irq_parse_one() when
+parsing the "interrupts-extended" properties.
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Martin-Za-ovi/dt-bindings-wiegand-add-Wiegand-controller-common-properties/20230301-223030
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
-patch link:    https://lore.kernel.org/r/20230301142835.19614-3-m.zatovic1%40gmail.com
-patch subject: [PATCHv3 2/4] wiegand: add Wiegand bus driver
-config: sh-allmodconfig (https://download.01.org/0day-ci/archive/20230302/202303020615.0F00suDa-lkp@intel.com/config)
-compiler: sh4-linux-gcc (GCC) 12.1.0
-reproduce (this is a W=1 build):
-        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
-        chmod +x ~/bin/make.cross
-        # https://github.com/intel-lab-lkp/linux/commit/c62b833f42989e355d82cd20b7803e0228e33792
-        git remote add linux-review https://github.com/intel-lab-lkp/linux
-        git fetch --no-tags linux-review Martin-Za-ovi/dt-bindings-wiegand-add-Wiegand-controller-common-properties/20230301-223030
-        git checkout c62b833f42989e355d82cd20b7803e0228e33792
-        # save the config file
-        mkdir build_dir && cp config build_dir/.config
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.1.0 make.cross W=1 O=build_dir ARCH=sh olddefconfig
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.1.0 make.cross W=1 O=build_dir ARCH=sh SHELL=/bin/bash drivers/wiegand/
-
-If you fix the issue, kindly add following tag where applicable
-| Reported-by: kernel test robot <lkp@intel.com>
-| Link: https://lore.kernel.org/oe-kbuild-all/202303020615.0F00suDa-lkp@intel.com/
-
-All errors (new ones prefixed by >>):
-
->> drivers/wiegand/wiegand.c:441:27: error: initialization of 'void (*)(struct device *)' from incompatible pointer type 'int (*)(struct device *)' [-Werror=incompatible-pointer-types]
-     441 |         .remove         = wiegand_remove,
-         |                           ^~~~~~~~~~~~~~
-   drivers/wiegand/wiegand.c:441:27: note: (near initialization for 'wiegand_bus_type.remove')
-   cc1: some warnings being treated as errors
+WARNING: I tried to be careful when modifying the callers of
+of_irq_parse_one()/of_irq_parse_raw() but haven't test-build all the changes.
 
 
-vim +441 drivers/wiegand/wiegand.c
+Jean-Jacques Hiblot (3):
+  of: irq: make callers of of_irq_parse_raw() release the device node
+  of: irq: make callers of of_irq_parse_one() release the device node
+  of: irq: release the node after looking up for "interrupts-extended"
 
-   436	
-   437	static struct bus_type wiegand_bus_type = {
-   438		.name		= "wiegand",
-   439		.match		= wiegand_match_device,
-   440		.probe		= wiegand_probe,
- > 441		.remove		= wiegand_remove,
-   442	};
-   443	
+ .../mach-shmobile/regulator-quirk-rcar-gen2.c |  1 +
+ arch/powerpc/platforms/fsl_uli1575.c          |  1 +
+ arch/powerpc/sysdev/mpic_msi.c                |  1 +
+ drivers/bcma/main.c                           |  5 +++-
+ drivers/clocksource/timer-clint.c             |  1 +
+ drivers/irqchip/irq-mchp-eic.c                |  1 +
+ drivers/irqchip/irq-owl-sirq.c                |  1 +
+ drivers/irqchip/irq-renesas-rzg2l.c           |  1 +
+ drivers/irqchip/irq-sifive-plic.c             |  1 +
+ drivers/irqchip/irq-sun6i-r.c                 |  2 ++
+ drivers/of/irq.c                              | 30 ++++++++++++++-----
+ drivers/of/unittest.c                         |  7 +++++
+ drivers/pci/of.c                              |  6 +++-
+ drivers/soc/ti/knav_qmss_queue.c              |  3 ++
+ drivers/usb/host/xhci-tegra.c                 |  1 +
+ 15 files changed, 53 insertions(+), 9 deletions(-)
 
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests
+2.25.1
+
