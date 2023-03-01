@@ -2,155 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E01766A7186
-	for <lists+devicetree@lfdr.de>; Wed,  1 Mar 2023 17:49:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B4EF96A7251
+	for <lists+devicetree@lfdr.de>; Wed,  1 Mar 2023 18:52:42 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229765AbjCAQtU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 Mar 2023 11:49:20 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50640 "EHLO
+        id S229540AbjCARwk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 Mar 2023 12:52:40 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48994 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229437AbjCAQtT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Mar 2023 11:49:19 -0500
-Received: from mail-oi1-x232.google.com (mail-oi1-x232.google.com [IPv6:2607:f8b0:4864:20::232])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 81E05D31C;
-        Wed,  1 Mar 2023 08:49:18 -0800 (PST)
-Received: by mail-oi1-x232.google.com with SMTP id q15so11240366oiw.11;
-        Wed, 01 Mar 2023 08:49:18 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112; t=1677689358;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=c9wdsbMNTHgMb7ajw9hv0Rh+JOQBVAyLx532BC1s6iE=;
-        b=U1Yl+mNkFHrt0SXv9IwKGhR8sXq06pVxP6InfL46oF1B7cpqJQ5/jFIdZhzAXciBU1
-         l5yI/qvq+6jMiFutnpJjOvP0HIuqQHANRIzY5mFJjyrsZvv9de1xrDsA/qF0m8hAwVEW
-         6OIUajzzrKDyv8teNK4qHCseQZmzYRoxvZiLmyFgJvRhP2AZsOFeOjPGVwQuxrZ3zlcV
-         GcWcD8uTK6i4qOaruxIeVPc15UovbtiyQW4jkR5jkP31/nKGKASM/T2UwUMk1CaVrTSi
-         Uxqm3+NQBWwLQZC7P4jV9u65bl6f2XRQ7+RjLi+gyzQNM/mKNO+zFI7ecvRV4HDGqCDO
-         bdCQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1677689358;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=c9wdsbMNTHgMb7ajw9hv0Rh+JOQBVAyLx532BC1s6iE=;
-        b=n5AKNOeJnoEWrfmr3N16SuWLezQsaiiX65MecVH6sntJB3qdy/ndosJvMwSyuWTism
-         PNgvvPNwRz9E8p/pnygcYmPT4xCWS5ZLlpPbaBawlEgoxD9K7ZFZiljqmrO79PELb7p+
-         goiLvfcSi9I8rY4h53JaxnFTl2WRc8XgzRd61B8T/Unt3A8ZqfAv0gTB0/WLle7eenWD
-         0rEitcLNjeSfr8ifBjDFfZ7gGXRa3qi2CL1D+k4bqFTh7EgaVoQ8QPi8IQrFEY2MMPNu
-         mfFM6mOGYVFmRSS/5+pQe8Vozdc723NcnfwJcai2nnZW+o6Ixb3x2H7iy2f0zaBwE1Gc
-         posQ==
-X-Gm-Message-State: AO0yUKVrQNEjqIdR4i974ZS+5QDh28zWhCayXfqTzKYmQtWJ2yO7aln1
-        v2SrJC0DfuDFo4KyseXaUK95vPS5yHI=
-X-Google-Smtp-Source: AK7set+XgZ2E22V1a/xAX5ViVgWp2cA9EwhZpIk5PZsoOGa0dx98vAEyBEUwVcKcC2Gi3WUi9G/Zvw==
-X-Received: by 2002:a05:6808:5d0:b0:37f:a486:c92a with SMTP id d16-20020a05680805d000b0037fa486c92amr3095080oij.22.1677689357859;
-        Wed, 01 Mar 2023 08:49:17 -0800 (PST)
-Received: from ?IPV6:2600:1700:2442:6db0:404a:d987:1f3d:2ea? ([2600:1700:2442:6db0:404a:d987:1f3d:2ea])
-        by smtp.gmail.com with ESMTPSA id j19-20020a9d7f13000000b00690dd5e7345sm5088031otq.26.2023.03.01.08.49.16
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 01 Mar 2023 08:49:17 -0800 (PST)
-Message-ID: <f26ffb41-f542-2809-9818-903947dd6eb4@gmail.com>
-Date:   Wed, 1 Mar 2023 10:49:16 -0600
+        with ESMTP id S229486AbjCARwj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Mar 2023 12:52:39 -0500
+Received: from NAM10-DM6-obe.outbound.protection.outlook.com (mail-dm6nam10on2087.outbound.protection.outlook.com [40.107.93.87])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A63EA3E098;
+        Wed,  1 Mar 2023 09:52:36 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=fFkwhEAj99kMuz4ye8Em6A5i+ZSolo+e2J3zKQVWsiFG2okbQCCwm7gYWBvBp4eZ97c6+MOF5lMY/lXe3lqvgazVG30Uf+/IcLU+aGUTt8LD9QY/tVwP4H49ts3lua5X3r3NRMVKRvSx+hFhQYjEeZWy5eCHG3kG8hIyA77tTC0VwSE1ulxjYfL6cyOeb0ad2ipweuuesVReaRNfDEBw1pv8sYt6AB7XNM+5neJOfMLXq71UWTs0gO22cBqP3JmlUpbQYH753HUrH09P3wc9B5tFvSSqDkSQ8MEgS2x1ZtYaOPcbQaOySjHAzPL8+2dV6LSX5uIZCjYiFrOLxfL0PA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=CtHu3Hln1S0SoyywQdBSgTA9vOGhRhYxb315DTtMimQ=;
+ b=AqxUtvMhzqrowbnwNF/TjOBG51nwBLgyNLWw3bEQBSwagOxRBFBo/VCvPvKpZ0x4au5kYYlCU9PLcKql5/efS7nRiXCTfja7owBS5IiVzlJTTCljTxiuwLxI893RM9S6jFperoebpl4qqkjxpua+EKt8tiWaAd+BRhRAPjbJQN1yCYhop+3zVsLoBS1mePrfMiEUO+IU+GzItFObAw6hxXGXSZ//Py10nChcjMTwJH9ivvvpovdI11DaLNO6lazHXJt+sI/F48iF5IE9pR1lsuYwmlYfysTjUtYBL2opWBR8al02O7uHZ3zHV4oSEM+tX4weOlaTOE72FRDLQVsdYg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=roeck-us.net smtp.mailfrom=amd.com;
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=CtHu3Hln1S0SoyywQdBSgTA9vOGhRhYxb315DTtMimQ=;
+ b=J3pJwEm2ctp6oGz5Na45c2jekX6WeKFrRo8HhRLW53F5zr6shGzYDSC2rjaZnPP7I6EMDHJBqnNBFkTdChGsfKUJFogAYFolV5FL7sSbaQztrYRJJKonD+0mRDzgs1gkiChZytLnjZTuW90ig6rBXwUifkA1OIZD19/KJjbZFrI=
+Received: from BN9PR03CA0376.namprd03.prod.outlook.com (2603:10b6:408:f7::21)
+ by DS0PR12MB8443.namprd12.prod.outlook.com (2603:10b6:8:126::14) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6134.29; Wed, 1 Mar
+ 2023 17:52:34 +0000
+Received: from BN8NAM11FT093.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:408:f7:cafe::f4) by BN9PR03CA0376.outlook.office365.com
+ (2603:10b6:408:f7::21) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6156.18 via Frontend
+ Transport; Wed, 1 Mar 2023 17:52:34 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ BN8NAM11FT093.mail.protection.outlook.com (10.13.177.22) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.6156.18 via Frontend Transport; Wed, 1 Mar 2023 17:52:34 +0000
+Received: from SATLEXMB03.amd.com (10.181.40.144) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.34; Wed, 1 Mar
+ 2023 11:52:33 -0600
+Received: from xhdsneeli40.xilinx.com (10.180.168.240) by SATLEXMB03.amd.com
+ (10.181.40.144) with Microsoft SMTP Server id 15.1.2375.34 via Frontend
+ Transport; Wed, 1 Mar 2023 11:52:30 -0600
+From:   Srinivas Neeli <srinivas.neeli@amd.com>
+To:     <linux@roeck-us.net>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <michal.simek@amd.com>,
+        <neelisrinivas18@gmail.com>
+CC:     <wim@linux-watchdog.org>, <linux-watchdog@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <git@xilinx.com>, <git@amd.com>,
+        <devicetree@vger.kernel.org>
+Subject: [PATCH V2 0/4] watchdog: xilinx_wwdt: Add Versal watchdog support
+Date:   Wed, 1 Mar 2023 23:22:25 +0530
+Message-ID: <20230301175229.342004-1-srinivas.neeli@amd.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.1
-Subject: Re: [PATCH v3 1/2] of: create of_root if no dtb provided
-Content-Language: en-US
-To:     Rob Herring <robh@kernel.org>
-Cc:     =?UTF-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <clement.leger@bootlin.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Lizhi Hou <lizhi.hou@xilinx.com>,
-        Allan Nielsen <allan.nielsen@microchip.com>,
-        Horatiu Vultur <horatiu.vultur@microchip.com>,
-        Steen Hegelund <steen.hegelund@microchip.com>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-References: <20230223213418.891942-1-frowand.list@gmail.com>
- <20230223213418.891942-2-frowand.list@gmail.com>
- <CAL_JsqLR9sm+GRU8EP4eO_Ln2UhD=ztdAU834CzP8RSv2s2jQg@mail.gmail.com>
- <cbf76155-4355-5241-d7a5-816e6721ce1b@gmail.com>
- <20230301030003.GA263873-robh@kernel.org>
-From:   Frank Rowand <frowand.list@gmail.com>
-In-Reply-To: <20230301030003.GA263873-robh@kernel.org>
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: BN8NAM11FT093:EE_|DS0PR12MB8443:EE_
+X-MS-Office365-Filtering-Correlation-Id: dc3d3218-0c83-49f4-a409-08db1a7dbcb9
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: HQnoTO+SGGNS6SDgRz2MSfjWRwBhOxA8oh2cUntZ2MDmUC4cEKtWqVOED1jUHQdz9sUCYxuhFAOxTnmAGUMHNGlg4JHlFOK5GSypZRO9gzrYrZcMjmtKgRrClJO7nc+kvu8Fr/Wll7CrpCUbpfgOMDA+gLOQDRkwYySE6V3sFOFgtLuqhRjzwHW9zze2L7+j0xgknpozamRqS1vCaZic7Webq//Lo68I29uJ5AjJ0yLQ6V2RHAVX0+aXEvXz0M25so3aTVpB3ZGWb8fFaUhTvVtPe04rL+GNzr3USDX+oycSQjJqtPw+9gBCSfWHOKRu/XQS8w/M4R3/Pm+mbhGAEVrNb/rbiaj1vB4McrnH+zIRweYrn5ArD2vqOCYxiWAB1Oe5NCNsVen+AI+yoxMoC8zHEo8EDN4zKx0PQnj0GKcZIff8VlOHm5hqJfHSp/ZBwKnRq43plwFTHVsE9o4T4stBUyQk/OotVTp8Hhx2kRM4LhCvSlk82p1LxoNFoiyTSe1mxYTCftAy3E1exXuPDWHkQ/FpBOZiDaZZJwVE3w2GH5ev/j8wSMvkfS4S0EWyvU8MozqJ8pu03SjKaeNP6RhTqryVH3MK56p44am8O7QecxgK+m7K2bUDvgmqmnuKMHvLnsu3o5DzlvJ8jROpro0rCdIm1y7DMrbcWSEkqptisOfDjt9ycFBTG8G4o4pfkxmdXziz2sHO3+gBSB7u6k1WSY8g+GjYgFFEMKuX8Lo=
+X-Forefront-Antispam-Report: CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:SATLEXMB04.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230025)(4636009)(396003)(376002)(346002)(136003)(39860400002)(451199018)(46966006)(40470700004)(36840700001)(356005)(2616005)(86362001)(40480700001)(316002)(70206006)(8676002)(6666004)(40460700003)(54906003)(110136005)(70586007)(478600001)(36756003)(186003)(4326008)(41300700001)(336012)(1076003)(82740400003)(36860700001)(2906002)(26005)(426003)(8936002)(47076005)(7416002)(4744005)(82310400005)(81166007)(5660300002)(83380400001)(44832011)(36900700001);DIR:OUT;SFP:1101;
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 01 Mar 2023 17:52:34.2261
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: dc3d3218-0c83-49f4-a409-08db1a7dbcb9
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: BN8NAM11FT093.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR12MB8443
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_NONE
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2/28/23 21:00, Rob Herring wrote:
-> On Tue, Feb 28, 2023 at 08:05:58PM -0600, Frank Rowand wrote:
->> On 2/27/23 11:17, Rob Herring wrote:
->>> On Thu, Feb 23, 2023 at 3:34 PM Frank Rowand <frowand.list@gmail.com> wrote:
->>>>
->>>> When enabling CONFIG_OF on a platform where of_root is not populated by
->>>> firmware, we end up without a root node. In order to apply overlays and
->>>> create subnodes of the root node, we need one. Create this root node
->>>> by unflattening an empty builtin dtb.
->>>>
->>>> If firmware provides a flattened device tree (FDT) then the FDT is
->>>> unflattened via setup_arch().  Otherwise, setup_of() which is called
->>>> immediately after setup_arch(), and will create the default root node
->>>> if it does not exist.
->>>
->>> Why do we need a hook after setup_arch() rather than an initcall?
->>>
->>> Rob
->>
->> It might work as an initcall today.  Maybe not in the future as other
->> initcalls are added.
-> 
-> That's an argument for never using initcalls (not a bad one either). But 
-> we have them and we have little reason not to use them. Also, it's 
-> better to do things as late as possible I've found. The earlier you do 
-> things, the more architecture specific stuff you hit. That's a big 
-> reason for the remaining differences in FDT init across architectures. 
-> Maybe after setup_arch is late enough. IDK.
-> 
->> But my main stream of thinking is that before the patch "we know" that
->> the device tree data structure exists when setup_arch() returns.
->> Adding setup_of() immediately after setup_arch() retains that
->> guarantee, but one line later in start_kernel().
-> 
-> I get the logic. I'd just rather not add another hook between the DT 
-> code and the core/arch code. Especially for this niche usecase.
-> 
-> We already have the secondary init when sysfs is up. Can't we just do 
-> this there?
+This patch series does
+-Adds dt-bindings for versal watchdog driver.
+-Adds support for versal watchdog driver.
+-Adds fragment page for xilinx watchdog drivers.
 
-In general, I agree with your sentiments about an initcall being a preferred
-solution.
+There was a series[1] sent earlier to add versal watchdog support using
+pretimeout. In review it was discouraged to use pretimeout for open and
+close window . This series is a new implementation of versal watchdog.
 
-But when I was looking at the suggested alternatives, I noticed one sticking
-point.  The new setup_of() calls unflatten_device_tree(), which calls
-unittest_unflatten_overlay_base().  The call to unittest_unflatten_overlay_base()
-is deliberately very early in the boot, so that the memory allocator used
-for this very small portion of the devicetree nodes created for unittest
-is the same early boot allocator that is used to unflatten an FDT passed
-to the kernel from a bootloader.
+Srinivas Neeli (4):
+  MAINTAINERS: Add fragment for Xilinx watchdog driver
+  dt-bindings: watchdog: xlnx,versal-wwdt: Add versal watchdog bindings
+  watchdog: xilinx_wwdt: Add Versal window watchdog support
+  MAINTAINERS: Add support for Xilinx verasl watchdog
 
-Digging through this led me to another issue.  I have not tested this patch
-series on a user mode linux kernel (on my todo list...).  For user mode linux,
-unittest_data_add() is called directly from the late initcall of_unittest().
-So for user mode linux, unittest_data_add() will be called a second time - I
-need to remove that second call and make sure unittest still works on user
-mode linux.
+ .../bindings/watchdog/xlnx,versal-wwdt.yaml   |  58 +++++
+ MAINTAINERS                                   |  10 +
+ drivers/watchdog/Kconfig                      |  18 ++
+ drivers/watchdog/Makefile                     |   1 +
+ drivers/watchdog/xilinx_wwdt.c                | 232 ++++++++++++++++++
+ 5 files changed, 319 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/watchdog/xlnx,versal-wwdt.yaml
+ create mode 100644 drivers/watchdog/xilinx_wwdt.c
 
-> 
->> I could have instead put the call to setup_of() into each architectures'
->> setup_arch(), but that would just be duplicating the same code for each
->> architecture, which did not seem like a good choice.
-> 
-
-> Uhh, no!
-
-Agreed, I guess I was too subtle with "did not seem like a good choice". :-)
-
-> 
-> Rob
+-- 
+2.25.1
 
