@@ -2,148 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1BE556A6EBC
-	for <lists+devicetree@lfdr.de>; Wed,  1 Mar 2023 15:46:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 968CE6A6EE7
+	for <lists+devicetree@lfdr.de>; Wed,  1 Mar 2023 15:59:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229879AbjCAOqL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 Mar 2023 09:46:11 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42190 "EHLO
+        id S229492AbjCAO7J (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 Mar 2023 09:59:09 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54074 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230073AbjCAOqJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Mar 2023 09:46:09 -0500
-Received: from mail-yw1-x112f.google.com (mail-yw1-x112f.google.com [IPv6:2607:f8b0:4864:20::112f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C66E04393A
-        for <devicetree@vger.kernel.org>; Wed,  1 Mar 2023 06:45:39 -0800 (PST)
-Received: by mail-yw1-x112f.google.com with SMTP id 00721157ae682-536cb25982eso366761347b3.13
-        for <devicetree@vger.kernel.org>; Wed, 01 Mar 2023 06:45:39 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=c5fRwh/q88qnR4rLODR5aN06oeaTsbFFIXqxWtKoAdA=;
-        b=Skkgc1pJVdMg4lM3S/QvC70xPPr5jlTmvz4EOn+Pc6rF3VpQhVc4iGugen9Q06wzaW
-         YU5vBuwqleOCYoFdAyxRZHQORMrJn2alOT/fjacfQLA291X6YhVykyxziMNBllMvYuaY
-         rKWSJgX2G7dhiWsfoI33lKF5ZUW3nVjhcxCb4=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=c5fRwh/q88qnR4rLODR5aN06oeaTsbFFIXqxWtKoAdA=;
-        b=ABI5riG3eL4OhKU0XiUzt6Yx5z/R8n4irN9SyHRR/RRzSZA/H1Hu07Ox1vh3iOG0zT
-         q2BaTWfQ4IcBuH1qCJUh7EK+ACcYBOUOKUkfsQjw4/rDFWB8Fgh0Wy+J/HffpyAJBNvu
-         tyAjxqU/4v08m5jLdAKVtQ9Cf4IZlIM6lAepgxx0X1+hHKg17QVxL9ttKmx+wiTGXtLE
-         ruTrm5nid1QgnNv/tr3e8MZux4vH88dzeMFUrBybcMGr1YWW2aYXw+MWOyD9TOs5+9vt
-         4FsK3/fTJAzVCWcglJP7Jd/lxlxcphyuVPsYIkysTccmKn7ngEiEaVmh96Dug5K9s/p4
-         pw8A==
-X-Gm-Message-State: AO0yUKU5WhHB0PbbC/pqr59J3e5qIEm71bdtARxkarym7Erx953ADajR
-        vlOfKqFstK2Ti5JtRd6CvVaDEtqeC6nsTQlWmuGuqg==
-X-Google-Smtp-Source: AK7set/9RgMm3XRu83JsW4Wbbsi1f43oJuRNJ4GJnMD9Ynj6+QG8QTN/H949zZF90kB3oY5EYLAgq26FWAoCc+/6F5A=
-X-Received: by 2002:a81:ae0e:0:b0:53c:7c33:9d25 with SMTP id
- m14-20020a81ae0e000000b0053c7c339d25mr726867ywh.8.1677681938671; Wed, 01 Mar
- 2023 06:45:38 -0800 (PST)
+        with ESMTP id S229923AbjCAO7I (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Mar 2023 09:59:08 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CD3AE12BD7;
+        Wed,  1 Mar 2023 06:59:06 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 6A6A4B81084;
+        Wed,  1 Mar 2023 14:59:05 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0630BC433D2;
+        Wed,  1 Mar 2023 14:59:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1677682744;
+        bh=Yqf9Ws2DwHgKm6RKTHWwgebUlFuviIC5Mpr3HYPHYMw=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=rSsYKIdcxo70HEhgfKeS6SyvlL/FIrQc4GDqJf8RNHWp2+mWnEq0OVjMa/KjgGkJj
+         VE4Pdz/5lZKXobmNg7Uk039lRQF3HJxeNHxrNndJpgDZYrBJfv4iK/9UQL7aoT/OtN
+         UuUm6kCuUrcZO7E7ZOJ74vqbqacktSVKlk+u7mFZ0bLrNYKpejvLpNu735mNhnL6uN
+         k+1NnbKB+LsnqVRruxNCAAoQUWGwU/MFvVkigPLmpk6Zb8Zxad6jbYrbXZMSBdIWAc
+         GRNXS1H27eFK7fHbkQiSjDlQCG42bMd5iraaTIwQgvW6NLAMiYX3gO1KFEgoeahTIW
+         m4QOgiw4EBGLw==
+Received: by mail-ua1-f47.google.com with SMTP id x40so3894209uaf.2;
+        Wed, 01 Mar 2023 06:59:03 -0800 (PST)
+X-Gm-Message-State: AO0yUKVRICwfvj0Z/QusH+VD+WiuQjrJEH/DHyeNxnaWpXtQJWFOVunc
+        Vxvd7ZPYpeCwbvBoAetvg5ehL2o8rUuEKrz6qg==
+X-Google-Smtp-Source: AK7set9NsZVlDinXDgjj4dqHc+VM2sMCUP6iO8tYTToBCSoRpMdK6SGL9S8gxffoDxacEmes9w4Gxeg/JlPukGxzdw0=
+X-Received: by 2002:ab0:4a97:0:b0:68d:6360:77b with SMTP id
+ s23-20020ab04a97000000b0068d6360077bmr3878835uae.1.1677682742965; Wed, 01 Mar
+ 2023 06:59:02 -0800 (PST)
 MIME-Version: 1.0
-References: <20230228215433.3944508-1-robh@kernel.org>
-In-Reply-To: <20230228215433.3944508-1-robh@kernel.org>
-From:   Simon Glass <sjg@chromium.org>
-Date:   Wed, 1 Mar 2023 07:45:19 -0700
-Message-ID: <CAPnjgZ1=UPMf72JjejpdSvss5+d1tnMv=efYUgJcH6T09YAKTw@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: Fix SPI and I2C bus node names in examples
-To:     Rob Herring <robh@kernel.org>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org, Miguel Ojeda <ojeda@kernel.org>,
-        Benson Leung <bleung@chromium.org>,
-        Guenter Roeck <groeck@chromium.org>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Andrzej Hajda <andrzej.hajda@intel.com>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Robert Foss <rfoss@kernel.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        MyungJoo Ham <myungjoo.ham@samsung.com>,
-        Chanwoo Choi <cw00.choi@samsung.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
-        Pavel Machek <pavel@ucw.cz>, Lee Jones <lee@kernel.org>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Wolfgang Grandegger <wg@grandegger.com>,
-        Kalle Valo <kvalo@kernel.org>,
-        Sebastian Reichel <sre@kernel.org>,
-        Mark Brown <broonie@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        linux-clk@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        linux-gpio@vger.kernel.org, linux-i2c@vger.kernel.org,
-        linux-leds@vger.kernel.org, linux-media@vger.kernel.org,
-        netdev@vger.kernel.org, linux-can@vger.kernel.org,
-        linux-wireless@vger.kernel.org, linux-pm@vger.kernel.org,
-        alsa-devel@alsa-project.org, linux-usb@vger.kernel.org
+References: <20230224105906.16540-1-manivannan.sadhasivam@linaro.org>
+ <20230224105906.16540-3-manivannan.sadhasivam@linaro.org> <20230227195535.GA749409-robh@kernel.org>
+ <20230228082021.GB4839@thinkpad>
+In-Reply-To: <20230228082021.GB4839@thinkpad>
+From:   Rob Herring <robh@kernel.org>
+Date:   Wed, 1 Mar 2023 08:58:51 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqJXb1junhU+56ZcqHzAq8g0VN8BzQ2A1C9rB80pZDWJ-w@mail.gmail.com>
+Message-ID: <CAL_JsqJXb1junhU+56ZcqHzAq8g0VN8BzQ2A1C9rB80pZDWJ-w@mail.gmail.com>
+Subject: Re: [PATCH v2 02/13] dt-bindings: PCI: qcom: Add iommu properties
+To:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        Robin Murphy <Robin.Murphy@arm.com>
+Cc:     andersson@kernel.org, lpieralisi@kernel.org, kw@linux.com,
+        krzysztof.kozlowski+dt@linaro.org, vkoul@kernel.org,
+        konrad.dybcio@linaro.org, bhelgaas@google.com, kishon@kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
+        devicetree@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-9.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,USER_IN_DEF_SPF_WL
-        autolearn=no autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 28 Feb 2023 at 14:54, Rob Herring <robh@kernel.org> wrote:
->
-> SPI and I2C bus node names are expected to be "spi" or "i2c",
-> respectively, with nothing else, a unit-address, or a '-N' index. A
-> pattern of 'spi0' or 'i2c0' or similar has crept in. Fix all these
-> cases. Mostly scripted with the following commands:
->
-> git grep -l '\si2c[0-9] {' Documentation/devicetree/ | xargs sed -i -e 's/i2c[0-9] {/i2c {/'
-> git grep -l '\sspi[0-9] {' Documentation/devicetree/ | xargs sed -i -e 's/spi[0-9] {/spi {/'
->
-> With this, a few errors in examples were exposed and fixed.
->
-> Signed-off-by: Rob Herring <robh@kernel.org>
-> ---
-> Cc: Miguel Ojeda <ojeda@kernel.org>
-> Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-> Cc: Benson Leung <bleung@chromium.org>
-> Cc: Guenter Roeck <groeck@chromium.org>
-> Cc: Stephen Boyd <sboyd@kernel.org>
-> Cc: Andrzej Hajda <andrzej.hajda@intel.com>
-> Cc: Neil Armstrong <neil.armstrong@linaro.org>
-> Cc: Robert Foss <rfoss@kernel.org>
-> Cc: Thierry Reding <thierry.reding@gmail.com>
-> Cc: Sam Ravnborg <sam@ravnborg.org>
-> Cc: MyungJoo Ham <myungjoo.ham@samsung.com>
-> Cc: Chanwoo Choi <cw00.choi@samsung.com>
-> Cc: Linus Walleij <linus.walleij@linaro.org>
-> Cc: Bartosz Golaszewski <brgl@bgdev.pl>
-> Cc: Pavel Machek <pavel@ucw.cz>
-> Cc: Lee Jones <lee@kernel.org>
-> Cc: Mauro Carvalho Chehab <mchehab@kernel.org>
-> Cc: "David S. Miller" <davem@davemloft.net>
-> Cc: Eric Dumazet <edumazet@google.com>
-> Cc: Jakub Kicinski <kuba@kernel.org>
-> Cc: Paolo Abeni <pabeni@redhat.com>
-> Cc: Wolfgang Grandegger <wg@grandegger.com>
-> Cc: Kalle Valo <kvalo@kernel.org>
-> Cc: Sebastian Reichel <sre@kernel.org>
-> Cc: Mark Brown <broonie@kernel.org>
-> Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-> Cc: linux-clk@vger.kernel.org
-> Cc: dri-devel@lists.freedesktop.org
-> Cc: linux-gpio@vger.kernel.org
-> Cc: linux-i2c@vger.kernel.org
-> Cc: linux-leds@vger.kernel.org
-> Cc: linux-media@vger.kernel.org
-> Cc: netdev@vger.kernel.org
-> Cc: linux-can@vger.kernel.org
-> Cc: linux-wireless@vger.kernel.org
-> Cc: linux-pm@vger.kernel.org
-> Cc: alsa-devel@alsa-project.org
-> Cc: linux-usb@vger.kernel.org
-> ---
++Robin
 
-Reviewed-by: Simon Glass <sjg@chromium.org>
+On Tue, Feb 28, 2023 at 2:20=E2=80=AFAM Manivannan Sadhasivam
+<manivannan.sadhasivam@linaro.org> wrote:
+>
+> On Mon, Feb 27, 2023 at 01:55:35PM -0600, Rob Herring wrote:
+> > On Fri, Feb 24, 2023 at 04:28:55PM +0530, Manivannan Sadhasivam wrote:
+> > > Most of the PCIe controllers require iommu support to function proper=
+ly.
+> > > So let's add them to the binding.
+> > >
+> > > Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.or=
+g>
+> > > ---
+> > >  Documentation/devicetree/bindings/pci/qcom,pcie.yaml | 5 +++++
+> > >  1 file changed, 5 insertions(+)
+> > >
+> > > diff --git a/Documentation/devicetree/bindings/pci/qcom,pcie.yaml b/D=
+ocumentation/devicetree/bindings/pci/qcom,pcie.yaml
+> > > index a3639920fcbb..f48d0792aa57 100644
+> > > --- a/Documentation/devicetree/bindings/pci/qcom,pcie.yaml
+> > > +++ b/Documentation/devicetree/bindings/pci/qcom,pcie.yaml
+> > > @@ -64,6 +64,11 @@ properties:
+> > >
+> > >    dma-coherent: true
+> > >
+> > > +  iommus:
+> > > +    maxItems: 1
+> > > +
+> > > +  iommu-map: true
+> > > +
+> >
+> > I think both properties together doesn't make sense unless the PCI host
+> > itself does DMA in addition to PCI bus devices doing DMA.
+> >
+>
+> How? With "iommus", we specify the SMR mask along with the starting SID a=
+nd with
+> iommu-map, the individual SID<->BDF mapping is specified. This has nothin=
+g to
+> do with host DMA capabilities.
+
+I spoke with Robin offline and he agrees that having both is broken at
+least in RC mode. He pointed out the issue is similar to this one on
+Tegra[1].
+
+Rob
+
+[1] https://lore.kernel.org/all/AS8P193MB2095640357779A7F9B6026F8D2A19@AS8P=
+193MB2095.EURP193.PROD.OUTLOOK.COM/
