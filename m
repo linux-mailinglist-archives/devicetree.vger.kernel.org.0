@@ -2,145 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 481A76A6524
-	for <lists+devicetree@lfdr.de>; Wed,  1 Mar 2023 02:57:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C7F026A6544
+	for <lists+devicetree@lfdr.de>; Wed,  1 Mar 2023 03:06:03 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229698AbjCAB5W (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Feb 2023 20:57:22 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46288 "EHLO
+        id S229612AbjCACGC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Feb 2023 21:06:02 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56374 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229696AbjCAB5V (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Feb 2023 20:57:21 -0500
-Received: from EUR04-VI1-obe.outbound.protection.outlook.com (mail-vi1eur04on2045.outbound.protection.outlook.com [40.107.8.45])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7B01338008;
-        Tue, 28 Feb 2023 17:56:53 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=lolJYYFm6sF0V5CrIKmU3foXcAoyPjsubqyHmg/PwsuoVmMTwRbULa3eq5MvOG+FBicJPxK6JUslQHzVy271rrSfQlCioqw/jOQOYPQ9V+NCpCmSrNcHUEfjZN+kWxrdbtAdL3HV9GxIMECX9qqLwNTcDCMRWhFaxna5ZWM//GtL3UNDHUgEDQTJn60ZP82aEn/jmZwAujeeKVuC1w44GpJsJ1AbS3a8IGR16BJRIElkzjmIsuK3QNGGm66z8tIrsKHqjUjr2AjEvZ2oEvQqthZioYj4+j8DC3hTSFQh/C8ga9UB3CNC7kIp5eL5nri7h+a5cwmL3OXnYICZCjZHYw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=nsaFysztIPVr5PV30IugbUGvJxZRBi8wRMfoRRjUR08=;
- b=Z+x2NH9w1oP11DErQeyKXIwQoiY4Wwd95FBt44WQnDyqxPQnrSuJo7CKMWRFy3RujMBBrjmygDU04oU+aJuvYhTVOULXEOFWEirTpZ/GV90A03jB8AYiILrWWp9l2HuoK0MOjtx0E/omks/CocMJ7GKV/1lEptYzUWP4EsojWsNFI65rg/JVRlDy5YTuQC4onvuQZpfqsONXMNUmUj/GNsJWOWlizzbXRwbdIMKQpL74J8Cuel57xaCY0xnIXYK1DSZK/zIsbFVldokkX966tX+XoCE6m2BmSiJTq3aB3t2fKLmnT31jdHSw64H01I38zzLhSJQ/6rQWFAEpBcv6Qw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
- dkim=pass header.d=oss.nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
- s=selector2-NXP1-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=nsaFysztIPVr5PV30IugbUGvJxZRBi8wRMfoRRjUR08=;
- b=Rh+y5dq9olTuFgXnMIHW6xXuQmXRUvwgIXGCyq/nnJ8+zldGOKPz+kahmOVPcsO59QEV/hUB8kuEMVOcdDz4qizN7xvwvjG6gggDi6VPBQg/Qe4R6LychBbh5RpeyaI65L8yf5d4At358uQ8wirtnkj6SM58gCOGwSTLyWWAfIQ=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=oss.nxp.com;
-Received: from DU0PR04MB9417.eurprd04.prod.outlook.com (2603:10a6:10:358::11)
- by AM9PR04MB8940.eurprd04.prod.outlook.com (2603:10a6:20b:40b::6) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6134.30; Wed, 1 Mar
- 2023 01:56:14 +0000
-Received: from DU0PR04MB9417.eurprd04.prod.outlook.com
- ([fe80::f55a:cf12:da08:6d2a]) by DU0PR04MB9417.eurprd04.prod.outlook.com
- ([fe80::f55a:cf12:da08:6d2a%3]) with mapi id 15.20.6134.027; Wed, 1 Mar 2023
- 01:56:14 +0000
-From:   "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
-To:     abelvesa@kernel.org, abel.vesa@linaro.org, mturquette@baylibre.com,
-        sboyd@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de,
-        kernel@pengutronix.de, festevam@gmail.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org
-Cc:     linux-imx@nxp.com, linux-clk@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, Peng Fan <peng.fan@nxp.com>
-Subject: [PATCH] dt-bindings: clock: imx8m: add interrupts property
-Date:   Wed,  1 Mar 2023 10:01:22 +0800
-Message-Id: <20230301020122.3389102-1-peng.fan@oss.nxp.com>
-X-Mailer: git-send-email 2.37.1
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: SG2PR01CA0164.apcprd01.prod.exchangelabs.com
- (2603:1096:4:28::20) To DU0PR04MB9417.eurprd04.prod.outlook.com
- (2603:10a6:10:358::11)
+        with ESMTP id S229566AbjCACGB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Feb 2023 21:06:01 -0500
+Received: from mail-oa1-x2a.google.com (mail-oa1-x2a.google.com [IPv6:2001:4860:4864:20::2a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AAA7755B6;
+        Tue, 28 Feb 2023 18:06:00 -0800 (PST)
+Received: by mail-oa1-x2a.google.com with SMTP id 586e51a60fabf-172afa7bee2so12983750fac.6;
+        Tue, 28 Feb 2023 18:06:00 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112; t=1677636360;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=xVqcFtg7kVG8V0qj9xxJLXTxKinuC56rq4O/0sV1arw=;
+        b=qSzmpSmGykvvwQ8KGqUAcVFJASpvfqa6eqOT1rcPebO6HO+sWPd/1gyC5YSuK3uEBL
+         iptefhYBM+M4/45Q6oSJfs0GTqAFpeRmWKzo3r9+L/oOS8pIenHiaLILBkbOvgVAQBJG
+         L/g2WF1oykOE7IqfbKzT68smXfRphV0dRLmrW5BTnpX7m0fBNF9uG4TPt9ccEclCeR5J
+         mJ8ULOhM4Ha4hplkaNf1izk9hrtOqHeMrrOiXn8GV7+64yFLL4yxQo8ycHdWYmMFWMR1
+         C8kgAG1QEhd7HVMujOW7SBw8TfzrmTOdbiMDVrhgmVURki4VUXrDxUEDv4QHzKIYux1e
+         gVNA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1677636360;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=xVqcFtg7kVG8V0qj9xxJLXTxKinuC56rq4O/0sV1arw=;
+        b=sCxQy9mjOlsnr0io0U+dyOgUG0jUqA+9dfL6cBQVXmqTnHvSZVLJTQxJ9uvXKKtTC+
+         g8dK59Yd1ECJUgIgm8Gj0s4OVWylqdmItqBxDVULHT8POB76P6Mfjz0xk9QHFkCNtso7
+         UJOsrAw0qMUMje4qXT+uq14EcMETuwES5VJyjQ7meXPbQbhWeFNuK8ZY17M+PYDY8Jby
+         /wJ38PzAR/IL8prqANUvmzTs94fhgjnOLjOnkMmVaYfyrBzIRNXyGSUHo93vgK4GkuDB
+         K/O9ZliHJ0RD6IjNE4wVPNU0ncfb76/y+UgxQoRhV1nFqUhYoNj2VGaUr0Mg16A06rYL
+         SEvQ==
+X-Gm-Message-State: AO0yUKUHMOFkZI1twCkrimDOrhHnPe0SMYIRYQToiGdQTfryfBAXC2QU
+        /Kh62GeYtrAwwOXAYYLOMkI=
+X-Google-Smtp-Source: AK7set9AxPxVAxJ4JgJoNQHlubLlU9fkkq1N5br5KsrCpT0/qVCTQlgIHjJiRSQkMHTg79UklbAFpw==
+X-Received: by 2002:a05:6870:e309:b0:176:2145:5e18 with SMTP id z9-20020a056870e30900b0017621455e18mr501822oad.46.1677636360021;
+        Tue, 28 Feb 2023 18:06:00 -0800 (PST)
+Received: from ?IPV6:2600:1700:2442:6db0:488d:18da:bebc:d316? ([2600:1700:2442:6db0:488d:18da:bebc:d316])
+        by smtp.gmail.com with ESMTPSA id eg41-20020a05687098a900b001724742cfcesm3948184oab.38.2023.02.28.18.05.59
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 28 Feb 2023 18:05:59 -0800 (PST)
+Message-ID: <cbf76155-4355-5241-d7a5-816e6721ce1b@gmail.com>
+Date:   Tue, 28 Feb 2023 20:05:58 -0600
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DU0PR04MB9417:EE_|AM9PR04MB8940:EE_
-X-MS-Office365-Filtering-Correlation-Id: 75f318f2-68a7-40dd-b19f-08db19f823ae
-X-MS-Exchange-SharedMailbox-RoutingAgent-Processed: True
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: rv26Z3c2AlAIJK1ek388gn25jlFm/TXmJVKLvAL3PFqpRvTsmkD1/yr0EBz5POAgZr/bpRLfHQm3hQK0V+RkHJYZTA56kXPr0nQ13iRHsamD2kq2EWKuFWWh0FeVsdJtll6vEBaO0o2+NpVUzpe1Zar+54eqokd2lZBApeSO7nJ2bw2hhQzSJfS7r+q6jElWgmqHVAan6WaUjQJfr52EHsJFEFdKHh6t6RAeRl4M3UBFhjBS7vV0O6dRi+iae6bRxzkmTtq0izINc3q5YrtpgJbeQ3ecEIe+cX1XcV1nhX4VTsuqzxNLL7T0trel2yBjBWQj4/hQhz+ohkayhOpkJVWw8Vp+yGAmR6IrJDj2+ywkAP7FM4t9uJQsPtpYS05khdLGF13E1LNQI9y1SWD8qeI12RJhKw/tAFkwIuQMrH+pyATimnoGJOxmppPWNtr6fEOHaauN1rLSM4HDSYIMyxn9CujEspSW2x0d+3reu0DZ9ZyAm+Ej5+JdfwirYvcCOaszYGgpJzxQxoVL854hcK+GtwuKpjGvPCs4B6u1kDnVMEz23ixJ6wvvCmFQizPM8qegYmkktHZ30zjneRmFkTPXjwlbpD5zB3y0cATNI9RYlRMWHiZz7nmKs889faE2pKE59UPOxquaO9csH4pv0kn5weyVrwtSVg4SgIORL5sq+XX1RhaCS9PeLHgP5OtzpV750piITRuGGlKVKax8+8CnFAr16xQTopQent3bL3eTiGON42I0vaFpFr+cMASC
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DU0PR04MB9417.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230025)(4636009)(376002)(39860400002)(396003)(346002)(366004)(136003)(451199018)(6512007)(186003)(26005)(6506007)(2616005)(2906002)(52116002)(478600001)(1076003)(83380400001)(6666004)(316002)(38350700002)(921005)(66556008)(8676002)(4326008)(66946007)(38100700002)(41300700001)(66476007)(86362001)(8936002)(4744005)(7416002)(6486002)(5660300002)(32563001);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?H2185TQH4sym7R6t80uDxMEMj87/4wO3haFvQas+DddVLOLAhN5CItWv//tp?=
- =?us-ascii?Q?HEq+Zq2SZsTSHscheF0cRQ2BTJmP2SK4csQkKss/Gfyqi/XDyWPxaz4pJwml?=
- =?us-ascii?Q?gVQm5i+KfkyLFKxVawFKC96S4KBZGAsgMPOk44TuXe217/cVJZOUPWF0ZEsG?=
- =?us-ascii?Q?o2fYTMplqDiksEAJHWaXvnEUNHn8VpNqeKVRQXXL7ShDMPYbGMASNXsI8ZCX?=
- =?us-ascii?Q?pmI4M8q2NrDhFeFkATz7foigb1oNKylugH+LWlhFNGT3CkFARDyUNXhdJgYo?=
- =?us-ascii?Q?WadS57/mR0fcl8MANRxv6Vnp8IIQMhHIHSWOh83T6P6TWfyEzbdcEnsRQ4g5?=
- =?us-ascii?Q?JzW5VgtshgTrteYVemKmBn3lNJgELGaKDRQ8j8OyNRyzt6fA9McYupYFvJ64?=
- =?us-ascii?Q?cPZW3Lupz5IYxG0a85PZesU0VUMEqaD8h1z/Xh3LOH4DLY0wjLjEbKUlaSol?=
- =?us-ascii?Q?EmvN6KZtCNGRcWZz+KHLkSq6h8llGu5VJyM5NdWb2i59d7lCIGNBT2oX5PV7?=
- =?us-ascii?Q?dwhzuxErXQakI7nqgNfvv3FWytJmKIpqwlqkkv4Xihquc3acD4rXRCQijIMX?=
- =?us-ascii?Q?glAr3uW5KfRbDbmNe6M300GJQYQtj6kRlPBpZ1riWOzARnhRrfZ5qep/e0Ad?=
- =?us-ascii?Q?AuV95HHKOlUTe7QA4nEDxiAVvMp6d6SBlUIlxmciPufGt6nJ9k5fIZbFXszG?=
- =?us-ascii?Q?OgXHHfIHoaY2M0U1maZyYuX2/1dWp/QBIeKcHK3+hbp40/qOMHOzyUV9u76u?=
- =?us-ascii?Q?mLBPQJq/PX8IbXHF2Nj/ic+05gy4sWcYVVWdTCOZ/ijX+UUg/0HyccykpyoH?=
- =?us-ascii?Q?RIaf6yt5g0l84R0ayuW7dn5kh0GcSr8aKoQm2CzzDbpkncnNELj4TEeCir2w?=
- =?us-ascii?Q?9nVYy9Eh3xCj8rJucOxkcxlXFOXKtRL53WMnHi9ezXtZc7fs0s+drqnriqzo?=
- =?us-ascii?Q?zh7xA1VVhxtrkUWHjD3gq9+gAgj2hB6r6yfzLALKHlmRdIrtPcPJAmNPwpdw?=
- =?us-ascii?Q?C4hkA4qHzUydnEZ6dEKtRlaECz3n68/NeUbD/esosqhXRjWb2HsqK74+Nw0D?=
- =?us-ascii?Q?+DTwuKBFHZnN+vkInK3Gkbip/opca9Gd5xzJPbS0YBN2Xe2Rn23yM6XEliiU?=
- =?us-ascii?Q?zQuPh38mp8X9zfF4tBQP4u0inXSOhQRp450PhI7SYvb4jxh89Ph6uzhoIdel?=
- =?us-ascii?Q?QYVqqHc8NTmj4P5hM6tyZSC8kdcizoWDKVlM8+CA+t6Hkx0k5EbQePz80AEO?=
- =?us-ascii?Q?hM2H+VGVF69j+6MMG/TUd/Psip8/LdOxJ63i6gTuYstWRMRdUlbbAkHDHCXy?=
- =?us-ascii?Q?Jt35MKUnJw4itQHfzfyKgqB1ZBfvlC7LozY60i/Zd/nXBnNDcG5cCum5z/2l?=
- =?us-ascii?Q?IRVGp/Yqi+N9pNuBPp8FJY1kM/sqiPvpeu0ghgTIaDzHVMOwpDfe7ABaWmHK?=
- =?us-ascii?Q?pk7lvUBPKsX2qpZ9CfRSpTRBmaUQ/nEBWk64y3ffodRESghgpJ+Sda2UWVFb?=
- =?us-ascii?Q?oZMuukKM+y3ntf/EKQNV6GuAkWHwZcQOsUHcMKxR+8B9FopsgSkDHy6qosfd?=
- =?us-ascii?Q?6i7WAcmvRtNWjEqSXa0JUw1LxK6SrFtk6o2fQ6AE?=
-X-OriginatorOrg: oss.nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 75f318f2-68a7-40dd-b19f-08db19f823ae
-X-MS-Exchange-CrossTenant-AuthSource: DU0PR04MB9417.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 01 Mar 2023 01:56:14.7572
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: ceq0udj14z0tp4pw3V6uCjpvwNUfTP0vb4j/M+ZEd5O85+jYlwize71P2/ewhYvdaG4ffCp1l4b3ySUXIURr1w==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM9PR04MB8940
-X-Spam-Status: No, score=-0.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,RCVD_IN_VALIDITY_RPBL,
-        SPF_HELO_PASS,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.1
+Subject: Re: [PATCH v3 1/2] of: create of_root if no dtb provided
+Content-Language: en-US
+To:     Rob Herring <robh+dt@kernel.org>
+Cc:     =?UTF-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <clement.leger@bootlin.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Lizhi Hou <lizhi.hou@xilinx.com>,
+        Allan Nielsen <allan.nielsen@microchip.com>,
+        Horatiu Vultur <horatiu.vultur@microchip.com>,
+        Steen Hegelund <steen.hegelund@microchip.com>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+References: <20230223213418.891942-1-frowand.list@gmail.com>
+ <20230223213418.891942-2-frowand.list@gmail.com>
+ <CAL_JsqLR9sm+GRU8EP4eO_Ln2UhD=ztdAU834CzP8RSv2s2jQg@mail.gmail.com>
+From:   Frank Rowand <frowand.list@gmail.com>
+In-Reply-To: <CAL_JsqLR9sm+GRU8EP4eO_Ln2UhD=ztdAU834CzP8RSv2s2jQg@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Peng Fan <peng.fan@nxp.com>
+On 2/27/23 11:17, Rob Herring wrote:
+> On Thu, Feb 23, 2023 at 3:34 PM Frank Rowand <frowand.list@gmail.com> wrote:
+>>
+>> When enabling CONFIG_OF on a platform where of_root is not populated by
+>> firmware, we end up without a root node. In order to apply overlays and
+>> create subnodes of the root node, we need one. Create this root node
+>> by unflattening an empty builtin dtb.
+>>
+>> If firmware provides a flattened device tree (FDT) then the FDT is
+>> unflattened via setup_arch().  Otherwise, setup_of() which is called
+>> immediately after setup_arch(), and will create the default root node
+>> if it does not exist.
+> 
+> Why do we need a hook after setup_arch() rather than an initcall?
+> 
+> Rob
 
-Since the CCM module could trigger interrupt, so add interrupts property
-for i.MX8M.
+It might work as an initcall today.  Maybe not in the future as other
+initcalls are added.
 
-Signed-off-by: Peng Fan <peng.fan@nxp.com>
----
- Documentation/devicetree/bindings/clock/imx8m-clock.yaml | 4 ++++
- 1 file changed, 4 insertions(+)
+But my main stream of thinking is that before the patch "we know" that
+the device tree data structure exists when setup_arch() returns.
+Adding setup_of() immediately after setup_arch() retains that
+guarantee, but one line later in start_kernel().
 
-diff --git a/Documentation/devicetree/bindings/clock/imx8m-clock.yaml b/Documentation/devicetree/bindings/clock/imx8m-clock.yaml
-index 0dbc1433fede..ac7ad8459c79 100644
---- a/Documentation/devicetree/bindings/clock/imx8m-clock.yaml
-+++ b/Documentation/devicetree/bindings/clock/imx8m-clock.yaml
-@@ -39,6 +39,10 @@ properties:
-       ID in its "clocks" phandle cell. See include/dt-bindings/clock/imx8m-clock.h
-       for the full list of i.MX8M clock IDs.
- 
-+  interrupts:
-+    minItems: 1
-+    maxItems: 2
-+
- required:
-   - compatible
-   - reg
--- 
-2.37.1
+I could have instead put the call to setup_of() into each architectures'
+setup_arch(), but that would just be duplicating the same code for each
+architecture, which did not seem like a good choice.
 
+-Frank
