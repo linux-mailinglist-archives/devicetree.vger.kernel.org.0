@@ -2,131 +2,155 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5744D6A6992
-	for <lists+devicetree@lfdr.de>; Wed,  1 Mar 2023 10:13:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F01DD6A6990
+	for <lists+devicetree@lfdr.de>; Wed,  1 Mar 2023 10:13:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229453AbjCAJNV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 Mar 2023 04:13:21 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35366 "EHLO
+        id S229726AbjCAJNI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 Mar 2023 04:13:08 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35942 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229777AbjCAJNI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Mar 2023 04:13:08 -0500
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1BA833B65B;
-        Wed,  1 Mar 2023 01:12:39 -0800 (PST)
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 3219CEXO105662;
-        Wed, 1 Mar 2023 03:12:14 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1677661934;
-        bh=uLMrhMErLNyoDr4MLUITDGJtxkK8116VAc9G48GFoOM=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=aOmsilFFlctQ8Cv6JrSjv7OjaK7xL+n7VVDj0u5LfNCwXSA0oOti0UPao8YHSkmLl
-         pkROJmwiizDlhXeisBm/jqhDuEEoTIXlhCKcK8HHd9XBqpujyYdoEqW8eNsfZimENM
-         31eSztj9gZDVFOqlhygQJUyEj9kM95qtdy5ailmM=
-Received: from DFLE115.ent.ti.com (dfle115.ent.ti.com [10.64.6.36])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 3219CEGJ061531
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Wed, 1 Mar 2023 03:12:14 -0600
-Received: from DFLE114.ent.ti.com (10.64.6.35) by DFLE115.ent.ti.com
- (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Wed, 1
- Mar 2023 03:12:14 -0600
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE114.ent.ti.com
- (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
- Frontend Transport; Wed, 1 Mar 2023 03:12:14 -0600
-Received: from uda0500640.dal.design.ti.com (ileaxei01-snat2.itg.ti.com [10.180.69.6])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 3219BbbH088843;
-        Wed, 1 Mar 2023 03:12:10 -0600
-From:   Ravi Gunasekaran <r-gunasekaran@ti.com>
-To:     <nm@ti.com>, <afd@ti.com>, <vigneshr@ti.com>, <kristo@kernel.org>,
-        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <s-vadapalli@ti.com>, <vaishnav.a@ti.com>, <r-gunasekaran@ti.com>
-CC:     <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: [PATCH v12 8/8] arm64: dts: ti: k3-j721s2-common-proc-board: Enable PCIe
-Date:   Wed, 1 Mar 2023 14:41:36 +0530
-Message-ID: <20230301091136.17862-9-r-gunasekaran@ti.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20230301091136.17862-1-r-gunasekaran@ti.com>
-References: <20230301091136.17862-1-r-gunasekaran@ti.com>
+        with ESMTP id S229779AbjCAJND (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Mar 2023 04:13:03 -0500
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 950DB3B3EB
+        for <devicetree@vger.kernel.org>; Wed,  1 Mar 2023 01:12:33 -0800 (PST)
+Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <mfe@pengutronix.de>)
+        id 1pXIVL-00038T-Hd; Wed, 01 Mar 2023 10:12:07 +0100
+Received: from mfe by ptx.hi.pengutronix.de with local (Exim 4.92)
+        (envelope-from <mfe@pengutronix.de>)
+        id 1pXIVK-0003Xz-Vx; Wed, 01 Mar 2023 10:12:06 +0100
+Date:   Wed, 1 Mar 2023 10:12:06 +0100
+From:   Marco Felsch <m.felsch@pengutronix.de>
+To:     Marek Vasut <marex@denx.de>
+Cc:     linux-arm-kernel@lists.infradead.org,
+        Adam Ford <aford173@gmail.com>,
+        Fabio Estevam <festevam@gmail.com>,
+        Abel Vesa <abelvesa@kernel.org>,
+        Alexander Stein <alexander.stein@ew.tq-group.com>,
+        Jacky Bai <ping.bai@nxp.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Luca Ceresoli <luca.ceresoli@bootlin.com>,
+        Lucas Stach <l.stach@pengutronix.de>,
+        Michael Turquette <mturquette@baylibre.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Peng Fan <peng.fan@nxp.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Richard Cochran <richardcochran@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Stephen Boyd <sboyd@kernel.org>, devicetree@vger.kernel.org,
+        linux-clk@vger.kernel.org
+Subject: Re: [PATCH v2] arm64: dts: imx8mn: specify #sound-dai-cells for SAI
+ nodes
+Message-ID: <20230301091206.3e4qyh57hsorwzrp@pengutronix.de>
+References: <20230228215244.166627-1-marex@denx.de>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230228215244.166627-1-marex@denx.de>
+User-Agent: NeoMutt/20180716
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
+X-SA-Exim-Mail-From: mfe@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Aswath Govindraju <a-govindraju@ti.com>
+On 23-02-28, Marek Vasut wrote:
+> Add #sound-dai-cells properties to SAI nodes.
+> 
+> Reviewed-by: Adam Ford <aford173@gmail.com>
+> Reviewed-by: Fabio Estevam <festevam@gmail.com>
+> Fixes: 9e9860069725 ("arm64: dts: imx8mn: Add SAI nodes")
+> Signed-off-by: Marek Vasut <marex@denx.de>
 
-x1 lane PCIe slot in the common processor board is enabled and connected to
-J721S2 SOM. Add PCIe DT node in common processor board to reflect the
-same.
+Reviewed-by: Marco Felsch <m.felsch@pengutronix.de>
 
-Reviewed-by: Siddharth Vadapalli <s-vadapalli@ti.com>
-Signed-off-by: Aswath Govindraju <a-govindraju@ti.com>
-Signed-off-by: Vignesh Raghavendra <vigneshr@ti.com>
-Signed-off-by: Matt Ranostay <mranostay@ti.com>
-Signed-off-by: Ravi Gunasekaran <r-gunasekaran@ti.com>
----
-Changes from v11:
-* No change
-
-Changes from v10:
-* Removed Link tag from commit message
-
-Changes from v9:
-* No change
-
-Changes from v8:
-* No change
-
-Changes from v7:
-* No change
-
-Changes from v6:
-* Removed pcie_ep node update
-
-Changes from v5:
-* No change
-
-Changes from v4:
-* No change
-
-Changes from v3:
-* No change
-
-Changes from v2:
-* Patch newly added to the series
-
- arch/arm64/boot/dts/ti/k3-j721s2-common-proc-board.dts | 8 ++++++++
- 1 file changed, 8 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/ti/k3-j721s2-common-proc-board.dts b/arch/arm64/boot/dts/ti/k3-j721s2-common-proc-board.dts
-index 6bd6370e5bae..83be4a1b61cb 100644
---- a/arch/arm64/boot/dts/ti/k3-j721s2-common-proc-board.dts
-+++ b/arch/arm64/boot/dts/ti/k3-j721s2-common-proc-board.dts
-@@ -384,6 +384,14 @@
- 	};
- };
- 
-+&pcie1_rc {
-+	status = "okay";
-+	reset-gpios = <&exp1 2 GPIO_ACTIVE_HIGH>;
-+	phys = <&serdes0_pcie_link>;
-+	phy-names = "pcie-phy";
-+	num-lanes = <1>;
-+};
-+
- &mcu_mcan0 {
- 	status = "okay";
- 	pinctrl-names = "default";
--- 
-2.17.1
-
+> ---
+> Cc: Abel Vesa <abelvesa@kernel.org>
+> Cc: Alexander Stein <alexander.stein@ew.tq-group.com>
+> Cc: Fabio Estevam <festevam@gmail.com>
+> Cc: Jacky Bai <ping.bai@nxp.com>
+> Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+> Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> Cc: Luca Ceresoli <luca.ceresoli@bootlin.com>
+> Cc: Lucas Stach <l.stach@pengutronix.de>
+> Cc: Marco Felsch <m.felsch@pengutronix.de>
+> Cc: Michael Turquette <mturquette@baylibre.com>
+> Cc: NXP Linux Team <linux-imx@nxp.com>
+> Cc: Peng Fan <peng.fan@nxp.com>
+> Cc: Pengutronix Kernel Team <kernel@pengutronix.de>
+> Cc: Richard Cochran <richardcochran@gmail.com>
+> Cc: Rob Herring <robh+dt@kernel.org>
+> Cc: Sascha Hauer <s.hauer@pengutronix.de>
+> Cc: Shawn Guo <shawnguo@kernel.org>
+> Cc: Stephen Boyd <sboyd@kernel.org>
+> Cc: devicetree@vger.kernel.org
+> Cc: linux-arm-kernel@lists.infradead.org
+> Cc: linux-clk@vger.kernel.org
+> ---
+> V2: - Add RB from Adam and Fabio
+>     - Add Fixes tag
+>     - Move sound-dai-cells below regs
+> ---
+>  arch/arm64/boot/dts/freescale/imx8mn.dtsi | 5 +++++
+>  1 file changed, 5 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/freescale/imx8mn.dtsi b/arch/arm64/boot/dts/freescale/imx8mn.dtsi
+> index ed9ac6c5047c0..9e0ddd6b7a322 100644
+> --- a/arch/arm64/boot/dts/freescale/imx8mn.dtsi
+> +++ b/arch/arm64/boot/dts/freescale/imx8mn.dtsi
+> @@ -296,6 +296,7 @@ spba2: spba-bus@30000000 {
+>  				sai2: sai@30020000 {
+>  					compatible = "fsl,imx8mn-sai", "fsl,imx8mq-sai";
+>  					reg = <0x30020000 0x10000>;
+> +					#sound-dai-cells = <0>;
+>  					interrupts = <GIC_SPI 96 IRQ_TYPE_LEVEL_HIGH>;
+>  					clocks = <&clk IMX8MN_CLK_SAI2_IPG>,
+>  						<&clk IMX8MN_CLK_DUMMY>,
+> @@ -310,6 +311,7 @@ sai2: sai@30020000 {
+>  				sai3: sai@30030000 {
+>  					compatible = "fsl,imx8mn-sai", "fsl,imx8mq-sai";
+>  					reg = <0x30030000 0x10000>;
+> +					#sound-dai-cells = <0>;
+>  					interrupts = <GIC_SPI 50 IRQ_TYPE_LEVEL_HIGH>;
+>  					clocks = <&clk IMX8MN_CLK_SAI3_IPG>,
+>  						 <&clk IMX8MN_CLK_DUMMY>,
+> @@ -324,6 +326,7 @@ sai3: sai@30030000 {
+>  				sai5: sai@30050000 {
+>  					compatible = "fsl,imx8mn-sai", "fsl,imx8mq-sai";
+>  					reg = <0x30050000 0x10000>;
+> +					#sound-dai-cells = <0>;
+>  					interrupts = <GIC_SPI 90 IRQ_TYPE_LEVEL_HIGH>;
+>  					clocks = <&clk IMX8MN_CLK_SAI5_IPG>,
+>  						 <&clk IMX8MN_CLK_DUMMY>,
+> @@ -340,6 +343,7 @@ sai5: sai@30050000 {
+>  				sai6: sai@30060000 {
+>  					compatible = "fsl,imx8mn-sai", "fsl,imx8mq-sai";
+>  					reg = <0x30060000  0x10000>;
+> +					#sound-dai-cells = <0>;
+>  					interrupts = <GIC_SPI 90 IRQ_TYPE_LEVEL_HIGH>;
+>  					clocks = <&clk IMX8MN_CLK_SAI6_IPG>,
+>  						 <&clk IMX8MN_CLK_DUMMY>,
+> @@ -397,6 +401,7 @@ spdif1: spdif@30090000 {
+>  				sai7: sai@300b0000 {
+>  					compatible = "fsl,imx8mn-sai", "fsl,imx8mq-sai";
+>  					reg = <0x300b0000 0x10000>;
+> +					#sound-dai-cells = <0>;
+>  					interrupts = <GIC_SPI 111 IRQ_TYPE_LEVEL_HIGH>;
+>  					clocks = <&clk IMX8MN_CLK_SAI7_IPG>,
+>  						 <&clk IMX8MN_CLK_DUMMY>,
+> -- 
+> 2.39.2
+> 
+> 
