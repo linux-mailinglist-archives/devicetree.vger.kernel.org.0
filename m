@@ -2,222 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D70086A6F75
-	for <lists+devicetree@lfdr.de>; Wed,  1 Mar 2023 16:30:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5CF7F6A6FD5
+	for <lists+devicetree@lfdr.de>; Wed,  1 Mar 2023 16:35:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229998AbjCAPaM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 Mar 2023 10:30:12 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52462 "EHLO
+        id S229660AbjCAPfC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 Mar 2023 10:35:02 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56064 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229553AbjCAPaL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Mar 2023 10:30:11 -0500
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6176886B2;
-        Wed,  1 Mar 2023 07:30:10 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1677684610; x=1709220610;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=awaxUVG91j1W8d8/DcAgSZV/A41b8Ct2cTPB4FCsBhQ=;
-  b=EPe20RfBcIL9inYMPY1C1Do52FwwmwKQ9RsDqk5UtJShjm7H/Ikml6C7
-   nnjXFmccF2qRqekFtSCf34JHFHt78BfY8p7EM9tiIeJsMFraw8TpjQ2oa
-   r/ABkm/yXpte7M5/lOJOVfpZJDioPZawxOjxWvjgyp3i2vP/qH9E1qy2O
-   w5KnlInWrJ6rqRrk7Fb6h5wKNhaEoNsB9agcVuA+Gbap8CxNs4g+T16M6
-   0gnW6g5ZPAfORH7bipYlwH0fNpAfVVI1oSCQNWzrq4g0jlWXUKVXBNhYF
-   u66nL+FpkczPkI+6FVVAL8qDeiOfbNo8WZltJCoZIL1DnNjLnkH6RXwf6
-   A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10636"; a="318236341"
-X-IronPort-AV: E=Sophos;i="5.98,225,1673942400"; 
-   d="scan'208";a="318236341"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-  by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 01 Mar 2023 07:30:09 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10636"; a="817610698"
-X-IronPort-AV: E=Sophos;i="5.98,225,1673942400"; 
-   d="scan'208";a="817610698"
-Received: from smile.fi.intel.com ([10.237.72.54])
-  by fmsmga001.fm.intel.com with ESMTP; 01 Mar 2023 07:30:05 -0800
-Received: from andy by smile.fi.intel.com with local (Exim 4.96)
-        (envelope-from <andriy.shevchenko@linux.intel.com>)
-        id 1pXOP5-00DoMH-2v;
-        Wed, 01 Mar 2023 17:30:03 +0200
-Date:   Wed, 1 Mar 2023 17:30:03 +0200
-From:   Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To:     Mike Looijmans <mike.looijmans@topic.nl>
-Cc:     devicetree@vger.kernel.org, linux-iio@vger.kernel.org,
-        Caleb Connolly <caleb.connolly@linaro.org>,
-        ChiYuan Huang <cy_huang@richtek.com>,
-        ChiaEn Wu <chiaen_wu@richtek.com>,
-        Cosmin Tanislav <demonsingur@gmail.com>,
-        Ibrahim Tilki <Ibrahim.Tilki@analog.com>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Ramona Bolboaca <ramona.bolboaca@analog.com>,
-        William Breathitt Gray <william.gray@linaro.org>,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 2/2] iio: adc: Add TI ADS1100 and ADS1000
-Message-ID: <Y/9vez/fzLD5dRVF@smile.fi.intel.com>
-References: <20230228063151.17598-1-mike.looijmans@topic.nl>
- <20230228063151.17598-2-mike.looijmans@topic.nl>
+        with ESMTP id S229686AbjCAPfB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Mar 2023 10:35:01 -0500
+Received: from sin.source.kernel.org (sin.source.kernel.org [IPv6:2604:1380:40e1:4800::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 58C50311EC;
+        Wed,  1 Mar 2023 07:35:00 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by sin.source.kernel.org (Postfix) with ESMTPS id 4D3E5CE1D0A;
+        Wed,  1 Mar 2023 15:34:58 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D6AC7C433D2;
+        Wed,  1 Mar 2023 15:34:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+        s=korg; t=1677684896;
+        bh=4+Tu/cIC0hHMrGoD7ESG5uRx2d2hbjOQ2mt+puZ4g0U=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=nfUaAtP4P5sN1WaMFyAPHgvMfQZ6Une0MYHJigdyMNeT154pPRgujXPqmYJAzpAwE
+         4EoJtLlU+N3/77Jvhxxcn8K+aTRDG4FVBCM0EUR9KZVx5Wmo+u4fiAmEWXFGIxTIVG
+         I+xhSmVEzka1keAMhr6IJ++XwZcv7YPvwWgqOm2s=
+Date:   Wed, 1 Mar 2023 16:34:53 +0100
+From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+To:     Miquel Raynal <miquel.raynal@bootlin.com>
+Cc:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        linux-kernel@vger.kernel.org, Michael Walle <michael@walle.cc>,
+        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Robert Marko <robert.marko@sartura.hr>,
+        Luka Perkov <luka.perkov@sartura.hr>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        rafal@milecki.pl
+Subject: Re: [PATCH 0/8] nvmem: Let layout drivers be modules
+Message-ID: <Y/9wnXde3OiyHh8S@kroah.com>
+References: <20230301152239.531194-1-miquel.raynal@bootlin.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230228063151.17598-2-mike.looijmans@topic.nl>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,SPF_HELO_NONE,SPF_NONE
-        autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <20230301152239.531194-1-miquel.raynal@bootlin.com>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Feb 28, 2023 at 07:31:51AM +0100, Mike Looijmans wrote:
-> The ADS1100 is a 16-bit ADC (at 8 samples per second).
-> The ADS1000 is similar, but has a fixed data rate.
+On Wed, Mar 01, 2023 at 04:22:31PM +0100, Miquel Raynal wrote:
+> Hello,
+> 
+> Following Greg's opposition to merge the current nvmem layout support
+> proposal [1], arguing that it would eventually grow the size of the
+> Linux kernel and asking for some "modularization" support, here is a
+> proposal to turn layout drivers into regular tristate drivers.
+> 
+> The first three patches are preparation changes in order to extend (and
+> fix) a little bit the of/device.c support. The fix does not seem to
+> impact most of the current users so I guess it can live with the rest of
+> the series in order to avoid future merge conflicts.
+> 
+> The nvmem core is then extended to support the absence of layouts and
+> possibly lead to probe deferrals when relevant.
+> 
+> Finally, the two existing layout drivers are converted into modules and
+> their Kconfig symbols changed to tristate.
+> 
+> The base series on which these changes apply is still contained in [1],
+> I would prefer to keep it as it was and apply this series on top of it.
+> 
+> Tests have been conducted on a Marvell Prestera switch with the mvpp2
+> Ethernet driver calling for a MAC address stored in the ONIE TLV table
+> available through a layout driver in an EEPROM/MTD device.
+> 
+> [1] https://github.com/miquelraynal/linux/tree/nvmem-next/layouts
 
-...
+These look sane to me, thanks for making the changes.
 
-> +	/* Shift result to compensate for bit resolution vs. sample rate */
-> +	value <<= 16 - ads1100_data_bits(data);
-> +	*val = sign_extend32(value, 15);
-
-Why not simply
-
-	*val = sign_extend32(value, ads1100_data_bits(data) - 1);
-
-?
-
-(Double check for off-by-one usage)
-
-...
-
-> +	/* Calculate: gain = ((microvolts / 1000) / (val2 / 1000000)) >> 15 */
-
-Can you use more math / plain English to describe the formula? Otherwise we can
-see the very same in the code and point of the comment is doubtful.
-
-> +	gain = ((microvolts + BIT(14)) >> 15) * 1000 / val2;
-
-Something from units.h?
-
-...
-
-> +	for (i = 0; i < 4; i++) {
-> +		if (BIT(i) == gain) {
-
-ffs()/__ffs() (look at the documentation for the difference and use proper one).
-
-> +			ads1100_set_config_bits(data, ADS1100_PGA_MASK, i);
-> +			return 0;
-> +		}
-> +	}
-
-...
-
-> +	for (i = 0; i < size; ++i) {
-
-Why pre-increment?
-
-> +		if (ads1100_data_rate[i] == rate) {
-> +			return ads1100_set_config_bits(
-> +					data, ADS1100_DR_MASK,
-
-Strange indentation.
-
-> +					FIELD_PREP(ADS1100_DR_MASK, i));
-> +		}
-
-Do you need {} ?
-
-> +	}
-
-...
-
-> +	int millivolts = regulator_get_voltage(data->reg_vdd) / 1000;
-
-units.h?
-
-...
-
-> +		data->scale_avail[i * 2] = millivolts;
-
-I would write ' * 2 + 0]', but it's up to you.
-
-> +		data->scale_avail[i * 2 + 1] = 15 + i;
-
-...
-
-> +		*val = regulator_get_voltage(data->reg_vdd) / 1000;
-
-units.h?
-
-...
-
-> +		*val = ads1100_data_rate[
-> +				FIELD_GET(ADS1100_DR_MASK, data->config)];
-
-Strange indentation, just use a single line.
-
-...
-
-> +	ret = devm_iio_device_register(dev, indio_dev);
-> +	if (ret < 0)
-
-Why ' < 0'?
-
-> +		return dev_err_probe(dev, ret,
-> +				     "Failed to register IIO device\n");
-
-...
-
-> +static int ads1100_runtime_suspend(struct device *dev)
-> +{
-> +	struct iio_dev *indio_dev = i2c_get_clientdata(to_i2c_client(dev));
-> +	struct ads1100_data *data = iio_priv(indio_dev);
-> +
-> +	ads1100_set_config_bits(data, ADS1100_CFG_SC, ADS1100_SINGLESHOT);
-> +	regulator_disable(data->reg_vdd);
-
-Wrong devm / non-devm ordering.
-
-> +	return 0;
-> +}
-
-...
-
-> +static const struct i2c_device_id ads1100_id[] = {
-> +	{ "ads1100", },
-> +	{ "ads1000", },
-
-Inner commas are not needed.
-
-> +	{}
-> +};
-
-...
-
-> +static const struct of_device_id ads1100_of_match[] = {
-> +	{ .compatible = "ti,ads1100", },
-> +	{ .compatible = "ti,ads1000", },
-
-Ditto.
-
-> +	{}
-> +};
-
-...
-
-> +
-
-Redundant blank line.
-
-> +module_i2c_driver(ads1100_driver);
-
--- 
-With Best Regards,
-Andy Shevchenko
-
-
+greg k-h
