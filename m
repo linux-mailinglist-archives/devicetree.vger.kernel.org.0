@@ -2,249 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6F10A6A6B7E
-	for <lists+devicetree@lfdr.de>; Wed,  1 Mar 2023 12:13:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 563FE6A6BA1
+	for <lists+devicetree@lfdr.de>; Wed,  1 Mar 2023 12:23:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229746AbjCALNi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 Mar 2023 06:13:38 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54010 "EHLO
+        id S229530AbjCALXk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 Mar 2023 06:23:40 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35348 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229437AbjCALNh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Mar 2023 06:13:37 -0500
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 040C51EBCE;
-        Wed,  1 Mar 2023 03:13:36 -0800 (PST)
-Received: from pan.home (unknown [IPv6:2a00:23c6:c311:3401:45a5:b946:dcd1:2820])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: martyn)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id 8578166020E6;
-        Wed,  1 Mar 2023 11:13:34 +0000 (GMT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1677669214;
-        bh=WCfgAcB4UaEzGmvvwq/jOJivTdFWK6XfOflmE7TETnc=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=PQQnw7rhJjaDoDAbYV4Rk43bpWt07AKX73vFrJjeKnhBOWkZYFKttit1SrxRBEM76
-         KwqzRhD6khHanvUJpaWryt7ue0hCTQw3TjXW7eO47ts/h9EeB+xzfAKq0ONZPQ8xf2
-         lBwp2DezA+PtKhKQ8RWwTUjJmhmP6mT99fLFin57rqplCf0ggFeOC7QBVL0xuGR7TH
-         mNN+LlwlFopN7LBmmHM2TFgMdj5JpWd5KLlXgB4FiFYvN3fTKX8rmbqcPBoCraFAqJ
-         HrPSb1AAYgDa8Sv66w9kW6NHuna9PPMCx9k9wz7b7xx/DGABCEy5KLZcXrzzY8GQdl
-         3tCA3Xh6P9UIA==
-From:   Martyn Welch <martyn.welch@collabora.com>
-To:     Bjorn Andersson <andersson@kernel.org>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Hari Nagalla <hnagalla@ti.com>
-Cc:     kernel@collabora.com, Martyn Welch <martyn.welch@collabora.com>,
-        linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH v2 1/3] dt-bindings: remoteproc: k3-m4f: Add bindings for K3 AM64x SoCs
-Date:   Wed,  1 Mar 2023 11:13:21 +0000
-Message-Id: <20230301111323.1532479-2-martyn.welch@collabora.com>
-X-Mailer: git-send-email 2.39.1
-In-Reply-To: <20230301111323.1532479-1-martyn.welch@collabora.com>
-References: <20230301111323.1532479-1-martyn.welch@collabora.com>
+        with ESMTP id S229676AbjCALXi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Mar 2023 06:23:38 -0500
+Received: from NAM11-BN8-obe.outbound.protection.outlook.com (mail-bn8nam11on2041.outbound.protection.outlook.com [40.107.236.41])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9ABAE1E9D0
+        for <devicetree@vger.kernel.org>; Wed,  1 Mar 2023 03:23:37 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=akrdG1p9tnUEXdDqX+PKb60/vP8YAIt4Qw+KD3oHq/BIKTK26tqTY8X9q7il8iwgqIuXKJN8aScN/TLF/uwId3mPGoJXmsF8/iex12wcZeFCpfJ3dBpmgg7Uaf5h9XKGNuqY92wrXSfRkXswajwcyFXhWsqd3emDSWexOnq2GIH6vWdEhE+rDhqQJr+w/AKxSPaLgQvOOgCOpsMnj+P6xDK6DzKZi0a7DM11X1UO/iWdkcS3+QkUwnLeoyPzU7QVorDMSPG6STm5thadIe2JAQhoyBPjy33NWLoznKdvc40ahBi2BINF1PRi1S5O9QPZ/c4dF8RRqUX0CX4ShkhjZg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=jt6kun4u5Tuc4gWJC4BUUzAztnByuWGvCyDtKdQrI/w=;
+ b=OzPL1g2GceggIIqndZ6SGkKPHsQP0h0ddBOe/vSPtSN4BH6NY6Qv90HHewluz+OZ76/qcKsnGa6n3XRZz7SkJmkLKLQ0+FuQS6nahCc2s7seBmAW325SUqNdQvjDoCb90EwALuLdRAdrzcCdoQY1QKxFUcyGYw0uwRe34l09V2e8jrLtE6TvYuobCgWRHLCF26ehLrZAAEjSwIKDFfcrXoVrIfp/l2+UXS1QaBUm2nunFImZlH7dHgll32dSBNbvrnA1mS5yuw1+d9dFPG9XFVJIGozjPX986QqAUUP1Pj5k8qGp2cGblsNUFOxktUvySVg/xyKCXnxtVF+KbOqlUw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=softfail (sender ip
+ is 149.199.62.198) smtp.rcpttodomain=kernel.org smtp.mailfrom=amd.com;
+ dmarc=fail (p=quarantine sp=quarantine pct=100) action=quarantine
+ header.from=amd.com; dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=xilinx.onmicrosoft.com; s=selector2-xilinx-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=jt6kun4u5Tuc4gWJC4BUUzAztnByuWGvCyDtKdQrI/w=;
+ b=lDmf8G4csQNKJUwqLr/7365xhR5QIk7zUwDkJyG+LmAbsVzHpKsfcvyBJ/fy/ojR2z1VvAkI8c4Y+M6vzdTrExigloQf6pyCwQKh0y/j6/1xvkvMFUEytUXVdDXa/LJctS3dDXuWHzYGnSN/AW0wALsZbqTyjOnWyFIYLAhKGoI=
+Received: from DM6PR05CA0059.namprd05.prod.outlook.com (2603:10b6:5:335::28)
+ by SJ0PR02MB8529.namprd02.prod.outlook.com (2603:10b6:a03:3f5::19) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6134.30; Wed, 1 Mar
+ 2023 11:23:35 +0000
+Received: from DM3NAM02FT017.eop-nam02.prod.protection.outlook.com
+ (2603:10b6:5:335:cafe::79) by DM6PR05CA0059.outlook.office365.com
+ (2603:10b6:5:335::28) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6156.18 via Frontend
+ Transport; Wed, 1 Mar 2023 11:23:35 +0000
+X-MS-Exchange-Authentication-Results: spf=softfail (sender IP is
+ 149.199.62.198) smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=fail action=quarantine header.from=amd.com;
+Received-SPF: SoftFail (protection.outlook.com: domain of transitioning
+ amd.com discourages use of 149.199.62.198 as permitted sender)
+Received: from xsj-pvapexch02.xlnx.xilinx.com (149.199.62.198) by
+ DM3NAM02FT017.mail.protection.outlook.com (10.13.5.6) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.6156.18 via Frontend Transport; Wed, 1 Mar 2023 11:23:35 +0000
+Received: from xsj-pvapexch02.xlnx.xilinx.com (172.19.86.41) by
+ xsj-pvapexch02.xlnx.xilinx.com (172.19.86.41) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.16; Wed, 1 Mar 2023 03:23:24 -0800
+Received: from smtp.xilinx.com (172.19.127.96) by
+ xsj-pvapexch02.xlnx.xilinx.com (172.19.86.41) with Microsoft SMTP Server id
+ 15.1.2507.16 via Frontend Transport; Wed, 1 Mar 2023 03:23:24 -0800
+Envelope-to: git-dev@xilinx.com,
+ robh@kernel.org,
+ mripard@kernel.org,
+ heiko@sntech.de,
+ michal.simek@amd.com,
+ varunkumar.allagadapa@amd.com,
+ vishal.sagar@amd.com,
+ robh+dt@kernel.org,
+ devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org,
+ parth.gajjar@amd.com
+Received: from [172.19.10.45] (port=37142 helo=xsjssw-mmedia2.xilinx.com)
+        by smtp.xilinx.com with esmtp (Exim 4.90)
+        (envelope-from <parth.gajjar@amd.com>)
+        id 1pXKYO-0009Mo-13; Wed, 01 Mar 2023 03:23:24 -0800
+From:   Parth Gajjar <parth.gajjar@amd.com>
+To:     <robh@kernel.org>, <mripard@kernel.org>, <heiko@sntech.de>
+CC:     <git-dev@xilinx.com>, <michal.simek@amd.com>,
+        <varunkumar.allagadapa@amd.com>, <vishal.sagar@amd.com>,
+        <robh+dt@kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        Parth Gajjar <parth.gajjar@amd.com>
+Subject: [PATCH 0/2] arm64: zynqmp: Update MALI 400 interrupt and clock names
+Date:   Wed, 1 Mar 2023 03:23:02 -0800
+Message-ID: <20230301112304.24107-1-parth.gajjar@amd.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DM3NAM02FT017:EE_|SJ0PR02MB8529:EE_
+X-MS-Office365-Filtering-Correlation-Id: f25a7395-c790-4179-f8b7-08db1a476598
+X-MS-Exchange-SenderADCheck: 2
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: //F4lBjo8Hg4XVdrD3wayau9FG2wIPERpITxmnyspJ0ibSnMG7hvfmMxuqoSUKQZjyhkpupN2ccPfv9SnZQP7T32hSoYeiDCklXCFMMtzSY18EP3eHp7jB2whqyYNL1h6dwCw0Riekkwexdzi2qOfcR8LiXBZct22tWsdcTH0c+ZcaikBUwcQZc3BfcvWYF7JbUtmMTcEZiEo9IsoWu8Q9TSFwBOxB/c2BpWtFDPI1X/qwE061QezkAAIncaGPTjSBWp4o5iRPqNkLmeVPH0nkSPUWvLeflR4LH0zsNtwltJHqfS8tyCIuyPjkmmhg7tgt9bKZU904A3jxt/c3YuGoJi/eMK0YrocNGdYtKb02fF7IdPVHK8/wNh7w7DLn1kJkD8iE0PsQ8/3iNynSljOsQUVpBwgDzo+ee1T8T4xhr396xeZABxM3LPkgf6SZ8N+/pczU3elsytyNA/ewgvAR2oEcsrHuFuojkk76deGkQNhHVwd4BkN76SamUruBKnKcaSCiKFSgE0hjN+UOqF9u30Gc5GAqbtDqRaOdS7bWVkid8xT0tO1WvBwbJjJkhh1wh0s9BGQfZKNS1n+gTDEwbbNmIHPSDCor+z1mwM8e9nUcN2JSSis/Tae3tif93Dr/K2XyetI4dAB5rMT4vRVJjKEV7WUCoB/ggA70sgXBRyU7yYxWakbD6GoVrXKPDLmevSJu54qzjxyhtnBnRZKA==
+X-Forefront-Antispam-Report: CIP:149.199.62.198;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:xsj-pvapexch02.xlnx.xilinx.com;PTR:unknown-62-198.xilinx.com;CAT:NONE;SFS:(13230025)(136003)(396003)(39860400002)(346002)(376002)(451199018)(46966006)(40470700004)(7636003)(82740400003)(8936002)(356005)(86362001)(36756003)(44832011)(2906002)(4744005)(8676002)(4326008)(70206006)(5660300002)(7416002)(15650500001)(40480700001)(41300700001)(82310400005)(9786002)(70586007)(40460700003)(2616005)(1076003)(336012)(83380400001)(47076005)(110136005)(26005)(316002)(54906003)(35950700001)(498600001)(6666004);DIR:OUT;SFP:1101;
+X-OriginatorOrg: xilinx.onmicrosoft.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 01 Mar 2023 11:23:35.1643
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: f25a7395-c790-4179-f8b7-08db1a476598
+X-MS-Exchange-CrossTenant-Id: 657af505-d5df-48d0-8300-c31994686c5c
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=657af505-d5df-48d0-8300-c31994686c5c;Ip=[149.199.62.198];Helo=[xsj-pvapexch02.xlnx.xilinx.com]
+X-MS-Exchange-CrossTenant-AuthSource: DM3NAM02FT017.eop-nam02.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR02MB8529
+X-Spam-Status: No, score=-1.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Hari Nagalla <hnagalla@ti.com>
+Motivation for the commit is to utilize the upstream community
+device tree so that the either modified ARM Mali 400 driver
+or upstream lima driver can be used.
 
-K3 AM64x SoC has a Cortex M4F subsystem in the MCU volatge domain.
-The remote processor's life cycle management and IPC mechanisms are
-similar across the R5F and M4F cores from remote processor driver
-point of view. However, there are subtle differences in image loading
-and starting the M4F subsystems.
+Parth Gajjar (2):
+  arm64: zynqmp: Update MALI 400 interrupt and clock names
+  dt-bindings: gpu: mali-utgard: Add xlnx,zynqmp-mali compatible
 
-The YAML binding document provides the various node properties to be
-configured by the consumers of the M4F subsystem.
+ Documentation/devicetree/bindings/gpu/arm,mali-utgard.yaml | 1 +
+ arch/arm64/boot/dts/xilinx/zynqmp-clk-ccf.dtsi             | 2 +-
+ arch/arm64/boot/dts/xilinx/zynqmp.dtsi                     | 6 +++---
+ 3 files changed, 5 insertions(+), 4 deletions(-)
 
-Signed-off-by: Hari Nagalla <hnagalla@ti.com>
-[Martyn Welch: Amended as per review comments and to pass DT tests]
-Signed-off-by: Martyn Welch <martyn.welch@collabora.com>
----
-
-Changes since v1:
- - Spelling corrections
- - Corrected to pass DT checks
-
- .../bindings/remoteproc/ti,k3-m4f-rproc.yaml  | 158 ++++++++++++++++++
- 1 file changed, 158 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/remoteproc/ti,k3-m4f-rproc.yaml
-
-diff --git a/Documentation/devicetree/bindings/remoteproc/ti,k3-m4f-rproc.yaml b/Documentation/devicetree/bindings/remoteproc/ti,k3-m4f-rproc.yaml
-new file mode 100644
-index 000000000000..1b38df0be2e6
---- /dev/null
-+++ b/Documentation/devicetree/bindings/remoteproc/ti,k3-m4f-rproc.yaml
-@@ -0,0 +1,158 @@
-+# SPDX-License-Identifier: (GPL-2.0-only or BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/remoteproc/ti,k3-m4f-rproc.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: TI K3 M4F processor subsystems
-+
-+maintainers:
-+  - Hari Nagalla <hnagalla@ti.com>
-+
-+description: |
-+  Some K3 family SoCs have Arm Cortex M4F cores. AM64x is a SoC in K3
-+  family with a M4F core. Typically safety oriented applications may use
-+  the M4F core in isolation without an IPC. Where as some industrial and
-+  home automation applications, may use the M4F core as a remote processor
-+  with IPC communications.
-+
-+$ref: /schemas/arm/keystone/ti,k3-sci-common.yaml#
-+
-+properties:
-+  $nodename:
-+    pattern: "^m4fss(@.*)?"
-+
-+  compatible:
-+    enum:
-+      - ti,am64-m4fss
-+
-+  power-domains:
-+    description: |
-+      Should contain a phandle to a PM domain provider node and an args
-+      specifier containing the M4FSS device id value.
-+    maxItems: 1
-+
-+  "#address-cells":
-+    const: 2
-+
-+  "#size-cells":
-+    const: 2
-+
-+  reg:
-+    items:
-+      - description: Address and Size of the IRAM internal memory region
-+      - description: Address and Size of the DRAM internal memory region
-+
-+  reg-names:
-+    items:
-+      - const: iram
-+      - const: dram
-+
-+  resets:
-+    description: |
-+      Should contain the phandle to the reset controller node managing the
-+      local resets for this device, and a reset specifier.
-+    maxItems: 1
-+
-+  firmware-name:
-+    description: |
-+      Should contain the name of the default firmware image
-+      file located on the firmware search path
-+
-+  mboxes:
-+    description: |
-+      OMAP Mailbox specifier denoting the sub-mailbox, to be used for
-+      communication with the remote processor. This property should match
-+      with the sub-mailbox node used in the firmware image.
-+    maxItems: 1
-+
-+  memory-region:
-+    description: |
-+      phandle to the reserved memory nodes to be associated with the
-+      remoteproc device. There should be at least two reserved memory nodes
-+      defined. The reserved memory nodes should be carveout nodes, and
-+      should be defined with a "no-map" property as per the bindings in
-+      Documentation/devicetree/bindings/reserved-memory/reserved-memory.yaml
-+    minItems: 2
-+    maxItems: 8
-+    items:
-+      - description: region used for dynamic DMA allocations like vrings and
-+                     vring buffers
-+      - description: region reserved for firmware image sections
-+    additionalItems: true
-+
-+required:
-+  - compatible
-+  - reg
-+  - reg-names
-+  - ti,sci
-+  - ti,sci-dev-id
-+  - ti,sci-proc-ids
-+  - resets
-+  - firmware-name
-+  - mboxes
-+  - memory-region
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    reserved-memory {
-+        #address-cells = <2>;
-+        #size-cells = <2>;
-+
-+        mcu_m4fss_dma_memory_region: m4f-dma-memory@9cb00000 {
-+            compatible = "shared-dma-pool";
-+            reg = <0x00 0x9cb00000 0x00 0x100000>;
-+            no-map;
-+        };
-+
-+        mcu_m4fss_memory_region: m4f-memory@9cc00000 {
-+            compatible = "shared-dma-pool";
-+            reg = <0x00 0x9cc00000 0x00 0xe00000>;
-+            no-map;
-+        };
-+    };
-+
-+    soc {
-+        #address-cells = <2>;
-+        #size-cells = <2>;
-+
-+        mailbox0_cluster0: mailbox-0 {
-+            #mbox-cells = <1>;
-+
-+            mbox_m4_0: mbox-m4-0 {
-+                ti,mbox-rx = <0 0 0>;
-+                ti,mbox-tx = <1 0 0>;
-+            };
-+        };
-+
-+        bus@f0000 {
-+            compatible = "simple-bus";
-+            #address-cells = <2>;
-+            #size-cells = <2>;
-+            ranges = <0x00 0x04000000 0x00 0x04000000 0x00 0x01ff1400>;
-+
-+            bus@4000000 {
-+                compatible = "simple-bus";
-+                #address-cells = <2>;
-+                #size-cells = <2>;
-+                ranges = <0x00 0x04000000 0x00 0x04000000 0x00 0x01ff1400>;
-+
-+                mcu_m4fss: m4fss@5000000 {
-+                    compatible = "ti,am64-m4fss";
-+                    reg = <0x00 0x5000000 0x00 0x30000>,
-+                          <0x00 0x5040000 0x00 0x10000>;
-+                    reg-names = "iram", "dram";
-+                    ti,sci = <&dmsc>;
-+                    ti,sci-dev-id = <9>;
-+                    ti,sci-proc-ids = <0x18 0xff>;
-+                    resets = <&k3_reset 9 1>;
-+                    firmware-name = "am62-mcu-m4f0_0-fw";
-+                    mboxes = <&mailbox0_cluster0 &mbox_m4_0>;
-+                    memory-region = <&mcu_m4fss_dma_memory_region>,
-+                                    <&mcu_m4fss_memory_region>;
-+                };
-+            };
-+        };
-+    };
 -- 
-2.39.1
+2.17.1
 
