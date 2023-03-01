@@ -2,93 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0555C6A68E5
-	for <lists+devicetree@lfdr.de>; Wed,  1 Mar 2023 09:27:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D64166A6928
+	for <lists+devicetree@lfdr.de>; Wed,  1 Mar 2023 09:53:02 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229625AbjCAI1s (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 Mar 2023 03:27:48 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56276 "EHLO
+        id S229797AbjCAIxA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 Mar 2023 03:53:00 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46328 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229753AbjCAI1q (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Mar 2023 03:27:46 -0500
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 64AA13A859;
-        Wed,  1 Mar 2023 00:27:36 -0800 (PST)
-Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 32175soV018441;
-        Wed, 1 Mar 2023 08:27:24 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=nHCAjoF/dcQIIAjVnH1TzRBHOu66CmrIUn2Mu0lhfHE=;
- b=Vhh438V5ImrvTa8J0BNHjeW74sKMvnM0a8sviUtgdmgjyio0QXvAewK9n8VNFWTkcuWc
- 4NcFBk6wA/qqPhKZodiO8dd4kyYMz2TU9TkqUF8O3TUvvm1Phu2Qe4xpeTw8zkoOrzXV
- 0ASOFrHF6Luw7zsHBBnoOeunBEp5G+UX8ifbGXlyiXeb5jdkJjJkQqAF4i0JlX/Nt8ex
- //IPFqOGgSuwMI4SqF/FX+gbywra96zUolC6dsRY/AZYhoSMfRd9wmeSh7+5nmRHUcV+
- ky531Zfa78AmpB/fzuk3lFp6QojMGBw+ALG2WpOSSY9DupbkOnUiAUM6AEYUT/7hDWwW jA== 
-Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3p1f7n3g3p-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 01 Mar 2023 08:27:23 +0000
-Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-        by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3218RMCt008113
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 1 Mar 2023 08:27:22 GMT
-Received: from [10.239.133.211] (10.80.80.8) by nalasex01c.na.qualcomm.com
- (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.41; Wed, 1 Mar 2023
- 00:27:17 -0800
-Message-ID: <2e536776-21c3-4171-e5bf-660a61dd6738@quicinc.com>
-Date:   Wed, 1 Mar 2023 16:27:15 +0800
+        with ESMTP id S229660AbjCAIw7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Mar 2023 03:52:59 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 539AA35BF;
+        Wed,  1 Mar 2023 00:52:57 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 05EE3B80FE3;
+        Wed,  1 Mar 2023 08:52:56 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 858A7C433D2;
+        Wed,  1 Mar 2023 08:52:47 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1677660774;
+        bh=6c6cP/IHyRsWowu2tZHcz9eWebeuuAH5j8u2NP4wnVo=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=Ed999CG6d0eqg2KNSuFTYXnvp/Q1rvY1tRn4mnKA4qF8ZX8PN1/WRkwarGFe3iqCM
+         pYHJVUDK6wZLZ/mGQD7NQAvj5FsLhd6M5DbTR9Z/eISLk2eLEATdrzaJcAIwfiCHrM
+         +r4R+094Rn0yoanJXQ/s20157NcE7X+yPNos8t2UHzpO3F8DCDxmpfpFQJyntUFIA0
+         e/aUT4GqmU0iSpooRfo62rBs/bYFTFogO7/QauFLK4pABdzo+bpArlplZdPH2/45nd
+         Mlq/RI7xFBVNMdDKz87VMGoCD7gHidR4Z+8aiV+Yv/zp9lO9EqCQ9JTqbukJeqT5Qg
+         8Vqy64XZU8Lww==
+Date:   Wed, 1 Mar 2023 08:52:44 +0000
+From:   Lee Jones <lee@kernel.org>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        devicetree@vger.kernel.org, Miguel Ojeda <ojeda@kernel.org>,
+        Benson Leung <bleung@chromium.org>,
+        Guenter Roeck <groeck@chromium.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Andrzej Hajda <andrzej.hajda@intel.com>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Robert Foss <rfoss@kernel.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        MyungJoo Ham <myungjoo.ham@samsung.com>,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <brgl@bgdev.pl>,
+        Pavel Machek <pavel@ucw.cz>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Wolfgang Grandegger <wg@grandegger.com>,
+        Kalle Valo <kvalo@kernel.org>,
+        Sebastian Reichel <sre@kernel.org>,
+        Mark Brown <broonie@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        linux-clk@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        linux-gpio@vger.kernel.org, linux-i2c@vger.kernel.org,
+        linux-leds@vger.kernel.org, linux-media@vger.kernel.org,
+        netdev@vger.kernel.org, linux-can@vger.kernel.org,
+        linux-wireless@vger.kernel.org, linux-pm@vger.kernel.org,
+        alsa-devel@alsa-project.org, linux-usb@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: Fix SPI and I2C bus node names in examples
+Message-ID: <Y/8SXMHQtv6Er1Xx@google.com>
+References: <20230228215433.3944508-1-robh@kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.1.2
-Subject: Re: [PATCH v2 6/9] coresight-tpdm: Add node to set dsb programming
- mode
-Content-Language: en-US
-To:     Suzuki K Poulose <suzuki.poulose@arm.com>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Alexander Shishkin <alexander.shishkin@linux.intel.com>,
-        Konrad Dybcio <konradybcio@gmail.com>,
-        Mike Leach <mike.leach@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-CC:     Jinlong Mao <quic_jinlmao@quicinc.com>,
-        Leo Yan <leo.yan@linaro.org>,
-        "Greg Kroah-Hartman" <gregkh@linuxfoundation.org>,
-        <coresight@lists.linaro.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        Tingwei Zhang <quic_tingweiz@quicinc.com>,
-        Yuanfang Zhang <quic_yuanfang@quicinc.com>,
-        Trilok Soni <quic_tsoni@quicinc.com>,
-        Hao Zhang <quic_hazha@quicinc.com>,
-        <linux-arm-msm@vger.kernel.org>, <bjorn.andersson@linaro.org>,
-        Tao Zhang <taozha@qti.qualcomm.com>
-References: <1674114105-16651-1-git-send-email-quic_taozha@quicinc.com>
- <1674114105-16651-7-git-send-email-quic_taozha@quicinc.com>
- <f4dcb4f8-c70b-3ca9-33fd-8889899d7481@arm.com>
-From:   Tao Zhang <quic_taozha@quicinc.com>
-In-Reply-To: <f4dcb4f8-c70b-3ca9-33fd-8889899d7481@arm.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: _me8IuirgNybzWlv73lm2rIxLOivncfR
-X-Proofpoint-ORIG-GUID: _me8IuirgNybzWlv73lm2rIxLOivncfR
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.219,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
- definitions=2023-03-01_04,2023-02-28_03,2023-02-09_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0
- priorityscore=1501 impostorscore=0 bulkscore=0 phishscore=0
- lowpriorityscore=0 malwarescore=0 mlxlogscore=999 clxscore=1015 mlxscore=0
- adultscore=0 suspectscore=0 classifier=spam adjust=0 reason=mlx
- scancount=1 engine=8.12.0-2212070000 definitions=main-2303010068
-X-Spam-Status: No, score=-2.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
+In-Reply-To: <20230228215433.3944508-1-robh@kernel.org>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -96,155 +82,100 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Suzuki,
+On Tue, 28 Feb 2023, Rob Herring wrote:
 
-在 2/28/2023 7:35 PM, Suzuki K Poulose 写道:
-> On 19/01/2023 07:41, Tao Zhang wrote:
->> Add node to set and show programming mode for TPDM DSB subunit.
->> Once the DSB programming mode is set, it will be written to the
->> register DSB_CR. Bit[10:9] of the DSB_CR register is used to set
->> the DSB test mode.
->>
->> Signed-off-by: Tao Zhang <quic_taozha@quicinc.com>
->> Signed-off-by: Tao Zhang <taozha@qti.qualcomm.com>
->> ---
->>   drivers/hwtracing/coresight/coresight-tpdm.c | 45 
->> +++++++++++++++++++++++++++-
->>   drivers/hwtracing/coresight/coresight-tpdm.h | 12 ++++++++
->>   2 files changed, 56 insertions(+), 1 deletion(-)
->>
->> diff --git a/drivers/hwtracing/coresight/coresight-tpdm.c 
->> b/drivers/hwtracing/coresight/coresight-tpdm.c
->> index 1dbb6c4..9126a37 100644
->> --- a/drivers/hwtracing/coresight/coresight-tpdm.c
->> +++ b/drivers/hwtracing/coresight/coresight-tpdm.c
->> @@ -4,6 +4,7 @@
->>    */
->>     #include <linux/amba/bus.h>
->> +#include <linux/bitfield.h>
->>   #include <linux/bitmap.h>
->>   #include <linux/coresight.h>
->>   #include <linux/coresight-pmu.h>
->> @@ -38,7 +39,7 @@ static umode_t tpdm_dsb_is_visible(struct kobject 
->> *kobj,
->>     static void tpdm_enable_dsb(struct tpdm_drvdata *drvdata)
->>   {
->> -    u32 val;
->> +    u32 val, mode;
->>         val = readl_relaxed(drvdata->base + TPDM_DSB_TIER);
->>       /* Set trigger timestamp */
->> @@ -58,6 +59,19 @@ static void tpdm_enable_dsb(struct tpdm_drvdata 
->> *drvdata)
->>         /* Set the enable bit of DSB control register to 1 */
->>       val = readl_relaxed(drvdata->base + TPDM_DSB_CR);
->> +    /* Set the cycle accurate mode */
->> +    mode = TPDM_DSB_MODE_CYCACC(drvdata->dsb->mode);
->> +    val &= ~TPDM_DSB_TEST_MODE;
->> +    val |= FIELD_PREP(TPDM_DSB_TEST_MODE, mode);
->> +    /* Set the byte lane for high-performance mode */
->> +    mode = TPDM_DSB_MODE_HPBYTESEL(drvdata->dsb->mode);
->> +    val &= ~TPDM_DSB_HPSEL;
->> +    val |= FIELD_PREP(TPDM_DSB_HPSEL, mode);
->> +    /* Set the performance mode */
->> +    if (drvdata->dsb->mode & TPDM_DSB_MODE_PERF)
->> +        val |= TPDM_DSB_MODE;
->> +    else
->> +        val &= ~TPDM_DSB_MODE;
->
-> This looks a bit tricky to me. Please could you add documentation of
-> the values supported under Documentation/ABI/testing/sysfs-....-
->
-> Couldn't we provide separate handles for these "mode bits" ?
->
-> cycacc
-> perf
-> hpsel
+> SPI and I2C bus node names are expected to be "spi" or "i2c",
+> respectively, with nothing else, a unit-address, or a '-N' index. A
+> pattern of 'spi0' or 'i2c0' or similar has crept in. Fix all these
+> cases. Mostly scripted with the following commands:
+> 
+> git grep -l '\si2c[0-9] {' Documentation/devicetree/ | xargs sed -i -e 's/i2c[0-9] {/i2c {/'
+> git grep -l '\sspi[0-9] {' Documentation/devicetree/ | xargs sed -i -e 's/spi[0-9] {/spi {/'
+> 
+> With this, a few errors in examples were exposed and fixed.
+> 
+> Signed-off-by: Rob Herring <robh@kernel.org>
+> ---
+> Cc: Miguel Ojeda <ojeda@kernel.org>
+> Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+> Cc: Benson Leung <bleung@chromium.org>
+> Cc: Guenter Roeck <groeck@chromium.org>
+> Cc: Stephen Boyd <sboyd@kernel.org>
+> Cc: Andrzej Hajda <andrzej.hajda@intel.com>
+> Cc: Neil Armstrong <neil.armstrong@linaro.org>
+> Cc: Robert Foss <rfoss@kernel.org>
+> Cc: Thierry Reding <thierry.reding@gmail.com>
+> Cc: Sam Ravnborg <sam@ravnborg.org>
+> Cc: MyungJoo Ham <myungjoo.ham@samsung.com>
+> Cc: Chanwoo Choi <cw00.choi@samsung.com>
+> Cc: Linus Walleij <linus.walleij@linaro.org>
+> Cc: Bartosz Golaszewski <brgl@bgdev.pl>
+> Cc: Pavel Machek <pavel@ucw.cz>
+> Cc: Lee Jones <lee@kernel.org>
+> Cc: Mauro Carvalho Chehab <mchehab@kernel.org>
+> Cc: "David S. Miller" <davem@davemloft.net>
+> Cc: Eric Dumazet <edumazet@google.com>
+> Cc: Jakub Kicinski <kuba@kernel.org>
+> Cc: Paolo Abeni <pabeni@redhat.com>
+> Cc: Wolfgang Grandegger <wg@grandegger.com>
+> Cc: Kalle Valo <kvalo@kernel.org>
+> Cc: Sebastian Reichel <sre@kernel.org>
+> Cc: Mark Brown <broonie@kernel.org>
+> Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+> Cc: linux-clk@vger.kernel.org
+> Cc: dri-devel@lists.freedesktop.org
+> Cc: linux-gpio@vger.kernel.org
+> Cc: linux-i2c@vger.kernel.org
+> Cc: linux-leds@vger.kernel.org
+> Cc: linux-media@vger.kernel.org
+> Cc: netdev@vger.kernel.org
+> Cc: linux-can@vger.kernel.org
+> Cc: linux-wireless@vger.kernel.org
+> Cc: linux-pm@vger.kernel.org
+> Cc: alsa-devel@alsa-project.org
+> Cc: linux-usb@vger.kernel.org
+> ---
+>  .../bindings/auxdisplay/holtek,ht16k33.yaml       |  2 +-
+>  .../bindings/chrome/google,cros-ec-typec.yaml     |  2 +-
+>  .../chrome/google,cros-kbd-led-backlight.yaml     |  2 +-
+>  .../devicetree/bindings/clock/ti,lmk04832.yaml    |  2 +-
+>  .../bindings/display/bridge/analogix,anx7625.yaml |  2 +-
+>  .../bindings/display/bridge/anx6345.yaml          |  2 +-
+>  .../bindings/display/bridge/lontium,lt8912b.yaml  |  2 +-
+>  .../bindings/display/bridge/nxp,ptn3460.yaml      |  2 +-
+>  .../bindings/display/bridge/ps8640.yaml           |  2 +-
+>  .../bindings/display/bridge/sil,sii9234.yaml      |  2 +-
+>  .../bindings/display/bridge/ti,dlpc3433.yaml      |  2 +-
+>  .../bindings/display/bridge/toshiba,tc358762.yaml |  2 +-
+>  .../bindings/display/bridge/toshiba,tc358768.yaml |  2 +-
+>  .../bindings/display/panel/nec,nl8048hl11.yaml    |  2 +-
+>  .../bindings/display/solomon,ssd1307fb.yaml       |  4 ++--
+>  .../devicetree/bindings/eeprom/at25.yaml          |  2 +-
+>  .../bindings/extcon/extcon-usbc-cros-ec.yaml      |  2 +-
+>  .../bindings/extcon/extcon-usbc-tusb320.yaml      |  2 +-
+>  .../devicetree/bindings/gpio/gpio-pca9570.yaml    |  2 +-
+>  .../devicetree/bindings/gpio/gpio-pca95xx.yaml    |  8 ++++----
+>  .../bindings/i2c/google,cros-ec-i2c-tunnel.yaml   |  2 +-
+>  .../bindings/leds/cznic,turris-omnia-leds.yaml    |  2 +-
 
-Sure, I will update this according to your advice in the next version of 
-the patch.
+[...]
 
-Tao
+>  .../devicetree/bindings/leds/issi,is31fl319x.yaml |  2 +-
+>  .../devicetree/bindings/leds/leds-aw2013.yaml     |  2 +-
+>  .../devicetree/bindings/leds/leds-rt4505.yaml     |  2 +-
+>  .../devicetree/bindings/leds/ti,tca6507.yaml      |  2 +-
 
->
-> Suzuki
->
->
->>       val |= TPDM_DSB_CR_ENA;
->>       writel_relaxed(val, drvdata->base + TPDM_DSB_CR);
->>   }
->> @@ -257,6 +271,34 @@ static struct attribute_group tpdm_attr_grp = {
->>       .attrs = tpdm_attrs,
->>   };
->>   +static ssize_t dsb_mode_show(struct device *dev,
->> +                  struct device_attribute *attr,
->> +                  char *buf)
->> +{
->> +    struct tpdm_drvdata *drvdata = dev_get_drvdata(dev->parent);
->> +
->> +    return sysfs_emit(buf, "%lx\n",
->> +             (unsigned long)drvdata->dsb->mode);
->> +}
->> +
->> +static ssize_t dsb_mode_store(struct device *dev,
->> +                   struct device_attribute *attr,
->> +                   const char *buf,
->> +                   size_t size)
->> +{
->> +    struct tpdm_drvdata *drvdata = dev_get_drvdata(dev->parent);
->> +    unsigned long val;
->> +
->> +    if ((kstrtoul(buf, 0, &val)) || val < 0)
->> +        return -EINVAL;
->> +
->> +    spin_lock(&drvdata->spinlock);
->> +    drvdata->dsb->mode = val & TPDM_MODE_ALL;
->> +    spin_unlock(&drvdata->spinlock);
->> +    return size;
->> +}
->> +static DEVICE_ATTR_RW(dsb_mode);
->> +
->>   static ssize_t dsb_trig_type_show(struct device *dev,
->>                        struct device_attribute *attr,
->>                        char *buf)
->> @@ -327,6 +369,7 @@ static ssize_t dsb_trig_ts_store(struct device *dev,
->>   }
->>   static DEVICE_ATTR_RW(dsb_trig_ts);
->>   static struct attribute *tpdm_dsb_attrs[] = {
->> +    &dev_attr_dsb_mode.attr,
->>       &dev_attr_dsb_trig_ts.attr,
->>       &dev_attr_dsb_trig_type.attr,
->>       NULL,
->> diff --git a/drivers/hwtracing/coresight/coresight-tpdm.h 
->> b/drivers/hwtracing/coresight/coresight-tpdm.h
->> index 3ad1be5..b3ecb9f 100644
->> --- a/drivers/hwtracing/coresight/coresight-tpdm.h
->> +++ b/drivers/hwtracing/coresight/coresight-tpdm.h
->> @@ -19,6 +19,16 @@
->>   #define TPDM_DSB_XTRIG_TSENAB        BIT(1)
->>   /* Enable bit for DSB subunit trigger type */
->>   #define TPDM_DSB_TRIG_TYPE        BIT(12)
->> +/* Enable bit for DSB subunit perfmance mode */
->> +#define TPDM_DSB_MODE        BIT(1)
->> +
->> +/* DSB programming modes */
->> +#define TPDM_DSB_MODE_CYCACC(val)    (val & GENMASK(2, 0))
->> +#define TPDM_DSB_MODE_PERF        BIT(3)
->> +#define TPDM_DSB_MODE_HPBYTESEL(val)    (val & GENMASK(8, 4))
->> +#define TPDM_MODE_ALL            (0xFFFFFFF)
->> +#define TPDM_DSB_TEST_MODE        GENMASK(11, 9)
->> +#define TPDM_DSB_HPSEL        GENMASK(6, 2)
->>     /* TPDM integration test registers */
->>   #define TPDM_ITATBCNTRL        (0xEF0)
->> @@ -48,10 +58,12 @@
->>     /**
->>    * struct dsb_dataset - specifics associated to dsb dataset
->> + * @mode:             DSB programming mode
->>    * @trig_ts:          Enable/Disable trigger timestamp.
->>    * @trig_type:        Enable/Disable trigger type.
->>    */
->>   struct dsb_dataset {
->> +    u32                mode;
->>       bool            trig_ts;
->>       bool            trig_type;
->>   };
->
+Acked-by: Lee Jones <lee@kernel.org>
+
+>  .../devicetree/bindings/mfd/actions,atc260x.yaml  |  2 +-
+>  .../devicetree/bindings/mfd/google,cros-ec.yaml   |  6 +++---
+>  .../devicetree/bindings/mfd/ti,tps65086.yaml      |  2 +-
+>  .../devicetree/bindings/mfd/x-powers,axp152.yaml  |  4 ++--
+>  .../devicetree/bindings/net/asix,ax88796c.yaml    |  2 +-
+
+Acked-by: Lee Jones <lee@kernel.org>
+
+[...]
+
+-- 
+Lee Jones [李琼斯]
