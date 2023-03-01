@@ -2,173 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4B7C96A6944
-	for <lists+devicetree@lfdr.de>; Wed,  1 Mar 2023 09:57:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8DEA76A693D
+	for <lists+devicetree@lfdr.de>; Wed,  1 Mar 2023 09:56:55 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229877AbjCAI5q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 Mar 2023 03:57:46 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51348 "EHLO
+        id S229781AbjCAI4x (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 Mar 2023 03:56:53 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50082 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229661AbjCAI5p (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Mar 2023 03:57:45 -0500
-X-Greylist: delayed 129 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Wed, 01 Mar 2023 00:57:40 PST
-Received: from out203-205-221-210.mail.qq.com (out203-205-221-210.mail.qq.com [203.205.221.210])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7E50339CE5;
-        Wed,  1 Mar 2023 00:57:40 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foxmail.com;
-        s=s201512; t=1677661058;
-        bh=JZCUr280TVXOzIU/SeraWYs3TeNzUiZ+HfvsNis9eW0=;
-        h=From:To:Cc:Subject:Date;
-        b=mo4D/VvIpXd7CoGk2vBu+tIzKk6b1/bGZRHhwby+4AKk5+Tu+fOjk0cvbllGOpJRG
-         vx89SXXOY8OPoE8MsPXXAICYL9UsJJjmKgvrLEdMYM8/FY9kpHborI4RzbXMTfL52b
-         EBTfxft+gNaWlfSHu1t/6xmOFFRFMP/QfXWHJmGI=
-Received: from DESKTOP-ZMX.localdomain ([115.156.140.94])
-        by newxmesmtplogicsvrszc2-1.qq.com (NewEsmtp) with SMTP
-        id D7505019; Wed, 01 Mar 2023 16:53:53 +0800
-X-QQ-mid: xmsmtpt1677660833tmme4ifea
-Message-ID: <tencent_7036BCA256055D05F8C49D86DF7F0E2D1A05@qq.com>
-X-QQ-XMAILINFO: MjPUT8lqGkgpRDW5LrkbLrR2FcGhaYdB26ailGldwavnWDIoQSdYBMY78Msis2
-         5+7xbQJIFDBIw0+1Uwbn5Cn485VI6egZDNqM09fi/lzykWmSqnng2llksq71fISVYfYbX+15a7nW
-         153euhMqZ6PoinVGdlLK0sGPPVWhwk4Cmg9L4aRstc9MnAwqZmJ8z41bcbr5CA+Hq2ctcNzu8ewN
-         FUklrhQyIiU54Pu7ll3P4IzA5NdCIPL9/6ejcus8MjaFVIOFKdm/jmTvFGp4jR6Sj6gqFyf+t0Dc
-         Fi/g8GBXpyvXTbHkr/PAQPnC6Qo57cTGzpMhLvi4BJ1PdIVbv2HrEhgZo0v/lBvbzSZSsv4MMil2
-         ArL7zmhGv7L/b0X3/4gdvaJ+jhiVKBpdOWcgXNfq953Jc8A4jQ2WSVg5IczbyEKDu3rquJauTYUV
-         q026jA0Aa9uPn0UtoNx31ocWFzqe9URUQIe9KqKfs97wlVc/zSzuwc7VMtZ+feoHgfF7M3AjUnJY
-         xWwsasIfXE1iFaf1XD6hA9AN+fv4Yrg/M6CPVmXyPtJrGGJjgUe//blUUIYI29dyhuasJUJ7TwDA
-         UWPr8dbJiCPXVaQPn7vyYsvFfBYUWWcahSwn1P11P/jx+exqv8JVMBkRcrJsnA8u8nJubZvaYMk0
-         wSYUwchl8WeupGgtKYSx1i3JN8uym0vGh8fOFgFqPAAHmrA5zF5C6Y2+ls9X+Y5VQQn9848FyUuU
-         au1J/vKb47o6l6n67wvzfwjEHDeUBf59WVJ5RRqM7sCUznEhweK/iP96PMapHZhLYpWxXx+bDmwz
-         a/t2HF1hZSfd7MtxyBsxaDWiBigmalF9oXvmFp/9JpfwV8QlUqao6QixQyvSu6L/fBN1VfeaS0HI
-         O65a9PwLBRBbhSGTVuTipGqBEG3ZEUd3VS+2VNbHjFOctWM+FPLV3ip83NpSSFuzrZUKz5R7Odmc
-         P3MT4PX5Dfc8u7KqodyQwqs7qY0EvxkFYn2Dcp0d+dIus5UsQ3SGUqKdeQx/bw
-From:   Yang Xiwen <forbidden405@foxmail.com>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        with ESMTP id S229660AbjCAI4w (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Mar 2023 03:56:52 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 091A128D2C;
+        Wed,  1 Mar 2023 00:56:52 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 96E3461254;
+        Wed,  1 Mar 2023 08:56:51 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3B49AC433EF;
+        Wed,  1 Mar 2023 08:56:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1677661011;
+        bh=8o/qEmUZeq3CS88LJJhl8I4SiIGxhxTJFc5HiEIcKHM=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=SgMGQQVGjhwZHL+rwWCJFtoFUR/wn9crHR6aQMdFafpBEZ4KFGjXYUZgc1lFiVrsN
+         mGiOREiQKB5Dxal/wozV2D+J6h48VOzzAVVNonP6DaSW7lzTlb/gjRKP/qOxbthrab
+         kWsa73pPSljAA+j7H8/RFIP91L3bZHx2qNQkyZIIWdKIN4b8v8qLuAb8fpWYzsRRTb
+         MmejvP4kpBBoTw/3UWR0RdGg/iY9ZCP8IpFgbRggXRtNZNrBHS8BHPgZ35PQZCri6s
+         oCExO0cltCKgAYPxInpmQoV2KGxquxREpGl70mlCBMso3JDu+EKi+J39bpraFl3aCY
+         b/IqajPaQhUyA==
+Date:   Wed, 1 Mar 2023 08:56:45 +0000
+From:   Lee Jones <lee@kernel.org>
+To:     Pavel Machek <pavel@ucw.cz>
+Cc:     Martin Kurbanov <mmkurbanov@sberdevices.ru>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     Jaime Breva <jbreva@nayarsystems.com>,
-        Yang Xiwen <forbidden405@foxmail.com>,
-        Nikita Travkin <nikita@trvn.ru>,
-        ~postmarketos/upstreaming@lists.sr.ht
-Subject: [PATCH] arm64: dts: qcom: msm8916-ufi: Fix sim card selection pinctrl
-Date:   Wed,  1 Mar 2023 16:53:50 +0800
-X-OQ-MSGID: <20230301085350.15512-1-forbidden405@foxmail.com>
-X-Mailer: git-send-email 2.39.1
+        Andy Shevchenko <andy.shevchenko@gmail.com>,
+        linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, kernel@sberdevices.ru
+Subject: Re: [PATCH v2 2/2] leds: add aw20xx driver
+Message-ID: <Y/8TTRtoFMJhMWV1@google.com>
+References: <20230228211046.109693-1-mmkurbanov@sberdevices.ru>
+ <20230228211046.109693-3-mmkurbanov@sberdevices.ru>
+ <Y/5xBGFC3b9Chdtb@duo.ucw.cz>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,HELO_DYNAMIC_IPADDR,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        RCVD_IN_SBL_CSS,RDNS_DYNAMIC,SPF_HELO_NONE,SPF_PASS autolearn=no
-        autolearn_force=no version=3.4.6
-X-Spam-Level: ****
+In-Reply-To: <Y/5xBGFC3b9Chdtb@duo.ucw.cz>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The previous commit mistakenly introduced sim_ctrl_default as pinctrl,
-this is incorrect, the interface for sim card selection varies between
-different devices and should not be placed in the dtsi.
+On Tue, 28 Feb 2023, Pavel Machek wrote:
 
-This commit selects external SIM card slot for ufi001c as default.
-uf896 selects the correct SIM card slot automatically, thus does not need
-this pinctrl node.
+> Hi!
+> 
+> > +config LEDS_AW200XX
+> > +	tristate "LED support for Awinic AW20036/AW20054/AW20072"
+> > +	depends on LEDS_CLASS
+> > +	depends on I2C
+> > +	help
+> > +	  This option enables support for the AW20036/AW20054/AW20072 LED driver.
+> > +	  It is a 3x12/6x9/6x12 matrix LED driver programmed via
+> > +	  an I2C interface, up to 36/54/72 LEDs or 12/18/24 RGBs,
+> > +	  3 pattern controllers for auto breathing or group dimming control.
+> 
+> I'm afraid this should be handled as a display, not as an array of
+> individual LEDs.
 
-Fixes: faf69431464b ("arm64: dts: qcom: msm8916-thwc: Add initial device trees")
-Signed-off-by: Yang Xiwen <forbidden405@foxmail.com>
----
- .../boot/dts/qcom/msm8916-thwc-uf896.dts      |  4 ---
- .../boot/dts/qcom/msm8916-thwc-ufi001c.dts    | 28 +++++++++++++++++--
- arch/arm64/boot/dts/qcom/msm8916-ufi.dtsi     | 10 -------
- 3 files changed, 26 insertions(+), 16 deletions(-)
+Just for my own information, where do we draw the line on this?
 
-diff --git a/arch/arm64/boot/dts/qcom/msm8916-thwc-uf896.dts b/arch/arm64/boot/dts/qcom/msm8916-thwc-uf896.dts
-index c492db8561904..82e260375174d 100644
---- a/arch/arm64/boot/dts/qcom/msm8916-thwc-uf896.dts
-+++ b/arch/arm64/boot/dts/qcom/msm8916-thwc-uf896.dts
-@@ -33,7 +33,3 @@ &button_default {
- &gpio_leds_default {
- 	pins = "gpio81", "gpio82", "gpio83";
- };
--
--&sim_ctrl_default {
--	pins = "gpio1", "gpio2";
--};
-diff --git a/arch/arm64/boot/dts/qcom/msm8916-thwc-ufi001c.dts b/arch/arm64/boot/dts/qcom/msm8916-thwc-ufi001c.dts
-index 700cf81cbf8c0..8433c9710b1cf 100644
---- a/arch/arm64/boot/dts/qcom/msm8916-thwc-ufi001c.dts
-+++ b/arch/arm64/boot/dts/qcom/msm8916-thwc-ufi001c.dts
-@@ -25,6 +25,11 @@ &led_b {
- 	gpios = <&msmgpio 20 GPIO_ACTIVE_HIGH>;
- };
- 
-+&mpss {
-+	pinctrl-0 = <&sim_ctrl_default>;
-+	pinctrl-names = "default";
-+};
-+
- &button_default {
- 	pins = "gpio37";
- 	bias-pull-down;
-@@ -34,6 +39,25 @@ &gpio_leds_default {
- 	pins = "gpio20", "gpio21", "gpio22";
- };
- 
--&sim_ctrl_default {
--	pins = "gpio1", "gpio2";
-+/* This selects the external SIM card slot by default */
-+&msmgpio {
-+	sim_ctrl_default: sim-ctrl-default-state {
-+		esim-sel-pins {
-+			pins = "gpio0", "gpio3";
-+			bias-disable;
-+			output-low;
-+		};
-+
-+		sim-en-pins {
-+			pins = "gpio1";
-+			bias-disable;
-+			output-low;
-+		};
-+
-+		sim-sel-pins {
-+			pins = "gpio2";
-+			bias-disable;
-+			output-high;
-+		};
-+	};
- };
-diff --git a/arch/arm64/boot/dts/qcom/msm8916-ufi.dtsi b/arch/arm64/boot/dts/qcom/msm8916-ufi.dtsi
-index 790a9696da9de..cdf34b74fa8fa 100644
---- a/arch/arm64/boot/dts/qcom/msm8916-ufi.dtsi
-+++ b/arch/arm64/boot/dts/qcom/msm8916-ufi.dtsi
-@@ -92,9 +92,6 @@ &gcc {
- };
- 
- &mpss {
--	pinctrl-0 = <&sim_ctrl_default>;
--	pinctrl-names = "default";
--
- 	status = "okay";
- };
- 
-@@ -240,11 +237,4 @@ gpio_leds_default: gpio-leds-default-state {
- 		drive-strength = <2>;
- 		bias-disable;
- 	};
--
--	sim_ctrl_default: sim-ctrl-default-state {
--		function = "gpio";
--		drive-strength = <2>;
--		bias-disable;
--		output-low;
--	};
- };
+Is 4x4 okay?  How about 6x6?
+
 -- 
-2.39.1
-
+Lee Jones [李琼斯]
