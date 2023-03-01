@@ -2,55 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E0A3B6A6707
-	for <lists+devicetree@lfdr.de>; Wed,  1 Mar 2023 05:40:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C88506A6727
+	for <lists+devicetree@lfdr.de>; Wed,  1 Mar 2023 05:53:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229618AbjCAEkK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Feb 2023 23:40:10 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56562 "EHLO
+        id S229560AbjCAEx6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Feb 2023 23:53:58 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34028 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229612AbjCAEkI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Feb 2023 23:40:08 -0500
-Received: from mail-vs1-xe31.google.com (mail-vs1-xe31.google.com [IPv6:2607:f8b0:4864:20::e31])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 87F253864A
-        for <devicetree@vger.kernel.org>; Tue, 28 Feb 2023 20:40:05 -0800 (PST)
-Received: by mail-vs1-xe31.google.com with SMTP id f23so17917547vsa.13
-        for <devicetree@vger.kernel.org>; Tue, 28 Feb 2023 20:40:05 -0800 (PST)
+        with ESMTP id S229471AbjCAEx5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Feb 2023 23:53:57 -0500
+Received: from mail-ua1-x92f.google.com (mail-ua1-x92f.google.com [IPv6:2607:f8b0:4864:20::92f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EECC830B1F
+        for <devicetree@vger.kernel.org>; Tue, 28 Feb 2023 20:53:55 -0800 (PST)
+Received: by mail-ua1-x92f.google.com with SMTP id f17so2850991uax.7
+        for <devicetree@vger.kernel.org>; Tue, 28 Feb 2023 20:53:55 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=chromium.org; s=google;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=NwsREfLzKNuoHKNJGJ6iVvjj/6dxpXa/wWiq+aOws3Q=;
-        b=X9NKtJL0IJE82T7Th8Dk6OnTlE5QS9XjUMbMbMjCtPKJScjlgzMi9tRe9haNk5I/bp
-         a9RvGAstNTzMucSeHKPPx8MvbmVGQGR1s+LPQiX5jkKZ1ObsOwdQPM7QJwwkqXqXun4D
-         Mj6sb9oTp0PTfWd7kvnK46taN4Ed/rdZOW7a8=
+        bh=qsJY49rW0m3b+G5kgYFzLlLOQxDPcqcLAB93HQM1XRw=;
+        b=kTGgIXpp9BkG67kug4bzyfR4XkDFSu3l/FGwmHMasBIncT4Jk7oZY3QL5i3c4ZEvtS
+         pcu8YDwV8fCaq27Qv74HBbd4P8CKlmc1ninWIfcTbXEgIVSvxaaKunYpBV0IItksEQ8I
+         vXi3TT15PHS3DtBvhGdKqkGdbkG04GSytuLgg=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=NwsREfLzKNuoHKNJGJ6iVvjj/6dxpXa/wWiq+aOws3Q=;
-        b=Va324ogFnW0fiMJcjegsKWzwhwEZxDyDdk5jwRKT+9RO0RJo2I3GZ27D/QOyw0E8hr
-         TddlPmdvOVCocsh3GHB2gaPEuNEisRJxXFgpjNbUt4ACwikR/HbqSmDgYVi2Yxd+T8Hh
-         Cs83/jeZhEszqECW8hY+JRwa4eRupGbMPqvZFn5ZvC9x6AjmUconAZSLtrAs09gOUcvl
-         wAvA/0T0NVNeZCGocql8a4hE3eaizkK/HAqodEV5OSemnMMte4OXwn6faWWTwFMUyFLj
-         0JF4JJZ4RAY7dFzNHASg7M/N8xZgR/HLFZZhSgDfKsLDIToAn+KE8Ov/Yofgyx48qG2o
-         /u5Q==
-X-Gm-Message-State: AO0yUKVD+5AswZvKmrOE3oju6wfhTEoNRSqMJ/siZYzO9BTHcj6ouWVP
-        FR8LyhqK6uwDRT/zyea5HOjlYvR4D6Lg5up2Kz6oOw==
-X-Google-Smtp-Source: AK7set/20vPvgEB8su2PX/3Zm906cvBref6o6YCdNAAccIVwSoFTAxjK0qhveIlYt8n8nLOyXZEv8bdecjorFvsqMyQ=
-X-Received: by 2002:a67:f9c5:0:b0:402:999f:51dd with SMTP id
- c5-20020a67f9c5000000b00402999f51ddmr3423652vsq.3.1677645604447; Tue, 28 Feb
- 2023 20:40:04 -0800 (PST)
+        bh=qsJY49rW0m3b+G5kgYFzLlLOQxDPcqcLAB93HQM1XRw=;
+        b=jNsGpYbdKpJCgACq7HFAx/ZSjMxBC3001vPy4f/D23hEf9hriH0/Y0GeCvaZKJewAk
+         osn/Ol5XgtL2Bx7pZBTPzADovY7cqbR7AHt/l/nENRV9eZS5EkLLfavMu5F8bUbWZqqX
+         AzLniaUHRQ8DpG2MWIq/AWwlSBqOCU7//1isCztZCYe9sC9KRDF9FVzspemKlBJpiJRq
+         5oG9lREHbSEoinyCVJoyVt9k5AHaRWxMsFiUeCQzfXkm5T6EU+rfzZqrYjIXIysbcs+D
+         vcA8XNHkFp75RPmzAIMqViarYYezBXC27e8Q0EzXjLwOuAyg8B7nc+PB4NmWrHJELj6X
+         Xzyg==
+X-Gm-Message-State: AO0yUKXgeL6ubnZ6hKz8Qg+rjeF7Wrd1pb4dvbUv2ESmpHBPmI0/ySvQ
+        PpAKMf4kKKJoHBiSGcyXjjarPe+H/5cjquCQR04OTQ==
+X-Google-Smtp-Source: AK7set+GqkcxiNkM6nfCo0ys3BssCg6pLDlWZZDXStf63Q01t3V/mLIYphnNot1tZH0dtLtqPgc8cgjBonaVaVMNvps=
+X-Received: by 2002:a1f:58c5:0:b0:413:1498:e843 with SMTP id
+ m188-20020a1f58c5000000b004131498e843mr2809198vkb.0.1677646435063; Tue, 28
+ Feb 2023 20:53:55 -0800 (PST)
 MIME-Version: 1.0
-References: <20230228104741.717819-1-angelogioacchino.delregno@collabora.com> <20230228104741.717819-6-angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20230228104741.717819-6-angelogioacchino.delregno@collabora.com>
+References: <20230228104741.717819-1-angelogioacchino.delregno@collabora.com> <20230228104741.717819-12-angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20230228104741.717819-12-angelogioacchino.delregno@collabora.com>
 From:   Chen-Yu Tsai <wenst@chromium.org>
-Date:   Wed, 1 Mar 2023 12:39:53 +0800
-Message-ID: <CAGXv+5HF59-QFK-CTb=JLLDb8_J-JrgbzWHpmNWKR4JqF2O0bA@mail.gmail.com>
-Subject: Re: [PATCH v3 05/18] arm64: dts: mediatek: mt8183-evb: Couple VGPU
- and VSRAM_GPU regulators
+Date:   Wed, 1 Mar 2023 12:53:43 +0800
+Message-ID: <CAGXv+5FyjoLo1VW2Kep5JWH0tz5JE77XjbwWiKusnTntj2eZHQ@mail.gmail.com>
+Subject: Re: [PATCH v3 11/18] arm64: dts: mediatek: mt8192-asurada: Couple
+ VGPU and VSRAM_OTHER regulators
 To:     AngeloGioacchino Del Regno 
         <angelogioacchino.delregno@collabora.com>
 Cc:     matthias.bgg@gmail.com, robh+dt@kernel.org,
@@ -61,8 +61,7 @@ Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -72,10 +71,56 @@ X-Mailing-List: devicetree@vger.kernel.org
 On Tue, Feb 28, 2023 at 6:47=E2=80=AFPM AngeloGioacchino Del Regno
 <angelogioacchino.delregno@collabora.com> wrote:
 >
-> Add coupling for these regulators, as they have a strict voltage output
-> relation to satisfy in order to ensure GPU stable operation.
->
+> Add coupling for these regulators, as VSRAM_OTHER is used to power the
+> GPU SRAM, and they have a strict voltage output relation to satisfy in
+> order to ensure GPU stable operation.
+> While at it, also add voltage constraint overrides for the GPU SRAM
+> regulator "mt6359_vsram_others", but don't touch mt6315's vbuck1 as
+> its constraints are fine.
+
+The minimum voltage on vbuck1 matches the lowest OPP. However the maximum
+voltage is set to the maximum of the regulator itself. The MT8192 datasheet
+says the absolute maximum for the GPU is 0.8V, and the recommended range
+for 0.8V is 0.72V ~ 0.88V. The highest OPP we have is 0.8V, so I would
+just set the maximum voltage to that?
+
+ChenYu
+
 > Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@coll=
 abora.com>
-
-Reviewed-by: Chen-Yu Tsai <wenst@chromium.org>
+> ---
+>  arch/arm64/boot/dts/mediatek/mt8192-asurada.dtsi | 9 +++++++++
+>  1 file changed, 9 insertions(+)
+>
+> diff --git a/arch/arm64/boot/dts/mediatek/mt8192-asurada.dtsi b/arch/arm6=
+4/boot/dts/mediatek/mt8192-asurada.dtsi
+> index df477eb89f21..c8b6e1a9605b 100644
+> --- a/arch/arm64/boot/dts/mediatek/mt8192-asurada.dtsi
+> +++ b/arch/arm64/boot/dts/mediatek/mt8192-asurada.dtsi
+> @@ -447,6 +447,13 @@ &mt6359_vrf12_ldo_reg {
+>         regulator-always-on;
+>  };
+>
+> +&mt6359_vsram_others_ldo_reg {
+> +       regulator-min-microvolt =3D <750000>;
+> +       regulator-max-microvolt =3D <850000>;
+> +       regulator-coupled-with =3D <&mt6315_7_vbuck1>;
+> +       regulator-coupled-max-spread =3D <10000>;
+> +};
+> +
+>  &mt6359_vufs_ldo_reg {
+>         regulator-always-on;
+>  };
+> @@ -1411,6 +1418,8 @@ mt6315_7_vbuck1: vbuck1 {
+>                                 regulator-max-microvolt =3D <1193750>;
+>                                 regulator-enable-ramp-delay =3D <256>;
+>                                 regulator-allowed-modes =3D <0 1 2>;
+> +                               regulator-coupled-with =3D <&mt6359_vsram=
+_others_ldo_reg>;
+> +                               regulator-coupled-max-spread =3D <10000>;
+>                         };
+>                 };
+>         };
+> --
+> 2.39.2
+>
