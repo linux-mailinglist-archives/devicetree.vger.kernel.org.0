@@ -2,208 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 757676A69E0
-	for <lists+devicetree@lfdr.de>; Wed,  1 Mar 2023 10:36:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2EE796A69EA
+	for <lists+devicetree@lfdr.de>; Wed,  1 Mar 2023 10:39:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229602AbjCAJgh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 Mar 2023 04:36:37 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52914 "EHLO
+        id S229799AbjCAJjE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 Mar 2023 04:39:04 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54302 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229511AbjCAJgg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Mar 2023 04:36:36 -0500
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AE84036FE3
-        for <devicetree@vger.kernel.org>; Wed,  1 Mar 2023 01:36:35 -0800 (PST)
-Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <mfe@pengutronix.de>)
-        id 1pXIsj-0006oO-T9; Wed, 01 Mar 2023 10:36:17 +0100
-Received: from mfe by ptx.hi.pengutronix.de with local (Exim 4.92)
-        (envelope-from <mfe@pengutronix.de>)
-        id 1pXIsi-000589-KP; Wed, 01 Mar 2023 10:36:16 +0100
-Date:   Wed, 1 Mar 2023 10:36:16 +0100
-From:   Marco Felsch <m.felsch@pengutronix.de>
-To:     Marek Vasut <marex@denx.de>
-Cc:     linux-clk@vger.kernel.org, Fabio Estevam <festevam@gmail.com>,
-        Rob Herring <robh@kernel.org>, Adam Ford <aford173@gmail.com>,
-        Alexander Stein <alexander.stein@ew.tq-group.com>,
-        Abel Vesa <abelvesa@kernel.org>, Jacky Bai <ping.bai@nxp.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Luca Ceresoli <luca.ceresoli@bootlin.com>,
-        Lucas Stach <l.stach@pengutronix.de>,
-        Michael Turquette <mturquette@baylibre.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Peng Fan <peng.fan@nxp.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Richard Cochran <richardcochran@gmail.com>,
+        with ESMTP id S229511AbjCAJi6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Mar 2023 04:38:58 -0500
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8130B311ED;
+        Wed,  1 Mar 2023 01:38:57 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1677663537; x=1709199537;
+  h=from:to:cc:subject:in-reply-to:references:date:
+   message-id:mime-version;
+  bh=mwzi1nOCe5KSvSMHkgAMvU654fpFvrxwhFKDR1Q+JbA=;
+  b=PbMlW8vADZ0lLS0VNAyI1ZWY50EHPR9lSRvw/2wKAfHFLl2x2IGwhdqF
+   xf72k4+CrSSLJ7gdtgfo/Rc+ERhmWfniIT5f2FKr0p8gbfWvFl+LnvcJx
+   64c94cy+eVwrmhB/8y3p1M8IusosQ5N5Zq9jJ2ppCIDW4Xvn4FGoEqvUf
+   kC0QieS/mmUfARfVZnbzkmqWW0Ec2PYwBE0dUoW6U15OZTzXtDMy/lDeo
+   FdyFP3uVpGo8nKd9nUM97IgYVWR7kpTYFYPgyPUClXCKnQe+4iXJQt9Ou
+   EuBHsPsNP+xqbVt58sLvszjuIlbsBqc9ghp6zNom/wAM3O48WKF16CLjm
+   w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10635"; a="322627023"
+X-IronPort-AV: E=Sophos;i="5.98,224,1673942400"; 
+   d="scan'208";a="322627023"
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+  by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 01 Mar 2023 01:38:55 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10635"; a="624418784"
+X-IronPort-AV: E=Sophos;i="5.98,224,1673942400"; 
+   d="scan'208";a="624418784"
+Received: from dsvarnas-mobl1.ger.corp.intel.com (HELO localhost) ([10.252.46.249])
+  by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 01 Mar 2023 01:38:51 -0800
+From:   Jani Nikula <jani.nikula@linux.intel.com>
+To:     Pavel Machek <pavel@ucw.cz>,
+        Martin Kurbanov <mmkurbanov@sberdevices.ru>, ojeda@kernel.org
+Cc:     devicetree@vger.kernel.org, Lee Jones <lee@kernel.org>,
+        linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        Andy Shevchenko <andy.shevchenko@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Stephen Boyd <sboyd@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v6 3/5] dt-bindings: clock: imx8mp: Add audiomix block
- control
-Message-ID: <20230301093616.nj5pvtdkf7qjd5hw@pengutronix.de>
-References: <20230228215739.171071-1-marex@denx.de>
- <20230228215739.171071-3-marex@denx.de>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        kernel@sberdevices.ru, linux-leds@vger.kernel.org,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        linux-input@vger.kernel.org
+Subject: Re: AUXdisplay for LED arrays, keyboards with per-key LEDs -- was
+ Re: [PATCH v2 2/2] leds: add aw20xx driver
+In-Reply-To: <Y/50tKxpNVZO4Hfb@duo.ucw.cz>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20230228211046.109693-1-mmkurbanov@sberdevices.ru>
+ <20230228211046.109693-3-mmkurbanov@sberdevices.ru>
+ <Y/5xBGFC3b9Chdtb@duo.ucw.cz> <Y/50tKxpNVZO4Hfb@duo.ucw.cz>
+Date:   Wed, 01 Mar 2023 11:38:49 +0200
+Message-ID: <87h6v4x13q.fsf@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230228215739.171071-3-marex@denx.de>
-User-Agent: NeoMutt/20180716
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
-X-SA-Exim-Mail-From: mfe@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+Content-Type: text/plain
+X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE
+        autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
+        lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Marek,
+On Tue, 28 Feb 2023, Pavel Machek <pavel@ucw.cz> wrote:
+> Hi!
+>
+>> > +config LEDS_AW200XX
+>> > +	tristate "LED support for Awinic AW20036/AW20054/AW20072"
+>> > +	depends on LEDS_CLASS
+>> > +	depends on I2C
+>> > +	help
+>> > +	  This option enables support for the AW20036/AW20054/AW20072 LED driver.
+>> > +	  It is a 3x12/6x9/6x12 matrix LED driver programmed via
+>> > +	  an I2C interface, up to 36/54/72 LEDs or 12/18/24 RGBs,
+>> > +	  3 pattern controllers for auto breathing or group dimming control.
+>> 
+>> I'm afraid this should be handled as a display, not as an array of
+>> individual LEDs.
+>
+> You probably want to see
+>
+> AUXILIARY DISPLAY DRIVERS
+> M:      Miguel Ojeda <ojeda@kernel.org>
+> S:      Maintained
+> F:      Documentation/devicetree/bindings/auxdisplay/
+> F:      drivers/auxdisplay/
+> F:      include/linux/cfag12864b.h
+>
+> And this brings another question...
+>
+> ...sooner or later we'll see LED displays with around 100 pixels in
+> almost rectangular grid. Minority of the pixels will have funny
+> shapes. How will we handle those? Pretend it is regular display with
+> some pixels missing? How do we handle cellphone displays with rounded
+> corners and holes for front camera?
+>
+> And yes, such crazy displays are being manufactured -- it is called
+> keyboard with per-key backlight... 
+>
+> https://www.reddit.com/r/MechanicalKeyboards/comments/8dtvgo/keyboard_with_individually_programmable_leds/
 
-On 23-02-28, Marek Vasut wrote:
-> Unlike the other block control IPs in i.MX8M, the audiomix is mostly a
-> series of clock gates and muxes. Add DT bindings for this IP.
-> 
-> Reviewed-by: Fabio Estevam <festevam@gmail.com>
-> Reviewed-by: Rob Herring <robh@kernel.org>
-> Tested-by: Adam Ford <aford173@gmail.com> #imx8mp-beacon-kit
-> Tested-by: Alexander Stein <alexander.stein@ew.tq-group.com>
-> Signed-off-by: Marek Vasut <marex@denx.de>
-> ---
-> Cc: Abel Vesa <abelvesa@kernel.org>
-> Cc: Alexander Stein <alexander.stein@ew.tq-group.com>
-> Cc: Fabio Estevam <festevam@gmail.com>
-> Cc: Jacky Bai <ping.bai@nxp.com>
-> Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-> Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> Cc: Luca Ceresoli <luca.ceresoli@bootlin.com>
-> Cc: Lucas Stach <l.stach@pengutronix.de>
-> Cc: Marco Felsch <m.felsch@pengutronix.de>
-> Cc: Michael Turquette <mturquette@baylibre.com>
-> Cc: NXP Linux Team <linux-imx@nxp.com>
-> Cc: Peng Fan <peng.fan@nxp.com>
-> Cc: Pengutronix Kernel Team <kernel@pengutronix.de>
-> Cc: Richard Cochran <richardcochran@gmail.com>
-> Cc: Rob Herring <robh+dt@kernel.org>
-> Cc: Sascha Hauer <s.hauer@pengutronix.de>
-> Cc: Shawn Guo <shawnguo@kernel.org>
-> Cc: Stephen Boyd <sboyd@kernel.org>
-> Cc: devicetree@vger.kernel.org
-> Cc: linux-arm-kernel@lists.infradead.org
-> Cc: linux-clk@vger.kernel.org
-> ---
-> V2: No change
-> V3: - Add missed RB from Rob from V1
->     - Rename audio_ahb to plain ahb
-> V4: - Rebase on next 20230223
-> V5: Add TB from Adam and Alexander
-> V6: - Add RB from Fabio
->     - Drop power-domain-names
->     - Move reg below compatible property
-> ---
->  .../bindings/clock/imx8mp-audiomix.yaml       | 79 +++++++++++++++++++
->  1 file changed, 79 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/clock/imx8mp-audiomix.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/clock/imx8mp-audiomix.yaml b/Documentation/devicetree/bindings/clock/imx8mp-audiomix.yaml
-> new file mode 100644
-> index 0000000000000..ca0bdd0c551b8
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/clock/imx8mp-audiomix.yaml
-> @@ -0,0 +1,79 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/clock/imx8mp-audiomix.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: NXP i.MX8MP AudioMIX Block Control Binding
-> +
-> +maintainers:
-> +  - Marek Vasut <marex@denx.de>
-> +
-> +description: |
-> +  NXP i.MX8M Plus AudioMIX is dedicated clock muxing and gating IP
-> +  used to control Audio related clock on the SoC.
-> +
-> +properties:
-> +  compatible:
-> +    const: fsl,imx8mp-audio-blk-ctrl
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  power-domains:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    minItems: 7
-> +    maxItems: 7
-> +
-> +  clock-names:
-> +    items:
-> +      - const: ahb
-> +      - const: sai1
-> +      - const: sai2
-> +      - const: sai3
-> +      - const: sai5
-> +      - const: sai6
-> +      - const: sai7
-> +
-> +  '#clock-cells':
-> +    const: 1
-> +    description:
-> +      The clock consumer should specify the desired clock by having the clock
-> +      ID in its "clocks" phandle cell. See include/dt-bindings/clock/imx8mp-clock.h
-> +      for the full list of i.MX8MP IMX8MP_CLK_AUDIOMIX_ clock IDs.
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - power-domains
-> +  - clocks
-> +  - clock-names
-> +  - '#clock-cells'
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  # Clock Control Module node:
-> +  - |
-> +    #include <dt-bindings/clock/imx8mp-clock.h>
-> +
-> +    clock-controller@30e20000 {
-> +        #clock-cells = <1>;
+But... is that a display or a HID?
 
-We should move the #clock-cells at least below the reg property.
-IMHO the cells property could be the last one. With that fixed feel free
-to add my
+Only half-joking, really. This somewhat reminds me of using input system
+force feedback stuff for touch screen vibrations.
 
-Reviewed-by: Marco Felsch <m.felsch@pengutronix.de>
+Cc: Dmitry & linux-input.
 
-Regards,
-  Marco
 
-> +        compatible = "fsl,imx8mp-audio-blk-ctrl";
-> +        reg = <0x30e20000 0x10000>;
-> +        clocks = <&clk IMX8MP_CLK_AUDIO_ROOT>,
-> +                 <&clk IMX8MP_CLK_SAI1>,
-> +                 <&clk IMX8MP_CLK_SAI2>,
-> +                 <&clk IMX8MP_CLK_SAI3>,
-> +                 <&clk IMX8MP_CLK_SAI5>,
-> +                 <&clk IMX8MP_CLK_SAI6>,
-> +                 <&clk IMX8MP_CLK_SAI7>;
-> +        clock-names = "ahb",
-> +                      "sai1", "sai2", "sai3",
-> +                      "sai5", "sai6", "sai7";
-> +        power-domains = <&pgc_audio>;
-> +    };
-> +
-> +...
-> -- 
-> 2.39.2
-> 
-> 
+BR,
+Jani.
+
+-- 
+Jani Nikula, Intel Open Source Graphics Center
