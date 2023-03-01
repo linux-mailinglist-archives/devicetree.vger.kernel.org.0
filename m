@@ -2,597 +2,189 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 150176A73D7
-	for <lists+devicetree@lfdr.de>; Wed,  1 Mar 2023 19:50:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4EA656A7400
+	for <lists+devicetree@lfdr.de>; Wed,  1 Mar 2023 20:06:37 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230038AbjCASuw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 Mar 2023 13:50:52 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58962 "EHLO
+        id S229633AbjCATGg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 Mar 2023 14:06:36 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45372 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230074AbjCASuo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Mar 2023 13:50:44 -0500
-Received: from mail-pl1-x630.google.com (mail-pl1-x630.google.com [IPv6:2607:f8b0:4864:20::630])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 31F6F4DBC6
-        for <devicetree@vger.kernel.org>; Wed,  1 Mar 2023 10:50:40 -0800 (PST)
-Received: by mail-pl1-x630.google.com with SMTP id z2so14983805plf.12
-        for <devicetree@vger.kernel.org>; Wed, 01 Mar 2023 10:50:40 -0800 (PST)
+        with ESMTP id S229560AbjCATGf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Mar 2023 14:06:35 -0500
+Received: from mail-il1-x12a.google.com (mail-il1-x12a.google.com [IPv6:2607:f8b0:4864:20::12a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D7D864C6C2
+        for <devicetree@vger.kernel.org>; Wed,  1 Mar 2023 11:06:32 -0800 (PST)
+Received: by mail-il1-x12a.google.com with SMTP id i12so8944257ila.5
+        for <devicetree@vger.kernel.org>; Wed, 01 Mar 2023 11:06:32 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=chromium.org; s=google;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=j3Hvz20PoU+k2dz2O2aKTALv8ALltwSdpwW4NZp9f/k=;
-        b=TpdSMTX4mpsfOKNN6JRRarjX/81q8mZ2TS+TGE6QCh2M+twJlBMlpSxYJTuM35Qrhp
-         W8HpAUFxotVhDHzJpGGsoCpTHlYOH1Fih3En+9P2cli8Q7kjipjGXvtLZM5ukbCd3Bkd
-         tnELIHh82JatGsTvbi2EFF8NEDIGJbUAGKw6s=
+        bh=4nKAIImYnR4VY+mZrL40T8w+LQbikOjFpNewqlXCyj8=;
+        b=OV8S586G9AFm1/8w9oYCFIsznJuud/neA8wqia26BClD7KXP2fGeGaDSsVRI8TIL37
+         4io6dzUbTNvMTMEN1uTw4P/Dv4z7VnZh6cp25YrBJ2G6r35Jszp2pJQSK3255wnfYC4j
+         h9AZfEPujFC6V+vLfeqxylvCcgQFSaDqrbeN4=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=j3Hvz20PoU+k2dz2O2aKTALv8ALltwSdpwW4NZp9f/k=;
-        b=nZ+5NuUXnw0hBfUL/AxLbGJfH9oI+8tnCefJA10EvBa1eHqva2+XLJgsdAjcdugp0Q
-         DebtK0HN4U6XhiBMOAeLqRqRiMqUFCU2vkRQSQ+CYxUw1DNV2QMYWze0cV5IfrvOy4js
-         nUjYNyN1JJBKrMltrQRFjo+r/RJhH8bwyHVjDGS70NpU4N3a5tXV0OG3eAZN+WL9D3SI
-         dHnkh+P657nW8QTP1wJn5FFZx7k7xvDIPbCpWM9Gy3r9J9HOKPmI7431SjHBG0knXM5D
-         7VPCvOOgVXg3yzYjUzqCwJFYH5aUsV9s6TAOTtTCeSnILya9UKdGLC/IO60mqFlophmX
-         oK1A==
-X-Gm-Message-State: AO0yUKUebiDUjgGgp+BWz9EF0ISymrNvZ9W4xYouBiPcur5zZoF3eRtH
-        gZK/nMxwVFHba1dUOLeatCOjdQ==
-X-Google-Smtp-Source: AK7set+8fYnHwDW0wNn0rDOeebAukPEIxt5uRZEq/zY35ta9J1+t6fihsZTloxFwHZuHvIy5CUnb0g==
-X-Received: by 2002:a17:90b:1bc7:b0:233:affd:a96c with SMTP id oa7-20020a17090b1bc700b00233affda96cmr17786045pjb.16.1677696639591;
-        Wed, 01 Mar 2023 10:50:39 -0800 (PST)
-Received: from tictac2.mtv.corp.google.com ([2620:15c:9d:2:f4ac:1f4d:6f3b:f98])
-        by smtp.gmail.com with ESMTPSA id p5-20020a170902780500b0019a8530c063sm8761982pll.102.2023.03.01.10.50.38
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 01 Mar 2023 10:50:39 -0800 (PST)
-From:   Douglas Anderson <dianders@chromium.org>
-To:     Bjorn Andersson <andersson@kernel.org>
-Cc:     mka@chromium.org, swboyd@chromium.org,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Douglas Anderson <dianders@chromium.org>,
-        Andy Gross <agross@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH 4/4] arm64: dts: qcom: sc7180: Delete mrbland
-Date:   Wed,  1 Mar 2023 10:50:06 -0800
-Message-Id: <20230301104859.4.I79eee3b8e9eb3086ae02760e97a2e12ffa8eb4f0@changeid>
-X-Mailer: git-send-email 2.39.2.722.g9855ee24e9-goog
-In-Reply-To: <20230301185007.1101006-1-dianders@chromium.org>
-References: <20230301185007.1101006-1-dianders@chromium.org>
+        bh=4nKAIImYnR4VY+mZrL40T8w+LQbikOjFpNewqlXCyj8=;
+        b=jW8nHPbuLYCA/1ELpwN5Mr7UnvNB+2j8yJsIDQBGZnV5AeZKV60SqyW4LYR/l6IWMj
+         oJc+rPDmTHNXFlYqi9izmV4o12lxshgKauz9y4jq+jYuYWiXYcwlvasSwaowe9RodDUY
+         LPIBNd1uMtoI1YExhr9rhh6eLQFhILYIO6wVeaT3vto0pYxi7O0hvaYisGcFYpXASv6u
+         AOqYX7BZsOok4In7NiZ3NFZw108NtjyWalIyDnQ9/h9mjyFfePM32uGSNEoIBSVtEPs/
+         f/dQIJjpPfwRGodO4WRWDiIrvgFQ/huKlh+XM0QodZGpt1iuYFYBXLzsj6+SdY2lJEfn
+         i+Sg==
+X-Gm-Message-State: AO0yUKVMuxoQGqr6lwhEEKNmp+bhLeZgqF8j7QKkiDdgymEuklx+liYr
+        /kPCDbXLd1AXeAKfaFOfEti9euy4GAIx/S6B
+X-Google-Smtp-Source: AK7set/SwM3G+4mJX3ZN4qqQsjAiGriac3MUzOB0XgKUfSLUK7OLuCsPnvsMlsqV2htOhohseobG6w==
+X-Received: by 2002:a92:cd8b:0:b0:316:aa65:c094 with SMTP id r11-20020a92cd8b000000b00316aa65c094mr6427129ilb.18.1677697591763;
+        Wed, 01 Mar 2023 11:06:31 -0800 (PST)
+Received: from mail-io1-f51.google.com (mail-io1-f51.google.com. [209.85.166.51])
+        by smtp.gmail.com with ESMTPSA id x16-20020a92dc50000000b0030314a7f039sm3806820ilq.10.2023.03.01.11.06.31
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 01 Mar 2023 11:06:31 -0800 (PST)
+Received: by mail-io1-f51.google.com with SMTP id d12so5801908ioe.10
+        for <devicetree@vger.kernel.org>; Wed, 01 Mar 2023 11:06:31 -0800 (PST)
+X-Received: by 2002:a02:858c:0:b0:3c5:1971:1b7f with SMTP id
+ d12-20020a02858c000000b003c519711b7fmr3401570jai.6.1677697590506; Wed, 01 Mar
+ 2023 11:06:30 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <1676219337-6526-1-git-send-email-quic_vpolimer@quicinc.com>
+In-Reply-To: <1676219337-6526-1-git-send-email-quic_vpolimer@quicinc.com>
+From:   Doug Anderson <dianders@chromium.org>
+Date:   Wed, 1 Mar 2023 11:06:19 -0800
+X-Gmail-Original-Message-ID: <CAD=FV=XvjFQ-7KNsW2YQQ-LzJonCcHz_rj-oOhB0jh_99ficKA@mail.gmail.com>
+Message-ID: <CAD=FV=XvjFQ-7KNsW2YQQ-LzJonCcHz_rj-oOhB0jh_99ficKA@mail.gmail.com>
+Subject: Re: [PATCH v13 00/13] Add PSR support for eDP
+To:     Vinod Polimera <quic_vpolimer@quicinc.com>
+Cc:     dri-devel@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
+        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, robdclark@gmail.com,
+        swboyd@chromium.org, quic_kalyant@quicinc.com,
+        dmitry.baryshkov@linaro.org, quic_khsieh@quicinc.com,
+        quic_vproddut@quicinc.com, quic_bjorande@quicinc.com,
+        quic_abhinavk@quicinc.com, quic_sbillaka@quicinc.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The mrbland board was never actually produced and there has been no
-activity around the board for quite some time. It seems highly
-unlikely to magically get revived. There should be nobody in need of
-these device trees, so let's delete them. If somehow the project
-resurrects itself then we can re-add support, perhaps just for -rev1+.
+Hi,
 
-Signed-off-by: Douglas Anderson <dianders@chromium.org>
----
+On Sun, Feb 12, 2023 at 8:29=E2=80=AFAM Vinod Polimera
+<quic_vpolimer@quicinc.com> wrote:
+>
+> Changes in v2:
+>   - Use dp bridge to set psr entry/exit instead of dpu_enocder.
+>   - Don't modify whitespaces.
+>   - Set self refresh aware from atomic_check.
+>   - Set self refresh aware only if psr is supported.
+>   - Provide a stub for msm_dp_display_set_psr.
+>   - Move dp functions to bridge code.
+>
+> Changes in v3:
+>   - Change callback names to reflect atomic interfaces.
+>   - Move bridge callback change to separate patch as suggested by Dmitry.
+>   - Remove psr function declaration from msm_drv.h.
+>   - Set self_refresh_aware flag only if psr is supported.
+>   - Modify the variable names to simpler form.
+>   - Define bit fields for PSR settings.
+>   - Add comments explaining the steps to enter/exit psr.
+>   - Change DRM_INFO to drm_dbg_db.
+>
+> Changes in v4:
+>   - Move the get crtc functions to drm_atomic.
+>   - Add atomic functions for DP bridge too.
+>   - Add ternary operator to choose eDP or DP ops.
+>   - Return true/false instead of 1/0.
+>   - mode_valid missing in the eDP bridge ops.
+>   - Move the functions to get crtc into drm_atomic.c.
+>   - Fix compilation issues.
+>   - Remove dpu_assign_crtc and get crtc from drm_enc instead of dpu_enc.
+>   - Check for crtc state enable while reserving resources.
+>
+> Changes in v5:
+>   - Move the mode_valid changes into a different patch.
+>   - Complete psr_op_comp only when isr is set.
+>   - Move the DP atomic callback changes to a different patch.
+>   - Get crtc from drm connector state crtc.
+>   - Move to separate patch for check for crtc state enable while
+> reserving resources.
+>
+> Changes in v6:
+>   - Remove crtc from dpu_encoder_virt struct.
+>   - fix crtc check during vblank toggle crtc.
+>   - Misc changes.
+>
+> Changes in v7:
+>   - Add fix for underrun issue on kasan build.
+>
+> Changes in v8:
+>   - Drop the enc spinlock as it won't serve any purpose in
+> protetcing conn state.(Dmitry/Doug)
+>
+> Changes in v9:
+>   - Update commit message and fix alignment using spaces.(Marijn)
+>   - Misc changes.(Marijn)
+>
+> Changes in v10:
+>   - Get crtc cached in dpu_enc during obj init.(Dmitry)
+>
+> Changes in v11:
+>   - Remove crtc cached in dpu_enc during obj init.
+>   - Update dpu_enc crtc state on crtc enable/disable during self refresh.
+>
+> Changes in v12:
+>   - Update sc7180 intf mask to get intf timing gen status
+> based on DPU_INTF_STATUS_SUPPORTED bit.(Dmitry)
+>   - Remove "clear active interface in the datapath cleanup" change
+> as it is already included.
+>
+> Changes in v13:
+>   - Move core changes to top of the series.(Dmitry)
+>   - Drop self refresh aware disable change after psr entry.(Dmitry)
+>
+> Vinod Polimera (13):
+>   drm: add helper functions to retrieve old and new crtc
+>   drm/bridge: use atomic enable/disable callbacks for panel bridge
+>   drm/bridge: add psr support for panel bridge callbacks
+>   drm/msm/disp/dpu: check for crtc enable rather than crtc active to
+>     release shared resources
+>   drm/msm/disp/dpu: get timing engine status from intf status register
+>   drm/msm/disp/dpu: wait for extra vsync till timing engine status is
+>     disabled
+>   drm/msm/disp/dpu: reset the datapath after timing engine disable
+>   drm/msm/dp: use atomic callbacks for DP bridge ops
+>   drm/msm/dp: Add basic PSR support for eDP
+>   drm/msm/dp: use the eDP bridge ops to validate eDP modes
+>   drm/msm/disp/dpu: use atomic enable/disable callbacks for encoder
+>     functions
+>   drm/msm/disp/dpu: add PSR support for eDP interface in dpu driver
+>   drm/msm/disp/dpu: update dpu_enc crtc state on crtc enable/disable
+>     during self refresh
 
- arch/arm64/boot/dts/qcom/Makefile             |   4 -
- .../qcom/sc7180-trogdor-mrbland-rev0-auo.dts  |  22 --
- .../qcom/sc7180-trogdor-mrbland-rev0-boe.dts  |  22 --
- .../dts/qcom/sc7180-trogdor-mrbland-rev0.dtsi |  36 --
- .../qcom/sc7180-trogdor-mrbland-rev1-auo.dts  |  22 --
- .../qcom/sc7180-trogdor-mrbland-rev1-boe.dts  |  24 --
- .../boot/dts/qcom/sc7180-trogdor-mrbland.dtsi | 320 ------------------
- 7 files changed, 450 deletions(-)
- delete mode 100644 arch/arm64/boot/dts/qcom/sc7180-trogdor-mrbland-rev0-auo.dts
- delete mode 100644 arch/arm64/boot/dts/qcom/sc7180-trogdor-mrbland-rev0-boe.dts
- delete mode 100644 arch/arm64/boot/dts/qcom/sc7180-trogdor-mrbland-rev0.dtsi
- delete mode 100644 arch/arm64/boot/dts/qcom/sc7180-trogdor-mrbland-rev1-auo.dts
- delete mode 100644 arch/arm64/boot/dts/qcom/sc7180-trogdor-mrbland-rev1-boe.dts
- delete mode 100644 arch/arm64/boot/dts/qcom/sc7180-trogdor-mrbland.dtsi
+I'm curious what the plan is for landing this series. I could land the
+first two in drm-misc if you want, but I'm a lowly committer and so I
+couldn't make an immutable branch for you nor can I officially Ack the
+changes to land in your branch. That means you'd be blocked for an
+extra version. Do you already have a plan? If not, then maybe we need
+to get in touch with one of the maintainers [1] of drm-misc? That's
+documented [2] to be in their set of responsibilities.
 
-diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
-index e4190a648335..a0ad0a8a62d8 100644
---- a/arch/arm64/boot/dts/qcom/Makefile
-+++ b/arch/arm64/boot/dts/qcom/Makefile
-@@ -98,10 +98,6 @@ dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-lazor-limozeen-r9.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-lazor-limozeen-nots-r4.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-lazor-limozeen-nots-r5.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-lazor-limozeen-nots-r9.dtb
--dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-mrbland-rev0-auo.dtb
--dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-mrbland-rev0-boe.dtb
--dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-mrbland-rev1-auo.dtb
--dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-mrbland-rev1-boe.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-pazquel-lte-parade.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-pazquel-lte-ti.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-pazquel-parade.dtb
-diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-mrbland-rev0-auo.dts b/arch/arm64/boot/dts/qcom/sc7180-trogdor-mrbland-rev0-auo.dts
-deleted file mode 100644
-index 2767817fb053..000000000000
---- a/arch/arm64/boot/dts/qcom/sc7180-trogdor-mrbland-rev0-auo.dts
-+++ /dev/null
-@@ -1,22 +0,0 @@
--// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
--/*
-- * Google Mrbland board device tree source
-- *
-- * Copyright 2021 Google LLC.
-- *
-- * SKU: 0x0 => 0
-- *  - bits 7..4: Panel ID: 0x0 (AUO)
-- */
--
--/dts-v1/;
--
--#include "sc7180-trogdor-mrbland-rev0.dtsi"
--
--/ {
--	model = "Google Mrbland rev0 AUO panel board";
--	compatible = "google,mrbland-rev0-sku0", "qcom,sc7180";
--};
--
--&panel {
--	compatible = "auo,b101uan08.3";
--};
-diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-mrbland-rev0-boe.dts b/arch/arm64/boot/dts/qcom/sc7180-trogdor-mrbland-rev0-boe.dts
-deleted file mode 100644
-index 711485574a03..000000000000
---- a/arch/arm64/boot/dts/qcom/sc7180-trogdor-mrbland-rev0-boe.dts
-+++ /dev/null
-@@ -1,22 +0,0 @@
--// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
--/*
-- * Google Mrbland board device tree source
-- *
-- * Copyright 2021 Google LLC.
-- *
-- * SKU: 0x10 => 16
-- *  - bits 7..4: Panel ID: 0x1 (BOE)
-- */
--
--/dts-v1/;
--
--#include "sc7180-trogdor-mrbland-rev0.dtsi"
--
--/ {
--	model = "Google Mrbland rev0 BOE panel board";
--	compatible = "google,mrbland-rev0-sku16", "qcom,sc7180";
--};
--
--&panel {
--	compatible = "boe,tv101wum-n53";
--};
-diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-mrbland-rev0.dtsi b/arch/arm64/boot/dts/qcom/sc7180-trogdor-mrbland-rev0.dtsi
-deleted file mode 100644
-index f4c1f3813664..000000000000
---- a/arch/arm64/boot/dts/qcom/sc7180-trogdor-mrbland-rev0.dtsi
-+++ /dev/null
-@@ -1,36 +0,0 @@
--// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
--/*
-- * Google Mrbland board device tree source
-- *
-- * Copyright 2021 Google LLC.
-- *
-- */
--
--/dts-v1/;
--
--#include "sc7180-trogdor-mrbland.dtsi"
--
--&avdd_lcd {
--	gpio = <&tlmm 80 GPIO_ACTIVE_HIGH>;
--};
--
--&panel {
--	enable-gpios = <&tlmm 76 GPIO_ACTIVE_HIGH>;
--};
--
--&v1p8_mipi {
--	gpio = <&tlmm 81 GPIO_ACTIVE_HIGH>;
--};
--
--/* PINCTRL - modifications to sc7180-trogdor-mrbland.dtsi */
--&avdd_lcd_en {
--	pins = "gpio80";
--};
--
--&mipi_1800_en {
--	pins = "gpio81";
--};
--
--&vdd_reset_1800 {
--	pins = "gpio76";
--};
-diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-mrbland-rev1-auo.dts b/arch/arm64/boot/dts/qcom/sc7180-trogdor-mrbland-rev1-auo.dts
-deleted file mode 100644
-index 275313ef7554..000000000000
---- a/arch/arm64/boot/dts/qcom/sc7180-trogdor-mrbland-rev1-auo.dts
-+++ /dev/null
-@@ -1,22 +0,0 @@
--// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
--/*
-- * Google Mrbland board device tree source
-- *
-- * Copyright 2021 Google LLC.
-- *
-- * SKU: 0x600 => 1536
-- *  - bits 11..8: Panel ID: 0x6 (AUO)
-- */
--
--/dts-v1/;
--
--#include "sc7180-trogdor-mrbland.dtsi"
--
--/ {
--	model = "Google Mrbland rev1+ AUO panel board";
--	compatible = "google,mrbland-sku1536", "qcom,sc7180";
--};
--
--&panel {
--	compatible = "auo,b101uan08.3";
--};
-diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-mrbland-rev1-boe.dts b/arch/arm64/boot/dts/qcom/sc7180-trogdor-mrbland-rev1-boe.dts
-deleted file mode 100644
-index 87c6b6c30b5e..000000000000
---- a/arch/arm64/boot/dts/qcom/sc7180-trogdor-mrbland-rev1-boe.dts
-+++ /dev/null
-@@ -1,24 +0,0 @@
--// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
--/*
-- * Google Mrbland board device tree source
-- *
-- * Copyright 2021 Google LLC.
-- *
-- * SKU: 0x300 => 768
-- *  - bits 11..8: Panel ID: 0x3 (BOE)
-- */
--
--/dts-v1/;
--
--#include "sc7180-trogdor-mrbland.dtsi"
--
--/ {
--	model = "Google Mrbland (rev1 - 2) BOE panel board";
--	/* Uses ID 768 on rev1 and 1024 on rev2+ */
--	compatible = "google,mrbland-sku1024", "google,mrbland-sku768",
--		"qcom,sc7180";
--};
--
--&panel {
--	compatible = "boe,tv101wum-n53";
--};
-diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-mrbland.dtsi b/arch/arm64/boot/dts/qcom/sc7180-trogdor-mrbland.dtsi
-deleted file mode 100644
-index ed12ee35f06b..000000000000
---- a/arch/arm64/boot/dts/qcom/sc7180-trogdor-mrbland.dtsi
-+++ /dev/null
-@@ -1,320 +0,0 @@
--// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
--/*
-- * Google Mrbland board device tree source
-- *
-- * Copyright 2021 Google LLC.
-- */
--
--/dts-v1/;
--
--#include "sc7180-trogdor.dtsi"
--
--/* This board only has 1 USB Type-C port. */
--/delete-node/ &usb_c1;
--
--/ {
--	avdd_lcd: avdd-lcd-regulator {
--		compatible = "regulator-fixed";
--		regulator-name = "avdd_lcd";
--
--		gpio = <&tlmm 88 GPIO_ACTIVE_HIGH>;
--		enable-active-high;
--		pinctrl-names = "default";
--		pinctrl-0 = <&avdd_lcd_en>;
--
--		vin-supply = <&pp5000_a>;
--	};
--
--	avee_lcd: avee-lcd-regulator {
--		compatible = "regulator-fixed";
--		regulator-name = "avee_lcd";
--
--		gpio = <&tlmm 21 GPIO_ACTIVE_HIGH>;
--		enable-active-high;
--		pinctrl-names = "default";
--		pinctrl-0 = <&avee_lcd_en>;
--
--		vin-supply = <&pp5000_a>;
--	};
--
--	v1p8_mipi: v1p8-mipi-regulator {
--		compatible = "regulator-fixed";
--		regulator-name = "v1p8_mipi";
--
--		gpio = <&tlmm 86 GPIO_ACTIVE_HIGH>;
--		enable-active-high;
--		pinctrl-names = "default";
--		pinctrl-0 = <&mipi_1800_en>;
--
--		vin-supply = <&pp3300_a>;
--	};
--};
--
--&backlight {
--	pwms = <&cros_ec_pwm 0>;
--};
--
--&camcc {
--	status = "okay";
--};
--
--&cros_ec {
--	keyboard-controller {
--		compatible = "google,cros-ec-keyb-switches";
--	};
--};
--
--&dsi0 {
--
--	panel: panel@0 {
--		/* Compatible will be filled in per-board */
--		reg = <0>;
--		enable-gpios = <&tlmm 87 GPIO_ACTIVE_HIGH>;
--		pinctrl-names = "default";
--		pinctrl-0 = <&vdd_reset_1800>;
--		avdd-supply = <&avdd_lcd>;
--		avee-supply = <&avee_lcd>;
--		pp1800-supply = <&v1p8_mipi>;
--		pp3300-supply = <&pp3300_dx_edp>;
--		backlight = <&backlight>;
--		rotation = <270>;
--
--		ports {
--			#address-cells = <1>;
--			#size-cells = <0>;
--			port@0 {
--				reg = <0>;
--				panel_in: endpoint {
--					remote-endpoint = <&dsi0_out>;
--				};
--			};
--		};
--	};
--
--	ports {
--		port@1 {
--			endpoint {
--				remote-endpoint = <&panel_in>;
--				data-lanes = <0 1 2 3>;
--			};
--		};
--	};
--};
--
--&gpio_keys {
--	status = "okay";
--};
--
--&i2c4 {
--	status = "okay";
--	clock-frequency = <400000>;
--
--	ap_ts: touchscreen@5d {
--		compatible = "goodix,gt7375p";
--		reg = <0x5d>;
--		pinctrl-names = "default";
--		pinctrl-0 = <&ts_int_l>, <&ts_reset_l>;
--
--		interrupt-parent = <&tlmm>;
--		interrupts = <9 IRQ_TYPE_LEVEL_LOW>;
--
--		reset-gpios = <&tlmm 8 GPIO_ACTIVE_LOW>;
--
--		vdd-supply = <&pp3300_ts>;
--	};
--};
--
--&pp1800_uf_cam {
--	status = "okay";
--};
--
--&pp1800_wf_cam {
--	status = "okay";
--};
--
--&pp2800_uf_cam {
--	status = "okay";
--};
--
--&pp2800_wf_cam {
--	status = "okay";
--};
--
--&wifi {
--	qcom,ath10k-calibration-variant = "GO_MRBLAND";
--};
--
--/*
-- * No eDP on this board but it's logically the same signal so just give it
-- * a new name and assign the proper GPIO.
-- */
--pp3300_disp_on: &pp3300_dx_edp {
--	gpio = <&tlmm 85 GPIO_ACTIVE_HIGH>;
--};
--
--/* PINCTRL - modifications to sc7180-trogdor.dtsi */
--
--/*
-- * No eDP on this board but it's logically the same signal so just give it
-- * a new name and assign the proper GPIO.
-- */
--
--tp_en: &en_pp3300_dx_edp {
--	pins = "gpio85";
--};
--
--/* PINCTRL - board-specific pinctrl */
--
--&tlmm {
--	gpio-line-names = "HUB_RST_L",
--			  "AP_RAM_ID0",
--			  "AP_SKU_ID2",
--			  "AP_RAM_ID1",
--			  "",
--			  "AP_RAM_ID2",
--			  "UF_CAM_EN",
--			  "WF_CAM_EN",
--			  "TS_RESET_L",
--			  "TS_INT_L",
--			  "",
--			  "",
--			  "AP_EDP_BKLTEN",
--			  "UF_CAM_MCLK",
--			  "WF_CAM_CLK",
--			  "",
--			  "",
--			  "UF_CAM_SDA",
--			  "UF_CAM_SCL",
--			  "WF_CAM_SDA",
--			  "WF_CAM_SCL",
--			  "AVEE_LCD_EN",
--			  "",
--			  "AMP_EN",
--			  "",
--			  "",
--			  "",
--			  "",
--			  "HP_IRQ",
--			  "WF_CAM_RST_L",
--			  "UF_CAM_RST_L",
--			  "AP_BRD_ID2",
--			  "",
--			  "AP_BRD_ID0",
--			  "AP_H1_SPI_MISO",
--			  "AP_H1_SPI_MOSI",
--			  "AP_H1_SPI_CLK",
--			  "AP_H1_SPI_CS_L",
--			  "BT_UART_CTS",
--			  "BT_UART_RTS",
--			  "BT_UART_TXD",
--			  "BT_UART_RXD",
--			  "H1_AP_INT_ODL",
--			  "",
--			  "UART_AP_TX_DBG_RX",
--			  "UART_DBG_TX_AP_RX",
--			  "HP_I2C_SDA",
--			  "HP_I2C_SCL",
--			  "FORCED_USB_BOOT",
--			  "AMP_BCLK",
--			  "AMP_LRCLK",
--			  "AMP_DIN",
--			  "PEN_DET_ODL",
--			  "HP_BCLK",
--			  "HP_LRCLK",
--			  "HP_DOUT",
--			  "HP_DIN",
--			  "HP_MCLK",
--			  "AP_SKU_ID0",
--			  "AP_EC_SPI_MISO",
--			  "AP_EC_SPI_MOSI",
--			  "AP_EC_SPI_CLK",
--			  "AP_EC_SPI_CS_L",
--			  "AP_SPI_CLK",
--			  "AP_SPI_MOSI",
--			  "AP_SPI_MISO",
--			  /*
--			   * AP_FLASH_WP_L is crossystem ABI. Schematics
--			   * call it BIOS_FLASH_WP_L.
--			   */
--			  "AP_FLASH_WP_L",
--			  "",
--			  "AP_SPI_CS0_L",
--			  "",
--			  "",
--			  "",
--			  "",
--			  "WLAN_SW_CTRL",
--			  "",
--			  "REPORT_E",
--			  "",
--			  "ID0",
--			  "",
--			  "ID1",
--			  "",
--			  "",
--			  "",
--			  "CODEC_PWR_EN",
--			  "HUB_EN",
--			  "TP_EN",
--			  "MIPI_1.8V_EN",
--			  "VDD_RESET_1.8V",
--			  "AVDD_LCD_EN",
--			  "",
--			  "AP_SKU_ID1",
--			  "AP_RST_REQ",
--			  "",
--			  "AP_BRD_ID1",
--			  "AP_EC_INT_L",
--			  "SDM_GRFC_3",
--			  "",
--			  "",
--			  "BOOT_CONFIG_4",
--			  "BOOT_CONFIG_2",
--			  "",
--			  "",
--			  "",
--			  "",
--			  "",
--			  "",
--			  "",
--			  "BOOT_CONFIG_3",
--			  "WCI2_LTE_COEX_TXD",
--			  "WCI2_LTE_COEX_RXD",
--			  "",
--			  "",
--			  "",
--			  "",
--			  "FORCED_USB_BOOT_POL",
--			  "AP_TS_PEN_I2C_SDA",
--			  "AP_TS_PEN_I2C_SCL",
--			  "DP_HOT_PLUG_DET",
--			  "EC_IN_RW_ODL";
--
--	avdd_lcd_en: avdd-lcd-en-state {
--		pins = "gpio88";
--		function = "gpio";
--		drive-strength = <2>;
--		bias-disable;
--	};
--
--	avee_lcd_en: avee-lcd-en-state {
--		pins = "gpio21";
--		function = "gpio";
--		drive-strength = <2>;
--		bias-disable;
--	};
--
--	mipi_1800_en: mipi-1800-en-state {
--		pins = "gpio86";
--		function = "gpio";
--		drive-strength = <2>;
--		bias-disable;
--	};
--
--	vdd_reset_1800: vdd-reset-1800-state {
--		pins = "gpio87";
--		function = "gpio";
--		drive-strength = <2>;
--		bias-disable;
--	};
--};
--- 
-2.39.2.722.g9855ee24e9-goog
+[1] https://drm.pages.freedesktop.org/maintainer-tools/repositories.html#dr=
+m-misc-repository
+[2] https://drm.pages.freedesktop.org/maintainer-tools/maintainer-drm-misc.=
+html#maintainer-s-duties
 
+-Doug
