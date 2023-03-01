@@ -2,47 +2,47 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 23E386A6867
-	for <lists+devicetree@lfdr.de>; Wed,  1 Mar 2023 08:51:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 04B6C6A687A
+	for <lists+devicetree@lfdr.de>; Wed,  1 Mar 2023 08:56:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229695AbjCAHvQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 Mar 2023 02:51:16 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56548 "EHLO
+        id S229849AbjCAH4T (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 Mar 2023 02:56:19 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60708 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229437AbjCAHvP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Mar 2023 02:51:15 -0500
-Received: from mx3.molgen.mpg.de (mx3.molgen.mpg.de [141.14.17.11])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9A0212B615;
-        Tue, 28 Feb 2023 23:51:13 -0800 (PST)
-Received: from [192.168.0.2] (ip5f5aefed.dynamic.kabel-deutschland.de [95.90.239.237])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: pmenzel)
-        by mx.molgen.mpg.de (Postfix) with ESMTPSA id 5291661CC457B;
-        Wed,  1 Mar 2023 08:51:10 +0100 (CET)
-Message-ID: <775059b1-4697-b745-4743-55f7f7a9143e@molgen.mpg.de>
-Date:   Wed, 1 Mar 2023 08:51:09 +0100
+        with ESMTP id S229602AbjCAH4P (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Mar 2023 02:56:15 -0500
+Received: from relay10.mail.gandi.net (relay10.mail.gandi.net [IPv6:2001:4b98:dc4:8::230])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 516BB37562;
+        Tue, 28 Feb 2023 23:56:10 -0800 (PST)
+Received: (Authenticated sender: alex@ghiti.fr)
+        by mail.gandi.net (Postfix) with ESMTPSA id E71E7240009;
+        Wed,  1 Mar 2023 07:56:04 +0000 (UTC)
+Message-ID: <c0b60456-8731-0999-df3b-f25731209471@ghiti.fr>
+Date:   Wed, 1 Mar 2023 08:56:04 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-Subject: Re: [PATCH v2] ARM: dts: aspeed: mtmitchell: Enable NCSI
-To:     Chanh Nguyen <chanh@os.amperecomputing.com>
-References: <20230228102820.18477-1-chanh@os.amperecomputing.com>
+ Thunderbird/102.7.1
+Subject: Re: [PATCH v5 1/2] riscv: Get rid of riscv_pfn_base variable
 Content-Language: en-US
-Cc:     OpenBMC Maillist <openbmc@lists.ozlabs.org>,
+To:     kernel test robot <lkp@intel.com>,
+        Alexandre Ghiti <alexghiti@rivosinc.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>, Guo Ren <guoren@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Joel Stanley <joel@jms.id.au>,
-        Andrew Jeffery <andrew@aj.id.au>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org
-From:   Paul Menzel <pmenzel@molgen.mpg.de>
-In-Reply-To: <20230228102820.18477-1-chanh@os.amperecomputing.com>
+        Frank Rowand <frowand.list@gmail.com>,
+        Conor Dooley <conor@kernel.org>,
+        linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arch@vger.kernel.org
+Cc:     oe-kbuild-all@lists.linux.dev
+References: <20230125081214.1576313-2-alexghiti@rivosinc.com>
+ <202301282230.sz4DCUe6-lkp@intel.com>
+From:   Alexandre Ghiti <alex@ghiti.fr>
+In-Reply-To: <202301282230.sz4DCUe6-lkp@intel.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,WEIRD_QUOTING autolearn=ham
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_NONE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -50,104 +50,84 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Dear Chanh,
+On 1/28/23 15:58, kernel test robot wrote:
+> Hi Alexandre,
+>
+> Thank you for the patch! Perhaps something to improve:
+>
+> [auto build test WARNING on robh/for-next]
+> [also build test WARNING on linus/master v6.2-rc5 next-20230127]
+> [If your patch is applied to the wrong git tree, kindly drop us a note.
+> And when submitting patch, we suggest to use '--base' as documented in
+> https://git-scm.com/docs/git-format-patch#_base_tree_information]
+>
+> url:    https://github.com/intel-lab-lkp/linux/commits/Alexandre-Ghiti/riscv-Get-rid-of-riscv_pfn_base-variable/20230125-161537
+> base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
+> patch link:    https://lore.kernel.org/r/20230125081214.1576313-2-alexghiti%40rivosinc.com
+> patch subject: [PATCH v5 1/2] riscv: Get rid of riscv_pfn_base variable
+> config: riscv-allnoconfig (https://download.01.org/0day-ci/archive/20230128/202301282230.sz4DCUe6-lkp@intel.com/config)
+> compiler: riscv64-linux-gcc (GCC) 12.1.0
+> reproduce (this is a W=1 build):
+>          wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+>          chmod +x ~/bin/make.cross
+>          # https://github.com/intel-lab-lkp/linux/commit/90b21402dc8a7e6e36a62ad19c4969ff13fad168
+>          git remote add linux-review https://github.com/intel-lab-lkp/linux
+>          git fetch --no-tags linux-review Alexandre-Ghiti/riscv-Get-rid-of-riscv_pfn_base-variable/20230125-161537
+>          git checkout 90b21402dc8a7e6e36a62ad19c4969ff13fad168
+>          # save the config file
+>          mkdir build_dir && cp config build_dir/.config
+>          COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.1.0 make.cross W=1 O=build_dir ARCH=riscv olddefconfig
+>          COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.1.0 make.cross W=1 O=build_dir ARCH=riscv SHELL=/bin/bash
+>
+> If you fix the issue, kindly add following tag where applicable
+> | Reported-by: kernel test robot <lkp@intel.com>
+>
+> All warnings (new ones prefixed by >>):
+>
+>     In file included from include/asm-generic/bug.h:22,
+>                      from arch/riscv/include/asm/bug.h:83,
+>                      from include/linux/bug.h:5,
+>                      from arch/riscv/include/asm/cmpxchg.h:9,
+>                      from arch/riscv/include/asm/atomic.h:19,
+>                      from include/linux/atomic.h:7,
+>                      from include/linux/jump_label.h:255,
+>                      from arch/riscv/include/asm/vdso/processor.h:7,
+>                      from include/vdso/processor.h:10,
+>                      from arch/riscv/include/asm/processor.h:11,
+>                      from arch/riscv/include/asm/irqflags.h:10,
+>                      from include/linux/irqflags.h:16,
+>                      from arch/riscv/include/asm/bitops.h:14,
+>                      from include/linux/bitops.h:68,
+>                      from include/linux/kernel.h:22,
+>                      from mm/debug.c:9:
+>     mm/debug.c: In function '__dump_page':
+>>> include/linux/kern_levels.h:5:25: warning: format '%lx' expects argument of type 'long unsigned int', but argument 7 has type 'long long unsigned int' [-Wformat=]
+>         5 | #define KERN_SOH        "\001"          /* ASCII Start Of Header */
+>           |                         ^~~~~~
+>     include/linux/printk.h:429:25: note: in definition of macro 'printk_index_wrap'
+>       429 |                 _p_func(_fmt, ##__VA_ARGS__);                           \
+>           |                         ^~~~
+>     include/linux/printk.h:510:9: note: in expansion of macro 'printk'
+>       510 |         printk(KERN_WARNING pr_fmt(fmt), ##__VA_ARGS__)
+>           |         ^~~~~~
+>     include/linux/kern_levels.h:12:25: note: in expansion of macro 'KERN_SOH'
+>        12 | #define KERN_WARNING    KERN_SOH "4"    /* warning conditions */
+>           |                         ^~~~~~~~
+>     include/linux/printk.h:510:16: note: in expansion of macro 'KERN_WARNING'
+>       510 |         printk(KERN_WARNING pr_fmt(fmt), ##__VA_ARGS__)
+>           |                ^~~~~~~~~~~~
+>     mm/debug.c:93:9: note: in expansion of macro 'pr_warn'
+>        93 |         pr_warn("page:%p refcount:%d mapcount:%d mapping:%p index:%#lx pfn:%#lx\n",
+>           |         ^~~~~~~
+>
+>
+> vim +5 include/linux/kern_levels.h
+>
+> 314ba3520e513a Joe Perches 2012-07-30  4
+> 04d2c8c83d0e3a Joe Perches 2012-07-30 @5  #define KERN_SOH	"\001"		/* ASCII Start Of Header */
+> 04d2c8c83d0e3a Joe Perches 2012-07-30  6  #define KERN_SOH_ASCII	'\001'
+> 04d2c8c83d0e3a Joe Perches 2012-07-30  7
+>
 
+And this one was mine, sorry I i overlooked that!
 
-Thank you for the patch.
-
-Am 28.02.23 um 11:28 schrieb Chanh Nguyen:
-> Support the mac3 (RGMII4) as an NC-SI stack instead of an MDIO PHY.
-> 
-> The OCP slot #0 and OCP slot #1 use a common the BMC_NCSI signal,
-
-*the* seems a leftover.
-
-> so we use only one of them at the same time. The OCP slot #0 will
-> be enabled by PCA9539's setting by default.
-> 
-> Also, enable the OCP Auxiliary Power during booting.
-
-Is there a reason not to make this a separate commit?
-
-
-Kind regards,
-
-Paul
-
-
-> Signed-off-by: Chanh Nguyen <chanh@os.amperecomputing.com>
-> ---
-> Changes in v2:
->     - Change PCA9539APW node name.                     [Krzysztof]
-> ---
->   .../boot/dts/aspeed-bmc-ampere-mtmitchell.dts | 37 ++++++++++++++++++-
->   1 file changed, 36 insertions(+), 1 deletion(-)
-> 
-> diff --git a/arch/arm/boot/dts/aspeed-bmc-ampere-mtmitchell.dts b/arch/arm/boot/dts/aspeed-bmc-ampere-mtmitchell.dts
-> index 4b91600eaf62..1e0e88465254 100644
-> --- a/arch/arm/boot/dts/aspeed-bmc-ampere-mtmitchell.dts
-> +++ b/arch/arm/boot/dts/aspeed-bmc-ampere-mtmitchell.dts
-> @@ -251,6 +251,14 @@
->   	pinctrl-0 = <&pinctrl_rgmii1_default>;
->   };
->   
-> +&mac3 {
-> +	status = "okay";
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_rmii4_default>;
-> +	clock-names = "MACCLK", "RCLK";
-> +	use-ncsi;
-> +};
-> +
->   &fmc {
->   	status = "okay";
->   	flash@0 {
-> @@ -439,6 +447,26 @@
->   	status = "okay";
->   };
->   
-> +&i2c8 {
-> +	status = "okay";
-> +
-> +	gpio@77 {
-> +		compatible = "nxp,pca9539";
-> +		reg = <0x77>;
-> +		gpio-controller;
-> +		#address-cells = <1>;
-> +		#size-cells = <0>;
-> +		#gpio-cells = <2>;
-> +
-> +		bmc-ocp0-en-hog {
-> +			gpio-hog;
-> +			gpios = <7 GPIO_ACTIVE_LOW>;
-> +			output-high;
-> +			line-name = "bmc-ocp0-en-n";
-> +		};
-> +	};
-> +};
-> +
->   &i2c9 {
->   	status = "okay";
->   };
-> @@ -530,13 +558,20 @@
->   	/*V0-V7*/	"s0-hightemp-n","s0-fault-alert","s0-sys-auth-failure-n",
->   			"host0-reboot-ack-n","host0-ready","host0-shd-req-n",
->   			"host0-shd-ack-n","s0-overtemp-n",
-> -	/*W0-W7*/	"ocp-aux-pwren","ocp-main-pwren","ocp-pgood","",
-> +	/*W0-W7*/	"","ocp-main-pwren","ocp-pgood","",
->   			"bmc-ok","bmc-ready","spi0-program-sel","spi0-backup-sel",
->   	/*X0-X7*/	"i2c-backup-sel","s1-fault-alert","s1-fw-boot-ok",
->   			"s1-hightemp-n","s0-spi-auth-fail-n","s1-sys-auth-failure-n",
->   			"s1-overtemp-n","s1-spi-auth-fail-n",
->   	/*Y0-Y7*/	"","","","","","","","host0-special-boot",
->   	/*Z0-Z7*/	"reset-button","ps0-pgood","ps1-pgood","","","","","";
-> +
-> +	ocp-aux-pwren-hog {
-> +		gpio-hog;
-> +		gpios = <ASPEED_GPIO(W, 0) GPIO_ACTIVE_HIGH>;
-> +		output-high;
-> +		line-name = "ocp-aux-pwren";
-> +	};
->   };
->   
->   &gpio1 {
