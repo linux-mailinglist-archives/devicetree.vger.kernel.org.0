@@ -2,59 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CC1636A6488
-	for <lists+devicetree@lfdr.de>; Wed,  1 Mar 2023 02:04:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 49C966A648C
+	for <lists+devicetree@lfdr.de>; Wed,  1 Mar 2023 02:06:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229549AbjCABEb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Feb 2023 20:04:31 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60144 "EHLO
+        id S229589AbjCABGX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Feb 2023 20:06:23 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32840 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229509AbjCABEa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Feb 2023 20:04:30 -0500
-Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C4B962448D
-        for <devicetree@vger.kernel.org>; Tue, 28 Feb 2023 17:04:28 -0800 (PST)
-Received: by mail-ed1-x535.google.com with SMTP id cy6so47600761edb.5
-        for <devicetree@vger.kernel.org>; Tue, 28 Feb 2023 17:04:28 -0800 (PST)
+        with ESMTP id S229509AbjCABGW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Feb 2023 20:06:22 -0500
+Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com [IPv6:2a00:1450:4864:20::52a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2FD501E2A4;
+        Tue, 28 Feb 2023 17:06:21 -0800 (PST)
+Received: by mail-ed1-x52a.google.com with SMTP id ee7so47707748edb.2;
+        Tue, 28 Feb 2023 17:06:21 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=jms.id.au; s=google;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=d4OrUOl51NPQf5S1PMv0oO+zYb0X1S9MmPzIm8SUt+E=;
-        b=LD/KmWHqfartLmkLJt7gHl5eGHb7wHaDCmWPOru/WQV/XzmSkvRwmwUpo/cdsuM/e4
-         LuKGXKskm9LBLx6ShF8U3PXcAFDYfQlbfpEMeHd8fJRhz38h0/WAyi/270I9IAsY38je
-         UD55B20H2G9dVQ2qBSR8dqeQsEEHYK0K8WfBU=
+        bh=ntMlB8tUMTxfsC0GrFp2J+8lL/27lfUXu3oM6wbn744=;
+        b=PprWuKMV7WpSgqmEXbYQIdsI2Y80bAnVmj++7Ldciu54FpEHWmr99uqdPZ4m6ZXSj1
+         4zGCiCRFJu5sC0IZkyHgUhpxTf5+eET3HpQelxrdjoNTxrYaVaYmFTiqK7avD2siqsFp
+         lhtalSkVoEpNcm7hhAwrydOtn+egUwai6yFKU=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=d4OrUOl51NPQf5S1PMv0oO+zYb0X1S9MmPzIm8SUt+E=;
-        b=5hdyOuVMyZbwzveKt+UWicMklxvY/M9J2lfUMD3hTf9OdMQVUdCNXXtefSkolwDyc8
-         pGzhgMSbtYwiq8x3YqTsHw7QNcnf213NC2nhVTEPVsQZ7RQ+ac7ktCtJBwTtND+P9fBZ
-         2tkoUemjk9I0ZnAWZPfIuyXdAJu8Ptdqp4oCq+C9pQgM613bePO9c6jLvLaIUHUphR1V
-         /k0IdRJ23VzKu62NPP711TctHBDIMX8O+C9XlFJ3GPhxpZw9mZVg9oVKbRwQomOhfR36
-         yqQAR60OQJS1y+MlFu9mFxnRrAOZdI7+1U10EZKCWqIVAVRe0nvl/YNWrRtu/RPX1TZn
-         io8Q==
-X-Gm-Message-State: AO0yUKV63rtoHipiDrpFHaJ/PJURhOQI8yo8pH6B0pLZ/WysMzZycqgi
-        dia1VX6hyAUQbPzrkZg5qK9dCftAfdfEj20BcE4=
-X-Google-Smtp-Source: AK7set+fLFqpaxP5q+miLeUyFfMGmV4RfJfEWRXJHRxOJeZuwqCAnyyTGPu4fdOX8uAmhcaCsX/0mtIygdv83fTuqrQ=
-X-Received: by 2002:a50:9f6a:0:b0:4ad:7439:cecb with SMTP id
- b97-20020a509f6a000000b004ad7439cecbmr2688575edf.7.1677632667191; Tue, 28 Feb
- 2023 17:04:27 -0800 (PST)
+        bh=ntMlB8tUMTxfsC0GrFp2J+8lL/27lfUXu3oM6wbn744=;
+        b=NVuun93OyGYzuVohfPkG8FHPO0WhogQFIjtN2wdWD/hjnayhx67uUJ7tN3Jq6+g0WM
+         0v5lPFgd+BWjwQI4+GRfsKoVdOcdihVxPcYl+DnzLFWKYOw1lR5FEuUuaSeDSYHERDFH
+         ZrGDnJaDk9HdFbhSTvyA168shh7OIfGMyVwTDpqht8hKrELr1kF2E4VBKdlRmfbNiH9V
+         R1KlXXaGruIH8ROjLC75sFUn7oJo7AoDkMTLfi6Da66blQVKSe6ME30pKRQD9GGXyF+k
+         8Kt7V80OB4yajIQ6Mu8ZlKR54MOsgCvvy3i9CmdZG7UeQpWSa/RFguFDoibNuxrcIGw2
+         Wh6w==
+X-Gm-Message-State: AO0yUKXtys4UtNgPQukKKbw7v1U3OayyXnKKuiFbB3Ln5BcvlteFexl3
+        WX7M1jCX2ROs00Ror+Zl7eDYHc/QGmqiLOyAuG8=
+X-Google-Smtp-Source: AK7set88rqwV4LYOMsTnEC1Hn1DhWWXoane1rPqIDpdVR8bXYOAQBHwU/oCt/7oEewEy4sUSGldGvTwbi6z+oHuzvXU=
+X-Received: by 2002:a17:907:d30d:b0:88d:ba79:4317 with SMTP id
+ vg13-20020a170907d30d00b0088dba794317mr9636315ejc.7.1677632779652; Tue, 28
+ Feb 2023 17:06:19 -0800 (PST)
 MIME-Version: 1.0
-References: <cover.1676532146.git.jk@codeconstruct.com.au>
-In-Reply-To: <cover.1676532146.git.jk@codeconstruct.com.au>
+References: <20230228091638.206569-1-jk@codeconstruct.com.au>
+ <20230228091638.206569-4-jk@codeconstruct.com.au> <CACPK8XfZCaLK+1kRkHa+wvGyt3YCwiZDR7CKRPKxdjuBFH+01Q@mail.gmail.com>
+ <1024ddf2c4047e5a6cd516809d4d15ea5e0349b6.camel@codeconstruct.com.au>
+In-Reply-To: <1024ddf2c4047e5a6cd516809d4d15ea5e0349b6.camel@codeconstruct.com.au>
 From:   Joel Stanley <joel@jms.id.au>
-Date:   Wed, 1 Mar 2023 01:04:15 +0000
-Message-ID: <CACPK8Xd0k8EKR1v4NVmgb6yp3Zh5hUyVyoxsyk0NTx9MF80oYQ@mail.gmail.com>
-Subject: Re: [PATCH 0/4] i3c: Add support for ast2600 i3c controller
+Date:   Wed, 1 Mar 2023 01:06:07 +0000
+Message-ID: <CACPK8Xfd5UzSC=pnVL+Rn6xj4sFkWBfB27c4O=qX8CjdL=fSqg@mail.gmail.com>
+Subject: Re: [PATCH v4 3/5] clk: ast2600: Add full configs for I3C clocks
 To:     Jeremy Kerr <jk@codeconstruct.com.au>
-Cc:     linux-i3c@lists.infradead.org,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Vitor Soares <ivitro@gmail.com>, linux-aspeed@lists.ozlabs.org,
-        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+Cc:     linux-aspeed@lists.ozlabs.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Stephen Boyd <sboyd@kernel.org>,
         Dylan Hung <dylan_hung@aspeedtech.com>,
         Andrew Jeffery <andrew@aj.id.au>
 Content-Type: text/plain; charset="UTF-8"
@@ -68,50 +71,60 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 16 Feb 2023 at 07:42, Jeremy Kerr <jk@codeconstruct.com.au> wrote:
+On Wed, 1 Mar 2023 at 00:58, Jeremy Kerr <jk@codeconstruct.com.au> wrote:
 >
-> The AST2600 SoC hardware includes a set of i3c controllers, based on the
-> designware i3c core, plus some global registers for SoC integration.
+> Hi Joel,
 >
-> This series adds support for these i3c controllers, through the existing
-> dw i3c master controller driver, by adding a set of platform-specific
-> hooks to handle the global register configuration. This also gives us a
-> way to add any future hardware-specific behaviours.
+> Thanks for the review. Some replies inline:
 >
-> We also need a DT binding to describe the ast2600-specific hardware.
-> Since this involves new (mandatory) properties, I have added this as a
-> separate binding rather than add a new compat string to the dw binding.
+> > > @@ -15,7 +16,7 @@
+> > >
+> > >  #include "clk-aspeed.h"
+> > >
+> > > -#define ASPEED_G6_NUM_CLKS             71
+> > > +#define ASPEED_G6_NUM_CLKS             72
+> >
+> > NUM_CLKS seems dangerous. Should we instead use
+> > ARRAY_SIZE(aspeed_g6_gates)?
 >
-> The dt-binding example depends on a prior submission to the dt binding
-> headers:
->
->   https://lore.kernel.org/linux-devicetree/cover.1676294433.git.jk@codeconstruct.com.au/
->
-> Full support for the global regmap will land with this queued mfd change:
->
->   https://git.kernel.org/pub/scm/linux/kernel/git/lee/mfd.git/commit/?id=cf2271843de835839e91c5c036492a87085af756
->
-> Of course, any queries/comments/etc are most welcome.
+> Yep, that would have saved me some time debugging. That would suit as a
+> separate change though, would you like it in the same series?
 
-Reviewed-by: Joel Stanley <joel@jms.id.au>
+Doesn't matter much. Perhaps include it at the end, for both the
+aspeed drivers? But separately is fine too.
 
 >
-> Cheers,
+> > >         /* USB 2.0 port1 phy 40MHz clock */
+> > >         hw = clk_hw_register_fixed_rate(NULL, "usb-phy-40m", NULL,
+> > > 0, 40000000);
+> > >         aspeed_g6_clk_data->hws[ASPEED_CLK_USBPHY_40M] = hw;
+> > > +
+> > > +       /* i3c clock: source from apll, divide by 8 */
+> > > +       regmap_read(map, ASPEED_G6_CLK_SELECTION5, &val);
+> > > +       val &= ~(I3C_CLK_SELECTION | APLL_DIV_SELECTION);
+> >
+> > Is there any value in registering a mux device here? See the emmc
+> > extclk device.
 >
+> We won't be doing any mux configuration here, so I figure the static
+> setup is fine.
+
+ack
+
 >
-> Jeremy
+> > > +       val |= FIELD_PREP(I3C_CLK_SELECTION,
+> > > I3C_CLK_SELECT_APLL_DIV);
+> > > +       val |= FIELD_PREP(APLL_DIV_SELECTION, APLL_DIV_8);
+> > > +       regmap_write(map, ASPEED_G6_CLK_SELECTION5, val);
+> >
+> > This is a departure in style from the existing code. The existing
+> > code did things like this:
+> >
+> >         regmap_update_bits(map, ASPEED_G6_CLK_SELECTION1, GENMASK(10, 8), BIT(10));
+> >
+> > Which uses the regmap API instead of FIELD_PREP macros.
 >
-> Jeremy Kerr (4):
->   dt-bindings: i3c: Add AST2600 i3c controller
->   i3c: dw: Add platform operations
->   i3c: dw: Add AST2600 platform ops
->   i3c: dw: Add compatible string for ASPEED AST2600 BMC platform
->
->  .../bindings/i3c/aspeed,ast2600-i3c.yaml      |  73 ++++++++
->  drivers/i3c/master/dw-i3c-master.c            | 165 +++++++++++++++++-
->  2 files changed, 232 insertions(+), 6 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/i3c/aspeed,ast2600-i3c.yaml
->
-> --
-> 2.39.1
->
+> Yep, that's much nicer, I'll change. The FIELD_PREP parts are just from
+> the initial ASPEED implementation.
+
+Cool.
