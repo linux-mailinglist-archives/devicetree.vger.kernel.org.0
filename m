@@ -2,129 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 49C966A648C
-	for <lists+devicetree@lfdr.de>; Wed,  1 Mar 2023 02:06:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 896FD6A64B3
+	for <lists+devicetree@lfdr.de>; Wed,  1 Mar 2023 02:22:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229589AbjCABGX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Feb 2023 20:06:23 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32840 "EHLO
+        id S229566AbjCABWj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Feb 2023 20:22:39 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43346 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229509AbjCABGW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Feb 2023 20:06:22 -0500
-Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com [IPv6:2a00:1450:4864:20::52a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2FD501E2A4;
-        Tue, 28 Feb 2023 17:06:21 -0800 (PST)
-Received: by mail-ed1-x52a.google.com with SMTP id ee7so47707748edb.2;
-        Tue, 28 Feb 2023 17:06:21 -0800 (PST)
+        with ESMTP id S229549AbjCABWi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Feb 2023 20:22:38 -0500
+Received: from mail-ot1-x333.google.com (mail-ot1-x333.google.com [IPv6:2607:f8b0:4864:20::333])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1D4CD32E5C;
+        Tue, 28 Feb 2023 17:22:07 -0800 (PST)
+Received: by mail-ot1-x333.google.com with SMTP id g6-20020a056830308600b0068d4b30536aso6694720ots.9;
+        Tue, 28 Feb 2023 17:22:07 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=jms.id.au; s=google;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=ntMlB8tUMTxfsC0GrFp2J+8lL/27lfUXu3oM6wbn744=;
-        b=PprWuKMV7WpSgqmEXbYQIdsI2Y80bAnVmj++7Ldciu54FpEHWmr99uqdPZ4m6ZXSj1
-         4zGCiCRFJu5sC0IZkyHgUhpxTf5+eET3HpQelxrdjoNTxrYaVaYmFTiqK7avD2siqsFp
-         lhtalSkVoEpNcm7hhAwrydOtn+egUwai6yFKU=
+        d=gmail.com; s=20210112; t=1677633726;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=V0dDKM/kz9j+kr4YipucQRbjkJuSAUreWGjHChZMyfU=;
+        b=j70Z6d74PxeOmjKCkXe3wzFvCUDGNQMIVJgZJLIB80H5UBzLcqON1dFrv8KYK5wdwc
+         7VOamfdrjECIxrS90d+V/UUnWd/frIxXi+KLwMx0xQFJkeNcUGf3Wovvf5LLuV3l3Upo
+         0wX2PN9bIfMISC0V1VONVxUwNeswAIJs01DK9HnNJ7bK2gOMr5tiBzAR7MwIt/RLDYrR
+         InGI9xk39UvaSvdabX0kBG0bOahWv/tZrUnqz/toFzwQGTSzyRhhuR1DopzEIRiTlEoA
+         tZ24iuuKF5wdi+kq7wFbFCZAsMVqex5i8zERzB9kWDn1CPR2nGPIlhlFsrnmvuRyi99l
+         /iTA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+        d=1e100.net; s=20210112; t=1677633726;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=ntMlB8tUMTxfsC0GrFp2J+8lL/27lfUXu3oM6wbn744=;
-        b=NVuun93OyGYzuVohfPkG8FHPO0WhogQFIjtN2wdWD/hjnayhx67uUJ7tN3Jq6+g0WM
-         0v5lPFgd+BWjwQI4+GRfsKoVdOcdihVxPcYl+DnzLFWKYOw1lR5FEuUuaSeDSYHERDFH
-         ZrGDnJaDk9HdFbhSTvyA168shh7OIfGMyVwTDpqht8hKrELr1kF2E4VBKdlRmfbNiH9V
-         R1KlXXaGruIH8ROjLC75sFUn7oJo7AoDkMTLfi6Da66blQVKSe6ME30pKRQD9GGXyF+k
-         8Kt7V80OB4yajIQ6Mu8ZlKR54MOsgCvvy3i9CmdZG7UeQpWSa/RFguFDoibNuxrcIGw2
-         Wh6w==
-X-Gm-Message-State: AO0yUKXtys4UtNgPQukKKbw7v1U3OayyXnKKuiFbB3Ln5BcvlteFexl3
-        WX7M1jCX2ROs00Ror+Zl7eDYHc/QGmqiLOyAuG8=
-X-Google-Smtp-Source: AK7set88rqwV4LYOMsTnEC1Hn1DhWWXoane1rPqIDpdVR8bXYOAQBHwU/oCt/7oEewEy4sUSGldGvTwbi6z+oHuzvXU=
-X-Received: by 2002:a17:907:d30d:b0:88d:ba79:4317 with SMTP id
- vg13-20020a170907d30d00b0088dba794317mr9636315ejc.7.1677632779652; Tue, 28
- Feb 2023 17:06:19 -0800 (PST)
+        bh=V0dDKM/kz9j+kr4YipucQRbjkJuSAUreWGjHChZMyfU=;
+        b=Hw2aF4pqAVOgfW/coYEfldySypmH573kJ1z/d1KG0Hn9UNEgR5pAGWBWgYW2jJbuLT
+         GWJYRnGQ48HDFE0pjSLo6RN321sfeM6B3iXD4ueCa5b9L+lkJ+pnk/1GMElfvkhwxLLG
+         F2p0RnsJYKEnEAotpEnNv4qcQ0HWxgPyiBT9avGI08mA2Oqjd9MnDMRlheQOUXtmnR92
+         W9Wi3n1qVgwBDtMRbstI9WeD41wj2lyaYgUxIt2xwNTqL6Ch0E1NwEPP3LPe3jyOqmhq
+         St6MZGy4occFmxtZ1doziQ+ZeBsVSHZJDJK4KWpd20mmVsB15fK1eMIenz7YmmYAcr7s
+         Xbsg==
+X-Gm-Message-State: AO0yUKXN1f5v5EJHazO2YIwgV+OSu615EGIJvuEysvsFgbifh3gx5U/F
+        F8ePlWUnx2Wqpgd9KHz4ju4q9kiXt2o=
+X-Google-Smtp-Source: AK7set/qbane1eg06bWyjfTJCCSYY62178P6KH3XhvxVAYkSbuCmbKzoa2lpaYkWW6xkbjfFB3LKxA==
+X-Received: by 2002:a05:6830:829:b0:68b:d344:97cb with SMTP id t9-20020a056830082900b0068bd34497cbmr2510876ots.13.1677633725847;
+        Tue, 28 Feb 2023 17:22:05 -0800 (PST)
+Received: from xps8900.attlocal.net ([2600:1700:2442:6db0:20c1:2bed:d8f3:84d8])
+        by smtp.gmail.com with ESMTPSA id v2-20020a056830140200b006864b5f4650sm4436362otp.46.2023.02.28.17.22.05
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 28 Feb 2023 17:22:05 -0800 (PST)
+From:   Frank Rowand <frowand.list@gmail.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Jonathan Corbet <corbet@lwn.net>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-doc@vger.kernel.org
+Subject: [PATCH 0/2] of: unittest: option to allow tests that trigger kernel stack dump
+Date:   Tue, 28 Feb 2023 19:21:14 -0600
+Message-Id: <20230301012116.1488132-1-frowand.list@gmail.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-References: <20230228091638.206569-1-jk@codeconstruct.com.au>
- <20230228091638.206569-4-jk@codeconstruct.com.au> <CACPK8XfZCaLK+1kRkHa+wvGyt3YCwiZDR7CKRPKxdjuBFH+01Q@mail.gmail.com>
- <1024ddf2c4047e5a6cd516809d4d15ea5e0349b6.camel@codeconstruct.com.au>
-In-Reply-To: <1024ddf2c4047e5a6cd516809d4d15ea5e0349b6.camel@codeconstruct.com.au>
-From:   Joel Stanley <joel@jms.id.au>
-Date:   Wed, 1 Mar 2023 01:06:07 +0000
-Message-ID: <CACPK8Xfd5UzSC=pnVL+Rn6xj4sFkWBfB27c4O=qX8CjdL=fSqg@mail.gmail.com>
-Subject: Re: [PATCH v4 3/5] clk: ast2600: Add full configs for I3C clocks
-To:     Jeremy Kerr <jk@codeconstruct.com.au>
-Cc:     linux-aspeed@lists.ozlabs.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Dylan Hung <dylan_hung@aspeedtech.com>,
-        Andrew Jeffery <andrew@aj.id.au>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,
-        SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 1 Mar 2023 at 00:58, Jeremy Kerr <jk@codeconstruct.com.au> wrote:
->
-> Hi Joel,
->
-> Thanks for the review. Some replies inline:
->
-> > > @@ -15,7 +16,7 @@
-> > >
-> > >  #include "clk-aspeed.h"
-> > >
-> > > -#define ASPEED_G6_NUM_CLKS             71
-> > > +#define ASPEED_G6_NUM_CLKS             72
-> >
-> > NUM_CLKS seems dangerous. Should we instead use
-> > ARRAY_SIZE(aspeed_g6_gates)?
->
-> Yep, that would have saved me some time debugging. That would suit as a
-> separate change though, would you like it in the same series?
+Commit 74df14cd301a ("of: unittest: add node lifecycle tests") added
+some tests that trigger a kernel stack dump.  Filtering the boot
+messages with scripts/dtc/of_unittest_expect detects that the stack
+dump is expected instead of being a test error.
 
-Doesn't matter much. Perhaps include it at the end, for both the
-aspeed drivers? But separately is fine too.
+Test beds might interpret the stack dumps as errors, resulting in
+needless debugging and error reports.  These test beds are likely
+to remove unittests due to these stack dumps. To avoid these problems,
+have the unittest default to skip the tests that trigger a stack dump.
 
->
-> > >         /* USB 2.0 port1 phy 40MHz clock */
-> > >         hw = clk_hw_register_fixed_rate(NULL, "usb-phy-40m", NULL,
-> > > 0, 40000000);
-> > >         aspeed_g6_clk_data->hws[ASPEED_CLK_USBPHY_40M] = hw;
-> > > +
-> > > +       /* i3c clock: source from apll, divide by 8 */
-> > > +       regmap_read(map, ASPEED_G6_CLK_SELECTION5, &val);
-> > > +       val &= ~(I3C_CLK_SELECTION | APLL_DIV_SELECTION);
-> >
-> > Is there any value in registering a mux device here? See the emmc
-> > extclk device.
->
-> We won't be doing any mux configuration here, so I figure the static
-> setup is fine.
+Add a kernel cmdline option to not skip those tests.  This option can
+be used by testers who are able to interpret the stack dumps as not
+an error.
 
-ack
+Frank Rowand (2):
+  of: unittest: option to allow tests that trigger kernel stack dump
+  of: unittest: add of_unittest_stackdump to kernel documentation
 
->
-> > > +       val |= FIELD_PREP(I3C_CLK_SELECTION,
-> > > I3C_CLK_SELECT_APLL_DIV);
-> > > +       val |= FIELD_PREP(APLL_DIV_SELECTION, APLL_DIV_8);
-> > > +       regmap_write(map, ASPEED_G6_CLK_SELECTION5, val);
-> >
-> > This is a departure in style from the existing code. The existing
-> > code did things like this:
-> >
-> >         regmap_update_bits(map, ASPEED_G6_CLK_SELECTION1, GENMASK(10, 8), BIT(10));
-> >
-> > Which uses the regmap API instead of FIELD_PREP macros.
->
-> Yep, that's much nicer, I'll change. The FIELD_PREP parts are just from
-> the initial ASPEED implementation.
+ .../admin-guide/kernel-parameters.txt         |  4 ++
+ drivers/of/unittest.c                         | 54 +++++++++++++++++--
+ 2 files changed, 55 insertions(+), 3 deletions(-)
 
-Cool.
+-- 
+Frank Rowand <frowand.list@gmail.com>
+
