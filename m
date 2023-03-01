@@ -2,167 +2,168 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7787A6A69AD
-	for <lists+devicetree@lfdr.de>; Wed,  1 Mar 2023 10:21:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B68B36A69BE
+	for <lists+devicetree@lfdr.de>; Wed,  1 Mar 2023 10:24:37 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229616AbjCAJVE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 Mar 2023 04:21:04 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44266 "EHLO
+        id S229804AbjCAJYg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 Mar 2023 04:24:36 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46818 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229525AbjCAJVD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Mar 2023 04:21:03 -0500
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 133CE2E827
-        for <devicetree@vger.kernel.org>; Wed,  1 Mar 2023 01:21:02 -0800 (PST)
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1pXIdp-0004k8-VR; Wed, 01 Mar 2023 10:20:54 +0100
-Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
-        by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.94.2)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1pXIdn-0014Ab-4C; Wed, 01 Mar 2023 10:20:51 +0100
-Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.94.2)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1pXIdm-001Fi4-CX; Wed, 01 Mar 2023 10:20:50 +0100
-Date:   Wed, 1 Mar 2023 10:20:50 +0100
-From:   Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
-To:     Nylon Chen <nylon.chen@sifive.com>
-Cc:     aou@eecs.berkeley.edu, conor@kernel.org,
-        emil.renner.berthing@canonical.com, geert+renesas@glider.be,
-        heiko@sntech.de, krzysztof.kozlowski+dt@linaro.org,
-        palmer@dabbelt.com, paul.walmsley@sifive.com, robh+dt@kernel.org,
-        thierry.reding@gmail.com, devicetree@vger.kernel.org,
-        linux-pwm@vger.kernel.org, linux-riscv@lists.infradead.org,
-        linux-kernel@vger.kernel.org, nylon7717@gmail.com,
-        zong.li@sifive.com, greentime.hu@sifive.com,
-        vincent.chen@sifive.com
-Subject: Re: [PATCH v2 2/2] pwm: sifive: change the PWM controlled LED
- algorithm
-Message-ID: <20230301092050.gwwbfsltyuow7pq6@pengutronix.de>
-References: <20230130093229.27489-1-nylon.chen@sifive.com>
- <20230130093229.27489-3-nylon.chen@sifive.com>
- <20230130101707.pdvabl3na2wpwxqu@pengutronix.de>
- <CAHh=Yk_hFOjwY1mbmYk8yqH_AKDs1_3J+5pYQStseNsZukPSoA@mail.gmail.com>
+        with ESMTP id S229727AbjCAJYe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Mar 2023 04:24:34 -0500
+Received: from mail-wm1-x331.google.com (mail-wm1-x331.google.com [IPv6:2a00:1450:4864:20::331])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4BD2B36469;
+        Wed,  1 Mar 2023 01:24:27 -0800 (PST)
+Received: by mail-wm1-x331.google.com with SMTP id t25-20020a1c7719000000b003eb052cc5ccso10897185wmi.4;
+        Wed, 01 Mar 2023 01:24:27 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112; t=1677662665;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=AUnzVCWDu3lRbeGs+FSxn4Fag1muzI50SJEiMaHulbI=;
+        b=m9Cv9DcPyZNfzELTtb2jIy4w1Gvf/B6hnYAjz9fBXbEvDuKrhZeV/HY+zL6A0mgSvB
+         EpIBkEQcYfEkc0b3LaduI/+YpJD0Nne+Lh++lqltBRqtlQIcXN2NcPS7ZK1FnK+ugq9B
+         8r6jUuzIrn5SRwngoLj/FMf61hpTD1leFk64QJ/Gv/+ccj3+TLZUlaqgf2lfWBhQA88v
+         QJzWk0X6cBLNEO611+J+QYjTTZ00sd/nidiJ66EvF0qoszIzOPtv/6g3IqofyxHrOQ4l
+         Xo07LKyNjzO2Liy/Kfemz0bU5zKqRRYVrS71vCUvn/urYk8VTJoDWrc3w3WH0wE2YJ7F
+         0EDQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1677662665;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=AUnzVCWDu3lRbeGs+FSxn4Fag1muzI50SJEiMaHulbI=;
+        b=TFoTuGsEiWmL5RZC1/jygFxX29jbA+Ag4g+NtnVxZdcqxXoA7Sx/9JZ++jcC7gEAfx
+         ftHQKOf8I157tE4jLD8BXu3e1B8WpAsrzanIE+nnUUS3gUhwIZ3KyD1+FLv8JxQJGhV5
+         Kmpfn2pUyH3e+8JWdusiRZ+Xn4GIui+La82UMys9VCurJy+Mmbkhq5jxEMsNacry4cAq
+         KCiCNfy/QTKuDwstLWOG9omUNRuXPI+ZhIwZxOa6JeiBP4d3sjwPbsvN3upZHBoUcBhL
+         kVCvtcKGAoKfG9iUtxVWJMq1bDl7QPW8/bfq3/ka7c3hMIEG1pCgK2l01XcJ3n44rXTu
+         nd+A==
+X-Gm-Message-State: AO0yUKUuY23wH8Q8mUXHHi3l5yIlKlhwaLaPg7vE8glkdvnivDwdP3/p
+        qxqT7D/JZm59aX+Ir47SgKdT26XUO9A=
+X-Google-Smtp-Source: AK7set9bVkHz9uAs+RA2DOnhCDZNYyP3u2piu8xNpfyUZr8xaLZFnb4KeCaQKKl9uLn9nTsGtfPNtQ==
+X-Received: by 2002:a05:600c:4fd3:b0:3eb:36fa:b791 with SMTP id o19-20020a05600c4fd300b003eb36fab791mr4372517wmq.31.1677662665405;
+        Wed, 01 Mar 2023 01:24:25 -0800 (PST)
+Received: from localhost.localdomain (106.red-88-13-29.dynamicip.rima-tde.net. [88.13.29.106])
+        by smtp.gmail.com with ESMTPSA id p4-20020a05600c358400b003dc5b59ed7asm16460892wmq.11.2023.03.01.01.24.24
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 01 Mar 2023 01:24:24 -0800 (PST)
+From:   Sergio Paracuellos <sergio.paracuellos@gmail.com>
+To:     devicetree@vger.kernel.org
+Cc:     linux-watchdog@vger.kernel.org, wim@linux-watchdog.org,
+        linux@roeck-us.net, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org
+Subject: [PATCH v2] dt-bindings: watchdog: migrate rt2880 text bindings to YAML
+Date:   Wed,  1 Mar 2023 10:24:22 +0100
+Message-Id: <20230301092422.2824609-1-sergio.paracuellos@gmail.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="uloatnw5mqumdhea"
-Content-Disposition: inline
-In-Reply-To: <CAHh=Yk_hFOjwY1mbmYk8yqH_AKDs1_3J+5pYQStseNsZukPSoA@mail.gmail.com>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: ukl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Ralink RT2880 Watchdog bindings used text format, so migrate them to YAML.
+There are some additions to the binding that were not in the original
+txt file. This binding is used in RT2880, RT3050, RT3352, RT3883, RT5350,
+and MT7620 SoCs. To properly match all dts nodes included in openWRT git
+trees we need to add to the schema 'reset' and 'reset-names'. 'reset-names'
+property is always string 'wdt' so maintain that as const in the schema.
 
---uloatnw5mqumdhea
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Signed-off-by: Sergio Paracuellos <sergio.paracuellos@gmail.com>
+---
+Changes in v2:
+ - Fix reg address and size in example.
 
-Hello Nylon,
+ .../bindings/watchdog/ralink,rt2880-wdt.yaml  | 47 +++++++++++++++++++
+ .../bindings/watchdog/rt2880-wdt.txt          | 18 -------
+ 2 files changed, 47 insertions(+), 18 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/watchdog/ralink,rt2880-wdt.yaml
+ delete mode 100644 Documentation/devicetree/bindings/watchdog/rt2880-wdt.txt
 
-On Wed, Feb 01, 2023 at 04:56:42PM +0800, Nylon Chen wrote:
-> Uwe Kleine-K=C3=B6nig <u.kleine-koenig@pengutronix.de> =E6=96=BC 2023=E5=
-=B9=B41=E6=9C=8830=E6=97=A5 =E9=80=B1=E4=B8=80 =E4=B8=8B=E5=8D=886:17=E5=AF=
-=AB=E9=81=93=EF=BC=9A
-> > On Mon, Jan 30, 2023 at 05:32:29PM +0800, Nylon Chen wrote:
-> > > The `frac` variable represents the pulse inactive time, and the resul=
-t of
-> > > this algorithm is the pulse active time. Therefore, we must reverse t=
-he
-> > > result.
-> > >
-> > > The reference is SiFive FU740-C000 Manual[0].
-> > >
-> > > [0]: https://sifive.cdn.prismic.io/sifive/1a82e600-1f93-4f41-b2d8-86e=
-d8b16acba_fu740-c000-manual-v1p6.pdf
-> > >
-> > > Signed-off-by: Nylon Chen <nylon.chen@sifive.com>
-> > > ---
-> > >  drivers/pwm/pwm-sifive.c | 1 +
-> > >  1 file changed, 1 insertion(+)
-> > >
-> > > diff --git a/drivers/pwm/pwm-sifive.c b/drivers/pwm/pwm-sifive.c
-> > > index 62b6acc6373d..a5eda165d071 100644
-> > > --- a/drivers/pwm/pwm-sifive.c
-> > > +++ b/drivers/pwm/pwm-sifive.c
-> > > @@ -158,6 +158,7 @@ static int pwm_sifive_apply(struct pwm_chip *chip=
-, struct pwm_device *pwm,
-> > >       frac =3D DIV64_U64_ROUND_CLOSEST(num, state->period);
-> > >       /* The hardware cannot generate a 100% duty cycle */
-> > >       frac =3D min(frac, (1U << PWM_SIFIVE_CMPWIDTH) - 1);
-> > > +     frac =3D (1U << PWM_SIFIVE_CMPWIDTH) - 1 - frac;
-> >
-> > The same problem exists in pwm_sifive_get_state(), doesn't it?
-> >
-> > As fixing this is an interruptive change anyhow, this is the opportunity
-> > to align the driver to the rules tested by PWM_DEBUG.
-> >
-> > The problems I see in the driver (only checked quickly, so I might be
-> > wrong):
-> >
-> >  - state->period !=3D ddata->approx_period isn't necessarily a problem.=
- If
-> >    state->period > ddata->real_period that's fine and the driver should
-> >    continue
-> >
-> >  - frac =3D DIV64_U64_ROUND_CLOSEST(num, state->period);
-> >    is wrong for two reasons:
-> >    it should round down and use the real period.
-> >
-> I need a little time to clarify your assumptions. If possible, I will
-> make similar changes.
->=20
-> e.g.
-> rounddown(num, state->period);
-> if (state->period < ddata->approx_period)
->     ...
+diff --git a/Documentation/devicetree/bindings/watchdog/ralink,rt2880-wdt.yaml b/Documentation/devicetree/bindings/watchdog/ralink,rt2880-wdt.yaml
+new file mode 100644
+index 000000000000..744b4c513c85
+--- /dev/null
++++ b/Documentation/devicetree/bindings/watchdog/ralink,rt2880-wdt.yaml
+@@ -0,0 +1,47 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/watchdog/ralink,rt2880-wdt.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Ralink Watchdog Timers
++
++maintainers:
++  - Sergio Paracuellos <sergio.paracuellos@gmail.com>
++
++allOf:
++  - $ref: watchdog.yaml#
++
++properties:
++  compatible:
++    const: ralink,rt2880-wdt
++
++  reg:
++    maxItems: 1
++
++  resets:
++    maxItems: 1
++
++  reset-names:
++    items:
++      - const: wdt
++
++  interrupts:
++    maxItems: 1
++
++required:
++  - compatible
++  - reg
++
++additionalProperties: false
++
++examples:
++  - |
++    watchdog@100 {
++      compatible = "ralink,rt2880-wdt";
++      reg = <0x120 0x10>;
++      resets = <&rstctrl 8>;
++      reset-names = "wdt";
++      interrupt-parent = <&intc>;
++      interrupts = <1>;
++    };
+diff --git a/Documentation/devicetree/bindings/watchdog/rt2880-wdt.txt b/Documentation/devicetree/bindings/watchdog/rt2880-wdt.txt
+deleted file mode 100644
+index 05b95bfa2a89..000000000000
+--- a/Documentation/devicetree/bindings/watchdog/rt2880-wdt.txt
++++ /dev/null
+@@ -1,18 +0,0 @@
+-Ralink Watchdog Timers
+-
+-Required properties:
+-- compatible: must be "ralink,rt2880-wdt"
+-- reg: physical base address of the controller and length of the register range
+-
+-Optional properties:
+-- interrupts: Specify the INTC interrupt number
+-
+-Example:
+-
+-	watchdog@120 {
+-		compatible = "ralink,rt2880-wdt";
+-		reg = <0x120 0x10>;
+-
+-		interrupt-parent = <&intc>;
+-		interrupts = <1>;
+-	};
+-- 
+2.25.1
 
-the idea is that for a given request apply should do the following to
-select the hardware setting:
-
- - Check polarity, if the hardware doesn't support it, return -EINVAL.
-   (A period always starts with the active phase for the duration of
-   duty_cycle. For normal polarity active =3D high.)
- - Pick the biggest period length possible that is not bigger than the
-   requested period.
- - For the picked period, select the biggest duty_cycle possible that is
-   not bigger than the requested duty_cycle.
-
-Then if possible switch to the selected setting in an atomic step.
-
-Does this clearify your doubts?
-
-Best regards
-Uwe
-
---=20
-Pengutronix e.K.                           | Uwe Kleine-K=C3=B6nig         =
-   |
-Industrial Linux Solutions                 | https://www.pengutronix.de/ |
-
---uloatnw5mqumdhea
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEfnIqFpAYrP8+dKQLwfwUeK3K7AkFAmP/GO8ACgkQwfwUeK3K
-7AmiBQf/QkDz4UZYVBJc3n2y9z64RYU6Ri68Em2lO8oxTfUYy7I/4IePztOJf0un
-riimd6Yxxwu7+b+wmtMyaMmHyzIZP+ecScJejXrSedMLGdC+SIvdGtNVEVUa/Lue
-41IHyN6Bv0SgKb7CSNGzo8luaU1n3R2v9pujlMCPW7kaS03SOfEf3TN5ior4DEdt
-9fl5PaVY1OY0M3Y+wkK3QLaD8u4GUkppSknT6tuQ0OP8r8rZil0p173UYRgpQ1rh
-EJt0oVvaSIDRC9oSL4qFqIf8k5sIjvP8rc0c6bfunPNW6saV2DK05Dg7F3A9/NrO
-uyu2CPKCuZ0h82DWo5SHFN3TKgF0QA==
-=5dcD
------END PGP SIGNATURE-----
-
---uloatnw5mqumdhea--
