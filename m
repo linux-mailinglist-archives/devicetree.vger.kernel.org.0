@@ -2,226 +2,253 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8BFB26A683C
-	for <lists+devicetree@lfdr.de>; Wed,  1 Mar 2023 08:35:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0CB876A6846
+	for <lists+devicetree@lfdr.de>; Wed,  1 Mar 2023 08:40:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229496AbjCAHfq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 Mar 2023 02:35:46 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42998 "EHLO
+        id S229660AbjCAHkc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 Mar 2023 02:40:32 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47290 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229577AbjCAHfn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Mar 2023 02:35:43 -0500
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6D28138B75;
-        Tue, 28 Feb 2023 23:35:22 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1677656122; x=1709192122;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=QWj3wCogW4CjdLXlAk1HmMqBbuONBPdK6zGHEvWlB+4=;
-  b=ckNVekjSWSpy054uSQgCeHuYMPoPBwfRtxhirTiCzzhZTWIBGVxttl3I
-   Rq0ClgwG8SrOhT5LON0kBV1G9RYrPE0KLbG6i4V79wa8TZJ3McX8Eulxm
-   Q0LVDs4tNizoUhXoGx+ZnIEUfuDSkK8cwORhCwKbwtR4ZGkapOcQ1KDRG
-   YmyQozZKOFSHVUypJ8o0NXcOcJ09XmlbxLyb6zKAEJZh1cNjrTfJiwFH0
-   gmAyHLlbtJFhauH1XgCF8SExQaOzAEUzcUaJSHL0pCFuFtg9zv5mVYi7n
-   km4rnF2eauzYC/XqpvqviA/RJ1bGhALyahjQ3ocDCKBolqdQrNQL5HiVD
-   A==;
-X-IronPort-AV: E=Sophos;i="5.98,224,1673938800"; 
-   d="scan'208";a="139599308"
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa6.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 01 Mar 2023 00:35:11 -0700
-Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
- chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.16; Wed, 1 Mar 2023 00:35:08 -0700
-Received: from microchip1-OptiPlex-9020.microchip.com (10.10.115.15) by
- chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server id
- 15.1.2507.16 via Frontend Transport; Wed, 1 Mar 2023 00:35:03 -0700
-From:   shravan kumar <shravan.chippa@microchip.com>
-To:     <paul.j.murphy@intel.com>, <daniele.alessandrelli@intel.com>,
-        <mchehab@kernel.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <shawnguo@kernel.org>,
-        <s.hauer@pengutronix.de>
-CC:     <kernel@pengutronix.de>, <festevam@gmail.com>, <linux-imx@nxp.com>,
-        <linux-media@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <shravan.chippa@microchip.com>, Sakari Ailus <sakari.ailus@iki.fi>
-Subject: [PATCH v12 5/5] media: i2c: imx334: update pixel and link frequency
-Date:   Wed, 1 Mar 2023 13:04:12 +0530
-Message-ID: <20230301073412.1204574-6-shravan.chippa@microchip.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230301073412.1204574-1-shravan.chippa@microchip.com>
-References: <20230301073412.1204574-1-shravan.chippa@microchip.com>
+        with ESMTP id S229574AbjCAHkX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Mar 2023 02:40:23 -0500
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 49FFB5BB3;
+        Tue, 28 Feb 2023 23:40:22 -0800 (PST)
+Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3216cuTP018656;
+        Wed, 1 Mar 2023 07:40:07 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=JXDj4ci6nJOzgGaxjG0R1teE2PCiX7mrOBd+AIFODYQ=;
+ b=aNM7R/IcnHd/XQrfWGfSDCbHYTo1ysGL8eHoXRkZgCctsEWO9cYv2QQqrytKkYE6BPzI
+ +Gl88PVFKi6re3ggOGQx3Ky6Vvzoz9zpvsR2GOJB30YKwqPb1XKNCcO7P6RfMxbS2jIi
+ GHYMLYeiFqMpe6DxbFRAPnjvuMWw5JuN4bkUda6/eadbsAonTluspZi20oiozzT7gUGs
+ x75JuWdX36uqhVnK4q+tAsncKuin2+I+ilkaa6zobAJjKejLBN/m3iv1RMFmRUfC1R+f
+ DcmcHzNxut+o6z86evZRdovWZFymp+MXhwRbz5Krmqd5W4mvKFvDhHo/2ehu1F6auh7I RQ== 
+Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3p1cq5upbn-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Wed, 01 Mar 2023 07:40:07 +0000
+Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
+        by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3217e6Hw017226
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Wed, 1 Mar 2023 07:40:06 GMT
+Received: from [10.239.133.211] (10.80.80.8) by nalasex01c.na.qualcomm.com
+ (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.41; Tue, 28 Feb
+ 2023 23:40:01 -0800
+Message-ID: <95aa6280-cb8a-026a-b296-4f0c7ff128ce@quicinc.com>
+Date:   Wed, 1 Mar 2023 15:39:58 +0800
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.1.2
+Subject: Re: [PATCH v2 5/9] coresight-tpdm: Add nodes to set trigger timestamp
+ and type
+Content-Language: en-US
+To:     Suzuki K Poulose <suzuki.poulose@arm.com>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        Alexander Shishkin <alexander.shishkin@linux.intel.com>,
+        Konrad Dybcio <konradybcio@gmail.com>,
+        Mike Leach <mike.leach@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+CC:     Jinlong Mao <quic_jinlmao@quicinc.com>,
+        Leo Yan <leo.yan@linaro.org>,
+        "Greg Kroah-Hartman" <gregkh@linuxfoundation.org>,
+        <coresight@lists.linaro.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        Tingwei Zhang <quic_tingweiz@quicinc.com>,
+        Yuanfang Zhang <quic_yuanfang@quicinc.com>,
+        Trilok Soni <quic_tsoni@quicinc.com>,
+        Hao Zhang <quic_hazha@quicinc.com>,
+        <linux-arm-msm@vger.kernel.org>, <bjorn.andersson@linaro.org>,
+        Tao Zhang <taozha@qti.qualcomm.com>
+References: <1674114105-16651-1-git-send-email-quic_taozha@quicinc.com>
+ <1674114105-16651-6-git-send-email-quic_taozha@quicinc.com>
+ <299199d6-458b-fa54-cde1-dc6730ac1c3d@arm.com>
+From:   Tao Zhang <quic_taozha@quicinc.com>
+In-Reply-To: <299199d6-458b-fa54-cde1-dc6730ac1c3d@arm.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01c.na.qualcomm.com (10.47.97.35)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: IVEpNt71aIrmMorRfi5JiJyotMLkBnBU
+X-Proofpoint-ORIG-GUID: IVEpNt71aIrmMorRfi5JiJyotMLkBnBU
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.219,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
+ definitions=2023-03-01_04,2023-02-28_03,2023-02-09_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 adultscore=0
+ spamscore=0 malwarescore=0 priorityscore=1501 impostorscore=0 bulkscore=0
+ clxscore=1015 lowpriorityscore=0 suspectscore=0 mlxlogscore=999 mlxscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2212070000
+ definitions=main-2303010061
+X-Spam-Status: No, score=-2.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Shravan Chippa <shravan.chippa@microchip.com>
+Hi Suzuki,
 
-Update pixel_rate and link frequency for 1920x1080@30
-while changing mode.
+在 2/28/2023 7:29 PM, Suzuki K Poulose 写道:
+> On 19/01/2023 07:41, Tao Zhang wrote:
+>> The nodes are needed to set or show the trigger timestamp and
+>> trigger type. This change is to add these nodes to achieve these
+>> function.
+>>
+>> Signed-off-by: Tao Zhang <quic_taozha@quicinc.com>
+>> Signed-off-by: Tao Zhang <taozha@qti.qualcomm.com>
+>> ---
+>>   drivers/hwtracing/coresight/coresight-tpdm.c | 97 
+>> ++++++++++++++++++++++++++++
+>>   1 file changed, 97 insertions(+)
+>>
+>> diff --git a/drivers/hwtracing/coresight/coresight-tpdm.c 
+>> b/drivers/hwtracing/coresight/coresight-tpdm.c
+>> index c29d667d..1dbb6c4 100644
+>> --- a/drivers/hwtracing/coresight/coresight-tpdm.c
+>> +++ b/drivers/hwtracing/coresight/coresight-tpdm.c
+>> @@ -20,6 +20,22 @@
+>>     DEFINE_CORESIGHT_DEVLIST(tpdm_devs, "tpdm");
+>>   +static umode_t tpdm_dsb_is_visible(struct kobject *kobj,
+>> +                            struct attribute *attr, int n)
+>> +{
+>> +    struct device *dev = kobj_to_dev(kobj);
+>> +    struct tpdm_drvdata *drvdata = dev_get_drvdata(dev->parent);
+>> +
+>> +    if (drvdata) {
+>> +        if (drvdata->datasets & TPDM_PIDR0_DS_DSB)
+>> +            return attr->mode;
+>> +        else
+>> +            return 0;
+>> +    }
+>
+>     if (drvdata && drvdata->dsb)
+>         return attr->mode;
+>
+>     return 0;
+>
+> ?
+Sure, I will update this in the next version of patch.
+>
+>
+>> +
+>> +    return 0;
+>> +}
+>> +
+>>   static void tpdm_enable_dsb(struct tpdm_drvdata *drvdata)
+>>   {
+>>       u32 val;
+>> @@ -241,8 +257,89 @@ static struct attribute_group tpdm_attr_grp = {
+>>       .attrs = tpdm_attrs,
+>>   };
+>>   +static ssize_t dsb_trig_type_show(struct device *dev,
+>> +                     struct device_attribute *attr,
+>> +                     char *buf)
+>> +{
+>> +    struct tpdm_drvdata *drvdata = dev_get_drvdata(dev->parent);
+>> +
+>> +    return sysfs_emit(buf, "%u\n",
+>> +             (unsigned int)drvdata->dsb->trig_type);
+>> +}
+>> +
+>> +/*
+>> + * value 0: set trigger type as enablement
+>> + * value 1: set trigger type as disablement
+>> + */
+>> +static ssize_t dsb_trig_type_store(struct device *dev,
+>> +                      struct device_attribute *attr,
+>> +                      const char *buf,
+>> +                      size_t size)
+>> +{
+>> +    struct tpdm_drvdata *drvdata = dev_get_drvdata(dev->parent);
+>> +    unsigned long val;
+>> +
+>> +    if ((kstrtoul(buf, 0, &val)) || val < 0 || val > 1)
+>
+> val < 0 check here doesn't help on an unsigned variable.
+>
+> may be (val & ~1UL) ?
+Sure, I will update this in the next version of the patch.
+>
+>> +        return -EINVAL;
+>> +
+>> +    spin_lock(&drvdata->spinlock);
+>> +    if (val)
+>> +        drvdata->dsb->trig_type = true;
+>> +    else
+>> +        drvdata->dsb->trig_type = false;
+>> +    spin_unlock(&drvdata->spinlock);
+>> +    return size;
+>> +}
+>> +static DEVICE_ATTR_RW(dsb_trig_type);
+>> +
+>> +static ssize_t dsb_trig_ts_show(struct device *dev,
+>> +                     struct device_attribute *attr,
+>> +                     char *buf)
+>> +{
+>> +    struct tpdm_drvdata *drvdata = dev_get_drvdata(dev->parent);
+>> +
+>> +    return sysfs_emit(buf, "%u\n",
+>> +             (unsigned int)drvdata->dsb->trig_ts);
+>> +}
+>> +
+>> +/*
+>> + * value 0: set trigger timestamp as enablement
+>> + * value 1: set trigger timestamp as disablement
+>> + */
+>> +static ssize_t dsb_trig_ts_store(struct device *dev,
+>> +                      struct device_attribute *attr,
+>> +                      const char *buf,
+>> +                      size_t size)
+>> +{
+>> +    struct tpdm_drvdata *drvdata = dev_get_drvdata(dev->parent);
+>> +    unsigned long val;
+>> +
+>> +    if ((kstrtoul(buf, 0, &val)) || val < 0 || val > 1)
+>
+> same here.
+>
+>> +        return -EINVAL;
+>> +
+>> +    spin_lock(&drvdata->spinlock);
+>> +    if (val)
+>> +        drvdata->dsb->trig_ts = true;
+>> +    else
+>> +        drvdata->dsb->trig_ts = false;
+>> +    spin_unlock(&drvdata->spinlock);
+>> +    return size;
+>> +}
+>> +static DEVICE_ATTR_RW(dsb_trig_ts);
+>> +static struct attribute *tpdm_dsb_attrs[] = {
+>> +    &dev_attr_dsb_trig_ts.attr,
+>> +    &dev_attr_dsb_trig_type.attr,
+>> +    NULL,
+>> +};
+>> +
+>> +static struct attribute_group tpdm_dsb_attr_grp = {
+>> +    .attrs = tpdm_dsb_attrs,
+>> +    .is_visible = tpdm_dsb_is_visible,
+>> +};
+>> +
+>>   static const struct attribute_group *tpdm_attr_grps[] = {
+>>       &tpdm_attr_grp,
+>> +    &tpdm_dsb_attr_grp,
+>>       NULL,
+>>   };
+>>
+>
+> Suzuki
+>
+Best,
 
-Add support to handle multiple link frequencies.
-
-Add dummy ctrl cases for pixel_rate and link frequency
-to avoid error while changing the modes dynamically.
-
-Update default link frequency from device tree max link
-frequency value.
-
-Update init_cfg() function to update the link frequency
-menu_skip_mask value.
-
-Suggested-by: Sakari Ailus <sakari.ailus@iki.fi>
-Signed-off-by: Shravan Chippa <shravan.chippa@microchip.com>
----
- drivers/media/i2c/imx334.c | 51 ++++++++++++++++++++++++++++----------
- 1 file changed, 38 insertions(+), 13 deletions(-)
-
-diff --git a/drivers/media/i2c/imx334.c b/drivers/media/i2c/imx334.c
-index 309c706114d2..7958c5b73f3e 100644
---- a/drivers/media/i2c/imx334.c
-+++ b/drivers/media/i2c/imx334.c
-@@ -49,7 +49,8 @@
- #define IMX334_INCLK_RATE	24000000
- 
- /* CSI2 HW configuration */
--#define IMX334_LINK_FREQ	891000000
-+#define IMX334_LINK_FREQ_891M	891000000
-+#define IMX334_LINK_FREQ_445M	445500000
- #define IMX334_NUM_DATA_LANES	4
- 
- #define IMX334_REG_MIN		0x00
-@@ -139,12 +140,14 @@ struct imx334 {
- 	u32 vblank;
- 	const struct imx334_mode *cur_mode;
- 	struct mutex mutex;
-+	unsigned long menu_skip_mask;
- 	u32 cur_code;
- 	bool streaming;
- };
- 
- static const s64 link_freq[] = {
--	IMX334_LINK_FREQ,
-+	IMX334_LINK_FREQ_891M,
-+	IMX334_LINK_FREQ_445M,
- };
- 
- /* Sensor mode registers for 1920x1080@30fps */
-@@ -468,7 +471,7 @@ static const struct imx334_mode supported_modes[] = {
- 		.vblank_min = 45,
- 		.vblank_max = 132840,
- 		.pclk = 297000000,
--		.link_freq_idx = 0,
-+		.link_freq_idx = 1,
- 		.reg_list = {
- 			.num_of_regs = ARRAY_SIZE(mode_1920x1080_regs),
- 			.regs = mode_1920x1080_regs,
-@@ -598,6 +601,11 @@ static int imx334_update_controls(struct imx334 *imx334,
- 	if (ret)
- 		return ret;
- 
-+	ret = __v4l2_ctrl_modify_range(imx334->pclk_ctrl, mode->pclk,
-+				       mode->pclk, 1, mode->pclk);
-+	if (ret)
-+		return ret;
-+
- 	ret = __v4l2_ctrl_modify_range(imx334->hblank_ctrl, mode->hblank,
- 				       mode->hblank, 1, mode->hblank);
- 	if (ret)
-@@ -698,6 +706,8 @@ static int imx334_set_ctrl(struct v4l2_ctrl *ctrl)
- 		pm_runtime_put(imx334->dev);
- 
- 		break;
-+	case V4L2_CID_PIXEL_RATE:
-+	case V4L2_CID_LINK_FREQ:
- 	case V4L2_CID_HBLANK:
- 		ret = 0;
- 		break;
-@@ -885,7 +895,13 @@ static int imx334_init_pad_cfg(struct v4l2_subdev *sd,
- 	struct v4l2_subdev_format fmt = { 0 };
- 
- 	fmt.which = sd_state ? V4L2_SUBDEV_FORMAT_TRY : V4L2_SUBDEV_FORMAT_ACTIVE;
--	imx334_fill_pad_format(imx334, &supported_modes[0], &fmt);
-+	fmt->format.code = imx334->cur_code;
-+	imx334_fill_pad_format(imx334, imx334->cur_mode, &fmt);
-+
-+	__v4l2_ctrl_modify_range(imx334->link_freq_ctrl, 0,
-+				 __fls(imx334->menu_skip_mask),
-+				 ~(imx334->menu_skip_mask),
-+				 __ffs(imx334->menu_skip_mask));
- 
- 	return imx334_set_pad_format(sd, sd_state, &fmt);
- }
-@@ -1046,8 +1062,8 @@ static int imx334_parse_hw_config(struct imx334 *imx334)
- 	};
- 	struct fwnode_handle *ep;
- 	unsigned long rate;
-+	unsigned int i, j;
- 	int ret;
--	int i;
- 
- 	if (!fwnode)
- 		return -ENXIO;
-@@ -1097,11 +1113,20 @@ static int imx334_parse_hw_config(struct imx334 *imx334)
- 		goto done_endpoint_free;
- 	}
- 
--	for (i = 0; i < bus_cfg.nr_of_link_frequencies; i++)
--		if (bus_cfg.link_frequencies[i] == IMX334_LINK_FREQ)
-+	for (i = 0; i < bus_cfg.nr_of_link_frequencies; i++) {
-+		for (j = 0; j < ARRAY_SIZE(link_freq); j++) {
-+			if (bus_cfg.link_frequencies[i] == link_freq[j]) {
-+				set_bit(j, &imx334->menu_skip_mask);
-+				break;
-+			}
-+		}
-+
-+		if (j == ARRAY_SIZE(link_freq)) {
-+			ret = dev_err_probe(imx334->dev, -EINVAL,
-+					    "no supported link freq found\n");
- 			goto done_endpoint_free;
--
--	ret = -EINVAL;
-+		}
-+	}
- 
- done_endpoint_free:
- 	v4l2_fwnode_endpoint_free(&bus_cfg);
-@@ -1232,10 +1257,10 @@ static int imx334_init_controls(struct imx334 *imx334)
- 	imx334->link_freq_ctrl = v4l2_ctrl_new_int_menu(ctrl_hdlr,
- 							&imx334_ctrl_ops,
- 							V4L2_CID_LINK_FREQ,
--							ARRAY_SIZE(link_freq) -
--							1,
--							mode->link_freq_idx,
-+							__fls(imx334->menu_skip_mask),
-+							__ffs(imx334->menu_skip_mask),
- 							link_freq);
-+
- 	if (imx334->link_freq_ctrl)
- 		imx334->link_freq_ctrl->flags |= V4L2_CTRL_FLAG_READ_ONLY;
- 
-@@ -1302,7 +1327,7 @@ static int imx334_probe(struct i2c_client *client)
- 	}
- 
- 	/* Set default mode to max resolution */
--	imx334->cur_mode = &supported_modes[0];
-+	imx334->cur_mode = &supported_modes[__ffs(imx334->menu_skip_mask)];
- 	imx334->cur_code = imx334_mbus_codes[0];
- 	imx334->vblank = imx334->cur_mode->vblank;
- 
--- 
-2.34.1
+Tao
 
