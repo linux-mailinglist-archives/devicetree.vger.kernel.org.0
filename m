@@ -2,107 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 596226A6896
-	for <lists+devicetree@lfdr.de>; Wed,  1 Mar 2023 09:10:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6220B6A68A1
+	for <lists+devicetree@lfdr.de>; Wed,  1 Mar 2023 09:13:51 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229735AbjCAIKp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 Mar 2023 03:10:45 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43546 "EHLO
+        id S229535AbjCAINu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 Mar 2023 03:13:50 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45756 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229533AbjCAIKo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Mar 2023 03:10:44 -0500
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C9AC23346F;
-        Wed,  1 Mar 2023 00:10:41 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1677658241; x=1709194241;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=4gJnoh1IaxxhjrT0UMbcLgad9K8iLaEC50MeRbK/Uj4=;
-  b=KKhV3a+DBwjZbZR2MlbRurBMKq4/9+C8v4zwAmWrjdP5aGTl7Zcu+uDP
-   Q1lWMYimZUAUsL2bMesntQyjGD6uxu2eTtK3ZMcm8cnRPdSei+lXSZ5S8
-   GNKKcJQwOJ4spTOdYTiEYjr5y5O72UEhFiY+Ouy4gNWbfV5JFJQ/XnQuZ
-   CpPxyaEe0C82+79rrJhcK72RfSVFQkQT3X2GpjQAZYsvsI9Ucnm0vHSO9
-   AJW+WBsE57dkZ53WSRTXWWZuN+2yg0S8r8suG2zdBpSJO/hcuvUZCJ+o9
-   0Da4XE8e0CtGxj5gSl9o62DDGKqbHS5ZtgIT7kenlddNe9oCBe24xV8qg
-   w==;
-X-IronPort-AV: E=Sophos;i="5.98,224,1673938800"; 
-   d="asc'?scan'208";a="214173792"
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa1.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 01 Mar 2023 01:10:41 -0700
-Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
- chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.16; Wed, 1 Mar 2023 01:10:38 -0700
-Received: from wendy (10.10.115.15) by chn-vm-ex03.mchp-main.com
- (10.10.85.151) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.16 via Frontend
- Transport; Wed, 1 Mar 2023 01:10:37 -0700
-Date:   Wed, 1 Mar 2023 08:10:09 +0000
-From:   Conor Dooley <conor.dooley@microchip.com>
-To:     William Qiu <william.qiu@starfivetech.com>
-CC:     <devicetree@vger.kernel.org>, <linux-pwm@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Hal Feng <hal.feng@starfivetech.com>
-Subject: Re: [PATCH v1 0/2] StarFive's Pulse Width Modulation driver support
-Message-ID: <Y/8IYSYOsDrGIXzT@wendy>
-References: <20230228091345.70515-1-william.qiu@starfivetech.com>
+        with ESMTP id S229849AbjCAINr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Mar 2023 03:13:47 -0500
+Received: from mail-ua1-x92b.google.com (mail-ua1-x92b.google.com [IPv6:2607:f8b0:4864:20::92b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D9B2139BBD
+        for <devicetree@vger.kernel.org>; Wed,  1 Mar 2023 00:13:45 -0800 (PST)
+Received: by mail-ua1-x92b.google.com with SMTP id x1so3093829uav.9
+        for <devicetree@vger.kernel.org>; Wed, 01 Mar 2023 00:13:45 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=McoBXip6N0wzllPSImTtIlILRkDkokjO1vKAG/mcycc=;
+        b=Tmw8Vpx0Flh0EJ9YIzobExLydlByQ1dTM1gZgR846ityPEUe7ycNEZuTrk7zuksAG7
+         P9LXGws14CpzFMXQ5tJFp0UU8D9rTUptnK7uX2Ylz0TWfJmDhA4AxhVavhWh3Wqrd1C7
+         rXOwoLkcrI7C83YqLuKVz45rRlaeSDUkXOXio=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=McoBXip6N0wzllPSImTtIlILRkDkokjO1vKAG/mcycc=;
+        b=vCfxOE7a6L9Lo+Um/XZfNZJFbeOe8EPo37ONZIMvCkR2YJkF5FJ49IH9PmLnxYo4uc
+         zvVAleSZEVJ+PWfegAVUkS+u54dpDJXjkUOVhzcu6Hl2ehER/kFHRkXmsIrxyyhW17+2
+         61wG3BDeQhkCOD+5Ws5NieZzhW62ufWnHFBc/cmDYBlCXkiAjLIsjDN+Ln3c2us9i2XQ
+         eZ9x/x0jHLaZxqSPmN+bOmH1QeGI8WljVw0Jxrj5CMDNaLyc0biisekdPJ/ePYOdd8gL
+         nokbjpfw7uj+4UAm+tvkoFWbWhP58+SnLQiDFm8OGxXNxbB93xODCh9ux+scmtTclwIG
+         7Q8w==
+X-Gm-Message-State: AO0yUKWmbarKKlv/c4owMV0f/yP+34m7r+YZB9JRhP5QGpPbumFrYesW
+        ZkvFeSa3Om98cKku2nDVt4htq8R3q7il2b32QmXe/Dh00WNOfQ==
+X-Google-Smtp-Source: AK7set/4y2CsFDtk/+kTuBAhzQVJG7wyQ420WDaIir/XDYYqlinCDd4UHs4pAft4BmRED3pB7RYXWp8GMSPeHGfZO/g=
+X-Received: by 2002:ab0:4ad5:0:b0:68b:90f4:1d8c with SMTP id
+ t21-20020ab04ad5000000b0068b90f41d8cmr3405014uae.1.1677658424931; Wed, 01 Mar
+ 2023 00:13:44 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="1JJOGzyp5EWYwTYF"
-Content-Disposition: inline
-In-Reply-To: <20230228091345.70515-1-william.qiu@starfivetech.com>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+References: <20230228104741.717819-1-angelogioacchino.delregno@collabora.com>
+ <20230228104741.717819-19-angelogioacchino.delregno@collabora.com> <CAGXv+5GYc1X0J7tXfqQ0yj5rCFgEcTN5kwB4720vCkNvEKgiOg@mail.gmail.com>
+In-Reply-To: <CAGXv+5GYc1X0J7tXfqQ0yj5rCFgEcTN5kwB4720vCkNvEKgiOg@mail.gmail.com>
+From:   Chen-Yu Tsai <wenst@chromium.org>
+Date:   Wed, 1 Mar 2023 16:13:34 +0800
+Message-ID: <CAGXv+5H+KkLFQD9D9Op+=XjEcBd+ehGWGq--E28A94=8pvmLEQ@mail.gmail.com>
+Subject: Re: [PATCH v3 18/18] arm64: dts: mediatek: mt8183-evb: Override
+ vgpu/vsram_gpu constraints
+To:     AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+Cc:     matthias.bgg@gmail.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
---1JJOGzyp5EWYwTYF
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On Wed, Mar 1, 2023 at 12:54=E2=80=AFPM Chen-Yu Tsai <wenst@chromium.org> w=
+rote:
+>
+> On Tue, Feb 28, 2023 at 6:48=E2=80=AFPM AngeloGioacchino Del Regno
+> <angelogioacchino.delregno@collabora.com> wrote:
+> >
+> > Override the PMIC-default voltage constraints for VGPU and VSRAM_GPU
+> > with the platform specific vmin/vmax for the highest possible SoC
+> > binning.
+> >
+> > Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@co=
+llabora.com>
+> > Suggested-by: Chen-Yu Tsai <wenst@chromium.org>
 
-Hey William,
-
-On Tue, Feb 28, 2023 at 05:13:43PM +0800, William Qiu wrote:
-> Hi,
->=20
-> This patchset adds initial rudimentary support for the StarFive
-> Pulse Width Modulation controller driver. And this driver will
-> be used in StarFive's VisionFive 2 board.The first patch add
-> Documentations for the device and Patch 2 adds device probe for
-> the module.
->=20
-> The patch series is based on v6.2.
->=20
-> William Qiu (2):
->   dt-bindings: PWM: Add StarFive PWM module
->   pwm: starfive: Add PWM driver support
-
-Is there a corresponding dts addition for this driver?
-
-Cheers,
-Conor.
-
-
---1JJOGzyp5EWYwTYF
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHQEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCY/8IXgAKCRB4tDGHoIJi
-0rFbAP9YFYNSLuqyDOAKlOFVOJMsnQqP04Og51BVRz+z4hrJRwD4i75kkecf2fnA
-p6+RJ9RUMStLDGg1PRabr0JKNQdFDA==
-=ODZv
------END PGP SIGNATURE-----
-
---1JJOGzyp5EWYwTYF--
+Reviewed-by: Chen-Yu Tsai <wenst@chromium.org>
