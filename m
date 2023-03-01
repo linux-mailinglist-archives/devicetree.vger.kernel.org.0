@@ -2,145 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0AFCE6A66E0
-	for <lists+devicetree@lfdr.de>; Wed,  1 Mar 2023 05:07:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6CCDD6A6702
+	for <lists+devicetree@lfdr.de>; Wed,  1 Mar 2023 05:38:35 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229695AbjCAEHW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Feb 2023 23:07:22 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37936 "EHLO
+        id S229689AbjCAEid (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Feb 2023 23:38:33 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54642 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229579AbjCAEHU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Feb 2023 23:07:20 -0500
-Received: from mail-il1-x129.google.com (mail-il1-x129.google.com [IPv6:2607:f8b0:4864:20::129])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3A8C11ACF3;
-        Tue, 28 Feb 2023 20:07:19 -0800 (PST)
-Received: by mail-il1-x129.google.com with SMTP id a1so7656545iln.9;
-        Tue, 28 Feb 2023 20:07:19 -0800 (PST)
+        with ESMTP id S229697AbjCAEic (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Feb 2023 23:38:32 -0500
+Received: from mail-vs1-xe2e.google.com (mail-vs1-xe2e.google.com [IPv6:2607:f8b0:4864:20::e2e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 440EB3801A
+        for <devicetree@vger.kernel.org>; Tue, 28 Feb 2023 20:38:28 -0800 (PST)
+Received: by mail-vs1-xe2e.google.com with SMTP id o32so17938396vsv.12
+        for <devicetree@vger.kernel.org>; Tue, 28 Feb 2023 20:38:28 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112; t=1677643638;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :sender:from:to:cc:subject:date:message-id:reply-to;
-        bh=34NFfCpl2ugJCk18M5HFAnMc3Csw+/1Vb9q5/O6tJ7Q=;
-        b=P6PXUFq5hR+CKKxw8mCIcAAOBTCzPZVqKvHftgD/NeFFOF4b+OND8vnLqdScM3Bj2z
-         WVyu8/tP9W28tPCdjbtIVJYtzPgYjsaCNTExcljeGrt0H6hdHiYlMlzskqHSZcHUdFpX
-         q+6rfCVH7H+P1LX4yYzS9wurCaELJw7tXAsH2E0acbH16RjRMR0UP8kVRWFCKGeiw2oq
-         qyFUi08ex7s294SINysQ1ij1Gt8IN4FuEnGkKuOvVh33nNnknuYmfuuhu0GPfYN1CBm9
-         ALHn3gtDk7bEL/Fh6AX1mfr/B4RKnWFSbHyYRwa2cPgau7ZyIBQNdylR/q+d1NMEa8co
-         kzYA==
+        d=chromium.org; s=google;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=28yKfwjO/0s4rJfe6O0bQSgJmZe5IPEVZaGiHKCxTg4=;
+        b=ltkNxU1yuA7SsUdnMUKFZgbgRjVolNxel8F30fl8qwMT2mZ1gkbagUUvp7KPIZb9Aq
+         cqKY6RXZOfPn7rsWN+BPGfLphSlLwzpHvF67QeDuAvB4SvFJml65XJaT2vWDSQN1afSo
+         AZ1zD+02Au1E68OYq07MYfZvCt1TE1R5m7iGA=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1677643638;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :sender:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=34NFfCpl2ugJCk18M5HFAnMc3Csw+/1Vb9q5/O6tJ7Q=;
-        b=NewDUu/HkTq+iy+pcjQ4fjDDXazq5lyYrT2w6k48oKm5PbacdWoqyPTStFv0K1vUYq
-         lBRqDduQBHjNpLcA3StJi4Ss8YELgap2uCXTOwOP42xbByJBMr4sPCJXYiMnqx9ia/IT
-         T7vKhB/tsq/s8FRq2xKaGU8J/iZMaryrV9xGXInUwuCWbm8hqzRrSlnEGeMYFl/oAEwR
-         5PJYZv15cKv8Brn6VgZ9WQIYpuBn+XqmvIpsxMXuO7JLTLnLCNxK0/ycgNEov7lY4Vi9
-         zDTJeR3IqlblemaYRXr4FzMyUSkOyoJdHshd9+ixD4VSAtXNXHP4haoI8qP4QnhhM3VR
-         NOkA==
-X-Gm-Message-State: AO0yUKWP1ubOC4LiLvzLw3uWQhyN+UJFh5X/MH0ZWPnUxFQxWUmpMum+
-        Y6r2vHRo6Ai4wLndglc98BI=
-X-Google-Smtp-Source: AK7set8BO8kmRLWPHQAepLh/KJA9eGmluOmaO4N38iT89XrNPhJV5gJZUUErhj4WphANT9Zh0UhcEQ==
-X-Received: by 2002:a05:6e02:219b:b0:316:f93f:6baa with SMTP id j27-20020a056e02219b00b00316f93f6baamr5492289ila.31.1677643638503;
-        Tue, 28 Feb 2023 20:07:18 -0800 (PST)
-Received: from ?IPV6:2600:1700:e321:62f0:329c:23ff:fee3:9d7c? ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id y21-20020a02bb15000000b003acfdc75a53sm3657081jan.48.2023.02.28.20.07.16
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 28 Feb 2023 20:07:17 -0800 (PST)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Message-ID: <018f54ee-55cc-e30b-4595-ce555fff1708@roeck-us.net>
-Date:   Tue, 28 Feb 2023 20:07:15 -0800
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=28yKfwjO/0s4rJfe6O0bQSgJmZe5IPEVZaGiHKCxTg4=;
+        b=GC/GP/QTXqCNzVytXtOLrD1NBegnugGRiT1qVZSZ7ggR7zP5ks0bZq5CH03dnHBxSk
+         6vRlVZHJtumGc/QI8gSyhDIm4IIj92NnVx2zovOj5xQRsxwwJB8QwZ8cnBBqZPSLVO8O
+         HWgzs0PDHn4aYLmC9NKBHnndB1X3IkwId1pi6+HZkHWP7NDN97CV8UxxX3MRkoO9vnTq
+         9sG+x2eAOAl/K7mJaVSKqDRvzbpnwN40iq0YJ9SwQ+zBnU9BM92yDV2FwTp731DCUCWb
+         9RqiPFadOY8Q3ZyY166gC0V1WjKtDEI4Xdg5Pz3ryCNKNgGt/tz+CWUixqe8MC5TDATw
+         UG6g==
+X-Gm-Message-State: AO0yUKU7Tpf+kyvADjGErf/DedE7EupY9OOZ1RfWp8Swlno9ijvgMqeS
+        36OaxzMlZDF717dnJXs/IsXBWXtYnkouh+0v9UYqHw==
+X-Google-Smtp-Source: AK7set91+2QnXMA/l4LPBLXs/2Khip/xRn9a22mox+dUKEcVere1J9qIQiz8Gao6UOQmlxbGnEkxjEAOVVyl6273gFk=
+X-Received: by 2002:a67:a641:0:b0:411:c62b:6bf0 with SMTP id
+ r1-20020a67a641000000b00411c62b6bf0mr3655682vsh.3.1677645507920; Tue, 28 Feb
+ 2023 20:38:27 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.1
-Subject: Re: [PATCH 1/2] of: unittest: option to allow tests that trigger
- kernel stack dump
-Content-Language: en-US
-To:     Frank Rowand <frowand.list@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Jonathan Corbet <corbet@lwn.net>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-doc@vger.kernel.org
-References: <20230301012116.1488132-1-frowand.list@gmail.com>
- <20230301012116.1488132-2-frowand.list@gmail.com>
-From:   Guenter Roeck <linux@roeck-us.net>
-In-Reply-To: <20230301012116.1488132-2-frowand.list@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-1.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=no
-        autolearn_force=no version=3.4.6
+References: <20230228104741.717819-1-angelogioacchino.delregno@collabora.com> <20230228104741.717819-3-angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20230228104741.717819-3-angelogioacchino.delregno@collabora.com>
+From:   Chen-Yu Tsai <wenst@chromium.org>
+Date:   Wed, 1 Mar 2023 12:38:16 +0800
+Message-ID: <CAGXv+5HB-0XYw-vs97fbFu6nXWOOJzCf=rK31aL_ecC04vkq0Q@mail.gmail.com>
+Subject: Re: [PATCH v3 02/18] arm64: dts: mediatek: mt8183-kukui: Override
+ vgpu/vsram_gpu constraints
+To:     AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+Cc:     matthias.bgg@gmail.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2/28/23 17:21, Frank Rowand wrote:
-> Commit 74df14cd301a ("of: unittest: add node lifecycle tests") added
-> some tests that trigger a kernel stack dump.  Filtering the boot
-> messages with scripts/dtc/of_unittest_expect detects that the stack
-> dump is expected instead of being a test error.
-> 
-> Test beds might interpret the stack dumps as errors, resulting in
-> needless debugging and error reports.  These test beds are likely
-> to remove unittests due to these stack dumps. To avoid these problems,
-> have unittest default to skip the tests that trigger a stack dump.
-> 
-> Add a kernel cmdline option to not skip those tests.  This option can
-> be used by testers who are able to interpret the stack dumps as not
-> an error.
-> 
-> Signed-off-by: Frank Rowand <frowand.list@gmail.com>
-> ---
->   drivers/of/unittest.c | 54 ++++++++++++++++++++++++++++++++++++++++---
->   1 file changed, 51 insertions(+), 3 deletions(-)
-> 
-> diff --git a/drivers/of/unittest.c b/drivers/of/unittest.c
-> index b5a7a31d8bd2..3a9bc2bc4ba1 100644
-> --- a/drivers/of/unittest.c
-> +++ b/drivers/of/unittest.c
-> @@ -70,6 +70,36 @@ static struct unittest_results {
->   #define EXPECT_NOT_END(level, fmt, ...) \
->   	printk(level pr_fmt("EXPECT_NOT / : ") fmt, ##__VA_ARGS__)
->   
-> +/*
-> + * Some tests will cause the kernel to emit a stack dump, aka back trace,
-> + * when the test is successful.  The tests should make it possible for
-> + * test beds to detect that the trace is not an error via EXPECT_BEGIN().
-> + *
-> + * Most test beds do not process the EXPECT_BEGIN() information and may
-> + * flag the stack dump as an error, thus reporting a false failure.  It
-> + * is hoped that the KTAP version 4 specification will add the EXPECT_BEGIN()
-> + * processing to test beds.
-> + *
-> + * By default, skip tests that cause a stack dump.  Test beds that process
-> + * EXPECT_BEGIN() information should enable these tests via a kernel boot
-> + * command line option.
-> + */
-> +static int stackdump_tests_enabled;
-> +
-> +static int __init enable_unittest_stackdump(char *str)
-> +{
-> +	stackdump_tests_enabled = 1;
-> +	return 0;
-> +}
-> +
-> +static int __init disable_unittest_stackdump(char *str)
-> +{
-> +	stackdump_tests_enabled = 0;
-> +	return 0;
-> +}
-> +early_param("of_unittest_stackdump", enable_unittest_stackdump);
-> +early_param("no_of_unittest_stackdump", disable_unittest_stackdump);
+On Tue, Feb 28, 2023 at 6:47=E2=80=AFPM AngeloGioacchino Del Regno
+<angelogioacchino.delregno@collabora.com> wrote:
+>
+> Override the PMIC-default voltage constraints for VGPU and VSRAM_GPU
+> with the platform specific vmin/vmax for the highest possible SoC
+> binning.
+>
+> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@coll=
+abora.com>
 
-Does no_of_unittest_stackdump have any benefit or value ?
-
-Thanks,
-Guenter
-
+Reviewed-by: Chen-Yu Tsai <wenst@chromium.org>
