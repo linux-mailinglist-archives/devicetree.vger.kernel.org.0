@@ -2,205 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4DB926A67A7
-	for <lists+devicetree@lfdr.de>; Wed,  1 Mar 2023 07:36:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 06A1F6A67B6
+	for <lists+devicetree@lfdr.de>; Wed,  1 Mar 2023 07:48:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229607AbjCAGgQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 Mar 2023 01:36:16 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60034 "EHLO
+        id S229492AbjCAGsh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 Mar 2023 01:48:37 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38244 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229568AbjCAGgP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Mar 2023 01:36:15 -0500
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4226328213;
-        Tue, 28 Feb 2023 22:36:14 -0800 (PST)
-Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3214kSsw011618;
-        Wed, 1 Mar 2023 06:35:58 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=7NsVB4FoS6UbPZUGburrBb4iRVrowgmYEH7O+X/k89k=;
- b=NPT4abWvPWHwyIY1ZkybN9YmOTCaC5rYsrgrIv/56hCr/eYW04RB643KaoXe3E65zW1f
- ESRV4RLqOIb0q63cRnjKjtFLjTaeE0p7aVvQ4GLzqiIHhdb9BvRi1N44mksUGbzkovQK
- c5L5m+9wURsOHufdf5obQ7ITtf1zzR/IF1xz9Jo7LFgc0kYG2Q8xvVwJU2j9or/+6Uvw
- nHPkZDW5JxSKGbfXbrxUJ6oa7I2WwjBQ/6aZxyUIsGzBkW2AR6pfcEgr8Z1Teoe4VeHz
- G0Q1oUBKojE7s8u9z0nGfVSbqVB5huM5syBrqG0Sz/QPsBM+GmfaJ61a0+DsQO2Rsgs4 Fw== 
-Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3p1ccxkj6w-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 01 Mar 2023 06:35:58 +0000
-Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-        by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3216ZuT3025067
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 1 Mar 2023 06:35:56 GMT
-Received: from [10.239.133.211] (10.80.80.8) by nalasex01c.na.qualcomm.com
- (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.41; Tue, 28 Feb
- 2023 22:35:51 -0800
-Message-ID: <75b61bc3-fb68-cd6e-8849-055e785ceb72@quicinc.com>
-Date:   Wed, 1 Mar 2023 14:35:49 +0800
+        with ESMTP id S229451AbjCAGsh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Mar 2023 01:48:37 -0500
+Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DA28314213;
+        Tue, 28 Feb 2023 22:48:34 -0800 (PST)
+Received: by mail-ed1-x533.google.com with SMTP id da10so49831312edb.3;
+        Tue, 28 Feb 2023 22:48:34 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=jms.id.au; s=google;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=rWiH/yfABzHL4ae4C9gVZIzveXFrF1P6maDicDxQmSQ=;
+        b=kOJ3Gvv1Fwzz4lmxNclGvUEqUbmXPw2lV8RuCp6rmdyVz52v2fvubX68lsvY9a6se1
+         lpheYla/yeWTYz/2IPSSE031pfmPaqRzDvHGSZ9nnXZKpVyMeULKrfmBG4DHP/FARC78
+         dCuj3MFioN7+kL1iD/UoYJUJlRoTuTDmJvV50=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=rWiH/yfABzHL4ae4C9gVZIzveXFrF1P6maDicDxQmSQ=;
+        b=bvrM9/RUMa050xYZCGeK4xo1YRsQavxdDIu3PQKvfjxrXSs6/6KR+kcBIAkLTEuZlL
+         2ak9FTM19gwjeMb4c7xoiW0CZarlLUU4H1LUfEmiX0g9jxvQ/klsjFTlMjXUpGUZp0yo
+         xtWpF1OAmL9RhOiRUofG2S2tzbhnqaTLbSf4HYTmD20UWqLc6/5jKoOEWaQ7aGY2WN0L
+         CIWsnDXpbMddOsBWIWeb7W8NAd4ExS7y3lJDB5UGHh+XOR6rtkEDc27mhSNCCKVgM+Z3
+         exF81HbWJucrspzvlnyJDNTqJJ7UoAw2f2n0KLbh+CaGznkW1xNPItozTeftLKNApqnD
+         0dBA==
+X-Gm-Message-State: AO0yUKWipMRNyMvZ4Xbaq20WJvIbj5PqJVrYle7T5rx8fqHd9qYDnPMe
+        bm0WxfzXK3/is723/R+GMm7nAiMtIeHltKGzk84ENz+UbBk=
+X-Google-Smtp-Source: AK7set/sTCJJLaqc0euCySi7vIDxXxrcEU9jaXPxQQR98MSZuPX9L0zhE/D+G0o9T+Y7KVy4e9pW0TJe/EkRga64s74=
+X-Received: by 2002:a17:906:1751:b0:8e3:da0f:f9b7 with SMTP id
+ d17-20020a170906175100b008e3da0ff9b7mr2749900eje.4.1677653313123; Tue, 28 Feb
+ 2023 22:48:33 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.1.2
-Subject: Re: [PATCH v2 4/9] coresight-tpdm: Add reset node to TPDM node
-Content-Language: en-US
-To:     Suzuki K Poulose <suzuki.poulose@arm.com>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Alexander Shishkin <alexander.shishkin@linux.intel.com>,
-        Konrad Dybcio <konradybcio@gmail.com>,
-        Mike Leach <mike.leach@linaro.org>,
+References: <20230228091638.206569-1-jk@codeconstruct.com.au>
+ <20230228091638.206569-6-jk@codeconstruct.com.au> <CACPK8XcA_SES=Wo7vuWEJ4U5kTizM5brmb=6ELXD-taCFJQwgA@mail.gmail.com>
+ <cbbb99ce6125048667e4c41412710a61dc4d686f.camel@codeconstruct.com.au>
+In-Reply-To: <cbbb99ce6125048667e4c41412710a61dc4d686f.camel@codeconstruct.com.au>
+From:   Joel Stanley <joel@jms.id.au>
+Date:   Wed, 1 Mar 2023 06:48:20 +0000
+Message-ID: <CACPK8XfRg9vHYjC0rco4dr9pNY03vXTrmXaopOGBgdCq09LybQ@mail.gmail.com>
+Subject: Re: [PATCH v4 5/5] dt-bindings: clock: ast2600: Add reset config for I3C
+To:     Jeremy Kerr <jk@codeconstruct.com.au>
+Cc:     linux-aspeed@lists.ozlabs.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Michael Turquette <mturquette@baylibre.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-CC:     Jinlong Mao <quic_jinlmao@quicinc.com>,
-        Leo Yan <leo.yan@linaro.org>,
-        "Greg Kroah-Hartman" <gregkh@linuxfoundation.org>,
-        <coresight@lists.linaro.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        Tingwei Zhang <quic_tingweiz@quicinc.com>,
-        Yuanfang Zhang <quic_yuanfang@quicinc.com>,
-        Trilok Soni <quic_tsoni@quicinc.com>,
-        Hao Zhang <quic_hazha@quicinc.com>,
-        <linux-arm-msm@vger.kernel.org>, <bjorn.andersson@linaro.org>,
-        Tao Zhang <taozha@qti.qualcomm.com>
-References: <1674114105-16651-1-git-send-email-quic_taozha@quicinc.com>
- <1674114105-16651-5-git-send-email-quic_taozha@quicinc.com>
- <89247650-2bff-cb94-eaed-f1d6c343035a@arm.com>
-From:   Tao Zhang <quic_taozha@quicinc.com>
-In-Reply-To: <89247650-2bff-cb94-eaed-f1d6c343035a@arm.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: XjvoyTtBpyL68DK8mIAlYy7bE4lcsnsz
-X-Proofpoint-ORIG-GUID: XjvoyTtBpyL68DK8mIAlYy7bE4lcsnsz
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.219,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
- definitions=2023-03-01_01,2023-02-28_03,2023-02-09_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
- priorityscore=1501 spamscore=0 malwarescore=0 phishscore=0 adultscore=0
- clxscore=1015 mlxlogscore=999 bulkscore=0 impostorscore=0 suspectscore=0
- mlxscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2212070000 definitions=main-2303010049
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        Stephen Boyd <sboyd@kernel.org>,
+        Dylan Hung <dylan_hung@aspeedtech.com>,
+        Andrew Jeffery <andrew@aj.id.au>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,
+        SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Wed, 1 Mar 2023 at 06:29, Jeremy Kerr <jk@codeconstruct.com.au> wrote:
+>
+> Hi Joel,
+>
+> > > diff --git a/include/dt-bindings/clock/ast2600-clock.h
+> > > b/include/dt-bindings/clock/ast2600-clock.h
+> > > index b4d69103d722..b1c129977910 100644
+> > > --- a/include/dt-bindings/clock/ast2600-clock.h
+> > > +++ b/include/dt-bindings/clock/ast2600-clock.h
+> > > @@ -90,6 +90,12 @@
+> > >  /* Only list resets here that are not part of a gate */
+> >
+> > These definitions are part of a gate, yeah?
+>
+> Well, no more "part of a gate" than all of the other definitions :)
+>
+> All the defines in this section are references to individual bits in
+> the reset register banks in SCU040 & SCU050; the i3c set are the same
+> as the others there.
+>
+> So I'm not sure what that comment is supposed to signify as to what
+> qualifies as a "gate" in the context of a reset...
 
-在 2/28/2023 7:22 PM, Suzuki K Poulose 写道:
-> On 19/01/2023 07:41, Tao Zhang wrote:
->> TPDM device need a node to reset the configurations and status of
->> it. So as to avoid the previous configurations affecting the
->> current use, the configurations need to be reset first. And in
->> some scenarios, it may be necessary to reset the TPDM
->> configurations to complete the verification of certain function.
->> This change provides a node to reset the configurations and
->> disable the TPDM if it has been enabled.
->>
->> Signed-off-by: Tao Zhang <quic_taozha@quicinc.com>
->> Signed-off-by: Tao Zhang <taozha@qti.qualcomm.com>
->> ---
->>   drivers/hwtracing/coresight/coresight-tpdm.c | 32 
->> ++++++++++++++++++++++++++++
->>   1 file changed, 32 insertions(+)
->>
->> diff --git a/drivers/hwtracing/coresight/coresight-tpdm.c 
->> b/drivers/hwtracing/coresight/coresight-tpdm.c
->> index 6befc87..c29d667d 100644
->> --- a/drivers/hwtracing/coresight/coresight-tpdm.c
->> +++ b/drivers/hwtracing/coresight/coresight-tpdm.c
->> @@ -161,6 +161,37 @@ static void tpdm_init_default_data(struct 
->> tpdm_drvdata *drvdata)
->>       }
->>   }
->>   +static ssize_t reset_store(struct device *dev,
->> +                      struct device_attribute *attr,
->> +                      const char *buf,
->> +                      size_t size)
->> +{
->> +    int ret = 0;
->> +    unsigned long val;
->> +    struct tpdm_drvdata *drvdata = dev_get_drvdata(dev->parent);
->> +
->> +    ret = kstrtoul(buf, 0, &val);
->> +    if (ret || (val != 1))
->> +        return -EINVAL;
->> +
->> +    spin_lock(&drvdata->spinlock);
->> +    /* Reset all datasets to ZERO */
->> +    if (drvdata->dsb != NULL)
->> +        memset(drvdata->dsb, 0, sizeof(struct dsb_dataset));
->> +
->> +    /* Init the default data */
->
-> Code is self explanatory, don't need a comment here.
-OK, got it.
->
->> +    tpdm_init_default_data(drvdata);
->
-> Could this be helper be renamed to
->
->     tpdm_reset_dsb_data() ?
->
-> Because, that is what it does now.
+This is poor documentation from the author of the clock driver, which is me.
 
-Sure, I will change its name as "tpdm_reset_data()" since DSB is only 
-one of the data type which TPDM supports.
+We only expose the reset lines in the device tree for resets that are
+not associated with a clock line.
 
->
->> +
->> +    spin_unlock(&drvdata->spinlock);
->> +
->> +    /* Disable tpdm if enabled */
->> +    if (drvdata->enable)
->> +        coresight_disable(drvdata->csdev);
->
-> Woh, where did that come from ? Don't you have a disable handle ?
+This is done because the aspeed docs specify we do a dance when enabling an IP:
 
-The function "coresight_disable" is defined in the file "coresight-core.c".
+ 1. Place IP in reset
+ 2. Enable clock
+ 3. Delay
+ 4. Release reset
 
-This is a generic disablement handle.
+So we do this with the aspeed_g6_gates array. The rule is: any gate
+with a number in the rst column doesn't have that reset line exposed.
+That's what this cryptic comment in the header is warning about.
 
->
->> +
->> +    return size;
->> +}
->> +static DEVICE_ATTR_WO(reset);
->> +
->
-> This looks a bit pointless to me, given we have separate controls for 
-> all that is being achieved above.
+This was documented to some extent in the original commit message for
+the 2400/2500 driver:
 
-I will move the function of resetting all datasets to zero to 
-"tpdm_disable".
+ https://git.kernel.org/torvalds/c/15ed8ce5f84e2b
 
-Thanks for your advice.
+We could hoist that out and put it in the source file(s).
 
->
-> Suzuki
->
->>   /*
->>    * value 1: 64 bits test data
->>    * value 2: 32 bits test data
->> @@ -201,6 +232,7 @@ static ssize_t integration_test_store(struct 
->> device *dev,
->>   static DEVICE_ATTR_WO(integration_test);
->>     static struct attribute *tpdm_attrs[] = {
->> +    &dev_attr_reset.attr,
->>       &dev_attr_integration_test.attr,
->>       NULL,
->>   };
->
-Best,
+Cheers,
 
-Tao
-
+Joel
