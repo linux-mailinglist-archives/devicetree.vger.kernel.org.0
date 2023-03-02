@@ -2,121 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 13B756A832F
-	for <lists+devicetree@lfdr.de>; Thu,  2 Mar 2023 14:05:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 439226A8351
+	for <lists+devicetree@lfdr.de>; Thu,  2 Mar 2023 14:17:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229990AbjCBNFI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 2 Mar 2023 08:05:08 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36480 "EHLO
+        id S230020AbjCBNRK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 2 Mar 2023 08:17:10 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47632 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229793AbjCBNFH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Mar 2023 08:05:07 -0500
-Received: from mail-yw1-f181.google.com (mail-yw1-f181.google.com [209.85.128.181])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CD7051ABD1;
-        Thu,  2 Mar 2023 05:05:05 -0800 (PST)
-Received: by mail-yw1-f181.google.com with SMTP id 00721157ae682-536bbef1c5eso425580197b3.9;
-        Thu, 02 Mar 2023 05:05:05 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=date:subject:message-id:references:in-reply-to:cc:to:from
-         :mime-version:content-transfer-encoding:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=X18LEh0g5lt3E5bs+v6xlkNcEAN9JmhuluP548V82lk=;
-        b=7DO5xhlSe6ZWNzdsjYgF7xG5ewOv4U798/W53gc8Pf3U5LbJfi4ySwUGSBjlSojJc3
-         XfCmsV/Y4kHe14xFsu99Pw7Ms1dl4WZ4+FF9Ixurg0VaMtxrA9/cUrb6G3fDpkcjhiBr
-         KzXcSn5sX+f4n+yMi/Snv/YJ/qU1fFOZfvrAcST3Eos017slOJQ4iPh8ZeiTHwD03rFZ
-         81+dZhKf0MYdsmFhwJCkRIFsBvR9J0plIj3atuYomsQ6Q6DHrbMDRJDFki/C5NTM4evc
-         /12YiK9SV8sekxvBAKwAz1wzTVjhpmdpdshryt5yqAi6fM8pSdBNk8mQIePDdyaCS7Ae
-         gaAg==
-X-Gm-Message-State: AO0yUKWRqNRbEJ2u9S+3TVXCARMYWXam/0gF1gvVImVrXkHKhl3LT3lL
-        FSruPenDo8YFngyDPc33Tg==
-X-Google-Smtp-Source: AK7set99Kml+ZlGBFLIQciIuYyUn/ayyZxT/PJoaMEmLBbf6uluXXipONSdP2IEsSPutmUjyQ1oISw==
-X-Received: by 2002:a05:7500:4395:b0:f8:882c:4e5e with SMTP id fn21-20020a057500439500b000f8882c4e5emr246636gab.77.1677762304745;
-        Thu, 02 Mar 2023 05:05:04 -0800 (PST)
-Received: from robh_at_kernel.org ([209.91.220.210])
-        by smtp.gmail.com with ESMTPSA id l4-20020ab053c4000000b0068b8c1fa859sm1977991uaa.26.2023.03.02.05.05.03
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 02 Mar 2023 05:05:04 -0800 (PST)
-Received: (nullmailer pid 284033 invoked by uid 1000);
-        Thu, 02 Mar 2023 13:05:02 -0000
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+        with ESMTP id S229523AbjCBNRK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Mar 2023 08:17:10 -0500
+Received: from www381.your-server.de (www381.your-server.de [78.46.137.84])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 52C8338B46;
+        Thu,  2 Mar 2023 05:17:04 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=metafoo.de;
+        s=default2002; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
+        References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
+        Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+        Resent-To:Resent-Cc:Resent-Message-ID;
+        bh=OSGo8od9/vvLzXzkl3lpRBXCnyJUu3KOtGdrSgduc+I=; b=lXFObTFlAUfcMFAcgGY34eRrdX
+        SK1qEVmYwzNAUCKZu/71M5QpprxdunY2xknX0+PPyymLmylKPHTM66CleDxT1E3pJ3nyrR0xqr/wW
+        JvBZV0+B+vm+DHGOynXAbf1Na1sRw0YdYM5EXmReRY5EWloctuiMnffnQsnYnrOB6OvltLWqNgQSS
+        2uFfhjxxQENtGpyf8r1+TwhuwIzHR8mZlhX5cnqN6x8+IuK8dwnTcbaV5h+qJjj/bcqhIvcEAYDTu
+        Q4PS6AlG3BsoqqJRui+63lAzCgPadUGrlV9v+vx5gNm2WoilGojhXT6WAHGOXPoqKlNO/u6Q4SUH2
+        YlfzGK7g==;
+Received: from sslproxy05.your-server.de ([78.46.172.2])
+        by www381.your-server.de with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
+        (Exim 4.94.2)
+        (envelope-from <lars@metafoo.de>)
+        id 1pXins-000MgE-9B; Thu, 02 Mar 2023 14:17:00 +0100
+Received: from [2604:5500:c0e5:eb00:da5e:d3ff:feff:933b]
+        by sslproxy05.your-server.de with esmtpsa (TLSv1.3:TLS_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <lars@metafoo.de>)
+        id 1pXinr-000C9C-Ou; Thu, 02 Mar 2023 14:16:59 +0100
+Message-ID: <87bc192e-45ae-9480-5e84-8fe0adfc12e7@metafoo.de>
+Date:   Thu, 2 Mar 2023 05:16:54 -0800
 MIME-Version: 1.0
-From:   Rob Herring <robh@kernel.org>
-To:     richard.leitner@linux.dev
-Cc:     Richard Leitner <richard.leitner@skidata.com>,
-        Mark Brown <broonie@kernel.org>, Takashi Iwai <tiwai@suse.com>,
-        alsa-devel@alsa-project.org, Rob Herring <robh+dt@kernel.org>,
-        linux-kernel@vger.kernel.org,
-        Ladislav Michl <ladis@linux-mips.org>,
-        Benjamin Bara <benjamin.bara@skidata.com>,
-        devicetree@vger.kernel.org, Jaroslav Kysela <perex@perex.cz>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>
-In-Reply-To: <20230302-max9867-v1-1-aa9f7f25db5e@skidata.com>
-References: <20230302-max9867-v1-0-aa9f7f25db5e@skidata.com>
- <20230302-max9867-v1-1-aa9f7f25db5e@skidata.com>
-Message-Id: <167775917220.270950.1253335215666674705.robh@kernel.org>
-Subject: Re: [PATCH 1/3] ASoC: dt-bindings: maxim,max9867: convert txt
- bindings to yaml
-Date:   Thu, 02 Mar 2023 07:05:02 -0600
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
-        autolearn=no autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.0
+Subject: Re: [PATCH v3 2/2] iio: adc: Add TI ADS1100 and ADS1000
+Content-Language: en-US
+To:     Mike Looijmans <mike.looijmans@topic.nl>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+Cc:     devicetree@vger.kernel.org, linux-iio@vger.kernel.org,
+        Caleb Connolly <caleb.connolly@linaro.org>,
+        ChiYuan Huang <cy_huang@richtek.com>,
+        ChiaEn Wu <chiaen_wu@richtek.com>,
+        Cosmin Tanislav <demonsingur@gmail.com>,
+        Ibrahim Tilki <Ibrahim.Tilki@analog.com>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Ramona Bolboaca <ramona.bolboaca@analog.com>,
+        William Breathitt Gray <william.gray@linaro.org>,
+        linux-kernel@vger.kernel.org
+References: <20230228063151.17598-1-mike.looijmans@topic.nl>
+ <20230228063151.17598-2-mike.looijmans@topic.nl>
+ <Y/9vez/fzLD5dRVF@smile.fi.intel.com>
+ <1b153bce-a66a-45ee-a5c6-963ea6fb1c82.949ef384-8293-46b8-903f-40a477c056ae.0685d97e-4a28-499e-a9e3-3bafec126832@emailsignatures365.codetwo.com>
+ <a2ba706f-888b-0a72-03a5-cbf761dfaf19@topic.nl>
+From:   Lars-Peter Clausen <lars@metafoo.de>
+In-Reply-To: <a2ba706f-888b-0a72-03a5-cbf761dfaf19@topic.nl>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Authenticated-Sender: lars@metafoo.de
+X-Virus-Scanned: Clear (ClamAV 0.103.8/26828/Thu Mar  2 07:36:42 2023)
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 3/1/23 23:49, Mike Looijmans wrote:
+>
+>
+>> ...
+>> ...
+>>
+>>> +static int ads1100_runtime_suspend(struct device *dev)
+>>> +{
+>>> +    struct iio_dev *indio_dev = 
+>>> i2c_get_clientdata(to_i2c_client(dev));
+>>> +    struct ads1100_data *data = iio_priv(indio_dev);
+>>> +
+>>> +    ads1100_set_config_bits(data, ADS1100_CFG_SC, ADS1100_SINGLESHOT);
+>>> +    regulator_disable(data->reg_vdd);
+>> Wrong devm / non-devm ordering.
+>
+> Don't understand your remark, can you explain further please?
+>
+> devm / non-devm ordering would be related to the "probe" function. As 
+> far as I can tell, I'm not allocating resources after the devm calls. 
+> And the "remove" is empty.
 
-On Thu, 02 Mar 2023 12:55:01 +0100, richard.leitner@linux.dev wrote:
-> From: Richard Leitner <richard.leitner@skidata.com>
-> 
-> Convert from max9867.txt to maxim,max9867.yaml and add missing
-> '#sound-dai-cells' property.
-> 
-> Signed-off-by: Richard Leitner <richard.leitner@skidata.com>
-> ---
->  .../devicetree/bindings/sound/max9867.txt          | 17 --------
->  .../devicetree/bindings/sound/maxim,max9867.yaml   | 51 ++++++++++++++++++++++
->  2 files changed, 51 insertions(+), 17 deletions(-)
-> 
+Strictly speaking we need to unregister the IIO device before disabling 
+the regulator, otherwise there is a small window where the IIO device 
+still exists, but doesn't work anymore. This is a very theoretical 
+scenario though.
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+You are lucky :) There is a new function 
+`devm_regulator_get_enable()`[1], which will manage the 
+regulator_disable() for you. Using that will also reduce the boilerplate 
+in `probe()` a bit
 
-yamllint warnings/errors:
+- Lars
 
-dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/sound/maxim,max9867.yaml: 'oneOf' conditional failed, one must be fixed:
-	'unevaluatedProperties' is a required property
-	'additionalProperties' is a required property
-	hint: Either unevaluatedProperties or additionalProperties must be present
-	from schema $id: http://devicetree.org/meta-schemas/core.yaml#
-./Documentation/devicetree/bindings/sound/maxim,max9867.yaml: $id: relative path/filename doesn't match actual path or filename
-	expected: http://devicetree.org/schemas/sound/maxim,max9867.yaml#
-Error: Documentation/devicetree/bindings/sound/maxim,max9867.example.dts:18.9-13 syntax error
-FATAL ERROR: Unable to parse input tree
-make[1]: *** [scripts/Makefile.lib:434: Documentation/devicetree/bindings/sound/maxim,max9867.example.dtb] Error 1
-make[1]: *** Waiting for unfinished jobs....
-make: *** [Makefile:1508: dt_binding_check] Error 2
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20230302-max9867-v1-1-aa9f7f25db5e@skidata.com
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
+[1] https://lwn.net/Articles/904383/
 
