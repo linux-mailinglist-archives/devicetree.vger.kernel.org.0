@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 444586A8973
-	for <lists+devicetree@lfdr.de>; Thu,  2 Mar 2023 20:22:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 561536A898D
+	for <lists+devicetree@lfdr.de>; Thu,  2 Mar 2023 20:38:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229758AbjCBTWF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 2 Mar 2023 14:22:05 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47972 "EHLO
+        id S229736AbjCBTiL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 2 Mar 2023 14:38:11 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33772 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229447AbjCBTWE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Mar 2023 14:22:04 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6F0863B0F1;
-        Thu,  2 Mar 2023 11:22:03 -0800 (PST)
+        with ESMTP id S229547AbjCBTiL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Mar 2023 14:38:11 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6A6821FEA;
+        Thu,  2 Mar 2023 11:38:09 -0800 (PST)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 269E4B81440;
-        Thu,  2 Mar 2023 19:22:02 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C2A15C4339B;
-        Thu,  2 Mar 2023 19:22:00 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id C725361642;
+        Thu,  2 Mar 2023 19:38:08 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 31EFFC4339C;
+        Thu,  2 Mar 2023 19:38:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1677784920;
-        bh=u2ETyMMWLefkMOTiZAX4m6udjfmcpjpLan8MZELaPRs=;
+        s=k20201202; t=1677785888;
+        bh=OwB+3XfZc2i42C5aZfJlWvgZsNqnG1TajYYk4Tqce0s=;
         h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=W5sk2vWK1Rnf1JT2ayvNiFdNhO6FJCa3Sy/DXEEAyull9UEwrMPECbHMRCY0fiTMq
-         M0yzwRTR+UXWvXFnRbP9p3Dpu4mammGG2mLklCz1cQ2Gvek9UJngKAos5cbyU2kJ+z
-         9whroInCV7LVAykTkK7oWZKkPACSFl0ZFyH9JbPOn9ebDvwZ2NHt0jw8ZN/Nw8qysD
-         vKReu05g46rIYFYbOi7nslJf1L8cdQHBhB59z0uXjyneshfTzoJ5ZYkJFS+uN7E+QJ
-         KAQgyasW2HK71fZ8bMzhtHy43ASYBB3Z253qT+7Pb1kQaV9WJMaX9VjfkR8klZDL/I
-         mvp5W+oftBFwg==
-Received: by mail-ua1-f44.google.com with SMTP id bx14so104565uab.0;
-        Thu, 02 Mar 2023 11:22:00 -0800 (PST)
-X-Gm-Message-State: AO0yUKXOCJad1IuYnDO83G1/TtaB7JKayqe6jVLbmL4yGpzdD5x/Rr80
-        vzhxzel3Acqz2HVGb3PcJ3wlu9Caev0aQxAcPw==
-X-Google-Smtp-Source: AK7set+By6mMmtpNevkrZDxOqkfNXCynDSWK6HZExynOWNBO2b8njhtcc3mYR/TCzZt26k4m/i2DzpqpFOH5ndzF9K4=
-X-Received: by 2002:a05:6122:e0f:b0:406:8403:4e64 with SMTP id
- bk15-20020a0561220e0f00b0040684034e64mr5867611vkb.2.1677784919678; Thu, 02
- Mar 2023 11:21:59 -0800 (PST)
+        b=dM7iCk4GESFgO7/GKgncJQ45ojgnOsk6O7X51HFcUN2QFVzFSwzjlnBM1fr3e0GKR
+         zkrwIdnUzmxZmpBh45bjPRSMSjIAyKI9LmuivP84LFFAhatpJqFQJatxM5CmoAO+ZI
+         q/2WEhsBTsG0el8rL4iks5IkCV+vw8kQy79X1F/NYqI3LEzrkXg9muLQ8LeoQ3jJ1j
+         au2WJDs2zmRCVmF/o/9+k0E3olUF1d6Af2MqrPJjRu6q/WbgBXmjoHwcT/BoSaZEAf
+         U9E8FPGCNYSNirEnXMq0bbQVfYXlNTLSY165B+4vv3UCYNwD5N/6brTWBhUUre0AlH
+         Fxder5gVhWfdw==
+Received: by mail-ua1-f48.google.com with SMTP id x1so82912uav.9;
+        Thu, 02 Mar 2023 11:38:08 -0800 (PST)
+X-Gm-Message-State: AO0yUKXfJORkk08EdDeBv525Q9ifcO61NAhvpI2S1enoiSKSmMG92PEb
+        NwLnOjO5zwUTXoZGjT1LD8juwuNuQslByawf+Q==
+X-Google-Smtp-Source: AK7set9lyn00Q1i05eh6fNXilq1IfTL9R/2RHvpC+p+smuMyxf3GQ5zh5P/zWXTMVD45PfuVAi9rjjGShbS50wU/j+E=
+X-Received: by 2002:ab0:1059:0:b0:68b:8665:a73b with SMTP id
+ g25-20020ab01059000000b0068b8665a73bmr6760746uab.1.1677785887108; Thu, 02 Mar
+ 2023 11:38:07 -0800 (PST)
 MIME-Version: 1.0
-References: <20230301152239.531194-1-miquel.raynal@bootlin.com> <20230301152239.531194-2-miquel.raynal@bootlin.com>
-In-Reply-To: <20230301152239.531194-2-miquel.raynal@bootlin.com>
+References: <20230301152239.531194-1-miquel.raynal@bootlin.com> <20230301152239.531194-3-miquel.raynal@bootlin.com>
+In-Reply-To: <20230301152239.531194-3-miquel.raynal@bootlin.com>
 From:   Rob Herring <robh+dt@kernel.org>
-Date:   Thu, 2 Mar 2023 13:21:48 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqK86M608bKtY9dYGN6Vwe84W33bFiBwtrocoO8mE1HMzQ@mail.gmail.com>
-Message-ID: <CAL_JsqK86M608bKtY9dYGN6Vwe84W33bFiBwtrocoO8mE1HMzQ@mail.gmail.com>
-Subject: Re: [PATCH 1/8] of: Fix modalias string generation
+Date:   Thu, 2 Mar 2023 13:37:55 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqJE43qfYzHUuCJsbaPPBTbYX05Q7FFmPTjPFZ3Dmz_mXg@mail.gmail.com>
+Message-ID: <CAL_JsqJE43qfYzHUuCJsbaPPBTbYX05Q7FFmPTjPFZ3Dmz_mXg@mail.gmail.com>
+Subject: Re: [PATCH 2/8] of: Change of_device_get_modalias() main argument
 To:     Miquel Raynal <miquel.raynal@bootlin.com>
 Cc:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
         linux-kernel@vger.kernel.org,
@@ -56,8 +56,7 @@ Cc:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
         Robert Marko <robert.marko@sartura.hr>,
         Luka Perkov <luka.perkov@sartura.hr>,
         Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        rafal@milecki.pl, Stephen Boyd <stephen.boyd@linaro.org>,
-        Peter Chen <peter.chen@nxp.com>
+        rafal@milecki.pl
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
@@ -72,48 +71,36 @@ X-Mailing-List: devicetree@vger.kernel.org
 On Wed, Mar 1, 2023 at 9:22=E2=80=AFAM Miquel Raynal <miquel.raynal@bootlin=
 .com> wrote:
 >
-> The helper generating an OF based modalias (of_device_get_modalias())
-> works fine, but due to the use of snprintf() internally it needs a
-> buffer one byte longer than what should be needed just for the entire
-> string (excluding the '\0'). Most users of this helper are sysfs hooks
-> providing the modalias string to users. They all provide a PAGE_SIZE
-> buffer which is way above the number of bytes required to fit the
-> modalias string and hence do not suffer from this issue.
+> This function needs "struct device_node" to work, but for convenience
+> the author and only user of this helper did use a "struct device". As
+> this helper is a static helper, let's keep the "struct device" for
+> exported methods and use the OF structure internally.
 >
-> There is another user though, of_device_request_module(), which is only
-> called by drivers/usb/common/ulpi.c. This request module function is
-> faulty, but maybe because in most cases there is an alternative, ULPI
-> driver users have not noticed it.
->
-> In this function, of_device_get_modalias() is called twice. The first
-> time without buffer just to get the number of bytes required by the
-> modalias string (excluding the null byte), and a second time, after
-> buffer allocation, to fill the buffer. The allocation asks for an
-> additional byte, in order to store the trailing '\0'. However, the
-> buffer *length* provided to of_device_get_modalias() excludes this extra
-> byte. The internal use of snprintf() with a length that is exactly the
-> number of bytes to be written has the effect of using the last available
-> byte to store a '\0', which then smashes the last character of the
-> modalias string.
->
-> Provide the actual size of the buffer to of_device_get_modalias() to fix
-> this issue.
->
-> Note: the "str[size - 1] =3D '\0';" line is not really needed as snprintf
-> will anyway end the string with a null byte, but there is a possibility
-> that this function might be called on a struct device_node without
-> compatible, in this case snprintf() would not be executed. So we keep it
-> just to avoid possible unbounded strings.
->
-> Cc: Stephen Boyd <stephen.boyd@linaro.org>
-> Cc: Peter Chen <peter.chen@nxp.com>
-> Fixes: 9c829c097f2f ("of: device: Support loading a module with OF based =
-modalias")
 > Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
 > ---
->  drivers/of/device.c | 7 +++++--
->  1 file changed, 5 insertions(+), 2 deletions(-)
+>  drivers/of/device.c | 27 ++++++++++++++++-----------
+>  1 file changed, 16 insertions(+), 11 deletions(-)
+>
+> diff --git a/drivers/of/device.c b/drivers/of/device.c
+> index 877f50379fab..3efc17de1d57 100644
+> --- a/drivers/of/device.c
+> +++ b/drivers/of/device.c
+> @@ -248,7 +248,7 @@ const void *of_device_get_match_data(const struct dev=
+ice *dev)
+>  }
+>  EXPORT_SYMBOL(of_device_get_match_data);
+>
+> -static ssize_t of_device_get_modalias(struct device *dev, char *str, ssi=
+ze_t len)
+> +static ssize_t of_device_get_modalias(struct device_node *np, char *str,=
+ ssize_t len)
 
-Ahh, an off by 2 error. ;)
+Humm, this is static so fine here, but based on my comments on patch
+3, it would need to move too as base.c having a dependency on device.c
+is backwards.
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+How about moving everything module related to drivers/of/module.c. Put
+the new functions in of.h (rather than an of_module.h). Then maybe the
+rest of device.c could move to inline wrappers or elsewhere.
+
+Rob
