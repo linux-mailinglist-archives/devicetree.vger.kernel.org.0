@@ -2,81 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 815E26A86FD
-	for <lists+devicetree@lfdr.de>; Thu,  2 Mar 2023 17:40:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 132416A871F
+	for <lists+devicetree@lfdr.de>; Thu,  2 Mar 2023 17:45:16 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230009AbjCBQky (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 2 Mar 2023 11:40:54 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47008 "EHLO
+        id S230001AbjCBQpN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 2 Mar 2023 11:45:13 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53558 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229935AbjCBQkl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Mar 2023 11:40:41 -0500
-Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D667815161
-        for <devicetree@vger.kernel.org>; Thu,  2 Mar 2023 08:40:38 -0800 (PST)
-Received: by mail-lf1-x135.google.com with SMTP id f18so58918lfa.3
-        for <devicetree@vger.kernel.org>; Thu, 02 Mar 2023 08:40:38 -0800 (PST)
+        with ESMTP id S230017AbjCBQpL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Mar 2023 11:45:11 -0500
+Received: from mailrelay1-1.pub.mailoutpod2-cph3.one.com (mailrelay1-1.pub.mailoutpod2-cph3.one.com [IPv6:2a02:2350:5:400::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A1DF92C648
+        for <devicetree@vger.kernel.org>; Thu,  2 Mar 2023 08:45:08 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=Nte8mciSWK9PGJnSmONLh/qsDi2gUtT8Fsq0Nw7PJt0=;
-        b=n8mCYfOolzeQIcsKRAPvTQGuSxe+pWJwOuG5SoO3idRp8K3AG3GIWZPd4vLFLFDepI
-         JKI18SCrowvdB0O2lp+ZlMPMaDKDGMLrS1LeE7Fm/eBG+U+5V6mtjy9XnWyZ0Xt+UG01
-         HvcB/37u6Icp4rEQ/ygVtyGx3dhCCsUL+3ohyLRkKbj+clxCcHnge6CXTx5rBr2u94C4
-         nvF3LUvdjYgPgMsZkyFU/GKcKJ0FnjERqJ9T3pgbmKFeQZCqehGYhXrcA+st+UfehZIG
-         QJQ2y6cUlL7QKUM78ExssiRgs86LusK+tKj4rlIhhBMtDK+bBIWQXAX4zaWwsRHtZ3K7
-         I1Gg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Nte8mciSWK9PGJnSmONLh/qsDi2gUtT8Fsq0Nw7PJt0=;
-        b=q59+8A7rAkEIvbLj/IvA5RnIOsGOM0UxtsbeoG1eXIRlqiaYtO2NE6V2Hjc4f0HB1G
-         HVEmSykVVS1+RNDO9new/xGomS0bcxzFtXUvA8IB6HYq4acQ/kw6Dp4ix6aXkA/8+d4l
-         /NQvmIM5osP52toz2qH4Ne89wKWiQCSNg35h8SYLxz38kKcQ5DGFG1wbq+uGlhMp6vQQ
-         QCWRnolVybju5i7iBaPPwAapaOEsP1Iq8ZBZ+Vj4lyBR2d58BCM04i5RSOuUSqddBtl7
-         FCZ9QtMQ5uIBUruWPeynjzGdrU6Fig4GljBRH0frMiIJR7F9IdX9rBZYghNPb/q70nio
-         3uuQ==
-X-Gm-Message-State: AO0yUKU5Gjq/WCBsv0DJKt6QiLG3MCT9JKwfZVmvD6PuN80uRgyfzcxa
-        5iP++ve9R2eOcAmH4WNP63E80Q==
-X-Google-Smtp-Source: AK7set+drVKOINN+znKqCAyISLLIQMoCmPUECbi3LjEUtLHHXRst41ojwkfBko9m0zPNOxITvFGqDQ==
-X-Received: by 2002:a05:6512:21d2:b0:4dd:a9d7:52fa with SMTP id d18-20020a05651221d200b004dda9d752famr3136501lft.37.1677775237072;
-        Thu, 02 Mar 2023 08:40:37 -0800 (PST)
-Received: from ?IPV6:2001:14ba:a085:4d00::8a5? (dzccz6yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a085:4d00::8a5])
-        by smtp.gmail.com with ESMTPSA id q20-20020ac24a74000000b004d5a6dcb94fsm2202758lfp.33.2023.03.02.08.40.36
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 02 Mar 2023 08:40:36 -0800 (PST)
-Message-ID: <b15e16c2-1389-cd26-19bb-8023e5bd96f5@linaro.org>
-Date:   Thu, 2 Mar 2023 18:40:36 +0200
+        d=ravnborg.org; s=rsa2;
+        h=in-reply-to:content-type:mime-version:references:message-id:subject:cc:to:
+         from:date:from;
+        bh=sAIc9DICHOwHXe3hoL0M1Cz46v91ph++acz6kjkneyk=;
+        b=kDFUay36skYmps2/wdqt4fAH3ooPZbYWVp4pqBqM961wiZduj7P0xLgJw2P+NpMGf7kg1DoicLT6s
+         g6l09K8HwL4RYQ8zGGoaFGn4km6zQYbAroP+EN+9HlyJrhV1W8t5cDqTAwscYUwdLDpYbIiHboO9rZ
+         aMzoAa0S/vUdoj1kf/OGdJTZUpW+MrjaNGUTQavNWIRuYfGMKTi7Tl3hROfbZVtoTWtbKeUCJQ2L0I
+         vgAjzdLxgJIXjLXCeRFb3ZpkshGAWy49N0muwOqA6SWUqwPx0aPY3DSGC5+6RFk99RSbDSFXHj01s6
+         xLMWjzebL84uGzeen8v31LzBEjuhwEg==
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed;
+        d=ravnborg.org; s=ed2;
+        h=in-reply-to:content-type:mime-version:references:message-id:subject:cc:to:
+         from:date:from;
+        bh=sAIc9DICHOwHXe3hoL0M1Cz46v91ph++acz6kjkneyk=;
+        b=dTZtzyqF/jIMi0Zr3bfFJbyk3/PAmHQdX/XPn81EeMGXIgD+hYOJ9q2VlxqlJBJy6Rr6S2UsHglzv
+         pur80rgBQ==
+X-HalOne-ID: 943971d9-b919-11ed-babc-11abd97b9443
+Received: from ravnborg.org (2-105-2-98-cable.dk.customer.tdc.net [2.105.2.98])
+        by mailrelay1 (Halon) with ESMTPSA
+        id 943971d9-b919-11ed-babc-11abd97b9443;
+        Thu, 02 Mar 2023 16:45:06 +0000 (UTC)
+Date:   Thu, 2 Mar 2023 17:45:04 +0100
+From:   Sam Ravnborg <sam@ravnborg.org>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        devicetree@vger.kernel.org, Miguel Ojeda <ojeda@kernel.org>,
+        Benson Leung <bleung@chromium.org>,
+        Guenter Roeck <groeck@chromium.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Andrzej Hajda <andrzej.hajda@intel.com>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Robert Foss <rfoss@kernel.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        MyungJoo Ham <myungjoo.ham@samsung.com>,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <brgl@bgdev.pl>,
+        Pavel Machek <pavel@ucw.cz>, Lee Jones <lee@kernel.org>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Wolfgang Grandegger <wg@grandegger.com>,
+        Kalle Valo <kvalo@kernel.org>,
+        Sebastian Reichel <sre@kernel.org>,
+        Mark Brown <broonie@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        linux-clk@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        linux-gpio@vger.kernel.org, linux-i2c@vger.kernel.org,
+        linux-leds@vger.kernel.org, linux-media@vger.kernel.org,
+        netdev@vger.kernel.org, linux-can@vger.kernel.org,
+        linux-wireless@vger.kernel.org, linux-pm@vger.kernel.org,
+        alsa-devel@alsa-project.org, linux-usb@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: Fix SPI and I2C bus node names in examples
+Message-ID: <ZADSkGa6dK4H9p75@ravnborg.org>
+References: <20230228215433.3944508-1-robh@kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-Subject: Re: [PATCH 1/2] arm64: dts: qcom: msm8976: Add and provide xo clk to
- rpmcc
-Content-Language: en-GB
-To:     Adam Skladowski <a39.skl@gmail.com>
-Cc:     phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Marijn Suijten <marijn.suijten@somainline.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20230302123051.12440-1-a39.skl@gmail.com>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-In-Reply-To: <20230302123051.12440-1-a39.skl@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230228215433.3944508-1-robh@kernel.org>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_PASS,SPF_NONE autolearn=unavailable autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -84,52 +86,50 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 02/03/2023 14:30, Adam Skladowski wrote:
-> In order for consumers of RPMCC XO clock to probe successfully
-> their parent needs to be feed with reference clock to obtain proper rate,
-> add fixed xo-board clock and supply it to rpmcc to make consumers happy.
-> Frequency setting is left per board basis just like on other recent trees.
-> 
-> Fixes: 0484d3ce0902 ("arm64: dts: qcom: Add DTS for MSM8976 and MSM8956 SoCs")
-> Signed-off-by: Adam Skladowski <a39.skl@gmail.com>
-> ---
->   arch/arm64/boot/dts/qcom/msm8976.dtsi | 9 +++++++++
->   1 file changed, 9 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/msm8976.dtsi b/arch/arm64/boot/dts/qcom/msm8976.dtsi
-> index 2d360d05aa5e..e55baafd9efd 100644
-> --- a/arch/arm64/boot/dts/qcom/msm8976.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/msm8976.dtsi
-> @@ -20,6 +20,13 @@ / {
->   
->   	chosen { };
->   
-> +	clocks {
-> +		xo_board: xo-board {
-> +			compatible = "fixed-clock";
-> +			#clock-cells = <0>;
+Hi Rob.
 
-With the clock-frequency moved here:
+>  .../bindings/display/bridge/analogix,anx7625.yaml |  2 +-
+>  .../bindings/display/bridge/anx6345.yaml          |  2 +-
+>  .../bindings/display/bridge/lontium,lt8912b.yaml  |  2 +-
+>  .../bindings/display/bridge/nxp,ptn3460.yaml      |  2 +-
+>  .../bindings/display/bridge/ps8640.yaml           |  2 +-
+>  .../bindings/display/bridge/sil,sii9234.yaml      |  2 +-
+>  .../bindings/display/bridge/ti,dlpc3433.yaml      |  2 +-
+>  .../bindings/display/bridge/toshiba,tc358762.yaml |  2 +-
+>  .../bindings/display/bridge/toshiba,tc358768.yaml |  2 +-
+>  .../bindings/display/panel/nec,nl8048hl11.yaml    |  2 +-
+Acked-by: Sam Ravnborg <sam@ravnborg.org>
 
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 
-> +		};
-> +	};
-> +
->   	cpus {
->   		#address-cells = <1>;
->   		#size-cells = <0>;
-> @@ -351,6 +358,8 @@ rpm_requests: rpm-requests {
->   
->   				rpmcc: clock-controller {
->   					compatible = "qcom,rpmcc-msm8976", "qcom,rpmcc";
-> +					clocks = <&xo_board>;
-> +					clock-names = "xo";
->   					#clock-cells = <1>;
->   				};
->   
 
--- 
-With best wishes
-Dmitry
+> index 669f70b1b4c4..8bd58913804a 100644
+> --- a/Documentation/devicetree/bindings/display/solomon,ssd1307fb.yaml
+> +++ b/Documentation/devicetree/bindings/display/solomon,ssd1307fb.yaml
+> @@ -226,7 +226,7 @@ unevaluatedProperties: false
+>  
+>  examples:
+>    - |
+> -    i2c1 {
+> +    i2c {
+>              #address-cells = <1>;
+>              #size-cells = <0>;
+>  
+> @@ -239,7 +239,7 @@ examples:
+>  
+>              ssd1306_i2c: oled@3d {
+>                      compatible = "solomon,ssd1306";
+> -                    reg = <0x3c>;
+> +                    reg = <0x3d>;
+>                      pwms = <&pwm 4 3000>;
+>                      reset-gpios = <&gpio2 7>;
+>                      solomon,com-lrremap;
 
+I can see this align the example with i2c-mux-gpio.yaml so the change
+should be fine. I am just positive surprised the tooling caught it.
+
+The change is
+Acked-by: Sam Ravnborg <sam@ravnborg.org>
+
+the above was just me thinking loud.
+
+	Sam
