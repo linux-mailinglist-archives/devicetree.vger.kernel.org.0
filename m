@@ -2,130 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BCE156A85A6
-	for <lists+devicetree@lfdr.de>; Thu,  2 Mar 2023 16:53:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 52FD26A85BD
+	for <lists+devicetree@lfdr.de>; Thu,  2 Mar 2023 17:02:37 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229644AbjCBPxH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 2 Mar 2023 10:53:07 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53008 "EHLO
+        id S229456AbjCBQCf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 2 Mar 2023 11:02:35 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59992 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229633AbjCBPxF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Mar 2023 10:53:05 -0500
-Received: from mail-ed1-x52d.google.com (mail-ed1-x52d.google.com [IPv6:2a00:1450:4864:20::52d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8E8571B2ED
-        for <devicetree@vger.kernel.org>; Thu,  2 Mar 2023 07:53:00 -0800 (PST)
-Received: by mail-ed1-x52d.google.com with SMTP id u9so19922337edd.2
-        for <devicetree@vger.kernel.org>; Thu, 02 Mar 2023 07:53:00 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1677772379;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=eziIgkYWOJiCmTVuxVTqjJdDZwB/8c2NA0L0jdj0/Uw=;
-        b=Fu87gzOTQAPfY9cQ6aCuwsLHru/2r5kvivRd+hFFr67onDK5Zdlq0IfKTe8TMnZRMT
-         sss9b/L9x0Wrz85dNBTODs33rzwnV6iQex3MiErEPqbWQ2BTZ024UudYxKi4KExii6vk
-         X7QmGtDDcZ8V8sEz63q38WrCathbEOnMxaJOHQqE5pGhqyx8HcqIZFumlEB74YPhuicQ
-         wZ61i507wQwiHo/8QziKrdEnpFFtLRG44kSCZTJwXt5hrWmWKV194qVDv9jn5x+dksDo
-         TKsueyxbCzwwMyNvGSiuk3pHr/EwcldYPuYj+cduOjHORS2hCdLFPbo17vyKAfzzyN0l
-         nHTg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1677772379;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=eziIgkYWOJiCmTVuxVTqjJdDZwB/8c2NA0L0jdj0/Uw=;
-        b=xJ9ZYs8KpjC8wBHA8Q3O+nJfbmwiZGfLU2cUHx/ZKxjDm4oFTX9XURpHsk2zhU67LU
-         6gRkV8Ov7j5whvCCk33PVmNSLd0u2rHrEZkjqW5EGzL+JiIB0IgVTFuhMnRplfWRitjs
-         H129XThML4krh7HrpYz4IkixpyHiy/g+Kug913qeI0jMuLVKhaxauHVhBfuQj+84rMB/
-         qyuTvu+yQQMCfqJ67rqMIxEJ0CmWhIoMUvpMTfciQ+FwOV8aIrYGk2UIfVgxCFqFKhpY
-         lUG3pFDIYWZTmiRLJ6uGRSk+Bj2Ie7Qv9xegvM6e1Gp54wM79bFwZLUjQaa8Xl6MJlsw
-         Ftqg==
-X-Gm-Message-State: AO0yUKWS1Y7/pfeoazpe0k8nxD9zXRkHdfa1wTCVeVL2AI57PijMQloy
-        qR96u//oXtOIpJuHzExGvgGd6Q==
-X-Google-Smtp-Source: AK7set/W7p21Eu9xzjAjBDf/kyoaf0+JSX0Ydk6Dr//aPVX78s6utFzky51f8iRCBZkcvVke3kCiIw==
-X-Received: by 2002:a17:906:f892:b0:872:27cb:9436 with SMTP id lg18-20020a170906f89200b0087227cb9436mr11322119ejb.43.1677772378901;
-        Thu, 02 Mar 2023 07:52:58 -0800 (PST)
-Received: from krzk-bin.. ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id u9-20020a50a409000000b004af515d2dd8sm7050994edb.74.2023.03.02.07.52.57
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 02 Mar 2023 07:52:58 -0800 (PST)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH] dt-bindings: pinctrl: qcom: lpass-lpi: correct description of second reg
-Date:   Thu,  2 Mar 2023 16:52:55 +0100
-Message-Id: <20230302155255.857065-1-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.34.1
+        with ESMTP id S229437AbjCBQCe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Mar 2023 11:02:34 -0500
+Received: from mx.sberdevices.ru (mx.sberdevices.ru [45.89.227.171])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0BE46C647;
+        Thu,  2 Mar 2023 08:02:32 -0800 (PST)
+Received: from s-lin-edge02.sberdevices.ru (localhost [127.0.0.1])
+        by mx.sberdevices.ru (Postfix) with ESMTP id 5C9285FD13;
+        Thu,  2 Mar 2023 19:02:29 +0300 (MSK)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sberdevices.ru;
+        s=mail; t=1677772949;
+        bh=pH2/BwYk/ccvRyZeYLpUS9yuCtPjv0uFSqqBycYa3+w=;
+        h=Message-ID:Date:MIME-Version:Subject:To:From:Content-Type;
+        b=NrQDWL1D/S2DwS0paqi4/35Oc9QzCAYJuamgniaczeKEmMiddE+LdwvlczVH4SXkW
+         reA8Rh9S6xCnBxtSx5J9ydCdvEns1EMTAT+B8bZNkMCFRgSoHZKGu8SMumvx0B6DB5
+         2rwY1Ok8av/N2IMUk5H6MczJZ2swgESpmtBDYH94ZWduE5P1LtGojTylhF/aJn9fnb
+         YoqLNfOPwdxdmDM2jIeUs0TsEt5BEY+QXZZLOtUH0lEVBBMd+R4/JNEXVIFGDeu20b
+         Qlz0pwmRJMUZtyxiZPoDGw/52Tp97OHIElHe7jwEtJjCwTycZP/uDnbK+ZRWvTjRr9
+         4nsCB4KnQb1/g==
+Received: from S-MS-EXCH01.sberdevices.ru (S-MS-EXCH01.sberdevices.ru [172.16.1.4])
+        by mx.sberdevices.ru (Postfix) with ESMTP;
+        Thu,  2 Mar 2023 19:02:28 +0300 (MSK)
+Message-ID: <6a4abcc5-5246-20ac-e25b-f88ee90c1331@sberdevices.ru>
+Date:   Thu, 2 Mar 2023 19:02:28 +0300
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.8.0
+Subject: Re: [PATCH v2 1/2] dt-bindings: leds: add binding for aw200xx
+Content-Language: en-US
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Pavel Machek <pavel@ucw.cz>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Lee Jones <lee@kernel.org>,
+        Andy Shevchenko <andy.shevchenko@gmail.com>
+CC:     <linux-leds@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <kernel@sberdevices.ru>
+References: <20230228211046.109693-1-mmkurbanov@sberdevices.ru>
+ <20230228211046.109693-2-mmkurbanov@sberdevices.ru>
+ <8c3a16f6-f1fb-911b-b935-31ed8e227f8f@linaro.org>
+From:   Martin Kurbanov <mmkurbanov@sberdevices.ru>
+In-Reply-To: <8c3a16f6-f1fb-911b-b935-31ed8e227f8f@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [172.16.1.6]
+X-ClientProxiedBy: S-MS-EXCH02.sberdevices.ru (172.16.1.5) To
+ S-MS-EXCH01.sberdevices.ru (172.16.1.4)
+X-KSMG-Rule-ID: 4
+X-KSMG-Message-Action: clean
+X-KSMG-AntiSpam-Status: not scanned, disabled by settings
+X-KSMG-AntiSpam-Interceptor-Info: not scanned
+X-KSMG-AntiPhishing: not scanned, disabled by settings
+X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 1.1.2.30, bases: 2023/03/02 07:22:00 #20908555
+X-KSMG-AntiVirus-Status: Clean, skipped
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The description of second IO address is a bit confusing.  It is supposed
-to be the MCC range which contains the slew rate registers, not the slew
-rate register base.  The Linux driver then accesses slew rate register
-with hard-coded offset (0xa000).
+On 2023-03-02 10:48, Krzysztof Kozlowski wrote:
 
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
----
- .../bindings/pinctrl/qcom,sc8280xp-lpass-lpi-pinctrl.yaml       | 2 +-
- .../bindings/pinctrl/qcom,sm8450-lpass-lpi-pinctrl.yaml         | 2 +-
- .../bindings/pinctrl/qcom,sm8550-lpass-lpi-pinctrl.yaml         | 2 +-
- 3 files changed, 3 insertions(+), 3 deletions(-)
+>> +  For more product information please see the link below:
+>> +  aw20036 - https://www.awinic.com/Public/Uploads/uploadfile/files/20200509/20200509151532_5eb65894d205a.pdf
+>> +  aw20054 - https://www.awinic.com/Public/Uploads/uploadfile/files/20200509/20200509151602_5eb658b2b77cb.pdf
+>> +  aw20072 - https://www.awinic.com/Public/Uploads/uploadfile/files/20200509/20200509151754_5eb659227a145.pdf
+> 
+> Links do not work. Error 401
 
-diff --git a/Documentation/devicetree/bindings/pinctrl/qcom,sc8280xp-lpass-lpi-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/qcom,sc8280xp-lpass-lpi-pinctrl.yaml
-index 200b3b6ccd87..a9167dac9ab5 100644
---- a/Documentation/devicetree/bindings/pinctrl/qcom,sc8280xp-lpass-lpi-pinctrl.yaml
-+++ b/Documentation/devicetree/bindings/pinctrl/qcom,sc8280xp-lpass-lpi-pinctrl.yaml
-@@ -20,7 +20,7 @@ properties:
-   reg:
-     items:
-       - description: LPASS LPI TLMM Control and Status registers
--      - description: LPASS LPI pins SLEW registers
-+      - description: LPASS LPI MCC registers
- 
-   clocks:
-     items:
-diff --git a/Documentation/devicetree/bindings/pinctrl/qcom,sm8450-lpass-lpi-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/qcom,sm8450-lpass-lpi-pinctrl.yaml
-index 8bf51df0b231..1eefa9aa6a86 100644
---- a/Documentation/devicetree/bindings/pinctrl/qcom,sm8450-lpass-lpi-pinctrl.yaml
-+++ b/Documentation/devicetree/bindings/pinctrl/qcom,sm8450-lpass-lpi-pinctrl.yaml
-@@ -20,7 +20,7 @@ properties:
-   reg:
-     items:
-       - description: LPASS LPI TLMM Control and Status registers
--      - description: LPASS LPI pins SLEW registers
-+      - description: LPASS LPI MCC registers
- 
-   clocks:
-     items:
-diff --git a/Documentation/devicetree/bindings/pinctrl/qcom,sm8550-lpass-lpi-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/qcom,sm8550-lpass-lpi-pinctrl.yaml
-index 5e90051ed314..691bf60abb8c 100644
---- a/Documentation/devicetree/bindings/pinctrl/qcom,sm8550-lpass-lpi-pinctrl.yaml
-+++ b/Documentation/devicetree/bindings/pinctrl/qcom,sm8550-lpass-lpi-pinctrl.yaml
-@@ -21,7 +21,7 @@ properties:
-   reg:
-     items:
-       - description: LPASS LPI TLMM Control and Status registers
--      - description: LPASS LPI pins SLEW registers
-+      - description: LPASS LPI MCC registers
- 
-   clocks:
-     items:
+They are changed the links. I will correct in the next version.
+
+>> +  awinic,display-rows:
+>> +    $ref: /schemas/types.yaml#/definitions/uint32
+>> +    description:
+>> +      Leds matrix size
+> 
+> Why do you need this property? Number of LEDs are known from the number
+> of children. Matrix size is fixed in compatible, isn't it?
+
+Number of LEDs are known, but matrix size are programmable.
+Example for the aw20036, the matrix size can be 1x12, 2x12, 3x12.
+
 -- 
-2.34.1
+Best Regards,
+Kurbanov Martin
 
