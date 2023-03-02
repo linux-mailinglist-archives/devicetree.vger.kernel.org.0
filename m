@@ -2,195 +2,135 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 22F1F6A7A15
-	for <lists+devicetree@lfdr.de>; Thu,  2 Mar 2023 04:33:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3D6D86A7A8E
+	for <lists+devicetree@lfdr.de>; Thu,  2 Mar 2023 05:38:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229445AbjCBDd2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 Mar 2023 22:33:28 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44984 "EHLO
+        id S229753AbjCBEiC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 Mar 2023 23:38:02 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35612 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229815AbjCBDd1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Mar 2023 22:33:27 -0500
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C126C193D6;
-        Wed,  1 Mar 2023 19:33:25 -0800 (PST)
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 3223XEXB072518;
-        Wed, 1 Mar 2023 21:33:14 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1677727994;
-        bh=9Pl5fygjp5stmLuLjka+wkg0YviQ8JidHpMMzLX23sI=;
-        h=Date:Subject:To:CC:References:From:In-Reply-To;
-        b=WBzUxObUzAs42ieSnCNNxKzM8W6LjmaGkAKckvKlR6YjE2SX3zG3fLJw84xfDVkrj
-         jDOE+9VN601eQJTHPbmTRiXMUacF1ednSw5od6jetp3hukJ7MtefrgqeBJ+JqTYIXp
-         GP0f+k5ZPEQ/BFB+qH4yYDlXAbwAaFZ+Uqa2lSWk=
-Received: from DLEE100.ent.ti.com (dlee100.ent.ti.com [157.170.170.30])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 3223XEwJ053071
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Wed, 1 Mar 2023 21:33:14 -0600
-Received: from DLEE106.ent.ti.com (157.170.170.36) by DLEE100.ent.ti.com
- (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Wed, 1
- Mar 2023 21:33:13 -0600
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE106.ent.ti.com
- (157.170.170.36) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
- Frontend Transport; Wed, 1 Mar 2023 21:33:13 -0600
-Received: from [10.24.69.79] (ileaxei01-snat2.itg.ti.com [10.180.69.6])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 3223XABw023374;
-        Wed, 1 Mar 2023 21:33:11 -0600
-Message-ID: <7843adf0-f883-280b-1d87-44010ceef767@ti.com>
-Date:   Thu, 2 Mar 2023 09:03:09 +0530
+        with ESMTP id S229470AbjCBEiB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Mar 2023 23:38:01 -0500
+Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com [IPv6:2a00:1450:4864:20::534])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2BCC7BDEE;
+        Wed,  1 Mar 2023 20:38:00 -0800 (PST)
+Received: by mail-ed1-x534.google.com with SMTP id s26so62581211edw.11;
+        Wed, 01 Mar 2023 20:38:00 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=jms.id.au; s=google;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=cH5QCWPvK5yIWKHOjLm1DJOS8y866l+SddIKwDhm72I=;
+        b=MY4cskbmwusawU8T7AnxkNnsEDLOkB2G+nL/682DS0Lt0IdiB2NXWH9CEjaDt7I8RM
+         +zHXbQEqJgSkUjRF6yo7yUz8jw7uSCrxoJgLg0PlpYWcBQknIdK6AgJWjQYJC8rWNGNw
+         KBojVr2FyzuO2q+q3XJNlq0UEys1fmRhEP+og=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=cH5QCWPvK5yIWKHOjLm1DJOS8y866l+SddIKwDhm72I=;
+        b=4jvy0ztoMfVNpy9N3pEV2fFK2tY7iJHzFkqIwj1AcJe5mHHjc2pEacrTYEoFqo3dm3
+         AdLx0P3zLgkIOnTqRex/nljXmDT03AIK2hgnA7qU12TklTg2HUmtegQJ0yVkxwrU6rq8
+         jNg9YliU6ZcKCfMDml8mcQw/RzeiBTG/b0eA/IoFT4UmDLKsV/TdfgTqWavu3Q7aneUp
+         8Kc14rQ4k6z7b8z43MAMadBv00jUe0JpYfWte4s5A8oKZeOZTL8fqECQX5AZqMjlSKZN
+         o5kmvuLMQE+L9RwLRe/uOYE2BVOQPu+rzFY1QF45t6G/EsbF1vlQZQyoDhMUNb/YjZkN
+         OOGg==
+X-Gm-Message-State: AO0yUKXkcLL9IHWh7PILeNLnjrrbv83+C3jAaojxQJexG9n9dVysplk9
+        yJoRlziE0xexfOFNnbfSqQBFd6qgKPPHIgbqzTQ=
+X-Google-Smtp-Source: AK7set8sNmWm/8ILzJnLjhfsBQegrCZWioL4601vbmBfjTc1luoGfB69rsH3LmqFUTACR4tMATlZqEyS7SZf3G3sR5w=
+X-Received: by 2002:a17:906:1751:b0:8e3:da0f:f9b7 with SMTP id
+ d17-20020a170906175100b008e3da0ff9b7mr4614883eje.4.1677731878401; Wed, 01 Mar
+ 2023 20:37:58 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.1
-Subject: Re: [PATCH v12 3/8] arm64: dts: ti: k3-j721s2-mcu-wakeup: Add support
- of OSPI
-Content-Language: en-US
-To:     Andrew Davis <afd@ti.com>, <nm@ti.com>, <vigneshr@ti.com>,
-        <kristo@kernel.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <s-vadapalli@ti.com>,
-        <vaishnav.a@ti.com>
-CC:     <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-References: <20230301091136.17862-1-r-gunasekaran@ti.com>
- <20230301091136.17862-4-r-gunasekaran@ti.com>
- <61fab807-42df-cc2c-51de-f54e9ea477c8@ti.com>
-From:   Ravi Gunasekaran <r-gunasekaran@ti.com>
-In-Reply-To: <61fab807-42df-cc2c-51de-f54e9ea477c8@ti.com>
+References: <20230302005834.13171-1-jk@codeconstruct.com.au>
+In-Reply-To: <20230302005834.13171-1-jk@codeconstruct.com.au>
+From:   Joel Stanley <joel@jms.id.au>
+Date:   Thu, 2 Mar 2023 04:37:35 +0000
+Message-ID: <CACPK8XdDL1Wm4juJhANwmkacAfmYTJTdQAFVd9t8wPPLUfBxaA@mail.gmail.com>
+Subject: Re: [PATCH v5 0/6] Add definitions for AST2600 i3c clocks
+To:     Jeremy Kerr <jk@codeconstruct.com.au>
+Cc:     devicetree@vger.kernel.org, linux-aspeed@lists.ozlabs.org,
+        linux-clk@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Dylan Hung <dylan_hung@aspeedtech.com>,
+        Andrew Jeffery <andrew@aj.id.au>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-4.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_PASS,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,
+        SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Thu, 2 Mar 2023 at 00:58, Jeremy Kerr <jk@codeconstruct.com.au> wrote:
+>
+> This series adds some base configuration for the i3c controllers on
+> ast2600 hardware. We'll use the reset and clock definitions in the
+> proposed dt binding example, hence sending these first.
 
+Cool, looks good:
 
-On 01/03/23 9:27 pm, Andrew Davis wrote:
-> On 3/1/23 3:11 AM, Ravi Gunasekaran wrote:
->> From: Aswath Govindraju <a-govindraju@ti.com>
->>
->> Add support for two instance of OSPI in J721S2 SoC.
->>
->> Reviewed-by: Vaishnav Achath <vaishnav.a@ti.com>
->> Signed-off-by: Aswath Govindraju <a-govindraju@ti.com>
->> Signed-off-by: Matt Ranostay <mranostay@ti.com>
->> Signed-off-by: Ravi Gunasekaran <r-gunasekaran@ti.com>
->> ---
->> Changes from v11:
->> * Cleaned up comments
->>
->> Changes from v10:
->> * Documented the reason for disabling the nodes by default.
->> * Removed Link tag from commmit message
->>
->> Changes from v9:
->> * Disabled fss, ospi nodes by default in common DT file
->>
->> Changes from v8:
->> * Updated "ranges" property to fix dtbs warnings
->>
->> Changes from v7:
->> * Removed "reg" property from syscon node
->> * Renamed the "syscon" node to "bus" to after change in
->>    compatible property
->>
->> Changes from v6:
->> * Fixed the syscon node's compatible property
->>
->> Changes from v5:
->> * Updated the syscon node's compatible property
->> * Removed Cc tags from commit message
->>
->> Changes from v4:
->> * No change
->>
->> Changes from v3:
->> * No change
->>
->> Changes from v2:
->> * No change
->>
->> Changes from v1:
->> * No change
->>
->>   .../boot/dts/ti/k3-j721s2-mcu-wakeup.dtsi     | 46 +++++++++++++++++++
->>   1 file changed, 46 insertions(+)
->>
->> diff --git a/arch/arm64/boot/dts/ti/k3-j721s2-mcu-wakeup.dtsi b/arch/arm64/boot/dts/ti/k3-j721s2-mcu-wakeup.dtsi
->> index 0af242aa9816..ab3ce8be7216 100644
->> --- a/arch/arm64/boot/dts/ti/k3-j721s2-mcu-wakeup.dtsi
->> +++ b/arch/arm64/boot/dts/ti/k3-j721s2-mcu-wakeup.dtsi
->> @@ -306,4 +306,50 @@
->>               ti,cpts-periodic-outputs = <2>;
->>           };
->>       };
->> +
->> +    fss: bus@47000000 {
->> +        compatible = "simple-bus";
->> +        #address-cells = <2>;
->> +        #size-cells = <2>;
->> +        ranges = <0x00 0x47000000 0x00 0x47000000 0x00 0x00068400>,
->> +             <0x05 0x00000000 0x05 0x00000000 0x01 0x00000000>,
->> +             <0x07 0x00000000 0x07 0x00000000 0x01 0x00000000>;
->> +
->> +        status = "disabled";
-> 
-> Since this node doesn't need pinmux, why is it default disabled? Same for
-> the other parent nodes in this series.
-> 
-> Andrew
+ clkin                                6        6        0    25000000
+        0     0  50000         Y
+    apll                              1        1        0   800000000
+        0     0  50000         Y
+       i3cclk                         2        2        0   100000000
+        0     0  50000         Y
+          i3c5clk-gate                0        0        0   100000000
+        0     0  50000         N
+          i3c4clk-gate                0        0        0   100000000
+        0     0  50000         N
+          i3c3clk-gate                0        0        0   100000000
+        0     0  50000         N
+          i3c2clk-gate                0        0        0   100000000
+        0     0  50000         N
+          i3c1clk-gate                1        1        0   100000000
+        0     0  50000         Y
+          i3c0clk-gate                1        1        0   100000000
+        0     0  50000         Y
 
-In this patch and others in this series, since child node is disabled,
-I thought of disabling the parent as well. And to later enable the
-parent node at the time when the child node needs to be enabled.
+Tested-by: Joel Stanley <joel@jms.id.au>
 
-> 
->> +
->> +        ospi0: spi@47040000 {
->> +            compatible = "ti,am654-ospi", "cdns,qspi-nor";
->> +            reg = <0x00 0x47040000 0x00 0x100>,
->> +                  <0x05 0x00000000 0x01 0x00000000>;
->> +            interrupts = <GIC_SPI 840 IRQ_TYPE_LEVEL_HIGH>;
->> +            cdns,fifo-depth = <256>;
->> +            cdns,fifo-width = <4>;
->> +            cdns,trigger-address = <0x0>;
->> +            clocks = <&k3_clks 109 5>;
->> +            assigned-clocks = <&k3_clks 109 5>;
->> +            assigned-clock-parents = <&k3_clks 109 7>;
->> +            assigned-clock-rates = <166666666>;
->> +            power-domains = <&k3_pds 109 TI_SCI_PD_EXCLUSIVE>;
->> +            #address-cells = <1>;
->> +            #size-cells = <0>;
->> +
->> +            status = "disabled"; /* Needs pinmux */
->> +        };
->> +
->> +        ospi1: spi@47050000 {
->> +            compatible = "ti,am654-ospi", "cdns,qspi-nor";
->> +            reg = <0x00 0x47050000 0x00 0x100>,
->> +                  <0x07 0x00000000 0x01 0x00000000>;
->> +            interrupts = <GIC_SPI 841 IRQ_TYPE_LEVEL_HIGH>;
->> +            cdns,fifo-depth = <256>;
->> +            cdns,fifo-width = <4>;
->> +            cdns,trigger-address = <0x0>;
->> +            clocks = <&k3_clks 110 5>;
->> +            power-domains = <&k3_pds 110 TI_SCI_PD_EXCLUSIVE>;
->> +            #address-cells = <1>;
->> +            #size-cells = <0>;
->> +
->> +            status = "disabled"; /* Needs pinmux */
->> +        };
->> +    };
->>   };
+Thanks for the cleanups and documentation.
 
--- 
-Regards,
-Ravi
+Cheers,
+
+Joel
+
+>
+> v5:
+>  - use regmap_update_bits rather than FIELD_PREP
+>  - drop reset defines; resets should be handled by clock control
+>  - add comments for the above
+>  - add comment for NUM_CLKS semantics
+> v4:
+>  - ensure we have enough space in ASPEED_G6_NUM_CLKS
+> v3:
+>  - split dt-bindings from clk changes
+>  - unify subject prefixes
+> v2:
+>  - based on feedback from Joel Stanley: avoid adding RESERVED clock
+>    definitions, allowing empty entries in aspeed_g6_gates instead.
+>
+> Jeremy Kerr (6):
+>   clk: ast2600: allow empty entries in aspeed_g6_gates
+>   dt-bindings: clock: ast2600: Add top-level I3C clock
+>   clk: ast2600: Add full configs for I3C clocks
+>   dt-bindings: clock: ast2600: remove IC36 & I3C7 clock definitions
+>   clk: ast2600: Add comment about combined clock + reset handling
+>   dt-bindings: clock: ast2600: Expand comment on reset definitions
+>
+>  drivers/clk/clk-ast2600.c                 | 67 ++++++++++++++++++++---
+>  include/dt-bindings/clock/ast2600-clock.h |  5 +-
+>  2 files changed, 60 insertions(+), 12 deletions(-)
+>
+> --
+> 2.39.1
+>
