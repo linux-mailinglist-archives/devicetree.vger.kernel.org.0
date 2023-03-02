@@ -2,52 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1E4EE6A81B0
-	for <lists+devicetree@lfdr.de>; Thu,  2 Mar 2023 12:58:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 390DB6A81B3
+	for <lists+devicetree@lfdr.de>; Thu,  2 Mar 2023 12:58:35 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229449AbjCBL6a (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 2 Mar 2023 06:58:30 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57578 "EHLO
+        id S229905AbjCBL6b (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 2 Mar 2023 06:58:31 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57576 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229884AbjCBL63 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Mar 2023 06:58:29 -0500
-Received: from mail-wr1-x436.google.com (mail-wr1-x436.google.com [IPv6:2a00:1450:4864:20::436])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7549A61A6
-        for <devicetree@vger.kernel.org>; Thu,  2 Mar 2023 03:57:59 -0800 (PST)
-Received: by mail-wr1-x436.google.com with SMTP id v16so13451866wrn.0
-        for <devicetree@vger.kernel.org>; Thu, 02 Mar 2023 03:57:59 -0800 (PST)
+        with ESMTP id S229851AbjCBL6a (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Mar 2023 06:58:30 -0500
+Received: from mail-wr1-x429.google.com (mail-wr1-x429.google.com [IPv6:2a00:1450:4864:20::429])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6DD7E86B8
+        for <devicetree@vger.kernel.org>; Thu,  2 Mar 2023 03:58:01 -0800 (PST)
+Received: by mail-wr1-x429.google.com with SMTP id l1so13214313wry.12
+        for <devicetree@vger.kernel.org>; Thu, 02 Mar 2023 03:58:01 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1677758269;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=4aNoaPp+XOD7YmUqmc30OX7zc1uyaAdMpxhjOnrCDxY=;
-        b=gNeZGzZD69V+FbMlZMTC3lGNvCEtuXRXYWyio+RWl2qd/mDWgwduHAzpKi8GzMBXFq
-         BX+zq++A3Uf9pFwAHETJtnYeurrmdWzSR3o9qYPrWTEF03N/Mh43VtsfqjCibKj9GMZJ
-         kLWwx3DwL1xMzqD5i+oerkaKhVcifJQgjCqMdSJc+UBACPtcSCkWRuF50eGueHit2I3Z
-         mwQ3ToNjRZj8sDnJGEhD2jPT47LeBiS2Ap+TpQW0KrOQF77rXgD3q7irwQfH/PE/n9qc
-         QmK0l9fDizEyUcyB7yfH0N7tjbv4+hJEI5pyjkZZhuasZgzQmN7cytY876uLfEKmOk6A
-         CyhA==
+        d=linaro.org; s=google; t=1677758271;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=zax1e/yJTS424/9Wee2++pptHP3LVztZwrLQH3xAsR8=;
+        b=e+wJc+dGfezyJhC9Ii7LBQqCcRLnZ0oEZ+MsSMvT7hFUWBRF9T/+rqzsw3i3w662BZ
+         HNFD297Tj04qm5RnftgJmb9Mgf4kfpHgk5C+L6eY7p7FnlwYwv5lBNQY4nvhnzaG+zst
+         QglHVOsZVGtvjz2Gi/a07gkIrdHquCzwPRARbNWwmVe2g/DrI7J+t8VzbeWCHKSmws0l
+         PLhzc58GXUvVm9bZn3hhkWcGUUA1JhwIbRjvsf695SLrJAry2+s276tb0fDCbKyIodDH
+         E5bST+4Ru+57ZANRQPFOz5yI/lQJvoHntXSkqy8CUverSoBDwjFwDE+LXhfTAvLBO3Lv
+         f2fg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1677758269;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=4aNoaPp+XOD7YmUqmc30OX7zc1uyaAdMpxhjOnrCDxY=;
-        b=7hgA16wPQg6QmM3nk3guPw8aK+YUREifee7hktQQysY2O+kyI+HjUxg7wqJR40hVuu
-         7iOP649pkY8xQVFn0SAJ1ilqPQi0g6Y+vAfpz8+pj4r6TtTUvW3wOlgzvxwOk5hHm4Bb
-         eFd9lPK9la3ZBWOS/8dwKaC+oa046zsjQWbXFn2rqagbzddiaTKJ1ZvSnlWx1de+1j5h
-         R7OjuqPx+NRmJ7csoiPqE/RrMgnQgVHb41utSGKp0Y+uGuo5TqUtHlLw1g4GYpAvb6r0
-         qfzDKuP878dORAtO2uenL4Aq5JUG9fo229/MNcaG33+RYNOVyFeqTVqNnpRD4gOW5DmL
-         S+wQ==
-X-Gm-Message-State: AO0yUKWjNIGcUtDyb7UJ1B7avzpKgj2u3+oPmTwvoRbWXvY88DTDf/+W
-        UrSnc1WXAhbcXFqpUz0EFICoslJA/aK8HNy4
-X-Google-Smtp-Source: AK7set8IS9A2vtv3Wz4VhrzKtN5+/Ry1+UxuJ6ha63DMEVjamAjvGhDs/76N15Fith5xRvjLtj24fQ==
-X-Received: by 2002:adf:cd8f:0:b0:2c5:4c7d:53ab with SMTP id q15-20020adfcd8f000000b002c54c7d53abmr6869836wrj.20.1677758269542;
-        Thu, 02 Mar 2023 03:57:49 -0800 (PST)
+        d=1e100.net; s=20210112; t=1677758271;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=zax1e/yJTS424/9Wee2++pptHP3LVztZwrLQH3xAsR8=;
+        b=4Ja47mWMnmH+pfm/3w7Nabut49kuAFc3yoIhHValcnS2sbffuHvxsjOYPOvpkOSMH8
+         WaoCtG74AllqgNM2EIKETESwedN/dSYAAa38dp7dQU/HSDpQu4IcGLEQrO6z854AO/Fo
+         4A6VZlgGHPKI9Ju6Ah31A0ROuPVWGFVQbnEScv4RVOIbGFDyPSnGQBlaUf9aSiM1O3Yv
+         qRKyZZBsLhUk7ZcpYJLTWlcWZDcaThtVfrtY9dHnlQVjn2Gd4QjkPfultnoKj7cHGiGI
+         yT4k3h9hCy4Jpe+f6wLiWQNW0Y9v2TxQhjkLyTnlWppAEMI5dWY6gKs866l7JLnFZ6Db
+         ZUZw==
+X-Gm-Message-State: AO0yUKUMBKNJyX9xGTka1n01ZroTYtPFK+d7YpEtAcLat1MNHNr+EUo8
+        IwdQGQFraYeFr+dpTRX+07/FJg==
+X-Google-Smtp-Source: AK7set/W170Hj8fyDnDvQU9/NhwnU506gB/47nYOKGAQ4izd7jcOeyNSUg4Ush6gjK5oD8pHTfjd+A==
+X-Received: by 2002:a5d:4e44:0:b0:2c7:f84:3c41 with SMTP id r4-20020a5d4e44000000b002c70f843c41mr6971403wrt.55.1677758270699;
+        Thu, 02 Mar 2023 03:57:50 -0800 (PST)
 Received: from localhost.localdomain ([5.133.47.210])
-        by smtp.gmail.com with ESMTPSA id v16-20020a5d4a50000000b002c5526234d2sm15298209wrs.8.2023.03.02.03.57.48
+        by smtp.gmail.com with ESMTPSA id v16-20020a5d4a50000000b002c5526234d2sm15298209wrs.8.2023.03.02.03.57.49
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 02 Mar 2023 03:57:48 -0800 (PST)
+        Thu, 02 Mar 2023 03:57:49 -0800 (PST)
 From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
 To:     agross@kernel.org, andersson@kernel.org
 Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
@@ -55,10 +56,12 @@ Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
         linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org,
         Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Subject: [PATCH 0/4] arm64: dts: qcom: sc8280xp: fix audio dts
-Date:   Thu,  2 Mar 2023 11:57:37 +0000
-Message-Id: <20230302115741.7726-1-srinivas.kandagatla@linaro.org>
+Subject: [PATCH 1/4] arm64: dts: qcom: sc8280xp: fix rx frame shapping info
+Date:   Thu,  2 Mar 2023 11:57:38 +0000
+Message-Id: <20230302115741.7726-2-srinivas.kandagatla@linaro.org>
 X-Mailer: git-send-email 2.21.0
+In-Reply-To: <20230302115741.7726-1-srinivas.kandagatla@linaro.org>
+References: <20230302115741.7726-1-srinivas.kandagatla@linaro.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -71,26 +74,55 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-While testing DMIC on the panel, its noticed that some of the settings in
-dts seems to very incorrect. Mostly around clocks and frameshapping data.
-An another patch fixes dai link for dmic which is incorrectly pointing to tx macro.
+Some of the SoundWire frameshapping data seems incorrect, fix these values.
 
-Along with these patches, with a pending csr patch device switch and dmic seems to work
-recent changes in x13s ucm.
+Fixes: 1749a8ae49a3 ("arm64: dts: qcom: sc8280xp: add SoundWire and LPASS")
+Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+---
+ arch/arm64/boot/dts/qcom/sc8280xp.dtsi | 16 ++++++++--------
+ 1 file changed, 8 insertions(+), 8 deletions(-)
 
-Thanks,
-Srini
-
-Srinivas Kandagatla (4):
-  arm64: dts: qcom: sc8280xp: fix rx frame shapping info
-  arm64: dts: qcom: sc8280xp: fix lpass tx macro clocks
-  arm64: dts: qcom: sc8280xp-x13s: fix dmic sample rate
-  arm64: dts: qcom: sc8280xp-x13s: fix va dmic dai links and routing
-
- .../dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts | 10 +++++-----
- arch/arm64/boot/dts/qcom/sc8280xp.dtsi         | 18 +++++++++---------
- 2 files changed, 14 insertions(+), 14 deletions(-)
-
+diff --git a/arch/arm64/boot/dts/qcom/sc8280xp.dtsi b/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
+index f9aadf8209d5..022b0c041341 100644
+--- a/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
++++ b/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
+@@ -1924,12 +1924,12 @@
+ 			qcom,ports-sinterval-low =	/bits/ 8 <0x03 0x1f 0x1f 0x07 0x00>;
+ 			qcom,ports-offset1 =		/bits/ 8 <0x00 0x00 0x0B 0x01 0x00>;
+ 			qcom,ports-offset2 =		/bits/ 8 <0x00 0x00 0x0B 0x00 0x00>;
+-			qcom,ports-hstart =		/bits/ 8 <0xff 0x03 0xff 0xff 0xff>;
+-			qcom,ports-hstop =		/bits/ 8 <0xff 0x06 0xff 0xff 0xff>;
++			qcom,ports-hstart =		/bits/ 8 <0xff 0x03 0x00 0xff 0xff>;
++			qcom,ports-hstop =		/bits/ 8 <0xff 0x06 0x0f 0xff 0xff>;
+ 			qcom,ports-word-length =	/bits/ 8 <0x01 0x07 0x04 0xff 0xff>;
+-			qcom,ports-block-pack-mode =	/bits/ 8 <0xff 0x00 0x01 0xff 0xff>;
++			qcom,ports-block-pack-mode =	/bits/ 8 <0xff 0xff 0x01 0xff 0xff>;
+ 			qcom,ports-lane-control =	/bits/ 8 <0x01 0x00 0x00 0x00 0x00>;
+-			qcom,ports-block-group-count =	/bits/ 8 <0xff 0xff 0xff 0xff 0x00>;
++			qcom,ports-block-group-count =	/bits/ 8 <0xff 0xff 0xff 0xff 0xff>;
+ 
+ 			#sound-dai-cells = <1>;
+ 			#address-cells = <2>;
+@@ -2029,15 +2029,15 @@
+ 
+ 			qcom,din-ports = <4>;
+ 			qcom,dout-ports = <0>;
+-			qcom,ports-sinterval-low =	/bits/ 8 <0x01 0x03 0x03 0x03>;
+-			qcom,ports-offset1 =		/bits/ 8 <0x01 0x00 0x02 0x01>;
++			qcom,ports-sinterval-low =	/bits/ 8 <0x01 0x01 0x03 0x03>;
++			qcom,ports-offset1 =		/bits/ 8 <0x01 0x00 0x02 0x00>;
+ 			qcom,ports-offset2 =		/bits/ 8 <0x00 0x00 0x00 0x00>;
+ 			qcom,ports-block-pack-mode =	/bits/ 8 <0xff 0xff 0xff 0xff>;
+ 			qcom,ports-hstart =		/bits/ 8 <0xff 0xff 0xff 0xff>;
+ 			qcom,ports-hstop =		/bits/ 8 <0xff 0xff 0xff 0xff>;
+-			qcom,ports-word-length =	/bits/ 8 <0xff 0x00 0xff 0xff>;
++			qcom,ports-word-length =	/bits/ 8 <0xff 0xff 0xff 0xff>;
+ 			qcom,ports-block-group-count =	/bits/ 8 <0xff 0xff 0xff 0xff>;
+-			qcom,ports-lane-control =	/bits/ 8 <0x00 0x01 0x00 0x00>;
++			qcom,ports-lane-control =	/bits/ 8 <0x00 0x01 0x00 0x01>;
+ 
+ 			status = "disabled";
+ 		};
 -- 
 2.21.0
 
