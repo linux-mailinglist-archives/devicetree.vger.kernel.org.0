@@ -2,116 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6FF166A830D
-	for <lists+devicetree@lfdr.de>; Thu,  2 Mar 2023 14:01:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 13B756A832F
+	for <lists+devicetree@lfdr.de>; Thu,  2 Mar 2023 14:05:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229642AbjCBNBI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 2 Mar 2023 08:01:08 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60290 "EHLO
+        id S229990AbjCBNFI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 2 Mar 2023 08:05:08 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36480 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229553AbjCBNBI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Mar 2023 08:01:08 -0500
-Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com [IPv6:2a00:1450:4864:20::532])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8C72030E98
-        for <devicetree@vger.kernel.org>; Thu,  2 Mar 2023 05:01:06 -0800 (PST)
-Received: by mail-ed1-x532.google.com with SMTP id a25so4746269edb.0
-        for <devicetree@vger.kernel.org>; Thu, 02 Mar 2023 05:01:06 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1677762065;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=K4QoTz9DpqbVp4zpknnogFeZwdcBodoo4uaWIYStOvU=;
-        b=zRVfWRkaE2ak9ymlzElvkLVV6qmTXCu2Tz0DHQ4hGQR4a9a7ZhTADSiPEbGnKUC+Jg
-         3vxuF3ANtg1pFVdEnFQMKlhCYoUqa2c8//qbdWPFiIVZvvcIuUJGHUHUt0IB5HDxxOWj
-         SrKseRHxbqjAcwa/L6WHM1Q4AUD3TjFvEb49VAfuOQRl6S5pGiXHZ78bSigMUaVJdzHP
-         Fuyao9LUx5iR7QynBrETRpFCZShSSA/ZerFiBz7WK3UpYB+QAsa9f7zXQZE16OA4QjWM
-         dE+dEsGaeDIJsK0nusJu75VuGD6uUHWcTKaPXirEylT+bNWlk71xjm9ECNamS4qfKfo2
-         LHbg==
+        with ESMTP id S229793AbjCBNFH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Mar 2023 08:05:07 -0500
+Received: from mail-yw1-f181.google.com (mail-yw1-f181.google.com [209.85.128.181])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CD7051ABD1;
+        Thu,  2 Mar 2023 05:05:05 -0800 (PST)
+Received: by mail-yw1-f181.google.com with SMTP id 00721157ae682-536bbef1c5eso425580197b3.9;
+        Thu, 02 Mar 2023 05:05:05 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1677762065;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=K4QoTz9DpqbVp4zpknnogFeZwdcBodoo4uaWIYStOvU=;
-        b=HI/CuGYQuvzGAzF/AoUp2D10hy+QvMrsthWwBzvEa3nGk9AqaN6oFhDmFbqkRVP4Be
-         opuNLVLK+Af7bakJqDho6MD/mHuMzy02E7O9D2kv7AJ1LOZhLxaTF3GzqZnnQd1rmugt
-         39DD6bVcZgJVdOnqXkzzfKmo3YzSZafDXLaIf9p9OwXAVbePwvp83eH+p8BYFV7EB+rn
-         fVV/4kYBR3SOFtFYPT1iAJHdjdckBQS4tq8d4dpx3cq2wN3fweFCzPT18x3TexEiY5gk
-         roYKFdcdNl4YgF2O0mLwsQ3JpL/b6yU4DjUPsH2BcfL3sf0tiWgJCRBAEaVkMZmNEUJQ
-         5Q0A==
-X-Gm-Message-State: AO0yUKWZ5DJ3b/NG/Lyb7vL8tbVluMGtctu4hjuEvENqQHaNEz3X5a5L
-        Drd4CI1h4xTow4tXjLEiXGVPiA==
-X-Google-Smtp-Source: AK7set+bBsxxlAKccFXuciR/5NfM47WWOIGPgy35GwJikRDbmNJG1mM0VdoLoyCGIe79fOy/SKWuVw==
-X-Received: by 2002:a50:ee18:0:b0:4c3:6d95:7337 with SMTP id g24-20020a50ee18000000b004c36d957337mr190782eds.25.1677762065002;
-        Thu, 02 Mar 2023 05:01:05 -0800 (PST)
-Received: from [192.168.1.20] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id u27-20020a50d51b000000b004af5001c7ecsm6800116edi.12.2023.03.02.05.01.02
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 02 Mar 2023 05:01:04 -0800 (PST)
-Message-ID: <3bc36b09-d23a-2fd8-0ca7-5ebb9267a414@linaro.org>
-Date:   Thu, 2 Mar 2023 14:01:02 +0100
+        d=1e100.net; s=20210112;
+        h=date:subject:message-id:references:in-reply-to:cc:to:from
+         :mime-version:content-transfer-encoding:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=X18LEh0g5lt3E5bs+v6xlkNcEAN9JmhuluP548V82lk=;
+        b=7DO5xhlSe6ZWNzdsjYgF7xG5ewOv4U798/W53gc8Pf3U5LbJfi4ySwUGSBjlSojJc3
+         XfCmsV/Y4kHe14xFsu99Pw7Ms1dl4WZ4+FF9Ixurg0VaMtxrA9/cUrb6G3fDpkcjhiBr
+         KzXcSn5sX+f4n+yMi/Snv/YJ/qU1fFOZfvrAcST3Eos017slOJQ4iPh8ZeiTHwD03rFZ
+         81+dZhKf0MYdsmFhwJCkRIFsBvR9J0plIj3atuYomsQ6Q6DHrbMDRJDFki/C5NTM4evc
+         /12YiK9SV8sekxvBAKwAz1wzTVjhpmdpdshryt5yqAi6fM8pSdBNk8mQIePDdyaCS7Ae
+         gaAg==
+X-Gm-Message-State: AO0yUKWRqNRbEJ2u9S+3TVXCARMYWXam/0gF1gvVImVrXkHKhl3LT3lL
+        FSruPenDo8YFngyDPc33Tg==
+X-Google-Smtp-Source: AK7set99Kml+ZlGBFLIQciIuYyUn/ayyZxT/PJoaMEmLBbf6uluXXipONSdP2IEsSPutmUjyQ1oISw==
+X-Received: by 2002:a05:7500:4395:b0:f8:882c:4e5e with SMTP id fn21-20020a057500439500b000f8882c4e5emr246636gab.77.1677762304745;
+        Thu, 02 Mar 2023 05:05:04 -0800 (PST)
+Received: from robh_at_kernel.org ([209.91.220.210])
+        by smtp.gmail.com with ESMTPSA id l4-20020ab053c4000000b0068b8c1fa859sm1977991uaa.26.2023.03.02.05.05.03
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 02 Mar 2023 05:05:04 -0800 (PST)
+Received: (nullmailer pid 284033 invoked by uid 1000);
+        Thu, 02 Mar 2023 13:05:02 -0000
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-Subject: Re: [PATCH v7 3/5] dt-bindings: clock: imx8mp: Add audiomix block
- control
-Content-Language: en-US
-To:     Richard Leitner <richard.leitner@linux.dev>,
-        Marek Vasut <marex@denx.de>
-Cc:     linux-clk@vger.kernel.org, Fabio Estevam <festevam@gmail.com>,
-        Marco Felsch <m.felsch@pengutronix.de>,
-        Peng Fan <peng.fan@nxp.com>, Rob Herring <robh@kernel.org>,
-        Adam Ford <aford173@gmail.com>,
-        Alexander Stein <alexander.stein@ew.tq-group.com>,
-        Abel Vesa <abelvesa@kernel.org>, Jacky Bai <ping.bai@nxp.com>,
+From:   Rob Herring <robh@kernel.org>
+To:     richard.leitner@linux.dev
+Cc:     Richard Leitner <richard.leitner@skidata.com>,
+        Mark Brown <broonie@kernel.org>, Takashi Iwai <tiwai@suse.com>,
+        alsa-devel@alsa-project.org, Rob Herring <robh+dt@kernel.org>,
+        linux-kernel@vger.kernel.org,
+        Ladislav Michl <ladis@linux-mips.org>,
+        Benjamin Bara <benjamin.bara@skidata.com>,
+        devicetree@vger.kernel.org, Jaroslav Kysela <perex@perex.cz>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Luca Ceresoli <luca.ceresoli@bootlin.com>,
-        Lucas Stach <l.stach@pengutronix.de>,
-        Michael Turquette <mturquette@baylibre.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Richard Cochran <richardcochran@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Stephen Boyd <sboyd@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-References: <20230301163257.49005-1-marex@denx.de>
- <20230301163257.49005-3-marex@denx.de> <ZACNrbVDU/4ucU51@g0hl1n.net>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <ZACNrbVDU/4ucU51@g0hl1n.net>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        Liam Girdwood <lgirdwood@gmail.com>
+In-Reply-To: <20230302-max9867-v1-1-aa9f7f25db5e@skidata.com>
+References: <20230302-max9867-v1-0-aa9f7f25db5e@skidata.com>
+ <20230302-max9867-v1-1-aa9f7f25db5e@skidata.com>
+Message-Id: <167775917220.270950.1253335215666674705.robh@kernel.org>
+Subject: Re: [PATCH 1/3] ASoC: dt-bindings: maxim,max9867: convert txt
+ bindings to yaml
+Date:   Thu, 02 Mar 2023 07:05:02 -0600
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 02/03/2023 12:51, Richard Leitner wrote:
-> On Wed, Mar 01, 2023 at 05:32:55PM +0100, Marek Vasut wrote:
->> Unlike the other block control IPs in i.MX8M, the audiomix is mostly a
->> series of clock gates and muxes. Add DT bindings for this IP.
->>
->> Reviewed-by: Fabio Estevam <festevam@gmail.com>
->> Reviewed-by: Marco Felsch <m.felsch@pengutronix.de>
->> Reviewed-by: Peng Fan <peng.fan@nxp.com>
->> Reviewed-by: Rob Herring <robh@kernel.org>
->> Tested-by: Adam Ford <aford173@gmail.com> #imx8mp-beacon-kit
->> Tested-by: Alexander Stein <alexander.stein@ew.tq-group.com>
->> Signed-off-by: Marek Vasut <marex@denx.de>
+
+On Thu, 02 Mar 2023 12:55:01 +0100, richard.leitner@linux.dev wrote:
+> From: Richard Leitner <richard.leitner@skidata.com>
 > 
-> Hi Marek,
-> I've successfully tested this patch on a custom i.MX8MP board. Therefore
-> please feel free to add:
+> Convert from max9867.txt to maxim,max9867.yaml and add missing
+> '#sound-dai-cells' property.
+> 
+> Signed-off-by: Richard Leitner <richard.leitner@skidata.com>
+> ---
+>  .../devicetree/bindings/sound/max9867.txt          | 17 --------
+>  .../devicetree/bindings/sound/maxim,max9867.yaml   | 51 ++++++++++++++++++++++
+>  2 files changed, 51 insertions(+), 17 deletions(-)
+> 
 
-How can you test a binding patch on a board?
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-Best regards,
-Krzysztof
+yamllint warnings/errors:
+
+dtschema/dtc warnings/errors:
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/sound/maxim,max9867.yaml: 'oneOf' conditional failed, one must be fixed:
+	'unevaluatedProperties' is a required property
+	'additionalProperties' is a required property
+	hint: Either unevaluatedProperties or additionalProperties must be present
+	from schema $id: http://devicetree.org/meta-schemas/core.yaml#
+./Documentation/devicetree/bindings/sound/maxim,max9867.yaml: $id: relative path/filename doesn't match actual path or filename
+	expected: http://devicetree.org/schemas/sound/maxim,max9867.yaml#
+Error: Documentation/devicetree/bindings/sound/maxim,max9867.example.dts:18.9-13 syntax error
+FATAL ERROR: Unable to parse input tree
+make[1]: *** [scripts/Makefile.lib:434: Documentation/devicetree/bindings/sound/maxim,max9867.example.dtb] Error 1
+make[1]: *** Waiting for unfinished jobs....
+make: *** [Makefile:1508: dt_binding_check] Error 2
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20230302-max9867-v1-1-aa9f7f25db5e@skidata.com
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
 
