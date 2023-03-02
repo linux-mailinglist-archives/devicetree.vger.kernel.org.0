@@ -2,72 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9B1CD6A80A8
-	for <lists+devicetree@lfdr.de>; Thu,  2 Mar 2023 12:03:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 69B596A80AF
+	for <lists+devicetree@lfdr.de>; Thu,  2 Mar 2023 12:07:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229667AbjCBLD4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 2 Mar 2023 06:03:56 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53658 "EHLO
+        id S229619AbjCBLHI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 2 Mar 2023 06:07:08 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56004 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229567AbjCBLDz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Mar 2023 06:03:55 -0500
-Received: from mail-wm1-x335.google.com (mail-wm1-x335.google.com [IPv6:2a00:1450:4864:20::335])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0642E9773;
-        Thu,  2 Mar 2023 03:03:21 -0800 (PST)
-Received: by mail-wm1-x335.google.com with SMTP id fm20-20020a05600c0c1400b003ead37e6588so1408611wmb.5;
-        Thu, 02 Mar 2023 03:03:20 -0800 (PST)
+        with ESMTP id S229498AbjCBLHI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Mar 2023 06:07:08 -0500
+Received: from mail-wm1-x336.google.com (mail-wm1-x336.google.com [IPv6:2a00:1450:4864:20::336])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 75FD918D;
+        Thu,  2 Mar 2023 03:07:03 -0800 (PST)
+Received: by mail-wm1-x336.google.com with SMTP id az36so10435999wmb.1;
+        Thu, 02 Mar 2023 03:07:03 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112; t=1677754998;
+        d=gmail.com; s=20210112; t=1677755222;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=LkHuEvWnBbmn6J9IHM/XCzxQvuZdAVkzVZy6DwR1zSo=;
-        b=BDwGZkebAseiLNLVCP3fUulwLJK3BAX6aOcYlZdJ+9o6XbspZwfiY6Nq+XWUlz6nDj
-         wvkfkvOMwBz+Y3CSBSqSj/Mr/0HLiTSpB60Refn0RsFsoUYV9EQKiEUyXDO2C2j3vsXn
-         3wPXBf36Se2Y/sJRwqyv4Cc4TAoxUMqulXfIaPl9A+jxUUK98tgYRx0MDJ/fCDyptD9k
-         3c3hnIyvs7sHYFIMFJqW7cnHazcSl3v8w2HjnJ68GuCKLiPLFXRnQynkxeVUch90WOhG
-         Z9BGa+3XNat+LQZFAB0HGYdd7kdeoTzQaOqrczqzPqeQDKdYfnkr6TLlHpJ0Pclfalt+
-         Inpg==
+        bh=ti6yggdPsNOIPGXfO2UGItrftMezYx+P9sftKU+qmUA=;
+        b=ogeMmyPlp+ux1bh8ePIj9tjnZ9OyV99vPTnFYiv+uMZwKp5HtnUJJD7gO/h+KuGXgQ
+         2qmTHQ2hh+O+VSWueO+T7XjElqQ8akIKpBV56Veov8Wd71Z+16tONPex+tKsIPJcrBG5
+         MP0kiNPjjBde5dP0I42a4o7ExYcnChE8yymqJXpmfPOkM/HKZAnIFlYFW5ln7OvFZ14g
+         cHErnwIj2YCLCdzOrX9AO8QGYgKR0qY87WOU2XrWw9NRDBygTv2g2xdGY4cQwSKYMZTs
+         LEr8W1eVVoxkXNeMZFPN44AiE35J8kNMVduu90IP38nc0tJ9Vy/FVZtMpQhJasOf517d
+         yoOw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1677754998;
+        d=1e100.net; s=20210112; t=1677755222;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=LkHuEvWnBbmn6J9IHM/XCzxQvuZdAVkzVZy6DwR1zSo=;
-        b=0m265S3/NbzNAAGnFt0l261EDZ0PRFrJBFE7NJp1CReZ0ZDnBMbmPYGhVidzcC4dRx
-         X28ONaZtuH3dAkeTeO0SkMczTvu91dYO7v0GTn0BCLuMglY+94J51gHju7EHncmyysRc
-         mVZL/0M4em7aLEM8ivOsZ63WQWpsInYmVE074wUSHtmum4l69++8g6M21at3rHEdUEKS
-         5JPhfAwgdYOYB+3u3vH8oQ7fOEcTa2pJc7PgvwK2ppGTvpLuE7NASwqgbck0NhiJB29S
-         +qzy44J2xv4gAnIpxxz6xuBR/FyWmJsgECTfUERHRuPY/+fPBvrhm4vkuo+QYUBzPvck
-         WJbg==
-X-Gm-Message-State: AO0yUKWlDoMgdXO2t0PofjgpUS8R2EGF659IB+KfvE9Xj8rRC1fyiTn2
-        Pk0aVJYFpfAYXHuX3WwNOU4=
-X-Google-Smtp-Source: AK7set/JlzFceze8hhK3/4uajo1mpfVadvTq9TwAVwpchmL5fNm1Ggc9LQk17dnZcbn2PRNdl/6H1A==
-X-Received: by 2002:a05:600c:458b:b0:3e9:f4c2:b604 with SMTP id r11-20020a05600c458b00b003e9f4c2b604mr8193890wmo.24.1677754998008;
-        Thu, 02 Mar 2023 03:03:18 -0800 (PST)
+        bh=ti6yggdPsNOIPGXfO2UGItrftMezYx+P9sftKU+qmUA=;
+        b=Ix7P78jsKTRgkzlRU+xqjrVyBNySxxLOlin4zEnmG3PeL3/099X1rU4yoSDjInU3ZM
+         eGu5hlAQwSSGcT6BlE6+4gIe5AoglJ0/MSqem5op68V6g0uZrMMh3g8zT2lAEVet91g+
+         aXeO8M7AsOIhQR6ZwMXZR2IL0ewhFLwbjyposgS5+n5R1v9E60hZjnyjVArdiqt5anLM
+         M73PdV58Xcjd/JCINGU/WN22jE8u/Q0L18yDynYvjDyB5xXG1wEdBAR0Zu2TPeffJ4Lc
+         O5BEjJW4QgMXnnrgl8eYy310ndxxsZ788DgTHTL+oTt3DiWiiOr6UrU7OBac60NhfBn0
+         iUwg==
+X-Gm-Message-State: AO0yUKUeop032HcK68MdVIhQQfNB42502d+4jr1W0rFjEiIkFeXsInIq
+        zWfDO9dTocAQeQDQGpJDVTY=
+X-Google-Smtp-Source: AK7set+yVpXtDFapduhsB0nccsgHCdavaSYmvTKCXeQKdTLPsNpVFb/bbrhQF8nu1ZSwpum2tkVRQw==
+X-Received: by 2002:a05:600c:1894:b0:3e1:fc61:e0e5 with SMTP id x20-20020a05600c189400b003e1fc61e0e5mr7220130wmp.33.1677755221954;
+        Thu, 02 Mar 2023 03:07:01 -0800 (PST)
 Received: from [192.168.2.177] ([207.188.167.132])
-        by smtp.gmail.com with ESMTPSA id j40-20020a05600c1c2800b003dd1bd0b915sm2893847wms.22.2023.03.02.03.03.16
+        by smtp.gmail.com with ESMTPSA id u9-20020a5d5149000000b002c54c92e125sm15122249wrt.46.2023.03.02.03.07.01
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 02 Mar 2023 03:03:17 -0800 (PST)
-Message-ID: <dcd653a3-3f7c-7bfb-f096-033f62cb9074@gmail.com>
-Date:   Thu, 2 Mar 2023 12:03:16 +0100
+        Thu, 02 Mar 2023 03:07:01 -0800 (PST)
+Message-ID: <380b32fc-6e9b-6f7d-e8ff-063346ee1d27@gmail.com>
+Date:   Thu, 2 Mar 2023 12:07:00 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.6.1
-Subject: Re: [PATCH v1 4/4] Revert "arm64: dts: mt8173: add mmsel clocks for
- 4K support"
+Subject: Re: [PATCH v1 3/4] arm64: dts: mt8195: Align vppsys node to dtschema
 Content-Language: en-US
-To:     AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>, matthias.bgg@kernel.org,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        Chen-Yu Tsai <wenst@chromium.org>
+To:     matthias.bgg@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org
 Cc:     devicetree@vger.kernel.org, linux-mediatek@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        angelogioacchino.delregno@collabora.com
 References: <20230209160357.19307-1-matthias.bgg@kernel.org>
- <20230209160357.19307-4-matthias.bgg@kernel.org>
- <3db45ca3-9104-826c-9f92-549e07471296@collabora.com>
+ <20230209160357.19307-3-matthias.bgg@kernel.org>
 From:   Matthias Brugger <matthias.bgg@gmail.com>
-In-Reply-To: <3db45ca3-9104-826c-9f92-549e07471296@collabora.com>
+In-Reply-To: <20230209160357.19307-3-matthias.bgg@kernel.org>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -82,34 +79,51 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 
 
-On 10/02/2023 12:59, AngeloGioacchino Del Regno wrote:
-> Il 09/02/23 17:03, matthias.bgg@kernel.org ha scritto:
->> From: Matthias Brugger <matthias.bgg@gmail.com>
->>
->> This reverts commit fc6634ac0e5380aeb1063275a2e9a583d41b2306.
->>
->> The mmsys is a clock provider but does not have any clocks connected to
->> it. Therefore assigned-clock properties should be applied to the users of mmsys.
->>
->> This fixes the DT schema check:
->> mediatek/mt8173-elm.dtb: syscon@14000000: 'assigned-clock-rates', 
->> 'assigned-clocks' do not match any of the regexes: 'pinctrl-[0-9]+'
->>
->> Signed-off-by: Matthias Brugger <matthias.bgg@gmail.com>
+On 09/02/2023 17:03, matthias.bgg@kernel.org wrote:
+> From: Matthias Brugger <matthias.bgg@gmail.com>
 > 
-> About solving schema checks: agreed.
+> As the node is a syscon, this has to be reflected in the compatible and
+> the node name.
 > 
-> Since this is impacting on multiple subsystems (display, vdec, venc), can we
-> instead move this to the topckgen node?
-> I didn't check if that would trigger another schema check, but I remember
-> doing that on Qualcomm DTs a bit of time ago.
-> 
-> The alternative would be to copy that over more than 10 nodes, which would
-> be a bit ... ugly.
-> 
+> Signed-off-by: Matthias Brugger <matthias.bgg@gmail.com>
 
-Thanks Angelo and Chen-Yu for your feedback. I'm not able to reproduce that 
-problem right now, so I'll drop this patch from the series.
+A similar patch is already in v6.3-tmp/dts64:
+168136cbef9c ("arm64: dts: mediatek: mt8195: add MMSYS configuration for VPPSYS")
+
+I'll drop this one as well.
+My bad, I should have noticed that earlier.
 
 Regards,
 Matthias
+
+> ---
+> 
+>   arch/arm64/boot/dts/mediatek/mt8195.dtsi | 8 ++++----
+>   1 file changed, 4 insertions(+), 4 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/mediatek/mt8195.dtsi b/arch/arm64/boot/dts/mediatek/mt8195.dtsi
+> index 8f1264d5290bf..5261367031426 100644
+> --- a/arch/arm64/boot/dts/mediatek/mt8195.dtsi
+> +++ b/arch/arm64/boot/dts/mediatek/mt8195.dtsi
+> @@ -1795,8 +1795,8 @@ mfgcfg: clock-controller@13fbf000 {
+>   			#clock-cells = <1>;
+>   		};
+>   
+> -		vppsys0: clock-controller@14000000 {
+> -			compatible = "mediatek,mt8195-vppsys0";
+> +		vppsys0: syscon@14000000 {
+> +			compatible = "mediatek,mt8195-vppsys0", "syscon";
+>   			reg = <0 0x14000000 0 0x1000>;
+>   			#clock-cells = <1>;
+>   		};
+> @@ -1900,8 +1900,8 @@ larb8: larb@14e05000 {
+>   			power-domains = <&spm MT8195_POWER_DOMAIN_WPESYS>;
+>   		};
+>   
+> -		vppsys1: clock-controller@14f00000 {
+> -			compatible = "mediatek,mt8195-vppsys1";
+> +		vppsys1: syscon@14f00000 {
+> +			compatible = "mediatek,mt8195-vppsys1", "syscon";
+>   			reg = <0 0x14f00000 0 0x1000>;
+>   			#clock-cells = <1>;
+>   		};
