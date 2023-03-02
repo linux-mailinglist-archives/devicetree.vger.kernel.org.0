@@ -2,110 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5F1416A821A
-	for <lists+devicetree@lfdr.de>; Thu,  2 Mar 2023 13:25:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 845316A8220
+	for <lists+devicetree@lfdr.de>; Thu,  2 Mar 2023 13:27:30 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229619AbjCBMZP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 2 Mar 2023 07:25:15 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50712 "EHLO
+        id S229445AbjCBM13 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 2 Mar 2023 07:27:29 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52352 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229523AbjCBMZO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Mar 2023 07:25:14 -0500
-Received: from mail-lj1-x236.google.com (mail-lj1-x236.google.com [IPv6:2a00:1450:4864:20::236])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 055DA460AC
-        for <devicetree@vger.kernel.org>; Thu,  2 Mar 2023 04:25:12 -0800 (PST)
-Received: by mail-lj1-x236.google.com with SMTP id x6so11785323ljq.1
-        for <devicetree@vger.kernel.org>; Thu, 02 Mar 2023 04:25:11 -0800 (PST)
+        with ESMTP id S229639AbjCBM12 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Mar 2023 07:27:28 -0500
+Received: from mail-ed1-x529.google.com (mail-ed1-x529.google.com [IPv6:2a00:1450:4864:20::529])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5C83E4615E;
+        Thu,  2 Mar 2023 04:27:27 -0800 (PST)
+Received: by mail-ed1-x529.google.com with SMTP id f13so66879058edz.6;
+        Thu, 02 Mar 2023 04:27:27 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1677759910;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=GbPPdvgbl81ys3ap8uEX2qMCY1kP8nRpGJ6GXrKzFoI=;
-        b=z2WVkYAv807rzFITlNl3tsDFzQyC6bAjAoyy6ob8+0HerfH5GTit8rL21fQZzTlMnc
-         sxwyW0GwwAFbRjH7nmrEEvIikQw0P4EcUtm5uVOuGE3vOfTtENFLQXZ9yeh/ef4hxj/R
-         ejEdqgNine+26qMmci/EK2BBNl0qn/MnRYibUZxucZGaSHMDIn7tNh/ooG2HCSpFjt2B
-         EJrWXC7b0xdOJrOnmk9MoVSz3TrOLCGfbn8dpgqCPwYbSBxeclLi3HjVcn9d5OHzEJz0
-         UHBuSZP+T/Be9QtFEi0kglXLmDbWv8M0a9yskuC0hKDkni85Dp7k4UkasbMeT+k5S+ZZ
-         Qazw==
+        d=gmail.com; s=20210112; t=1677760046;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=UCzu+CfYoO6L/88b2EATsbmRsnxpl5XJojzf9dpIYbM=;
+        b=nMWeYaQK6N2n+tcRBZmsETp9VrbSsWitZpxfoLVg9dzNOrnd/hoxPvxWQvmPhV/Lcz
+         FiF0pr0nw8IU4Dbscq9aSQVa5jbCFXsGAZrerRZM+L3OtZCBV/hMjW4QzN2csYOfCqhF
+         NY9UN9AvbZWXbCBBcZypwKWVjV0pFBhqdL1tIkz7ntdJvqxtsz1kHCXjLltF7i5QRxMc
+         ojfNwCdwyyqaH1kRZX/hVTUmdYTmbTEONcJDBtcjUX5l9BYhRbpztFvkv0N3ZSmlRWPv
+         sZ0ugavlEGWk7oC7qqgydCV/UJ41I7q6DzTZCgbZ/5e5QwBnV5KIK2C9JWgSq1oQh4lL
+         9mfA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1677759910;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=GbPPdvgbl81ys3ap8uEX2qMCY1kP8nRpGJ6GXrKzFoI=;
-        b=6ziJtUDI3V5uJI5KtFuhmFKM8lCH/puhaxrURG7HEbbMBlQO2FFfupInhQLi96WMOz
-         DNb4+s3tiIjfSRdUZmE+HHVe/zMemjU82yWV0CfD0+v1YwrxQ3JciqMaSXeoj1UCzwnX
-         yu2DAtqqaaCBegFXgufb4vKYXOiNZ1d4GxGwo8Q/aivcv4FUI2FdTAdB3hzPo6i5PpDv
-         GpY+SQfWaXzm6/i7V+hNttDDdmR8PObYsJYFlyjiXkPQPlIddpuZiFmGdsS984AyoUoO
-         9JhXjsG2qgjkhSTLP2Aqe0+yaybH+foW3qlkA6bMCVzOFC3pI4A9PpyAtOQNgFE8EAvX
-         XTSg==
-X-Gm-Message-State: AO0yUKVMhrFcMfngzK5N/opcya5XmQ1nxTTldc96PHGFuOSN5CSh610/
-        Idivprq4o6mAo3iHxGXkTxq1sA==
-X-Google-Smtp-Source: AK7set/87RLWt3cBrBdRq49rvIkhOzB7K9NHwL1XSm9LVYJsymRS7qLNJMH4TqGcXJYOO/onZquheQ==
-X-Received: by 2002:a2e:90d6:0:b0:295:c333:2a24 with SMTP id o22-20020a2e90d6000000b00295c3332a24mr3102611ljg.19.1677759910273;
-        Thu, 02 Mar 2023 04:25:10 -0800 (PST)
-Received: from [192.168.1.101] (abym99.neoplus.adsl.tpnet.pl. [83.9.32.99])
-        by smtp.gmail.com with ESMTPSA id be12-20020a05651c170c00b002945b04e1ebsm2102932ljb.94.2023.03.02.04.25.09
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 02 Mar 2023 04:25:09 -0800 (PST)
-Message-ID: <b71a2ffc-270f-d74f-6c89-9f3e3c009d05@linaro.org>
-Date:   Thu, 2 Mar 2023 13:25:08 +0100
+        d=1e100.net; s=20210112; t=1677760046;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=UCzu+CfYoO6L/88b2EATsbmRsnxpl5XJojzf9dpIYbM=;
+        b=4+jts75uwcvZ96V4XgH9laiUgWCZ2NrKerLgHzavypnB4dk0Cz3uqvG5HVVB82X5w3
+         ra313mSkW15DtoozIqT55ShB4qcyzKEYZFgrdcKDWc7UNaljYpwednBXU3zSN80TMbii
+         7luEz0451Z3or0SJz2eBNLOAg9OlfUKbMSZQNAxRTA0nbAxSkd8whaLTV+77/K4eXaNt
+         2RhRM5opKkL7tyi+l48Jh0LK/wtEpwuiVZ5oPllmb9FtdsbrEnc9IjjIoeeoFwgCIy+J
+         qo3VqmVK+Ww0q8eDQxhBADwpHJIHD0IP92EzDqO8wQjywdB8QuM63pzhcJigIN/dE318
+         FCcQ==
+X-Gm-Message-State: AO0yUKXSKJHR5z6CNvP/N4rX1pfoDUn8ENokX5xKCQZ5qcthumlovYvv
+        2KNwFksCQZNMEcs/OED7+z8=
+X-Google-Smtp-Source: AK7set88KNYQCJ8xnXU4YX6cMBd1m+CfpbxjYXG8W1sUvhQ4bXwI2FO/XpIVWpYvF0lT7Xgkx10HGQ==
+X-Received: by 2002:a17:906:9156:b0:8d7:6699:3ba9 with SMTP id y22-20020a170906915600b008d766993ba9mr9434114ejw.29.1677760045782;
+        Thu, 02 Mar 2023 04:27:25 -0800 (PST)
+Received: from localhost.localdomain ([95.183.227.97])
+        by smtp.gmail.com with ESMTPSA id qc17-20020a170906d8b100b008ca37f3eae9sm7038375ejb.131.2023.03.02.04.27.24
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 02 Mar 2023 04:27:25 -0800 (PST)
+From:   Yassine Oudjana <yassine.oudjana@gmail.com>
+X-Google-Original-From: Yassine Oudjana <y.oudjana@protonmail.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Tinghan Shen <tinghan.shen@mediatek.com>,
+        "Garmin.Chang" <Garmin.Chang@mediatek.com>,
+        MandyJH Liu <mandyjh.liu@mediatek.com>
+Cc:     Yassine Oudjana <y.oudjana@protonmail.com>,
+        Yassine Oudjana <yassine.oudjana@gmail.com>,
+        devicetree@vger.kernel.org, linux-mediatek@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: [PATCH v2 0/2] MediaTek MT6735 SCPSYS support
+Date:   Thu,  2 Mar 2023 15:27:06 +0300
+Message-Id: <20230302122708.73848-1-y.oudjana@protonmail.com>
+X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-Subject: Re: [PATCH 3/4] arm64: dts: qcom: sc8280xp-x13s: fix dmic sample rate
-Content-Language: en-US
-To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        agross@kernel.org, andersson@kernel.org
-Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        johan+linaro@kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20230302115741.7726-1-srinivas.kandagatla@linaro.org>
- <20230302115741.7726-4-srinivas.kandagatla@linaro.org>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20230302115741.7726-4-srinivas.kandagatla@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+From: Yassine Oudjana <y.oudjana@protonmail.com>
 
+These patches are part of a larger effort to support the MT6735 SoC family in
+mainline Linux. More patches (unsent or sent and pending review or revision)
+can be found here[1].
 
-On 2.03.2023 12:57, Srinivas Kandagatla wrote:
-> The version of dmic that is on X13s panel supports clock frequency
-> of range 1 Mhz to 4.8 MHz for normal operation.
-> 
-> So correct the existing node to reflect this.
-> 
-> Fixes: 8c1ea87e80b4 ("arm64: dts: qcom: sc8280xp-x13s: Add soundcard support")
-Does it depend on any driver changes? If not, Cc stable?
+This series adds support for most SCPSYS power domains on MT6735. See patches
+for details.
 
-> Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-> ---
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+Changes since v1:
+- Squash DT binding patches
+- Dual-licence DT binding as GPL/BSD
+- Switch to mtk-pm-domains driver
+- Add MFG bus protection bit
 
-Konrad
->  arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts b/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts
-> index 198a81405e6e..d18d405d1776 100644
-> --- a/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts
-> +++ b/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts
-> @@ -1111,7 +1111,7 @@
->  
->  	vdd-micb-supply = <&vreg_s10b>;
->  
-> -	qcom,dmic-sample-rate = <600000>;
-> +	qcom,dmic-sample-rate = <4800000>;
->  
->  	status = "okay";
->  };
+[1] https://gitlab.com/mt6735-mainline/linux/-/commits/mt6735-staging
+
+Yassine Oudjana (2):
+  dt-bindings: power: Add binding for MediaTek MT6735 power controller
+  soc: mediatek: pm-domains: Add support for MT6735
+
+ .../power/mediatek,power-controller.yaml      |  2 +
+ .../bindings/soc/mediatek/scpsys.txt          |  1 +
+ drivers/soc/mediatek/mt6735-pm-domains.h      | 96 +++++++++++++++++++
+ drivers/soc/mediatek/mtk-pm-domains.c         |  5 +
+ drivers/soc/mediatek/mtk-pm-domains.h         |  2 +
+ include/dt-bindings/power/mt6735-power.h      | 14 +++
+ include/linux/soc/mediatek/infracfg.h         |  5 +
+ 7 files changed, 125 insertions(+)
+ create mode 100644 drivers/soc/mediatek/mt6735-pm-domains.h
+ create mode 100644 include/dt-bindings/power/mt6735-power.h
+
+-- 
+2.39.2
+
