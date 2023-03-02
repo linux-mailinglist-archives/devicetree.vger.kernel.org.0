@@ -2,90 +2,148 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8DDA26A7FBC
-	for <lists+devicetree@lfdr.de>; Thu,  2 Mar 2023 11:11:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4CA3F6A7FCB
+	for <lists+devicetree@lfdr.de>; Thu,  2 Mar 2023 11:17:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230105AbjCBKLi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 2 Mar 2023 05:11:38 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32854 "EHLO
+        id S229868AbjCBKRT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 2 Mar 2023 05:17:19 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36992 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229596AbjCBKLf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Mar 2023 05:11:35 -0500
-Received: from mail-vs1-xe2e.google.com (mail-vs1-xe2e.google.com [IPv6:2607:f8b0:4864:20::e2e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 421592A6F0
-        for <devicetree@vger.kernel.org>; Thu,  2 Mar 2023 02:11:34 -0800 (PST)
-Received: by mail-vs1-xe2e.google.com with SMTP id d20so21889341vsf.11
-        for <devicetree@vger.kernel.org>; Thu, 02 Mar 2023 02:11:34 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=F71E3UpzmFBCRVZxJQMTTJKMF0O4a9h4QSsqieYJImE=;
-        b=g7ALksvYo4Y5TKYfVAoELDzniyk2kdOpFdcDy2wZYcUYgF9B0YYZ3EyzZEqklxFZfz
-         /VbrBKfnf7SnMn3mLYBREX3gCLeuKepHs6Zfsz1fPQuEMd8OWru2wisGo0LiM5n7cC4L
-         SKNQs/B07wKJAUVfe7KGVeiiNvs7Qw0HN4f1Q=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=F71E3UpzmFBCRVZxJQMTTJKMF0O4a9h4QSsqieYJImE=;
-        b=I+bFHfW167Iq5i9iUIk6It5i1Dfl+9Gg7BMz8fAHtGSS9ZZdkolnlhn+IUsKFErY1a
-         36DJWriM3Axs0hUwaZ0UmDiizjNj8MUyb2rLnFWCR1+vCx8Z01vwSHqOqFbrBfJVZQ2N
-         9HJ514qAR/euG+3NBMKa/TKpfHr891JWoveJeFUJfoxHM7TORlpZpIKh+jFYg6kao1S5
-         OLPpFwE4/wRK4IQErhvDWXNJKd/rxb+E3O0v2TRJ+I/x+xxpd70MF1S/8g+Alj39EbzE
-         zZZP+Hd/M0AEpb9aeoZDjamajA4fpgle+ULmu9pSogPZo0K1vYWfn0zDxqTm5N5QCitS
-         HPtA==
-X-Gm-Message-State: AO0yUKVhgUfhOom7X//+GJitx+kugKFxrIP3aExaqjnK9gxcerSRt1kU
-        Qhhj54BHmGkOkMTCGKwoaz0bNaCnS6r6/8MFzvCVdw==
-X-Google-Smtp-Source: AK7set9brXVjcK69n8TTB+vu5Ng4CHXF1hEN00ewd4DqV5LxyIHLb/HguPNsiBvcQP9E8DbdbmwQRPaCB8g2Nb+SMLk=
-X-Received: by 2002:a67:dc95:0:b0:415:2063:e403 with SMTP id
- g21-20020a67dc95000000b004152063e403mr6316315vsk.3.1677751893351; Thu, 02 Mar
- 2023 02:11:33 -0800 (PST)
+        with ESMTP id S229735AbjCBKRS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Mar 2023 05:17:18 -0500
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DFF333B0F1;
+        Thu,  2 Mar 2023 02:17:17 -0800 (PST)
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits))
+        (No client certificate requested)
+        (Authenticated sender: kholk11)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 09DD96602E5A;
+        Thu,  2 Mar 2023 10:17:15 +0000 (GMT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1677752236;
+        bh=o7ImUOBWJocC9IE4w/doapnXAOm4lxDZbXD8YD8dd4M=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=KIkRDQIORgXA/JtkgBUDzdxgOgnBoCEig6Lp2q8g58I0F4raynLoL6kwtDyDRrGk0
+         Cqt1KU04//2mmbVqjmV3Ia0mNY/qIMNxa1f1YwEHRblxvlcjSWFOSbf5IzXcHv8exN
+         FQLNWCTHVgyp3+ylDkzs0Xr638oVKA2GaStFbRKjDR3e8vODI6llTkL+ah0pvb6RcE
+         zYsIWcRTCI9ey2meVJL2XaZt9GlQ/etqv1Q6HMa42EKE6zJ/LUPJUoKrMoGtFCx3zO
+         fT24Dx6Mocw65XersYHWcQ8e8f6OLKsCyKseS1Dt+GL6ESI7F2RjRR8Outd9r+YUj4
+         frtmC8FIxFMbg==
+Message-ID: <5dba27e1-d480-ea24-c1ba-03bb7f77b1b1@collabora.com>
+Date:   Thu, 2 Mar 2023 11:17:14 +0100
 MIME-Version: 1.0
-References: <20230301095523.428461-1-angelogioacchino.delregno@collabora.com>
- <b4fc6bd8-e300-0f40-4216-8b99589c21cc@gmail.com> <895abaa2-5fd3-9928-4e53-86ce160fbad8@collabora.com>
-In-Reply-To: <895abaa2-5fd3-9928-4e53-86ce160fbad8@collabora.com>
-From:   Chen-Yu Tsai <wenst@chromium.org>
-Date:   Thu, 2 Mar 2023 18:11:22 +0800
-Message-ID: <CAGXv+5EPVhH-O+ZdoLeW4OZVcEtS824oracmu3jHTa8k-tEU0A@mail.gmail.com>
-Subject: Re: [PATCH v4 00/19] Enable GPU with DVFS support on MediaTek SoCs
-To:     AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-Cc:     Matthias Brugger <matthias.bgg@gmail.com>, robh+dt@kernel.org,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.8.0
+Subject: Re: [PATCH v4 12/19] arm64: dts: mediatek: mt8192-asurada: Couple
+ VGPU and VSRAM_OTHER regulators
+Content-Language: en-US
+To:     Chen-Yu Tsai <wenst@chromium.org>
+Cc:     matthias.bgg@gmail.com, robh+dt@kernel.org,
         krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
         linux-mediatek@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+References: <20230301095523.428461-1-angelogioacchino.delregno@collabora.com>
+ <20230301095523.428461-13-angelogioacchino.delregno@collabora.com>
+ <CAGXv+5GHdtbheL6wxtDo-szk+=3BGk2z93SBowd4Z=E9XupZkw@mail.gmail.com>
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <CAGXv+5GHdtbheL6wxtDo-szk+=3BGk2z93SBowd4Z=E9XupZkw@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Mar 2, 2023 at 6:10=E2=80=AFPM AngeloGioacchino Del Regno
-<angelogioacchino.delregno@collabora.com> wrote:
->
-> Il 02/03/23 10:36, Matthias Brugger ha scritto:
-> > Series looks good but from my understanding has a dependency on:
-> > [PATCH v4 00/12] Panfrost: Improve and add MediaTek SoCs support
-> > (https://lore.kernel.org/linux-mediatek/20230228102610.707605-1-angelog=
-ioacchino.delregno@collabora.com/)
-> >
-> > Did I get that right?
-> >
->
-> Yes you got it right - without the mentioned series, this one will do not=
-hing
-> at all (and will also fail binding checks, as the bindings are introduced=
- in
-> that other series).
+Il 02/03/23 11:03, Chen-Yu Tsai ha scritto:
+> On Wed, Mar 1, 2023 at 5:55 PM AngeloGioacchino Del Regno
+> <angelogioacchino.delregno@collabora.com> wrote:
+>>
+>> Add coupling for these regulators, as VSRAM_OTHER is used to power the
+>> GPU SRAM, and they have a strict voltage output relation to satisfy in
+>> order to ensure GPU stable operation.
+>> While at it, also add voltage constraint overrides for the GPU SRAM
+>> regulator "mt6359_vsram_others" so that we stay in a safe range of
+>> 0.75-0.80V.
+>>
+>> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+>> ---
+>>   arch/arm64/boot/dts/mediatek/mt8192-asurada.dtsi | 9 +++++++++
+>>   1 file changed, 9 insertions(+)
+>>
+>> diff --git a/arch/arm64/boot/dts/mediatek/mt8192-asurada.dtsi b/arch/arm64/boot/dts/mediatek/mt8192-asurada.dtsi
+>> index 8570b78c04a4..f858eca219d7 100644
+>> --- a/arch/arm64/boot/dts/mediatek/mt8192-asurada.dtsi
+>> +++ b/arch/arm64/boot/dts/mediatek/mt8192-asurada.dtsi
+>> @@ -447,6 +447,13 @@ &mt6359_vrf12_ldo_reg {
+>>          regulator-always-on;
+>>   };
+>>
+>> +&mt6359_vsram_others_ldo_reg {
+>> +       regulator-min-microvolt = <750000>;
+>> +       regulator-max-microvolt = <800000>;
+>> +       regulator-coupled-with = <&mt6315_7_vbuck1>;
+>> +       regulator-coupled-max-spread = <10000>;
+> 
+> Looking again at the downstream OPP table, it seems there's no voltage
+> difference requirement. It only needs V_SRAM >= V_GPU. Same applies to
+> MT8195. Looks like only MT8183 and MT8186 need V_SRAM - V_GPU >= 10000.
 
-Please also let me test them on MT8183 and MT8186 before merging them.
+On MT8195 we don't need any regulator coupling. There, the GPU-SRAM voltage
+is fixed at .. I don't remember, 0.7V? - anyway - MT8195 doesn't need to
+scale the vsram.
 
-ChenYu
+> 
+> Would setting max-spread to 0 work? I ask because with both regulator's
+> maximum voltage set to 0.8V, there's no way we can reach the highest
+> OPP.
+> 
+
+No that doesn't work. I can raise the Vgpu max voltage to 0.88V to solve the
+issue right here and right now, or we can leave it like that and revisit it
+later.
+
+I would at this point go for setting mt6315_7_vbuck1's max-microvolt to
+880000, as this is the maximum recommended voltage for the GPU as per the
+MT8192 datasheet, it would also make sense as we would be still describing
+the hardware in a correct manner.
+
+What do you think?
+
+Angelo
+
+> ChenYu
+> 
+> 
+>> +};
+>> +
+>>   &mt6359_vufs_ldo_reg {
+>>          regulator-always-on;
+>>   };
+>> @@ -1411,6 +1418,8 @@ mt6315_7_vbuck1: vbuck1 {
+>>                                  regulator-max-microvolt = <800000>;
+>>                                  regulator-enable-ramp-delay = <256>;
+>>                                  regulator-allowed-modes = <0 1 2>;
+>> +                               regulator-coupled-with = <&mt6359_vsram_others_ldo_reg>;
+>> +                               regulator-coupled-max-spread = <10000>;
+>>                          };
+>>                  };
+>>          };
+>> --
+>> 2.39.2
+>>
+
+-- 
+AngeloGioacchino Del Regno
+Software Engineer
+
+Collabora Ltd.
+Platinum Building, St John's Innovation Park, Cambridge CB4 0DS, UK
+Registered in England & Wales, no. 5513718
+
