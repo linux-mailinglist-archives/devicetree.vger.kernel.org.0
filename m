@@ -2,259 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6DAE26A879A
-	for <lists+devicetree@lfdr.de>; Thu,  2 Mar 2023 18:15:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 674D96A87F2
+	for <lists+devicetree@lfdr.de>; Thu,  2 Mar 2023 18:32:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229568AbjCBRPE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 2 Mar 2023 12:15:04 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51734 "EHLO
+        id S230143AbjCBRc0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 2 Mar 2023 12:32:26 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41314 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229456AbjCBRPE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Mar 2023 12:15:04 -0500
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9F5171BAF8;
-        Thu,  2 Mar 2023 09:15:02 -0800 (PST)
-Received: from pan.home (unknown [IPv6:2a00:23c6:c311:3401:45a5:b946:dcd1:2820])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        with ESMTP id S230006AbjCBRcZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Mar 2023 12:32:25 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F00454AFE2;
+        Thu,  2 Mar 2023 09:32:23 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        (Authenticated sender: martyn)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id 2C0D76602F64;
-        Thu,  2 Mar 2023 17:15:01 +0000 (GMT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1677777301;
-        bh=RNG9TxYgq1rGD4FA0vfFeHWWk45XOMtdPR8Y59j9uXM=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=QSOcnzK1EeLtERtS4F7yosVU3TFngBlmwAI1HAlEV+45yjmrdF8ZB16LEKSjqy+gq
-         CXFkQ1xrLV8eTpBke4SMtMV8hl/+A296GCrxyfraWgB3RqMzzgomd+J5Kyxq6Iw5Ui
-         Q/eGfVKbVISJzb1nCwAGr3DswdGUOf9mzaW+l064IhflsFTLfrSpaY6paLj8SSY/cn
-         3y3WtD98rZqj+gYglbnhE/d7GCQ6PmoveiKxqsTlUbR/a0vhJJh381e0xjPWn87hiN
-         P9566FUoQoEtYkfhEYSRk0Eklwozb3amWG8Fsh0d7LrIXeWm/FIJ2cZZmqf6yMgLRq
-         Rpr5BZcP/Qkog==
-From:   Martyn Welch <martyn.welch@collabora.com>
-To:     Bjorn Andersson <andersson@kernel.org>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Hari Nagalla <hnagalla@ti.com>
-Cc:     kernel@collabora.com, Martyn Welch <martyn.welch@collabora.com>,
-        linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH v3 1/3] dt-bindings: remoteproc: k3-m4f: Add bindings for K3 AM64x SoCs
-Date:   Thu,  2 Mar 2023 17:14:48 +0000
-Message-Id: <20230302171450.1598576-2-martyn.welch@collabora.com>
-X-Mailer: git-send-email 2.39.1
-In-Reply-To: <20230302171450.1598576-1-martyn.welch@collabora.com>
-References: <20230302171450.1598576-1-martyn.welch@collabora.com>
+        by ams.source.kernel.org (Postfix) with ESMTPS id A8B73B812AC;
+        Thu,  2 Mar 2023 17:32:22 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 67C23C433A0;
+        Thu,  2 Mar 2023 17:32:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1677778341;
+        bh=GTJ2aQ3riMffZdwM0TI7yU15Vojy5MM+NJ9vt/TT/F8=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=Xl/Kb/AiIzIGvNjcW8Mpe7/u31VvlNm0hQniH3f0qe/1BtDnJJQP+MWebtnBbn/bd
+         gy5xMHBVpioacbJsLxW6YKNfizW0exBkhXw0IlBODB/uue1wzkeZ0zUmPAU1uzGvMb
+         CCV/jsE+X4GFcS8sBnC1CWEbnFBkKYaur1xgdLLVBvtNd49AGpRJdREIh3S2h0/t4r
+         pS+Bs1Og6RR3jISL3snLEVZ1j1YeOs+LVpaQKepeCFUXq0/iET29fJO/XpMrbQfqnq
+         szfunjHE5lTWgLRhV5GmqnaUJGg5ocRvxw3VeQLqcfqOfqa4V6pMCsw7l5dmZA8pHO
+         VIAhPAzzKHfAg==
+Received: by mail-ua1-f46.google.com with SMTP id d12so6690682uak.10;
+        Thu, 02 Mar 2023 09:32:21 -0800 (PST)
+X-Gm-Message-State: AO0yUKU5vUgNrnKRUerpqQbC4XNFivKCWG0MyRIR/NcfuF5FT8cW/34U
+        DSUX2ktYZr2QYiBz7kRq4zb3Qf0u5Gzfrq080A==
+X-Google-Smtp-Source: AK7set9cJNTLFs7vnxVEO6Bi3x0FdUJU0jGThLV7OqyoaC6mAU8o5RUYHWKZMVbAQOB16m3naYT+V+2VGB6kWOMhcf4=
+X-Received: by 2002:a1f:a3d7:0:b0:40d:526d:5633 with SMTP id
+ m206-20020a1fa3d7000000b0040d526d5633mr6082295vke.2.1677778340294; Thu, 02
+ Mar 2023 09:32:20 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+References: <20230302013822.1808711-1-sboyd@kernel.org> <CABVgOSnpMNCtEEsJV28OzUoxdDuiT4a2T0avP0AYf9xFW1jxrw@mail.gmail.com>
+In-Reply-To: <CABVgOSnpMNCtEEsJV28OzUoxdDuiT4a2T0avP0AYf9xFW1jxrw@mail.gmail.com>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Thu, 2 Mar 2023 11:32:09 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqJMd3Fi0ZBObdyE1VDKTH1_+smuGDymHnKOkVH2HB3jJQ@mail.gmail.com>
+Message-ID: <CAL_JsqJMd3Fi0ZBObdyE1VDKTH1_+smuGDymHnKOkVH2HB3jJQ@mail.gmail.com>
+Subject: Re: [PATCH 0/8] clk: Add kunit tests for fixed rate and parent data
+To:     David Gow <davidgow@google.com>, Stephen Boyd <sboyd@kernel.org>
+Cc:     Michael Turquette <mturquette@baylibre.com>,
+        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
+        patches@lists.linux.dev,
+        Brendan Higgins <brendan.higgins@linux.dev>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        "Rafael J . Wysocki" <rafael@kernel.org>,
+        Richard Weinberger <richard@nod.at>,
+        Anton Ivanov <anton.ivanov@cambridgegreys.com>,
+        Johannes Berg <johannes@sipsolutions.net>,
+        Vincent Whitchurch <vincent.whitchurch@axis.com>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Christian Marangi <ansuelsmth@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        devicetree@vger.kernel.org, linux-um@lists.infradead.org,
+        linux-kselftest@vger.kernel.org, kunit-dev@googlegroups.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Hari Nagalla <hnagalla@ti.com>
+On Thu, Mar 2, 2023 at 2:14=E2=80=AFAM David Gow <davidgow@google.com> wrot=
+e:
+>
+> On Thu, 2 Mar 2023 at 09:38, Stephen Boyd <sboyd@kernel.org> wrote:
+> >
+> > This patch series adds unit tests for the clk fixed rate basic type and
+> > the clk registration functions that use struct clk_parent_data. To get
+> > there, we add support for loading a DTB into the UML kernel that's
+> > running the unit tests along with probing platform drivers to bind to
+> > device nodes specified in DT.
+> >
+> > With this series, we're able to exercise some of the code in the common
+> > clk framework that uses devicetree lookups to find parents and the fixe=
+d
+> > rate clk code that scans devicetree directly and creates clks. Please
+> > review.
+> >
+>
+> Thanks Stephen -- this is really neat!
+>
+> This works well here, and I love all of the tests for the
+> KUnit/device-tree integration as well.
+>
+> I'm still looking through the details of it (alas, I've mostly lived
+> in x86-land, so my device-tree knowledge is, uh, spotty to say the
+> least), but apart from possibly renaming some things or similarly
+> minor tweaks, I've not got any real suggestions thus far.
+>
+> I do wonder whether we'll want, on the KUnit side, to have some way of
+> supporting KUnit device trees on non-UML architecctures (e.g., if we
+> need to test something architecture-specific, or on a big-endian
+> platform, etc), but I think that's a question for the future, rather
+> than something that affects this series.
 
-K3 AM64x SoC has a Cortex M4F subsystem in the MCU voltage domain.
-The remote processor's life cycle management and IPC mechanisms are
-similar across the R5F and M4F cores from remote processor driver
-point of view. However, there are subtle differences in image loading
-and starting the M4F subsystems.
+I'll say that's a requirement. We should be able to structure the
+tests to not interfere with the running system's DT. The DT unittest
+does that.
 
-The YAML binding document provides the various node properties to be
-configured by the consumers of the M4F subsystem.
+As a side topic, Is anyone looking at getting UML to work on arm64?
+It's surprising how much x86 stuff there is which is I guess one
+reason it hasn't happened.
 
-Signed-off-by: Hari Nagalla <hnagalla@ti.com>
-[Martyn Welch: Amended as per review comments and to pass DT tests]
-Signed-off-by: Martyn Welch <martyn.welch@collabora.com>
----
+> Similarly, I wonder if there's something we could do with device tree
+> overlays, in order to make it possible for tests to swap nodes in and
+> out for testing.
 
-Changes since v1:
- - Spelling corrections
- - Corrected to pass DT checks
+Yes, that's how the DT unittest works. But it is pretty much one big
+overlay (ignoring the overlay tests). It could probably be more
+modular where it is apply overlay, test, remove overlay, repeat.
 
-Changes since v2:
- - Missed spelling correction to commit message
-
-Note: The only review comment that I don't see directly addressed is the
-      lack of description of `ti,sci`, `ti,sci-dev-id` and
-      `ti,sci-proc-ids`. A reference has been added to
-      `/schemas/arm/keystone/ti,k3-sci-common.yaml#` where they are
-      described. I believe this is the correct approach, please advise if
-      that is not the case.
-
- .../bindings/remoteproc/ti,k3-m4f-rproc.yaml  | 158 ++++++++++++++++++
- 1 file changed, 158 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/remoteproc/ti,k3-m4f-rproc.yaml
-
-diff --git a/Documentation/devicetree/bindings/remoteproc/ti,k3-m4f-rproc.yaml b/Documentation/devicetree/bindings/remoteproc/ti,k3-m4f-rproc.yaml
-new file mode 100644
-index 000000000000..1b38df0be2e6
---- /dev/null
-+++ b/Documentation/devicetree/bindings/remoteproc/ti,k3-m4f-rproc.yaml
-@@ -0,0 +1,158 @@
-+# SPDX-License-Identifier: (GPL-2.0-only or BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/remoteproc/ti,k3-m4f-rproc.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: TI K3 M4F processor subsystems
-+
-+maintainers:
-+  - Hari Nagalla <hnagalla@ti.com>
-+
-+description: |
-+  Some K3 family SoCs have Arm Cortex M4F cores. AM64x is a SoC in K3
-+  family with a M4F core. Typically safety oriented applications may use
-+  the M4F core in isolation without an IPC. Where as some industrial and
-+  home automation applications, may use the M4F core as a remote processor
-+  with IPC communications.
-+
-+$ref: /schemas/arm/keystone/ti,k3-sci-common.yaml#
-+
-+properties:
-+  $nodename:
-+    pattern: "^m4fss(@.*)?"
-+
-+  compatible:
-+    enum:
-+      - ti,am64-m4fss
-+
-+  power-domains:
-+    description: |
-+      Should contain a phandle to a PM domain provider node and an args
-+      specifier containing the M4FSS device id value.
-+    maxItems: 1
-+
-+  "#address-cells":
-+    const: 2
-+
-+  "#size-cells":
-+    const: 2
-+
-+  reg:
-+    items:
-+      - description: Address and Size of the IRAM internal memory region
-+      - description: Address and Size of the DRAM internal memory region
-+
-+  reg-names:
-+    items:
-+      - const: iram
-+      - const: dram
-+
-+  resets:
-+    description: |
-+      Should contain the phandle to the reset controller node managing the
-+      local resets for this device, and a reset specifier.
-+    maxItems: 1
-+
-+  firmware-name:
-+    description: |
-+      Should contain the name of the default firmware image
-+      file located on the firmware search path
-+
-+  mboxes:
-+    description: |
-+      OMAP Mailbox specifier denoting the sub-mailbox, to be used for
-+      communication with the remote processor. This property should match
-+      with the sub-mailbox node used in the firmware image.
-+    maxItems: 1
-+
-+  memory-region:
-+    description: |
-+      phandle to the reserved memory nodes to be associated with the
-+      remoteproc device. There should be at least two reserved memory nodes
-+      defined. The reserved memory nodes should be carveout nodes, and
-+      should be defined with a "no-map" property as per the bindings in
-+      Documentation/devicetree/bindings/reserved-memory/reserved-memory.yaml
-+    minItems: 2
-+    maxItems: 8
-+    items:
-+      - description: region used for dynamic DMA allocations like vrings and
-+                     vring buffers
-+      - description: region reserved for firmware image sections
-+    additionalItems: true
-+
-+required:
-+  - compatible
-+  - reg
-+  - reg-names
-+  - ti,sci
-+  - ti,sci-dev-id
-+  - ti,sci-proc-ids
-+  - resets
-+  - firmware-name
-+  - mboxes
-+  - memory-region
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    reserved-memory {
-+        #address-cells = <2>;
-+        #size-cells = <2>;
-+
-+        mcu_m4fss_dma_memory_region: m4f-dma-memory@9cb00000 {
-+            compatible = "shared-dma-pool";
-+            reg = <0x00 0x9cb00000 0x00 0x100000>;
-+            no-map;
-+        };
-+
-+        mcu_m4fss_memory_region: m4f-memory@9cc00000 {
-+            compatible = "shared-dma-pool";
-+            reg = <0x00 0x9cc00000 0x00 0xe00000>;
-+            no-map;
-+        };
-+    };
-+
-+    soc {
-+        #address-cells = <2>;
-+        #size-cells = <2>;
-+
-+        mailbox0_cluster0: mailbox-0 {
-+            #mbox-cells = <1>;
-+
-+            mbox_m4_0: mbox-m4-0 {
-+                ti,mbox-rx = <0 0 0>;
-+                ti,mbox-tx = <1 0 0>;
-+            };
-+        };
-+
-+        bus@f0000 {
-+            compatible = "simple-bus";
-+            #address-cells = <2>;
-+            #size-cells = <2>;
-+            ranges = <0x00 0x04000000 0x00 0x04000000 0x00 0x01ff1400>;
-+
-+            bus@4000000 {
-+                compatible = "simple-bus";
-+                #address-cells = <2>;
-+                #size-cells = <2>;
-+                ranges = <0x00 0x04000000 0x00 0x04000000 0x00 0x01ff1400>;
-+
-+                mcu_m4fss: m4fss@5000000 {
-+                    compatible = "ti,am64-m4fss";
-+                    reg = <0x00 0x5000000 0x00 0x30000>,
-+                          <0x00 0x5040000 0x00 0x10000>;
-+                    reg-names = "iram", "dram";
-+                    ti,sci = <&dmsc>;
-+                    ti,sci-dev-id = <9>;
-+                    ti,sci-proc-ids = <0x18 0xff>;
-+                    resets = <&k3_reset 9 1>;
-+                    firmware-name = "am62-mcu-m4f0_0-fw";
-+                    mboxes = <&mailbox0_cluster0 &mbox_m4_0>;
-+                    memory-region = <&mcu_m4fss_dma_memory_region>,
-+                                    <&mcu_m4fss_memory_region>;
-+                };
-+            };
-+        };
-+    };
--- 
-2.39.1
-
+Rob
