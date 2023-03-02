@@ -2,191 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AC1706A7D75
-	for <lists+devicetree@lfdr.de>; Thu,  2 Mar 2023 10:18:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DB3606A7D99
+	for <lists+devicetree@lfdr.de>; Thu,  2 Mar 2023 10:25:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229908AbjCBJSX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 2 Mar 2023 04:18:23 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51886 "EHLO
+        id S229437AbjCBJZG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 2 Mar 2023 04:25:06 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57466 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229523AbjCBJSX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Mar 2023 04:18:23 -0500
-Received: from sender4-op-o14.zoho.com (sender4-op-o14.zoho.com [136.143.188.14])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BBEB5A279;
-        Thu,  2 Mar 2023 01:18:21 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1677748676; cv=none; 
-        d=zohomail.com; s=zohoarc; 
-        b=f+cbxQpidciw61Ai4fHYox3YKeRDX3z7qesLmnaZ1mvjxn41iQsq7KygwU1P1etnpqZpmnVd+xrDS99XDbAGDy3F5pC27+YnZY7fjtboKa/THUKxXwaPjW8gh59mrJJnPbGDfkP7oVm+hcDkBltiRV6m3v97GOuoGAdr+AIUvbY=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-        t=1677748676; h=Content-Type:Content-Transfer-Encoding:Cc:Date:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:To; 
-        bh=8UQu7Yj/AOQFcJkYHaTLkH9SnUKz3EcObiDmRQFm3+c=; 
-        b=Ng+Pd3Y2VNogHtnErqh6VNFg4xKJhgPIAX6j4p+fyQ7HDBfuWfCUc1v96jNT1cqZXF0dLipQnaEw2jyKQePeFHpGd1Vsl72yQjQAJYQvmmRbeGpRxBn8Sd9zA+BrJgVjpvzGRK/bkXgfnjEn2/WagilmE3bzR0MXW6VdkTK2y2s=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-        dkim=pass  header.i=arinc9.com;
-        spf=pass  smtp.mailfrom=arinc.unal@arinc9.com;
-        dmarc=pass header.from=<arinc.unal@arinc9.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1677748676;
-        s=zmail; d=arinc9.com; i=arinc.unal@arinc9.com;
-        h=Message-ID:Date:Date:MIME-Version:Subject:Subject:To:To:Cc:Cc:References:From:From:In-Reply-To:Content-Type:Content-Transfer-Encoding:Message-Id:Reply-To;
-        bh=8UQu7Yj/AOQFcJkYHaTLkH9SnUKz3EcObiDmRQFm3+c=;
-        b=cp+cOrRIfczEg5dwhzgglAIfVMIZ9kXVpPYmz6rA48XDWFiSWHVvjdMLfxJVn2ya
-        RbX1rknYrUG0Ll8kURPd2kkRuXAW9STh8m4OaLVi9awuLOr/oVZLRriFdtt/zhkc/u2
-        0srk5NFEYhe/yDnAoQHHEF1iN4o5gCGSnj70kxGg=
-Received: from [10.10.10.3] (212.68.60.226 [212.68.60.226]) by mx.zohomail.com
-        with SMTPS id 1677748673495252.80618880931172; Thu, 2 Mar 2023 01:17:53 -0800 (PST)
-Message-ID: <a9acd3b4-2b03-86c0-711c-a3840aeab574@arinc9.com>
-Date:   Thu, 2 Mar 2023 12:17:46 +0300
+        with ESMTP id S229652AbjCBJYm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Mar 2023 04:24:42 -0500
+Received: from mail-wm1-x32c.google.com (mail-wm1-x32c.google.com [IPv6:2a00:1450:4864:20::32c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 685D521A2C
+        for <devicetree@vger.kernel.org>; Thu,  2 Mar 2023 01:24:33 -0800 (PST)
+Received: by mail-wm1-x32c.google.com with SMTP id k37so10266015wms.0
+        for <devicetree@vger.kernel.org>; Thu, 02 Mar 2023 01:24:33 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1677749072;
+        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
+         :content-language:subject:reply-to:from:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=BWGLYdD4ufr/E1ThoieJ1WMoxdv/y+QHtWqXixPFyHM=;
+        b=X68qidyzTxaMruoXSnw75a33xhU2o+s2SL3T5qVupPU8y5m5co69P00W5FuDrOzHVo
+         qUmlZhYwbREc0fLI5Is3/kPvW7WhJJPUxs5bbjTFLuU/gJllttSYrfqxNposQLCEdYQY
+         2D/g+2lHdy6bkoCdR9obskI5dHzZFLx/MJnDrUJSHJSSQrU7XIrqThiUBwYwQwevNb6U
+         TGC6GZP8tV/6vhc5rnvQ5m3LGpwd4eymVgY+gQUmPikcrYB4uSkKPULBQsjBM1qzlCow
+         oMBNJURS/WqJ1IkqsGpR9028mwHWUGRLqe3O3Ex79dRn4iXSS57ucWnNBbnZQkJA6dVI
+         LNmw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1677749072;
+        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
+         :content-language:subject:reply-to:from:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=BWGLYdD4ufr/E1ThoieJ1WMoxdv/y+QHtWqXixPFyHM=;
+        b=E8B6XHlZOmYvgqI8BNFUySPqTMuk92Z01vPP+1iy4tuE27EHAcka+0arHaUVbl8od4
+         SWuAVSrKW0KQLaogGEZf3DpmuWrDXFA8yZIMzzQRqi963u/6hIiZEvbFtuPj/t+kVaeg
+         FeaOp5/6tL1Zz6vLlGgaSmxDeAWO0LvGj5m98AdhAdbm3aHcU9P/tDLZl+fwlT+4S02R
+         acFcGd7i/Fl9cXrl4/WOhYhornpvw81a+PwrVDiBAnndEgDH1zji8l57JTMT8O52bfY8
+         nwR9Y0ZWN2FRAmr//gsE6s4u0fwUbMsdFmXa3WM4FmkRPUb4fLMoYt5sm4wnb/pPr6Sv
+         fU+Q==
+X-Gm-Message-State: AO0yUKVoXh1XhOJLY2QyBUDTc16ER5ePUORo6X+Pzvu3+qKeV+n/3JCW
+        ml9vpozMpwSysp97+D0Z5PxKvw==
+X-Google-Smtp-Source: AK7set8erNKdqlF8yG+383R3lM3MlNAuoEOfGSP045v0ekFPlCjl3NaWImxTogQfTMWbxdLPor7Tuw==
+X-Received: by 2002:a05:600c:713:b0:3eb:2b69:c3c4 with SMTP id i19-20020a05600c071300b003eb2b69c3c4mr8106566wmn.36.1677749071877;
+        Thu, 02 Mar 2023 01:24:31 -0800 (PST)
+Received: from ?IPV6:2a01:e0a:982:cbb0:217a:db24:fe27:6b35? ([2a01:e0a:982:cbb0:217a:db24:fe27:6b35])
+        by smtp.gmail.com with ESMTPSA id c21-20020a7bc015000000b003e214803343sm2238704wmb.46.2023.03.02.01.24.30
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 02 Mar 2023 01:24:31 -0800 (PST)
+Message-ID: <80fe197a-3f15-d1b8-ed99-adeb4a8c24d2@linaro.org>
+Date:   Thu, 2 Mar 2023 10:24:30 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.1
-Subject: Re: [RFC PATCH 07/16] dt-bindings: pinctrl: ralink: add new
- compatible strings
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Rob Herring <robh@kernel.org>
-Cc:     Sergio Paracuellos <sergio.paracuellos@gmail.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-mediatek@lists.infradead.org, linux-mips@vger.kernel.org,
-        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Sean Wang <sean.wang@kernel.org>,
-        William Dean <williamsukatube@gmail.com>,
-        Daniel Golle <daniel@makrotopia.org>,
-        Daniel Santos <daniel.santos@pobox.com>,
-        Luiz Angelo Daros de Luca <luizluca@gmail.com>,
-        Frank Wunderlich <frank-w@public-files.de>,
-        Landen Chao <Landen.Chao@mediatek.com>,
-        DENG Qingfang <dqfext@gmail.com>,
-        Sean Wang <sean.wang@mediatek.com>, erkin.bozoglu@xeront.com
-References: <20230222183932.33267-1-arinc.unal@arinc9.com>
- <20230222183932.33267-8-arinc.unal@arinc9.com>
- <20230227173333.GA496999-robh@kernel.org>
- <d7aea90f-d077-3a41-996c-804c95d72e24@arinc9.com>
- <20230301024431.GA251215-robh@kernel.org>
- <ae3346de-140f-f181-b6a3-ccaa694e1548@arinc9.com>
- <11d3c806-04b6-da54-65f1-c0bd154affbc@linaro.org>
+ Thunderbird/102.7.2
+From:   Neil Armstrong <neil.armstrong@linaro.org>
+Reply-To: neil.armstrong@linaro.org
+Subject: Re: [PATCH 2/3] dt-bindings: media: Add compatible for Meson-S4 IR
+ Controller
 Content-Language: en-US
-From:   =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>
-In-Reply-To: <11d3c806-04b6-da54-65f1-c0bd154affbc@linaro.org>
+To:     zelong dong <zelong.dong@amlogic.com>, Sean Young <sean@mess.org>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc:     linux-media@vger.kernel.org, linux-amlogic@lists.infradead.org,
+        devicetree@vger.kernel.org
+References: <20230302063402.42708-1-zelong.dong@amlogic.com>
+ <20230302063402.42708-3-zelong.dong@amlogic.com>
+Organization: Linaro Developer Services
+In-Reply-To: <20230302063402.42708-3-zelong.dong@amlogic.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ZohoMailClient: External
-X-Spam-Status: No, score=-0.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_BL_SPAMCOP_NET,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2.03.2023 11:28, Krzysztof Kozlowski wrote:
-> On 01/03/2023 09:15, Arınç ÜNAL wrote:
->> On 1.03.2023 05:44, Rob Herring wrote:
->>> On Tue, Feb 28, 2023 at 07:46:36PM +0300, Arınç ÜNAL wrote:
->>>> On 27/02/2023 20:33, Rob Herring wrote:
->>>>> On Wed, Feb 22, 2023 at 09:39:23PM +0300, arinc9.unal@gmail.com wrote:
->>>>>> From: Arınç ÜNAL <arinc.unal@arinc9.com>
->>>>>>
->>>>>> Add the ralink,rt2880-pinmux compatible string. It had been removed from
->>>>>> the driver which broke the ABI.
->>>>>>
->>>>>> Add the mediatek compatible strings. Change the compatible string on the
->>>>>> examples with the mediatek compatible strings.
->>>>>>
->>>>>> Signed-off-by: Arınç ÜNAL <arinc.unal@arinc9.com>
->>>>>> ---
->>>>>>     .../devicetree/bindings/pinctrl/ralink,mt7620-pinctrl.yaml | 7 +++++--
->>>>>>     .../devicetree/bindings/pinctrl/ralink,mt7621-pinctrl.yaml | 7 +++++--
->>>>>>     .../devicetree/bindings/pinctrl/ralink,rt2880-pinctrl.yaml | 7 +++++--
->>>>>>     .../devicetree/bindings/pinctrl/ralink,rt305x-pinctrl.yaml | 7 +++++--
->>>>>>     .../devicetree/bindings/pinctrl/ralink,rt3883-pinctrl.yaml | 7 +++++--
->>>>>>     5 files changed, 25 insertions(+), 10 deletions(-)
->>>>>>
->>>>>> diff --git a/Documentation/devicetree/bindings/pinctrl/ralink,mt7620-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/ralink,mt7620-pinctrl.yaml
->>>>>> index 1e63ea34146a..531b5f616c3d 100644
->>>>>> --- a/Documentation/devicetree/bindings/pinctrl/ralink,mt7620-pinctrl.yaml
->>>>>> +++ b/Documentation/devicetree/bindings/pinctrl/ralink,mt7620-pinctrl.yaml
->>>>>> @@ -17,7 +17,10 @@ description:
->>>>>>     properties:
->>>>>>       compatible:
->>>>>> -    const: ralink,mt7620-pinctrl
->>>>>> +    enum:
->>>>>> +      - mediatek,mt7620-pinctrl
->>>>>> +      - ralink,mt7620-pinctrl
->>>>>
->>>>> We don't update compatible strings based on acquistions nor marketing
->>>>> whims. If you want to use 'mediatek' for new things, then fine.
->>>>
->>>> Understood. Only the SoCs with rtXXXX were rebranded, the mtXXXX SoCs share
->>>> the same architecture from Ralink, so they were incorrectly called Ralink
->>>> SoCs.
->>>>
->>>> I can remove the new strings from Ralink SoCs and add them only for MediaTek
->>>> SoCs. Or you could make an exception for this one, regarding the situation.
->>>> Whatever you think is best.
->>>
->>> I'm not in a position to make an exception as I know little about this
->>> platform. Carrying both strings is a NAK. Either you (and everyone using
->>> these platforms) care about the ABI and are stuck with the "wrong"
->>> string. In the end, they are just unique identifiers. Or you don't care
->>> and break the ABI and rename everything. If you do that, do just that in
->>> your patches and make it crystal clear in the commit msg that is your
->>> intention and why that is okay.
->>
->> Ralink had their MIPS SoCs pre-acquisition, RT2880, etc. MediaTek
->> introduced new SoCs post-acquisition, MT7620, MT7621, MT7628, and
->> MT7688, utilising the same platform from Ralink, sharing the same
->> architecture code, pinctrl core driver, etc.
->>
->> I don't intend to break the ABI at all. On the contrary, I fix it where
->> possible.
->>
->> If I understand correctly, from this conversation and what Krzysztof
->> said, all strings must be kept on the schemas so I can do what I said on
->> the composed mail. Only match the pin muxing information on the strings
->> that won't match multiple pin muxing information from other schemas.
->>
->> This way we don't break the ABI, introduce new compatible strings while
->> keeping the remaining ones, and make schemas match correctly.
->>
->> Let me know if this is acceptable to you.
+On 02/03/2023 07:34, zelong dong wrote:
+> From: Zelong Dong <zelong.dong@amlogic.com>
 > 
-> If by "introduce new compatible strings" you mean duplicate compatibles
-> to fix the ralink->mediatek, then you ignored entire email from Rob -
-> this and previous. We don't do this. Leave them as is.
+> Add new compatible for Amlogic's Meson-S4 IR Controller
 > 
-> If you meant something else, explain more...
+> Signed-off-by: Zelong Dong <zelong.dong@amlogic.com>
+> ---
+>   Documentation/devicetree/bindings/media/meson-ir.txt | 3 +++
+>   1 file changed, 3 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/media/meson-ir.txt b/Documentation/devicetree/bindings/media/meson-ir.txt
+> index efd9d29a8f10..2a6662edd04d 100644
+> --- a/Documentation/devicetree/bindings/media/meson-ir.txt
+> +++ b/Documentation/devicetree/bindings/media/meson-ir.txt
+> @@ -5,11 +5,14 @@ Required properties:
+>   		  - "amlogic,meson6-ir"
+>   		  - "amlogic,meson8b-ir"
+>   		  - "amlogic,meson-gxbb-ir"
+> +		  - "amlogic,meson-s4-ir"
+>    - reg		: physical base address and length of the device registers
+>    - interrupts	: a single specifier for the interrupt from the device
+>   
+>   Optional properties:
+>    - linux,rc-map-name:	see rc.txt file in the same directory.
+> + - amlogic,ir-support-hw-decode: enable hardware IR Decoder, and register
+> +				 rc driver as type RC_DRIVER_SCANCODE
 
-Let me put them in a group to better explain.
+AFAIK this is a software parameter since the HW is capable of decoding,
+if you want to make the HW decoding a runtime option, please use another way.
 
-## Fix ABI
+>   
+>   Example:
+>   
 
-ralink,rt2880-pinmux was there before, it was removed which broke the 
-ABI. I'm reintroducing it to fix it.
+Please base changes on top of https://lore.kernel.org/all/20221117-b4-amlogic-bindings-convert-v3-4-e28dd31e3bed@linaro.org/
 
-## New strings to be able to split bindings
-
-New strings are needed for MT7628/MT7688 and some RT SoCs to be able to 
-properly document the pin muxing information.
-
-## Incorrect naming
-
-MT7620, MT7621, MT7628, and MT7688 SoCs are incorrectly called Ralink, 
-introduce new ralink->mediatek compatible strings to address it.
-
-## Exception for RT SoCs to be called MediaTek
-
-This is where I was asking an exception to be made. Rob told us here 
-they know little about the platform so I explained it.
-
-MediaTek acquired Ralink and then introduced new MediaTek SoCs utilising 
-the same platform from Ralink.
-
-Anyway, now that I look at this again, it makes sense to me as well not 
-to rename the Ralink SoCs. I'll call the RT SoCs Ralink on the kconfig, 
-pinctrl driver, and dt-binding schemas on my next version.
-
-Arınç
+Thanks,
+Neil
