@@ -2,133 +2,123 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id ED2A26A7F79
-	for <lists+devicetree@lfdr.de>; Thu,  2 Mar 2023 11:02:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CD49B6A7F86
+	for <lists+devicetree@lfdr.de>; Thu,  2 Mar 2023 11:04:29 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230078AbjCBKBz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 2 Mar 2023 05:01:55 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47140 "EHLO
+        id S229697AbjCBKD4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 2 Mar 2023 05:03:56 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50904 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230274AbjCBKBX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Mar 2023 05:01:23 -0500
-Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com [IPv6:2a00:1450:4864:20::52b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E9138457FB;
-        Thu,  2 Mar 2023 02:00:53 -0800 (PST)
-Received: by mail-ed1-x52b.google.com with SMTP id a25so2807833edb.0;
-        Thu, 02 Mar 2023 02:00:53 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=tSEKXQWn54O1bcUyLcSiBooFO95lr1k3X3C2W2Migjs=;
-        b=PKEfnraJ0Alp4pZNcheigWRJmahYGgvQZZeXjs9znoUqTHAuIKqbvPVYLDS3NI0Uxg
-         17miis2AxLl7gJL7cBMEPQiz3F6Qy2oW9dmmbmAIq3EjdK2r8GoSpV553oczuktpW3EO
-         PkoTbiG8qdONuQeSPe0Jl+XBpVVdOW7cia/qyi2wV4/YOIlstLOA78Prqjs31KCainjT
-         QR0ryppzWVcQR9Ip6wPQQesRXh7n0wcaQdL3IEwZRj/rTUiwxRUPQQ/RmpA6Cg880Wgx
-         6PvfD+jHaeGIrCOjEe9XJ1DNd+UGcNXSx6ZM45VhbpByT+6TPeUrt855RdHTuLSwyfCE
-         oX4g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=tSEKXQWn54O1bcUyLcSiBooFO95lr1k3X3C2W2Migjs=;
-        b=exvSLgxx1vTzWqWkRg8YOkJolSH9DK1hqjTbrl/Len18enDsxYHDhXYAFplzQlzlVp
-         I32GrZMhNeMCYcygpcoyLSsUbFH5ohqm70p1jjVy1XuuZlIAqQfDeEANBsENVHheSowQ
-         dFXy9F4Td6sEfst6TTYN/nxBSOGMUeUAqm2L0AZaeKYssLE1NTC3FXB0K0SqNEB45Rh/
-         jAmEnWP6ffTDnAuYMQ6ILg61+BTB9t+AyTstzkme4a94LZLGJsfQJuvTk3XtHzMMIRhi
-         J/Ouxkuxm7BJhk/gyhEyQd2V3tDapwR/7XtDJC4/rDzWs/fS0bNRSCel8cssFWm9Jun9
-         YSFw==
-X-Gm-Message-State: AO0yUKXTA9+FckOvGxSx1+KD5MCysAChL6K0ZRyC3z7kIWpzcoRQjJc9
-        nXrvN+y1NLesNW2R/Pj/4t0=
-X-Google-Smtp-Source: AK7set8cMBsQgSgzNy7n5UjRfNXJOKgJ96z0jDtPPJnBMG6MPTIk+Qj7xG+k75iN3bojtTFYfU1r2A==
-X-Received: by 2002:a17:907:2cc4:b0:8a9:e031:c4b7 with SMTP id hg4-20020a1709072cc400b008a9e031c4b7mr11816825ejc.4.1677751225127;
-        Thu, 02 Mar 2023 02:00:25 -0800 (PST)
-Received: from skbuf ([188.27.184.189])
-        by smtp.gmail.com with ESMTPSA id w18-20020a1709061f1200b008c9b44b7851sm6881257ejj.182.2023.03.02.02.00.23
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 02 Mar 2023 02:00:24 -0800 (PST)
-Date:   Thu, 2 Mar 2023 12:00:22 +0200
-From:   Vladimir Oltean <olteanv@gmail.com>
-To:     Daniel Golle <daniel@makrotopia.org>
-Cc:     devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        netdev@vger.kernel.org, linux-mediatek@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Russell King <linux@armlinux.org.uk>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Lorenzo Bianconi <lorenzo@kernel.org>,
-        Mark Lee <Mark-MC.Lee@mediatek.com>,
-        John Crispin <john@phrozen.org>, Felix Fietkau <nbd@nbd.name>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        DENG Qingfang <dqfext@gmail.com>,
-        Landen Chao <Landen.Chao@mediatek.com>,
-        Sean Wang <sean.wang@mediatek.com>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Eric Dumazet <edumazet@google.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Jianhui Zhao <zhaojh329@gmail.com>,
-        =?utf-8?B?QmrDuHJu?= Mork <bjorn@mork.no>
-Subject: Re: [RFC PATCH v11 08/12] net: ethernet: mtk_eth_soc: fix RX data
- corruption issue
-Message-ID: <20230302100022.vcw5kqpiy6jpmq3r@skbuf>
-References: <cover.1677699407.git.daniel@makrotopia.org>
- <9a788bb6984c836e63a7ecbdadff11a723769c37.1677699407.git.daniel@makrotopia.org>
- <20230301233121.trnzgverxndxgunu@skbuf>
- <Y//n4R2QuWvySDbg@makrotopia.org>
+        with ESMTP id S230425AbjCBKDU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Mar 2023 05:03:20 -0500
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 425E835B1;
+        Thu,  2 Mar 2023 02:02:18 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1677751338; x=1709287338;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=wXJoqjlMwyT50ByTps6K1QT9wCiNFa9WZdbp0ek08mI=;
+  b=QurBqqctzUlfhlXuACJRjnr6Mn6Cq+ItnrZ5GHzki4ydOcjP4TkUJmZH
+   Fhfm/05DrhLheKXdQlEVB6CtGXVTLJiRmW8EDmCvhgXmhRIUVHHgHszsy
+   z+ILC9VSudBeVAEydWWsN6qBra+vSqToFK0NxZysokH04SKgUWEUZvJ6q
+   JaGe9Rm/7muDvAmHQWjr6p+dCHTUaHytKNy8RmToloAs1OQixEB5c8UoO
+   pX0YYxd/u26N3Vo6+8AronNPCxf/69RUa8RZU0revHX2WNQD25KKzQpZG
+   K0NidrckT/yCvFGSI86w03G5mzxqn7VzpFa/7ZQpSkAslotV5oUmgF7pe
+   Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10636"; a="336178072"
+X-IronPort-AV: E=Sophos;i="5.98,227,1673942400"; 
+   d="scan'208";a="336178072"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 Mar 2023 02:02:14 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6500,9779,10636"; a="739005512"
+X-IronPort-AV: E=Sophos;i="5.98,227,1673942400"; 
+   d="scan'208";a="739005512"
+Received: from lkp-server01.sh.intel.com (HELO 776573491cc5) ([10.239.97.150])
+  by fmsmga008.fm.intel.com with ESMTP; 02 Mar 2023 02:02:10 -0800
+Received: from kbuild by 776573491cc5 with local (Exim 4.96)
+        (envelope-from <lkp@intel.com>)
+        id 1pXflK-0000OU-02;
+        Thu, 02 Mar 2023 10:02:10 +0000
+Date:   Thu, 2 Mar 2023 18:02:07 +0800
+From:   kernel test robot <lkp@intel.com>
+To:     Dmitry Rokosov <ddrokosov@sberdevices.ru>,
+        neil.armstrong@linaro.org, jbrunet@baylibre.com,
+        mturquette@baylibre.com, sboyd@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, khilman@baylibre.com,
+        martin.blumenstingl@googlemail.com
+Cc:     oe-kbuild-all@lists.linux.dev, jian.hu@amlogic.com,
+        kernel@sberdevices.ru, rockosov@gmail.com,
+        linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        Dmitry Rokosov <ddrokosov@sberdevices.ru>
+Subject: Re: [PATCH v9 2/5] clk: meson: a1: add Amlogic A1 PLL clock
+ controller driver
+Message-ID: <202303021725.QbK36cES-lkp@intel.com>
+References: <20230301183759.16163-3-ddrokosov@sberdevices.ru>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <Y//n4R2QuWvySDbg@makrotopia.org>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+In-Reply-To: <20230301183759.16163-3-ddrokosov@sberdevices.ru>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Mar 02, 2023 at 12:03:45AM +0000, Daniel Golle wrote:
-> On Thu, Mar 02, 2023 at 01:31:21AM +0200, Vladimir Oltean wrote:
-> > On Wed, Mar 01, 2023 at 07:55:05PM +0000, Daniel Golle wrote:
-> > > Also set bit 12 which disabled the RX FIDO clear function when setting up
-> > > MAC MCR, as MediaTek SDK did the same change stating:
-> > > "If without this patch, kernel might receive invalid packets that are
-> > > corrupted by GMAC."[1]
-> > > This fixes issues with <= 1G speed where we could previously observe
-> > > about 30% packet loss while the bad packet counter was increasing.
-> > > 
-> > > [1]: https://git01.mediatek.com/plugins/gitiles/openwrt/feeds/mtk-openwrt-feeds/+/d8a2975939a12686c4a95c40db21efdc3f821f63
-> > > Tested-by: Bjørn Mork <bjorn@mork.no>
-> > > Signed-off-by: Daniel Golle <daniel@makrotopia.org>
-> > > ---
-> > 
-> > Should this patch be submitted separately from the series, to the
-> > net.git tree, to be backported to stable kernels?
-> 
-> Maybe yes, as this issue may affect e.g. the BPi-R3 board when used
-> with 1G SFP modules. Previously this has just never been a problem as
-> all practically all boards with MediaTek SoCs using SGMII also use the
-> MediaTek MT7531 switch connecting in 2500Base-X mode.
-> 
-> Should the Fixes:-tag hence reference the commit adding support for the
-> BPi-R3?
+Hi Dmitry,
 
-If it's not an issue that affects existing setups, there is no need to
-backport the patch. But it needs to be clearly described as such in the
-commit message.
+I love your patch! Yet something to improve:
 
-You mention <= 1G speeds, but then only talk about 1G SFP modules.
-I see that the mtk_eth_soc driver also sets "gmii" and "rgmii" in
-phylink's supported_interfaces. Those are also <= 1G speeds. There could
-also be SGMII on-board PHYs. Does the RX FIFO clearing issue not affect
-those?
+[auto build test ERROR on clk/clk-next]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Dmitry-Rokosov/clk-meson-add-support-for-A1-PLL-clock-ops/20230302-024110
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/clk/linux.git clk-next
+patch link:    https://lore.kernel.org/r/20230301183759.16163-3-ddrokosov%40sberdevices.ru
+patch subject: [PATCH v9 2/5] clk: meson: a1: add Amlogic A1 PLL clock controller driver
+config: arm64-allyesconfig (https://download.01.org/0day-ci/archive/20230302/202303021725.QbK36cES-lkp@intel.com/config)
+compiler: aarch64-linux-gcc (GCC) 12.1.0
+reproduce (this is a W=1 build):
+        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+        chmod +x ~/bin/make.cross
+        # https://github.com/intel-lab-lkp/linux/commit/7f065968cd67b07045e9dda1d9b8fabb06f2100d
+        git remote add linux-review https://github.com/intel-lab-lkp/linux
+        git fetch --no-tags linux-review Dmitry-Rokosov/clk-meson-add-support-for-A1-PLL-clock-ops/20230302-024110
+        git checkout 7f065968cd67b07045e9dda1d9b8fabb06f2100d
+        # save the config file
+        mkdir build_dir && cp config build_dir/.config
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.1.0 make.cross W=1 O=build_dir ARCH=arm64 olddefconfig
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.1.0 make.cross W=1 O=build_dir ARCH=arm64 SHELL=/bin/bash
+
+If you fix the issue, kindly add following tag where applicable
+| Reported-by: kernel test robot <lkp@intel.com>
+| Link: https://lore.kernel.org/oe-kbuild-all/202303021725.QbK36cES-lkp@intel.com/
+
+All errors (new ones prefixed by >>):
+
+>> drivers/clk/meson/a1-pll.c:13:10: fatal error: meson-a1-clkc.h: No such file or directory
+      13 | #include "meson-a1-clkc.h"
+         |          ^~~~~~~~~~~~~~~~~
+   compilation terminated.
+
+
+vim +13 drivers/clk/meson/a1-pll.c
+
+  > 13	#include "meson-a1-clkc.h"
+    14	#include "a1-pll.h"
+    15	#include "clk-regmap.h"
+    16	
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests
