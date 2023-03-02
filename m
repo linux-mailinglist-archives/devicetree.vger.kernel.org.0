@@ -2,52 +2,47 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E4D526A843F
-	for <lists+devicetree@lfdr.de>; Thu,  2 Mar 2023 15:35:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 91A1E6A845D
+	for <lists+devicetree@lfdr.de>; Thu,  2 Mar 2023 15:46:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229945AbjCBOfC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 2 Mar 2023 09:35:02 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55118 "EHLO
+        id S229736AbjCBOqs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 2 Mar 2023 09:46:48 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37630 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229939AbjCBOfB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Mar 2023 09:35:01 -0500
-Received: from out-44.mta0.migadu.com (out-44.mta0.migadu.com [IPv6:2001:41d0:1004:224b::2c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3D5EB12BD4
-        for <devicetree@vger.kernel.org>; Thu,  2 Mar 2023 06:34:44 -0800 (PST)
-Date:   Thu, 2 Mar 2023 15:34:36 +0100
+        with ESMTP id S229608AbjCBOqs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Mar 2023 09:46:48 -0500
+Received: from out-34.mta1.migadu.com (out-34.mta1.migadu.com [IPv6:2001:41d0:203:375::22])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 08D3311641
+        for <devicetree@vger.kernel.org>; Thu,  2 Mar 2023 06:46:44 -0800 (PST)
+Date:   Thu, 2 Mar 2023 15:46:40 +0100
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
-        t=1677767681;
+        t=1677768403;
         h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
          to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
          in-reply-to:in-reply-to:references:references;
-        bh=ekEV5MAm7E6bjxp2q4ldu7Xx50sJODF+lRB04Y8cTWY=;
-        b=YfxbP5WynmZcy/mSFqeS8QHrrfDbdj3xuSCY7Nbir/eL0wkrwMT1QYZLcNGOc2pLv4ipFE
-        S00O9ppI7M8mC88e/oRAJsh7AhkuEd2tuJYR1l1vYYERKoYqHHEu8tnKE9g6F4plFuduMC
-        jdKeqFfVfCr1e7TYwJ7FUuygQPCVQtI=
+        bh=iwol87XDWXqBL/XnmrtGtZtjABgKSyQA6ugkaogEFYY=;
+        b=BhdP8+r9QSbtpRZiPRsN2Qey92rHcMc4bJCYEeGLYJZQ3XT/dwlU9qW6ZYJhiPwbbaJXfO
+        Jy3AkKN9/IeAX8RxOw8b/c3vSHNpqIT7gJ7vdeTd/NEijOF0466e9JtYbN2bJMSX7CAD4S
+        qenb0nX+9WkWKdFs3UDYU9onft5PhF0=
 X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
 From:   Richard Leitner <richard.leitner@linux.dev>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Richard Leitner <richard.leitner@skidata.com>,
-        Mark Brown <broonie@kernel.org>, Takashi Iwai <tiwai@suse.com>,
-        alsa-devel@alsa-project.org, Rob Herring <robh+dt@kernel.org>,
-        linux-kernel@vger.kernel.org,
-        Ladislav Michl <ladis@linux-mips.org>,
-        Benjamin Bara <benjamin.bara@skidata.com>,
-        devicetree@vger.kernel.org, Jaroslav Kysela <perex@perex.cz>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>
-Subject: Re: [PATCH 1/3] ASoC: dt-bindings: maxim,max9867: convert txt
- bindings to yaml
-Message-ID: <ZACz/C/lMh/WsyrB@g0hl1n.net>
+To:     Claudiu.Beznea@microchip.com, robh+dt@kernel.org
+Cc:     broonie@kernel.org, lgirdwood@gmail.com,
+        krzysztof.kozlowski+dt@linaro.org, ladis@linux-mips.org,
+        tiwai@suse.com, benjamin.bara@skidata.com,
+        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, richard.leitner@skidata.com,
+        bbara93@gmail.com
+Subject: Re: [PATCH 3/3] ASoC: maxim,max9867: add "mclk" support
+Message-ID: <ZAC20AcKy/O+9DkV@g0hl1n.net>
 References: <20230302-max9867-v1-0-aa9f7f25db5e@skidata.com>
- <20230302-max9867-v1-1-aa9f7f25db5e@skidata.com>
- <167775917220.270950.1253335215666674705.robh@kernel.org>
+ <20230302-max9867-v1-3-aa9f7f25db5e@skidata.com>
+ <b0a5c0c2-dfbd-460a-af0d-c9d498607d72@sirena.org.uk>
+ <61e4485b-9211-fa38-5061-f5861292ddd1@microchip.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <167775917220.270950.1253335215666674705.robh@kernel.org>
+In-Reply-To: <61e4485b-9211-fa38-5061-f5861292ddd1@microchip.com>
 X-Migadu-Flow: FLOW_OUT
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
@@ -58,62 +53,28 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Mar 02, 2023 at 07:05:02AM -0600, Rob Herring wrote:
-> 
-> On Thu, 02 Mar 2023 12:55:01 +0100, richard.leitner@linux.dev wrote:
-> > From: Richard Leitner <richard.leitner@skidata.com>
-> > 
-> > Convert from max9867.txt to maxim,max9867.yaml and add missing
-> > '#sound-dai-cells' property.
-> > 
-> > Signed-off-by: Richard Leitner <richard.leitner@skidata.com>
-> > ---
-> >  .../devicetree/bindings/sound/max9867.txt          | 17 --------
-> >  .../devicetree/bindings/sound/maxim,max9867.yaml   | 51 ++++++++++++++++++++++
-> >  2 files changed, 51 insertions(+), 17 deletions(-)
-> > 
-> 
-> My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-> on your patch (DT_CHECKER_FLAGS is new in v5.13):
+Hi Claudiu,
 
-Thank you for the pointer, Rob!
+On Thu, Mar 02, 2023 at 12:45:50PM +0000, Claudiu.Beznea@microchip.com wrote:
+> On 02.03.2023 14:20, Mark Brown wrote:
+> >> +	max9867->mclk = devm_clk_get(&i2c->dev, "mclk");
+> >> +	if (IS_ERR(max9867->mclk))
+> >> +		return PTR_ERR(max9867->mclk);
+> >> +	ret = clk_prepare_enable(max9867->mclk);
+> >> +	if (ret < 0)
+> >> +		dev_err(&i2c->dev, "Failed to enable MCLK: %d\n", ret);
+> >> +
+> > Nothing ever disables the clock - we need a disable in the remove path
+> > at least.
+> 
+> I don't have the full context of this patch but this diff seems a good
+> candidate for devm_clk_get_enabled().
 
-Will fix those in v2 and from now on run 'make DT_CHECKER_FLAGS=-m
-dt_binding_check' before sending any patches 😉
+Thanks for that pointer, but currently we are thinking of prepare_enable
+the clock in SND_SOC_BIAS_ON and disable_unprepare it in SND_SOC_BIAS_OFF
+(similar to wm8731.c).
+Therefore probe() will only do a devm_clk_get().
+
+Claudiu, Rob: Will this be an acceptable solution?
 
 regards;rl
-
-> 
-> yamllint warnings/errors:
-> 
-> dtschema/dtc warnings/errors:
-> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/sound/maxim,max9867.yaml: 'oneOf' conditional failed, one must be fixed:
-> 	'unevaluatedProperties' is a required property
-> 	'additionalProperties' is a required property
-> 	hint: Either unevaluatedProperties or additionalProperties must be present
-> 	from schema $id: http://devicetree.org/meta-schemas/core.yaml#
-> ./Documentation/devicetree/bindings/sound/maxim,max9867.yaml: $id: relative path/filename doesn't match actual path or filename
-> 	expected: http://devicetree.org/schemas/sound/maxim,max9867.yaml#
-> Error: Documentation/devicetree/bindings/sound/maxim,max9867.example.dts:18.9-13 syntax error
-> FATAL ERROR: Unable to parse input tree
-> make[1]: *** [scripts/Makefile.lib:434: Documentation/devicetree/bindings/sound/maxim,max9867.example.dtb] Error 1
-> make[1]: *** Waiting for unfinished jobs....
-> make: *** [Makefile:1508: dt_binding_check] Error 2
-> 
-> doc reference errors (make refcheckdocs):
-> 
-> See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20230302-max9867-v1-1-aa9f7f25db5e@skidata.com
-> 
-> The base for the series is generally the latest rc1. A different dependency
-> should be noted in *this* patch.
-> 
-> If you already ran 'make dt_binding_check' and didn't see the above
-> error(s), then make sure 'yamllint' is installed and dt-schema is up to
-> date:
-> 
-> pip3 install dtschema --upgrade
-> 
-> Please check and re-submit after running the above command yourself. Note
-> that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-> your schema. However, it must be unset to test all examples with your schema.
-> 
