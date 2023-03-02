@@ -2,95 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4EF5C6A78D2
-	for <lists+devicetree@lfdr.de>; Thu,  2 Mar 2023 02:22:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4F2406A78F5
+	for <lists+devicetree@lfdr.de>; Thu,  2 Mar 2023 02:38:36 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229523AbjCBBWP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 Mar 2023 20:22:15 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58556 "EHLO
+        id S229706AbjCBBid (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 Mar 2023 20:38:33 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40168 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229445AbjCBBWO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Mar 2023 20:22:14 -0500
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C2437460B3;
-        Wed,  1 Mar 2023 17:22:12 -0800 (PST)
-Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 321N0PVj032491;
-        Thu, 2 Mar 2023 01:21:56 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=hyQxkgFzuSR8YZ5Bl4NrASAhqzVQh3AgpefjsIf0GmI=;
- b=SuqCfRao7BN/vIPCbYrZeOSYl/QVRUJYsGX8MY370+Y2OjKZPjnRIXCeAtuGxoGI2rqD
- OC/5rjtyl9Wtpxi2c2wKcMCrXx9rZfRdB6cLkLWraDKnGY9zTq/kShPvBBL/i0c1K5bk
- oqoDXXvZVdit6VsVF7AMRJXgDeON1FM30iz5IK4Ud6anZjMyG692Bg1c6V4soAbmjKG4
- etByXyEDmZdWdWO8+BZb8D0DwnTNLJugn4buwMNEQfw9FSqAL76V4zI8GTyu+m9NE1F0
- 8RAn6ZmcOeJkbnAVgjn3luVnktZWcCYBUxhFUUUv8oFhyp7lFCiQ2duR0Iijs1Hm0GH1 Zw== 
-Received: from nasanppmta04.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3p24yut3sk-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 02 Mar 2023 01:21:55 +0000
-Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
-        by NASANPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3221Ltdf019789
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 2 Mar 2023 01:21:55 GMT
-Received: from [10.134.65.165] (10.80.80.8) by nasanex01b.na.qualcomm.com
- (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.41; Wed, 1 Mar 2023
- 17:21:53 -0800
-Message-ID: <d01e4b1f-862b-410f-66bb-9b8158e76807@quicinc.com>
-Date:   Wed, 1 Mar 2023 17:21:53 -0800
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.1
-Subject: Re: [PATCH v10 04/26] virt: gunyah: Add hypercalls to identify Gunyah
-Content-Language: en-US
-To:     Alex Elder <alex.elder@linaro.org>, Alex Elder <elder@linaro.org>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>,
-        "Prakruthi Deepak Heragu" <quic_pheragu@quicinc.com>
-CC:     Murali Nalajala <quic_mnalajal@quicinc.com>,
-        Trilok Soni <quic_tsoni@quicinc.com>,
-        Srivatsa Vaddagiri <quic_svaddagi@quicinc.com>,
-        Carl van Schaik <quic_cvanscha@quicinc.com>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        "Konrad Dybcio" <konrad.dybcio@linaro.org>,
-        Arnd Bergmann <arnd@arndb.de>,
-        "Greg Kroah-Hartman" <gregkh@linuxfoundation.org>,
+        with ESMTP id S229701AbjCBBib (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Mar 2023 20:38:31 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 71E76305C4;
+        Wed,  1 Mar 2023 17:38:26 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 13DCDB811EC;
+        Thu,  2 Mar 2023 01:38:25 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 04EACC433D2;
+        Thu,  2 Mar 2023 01:38:22 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1677721103;
+        bh=rKtcHDStlDpmev0wSqFyH2j1eZ3mNsvHeJTuTDd60rk=;
+        h=From:To:Cc:Subject:Date:From;
+        b=Oq0iRiKSGI3z/jJpMgBfNOss+Xzar8RB/Cw11ZHp3oGjPiMZ8vs68LTw4qreqA/VI
+         BpgpwOQ7uCgJEavC3zsKuuWBqfeTXaf9ydAm/THAWCV3L/MnQaQRKF4K2PxQx38FMG
+         jcAYlN7XG4iU1l4mUBLFCEkHlxhkRocvuUyFc+j6o0KrZPtq1MmHjxUqW90wYKbbFj
+         I5Uj9I+R30xd5TSwLaH39w3rJcKu8h482yW5Uh/XW/XHjBt9QXk2l5oOjQujJuMQYg
+         RXaTU21Its7pzaW8Z11gOGGd1A3RixrpdaW0goxxiLK0qu400p2dBU8NcuE0fOYvSB
+         rCqxUyZLJZKUg==
+From:   Stephen Boyd <sboyd@kernel.org>
+To:     Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>
+Cc:     linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
+        patches@lists.linux.dev,
+        Brendan Higgins <brendan.higgins@linux.dev>,
+        David Gow <davidgow@google.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        "Rafael J . Wysocki" <rafael@kernel.org>,
+        Richard Weinberger <richard@nod.at>,
+        Anton Ivanov <anton.ivanov@cambridgegreys.com>,
+        Johannes Berg <johannes@sipsolutions.net>,
+        Vincent Whitchurch <vincent.whitchurch@axis.com>,
         Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Christian Marangi <ansuelsmth@gmail.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jonathan Corbet <corbet@lwn.net>,
-        Bagas Sanjaya <bagasdotme@gmail.com>,
-        Jassi Brar <jassisinghbrar@gmail.com>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-doc@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>
-References: <20230214211229.3239350-1-quic_eberman@quicinc.com>
- <20230214211229.3239350-5-quic_eberman@quicinc.com>
- <4eb2e494-d987-5eb7-3513-be58eb87c9af@linaro.org>
-From:   Elliot Berman <quic_eberman@quicinc.com>
-In-Reply-To: <4eb2e494-d987-5eb7-3513-be58eb87c9af@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+        devicetree@vger.kernel.org, linux-um@lists.infradead.org,
+        linux-kselftest@vger.kernel.org, kunit-dev@googlegroups.com
+Subject: [PATCH 0/8] clk: Add kunit tests for fixed rate and parent data
+Date:   Wed,  1 Mar 2023 17:38:13 -0800
+Message-Id: <20230302013822.1808711-1-sboyd@kernel.org>
+X-Mailer: git-send-email 2.39.2.722.g9855ee24e9-goog
+MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nasanex01b.na.qualcomm.com (10.46.141.250)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: R_DQVLllJKNcTXXTtSy5zqtfT2bjjag2
-X-Proofpoint-ORIG-GUID: R_DQVLllJKNcTXXTtSy5zqtfT2bjjag2
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.219,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
- definitions=2023-03-01_17,2023-03-01_03,2023-02-09_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 impostorscore=0
- bulkscore=0 priorityscore=1501 malwarescore=0 suspectscore=0 mlxscore=0
- adultscore=0 spamscore=0 mlxlogscore=999 phishscore=0 lowpriorityscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2212070000
- definitions=main-2303020008
-X-Spam-Status: No, score=-2.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -98,31 +65,76 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+This patch series adds unit tests for the clk fixed rate basic type and
+the clk registration functions that use struct clk_parent_data. To get
+there, we add support for loading a DTB into the UML kernel that's
+running the unit tests along with probing platform drivers to bind to
+device nodes specified in DT.
+
+With this series, we're able to exercise some of the code in the common
+clk framework that uses devicetree lookups to find parents and the fixed
+rate clk code that scans devicetree directly and creates clks. Please
+review.
+
+I Cced everyone to all the patches so they get the full context. I'm
+hoping I can take the whole pile through the clk tree as they almost all
+depend on each other. In the future I imagine it will be easy to add
+more test nodes to the clk.dtsi file and not need to go across various
+maintainer trees like this series does.
+
+Stephen Boyd (8):
+  dt-bindings: Add linux,kunit binding
+  of: Enable DTB loading on UML for KUnit tests
+  kunit: Add test managed platform_device/driver APIs
+  clk: Add test managed clk provider/consumer APIs
+  dt-bindings: kunit: Add fixed rate clk consumer test
+  clk: Add KUnit tests for clk fixed rate basic type
+  dt-bindings: clk: Add KUnit clk_parent_data test
+  clk: Add KUnit tests for clks registered with struct clk_parent_data
+
+ .../clock/linux,clk-kunit-parent-data.yaml    |  47 ++
+ .../kunit/linux,clk-kunit-fixed-rate.yaml     |  35 ++
+ .../bindings/kunit/linux,kunit.yaml           |  24 +
+ arch/um/kernel/dtb.c                          |  29 +-
+ drivers/clk/.kunitconfig                      |   3 +
+ drivers/clk/Kconfig                           |   7 +
+ drivers/clk/Makefile                          |   6 +
+ drivers/clk/clk-fixed-rate_test.c             | 296 ++++++++++++
+ drivers/clk/clk-kunit.c                       | 204 ++++++++
+ drivers/clk/clk-kunit.h                       |  28 ++
+ drivers/clk/clk_test.c                        | 456 +++++++++++++++++-
+ drivers/of/Kconfig                            |  26 +
+ drivers/of/Makefile                           |   1 +
+ drivers/of/kunit/.kunitconfig                 |   4 +
+ drivers/of/kunit/Makefile                     |   4 +
+ drivers/of/kunit/clk.dtsi                     |  30 ++
+ drivers/of/kunit/kunit.dtsi                   |   9 +
+ drivers/of/kunit/kunit.dtso                   |   4 +
+ drivers/of/kunit/uml_dtb_test.c               |  55 +++
+ include/kunit/platform_driver.h               |  15 +
+ lib/kunit/Makefile                            |   6 +
+ lib/kunit/platform_driver-test.c              | 107 ++++
+ lib/kunit/platform_driver.c                   | 207 ++++++++
+ 23 files changed, 1599 insertions(+), 4 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/clock/linux,clk-kunit-parent-data.yaml
+ create mode 100644 Documentation/devicetree/bindings/kunit/linux,clk-kunit-fixed-rate.yaml
+ create mode 100644 Documentation/devicetree/bindings/kunit/linux,kunit.yaml
+ create mode 100644 drivers/clk/clk-fixed-rate_test.c
+ create mode 100644 drivers/clk/clk-kunit.c
+ create mode 100644 drivers/clk/clk-kunit.h
+ create mode 100644 drivers/of/kunit/.kunitconfig
+ create mode 100644 drivers/of/kunit/Makefile
+ create mode 100644 drivers/of/kunit/clk.dtsi
+ create mode 100644 drivers/of/kunit/kunit.dtsi
+ create mode 100644 drivers/of/kunit/kunit.dtso
+ create mode 100644 drivers/of/kunit/uml_dtb_test.c
+ create mode 100644 include/kunit/platform_driver.h
+ create mode 100644 lib/kunit/platform_driver-test.c
+ create mode 100644 lib/kunit/platform_driver.c
 
 
-On 2/23/2023 4:09 PM, Alex Elder wrote:
-> On 2/14/23 3:12 PM, Elliot Berman wrote:
->> +
->> +void gh_hypercall_hyp_identify(struct gh_hypercall_hyp_identify_resp 
->> *hyp_identity);
-> 
-> Since this is a user space API, you *could* consider having
-> this function return an int.  Just in case there's a future
-> reason that a failure could occur, or that you want to
-> supply some other information.  If this truly doesn't make
-> sense, it's fine as-is...
-> 
-
-I'm not sure what was meant by user space API. However, hypervisor API 
-doesn't provision a return value. r0 is usually the return value for 
-most other Gunyah hypercalls except for this one -- instead, it's the 
-api_info field.
-
-The other kind of error we could get is at hypercall "transport" layer, 
-but the hvc instruction doesn't fail and if we ever change the hypercall 
-transport, I'm sure there will be a lot of other changes to consider as 
-well.
-
-Thanks,
-Elliot
+base-commit: c9c3395d5e3dcc6daee66c6908354d47bf98cb0c
+-- 
+https://git.kernel.org/pub/scm/linux/kernel/git/clk/linux.git/
+https://git.kernel.org/pub/scm/linux/kernel/git/sboyd/spmi.git
 
