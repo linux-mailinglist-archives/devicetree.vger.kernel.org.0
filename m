@@ -2,94 +2,330 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8D16C6A84DA
-	for <lists+devicetree@lfdr.de>; Thu,  2 Mar 2023 16:04:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DBAD26A84E1
+	for <lists+devicetree@lfdr.de>; Thu,  2 Mar 2023 16:06:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230331AbjCBPEd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 2 Mar 2023 10:04:33 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35482 "EHLO
+        id S229756AbjCBPGA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 2 Mar 2023 10:06:00 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37058 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230287AbjCBPE3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Mar 2023 10:04:29 -0500
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 38E67457C3;
-        Thu,  2 Mar 2023 07:04:22 -0800 (PST)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 1556F1FB;
-        Thu,  2 Mar 2023 07:05:05 -0800 (PST)
-Received: from [10.1.196.40] (e121345-lin.cambridge.arm.com [10.1.196.40])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 5F5203F67D;
-        Thu,  2 Mar 2023 07:04:20 -0800 (PST)
-Message-ID: <f79c884a-e344-f434-7adb-8b9e3034027c@arm.com>
-Date:   Thu, 2 Mar 2023 15:04:16 +0000
+        with ESMTP id S229996AbjCBPFo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Mar 2023 10:05:44 -0500
+Received: from smtp-relay-internal-1.canonical.com (smtp-relay-internal-1.canonical.com [185.125.188.123])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5D91BC0
+        for <devicetree@vger.kernel.org>; Thu,  2 Mar 2023 07:05:42 -0800 (PST)
+Received: from mail-qt1-f199.google.com (mail-qt1-f199.google.com [209.85.160.199])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 685B13F230
+        for <devicetree@vger.kernel.org>; Thu,  2 Mar 2023 15:05:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+        s=20210705; t=1677769540;
+        bh=ennINZICblkLNJRKAL6C7ysXY/vpm4KR2muFA6qF6vI=;
+        h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+         To:Cc:Content-Type;
+        b=EZyd6UebuPiuudYZItBUpKLm87N5nanSwg54SBSo+D6K/6xS1F9xMpfiBKPwVu08Q
+         9idxxiJBRDzs7CZzLgbPT3R2xSyvgDchBGb7xGLqt1joXsrGv/bQUMnl1aQBahhOFt
+         FLRD2IWc/GbpxwjsFgLfJ5Lc1WCStUSfc9YiHG01z57zjM+gyf47zIu3NYRYw7kDlX
+         el29ib94TxhnwBUMZnDDXo+X/VgZKAVNL0fhcw8uCvI6MoQCO9xRg5KJP88kgYHi7i
+         KJ4VuQz0so4n4Lq4z56VnPxjiD1/+hnY0dUBSlMTFxniJnHNu2Q2g0t+7s6LTMCfqS
+         PwWyWjER4jVNA==
+Received: by mail-qt1-f199.google.com with SMTP id k13-20020ac8074d000000b003bfd04a3cbcso7388756qth.16
+        for <devicetree@vger.kernel.org>; Thu, 02 Mar 2023 07:05:40 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1677769539;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=ennINZICblkLNJRKAL6C7ysXY/vpm4KR2muFA6qF6vI=;
+        b=Wfd//2TYPJieycodqSvLFIV+mK1qWyqVLB3CNQxlauHlLLl6P8wPwouBrOOx/WS8hr
+         5QF1GLJ9wd+9ydFbYlD0SszzG0fccdJa9mpqQ3hmoHHV+GPZMyQqxTAGVFjBsF/BUmPc
+         hOok50Qspp+vl9ntikEHQ/wdS+imGJe/nbmHRg8iwYY58MkPkIGD7H5K891l9tFL553C
+         uRSzIBCvxLEQK+XSGzd9PxYCT57We8zAy9baAcV2nQtinLHB2zqMyxiTjSEANlzhDIaW
+         u9I7RE9KIVElYJBJjVJZ3sorSe5grOVJcPI1HqkkVi7/Xk566VE20fQgQIM6HPfbxoHA
+         UWSg==
+X-Gm-Message-State: AO0yUKVRV5hvzcJ61IYRfWP/XTo9c34ko+NZBpw8N9x6WDUVoyfXOfsZ
+        2evzPwFLXOm1iXXJhHK7r0kBPZowrupEZfSrFqLaSw2bc5OkJOVyt2nxld51yaR3ACFogrjixI8
+        lOOyHK9mn9AF4y+heczBcwYsNsjaQ5NmJ3CdooAnZlS2RMzkWSHr2Ezw=
+X-Received: by 2002:a37:4385:0:b0:721:5339:2c89 with SMTP id q127-20020a374385000000b0072153392c89mr2581670qka.7.1677769539181;
+        Thu, 02 Mar 2023 07:05:39 -0800 (PST)
+X-Google-Smtp-Source: AK7set/wLIZz+wN48cyx3bobDbJlcRdqTIx95pf2ooXaqJzdzUrI6PfTcx9xyTHMIuV8BHgY8aHD9TzSIKUGk43rNDo=
+X-Received: by 2002:a37:4385:0:b0:721:5339:2c89 with SMTP id
+ q127-20020a374385000000b0072153392c89mr2581660qka.7.1677769538838; Thu, 02
+ Mar 2023 07:05:38 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux aarch64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.1
-Subject: Re: [PATCH v2 2/4] iommu: dart: Add flag to override bypass support
-Content-Language: en-GB
-To:     Sven Peter <sven@svenpeter.dev>, Hector Martin <marcan@marcan.st>,
-        Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
+References: <20230221083323.302471-1-xingyu.wu@starfivetech.com> <20230221083323.302471-2-xingyu.wu@starfivetech.com>
+In-Reply-To: <20230221083323.302471-2-xingyu.wu@starfivetech.com>
+From:   Emil Renner Berthing <emil.renner.berthing@canonical.com>
+Date:   Thu, 2 Mar 2023 16:05:22 +0100
+Message-ID: <CAJM55Z_O+Gh0RGaAuLPxs4aSi4=5Aa3UksN_SnU-4pOn3X5fDw@mail.gmail.com>
+Subject: Re: [PATCH v2 01/11] dt-bindings: clock: Add StarFive JH7110
+ System-Top-Group clock and reset generator
+To:     Xingyu Wu <xingyu.wu@starfivetech.com>
+Cc:     linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
-        linux-arm-kernel@lists.infradead.org, asahi@lists.linux.dev,
-        iommu@lists.linux.dev, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20230228202132.4919-1-sven@svenpeter.dev>
- <20230228202132.4919-3-sven@svenpeter.dev>
-From:   Robin Murphy <robin.murphy@arm.com>
-In-Reply-To: <20230228202132.4919-3-sven@svenpeter.dev>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_NONE autolearn=ham
-        autolearn_force=no version=3.4.6
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Emil Renner Berthing <kernel@esmil.dk>,
+        Rob Herring <robh+dt@kernel.org>,
+        Conor Dooley <conor@kernel.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Hal Feng <hal.feng@starfivetech.com>,
+        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 28/02/2023 8:21 pm, Sven Peter wrote:
-> The USB4 PCIe DARTs claim to support bypass but we never want to allow
-> that on externally facing ports.
-
-IOMMU drivers shouldn't be implementing their own individual policies 
-for this - externally-facing ports should be correctly marked as 
-such[1], so that the PCI layer is properly informed, which in turn will 
-be picked up and handled properly by IOMMU core code.
-
-Thanks,
-Robin.
-
-[1] see Documentation/devicetree/bindings/pci/pci.txt
-
-> Acked-by: Hector Martin <marcan@marcan.st>
-> Signed-off-by: Sven Peter <sven@svenpeter.dev>
+On Tue, 21 Feb 2023 at 09:37, Xingyu Wu <xingyu.wu@starfivetech.com> wrote:
+> Add bindings for the System-Top-Group clock and reset generator (STGCRG)
+> on the JH7110 RISC-V SoC by StarFive Ltd.
+>
+> Signed-off-by: Xingyu Wu <xingyu.wu@starfivetech.com>
 > ---
->   drivers/iommu/apple-dart.c | 5 +++++
->   1 file changed, 5 insertions(+)
-> 
-> diff --git a/drivers/iommu/apple-dart.c b/drivers/iommu/apple-dart.c
-> index 42666617803d..7d8b2b90cdb6 100644
-> --- a/drivers/iommu/apple-dart.c
-> +++ b/drivers/iommu/apple-dart.c
-> @@ -182,6 +182,8 @@ struct apple_dart_hw {
->   	u64 ttbr_addr_field_shift;
->   	u64 ttbr_shift;
->   	int ttbr_count;
+>  .../clock/starfive,jh7110-stgcrg.yaml         | 82 +++++++++++++++++++
+>  MAINTAINERS                                   |  1 +
+>  .../dt-bindings/clock/starfive,jh7110-crg.h   | 34 ++++++++
+>  .../dt-bindings/reset/starfive,jh7110-crg.h   | 28 +++++++
+>  4 files changed, 145 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/clock/starfive,jh7110-stgcrg.yaml
+>
+> diff --git a/Documentation/devicetree/bindings/clock/starfive,jh7110-stgcrg.yaml b/Documentation/devicetree/bindings/clock/starfive,jh7110-stgcrg.yaml
+> new file mode 100644
+> index 000000000000..b64ccd84200a
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/clock/starfive,jh7110-stgcrg.yaml
+> @@ -0,0 +1,82 @@
+> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/clock/starfive,jh7110-stgcrg.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
-> +	bool disable_bypass;
->   };
->   
->   /*
-> @@ -1075,6 +1077,9 @@ static int apple_dart_probe(struct platform_device *pdev)
->   	dart->pgsize = 1 << FIELD_GET(DART_PARAMS1_PAGE_SHIFT, dart_params[0]);
->   	dart->supports_bypass = dart_params[1] & DART_PARAMS2_BYPASS_SUPPORT;
->   
-> +	if (dart->hw->disable_bypass)
-> +		dart->supports_bypass = 0;
+> +title: StarFive JH7110 System-Top-Group Clock and Reset Generator
 > +
->   	switch (dart->hw->type) {
->   	case DART_T8020:
->   	case DART_T6000:
+> +maintainers:
+> +  - Xingyu Wu <xingyu.wu@starfivetech.com>
+> +
+> +properties:
+> +  compatible:
+> +    const: starfive,jh7110-stgcrg
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    items:
+> +      - description: Main Oscillator (24 MHz)
+> +      - description: HIFI4 core
+> +      - description: STG AXI/AHB
+> +      - description: USB (125 MHz)
+> +      - description: CPU Bus
+> +      - description: HIFI4 Axi
+> +      - description: NOC STG Bus
+> +      - description: APB Bus
+> +
+> +  clock-names:
+> +    items:
+> +      - const: osc
+> +      - const: hifi4_core
+> +      - const: stg_axiahb
+> +      - const: usb_125m
+> +      - const: cpu_bus
+> +      - const: hifi4_axi
+> +      - const: nocstg_bus
+> +      - const: apb_bus
+> +
+> +  '#clock-cells':
+> +    const: 1
+> +    description:
+> +      See <dt-bindings/clock/starfive,jh7110-crg.h> for valid indices.
+> +
+> +  '#reset-cells':
+> +    const: 1
+> +    description:
+> +      See <dt-bindings/reset/starfive,jh7110-crg.h> for valid indices.
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - clocks
+> +  - clock-names
+> +  - '#clock-cells'
+> +  - '#reset-cells'
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/clock/starfive,jh7110-crg.h>
+> +
+> +    stgcrg: clock-controller@10230000 {
+> +        compatible = "starfive,jh7110-stgcrg";
+> +        reg = <0x10230000 0x10000>;
+> +        clocks = <&osc>,
+> +                 <&syscrg JH7110_SYSCLK_HIFI4_CORE>,
+> +                 <&syscrg JH7110_SYSCLK_STG_AXIAHB>,
+> +                 <&syscrg JH7110_SYSCLK_USB_125M>,
+> +                 <&syscrg JH7110_SYSCLK_CPU_BUS>,
+> +                 <&syscrg JH7110_SYSCLK_HIFI4_AXI>,
+> +                 <&syscrg JH7110_SYSCLK_NOCSTG_BUS>,
+> +                 <&syscrg JH7110_SYSCLK_APB_BUS>;
+> +        clock-names = "osc", "hifi4_core",
+> +                      "stg_axiahb", "usb_125m",
+> +                      "cpu_bus", "hifi4_axi",
+> +                      "nocstg_bus", "apb_bus";
+> +        #clock-cells = <1>;
+> +        #reset-cells = <1>;
+> +    };
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index 93eb504c3b21..2e70c9f21989 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -19914,6 +19914,7 @@ F:      arch/riscv/boot/dts/starfive/
+>  STARFIVE JH71X0 CLOCK DRIVERS
+>  M:     Emil Renner Berthing <kernel@esmil.dk>
+>  M:     Hal Feng <hal.feng@starfivetech.com>
+> +M:     Xingyu Wu <xingyu.wu@starfivetech.com>
+>  S:     Maintained
+>  F:     Documentation/devicetree/bindings/clock/starfive,jh71*.yaml
+>  F:     drivers/clk/starfive/clk-starfive-jh71*
+> diff --git a/include/dt-bindings/clock/starfive,jh7110-crg.h b/include/dt-bindings/clock/starfive,jh7110-crg.h
+> index 5e4f21ca0642..5ac8a4d90a7a 100644
+> --- a/include/dt-bindings/clock/starfive,jh7110-crg.h
+> +++ b/include/dt-bindings/clock/starfive,jh7110-crg.h
+> @@ -1,6 +1,7 @@
+>  /* SPDX-License-Identifier: GPL-2.0 OR MIT */
+>  /*
+>   * Copyright 2022 Emil Renner Berthing <kernel@esmil.dk>
+> + * Copyright 2022 StarFive Technology Co., Ltd.
+>   */
+>
+>  #ifndef __DT_BINDINGS_CLOCK_STARFIVE_JH7110_CRG_H__
+> @@ -222,4 +223,37 @@
+>
+>  #define JH7110_AONCLK_END                      14
+
+Hi Xingyu,
+
+The clock and reset names below have been shortened from the very long
+names in the documentation. I see you've come to the same shortened
+names as I used in the first STGCRG driver I pushed, which is great,
+but I find it highly unlikely to have happened without looking at /
+copying my code like you did for the SYSCRG and AONCRG drivers Hal has
+posted. Unfortunately the commit message above doesn't reflect that,
+so please add a
+Co-developed-by: Emil Renner Berthing <kernel@esmil.dk>
+Signed-off-by: Emil Renner Berthing <kernel@esmil.dk>
+
+I do have some updated suggestions for short names below though:
+
+> +/* STGCRG clocks */
+> +#define JH7110_STGCLK_HIFI4_CLK_CORE           0
+> +#define JH7110_STGCLK_USB0_APB                 1
+> +#define JH7110_STGCLK_USB0_UTMI_APB            2 unli
+> +#define JH7110_STGCLK_USB0_AXI                 3
+> +#define JH7110_STGCLK_USB0_LPM                 4
+> +#define JH7110_STGCLK_USB0_STB                 5
+> +#define JH7110_STGCLK_USB0_APP_125             6
+> +#define JH7110_STGCLK_USB0_REFCLK              7
+> +#define JH7110_STGCLK_PCIE0_AXI_MST0           8
+> +#define JH7110_STGCLK_PCIE0_APB                        9
+> +#define JH7110_STGCLK_PCIE0_TL                 10
+> +#define JH7110_STGCLK_PCIE1_AXI_MST0           11
+> +#define JH7110_STGCLK_PCIE1_APB                        12
+> +#define JH7110_STGCLK_PCIE1_TL                 13
+> +#define JH7110_STGCLK_PCIE01_SLV_DEC_MAINCLK   14
+
+Does PCIE01 here mean that the clock is used by both pcie0 and pcie1?
+If so then maybe just call it JH7110_PCIE_SLV_MAIN
+
+> +#define JH7110_STGCLK_SEC_HCLK                 15
+
+For other clocks I think "hclk" means ahb clock, so maybe JH7110_STGCLK_SEC_AHB
+
+> +#define JH7110_STGCLK_SEC_MISCAHB              16
+
+I find something like JH7110_STGCLK_SEC_MISC_AHB a little easier to read.
+
+> +#define JH7110_STGCLK_GRP0_MAIN                        17
+> +#define JH7110_STGCLK_GRP0_BUS                 18
+> +#define JH7110_STGCLK_GRP0_STG                 19
+> +#define JH7110_STGCLK_GRP1_MAIN                        20
+> +#define JH7110_STGCLK_GRP1_BUS                 21
+> +#define JH7110_STGCLK_GRP1_STG                 22
+> +#define JH7110_STGCLK_GRP1_HIFI                        23
+> +#define JH7110_STGCLK_E2_RTC                   24
+> +#define JH7110_STGCLK_E2_CORE                  25
+> +#define JH7110_STGCLK_E2_DBG                   26
+> +#define JH7110_STGCLK_DMA1P_AXI                        27
+> +#define JH7110_STGCLK_DMA1P_AHB                        28
+> +
+> +#define JH7110_STGCLK_END                      29
+> +
+>  #endif /* __DT_BINDINGS_CLOCK_STARFIVE_JH7110_CRG_H__ */
+> diff --git a/include/dt-bindings/reset/starfive,jh7110-crg.h b/include/dt-bindings/reset/starfive,jh7110-crg.h
+> index d78e38690ceb..4a865ded78b8 100644
+> --- a/include/dt-bindings/reset/starfive,jh7110-crg.h
+> +++ b/include/dt-bindings/reset/starfive,jh7110-crg.h
+> @@ -1,6 +1,7 @@
+>  /* SPDX-License-Identifier: GPL-2.0 OR MIT */
+>  /*
+>   * Copyright (C) 2022 Emil Renner Berthing <kernel@esmil.dk>
+> + * Copyright (C) 2022 StarFive Technology Co., Ltd.
+>   */
+>
+>  #ifndef __DT_BINDINGS_RESET_STARFIVE_JH7110_CRG_H__
+> @@ -151,4 +152,31 @@
+>
+>  #define JH7110_AONRST_END                      8
+>
+> +/* STGCRG resets */
+> +#define JH7110_STGRST_SYSCON                   0
+> +#define JH7110_STGRST_HIFI4_CORE               1
+> +#define JH7110_STGRST_HIFI4_AXI                        2
+> +#define JH7110_STGRST_SEC_TOP_HRESETN          3
+
+JH7110_STGRST_SEC_AHB to match the clock above.
+
+> +#define JH7110_STGRST_E24_CORE                 4
+> +#define JH7110_STGRST_DMA1P_AXI                        5
+> +#define JH7110_STGRST_DMA1P_AHB                        6
+> +#define JH7110_STGRST_USB0_AXI                 7
+> +#define JH7110_STGRST_USB0_APB                 8
+> +#define JH7110_STGRST_USB0_UTMI_APB            9
+> +#define JH7110_STGRST_USB0_PWRUP               10
+> +#define JH7110_STGRST_PCIE0_AXI_MST0           11
+> +#define JH7110_STGRST_PCIE0_AXI_SLV0           12
+> +#define JH7110_STGRST_PCIE0_AXI_SLV            13
+> +#define JH7110_STGRST_PCIE0_BRG                        14
+> +#define JH7110_STGRST_PCIE0_CORE               15
+> +#define JH7110_STGRST_PCIE0_APB                        16
+> +#define JH7110_STGRST_PCIE1_AXI_MST0           17
+> +#define JH7110_STGRST_PCIE1_AXI_SLV0           18
+> +#define JH7110_STGRST_PCIE1_AXI_SLV            19
+> +#define JH7110_STGRST_PCIE1_BRG                        20
+> +#define JH7110_STGRST_PCIE1_CORE               21
+> +#define JH7110_STGRST_PCIE1_APB                        22
+> +
+> +#define JH7110_STGRST_END                      23
+> +
+>  #endif /* __DT_BINDINGS_RESET_STARFIVE_JH7110_CRG_H__ */
+> --
+> 2.25.1
+>
+>
+> _______________________________________________
+> linux-riscv mailing list
+> linux-riscv@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-riscv
