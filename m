@@ -2,67 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2C9386A7A09
-	for <lists+devicetree@lfdr.de>; Thu,  2 Mar 2023 04:28:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8A45C6A7A21
+	for <lists+devicetree@lfdr.de>; Thu,  2 Mar 2023 04:39:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229563AbjCBD2K (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 Mar 2023 22:28:10 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41360 "EHLO
+        id S229470AbjCBDjD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 Mar 2023 22:39:03 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50862 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229471AbjCBD2J (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Mar 2023 22:28:09 -0500
-Received: from mail-ed1-x52d.google.com (mail-ed1-x52d.google.com [IPv6:2a00:1450:4864:20::52d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7E3B53AA1;
-        Wed,  1 Mar 2023 19:28:08 -0800 (PST)
-Received: by mail-ed1-x52d.google.com with SMTP id o12so62250279edb.9;
-        Wed, 01 Mar 2023 19:28:08 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=jms.id.au; s=google;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=LwhRS8qLgHTKH8umgxJ2vm9VG3sN3u1iw/JreXfnhyU=;
-        b=c3FUBFlIBHw60SVBvbHj7XbSLr+jVIOBLS/1Bn1CIxgwx7idkAzuDlReE7GgtQPLmX
-         /SYNC6e+oBZfSYvg0POjv0mRTW/nD1x4FnuRs9m8xPo8hpkH7suqOSoDA3rB/YyGqZG5
-         LsZOKG/nrkj8WQidhwk4C3VL5K6nRGQWfRMjc=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=LwhRS8qLgHTKH8umgxJ2vm9VG3sN3u1iw/JreXfnhyU=;
-        b=a5e/ESdir9FaF+DdVb1ewMnmaCnX0HA/h6csLQOwSqYyE8aqkq64W1h0l8wORnd3xU
-         WdHAMNQ4YR+4QZT8ht0IT6mtZULcvalS3TG3OCYakg4iw55Wdf8HLoRJp0FwTk3RYl61
-         Vh3DUWf4D4iU7S2TwdCx8xneS8FVlvxgwu5zDeN5GPqB076do/6js0AxEQVGJjCouNZ4
-         hS9qxnj+aQf6Pg22cRw0Ab6Zji/5v0C/2qNtyeYDiJmeIuGJZomauvN67S7BBWhIq4xw
-         tM5EIaWjB9D5d/ElLHZ2RtqAME4Fm3ZzuzJClIzwW+GSLRJH2BxeUChNKdNDsy35PCSo
-         adwg==
-X-Gm-Message-State: AO0yUKVduqXLH+D77sFaXHy/TTN2xfjRBNo1Rx4Hd2jB+3Bhn/hIJHPX
-        pTUr6STn1O+uNwpDCSDFNWawB2UPMBvMwMmxFGI=
-X-Google-Smtp-Source: AK7set9/B/vXKjq8akQcPEEGlVG90GcECtmmW7Git9heHEsK5qxYH2yUDSkj3xFYfLgio2WKGG7hBz19vXdJ6r4+eik=
-X-Received: by 2002:a50:d743:0:b0:4af:515d:5691 with SMTP id
- i3-20020a50d743000000b004af515d5691mr5115879edj.7.1677727686782; Wed, 01 Mar
- 2023 19:28:06 -0800 (PST)
+        with ESMTP id S229518AbjCBDjC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Mar 2023 22:39:02 -0500
+Received: from mail-m11874.qiye.163.com (mail-m11874.qiye.163.com [115.236.118.74])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 491173B3FC
+        for <devicetree@vger.kernel.org>; Wed,  1 Mar 2023 19:38:26 -0800 (PST)
+Received: from [172.16.12.93] (unknown [58.22.7.114])
+        by mail-m11874.qiye.163.com (Hmail) with ESMTPA id 946593C0196;
+        Thu,  2 Mar 2023 11:29:45 +0800 (CST)
+Message-ID: <b86a53d7-778e-5ec7-cc5b-8e741af10986@rock-chips.com>
+Date:   Thu, 2 Mar 2023 11:29:45 +0800
 MIME-Version: 1.0
-References: <20230302005834.13171-1-jk@codeconstruct.com.au> <20230302005834.13171-7-jk@codeconstruct.com.au>
-In-Reply-To: <20230302005834.13171-7-jk@codeconstruct.com.au>
-From:   Joel Stanley <joel@jms.id.au>
-Date:   Thu, 2 Mar 2023 03:27:44 +0000
-Message-ID: <CACPK8Xcd5XyLc3aO2nUXWFMAZnEdooBE=z_qj6H6d+vfOrnSug@mail.gmail.com>
-Subject: Re: [PATCH v5 6/6] dt-bindings: clock: ast2600: Expand comment on
- reset definitions
-To:     Jeremy Kerr <jk@codeconstruct.com.au>
-Cc:     devicetree@vger.kernel.org, linux-aspeed@lists.ozlabs.org,
-        linux-clk@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Dylan Hung <dylan_hung@aspeedtech.com>,
-        Andrew Jeffery <andrew@aj.id.au>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.1
+Subject: Re: [PATCH v2 3/8] gpio: gpio-rockchip: parse gpio-ranges for bank id
+Content-Language: en-US
+To:     Johan Jonker <jbx6244@gmail.com>, linus.walleij@linaro.org,
+        brgl@bgdev.pl
+Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        heiko@sntech.de, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+        sjg@chromium.org, philipp.tomsich@vrull.eu, john@metanate.com,
+        quentin.schulz@theobroma-systems.com
+References: <03627216-54b5-5d9b-f91d-adcd637819e3@gmail.com>
+ <890be9a0-8e82-a8f4-bc15-d5d1597343c2@gmail.com>
+From:   Kever Yang <kever.yang@rock-chips.com>
+In-Reply-To: <890be9a0-8e82-a8f4-bc15-d5d1597343c2@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
+        tZV1koWUFDSUNOT01LS0k3V1ktWUFJV1kPCRoVCBIfWUFZQ0JDTlYfTktCTExMSR1PHktVEwETFh
+        oSFyQUDg9ZV1kYEgtZQVlOQ1VJSVVMVUpKT1lXWRYaDxIVHRRZQVlPS0hVSkpLT0tDVUpLS1VLWQ
+        Y+
+X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6MTo6ASo*Aj0QPkIoOQ0SLjAW
+        FglPC1ZVSlVKTUxMTElMTENNTk9DVTMWGhIXVRAeDR4JVQIaFRw7CRQYEFYYExILCFUYFBZFWVdZ
+        EgtZQVlOQ1VJSVVMVUpKT1lXWQgBWUFIQkhONwY+
+X-HM-Tid: 0a86a05e64182eb0kusn946593c0196
+X-HM-MType: 1
+X-Spam-Status: No, score=-0.5 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,RCVD_IN_SORBS_WEB,SPF_HELO_NONE,
         SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -70,34 +56,77 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 2 Mar 2023 at 00:58, Jeremy Kerr <jk@codeconstruct.com.au> wrote:
+Hi Johan,
+
+On 2023/1/21 19:08, Johan Jonker wrote:
+> Parse the gpio-ranges property in Rockchip gpio nodes to be
+> independent from aliases and probe order for our bank id.
 >
-> The current "not part of a gate" is a little ambiguous. Expand this a
-> little to clarify the reference to the paired clock + reset control.
+> Signed-off-by: Johan Jonker <jbx6244@gmail.com>
 
-This confuses me, but if you think it helps then that's good.
+Looks good to me.
 
-Reviewed-by: Joel Stanley <joel@jms.id.au>
+Reviewed-by: Kever Yang <kever.yang@rock-chips.com>
 
->
-> Signed-off-by: Jeremy Kerr <jk@codeconstruct.com.au>
+
+Thanks,
+- Kever
 > ---
->  include/dt-bindings/clock/ast2600-clock.h | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
+>   drivers/gpio/gpio-rockchip.c | 24 ++++++++++++++++++------
+>   1 file changed, 18 insertions(+), 6 deletions(-)
 >
-> diff --git a/include/dt-bindings/clock/ast2600-clock.h b/include/dt-bindings/clock/ast2600-clock.h
-> index b4d69103d722..e149eee61588 100644
-> --- a/include/dt-bindings/clock/ast2600-clock.h
-> +++ b/include/dt-bindings/clock/ast2600-clock.h
-> @@ -87,7 +87,7 @@
->  #define ASPEED_CLK_MAC4RCLK            70
->  #define ASPEED_CLK_I3C                 71
+> diff --git a/drivers/gpio/gpio-rockchip.c b/drivers/gpio/gpio-rockchip.c
+> index e5de15a2a..df74b71aa 100644
+> --- a/drivers/gpio/gpio-rockchip.c
+> +++ b/drivers/gpio/gpio-rockchip.c
+> @@ -702,24 +702,36 @@ static int rockchip_gpio_probe(struct platform_device *pdev)
+>   {
+>   	struct device *dev = &pdev->dev;
+>   	struct device_node *np = dev->of_node;
+> -	struct device_node *pctlnp = of_get_parent(np);
+> +	struct device_node *pctlnp;
+>   	struct pinctrl_dev *pctldev = NULL;
+>   	struct rockchip_pin_bank *bank = NULL;
+>   	struct rockchip_pin_deferred *cfg;
+> +	struct of_phandle_args args;
+>   	static int gpio;
+>   	int id, ret;
 >
-> -/* Only list resets here that are not part of a gate */
-> +/* Only list resets here that are not part of a clock gate + reset pair */
->  #define ASPEED_RESET_ADC               55
->  #define ASPEED_RESET_JTAG_MASTER2      54
->  #define ASPEED_RESET_I3C_DMA           39
+> -	if (!np || !pctlnp)
+> +	if (!np)
+> +		return -ENODEV;
+> +
+> +	ret = of_parse_phandle_with_fixed_args(np, "gpio-ranges", 3, 0, &args);
+> +	if (ret == 0) {
+> +		pctlnp = args.np;
+> +		id = args.args[1] / 32;
+> +	} else {
+> +		pctlnp = of_get_parent(np);
+> +		id = of_alias_get_id(np, "gpio");
+> +		if (id < 0)
+> +			id = gpio++;
+> +	}
+> +
+> +	if (!pctlnp)
+>   		return -ENODEV;
+>
+>   	pctldev = of_pinctrl_get(pctlnp);
+> +	of_node_put(pctlnp);
+>   	if (!pctldev)
+>   		return -EPROBE_DEFER;
+>
+> -	id = of_alias_get_id(np, "gpio");
+> -	if (id < 0)
+> -		id = gpio++;
+> -
+>   	bank = rockchip_gpio_find_bank(pctldev, id);
+>   	if (!bank)
+>   		return -EINVAL;
 > --
-> 2.39.1
+> 2.20.1
 >
+>
+> _______________________________________________
+> Linux-rockchip mailing list
+> Linux-rockchip@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-rockchip
