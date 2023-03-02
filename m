@@ -2,89 +2,133 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B34ED6A7DF5
-	for <lists+devicetree@lfdr.de>; Thu,  2 Mar 2023 10:39:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2D0CB6A7E0E
+	for <lists+devicetree@lfdr.de>; Thu,  2 Mar 2023 10:41:29 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229937AbjCBJjq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 2 Mar 2023 04:39:46 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44380 "EHLO
+        id S229955AbjCBJl1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 2 Mar 2023 04:41:27 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46484 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229453AbjCBJjp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Mar 2023 04:39:45 -0500
-Received: from smtp-out1.suse.de (smtp-out1.suse.de [IPv6:2001:67c:2178:6::1c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 201725261;
-        Thu,  2 Mar 2023 01:39:30 -0800 (PST)
-Received: from relay2.suse.de (relay2.suse.de [149.44.160.134])
-        by smtp-out1.suse.de (Postfix) with ESMTP id 9DA1421BEC;
-        Thu,  2 Mar 2023 09:39:28 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
-        t=1677749968; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-         mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=+5Eko+WcrMxC5t7d8GKXpWvxo3Yahw7e+tVwSxLpopQ=;
-        b=IN/qE7OkrB4Hmr8cwo+9t0IR5oew+qfmK06LOC8isvgwUMnIFPAI+LplWKu1EQcJBcWPCb
-        C1eLv6nbu8MzUPSk6pk5ztBFrQT1PpYIsyv4aCEOA8pa2QE1ITGi/NkOC0RMqf2v3glEjy
-        jvEb5v2anS/2abEt7Sf/6QS8FljzW9Q=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
-        s=susede2_ed25519; t=1677749968;
-        h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-         mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=+5Eko+WcrMxC5t7d8GKXpWvxo3Yahw7e+tVwSxLpopQ=;
-        b=0U1AVYw6al6TQ3XTjxUcsakH4+Fls+/amTeX3okzsVywWAVOxcVqUuos3knvjCP2/mfnEQ
-        6EEpRV3W60MYkxCQ==
-Received: from hawking.suse.de (unknown [10.168.4.11])
-        by relay2.suse.de (Postfix) with ESMTP id 071322C141;
-        Thu,  2 Mar 2023 09:39:28 +0000 (UTC)
-Received: by hawking.suse.de (Postfix, from userid 17005)
-        id BBB3D442EE6; Thu,  2 Mar 2023 10:39:27 +0100 (CET)
-From:   Andreas Schwab <schwab@suse.de>
-To:     Xingyu Wu <xingyu.wu@starfivetech.com>
-Cc:     <linux-riscv@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        "Daniel Lezcano" <daniel.lezcano@linaro.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Samin Guo <samin.guo@starfivetech.com>,
-        <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v1 2/3] clocksource: Add StarFive timer driver
-References: <20221223094801.181315-1-xingyu.wu@starfivetech.com>
-        <20221223094801.181315-3-xingyu.wu@starfivetech.com>
-X-Yow:  ..  I think I'd better go back to my DESK and toy with
- a few common MISAPPREHENSIONS...
-Date:   Thu, 02 Mar 2023 10:39:27 +0100
-In-Reply-To: <20221223094801.181315-3-xingyu.wu@starfivetech.com> (Xingyu Wu's
-        message of "Fri, 23 Dec 2022 17:48:00 +0800")
-Message-ID: <mvmzg8vlcfk.fsf@suse.de>
-User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/28.2 (gnu/linux)
+        with ESMTP id S229937AbjCBJl0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Mar 2023 04:41:26 -0500
+Received: from mail-pj1-x102f.google.com (mail-pj1-x102f.google.com [IPv6:2607:f8b0:4864:20::102f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3F49338EBF
+        for <devicetree@vger.kernel.org>; Thu,  2 Mar 2023 01:41:24 -0800 (PST)
+Received: by mail-pj1-x102f.google.com with SMTP id kb15so16264992pjb.1
+        for <devicetree@vger.kernel.org>; Thu, 02 Mar 2023 01:41:24 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=9elements.com; s=google; t=1677750084;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=EXsUOtBQPag9Bf8J6jfkXWMjUC1eSQEKfj0tXrG/FaM=;
+        b=gr9VDny4XZh2/bnqnWr7pwU9w7+hkY0jOKx1CeF2TYq3sO7puWTITZz+dfFqbnG9QB
+         TdRUbIAEXVgmA3oU8X1mq2SlURoEp/w2D7rGVz4oDsa1GHUnzxAitng++FOupyX29gRU
+         Y0fcJA0rgEzhfDmyek0l+kIfl+ITr+9CH7JkfuFao73n2W4KqdwUYZCs9eaW7IvR17LI
+         Mb7h7/i9PaUh64W73XRHYAL5h/gh4ACGUuRfpKRfocC1sO9L5y3ClAzrhFmqA5fjS+AG
+         4vkwvflQXVnJRiyNP9I2SBFncE3WbCTV7kTl43BLbXxjxbgIFoaPxMjnxS0Ul0sWkL5Y
+         LREQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1677750084;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=EXsUOtBQPag9Bf8J6jfkXWMjUC1eSQEKfj0tXrG/FaM=;
+        b=T2vJzigHOXahdron7jqxDFOec5JTyNtdkwsxdk8GyDpMsOWi1BzMM85HoSZ4JwtYK1
+         N8CtW1DoOhzFsiOAkjvM8CBgkR0gAXHH69mKVosjlQKUGX6pwWWXjxG+MCqlVrgZqEIF
+         KWSeKw6XRP3WvQ88BCzHjvAGtHGC17NPeDHZkI4+3cd/tytWzw21uHqtaAuEdaZ6OFUx
+         TCyvnEqdsNmfa1uksuXSIh23xh6JPHbf06YuDwqfbxkRuKEsgYGj5RQWcRVQYAk5pghJ
+         NgHmZKcDkJqjo4nXSkKCXeEheUPK9zTRE0EKCfw5WS7+g34JKF6BWyqC9N0kVqlckOS8
+         z/vA==
+X-Gm-Message-State: AO0yUKUJ4GWK8RIjl3I3ATwA+bJJ449SclIVqIguTRDGAhsd4UGYRfhv
+        CzpLNNTmNjnMQ0+DPrsqCyG0Mwb+d/Qa++rAJy0=
+X-Google-Smtp-Source: AK7set+WOIPvQCE6zWYJJP6qka5O1MdfE2BeTG7SWInH5XBQICcdaRXKYlbEVpEdqaETnJBSaUGB/w==
+X-Received: by 2002:a17:902:7594:b0:19c:b7da:fbdf with SMTP id j20-20020a170902759400b0019cb7dafbdfmr9231927pll.26.1677750084220;
+        Thu, 02 Mar 2023 01:41:24 -0800 (PST)
+Received: from ?IPV6:2405:201:d02f:d899:2028:7962:400:43b6? ([2405:201:d02f:d899:2028:7962:400:43b6])
+        by smtp.gmail.com with ESMTPSA id l10-20020a170902d34a00b0019c93a9a854sm9812814plk.213.2023.03.02.01.41.21
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 02 Mar 2023 01:41:23 -0800 (PST)
+Message-ID: <6d1f7d62-e1a8-b814-80cc-4db1100fdb0c@9elements.com>
+Date:   Thu, 2 Mar 2023 15:11:21 +0530
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.1
+Subject: Re: [PATCH 1/2] dt-bindings: mfd: Add MAX5970 and MAX5978
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Lee Jones <lee@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Patrick Rudolph <patrick.rudolph@9elements.com>
+Cc:     Marcello Sylvester Bauer <sylv@sylv.io>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20230301091234.3159953-1-Naresh.Solanki@9elements.com>
+ <dcace8f8-8591-40df-895b-155f0604665d@linaro.org>
+Content-Language: en-US
+From:   Naresh Solanki <naresh.solanki@9elements.com>
+In-Reply-To: <dcace8f8-8591-40df-895b-155f0604665d@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-drivers/clocksource/timer-starfive.c:117:13: error: conflicting types for 'timer_shutdown'; have 'void(struct starfive_clkevt *)'
-  117 | static void timer_shutdown(struct starfive_clkevt *clkevt)
-      |             ^~~~~~~~~~~~~~
-In file included from ./include/linux/workqueue.h:9,
-                 from ./include/linux/srcu.h:21,
-                 from ./include/linux/notifier.h:16,
-                 from ./include/linux/clk.h:14,
-                 from drivers/clocksource/timer-starfive.c:12:
-./include/linux/timer.h:188:12: note: previous declaration of 'timer_shutdown' with type 'int(struct timer_list *)'
-  188 | extern int timer_shutdown(struct timer_list *timer);
-      |            ^~~~~~~~~~~~~~
+Hi Krzytof,
 
--- 
-Andreas Schwab, SUSE Labs, schwab@suse.de
-GPG Key fingerprint = 0196 BAD8 1CE9 1970 F4BE  1748 E4D4 88E3 0EEA B9D7
-"And now for something completely different."
+On 02-03-2023 01:56 pm, Krzysztof Kozlowski wrote:
+> On 01/03/2023 10:12, Naresh Solanki wrote:
+>> From: Marcello Sylvester Bauer <sylv@sylv.io>
+>>
+>> The MAX597x is a hot swap controller with configurable fault protection.
+>> It also has 10bit ADC for current & voltage measurements.
+>>
+>> Signed-off-by: Marcello Sylvester Bauer <sylv@sylv.io>
+>> Co-developed-by: Patrick Rudolph <patrick.rudolph@9elements.com>
+>> Signed-off-by: Patrick Rudolph <patrick.rudolph@9elements.com>
+>> Co-developed-by: Naresh Solanki <Naresh.Solanki@9elements.com>
+>> Signed-off-by: Naresh Solanki <Naresh.Solanki@9elements.com>
+> 
+> It's v12 or what? Where are previous tags? Or you ignored entire review
+> and sent something new?
+> 
+> You already got the comments about it, so basically you ignore it second
+> time...
+> 
+> Where is the changelog?
+My bad I missed updating the same. Will include it.
+> 
+>> ---
+>>   .../bindings/mfd/maxim,max5970.yaml           | 151 ++++++++++++++++++
+>>   1 file changed, 151 insertions(+)
+>>   create mode 100644 Documentation/devicetree/bindings/mfd/maxim,max5970.yaml
+>>
+>> diff --git a/Documentation/devicetree/bindings/mfd/maxim,max5970.yaml b/Documentation/devicetree/bindings/mfd/maxim,max5970.yaml
+>> new file mode 100644
+>> index 000000000000..6ee269afdab2
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/mfd/maxim,max5970.yaml
+>> @@ -0,0 +1,151 @@
+>> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/mfd/maxim,max5970.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: Regulator for MAX5970 smart switch from Maxim Integrated.
+> 
+> Drop the full stop. It's title, so follows the title grammar rules (you
+> could also capitalize it but it's matter of style
+> https://www.grammarly.com/blog/capitalization-in-the-titles/).
+Sure.
+> 
+> I don't know whether I should review rest or not... just in case I don't
+> want to waste my time, so I'll skip it.
+> 
+> 
+> Best regards,
+> Krzysztof
+> 
