@@ -2,159 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E4EC86A83DD
-	for <lists+devicetree@lfdr.de>; Thu,  2 Mar 2023 14:53:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7C60E6A83E8
+	for <lists+devicetree@lfdr.de>; Thu,  2 Mar 2023 15:00:42 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229555AbjCBNxt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 2 Mar 2023 08:53:49 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50742 "EHLO
+        id S229557AbjCBOAk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 2 Mar 2023 09:00:40 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55280 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229693AbjCBNxs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Mar 2023 08:53:48 -0500
-Received: from mail-ed1-x52c.google.com (mail-ed1-x52c.google.com [IPv6:2a00:1450:4864:20::52c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DD7DB10408
-        for <devicetree@vger.kernel.org>; Thu,  2 Mar 2023 05:53:46 -0800 (PST)
-Received: by mail-ed1-x52c.google.com with SMTP id i34so67853110eda.7
-        for <devicetree@vger.kernel.org>; Thu, 02 Mar 2023 05:53:46 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1677765225;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=RZof/087BHj/A7Di0Gk0ZvGDmMzbyQKiyv3HZhGN3xw=;
-        b=eIrtPDV/cG8h0VLLmJcXXTWUO8Jg3Qo6HxP4dQkg9P3u0Fn6CodkeQxrfuFSWYlIoj
-         tfIZfDFPjIHCEBAJzzbDOFKm9caoaq/ph9xh8bmKh8AyGlpjlFEvOV4rXrtiIVXTIrBR
-         23vID2oLuqovDF5EzpYqFN2O8vmNHGs8LJ7+7O0SiDuLFKL1Z13H4GCKPiglMKmMxeT2
-         l2qcAWfjunTGjvlsMDG+mzt5qlHNipEcD9etIEHdgO3jpbgPMjeOtDMzFsCabgzjWJXa
-         ABCSsGkpWfAjylMv7OyQ3r2TBByagPRD7uKsOEQQ+FMjkDfpcTP/qXCroIW86e/r98Cq
-         E4ug==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1677765225;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=RZof/087BHj/A7Di0Gk0ZvGDmMzbyQKiyv3HZhGN3xw=;
-        b=JfWnITVHOG76v4hcHdKao0ph2Ta94/XxVP7qCmNW9xrgNJUuw5WRuDgK38IsFYPLha
-         4x/8/CP8qNJebZDt6soA3P4dHjgBAgqQsYRrcfK/LGCZ7qqfsVNtLqimZB8Cjk7FUhAQ
-         r3g+DrDyglipTdrJzTN3HUbqvh8rCEUPCULCXw1ml4/ku5Tgp13PdZtJDbxqyJ9hikP0
-         44rLNaZrJC3q5vPpU4KMRPCezQDLCoIi6Jq1381WYHPPaWea0FOCh4VUCTC0BaVY9jn1
-         68n9w4OpHyhxso/Ik9Gnb9ZNFYt+c4WBgaRmWuQ5oAaztCbouop3KjY5Yvdm5nXhmT+6
-         Ak+g==
-X-Gm-Message-State: AO0yUKVZxnl9oj2p7vm5VfBgX3bOT7nGaF21tT7mu+5RoeRyvHLiR8xD
-        H0ea6k9rks3WN1q4St2eef+DMA==
-X-Google-Smtp-Source: AK7set8qp/TQ+HJrn0Ii4dY4rTO5h8nKaJSn7kxrv2Kr+qtuoSVN+2tgswoIzGGoQ+TvT/Nh/UeqMA==
-X-Received: by 2002:a17:906:dc90:b0:888:5d34:dc79 with SMTP id cs16-20020a170906dc9000b008885d34dc79mr14548417ejc.40.1677765225322;
-        Thu, 02 Mar 2023 05:53:45 -0800 (PST)
-Received: from [192.168.1.20] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id z2-20020a5096c2000000b004bfc59042e5sm962328eda.61.2023.03.02.05.53.37
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 02 Mar 2023 05:53:41 -0800 (PST)
-Message-ID: <33edb557-f5c6-6ce1-2914-bcab2eca23c3@linaro.org>
-Date:   Thu, 2 Mar 2023 14:53:36 +0100
+        with ESMTP id S229502AbjCBOAj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Mar 2023 09:00:39 -0500
+Received: from mx.sberdevices.ru (mx.sberdevices.ru [45.89.227.171])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E581E2333F;
+        Thu,  2 Mar 2023 06:00:36 -0800 (PST)
+Received: from s-lin-edge02.sberdevices.ru (localhost [127.0.0.1])
+        by mx.sberdevices.ru (Postfix) with ESMTP id C17005FD11;
+        Thu,  2 Mar 2023 17:00:33 +0300 (MSK)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sberdevices.ru;
+        s=mail; t=1677765633;
+        bh=OrOwfh5mJRiMyU5mosrTfgs9+CKcxqZAEXZ0UG6pCW8=;
+        h=Message-ID:Date:MIME-Version:Subject:To:From:Content-Type;
+        b=S10oa6xEdsy6Rf/BtUgrQGr8euxwm2wZ3ZhC9UKVjBNWW/yg5b0wDbc7yox23afwO
+         5EN1qkdP19HKbihfYGfMRTxdhosKhVcQ8VVxcmvbllfjTm9snXdy2cUYKJe5BPgwWj
+         4LJ3nWYuUQ7qCsmDpZkyWSYJZds8etV83W5Epv4XBmX4sIaC25dTgtJSXF/c4B5tuH
+         3mRr8YC+A3KhbOYulREHtfx5bFscRqEk6zM9g0ZzCVAAtvo3bfSfkpchvgjlL5uO+R
+         D07sB89XshHGFADe6RAZCuGjZAQslvil3p26WNh7DquN/mzhHv4pghoHVTFVokGi0L
+         VTmIGXCcwkG8w==
+Received: from S-MS-EXCH01.sberdevices.ru (S-MS-EXCH01.sberdevices.ru [172.16.1.4])
+        by mx.sberdevices.ru (Postfix) with ESMTP;
+        Thu,  2 Mar 2023 17:00:32 +0300 (MSK)
+Message-ID: <1a1017f5-b18f-b952-2504-e4301512c52b@sberdevices.ru>
+Date:   Thu, 2 Mar 2023 17:00:31 +0300
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
  Thunderbird/102.8.0
-Subject: Re: [PATCH] dt-bindings: display: mediatek: Compatible list cleanup
+Subject: Re: [PATCH v2 2/2] leds: add aw20xx driver
 Content-Language: en-US
-To:     Yassine Oudjana <yassine.oudjana@gmail.com>,
-        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
+To:     Pavel Machek <pavel@ucw.cz>
+CC:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-Cc:     Yassine Oudjana <y.oudjana@protonmail.com>,
-        dri-devel@lists.freedesktop.org,
-        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        linux-arm-kernel@lists.infradead.org
-References: <20230302133528.124113-1-y.oudjana@protonmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230302133528.124113-1-y.oudjana@protonmail.com>
-Content-Type: text/plain; charset=UTF-8
+        Lee Jones <lee@kernel.org>,
+        Andy Shevchenko <andy.shevchenko@gmail.com>,
+        <linux-leds@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <kernel@sberdevices.ru>
+References: <20230228211046.109693-1-mmkurbanov@sberdevices.ru>
+ <20230228211046.109693-3-mmkurbanov@sberdevices.ru>
+ <Y/5xBGFC3b9Chdtb@duo.ucw.cz>
+From:   Martin Kurbanov <mmkurbanov@sberdevices.ru>
+In-Reply-To: <Y/5xBGFC3b9Chdtb@duo.ucw.cz>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
+X-Originating-IP: [172.16.1.6]
+X-ClientProxiedBy: S-MS-EXCH02.sberdevices.ru (172.16.1.5) To
+ S-MS-EXCH01.sberdevices.ru (172.16.1.4)
+X-KSMG-Rule-ID: 4
+X-KSMG-Message-Action: clean
+X-KSMG-AntiSpam-Status: not scanned, disabled by settings
+X-KSMG-AntiSpam-Interceptor-Info: not scanned
+X-KSMG-AntiPhishing: not scanned, disabled by settings
+X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 1.1.2.30, bases: 2023/03/02 07:22:00 #20908555
+X-KSMG-AntiVirus-Status: Clean, skipped
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 02/03/2023 14:35, Yassine Oudjana wrote:
-> From: Yassine Oudjana <y.oudjana@protonmail.com>
+On 2023-03-01 00:24, Pavel Machek wrote:
+> Hi!
 > 
-> Several DT bindings of MediaTek display blocks make unnecessary use of
-> "oneOf" and "items", and have some enums with only 1 element. Remove
-> unnecessary "oneOf" and "items", and replace enums that have 1 element
-> with "const".	
+>> +config LEDS_AW200XX
+>> +	tristate "LED support for Awinic AW20036/AW20054/AW20072"
+>> +	depends on LEDS_CLASS
+>> +	depends on I2C
+>> +	help
+>> +	  This option enables support for the AW20036/AW20054/AW20072 LED driver.
+>> +	  It is a 3x12/6x9/6x12 matrix LED driver programmed via
+>> +	  an I2C interface, up to 36/54/72 LEDs or 12/18/24 RGBs,
+>> +	  3 pattern controllers for auto breathing or group dimming control.
 > 
-> Signed-off-by: Yassine Oudjana <y.oudjana@protonmail.com>
-> ---
->  .../bindings/display/mediatek/mediatek,aal.yaml  |  3 +--
->  .../display/mediatek/mediatek,ccorr.yaml         | 10 ++++------
->  .../display/mediatek/mediatek,color.yaml         | 10 ++++------
->  .../display/mediatek/mediatek,dither.yaml        |  3 +--
->  .../bindings/display/mediatek/mediatek,dsc.yaml  |  4 +---
->  .../display/mediatek/mediatek,gamma.yaml         |  7 +++----
->  .../display/mediatek/mediatek,merge.yaml         |  8 +++-----
->  .../bindings/display/mediatek/mediatek,od.yaml   |  8 +++-----
->  .../display/mediatek/mediatek,ovl-2l.yaml        | 10 ++++------
->  .../bindings/display/mediatek/mediatek,ovl.yaml  | 16 ++++++----------
->  .../display/mediatek/mediatek,postmask.yaml      |  3 +--
->  .../bindings/display/mediatek/mediatek,rdma.yaml | 13 +++++--------
->  .../display/mediatek/mediatek,split.yaml         |  4 +---
->  .../bindings/display/mediatek/mediatek,ufoe.yaml |  4 +---
->  .../bindings/display/mediatek/mediatek,wdma.yaml |  4 +---
->  15 files changed, 39 insertions(+), 68 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/display/mediatek/mediatek,aal.yaml b/Documentation/devicetree/bindings/display/mediatek/mediatek,aal.yaml
-> index 92741486c24d..d8d78abd6c6c 100644
-> --- a/Documentation/devicetree/bindings/display/mediatek/mediatek,aal.yaml
-> +++ b/Documentation/devicetree/bindings/display/mediatek/mediatek,aal.yaml
-> @@ -25,8 +25,7 @@ properties:
->            - mediatek,mt8173-disp-aal
->            - mediatek,mt8183-disp-aal
->        - items:
-> -          - enum:
-> -              - mediatek,mt2712-disp-aal
-> +          - const: mediatek,mt2712-disp-aal
+> I'm afraid this should be handled as a display, not as an array of
+> individual LEDs.
 
-This was I think intentional - it will grow. The same in all other
-one-enum cases, it might be unnecessary change which soon will be
-reverted converting back to enum.
+Hello Pavel,
 
->            - const: mediatek,mt8173-disp-aal
->        - items:
->            - enum:
-> diff --git a/Documentation/devicetree/bindings/display/mediatek/mediatek,ccorr.yaml b/Documentation/devicetree/bindings/display/mediatek/mediatek,ccorr.yaml
-> index b04820c95b22..e72d2884bb49 100644
-> --- a/Documentation/devicetree/bindings/display/mediatek/mediatek,ccorr.yaml
-> +++ b/Documentation/devicetree/bindings/display/mediatek/mediatek,ccorr.yaml
-> @@ -21,18 +21,16 @@ description: |
->  properties:
->    compatible:
->      oneOf:
-> -      - items:
-> -          - const: mediatek,mt8183-disp-ccorr
-> -      - items:
-> -          - const: mediatek,mt8192-disp-ccorr
-> +      - enum:
-> +          - mediatek,mt8183-disp-ccorr
-> +          - mediatek,mt8192-disp-ccorr
+Thank you for the quick feedback and your detailed thoughts, appreciate
+it!
+I'm totally agree with you, that matrix LED controllers should be
+interpreted as display and it must be controlled as display from
+userspace. But actually, AW20036 controller usage status is strongly
+dependent from board PCB. In the our internal projects AW20036 controls
+LEDs line. Each LED brightness/pattern/etc are managed from userspace
+independently. From the current registers specification I can't imagine
+that it's possible to develop display driver for that. All controller
+features involve LED independent managing, like hardware patterns and
+brightness setup. Therefore I suppose for AW20036 controller LED
+subsystem is more suitable.
 
-Such changes are fine.
-
-
-
-Best regards,
-Krzysztof
+-- 
+Best Regards,
+Kurbanov Martin
 
