@@ -2,53 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8A45C6A7A21
-	for <lists+devicetree@lfdr.de>; Thu,  2 Mar 2023 04:39:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7F88D6A7A10
+	for <lists+devicetree@lfdr.de>; Thu,  2 Mar 2023 04:30:51 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229470AbjCBDjD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 Mar 2023 22:39:03 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50862 "EHLO
+        id S229711AbjCBDat (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 Mar 2023 22:30:49 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43538 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229518AbjCBDjC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Mar 2023 22:39:02 -0500
-Received: from mail-m11874.qiye.163.com (mail-m11874.qiye.163.com [115.236.118.74])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 491173B3FC
-        for <devicetree@vger.kernel.org>; Wed,  1 Mar 2023 19:38:26 -0800 (PST)
-Received: from [172.16.12.93] (unknown [58.22.7.114])
-        by mail-m11874.qiye.163.com (Hmail) with ESMTPA id 946593C0196;
-        Thu,  2 Mar 2023 11:29:45 +0800 (CST)
-Message-ID: <b86a53d7-778e-5ec7-cc5b-8e741af10986@rock-chips.com>
-Date:   Thu, 2 Mar 2023 11:29:45 +0800
+        with ESMTP id S229445AbjCBDat (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Mar 2023 22:30:49 -0500
+Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 87996166F1;
+        Wed,  1 Mar 2023 19:30:46 -0800 (PST)
+Received: by mail-ed1-x531.google.com with SMTP id f13so62340313edz.6;
+        Wed, 01 Mar 2023 19:30:46 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=jms.id.au; s=google;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=cJ/MILgWgQHwHoMlCWIsaUJfI9Yq/sjBc9o0dijE/U4=;
+        b=TkrdMran+QTp11FGYtrmiFOgICKvxsB880yoTwhfzzQ023beTC86M5b6H9KF+TF7JS
+         gXMtCyKllvGLAasjyP7cwTQ5S2qMA4z894n6Xvt+RkpyuSUwpiZUDdemN4KC494OWRdt
+         gDPvZsh67qFX7xrF5ooj6Drt6dHIJx803zpiM=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=cJ/MILgWgQHwHoMlCWIsaUJfI9Yq/sjBc9o0dijE/U4=;
+        b=IU/VScuxPUGG9SbqXAecuvlsBE72Kjyp+mnOlAS19E7k4u0+GX2GFP4KJonGXn4zgb
+         j1Z8QMSOKmDdZVwThXkl9kS7CkcKzqhCJRFc8A/bTEHI3XCV9sEcEABwbuK27S/nnRq/
+         81jpOtRWj07TnKnBYZfhKzg33CiECQO2oOXVS8/5a2UP9X+Pax7VYSItiYyx1nNCvDn5
+         isNLVuZ6tD1ch19/oM1JVTXcwNTXgTJWzB5gpCjBaKd9/SvLak/FY+jvah+6HZu85TDx
+         GngmeWwEI+0RMPAaEu5uKUxhEtgzixvjHus5dBYPeLky+RPWtRjDSKdDfo5robhBY6QQ
+         VFng==
+X-Gm-Message-State: AO0yUKW3IJnZBwd86ek5FI68VLjp6CQBl90lOpDjTqp6Ddmt9fj8LgQa
+        nCV3taYLQCacy9JaFxZyN4GIQoySyWaHPXDugr4=
+X-Google-Smtp-Source: AK7set8+mnvjDp4w2b20qHE8h3/Ugm6+aH6rWINdH+bet2ruNmbNyMh60NFSiWq6rRy8Zc4OAFxwFcG857/lB2ueFo0=
+X-Received: by 2002:a17:906:52d2:b0:8b1:7ac6:318a with SMTP id
+ w18-20020a17090652d200b008b17ac6318amr4156156ejn.4.1677727844867; Wed, 01 Mar
+ 2023 19:30:44 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.1
-Subject: Re: [PATCH v2 3/8] gpio: gpio-rockchip: parse gpio-ranges for bank id
-Content-Language: en-US
-To:     Johan Jonker <jbx6244@gmail.com>, linus.walleij@linaro.org,
-        brgl@bgdev.pl
-Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        heiko@sntech.de, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
-        sjg@chromium.org, philipp.tomsich@vrull.eu, john@metanate.com,
-        quentin.schulz@theobroma-systems.com
-References: <03627216-54b5-5d9b-f91d-adcd637819e3@gmail.com>
- <890be9a0-8e82-a8f4-bc15-d5d1597343c2@gmail.com>
-From:   Kever Yang <kever.yang@rock-chips.com>
-In-Reply-To: <890be9a0-8e82-a8f4-bc15-d5d1597343c2@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-        tZV1koWUFDSUNOT01LS0k3V1ktWUFJV1kPCRoVCBIfWUFZQ0JDTlYfTktCTExMSR1PHktVEwETFh
-        oSFyQUDg9ZV1kYEgtZQVlOQ1VJSVVMVUpKT1lXWRYaDxIVHRRZQVlPS0hVSkpLT0tDVUpLS1VLWQ
-        Y+
-X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6MTo6ASo*Aj0QPkIoOQ0SLjAW
-        FglPC1ZVSlVKTUxMTElMTENNTk9DVTMWGhIXVRAeDR4JVQIaFRw7CRQYEFYYExILCFUYFBZFWVdZ
-        EgtZQVlOQ1VJSVVMVUpKT1lXWQgBWUFIQkhONwY+
-X-HM-Tid: 0a86a05e64182eb0kusn946593c0196
-X-HM-MType: 1
-X-Spam-Status: No, score=-0.5 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,RCVD_IN_SORBS_WEB,SPF_HELO_NONE,
+References: <20230302005834.13171-1-jk@codeconstruct.com.au> <20230302005834.13171-6-jk@codeconstruct.com.au>
+In-Reply-To: <20230302005834.13171-6-jk@codeconstruct.com.au>
+From:   Joel Stanley <joel@jms.id.au>
+Date:   Thu, 2 Mar 2023 03:30:31 +0000
+Message-ID: <CACPK8Xd7pFjc94Pf9pzedH3kkckeBBjh1TNaGGvfD=7+aMB2MA@mail.gmail.com>
+Subject: Re: [PATCH v5 5/6] clk: ast2600: Add comment about combined clock +
+ reset handling
+To:     Jeremy Kerr <jk@codeconstruct.com.au>
+Cc:     devicetree@vger.kernel.org, linux-aspeed@lists.ozlabs.org,
+        linux-clk@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Dylan Hung <dylan_hung@aspeedtech.com>,
+        Andrew Jeffery <andrew@aj.id.au>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,
         SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -56,77 +70,54 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Johan,
-
-On 2023/1/21 19:08, Johan Jonker wrote:
-> Parse the gpio-ranges property in Rockchip gpio nodes to be
-> independent from aliases and probe order for our bank id.
+On Thu, 2 Mar 2023 at 00:58, Jeremy Kerr <jk@codeconstruct.com.au> wrote:
 >
-> Signed-off-by: Johan Jonker <jbx6244@gmail.com>
+> Add a little description about how reset lines can be implicit with
+> clock enable/disable. This is mostly based on the commit message
+> from the original submission in 15ed8ce5f8.
 
-Looks good to me.
+Excellent, thank you.
 
-Reviewed-by: Kever Yang <kever.yang@rock-chips.com>
+Reviewed-by: Joel Stanley <joel@jms.id.au>
 
-
-Thanks,
-- Kever
+>
+> Signed-off-by: Jeremy Kerr <jk@codeconstruct.com.au>
 > ---
->   drivers/gpio/gpio-rockchip.c | 24 ++++++++++++++++++------
->   1 file changed, 18 insertions(+), 6 deletions(-)
+>  drivers/clk/clk-ast2600.c | 21 +++++++++++++++++++++
+>  1 file changed, 21 insertions(+)
 >
-> diff --git a/drivers/gpio/gpio-rockchip.c b/drivers/gpio/gpio-rockchip.c
-> index e5de15a2a..df74b71aa 100644
-> --- a/drivers/gpio/gpio-rockchip.c
-> +++ b/drivers/gpio/gpio-rockchip.c
-> @@ -702,24 +702,36 @@ static int rockchip_gpio_probe(struct platform_device *pdev)
->   {
->   	struct device *dev = &pdev->dev;
->   	struct device_node *np = dev->of_node;
-> -	struct device_node *pctlnp = of_get_parent(np);
-> +	struct device_node *pctlnp;
->   	struct pinctrl_dev *pctldev = NULL;
->   	struct rockchip_pin_bank *bank = NULL;
->   	struct rockchip_pin_deferred *cfg;
-> +	struct of_phandle_args args;
->   	static int gpio;
->   	int id, ret;
+> diff --git a/drivers/clk/clk-ast2600.c b/drivers/clk/clk-ast2600.c
+> index 09f26ab5f9af..a094a2601a37 100644
+> --- a/drivers/clk/clk-ast2600.c
+> +++ b/drivers/clk/clk-ast2600.c
+> @@ -73,6 +73,27 @@ static void __iomem *scu_g6_base;
+>  static u8 soc_rev;
 >
-> -	if (!np || !pctlnp)
-> +	if (!np)
-> +		return -ENODEV;
-> +
-> +	ret = of_parse_phandle_with_fixed_args(np, "gpio-ranges", 3, 0, &args);
-> +	if (ret == 0) {
-> +		pctlnp = args.np;
-> +		id = args.args[1] / 32;
-> +	} else {
-> +		pctlnp = of_get_parent(np);
-> +		id = of_alias_get_id(np, "gpio");
-> +		if (id < 0)
-> +			id = gpio++;
-> +	}
-> +
-> +	if (!pctlnp)
->   		return -ENODEV;
->
->   	pctldev = of_pinctrl_get(pctlnp);
-> +	of_node_put(pctlnp);
->   	if (!pctldev)
->   		return -EPROBE_DEFER;
->
-> -	id = of_alias_get_id(np, "gpio");
-> -	if (id < 0)
-> -		id = gpio++;
-> -
->   	bank = rockchip_gpio_find_bank(pctldev, id);
->   	if (!bank)
->   		return -EINVAL;
+>  /*
+> + * The majority of the clocks in the system are gates paired with a reset
+> + * controller that holds the IP in reset; this is represented by the @reset_idx
+> + * member of entries here.
+> + *
+> + * This borrows from clk_hw_register_gate, but registers two 'gates', one
+> + * to control the clock enable register and the other to control the reset
+> + * IP. This allows us to enforce the ordering:
+> + *
+> + * 1. Place IP in reset
+> + * 2. Enable clock
+> + * 3. Delay
+> + * 4. Release reset
+> + *
+> + * Consequently, if reset_idx is set, reset control is implicit: the clock
+> + * consumer does not need its own reset handling, as enabling the clock will
+> + * also deassert reset.
+> + *
+> + * There are some gates that do not have an associated reset; these are
+> + * handled by using -1 as the index for the reset, and the consumer must
+> + * explictly assert/deassert reset lines as required.
+> + *
+>   * Clocks marked with CLK_IS_CRITICAL:
+>   *
+>   *  ref0 and ref1 are essential for the SoC to operate
 > --
-> 2.20.1
+> 2.39.1
 >
->
-> _______________________________________________
-> Linux-rockchip mailing list
-> Linux-rockchip@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-rockchip
