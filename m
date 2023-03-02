@@ -2,184 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 58DB76A8A15
-	for <lists+devicetree@lfdr.de>; Thu,  2 Mar 2023 21:18:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5ACB96A8AFB
+	for <lists+devicetree@lfdr.de>; Thu,  2 Mar 2023 22:11:31 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229468AbjCBUSy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 2 Mar 2023 15:18:54 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48376 "EHLO
+        id S229537AbjCBVL3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 2 Mar 2023 16:11:29 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34416 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229447AbjCBUSw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Mar 2023 15:18:52 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7E7CF1B33B;
-        Thu,  2 Mar 2023 12:18:50 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 2FE1AB815BB;
-        Thu,  2 Mar 2023 20:18:49 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 99E00C433D2;
-        Thu,  2 Mar 2023 20:18:47 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1677788327;
-        bh=/Yn3UcMdQ1GXWH06I63xFkYGrZyXxsIhd8sDdU/N+rU=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=S3pI84K0PNBtKG1nQ9HGZ6kbE153E/SPIRWB3OJArdOlrjEGtVCXZ3xXkoOEj86On
-         TxM99XZA4Mj88eHESIOKaet/GYTAVuYwP6NLi6JEayM2rWcTJsp3Kefqm9UGQDg681
-         4p2iTjbJ1sc+bKGIknarjbzBDsubDF67/wgUez3qtElsuJFSxHyiQ1MdJ4vmsIbgXT
-         ufMQpB3K2m2YZLE1n4IodBAM0uYyxQcKgdpWKKuy7uo1/n7xiYxc4HaKYo7tyN+YJP
-         7WcTrrCyQYFTNy/Fie+Yl2vjzW1mtAnwhoJV+mmymjLkmlK+akoh1+AnsRKclhdZcS
-         6UnxrOQTGDjGQ==
-Received: by mail-vs1-f54.google.com with SMTP id m10so453290vso.4;
-        Thu, 02 Mar 2023 12:18:47 -0800 (PST)
-X-Gm-Message-State: AO0yUKWFf1vjlYP8r4XNtk2fF9gXU7q/KSH1OIL+AH/5yjB/uR6xdTwQ
-        iqnjeLWKmbe3WPN0LIZcB9/0obhCcLyAPUWzkw==
-X-Google-Smtp-Source: AK7set8CdZkV4nzAcxJAbmUjGudJ4PuiuPCHsE83ibLSseGKCb8fkRaEA/lrtnQAVCyfd8eCj0HxtuGm3QHjodqLBCw=
-X-Received: by 2002:a05:6102:184:b0:414:4ef2:b607 with SMTP id
- r4-20020a056102018400b004144ef2b607mr7202543vsq.6.1677788326407; Thu, 02 Mar
- 2023 12:18:46 -0800 (PST)
-MIME-Version: 1.0
-References: <20230302013822.1808711-1-sboyd@kernel.org> <CAL_JsqLVQVZhYTSZgrvA-V-xOUbiBdyDxqPOZk=89YS33EahBQ@mail.gmail.com>
- <093867df6137ad9e964b7dd90fb58f1a.sboyd@kernel.org>
-In-Reply-To: <093867df6137ad9e964b7dd90fb58f1a.sboyd@kernel.org>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Thu, 2 Mar 2023 14:18:34 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqLdPWRLu8TNqCG+dw9Pz2cS798QwGX=C5X18KKqAXwjSQ@mail.gmail.com>
-Message-ID: <CAL_JsqLdPWRLu8TNqCG+dw9Pz2cS798QwGX=C5X18KKqAXwjSQ@mail.gmail.com>
-Subject: Re: [PATCH 0/8] clk: Add kunit tests for fixed rate and parent data
-To:     Stephen Boyd <sboyd@kernel.org>
-Cc:     Michael Turquette <mturquette@baylibre.com>,
-        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
-        patches@lists.linux.dev,
-        Brendan Higgins <brendan.higgins@linux.dev>,
-        David Gow <davidgow@google.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        "Rafael J . Wysocki" <rafael@kernel.org>,
-        Richard Weinberger <richard@nod.at>,
-        Anton Ivanov <anton.ivanov@cambridgegreys.com>,
-        Johannes Berg <johannes@sipsolutions.net>,
-        Vincent Whitchurch <vincent.whitchurch@axis.com>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Christian Marangi <ansuelsmth@gmail.com>,
+        with ESMTP id S229476AbjCBVL2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Mar 2023 16:11:28 -0500
+Received: from mail-pj1-x1030.google.com (mail-pj1-x1030.google.com [IPv6:2607:f8b0:4864:20::1030])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 776045652A
+        for <devicetree@vger.kernel.org>; Thu,  2 Mar 2023 13:11:26 -0800 (PST)
+Received: by mail-pj1-x1030.google.com with SMTP id 6-20020a17090a190600b00237c5b6ecd7so4082937pjg.4
+        for <devicetree@vger.kernel.org>; Thu, 02 Mar 2023 13:11:26 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=EnwhFazkXPQvwXTNDMdOsjKx8vo+Awf6ny6pAQlMJDY=;
+        b=MqdSEjH57O4po1moEnmjSKdlqQYM2mM96KvMIrdCbMZYwj0Cqb4G/NZ21sHZzyYjk7
+         oxb6XESSAOpEC6ptihSwWnGVN5dVIwHuAqlmO1yT9LctObyn/EmkbXD5kVXALgrbU5Df
+         zcvtYFespKYEfqUzBCksk9HPvzg8WeCio/5Q8=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=EnwhFazkXPQvwXTNDMdOsjKx8vo+Awf6ny6pAQlMJDY=;
+        b=FqfzViMLN/5jA9pKaAr6Y5btCt4jV5Y+S2BlTJOfFg7FvbcaLgkEXZ5i0PE/vzT7/s
+         a3x/NISkvGrd+6eFhEqrHgrpBWSpuoQF0L3qqLY2zUW/oXYSKur0ForY3IicJUZOsPdy
+         Jb1htQlsRjaU15kRum99KqsxobFRwLx918r39YnYUFaHv7nH9+x8jH0DbNCTZwpHfgu+
+         q4GLL5B5CuAA8W8fiX1faXI3OZhbIPGmwZ7jusxCxPCknVXnoD+vGHbWUXiF995/VUNX
+         KsZ5Tctxa/AsNbz/2Qpc7ufZ2x7A24DGXm6n2cjt5e+pf9ri9l57bxklHU9xCorTzA9v
+         PGrQ==
+X-Gm-Message-State: AO0yUKVOAV/TuXIdREIAJoSkSGjcWaa+Jg2G7Juz6IZdPYqKwyLq2GPt
+        jxUpe2Z/zYsJBHZ9OH44WX5Qbg==
+X-Google-Smtp-Source: AK7set99OMd70i98XRexjgg2GjSnH0wDtEpGvO9yAFx0ZJP9ojiiVXhA88toAdirejoWx2g8Uj6qhA==
+X-Received: by 2002:a17:902:e5cd:b0:19e:6760:3a5d with SMTP id u13-20020a170902e5cd00b0019e67603a5dmr5066598plf.18.1677791485982;
+        Thu, 02 Mar 2023 13:11:25 -0800 (PST)
+Received: from tictac2.mtv.corp.google.com ([2620:15c:9d:2:a558:99c0:81e9:a93c])
+        by smtp.gmail.com with ESMTPSA id a16-20020a170902b59000b00195f242d0a0sm114497pls.194.2023.03.02.13.11.24
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 02 Mar 2023 13:11:25 -0800 (PST)
+From:   Douglas Anderson <dianders@chromium.org>
+To:     Bjorn Andersson <andersson@kernel.org>
+Cc:     Konrad Dybcio <konrad.dybcio@linaro.org>, mka@chromium.org,
+        swboyd@chromium.org, Douglas Anderson <dianders@chromium.org>,
+        Andy Gross <agross@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org, linux-um@lists.infradead.org,
-        linux-kselftest@vger.kernel.org, kunit-dev@googlegroups.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH v2 0/4] arm64: dts: qcom: sc7180: Delete a few unused trogdor dts files
+Date:   Thu,  2 Mar 2023 13:11:03 -0800
+Message-Id: <20230302211108.2129598-1-dianders@chromium.org>
+X-Mailer: git-send-email 2.40.0.rc0.216.gc4246ad0f0-goog
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Mar 2, 2023 at 1:44=E2=80=AFPM Stephen Boyd <sboyd@kernel.org> wrot=
-e:
->
-> Quoting Rob Herring (2023-03-02 09:13:59)
-> > On Wed, Mar 1, 2023 at 7:38=E2=80=AFPM Stephen Boyd <sboyd@kernel.org> =
-wrote:
-> > >
-> > > This patch series adds unit tests for the clk fixed rate basic type a=
-nd
-> > > the clk registration functions that use struct clk_parent_data. To ge=
-t
-> > > there, we add support for loading a DTB into the UML kernel that's
-> > > running the unit tests along with probing platform drivers to bind to
-> > > device nodes specified in DT.
-> > >
-> > > With this series, we're able to exercise some of the code in the comm=
-on
-> > > clk framework that uses devicetree lookups to find parents and the fi=
-xed
-> > > rate clk code that scans devicetree directly and creates clks. Please
-> > > review.
-> > >
-> > > I Cced everyone to all the patches so they get the full context. I'm
-> > > hoping I can take the whole pile through the clk tree as they almost =
-all
-> > > depend on each other. In the future I imagine it will be easy to add
-> > > more test nodes to the clk.dtsi file and not need to go across variou=
-s
-> > > maintainer trees like this series does.
-> > >
-> > > Stephen Boyd (8):
-> > >   dt-bindings: Add linux,kunit binding
-> > >   of: Enable DTB loading on UML for KUnit tests
-> > >   kunit: Add test managed platform_device/driver APIs
-> > >   clk: Add test managed clk provider/consumer APIs
-> > >   dt-bindings: kunit: Add fixed rate clk consumer test
-> > >   clk: Add KUnit tests for clk fixed rate basic type
-> > >   dt-bindings: clk: Add KUnit clk_parent_data test
-> > >   clk: Add KUnit tests for clks registered with struct clk_parent_dat=
-a
-> >
-> > Good to see bindings for this. I've been meaning to do something about
-> > the DT unittest ones being undocumented, but I hadn't really decided
-> > whether it was worth writing schemas for them. The compatibles at
-> > least show up with 'make dt_compatible_check'. Perhaps we want to just
-> > define some vendor (not 'linux') that's an exception rather than
-> > requiring schemas (actually, that already works for 'foo').
->
-> Sure. Maybe "kunit" should be the vendor prefix? Or "dtbunit"?
+In general on ChromeOS we try hard not to throw away perfectly good
+hardware, even if it has a few quirks. Many people keep early versions
+of boards around indefinitely and keep using them for testing /
+development if the feature they're working on doesn't need the latest
+and greatest. This is the reason why there are so many sc7180-trogdor
+device tree files.
 
-We'd want to use the same thing on the DT unittests or anything else
-potentially. How about just 'test'?
+That being said, _very_ early hardware tends not to be kept. -rev0
+hardware tends (not always) to be prototype hardware and often comes
+as a pile of parts. People are really only willing to put up with this
+for so long. Even if it's not a pile of parts, -rev0 tends to be a
+very small production run and isn't widely distributed. That means
+that, by and large, we can eventually drop support for -rev0. Here,
+we'll do that for kingoftown and wormdingler, and lazor.
 
-> > It's
-> > likely that we want test DTs that fail normal checks and schemas get
-> > in the way of that as we don't have a way to turn off checks.
->
-> Having the schemas is nice to make sure tests that are expecting some
-> binding are actually getting that. But supporting broken bindings is
-> also important to test any error paths in functions that parse
-> properties. Maybe we keep the schema and have it enforce that incorrect
-> properties are being set?
+While looking at the -rev0 of mrbland, I noticed that mrbland appears
+to be long dead and unlikely to be revived. Let's just fully delete
+it.
 
-I wasn't suggesting throwing them out. More why I hadn't written any I gues=
-s.
+Changes in v2:
+- Also delete "sc7180-trogdor-wormdingler-rev0.dtsi" (Konrad)
+- Get rid of kingoftown.dtsi and merge into dts (Konrad)
 
-> Do we really need to test incorrect bindings? Doesn't the
-> dt_bindings_check catch these problems so we don't have to write DTB
-> verifiers in the kernel?
+Douglas Anderson (4):
+  arm64: dts: qcom: sc7180: Delete wormdingler-rev0
+  arm64: dts: qcom: sc7180: Delete kingoftown-rev0
+  arm64: dts: qcom: sc7180: Delete lazor-rev0
+  arm64: dts: qcom: sc7180: Delete mrbland
 
-Fair enough. Using my frequently stated position against me. :)
+ arch/arm64/boot/dts/qcom/Makefile             |  10 +-
+ .../dts/qcom/sc7180-trogdor-kingoftown-r0.dts |  38 ---
+ .../dts/qcom/sc7180-trogdor-kingoftown-r1.dts |  17 -
+ ...own.dtsi => sc7180-trogdor-kingoftown.dts} |  10 +-
+ .../boot/dts/qcom/sc7180-trogdor-lazor-r0.dts |  34 --
+ .../qcom/sc7180-trogdor-mrbland-rev0-auo.dts  |  22 --
+ .../qcom/sc7180-trogdor-mrbland-rev0-boe.dts  |  22 --
+ .../dts/qcom/sc7180-trogdor-mrbland-rev0.dtsi |  36 --
+ .../qcom/sc7180-trogdor-mrbland-rev1-auo.dts  |  22 --
+ .../qcom/sc7180-trogdor-mrbland-rev1-boe.dts  |  24 --
+ .../boot/dts/qcom/sc7180-trogdor-mrbland.dtsi | 320 ------------------
+ .../sc7180-trogdor-wormdingler-rev0-boe.dts   |  22 --
+ .../sc7180-trogdor-wormdingler-rev0-inx.dts   |  22 --
+ .../qcom/sc7180-trogdor-wormdingler-rev0.dtsi |  36 --
+ 14 files changed, 10 insertions(+), 625 deletions(-)
+ delete mode 100644 arch/arm64/boot/dts/qcom/sc7180-trogdor-kingoftown-r0.dts
+ delete mode 100644 arch/arm64/boot/dts/qcom/sc7180-trogdor-kingoftown-r1.dts
+ rename arch/arm64/boot/dts/qcom/{sc7180-trogdor-kingoftown.dtsi => sc7180-trogdor-kingoftown.dts} (95%)
+ delete mode 100644 arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r0.dts
+ delete mode 100644 arch/arm64/boot/dts/qcom/sc7180-trogdor-mrbland-rev0-auo.dts
+ delete mode 100644 arch/arm64/boot/dts/qcom/sc7180-trogdor-mrbland-rev0-boe.dts
+ delete mode 100644 arch/arm64/boot/dts/qcom/sc7180-trogdor-mrbland-rev0.dtsi
+ delete mode 100644 arch/arm64/boot/dts/qcom/sc7180-trogdor-mrbland-rev1-auo.dts
+ delete mode 100644 arch/arm64/boot/dts/qcom/sc7180-trogdor-mrbland-rev1-boe.dts
+ delete mode 100644 arch/arm64/boot/dts/qcom/sc7180-trogdor-mrbland.dtsi
+ delete mode 100644 arch/arm64/boot/dts/qcom/sc7180-trogdor-wormdingler-rev0-boe.dts
+ delete mode 100644 arch/arm64/boot/dts/qcom/sc7180-trogdor-wormdingler-rev0-inx.dts
+ delete mode 100644 arch/arm64/boot/dts/qcom/sc7180-trogdor-wormdingler-rev0.dtsi
 
-I do have a secret plan to implement (debug) type checks into the
-of_property_* APIs by extracting the type information from schemas
-into C.
+-- 
+2.40.0.rc0.216.gc4246ad0f0-goog
 
-
-> > We already have GPIO tests in the DT unittests, so why is clocks
-> > different? Or should the GPIO tests be moved out (yes, please!)?
->
-> Ah I didn't notice the GPIO tests in there. There are i2c tests too,
-> right? All I can say is clks are using kunit, that's the difference ;-)
-
-Yeah, they should perhaps all move to the subsystems.
-
-> > What happens when/if the DT unittest is converted to kunit? I think
-> > that would look confusing from the naming. My initial thought is
-> > 'kunit' should be dropped from the naming of a lot of this. Note that
-> > the original kunit submission converted the DT unittests. I would
-> > still like to see that happen. Frank disagreed over what's a unit test
-> > or not, then agreed, then didn't... I don't really care. If there's a
-> > framework to use, then we should use it IMO.
->
-> Honestly I don't want to get involved in migrating the existing DT
-> unittest code to kunit. I'm aware that it was attempted years ago when
-> kunit was introduced. Maybe if the overlay route works well enough I can
-> completely sidestep introducing any code in drivers/of/ besides some
-> kunit wrappers for this. I'll cross my fingers!
-
-Yeah, I wasn't expecting you to. I just want to make sure this meshes
-with any future conversion to kunit.
-
-There's also some plans to always populate the DT root node if not
-present. That may help here. Or not. There's been a few versions
-posted with Frank's in the last week or 2.
-
-Rob
