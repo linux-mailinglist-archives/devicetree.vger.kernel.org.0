@@ -2,69 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D252F6A80C5
-	for <lists+devicetree@lfdr.de>; Thu,  2 Mar 2023 12:11:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D3BC66A80FE
+	for <lists+devicetree@lfdr.de>; Thu,  2 Mar 2023 12:26:31 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229753AbjCBLLs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 2 Mar 2023 06:11:48 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60930 "EHLO
+        id S229532AbjCBL0a (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 2 Mar 2023 06:26:30 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47742 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229461AbjCBLLr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Mar 2023 06:11:47 -0500
-Received: from mail-ed1-x536.google.com (mail-ed1-x536.google.com [IPv6:2a00:1450:4864:20::536])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D428930B24;
-        Thu,  2 Mar 2023 03:11:45 -0800 (PST)
-Received: by mail-ed1-x536.google.com with SMTP id o12so66008121edb.9;
-        Thu, 02 Mar 2023 03:11:45 -0800 (PST)
+        with ESMTP id S229502AbjCBL03 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Mar 2023 06:26:29 -0500
+Received: from mail-wr1-x42e.google.com (mail-wr1-x42e.google.com [IPv6:2a00:1450:4864:20::42e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 84AC230B33;
+        Thu,  2 Mar 2023 03:26:28 -0800 (PST)
+Received: by mail-wr1-x42e.google.com with SMTP id bw19so16141677wrb.13;
+        Thu, 02 Mar 2023 03:26:28 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=I24OPDq/kLlSuHGPflRm2uXznKj1xztkIch5YbiVGGE=;
-        b=TJomh1mcGrs7i47cr1rc9TMO9xm/mM/qr5if6bZuCS7KnWYb1jG1oY/48lvGoZyXvv
-         20Xg9apPCvX2+/DgSVN/TvjCuPIU8Wn347+PIh8Bv7av77WnLHfGm4H23AitQ3gnEcfd
-         cx2hFn8qtTJDmDqxPzlAKs6mFIM/YTxw8PPoU3Kkrki4JGiEow3hOf/Z416Vk10UnvoJ
-         vhpfuRuZgcZezt3+ICXBy3bktHDu88Kq7AxzyGtOaB/OZJhP9Lm3wnRsAu7yi1prn8NN
-         OCxYJiuq7VJdNL0Q2srwazM7FzqiX5VDEZR8k95pImv9lWUMN14mplK1O/uELmCAr8va
-         HT8A==
+        d=gmail.com; s=20210112; t=1677756387;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=Ubt9kS070SRzays7Lyyyhk92YHHgZCfGzQC7bvZRYWs=;
+        b=M7HyxsaUb8pCJPb17juc/uvkXUftUuBGUQwLlDrMMbY26zD8crXuN3+8IkHbq+CzGT
+         QpLTvaotYucqTLcapHtEbVpBhPaHFMDTfpQUCYcjKnj9XlJEfDih4bJh/UVm70yLio/Z
+         Ew5m0KmWNymD7y3JCAeb+k1njUx8M3RskXi+w26ZfzPkQI3p999shSIXs+QBCa1OrINk
+         py38sbXW5I8WB5SrTOHk1DJkTtdmIJFiZcZKiZ8KvjDLRiqBkMjcTH+4IYr+Me36k1D0
+         ZIYNHH8s/2wVAKgBNsJ031M/0s4ZEMQncHnbWUWc713joUjQ89zW9ZcTYCrE5cLc/Gb7
+         Kghg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=I24OPDq/kLlSuHGPflRm2uXznKj1xztkIch5YbiVGGE=;
-        b=rxAETuxqKUkwqQ+gIhVZEmghkWqSs2tCEwGuTig+fpb0fObpqbb4wUd1B+WBUoXWsI
-         /gcHUWoajgGCFdoFu6x2vq9ppDLq+OG/nGXQXSJACLMq1Q/oF/wYzI9va/3u3ENWX/ju
-         uQlLF6UxQHYzutftlFUNfMlMXexDH2zl+HRUl0DXc8+fGq6lby24EX5qX0SIVFxa+bSF
-         o+f4lALATVDIT0ER5JgOrsbQ4hHz44XQN7rHmq26R5k890gSvNMM1btyqfH64RzQK0o6
-         cS/alsEwzODvPbM6JXlTaqtZ+ixz7I4P5uDYNnJ4+cKlYduGGA2SxmTqarB4G9YaupTL
-         qrFg==
-X-Gm-Message-State: AO0yUKUzNCEp13rLEKmqkYghQ+NBLa6+avAJfbVk3ygItRtLcN8VSsNm
-        s4t8M+ot7VQn6gdQulL4PanPi2+WIlVWxpL81vc=
-X-Google-Smtp-Source: AK7set87dFh2ULeTzYdjiEUjlSali6yM7p8x0e9gJKkw3KGbj/oaX3bqDk/rZnTirFKciv/eBiPu1AJkl4YKrflj6tE=
-X-Received: by 2002:a50:cdce:0:b0:4ad:7389:d298 with SMTP id
- h14-20020a50cdce000000b004ad7389d298mr5770007edj.4.1677755504278; Thu, 02 Mar
- 2023 03:11:44 -0800 (PST)
+        d=1e100.net; s=20210112; t=1677756387;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=Ubt9kS070SRzays7Lyyyhk92YHHgZCfGzQC7bvZRYWs=;
+        b=Vo9l94QFBQD2zZNcBsRmME17r4LbP8gNkNGs5Dayo82i3qXoHFjoYti/09n8yYbcJ7
+         uT8Z424XsF1C1w/4VRAzmzmz3dR2F82i+KS03+33mRyZoagtjhGeF8JSk6TIUAsWMRdh
+         nEC1HXwm/hmwOe8351gv1soqKoWrSGre4BPQA4B4COzjVH/24/Mk6lXL67z5PPzeOLDv
+         v7OGXzLAeWIUooe7+oQA5HdQCpusm+G6/EhEmYlLhhJN8ZSkM6Pk02OqMDUWAavS1MKD
+         dBoFlawwkPnIMDW0sK2iPw5gO9z5DT7+xrvf/vUyp7I62RQvowVDJgbKbfRsLMLNWlou
+         A0jA==
+X-Gm-Message-State: AO0yUKUVDa5kE5FearToRRyqfzpxNP7tutQHCe7JRMUufObqns2jN4bY
+        pYvKcA5wa0Y8cxteMuB0F46JKVkUhEJIVg==
+X-Google-Smtp-Source: AK7set98pNPLGEg7TnBb4ZHI/1aEVLqnr3HiKc4PTIVLKBrwMGrQRt4geF25PL/4FYK5yQ9Q03E3Hg==
+X-Received: by 2002:adf:dd85:0:b0:2c5:5d21:7d4c with SMTP id x5-20020adfdd85000000b002c55d217d4cmr7184234wrl.43.1677756386980;
+        Thu, 02 Mar 2023 03:26:26 -0800 (PST)
+Received: from [192.168.2.177] ([207.188.167.132])
+        by smtp.gmail.com with ESMTPSA id g9-20020a056000118900b002c794495f6fsm14634729wrx.117.2023.03.02.03.26.25
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 02 Mar 2023 03:26:26 -0800 (PST)
+Message-ID: <1f65671b-7c68-b007-60c8-6c4841febce0@gmail.com>
+Date:   Thu, 2 Mar 2023 12:26:25 +0100
 MIME-Version: 1.0
-References: <20230222111213.2241633-1-keguang.zhang@gmail.com>
- <20230222111213.2241633-3-keguang.zhang@gmail.com> <Y/YIDobQW8W3QAAh@surfacebook>
-In-Reply-To: <Y/YIDobQW8W3QAAh@surfacebook>
-From:   Kelvin Cheung <keguang.zhang@gmail.com>
-Date:   Thu, 2 Mar 2023 19:11:28 +0800
-Message-ID: <CAJhJPsUYR55aLNWi-VC2wmNEZZj=7E1aPpFTB6a+Bzhw=E4y5g@mail.gmail.com>
-Subject: Re: [PATCH 2/4] gpio: loongson1: Introduce ls1x_gpio_chip struct
-To:     andy.shevchenko@gmail.com
-Cc:     linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-mips@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.1
+Subject: Re: [PATCH v1 1/4] arm64: dts: mt8195: Update vdosys compatible
+Content-Language: en-US
+To:     matthias.bgg@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org
+Cc:     devicetree@vger.kernel.org, linux-mediatek@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        angelogioacchino.delregno@collabora.com
+References: <20230209160357.19307-1-matthias.bgg@kernel.org>
+From:   Matthias Brugger <matthias.bgg@gmail.com>
+In-Reply-To: <20230209160357.19307-1-matthias.bgg@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
         RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -73,27 +76,41 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Feb 22, 2023 at 8:18=E2=80=AFPM <andy.shevchenko@gmail.com> wrote:
->
-> Wed, Feb 22, 2023 at 07:12:11PM +0800, Keguang Zhang kirjoitti:
-> > Introduce and allocate ls1x_gpio_chip struct containing
-> > gpio_chip and reg_base to avoid global gpio_reg_base.
-> >
-> > Use readl() & writel() instead of __raw_readl() & __raw_writel().
->
-> Please, split this to two pathes.
->
-Sure.
-Thanks!
+Patch 1 and 2 applied.
 
-> --
-> With Best Regards,
-> Andy Shevchenko
->
->
+Matthias
 
-
---=20
-Best regards,
-
-Kelvin Cheung
+On 09/02/2023 17:03, matthias.bgg@kernel.org wrote:
+> From: Matthias Brugger <matthias.bgg@gmail.com>
+> 
+> In an effort to fix the vdosys implementation, the compatible has
+> changes. Fix the device tree to adhere the binding definition.
+> 
+> Signed-off-by: Matthias Brugger <matthias.bgg@gmail.com>
+> ---
+> 
+>   arch/arm64/boot/dts/mediatek/mt8195.dtsi | 4 ++--
+>   1 file changed, 2 insertions(+), 2 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/mediatek/mt8195.dtsi b/arch/arm64/boot/dts/mediatek/mt8195.dtsi
+> index 00891bfa564e9..8f1264d5290bf 100644
+> --- a/arch/arm64/boot/dts/mediatek/mt8195.dtsi
+> +++ b/arch/arm64/boot/dts/mediatek/mt8195.dtsi
+> @@ -2369,7 +2369,7 @@ vencsys_core1: clock-controller@1b000000 {
+>   		};
+>   
+>   		vdosys0: syscon@1c01a000 {
+> -			compatible = "mediatek,mt8195-mmsys", "syscon";
+> +			compatible = "mediatek,mt8195-vdosys0", "mediatek,mt8195-mmsys", "syscon";
+>   			reg = <0 0x1c01a000 0 0x1000>;
+>   			mboxes = <&gce0 0 CMDQ_THR_PRIO_4>;
+>   			#clock-cells = <1>;
+> @@ -2555,7 +2555,7 @@ larb1: larb@1c019000 {
+>   		};
+>   
+>   		vdosys1: syscon@1c100000 {
+> -			compatible = "mediatek,mt8195-mmsys", "syscon";
+> +			compatible = "mediatek,mt8195-vdosys1", "syscon";
+>   			reg = <0 0x1c100000 0 0x1000>;
+>   			#clock-cells = <1>;
+>   		};
