@@ -2,70 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D3BC66A80FE
-	for <lists+devicetree@lfdr.de>; Thu,  2 Mar 2023 12:26:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 289156A8106
+	for <lists+devicetree@lfdr.de>; Thu,  2 Mar 2023 12:28:49 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229532AbjCBL0a (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 2 Mar 2023 06:26:30 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47742 "EHLO
+        id S229662AbjCBL2s (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 2 Mar 2023 06:28:48 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49826 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229502AbjCBL03 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Mar 2023 06:26:29 -0500
-Received: from mail-wr1-x42e.google.com (mail-wr1-x42e.google.com [IPv6:2a00:1450:4864:20::42e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 84AC230B33;
-        Thu,  2 Mar 2023 03:26:28 -0800 (PST)
-Received: by mail-wr1-x42e.google.com with SMTP id bw19so16141677wrb.13;
-        Thu, 02 Mar 2023 03:26:28 -0800 (PST)
+        with ESMTP id S229555AbjCBL2q (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Mar 2023 06:28:46 -0500
+Received: from mail-wm1-x32e.google.com (mail-wm1-x32e.google.com [IPv6:2a00:1450:4864:20::32e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B05151165E;
+        Thu,  2 Mar 2023 03:28:45 -0800 (PST)
+Received: by mail-wm1-x32e.google.com with SMTP id c18so10461119wmr.3;
+        Thu, 02 Mar 2023 03:28:45 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112; t=1677756387;
+        d=gmail.com; s=20210112; t=1677756524;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=Ubt9kS070SRzays7Lyyyhk92YHHgZCfGzQC7bvZRYWs=;
-        b=M7HyxsaUb8pCJPb17juc/uvkXUftUuBGUQwLlDrMMbY26zD8crXuN3+8IkHbq+CzGT
-         QpLTvaotYucqTLcapHtEbVpBhPaHFMDTfpQUCYcjKnj9XlJEfDih4bJh/UVm70yLio/Z
-         Ew5m0KmWNymD7y3JCAeb+k1njUx8M3RskXi+w26ZfzPkQI3p999shSIXs+QBCa1OrINk
-         py38sbXW5I8WB5SrTOHk1DJkTtdmIJFiZcZKiZ8KvjDLRiqBkMjcTH+4IYr+Me36k1D0
-         ZIYNHH8s/2wVAKgBNsJ031M/0s4ZEMQncHnbWUWc713joUjQ89zW9ZcTYCrE5cLc/Gb7
-         Kghg==
+        bh=DbefYfUzG5BxKsWRBtbIucuyyqa3BZG4AScEYVrOhxo=;
+        b=LrWllxYQ0n8ajJAexBum2zDwvCb3m6Fpwsk6bRWeThtZ54KAbabBoydqP1jWsn8jCF
+         ZSlwjJ+cl3RuzIx5imC+4immHm14f+jmT4gUPaGiSm+4EBBDQfQ+jA6Ujv5729Hi6SUc
+         jrNgVOENH2CKO7eASSCcSRnbC+oR+5Kmztvt5VMza184SEGd07l71xAd44clTVGDI+8Q
+         CZLC+Igsn1SdgtveM2AxhoS2Tu0hRvP/spRCoquTVp5DpvgyIfkrtPcTatwIQLzjXCoC
+         ggg2dlbPe2lu7IcVCAgYrklURr0UmQhvA87ORzQrr1slB9bhe8aWksY+gEI9gfl1RCVP
+         TC7A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1677756387;
+        d=1e100.net; s=20210112; t=1677756524;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Ubt9kS070SRzays7Lyyyhk92YHHgZCfGzQC7bvZRYWs=;
-        b=Vo9l94QFBQD2zZNcBsRmME17r4LbP8gNkNGs5Dayo82i3qXoHFjoYti/09n8yYbcJ7
-         uT8Z424XsF1C1w/4VRAzmzmz3dR2F82i+KS03+33mRyZoagtjhGeF8JSk6TIUAsWMRdh
-         nEC1HXwm/hmwOe8351gv1soqKoWrSGre4BPQA4B4COzjVH/24/Mk6lXL67z5PPzeOLDv
-         v7OGXzLAeWIUooe7+oQA5HdQCpusm+G6/EhEmYlLhhJN8ZSkM6Pk02OqMDUWAavS1MKD
-         dBoFlawwkPnIMDW0sK2iPw5gO9z5DT7+xrvf/vUyp7I62RQvowVDJgbKbfRsLMLNWlou
-         A0jA==
-X-Gm-Message-State: AO0yUKUVDa5kE5FearToRRyqfzpxNP7tutQHCe7JRMUufObqns2jN4bY
-        pYvKcA5wa0Y8cxteMuB0F46JKVkUhEJIVg==
-X-Google-Smtp-Source: AK7set98pNPLGEg7TnBb4ZHI/1aEVLqnr3HiKc4PTIVLKBrwMGrQRt4geF25PL/4FYK5yQ9Q03E3Hg==
-X-Received: by 2002:adf:dd85:0:b0:2c5:5d21:7d4c with SMTP id x5-20020adfdd85000000b002c55d217d4cmr7184234wrl.43.1677756386980;
-        Thu, 02 Mar 2023 03:26:26 -0800 (PST)
+        bh=DbefYfUzG5BxKsWRBtbIucuyyqa3BZG4AScEYVrOhxo=;
+        b=wreENHz0KV6CDF8WIImu/KCdpBMColAflLy+rXyCurm3r1xJzvaBspeyDvE/k6vQtQ
+         lsPNFn1O/ksNdOaFJfWdjsSZcOG+YDuKNVsXeYLcmAvFUPadT0Mfy92gtYUndY7djsSh
+         qt1Tj6CFnl7Vt+Dmtx5EbdY7d9Z/Hpa9di0THLfFcYWEEupZ/dElFe+Euu5pudd8kpuO
+         mC20GsQIRkbGH8iFN2qhqABnnxiOvuedoDHwKzKvYG8/7aBGyxBSTwcznkt11cfB0+l6
+         8L/S3clTvbCcGtPs/CuF95GnqkrM/9UuKsxyjjtRmTJJj5tmGbleZGhtHxXcSOHDuJH8
+         x44A==
+X-Gm-Message-State: AO0yUKU9hWwelJTgq9oIDYUydZNmd4Oxsw4mYXXva8bm6yTj+y4X6LgI
+        8rHh9G33msO0IN/qGhwoqhI=
+X-Google-Smtp-Source: AK7set/gnKHcVpKfeIooNDE59TK9Nw8LRlREd6MeAUDwxtLB4n6A9jRhZdg4gVdwC7woIubSJjpmKw==
+X-Received: by 2002:a05:600c:3507:b0:3dc:4fd7:31e9 with SMTP id h7-20020a05600c350700b003dc4fd731e9mr8155628wmq.7.1677756524154;
+        Thu, 02 Mar 2023 03:28:44 -0800 (PST)
 Received: from [192.168.2.177] ([207.188.167.132])
-        by smtp.gmail.com with ESMTPSA id g9-20020a056000118900b002c794495f6fsm14634729wrx.117.2023.03.02.03.26.25
+        by smtp.gmail.com with ESMTPSA id l10-20020a7bc44a000000b003e21dcccf9fsm2519117wmi.16.2023.03.02.03.28.43
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 02 Mar 2023 03:26:26 -0800 (PST)
-Message-ID: <1f65671b-7c68-b007-60c8-6c4841febce0@gmail.com>
-Date:   Thu, 2 Mar 2023 12:26:25 +0100
+        Thu, 02 Mar 2023 03:28:43 -0800 (PST)
+Message-ID: <e5302c3e-f985-b020-5f8c-fba876768eaf@gmail.com>
+Date:   Thu, 2 Mar 2023 12:28:42 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.6.1
-Subject: Re: [PATCH v1 1/4] arm64: dts: mt8195: Update vdosys compatible
+Subject: Re: [PATCH v4 00/19] Enable GPU with DVFS support on MediaTek SoCs
 Content-Language: en-US
-To:     matthias.bgg@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org
-Cc:     devicetree@vger.kernel.org, linux-mediatek@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        angelogioacchino.delregno@collabora.com
-References: <20230209160357.19307-1-matthias.bgg@kernel.org>
+To:     Chen-Yu Tsai <wenst@chromium.org>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org
+References: <20230301095523.428461-1-angelogioacchino.delregno@collabora.com>
+ <b4fc6bd8-e300-0f40-4216-8b99589c21cc@gmail.com>
+ <895abaa2-5fd3-9928-4e53-86ce160fbad8@collabora.com>
+ <CAGXv+5EPVhH-O+ZdoLeW4OZVcEtS824oracmu3jHTa8k-tEU0A@mail.gmail.com>
 From:   Matthias Brugger <matthias.bgg@gmail.com>
-In-Reply-To: <20230209160357.19307-1-matthias.bgg@kernel.org>
+In-Reply-To: <CAGXv+5EPVhH-O+ZdoLeW4OZVcEtS824oracmu3jHTa8k-tEU0A@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
         RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
@@ -76,41 +81,28 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Patch 1 and 2 applied.
+
+
+On 02/03/2023 11:11, Chen-Yu Tsai wrote:
+> On Thu, Mar 2, 2023 at 6:10 PM AngeloGioacchino Del Regno
+> <angelogioacchino.delregno@collabora.com> wrote:
+>>
+>> Il 02/03/23 10:36, Matthias Brugger ha scritto:
+>>> Series looks good but from my understanding has a dependency on:
+>>> [PATCH v4 00/12] Panfrost: Improve and add MediaTek SoCs support
+>>> (https://lore.kernel.org/linux-mediatek/20230228102610.707605-1-angelogioacchino.delregno@collabora.com/)
+>>>
+>>> Did I get that right?
+>>>
+>>
+>> Yes you got it right - without the mentioned series, this one will do nothing
+>> at all (and will also fail binding checks, as the bindings are introduced in
+>> that other series).
+> 
+> Please also let me test them on MT8183 and MT8186 before merging them.
+> 
+
+Of course, I'll wait for your tested-by tags then.
+Thanks for testing!
 
 Matthias
-
-On 09/02/2023 17:03, matthias.bgg@kernel.org wrote:
-> From: Matthias Brugger <matthias.bgg@gmail.com>
-> 
-> In an effort to fix the vdosys implementation, the compatible has
-> changes. Fix the device tree to adhere the binding definition.
-> 
-> Signed-off-by: Matthias Brugger <matthias.bgg@gmail.com>
-> ---
-> 
->   arch/arm64/boot/dts/mediatek/mt8195.dtsi | 4 ++--
->   1 file changed, 2 insertions(+), 2 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/mediatek/mt8195.dtsi b/arch/arm64/boot/dts/mediatek/mt8195.dtsi
-> index 00891bfa564e9..8f1264d5290bf 100644
-> --- a/arch/arm64/boot/dts/mediatek/mt8195.dtsi
-> +++ b/arch/arm64/boot/dts/mediatek/mt8195.dtsi
-> @@ -2369,7 +2369,7 @@ vencsys_core1: clock-controller@1b000000 {
->   		};
->   
->   		vdosys0: syscon@1c01a000 {
-> -			compatible = "mediatek,mt8195-mmsys", "syscon";
-> +			compatible = "mediatek,mt8195-vdosys0", "mediatek,mt8195-mmsys", "syscon";
->   			reg = <0 0x1c01a000 0 0x1000>;
->   			mboxes = <&gce0 0 CMDQ_THR_PRIO_4>;
->   			#clock-cells = <1>;
-> @@ -2555,7 +2555,7 @@ larb1: larb@1c019000 {
->   		};
->   
->   		vdosys1: syscon@1c100000 {
-> -			compatible = "mediatek,mt8195-mmsys", "syscon";
-> +			compatible = "mediatek,mt8195-vdosys1", "syscon";
->   			reg = <0 0x1c100000 0 0x1000>;
->   			#clock-cells = <1>;
->   		};
