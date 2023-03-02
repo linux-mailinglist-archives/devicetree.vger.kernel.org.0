@@ -2,77 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E3CD26A789E
-	for <lists+devicetree@lfdr.de>; Thu,  2 Mar 2023 01:58:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 65E186A78C8
+	for <lists+devicetree@lfdr.de>; Thu,  2 Mar 2023 02:19:05 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229623AbjCBA6w (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 Mar 2023 19:58:52 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41622 "EHLO
+        id S229615AbjCBBTD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 Mar 2023 20:19:03 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56194 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229607AbjCBA6v (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Mar 2023 19:58:51 -0500
-Received: from codeconstruct.com.au (pi.codeconstruct.com.au [203.29.241.158])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C6A3325960;
-        Wed,  1 Mar 2023 16:58:49 -0800 (PST)
-Received: by codeconstruct.com.au (Postfix, from userid 10000)
-        id 9F3F7203F9; Thu,  2 Mar 2023 08:58:44 +0800 (AWST)
+        with ESMTP id S229529AbjCBBTD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Mar 2023 20:19:03 -0500
+Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E5EC71B2D4
+        for <devicetree@vger.kernel.org>; Wed,  1 Mar 2023 17:19:01 -0800 (PST)
+Received: by mail-lf1-x132.google.com with SMTP id r27so20088811lfe.10
+        for <devicetree@vger.kernel.org>; Wed, 01 Mar 2023 17:19:01 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=codeconstruct.com.au; s=2022a; t=1677718724;
-        bh=P2sKYF+UVnJfCwBMz5b/csD9Fw/yLMWPestEYUU2PLY=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References;
-        b=WtO1rIic/nbBWB3idTxHeKjtfBT3WdNO6rg5lWEi5Xl4+R/JvfNXaQ+mz44UKe6J1
-         hfg+rier0wXdJKf2kyaHwTlNereve2DCCZe1HKEq+Dgy5whywxoug1fRKRae4nNAbk
-         lKQG86UmaAHyK4wpmkZTgmxxaW3jelvw9GPBdKkrH5QVN2DJy2uGQHd4g14+/yxLSH
-         ZLjmd6eD4KY5en3+OZBBtwts8hLfiQC3/qOlVNypQkKc60L9ASzqQAEbddgSYil/TS
-         AuQ0JXqs1Mnvxe5tcvoFn4CJKyBigoPqhIyBJJltTT4jyWEKg//2DVqh/dn9j6eV5z
-         2yH55iPWxo1kw==
-From:   Jeremy Kerr <jk@codeconstruct.com.au>
-To:     devicetree@vger.kernel.org, linux-aspeed@lists.ozlabs.org,
-        linux-clk@vger.kernel.org
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Michael Turquette <mturquette@baylibre.com>,
+        d=linaro.org; s=google; t=1677719940;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=MFVn9m0D3uluRkM2nqEQdbkloQYC5dKGsPwtYRgiq3M=;
+        b=XgMJCldRY7BdRSPDtHXVp3Rrtweasl3/6fJHUOz5U0++gqJOOazL0+JN7OPxAuEZB+
+         UoZYtZX8oQVuk0PdXsvreb1JrkVf/w+VJuBL8WuFncSNA08upQqj0hE1K9kEz3VHDeZ+
+         SqTLD04wlxSmt1q0UNNL/cs9v3gi7hKlvVbIWk5WeyTBRJG2ZPzeKNUem9r8JupnA7D1
+         i6rOOatrAtGYhxbW3U8nWmSNrD9I4tr4e79TbeXxJpqyd6fX+nl7yg7oiIJotMpwbBDJ
+         ctiZHPSnGopZvHpx4cLnt8MxFp137LbEjp03CtAI45HnzyiN6iDSB/TayEofqZDoKVlB
+         oJ2A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1677719940;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=MFVn9m0D3uluRkM2nqEQdbkloQYC5dKGsPwtYRgiq3M=;
+        b=KRGJqHW2R33hhxPSSRS0znQ+S4Gvi5RYhVcG7wpWM3nknzc/EMNS+X5r/SKLkQTats
+         MuODsv5cT1JpT+sBhmCt76LK4Tzx9ffnc9A0s6pn8M6QrqmGCh5Vnm3MBlDQi55vG604
+         4iI5VRCBpZK3B0aK/rotXMrQggcIKh7ueGeNJE3QE3xPd3dkPhFUn+7fYiigtyFu4PkE
+         y/oeVKkBB6PftnGtxyHEQU1ALoQtKksjYVei+Dtj1ls5kd/k4Hl7JOq/NwGKM0V7BHNL
+         qPtS4NBO8hU/phSguHWeapOj8TtkonF0PqklySLBn3nhbdfDZsJL7+LvkXGwBkTtEuqY
+         jXOQ==
+X-Gm-Message-State: AO0yUKVA6uyeL0vje47qVF+24xjtNFmJYG54k1oOqH8KhXLEgUCj7ehU
+        6050gUghA1STXY5g6h6jE5HHeg==
+X-Google-Smtp-Source: AK7set/9gsaTP0SJz4AxARp8GBKyigp1OblEiE9POvcIHUcqtEsKjviwOUUApjXAwEeLScwd4GhRNw==
+X-Received: by 2002:ac2:50d5:0:b0:4db:456a:9a1 with SMTP id h21-20020ac250d5000000b004db456a09a1mr2387083lfm.66.1677719940140;
+        Wed, 01 Mar 2023 17:19:00 -0800 (PST)
+Received: from localhost.localdomain (abym99.neoplus.adsl.tpnet.pl. [83.9.32.99])
+        by smtp.gmail.com with ESMTPSA id q20-20020ac24a74000000b004d5a6dcb94fsm1934353lfp.33.2023.03.01.17.18.58
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 01 Mar 2023 17:18:59 -0800 (PST)
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+To:     linux-arm-msm@vger.kernel.org, andersson@kernel.org,
+        agross@kernel.org
+Cc:     marijn.suijten@somainline.org,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Dylan Hung <dylan_hung@aspeedtech.com>,
-        Joel Stanley <joel@jms.id.au>, Andrew Jeffery <andrew@aj.id.au>
-Subject: [PATCH v5 6/6] dt-bindings: clock: ast2600: Expand comment on reset definitions
-Date:   Thu,  2 Mar 2023 08:58:34 +0800
-Message-Id: <20230302005834.13171-7-jk@codeconstruct.com.au>
-X-Mailer: git-send-email 2.39.1
-In-Reply-To: <20230302005834.13171-1-jk@codeconstruct.com.au>
-References: <20230302005834.13171-1-jk@codeconstruct.com.au>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH] arm64: dts: qcom: msm8996: Add missing DWC3 quirks
+Date:   Thu,  2 Mar 2023 02:18:49 +0100
+Message-Id: <20230302011849.1873056-1-konrad.dybcio@linaro.org>
+X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The current "not part of a gate" is a little ambiguous. Expand this a
-little to clarify the reference to the paired clock + reset control.
+Add missing dwc3 quirks from msm-3.18. Unfortunately, none of them
+make `dwc3-qcom 6af8800.usb: HS-PHY not in L2` go away.
 
-Signed-off-by: Jeremy Kerr <jk@codeconstruct.com.au>
+Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 ---
- include/dt-bindings/clock/ast2600-clock.h | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ arch/arm64/boot/dts/qcom/msm8996.dtsi | 3 +++
+ 1 file changed, 3 insertions(+)
 
-diff --git a/include/dt-bindings/clock/ast2600-clock.h b/include/dt-bindings/clock/ast2600-clock.h
-index b4d69103d722..e149eee61588 100644
---- a/include/dt-bindings/clock/ast2600-clock.h
-+++ b/include/dt-bindings/clock/ast2600-clock.h
-@@ -87,7 +87,7 @@
- #define ASPEED_CLK_MAC4RCLK		70
- #define ASPEED_CLK_I3C			71
+diff --git a/arch/arm64/boot/dts/qcom/msm8996.dtsi b/arch/arm64/boot/dts/qcom/msm8996.dtsi
+index 46b74a21e035..969de1f6d96d 100644
+--- a/arch/arm64/boot/dts/qcom/msm8996.dtsi
++++ b/arch/arm64/boot/dts/qcom/msm8996.dtsi
+@@ -3056,8 +3056,11 @@ usb3_dwc3: usb@6a00000 {
+ 				interrupts = <0 131 IRQ_TYPE_LEVEL_HIGH>;
+ 				phys = <&hsusb_phy1>, <&ssusb_phy_0>;
+ 				phy-names = "usb2-phy", "usb3-phy";
++				snps,hird-threshold = /bits/ 8 <0>;
+ 				snps,dis_u2_susphy_quirk;
+ 				snps,dis_enblslpm_quirk;
++				snps,is-utmi-l1-suspend;
++				tx-fifo-resize;
+ 			};
+ 		};
  
--/* Only list resets here that are not part of a gate */
-+/* Only list resets here that are not part of a clock gate + reset pair */
- #define ASPEED_RESET_ADC		55
- #define ASPEED_RESET_JTAG_MASTER2	54
- #define ASPEED_RESET_I3C_DMA		39
 -- 
-2.39.1
+2.39.2
 
