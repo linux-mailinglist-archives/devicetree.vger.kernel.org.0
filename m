@@ -2,119 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 616306A8366
-	for <lists+devicetree@lfdr.de>; Thu,  2 Mar 2023 14:20:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 771D96A837A
+	for <lists+devicetree@lfdr.de>; Thu,  2 Mar 2023 14:26:23 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229930AbjCBNUt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 2 Mar 2023 08:20:49 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51690 "EHLO
+        id S229502AbjCBN0V (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 2 Mar 2023 08:26:21 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56224 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229589AbjCBNUs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Mar 2023 08:20:48 -0500
-Received: from www381.your-server.de (www381.your-server.de [78.46.137.84])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9938A3BDAE;
-        Thu,  2 Mar 2023 05:20:47 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=metafoo.de;
-        s=default2002; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:
-        References:Cc:To:From:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
-        Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-        Resent-To:Resent-Cc:Resent-Message-ID;
-        bh=cF077q4Xpw478KVACo7Jr3CUZM3qv0sxeoqom2mWqIk=; b=LYxkdKM+9zq1I3A5p6OrWl7lWE
-        daNMhairBSdwrPWH5v4m6eUKwv2Fw8ksgQSrJGpzAo6eHRoMShewzeKnmruklBFEtTgL5idb8hagD
-        fbWNzMS2UqT9VERrvb3waHq04X6hcfm7diKGpN6hThWY9wjETaINSxPigEm2rtrF7zXznQf8TBUFC
-        aa5Ac3tNWm/89NLU+doo+Ine5//pQ1Vr3UZS2F5zgGF/sS/02kN35UheHELliaY/qmd0JwM67isQG
-        2CT09Z/W2AdAg2YlTilBv8PT3yJYLGvM3Fe3D3L99nqBppHq7OrFN8g7xVgheXZphtZhgxV8bBBqs
-        p+/aI9jQ==;
-Received: from sslproxy05.your-server.de ([78.46.172.2])
-        by www381.your-server.de with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
-        (Exim 4.94.2)
-        (envelope-from <lars@metafoo.de>)
-        id 1pXirU-000Ned-Ak; Thu, 02 Mar 2023 14:20:44 +0100
-Received: from [2604:5500:c0e5:eb00:da5e:d3ff:feff:933b]
-        by sslproxy05.your-server.de with esmtpsa (TLSv1.3:TLS_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <lars@metafoo.de>)
-        id 1pXirT-0002Yt-ON; Thu, 02 Mar 2023 14:20:43 +0100
-Message-ID: <b635b91e-1dcc-71ba-95d1-1f87a20dbaf2@metafoo.de>
-Date:   Thu, 2 Mar 2023 05:20:38 -0800
+        with ESMTP id S229449AbjCBN0V (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Mar 2023 08:26:21 -0500
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5E0A518B1F;
+        Thu,  2 Mar 2023 05:26:19 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1677763579; x=1709299579;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=RzKZOO3pMAqixUGQg3dAVwPRKWwUHbpqsY29JJ0g2mY=;
+  b=CzqzGO4iJzyySqK8AbNxoMOgsqGgkGm7nLbf5JM1wTg6f+Quw4y7tHdh
+   fDUwSqYmfhHuA5Hsr1AvCxiNesml69rPxH4u4DZdwjVvhjwKtlUXRBXQt
+   g8RgdoQGLRPklZ0JFuxvYoWnx9Z7SxmLU/SO87y1M6f3CSoUmSkqK2l2g
+   zqcgLHigTz8wbBRG5RkdjIYKRJ2AiDefUpXw6+8JVJw9w6ncZgV2ZwoXF
+   alWjcbdt+MCyBh56s0wpRwsykpi1i0L1G9sgsvwPaa+r4Z0Dw0ZeC0pRz
+   Jy30kRhS8iP7eYpv+UCE2VhdAhouBL2v56yjI71iqRL2J+noLtk5mY09s
+   A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10636"; a="332200106"
+X-IronPort-AV: E=Sophos;i="5.98,227,1673942400"; 
+   d="scan'208";a="332200106"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+  by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 Mar 2023 05:26:18 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6500,9779,10636"; a="674952833"
+X-IronPort-AV: E=Sophos;i="5.98,227,1673942400"; 
+   d="scan'208";a="674952833"
+Received: from lkp-server01.sh.intel.com (HELO 776573491cc5) ([10.239.97.150])
+  by orsmga002.jf.intel.com with ESMTP; 02 Mar 2023 05:26:14 -0800
+Received: from kbuild by 776573491cc5 with local (Exim 4.96)
+        (envelope-from <lkp@intel.com>)
+        id 1pXiwo-0000UZ-0P;
+        Thu, 02 Mar 2023 13:26:14 +0000
+Date:   Thu, 2 Mar 2023 21:26:09 +0800
+From:   kernel test robot <lkp@intel.com>
+To:     "Peng Fan (OSS)" <peng.fan@oss.nxp.com>,
+        herbert@gondor.apana.org.au, davem@davemloft.net,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        horia.geanta@nxp.com, pankaj.gupta@nxp.com, gaurav.jain@nxp.com,
+        shawnguo@kernel.org, s.hauer@pengutronix.de
+Cc:     oe-kbuild-all@lists.linux.dev, kernel@pengutronix.de,
+        stefan@agner.ch, linux-crypto@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, Peng Fan <peng.fan@nxp.com>
+Subject: Re: [PATCH 7/9] dt-bindings: crypto: drop fsl-sec4 txt binding
+Message-ID: <202303022114.lkxW64dk-lkp@intel.com>
+References: <20230301015702.3388458-8-peng.fan@oss.nxp.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.0
-Subject: Re: [PATCH v3 2/2] iio: adc: Add TI ADS1100 and ADS1000
-Content-Language: en-US
-From:   Lars-Peter Clausen <lars@metafoo.de>
-To:     Mike Looijmans <mike.looijmans@topic.nl>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Cc:     devicetree@vger.kernel.org, linux-iio@vger.kernel.org,
-        Caleb Connolly <caleb.connolly@linaro.org>,
-        ChiYuan Huang <cy_huang@richtek.com>,
-        ChiaEn Wu <chiaen_wu@richtek.com>,
-        Cosmin Tanislav <demonsingur@gmail.com>,
-        Ibrahim Tilki <Ibrahim.Tilki@analog.com>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Ramona Bolboaca <ramona.bolboaca@analog.com>,
-        William Breathitt Gray <william.gray@linaro.org>,
-        linux-kernel@vger.kernel.org
-References: <20230228063151.17598-1-mike.looijmans@topic.nl>
- <20230228063151.17598-2-mike.looijmans@topic.nl>
- <Y/9vez/fzLD5dRVF@smile.fi.intel.com>
- <1b153bce-a66a-45ee-a5c6-963ea6fb1c82.949ef384-8293-46b8-903f-40a477c056ae.0685d97e-4a28-499e-a9e3-3bafec126832@emailsignatures365.codetwo.com>
- <a2ba706f-888b-0a72-03a5-cbf761dfaf19@topic.nl>
- <87bc192e-45ae-9480-5e84-8fe0adfc12e7@metafoo.de>
-In-Reply-To: <87bc192e-45ae-9480-5e84-8fe0adfc12e7@metafoo.de>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Authenticated-Sender: lars@metafoo.de
-X-Virus-Scanned: Clear (ClamAV 0.103.8/26828/Thu Mar  2 07:36:42 2023)
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230301015702.3388458-8-peng.fan@oss.nxp.com>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 3/2/23 05:16, Lars-Peter Clausen wrote:
-> On 3/1/23 23:49, Mike Looijmans wrote:
->>
->>
->>> ...
->>> ...
->>>
->>>> +static int ads1100_runtime_suspend(struct device *dev)
->>>> +{
->>>> +    struct iio_dev *indio_dev = 
->>>> i2c_get_clientdata(to_i2c_client(dev));
->>>> +    struct ads1100_data *data = iio_priv(indio_dev);
->>>> +
->>>> +    ads1100_set_config_bits(data, ADS1100_CFG_SC, 
->>>> ADS1100_SINGLESHOT);
->>>> +    regulator_disable(data->reg_vdd);
->>> Wrong devm / non-devm ordering.
->>
->> Don't understand your remark, can you explain further please?
->>
->> devm / non-devm ordering would be related to the "probe" function. As 
->> far as I can tell, I'm not allocating resources after the devm calls. 
->> And the "remove" is empty.
->
-> Strictly speaking we need to unregister the IIO device before 
-> disabling the regulator, otherwise there is a small window where the 
-> IIO device still exists, but doesn't work anymore. This is a very 
-> theoretical scenario though.
->
-> You are lucky :) There is a new function 
-> `devm_regulator_get_enable()`[1], which will manage the 
-> regulator_disable() for you. Using that will also reduce the 
-> boilerplate in `probe()` a bit
->
-> - Lars
->
-> [1] https://lwn.net/Articles/904383/
->
-Sorry, just saw that Andy's comment was on the suspend() function, not 
-remove(). In that case there is of course no need for any devm things. 
-But still a good idea to use `devm_regulator_get_enable()` in probe for 
-the boiler plate.
+Hi Peng,
 
+Thank you for the patch! Perhaps something to improve:
+
+[auto build test WARNING on herbert-cryptodev-2.6/master]
+[also build test WARNING on herbert-crypto-2.6/master shawnguo/for-next linus/master v6.2 next-20230302]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Peng-Fan-OSS/ARM-dts-vfxxx-drop-the-number-after-jr/20230301-095526
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/herbert/cryptodev-2.6.git master
+patch link:    https://lore.kernel.org/r/20230301015702.3388458-8-peng.fan%40oss.nxp.com
+patch subject: [PATCH 7/9] dt-bindings: crypto: drop fsl-sec4 txt binding
+reproduce:
+        # https://github.com/intel-lab-lkp/linux/commit/be7a2d4765563d62ace0128d9497c0fbef9ffd1b
+        git remote add linux-review https://github.com/intel-lab-lkp/linux
+        git fetch --no-tags linux-review Peng-Fan-OSS/ARM-dts-vfxxx-drop-the-number-after-jr/20230301-095526
+        git checkout be7a2d4765563d62ace0128d9497c0fbef9ffd1b
+        make menuconfig
+        # enable CONFIG_COMPILE_TEST, CONFIG_WARN_MISSING_DOCUMENTS, CONFIG_WARN_ABI_ERRORS
+        make htmldocs
+
+If you fix the issue, kindly add following tag where applicable
+| Reported-by: kernel test robot <lkp@intel.com>
+| Link: https://lore.kernel.org/oe-kbuild-all/202303022114.lkxW64dk-lkp@intel.com/
+
+All warnings (new ones prefixed by >>):
+
+>> Warning: Documentation/devicetree/bindings/input/snvs-pwrkey.txt references a file that doesn't exist: Documentation/devicetree/bindings/crypto/fsl-sec4.txt
+>> Warning: Documentation/devicetree/bindings/rtc/snvs-rtc.txt references a file that doesn't exist: Documentation/devicetree/bindings/crypto/fsl-sec4.txt
+>> Warning: MAINTAINERS references a file that doesn't exist: Documentation/devicetree/bindings/crypto/fsl-sec4.txt
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests
