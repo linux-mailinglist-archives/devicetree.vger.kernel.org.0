@@ -2,53 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 390DB6A81B3
-	for <lists+devicetree@lfdr.de>; Thu,  2 Mar 2023 12:58:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7BF006A81B7
+	for <lists+devicetree@lfdr.de>; Thu,  2 Mar 2023 12:58:36 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229905AbjCBL6b (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 2 Mar 2023 06:58:31 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57576 "EHLO
+        id S229937AbjCBL6e (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 2 Mar 2023 06:58:34 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57552 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229851AbjCBL6a (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Mar 2023 06:58:30 -0500
-Received: from mail-wr1-x429.google.com (mail-wr1-x429.google.com [IPv6:2a00:1450:4864:20::429])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6DD7E86B8
+        with ESMTP id S229898AbjCBL6b (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Mar 2023 06:58:31 -0500
+Received: from mail-wr1-x436.google.com (mail-wr1-x436.google.com [IPv6:2a00:1450:4864:20::436])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EDA63A261
         for <devicetree@vger.kernel.org>; Thu,  2 Mar 2023 03:58:01 -0800 (PST)
-Received: by mail-wr1-x429.google.com with SMTP id l1so13214313wry.12
+Received: by mail-wr1-x436.google.com with SMTP id h11so4522395wrm.5
         for <devicetree@vger.kernel.org>; Thu, 02 Mar 2023 03:58:01 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1677758271;
+        d=linaro.org; s=google; t=1677758272;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=zax1e/yJTS424/9Wee2++pptHP3LVztZwrLQH3xAsR8=;
-        b=e+wJc+dGfezyJhC9Ii7LBQqCcRLnZ0oEZ+MsSMvT7hFUWBRF9T/+rqzsw3i3w662BZ
-         HNFD297Tj04qm5RnftgJmb9Mgf4kfpHgk5C+L6eY7p7FnlwYwv5lBNQY4nvhnzaG+zst
-         QglHVOsZVGtvjz2Gi/a07gkIrdHquCzwPRARbNWwmVe2g/DrI7J+t8VzbeWCHKSmws0l
-         PLhzc58GXUvVm9bZn3hhkWcGUUA1JhwIbRjvsf695SLrJAry2+s276tb0fDCbKyIodDH
-         E5bST+4Ru+57ZANRQPFOz5yI/lQJvoHntXSkqy8CUverSoBDwjFwDE+LXhfTAvLBO3Lv
-         f2fg==
+        bh=vMSOEYbZIrYW4LAXPSptDIJKdwkIcCT5i6XvEkOqxb4=;
+        b=kNFPYwq+OUk2zmd8+vPXJWTNCjypK01F2P9d3hlHy3WuO//IsA3S08rDSXdGY7To9O
+         KfYJqcoEQ6GDYv6U7SdsBo3W9MUo6YMk4NvXphh1sAUpfqISaHkLUc01Q7PmkYuCRky5
+         xk1cNsLG5oIX5C+Bd7zRtCkikPGEjp5wSrnfYkRnenIGMvaOy0vZsU5JaWjrDvvBnCfc
+         BkRdI+Qekw7Bd/AJCjHhCn/RBtqp/Fnk9K3uhd2RM3yp/8VSywulWeVkN5SqFcII5d56
+         0MzHozrkGjl0+60luTnRpN1ed3LlxGNufu4vdz0aapV91o82pdF5mQlLJ3M1/vc5yI9z
+         EReQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1677758271;
+        d=1e100.net; s=20210112; t=1677758272;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=zax1e/yJTS424/9Wee2++pptHP3LVztZwrLQH3xAsR8=;
-        b=4Ja47mWMnmH+pfm/3w7Nabut49kuAFc3yoIhHValcnS2sbffuHvxsjOYPOvpkOSMH8
-         WaoCtG74AllqgNM2EIKETESwedN/dSYAAa38dp7dQU/HSDpQu4IcGLEQrO6z854AO/Fo
-         4A6VZlgGHPKI9Ju6Ah31A0ROuPVWGFVQbnEScv4RVOIbGFDyPSnGQBlaUf9aSiM1O3Yv
-         qRKyZZBsLhUk7ZcpYJLTWlcWZDcaThtVfrtY9dHnlQVjn2Gd4QjkPfultnoKj7cHGiGI
-         yT4k3h9hCy4Jpe+f6wLiWQNW0Y9v2TxQhjkLyTnlWppAEMI5dWY6gKs866l7JLnFZ6Db
-         ZUZw==
-X-Gm-Message-State: AO0yUKUMBKNJyX9xGTka1n01ZroTYtPFK+d7YpEtAcLat1MNHNr+EUo8
-        IwdQGQFraYeFr+dpTRX+07/FJg==
-X-Google-Smtp-Source: AK7set/W170Hj8fyDnDvQU9/NhwnU506gB/47nYOKGAQ4izd7jcOeyNSUg4Ush6gjK5oD8pHTfjd+A==
-X-Received: by 2002:a5d:4e44:0:b0:2c7:f84:3c41 with SMTP id r4-20020a5d4e44000000b002c70f843c41mr6971403wrt.55.1677758270699;
-        Thu, 02 Mar 2023 03:57:50 -0800 (PST)
+        bh=vMSOEYbZIrYW4LAXPSptDIJKdwkIcCT5i6XvEkOqxb4=;
+        b=LO2s4mr3dr3vy4YoeKgjTQ8stEXALKvIe+lNOIN3pecPTRIczBM3IDQajFijWc3/W6
+         IH3s7YK+1/uQ0HFvqS3vYFqoBkWfjmfrkmcUXv/Wkk6xRZ+oapfzYZIDUKBWW1DjqBTa
+         k+XdjnzURHf/Qjq7NBjbftl9nb8IQbFL0HkUrzBa8RhDsH5qQ0xHKJjPVoOLUyChy5bH
+         XwmAQQX1z1+39HzFjooZi6/IK9e8CCsB1AUu9Kw+MIpgHyqbPmVYLjUcPGTZROTQ2bs+
+         FMBR4iDTiw0TOhsUheZ/OqTd4+19aemPCAb8j05BtpOLyT5RdLmPwY9kHkwa2e8tmIPG
+         A8pQ==
+X-Gm-Message-State: AO0yUKUYfJa9AKW2BwVDaby9tulTH11aOcVSlMNlc2j7YEdaWqY2RRys
+        g2yPFW0NYQp1nRHh1Xmx3tqyWQ==
+X-Google-Smtp-Source: AK7set9VFtG8k2kTb72OmJCbkeTB+4vzeUCKgK+4G8gPwjoZDyQhSnddGv1DN8XaxM1PT27nTtFUug==
+X-Received: by 2002:a5d:42d2:0:b0:2cd:bc79:5432 with SMTP id t18-20020a5d42d2000000b002cdbc795432mr3912555wrr.25.1677758271927;
+        Thu, 02 Mar 2023 03:57:51 -0800 (PST)
 Received: from localhost.localdomain ([5.133.47.210])
-        by smtp.gmail.com with ESMTPSA id v16-20020a5d4a50000000b002c5526234d2sm15298209wrs.8.2023.03.02.03.57.49
+        by smtp.gmail.com with ESMTPSA id v16-20020a5d4a50000000b002c5526234d2sm15298209wrs.8.2023.03.02.03.57.50
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 02 Mar 2023 03:57:49 -0800 (PST)
+        Thu, 02 Mar 2023 03:57:51 -0800 (PST)
 From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
 To:     agross@kernel.org, andersson@kernel.org
 Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
@@ -56,9 +56,9 @@ Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
         linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org,
         Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Subject: [PATCH 1/4] arm64: dts: qcom: sc8280xp: fix rx frame shapping info
-Date:   Thu,  2 Mar 2023 11:57:38 +0000
-Message-Id: <20230302115741.7726-2-srinivas.kandagatla@linaro.org>
+Subject: [PATCH 2/4] arm64: dts: qcom: sc8280xp: fix lpass tx macro clocks
+Date:   Thu,  2 Mar 2023 11:57:39 +0000
+Message-Id: <20230302115741.7726-3-srinivas.kandagatla@linaro.org>
 X-Mailer: git-send-email 2.21.0
 In-Reply-To: <20230302115741.7726-1-srinivas.kandagatla@linaro.org>
 References: <20230302115741.7726-1-srinivas.kandagatla@linaro.org>
@@ -74,55 +74,28 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Some of the SoundWire frameshapping data seems incorrect, fix these values.
+Tx macro soundwire clock is for some reason is incorrectly assigned to
+va macro, fix this and use tx macro clock instead.
 
 Fixes: 1749a8ae49a3 ("arm64: dts: qcom: sc8280xp: add SoundWire and LPASS")
 Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
 ---
- arch/arm64/boot/dts/qcom/sc8280xp.dtsi | 16 ++++++++--------
- 1 file changed, 8 insertions(+), 8 deletions(-)
+ arch/arm64/boot/dts/qcom/sc8280xp.dtsi | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/arch/arm64/boot/dts/qcom/sc8280xp.dtsi b/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
-index f9aadf8209d5..022b0c041341 100644
+index 022b0c041341..fc1504de6890 100644
 --- a/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
 +++ b/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
-@@ -1924,12 +1924,12 @@
- 			qcom,ports-sinterval-low =	/bits/ 8 <0x03 0x1f 0x1f 0x07 0x00>;
- 			qcom,ports-offset1 =		/bits/ 8 <0x00 0x00 0x0B 0x01 0x00>;
- 			qcom,ports-offset2 =		/bits/ 8 <0x00 0x00 0x0B 0x00 0x00>;
--			qcom,ports-hstart =		/bits/ 8 <0xff 0x03 0xff 0xff 0xff>;
--			qcom,ports-hstop =		/bits/ 8 <0xff 0x06 0xff 0xff 0xff>;
-+			qcom,ports-hstart =		/bits/ 8 <0xff 0x03 0x00 0xff 0xff>;
-+			qcom,ports-hstop =		/bits/ 8 <0xff 0x06 0x0f 0xff 0xff>;
- 			qcom,ports-word-length =	/bits/ 8 <0x01 0x07 0x04 0xff 0xff>;
--			qcom,ports-block-pack-mode =	/bits/ 8 <0xff 0x00 0x01 0xff 0xff>;
-+			qcom,ports-block-pack-mode =	/bits/ 8 <0xff 0xff 0x01 0xff 0xff>;
- 			qcom,ports-lane-control =	/bits/ 8 <0x01 0x00 0x00 0x00 0x00>;
--			qcom,ports-block-group-count =	/bits/ 8 <0xff 0xff 0xff 0xff 0x00>;
-+			qcom,ports-block-group-count =	/bits/ 8 <0xff 0xff 0xff 0xff 0xff>;
+@@ -2020,7 +2020,7 @@
+ 					      <&intc GIC_SPI 520 IRQ_TYPE_LEVEL_HIGH>;
+ 			interrupt-names = "core", "wake";
  
+-			clocks = <&vamacro>;
++			clocks = <&txmacro>;
+ 			clock-names = "iface";
+ 			label = "TX";
  			#sound-dai-cells = <1>;
- 			#address-cells = <2>;
-@@ -2029,15 +2029,15 @@
- 
- 			qcom,din-ports = <4>;
- 			qcom,dout-ports = <0>;
--			qcom,ports-sinterval-low =	/bits/ 8 <0x01 0x03 0x03 0x03>;
--			qcom,ports-offset1 =		/bits/ 8 <0x01 0x00 0x02 0x01>;
-+			qcom,ports-sinterval-low =	/bits/ 8 <0x01 0x01 0x03 0x03>;
-+			qcom,ports-offset1 =		/bits/ 8 <0x01 0x00 0x02 0x00>;
- 			qcom,ports-offset2 =		/bits/ 8 <0x00 0x00 0x00 0x00>;
- 			qcom,ports-block-pack-mode =	/bits/ 8 <0xff 0xff 0xff 0xff>;
- 			qcom,ports-hstart =		/bits/ 8 <0xff 0xff 0xff 0xff>;
- 			qcom,ports-hstop =		/bits/ 8 <0xff 0xff 0xff 0xff>;
--			qcom,ports-word-length =	/bits/ 8 <0xff 0x00 0xff 0xff>;
-+			qcom,ports-word-length =	/bits/ 8 <0xff 0xff 0xff 0xff>;
- 			qcom,ports-block-group-count =	/bits/ 8 <0xff 0xff 0xff 0xff>;
--			qcom,ports-lane-control =	/bits/ 8 <0x00 0x01 0x00 0x00>;
-+			qcom,ports-lane-control =	/bits/ 8 <0x00 0x01 0x00 0x01>;
- 
- 			status = "disabled";
- 		};
 -- 
 2.21.0
 
