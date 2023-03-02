@@ -2,73 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6A8CE6A8081
-	for <lists+devicetree@lfdr.de>; Thu,  2 Mar 2023 11:57:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9B1CD6A80A8
+	for <lists+devicetree@lfdr.de>; Thu,  2 Mar 2023 12:03:58 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229677AbjCBK5q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 2 Mar 2023 05:57:46 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44668 "EHLO
+        id S229667AbjCBLD4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 2 Mar 2023 06:03:56 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53658 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229541AbjCBK5p (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Mar 2023 05:57:45 -0500
-Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C39CC3D939;
-        Thu,  2 Mar 2023 02:57:43 -0800 (PST)
-Received: by mail-lf1-x131.google.com with SMTP id n2so21517834lfb.12;
-        Thu, 02 Mar 2023 02:57:43 -0800 (PST)
+        with ESMTP id S229567AbjCBLDz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Mar 2023 06:03:55 -0500
+Received: from mail-wm1-x335.google.com (mail-wm1-x335.google.com [IPv6:2a00:1450:4864:20::335])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0642E9773;
+        Thu,  2 Mar 2023 03:03:21 -0800 (PST)
+Received: by mail-wm1-x335.google.com with SMTP id fm20-20020a05600c0c1400b003ead37e6588so1408611wmb.5;
+        Thu, 02 Mar 2023 03:03:20 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=lCl9XoxGwy/DDzsLigivRQ3lZuvtC698+UDYy5GiLqA=;
-        b=eLulg8Q7TeOjgjAuxSvCoW1Pt1S6LquLdEvwjoLALzrIYV65VS9NxEfNUUAKWh9RWK
-         xgevj7CfddPmMunT/qJM9beBJfduXPw4vNfmpsWpgKGzFTGQ1JfNHXJdlqYXOb0Krx4m
-         ZxFGzlCzBcLDtvKjDqQyTtxH+F4lJiSQQyuDWHeWc0mMpP5kI9VVftKgNb9/3GRkC4Zl
-         Q1DmgGkrnAKcR769za2g3uUaApG0rMH10xWikevQcqeyOYSu1yddzNFI1LEQdQXqrQ0D
-         7Vq2SxRhFUhLqNGTA/Nux/H2QKm2CMCl8GGErjkIwtZ/zE1tttMOqLmPpMjin3eG+p7W
-         XhIA==
+        d=gmail.com; s=20210112; t=1677754998;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=LkHuEvWnBbmn6J9IHM/XCzxQvuZdAVkzVZy6DwR1zSo=;
+        b=BDwGZkebAseiLNLVCP3fUulwLJK3BAX6aOcYlZdJ+9o6XbspZwfiY6Nq+XWUlz6nDj
+         wvkfkvOMwBz+Y3CSBSqSj/Mr/0HLiTSpB60Refn0RsFsoUYV9EQKiEUyXDO2C2j3vsXn
+         3wPXBf36Se2Y/sJRwqyv4Cc4TAoxUMqulXfIaPl9A+jxUUK98tgYRx0MDJ/fCDyptD9k
+         3c3hnIyvs7sHYFIMFJqW7cnHazcSl3v8w2HjnJ68GuCKLiPLFXRnQynkxeVUch90WOhG
+         Z9BGa+3XNat+LQZFAB0HGYdd7kdeoTzQaOqrczqzPqeQDKdYfnkr6TLlHpJ0Pclfalt+
+         Inpg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=lCl9XoxGwy/DDzsLigivRQ3lZuvtC698+UDYy5GiLqA=;
-        b=wGpMb0n8CbMJ/Fh3mUIkhlPCHB/9YB73g3eMUYrCKj7fK+2ar/fxu/Pu1+brE7xWm9
-         bc3LlLn0v0K2L9qXYhjTeBKh4yrMMNz+XDVav7Qmm3RWtnO75oReyozey3RTicvrM1mU
-         EYuSO+rBh5+uCM2OhlN2ewcnvaVVQEY+iFn7GDDTN4pzUuuoLvqRcQ5kOxIKz5f3kyRp
-         1NgO5/FuGXNnRrE1omxfun4X/G2ssGR68GA7mw0fmZMeue9dIct+Nhf0UH276/2St9kW
-         eEDRqdAZFPYJxRSH73jMn3PsS/2pMOaagrkesfynQlsc2703Zp91d5is4yVTTfXNgdEJ
-         u6fg==
-X-Gm-Message-State: AO0yUKW+77RoQIpFAvKqJWoYyyedz5xMHh7S/R5sOhOksQ0iKT+aZXK7
-        nuuTSoX44wLCq1Z7dBe/oyg=
-X-Google-Smtp-Source: AK7set8imEaw156sXSY8JpJHnsaHJpAY1hjWKQva1n38cdKNK7y0KddduGD1dLyovud9e7xXQdOKUg==
-X-Received: by 2002:ac2:484e:0:b0:4b5:5ddc:da32 with SMTP id 14-20020ac2484e000000b004b55ddcda32mr2391092lfy.56.1677754661761;
-        Thu, 02 Mar 2023 02:57:41 -0800 (PST)
-Received: from dc75zzyyyyyyyyyyyyyyt-3.rev.dnainternet.fi (dc75zzyyyyyyyyyyyyyyt-3.rev.dnainternet.fi. [2001:14ba:16f3:4a00::1])
-        by smtp.gmail.com with ESMTPSA id f19-20020a19ae13000000b004b50b4f63b7sm2085261lfc.170.2023.03.02.02.57.40
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 02 Mar 2023 02:57:41 -0800 (PST)
-Date:   Thu, 2 Mar 2023 12:57:37 +0200
-From:   Matti Vaittinen <mazziesaccount@gmail.com>
-To:     Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
-        Matti Vaittinen <mazziesaccount@gmail.com>
-Cc:     Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Matti Vaittinen <mazziesaccount@gmail.com>,
-        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH v2 1/6] dt-bindings: iio: light: Support ROHM BU27034
-Message-ID: <87a8b787faf34cb217fc1ed892ebe7a1d7de9b7e.1677750859.git.mazziesaccount@gmail.com>
-References: <cover.1677750859.git.mazziesaccount@gmail.com>
+        d=1e100.net; s=20210112; t=1677754998;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=LkHuEvWnBbmn6J9IHM/XCzxQvuZdAVkzVZy6DwR1zSo=;
+        b=0m265S3/NbzNAAGnFt0l261EDZ0PRFrJBFE7NJp1CReZ0ZDnBMbmPYGhVidzcC4dRx
+         X28ONaZtuH3dAkeTeO0SkMczTvu91dYO7v0GTn0BCLuMglY+94J51gHju7EHncmyysRc
+         mVZL/0M4em7aLEM8ivOsZ63WQWpsInYmVE074wUSHtmum4l69++8g6M21at3rHEdUEKS
+         5JPhfAwgdYOYB+3u3vH8oQ7fOEcTa2pJc7PgvwK2ppGTvpLuE7NASwqgbck0NhiJB29S
+         +qzy44J2xv4gAnIpxxz6xuBR/FyWmJsgECTfUERHRuPY/+fPBvrhm4vkuo+QYUBzPvck
+         WJbg==
+X-Gm-Message-State: AO0yUKWlDoMgdXO2t0PofjgpUS8R2EGF659IB+KfvE9Xj8rRC1fyiTn2
+        Pk0aVJYFpfAYXHuX3WwNOU4=
+X-Google-Smtp-Source: AK7set/JlzFceze8hhK3/4uajo1mpfVadvTq9TwAVwpchmL5fNm1Ggc9LQk17dnZcbn2PRNdl/6H1A==
+X-Received: by 2002:a05:600c:458b:b0:3e9:f4c2:b604 with SMTP id r11-20020a05600c458b00b003e9f4c2b604mr8193890wmo.24.1677754998008;
+        Thu, 02 Mar 2023 03:03:18 -0800 (PST)
+Received: from [192.168.2.177] ([207.188.167.132])
+        by smtp.gmail.com with ESMTPSA id j40-20020a05600c1c2800b003dd1bd0b915sm2893847wms.22.2023.03.02.03.03.16
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 02 Mar 2023 03:03:17 -0800 (PST)
+Message-ID: <dcd653a3-3f7c-7bfb-f096-033f62cb9074@gmail.com>
+Date:   Thu, 2 Mar 2023 12:03:16 +0100
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="GsSIaOqWkwnXtkuc"
-Content-Disposition: inline
-In-Reply-To: <cover.1677750859.git.mazziesaccount@gmail.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.1
+Subject: Re: [PATCH v1 4/4] Revert "arm64: dts: mt8173: add mmsel clocks for
+ 4K support"
+Content-Language: en-US
+To:     AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>, matthias.bgg@kernel.org,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        Chen-Yu Tsai <wenst@chromium.org>
+Cc:     devicetree@vger.kernel.org, linux-mediatek@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+References: <20230209160357.19307-1-matthias.bgg@kernel.org>
+ <20230209160357.19307-4-matthias.bgg@kernel.org>
+ <3db45ca3-9104-826c-9f92-549e07471296@collabora.com>
+From:   Matthias Brugger <matthias.bgg@gmail.com>
+In-Reply-To: <3db45ca3-9104-826c-9f92-549e07471296@collabora.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
         RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -78,116 +81,35 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---GsSIaOqWkwnXtkuc
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
 
-ROHM BU27034 is an ambient light sesnor with 3 channels and 3 photo diodes
-capable of detecting a very wide range of illuminance. Typical application
-is adjusting LCD and backlight power of TVs and mobile phones.
+On 10/02/2023 12:59, AngeloGioacchino Del Regno wrote:
+> Il 09/02/23 17:03, matthias.bgg@kernel.org ha scritto:
+>> From: Matthias Brugger <matthias.bgg@gmail.com>
+>>
+>> This reverts commit fc6634ac0e5380aeb1063275a2e9a583d41b2306.
+>>
+>> The mmsys is a clock provider but does not have any clocks connected to
+>> it. Therefore assigned-clock properties should be applied to the users of mmsys.
+>>
+>> This fixes the DT schema check:
+>> mediatek/mt8173-elm.dtb: syscon@14000000: 'assigned-clock-rates', 
+>> 'assigned-clocks' do not match any of the regexes: 'pinctrl-[0-9]+'
+>>
+>> Signed-off-by: Matthias Brugger <matthias.bgg@gmail.com>
+> 
+> About solving schema checks: agreed.
+> 
+> Since this is impacting on multiple subsystems (display, vdec, venc), can we
+> instead move this to the topckgen node?
+> I didn't check if that would trigger another schema check, but I remember
+> doing that on Qualcomm DTs a bit of time ago.
+> 
+> The alternative would be to copy that over more than 10 nodes, which would
+> be a bit ... ugly.
+> 
 
-Add dt-bindings.
+Thanks Angelo and Chen-Yu for your feedback. I'm not able to reproduce that 
+problem right now, so I'll drop this patch from the series.
 
-Signed-off-by: Matti Vaittinen <mazziesaccount@gmail.com>
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
----
-
-Changes since RFCv1:
-- Fix binding file name and id by using comma instead of a hyphen to
-  separate the vendor and part names.
----
- .../bindings/iio/light/rohm,bu27034.yaml      | 46 +++++++++++++++++++
- 1 file changed, 46 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/iio/light/rohm,bu2703=
-4.yaml
-
-diff --git a/Documentation/devicetree/bindings/iio/light/rohm,bu27034.yaml =
-b/Documentation/devicetree/bindings/iio/light/rohm,bu27034.yaml
-new file mode 100644
-index 000000000000..30a109a1bf3b
---- /dev/null
-+++ b/Documentation/devicetree/bindings/iio/light/rohm,bu27034.yaml
-@@ -0,0 +1,46 @@
-+# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/iio/light/rohm,bu27034.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: ROHM BU27034 ambient light sensor
-+
-+maintainers:
-+  - Matti Vaittinen <mazziesaccount@gmail.com>
-+
-+description: |
-+  ROHM BU27034 is an ambient light sesnor with 3 channels and 3 photo diod=
-es
-+  capable of detecting a very wide range of illuminance. Typical applicati=
-on
-+  is adjusting LCD and backlight power of TVs and mobile phones.
-+  https://fscdn.rohm.com/en/products/databook/datasheet/ic/sensor/light/bu=
-27034nuc-e.pdf
-+
-+properties:
-+  compatible:
-+    const: rohm,bu27034
-+
-+  reg:
-+    maxItems: 1
-+
-+  vdd-supply: true
-+
-+required:
-+  - compatible
-+  - reg
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    i2c {
-+      #address-cells =3D <1>;
-+      #size-cells =3D <0>;
-+
-+      light-sensor@38 {
-+        compatible =3D "rohm,bu27034";
-+        reg =3D <0x38>;
-+        vdd-supply =3D <&vdd>;
-+      };
-+    };
-+
-+...
---=20
-2.39.2
-
-
---=20
-Matti Vaittinen, Linux device drivers
-ROHM Semiconductors, Finland SWDC
-Kiviharjunlenkki 1E
-90220 OULU
-FINLAND
-
-~~~ "I don't think so," said Rene Descartes. Just then he vanished ~~~
-Simon says - in Latin please.
-~~~ "non cogito me" dixit Rene Descarte, deinde evanescavit ~~~
-Thanks to Simon Glass for the translation =3D]=20
-
---GsSIaOqWkwnXtkuc
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAEBCAAdFiEEIx+f8wZb28fLKEhTeFA3/03aocUFAmQAgSEACgkQeFA3/03a
-ocXtnwgAs8Xy4QpHND2z5cVo5s0GrjJ8ekHTPho/EbcocCI1XjyGg5g7HVOQJhu6
-mV7iqwrrcKSjQQCGKLwPIwFZedwr982innZ9b9XJ+YnpY4fYr5PIr6W0s95ijz94
-+LZ7xV1MIUt1waRL4/pQwtAVWzzOlZKjzBIl2bTP7gLjSUDNXmCuObzG1y3On+w/
-AA8RYIs3y+NSJq3iF7ACPnupOJxb45nFISiIsoESO2v9wja2HlTnHBFZYK8idgqO
-3h2phmI1jgVz40tZJisAWcWNI8nz/kfFeK77D1KPasiMCPNH2eAPq8Jfzcg0z2ZD
-oRBb8e0UT+wN7UxiI/30mkzmJXRe1g==
-=RIY7
------END PGP SIGNATURE-----
-
---GsSIaOqWkwnXtkuc--
+Regards,
+Matthias
