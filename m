@@ -2,115 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 19DB16A7D2A
-	for <lists+devicetree@lfdr.de>; Thu,  2 Mar 2023 10:00:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 01FBF6A7D5B
+	for <lists+devicetree@lfdr.de>; Thu,  2 Mar 2023 10:10:54 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229661AbjCBJAD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 2 Mar 2023 04:00:03 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34844 "EHLO
+        id S229867AbjCBJKw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 2 Mar 2023 04:10:52 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47020 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229496AbjCBJAC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Mar 2023 04:00:02 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DF56515578;
-        Thu,  2 Mar 2023 01:00:00 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 63885B811F6;
-        Thu,  2 Mar 2023 08:59:59 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 26C8EC433EF;
-        Thu,  2 Mar 2023 08:59:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1677747598;
-        bh=7vsJJ2UWnbA5yPqyrOOw+/4k4if8YpbZ3L78wTns+mk=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=djPhtteGfc7rhC+rbH7RwqdDKFvj9ACvNesN+NQ1tfpElhz51rQngnHKV8GTHU2Xw
-         tGsvTNOew3QWPxpFPZgb6pNxq+wC/uuw+zKHBiO+JMJaK6n/sk/j8CWDA4w4a8oyD7
-         r+xBiwYp+PeXemm7WAd7N/VgKHexP6IiUzuSurfRCEhyMKmvlFYVPqzabG9Ry/Ze75
-         oqbdFD3l+nfgR8areP0z6FEKYfIEU32JzSWqHB9IHoRo64j4xNt241B67IEosR4LSL
-         VMu4RWnVSlozgV0uNkWcwPvEGSPzi0r59KeVvytZJVOrtaTb8RvO7KPRckiiScuG/y
-         bbIP1izBNyxXA==
-Message-ID: <9a540967-c1a6-b9df-a662-b8a729d7d64b@kernel.org>
-Date:   Thu, 2 Mar 2023 09:59:49 +0100
+        with ESMTP id S229694AbjCBJKv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Mar 2023 04:10:51 -0500
+Received: from mail-ed1-x52e.google.com (mail-ed1-x52e.google.com [IPv6:2a00:1450:4864:20::52e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CE79828D1A
+        for <devicetree@vger.kernel.org>; Thu,  2 Mar 2023 01:10:48 -0800 (PST)
+Received: by mail-ed1-x52e.google.com with SMTP id s11so804758edy.8
+        for <devicetree@vger.kernel.org>; Thu, 02 Mar 2023 01:10:48 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1677748247;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=VeH9rvjwe6BWb1Wa9Q2shgpxH8Q4cZrDvTYxjvW0K94=;
+        b=GGv2CDKyurIbWv/uSDeHF7wiCPq6P4SfRyWoM4x5OBl+t2reLtJ6GTqvlfjOseZT0Z
+         AIIgygfusp00GKXXuvvWxw/7ibQSGNpwRhdiEI4DMOCoNobA7wVA5dbiYgi4TyuGsnNU
+         fOTwjmiEAlktMmEvzD1bOaAxmPmnvdZyuFvbaUWB/x8RqeVFElvGI0pHrwEzkDa0PFe1
+         7aqNH18uaxSj9RMabMm7FTUnCxIemgV/7yp9+QhqlwCpQzQbK2UFUUJGAdU3wRnkga0/
+         E+89BztYDQRFhNevN+/GroGStqtuXTEy3h9T1JoqlF0y5jZjSif/dF0qNIO+BQfQhjpc
+         /uvg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1677748247;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=VeH9rvjwe6BWb1Wa9Q2shgpxH8Q4cZrDvTYxjvW0K94=;
+        b=kzrEpMXTfT5uXpWfF9n4aYzz+1Ol6NzJ0gzfG6M3z7WrdzqFioFvwGaqOY2g/IB9VF
+         njtEBedQmjo1aHDjNKpzh7k1zEpZMjLLJv7vMgyXQ+SPbUof7C1a+fJ4pYQgWKCLUwU1
+         TwfwBe+QifE3ZaAexCZ7WzVf54eNWHOUjAsRqrbUC6pPrT4tk6Oo/I21F//Ak4ZAgFLJ
+         He66WzBnK9CvacwYFZNz/3GF6uVABwLwuYDNaAm+EBYSsufLd0OmHXgttCxC8KjMEnNZ
+         50wrqSjBw+xGnz66XhUVfNR1EwUYSzbKsKdbnPpI6CQ4gxtf7u7HqO3df1mSP5gL1ewP
+         Bbjg==
+X-Gm-Message-State: AO0yUKXKeLOXeG97u+Urv0lca8QKdHvV1PE1jM8FSynPndszjxkWVOl0
+        7S4cddLfnx6F3RYDQv75af7ZlA==
+X-Google-Smtp-Source: AK7set9YTvDbvaROQFMJ1Qdo89tbo591uI3t9Kn0hozwL5YyJ6TCt6Y/WHcdUuaGrRv+pnmLhMgA9w==
+X-Received: by 2002:a17:906:68d3:b0:8b1:7fea:7459 with SMTP id y19-20020a17090668d300b008b17fea7459mr8759882ejr.11.1677748247358;
+        Thu, 02 Mar 2023 01:10:47 -0800 (PST)
+Received: from [192.168.1.20] ([178.197.216.144])
+        by smtp.gmail.com with ESMTPSA id o5-20020a17090611c500b008b907006d5dsm6929125eja.173.2023.03.02.01.10.46
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 02 Mar 2023 01:10:46 -0800 (PST)
+Message-ID: <73a2758d-71c5-0148-0125-0c8b3020465b@linaro.org>
+Date:   Thu, 2 Mar 2023 10:10:45 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.8.0
-Subject: Re: [PATCH v2 2/2] dt-bindings: net: adin: Document bindings for fast
- link down disable
+Subject: Re: [PATCH v3] dt-bindings: watchdog: migrate rt2880 text bindings to
+ YAML
 Content-Language: en-US
-To:     Ken Sloat <ken.s@variscite.com>
-Cc:     noname.nuno@gmail.com, pabeni@redhat.com, edumazet@google.com,
-        Michael Hennerich <michael.hennerich@analog.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Russell King <linux@armlinux.org.uk>,
-        Alexandru Tachici <alexandru.tachici@analog.com>,
-        netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20230228144056.2246114-1-ken.s@variscite.com>
- <20230228184956.2309584-1-ken.s@variscite.com>
- <20230228184956.2309584-2-ken.s@variscite.com>
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-In-Reply-To: <20230228184956.2309584-2-ken.s@variscite.com>
+To:     Sergio Paracuellos <sergio.paracuellos@gmail.com>,
+        devicetree@vger.kernel.org
+Cc:     linux-watchdog@vger.kernel.org, wim@linux-watchdog.org,
+        linux@roeck-us.net, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org
+References: <20230302085914.2858645-1-sergio.paracuellos@gmail.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230302085914.2858645-1-sergio.paracuellos@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-7.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_HI,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 28/02/2023 19:49, Ken Sloat wrote:
-> The ADI PHY contains a feature commonly known as "Fast Link Down" and
-> called "Enhanced Link Detection" by ADI. This feature is enabled by
-> default and provides earlier detection of link loss in certain
-> situations.
+On 02/03/2023 09:59, Sergio Paracuellos wrote:
+> Ralink RT2880 Watchdog bindings used text format, so migrate them to YAML.
+> There are some additions to the binding that were not in the original
+> txt file. This binding is used in RT2880, RT3050, RT3352, RT3883, RT5350,
+> and MT7620 SoCs. To properly align binding with driver code we need to add
+> to the schema 'clocks' and 'resets' properties.
 > 
-
-Please use scripts/get_maintainers.pl to get a list of necessary people
-and lists to CC.  It might happen, that command when run on an older
-kernel, gives you outdated entries.  Therefore please be sure you base
-your patches on recent Linux kernel.
-
-> Document the new optional flags "adi,disable-fast-down-1000base-t" and
-> "adi,disable-fast-down-100base-tx" which disable the "Fast Link Down"
-> feature in the ADI PHY.
-
-You did not explain why do you need it.
-
-> 
-> Signed-off-by: Ken Sloat <ken.s@variscite.com>
+> Signed-off-by: Sergio Paracuellos <sergio.paracuellos@gmail.com>
 > ---
-
-Don't attach your new patchsets to your old threads. It buries them deep
-and make usage of our tools difficult.
-
-
->  Documentation/devicetree/bindings/net/adi,adin.yaml | 12 ++++++++++++
->  1 file changed, 12 insertions(+)
+> Changes in v3:
+>  - Re-do commit message.
+>  - add 'clocks' property and update example using it.
+>  - drop 'reset-names'.
+>  - Use 'unevaluatedProperties' instead of 'additionalProperties'.
 > 
-> diff --git a/Documentation/devicetree/bindings/net/adi,adin.yaml b/Documentation/devicetree/bindings/net/adi,adin.yaml
-> index 64ec1ec71ccd..923baff26c3e 100644
-> --- a/Documentation/devicetree/bindings/net/adi,adin.yaml
-> +++ b/Documentation/devicetree/bindings/net/adi,adin.yaml
-> @@ -52,6 +52,18 @@ properties:
->      description: Enable 25MHz reference clock output on CLK25_REF pin.
->      type: boolean
->  
-> +  adi,disable-fast-down-1000base-t:
-> +    $ref: /schemas/types.yaml#definitions/flag
-> +    description: |
-> +      If set, disables any ADI fast link down ("Enhanced Link Detection")
-> +      function bits for 1000base-t interfaces.
 
-And why disabling it per board should be a property of DT?
+
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
