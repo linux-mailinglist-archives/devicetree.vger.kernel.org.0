@@ -2,153 +2,159 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 21C306A83CE
-	for <lists+devicetree@lfdr.de>; Thu,  2 Mar 2023 14:49:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E4EC86A83DD
+	for <lists+devicetree@lfdr.de>; Thu,  2 Mar 2023 14:53:49 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229883AbjCBNtl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 2 Mar 2023 08:49:41 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46682 "EHLO
+        id S229555AbjCBNxt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 2 Mar 2023 08:53:49 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50742 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230063AbjCBNtb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Mar 2023 08:49:31 -0500
-Received: from mail-lj1-x233.google.com (mail-lj1-x233.google.com [IPv6:2a00:1450:4864:20::233])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8755C199CF
-        for <devicetree@vger.kernel.org>; Thu,  2 Mar 2023 05:49:28 -0800 (PST)
-Received: by mail-lj1-x233.google.com with SMTP id x6so12046008ljq.1
-        for <devicetree@vger.kernel.org>; Thu, 02 Mar 2023 05:49:28 -0800 (PST)
+        with ESMTP id S229693AbjCBNxs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Mar 2023 08:53:48 -0500
+Received: from mail-ed1-x52c.google.com (mail-ed1-x52c.google.com [IPv6:2a00:1450:4864:20::52c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DD7DB10408
+        for <devicetree@vger.kernel.org>; Thu,  2 Mar 2023 05:53:46 -0800 (PST)
+Received: by mail-ed1-x52c.google.com with SMTP id i34so67853110eda.7
+        for <devicetree@vger.kernel.org>; Thu, 02 Mar 2023 05:53:46 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=rasmusvillemoes.dk; s=google;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=g+ofG8dUGNkU80FPnV9zgYPR7u97jlgEvn4xxyg8nqc=;
-        b=FjTnBw/d3uK0G5/Bu5xpEc3T16eLRNS45XsXzqBA/NMTjVt8E3FCPFH/Px+NCN1Tv2
-         3FfBr12gK6XmyNZFNcjfMeQ6mYgXJCJrHjKNDZWAXJ+hNBj+tq8fvpLoBbrCvii6vCoZ
-         1FyGU17ZZ5ifnaW2xjNHknJPgQL7vJJtp6t/o=
+        d=linaro.org; s=google; t=1677765225;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=RZof/087BHj/A7Di0Gk0ZvGDmMzbyQKiyv3HZhGN3xw=;
+        b=eIrtPDV/cG8h0VLLmJcXXTWUO8Jg3Qo6HxP4dQkg9P3u0Fn6CodkeQxrfuFSWYlIoj
+         tfIZfDFPjIHCEBAJzzbDOFKm9caoaq/ph9xh8bmKh8AyGlpjlFEvOV4rXrtiIVXTIrBR
+         23vID2oLuqovDF5EzpYqFN2O8vmNHGs8LJ7+7O0SiDuLFKL1Z13H4GCKPiglMKmMxeT2
+         l2qcAWfjunTGjvlsMDG+mzt5qlHNipEcD9etIEHdgO3jpbgPMjeOtDMzFsCabgzjWJXa
+         ABCSsGkpWfAjylMv7OyQ3r2TBByagPRD7uKsOEQQ+FMjkDfpcTP/qXCroIW86e/r98Cq
+         E4ug==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=g+ofG8dUGNkU80FPnV9zgYPR7u97jlgEvn4xxyg8nqc=;
-        b=xL0A48KbXrRn3EHheIYBLUyIOGgsa4xCsQUmQQqZ6XOEGDJR4No4zuYPnnH75T4P7E
-         7TXC2yiOnsnca2Xg6piyCvh0p6OIi10TPeXzSvVWIqOBRaqGZalikNPiz58ceeVBAQfP
-         GwvVoj4hPAGIAOe1Pw1Gktdh13Sd+WjpgX3l1PYu7yih0C+qOiuJKQjgzzNR8AcBTg3b
-         sg5dR44+FrfJVCQskWFocCUJGfzkRprxDKr1oMRJSMrttgju5w6dmazN6pcF/Jg3LOa6
-         dQ6oHjUt5pet1CUA58EfIM8e9MV1SBO0sFf871KZiwl/7gtlno8JnCm1zgtFS2ZP1RVj
-         SN6Q==
-X-Gm-Message-State: AO0yUKVohtjsVPRWfygx1TUEawse1PMRFWIYo8GopCgvPBxz6jtqQMUA
-        +D8xXxWtMWEvla+JSZ7gHZWoZA==
-X-Google-Smtp-Source: AK7set/O8Ekt9ie7aM7GDWhsjBP5dvMfJdAo29xBF3dJcnaylSSOtFq2jwnvQZpTT12Xegj//2LX7g==
-X-Received: by 2002:a2e:9415:0:b0:291:90bf:1cc4 with SMTP id i21-20020a2e9415000000b0029190bf1cc4mr2841936ljh.26.1677764966880;
-        Thu, 02 Mar 2023 05:49:26 -0800 (PST)
-Received: from prevas-ravi.prevas.se ([81.216.59.226])
-        by smtp.gmail.com with ESMTPSA id s16-20020ac25ff0000000b004cb3e97bff8sm2139088lfg.284.2023.03.02.05.49.26
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 02 Mar 2023 05:49:26 -0800 (PST)
-From:   Rasmus Villemoes <linux@rasmusvillemoes.dk>
-To:     Lars-Peter Clausen <lars@metafoo.de>,
-        Michael Hennerich <Michael.Hennerich@analog.com>,
-        Cosmin Tanislav <cosmin.tanislav@analog.com>,
-        Jonathan Cameron <jic23@kernel.org>
-Cc:     devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Rasmus Villemoes <linux@rasmusvillemoes.dk>,
-        linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH 2/2] iio: ad74413r: wire up support for drive-strength-microamp property
-Date:   Thu,  2 Mar 2023 14:49:21 +0100
-Message-Id: <20230302134922.1120217-3-linux@rasmusvillemoes.dk>
-X-Mailer: git-send-email 2.37.2
-In-Reply-To: <20230302134922.1120217-1-linux@rasmusvillemoes.dk>
-References: <20230302134922.1120217-1-linux@rasmusvillemoes.dk>
+        d=1e100.net; s=20210112; t=1677765225;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=RZof/087BHj/A7Di0Gk0ZvGDmMzbyQKiyv3HZhGN3xw=;
+        b=JfWnITVHOG76v4hcHdKao0ph2Ta94/XxVP7qCmNW9xrgNJUuw5WRuDgK38IsFYPLha
+         4x/8/CP8qNJebZDt6soA3P4dHjgBAgqQsYRrcfK/LGCZ7qqfsVNtLqimZB8Cjk7FUhAQ
+         r3g+DrDyglipTdrJzTN3HUbqvh8rCEUPCULCXw1ml4/ku5Tgp13PdZtJDbxqyJ9hikP0
+         44rLNaZrJC3q5vPpU4KMRPCezQDLCoIi6Jq1381WYHPPaWea0FOCh4VUCTC0BaVY9jn1
+         68n9w4OpHyhxso/Ik9Gnb9ZNFYt+c4WBgaRmWuQ5oAaztCbouop3KjY5Yvdm5nXhmT+6
+         Ak+g==
+X-Gm-Message-State: AO0yUKVZxnl9oj2p7vm5VfBgX3bOT7nGaF21tT7mu+5RoeRyvHLiR8xD
+        H0ea6k9rks3WN1q4St2eef+DMA==
+X-Google-Smtp-Source: AK7set8qp/TQ+HJrn0Ii4dY4rTO5h8nKaJSn7kxrv2Kr+qtuoSVN+2tgswoIzGGoQ+TvT/Nh/UeqMA==
+X-Received: by 2002:a17:906:dc90:b0:888:5d34:dc79 with SMTP id cs16-20020a170906dc9000b008885d34dc79mr14548417ejc.40.1677765225322;
+        Thu, 02 Mar 2023 05:53:45 -0800 (PST)
+Received: from [192.168.1.20] ([178.197.216.144])
+        by smtp.gmail.com with ESMTPSA id z2-20020a5096c2000000b004bfc59042e5sm962328eda.61.2023.03.02.05.53.37
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 02 Mar 2023 05:53:41 -0800 (PST)
+Message-ID: <33edb557-f5c6-6ce1-2914-bcab2eca23c3@linaro.org>
+Date:   Thu, 2 Mar 2023 14:53:36 +0100
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.8.0
+Subject: Re: [PATCH] dt-bindings: display: mediatek: Compatible list cleanup
+Content-Language: en-US
+To:     Yassine Oudjana <yassine.oudjana@gmail.com>,
+        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+Cc:     Yassine Oudjana <y.oudjana@protonmail.com>,
+        dri-devel@lists.freedesktop.org,
+        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        linux-arm-kernel@lists.infradead.org
+References: <20230302133528.124113-1-y.oudjana@protonmail.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230302133528.124113-1-y.oudjana@protonmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Use the value specified in the channel configuration node to populate
-the DIN_SINK field of the DIN_CONFIGx register.
+On 02/03/2023 14:35, Yassine Oudjana wrote:
+> From: Yassine Oudjana <y.oudjana@protonmail.com>
+> 
+> Several DT bindings of MediaTek display blocks make unnecessary use of
+> "oneOf" and "items", and have some enums with only 1 element. Remove
+> unnecessary "oneOf" and "items", and replace enums that have 1 element
+> with "const".	
+> 
+> Signed-off-by: Yassine Oudjana <y.oudjana@protonmail.com>
+> ---
+>  .../bindings/display/mediatek/mediatek,aal.yaml  |  3 +--
+>  .../display/mediatek/mediatek,ccorr.yaml         | 10 ++++------
+>  .../display/mediatek/mediatek,color.yaml         | 10 ++++------
+>  .../display/mediatek/mediatek,dither.yaml        |  3 +--
+>  .../bindings/display/mediatek/mediatek,dsc.yaml  |  4 +---
+>  .../display/mediatek/mediatek,gamma.yaml         |  7 +++----
+>  .../display/mediatek/mediatek,merge.yaml         |  8 +++-----
+>  .../bindings/display/mediatek/mediatek,od.yaml   |  8 +++-----
+>  .../display/mediatek/mediatek,ovl-2l.yaml        | 10 ++++------
+>  .../bindings/display/mediatek/mediatek,ovl.yaml  | 16 ++++++----------
+>  .../display/mediatek/mediatek,postmask.yaml      |  3 +--
+>  .../bindings/display/mediatek/mediatek,rdma.yaml | 13 +++++--------
+>  .../display/mediatek/mediatek,split.yaml         |  4 +---
+>  .../bindings/display/mediatek/mediatek,ufoe.yaml |  4 +---
+>  .../bindings/display/mediatek/mediatek,wdma.yaml |  4 +---
+>  15 files changed, 39 insertions(+), 68 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/display/mediatek/mediatek,aal.yaml b/Documentation/devicetree/bindings/display/mediatek/mediatek,aal.yaml
+> index 92741486c24d..d8d78abd6c6c 100644
+> --- a/Documentation/devicetree/bindings/display/mediatek/mediatek,aal.yaml
+> +++ b/Documentation/devicetree/bindings/display/mediatek/mediatek,aal.yaml
+> @@ -25,8 +25,7 @@ properties:
+>            - mediatek,mt8173-disp-aal
+>            - mediatek,mt8183-disp-aal
+>        - items:
+> -          - enum:
+> -              - mediatek,mt2712-disp-aal
+> +          - const: mediatek,mt2712-disp-aal
 
-Signed-off-by: Rasmus Villemoes <linux@rasmusvillemoes.dk>
----
- drivers/iio/addac/ad74413r.c | 24 ++++++++++++++++++++++++
- 1 file changed, 24 insertions(+)
+This was I think intentional - it will grow. The same in all other
+one-enum cases, it might be unnecessary change which soon will be
+reverted converting back to enum.
 
-diff --git a/drivers/iio/addac/ad74413r.c b/drivers/iio/addac/ad74413r.c
-index f32c8c2fb26d..cbf0f66fdc74 100644
---- a/drivers/iio/addac/ad74413r.c
-+++ b/drivers/iio/addac/ad74413r.c
-@@ -39,6 +39,7 @@ struct ad74413r_chip_info {
- 
- struct ad74413r_channel_config {
- 	u32		func;
-+	u32		drive_strength;
- 	bool		gpo_comparator;
- 	bool		initialized;
- };
-@@ -111,6 +112,7 @@ struct ad74413r_state {
- #define AD74413R_REG_DIN_CONFIG_X(x)	(0x09 + (x))
- #define AD74413R_DIN_DEBOUNCE_MASK	GENMASK(4, 0)
- #define AD74413R_DIN_DEBOUNCE_LEN	BIT(5)
-+#define AD74413R_DIN_SINK_MASK		GENMASK(9, 6)
- 
- #define AD74413R_REG_DAC_CODE_X(x)	(0x16 + (x))
- #define AD74413R_DAC_CODE_MAX		GENMASK(12, 0)
-@@ -261,6 +263,19 @@ static int ad74413r_set_comp_debounce(struct ad74413r_state *st,
- 				  val);
- }
- 
-+static int ad74413r_set_comp_drive_strength(struct ad74413r_state *st,
-+					    unsigned int offset,
-+					    unsigned int strength)
-+{
-+	if (strength > 1800)
-+		strength = 1800;
-+
-+	return regmap_update_bits(st->regmap, AD74413R_REG_DIN_CONFIG_X(offset),
-+				  AD74413R_DIN_SINK_MASK,
-+				  FIELD_PREP(AD74413R_DIN_SINK_MASK, strength / 120));
-+}
-+
-+
- static void ad74413r_gpio_set(struct gpio_chip *chip,
- 			      unsigned int offset, int val)
- {
-@@ -1190,6 +1205,9 @@ static int ad74413r_parse_channel_config(struct iio_dev *indio_dev,
- 	config->gpo_comparator = fwnode_property_read_bool(channel_node,
- 		"adi,gpo-comparator");
- 
-+	fwnode_property_read_u32(channel_node, "drive-strength-microamp",
-+				 &config->drive_strength);
-+
- 	if (!config->gpo_comparator)
- 		st->num_gpo_gpios++;
- 
-@@ -1269,6 +1287,7 @@ static int ad74413r_setup_gpios(struct ad74413r_state *st)
- 	unsigned int gpo_gpio_i = 0;
- 	unsigned int i;
- 	u8 gpo_config;
-+	u32 strength;
- 	int ret;
- 
- 	for (i = 0; i < AD74413R_CHANNEL_MAX; i++) {
-@@ -1285,6 +1304,11 @@ static int ad74413r_setup_gpios(struct ad74413r_state *st)
- 		    config->func == CH_FUNC_DIGITAL_INPUT_LOOP_POWER)
- 			st->comp_gpio_offsets[comp_gpio_i++] = i;
- 
-+		strength = config->drive_strength;
-+		ret = ad74413r_set_comp_drive_strength(st, i, strength);
-+		if (ret)
-+			return ret;
-+
- 		ret = ad74413r_set_gpo_config(st, i, gpo_config);
- 		if (ret)
- 			return ret;
--- 
-2.37.2
+>            - const: mediatek,mt8173-disp-aal
+>        - items:
+>            - enum:
+> diff --git a/Documentation/devicetree/bindings/display/mediatek/mediatek,ccorr.yaml b/Documentation/devicetree/bindings/display/mediatek/mediatek,ccorr.yaml
+> index b04820c95b22..e72d2884bb49 100644
+> --- a/Documentation/devicetree/bindings/display/mediatek/mediatek,ccorr.yaml
+> +++ b/Documentation/devicetree/bindings/display/mediatek/mediatek,ccorr.yaml
+> @@ -21,18 +21,16 @@ description: |
+>  properties:
+>    compatible:
+>      oneOf:
+> -      - items:
+> -          - const: mediatek,mt8183-disp-ccorr
+> -      - items:
+> -          - const: mediatek,mt8192-disp-ccorr
+> +      - enum:
+> +          - mediatek,mt8183-disp-ccorr
+> +          - mediatek,mt8192-disp-ccorr
+
+Such changes are fine.
+
+
+
+Best regards,
+Krzysztof
 
