@@ -2,67 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 89AE26A7DB9
-	for <lists+devicetree@lfdr.de>; Thu,  2 Mar 2023 10:34:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A66926A7DC8
+	for <lists+devicetree@lfdr.de>; Thu,  2 Mar 2023 10:36:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229699AbjCBJeE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 2 Mar 2023 04:34:04 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37020 "EHLO
+        id S229849AbjCBJgZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 2 Mar 2023 04:36:25 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39298 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229679AbjCBJeD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Mar 2023 04:34:03 -0500
-Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7D2981515D;
-        Thu,  2 Mar 2023 01:34:01 -0800 (PST)
-Received: by mail-ed1-x535.google.com with SMTP id u9so15539940edd.2;
-        Thu, 02 Mar 2023 01:34:01 -0800 (PST)
+        with ESMTP id S229862AbjCBJgY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Mar 2023 04:36:24 -0500
+Received: from mail-wr1-x432.google.com (mail-wr1-x432.google.com [IPv6:2a00:1450:4864:20::432])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4594A15C96;
+        Thu,  2 Mar 2023 01:36:20 -0800 (PST)
+Received: by mail-wr1-x432.google.com with SMTP id j2so15834854wrh.9;
+        Thu, 02 Mar 2023 01:36:20 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112; t=1677749640;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=tJCsizHtlHnY9LbiBRU0WlzpSmORm6XsGwCxOW5BRZw=;
-        b=OXcXHayK6d4huYqsgl6PeFb/cvnhBU3o093PSIDlsregDmHO0hR1BW5aSgHfvslqvk
-         NfAQWi2Zicybw2vixZGZsr9UYv95ZSRnYZj5JO6SED4kUOOEB7uHlKONtr7yKMFPl+zK
-         CwmoLiMLkOoQJxXkFkoZv2AcOvsh8qYTzufEeKT3HsB2CQSDREqTPsLY7yDLtcJElbta
-         WwxZZzr0lQFgOBREtQs59GCnhgoUn+99L4zleRGM47LAJwNEU3LOGwbWyLwfV2kQkNhR
-         sfuYUiCBUHyyKC5A7S2dVm4OXGyM4LivJ4YqhoZX/ezd/UJkc9TYHD2RTyXcqzUqFzhg
-         USlw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1677749640;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+        d=gmail.com; s=20210112; t=1677749779;
+        h=content-transfer-encoding:in-reply-to:subject:from:references:cc:to
+         :content-language:user-agent:mime-version:date:message-id:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=tJCsizHtlHnY9LbiBRU0WlzpSmORm6XsGwCxOW5BRZw=;
-        b=ZwWuXloitwbf1wcfBPlC5oN3YWmK9r3lde9Y64x7qLLVaUR3Cy55sP4s5aossiK+lK
-         fcf+e3zQqyUmYsDREs9G2CEn8ulfJwugA/vxMMFnxcUqOzWvuUsWa3Rd3HRB4xGtnxBC
-         /uaCOoGsWasoCnBEIKdGzHkh4LXl/RaeOZLwpO1OnUq9m8UWhAisnLxPfH3in/PO0fTU
-         3nUr+d6nPsmoPhPYFZrOqTtevFsHeenu0kjHSZoauDOH6IGIZ1G6/kK8YSpYOcCp5TlD
-         2HxicmYH3ruWhS/dgFEPqk+pehssgPPEmz0mJ+osUBRqjDffMb7Ov6nPq3d4ZZwR63cE
-         n1jQ==
-X-Gm-Message-State: AO0yUKU7tnfMql/67TG3a5NHEsJonFU8UrGoKmH09uSDTrAl3KSxr4+s
-        usof1/pnaiMS3Txix8hcJ/k=
-X-Google-Smtp-Source: AK7set+dleus9aeUv6VMpW1IN5rE4yHZpy209e6/WkRRQqgbH+8U498ZjVkou/ArWIOZexcKK1OnDg==
-X-Received: by 2002:a17:906:4ec9:b0:881:a3ec:2b43 with SMTP id i9-20020a1709064ec900b00881a3ec2b43mr9241918ejv.56.1677749640021;
-        Thu, 02 Mar 2023 01:34:00 -0800 (PST)
-Received: from localhost (p200300e41f1c0800f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f1c:800:f22f:74ff:fe1f:3a53])
-        by smtp.gmail.com with ESMTPSA id kf7-20020a17090776c700b008b17ed98d05sm6809156ejc.120.2023.03.02.01.33.59
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 02 Mar 2023 01:33:59 -0800 (PST)
-From:   Thierry Reding <thierry.reding@gmail.com>
-To:     Thierry Reding <thierry.reding@gmail.com>
-Cc:     Jon Hunter <jonathanh@nvidia.com>, linux-tegra@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: [PATCH 4/4] arm64: tegra: Add support for P3768+P3767
-Date:   Thu,  2 Mar 2023 10:33:53 +0100
-Message-Id: <20230302093353.3873247-4-thierry.reding@gmail.com>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20230302093353.3873247-1-thierry.reding@gmail.com>
-References: <20230302093353.3873247-1-thierry.reding@gmail.com>
+        bh=dwotgqIloMzONTq30JRRScBiGhbpTJ7y9dF3roP3jSw=;
+        b=W2kO4E6+jzJftiTzk82HJ8DCHC5py2yVoF/dmuN2riWSN4fvxpCVBTFWewt7+Kfcv8
+         xDn3O2zLDmvIjpoHzyvvHcw04cV04rqy7UXiWDk/nCBrYslKd6MqjLHiHlDNx2SkAmys
+         FBBss1RsF8AzaxOTpequgnWUv1GDJl/K6h0EcjrL9MrR8d8TJnFvxgawKUX/4ZkAgqIu
+         AdYcpSMmpr8CJDXUdBwyzi/NYIbxLiDdCxI5RPb64YNmNRrYaHCMv7RhjoC6BcT7pYIC
+         kZ5vQlBkXY6Nrh1SZp9kPk1PNZ9WAkyo7lSZ6VhdinOP3+6cwYoVbovZPFmK3P/m4yhZ
+         e2mQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1677749779;
+        h=content-transfer-encoding:in-reply-to:subject:from:references:cc:to
+         :content-language:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=dwotgqIloMzONTq30JRRScBiGhbpTJ7y9dF3roP3jSw=;
+        b=0lF3mCySWqWdjzsEKUnEOIv1sF80E5mBaUmpPNfrIalVKYMasbpjAUrBLD0MP2A8SN
+         ci7OohSYk2j5pt92nMT6XvZmmytXjoF4df9aBvCsfr2Tui894KBRD+kn9iCqKLnwrTPO
+         IGq/T9x3TjDFNivtuzEa52q3gcIQLLCjLz+z04hCWRq/F3VSEYCN64+dJEDeqjeCp5fP
+         fBQo+jGQvyqzGn30Uy1yA3nnGGDbchzKlz/V5FEVm3gFfm2naGIn94n5tMuqgKwxwKIr
+         VXd3BPC6IeN91le+cHGKjHK6CY1jrBPgZdnKKEUPxZFQeZ1Ca55bDSlS/a1CjkEW5Imo
+         0ncQ==
+X-Gm-Message-State: AO0yUKXHKjWZxCkJFyrlRpd1ViCzeH/m2DHZSAgRrde7fnK6q/TaZncs
+        v3ryNVEdfsnWiXvvD9uLYZ2cIlZ3mlXxgA==
+X-Google-Smtp-Source: AK7set+UFPK2DJPNQSgoPOs8icPPSpDHiZkmVqQ3dyDTUnQHUukDDBzTOjU6nyCbDZtW5WADxWPpkQ==
+X-Received: by 2002:adf:f4cb:0:b0:2bf:d940:29b6 with SMTP id h11-20020adff4cb000000b002bfd94029b6mr7770316wrp.54.1677749778575;
+        Thu, 02 Mar 2023 01:36:18 -0800 (PST)
+Received: from [192.168.2.177] ([207.188.167.132])
+        by smtp.gmail.com with ESMTPSA id s2-20020a5d6a82000000b002c53cc7504csm15177622wru.78.2023.03.02.01.36.16
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 02 Mar 2023 01:36:18 -0800 (PST)
+Message-ID: <b4fc6bd8-e300-0f40-4216-8b99589c21cc@gmail.com>
+Date:   Thu, 2 Mar 2023 10:36:14 +0100
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.1
+Content-Language: en-US
+To:     AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, wenst@chromium.org
+References: <20230301095523.428461-1-angelogioacchino.delregno@collabora.com>
+From:   Matthias Brugger <matthias.bgg@gmail.com>
+Subject: Re: [PATCH v4 00/19] Enable GPU with DVFS support on MediaTek SoCs
+In-Reply-To: <20230301095523.428461-1-angelogioacchino.delregno@collabora.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
         RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -71,382 +77,94 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Thierry Reding <treding@nvidia.com>
+Series looks good but from my understanding has a dependency on:
+[PATCH v4 00/12] Panfrost: Improve and add MediaTek SoCs support 
+(https://lore.kernel.org/linux-mediatek/20230228102610.707605-1-angelogioacchino.delregno@collabora.com/)
 
-Add support for the combination of the NVIDIA Jetson Orin NX (P3767)
-module and the P3768 carrier board.
+Did I get that right?
 
-Signed-off-by: Thierry Reding <treding@nvidia.com>
----
- .../nvidia/tegra234-p3768-0000+p3767-0000.dts | 218 ++++++++++++++++++
- .../boot/dts/nvidia/tegra234-p3768-0000.dtsi  | 133 +++++++++++
- 2 files changed, 351 insertions(+)
- create mode 100644 arch/arm64/boot/dts/nvidia/tegra234-p3768-0000+p3767-0000.dts
- create mode 100644 arch/arm64/boot/dts/nvidia/tegra234-p3768-0000.dtsi
+Regards,
+Matthias
 
-diff --git a/arch/arm64/boot/dts/nvidia/tegra234-p3768-0000+p3767-0000.dts b/arch/arm64/boot/dts/nvidia/tegra234-p3768-0000+p3767-0000.dts
-new file mode 100644
-index 000000000000..d4d388e53072
---- /dev/null
-+++ b/arch/arm64/boot/dts/nvidia/tegra234-p3768-0000+p3767-0000.dts
-@@ -0,0 +1,218 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/dts-v1/;
-+
-+#include <dt-bindings/input/linux-event-codes.h>
-+#include <dt-bindings/input/gpio-keys.h>
-+
-+#include "tegra234-p3767-0000.dtsi"
-+#include "tegra234-p3768-0000.dtsi"
-+
-+/ {
-+	compatible = "nvidia,p3768-0000+p3767-0000", "nvidia,p3767-0000", "nvidia,tegra234";
-+
-+	reserved-memory {
-+		#address-cells = <2>;
-+		#size-cells = <2>;
-+		ranges;
-+
-+		fb: framebuffer@0 {
-+			compatible = "framebuffer";
-+			reg = <0x0 0x0 0x0 0x0>;
-+			iommu-addresses = <&dc0 0x0 0x0 0x0 0x0>;
-+		};
-+	};
-+
-+	aliases {
-+		serial0 = &tcu;
-+	};
-+
-+	chosen {
-+		stdout-path = "serial0:115200n8";
-+
-+		framebuffer {
-+			compatible = "simple-framebuffer";
-+			status = "disabled";
-+			memory-region = <&fb>;
-+			power-domains = <&bpmp TEGRA234_POWER_DOMAIN_DISP>;
-+			clocks = <&bpmp TEGRA234_CLK_HUB>,
-+				 <&bpmp TEGRA234_CLK_DISP>,
-+				 <&bpmp TEGRA234_CLK_NVDISPLAY_P0>,
-+				 <&bpmp TEGRA234_CLK_DPAUX>,
-+				 <&bpmp TEGRA234_CLK_DISPPLL>,
-+				 <&bpmp TEGRA234_CLK_DISPHUBPLL>,
-+				 /* MORE!!! */
-+				 <&bpmp TEGRA234_CLK_NVDISPLAY_P1>,
-+				 <&bpmp TEGRA234_CLK_FUSE>,
-+				 <&bpmp TEGRA234_CLK_DSIPLL_VCO>,
-+				 <&bpmp TEGRA234_CLK_DSIPLL_CLKOUTPN>,
-+				 <&bpmp TEGRA234_CLK_DSIPLL_CLKOUTA>,
-+				 <&bpmp TEGRA234_CLK_SPPLL0_VCO>,
-+				 <&bpmp TEGRA234_CLK_SPPLL0_CLKOUTPN>,
-+				 <&bpmp TEGRA234_CLK_SPPLL0_CLKOUTA>,
-+				 <&bpmp TEGRA234_CLK_SPPLL0_CLKOUTB>,
-+				 <&bpmp TEGRA234_CLK_SPPLL0_DIV10>,
-+				 <&bpmp TEGRA234_CLK_SPPLL0_DIV25>,
-+				 <&bpmp TEGRA234_CLK_SPPLL0_DIV27PN>,
-+				 <&bpmp TEGRA234_CLK_SPPLL1_VCO>,
-+				 <&bpmp TEGRA234_CLK_SPPLL1_CLKOUTPN>,
-+				 <&bpmp TEGRA234_CLK_SPPLL1_DIV27PN>,
-+				 <&bpmp TEGRA234_CLK_VPLL0_REF>,
-+				 <&bpmp TEGRA234_CLK_VPLL0>,
-+				 <&bpmp TEGRA234_CLK_VPLL1>,
-+				 <&bpmp TEGRA234_CLK_NVDISPLAY_P0_REF>,
-+				 <&bpmp TEGRA234_CLK_RG0>,
-+				 <&bpmp TEGRA234_CLK_RG1>,
-+				 <&bpmp TEGRA234_CLK_DSI_LP>,
-+				 <&bpmp TEGRA234_CLK_DSI_CORE>,
-+				 <&bpmp TEGRA234_CLK_DSI_PIXEL>,
-+				 <&bpmp TEGRA234_CLK_PRE_SOR0>,
-+				 <&bpmp TEGRA234_CLK_PRE_SOR1>,
-+				 <&bpmp TEGRA234_CLK_DP_LINK_REF>,
-+				 <&bpmp TEGRA234_CLK_SOR_LINKA_INPUT>,
-+				 <&bpmp TEGRA234_CLK_SOR_LINKA_AFIFO>,
-+				 <&bpmp TEGRA234_CLK_SOR_LINKA_AFIFO_M>,
-+				 <&bpmp TEGRA234_CLK_RG0_M>,
-+				 <&bpmp TEGRA234_CLK_RG1_M>,
-+				 <&bpmp TEGRA234_CLK_SOR0_M>,
-+				 <&bpmp TEGRA234_CLK_SOR1_M>,
-+				 <&bpmp TEGRA234_CLK_PLLHUB>,
-+				 <&bpmp TEGRA234_CLK_SOR0>,
-+				 <&bpmp TEGRA234_CLK_SOR1>,
-+				 <&bpmp TEGRA234_CLK_SOR_PAD_INPUT>,
-+				 <&bpmp TEGRA234_CLK_PRE_SF0>,
-+				 <&bpmp TEGRA234_CLK_SF0>,
-+				 <&bpmp TEGRA234_CLK_SF1>,
-+				 <&bpmp TEGRA234_CLK_DSI_PAD_INPUT>,
-+				 <&bpmp TEGRA234_CLK_PRE_SOR0_REF>,
-+				 <&bpmp TEGRA234_CLK_PRE_SOR1_REF>,
-+				 <&bpmp TEGRA234_CLK_SOR0_PLL_REF>,
-+				 <&bpmp TEGRA234_CLK_SOR1_PLL_REF>,
-+				 <&bpmp TEGRA234_CLK_SOR0_REF>,
-+				 <&bpmp TEGRA234_CLK_SOR1_REF>,
-+				 <&bpmp TEGRA234_CLK_OSC>,
-+				 <&bpmp TEGRA234_CLK_DSC>,
-+				 <&bpmp TEGRA234_CLK_MAUD>,
-+				 <&bpmp TEGRA234_CLK_AZA_2XBIT>,
-+				 <&bpmp TEGRA234_CLK_AZA_BIT>,
-+				 <&bpmp TEGRA234_CLK_MIPI_CAL>,
-+				 <&bpmp TEGRA234_CLK_UART_FST_MIPI_CAL>,
-+				 <&bpmp TEGRA234_CLK_SOR0_DIV>;
-+			resets = <&bpmp TEGRA234_RESET_NVDISPLAY>,
-+				 <&bpmp TEGRA234_RESET_DPAUX>,
-+				 <&bpmp TEGRA234_RESET_DSI_CORE>,
-+				 <&bpmp TEGRA234_RESET_MIPI_CAL>;
-+			width = <0>;
-+			height = <0>;
-+			stride = <0>;
-+			format = "x8r8g8b8";
-+		};
-+	};
-+
-+	bus@0 {
-+		serial@31d0000 {
-+			current-speed = <115200>;
-+			status = "okay";
-+		};
-+
-+		pwm@32a0000 {
-+			assigned-clocks = <&bpmp TEGRA234_CLK_PWM3>;
-+			assigned-clock-parents = <&bpmp TEGRA234_CLK_PLLP_OUT0>;
-+			status = "okay";
-+		};
-+
-+		padctl@3520000 {
-+			status = "okay";
-+		};
-+
-+		/* C1 - M.2 Key-E */
-+		pcie@14100000 {
-+			status = "okay";
-+
-+			vddio-pex-ctl-supply = <&vdd_1v8_ao>;
-+
-+			phys = <&p2u_hsio_3>;
-+			phy-names = "p2u-0";
-+		};
-+
-+		/* C4 - M.2 Key-M */
-+		pcie@14160000 {
-+			status = "okay";
-+
-+			vddio-pex-ctl-supply = <&vdd_1v8_ao>;
-+
-+			phys = <&p2u_hsio_4>, <&p2u_hsio_5>, <&p2u_hsio_6>,
-+			       <&p2u_hsio_7>;
-+			phy-names = "p2u-0", "p2u-1", "p2u-2", "p2u-3";
-+		};
-+
-+		/* C8 - Ethernet */
-+		pcie@140a0000 {
-+			status = "okay";
-+
-+			num-lanes = <2>;
-+
-+			phys = <&p2u_gbe_2>, <&p2u_gbe_3>;
-+			phy-names = "p2u-0", "p2u-1";
-+
-+			vddio-pex-ctl-supply = <&vdd_1v8_ao>;
-+			vpcie3v3-supply = <&vdd_3v3_pcie>;
-+		};
-+
-+		/* C7 - M.2 Key-M */
-+		pcie@141e0000 {
-+			status = "okay";
-+
-+			vddio-pex-ctl-supply = <&vdd_1v8_ao>;
-+
-+			phys = <&p2u_gbe_0>, <&p2u_gbe_1>;
-+			phy-names = "p2u-0", "p2u-1";
-+		};
-+	};
-+
-+	gpio-keys {
-+		compatible = "gpio-keys";
-+
-+		key-force-recovery {
-+			label = "Force Recovery";
-+			gpios = <&gpio TEGRA234_MAIN_GPIO(G, 0) GPIO_ACTIVE_LOW>;
-+			linux,input-type = <EV_KEY>;
-+			linux,code = <BTN_1>;
-+		};
-+
-+		key-power {
-+			label = "Power";
-+			gpios = <&gpio_aon TEGRA234_AON_GPIO(EE, 4) GPIO_ACTIVE_LOW>;
-+			linux,input-type = <EV_KEY>;
-+			linux,code = <KEY_POWER>;
-+			wakeup-event-action = <EV_ACT_ASSERTED>;
-+			wakeup-source;
-+		};
-+
-+		key-suspend {
-+			label = "Suspend";
-+			gpios = <&gpio TEGRA234_MAIN_GPIO(G, 2) GPIO_ACTIVE_LOW>;
-+			linux,input-type = <EV_KEY>;
-+			linux,code = <KEY_SLEEP>;
-+		};
-+	};
-+
-+	fan: pwm-fan {
-+		compatible = "pwm-fan";
-+		pwms = <&pwm3 0 45334>;
-+		cooling-levels = <0 95 178 255>;
-+		#cooling-cells = <2>;
-+	};
-+
-+	vdd_3v3_pcie: regulator-vdd-3v3-pcie {
-+		compatible = "regulator-fixed";
-+		regulator-name = "VDD_3V3_PCIE";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		gpio = <&gpio_aon TEGRA234_AON_GPIO(AA, 5) GPIO_ACTIVE_HIGH>;
-+		enable-active-high;
-+	};
-+
-+	serial {
-+		status = "okay";
-+	};
-+};
-diff --git a/arch/arm64/boot/dts/nvidia/tegra234-p3768-0000.dtsi b/arch/arm64/boot/dts/nvidia/tegra234-p3768-0000.dtsi
-new file mode 100644
-index 000000000000..3ccb17be17fb
---- /dev/null
-+++ b/arch/arm64/boot/dts/nvidia/tegra234-p3768-0000.dtsi
-@@ -0,0 +1,133 @@
-+// SPDX-License-Identifier: GPL-2.0
-+
-+/ {
-+	compatible = "nvidia,p3768-0000";
-+
-+	bus@0 {
-+		i2c@3160000 {
-+			status = "okay";
-+
-+			eeprom@56 {
-+				compatible = "atmel,24c02";
-+				reg = <0x56>;
-+
-+				label = "system";
-+				vcc-supply = <&vdd_1v8_sys>;
-+				address-width = <8>;
-+				pagesize = <8>;
-+				size = <256>;
-+				read-only;
-+			};
-+		};
-+
-+		padctl@3520000 {
-+			pads {
-+				usb2 {
-+					lanes {
-+						usb2-0 {
-+							nvidia,function = "xusb";
-+							status = "okay";
-+						};
-+
-+						usb2-1 {
-+							nvidia,function = "xusb";
-+							status = "okay";
-+						};
-+
-+						usb2-2 {
-+							nvidia,function = "xusb";
-+							status = "okay";
-+						};
-+					};
-+				};
-+
-+				usb3 {
-+					lanes {
-+						usb3-0 {
-+							nvidia,function = "xusb";
-+							status = "okay";
-+						};
-+
-+						usb3-1 {
-+							nvidia,function = "xusb";
-+							status = "okay";
-+						};
-+					};
-+				};
-+			};
-+
-+			ports {
-+				/* recovery port */
-+				usb2-0 {
-+					mode = "otg";
-+					vbus-supply = <&vdd_5v0_sys>;
-+					status = "okay";
-+					usb-role-switch;
-+				};
-+
-+				/* hub */
-+				usb2-1 {
-+					mode = "host";
-+					vbus-supply = <&vdd_1v1_hub>;
-+					status = "okay";
-+				};
-+
-+				/* M.2 Key-E */
-+				usb2-2 {
-+					mode = "host";
-+					vbus-supply = <&vdd_5v0_sys>;
-+					status = "okay";
-+				};
-+
-+				/* hub */
-+				usb3-0 {
-+					nvidia,usb2-companion = <1>;
-+					status = "okay";
-+				};
-+
-+				/* J5 */
-+				usb3-1 {
-+					nvidia,usb2-companion = <0>;
-+					status = "okay";
-+				};
-+			};
-+		};
-+
-+		usb@3550000 {
-+			status = "okay";
-+
-+			phys = <&{/bus@0/padctl@3520000/pads/usb2/lanes/usb2-0}>,
-+			       <&{/bus@0/padctl@3520000/pads/usb3/lanes/usb3-1}>;
-+			phy-names = "usb2-0", "usb3-1";
-+		};
-+
-+		usb@3610000 {
-+			status = "okay";
-+
-+			phys = <&{/bus@0/padctl@3520000/pads/usb2/lanes/usb2-0}>,
-+			       <&{/bus@0/padctl@3520000/pads/usb2/lanes/usb2-1}>,
-+			       <&{/bus@0/padctl@3520000/pads/usb2/lanes/usb2-2}>,
-+			       <&{/bus@0/padctl@3520000/pads/usb3/lanes/usb3-0}>,
-+			       <&{/bus@0/padctl@3520000/pads/usb3/lanes/usb3-1}>;
-+			phy-names = "usb2-0", "usb2-1", "usb2-2", "usb3-0",
-+				    "usb3-1";
-+		};
-+	};
-+
-+	vdd_1v8_sys: regulator-vdd-1v8-sys {
-+		compatible = "regulator-fixed";
-+		regulator-name = "VDD_1V8_SYS";
-+		regulator-min-microvolt = <1800000>;
-+		regulator-max-microvolt = <1800000>;
-+		regulator-always-on;
-+	};
-+
-+	vdd_1v1_hub: regulator-vdd-1v1-hub {
-+		compatible = "regulator-fixed";
-+		regulator-name = "VDD_AV10_HUB";
-+		regulator-min-microvolt = <1100000>;
-+		regulator-max-microvolt = <1100000>;
-+		vin-supply = <&vdd_5v0_sys>;
-+		regulator-always-on;
-+	};
-+};
--- 
-2.39.2
-
+On 01/03/2023 10:55, AngeloGioacchino Del Regno wrote:
+> Changes in v4:
+>   - Added a fix for MT8192 Vgpu voltage constraints
+>   - Changed constraints for MT8192 VSRAM-GPU to reflect the maximum
+>     achievable voltage as per the actual vsram-vgpu relation constraint
+> 
+> Changes in v3:
+>   - Changed MT8186 compatibles for new bindings
+>   - Added min/max voltage overrides for vgpu/vsram_gpu on
+>     mt8183-pumpkin and evb as suggested by Chen-Yu
+>   - Cosmetic fixes for "arm64: dts: mediatek: mt8192: Add GPU nodes"
+> 
+> Changes in v2:
+>   - Changed MT8186 to use only two power domains for the GPU.
+> 
+> We finally have working GPU DVFS on MediaTek SoCs.
+> On Panfrost.
+> For real.
+> ...and the best part is that it's going upstream.
+> 
+> In order to get GPU DVFS working, it was necessary to satisfy a
+> specific constraint (which is different, depending on the SoC)
+> between two regulators: GPU VCORE and GPU SRAM.
+> This was done through adding the mtk-regulator-coupler driver,
+> which transparently manages the voltage relation between these
+> two vregs, hence completely eliminating the need to manage these
+> regulators in the Panfrost driver; this solves the long standing
+> issue with devfreq+opp tables not supporting managing voltages
+> for two regulators per opp entry out of the box, due to which
+> we never got GPU DVFS on those SoCs, often locking them out to
+> a low GPU frequency.
+> 
+> This changes. Right now!
+> 
+> Tested on MT8192, MT8195 Chromebooks.
+> 
+> This series depends on [1].
+> 
+> [1]: https://lore.kernel.org/lkml/20230228102704.708150-1-angelogioacchino.delregno@collabora.com/
+> 
+> Alyssa Rosenzweig (2):
+>    arm64: dts: mediatek: mt8192: Add GPU nodes
+>    arm64: dts: mediatek: mt8192-asurada: Enable GPU
+> 
+> AngeloGioacchino Del Regno (16):
+>    arm64: dts: mediatek: mt8183-kukui: Couple VGPU and VSRAM_GPU
+>      regulators
+>    arm64: dts: mediatek: mt8183-kukui: Override vgpu/vsram_gpu
+>      constraints
+>    arm64: dts: mediatek: mt8183: Remove second opp-microvolt entries from
+>      gpu table
+>    arm64: dts: mt8183-pumpkin: Couple VGPU and VSRAM_GPU regulators
+>    arm64: dts: mediatek: mt8183-evb: Couple VGPU and VSRAM_GPU regulators
+>    arm64: dts: mediatek: mt8183: Use mediatek,mt8183b-mali as GPU
+>      compatible
+>    arm64: dts: mediatek: mt8192: Add mfg_ref_sel clock to MFG0 domain
+>    arm64: dts: mediatek: mt8192-asurada: Assign sram supply to MFG1 pd
+>    arm64: dts: mediatek: mt8192-asurada: Fix voltage constraint for Vgpu
+>    arm64: dts: mediatek: mt8192-asurada: Couple VGPU and VSRAM_OTHER
+>      regulators
+>    arm64: dts: mediatek: mt8195: Add mfg_core_tmp clock to MFG1 domain
+>    arm64: dts: mt8195: Add panfrost node for Mali-G57 Valhall Natt GPU
+>    arm64: dts: mediatek: mt8195-cherry: Enable Mali-G57 GPU
+>    arm64: dts: mediatek: mt8186: Add GPU node
+>    arm64: dts: mediatek: mt8183-pumpkin: Override vgpu/vsram_gpu
+>      constraints
+>    arm64: dts: mediatek: mt8183-evb: Override vgpu/vsram_gpu constraints
+> 
+> Nícolas F. R. A. Prado (1):
+>    arm64: dts: mediatek: mt8192-asurada: Add MFG0 domain supply
+> 
+>   arch/arm64/boot/dts/mediatek/mt8183-evb.dts   |  17 ++-
+>   .../arm64/boot/dts/mediatek/mt8183-kukui.dtsi |  17 ++-
+>   .../boot/dts/mediatek/mt8183-pumpkin.dts      |  17 ++-
+>   arch/arm64/boot/dts/mediatek/mt8183.dtsi      |  34 ++---
+>   arch/arm64/boot/dts/mediatek/mt8186.dtsi      |  17 +++
+>   .../boot/dts/mediatek/mt8192-asurada.dtsi     |  24 +++-
+>   arch/arm64/boot/dts/mediatek/mt8192.dtsi      | 116 +++++++++++++++++-
+>   .../boot/dts/mediatek/mt8195-cherry.dtsi      |   5 +
+>   arch/arm64/boot/dts/mediatek/mt8195.dtsi      |  95 +++++++++++++-
+>   9 files changed, 315 insertions(+), 27 deletions(-)
+> 
