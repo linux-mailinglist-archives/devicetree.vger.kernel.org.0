@@ -2,233 +2,290 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 224C86A7914
-	for <lists+devicetree@lfdr.de>; Thu,  2 Mar 2023 02:41:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4864A6A795F
+	for <lists+devicetree@lfdr.de>; Thu,  2 Mar 2023 03:13:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229502AbjCBBlo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 Mar 2023 20:41:44 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45264 "EHLO
+        id S229816AbjCBCNE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 Mar 2023 21:13:04 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43196 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229471AbjCBBln (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Mar 2023 20:41:43 -0500
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BB10957D39;
-        Wed,  1 Mar 2023 17:41:11 -0800 (PST)
-Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 321KRMSx003384;
-        Thu, 2 Mar 2023 01:40:29 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=t+ox/ua+WNtH76S6Rpnio0sQR5LltkxRqkoaHGKqzc4=;
- b=Wjh/xxP4FmDM3mBJTljDkC/nVkpZLJlwanXO7Bx16hZN2VPIr5hf1/UHAnCb7oY1d+2p
- ZkII8EV02Y3IEJBXuhVc3LMXfhwY++bCjtmNVm9SM4GkVOvDsEWKY8zGqyo9qGRcx89h
- KmqQqPmlmUAIwYauUu+3/WC4KISw+h1+v9dAKqU8u29tIw1iMd6g4519JfNIj5uNeMgI
- IR7hoqmzimHSozO5HjH4Zsy0Pk7qoYiLvkpqQsEBNJGzJJTekkax4xumn8dSX74S7OB0
- HkIuKST7oq6CZPEPcQccX5euVNEJLt53rrUPeRpGy2O7+KUgh8RBbdugA0osKmo8zejN uQ== 
-Received: from nasanppmta03.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3p25jwj2jk-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 02 Mar 2023 01:40:29 +0000
-Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
-        by NASANPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3221eSeG023002
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 2 Mar 2023 01:40:28 GMT
-Received: from [10.134.65.165] (10.80.80.8) by nasanex01b.na.qualcomm.com
- (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.41; Wed, 1 Mar 2023
- 17:40:27 -0800
-Message-ID: <9003dd79-00eb-72d4-18e5-51c0f52833f8@quicinc.com>
-Date:   Wed, 1 Mar 2023 17:40:26 -0800
+        with ESMTP id S229760AbjCBCND (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Mar 2023 21:13:03 -0500
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EDA4AF953;
+        Wed,  1 Mar 2023 18:13:01 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1677723182; x=1709259182;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=8DgzvjFhyEWvVKzH0IsTQ/56HfCQ8NNJBH4SKCM7ZyY=;
+  b=LlOTyFJpQuw+I62VF19D9it22r8938irKdw4tVuMmuz79V2IUNb/DZog
+   ZzEEoIHcpbLvc7Q66fcGHmEVLVao5cYRdEawHZwAhFLqv9QqQAOGfKQK3
+   MKZNXvlJuYhqRP/acO0Wlel2t+RKIHUFCGty/rsfCzXC3lsgxn7zvW1nx
+   Se81mRtoTz51MNVclaRPX5xOxV/fqSz/7tREOZ2FtsPXySgWn86AbTNvx
+   j3CAdxqCmmkDIUGTG4ZYlq4NBuZvZBjMIiwqnnLpblzGbyFI1lcAiK1iA
+   BTm5BXnq8kR7pPm/H7KbzzxjBmlR+0rUaHi48rwuk0cTyYPPwHoV6hZWe
+   Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10636"; a="318391854"
+X-IronPort-AV: E=Sophos;i="5.98,226,1673942400"; 
+   d="scan'208";a="318391854"
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+  by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 01 Mar 2023 18:13:01 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6500,9779,10636"; a="676998932"
+X-IronPort-AV: E=Sophos;i="5.98,226,1673942400"; 
+   d="scan'208";a="676998932"
+Received: from lkp-server01.sh.intel.com (HELO 776573491cc5) ([10.239.97.150])
+  by fmsmga007.fm.intel.com with ESMTP; 01 Mar 2023 18:12:55 -0800
+Received: from kbuild by 776573491cc5 with local (Exim 4.96)
+        (envelope-from <lkp@intel.com>)
+        id 1pXYRC-00004l-33;
+        Thu, 02 Mar 2023 02:12:54 +0000
+Date:   Thu, 2 Mar 2023 10:11:58 +0800
+From:   kernel test robot <lkp@intel.com>
+To:     Martin =?utf-8?B?WmHFpW92acSN?= <m.zatovic1@gmail.com>,
+        linux-kernel@vger.kernel.org
+Cc:     oe-kbuild-all@lists.linux.dev, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, gregkh@linuxfoundation.org,
+        airlied@redhat.com, dipenp@nvidia.com, treding@nvidia.com,
+        mwen@igalia.com, fmdefrancesco@gmail.com, arnd@arndb.de,
+        bvanassche@acm.org, ogabbay@kernel.org, axboe@kernel.dk,
+        mathieu.poirier@linaro.org, linux@zary.sk, masahiroy@kernel.org,
+        yangyicong@hisilicon.com, dan.j.williams@intel.com,
+        jacek.lawrynowicz@linux.intel.com, benjamin.tissoires@redhat.com,
+        devicetree@vger.kernel.org, furong.zhou@linux.intel.com,
+        andriy.shevchenko@intel.com, linus.walleij@linaro.org,
+        Martin =?utf-8?B?WmHFpW92acSN?= <m.zatovic1@gmail.com>
+Subject: Re: [PATCHv3 4/4] wiegand: add Wiegand GPIO bitbanged controller
+ driver
+Message-ID: <202303020937.pxOPT5nt-lkp@intel.com>
+References: <20230301142835.19614-5-m.zatovic1@gmail.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.1
-Subject: Re: [PATCH v10 03/26] gunyah: Common types and error codes for Gunyah
- hypercalls
-Content-Language: en-US
-To:     Alex Elder <alex.elder@linaro.org>, Alex Elder <elder@linaro.org>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Prakruthi Deepak Heragu <quic_pheragu@quicinc.com>
-CC:     Murali Nalajala <quic_mnalajal@quicinc.com>,
-        Trilok Soni <quic_tsoni@quicinc.com>,
-        Srivatsa Vaddagiri <quic_svaddagi@quicinc.com>,
-        Carl van Schaik <quic_cvanscha@quicinc.com>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        "Konrad Dybcio" <konrad.dybcio@linaro.org>,
-        Arnd Bergmann <arnd@arndb.de>,
-        "Greg Kroah-Hartman" <gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jonathan Corbet <corbet@lwn.net>,
-        Bagas Sanjaya <bagasdotme@gmail.com>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Jassi Brar <jassisinghbrar@gmail.com>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-doc@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>
-References: <20230214211229.3239350-1-quic_eberman@quicinc.com>
- <20230214211229.3239350-4-quic_eberman@quicinc.com>
- <5d67ee67-e63f-1393-1455-bfb6b2ddaeb5@linaro.org>
-From:   Elliot Berman <quic_eberman@quicinc.com>
-In-Reply-To: <5d67ee67-e63f-1393-1455-bfb6b2ddaeb5@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nasanex01b.na.qualcomm.com (10.46.141.250)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: XcWIMnHC-9wL9xi4R89QapkhQrFr9KaT
-X-Proofpoint-ORIG-GUID: XcWIMnHC-9wL9xi4R89QapkhQrFr9KaT
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.219,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
- definitions=2023-03-01_17,2023-03-01_03,2023-02-09_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0
- lowpriorityscore=0 impostorscore=0 mlxlogscore=676 spamscore=0
- priorityscore=1501 mlxscore=0 clxscore=1015 suspectscore=0 phishscore=0
- adultscore=0 malwarescore=0 classifier=spam adjust=0 reason=mlx
- scancount=1 engine=8.12.0-2212070000 definitions=main-2303020011
-X-Spam-Status: No, score=-2.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230301142835.19614-5-m.zatovic1@gmail.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,
+        SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Martin,
+
+I love your patch! Perhaps something to improve:
+
+[auto build test WARNING on robh/for-next]
+[also build test WARNING on linus/master v6.2 next-20230301]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Martin-Za-ovi/dt-bindings-wiegand-add-Wiegand-controller-common-properties/20230301-223030
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
+patch link:    https://lore.kernel.org/r/20230301142835.19614-5-m.zatovic1%40gmail.com
+patch subject: [PATCHv3 4/4] wiegand: add Wiegand GPIO bitbanged controller driver
+config: sh-allmodconfig (https://download.01.org/0day-ci/archive/20230302/202303020937.pxOPT5nt-lkp@intel.com/config)
+compiler: sh4-linux-gcc (GCC) 12.1.0
+reproduce (this is a W=1 build):
+        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+        chmod +x ~/bin/make.cross
+        # https://github.com/intel-lab-lkp/linux/commit/641c36b9878a19ea4977f0e14df22c7475b423df
+        git remote add linux-review https://github.com/intel-lab-lkp/linux
+        git fetch --no-tags linux-review Martin-Za-ovi/dt-bindings-wiegand-add-Wiegand-controller-common-properties/20230301-223030
+        git checkout 641c36b9878a19ea4977f0e14df22c7475b423df
+        # save the config file
+        mkdir build_dir && cp config build_dir/.config
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.1.0 make.cross W=1 O=build_dir ARCH=sh olddefconfig
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.1.0 make.cross W=1 O=build_dir ARCH=sh SHELL=/bin/bash drivers/
+
+If you fix the issue, kindly add following tag where applicable
+| Reported-by: kernel test robot <lkp@intel.com>
+| Link: https://lore.kernel.org/oe-kbuild-all/202303020937.pxOPT5nt-lkp@intel.com/
+
+All warnings (new ones prefixed by >>):
+
+>> drivers/wiegand/wiegand-gpio.c:50:9: warning: no previous prototype for 'payload_len_show' [-Wmissing-prototypes]
+      50 | ssize_t payload_len_show(struct device *dev, struct device_attribute *attr, char *buf)
+         |         ^~~~~~~~~~~~~~~~
+>> drivers/wiegand/wiegand-gpio.c:58:9: warning: no previous prototype for 'payload_len_store' [-Wmissing-prototypes]
+      58 | ssize_t payload_len_store(struct device *dev, struct device_attribute *attr, const char *buf,
+         |         ^~~~~~~~~~~~~~~~~
+>> drivers/wiegand/wiegand-gpio.c:81:6: warning: no previous prototype for 'wiegand_gpio_send_bit' [-Wmissing-prototypes]
+      81 | void wiegand_gpio_send_bit(struct wiegand_gpio *wiegand_gpio, bool value, bool last)
+         |      ^~~~~~~~~~~~~~~~~~~~~
+>> drivers/wiegand/wiegand-gpio.c:195:5: warning: no previous prototype for 'wiegand_gpio_transfer_message' [-Wmissing-prototypes]
+     195 | int wiegand_gpio_transfer_message(struct wiegand_device *dev, u8 *message, u8 msg_bitlen)
+         |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 
-On 2/23/2023 1:58 PM, Alex Elder wrote:
-> On 2/14/23 3:12 PM, Elliot Berman wrote:
->> Add architecture-independent standard error codes, types, and macros for
->> Gunyah hypercalls.
->>
->> Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
->> Signed-off-by: Elliot Berman <quic_eberman@quicinc.com>
->> ---
->>   include/linux/gunyah.h | 82 ++++++++++++++++++++++++++++++++++++++++++
->>   1 file changed, 82 insertions(+)
->>   create mode 100644 include/linux/gunyah.h
->>
->> diff --git a/include/linux/gunyah.h b/include/linux/gunyah.h
->> new file mode 100644
->> index 000000000000..59ef4c735ae8
->> --- /dev/null
->> +++ b/include/linux/gunyah.h
->> @@ -0,0 +1,82 @@
->> +/* SPDX-License-Identifier: GPL-2.0-only */
->> +/*
->> + * Copyright (c) 2022-2023 Qualcomm Innovation Center, Inc. All 
->> rights reserved.
->> + */
->> +
->> +#ifndef _LINUX_GUNYAH_H
->> +#define _LINUX_GUNYAH_H
->> +
->> +#include <linux/errno.h>
->> +#include <linux/limits.h>
->> +
->> +/******************************************************************************/
->> +/* Common arch-independent definitions for Gunyah 
->> hypercalls                  */
->> +#define GH_CAPID_INVAL    U64_MAX
->> +#define GH_VMID_ROOT_VM    0xff
->> +
->> +enum gh_error {
->> +    GH_ERROR_OK            = 0,
->> +    GH_ERROR_UNIMPLEMENTED        = -1,
->> +    GH_ERROR_RETRY            = -2,
-> 
-> Do you expect this type to have a particular size?
-> Since you specify negative values, it matters, and
-> it's possible that this forces it to be a 4-byte value
-> (though I'm not sure what the rules are).  In other
-> words, UNIMPLEMENTED could conceivably have value 0xff
-> or 0xffffffff.  I'm not even sure you can tell whether
-> an enum is interpreted as signed or unsigned.
+vim +/payload_len_show +50 drivers/wiegand/wiegand-gpio.c
 
-I'm not a C expert, but my understanding is that enums are signed. 
-Gunyah will be returning a signed 64-bit register, however there's no 
-intention to go beyond 32 bits of error codes since we want to work on 
-32-bit architectures.
+    46	
+    47	/*
+    48	 * Attribute file for setting payload length of Wiegand messages.
+    49	 */
+  > 50	ssize_t payload_len_show(struct device *dev, struct device_attribute *attr, char *buf)
+    51	{
+    52		struct wiegand_gpio *wiegand_gpio = dev_get_drvdata(dev);
+    53		struct wiegand_controller *ctlr = wiegand_gpio->ctlr;
+    54	
+    55		return sysfs_emit(buf, "%u\n", ctlr->payload_len);
+    56	}
+    57	
+  > 58	ssize_t payload_len_store(struct device *dev, struct device_attribute *attr, const char *buf,
+    59				size_t count)
+    60	{
+    61		struct wiegand_gpio *wiegand_gpio = dev_get_drvdata(dev);
+    62		struct wiegand_controller *ctlr = wiegand_gpio->ctlr;
+    63	
+    64		return store_ulong(&(ctlr->payload_len), buf, count, WIEGAND_MAX_PAYLEN_BYTES * 8);
+    65	}
+    66	DEVICE_ATTR_RW(payload_len);
+    67	
+    68	static struct attribute *wiegand_gpio_attrs[] = {
+    69		&dev_attr_payload_len.attr,
+    70		NULL,
+    71	};
+    72	
+    73	ATTRIBUTE_GROUPS(wiegand_gpio);
+    74	
+    75	/*
+    76	 * To send a bit of value 1 following the wiegand protocol, one must set
+    77	 * the wiegand_data_hi to low for the duration of pulse. Similarly to send
+    78	 * a bit of value 0, the wiegand_data_lo is set to low for pulse duration.
+    79	 * This way the two lines are never low at the same time.
+    80	 */
+  > 81	void wiegand_gpio_send_bit(struct wiegand_gpio *wiegand_gpio, bool value, bool last)
+    82	{
+    83		u32 pulse_len = wiegand_gpio->ctlr->pulse_len;
+    84		u32 interval_len = wiegand_gpio->ctlr->interval_len;
+    85		u32 frame_gap = wiegand_gpio->ctlr->frame_gap;
+    86		struct gpio_desc *gpio = value ? wiegand_gpio->gpio_data_hi : wiegand_gpio->gpio_data_lo;
+    87	
+    88		gpiod_set_value_cansleep(gpio, 0);
+    89		udelay(pulse_len);
+    90		gpiod_set_value_cansleep(gpio, 1);
+    91	
+    92		if (last)
+    93			udelay(frame_gap - pulse_len);
+    94		else
+    95			udelay(interval_len - pulse_len);
+    96	}
+    97	
+    98	/* This function is used for writing from file in dev directory */
+    99	static int wiegand_gpio_write_by_bits(struct wiegand_gpio *wiegand_gpio, u16 bitlen)
+   100	{
+   101		size_t i;
+   102		bool bit_value, is_last_bit;
+   103	
+   104		for (i = 0; i < bitlen; i++) {
+   105			bit_value = ((wiegand_gpio->data[i / 8] >> (7 - (i % 8))) & 0x01);
+   106			is_last_bit = (i + 1) == bitlen;
+   107			wiegand_gpio_send_bit(wiegand_gpio, bit_value, is_last_bit);
+   108		}
+   109	
+   110		return 0;
+   111	}
+   112	
+   113	static ssize_t wiegand_gpio_get_user_data(struct wiegand_gpio *wiegand_gpio, char __user const *buf,
+   114						  size_t len)
+   115	{
+   116		size_t rc;
+   117	
+   118		if (len > WIEGAND_MAX_PAYLEN_BYTES)
+   119			return -EBADMSG;
+   120	
+   121		rc = copy_from_user(&wiegand_gpio->data[0], buf, WIEGAND_MAX_PAYLEN_BYTES);
+   122		if (rc < 0)
+   123			return rc;
+   124	
+   125		return len;
+   126	}
+   127	
+   128	static int wiegand_gpio_frelease(struct inode *ino, struct file *filp)
+   129	{
+   130		struct wiegand_gpio_instance *info = filp->private_data;
+   131		struct wiegand_gpio *wiegand_gpio = info->dev;
+   132	
+   133		mutex_lock(&wiegand_gpio->mutex);
+   134		info->flags = 0;
+   135		mutex_unlock(&wiegand_gpio->mutex);
+   136	
+   137		kfree(info);
+   138	
+   139		return 0;
+   140	}
+   141	
+   142	static ssize_t wiegand_gpio_fwrite(struct file *filp, char __user const *buf, size_t len,
+   143					loff_t *offset)
+   144	{
+   145		struct wiegand_gpio_instance *info = filp->private_data;
+   146		struct wiegand_gpio *wiegand_gpio = info->dev;
+   147		u32 msg_length = wiegand_gpio->ctlr->payload_len;
+   148		int rc;
+   149	
+   150		if (buf == NULL || len == 0 || len * 8 < msg_length)
+   151			return -EINVAL;
+   152	
+   153		rc = wiegand_gpio_get_user_data(wiegand_gpio, buf, len);
+   154		if (rc < 0)
+   155			return rc;
+   156	
+   157		wiegand_gpio_write_by_bits(wiegand_gpio, msg_length);
+   158	
+   159		return len;
+   160	}
+   161	
+   162	static int wiegand_gpio_fopen(struct inode *ino, struct file *filp)
+   163	{
+   164		int rc;
+   165		struct wiegand_gpio_instance *info;
+   166		struct wiegand_gpio *wiegand_gpio = container_of(filp->f_op, struct wiegand_gpio, fops);
+   167	
+   168		mutex_lock(&wiegand_gpio->mutex);
+   169	
+   170		if ((filp->f_flags & O_ACCMODE) == O_RDONLY || (filp->f_flags & O_ACCMODE) == O_RDWR) {
+   171			dev_err(wiegand_gpio->dev, "Device is write only\n");
+   172			rc = -EIO;
+   173			goto err;
+   174		}
+   175	
+   176		info = kzalloc(sizeof(*info), GFP_KERNEL);
+   177		if (!info) {
+   178			rc = -ENOMEM;
+   179			goto err;
+   180		}
+   181	
+   182		info->dev = wiegand_gpio;
+   183		info->flags = filp->f_flags;
+   184		mutex_unlock(&wiegand_gpio->mutex);
+   185	
+   186		filp->private_data = info;
+   187	
+   188		return 0;
+   189	err:
+   190		mutex_unlock(&wiegand_gpio->mutex);
+   191		return rc;
+   192	}
+   193	
+   194	/* This function is used by device drivers */
+ > 195	int wiegand_gpio_transfer_message(struct wiegand_device *dev, u8 *message, u8 msg_bitlen)
+   196	{
+   197		struct wiegand_controller *ctlr = dev->controller;
+   198		struct wiegand_gpio *wiegand_gpio = wiegand_master_get_devdata(ctlr);
+   199		u8 msg_bytelength = (msg_bitlen % 8) ? (msg_bitlen / 8) + 1 : (msg_bitlen / 8);
+   200	
+   201		memcpy(wiegand_gpio->data, message, msg_bytelength);
+   202		wiegand_gpio_write_by_bits(wiegand_gpio, msg_bitlen);
+   203	
+   204		return 0;
+   205	}
+   206	
 
-> 
-> It's not usually a good thing to do, but this *could*
-> be a case where you do a typedef to represent this as
-> a signed value of a certain bit width.  (But don't do
-> that unless someone else says that's worth doing.)
-> 
->                      -Alex
-> 
->> +
->> +    GH_ERROR_ARG_INVAL        = 1,
->> +    GH_ERROR_ARG_SIZE        = 2,
->> +    GH_ERROR_ARG_ALIGN        = 3,
->> +
->> +    GH_ERROR_NOMEM            = 10,
->> +
->> +    GH_ERROR_ADDR_OVFL        = 20,
->> +    GH_ERROR_ADDR_UNFL        = 21,
->> +    GH_ERROR_ADDR_INVAL        = 22,
->> +
->> +    GH_ERROR_DENIED            = 30,
->> +    GH_ERROR_BUSY            = 31,
->> +    GH_ERROR_IDLE            = 32,
->> +
->> +    GH_ERROR_IRQ_BOUND        = 40,
->> +    GH_ERROR_IRQ_UNBOUND        = 41,
->> +
->> +    GH_ERROR_CSPACE_CAP_NULL    = 50,
->> +    GH_ERROR_CSPACE_CAP_REVOKED    = 51,
->> +    GH_ERROR_CSPACE_WRONG_OBJ_TYPE    = 52,
->> +    GH_ERROR_CSPACE_INSUF_RIGHTS    = 53,
->> +    GH_ERROR_CSPACE_FULL        = 54,
->> +
->> +    GH_ERROR_MSGQUEUE_EMPTY        = 60,
->> +    GH_ERROR_MSGQUEUE_FULL        = 61,
->> +};
->> +
->> +/**
->> + * gh_remap_error() - Remap Gunyah hypervisor errors into a Linux 
->> error code
->> + * @gh_error: Gunyah hypercall return value
->> + */
->> +static inline int gh_remap_error(enum gh_error gh_error)
->> +{
->> +    switch (gh_error) {
->> +    case GH_ERROR_OK:
->> +        return 0;
->> +    case GH_ERROR_NOMEM:
->> +        return -ENOMEM;
->> +    case GH_ERROR_DENIED:
->> +    case GH_ERROR_CSPACE_CAP_NULL:
->> +    case GH_ERROR_CSPACE_CAP_REVOKED:
->> +    case GH_ERROR_CSPACE_WRONG_OBJ_TYPE:
->> +    case GH_ERROR_CSPACE_INSUF_RIGHTS:
->> +    case GH_ERROR_CSPACE_FULL:
->> +        return -EACCES;
->> +    case GH_ERROR_BUSY:
->> +    case GH_ERROR_IDLE:
->> +    case GH_ERROR_IRQ_BOUND:
->> +    case GH_ERROR_IRQ_UNBOUND:
->> +    case GH_ERROR_MSGQUEUE_FULL:
->> +    case GH_ERROR_MSGQUEUE_EMPTY:
-> 
-> Is an empty message queue really busy?
-> 
-
-Changed to -EIO.
-
->> +        return -EBUSY;
->> +    case GH_ERROR_UNIMPLEMENTED:
->> +    case GH_ERROR_RETRY:
->> +        return -EOPNOTSUPP;
->> +    default:
->> +        return -EINVAL;
->> +    }
->> +}
->> +
->> +#endif
-> 
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests
