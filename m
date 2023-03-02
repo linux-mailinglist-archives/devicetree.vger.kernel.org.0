@@ -2,74 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5341A6A8014
-	for <lists+devicetree@lfdr.de>; Thu,  2 Mar 2023 11:41:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0267B6A803C
+	for <lists+devicetree@lfdr.de>; Thu,  2 Mar 2023 11:47:37 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229552AbjCBKlt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 2 Mar 2023 05:41:49 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57104 "EHLO
+        id S230004AbjCBKrf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 2 Mar 2023 05:47:35 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34118 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229445AbjCBKls (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Mar 2023 05:41:48 -0500
-Received: from mail-yw1-x1129.google.com (mail-yw1-x1129.google.com [IPv6:2607:f8b0:4864:20::1129])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E13763524C
-        for <devicetree@vger.kernel.org>; Thu,  2 Mar 2023 02:41:46 -0800 (PST)
-Received: by mail-yw1-x1129.google.com with SMTP id 00721157ae682-53852143afcso420473337b3.3
-        for <devicetree@vger.kernel.org>; Thu, 02 Mar 2023 02:41:46 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sifive.com; s=google; t=1677753706;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=szoAPIE9RLg8SyW+42dEQKwq5qglsGdZPucFgQhY0/A=;
-        b=gtHXWnWEP7JrkAkqs7UngZsUtO12av+z17lis0xLuEyWguFdxpE7zD4/gRcrSbv4L3
-         yjXXUO9hTUiTmKdAdBlW0gKaBZKKXpX4D9ZpvYvbtZuEJ7p0KaPbfHYaamVpoYgwElQs
-         HiqxuJAHg9Hhc0tp2XQshv04T+2GF8hoXUpGLum0j8N3yDDrfRf3KhXR3OlcvRbEKl5G
-         JU/ka4ea4V8Z0gWbvWteKXgwnZH9Iq2i9aQVK98iAIsZ2Kym5S5PqyxR7WjcaTMFvKVa
-         rc9MVd2v3QVxwnblV2KkIKSNA4SfX8GrWkfeUsplhvLEOWxdYvLAlxJEF4GS9hV5uter
-         pSxw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1677753706;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=szoAPIE9RLg8SyW+42dEQKwq5qglsGdZPucFgQhY0/A=;
-        b=6Le8IWAaRE/RPlsoFG6EvARUa8WP3QF/4rpsLBL0iGb0qT9CJ21vmU6L94PFZOWoQc
-         uTippqFw6uo56LHSLQGFWsD7nkBLyQ4c+f9ukN0mGOQc23Q+/RyblrKckervvgpmv/EN
-         Y0zEdE0ISs4nL3X2ysFepyWkkVSn2vVh5c8bikXR5+aevXC/FVmZb+UK9+MD37V3QGKz
-         pcgf4Fj3PlJwrq1cVtnMhz5Sg3j/hZq+v+zMoqOlsdLA8gOJ41eYmGBAgUN1DqjQZuhs
-         0tbACqFif+2NAvEX84lrECUKXvFX6xWiSI6lfZjIglQikwrU/StVwgU+4IWfCf6WMpYr
-         Iz6A==
-X-Gm-Message-State: AO0yUKXac+dDNDTQptm6ugO18R2mLaVeAGlcoslrsmQQIJFUu1mpvKdL
-        bq0Dd6hN1ntPbwmzzTswfakgqfE3MtDW+W4KJ+66CQ==
-X-Google-Smtp-Source: AK7set87M/AbgxYhMgy1BNJoD32ttiD+1yNN3ghOZW22JFluXJamrHcQOmG2Ay4OU54yPfNiSO4wP3Fp8RerwNWIWtQ=
-X-Received: by 2002:a81:441b:0:b0:52e:d2a7:1ba1 with SMTP id
- r27-20020a81441b000000b0052ed2a71ba1mr5998495ywa.1.1677753706026; Thu, 02 Mar
- 2023 02:41:46 -0800 (PST)
+        with ESMTP id S229983AbjCBKre (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Mar 2023 05:47:34 -0500
+Received: from sender4-op-o15.zoho.com (sender4-op-o15.zoho.com [136.143.188.15])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9A6E837731;
+        Thu,  2 Mar 2023 02:47:33 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1677754035; cv=none; 
+        d=zohomail.com; s=zohoarc; 
+        b=c2ZehWxZUtp/cl4T5HNT9vLkzpL5ZwhAJLPiij4+5DTFylmtKpIj/tkT2gErnjGXFessHP1oP/FEub2sFkX6ELT0iu/R5yHXQYsUAQPOZM3jnpkgd4ELTVJwLDYUBw/kYN8i5OZi1jAT5bKwn061+neWje2ZCZAcfaeRZ3mrcOs=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+        t=1677754035; h=Content-Type:Content-Transfer-Encoding:Cc:Date:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:To; 
+        bh=UUcOfchS4C2fgxhPjvGjSCiIN/7y7uTOoaWrQDYPRTM=; 
+        b=I54FU9r9Q+ybNILluTJpCNr5r7Y6HsASeCWFBbE4PjnMoVk8u3wwVumSQTBxNQCuD17z+BpQ6d2UUBje+2vLGxyExel+TbYrkDSHdrgc2YUqP0AVTRa5w6haDkghwCODghjto5CRefiUZm+T0tp2KbwNWRSZ/oSM2jxa9A+4C7g=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+        dkim=pass  header.i=arinc9.com;
+        spf=pass  smtp.mailfrom=arinc.unal@arinc9.com;
+        dmarc=pass header.from=<arinc.unal@arinc9.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1677754035;
+        s=zmail; d=arinc9.com; i=arinc.unal@arinc9.com;
+        h=Message-ID:Date:Date:MIME-Version:Subject:Subject:To:To:Cc:Cc:References:From:From:In-Reply-To:Content-Type:Content-Transfer-Encoding:Message-Id:Reply-To;
+        bh=UUcOfchS4C2fgxhPjvGjSCiIN/7y7uTOoaWrQDYPRTM=;
+        b=A0A3gKeO6HpQ6VZt5x+Be4cJ3ia0MXGxzuevNkr6FkDoh/8oj88j9epiI175TUDM
+        kx2jOgtkNul1YxLnHPtWbDQqlqSOjjBVyb2/oRi9SGbhDuRPBSLsPF6VHERd64cyde7
+        NIwvdDHiCp/splvG6QbuE2OutO/DPpCer5zXQZ68=
+Received: from [10.10.10.3] (212.68.60.226 [212.68.60.226]) by mx.zohomail.com
+        with SMTPS id 1677754033173751.0132443007599; Thu, 2 Mar 2023 02:47:13 -0800 (PST)
+Message-ID: <b48e0a5e-dd45-8b8a-4ee3-357a0985ca9c@arinc9.com>
+Date:   Thu, 2 Mar 2023 13:47:05 +0300
 MIME-Version: 1.0
-References: <20230130093229.27489-1-nylon.chen@sifive.com> <20230130093229.27489-3-nylon.chen@sifive.com>
- <20230130101707.pdvabl3na2wpwxqu@pengutronix.de> <CAHh=Yk_hFOjwY1mbmYk8yqH_AKDs1_3J+5pYQStseNsZukPSoA@mail.gmail.com>
- <20230301092050.gwwbfsltyuow7pq6@pengutronix.de>
-In-Reply-To: <20230301092050.gwwbfsltyuow7pq6@pengutronix.de>
-From:   Nylon Chen <nylon.chen@sifive.com>
-Date:   Thu, 2 Mar 2023 18:41:31 +0800
-Message-ID: <CAHh=Yk-Yt4q78tpThGR=HTz-Rgjp0LsU1H=eULgo3pg8scS=XA@mail.gmail.com>
-Subject: Re: [PATCH v2 2/2] pwm: sifive: change the PWM controlled LED algorithm
-To:     =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= 
-        <u.kleine-koenig@pengutronix.de>
-Cc:     aou@eecs.berkeley.edu, conor@kernel.org,
-        emil.renner.berthing@canonical.com, geert+renesas@glider.be,
-        heiko@sntech.de, krzysztof.kozlowski+dt@linaro.org,
-        palmer@dabbelt.com, paul.walmsley@sifive.com, robh+dt@kernel.org,
-        thierry.reding@gmail.com, devicetree@vger.kernel.org,
-        linux-pwm@vger.kernel.org, linux-riscv@lists.infradead.org,
-        linux-kernel@vger.kernel.org, nylon7717@gmail.com,
-        zong.li@sifive.com, greentime.hu@sifive.com,
-        vincent.chen@sifive.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.1
+Subject: Re: [RFC PATCH 07/16] dt-bindings: pinctrl: ralink: add new
+ compatible strings
+Content-Language: en-US
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Rob Herring <robh@kernel.org>
+Cc:     Sergio Paracuellos <sergio.paracuellos@gmail.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-mediatek@lists.infradead.org, linux-mips@vger.kernel.org,
+        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Sean Wang <sean.wang@kernel.org>,
+        William Dean <williamsukatube@gmail.com>,
+        Daniel Golle <daniel@makrotopia.org>,
+        Daniel Santos <daniel.santos@pobox.com>,
+        Luiz Angelo Daros de Luca <luizluca@gmail.com>,
+        Frank Wunderlich <frank-w@public-files.de>,
+        Landen Chao <Landen.Chao@mediatek.com>,
+        DENG Qingfang <dqfext@gmail.com>,
+        Sean Wang <sean.wang@mediatek.com>, erkin.bozoglu@xeront.com
+References: <20230222183932.33267-1-arinc.unal@arinc9.com>
+ <20230222183932.33267-8-arinc.unal@arinc9.com>
+ <20230227173333.GA496999-robh@kernel.org>
+ <d7aea90f-d077-3a41-996c-804c95d72e24@arinc9.com>
+ <20230301024431.GA251215-robh@kernel.org>
+ <ae3346de-140f-f181-b6a3-ccaa694e1548@arinc9.com>
+ <11d3c806-04b6-da54-65f1-c0bd154affbc@linaro.org>
+ <a9acd3b4-2b03-86c0-711c-a3840aeab574@arinc9.com>
+ <1aae7ac9-c83d-71b4-4fce-325f02fcd722@linaro.org>
+ <89588f69-9cf0-e7a4-b976-5ce87d42e296@arinc9.com>
+ <2ccb573d-39f4-cb80-7a3e-63a60c2bc0a8@linaro.org>
+From:   =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>
+In-Reply-To: <2ccb573d-39f4-cb80-7a3e-63a60c2bc0a8@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ZohoMailClient: External
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -77,96 +85,36 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Uwe
+On 2.03.2023 13:29, Krzysztof Kozlowski wrote:
+> On 02/03/2023 11:22, Arınç ÜNAL wrote:
+>>>>
+>>>> ## Incorrect naming
+>>>>
+>>>> MT7620, MT7621, MT7628, and MT7688 SoCs are incorrectly called Ralink,
+>>>> introduce new ralink->mediatek compatible strings to address it.
+>>>
+>>> So this part was addressed by Rob - we don't do it, because it does not
+>>> matter. Ralink is now Mediatek, thus there is no conflict and no issues
+>>> with different vendor used.
+>>
+>> I think Rob was rather addressing that updating compatible strings based
+>> on acquisition or marketing whims is not permitted. This condition does
+>> not apply here as these SoCs were never Ralink.
+>>
+>> I understand your point that Ralink is now MediaTek but still, calling
+>> these SoCs Ralink would be a bit misleading, don't you think?
+> 
+> Misleading yes, but also does not matter. At least matter not enough to
+> justify ABI break, so you would need to deprecate old ones and keep
+> everything backwards compatible. You still would affect 3rd party users
+> of DTS, though...
 
-Thanks for your reply.
+I intend to do just that. Introduce new mediatek strings, keep the old 
+ones so it's backwards compatible, therefore don't break the ABI.
 
-Uwe Kleine-K=C3=B6nig <u.kleine-koenig@pengutronix.de> =E6=96=BC 2023=E5=B9=
-=B43=E6=9C=881=E6=97=A5 =E9=80=B1=E4=B8=89 =E4=B8=8B=E5=8D=885:21=E5=AF=AB=
-=E9=81=93=EF=BC=9A
->
-> Hello Nylon,
->
-> On Wed, Feb 01, 2023 at 04:56:42PM +0800, Nylon Chen wrote:
-> > Uwe Kleine-K=C3=B6nig <u.kleine-koenig@pengutronix.de> =E6=96=BC 2023=
-=E5=B9=B41=E6=9C=8830=E6=97=A5 =E9=80=B1=E4=B8=80 =E4=B8=8B=E5=8D=886:17=E5=
-=AF=AB=E9=81=93=EF=BC=9A
-> > > On Mon, Jan 30, 2023 at 05:32:29PM +0800, Nylon Chen wrote:
-> > > > The `frac` variable represents the pulse inactive time, and the res=
-ult of
-> > > > this algorithm is the pulse active time. Therefore, we must reverse=
- the
-> > > > result.
-> > > >
-> > > > The reference is SiFive FU740-C000 Manual[0].
-> > > >
-> > > > [0]: https://sifive.cdn.prismic.io/sifive/1a82e600-1f93-4f41-b2d8-8=
-6ed8b16acba_fu740-c000-manual-v1p6.pdf
-> > > >
-> > > > Signed-off-by: Nylon Chen <nylon.chen@sifive.com>
-> > > > ---
-> > > >  drivers/pwm/pwm-sifive.c | 1 +
-> > > >  1 file changed, 1 insertion(+)
-> > > >
-> > > > diff --git a/drivers/pwm/pwm-sifive.c b/drivers/pwm/pwm-sifive.c
-> > > > index 62b6acc6373d..a5eda165d071 100644
-> > > > --- a/drivers/pwm/pwm-sifive.c
-> > > > +++ b/drivers/pwm/pwm-sifive.c
-> > > > @@ -158,6 +158,7 @@ static int pwm_sifive_apply(struct pwm_chip *ch=
-ip, struct pwm_device *pwm,
-> > > >       frac =3D DIV64_U64_ROUND_CLOSEST(num, state->period);
-> > > >       /* The hardware cannot generate a 100% duty cycle */
-> > > >       frac =3D min(frac, (1U << PWM_SIFIVE_CMPWIDTH) - 1);
-> > > > +     frac =3D (1U << PWM_SIFIVE_CMPWIDTH) - 1 - frac;
-> > >
-> > > The same problem exists in pwm_sifive_get_state(), doesn't it?
-> > >
-> > > As fixing this is an interruptive change anyhow, this is the opportun=
-ity
-> > > to align the driver to the rules tested by PWM_DEBUG.
-> > >
-> > > The problems I see in the driver (only checked quickly, so I might be
-> > > wrong):
-> > >
-> > >  - state->period !=3D ddata->approx_period isn't necessarily a proble=
-m. If
-> > >    state->period > ddata->real_period that's fine and the driver shou=
-ld
-> > >    continue
-> > >
-> > >  - frac =3D DIV64_U64_ROUND_CLOSEST(num, state->period);
-> > >    is wrong for two reasons:
-> > >    it should round down and use the real period.
-> > >
-> > I need a little time to clarify your assumptions. If possible, I will
-> > make similar changes.
-> >
-> > e.g.
-> > rounddown(num, state->period);
-> > if (state->period < ddata->approx_period)
-> >     ...
->
-> the idea is that for a given request apply should do the following to
-> select the hardware setting:
->
->  - Check polarity, if the hardware doesn't support it, return -EINVAL.
->    (A period always starts with the active phase for the duration of
->    duty_cycle. For normal polarity active =3D high.)
->  - Pick the biggest period length possible that is not bigger than the
->    requested period.
->  - For the picked period, select the biggest duty_cycle possible that is
->    not bigger than the requested duty_cycle.
->
-> Then if possible switch to the selected setting in an atomic step.
->
-> Does this clearify your doubts?
-I need a little time to clarify your assumptions. Thanks again.
->
-> Best regards
-> Uwe
->
-> --
-> Pengutronix e.K.                           | Uwe Kleine-K=C3=B6nig       =
-     |
-> Industrial Linux Solutions                 | https://www.pengutronix.de/ =
-|
+Instead of deprecating old strings, I intend to introduce the checks I 
+mentioned, on the schema, so the pin muxing bindings only apply if the 
+DT has got a string that won't match multiple schemas. This way it 
+shouldn't affect 3rd party DTs.
+
+Arınç
