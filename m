@@ -2,149 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id ADFD46A7DA5
-	for <lists+devicetree@lfdr.de>; Thu,  2 Mar 2023 10:28:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0E0C76A7DB3
+	for <lists+devicetree@lfdr.de>; Thu,  2 Mar 2023 10:34:03 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229579AbjCBJ2m (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 2 Mar 2023 04:28:42 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33442 "EHLO
+        id S229684AbjCBJeB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 2 Mar 2023 04:34:01 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36954 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229553AbjCBJ2l (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Mar 2023 04:28:41 -0500
-Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com [IPv6:2a00:1450:4864:20::434])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 80A4015577
-        for <devicetree@vger.kernel.org>; Thu,  2 Mar 2023 01:28:39 -0800 (PST)
-Received: by mail-wr1-x434.google.com with SMTP id bw19so15797543wrb.13
-        for <devicetree@vger.kernel.org>; Thu, 02 Mar 2023 01:28:39 -0800 (PST)
+        with ESMTP id S229675AbjCBJeA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Mar 2023 04:34:00 -0500
+Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 04D2514EA2;
+        Thu,  2 Mar 2023 01:33:59 -0800 (PST)
+Received: by mail-ed1-x533.google.com with SMTP id g3so9565068eda.1;
+        Thu, 02 Mar 2023 01:33:58 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1677749318;
-        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
-         :content-language:subject:reply-to:from:user-agent:mime-version:date
-         :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=pN3D6KI8Uaa46h7G/TJdROkJgq6ZG8djshLY451h4ys=;
-        b=ePgyFdWPqYzP5PsMiB6m/eTIZ/AdDvKD1geltdyzjjo+eHjCktcA4UW9yaInyU22lB
-         qLoNyhRQW4r7akoe0EKzIqBMybTmuIvccUOgNupV9rLMLpH30V8n0VkdPAxvQn0oOX9/
-         sDrZdoJbKfNw9F6Ju8EHhctCdgl8NUu0MYYSXqQVrrg5y8AaX/0Loebr+icGc8vsl0Qo
-         4cCuXD8LRFnccVKoCCAv/oG0fbnKXF+dG0DRz02swexJqakmg8hUO1WrrnsT+vYGuxTH
-         dl6l+KAJtKFZw3rPwVPn7PAL8P7PQPwiIaRkjo3qOHbOR8wruak4wkqNXXrAsV4HYd6J
-         Sghw==
+        d=gmail.com; s=20210112; t=1677749637;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=pKDeRQ/4JLfwuQ8OdxmCXpTuWBhIo0gbvATYdHXRLEQ=;
+        b=ih++S7fnHJ04ORwtbMTVqTpMuwCk2PKSX2FYJZwPgekoz7g0cQPGQzc2nhQYXcNM1v
+         yM0FkuIfoR8tOZyrmx6Pp/yrRPgiaEz1AHO+m19e5GGmN4dewrMcdVlP5jxv4yg0h2eD
+         klBXvzpL9bq2zdKggZSWOzM8B/36dLcB52UpSzmfBqusi2bniiXUoJTSlbFrZYxioOu7
+         jtCk2NwWb66fhIThXaxfCJ5wUNXGM/LLaOETMXEtxr9DicP+Ha6NBTPSdsfXGDGqVA0X
+         oLRDaQueRbp6Wu4NRvW4E/1Kpa17NlSZpZGDmxTScoTpiNvWalxJ42fQjP8icKBv+6D8
+         J+Gw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1677749318;
-        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
-         :content-language:subject:reply-to:from:user-agent:mime-version:date
-         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+        d=1e100.net; s=20210112; t=1677749637;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=pN3D6KI8Uaa46h7G/TJdROkJgq6ZG8djshLY451h4ys=;
-        b=rsNnRpnvU665nvXgjQCLPS8wAo3UbnvFDRWWypCjW7P5yZpCRmYppf1zfNiIQ61OCX
-         uq26ry2UoU0JdV4e0JVEt2LKAr5DlWsn5pHSHI5dSXUp6bZB0rEBhoMvg9yODuzKfaxp
-         jpenpNXNFS53C7x1Zf5w9H1ZQfflmj9MqtdloYImX3lBDGwWUXQNUnJeNnx+vvcEx4+V
-         t4HnqSzxJwnCZq37q4/Xjz5WwuCRAL7n6C0aTg3bTr57Yc46lXdYSlXREI24vZNXhiC6
-         EoofBW+GlSISHzgdWfCpHYHcDKUNKSbl54sIF5djKinLwZHW3rg4tWUpWZsd7FYzpVte
-         6Teg==
-X-Gm-Message-State: AO0yUKXZc168flPYjmDwq4d2oNnNJEVo1tTF8ajIqmiMs8n0oyu7BRD/
-        7XYmRMNDKuhLUYWPIEMI7MaKNQ==
-X-Google-Smtp-Source: AK7set9CWhecrLx281ewib0dIvx7MkBYjpt4sHuc9tY87sRrdwUG5w1d7q9EEY+x2f6djdKm6v6IZw==
-X-Received: by 2002:a5d:68cc:0:b0:2c9:850c:6b13 with SMTP id p12-20020a5d68cc000000b002c9850c6b13mr7334493wrw.67.1677749317874;
-        Thu, 02 Mar 2023 01:28:37 -0800 (PST)
-Received: from ?IPV6:2a01:e0a:982:cbb0:217a:db24:fe27:6b35? ([2a01:e0a:982:cbb0:217a:db24:fe27:6b35])
-        by smtp.gmail.com with ESMTPSA id d16-20020adff850000000b002c55306f6edsm14632513wrq.54.2023.03.02.01.28.37
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 02 Mar 2023 01:28:37 -0800 (PST)
-Message-ID: <78b44cd8-adf1-d5fb-b140-6849fb77c679@linaro.org>
-Date:   Thu, 2 Mar 2023 10:28:36 +0100
+        bh=pKDeRQ/4JLfwuQ8OdxmCXpTuWBhIo0gbvATYdHXRLEQ=;
+        b=5N24SeAA7Dy2t/l/Q3UdYWo3eGoLcTZ9PrZpQ28KGZnBaQc4iVTg8l9GYeDPyg+yWK
+         usiFApinLOuZCS9xdej9y1l58Cx2rruW5HoadOPAxpXfwTv8ovheOA2YKGmLlUuxMLrW
+         J/pdkJxJYuozZZmpCn7VR+y1rPrXGrnY6fZVWeEwMMHXAl2Bi/eg4R1VBTNXg+x1Xb/c
+         29oD3YfMdlL46XhIVxieeTAyXqbcdw95aSelos42kKoZ1WLEkntugWyOduQSMfhcS8NT
+         4L3+v7UH8oKJ/xU76o+JIW71jBRjXRQkLYW2hF5LFB6K80ylPYpM1GNoPZTDNxi/eiHn
+         Eezw==
+X-Gm-Message-State: AO0yUKVEEVTbsI6yWv7XncJjb/qrJnUBX+JOagdDZJh2Ge1Qtfw+nkyU
+        YrkJ3NjqUUSVsgD29s29+4E=
+X-Google-Smtp-Source: AK7set+SvI+Kkueg3IpSyU/iRjuqghNL9lpO9dAXmgvOIQ7kroCKqlb02D4T9ERKJu+x7FPQuyiGZw==
+X-Received: by 2002:a05:6402:416:b0:4ad:7c30:2599 with SMTP id q22-20020a056402041600b004ad7c302599mr11097738edv.13.1677749637208;
+        Thu, 02 Mar 2023 01:33:57 -0800 (PST)
+Received: from localhost (p200300e41f1c0800f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f1c:800:f22f:74ff:fe1f:3a53])
+        by smtp.gmail.com with ESMTPSA id b44-20020a509f2f000000b004bf76fdfdb3sm868339edf.26.2023.03.02.01.33.56
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 02 Mar 2023 01:33:56 -0800 (PST)
+From:   Thierry Reding <thierry.reding@gmail.com>
+To:     Thierry Reding <thierry.reding@gmail.com>
+Cc:     Jon Hunter <jonathanh@nvidia.com>, linux-tegra@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: [PATCH 1/4] dt-bindings: tegra: Document Jetson Orin NX
+Date:   Thu,  2 Mar 2023 10:33:50 +0100
+Message-Id: <20230302093353.3873247-1-thierry.reding@gmail.com>
+X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.2
-From:   Neil Armstrong <neil.armstrong@linaro.org>
-Reply-To: neil.armstrong@linaro.org
-Subject: Re: [PATCH 3/3] arm64: dts: meson: add IR controller for Meson-S4 SoC
-Content-Language: en-US
-To:     zelong dong <zelong.dong@amlogic.com>, Sean Young <sean@mess.org>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc:     linux-media@vger.kernel.org, linux-amlogic@lists.infradead.org,
-        devicetree@vger.kernel.org
-References: <20230302063402.42708-1-zelong.dong@amlogic.com>
- <20230302063402.42708-4-zelong.dong@amlogic.com>
-Organization: Linaro Developer Services
-In-Reply-To: <20230302063402.42708-4-zelong.dong@amlogic.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 02/03/2023 07:34, zelong dong wrote:
-> From: Zelong Dong <zelong.dong@amlogic.com>
-> 
-> Add the IR controller device of Meson-S4 SoC family, and enable
-> hardware IR decoder.
-> 
-> Signed-off-by: Zelong Dong <zelong.dong@amlogic.com>
-> ---
->   .../boot/dts/amlogic/meson-s4-s805x2-aq222.dts   |  6 ++++++
->   arch/arm64/boot/dts/amlogic/meson-s4.dtsi        | 16 ++++++++++++++++
->   2 files changed, 22 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-s4-s805x2-aq222.dts b/arch/arm64/boot/dts/amlogic/meson-s4-s805x2-aq222.dts
-> index 8ffbcb2b1ac5..4d3a81b3b762 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-s4-s805x2-aq222.dts
-> +++ b/arch/arm64/boot/dts/amlogic/meson-s4-s805x2-aq222.dts
-> @@ -28,3 +28,9 @@ memory@0 {
->   &uart_B {
->   	status = "okay";
->   };
-> +
-> +&ir {
-> +	status = "disabled";
+From: Thierry Reding <treding@nvidia.com>
 
-Why is this disabled ? disabled state is already set in dtsi, it should be "okay".
+The Jetson Orin NX is the latest iteration in the NX family of Jetson
+products. Document the compatible strings used for these devices.
 
-Neil
+Signed-off-by: Thierry Reding <treding@nvidia.com>
+---
+ Documentation/devicetree/bindings/arm/tegra.yaml | 4 ++++
+ 1 file changed, 4 insertions(+)
 
-> +	pinctrl-0 = <&remote_pins>;
-> +	pinctrl-names = "default";
-> +};
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-s4.dtsi b/arch/arm64/boot/dts/amlogic/meson-s4.dtsi
-> index ad50cba42d19..309352a83eda 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-s4.dtsi
-> +++ b/arch/arm64/boot/dts/amlogic/meson-s4.dtsi
-> @@ -106,6 +106,14 @@ gpio: bank@4000 {
->   					#gpio-cells = <2>;
->   					gpio-ranges = <&periphs_pinctrl 0 0 82>;
->   				};
-> +
-> +				remote_pins: remote_pin {
-> +					mux {
-> +						groups = "remote_in";
-> +						function = "remote_in";
-> +						bias-disable;
-> +					};
-> +				};
->   			};
->   
->   			gpio_intc: interrupt-controller@4080 {
-> @@ -133,6 +141,14 @@ reset: reset-controller@2000 {
->   				reg = <0x0 0x2000 0x0 0x98>;
->   				#reset-cells = <1>;
->   			};
-> +
-> +			ir: ir@84000 {
-> +				compatible = "amlogic,meson-s4-ir";
-> +				reg = <0x0 0x84040 0x0 0x54>;
-> +				interrupts = <GIC_SPI 22 IRQ_TYPE_EDGE_RISING>;
-> +				amlogic,ir-support-hw-decode;
-> +				status = "disabled";
-> +			};
->   		};
->   	};
->   };
+diff --git a/Documentation/devicetree/bindings/arm/tegra.yaml b/Documentation/devicetree/bindings/arm/tegra.yaml
+index 939a77c767bb..6c13d5e5719a 100644
+--- a/Documentation/devicetree/bindings/arm/tegra.yaml
++++ b/Documentation/devicetree/bindings/arm/tegra.yaml
+@@ -213,5 +213,9 @@ properties:
+           - const: nvidia,p3737-0000+p3701-0000
+           - const: nvidia,p3701-0000
+           - const: nvidia,tegra234
++      - description: Jetson Orin NX
++        items:
++          - const: nvidia,p3767-0000
++          - const: nvidia,tegra234
+ 
+ additionalProperties: true
+-- 
+2.39.2
 
