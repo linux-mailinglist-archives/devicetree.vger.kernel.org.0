@@ -2,123 +2,180 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B0E796AA5A1
-	for <lists+devicetree@lfdr.de>; Sat,  4 Mar 2023 00:30:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A657F6AA5BB
+	for <lists+devicetree@lfdr.de>; Sat,  4 Mar 2023 00:41:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229564AbjCCXar (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 3 Mar 2023 18:30:47 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37592 "EHLO
+        id S229718AbjCCXlM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 3 Mar 2023 18:41:12 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46258 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229512AbjCCXaq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Mar 2023 18:30:46 -0500
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B1C1A5D452;
-        Fri,  3 Mar 2023 15:30:43 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1677886243; x=1709422243;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=MsnQ6U1QZT1glkU3UUvrlM2HfAZTPpjEe/eFE0RMVB4=;
-  b=UVAdCLXxZ61nAY7K8VV0fFvW0dnzIqgWleQkMzpQPjzNg3HdrPUOhFIZ
-   60dmszR9hS0W5boPsUFHTS0MGHaN2kL9UiQyBOq10/843prSMz+VMW/hF
-   ADyTVkymjhODUFHmzCLJsCzRaCmitiquNp55PYNo6KfQksrPn8VrH1FyR
-   kB+9HWsGn2U/eYTNqarlzcPqn88Q89ZkNkQXwATBCrvs/NdVphfcBpiUg
-   l+yy+r0SNJIeg4RBUl2qEdsxylYBf8VpUxcKOYANKDWjBggCd8IquKCy3
-   SttOopYZa9bVNiA+EVtXyUhwa8TYcEhCmoPCSkNLipUdhLrL4KLJafgEJ
-   Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10638"; a="332663668"
-X-IronPort-AV: E=Sophos;i="5.98,232,1673942400"; 
-   d="scan'208";a="332663668"
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
-  by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 Mar 2023 15:30:33 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10638"; a="799381485"
-X-IronPort-AV: E=Sophos;i="5.98,232,1673942400"; 
-   d="scan'208";a="799381485"
-Received: from lkp-server01.sh.intel.com (HELO 776573491cc5) ([10.239.97.150])
-  by orsmga004.jf.intel.com with ESMTP; 03 Mar 2023 15:30:28 -0800
-Received: from kbuild by 776573491cc5 with local (Exim 4.96)
-        (envelope-from <lkp@intel.com>)
-        id 1pYEr6-0001iy-0d;
-        Fri, 03 Mar 2023 23:30:28 +0000
-Date:   Sat, 4 Mar 2023 07:30:01 +0800
-From:   kernel test robot <lkp@intel.com>
-To:     David Wang <tomato1220@gmail.com>, arnd@arndb.de, olof@lixom.net,
-        soc@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org
-Cc:     oe-kbuild-all@lists.linux.dev, avifishman70@gmail.com,
-        tmaimon77@gmail.com, tali.perry1@gmail.com, venture@google.com,
-        yuenn@google.com, benjaminfair@google.com,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, openbmc@lists.ozlabs.org,
-        fran.hsu@quantatw.com, David Wang <davidwang@quantatw.com>
-Subject: Re: [PATCH 2/7] ARM: dts: nuvoton: Add Quanta GSZ BMC Device Tree
-Message-ID: <202303040612.codF6aYF-lkp@intel.com>
-References: <20230303063435.803097-2-davidwang@quantatw.com>
+        with ESMTP id S229705AbjCCXlL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Mar 2023 18:41:11 -0500
+Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com [IPv6:2a00:1450:4864:20::52b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5AFAF67815
+        for <devicetree@vger.kernel.org>; Fri,  3 Mar 2023 15:41:08 -0800 (PST)
+Received: by mail-ed1-x52b.google.com with SMTP id u9so16682521edd.2
+        for <devicetree@vger.kernel.org>; Fri, 03 Mar 2023 15:41:08 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=yMNrZUp6pzMsmCIoeKDAki7FuOXM5/PO0f2N1n3xENo=;
+        b=Gke87oANQT5GpbGgDOYrs+zl7R4QeSxtcAbfDZX4/SLj63HpyKS0gItIdeZqgDFfnx
+         Jcvh+eVekTl10KlChVgiZWYKKYV0NrG9jBs/lYC27Co0/knP6Z8zLhBwPLMZhPFHQlMi
+         25i6zGeSjVG/IelJI5qZAQPAvbuk8FOkAOPpO62v43b3pHRs99IWs3dC2bDk8Hthb+Ml
+         GUpb60f6CCWiyzhJYk+OzC0DCQLdI4jr5kObO5q8jJDFT5dzVEAEtAWiigiqE9U5PcHN
+         +26u7YQg/iHnR0fQe+B1tOYgzxfnNGZ3MDb5UVMLAd1ogSIBcHqTtIDIjQBZtAyNGqFE
+         uqxQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=yMNrZUp6pzMsmCIoeKDAki7FuOXM5/PO0f2N1n3xENo=;
+        b=eQLGmAi++YiAoLUg2wfF08BXZ/1CVwAUwKMXVEUQauE9LbVNl2LTLY15Gaz8ZjQ1gW
+         Plh6qq6aKOvpxEnhvechs/O0SRTYjg3+ll8n+P+6iVofUH3E6BUqUCMcfni4VlTQekSm
+         AxVQop5FLUN8oRMX2LiHUoTXOP8vmfvFoWW1tIJk7QiG5jcpCbjdtmdr1TX8PclQenBp
+         G49N39Cz/+TMWH81WD2ATAkNfUAy1F6oKWmTUtGZeJmWTfM5WkFNquVHj65uC73+gEbX
+         uNPLCXAkNm2YLzcU0RDZK4zKnShBbEeQj4QHEo0bG/IQeiSbS9+CffQbUtndMvC15qaQ
+         Z0aA==
+X-Gm-Message-State: AO0yUKV1vTNvrzjtfowz3Sn5pt2Vk4EgK2cG81zdzr8nA2cES48b5V2A
+        15k+t+EuUv6PnbomtEg8DiwEVw==
+X-Google-Smtp-Source: AK7set8R5K0Uxk42QxMR14lIf20ANl3YTOCrvpvH4LIk+JBOzaYhoc1dhxDaczVoPUaJ+pKQ9+171A==
+X-Received: by 2002:a17:906:d542:b0:8b2:e93:3f59 with SMTP id cr2-20020a170906d54200b008b20e933f59mr3843838ejc.31.1677886866782;
+        Fri, 03 Mar 2023 15:41:06 -0800 (PST)
+Received: from [10.203.3.194] ([185.202.34.81])
+        by smtp.gmail.com with ESMTPSA id ca5-20020a170906a3c500b008bc2c2134c5sm1452968ejb.216.2023.03.03.15.41.05
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 03 Mar 2023 15:41:06 -0800 (PST)
+Message-ID: <d5e39671-fe26-e136-4ba0-fa5324414799@linaro.org>
+Date:   Sat, 4 Mar 2023 01:41:05 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230303063435.803097-2-davidwang@quantatw.com>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.8.0
+Subject: Re: [PATCH] dt-bindings: yamllint: Require a space after a comment
+ '#'
+Content-Language: en-GB
+To:     Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org
+Cc:     linux-kernel@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Herbert Xu <herbert@gondor.apana.org.au>,
+        "David S. Miller" <davem@davemloft.net>,
+        Rob Clark <robdclark@gmail.com>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        Sean Paul <sean@poorly.run>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>, Andrew Lunn <andrew@lunn.ch>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@kernel.org>,
+        Mark Brown <broonie@kernel.org>,
+        Conor Dooley <conor.dooley@microchip.com>,
+        linux-clk@vger.kernel.org, linux-crypto@vger.kernel.org,
+        dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org,
+        linux-media@vger.kernel.org, netdev@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-phy@lists.infradead.org, linux-gpio@vger.kernel.org,
+        alsa-devel@alsa-project.org, linux-riscv@lists.infradead.org,
+        linux-spi@vger.kernel.org
+References: <20230303214223.49451-1-robh@kernel.org>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+In-Reply-To: <20230303214223.49451-1-robh@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi David,
+On 03/03/2023 23:42, Rob Herring wrote:
+> Enable yamllint to check the prefered commenting style of requiring a
+> space after a comment character '#'. Fix the cases in the tree which
+> have a warning with this enabled. Most cases just need a space after the
+> '#'. A couple of cases with comments which were not intended to be
+> comments are revealed. Those were in ti,sa2ul.yaml, ti,cal.yaml, and
+> brcm,bcmgenet.yaml.
+> 
+> Signed-off-by: Rob Herring <robh@kernel.org>
+> ---
+> Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+> Cc: Stephen Boyd <sboyd@kernel.org>
+> Cc: Herbert Xu <herbert@gondor.apana.org.au>
+> Cc: "David S. Miller" <davem@davemloft.net>
+> Cc: Rob Clark <robdclark@gmail.com>
+> Cc: Abhinav Kumar <quic_abhinavk@quicinc.com>
+> Cc: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> Cc: Sean Paul <sean@poorly.run>
+> Cc: Thomas Gleixner <tglx@linutronix.de>
+> Cc: Marc Zyngier <maz@kernel.org>
+> Cc: Mauro Carvalho Chehab <mchehab@kernel.org>
+> Cc: Eric Dumazet <edumazet@google.com>
+> Cc: Jakub Kicinski <kuba@kernel.org>
+> Cc: Paolo Abeni <pabeni@redhat.com>
+> Cc: Andrew Lunn <andrew@lunn.ch>
+> Cc: Heiner Kallweit <hkallweit1@gmail.com>
+> Cc: Vinod Koul <vkoul@kernel.org>
+> Cc: Kishon Vijay Abraham I <kishon@kernel.org>
+> Cc: Mark Brown <broonie@kernel.org>
+> Cc: Conor Dooley <conor.dooley@microchip.com>
+> Cc: linux-clk@vger.kernel.org
+> Cc: linux-crypto@vger.kernel.org
+> Cc: dri-devel@lists.freedesktop.org
+> Cc: freedreno@lists.freedesktop.org
+> Cc: linux-media@vger.kernel.org
+> Cc: netdev@vger.kernel.org
+> Cc: linux-arm-kernel@lists.infradead.org
+> Cc: linux-phy@lists.infradead.org
+> Cc: linux-gpio@vger.kernel.org
+> Cc: alsa-devel@alsa-project.org
+> Cc: linux-riscv@lists.infradead.org
+> Cc: linux-spi@vger.kernel.org
+> ---
+>   Documentation/devicetree/bindings/.yamllint   |  2 +-
+>   .../bindings/clock/qcom,a53pll.yaml           |  4 ++--
+>   .../devicetree/bindings/crypto/ti,sa2ul.yaml  |  4 ++--
+>   .../bindings/display/msm/qcom,mdp5.yaml       |  2 +-
+>   .../interrupt-controller/arm,gic.yaml         |  4 ++--
+>   .../loongson,pch-msi.yaml                     |  2 +-
+>   .../bindings/media/renesas,vin.yaml           |  4 ++--
+>   .../devicetree/bindings/media/ti,cal.yaml     |  4 ++--
+>   .../bindings/net/brcm,bcmgenet.yaml           |  2 --
+>   .../bindings/net/cortina,gemini-ethernet.yaml |  6 ++---
+>   .../devicetree/bindings/net/mdio-gpio.yaml    |  4 ++--
+>   .../phy/marvell,armada-cp110-utmi-phy.yaml    |  2 +-
+>   .../bindings/phy/phy-stm32-usbphyc.yaml       |  2 +-
+>   .../phy/qcom,sc7180-qmp-usb3-dp-phy.yaml      |  2 +-
+>   .../bindings/pinctrl/pinctrl-mt8192.yaml      |  2 +-
+>   .../regulator/nxp,pca9450-regulator.yaml      |  8 +++----
+>   .../regulator/rohm,bd71828-regulator.yaml     | 20 ++++++++--------
+>   .../regulator/rohm,bd71837-regulator.yaml     |  6 ++---
+>   .../regulator/rohm,bd71847-regulator.yaml     |  6 ++---
+>   .../bindings/soc/renesas/renesas.yaml         |  2 +-
+>   .../devicetree/bindings/soc/ti/ti,pruss.yaml  |  2 +-
+>   .../bindings/sound/amlogic,axg-tdm-iface.yaml |  2 +-
+>   .../bindings/sound/qcom,lpass-rx-macro.yaml   |  4 ++--
+>   .../bindings/sound/qcom,lpass-tx-macro.yaml   |  4 ++--
+>   .../bindings/sound/qcom,lpass-va-macro.yaml   |  4 ++--
+>   .../sound/qcom,q6dsp-lpass-ports.yaml         |  2 +-
+>   .../bindings/sound/simple-card.yaml           | 24 +++++++++----------
+>   .../bindings/spi/microchip,mpfs-spi.yaml      |  2 +-
+>   28 files changed, 65 insertions(+), 67 deletions(-)
 
-Thank you for the patch! Yet something to improve:
-
-[auto build test ERROR on robh/for-next]
-[also build test ERROR on soc/for-next arm/for-next arm/fixes arm64/for-next/core clk/clk-next kvmarm/next rockchip/for-next shawnguo/for-next xilinx-xlnx/master linus/master v6.2 next-20230303]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
-
-url:    https://github.com/intel-lab-lkp/linux/commits/David-Wang/ARM-dts-nuvoton-Add-Quanta-GSZ-BMC-Device-Tree/20230303-143845
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
-patch link:    https://lore.kernel.org/r/20230303063435.803097-2-davidwang%40quantatw.com
-patch subject: [PATCH 2/7] ARM: dts: nuvoton: Add Quanta GSZ BMC Device Tree
-config: arm-randconfig-r046-20230302 (https://download.01.org/0day-ci/archive/20230304/202303040612.codF6aYF-lkp@intel.com/config)
-compiler: arm-linux-gnueabi-gcc (GCC) 12.1.0
-reproduce (this is a W=1 build):
-        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
-        chmod +x ~/bin/make.cross
-        # https://github.com/intel-lab-lkp/linux/commit/582e8c7ca5de26f639e46b839d9b4c6cbf7e43cf
-        git remote add linux-review https://github.com/intel-lab-lkp/linux
-        git fetch --no-tags linux-review David-Wang/ARM-dts-nuvoton-Add-Quanta-GSZ-BMC-Device-Tree/20230303-143845
-        git checkout 582e8c7ca5de26f639e46b839d9b4c6cbf7e43cf
-        # save the config file
-        mkdir build_dir && cp config build_dir/.config
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.1.0 make.cross W=1 O=build_dir ARCH=arm olddefconfig
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.1.0 make.cross W=1 O=build_dir ARCH=arm SHELL=/bin/bash
-
-If you fix the issue, kindly add following tag where applicable
-| Reported-by: kernel test robot <lkp@intel.com>
-| Link: https://lore.kernel.org/oe-kbuild-all/202303040612.codF6aYF-lkp@intel.com/
-
-All errors (new ones prefixed by >>):
-
->> Error: arch/arm/boot/dts/nuvoton-npcm730-gsz.dts:223.1-6 Label or path emc0 not found
->> Error: arch/arm/boot/dts/nuvoton-npcm730-gsz.dts:231.1-4 Label or path mc not found
->> Error: arch/arm/boot/dts/nuvoton-npcm730-gsz.dts:239.1-7 Label or path ohci1 not found
->> Error: arch/arm/boot/dts/nuvoton-npcm730-gsz.dts:243.1-5 Label or path aes not found
->> Error: arch/arm/boot/dts/nuvoton-npcm730-gsz.dts:247.1-5 Label or path sha not found
->> Error: arch/arm/boot/dts/nuvoton-npcm730-gsz.dts:251.1-6 Label or path udc5 not found
->> Error: arch/arm/boot/dts/nuvoton-npcm730-gsz.dts:255.1-6 Label or path udc6 not found
->> Error: arch/arm/boot/dts/nuvoton-npcm730-gsz.dts:259.1-6 Label or path udc7 not found
->> Error: arch/arm/boot/dts/nuvoton-npcm730-gsz.dts:263.1-6 Label or path udc8 not found
->> Error: arch/arm/boot/dts/nuvoton-npcm730-gsz.dts:267.1-9 Label or path pcimbox not found
->> Error: arch/arm/boot/dts/nuvoton-npcm730-gsz.dts:271.1-8 Label or path sdhci0 not found
->> Error: arch/arm/boot/dts/nuvoton-npcm730-gsz.dts:366.1-5 Label or path otp not found
->> Error: arch/arm/boot/dts/nuvoton-npcm730-gsz.dts:384.1-10 Label or path lpc_host not found
->> Error: arch/arm/boot/dts/nuvoton-npcm730-gsz.dts:1506.1-7 Label or path peci0 not found
-   FATAL ERROR: Syntax error parsing input tree
+Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org> # drm/msm
+(and other Qualcom-specific schemas)
 
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests
+With best wishes
+Dmitry
+
