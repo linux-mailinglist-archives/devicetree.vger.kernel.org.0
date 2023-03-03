@@ -2,155 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8F6286A916C
-	for <lists+devicetree@lfdr.de>; Fri,  3 Mar 2023 08:05:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6B5F86A9178
+	for <lists+devicetree@lfdr.de>; Fri,  3 Mar 2023 08:12:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229649AbjCCHFr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 3 Mar 2023 02:05:47 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40604 "EHLO
+        id S229728AbjCCHMR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 3 Mar 2023 02:12:17 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45606 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229560AbjCCHFq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Mar 2023 02:05:46 -0500
-Received: from mail-ed1-x52d.google.com (mail-ed1-x52d.google.com [IPv6:2a00:1450:4864:20::52d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 66F9B1A67D
-        for <devicetree@vger.kernel.org>; Thu,  2 Mar 2023 23:05:45 -0800 (PST)
-Received: by mail-ed1-x52d.google.com with SMTP id x3so6436136edb.10
-        for <devicetree@vger.kernel.org>; Thu, 02 Mar 2023 23:05:45 -0800 (PST)
+        with ESMTP id S229512AbjCCHMQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Mar 2023 02:12:16 -0500
+Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com [IPv6:2a00:1450:4864:20::52a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6634132E6A
+        for <devicetree@vger.kernel.org>; Thu,  2 Mar 2023 23:12:15 -0800 (PST)
+Received: by mail-ed1-x52a.google.com with SMTP id f13so6592653edz.6
+        for <devicetree@vger.kernel.org>; Thu, 02 Mar 2023 23:12:15 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1677827144;
+        d=linaro.org; s=google; t=1677827534;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=7hyO83Agm9J1LkrNZzgMmPOSi1e0C8pD1X+9+f3Pu8E=;
-        b=DTsZvcGSh0JqYAWl73FtkLBOgToNuhgRMthIP75ZhbLj4hvKzx8xLSWmq6ZecBm+fc
-         WnGaFSR/szAif5FxMioBLi8lXOMjwyl9YYBRW1qvfrNJQ7y6enmqBFXC6knizv5FRC7w
-         gLcW7RZF7IeggDaKwtL/qn/wbEyuyR91AVlWq5dAw46hbqc6EYma+NwexHXqBlDdZGaB
-         0Kw0lNAnA0Yk98iEdnIWnFQ2Wi5nbeYto+qJucXYry5HG84g0JbO9dCjhmRWcEXGLp9r
-         AnMwj+SQ1t8ltYXBcQvr/J9V6aYgCkp+SkBohiYeeoKguZDW2uGNeBFyo3FRxcIff5gD
-         KvIQ==
+        bh=Xi3e3zf8Klpq1iRcEdmcSTKwBOu4pz/Ei0EPeIx1fZY=;
+        b=EZLxu7Y+iizjsoeGeUbmzPxbTlnTsVxbNP5WplEQkHBNoOsLzB62obZ9C7HjJdud77
+         56/49ai23BGpoS36DG6EcSbmf63qfNq5oJWGrjeCcUiiqcP5s7T2Mro0aZ/J/j8ksgeI
+         +bg2Y9ZjHQdv3oumc/D705agQ/kTIHtIJYSd3isGNZ021cdwZsiNraxSgOkprbG1/VSs
+         Jy/A3i7jQicgkpkM9EZeoKOzBEgUtXQp/lpjyn7AuUuLTBZDpT2aSxgAtP6jsOAfs7BX
+         anizbYYk4ixsFk47zhnqdrNzqaha1yJxtgSvDN8tkCbRbvXSD9EdiLHjOJXucHQh16pa
+         x2XQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1677827144;
+        d=1e100.net; s=20210112; t=1677827534;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=7hyO83Agm9J1LkrNZzgMmPOSi1e0C8pD1X+9+f3Pu8E=;
-        b=X/Ks451G5U0Y/mf6l7+zl25Wez8cMoaKHl5ZYVhAGZi6z5WhE5/PAFVU1n5o+Upo63
-         9SENgdF8tqYAyfMWkwTIQyFd3mIxs+/QzeKUV0kZymZoN/yrDp7wqhMLU1fuyPZCu+ye
-         OhCCcGT0r/Nue4oRd085BNWmlpRswNgJPnfmx6imPc3AMIvTWyJf4MXbXWGbuoACk9ZO
-         lKoWzGGKqbbhy7CkjiMrT+e0ALVxBWRSPruiha4UDMy+k+g+cNN33LZHLclkhQswriNv
-         ehq38DTjwV00Zr8/etRQtCVvoZfi+Cizg+y29uQ6KsyPNQ+/14rMv03KOvX02pl1/r+w
-         RWGw==
-X-Gm-Message-State: AO0yUKVVYKL8XNkxZxx3haSrFtWjs2u4PvgmJgZoAtaVeF8xXOFanXNq
-        OOiR4Eq93XaJqJ3+ah0FRwwdmg==
-X-Google-Smtp-Source: AK7set872PawA8YLwYxckp8bhyhvu6/0N24CzD55UJ1kPz74D0pEza8jIQRyk/4Shrewd1pziePgRg==
-X-Received: by 2002:a05:6402:1347:b0:4ab:1c69:5c4 with SMTP id y7-20020a056402134700b004ab1c6905c4mr884592edw.26.1677827143862;
-        Thu, 02 Mar 2023 23:05:43 -0800 (PST)
+        bh=Xi3e3zf8Klpq1iRcEdmcSTKwBOu4pz/Ei0EPeIx1fZY=;
+        b=h2aXH5u9GfF+A+pY+ifw9d5Gt4KQxxH0LzMdssERPOYzWjtDs8PDr6AAzbFdUcd6x7
+         2QI+hyXYUer3p9aIVmp2LM88QYWwlg0QEm6UlaMpGFvXECv86N98/04CTqq2uflB3pfY
+         67e5vXs1kbOiFM+zftz8DYkiQ4X3UYbMYEIwSEZxOQFo7LCbiyi1thV2o29Tib0qhUso
+         gZDtnlRokH9tMzBI/x3lLOPhNvKDVOUxxiWBmBUEE80aLV85A4cSTh7bl32YYjLaSQQp
+         /x+i4641o1irWfMeQ/LYA/4566UnLlvw0tLd3BnWW8sOACAZl/nzOoLKYvPoe3eMBX/T
+         +v/A==
+X-Gm-Message-State: AO0yUKURE4se1r/yXFkF9Ph9VI8MQxnQAGdvV6opjLVeEZhB7qwLJbam
+        EJaone8OrnK5tQJlraubnTHEEw==
+X-Google-Smtp-Source: AK7set+r+vvJNdv0SgAgspPvo26Cw4Qq2bYappwi6VBNmRDuHd2TtvD3UYnxUh2P0DnOzbQxgvzdAA==
+X-Received: by 2002:a17:907:7289:b0:8e3:74ad:94ce with SMTP id dt9-20020a170907728900b008e374ad94cemr866444ejc.8.1677827533823;
+        Thu, 02 Mar 2023 23:12:13 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id k12-20020a50ce4c000000b004c0459c20f9sm772279edj.66.2023.03.02.23.05.41
+        by smtp.gmail.com with ESMTPSA id t26-20020a1709060c5a00b008ec793ac3f4sm614812ejf.192.2023.03.02.23.12.12
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 02 Mar 2023 23:05:43 -0800 (PST)
-Message-ID: <a696bea5-3ba6-3b71-10ad-a04a7412c178@linaro.org>
-Date:   Fri, 3 Mar 2023 08:05:40 +0100
+        Thu, 02 Mar 2023 23:12:13 -0800 (PST)
+Message-ID: <8e695c64-6abd-3c1e-8d80-de636d950442@linaro.org>
+Date:   Fri, 3 Mar 2023 08:12:11 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.8.0
-Subject: Re: [RFC PATCH 07/16] dt-bindings: pinctrl: ralink: add new
- compatible strings
+Subject: Re: [PATCH 1/2] dt-bindings: ath10k: Add vdd-smps supply
 Content-Language: en-US
-To:     =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>,
-        Rob Herring <robh@kernel.org>
-Cc:     Sergio Paracuellos <sergio.paracuellos@gmail.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
+To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
+        linux-arm-msm@vger.kernel.org, andersson@kernel.org,
+        agross@kernel.org
+Cc:     marijn.suijten@somainline.org, Kalle Valo <kvalo@kernel.org>,
+        "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-mediatek@lists.infradead.org, linux-mips@vger.kernel.org,
-        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Sean Wang <sean.wang@kernel.org>,
-        William Dean <williamsukatube@gmail.com>,
-        Daniel Golle <daniel@makrotopia.org>,
-        Daniel Santos <daniel.santos@pobox.com>,
-        Luiz Angelo Daros de Luca <luizluca@gmail.com>,
-        Frank Wunderlich <frank-w@public-files.de>,
-        Landen Chao <Landen.Chao@mediatek.com>,
-        DENG Qingfang <dqfext@gmail.com>,
-        Sean Wang <sean.wang@mediatek.com>, erkin.bozoglu@xeront.com
-References: <20230222183932.33267-1-arinc.unal@arinc9.com>
- <20230222183932.33267-8-arinc.unal@arinc9.com>
- <20230227173333.GA496999-robh@kernel.org>
- <d7aea90f-d077-3a41-996c-804c95d72e24@arinc9.com>
- <20230301024431.GA251215-robh@kernel.org>
- <ae3346de-140f-f181-b6a3-ccaa694e1548@arinc9.com>
- <11d3c806-04b6-da54-65f1-c0bd154affbc@linaro.org>
- <a9acd3b4-2b03-86c0-711c-a3840aeab574@arinc9.com>
- <1aae7ac9-c83d-71b4-4fce-325f02fcd722@linaro.org>
- <89588f69-9cf0-e7a4-b976-5ce87d42e296@arinc9.com>
- <2ccb573d-39f4-cb80-7a3e-63a60c2bc0a8@linaro.org>
- <b48e0a5e-dd45-8b8a-4ee3-357a0985ca9c@arinc9.com>
- <83a03258-9e52-3d09-67fe-12e9e5ed4b76@linaro.org>
- <11d10e4e-65ec-3bec-3e0c-7e57feb03506@arinc9.com>
+        ath10k@lists.infradead.org, linux-wireless@vger.kernel.org,
+        netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20230303024246.2175382-1-konrad.dybcio@linaro.org>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <11d10e4e-65ec-3bec-3e0c-7e57feb03506@arinc9.com>
+In-Reply-To: <20230303024246.2175382-1-konrad.dybcio@linaro.org>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 02/03/2023 12:50, Arınç ÜNAL wrote:
-> On 2.03.2023 14:36, Krzysztof Kozlowski wrote:
->> On 02/03/2023 11:47, Arınç ÜNAL wrote:
->>> On 2.03.2023 13:29, Krzysztof Kozlowski wrote:
->>>> On 02/03/2023 11:22, Arınç ÜNAL wrote:
->>>>>>>
->>>>>>> ## Incorrect naming
->>>>>>>
->>>>>>> MT7620, MT7621, MT7628, and MT7688 SoCs are incorrectly called Ralink,
->>>>>>> introduce new ralink->mediatek compatible strings to address it.
->>>>>>
->>>>>> So this part was addressed by Rob - we don't do it, because it does not
->>>>>> matter. Ralink is now Mediatek, thus there is no conflict and no issues
->>>>>> with different vendor used.
->>>>>
->>>>> I think Rob was rather addressing that updating compatible strings based
->>>>> on acquisition or marketing whims is not permitted. This condition does
->>>>> not apply here as these SoCs were never Ralink.
->>>>>
->>>>> I understand your point that Ralink is now MediaTek but still, calling
->>>>> these SoCs Ralink would be a bit misleading, don't you think?
->>>>
->>>> Misleading yes, but also does not matter. At least matter not enough to
->>>> justify ABI break, so you would need to deprecate old ones and keep
->>>> everything backwards compatible. You still would affect 3rd party users
->>>> of DTS, though...
->>>
->>> I intend to do just that. Introduce new mediatek strings, keep the old
->>> ones so it's backwards compatible, therefore don't break the ABI.
->>>
->>> Instead of deprecating old strings, I intend to introduce the checks I
->>> mentioned, on the schema, so the pin muxing bindings only apply if the
->>> DT has got a string that won't match multiple schemas. This way it
->>> shouldn't affect 3rd party DTs.
->>
->> I meant, 3rd party users of DTS. You will replace the compatible in the
->> DTS, right? So the DTS exported and used in all other projects, OS,
->> firmwares, bootloaders, out of tree kernel forks will stop working.
-> 
-> I plan to change it on the DTs for MediaTek SoCs, yes. Is this a 
-> problem? From what I can tell, what must be ensured is that old DTs must 
-> work with newer kernels, not new DTs on older kernels.
+On 03/03/2023 03:42, Konrad Dybcio wrote:
+> Mention the newly added vdd-smps supply.
 
-Can I be clearer than this?
-
-" So the DTS exported and used in all other projects, OS,
-firmwares, bootloaders, out of tree kernel forks will stop working."
-
-Yes, this is a problem - they will stop working.
+There is no explanation here, but looking at your driver change it
+suggests name is not correct. You named it based on regulator (so the
+provider), not the consumer.
 
 Best regards,
 Krzysztof
