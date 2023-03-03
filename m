@@ -2,60 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 12B176A92C0
-	for <lists+devicetree@lfdr.de>; Fri,  3 Mar 2023 09:42:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 64F416A92C4
+	for <lists+devicetree@lfdr.de>; Fri,  3 Mar 2023 09:42:54 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230160AbjCCIm1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 3 Mar 2023 03:42:27 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41700 "EHLO
+        id S229728AbjCCImx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 3 Mar 2023 03:42:53 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42478 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229992AbjCCImY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Mar 2023 03:42:24 -0500
-Received: from mail-ed1-x529.google.com (mail-ed1-x529.google.com [IPv6:2a00:1450:4864:20::529])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0F8BE3A851
-        for <devicetree@vger.kernel.org>; Fri,  3 Mar 2023 00:42:18 -0800 (PST)
-Received: by mail-ed1-x529.google.com with SMTP id cy23so7179977edb.12
-        for <devicetree@vger.kernel.org>; Fri, 03 Mar 2023 00:42:18 -0800 (PST)
+        with ESMTP id S229484AbjCCImw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Mar 2023 03:42:52 -0500
+Received: from mail-ed1-x52d.google.com (mail-ed1-x52d.google.com [IPv6:2a00:1450:4864:20::52d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CE3FC39BA3
+        for <devicetree@vger.kernel.org>; Fri,  3 Mar 2023 00:42:49 -0800 (PST)
+Received: by mail-ed1-x52d.google.com with SMTP id o12so7255440edb.9
+        for <devicetree@vger.kernel.org>; Fri, 03 Mar 2023 00:42:49 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1677832937;
+        d=linaro.org; s=google; t=1677832968;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=TST4cThQaK2erJHSPGfkkNJ8p/M75cq++a+eKVWZxF0=;
-        b=l2xARqmNJdkYpMikLbVGrC4i/RCs/fqN3ecwn0vLc1zzqa7tvF+Wqi2lKOU/Z2LNVR
-         aDHcWJdCYYxNZ4krZW0lnO4QeghXuUIUKg4K0SZT4WZ0f6CDVmQS4MdAya/ABryWGHDh
-         U/XEz7pKAT+YoD4PBXrzhKnpWJk9IvLjibPtc2QoWJmX4wpkQ0ox9s0/tJB25QPyky4p
-         NVkZmhMiERVYb2Fm0AHlMRqbYi5LuMYUciiKGsfFNrCS5PDF0PN/RpkAxvOKFEPHhhU+
-         eyHDvk/viU3Q4jmnibBXDPYvml76gMdtP+wdxQPslME1hZ32yCOGHmIMqTSFn7rU4Czm
-         vqRQ==
+        bh=rLOUIZx9WDFWdN5CirsjbqxM6evn8dw+cWTW1QIfdfc=;
+        b=T5+K/Y91Skx/RvzD55591mvfgziJEv9wgW4h40/fvOnkIs7CmK00GKm7gJ896NjweD
+         zTLcitEoctrmfviKiehgrQ9Gm8UmA1OBQm+HjIeIIlV6QPB35BtYFA/jELYlqj/aMaFM
+         oxfpbp1eAmOgPs0Fsu6/YrCOQl6TjMS56pjZKLvjW5mgvRfn6+1BDOCua9iC5IGS8PIG
+         fx4KYei0z3YYd2sRpSHe/98URmToDOjiskqqlbvgnmAT+aZ8OvbqDEU885JLS98Cnri/
+         0HfnTkSRV43gtvd/2+E3lp8/xNNcOHAaej6milgvuAe4I/rcR7ye2wRIRPPIvXygM/VZ
+         lqXA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1677832937;
+        d=1e100.net; s=20210112; t=1677832968;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=TST4cThQaK2erJHSPGfkkNJ8p/M75cq++a+eKVWZxF0=;
-        b=T5ro5GAUy0Ybtv+PczWhJvuw8AW6b1+kLI0SkbKDFxgkjctilQFygP80CgDnG2L/cG
-         wjjZZcRz01tlvMmxPJSYo4u+wUlGSKU8jSFtlXN/J3Xgud9uu8LGESyIoQzWMUuImnxg
-         Dn2PijqjDBaLh8ghI+jRiTpOyHqbp+LFA1ImBMQFpXlhXzgrEPH8O5MG5no/KNVDb4np
-         HOm7bZClSsAH4ZtYNxNNgcdbI8K7dqEDz+EAzEbcokMGTPIQh8EVBHo8r+/vQ8sxQQXh
-         bCTSOYAiJaj6PW4EjkQ3wenWcuPYCQ8E+96ISzjYieiFDeRToLGRpQtWEtbnKqCUZVRj
-         g2hA==
-X-Gm-Message-State: AO0yUKUuS4+YpZTdLqukryWhfrr8QX7fb4v5AUGGVNf0CsiZuSUyHjP8
-        bCIbikKR3gKtjiXimC0/SHAjnw==
-X-Google-Smtp-Source: AK7set/FrDQkpv9xuFORleilLGkXPiWO2nkWOv+hJMBasSr31CouErbTswY9pCqI+LeMu4hoEacOqQ==
-X-Received: by 2002:a17:907:728e:b0:8b1:807e:d4d2 with SMTP id dt14-20020a170907728e00b008b1807ed4d2mr1140561ejc.34.1677832937187;
-        Fri, 03 Mar 2023 00:42:17 -0800 (PST)
+        bh=rLOUIZx9WDFWdN5CirsjbqxM6evn8dw+cWTW1QIfdfc=;
+        b=mqH/QgVtEZsgoFdiCxT9xdheO4dZFX1q9cWwSkevjatWOJsDuzVBRBbyIN5uwg6DTX
+         WSc8j+9g0DvvoQ9lzAgLcuk2hhrestm18zChJQYQGmIBBQ5D0ZbCn/sOzZVRkTWy8hWd
+         fjpj2VdJMbp5aHLViG+Yse2xW2fIanVDNyDi/1EJTVOhunZuGQmkkd6chtc+/yGgRHD9
+         reOvPlu78pMv/cZPjZIKflhNpuGVqUNKtZZEB1RNCrYzfNyTrTLnoX7erxdFtoJERWHS
+         ZV+lPKoUUBSfszRVCpQ75tAGR514xqRD38GNX+DKymnKv3dgfgflrtoC3L+aSffQcCRG
+         YSVw==
+X-Gm-Message-State: AO0yUKWdedbc2t+x4IpQ2CmqF9IuLLsYuhnzD9bxqo7S7nI4HOfeAgYF
+        AoOk9DFhza+7a4QBP3Z+mV829A==
+X-Google-Smtp-Source: AK7set9LhDmLFPCHsd81iJVWwd/0AzPrLgsgBh7lbUes1LhydkUSYO0fy6IO3TLBu+e0FZG6auPLmw==
+X-Received: by 2002:a17:907:6d08:b0:8ed:5af8:d4ba with SMTP id sa8-20020a1709076d0800b008ed5af8d4bamr912025ejc.38.1677832968369;
+        Fri, 03 Mar 2023 00:42:48 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id r16-20020a170906a21000b008cafeec917dsm701191ejy.101.2023.03.03.00.42.15
+        by smtp.gmail.com with ESMTPSA id si9-20020a170906cec900b008c5075f5331sm695798ejb.165.2023.03.03.00.42.46
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 03 Mar 2023 00:42:16 -0800 (PST)
-Message-ID: <711f0e08-a8c8-45ef-08cf-6ca4f166ed4a@linaro.org>
-Date:   Fri, 3 Mar 2023 09:42:14 +0100
+        Fri, 03 Mar 2023 00:42:48 -0800 (PST)
+Message-ID: <c39f8ecf-26e7-3187-2488-d9fb0f64d2fa@linaro.org>
+Date:   Fri, 3 Mar 2023 09:42:45 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.8.0
-Subject: Re: [PATCH v1 02/11] media: dt-bindings: starfive,jh7110-mipi-csi2:
- add binding docmuent
+Subject: Re: [PATCH v1 04/11] MAINTAINERS: add Starfive Camera subsystem
+ driver
 Content-Language: en-US
 To:     "jack.zhu" <jack.zhu@starfivetech.com>,
         Mauro Carvalho Chehab <mchehab@kernel.org>,
@@ -68,14 +68,15 @@ To:     "jack.zhu" <jack.zhu@starfivetech.com>,
 Cc:     linux-media@vger.kernel.org, linux-kernel@vger.kernel.org,
         devicetree@vger.kernel.org, changhuang.liang@starfivetech.com
 References: <20230302091921.43309-1-jack.zhu@starfivetech.com>
- <20230302091921.43309-3-jack.zhu@starfivetech.com>
+ <20230302091921.43309-5-jack.zhu@starfivetech.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230302091921.43309-3-jack.zhu@starfivetech.com>
+In-Reply-To: <20230302091921.43309-5-jack.zhu@starfivetech.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -83,205 +84,30 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 02/03/2023 10:19, jack.zhu wrote:
-> Add DT binding document for Starfive MIPI CSI2 receiver
-
-Subject: drop second/last, redundant "add binding document". The
-"dt-bindings" prefix is already stating that these are bindings and it
-is a document. Write something useful instead.
-
+> Add an entry for Starfive Camera subsystem driver.
 > 
 > Signed-off-by: jack.zhu <jack.zhu@starfivetech.com>
 > ---
->  .../media/starfive,jh7110-mipi-csi2.yaml      | 177 ++++++++++++++++++
->  1 file changed, 177 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/media/starfive,jh7110-mipi-csi2.yaml
+>  MAINTAINERS | 9 +++++++++
+>  1 file changed, 9 insertions(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/media/starfive,jh7110-mipi-csi2.yaml b/Documentation/devicetree/bindings/media/starfive,jh7110-mipi-csi2.yaml
-> new file mode 100644
-> index 000000000000..6569fac9e856
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/media/starfive,jh7110-mipi-csi2.yaml
-> @@ -0,0 +1,177 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index 8ddef8669efb..a202deb4cb1a 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -19906,6 +19906,15 @@ M:	Ion Badulescu <ionut@badula.org>
+>  S:	Odd Fixes
+>  F:	drivers/net/ethernet/adaptec/starfire*
+>  
+> +STARFIVE CAMERA SUBSYSTEM DRIVER
+> +M:	Jack Zhu <jack.zhu@starfivetech.com>
+> +M:	Changhuang Liang <changhuang.liang@starfivetech.com>
+> +L:	linux-media@vger.kernel.org
+> +S:	Maintained
+> +F:	Documentation/admin-guide/media/starfive_camss.rst
+> +F:	Documentation/devicetree/bindings/media/starfive,jh7110-camss.yaml
 
-Why for patch 1 and 2 you are using difference SPDX?
-
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/media/starfive,jh7110-mipi-csi2.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Starfive JH7110 MIPI CSI-2 receiver
-> +
-> +maintainers:
-> +  - Jack Zhu <jack.zhu@starfivetech.com>
-> +  - Changhuang Liang <changhuang.liang@starfivetech.com>
-> +
-> +description: |-
-
-Drop |-
-
-> +  The JH7110 MIPI CSI-2 receiver device is responsible for handling CSI2
-> +  protocol based camera sensor data stream.
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - starfive,jh7110-csi2rx
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    items:
-> +      - description: CSI2Rx system clock
-> +      - description: Gated Register bank clock for APB interface
-> +      - description: pixel Clock for Stream interface 0
-> +      - description: pixel Clock for Stream interface 1
-> +      - description: pixel Clock for Stream interface 2
-> +      - description: pixel Clock for Stream interface 3
-> +
-> +  clock-names:
-> +    items:
-> +      - const: sys_clk
-> +      - const: p_clk
-> +      - const: pixel_if0_clk
-> +      - const: pixel_if1_clk
-> +      - const: pixel_if2_clk
-> +      - const: pixel_if3_clk
-
-Drop _clk suffixes
-
-> +
-> +  resets:
-> +    items:
-> +      - description: CSI2Rx system reset
-> +      - description: Gated Register bank reset for APB interface
-> +      - description: pixel reset for Stream interface 0
-> +      - description: pixel reset for Stream interface 1
-> +      - description: pixel reset for Stream interface 2
-> +      - description: pixel reset for Stream interface 3
-> +
-> +  reset-names:
-> +    items:
-> +      - const: sys_rst
-
-Drop _rst suffixes
-
-> +      - const: p_rst
-> +      - const: pixel_if0_rst
-> +      - const: pixel_if1_rst
-> +      - const: pixel_if2_rst
-> +      - const: pixel_if3_rst
-> +
-> +  phys:
-> +    maxItems: 1
-> +    description: MIPI D-PHY
-> +
-> +  phy-names:
-> +    items:
-> +      - const: dphy
-> +
-> +  ports:
-> +    $ref: /schemas/graph.yaml#/properties/ports
-> +
-> +    properties:
-> +      port@0:
-> +        $ref: /schemas/graph.yaml#/$defs/port-base
-> +        unevaluatedProperties: false
-> +        description:
-> +          Input port node, single endpoint describing the CSI-2 transmitter.
-> +
-> +        properties:
-> +          endpoint:
-> +            $ref: video-interfaces.yaml#
-> +            unevaluatedProperties: false
-> +
-> +            properties:
-> +              bus-type:
-> +                items:
-
-This is not an array.
-
-> +                  - const: 4
-> +
-> +              clock-lanes:
-> +                maxItems: 1
-
-Not an array...
-
-> +
-> +              data-lanes:
-> +                minItems: 1
-> +                maxItems: 4
-> +                items:
-> +                  maximum: 4
-> +
-> +            required:
-> +              - bus-type
-
-Since this is fixed 4, do you actually require it? Why?
-
-> +              - clock-lanes
-> +              - data-lanes
-> +
-> +      port@1:
-> +        $ref: /schemas/graph.yaml#/properties/port
-> +        description:
-> +          Output port node
-> +
-> +    required:
-> +      - port@0
-> +      - port@1
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - clocks
-> +  - clock-names
-> +  - resets
-> +  - reset-names
-> +  - phys
-> +  - phy-names
-> +  - ports
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +
-
-Drop blank line
-
-> +    csi2rx: csi-bridge@19800000 {
-
-Maybe just "csi@"?
-> +        compatible = "starfive,jh7110-csi2rx";
-> +        reg = <0x19800000 0x10000>;
-> +        clocks = <&ispcrg 7>,
-> +            <&ispcrg 6>,
-
-Indentation looks odd... did you align it?
-
-> +            <&ispcrg 8>,
-> +            <&ispcrg 9>,
-> +            <&ispcrg 10>,
-> +            <&ispcrg 11>;
-> +        clock-names = "sys_clk", "p_clk",
-> +            "pixel_if0_clk", "pixel_if1_clk",
-> +            "pixel_if2_clk", "pixel_if3_clk";
-> +        resets = <&ispcrg 9>,
-> +            <&ispcrg 4>,
-> +            <&ispcrg 5>,
-> +            <&ispcrg 6>,
-> +            <&ispcrg 7>,
-> +            <&ispcrg 8>;
-> +        reset-names = "sys_rst", "p_rst",
-> +            "pixel_if0_rst", "pixel_if1_rst",
-> +            "pixel_if2_rst", "pixel_if3_rst";
-> +        phys = <&csi_phy>;
-> +        phy-names = "dphy";
-
+Why only one binding, not all of them?
 
 Best regards,
 Krzysztof
