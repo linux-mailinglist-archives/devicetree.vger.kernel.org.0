@@ -2,63 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 044A26A8F0A
-	for <lists+devicetree@lfdr.de>; Fri,  3 Mar 2023 03:00:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5F2746A8F58
+	for <lists+devicetree@lfdr.de>; Fri,  3 Mar 2023 03:42:58 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229616AbjCCCA0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 2 Mar 2023 21:00:26 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39126 "EHLO
+        id S229775AbjCCCmy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 2 Mar 2023 21:42:54 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37530 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229555AbjCCCAZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Mar 2023 21:00:25 -0500
-Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5E07C1ACC1;
-        Thu,  2 Mar 2023 18:00:23 -0800 (PST)
-X-UUID: 248c5df0b96711ed945fc101203acc17-20230303
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Type:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=e1LaISQmDySBwK5fVZyb1TsPzxwkstAmNzoyLqLOhjA=;
-        b=PYhtJKelZAJza8QcQyD6FQkSCGYMvoFZBrf3e56bagvkyySC5Q2Q9wU6+lX4PLwA6adHPbx5XCSRASRvVddHcomERVB56xjSQ25AbpHLtcOgtqjc1+QT5UCALiPW4muAsONh8oBaIIl90bZg4vWPkUxQrvyRkAGQ1RtKLSkiUMA=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.20,REQID:91ab8183-bbe0-41e3-a307-3aef4e8053d9,IP:0,U
-        RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
-        release,TS:0
-X-CID-META: VersionHash:25b5999,CLOUDID:46470eb2-beed-4dfc-bd9c-e1b22fa6ccc4,B
-        ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0,EDM:-3,IP:nil,U
-        RL:0,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0
-X-CID-BVR: 0
-X-UUID: 248c5df0b96711ed945fc101203acc17-20230303
-Received: from mtkmbs11n2.mediatek.inc [(172.21.101.187)] by mailgw02.mediatek.com
-        (envelope-from <allen-kh.cheng@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-        with ESMTP id 455657128; Fri, 03 Mar 2023 10:00:16 +0800
-Received: from mtkmbs13n2.mediatek.inc (172.21.101.108) by
- mtkmbs11n2.mediatek.inc (172.21.101.187) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.25; Fri, 3 Mar 2023 10:00:15 +0800
-Received: from mtksdccf07.mediatek.inc (172.21.84.99) by
- mtkmbs13n2.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
- 15.2.1118.25 via Frontend Transport; Fri, 3 Mar 2023 10:00:15 +0800
-From:   Allen-KH Cheng <allen-kh.cheng@mediatek.com>
-To:     Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S229808AbjCCCmx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Mar 2023 21:42:53 -0500
+Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 99759210B
+        for <devicetree@vger.kernel.org>; Thu,  2 Mar 2023 18:42:51 -0800 (PST)
+Received: by mail-lf1-x130.google.com with SMTP id g17so1859540lfv.4
+        for <devicetree@vger.kernel.org>; Thu, 02 Mar 2023 18:42:51 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1677811370;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=iDNEXw8teYXC1RePAZhjBh/dGMalMHP9Lg4fn2iWwxc=;
+        b=dbiBVX/9NCg6BYhGh8+LSwc0ol2iHOSJAG4s5qAC8SSKGGXFnOadO4zhO2ClOZxR+T
+         h57Xi6/m6alMV2KeoMcOwLJA60xhg5m6RjAK6+BoJZ4dx7z96UaS52+hN+DkPCwJQBJm
+         RHNHTKlIH4lcldJhSyQYjwdaAHxB/ubgYt5BqbeBSM8sSAnaw20m5OcPsoiABIHqU/JK
+         +fj74GC4nkL+uA3QG61opD2K90/6c6crSgwyJ9VnKZ1NguTDCU4irPdKTbOjJGFruvtB
+         SsgVDZ5RTYAneDGzXiT4gt+sDQ9u9pf7mqs7XGld37ce1IvRjhktTGktDeKxdJF8dZSJ
+         nE6g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1677811370;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=iDNEXw8teYXC1RePAZhjBh/dGMalMHP9Lg4fn2iWwxc=;
+        b=WyQgultpZbwzFvgwV4m7rJifbteteyJFSvtaF//wFu69T4+Ec0JV74kFmwZbQwQru4
+         MmzV7XxrRWjfz6+Pmyvg45+hNgf0BIagOwKJ8rGRbpcrAtzCESEz3HR9zYgUL6UpF26l
+         v49wdenMRlLqLVPGHMHXE8+YJlpzlRo2/CUaBX94MImUcCE3fOfzmrHe9lU81LHPXuu4
+         fGa9FWm/xNG5weOlB8MqUlDF25edRiVYrP9FlxCklGQucCVE82P9puaFMisoSkcyxE/j
+         JRdX0/DmfMR6+u/VxnlwrdgpN/TR73r1NBcbgTy4y4FdJjiQTZXImTCwKI2ZG+ay5lTC
+         Yq+A==
+X-Gm-Message-State: AO0yUKVNNYyr11kmNGBkeIoblKbJsmT6eyowsSvqW5i7etphAD8SKEDL
+        js5iDChCZIcCLJNPspY6B7BqeQ==
+X-Google-Smtp-Source: AK7set/6zMdHJiXD7PXCcw4098kJJxCA5Cq9XHtnY3BVqas1Stg1PK/SfGNLLtpNEMiO4rTo9aUbOw==
+X-Received: by 2002:ac2:548d:0:b0:4e0:ff8e:bbfc with SMTP id t13-20020ac2548d000000b004e0ff8ebbfcmr98941lfk.31.1677811369885;
+        Thu, 02 Mar 2023 18:42:49 -0800 (PST)
+Received: from localhost.localdomain (abym99.neoplus.adsl.tpnet.pl. [83.9.32.99])
+        by smtp.gmail.com with ESMTPSA id x19-20020a19f613000000b004db1cd5efcesm181379lfe.241.2023.03.02.18.42.48
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 02 Mar 2023 18:42:49 -0800 (PST)
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+To:     linux-arm-msm@vger.kernel.org, andersson@kernel.org,
+        agross@kernel.org
+Cc:     marijn.suijten@somainline.org,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Kalle Valo <kvalo@kernel.org>,
+        "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>
-CC:     <Project_Global_Chrome_Upstream_Group@mediatek.com>,
-        <angelogioacchino.delregno@collabora.com>,
-        <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-mediatek@lists.infradead.org>,
-        Allen-KH Cheng <allen-kh.cheng@mediatek.com>
-Subject: [PATCH v2] arm64: dts: mediatek: Add cpufreq nodes for MT8192
-Date:   Fri, 3 Mar 2023 10:00:14 +0800
-Message-ID: <20230303020014.23580-1-allen-kh.cheng@mediatek.com>
-X-Mailer: git-send-email 2.18.0
+        ath10k@lists.infradead.org, linux-wireless@vger.kernel.org,
+        netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH 1/2] dt-bindings: ath10k: Add vdd-smps supply
+Date:   Fri,  3 Mar 2023 03:42:45 +0100
+Message-Id: <20230303024246.2175382-1-konrad.dybcio@linaro.org>
+X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
-Content-Type: text/plain
-X-MTK:  N
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,
-        SPF_PASS,UNPARSEABLE_RELAY autolearn=ham autolearn_force=no
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -66,99 +79,26 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the cpufreq nodes for MT8192 SoC.
+Mention the newly added vdd-smps supply.
 
-Signed-off-by: Allen-KH Cheng <allen-kh.cheng@mediatek.com>
+Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 ---
-Change in v1:
-    Fix : this should be <&performance 0>
-    [Allen-KH Cheng <allen-kh.cheng@mediatek.com>]
----
----
- arch/arm64/boot/dts/mediatek/mt8192.dtsi | 14 ++++++++++++++
- 1 file changed, 14 insertions(+)
+ Documentation/devicetree/bindings/net/wireless/qcom,ath10k.txt | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/arch/arm64/boot/dts/mediatek/mt8192.dtsi b/arch/arm64/boot/dts/mediatek/mt8192.dtsi
-index 87b91c8feaf9..48a4fc88fde4 100644
---- a/arch/arm64/boot/dts/mediatek/mt8192.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt8192.dtsi
-@@ -70,6 +70,7 @@
- 			d-cache-line-size = <64>;
- 			d-cache-sets = <128>;
- 			next-level-cache = <&l2_0>;
-+			performance-domains = <&performance 0>;
- 			capacity-dmips-mhz = <530>;
- 		};
- 
-@@ -87,6 +88,7 @@
- 			d-cache-line-size = <64>;
- 			d-cache-sets = <128>;
- 			next-level-cache = <&l2_0>;
-+			performance-domains = <&performance 0>;
- 			capacity-dmips-mhz = <530>;
- 		};
- 
-@@ -104,6 +106,7 @@
- 			d-cache-line-size = <64>;
- 			d-cache-sets = <128>;
- 			next-level-cache = <&l2_0>;
-+			performance-domains = <&performance 0>;
- 			capacity-dmips-mhz = <530>;
- 		};
- 
-@@ -121,6 +124,7 @@
- 			d-cache-line-size = <64>;
- 			d-cache-sets = <128>;
- 			next-level-cache = <&l2_0>;
-+			performance-domains = <&performance 0>;
- 			capacity-dmips-mhz = <530>;
- 		};
- 
-@@ -138,6 +142,7 @@
- 			d-cache-line-size = <64>;
- 			d-cache-sets = <256>;
- 			next-level-cache = <&l2_1>;
-+			performance-domains = <&performance 0>;
- 			capacity-dmips-mhz = <1024>;
- 		};
- 
-@@ -155,6 +160,7 @@
- 			d-cache-line-size = <64>;
- 			d-cache-sets = <256>;
- 			next-level-cache = <&l2_1>;
-+			performance-domains = <&performance 0>;
- 			capacity-dmips-mhz = <1024>;
- 		};
- 
-@@ -172,6 +178,7 @@
- 			d-cache-line-size = <64>;
- 			d-cache-sets = <256>;
- 			next-level-cache = <&l2_1>;
-+			performance-domains = <&performance 0>;
- 			capacity-dmips-mhz = <1024>;
- 		};
- 
-@@ -189,6 +196,7 @@
- 			d-cache-line-size = <64>;
- 			d-cache-sets = <256>;
- 			next-level-cache = <&l2_1>;
-+			performance-domains = <&performance 0>;
- 			capacity-dmips-mhz = <1024>;
- 		};
- 
-@@ -318,6 +326,12 @@
- 		compatible = "simple-bus";
- 		ranges;
- 
-+		performance: performance-controller@11bc10 {
-+			compatible = "mediatek,cpufreq-hw";
-+			reg = <0 0x0011bc10 0 0x120>, <0 0x0011bd30 0 0x120>;
-+			#performance-domain-cells = <1>;
-+		};
-+
- 		gic: interrupt-controller@c000000 {
- 			compatible = "arm,gic-v3";
- 			#interrupt-cells = <4>;
+diff --git a/Documentation/devicetree/bindings/net/wireless/qcom,ath10k.txt b/Documentation/devicetree/bindings/net/wireless/qcom,ath10k.txt
+index b61c2d5a0ff7..8697e63aeffa 100644
+--- a/Documentation/devicetree/bindings/net/wireless/qcom,ath10k.txt
++++ b/Documentation/devicetree/bindings/net/wireless/qcom,ath10k.txt
+@@ -66,7 +66,7 @@ Optional properties:
+ - <supply-name>-supply: handle to the regulator device tree node
+ 			   optional "supply-name" are "vdd-0.8-cx-mx",
+ 			   "vdd-1.8-xo", "vdd-1.3-rfa", "vdd-3.3-ch0",
+-			   and "vdd-3.3-ch1".
++			   "vdd-3.3-ch1" and "vdd-smps".
+ - memory-region:
+ 	Usage: optional
+ 	Value type: <phandle>
 -- 
-2.18.0
+2.39.2
 
