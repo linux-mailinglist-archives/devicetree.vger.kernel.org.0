@@ -2,65 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 927596A9B7C
-	for <lists+devicetree@lfdr.de>; Fri,  3 Mar 2023 17:18:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8EEB56A9C51
+	for <lists+devicetree@lfdr.de>; Fri,  3 Mar 2023 17:52:08 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230152AbjCCQSo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 3 Mar 2023 11:18:44 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56334 "EHLO
+        id S231510AbjCCQwG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 3 Mar 2023 11:52:06 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33642 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230228AbjCCQSn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Mar 2023 11:18:43 -0500
+        with ESMTP id S231410AbjCCQvq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Mar 2023 11:51:46 -0500
 Received: from smtp-relay-internal-1.canonical.com (smtp-relay-internal-1.canonical.com [185.125.188.123])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CA23411E9A
-        for <devicetree@vger.kernel.org>; Fri,  3 Mar 2023 08:18:39 -0800 (PST)
-Received: from mail-qt1-f197.google.com (mail-qt1-f197.google.com [209.85.160.197])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 23BCB5D88C
+        for <devicetree@vger.kernel.org>; Fri,  3 Mar 2023 08:51:20 -0800 (PST)
+Received: from mail-qv1-f72.google.com (mail-qv1-f72.google.com [209.85.219.72])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
         (No client certificate requested)
-        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id E42BD4168E
-        for <devicetree@vger.kernel.org>; Fri,  3 Mar 2023 16:18:37 +0000 (UTC)
+        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id C217E41AEE
+        for <devicetree@vger.kernel.org>; Fri,  3 Mar 2023 16:51:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1677860317;
-        bh=es+hc5n+zswZQczR3HU2bkHqd0ak5Sb5q5T47HqNNMA=;
+        s=20210705; t=1677862276;
+        bh=8104o3BXBuCMBg1EpGwp3Vv0rGGYeWcwxreEU+Uex7M=;
         h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
          To:Cc:Content-Type;
-        b=rwDEL7zSmchPnwnddfm6HnwvfsZR1dk3Ho/G+uMA7M56n/krjQI4rLEEYQr/bNG1V
-         INk6/KX4iIkvgr5faPabQU0T64AqTyiW89/BMsxmh8GJQ/CIhB13cePo1hEaTOxAuG
-         ZStywboZehRpGmrwM6dyS5d6biA15Hlyn5MudUnPmSNMtkWPicsO0R8JbsAoE6YwLw
-         zBLcweQNo/vrLBaIZlz3j+g9iok1KD5N5XSQDlKVjal3JDNTYbXOx2gxp4UfyHhFNm
-         yac3SM2JnHW3WtF+wq84938UPsLkCE0hvt8RkowrFgwZ6300DAg/LX7O4vTGn/JT6+
-         EUqYjV4RQp+lA==
-Received: by mail-qt1-f197.google.com with SMTP id r3-20020ac84243000000b003b9a3ab9153so1738102qtm.8
-        for <devicetree@vger.kernel.org>; Fri, 03 Mar 2023 08:18:37 -0800 (PST)
+        b=n+fPjrL3WkTrJYCNQc8fq38QIM/Wijq9b4aQR7osKIB1DBeSrosYHCYqs5WCSuHaL
+         IqYS5TQV3xrFqcBdRIz/zco/AfELkuEBLynvcMuoB+3edbiro07Mp67BGVqI7M8Ceh
+         Dvpb2k/jBtfM79y6G8rUCqsXp+LzxW/QcZjVuwbUqfZq0dFrScfpmbtpzH6UcdmurX
+         9ucp+YFChrfLaHnxMsSa1LDLXFGOSRF5EFKv/ftu4F2F4X48BawnDyyTidEb05Sn36
+         NlbB5RE31XYs0UtHVvQaIH/3pn0lrsEbcANOTc2ljl1RDn/tpmHjfDwERvVSGwE78w
+         ci/6wYJyftK1A==
+Received: by mail-qv1-f72.google.com with SMTP id y3-20020a0cec03000000b0056ee5b123bbso1728314qvo.7
+        for <devicetree@vger.kernel.org>; Fri, 03 Mar 2023 08:51:16 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1677860317;
+        d=1e100.net; s=20210112; t=1677862271;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=es+hc5n+zswZQczR3HU2bkHqd0ak5Sb5q5T47HqNNMA=;
-        b=WN2n25zRUMbm11rXvfoJn7z6E92Cp3c4pTT/qDkeVqPmSix+ozh6N8L522cXglyG2V
-         c9aMcXQRObbFalmjuMFPqhkgiuvL93KlqCGQJXrVKlFMY4DoG7wR4KmQwJMzc7LXEaAI
-         iXSPc4aq7maNybEfapTF8eNEOd1c74kozq9QzPapH/hIavKMVNNNouA3bYXQhzNzAqZL
-         5bpOjDsPsTa1zoRHBzs6KiJc1Tmt7Wcj7ozP8fp5uhrWUrjM5qGWEuLqzffJ+0WjDXzd
-         18EuonJyBdUbn6julP8MPx7Pd+cQCI//hi/zazMy+HRcMO4cVcduXOMAl6dFQD5Q5wG8
-         uxtQ==
-X-Gm-Message-State: AO0yUKVKq6AAOX5Pb+afQt7rRStJ9oDXZzu869Hom5OKsf5fK7O6IxJ+
-        rACvFZi06Ucs9x2YrlQXX8Cr2bvmkmGBG9QgVxNB9aDUTji9jjtsaDLpvzfQd/WuWRgJ90crKWW
-        jNWOqO6mAFSSoG2ODtr4Dd5rENGSz+LchOXT7RyXmczqBKG/f6dLMcrE=
-X-Received: by 2002:a05:620a:ce4:b0:742:72c6:a140 with SMTP id c4-20020a05620a0ce400b0074272c6a140mr581867qkj.7.1677860316899;
-        Fri, 03 Mar 2023 08:18:36 -0800 (PST)
-X-Google-Smtp-Source: AK7set/WnUl/2mIGv5HbkcMpWHdTYsy4cXNm7MUkXOf6ZEkkp6tp8hc/4NZfaxm1CxmBQZqOWJ6Fo6tgsl4GWNE1UFQ=
-X-Received: by 2002:a05:620a:ce4:b0:742:72c6:a140 with SMTP id
- c4-20020a05620a0ce400b0074272c6a140mr581852qkj.7.1677860316551; Fri, 03 Mar
- 2023 08:18:36 -0800 (PST)
+        bh=8104o3BXBuCMBg1EpGwp3Vv0rGGYeWcwxreEU+Uex7M=;
+        b=dZZvb+xyroDdi0EoX7WsqxI71gYu5+evTRJzdwWEdPD3d53RR8iutvKax3T3Wz33XJ
+         6qx9HAuSEdrlCfoXgYjF3lT7P95aRfEBgFmKEQS2XRhVaQ6TuNR+2kZPPNrDv8nj8KY5
+         Sms2VSmfsqrWzO5OZfoOFzRaAzuXMCA5buSmCje/gg4cRnNZJIfBxxl4PGD8EbBgMK9/
+         xEhNJjcgJXHHQrPkN/tcdabh6bDOYavYdmTmYfqtYbfrPM+7Qu+29b2JIcvaWXj5DAQ+
+         PHbCNTZBuGvT8WbEb1wATZHNsWGtQGPorxGFZo3SBB6fBkhJSXwXs8BEdWPAKIA6QJ0i
+         w5bw==
+X-Gm-Message-State: AO0yUKXSy6obw711SPWLQij0SKLu5i4StJmVbYHiRelhEJ8aHafFaFoC
+        fDdEKtu7tOSUGLigbbE7k9b+khkZxf2BQZuXm3QfV45HWy1VkU5F5Z/JSkApVnxhlbmbijqNrsE
+        KICoOwRjZAtViX7cvWFENN8uryk1sf6Kr5LUcrcsJonLT1g80NwitIE05JGuo
+X-Received: by 2002:a05:6214:4a45:b0:56e:fbea:9e9a with SMTP id ph5-20020a0562144a4500b0056efbea9e9amr582090qvb.0.1677862271322;
+        Fri, 03 Mar 2023 08:51:11 -0800 (PST)
+X-Google-Smtp-Source: AK7set+UvCTIlmmgq2C8w/UG8U3QGIr2FvnAWY6e1IjhHGbnhoyZXgaQhdRhu7VVj9s+dyGlIuis3/tJJMBa0vv1UZ0=
+X-Received: by 2002:a05:6214:4a45:b0:56e:fbea:9e9a with SMTP id
+ ph5-20020a0562144a4500b0056efbea9e9amr582078qvb.0.1677862271002; Fri, 03 Mar
+ 2023 08:51:11 -0800 (PST)
 MIME-Version: 1.0
-References: <20230303085928.4535-1-samin.guo@starfivetech.com> <20230303085928.4535-7-samin.guo@starfivetech.com>
-In-Reply-To: <20230303085928.4535-7-samin.guo@starfivetech.com>
+References: <20230303085928.4535-1-samin.guo@starfivetech.com> <20230303085928.4535-9-samin.guo@starfivetech.com>
+In-Reply-To: <20230303085928.4535-9-samin.guo@starfivetech.com>
 From:   Emil Renner Berthing <emil.renner.berthing@canonical.com>
-Date:   Fri, 3 Mar 2023 17:18:20 +0100
-Message-ID: <CAJM55Z_Ze3mD4UVtUFTRYN_n6WnobcFB5evgYZi9zBRNR2dU4w@mail.gmail.com>
-Subject: Re: [PATCH v5 06/12] net: stmmac: Add glue layer for StarFive JH7110 SoC
+Date:   Fri, 3 Mar 2023 17:50:54 +0100
+Message-ID: <CAJM55Z-3CCY8xx81Qr9UqSSQ+gOer3XXJzOvnAe7yyESk23pQw@mail.gmail.com>
+Subject: Re: [PATCH v5 08/12] net: stmmac: starfive_dmac: Add phy interface settings
 To:     Samin Guo <samin.guo@starfivetech.com>
 Cc:     linux-riscv@lists.infradead.org, netdev@vger.kernel.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
@@ -88,230 +88,125 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On Fri, 3 Mar 2023 at 10:01, Samin Guo <samin.guo@starfivetech.com> wrote:
-> This adds StarFive dwmac driver support on the StarFive JH7110 SoC.
 >
-> Co-developed-by: Emil Renner Berthing <kernel@esmil.dk>
-> Signed-off-by: Emil Renner Berthing <kernel@esmil.dk>
+> dwmac supports multiple modess. When working under rmii and rgmii,
+> you need to set different phy interfaces.
+>
+> According to the dwmac document, when working in rmii, it needs to be
+> set to 0x4, and rgmii needs to be set to 0x1.
+>
+> The phy interface needs to be set in syscon, the format is as follows:
+> starfive,syscon: <&syscon, offset, mask>
+>
 > Signed-off-by: Samin Guo <samin.guo@starfivetech.com>
 > ---
->  MAINTAINERS                                   |   1 +
->  drivers/net/ethernet/stmicro/stmmac/Kconfig   |  12 ++
->  drivers/net/ethernet/stmicro/stmmac/Makefile  |   1 +
->  .../ethernet/stmicro/stmmac/dwmac-starfive.c  | 125 ++++++++++++++++++
->  4 files changed, 139 insertions(+)
->  create mode 100644 drivers/net/ethernet/stmicro/stmmac/dwmac-starfive.c
+>  .../ethernet/stmicro/stmmac/dwmac-starfive.c  | 46 +++++++++++++++++++
+>  1 file changed, 46 insertions(+)
 >
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index 4e236b7c7fd2..91a4f190c827 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -19916,6 +19916,7 @@ STARFIVE DWMAC GLUE LAYER
->  M:     Emil Renner Berthing <kernel@esmil.dk>
->  M:     Samin Guo <samin.guo@starfivetech.com>
->  S:     Maintained
-> +F:     Documentation/devicetree/bindings/net/dwmac-starfive.c
->  F:     Documentation/devicetree/bindings/net/starfive,jh7110-dwmac.yaml
->
->  STARFIVE JH71X0 CLOCK DRIVERS
-> diff --git a/drivers/net/ethernet/stmicro/stmmac/Kconfig b/drivers/net/ethernet/stmicro/stmmac/Kconfig
-> index f77511fe4e87..47fbccef9d04 100644
-> --- a/drivers/net/ethernet/stmicro/stmmac/Kconfig
-> +++ b/drivers/net/ethernet/stmicro/stmmac/Kconfig
-> @@ -165,6 +165,18 @@ config DWMAC_SOCFPGA
->           for the stmmac device driver. This driver is used for
->           arria5 and cyclone5 FPGA SoCs.
->
-> +config DWMAC_STARFIVE
-> +       tristate "StarFive dwmac support"
-> +       depends on OF  && (ARCH_STARFIVE || COMPILE_TEST)
-
-There is an extra space between "OF" and "&&" here.
-
-
-> +       depends on STMMAC_ETH
-
-It's not visible in this patch context, but this whole config option
-is surrounded by "if STMMAC_ETH" and "if STMMAC_PLATFORM", so "depends
-on STMMAC_ETH" should not be needed.
-
-> +       default ARCH_STARFIVE
-
-This driver is not required to boot the JH7110, so we should just
-default to building it as a module. Eg.
-default m if ARCH_STARFIVE
-
-> +       help
-> +         Support for ethernet controllers on StarFive RISC-V SoCs
-> +
-> +         This selects the StarFive platform specific glue layer support for
-> +         the stmmac device driver. This driver is used for StarFive JH7110
-> +         ethernet controller.
-> +
->  config DWMAC_STI
->         tristate "STi GMAC support"
->         default ARCH_STI
-> diff --git a/drivers/net/ethernet/stmicro/stmmac/Makefile b/drivers/net/ethernet/stmicro/stmmac/Makefile
-> index 057e4bab5c08..8738fdbb4b2d 100644
-> --- a/drivers/net/ethernet/stmicro/stmmac/Makefile
-> +++ b/drivers/net/ethernet/stmicro/stmmac/Makefile
-> @@ -23,6 +23,7 @@ obj-$(CONFIG_DWMAC_OXNAS)     += dwmac-oxnas.o
->  obj-$(CONFIG_DWMAC_QCOM_ETHQOS)        += dwmac-qcom-ethqos.o
->  obj-$(CONFIG_DWMAC_ROCKCHIP)   += dwmac-rk.o
->  obj-$(CONFIG_DWMAC_SOCFPGA)    += dwmac-altr-socfpga.o
-> +obj-$(CONFIG_DWMAC_STARFIVE)   += dwmac-starfive.o
->  obj-$(CONFIG_DWMAC_STI)                += dwmac-sti.o
->  obj-$(CONFIG_DWMAC_STM32)      += dwmac-stm32.o
->  obj-$(CONFIG_DWMAC_SUNXI)      += dwmac-sunxi.o
 > diff --git a/drivers/net/ethernet/stmicro/stmmac/dwmac-starfive.c b/drivers/net/ethernet/stmicro/stmmac/dwmac-starfive.c
-> new file mode 100644
-> index 000000000000..566378306f67
-> --- /dev/null
+> index 566378306f67..40fdd7036127 100644
+> --- a/drivers/net/ethernet/stmicro/stmmac/dwmac-starfive.c
 > +++ b/drivers/net/ethernet/stmicro/stmmac/dwmac-starfive.c
-> @@ -0,0 +1,125 @@
-> +// SPDX-License-Identifier: GPL-2.0+
-> +/*
-> + * StarFive DWMAC platform driver
-> + *
-> + * Copyright (C) 2022 StarFive Technology Co., Ltd.
-> + * Copyright (C) 2022 Emil Renner Berthing <kernel@esmil.dk>
+> @@ -7,10 +7,15 @@
+>   *
+>   */
+>
+> +#include <linux/mfd/syscon.h>
+>  #include <linux/of_device.h>
+> +#include <linux/regmap.h>
+>
+>  #include "stmmac_platform.h"
+>
+> +#define MACPHYC_PHY_INFT_RMII  0x4
+> +#define MACPHYC_PHY_INFT_RGMII 0x1
 
-Sorry, after looking at my old git branches where this started as a
-driver for the JH7100 this should really be
-* Copyright (C) 2021 Emil Renner Berthing <kernel@esmil.dk>
-* Copyright (C) 2022 StarFive Technology Co., Ltd.
+Please prefix these with something like STARFIVE_DWMAC_
 
-> + */
-> +
-> +#include <linux/of_device.h>
-> +
-> +#include "stmmac_platform.h"
-> +
-> +struct starfive_dwmac {
-> +       struct device *dev;
-> +       struct clk *clk_tx;
-> +       struct clk *clk_gtx;
-
-This pointer is only set, but never read. Please remove it.
-
-> +       bool tx_use_rgmii_rxin_clk;
-> +};
-> +
-> +static void starfive_eth_fix_mac_speed(void *priv, unsigned int speed)
-
-This should be starfive_dwmac_fix_mac_speed for consistency.
-
+>  struct starfive_dwmac {
+>         struct device *dev;
+>         struct clk *clk_tx;
+> @@ -53,6 +58,46 @@ static void starfive_eth_fix_mac_speed(void *priv, unsigned int speed)
+>                 dev_err(dwmac->dev, "failed to set tx rate %lu\n", rate);
+>  }
+>
+> +static int starfive_dwmac_set_mode(struct plat_stmmacenet_data *plat_dat)
 > +{
-> +       struct starfive_dwmac *dwmac = priv;
-> +       unsigned long rate;
+> +       struct starfive_dwmac *dwmac = plat_dat->bsp_priv;
+> +       struct of_phandle_args args;
+> +       struct regmap *regmap;
+> +       unsigned int reg, mask, mode;
 > +       int err;
 > +
-> +       /* Generally, the rgmii_tx clock is provided by the internal clock,
-> +        * which needs to match the corresponding clock frequency according
-> +        * to different speeds. If the rgmii_tx clock is provided by the
-> +        * external rgmii_rxin, there is no need to configure the clock
-> +        * internally, because rgmii_rxin will be adaptively adjusted.
-> +        */
-> +       if (dwmac->tx_use_rgmii_rxin_clk)
-> +               return;
-
-If this function is only needed in certain situations, why not just
-set the plat_dat->fix_mac_speed callback when it is needed?
-
-> +       switch (speed) {
-> +       case SPEED_1000:
-> +               rate = 125000000;
+> +       switch (plat_dat->interface) {
+> +       case PHY_INTERFACE_MODE_RMII:
+> +               mode = MACPHYC_PHY_INFT_RMII;
 > +               break;
-> +       case SPEED_100:
-> +               rate = 25000000;
+> +
+> +       case PHY_INTERFACE_MODE_RGMII:
+> +       case PHY_INTERFACE_MODE_RGMII_ID:
+> +               mode = MACPHYC_PHY_INFT_RGMII;
 > +               break;
-> +       case SPEED_10:
-> +               rate = 2500000;
-> +               break;
+> +
 > +       default:
-> +               dev_err(dwmac->dev, "invalid speed %u\n", speed);
-> +               break;
+> +               dev_err(dwmac->dev, "Unsupported interface %d\n",
+> +                       plat_dat->interface);
 > +       }
 > +
-> +       err = clk_set_rate(dwmac->clk_tx, rate);
-> +       if (err)
-> +               dev_err(dwmac->dev, "failed to set tx rate %lu\n", rate);
-> +}
-> +
-> +static int starfive_dwmac_probe(struct platform_device *pdev)
-> +{
-> +       struct plat_stmmacenet_data *plat_dat;
-> +       struct stmmac_resources stmmac_res;
-> +       struct starfive_dwmac *dwmac;
-> +       int err;
-> +
-> +       err = stmmac_get_platform_resources(pdev, &stmmac_res);
-> +       if (err)
-> +               return err;
-> +
-> +       plat_dat = stmmac_probe_config_dt(pdev, stmmac_res.mac);
-> +       if (IS_ERR(plat_dat)) {
-> +               dev_err(&pdev->dev, "dt configuration failed\n");
-> +               return PTR_ERR(plat_dat);
-> +       }
-> +
-> +       dwmac = devm_kzalloc(&pdev->dev, sizeof(*dwmac), GFP_KERNEL);
-> +       if (!dwmac)
-> +               return -ENOMEM;
-> +
-> +       dwmac->clk_tx = devm_clk_get_enabled(&pdev->dev, "tx");
-> +       if (IS_ERR(dwmac->clk_tx))
-> +               return dev_err_probe(&pdev->dev, PTR_ERR(dwmac->clk_tx),
-> +                                   "error getting tx clock\n");
-> +
-> +       dwmac->clk_gtx = devm_clk_get_enabled(&pdev->dev, "gtx");
-> +       if (IS_ERR(dwmac->clk_gtx))
-> +               return dev_err_probe(&pdev->dev, PTR_ERR(dwmac->clk_gtx),
-> +                                   "error getting gtx clock\n");
-> +
-> +       if (device_property_read_bool(&pdev->dev, "starfive,tx-use-rgmii-clk"))
-> +               dwmac->tx_use_rgmii_rxin_clk = true;
-> +
-> +       dwmac->dev = &pdev->dev;
-> +       plat_dat->fix_mac_speed = starfive_eth_fix_mac_speed;
-
-Eg.:
-if (!device_property_read_bool(&pdev->dev, "starfive,tx_use_rgmii_clk"))
-  plat_dat->fix_mac_speed = starfive_dwmac_fix_mac_speed;
-
-> +       plat_dat->init = NULL;
-> +       plat_dat->bsp_priv = dwmac;
-> +       plat_dat->dma_cfg->dche = true;
-> +
-> +       err = stmmac_dvr_probe(&pdev->dev, plat_dat, &stmmac_res);
+> +       err = of_parse_phandle_with_fixed_args(dwmac->dev->of_node,
+> +                                              "starfive,syscon", 2, 0, &args);
 > +       if (err) {
-> +               stmmac_remove_config_dt(pdev, plat_dat);
-> +               return err;
+> +               dev_dbg(dwmac->dev, "syscon reg not found\n");
+> +               return -EINVAL;
 > +       }
 > +
-> +       return 0;
+> +       reg = args.args[0];
+> +       mask = args.args[1];
+> +       regmap = syscon_node_to_regmap(args.np);
+> +       of_node_put(args.np);
+
+I think the above is basically
+unsigned int args[2];
+syscon_regmap_lookup_by_phandle_args(dwmac->dev_of_node,
+"starfive,syscon", 2, args);
+
+..but as Andrew points out another solution is to use platform match
+data for this. Eg.
+
+static const struct starfive_dwmac_match_data starfive_dwmac_jh7110_data {
+  .phy_interface_offset = 0xc,
+  .phy_interface_mask = 0x1c0000,
+};
+
+static const struct of_device_id starfive_dwmac_match[] = {
+  { .compatible = "starfive,jh7110-dwmac", .data =
+&starfive_dwmac_jh7110_data },
+  { /* sentinel */ }
+};
+
+and in the probe function:
+
+struct starfive_dwmac_match_data *pdata = device_get_match_data(&pdev->dev);
+
+> +       if (IS_ERR(regmap))
+> +               return PTR_ERR(regmap);
+> +
+> +       return regmap_update_bits(regmap, reg, mask, mode << __ffs(mask));
 > +}
 > +
-> +static const struct of_device_id starfive_dwmac_match[] = {
-> +       { .compatible = "starfive,jh7110-dwmac" },
-> +       { /* sentinel */ }
-> +};
-> +MODULE_DEVICE_TABLE(of, starfive_dwmac_match);
-> +
-> +static struct platform_driver starfive_dwmac_driver = {
-> +       .probe  = starfive_dwmac_probe,
-> +       .remove = stmmac_pltfr_remove,
-> +       .driver = {
-> +               .name = "starfive-dwmac",
-> +               .pm = &stmmac_pltfr_pm_ops,
-> +               .of_match_table = starfive_dwmac_match,
-> +       },
-> +};
-> +module_platform_driver(starfive_dwmac_driver);
-> +
-> +MODULE_LICENSE("GPL");
-> +MODULE_DESCRIPTION("StarFive DWMAC platform driver");
-> +MODULE_AUTHOR("Emil Renner Berthing <kernel@esmil.dk>");
-> +MODULE_AUTHOR("Samin Guo <samin.guo@starfivetech.com>");
+>  static int starfive_dwmac_probe(struct platform_device *pdev)
+>  {
+>         struct plat_stmmacenet_data *plat_dat;
+> @@ -93,6 +138,7 @@ static int starfive_dwmac_probe(struct platform_device *pdev)
+>         plat_dat->bsp_priv = dwmac;
+>         plat_dat->dma_cfg->dche = true;
+>
+> +       starfive_dwmac_set_mode(plat_dat);
+
+The function returns errors in an int, but you never check it :(
+
+>         err = stmmac_dvr_probe(&pdev->dev, plat_dat, &stmmac_res);
+>         if (err) {
+>                 stmmac_remove_config_dt(pdev, plat_dat);
 > --
 > 2.17.1
 >
