@@ -2,122 +2,189 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 759B66A948A
-	for <lists+devicetree@lfdr.de>; Fri,  3 Mar 2023 10:54:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D49F76A948F
+	for <lists+devicetree@lfdr.de>; Fri,  3 Mar 2023 10:55:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229919AbjCCJys (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 3 Mar 2023 04:54:48 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36778 "EHLO
+        id S230031AbjCCJzb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 3 Mar 2023 04:55:31 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38074 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229625AbjCCJyr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Mar 2023 04:54:47 -0500
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4411B36687;
-        Fri,  3 Mar 2023 01:54:31 -0800 (PST)
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3236QsOa009479;
-        Fri, 3 Mar 2023 09:54:25 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=2sCFqWkUj5tuG3vQzE8IwXlJBkVraVjQuvLOaYp90/s=;
- b=ISrfwXNDjK+jSKSHsMqvwge6sdRBVU4InmajHjX8DmsfndO8B1HfP54f5fyBk+rGxFt7
- 7//xSp1+Oz4s+YrgisQYRp6sRoiBXnTvFEPwcqe62LbQyH+79A1ADxZ2CSUcNW8iKMFk
- xrGF1+nSgY6k583p9xWRm6hl5BGG5fbcj7N4D3nEFB5029sBrinS5Q7GxFVjNuoK9TQV
- ltS6R9lm2hqacazUTT5G7Ye2hx2T4/vsROkDVu6cNj/kQ/7waxKfP0MLWLkS5E3RkmJ9
- /xCDx+7I2KgonSUvzzKSQndP+j1xKRtF31yIkfmWP43qQnplklGntb1pNbD+hLTPvgdq nA== 
-Received: from nasanppmta01.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3p2veetv08-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Fri, 03 Mar 2023 09:54:25 +0000
-Received: from nasanex01a.na.qualcomm.com ([10.52.223.231])
-        by NASANPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3239sOSH016998
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Fri, 3 Mar 2023 09:54:24 GMT
-Received: from [10.50.35.127] (10.80.80.8) by nasanex01a.na.qualcomm.com
- (10.52.223.231) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.41; Fri, 3 Mar 2023
- 01:54:21 -0800
-Message-ID: <2eef90b9-ff67-15bb-3fa1-e7b28a6f4244@quicinc.com>
-Date:   Fri, 3 Mar 2023 15:24:18 +0530
+        with ESMTP id S230053AbjCCJza (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Mar 2023 04:55:30 -0500
+Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com [IPv6:2a00:1450:4864:20::534])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C7D93360B3
+        for <devicetree@vger.kernel.org>; Fri,  3 Mar 2023 01:55:26 -0800 (PST)
+Received: by mail-ed1-x534.google.com with SMTP id d30so8055179eda.4
+        for <devicetree@vger.kernel.org>; Fri, 03 Mar 2023 01:55:26 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1677837325;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=vcI9TwKeql7BEK1sJIRMqGKUdiKBhH06Xafoh6GvtOY=;
+        b=nV3ygc6++KEALlPvrCi/LzP/zqVtODcKrm2ci3aPLG7xZhFB701k2yIDEhfjZcEhE4
+         AAhPxw1QOuIa8o3cVU4jU1ajdZd7+9PPVYYH0fTK6WzPz8lWJfDfDgRrcMuAaIaJEoQI
+         94+us00zm4xpazZjUaX/Y0Khzztzh2y/fduLKZPC6UW7GX19w451IqC451Ehw2lB/Wtd
+         YKG9A+iY5IVJbrvt9r8pUsBd2eGVimX9PgEap/eYWqcoshRD7MlkLmQjg52ERd9lad9U
+         A5tk/bN1PJ8TrSB2oZpiUCqN0h/UPbx64HQvV3myN+kSefGrJ2P+cMwB8NUagZ5YlmUe
+         OFSQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1677837325;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=vcI9TwKeql7BEK1sJIRMqGKUdiKBhH06Xafoh6GvtOY=;
+        b=ENRCQIbfda6WzAZ7rnQX3UcCoXGS/LJGcL1HUsqFHPz84LXVahJNuikKXxP97EwKIR
+         gxGGwjcarRVbGui2BDayArVtFfJqIsP+0UNf0VZEvK3Q3911MxaU5MLXTn0/Upoe5+bb
+         XKSZIfFWznaAeWkJNoNRK2UiByYYcuKdD1xTkGKmsguCQMMmMBtNnoIMn4RTjkGgM6/s
+         lifhNldWdh61OvE8GFik1SwG0haM7rUb4VfTbWkxT4ps1cziASl6JRXip/jzgFcuzJ9r
+         8TuMvfu/lj06ucTze3fQjr41dfmyr8OOfTQNaZfv6TMZP2pdzInkOg/iBCF2+Zxksf8J
+         4lJw==
+X-Gm-Message-State: AO0yUKW4OCEbzeKerU6+qsJHLHsMny+Tm/ac8Ilhc2T06/VnfDx2//rb
+        6JOdtqydFZ7He3h5WOCXO0phGg==
+X-Google-Smtp-Source: AK7set/ny4L1u0FncdnBsIrArL6/bdtnybsH8zYJlQ/du/6yDCErh0hTkh1Nsd2BHS3zVK4BhOKRpA==
+X-Received: by 2002:aa7:d347:0:b0:4ae:e51e:9e3e with SMTP id m7-20020aa7d347000000b004aee51e9e3emr1147431edr.24.1677837325252;
+        Fri, 03 Mar 2023 01:55:25 -0800 (PST)
+Received: from [192.168.1.20] ([178.197.216.144])
+        by smtp.gmail.com with ESMTPSA id l3-20020aa7cac3000000b004af6f37d25bsm932016edt.76.2023.03.03.01.55.23
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 03 Mar 2023 01:55:24 -0800 (PST)
+Message-ID: <89cb8fb1-4e0f-4b5e-26ab-702c0fda8760@linaro.org>
+Date:   Fri, 3 Mar 2023 10:55:23 +0100
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.1
-Subject: Re: [PATCH 8/8] arm64: dts: qcom: ipq9574: Enable USB
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.8.0
+Subject: Re: [PATCH 3/9] dt-bindings: crypto: fsl-sec4: support sec5.4/0 and
+ i.MX6UL
 Content-Language: en-US
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-CC:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-References: <cover.1677749625.git.quic_varada@quicinc.com>
- <405a87eebf3c6a971def16122b70158dd8c7ed03.1677749625.git.quic_varada@quicinc.com>
- <CAA8EJpqoocEYZPsaBe-pQ92ikLCAZD5hV46NZBC29pNv7U4dGg@mail.gmail.com>
-From:   Varadarajan Narayanan <quic_varada@quicinc.com>
-In-Reply-To: <CAA8EJpqoocEYZPsaBe-pQ92ikLCAZD5hV46NZBC29pNv7U4dGg@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+To:     "Peng Fan (OSS)" <peng.fan@oss.nxp.com>,
+        herbert@gondor.apana.org.au, davem@davemloft.net,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        horia.geanta@nxp.com, pankaj.gupta@nxp.com, gaurav.jain@nxp.com,
+        shawnguo@kernel.org, s.hauer@pengutronix.de
+Cc:     kernel@pengutronix.de, stefan@agner.ch,
+        linux-crypto@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Peng Fan <peng.fan@nxp.com>
+References: <20230301015702.3388458-1-peng.fan@oss.nxp.com>
+ <20230301015702.3388458-4-peng.fan@oss.nxp.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230301015702.3388458-4-peng.fan@oss.nxp.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nasanex01a.na.qualcomm.com (10.52.223.231)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: We0TW6e1lyEO-s2k1uzbwWV_K4E1GteT
-X-Proofpoint-GUID: We0TW6e1lyEO-s2k1uzbwWV_K4E1GteT
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.219,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
- definitions=2023-03-03_01,2023-03-02_02,2023-02-09_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0 suspectscore=0
- adultscore=0 lowpriorityscore=0 priorityscore=1501 mlxscore=0
- malwarescore=0 mlxlogscore=678 impostorscore=0 bulkscore=0 clxscore=1015
- phishscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2212070000 definitions=main-2303030087
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 01/03/2023 02:56, Peng Fan (OSS) wrote:
+> From: Peng Fan <peng.fan@nxp.com>
+> 
+> Add i.MX6UL, SEC 5.0 and SEC 5.4 support.
+> 
+> Signed-off-by: Peng Fan <peng.fan@nxp.com>
+> ---
+>  .../devicetree/bindings/crypto/fsl-sec4.yaml  | 58 ++++++++++++++++---
+>  1 file changed, 50 insertions(+), 8 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/crypto/fsl-sec4.yaml b/Documentation/devicetree/bindings/crypto/fsl-sec4.yaml
+> index 678c8389ef49..1b801ae5ab51 100644
+> --- a/Documentation/devicetree/bindings/crypto/fsl-sec4.yaml
+> +++ b/Documentation/devicetree/bindings/crypto/fsl-sec4.yaml
+> @@ -45,8 +45,18 @@ maintainers:
+>  
+>  properties:
+>    compatible:
+> -    enum:
+> -      - fsl,sec-v4.0
+> +    oneOf:
+> +      - enum:
+> +          - fsl,sec-v4.0
+> +      - items:
+> +          - enum:
+> +              - fsl,imx6ul-caam
+> +              - fsl,sec-v5.0
+> +          - const: fsl,sec-v4.0
+> +      - items:
+> +          - const: fsl,sec-v5.4
+> +          - const: fsl,sec-v5.0
 
-On 3/2/2023 9:48 PM, Dmitry Baryshkov wrote:
-> On Thu, 2 Mar 2023 at 11:57, Varadarajan Narayanan
-> <quic_varada@quicinc.com> wrote:
->> Turn on USB related nodes
->>
->> Signed-off-by: Varadarajan Narayanan <quic_varada@quicinc.com>
->> ---
->>   arch/arm64/boot/dts/qcom/ipq9574-al02-c7.dts | 4 ++++
->>   1 file changed, 4 insertions(+)
->>
->> diff --git a/arch/arm64/boot/dts/qcom/ipq9574-al02-c7.dts b/arch/arm64/boot/dts/qcom/ipq9574-al02-c7.dts
->> index 8a6caae..6a06ca4 100644
->> --- a/arch/arm64/boot/dts/qcom/ipq9574-al02-c7.dts
->> +++ b/arch/arm64/boot/dts/qcom/ipq9574-al02-c7.dts
->> @@ -121,3 +121,7 @@
->>   &xo_board_clk {
->>          clock-frequency = <24000000>;
->>   };
->> +
->> +&usb3 { status = "ok"; };
->> +&ssphy_0 { status = "ok"; };
->> +&qusb_phy_0 { status = "ok"; };
-> Please follow an example of how it is done on other platforms. DT
-> nodes are sorted, newlines and empty lines are inserted in proper
-> places.
->
->> --
->> 2.7.4
+What's the point of having all these versions? Better to use
+SoC-compatibles.
 
-Will rectify and post a new version.
+> +          - const: fsl,sec-v4.0
+>  
+>    "#address-cells":
+>      const: 1
+> @@ -77,6 +87,8 @@ properties:
+>  
+>    clock-names:
+>      oneOf:
+> +      - items:
+> +          - const: ipg
+>        - items:
+>            - const: mem
+>            - const: aclk
+> @@ -85,11 +97,17 @@ properties:
+>        - items:
+>            - const: aclk
+>            - const: ipg
+> +      - items:
+> +          - const: ipg
+> +          - const: aclk
+>        - items:
+>            - const: ipg
+>            - const: aclk
+>            - const: mem
+>  
+> +  dma-coherent:
+> +    type: boolean
+> +
+>    fsl,sec-era:
+>      description:
+>        Optional. A standard property. Define the 'ERA' of the SEC device.
+> @@ -108,8 +126,16 @@ patternProperties:
+>  
+>      properties:
+>        compatible:
+> -        enum:
+> -          - fsl,sec-v4.0-job-ring
+> +        oneOf:
+> +          - enum:
+> +              - fsl,sec-v4.0-job-ring
+> +          - items:
+> +              - const: fsl,sec-v5.0-job-ring
+> +              - const: fsl,sec-v4.0-job-ring
+> +          - items:
+> +              - const: fsl,sec-v5.4-job-ring
+> +              - const: fsl,sec-v5.0-job-ring
+> +              - const: fsl,sec-v4.0-job-ring
+>  
+>        reg:
+>          maxItems: 1
+> @@ -148,8 +174,16 @@ patternProperties:
+>  
+>      properties:
+>        compatible:
+> -        enum:
+> -          - fsl,sec-v4.0-rtic
+> +        oneOf:
+> +          - enum:
+> +              - fsl,sec-v4.0-rtic
+> +          - items:
+> +              - const: fsl,sec-v5.0-rtic
+> +              - const: fsl,sec-v4.0-rtic
+> +          - items:
+> +              - const: fsl,sec-v5.4-rtic
+> +              - const: fsl,sec-v5.0-rtic
+> +              - const: fsl,sec-v4.0-rtic
 
-Thanks
+This is also a bit odd... why do you version children?
 
-Varada
+Best regards,
+Krzysztof
 
->
