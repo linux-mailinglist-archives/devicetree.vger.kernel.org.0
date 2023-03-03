@@ -2,289 +2,246 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 47F066A994D
-	for <lists+devicetree@lfdr.de>; Fri,  3 Mar 2023 15:18:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CD1796A9977
+	for <lists+devicetree@lfdr.de>; Fri,  3 Mar 2023 15:34:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230139AbjCCOSY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 3 Mar 2023 09:18:24 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60262 "EHLO
+        id S231230AbjCCOeI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 3 Mar 2023 09:34:08 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45140 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230361AbjCCOSU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Mar 2023 09:18:20 -0500
-Received: from sender4-op-o16.zoho.com (sender4-op-o16.zoho.com [136.143.188.16])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2953D1167D;
-        Fri,  3 Mar 2023 06:18:17 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1677853069; cv=none; 
-        d=zohomail.com; s=zohoarc; 
-        b=W045bdmzx75s5wZRdqKXSj6MKbsu2H2RGd+UAnNckVvKqLut14P74dngx9EFa3evMrmBYiHdBTRXJyPx2A4RrAaB9laruuFL2SwFjdx9hQUid2fVKXWKx7WL+MK1YPXYFFKHTxgcsJJ3Z6VlRjXLRQ6cNqlTNKsqb7apzFbFe8U=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-        t=1677853069; h=Content-Type:Content-Transfer-Encoding:Cc:Date:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:To; 
-        bh=J1x4ZN9o6V9W+qBh0ggz87xL1gWqHwTlf5r/ePU2u7s=; 
-        b=HJnA1Gl0ulvNFNp12PIcPvVUaBO6ptuEg6ynGu9Yl44nim8zC+8upY72jeHPZRItXgGOYveaI+tR5pZI7GIPIkurvIukwH05ZudxJOyZ9j1NeT95XpvNzgp/Y+QXqj18DFIbH079gA0xokv+XXs7ClCvyKPjG9eW71OFxJMz3WI=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-        dkim=pass  header.i=arinc9.com;
-        spf=pass  smtp.mailfrom=arinc.unal@arinc9.com;
-        dmarc=pass header.from=<arinc.unal@arinc9.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1677853069;
-        s=zmail; d=arinc9.com; i=arinc.unal@arinc9.com;
-        h=Message-ID:Date:Date:MIME-Version:Subject:Subject:To:To:Cc:Cc:References:From:From:In-Reply-To:Content-Type:Content-Transfer-Encoding:Message-Id:Reply-To;
-        bh=J1x4ZN9o6V9W+qBh0ggz87xL1gWqHwTlf5r/ePU2u7s=;
-        b=MaWvmbrf7SOR8X/C8UKjWp5SLXWJ2UbwfRjhDt+BXZvBSmv3nFgNLQZ5KGi97Y5K
-        ESrqbdmG0ZN1lnt5Rze51IjtCv2PetxHEqIe7SO4WubKJkNu1cmAnGILIpLlwXLq+4T
-        FWKpYkEwBL8lWP22gmTE+9UXhAJ6eDW+Hnt+PMxk=
-Received: from [10.10.10.3] (212.68.60.226 [212.68.60.226]) by mx.zohomail.com
-        with SMTPS id 1677853067111992.3122175211197; Fri, 3 Mar 2023 06:17:47 -0800 (PST)
-Message-ID: <fc6dc970-5bae-1c27-9473-8c9d90ac79a1@arinc9.com>
-Date:   Fri, 3 Mar 2023 17:17:39 +0300
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.1
-Subject: Re: [PATCH 05/20] pinctrl: ralink: move to mediatek as mtmips
-To:     Sergio Paracuellos <sergio.paracuellos@gmail.com>
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
+        with ESMTP id S229734AbjCCOeH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Mar 2023 09:34:07 -0500
+Received: from mail-pf1-x42f.google.com (mail-pf1-x42f.google.com [IPv6:2607:f8b0:4864:20::42f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4BF2425975
+        for <devicetree@vger.kernel.org>; Fri,  3 Mar 2023 06:34:01 -0800 (PST)
+Received: by mail-pf1-x42f.google.com with SMTP id c4so1710005pfl.0
+        for <devicetree@vger.kernel.org>; Fri, 03 Mar 2023 06:34:01 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google; t=1677854040;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=duMymk/mzDN15LB3Rx/gzujhsoeHtrbu9znF8/ye9Xs=;
+        b=RWW7qlMpg4pHrj95TxcZcmwsXUBqqsZjfDcXrg1Qwt9rqMQRWPjJ7aT0HnFyond0El
+         7vB3f7X1E2lyASd2rAOA/1nfVT95wYv9NeoN57txDKDyWlMj5QOdM5haz9VrHED7ktAI
+         AoWyZyRLBWxum/L3rGMFxqxdvja1X21++z2RA=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1677854040;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=duMymk/mzDN15LB3Rx/gzujhsoeHtrbu9znF8/ye9Xs=;
+        b=YGZ4MJdJwq0YGUzgCd2WnnMIMX+NsvMZK57v33rg0yKyC/BvqWjvwgCin0wfzK43kJ
+         mhMm1HAs+z2gxIy8wTr4wqcl7HPl5jE4vIlSQ/Oe6d0SQgv20SskP2O/Cx324SpnZEr5
+         e4+0iOLDZ2+Rt0v0DYYHDlMr4bir+eu3IKekRDHO1aCl6nh4V1h0nESkUoFl1LbKLFS2
+         zY9WypkPYLjnStte04slKZ/ZoJuPt5W5JqXcOTbRfRQjEs9Br2JqwRn6+YGZK7P8mW7m
+         IIpphHgJ1iq0Ij7DrF1hkt0lFOkhxfR8dCtopDKWuC34mGdBWm2YTxn+9qpaXvP6dnaV
+         rPvQ==
+X-Gm-Message-State: AO0yUKVe5xo+hugO2UEeUSFXD5tW1TWVqIMY2N1RrELlDro04lWC4fJx
+        crN/5Y2TVwOz2k0UASCx7vnG3A==
+X-Google-Smtp-Source: AK7set9UgIwLTc8vF4kt8BaRIrW37yxVEBTi6l64XnH7LXxSZAsVJyKFthmltGf14ulHGdMs9afoJA==
+X-Received: by 2002:a62:7945:0:b0:5a9:b4b4:6911 with SMTP id u66-20020a627945000000b005a9b4b46911mr2292087pfc.25.1677854040088;
+        Fri, 03 Mar 2023 06:34:00 -0800 (PST)
+Received: from treapking.tpe.corp.google.com ([2401:fa00:1:10:55e5:8423:31ee:83dd])
+        by smtp.gmail.com with ESMTPSA id c18-20020aa781d2000000b005a8b4dcd21asm1767214pfn.15.2023.03.03.06.33.54
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 03 Mar 2023 06:33:59 -0800 (PST)
+From:   Pin-yen Lin <treapking@chromium.org>
+To:     Andrzej Hajda <andrzej.hajda@intel.com>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Robert Foss <rfoss@kernel.org>,
+        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+        Jonas Karlman <jonas@kwiboo.se>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-mediatek@lists.infradead.org, linux-mips@vger.kernel.org,
-        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Sean Wang <sean.wang@kernel.org>,
-        William Dean <williamsukatube@gmail.com>,
-        Daniel Golle <daniel@makrotopia.org>,
-        Daniel Santos <daniel.santos@pobox.com>,
-        Luiz Angelo Daros de Luca <luizluca@gmail.com>,
-        Frank Wunderlich <frank-w@public-files.de>,
-        Landen Chao <Landen.Chao@mediatek.com>,
-        DENG Qingfang <dqfext@gmail.com>,
-        Sean Wang <sean.wang@mediatek.com>, erkin.bozoglu@xeront.com
-References: <20230303002850.51858-1-arinc.unal@arinc9.com>
- <20230303002850.51858-6-arinc.unal@arinc9.com>
- <CAMhs-H-VGjP32AZc2cuY=Co4iqx8xPtvjr+hMg-haMMFaQzzsg@mail.gmail.com>
- <CAMhs-H8OsG-SEWigimG3fT-SGjZruH-7tnjff198Z2qhb0O=yA@mail.gmail.com>
- <2106f6d0-63cc-4656-1e52-19640994fb43@arinc9.com>
- <CAMhs-H869pR6CzaWfvf44w-ak+0OCyxnMEEU4kWYpw=C14ShsQ@mail.gmail.com>
-Content-Language: en-US
-From:   =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>
-In-Reply-To: <CAMhs-H869pR6CzaWfvf44w-ak+0OCyxnMEEU4kWYpw=C14ShsQ@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Daniel Scally <djrscally@gmail.com>,
+        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        "Rafael J . Wysocki" <rafael@kernel.org>,
+        Prashant Malani <pmalani@chromium.org>,
+        Benson Leung <bleung@chromium.org>,
+        Guenter Roeck <groeck@chromium.org>
+Cc:     Xin Ji <xji@analogixsemi.com>,
+        Javier Martinez Canillas <javierm@redhat.com>,
+        Lyude Paul <lyude@redhat.com>, linux-kernel@vger.kernel.org,
+        Pin-yen Lin <treapking@chromium.org>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        chrome-platform@lists.linux.dev,
+        =?UTF-8?q?N=C3=ADcolas=20F=20=2E=20R=20=2E=20A=20=2E=20Prado?= 
+        <nfraprado@collabora.com>, Marek Vasut <marex@denx.de>,
+        Hsin-Yi Wang <hsinyi@chromium.org>, devicetree@vger.kernel.org,
+        Allen Chen <allen.chen@ite.com.tw>,
+        dri-devel@lists.freedesktop.org,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        Stephen Boyd <swboyd@chromium.org>, linux-acpi@vger.kernel.org,
+        Alex Deucher <alexander.deucher@amd.com>,
+        Douglas Anderson <dianders@chromium.org>,
+        Imre Deak <imre.deak@intel.com>,
+        Jani Nikula <jani.nikula@intel.com>,
+        =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= 
+        <u.kleine-koenig@pengutronix.de>,
+        =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= 
+        <ville.syrjala@linux.intel.com>
+Subject: [PATCH v13 00/10] Register Type-C mode-switch in DP bridge endpoints
+Date:   Fri,  3 Mar 2023 22:33:40 +0800
+Message-Id: <20230303143350.815623-1-treapking@chromium.org>
+X-Mailer: git-send-email 2.40.0.rc0.216.gc4246ad0f0-goog
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-ZohoMailClient: External
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Heyo,
 
-On 3.03.2023 13:57, Sergio Paracuellos wrote:
-> Hi Arınç,
-> 
-> On Fri, Mar 3, 2023 at 9:16 AM Arınç ÜNAL <arinc.unal@arinc9.com> wrote:
->>
->> Hey Sergio,
->>
->> On 3.03.2023 09:34, Sergio Paracuellos wrote:
->>> On Fri, Mar 3, 2023 at 7:17 AM Sergio Paracuellos
->>> <sergio.paracuellos@gmail.com> wrote:
->>>>
->>>>    Hi Arınç,
->>>>
->>>> On Fri, Mar 3, 2023 at 1:30 AM <arinc9.unal@gmail.com> wrote:
->>>>>
->>>>> From: Arınç ÜNAL <arinc.unal@arinc9.com>
->>>>>
->>>>> This platform from Ralink was acquired by MediaTek in 2011. Then, MediaTek
->>>>> introduced new SoCs which utilise this platform. Move the driver to
->>>>> mediatek pinctrl directory. Rename the ralink core driver to mtmips.
->>>>>
->>>>> Signed-off-by: Arınç ÜNAL <arinc.unal@arinc9.com>
->>>>> ---
->>>>>    drivers/pinctrl/Kconfig                       |  1 -
->>>>>    drivers/pinctrl/Makefile                      |  1 -
->>>>>    drivers/pinctrl/mediatek/Kconfig              | 51 ++++++++++-
->>>>>    drivers/pinctrl/mediatek/Makefile             | 63 +++++++------
->>>>>    .../{ralink => mediatek}/pinctrl-mt7620.c     | 34 +++----
->>>>>    .../{ralink => mediatek}/pinctrl-mt7621.c     | 30 +++----
->>>>>    .../{ralink => mediatek}/pinctrl-mt76x8.c     | 60 ++++++-------
->>>>>    .../pinctrl-mtmips.c}                         | 90 +++++++++----------
->>>>>    .../pinctrl-mtmips.h}                         | 16 ++--
->>>>>    .../{ralink => mediatek}/pinctrl-rt2880.c     | 20 ++---
->>>>>    .../{ralink => mediatek}/pinctrl-rt305x.c     | 44 ++++-----
->>>>>    .../{ralink => mediatek}/pinctrl-rt3883.c     | 28 +++---
->>>>>    drivers/pinctrl/ralink/Kconfig                | 40 ---------
->>>>>    drivers/pinctrl/ralink/Makefile               |  9 --
->>>>>    14 files changed, 246 insertions(+), 241 deletions(-)
->>>>>    rename drivers/pinctrl/{ralink => mediatek}/pinctrl-mt7620.c (81%)
->>>>>    rename drivers/pinctrl/{ralink => mediatek}/pinctrl-mt7621.c (80%)
->>>>>    rename drivers/pinctrl/{ralink => mediatek}/pinctrl-mt76x8.c (81%)
->>>>>    rename drivers/pinctrl/{ralink/pinctrl-ralink.c => mediatek/pinctrl-mtmips.c} (74%)
->>>>>    rename drivers/pinctrl/{ralink/pinctrl-ralink.h => mediatek/pinctrl-mtmips.h} (75%)
->>>>>    rename drivers/pinctrl/{ralink => mediatek}/pinctrl-rt2880.c (71%)
->>>>>    rename drivers/pinctrl/{ralink => mediatek}/pinctrl-rt305x.c (75%)
->>>>>    rename drivers/pinctrl/{ralink => mediatek}/pinctrl-rt3883.c (80%)
->>>>>    delete mode 100644 drivers/pinctrl/ralink/Kconfig
->>>>>    delete mode 100644 drivers/pinctrl/ralink/Makefile
->>>>>
->>>>> diff --git a/drivers/pinctrl/Kconfig b/drivers/pinctrl/Kconfig
->>>>> index dcb53c4a9584..8a6012770640 100644
->>>>> --- a/drivers/pinctrl/Kconfig
->>>>> +++ b/drivers/pinctrl/Kconfig
->>>>> @@ -537,7 +537,6 @@ source "drivers/pinctrl/nomadik/Kconfig"
->>>>>    source "drivers/pinctrl/nuvoton/Kconfig"
->>>>>    source "drivers/pinctrl/pxa/Kconfig"
->>>>>    source "drivers/pinctrl/qcom/Kconfig"
->>>>> -source "drivers/pinctrl/ralink/Kconfig"
->>>>>    source "drivers/pinctrl/renesas/Kconfig"
->>>>>    source "drivers/pinctrl/samsung/Kconfig"
->>>>>    source "drivers/pinctrl/spear/Kconfig"
->>>>> diff --git a/drivers/pinctrl/Makefile b/drivers/pinctrl/Makefile
->>>>> index d5939840bb2a..ada6ed1d4e91 100644
->>>>> --- a/drivers/pinctrl/Makefile
->>>>> +++ b/drivers/pinctrl/Makefile
->>>>> @@ -66,7 +66,6 @@ obj-y                         += nomadik/
->>>>>    obj-y                          += nuvoton/
->>>>>    obj-$(CONFIG_PINCTRL_PXA)      += pxa/
->>>>>    obj-$(CONFIG_ARCH_QCOM)                += qcom/
->>>>> -obj-$(CONFIG_PINCTRL_RALINK)   += ralink/
->>>>>    obj-$(CONFIG_PINCTRL_RENESAS)  += renesas/
->>>>>    obj-$(CONFIG_PINCTRL_SAMSUNG)  += samsung/
->>>>>    obj-$(CONFIG_PINCTRL_SPEAR)    += spear/
->>>>> diff --git a/drivers/pinctrl/mediatek/Kconfig b/drivers/pinctrl/mediatek/Kconfig
->>>>> index a71874fed3d6..2eeb55010563 100644
->>>>> --- a/drivers/pinctrl/mediatek/Kconfig
->>>>> +++ b/drivers/pinctrl/mediatek/Kconfig
->>>>> @@ -1,6 +1,6 @@
->>>>>    # SPDX-License-Identifier: GPL-2.0-only
->>>>>    menu "MediaTek pinctrl drivers"
->>>>> -       depends on ARCH_MEDIATEK || COMPILE_TEST
->>>>> +       depends on ARCH_MEDIATEK || RALINK || COMPILE_TEST
->>>>>
->>>>>    config EINT_MTK
->>>>>           tristate "MediaTek External Interrupt Support"
->>>>> @@ -22,6 +22,12 @@ config PINCTRL_MTK
->>>>>    config PINCTRL_MTK_V2
->>>>>           tristate
->>>>>
->>>>> +config PINCTRL_MTK_MTMIPS
->>>>> +       bool
->>>>> +       depends on RALINK
->>>>> +       select PINMUX
->>>>> +       select GENERIC_PINCONF
->>>>> +
->>>>>    config PINCTRL_MTK_MOORE
->>>>>           bool
->>>>>           depends on OF
->>>>> @@ -43,6 +49,49 @@ config PINCTRL_MTK_PARIS
->>>>>           select OF_GPIO
->>>>>           select PINCTRL_MTK_V2
->>>>>
->>>>> +# For MIPS SoCs
->>>>> +config PINCTRL_MT7620
->>>>> +       bool "MediaTek MT7620 pin control"
->>>>> +       depends on SOC_MT7620 || COMPILE_TEST
->>>>> +       depends on RALINK
->>>>> +       default SOC_MT7620
->>>>> +       select PINCTRL_MTK_MTMIPS
->>>>> +
->>>>> +config PINCTRL_MT7621
->>>>> +       bool "MediaTek MT7621 pin control"
->>>>> +       depends on SOC_MT7621 || COMPILE_TEST
->>>>> +       depends on RALINK
->>>>> +       default SOC_MT7621
->>>>> +       select PINCTRL_MTK_MTMIPS
->>>>> +
->>>>> +config PINCTRL_MT76X8
->>>>> +       bool "MediaTek MT76X8 pin control"
->>>>> +       depends on SOC_MT7620 || COMPILE_TEST
->>>>> +       depends on RALINK
->>>>> +       default SOC_MT7620
->>>>> +       select PINCTRL_MTK_MTMIPS
->>>>> +
->>>>> +config PINCTRL_RT2880
->>>>> +       bool "Ralink RT2880 pin control"
->>>>> +       depends on SOC_RT288X || COMPILE_TEST
->>>>> +       depends on RALINK
->>>>> +       default SOC_RT288X
->>>>> +       select PINCTRL_MTK_MTMIPS
->>>>> +
->>>>> +config PINCTRL_RT305X
->>>>> +       bool "Ralink RT305X pin control"
->>>>> +       depends on SOC_RT305X || COMPILE_TEST
->>>>> +       depends on RALINK
->>>>> +       default SOC_RT305X
->>>>> +       select PINCTRL_MTK_MTMIPS
->>>>> +
->>>>> +config PINCTRL_RT3883
->>>>> +       bool "Ralink RT3883 pin control"
->>>>> +       depends on SOC_RT3883 || COMPILE_TEST
->>>>> +       depends on RALINK
->>>>> +       default SOC_RT3883
->>>>> +       select PINCTRL_MTK_MTMIPS
->>>>> +
->>>>
->>>> I am not a Kconfig expert at all but...
->>>>
->>>> Should not all of these be depends on SOC_XXX || (COMPILE_TEST &&
->>>> RALINK) and avoid the " depends on RALINK" next line in all of them?
->>
->> This seems to do the same thing but I'm following the "either change
->> them all or fit into the crowd" ideology.
->>
->>>>
->>>> Just asking since we have yet arch read and write register operations
->>>> in pinctrl common ralink code. Having in this way, when we address
->>>> this arch thing  in the next series just removing the "&& RALINK" part
->>>> makes the review pretty obvious.
->>
->> You'd have to change RALINK with OF since we're still depending on that.
->> RALINK selects OF by default so it's currently a hidden dependency.
->>
->>>>
->>>> Other than that, changes look good to me.
->>>
->>> I think "depends on SOC_XXX || (COMPILE_TEST && MIPS)" would work also
->>> and might be more accurate for compile testing targets.
-> 
-> Are you sure? SOC_XXX here is already being enabled only if RALINK is
-> already enabled, right? [0]
+This series introduces bindings for anx7625/it6505 to register Type-C
+mode-switch in their output endpoints, and use data-lanes property to
+describe the pin connections.
 
-I'm not sure who's your reply to, or what it's about here.
+This series is not directly related to the built-in mux in anx7625,
+which automatically switches between the two orientations of a single
+Type-C connector. This series adds support of registering mode switches
+for two downstream devices, while we use orientation switches for two
+orientations of the Type-C connector.
 
-> 
->>
->> This is not OK in both cases. If the driver is dependent on Ralink
->> architecture code, choosing any other MIPS platform will make the driver
->> available to compile, which will fail.
-> 
-> SOC_XXX is already dependent on RALINK for real uses but the driver is
-> going to be selected for other MIPS platforms only for COMPILE_TEST
-> targets. Ideally drivers should be arch agnostic so can be selected
-> for any single arch build. Now we have arch dependent read and write
-> calls in the code, so you need the right headers to be properly found
-> to be able to compile testing. I think MIPS is enough dependency here
-> to properly find them. But if not, this should be (COMPILE_TEST &&
-> RALINK)
+The first two patch modifies fwnode_graph_devcon_matches and
+cros_typec_init_ports to enable the registration of the switches.
 
-I expect below to work without requiring the MIPS option.
+Patch 4~6 introduce the bindings for anx7625 and the corresponding driver
+modifications.
 
-ifeq ($(CONFIG_COMPILE_TEST),y)
-CFLAGS_pinctrl-mtmips.o		+= -I$(srctree)/arch/mips/include
-endif
+Patch 7~9 add similar bindings and driver changes for it6505.
 
-> 
->>
->> If the driver is independent of Ralink architecture code, you're
->> limiting the driver to be compiled only when a MIPS platform is selected.
-> 
-> So... how are you planning to allow compile testing of the driver in
-> any single arch when we get rid of all the arch dependent code? If you
-> make everything dependent on RALINK you cannot.
+v12: https://lore.kernel.org/all/20230221095054.1868277-1-treapking@chromium.org/
+v11: https://lore.kernel.org/all/20230204133040.1236799-1-treapking@chromium.org/
+v10: https://lore.kernel.org/all/20230112042104.4107253-1-treapking@chromium.org/
+v9: https://lore.kernel.org/all/20230109084101.265664-1-treapking@chromium.org/
+v8: https://lore.kernel.org/all/20230107102231.23682-1-treapking@chromium.org/
+v7: https://lore.kernel.org/all/20230105132457.4125372-1-treapking@chromium.org/
+v6: https://lore.kernel.org/all/20221124102056.393220-1-treapking@chromium.org/
+v5: https://lore.kernel.org/linux-usb/20220622173605.1168416-1-pmalani@chromium.org/
 
-I intend to make it dependent on OF, not RALINK.
+Changes in v13:
+- Update the kernel doc of fwnode_connection_find_match
+- Add typec_mode_switch_node_count helper
+- Fix style issues
+- Update a typo in the commit message
+- Collect Reviewed-by tag
 
-Arınç
+Changes in v12:
+- Check the availability of the device node in fwnode_graph_devcon_matches
+- Ensured valid access to "matches" in fwnode_graph_devcon_matches
+- Updated the documentation in fwnode_connection_find_match(es)
+- Add fwnode_for_each_typec_mode_switch macro
+- Remove a duplicated dmesg in the helper
+- Used IS_REACHABLE instead to guard the function signatures
+- Removed the 4-lane binding in analogix,anx7625.yaml
+- Reworded the description for the mode-switch property
+- Fixed style issues in anx7625 driver
+- Fixed the inverted orientation setting in anx7625 driver
+- Changed "&ctx->client->dev" to "ctx->dev"
+- Fixed the schema of "data-lanes" property for it6505
+- Fixes style issues in it6505 driver
+- Replaced &it6505->client->dev with it6505->dev
+- Updated the error logs when parsing data-lanes property
+
+Changes in v11:
+- Added missing fwnode_handle_put in drivers/base/property.c
+- Collected Acked-by tag
+- Use fwnode helpers instead of DT
+- Moved the helpers to a new file
+- Use "reg" instead of "data-lanes" to determine the port number
+- Updated the description of the endpoints in the bindings
+- Referenced video-interfaces.yaml instead for the endpoints binding
+- Removed duplicated definitions from inherited schema
+- Moved the "data-lanes" parsing logics to bridge drivers
+- Removed Kconfig dependencies for the bridge drivers
+- Updated the usage of the private bridge driver data
+- Added a clarification on the anx7625 built-in mux in the cover letter
+
+Changes in v10:
+- Collected Reviewed-by and Tested-by tags
+- Replaced "void *" with "typec_mux_set_fn_t" for mux_set callbacks
+- Print out the node name when errors on parsing DT
+- Use dev_dbg instead of dev_warn when no Type-C switch nodes available
+- Made the return path of drm_dp_register_mode_switch clearer
+- Added a TODO for implementing orientation switch for anx7625
+- Updated the commit message for the absence of orientation switch
+- Fixed typo in the commit message
+
+Changes in v9:
+- Collected Reviewed-by tag
+- Fixed subject prefix again
+- Changed the naming of the example node for it6505
+
+Changes in v8:
+- Fixed the build issue when CONFIG_TYPEC=m
+- Fixed some style issues
+- Fixed the subject prefixes for the bindings patch
+- Fixed the bindings for data-lanes properties
+
+Changes in v7:
+- Fix the long comment lines
+- Extracted the common codes to a helper function
+- Fixed style issues in anx7625 driver
+- Removed DT property validation in anx7625 driver.
+- Fixed style issues in it6505 driver
+- Removed the redundant sleep in it6505 driver
+- Removed DT property validation in it6505 driver
+- Rebased to drm-misc-next
+- Fixed indentations in bindings patches
+- Added a new patch to fix indentations in Kconfig
+
+Changes in v6:
+- Changed it6505_typec_mux_set callback function to accommodate with
+  the latest drm-misc patches
+- Changed the driver implementation to accommodate with the new binding
+- Dropped typec-switch binding and use endpoints and data-lanes properties
+  to describe the pin connections
+- Added new patches (patch 1,2,4) to fix probing issues
+- Changed the bindings of it6505/anx7625 and modified the drivers
+  accordingly
+- Merged it6505/anx7625 driver changes into a single patch
+
+Pin-yen Lin (8):
+  drm/display: Add Type-C switch helpers
+  dt-bindings: display: bridge: anx7625: Add mode-switch support
+  drm/bridge: anx7625: Check for Type-C during panel registration
+  drm/bridge: Remove redundant i2c_client in anx7625/it6505
+  drm/bridge: anx7625: Register Type C mode switches
+  dt-bindings: display: bridge: it6505: Add mode-switch support
+  drm/bridge: it6505: Fix Kconfig indentation
+  drm/bridge: it6505: Register Type C mode switches
+
+Prashant Malani (2):
+  device property: Add remote endpoint to devcon matcher
+  platform/chrome: cros_ec_typec: Purge blocking switch devlinks
+
+ .../display/bridge/analogix,anx7625.yaml      |  88 ++++-
+ .../bindings/display/bridge/ite,it6505.yaml   | 101 +++++-
+ drivers/base/property.c                       |  31 +-
+ drivers/gpu/drm/bridge/Kconfig                |  20 +-
+ drivers/gpu/drm/bridge/analogix/anx7625.c     | 257 +++++++++++---
+ drivers/gpu/drm/bridge/analogix/anx7625.h     |  22 +-
+ drivers/gpu/drm/bridge/ite-it6505.c           | 313 ++++++++++++++----
+ drivers/gpu/drm/display/Makefile              |   1 +
+ drivers/gpu/drm/display/drm_dp_typec_helper.c | 105 ++++++
+ drivers/platform/chrome/cros_ec_typec.c       |  10 +
+ include/drm/display/drm_dp_helper.h           |  46 +++
+ 11 files changed, 845 insertions(+), 149 deletions(-)
+ create mode 100644 drivers/gpu/drm/display/drm_dp_typec_helper.c
+
+-- 
+2.40.0.rc0.216.gc4246ad0f0-goog
+
