@@ -2,139 +2,137 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0A4176A9745
-	for <lists+devicetree@lfdr.de>; Fri,  3 Mar 2023 13:30:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 85C7F6A9758
+	for <lists+devicetree@lfdr.de>; Fri,  3 Mar 2023 13:38:37 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230042AbjCCMaf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 3 Mar 2023 07:30:35 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45726 "EHLO
+        id S229634AbjCCMig (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 3 Mar 2023 07:38:36 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51432 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230071AbjCCMab (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Mar 2023 07:30:31 -0500
-Received: from mail-pg1-x535.google.com (mail-pg1-x535.google.com [IPv6:2607:f8b0:4864:20::535])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 832575D754
-        for <devicetree@vger.kernel.org>; Fri,  3 Mar 2023 04:30:30 -0800 (PST)
-Received: by mail-pg1-x535.google.com with SMTP id z10so1347474pgr.8
-        for <devicetree@vger.kernel.org>; Fri, 03 Mar 2023 04:30:30 -0800 (PST)
+        with ESMTP id S229580AbjCCMif (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Mar 2023 07:38:35 -0500
+Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 593B45CC13;
+        Fri,  3 Mar 2023 04:38:34 -0800 (PST)
+Received: by mail-lf1-x136.google.com with SMTP id s22so3367333lfi.9;
+        Fri, 03 Mar 2023 04:38:34 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=wKCLv1hgI86xhnJ8PFNiyFksPKMl3hpg2oT8pYQZNSw=;
-        b=r+wRZBS/rNchorFCHPRKq4PVeBobHOUJa1wtGCGLSJgwilzMDQH3ehLoh/rn29QdmW
-         dxg9EbpyYOhiZW4t3Fr+FGvRjR3keD9TAspcLBCCAeftqctPejsfxspLJbd4ab/5gXqj
-         Qw8KGInTBYctfa0OlwZBBLfVd9SfLcImW7fvzIPVkftLnm5vAi82yih3Y4w32vqUC4Ts
-         xp6SakQ0kTKLl8z77XI3BMtEBgWhj7zO03lhPihiSTSBNEwQcRXOVZg6vGXEYw/W4Rkg
-         O1vOSu3ljTpsKMFOFy0hemO48BbkicInFTdMxatU2wWgYjkiGz9DmiiH36cUljAa79+e
-         zS+A==
+        d=gmail.com; s=20210112; t=1677847112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=LeNXt3isbPRHGAJkEjS0qeuKPk4Ph4hfVApRfVC6Qok=;
+        b=P0YjcZ3S5ACbMGzx+4FQqVrYsfJfk5OAeUWFnmhbhhMgz7Y6myjru7hBUy4wOCtezp
+         /cVnh5BCBuB6qe9UctJ5/iaU0DMycOjd+/JyQMJ4k32z4yKR//VcfV/3kYkvF8ZA63hQ
+         2E8GkyLcl5beiGfzTYH6A7r7Hd0U/Pnztk3O1+cCiKP/TxO/XKrAj3RDU2qL6oAKc74w
+         LlhTjo2eKXUiuAKLfec8YyGpNOmoXr1+3UrFDev1FqdymopeMImPzKEtlyHUCssIw5NA
+         Z/o6XxM04tfRZpp+aBZIT2WGUpY2j3hX1PGFa8d9si5tdeCtGxABmW67F7aRpPd0WCUp
+         6MbA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=wKCLv1hgI86xhnJ8PFNiyFksPKMl3hpg2oT8pYQZNSw=;
-        b=C7AjmbKkg8RX1rbrRUB8GsFTrsX2R3wRgZcTwPtdHztsAxsS31iHEQTGQRYwA/agyH
-         g6K0c3XTqaQSkH/Ni0mC0fWzfuANsedLbZx3+8ZRuGAWQJwHLpsRTe9aEZLei8cZs86u
-         U4XAjFXyJRpwlpHEDzzpZMntgyUDow7/14fgXOvS1a8B9/yoOdGWp+a/qAzg46EXQC6n
-         KELfMmfzUOIYR6Zw/VKzzNVi7hoOngOdwaOfgJiiweNGQRqYz579SzDsRpN8T594ZDLC
-         D+bBYu0JylurHUrsumhvpCbMUgBwSMi3guYrCRRjPj4mfPtnauNH8+Fi+fsyybD8DR+j
-         g0SA==
-X-Gm-Message-State: AO0yUKUFCqARekXp/UdH47VoKVQ7LfWJ8fUFJCPI1i8lY3h8L0xA6id8
-        27ssGUII4ISvDl6V51ZC2pLH
-X-Google-Smtp-Source: AK7set97iZEg+efZSyPVoEaAWnXYHtkgTBA9aWCb/R6Ep2v8/b9tq4QhMQNui/I52feyiJqe6CkTLQ==
-X-Received: by 2002:a62:7982:0:b0:5a9:d676:ae58 with SMTP id u124-20020a627982000000b005a9d676ae58mr2152089pfc.13.1677846629953;
-        Fri, 03 Mar 2023 04:30:29 -0800 (PST)
-Received: from thinkpad ([117.207.30.104])
-        by smtp.gmail.com with ESMTPSA id n13-20020aa7904d000000b0058b927b9653sm1542681pfo.92.2023.03.03.04.30.26
+        d=1e100.net; s=20210112; t=1677847112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=LeNXt3isbPRHGAJkEjS0qeuKPk4Ph4hfVApRfVC6Qok=;
+        b=ZDgpkLKTEG4pDD0Ngu/Nns+ZjajnCTqTqCJPvtB8gsg82HG6F7lLWhtIzmqaY01P0N
+         CxyNDimEHyNs1KjWRicFtrammK4saPuQe+U8Vz7QByayFZr2BfjkAQbN6E12oSazNW/6
+         BthlTnOgp1P0x+tsbIyiFM1vvkeAbd6gA1wcuA9P1Avg3GSST+DkH93qSbV6mEMnWZ4F
+         WTbuVBdOObLYSSNeRhUk6yjuuXglFzQ9iK8rzn3Bw2Inhl9UORvwaix21zUjUdgQbNs8
+         S3Qc2JnOPFrPkvn1nvpvdeXwicswXc2GTTNkiNtCgnAXP/4asuOeGDYNo71DlVmKAbK3
+         heFQ==
+X-Gm-Message-State: AO0yUKWzZ1KUMKAveRX970Ils+3X6rGaxDoNU8qUvQKbgVVfDfoPSph2
+        LfeQCAhcu64SH/FUSoMv5WY=
+X-Google-Smtp-Source: AK7set8AMf7sXcYGM7UKtvCBtcTYORd/6lfdClXFLlsf4lNnLXlfUAkJ2EqaJJ7J2E5fFC/UiNTVrQ==
+X-Received: by 2002:ac2:546a:0:b0:4cb:449a:31f8 with SMTP id e10-20020ac2546a000000b004cb449a31f8mr501789lfn.35.1677847112505;
+        Fri, 03 Mar 2023 04:38:32 -0800 (PST)
+Received: from mobilestation ([95.79.133.202])
+        by smtp.gmail.com with ESMTPSA id c4-20020a2e6804000000b002934be1a0a4sm291705lja.70.2023.03.03.04.38.31
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 03 Mar 2023 04:30:29 -0800 (PST)
-Date:   Fri, 3 Mar 2023 18:00:22 +0530
-From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To:     Lee Jones <lee@kernel.org>
-Cc:     jacek.anaszewski@gmail.com, pavel@ucw.cz, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-leds@vger.kernel.org,
-        thunder.leizhen@huawei.com, festevam@gmail.com
-Subject: Re: [PATCH v6] dt-bindings: leds: Document commonly used LED triggers
-Message-ID: <20230303123022.GA6782@thinkpad>
-References: <20230213072133.5977-1-manivannan.sadhasivam@linaro.org>
- <20230303103407.GR2303077@google.com>
- <20230303113945.GF2420672@google.com>
+        Fri, 03 Mar 2023 04:38:31 -0800 (PST)
+Date:   Fri, 3 Mar 2023 15:38:29 +0300
+From:   Serge Semin <fancer.lancer@gmail.com>
+To:     Shradha Todi <shradha.t@samsung.com>
+Cc:     lpieralisi@kernel.org, kw@linux.com, robh@kernel.org,
+        bhelgaas@google.com, krzysztof.kozlowski+dt@linaro.org,
+        alim.akhtar@samsung.com, jingoohan1@gmail.com,
+        Sergey.Semin@baikalelectronics.ru, lukas.bulwahn@gmail.com,
+        hongxing.zhu@nxp.com, tglx@linutronix.de, m.szyprowski@samsung.com,
+        jh80.chung@samsung.co, pankaj.dubey@samsung.com,
+        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 00/16] Refactor Exynos PCIe driver to make it generic
+Message-ID: <20230303123829.er626hqa562sal3t@mobilestation>
+References: <CGME20230214121348epcas5p48a3b2b225f616d748cc20622d01edb97@epcas5p4.samsung.com>
+ <20230214121333.1837-1-shradha.t@samsung.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20230303113945.GF2420672@google.com>
+In-Reply-To: <20230214121333.1837-1-shradha.t@samsung.com>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Mar 03, 2023 at 11:39:45AM +0000, Lee Jones wrote:
-> On Fri, 03 Mar 2023, Lee Jones wrote:
-> 
-> > On Mon, 13 Feb 2023, Manivannan Sadhasivam wrote:
-> > 
-> > > Document the commonly used LED triggers by the SoCs. Not all triggers
-> > > are documented as some of them are very application specific. Most of the
-> > > triggers documented here are currently used in devicetrees of many SoCs.
-> > > 
-> > > While at it, also place the comment above the triggers (hci, mmc, wlan)
-> > > to match the rest of the binding.
-> > > 
-> > > Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-> > > ---
-> > > 
-> > > Changes in v6:
-> > > 
-> > > * Rebased on top of lee/for-leds-next branch
-> > > * Fixed the comment location for few triggers
-> > > 
-> > > Changes in v5:
-> > > 
-> > > * Rebased on top of v6.2-rc1
-> > > 
-> > > Changes in v4:
-> > > 
-> > > * Removed the sorting of triggers
-> > > * Removed the "items" as they were not needed
-> > > * Reworded the description
-> > > * Dropped Zhen Lei's tested-by tag as the patch has changed
-> > > * Added kbd-capslock trigger
-> > > 
-> > > Changes in v3:
-> > > 
-> > > * Rebased on top of v6.1-rc1
-> > > * Added WLAN Rx trigger
-> > > * Added tested tag from Zhen Lei
-> > > 
-> > > Changes in v2:
-> > > 
-> > > * Added more triggers, fixed the regex
-> > > * Sorted triggers in ascending order
-> > > 
-> > >  .../devicetree/bindings/leds/common.yaml      | 37 +++++++++++++++++--
-> > >  1 file changed, 34 insertions(+), 3 deletions(-)
-> > 
-> > Applied, thanks
-> 
-> Change of plan.  This doesn't apply cleanly.
-> 
-> Could you please rebase and resubmit please?
-> 
+Hi Shradha
 
-Done!
+On Tue, Feb 14, 2023 at 05:43:17PM +0530, Shradha Todi wrote:
+> Currently pci-exynos is being used as a PCIe driver for Exynos5433
+> only. This patch set refactors the driver to make it extensible to
+> other Samsung manufactured SoCs having DWC PCIe controllers.
+> The major change points are:
+> - Renaming all common functions/structures to use "samsung" instead
+>   of "exynos". Make common probe/remove/suspend/resume
+> - Making clock/regulator get/enable/disable generic
+> - Adding private struct to hold platform specific function ops
 
-Thanks,
-Mani
+Just a general note regarding the DT-bindings. If you're willing to fix
+some names or most importantly add new ones please follow as much as
+possible to the generic interface defined in the common part of the
+DW PCIe bindings schema:
+Documentation/devicetree/bindings/pci/snps,dw-pcie-common.yaml
+Documentation/devicetree/bindings/pci/snps,dw-pcie.yaml
+for instance the generic "reg-names" are "elbi" or "app" defined for
+the application-dependent registers map (normally implemented via the
+ELBI interface in hardware), the "appl" name is marked as vendor-specific
+and should be avoided.
 
+-Serge(y)
+
+> 
+> Shradha Todi (16):
+>   dt-bindings: PCI: Rename Exynos PCIe binding to Samsung PCIe
+>   PCI: exynos: Rename Exynos PCIe driver to Samsung PCIe
+>   PCI: samsung: Change macro names to exynos specific
+>   PCI: samsung: Use clock bulk API to get clocks
+>   dt-bindings: PCI: Rename the term elbi to appl
+>   arm64: dts: exynos: Rename the term elbi to appl
+>   PCI: samsung: Rename the term elbi to appl
+>   PCI: samsung: Rename exynos_pcie to samsung_pcie
+>   PCI: samsung: Make common appl readl/writel functions
+>   dt-bindings: PCI: Add phy-names as required property
+>   arm64: dts: exynos: Add phy-names as DT property
+>   PCI: samsung: Get PHY using non-DT version
+>   PCI: samsung: Rename common functions to samsung
+>   PCI: samsung: Add platform device private data
+>   PCI: samsung: Add structure to hold resource operations
+>   PCI: samsung: Make handling of regulators generic
+> 
+>  ...ung,exynos-pcie.yaml => samsung,pcie.yaml} |  15 +-
+>  MAINTAINERS                                   |   4 +-
+>  arch/arm64/boot/dts/exynos/exynos5433.dtsi    |   3 +-
+>  drivers/pci/controller/dwc/Kconfig            |   6 +-
+>  drivers/pci/controller/dwc/Makefile           |   2 +-
+>  drivers/pci/controller/dwc/pci-samsung.c      | 508 ++++++++++++++++++
+>  6 files changed, 526 insertions(+), 12 deletions(-)
+>  rename Documentation/devicetree/bindings/pci/{samsung,exynos-pcie.yaml => samsung,pcie.yaml} (89%)
+>  create mode 100644 drivers/pci/controller/dwc/pci-samsung.c
+> 
 > -- 
-> Lee Jones [李琼斯]
-
--- 
-மணிவண்ணன் சதாசிவம்
+> 2.17.1
+> 
+> 
