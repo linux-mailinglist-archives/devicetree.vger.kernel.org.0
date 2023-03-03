@@ -2,181 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5293B6A8E75
-	for <lists+devicetree@lfdr.de>; Fri,  3 Mar 2023 02:03:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A75B06A8ED0
+	for <lists+devicetree@lfdr.de>; Fri,  3 Mar 2023 02:38:56 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229683AbjCCBDr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 2 Mar 2023 20:03:47 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47170 "EHLO
+        id S229567AbjCCBiz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 2 Mar 2023 20:38:55 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46562 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229602AbjCCBDq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Mar 2023 20:03:46 -0500
-Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 69CB32364F
-        for <devicetree@vger.kernel.org>; Thu,  2 Mar 2023 17:03:45 -0800 (PST)
-Received: by mail-lf1-x12f.google.com with SMTP id j11so1564544lfg.13
-        for <devicetree@vger.kernel.org>; Thu, 02 Mar 2023 17:03:45 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1677805423;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=uVcKfKkfVkpqpKWoMU97cJ7wcrQbe2kwbZ0geHYwPfc=;
-        b=QfIptf0EvVLQAS5irvExaPpbsnT2YI+ih1T4iT+lGvNWtotDA1u8u+wIYJO5frXD5/
-         I1Js74psGIzL0wJtbnefGsfcQzrnWetifYDNn6HlEAiG3W7ytrpH0e+fID+c6NFT0qu1
-         whwOvnlPyCx0ibGIUwYFa9qRT5Wb4bud8QHVvnX7Cm9VutGOADcktCXfhiv6tUHHnk5L
-         faBbjCs4s+oqk+gwo9h4erPqu8Y4W2K72qZzj170aYcd79izjRHorT/kmujbPC45lBN4
-         Ryy4wjap3Pf7bxjE7gksDhbh06/bu+U/DQH87FHFsbFchx9Jvrw/ro/gbtQkTIXEzlww
-         ZXTg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1677805423;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=uVcKfKkfVkpqpKWoMU97cJ7wcrQbe2kwbZ0geHYwPfc=;
-        b=FtHLxifwg2dxPy5q5Wfz6BtsW/FMVlkoWFgyQg75UkxQbtHfovBo0Y+9mwHb/H4o0Q
-         BW7/bh5PrTcUmjhSEgJ+NRv49Iy4kdr+CXYh6nSWUx4NM3PLlESjihlYlMZzGRUnMRWT
-         xha7ru/X+4Y7mjSgTfSudiFOq7HWDVhCucT82goNhsIiPilaijnrNBH5ex4eLSWmnXh4
-         f8tMBnP+SKWj/yt9so8dwIHv2ezGKzOdRuPXr+FN4vsMyCpTdjkHUiScHdmheuFCNOhF
-         xI1WYFCMTHPTqZwoEiYlN8zgYpIn1hFZIgorntaXratPQ4NMDcdUesUfF4jf6JPHC8sy
-         O/Wg==
-X-Gm-Message-State: AO0yUKXDPoqtUSZqGRIMDjd4Gmt13QAcbVE83s4shf1FY4d5n+S1nnxK
-        9NlxNGWcvLm4dI7kGadrx2WndQ==
-X-Google-Smtp-Source: AK7set+05kenIZlSMEmN2iofpiRlFp4TiBQqmejCYxCcS7M26TUF6Dopy0EsheSFyDsLRfR/PA8jsQ==
-X-Received: by 2002:ac2:546c:0:b0:4dd:ad4b:efd with SMTP id e12-20020ac2546c000000b004ddad4b0efdmr63600lfn.52.1677805423614;
-        Thu, 02 Mar 2023 17:03:43 -0800 (PST)
-Received: from [192.168.1.101] (abym99.neoplus.adsl.tpnet.pl. [83.9.32.99])
-        by smtp.gmail.com with ESMTPSA id y23-20020a197517000000b004db4fa67bf1sm155480lfe.157.2023.03.02.17.03.42
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 02 Mar 2023 17:03:43 -0800 (PST)
-Message-ID: <e5cda4cf-5c2a-a7ed-9e1d-1fe9f2cbef40@linaro.org>
-Date:   Fri, 3 Mar 2023 02:03:41 +0100
+        with ESMTP id S229944AbjCCBit (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Mar 2023 20:38:49 -0500
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 77E16CC30;
+        Thu,  2 Mar 2023 17:38:48 -0800 (PST)
+X-UUID: 22929828b96411eda06fc9ecc4dadd91-20230303
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Transfer-Encoding:Content-Type:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=NPDcbWjUVSoLLjMtO/Z1QwJgNEyxQ1YYYXl9gvsi2R0=;
+        b=mwVx8okudEN/QBfAKR/FusnfwemjkOe5nZJnJih36Hv7O8m9RIK9WygvzSfe8vnZsaX6exbl4+U2G72CXoPnVJKJDsoN6hXSDmujTTjIXi6a5bXMBBURloxt77aXfI4WMCi1OZqdeDBo5jqFAdUK4W0FL4ui8JBTV9HalrsgIXs=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.20,REQID:455c1fa1-6c9a-49c4-b21b-562cdc834dc6,IP:0,U
+        RL:0,TC:0,Content:-5,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION
+        :release,TS:-5
+X-CID-META: VersionHash:25b5999,CLOUDID:faf02c27-564d-42d9-9875-7c868ee415ec,B
+        ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0,EDM:-3,IP:nil,U
+        RL:1,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0
+X-CID-BVR: 0
+X-UUID: 22929828b96411eda06fc9ecc4dadd91-20230303
+Received: from mtkmbs10n2.mediatek.inc [(172.21.101.183)] by mailgw01.mediatek.com
+        (envelope-from <allen-kh.cheng@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+        with ESMTP id 1370251418; Fri, 03 Mar 2023 09:38:44 +0800
+Received: from mtkmbs13n1.mediatek.inc (172.21.101.193) by
+ mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.25; Fri, 3 Mar 2023 09:38:44 +0800
+Received: from mtksdccf07.mediatek.inc (172.21.84.99) by
+ mtkmbs13n1.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
+ 15.2.1118.25 via Frontend Transport; Fri, 3 Mar 2023 09:38:44 +0800
+From:   Allen-KH Cheng <allen-kh.cheng@mediatek.com>
+To:     Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>
+CC:     <Project_Global_Chrome_Upstream_Group@mediatek.com>,
+        <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-mediatek@lists.infradead.org>, <yunfei.dong@mediatek.com>,
+        "Allen-KH Cheng" <allen-kh.cheng@mediatek.com>
+Subject: [RESEND 0/6] media: mediatek: Update video decoder nodes for MT8195 and MT8192
+Date:   Fri, 3 Mar 2023 09:38:36 +0800
+Message-ID: <20230303013842.23259-1-allen-kh.cheng@mediatek.com>
+X-Mailer: git-send-email 2.18.0
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-Subject: Re: [PATCH] arm64: dts: qcom: sm6115: Add CPU idle-states
-Content-Language: en-US
-To:     Bhupesh Sharma <bhupesh.sharma@linaro.org>
-Cc:     linux-arm-msm@vger.kernel.org, agross@kernel.org,
-        andersson@kernel.org, linux-kernel@vger.kernel.org,
-        bhupesh.linux@gmail.com, robh+dt@kernel.org,
-        devicetree@vger.kernel.org, krzysztof.kozlowski+dt@linaro.org
-References: <20230118203428.910992-1-bhupesh.sharma@linaro.org>
- <77fbf01f-58fc-55a2-415b-c39d991e7c96@linaro.org>
- <CAH=2Ntw4hMyV2mqRu1t=WWG24=wKq96PB+eYFtZ4qYQz8dteog@mail.gmail.com>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <CAH=2Ntw4hMyV2mqRu1t=WWG24=wKq96PB+eYFtZ4qYQz8dteog@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-MTK:  N
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,
+        SPF_PASS,UNPARSEABLE_RELAY autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+This series is based on matthias github v6.3-tmp. Since there is a
+dependence in the following series, I resend a series for them.
 
+patchwork.kernel.org/project/linux-mediatek/list/?series=702423
+patchwork.kernel.org/project/linux-mediatek/list/?series=702078
 
-On 18.01.2023 21:48, Bhupesh Sharma wrote:
-> On Thu, 19 Jan 2023 at 02:10, Konrad Dybcio <konrad.dybcio@linaro.org> wrote:
->>
->>
->>
->> On 18.01.2023 21:34, Bhupesh Sharma wrote:
->>> Add CPU idle-state nodes and power-domains in Qualcomm sm6115 SoC dtsi.
->>>
->>> Signed-off-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
->>> ---
-[...]
+Allen-KH Cheng (3):
+  media: dt-bindings: media: mediatek: Rename child node names for
+    decoder
+  media: dt-bindings: media: mediatek: Remove "dma-ranges" property for
+    decoder
+  arm64: dts: mt8192: Add video-codec nodes
 
->>> +
->>> +             domain-idle-states {
->>> +                     CLUSTER_SLEEP_0: cluster-sleep-0 {
->>> +                             compatible = "domain-idle-state";
->>> +                             idle-state-name = "cluster-power-collapse";
->>> +                             arm,psci-suspend-param = <0x41000043>;
->>> +                             entry-latency-us = <800>;
->>> +                             exit-latency-us = <2118>;
->>> +                             min-residency-us = <7376>;
->> These values vary per cluster, see qcom,pm-cluster-level@2 in the
->> file linked above.. We should either split that, or at least take
->> max() of each value between the two nodes to make sure the sleep
->> state is exited properly on both types of cores.
-> 
-> Ack to both the above observations. Will send a fixed v2 shortly.
-In doing so, please also add support for D3G cluster sleep states
-as well, it sounds beneficial to have a middleground between a total
-power collapse and a simple wfi.
+Yunfei Dong (3):
+  media: dt-bindings: media: mediatek: vcodec: adapt to the
+    'clock-names' of different platforms
+  media: dt-bindings: media: mediatek: vcodec: Change the max reg value
+    to 2
+  arm64: dts: mt8195: Add video decoder node
 
-Konrad
-> 
-> Thanks,
-> Bhupesh
-> 
->>> +                     };
->>> +             };
->>>       };
->>>
->>>       firmware {
->>> @@ -191,6 +242,59 @@ pmu {
->>>       psci {
->>>               compatible = "arm,psci-1.0";
->>>               method = "smc";
->>> +
->>> +             CPU_PD0: power-domain-cpu0 {
->>> +                     #power-domain-cells = <0>;
->>> +                     power-domains = <&CLUSTER_PD>;
->>> +                     domain-idle-states = <&LITTLE_CPU_SLEEP_0>;
->>> +             };
->>> +
->>> +             CPU_PD1: power-domain-cpu1 {
->>> +                     #power-domain-cells = <0>;
->>> +                     power-domains = <&CLUSTER_PD>;
->>> +                     domain-idle-states = <&LITTLE_CPU_SLEEP_0>;
->>> +             };
->>> +
->>> +             CPU_PD2: power-domain-cpu2 {
->>> +                     #power-domain-cells = <0>;
->>> +                     power-domains = <&CLUSTER_PD>;
->>> +                     domain-idle-states = <&LITTLE_CPU_SLEEP_0>;
->>> +             };
->>> +
->>> +             CPU_PD3: power-domain-cpu3 {
->>> +                     #power-domain-cells = <0>;
->>> +                     power-domains = <&CLUSTER_PD>;
->>> +                     domain-idle-states = <&LITTLE_CPU_SLEEP_0>;
->>> +             };
->>> +
->>> +             CPU_PD4: power-domain-cpu4 {
->>> +                     #power-domain-cells = <0>;
->>> +                     power-domains = <&CLUSTER_PD>;
->>> +                     domain-idle-states = <&BIG_CPU_SLEEP_0>;
->>> +             };
->>> +
->>> +             CPU_PD5: power-domain-cpu5 {
->>> +                     #power-domain-cells = <0>;
->>> +                     power-domains = <&CLUSTER_PD>;
->>> +                     domain-idle-states = <&BIG_CPU_SLEEP_0>;
->>> +             };
->>> +
->>> +             CPU_PD6: power-domain-cpu6 {
->>> +                     #power-domain-cells = <0>;
->>> +                     power-domains = <&CLUSTER_PD>;
->>> +                     domain-idle-states = <&BIG_CPU_SLEEP_0>;
->>> +             };
->>> +
->>> +             CPU_PD7: power-domain-cpu7 {
->>> +                     #power-domain-cells = <0>;
->>> +                     power-domains = <&CLUSTER_PD>;
->>> +                     domain-idle-states = <&BIG_CPU_SLEEP_0>;
->>> +             };
->>> +
->>> +             CLUSTER_PD: power-domain-cpu-cluster0 {
->>> +                     #power-domain-cells = <0>;
->>> +                     domain-idle-states = <&CLUSTER_SLEEP_0>;
->>> +             };
->>>       };
->>>
->>>       reserved_memory: reserved-memory {
+ .../media/mediatek,vcodec-subdev-decoder.yaml | 113 +++++++-----------
+ arch/arm64/boot/dts/mediatek/mt8192.dtsi      |  59 +++++++++
+ arch/arm64/boot/dts/mediatek/mt8195.dtsi      |  70 +++++++++++
+ 3 files changed, 173 insertions(+), 69 deletions(-)
+
+-- 
+2.18.0
+
