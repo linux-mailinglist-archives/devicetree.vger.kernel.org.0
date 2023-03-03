@@ -2,112 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 97CA66A90BB
-	for <lists+devicetree@lfdr.de>; Fri,  3 Mar 2023 07:04:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AA1A36A90C1
+	for <lists+devicetree@lfdr.de>; Fri,  3 Mar 2023 07:05:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229820AbjCCGEX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 3 Mar 2023 01:04:23 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50274 "EHLO
+        id S229561AbjCCGFQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 3 Mar 2023 01:05:16 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51272 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229608AbjCCGEW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Mar 2023 01:04:22 -0500
-Received: from mail-oa1-x2d.google.com (mail-oa1-x2d.google.com [IPv6:2001:4860:4864:20::2d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B6C3D16895;
-        Thu,  2 Mar 2023 22:04:18 -0800 (PST)
-Received: by mail-oa1-x2d.google.com with SMTP id 586e51a60fabf-17671fb717cso406493fac.8;
-        Thu, 02 Mar 2023 22:04:18 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112; t=1677823458;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=A7cWEU8HBpDT1/6MmuaACtH+747N38odJNoAvMZIW4s=;
-        b=HvMhQ+C++OAaROBUVGxijhPsBRIWJ2d22Q39MiHLywKs7Fyuzr9ikuCa20DuiD2SjY
-         cgDQ57q2ESmg6yGM2J00VxQGgLPb93w+O4hPPqVRcsqVUJmwEtGy02Y7G9ehQzIys/CB
-         mC82JiZeAxRlo+UlyYpLqWf6q48BwHIOOPpia8lt4mVDUjn5RVW4T9DRKcI0Xxz+FXbo
-         YC6BwvTCCuIavWR8B5SZhO9tuDm7ejZrjP5TP1WXU1kk+LM6UrFOtjpWucI4M86qjuU3
-         yNXd+5hTfawTOw0g3zKIxcqtQzHuPQnwnKyjsvHcI+i4Z3NkXox/gw+0XDFEae/+fzfp
-         +f5A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1677823458;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=A7cWEU8HBpDT1/6MmuaACtH+747N38odJNoAvMZIW4s=;
-        b=ewaoL0Zy7jgULVJ8DcdlzMzz4eYXtU4HmxaHE2J8Pyib0QhCKhgi63aE4fw6NCZl+s
-         Ocf0KN2QSsW6JltKk6UCKWlNx+bubZaEoPFXB4yDTuf7iYksioAGxo3gVlkbdrsuS4CI
-         XLACQeqpZxu1sM7rmqUdPIYtr0CNGuuh2YJ9Ax7pxQaJXajPN+Gzpnyc9o/86HY3dyyg
-         wHbxwYqkDR/lb3ZpHQDkZ6l8qa9Qbd+cqsZOoq9VM+/zKZQ6P5QFifOMgNe6tmyDEq4e
-         Ta+EkLush73Tu8+ddX8TPLEurHXVDjRRLtrE8pa3aCzOsBGeQxJhDp2N/EgsC726IQye
-         UdJA==
-X-Gm-Message-State: AO0yUKWmWcgz7ETx8a+XElUQYotJed+GwFb+NyeLe0IhWYosYX/ZVJzd
-        Ng9rJpdLVQ0r/ofsHkLD8yUvXUj2Knb0nQ+pUdg=
-X-Google-Smtp-Source: AK7set8poKz9lmsr4x7Pzww0rh+JcHA/O5B1fvAZHniZfyEHHNU5hGFb/a4ovY5xGj1iTGUZoY9D+1fIUZNTHc0x+J8=
-X-Received: by 2002:a05:6870:8c2f:b0:176:45a7:1ec0 with SMTP id
- ec47-20020a0568708c2f00b0017645a71ec0mr252872oab.2.1677823453219; Thu, 02 Mar
- 2023 22:04:13 -0800 (PST)
+        with ESMTP id S229452AbjCCGFQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Mar 2023 01:05:16 -0500
+Received: from ex01.ufhost.com (ex01.ufhost.com [61.152.239.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BFD471ADE4;
+        Thu,  2 Mar 2023 22:05:12 -0800 (PST)
+Received: from EXMBX165.cuchost.com (unknown [175.102.18.54])
+        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+        (Client CN "EXMBX165", Issuer "EXMBX165" (not verified))
+        by ex01.ufhost.com (Postfix) with ESMTP id 84A4E24E1C9;
+        Fri,  3 Mar 2023 14:05:04 +0800 (CST)
+Received: from EXMBX162.cuchost.com (172.16.6.72) by EXMBX165.cuchost.com
+ (172.16.6.75) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Fri, 3 Mar
+ 2023 14:05:04 +0800
+Received: from [192.168.125.80] (113.72.145.171) by EXMBX162.cuchost.com
+ (172.16.6.72) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Fri, 3 Mar
+ 2023 14:05:03 +0800
+Message-ID: <7e525c7d-d534-adba-4aea-a485ba37bcc7@starfivetech.com>
+Date:   Fri, 3 Mar 2023 14:05:01 +0800
 MIME-Version: 1.0
-References: <20230303002850.51858-1-arinc.unal@arinc9.com> <20230303002850.51858-5-arinc.unal@arinc9.com>
- <CAMhs-H9qVE0Z23Z3J8D1voo5UaKZrjUYU=7V=oRMd8=vVGASAg@mail.gmail.com>
-In-Reply-To: <CAMhs-H9qVE0Z23Z3J8D1voo5UaKZrjUYU=7V=oRMd8=vVGASAg@mail.gmail.com>
-From:   Sergio Paracuellos <sergio.paracuellos@gmail.com>
-Date:   Fri, 3 Mar 2023 07:04:01 +0100
-Message-ID: <CAMhs-H9kPMsaMHJx703qSS4fxZh_KyGib+VKf9DfP0s085O3Mg@mail.gmail.com>
-Subject: Re: [PATCH 04/20] pinctrl: ralink: mt7620: split out to mt76x8
-To:     arinc9.unal@gmail.com
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.8.0
+Subject: Re: [PATCH v2 0/3] Add JH7110 MIPI DPHY RX support
+To:     Vinod Koul <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>,
-        linux-mediatek@lists.infradead.org, linux-mips@vger.kernel.org,
-        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Sean Wang <sean.wang@kernel.org>,
-        William Dean <williamsukatube@gmail.com>,
-        Daniel Golle <daniel@makrotopia.org>,
-        Daniel Santos <daniel.santos@pobox.com>,
-        Luiz Angelo Daros de Luca <luizluca@gmail.com>,
-        Frank Wunderlich <frank-w@public-files.de>,
-        Landen Chao <Landen.Chao@mediatek.com>,
-        DENG Qingfang <dqfext@gmail.com>,
-        Sean Wang <sean.wang@mediatek.com>, erkin.bozoglu@xeront.com
+        Emil Renner Berthing <kernel@esmil.dk>,
+        Conor Dooley <conor@kernel.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Philipp Zabel <p.zabel@pengutronix.de>
+CC:     Jack Zhu <jack.zhu@starfivetech.com>,
+        <linux-phy@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-riscv@lists.infradead.org>
+References: <20230223015952.201841-1-changhuang.liang@starfivetech.com>
+Content-Language: en-US
+From:   Changhuang Liang <changhuang.liang@starfivetech.com>
+In-Reply-To: <20230223015952.201841-1-changhuang.liang@starfivetech.com>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [113.72.145.171]
+X-ClientProxiedBy: EXCAS066.cuchost.com (172.16.6.26) To EXMBX162.cuchost.com
+ (172.16.6.72)
+X-YovoleRuleAgent: yovoleflag
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Mar 3, 2023 at 7:03 AM Sergio Paracuellos
-<sergio.paracuellos@gmail.com> wrote:
->
-> On Fri, Mar 3, 2023 at 1:30 AM <arinc9.unal@gmail.com> wrote:
-> >
-> > From: Ar=C4=B1n=C3=A7 =C3=9CNAL <arinc.unal@arinc9.com>
-> >
-> > Split the driver out to pinctrl-mt76x8.c. Remove including the unnecess=
-ary
-> > headers since is_mt76x8() is not being used anymore.
-> >
-> > Introduce a new compatible string to be able to document the pin muxing
-> > information properly.
-> >
-> > Signed-off-by: Ar=C4=B1n=C3=A7 =C3=9CNAL <arinc.unal@arinc9.com>
-> > ---
-> >  drivers/pinctrl/ralink/Kconfig          |   5 +
-> >  drivers/pinctrl/ralink/Makefile         |   1 +
-> >  drivers/pinctrl/ralink/pinctrl-mt7620.c | 257 +--------------------
-> >  drivers/pinctrl/ralink/pinctrl-mt76x8.c | 283 ++++++++++++++++++++++++
-> >  4 files changed, 290 insertions(+), 256 deletions(-)
-> >  create mode 100644 drivers/pinctrl/ralink/pinctrl-mt76x8.c
 
-Reviewed-by: Sergio Paracuellos <sergio.paracuellos@gmail.com>
 
-Thanks,
-    Sergio Paracuellos
+On 2023/2/23 9:59, Changhuang Liang wrote:
+> This patchset adds mipi dphy rx driver for the StarFive JH7110 SoC.
+> It is used to transfer CSI camera data. The series has been tested on
+> the VisionFive 2 board.
+> 
+> This patchset should be applied after the patchset [1] and patch [2]:
+> [1] https://lore.kernel.org/all/20230221083323.302471-1-xingyu.wu@starfivetech.com/
+> [2] https://lore.kernel.org/all/20230215113249.47727-4-william.qiu@starfivetech.com/
+> 
+Hi, Vinod and Kishon
+
+Could you please help to review and give me some suggestions
+for this patch series? Thank you for your time.
+
+Best regards,
+Changhuang
