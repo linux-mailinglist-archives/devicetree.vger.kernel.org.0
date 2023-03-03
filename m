@@ -2,59 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B579A6A94B5
-	for <lists+devicetree@lfdr.de>; Fri,  3 Mar 2023 11:02:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3F5F26A94B8
+	for <lists+devicetree@lfdr.de>; Fri,  3 Mar 2023 11:03:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229938AbjCCKCU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 3 Mar 2023 05:02:20 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45488 "EHLO
+        id S229615AbjCCKDY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 3 Mar 2023 05:03:24 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47802 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230075AbjCCKCS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Mar 2023 05:02:18 -0500
-Received: from mail-ed1-x52f.google.com (mail-ed1-x52f.google.com [IPv6:2a00:1450:4864:20::52f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 03C545C107
-        for <devicetree@vger.kernel.org>; Fri,  3 Mar 2023 02:02:17 -0800 (PST)
-Received: by mail-ed1-x52f.google.com with SMTP id i34so8059882eda.7
-        for <devicetree@vger.kernel.org>; Fri, 03 Mar 2023 02:02:16 -0800 (PST)
+        with ESMTP id S229702AbjCCKDX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Mar 2023 05:03:23 -0500
+Received: from mail-ed1-x530.google.com (mail-ed1-x530.google.com [IPv6:2a00:1450:4864:20::530])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4D6BDB465
+        for <devicetree@vger.kernel.org>; Fri,  3 Mar 2023 02:03:19 -0800 (PST)
+Received: by mail-ed1-x530.google.com with SMTP id g3so8197739eda.1
+        for <devicetree@vger.kernel.org>; Fri, 03 Mar 2023 02:03:19 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1677837735;
+        d=linaro.org; s=google; t=1677837798;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=hEweQgAYTFTI5lRg9e3VihMmMHbzOsZa8+jPeRmAFV4=;
-        b=sc3u9LlO/XdKRkWyyz49VTzI1aK1BNDAuPVN3ZvX/yyIjSOwiCYrZfmz2ZEL07k+rQ
-         2/dgkYPACoseyZloA6wBD6BMlpDii1laL3W0Il7OT1oGle0KseSbTiaL/paXZfd666JJ
-         hbJv2Wb4Ep5Ob1t0Y9iIA797jr1N/QPOvvPg/VyYdu6SKzKQDSK6XDh71ntInPjAGRuG
-         MgaoqRASTqGuKRG5g32BNh6BktBRvJRaSslg3wYAStvtFxtx54ndisKnVKzRIPe2w0of
-         0p9MPLrb5ndjV9vjuCNi96Bq5xtMfZ3kSXFmyzI8R+nqnX8yK932ZgTR2JqjBA4tErpW
-         Gpfw==
+        bh=WGynNVbD7bhkWPwRtuZIYOHNAiw3+RAyPRyR/rq0hI8=;
+        b=VjgNgQ+PXlb5wUU5dejz2Qxr4CGfcx/bQdtSCAQdAMhZdnOzBw0J3daRW72B7iJxpZ
+         ajjqZmYGkvzf2QBKSq2mnQDMQVLU7N5EagsBph+MHzrcT8iliCj7OxzRobdSc8Mt/RPl
+         AoG1Qm/RoBpAaw6JfnYzhbrgSNqY14CQL3FVtEnoeg52uvlxp1rRextD7Sn/lPcAWaNf
+         YgPE6em9pkE+NAdNnPWcgmRl08zrVjv9I1SZ7FiJ7ucKhaSiwlPuyLvKmIp94GRi5MRD
+         Ts5tzXE8Eyv4r9rz6vwc1FNqa3uZfs77mYTgc3SYNDCEnpFhFYUNuTAvLsOhYufbb+Dg
+         EETA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1677837735;
+        d=1e100.net; s=20210112; t=1677837798;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=hEweQgAYTFTI5lRg9e3VihMmMHbzOsZa8+jPeRmAFV4=;
-        b=fhZZ/cQJnK/vX/jMhxsDL5wI8CxGGMNjy0xus3KksFW+Kh7Hqs6eDTGw0+bFfnLeb0
-         I1jUERRCMnN+bEJ1S0OPb6yHvDJ2SPeFd9Q52GtUVlFwRGeFA32WoTCUpsblGdV44OMT
-         /sVfW2BJgWBwPVxhSnRcYCf4C9J7tsGs+LbXaxczOpzuUQlGexKUnFOWcDM6k/AAByyH
-         9egUHZQkWD32hj+KNrPwrRbWyB9Ha+2E1Ww9EM1p/7aSKCYxjluf+279ep8QlIEMoMF6
-         ZYeZrnE4/mQlIjJb5wvlU/YIZDV17xqvZ0ZDDQ2dPyBQ2w3WG+T3XHI9ijcO+VZ7g9oS
-         2Qiw==
-X-Gm-Message-State: AO0yUKVIJRAlGXxHkjcUJC+TnZn5AvtEjfg22zNMon4fcJWMcmDXwBjD
-        3NsqazctFhi818a4zPxE2DQ2Jg==
-X-Google-Smtp-Source: AK7set8N788FOZy8TJzMOhbmGsv6nTKqhz1lIxT9d9otKAYpRa0Fv06gvACL+GXzj++IZk4PqdKoVw==
-X-Received: by 2002:a17:907:97d3:b0:883:b1b4:e798 with SMTP id js19-20020a17090797d300b00883b1b4e798mr1263546ejc.10.1677837734553;
-        Fri, 03 Mar 2023 02:02:14 -0800 (PST)
+        bh=WGynNVbD7bhkWPwRtuZIYOHNAiw3+RAyPRyR/rq0hI8=;
+        b=BZ6/gRDmaA6RJQMxX36WnR1u/KGWTelSS5juR7H7nwF7xah5upnNzGBArkUIJqR0cF
+         9rFc1Ax2I7rcfd/DQ8GilDqMa6QxqLbILh+iDUYtwhHwh31X2bCjwggdKftbTISSN8yw
+         WmlMzQ9gRB5Pxnkg91wYuIHSo4OF7v+NGY+HP7sRJfj6eNN6o3lLhWxhAd5biygd9xGL
+         nFzkyxySqeF9ebJgr6IUfu6QdTAlbhjihcWAS2tDKg2rfslKmXCE5q6v7YI0UV1pkPPr
+         bOFy7vG+swjpxnL0sKKLLRMP3Ayic1jlV2COqyZ64An/cYpoDAWuczMZQCZlPFfXWZql
+         OqJA==
+X-Gm-Message-State: AO0yUKWGhbpoa9UUM+rivEHe9Z40ft3U4+6efKtV4SGe4K88pkQJuI/E
+        VglUUWfc/VLMGuWAeNxOQRnTIg==
+X-Google-Smtp-Source: AK7set+f5KN1QCsYanUNAi4iOL3ckk1ezCxnW6vJXk9YRqpogTv4LrmnjTkEvCsDrXYw6ylDPdbgMw==
+X-Received: by 2002:a17:906:207:b0:8f3:8bfd:a8e with SMTP id 7-20020a170906020700b008f38bfd0a8emr1029393ejd.26.1677837797763;
+        Fri, 03 Mar 2023 02:03:17 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id o18-20020a170906769200b008dedf1359a0sm782626ejm.104.2023.03.03.02.02.12
+        by smtp.gmail.com with ESMTPSA id o6-20020a17090611c600b008b17eb06282sm770154eja.213.2023.03.03.02.03.16
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 03 Mar 2023 02:02:14 -0800 (PST)
-Message-ID: <b5aab510-30ff-0294-315d-509d88853eb1@linaro.org>
-Date:   Fri, 3 Mar 2023 11:02:12 +0100
+        Fri, 03 Mar 2023 02:03:17 -0800 (PST)
+Message-ID: <0b8adbf1-aae2-e773-1c11-5d8de0c54b8a@linaro.org>
+Date:   Fri, 3 Mar 2023 11:03:15 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.8.0
-Subject: Re: [PATCH 7/9] dt-bindings: crypto: drop fsl-sec4 txt binding
+Subject: Re: [PATCH 8/9] dt-bindings: crypto: fsl-sec4-snvs: add snvs-lpgpr
+ support
 Content-Language: en-US
 To:     "Peng Fan (OSS)" <peng.fan@oss.nxp.com>,
         herbert@gondor.apana.org.au, davem@davemloft.net,
@@ -66,9 +67,9 @@ Cc:     kernel@pengutronix.de, stefan@agner.ch,
         linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
         Peng Fan <peng.fan@nxp.com>
 References: <20230301015702.3388458-1-peng.fan@oss.nxp.com>
- <20230301015702.3388458-8-peng.fan@oss.nxp.com>
+ <20230301015702.3388458-9-peng.fan@oss.nxp.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230301015702.3388458-8-peng.fan@oss.nxp.com>
+In-Reply-To: <20230301015702.3388458-9-peng.fan@oss.nxp.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -84,13 +85,25 @@ X-Mailing-List: devicetree@vger.kernel.org
 On 01/03/2023 02:57, Peng Fan (OSS) wrote:
 > From: Peng Fan <peng.fan@nxp.com>
 > 
-> Since we have convert it to two DT schema, fsl-sec4.yaml and
-> fsl-sec4-snvs.yaml, this txt binding could be removed.
+> Add snvs-lpgpr support for fsl-sec4-snvs
 > 
 > Signed-off-by: Peng Fan <peng.fan@nxp.com>
+> ---
+>  .../bindings/crypto/fsl-sec4-snvs.yaml        | 19 +++++++++++++++++++
+>  1 file changed, 19 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/crypto/fsl-sec4-snvs.yaml b/Documentation/devicetree/bindings/crypto/fsl-sec4-snvs.yaml
+> index 1a4b4975e1d9..688057ec5c97 100644
+> --- a/Documentation/devicetree/bindings/crypto/fsl-sec4-snvs.yaml
+> +++ b/Documentation/devicetree/bindings/crypto/fsl-sec4-snvs.yaml
+> @@ -124,6 +124,25 @@ properties:
+>        - compatible
+>        - interrupts
+>  
+> +  snvs-lpgpr:
+> +    type: object
 
-No. Conversion includes parts of removal. Don't split logical commits.
-It also makes review difficult.
+Why not ref to that binding? Much less code...
 
 Best regards,
 Krzysztof
