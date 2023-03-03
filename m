@@ -2,73 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AFC426A9627
-	for <lists+devicetree@lfdr.de>; Fri,  3 Mar 2023 12:27:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E1F196A9631
+	for <lists+devicetree@lfdr.de>; Fri,  3 Mar 2023 12:28:49 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229659AbjCCL1u (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 3 Mar 2023 06:27:50 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40068 "EHLO
+        id S230374AbjCCL2s (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 3 Mar 2023 06:28:48 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42008 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229788AbjCCL1s (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Mar 2023 06:27:48 -0500
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2CE875F23C;
-        Fri,  3 Mar 2023 03:27:09 -0800 (PST)
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits))
-        (No client certificate requested)
-        (Authenticated sender: kholk11)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id 9EC3F6602FA9;
-        Fri,  3 Mar 2023 11:27:06 +0000 (GMT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1677842827;
-        bh=YOdiyVocRWnKoCPWq5cS5mp6lxsznD1YBZVANJrjgDg=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=Pbdy4W83JDrysdCy2zlShbtAWdRXZ/9EwWDFFhHJQo0HyMjzyYIpcLaAHEKFpu8sn
-         MgBHsniXEVNPi4GYMMnXoL1hWM3KvwocnZYa8W6nzNthRzHEMrT7S09NtrjyLnXnkB
-         x+I/CyEyAIavT+gySa+ytdEIx++H6DnU08vjTphFpsJVlcDC9A0uGtMnURfcNOodKe
-         hiRgZt3W7XSliUxgspg3dIudXBTzIhAuf4+DYb8uDaNXvehhcjEm17hZfyw0phUVzv
-         MNn1V0rBrlnbFzePwIh6i5GQYNxt1Zhv8PNHH/HLOkXndL/zb57GfRspeVTYTQhY6X
-         b009/OeqvObeA==
-Message-ID: <030d17eb-ca0e-866c-623e-3fa31a1a3aec@collabora.com>
-Date:   Fri, 3 Mar 2023 12:27:04 +0100
+        with ESMTP id S230187AbjCCL2r (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Mar 2023 06:28:47 -0500
+Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 951FF5F20B
+        for <devicetree@vger.kernel.org>; Fri,  3 Mar 2023 03:28:25 -0800 (PST)
+Received: by mail-lf1-x136.google.com with SMTP id r27so3121663lfe.10
+        for <devicetree@vger.kernel.org>; Fri, 03 Mar 2023 03:28:25 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1677842904;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=zIEyfJHn9nwX9v5jkEb3Mml1NwAILd6wX1VPBLhmV8k=;
+        b=L6JrqYu+FyX5oZB7UCc86qvZC2nGgX2c0s3VWm/Ol7LDmz1ju31M98rBuL2TNdKjsB
+         WMoaBX9a86UgVUcos9lD+PLW3VcOcArV9NKna5AxRx8G/QRUfenjOlRMpLltoE/nu9Vf
+         AqeohNQohxiH59X0XZbenYk2f8PmgsIfwTcYQObyyJ+sBF0Qktjri8klyiMav4m/O90z
+         4a1AR2IkLLz/Ral6esb6Nj7quE6UmqP8Fal4N7ZI0UqT0Az/5tQ8RFMY2oj3eqNdCmiH
+         RG8qIrwL/9pZmMfw6sr3mKsFm5JJ9VPgiJL521lmEmvZUA8VbXVsauAdqNL1Yh+1kxKa
+         fovA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1677842904;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=zIEyfJHn9nwX9v5jkEb3Mml1NwAILd6wX1VPBLhmV8k=;
+        b=uWXmyJI3t13N1FgIqxBnWG7LaWwHloRRM83rhUTjsETcLUgeiLQmCd1FutetL3Vbc/
+         q6gidJinG7t4sSHVzE0fZvm4bxyUqOgjOLb4/9fkh5p6iVuPVaRt+0bknzf/pElEny3c
+         PGYCqQgilIi06skBw1SVm1dRouSgfWK2kVy2VM1WbPZO3uxtNsnYckP5ORga6mA+yAPv
+         0qxo7sNCjM0jyw6v553hqVwwRV3hpLvNZzw8pjOsS1d88N+F0jgu6u+jF6T3bKN8kXmo
+         oDgUog0e0xwOYx8SY5wXhoE+KJ6chaa+iObd2DNoBK35jAYb9KNHpo9gT72L8eqLu/KC
+         exng==
+X-Gm-Message-State: AO0yUKX926zhTTHh09KpLwJAI/6y1qXeOGN4xNm6o2wbLlxZtUooVAwL
+        QW4ZFG9w+OHEpIQtxqY9Xy/kQw==
+X-Google-Smtp-Source: AK7set8gz3IR0Ej3BL25630lurVOHrKBX4z4hGn4Nl4VSby22cKKgVQ5pRWxNONwUeLQRHQOXiHCwA==
+X-Received: by 2002:ac2:490f:0:b0:4cc:a166:e27f with SMTP id n15-20020ac2490f000000b004cca166e27fmr478998lfi.3.1677842903780;
+        Fri, 03 Mar 2023 03:28:23 -0800 (PST)
+Received: from [192.168.1.101] (abym99.neoplus.adsl.tpnet.pl. [83.9.32.99])
+        by smtp.gmail.com with ESMTPSA id u13-20020ac251cd000000b004d0b1327b75sm354945lfm.61.2023.03.03.03.28.22
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 03 Mar 2023 03:28:23 -0800 (PST)
+Message-ID: <41665c73-1647-2cb2-bd33-8dc281a97ee5@linaro.org>
+Date:   Fri, 3 Mar 2023 12:28:21 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.8.0
-Subject: Re: [PATCH v3 1/7] arm64: dts: mediatek: mt8186: Add MTU3 nodes
+Subject: Re: [PATCH 1/2] dt-bindings: ath10k: Add vdd-smps supply
 Content-Language: en-US
-To:     Allen-KH Cheng <allen-kh.cheng@mediatek.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        linux-arm-msm@vger.kernel.org, andersson@kernel.org,
+        agross@kernel.org
+Cc:     marijn.suijten@somainline.org, Kalle Valo <kvalo@kernel.org>,
+        "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Stephen Boyd <sboyd@kernel.org>
-Cc:     Project_Global_Chrome_Upstream_Group@mediatek.com,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org,
-        hsinyi@chromium.org
-References: <20230303031728.24251-1-allen-kh.cheng@mediatek.com>
- <20230303031728.24251-2-allen-kh.cheng@mediatek.com>
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20230303031728.24251-2-allen-kh.cheng@mediatek.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+        ath10k@lists.infradead.org, linux-wireless@vger.kernel.org,
+        netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20230303024246.2175382-1-konrad.dybcio@linaro.org>
+ <8e695c64-6abd-3c1e-8d80-de636d950442@linaro.org>
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <8e695c64-6abd-3c1e-8d80-de636d950442@linaro.org>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 03/03/23 04:17, Allen-KH Cheng ha scritto:
-> Add MTU3 nodes for MT8186 SoC.
+
+
+On 3.03.2023 08:12, Krzysztof Kozlowski wrote:
+> On 03/03/2023 03:42, Konrad Dybcio wrote:
+>> Mention the newly added vdd-smps supply.
 > 
-> Signed-off-by: Allen-KH Cheng <allen-kh.cheng@mediatek.com>
-> Tested-by: Chen-Yu Tsai <wenst@chromium.org>
+> There is no explanation here, but looking at your driver change it
+> suggests name is not correct. You named it based on regulator (so the
+> provider), not the consumer.
 
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Right, I admit this could have been posted with an RFC tag.
+Maybe Kalle knows more.
 
-
+Konrad
+> 
+> Best regards,
+> Krzysztof
+> 
