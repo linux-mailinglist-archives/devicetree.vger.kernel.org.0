@@ -2,65 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 315E16A9262
-	for <lists+devicetree@lfdr.de>; Fri,  3 Mar 2023 09:27:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E43246A9268
+	for <lists+devicetree@lfdr.de>; Fri,  3 Mar 2023 09:28:51 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230060AbjCCI1d (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 3 Mar 2023 03:27:33 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48430 "EHLO
+        id S229555AbjCCI2t (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 3 Mar 2023 03:28:49 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50606 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230072AbjCCI1c (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Mar 2023 03:27:32 -0500
-Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 885BA59E69
-        for <devicetree@vger.kernel.org>; Fri,  3 Mar 2023 00:26:45 -0800 (PST)
-Received: by mail-ed1-x535.google.com with SMTP id i34so7156891eda.7
-        for <devicetree@vger.kernel.org>; Fri, 03 Mar 2023 00:26:45 -0800 (PST)
+        with ESMTP id S229821AbjCCI2s (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Mar 2023 03:28:48 -0500
+Received: from mail-ed1-x52e.google.com (mail-ed1-x52e.google.com [IPv6:2a00:1450:4864:20::52e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 113E2193FE
+        for <devicetree@vger.kernel.org>; Fri,  3 Mar 2023 00:28:27 -0800 (PST)
+Received: by mail-ed1-x52e.google.com with SMTP id s11so7156536edy.8
+        for <devicetree@vger.kernel.org>; Fri, 03 Mar 2023 00:28:26 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1677831935;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=HyTodj56FVVqhB5c72IpvxIoMGzVGBFIiqS+7BLcwRs=;
-        b=cb6HTUr90ZeIec3XCIRPoVl0Om6XbL+EWUr+qgcdLkYIIt07IF9MQMbdi1YPALUzJi
-         /01hBbiNUfMBWoedTodqr/gQyv08sY7Zt98iXyTpcdWja0PUmPW3cJvU5lMkaKiwPEgr
-         Kr3mriZxe5Ar9xk3hGE0Lf3SyP0eS0zwmflLiLVOG4muqMHCW1zR+rhGu+doKrkBu7x4
-         Vaq39UU3ynCDWPHhghesn133FDh1udNi4LghvK+gCWQmcBbiYRKmtfZAd+JVJ8N3m5Ej
-         5PaGlFnWFaVNX9Sm1RKUNrb8C81bME1MdZ7uemlr+OTA/P2oWlzWESlTJ+0bqAF64bBU
-         IX3Q==
+        d=linaro.org; s=google; t=1677832105;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=NNoh7Y1eCqw1vILTrX20qgBsgHaoKEZRgMQ7Y2gIJPo=;
+        b=TFZ/47LHMyE5A2PfNGsk2pMHpoLlfD+CLOyn7J57fS5+aqQBd8LdoKsTUkmufj55dZ
+         5JG74u7zawpRBTIXLULjRMfc3ZLmuMtsA3Lu9I+fj5yLdMTt2Dpob2UzqK/vQ4fRF3Be
+         Ohwpi7u2xVkLvopc0D0HwFEuR59z9yfiGUIxD6aNf4XRgOJTWbTRBMOcaM4bWtwP/Fxr
+         IoX9rsGvL9/5IB0EDLyoDYeoAR7Tc/PL2YEVbfJUXOP9yFUIs6iFOANuDWqf6+XCOR/S
+         gT4ggcGE+o+o7gvPLKH5+VXfkJkn+JVc29OEFdhZsVfRbO1//IknXAKmihP+kpjhxEt6
+         /JPA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1677831935;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=HyTodj56FVVqhB5c72IpvxIoMGzVGBFIiqS+7BLcwRs=;
-        b=axEXsQFq8O3grKJTM7pCuQqEqrOgfVL9OlDxzKgpR+0ZBMyyyBxY8XPiSA3IDC8o5w
-         t4o6BtBJqYPKhN8swsz+fsMl1YQMFE4ATRAFRYNmlEYtCMNRoCVc8P3EtRX2DcJ0656x
-         zzSNLuZa5A1+zZtoyDL0/TENQvZSkgBwtUFHuuj5MhxbZmzKHMWh4j3O3KrkyauckbNS
-         v47l23NjWHRGTkEFEv8Q1OpgBMaJe0EQNGHwiqeQ+36RZ0E94HCAVymNVBlvtgsJc6/u
-         sMNYTdzMDr7QPYd6HsGVhdHvIw+k0Deao9KWeriC948j/PwN6TUMXqsndxIgnppFw8Z5
-         3Eiw==
-X-Gm-Message-State: AO0yUKVuroJy3IPFPBQUmknGia1KY5pOg+WO9HvNbjTpHp8JcjSv67EM
-        hb6YnbnvAvLhjBngVhCltJexgg==
-X-Google-Smtp-Source: AK7set+VbKb9r3ebORu6DSpPn4N5ouxZuYyjkpqSCLyLcLXhWrpUN7190MNQC3BEKVni3GKLKvcYKg==
-X-Received: by 2002:a05:6402:3447:b0:4c3:6d95:7337 with SMTP id l7-20020a056402344700b004c36d957337mr946759edc.25.1677831935022;
-        Fri, 03 Mar 2023 00:25:35 -0800 (PST)
-Received: from krzk-bin.. ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id m30-20020a50d7de000000b004c13fe8fabfsm848576edj.84.2023.03.03.00.25.33
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 03 Mar 2023 00:25:34 -0800 (PST)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Wolfram Sang <wsa@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH] MAINTAINERS: i2c: include all I2C bindings in the I2C entry
-Date:   Fri,  3 Mar 2023 09:25:30 +0100
-Message-Id: <20230303082530.11878-1-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.34.1
+        d=1e100.net; s=20210112; t=1677832105;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=NNoh7Y1eCqw1vILTrX20qgBsgHaoKEZRgMQ7Y2gIJPo=;
+        b=BB4CMyGAeJ9konL5RyYFjPUG7iNqQpkqh5w4mlr0IF0ey6xf8m2vNEB51c5dmQEelG
+         PALj3fNDtjkGmUzBqNQiCtrqmykwsxU29Kf4jCog8UB1iejMiE6wkt48lEzpGqTa8O6D
+         AyABx5w6CYuQRl/ymoTqxKVz3QSBxI7RrdAfvDqcB2eHmYAaGeNiFo0mbrgWhpbTglKZ
+         XqiNZAKyXBLWaz4qRB3BZNmSLkS4JKcACVq2QELcnbWLUs+8GIaMZNcMHhDTkoxvPBiY
+         1f95L9/N0p2TA39udMJhWYOHOP+URGawYQF3HscefW0XN02UsIpBKfymuOo5//80QOug
+         5+Pw==
+X-Gm-Message-State: AO0yUKWYWUldsCt9/HXmL3/pwGC0YcnM9J0CXZQtuspNiq/aPzrbDdEz
+        c8yqCk1tveZlBZQ2SpNg/YUfIw==
+X-Google-Smtp-Source: AK7set8JDCyuD/jVEdIdZMzgRpBie4AkpO5CKfVjB2ToMCxzT2bGHuZqG7hjF2gthEYJRlfjPM0geg==
+X-Received: by 2002:a17:906:ee8d:b0:86f:d0c9:4bdd with SMTP id wt13-20020a170906ee8d00b0086fd0c94bddmr1115380ejb.27.1677832105526;
+        Fri, 03 Mar 2023 00:28:25 -0800 (PST)
+Received: from [192.168.1.20] ([178.197.216.144])
+        by smtp.gmail.com with ESMTPSA id f21-20020a50d555000000b004c059535b43sm883895edj.31.2023.03.03.00.28.23
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 03 Mar 2023 00:28:25 -0800 (PST)
+Message-ID: <6a950a51-fe90-9163-b73d-0a396d7187ee@linaro.org>
+Date:   Fri, 3 Mar 2023 09:28:22 +0100
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.8.0
+Subject: Re: [PATCH v9 3/5] dt-bindings: clock: meson: add A1 PLL clock
+ controller bindings
+Content-Language: en-US
+To:     Dmitry Rokosov <ddrokosov@sberdevices.ru>,
+        neil.armstrong@linaro.org, jbrunet@baylibre.com,
+        mturquette@baylibre.com, sboyd@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, khilman@baylibre.com,
+        martin.blumenstingl@googlemail.com
+Cc:     jian.hu@amlogic.com, kernel@sberdevices.ru, rockosov@gmail.com,
+        linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+References: <20230301183759.16163-1-ddrokosov@sberdevices.ru>
+ <20230301183759.16163-4-ddrokosov@sberdevices.ru>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230301183759.16163-4-ddrokosov@sberdevices.ru>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -69,29 +82,125 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-I2C subsystem maintainer entry should also cover all I2C device
-bindings, not only the common part of them, because:
-1. The bindings usually go via subsystem maintainer tree,
-2. The maintainer might know the domain better.
+On 01/03/2023 19:37, Dmitry Rokosov wrote:
+> Add the documentation for Amlogic A1 PLL clock driver, and A1 PLL
+> clock controller bindings.
+> Also include new A1 clock controller dt bindings to MAINTAINERS.
+> 
+> Signed-off-by: Jian Hu <jian.hu@amlogic.com>
+> Signed-off-by: Dmitry Rokosov <ddrokosov@sberdevices.ru>
+> ---
+>  .../bindings/clock/amlogic,a1-pll-clkc.yaml   | 59 +++++++++++++++++++
+>  MAINTAINERS                                   |  1 +
+>  include/dt-bindings/clock/a1-pll-clkc.h       | 20 +++++++
+>  3 files changed, 80 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/clock/amlogic,a1-pll-clkc.yaml
+>  create mode 100644 include/dt-bindings/clock/a1-pll-clkc.h
+> 
+> diff --git a/Documentation/devicetree/bindings/clock/amlogic,a1-pll-clkc.yaml b/Documentation/devicetree/bindings/clock/amlogic,a1-pll-clkc.yaml
+> new file mode 100644
+> index 000000000000..8bd2c948df86
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/clock/amlogic,a1-pll-clkc.yaml
+> @@ -0,0 +1,59 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/clock/amlogic,a1-pll-clkc.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Amlogic Meson A/C serials PLL Clock Control Unit
+> +
+> +maintainers:
+> +  - Neil Armstrong <neil.armstrong@linaro.org>
+> +  - Jerome Brunet <jbrunet@baylibre.com>
+> +  - Jian Hu <jian.hu@jian.hu.com>
+> +  - Dmitry Rokosov <ddrokosov@sberdevices.ru>
+> +
+> +properties:
+> +  compatible:
+> +    const: amlogic,a1-pll-clkc
+> +
+> +  '#clock-cells':
+> +    const: 1
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    items:
+> +      - description: input fixpll_in
+> +      - description: input hifipll_in
+> +
+> +  clock-names:
+> +    items:
+> +      - const: fixpll_in
+> +      - const: hifipll_in
+> +
+> +required:
+> +  - compatible
+> +  - '#clock-cells'
+> +  - reg
+> +  - clocks
+> +  - clock-names
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/clock/a1-clkc.h>
 
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
----
- MAINTAINERS | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Does not look like you tested the bindings. Please run `make
+dt_binding_check` (see
+Documentation/devicetree/bindings/writing-schema.rst for instructions).
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 4cbe823f3545..661e1c7e28f3 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -9585,7 +9585,7 @@ S:	Maintained
- W:	https://i2c.wiki.kernel.org/
- Q:	https://patchwork.ozlabs.org/project/linux-i2c/list/
- T:	git git://git.kernel.org/pub/scm/linux/kernel/git/wsa/linux.git
--F:	Documentation/devicetree/bindings/i2c/i2c.txt
-+F:	Documentation/devicetree/bindings/i2c/
- F:	Documentation/i2c/
- F:	drivers/i2c/*
- F:	include/dt-bindings/i2c/i2c.h
--- 
-2.34.1
+> +    apb {
+> +        #address-cells = <2>;
+> +        #size-cells = <2>;
+> +
+> +        clock-controller@7c80 {
+> +            compatible = "amlogic,a1-pll-clkc";
+> +            reg = <0 0x7c80 0 0x18c>;
+> +            #clock-cells = <1>;
+> +            clocks = <&clkc_periphs CLKID_FIXPLL_IN>,
+> +                     <&clkc_periphs CLKID_HIFIPLL_IN>;
+> +            clock-names = "fixpll_in", "hifipll_in";
+> +        };
+> +    };
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index 39ff1a717625..8438bc9bd636 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -1895,6 +1895,7 @@ L:	linux-amlogic@lists.infradead.org
+>  S:	Maintained
+>  F:	Documentation/devicetree/bindings/clock/amlogic*
+>  F:	drivers/clk/meson/
+> +F:	include/dt-bindings/clock/a1*
+>  F:	include/dt-bindings/clock/gxbb*
+>  F:	include/dt-bindings/clock/meson*
+>  
+> diff --git a/include/dt-bindings/clock/a1-pll-clkc.h b/include/dt-bindings/clock/a1-pll-clkc.h
+
+Filename matching bindings, so amlogic,a1-pll-clkc.h
+
+> new file mode 100644
+> index 000000000000..3a559518c6e6
+> --- /dev/null
+> +++ b/include/dt-bindings/clock/a1-pll-clkc.h
+> @@ -0,0 +1,20 @@
+> +/* SPDX-License-Identifier: (GPL-2.0+ OR MIT) */
+
+Any particular reason for using license other than in binding? Was it
+intentional (e.g. because it is derivative work)?
+
+> +/*
+> + * Copyright (c) 2019 Amlogic, Inc. All rights reserved.
+> + * Author: Jian Hu <jian.hu@amlogic.com>
+> + *
+> + * Copyright (c) 2023, SberDevices. All Rights Reserved.
+> + * Author: Dmitry Rokosov <ddrokosov@sberdevices.ru>
+
+
+Best regards,
+Krzysztof
 
