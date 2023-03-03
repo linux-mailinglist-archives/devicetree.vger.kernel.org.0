@@ -2,71 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E6F9C6A8E4D
-	for <lists+devicetree@lfdr.de>; Fri,  3 Mar 2023 01:49:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E185E6A8E59
+	for <lists+devicetree@lfdr.de>; Fri,  3 Mar 2023 01:52:30 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229502AbjCCAs6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 2 Mar 2023 19:48:58 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36182 "EHLO
+        id S229453AbjCCAw3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 2 Mar 2023 19:52:29 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39444 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229552AbjCCAss (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Mar 2023 19:48:48 -0500
-Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3B864166D1
-        for <devicetree@vger.kernel.org>; Thu,  2 Mar 2023 16:48:46 -0800 (PST)
-Received: by mail-lf1-x130.google.com with SMTP id s20so1541738lfb.11
-        for <devicetree@vger.kernel.org>; Thu, 02 Mar 2023 16:48:46 -0800 (PST)
+        with ESMTP id S229698AbjCCAw2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Mar 2023 19:52:28 -0500
+Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 714EF460A4
+        for <devicetree@vger.kernel.org>; Thu,  2 Mar 2023 16:52:26 -0800 (PST)
+Received: by mail-lf1-x12d.google.com with SMTP id n2so1546122lfb.12
+        for <devicetree@vger.kernel.org>; Thu, 02 Mar 2023 16:52:26 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1677804524;
+        d=linaro.org; s=google; t=1677804745;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=g47XOfqIXPkQMg71PkE7DzCjUvdWFH0DgrcS34td7Co=;
-        b=fdbbJhBW2+uvzmJhzQqzt4BgJb4DujrRU47JnUORcVpjv7MqscGt4E03Lb0nUTuaXM
-         6Q024tYyRVPNuNfcaLt78AgS6OF+Xr94k4bLlVVhBYAv0QkXEHc9RqwcnUUL0Hpu53FI
-         hdpMmxIKXGO1SyFeceeZE+/+WkF0cxasJuIYwaRHLl+QAXrKt8/fDUx4by6VFp7wiy+m
-         pX8aOrdru0a/EhncNSs+LdbrZoUxXhHxsG4SvqIzkzMNwA/D/1NrASwS42Nc+6UkS9dg
-         2ri0Hs9y3eKsFHPV9Rzay5Xwi8JtxEvfP355hGQUBsuQ4lVdpMBUJOPzCg0EuB77t2og
-         bbLw==
+        bh=rZoQPzOS2F9b1yxfwL5mradqTzXKrqqaGNTBFehgjNs=;
+        b=hOYY7G3r3eoFxOayDXp1ljtkIDBo2YAQlVKR+ey3Bwx0FLxageIxe2To/6W6wTJafq
+         fXGd9NLdbPdwNg2k+hzFGwytVz0RD/5czqZkX41usbaCWvH6vVRnV8l4DyYRZHYHB47Z
+         95ronfSfXdKqG4DUnYCsc8hNzSVU4fhNN+iqQ7tLEilJqsRMw/wuNp+smbQ/2uulaJLu
+         NC/lvAq213/U70QfI4umXOlA7q6RAA1ROkwz4XCXGEhL5ouZQ7A8H6OpMG0IzkzQr2z6
+         QVcEkPdMlITsEerSCPuPhXrECn48FklyFW+Rod2Gc25zssSdYaGkyYT8HMzcS2iYtfse
+         CR3w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1677804524;
+        d=1e100.net; s=20210112; t=1677804745;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=g47XOfqIXPkQMg71PkE7DzCjUvdWFH0DgrcS34td7Co=;
-        b=R5jso2C58kVLxB/HgMSGbCGtwoNUvwqWrUqgvVathy7SKotAAPKYSK6s5oHUW8oF6U
-         kpZFZAxgd4+9OXMuK3Y76prfMvolcPa0RZk1lSJw8DD5ooB2bY4Km4BAQ5RsJBiRYkd/
-         JCnK1C+66dnFLhIxTmqicO21hI7aStedrE4gdFpF6oXbzyk+gXT4fhGqZOI2Z9kUBGDZ
-         PSFDzQukNcXnTe99AtKgrVdFrqo1B6yZ7URc8LczXTEzuLPsc1pNf075E9dftrcgH+ku
-         NoKUV9ty0z+feOD2GXbeEgHqs6pHxhh8OslTf1Pyr709PfqrTXzGNaY9YK6KIRRjdxHG
-         T82Q==
-X-Gm-Message-State: AO0yUKW4JJK1miZJMOpJsEfnzsaTiSN0+a6SK9/F/0mnEnFT2oOPkqmf
-        FRSTHZebap0T/YKZVBdz6m+JZA==
-X-Google-Smtp-Source: AK7set/YNUcS82YI7uO90LDx8Hq3KifrZ8RGQCEhiaKfz50dnn7BBBZFfSH/FCqVoovYtl+LgvamUQ==
-X-Received: by 2002:a19:c511:0:b0:4dd:9ddc:4461 with SMTP id w17-20020a19c511000000b004dd9ddc4461mr41665lfe.17.1677804524510;
-        Thu, 02 Mar 2023 16:48:44 -0800 (PST)
+        bh=rZoQPzOS2F9b1yxfwL5mradqTzXKrqqaGNTBFehgjNs=;
+        b=Vc+BkZfrDmVpR3HKn2sENX7be8bYTUXkqAA6NhdoF74jhCG/f0vc3Mq/KXt83KZgva
+         qBo38scDpM1SLjR6hLAQ+B05h1TtzUKxh2uRM0GBMBcK+YiFMAEYqMn2EAduxSnF0x18
+         7oqwgFyI9ZrGHAD1d4K+uPmdWXA0uSgij2eYUWVZ48N2K2l0ns9tpB0RRnQix6sIr91y
+         Wvo5kfvWTl7baMIqwLSY9O4oKHcWAvl7PzynzZEZwG4rKpQGWZXU+a6ROzQ1DoER4aCU
+         jLFzzdOqTd8tfmwSphNKl7k6S/HLcDWdnJo4Uxr1ab4tjfBp3/H1KBfX2qgrcqCoc0pK
+         p52g==
+X-Gm-Message-State: AO0yUKXZidB2fln7Uy0xHTGGfusYQ62rZv7IgmtfDd4byQ7f9M03SNve
+        CZN5z7+wtZSGjrqefDuwfhr2kw==
+X-Google-Smtp-Source: AK7set+sCyp6NFtgrZvO+Sb5lPOEZUsTYXsadh7hvF1COMV0pmgSyFkHfMdk2RsGzw8bTDixtgXhDw==
+X-Received: by 2002:ac2:5a06:0:b0:4dc:260e:6b59 with SMTP id q6-20020ac25a06000000b004dc260e6b59mr45267lfn.40.1677804744648;
+        Thu, 02 Mar 2023 16:52:24 -0800 (PST)
 Received: from [192.168.1.101] (abym99.neoplus.adsl.tpnet.pl. [83.9.32.99])
-        by smtp.gmail.com with ESMTPSA id y23-20020a197517000000b004db4fa67bf1sm151236lfe.157.2023.03.02.16.48.43
+        by smtp.gmail.com with ESMTPSA id f14-20020ac2532e000000b004ab52b0bcf9sm149765lfh.207.2023.03.02.16.52.23
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 02 Mar 2023 16:48:44 -0800 (PST)
-Message-ID: <9f56fb51-d4c6-8c14-76b2-c07959d3cc36@linaro.org>
-Date:   Fri, 3 Mar 2023 01:48:42 +0100
+        Thu, 02 Mar 2023 16:52:24 -0800 (PST)
+Message-ID: <94587945-eff6-8912-f08b-cac2453a1035@linaro.org>
+Date:   Fri, 3 Mar 2023 01:52:22 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.8.0
-Subject: Re: [PATCH v2 2/4] arm64: dts: qcom: sc7180: Delete kingoftown-rev0
+Subject: Re: [PATCH 1/2] arm64: dts: qcom: msm8976: Add and provide xo clk to
+ rpmcc
 Content-Language: en-US
-To:     Douglas Anderson <dianders@chromium.org>,
-        Bjorn Andersson <andersson@kernel.org>
-Cc:     mka@chromium.org, swboyd@chromium.org,
+To:     Adam Skladowski <a39.skl@gmail.com>
+Cc:     phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
         Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20230302211108.2129598-1-dianders@chromium.org>
- <20230302131031.v2.2.I68cbe5d5d45074428469da8c52f1d6a78bdc62fc@changeid>
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Marijn Suijten <marijn.suijten@somainline.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20230302123051.12440-1-a39.skl@gmail.com>
 From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20230302131031.v2.2.I68cbe5d5d45074428469da8c52f1d6a78bdc62fc@changeid>
+In-Reply-To: <20230302123051.12440-1-a39.skl@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -81,136 +85,50 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 
 
-On 2.03.2023 22:11, Douglas Anderson wrote:
-> The earliest kingoftown that I could find in my pile of boards was
-> -rev2 and even that revision looks pretty rough (plastics on the case
-> are very unfinished). Though I don't actually have details about how
-> many -rev0 devices were produced, I can't imagine anyone still using
-> one. Let's delete support.
+On 2.03.2023 13:30, Adam Skladowski wrote:
+> In order for consumers of RPMCC XO clock to probe successfully
+> their parent needs to be feed with reference clock to obtain proper rate,
+> add fixed xo-board clock and supply it to rpmcc to make consumers happy.
+> Frequency setting is left per board basis just like on other recent trees.
 > 
-> Signed-off-by: Douglas Anderson <dianders@chromium.org>
+> Fixes: 0484d3ce0902 ("arm64: dts: qcom: Add DTS for MSM8976 and MSM8956 SoCs")
+> Signed-off-by: Adam Skladowski <a39.skl@gmail.com>
 > ---
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+So your commit message suggests that this commit does not
+actually fix the problem, but lays the groundwork for it..
+
+I'd say squashing these two into a single one would make more sense,
+as if somebody was bisecting something and landed on this one, there
+would be little hope in getting a boot if what you said holds.
 
 Konrad
+>  arch/arm64/boot/dts/qcom/msm8976.dtsi | 9 +++++++++
+>  1 file changed, 9 insertions(+)
 > 
-> Changes in v2:
-> - Get rid of kingoftown.dtsi and merge into dts (Konrad)
-> 
->  arch/arm64/boot/dts/qcom/Makefile             |  3 +-
->  .../dts/qcom/sc7180-trogdor-kingoftown-r0.dts | 38 -------------------
->  .../dts/qcom/sc7180-trogdor-kingoftown-r1.dts | 17 ---------
->  ...own.dtsi => sc7180-trogdor-kingoftown.dts} | 10 ++++-
->  4 files changed, 10 insertions(+), 58 deletions(-)
->  delete mode 100644 arch/arm64/boot/dts/qcom/sc7180-trogdor-kingoftown-r0.dts
->  delete mode 100644 arch/arm64/boot/dts/qcom/sc7180-trogdor-kingoftown-r1.dts
->  rename arch/arm64/boot/dts/qcom/{sc7180-trogdor-kingoftown.dtsi => sc7180-trogdor-kingoftown.dts} (95%)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
-> index a51060378ddc..3ce51093ed8f 100644
-> --- a/arch/arm64/boot/dts/qcom/Makefile
-> +++ b/arch/arm64/boot/dts/qcom/Makefile
-> @@ -83,8 +83,7 @@ dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-coachz-r3-lte.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-homestar-r2.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-homestar-r3.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-homestar-r4.dtb
-> -dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-kingoftown-r0.dtb
-> -dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-kingoftown-r1.dtb
-> +dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-kingoftown.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-lazor-r0.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-lazor-r1.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-lazor-r1-kb.dtb
-> diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-kingoftown-r0.dts b/arch/arm64/boot/dts/qcom/sc7180-trogdor-kingoftown-r0.dts
-> deleted file mode 100644
-> index 3abd6222fe46..000000000000
-> --- a/arch/arm64/boot/dts/qcom/sc7180-trogdor-kingoftown-r0.dts
-> +++ /dev/null
-> @@ -1,38 +0,0 @@
-> -// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-> -/*
-> - * Google Kingoftown board device tree source
-> - *
-> - * Copyright 2021 Google LLC.
-> - */
-> -
-> -/dts-v1/;
-> -
-> -#include "sc7180-trogdor.dtsi"
-> -#include "sc7180-trogdor-ti-sn65dsi86.dtsi"
-> -#include "sc7180-trogdor-kingoftown.dtsi"
-> -
-> -/ {
-> -	model = "Google Kingoftown (rev0)";
-> -	compatible = "google,kingoftown-rev0", "qcom,sc7180";
-> -};
-> -
-> -/*
-> - * In rev1+, the enable pin of pp3300_fp_tp will be tied to pp1800_l10a
-> - * power rail instead, since kingoftown does not have FP.
-> - */
-> -&pp3300_fp_tp {
-> -	gpio = <&tlmm 74 GPIO_ACTIVE_HIGH>;
-> -	enable-active-high;
-> -
-> -	pinctrl-names = "default";
-> -	pinctrl-0 = <&en_fp_rails>;
-> -};
-> -
-> -&tlmm {
-> -	en_fp_rails: en-fp-rails-state {
-> -		pins = "gpio74";
-> -		function = "gpio";
-> -		drive-strength = <2>;
-> -		bias-disable;
-> -	};
-> -};
-> diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-kingoftown-r1.dts b/arch/arm64/boot/dts/qcom/sc7180-trogdor-kingoftown-r1.dts
-> deleted file mode 100644
-> index e0752ba7df11..000000000000
-> --- a/arch/arm64/boot/dts/qcom/sc7180-trogdor-kingoftown-r1.dts
-> +++ /dev/null
-> @@ -1,17 +0,0 @@
-> -// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-> -/*
-> - * Google Kingoftown board device tree source
-> - *
-> - * Copyright 2021 Google LLC.
-> - */
-> -
-> -/dts-v1/;
-> -
-> -#include "sc7180-trogdor.dtsi"
-> -#include "sc7180-trogdor-parade-ps8640.dtsi"
-> -#include "sc7180-trogdor-kingoftown.dtsi"
-> -
-> -/ {
-> -	model = "Google Kingoftown (rev1+)";
-> -	compatible = "google,kingoftown", "qcom,sc7180";
-> -};
-> diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-kingoftown.dtsi b/arch/arm64/boot/dts/qcom/sc7180-trogdor-kingoftown.dts
-> similarity index 95%
-> rename from arch/arm64/boot/dts/qcom/sc7180-trogdor-kingoftown.dtsi
-> rename to arch/arm64/boot/dts/qcom/sc7180-trogdor-kingoftown.dts
-> index 315ac5eb5f78..36326ef972dc 100644
-> --- a/arch/arm64/boot/dts/qcom/sc7180-trogdor-kingoftown.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-kingoftown.dts
-> @@ -5,10 +5,18 @@
->   * Copyright 2021 Google LLC.
->   */
+> diff --git a/arch/arm64/boot/dts/qcom/msm8976.dtsi b/arch/arm64/boot/dts/qcom/msm8976.dtsi
+> index 2d360d05aa5e..e55baafd9efd 100644
+> --- a/arch/arm64/boot/dts/qcom/msm8976.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/msm8976.dtsi
+> @@ -20,6 +20,13 @@ / {
 >  
-> -/* This file must be included after sc7180-trogdor.dtsi */
-> +/dts-v1/;
-> +
-> +#include "sc7180-trogdor.dtsi"
-> +#include "sc7180-trogdor-parade-ps8640.dtsi"
->  #include <arm/cros-ec-keyboard.dtsi>
->  #include "sc7180-trogdor-lte-sku.dtsi"
+>  	chosen { };
 >  
-> +/ {
-> +	model = "Google Kingoftown";
-> +	compatible = "google,kingoftown", "qcom,sc7180";
-> +};
+> +	clocks {
+> +		xo_board: xo-board {
+> +			compatible = "fixed-clock";
+> +			#clock-cells = <0>;
+> +		};
+> +	};
 > +
->  &alc5682 {
->  	compatible = "realtek,rt5682s";
->  	/delete-property/ VBAT-supply;
+>  	cpus {
+>  		#address-cells = <1>;
+>  		#size-cells = <0>;
+> @@ -351,6 +358,8 @@ rpm_requests: rpm-requests {
+>  
+>  				rpmcc: clock-controller {
+>  					compatible = "qcom,rpmcc-msm8976", "qcom,rpmcc";
+> +					clocks = <&xo_board>;
+> +					clock-names = "xo";
+>  					#clock-cells = <1>;
+>  				};
+>  
