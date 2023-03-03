@@ -2,151 +2,216 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 69D6C6A8E23
-	for <lists+devicetree@lfdr.de>; Fri,  3 Mar 2023 01:31:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 09F596A8E46
+	for <lists+devicetree@lfdr.de>; Fri,  3 Mar 2023 01:48:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229688AbjCCAbS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 2 Mar 2023 19:31:18 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42548 "EHLO
+        id S229720AbjCCAsH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 2 Mar 2023 19:48:07 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35236 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230167AbjCCAbD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Mar 2023 19:31:03 -0500
-Received: from mail-lj1-x22d.google.com (mail-lj1-x22d.google.com [IPv6:2a00:1450:4864:20::22d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5F688580EC;
-        Thu,  2 Mar 2023 16:30:43 -0800 (PST)
-Received: by mail-lj1-x22d.google.com with SMTP id b10so814937ljr.0;
-        Thu, 02 Mar 2023 16:30:43 -0800 (PST)
+        with ESMTP id S229437AbjCCAsG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Mar 2023 19:48:06 -0500
+Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EF7785BB0
+        for <devicetree@vger.kernel.org>; Thu,  2 Mar 2023 16:48:02 -0800 (PST)
+Received: by mail-lf1-x12a.google.com with SMTP id i9so1579259lfc.6
+        for <devicetree@vger.kernel.org>; Thu, 02 Mar 2023 16:48:02 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112; t=1677803443;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=q22B9e4AqGn4ANGF/h7CdR30XMlPsngwjkL2VZrpA2A=;
-        b=iTZYC1pHzt6hop7ZrN+oW7oTwwJQJiF+dFkFpN5vu/3aKsHaWel3EHdLG09y5nphIu
-         uRUOnkF4wS5N+88RDJw0cVqLWnetxnh0jGe4wQXYKgsBiiz3KQza3H5s7Q3xZ3Ec5nnd
-         Kt5BGDqDxP/hkjOEHEB4YRcHf8VDrU+X0CzUg4NSyZRluZ+0sKgrPZYH3ii1chXUB9An
-         j/+mcHqGX8wUBJX9CL12leiAV9jL+ayEMFcPtQDjNfdpp8PqlIdEiuTUwWjiDcPkCpcf
-         KCPTRgiEojYcW/N9KRfg175ODAp+7XxTncZsC0kXBSOupFOP93Nwe6Qor6pMW4mAsgOR
-         zWZw==
+        d=linaro.org; s=google; t=1677804481;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=3cyGxW8ui97HVK3mUGfF7ZKUtT+dnfhOrXubMs7ap9o=;
+        b=uuu6ybV2zUDTsLjHM2g9jFlT36/H0snddZivYWBVkCHmmHkEy3M4p2bN62toiU+EwT
+         XhNSuzrYrT8zLHPbrCPyudO3IVf+CEl93kECNbIzyIz0vwngk2aN8H865ENfNWCadLTl
+         WX58XiyUQj4aAQMFjjssB1rPVf4jZxsa3RvP2ChuJZq48narMg2XeUxKFhHWVjMwivEo
+         dQ3q7JwKmAx72F/lpVh4sYsmxBzsJsEvm5fbgNKI8FRBsO02R7wo2b1oSUagKxerBFW0
+         UY+C8Va2OrBZBiMoC1WTMF3x/Ii5pTi56WRimnLhqCJidWzM/PRYdh+LSihjpVfGzxmy
+         ES/Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1677803443;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=q22B9e4AqGn4ANGF/h7CdR30XMlPsngwjkL2VZrpA2A=;
-        b=4BpaF9p+kYFWK6MGI+c5iZl4Gn412X32Ypsav9vXiCxbuqUf/sHEqPpP2KWbE+imXp
-         O+mQM2UfwA7UijTK2g2jOOw88M4djuOw3tKMAi46PQleRVhGI/pROnIC96D+0EUvUcex
-         04x3U+YeG5Mx9z+vK1MZnArYX5LnVyB1pLDLP7Tj3f+lnOuNi098orre+Qrkwgc3K4aS
-         xCzQfv6pBfns+PGwlRxEj7i53/DOjkMRk31ub38ue2A96lW+UJiZLnER2CB/FR2eHMNi
-         0pONtqz2bS8CSkteNqsfeuRTL/zyt4zB+19Z1UryvjQ7/AamUwze77W3mh1/MqWpw83+
-         rwGQ==
-X-Gm-Message-State: AO0yUKX9/ZpL8I91QbBeYVj+sX7RClKod4sdlDK8DY2mmkdqrCaJpile
-        iohp319Vt/f52OXTlxgY+zZpvKGXHT3gTO+s
-X-Google-Smtp-Source: AK7set+iJs4ye68oj0zjVinNre8fXa8aH/Htsp9voOCx+O/PIEzx/7p22PjVOe1fKlfXS+hLPSg9gQ==
-X-Received: by 2002:a2e:a0d4:0:b0:295:a8cc:f15a with SMTP id f20-20020a2ea0d4000000b00295a8ccf15amr3553070ljm.29.1677803442926;
-        Thu, 02 Mar 2023 16:30:42 -0800 (PST)
-Received: from arinc9-PC.lan ([212.68.60.226])
-        by smtp.gmail.com with ESMTPSA id v19-20020a2e9f53000000b002932b817990sm64901ljk.31.2023.03.02.16.30.40
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 02 Mar 2023 16:30:42 -0800 (PST)
-From:   arinc9.unal@gmail.com
-X-Google-Original-From: arinc.unal@arinc9.com
-To:     Linus Walleij <linus.walleij@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     =?UTF-8?q?Ar=C4=B1n=C3=A7=20=C3=9CNAL?= <arinc.unal@arinc9.com>,
-        linux-mediatek@lists.infradead.org, linux-mips@vger.kernel.org,
-        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Sergio Paracuellos <sergio.paracuellos@gmail.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Sean Wang <sean.wang@kernel.org>,
-        William Dean <williamsukatube@gmail.com>,
-        Daniel Golle <daniel@makrotopia.org>,
-        Daniel Santos <daniel.santos@pobox.com>,
-        Luiz Angelo Daros de Luca <luizluca@gmail.com>,
-        Frank Wunderlich <frank-w@public-files.de>,
-        Landen Chao <Landen.Chao@mediatek.com>,
-        DENG Qingfang <dqfext@gmail.com>,
-        Sean Wang <sean.wang@mediatek.com>, erkin.bozoglu@xeront.com
-Subject: [PATCH 20/20] MAINTAINERS: move ralink pinctrl to mediatek mips pinctrl
-Date:   Fri,  3 Mar 2023 03:28:49 +0300
-Message-Id: <20230303002850.51858-21-arinc.unal@arinc9.com>
-X-Mailer: git-send-email 2.37.2
-In-Reply-To: <20230303002850.51858-1-arinc.unal@arinc9.com>
-References: <20230303002850.51858-1-arinc.unal@arinc9.com>
+        d=1e100.net; s=20210112; t=1677804481;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=3cyGxW8ui97HVK3mUGfF7ZKUtT+dnfhOrXubMs7ap9o=;
+        b=lBaGc1YQlL0wP4I86JxeFVy3rucZKTE9h18AJ24CfuY4old1SoqUqXR3RLu8rFTOCN
+         q32LE6CcP9d4dWLvv0h2YIPypjxGaoXCPQ1jTs3ed5iAt1W+gtePkkQiy/jg/E/1vtln
+         0eqp2NgoeAWP0UQYCzbxgtGNX1cZKZrnE9Cv6zuV8ldHV70c3C3Cv2CHLMpmkCCWLNAm
+         K2TYJm4UGSbOKIXkUZ/5cARY0KNsrP0mEUoA3QDXOi4ZOg/zdQY+yy9s/kgjddhZDSq0
+         x4S0f2IpdQ2f1hQjVx1tGfYiIBkMiidLLya+r80uyr0IksE0BCY9A3bGy1/r+TZX8QCA
+         OzMg==
+X-Gm-Message-State: AO0yUKXqam9HUTpCctb/3ifRRKNnbruqf5Qyi5phw4IW/8zktufeoHeC
+        +3HuVb7mYzpNcUoiooiFps1goA==
+X-Google-Smtp-Source: AK7set+KwQBLeRXWjuE4ZSIgisZlKnZ6wxOYXxkoXh3hxONhHEQ/gUKnBJPyOYDaV3GLvdIqEq7FCw==
+X-Received: by 2002:a19:a416:0:b0:4e1:8309:1db5 with SMTP id q22-20020a19a416000000b004e183091db5mr56628lfc.2.1677804481071;
+        Thu, 02 Mar 2023 16:48:01 -0800 (PST)
+Received: from [192.168.1.101] (abym99.neoplus.adsl.tpnet.pl. [83.9.32.99])
+        by smtp.gmail.com with ESMTPSA id x14-20020a19f60e000000b004d5a720e689sm151078lfe.126.2023.03.02.16.47.59
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 02 Mar 2023 16:48:00 -0800 (PST)
+Message-ID: <0a4683b9-0f33-ab19-e4dc-c99f90b04f33@linaro.org>
+Date:   Fri, 3 Mar 2023 01:47:58 +0100
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.8.0
+Subject: Re: [PATCH v2 1/4] arm64: dts: qcom: sc7180: Delete wormdingler-rev0
+To:     Douglas Anderson <dianders@chromium.org>,
+        Bjorn Andersson <andersson@kernel.org>
+Cc:     mka@chromium.org, swboyd@chromium.org,
+        Andy Gross <agross@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20230302211108.2129598-1-dianders@chromium.org>
+ <20230302131031.v2.1.Id0cd5120469eb200118c0c7b8ee8209f877767b4@changeid>
+Content-Language: en-US
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <20230302131031.v2.1.Id0cd5120469eb200118c0c7b8ee8209f877767b4@changeid>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Arınç ÜNAL <arinc.unal@arinc9.com>
 
-The Ralink pinctrl driver is now under the name of MediaTek MIPS pin
-controller. Move the maintainer information accordingly. Add dt-binding
-schema files. Add linux-mediatek@lists.infradead.org as an associated
-mailing list.
 
-Signed-off-by: Arınç ÜNAL <arinc.unal@arinc9.com>
----
- MAINTAINERS | 29 ++++++++++++++++++++++-------
- 1 file changed, 22 insertions(+), 7 deletions(-)
+On 2.03.2023 22:11, Douglas Anderson wrote:
+> The earliest wormdingler I could find in my pile of hardware is
+> -rev1. I believe that -rev0 boards were just distributed as a pile of
+> components with no case. At this point I can't imagine anyone needing
+> to make wormdingler-rev0 work, so let's delete support for it.
+> 
+> Signed-off-by: Douglas Anderson <dianders@chromium.org>
+> ---
+Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 8a851eb053ca..83fa1e9651ef 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -16541,6 +16541,28 @@ F:	Documentation/devicetree/bindings/pinctrl/mediatek,mt7622-pinctrl.yaml
- F:	Documentation/devicetree/bindings/pinctrl/mediatek,mt8183-pinctrl.yaml
- F:	drivers/pinctrl/mediatek/
- 
-+PIN CONTROLLER - MEDIATEK MIPS
-+M:	Arınç ÜNAL <arinc.unal@arinc9.com>
-+M:	Sergio Paracuellos <sergio.paracuellos@gmail.com>
-+L:	linux-mediatek@lists.infradead.org (moderated for non-subscribers)
-+L:	linux-mips@vger.kernel.org
-+S:	Maintained
-+F:	Documentation/devicetree/bindings/pinctrl/mediatek,mt7620-pinctrl.yaml
-+F:	Documentation/devicetree/bindings/pinctrl/mediatek,mt7621-pinctrl.yaml
-+F:	Documentation/devicetree/bindings/pinctrl/mediatek,mt76x8-pinctrl.yaml
-+F:	Documentation/devicetree/bindings/pinctrl/ralink,rt2880-pinctrl.yaml
-+F:	Documentation/devicetree/bindings/pinctrl/ralink,rt305x-pinctrl.yaml
-+F:	Documentation/devicetree/bindings/pinctrl/ralink,rt3352-pinctrl.yaml
-+F:	Documentation/devicetree/bindings/pinctrl/ralink,rt3883-pinctrl.yaml
-+F:	Documentation/devicetree/bindings/pinctrl/ralink,rt5350-pinctrl.yaml
-+F:	drivers/pinctrl/mediatek/pinctrl-mt7620.c
-+F:	drivers/pinctrl/mediatek/pinctrl-mt7621.c
-+F:	drivers/pinctrl/mediatek/pinctrl-mt76x8.c
-+F:	drivers/pinctrl/mediatek/pinctrl-mtmips.*
-+F:	drivers/pinctrl/mediatek/pinctrl-rt2880.c
-+F:	drivers/pinctrl/mediatek/pinctrl-rt305x.c
-+F:	drivers/pinctrl/mediatek/pinctrl-rt3883.c
-+
- PIN CONTROLLER - MICROCHIP AT91
- M:	Ludovic Desroches <ludovic.desroches@microchip.com>
- L:	linux-arm-kernel@lists.infradead.org (moderated for non-subscribers)
-@@ -17486,13 +17508,6 @@ L:	linux-mips@vger.kernel.org
- S:	Maintained
- F:	arch/mips/boot/dts/ralink/mt7621*
- 
--RALINK PINCTRL DRIVER
--M:	Arınç ÜNAL <arinc.unal@arinc9.com>
--M:	Sergio Paracuellos <sergio.paracuellos@gmail.com>
--L:	linux-mips@vger.kernel.org
--S:	Maintained
--F:	drivers/pinctrl/ralink/
--
- RALINK RT2X00 WIRELESS LAN DRIVER
- M:	Stanislaw Gruszka <stf_xl@wp.pl>
- M:	Helmut Schaa <helmut.schaa@googlemail.com>
--- 
-2.37.2
-
+Konrad
+> 
+> Changes in v2:
+> - Also delete "sc7180-trogdor-wormdingler-rev0.dtsi" (Konrad)
+> 
+>  arch/arm64/boot/dts/qcom/Makefile             |  2 --
+>  .../sc7180-trogdor-wormdingler-rev0-boe.dts   | 22 ------------
+>  .../sc7180-trogdor-wormdingler-rev0-inx.dts   | 22 ------------
+>  .../qcom/sc7180-trogdor-wormdingler-rev0.dtsi | 36 -------------------
+>  4 files changed, 82 deletions(-)
+>  delete mode 100644 arch/arm64/boot/dts/qcom/sc7180-trogdor-wormdingler-rev0-boe.dts
+>  delete mode 100644 arch/arm64/boot/dts/qcom/sc7180-trogdor-wormdingler-rev0-inx.dts
+>  delete mode 100644 arch/arm64/boot/dts/qcom/sc7180-trogdor-wormdingler-rev0.dtsi
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
+> index 31aa54f0428c..a51060378ddc 100644
+> --- a/arch/arm64/boot/dts/qcom/Makefile
+> +++ b/arch/arm64/boot/dts/qcom/Makefile
+> @@ -118,8 +118,6 @@ dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-pompom-r3.dtb
+>  dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-pompom-r3-lte.dtb
+>  dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-quackingstick-r0.dtb
+>  dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-quackingstick-r0-lte.dtb
+> -dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-wormdingler-rev0-boe.dtb
+> -dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-wormdingler-rev0-inx.dtb
+>  dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-wormdingler-rev1-boe.dtb
+>  dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-wormdingler-rev1-inx.dtb
+>  dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-wormdingler-rev1-inx-rt5682s.dtb
+> diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-wormdingler-rev0-boe.dts b/arch/arm64/boot/dts/qcom/sc7180-trogdor-wormdingler-rev0-boe.dts
+> deleted file mode 100644
+> index d6ed7d0afe4a..000000000000
+> --- a/arch/arm64/boot/dts/qcom/sc7180-trogdor-wormdingler-rev0-boe.dts
+> +++ /dev/null
+> @@ -1,22 +0,0 @@
+> -// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+> -/*
+> - * Google Wormdingler board device tree source
+> - *
+> - * Copyright 2021 Google LLC.
+> - *
+> - * SKU: 0x10 => 16
+> - *  - bits 7..4: Panel ID: 0x1 (BOE)
+> - */
+> -
+> -/dts-v1/;
+> -
+> -#include "sc7180-trogdor-wormdingler-rev0.dtsi"
+> -
+> -/ {
+> -	model = "Google Wormdingler rev0 BOE panel board";
+> -	compatible = "google,wormdingler-rev0-sku16", "qcom,sc7180";
+> -};
+> -
+> -&panel {
+> -	compatible = "boe,tv110c9m-ll3";
+> -};
+> diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-wormdingler-rev0-inx.dts b/arch/arm64/boot/dts/qcom/sc7180-trogdor-wormdingler-rev0-inx.dts
+> deleted file mode 100644
+> index c03525ea64ca..000000000000
+> --- a/arch/arm64/boot/dts/qcom/sc7180-trogdor-wormdingler-rev0-inx.dts
+> +++ /dev/null
+> @@ -1,22 +0,0 @@
+> -// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+> -/*
+> - * Google Wormdingler board device tree source
+> - *
+> - * Copyright 2021 Google LLC.
+> - *
+> - * SKU: 0x0 => 0
+> - *  - bits 7..4: Panel ID: 0x0 (INX)
+> - */
+> -
+> -/dts-v1/;
+> -
+> -#include "sc7180-trogdor-wormdingler-rev0.dtsi"
+> -
+> -/ {
+> -	model = "Google Wormdingler rev0 INX panel board";
+> -	compatible = "google,wormdingler-rev0-sku0", "qcom,sc7180";
+> -};
+> -
+> -&panel {
+> -	compatible = "innolux,hj110iz-01a";
+> -};
+> diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-wormdingler-rev0.dtsi b/arch/arm64/boot/dts/qcom/sc7180-trogdor-wormdingler-rev0.dtsi
+> deleted file mode 100644
+> index 7f272c6e95f6..000000000000
+> --- a/arch/arm64/boot/dts/qcom/sc7180-trogdor-wormdingler-rev0.dtsi
+> +++ /dev/null
+> @@ -1,36 +0,0 @@
+> -// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+> -/*
+> - * Google Wormdingler board device tree source
+> - *
+> - * Copyright 2021 Google LLC.
+> - *
+> - */
+> -
+> -/dts-v1/;
+> -
+> -#include "sc7180-trogdor-wormdingler.dtsi"
+> -
+> -&avdd_lcd {
+> -	gpio = <&tlmm 80 GPIO_ACTIVE_HIGH>;
+> -};
+> -
+> -&panel {
+> -	enable-gpios = <&tlmm 76 GPIO_ACTIVE_HIGH>;
+> -};
+> -
+> -&v1p8_mipi {
+> -	gpio = <&tlmm 81 GPIO_ACTIVE_HIGH>;
+> -};
+> -
+> -/* PINCTRL - modifications to sc7180-trogdor-wormdingler.dtsi */
+> -&avdd_lcd_en {
+> -	pins = "gpio80";
+> -};
+> -
+> -&mipi_1800_en {
+> -	pins = "gpio81";
+> -};
+> -
+> -&vdd_reset_1800 {
+> -	pins = "gpio76";
+> -};
