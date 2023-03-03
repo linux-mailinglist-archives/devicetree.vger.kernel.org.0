@@ -2,264 +2,153 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DD2AB6A9DBC
-	for <lists+devicetree@lfdr.de>; Fri,  3 Mar 2023 18:31:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4378C6A9CAA
+	for <lists+devicetree@lfdr.de>; Fri,  3 Mar 2023 18:04:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231207AbjCCRbs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 3 Mar 2023 12:31:48 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48918 "EHLO
+        id S231523AbjCCREp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 3 Mar 2023 12:04:45 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50362 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231202AbjCCRbs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Mar 2023 12:31:48 -0500
-Received: from mail-lj1-x235.google.com (mail-lj1-x235.google.com [IPv6:2a00:1450:4864:20::235])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9E9FB58B59
-        for <devicetree@vger.kernel.org>; Fri,  3 Mar 2023 09:31:45 -0800 (PST)
-Received: by mail-lj1-x235.google.com with SMTP id by8so3099680ljb.7
-        for <devicetree@vger.kernel.org>; Fri, 03 Mar 2023 09:31:45 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:message-id:references
-         :in-reply-to:user-agent:subject:cc:to:from:date:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=Lulx79GyAFA+P6dFOCo5Azji9mlKR6wcVUynCnl38KE=;
-        b=JITNzhiSKTtjoAwF8+7ZzK3BFkI2QL7n7qvc8NL4tf2TdDiB42bCjsYe/izBt4P+9P
-         lczExnj88Gk6EJnFrpd+rDJqpJLXZrFWJejHE/41SNNpPSOPSMY/t+ka4b5SsJVrPLHS
-         yP8QlZ4A7u0QnpLqepfRRA6oRNAfFlMSLg9RFndTA4G2xf3m6mlZCv7MgAmlGP0c8oWl
-         i8wFp/FD38t10Lcua1M5QYwo/GKeCH7BrCeFC0Qg6KOLMCMSWiBQE04bFJRqxsde4oFG
-         7xr+53mwxla2EbiKtNRjabsAbACLLZZ8qk5BGu7Xf1wCkEqYOCB87CCuHWnFs7PFvCvc
-         ilNA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:references
-         :in-reply-to:user-agent:subject:cc:to:from:date:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=Lulx79GyAFA+P6dFOCo5Azji9mlKR6wcVUynCnl38KE=;
-        b=Qh0uCiA4rjkmBKuPhJG65f0j/MZExMT/VWMdSMwV8om+G/r++fhxQsyZ1H/wN4TvQU
-         03Fx+d1wBYxIXxERXZB1oJpuQ81Nsqr6tghCMlmhKtAR+0AA0v3b0l8xX/B4xw6P6Oqw
-         Sd0ntg4YwBUg/kqeZQix2C2i7F3Zn5lmOYasOGdIGd0d9O+owuJ93JhDoXCKNyd8fx5I
-         u0D2g3f42K9Z11vBt9KO4QU8UPxak+WugvKr8L3Cks85NsOQRhKZ7EfqVNctTIi57JBK
-         o2QzY6f3SFCi22avYiPekTm5nK5uHT8ExC8fJ+RDEjGPfNXOUtHlirya/TnOgcgYRP4f
-         7ooQ==
-X-Gm-Message-State: AO0yUKVnD33lpdSAGfZb+Xx9OAP/x9twyqNw6PGA8+qLlyNBtYOzUN76
-        m5/RbHVGNe5S1vGptedqdOGoTw==
-X-Google-Smtp-Source: AK7set+TY6SCuyHzL+clUmus/vGmZ+jVnXAk/MpTCOHfN+mCHX0WkFtQ6gXt+GN97vVUzr2U7gu7/g==
-X-Received: by 2002:a2e:b019:0:b0:295:a3a9:a3e4 with SMTP id y25-20020a2eb019000000b00295a3a9a3e4mr848742ljk.45.1677864703905;
-        Fri, 03 Mar 2023 09:31:43 -0800 (PST)
-Received: from [127.0.0.1] (85-76-129-102-nat.elisa-mobile.fi. [85.76.129.102])
-        by smtp.gmail.com with ESMTPSA id f8-20020a2e6a08000000b0029571d2226bsm402252ljc.11.2023.03.03.09.31.42
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 03 Mar 2023 09:31:43 -0800 (PST)
-Date:   Fri, 03 Mar 2023 17:16:58 +0200
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To:     Manivannan Sadhasivam <mani@kernel.org>,
-        Devi Priya <quic_devipriy@quicinc.com>
-CC:     agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
-        lpieralisi@kernel.org, kw@linux.com, robh@kernel.org,
-        bhelgaas@google.com, krzysztof.kozlowski+dt@linaro.org,
-        vkoul@kernel.org, kishon@kernel.org, mturquette@baylibre.com,
-        sboyd@kernel.org, p.zabel@pengutronix.de, svarbanov@mm-sol.com,
-        linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org,
+        with ESMTP id S231474AbjCCREl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Mar 2023 12:04:41 -0500
+Received: from mx0a-001b2d01.pphosted.com (mx0a-001b2d01.pphosted.com [148.163.156.1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 833184201;
+        Fri,  3 Mar 2023 09:04:40 -0800 (PST)
+Received: from pps.filterd (m0098396.ppops.net [127.0.0.1])
+        by mx0a-001b2d01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 323FfsaL007125;
+        Fri, 3 Mar 2023 17:04:22 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=from : to : cc : subject
+ : date : message-id : mime-version : content-transfer-encoding; s=pp1;
+ bh=wq3AH8u5wlweiaiE2n7B66++FFOVcFqeWMITnz01CiY=;
+ b=ozodOT6TRcQgJySAcrbk9EdVJtTEQzbzB/j18GYogVFzRZxF3O0Uox23ayZpLMXiLi8a
+ VXZFh8aKGk17GElAsZpG7sPzPjny9eFsfTrFiE+Pbgbs2gF5ySkgKXD6obknc2xX6q75
+ Ep+ZrwevZ1mk/LCb+bMbYot34GBSlOMY3VIrV1uBFIlMrDtGhLR1QS34KFV1P2XOr6K3
+ 7OWgt02JYghmEDvyKIGpMjDxEjZtXQD+FHsdOMhATQ4hojazNSGkPuZiBxTG3ewVh+CC
+ rTJ9wDTUsYt9IxpkgPfoWqLQeSOv78M1Bbm6RUDuMyeWf332fk2vK0XKaFqC2ZznQotG Yg== 
+Received: from ppma04dal.us.ibm.com (7a.29.35a9.ip4.static.sl-reverse.com [169.53.41.122])
+        by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 3p3krrjbq2-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Fri, 03 Mar 2023 17:04:21 +0000
+Received: from pps.filterd (ppma04dal.us.ibm.com [127.0.0.1])
+        by ppma04dal.us.ibm.com (8.17.1.19/8.17.1.19) with ESMTP id 323Ejvi3005616;
+        Fri, 3 Mar 2023 17:04:20 GMT
+Received: from smtprelay04.dal12v.mail.ibm.com ([9.208.130.102])
+        by ppma04dal.us.ibm.com (PPS) with ESMTPS id 3nybexvx5n-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Fri, 03 Mar 2023 17:04:20 +0000
+Received: from smtpav05.wdc07v.mail.ibm.com (smtpav05.wdc07v.mail.ibm.com [10.39.53.232])
+        by smtprelay04.dal12v.mail.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 323H4JV145285706
+        (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+        Fri, 3 Mar 2023 17:04:19 GMT
+Received: from smtpav05.wdc07v.mail.ibm.com (unknown [127.0.0.1])
+        by IMSVA (Postfix) with ESMTP id 3961558059;
+        Fri,  3 Mar 2023 17:04:19 +0000 (GMT)
+Received: from smtpav05.wdc07v.mail.ibm.com (unknown [127.0.0.1])
+        by IMSVA (Postfix) with ESMTP id 5CCC95805F;
+        Fri,  3 Mar 2023 17:04:17 +0000 (GMT)
+Received: from slate16.aus.stglabs.ibm.com (unknown [9.77.137.234])
+        by smtpav05.wdc07v.mail.ibm.com (Postfix) with ESMTP;
+        Fri,  3 Mar 2023 17:04:17 +0000 (GMT)
+From:   Eddie James <eajames@linux.ibm.com>
+To:     linux-fsi@lists.ozlabs.org
+Cc:     rostedt@goodmis.org, linux-trace-kernel@vger.kernel.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-phy@lists.infradead.org, linux-clk@vger.kernel.org,
-        quic_srichara@quicinc.com, quic_gokulsri@quicinc.com,
-        quic_sjaganat@quicinc.com, quic_kathirav@quicinc.com,
-        quic_arajkuma@quicinc.com, quic_anusha@quicinc.com
-Subject: =?US-ASCII?Q?Re=3A_=5BPATCH_1/7=5D_dt-bindings=3A_PCI=3A_q?= =?US-ASCII?Q?com=3A_Add_IPQ9574_specific_compatible?=
-User-Agent: K-9 Mail for Android
-In-Reply-To: <20230228063358.GA4839@thinkpad>
-References: <20230214164135.17039-1-quic_devipriy@quicinc.com> <20230214164135.17039-2-quic_devipriy@quicinc.com> <20230224082332.GA5443@thinkpad> <bd153038-4427-1f11-1941-5f13fec01cf7@quicinc.com> <20230228063358.GA4839@thinkpad>
-Message-ID: <9BD62D8E-4E14-4269-B72D-C83EF4D43040@linaro.org>
+        mhiramat@kernel.org, alistair@popple.id.au, joel@jms.id.au,
+        jk@ozlabs.org, andrew@aj.id.au, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, eajames@linux.ibm.com
+Subject: [PATCH v7 0/7] fsi: Add IBM I2C Responder virtual FSI master
+Date:   Fri,  3 Mar 2023 11:04:09 -0600
+Message-Id: <20230303170416.1347530-1-eajames@linux.ibm.com>
+X-Mailer: git-send-email 2.31.1
 MIME-Version: 1.0
-Content-Type: text/plain;
- charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-TM-AS-GCONF: 00
+X-Proofpoint-ORIG-GUID: dDjIWwr1Uj2h7H-djzz7F2cpxPEgCJGE
+X-Proofpoint-GUID: dDjIWwr1Uj2h7H-djzz7F2cpxPEgCJGE
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.219,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
+ definitions=2023-03-03_03,2023-03-03_01,2023-02-09_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
+ suspectscore=0 lowpriorityscore=0 phishscore=0 malwarescore=0
+ impostorscore=0 mlxscore=0 adultscore=0 spamscore=0 clxscore=1015
+ mlxlogscore=999 bulkscore=0 classifier=spam adjust=0 reason=mlx
+ scancount=1 engine=8.12.0-2212070000 definitions=main-2303030148
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-28 =D1=84=D0=B5=D0=B2=D1=80=D0=B0=D0=BB=D1=8F 2023 =D0=B3=2E 08:33:58 GMT+0=
-2:00, Manivannan Sadhasivam <mani@kernel=2Eorg> =D0=BF=D0=B8=D1=88=D0=B5=D1=
-=82:
->On Tue, Feb 28, 2023 at 10:56:53AM +0530, Devi Priya wrote:
->>=20
->>=20
->> On 2/24/2023 1:53 PM, Manivannan Sadhasivam wrote:
->> > On Tue, Feb 14, 2023 at 10:11:29PM +0530, Devi Priya wrote:
->> > > Document the compatible for IPQ9574
->> > >=20
->> Hi Mani, Thanks for taking time to review the patch=2E
->> >=20
->> > You didn't mention about the "msi-parent" property that is being adde=
-d
->> > by this patch
->> Sure, will update the commit message in the next spin
->> >=20
->> > > Signed-off-by: Devi Priya <quic_devipriy@quicinc=2Ecom>
->> > > ---
->> > >   =2E=2E=2E/devicetree/bindings/pci/qcom,pcie=2Eyaml    | 72 ++++++=
-++++++++++++-
->> > >   1 file changed, 70 insertions(+), 2 deletions(-)
->> > >=20
->> > > diff --git a/Documentation/devicetree/bindings/pci/qcom,pcie=2Eyaml=
- b/Documentation/devicetree/bindings/pci/qcom,pcie=2Eyaml
->> > > index 872817d6d2bd=2E=2Edabdf2684e2d 100644
->> > > --- a/Documentation/devicetree/bindings/pci/qcom,pcie=2Eyaml
->> > > +++ b/Documentation/devicetree/bindings/pci/qcom,pcie=2Eyaml
->> > > @@ -26,6 +26,7 @@ properties:
->> > >             - qcom,pcie-ipq8064-v2
->> > >             - qcom,pcie-ipq8074
->> > >             - qcom,pcie-ipq8074-gen3
->> > > +          - qcom,pcie-ipq9574
->> > >             - qcom,pcie-msm8996
->> > >             - qcom,pcie-qcs404
->> > >             - qcom,pcie-sa8540p
->> > > @@ -44,11 +45,11 @@ properties:
->> > >     reg:
->> > >       minItems: 4
->> > > -    maxItems: 5
->> > > +    maxItems: 6
->> > >     reg-names:
->> > >       minItems: 4
->> > > -    maxItems: 5
->> > > +    maxItems: 6
->> > >     interrupts:
->> > >       minItems: 1
->> > > @@ -105,6 +106,8 @@ properties:
->> > >       items:
->> > >         - const: pciephy
->> > > +  msi-parent: true
->> > > +
->> > >     power-domains:
->> > >       maxItems: 1
->> > > @@ -173,6 +176,27 @@ allOf:
->> > >               - const: parf # Qualcomm specific registers
->> > >               - const: config # PCIe configuration space
->> > > +  - if:
->> > > +      properties:
->> > > +        compatible:
->> > > +          contains:
->> > > +            enum:
->> > > +              - qcom,pcie-ipq9574
->> > > +    then:
->> > > +      properties:
->> > > +        reg:
->> > > +          minItems: 5
->> > > +          maxItems: 6
->> > > +        reg-names:
->> > > +          minItems: 5
->> > > +          items:
->> > > +            - const: dbi # DesignWare PCIe registers
->> > > +            - const: elbi # External local bus interface registers
->> > > +            - const: atu # ATU address space
->> > > +            - const: parf # Qualcomm specific registers
->> > > +            - const: config # PCIe configuration space
->> > > +            - const: aggr_noc #PCIe aggr_noc
->> >=20
->> > Why do you need this region unlike other SoCs? Is the driver making u=
-se of it?
->> We have the aggr_noc region in ipq9574 to achieve higher throughput & t=
-o
->> handle multiple PCIe instances=2E The driver uses it to rate adapt 1-la=
-ne PCIe
->> clocks=2E My bad, missed it=2E Will add the driver changes in V2=2E
->
->Hmm, this is something new=2E How can you achieve higher throughput with =
-this
->region? Can you explain more on how it is used?
+The I2C Responder (I2CR) is an I2C device that translates I2C commands
+to CFAM or SCOM operations, effectively implementing an FSI master and
+bus.
 
-Based on the name of the region, it looks like it is an interconnect regio=
-n=2E=20
+Changes since v6:
+ - Drop conversions to BE except in the FSI core interface
+ - Emulate the CFAM config table since it doesn't exist off the I2CR
+ - Drop status check during probe
+ - Add release function for device
+ - Update SCOM driver with newer interfaces and drop BE conversion
+ - New sbefifo change to not check state during probe
 
-Devi, if this is the case, then you have to handle it through the intercon=
-nect driver, rather than poking directly into these registers=2E
+Changes since v5:
+ - Make I2CR scom driver depend on I2CR FSI master
 
+Changes since v4:
+ - Add I2CR scom driver and associated patches
+ - Use compatible strings for FSI drivers if specified
+ - Include aliased device numbering patch
+ - Restructure the trace events to eliminate holes
 
->
->Thanks,
->Mani
->
->> >=20
->> > Thanks,
->> > Mani
->> >=20
->> > > +
->> > >     - if:
->> > >         properties:
->> > >           compatible:
->> > > @@ -365,6 +389,39 @@ allOf:
->> > >               - const: ahb # AHB Reset
->> > >               - const: axi_m_sticky # AXI Master Sticky reset
->> > > +  - if:
->> > > +      properties:
->> > > +        compatible:
->> > > +          contains:
->> > > +            enum:
->> > > +              - qcom,pcie-ipq9574
->> > > +    then:
->> > > +      properties:
->> > > +        clocks:
->> > > +          minItems: 6
->> > > +          maxItems: 6
->> > > +        clock-names:
->> > > +          items:
->> > > +            - const: ahb  # AHB clock
->> > > +            - const: aux  # Auxiliary clock
->> > > +            - const: axi_m # AXI Master clock
->> > > +            - const: axi_s # AXI Slave clock
->> > > +            - const: axi_bridge # AXI bridge clock
->> > > +            - const: rchng
->> > > +        resets:
->> > > +          minItems: 8
->> > > +          maxItems: 8
->> > > +        reset-names:
->> > > +          items:
->> > > +            - const: pipe # PIPE reset
->> > > +            - const: sticky # Core Sticky reset
->> > > +            - const: axi_s_sticky # AXI Slave Sticky reset
->> > > +            - const: axi_s # AXI Slave reset
->> > > +            - const: axi_m_sticky # AXI Master Sticky reset
->> > > +            - const: axi_m # AXI Master reset
->> > > +            - const: aux # AUX Reset
->> > > +            - const: ahb # AHB Reset
->> > > +
->> > >     - if:
->> > >         properties:
->> > >           compatible:
->> > > @@ -681,6 +738,16 @@ allOf:
->> > >           - interconnects
->> > >           - interconnect-names
->> > > +  - if:
->> > > +      properties:
->> > > +        compatible:
->> > > +          contains:
->> > > +            enum:
->> > > +              - qcom,pcie-ipq9574
->> > > +    then:
->> > > +      required:
->> > > +        - msi-parent
->> > > +
->> > >     - if:
->> > >         not:
->> > >           properties:
->> > > @@ -693,6 +760,7 @@ allOf:
->> > >                   - qcom,pcie-ipq8064v2
->> > >                   - qcom,pcie-ipq8074
->> > >                   - qcom,pcie-ipq8074-gen3
->> > > +                - qcom,pcie-ipq9574
->> > >                   - qcom,pcie-qcs404
->> > >       then:
->> > >         required:
->> > > --=20
->> > > 2=2E17=2E1
->> > >=20
->> >=20
->> Thanks,
->> Devi Priya
->
+Changes since v3:
+ - Rework the endian-ness in i2cr_write
+ - Rework the tracing to include the i2c bus and device address
+
+Changes since v2:
+ - Fix the bindings again, sorry for the spam
+
+Changes since v1:
+ - Fix the binding document
+ - Change the binding name
+ - Clean up the size argument checking
+ - Reduce __force by using packed struct for the command
+
+Eddie James (7):
+  fsi: Move fsi_slave structure definition to header
+  dt-bindings: fsi: Document the IBM I2C Responder virtual FSI master
+  fsi: Add IBM I2C Responder virtual FSI master
+  fsi: Add I2C Responder SCOM driver
+  fsi: Add aliased device numbering
+  fsi: Use of_match_table for bus matching if specified
+  fsi: sbefifo: Don't check status during probe
+
+ .../bindings/fsi/ibm,i2cr-fsi-master.yaml     |  41 +++
+ drivers/fsi/Kconfig                           |  17 +
+ drivers/fsi/Makefile                          |   2 +
+ drivers/fsi/fsi-core.c                        |  60 ++--
+ drivers/fsi/fsi-master-aspeed.c               |   2 +-
+ drivers/fsi/fsi-master-ast-cf.c               |   2 +-
+ drivers/fsi/fsi-master-gpio.c                 |   2 +-
+ drivers/fsi/fsi-master-hub.c                  |   2 +-
+ drivers/fsi/fsi-master-i2cr.c                 | 312 ++++++++++++++++++
+ drivers/fsi/fsi-master-i2cr.h                 |  24 ++
+ drivers/fsi/fsi-master.h                      |   3 +-
+ drivers/fsi/fsi-sbefifo.c                     |   8 -
+ drivers/fsi/fsi-scom.c                        |   8 +
+ drivers/fsi/fsi-slave.h                       |  28 ++
+ drivers/fsi/i2cr-scom.c                       | 154 +++++++++
+ include/trace/events/fsi_master_i2cr.h        | 107 ++++++
+ 16 files changed, 737 insertions(+), 35 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/fsi/ibm,i2cr-fsi-master.yaml
+ create mode 100644 drivers/fsi/fsi-master-i2cr.c
+ create mode 100644 drivers/fsi/fsi-master-i2cr.h
+ create mode 100644 drivers/fsi/fsi-slave.h
+ create mode 100644 drivers/fsi/i2cr-scom.c
+ create mode 100644 include/trace/events/fsi_master_i2cr.h
+
+-- 
+2.31.1
 
