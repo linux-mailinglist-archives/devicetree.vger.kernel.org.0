@@ -2,162 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 45E726AA01F
-	for <lists+devicetree@lfdr.de>; Fri,  3 Mar 2023 20:32:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B91096AA052
+	for <lists+devicetree@lfdr.de>; Fri,  3 Mar 2023 20:50:35 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231292AbjCCTcU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 3 Mar 2023 14:32:20 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34310 "EHLO
+        id S230351AbjCCTue (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 3 Mar 2023 14:50:34 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49458 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230244AbjCCTcT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Mar 2023 14:32:19 -0500
-Received: from mail-ua1-f43.google.com (mail-ua1-f43.google.com [209.85.222.43])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BA10118158;
-        Fri,  3 Mar 2023 11:32:17 -0800 (PST)
-Received: by mail-ua1-f43.google.com with SMTP id bx14so2435915uab.0;
-        Fri, 03 Mar 2023 11:32:17 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1677871937;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=oWJ4FADfr2/FMxcGcYPZfY1Zl6PqjyD4YVCe6cweaQI=;
-        b=qpJ/XtXtW3t1BB2iKByZ61SsuHvp14l9KFXCVpYvc81wEshU7jvF+o0TsNTrls8rQz
-         RTRduzTmMcWQUo5mjb85RuRn2GlAt0XNp/KexyaBWlEYFrWHmo2K9QrUzMFB2wlvuu9l
-         Nwx1aaUkvzaftHnOgNFbJzMIo0BHaU9MgPlPDrBUNxoPPRe3Xw57d9MwBFoPVkjVvDuU
-         /fRKEgA5RzW3iLTtCq8Inq+iq+RvYH7zezVN55d9lXf7OQZtqlQS+YVw/yFP6GxeOjTI
-         u4YPrxPMJ+8choFsqcmAN0JnBkYBRRavrwpVzDzjjiSLfi4ktVlYxcHHDLxyAFrtHWxZ
-         5Yug==
-X-Gm-Message-State: AO0yUKUciGYAab77BNMXaLDZ/Bm5fhXcJ0H1DdMpuRpGU+XcN1c6lc5L
-        BPfm4V5LAFQogUZMrerR2g==
-X-Google-Smtp-Source: AK7set8cRF5Fe5+ipJkJLKsCcOKIoZDntxrqZxlmthlhgeK6tQ7aDR1UrXsoQlyGnVTerRgycdFerg==
-X-Received: by 2002:a05:6122:148b:b0:408:a4b6:a48c with SMTP id z11-20020a056122148b00b00408a4b6a48cmr1605791vkp.2.1677871936605;
-        Fri, 03 Mar 2023 11:32:16 -0800 (PST)
-Received: from robh_at_kernel.org (adsl-72-50-3-187.prtc.net. [72.50.3.187])
-        by smtp.gmail.com with ESMTPSA id u17-20020a1f2e11000000b004134e4380c2sm392541vku.24.2023.03.03.11.32.14
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 03 Mar 2023 11:32:16 -0800 (PST)
-Received: (nullmailer pid 19152 invoked by uid 1000);
-        Fri, 03 Mar 2023 19:32:13 -0000
-Date:   Fri, 3 Mar 2023 13:32:13 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Martin =?utf-8?B?WmHFpW92acSN?= <m.zatovic1@gmail.com>
-Cc:     linux-kernel@vger.kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        gregkh@linuxfoundation.org, airlied@redhat.com, dipenp@nvidia.com,
-        treding@nvidia.com, mwen@igalia.com, fmdefrancesco@gmail.com,
-        arnd@arndb.de, bvanassche@acm.org, ogabbay@kernel.org,
-        axboe@kernel.dk, mathieu.poirier@linaro.org, linux@zary.sk,
-        masahiroy@kernel.org, yangyicong@hisilicon.com,
-        dan.j.williams@intel.com, jacek.lawrynowicz@linux.intel.com,
-        benjamin.tissoires@redhat.com, devicetree@vger.kernel.org,
-        furong.zhou@linux.intel.com, andriy.shevchenko@intel.com,
-        linus.walleij@linaro.org
-Subject: Re: [PATCHv3 1/4] dt-bindings: wiegand: add Wiegand controller
- common properties
-Message-ID: <20230303193213.GA6048-robh@kernel.org>
-References: <20230301142835.19614-1-m.zatovic1@gmail.com>
- <20230301142835.19614-2-m.zatovic1@gmail.com>
+        with ESMTP id S231336AbjCCTud (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Mar 2023 14:50:33 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 20D16584BD;
+        Fri,  3 Mar 2023 11:50:32 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id A5451618C5;
+        Fri,  3 Mar 2023 19:50:31 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7B697C433EF;
+        Fri,  3 Mar 2023 19:50:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1677873031;
+        bh=skvuE4TTFMibNLUPAu/zv3xd+K2m+Il1wb3nlXTkHeY=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=Suf9n9hjoabhuFHaocnG9Dqqe++PL3etBXpWXEqC5zKHL+mmM5/tnA9fyTU+Ywa83
+         OM6Tsd2mWMF1sGfiykLgYL9JX7Dt+JgEa18EZ22XwaDxEoHNKEsNL/JL6zQA4utAdG
+         sLFm6ihDby8lGjd6xKO3JIXQLGnocu9OKCmWiprC0JNrLqh+aNB1ShVsDstXq2zx4i
+         L13nvndTU2VJYwqKOBXwIWlvcqccw76itmSN+xbjE+d2sd+eZ08VNvEivWE/3bJ/EQ
+         skO8m3G9tRuieHcto3C6mY0muMlV3bHXhju8wrYG6EVNhZRLTARpySB2yRjOLjj5YE
+         y4Q13rYm5H+Xg==
+Date:   Fri, 3 Mar 2023 20:50:21 +0100
+From:   Wolfram Sang <wsa@kernel.org>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Rob Herring <robh+dt@kernel.org>, linux-i2c@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] MAINTAINERS: i2c: include all I2C bindings in the I2C
+ entry
+Message-ID: <ZAJPfaY5NxxS6v3R@shikoro>
+Mail-Followup-To: Wolfram Sang <wsa@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>, linux-i2c@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+References: <20230303082530.11878-1-krzysztof.kozlowski@linaro.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="5UzlFTmsW+OHxgRE"
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20230301142835.19614-2-m.zatovic1@gmail.com>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+In-Reply-To: <20230303082530.11878-1-krzysztof.kozlowski@linaro.org>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Mar 01, 2023 at 03:28:32PM +0100, Martin Zaťovič wrote:
-> Wiegand bus is defined by a Wiegand controller node. This node
-> can contain one or more device nodes for devices attached to
-> the controller(it is advised to only connect one device as Wiegand
-> is a point-to-point bus).
-> 
-> Wiegand controller needs to specify several attributes such as
-> the pulse length in order to function properly. These attributes
-> are documented here.
-> 
-> Acked-by: Linus Walleij <linus.walleij@linaro.org>
-> Signed-off-by: Martin Zaťovič <m.zatovic1@gmail.com>
-> ---
->  .../bindings/wiegand/wiegand-controller.yaml  | 39 +++++++++++++++++++
->  MAINTAINERS                                   |  5 +++
->  2 files changed, 44 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/wiegand/wiegand-controller.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/wiegand/wiegand-controller.yaml b/Documentation/devicetree/bindings/wiegand/wiegand-controller.yaml
-> new file mode 100644
-> index 000000000000..df985cb3045a
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/wiegand/wiegand-controller.yaml
-> @@ -0,0 +1,39 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/wiegand/wiegand-controller.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Wiegand Generic Controller Common Properties
-> +
-> +maintainers:
-> +  - Martin Zaťovič <martin.zatovic@tbs-biometrics.com>
-> +
-> +description:
-> +  Wiegand busses can be described with a node for the Wiegand controller device
-> +  and a set of child nodes for each SPI slave on the bus.
-> +
-> +properties:
-> +  $nodename:
-> +    pattern: "^wiegand(@.*|-[0-9a-f])?$"
-> +
-> +  pulse-len-us:
-> +    description: |
 
-Don't need '|' here and elsewhere.
+--5UzlFTmsW+OHxgRE
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-With that fixed,
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+> +F:	Documentation/devicetree/bindings/i2c/
 
-> +      Length of the low pulse in microseconds.
-> +
-> +  interval-len-us:
-> +    description: |
-> +      Length of a whole bit (both the pulse and the high phase) in microseconds.
-> +
-> +  frame-gap-us:
-> +    description: |
-> +      Length of the last bit of a frame (both the pulse and the high phase) in
-> +      microseconds.
-> +
-> +required:
-> +  - compatible
-> +  - pulse-len-us
-> +  - interval-len-us
-> +  - frame-gap-us
-> +
-> +additionalProperties: true
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index b0db911207ba..1f6f6d236f0c 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -22512,6 +22512,11 @@ L:	linux-rtc@vger.kernel.org
->  S:	Maintained
->  F:	drivers/rtc/rtc-sd3078.c
->  
-> +WIEGAND BUS DRIVER
-> +M:	Martin Zaťovič <m.zatovic1@gmail.com>
-> +S:	Maintained
-> +F:	Documentation/devicetree/bindings/wiegand/wiegand-controller.yaml
-> +
->  WIIMOTE HID DRIVER
->  M:	David Rheinsberg <david.rheinsberg@gmail.com>
->  L:	linux-input@vger.kernel.org
-> -- 
-> 2.39.2
-> 
+This entry is already present a tad later in "I2C SUBSYSTEM HOST
+DRIVERS".
+
+
+--5UzlFTmsW+OHxgRE
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmQCT3kACgkQFA3kzBSg
+KbZyeg/9HGgtVwIZ5hdzbIgeB3QeobXF7+D3WmIwb6HGn/A+IC153BZRnTp2veVp
+LG3lMgnC8woz31XGgW0MMBllQXvKNEnRnEDNpdAmMiUOoL/cvWZf0U9YU5lpCP6p
+x4AYE6IHHD6A5Q7qnAs0it2KQ4s8DkQxWv930zQN2QUtn4C2hBgHkEiQpulHBWMz
+BLc15pQDDSW+OAdCDikVo8nGQow80D0CTltKvbUAF05gJWK2jNDHyQXiZOrvF3sa
+STfsUy6Hrh439948Kzth+j27x5FBzIBJZ/7vEAFNC5KOL6PQL4jygOO+O9ggbUWG
+miYO7X2bFABxjPFlAAPMzmwusx91+3vxtIulEzfA8+NflEbb12UwS1p0MAfoV0mo
+r+6Jn8KvHzl6vRW3VU6Bo0I+kKB4XIo41KpkhEDJCxBwpfUpv60ww3UZTgLS9u3D
+ci+wD30V9F14Ti2cVwTt4y8L6QRecNldN4UfUMGJwXdlVWWXBiA06txboT9F1qAc
+13RFg/OdeD7VsHaXI9B8bwQAvRPv0OBE5FHuYVEQGONyINCeQpR197l6K7M1PJfi
+MKFxKnp99hluWmHBq8lrtb789es94eNRmL3Yet34l7BOtK0M8dYLbJXTwBudMLmi
+WR9PkVvlSLgokZ7qR6wulYhJ0KI24M954tgWJjIWDIHgPpQP0BY=
+=dxxo
+-----END PGP SIGNATURE-----
+
+--5UzlFTmsW+OHxgRE--
