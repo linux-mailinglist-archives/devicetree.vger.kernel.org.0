@@ -2,193 +2,331 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CAE626A921B
-	for <lists+devicetree@lfdr.de>; Fri,  3 Mar 2023 09:04:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 65E216A9225
+	for <lists+devicetree@lfdr.de>; Fri,  3 Mar 2023 09:06:38 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229849AbjCCIEF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 3 Mar 2023 03:04:05 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57390 "EHLO
+        id S229962AbjCCIGh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 3 Mar 2023 03:06:37 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58860 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229447AbjCCIEE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Mar 2023 03:04:04 -0500
-Received: from sender4-op-o16.zoho.com (sender4-op-o16.zoho.com [136.143.188.16])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 285701514B;
-        Fri,  3 Mar 2023 00:04:02 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1677830624; cv=none; 
-        d=zohomail.com; s=zohoarc; 
-        b=V7+QiGUeBZfUla4HgROFhe4Iq0FdEBuGP3vF6Zo4zC9lUH9lKc8WTmWxFkNdHBNBJf/gj4WNDv3KAw3zvbZ9cjYOHyhXejrrZGhPC6YtIiqrLRp13oDIrFdp7Wog257rvXwSi6UvRdmVbkWPm17ygRdZ+L6ap8YHKXVGRspI+e0=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-        t=1677830624; h=Content-Type:Content-Transfer-Encoding:Cc:Date:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:To; 
-        bh=U1OiG7H/Mndwf7FgNU+g9XbP976CtK7OQMg286VnDUM=; 
-        b=juWgbbUiduOCDOa1YzX9yUxZDvclyubitBq6Rwwgcfh6Ux2AObY6GiIY9o+l6yLfhUwqi5iIRFv5KyQGpjmOE8FvfUe75UqNYK3p2YtPJ6n8bi1LbGp5ictiKjkzsKVfcKFqPuSGTwGLvXAW4OHaFlEEACqZ0IEenU9A/2JtyTM=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-        dkim=pass  header.i=arinc9.com;
-        spf=pass  smtp.mailfrom=arinc.unal@arinc9.com;
-        dmarc=pass header.from=<arinc.unal@arinc9.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1677830624;
-        s=zmail; d=arinc9.com; i=arinc.unal@arinc9.com;
-        h=Message-ID:Date:Date:MIME-Version:Subject:Subject:To:To:Cc:Cc:References:From:From:In-Reply-To:Content-Type:Content-Transfer-Encoding:Message-Id:Reply-To;
-        bh=U1OiG7H/Mndwf7FgNU+g9XbP976CtK7OQMg286VnDUM=;
-        b=DSiUittAGzcp8AMYtPvjUSI6NVhAhOgvuSldbQgK/WSP3UmfapRIS2zsxPkdXkUr
-        vVBhkT3WT6E3RWxxdYfpeH9cCybPeGwFVOgs3S158EAgzTc3ZIuu9P3BinvmhuvDJDG
-        98WVt9mkfMmFOS/lGTqiSgfCS3c6VROaMtiwsGsg=
-Received: from [10.10.10.3] (212.68.60.226 [212.68.60.226]) by mx.zohomail.com
-        with SMTPS id 1677830622645510.55169972795534; Fri, 3 Mar 2023 00:03:42 -0800 (PST)
-Message-ID: <fa01003f-b189-d84f-d934-9c7c712fce37@arinc9.com>
-Date:   Fri, 3 Mar 2023 11:03:36 +0300
+        with ESMTP id S229960AbjCCIGe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Mar 2023 03:06:34 -0500
+Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5CEA85553C
+        for <devicetree@vger.kernel.org>; Fri,  3 Mar 2023 00:06:28 -0800 (PST)
+Received: by mail-ed1-x535.google.com with SMTP id d30so7061957eda.4
+        for <devicetree@vger.kernel.org>; Fri, 03 Mar 2023 00:06:28 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1677830787;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=zdJcfcyXGWtXoLMcnxOxEylM1d1K2JuAwfWfX2Z+dfI=;
+        b=aDkxPUvGNZ2oKuQ1gSddr+5WFzfVA/+eAkdBSR6e4ep84Q7aEyXK0qddNYb42QI6Jb
+         OBHIBLyCOs1uFiGQ2mH5G7ks+KkrzBnfjjMys5ayUPGX3Wn6n36oywFrBLEXK0BYAoUI
+         /gI/fH6MUeutl39jyF8IVRcgvN93+CzQu6mySuRhYK7iaSHQJsyYccHlForU9VYgkIH8
+         w9eGwLgnbOGEsZeiv2xX4Cq5nqVI75Tb989kvOG0dPjhhadB3Vlxjd0Y356RLyLreFXo
+         RPtZh+ilGJT1H6UkpVn6OjVhCk5MMF66cU/IcxnopjW2eldryIpgwU/sXGoB+fkaU1eS
+         b7fw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1677830787;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=zdJcfcyXGWtXoLMcnxOxEylM1d1K2JuAwfWfX2Z+dfI=;
+        b=y3FldqQe1N/8/YuNK7ZZ1fOYxle3CAgd8bxWINw6s5qttLFf3QQoC1NjryHPBtGXQi
+         RfUi9GKVAC0i51Z4ql2jYivOfJ+S1dikk0lfZolVF47hZ/UKOwb3QWLz4msNJoEZeDpm
+         INEdc9Ka09QYO9UQNIU/nmIowSB8PWu6ExgJEWhXQujL3dGsESbxQhF3SzeiZI32vdEb
+         uocYumgeMNjHLcRYVQInBs37eVfla+ztPT6M8hm7EK5ezObaQbsR3EJ25NftNn5HlfLt
+         AJyvyMHBTrfk07B5sM8c0KsP7jE3doC2yd9tplMcMofaSfIWJ9WTVppxnsv0hkcQviL7
+         5fMA==
+X-Gm-Message-State: AO0yUKWjgDkmTXQ0M0qeDwb4UmmCk9My0KSeilHIEytyUyuRVS3f8WsH
+        ikxQtfUFMVOa/hSD8Mqs2pw+dA==
+X-Google-Smtp-Source: AK7set9sgWEXima5pGSbzL+6LPs/nnZ9r6/bqSMGWbMISKvmqrPcBaoumBJ9HU2dN5qPXd4dl3hWbg==
+X-Received: by 2002:a17:907:6089:b0:8b1:3554:25 with SMTP id ht9-20020a170907608900b008b135540025mr869239ejc.61.1677830786805;
+        Fri, 03 Mar 2023 00:06:26 -0800 (PST)
+Received: from [192.168.1.20] ([178.197.216.144])
+        by smtp.gmail.com with ESMTPSA id n26-20020a50c21a000000b004a27046b7a7sm839952edf.73.2023.03.03.00.06.25
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 03 Mar 2023 00:06:26 -0800 (PST)
+Message-ID: <5c9130de-5092-9446-6e00-d86de7dcd6b4@linaro.org>
+Date:   Fri, 3 Mar 2023 09:06:24 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.1
-Subject: Re: [RFC PATCH 07/16] dt-bindings: pinctrl: ralink: add new
- compatible strings
+ Thunderbird/102.8.0
+Subject: Re: [PATCH v3 1/3] dt-bindings: remoteproc: k3-m4f: Add bindings for
+ K3 AM64x SoCs
 Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Rob Herring <robh@kernel.org>
-Cc:     Sergio Paracuellos <sergio.paracuellos@gmail.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
+To:     Martyn Welch <martyn.welch@collabora.com>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-mediatek@lists.infradead.org, linux-mips@vger.kernel.org,
-        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Sean Wang <sean.wang@kernel.org>,
-        William Dean <williamsukatube@gmail.com>,
-        Daniel Golle <daniel@makrotopia.org>,
-        Daniel Santos <daniel.santos@pobox.com>,
-        Luiz Angelo Daros de Luca <luizluca@gmail.com>,
-        Frank Wunderlich <frank-w@public-files.de>,
-        Landen Chao <Landen.Chao@mediatek.com>,
-        DENG Qingfang <dqfext@gmail.com>,
-        Sean Wang <sean.wang@mediatek.com>, erkin.bozoglu@xeront.com
-References: <20230222183932.33267-1-arinc.unal@arinc9.com>
- <20230222183932.33267-8-arinc.unal@arinc9.com>
- <20230227173333.GA496999-robh@kernel.org>
- <d7aea90f-d077-3a41-996c-804c95d72e24@arinc9.com>
- <20230301024431.GA251215-robh@kernel.org>
- <ae3346de-140f-f181-b6a3-ccaa694e1548@arinc9.com>
- <11d3c806-04b6-da54-65f1-c0bd154affbc@linaro.org>
- <a9acd3b4-2b03-86c0-711c-a3840aeab574@arinc9.com>
- <1aae7ac9-c83d-71b4-4fce-325f02fcd722@linaro.org>
- <89588f69-9cf0-e7a4-b976-5ce87d42e296@arinc9.com>
- <2ccb573d-39f4-cb80-7a3e-63a60c2bc0a8@linaro.org>
- <b48e0a5e-dd45-8b8a-4ee3-357a0985ca9c@arinc9.com>
- <83a03258-9e52-3d09-67fe-12e9e5ed4b76@linaro.org>
- <11d10e4e-65ec-3bec-3e0c-7e57feb03506@arinc9.com>
- <a696bea5-3ba6-3b71-10ad-a04a7412c178@linaro.org>
- <4c522dc3-d6f4-fd3e-e715-4c7795576541@arinc9.com>
- <fd2018b2-757f-bd7a-5efd-8a1f28b178cd@linaro.org>
-From:   =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>
-In-Reply-To: <fd2018b2-757f-bd7a-5efd-8a1f28b178cd@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ZohoMailClient: External
+        Hari Nagalla <hnagalla@ti.com>
+Cc:     kernel@collabora.com, linux-remoteproc@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20230302171450.1598576-1-martyn.welch@collabora.com>
+ <20230302171450.1598576-2-martyn.welch@collabora.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230302171450.1598576-2-martyn.welch@collabora.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 3.03.2023 10:53, Krzysztof Kozlowski wrote:
-> On 03/03/2023 08:44, Arınç ÜNAL wrote:
->> On 3.03.2023 10:05, Krzysztof Kozlowski wrote:
->>> On 02/03/2023 12:50, Arınç ÜNAL wrote:
->>>> On 2.03.2023 14:36, Krzysztof Kozlowski wrote:
->>>>> On 02/03/2023 11:47, Arınç ÜNAL wrote:
->>>>>> On 2.03.2023 13:29, Krzysztof Kozlowski wrote:
->>>>>>> On 02/03/2023 11:22, Arınç ÜNAL wrote:
->>>>>>>>>>
->>>>>>>>>> ## Incorrect naming
->>>>>>>>>>
->>>>>>>>>> MT7620, MT7621, MT7628, and MT7688 SoCs are incorrectly called Ralink,
->>>>>>>>>> introduce new ralink->mediatek compatible strings to address it.
->>>>>>>>>
->>>>>>>>> So this part was addressed by Rob - we don't do it, because it does not
->>>>>>>>> matter. Ralink is now Mediatek, thus there is no conflict and no issues
->>>>>>>>> with different vendor used.
->>>>>>>>
->>>>>>>> I think Rob was rather addressing that updating compatible strings based
->>>>>>>> on acquisition or marketing whims is not permitted. This condition does
->>>>>>>> not apply here as these SoCs were never Ralink.
->>>>>>>>
->>>>>>>> I understand your point that Ralink is now MediaTek but still, calling
->>>>>>>> these SoCs Ralink would be a bit misleading, don't you think?
->>>>>>>
->>>>>>> Misleading yes, but also does not matter. At least matter not enough to
->>>>>>> justify ABI break, so you would need to deprecate old ones and keep
->>>>>>> everything backwards compatible. You still would affect 3rd party users
->>>>>>> of DTS, though...
->>>>>>
->>>>>> I intend to do just that. Introduce new mediatek strings, keep the old
->>>>>> ones so it's backwards compatible, therefore don't break the ABI.
->>>>>>
->>>>>> Instead of deprecating old strings, I intend to introduce the checks I
->>>>>> mentioned, on the schema, so the pin muxing bindings only apply if the
->>>>>> DT has got a string that won't match multiple schemas. This way it
->>>>>> shouldn't affect 3rd party DTs.
->>>>>
->>>>> I meant, 3rd party users of DTS. You will replace the compatible in the
->>>>> DTS, right? So the DTS exported and used in all other projects, OS,
->>>>> firmwares, bootloaders, out of tree kernel forks will stop working.
->>>>
->>>> I plan to change it on the DTs for MediaTek SoCs, yes. Is this a
->>>> problem? From what I can tell, what must be ensured is that old DTs must
->>>> work with newer kernels, not new DTs on older kernels.
->>>
->>> Can I be clearer than this?
->>>
->>> " So the DTS exported and used in all other projects, OS,
->>> firmwares, bootloaders, out of tree kernel forks will stop working."
->>>
->>> Yes, this is a problem - they will stop working.
->>
->> I've never seen any project just exporting DTs from the latest kernel
->> version and slap it onto old versions, as a new devicetree that was
-> 
-> Really? U-Boot does it all the time, other projects (like BSD) do it
-> periodically to some extend as well.
+On 02/03/2023 18:14, Martyn Welch wrote:
+> From: Hari Nagalla <hnagalla@ti.com>
 
-They must do heavy reviewing before shipping it. Drivers like MediaTek 
-ethernet on U-Boot is different than in Linux, the dt-bindings are all 
-different. Under a review, these changes will pop out for them to 
-address so there're no problems.
+Subject: drop second/last, redundant "bindings for". The "dt-bindings"
+prefix is already stating that these are bindings.
 
 > 
->> introduced with a newer kernel version is not guaranteed to work with
->> older kernel versions.
+> K3 AM64x SoC has a Cortex M4F subsystem in the MCU voltage domain.
+> The remote processor's life cycle management and IPC mechanisms are
+> similar across the R5F and M4F cores from remote processor driver
+> point of view. However, there are subtle differences in image loading
+> and starting the M4F subsystems.
 > 
-> Not guaranteed but it is expected, though, to some level and under some
-> conditions. Therefore it might be or might not be a problem. For some
-> platforms no one cares. For some people care.
-
-I'm going to assume there's not much care for this platform, at least 
-for mt7621, as I've heard no complaints when I did this before.
-
-https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/arch/mips/boot/dts/ralink/mt7621.dtsi?id=b4f209e32ba5c283e7b1dd00d867b0536d3e215e
-
+> The YAML binding document provides the various node properties to be
+> configured by the consumers of the M4F subsystem.
 > 
->>
->> If someone is actually doing this on a project, I think it's the
->> responsibility of the maintainers of these said projects to account for
->> this and modify the DT for the kernel version they're running it on.
->>
->> What's more usual is one'd run the kernel version where the new DT was
->> introduced, which will work fine.
+> Signed-off-by: Hari Nagalla <hnagalla@ti.com>
+> [Martyn Welch: Amended as per review comments and to pass DT tests]
+> Signed-off-by: Martyn Welch <martyn.welch@collabora.com>
+> ---
 > 
-> "kernel" as Linux is only one part of it. I mentioned several other
-> projects.
+> Changes since v1:
+>  - Spelling corrections
+>  - Corrected to pass DT checks
 > 
->>
->> On to real life implications, popular projects like U-Boot and OpenWrt
->> maintain their own DTs for this platform so I think the impact is very
->> minimal.
+> Changes since v2:
+>  - Missed spelling correction to commit message
 > 
-> And they sync with Linux kernel DTS.
+> Note: The only review comment that I don't see directly addressed is the
+>       lack of description of `ti,sci`, `ti,sci-dev-id` and
+>       `ti,sci-proc-ids`. A reference has been added to
+>       `/schemas/arm/keystone/ti,k3-sci-common.yaml#` where they are
+>       described. I believe this is the correct approach, please advise if
+>       that is not the case.
+> 
+>  .../bindings/remoteproc/ti,k3-m4f-rproc.yaml  | 158 ++++++++++++++++++
+>  1 file changed, 158 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/remoteproc/ti,k3-m4f-rproc.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/remoteproc/ti,k3-m4f-rproc.yaml b/Documentation/devicetree/bindings/remoteproc/ti,k3-m4f-rproc.yaml
+> new file mode 100644
+> index 000000000000..1b38df0be2e6
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/remoteproc/ti,k3-m4f-rproc.yaml
+> @@ -0,0 +1,158 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only or BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/remoteproc/ti,k3-m4f-rproc.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: TI K3 M4F processor subsystems
+> +
+> +maintainers:
+> +  - Hari Nagalla <hnagalla@ti.com>
+> +
+> +description: |
+> +  Some K3 family SoCs have Arm Cortex M4F cores. AM64x is a SoC in K3
+> +  family with a M4F core. Typically safety oriented applications may use
+> +  the M4F core in isolation without an IPC. Where as some industrial and
+> +  home automation applications, may use the M4F core as a remote processor
+> +  with IPC communications.
+> +
+> +$ref: /schemas/arm/keystone/ti,k3-sci-common.yaml#
+> +
+> +properties:
+> +  $nodename:
+> +    pattern: "^m4fss(@.*)?"
 
-Again, the DTs must be reviewed so they will be modified and the 
-potential issue will be addressed.
+Drop. It's not a generic name. Also we do not enforce names in device
+schemas.
 
-Arınç
+> +
+> +  compatible:
+> +    enum:
+> +      - ti,am64-m4fss
+> +
+> +  power-domains:
+> +    description: |
+> +      Should contain a phandle to a PM domain provider node and an args
+> +      specifier containing the M4FSS device id value.
+
+Drop description, especially that the args depend on provider, not consumer.
+
+> +    maxItems: 1
+> +
+> +  "#address-cells":
+> +    const: 2
+> +
+> +  "#size-cells":
+> +    const: 2
+> +
+> +  reg:
+> +    items:
+> +      - description: Address and Size of the IRAM internal memory region
+
+Just "IRAM internal memory region"
+
+> +      - description: Address and Size of the DRAM internal memory region
+> +
+> +  reg-names:
+> +    items:
+> +      - const: iram
+> +      - const: dram
+> +
+> +  resets:
+> +    description: |
+> +      Should contain the phandle to the reset controller node managing the
+> +      local resets for this device, and a reset specifier.
+
+Drop description.
+
+
+> +    maxItems: 1
+> +
+> +  firmware-name:
+> +    description: |
+> +      Should contain the name of the default firmware image
+> +      file located on the firmware search path
+
+This description is basically duplicating the name... say something
+useful or shorten it (e.g. "Should contain" is really redundant). You
+also need $ref because we do not have the type defined anywhere.
+
+> +
+> +  mboxes:
+> +    description: |
+> +      OMAP Mailbox specifier denoting the sub-mailbox, to be used for
+
+OMAP?
+
+> +      communication with the remote processor. This property should match
+> +      with the sub-mailbox node used in the firmware image.
+> +    maxItems: 1
+> +
+> +  memory-region:
+> +    description: |
+> +      phandle to the reserved memory nodes to be associated with the
+> +      remoteproc device. There should be at least two reserved memory nodes
+> +      defined. 
+
+Don't repeat constraints in free form text.
+
+> The reserved memory nodes should be carveout nodes, and
+> +      should be defined with a "no-map" property as per the bindings in
+> +      Documentation/devicetree/bindings/reserved-memory/reserved-memory.yaml
+> +    minItems: 2
+> +    maxItems: 8
+> +    items:
+> +      - description: region used for dynamic DMA allocations like vrings and
+> +                     vring buffers
+> +      - description: region reserved for firmware image sections
+> +    additionalItems: true
+
+And what is the purpose of the rest of reserved nodes?
+
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - reg-names
+> +  - ti,sci
+> +  - ti,sci-dev-id
+> +  - ti,sci-proc-ids
+> +  - resets
+> +  - firmware-name
+> +  - mboxes
+> +  - memory-region
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    reserved-memory {
+> +        #address-cells = <2>;
+> +        #size-cells = <2>;
+> +
+> +        mcu_m4fss_dma_memory_region: m4f-dma-memory@9cb00000 {
+> +            compatible = "shared-dma-pool";
+> +            reg = <0x00 0x9cb00000 0x00 0x100000>;
+> +            no-map;
+> +        };
+> +
+> +        mcu_m4fss_memory_region: m4f-memory@9cc00000 {
+> +            compatible = "shared-dma-pool";
+> +            reg = <0x00 0x9cc00000 0x00 0xe00000>;
+> +            no-map;
+> +        };
+> +    };
+> +
+> +    soc {
+> +        #address-cells = <2>;
+> +        #size-cells = <2>;
+> +
+> +        mailbox0_cluster0: mailbox-0 {
+> +            #mbox-cells = <1>;
+> +
+> +            mbox_m4_0: mbox-m4-0 {
+> +                ti,mbox-rx = <0 0 0>;
+> +                ti,mbox-tx = <1 0 0>;
+> +            };
+> +        };
+
+Does not look related to this binding... or is it somehow very specific
+and needs showing?
+
+> +
+> +        bus@f0000 {
+> +            compatible = "simple-bus";
+> +            #address-cells = <2>;
+> +            #size-cells = <2>;
+> +            ranges = <0x00 0x04000000 0x00 0x04000000 0x00 0x01ff1400>;
+
+Why another bus? You already have soc in example, why more nodes?
+
+> +
+> +            bus@4000000 {
+
+And one more bus?
+
+> +                compatible = "simple-bus";
+> +                #address-cells = <2>;
+> +                #size-cells = <2>;
+> +                ranges = <0x00 0x04000000 0x00 0x04000000 0x00 0x01ff1400>;
+> +
+> +                mcu_m4fss: m4fss@5000000 {
+
+Generic node name. Qualcomm uses remoteproc.
+
+> +                    compatible = "ti,am64-m4fss";
+> +                    reg = <0x00 0x5000000 0x00 0x30000>,
+> +                          <0x00 0x5040000 0x00 0x10000>;
+> +                    reg-names = "iram", "dram";
+> +                    ti,sci = <&dmsc>;
+> +                    ti,sci-dev-id = <9>;
+> +                    ti,sci-proc-ids = <0x18 0xff>;
+> +                    resets = <&k3_reset 9 1>;
+> +                    firmware-name = "am62-mcu-m4f0_0-fw";
+> +                    mboxes = <&mailbox0_cluster0 &mbox_m4_0>;
+> +                    memory-region = <&mcu_m4fss_dma_memory_region>,
+> +                                    <&mcu_m4fss_memory_region>;
+> +                };
+> +            };
+> +        };
+> +    };
+
+Best regards,
+Krzysztof
+
