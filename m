@@ -2,60 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3FC2D6AA4BA
-	for <lists+devicetree@lfdr.de>; Fri,  3 Mar 2023 23:45:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 66C576AA4B3
+	for <lists+devicetree@lfdr.de>; Fri,  3 Mar 2023 23:43:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232310AbjCCWpQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 3 Mar 2023 17:45:16 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59994 "EHLO
+        id S231755AbjCCWnN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 3 Mar 2023 17:43:13 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57026 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231858AbjCCWpO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Mar 2023 17:45:14 -0500
-Received: from mail-ed1-x52e.google.com (mail-ed1-x52e.google.com [IPv6:2a00:1450:4864:20::52e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D79A413A
-        for <devicetree@vger.kernel.org>; Fri,  3 Mar 2023 14:44:41 -0800 (PST)
-Received: by mail-ed1-x52e.google.com with SMTP id i34so16185255eda.7
-        for <devicetree@vger.kernel.org>; Fri, 03 Mar 2023 14:44:41 -0800 (PST)
+        with ESMTP id S232024AbjCCWnL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Mar 2023 17:43:11 -0500
+Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com [IPv6:2a00:1450:4864:20::52a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7233712599
+        for <devicetree@vger.kernel.org>; Fri,  3 Mar 2023 14:42:34 -0800 (PST)
+Received: by mail-ed1-x52a.google.com with SMTP id x3so16066572edb.10
+        for <devicetree@vger.kernel.org>; Fri, 03 Mar 2023 14:42:34 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1677883413;
+        d=linaro.org; s=google; t=1677883282;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=yWAOIVbzD3ODnOMgViwIQx1FVg4CoSqp6I3sD+4ntxI=;
-        b=PzWG3rV70Dh2LU6dE1OLLLdBkP6SF7rVMaEUMjKlVboF3Q81zxvWnsK+EGAhfIPCN3
-         aH97x9qg528OK3/4CPY0ltLLQZW7GGZdiLj4kN/gwf8hNFPyZW2PdZtHz9JilL95A2ql
-         1gASZDMnZT+P1d5J3tJEYMXmUlS8YRoscwE/lmMDvthUzC3LWzMV//NJPG7UU+GV4vOY
-         G0dUO6bf+PUqxXJ3dccrAM07jHanF8msYBmNkUvp79Aejf9PLYMvDbKXG2Y7iYt1pgap
-         y61fDJf/m+6EB2lCoHkdYI9iUHnjBaHrqenbjagSrlEvlK0xgJ3xVfpAhX0Wij394V1L
-         ApOg==
+        bh=fr1OHq/Y0F9EXyjJfE+Cc02kHVOPdqYGSbtmI+oAs6M=;
+        b=h/Cas00z0Rv6pu4Q7Py88Zsn8/ipAkqWSL8cdRQaktY50jcaQU/RDuohc1gZvpn6or
+         NxszYu0h4h1bnN9b5lzK0ebHaR33yx+m+aSgXxPJG6oQ+T6/QU5SyenO4NeMIsFfe4A5
+         3B2z+5QYbGHEZHJrFGGaGlzILHSVhQqM+YUUrpG4U15WhdThCFXfmm3YTM5ykWhZBNgQ
+         iSrIMcaDBQ1aexQW17FzusVWQXEnMLNStitqZPTn44USK12Byky6OhjMwQzLXRgLufE0
+         lLKywX1yrtQGNAcXNHOPBElNj3443WmVNRXgsOLXW87DB9xAmFouzhXx95KRBjHixUjR
+         PyAw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1677883413;
+        d=1e100.net; s=20210112; t=1677883282;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=yWAOIVbzD3ODnOMgViwIQx1FVg4CoSqp6I3sD+4ntxI=;
-        b=Coct6Yf9VVPzs6rLeoYQGgcc6xS8h5wdvMY8wOz+3ymohuD1g7Zrza6UzwZYX4surs
-         wOY6HAqA568keG2Qzn54dNhO9ex+NV1Whv5+khPc4riWWOM6LksZXpN7wJZ74hboFpmE
-         vDDWxMe8a3pyWUj64/keEl4kuuVml9Y7PA8Gg00qd4OKzo7bvP3g69yTpTAm/Jo4gOWk
-         ORAOlZ/RtoFvhC8mpCi+DZBd+Kqx8rDXF0DeGf3cYja1ky9/XjdVwzIpuCvbK1V1NUJX
-         xZ2dl97UPbDN+VUv5fGPGhO8qq8hX6Ewn4fFnHNVPHN4vQau9V2ZvXmWd1Ms3xUMKEo8
-         eU3g==
-X-Gm-Message-State: AO0yUKW+UkkR9U9AKeXaRGlzmOpqpZe085e9r7tBAUvMahM9o8nPR6/E
-        zNRffycCTuPfleej1cXYYAjYvIBDi2BofKKhPUE=
-X-Google-Smtp-Source: AK7set+OPV7K0/mvLa99j6SicswhBa1k4NpBWzDVW2y628iijgo/Wt+cJQcCcbFvfELiv4K2ez71LA==
-X-Received: by 2002:ac2:46ed:0:b0:4df:b686:ed1 with SMTP id q13-20020ac246ed000000b004dfb6860ed1mr912444lfo.20.1677880704436;
-        Fri, 03 Mar 2023 13:58:24 -0800 (PST)
+        bh=fr1OHq/Y0F9EXyjJfE+Cc02kHVOPdqYGSbtmI+oAs6M=;
+        b=6y5+H/eo4ns5k54R34Okak+9XhG6yrckUbdqCjsigVUpbQIPY2MFgehcY9qFdQQjoq
+         TX8GVngKq1BNyitu37vEYqBiIWu29gfkKi4fQqf+J9Xvh1Crh+HGDCxwo7Gz1pcC5f+0
+         1kR8C9sh7VZWHLw9TeRo8uWgvOHIigvcpHvcVIRexgJlH5GkDNuz5UREHEc08IaxBeJX
+         2J/gLWDUtJh7oPjTG4QubBe2qBl+ic8gG+8Qqe3bcjtdsVWHUcQvRGIjziG8xQH5UWFv
+         YYBv6FXhCaD5PEs3f0lmshpZV8AWX/ONtt+22gouEcaKb9SVXlRkMuAF0GcBDNXgGDYh
+         8GHA==
+X-Gm-Message-State: AO0yUKUaxpwmU0UXfJw//zjuhnDymSxu//ABYRSBdyvyfvPduaMhiMkg
+        X4GWfOR8yyKlO2vPb9Q6fJgak1zW1QAcgUZNjDU=
+X-Google-Smtp-Source: AK7set/KN+z2wYZVudX97d+dJPyqeM+XXZtoDSsCz75EJroknIj9hAlhYIxSV4JdraOf6EDZuvTcnw==
+X-Received: by 2002:a19:550c:0:b0:4b6:a6e4:ab7a with SMTP id n12-20020a19550c000000b004b6a6e4ab7amr1007164lfe.8.1677880706328;
+        Fri, 03 Mar 2023 13:58:26 -0800 (PST)
 Received: from [192.168.1.101] (abym99.neoplus.adsl.tpnet.pl. [83.9.32.99])
-        by smtp.gmail.com with ESMTPSA id e27-20020ac2547b000000b004cafa01ebbfsm552670lfn.101.2023.03.03.13.58.23
+        by smtp.gmail.com with ESMTPSA id e27-20020ac2547b000000b004cafa01ebbfsm552670lfn.101.2023.03.03.13.58.24
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 03 Mar 2023 13:58:24 -0800 (PST)
+        Fri, 03 Mar 2023 13:58:26 -0800 (PST)
 From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-Date:   Fri, 03 Mar 2023 22:58:09 +0100
-Subject: [PATCH 09/15] arm64: dts: qcom: sm6375: Add CPUCP L3 node
+Date:   Fri, 03 Mar 2023 22:58:10 +0100
+Subject: [PATCH 10/15] arm64: dts: qcom: sm6375: Add TSENS
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20230303-topic-sm6375_features0_dts-v1-9-8c8d94fba6f0@linaro.org>
+Message-Id: <20230303-topic-sm6375_features0_dts-v1-10-8c8d94fba6f0@linaro.org>
 References: <20230303-topic-sm6375_features0_dts-v1-0-8c8d94fba6f0@linaro.org>
 In-Reply-To: <20230303-topic-sm6375_features0_dts-v1-0-8c8d94fba6f0@linaro.org>
 To:     Amit Kucheria <amitk@kernel.org>,
@@ -73,11 +73,11 @@ Cc:     linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
         Konrad Dybcio <konrad.dybcio@linaro.org>
 X-Mailer: b4 0.12.1
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1677880689; l=940;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1677880689; l=1456;
  i=konrad.dybcio@linaro.org; s=20230215; h=from:subject:message-id;
- bh=PG4nWGIMA7R5r2PHGgF9vSeONgecCRpRFxoaCPCnR2A=;
- b=LBHxFf5+1bMcsNYButrWGDVgqu7yhIFjlktHhoVYS3O8HLobezGdLKd5PX3tIJCmsK0QWrCJmf/f
- DhsJ1OyNBnC/yqKV63sGdNjLReJEZ8wLRnfpQQLqhjMoj+6YTUM+
+ bh=ykqp5bp58crzGqyySJ//g66g5IA2DYwCTKLczf3b59w=;
+ b=uFCnBJBBP4ewL8ml3Oy7ai20aaNMelzJwBlm11SPgm7brQB3chwmE71EgPCT7XYgYzRUSXyCbGLT
+ b95LkYqxBl/7PTHaW35MVOjC0W2Ovl/W8xe1jF5QpJRsO43rhznr
 X-Developer-Key: i=konrad.dybcio@linaro.org; a=ed25519;
  pk=iclgkYvtl2w05SSXO5EjjSYlhFKsJ+5OSZBjOkQuEms=
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -90,33 +90,46 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Enable the CPUCP block responsible for scaling the L3 cache.
+Add nodes for the two TSENS v2.8.0 controllers present on the SoC.
 
 Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 ---
- arch/arm64/boot/dts/qcom/sm6375.dtsi | 9 +++++++++
- 1 file changed, 9 insertions(+)
+ arch/arm64/boot/dts/qcom/sm6375.dtsi | 22 ++++++++++++++++++++++
+ 1 file changed, 22 insertions(+)
 
 diff --git a/arch/arm64/boot/dts/qcom/sm6375.dtsi b/arch/arm64/boot/dts/qcom/sm6375.dtsi
-index 90f18754a63b..59d7ed25aa36 100644
+index 59d7ed25aa36..a88ed6467e68 100644
 --- a/arch/arm64/boot/dts/qcom/sm6375.dtsi
 +++ b/arch/arm64/boot/dts/qcom/sm6375.dtsi
-@@ -1505,6 +1505,15 @@ frame@f42d000 {
- 			};
+@@ -764,6 +764,28 @@ spmi_bus: spmi@1c40000 {
+ 			#interrupt-cells = <4>;
  		};
  
-+		cpucp_l3: interconnect@fd90000 {
-+			compatible = "qcom,sm6375-cpucp-l3", "qcom,epss-l3";
-+			reg = <0 0x0fd90000 0 0x1000>;
-+
-+			clocks = <&rpmcc RPM_SMD_XO_CLK_SRC>, <&gcc GPLL0>;
-+			clock-names = "xo", "alternate";
-+			#interconnect-cells = <1>;
++		tsens0: thermal-sensor@4411000 {
++			compatible = "qcom,sm6375-tsens", "qcom,tsens-v2";
++			reg = <0 0x04411000 0 0x140>, /* TM */
++			      <0 0x04410000 0 0x20>;  /* SROT */
++			interrupts = <GIC_SPI 275 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 190 IRQ_TYPE_LEVEL_HIGH>;
++			interrupt-names = "uplow", "critical";
++			#thermal-sensor-cells = <1>;
++			#qcom,sensors = <15>;
 +		};
 +
- 		cpufreq_hw: cpufreq@fd91000 {
- 			compatible = "qcom,sm6375-cpufreq-epss", "qcom,cpufreq-epss";
- 			reg = <0 0x0fd91000 0 0x1000>, <0 0x0fd92000 0 0x1000>;
++		tsens1: thermal-sensor@4413000 {
++			compatible = "qcom,sm6375-tsens", "qcom,tsens-v2";
++			reg = <0 0x04413000 0 0x140>, /* TM */
++			      <0 0x04412000 0 0x20>;  /* SROT */
++			interrupts = <GIC_SPI 293 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 316 IRQ_TYPE_LEVEL_HIGH>;
++			interrupt-names = "uplow", "critical";
++			#thermal-sensor-cells = <1>;
++			#qcom,sensors = <11>;
++		};
++
+ 		rpm_msg_ram: sram@45f0000 {
+ 			compatible = "qcom,rpm-msg-ram";
+ 			reg = <0 0x045f0000 0 0x7000>;
 
 -- 
 2.39.2
