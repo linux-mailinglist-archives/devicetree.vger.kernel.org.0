@@ -2,267 +2,287 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BC1306A92B9
-	for <lists+devicetree@lfdr.de>; Fri,  3 Mar 2023 09:38:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 12B176A92C0
+	for <lists+devicetree@lfdr.de>; Fri,  3 Mar 2023 09:42:29 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230185AbjCCIiO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 3 Mar 2023 03:38:14 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37016 "EHLO
+        id S230160AbjCCIm1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 3 Mar 2023 03:42:27 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41700 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230093AbjCCIiN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Mar 2023 03:38:13 -0500
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2F8F344B1;
-        Fri,  3 Mar 2023 00:37:54 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1677832674; x=1709368674;
-  h=message-id:date:mime-version:from:subject:to:cc:
-   references:in-reply-to:content-transfer-encoding;
-  bh=99a0egF5HzTdYJhqz5GN8l1ewoGU6i01RW0IKv7vsvA=;
-  b=nz/s68GvlPOHQ7gF7By2SbBLhmAFMQUDNewcbaOqJAC7ymYjA0VF2ZgL
-   8dTuBpRh+1C6VTjFp8qU5njUetnvT60fsTfAc0aT00SN2iCketG5WEpwd
-   5+LgSsOCM8bD6PdK3ykjQCCqJiRUjaWpAYjf77hdHJG3ATuF0AVfkzGPi
-   YW9WvOFNBKWXnIf42qh6n82fDpWOB02PVqhvC3aoG2kgKzdiIV4bHRIQU
-   fnlrk5tvgA+Tp7AhJH2H1+P5aoorlU8g3S9rhu4Qj6H1qHApIdV34Ewna
-   hL9ETzqrDV/dCam0uQNQJBayIo1tbdhMOfouK/o5ztTukzRmxwAsplgWb
-   g==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10637"; a="314650837"
-X-IronPort-AV: E=Sophos;i="5.98,230,1673942400"; 
-   d="scan'208";a="314650837"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-  by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 Mar 2023 00:37:03 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10637"; a="707745336"
-X-IronPort-AV: E=Sophos;i="5.98,230,1673942400"; 
-   d="scan'208";a="707745336"
-Received: from ahunter6-mobl1.ger.corp.intel.com (HELO [10.0.2.15]) ([10.251.216.227])
-  by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 Mar 2023 00:37:00 -0800
-Message-ID: <ce9e7b04-7030-a34a-eadf-56a914dcaaf1@intel.com>
-Date:   Fri, 3 Mar 2023 10:36:57 +0200
+        with ESMTP id S229992AbjCCImY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Mar 2023 03:42:24 -0500
+Received: from mail-ed1-x529.google.com (mail-ed1-x529.google.com [IPv6:2a00:1450:4864:20::529])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0F8BE3A851
+        for <devicetree@vger.kernel.org>; Fri,  3 Mar 2023 00:42:18 -0800 (PST)
+Received: by mail-ed1-x529.google.com with SMTP id cy23so7179977edb.12
+        for <devicetree@vger.kernel.org>; Fri, 03 Mar 2023 00:42:18 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1677832937;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=TST4cThQaK2erJHSPGfkkNJ8p/M75cq++a+eKVWZxF0=;
+        b=l2xARqmNJdkYpMikLbVGrC4i/RCs/fqN3ecwn0vLc1zzqa7tvF+Wqi2lKOU/Z2LNVR
+         aDHcWJdCYYxNZ4krZW0lnO4QeghXuUIUKg4K0SZT4WZ0f6CDVmQS4MdAya/ABryWGHDh
+         U/XEz7pKAT+YoD4PBXrzhKnpWJk9IvLjibPtc2QoWJmX4wpkQ0ox9s0/tJB25QPyky4p
+         NVkZmhMiERVYb2Fm0AHlMRqbYi5LuMYUciiKGsfFNrCS5PDF0PN/RpkAxvOKFEPHhhU+
+         eyHDvk/viU3Q4jmnibBXDPYvml76gMdtP+wdxQPslME1hZ32yCOGHmIMqTSFn7rU4Czm
+         vqRQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1677832937;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=TST4cThQaK2erJHSPGfkkNJ8p/M75cq++a+eKVWZxF0=;
+        b=T5ro5GAUy0Ybtv+PczWhJvuw8AW6b1+kLI0SkbKDFxgkjctilQFygP80CgDnG2L/cG
+         wjjZZcRz01tlvMmxPJSYo4u+wUlGSKU8jSFtlXN/J3Xgud9uu8LGESyIoQzWMUuImnxg
+         Dn2PijqjDBaLh8ghI+jRiTpOyHqbp+LFA1ImBMQFpXlhXzgrEPH8O5MG5no/KNVDb4np
+         HOm7bZClSsAH4ZtYNxNNgcdbI8K7dqEDz+EAzEbcokMGTPIQh8EVBHo8r+/vQ8sxQQXh
+         bCTSOYAiJaj6PW4EjkQ3wenWcuPYCQ8E+96ISzjYieiFDeRToLGRpQtWEtbnKqCUZVRj
+         g2hA==
+X-Gm-Message-State: AO0yUKUuS4+YpZTdLqukryWhfrr8QX7fb4v5AUGGVNf0CsiZuSUyHjP8
+        bCIbikKR3gKtjiXimC0/SHAjnw==
+X-Google-Smtp-Source: AK7set/FrDQkpv9xuFORleilLGkXPiWO2nkWOv+hJMBasSr31CouErbTswY9pCqI+LeMu4hoEacOqQ==
+X-Received: by 2002:a17:907:728e:b0:8b1:807e:d4d2 with SMTP id dt14-20020a170907728e00b008b1807ed4d2mr1140561ejc.34.1677832937187;
+        Fri, 03 Mar 2023 00:42:17 -0800 (PST)
+Received: from [192.168.1.20] ([178.197.216.144])
+        by smtp.gmail.com with ESMTPSA id r16-20020a170906a21000b008cafeec917dsm701191ejy.101.2023.03.03.00.42.15
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 03 Mar 2023 00:42:16 -0800 (PST)
+Message-ID: <711f0e08-a8c8-45ef-08cf-6ca4f166ed4a@linaro.org>
+Date:   Fri, 3 Mar 2023 09:42:14 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Firefox/102.0 Thunderbird/102.8.0
-From:   Adrian Hunter <adrian.hunter@intel.com>
-Subject: Re: [PATCH v3 6/6] mmc: sdhci-cadence: Add debug option for
- sdhci-cadence driver
-To:     Piyush Malgujar <pmalgujar@marvell.com>, linux-mmc@vger.kernel.org,
-        linux-kernel@vger.kernel.org, ulf.hansson@linaro.org,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        yamada.masahiro@socionext.com, devicetree@vger.kernel.org
-Cc:     jannadurai@marvell.com, cchavva@marvell.com
-References: <20230227183151.27912-1-pmalgujar@marvell.com>
- <20230227183151.27912-7-pmalgujar@marvell.com>
+ Thunderbird/102.8.0
+Subject: Re: [PATCH v1 02/11] media: dt-bindings: starfive,jh7110-mipi-csi2:
+ add binding docmuent
 Content-Language: en-US
-Organization: Intel Finland Oy, Registered Address: PL 281, 00181 Helsinki,
- Business Identity Code: 0357606 - 4, Domiciled in Helsinki
-In-Reply-To: <20230227183151.27912-7-pmalgujar@marvell.com>
+To:     "jack.zhu" <jack.zhu@starfivetech.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Robert Foss <rfoss@kernel.org>,
+        Todor Tomov <todor.too@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Maxime Ripard <mripard@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>
+Cc:     linux-media@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, changhuang.liang@starfivetech.com
+References: <20230302091921.43309-1-jack.zhu@starfivetech.com>
+ <20230302091921.43309-3-jack.zhu@starfivetech.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230302091921.43309-3-jack.zhu@starfivetech.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_PASS,SPF_NONE autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 27/02/23 20:31, Piyush Malgujar wrote:
-> From: Jayanthi Annadurai <jannadurai@marvell.com>
+On 02/03/2023 10:19, jack.zhu wrote:
+> Add DT binding document for Starfive MIPI CSI2 receiver
+
+Subject: drop second/last, redundant "add binding document". The
+"dt-bindings" prefix is already stating that these are bindings and it
+is a document. Write something useful instead.
+
 > 
-> Use Kernel config CONFIG_MMC_DEBUG to support dumping PHY and host
-> controller register configuration for debug.
-> 
-> Signed-off-by: Jayanthi Annadurai <jannadurai@marvell.com>
-> Signed-off-by: Piyush Malgujar <pmalgujar@marvell.com>
+> Signed-off-by: jack.zhu <jack.zhu@starfivetech.com>
 > ---
->  drivers/mmc/host/sdhci-cadence.c | 154 +++++++++++++++++++++++++++++++
->  1 file changed, 154 insertions(+)
+>  .../media/starfive,jh7110-mipi-csi2.yaml      | 177 ++++++++++++++++++
+>  1 file changed, 177 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/media/starfive,jh7110-mipi-csi2.yaml
 > 
-> diff --git a/drivers/mmc/host/sdhci-cadence.c b/drivers/mmc/host/sdhci-cadence.c
-> index badff2df70b904779c70775b02b40086780b118d..c448a100f32c8c44a0da7c71c2aa5d25ac5a4b44 100644
-> --- a/drivers/mmc/host/sdhci-cadence.c
-> +++ b/drivers/mmc/host/sdhci-cadence.c
-> @@ -115,6 +115,10 @@
->  #define	SDHCI_CDNS_SD6_PHY_DLL_SLAVE_CLK_WR_DELAY		GENMASK(15, 8)
->  #define	SDHCI_CDNS_SD6_PHY_DLL_SLAVE_READ_DQS_DELAY		GENMASK(7, 0)
->  
-> +#define SDHCI_CDNS_SD6_PHY_DLL_OBS_REG0				0x201C
-> +#define SDHCI_CDNS_SD6_PHY_DLL_OBS_REG1				0x2020
-> +#define SDHCI_CDNS_SD6_PHY_DLL_OBS_REG2				0x2024
-> +
->  #define SDHCI_CDNS_SD6_PHY_CTRL					0x2080
->  #define	SDHCI_CDNS_SD6_PHY_CTRL_PHONY_DQS_TIMING		GENMASK(9, 4)
->  
-> @@ -968,6 +972,154 @@ static void sdhci_cdns_sd6_calc_phy(struct sdhci_cdns_sd6_phy *phy)
->  	}
->  }
->  
-> +#ifdef CONFIG_MMC_DEBUG
+> diff --git a/Documentation/devicetree/bindings/media/starfive,jh7110-mipi-csi2.yaml b/Documentation/devicetree/bindings/media/starfive,jh7110-mipi-csi2.yaml
+> new file mode 100644
+> index 000000000000..6569fac9e856
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/media/starfive,jh7110-mipi-csi2.yaml
+> @@ -0,0 +1,177 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
 
-At this point this might as well be instead:
+Why for patch 1 and 2 you are using difference SPDX?
 
-#if defined(DEBUG) || IS_ENABLED(CONFIG_DYNAMIC_DEBUG)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/media/starfive,jh7110-mipi-csi2.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Starfive JH7110 MIPI CSI-2 receiver
+> +
+> +maintainers:
+> +  - Jack Zhu <jack.zhu@starfivetech.com>
+> +  - Changhuang Liang <changhuang.liang@starfivetech.com>
+> +
+> +description: |-
+
+Drop |-
+
+> +  The JH7110 MIPI CSI-2 receiver device is responsible for handling CSI2
+> +  protocol based camera sensor data stream.
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - starfive,jh7110-csi2rx
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    items:
+> +      - description: CSI2Rx system clock
+> +      - description: Gated Register bank clock for APB interface
+> +      - description: pixel Clock for Stream interface 0
+> +      - description: pixel Clock for Stream interface 1
+> +      - description: pixel Clock for Stream interface 2
+> +      - description: pixel Clock for Stream interface 3
+> +
+> +  clock-names:
+> +    items:
+> +      - const: sys_clk
+> +      - const: p_clk
+> +      - const: pixel_if0_clk
+> +      - const: pixel_if1_clk
+> +      - const: pixel_if2_clk
+> +      - const: pixel_if3_clk
+
+Drop _clk suffixes
 
 > +
-> +static
-> +void sdhci_cdns_sd6_phy_dump(struct sdhci_cdns_sd6_phy *phy,
-> +			     struct sdhci_host *host)
-> +{
-> +	dev_dbg(mmc_dev(host->mmc), "PHY Timings\n");
-> +	dev_dbg(mmc_dev(host->mmc), "mode %d t_sdclk %d\n", phy->mode,
-> +		phy->t_sdclk);
+> +  resets:
+> +    items:
+> +      - description: CSI2Rx system reset
+> +      - description: Gated Register bank reset for APB interface
+> +      - description: pixel reset for Stream interface 0
+> +      - description: pixel reset for Stream interface 1
+> +      - description: pixel reset for Stream interface 2
+> +      - description: pixel reset for Stream interface 3
 > +
-> +	dev_dbg(mmc_dev(host->mmc), "cp_clk_wr_delay %d\n",
-> +		phy->settings.cp_clk_wr_delay);
-> +	dev_dbg(mmc_dev(host->mmc), "cp_clk_wrdqs_delay %d\n",
-> +		phy->settings.cp_clk_wrdqs_delay);
-> +	dev_dbg(mmc_dev(host->mmc), "cp_data_select_oe_end %d\n",
-> +		phy->settings.cp_data_select_oe_end);
-> +	dev_dbg(mmc_dev(host->mmc), "cp_dll_bypass_mode %d\n",
-> +		phy->settings.cp_dll_bypass_mode);
-> +	dev_dbg(mmc_dev(host->mmc), "cp_dll_locked_mode %d\n",
-> +		phy->settings.cp_dll_locked_mode);
-> +	dev_dbg(mmc_dev(host->mmc), "cp_dll_start_point %d\n",
-> +		phy->settings.cp_dll_start_point);
-> +	dev_dbg(mmc_dev(host->mmc), "cp_io_mask_always_on %d\n",
-> +		phy->settings.cp_io_mask_always_on);
-> +	dev_dbg(mmc_dev(host->mmc), "cp_io_mask_end %d\n",
-> +		phy->settings.cp_io_mask_end);
-> +	dev_dbg(mmc_dev(host->mmc), "cp_io_mask_start %d\n",
-> +		phy->settings.cp_io_mask_start);
-> +	dev_dbg(mmc_dev(host->mmc), "cp_rd_del_sel %d\n",
-> +		phy->settings.cp_rd_del_sel);
-> +	dev_dbg(mmc_dev(host->mmc), "cp_read_dqs_cmd_delay %d\n",
-> +		phy->settings.cp_read_dqs_cmd_delay);
-> +	dev_dbg(mmc_dev(host->mmc), "cp_read_dqs_delay %d\n",
-> +		phy->settings.cp_read_dqs_delay);
-> +	dev_dbg(mmc_dev(host->mmc), "cp_sw_half_cycle_shift %d\n",
-> +		phy->settings.cp_sw_half_cycle_shift);
-> +	dev_dbg(mmc_dev(host->mmc), "cp_sync_method %d\n",
-> +		phy->settings.cp_sync_method);
-> +	dev_dbg(mmc_dev(host->mmc), "cp_use_ext_lpbk_dqs %d\n",
-> +		phy->settings.cp_use_ext_lpbk_dqs);
-> +	dev_dbg(mmc_dev(host->mmc), "cp_use_lpbk_dqs %d\n",
-> +		phy->settings.cp_use_lpbk_dqs);
-> +	dev_dbg(mmc_dev(host->mmc), "cp_use_phony_dqs %d\n",
-> +		phy->settings.cp_use_phony_dqs);
-> +	dev_dbg(mmc_dev(host->mmc), "cp_use_phony_dqs_cmd %d\n",
-> +		phy->settings.cp_use_phony_dqs_cmd);
-> +	dev_dbg(mmc_dev(host->mmc), "sdhc_extended_rd_mode %d\n",
-> +		phy->settings.sdhc_extended_rd_mode);
-> +	dev_dbg(mmc_dev(host->mmc), "sdhc_extended_wr_mode %d\n",
-> +		phy->settings.sdhc_extended_wr_mode);
+> +  reset-names:
+> +    items:
+> +      - const: sys_rst
+
+Drop _rst suffixes
+
+> +      - const: p_rst
+> +      - const: pixel_if0_rst
+> +      - const: pixel_if1_rst
+> +      - const: pixel_if2_rst
+> +      - const: pixel_if3_rst
 > +
-> +	dev_dbg(mmc_dev(host->mmc), "sdhc_hcsdclkadj %d\n",
-> +		phy->settings.sdhc_hcsdclkadj);
-> +	dev_dbg(mmc_dev(host->mmc), "sdhc_idelay_val %d\n",
-> +		phy->settings.sdhc_idelay_val);
-> +	dev_dbg(mmc_dev(host->mmc), "sdhc_rdcmd_en %d\n",
-> +		phy->settings.sdhc_rdcmd_en);
-> +	dev_dbg(mmc_dev(host->mmc), "sdhc_rddata_en %d\n",
-> +		phy->settings.sdhc_rddata_en);
-> +	dev_dbg(mmc_dev(host->mmc), "sdhc_rw_compensate %d\n",
-> +		phy->settings.sdhc_rw_compensate);
-> +	dev_dbg(mmc_dev(host->mmc), "sdhc_sdcfsh %d\n",
-> +		phy->settings.sdhc_sdcfsh);
-> +	dev_dbg(mmc_dev(host->mmc), "sdhc_sdcfsl %d\n",
-> +		phy->settings.sdhc_sdcfsl);
-> +	dev_dbg(mmc_dev(host->mmc), "sdhc_wrcmd0_dly %d %d\n",
-> +		phy->settings.sdhc_wrcmd0_dly,
-> +		phy->settings.sdhc_wrcmd0_sdclk_dly);
-> +	dev_dbg(mmc_dev(host->mmc), "sdhc_wrcmd1_dly %d %d\n",
-> +		phy->settings.sdhc_wrcmd1_dly,
-> +		phy->settings.sdhc_wrcmd1_sdclk_dly);
-> +	dev_dbg(mmc_dev(host->mmc), "sdhc_wrdata0_dly %d %d\n",
-> +		phy->settings.sdhc_wrdata0_dly,
-> +		phy->settings.sdhc_wrdata0_sdclk_dly);
+> +  phys:
+> +    maxItems: 1
+> +    description: MIPI D-PHY
 > +
-> +	dev_dbg(mmc_dev(host->mmc), "sdhc_wrdata1_dly %d %d\n",
-> +		phy->settings.sdhc_wrdata1_dly,
-> +		phy->settings.sdhc_wrdata1_sdclk_dly);
-> +	dev_dbg(mmc_dev(host->mmc), "hs200_tune_val %d\n",
-> +		phy->settings.hs200_tune_val);
-> +}
+> +  phy-names:
+> +    items:
+> +      - const: dphy
 > +
-> +static
-> +void sdhci_cdns_sd6_dump(struct sdhci_cdns_priv *priv, struct sdhci_host *host)
-> +{
-> +	struct sdhci_cdns_sd6_phy *phy = priv->phy;
-> +	int id;
+> +  ports:
+> +    $ref: /schemas/graph.yaml#/properties/ports
 > +
-> +	sdhci_cdns_sd6_phy_dump(phy);
+> +    properties:
+> +      port@0:
+> +        $ref: /schemas/graph.yaml#/$defs/port-base
+> +        unevaluatedProperties: false
+> +        description:
+> +          Input port node, single endpoint describing the CSI-2 transmitter.
 > +
-> +	dev_dbg(mmc_dev(host->mmc), "Host controller Register Dump\n");
-> +	for (id = 0; id < 14; id++) {
-> +		dev_dbg(mmc_dev(host->mmc), "HRS%d 0x%x\n", id,
-> +			readl(priv->hrs_addr + (id * 4)));
-> +	}
+> +        properties:
+> +          endpoint:
+> +            $ref: video-interfaces.yaml#
+> +            unevaluatedProperties: false
 > +
-> +	id = 29;
-> +	dev_dbg(mmc_dev(host->mmc), "HRS%d 0x%x\n", id,
-> +		readl(priv->hrs_addr + (id * 4)));
-> +	id = 30;
-> +	dev_dbg(mmc_dev(host->mmc), "HRS%d 0x%x\n", id,
-> +		readl(priv->hrs_addr + (id * 4)));
+> +            properties:
+> +              bus-type:
+> +                items:
+
+This is not an array.
+
+> +                  - const: 4
 > +
-> +	for (id = 0; id < 27; id++) {
-> +		dev_dbg(mmc_dev(host->mmc), "SRS%d 0x%x\n", id,
-> +			readl(priv->hrs_addr + 0x200 + (id * 4)));
-> +	}
+> +              clock-lanes:
+> +                maxItems: 1
+
+Not an array...
+
 > +
-> +	dev_dbg(mmc_dev(host->mmc), "SDHCI_CDNS_SD6_PHY_DQS_TIMING 0x%x\n",
-> +		sdhci_cdns_sd6_read_phy_reg(priv,
-> +					    SDHCI_CDNS_SD6_PHY_DQS_TIMING));
-> +	dev_dbg(mmc_dev(host->mmc), "SDHCI_CDNS_SD6_PHY_GATE_LPBK 0x%x\n",
-> +		sdhci_cdns_sd6_read_phy_reg(priv,
-> +					    SDHCI_CDNS_SD6_PHY_GATE_LPBK));
-> +	dev_dbg(mmc_dev(host->mmc), "SDHCI_CDNS_SD6_PHY_DLL_MASTER 0x%x\n",
-> +		sdhci_cdns_sd6_read_phy_reg(priv,
-> +					    SDHCI_CDNS_SD6_PHY_DLL_MASTER));
-> +	dev_dbg(mmc_dev(host->mmc), "SDHCI_CDNS_SD6_PHY_DLL_SLAVE 0x%x\n",
-> +		sdhci_cdns_sd6_read_phy_reg(priv,
-> +					    SDHCI_CDNS_SD6_PHY_DLL_SLAVE));
-> +	dev_dbg(mmc_dev(host->mmc), "SDHCI_CDNS_SD6_PHY_CTRL 0x%x\n",
-> +		sdhci_cdns_sd6_read_phy_reg(priv, SDHCI_CDNS_SD6_PHY_CTRL));
-> +	dev_dbg(mmc_dev(host->mmc), "SDHCI_CDNS_SD6_PHY_GPIO_CTRL0 0x%x\n",
-> +		sdhci_cdns_sd6_read_phy_reg(priv,
-> +					    SDHCI_CDNS_SD6_PHY_GPIO_CTRL0));
-> +	dev_dbg(mmc_dev(host->mmc), "SDHCI_CDNS_SD6_PHY_DQ_TIMING 0x%x\n",
-> +		sdhci_cdns_sd6_read_phy_reg(priv,
-> +					    SDHCI_CDNS_SD6_PHY_DQ_TIMING));
-> +	dev_dbg(mmc_dev(host->mmc), "SDHCI_CDNS_SD6_PHY_DLL_OBS_REG0 0x%x\n",
-> +		sdhci_cdns_sd6_read_phy_reg(priv,
-> +					    SDHCI_CDNS_SD6_PHY_DLL_OBS_REG0));
-> +	dev_dbg(mmc_dev(host->mmc), "SDHCI_CDNS_SD6_PHY_DLL_OBS_REG1 0x%x\n",
-> +		sdhci_cdns_sd6_read_phy_reg(priv,
-> +					    SDHCI_CDNS_SD6_PHY_DLL_OBS_REG1));
-> +	dev_dbg(mmc_dev(host->mmc), "SDHCI_CDNS_SD6_PHY_DLL_OBS_REG2 0x%x\n",
-> +		sdhci_cdns_sd6_read_phy_reg(priv,
-> +					    SDHCI_CDNS_SD6_PHY_DLL_OBS_REG2));
-> +}
+> +              data-lanes:
+> +                minItems: 1
+> +                maxItems: 4
+> +                items:
+> +                  maximum: 4
 > +
-> +#else
+> +            required:
+> +              - bus-type
+
+Since this is fixed 4, do you actually require it? Why?
+
+> +              - clock-lanes
+> +              - data-lanes
 > +
-> +static inline void sdhci_cdns_sd6_dump(struct sdhci_cdns_priv *priv,
-> +				       struct sdhci_host *host)
-> +{
-> +}
+> +      port@1:
+> +        $ref: /schemas/graph.yaml#/properties/port
+> +        description:
+> +          Output port node
 > +
-> +#endif
+> +    required:
+> +      - port@0
+> +      - port@1
 > +
->  static
->  int sdhci_cdns_sd6_get_delay_params(struct device *dev,
->  				    struct sdhci_cdns_priv *priv)
-> @@ -1319,6 +1471,8 @@ static void sdhci_cdns_sd6_set_clock(struct sdhci_host *host,
->  		pr_debug("%s: phy init failed\n", __func__);
->  
->  	sdhci_set_clock(host, clock);
+> +required:
+> +  - compatible
+> +  - reg
+> +  - clocks
+> +  - clock-names
+> +  - resets
+> +  - reset-names
+> +  - phys
+> +  - phy-names
+> +  - ports
 > +
-> +	sdhci_cdns_sd6_dump(priv, host);
->  }
->  
->  static int sdhci_cdns_sd4_phy_probe(struct platform_device *pdev,
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +
+
+Drop blank line
+
+> +    csi2rx: csi-bridge@19800000 {
+
+Maybe just "csi@"?
+> +        compatible = "starfive,jh7110-csi2rx";
+> +        reg = <0x19800000 0x10000>;
+> +        clocks = <&ispcrg 7>,
+> +            <&ispcrg 6>,
+
+Indentation looks odd... did you align it?
+
+> +            <&ispcrg 8>,
+> +            <&ispcrg 9>,
+> +            <&ispcrg 10>,
+> +            <&ispcrg 11>;
+> +        clock-names = "sys_clk", "p_clk",
+> +            "pixel_if0_clk", "pixel_if1_clk",
+> +            "pixel_if2_clk", "pixel_if3_clk";
+> +        resets = <&ispcrg 9>,
+> +            <&ispcrg 4>,
+> +            <&ispcrg 5>,
+> +            <&ispcrg 6>,
+> +            <&ispcrg 7>,
+> +            <&ispcrg 8>;
+> +        reset-names = "sys_rst", "p_rst",
+> +            "pixel_if0_rst", "pixel_if1_rst",
+> +            "pixel_if2_rst", "pixel_if3_rst";
+> +        phys = <&csi_phy>;
+> +        phy-names = "dphy";
+
+
+Best regards,
+Krzysztof
 
