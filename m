@@ -2,74 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 60A706A9164
-	for <lists+devicetree@lfdr.de>; Fri,  3 Mar 2023 08:03:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8F6286A916C
+	for <lists+devicetree@lfdr.de>; Fri,  3 Mar 2023 08:05:49 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229607AbjCCHDA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 3 Mar 2023 02:03:00 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37886 "EHLO
+        id S229649AbjCCHFr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 3 Mar 2023 02:05:47 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40604 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229486AbjCCHC7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Mar 2023 02:02:59 -0500
-Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com [IPv6:2a00:1450:4864:20::52b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 387A03592
-        for <devicetree@vger.kernel.org>; Thu,  2 Mar 2023 23:02:58 -0800 (PST)
-Received: by mail-ed1-x52b.google.com with SMTP id u9so6613693edd.2
-        for <devicetree@vger.kernel.org>; Thu, 02 Mar 2023 23:02:58 -0800 (PST)
+        with ESMTP id S229560AbjCCHFq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Mar 2023 02:05:46 -0500
+Received: from mail-ed1-x52d.google.com (mail-ed1-x52d.google.com [IPv6:2a00:1450:4864:20::52d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 66F9B1A67D
+        for <devicetree@vger.kernel.org>; Thu,  2 Mar 2023 23:05:45 -0800 (PST)
+Received: by mail-ed1-x52d.google.com with SMTP id x3so6436136edb.10
+        for <devicetree@vger.kernel.org>; Thu, 02 Mar 2023 23:05:45 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1677826976;
+        d=linaro.org; s=google; t=1677827144;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=SS0pZtOXOCGsRpwT2/LH/98sjAzBtNRBQ/GVmHS+K8M=;
-        b=i3ks/kDAv8EabEjfJk5skrkV5kgK09F1+JDqq5gGixIHL65aAoT/XDlXrErPqsX7pK
-         VAR3Z+nNky2f7A7QQZcfLLYS2USwnw/CJqjWpDtiY9wTySt1Rgo1KTk/AvB9qwBCIn2Q
-         Cibve5sdaWR15dLdmtOcpEB4tPvp+s873vwz1D0Md4gHynRxNsxwHA8aqCiwvQSAqcr2
-         98syev9fmu0m8q/X2q3ijfG3HZOQSm0VsZt0N92kLGtOHUsGDonFYQggLjqhHMlWm7pr
-         sklSAT7dwtujXR99xO0A+j6+u0imCQu8pCM+YN3dWfEgvyNJwvEhBNaycMT15samIfTE
-         Wwzg==
+        bh=7hyO83Agm9J1LkrNZzgMmPOSi1e0C8pD1X+9+f3Pu8E=;
+        b=DTsZvcGSh0JqYAWl73FtkLBOgToNuhgRMthIP75ZhbLj4hvKzx8xLSWmq6ZecBm+fc
+         WnGaFSR/szAif5FxMioBLi8lXOMjwyl9YYBRW1qvfrNJQ7y6enmqBFXC6knizv5FRC7w
+         gLcW7RZF7IeggDaKwtL/qn/wbEyuyR91AVlWq5dAw46hbqc6EYma+NwexHXqBlDdZGaB
+         0Kw0lNAnA0Yk98iEdnIWnFQ2Wi5nbeYto+qJucXYry5HG84g0JbO9dCjhmRWcEXGLp9r
+         AnMwj+SQ1t8ltYXBcQvr/J9V6aYgCkp+SkBohiYeeoKguZDW2uGNeBFyo3FRxcIff5gD
+         KvIQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1677826976;
+        d=1e100.net; s=20210112; t=1677827144;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=SS0pZtOXOCGsRpwT2/LH/98sjAzBtNRBQ/GVmHS+K8M=;
-        b=3IyD/KGoC+1L5v7gT0XRo1agqtVqP48zHCAExD/qt4iOagXA2Uat1+Ke1wCt4sRjwB
-         YAGOBpqF/dte0X/gIhGtbbQjU5n0Vgt0W5hN4SxC3qF690SSda7ynOGOmWE+IgbbcD2r
-         2LaH2Kn4U/+iu3LidciXq9QxTN2YIH419bYccfVUb6w9gPQ/tQYKumj89Cv4ag4yrVZC
-         9QMyJQuIiuj65L9Ihxckcr1Cv5dl7K2GFzks6h1a9aV17Ohz5Rjuf3sLumvpjUpqb4fr
-         /X7hPz3Ulb7CGFNajlprH1R32d1LQwCu0Ceb/01VgqsHEwYRVg53vfvJAI/GWY5yYISu
-         PfXg==
-X-Gm-Message-State: AO0yUKUFBC/bH/M61QpK3YE1G47sFg6zObIZgdYER1X18vE0YHZQLt1w
-        mFv7HIliDT1/8WrYV0nVftqyOw==
-X-Google-Smtp-Source: AK7set/tMa38FXOV2npPtA2knaAbce5U81AM4X6wzByfio4vR+xTOVhyLCP2XdEogoz4q2JS276toQ==
-X-Received: by 2002:a17:906:6a1e:b0:8b1:fc58:a4ad with SMTP id qw30-20020a1709066a1e00b008b1fc58a4admr886969ejc.11.1677826976663;
-        Thu, 02 Mar 2023 23:02:56 -0800 (PST)
+        bh=7hyO83Agm9J1LkrNZzgMmPOSi1e0C8pD1X+9+f3Pu8E=;
+        b=X/Ks451G5U0Y/mf6l7+zl25Wez8cMoaKHl5ZYVhAGZi6z5WhE5/PAFVU1n5o+Upo63
+         9SENgdF8tqYAyfMWkwTIQyFd3mIxs+/QzeKUV0kZymZoN/yrDp7wqhMLU1fuyPZCu+ye
+         OhCCcGT0r/Nue4oRd085BNWmlpRswNgJPnfmx6imPc3AMIvTWyJf4MXbXWGbuoACk9ZO
+         lKoWzGGKqbbhy7CkjiMrT+e0ALVxBWRSPruiha4UDMy+k+g+cNN33LZHLclkhQswriNv
+         ehq38DTjwV00Zr8/etRQtCVvoZfi+Cizg+y29uQ6KsyPNQ+/14rMv03KOvX02pl1/r+w
+         RWGw==
+X-Gm-Message-State: AO0yUKVVYKL8XNkxZxx3haSrFtWjs2u4PvgmJgZoAtaVeF8xXOFanXNq
+        OOiR4Eq93XaJqJ3+ah0FRwwdmg==
+X-Google-Smtp-Source: AK7set872PawA8YLwYxckp8bhyhvu6/0N24CzD55UJ1kPz74D0pEza8jIQRyk/4Shrewd1pziePgRg==
+X-Received: by 2002:a05:6402:1347:b0:4ab:1c69:5c4 with SMTP id y7-20020a056402134700b004ab1c6905c4mr884592edw.26.1677827143862;
+        Thu, 02 Mar 2023 23:05:43 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id hy3-20020a1709068a6300b008e57b5e0ce9sm609319ejc.108.2023.03.02.23.02.54
+        by smtp.gmail.com with ESMTPSA id k12-20020a50ce4c000000b004c0459c20f9sm772279edj.66.2023.03.02.23.05.41
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 02 Mar 2023 23:02:56 -0800 (PST)
-Message-ID: <0ea5f080-6c99-0243-1ac2-0182d9a83aad@linaro.org>
-Date:   Fri, 3 Mar 2023 08:02:54 +0100
+        Thu, 02 Mar 2023 23:05:43 -0800 (PST)
+Message-ID: <a696bea5-3ba6-3b71-10ad-a04a7412c178@linaro.org>
+Date:   Fri, 3 Mar 2023 08:05:40 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.8.0
-Subject: Re: [PATCH 2/7] ARM: dts: nuvoton: Add Quanta GSZ BMC Device Tree
+Subject: Re: [RFC PATCH 07/16] dt-bindings: pinctrl: ralink: add new
+ compatible strings
 Content-Language: en-US
-To:     David Wang <tomato1220@gmail.com>, arnd@arndb.de, olof@lixom.net,
-        soc@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org
-Cc:     avifishman70@gmail.com, tmaimon77@gmail.com, tali.perry1@gmail.com,
-        venture@google.com, yuenn@google.com, benjaminfair@google.com,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, openbmc@lists.ozlabs.org,
-        fran.hsu@quantatw.com, David Wang <davidwang@quantatw.com>
-References: <20230303063435.803097-1-davidwang@quantatw.com>
- <20230303063435.803097-2-davidwang@quantatw.com>
+To:     =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>,
+        Rob Herring <robh@kernel.org>
+Cc:     Sergio Paracuellos <sergio.paracuellos@gmail.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-mediatek@lists.infradead.org, linux-mips@vger.kernel.org,
+        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Sean Wang <sean.wang@kernel.org>,
+        William Dean <williamsukatube@gmail.com>,
+        Daniel Golle <daniel@makrotopia.org>,
+        Daniel Santos <daniel.santos@pobox.com>,
+        Luiz Angelo Daros de Luca <luizluca@gmail.com>,
+        Frank Wunderlich <frank-w@public-files.de>,
+        Landen Chao <Landen.Chao@mediatek.com>,
+        DENG Qingfang <dqfext@gmail.com>,
+        Sean Wang <sean.wang@mediatek.com>, erkin.bozoglu@xeront.com
+References: <20230222183932.33267-1-arinc.unal@arinc9.com>
+ <20230222183932.33267-8-arinc.unal@arinc9.com>
+ <20230227173333.GA496999-robh@kernel.org>
+ <d7aea90f-d077-3a41-996c-804c95d72e24@arinc9.com>
+ <20230301024431.GA251215-robh@kernel.org>
+ <ae3346de-140f-f181-b6a3-ccaa694e1548@arinc9.com>
+ <11d3c806-04b6-da54-65f1-c0bd154affbc@linaro.org>
+ <a9acd3b4-2b03-86c0-711c-a3840aeab574@arinc9.com>
+ <1aae7ac9-c83d-71b4-4fce-325f02fcd722@linaro.org>
+ <89588f69-9cf0-e7a4-b976-5ce87d42e296@arinc9.com>
+ <2ccb573d-39f4-cb80-7a3e-63a60c2bc0a8@linaro.org>
+ <b48e0a5e-dd45-8b8a-4ee3-357a0985ca9c@arinc9.com>
+ <83a03258-9e52-3d09-67fe-12e9e5ed4b76@linaro.org>
+ <11d10e4e-65ec-3bec-3e0c-7e57feb03506@arinc9.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230303063435.803097-2-davidwang@quantatw.com>
+In-Reply-To: <11d10e4e-65ec-3bec-3e0c-7e57feb03506@arinc9.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
@@ -79,135 +102,55 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 03/03/2023 07:34, David Wang wrote:
-> Add the device tree for the Quanta GSZ BMC and it's
-> based on NPCM730 SoC
+On 02/03/2023 12:50, Arınç ÜNAL wrote:
+> On 2.03.2023 14:36, Krzysztof Kozlowski wrote:
+>> On 02/03/2023 11:47, Arınç ÜNAL wrote:
+>>> On 2.03.2023 13:29, Krzysztof Kozlowski wrote:
+>>>> On 02/03/2023 11:22, Arınç ÜNAL wrote:
+>>>>>>>
+>>>>>>> ## Incorrect naming
+>>>>>>>
+>>>>>>> MT7620, MT7621, MT7628, and MT7688 SoCs are incorrectly called Ralink,
+>>>>>>> introduce new ralink->mediatek compatible strings to address it.
+>>>>>>
+>>>>>> So this part was addressed by Rob - we don't do it, because it does not
+>>>>>> matter. Ralink is now Mediatek, thus there is no conflict and no issues
+>>>>>> with different vendor used.
+>>>>>
+>>>>> I think Rob was rather addressing that updating compatible strings based
+>>>>> on acquisition or marketing whims is not permitted. This condition does
+>>>>> not apply here as these SoCs were never Ralink.
+>>>>>
+>>>>> I understand your point that Ralink is now MediaTek but still, calling
+>>>>> these SoCs Ralink would be a bit misleading, don't you think?
+>>>>
+>>>> Misleading yes, but also does not matter. At least matter not enough to
+>>>> justify ABI break, so you would need to deprecate old ones and keep
+>>>> everything backwards compatible. You still would affect 3rd party users
+>>>> of DTS, though...
+>>>
+>>> I intend to do just that. Introduce new mediatek strings, keep the old
+>>> ones so it's backwards compatible, therefore don't break the ABI.
+>>>
+>>> Instead of deprecating old strings, I intend to introduce the checks I
+>>> mentioned, on the schema, so the pin muxing bindings only apply if the
+>>> DT has got a string that won't match multiple schemas. This way it
+>>> shouldn't affect 3rd party DTs.
+>>
+>> I meant, 3rd party users of DTS. You will replace the compatible in the
+>> DTS, right? So the DTS exported and used in all other projects, OS,
+>> firmwares, bootloaders, out of tree kernel forks will stop working.
 > 
-> Signed-off-by: David Wang <davidwang@quantatw.com>
+> I plan to change it on the DTs for MediaTek SoCs, yes. Is this a 
+> problem? From what I can tell, what must be ensured is that old DTs must 
+> work with newer kernels, not new DTs on older kernels.
 
+Can I be clearer than this?
 
-> +};
-> diff --git a/arch/arm/boot/dts/nuvoton-npcm730-gsz.dts b/arch/arm/boot/dts/nuvoton-npcm730-gsz.dts
-> new file mode 100644
-> index 000000000000..c9f11880ef6d
-> --- /dev/null
-> +++ b/arch/arm/boot/dts/nuvoton-npcm730-gsz.dts
-> @@ -0,0 +1,1523 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +//
-> +// Copyright (c) 2021 Quanta Computer Inc. Fran.Hsu@quantatw.com
-> +
-> +/dts-v1/;
-> +#include "nuvoton-npcm730.dtsi"
-> +#include "nuvoton-npcm730-gsz-gpio.dtsi"
-> +#include <dt-bindings/gpio/gpio.h>
-> +#include <dt-bindings/i2c/i2c.h>
-> +
-> +/ {
-> +	model = "Quanta GSZ Board (Device Tree v01.10)";
-> +	compatible = "nuvoton,npcm750";
+" So the DTS exported and used in all other projects, OS,
+firmwares, bootloaders, out of tree kernel forks will stop working."
 
-Same problems.
-
-> +
-> +	aliases {
-> +		serial0 = &serial0;
-> +		serial1 = &serial1;
-> +		serial2 = &serial2;
-> +		serial3 = &serial3;
-> +		udc5 = &udc5;
-> +		udc6 = &udc6;
-> +		udc7 = &udc7;
-> +		udc8 = &udc8;
-> +		emmc0 = &sdhci0;
-> +		i2c0 = &i2c0;
-> +		i2c1 = &i2c1;
-> +		i2c2 = &i2c2;
-> +		i2c3 = &i2c3;
-> +		i2c4 = &i2c4;
-> +		i2c5 = &i2c5;
-> +		i2c6 = &i2c6;
-> +		i2c7 = &i2c7;
-> +		i2c8 = &i2c8;
-> +		i2c9 = &i2c9;
-> +		i2c10 = &i2c10;
-> +		i2c11 = &i2c11;
-> +		i2c12 = &i2c12;
-> +		i2c13 = &i2c13;
-> +		i2c14 = &i2c14;
-> +		fiu0 = &fiu0;
-> +		fiu1 = &fiu3;
-> +		i2c16 = &i2c_9SQ440NQQI8;
-> +		i2c17 = &i2c_db2001;
-> +		i2c18 = &i2c_db1200;
-> +		i2c19 = &i2c_io_exp_1;
-> +		i2c20 = &i2c_cpu0_pirom;
-> +		i2c21 = &i2c_cpu1_pirom;
-> +		i2c22 = &i2c_ncsi_clk;
-> +		i2c23 = &i2c_m2;
-> +		i2c24 = &i2c_fivra_cpu0;
-> +		i2c25 = &i2c_fivra_cpu1;
-> +		i2c26 = &i2c_vccfa_cpu0;
-> +		i2c27 = &i2c_vccfa_cpu1;
-> +		i2c28 = &i2c_vccd_cpu0;
-> +		i2c29 = &i2c_vccd_cpu1;
-> +		i2c30 = &i2c_hotswap;
-> +		i2c31 = &i2c_tps_1;
-> +		i2c32 = &i2c_p12v_1;
-> +		i2c33 = &i2c_p12v_2;
-> +		i2c34 = &i2c_fan_controller_1;
-> +		i2c35 = &i2c_i2cool_1;
-> +		i2c36 = &i2c_i2cool_2;
-> +		i2c37 = &i2c_i2cool_3;
-> +		i2c38 = &i2c_seq_mobo;
-> +		i2c39 = &i2c_fru_2;
-> +		i2c40 = &i2c_io_exp_2;
-> +		i2c41 = &i2c_io_exp_3;
-> +		i2c43 = &i2c_fru_3;
-> +		i2c44 = &i2c_seq;
-> +		i2c45 = &i2c_fru_1;
-> +		i2c46 = &i2c_tang;
-> +		i2c51 = &i2c_pe0_0;
-> +		i2c52 = &i2c_pe0_1;
-> +		i2c53 = &i2c_pe0_2;
-> +		i2c54 = &i2c_pe1_0;
-> +		i2c55 = &i2c_pe1_1;
-> +		i2c56 = &i2c_pe1_2;
-> +		i2c57 = &i2c_pe2_0;
-> +		i2c58 = &i2c_pe2_1;
-> +		i2c59 = &i2c_pe2_2;
-> +		i2c60 = &i2c_pe3_0;
-> +		i2c61 = &i2c_pe3_1;
-> +		i2c62 = &i2c_pe3_2;
-> +		i2c63 = &i2c_pe4_0;
-> +		i2c64 = &i2c_pe4_1;
-> +		i2c65 = &i2c_pe4_2;
-> +		i2c66 = &i2c_pe5_0;
-> +		i2c67 = &i2c_pe5_1;
-> +		i2c68 = &i2c_pe5_2;
-> +		i2c69 = &i2c_pe6_0;
-> +		i2c70 = &i2c_pe6_1;
-> +		i2c71 = &i2c_pe6_2;
-> +		i2c72 = &i2c_pe7_0;
-> +		i2c73 = &i2c_pe7_1;
-> +		i2c74 = &i2c_pe7_2;
-> +	};
-> +
-> +	chosen {
-> +		stdout-path = &serial3;
-> +	};
-> +
-> +	memory {
-> +		reg = <0 0x40000000>;
-> +	};
-> +
-> +	gpio-keys {
-> +		compatible = "gpio-keys";
-> +		efuse-pg {
-
-and all my other comments also apply...
-
-
+Yes, this is a problem - they will stop working.
 
 Best regards,
 Krzysztof
