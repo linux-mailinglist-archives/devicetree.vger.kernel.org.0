@@ -2,84 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 927196A93D2
-	for <lists+devicetree@lfdr.de>; Fri,  3 Mar 2023 10:24:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EB2266A9413
+	for <lists+devicetree@lfdr.de>; Fri,  3 Mar 2023 10:27:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229914AbjCCJYZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 3 Mar 2023 04:24:25 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52076 "EHLO
+        id S229511AbjCCJ06 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 3 Mar 2023 04:26:58 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33346 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230466AbjCCJYN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Mar 2023 04:24:13 -0500
-Received: from smtp-relay-internal-1.canonical.com (smtp-relay-internal-1.canonical.com [185.125.188.123])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BAC8918B13
-        for <devicetree@vger.kernel.org>; Fri,  3 Mar 2023 01:23:44 -0800 (PST)
-Received: from mail-qk1-f197.google.com (mail-qk1-f197.google.com [209.85.222.197])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 6F56E4168F
-        for <devicetree@vger.kernel.org>; Fri,  3 Mar 2023 09:23:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1677835401;
-        bh=8AJaoUnTpwL7gmSa7LMHksqlFTJULqZpmKkJFB9GUOs=;
-        h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-         To:Cc:Content-Type;
-        b=STvkNtFOh44Ktv50iuYf152CZ4vd8UWY6j3ZO3VUjd7vLmrMpAbCGw71475CxhvGK
-         Ri5SDUCqRhJZLs/eY+J/mRtKwaOpAOdsCdKK8EGKVtXAGAwtO+w09BG7xICLn40MKA
-         uEtVaRaMJQz94RaVVK7Shq8k2ExTRt2AZNC/ezGCZldWYqlT+KbQZCmeqbXdLSiQ4l
-         N+c2Y6ww58HJiDMg5+dM9pTvu3q0PaecZQE3NxUHNoO67+oKTyyYEG798WAktM7+oy
-         wPU4n1h9rR81ZYnkVruLbSKe9hv2OGu3NMqAUyZqPv+OHj4szzGSxNa+LEGXYSXONq
-         a3aBCEMzO+sLA==
-Received: by mail-qk1-f197.google.com with SMTP id c15-20020a37e10f000000b00741a3333881so1005896qkm.13
-        for <devicetree@vger.kernel.org>; Fri, 03 Mar 2023 01:23:21 -0800 (PST)
+        with ESMTP id S229942AbjCCJ00 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Mar 2023 04:26:26 -0500
+Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com [IPv6:2a00:1450:4864:20::532])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F08B75B5F0
+        for <devicetree@vger.kernel.org>; Fri,  3 Mar 2023 01:26:14 -0800 (PST)
+Received: by mail-ed1-x532.google.com with SMTP id s11so7683562edy.8
+        for <devicetree@vger.kernel.org>; Fri, 03 Mar 2023 01:26:14 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1677835573;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=0SlF2zG/u1Q0f4JIiCOTpE3WytpovcrC4zJMQaxFLdk=;
+        b=bO2ix8S4DX76WS8YYXZsdBT7R/6mqRVmMF5s61tUdJthSq1N7H6IKPT5AmAQqRavw7
+         hEV8yKffa6udbuBqP/3T+RopSN0NFR1aZgjgkxNZBboyUiovqe9aA4VHzqyVCJ0w80MF
+         9ulxTd//AlMu9tea+4FZNww60RXEY3VFzPw4ZY9LwMnNhheLAZGs+2lXFFigaiHOnYPs
+         fJFv//v9feasOJrIJFcxCE99bqe9GdfjvGPStpMzk/3L5LzxO+ij+nFURKUcZzZFN21A
+         0q+FSnvpvOmvm3cDD3cGZFTPYzx0z2UOJuSFPRl/5gGjbUa3k4jVWLlZqmet66X7NmjH
+         NVpw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1677835400;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=8AJaoUnTpwL7gmSa7LMHksqlFTJULqZpmKkJFB9GUOs=;
-        b=RZypg3kh3Gm/bFc33VBfZKPCYik/TC2UaojaF/1WrmAHYhJ+nXOMRP5Vz+X0DO+VnG
-         sn31uMeXBnpuuwK/I8A++/JQAjG5nlYFyLYOzze5X/9rwJOD1zWB8ZBjCXx++fvpoktx
-         C+zIk9A8HnOy/87QCvSRSIW8C+QYrYXBOluXOeMX9jy2MGm9vJUQ3H5TlW7iZnUGSeRg
-         ZKhjzjk/jnObGKK1Y70HJ+FVmY6qmsLKwocCr6/VYotchmjjFJsi5//bZar7lBcNnQdW
-         KK2R3e3tN9JbVlcIojWs8slJEEs39P18JcF85QKyk4JJ8LlPjrwhntSF3GYZh/rJWsAU
-         jWog==
-X-Gm-Message-State: AO0yUKUzgQv8F9+Bznq7SXW8kAEC9cUQIzUcf1HXH2EHi3cFN73qxlae
-        0KU1vtNzYIywkfpDdI2JGDLR3msOrnPe5lezyILJoBQhYZRM9/RasWrSNPqF8O2SR82+BuGqWmi
-        t4rrIKADCCB2TXvLImfHp8OC8gsNZgzguX+XCZSPsp3uI9lR/48oOB18=
-X-Received: by 2002:ac8:82:0:b0:3bf:ba7f:58f8 with SMTP id c2-20020ac80082000000b003bfba7f58f8mr356537qtg.3.1677835400347;
-        Fri, 03 Mar 2023 01:23:20 -0800 (PST)
-X-Google-Smtp-Source: AK7set8vnvx+BaY4zzyO9Kx+7sgYMvHg6u0C0CIeSNBLKIdyT3rEHj8fYTS/CVSUHsuu8zZlfw9VzAO/dNUNoMHSFGM=
-X-Received: by 2002:ac8:82:0:b0:3bf:ba7f:58f8 with SMTP id c2-20020ac80082000000b003bfba7f58f8mr356522qtg.3.1677835400023;
- Fri, 03 Mar 2023 01:23:20 -0800 (PST)
+        d=1e100.net; s=20210112; t=1677835573;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=0SlF2zG/u1Q0f4JIiCOTpE3WytpovcrC4zJMQaxFLdk=;
+        b=6nvxNb8qu8+XCDOEQa29iCLFAeROlg/2nOtTyAXgSOJEYf7dDd2NBLmmaAFjOWQ8CL
+         0XjHU8rpn/wOdZ4Z9rv3/foB+hLOkRwXdg6SKmZO39xr8+Cp3lIonuIiTuzH+3n8qVlK
+         g5eKD1Se8eq09t4L6gOMxmlnjhlVq5hqpn/Wyog7c3nyCNPvaYYPX0vcVAyrI22FTf86
+         mUKIEXY3K361v8a+vu0HFnpsdf3wcSdA8cG1W+6FY4ZQ7fdKIR2cktHzWfMtMRjVfWon
+         WCgsVy+b4Dd4wGc/gX8W70eMlpQiK/VlIuky8HAo9MtA6BCbRgVVRH+6BzaAd0XN5qms
+         UDcA==
+X-Gm-Message-State: AO0yUKXuDB3hQ+lYs3SPvcQe7OxUuOMC/tmXY4gF1aJYo7izncr9z3G/
+        lL3RCpYC4xlSWlovaseIDiRBag==
+X-Google-Smtp-Source: AK7set+oUdXxo6nfr1iZVDt/3FozY0zAGHyscdYC0a2zBc6NEV/LLvY6NY4iSxF/8/nZqw3X3rKrxw==
+X-Received: by 2002:aa7:c399:0:b0:4af:63a7:7474 with SMTP id k25-20020aa7c399000000b004af63a77474mr1296985edq.17.1677835573495;
+        Fri, 03 Mar 2023 01:26:13 -0800 (PST)
+Received: from [192.168.1.20] ([178.197.216.144])
+        by smtp.gmail.com with ESMTPSA id ky24-20020a170907779800b008edf49f10a7sm742001ejc.100.2023.03.03.01.26.12
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 03 Mar 2023 01:26:13 -0800 (PST)
+Message-ID: <a3615fe7-aa2a-53e9-2732-ba4512b9369d@linaro.org>
+Date:   Fri, 3 Mar 2023 10:26:11 +0100
 MIME-Version: 1.0
-References: <20230221083323.302471-1-xingyu.wu@starfivetech.com>
- <20230221083323.302471-10-xingyu.wu@starfivetech.com> <CAJM55Z8XnBtBJK8tgDBoQ0FLFY10NQ3es7Aj0TwiTG6vfzqUSQ@mail.gmail.com>
- <7968218d-33ec-14b8-178b-1a6b5680f797@starfivetech.com>
-In-Reply-To: <7968218d-33ec-14b8-178b-1a6b5680f797@starfivetech.com>
-From:   Emil Renner Berthing <emil.renner.berthing@canonical.com>
-Date:   Fri, 3 Mar 2023 10:23:03 +0100
-Message-ID: <CAJM55Z88-aNzuXc9yozyA4f9r1mGQ0KMg5hgKMsERsyF198WKg@mail.gmail.com>
-Subject: Re: [PATCH v2 09/11] clk: starfive: Add StarFive JH7110 Video-Output
- clock driver
-To:     Xingyu Wu <xingyu.wu@starfivetech.com>
-Cc:     linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.8.0
+Subject: Re: [PATCH v6 1/2] dt-bindings: i2c: aspeed: support for
+ AST2600-i2cv2
+Content-Language: en-US
+To:     Ryan Chen <ryan_chen@aspeedtech.com>, Wolfram Sang <wsa@kernel.org>
+Cc:     Joel Stanley <joel@jms.id.au>,
+        Brendan Higgins <brendan.higgins@linux.dev>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Andrew Jeffery <andrew@aj.id.au>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
         Philipp Zabel <p.zabel@pengutronix.de>,
-        Emil Renner Berthing <kernel@esmil.dk>,
         Rob Herring <robh+dt@kernel.org>,
-        Conor Dooley <conor@kernel.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Hal Feng <hal.feng@starfivetech.com>,
-        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
+        "linux-aspeed@lists.ozlabs.org" <linux-aspeed@lists.ozlabs.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "openbmc@lists.ozlabs.org" <openbmc@lists.ozlabs.org>,
+        "linux-i2c@vger.kernel.org" <linux-i2c@vger.kernel.org>
+References: <20230226031321.3126756-1-ryan_chen@aspeedtech.com>
+ <20230226031321.3126756-2-ryan_chen@aspeedtech.com>
+ <53090449-58c9-bc03-56df-aa8ae93c0c26@linaro.org>
+ <SEZPR06MB52699DEB2255EB54F35C2A59F2AD9@SEZPR06MB5269.apcprd06.prod.outlook.com>
+ <fc20a2d1-e2f9-c22b-dcdf-153cb527eea8@linaro.org>
+ <SEZPR06MB526902637624A97D7DFB8523F2B39@SEZPR06MB5269.apcprd06.prod.outlook.com>
+ <c41ee6b5-ddb4-1253-de54-a295b3bab2cc@linaro.org>
+ <SEZPR06MB5269E7B8785B3CB56A63A916F2B39@SEZPR06MB5269.apcprd06.prod.outlook.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <SEZPR06MB5269E7B8785B3CB56A63A916F2B39@SEZPR06MB5269.apcprd06.prod.outlook.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -88,356 +94,154 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 3 Mar 2023 at 04:37, Xingyu Wu <xingyu.wu@starfivetech.com> wrote:
->
-> On 2023/3/2 23:48, Emil Renner Berthing wrote:
-> > On Tue, 21 Feb 2023 at 09:40, Xingyu Wu <xingyu.wu@starfivetech.com> wrote:
-> >>
-> >> Add driver for the StarFive JH7110 Video-Output clock controller.
-> >>
-> >> Signed-off-by: Xingyu Wu <xingyu.wu@starfivetech.com>
-> >> ---
-> >>  drivers/clk/starfive/Kconfig                  |  11 +
-> >>  drivers/clk/starfive/Makefile                 |   1 +
-> >>  .../clk/starfive/clk-starfive-jh7110-vout.c   | 261 ++++++++++++++++++
-> >>  3 files changed, 273 insertions(+)
-> >>  create mode 100644 drivers/clk/starfive/clk-starfive-jh7110-vout.c
-> >>
-> >> diff --git a/drivers/clk/starfive/Kconfig b/drivers/clk/starfive/Kconfig
-> >> index 59499acb95f7..5ebf1ed08627 100644
-> >> --- a/drivers/clk/starfive/Kconfig
-> >> +++ b/drivers/clk/starfive/Kconfig
-> >> @@ -64,3 +64,14 @@ config CLK_STARFIVE_JH7110_ISP
-> >>         help
-> >>           Say yes here to support the Image-Signal-Process clock controller
-> >>           on the StarFive JH7110 SoC.
-> >> +
-> >> +config CLK_STARFIVE_JH7110_VOUT
-> >> +       tristate "StarFive JH7110 Video-Output clock support"
-> >> +       depends on CLK_STARFIVE_JH7110_SYS && JH71XX_PMU
-> >> +       select AUXILIARY_BUS
-> >> +       select CLK_STARFIVE_JH71X0
-> >> +       select RESET_STARFIVE_JH7110
-> >> +       default CLK_STARFIVE_JH7110_SYS
-> >
-> > default m if ARCH_STARFIVE
->
-> Will modify it.
->
-> >
-> >> +       help
-> >> +         Say yes here to support the Video-Output clock controller
-> >> +         on the StarFive JH7110 SoC.
-> >> diff --git a/drivers/clk/starfive/Makefile b/drivers/clk/starfive/Makefile
-> >> index 76fb9f8d628b..841377e45bb6 100644
-> >> --- a/drivers/clk/starfive/Makefile
-> >> +++ b/drivers/clk/starfive/Makefile
-> >> @@ -8,3 +8,4 @@ obj-$(CONFIG_CLK_STARFIVE_JH7110_SYS)   += clk-starfive-jh7110-sys.o
-> >>  obj-$(CONFIG_CLK_STARFIVE_JH7110_AON)  += clk-starfive-jh7110-aon.o
-> >>  obj-$(CONFIG_CLK_STARFIVE_JH7110_STG)  += clk-starfive-jh7110-stg.o
-> >>  obj-$(CONFIG_CLK_STARFIVE_JH7110_ISP)  += clk-starfive-jh7110-isp.o
-> >> +obj-$(CONFIG_CLK_STARFIVE_JH7110_VOUT) += clk-starfive-jh7110-vout.o
-> >> diff --git a/drivers/clk/starfive/clk-starfive-jh7110-vout.c b/drivers/clk/starfive/clk-starfive-jh7110-vout.c
-> >> new file mode 100644
-> >> index 000000000000..d786537563a4
-> >> --- /dev/null
-> >> +++ b/drivers/clk/starfive/clk-starfive-jh7110-vout.c
-> >> @@ -0,0 +1,261 @@
-> >> +// SPDX-License-Identifier: GPL-2.0
-> >> +/*
-> >> + * StarFive JH7110 Video-Output Clock Driver
-> >> + *
-> >> + * Copyright (C) 2022 StarFive Technology Co., Ltd.
-> >> + */
-> >> +
-> >> +#include <linux/clk.h>
-> >> +#include <linux/clk-provider.h>
-> >> +#include <linux/io.h>
-> >> +#include <linux/of.h>
-> >> +#include <linux/platform_device.h>
-> >> +#include <linux/pm_runtime.h>
-> >> +#include <linux/reset.h>
-> >> +
-> >> +#include <dt-bindings/clock/starfive,jh7110-crg.h>
-> >> +
-> >> +#include "clk-starfive-jh71x0.h"
-> >> +
-> >> +/* external clocks */
-> >> +#define JH7110_VOUTCLK_VOUT_SRC                        (JH7110_VOUTCLK_END + 0)
-> >> +#define JH7110_VOUTCLK_VOUT_TOP_AHB            (JH7110_VOUTCLK_END + 1)
-> >> +#define JH7110_VOUTCLK_VOUT_TOP_AXI            (JH7110_VOUTCLK_END + 2)
-> >> +#define JH7110_VOUTCLK_VOUT_TOP_HDMITX0_MCLK   (JH7110_VOUTCLK_END + 3)
-> >> +#define JH7110_VOUTCLK_I2STX0_BCLK             (JH7110_VOUTCLK_END + 4)
-> >> +#define JH7110_VOUTCLK_HDMITX0_PIXELCLK                (JH7110_VOUTCLK_END + 5)
-> >> +#define JH7110_VOUTCLK_EXT_END                 (JH7110_VOUTCLK_END + 6)
-> >> +
-> >> +static const struct jh71x0_clk_data jh7110_voutclk_data[] = {
-> >> +       /* divider */
-> >> +       JH71X0__DIV(JH7110_VOUTCLK_APB, "apb", 8, JH7110_VOUTCLK_VOUT_TOP_AHB),
-> >> +       JH71X0__DIV(JH7110_VOUTCLK_DC8200_PIX, "dc8200_pix", 63, JH7110_VOUTCLK_VOUT_SRC),
-> >> +       JH71X0__DIV(JH7110_VOUTCLK_DSI_SYS, "dsi_sys", 31, JH7110_VOUTCLK_VOUT_SRC),
-> >> +       JH71X0__DIV(JH7110_VOUTCLK_TX_ESC, "tx_esc", 31, JH7110_VOUTCLK_VOUT_TOP_AHB),
-> >> +       /* dc8200 */
-> >> +       JH71X0_GATE(JH7110_VOUTCLK_DC8200_AXI, "dc8200_axi", 0, JH7110_VOUTCLK_VOUT_TOP_AXI),
-> >> +       JH71X0_GATE(JH7110_VOUTCLK_DC8200_CORE, "dc8200_core", 0, JH7110_VOUTCLK_VOUT_TOP_AXI),
-> >> +       JH71X0_GATE(JH7110_VOUTCLK_DC8200_AHB, "dc8200_ahb", 0, JH7110_VOUTCLK_VOUT_TOP_AHB),
-> >> +       JH71X0_GMUX(JH7110_VOUTCLK_DC8200_PIX0, "dc8200_pix0", 0, 2,
-> >> +                   JH7110_VOUTCLK_DC8200_PIX,
-> >> +                   JH7110_VOUTCLK_HDMITX0_PIXELCLK),
-> >> +       JH71X0_GMUX(JH7110_VOUTCLK_DC8200_PIX1, "dc8200_pix1", 0, 2,
-> >> +                   JH7110_VOUTCLK_DC8200_PIX,
-> >> +                   JH7110_VOUTCLK_HDMITX0_PIXELCLK),
-> >> +       /* LCD */
-> >> +       JH71X0_GMUX(JH7110_VOUTCLK_DOM_VOUT_TOP_LCD, "dom_vout_top_lcd", 0, 2,
-> >> +                   JH7110_VOUTCLK_DC8200_PIX0,
-> >> +                   JH7110_VOUTCLK_DC8200_PIX1),
-> >> +       /* dsiTx */
-> >> +       JH71X0_GATE(JH7110_VOUTCLK_DSITX_APB, "dsiTx_apb", 0, JH7110_VOUTCLK_DSI_SYS),
-> >> +       JH71X0_GATE(JH7110_VOUTCLK_DSITX_SYS, "dsiTx_sys", 0, JH7110_VOUTCLK_DSI_SYS),
-> >> +       JH71X0_GMUX(JH7110_VOUTCLK_DSITX_DPI, "dsiTx_dpi", 0, 2,
-> >> +                   JH7110_VOUTCLK_DC8200_PIX,
-> >> +                   JH7110_VOUTCLK_HDMITX0_PIXELCLK),
-> >> +       JH71X0_GATE(JH7110_VOUTCLK_DSITX_TXESC, "dsiTx_txesc", 0, JH7110_VOUTCLK_TX_ESC),
-> >> +       /* mipitx DPHY */
-> >> +       JH71X0_GATE(JH7110_VOUTCLK_MIPITX_DPHY_TXESC, "mipitx_dphy_txesc", 0,
-> >> +                   JH7110_VOUTCLK_TX_ESC),
-> >> +       /* hdmi */
-> >> +       JH71X0_GATE(JH7110_VOUTCLK_HDMI_TX_MCLK, "hdmi_tx_mclk", 0,
-> >> +                   JH7110_VOUTCLK_VOUT_TOP_HDMITX0_MCLK),
-> >> +       JH71X0_GATE(JH7110_VOUTCLK_HDMI_TX_BCLK, "hdmi_tx_bclk", 0,
-> >> +                   JH7110_VOUTCLK_I2STX0_BCLK),
-> >> +       JH71X0_GATE(JH7110_VOUTCLK_HDMI_TX_SYS, "hdmi_tx_sys", 0, JH7110_VOUTCLK_APB),
-> >> +};
-> >> +
-> >> +struct vout_top_crg {
-> >> +       struct clk_bulk_data *top_clks;
-> >> +       struct reset_control *top_rst;
-> >> +       int top_clks_num;
-> >> +       void __iomem *base;
-> >> +};
-> >> +
-> >> +static struct clk_bulk_data jh7110_vout_top_clks[] = {
-> >> +       { .id = "vout_src" },
-> >> +       { .id = "vout_top_ahb" }
-> >> +};
-> >> +
-> >> +static struct vout_top_crg *top_crg_from(void __iomem **base)
-> >> +{
-> >> +       return container_of(base, struct vout_top_crg, base);
-> >> +}
-> >> +
-> >> +static int jh7110_vout_top_crg_get(struct jh71x0_clk_priv *priv, struct vout_top_crg *top)
-> >> +{
-> >> +       int ret;
-> >> +
-> >> +       top->top_clks = jh7110_vout_top_clks;
-> >> +       top->top_clks_num = ARRAY_SIZE(jh7110_vout_top_clks);
-> >> +       ret = devm_clk_bulk_get(priv->dev, top->top_clks_num, top->top_clks);
-> >> +       if (ret) {
-> >> +               dev_err(priv->dev, "top clks get failed: %d\n", ret);
-> >> +               return ret;
-> >> +       }
-> >> +
-> >> +       /* The reset should be shared and other Vout modules will use its. */
-> >> +       top->top_rst = devm_reset_control_get_shared(priv->dev, NULL);
-> >> +       if (IS_ERR(top->top_rst)) {
-> >> +               dev_err(priv->dev, "top rst get failed\n");
-> >> +               return PTR_ERR(top->top_rst);
-> >> +       }
-> >> +
-> >> +       return 0;
-> >> +}
-> >> +
-> >> +static int jh7110_vout_top_crg_enable(struct vout_top_crg *top)
-> >> +{
-> >> +       int ret;
-> >> +
-> >> +       ret = clk_bulk_prepare_enable(top->top_clks_num, top->top_clks);
-> >> +       if (ret)
-> >> +               return ret;
-> >
-> > Hmm.. do all the clocks used as input really need to be enabled for
-> > any one of the vout clocks to work?
-> >
-> > In other words: suppose you just need a single clock in the VOUTCRG
-> > domain. Do we really need to turn on all the input clocks for the
-> > VOUTCRG for that one clock to work? Normally I'd expect the clock
-> > framework to make sure all parents of that clock are enabled.
->
-> It must enable core clock and ahb clock before reading or writing VOUTCRG registers
-> otherwise it would be failed to read and write. And it is even crash if it don't
-> enable core clock before reading or writing ISPCRG registers.
-> This serious problem was found when debugging earlier.
+On 03/03/2023 09:55, Ryan Chen wrote:
+> Hello Krzysztof,
+> 	
+> 
+>> -----Original Message-----
+>> From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>> Sent: Friday, March 3, 2023 4:51 PM
+>> To: Ryan Chen <ryan_chen@aspeedtech.com>; Wolfram Sang
+>> <wsa@kernel.org>
+>> Cc: Joel Stanley <joel@jms.id.au>; Brendan Higgins
+>> <brendan.higgins@linux.dev>; Krzysztof Kozlowski
+>> <krzysztof.kozlowski+dt@linaro.org>; Andrew Jeffery <andrew@aj.id.au>;
+>> devicetree@vger.kernel.org; Philipp Zabel <p.zabel@pengutronix.de>; Rob
+>> Herring <robh+dt@kernel.org>; Benjamin Herrenschmidt
+>> <benh@kernel.crashing.org>; linux-aspeed@lists.ozlabs.org;
+>> linux-arm-kernel@lists.infradead.org; linux-kernel@vger.kernel.org;
+>> openbmc@lists.ozlabs.org; linux-i2c@vger.kernel.org
+>> Subject: Re: [PATCH v6 1/2] dt-bindings: i2c: aspeed: support for AST2600-i2cv2
+>>
+>> On 03/03/2023 09:28, Ryan Chen wrote:
+>>> Hello Krzysztof,
+>>>
+>>>> -----Original Message-----
+>>>> From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>>>> Sent: Friday, March 3, 2023 4:20 PM
+>>>> To: Ryan Chen <ryan_chen@aspeedtech.com>; Wolfram Sang
+>>>> <wsa@kernel.org>
+>>>> Cc: Joel Stanley <joel@jms.id.au>; Brendan Higgins
+>>>> <brendan.higgins@linux.dev>; Krzysztof Kozlowski
+>>>> <krzysztof.kozlowski+dt@linaro.org>; Andrew Jeffery
+>>>> <andrew@aj.id.au>; devicetree@vger.kernel.org; Philipp Zabel
+>>>> <p.zabel@pengutronix.de>; Rob Herring <robh+dt@kernel.org>; Benjamin
+>>>> Herrenschmidt <benh@kernel.crashing.org>;
+>>>> linux-aspeed@lists.ozlabs.org; linux-arm-kernel@lists.infradead.org;
+>>>> linux-kernel@vger.kernel.org; openbmc@lists.ozlabs.org;
+>>>> linux-i2c@vger.kernel.org
+>>>> Subject: Re: [PATCH v6 1/2] dt-bindings: i2c: aspeed: support for
+>>>> AST2600-i2cv2
+>>>>
+>>>> On 01/03/2023 06:57, Ryan Chen wrote:
+>>>>> Hello Krzysztof,
+>>>>>
+>>>>>> -----Original Message-----
+>>>>>> From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>>>>>> Sent: Monday, February 27, 2023 4:25 PM
+>>>>>> To: Ryan Chen <ryan_chen@aspeedtech.com>; Andrew Jeffery
+>>>>>> <andrew@aj.id.au>; Brendan Higgins <brendan.higgins@linux.dev>;
+>>>>>> Benjamin Herrenschmidt <benh@kernel.crashing.org>; Joel Stanley
+>>>>>> <joel@jms.id.au>; Rob Herring <robh+dt@kernel.org>; Krzysztof
+>>>>>> Kozlowski <krzysztof.kozlowski+dt@linaro.org>; Philipp Zabel
+>>>>>> <p.zabel@pengutronix.de>; linux-i2c@vger.kernel.org;
+>>>>>> openbmc@lists.ozlabs.org; devicetree@vger.kernel.org;
+>>>>>> linux-arm-kernel@lists.infradead.org;
+>>>>>> linux-aspeed@lists.ozlabs.org; linux-kernel@vger.kernel.org
+>>>>>> Subject: Re: [PATCH v6 1/2] dt-bindings: i2c: aspeed: support for
+>>>>>> AST2600-i2cv2
+>>>>>>
+>>>>>> On 26/02/2023 04:13, Ryan Chen wrote:
+>>>>>>> Add ast2600-i2cv2 compatible and aspeed,global-regs,
+>>>>>>> aspeed,timeout aspeed,xfer-mode description for ast2600-i2cv2.
+>>>>>>>
+>>>>>>> Signed-off-by: Ryan Chen <ryan_chen@aspeedtech.com>
+>>>>>>> ---
+>>>>>>>  .../devicetree/bindings/i2c/aspeed,i2c.yaml   | 44
+>>>> +++++++++++++++++++
+>>>>>>>  1 file changed, 44 insertions(+)
+>>>>>>>
+>>>>>>> diff --git a/Documentation/devicetree/bindings/i2c/aspeed,i2c.yaml
+>>>>>>> b/Documentation/devicetree/bindings/i2c/aspeed,i2c.yaml
+>>>>>>> index f597f73ccd87..75de3ce41cf5 100644
+>>>>>>> --- a/Documentation/devicetree/bindings/i2c/aspeed,i2c.yaml
+>>>>>>> +++ b/Documentation/devicetree/bindings/i2c/aspeed,i2c.yaml
+>>>>>>> @@ -49,6 +49,25 @@ properties:
+>>>>>>>      description:
+>>>>>>>        states that there is another master active on this bus
+>>>>>>>
+>>>>>>> +  aspeed,timeout:
+>>>>>>> +    type: boolean
+>>>>>>> +    description: I2C bus timeout enable for master/slave mode
+>>>>>>
+>>>>>> Nothing improved here in regards to my last comment.
+>>>>>
+>>>>> Yes, as I know your require is about " DT binding to represent
+>>>>> hardware
+>>>> setup"
+>>>>> So I add more description about aspeed,timeout as blow.
+>>>>>
+>>>>> ASPEED SOC chip is server product, i2c bus may have fingerprint
+>>>>> connect to
+>>>> another board. And also support hotplug.
+>>>>> The following is board-specific design example.
+>>>>> Board A                                         Board B
+>>>>> -------------------------                       ------------------------
+>>>>> |i2c bus#1(master/slave)  <===fingerprint ===> i2c bus#x (master/slave)|
+>>>>> |i2c bus#2(master)-> tmp i2c device |          |
+>>>> |
+>>>>> |i2c bus#3(master)-> adc i2c device |          |
+>>>> |
+>>>>> -------------------------                       ------------------------
+>>>>>
+>>>>> aspeed,timout properites:
+>>>>> For example I2C controller as slave mode, and suddenly disconnected.
+>>>>> Slave state machine will keep waiting for master clock in for rx/tx
+>> transmit.
+>>>>> So it need timeout setting to enable timeout unlock controller state.
+>>>>> And in another side. In Master side also need avoid suddenly slave
+>>>> miss(un-plug), Master will timeout and release the SDA/SCL.
+>>>>>
+>>>>> Do you mean add those description into ore aspeed,timout properites
+>>>> description?
+>>>>
+>>>> You are describing here one particular feature you want to enable in
+>>>> the driver which looks non-scalable and more difficult to configure/use.
+>>>> What I was looking for is to describe the actual configuration you have (e.g.
+>>>> multi-master) which leads to enable or disable such feature in your
+>> hardware.
+>>>> Especially that bool value does not scale later to actual timeout
+>>>> values in time (ms)...
+>>>>
+>>>> I don't know I2C that much, but I wonder - why this should be
+>>>> specific to Aspeed I2C and no other I2C controllers implement it?
+>>>> IOW, this looks quite generic and every I2C controller should have
+>>>> it. Adding it specific to Aspeed suggests that either we miss a
+>>>> generic property or this should not be in DT at all (because no one else has
+>> it...).
+>>>>
+>>>> Also I wonder, why you wouldn't enable timeout always...
+>>>>
+>>>> +Cc Wolfram,
+>>>> Maybe you know whether bool "timeout" property for one controller
+>>>> makes sense? Why we do not have it for all controllers?
+>>>>
+>>> Because, i2c bus didn’t specific timeout.
+>>> But SMBus defines a clock low time-out, TIMEOUT of 35 ms.
+>>>
+>>> It have definition in SMBus specification.
+>>> http://smbus.org/specs/SMBus_3_1_20180319.pdf
+>>> You can check Page 18, Note3 that have timeout description.
+>>
+>> Then you have already property for this - "smbus"?
+> To be a property "smbus", that would be a big topic, 
+> I saw fsl i2c also have this.
+> https://github.com/torvalds/linux/blob/master/Documentation/devicetree/bindings/i2c/i2c-mpc.yaml#L43-L47
+> So, I just think the "timeout" property.
 
-Ah sorry. I see now that you're only claiming the core and AHB bus.
-That makes sense.
+Yeah and this is the only place. It also differs because it allows
+actual timeout values.
 
-So now the question is if there are similar clocks that need to be
-claimed by the AON, STG and ISP CRGs. They're most likely already
-turned on by u-boot or by default which is why we don't see errors,
-but Linux should still claim them if the driver needs them.
+Best regards,
+Krzysztof
 
-> >
-> >> +
-> >> +       return reset_control_deassert(top->top_rst);
-> >> +}
-> >> +
-> >> +static void jh7110_vout_top_crg_disable(struct vout_top_crg *top)
-> >> +{
-> >> +       clk_bulk_disable_unprepare(top->top_clks_num, top->top_clks);
-> >> +}
-> >> +
-> >> +static struct clk_hw *jh7110_voutclk_get(struct of_phandle_args *clkspec, void *data)
-> >> +{
-> >> +       struct jh71x0_clk_priv *priv = data;
-> >> +       unsigned int idx = clkspec->args[0];
-> >> +
-> >> +       if (idx < JH7110_VOUTCLK_END)
-> >> +               return &priv->reg[idx].hw;
-> >> +
-> >> +       return ERR_PTR(-EINVAL);
-> >> +}
-> >> +
-> >> +static int jh7110_voutcrg_probe(struct platform_device *pdev)
-> >> +{
-> >> +       struct jh71x0_clk_priv *priv;
-> >> +       struct vout_top_crg *top;
-> >> +       unsigned int idx;
-> >> +       int ret;
-> >> +
-> >> +       priv = devm_kzalloc(&pdev->dev,
-> >> +                           struct_size(priv, reg, JH7110_VOUTCLK_END),
-> >> +                           GFP_KERNEL);
-> >> +       if (!priv)
-> >> +               return -ENOMEM;
-> >> +
-> >> +       top = devm_kzalloc(&pdev->dev, sizeof(*top), GFP_KERNEL);
-> >> +       if (!top)
-> >> +               return -ENOMEM;
-> >> +
-> >> +       spin_lock_init(&priv->rmw_lock);
-> >> +       priv->dev = &pdev->dev;
-> >> +       priv->base = devm_platform_ioremap_resource(pdev, 0);
-> >> +       if (IS_ERR(priv->base))
-> >> +               return PTR_ERR(priv->base);
-> >> +
-> >> +       top->base = priv->base;
-> >> +       dev_set_drvdata(priv->dev, (void *)(&top->base));
-> >> +
-> >> +       pm_runtime_enable(priv->dev);
-> >> +       ret = pm_runtime_get_sync(priv->dev);
-> >> +       if (ret < 0) {
-> >> +               dev_err(priv->dev, "failed to turn power: %d\n", ret);
-> >> +               return ret;
-> >> +       }
-> >> +
-> >> +       ret = jh7110_vout_top_crg_get(priv, top);
-> >> +       if (ret)
-> >> +               goto err_clk;
-> >> +
-> >> +       ret = jh7110_vout_top_crg_enable(top);
-> >> +       if (ret)
-> >> +               goto err_clk;
-> >> +
-> >> +       for (idx = 0; idx < JH7110_VOUTCLK_END; idx++) {
-> >> +               u32 max = jh7110_voutclk_data[idx].max;
-> >> +               struct clk_parent_data parents[4] = {};
-> >> +               struct clk_init_data init = {
-> >> +                       .name = jh7110_voutclk_data[idx].name,
-> >> +                       .ops = starfive_jh71x0_clk_ops(max),
-> >> +                       .parent_data = parents,
-> >> +                       .num_parents =
-> >> +                               ((max & JH71X0_CLK_MUX_MASK) >> JH71X0_CLK_MUX_SHIFT) + 1,
-> >> +                       .flags = jh7110_voutclk_data[idx].flags,
-> >> +               };
-> >> +               struct jh71x0_clk *clk = &priv->reg[idx];
-> >> +               unsigned int i;
-> >> +               char *fw_name[JH7110_VOUTCLK_EXT_END - JH7110_VOUTCLK_END] = {
-> >
-> > this can be const char *const fw_name[...] right?
-> >
-> >> +                       "vout_src",
-> >> +                       "vout_top_ahb",
-> >> +                       "vout_top_axi",
-> >> +                       "vout_top_hdmitx0_mclk",
-> >> +                       "i2stx0_bclk",
-> >> +                       "hdmitx0_pixelclk"
-> >> +               };
-> >> +
-> >> +               for (i = 0; i < init.num_parents; i++) {
-> >> +                       unsigned int pidx = jh7110_voutclk_data[idx].parents[i];
-> >> +
-> >> +                       if (pidx < JH7110_VOUTCLK_END)
-> >> +                               parents[i].hw = &priv->reg[pidx].hw;
-> >> +                       else if (pidx < JH7110_VOUTCLK_EXT_END)
-> >> +                               parents[i].fw_name = fw_name[pidx - JH7110_VOUTCLK_END];
-> >> +               }
-> >> +
-> >> +               clk->hw.init = &init;
-> >> +               clk->idx = idx;
-> >> +               clk->max_div = max & JH71X0_CLK_DIV_MASK;
-> >> +
-> >> +               ret = devm_clk_hw_register(&pdev->dev, &clk->hw);
-> >> +               if (ret)
-> >> +                       goto err_exit;
-> >> +       }
-> >> +
-> >> +       ret = devm_of_clk_add_hw_provider(&pdev->dev, jh7110_voutclk_get, priv);
-> >> +       if (ret)
-> >> +               goto err_exit;
-> >> +
-> >> +       ret = jh7110_reset_controller_register(priv, "reset-vout", 4);
-> >> +       if (ret)
-> >> +               goto err_exit;
-> >> +
-> >> +       return 0;
-> >> +
-> >> +err_exit:
-> >> +       jh7110_vout_top_crg_disable(top);
-> >> +err_clk:
-> >> +       pm_runtime_put_sync(priv->dev);
-> >> +       pm_runtime_disable(priv->dev);
-> >> +       return ret;
-> >> +}
-> >> +
-> >> +static int jh7110_voutcrg_remove(struct platform_device *pdev)
-> >> +{
-> >> +       void __iomem **base = dev_get_drvdata(&pdev->dev);
-> >> +       struct vout_top_crg *top = top_crg_from(base);
-> >> +
-> >> +       jh7110_vout_top_crg_disable(top);
-> >> +       pm_runtime_disable(&pdev->dev);
-> >> +
-> >> +       return 0;
-> >> +}
-> >> +
-> >> +static const struct of_device_id jh7110_voutcrg_match[] = {
-> >> +       { .compatible = "starfive,jh7110-voutcrg" },
-> >> +       { /* sentinel */ }
-> >> +};
-> >> +MODULE_DEVICE_TABLE(of, jh7110_voutcrg_match);
-> >> +
-> >> +static struct platform_driver jh7110_voutcrg_driver = {
-> >> +       .probe = jh7110_voutcrg_probe,
-> >> +       .remove = jh7110_voutcrg_remove,
-> >> +       .driver = {
-> >> +               .name = "clk-starfive-jh7110-vout",
-> >> +               .of_match_table = jh7110_voutcrg_match,
-> >> +       },
-> >> +};
-> >> +module_platform_driver(jh7110_voutcrg_driver);
-> >> +
-> >> +MODULE_AUTHOR("Xingyu Wu <xingyu.wu@starfivetech.com>");
-> >> +MODULE_DESCRIPTION("StarFive JH7110 Video-Output clock driver");
-> >> +MODULE_LICENSE("GPL");
-> >> --
-> >> 2.25.1
-> >>
-> >>
-> >> _______________________________________________
-> >> linux-riscv mailing list
-> >> linux-riscv@lists.infradead.org
-> >> http://lists.infradead.org/mailman/listinfo/linux-riscv
->
-> Best regards,
-> Xingyu Wu
