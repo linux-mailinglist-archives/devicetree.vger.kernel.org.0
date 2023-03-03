@@ -2,60 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7A65C6A94D7
-	for <lists+devicetree@lfdr.de>; Fri,  3 Mar 2023 11:08:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D35AE6A94DB
+	for <lists+devicetree@lfdr.de>; Fri,  3 Mar 2023 11:09:22 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230075AbjCCKIO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 3 Mar 2023 05:08:14 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54240 "EHLO
+        id S229804AbjCCKJU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 3 Mar 2023 05:09:20 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55520 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229968AbjCCKIM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Mar 2023 05:08:12 -0500
-Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BD5E1EC69
-        for <devicetree@vger.kernel.org>; Fri,  3 Mar 2023 02:08:10 -0800 (PST)
-Received: by mail-ed1-x533.google.com with SMTP id ay14so4446595edb.11
-        for <devicetree@vger.kernel.org>; Fri, 03 Mar 2023 02:08:10 -0800 (PST)
+        with ESMTP id S230216AbjCCKJT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Mar 2023 05:09:19 -0500
+Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BC2D713538
+        for <devicetree@vger.kernel.org>; Fri,  3 Mar 2023 02:09:18 -0800 (PST)
+Received: by mail-ed1-x535.google.com with SMTP id d30so8195523eda.4
+        for <devicetree@vger.kernel.org>; Fri, 03 Mar 2023 02:09:18 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1677838089;
+        d=linaro.org; s=google; t=1677838157;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=4ESrclwBCHM69+hLsPL2pqUpQkFKX4EOhHF1Eje8eSI=;
-        b=PGRkUs4K5kO9por33thnuXgcO+reDiGastPA2Dp5H/pHJ06Egemrwng4RG4q0GnnzC
-         9Ex9M2x04CFgb8fHQm/eYOMkDggcVOvks0DCBoqZxFEBpU87cNN9RGaib7xlccFm7eIm
-         9b5/y2MZLL4BKuruSQcTHTfZ/AC8tbuc8YNgENUPD/Q7tdGasN+Ni1KDPnsI2CddUEkN
-         Ydj+2QcmGKqeXaXuCtak6YZao2mH0YO19qTpy0ZZfQv084E+271q+PSsPlB777FL1w3S
-         47nKilU+OnouEvxEFHNThXBAJetTXiagDNBGC1RWHsMGRrrLqmZJcnn3UtSLh9vLd7Sp
-         AfJg==
+        bh=fI5/Jh41zzz66+bX6TPVbQtVq4+vv/aKacxWrTWABSE=;
+        b=GDRKF4xLTB19IREv6jG4HYZQ0ofjbXmSt9cp0hUeSzkffeEljgn0DuezlRwNSxvv0h
+         vsvkgIH9DkVJBTEEM9XbulZhffMKFFota432hx6lQMB1DMjsESXujWd3ehi1K0lF5Q2+
+         g4Lf+pwaNmhyxY3xlBdAUVKyx4D4An/79s9GTR2Lwc0IIJBiUkNLNPfKIWMugcnJHNPB
+         O5yFGNO5VqxxftWzj0gAW+weu3TAsXvO4WE6URMTidh8+pKZVIDq0z1pvQdJuvn4EkGc
+         BejAS25JdUJ+/3jLx/i/ElM9mqbXsLh9kp/XoWcrBPX5bmgDy/NWTt6WpB8ilyOeLJol
+         dPnA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1677838089;
+        d=1e100.net; s=20210112; t=1677838157;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=4ESrclwBCHM69+hLsPL2pqUpQkFKX4EOhHF1Eje8eSI=;
-        b=zXndrMiyqHeSK7shRxquxqNOAwaxWqxmY3snAaFacd312mp11mBJaUCsV+VtgRWgtH
-         7ysPO3fLaLWly/fAGly+8Ci9zqfC8D48Z4fgomirLUDsJujniM5dh7zCzMp7k1Fmnkev
-         KgLeuPi/isx17uJrqNcnidaBWErtcASugWiyWnjNYVR33iaXmOhZWC9P4sTy7XNhNJsu
-         PG+iM7eIYgIsWaaRIrlK5XB1oCuSGr6sjBkzbIK7+zP9bttsNoaItqWPXa21uupxxSoT
-         7D8aO+dX5c1RqffMCHudrtXGbe0Qn5+4kIn+3RWlLiOX067JTLZB55a69twavnMG2MDL
-         HKDw==
-X-Gm-Message-State: AO0yUKXw5NupmWx500s/ek809gbaUYc/JveZcXgNyz3Ze5NI1c0CVwbu
-        pRVtIxFW5caoNsIWYLfJZyJcHg==
-X-Google-Smtp-Source: AK7set85Koytwyp8k9BMsQvzSBYoh1IytCTgthCWFMdVefdMvJrjVRop+xFCZwSfBoyFqtTTrxnyXw==
-X-Received: by 2002:a17:906:1450:b0:8af:ef00:b853 with SMTP id q16-20020a170906145000b008afef00b853mr1092169ejc.73.1677838089296;
-        Fri, 03 Mar 2023 02:08:09 -0800 (PST)
+        bh=fI5/Jh41zzz66+bX6TPVbQtVq4+vv/aKacxWrTWABSE=;
+        b=4r2OR2B6a9+SHpga5W0lyn+uwd9Y7osu5SdExqxL8c2/eD8bM8wNyHO5UQRUL1nSig
+         /jP2F09uQ2AiU0amVdjUR99LriCJFYkphD4dmLa0FRVz4wnNHZ3Bc8N1uQMvGnCk6UsG
+         tJym+F6yPx9CXnGYyTXTiLktE5FAIqBOZXdhSmtXcRDTKcsNPlX5zgfzTfzNgRyd8TWT
+         byZ1HZT8qM18C1C+e70b6sw/8sVco7i1caSQybnYFXqUUUvj7ncMWitCZzsyF8ssogyq
+         fBXbYzT66fPQouUBJOLk3h+9pVzxKKU3FJQrkURyM7r4xU7D+BkKhatyjKiFidG3JEjg
+         4dPg==
+X-Gm-Message-State: AO0yUKUhjgD8LV6u5s8+vI0toUfhqFpE63JYAEPVhMeCz8qCSzjZPTqC
+        lAwGpWhnGJQskHjnxjW1n1sX+3zrpUHdJ3bW
+X-Google-Smtp-Source: AK7set+lYy9fbQ5CtagXjbaTvZl/r3WY5kdiT+NQAjR24/Xnjs6G0dloTGXariMq8eLU9YUg4roYEQ==
+X-Received: by 2002:aa7:c147:0:b0:4bd:e63c:d3be with SMTP id r7-20020aa7c147000000b004bde63cd3bemr1328940edp.20.1677838157226;
+        Fri, 03 Mar 2023 02:09:17 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id d25-20020a1709064c5900b008b17de96f00sm768389ejw.151.2023.03.03.02.08.07
+        by smtp.gmail.com with ESMTPSA id c5-20020a056402120500b004c17977da1esm959561edw.8.2023.03.03.02.09.15
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 03 Mar 2023 02:08:08 -0800 (PST)
-Message-ID: <6781aacb-a44b-bff7-214a-3b3b5cee427b@linaro.org>
-Date:   Fri, 3 Mar 2023 11:08:07 +0100
+        Fri, 03 Mar 2023 02:09:16 -0800 (PST)
+Message-ID: <45d306d3-8efb-12ac-0a83-f01ca2982b0a@linaro.org>
+Date:   Fri, 3 Mar 2023 11:09:15 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.8.0
-Subject: Re: [PATCH v2 1/3] ASoC: dt-bindings: maxim,max9867: convert txt
- bindings to yaml
+Subject: Re: [PATCH v2 2/3] ASoC: dt-bindings: maxim,max9867: add clocks
+ property
 Content-Language: en-US
 To:     richard.leitner@linux.dev, Liam Girdwood <lgirdwood@gmail.com>,
         Mark Brown <broonie@kernel.org>,
@@ -69,9 +69,9 @@ Cc:     Benjamin Bara <bbara93@gmail.com>, alsa-devel@alsa-project.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
         Richard Leitner <richard.leitner@skidata.com>
 References: <20230302-max9867-v2-0-fd2036d5e825@skidata.com>
- <20230302-max9867-v2-1-fd2036d5e825@skidata.com>
+ <20230302-max9867-v2-2-fd2036d5e825@skidata.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230302-max9867-v2-1-fd2036d5e825@skidata.com>
+In-Reply-To: <20230302-max9867-v2-2-fd2036d5e825@skidata.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -86,20 +86,50 @@ X-Mailing-List: devicetree@vger.kernel.org
 On 03/03/2023 11:04, richard.leitner@linux.dev wrote:
 > From: Richard Leitner <richard.leitner@skidata.com>
 > 
-> Convert from max9867.txt to maxim,max9867.yaml and add missing
-> '#sound-dai-cells' property.
+> Add clocks property to require a "mclk" definition for the
+> maxim,max9867 codec.
+
+But why? You just wrote what the patch does, which is easy to see.
+Commit msgs should explain why you are doing something.
+
 > 
 > Signed-off-by: Richard Leitner <richard.leitner@skidata.com>
 > ---
->  .../devicetree/bindings/sound/max9867.txt          | 17 -------
->  .../devicetree/bindings/sound/maxim,max9867.yaml   | 55 ++++++++++++++++++++++
->  2 files changed, 55 insertions(+), 17 deletions(-)
+>  Documentation/devicetree/bindings/sound/maxim,max9867.yaml | 11 +++++++++++
+>  1 file changed, 11 insertions(+)
 > 
+> diff --git a/Documentation/devicetree/bindings/sound/maxim,max9867.yaml b/Documentation/devicetree/bindings/sound/maxim,max9867.yaml
+> index 74cd163546ec..6f27029b137d 100644
+> --- a/Documentation/devicetree/bindings/sound/maxim,max9867.yaml
+> +++ b/Documentation/devicetree/bindings/sound/maxim,max9867.yaml
+> @@ -35,9 +35,13 @@ properties:
+>    reg:
+>      maxItems: 1
+>  
+> +  clocks:
+> +    maxItems: 1
+> +
+>  required:
+>    - compatible
+>    - reg
+> +  - clocks
+>  
+>  additionalProperties: false
+>  
+> @@ -50,6 +54,13 @@ examples:
+>              compatible = "maxim,max9867";
+>              #sound-dai-cells = <0>;
+>              reg = <0x18>;
+> +            clocks = <&codec_clk>;
+>          };
+>      };
+> +
+> +    codec_clk: clock {
+> +        compatible = "fixed-clock";
+> +        #clock-cells = <0>;
+> +        clock-frequency = <12288000>;
 
-Looks ok. Need to wait for Rob's bot to check for issues.
-
-
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Drop the node, it's entirely common/regular stuff.
 
 Best regards,
 Krzysztof
