@@ -2,113 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CE6626A986D
-	for <lists+devicetree@lfdr.de>; Fri,  3 Mar 2023 14:33:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F3A6D6A988D
+	for <lists+devicetree@lfdr.de>; Fri,  3 Mar 2023 14:37:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229437AbjCCNdf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 3 Mar 2023 08:33:35 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40760 "EHLO
+        id S231177AbjCCNhS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 3 Mar 2023 08:37:18 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46854 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229754AbjCCNdO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Mar 2023 08:33:14 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4917ED51C;
-        Fri,  3 Mar 2023 05:33:13 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id EFC67B818CB;
-        Fri,  3 Mar 2023 13:33:11 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 578F0C433D2;
-        Fri,  3 Mar 2023 13:33:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1677850390;
-        bh=Q2NS0cGewK0rfbrE7gpf9lkmsbOHAIggPXrqMIDYmpM=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=bFoMrPhvowhOZZ4pJLBr1wrxgyBeMj+CN763Geq8AUoaZTwgnsjQNli/998U/Xs3V
-         IhWqJ2rqQ//twyCkEM6nabsodZuqXI7xKDc/yWE9iFLOhpolCyoBZfM28gld3ITJeV
-         REoZnFcrXpfM36TjnIJ4ZF503JDP+WXi9MiUmpie/40efQBjjkkwymgwgDfW9df3+l
-         LtXmxxWQgPg+yfRv9ClBdpfoVZqU8oAqFetBVVuAwJ733ZcbSAcZippCVOWfPSyHDA
-         OB5Apw3niAjiPOGFUS6sHVxKogM7vBNItEy3siE6QrOSNE8W2yw5Y64WmncUKKUugC
-         /XI8kmANYh+Sw==
-Date:   Fri, 3 Mar 2023 13:33:05 +0000
-From:   Lee Jones <lee@kernel.org>
-To:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Cc:     jacek.anaszewski@gmail.com, pavel@ucw.cz, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-leds@vger.kernel.org,
-        thunder.leizhen@huawei.com, festevam@gmail.com,
-        Rob Herring <robh@kernel.org>
-Subject: Re: [PATCH v7] dt-bindings: leds: Document commonly used LED triggers
-Message-ID: <20230303133305.GO2420672@google.com>
-References: <20230303122925.6610-1-manivannan.sadhasivam@linaro.org>
+        with ESMTP id S231149AbjCCNhG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Mar 2023 08:37:06 -0500
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4B03D3E09B;
+        Fri,  3 Mar 2023 05:37:00 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+        bh=nJdYjZ/flzda0YlArkOtYMjVRR8m/ms+LEswZPJ9qM8=; b=PDJLJDcVtLOYepZxg3fZHfx3Sg
+        Rei2dNhiy5la7EjHE9pCxYDyyBCM7gVpz3AvZVYaC8d/aWWWib4Y76vakuuZDbsW9ZRwSiGUZBmek
+        zKofeo7MdKiA34PL7XxdTAl0eeaHPLrOK2askiMZFGE5wm1uaSy5K0+3ZHimZGGqCKp4=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+        (envelope-from <andrew@lunn.ch>)
+        id 1pY5ai-006O7k-AR; Fri, 03 Mar 2023 14:36:56 +0100
+Date:   Fri, 3 Mar 2023 14:36:56 +0100
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Samin Guo <samin.guo@starfivetech.com>
+Cc:     linux-riscv@lists.infradead.org, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        "David S . Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Emil Renner Berthing <kernel@esmil.dk>,
+        Richard Cochran <richardcochran@gmail.com>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Peter Geis <pgwipeout@gmail.com>,
+        Yanhong Wang <yanhong.wang@starfivetech.com>
+Subject: Re: [PATCH v5 08/12] net: stmmac: starfive_dmac: Add phy interface
+ settings
+Message-ID: <ZAH3+BU5doYpOY6t@lunn.ch>
+References: <20230303085928.4535-1-samin.guo@starfivetech.com>
+ <20230303085928.4535-9-samin.guo@starfivetech.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20230303122925.6610-1-manivannan.sadhasivam@linaro.org>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <20230303085928.4535-9-samin.guo@starfivetech.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 03 Mar 2023, Manivannan Sadhasivam wrote:
+> +static int starfive_dwmac_set_mode(struct plat_stmmacenet_data *plat_dat)
+> +{
+> +	struct starfive_dwmac *dwmac = plat_dat->bsp_priv;
+> +	struct of_phandle_args args;
+> +	struct regmap *regmap;
+> +	unsigned int reg, mask, mode;
+> +	int err;
+> +
+> +	switch (plat_dat->interface) {
+> +	case PHY_INTERFACE_MODE_RMII:
+> +		mode = MACPHYC_PHY_INFT_RMII;
+> +		break;
+> +
+> +	case PHY_INTERFACE_MODE_RGMII:
+> +	case PHY_INTERFACE_MODE_RGMII_ID:
+> +		mode = MACPHYC_PHY_INFT_RGMII;
+> +		break;
+> +
+> +	default:
+> +		dev_err(dwmac->dev, "Unsupported interface %d\n",
+> +			plat_dat->interface);
+> +	}
 
-> Document the commonly used LED triggers by the SoCs. Not all triggers
-> are documented as some of them are very application specific. Most of the
-> triggers documented here are currently used in devicetrees of many SoCs.
-> 
-> While at it, add missing comments and also place the comment above the
-> triggers (hci, mmc, wlan) to match the rest of the binding.
-> 
-> Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-> Reviewed-by: Rob Herring <robh@kernel.org>
-> Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Please add a return -EINVAL;
 
-You signed it off twice, but I fixed that.
+> +
+> +	err = of_parse_phandle_with_fixed_args(dwmac->dev->of_node,
+> +					       "starfive,syscon", 2, 0, &args);
+> +	if (err) {
+> +		dev_dbg(dwmac->dev, "syscon reg not found\n");
+> +		return -EINVAL;
+> +	}
+> +
+> +	reg = args.args[0];
+> +	mask = args.args[1];
+> +	regmap = syscon_node_to_regmap(args.np);
+> +	of_node_put(args.np);
+> +	if (IS_ERR(regmap))
+> +		return PTR_ERR(regmap);
+> +
+> +	return regmap_update_bits(regmap, reg, mask, mode << __ffs(mask));
 
-> ---
-> 
-> Changes in v7:
-> 
-> * Rebased on top of next/master
-> 
-> Changes in v6:
-> 
-> * Rebased on top of lee/for-leds-next branch
-> * Fixed the comment location for few triggers
-> 
-> Changes in v5:
-> 
-> * Rebased on top of v6.2-rc1
-> 
-> Changes in v4:
-> 
-> * Removed the sorting of triggers
-> * Removed the "items" as they were not needed
-> * Reworded the description
-> * Dropped Zhen Lei's tested-by tag as the patch has changed
-> * Added kbd-capslock trigger
-> 
-> Changes in v3:
-> 
-> * Rebased on top of v6.1-rc1
-> * Added WLAN Rx trigger
-> * Added tested tag from Zhen Lei
-> 
-> Changes in v2:
-> 
-> * Added more triggers, fixed the regex
-> * Sorted triggers in ascending order
-> 
->  .../devicetree/bindings/leds/common.yaml      | 33 +++++++++++++++++--
->  1 file changed, 30 insertions(+), 3 deletions(-)
+This is a poor device tree binding. We generally don't allow bindings
+which say put value X in register Y.
 
-Applied, thanks
+Could you add a table: interface mode, reg, mask? You can then do a
+simple lookup based on the interface mode? No device tree binding
+needed at all?
 
--- 
-Lee Jones [李琼斯]
+       Andrew
