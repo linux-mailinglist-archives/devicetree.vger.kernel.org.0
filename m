@@ -2,116 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F276B6A9CB3
-	for <lists+devicetree@lfdr.de>; Fri,  3 Mar 2023 18:05:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2C21E6A9CBC
+	for <lists+devicetree@lfdr.de>; Fri,  3 Mar 2023 18:07:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231592AbjCCRE6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 3 Mar 2023 12:04:58 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50738 "EHLO
+        id S230407AbjCCRHJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 3 Mar 2023 12:07:09 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54554 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231600AbjCCREx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Mar 2023 12:04:53 -0500
-Received: from mx0a-001b2d01.pphosted.com (mx0b-001b2d01.pphosted.com [148.163.158.5])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 18C5622A17;
-        Fri,  3 Mar 2023 09:04:49 -0800 (PST)
-Received: from pps.filterd (m0098416.ppops.net [127.0.0.1])
-        by mx0b-001b2d01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 323Fr1I5000925;
-        Fri, 3 Mar 2023 17:04:35 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=from : to : cc : subject
- : date : message-id : in-reply-to : references : mime-version :
- content-transfer-encoding; s=pp1;
- bh=KJc0ydFTUgIwjCtrGuXVj0xPsA/uMLi0FjiGPI0kMbA=;
- b=rYTCT0poTtn9RlOfJmZSP/A/EK9pX19lTc2MK9fRI5nemK4Mh5FbdUfCM0Tbv0VGW2OT
- yEjlP6hB2j6qwmavHaEleSg/yjao3T52seUS6Xt10wPg/z3aj70Z3PSVj6X79onlId+2
- Lqbu5TIZEx9xkqOdYqAIfnGWKEKbrw76XOgPvVrqgZY4H8MmqQ3AVJ+JZks4/ywYY2Df
- KjDS9BRQvsNEjnAUWxKTp0wOiYvI6bd+vF7+JYa9pCR6DR6pVTPVCRv+iLGq2VlzX1DM
- es6vjsdmhb8snX7itXCfL15YlbQBzTDm3EySR2Q4hxq9xpAXo5ybYMYNCwl7bilKoqXR Pg== 
-Received: from ppma01wdc.us.ibm.com (fd.55.37a9.ip4.static.sl-reverse.com [169.55.85.253])
-        by mx0b-001b2d01.pphosted.com (PPS) with ESMTPS id 3p3kx4a1xj-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Fri, 03 Mar 2023 17:04:35 +0000
-Received: from pps.filterd (ppma01wdc.us.ibm.com [127.0.0.1])
-        by ppma01wdc.us.ibm.com (8.17.1.19/8.17.1.19) with ESMTP id 323EaCb4005832;
-        Fri, 3 Mar 2023 17:04:34 GMT
-Received: from smtprelay05.dal12v.mail.ibm.com ([9.208.130.101])
-        by ppma01wdc.us.ibm.com (PPS) with ESMTPS id 3nybcgkypx-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Fri, 03 Mar 2023 17:04:34 +0000
-Received: from smtpav05.wdc07v.mail.ibm.com (smtpav05.wdc07v.mail.ibm.com [10.39.53.232])
-        by smtprelay05.dal12v.mail.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 323H4XFo5636794
-        (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-        Fri, 3 Mar 2023 17:04:34 GMT
-Received: from smtpav05.wdc07v.mail.ibm.com (unknown [127.0.0.1])
-        by IMSVA (Postfix) with ESMTP id C181758043;
-        Fri,  3 Mar 2023 17:04:33 +0000 (GMT)
-Received: from smtpav05.wdc07v.mail.ibm.com (unknown [127.0.0.1])
-        by IMSVA (Postfix) with ESMTP id DD1AC58061;
-        Fri,  3 Mar 2023 17:04:31 +0000 (GMT)
-Received: from slate16.aus.stglabs.ibm.com (unknown [9.77.137.234])
-        by smtpav05.wdc07v.mail.ibm.com (Postfix) with ESMTP;
-        Fri,  3 Mar 2023 17:04:31 +0000 (GMT)
-From:   Eddie James <eajames@linux.ibm.com>
-To:     linux-fsi@lists.ozlabs.org
-Cc:     rostedt@goodmis.org, linux-trace-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        mhiramat@kernel.org, alistair@popple.id.au, joel@jms.id.au,
-        jk@ozlabs.org, andrew@aj.id.au, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, eajames@linux.ibm.com
-Subject: [PATCH v7 7/7] fsi: sbefifo: Don't check status during probe
-Date:   Fri,  3 Mar 2023 11:04:16 -0600
-Message-Id: <20230303170416.1347530-8-eajames@linux.ibm.com>
-X-Mailer: git-send-email 2.31.1
-In-Reply-To: <20230303170416.1347530-1-eajames@linux.ibm.com>
-References: <20230303170416.1347530-1-eajames@linux.ibm.com>
+        with ESMTP id S230381AbjCCRHJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Mar 2023 12:07:09 -0500
+Received: from relay9-d.mail.gandi.net (relay9-d.mail.gandi.net [217.70.183.199])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B22C7CA2B
+        for <devicetree@vger.kernel.org>; Fri,  3 Mar 2023 09:07:07 -0800 (PST)
+Received: from booty (unknown [77.244.183.192])
+        (Authenticated sender: luca.ceresoli@bootlin.com)
+        by mail.gandi.net (Postfix) with ESMTPSA id 3887AFF807;
+        Fri,  3 Mar 2023 17:07:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1677863226;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=UTe5qmwmI4dkolin3VVPDpEbc3GqIs/eFgYcLavf1DA=;
+        b=Gqtn1sKlA+OKkK2TeyVoB2QZr3gvoxxTIZv6t+ULpNvR2GDuZPGLQJINmqXuBEdbtkvQkH
+        8hge5946OOJ49N6t0Qjtne4vzNWBDLYtmm1Yu/QlVI+HA1NyiL/YA6gzLY85nW3eKHjtx6
+        X4djE3XQ5bowHaget78lEFcUEVaFXu/k2O5OT5ZFcMtzeP0Ws0CqLMfjXL9q9WKnU3dYOc
+        ik4i+MY0hWBtdRA6mi8WZA8eIMqA50y5ffYhhr2FOWN2jFO7WTyf9u03KU0l6jE8n/GHmH
+        iiYYkcZ4aPVzSM10eolUzVtaOGR/cjRxoU0k57CEJ+jY8L+hiX/T9SwEpSWDjg==
+Date:   Fri, 3 Mar 2023 18:07:02 +0100
+From:   Luca Ceresoli <luca.ceresoli@bootlin.com>
+To:     Lucas Stach <l.stach@pengutronix.de>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Liu Ying <victor.liu@nxp.com>,
+        Andrzej Hajda <andrzej.hajda@intel.com>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Robert Foss <robert.foss@linaro.org>,
+        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+        Jonas Karlman <jonas@kwiboo.se>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Kieran Bingham <kieran.bingham@ideasonboard.com>,
+        Marek Vasut <marex@denx.de>, dri-devel@lists.freedesktop.org,
+        devicetree@vger.kernel.org, patchwork-lst@pengutronix.de,
+        kernel@pengutronix.de
+Subject: Re: [PATCH 2/4] drm/imx: add bridge wrapper driver for i.MX8MP DWC
+ HDMI
+Message-ID: <20230303180702.766423d5@booty>
+In-Reply-To: <20220826192424.3216734-2-l.stach@pengutronix.de>
+References: <20220826192424.3216734-1-l.stach@pengutronix.de>
+        <20220826192424.3216734-2-l.stach@pengutronix.de>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-TM-AS-GCONF: 00
-X-Proofpoint-GUID: zeIb4CRhD_XWkIGW4WNIPqhufLQ1-vZe
-X-Proofpoint-ORIG-GUID: zeIb4CRhD_XWkIGW4WNIPqhufLQ1-vZe
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.219,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
- definitions=2023-03-03_03,2023-03-03_01,2023-02-09_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 spamscore=0
- bulkscore=0 phishscore=0 adultscore=0 malwarescore=0 impostorscore=0
- suspectscore=0 priorityscore=1501 mlxscore=0 mlxlogscore=999
- lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2212070000 definitions=main-2303030143
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The status check during probe doesn't serve any purpose. Any attempt
-to use the SBEFIFO will result in the same check and cleanup.
+On Fri, 26 Aug 2022 21:24:22 +0200
+Lucas Stach <l.stach@pengutronix.de> wrote:
 
-Signed-off-by: Eddie James <eajames@linux.ibm.com>
----
- drivers/fsi/fsi-sbefifo.c | 8 --------
- 1 file changed, 8 deletions(-)
+> Add a simple wrapper driver for the DWC HDMI bridge driver that
+> implements the few bits that are necessary to abstract the i.MX8MP
+> SoC integration.
+> 
+> Signed-off-by: Lucas Stach <l.stach@pengutronix.de>
+> Tested-by: Marek Vasut <marex@denx.de>
 
-diff --git a/drivers/fsi/fsi-sbefifo.c b/drivers/fsi/fsi-sbefifo.c
-index 9912b7a6a4b9..42d7c95528d1 100644
---- a/drivers/fsi/fsi-sbefifo.c
-+++ b/drivers/fsi/fsi-sbefifo.c
-@@ -1027,14 +1027,6 @@ static int sbefifo_probe(struct device *dev)
- 	mutex_init(&sbefifo->lock);
- 	sbefifo->timeout_start_rsp_ms = SBEFIFO_TIMEOUT_START_RSP;
- 
--	/*
--	 * Try cleaning up the FIFO. If this fails, we still register the
--	 * driver and will try cleaning things up again on the next access.
--	 */
--	rc = sbefifo_cleanup_hw(sbefifo);
--	if (rc && rc != -ESHUTDOWN)
--		dev_err(dev, "Initial HW cleanup failed, will retry later\n");
--
- 	/* Create chardev for userspace access */
- 	sbefifo->dev.type = &fsi_cdev_type;
- 	sbefifo->dev.parent = dev;
+Tested-by: Luca Ceresoli <luca.ceresoli@bootlin.com>
+
 -- 
-2.31.1
-
+Luca Ceresoli, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
