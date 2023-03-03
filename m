@@ -2,60 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 483BB6AA3E1
-	for <lists+devicetree@lfdr.de>; Fri,  3 Mar 2023 23:09:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BE2FC6AA489
+	for <lists+devicetree@lfdr.de>; Fri,  3 Mar 2023 23:36:36 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233704AbjCCWJS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 3 Mar 2023 17:09:18 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44988 "EHLO
+        id S231986AbjCCWg1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 3 Mar 2023 17:36:27 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44500 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233468AbjCCWIv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Mar 2023 17:08:51 -0500
-Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 914FF6486B
-        for <devicetree@vger.kernel.org>; Fri,  3 Mar 2023 13:59:25 -0800 (PST)
-Received: by mail-lf1-x132.google.com with SMTP id s22so5367839lfi.9
-        for <devicetree@vger.kernel.org>; Fri, 03 Mar 2023 13:59:25 -0800 (PST)
+        with ESMTP id S232661AbjCCWgC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Mar 2023 17:36:02 -0500
+Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1BC6E66D2A
+        for <devicetree@vger.kernel.org>; Fri,  3 Mar 2023 14:33:38 -0800 (PST)
+Received: by mail-ed1-x535.google.com with SMTP id d30so16179149eda.4
+        for <devicetree@vger.kernel.org>; Fri, 03 Mar 2023 14:33:38 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1677880697;
+        d=linaro.org; s=google; t=1677882732;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=8raBTXfySji8fpCPLBYPhkx+Ml6mdyfbjzhF4yIreP0=;
-        b=vSabLHneHV8skv6djmryJ+NhqfLGvgoNFLvYXXjM1KWUociEKAE21CZ3nmPBCQ3tzU
-         a3+RP+5NUvAcB+Q5TnROvI34Ct/pEgm307OquL0749O4lqMeryvGXm/qieCO4o3XQTZ/
-         KELv10PhvS2MSDSAo4HxXscrpSbDtZkGpQVsl+yNsODc0J15XLscSKQS9UdVpVG/+mhR
-         +UpdHEB/fFeZ47jZmrDLZZ0Rp2QnWrjjam+GmDP51SuDoeSDTK7EHJUna/8t46y8n0aw
-         ZwnYkmulvtSxYiR/ZbPYWXrTc8LUPeP23LAnWy82B+q9YdoSDngELr9Xo9hOP0J/edGh
-         XJ/w==
+        bh=1vqopDs853OIz7wr3B+Xdv3eU9ExHJXccftgDO6ekVc=;
+        b=T2o9W5Kg6Yfz0iQg1y74/vqS2HYDIJRDPW0qdmXe7fV3+W/DnD877ZHi7eNVfoGvyb
+         knUzVCLpw/vDcwse3MOfznMoijIAg0CSBTdKuZ1cvvBhcjvXoUW1xO0qwZ4dct4Fmisl
+         sm4VY2Vm3sTjm7NziUmdoZYB/haWj/0QTyIjz8cj8CkQu1R4xQbtN1LpSSP6rVkt6hO9
+         RauYUo0k30Iyclg4LwfcCWW+UpZdXirmA3cJIzVNOgEyPo7taYr5D0XVKQK+/OB99HfU
+         kWZqKPOTcwV4dUncxCdZSQK+fRUrPfZPFKbDt6tOKUH6emi0/MGJt5SAnCT58eo2gU3I
+         RPwg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1677880697;
+        d=1e100.net; s=20210112; t=1677882732;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=8raBTXfySji8fpCPLBYPhkx+Ml6mdyfbjzhF4yIreP0=;
-        b=a2PAg6KxjyR+JHpKwt2ftF7mOVctsFXeXR/4/uO4EWLfWD5Zmiev+aRSWu6TJ9+DTs
-         jeEg3EuqIQdJYPctrmuHu/0WWp0p8/4Gvpjyc++iLn9v39eYsJBVEWkoXSWSkZ7XtpyT
-         nWC+txae1xJAvwuABcrG6dhH754KYpXsM3CFl6SmhTBjfXutMDEfkwFjP7HGfYPGIqll
-         gE+dnNkK31dbqYfSb5bBnzSMopWLUtgQQfuCjxPR8dJqc7H5PPiWBcSrHTcDmzXUTIbm
-         geVgmgyMaM0Ob/KxULNq2cbhE5OFqAKbgMEeODm0pROxHrJP8v87SCgNXV+26jU1zhRf
-         1wlg==
-X-Gm-Message-State: AO0yUKXPYOp29JA1Jbyc5Ru9OMglLV69GsijsRmdg312A2va4J1/2hCl
-        kZOb9giwWITm98rv3G/AmCEciw==
-X-Google-Smtp-Source: AK7set9dHnVPJdpQHv/CLdSNRU7NCSWy7pxfL4tnOClqRR6cvV1Uwnypv4a6xYhpfqs8RyQdan0HSw==
-X-Received: by 2002:ac2:4a74:0:b0:4dd:a212:e3ca with SMTP id q20-20020ac24a74000000b004dda212e3camr948621lfp.11.1677880697243;
-        Fri, 03 Mar 2023 13:58:17 -0800 (PST)
+        bh=1vqopDs853OIz7wr3B+Xdv3eU9ExHJXccftgDO6ekVc=;
+        b=QIwEmJe2JEmfPp0vSlT0EuVHDofXpQc45N4WyaklBtKSkxTzZjspLRdiYMELt5mHcH
+         8r6bkzx+Y8+Ila34zfCmudvCkO+bu2vjUsYU81U576aA56K/7EwAwq0l+KoWkDaznBFf
+         Axmn4Bhr26gbot1AOL6NA9YUeU2E/D8I9p9SYf5rGsAk24xGXFnEFKgGkL4/xtkpmd/j
+         70e2ORwUNqUx7mr4F1I6SWfjMvP3eovxR1xlKn3rSKU2PKEov8nQ0LpAc5QleBIDP3AX
+         EFY4riiUkQhwmOOinNPmUmfTTl0FcOCrlri+1RTAYXVfKZviTr6PU8AXhvcpWliV9tD0
+         hI7A==
+X-Gm-Message-State: AO0yUKX3RutSQIyeyOVnITEMAhqOyfn5MvJuWXtMQG5w1l6YspeADGVQ
+        NrBwK1UNz8afQLde5nyLzM1juIRqFmpy2wizYlE=
+X-Google-Smtp-Source: AK7set/7fbUGMNphs0vqwhtKNC8wUa02T3V0w2DnPoVMlQTOL0XZqLhNi8C2eaaqCOyDl+kTJPwPtA==
+X-Received: by 2002:ac2:5283:0:b0:4de:21c9:8a37 with SMTP id q3-20020ac25283000000b004de21c98a37mr999841lfm.1.1677880701620;
+        Fri, 03 Mar 2023 13:58:21 -0800 (PST)
 Received: from [192.168.1.101] (abym99.neoplus.adsl.tpnet.pl. [83.9.32.99])
-        by smtp.gmail.com with ESMTPSA id e27-20020ac2547b000000b004cafa01ebbfsm552670lfn.101.2023.03.03.13.58.15
+        by smtp.gmail.com with ESMTPSA id e27-20020ac2547b000000b004cafa01ebbfsm552670lfn.101.2023.03.03.13.58.20
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 03 Mar 2023 13:58:16 -0800 (PST)
+        Fri, 03 Mar 2023 13:58:21 -0800 (PST)
 From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-Date:   Fri, 03 Mar 2023 22:58:04 +0100
-Subject: [PATCH 04/15] arm64: dts: qcom: sm6375: Add RPM sleep stats
+Date:   Fri, 03 Mar 2023 22:58:07 +0100
+Subject: [PATCH 07/15] arm64: dts: qcom: sm6375: Add wifi node
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20230303-topic-sm6375_features0_dts-v1-4-8c8d94fba6f0@linaro.org>
+Message-Id: <20230303-topic-sm6375_features0_dts-v1-7-8c8d94fba6f0@linaro.org>
 References: <20230303-topic-sm6375_features0_dts-v1-0-8c8d94fba6f0@linaro.org>
 In-Reply-To: <20230303-topic-sm6375_features0_dts-v1-0-8c8d94fba6f0@linaro.org>
 To:     Amit Kucheria <amitk@kernel.org>,
@@ -73,45 +73,63 @@ Cc:     linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
         Konrad Dybcio <konrad.dybcio@linaro.org>
 X-Mailer: b4 0.12.1
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1677880689; l=761;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1677880689; l=1484;
  i=konrad.dybcio@linaro.org; s=20230215; h=from:subject:message-id;
- bh=DKx+rSMb2n+6CPR4L2fodh6IzfCfn+ctrSy97qX3zGU=;
- b=ieZzG7g5ztbr6xl4XS6hT/hcGYS9CF9DgfDN9kVdowHP4hjJI4xQiPH4AVR1FIGts7rPCJkZkEgF
- 93W+nIO6DG1CU0I/gEWLtzQLXcAtTQB/8iAm6c0HyZxqWpgY77Db
+ bh=+otj1Pk8eMle5AYQIbjERaviQEzSMjyG5K7Qicq4ass=;
+ b=zKCRFNuu2ZhSbAUiErsbbp5MTBp9Ox7bl3O409WX+r+1mc2/LYy1Uw/iluf6ootGQTNOURxRTWEA
+ AV3SRONUCc/p8GWOezmmFe3iqQnVwl42QlZxFzRTFIJg9WFx6OKU
 X-Developer-Key: i=konrad.dybcio@linaro.org; a=ed25519;
  pk=iclgkYvtl2w05SSXO5EjjSYlhFKsJ+5OSZBjOkQuEms=
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add a node for RPM sleep stats to enable sleep monitoring.
+Add a node for ATH10K_SNoC wifi on SM6375.
 
 Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 ---
- arch/arm64/boot/dts/qcom/sm6375.dtsi | 5 +++++
- 1 file changed, 5 insertions(+)
+ arch/arm64/boot/dts/qcom/sm6375.dtsi | 22 ++++++++++++++++++++++
+ 1 file changed, 22 insertions(+)
 
 diff --git a/arch/arm64/boot/dts/qcom/sm6375.dtsi b/arch/arm64/boot/dts/qcom/sm6375.dtsi
-index 31b88c738510..de5882c0ff81 100644
+index 2cdd000a4e2b..e473a90f3dea 100644
 --- a/arch/arm64/boot/dts/qcom/sm6375.dtsi
 +++ b/arch/arm64/boot/dts/qcom/sm6375.dtsi
-@@ -718,6 +718,11 @@ rpm_msg_ram: sram@45f0000 {
- 			reg = <0 0x045f0000 0 0x7000>;
+@@ -1333,6 +1333,28 @@ apps_smmu: iommu@c600000 {
+ 			#iommu-cells = <2>;
  		};
  
-+		sram@4690000 {
-+			compatible = "qcom,rpm-stats";
-+			reg = <0 0x04690000 0 0x400>;
++		wifi: wifi@c800000 {
++			compatible = "qcom,wcn3990-wifi";
++			reg = <0 0x0c800000 0 0x800000>;
++			reg-names = "membase";
++			memory-region = <&pil_wlan_mem>;
++			interrupts = <GIC_SPI 358 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 359 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 360 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 361 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 362 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 363 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 364 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 365 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 366 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 367 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 368 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 369 IRQ_TYPE_LEVEL_HIGH>;
++			iommus = <&apps_smmu 0x80 0x1>;
++			qcom,msa-fixed-perm;
++			status = "disabled";
 +		};
 +
- 		sdhc_2: mmc@4784000 {
- 			compatible = "qcom,sm6375-sdhci", "qcom,sdhci-msm-v5";
- 			reg = <0 0x04784000 0 0x1000>;
+ 		intc: interrupt-controller@f200000 {
+ 			compatible = "arm,gic-v3";
+ 			reg = <0x0 0x0f200000 0x0 0x10000>,  /* GICD */
 
 -- 
 2.39.2
