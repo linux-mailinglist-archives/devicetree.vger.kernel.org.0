@@ -2,60 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BE2FC6AA489
-	for <lists+devicetree@lfdr.de>; Fri,  3 Mar 2023 23:36:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 389156AA3FA
+	for <lists+devicetree@lfdr.de>; Fri,  3 Mar 2023 23:14:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231986AbjCCWg1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 3 Mar 2023 17:36:27 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44500 "EHLO
+        id S232038AbjCCWOi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 3 Mar 2023 17:14:38 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38260 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232661AbjCCWgC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Mar 2023 17:36:02 -0500
-Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1BC6E66D2A
-        for <devicetree@vger.kernel.org>; Fri,  3 Mar 2023 14:33:38 -0800 (PST)
-Received: by mail-ed1-x535.google.com with SMTP id d30so16179149eda.4
-        for <devicetree@vger.kernel.org>; Fri, 03 Mar 2023 14:33:38 -0800 (PST)
+        with ESMTP id S233087AbjCCWOX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Mar 2023 17:14:23 -0500
+Received: from mail-lf1-f54.google.com (mail-lf1-f54.google.com [209.85.167.54])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3988281F90
+        for <devicetree@vger.kernel.org>; Fri,  3 Mar 2023 14:04:39 -0800 (PST)
+Received: by mail-lf1-f54.google.com with SMTP id f18so5419334lfa.3
+        for <devicetree@vger.kernel.org>; Fri, 03 Mar 2023 14:04:39 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1677882732;
+        d=linaro.org; s=google; t=1677880703;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=1vqopDs853OIz7wr3B+Xdv3eU9ExHJXccftgDO6ekVc=;
-        b=T2o9W5Kg6Yfz0iQg1y74/vqS2HYDIJRDPW0qdmXe7fV3+W/DnD877ZHi7eNVfoGvyb
-         knUzVCLpw/vDcwse3MOfznMoijIAg0CSBTdKuZ1cvvBhcjvXoUW1xO0qwZ4dct4Fmisl
-         sm4VY2Vm3sTjm7NziUmdoZYB/haWj/0QTyIjz8cj8CkQu1R4xQbtN1LpSSP6rVkt6hO9
-         RauYUo0k30Iyclg4LwfcCWW+UpZdXirmA3cJIzVNOgEyPo7taYr5D0XVKQK+/OB99HfU
-         kWZqKPOTcwV4dUncxCdZSQK+fRUrPfZPFKbDt6tOKUH6emi0/MGJt5SAnCT58eo2gU3I
-         RPwg==
+        bh=dIy97MlLq0rj6R7WBk66We2Y8cheU7mrKCO9U6h0C2I=;
+        b=KXTD2I7egTk7SuX2R0F75t8v9OUYAimGS+m4oBeKjc44cxrS+CLibwdEaNfVfr6M9C
+         Up3lDpMq2k69HtlvZ41ed9iHPAYPuR3ljrIgchkTCkLnq4ttyR+3YOsxM5lJKbSF2HaL
+         sjjF6hg3wxJsNMX3uVRLPIawva7Q9FktwsfzqexjdJH5PQIu4q3bgQlivSn8uJtv1aLy
+         UBV4JdXmzkZyUAsyv6oA0pNjU3CYawqw9/j34WwGvj8D8GLSXC0XxxfHygchigpGCmcR
+         vHYKQW709JYenWtzjymrb9YB0Zo0Kv70qT/SRmWcOIzqwESaAJU1ReyyBWkksKds/G7N
+         w7sQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1677882732;
+        d=1e100.net; s=20210112; t=1677880703;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=1vqopDs853OIz7wr3B+Xdv3eU9ExHJXccftgDO6ekVc=;
-        b=QIwEmJe2JEmfPp0vSlT0EuVHDofXpQc45N4WyaklBtKSkxTzZjspLRdiYMELt5mHcH
-         8r6bkzx+Y8+Ila34zfCmudvCkO+bu2vjUsYU81U576aA56K/7EwAwq0l+KoWkDaznBFf
-         Axmn4Bhr26gbot1AOL6NA9YUeU2E/D8I9p9SYf5rGsAk24xGXFnEFKgGkL4/xtkpmd/j
-         70e2ORwUNqUx7mr4F1I6SWfjMvP3eovxR1xlKn3rSKU2PKEov8nQ0LpAc5QleBIDP3AX
-         EFY4riiUkQhwmOOinNPmUmfTTl0FcOCrlri+1RTAYXVfKZviTr6PU8AXhvcpWliV9tD0
-         hI7A==
-X-Gm-Message-State: AO0yUKX3RutSQIyeyOVnITEMAhqOyfn5MvJuWXtMQG5w1l6YspeADGVQ
-        NrBwK1UNz8afQLde5nyLzM1juIRqFmpy2wizYlE=
-X-Google-Smtp-Source: AK7set/7fbUGMNphs0vqwhtKNC8wUa02T3V0w2DnPoVMlQTOL0XZqLhNi8C2eaaqCOyDl+kTJPwPtA==
-X-Received: by 2002:ac2:5283:0:b0:4de:21c9:8a37 with SMTP id q3-20020ac25283000000b004de21c98a37mr999841lfm.1.1677880701620;
-        Fri, 03 Mar 2023 13:58:21 -0800 (PST)
+        bh=dIy97MlLq0rj6R7WBk66We2Y8cheU7mrKCO9U6h0C2I=;
+        b=OG0AblyVuxqpHHcM7fRq0ac0NIA/Wl4bssK8/oJEuy4Bfex5pN7wXrvTB7lholYg8m
+         tvB2UONUqiDrhtWod3YRJNMF4KLPuYtmo7RZwjq+kxBb15ro0gAIE3L+ysupNeOxPDQx
+         H0KSCwK3tkEEk0SzY6H9TciNvWTsnd2n7vXGLRiXPbNOliZ9LlVisPmDyfDg1Azti7rg
+         1+8e5u/wIL8XQZn3pflGbzOB62MQpLu9fbsYa/v5PR4/C+85KWYnDDTMqU8qJko5Vw0K
+         dXxdD1swkLDWjbBjt2a/FiiIR0awpNX2gNqLFC1jFFUoVUuDjMHpDnTLZLIE9CUCaHYv
+         nCWg==
+X-Gm-Message-State: AO0yUKXlMyFr+xnh2+EZ33PrybISZ4uMKWpHf7u4Zm7eK9UbybLKCQw3
+        4YKgqThUx6F2BTC+E7JicQ81RQ==
+X-Google-Smtp-Source: AK7set8HQBC0fU9KjBOzvd9fU0aHQXoZn+05l05oJl8iRbAXOCfuOxeCmhTyu5C88qs2JNxIk+qf4A==
+X-Received: by 2002:a19:7614:0:b0:4e0:ce21:b92 with SMTP id c20-20020a197614000000b004e0ce210b92mr1051356lff.16.1677880703035;
+        Fri, 03 Mar 2023 13:58:23 -0800 (PST)
 Received: from [192.168.1.101] (abym99.neoplus.adsl.tpnet.pl. [83.9.32.99])
-        by smtp.gmail.com with ESMTPSA id e27-20020ac2547b000000b004cafa01ebbfsm552670lfn.101.2023.03.03.13.58.20
+        by smtp.gmail.com with ESMTPSA id e27-20020ac2547b000000b004cafa01ebbfsm552670lfn.101.2023.03.03.13.58.21
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 03 Mar 2023 13:58:21 -0800 (PST)
+        Fri, 03 Mar 2023 13:58:22 -0800 (PST)
 From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-Date:   Fri, 03 Mar 2023 22:58:07 +0100
-Subject: [PATCH 07/15] arm64: dts: qcom: sm6375: Add wifi node
+Date:   Fri, 03 Mar 2023 22:58:08 +0100
+Subject: [PATCH 08/15] arm64: dts: qcom: sm6375: Add modem nodes
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20230303-topic-sm6375_features0_dts-v1-7-8c8d94fba6f0@linaro.org>
+Message-Id: <20230303-topic-sm6375_features0_dts-v1-8-8c8d94fba6f0@linaro.org>
 References: <20230303-topic-sm6375_features0_dts-v1-0-8c8d94fba6f0@linaro.org>
 In-Reply-To: <20230303-topic-sm6375_features0_dts-v1-0-8c8d94fba6f0@linaro.org>
 To:     Amit Kucheria <amitk@kernel.org>,
@@ -73,63 +73,130 @@ Cc:     linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
         Konrad Dybcio <konrad.dybcio@linaro.org>
 X-Mailer: b4 0.12.1
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1677880689; l=1484;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1677880689; l=2988;
  i=konrad.dybcio@linaro.org; s=20230215; h=from:subject:message-id;
- bh=+otj1Pk8eMle5AYQIbjERaviQEzSMjyG5K7Qicq4ass=;
- b=zKCRFNuu2ZhSbAUiErsbbp5MTBp9Ox7bl3O409WX+r+1mc2/LYy1Uw/iluf6ootGQTNOURxRTWEA
- AV3SRONUCc/p8GWOezmmFe3iqQnVwl42QlZxFzRTFIJg9WFx6OKU
+ bh=93tjFAm3KE3wlOIxpjBJdVGBzNUVK9fKZaM4nNn4KS8=;
+ b=pwKO0/M2FqeHx3dB2gg68oBMUOr1ydRxxOUnKx+GLZ7BadpXYciYEIVO21+lwdaSQeWOSG5KPcpW
+ zOXO+Mw7DSHYDHIz3+KwnDZsnDxRgGEvxkIh5ROVTi2OfdkMVjY2
 X-Developer-Key: i=konrad.dybcio@linaro.org; a=ed25519;
  pk=iclgkYvtl2w05SSXO5EjjSYlhFKsJ+5OSZBjOkQuEms=
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add a node for ATH10K_SNoC wifi on SM6375.
+Add required nodes to make the embedded 5G modem boot up on SM6375.
 
 Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 ---
- arch/arm64/boot/dts/qcom/sm6375.dtsi | 22 ++++++++++++++++++++++
- 1 file changed, 22 insertions(+)
+ arch/arm64/boot/dts/qcom/sm6375.dtsi | 82 ++++++++++++++++++++++++++++++++++++
+ 1 file changed, 82 insertions(+)
 
 diff --git a/arch/arm64/boot/dts/qcom/sm6375.dtsi b/arch/arm64/boot/dts/qcom/sm6375.dtsi
-index 2cdd000a4e2b..e473a90f3dea 100644
+index e473a90f3dea..90f18754a63b 100644
 --- a/arch/arm64/boot/dts/qcom/sm6375.dtsi
 +++ b/arch/arm64/boot/dts/qcom/sm6375.dtsi
-@@ -1333,6 +1333,28 @@ apps_smmu: iommu@c600000 {
- 			#iommu-cells = <2>;
+@@ -565,6 +565,47 @@ smp2p_cdsp_in: slave-kernel {
  		};
+ 	};
  
-+		wifi: wifi@c800000 {
-+			compatible = "qcom,wcn3990-wifi";
-+			reg = <0 0x0c800000 0 0x800000>;
-+			reg-names = "membase";
-+			memory-region = <&pil_wlan_mem>;
-+			interrupts = <GIC_SPI 358 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 359 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 360 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 361 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 362 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 363 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 364 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 365 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 366 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 367 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 368 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 369 IRQ_TYPE_LEVEL_HIGH>;
-+			iommus = <&apps_smmu 0x80 0x1>;
-+			qcom,msa-fixed-perm;
-+			status = "disabled";
++	smp2p-modem {
++		compatible = "qcom,smp2p";
++		qcom,smem = <435>, <428>;
++		interrupts-extended = <&ipcc IPCC_CLIENT_MPSS
++					     IPCC_MPROC_SIGNAL_SMP2P
++					     IRQ_TYPE_EDGE_RISING>;
++		mboxes = <&ipcc IPCC_CLIENT_MPSS
++				IPCC_MPROC_SIGNAL_SMP2P>;
++
++		qcom,local-pid = <0>;
++		qcom,remote-pid = <1>;
++
++		smp2p_modem_out: master-kernel {
++			qcom,entry-name = "master-kernel";
++			#qcom,smem-state-cells = <1>;
 +		};
 +
- 		intc: interrupt-controller@f200000 {
- 			compatible = "arm,gic-v3";
- 			reg = <0x0 0x0f200000 0x0 0x10000>,  /* GICD */
++		smp2p_modem_in: slave-kernel {
++			qcom,entry-name = "slave-kernel";
++			interrupt-controller;
++			#interrupt-cells = <2>;
++		};
++
++		ipa_smp2p_out: ipa-ap-to-modem {
++			qcom,entry-name = "ipa";
++			#qcom,smem-state-cells = <1>;
++		};
++
++		ipa_smp2p_in: ipa-modem-to-ap {
++			qcom,entry-name = "ipa";
++			interrupt-controller;
++			#interrupt-cells = <2>;
++		};
++
++		wlan_smp2p_in: wlan-wpss-to-ap {
++			qcom,entry-name = "wlan";
++			interrupt-controller;
++			#interrupt-cells = <2>;
++		};
++	};
++
+ 	soc: soc@0 {
+ 		#address-cells = <2>;
+ 		#size-cells = <2>;
+@@ -1170,6 +1211,47 @@ usb_1_dwc3: usb@4e00000 {
+ 			};
+ 		};
+ 
++		remoteproc_mss: remoteproc@6000000 {
++			compatible = "qcom,sm6375-mpss-pas";
++			reg = <0 0x06000000 0 0x4040>;
++
++			interrupts-extended = <&intc GIC_SPI 307 IRQ_TYPE_EDGE_RISING>,
++					      <&smp2p_modem_in 0 IRQ_TYPE_EDGE_RISING>,
++					      <&smp2p_modem_in 1 IRQ_TYPE_EDGE_RISING>,
++					      <&smp2p_modem_in 2 IRQ_TYPE_EDGE_RISING>,
++					      <&smp2p_modem_in 3 IRQ_TYPE_EDGE_RISING>,
++					      <&smp2p_modem_in 7 IRQ_TYPE_EDGE_RISING>;
++			interrupt-names = "wdog",
++					  "fatal",
++					  "ready",
++					  "handover",
++					  "stop-ack",
++					  "shutdown-ack";
++
++			clocks = <&rpmcc RPM_SMD_XO_CLK_SRC>;
++			clock-names = "xo";
++
++			power-domains = <&rpmpd SM6375_VDDCX>;
++			power-domain-names = "cx";
++
++			memory-region = <&pil_mpss_wlan_mem>;
++
++			qcom,smem-states = <&smp2p_modem_out 0>;
++			qcom,smem-state-names = "stop";
++
++			status = "disabled";
++
++			glink-edge {
++				interrupts-extended = <&ipcc IPCC_CLIENT_MPSS
++							     IPCC_MPROC_SIGNAL_GLINK_QMP
++							     IRQ_TYPE_EDGE_RISING>;
++				mboxes = <&ipcc IPCC_CLIENT_MPSS
++						IPCC_MPROC_SIGNAL_GLINK_QMP>;
++				label = "modem";
++				qcom,remote-pid = <1>;
++			};
++		};
++
+ 		remoteproc_adsp: remoteproc@a400000 {
+ 			compatible = "qcom,sm6375-adsp-pas";
+ 			reg = <0 0x0a400000 0 0x100>;
 
 -- 
 2.39.2
