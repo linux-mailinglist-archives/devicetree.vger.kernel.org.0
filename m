@@ -2,137 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 85C7F6A9758
-	for <lists+devicetree@lfdr.de>; Fri,  3 Mar 2023 13:38:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DE2CE6A97A8
+	for <lists+devicetree@lfdr.de>; Fri,  3 Mar 2023 13:56:54 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229634AbjCCMig (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 3 Mar 2023 07:38:36 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51432 "EHLO
+        id S229843AbjCCM4x (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 3 Mar 2023 07:56:53 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40526 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229580AbjCCMif (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Mar 2023 07:38:35 -0500
-Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 593B45CC13;
-        Fri,  3 Mar 2023 04:38:34 -0800 (PST)
-Received: by mail-lf1-x136.google.com with SMTP id s22so3367333lfi.9;
-        Fri, 03 Mar 2023 04:38:34 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112; t=1677847112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=LeNXt3isbPRHGAJkEjS0qeuKPk4Ph4hfVApRfVC6Qok=;
-        b=P0YjcZ3S5ACbMGzx+4FQqVrYsfJfk5OAeUWFnmhbhhMgz7Y6myjru7hBUy4wOCtezp
-         /cVnh5BCBuB6qe9UctJ5/iaU0DMycOjd+/JyQMJ4k32z4yKR//VcfV/3kYkvF8ZA63hQ
-         2E8GkyLcl5beiGfzTYH6A7r7Hd0U/Pnztk3O1+cCiKP/TxO/XKrAj3RDU2qL6oAKc74w
-         LlhTjo2eKXUiuAKLfec8YyGpNOmoXr1+3UrFDev1FqdymopeMImPzKEtlyHUCssIw5NA
-         Z/o6XxM04tfRZpp+aBZIT2WGUpY2j3hX1PGFa8d9si5tdeCtGxABmW67F7aRpPd0WCUp
-         6MbA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1677847112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=LeNXt3isbPRHGAJkEjS0qeuKPk4Ph4hfVApRfVC6Qok=;
-        b=ZDgpkLKTEG4pDD0Ngu/Nns+ZjajnCTqTqCJPvtB8gsg82HG6F7lLWhtIzmqaY01P0N
-         CxyNDimEHyNs1KjWRicFtrammK4saPuQe+U8Vz7QByayFZr2BfjkAQbN6E12oSazNW/6
-         BthlTnOgp1P0x+tsbIyiFM1vvkeAbd6gA1wcuA9P1Avg3GSST+DkH93qSbV6mEMnWZ4F
-         WTbuVBdOObLYSSNeRhUk6yjuuXglFzQ9iK8rzn3Bw2Inhl9UORvwaix21zUjUdgQbNs8
-         S3Qc2JnOPFrPkvn1nvpvdeXwicswXc2GTTNkiNtCgnAXP/4asuOeGDYNo71DlVmKAbK3
-         heFQ==
-X-Gm-Message-State: AO0yUKWzZ1KUMKAveRX970Ils+3X6rGaxDoNU8qUvQKbgVVfDfoPSph2
-        LfeQCAhcu64SH/FUSoMv5WY=
-X-Google-Smtp-Source: AK7set8AMf7sXcYGM7UKtvCBtcTYORd/6lfdClXFLlsf4lNnLXlfUAkJ2EqaJJ7J2E5fFC/UiNTVrQ==
-X-Received: by 2002:ac2:546a:0:b0:4cb:449a:31f8 with SMTP id e10-20020ac2546a000000b004cb449a31f8mr501789lfn.35.1677847112505;
-        Fri, 03 Mar 2023 04:38:32 -0800 (PST)
-Received: from mobilestation ([95.79.133.202])
-        by smtp.gmail.com with ESMTPSA id c4-20020a2e6804000000b002934be1a0a4sm291705lja.70.2023.03.03.04.38.31
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 03 Mar 2023 04:38:31 -0800 (PST)
-Date:   Fri, 3 Mar 2023 15:38:29 +0300
-From:   Serge Semin <fancer.lancer@gmail.com>
-To:     Shradha Todi <shradha.t@samsung.com>
-Cc:     lpieralisi@kernel.org, kw@linux.com, robh@kernel.org,
-        bhelgaas@google.com, krzysztof.kozlowski+dt@linaro.org,
-        alim.akhtar@samsung.com, jingoohan1@gmail.com,
-        Sergey.Semin@baikalelectronics.ru, lukas.bulwahn@gmail.com,
-        hongxing.zhu@nxp.com, tglx@linutronix.de, m.szyprowski@samsung.com,
-        jh80.chung@samsung.co, pankaj.dubey@samsung.com,
-        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 00/16] Refactor Exynos PCIe driver to make it generic
-Message-ID: <20230303123829.er626hqa562sal3t@mobilestation>
-References: <CGME20230214121348epcas5p48a3b2b225f616d748cc20622d01edb97@epcas5p4.samsung.com>
- <20230214121333.1837-1-shradha.t@samsung.com>
+        with ESMTP id S229563AbjCCM4v (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Mar 2023 07:56:51 -0500
+Received: from sin.source.kernel.org (sin.source.kernel.org [IPv6:2604:1380:40e1:4800::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 311164ECDB;
+        Fri,  3 Mar 2023 04:56:50 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by sin.source.kernel.org (Postfix) with ESMTPS id 9478CCE2127;
+        Fri,  3 Mar 2023 12:56:48 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9C0A9C433D2;
+        Fri,  3 Mar 2023 12:56:43 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1677848206;
+        bh=+b8VhHcKMAf5AlRnGJugTeQ8FLmcJRwHbHLB2Me/d0Q=;
+        h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
+        b=K5f/zp+h6k4W5qp3yW46hJu0292vk2WgBvLP0LSDar561Y18RqRCAqtIamAqCNlIh
+         6vzY2NhmQ7bb2QSXtIQ1CoM+iT7BNp4ei+wE4uebPF3RHAY/gzlkkFQlHPW9yJg5lB
+         Vst1998vixy+qVvhpEWwdaSaPG0XlPG2R2p4J3DSSigFwybKqQZMDjKq/6UIvfq7sO
+         5faVefergO6ULYEzBmILazHWwBIX8bDHHhv7WrMYUWynKgG+4Sa3O1PLQFNpLY1b8z
+         jp+2+S+tV/ps5L+VldD5MnDq4nCofjPZQJLOXg4B2EY+m0RyuwWe06FSjBFfhjRpU5
+         qnVjCNvoaW5GQ==
+From:   Kalle Valo <kvalo@kernel.org>
+To:     Konrad Dybcio <konrad.dybcio@linaro.org>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        linux-arm-msm@vger.kernel.org, andersson@kernel.org,
+        agross@kernel.org, marijn.suijten@somainline.org,
+        "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        ath10k@lists.infradead.org, linux-wireless@vger.kernel.org,
+        netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/2] dt-bindings: ath10k: Add vdd-smps supply
+References: <20230303024246.2175382-1-konrad.dybcio@linaro.org>
+        <8e695c64-6abd-3c1e-8d80-de636d950442@linaro.org>
+        <41665c73-1647-2cb2-bd33-8dc281a97ee5@linaro.org>
+Date:   Fri, 03 Mar 2023 14:56:36 +0200
+In-Reply-To: <41665c73-1647-2cb2-bd33-8dc281a97ee5@linaro.org> (Konrad
+        Dybcio's message of "Fri, 3 Mar 2023 12:28:21 +0100")
+Message-ID: <87o7payovv.fsf@kernel.org>
+User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/26.1 (gnu/linux)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230214121333.1837-1-shradha.t@samsung.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Shradha
+Konrad Dybcio <konrad.dybcio@linaro.org> writes:
 
-On Tue, Feb 14, 2023 at 05:43:17PM +0530, Shradha Todi wrote:
-> Currently pci-exynos is being used as a PCIe driver for Exynos5433
-> only. This patch set refactors the driver to make it extensible to
-> other Samsung manufactured SoCs having DWC PCIe controllers.
-> The major change points are:
-> - Renaming all common functions/structures to use "samsung" instead
->   of "exynos". Make common probe/remove/suspend/resume
-> - Making clock/regulator get/enable/disable generic
-> - Adding private struct to hold platform specific function ops
+> On 3.03.2023 08:12, Krzysztof Kozlowski wrote:
+>> On 03/03/2023 03:42, Konrad Dybcio wrote:
+>>> Mention the newly added vdd-smps supply.
+>> 
+>> There is no explanation here, but looking at your driver change it
+>> suggests name is not correct. You named it based on regulator (so the
+>> provider), not the consumer.
 
-Just a general note regarding the DT-bindings. If you're willing to fix
-some names or most importantly add new ones please follow as much as
-possible to the generic interface defined in the common part of the
-DW PCIe bindings schema:
-Documentation/devicetree/bindings/pci/snps,dw-pcie-common.yaml
-Documentation/devicetree/bindings/pci/snps,dw-pcie.yaml
-for instance the generic "reg-names" are "elbi" or "app" defined for
-the application-dependent registers map (normally implemented via the
-ELBI interface in hardware), the "appl" name is marked as vendor-specific
-and should be avoided.
+Yeah, it would be nice to have more than just one sentence in the commit
+log.
 
--Serge(y)
+> Right, I admit this could have been posted with an RFC tag.
+> Maybe Kalle knows more.
 
-> 
-> Shradha Todi (16):
->   dt-bindings: PCI: Rename Exynos PCIe binding to Samsung PCIe
->   PCI: exynos: Rename Exynos PCIe driver to Samsung PCIe
->   PCI: samsung: Change macro names to exynos specific
->   PCI: samsung: Use clock bulk API to get clocks
->   dt-bindings: PCI: Rename the term elbi to appl
->   arm64: dts: exynos: Rename the term elbi to appl
->   PCI: samsung: Rename the term elbi to appl
->   PCI: samsung: Rename exynos_pcie to samsung_pcie
->   PCI: samsung: Make common appl readl/writel functions
->   dt-bindings: PCI: Add phy-names as required property
->   arm64: dts: exynos: Add phy-names as DT property
->   PCI: samsung: Get PHY using non-DT version
->   PCI: samsung: Rename common functions to samsung
->   PCI: samsung: Add platform device private data
->   PCI: samsung: Add structure to hold resource operations
->   PCI: samsung: Make handling of regulators generic
-> 
->  ...ung,exynos-pcie.yaml => samsung,pcie.yaml} |  15 +-
->  MAINTAINERS                                   |   4 +-
->  arch/arm64/boot/dts/exynos/exynos5433.dtsi    |   3 +-
->  drivers/pci/controller/dwc/Kconfig            |   6 +-
->  drivers/pci/controller/dwc/Makefile           |   2 +-
->  drivers/pci/controller/dwc/pci-samsung.c      | 508 ++++++++++++++++++
->  6 files changed, 526 insertions(+), 12 deletions(-)
->  rename Documentation/devicetree/bindings/pci/{samsung,exynos-pcie.yaml => samsung,pcie.yaml} (89%)
->  create mode 100644 drivers/pci/controller/dwc/pci-samsung.c
-> 
-> -- 
-> 2.17.1
-> 
-> 
+Unfortunately not, but maybe Bjorn knows?
+
+-- 
+https://patchwork.kernel.org/project/linux-wireless/list/
+
+https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
