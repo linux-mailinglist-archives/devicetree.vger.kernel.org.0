@@ -2,53 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6637A6A968C
-	for <lists+devicetree@lfdr.de>; Fri,  3 Mar 2023 12:39:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4BC1B6A96BD
+	for <lists+devicetree@lfdr.de>; Fri,  3 Mar 2023 12:52:49 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230063AbjCCLjz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 3 Mar 2023 06:39:55 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59026 "EHLO
+        id S231222AbjCCLwr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 3 Mar 2023 06:52:47 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41772 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231226AbjCCLjx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Mar 2023 06:39:53 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0001623659;
-        Fri,  3 Mar 2023 03:39:52 -0800 (PST)
+        with ESMTP id S229451AbjCCLwq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Mar 2023 06:52:46 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ACE125D47B;
+        Fri,  3 Mar 2023 03:52:45 -0800 (PST)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 9C527B818A6;
-        Fri,  3 Mar 2023 11:39:51 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 60E60C4339E;
-        Fri,  3 Mar 2023 11:39:48 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 46E16617A1;
+        Fri,  3 Mar 2023 11:52:45 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E366AC433D2;
+        Fri,  3 Mar 2023 11:52:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1677843590;
-        bh=I67wD2VPLvWn6k0HOQ0HyWEMmVsne14JmWKz+mBqvIk=;
+        s=k20201202; t=1677844364;
+        bh=dOfthFgjanTbWKs03Eh1I2lHx5A5iFcuCYKISeVUrPU=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=GTkY9eXMB5r/ml0duVnEYUUCqH0mVYY/zdj1H0njOjVTkYPBqklKDEf0gq3XTzGdr
-         r+2IJjp23XkT5yNUBwrcdLtFzL7XnKVDp3KFPprMP5fiafUkZ4YFiuySHc9VR9lP2L
-         Gvx2mfl/TpOQ1QQOu9u2qFOw225zCOi1lKcOuADzB2FrPoJ8GiKBWKy5mz44oVJPBD
-         fKdL1cCcwvgmotXrD+yVEz4FUX5COcuNCH47ZSkeQsEgbwDtOk0kKLAJ6L1A2xUWmo
-         MwxikzdP50zEvZFQWIgfhtL6jtm6nV1nOHGpP05ua/9diiq6emMyU2IkT/M6Om60wF
-         eyMGzcqHBk64w==
-Date:   Fri, 3 Mar 2023 11:39:45 +0000
+        b=j66UwYq470IS2IBw4Jw7a0QE+/mR27aaEyRAxVyWUHH4UrOpxPyi3yRWzzUStaKLB
+         wqEiqh5QgyzMzLHIi/iT1TLMyXmoJVIHMranT1VvEhb25H1++rJ73CDqCvf+l8Fidi
+         TxtbbW3H+P3SpeMEuC9URemmq+5XuYXg0vi0QIDYBHuieSwakhi36xTczfSEjo+Z01
+         HZ/YdFbk5tKHv6fc7dFKICaq5uEuUWCrtGJdWNuYnto17Lpf3iIcvm9yErTZfs1MC3
+         L3eyIb+am6CKihsSBjTz5k/Zd7RTc2XOwcCAH007nlJTiLH2zat862DR/8hhnjcqB+
+         bJi2/IqAshASw==
+Date:   Fri, 3 Mar 2023 11:52:36 +0000
 From:   Lee Jones <lee@kernel.org>
-To:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Cc:     jacek.anaszewski@gmail.com, pavel@ucw.cz, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-leds@vger.kernel.org,
-        thunder.leizhen@huawei.com, festevam@gmail.com
-Subject: Re: [PATCH v6] dt-bindings: leds: Document commonly used LED triggers
-Message-ID: <20230303113945.GF2420672@google.com>
-References: <20230213072133.5977-1-manivannan.sadhasivam@linaro.org>
- <20230303103407.GR2303077@google.com>
+To:     Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Emil Renner Berthing <kernel@esmil.dk>,
+        Conor Dooley <conor@kernel.org>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Jose Abreu <joabreu@synopsys.com>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Richard Cochran <richardcochran@gmail.com>,
+        Sagar Kadam <sagar.kadam@sifive.com>,
+        Yanhong Wang <yanhong.wang@starfivetech.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        netdev@vger.kernel.org, linux-riscv@lists.infradead.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        linux-arm-kernel@lists.infradead.org, kernel@collabora.com
+Subject: Re: [PATCH 06/12] dt-bindings: mfd: syscon: Add StarFive JH7100
+ sysmain compatible
+Message-ID: <20230303115236.GH2420672@google.com>
+References: <20230211031821.976408-1-cristian.ciocaltea@collabora.com>
+ <20230211031821.976408-7-cristian.ciocaltea@collabora.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20230303103407.GR2303077@google.com>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+In-Reply-To: <20230211031821.976408-7-cristian.ciocaltea@collabora.com>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -56,56 +75,19 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 03 Mar 2023, Lee Jones wrote:
+On Sat, 11 Feb 2023, Cristian Ciocaltea wrote:
 
-> On Mon, 13 Feb 2023, Manivannan Sadhasivam wrote:
+> From: Emil Renner Berthing <kernel@esmil.dk>
 > 
-> > Document the commonly used LED triggers by the SoCs. Not all triggers
-> > are documented as some of them are very application specific. Most of the
-> > triggers documented here are currently used in devicetrees of many SoCs.
-> > 
-> > While at it, also place the comment above the triggers (hci, mmc, wlan)
-> > to match the rest of the binding.
-> > 
-> > Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-> > ---
-> > 
-> > Changes in v6:
-> > 
-> > * Rebased on top of lee/for-leds-next branch
-> > * Fixed the comment location for few triggers
-> > 
-> > Changes in v5:
-> > 
-> > * Rebased on top of v6.2-rc1
-> > 
-> > Changes in v4:
-> > 
-> > * Removed the sorting of triggers
-> > * Removed the "items" as they were not needed
-> > * Reworded the description
-> > * Dropped Zhen Lei's tested-by tag as the patch has changed
-> > * Added kbd-capslock trigger
-> > 
-> > Changes in v3:
-> > 
-> > * Rebased on top of v6.1-rc1
-> > * Added WLAN Rx trigger
-> > * Added tested tag from Zhen Lei
-> > 
-> > Changes in v2:
-> > 
-> > * Added more triggers, fixed the regex
-> > * Sorted triggers in ascending order
-> > 
-> >  .../devicetree/bindings/leds/common.yaml      | 37 +++++++++++++++++--
-> >  1 file changed, 34 insertions(+), 3 deletions(-)
+> Document StarFive JH7100 SoC compatible for sysmain registers.
 > 
-> Applied, thanks
+> Signed-off-by: Emil Renner Berthing <kernel@esmil.dk>
+> Signed-off-by: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
+> ---
+>  Documentation/devicetree/bindings/mfd/syscon.yaml | 1 +
+>  1 file changed, 1 insertion(+)
 
-Change of plan.  This doesn't apply cleanly.
-
-Could you please rebase and resubmit please?
+Applied, thanks
 
 -- 
 Lee Jones [李琼斯]
