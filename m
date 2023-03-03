@@ -2,81 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E185E6A8E59
-	for <lists+devicetree@lfdr.de>; Fri,  3 Mar 2023 01:52:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5293B6A8E75
+	for <lists+devicetree@lfdr.de>; Fri,  3 Mar 2023 02:03:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229453AbjCCAw3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 2 Mar 2023 19:52:29 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39444 "EHLO
+        id S229683AbjCCBDr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 2 Mar 2023 20:03:47 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47170 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229698AbjCCAw2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Mar 2023 19:52:28 -0500
-Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 714EF460A4
-        for <devicetree@vger.kernel.org>; Thu,  2 Mar 2023 16:52:26 -0800 (PST)
-Received: by mail-lf1-x12d.google.com with SMTP id n2so1546122lfb.12
-        for <devicetree@vger.kernel.org>; Thu, 02 Mar 2023 16:52:26 -0800 (PST)
+        with ESMTP id S229602AbjCCBDq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Mar 2023 20:03:46 -0500
+Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 69CB32364F
+        for <devicetree@vger.kernel.org>; Thu,  2 Mar 2023 17:03:45 -0800 (PST)
+Received: by mail-lf1-x12f.google.com with SMTP id j11so1564544lfg.13
+        for <devicetree@vger.kernel.org>; Thu, 02 Mar 2023 17:03:45 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1677804745;
+        d=linaro.org; s=google; t=1677805423;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=rZoQPzOS2F9b1yxfwL5mradqTzXKrqqaGNTBFehgjNs=;
-        b=hOYY7G3r3eoFxOayDXp1ljtkIDBo2YAQlVKR+ey3Bwx0FLxageIxe2To/6W6wTJafq
-         fXGd9NLdbPdwNg2k+hzFGwytVz0RD/5czqZkX41usbaCWvH6vVRnV8l4DyYRZHYHB47Z
-         95ronfSfXdKqG4DUnYCsc8hNzSVU4fhNN+iqQ7tLEilJqsRMw/wuNp+smbQ/2uulaJLu
-         NC/lvAq213/U70QfI4umXOlA7q6RAA1ROkwz4XCXGEhL5ouZQ7A8H6OpMG0IzkzQr2z6
-         QVcEkPdMlITsEerSCPuPhXrECn48FklyFW+Rod2Gc25zssSdYaGkyYT8HMzcS2iYtfse
-         CR3w==
+        bh=uVcKfKkfVkpqpKWoMU97cJ7wcrQbe2kwbZ0geHYwPfc=;
+        b=QfIptf0EvVLQAS5irvExaPpbsnT2YI+ih1T4iT+lGvNWtotDA1u8u+wIYJO5frXD5/
+         I1Js74psGIzL0wJtbnefGsfcQzrnWetifYDNn6HlEAiG3W7ytrpH0e+fID+c6NFT0qu1
+         whwOvnlPyCx0ibGIUwYFa9qRT5Wb4bud8QHVvnX7Cm9VutGOADcktCXfhiv6tUHHnk5L
+         faBbjCs4s+oqk+gwo9h4erPqu8Y4W2K72qZzj170aYcd79izjRHorT/kmujbPC45lBN4
+         Ryy4wjap3Pf7bxjE7gksDhbh06/bu+U/DQH87FHFsbFchx9Jvrw/ro/gbtQkTIXEzlww
+         ZXTg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1677804745;
+        d=1e100.net; s=20210112; t=1677805423;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=rZoQPzOS2F9b1yxfwL5mradqTzXKrqqaGNTBFehgjNs=;
-        b=Vc+BkZfrDmVpR3HKn2sENX7be8bYTUXkqAA6NhdoF74jhCG/f0vc3Mq/KXt83KZgva
-         qBo38scDpM1SLjR6hLAQ+B05h1TtzUKxh2uRM0GBMBcK+YiFMAEYqMn2EAduxSnF0x18
-         7oqwgFyI9ZrGHAD1d4K+uPmdWXA0uSgij2eYUWVZ48N2K2l0ns9tpB0RRnQix6sIr91y
-         Wvo5kfvWTl7baMIqwLSY9O4oKHcWAvl7PzynzZEZwG4rKpQGWZXU+a6ROzQ1DoER4aCU
-         jLFzzdOqTd8tfmwSphNKl7k6S/HLcDWdnJo4Uxr1ab4tjfBp3/H1KBfX2qgrcqCoc0pK
-         p52g==
-X-Gm-Message-State: AO0yUKXZidB2fln7Uy0xHTGGfusYQ62rZv7IgmtfDd4byQ7f9M03SNve
-        CZN5z7+wtZSGjrqefDuwfhr2kw==
-X-Google-Smtp-Source: AK7set+sCyp6NFtgrZvO+Sb5lPOEZUsTYXsadh7hvF1COMV0pmgSyFkHfMdk2RsGzw8bTDixtgXhDw==
-X-Received: by 2002:ac2:5a06:0:b0:4dc:260e:6b59 with SMTP id q6-20020ac25a06000000b004dc260e6b59mr45267lfn.40.1677804744648;
-        Thu, 02 Mar 2023 16:52:24 -0800 (PST)
+        bh=uVcKfKkfVkpqpKWoMU97cJ7wcrQbe2kwbZ0geHYwPfc=;
+        b=FtHLxifwg2dxPy5q5Wfz6BtsW/FMVlkoWFgyQg75UkxQbtHfovBo0Y+9mwHb/H4o0Q
+         BW7/bh5PrTcUmjhSEgJ+NRv49Iy4kdr+CXYh6nSWUx4NM3PLlESjihlYlMZzGRUnMRWT
+         xha7ru/X+4Y7mjSgTfSudiFOq7HWDVhCucT82goNhsIiPilaijnrNBH5ex4eLSWmnXh4
+         f8tMBnP+SKWj/yt9so8dwIHv2ezGKzOdRuPXr+FN4vsMyCpTdjkHUiScHdmheuFCNOhF
+         xI1WYFCMTHPTqZwoEiYlN8zgYpIn1hFZIgorntaXratPQ4NMDcdUesUfF4jf6JPHC8sy
+         O/Wg==
+X-Gm-Message-State: AO0yUKXDPoqtUSZqGRIMDjd4Gmt13QAcbVE83s4shf1FY4d5n+S1nnxK
+        9NlxNGWcvLm4dI7kGadrx2WndQ==
+X-Google-Smtp-Source: AK7set+05kenIZlSMEmN2iofpiRlFp4TiBQqmejCYxCcS7M26TUF6Dopy0EsheSFyDsLRfR/PA8jsQ==
+X-Received: by 2002:ac2:546c:0:b0:4dd:ad4b:efd with SMTP id e12-20020ac2546c000000b004ddad4b0efdmr63600lfn.52.1677805423614;
+        Thu, 02 Mar 2023 17:03:43 -0800 (PST)
 Received: from [192.168.1.101] (abym99.neoplus.adsl.tpnet.pl. [83.9.32.99])
-        by smtp.gmail.com with ESMTPSA id f14-20020ac2532e000000b004ab52b0bcf9sm149765lfh.207.2023.03.02.16.52.23
+        by smtp.gmail.com with ESMTPSA id y23-20020a197517000000b004db4fa67bf1sm155480lfe.157.2023.03.02.17.03.42
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 02 Mar 2023 16:52:24 -0800 (PST)
-Message-ID: <94587945-eff6-8912-f08b-cac2453a1035@linaro.org>
-Date:   Fri, 3 Mar 2023 01:52:22 +0100
+        Thu, 02 Mar 2023 17:03:43 -0800 (PST)
+Message-ID: <e5cda4cf-5c2a-a7ed-9e1d-1fe9f2cbef40@linaro.org>
+Date:   Fri, 3 Mar 2023 02:03:41 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.8.0
-Subject: Re: [PATCH 1/2] arm64: dts: qcom: msm8976: Add and provide xo clk to
- rpmcc
+Subject: Re: [PATCH] arm64: dts: qcom: sm6115: Add CPU idle-states
 Content-Language: en-US
-To:     Adam Skladowski <a39.skl@gmail.com>
-Cc:     phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Marijn Suijten <marijn.suijten@somainline.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20230302123051.12440-1-a39.skl@gmail.com>
+To:     Bhupesh Sharma <bhupesh.sharma@linaro.org>
+Cc:     linux-arm-msm@vger.kernel.org, agross@kernel.org,
+        andersson@kernel.org, linux-kernel@vger.kernel.org,
+        bhupesh.linux@gmail.com, robh+dt@kernel.org,
+        devicetree@vger.kernel.org, krzysztof.kozlowski+dt@linaro.org
+References: <20230118203428.910992-1-bhupesh.sharma@linaro.org>
+ <77fbf01f-58fc-55a2-415b-c39d991e7c96@linaro.org>
+ <CAH=2Ntw4hMyV2mqRu1t=WWG24=wKq96PB+eYFtZ4qYQz8dteog@mail.gmail.com>
 From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20230302123051.12440-1-a39.skl@gmail.com>
+In-Reply-To: <CAH=2Ntw4hMyV2mqRu1t=WWG24=wKq96PB+eYFtZ4qYQz8dteog@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -85,50 +79,104 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 
 
-On 2.03.2023 13:30, Adam Skladowski wrote:
-> In order for consumers of RPMCC XO clock to probe successfully
-> their parent needs to be feed with reference clock to obtain proper rate,
-> add fixed xo-board clock and supply it to rpmcc to make consumers happy.
-> Frequency setting is left per board basis just like on other recent trees.
-> 
-> Fixes: 0484d3ce0902 ("arm64: dts: qcom: Add DTS for MSM8976 and MSM8956 SoCs")
-> Signed-off-by: Adam Skladowski <a39.skl@gmail.com>
-> ---
-So your commit message suggests that this commit does not
-actually fix the problem, but lays the groundwork for it..
+On 18.01.2023 21:48, Bhupesh Sharma wrote:
+> On Thu, 19 Jan 2023 at 02:10, Konrad Dybcio <konrad.dybcio@linaro.org> wrote:
+>>
+>>
+>>
+>> On 18.01.2023 21:34, Bhupesh Sharma wrote:
+>>> Add CPU idle-state nodes and power-domains in Qualcomm sm6115 SoC dtsi.
+>>>
+>>> Signed-off-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
+>>> ---
+[...]
 
-I'd say squashing these two into a single one would make more sense,
-as if somebody was bisecting something and landed on this one, there
-would be little hope in getting a boot if what you said holds.
+>>> +
+>>> +             domain-idle-states {
+>>> +                     CLUSTER_SLEEP_0: cluster-sleep-0 {
+>>> +                             compatible = "domain-idle-state";
+>>> +                             idle-state-name = "cluster-power-collapse";
+>>> +                             arm,psci-suspend-param = <0x41000043>;
+>>> +                             entry-latency-us = <800>;
+>>> +                             exit-latency-us = <2118>;
+>>> +                             min-residency-us = <7376>;
+>> These values vary per cluster, see qcom,pm-cluster-level@2 in the
+>> file linked above.. We should either split that, or at least take
+>> max() of each value between the two nodes to make sure the sleep
+>> state is exited properly on both types of cores.
+> 
+> Ack to both the above observations. Will send a fixed v2 shortly.
+In doing so, please also add support for D3G cluster sleep states
+as well, it sounds beneficial to have a middleground between a total
+power collapse and a simple wfi.
 
 Konrad
->  arch/arm64/boot/dts/qcom/msm8976.dtsi | 9 +++++++++
->  1 file changed, 9 insertions(+)
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/msm8976.dtsi b/arch/arm64/boot/dts/qcom/msm8976.dtsi
-> index 2d360d05aa5e..e55baafd9efd 100644
-> --- a/arch/arm64/boot/dts/qcom/msm8976.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/msm8976.dtsi
-> @@ -20,6 +20,13 @@ / {
->  
->  	chosen { };
->  
-> +	clocks {
-> +		xo_board: xo-board {
-> +			compatible = "fixed-clock";
-> +			#clock-cells = <0>;
-> +		};
-> +	};
-> +
->  	cpus {
->  		#address-cells = <1>;
->  		#size-cells = <0>;
-> @@ -351,6 +358,8 @@ rpm_requests: rpm-requests {
->  
->  				rpmcc: clock-controller {
->  					compatible = "qcom,rpmcc-msm8976", "qcom,rpmcc";
-> +					clocks = <&xo_board>;
-> +					clock-names = "xo";
->  					#clock-cells = <1>;
->  				};
->  
+> Thanks,
+> Bhupesh
+> 
+>>> +                     };
+>>> +             };
+>>>       };
+>>>
+>>>       firmware {
+>>> @@ -191,6 +242,59 @@ pmu {
+>>>       psci {
+>>>               compatible = "arm,psci-1.0";
+>>>               method = "smc";
+>>> +
+>>> +             CPU_PD0: power-domain-cpu0 {
+>>> +                     #power-domain-cells = <0>;
+>>> +                     power-domains = <&CLUSTER_PD>;
+>>> +                     domain-idle-states = <&LITTLE_CPU_SLEEP_0>;
+>>> +             };
+>>> +
+>>> +             CPU_PD1: power-domain-cpu1 {
+>>> +                     #power-domain-cells = <0>;
+>>> +                     power-domains = <&CLUSTER_PD>;
+>>> +                     domain-idle-states = <&LITTLE_CPU_SLEEP_0>;
+>>> +             };
+>>> +
+>>> +             CPU_PD2: power-domain-cpu2 {
+>>> +                     #power-domain-cells = <0>;
+>>> +                     power-domains = <&CLUSTER_PD>;
+>>> +                     domain-idle-states = <&LITTLE_CPU_SLEEP_0>;
+>>> +             };
+>>> +
+>>> +             CPU_PD3: power-domain-cpu3 {
+>>> +                     #power-domain-cells = <0>;
+>>> +                     power-domains = <&CLUSTER_PD>;
+>>> +                     domain-idle-states = <&LITTLE_CPU_SLEEP_0>;
+>>> +             };
+>>> +
+>>> +             CPU_PD4: power-domain-cpu4 {
+>>> +                     #power-domain-cells = <0>;
+>>> +                     power-domains = <&CLUSTER_PD>;
+>>> +                     domain-idle-states = <&BIG_CPU_SLEEP_0>;
+>>> +             };
+>>> +
+>>> +             CPU_PD5: power-domain-cpu5 {
+>>> +                     #power-domain-cells = <0>;
+>>> +                     power-domains = <&CLUSTER_PD>;
+>>> +                     domain-idle-states = <&BIG_CPU_SLEEP_0>;
+>>> +             };
+>>> +
+>>> +             CPU_PD6: power-domain-cpu6 {
+>>> +                     #power-domain-cells = <0>;
+>>> +                     power-domains = <&CLUSTER_PD>;
+>>> +                     domain-idle-states = <&BIG_CPU_SLEEP_0>;
+>>> +             };
+>>> +
+>>> +             CPU_PD7: power-domain-cpu7 {
+>>> +                     #power-domain-cells = <0>;
+>>> +                     power-domains = <&CLUSTER_PD>;
+>>> +                     domain-idle-states = <&BIG_CPU_SLEEP_0>;
+>>> +             };
+>>> +
+>>> +             CLUSTER_PD: power-domain-cpu-cluster0 {
+>>> +                     #power-domain-cells = <0>;
+>>> +                     domain-idle-states = <&CLUSTER_SLEEP_0>;
+>>> +             };
+>>>       };
+>>>
+>>>       reserved_memory: reserved-memory {
