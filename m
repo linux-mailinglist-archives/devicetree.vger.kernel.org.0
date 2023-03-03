@@ -2,94 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B91096AA052
-	for <lists+devicetree@lfdr.de>; Fri,  3 Mar 2023 20:50:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6A6A06AA07A
+	for <lists+devicetree@lfdr.de>; Fri,  3 Mar 2023 21:09:38 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230351AbjCCTue (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 3 Mar 2023 14:50:34 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49458 "EHLO
+        id S231658AbjCCUJg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 3 Mar 2023 15:09:36 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37590 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231336AbjCCTud (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Mar 2023 14:50:33 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 20D16584BD;
-        Fri,  3 Mar 2023 11:50:32 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id A5451618C5;
-        Fri,  3 Mar 2023 19:50:31 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7B697C433EF;
-        Fri,  3 Mar 2023 19:50:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1677873031;
-        bh=skvuE4TTFMibNLUPAu/zv3xd+K2m+Il1wb3nlXTkHeY=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=Suf9n9hjoabhuFHaocnG9Dqqe++PL3etBXpWXEqC5zKHL+mmM5/tnA9fyTU+Ywa83
-         OM6Tsd2mWMF1sGfiykLgYL9JX7Dt+JgEa18EZ22XwaDxEoHNKEsNL/JL6zQA4utAdG
-         sLFm6ihDby8lGjd6xKO3JIXQLGnocu9OKCmWiprC0JNrLqh+aNB1ShVsDstXq2zx4i
-         L13nvndTU2VJYwqKOBXwIWlvcqccw76itmSN+xbjE+d2sd+eZ08VNvEivWE/3bJ/EQ
-         skO8m3G9tRuieHcto3C6mY0muMlV3bHXhju8wrYG6EVNhZRLTARpySB2yRjOLjj5YE
-         y4Q13rYm5H+Xg==
-Date:   Fri, 3 Mar 2023 20:50:21 +0100
-From:   Wolfram Sang <wsa@kernel.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Rob Herring <robh+dt@kernel.org>, linux-i2c@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
+        with ESMTP id S231539AbjCCUJe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Mar 2023 15:09:34 -0500
+Received: from mail-ed1-x52c.google.com (mail-ed1-x52c.google.com [IPv6:2a00:1450:4864:20::52c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D302914EA5
+        for <devicetree@vger.kernel.org>; Fri,  3 Mar 2023 12:09:32 -0800 (PST)
+Received: by mail-ed1-x52c.google.com with SMTP id a25so15141905edb.0
+        for <devicetree@vger.kernel.org>; Fri, 03 Mar 2023 12:09:32 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1677874171;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=vBfThdkr+R1QJDSnLWRmQSdiN+ot973n4V1yEiFsi/E=;
+        b=BtpO3JS9nLte8Bhx760Ii9Ype7OH2+MfecEKdXsQT7LJBZxqio9u5G8Imm914EmcvZ
+         Jv9vyzbG5noAob+WXGnDKbSiUKoCtgt3xBx4TwZWw6PSV7JmTSsuqYpwLj/xPYW8uCHU
+         cInea7xBeSYT6UgXkBx+FJQc9woZMkOz+FZKzxmY0tspJ+jbLwbVnTTKhW2z6014A+EG
+         L4FqWxUG2tp/qT22UHxh0QS5Hk7leDuMAwkSpsKGrGGcr/GQeVNjhFfCmM/1cST4GqMT
+         Fi/hWwzs6KxFT/AxMSwD3xcLjPqd8k/fGqtKt8/dxNmh1SL8ehsuCyVWwAyTpkmI3KrY
+         QMcw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1677874171;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=vBfThdkr+R1QJDSnLWRmQSdiN+ot973n4V1yEiFsi/E=;
+        b=BgJ9x2s2ezuoHAYWeG4zHbRuiXdcE1Vxasd8zDJ52Jv0cwJ+AOPs8l8hdmmyYUE22D
+         VMw+JRdh8hPYa9hU224k71HRmc1tHnIjbc2G7wTD9RPpJbWqqiXtYqLINcDcBbr2fN0E
+         RK0rFJ7IgMokH7x/T4fSThsAOdtC4FHLkuGiDRZELL6TBXIK27V4M4mCRgreRQLu1p8i
+         o4OFvYFLAYS+ICQuogwwMnRXMlNvY/7Ns9tOO/y1/7SYUzO/o55rgrGS0+KIfb65qffZ
+         FsI2a8SjYyfAV0OIedEKbaKg0jfe/Edwea+kWoWacYy5ERVtbzy8DINlI6OFDU5XXThn
+         0ntQ==
+X-Gm-Message-State: AO0yUKXsffwMtavmfOIXxy5DZPRmg618mWwzNZZIr7ZRhgoSIyz033qm
+        LfKw+oHLFs5m88Yy4Wky+dNgsw==
+X-Google-Smtp-Source: AK7set+6uqEnIlJuYZ+p6dJCwocssUfFhZo2hsEt2bd661xunQfZfHWb5HDLKmkaNJsT7+atoRiRbA==
+X-Received: by 2002:a17:907:2be2:b0:860:c12c:14f9 with SMTP id gv34-20020a1709072be200b00860c12c14f9mr2400939ejc.40.1677874171308;
+        Fri, 03 Mar 2023 12:09:31 -0800 (PST)
+Received: from ?IPV6:2a02:810d:15c0:828:3321:2e91:9111:67ba? ([2a02:810d:15c0:828:3321:2e91:9111:67ba])
+        by smtp.gmail.com with ESMTPSA id p12-20020a17090628cc00b008b1797b77b2sm1273007ejd.221.2023.03.03.12.09.30
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 03 Mar 2023 12:09:30 -0800 (PST)
+Message-ID: <b945ebe9-cca5-f3c3-5662-c77aa345c964@linaro.org>
+Date:   Fri, 3 Mar 2023 21:09:29 +0100
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.8.0
 Subject: Re: [PATCH] MAINTAINERS: i2c: include all I2C bindings in the I2C
  entry
-Message-ID: <ZAJPfaY5NxxS6v3R@shikoro>
-Mail-Followup-To: Wolfram Sang <wsa@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, linux-i2c@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
+Content-Language: en-US
+To:     Wolfram Sang <wsa@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
 References: <20230303082530.11878-1-krzysztof.kozlowski@linaro.org>
-MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="5UzlFTmsW+OHxgRE"
-Content-Disposition: inline
-In-Reply-To: <20230303082530.11878-1-krzysztof.kozlowski@linaro.org>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+ <ZAJPfaY5NxxS6v3R@shikoro>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <ZAJPfaY5NxxS6v3R@shikoro>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 03/03/2023 20:50, Wolfram Sang wrote:
+> 
+>> +F:	Documentation/devicetree/bindings/i2c/
+> 
+> This entry is already present a tad later in "I2C SUBSYSTEM HOST
+> DRIVERS".
 
---5UzlFTmsW+OHxgRE
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Ahh, indeed, I forgot that. Patch can be skipped then.
 
+Best regards,
+Krzysztof
 
-> +F:	Documentation/devicetree/bindings/i2c/
-
-This entry is already present a tad later in "I2C SUBSYSTEM HOST
-DRIVERS".
-
-
---5UzlFTmsW+OHxgRE
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmQCT3kACgkQFA3kzBSg
-KbZyeg/9HGgtVwIZ5hdzbIgeB3QeobXF7+D3WmIwb6HGn/A+IC153BZRnTp2veVp
-LG3lMgnC8woz31XGgW0MMBllQXvKNEnRnEDNpdAmMiUOoL/cvWZf0U9YU5lpCP6p
-x4AYE6IHHD6A5Q7qnAs0it2KQ4s8DkQxWv930zQN2QUtn4C2hBgHkEiQpulHBWMz
-BLc15pQDDSW+OAdCDikVo8nGQow80D0CTltKvbUAF05gJWK2jNDHyQXiZOrvF3sa
-STfsUy6Hrh439948Kzth+j27x5FBzIBJZ/7vEAFNC5KOL6PQL4jygOO+O9ggbUWG
-miYO7X2bFABxjPFlAAPMzmwusx91+3vxtIulEzfA8+NflEbb12UwS1p0MAfoV0mo
-r+6Jn8KvHzl6vRW3VU6Bo0I+kKB4XIo41KpkhEDJCxBwpfUpv60ww3UZTgLS9u3D
-ci+wD30V9F14Ti2cVwTt4y8L6QRecNldN4UfUMGJwXdlVWWXBiA06txboT9F1qAc
-13RFg/OdeD7VsHaXI9B8bwQAvRPv0OBE5FHuYVEQGONyINCeQpR197l6K7M1PJfi
-MKFxKnp99hluWmHBq8lrtb789es94eNRmL3Yet34l7BOtK0M8dYLbJXTwBudMLmi
-WR9PkVvlSLgokZ7qR6wulYhJ0KI24M954tgWJjIWDIHgPpQP0BY=
-=dxxo
------END PGP SIGNATURE-----
-
---5UzlFTmsW+OHxgRE--
