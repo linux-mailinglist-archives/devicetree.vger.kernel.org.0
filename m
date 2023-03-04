@@ -2,60 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 102816AA945
-	for <lists+devicetree@lfdr.de>; Sat,  4 Mar 2023 12:15:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8F0046AA947
+	for <lists+devicetree@lfdr.de>; Sat,  4 Mar 2023 12:15:53 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229642AbjCDLPo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 4 Mar 2023 06:15:44 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59604 "EHLO
+        id S229570AbjCDLPv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 4 Mar 2023 06:15:51 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59694 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229556AbjCDLPo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 4 Mar 2023 06:15:44 -0500
-Received: from mail-ed1-x52f.google.com (mail-ed1-x52f.google.com [IPv6:2a00:1450:4864:20::52f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 325ED1C5A0
-        for <devicetree@vger.kernel.org>; Sat,  4 Mar 2023 03:15:42 -0800 (PST)
-Received: by mail-ed1-x52f.google.com with SMTP id da10so20141788edb.3
-        for <devicetree@vger.kernel.org>; Sat, 04 Mar 2023 03:15:42 -0800 (PST)
+        with ESMTP id S229641AbjCDLPt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 4 Mar 2023 06:15:49 -0500
+Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com [IPv6:2a00:1450:4864:20::52b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C22041C7D4
+        for <devicetree@vger.kernel.org>; Sat,  4 Mar 2023 03:15:47 -0800 (PST)
+Received: by mail-ed1-x52b.google.com with SMTP id u9so20144673edd.2
+        for <devicetree@vger.kernel.org>; Sat, 04 Mar 2023 03:15:47 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1677928540;
+        d=linaro.org; s=google; t=1677928546;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=Ftk4PV2UVoiZ3+JPdTCAz4kPzDVIhLMOG9HeEl28Ozs=;
-        b=vCHiWYscL9Kbfe0TAVo7UWRE8jVnjWvNU5XWSmAOdwXPwkTPh/2G2WO9Ax/EG753V/
-         qfgLTp+FDuLjPUQhylZqyx1njWAtFwD94byKnj9eBsDX0J3Tx74pf+OpEZ/S5pAF+0YU
-         KXOFha4Ilb/hwMEtKQbNQwJy2hPJIF8wZ+Cn0itd02eLGhIInbfuEFJ3DHx8kfHLmpiL
-         VY/ndXwVLEa7EIW0ti0J+cst7EeghQc4gSzYLHkIgIgkLaoRkF5EGwsqXfQzc+DzYiH5
-         CPWNg7ujEbay5ZqbNrW+3B4nwOS1III99ZEMhPpB4EAwxr4fCby5dhJU4XVj3iK2U+cy
-         wD5w==
+        bh=riI8W1OeTdanG6DhLcOpMcEAV7nOWyx0CknvtQk5J5A=;
+        b=mNEYt0ZBSD9Wxo3IkINZY3iH4zFidKlQUzT5GeqV5E3De2RLR6HD6C2+EyRfyzbiXv
+         RqO9zYK2B5W2/a3G2uuzLRlKd0KZR65xXPSRo94HX5YS/Eo1/vp2Nc4lA+eaoIRXrl2m
+         JbxzQTu/mDTqnNk+v6HlU8qXQDeC3rNQCb0Vg/Bh83kkdyJ1sChZS5S3MND5W9ySZmLw
+         8H9SgAEvHZXuIEFDtgXU8L0Ylo9YuyXmmpbz839AoIHKyO5NvtzkS1uIM66NSMoEdok1
+         nsqADHt+o4rRP526Ic/ASZwZM11XHgePGtDDv1bK/mF11bRfhGJMlnSkIaH3GfzIcxIR
+         q3ug==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1677928540;
+        d=1e100.net; s=20210112; t=1677928546;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Ftk4PV2UVoiZ3+JPdTCAz4kPzDVIhLMOG9HeEl28Ozs=;
-        b=1nsuRNxpRt4ezNmtt4Q3nmXy8lWBD9tb7+vSKVF858zxkM7zvn07J4YqVIBhEZpCcL
-         70q9gRZf+6aFE80YVm3SLMS/PwWRxuyjdIP5NW6w2/FDAFCqEiLjBfAJGpoR3ScYvN0c
-         uJrCo8TD8CyKbqPkFI0i80Yyj8LxWLGQvOfMveCqg+wDlbd+5aBgo3L4v4tS6Valoy7Y
-         YzR01Se0+fCtwYPAaw+rBiyYwoPMlPYx53LifAPYTNgrK+HSbak0+LM+uFMRiUz4C2EC
-         +ug4Dln3iLrsEFxpO34IgCEUN2rzYbuazsH7oexVaP+9Vm/PnizH1nMy3+F0Eqh7Gtlj
-         MTGg==
-X-Gm-Message-State: AO0yUKXbyVpTw9ewjWPQ4LazfnXoxsya6oTPk093t3ObsMbiymeXrJc5
-        yY7GzDCOmfToXcGgXQQNwS72Vg==
-X-Google-Smtp-Source: AK7set/KGQOOy6z0wzqUoxZNRI9lxGHxaqc0AaV8j+0HjKSadP4nPVI5SC/GjiprJLDQAt/MuWv/dg==
-X-Received: by 2002:a17:906:2756:b0:878:79e6:4672 with SMTP id a22-20020a170906275600b0087879e64672mr3595195ejd.42.1677928540692;
-        Sat, 04 Mar 2023 03:15:40 -0800 (PST)
+        bh=riI8W1OeTdanG6DhLcOpMcEAV7nOWyx0CknvtQk5J5A=;
+        b=NvQTch/yHFpxpjXNiZimxp2PlSobTYAjhOV9XxyDEpTjKvNXb6FGQhvd1YMzFGBp64
+         U0jsNS4LqppOTpQncQvAeTEpBuDJknFvjLSzWInQADyG9nY2TCe41AGOeFudvBzuL7m7
+         mmFSGGs1pJdq3CLKzTk8WH1YyGRE2nXs4J3cDkppWMqcmggSw0EDu/1CPKUafAqzm/UY
+         fVC2ioPl27Zrm/Pj5lK3NWTsDyqNjY1ASLp21u55258d8I0VZ1HP3lS2YjwBDPFoPLtQ
+         wdulE069ccrt/j8Jie2+a6v5WK8EhzCaqlmP3m1fVIwtw/RoeqbbWiXeH5Xhy19hId6W
+         /AWg==
+X-Gm-Message-State: AO0yUKX4NVP4AYETHJYQojZTE1Use1nxsvCxzu2Vx9/mHxh3R70BwsrC
+        ropnPpXyxweS3g7W2Hpr/V2YcQ==
+X-Google-Smtp-Source: AK7set8f87SwQanTdMZHKvUZpuyMEd19J3rFxEsNxx4MjXorqExKUzPiHhkn8y2uKTKzmH+vbvqiUQ==
+X-Received: by 2002:a17:907:98e5:b0:8b3:e24:de0e with SMTP id ke5-20020a17090798e500b008b30e24de0emr5068705ejc.27.1677928546309;
+        Sat, 04 Mar 2023 03:15:46 -0800 (PST)
 Received: from ?IPV6:2a02:810d:15c0:828:b758:6326:1292:e2aa? ([2a02:810d:15c0:828:b758:6326:1292:e2aa])
-        by smtp.gmail.com with ESMTPSA id s4-20020a1709062ec400b008f89953b761sm1968521eji.3.2023.03.04.03.15.39
+        by smtp.gmail.com with ESMTPSA id ss18-20020a170907039200b008d325e167f3sm1940199ejb.201.2023.03.04.03.15.45
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 04 Mar 2023 03:15:39 -0800 (PST)
-Message-ID: <db22af89-6ec5-437d-520e-38aafdb195fc@linaro.org>
-Date:   Sat, 4 Mar 2023 12:15:38 +0100
+        Sat, 04 Mar 2023 03:15:45 -0800 (PST)
+Message-ID: <bd314b74-6525-b790-bcc3-849c3c8bef09@linaro.org>
+Date:   Sat, 4 Mar 2023 12:15:44 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.8.0
-Subject: Re: [PATCH 2/2] arm64: dts: amlogic: Add initial support for BPI-CM4
- module with BPI-CM4IO baseboard
+Subject: Re: [PATCH 1/2] dt-bindings: arm: amlogic: Document the boards with
+ the BPI-CM4 connected
 Content-Language: en-US
 To:     Neil Armstrong <neil.armstrong@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
@@ -67,14 +67,15 @@ Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org,
         linux-amlogic@lists.infradead.org
 References: <20230303-topic-amlogic-upstream-bpi-cm4-v1-0-5a23a1ade6bd@linaro.org>
- <20230303-topic-amlogic-upstream-bpi-cm4-v1-2-5a23a1ade6bd@linaro.org>
+ <20230303-topic-amlogic-upstream-bpi-cm4-v1-1-5a23a1ade6bd@linaro.org>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230303-topic-amlogic-upstream-bpi-cm4-v1-2-5a23a1ade6bd@linaro.org>
+In-Reply-To: <20230303-topic-amlogic-upstream-bpi-cm4-v1-1-5a23a1ade6bd@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -82,44 +83,16 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 03/03/2023 18:37, Neil Armstrong wrote:
-> Add support for both the BananaPi BPI-CM4 module and the BananaPi
-> baseboard which is comnpatible with the RaspberryPi CM4IO baseboard.
+> The BPI-CM4 module with an Amlogic A311D SoC is a module compatible
+> with the Raspberry Pi CM4 specifications.
 > 
-> The BananaPi BPI-CM4 module follows the CM4 specifications at [1],
-> but with a single HDMI port and a since DSI output.
+> Document the boards using this module, by specifying the BananaPi CM4
+> compatible in addition to the baseboard compatible.
 > 
+> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
 
-(...)
 
-> +	sdio_pwrseq: sdio-pwrseq {
-> +		compatible = "mmc-pwrseq-simple";
-> +		reset-gpios = <&gpio GPIOAO_6 GPIO_ACTIVE_LOW>;
-> +		clocks = <&wifi32k>;
-> +		clock-names = "ext_clock";
-> +	};
-> +
-> +	emmc_1v8: regulator-emmc_1v8 {
-
-No underscores in node names.
-
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "EMMC_1V8";
-> +		regulator-min-microvolt = <1800000>;
-> +		regulator-max-microvolt = <1800000>;
-> +		vin-supply = <&vddao_3v3>;
-> +		regulator-always-on;
-> +	};
-> +
-> +	dc_in: regulator-dc-in {
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "DC_IN";
-> +		regulator-min-microvolt = <5000000>;
-> +		regulator-max-microvolt = <5000000>;
-> +		regulator-always-on;
-> +	};
-> +
-
-> 
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
