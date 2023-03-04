@@ -2,244 +2,186 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CAE5D6AAB53
-	for <lists+devicetree@lfdr.de>; Sat,  4 Mar 2023 17:59:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 468596AAB5A
+	for <lists+devicetree@lfdr.de>; Sat,  4 Mar 2023 18:02:03 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229471AbjCDQ71 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 4 Mar 2023 11:59:27 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51122 "EHLO
+        id S229560AbjCDRCC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 4 Mar 2023 12:02:02 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53308 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229707AbjCDQ70 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 4 Mar 2023 11:59:26 -0500
-Received: from mail-wm1-x32e.google.com (mail-wm1-x32e.google.com [IPv6:2a00:1450:4864:20::32e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 08E5A144A5
-        for <devicetree@vger.kernel.org>; Sat,  4 Mar 2023 08:59:23 -0800 (PST)
-Received: by mail-wm1-x32e.google.com with SMTP id p23-20020a05600c1d9700b003ead4835046so4332548wms.0
-        for <devicetree@vger.kernel.org>; Sat, 04 Mar 2023 08:59:22 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1677949161;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=3hZJhaTdSbx5SAhlYomj5DCnJLkk+FlTPENqwit04iA=;
-        b=Ob9YQEeDG9Lk1DPv8btDYIE1+l7NEf98lMpzM/BO4BvhE4XH9Y89bn6qyWd8JvqF9B
-         972C5kQZwBeBlSrzfQDUE3EYOc0SE6XzEFy1UqRw1XTVo2UysqVYu+q78ws2jrCShla4
-         d9neSojbjmt9sjZFtXtphO/TqQ79g/5ha5DQQ4LL1lMKTATOi3Ej+236zd7MB6+qt4BC
-         u7O1dvYiOYXIyLcQrunWfHmIdonwdGKHed4CISK5u9KqUyzfMCBycIdIk8rPvYSp90P0
-         GtDXiEJGmGYAgsMwucGldlmNVSHRzzKwAWeTJdWJuE3FmyoHx9SNvO0E/362glqRvW7P
-         fXbA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1677949161;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=3hZJhaTdSbx5SAhlYomj5DCnJLkk+FlTPENqwit04iA=;
-        b=CUqMsP2eEXF7MV5ioIOZVOIrURT9NeMJIPKeYusXTfJbxPuTqXCPEew1N3rCfA8NhI
-         oCE7g7JvlZcnVut/8jzWzW34NxjMhRBBHwUU7C0cijVGiVSJzg1e7tpuOI4gFe2FznbX
-         cZxRuZhz4KHXW/x7JY4I3ivU7IGpED7N5A8IGbIQPo0u/p9N4M7yN5Z4cLRFUxAmlIaw
-         xOhd+aet1Sv2lCpZsX2ARl06oHG5urOsebXciRifK6ZtzILIY9Z23F0PHOsYJZSgUy3P
-         aK7ZYZAkXmFLcnpog8IzzC1T1MS5YNBfot1ne7LbNsmmISg3l8SuNvI033adm2mzTlJP
-         7pnA==
-X-Gm-Message-State: AO0yUKUOqvLiY3Ow+/fG7xZwlkdQpOEou5pyVarR+8+myX52kX4Hrxte
-        DzQEp0qPbUITYxlRDRbQbW+7iA==
-X-Google-Smtp-Source: AK7set/VhU5XG+hFSJa255qEqLLewO2xktt/9Ut9f03wFAXIAXZFmNkbR/mXXoQwXvv1qPzbJ+c2og==
-X-Received: by 2002:a05:600c:190b:b0:3ea:e7f6:f8f9 with SMTP id j11-20020a05600c190b00b003eae7f6f8f9mr4939505wmq.19.1677949161497;
-        Sat, 04 Mar 2023 08:59:21 -0800 (PST)
-Received: from [192.168.0.162] (188-141-3-169.dynamic.upc.ie. [188.141.3.169])
-        by smtp.gmail.com with ESMTPSA id j6-20020a05600c42c600b003eb192787bfsm5555843wme.25.2023.03.04.08.59.20
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 04 Mar 2023 08:59:21 -0800 (PST)
-Message-ID: <c1a2ba5b-4cd9-362b-5a4e-e95a6bf27b3e@linaro.org>
-Date:   Sat, 4 Mar 2023 16:59:19 +0000
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-Subject: Re: [PATCH v3 1/2] dt-bindings: display/msm: dsi-controller-main: Fix
- deprecated compatible
-Content-Language: en-US
-To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Clark <robdclark@gmail.com>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Sean Paul <sean@poorly.run>, David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
+        with ESMTP id S229551AbjCDRCB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 4 Mar 2023 12:02:01 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8E16F1E2B2;
+        Sat,  4 Mar 2023 09:02:00 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 42FF2B8085B;
+        Sat,  4 Mar 2023 17:01:59 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8A1FEC433EF;
+        Sat,  4 Mar 2023 17:01:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1677949318;
+        bh=57oPXRjQ+3tAP3ItxEgo1dN1/TWnvl0SjzZfl9niEcs=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=mlLX4+RKCzHM8WJjTRz/pa270WCZvESldBVgdFhdmzvE2CREodYlbM9TnKLCGrPJh
+         OQZ5apM8tCI98VKofbJtsu0X2l8/BFyRgpmtqAVqtbgDj4jZoOaa6+98v2EtyQ2IV8
+         WKOpIELXS2pIV/siBUttUXAqiP2YiZ7ysxlvZVg/Fw41N5zTZ+G36W/n8JD9aVx8UI
+         AIqNpVJHO8Qr1MDCVRMhficer/m2EsdtOmcZTM8Dppmv/+gi7guzL6BnqhjNaWArR6
+         eQfqIOOdOSDdtpSlaUJfusu49EhrTA3exXj6RKnua1v7F35nhns0ZRKHY8OXMxjKEm
+         qqApq9NmTSX5A==
+Date:   Sat, 4 Mar 2023 17:01:53 +0000
+From:   Conor Dooley <conor@kernel.org>
+To:     Xu Yilun <yilun.xu@intel.com>
+Cc:     Conor Dooley <conor.dooley@microchip.com>,
+        Daire McNamara <daire.mcnamara@microchip.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Krishna Manikandan <quic_mkrishn@quicinc.com>
-Cc:     Rob Herring <robh@kernel.org>, linux-arm-msm@vger.kernel.org,
-        dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20230304-topic-dsi_fixup-v3-0-b8565944d0e6@linaro.org>
- <20230304-topic-dsi_fixup-v3-1-b8565944d0e6@linaro.org>
-From:   Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-In-Reply-To: <20230304-topic-dsi_fixup-v3-1-b8565944d0e6@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        Moritz Fischer <mdf@kernel.org>, Wu Hao <hao.wu@intel.com>,
+        Tom Rix <trix@redhat.com>, linux-riscv@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-fpga@vger.kernel.org
+Subject: Re: [PATCH v1 5/6] fpga: add PolarFire SoC Auto Update support
+Message-ID: <59750d1a-de31-4e89-b8a9-d97ef66aa5f6@spud>
+References: <20230217164023.14255-1-conor@kernel.org>
+ <20230217164023.14255-6-conor@kernel.org>
+ <ZANz6NLgSja2pfYa@yilunxu-OptiPlex-7050>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="OcVmO8cg0uVjSPRD"
+Content-Disposition: inline
+In-Reply-To: <ZANz6NLgSja2pfYa@yilunxu-OptiPlex-7050>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 04/03/2023 15:55, Konrad Dybcio wrote:
-> The point of the previous cleanup was to disallow "qcom,mdss-dsi-ctrl"
-> alone. This however didn't quite work out and the property became
-> undocumented instead of deprecated. Fix that.
-> 
-> Fixes: 0c0f65c6dd44 ("dt-bindings: msm: dsi-controller-main: Add compatible strings for every current SoC")
-> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
-> ---
->   Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml | 2 +-
->   1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml b/Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml
-> index f195530ae964..d534451c8f7f 100644
-> --- a/Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml
-> +++ b/Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml
-> @@ -35,7 +35,7 @@ properties:
->         - items:
->             - enum:
->                 - qcom,dsi-ctrl-6g-qcm2290
-> -          - const: qcom,mdss-dsi-ctrl
-> +              - qcom,mdss-dsi-ctrl # This should always come with an SoC-specific compatible
->           deprecated: true
->   
->     reg:
-> 
 
-This change would make compatible = "qcom,dsi-ctrl-6g-qcm2290", 
-"qcom,mdss-dsi-ctrl"; break though
+--OcVmO8cg0uVjSPRD
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Take this example, I'm going to use 8916 because its easy.
+On Sun, Mar 05, 2023 at 12:38:00AM +0800, Xu Yilun wrote:
+> On 2023-02-17 at 16:40:22 +0000, Conor Dooley wrote:
+> > From: Conor Dooley <conor.dooley@microchip.com>
+> >=20
+> > Add support for Auto Update reprogramming of the FPGA fabric on
+> > PolarFire SoC.
+> >=20
+> > Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
+> > ---
+> >  drivers/fpga/Kconfig                 |   9 +
+> >  drivers/fpga/Makefile                |   1 +
+> >  drivers/fpga/microchip-auto-update.c | 495 +++++++++++++++++++++++++++
+> >  3 files changed, 505 insertions(+)
+> >  create mode 100644 drivers/fpga/microchip-auto-update.c
+> > +	/*
+> > +	 * To verify that Auto Update is possible, the "Query Security Service
 
-If we apply your change to dsi-controller-main.yaml
+> Why verify the possibility here, if Auto Update is not possible, the
+> Auto Update device should not be populated, is it?
 
-diff --git 
-a/Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml 
-b/Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml
-index e75a3efe4dace..e93c16431f0a1 100644
---- a/Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml
-+++ b/Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml
-@@ -34,7 +34,7 @@ properties:
-        - items:
-            - enum:
-                - dsi-ctrl-6g-qcm2290
--          - const: qcom,mdss-dsi-ctrl
-+              - qcom,mdss-dsi-ctrl
-          deprecated: true
+Good point, I'll check this in probe instead.
 
-    reg:
+> > +	/*
+> > +	 * Populate the image address and then zero out the next directory so
+> > +	 * that the system controller doesn't complain if in "Single Image"
+> > +	 * mode.
+> > +	 */
+> > +	memcpy(buffer + AUTO_UPDATE_UPGRADE_DIRECTORY, &image_address, AUTO_U=
+PDATE_DIRECTORY_WIDTH);
+> > +	memset(buffer + AUTO_UPDATE_BLANK_DIRECTORY, 0x0, AUTO_UPDATE_DIRECTO=
+RY_WIDTH);
+>=20
+> I'm wondering why the image address should be written for every
+> updating? Seems it is only related to the flash size, not related to
+> the to-be-programmed bitstream.
 
-and then make 8916 == compatible = "qcom,dsi-ctrl-6g-qcm2290", 
-"qcom,mdss-dsi-ctrl";
+Yah, it doesn't need to be. I'll check it against the expected value &
+only write it if needed.
 
-diff --git a/arch/arm64/boot/dts/qcom/msm8916.dtsi 
-b/arch/arm64/boot/dts/qcom/msm8916.dtsi
-index 0733c2f4f3798..7332b5f66a09d 100644
---- a/arch/arm64/boot/dts/qcom/msm8916.dtsi
-+++ b/arch/arm64/boot/dts/qcom/msm8916.dtsi
-@@ -1094,7 +1094,7 @@ mdp5_intf1_out: endpoint {
-                         };
+> > +	dev_info(priv->dev, "Running verification of Upgrade Image\n");
+> > +	ret =3D mpfs_blocking_transaction(priv->sys_controller, message);
+> > +	if (ret | response->resp_status) {
+> > +		dev_warn(priv->dev, "Verification of Upgrade Image failed!\n");
+> > +		ret =3D ret ? ret : -EBADMSG;
+>=20
+> If verification failed, what happens to the written flash? Auto roll
+> back?
 
-                         dsi0: dsi@1a98000 {
--                               compatible = "qcom,msm8916-dsi-ctrl",
-+                               compatible = "dsi-ctrl-6g-qcm2290",
-                                              "qcom,mdss-dsi-ctrl";
-                                 reg = <0x01a98000 0x25c>;
-                                 reg-names = "dsi_ctrl";
+Nope, that should be left up to userspace to decide what to do. I've got
+some improvement to do to the mailbox driver that sits behind
+mpfs_blocking_transaction() that I thought was not allowed by the
+mailbox framework, so should be able to report better errors for this in
+the future.
 
-arch/arm64/boot/dts/qcom/apq8016-sbc.dtb: dsi@1a98000: compatible: 
-'oneOf' conditional failed, one must be fixed:
-	['dsi-ctrl-6g-qcm2290', 'qcom,mdss-dsi-ctrl'] is too long
+> > +	}
+> > +
+> > +	dev_info(priv->dev, "Verification of Upgrade Image passed!\n");
+> > +//	/*
+> > +//	 * If the validation has passed, initiate Auto Update.
+> > +//	 * This service has no command data and no response data. It overlo=
+ads
+> > +//	 * mbox_offset with the image index in the flash's SPI directory wh=
+ere
+> > +//	 * the bitstream is located.
+> > +//	 * Once we attempt Auto Update either:
+> > +//	 * - it passes and the board reboots
+> > +//	 * - it fails and the board reboots to recover
+> > +//	 * - the system controller aborts and we exit "gracefully".
+> > +//	 *   "gracefully" since there is no interrupt produced & it just ti=
+mes
+> > +//	 *   out.
+> > +//	 */
+> > +//	response->resp_msg =3D response_msg;
+> > +//	response->resp_size =3D AUTO_UPDATE_PROGRAM_RESP_SIZE;
+> > +//	message->cmd_opcode =3D AUTO_UPDATE_PROGRAM_CMD_OPCODE;
+> > +//	message->cmd_data_size =3D AUTO_UPDATE_PROGRAM_CMD_DATA_SIZE;
+> > +//	message->response =3D response;
+> > +//	message->cmd_data =3D AUTO_UPDATE_PROGRAM_CMD_DATA;
+> > +//	message->mbox_offset =3D 0; //field is ignored
+> > +//	message->resp_offset =3D AUTO_UPDATE_DEFAULT_RESP_OFFSET;
+> > +//
+> > +//	dev_info(priv->dev, "Running Auto Update command\n");
+> > +//	ret =3D mpfs_blocking_transaction(priv->sys_controller, message);
+> > +//	if (ret && ret !=3D -ETIMEDOUT)
+> > +//		goto out;
+> > +//
+> > +//	/* *remove this for auto update*
+> > +//	 * This return 0 is dead code. Either the Auto Update will fail, or=
+ it will pass
+> > +//	 * & the FPGA will be rebooted in which case mpfs_blocking_transact=
+ion()
+> > +//	 * will never return and Linux will die.
+> > +//	 */
+> > +//	return 0;
+>=20
+> Why comment out this code block?
 
+It was meant to be removed & must have snuck back in a rebase. This is my
+test code that initiates the update from Linux, rather than at reboot.
 
-so compatible = "qcom,dsi-ctrl-6g-qcm2290", "qcom,mdss-dsi-ctrl"; is now 
-invalid, not deprecated.
+I'm going to take a look at Russ' driver before I submit another version
+of this (and the underlying mailbox stuff also needs changes).
 
-This change also makes compatible = "qcom,dsi-ctrl-6g-qcm2290" or 
-compatible = "qcom,mdss-dsi-ctrl" standalone valid compatible which is 
-again not what we want.
+Thanks for taking a look,
+Conor.
 
-- enum:
-     - qcom,dsi-ctrl-6g-qcm2290
-     - qcom,mdss-dsi-ctrl
+--OcVmO8cg0uVjSPRD
+Content-Type: application/pgp-signature; name="signature.asc"
 
-means either "qcom,dsi-ctrl-6g-qcm2290" or "qcom,mdss-dsi-ctrl" are 
-valid compat strings...
+-----BEGIN PGP SIGNATURE-----
 
-As an example if you apply your change and then change the msm8916.dtsi 
-to the below
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZAN5gAAKCRB4tDGHoIJi
+0g2nAP9j2ObA+tq/YlDOio7Uggfuittp658IFX8AuugEjpWtBgD/eDXvX76aNYQ8
+kMbqt6dnVaIEKqVvQ7SWtwvceu+1nQw=
+=pvCA
+-----END PGP SIGNATURE-----
 
-diff --git 
-a/Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml 
-b/Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml
-index e75a3efe4dace..e93c16431f0a1 100644
---- a/Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml
-+++ b/Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml
-@@ -34,7 +34,7 @@ properties:
-        - items:
-            - enum:
-                - dsi-ctrl-6g-qcm2290
--          - const: qcom,mdss-dsi-ctrl
-+              - qcom,mdss-dsi-ctrl
-          deprecated: true
-
-    reg:
-diff --git a/arch/arm64/boot/dts/qcom/msm8916.dtsi 
-b/arch/arm64/boot/dts/qcom/msm8916.dtsi
-index 0733c2f4f3798..829fbe05b5713 100644
---- a/arch/arm64/boot/dts/qcom/msm8916.dtsi
-+++ b/arch/arm64/boot/dts/qcom/msm8916.dtsi
-@@ -1094,8 +1094,7 @@ mdp5_intf1_out: endpoint {
-                         };
-
-                         dsi0: dsi@1a98000 {
--                               compatible = "qcom,msm8916-dsi-ctrl",
--                                            "qcom,mdss-dsi-ctrl";
-+                               compatible = "qcom,mdss-dsi-ctrl";
-                                 reg = <0x01a98000 0x25c>;
-                                 reg-names = "dsi_ctrl";
-
-Then test it with
-
-make O=$BUILDDIR DT_DOC_CHECKER=$DT_DOC_CHECKER 
-DT_EXTRACT_EX=$DT_EXTRACT_EX DT_MK_SCHEMA=$DT_MK_SCHEMA 
-DT_CHECKER=$DT_CHECKER CHECKER_FLAGS=-W=1 CHECK_DTBS=y qcom/apq8016-sbc.dtb
-
-you'll see no error. However if you just do this
-
-diff --git a/arch/arm64/boot/dts/qcom/msm8916.dtsi 
-b/arch/arm64/boot/dts/qcom/msm8916.dtsi
-index 0733c2f4f3798..829fbe05b5713 100644
---- a/arch/arm64/boot/dts/qcom/msm8916.dtsi
-+++ b/arch/arm64/boot/dts/qcom/msm8916.dtsi
-@@ -1094,8 +1094,7 @@ mdp5_intf1_out: endpoint {
-                         };
-
-                         dsi0: dsi@1a98000 {
--                               compatible = "qcom,msm8916-dsi-ctrl",
--                                            "qcom,mdss-dsi-ctrl";
-+                               compatible = "qcom,mdss-dsi-ctrl";
-                                 reg = <0x01a98000 0x25c>;
-                                 reg-names = "dsi_ctrl";
-
-
-and run the same test you get
-
-apq8016-sbc.dtb: dsi@1a98000: compatible: 'oneOf' conditional failed, 
-one must be fixed:
-	['qcom,mdss-dsi-ctrl'] is too short
-	'qcom,mdss-dsi-ctrl' is not one of ['qcom,apq8064-dsi-ctrl', 
-'qcom,msm8916-dsi-ctrl', 'qcom,msm8953-dsi-ctrl', 
-'qcom,msm8974-dsi-ctrl', 'qcom,msm8996-dsi-ctrl', 
-'qcom,msm8998-dsi-ctrl', 'qcom,qcm2290-dsi-ctrl', 
-'qcom,sc7180-dsi-ctrl', 'qcom,sc7280-dsi-ctrl', 'qcom,sdm660-dsi-ctrl', 
-'qcom,sdm845-dsi-ctrl', 'qcom,sm8150-dsi-ctrl', 'qcom,sm8250-dsi-ctrl', 
-'qcom,sm8350-dsi-ctrl', 'qcom,sm8450-dsi-ctrl', 'qcom,sm8550-dsi-ctrl']
-
----
-bod
+--OcVmO8cg0uVjSPRD--
