@@ -2,76 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E605C6AA9B0
-	for <lists+devicetree@lfdr.de>; Sat,  4 Mar 2023 13:58:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4B6496AA9BB
+	for <lists+devicetree@lfdr.de>; Sat,  4 Mar 2023 14:03:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229601AbjCDM6h (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 4 Mar 2023 07:58:37 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34526 "EHLO
+        id S229471AbjCDNDJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 4 Mar 2023 08:03:09 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38898 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229771AbjCDM6d (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 4 Mar 2023 07:58:33 -0500
-Received: from mail-lj1-x235.google.com (mail-lj1-x235.google.com [IPv6:2a00:1450:4864:20::235])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 45A951C7C7
-        for <devicetree@vger.kernel.org>; Sat,  4 Mar 2023 04:58:09 -0800 (PST)
-Received: by mail-lj1-x235.google.com with SMTP id x6so5058377ljq.1
-        for <devicetree@vger.kernel.org>; Sat, 04 Mar 2023 04:58:09 -0800 (PST)
+        with ESMTP id S229624AbjCDNDI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 4 Mar 2023 08:03:08 -0500
+Received: from mail-ed1-x52c.google.com (mail-ed1-x52c.google.com [IPv6:2a00:1450:4864:20::52c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3A6EBEC43
+        for <devicetree@vger.kernel.org>; Sat,  4 Mar 2023 05:03:06 -0800 (PST)
+Received: by mail-ed1-x52c.google.com with SMTP id a25so20947594edb.0
+        for <devicetree@vger.kernel.org>; Sat, 04 Mar 2023 05:03:06 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1677934686;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=FYMSRHuwQ2B7MwRzgsUDljDGS2/5eJ+xWvfbQY7oaIc=;
-        b=ZpLvFvH5zhAljbMeZiYKIvHzWc0tG0Vdi5QZLtItWn3/QjpxR9HsGVtAtpU8ZzUgCo
-         wdAydY7pvJmAygX7FPoe3H689tK2sNsEP7ObNdjCNrfPr+s6/LlN7dUYgntGKM7e1HyD
-         R09tvodfghxVnYKxBmE+geUR1P9Fnt2wLAyEGici7elkFZSmPg71JIwYLJwZ4TNvIHiQ
-         0YYZjOixo/xqwfBCQ6p2tx8w2Fv39UYN4Nb9H9VO/jO5XxTN1Nx/+Npcgi9n8z4PZoFK
-         XezUkw+mrh71gFdu+2ogr7KYWDj6TVCR+vFQtHTaCID7Ph1b19uga0E3XFpOeottTufP
-         kLUA==
+        d=linaro.org; s=google; t=1677934984;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=OkSvhC1gVfb8PyCSyQ+RtHNDDmsSooTX9+nQ9I0Jmpg=;
+        b=CsMkJGA9hdUF74PfJmmoeCH0DL3C3DQkcn3WbRdCnBbGCyU9OkW+5cJ9QCyhnmmDQG
+         ZeSxOGq0vxhK9SIU8zRSIKAklNq2GcSW0uuq+abPjH/dBA/jpBYWsq8vD2FBWEPSRi/6
+         i5WUVB4Et5JVJF/lzyw/T9pSIABQC4LlI/SiSHl7Nd/A7qtMD2sb54A0Gd+gb8WLYNbQ
+         ZFsBKj8fum5dKIgsxzBFaEYCjNQyUjPRGYjixNwcF7GLfdybvCiXQtAv4175FJtGbAHf
+         iUSn4eOUrEaII19HtkVfd8yzWAoFEVPa6ru0QRLIS5vFahcrT9alcWYrnP4JXVipv6F5
+         9Q7w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1677934686;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=FYMSRHuwQ2B7MwRzgsUDljDGS2/5eJ+xWvfbQY7oaIc=;
-        b=oo8ErW+zPh05rAmHGVKBqQKDhpLSzw7PZFFch26hq4MrKYionhwEa2jojZ0nW0vrgv
-         zPRj0ALV+5rNYb2/1wEGq4WAwFbeWZEyyqVrevtCJtdof6RWzx1DR6W29AmOlLsFaLat
-         NZgEZlH0+s9imy9yGpDQaKRWGpW5Tt1biaZ36gJVf8m23EHvfb1DGpo/Cs1S1d73fsra
-         vTqSHCL+tkgykLGbzfX4iDuDYvVRt9PRHkusbWtQrFe3fA0Y9xI8XL4cJFR3cuq3NTdL
-         nuO/3y8em4+8Rrvbn1G4zuEbF0JG/eoEEJlfgfB1gJGTn789nRa1x1sCMF57EOSIYaWV
-         bXJA==
-X-Gm-Message-State: AO0yUKUumcu3mZX1FeCnmYcf3BbeSwCUU7+Vt/A1il/ftyF872pGsL50
-        BPQweg6aDQu2Nd5qsDHBRgwsXxcqG1CJjww9woE=
-X-Google-Smtp-Source: AK7set+MqSpaYnExC/GfExY9FLU6cDEaWnLREbxw83VXS64ntfpMuRjFjEnxxwZl0iUb6g5sGJz1Mg==
-X-Received: by 2002:a05:651c:84:b0:293:4b96:1b6b with SMTP id 4-20020a05651c008400b002934b961b6bmr1480411ljq.25.1677934686555;
-        Sat, 04 Mar 2023 04:58:06 -0800 (PST)
-Received: from [192.168.1.101] (abym99.neoplus.adsl.tpnet.pl. [83.9.32.99])
-        by smtp.gmail.com with ESMTPSA id y26-20020a2e979a000000b002934b5c5c67sm774283lji.32.2023.03.04.04.58.05
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 04 Mar 2023 04:58:06 -0800 (PST)
-Message-ID: <d05d7005-9c22-4548-0c65-261e575b9195@linaro.org>
-Date:   Sat, 4 Mar 2023 13:58:05 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-Subject: Re: [PATCH 8/8] arm64: dts: qcom: sm8250-xiaomi-elish: correct GPIO
- keys wakeup
-Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
+        d=1e100.net; s=20210112; t=1677934984;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=OkSvhC1gVfb8PyCSyQ+RtHNDDmsSooTX9+nQ9I0Jmpg=;
+        b=IycfNF0KUgNLfZU8Bk3EYa8reU4lw8//c9ke0zvna0N+uhLve+7UsiKpCABqsGIzr1
+         PZZnV/TeykDUJw3FlohXu3i9Y5FTKgxd6tjr+3ZvKshEckzEwoNFVhR4oa7i6rP2dHCa
+         o2yV+Q4Cy6SgS1nJ4IDye8Eb4aHlz/1x3JYuDIs5813YV3aBEQMDUPWvkA0XFeyRLO4p
+         +kAslA24PVPhY7FcWowK2bQK/iLzvP0ezG+18cKLjMUSW3FsGfdt/NXgAjtb7r+Vqq0c
+         +OT6j7gwScuKL3SaGxA87AA0rGBaaPdDaXW4r42IGJiCKmrkpbi/u3f/ZIkvzk+t2lNf
+         PywQ==
+X-Gm-Message-State: AO0yUKXn9JazvLrDCJ1kH6rLTRirfXTp+ELNjMo31fsm8/5vOcf6vSZy
+        No6K0XONmApNOgfMLlcULOMMOA==
+X-Google-Smtp-Source: AK7set/bmaqwN4R25kvMcexrvDGMzPZaZh0bC495ArZrsGl7hCUyTreDKEyqyPdHv1z9BivBfzFSvQ==
+X-Received: by 2002:a17:906:4cd4:b0:8f8:eded:4254 with SMTP id q20-20020a1709064cd400b008f8eded4254mr5027030ejt.65.1677934984748;
+        Sat, 04 Mar 2023 05:03:04 -0800 (PST)
+Received: from krzk-bin.. ([2a02:810d:15c0:828:b758:6326:1292:e2aa])
+        by smtp.gmail.com with ESMTPSA id x8-20020a170906440800b008e8e975e185sm2052734ejo.32.2023.03.04.05.03.03
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 04 Mar 2023 05:03:04 -0800 (PST)
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20230304123358.34274-1-krzysztof.kozlowski@linaro.org>
- <20230304123358.34274-8-krzysztof.kozlowski@linaro.org>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20230304123358.34274-8-krzysztof.kozlowski@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        Felipe Balbi <balbi@kernel.org>, linux-usb@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH] dt-bindings: usb: snps,dwc3: document extcon property
+Date:   Sat,  4 Mar 2023 14:03:02 +0100
+Message-Id: <20230304130302.51497-1-krzysztof.kozlowski@linaro.org>
+X-Mailer: git-send-email 2.34.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -80,31 +71,31 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+The DWC3 USB Linux driver and several DTS use extcon property, so
+document it, even though it is deprecated, to fix warnings like:
 
+  sm6125-sony-xperia-seine-pdx201.dtb: usb@4ef8800: usb@4e00000: Unevaluated properties are not allowed ('extcon' was unexpected)
 
-On 4.03.2023 13:33, Krzysztof Kozlowski wrote:
-> gpio-keys,wakeup is a deprecated property:
-> 
->   sm8250-xiaomi-elish.dtb: gpio-keys: key-vol-up: Unevaluated properties are not allowed ('gpio-key,wakeup' was unexpected)
-> 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> ---
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+---
+ Documentation/devicetree/bindings/usb/snps,dwc3.yaml | 4 ++++
+ 1 file changed, 4 insertions(+)
 
-Konrad
->  arch/arm64/boot/dts/qcom/sm8250-xiaomi-elish.dts | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sm8250-xiaomi-elish.dts b/arch/arm64/boot/dts/qcom/sm8250-xiaomi-elish.dts
-> index acaa99c5ff8b..24fc29f0ee5e 100644
-> --- a/arch/arm64/boot/dts/qcom/sm8250-xiaomi-elish.dts
-> +++ b/arch/arm64/boot/dts/qcom/sm8250-xiaomi-elish.dts
-> @@ -95,7 +95,7 @@ key-vol-up {
->  			linux,code = <KEY_VOLUMEUP>;
->  			debounce-interval = <15>;
->  			linux,can-disable;
-> -			gpio-key,wakeup;
-> +			wakeup-source;
->  		};
->  	};
->  
+diff --git a/Documentation/devicetree/bindings/usb/snps,dwc3.yaml b/Documentation/devicetree/bindings/usb/snps,dwc3.yaml
+index be36956af53b..cad2efd5f8c9 100644
+--- a/Documentation/devicetree/bindings/usb/snps,dwc3.yaml
++++ b/Documentation/devicetree/bindings/usb/snps,dwc3.yaml
+@@ -70,6 +70,10 @@ properties:
+ 
+   dma-coherent: true
+ 
++  extcon:
++    maxItems: 1
++    deprecated: true
++
+   iommus:
+     maxItems: 1
+ 
+-- 
+2.34.1
+
