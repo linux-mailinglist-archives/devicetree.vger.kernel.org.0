@@ -2,74 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8F0046AA947
-	for <lists+devicetree@lfdr.de>; Sat,  4 Mar 2023 12:15:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D16566AA94D
+	for <lists+devicetree@lfdr.de>; Sat,  4 Mar 2023 12:21:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229570AbjCDLPv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 4 Mar 2023 06:15:51 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59694 "EHLO
+        id S229457AbjCDLVF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 4 Mar 2023 06:21:05 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34996 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229641AbjCDLPt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 4 Mar 2023 06:15:49 -0500
-Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com [IPv6:2a00:1450:4864:20::52b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C22041C7D4
-        for <devicetree@vger.kernel.org>; Sat,  4 Mar 2023 03:15:47 -0800 (PST)
-Received: by mail-ed1-x52b.google.com with SMTP id u9so20144673edd.2
-        for <devicetree@vger.kernel.org>; Sat, 04 Mar 2023 03:15:47 -0800 (PST)
+        with ESMTP id S229471AbjCDLVD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 4 Mar 2023 06:21:03 -0500
+Received: from mail-ed1-x530.google.com (mail-ed1-x530.google.com [IPv6:2a00:1450:4864:20::530])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 56D2D1041D
+        for <devicetree@vger.kernel.org>; Sat,  4 Mar 2023 03:21:01 -0800 (PST)
+Received: by mail-ed1-x530.google.com with SMTP id x3so19970796edb.10
+        for <devicetree@vger.kernel.org>; Sat, 04 Mar 2023 03:21:01 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1677928546;
+        d=linaro.org; s=google; t=1677928860;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=riI8W1OeTdanG6DhLcOpMcEAV7nOWyx0CknvtQk5J5A=;
-        b=mNEYt0ZBSD9Wxo3IkINZY3iH4zFidKlQUzT5GeqV5E3De2RLR6HD6C2+EyRfyzbiXv
-         RqO9zYK2B5W2/a3G2uuzLRlKd0KZR65xXPSRo94HX5YS/Eo1/vp2Nc4lA+eaoIRXrl2m
-         JbxzQTu/mDTqnNk+v6HlU8qXQDeC3rNQCb0Vg/Bh83kkdyJ1sChZS5S3MND5W9ySZmLw
-         8H9SgAEvHZXuIEFDtgXU8L0Ylo9YuyXmmpbz839AoIHKyO5NvtzkS1uIM66NSMoEdok1
-         nsqADHt+o4rRP526Ic/ASZwZM11XHgePGtDDv1bK/mF11bRfhGJMlnSkIaH3GfzIcxIR
-         q3ug==
+        bh=fhHobUVMtsu0PhlE7aAW4qybE/Xxfbd3jkBj+Ur23CQ=;
+        b=oMr7cxZ0V4XviCNTRxo+KZkz8/5YR+jjcrhupiKIQldCL+8FKp7+hVgA5ki60DsEEA
+         27/APGAbldWtnUR2vcCrRVCElLMkxuRIiZDlTklW8Aq0NrcCmEEoCyuU1oqhsqNIKMLN
+         LD/WrFOtkU68PJW3uloabFSgeFjsmMarsPL7gBNQA5ZZvuBEkbtnehQ41MAAQhA2OfYc
+         uRJ1k3jTgfD+vcLqQjf0xuEqyfty7GDQWO+gpUTUZdot7FF98zvoRjjb5H6dQgrjqndh
+         oFmecKNdG2O4kkrj0VP1EcPTeCmXuOzHy3O54cUyI0306MUnPOLdaoQgSEUtxWXVNe7y
+         lDaQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1677928546;
+        d=1e100.net; s=20210112; t=1677928860;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=riI8W1OeTdanG6DhLcOpMcEAV7nOWyx0CknvtQk5J5A=;
-        b=NvQTch/yHFpxpjXNiZimxp2PlSobTYAjhOV9XxyDEpTjKvNXb6FGQhvd1YMzFGBp64
-         U0jsNS4LqppOTpQncQvAeTEpBuDJknFvjLSzWInQADyG9nY2TCe41AGOeFudvBzuL7m7
-         mmFSGGs1pJdq3CLKzTk8WH1YyGRE2nXs4J3cDkppWMqcmggSw0EDu/1CPKUafAqzm/UY
-         fVC2ioPl27Zrm/Pj5lK3NWTsDyqNjY1ASLp21u55258d8I0VZ1HP3lS2YjwBDPFoPLtQ
-         wdulE069ccrt/j8Jie2+a6v5WK8EhzCaqlmP3m1fVIwtw/RoeqbbWiXeH5Xhy19hId6W
-         /AWg==
-X-Gm-Message-State: AO0yUKX4NVP4AYETHJYQojZTE1Use1nxsvCxzu2Vx9/mHxh3R70BwsrC
-        ropnPpXyxweS3g7W2Hpr/V2YcQ==
-X-Google-Smtp-Source: AK7set8f87SwQanTdMZHKvUZpuyMEd19J3rFxEsNxx4MjXorqExKUzPiHhkn8y2uKTKzmH+vbvqiUQ==
-X-Received: by 2002:a17:907:98e5:b0:8b3:e24:de0e with SMTP id ke5-20020a17090798e500b008b30e24de0emr5068705ejc.27.1677928546309;
-        Sat, 04 Mar 2023 03:15:46 -0800 (PST)
+        bh=fhHobUVMtsu0PhlE7aAW4qybE/Xxfbd3jkBj+Ur23CQ=;
+        b=P4DV+D1JnVdVGASqV22QCyup46hWpWiSRZrRNNNGhERVPaftn6p6FIGUOyDeoTWoLz
+         CNz4+Gtx5bBCuDShdqN4H9Bku6p5Y6c/Qt3i6buoB/zTaGINRJjEtid5Gb3RSmqmi+Zh
+         IG8m708qyD6XIh/X+Z+1raVPyccqJTekXLZsSnRgzp/v/yOwQ8NtclNZjmKdDogzb9AO
+         3MjyW+DW0dPLRVMHFFH3LMXzdYi4v6uVZDb5WUMfGt3MnGBNJQs4Q05zESjz43gaqFv+
+         1R3q4qSHgd94qU4V5NwhNLrDapGMWZf7UxP9D5FAE4fIYIXKwRar3x+BB06uM+ZeOnBc
+         eflA==
+X-Gm-Message-State: AO0yUKXqtdoQH27L87GXwr06S5A06TfFXKjVSSgEx2OVL7F+3G1Ef0Xa
+        qU25OSjUh+7jhkVrBI4V7DqR1Q==
+X-Google-Smtp-Source: AK7set8+kfpwszLRIY9wnGra+1M4z0jqk6FRk9+pxHVUN94cn1oq40TToK7RI/8wJPpmyNbo7yyc5g==
+X-Received: by 2002:a05:6402:b11:b0:4ab:4c2f:adfe with SMTP id bm17-20020a0564020b1100b004ab4c2fadfemr4336974edb.37.1677928859865;
+        Sat, 04 Mar 2023 03:20:59 -0800 (PST)
 Received: from ?IPV6:2a02:810d:15c0:828:b758:6326:1292:e2aa? ([2a02:810d:15c0:828:b758:6326:1292:e2aa])
-        by smtp.gmail.com with ESMTPSA id ss18-20020a170907039200b008d325e167f3sm1940199ejb.201.2023.03.04.03.15.45
+        by smtp.gmail.com with ESMTPSA id k21-20020a05640212d500b004aee4e2a56esm2300396edx.0.2023.03.04.03.20.59
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 04 Mar 2023 03:15:45 -0800 (PST)
-Message-ID: <bd314b74-6525-b790-bcc3-849c3c8bef09@linaro.org>
-Date:   Sat, 4 Mar 2023 12:15:44 +0100
+        Sat, 04 Mar 2023 03:20:59 -0800 (PST)
+Message-ID: <73aa71ad-4cde-09d6-1af8-774701e330cd@linaro.org>
+Date:   Sat, 4 Mar 2023 12:20:58 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.8.0
-Subject: Re: [PATCH 1/2] dt-bindings: arm: amlogic: Document the boards with
- the BPI-CM4 connected
+Subject: Re: [PATCH v3 1/2] dt-bindings: iio: Add MCP9600 thermocouple EMF
+ converter bindings
 Content-Language: en-US
-To:     Neil Armstrong <neil.armstrong@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
+To:     Andrew Hepp <andrew.hepp@ahepp.dev>, devicetree@vger.kernel.org,
+        linux-iio@vger.kernel.org
+Cc:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-amlogic@lists.infradead.org
-References: <20230303-topic-amlogic-upstream-bpi-cm4-v1-0-5a23a1ade6bd@linaro.org>
- <20230303-topic-amlogic-upstream-bpi-cm4-v1-1-5a23a1ade6bd@linaro.org>
+        Jonathan Cameron <jic23@kernel.org>
+References: <20230304004109.78659-1-andrew.hepp@ahepp.dev>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230303-topic-amlogic-upstream-bpi-cm4-v1-1-5a23a1ade6bd@linaro.org>
+In-Reply-To: <20230304004109.78659-1-andrew.hepp@ahepp.dev>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -82,17 +77,87 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 03/03/2023 18:37, Neil Armstrong wrote:
-> The BPI-CM4 module with an Amlogic A311D SoC is a module compatible
-> with the Raspberry Pi CM4 specifications.
+On 04/03/2023 01:41, Andrew Hepp wrote:
+> Add support for the MCP9600 thermocouple EMF converter.
 > 
-> Document the boards using this module, by specifying the BananaPi CM4
-> compatible in addition to the baseboard compatible.
-> 
-> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+> Datasheet: https://ww1.microchip.com/downloads/en/DeviceDoc/MCP960X-Data-Sheet-20005426.pdf
+> Signed-off-by: Andrew Hepp <andrew.hepp@ahepp.dev>
+
+Thank you for your patch. There is something to discuss/improve.
+
+> +description: |
+
+Drop '|'
+
+> +  https://ww1.microchip.com/downloads/en/DeviceDoc/MCP960X-Data-Sheet-20005426.pdf
+> +
+> +properties:
+> +  compatible:
+> +    const: microchip,mcp9600
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    minItems: 1
+> +    maxItems: 6
+> +
+> +  interrupt-names:
+> +    minItems: 1
+> +    maxItems: 6
+> +    items:
+> +      enum:
+
+The interrupts should be usually strictly ordered and you allow any
+combinations. Why?
+
+Why are they optional?
 
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> +        - open
+> +        - short
+> +        - alert1
+> +        - alert2
+> +        - alert3
+> +        - alert4
+> +
+> +  thermocouple-type:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    description:
+> +      Type of thermocouple (THERMOCOUPLE_TYPE_K if omitted).
+> +      Use defines in dt-bindings/iio/temperature/thermocouple.h.
+> +      Supported types are B, E, J, K, N, R, S, T.
+> +
+> +  vdd-supply:
+> +    description: Regulator that provides power to the sensor.
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/gpio/gpio.h>
+
+No need for this header.
+
+> +    #include <dt-bindings/iio/temperature/thermocouple.h>
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +    i2c {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        mcp9600@60 {
+
+Node names should be generic, so temp-sensor, thermocouple or something
+else matching the type.
+https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
+
+
+> +            compatible = "microchip,mcp9600";
+> +            reg = <0x60>;
 
 Best regards,
 Krzysztof
