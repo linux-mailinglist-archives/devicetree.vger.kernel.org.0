@@ -2,115 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2D7516AA98F
-	for <lists+devicetree@lfdr.de>; Sat,  4 Mar 2023 13:37:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 899A46AA992
+	for <lists+devicetree@lfdr.de>; Sat,  4 Mar 2023 13:41:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229552AbjCDMhC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 4 Mar 2023 07:37:02 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48920 "EHLO
+        id S229602AbjCDMk7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 4 Mar 2023 07:40:59 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51200 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229590AbjCDMhA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 4 Mar 2023 07:37:00 -0500
-Received: from mail-108-mta138.mxroute.com (mail-108-mta138.mxroute.com [136.175.108.138])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9F80C12584
-        for <devicetree@vger.kernel.org>; Sat,  4 Mar 2023 04:36:56 -0800 (PST)
-Received: from mail-111-mta2.mxroute.com ([136.175.111.2] filter006.mxroute.com)
- (Authenticated sender: mN4UYu2MZsgR)
- by mail-108-mta138.mxroute.com (ZoneMTA) with ESMTPSA id 186aca00383000edb4.005
- for <devicetree@vger.kernel.org>
- (version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES128-GCM-SHA256);
- Sat, 04 Mar 2023 12:36:53 +0000
-X-Zone-Loop: 18ff9e8bb8b081539527f3549ba4f8335391ea9a2cba
-X-Originating-IP: [136.175.111.2]
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=ahepp.dev;
-        s=x; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:References:Cc:
-        To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:Content-ID:
-        Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-        :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
-        List-Post:List-Owner:List-Archive;
-        bh=iJdvTxcxbKyGSnJTdIa73KJnwMQ8ml/4r+mdNofz4SE=; b=OnQemOQo44ptDF+rRNiRSH5Vi+
-        S/iGoIdp+DfwRJUX3ONt1mgEyUyVtSt1Y76jKTYazlck9LokTfvJcWJMiEDhOrz77JjkHgmkxtPOM
-        I3SUOcfcIfhjR9gXgdDoWZHuqHKJhgBqBth18q1CL7AA1TlxKcVGUhmXvJkCIhyOmr/ksIherVrMS
-        oVNdjREdPhFB+nj3HRtN7WSWH2+XgBQ+4OPPWyWpBMuh08TS1USZg6k288H4dKcLEt4Ft0BErpVoN
-        RSW4/i331xv6OFcVSpfVNXuLnMk9LE2l3zW+XGmmj0qhle+5ipk+I5xtby6XVUV9es8iWciXfXuhA
-        +4YX5Rmw==;
-Message-ID: <55efb99d-f84a-0df9-67fa-0bf5c1372a42@ahepp.dev>
-Date:   Sat, 4 Mar 2023 04:36:49 -0800
+        with ESMTP id S229478AbjCDMk6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 4 Mar 2023 07:40:58 -0500
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1F71011174;
+        Sat,  4 Mar 2023 04:40:57 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1677933657; x=1709469657;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=7Q4E9z2WW/wNytshCGe+UYgFaKXWgPKBLi18rp/fOzc=;
+  b=kDAxZNiFFw0o2Kdi9r4IYF/6LOaYl0fDk3Z8+YWP0emsktLEAEHu8Q8l
+   II/ovKENR1Fnu+y5F04q4OlUDK6rRUJkHjpCvgX/Rnnov+7knyjagyAxW
+   ZivmQ73FRWWXP0+6vO5epLad3R2r3sKFvVMppLg6dE+75D5yA4Va8dcnw
+   JZlCw7oxLdqK01g8laZSXibSVlsyqEJZhrH7vzjwErsFTexeOVoMJONwU
+   SRpr6G8zhFQlgntsMYLewrMyw3WJtNnVNZyD0Oe8y+b/hFpn75K9C7k0w
+   9tTLQV7IazJhvCBS8+/iCv2vDA71og4APHM9colcCxEe1F+mgIuDHdiYj
+   A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10638"; a="333977019"
+X-IronPort-AV: E=Sophos;i="5.98,233,1673942400"; 
+   d="scan'208";a="333977019"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+  by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 04 Mar 2023 04:40:56 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6500,9779,10638"; a="739804762"
+X-IronPort-AV: E=Sophos;i="5.98,233,1673942400"; 
+   d="scan'208";a="739804762"
+Received: from lkp-server01.sh.intel.com (HELO 776573491cc5) ([10.239.97.150])
+  by fmsmga008.fm.intel.com with ESMTP; 04 Mar 2023 04:40:53 -0800
+Received: from kbuild by 776573491cc5 with local (Exim 4.96)
+        (envelope-from <lkp@intel.com>)
+        id 1pYRC0-0002A2-3C;
+        Sat, 04 Mar 2023 12:40:52 +0000
+Date:   Sat, 4 Mar 2023 20:40:47 +0800
+From:   kernel test robot <lkp@intel.com>
+To:     Eddie James <eajames@linux.ibm.com>, linux-fsi@lists.ozlabs.org
+Cc:     oe-kbuild-all@lists.linux.dev, rostedt@goodmis.org,
+        linux-trace-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, mhiramat@kernel.org,
+        alistair@popple.id.au, joel@jms.id.au, jk@ozlabs.org,
+        andrew@aj.id.au, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, eajames@linux.ibm.com
+Subject: Re: [PATCH v7 4/7] fsi: Add I2C Responder SCOM driver
+Message-ID: <202303042033.kC3KNCW2-lkp@intel.com>
+References: <20230303170416.1347530-5-eajames@linux.ibm.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:102.0)
- Gecko/20100101 Thunderbird/102.8.0
-Subject: Re: [PATCH v3 1/2] dt-bindings: iio: Add MCP9600 thermocouple EMF
- converter bindings
-Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        devicetree@vger.kernel.org, linux-iio@vger.kernel.org
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jonathan Cameron <jic23@kernel.org>
-References: <20230304004109.78659-1-andrew.hepp@ahepp.dev>
- <73aa71ad-4cde-09d6-1af8-774701e330cd@linaro.org>
-From:   Andrew Hepp <andrew.hepp@ahepp.dev>
-In-Reply-To: <73aa71ad-4cde-09d6-1af8-774701e330cd@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Authenticated-Id: andrew.hepp@ahepp.dev
-X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_INVALID,
-        DKIM_SIGNED,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
-        autolearn=no autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230303170416.1347530-5-eajames@linux.ibm.com>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Krzysztof,
+Hi Eddie,
 
-Appreciate the feedback! Snipping for brevity.
+I love your patch! Yet something to improve:
 
-On 3/4/23 3:20 AM, Krzysztof Kozlowski wrote:
+[auto build test ERROR on robh/for-next]
+[also build test ERROR on linus/master v6.2 next-20230303]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-...
->> +    maxItems: 1
->> +
->> +  interrupts:
->> +    minItems: 1
->> +    maxItems: 6
->> +
->> +  interrupt-names:
->> +    minItems: 1
->> +    maxItems: 6
->> +    items:
->> +      enum:
-> 
-> The interrupts should be usually strictly ordered and you allow any
-> combinations. Why?
-> 
-> Why are they optional?
+url:    https://github.com/intel-lab-lkp/linux/commits/Eddie-James/fsi-Move-fsi_slave-structure-definition-to-header/20230304-011530
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
+patch link:    https://lore.kernel.org/r/20230303170416.1347530-5-eajames%40linux.ibm.com
+patch subject: [PATCH v7 4/7] fsi: Add I2C Responder SCOM driver
+config: powerpc-allmodconfig (https://download.01.org/0day-ci/archive/20230304/202303042033.kC3KNCW2-lkp@intel.com/config)
+compiler: powerpc-linux-gcc (GCC) 12.1.0
+reproduce (this is a W=1 build):
+        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+        chmod +x ~/bin/make.cross
+        # https://github.com/intel-lab-lkp/linux/commit/36d0c348a48344d2ffef15d5abefe139fc511684
+        git remote add linux-review https://github.com/intel-lab-lkp/linux
+        git fetch --no-tags linux-review Eddie-James/fsi-Move-fsi_slave-structure-definition-to-header/20230304-011530
+        git checkout 36d0c348a48344d2ffef15d5abefe139fc511684
+        # save the config file
+        mkdir build_dir && cp config build_dir/.config
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.1.0 make.cross W=1 O=build_dir ARCH=powerpc olddefconfig
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.1.0 make.cross W=1 O=build_dir ARCH=powerpc SHELL=/bin/bash
 
-The driver as currently written doesn’t support any interrupts. The 
-device does not require interrupts to function.
+If you fix the issue, kindly add following tag where applicable
+| Reported-by: kernel test robot <lkp@intel.com>
+| Link: https://lore.kernel.org/oe-kbuild-all/202303042033.kC3KNCW2-lkp@intel.com/
 
-This is the first dt-binding I’ve written, so it’s very possible that 
-I’ve made a mistake, but I believe any combination of interrupts should 
-be valid. Each of the interrupts listed represent an independent 
-physical pin of the mcp960x chip. That pin might not be connected at 
-all, so it seems to me that any combination of interrupts should be allowed.
+All errors (new ones prefixed by >>, old ones prefixed by <<):
 
-MCP9600 and MCP9601 chips have four alert interrupts that trigger when 
-temperature crosses a threshold (with configurable hysteresis). The 
-MCP9601 adds short and open circuit detection interrupts.
+>> ERROR: modpost: "fsi_master_i2cr_read" [drivers/fsi/i2cr-scom.ko] undefined!
+>> ERROR: modpost: "fsi_master_i2cr_write" [drivers/fsi/i2cr-scom.ko] undefined!
 
-> 
-> 
->> +        - open
->> +        - short
->> +        - alert1
->> +        - alert2
->> +        - alert3
->> +        - alert4
->> +
->> +  thermocouple-type:
-...
-
-Thanks,
-Andy
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests
