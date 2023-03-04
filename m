@@ -2,134 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 745D36AAB95
-	for <lists+devicetree@lfdr.de>; Sat,  4 Mar 2023 18:26:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3EBDD6AAB97
+	for <lists+devicetree@lfdr.de>; Sat,  4 Mar 2023 18:28:51 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229560AbjCDR03 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 4 Mar 2023 12:26:29 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39514 "EHLO
+        id S229447AbjCDR2t (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 4 Mar 2023 12:28:49 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41240 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229447AbjCDR01 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 4 Mar 2023 12:26:27 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 130B811148;
-        Sat,  4 Mar 2023 09:26:26 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id C628DB802C4;
-        Sat,  4 Mar 2023 17:26:24 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5A240C433EF;
-        Sat,  4 Mar 2023 17:26:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1677950783;
-        bh=KPYwvzh5duXtSKstrTopOnZQQL4PKi7YUvW2PwfHDEI=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=VesKVDDG2Tt1VV0/GQYKX9RWeYtV+5JXy3PYJgH9l4fdo+JR1Z3egSBZhKQBqqrrW
-         RDE4JDNzgBP4ht90X/Ls0dAMb/WAOm/MvOQxPcTKZYT2ihoOkCyxAKPncY09D+pH1T
-         T4Ax37OttA/ZLVulGLojHolIIiC4cQCrUWFuiYsND0chRKmU8iuAoPwCwgcFD2+ck7
-         fz6KBKdHNVWi6p/Li6BmQthlvi+G0kTjJYXiO9H/nuibWwh2lfKr4OMudz4pS4vIy0
-         RMTSgpJ4aAlQxS3rIR3/+BzZPRiNQ22UZjQcOY58kQY6jvTePiPcGOgFvqr+3UhWMG
-         ZmtuFkGGllNpw==
-Date:   Sat, 4 Mar 2023 17:26:18 +0000
-From:   Jonathan Cameron <jic23@kernel.org>
-To:     Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Cc:     Mike Looijmans <mike.looijmans@topic.nl>,
-        devicetree@vger.kernel.org, linux-iio@vger.kernel.org,
-        Caleb Connolly <caleb.connolly@linaro.org>,
-        ChiYuan Huang <cy_huang@richtek.com>,
-        ChiaEn Wu <chiaen_wu@richtek.com>,
-        Cosmin Tanislav <demonsingur@gmail.com>,
-        Ibrahim Tilki <Ibrahim.Tilki@analog.com>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Ramona Bolboaca <ramona.bolboaca@analog.com>,
-        William Breathitt Gray <william.gray@linaro.org>,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 2/2] iio: adc: Add TI ADS1100 and ADS1000
-Message-ID: <20230304172618.37f448d0@jic23-huawei>
-In-Reply-To: <ZACxUpzCtlrMehrA@smile.fi.intel.com>
-References: <20230228063151.17598-1-mike.looijmans@topic.nl>
-        <20230228063151.17598-2-mike.looijmans@topic.nl>
-        <Y/9vez/fzLD5dRVF@smile.fi.intel.com>
-        <1b153bce-a66a-45ee-a5c6-963ea6fb1c82.949ef384-8293-46b8-903f-40a477c056ae.0685d97e-4a28-499e-a9e3-3bafec126832@emailsignatures365.codetwo.com>
-        <a2ba706f-888b-0a72-03a5-cbf761dfaf19@topic.nl>
-        <ZACxUpzCtlrMehrA@smile.fi.intel.com>
-X-Mailer: Claws Mail 4.1.1 (GTK 3.24.37; x86_64-pc-linux-gnu)
+        with ESMTP id S229445AbjCDR2s (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 4 Mar 2023 12:28:48 -0500
+Received: from mail.manjaro.org (mail.manjaro.org [IPv6:2a01:4f8:c0c:51f3::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C006412588
+        for <devicetree@vger.kernel.org>; Sat,  4 Mar 2023 09:28:47 -0800 (PST)
+From:   Dan Johansen <strit@manjaro.org>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=2021;
+        t=1677950925;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:
+         content-transfer-encoding:content-transfer-encoding;
+        bh=x87z+vjCvrBlBBbKs7GWBh8GXGMnyIrhP7gvLq53N5c=;
+        b=dx/PzP5n1HrHOJJqYqhuWpAzTF4mehyP1CzjU7+1S05mBIs6Q3dw7YLOk6KvLm9WFYI3es
+        eU5Mneg8PKsvyKylox8dSspKfG83XR8Xw8gBBM6np6ddLwAgEx7E7wcq4iuA+nPercdpgM
+        2C30Y4sUooHYwRqa+lWIZ2WQN/obkpYWdVeZ1QW+CzrA44pEWjZFTz+m0cs6Kxeg4bN73A
+        ddEXdjTzKkumgYUy6uEHlmaZRPrvcdPhTo7Z18VfoCTLahbPz1U7TRYVAbG3QOwChgBfzc
+        ooOCXH9N8YPFbzXbARNy94t+gmSh5hkeV83Q15y5XpOeEgh7M/YJrrF6rrtawg==
+To:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        heiko@sntech.de
+Cc:     devicetree@vger.kernel.org, linux-rockchip@lists.infradead.org,
+        Dan Johansen <strit@manjaro.org>,
+        Dragan Simic <dragan.simic@gmail.com>,
+        JR Gonzalez <jrg@scientiam.org>
+Subject: [PATCH] arm64: dts: rockchip: Lower SD card speed on Pinebook Pro
+Date:   Sat,  4 Mar 2023 18:28:38 +0100
+Message-Id: <20230304172838.38059-1-strit@manjaro.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+Authentication-Results: ORIGINATING;
+        auth=pass smtp.auth=strit@manjaro.org smtp.mailfrom=strit@manjaro.org
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 2 Mar 2023 16:23:14 +0200
-Andy Shevchenko <andriy.shevchenko@linux.intel.com> wrote:
+MicroSD card slot in the Pinebook Pro is located on a separate
+daughterboard that's connected to the mainboard using a rather
+long flat cable.  The resulting signal degradation causes many
+perfectly fine microSD cards not to work in the Pinebook Pro,
+which is a common source of frustration among the owners.
 
-> On Thu, Mar 02, 2023 at 08:49:22AM +0100, Mike Looijmans wrote:
-> > On 01-03-2023 16:30, Andy Shevchenko wrote: =20
-> > > On Tue, Feb 28, 2023 at 07:31:51AM +0100, Mike Looijmans wrote: =20
->=20
-> ...
->=20
-> > > > +	/* Shift result to compensate for bit resolution vs. sample rate =
-*/
-> > > > +	value <<=3D 16 - ads1100_data_bits(data);
-> > > > +	*val =3D sign_extend32(value, 15); =20
-> > > Why not simply
-> > >=20
-> > > 	*val =3D sign_extend32(value, ads1100_data_bits(data) - 1);
-> > >=20
-> > > ? =20
-> >=20
-> > As discussed with=C2=A0 Jonathan Cameron, the register is right-justifi=
-ed and the
-> > number of bits depend on the data rate. Rather than having the "scale"
-> > change when the sample rate changes, we chose to adjust the sample resu=
-lt so
-> > it's always left-justified. =20
->=20
-> Hmm... OK, but it adds unneeded code I think.
+Changing the mode and lowering the speed reportedly fixes this
+issue and makes many microSD cards work as expected.
 
-There isn't a way to do it in one go that I can think of.
-The first statement is multiplying the value by a power of 2, not just sign=
- extending it.
-You could sign extend first then shift to do the multiply, but ends up same=
- amount
-of code.
+Co-authored-by: Dragan Simic <dragan.simic@gmail.com>
+Tested-by: JR Gonzalez <jrg@scientiam.org>
+Signed-off-by: Dan Johansen <strit@manjaro.org>
+---
+ arch/arm64/boot/dts/rockchip/rk3399-pinebook-pro.dts | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-It does look a bit like a weird open coded sign extension though so I can s=
-ee where
-the confusion came from!
-
->=20
-> ...
->=20
-> > > > +	for (i =3D 0; i < 4; i++) {
-> > > > +		if (BIT(i) =3D=3D gain) { =20
-> > > ffs()/__ffs() (look at the documentation for the difference and use p=
-roper one). =20
-> >=20
-> > Thought of it, but I'd rather have it return EINVAL for attempting to s=
-et
-> > the analog gain to "7" (0nly 1,2,4,8 allowed). =20
->=20
-> I'm not sure what you are implying.
->=20
-> You have open coded something that has already to be a function which on =
-some
-> architectures become a single assembly instruction.
->=20
-> That said, drop your for-loop if-cond and use one of the proposed directl=
-y.
-> Then you may compare the result to what ever you want to be a limit and r=
-eturn
-> whatever error code you want to
-
-Agreed, could do it with appropriate ffs() followed by if (BIT(i) !=3D gain=
-) return -EINVAL;
+diff --git a/arch/arm64/boot/dts/rockchip/rk3399-pinebook-pro.dts b/arch/arm64/boot/dts/rockchip/rk3399-pinebook-pro.dts
+index 194e48c755f6..54bb0398128f 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3399-pinebook-pro.dts
++++ b/arch/arm64/boot/dts/rockchip/rk3399-pinebook-pro.dts
+@@ -943,7 +943,7 @@ &sdmmc {
+ 	disable-wp;
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&sdmmc_clk &sdmmc_cmd &sdmmc_bus4>;
+-	sd-uhs-sdr104;
++	sd-uhs-sdr50;
+ 	vmmc-supply = <&vcc3v0_sd>;
+ 	vqmmc-supply = <&vcc_sdio>;
+ 	status = "okay";
+-- 
+2.39.2
 
