@@ -2,61 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7E3196AABA2
-	for <lists+devicetree@lfdr.de>; Sat,  4 Mar 2023 18:45:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CFE7B6AABB2
+	for <lists+devicetree@lfdr.de>; Sat,  4 Mar 2023 18:53:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229678AbjCDRpP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 4 Mar 2023 12:45:15 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50810 "EHLO
+        id S229604AbjCDRx4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 4 Mar 2023 12:53:56 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56120 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229625AbjCDRpO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 4 Mar 2023 12:45:14 -0500
-Received: from mail-wm1-x330.google.com (mail-wm1-x330.google.com [IPv6:2a00:1450:4864:20::330])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 041AC12586
-        for <devicetree@vger.kernel.org>; Sat,  4 Mar 2023 09:45:13 -0800 (PST)
-Received: by mail-wm1-x330.google.com with SMTP id ay29-20020a05600c1e1d00b003e9f4c2b623so5745820wmb.3
-        for <devicetree@vger.kernel.org>; Sat, 04 Mar 2023 09:45:12 -0800 (PST)
+        with ESMTP id S229447AbjCDRxz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 4 Mar 2023 12:53:55 -0500
+Received: from mail-wr1-x42d.google.com (mail-wr1-x42d.google.com [IPv6:2a00:1450:4864:20::42d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 10302126C7
+        for <devicetree@vger.kernel.org>; Sat,  4 Mar 2023 09:53:54 -0800 (PST)
+Received: by mail-wr1-x42d.google.com with SMTP id e13so5067730wro.10
+        for <devicetree@vger.kernel.org>; Sat, 04 Mar 2023 09:53:53 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1677951911;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+        d=linaro.org; s=google; t=1677952432;
+        h=content-transfer-encoding:in-reply-to:references:cc:to:from
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=rsDOa+CNgxF+LrbSAZ/zI3/iIB1uuy0CX68cc9ZNyA0=;
-        b=NW7OlzaI4JzVr0yaqHB5GmJkZtcr0ESKphODI8Lm4R+gfUZlVH438JMYWhaB7LL1Ap
-         b84LlSJ56E8GM0WXUTekuV38nczf7lNeg6W/m/VP69nP2kFA3u/mec4lOjDtp07hLvf2
-         GjPJpJ9f4L+5xtIcjHn4orq53+6QujHEaFNurRPPBIVd30yIq8iJgTs4uPk/5VsRqqU2
-         v2CrJ8uDnkqBnMIp+N2F06ZY2LELmlz+jSlnFQKi2Ef1umyVOu8uckIFuEKyPb1gU990
-         3mRai8jzyA2vGAhjjgnox70CIe2dk1j76Wh/U9U2FbspyFjJqtLBixoYrYr6lDekjLE6
-         +8Gw==
+        bh=rHEvIkFqTLgxaMd8/19YTSXz3cbo7lRJ8eKob5TrLqk=;
+        b=lyOp+rYsZdKh1H2omPmNEuYyRcT9UccB7oYjQi5yr/+DkVHHK4/PcZjLk3Yq2p1nfr
+         EQn7n0MeMl2KLi9W+w9xLglC+zzNEa4S8t9LOPQT8WY6VeTC8L6QW7aETVqHHTA65RXT
+         c6CtWQPt+/MYzqVVbKDyop8+Nz0+xp/MAlrJ9N1dxecj+FOLCq2RjrhdXMXpMp6HshLx
+         rt0EgNf4/md0neyef/NbueHsiYJGpSWrhp/kam2Qruea+V+FW7tSbTzTAaHj/aCPQuEL
+         IXfJ+SxfChdhoy/Of0erRRYu5f3OcZgnXTFBf7sftSmHo8nKg6L6Ydziv4HKtEkSOUCJ
+         xzWw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1677951911;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+        d=1e100.net; s=20210112; t=1677952432;
+        h=content-transfer-encoding:in-reply-to:references:cc:to:from
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=rsDOa+CNgxF+LrbSAZ/zI3/iIB1uuy0CX68cc9ZNyA0=;
-        b=o/KwseuMcaeAzszDvcS/9Bsfm244k0PS4gYuWvdih/+F5lxmisPqSMGrDYBFV6DdAQ
-         ZhIRYfqY1nvvLeqBCCr5r5qCbAoOcp6GL1+P2U8SYsxA+jUwrcKyXVUaDRMF+7QCrtCJ
-         +kyU0Qe/Z5AmVEffady7jwoRIZyxgKjCJmNOEqisez8LWubdNQeR+lh7bT7g64hXe4tN
-         /mtqRd3MfKiMqde/BHZQi5HurbjVuFsutjy+ARr/97zXuy+TJs7aholigR4KaX1JYjUb
-         0HSQEicbw8eVY1tKPSbiHT4V1V1dRDO+FYV9Izwelm4auhPG/A+iLI76Z3nCzfATTx4X
-         fu6A==
-X-Gm-Message-State: AO0yUKXfVbWt3e+X5pvjzZb+ofKIEJ3DtbETFIowa86RaAt/9GMAT+vg
-        ftNVvDHe+0XWUNe+Cd8QNm/L6Nw89SCYQ/1SII8=
-X-Google-Smtp-Source: AK7set/inqpSJRQRK+Fs1MdmEEpc2iqOvzWeyLhCqa0+AKUxKHSpRzR2JRlZJxO6iRpwlagKjhU5dA==
-X-Received: by 2002:a05:600c:1e0e:b0:3dc:55d9:ec8 with SMTP id ay14-20020a05600c1e0e00b003dc55d90ec8mr4784841wmb.41.1677951911204;
-        Sat, 04 Mar 2023 09:45:11 -0800 (PST)
+        bh=rHEvIkFqTLgxaMd8/19YTSXz3cbo7lRJ8eKob5TrLqk=;
+        b=5v7LbXvoSUqF5hxypv/MeeDGZbsyaDlLQ42ySQHQ3ZH7mBQtx6wunatPg7+VhGCL0t
+         HI21t33mSpAkbSP+8iar6IxJvPZQYV5HCl8QGugzje3k9fW8VSPmzfUXtzXNbl9v25+A
+         ToGH41YoXujHx0bVL1ti3+lrsuaYY3nAeYwiLrkwsnJ+cVGu8gxfXbI6EjdAD0ag1Eb6
+         wrp8pAI1zljtFvT4QhEs81NJv7Z1i//pLjSNRy6F3jIstY+D61n3KdZ8CvZdIhgXhsmG
+         UcXr8xqKMDxDBaTGQgpulTgfqRZUsee6pL4Cds/wRqh3nT7eNeJHyYg5WC4eW+oSOE8z
+         BCLg==
+X-Gm-Message-State: AO0yUKV0cDmSJt49foMczKUlo8l5/3RVf/LHp9cj113B14ZO2YgYWoyf
+        B+9nBCpJL4ICMmcIOCYQPlPWVg==
+X-Google-Smtp-Source: AK7set9WFBR5j0nxd+qqovwsRvSizgDMYkC09Qx1BKZCVE+JNDwpUEQbtysHHXgJ/uZDZfaUBrd9zw==
+X-Received: by 2002:adf:e9c2:0:b0:2c7:1d75:b0cc with SMTP id l2-20020adfe9c2000000b002c71d75b0ccmr3766253wrn.43.1677952432543;
+        Sat, 04 Mar 2023 09:53:52 -0800 (PST)
 Received: from [192.168.0.162] (188-141-3-169.dynamic.upc.ie. [188.141.3.169])
-        by smtp.gmail.com with ESMTPSA id g11-20020adffc8b000000b002c7b229b1basm5522533wrr.15.2023.03.04.09.45.10
+        by smtp.gmail.com with ESMTPSA id k8-20020a5d66c8000000b002c573a6216fsm5531688wrw.37.2023.03.04.09.53.51
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 04 Mar 2023 09:45:10 -0800 (PST)
-Message-ID: <28561c8b-e9a3-b58e-429a-6dc331ad94e4@linaro.org>
-Date:   Sat, 4 Mar 2023 17:45:09 +0000
+        Sat, 04 Mar 2023 09:53:52 -0800 (PST)
+Message-ID: <35e19031-877c-329f-3bdd-4f04bc8ccc6f@linaro.org>
+Date:   Sat, 4 Mar 2023 17:53:50 +0000
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.8.0
 Subject: Re: [PATCH v3 1/2] dt-bindings: display/msm: dsi-controller-main: Fix
  deprecated compatible
 Content-Language: en-US
+From:   Bryan O'Donoghue <bryan.odonoghue@linaro.org>
 To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
         Rob Clark <robdclark@gmail.com>,
         Abhinav Kumar <quic_abhinavk@quicinc.com>,
@@ -73,49 +74,59 @@ References: <20230304-topic-dsi_fixup-v3-0-b8565944d0e6@linaro.org>
  <20230304-topic-dsi_fixup-v3-1-b8565944d0e6@linaro.org>
  <c1a2ba5b-4cd9-362b-5a4e-e95a6bf27b3e@linaro.org>
  <30798bd2-5805-45e6-92d2-a9df6fb52600@linaro.org>
-From:   Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-In-Reply-To: <30798bd2-5805-45e6-92d2-a9df6fb52600@linaro.org>
+ <28561c8b-e9a3-b58e-429a-6dc331ad94e4@linaro.org>
+In-Reply-To: <28561c8b-e9a3-b58e-429a-6dc331ad94e4@linaro.org>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 04/03/2023 17:35, Konrad Dybcio wrote:
->> you'll see no error. However if you just do this
+On 04/03/2023 17:45, Bryan O'Donoghue wrote:
+> On 04/03/2023 17:35, Konrad Dybcio wrote:
+>>> you'll see no error. However if you just do this
+>>>
+>>> diff --git a/arch/arm64/boot/dts/qcom/msm8916.dtsi 
+>>> b/arch/arm64/boot/dts/qcom/msm8916.dtsi
+>>> index 0733c2f4f3798..829fbe05b5713 100644
+>>> --- a/arch/arm64/boot/dts/qcom/msm8916.dtsi
+>>> +++ b/arch/arm64/boot/dts/qcom/msm8916.dtsi
+>>> @@ -1094,8 +1094,7 @@ mdp5_intf1_out: endpoint {
+>>>                          };
+>>>
+>>>                          dsi0: dsi@1a98000 {
+>>> -                               compatible = "qcom,msm8916-dsi-ctrl",
+>>> -                                            "qcom,mdss-dsi-ctrl";
+>>> +                               compatible = "qcom,mdss-dsi-ctrl";
+>>>                                  reg = <0x01a98000 0x25c>;
+>>>                                  reg-names = "dsi_ctrl";
+>>>
+>>>
+>>> and run the same test you get
+>> Yes, correct. It's valid but it's deprecated, so the bindings are
+>> sane. Keep in mind there's an ABI-like aspect to this.
 >>
->> diff --git a/arch/arm64/boot/dts/qcom/msm8916.dtsi b/arch/arm64/boot/dts/qcom/msm8916.dtsi
->> index 0733c2f4f3798..829fbe05b5713 100644
->> --- a/arch/arm64/boot/dts/qcom/msm8916.dtsi
->> +++ b/arch/arm64/boot/dts/qcom/msm8916.dtsi
->> @@ -1094,8 +1094,7 @@ mdp5_intf1_out: endpoint {
->>                          };
->>
->>                          dsi0: dsi@1a98000 {
->> -                               compatible = "qcom,msm8916-dsi-ctrl",
->> -                                            "qcom,mdss-dsi-ctrl";
->> +                               compatible = "qcom,mdss-dsi-ctrl";
->>                                  reg = <0x01a98000 0x25c>;
->>                                  reg-names = "dsi_ctrl";
->>
->>
->> and run the same test you get
-> Yes, correct. It's valid but it's deprecated, so the bindings are
-> sane. Keep in mind there's an ABI-like aspect to this.
+>> Konrad
 > 
-> Konrad
+> The _driver_ will still accept "qcom,mdss-dsi-ctrl" which is ABI 
+> compliant but, I don't see why the yaml should.
+> 
+> If you declare a new .dts with only "qcom,mdss-dsi-ctrl", that should 
+> throw a yaml check error.
+> 
+> ---
+> bod
 
-The _driver_ will still accept "qcom,mdss-dsi-ctrl" which is ABI 
-compliant but, I don't see why the yaml should.
+Actually. I agree with you, I just dislike it.
 
-If you declare a new .dts with only "qcom,mdss-dsi-ctrl", that should 
-throw a yaml check error.
+- "qcom,mdss-dsi-ctrl" <- the driver will accept this
+- "qcom,dsi-ctrl-6g-qcm2290" <- the driver will not accept this
 
----
-bod
+bah
+
+Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
