@@ -2,52 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4EA946AAB74
-	for <lists+devicetree@lfdr.de>; Sat,  4 Mar 2023 18:10:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7BD4F6AAB8F
+	for <lists+devicetree@lfdr.de>; Sat,  4 Mar 2023 18:20:02 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229652AbjCDRKF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 4 Mar 2023 12:10:05 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57796 "EHLO
+        id S229506AbjCDRUB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 4 Mar 2023 12:20:01 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36034 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229519AbjCDRKF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 4 Mar 2023 12:10:05 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0FF9113510;
-        Sat,  4 Mar 2023 09:10:04 -0800 (PST)
+        with ESMTP id S229447AbjCDRUA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 4 Mar 2023 12:20:00 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 12771E073;
+        Sat,  4 Mar 2023 09:19:58 -0800 (PST)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id BBC33B8085B;
-        Sat,  4 Mar 2023 17:10:02 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 64C3CC433D2;
-        Sat,  4 Mar 2023 17:10:00 +0000 (UTC)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 4DA59B808CA;
+        Sat,  4 Mar 2023 17:19:57 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 95A2BC433EF;
+        Sat,  4 Mar 2023 17:19:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1677949801;
-        bh=NrlHNbC0RBF/brfBYIQ1V0X3Mby6WLA9TCmdFEMGJzk=;
+        s=k20201202; t=1677950395;
+        bh=SK7Kwhhi/uD/G7RidXbseM1UAmXNuUfv51NQ/U3YKJg=;
         h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=cnUz6wY4IY2OIdskNR8GlA/BKXzWYIKitsEmYEsPzCqZPsCYI7JM7Xffhj8pGMhCS
-         dsOhjm3CGtp9SqsVQuxj1xSX01cbepdvnZOR6cK83g9VrPHSJry+XZg9T/58hmbP+3
-         eiFnNOskVtCLz1FZaP7diqSJ8EPXPiYK3JtG9WPx9omSeRAQw+OPXqTawtMfMKT279
-         4+kolmxS79iTLX1GcNVHKofFo7Iu0ZF8YsdhSwG1G4Kb06fS+PG6CP/sY2kjZ1rls0
-         OrQkKnlDqUa4x+r0foIabK5nY9+IfcXF74I687fJM80Y02nV9FF4IaJxfx8Kn+CKRU
-         Ep/+C+tchSySA==
-Date:   Sat, 4 Mar 2023 17:09:57 +0000
+        b=rh0wM4+Ml+ReF6Qhs2k32vLNSULLA70mmDWbx2mUMySoqjawNnGB6mX7xaL7UJNso
+         mqkwU+LxrRIp5w8IfkL4768a6u+APrr1D6l/5qxoq6LozxY5VprzAZhMFT/VL8FhpA
+         PAYFZEByZkw6niCsNA3xbg1dVe/7nZM4dfQS2J+jW9DnOZVYs9HZhu7yUWTSmOJEVM
+         QNS/vTiYNF2OZ1967KViRQ8JdNJEu0vV3ezLPVQl9D9u3oMW+8J4nn0vmaHbr4FxtZ
+         UqDGrBPuOhxpVkCmqo+a0TTgxJdSp3ci3LaXNYEJI/iC/P7F4WMnuwmJgxj7CFLknd
+         Wtl6i1BVuZenw==
+Date:   Sat, 4 Mar 2023 17:19:50 +0000
 From:   Jonathan Cameron <jic23@kernel.org>
-To:     Andrew Hepp <andrew.hepp@ahepp.dev>
-Cc:     devicetree@vger.kernel.org, linux-iio@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Subject: Re: [PATCH v3 1/2] dt-bindings: iio: Add MCP9600 thermocouple EMF
- converter bindings
-Message-ID: <20230304170957.4748bf10@jic23-huawei>
-In-Reply-To: <20230304004109.78659-1-andrew.hepp@ahepp.dev>
-References: <20230304004109.78659-1-andrew.hepp@ahepp.dev>
+To:     Lars-Peter Clausen <lars@metafoo.de>
+Cc:     Mike Looijmans <mike.looijmans@topic.nl>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        devicetree@vger.kernel.org, linux-iio@vger.kernel.org,
+        Caleb Connolly <caleb.connolly@linaro.org>,
+        ChiYuan Huang <cy_huang@richtek.com>,
+        ChiaEn Wu <chiaen_wu@richtek.com>,
+        Cosmin Tanislav <demonsingur@gmail.com>,
+        Ibrahim Tilki <Ibrahim.Tilki@analog.com>,
+        Ramona Bolboaca <ramona.bolboaca@analog.com>,
+        William Breathitt Gray <william.gray@linaro.org>,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 2/2] iio: adc: Add TI ADS1100 and ADS1000
+Message-ID: <20230304171950.5a411037@jic23-huawei>
+In-Reply-To: <b635b91e-1dcc-71ba-95d1-1f87a20dbaf2@metafoo.de>
+References: <20230228063151.17598-1-mike.looijmans@topic.nl>
+        <20230228063151.17598-2-mike.looijmans@topic.nl>
+        <Y/9vez/fzLD5dRVF@smile.fi.intel.com>
+        <1b153bce-a66a-45ee-a5c6-963ea6fb1c82.949ef384-8293-46b8-903f-40a477c056ae.0685d97e-4a28-499e-a9e3-3bafec126832@emailsignatures365.codetwo.com>
+        <a2ba706f-888b-0a72-03a5-cbf761dfaf19@topic.nl>
+        <87bc192e-45ae-9480-5e84-8fe0adfc12e7@metafoo.de>
+        <b635b91e-1dcc-71ba-95d1-1f87a20dbaf2@metafoo.de>
 X-Mailer: Claws Mail 4.1.1 (GTK 3.24.37; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -55,111 +68,58 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri,  3 Mar 2023 16:41:08 -0800
-Andrew Hepp <andrew.hepp@ahepp.dev> wrote:
+On Thu, 2 Mar 2023 05:20:38 -0800
+Lars-Peter Clausen <lars@metafoo.de> wrote:
 
-> Add support for the MCP9600 thermocouple EMF converter.
-> 
-> Datasheet: https://ww1.microchip.com/downloads/en/DeviceDoc/MCP960X-Data-Sheet-20005426.pdf
-> Signed-off-by: Andrew Hepp <andrew.hepp@ahepp.dev>
-> ---
-> Changes for v3:
-> - Added dt-bindings
-> ---
->  .../iio/temperature/microchip,mcp9600.yaml    | 72 +++++++++++++++++++
->  1 file changed, 72 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/iio/temperature/microchip,mcp9600.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/iio/temperature/microchip,mcp9600.yaml b/Documentation/devicetree/bindings/iio/temperature/microchip,mcp9600.yaml
-> new file mode 100644
-> index 000000000000..584d0ae42502
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/iio/temperature/microchip,mcp9600.yaml
-> @@ -0,0 +1,72 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/iio/temperature/microchip,mcp9600.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Microchip MCP9600 thermocouple EMF converter
-> +
-> +maintainers:
-> +  - Andrew Hepp <andrew.hepp@ahepp.dev>
-> +
-> +description: |
-> +  https://ww1.microchip.com/downloads/en/DeviceDoc/MCP960X-Data-Sheet-20005426.pdf
-> +
-> +properties:
-> +  compatible:
-> +    const: microchip,mcp9600
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    minItems: 1
-> +    maxItems: 6
-> +
-> +  interrupt-names:
-> +    minItems: 1
-> +    maxItems: 6
-> +    items:
-> +      enum:
-> +        - open
+> On 3/2/23 05:16, Lars-Peter Clausen wrote:
+> > On 3/1/23 23:49, Mike Looijmans wrote: =20
+> >>
+> >> =20
+> >>> ...
+> >>> ...
+> >>> =20
+> >>>> +static int ads1100_runtime_suspend(struct device *dev)
+> >>>> +{
+> >>>> +=C2=A0=C2=A0=C2=A0 struct iio_dev *indio_dev =3D=20
+> >>>> i2c_get_clientdata(to_i2c_client(dev));
+> >>>> +=C2=A0=C2=A0=C2=A0 struct ads1100_data *data =3D iio_priv(indio_dev=
+);
+> >>>> +
+> >>>> +=C2=A0=C2=A0=C2=A0 ads1100_set_config_bits(data, ADS1100_CFG_SC,=20
+> >>>> ADS1100_SINGLESHOT);
+> >>>> +=C2=A0=C2=A0=C2=A0 regulator_disable(data->reg_vdd); =20
+> >>> Wrong devm / non-devm ordering. =20
+> >>
+> >> Don't understand your remark, can you explain further please?
+> >>
+> >> devm / non-devm ordering would be related to the "probe" function. As=
+=20
+> >> far as I can tell, I'm not allocating resources after the devm calls.=
+=20
+> >> And the "remove" is empty. =20
+> >
+> > Strictly speaking we need to unregister the IIO device before=20
+> > disabling the regulator, otherwise there is a small window where the=20
+> > IIO device still exists, but doesn't work anymore. This is a very=20
+> > theoretical scenario though.
+> >
+> > You are lucky :) There is a new function=20
+> > `devm_regulator_get_enable()`[1], which will manage the=20
+> > regulator_disable() for you. Using that will also reduce the=20
+> > boilerplate in `probe()` a bit
+> >
+> > - Lars
+> >
+> > [1] https://lwn.net/Articles/904383/
+> > =20
+> Sorry, just saw that Andy's comment was on the suspend() function, not=20
+> remove(). In that case there is of course no need for any devm things.=20
+> But still a good idea to use `devm_regulator_get_enable()` in probe for=20
+> the boiler plate.
+>=20
+You can't because (annoyingly) devem_regulator_get_enable() doesn't
+provide you access to the struct regulator that you need to be able
+to turn it of for power management.
+That case only works for the leave the power on all the time cases.
 
-Perhaps make it more explicit?  open-circuit
-
-> +        - short
-
-Same here? short-circuit
-
-> +        - alert1
-> +        - alert2
-> +        - alert3
-> +        - alert4
-> +
-> +  thermocouple-type:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    description:
-> +      Type of thermocouple (THERMOCOUPLE_TYPE_K if omitted).
-> +      Use defines in dt-bindings/iio/temperature/thermocouple.h.
-> +      Supported types are B, E, J, K, N, R, S, T.
-> +
-> +  vdd-supply:
-> +    description: Regulator that provides power to the sensor.
-
-I'd count that one as so common it doesn't need a description.
-    vdd-supply: true
-
-would be sufficient.
-
-
-
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +
-> +unevaluatedProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/gpio/gpio.h>
-> +    #include <dt-bindings/iio/temperature/thermocouple.h>
-> +    #include <dt-bindings/interrupt-controller/irq.h>
-> +    i2c {
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +
-> +        mcp9600@60 {
-> +            compatible = "microchip,mcp9600";
-> +            reg = <0x60>;
-> +            interrupt-parent = <&gpio>;
-> +            interrupts = <25 IRQ_TYPE_EDGE_RISING>;
-> +            interrupt-names = "open";
-> +            thermocouple-type = <THERMOCOUPLE_TYPE_K>;
-> +            vdd-supply = <&vdd>;
-> +        };
-> +    };
-
+Jonathan
