@@ -2,43 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 013006AA8E2
-	for <lists+devicetree@lfdr.de>; Sat,  4 Mar 2023 10:18:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 147066AA904
+	for <lists+devicetree@lfdr.de>; Sat,  4 Mar 2023 10:55:33 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229566AbjCDJR7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 4 Mar 2023 04:17:59 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46566 "EHLO
+        id S229676AbjCDJzc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 4 Mar 2023 04:55:32 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42106 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229559AbjCDJR6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 4 Mar 2023 04:17:58 -0500
-Received: from m204-238.eu.mailgun.net (m204-238.eu.mailgun.net [161.38.204.238])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 885E83589
-        for <devicetree@vger.kernel.org>; Sat,  4 Mar 2023 01:17:55 -0800 (PST)
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=hewittfamily.org.uk;
- q=dns/txt; s=s1; t=1677921472; x=1677928672; h=To: To: References:
- Message-Id: Content-Transfer-Encoding: Cc: Date: In-Reply-To: From: From:
- Subject: Subject: Mime-Version: Content-Type: Sender: Sender;
- bh=sVzgI5s9LdIcW0lYu9Nzc+v/YJcUmG4GmOq3fkqZykc=;
- b=b3I/08jmwFgl8B4CWUtHX66ul2g7VEsjiL41vjI1qn960x3xzvrWJaL2gUn5DfYkATUSkxDC2z4ffrvNvHrc60s0ksdfwXu1Sb+dmLXDaq/M0agxQDVH31kdyzeEiu9DB0W2h9EbDD9S3a39uHZZ43oGjjkbRqbQiNw0iLxojPsu6jXI4Aq8iQSEq1B7vmgbnraWblDbRmGIEqIjyk5VPTwCj1WnMNxRp/C3AOdSZ/cv96SyEYXVZOb7wcolpWBzKpMx/vqh/JvrX0MYLb3nQ6bdz3noaESEO8hsxL2BO+z92B0h4VChdMfDgFH5ByUl5V1aeRYej5vqJMHGZhqNsQ==
-X-Mailgun-Sending-Ip: 161.38.204.238
-X-Mailgun-Sid: WyIzZDI1OSIsImRldmljZXRyZWVAdmdlci5rZXJuZWwub3JnIiwiZTM3MjAiXQ==
-Received: from mail.hewittfamily.org.uk (<unknown> [87.200.95.144]) by 6eb5762dd165 with
- SMTP id 64030cc00d4a9a582f74f248 (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Sat, 04 Mar 2023 09:17:52 GMT
-Sender: christian@hewittfamily.org.uk
-Received: from smtpclient.apple (unknown [167.99.200.149])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.hewittfamily.org.uk (Postfix) with ESMTPSA id B7D957EC010;
-        Sat,  4 Mar 2023 13:17:47 +0400 (+04)
+        with ESMTP id S229551AbjCDJzb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 4 Mar 2023 04:55:31 -0500
+Received: from mail-wr1-x436.google.com (mail-wr1-x436.google.com [IPv6:2a00:1450:4864:20::436])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C4B1714486;
+        Sat,  4 Mar 2023 01:55:28 -0800 (PST)
+Received: by mail-wr1-x436.google.com with SMTP id t15so4411494wrz.7;
+        Sat, 04 Mar 2023 01:55:28 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=to:references:message-id:content-transfer-encoding:cc:date
+         :in-reply-to:from:subject:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=7g5C+jDGu0VzYCCEnoAOmIA11KXnKzjh89GrKtitMVo=;
+        b=iwoMHyoVyoREUmmOcaw9R0MCS0tT+6iXqzunxmbehsSDXPfqL5kLBXF+/CHkUoTOEK
+         huMXh8+0TP0LQ3yq4Yf97y9c2uJ21E1IK2pqXOtfNtbiog9UrGscpQzcnzg1CvspEbsP
+         8Tt8X+tD8RJmDNbtkAPvYj6o/BI5x2EUWPloQiMShD9tsTMxNZwWoP7ZwY3uLZZ9OK5I
+         JyH7ZWqfk3ohPD2Q6RaXb/qb4UgxE2e1jOIe+P/nXjNIDAujOrG0oI6BJtRU0syMDCfv
+         kBywUN+IdgvvPZJrbYoKI76WSMvOBwekEYsSjgVZS5+TEbGD+su+/KNUpi9gJhCFZT3T
+         IjWw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=to:references:message-id:content-transfer-encoding:cc:date
+         :in-reply-to:from:subject:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=7g5C+jDGu0VzYCCEnoAOmIA11KXnKzjh89GrKtitMVo=;
+        b=5bogOyoZl+byIs5EusNHGMBudhKqmc9pB1HbNLv8aa3AajnYrkUMPwYmlUP6r7O1ai
+         GAz+j+je/U/v2coDbpeWGzD1QgvGPgaXqJ2hOhqnU+0Q9UDCv4Zka+MvNGgpJuNwbEfE
+         jxqDcl2K/eTUAQqNxm6P1t4Q5oo+wybrSuYIqO2Pv31SL6+ZE65QE40cacXKIR8LW9QP
+         375R5f6FzyJtiNxQajU/3tCeNNPOGuMQuv8YokYnNzxw1B7wkUd77Pv/Rz2xBfWXaGr6
+         ngqnqC66myRgYK4wyIpyOkT69nrCs4gRgQtN2mSfrE7Dwi2XySs75U+1e1lsMnrOPyZD
+         qisg==
+X-Gm-Message-State: AO0yUKWJk68VCJv4Nh3qinrBevI7gFgb3RC+cVoac8quYkl4l/4sgM/L
+        2GPEKgIk4JhCuS/Y/duw0aM=
+X-Google-Smtp-Source: AK7set9nNvmFzQc9tlkKgIe33pvNfR5jPiyNO23YXyDgmM2jppgUKmD2eCGohqP4hSyhGSCEkqRuyA==
+X-Received: by 2002:a05:6000:11c8:b0:2cb:a82c:2523 with SMTP id i8-20020a05600011c800b002cba82c2523mr4040242wrx.35.1677923727091;
+        Sat, 04 Mar 2023 01:55:27 -0800 (PST)
+Received: from smtpclient.apple ([167.99.200.149])
+        by smtp.gmail.com with ESMTPSA id t20-20020a0560001a5400b002c54f4d0f71sm4624702wry.38.2023.03.04.01.55.24
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Sat, 04 Mar 2023 01:55:26 -0800 (PST)
 Content-Type: text/plain;
         charset=utf-8
 Mime-Version: 1.0 (Mac OS X Mail 16.0 \(3696.120.41.1.1\))
 Subject: Re: [PATCH 2/2] arm64: dts: amlogic: Add initial support for BPI-CM4
  module with BPI-CM4IO baseboard
-From:   Christian Hewitt <christian@hewittfamily.org.uk>
+From:   Christian Hewitt <christianshewitt@gmail.com>
 In-Reply-To: <20230303-topic-amlogic-upstream-bpi-cm4-v1-2-5a23a1ade6bd@linaro.org>
-Date:   Sat, 4 Mar 2023 13:17:43 +0400
+Date:   Sat, 4 Mar 2023 13:55:22 +0400
 Cc:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Kevin Hilman <khilman@baylibre.com>,
@@ -49,17 +67,14 @@ Cc:     Rob Herring <robh+dt@kernel.org>,
         linux-arm-kernel@lists.infradead.org,
         linux-amlogic@lists.infradead.org
 Content-Transfer-Encoding: quoted-printable
-Message-Id: <91A87732-4EA9-48A6-9681-01B1BBD27FC7@hewittfamily.org.uk>
+Message-Id: <6714BB2C-0E80-4F16-93A4-9DAF6FA93EE9@gmail.com>
 References: <20230303-topic-amlogic-upstream-bpi-cm4-v1-0-5a23a1ade6bd@linaro.org>
  <20230303-topic-amlogic-upstream-bpi-cm4-v1-2-5a23a1ade6bd@linaro.org>
 To:     Neil Armstrong <neil.armstrong@linaro.org>
 X-Mailer: Apple Mail (2.3696.120.41.1.1)
-X-Synology-Spam-Status: score=2.909, required 5, TO_DN_SOME 0, MV_CASE 0.5, __THREADED 0, RCPT_COUNT_SEVEN 0, RCVD_COUNT_ZERO 0, FROM_EQ_ENVFROM 0, MIME_TRACE 0, __NOT_SPOOFED 0, __BODY_URI_ONLY 0, MID_RHS_MATCH_FROM 0, NO_RECEIVED -0.001, FROM_HAS_DN 0, FREEMAIL_ENVRCPT 0, TO_MATCH_ENVRCPT_ALL 0, TAGGED_RCPT 0, MIME_GOOD -0.1, __HDRS_LCASE_KNOWN 0, SUSPICIOUS_RECIPS 2.51
-X-Synology-Spam-Flag: no
-X-Synology-Virus-Status: no
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -67,6 +82,9 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Resending from an email account that doesn=E2=80=99t get rejected by all =
+the lists. Apologies
+if you did get this twice:
 
 > On 3 Mar 2023, at 9:37 pm, Neil Armstrong <neil.armstrong@linaro.org> =
 wrote:
@@ -106,6 +124,9 @@ meson-g12b-odroid-n2l.dtb
 > dtb-$(CONFIG_ARCH_MESON) +=3D meson-g12b-s922x-khadas-vim3.dtb
 > dtb-$(CONFIG_ARCH_MESON) +=3D meson-g12b-ugoos-am6.dtb
 > +dtb-$(CONFIG_ARCH_MESON) +=3D meson-g12b-bananapi-cm4-cm4io.dtb
+
+^ Please add before meson-g12b-gsking-x.dtb to keep the list sorted
+
 > dtb-$(CONFIG_ARCH_MESON) +=3D meson-gxbb-kii-pro.dtb
 > dtb-$(CONFIG_ARCH_MESON) +=3D meson-gxbb-nanopi-k2.dtb
 > dtb-$(CONFIG_ARCH_MESON) +=3D meson-gxbb-nexbox-a95x.dtb
@@ -700,5 +721,4 @@ http://ix.io/4pTy
 
 Tested-by: Christian Hewitt <christianshewitt@gmail.com>
 
-Christian
-
+Christian=
