@@ -2,134 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 310A06AA92B
-	for <lists+devicetree@lfdr.de>; Sat,  4 Mar 2023 11:34:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 102816AA945
+	for <lists+devicetree@lfdr.de>; Sat,  4 Mar 2023 12:15:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229560AbjCDKes (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 4 Mar 2023 05:34:48 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36830 "EHLO
+        id S229642AbjCDLPo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 4 Mar 2023 06:15:44 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59604 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229500AbjCDKer (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 4 Mar 2023 05:34:47 -0500
-Received: from smtpout1.mo528.mail-out.ovh.net (smtpout1.mo528.mail-out.ovh.net [46.105.34.251])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 101D910AB8;
-        Sat,  4 Mar 2023 02:34:45 -0800 (PST)
-Received: from pro2.mail.ovh.net (unknown [10.108.20.84])
-        by mo528.mail-out.ovh.net (Postfix) with ESMTPS id BF00C20CD4;
-        Sat,  4 Mar 2023 10:34:40 +0000 (UTC)
-Received: from [192.168.1.41] (88.161.25.233) by DAG1EX1.emp2.local
- (172.16.2.1) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.21; Sat, 4 Mar
- 2023 11:34:39 +0100
-Message-ID: <7fa7f07f-d1e1-1e43-992c-4981c5810284@traphandler.com>
-Date:   Sat, 4 Mar 2023 11:34:39 +0100
+        with ESMTP id S229556AbjCDLPo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 4 Mar 2023 06:15:44 -0500
+Received: from mail-ed1-x52f.google.com (mail-ed1-x52f.google.com [IPv6:2a00:1450:4864:20::52f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 325ED1C5A0
+        for <devicetree@vger.kernel.org>; Sat,  4 Mar 2023 03:15:42 -0800 (PST)
+Received: by mail-ed1-x52f.google.com with SMTP id da10so20141788edb.3
+        for <devicetree@vger.kernel.org>; Sat, 04 Mar 2023 03:15:42 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1677928540;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=Ftk4PV2UVoiZ3+JPdTCAz4kPzDVIhLMOG9HeEl28Ozs=;
+        b=vCHiWYscL9Kbfe0TAVo7UWRE8jVnjWvNU5XWSmAOdwXPwkTPh/2G2WO9Ax/EG753V/
+         qfgLTp+FDuLjPUQhylZqyx1njWAtFwD94byKnj9eBsDX0J3Tx74pf+OpEZ/S5pAF+0YU
+         KXOFha4Ilb/hwMEtKQbNQwJy2hPJIF8wZ+Cn0itd02eLGhIInbfuEFJ3DHx8kfHLmpiL
+         VY/ndXwVLEa7EIW0ti0J+cst7EeghQc4gSzYLHkIgIgkLaoRkF5EGwsqXfQzc+DzYiH5
+         CPWNg7ujEbay5ZqbNrW+3B4nwOS1III99ZEMhPpB4EAwxr4fCby5dhJU4XVj3iK2U+cy
+         wD5w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1677928540;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=Ftk4PV2UVoiZ3+JPdTCAz4kPzDVIhLMOG9HeEl28Ozs=;
+        b=1nsuRNxpRt4ezNmtt4Q3nmXy8lWBD9tb7+vSKVF858zxkM7zvn07J4YqVIBhEZpCcL
+         70q9gRZf+6aFE80YVm3SLMS/PwWRxuyjdIP5NW6w2/FDAFCqEiLjBfAJGpoR3ScYvN0c
+         uJrCo8TD8CyKbqPkFI0i80Yyj8LxWLGQvOfMveCqg+wDlbd+5aBgo3L4v4tS6Valoy7Y
+         YzR01Se0+fCtwYPAaw+rBiyYwoPMlPYx53LifAPYTNgrK+HSbak0+LM+uFMRiUz4C2EC
+         +ug4Dln3iLrsEFxpO34IgCEUN2rzYbuazsH7oexVaP+9Vm/PnizH1nMy3+F0Eqh7Gtlj
+         MTGg==
+X-Gm-Message-State: AO0yUKXbyVpTw9ewjWPQ4LazfnXoxsya6oTPk093t3ObsMbiymeXrJc5
+        yY7GzDCOmfToXcGgXQQNwS72Vg==
+X-Google-Smtp-Source: AK7set/KGQOOy6z0wzqUoxZNRI9lxGHxaqc0AaV8j+0HjKSadP4nPVI5SC/GjiprJLDQAt/MuWv/dg==
+X-Received: by 2002:a17:906:2756:b0:878:79e6:4672 with SMTP id a22-20020a170906275600b0087879e64672mr3595195ejd.42.1677928540692;
+        Sat, 04 Mar 2023 03:15:40 -0800 (PST)
+Received: from ?IPV6:2a02:810d:15c0:828:b758:6326:1292:e2aa? ([2a02:810d:15c0:828:b758:6326:1292:e2aa])
+        by smtp.gmail.com with ESMTPSA id s4-20020a1709062ec400b008f89953b761sm1968521eji.3.2023.03.04.03.15.39
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 04 Mar 2023 03:15:39 -0800 (PST)
+Message-ID: <db22af89-6ec5-437d-520e-38aafdb195fc@linaro.org>
+Date:   Sat, 4 Mar 2023 12:15:38 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.1
-Subject: Re: [PATCH 2/3] of: irq: make callers of of_irq_parse_one() release
- the device node
+ Thunderbird/102.8.0
+Subject: Re: [PATCH 2/2] arm64: dts: amlogic: Add initial support for BPI-CM4
+ module with BPI-CM4IO baseboard
 Content-Language: en-US
-To:     Geert Uytterhoeven <geert@linux-m68k.org>
-CC:     <saravanak@google.com>, <clement.leger@bootlin.com>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Russell King <linux@armlinux.org.uk>,
-        Michael Ellerman <mpe@ellerman.id.au>,
-        Nicholas Piggin <npiggin@gmail.com>,
-        Christophe Leroy <christophe.leroy@csgroup.eu>,
-        <zajec5@gmail.com>, Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Claudiu Beznea <claudiu.beznea@microchip.com>,
-        Marc Zyngier <maz@kernel.org>, <afaerber@suse.de>,
-        Manivannan Sadhasivam <mani@kernel.org>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Samuel Holland <samuel@sholland.org>,
+To:     Neil Armstrong <neil.armstrong@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Nishanth Menon <nm@ti.com>, <ssantosh@kernel.org>,
-        <mathias.nyman@intel.com>, <gregkh@linuxfoundation.org>,
-        <thierry.reding@gmail.com>, <jonathanh@nvidia.com>,
-        <linux-renesas-soc@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <linuxppc-dev@lists.ozlabs.org>,
-        <linux-wireless@vger.kernel.org>,
-        <linux-actions@lists.infradead.org>,
-        <linux-riscv@lists.infradead.org>, <linux-sunxi@lists.linux.dev>,
-        <devicetree@vger.kernel.org>, <linux-pci@vger.kernel.org>,
-        <linux-usb@vger.kernel.org>, <linux-tegra@vger.kernel.org>
-References: <20230301185209.274134-1-jjhiblot@traphandler.com>
- <20230301185209.274134-3-jjhiblot@traphandler.com>
- <CAMuHMdVF337k+zyjpbzoDtWWDnYhM6eM3+As6UuZ7FCgASsMQg@mail.gmail.com>
-From:   Jean-Jacques Hiblot <jjhiblot@traphandler.com>
-In-Reply-To: <CAMuHMdVF337k+zyjpbzoDtWWDnYhM6eM3+As6UuZ7FCgASsMQg@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Originating-IP: [88.161.25.233]
-X-ClientProxiedBy: CAS2.emp2.local (172.16.1.2) To DAG1EX1.emp2.local
- (172.16.2.1)
-X-Ovh-Tracer-Id: 2216615445481994549
-X-VR-SPAMSTATE: OK
-X-VR-SPAMSCORE: -100
-X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrgedvhedrvddtuddgudegucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuqfggjfdpvefjgfevmfevgfenuceurghilhhouhhtmecuhedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujfgurhepkfffgggfuffvvehfhfgjtgfgihesthekredttdefjeenucfhrhhomheplfgvrghnqdflrggtqhhuvghsucfjihgslhhothcuoehjjhhhihgslhhothesthhrrghphhgrnhgulhgvrhdrtghomheqnecuggftrfgrthhtvghrnhepvdefkedugeekueeuvdeuueevjefftddvtefhleekhfefffdtteetffeigfdvtdeinecukfhppeduvdejrddtrddtrddupdekkedrudeiuddrvdehrddvfeefnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehinhgvthepuddvjedrtddrtddruddpmhgrihhlfhhrohhmpeeojhhjhhhisghlohhtsehtrhgrphhhrghnughlvghrrdgtohhmqedpnhgspghrtghpthhtohepuddprhgtphhtthhopehgvggvrhhtsehlihhnuhigqdhmieekkhdrohhrghdpsghhvghlghgrrghssehgohhoghhlvgdrtghomhdpnhhmsehtihdrtghomhdpshhsrghnthhoshhhsehkvghrnhgvlhdrohhrghdpmhgrthhhihgrshdrnhihmhgrnhesihhnthgvlhdrtghomhdpghhrvghgkhhhsehlihhnuhigfhhouhhnuggrthhiohhnrdhorhhgpdhthhhivghrrhihrdhrvgguihhnghesghhmrghilhdrtghomhdpjhhonhgrthhhrg
- hnhhesnhhvihguihgrrdgtohhmpdhlihhnuhigqdhrvghnvghsrghsqdhsohgtsehvghgvrhdrkhgvrhhnvghlrdhorhhgpdhlihhnuhigqdgrrhhmqdhkvghrnhgvlheslhhishhtshdrihhnfhhrrgguvggrugdrohhrghdplhhinhhugidqkhgvrhhnvghlsehvghgvrhdrkhgvrhhnvghlrdhorhhgpdhlihhnuhigphhptgdquggvvheslhhishhtshdrohiilhgrsghsrdhorhhgpdhlihhnuhigqdifihhrvghlvghsshesvhhgvghrrdhkvghrnhgvlhdrohhrghdplhhinhhugidqrggtthhiohhnsheslhhishhtshdrihhnfhhrrgguvggrugdrohhrghdplhhinhhugidqrhhishgtvheslhhishhtshdrihhnfhhrrgguvggrugdrohhrghdplhhinhhugidqshhunhigiheslhhishhtshdrlhhinhhugidruggvvhdpuggvvhhitggvthhrvggvsehvghgvrhdrkhgvrhhnvghlrdhorhhgpdhlihhnuhigqdhptghisehvghgvrhdrkhgvrhhnvghlrdhorhhgpdhfrhhofigrnhgurdhlihhsthesghhmrghilhdrtghomhdplhhinhhugidquhhssgesvhhgvghrrdhkvghrnhgvlhdrohhrghdprhhosghhodgutheskhgvrhhnvghlrdhorhhgpdhjvghrnhgvjhdrshhkrhgrsggvtgesghhmrghilhdrtghomhdpshgrrhgrvhgrnhgrkhesghhoohhglhgvrdgtohhmpdgtlhgvmhgvnhhtrdhlvghgvghrsegsohhothhlihhnrdgtohhmpdhmrghgnhhushdruggrmhhmsehgmhgrihhlrdgtohhmpdhlihhnuhigsegrrhhmlhhinhhugid
- rohhrghdruhhkpdhmphgvsegvlhhlvghrmhgrnhdrihgurdgruhdpnhhpihhgghhinhesghhmrghilhdrtghomhdptghhrhhishhtohhphhgvrdhlvghrohihsegtshhgrhhouhhprdgvuhdpiigrjhgvtgehsehgmhgrihhlrdgtohhmpdgurghnihgvlhdrlhgviigtrghnoheslhhinhgrrhhordhorhhgpdhtghhlgieslhhinhhuthhrohhnihigrdguvgdptghlrghuughiuhdrsggviihnvggrsehmihgtrhhotghhihhprdgtohhmpdhmrgiisehkvghrnhgvlhdrohhrghdprghfrggvrhgsvghrsehsuhhsvgdruggvpdhmrghniheskhgvrhhnvghlrdhorhhgpdhprghlmhgvrhesuggrsggsvghlthdrtghomhdpphgruhhlrdifrghlmhhslhgvhiesshhifhhivhgvrdgtohhmpdifvghnshestghsihgvrdhorhhgpdhsrghmuhgvlhesshhhohhllhgrnhgurdhorhhgpdhlihhnuhigqdhtvghgrhgrsehvghgvrhdrkhgvrhhnvghlrdhorhhgpdfovfetjfhoshhtpehmohehvdekpdhmohguvgepshhmthhpohhuth
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_NONE
-        autolearn=ham autolearn_force=no version=3.4.6
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-amlogic@lists.infradead.org
+References: <20230303-topic-amlogic-upstream-bpi-cm4-v1-0-5a23a1ade6bd@linaro.org>
+ <20230303-topic-amlogic-upstream-bpi-cm4-v1-2-5a23a1ade6bd@linaro.org>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230303-topic-amlogic-upstream-bpi-cm4-v1-2-5a23a1ade6bd@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 03/03/2023 18:37, Neil Armstrong wrote:
+> Add support for both the BananaPi BPI-CM4 module and the BananaPi
+> baseboard which is comnpatible with the RaspberryPi CM4IO baseboard.
+> 
+> The BananaPi BPI-CM4 module follows the CM4 specifications at [1],
+> but with a single HDMI port and a since DSI output.
+> 
 
+(...)
 
-On 02/03/2023 08:49, Geert Uytterhoeven wrote:
-> Hi Jean-Jacques,
-> 
-> Thanks for your patch!
-> 
-> On Wed, Mar 1, 2023 at 7:53 PM Jean-Jacques Hiblot
-> <jjhiblot@traphandler.com> wrote:
->> of_irq_parse_one() does a get() on the device node returned in out_irq->np.
->> Callers of of_irq_parse_one() must do a put() when they are done with it.
-> 
-> What does "be done with it" really mean here?
-> 
->> Signed-off-by: Jean-Jacques Hiblot <jjhiblot@traphandler.com>
-> 
->> --- a/arch/arm/mach-shmobile/regulator-quirk-rcar-gen2.c
->> +++ b/arch/arm/mach-shmobile/regulator-quirk-rcar-gen2.c
->> @@ -184,6 +184,7 @@ static int __init rcar_gen2_regulator_quirk(void)
->>                          kfree(quirk);
->>                          continue;
->>                  }
->> +               of_node_put(argsa->np);
-> 
-> The quirk object, which is a container of argsa, is still used below,
-> and stored in a linked list.  I agree argsa->np is not dereferenced,
-> but the pointer itself is still compared to other pointers.
-Hi Geert,
+> +	sdio_pwrseq: sdio-pwrseq {
+> +		compatible = "mmc-pwrseq-simple";
+> +		reset-gpios = <&gpio GPIOAO_6 GPIO_ACTIVE_LOW>;
+> +		clocks = <&wifi32k>;
+> +		clock-names = "ext_clock";
+> +	};
+> +
+> +	emmc_1v8: regulator-emmc_1v8 {
 
-I fail to see when the pointers are compared. It looks to me that only 
-the args are compared. Am I missing something ?
-In any case, looking more closely at the code, I guess that indeed the
-of_node_put() shouldn't be added here because this code expects that the
-nodes never go away. That is probably a good assertion in case of PMICs
+No underscores in node names.
 
-JJ
-> IIUIC, calling of_node_put() might cause the reference count to drop to
-> zero, and the underlying struct node object to be deallocated.
-> So when a future reference to the same DT node will be taken, a new
-> struct node object will be allocated, and the pointer comparison below
-> will fail?
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "EMMC_1V8";
+> +		regulator-min-microvolt = <1800000>;
+> +		regulator-max-microvolt = <1800000>;
+> +		vin-supply = <&vddao_3v3>;
+> +		regulator-always-on;
+> +	};
+> +
+> +	dc_in: regulator-dc-in {
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "DC_IN";
+> +		regulator-min-microvolt = <5000000>;
+> +		regulator-max-microvolt = <5000000>;
+> +		regulator-always-on;
+> +	};
+> +
+
 > 
-> Or am I missing something?
-> 
-> Gr{oetje,eeting}s,
-> 
->                          Geert
-> 
+
+Best regards,
+Krzysztof
+
