@@ -2,55 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 011D76AA9B3
-	for <lists+devicetree@lfdr.de>; Sat,  4 Mar 2023 13:59:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 21ECA6AA9BD
+	for <lists+devicetree@lfdr.de>; Sat,  4 Mar 2023 14:03:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229726AbjCDM7L (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 4 Mar 2023 07:59:11 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35456 "EHLO
+        id S229676AbjCDNDa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 4 Mar 2023 08:03:30 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39494 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229740AbjCDM7J (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 4 Mar 2023 07:59:09 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 97745126F6;
-        Sat,  4 Mar 2023 04:58:48 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 3B58360C72;
-        Sat,  4 Mar 2023 12:58:46 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 25FB7C433D2;
-        Sat,  4 Mar 2023 12:58:43 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1677934725;
-        bh=f5HMQ60sFafi/CBWK1oFAg2PWI/aJ+xu2nm5ZorJsJ4=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=lt4uwOuCA1LQH9PV9NXthtRipjgk5e3IKC/UdNxTXVaJn0iVZzk2BGOu2HgE6OJSb
-         ByceH6R3gebUERi8bCHakE6FVFz907B1NJa90/+fvGglfQ2BApZRIFv3WZtG/6oOEh
-         AedYMtRXt4blWcUa2JHrBAVu/isVxbyYf13pqtpzMEGKRfwIPNII/kDTJC3NRyyVDr
-         g1X1bYbAjHMc9uJzKhd04chAlrTIwXNoMz4UxmUVuDShGTjNGizMH7B+V5GD1r4rtn
-         zBQPVvoFNPPaRnB9ExnA2+XJrmymGAjG1YK1ifOEiX8NuWH4n779Cqtw43TopxOoa3
-         u9V6Fy46nxTEg==
-Date:   Sat, 4 Mar 2023 13:13:18 +0000
-From:   Jonathan Cameron <jic23@kernel.org>
-To:     Marco Felsch <m.felsch@pengutronix.de>
-Cc:     puranjay12@gmail.com, lars@metafoo.de, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, linux-iio@vger.kernel.org,
-        devicetree@vger.kernel.org, kernel@pengutronix.de
-Subject: Re: [PATCH v4 2/5] iio: temperature: tmp117: improve fallback
- capabilities
-Message-ID: <20230304131318.471fbe3c@jic23-huawei>
-In-Reply-To: <20230227184457.q3oj5miynnk6jskx@pengutronix.de>
-References: <20230220122552.925216-1-m.felsch@pengutronix.de>
-        <20230220122552.925216-3-m.felsch@pengutronix.de>
-        <20230226130700.5b0d650f@jic23-huawei>
-        <20230227184457.q3oj5miynnk6jskx@pengutronix.de>
-X-Mailer: Claws Mail 4.1.1 (GTK 3.24.37; x86_64-pc-linux-gnu)
+        with ESMTP id S229551AbjCDND3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 4 Mar 2023 08:03:29 -0500
+Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com [IPv6:2a00:1450:4864:20::52b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6482D113E8
+        for <devicetree@vger.kernel.org>; Sat,  4 Mar 2023 05:03:20 -0800 (PST)
+Received: by mail-ed1-x52b.google.com with SMTP id x3so20586759edb.10
+        for <devicetree@vger.kernel.org>; Sat, 04 Mar 2023 05:03:20 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1677934998;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=pJR6oU4xKUs4lYSyYP5+zTHR16nQ+SugySt6CqU73PU=;
+        b=meLUljN1kRQFfQyXZaILv5wTYVAz93IaTM/ZaiGNZm1gYEIgmVg8bCm26nhhUzfX+g
+         ZQ6eDrcuq+lSFIuQGs4OGz7ySh516Lg985orujn9fUsbiCMPxbf+L938EGXNuMsJY4Cb
+         yP0lXx3UJeg3m0yFK66iYrOSSIjk4ZHsU6d2r4PALFcSyu7lGA7lg1vu5khfK9mG0O0Y
+         0hMuKC1pHnimNE6rPYb7z4cRxrO9Sc3gCLuTBkoD4B17Ct6+t8bi7hEVY+fFKQFkPegB
+         F5GsUWyt7vpuxlaljTqjei8tiZg6+WjeQghJlVH5g3qF68dMt7PdMbb5GAS76R4TckQF
+         oloA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1677934998;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=pJR6oU4xKUs4lYSyYP5+zTHR16nQ+SugySt6CqU73PU=;
+        b=B3y+WMJ33piB7dGGx9Ip11h0OUJgwid6GZi3KMAlRxzIrWVpjir/bmNX/Mzw2JpTAw
+         Kuu3A6e/oloYpIn6MQYI5/q+AZvm1JsIdkxf6pDO2GDZ5OsWYErlc+fLxlIJKBLm1t7g
+         dEB5z8xONdJpgDdd3ikt/huaqVTyXWSVWoiuZrXpovbDKT1S9LtAjSgRqTU9tNaZv79R
+         CDe502/utLakStGdRLuD/rtBaTpGxKheoKtaYBPgBksJdhs8UYkzp78DJdFw0We/1JNC
+         nYS6WbhTs7pp2M2UIlBEFd8rA76GXpKy7RWz0S4OWNldFYCfql31TEg0xjcDpCz2x9Sa
+         gA3A==
+X-Gm-Message-State: AO0yUKUyPbRsNqbfJ9TvmMLmOe4VMFQHRwWDzrFQ5Pt7+Ina2gQJiTqm
+        T8getEL38zdN0dx7whgYt9FqmA==
+X-Google-Smtp-Source: AK7set8B4W332A4II2SW8JiGYyWXFAhUHBnJ7z2y1vWrZX0ySzWjJIySJg8Gp0Za9rstQgX6XJ+wOw==
+X-Received: by 2002:a05:6402:2052:b0:4b6:5d88:3fc4 with SMTP id bc18-20020a056402205200b004b65d883fc4mr5213394edb.1.1677934998736;
+        Sat, 04 Mar 2023 05:03:18 -0800 (PST)
+Received: from krzk-bin.. ([2a02:810d:15c0:828:b758:6326:1292:e2aa])
+        by smtp.gmail.com with ESMTPSA id u23-20020a50c057000000b004c19f1891fasm2423220edd.59.2023.03.04.05.03.17
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 04 Mar 2023 05:03:18 -0800 (PST)
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Jianhua Lu <lujianhua000@gmail.com>,
+        Katherine Perez <kaperez@linux.microsoft.com>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH 1/2] arm64: dts: qcom: sm8250-xiaomi-elish: fix USB maximum speed property
+Date:   Sat,  4 Mar 2023 14:03:14 +0100
+Message-Id: <20230304130315.51595-1-krzysztof.kozlowski@linaro.org>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -58,193 +74,27 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 27 Feb 2023 19:44:57 +0100
-Marco Felsch <m.felsch@pengutronix.de> wrote:
+Fix typo in USB DWC3 node maximum speed property.
 
-> Hi Jonathan,
-> 
-> On 23-02-26, Jonathan Cameron wrote:
-> > On Mon, 20 Feb 2023 13:25:49 +0100
-> > Marco Felsch <m.felsch@pengutronix.de> wrote:
-> >   
-> > > Don't error if the device-id found don't match the device-id for the
-> > > TMP117 sensor since other TMPxxx might be compatible to the TMP117. The
-> > > fallback mechanism tries to gather the required information from the
-> > > of_device_id or from the i2c_client information.
-> > > 
-> > > The commit also prepares the driver for adding new devices more easily
-> > > by making use of switch-case at the relevant parts.
-> > > 
-> > > Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>  
-> > Hi Marco,
-> > 
-> > Thanks for doing this.  A small things inline.  
-> 
-> please see my comments below.
-> 
-> > > ---
-> > > v4:
-> > > - new patch to implement possible fallback (Jonathan)
-> > > 
-> > >  drivers/iio/temperature/tmp117.c | 67 +++++++++++++++++++++-----------
-> > >  1 file changed, 44 insertions(+), 23 deletions(-)
-> > > 
-> > > diff --git a/drivers/iio/temperature/tmp117.c b/drivers/iio/temperature/tmp117.c
-> > > index f9b8f2b570f6b..4ddb8cf9a29ab 100644
-> > > --- a/drivers/iio/temperature/tmp117.c
-> > > +++ b/drivers/iio/temperature/tmp117.c
-> > > @@ -16,6 +16,7 @@
-> > >  #include <linux/types.h>
-> > >  #include <linux/kernel.h>
-> > >  #include <linux/limits.h>
-> > > +#include <linux/property.h>
-> > >  
-> > >  #include <linux/iio/iio.h>
-> > >  
-> > > @@ -113,32 +114,60 @@ static const struct iio_info tmp117_info = {
-> > >  	.write_raw = tmp117_write_raw,
-> > >  };
-> > >  
-> > > +static const struct of_device_id tmp117_of_match[] = {
-> > > +	{ .compatible = "ti,tmp117", .data = (void *)TMP117_DEVICE_ID },
-> > > +	{ }
-> > > +};
-> > > +MODULE_DEVICE_TABLE(of, tmp117_of_match);
-> > > +
-> > > +static const struct i2c_device_id tmp117_id[] = {
-> > > +	{ "tmp117", TMP117_DEVICE_ID },
-> > > +	{ }
-> > > +};
-> > > +MODULE_DEVICE_TABLE(i2c, tmp117_id);  
-> > 
-> > As below.  There is an easy way to avoid having to move these.
-> >   
-> > > +
-> > >  static int tmp117_identify(struct i2c_client *client)
-> > >  {
-> > > +	unsigned long match_data;
-> > >  	int dev_id;
-> > >  
-> > >  	dev_id = i2c_smbus_read_word_swapped(client, TMP117_REG_DEVICE_ID);
-> > >  	if (dev_id < 0)
-> > >  		return dev_id;
-> > > -	if (dev_id != TMP117_DEVICE_ID) {
-> > > -		dev_err(&client->dev, "TMP117 not found\n");
-> > > -		return -ENODEV;
-> > > +
-> > > +	switch (dev_id) {
-> > > +	case TMP117_DEVICE_ID:
-> > > +		return dev_id;
-> > >  	}
-> > > -	return 0;
-> > > +
-> > > +	dev_info(&client->dev, "Unknown device id (0x%x), use fallback compatible\n",
-> > > +		 dev_id);
-> > > +
-> > > +	match_data = (uintptr_t)device_get_match_data(&client->dev);
-> > > +	if (match_data)
-> > > +		return match_data;
-> > > +
-> > > +	match_data = i2c_match_id(tmp117_id, client)->driver_data;  
-> > 
-> > Whilst correct, i2c_client_get_device_id() avoids the need
-> > to move tmp117_id up to where you have by getting to that table via
-> > the driver structure. That will simplify this patch a fair bit.
-> >   
-> > > +	if (match_data)
-> > > +		return match_data;
-> > > +
-> > > +	dev_err(&client->dev, "error: No valid fallback found\n");  
-> > 
-> > This is a little misleading as fallback only applies to the device tree
-> > path.   
-> 
-> Since we support the i2c_device_id table as well, this is not 100% true.
+Fixes: a41b617530bf ("arm64: dts: qcom: sm8250: Add device tree for Xiaomi Mi Pad 5 Pro")
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+---
+ arch/arm64/boot/dts/qcom/sm8250-xiaomi-elish.dts | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-I guess it's semantics, but the error message implies that a fallback is
-possible.  That only exists for one of the possible paths, all of which
-failed to get to here.  Hence suggestion of more generic message.
-
-> 
-> > Also, not a lot of point in putting error in the text of
-> > a dev_err.  Perhaps just "Unsupported device".  
-> 
-> dev_err() does not print a error on the commandline. If something went
-> wrong I tend to "dmesg|grep -i err" or "dmesg|grep -i fail". Therefore I
-> added the error keyword here. But I can change the message to "Error:
-> unsupported device" if this is okay for you.
-
-Ok. I guess I was assuming some parsing that used the log level.
-
-> 
-> Regards,
->   Marco
-> 
-> > > +
-> > > +	return -ENODEV;
-> > >  }
-> > >  
-> > >  static int tmp117_probe(struct i2c_client *client)
-> > >  {
-> > >  	struct tmp117_data *data;
-> > >  	struct iio_dev *indio_dev;
-> > > -	int ret;
-> > > +	int dev_id;
-> > >  
-> > >  	if (!i2c_check_functionality(client->adapter, I2C_FUNC_SMBUS_WORD_DATA))
-> > >  		return -EOPNOTSUPP;
-> > >  
-> > > -	ret = tmp117_identify(client);
-> > > -	if (ret < 0)
-> > > -		return ret;
-> > > +	dev_id = tmp117_identify(client);
-> > > +	if (dev_id < 0)
-> > > +		return dev_id;  
-> > 
-> > I'd keep it in ret until you know it's good.  Reduces churn and is nicer
-> > code in general, though one more line.
-> > 
-> > 	dev_id = ret;
-> >   
-> > >  
-> > >  	indio_dev = devm_iio_device_alloc(&client->dev, sizeof(*data));
-> > >  	if (!indio_dev)
-> > > @@ -148,28 +177,20 @@ static int tmp117_probe(struct i2c_client *client)
-> > >  	data->client = client;
-> > >  	data->calibbias = 0;
-> > >  
-> > > -	indio_dev->name = "tmp117";
-> > >  	indio_dev->modes = INDIO_DIRECT_MODE;
-> > >  	indio_dev->info = &tmp117_info;
-> > >  
-> > > -	indio_dev->channels = tmp117_channels;
-> > > -	indio_dev->num_channels = ARRAY_SIZE(tmp117_channels);
-> > > +	switch (dev_id) {
-> > > +	case TMP117_DEVICE_ID:
-> > > +		indio_dev->channels = tmp117_channels;
-> > > +		indio_dev->num_channels = ARRAY_SIZE(tmp117_channels);
-> > > +		indio_dev->name = "tmp117";
-> > > +		break;
-> > > +	}
-> > >  
-> > >  	return devm_iio_device_register(&client->dev, indio_dev);
-> > >  }
-> > >  
-> > > -static const struct of_device_id tmp117_of_match[] = {
-> > > -	{ .compatible = "ti,tmp117", },
-> > > -	{ }
-> > > -};
-> > > -MODULE_DEVICE_TABLE(of, tmp117_of_match);
-> > > -
-> > > -static const struct i2c_device_id tmp117_id[] = {
-> > > -	{ "tmp117", 0 },
-> > > -	{ }
-> > > -};
-> > > -MODULE_DEVICE_TABLE(i2c, tmp117_id);
-> > > -
-> > >  static struct i2c_driver tmp117_driver = {
-> > >  	.driver = {
-> > >  		.name	= "tmp117",  
-> > 
-> >   
+diff --git a/arch/arm64/boot/dts/qcom/sm8250-xiaomi-elish.dts b/arch/arm64/boot/dts/qcom/sm8250-xiaomi-elish.dts
+index 24fc29f0ee5e..6bd0dda8b6e9 100644
+--- a/arch/arm64/boot/dts/qcom/sm8250-xiaomi-elish.dts
++++ b/arch/arm64/boot/dts/qcom/sm8250-xiaomi-elish.dts
+@@ -595,7 +595,7 @@ &usb_1 {
+ 
+ &usb_1_dwc3 {
+ 	dr_mode = "peripheral";
+-	maximum-spped = "high-speed";
++	maximum-speed = "high-speed";
+ 	/* Remove USB3 phy */
+ 	phys = <&usb_1_hsphy>;
+ 	phy-names = "usb2-phy";
+-- 
+2.34.1
 
