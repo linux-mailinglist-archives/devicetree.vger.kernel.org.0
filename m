@@ -2,86 +2,232 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B989E6AABCB
-	for <lists+devicetree@lfdr.de>; Sat,  4 Mar 2023 19:20:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 80D496AABFD
+	for <lists+devicetree@lfdr.de>; Sat,  4 Mar 2023 20:00:38 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229455AbjCDSUY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 4 Mar 2023 13:20:24 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40878 "EHLO
+        id S229447AbjCDTAh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 4 Mar 2023 14:00:37 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60582 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229445AbjCDSUX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 4 Mar 2023 13:20:23 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 03888E38B;
-        Sat,  4 Mar 2023 10:20:22 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id AC2B1B80861;
-        Sat,  4 Mar 2023 18:20:21 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8F8B7C433EF;
-        Sat,  4 Mar 2023 18:20:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1677954020;
-        bh=873OsmyQDgKThAzDPboWcieeAtMpaAf6UwiQOQlZSMs=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=p1T4eO0aSSjplp7/CppqHa40MLpizItJnfU300SnA3izW1WpI6l8pvT5lFyAkch3A
-         aUKYP419WnSp8NCF3SkcvI0BRwkLg7O/+Gs6/QF0LpkV5GnUZcNIgrZMBQf6Iv92sg
-         RfpWB9SGk+80mAMYk5P/RZMBAjnWpwqZQQUIADLr3Zh06yjVgtCsBhvL439t85uhSL
-         6sLoJjX+yhlQygL1HJ8VDKXBr94w4B3r0pCYWZMtpebqjGtExrzL7/bZmfF2HExzW0
-         IOJkgSgl8IkSO4kXjWFSGhyb6eCMVeCwiBPV3INPgFJCNJCcTWo/+/HcVOKN9JQ95p
-         P+lTALTCfYknw==
-Date:   Sat, 4 Mar 2023 18:20:15 +0000
-From:   Jonathan Cameron <jic23@kernel.org>
-To:     Marco Felsch <m.felsch@pengutronix.de>
-Cc:     puranjay12@gmail.com, lars@metafoo.de, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, linux-iio@vger.kernel.org,
-        devicetree@vger.kernel.org, kernel@pengutronix.de
-Subject: Re: [PATCH v6 0/5] Add TI TMP116 Support
-Message-ID: <20230304182015.77ccbecc@jic23-huawei>
-In-Reply-To: <20230228090518.529811-1-m.felsch@pengutronix.de>
-References: <20230228090518.529811-1-m.felsch@pengutronix.de>
-X-Mailer: Claws Mail 4.1.1 (GTK 3.24.37; x86_64-pc-linux-gnu)
+        with ESMTP id S229471AbjCDTAg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 4 Mar 2023 14:00:36 -0500
+Received: from mail-108-mta128.mxroute.com (mail-108-mta128.mxroute.com [136.175.108.128])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9C9E715555
+        for <devicetree@vger.kernel.org>; Sat,  4 Mar 2023 11:00:31 -0800 (PST)
+Received: from mail-111-mta2.mxroute.com ([136.175.111.2] filter006.mxroute.com)
+ (Authenticated sender: mN4UYu2MZsgR)
+ by mail-108-mta128.mxroute.com (ZoneMTA) with ESMTPSA id 186adff2a2c000edb4.004
+ for <devicetree@vger.kernel.org>
+ (version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES128-GCM-SHA256);
+ Sat, 04 Mar 2023 19:00:26 +0000
+X-Zone-Loop: 6f8866deaf825ae0f1e1201fa906deb2745e9d93f533
+X-Originating-IP: [136.175.111.2]
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=ahepp.dev;
+        s=x; h=Content-Transfer-Encoding:MIME-Version:Message-Id:Date:Subject:Cc:To:
+        From:Sender:Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:
+        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
+        References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:
+        List-Owner:List-Archive; bh=vAe3fdfC0djmO3MJDSayibTQ/X49u9L1YrbwXs3r8O0=; b=C
+        150N580Z1qRj3Aqm1qU/V7G3t7Z7sgXetvu75kdHfR9Q3TZdB37QKTVp400D+/HEhjYkmA0sP9+wt
+        LSgpefa2qHl4uzSoYFvJjwm9CcCWswg7CnO8cUUWPE/PE2FFCeJk/37008FillB8q8ibVRbK9Lpwf
+        SP5TTuK38wEb8y2pxJxmDyMqMn2/tqVMFR4HknVEviVDiWuTQ4AQExHJQ4/ZHYu1mDm5RXrFOPBxl
+        +c6/WqGk2GA/OyFR//lkIm4ghq5GOe2ofptu8cOr0H2KhOt2TSv+P4xeyYL1eL29OZW/Iw2/kXwFp
+        qSV3K+JWP/hYRCS1GHrlvurIEQ6sqN46Q==;
+From:   Andrew Hepp <andrew.hepp@ahepp.dev>
+To:     devicetree@vger.kernel.org, linux-iio@vger.kernel.org
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Andrew Hepp <andrew.hepp@ahepp.dev>
+Subject: [PATCH v4 1/2] dt-bindings: iio: Add MCP9600 thermocouple EMF converter bindings
+Date:   Sat,  4 Mar 2023 10:59:53 -0800
+Message-Id: <20230304185954.1492-1-andrew.hepp@ahepp.dev>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Authenticated-Id: andrew.hepp@ahepp.dev
+X-Spam-Status: No, score=-1.7 required=5.0 tests=BAYES_00,DKIM_INVALID,
+        DKIM_SIGNED,SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 28 Feb 2023 10:05:13 +0100
-Marco Felsch <m.felsch@pengutronix.de> wrote:
+Add support for the MCP9600 thermocouple EMF converter.
 
-> Hi,
-> 
-> this small series adds the support for the TI TMP116 temperature sensor
-> which is predecessor of the TMP117 but still in production.
-> 
-Series applied to the togreg branch of iio.git and pushed out as
-testing for 0-day to see if it can find anything we missed.
+Datasheet: https://ww1.microchip.com/downloads/en/DeviceDoc/MCP960X-Data-Sheet-20005426.pdf
+Signed-off-by: Andrew Hepp <andrew.hepp@ahepp.dev>
+---
+Changes for v4:
+- use descriptive names for open/short circuit interrupts
+- remove vdd regulator description
+- remove unused import
+- use generic sensor name in example
+- don't use literal style for doc description
+Changes for v3:
+- Added dt-bindings
+---
+ .../iio/temperature/microchip,mcp9600.yaml    | 70 ++++++++++++++++++
+ microchip,mcp9600.yaml                        | 72 +++++++++++++++++++
+ 2 files changed, 142 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/iio/temperature/microchip,mcp9600.yaml
+ create mode 100644 microchip,mcp9600.yaml
 
-I'll rebase that branch on rc1 once available.
-
-Thanks,
-
-Jonathan
-
-
-> 
-> Marco Felsch (5):
->   dt-bindings: iio: ti,tmp117: fix documentation link
->   iio: temperature: tmp117: improve fallback capabilities
->   dt-bindings: iio: ti,tmp117: add binding for the TMP116
->   iio: temperature: tmp117: add TI TMP116 support
->   iio: temperature: tmp117: cosmetic alignment cleanup
-> 
->  .../bindings/iio/temperature/ti,tmp117.yaml   |  8 +-
->  drivers/iio/temperature/tmp117.c              | 80 ++++++++++++++-----
->  2 files changed, 66 insertions(+), 22 deletions(-)
-> 
+diff --git a/Documentation/devicetree/bindings/iio/temperature/microchip,mcp9600.yaml b/Documentation/devicetree/bindings/iio/temperature/microchip,mcp9600.yaml
+new file mode 100644
+index 000000000000..5916d331e759
+--- /dev/null
++++ b/Documentation/devicetree/bindings/iio/temperature/microchip,mcp9600.yaml
+@@ -0,0 +1,70 @@
++# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/iio/temperature/microchip,mcp9600.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Microchip MCP9600 thermocouple EMF converter
++
++maintainers:
++  - Andrew Hepp <andrew.hepp@ahepp.dev>
++
++description:
++  https://ww1.microchip.com/downloads/en/DeviceDoc/MCP960X-Data-Sheet-20005426.pdf
++
++properties:
++  compatible:
++    const: microchip,mcp9600
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    minItems: 1
++    maxItems: 6
++
++  interrupt-names:
++    minItems: 1
++    maxItems: 6
++    items:
++      enum:
++        - open-circuit
++        - short-circuit
++        - alert1
++        - alert2
++        - alert3
++        - alert4
++
++  thermocouple-type:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    description:
++      Type of thermocouple (THERMOCOUPLE_TYPE_K if omitted).
++      Use defines in dt-bindings/iio/temperature/thermocouple.h.
++      Supported types are B, E, J, K, N, R, S, T.
++
++  vdd-supply: true
++
++required:
++  - compatible
++  - reg
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/iio/temperature/thermocouple.h>
++    #include <dt-bindings/interrupt-controller/irq.h>
++    i2c {
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        temperature-sensor@60 {
++            compatible = "microchip,mcp9600";
++            reg = <0x60>;
++            interrupt-parent = <&gpio>;
++            interrupts = <25 IRQ_TYPE_EDGE_RISING>;
++            interrupt-names = "open-circuit";
++            thermocouple-type = <THERMOCOUPLE_TYPE_K>;
++            vdd-supply = <&vdd>;
++        };
++    };
+diff --git a/microchip,mcp9600.yaml b/microchip,mcp9600.yaml
+new file mode 100644
+index 000000000000..584d0ae42502
+--- /dev/null
++++ b/microchip,mcp9600.yaml
+@@ -0,0 +1,72 @@
++# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/iio/temperature/microchip,mcp9600.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Microchip MCP9600 thermocouple EMF converter
++
++maintainers:
++  - Andrew Hepp <andrew.hepp@ahepp.dev>
++
++description: |
++  https://ww1.microchip.com/downloads/en/DeviceDoc/MCP960X-Data-Sheet-20005426.pdf
++
++properties:
++  compatible:
++    const: microchip,mcp9600
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    minItems: 1
++    maxItems: 6
++
++  interrupt-names:
++    minItems: 1
++    maxItems: 6
++    items:
++      enum:
++        - open
++        - short
++        - alert1
++        - alert2
++        - alert3
++        - alert4
++
++  thermocouple-type:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    description:
++      Type of thermocouple (THERMOCOUPLE_TYPE_K if omitted).
++      Use defines in dt-bindings/iio/temperature/thermocouple.h.
++      Supported types are B, E, J, K, N, R, S, T.
++
++  vdd-supply:
++    description: Regulator that provides power to the sensor.
++
++required:
++  - compatible
++  - reg
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/gpio/gpio.h>
++    #include <dt-bindings/iio/temperature/thermocouple.h>
++    #include <dt-bindings/interrupt-controller/irq.h>
++    i2c {
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        mcp9600@60 {
++            compatible = "microchip,mcp9600";
++            reg = <0x60>;
++            interrupt-parent = <&gpio>;
++            interrupts = <25 IRQ_TYPE_EDGE_RISING>;
++            interrupt-names = "open";
++            thermocouple-type = <THERMOCOUPLE_TYPE_K>;
++            vdd-supply = <&vdd>;
++        };
++    };
+-- 
+2.30.2
 
