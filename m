@@ -2,101 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 960CC6AA988
-	for <lists+devicetree@lfdr.de>; Sat,  4 Mar 2023 13:34:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2D7516AA98F
+	for <lists+devicetree@lfdr.de>; Sat,  4 Mar 2023 13:37:03 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229725AbjCDMec (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 4 Mar 2023 07:34:32 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44292 "EHLO
+        id S229552AbjCDMhC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 4 Mar 2023 07:37:02 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48920 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229679AbjCDMeY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 4 Mar 2023 07:34:24 -0500
-Received: from mail-ed1-x52d.google.com (mail-ed1-x52d.google.com [IPv6:2a00:1450:4864:20::52d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AC078113D8
-        for <devicetree@vger.kernel.org>; Sat,  4 Mar 2023 04:34:10 -0800 (PST)
-Received: by mail-ed1-x52d.google.com with SMTP id i34so20507171eda.7
-        for <devicetree@vger.kernel.org>; Sat, 04 Mar 2023 04:34:10 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1677933249;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=G3i8OpMyAfWJI3M14iJccieTyfV8o+dbjMgtDy1Gr+g=;
-        b=VEWvC7QjV+O8jTSTPQ2Zfzdv/D1yRKIiVqWdAEDpUTuuhDC58MKYRAbYePJZrSsz6S
-         5UKrbngpXJgOuBSfIfI1hcvARi3Imqe+/6fR5IsCoXrW0bhYhIpsetqSooXOp63HRrq0
-         BC7i2pQ8prfhVkM87S/CGfiWs84Qgb/pCdrNVz2eN3m4s5qRsKY2b5Eg7RrBImg+3dJE
-         86Y8bliqLC7xbgYSdaQM0rXeTzlvCZwOp5/gwgAWawqmGBfz9+8bICxGVeqDV/rcGjdn
-         Bn+d36ME62aQfmJT0Ua6TSGZsQrqBNOt18R3G4XSrVkqsmWA3ekqfSEWB+247k2XTwKS
-         G4bw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1677933249;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=G3i8OpMyAfWJI3M14iJccieTyfV8o+dbjMgtDy1Gr+g=;
-        b=Lm3zFKsTr6YDOEhJvyB+PnPp1sqZvrsbkFAt6777+jSzaYRoefGMNcBl8DGO28ReZz
-         1ZtFh2vCqFQb/gJ7ZFG1RGh33LTe48OcSAfiJfmI0JmRYa3RCJUJqUMjSt8XC5fcox12
-         4BRQqdzxQn9dk8TTKYhdQD6hEbfyzsRWsKkEOK2BGqvymG5erjLtjSPsfrywJEpTtZtr
-         GqjNLmCaAurq0/4ScvDYClBtQKolawx/nio2KV/0MZS3McC3m6a1YeqieX3Jse0zsdS/
-         NynS1Hj0or3KZlheMSOWUQbq5+f38n3JTusx9n2cLlnQNvDQoIs3ZxqBEsna5nYiYyvA
-         WvSA==
-X-Gm-Message-State: AO0yUKU8X0C+8+5i557s8ZwYbvMT+wqo+bSufCaI7EVkKBgzhH6yPGKQ
-        OewHPL5teWCm8a6wSuo3fH1nmQ==
-X-Google-Smtp-Source: AK7set8AzDZUeC0TBtYTMIDusSS2fZuQRnd3eedL6kO4chxDBYvOPAC6MqNNTua39GD4jD23aD1agA==
-X-Received: by 2002:a17:906:3a48:b0:8b1:2f0e:e3a4 with SMTP id a8-20020a1709063a4800b008b12f0ee3a4mr4559745ejf.26.1677933249296;
-        Sat, 04 Mar 2023 04:34:09 -0800 (PST)
-Received: from krzk-bin.. ([2a02:810d:15c0:828:b758:6326:1292:e2aa])
-        by smtp.gmail.com with ESMTPSA id q27-20020a17090622db00b008b1787ce722sm2017087eja.152.2023.03.04.04.34.08
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 04 Mar 2023 04:34:08 -0800 (PST)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH 8/8] arm64: dts: qcom: sm8250-xiaomi-elish: correct GPIO keys wakeup
-Date:   Sat,  4 Mar 2023 13:33:58 +0100
-Message-Id: <20230304123358.34274-8-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230304123358.34274-1-krzysztof.kozlowski@linaro.org>
-References: <20230304123358.34274-1-krzysztof.kozlowski@linaro.org>
+        with ESMTP id S229590AbjCDMhA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 4 Mar 2023 07:37:00 -0500
+Received: from mail-108-mta138.mxroute.com (mail-108-mta138.mxroute.com [136.175.108.138])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9F80C12584
+        for <devicetree@vger.kernel.org>; Sat,  4 Mar 2023 04:36:56 -0800 (PST)
+Received: from mail-111-mta2.mxroute.com ([136.175.111.2] filter006.mxroute.com)
+ (Authenticated sender: mN4UYu2MZsgR)
+ by mail-108-mta138.mxroute.com (ZoneMTA) with ESMTPSA id 186aca00383000edb4.005
+ for <devicetree@vger.kernel.org>
+ (version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES128-GCM-SHA256);
+ Sat, 04 Mar 2023 12:36:53 +0000
+X-Zone-Loop: 18ff9e8bb8b081539527f3549ba4f8335391ea9a2cba
+X-Originating-IP: [136.175.111.2]
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=ahepp.dev;
+        s=x; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:References:Cc:
+        To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:Content-ID:
+        Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+        :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+        List-Post:List-Owner:List-Archive;
+        bh=iJdvTxcxbKyGSnJTdIa73KJnwMQ8ml/4r+mdNofz4SE=; b=OnQemOQo44ptDF+rRNiRSH5Vi+
+        S/iGoIdp+DfwRJUX3ONt1mgEyUyVtSt1Y76jKTYazlck9LokTfvJcWJMiEDhOrz77JjkHgmkxtPOM
+        I3SUOcfcIfhjR9gXgdDoWZHuqHKJhgBqBth18q1CL7AA1TlxKcVGUhmXvJkCIhyOmr/ksIherVrMS
+        oVNdjREdPhFB+nj3HRtN7WSWH2+XgBQ+4OPPWyWpBMuh08TS1USZg6k288H4dKcLEt4Ft0BErpVoN
+        RSW4/i331xv6OFcVSpfVNXuLnMk9LE2l3zW+XGmmj0qhle+5ipk+I5xtby6XVUV9es8iWciXfXuhA
+        +4YX5Rmw==;
+Message-ID: <55efb99d-f84a-0df9-67fa-0bf5c1372a42@ahepp.dev>
+Date:   Sat, 4 Mar 2023 04:36:49 -0800
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:102.0)
+ Gecko/20100101 Thunderbird/102.8.0
+Subject: Re: [PATCH v3 1/2] dt-bindings: iio: Add MCP9600 thermocouple EMF
+ converter bindings
+Content-Language: en-US
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        devicetree@vger.kernel.org, linux-iio@vger.kernel.org
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Jonathan Cameron <jic23@kernel.org>
+References: <20230304004109.78659-1-andrew.hepp@ahepp.dev>
+ <73aa71ad-4cde-09d6-1af8-774701e330cd@linaro.org>
+From:   Andrew Hepp <andrew.hepp@ahepp.dev>
+In-Reply-To: <73aa71ad-4cde-09d6-1af8-774701e330cd@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Authenticated-Id: andrew.hepp@ahepp.dev
+X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_INVALID,
+        DKIM_SIGNED,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-gpio-keys,wakeup is a deprecated property:
+Hi Krzysztof,
 
-  sm8250-xiaomi-elish.dtb: gpio-keys: key-vol-up: Unevaluated properties are not allowed ('gpio-key,wakeup' was unexpected)
+Appreciate the feedback! Snipping for brevity.
 
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
----
- arch/arm64/boot/dts/qcom/sm8250-xiaomi-elish.dts | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+On 3/4/23 3:20 AM, Krzysztof Kozlowski wrote:
 
-diff --git a/arch/arm64/boot/dts/qcom/sm8250-xiaomi-elish.dts b/arch/arm64/boot/dts/qcom/sm8250-xiaomi-elish.dts
-index acaa99c5ff8b..24fc29f0ee5e 100644
---- a/arch/arm64/boot/dts/qcom/sm8250-xiaomi-elish.dts
-+++ b/arch/arm64/boot/dts/qcom/sm8250-xiaomi-elish.dts
-@@ -95,7 +95,7 @@ key-vol-up {
- 			linux,code = <KEY_VOLUMEUP>;
- 			debounce-interval = <15>;
- 			linux,can-disable;
--			gpio-key,wakeup;
-+			wakeup-source;
- 		};
- 	};
- 
--- 
-2.34.1
+...
+>> +    maxItems: 1
+>> +
+>> +  interrupts:
+>> +    minItems: 1
+>> +    maxItems: 6
+>> +
+>> +  interrupt-names:
+>> +    minItems: 1
+>> +    maxItems: 6
+>> +    items:
+>> +      enum:
+> 
+> The interrupts should be usually strictly ordered and you allow any
+> combinations. Why?
+> 
+> Why are they optional?
 
+The driver as currently written doesn’t support any interrupts. The 
+device does not require interrupts to function.
+
+This is the first dt-binding I’ve written, so it’s very possible that 
+I’ve made a mistake, but I believe any combination of interrupts should 
+be valid. Each of the interrupts listed represent an independent 
+physical pin of the mcp960x chip. That pin might not be connected at 
+all, so it seems to me that any combination of interrupts should be allowed.
+
+MCP9600 and MCP9601 chips have four alert interrupts that trigger when 
+temperature crosses a threshold (with configurable hysteresis). The 
+MCP9601 adds short and open circuit detection interrupts.
+
+> 
+> 
+>> +        - open
+>> +        - short
+>> +        - alert1
+>> +        - alert2
+>> +        - alert3
+>> +        - alert4
+>> +
+>> +  thermocouple-type:
+...
+
+Thanks,
+Andy
