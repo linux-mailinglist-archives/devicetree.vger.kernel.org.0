@@ -2,88 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 24B8C6AA973
-	for <lists+devicetree@lfdr.de>; Sat,  4 Mar 2023 13:33:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0847E6AA974
+	for <lists+devicetree@lfdr.de>; Sat,  4 Mar 2023 13:34:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229570AbjCDMdx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 4 Mar 2023 07:33:53 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43350 "EHLO
+        id S229562AbjCDMeO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 4 Mar 2023 07:34:14 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44068 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229581AbjCDMdu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 4 Mar 2023 07:33:50 -0500
-Received: from mail-ed1-x52c.google.com (mail-ed1-x52c.google.com [IPv6:2a00:1450:4864:20::52c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8F70B12059
-        for <devicetree@vger.kernel.org>; Sat,  4 Mar 2023 04:33:44 -0800 (PST)
-Received: by mail-ed1-x52c.google.com with SMTP id x3so20400875edb.10
-        for <devicetree@vger.kernel.org>; Sat, 04 Mar 2023 04:33:44 -0800 (PST)
+        with ESMTP id S229580AbjCDMeM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 4 Mar 2023 07:34:12 -0500
+Received: from mail-ed1-x52d.google.com (mail-ed1-x52d.google.com [IPv6:2a00:1450:4864:20::52d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1A7C812858
+        for <devicetree@vger.kernel.org>; Sat,  4 Mar 2023 04:34:03 -0800 (PST)
+Received: by mail-ed1-x52d.google.com with SMTP id u9so20605173edd.2
+        for <devicetree@vger.kernel.org>; Sat, 04 Mar 2023 04:34:03 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1677933223;
+        d=linaro.org; s=google; t=1677933242;
         h=content-transfer-encoding:mime-version:message-id:date:subject:cc
          :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=jYT4jMLZ95Xys/g3bLJcTF972/TquYeElIQo4Dg5KU0=;
-        b=bZTWOa8yyQo5Z2UWCnxUQmeHXHkvgKOOqNamXziKOJDztw4XOkOut9E10cKGdEYsz8
-         ynjYXDNzHHwGOVxwbsvCHyUN8/ofein0TW7/+kT+Aw9GK7FPANJfWAk6DpKwFvGOPLqe
-         2RvOrpn0KhPMtfDlWLVc2/tcj1r917CERBXHWeYIaDGv+Q9qqG7WhDHcMK5TC/8RZ9uz
-         c991FPvdScqf0C+Y7nKRndd11BYkQRjIIHHnQRlXQtVLGWBkAdq3/R4x/lMwc47PyfYr
-         J8NM+vNEp2VFnxcr2g53X/GlHKvc9mjg0xGxWUWMeFEXklG36VrdA0XSJjb8RLUzW2Pe
-         mfqg==
+        bh=N9dYd0qrltidEHkDRqqhRk3DmzRrcvSAp0RYO9o9mm8=;
+        b=Xjs3fZV9KPcKQGshL528UsIW4zdT46CJHhowgKZ5IoQvP0Lrla+baV7NuoLqjzilGM
+         ElzE75xRbEYYE3vmm3GIEPt8UFetZ28uQNOgAc417wA6FA4Mh6h2lqJMdFRt9kAFZWKV
+         vqYGLNWyWkBU04TivtzAnSl09WwTasFtF85ZEzfs43MG2hPo9+3ErFRrZWmuhTsYb1C8
+         L10GcRbX6KPvqn2f2lntnYvBA7wuowg+2RPKuMbMDK0UWbSmSi2ZrHl3UijIkMfO/lKi
+         4fIhBa75EUOP98ziqdRIoLEmCS3lx5UKKZ6qC+q0Y0GuSSoQcDOLpnc2QAU9Zv5i7beL
+         HjWA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1677933223;
+        d=1e100.net; s=20210112; t=1677933242;
         h=content-transfer-encoding:mime-version:message-id:date:subject:cc
          :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=jYT4jMLZ95Xys/g3bLJcTF972/TquYeElIQo4Dg5KU0=;
-        b=qRWH4MEhotkPgca0KaVCAWFy9oUxsJjCjuTCSVmMpFu+4EVHXfruW/xp1E3ZS85SuV
-         VfPJWczvTyPrqICShSHZaanNiwix2FCiraz5+eD2H7P9oVbJf0T7E+OQfAPa4PzVp41O
-         YPQQa1Y96ykY4YoaWpmAEy11SMi2CQtH2B2eOKyQ2d8saTGGw8MvOSR7lPyhBXCFzDhE
-         8cg+ydQHYTOFkhVke6Sg4G70YQAtHvQnvPAo1Rj0qC+4vXrVW+XjppuCHGVyzO+Y/WAt
-         Mpv3Of1dGaKoFOd8uZDpzpYyKzbM2L8PscHEmDw5MDQpDVmEFdXCRQfy1T6zV0rWk+6m
-         ZoOQ==
-X-Gm-Message-State: AO0yUKU/DyLnw/SnPzFjV5wujSZK851LvcSFKknba/SxE8U0YJy7ryim
-        sDj//62DE6AGitWmn1jmFmtDhw==
-X-Google-Smtp-Source: AK7set/mmUaaPdp2AymtP7v78OSVFNIv0URgmBLmRE8WYZExXzQhdZGh0ReZ5YLQXDuczSJrkdbnhQ==
-X-Received: by 2002:a17:907:9611:b0:8aa:1f89:122e with SMTP id gb17-20020a170907961100b008aa1f89122emr6242603ejc.39.1677933223133;
-        Sat, 04 Mar 2023 04:33:43 -0800 (PST)
+        bh=N9dYd0qrltidEHkDRqqhRk3DmzRrcvSAp0RYO9o9mm8=;
+        b=mj3mwHwf+5TKNPu26pqrXV9Mg8mHP+0/FdTIO/pPOMCBvT4WGpO0CvgM5M77F5d1kh
+         rjn2UEuPJhZ/qERMouPRQjQtHww/xGwH4dAoGSbb8yhBF0a92okfUy7od2xDEU+QGxcW
+         h5zPwqYL4INQOYamWls6WqAU2jy+aqxxFAzzxpp74oY01riVAfQtYcCCWJ0KhPPyPdUB
+         rh7uCLNFsD5D+ov76H7jLKZ4HMuTTIWg3Exi7lLZgrF8D8xU6Ph8LM56EhTIcqWLgGo6
+         0PDT9IJWO8rISMEJ0TRzSdw/ogYK4On7F37ym57Y++9Ka+mP1NEPDNQAOOHe1WENgU1x
+         nUXA==
+X-Gm-Message-State: AO0yUKXB3DcvO/zpzPZRst0wMqF1zPjWvMuxhDyR0DV7f/7GWicQMdqu
+        wiCiYwiwZKuHt/gY+AlkM1cKMw==
+X-Google-Smtp-Source: AK7set+A2mQ/2iG1lKphCs4gxHM6cgDvQqZLVH1/AYCCfMeZQjCXIb+fb+wL4Dw4/TVXO0oHTRnCmw==
+X-Received: by 2002:a17:907:1c1f:b0:884:930:b014 with SMTP id nc31-20020a1709071c1f00b008840930b014mr6349313ejc.6.1677933242738;
+        Sat, 04 Mar 2023 04:34:02 -0800 (PST)
 Received: from krzk-bin.. ([2a02:810d:15c0:828:b758:6326:1292:e2aa])
-        by smtp.gmail.com with ESMTPSA id j22-20020a1709066dd600b008e6bd130b14sm2058342ejt.64.2023.03.04.04.33.42
+        by smtp.gmail.com with ESMTPSA id q27-20020a17090622db00b008b1787ce722sm2017087eja.152.2023.03.04.04.34.01
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 04 Mar 2023 04:33:42 -0800 (PST)
+        Sat, 04 Mar 2023 04:34:02 -0800 (PST)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Rob Herring <robh+dt@kernel.org>,
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
 Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH] arm64: dts: mba6ulx: correct GPIO keys wakeup
-Date:   Sat,  4 Mar 2023 13:33:41 +0100
-Message-Id: <20230304123341.34223-1-krzysztof.kozlowski@linaro.org>
+Subject: [PATCH 1/8] arm64: dts: qcom: sm8150-kumano: correct GPIO keys wakeup
+Date:   Sat,  4 Mar 2023 13:33:51 +0100
+Message-Id: <20230304123358.34274-1-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-gpio-keys,wakeup is a deprecated property.
+gpio-keys,wakeup is a deprecated property:
+
+  sm8150-sony-xperia-kumano-bahamut.dtb: gpio-keys: key-camera-focus: Unevaluated properties are not allowed ('gpio-key,wakeup' was unexpected)
 
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
- arch/arm/boot/dts/mba6ulx.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ arch/arm64/boot/dts/qcom/sm8150-sony-xperia-kumano.dtsi | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
 
-diff --git a/arch/arm/boot/dts/mba6ulx.dtsi b/arch/arm/boot/dts/mba6ulx.dtsi
-index 5bf831b072d6..e25f8f209760 100644
---- a/arch/arm/boot/dts/mba6ulx.dtsi
-+++ b/arch/arm/boot/dts/mba6ulx.dtsi
-@@ -57,7 +57,7 @@ power-button {
- 			label = "POWER";
- 			linux,code = <KEY_POWER>;
- 			gpios = <&gpio1 3 GPIO_ACTIVE_LOW>;
+diff --git a/arch/arm64/boot/dts/qcom/sm8150-sony-xperia-kumano.dtsi b/arch/arm64/boot/dts/qcom/sm8150-sony-xperia-kumano.dtsi
+index ff77cc3c879a..47e2430991ca 100644
+--- a/arch/arm64/boot/dts/qcom/sm8150-sony-xperia-kumano.dtsi
++++ b/arch/arm64/boot/dts/qcom/sm8150-sony-xperia-kumano.dtsi
+@@ -59,7 +59,7 @@ key-camera-focus {
+ 			gpios = <&pm8150b_gpios 2 GPIO_ACTIVE_LOW>;
+ 			debounce-interval = <15>;
+ 			linux,can-disable;
+-			gpio-key,wakeup;
++			wakeup-source;
+ 		};
+ 
+ 		key-camera-snapshot {
+@@ -68,7 +68,7 @@ key-camera-snapshot {
+ 			gpios = <&pm8150b_gpios 1 GPIO_ACTIVE_LOW>;
+ 			debounce-interval = <15>;
+ 			linux,can-disable;
+-			gpio-key,wakeup;
++			wakeup-source;
+ 		};
+ 
+ 		key-vol-down {
+@@ -77,7 +77,7 @@ key-vol-down {
+ 			gpios = <&pm8150_gpios 1 GPIO_ACTIVE_LOW>;
+ 			debounce-interval = <15>;
+ 			linux,can-disable;
 -			gpio-key,wakeup;
 +			wakeup-source;
  		};
