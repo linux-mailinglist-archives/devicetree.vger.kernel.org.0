@@ -2,59 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5725E6AA9AA
-	for <lists+devicetree@lfdr.de>; Sat,  4 Mar 2023 13:58:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5EC1A6AA9AD
+	for <lists+devicetree@lfdr.de>; Sat,  4 Mar 2023 13:58:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229716AbjCDM6S (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 4 Mar 2023 07:58:18 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33920 "EHLO
+        id S229758AbjCDM60 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 4 Mar 2023 07:58:26 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34108 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229688AbjCDM6Q (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 4 Mar 2023 07:58:16 -0500
-Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E0A7A1F904
-        for <devicetree@vger.kernel.org>; Sat,  4 Mar 2023 04:57:48 -0800 (PST)
-Received: by mail-lf1-x129.google.com with SMTP id g17so6973136lfv.4
-        for <devicetree@vger.kernel.org>; Sat, 04 Mar 2023 04:57:48 -0800 (PST)
+        with ESMTP id S229723AbjCDM6X (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 4 Mar 2023 07:58:23 -0500
+Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BC4313AB5
+        for <devicetree@vger.kernel.org>; Sat,  4 Mar 2023 04:57:55 -0800 (PST)
+Received: by mail-lf1-x132.google.com with SMTP id j11so6901811lfg.13
+        for <devicetree@vger.kernel.org>; Sat, 04 Mar 2023 04:57:55 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1677934666;
+        d=linaro.org; s=google; t=1677934675;
         h=content-transfer-encoding:in-reply-to:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=HItay+PL2v1GbV7mEtNl/Zx/781VO+kx6PorfBarEts=;
-        b=fGMyhkE8TUXu3ksMKFf9OWegAbIavnVQ8msuAK/1+1kUfqXb7UyHSRMM6K5anOxxyZ
-         Af8u2SRLxmMznXu3beRe0AnG7DrRtfIWyaX2GQfKom4ZiJj68sqHNBg3VeL2wbNVkIQj
-         komjbyZgFWlRHmAwrYJAVj5wCr3AU1GxcN9J+I90HYaUFAtUJ3MVXpw00pH/90pO37yg
-         qgy5Y6YJFPUq/oFdVUUALPUlRDE5Aoi2OTMv8QFRx0zHg4lys5/yawPJUucdMYnhdYlJ
-         B7RvjL+GunZQPt2nk+YBnawE+gkSRd4nAuhxSG5WioHVupNJhMI94StISCjGl7ADlBdR
-         gTTg==
+        bh=Jh8K8XRUlaXKnLK6LOkf496x0zXkPwv3l84nGkCkags=;
+        b=JyNeYzYtlXaI5qT/1fM+HlkpLhdd0iKH6Bsdavz3oOPa+IV9FBLNAYEW+evRDHoNs4
+         LNRaCqEH4ROq5xKAzi7WBCEAMfmVfXHrG95abR8Ze8Z5LYcGKqvzqoskaskIRegX8jaO
+         bqC01JYqpZy4jvhH4gDfRC2w+NudvLCyic+LLiu4R9xEFeT7fhaw+/SjuWGnxadD4oZW
+         twUIkesTcINcxYHoHTxNvJagNpU+wXIljrPbyVw0UPc67Dl4yPZ4PJvNWQrENVyc5OMy
+         +2zYHVrmnHvFAp/1NA60pbJok2qHLkavkpwwIgqzSZuHnQu+CrSw0ztgJUfaT4B+mA99
+         zRig==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1677934666;
+        d=1e100.net; s=20210112; t=1677934675;
         h=content-transfer-encoding:in-reply-to:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=HItay+PL2v1GbV7mEtNl/Zx/781VO+kx6PorfBarEts=;
-        b=qFnBZLsqBleC82u4MJa1xLiy+7sqr7js//lWLHQpwO8gNwM9rMI++IxEhSYPHXMBGl
-         2Gca8JDjD1vl9b9CDflhB/Pwl/6j8jXuhPjpg9Gw28aPGEkbPOPcA7kzBTUqWK98XpG5
-         BcTczMT2W+m3VYIdgIIBUgLGflwN7lztH6TwPJmKnA4JczyAt58aXhlggBv+8ONvsGiI
-         lnFbjFuwe+57u79RUu+1XH5PKc6MJXV+mhSi/RdsQ7Zl8bu/F1zQ88bJcxOjiYlhpu9g
-         typ2hOqyr2eD0H62i+bm2pMlHuTywOmNehmYAe1hzCQvSsXEDWsw/1fP/nzwzd5Ys0dK
-         7+yA==
-X-Gm-Message-State: AO0yUKW66hZSewU/4FtPgW9vEeSU5dpuYFSH4zlXPaIXOiDLjBgN/6K1
-        q9gAPfyBsZhJQYCg2uIWvlGo7g==
-X-Google-Smtp-Source: AK7set/2ECzyRzihXfRjdZIX2HDDQQq/RmqC8yQ7qFJv4u6lWF98CzmEfHcxSLhesLOTB6LSnwF3vg==
-X-Received: by 2002:a05:6512:76:b0:4dd:a788:7783 with SMTP id i22-20020a056512007600b004dda7887783mr1387482lfo.61.1677934666258;
-        Sat, 04 Mar 2023 04:57:46 -0800 (PST)
+        bh=Jh8K8XRUlaXKnLK6LOkf496x0zXkPwv3l84nGkCkags=;
+        b=6VWy/zooKnwM9lIrUW6AjvFa+DLLXqkPlDeVjX0YrSBOM4IR4KQm7z6H6t3U5Qhhb4
+         PjDtMurZe3vkdTc55Pww3XA0Y1V8a7qQad2+g0nWuIU4npgxphwolSwuutoSuaKKkrN/
+         ezjBRlxLFult1l25QLG1v1Evo49EeCGjYlj1KjfWJIpabFSHKf/dvMGZwNNMRdj4nXSW
+         U+DlWKgxWr+b/fnFpyxiXTMHri8DwgmNuDomei3T54xGPTYfk5u3dsWC1qREEUOUMYdw
+         jB10oQuPo/EXXCfGLoLGRg1re/Sb9I+JN1I8DYtLUxXaBiA4pWFri++346I/kEwlrzvP
+         kpkQ==
+X-Gm-Message-State: AO0yUKU1bwCa7tdkqdTWgyH6FHcTckkZy5nF6aCGUhNz0wGM+kNhvQr3
+        D3LjdnxtfdJoX+uRg8Wp29L2RA==
+X-Google-Smtp-Source: AK7set+3vPsCu1KXT6igbDn+jLPyFwKsPFTRayrz0wvGS8P5h6cEOU2UqADiiRgq2zqseaWaHVNEvA==
+X-Received: by 2002:ac2:528b:0:b0:4cc:84da:44bd with SMTP id q11-20020ac2528b000000b004cc84da44bdmr1330911lfm.39.1677934675255;
+        Sat, 04 Mar 2023 04:57:55 -0800 (PST)
 Received: from [192.168.1.101] (abym99.neoplus.adsl.tpnet.pl. [83.9.32.99])
-        by smtp.gmail.com with ESMTPSA id b16-20020ac24110000000b004d862e9b453sm815813lfi.196.2023.03.04.04.57.45
+        by smtp.gmail.com with ESMTPSA id m16-20020ac24290000000b004e1b880ba20sm810960lfh.292.2023.03.04.04.57.54
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 04 Mar 2023 04:57:45 -0800 (PST)
-Message-ID: <9fc18ef2-87ea-33df-864c-916aaef7d3bf@linaro.org>
-Date:   Sat, 4 Mar 2023 13:57:44 +0100
+        Sat, 04 Mar 2023 04:57:54 -0800 (PST)
+Message-ID: <a3c9cca5-39f3-98d0-4b70-ba91103f7ded@linaro.org>
+Date:   Sat, 4 Mar 2023 13:57:53 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.8.0
-Subject: Re: [PATCH 6/8] arm64: dts: qcom: sm6115p-lenovo-j606f: correct GPIO
+Subject: Re: [PATCH 7/8] arm64: dts: qcom: sm8250-sony-xperia: correct GPIO
  keys wakeup
 Content-Language: en-US
 To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
@@ -65,15 +65,14 @@ To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
         linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
 References: <20230304123358.34274-1-krzysztof.kozlowski@linaro.org>
- <20230304123358.34274-6-krzysztof.kozlowski@linaro.org>
+ <20230304123358.34274-7-krzysztof.kozlowski@linaro.org>
 From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20230304123358.34274-6-krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230304123358.34274-7-krzysztof.kozlowski@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -85,26 +84,40 @@ X-Mailing-List: devicetree@vger.kernel.org
 On 4.03.2023 13:33, Krzysztof Kozlowski wrote:
 > gpio-keys,wakeup is a deprecated property:
 > 
->   sm6115p-lenovo-j606f.dtb: gpio-keys: key-volume-up: Unevaluated properties are not allowed ('gpio-key,wakeup' was unexpected)
+>   sm8250-sony-xperia-edo-pdx206.dtb: gpio-keys: key-vol-down: Unevaluated properties are not allowed ('gpio-key,wakeup' was unexpected)
 > 
 > Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 > ---
 Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 
 Konrad
->  arch/arm64/boot/dts/qcom/sm6115p-lenovo-j606f.dts | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
+>  arch/arm64/boot/dts/qcom/sm8250-sony-xperia-edo-pdx206.dts | 2 +-
+>  arch/arm64/boot/dts/qcom/sm8250-sony-xperia-edo.dtsi       | 2 +-
+>  2 files changed, 2 insertions(+), 2 deletions(-)
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/sm6115p-lenovo-j606f.dts b/arch/arm64/boot/dts/qcom/sm6115p-lenovo-j606f.dts
-> index 4ce2d905d70e..00b153aa1b7d 100644
-> --- a/arch/arm64/boot/dts/qcom/sm6115p-lenovo-j606f.dts
-> +++ b/arch/arm64/boot/dts/qcom/sm6115p-lenovo-j606f.dts
-> @@ -49,7 +49,7 @@ key-volume-up {
->  			gpios = <&pm6125_gpios 5 GPIO_ACTIVE_LOW>;
+> diff --git a/arch/arm64/boot/dts/qcom/sm8250-sony-xperia-edo-pdx206.dts b/arch/arm64/boot/dts/qcom/sm8250-sony-xperia-edo-pdx206.dts
+> index 5ecf7dafb2ec..01fe3974ee72 100644
+> --- a/arch/arm64/boot/dts/qcom/sm8250-sony-xperia-edo-pdx206.dts
+> +++ b/arch/arm64/boot/dts/qcom/sm8250-sony-xperia-edo-pdx206.dts
+> @@ -26,7 +26,7 @@ g-assist-key {
+>  		gpios = <&pm8150_gpios 6 GPIO_ACTIVE_LOW>;
+>  		debounce-interval = <15>;
+>  		linux,can-disable;
+> -		gpio-key,wakeup;
+> +		wakeup-source;
+>  	};
+>  };
+>  
+> diff --git a/arch/arm64/boot/dts/qcom/sm8250-sony-xperia-edo.dtsi b/arch/arm64/boot/dts/qcom/sm8250-sony-xperia-edo.dtsi
+> index b9c982a059df..c96cc9c90a5f 100644
+> --- a/arch/arm64/boot/dts/qcom/sm8250-sony-xperia-edo.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sm8250-sony-xperia-edo.dtsi
+> @@ -63,7 +63,7 @@ key-vol-down {
+>  			gpios = <&pm8150_gpios 1 GPIO_ACTIVE_LOW>;
 >  			debounce-interval = <15>;
 >  			linux,can-disable;
 > -			gpio-key,wakeup;
 > +			wakeup-source;
 >  		};
 >  	};
->  };
+>  
