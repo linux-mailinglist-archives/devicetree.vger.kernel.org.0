@@ -2,53 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8FA616AA981
-	for <lists+devicetree@lfdr.de>; Sat,  4 Mar 2023 13:34:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BD75B6AA985
+	for <lists+devicetree@lfdr.de>; Sat,  4 Mar 2023 13:34:29 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229625AbjCDMeZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 4 Mar 2023 07:34:25 -0500
+        id S229705AbjCDMe2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 4 Mar 2023 07:34:28 -0500
 Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44418 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229642AbjCDMeU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 4 Mar 2023 07:34:20 -0500
-Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EF1B812584
-        for <devicetree@vger.kernel.org>; Sat,  4 Mar 2023 04:34:08 -0800 (PST)
-Received: by mail-ed1-x535.google.com with SMTP id da10so20604525edb.3
-        for <devicetree@vger.kernel.org>; Sat, 04 Mar 2023 04:34:08 -0800 (PST)
+        with ESMTP id S229676AbjCDMeY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 4 Mar 2023 07:34:24 -0500
+Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com [IPv6:2a00:1450:4864:20::532])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B0ADA1C59B
+        for <devicetree@vger.kernel.org>; Sat,  4 Mar 2023 04:34:09 -0800 (PST)
+Received: by mail-ed1-x532.google.com with SMTP id o15so20357302edr.13
+        for <devicetree@vger.kernel.org>; Sat, 04 Mar 2023 04:34:09 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1677933247;
+        d=linaro.org; s=google; t=1677933248;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=50W5TfsIyBHZCnqrB8wW+y0s3Yd7fO4zlzdk+X6FvGg=;
-        b=C8Uw1qQS4QvIxXraDZkHdeJJIGFo1BWbZXUjRD7NddDVtvhcP2QU5k1plozViR93+G
-         layv+UPnIVst5vKtmPbfEyrTEpkZ0Niz1DYaEdZFM6dqT5MZGE2wKbeZjB6kuyNyHiip
-         ttHUsriXVIq/fEcGgdP8hdzzxCpiPyxSgypJ5YComKizlKyEqidPrpaQBTuzb6S5F8GS
-         uybValGdD8tKjoUegVDNWM0RiLmyzID46B+erZAwdo28T86pucBLYLpKPe2nHGk0tbqs
-         01CnbuWEseftxQeGvnnUKYgL6uq8uFiCVyx8XvD7HaxX0LVQzRJ6o/BSvuFyQnaAxIK/
-         ZT9g==
+        bh=REAd1euaAKYCn6kSfqAb/p+PZ0MMh9VT/R7/9FFRhes=;
+        b=qPfmadEWozlCoWLtgVL92sZEZm+jEXtCFgcB0//BAE73+3rVo3+4X2Vjzey/18XQj1
+         alWKHFui9B2wgY33wPCLuDZN79bTblN1cPtA7Gfqp6vNtDJdkzQrtcw73jIWeOw5fpmw
+         LhMZbbY0yrwgL1c1TezVinL3hMGPAwE8Cxgm9wWFxsT4f+eBXjo1JofhpaNKt2z3Ldbb
+         VX4zrVUK4Pmj1oVkOwWmSGT4MSi9vmO1/yBsIBpf0xlboL/Wk8ED+Tp+kuQQoMqZrOTv
+         tyOqwBTFFrJaQH8HtrfbTqAaPGTgZPq8MCHBXhcFnqmqzgA+hIED54StNh5riKD72z+N
+         UvpA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1677933247;
+        d=1e100.net; s=20210112; t=1677933248;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=50W5TfsIyBHZCnqrB8wW+y0s3Yd7fO4zlzdk+X6FvGg=;
-        b=qH8djbpvMKH2xrLlWQG41a8AfIul6fw30I7DlQy3yFFExfZEbery4aQYLbrwQUxNDk
-         OS1lZEDGaK6zAG+dpWMLO047aKMbXLubex+Nlkly3mWRcECBJu9tPfYtNdT+2qPjPcsx
-         JYauvySPW3OLP9s4X0a3qYnjr7JvKBqK/obtBceuziFzIp4G6k9x/M8O+h7/yzdsOlxp
-         8oT0xmgsrS/AOaUG/w6+KdcPs0PPB+Uo8dhvFGIC+zTdck6ITuuYmOY5s0zBnJ7/qcbQ
-         HiDT0VkZ9k5LQYkpcU1lcjIZFBiY0e+0RHCYdpqhj7BX8mY9ouqRYKbx8XXjV68Co9fr
-         J1/Q==
-X-Gm-Message-State: AO0yUKUaKpMzztwoUn7HuABMJ22BQMbLsDOh5ba0qIKyUmjmUqEM/Klm
-        JCveYDysJkFPpG2F5u2pI098ag==
-X-Google-Smtp-Source: AK7set8rzKGc+52CkzHKm3mX0JJH9CxBvG7k9LXPzjTwWHZqRQURcOreV+tVSwX7BEOIrCgsbljoQQ==
-X-Received: by 2002:a17:906:9f21:b0:88a:7037:855e with SMTP id fy33-20020a1709069f2100b0088a7037855emr5254034ejc.9.1677933247298;
-        Sat, 04 Mar 2023 04:34:07 -0800 (PST)
+        bh=REAd1euaAKYCn6kSfqAb/p+PZ0MMh9VT/R7/9FFRhes=;
+        b=V6N2UDcKGvBm42+1tkFIrnI/CMnJo9GZGJ2AvPCJZpxx8txZXaS2S0Ymasyb80S30y
+         DRGX12fZnWKP5GaE2nWYmhyeazD/HeqYhGhI7V0VLrEJlLeVpT6L88FyiJ7uCNsqrxYk
+         4b1tARlS1K/xEYWFNUyVtyW/m2ZMYQg7V5UE92Zk/ZldaZ0Zx498Vwi/GBbF2fQAzPrg
+         K+AXMi0Zyp9ikRgPnl+B7YIoU2GXiCNs4R/ywyMu+5fhUi6Oj/rd21vHY/7AKHNy9dh7
+         IpGufFUay5xPzIPoaFnM13XrrNUhDytPS1BGEqAHxHt6QOjRNflfZYQSPAIA43zVkGvI
+         vSSQ==
+X-Gm-Message-State: AO0yUKUQepgzw+NkgtE6rJUqpkyQM3sgN6CtpMx1khLsXaol+twV1wfR
+        6fI5U8msEXR6Q2GTfyNDx9RA4npD16+nZm8KCo8=
+X-Google-Smtp-Source: AK7set9yZQY9nuIHFTIhVqj2syBEKzKxSLQz/mLS4LlARlF3g0vXjGRX6Kw0GPTixWSrdjMmVY0Iog==
+X-Received: by 2002:a17:906:fe43:b0:88f:9c29:d232 with SMTP id wz3-20020a170906fe4300b0088f9c29d232mr6925443ejb.57.1677933248270;
+        Sat, 04 Mar 2023 04:34:08 -0800 (PST)
 Received: from krzk-bin.. ([2a02:810d:15c0:828:b758:6326:1292:e2aa])
-        by smtp.gmail.com with ESMTPSA id q27-20020a17090622db00b008b1787ce722sm2017087eja.152.2023.03.04.04.34.06
+        by smtp.gmail.com with ESMTPSA id q27-20020a17090622db00b008b1787ce722sm2017087eja.152.2023.03.04.04.34.07
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 04 Mar 2023 04:34:06 -0800 (PST)
+        Sat, 04 Mar 2023 04:34:07 -0800 (PST)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 To:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
@@ -58,9 +58,9 @@ To:     Andy Gross <agross@kernel.org>,
         linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
 Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH 6/8] arm64: dts: qcom: sm6115p-lenovo-j606f: correct GPIO keys wakeup
-Date:   Sat,  4 Mar 2023 13:33:56 +0100
-Message-Id: <20230304123358.34274-6-krzysztof.kozlowski@linaro.org>
+Subject: [PATCH 7/8] arm64: dts: qcom: sm8250-sony-xperia: correct GPIO keys wakeup
+Date:   Sat,  4 Mar 2023 13:33:57 +0100
+Message-Id: <20230304123358.34274-7-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20230304123358.34274-1-krzysztof.kozlowski@linaro.org>
 References: <20230304123358.34274-1-krzysztof.kozlowski@linaro.org>
@@ -78,26 +78,40 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 gpio-keys,wakeup is a deprecated property:
 
-  sm6115p-lenovo-j606f.dtb: gpio-keys: key-volume-up: Unevaluated properties are not allowed ('gpio-key,wakeup' was unexpected)
+  sm8250-sony-xperia-edo-pdx206.dtb: gpio-keys: key-vol-down: Unevaluated properties are not allowed ('gpio-key,wakeup' was unexpected)
 
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
- arch/arm64/boot/dts/qcom/sm6115p-lenovo-j606f.dts | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ arch/arm64/boot/dts/qcom/sm8250-sony-xperia-edo-pdx206.dts | 2 +-
+ arch/arm64/boot/dts/qcom/sm8250-sony-xperia-edo.dtsi       | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/qcom/sm6115p-lenovo-j606f.dts b/arch/arm64/boot/dts/qcom/sm6115p-lenovo-j606f.dts
-index 4ce2d905d70e..00b153aa1b7d 100644
---- a/arch/arm64/boot/dts/qcom/sm6115p-lenovo-j606f.dts
-+++ b/arch/arm64/boot/dts/qcom/sm6115p-lenovo-j606f.dts
-@@ -49,7 +49,7 @@ key-volume-up {
- 			gpios = <&pm6125_gpios 5 GPIO_ACTIVE_LOW>;
+diff --git a/arch/arm64/boot/dts/qcom/sm8250-sony-xperia-edo-pdx206.dts b/arch/arm64/boot/dts/qcom/sm8250-sony-xperia-edo-pdx206.dts
+index 5ecf7dafb2ec..01fe3974ee72 100644
+--- a/arch/arm64/boot/dts/qcom/sm8250-sony-xperia-edo-pdx206.dts
++++ b/arch/arm64/boot/dts/qcom/sm8250-sony-xperia-edo-pdx206.dts
+@@ -26,7 +26,7 @@ g-assist-key {
+ 		gpios = <&pm8150_gpios 6 GPIO_ACTIVE_LOW>;
+ 		debounce-interval = <15>;
+ 		linux,can-disable;
+-		gpio-key,wakeup;
++		wakeup-source;
+ 	};
+ };
+ 
+diff --git a/arch/arm64/boot/dts/qcom/sm8250-sony-xperia-edo.dtsi b/arch/arm64/boot/dts/qcom/sm8250-sony-xperia-edo.dtsi
+index b9c982a059df..c96cc9c90a5f 100644
+--- a/arch/arm64/boot/dts/qcom/sm8250-sony-xperia-edo.dtsi
++++ b/arch/arm64/boot/dts/qcom/sm8250-sony-xperia-edo.dtsi
+@@ -63,7 +63,7 @@ key-vol-down {
+ 			gpios = <&pm8150_gpios 1 GPIO_ACTIVE_LOW>;
  			debounce-interval = <15>;
  			linux,can-disable;
 -			gpio-key,wakeup;
 +			wakeup-source;
  		};
  	};
- };
+ 
 -- 
 2.34.1
 
