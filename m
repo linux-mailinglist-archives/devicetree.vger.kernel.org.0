@@ -2,89 +2,149 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3047C6AA5E5
-	for <lists+devicetree@lfdr.de>; Sat,  4 Mar 2023 00:53:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4BBFE6AA69F
+	for <lists+devicetree@lfdr.de>; Sat,  4 Mar 2023 01:48:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229801AbjCCXx1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 3 Mar 2023 18:53:27 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57788 "EHLO
+        id S229512AbjCDAsJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 3 Mar 2023 19:48:09 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47562 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229668AbjCCXx1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Mar 2023 18:53:27 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9396C93E0;
-        Fri,  3 Mar 2023 15:53:23 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 20EF761950;
-        Fri,  3 Mar 2023 23:53:23 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4363BC433EF;
-        Fri,  3 Mar 2023 23:53:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1677887602;
-        bh=f0VZGTA8oOnAaMkfwB2QB6pLFSy4sdHSrlgXIOshidI=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=pPg3aquMyk8quzI4S98uu90F22x1h3GOUJkYSghdVqGCJWF1TcwvUvWST3RzZWK8w
-         rCHK+YOBvoipN8b1QlvOUPK4vO5E/mokaSvQZlqqbSQfxWi4p8/N8sCxNVmAKrrdaq
-         L+h0LZD50TpI9OyO6nPzyLw7uPq/6Cx03FTFrpn19RzgmE50c7c89ik0FdARIV8cMi
-         B0WVX0zjm5XxcDVW0ukFs/6w+rp0DSh3l+3DzO5WLU6q9CluToYJP5DDIEiJz6y69+
-         oV+Adjksmu9f6MgqJwE49S/CHR61kap4SKD/E7xE5SEzkMpjz6rvoI+mZwuszZRkkE
-         5pyD+qJFcUj2w==
-Date:   Fri, 3 Mar 2023 15:53:20 -0800
-From:   Jakub Kicinski <kuba@kernel.org>
-To:     Rob Herring <robh@kernel.org>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        with ESMTP id S229486AbjCDAsJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Mar 2023 19:48:09 -0500
+X-Greylist: delayed 302 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Fri, 03 Mar 2023 16:48:07 PST
+Received: from mail-108-mta132.mxroute.com (mail-108-mta132.mxroute.com [136.175.108.132])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DEA5613DEC
+        for <devicetree@vger.kernel.org>; Fri,  3 Mar 2023 16:48:07 -0800 (PST)
+Received: from mail-111-mta2.mxroute.com ([136.175.111.2] filter006.mxroute.com)
+ (Authenticated sender: mN4UYu2MZsgR)
+ by mail-108-mta132.mxroute.com (ZoneMTA) with ESMTPSA id 186aa127ca7000edb4.004
+ for <devicetree@vger.kernel.org>
+ (version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES128-GCM-SHA256);
+ Sat, 04 Mar 2023 00:43:03 +0000
+X-Zone-Loop: 443a11bd3e6f70f794694683eeaaac76196160cc1b3c
+X-Originating-IP: [136.175.111.2]
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=ahepp.dev;
+        s=x; h=Content-Transfer-Encoding:MIME-Version:Message-Id:Date:Subject:Cc:To:
+        From:Sender:Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:
+        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
+        References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:
+        List-Owner:List-Archive; bh=SqOZ+n7iiZ6IA5VrgdiO4hkN3wRJAXL1gzzEhu6P3/A=; b=P
+        2w5kZtkm+rWp0KL3eNs3jv+BoCWvae1HIPLXGu8jeGeCSbagsRR54rhY7cN2LbZsg1tLMgRypT2W+
+        O3dmWd77dABU4vCJc+KMePopYVEz5ags+yAzS064h/yCcVa2pezHwN266UpfKopZr2Sls7KnaHLJe
+        7mJiGXdgLKcx7YW67x/FUA4P//1cHXB9ByA07FzWd4SCvXOLrXwUvCwwB4oZ3IRHtY8BJbXc3cs8G
+        EiSyfgWmtQ1TBQFPakCAdP/yzBMXZWHAc31RKbw53KrPBvljf8yWvmXYHNOSPWHKubAtacGGarzzx
+        t9qplq1j9DUEu/LTVRsvCA/LkuQMvonRw==;
+From:   Andrew Hepp <andrew.hepp@ahepp.dev>
+To:     devicetree@vger.kernel.org, linux-iio@vger.kernel.org
+Cc:     Andrew Hepp <andrew.hepp@ahepp.dev>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Herbert Xu <herbert@gondor.apana.org.au>,
-        "David S. Miller" <davem@davemloft.net>,
-        Rob Clark <robdclark@gmail.com>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Sean Paul <sean@poorly.run>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Eric Dumazet <edumazet@google.com>,
-        Paolo Abeni <pabeni@redhat.com>, Andrew Lunn <andrew@lunn.ch>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
-        Mark Brown <broonie@kernel.org>,
-        Conor Dooley <conor.dooley@microchip.com>,
-        linux-clk@vger.kernel.org, linux-crypto@vger.kernel.org,
-        dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org,
-        linux-media@vger.kernel.org, netdev@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-phy@lists.infradead.org, linux-gpio@vger.kernel.org,
-        alsa-devel@alsa-project.org, linux-riscv@lists.infradead.org,
-        linux-spi@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: yamllint: Require a space after a comment
- '#'
-Message-ID: <20230303155320.5e394431@kernel.org>
-In-Reply-To: <20230303214223.49451-1-robh@kernel.org>
-References: <20230303214223.49451-1-robh@kernel.org>
+        Jonathan Cameron <jic23@kernel.org>
+Subject: [PATCH v3 1/2] dt-bindings: iio: Add MCP9600 thermocouple EMF converter bindings
+Date:   Fri,  3 Mar 2023 16:41:08 -0800
+Message-Id: <20230304004109.78659-1-andrew.hepp@ahepp.dev>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Authenticated-Id: andrew.hepp@ahepp.dev
+X-Spam-Status: No, score=-1.7 required=5.0 tests=BAYES_00,DKIM_INVALID,
+        DKIM_SIGNED,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri,  3 Mar 2023 15:42:23 -0600 Rob Herring wrote:
-> Enable yamllint to check the prefered commenting style of requiring a
-> space after a comment character '#'. Fix the cases in the tree which
-> have a warning with this enabled. Most cases just need a space after the
-> '#'. A couple of cases with comments which were not intended to be
-> comments are revealed. Those were in ti,sa2ul.yaml, ti,cal.yaml, and
-> brcm,bcmgenet.yaml.
-> 
-> Signed-off-by: Rob Herring <robh@kernel.org>
+Add support for the MCP9600 thermocouple EMF converter.
 
-Acked-by: Jakub Kicinski <kuba@kernel.org>
+Datasheet: https://ww1.microchip.com/downloads/en/DeviceDoc/MCP960X-Data-Sheet-20005426.pdf
+Signed-off-by: Andrew Hepp <andrew.hepp@ahepp.dev>
+---
+Changes for v3:
+- Added dt-bindings
+---
+ .../iio/temperature/microchip,mcp9600.yaml    | 72 +++++++++++++++++++
+ 1 file changed, 72 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/iio/temperature/microchip,mcp9600.yaml
+
+diff --git a/Documentation/devicetree/bindings/iio/temperature/microchip,mcp9600.yaml b/Documentation/devicetree/bindings/iio/temperature/microchip,mcp9600.yaml
+new file mode 100644
+index 000000000000..584d0ae42502
+--- /dev/null
++++ b/Documentation/devicetree/bindings/iio/temperature/microchip,mcp9600.yaml
+@@ -0,0 +1,72 @@
++# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/iio/temperature/microchip,mcp9600.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Microchip MCP9600 thermocouple EMF converter
++
++maintainers:
++  - Andrew Hepp <andrew.hepp@ahepp.dev>
++
++description: |
++  https://ww1.microchip.com/downloads/en/DeviceDoc/MCP960X-Data-Sheet-20005426.pdf
++
++properties:
++  compatible:
++    const: microchip,mcp9600
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    minItems: 1
++    maxItems: 6
++
++  interrupt-names:
++    minItems: 1
++    maxItems: 6
++    items:
++      enum:
++        - open
++        - short
++        - alert1
++        - alert2
++        - alert3
++        - alert4
++
++  thermocouple-type:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    description:
++      Type of thermocouple (THERMOCOUPLE_TYPE_K if omitted).
++      Use defines in dt-bindings/iio/temperature/thermocouple.h.
++      Supported types are B, E, J, K, N, R, S, T.
++
++  vdd-supply:
++    description: Regulator that provides power to the sensor.
++
++required:
++  - compatible
++  - reg
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/gpio/gpio.h>
++    #include <dt-bindings/iio/temperature/thermocouple.h>
++    #include <dt-bindings/interrupt-controller/irq.h>
++    i2c {
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        mcp9600@60 {
++            compatible = "microchip,mcp9600";
++            reg = <0x60>;
++            interrupt-parent = <&gpio>;
++            interrupts = <25 IRQ_TYPE_EDGE_RISING>;
++            interrupt-names = "open";
++            thermocouple-type = <THERMOCOUPLE_TYPE_K>;
++            vdd-supply = <&vdd>;
++        };
++    };
+-- 
+2.30.2
+
