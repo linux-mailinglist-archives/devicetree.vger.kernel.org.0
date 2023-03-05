@@ -2,220 +2,173 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C28EA6AAD0D
-	for <lists+devicetree@lfdr.de>; Sat,  4 Mar 2023 23:57:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 26F016AADDF
+	for <lists+devicetree@lfdr.de>; Sun,  5 Mar 2023 03:21:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229534AbjCDW5o (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 4 Mar 2023 17:57:44 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46266 "EHLO
+        id S229590AbjCECVh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 4 Mar 2023 21:21:37 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57300 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229570AbjCDW5m (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 4 Mar 2023 17:57:42 -0500
-Received: from smtp-relay-internal-0.canonical.com (smtp-relay-internal-0.canonical.com [185.125.188.122])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C684712581
-        for <devicetree@vger.kernel.org>; Sat,  4 Mar 2023 14:57:38 -0800 (PST)
-Received: from mail-qt1-f198.google.com (mail-qt1-f198.google.com [209.85.160.198])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id AC85141262
-        for <devicetree@vger.kernel.org>; Sat,  4 Mar 2023 22:57:36 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1677970656;
-        bh=Vju82LMq7Hb3dulxwnm87osrgbRmnYPvBM1vXLn4dUA=;
-        h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-         To:Cc:Content-Type;
-        b=eVuXfteV4OyfoBeHCOKLBLDrTUF2AN4RIQ5VxgHsDYFtbUUswzwmUqj1MBx6ZwlFZ
-         geielPHAU7QBpSgAE4Z7UaG5Qp0kaQoM46PY1GAeNg9fpXTiAJWUyF7gMZG5uSlmc3
-         ry5G4pe9DRTd6F4A08fo+Cq7i98rMj7+Hl5keO3b4bkxKlQxlJUsogWIsFOf7Ci+1f
-         ptkYyy+OW+M14Z4zrsmKX6IkmibnmijAqbHnLSAAcrIOGEjEj81WsRqeMvut59hTj6
-         OWwDqf9qJDPIW0g0bISKeZAUzscm0OVnPQUJ1jbo1iCWyFChDFLimDT87slvaxq8TN
-         lZatfuLgALM8Q==
-Received: by mail-qt1-f198.google.com with SMTP id k19-20020ac86053000000b003bd0d4e3a50so3386080qtm.9
-        for <devicetree@vger.kernel.org>; Sat, 04 Mar 2023 14:57:36 -0800 (PST)
+        with ESMTP id S229567AbjCECVe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 4 Mar 2023 21:21:34 -0500
+Received: from mail-wm1-x32e.google.com (mail-wm1-x32e.google.com [IPv6:2a00:1450:4864:20::32e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E31B015550;
+        Sat,  4 Mar 2023 18:21:32 -0800 (PST)
+Received: by mail-wm1-x32e.google.com with SMTP id k37so3744608wms.0;
+        Sat, 04 Mar 2023 18:21:32 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112; t=1677982891;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=rhdfqbejCXAA/EEgTgeDfAkdEQU7utw6cEIkt9BYRg0=;
+        b=pLZx111xGFqaYchgmdt+S5lOjPXQmmhMDMNtsSxR/FXBEIk4DhQK1uGKoEYlI9sbJs
+         FmD+9LolgrUt0Wjenln4mdxnuHP3a88ZtrPF02kjgfUpG9DyqKx3qk3437rN5zO2db2F
+         hvmHZm34diT0qSqjUFPxdW1qOnQ5TGXCUQ+8LrZUaXGBPRf8Txv5wrTFle+5paYURWrY
+         WpduxEdavR/3MxjDNxJSO0mSCoXRO6MIlSumkVXcv+cONTOAZgaj7ZqiYuOXrgm/0XpD
+         vXCJu6rMcuUxcx8jXA9Mnlwmljbx/Zyd+WWlabmpFc/PpR1yvG2yLUah/XlWZRwBw3uR
+         lwww==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1677970654;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=Vju82LMq7Hb3dulxwnm87osrgbRmnYPvBM1vXLn4dUA=;
-        b=qB8T5XlaFQG0EqSWAUlQHkI57tVpVdkDqy/H/efYxQqu+COD66agarjpfOLuP/C24p
-         b0H4/LbeMt6yEDyiMYRLZq4ihjyAM4CBoyrymAeX5ExmmePjdiNwV+Jg37fRCnFTdNpE
-         +zr/BzZwQEhPybAlR46JMoai5MR0qjOm7P2YqkPVZYQaEyG8uCjUw/m0yyk9mYQMOFOB
-         CJz2PueU8FykNwL/qSp8DYHYa6nqojC02hazd9BxGlYgV2YBIylp7nMUGbLKIyWmL/bu
-         /L/4JhEeAo0CslmUu65dZg45mMmwdo+oQRiAkEs2ZZXxG1+uLvRPwB+QrCJOGYWZeX7m
-         +pMw==
-X-Gm-Message-State: AO0yUKXC1y1uj679PnAKXZFMOrfrEnjogIawc0utkbdNY/1PtYMSZDmd
-        In2tr0si28V4QpDDvFDInyrrt5TWcSVqY78L1+UF/xZCoHmTkAzG1UO5I1PdVq/uVR7kFaptiTs
-        JTwsG6pZasubkBbnt6+Mm5ql3YqSEwUmL1LvpeAYXTg2cHoU9F9+LzJM=
-X-Received: by 2002:a05:6214:933:b0:571:1409:5ee1 with SMTP id dk19-20020a056214093300b0057114095ee1mr1789516qvb.0.1677970654694;
-        Sat, 04 Mar 2023 14:57:34 -0800 (PST)
-X-Google-Smtp-Source: AK7set9OCpr8hRBc/QazhmBC/md4LdexEqTNSjYLrirDk7uhU3nwpz+1l8MCPf/QOPXZH2D1Js8bjRxfqR+PGxy3+lk=
-X-Received: by 2002:a05:6214:933:b0:571:1409:5ee1 with SMTP id
- dk19-20020a056214093300b0057114095ee1mr1789506qvb.0.1677970654498; Sat, 04
- Mar 2023 14:57:34 -0800 (PST)
-MIME-Version: 1.0
-References: <20230303085928.4535-1-samin.guo@starfivetech.com> <20230303085928.4535-6-samin.guo@starfivetech.com>
-In-Reply-To: <20230303085928.4535-6-samin.guo@starfivetech.com>
-From:   Emil Renner Berthing <emil.renner.berthing@canonical.com>
-Date:   Sat, 4 Mar 2023 23:57:18 +0100
-Message-ID: <CAJM55Z_SV3ig56JY9BF5LeWt4M+bKYh_HdxSY02CP+9i7F0vCQ@mail.gmail.com>
-Subject: Re: [PATCH v5 05/12] riscv: dts: starfive: jh7110: Add ethernet
- device nodes
-To:     Samin Guo <samin.guo@starfivetech.com>
-Cc:     linux-riscv@lists.infradead.org, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        "David S . Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
+        d=1e100.net; s=20210112; t=1677982891;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=rhdfqbejCXAA/EEgTgeDfAkdEQU7utw6cEIkt9BYRg0=;
+        b=x5zNGUmuZlzBofQrRbSjbx4gG0QKMgmhgvvrIlQ6ELgglGDc6qqiYj0JWjbWhLWB7Q
+         NoCjIi31B6m9NziKrrx/1bSl0ZpSrj0aowTcUX+cSKbzVw6YwoGxXvtvMiIUjqVLwm/p
+         U3AXHxS+2HMWGJB2iy/LU/YrVBOezNEb7fpVJdHBWlSO1oCPOL5ZytwggZT6o749dwtO
+         ZzER8lODP3QCQbqRR8/q5jUSYp5daNn+nFjEbYITy5uDBwB3wc69hPVrzogbUO0H5mQ4
+         4KkeojZYAiEl6Gw+ZsvVj+AFujxmcbFwIZvB9kGhDKQeYx109s+pEKMZ8CoR8GdFPeHU
+         qkEA==
+X-Gm-Message-State: AO0yUKVz0LDh0hJ16+hJnrd9cS2ne0vEO7MPWqZEZ4nJlaOkBDoEQZYv
+        xbGSrGX2yJDt6eccCtEIg0Q=
+X-Google-Smtp-Source: AK7set/nIGRwkILaZPaYTRND1rpZTKAKNdYReAnXeBe+CFMCXxvQofEEoJRc67D7OIhmtfOqKDOHEw==
+X-Received: by 2002:a05:600c:524b:b0:3df:de28:f819 with SMTP id fc11-20020a05600c524b00b003dfde28f819mr5654488wmb.15.1677982891256;
+        Sat, 04 Mar 2023 18:21:31 -0800 (PST)
+Received: from xws.localdomain ([217.138.207.232])
+        by smtp.gmail.com with ESMTPSA id k4-20020adfd844000000b002c57384dfe0sm6356451wrl.113.2023.03.04.18.21.30
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 04 Mar 2023 18:21:30 -0800 (PST)
+From:   Maximilian Luz <luzmaximilian@gmail.com>
+To:     Bjorn Andersson <andersson@kernel.org>
+Cc:     Maximilian Luz <luzmaximilian@gmail.com>,
+        Andy Gross <agross@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Ard Biesheuvel <ardb@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Emil Renner Berthing <kernel@esmil.dk>,
-        Richard Cochran <richardcochran@gmail.com>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Peter Geis <pgwipeout@gmail.com>,
-        Yanhong Wang <yanhong.wang@starfivetech.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        Johan Hovold <johan@kernel.org>,
+        Sudeep Holla <sudeep.holla@arm.com>,
+        Ilias Apalodimas <ilias.apalodimas@linaro.org>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Sumit Garg <sumit.garg@linaro.org>,
+        Steev Klimaszewski <steev@kali.org>,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: [PATCH v3 3/4] dt-bindings: firmware: Add Qualcomm QSEECOM interface
+Date:   Sun,  5 Mar 2023 03:21:18 +0100
+Message-Id: <20230305022119.1331495-4-luzmaximilian@gmail.com>
+X-Mailer: git-send-email 2.39.2
+In-Reply-To: <20230305022119.1331495-1-luzmaximilian@gmail.com>
+References: <20230305022119.1331495-1-luzmaximilian@gmail.com>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 3 Mar 2023 at 10:01, Samin Guo <samin.guo@starfivetech.com> wrote:
->
-> Add JH7110 ethernet device node to support gmac driver for the JH7110
-> RISC-V SoC.
->
-> Signed-off-by: Yanhong Wang <yanhong.wang@starfivetech.com>
-> Signed-off-by: Samin Guo <samin.guo@starfivetech.com>
-> ---
->  arch/riscv/boot/dts/starfive/jh7110.dtsi | 91 ++++++++++++++++++++++++
->  1 file changed, 91 insertions(+)
->
-> diff --git a/arch/riscv/boot/dts/starfive/jh7110.dtsi b/arch/riscv/boot/dts/starfive/jh7110.dtsi
-> index 09806418ed1b..2ce28292b721 100644
-> --- a/arch/riscv/boot/dts/starfive/jh7110.dtsi
-> +++ b/arch/riscv/boot/dts/starfive/jh7110.dtsi
-> @@ -233,6 +233,13 @@
->                 #clock-cells = <0>;
->         };
->
-> +       stmmac_axi_setup: stmmac-axi-config {
-> +               snps,lpi_en;
-> +               snps,wr_osr_lmt = <4>;
-> +               snps,rd_osr_lmt = <4>;
-> +               snps,blen = <256 128 64 32 0 0 0>;
-> +       };
-> +
->         tdm_ext: tdm-ext-clock {
->                 compatible = "fixed-clock";
->                 clock-output-names = "tdm_ext";
-> @@ -518,5 +525,89 @@
->                         gpio-controller;
->                         #gpio-cells = <2>;
->                 };
-> +
-> +               gmac0: ethernet@16030000 {
-> +                       compatible = "starfive,jh7110-dwmac", "snps,dwmac-5.20";
-> +                       reg = <0x0 0x16030000 0x0 0x10000>;
-> +                       clocks = <&aoncrg JH7110_AONCLK_GMAC0_AXI>,
-> +                                <&aoncrg JH7110_AONCLK_GMAC0_AHB>,
-> +                                <&syscrg JH7110_SYSCLK_GMAC0_PTP>,
-> +                                <&aoncrg JH7110_AONCLK_GMAC0_TX_INV>,
-> +                                <&syscrg JH7110_SYSCLK_GMAC0_GTXC>;
-> +                       clock-names = "stmmaceth", "pclk", "ptp_ref",
-> +                                     "tx", "gtx";
-> +                       resets = <&aoncrg JH7110_AONRST_GMAC0_AXI>,
-> +                                <&aoncrg JH7110_AONRST_GMAC0_AHB>;
-> +                       reset-names = "stmmaceth", "ahb";
-> +                       interrupts = <7>, <6>, <5>;
-> +                       interrupt-names = "macirq", "eth_wake_irq", "eth_lpi";
-> +                       phy-mode = "rgmii-id";
-> +                       snps,multicast-filter-bins = <64>;
-> +                       snps,perfect-filter-entries = <8>;
-> +                       rx-fifo-depth = <2048>;
-> +                       tx-fifo-depth = <2048>;
-> +                       snps,fixed-burst;
-> +                       snps,no-pbl-x8;
-> +                       snps,force_thresh_dma_mode;
-> +                       snps,axi-config = <&stmmac_axi_setup>;
-> +                       snps,tso;
-> +                       snps,en-tx-lpi-clockgating;
-> +                       snps,txpbl = <16>;
-> +                       snps,rxpbl = <16>;
-> +                       status = "disabled";
-> +                       phy-handle = <&phy0>;
-> +
-> +                       mdio {
-> +                               #address-cells = <1>;
-> +                               #size-cells = <0>;
-> +                               compatible = "snps,dwmac-mdio";
-> +
-> +                               phy0: ethernet-phy@0 {
-> +                                       reg = <0>;
-> +                               };
-> +                       };
-> +               };
-> +
-> +               gmac1: ethernet@16040000 {
-> +                       compatible = "starfive,jh7110-dwmac", "snps,dwmac-5.20";
-> +                       reg = <0x0 0x16040000 0x0 0x10000>;
-> +                       clocks = <&syscrg JH7110_SYSCLK_GMAC1_AXI>,
-> +                                <&syscrg JH7110_SYSCLK_GMAC1_AHB>,
-> +                                <&syscrg JH7110_SYSCLK_GMAC1_PTP>,
-> +                                <&syscrg JH7110_SYSCLK_GMAC1_TX_INV>,
-> +                                <&syscrg JH7110_SYSCLK_GMAC1_GTXC>;
-> +                       clock-names = "stmmaceth", "pclk", "ptp_ref",
-> +                                     "tx", "gtx";
-> +                       resets = <&syscrg JH7110_SYSRST_GMAC1_AXI>,
-> +                                <&syscrg JH7110_SYSRST_GMAC1_AHB>;
-> +                       reset-names = "stmmaceth", "ahb";
-> +                       interrupts = <78>, <77>, <76>;
-> +                       interrupt-names = "macirq", "eth_wake_irq", "eth_lpi";
-> +                       phy-mode = "rgmii-id";
-> +                       snps,multicast-filter-bins = <64>;
-> +                       snps,perfect-filter-entries = <8>;
-> +                       rx-fifo-depth = <2048>;
-> +                       tx-fifo-depth = <2048>;
-> +                       snps,fixed-burst;
-> +                       snps,no-pbl-x8;
-> +                       snps,force_thresh_dma_mode;
-> +                       snps,axi-config = <&stmmac_axi_setup>;
-> +                       snps,tso;
-> +                       snps,en-tx-lpi-clockgating;
-> +                       snps,txpbl = <16>;
-> +                       snps,rxpbl = <16>;
-> +                       status = "disabled";
-> +                       phy-handle = <&phy1>;
-> +
-> +                       mdio {
-> +                               #address-cells = <1>;
-> +                               #size-cells = <0>;
-> +                               compatible = "snps,dwmac-mdio";
-> +
-> +                               phy1: ethernet-phy@1 {
-> +                                       reg = <0>;
+Add bindings for the Qualcomm Secure Execution Environment interface
+(QSEECOM).
 
-I'm getting errors on eth1 unless this is set to <1>. In any case the
-number after @ in the node name should match the reg value.
+Signed-off-by: Maximilian Luz <luzmaximilian@gmail.com>
+---
 
-> +                               };
-> +                       };
-> +               };
->         };
->  };
-> --
-> 2.17.1
->
->
-> _______________________________________________
-> linux-riscv mailing list
-> linux-riscv@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-riscv
+Changes in v3:
+ - None.
+
+Changes in v2:
+ - Replaces uefisecapp bindings.
+ - Fix various dt-checker complaints.
+
+---
+ .../bindings/firmware/qcom,qseecom.yaml       | 49 +++++++++++++++++++
+ MAINTAINERS                                   |  1 +
+ 2 files changed, 50 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/firmware/qcom,qseecom.yaml
+
+diff --git a/Documentation/devicetree/bindings/firmware/qcom,qseecom.yaml b/Documentation/devicetree/bindings/firmware/qcom,qseecom.yaml
+new file mode 100644
+index 000000000000..540a604f81bc
+--- /dev/null
++++ b/Documentation/devicetree/bindings/firmware/qcom,qseecom.yaml
+@@ -0,0 +1,49 @@
++# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/firmware/qcom,qseecom.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Qualcomm Secure Execution Environment Communication Interface
++
++maintainers:
++  - Maximilian Luz <luzmaximilian@gmail.com>
++
++description: |
++  QSEECOM provides an interface to Qualcomm's Secure Execution Environment
++  (SEE) running in the Trust Zone via SCM calls. In particular, it allows
++  communication with secure applications running therein.
++
++  Applications running in this environment can, for example, include
++  'uefisecapp', which is required for accessing UEFI variables on certain
++  systems as these cannot be accessed directly.
++
++properties:
++  compatible:
++    items:
++      - enum:
++          - qcom,qseecom-sc8280xp
++      - const: qcom,qseecom
++
++  qcom,scm:
++    $ref: '/schemas/types.yaml#/definitions/phandle'
++    description:
++      A phandle pointing to the QCOM SCM device (see ./qcom,scm.yaml).
++
++required:
++  - compatible
++  - qcom,scm
++
++additionalProperties: false
++
++examples:
++  - |
++    firmware {
++        scm {
++            compatible = "qcom,scm-sc8280xp", "qcom,scm";
++        };
++        qseecom {
++            compatible = "qcom,qseecom-sc8280xp", "qcom,qseecom";
++            qcom,scm = <&scm>;
++        };
++    };
+diff --git a/MAINTAINERS b/MAINTAINERS
+index 1545914a592c..ef1f806986e9 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -17384,6 +17384,7 @@ QUALCOMM SECURE EXECUTION ENVIRONMENT COMMUNICATION DRIVER
+ M:	Maximilian Luz <luzmaximilian@gmail.com>
+ L:	linux-arm-msm@vger.kernel.org
+ S:	Maintained
++F:	Documentation/devicetree/bindings/firmware/qcom,qseecom.yaml
+ F:	drivers/firmware/qcom_qseecom.c
+ F:	include/linux/firmware/qcom/qcom_qseecom.h
+ 
+-- 
+2.39.2
+
