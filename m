@@ -2,67 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A812E6AAFAE
-	for <lists+devicetree@lfdr.de>; Sun,  5 Mar 2023 13:59:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BA1006AAFB4
+	for <lists+devicetree@lfdr.de>; Sun,  5 Mar 2023 14:00:03 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229455AbjCEM7Z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 5 Mar 2023 07:59:25 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55284 "EHLO
+        id S229622AbjCENAC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 5 Mar 2023 08:00:02 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56022 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229556AbjCEM7Y (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 5 Mar 2023 07:59:24 -0500
-Received: from mail-ed1-x52d.google.com (mail-ed1-x52d.google.com [IPv6:2a00:1450:4864:20::52d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F34F712BED
-        for <devicetree@vger.kernel.org>; Sun,  5 Mar 2023 04:59:21 -0800 (PST)
-Received: by mail-ed1-x52d.google.com with SMTP id ay14so24288974edb.11
-        for <devicetree@vger.kernel.org>; Sun, 05 Mar 2023 04:59:21 -0800 (PST)
+        with ESMTP id S229604AbjCENAA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 5 Mar 2023 08:00:00 -0500
+Received: from mail-ed1-x530.google.com (mail-ed1-x530.google.com [IPv6:2a00:1450:4864:20::530])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3584E12BE5
+        for <devicetree@vger.kernel.org>; Sun,  5 Mar 2023 04:59:58 -0800 (PST)
+Received: by mail-ed1-x530.google.com with SMTP id j11so8459568edq.4
+        for <devicetree@vger.kernel.org>; Sun, 05 Mar 2023 04:59:58 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1678021160;
+        d=linaro.org; s=google; t=1678021196;
         h=content-transfer-encoding:mime-version:message-id:date:subject:cc
          :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=cqDGVxJfeCpM1mRAZY399+BTV0oE+jJf5kzKKg2IU3E=;
-        b=qRkA0p95edE4IQicaYTQgfXODTtEH8aTr2m0l2OWlPPuZeBBltBUR6j0VCAHs1sjow
-         qu3afzlaKQ92SoPas8/jyJcaVnpIyMbkjZoQyLzray4BJ4UVpDUDX25LOHz29OKIKoqs
-         ft+1Ux8IiG2kdy7FFx0hSc6CpR/c+pSEmF406w9l88yJKSC1NT9VveIQ3O0H5MYgzuiT
-         7Cdo/oTnkeBEZejEk2dmeoilt5WBvRBfoXt6hwyDGEf7NsVRO3MxqkBKkkoOizb9l+Ym
-         0zMrcuYTBv8K49JOLwGBuozwYpOxGBf0MFw/InApnMs1GVQwEiBUaefo1TZCfL5xEmwY
-         o+kg==
+        bh=8c2yb4QaL3JCLZ0HwZ8OkD2d0yLIhaH9t78vVtlBE/A=;
+        b=Cq8ohg8BKAbp3khwYMaGdtt72nNTH20QHKg124wzLReL+dkwRbaFIOBn+Q6+M2BDJu
+         FCWldJwi/vhHrtJ7K5vI/8L6t3UdRG9VDdbU3LONsgDs7MlySEXwvfV97VtMH4Hra58u
+         lRM0g3cJslzrz1/nK9F8aqNIVX0BcoaxnNM+BZhY5z+UbY0OFcDegbkSgvgtnEt5kwAe
+         20a9IMhOVhUgsaJeAoTvCdNJq5bvvoLQWZTRfTCAkTTfvydbO9GHRrnTLVzVoFb99ZoE
+         w/JqWo2bRyig9HjK6L1eSnCgVfjEwslfivXBb9Ktk9306Wd8GrU5qI3oZyk0UE4uNaHC
+         ZJTQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678021160;
+        d=1e100.net; s=20210112; t=1678021196;
         h=content-transfer-encoding:mime-version:message-id:date:subject:cc
          :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=cqDGVxJfeCpM1mRAZY399+BTV0oE+jJf5kzKKg2IU3E=;
-        b=yKxtKa+5OjSV9tIA125CLXo97FQOqRGn33u+JwcWta2CkxY2GI1FYf1c7plKIuTCVf
-         7gS8XLzE2HQ4neVCzYKHl/+IAl7+akAXZDtwqQDNeKj8yQ+5kq7Dr4As53NAlkHcqTWi
-         Nnpzn/+BVkBJv+YMXbzO4x7EFKaSIKcWRFBe2BsHrmON2PmGRYTe9YBtmYqNzPyskPhw
-         qn+8xJjXNc84BC2uOdZom3BabqMl/zMzZ3PQa9toyqZYDmuhXFnrbO7zh/41R1qwKinU
-         9kjVgXam64ZFUMu8/QNql0phpIvpjSzBbn9dmnUk1I/T1k5WCMaidQmpMi7XWQhfKyi6
-         RKsw==
-X-Gm-Message-State: AO0yUKUKvff7/ggBC8cpk3Pq9CWGbWrsd8xQLR/AMjB3+YV5TxCQfRES
-        kNta5xa7/hcP1miMgBZ/IzhUPA==
-X-Google-Smtp-Source: AK7set/nhS55A3Mvm+Le9cZqCoAGCWogUwFqs7Lfvp3smPKXdX9BJLV8Qf16/5xI5Mg0KY3XJpgYlg==
-X-Received: by 2002:a17:907:86a6:b0:84d:3403:f4f2 with SMTP id qa38-20020a17090786a600b0084d3403f4f2mr9882723ejc.62.1678021160509;
-        Sun, 05 Mar 2023 04:59:20 -0800 (PST)
+        bh=8c2yb4QaL3JCLZ0HwZ8OkD2d0yLIhaH9t78vVtlBE/A=;
+        b=ZdN5S8+65/aEFKfjcLEFzs347Pc0NTgLU/49uV4eGLcNbQGxGFVGa1OQA5+t1h4e4V
+         JYDxZWWQzYuSKQaMsWFeR3esDpt0Mxyt0AN0dGliO0x8fGYFm5M7Yh8wetqj1GtUKOFy
+         xuejBsLhDYAwmqLsgM0u5A6y9LaDwjqi0XEFFCNt3TD4/RKPKm4mFT5ZgU2TwrcRmdhb
+         +iKvM/7b1x0utcUS4EsSXFjEu6HOa1WbxRpyXDmizmLo9xee8GPflYQv4SvfZBG2/CyN
+         x3Yy/WANGGqR95IyLJceZb7Y8qJKPt/P3Il6bMkzk4Cq+H8LJ00CooUT8B0WvlswnbFz
+         aPQA==
+X-Gm-Message-State: AO0yUKXxrNMv1DFsH7k6AP0K576IqQ5QH8TuuNrvW6IitCxL/4Sbbb8p
+        bhLFwIrusWIjRvP8qObnGSwxQQ==
+X-Google-Smtp-Source: AK7set9ipj1J1gjoi5978HfQMZpW6LnNNVdFI5gAwsxpiqz1UogyZveke4chru6K2bFVL7U3d5oARQ==
+X-Received: by 2002:a17:906:5d07:b0:8b1:3467:d71b with SMTP id g7-20020a1709065d0700b008b13467d71bmr10703343ejt.48.1678021196734;
+        Sun, 05 Mar 2023 04:59:56 -0800 (PST)
 Received: from krzk-bin.. ([2a02:810d:15c0:828:71e7:13d:1c29:505f])
-        by smtp.gmail.com with ESMTPSA id qt2-20020a170906ece200b008e938e98046sm3168388ejb.223.2023.03.05.04.59.19
+        by smtp.gmail.com with ESMTPSA id l15-20020a170906078f00b008ea8effe947sm3193158ejc.225.2023.03.05.04.59.55
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 05 Mar 2023 04:59:20 -0800 (PST)
+        Sun, 05 Mar 2023 04:59:56 -0800 (PST)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 To:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
         Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Manivannan Sadhasivam <mani@kernel.org>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        linux-arm-msm@vger.kernel.org, linux-remoteproc@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+        Melody Olvera <quic_molvera@quicinc.com>,
+        Souradeep Chowdhury <quic_schowdhu@quicinc.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
 Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH] dt-bindings: remoteproc: qcom,adsp: bring back firmware-name
-Date:   Sun,  5 Mar 2023 13:59:17 +0100
-Message-Id: <20230305125917.209262-1-krzysztof.kozlowski@linaro.org>
+Subject: [PATCH 01/11] arm64: dts: qcom: drop incorrect cell-index from SPMI
+Date:   Sun,  5 Mar 2023 13:59:44 +0100
+Message-Id: <20230305125954.209559-1-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
@@ -76,31 +76,119 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The firmware-name property was moved from common qcom,pas-common.yaml
-binding to each device-specific schema, but the qcom,adsp.yaml was not
-updated.
+The SPMI controller (PMIC Arbiter)) does not use nor allow 'cell-index'
+property:
 
-Fixes: cee616c68846 ("dt-bindings: remoteproc: qcom: adsp: move memory-region and firmware-name out of pas-common")
+  sm8150-microsoft-surface-duo.dtb: spmi@c440000: Unevaluated properties are not allowed ('cell-index' was unexpected)
+
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
- Documentation/devicetree/bindings/remoteproc/qcom,adsp.yaml | 4 ++++
- 1 file changed, 4 insertions(+)
+ arch/arm64/boot/dts/qcom/ipq8074.dtsi | 1 -
+ arch/arm64/boot/dts/qcom/msm8976.dtsi | 1 -
+ arch/arm64/boot/dts/qcom/msm8998.dtsi | 1 -
+ arch/arm64/boot/dts/qcom/sc7180.dtsi  | 1 -
+ arch/arm64/boot/dts/qcom/sdm630.dtsi  | 1 -
+ arch/arm64/boot/dts/qcom/sdm845.dtsi  | 1 -
+ arch/arm64/boot/dts/qcom/sm6125.dtsi  | 1 -
+ arch/arm64/boot/dts/qcom/sm8150.dtsi  | 1 -
+ 8 files changed, 8 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/remoteproc/qcom,adsp.yaml b/Documentation/devicetree/bindings/remoteproc/qcom,adsp.yaml
-index 643ee787a81f..828dfebaef6a 100644
---- a/Documentation/devicetree/bindings/remoteproc/qcom,adsp.yaml
-+++ b/Documentation/devicetree/bindings/remoteproc/qcom,adsp.yaml
-@@ -44,6 +44,10 @@ properties:
-     maxItems: 1
-     description: Reference to the reserved-memory for the Hexagon core
+diff --git a/arch/arm64/boot/dts/qcom/ipq8074.dtsi b/arch/arm64/boot/dts/qcom/ipq8074.dtsi
+index 62d05d740646..f769e63c955c 100644
+--- a/arch/arm64/boot/dts/qcom/ipq8074.dtsi
++++ b/arch/arm64/boot/dts/qcom/ipq8074.dtsi
+@@ -397,7 +397,6 @@ spmi_bus: spmi@200f000 {
+ 			#size-cells = <0>;
+ 			interrupt-controller;
+ 			#interrupt-cells = <4>;
+-			cell-index = <0>;
+ 		};
  
-+  firmware-name:
-+    $ref: /schemas/types.yaml#/definitions/string
-+    description: Firmware name for the Hexagon core
-+
- required:
-   - compatible
+ 		sdhc_1: mmc@7824900 {
+diff --git a/arch/arm64/boot/dts/qcom/msm8976.dtsi b/arch/arm64/boot/dts/qcom/msm8976.dtsi
+index 2d360d05aa5e..712f80fc865c 100644
+--- a/arch/arm64/boot/dts/qcom/msm8976.dtsi
++++ b/arch/arm64/boot/dts/qcom/msm8976.dtsi
+@@ -809,7 +809,6 @@ spmi_bus: spmi@200f000 {
+ 			#size-cells = <0>;
+ 			interrupt-controller;
+ 			#interrupt-cells = <4>;
+-			cell-index = <0>;
+ 		};
  
+ 		sdhc_1: mmc@7824000 {
+diff --git a/arch/arm64/boot/dts/qcom/msm8998.dtsi b/arch/arm64/boot/dts/qcom/msm8998.dtsi
+index adf7258b3269..d450fe69fe33 100644
+--- a/arch/arm64/boot/dts/qcom/msm8998.dtsi
++++ b/arch/arm64/boot/dts/qcom/msm8998.dtsi
+@@ -1993,7 +1993,6 @@ spmi_bus: spmi@800f000 {
+ 			#size-cells = <0>;
+ 			interrupt-controller;
+ 			#interrupt-cells = <4>;
+-			cell-index = <0>;
+ 		};
+ 
+ 		usb3: usb@a8f8800 {
+diff --git a/arch/arm64/boot/dts/qcom/sc7180.dtsi b/arch/arm64/boot/dts/qcom/sc7180.dtsi
+index ebfa21e9ed8a..51bb0a2f25ef 100644
+--- a/arch/arm64/boot/dts/qcom/sc7180.dtsi
++++ b/arch/arm64/boot/dts/qcom/sc7180.dtsi
+@@ -3280,7 +3280,6 @@ spmi_bus: spmi@c440000 {
+ 			#size-cells = <0>;
+ 			interrupt-controller;
+ 			#interrupt-cells = <4>;
+-			cell-index = <0>;
+ 		};
+ 
+ 		sram@146aa000 {
+diff --git a/arch/arm64/boot/dts/qcom/sdm630.dtsi b/arch/arm64/boot/dts/qcom/sdm630.dtsi
+index 5827cda270a0..72d9a12b5e9c 100644
+--- a/arch/arm64/boot/dts/qcom/sdm630.dtsi
++++ b/arch/arm64/boot/dts/qcom/sdm630.dtsi
+@@ -1189,7 +1189,6 @@ spmi_bus: spmi@800f000 {
+ 			#size-cells = <0>;
+ 			interrupt-controller;
+ 			#interrupt-cells = <4>;
+-			cell-index = <0>;
+ 		};
+ 
+ 		usb3: usb@a8f8800 {
+diff --git a/arch/arm64/boot/dts/qcom/sdm845.dtsi b/arch/arm64/boot/dts/qcom/sdm845.dtsi
+index 479859bd8ab3..dc43e438b64a 100644
+--- a/arch/arm64/boot/dts/qcom/sdm845.dtsi
++++ b/arch/arm64/boot/dts/qcom/sdm845.dtsi
+@@ -4924,7 +4924,6 @@ spmi_bus: spmi@c440000 {
+ 			#size-cells = <0>;
+ 			interrupt-controller;
+ 			#interrupt-cells = <4>;
+-			cell-index = <0>;
+ 		};
+ 
+ 		sram@146bf000 {
+diff --git a/arch/arm64/boot/dts/qcom/sm6125.dtsi b/arch/arm64/boot/dts/qcom/sm6125.dtsi
+index 65033227718a..fd577eb705f8 100644
+--- a/arch/arm64/boot/dts/qcom/sm6125.dtsi
++++ b/arch/arm64/boot/dts/qcom/sm6125.dtsi
+@@ -1134,7 +1134,6 @@ spmi_bus: spmi@1c40000 {
+ 			#size-cells = <0>;
+ 			interrupt-controller;
+ 			#interrupt-cells = <4>;
+-			cell-index = <0>;
+ 		};
+ 
+ 		apps_smmu: iommu@c600000 {
+diff --git a/arch/arm64/boot/dts/qcom/sm8150.dtsi b/arch/arm64/boot/dts/qcom/sm8150.dtsi
+index fd20096cfc6e..f89abf131e01 100644
+--- a/arch/arm64/boot/dts/qcom/sm8150.dtsi
++++ b/arch/arm64/boot/dts/qcom/sm8150.dtsi
+@@ -3935,7 +3935,6 @@ spmi_bus: spmi@c440000 {
+ 			#size-cells = <0>;
+ 			interrupt-controller;
+ 			#interrupt-cells = <4>;
+-			cell-index = <0>;
+ 		};
+ 
+ 		apps_smmu: iommu@15000000 {
 -- 
 2.34.1
 
