@@ -2,61 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5C4696AAF33
-	for <lists+devicetree@lfdr.de>; Sun,  5 Mar 2023 11:56:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 945506AAF79
+	for <lists+devicetree@lfdr.de>; Sun,  5 Mar 2023 13:24:38 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229580AbjCEK4D (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 5 Mar 2023 05:56:03 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54156 "EHLO
+        id S229667AbjCEMYg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 5 Mar 2023 07:24:36 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38752 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229539AbjCEK4C (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 5 Mar 2023 05:56:02 -0500
-Received: from sin.source.kernel.org (sin.source.kernel.org [IPv6:2604:1380:40e1:4800::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8C6E713D68;
-        Sun,  5 Mar 2023 02:56:01 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by sin.source.kernel.org (Postfix) with ESMTPS id 8464FCE0025;
-        Sun,  5 Mar 2023 10:55:59 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 41984C433D2;
-        Sun,  5 Mar 2023 10:55:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1678013757;
-        bh=ghe9m3Sb2ZozwkfUR3J/OZxMt72CJ2dDXwhL30J9Tgo=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=LOZT9OJBJihI6tMu2QfcwPJPPtN6tTDGw3Q54Ffxpw2/uV+mb3v7Hno20+REVOYZ+
-         h9Mzi1KgMLER8Si5Z63Nh2pkrOKm6XP/69GhEb7C2ACURXP8bwIBL2guem7Ez19Efo
-         wSBY/nGx7Lk6cs88HdidRV7a9b+vDOejoLKMtJQMTQ8e8/9jOohHnOgF05SMNPqvEB
-         /pjVU6yiAkySo7wTZsh3dJMEN1/MLNkLuMWSO/rVS2G9STsPH6ogIikHsQzx7fk0pP
-         bB0KWKNKQFtwKwuLw9JSW39dSi78dHHqFka0qdNZ9syXSkajAT/sbJ1ACryr4ikovx
-         60F5s0lLB/bUA==
-Date:   Sun, 5 Mar 2023 10:55:51 +0000
-From:   Lee Jones <lee@kernel.org>
-To:     Jakob Hauser <jahau@rocketmail.com>
-Cc:     Sebastian Reichel <sre@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
+        with ESMTP id S229437AbjCEMYf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 5 Mar 2023 07:24:35 -0500
+Received: from mail-ed1-x52f.google.com (mail-ed1-x52f.google.com [IPv6:2a00:1450:4864:20::52f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 966DE525E
+        for <devicetree@vger.kernel.org>; Sun,  5 Mar 2023 04:24:34 -0800 (PST)
+Received: by mail-ed1-x52f.google.com with SMTP id j11so8273584edq.4
+        for <devicetree@vger.kernel.org>; Sun, 05 Mar 2023 04:24:34 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1678019073;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=sGaUFmZmEPj6wjVZzqORlm4Vchur/nfexKJxUxV14Cc=;
+        b=bZyHcH617xd3qYRVsQMgkGFFwDrHr2l6GSnuO2/kk0SIu91z9kGvqpWx46g/FZfd0Z
+         WHpmiw58UaTwEGVJM82pEy1597CRc8X7jTtPdBr2oJ3ZfkZT/J/x9TfoCxcFXqbi9a6b
+         pR763pnCIztGEFr1fkkECnJkqRjkE0q2InCEl5SRl9C/+q4vN/OJalqchCzoctb8e52R
+         GP2j+PFeOV+4yTmTXDjdhwrWpFpu7Sx5UC4Jppd5dKLDgdYrCOTmJKjtb1AFBJc3tmeM
+         gW2C1PGc+BGt/YcpX3A6RU0PwCr815NUlhEqrSk94WoBbaQOfJiqE4N5qu77XHvwrIEy
+         8oyw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1678019073;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=sGaUFmZmEPj6wjVZzqORlm4Vchur/nfexKJxUxV14Cc=;
+        b=YXgaOZ3AmhhnnOD8ZxE+it9NFYk1ltJMpi35d3/wTyoxiSgH3E9dpETFkUzwbhceEc
+         94QWuQxf3VRZJYx9kHvm10GZcnhxhwx20mPpdQEttRhmXij9IApERcdvCRGE0NvaJP01
+         1PzE7w2xlfaWMDesL+Es9/q9/04xskjB/roYUZQozJ384dlHPOn7OEFcTyJKkhDhZ1gG
+         iWH7r/fFiYcGOMPReaGhAaCSS8tnxsj3qa7b+3aX09z11kw0aqd7Sv+retXZt1YlE3Pq
+         yFjYPJ5hiSrPfD+Mz1+0sDmJz1+N/Yz+Vs85qeDIhhHXdDgP3nBcGge2XGo08zLi2CYC
+         P61g==
+X-Gm-Message-State: AO0yUKWwR4KBZ9WmhmrQ8c02mAkL/iUeNXgsMZ9xD+syKLikNP9DpZ2f
+        yVSe3ZGA3/dKGbq9t4WFcmEVRw==
+X-Google-Smtp-Source: AK7set9gt2HUS9+fvU1DUep1ABAuIXeNzq4i233SNrJScC52wtEoWP/F9lt7wMNFPGQvBsn33LRkcQ==
+X-Received: by 2002:aa7:c242:0:b0:4ab:4c5e:b0ed with SMTP id y2-20020aa7c242000000b004ab4c5eb0edmr6465546edo.21.1678019073090;
+        Sun, 05 Mar 2023 04:24:33 -0800 (PST)
+Received: from krzk-bin.. ([2a02:810d:15c0:828:71e7:13d:1c29:505f])
+        by smtp.gmail.com with ESMTPSA id t26-20020a508d5a000000b004a9b5c957bfsm3621682edt.77.2023.03.05.04.24.32
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 05 Mar 2023 04:24:32 -0800 (PST)
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Beomho Seo <beomho.seo@samsung.com>,
-        Chanwoo Choi <cw00.choi@samsung.com>,
-        Stephan Gerhold <stephan@gerhold.net>,
-        Raymond Hackley <raymondhackley@protonmail.com>,
-        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht
-Subject: Re: [PATCH 05/10] mfd: rt5033: Apply preparatory changes before
- adding rt5033-charger driver
-Message-ID: <20230305105551.GJ2574592@google.com>
-References: <cover.1677620677.git.jahau@rocketmail.com>
- <4edfef7fdf129185355d4dd2d3928d63c04bac73.1677620677.git.jahau@rocketmail.com>
+        Kathiravan T <kathirav@codeaurora.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH] dt-bindings: soc: qcom: smd-rpm: re-add missing qcom,rpm-msm8994
+Date:   Sun,  5 Mar 2023 13:24:28 +0100
+Message-Id: <20230305122428.167580-1-krzysztof.kozlowski@linaro.org>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <4edfef7fdf129185355d4dd2d3928d63c04bac73.1677620677.git.jahau@rocketmail.com>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -64,46 +73,37 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 28 Feb 2023, Jakob Hauser wrote:
+Re-add the qcom,rpm-msm8994 compatible, dropped during conversion from
+TXT to DT schema:
 
-> Order the register blocks to have the masks in descending manner.
-> 
-> Add new defines for constant voltage shift (RT5033_CHGCTRL2_CV_SHIFT),
-> MIVR mask (RT5033_CHGCTRL4_MIVR_MASK), pre-charge current shift
-> (RT5033_CHGCTRL4_IPREC_SHIFT), internal timer disable
-> (RT5033_INT_TIMER_DISABLE), termination disable (RT5033_TE_DISABLE),
-> CFO disable (RT5033_CFO_DISABLE), UUG disable (RT5033_CHARGER_UUG_DISABLE).
-> 
-> The fast charge timer type needs to be written on mask 0x38
-> (RT5033_CHGCTRL3_TIMER_MASK). To avoid a bit shift on application, change the
-> values of the timer types to fit the mask. Added the timout duration as a
-> comment. And the timer between TIMER8 and TIMER12 is most likely TIMER10, see
-> e.g. RT5036 [1] page 28 bottom.
-> 
-> Add value options for MIVR (Minimum Input Voltage Regulation).
-> 
-> Move RT5033_TE_ENABLE_MASK to the block "RT5033 CHGCTRL1 register", in order
-> to have the masks of the register collected there. To fit the naming scheme,
-> rename it to RT5033_CHGCTRL1_TE_EN_MASK.
-> 
-> Move RT5033_CHG_MAX_CURRENT to the block "RT5033 charger fast-charge current".
-> 
-> Add new defines RT5033_CV_MAX_VOLTAGE and RT5033_CHG_MAX_PRE_CURRENT to the
-> blocks "RT5033 charger constant charge voltage" and "RT5033 charger pre-charge
-> current limits".
-> 
-> In include/linux/mfd/rt5033.h, turn power_supply "psy" into a pointer in order
-> to use it in devm_power_supply_register().
+  apq8094-sony-xperia-kitakami-karin_windy.dtb: smd: rpm:rpm-requests:compatible:0: 'qcom,rpm-msm8994' is not one of ['qcom,rpm-apq8084' ...]
 
-Are there no present users to account for?
+Fixes: f935a752f229 ("dt-bindings: soc: qcom: smd-rpm: Convert binding to YAML schema")
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+---
+ Documentation/devicetree/bindings/soc/qcom/qcom,smd-rpm.yaml | 2 ++
+ 1 file changed, 2 insertions(+)
 
-> [1] https://media.digikey.com/pdf/Data%20Sheets/Richtek%20PDF/RT5036%20%20Preliminary.pdf
-> 
-> Signed-off-by: Jakob Hauser <jahau@rocketmail.com>
-> ---
->  include/linux/mfd/rt5033-private.h | 53 ++++++++++++++++++++----------
->  include/linux/mfd/rt5033.h         |  2 +-
->  2 files changed, 36 insertions(+),` 19 deletions(-)
-
+diff --git a/Documentation/devicetree/bindings/soc/qcom/qcom,smd-rpm.yaml b/Documentation/devicetree/bindings/soc/qcom/qcom,smd-rpm.yaml
+index 16fd67c0bd1f..3580b209cd4a 100644
+--- a/Documentation/devicetree/bindings/soc/qcom/qcom,smd-rpm.yaml
++++ b/Documentation/devicetree/bindings/soc/qcom/qcom,smd-rpm.yaml
+@@ -40,6 +40,7 @@ properties:
+       - qcom,rpm-msm8953
+       - qcom,rpm-msm8974
+       - qcom,rpm-msm8976
++      - qcom,rpm-msm8994
+       - qcom,rpm-msm8996
+       - qcom,rpm-msm8998
+       - qcom,rpm-sdm660
+@@ -84,6 +85,7 @@ if:
+           - qcom,rpm-msm8974
+           - qcom,rpm-msm8976
+           - qcom,rpm-msm8953
++          - qcom,rpm-msm8994
+ then:
+   properties:
+     qcom,glink-channels: false
 -- 
-Lee Jones [李琼斯]
+2.34.1
+
