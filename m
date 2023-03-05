@@ -2,462 +2,250 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 936476AB145
-	for <lists+devicetree@lfdr.de>; Sun,  5 Mar 2023 16:55:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DC76D6AB14E
+	for <lists+devicetree@lfdr.de>; Sun,  5 Mar 2023 16:59:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229659AbjCEPzH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 5 Mar 2023 10:55:07 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41474 "EHLO
+        id S229461AbjCEP7R (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 5 Mar 2023 10:59:17 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45214 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229451AbjCEPzH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 5 Mar 2023 10:55:07 -0500
-Received: from sonic302-34.consmr.mail.ir2.yahoo.com (sonic302-34.consmr.mail.ir2.yahoo.com [87.248.110.97])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C96089ED1
-        for <devicetree@vger.kernel.org>; Sun,  5 Mar 2023 07:55:04 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=rocketmail.com; s=s2048; t=1678031703; bh=XBA3Tjdg1aOK1Mf2ovbvgPxmXJjSnTvyJIg5UooDk1o=; h=Date:Subject:To:Cc:References:From:In-Reply-To:From:Subject:Reply-To; b=C+qNunrJFW8iFfJRNNke/u5js7SH6mADRT0CA46RwQGwS/VjEjQIXSnha4cfOSRuRqbIwkdOH4thUcqZM9m7JZKYf/HLV/wEacRIDwKugS7yB88/iw3DKP058234XUfoukGc00nPg/84cTtM9hSqDfVDJa3eR0pq7Gk6gXEMnKmon9RpBcho4y6tqnAKEQObnb7XWtM2wu6AV5PoK1zl6QNcRjwSD7sbPjo/TOZu71wlsXHakG+Ca2q3Fgu1KF4YHmB/DSVA3qRZ0n6WPMw9xr2lIhQjpTJwaka+EMlJSJEDGSGA25IUTdQJ9WyWcCYB/ChrZaKeuQ0QHW+1M7dA2Q==
-X-SONIC-DKIM-SIGN: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1678031703; bh=1Kp9L94l0lRf75Ex3B6yAcE7jI2pZ8T0cdRd94RGjln=; h=X-Sonic-MF:Date:Subject:To:From:From:Subject; b=OSJPsSOhi+Zk6XZuCoeVYuWlu29jJXZ+rmPdt2v2GPCLeLK4Ugeg9AVLqG7HMF3B022uiJDZky0NwhgwRmgLb3yWwYDIRVIsDuwwIPwSPO+wm8+L2w/kcA7QyrpkrPd8PP6iHV0CoeGoAZ3fB1uZzzmefeVwXOkSTqqTwCH6V2akpBI8Y/7IVQvTzBbYn2u4rteommPXu/RPdQeucaOo9feWoaF+JtSPzT2st2GJuSIDuikkNjzPddHtBe4q2QYz749UUvL14WC03sh4ASoUXPj4OJbUCMZYk4U9JgHjzpNQRWzjlry2Az6gYpMAxqcE8yONZ8L/9wuDqyAywoFl2A==
-X-YMail-OSG: h6IVnLUVM1kt.Ka8QyKxXtCWzVv3luEF3FhKuVAelOWUGZumL77C2ha8w_tfEln
- 66Wsbs51SyWZrej.UEPVhY2DtYFKLWxcLA37enLqMegpPrhynuyJHlVBPdQJY03Y8aHI3fM6uZCA
- .jJHJ75RX5HAc9zU0qjGqBIOzhr4aSojTGuS7ldo3YFgTJ9D6furaTfEy5T3oH6hnarVxUNpM.Nk
- B.jagBbDjG0xsXy1wvBSQvRxvxALLNVW2M2O.UgkxdkHcC9cgP8UbhRNnWse8xEa4waTWigFrvzU
- Ca4vGeuTLbXE7vrCT.gZyqPhjhUp.0Lf5f4oqHVJxhPNPLpIJ4yUtVyq.GFwmXLE4DF3kCCW0Biy
- PtzR2JMYKlVAUIXwby4rBVmUF7_6sovIeuIPRP.vyaHQKR3hXk1.Nf_S2Rv42k7YuvEeahHi6OlT
- ZdKa132aqmmHLCix243BLx7NnNgODWfDpGHiCHFPMasCakcpNBLYtW8mfdUu9KhxBV9snhOGbKj3
- CqmukhHP7CpHDINFlVnmKCuW34X3VoXC_jR_BB8ldZj4IT7fSWWkY6vG0F4W81ogr34NKIj3yMb5
- 9WSlfK7cnYSWKLqnJOfKE3yPOIbAIopmOpPaj2vumZWo3Ch_83BMDq.Evlt1VNMaujOdShKvZUO3
- 1gLWwBHo19rx5lKQ58Jqgo7xiCx8rAnnYGcLPqqigbuQjV_gVphMxkEZJcvU4JUCBz2lBRbo7hCc
- z_s7zEk4zPxlpxPjo9xk.AhBXTxUCy1b.piATrW1.dzjZz5pivufq9tHOfy58fy_FS7QtztVTSy_
- jeijjwzDcecxSgomzt5W9FS1YgGD9D0UukO8X.MkF8J6wC.tBWdVQahbZoDy_j7TrAEsuibFGDkQ
- jdZNh7DRuV.m28UsK9L8_pAapzIV5_qQ87gflb2hqf5V2eD1ieNeZpGRFpElDAK_60gezp5OG17f
- 79rRVCNt_A2DdHCPcOJOmFub.oIccTDhG2tjjpq2ScxykeniC5fXlVYNveu5jCP6qmNgrRue8bgy
- KKMAJ9oGGkJcOlVgdfxhCgI842Z9kv_NpvoBWtzpB0ab.NYn3.oQj2EzBxmidr6zuM3WO8VUgWhp
- 1Xl1z.evHPe.ae.fBl_EXKaggK4X2U2SVI99ldQAePQNyzo5rzphe2F_kto2_LXTDGbGYWrMBoHY
- SZ3B2gTJaBbxVM9BQnZhKpexIgUHWuqtfWYb.qXewcOREJ_DPW752ePN6o4_92kHJprG_zGI38yT
- B1apAKG1FLRUhalprCvA6ljpE4KlfGiHgMpLJ.wOH6tY1mAY8lgQt7NypPCVvn8u.lp7GiLk8Z__
- xLFTl9L24CUT3ghSVpYVij61Pe4POSZB3R4xsyIIZm2IlKkNQDRm.GPI9TRKBz4bUNCvL.u5rEpF
- bn4VG7NafvO2hIOcELZ1p5zDG1s24JdT_ymgNFx6bYUMEqjfhgccBR9B6a.w9RbvmK8pVaSXNCxG
- do5_6pi7VucJEDi5Y7a0VvpsOLgU2yq4p6uOZXTDdLVo.1vbZQdkQScGL.XPgunsGtOVEHGtlDkn
- WHSOVRPEViMgeNgWg0QEGDSA57u..xy_kg2sWCGrpdrOfMYL.mDaZRSRatLuWgBKwtKhhXvu4lb.
- jfeYcTe7GY401wdolFJ7E7pyHzxxlHVdlI2UzEUox0jBCnEoqFWPIzR4itH.wBFtQ0ufoxXlfkj3
- r2E2AX_l7aAPGmG9AWCX.VBBBZphN54kwamb9fQvq2my7bE06GJV8oLCAKUKyde5G2yXN28eH8OI
- dIH.5Mc4DhC9DyWSfU2v0QvP3BcQyKPIZ28dALRKyAaskBD0tT1JP9gTSHVJSWLYNBylCPDsE_Mt
- QC0P9PX3DgyPCTOepyYWX6aK_AJCtNv.zUOVklAX1vsAmiqmPI.rGGPmkrkxOaCU2_WtJLIjw36c
- MnjkQx55wfiSxDwxonhlnKPtyzvxpPK2UYiiSCQZgIob213VzvQxmOCJ1_clp1T6j1bbknJPdH5c
- dcEzpRtJruPF52xxbdEET5m.WGzOvnOMffXYkU2h.IBGclau4EC_oPPtyv1BQUla5dPbQQxiSNRm
- e_7lUxYyfK4gzI9Ek.JFD1dsXtERPoBe.UTmA4eELq6m_7a7MN0MQMB9AMqYgrKfGvO0J3RhgX.B
- HcvAXhVmplgUDiJ7daCzzO.4G8zmmAh.wYmEa1coC9b8hW7HIk_XBIbTgvgP5fRki_x5Ni7afuvw
- Vm.MbmHPrbv4N9u3jAwyEh6lo6NaCrNxD7D7307W9PJ55FutBY8YkKhFvZWEWDsf0kIRfq9JQFTM
- P_2JMwOWBFeOO8SbcsDIId4foq7pZwak0PifT5N4WUb46Bxhx7nF6NXpO8dT.VVM.lz1QRzg.vYu
- v0s8xORwsdNjwA17tyeX_L24-
-X-Sonic-MF: <jahau@rocketmail.com>
-Received: from sonic.gate.mail.ne1.yahoo.com by sonic302.consmr.mail.ir2.yahoo.com with HTTP; Sun, 5 Mar 2023 15:55:03 +0000
-Received: by hermes--production-ir2-5b7d458747-xwgkr (Yahoo Inc. Hermes SMTP Server) with ESMTPA ID 95627d1ce00d1150f3825147f548fe9b;
-          Sun, 05 Mar 2023 15:54:58 +0000 (UTC)
-Message-ID: <0e008725-66bd-5c3b-e641-1bcf9dcc24e4@rocketmail.com>
-Date:   Sun, 5 Mar 2023 16:54:55 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.2
-Subject: Re: [PATCH 10/10] dt-bindings: Add documentation for rt5033 mfd,
- regulator and charger
-To:     Rob Herring <robh@kernel.org>
-Cc:     Sebastian Reichel <sre@kernel.org>, Lee Jones <lee@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
+        with ESMTP id S229457AbjCEP7Q (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 5 Mar 2023 10:59:16 -0500
+Received: from NAM11-CO1-obe.outbound.protection.outlook.com (mail-co1nam11on2119.outbound.protection.outlook.com [40.107.220.119])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 73663A5C9;
+        Sun,  5 Mar 2023 07:59:14 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=cIL733nuE3JqNXVU8kbXf5H24bS/1MeNInTGnzxcnlUq1hkfJP1PtGmhYgvpbxljIEAETrjgr87V1Du8pHvNdW6xmSBJPZvsdetdUnYmBXgWwlNtOF8OL2BBmaVPkKHVylE55nBNkkMZzrQM2pPs42sE9C/lz8tFX04U+qb9AfhbOWGGs/t0g4CET74f+Bp67gDnFRjM1DfTifcdPJAnotwW2fBiCcbWkr613szSfL5puc34HMraJ37Pt0Ec8b9sN3iXifKEUFa/rJ3qdi+XnngPI2bOzaE7gSrgYgJ9TKk0+ofZb7dB/9iyGyRA10MYf0bYVdAUnLrl3zZDhXqp0g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=u8KAazWr8bzih0StHuM0uGuwRVNUUEcAdBzDtQJ9ZTg=;
+ b=DOEFHX9XrKxuILMCkwRh8g19AI4+NF5gLXanlqakNJgKSEYq6wEzsPLZfr+OvYdJiHn+eig6YWshsppnAXvsc9pRyOnCgfcobMUup+iNIiPzTAjaEWq7Ol4VtLg/CmyGACF34YxIoNrRT1wXuJvF8gIZ56tSq9uQvz+G1kVMJir8dquv4R23zFiCFFq9TMM80hwCNizr4KbEKgJzGPc8PiLxgCaf9AUfv3ewIQlrbrtIpEyjTKLtNt0Gb8x/C7EV8LBr2noXhdYYRPrYUUa0aCubOila3BoBr22T48bn7RJk032DuRQwGfxFOAAiLi3AaeRj8jSylOIhbt7uLgMfLg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=os.amperecomputing.com; dmarc=pass action=none
+ header.from=amperemail.onmicrosoft.com; dkim=pass
+ header.d=amperemail.onmicrosoft.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=amperemail.onmicrosoft.com; s=selector1-amperemail-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=u8KAazWr8bzih0StHuM0uGuwRVNUUEcAdBzDtQJ9ZTg=;
+ b=akSBuUsPf9oakYlu3xQHBA0CRf+1Rhj5ngoPrjESbl4fYAuaGuTG9Uys3JekTXjQ/ZdxThgVv82fqZWFPfz9KuxVfMj/Vn5A7RjJEv/IA8Gbb23pLZ084/mwiGCi/k7t7w4h0u6lydZAQ4WeR0yXAHrqAQYC1XL9sRVg1uavWJI=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amperemail.onmicrosoft.com;
+Received: from SN6PR01MB4973.prod.exchangelabs.com (2603:10b6:805:c4::13) by
+ BN6PR0101MB3138.prod.exchangelabs.com (2603:10b6:405:2e::20) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.6134.29; Sun, 5 Mar 2023 15:59:09 +0000
+Received: from SN6PR01MB4973.prod.exchangelabs.com
+ ([fe80::a807:4f38:56ee:b079]) by SN6PR01MB4973.prod.exchangelabs.com
+ ([fe80::a807:4f38:56ee:b079%6]) with mapi id 15.20.6178.013; Sun, 5 Mar 2023
+ 15:59:09 +0000
+Message-ID: <8033851a-6eaf-e4e7-5e80-0a1f7331c67a@amperemail.onmicrosoft.com>
+Date:   Sun, 5 Mar 2023 22:58:57 +0700
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:102.0)
+ Gecko/20100101 Thunderbird/102.8.0
+Subject: Re: [PATCH v2] ARM: dts: aspeed: mtmitchell: Enable NCSI
+To:     Paul Menzel <pmenzel@molgen.mpg.de>,
+        Chanh Nguyen <chanh@os.amperecomputing.com>
+Cc:     OpenBMC Maillist <openbmc@lists.ozlabs.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Beomho Seo <beomho.seo@samsung.com>,
-        Chanwoo Choi <cw00.choi@samsung.com>,
-        Stephan Gerhold <stephan@gerhold.net>,
-        Raymond Hackley <raymondhackley@protonmail.com>,
-        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht
-References: <cover.1677620677.git.jahau@rocketmail.com>
- <a698f524106e0eb7db5cbd7e73e77ecd5ac8ad7f.1677620677.git.jahau@rocketmail.com>
- <20230301023545.GA235322-robh@kernel.org>
+        Joel Stanley <joel@jms.id.au>,
+        Andrew Jeffery <andrew@aj.id.au>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org
+References: <20230228102820.18477-1-chanh@os.amperecomputing.com>
+ <775059b1-4697-b745-4743-55f7f7a9143e@molgen.mpg.de>
 Content-Language: en-US
-From:   Jakob Hauser <jahau@rocketmail.com>
-In-Reply-To: <20230301023545.GA235322-robh@kernel.org>
+From:   Chanh Nguyen <chanh@amperemail.onmicrosoft.com>
+In-Reply-To: <775059b1-4697-b745-4743-55f7f7a9143e@molgen.mpg.de>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Mailer: WebService/1.1.21221 mail.backend.jedi.jws.acl:role.jedi.acl.token.atz.jws.hermes.yahoo
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: SI2PR02CA0043.apcprd02.prod.outlook.com
+ (2603:1096:4:196::12) To SN6PR01MB4973.prod.exchangelabs.com
+ (2603:10b6:805:c4::13)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SN6PR01MB4973:EE_|BN6PR0101MB3138:EE_
+X-MS-Office365-Filtering-Correlation-Id: 0b2e3191-9e8e-4627-020c-08db1d928e38
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: L5a180dP/Vg4Ji/D5JT65hL99LQ2dUzggVu/n5XcNXQzc2MRYh0YKvyF0jAg1E3AmctBfl8fM5L4atrNSl+0pz4hddaMp70OL/E9FDreSbw6Hcw7aA3uxNUU83wvw33dJYjkWMMb+jqY7QscTyGdJAeGRF3sXwqdYNDSKvfBWM3jK/obX1diiAP7TN3P2ezC3nc9UQnebNuNJcH8hMUHZWnDNbViDwifOnL+cDyTWaNU/AIEAn+FI+0mJxwsGVsprY5MsdunpetdN+OvontCi8h4PG7BSVqyGg3DPGSgfZGT471Tbb4noM98k33BCIewtLRmyA8clQAdTzB/44d6/ozLIhKOaLfUzDV5SFP8/mMnTUXpBadFT/a+O6YQkzlfxm5dAf21kYLB9/iqDhmJbHgAlSzHCY9INne/JDIgd+daBuLCBsEY047W1kX7jfE/PKySPtDjHZOLGzieG+VZ1TxBpt7Xc7T3o3d6IzhuI+jFpQT3+h1CTkwb6iJN3VTdpBd6SAj7HYeucvPgtBxwCb8YtNNpx+F4sYNt4neP7n+ynMc/SuXCwb1m8cdDR2F00Sk4NmjOxQlouH+PY5wEChMiN4fuKbWyXbyBs4+Iu3gAIY69TMDh3s1sFMKMATo5kPl0f679jnCwCKd0sB6uEzCb74C9H9wW6dWbxHHpXktBKNTvaGpEXugFvLb/Yk6WzxmCOu1XKJ2S5t5eG70VLFgsCUXNRJFSxgBpmkvAQ84=
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SN6PR01MB4973.prod.exchangelabs.com;PTR:;CAT:NONE;SFS:(13230025)(4636009)(366004)(136003)(39830400003)(396003)(346002)(376002)(451199018)(2616005)(6486002)(6666004)(478600001)(31696002)(316002)(38100700002)(110136005)(54906003)(83170400001)(31686004)(83380400001)(8936002)(41300700001)(26005)(6506007)(53546011)(6512007)(186003)(42882007)(2906002)(7416002)(5660300002)(66556008)(66946007)(4326008)(8676002)(66476007)(449214003)(43740500002);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?eSs3eW5JbGZVS1RwNmZVcURDU2t0aUtQQlk1UjZYTnRqYUE0YkxnQzBUU3da?=
+ =?utf-8?B?ZHdJYUhqNDFQdEVVMDYyeEZTRStmb29GV0U5QWhPbWx0NlA3UHRXVmxlcjVT?=
+ =?utf-8?B?WEZpMDFUZmpOazlQT2JUUXpJQXJjOG8rbmlxUW4yU3I4QzNXV0pSbENZdWJ5?=
+ =?utf-8?B?TDFWNHdlZlZrV1RpU0FzWVJPY2RmQWpKSlVHaDhMZkNsVkUyYlhVbW8yMHZw?=
+ =?utf-8?B?c2JrSXJuQi9YcFRrTVpCWW1hRVZHUzBBdnVPSjhhcU5oZFhuVElVRFB4Wlp3?=
+ =?utf-8?B?VlI5TUh5bE1GRzM0aUpXWlR5YmtpUG8zMHlBRHpGOW5YZ2NqSmZKbm1vMEUy?=
+ =?utf-8?B?dzZUTW1NNnp4cE1wVE5ROEVuckh5MC9jdGFhUytGcnJBMEYySVYvNnJaWjM1?=
+ =?utf-8?B?b2k4TjhBSlhJTjhZdERURmREMmg5QzVpZ1k2ZmpwcGRIWml6VU9LbUdHRUhj?=
+ =?utf-8?B?QlVJTkpaTytUeEtFU2pzekJoK2V6TjF3MTBYUFhOdmVBNzJEbllzS2ZGQk9T?=
+ =?utf-8?B?L3JpK0t3U1g0dkxvREJGdmdJcEcwUnpURVAwQjZEcFF2dDZhZWJ4RUJXMVd1?=
+ =?utf-8?B?enVleDhhMGVXcFNYUGFnbGdWUFFnYUFwcDIxMWlSdG00dmNXVForaHF0c3Nn?=
+ =?utf-8?B?bzJOdEx5eldCOGg4S1dIYjd2bjdEa3R6RG9xb3gyY3lKaUd0TjV2Mm1XamR6?=
+ =?utf-8?B?UmJ4WUh3RzF1SVA1TTNLWXBsbWd2L1ZnWi9TUkpjZHNzYjlIajZ6azBidGh3?=
+ =?utf-8?B?USsrMm05bmtSRFdlUU1mYzZDVXBidEJEVmcyd3BaVHJBeXdMYW9DR3FwenhT?=
+ =?utf-8?B?c2c2WldsaXdVK1Z6emFzNnQrMkNySXdYMXVtSFA2WTN5Wm9tWWQ5ZWVLMGNa?=
+ =?utf-8?B?QkRlUmR5S05tMC9ZWnZyQnptcXJRVWl5cjV6MllUbXJERVFIczV3cmpFbEdj?=
+ =?utf-8?B?aVI4OE9vNkdyM0hKNWlGK1R1TzM1NTZqc25iaHNLaG85MVNpeTlFOXZoSkxN?=
+ =?utf-8?B?Ums3ay90NjMrU1hncUFsMmxFYUlHMElJWXpMTzQ4NENpQWZvVUlJL3RENUJq?=
+ =?utf-8?B?SjN3cVgwbVI3R2k1OUlzTWlEZkhYdlpBcmdtaUhESWxDaGV6RGlKTFg5MlNL?=
+ =?utf-8?B?c1FHVS94L0pnR0NFNzZYSXREd2IyN2pQL1FKVVkza0lYRUZ0bWlnMkhGSDV3?=
+ =?utf-8?B?MXVqY1hFMVNvUXplN01QWjRmMXlXMEFPUWIxTkxXbTBUKytjYmV6SnRpc0xo?=
+ =?utf-8?B?YnBKZ2pmMUppS0lIOFlvNmxnZ0hSK1BhcHlMQ2JFclFUY2IyVmkvNHFiaHNi?=
+ =?utf-8?B?TTZTckowOHFSUHdyNUZGc1NTODJxNC94TERrL3piRnJWMWFYMmZNWkx5VXF4?=
+ =?utf-8?B?MkI5ajdkblJycXVhbW5HS3J5T0VyUk44ZW5tNW40UFZDL2pPUE5wT0R3Y0Vw?=
+ =?utf-8?B?d2EwaGxDeVVjeXNlTWEyQytmRTNvUTJEUGIvWTI3YjRmcVlJemd6TTluUkVB?=
+ =?utf-8?B?cksrVG9oZnljeXNoL3ZhSFNIMHJzMWVwdnF5UldGczB5aWQyRkxCVDRQcklT?=
+ =?utf-8?B?SDY3aVlXelZjSFBTN25DU2NJT3lEc25FQWNrWit6RjdDck9vQ0dXUERiZENF?=
+ =?utf-8?B?MytsaVZVZ1d4U1N3Smd4SGZjaUhQQ1Z0bkF3Ui9Ja0dZc2pJcDhHdGVCWndh?=
+ =?utf-8?B?WldpclFEZFBxZGZxaWFJbDl2eWpyZVBlK3ErRkIxMXpFVmdaUXJXSlJGQXZR?=
+ =?utf-8?B?UFV2NlRQdFVDRVZtL056emRmUDNJREVoaGN1S3NRK0c3NEpKN3dtSER4d1BL?=
+ =?utf-8?B?VTc3cEhVT3l4RVhXSEN0WkV2QUdpSHlIVWJmTlVIeU5Ub29HeEZOQmJlYS83?=
+ =?utf-8?B?UWt0Qm8xenJUNUs5U3lRaU54VW1DYXJTTVZSWUFiL1BwMUprMDlYbU5WVW5h?=
+ =?utf-8?B?SzhYeUtnSlE3NzhaZEN4ZTJPZTk4aThtK1VTcmFBUW1MMTczMVVjbFRYbkx2?=
+ =?utf-8?B?bWlBSm9SejFRYW5xM3lQT1NXZjl6ZGw1MkNVcGpNbUJVUWV6U0JSVlVaTi9r?=
+ =?utf-8?B?UW02bWVuY2MyeUlDQ28vZldLTWRkeXpQeGY0QmFHSXBNK3F4Ykw3c2JrM0lL?=
+ =?utf-8?B?OXpZeVNOdzVnSlJLbGhRV1ZJalp1b2ZvODRxVkQ0aEsxWnZia3Q2SWNZcG16?=
+ =?utf-8?Q?EzaJm9yl6Ep1c3qhhWSKfK8=3D?=
+X-OriginatorOrg: amperemail.onmicrosoft.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 0b2e3191-9e8e-4627-020c-08db1d928e38
+X-MS-Exchange-CrossTenant-AuthSource: SN6PR01MB4973.prod.exchangelabs.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Mar 2023 15:59:09.3241
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3bc2b170-fd94-476d-b0ce-4229bdc904a7
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: eOkOqp5rQEFtjCYK7tAUzM7khBfX3fYqoQ5zdDhlC4TYZQv33Ne0+jiY9qRMsBRu+nP5oYAcMpouDpgUkd8a+Mx/laoo4wDcBnnmAGFeniurF+4lD2whdKz9UmMTX2Ba
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN6PR0101MB3138
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,DKIM_INVALID,
+        DKIM_SIGNED,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,WEIRD_QUOTING autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
 
-thanks for the remarks and sorry for not running 'make 
-dt_binding_check'. I'm not familiar with devicetree bindings and 
-obviously missed to read the file 
-Documentation/devicetree/bindings/submitting-patches.rst.
 
-On 01.03.23 03:35, Rob Herring wrote:
-> On Tue, Feb 28, 2023 at 11:32:27PM +0100, Jakob Hauser wrote:
->> Add device tree binding documentation for rt5033 multifunction device, voltage
->> regulator and battery charger.
+On 01/03/2023 14:51, Paul Menzel wrote:
+> Dear Chanh,
+> 
+> 
+> Thank you for the patch.
+> 
+> Am 28.02.23 um 11:28 schrieb Chanh Nguyen:
+>> Support the mac3 (RGMII4) as an NC-SI stack instead of an MDIO PHY.
 >>
->> Cc: Beomho Seo <beomho.seo@samsung.com>
->> Cc: Chanwoo Choi <cw00.choi@samsung.com>
->> Signed-off-by: Jakob Hauser <jahau@rocketmail.com>
+>> The OCP slot #0 and OCP slot #1 use a common the BMC_NCSI signal,
+> 
+> *the* seems a leftover.
+
+Thank Paul,
+I'll remove it.
+
+> 
+>> so we use only one of them at the same time. The OCP slot #0 will
+>> be enabled by PCA9539's setting by default.
+>>
+>> Also, enable the OCP Auxiliary Power during booting.
+> 
+> Is there a reason not to make this a separate commit?
+> 
+> 
+> Kind regards,
+> 
+> Paul
+> 
+
+I wouldn't like to separate it.
+
+This is "Enable NCSI" commit, so I would like to support all configs, 
+that make NCSI feature works.
+
+Thanks,
+Chanh
+> 
+>> Signed-off-by: Chanh Nguyen <chanh@os.amperecomputing.com>
 >> ---
->>   .../bindings/mfd/richtek,rt5033.yaml          | 102 ++++++++++++++++++
->>   .../power/supply/richtek,rt5033-charger.yaml  |  76 +++++++++++++
->>   .../regulator/richtek,rt5033-regulator.yaml   |  45 ++++++++
->>   3 files changed, 223 insertions(+)
->>   create mode 100644 Documentation/devicetree/bindings/mfd/richtek,rt5033.yaml
->>   create mode 100644 Documentation/devicetree/bindings/power/supply/richtek,rt5033-charger.yaml
->>   create mode 100644 Documentation/devicetree/bindings/regulator/richtek,rt5033-regulator.yaml
+>> Changes in v2:
+>>     - Change PCA9539APW node name.                     [Krzysztof]
+>> ---
+>>   .../boot/dts/aspeed-bmc-ampere-mtmitchell.dts | 37 ++++++++++++++++++-
+>>   1 file changed, 36 insertions(+), 1 deletion(-)
 >>
->> diff --git a/Documentation/devicetree/bindings/mfd/richtek,rt5033.yaml b/Documentation/devicetree/bindings/mfd/richtek,rt5033.yaml
->> new file mode 100644
->> index 000000000000..f1a58694c81e
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/mfd/richtek,rt5033.yaml
->> @@ -0,0 +1,102 @@
->> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/mfd/richtek,rt5033.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> diff --git a/arch/arm/boot/dts/aspeed-bmc-ampere-mtmitchell.dts 
+>> b/arch/arm/boot/dts/aspeed-bmc-ampere-mtmitchell.dts
+>> index 4b91600eaf62..1e0e88465254 100644
+>> --- a/arch/arm/boot/dts/aspeed-bmc-ampere-mtmitchell.dts
+>> +++ b/arch/arm/boot/dts/aspeed-bmc-ampere-mtmitchell.dts
+>> @@ -251,6 +251,14 @@
+>>       pinctrl-0 = <&pinctrl_rgmii1_default>;
+>>   };
+>> +&mac3 {
+>> +    status = "okay";
+>> +    pinctrl-names = "default";
+>> +    pinctrl-0 = <&pinctrl_rmii4_default>;
+>> +    clock-names = "MACCLK", "RCLK";
+>> +    use-ncsi;
+>> +};
 >> +
->> +title: Richtek RT5033 Power Management Integrated Circuit
+>>   &fmc {
+>>       status = "okay";
+>>       flash@0 {
+>> @@ -439,6 +447,26 @@
+>>       status = "okay";
+>>   };
+>> +&i2c8 {
+>> +    status = "okay";
 >> +
->> +maintainers:
->> +  - Jakob Hauser <jahau@rocketmail.com>
+>> +    gpio@77 {
+>> +        compatible = "nxp,pca9539";
+>> +        reg = <0x77>;
+>> +        gpio-controller;
+>> +        #address-cells = <1>;
+>> +        #size-cells = <0>;
+>> +        #gpio-cells = <2>;
 >> +
->> +description: |
-> 
-> Don't need '|' unless you care about line endings.
-
-OK
-
->> +  RT5033 is a multifunction device which includes battery charger, fuel gauge,
->> +  flash LED current source, LDO and synchronous Buck converter for portable
->> +  applications. It is interfaced to host controller using I2C interface. The
->> +  battery fuel gauge uses a separate I2C bus.
+>> +        bmc-ocp0-en-hog {
+>> +            gpio-hog;
+>> +            gpios = <7 GPIO_ACTIVE_LOW>;
+>> +            output-high;
+>> +            line-name = "bmc-ocp0-en-n";
+>> +        };
+>> +    };
+>> +};
 >> +
->> +properties:
->> +  compatible:
->> +    const: richtek,rt5033
+>>   &i2c9 {
+>>       status = "okay";
+>>   };
+>> @@ -530,13 +558,20 @@
+>>       /*V0-V7*/    
+>> "s0-hightemp-n","s0-fault-alert","s0-sys-auth-failure-n",
+>>               "host0-reboot-ack-n","host0-ready","host0-shd-req-n",
+>>               "host0-shd-ack-n","s0-overtemp-n",
+>> -    /*W0-W7*/    "ocp-aux-pwren","ocp-main-pwren","ocp-pgood","",
+>> +    /*W0-W7*/    "","ocp-main-pwren","ocp-pgood","",
+>>               "bmc-ok","bmc-ready","spi0-program-sel","spi0-backup-sel",
+>>       /*X0-X7*/    "i2c-backup-sel","s1-fault-alert","s1-fw-boot-ok",
+>>               
+>> "s1-hightemp-n","s0-spi-auth-fail-n","s1-sys-auth-failure-n",
+>>               "s1-overtemp-n","s1-spi-auth-fail-n",
+>>       /*Y0-Y7*/    "","","","","","","","host0-special-boot",
+>>       /*Z0-Z7*/    "reset-button","ps0-pgood","ps1-pgood","","","","","";
 >> +
->> +  reg:
->> +    maxItems: 1
->> +
->> +  interrupts:
->> +    maxItems: 1
->> +
->> +  regulators:
->> +    type: object
->> +    $ref: /schemas/regulator/richtek,rt5033-regulator.yaml#
->> +
->> +  charger:
->> +    type: object
->> +    $ref: /schemas/power/supply/richtek,rt5033-charger.yaml#
->> +
->> +required:
->> +  - compatible
->> +  - reg
->> +  - interrupts
->> +
->> +additionalProperties: false
->> +
->> +examples:
->> +  - |
->> +    #include <dt-bindings/interrupt-controller/irq.h>
->> +
->> +    i2c@0 {
-> 
-> i2c {
-
-OK
-
->> +        #address-cells = <1>;
->> +        #size-cells = <0>;
->> +
->> +        pmic@34 {
->> +            compatible = "richtek,rt5033";
->> +            reg = <0x34>;
->> +
->> +            interrupt-parent = <&msmgpio>;
->> +            interrupts = <62 IRQ_TYPE_EDGE_FALLING>;
->> +
->> +            pinctrl-names = "default";
->> +            pinctrl-0 = <&pmic_int_default>;
->> +
->> +            regulators {
->> +                safe_ldo_reg: SAFE_LDO {
->> +                    regulator-name = "SAFE_LDO";
->> +                    regulator-min-microvolt = <4900000>;
->> +                    regulator-max-microvolt = <4900000>;
->> +                    regulator-always-on;
->> +                };
->> +                ldo_reg: LDO {
->> +                    regulator-name = "LDO";
->> +                    regulator-min-microvolt = <2800000>;
->> +                    regulator-max-microvolt = <2800000>;
->> +                };
->> +                buck_reg: BUCK {
->> +                    regulator-name = "BUCK";
->> +                    regulator-min-microvolt = <1200000>;
->> +                    regulator-max-microvolt = <1200000>;
->> +                };
->> +            };
->> +
->> +            charger {
->> +                compatible = "richtek,rt5033-charger";
->> +                richtek,pre-uamp = <450000>;
->> +                richtek,fast-uamp = <1000000>;
->> +                richtek,eoc-uamp = <150000>;
->> +                richtek,pre-threshold-uvolt = <3500000>;
->> +                richtek,const-uvolt = <4350000>;
->> +                extcon = <&muic>;
->> +            };
->> +        };
->> +    };
->> +
->> +    i2c@1 {
-> 
-> This should be a separate example entry.
-
-I'll skip it then.
-
-The battery fuel gauge is not handled as a part of the MFD, it has a 
-separate I2C line. Accordingly, it has a separate documentation 
-including examples [1].
-
-I had implemented into the MFD example to make clear this is separated. 
-But as it is not part of the MFD, I guess it shouldn't show up in the 
-MFD documentation.
-
-In the description of the MFD there is the statement "The battery fuel 
-gauge uses a separate I2C bus." I hope this is clear enough, I'm not 
-sure if I should modify/extent that statement or add some kind of 
-reference to the battery fuel gauge after removing it from the example.
-
-[1] 
-https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Documentation/devicetree/bindings/power/supply/richtek,rt5033-battery.yaml?h=v6.2
-
->> +        #address-cells = <1>;
->> +        #size-cells = <0>;
->> +
->> +        battery@35 {
->> +            compatible = "richtek,rt5033-battery";
->> +            reg = <0x35>;
->> +            interrupt-parent = <&msmgpio>;
->> +            interrupts = <121 IRQ_TYPE_EDGE_FALLING>;
->> +        };
->> +    };
->> diff --git a/Documentation/devicetree/bindings/power/supply/richtek,rt5033-charger.yaml b/Documentation/devicetree/bindings/power/supply/richtek,rt5033-charger.yaml
->> new file mode 100644
->> index 000000000000..996c2932927d
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/power/supply/richtek,rt5033-charger.yaml
->> @@ -0,0 +1,76 @@
->> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/power/supply/richtek,rt5033-charger.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: Richtek RT5033 PIMC Battery Charger
->> +
->> +maintainers:
->> +  - Jakob Hauser <jahau@rocketmail.com>
->> +
->> +description: |
->> +  The battery charger of the multifunction device RT5033 has to be instantiated
->> +  under sub-node named "charger" using the following format.
->> +
->> +properties:
->> +  compatible:
->> +    const: richtek,rt5033-charger
->> +
->> +  richtek,pre-uamp:
-> 
-> Use defined standard unit type suffixes.
-
-That makes sense. I took the current names from the 2015 patchset and 
-wasn't aware of the standard suffixes.
-
-Just for the record: Chaning the names will also impact patch 06 "power: 
-supply: rt5033_charger: Add RT5033 charger device driver", as the names 
-are parsed there.
-
->> +    description: |
->> +      Current of pre-charge mode. The pre-charge current levels are 350 mA to
->> +      650 mA programmed by I2C per 100 mA.
->> +    maxItems: 1
->> +
->> +  richtek,fast-uamp:
->> +    description: |
->> +      Current of fast-charge mode. The fast-charge current levels are 700 mA
->> +      to 2000 mA programmed by I2C per 100 mA.
->> +    maxItems: 1
->> +
->> +  richtek,eoc-uamp:
->> +    description: |
->> +      This property is end of charge current. Its level ranges from 150 mA to
->> +      600 mA. Between 150 mA and 300 mA in 50 mA steps, between 300 mA and 600 mA
->> +      in 100 mA steps.
->> +    maxItems: 1
->> +
->> +  richtek,pre-threshold-uvolt:
->> +    description: |
->> +      Voltage of pre-charge mode. If the battery voltage is below the pre-charge
->> +      threshold voltage, the charger is in pre-charge mode with pre-charge current.
->> +      Its levels are 2.3 V to 3.8 V programmed by I2C per 0.1 V.
->> +    maxItems: 1
->> +
->> +  richtek,const-uvolt:
->> +    description: |
->> +      Battery regulation voltage of constant voltage mode. This voltage levels from
->> +      3.65 V to 4.4 V by I2C per 0.025 V.
->> +    maxItems: 1
->> +
->> +  extcon:
-> 
-> This is deprecated. There's standard connector bindings now.
-
-How does this work? I couldn't find an example.
-
-I found Documentation/devicetree/bindings/connector/usb-connector.yaml 
-[2] but I don't see how this would be applied here.
-
-The extcon device entry in the samsung-serranove devicetree [3] looks like:
-
-i2c-muic {
-         compatible = "i2c-gpio";
-         sda-gpios = <&msmgpio 105 (GPIO_ACTIVE_HIGH|GPIO_OPEN_DRAIN)>;
-         scl-gpios = <&msmgpio 106 (GPIO_ACTIVE_HIGH|GPIO_OPEN_DRAIN)>;
-
-         pinctrl-names = "default";
-         pinctrl-0 = <&muic_i2c_default>;
-
-         #address-cells = <1>;
-         #size-cells = <0>;
-
-         muic: extcon@14 {
-                 compatible = "siliconmitus,sm5504-muic";
-                 reg = <0x14>;
-
-                 interrupt-parent = <&msmgpio>;
-                 interrupts = <12 IRQ_TYPE_EDGE_FALLING>;
-
-                 pinctrl-names = "default";
-                 pinctrl-0 = <&muic_irq_default>;
-         };
-};
-
-[2] 
-https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Documentation/devicetree/bindings/connector/usb-connector.yaml?h=v6.2
-[3] 
-https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/arch/arm64/boot/dts/qcom/msm8916-samsung-serranove.dts?h=v6.2#n123
-
->> +    description: |
->> +      Phandle to the extcon device.
->> +    maxItems: 1
->> +
->> +required:
->> +  - richtek,pre-uamp
->> +  - richtek,fast-uamp
->> +  - richtek,eoc-uamp
->> +  - richtek,pre-threshold-uvolt
->> +  - richtek,const-uvolt
->> +
->> +additionalProperties: false
->> +
->> +examples:
->> +  - |
->> +    charger {
->> +        compatible = "richtek,rt5033-charger";
->> +        richtek,pre-uamp = <450000>;
->> +        richtek,fast-uamp = <1000000>;
->> +        richtek,eoc-uamp = <150000>;
->> +        richtek,pre-threshold-uvolt = <3500000>;
->> +        richtek,const-uvolt = <4350000>;
->> +        extcon = <&muic>;
->> +    };
->> diff --git a/Documentation/devicetree/bindings/regulator/richtek,rt5033-regulator.yaml b/Documentation/devicetree/bindings/regulator/richtek,rt5033-regulator.yaml
->> new file mode 100644
->> index 000000000000..61b074488db4
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/regulator/richtek,rt5033-regulator.yaml
->> @@ -0,0 +1,45 @@
->> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/regulator/richtek,rt5033-regulator.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: Richtek RT5033 PIMC Voltage Regulator
->> +
->> +maintainers:
->> +  - Jakob Hauser <jahau@rocketmail.com>
->> +
->> +description: |
->> +  The regulators of RT5033 have to be instantiated under a sub-node named
->> +  "regulators". For SAFE_LDO voltage there is only one value of 4.9 V. LDO
->> +  voltage ranges from 1.2 V to 3.0 V in 0.1 V steps. BUCK voltage ranges from
->> +  1.0 V to 3.0 V in 0.1 V steps.
->> +
->> +patternProperties:
->> +  "^(SAFE_LDO|LDO|BUCK)$":
-> 
-> Lowercase preferred for node names.
-
-OK, I can change to lowercase.
-
-Though I have to change the already existing driver rt5033-regulator as 
-well then [4]. I'm not sure if this has an impact on already existing 
-implementations. Although within the upstream kernel I think there is no 
-usage of the rt5033-regulator driver yet.
-
-[4] 
-https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/regulator/rt5033-regulator.c?h=v6.2#n42
-
->> +    type: object
->> +    $ref: /schemas/regulator/regulator.yaml#
->> +    unevaluatedProperties: false
->> +
->> +additionalProperties: false
->> +
->> +examples:
->> +  - |
->> +    regulators {
-> 
-> Just 1 complete example in the MFD binding please.
-
-OK, I'll skip the examples part here then.
-
->> +        safe_ldo_reg: SAFE_LDO {
->> +            regulator-name = "SAFE_LDO";
->> +            regulator-min-microvolt = <4900000>;
->> +            regulator-max-microvolt = <4900000>;
->> +            regulator-always-on;
->> +        };
->> +        ldo_reg: LDO {
->> +            regulator-name = "LDO";
->> +            regulator-min-microvolt = <2800000>;
->> +            regulator-max-microvolt = <2800000>;
->> +        };
->> +        buck_reg: BUCK {
->> +            regulator-name = "BUCK";
->> +            regulator-min-microvolt = <1200000>;
->> +            regulator-max-microvolt = <1200000>;
->> +        };
->> +     };
->> -- 
->> 2.39.1
->>
-
-I'll wait with implementing the changes as there will be likely further 
-comments on the other patches.
-
-Kind regards,
-Jakob
+>> +    ocp-aux-pwren-hog {
+>> +        gpio-hog;
+>> +        gpios = <ASPEED_GPIO(W, 0) GPIO_ACTIVE_HIGH>;
+>> +        output-high;
+>> +        line-name = "ocp-aux-pwren";
+>> +    };
+>>   };
+>>   &gpio1 {
