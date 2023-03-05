@@ -2,170 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0FAD16AAEEB
-	for <lists+devicetree@lfdr.de>; Sun,  5 Mar 2023 10:59:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F12646AAEEE
+	for <lists+devicetree@lfdr.de>; Sun,  5 Mar 2023 11:04:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229500AbjCEJ7A (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 5 Mar 2023 04:59:00 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49258 "EHLO
+        id S229557AbjCEKER (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 5 Mar 2023 05:04:17 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51558 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229469AbjCEJ67 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 5 Mar 2023 04:58:59 -0500
-Received: from mail-ed1-x52f.google.com (mail-ed1-x52f.google.com [IPv6:2a00:1450:4864:20::52f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C646EEB52
-        for <devicetree@vger.kernel.org>; Sun,  5 Mar 2023 01:58:57 -0800 (PST)
-Received: by mail-ed1-x52f.google.com with SMTP id i34so26978983eda.7
-        for <devicetree@vger.kernel.org>; Sun, 05 Mar 2023 01:58:57 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1678010336;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=kwptTmMxU2eTk/ioiOf7vOzl5V1fb4l0SP1uJj4qZW8=;
-        b=LyMSh7Etjh0QxzqrKTulhxy9xevja9jADQcJTwN1yDhMjXDYZUEtzT96CVL66a5z0r
-         zJwTA7NqAO/fBHsgBB1Q6VliKewggXXQQ66wWNRUOd3mUZwSeZ+BGlVqjSUrsZvPX+UE
-         6ZcrGn5+5vYvjjXv1IHGGZ5TB34dyJoh4uM/+VhvFt+iAItd//xIQ9Uy+XudMY7dKRso
-         CW4wX8rUYVlrLOQucrIs4PajlPUu0gCNOnMJJ6t96MIexBOo8aJ36ajE/8zas6VPH+R8
-         AhwC/qFJ/2QD0ZlGBNI72KpVoezm3+/M5yOeGhP1sFOi/+ej0ZkG9iktSZpRmT63MUdN
-         lzXA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678010336;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=kwptTmMxU2eTk/ioiOf7vOzl5V1fb4l0SP1uJj4qZW8=;
-        b=X0edFoA5VNw/XnzZZ7sQ87wxrc8W1fieHnAYeIQHiqYJ37ccsfph/UEcHDKEKkLmol
-         OUNdst6kbCr4kbImhsq3nzcZcmDqO0wktWIyxU08Eic2LM7yAmaJMhMsmjXMcLwc8Fj7
-         vOFfO6ECgCztk4tqreriZ13uZicKNLviKGLl2r1Kty4wzb9Tmk0HpsC36O3BCVzrKKiU
-         k1BzuoGY+c/kbs2Q7MLGinQQhWxBuWCpbAcS/34bem1NY5kWExXk6anEJvkeZbJMiJc4
-         Jzzyhk0pTWMvvZ1Ivv/c0SZCMxhk6JxrTRxauT6vmlSaT8zXViwFNzVwCHvTmTpamCbM
-         jGtQ==
-X-Gm-Message-State: AO0yUKVJKIXUynFIx0dSUdGguB777/ZQMTdUwkUFC9DDeXyi+qS699Ea
-        LPhH8quJXbFmRuVXGKCggY3Ohg==
-X-Google-Smtp-Source: AK7set9yj87Pu/jT2jMmdqoNG9KvihWLGHUSzrMu6dm0wxOho0Ulq3P1LD5pa6uV1Kr4HMBKnS3CXw==
-X-Received: by 2002:a17:906:4c84:b0:8b1:e78f:598b with SMTP id q4-20020a1709064c8400b008b1e78f598bmr7528569eju.50.1678010336274;
-        Sun, 05 Mar 2023 01:58:56 -0800 (PST)
-Received: from ?IPV6:2a02:810d:15c0:828:71e7:13d:1c29:505f? ([2a02:810d:15c0:828:71e7:13d:1c29:505f])
-        by smtp.gmail.com with ESMTPSA id qt16-20020a170906ecf000b008ea5f4fab5fsm3068275ejb.145.2023.03.05.01.58.55
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 05 Mar 2023 01:58:55 -0800 (PST)
-Message-ID: <7ce02f0a-afac-7f7a-0f56-81f1ffaeeaaa@linaro.org>
-Date:   Sun, 5 Mar 2023 10:58:55 +0100
+        with ESMTP id S229555AbjCEKER (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 5 Mar 2023 05:04:17 -0500
+Received: from mail.manjaro.org (mail.manjaro.org [116.203.91.91])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6E969B762
+        for <devicetree@vger.kernel.org>; Sun,  5 Mar 2023 02:04:15 -0800 (PST)
+Message-ID: <6bb744c3-a5f6-cb1b-2d0d-1bfb63127439@manjaro.org>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=2021;
+        t=1678010653;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=tttlDtdagS98L3eWYv8TYPfVASIZ/pxTczL7vpVUrgc=;
+        b=Ke/7GE9N9qv53eNcBLIzorNDPLKggCP20L9hfOIuMmNMNzZfbWmZQHrMidNpgHADOJxxso
+        DDLlT2oRCX6mZbvVDCpuP2NND04vcj2tSBdDdvSaOYU9GR066W6lwWrhRJcpFKj4LrHRic
+        FGha1rB9HHMKSSLLEm87BALpDCum25iM+EJHIhHY5V0O04PwnCskJaBEkuAK6pwgT+KYp8
+        JrHFqui6dlrHbnZl+qgxDa1N5rYgUW8YsCLVscivpwpM4B2vZla0RlyH7z9j/7v8IonRbB
+        9HWtyf1FumClXSLakAkLe9Kn/tMO7LtgXjIzmfpqPTRPMukmc4vey5DrpHWDeQ==
+Date:   Sun, 5 Mar 2023 11:04:12 +0100
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-Subject: Re: [PATCH v4 1/2] dt-bindings: iio: Add MCP9600 thermocouple EMF
- converter bindings
+Subject: Re: [PATCH] arm64: dts: rockchip: Lower SD card speed on Pinebook Pro
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        heiko@sntech.de
+Cc:     devicetree@vger.kernel.org, linux-rockchip@lists.infradead.org,
+        Dragan Simic <dragan.simic@gmail.com>,
+        JR Gonzalez <jrg@scientiam.org>
+References: <20230304172838.38059-1-strit@manjaro.org>
+ <30017cc2-12cb-37dd-cd0a-f2e91fc6c252@linaro.org>
 Content-Language: en-US
-To:     Andrew Hepp <andrew.hepp@ahepp.dev>, devicetree@vger.kernel.org,
-        linux-iio@vger.kernel.org
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jonathan Cameron <jic23@kernel.org>
-References: <20230304185954.1492-1-andrew.hepp@ahepp.dev>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230304185954.1492-1-andrew.hepp@ahepp.dev>
-Content-Type: text/plain; charset=UTF-8
+From:   Dan Johansen <strit@manjaro.org>
+Organization: Manjaro ARM
+In-Reply-To: <30017cc2-12cb-37dd-cd0a-f2e91fc6c252@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
+Authentication-Results: ORIGINATING;
+        auth=pass smtp.auth=strit@manjaro.org smtp.mailfrom=strit@manjaro.org
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 04/03/2023 19:59, Andrew Hepp wrote:
-> Add support for the MCP9600 thermocouple EMF converter.
-> 
 
-Subject: drop second/last, redundant "bindings". The "dt-bindings"
-prefix is already stating that these are bindings.
+Den 05.03.2023 kl. 10.52 skrev Krzysztof Kozlowski:
+> On 04/03/2023 18:28, Dan Johansen wrote:
+>> MicroSD card slot in the Pinebook Pro is located on a separate
+>> daughterboard that's connected to the mainboard using a rather
+>> long flat cable.  The resulting signal degradation causes many
+>> perfectly fine microSD cards not to work in the Pinebook Pro,
+>> which is a common source of frustration among the owners.
+>>
+>> Changing the mode and lowering the speed reportedly fixes this
+>> issue and makes many microSD cards work as expected.
+>>
+>> Co-authored-by: Dragan Simic <dragan.simic@gmail.com>
+> That's not a valid tag. Run checkpatch.
+>
+> Missing SoB, which would be pointed out by checkpatch with correct tag.
 
-> Datasheet: https://ww1.microchip.com/downloads/en/DeviceDoc/MCP960X-Data-Sheet-20005426.pdf
-> Signed-off-by: Andrew Hepp <andrew.hepp@ahepp.dev>
-> ---
-> Changes for v4:
-> - use descriptive names for open/short circuit interrupts
-> - remove vdd regulator description
-> - remove unused import
-> - use generic sensor name in example
-> - don't use literal style for doc description
-> Changes for v3:
-> - Added dt-bindings
-> ---
->  .../iio/temperature/microchip,mcp9600.yaml    | 70 ++++++++++++++++++
->  microchip,mcp9600.yaml                        | 72 +++++++++++++++++++
+Thank you. I ran checkpatch and it just said it was not valid, didn't 
+give alternatives.
 
-Your patch is corrupted/second file does not make sense.
+Would Co-developed-by acceptable instead?
 
->  2 files changed, 142 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/iio/temperature/microchip,mcp9600.yaml
->  create mode 100644 microchip,mcp9600.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/iio/temperature/microchip,mcp9600.yaml b/Documentation/devicetree/bindings/iio/temperature/microchip,mcp9600.yaml
-> new file mode 100644
-> index 000000000000..5916d331e759
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/iio/temperature/microchip,mcp9600.yaml
-> @@ -0,0 +1,70 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/iio/temperature/microchip,mcp9600.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Microchip MCP9600 thermocouple EMF converter
-> +
-> +maintainers:
-> +  - Andrew Hepp <andrew.hepp@ahepp.dev>
-> +
-> +description:
-> +  https://ww1.microchip.com/downloads/en/DeviceDoc/MCP960X-Data-Sheet-20005426.pdf
-> +
-> +properties:
-> +  compatible:
-> +    const: microchip,mcp9600
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    minItems: 1
-> +    maxItems: 6
-> +
-> +  interrupt-names:
-> +    minItems: 1
-> +    maxItems: 6
-> +    items:
-> +      enum:
-> +        - open-circuit
-> +        - short-circuit
-> +        - alert1
-> +        - alert2
-> +        - alert3
-> +        - alert4
-> +
-> +  thermocouple-type:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    description:
-> +      Type of thermocouple (THERMOCOUPLE_TYPE_K if omitted).
-> +      Use defines in dt-bindings/iio/temperature/thermocouple.h.
-> +      Supported types are B, E, J, K, N, R, S, T.
-> +
-> +  vdd-supply: true
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +
-> +unevaluatedProperties: false
+And then ofcourse with the added SoB for the co-developer.
 
-I missed this one - this should be instead additionalProperties: false
-
-
-
-Best regards,
-Krzysztof
-
+>
+>
+>
+> Best regards,
+> Krzysztof
+>
+>
+> _______________________________________________
+> Linux-rockchip mailing list
+> Linux-rockchip@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-rockchip
+-- 
+Kind regards
+*Dan Johansen*
+Project lead of the *Manjaro ARM* project
+Manjaro-ARM <https://manjaro.org>
