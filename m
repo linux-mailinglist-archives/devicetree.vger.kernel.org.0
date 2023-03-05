@@ -2,60 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 58FDF6AAFE8
-	for <lists+devicetree@lfdr.de>; Sun,  5 Mar 2023 14:31:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 012146AAFEA
+	for <lists+devicetree@lfdr.de>; Sun,  5 Mar 2023 14:31:56 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229737AbjCENbE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 5 Mar 2023 08:31:04 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48514 "EHLO
+        id S229759AbjCENby (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 5 Mar 2023 08:31:54 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49006 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229539AbjCENbD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 5 Mar 2023 08:31:03 -0500
-Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com [IPv6:2a00:1450:4864:20::532])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D5499126F5
-        for <devicetree@vger.kernel.org>; Sun,  5 Mar 2023 05:31:01 -0800 (PST)
-Received: by mail-ed1-x532.google.com with SMTP id j11so8644600edq.4
-        for <devicetree@vger.kernel.org>; Sun, 05 Mar 2023 05:31:01 -0800 (PST)
+        with ESMTP id S229676AbjCENbx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 5 Mar 2023 08:31:53 -0500
+Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 856CD12840
+        for <devicetree@vger.kernel.org>; Sun,  5 Mar 2023 05:31:52 -0800 (PST)
+Received: by mail-ed1-x533.google.com with SMTP id i34so28153609eda.7
+        for <devicetree@vger.kernel.org>; Sun, 05 Mar 2023 05:31:52 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1678023060;
+        d=linaro.org; s=google; t=1678023111;
         h=content-transfer-encoding:in-reply-to:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=kxwKusTrT5Ph9UVPcadPhfPIciAtPEwoDMOjQJNze1A=;
-        b=hl/9z6Ol1ta6vFalu2IngF7fzfDi+iLnw4Ik3ge/NOGMzBWs70s0duKW4rfkRKEtCN
-         xxMimahktHyXd4aw7QJloyDPuT2HtctGeuQ+1AEvKoAdAyfrjEltRbs8CIH+fMkuQhH+
-         arAX08FX/D+xZpm30aVQHhbXoxYIprTvCkrBAwAXDkVv2OektKn0y/x4aEwOrpQAP6sm
-         cZzj+jJuShomHH4WvHcOHsuxURGr6GwasAXeqDPjbhxE2ulhp6YnVL3tFTAVeNauCWSf
-         NUEe5FK61uo7YLk1Z7MniADb5r+HsTyXZXvcvLghEnRnDaBmPm/OYQTEX9dq5w5mRe3y
-         tt0w==
+        bh=uYU3IZQDcyAinIOEBmNvAQ0I4IvNbd1yC7kYUTJDSMU=;
+        b=pfaDpSiWb7I5T9Q9XRrS6EL/gzpAVm93JhF3C2ki/AKOPTPqSod9Lf7URM7GnGD9Nz
+         u7yQBsGOuZ0TGmUkNjhle2DaIxkYQWiAe+uojr3Mx2+OppOQA5QXgbGAbfb6GzIwbjF1
+         o1u1OH8iAM78GRJ+ncyCtmBCbPdzP17B8c1OcCunkDVTtm67vl6gVvg2F01DbaARFeRU
+         su9NV7MP7+wW3wQAKiKySTUU2H3im0Ws2CXlR71Tj69eOaz9bQGumYRkzg7If5rdsECf
+         RoE29/RrmKZm63Ds6tNf8sTP+iD34tpqNBvgyjciG3RtebQF8W4Le6JE2zOtSugBd957
+         nR2g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678023060;
+        d=1e100.net; s=20210112; t=1678023111;
         h=content-transfer-encoding:in-reply-to:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=kxwKusTrT5Ph9UVPcadPhfPIciAtPEwoDMOjQJNze1A=;
-        b=l5N/NmUl90oa/9e0RCgM3cydcaW83UIlrl9uC6MY3ofQzq42dMU8+rdRoPpRhe+Hci
-         WlXnghllGzGWyAiq5vmB8nNN5kTN12MnUOpKlRh3mmgJI7S3LPzIGYhjJ6xV8FsagWrv
-         ZLBfNpboUtYiMHvGT/QHN+cqy399FKtA42T3PSlnh23w3bY1fWF6vPgWv4GmySmGZYPs
-         fvw7wJVtjZsOqn90Xt15Q44S2osWBqbIr8oWCEJa+5en2qS6/a/H123ogyVvMt++p7hu
-         xxpRmEvHaVu40Yco+n0GhdIS2PYQcy6cchHfH2S/d1sj/Nw/TlO+pbK5T3cTDnTgNubm
-         1xLg==
-X-Gm-Message-State: AO0yUKVu6K6djJf/omiA++UvFa/6LqTVK407EyCnVUBgIY0Sqzht7n3n
-        QA5+aV6DQZsQlWVJnfNvF9gj5g==
-X-Google-Smtp-Source: AK7set/+wBTKZHcwMuDcJInU5Oi6zg2QZX/PcO/qgNORoWNGsi9EADRiv0/dhtTc/PE29DWnpM2xKA==
-X-Received: by 2002:a17:906:60c3:b0:8a9:f870:d25b with SMTP id f3-20020a17090660c300b008a9f870d25bmr6605064ejk.15.1678023060093;
-        Sun, 05 Mar 2023 05:31:00 -0800 (PST)
+        bh=uYU3IZQDcyAinIOEBmNvAQ0I4IvNbd1yC7kYUTJDSMU=;
+        b=lX5yh5PYN3Rbk4i4/GMG6NtAg6jhQyFWcWu/UOXKzPPN1Btv07iBJr1gF0zvo5nnrJ
+         xZGcr/MH4rJcr7VKe3TvRnUNbJBsmIBcVaT1dD0zvED+mvNyuwcQAKdzg7F7ZacNa3lM
+         p8+4ZDzvEFu/cH3/XoHDGA7BX7FrwRrIr4KhTUwLa2itX0f/zLswn+oaRatL0mTbZYnn
+         9/hdP/uCdFKtUCZxGK1V7zm7DVv7EsveORicCCVb5sBDaqOsA5s62OmBPzizBcQrLVcc
+         vrt0uG6+UtLCuGNVXL55Sg64V65IPVGiXTqq/eQU1qnZxIiy6jB0RYRi88J2wCWzC0KF
+         zs3g==
+X-Gm-Message-State: AO0yUKX7+H6t6E2Zxxfxn/4gqroSDOyCW/CzQqWbVMkUSS4Rs/G3m6Vb
+        yaHHJsRDcnvVje2Y57jTqprRBQ==
+X-Google-Smtp-Source: AK7set9VVeZcdpiS8HZtHwdQtUzByMHqlqxfuluMzmuGmUy04g2fBkTsORK0BJCHBACv1doqeUG64A==
+X-Received: by 2002:a17:906:76c5:b0:8aa:c0a4:2aa5 with SMTP id q5-20020a17090676c500b008aac0a42aa5mr7778712ejn.16.1678023111062;
+        Sun, 05 Mar 2023 05:31:51 -0800 (PST)
 Received: from ?IPV6:2a02:810d:15c0:828:71e7:13d:1c29:505f? ([2a02:810d:15c0:828:71e7:13d:1c29:505f])
-        by smtp.gmail.com with ESMTPSA id g10-20020a50d0ca000000b004bc9d44478fsm3697966edf.51.2023.03.05.05.30.59
+        by smtp.gmail.com with ESMTPSA id gj14-20020a170906e10e00b008df7d2e122dsm3198395ejb.45.2023.03.05.05.31.50
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 05 Mar 2023 05:30:59 -0800 (PST)
-Message-ID: <0d2184ee-679e-371e-8433-c38b22c97799@linaro.org>
-Date:   Sun, 5 Mar 2023 14:30:58 +0100
+        Sun, 05 Mar 2023 05:31:50 -0800 (PST)
+Message-ID: <187dd727-7ff9-02c5-7308-65abe29570dc@linaro.org>
+Date:   Sun, 5 Mar 2023 14:31:49 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.8.0
-Subject: Re: [PATCH 2/2] arm64: dts: meson: add support for BananaPi M2S
- variants
+Subject: Re: [PATCH 1/2] dt-bindings: arm: amlogic: add support for BananaPi
+ M2S variants
 Content-Language: en-US
 To:     Christian Hewitt <christianshewitt@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
@@ -67,14 +67,15 @@ To:     Christian Hewitt <christianshewitt@gmail.com>,
         devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
         linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
 References: <20230305132044.1596320-1-christianshewitt@gmail.com>
- <20230305132044.1596320-3-christianshewitt@gmail.com>
+ <20230305132044.1596320-2-christianshewitt@gmail.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230305132044.1596320-3-christianshewitt@gmail.com>
+In-Reply-To: <20230305132044.1596320-2-christianshewitt@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -82,37 +83,14 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 05/03/2023 14:20, Christian Hewitt wrote:
-> BananaPi M2S ships in Amlogic S922X and A311D variants with the
-> following common specifications:
+> BananaPi M2S ships in two variants with Amlogic S922X or A311D chips.
 > 
-(...)
+> Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
+> ---
+>  Documentation/devicetree/bindings/arm/amlogic.yaml | 2 ++
 
-> +
-> +	leds {
-> +		compatible = "gpio-leds";
-> +
-> +		blue {
 
-led-0
-
-Does not look like you tested the DTS against bindings. Please run `make
-dtbs_check` (see Documentation/devicetree/bindings/writing-schema.rst
-for instructions).
-
-> +			color = <LED_COLOR_ID_BLUE>;
-> +			function = LED_FUNCTION_STATUS;
-> +			gpios = <&gpio_ao GPIOAO_7 GPIO_ACTIVE_LOW>;
-> +			linux,default-trigger = "heartbeat";
-> +		};
-> +
-> +		green {
-
-led-1
-
-> +			color = <LED_COLOR_ID_GREEN>;
-> +			function = LED_FUNCTION_STATUS;
-> +			gpios = <&gpio_ao GPIOAO_2 GPIO_ACTIVE_LOW>;
-> +		};
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
