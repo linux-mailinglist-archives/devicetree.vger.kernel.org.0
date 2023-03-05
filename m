@@ -2,85 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 828996AAF2D
-	for <lists+devicetree@lfdr.de>; Sun,  5 Mar 2023 11:50:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 595386AAF29
+	for <lists+devicetree@lfdr.de>; Sun,  5 Mar 2023 11:48:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229455AbjCEKuM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 5 Mar 2023 05:50:12 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51234 "EHLO
+        id S229628AbjCEKsq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 5 Mar 2023 05:48:46 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49628 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229539AbjCEKuL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 5 Mar 2023 05:50:11 -0500
-Received: from mail.manjaro.org (mail.manjaro.org [116.203.91.91])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7F7F093F0
-        for <devicetree@vger.kernel.org>; Sun,  5 Mar 2023 02:50:05 -0800 (PST)
-From:   Dan Johansen <strit@manjaro.org>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=2021;
-        t=1678013403;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:
-         content-transfer-encoding:content-transfer-encoding;
-        bh=5DJskEL05NR4ieEa7hFABiq66V9dMrQQrA+FqflsJs0=;
-        b=qZGBzKPimGcXv9WtygwRAhOLG019nAdipIx6VwEmKjRjWkjd0qvKgbOqJN95URybAdsoh9
-        gEcIjw08S3lZBEGSfmax9yBm/CcWmOZHksHwpfjh/YkaKQx+d90FI/jiHpJOZtBYrP5sJI
-        2Q0h3eZGr2jNfp8vAZ9HWtjwMTPrpR/NKqoaX4/jUmzDD+7ycc8UItHEKDbpBnW+w0sYyY
-        LKMIr7bghQjB9OrO80jHVzmEkpeMBNu5AS4QoNLpIzCw/Xh3+ux06uigHsOrqiU9rSlNZQ
-        O/PnUGESHuig5sD3BBJMqNWADnIhIHStjzd1YA+Xukkgnsd1ej88BZ9nwbXXFA==
-To:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        heiko@sntech.de
-Cc:     devicetree@vger.kernel.org, linux-rockchip@lists.infradead.org,
-        Dan Johansen <strit@manjaro.org>,
-        Dragan Simic <dragan.simic@gmail.com>,
-        JR Gonzalez <jrg@scientiam.org>
-Subject: [PATCH v2] arm64: dts: rockchip: Lower SD card speed on 
-Date:   Sun,  5 Mar 2023 11:47:31 +0100
-Message-Id: <20230305104730.15849-1-strit@manjaro.org>
+        with ESMTP id S229509AbjCEKsp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 5 Mar 2023 05:48:45 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4D746901C;
+        Sun,  5 Mar 2023 02:48:44 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id EEBA8B80A37;
+        Sun,  5 Mar 2023 10:48:42 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 42496C433D2;
+        Sun,  5 Mar 2023 10:48:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1678013321;
+        bh=nhdJu4LQhooaSy4c5P+gyJoq12VArD88hHPCwr7yDLk=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=VLjHYoTPdV/vsKmeaJabIYL5hl70jNhzH/5uAemenyxR5yB0zRvGuAvRnYVnFe1/T
+         kolS5MUPjmQ5R54RAeSkHgaE6NZOV6lMmKJXgE8782NHG1YckpavOp6kYcNRUyljYR
+         M+JUBVRo0a8MVBiiiaj1pi6B/eQxALLqG5iiykVjBeYhVGoN4Lzq0QN3GegnmFoyP6
+         phzDT86M9/oEMe/qGYmgf/IzHYxTC79zorCCcaCdO57hOJS++jmk6mr7qTQNc1qFkQ
+         D5dB10ePX1ujQu/KKON60Pc5IpXVpSjWjcr8b15Hh/tqN6OuQASy/PvheFpC8xieKr
+         JXTPUb/CYjv9g==
+Date:   Sun, 5 Mar 2023 10:48:35 +0000
+From:   Lee Jones <lee@kernel.org>
+To:     Jakob Hauser <jahau@rocketmail.com>
+Cc:     Sebastian Reichel <sre@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Beomho Seo <beomho.seo@samsung.com>,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        Stephan Gerhold <stephan@gerhold.net>,
+        Raymond Hackley <raymondhackley@protonmail.com>,
+        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht
+Subject: Re: [PATCH 03/10] mfd: rt5033: Fix comments and style in includes
+Message-ID: <20230305104835.GH2574592@google.com>
+References: <cover.1677620677.git.jahau@rocketmail.com>
+ <606950da6f4b36f5a124ff13756c78644fc89804.1677620677.git.jahau@rocketmail.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-Authentication-Results: ORIGINATING;
-        auth=pass smtp.auth=strit@manjaro.org smtp.mailfrom=strit@manjaro.org
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <606950da6f4b36f5a124ff13756c78644fc89804.1677620677.git.jahau@rocketmail.com>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-MicroSD card slot in the Pinebook Pro is located on a separate
-daughterboard that's connected to the mainboard using a rather
-long flat cable.  The resulting signal degradation causes many
-perfectly fine microSD cards not to work in the Pinebook Pro,
-which is a common source of frustration among the owners.
+On Tue, 28 Feb 2023, Jakob Hauser wrote:
 
-Changing the mode and lowering the speed reportedly fixes this
-issue and makes many microSD cards work as expected.
+> Fix comments and remove some empty lines in rt5033-private.h. Align struct
+> rt5033_charger in rt5033.h.
+> 
+> Signed-off-by: Jakob Hauser <jahau@rocketmail.com>
+> ---
+>  include/linux/mfd/rt5033-private.h | 17 +++++++----------
+>  include/linux/mfd/rt5033.h         |  7 +++----
+>  2 files changed, 10 insertions(+), 14 deletions(-)
 
-Co-developed-by: Dragan Simic <dragan.simic@gmail.com>
-Signed-off-by: Dragan Simic <dragan.simic@gmail.com>
-Tested-by: JR Gonzalez <jrg@scientiam.org>
-Signed-off-by: Dan Johansen <strit@manjaro.org>
----
-Changes since v1:
-  Use correct Co-developed-by and add missing Signed-off-by.
+Applied, thanks
 
- arch/arm64/boot/dts/rockchip/rk3399-pinebook-pro.dts | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/arch/arm64/boot/dts/rockchip/rk3399-pinebook-pro.dts b/arch/arm64/boot/dts/rockchip/rk3399-pinebook-pro.dts
-index 194e48c755f6..54bb0398128f 100644
---- a/arch/arm64/boot/dts/rockchip/rk3399-pinebook-pro.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3399-pinebook-pro.dts
-@@ -943,7 +943,7 @@ &sdmmc {
- 	disable-wp;
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&sdmmc_clk &sdmmc_cmd &sdmmc_bus4>;
--	sd-uhs-sdr104;
-+	sd-uhs-sdr50;
- 	vmmc-supply = <&vcc3v0_sd>;
- 	vqmmc-supply = <&vcc_sdio>;
- 	status = "okay";
 -- 
-2.39.2
-
+Lee Jones [李琼斯]
