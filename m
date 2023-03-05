@@ -2,72 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 053DF6AAEE8
-	for <lists+devicetree@lfdr.de>; Sun,  5 Mar 2023 10:55:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0FAD16AAEEB
+	for <lists+devicetree@lfdr.de>; Sun,  5 Mar 2023 10:59:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229748AbjCEJzx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 5 Mar 2023 04:55:53 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47594 "EHLO
+        id S229500AbjCEJ7A (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 5 Mar 2023 04:59:00 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49258 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229745AbjCEJzw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 5 Mar 2023 04:55:52 -0500
-Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 15474EB55
-        for <devicetree@vger.kernel.org>; Sun,  5 Mar 2023 01:55:51 -0800 (PST)
-Received: by mail-ed1-x531.google.com with SMTP id o12so26920252edb.9
-        for <devicetree@vger.kernel.org>; Sun, 05 Mar 2023 01:55:51 -0800 (PST)
+        with ESMTP id S229469AbjCEJ67 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 5 Mar 2023 04:58:59 -0500
+Received: from mail-ed1-x52f.google.com (mail-ed1-x52f.google.com [IPv6:2a00:1450:4864:20::52f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C646EEB52
+        for <devicetree@vger.kernel.org>; Sun,  5 Mar 2023 01:58:57 -0800 (PST)
+Received: by mail-ed1-x52f.google.com with SMTP id i34so26978983eda.7
+        for <devicetree@vger.kernel.org>; Sun, 05 Mar 2023 01:58:57 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1678010149;
+        d=linaro.org; s=google; t=1678010336;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=SaiCZo/+1YA/uk2vyGLpxGSRliJ9pY9vxuYVZhWCjpI=;
-        b=TWvwQKWi6F9tRrBcDHcjKZmTm+Z+ZXiASZY0ROOG1pH+G4cghvi8fiOawjrbjK3JjT
-         BRs/SuxOVbnt/3N7pjqy92tlpjlf7AEpYXUHBB+Mw/BQwVqRJ7UrHyIAPKQWJ7GeGADg
-         T+UU5BdbruMktGDrtxCNVWzHxBmuaP3KQxM990WkMvgoVJrZNclMuH5qUFy73n4A1nwD
-         0PDKTrVuL5FlsSc4vjFnv2QcxbqxNrLFscDN2gzwksXVqWZu8blco6hMA48sHwWwIIxd
-         Pz4WgstQhAOx+Q2l2yR/DeKp5CrDMPNmSVwLibfhWWOLf9XEKuEA7JnsKIA7nnSr6hjf
-         5Gjg==
+        bh=kwptTmMxU2eTk/ioiOf7vOzl5V1fb4l0SP1uJj4qZW8=;
+        b=LyMSh7Etjh0QxzqrKTulhxy9xevja9jADQcJTwN1yDhMjXDYZUEtzT96CVL66a5z0r
+         zJwTA7NqAO/fBHsgBB1Q6VliKewggXXQQ66wWNRUOd3mUZwSeZ+BGlVqjSUrsZvPX+UE
+         6ZcrGn5+5vYvjjXv1IHGGZ5TB34dyJoh4uM/+VhvFt+iAItd//xIQ9Uy+XudMY7dKRso
+         CW4wX8rUYVlrLOQucrIs4PajlPUu0gCNOnMJJ6t96MIexBOo8aJ36ajE/8zas6VPH+R8
+         AhwC/qFJ/2QD0ZlGBNI72KpVoezm3+/M5yOeGhP1sFOi/+ej0ZkG9iktSZpRmT63MUdN
+         lzXA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678010149;
+        d=1e100.net; s=20210112; t=1678010336;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=SaiCZo/+1YA/uk2vyGLpxGSRliJ9pY9vxuYVZhWCjpI=;
-        b=xVW2ysTBzurlUCn4zvo/7VAdhmmQmJE7mJvXfVaRJaoumlAe0gNbJzIWKA8NdCkpKl
-         2RfnntIiBEbkLJdeV+Esv9n1GI4neGW8KUQ0W1i7iciVbHjnDEG+8ceoEu+fRPguTPh3
-         sXtENpMoF1uhWJW5zK1AZvrO5ZOCgkE/aK0jSRAd+StW3GDKvH/HkJxl1DRyMJoGhJsW
-         7GDnGkdJ7dYs0BMXlJDoWqswEZFuKRlXA0LP8YJE1wVcO5FG1OtevVnvl0YfEyG6U0TG
-         ekmIujOQk/V1qy1Q8bc8J2O6FzI/oCWqO+F3o8MfgD1fujnIi8UjZnNAPH02ce6C4evp
-         /aWg==
-X-Gm-Message-State: AO0yUKWi9q09/wpPt7vRByFUKfd3tBSJebrKFC0aEzDKrH7n9gNPgk8j
-        NF0Is7zYAUnEyY8s1PjyjbGvUw==
-X-Google-Smtp-Source: AK7set+C3D5+JtstYgkM4mOMlB7yc0ER4V44acEGOOuTGZ8p3QsibWZ+oyRvCVhN7MQ3TVZ+2e7DFw==
-X-Received: by 2002:a17:906:29c:b0:8b1:7274:1a72 with SMTP id 28-20020a170906029c00b008b172741a72mr11376470ejf.6.1678010149625;
-        Sun, 05 Mar 2023 01:55:49 -0800 (PST)
+        bh=kwptTmMxU2eTk/ioiOf7vOzl5V1fb4l0SP1uJj4qZW8=;
+        b=X0edFoA5VNw/XnzZZ7sQ87wxrc8W1fieHnAYeIQHiqYJ37ccsfph/UEcHDKEKkLmol
+         OUNdst6kbCr4kbImhsq3nzcZcmDqO0wktWIyxU08Eic2LM7yAmaJMhMsmjXMcLwc8Fj7
+         vOFfO6ECgCztk4tqreriZ13uZicKNLviKGLl2r1Kty4wzb9Tmk0HpsC36O3BCVzrKKiU
+         k1BzuoGY+c/kbs2Q7MLGinQQhWxBuWCpbAcS/34bem1NY5kWExXk6anEJvkeZbJMiJc4
+         Jzzyhk0pTWMvvZ1Ivv/c0SZCMxhk6JxrTRxauT6vmlSaT8zXViwFNzVwCHvTmTpamCbM
+         jGtQ==
+X-Gm-Message-State: AO0yUKVJKIXUynFIx0dSUdGguB777/ZQMTdUwkUFC9DDeXyi+qS699Ea
+        LPhH8quJXbFmRuVXGKCggY3Ohg==
+X-Google-Smtp-Source: AK7set9yj87Pu/jT2jMmdqoNG9KvihWLGHUSzrMu6dm0wxOho0Ulq3P1LD5pa6uV1Kr4HMBKnS3CXw==
+X-Received: by 2002:a17:906:4c84:b0:8b1:e78f:598b with SMTP id q4-20020a1709064c8400b008b1e78f598bmr7528569eju.50.1678010336274;
+        Sun, 05 Mar 2023 01:58:56 -0800 (PST)
 Received: from ?IPV6:2a02:810d:15c0:828:71e7:13d:1c29:505f? ([2a02:810d:15c0:828:71e7:13d:1c29:505f])
-        by smtp.gmail.com with ESMTPSA id d5-20020a1709063ec500b008b1797a53b4sm3015368ejj.215.2023.03.05.01.55.48
+        by smtp.gmail.com with ESMTPSA id qt16-20020a170906ecf000b008ea5f4fab5fsm3068275ejb.145.2023.03.05.01.58.55
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 05 Mar 2023 01:55:49 -0800 (PST)
-Message-ID: <4f6b5931-e023-07a7-d593-d7a0b12499bb@linaro.org>
-Date:   Sun, 5 Mar 2023 10:55:48 +0100
+        Sun, 05 Mar 2023 01:58:55 -0800 (PST)
+Message-ID: <7ce02f0a-afac-7f7a-0f56-81f1ffaeeaaa@linaro.org>
+Date:   Sun, 5 Mar 2023 10:58:55 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.8.0
-Subject: Re: [PATCH v2 3/6] dt-bindings: clock: Add Hi3798MV100 CRG driver
- binding
+Subject: Re: [PATCH v4 1/2] dt-bindings: iio: Add MCP9600 thermocouple EMF
+ converter bindings
 Content-Language: en-US
-To:     David Yang <mmyangfl@gmail.com>
-Cc:     Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
+To:     Andrew Hepp <andrew.hepp@ahepp.dev>, devicetree@vger.kernel.org,
+        linux-iio@vger.kernel.org
+Cc:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20230304063333.162309-1-mmyangfl@gmail.com>
- <20230304063333.162309-5-mmyangfl@gmail.com>
+        Jonathan Cameron <jic23@kernel.org>
+References: <20230304185954.1492-1-andrew.hepp@ahepp.dev>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230304063333.162309-5-mmyangfl@gmail.com>
+In-Reply-To: <20230304185954.1492-1-andrew.hepp@ahepp.dev>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -79,16 +76,95 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 04/03/2023 07:33, David Yang wrote:
-> Add CRG driver for Hi3798MV100 SoC. CRG (Clock and Reset Generator) module
-> generates clock and reset signals used by other module blocks on SoC.
+On 04/03/2023 19:59, Andrew Hepp wrote:
+> Add support for the MCP9600 thermocouple EMF converter.
 > 
-> Signed-off-by: David Yang <mmyangfl@gmail.com>
+
+Subject: drop second/last, redundant "bindings". The "dt-bindings"
+prefix is already stating that these are bindings.
+
+> Datasheet: https://ww1.microchip.com/downloads/en/DeviceDoc/MCP960X-Data-Sheet-20005426.pdf
+> Signed-off-by: Andrew Hepp <andrew.hepp@ahepp.dev>
 > ---
+> Changes for v4:
+> - use descriptive names for open/short circuit interrupts
+> - remove vdd regulator description
+> - remove unused import
+> - use generic sensor name in example
+> - don't use literal style for doc description
+> Changes for v3:
+> - Added dt-bindings
+> ---
+>  .../iio/temperature/microchip,mcp9600.yaml    | 70 ++++++++++++++++++
+>  microchip,mcp9600.yaml                        | 72 +++++++++++++++++++
 
-Same comments for subject as for previous patch. With fixes:
+Your patch is corrupted/second file does not make sense.
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>  2 files changed, 142 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/iio/temperature/microchip,mcp9600.yaml
+>  create mode 100644 microchip,mcp9600.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/iio/temperature/microchip,mcp9600.yaml b/Documentation/devicetree/bindings/iio/temperature/microchip,mcp9600.yaml
+> new file mode 100644
+> index 000000000000..5916d331e759
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/iio/temperature/microchip,mcp9600.yaml
+> @@ -0,0 +1,70 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/iio/temperature/microchip,mcp9600.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Microchip MCP9600 thermocouple EMF converter
+> +
+> +maintainers:
+> +  - Andrew Hepp <andrew.hepp@ahepp.dev>
+> +
+> +description:
+> +  https://ww1.microchip.com/downloads/en/DeviceDoc/MCP960X-Data-Sheet-20005426.pdf
+> +
+> +properties:
+> +  compatible:
+> +    const: microchip,mcp9600
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    minItems: 1
+> +    maxItems: 6
+> +
+> +  interrupt-names:
+> +    minItems: 1
+> +    maxItems: 6
+> +    items:
+> +      enum:
+> +        - open-circuit
+> +        - short-circuit
+> +        - alert1
+> +        - alert2
+> +        - alert3
+> +        - alert4
+> +
+> +  thermocouple-type:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    description:
+> +      Type of thermocouple (THERMOCOUPLE_TYPE_K if omitted).
+> +      Use defines in dt-bindings/iio/temperature/thermocouple.h.
+> +      Supported types are B, E, J, K, N, R, S, T.
+> +
+> +  vdd-supply: true
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +
+> +unevaluatedProperties: false
+
+I missed this one - this should be instead additionalProperties: false
+
+
 
 Best regards,
 Krzysztof
