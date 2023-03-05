@@ -2,97 +2,155 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2932A6AAF24
-	for <lists+devicetree@lfdr.de>; Sun,  5 Mar 2023 11:45:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 345936AAF25
+	for <lists+devicetree@lfdr.de>; Sun,  5 Mar 2023 11:47:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229554AbjCEKpJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 5 Mar 2023 05:45:09 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47946 "EHLO
+        id S229556AbjCEKrO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 5 Mar 2023 05:47:14 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48412 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229509AbjCEKpJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 5 Mar 2023 05:45:09 -0500
-Received: from mail.manjaro.org (mail.manjaro.org [116.203.91.91])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1CBD6CC35
-        for <devicetree@vger.kernel.org>; Sun,  5 Mar 2023 02:45:08 -0800 (PST)
-Message-ID: <327f970d-3b8d-9679-e3ae-67a2a6253917@manjaro.org>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=2021;
-        t=1678013106;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=hGINCQuAV01Iz0q/DSwI8KNqHRTfGKX74TaLcgvylmY=;
-        b=lHuKYsUyo/0zecf4tsSjiVQQ03dS/nKMCPLkzg7g7VwyfsDzkwBqlFoVYomv7ahF/h5x3f
-        LzUfx2pWmwXvUgi6nqtIMoDXTLKJTfWnsAguqpd0lTDGsJGivjzX0mTD4+MicSybdoZhz/
-        QHaD/Ot2TEkiClCWRtRUiWhXxv25vcIot+oYycA9ao5wU1tUDEcgYhkpnsJk1pqOL6ZfIg
-        w1+G01OkpM/OepDxfml289iy7aeztQP6oItsfai41tkeRJE+xns1LcdUE6gPEeqkdHZOYK
-        LEMMmMtU5aXObUe9Zj2L4+6j22iw7q/e2KFWImkITR+NCaf/pp43wts4TOa4zg==
-Date:   Sun, 5 Mar 2023 11:45:06 +0100
+        with ESMTP id S229509AbjCEKrN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 5 Mar 2023 05:47:13 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 79DA410248;
+        Sun,  5 Mar 2023 02:47:12 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id F07B560AED;
+        Sun,  5 Mar 2023 10:47:11 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C0986C433EF;
+        Sun,  5 Mar 2023 10:47:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1678013231;
+        bh=/c07qRM2x9b8dlpY7RT/f76aF+pTlnxCftn2bjFKDKw=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=OqIaf5Gp7UnM3q+l2vSIqVugZQ1uytBzC51mpClyyp2f8RX4XUhpBK74vubf7PsZ9
+         4fKktH2eCXXqVSHEzqaVz4gO3/ESsv7P0oi02HmrcUC2yRC+I/arye0isYvgRMX/4+
+         VImIa7qhSIlkv1SRY+UbfSVYDwqKeUKC+CZDLXt1RKsMddaUP0PuGnMwZ7RVS8pOkq
+         7ddVxqkyaROoRx9xsd1mAIHhn3egegNyjVUKCrchRUg3R6V1Qy4PMhI1NTuVEyleSd
+         D1MurtSpGMsAouqNRivX6NPVkiF1GNCRcSvoHtfwkK1WzmPe1i0e2DaadLMbUpMGFU
+         G6byNQhDx5h2w==
+Date:   Sun, 5 Mar 2023 10:47:04 +0000
+From:   Lee Jones <lee@kernel.org>
+To:     Jakob Hauser <jahau@rocketmail.com>
+Cc:     Sebastian Reichel <sre@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Beomho Seo <beomho.seo@samsung.com>,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        Stephan Gerhold <stephan@gerhold.net>,
+        Raymond Hackley <raymondhackley@protonmail.com>,
+        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht
+Subject: Re: [PATCH 02/10] mfd: rt5033: Fix chip revision readout
+Message-ID: <20230305104704.GG2574592@google.com>
+References: <cover.1677620677.git.jahau@rocketmail.com>
+ <a667a64d0cbeef00baed2d4b117ba9f50eaf3988.1677620677.git.jahau@rocketmail.com>
 MIME-Version: 1.0
-Subject: Re: [PATCH] arm64: dts: rockchip: Lower SD card speed on Pinebook Pro
-Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        heiko@sntech.de
-Cc:     devicetree@vger.kernel.org, linux-rockchip@lists.infradead.org,
-        Dragan Simic <dragan.simic@gmail.com>,
-        JR Gonzalez <jrg@scientiam.org>
-References: <20230304172838.38059-1-strit@manjaro.org>
- <30017cc2-12cb-37dd-cd0a-f2e91fc6c252@linaro.org>
- <6bb744c3-a5f6-cb1b-2d0d-1bfb63127439@manjaro.org>
- <d0a98b17-9bc9-5842-5245-5c7aea2b4d26@linaro.org>
-From:   Dan Johansen <strit@manjaro.org>
-Organization: Manjaro ARM
-In-Reply-To: <d0a98b17-9bc9-5842-5245-5c7aea2b4d26@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Authentication-Results: ORIGINATING;
-        auth=pass smtp.auth=strit@manjaro.org smtp.mailfrom=strit@manjaro.org
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <a667a64d0cbeef00baed2d4b117ba9f50eaf3988.1677620677.git.jahau@rocketmail.com>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Tue, 28 Feb 2023, Jakob Hauser wrote:
 
-Den 05.03.2023 kl. 11.43 skrev Krzysztof Kozlowski:
-> On 05/03/2023 11:04, Dan Johansen wrote:
->> Den 05.03.2023 kl. 10.52 skrev Krzysztof Kozlowski:
->>> On 04/03/2023 18:28, Dan Johansen wrote:
->>>> MicroSD card slot in the Pinebook Pro is located on a separate
->>>> daughterboard that's connected to the mainboard using a rather
->>>> long flat cable.  The resulting signal degradation causes many
->>>> perfectly fine microSD cards not to work in the Pinebook Pro,
->>>> which is a common source of frustration among the owners.
->>>>
->>>> Changing the mode and lowering the speed reportedly fixes this
->>>> issue and makes many microSD cards work as expected.
->>>>
->>>> Co-authored-by: Dragan Simic <dragan.simic@gmail.com>
->>> That's not a valid tag. Run checkpatch.
->>>
->>> Missing SoB, which would be pointed out by checkpatch with correct tag.
->> Thank you. I ran checkpatch and it just said it was not valid, didn't
->> give alternatives.
->>
->> Would Co-developed-by acceptable instead?
-> Yes, looks good. If checkpatch does not complain, use it.
-Thank you. It says there are no obvious issues, so will re-submit with 
-that changed.
->
-> Best regards,
-> Krzysztof
->
->
-> _______________________________________________
-> Linux-rockchip mailing list
-> Linux-rockchip@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-rockchip
+> After reading the data from the DEVICE_ID register, mask 0x0f needs to be
+> applied to extract the revision of the chip [1].
+> 
+> The other part of the DEVICE_ID register, mask 0xf0, is a vendor identification
+> code. That's how it is set up at similar products of Richtek, e.g. RT9455 [2]
+> page 21 top.
+> 
+> [1] https://github.com/msm8916-mainline/linux-downstream/blob/GT-I9195I/drivers/mfd/rt5033_core.c#L484
+> [2] https://www.richtek.com/assets/product_file/RT9455/DS9455-00.pdf
+> 
+> Signed-off-by: Jakob Hauser <jahau@rocketmail.com>
+> ---
+>  drivers/mfd/rt5033.c               | 8 +++++---
+>  include/linux/mfd/rt5033-private.h | 4 ++++
+>  2 files changed, 9 insertions(+), 3 deletions(-)
+> 
+> diff --git a/drivers/mfd/rt5033.c b/drivers/mfd/rt5033.c
+> index 8029d444b794..d32467174cb5 100644
+> --- a/drivers/mfd/rt5033.c
+> +++ b/drivers/mfd/rt5033.c
+> @@ -55,7 +55,8 @@ static const struct regmap_config rt5033_regmap_config = {
+>  static int rt5033_i2c_probe(struct i2c_client *i2c)
+>  {
+>  	struct rt5033_dev *rt5033;
+> -	unsigned int dev_id;
+> +	unsigned int data;
+
+In terms of nomenclature, this is a regression.
+
+'data' is a terrible variable name.  Why not keep it as-is?
+
+> +	unsigned int chip_rev;
+>  	int ret;
+>  
+>  	rt5033 = devm_kzalloc(&i2c->dev, sizeof(*rt5033), GFP_KERNEL);
+> @@ -73,12 +74,13 @@ static int rt5033_i2c_probe(struct i2c_client *i2c)
+>  		return PTR_ERR(rt5033->regmap);
+>  	}
+>  
+> -	ret = regmap_read(rt5033->regmap, RT5033_REG_DEVICE_ID, &dev_id);
+> +	ret = regmap_read(rt5033->regmap, RT5033_REG_DEVICE_ID, &data);
+>  	if (ret) {
+>  		dev_err(&i2c->dev, "Device not found\n");
+>  		return -ENODEV;
+>  	}
+> -	dev_info(&i2c->dev, "Device found Device ID: %04x\n", dev_id);
+> +	chip_rev = data & RT5033_CHIP_REV_MASK;
+> +	dev_info(&i2c->dev, "Device found (rev. %d)\n", chip_rev);
+
+Why not print both?
+
+>  	ret = regmap_add_irq_chip(rt5033->regmap, rt5033->irq,
+>  			IRQF_TRIGGER_FALLING | IRQF_ONESHOT,
+> diff --git a/include/linux/mfd/rt5033-private.h b/include/linux/mfd/rt5033-private.h
+> index 2d1895c3efbf..d18cd4572208 100644
+> --- a/include/linux/mfd/rt5033-private.h
+> +++ b/include/linux/mfd/rt5033-private.h
+> @@ -71,6 +71,10 @@ enum rt5033_reg {
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+g
+>  /* RT5033 CHGCTRL2 register */
+>  #define RT5033_CHGCTRL2_CV_MASK		0xfc
+>  
+> +/* RT5033 DEVICE_ID register */
+> +#define RT5033_VENDOR_ID_MASK		0xf0
+> +#define RT5033_CHIP_REV_MASK		0x0f
+> +
+>  /* RT5033 CHGCTRL3 register */
+>  #define RT5033_CHGCTRL3_CFO_EN_MASK	0x40
+>  #define RT5033_CHGCTRL3_TIMER_MASK	0x38
+> -- 
+> 2.39.1
+> 
+
 -- 
-Kind regards
-*Dan Johansen*
-Project lead of the *Manjaro ARM* project
-Manjaro-ARM <https://manjaro.org>
+Lee Jones [李琼斯]
