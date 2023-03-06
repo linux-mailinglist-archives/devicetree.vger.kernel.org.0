@@ -2,109 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 76A9B6AC485
-	for <lists+devicetree@lfdr.de>; Mon,  6 Mar 2023 16:12:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C3C776AC457
+	for <lists+devicetree@lfdr.de>; Mon,  6 Mar 2023 16:05:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229671AbjCFPM1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 Mar 2023 10:12:27 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60060 "EHLO
+        id S230062AbjCFPFY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 Mar 2023 10:05:24 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50356 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229776AbjCFPM1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Mar 2023 10:12:27 -0500
-X-Greylist: delayed 3875 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Mon, 06 Mar 2023 07:12:23 PST
-Received: from 5.mo583.mail-out.ovh.net (5.mo583.mail-out.ovh.net [87.98.173.103])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0866B252B7
-        for <devicetree@vger.kernel.org>; Mon,  6 Mar 2023 07:12:23 -0800 (PST)
-Received: from director1.ghost.mail-out.ovh.net (unknown [10.109.143.249])
-        by mo583.mail-out.ovh.net (Postfix) with ESMTP id 3C75A27806
-        for <devicetree@vger.kernel.org>; Mon,  6 Mar 2023 14:06:36 +0000 (UTC)
-Received: from ghost-submission-6684bf9d7b-mkdzr (unknown [10.110.208.100])
-        by director1.ghost.mail-out.ovh.net (Postfix) with ESMTPS id DD95C1FE62;
-        Mon,  6 Mar 2023 14:06:35 +0000 (UTC)
-Received: from RCM-web1.webmail.mail.ovh.net ([176.31.238.120])
-        by ghost-submission-6684bf9d7b-mkdzr with ESMTPSA
-        id d61TLmvzBWTgkQoAZ9SXKg
-        (envelope-from <rafal@milecki.pl>); Mon, 06 Mar 2023 14:06:35 +0000
+        with ESMTP id S229892AbjCFPFX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Mar 2023 10:05:23 -0500
+Received: from mail11.truemail.it (mail11.truemail.it [217.194.8.81])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 578272596D;
+        Mon,  6 Mar 2023 07:05:18 -0800 (PST)
+Received: from francesco-nb.int.toradex.com (93-49-2-63.ip317.fastwebnet.it [93.49.2.63])
+        by mail11.truemail.it (Postfix) with ESMTPA id 093F921E2C;
+        Mon,  6 Mar 2023 15:56:33 +0100 (CET)
+Date:   Mon, 6 Mar 2023 15:56:28 +0100
+From:   Francesco Dolcini <francesco@dolcini.it>
+To:     Neeraj Sanjay Kale <neeraj.sanjaykale@nxp.com>
+Cc:     davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
+        pabeni@redhat.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, marcel@holtmann.org,
+        johan.hedberg@gmail.com, luiz.dentz@gmail.com,
+        gregkh@linuxfoundation.org, jirislaby@kernel.org,
+        alok.a.tiwari@oracle.com, hdanton@sina.com,
+        ilpo.jarvinen@linux.intel.com, leon@kernel.org,
+        netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-bluetooth@vger.kernel.org,
+        linux-serial@vger.kernel.org, amitkumar.karwar@nxp.com,
+        rohit.fule@nxp.com, sherry.sun@nxp.com
+Subject: Re: [PATCH v6 3/3] Bluetooth: NXP: Add protocol support for NXP
+ Bluetooth chipsets
+Message-ID: <ZAX/HHyy2yL76N0K@francesco-nb.int.toradex.com>
+References: <20230301154514.3292154-1-neeraj.sanjaykale@nxp.com>
+ <20230301154514.3292154-4-neeraj.sanjaykale@nxp.com>
 MIME-Version: 1.0
-Date:   Mon, 06 Mar 2023 15:06:35 +0100
-From:   =?UTF-8?Q?Rafa=C5=82_Mi=C5=82ecki?= <rafal@milecki.pl>
-To:     Michael Walle <michael@walle.cc>
-Cc:     Miquel Raynal <miquel.raynal@bootlin.com>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        linux-kernel@vger.kernel.org,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Robert Marko <robert.marko@sartura.hr>,
-        Luka Perkov <luka.perkov@sartura.hr>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH 0/8] nvmem: Let layout drivers be modules
-In-Reply-To: <d46241e139b7a1e96705402a42f9bf31@walle.cc>
-References: <20230301152239.531194-1-miquel.raynal@bootlin.com>
- <ee7923a8b5fa8358e6805d20df7d8049@walle.cc> <20230306143528.7407fda5@xps-13>
- <73a04afaf658292c05ef27117c60b21d@milecki.pl>
- <d46241e139b7a1e96705402a42f9bf31@walle.cc>
-User-Agent: Roundcube Webmail/1.4.13
-Message-ID: <75856a2c7099bad906e6b0c5475a3b7e@milecki.pl>
-X-Sender: rafal@milecki.pl
-X-Originating-IP: 194.187.74.233
-X-Webmail-UserID: rafal@milecki.pl
-Content-Type: text/plain; charset=UTF-8;
- format=flowed
-Content-Transfer-Encoding: 8bit
-X-Ovh-Tracer-Id: 17540394650260122608
-X-VR-SPAMSTATE: OK
-X-VR-SPAMSCORE: -85
-X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrgedvhedrvddtkedgfeduucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuqfggjfdpvefjgfevmfevgfenuceurghilhhouhhtmecuhedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmnegfrhhlucfvnfffucdludehmdenucfjughrpeggfffhvfevufgjfhgfkfigihgtgfesthekjhdttderjeenucfhrhhomheptfgrfhgrlhcuofhilhgvtghkihcuoehrrghfrghlsehmihhlvggtkhhirdhplheqnecuggftrfgrthhtvghrnhepudeivdethfeuffegtedukeeutedvtdffleeuuefhleffffekledugeelgffgleeunecuffhomhgrihhnpehrvggsrghsvgdrmhhhnecukfhppeduvdejrddtrddtrddupdduleegrddukeejrdejgedrvdeffedpudejiedrfedurddvfeekrdduvddtnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehinhgvthepuddvjedrtddrtddruddpmhgrihhlfhhrohhmpeeorhgrfhgrlhesmhhilhgvtghkihdrphhlqedpnhgspghrtghpthhtohepuddprhgtphhtthhopeguvghvihgtvghtrhgvvgesvhhgvghrrdhkvghrnhgvlhdrohhrghdpoffvtefjohhsthepmhhoheekfedpmhhouggvpehsmhhtphhouhht
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230301154514.3292154-4-neeraj.sanjaykale@nxp.com>
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_PASS,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2023-03-06 15:03, Michael Walle wrote:
-> Am 2023-03-06 14:57, schrieb Rafał Miłecki:
->> On 2023-03-06 14:35, Miquel Raynal wrote:
->>> Hi Michael,
->>> 
->>> michael@walle.cc wrote on Mon, 06 Mar 2023 14:01:34 +0100:
->>> 
->>>> > Miquel Raynal (8):
->>>> >   of: Fix modalias string generation
->>>> >   of: Change of_device_get_modalias() main argument
->>>> >   of: Create an of_device_request_module() receiving an OF node
->>>> >   nvmem: core: Fix error path ordering
->>>> >   nvmem: core: Handle the absence of expected layouts
->>>> >   nvmem: core: Request layout modules loading
->>>> >   nvmem: layouts: sl28vpd: Convert layout driver into a module
->>>> >   nvmem: layouts: onie-tlv: Convert layout driver into a module
->>>> 
->>>> With the fixes series [1] applied:
->>> 
->>> Thanks for the series! Looks good to me. I believe both series can 
->>> live
->>> in separate tress, any reason why we would like to avoid this? I am 
->>> keen
->>> to apply [1] into the mtd tree rather soon.
->> 
->> Given past events with nvmem patches I'm against that.
->> 
->> Let's wait for Srinivas to collect pending patches, let them spend a
->> moment in linux-next maybe, ask Srinivas to send them to Greg early if
->> he can. That way maybe you can merge Greg's branch (assuming he 
->> doesn't
->> rebase).
+On Wed, Mar 01, 2023 at 09:15:14PM +0530, Neeraj Sanjay Kale wrote:
+> This adds a driver based on serdev driver for the NXP BT serial protocol
+> based on running H:4, which can enable the built-in Bluetooth device
+> inside an NXP BT chip.
 > 
-> Mh? None of these fixes have anything to do with nvmem (except maybe 
-> patch
-> 4/4). The bugs were just discovered while I was testing this series. 
-> But
-> OTOH they are kind of a prerequisite for this series. So what are you
-> suggesting here?
+> This driver has Power Save feature that will put the chip into sleep state
+> whenever there is no activity for 2000ms, and will be woken up when any
+> activity is to be initiated over UART.
+> 
+> This driver enables the power save feature by default by sending the vendor
+> specific commands to the chip during setup.
+> 
+> During setup, the driver checks if a FW is already running on the chip
+> by waiting for the bootloader signature, and downloads device specific FW
+> file into the chip over UART if bootloader signature is received..
+> 
+> Signed-off-by: Neeraj Sanjay Kale <neeraj.sanjaykale@nxp.com>
 
-I'm sorry, I didn't realize you are commenting on linked mtd series.
-I thought you want to take nvmem patches series over mtd tree ;) My
-bad.
+<snip>
+
+> +#define FIRMWARE_W8987	"nxp/uartuart8987_bt.bin"
+> +#define FIRMWARE_W8997	"nxp/uartuart8997_bt_v4.bin"
+> +#define FIRMWARE_W9098	"nxp/uartuart9098_bt_v1.bin"
+> +#define FIRMWARE_IW416	"nxp/uartiw416_bt_v0.bin"
+> +#define FIRMWARE_IW612	"nxp/uartspi_n61x_v1.bin.se"
+
+Where are this files coming from? Where can I download those?
+Is loading a combo firmware from the mwifiex driver supported? 
+
+> +#define HCI_NXP_PRI_BAUDRATE	115200
+> +#define HCI_NXP_SEC_BAUDRATE	3000000
+
+What if the UART device does not support 3000000 baudrate (think at
+limitation on the clock source/divider of the UART)? Shouldn't this be
+configurable?
+
+> +#define NXP_V1_FW_REQ_PKT	0xa5
+> +#define NXP_V1_CHIP_VER_PKT	0xaa
+> +#define NXP_V3_FW_REQ_PKT	0xa7
+> +#define NXP_V3_CHIP_VER_PKT	0xab
+> +
+> +#define NXP_ACK_V1		0x5a
+> +#define NXP_NAK_V1		0xbf
+> +#define NXP_ACK_V3		0x7a
+> +#define NXP_NAK_V3		0x7b
+> +#define NXP_CRC_ERROR_V3	0x7c
+
+I assume this was already discussed, but the *_V1 looks just like the
+existing Marvell protocol, is it really worth a new driver? I did not check all
+the details here, so maybe the answer is just yes.
+
+Francesco
+
