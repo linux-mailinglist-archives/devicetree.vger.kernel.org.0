@@ -2,194 +2,205 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D345B6AB979
-	for <lists+devicetree@lfdr.de>; Mon,  6 Mar 2023 10:16:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id ECC826AB988
+	for <lists+devicetree@lfdr.de>; Mon,  6 Mar 2023 10:19:02 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229936AbjCFJQR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 Mar 2023 04:16:17 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52342 "EHLO
+        id S229742AbjCFJTB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 Mar 2023 04:19:01 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56434 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229885AbjCFJQM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Mar 2023 04:16:12 -0500
-Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EF77322A34;
-        Mon,  6 Mar 2023 01:16:01 -0800 (PST)
-Received: by mail-lf1-x12c.google.com with SMTP id n2so11730184lfb.12;
-        Mon, 06 Mar 2023 01:16:01 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112; t=1678094160;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=KlYsQ3RJ0RNf4tdciuB9SdK/fWEcM/do33YmLelo7IA=;
-        b=PbHWelD2MQstx1Wkle0mzLF/H2GXIcYrkNEQlkmbEEBGJSvruIcLOyedfPGuZEiWRY
-         qCJLhvG1JAY8rYw9iPB/Oa7wZayH9L1lLc/NHk0QcLGAk1jGXU8mRmZuAY46cz2tIAoo
-         wBS4uqW2mkdr2T8q+Lfo9OELxh6V9qhdNPmaET5GZIt/cn0+jGUPlpcd647E2zITrXXq
-         +8OB9P4szy+w7IpFJNKLsxs+7aL3S3jEhJULqH5YAEcVRnGJdzk487rOpF1cqSkY7pOp
-         RM2oxtAk9Z/ijgUDF12EV4wpOIVhfulBEkR4ST7FdLECY17SbE6FqPQ3D2q/oc+ZT9Sc
-         QjxA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678094160;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=KlYsQ3RJ0RNf4tdciuB9SdK/fWEcM/do33YmLelo7IA=;
-        b=cRGMIRVAyyfW4WsVWAYtMvKzBGia9ascsWsxsoZGCFrgrRdOiaHgGtPhLNI2lTAYAh
-         NzFbUv0KN3UzqavoSPPHVQ1UKNG0TpA9UpiRQxRp525A9H8AhgOvmq00Tj6dMhmSsklK
-         BXZTXhem3giW9QCymXgd4eBrqcq7lYUCQtCHehWd6WoH3WGFOW5bc/Bs5aS8oAor3HAZ
-         LN42KLAXRmdxmvPVWvs0XPWBh5R4jlqFj+fNH49Pyflj7wfI98pz6qcRxvJFSLulcxNJ
-         z/tmhbf20YjbLHD9tZGMaO0cgftANAWq8Y7tTazFeCkWiMKiWLcSnMp4Bq1qOFdmCEWp
-         3fOg==
-X-Gm-Message-State: AO0yUKWF32BMobaZDNJwNM0s/oI5IqQcvm90EaqruTqg4vkQdqL3+f70
-        8/w68mOdo64lGVNuXEMDIn6Worzz6tE=
-X-Google-Smtp-Source: AK7set/7qZ5VbxQ+AbyIchnudb72C098R7isLPhBZtr3WABxooas1T5uaw3wIPkNhu/5v2v4s4TZUQ==
-X-Received: by 2002:ac2:4c2e:0:b0:4e0:ee54:fa25 with SMTP id u14-20020ac24c2e000000b004e0ee54fa25mr2952416lfq.20.1678094160152;
-        Mon, 06 Mar 2023 01:16:00 -0800 (PST)
-Received: from dc75zzyyyyyyyyyyyyydy-3.rev.dnainternet.fi (dc75zzyyyyyyyyyyyyydy-3.rev.dnainternet.fi. [2001:14ba:16f3:4a00::6])
-        by smtp.gmail.com with ESMTPSA id i27-20020a056512007b00b004db0d26adb4sm1417940lfo.182.2023.03.06.01.15.58
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 06 Mar 2023 01:15:59 -0800 (PST)
-Date:   Mon, 6 Mar 2023 11:15:53 +0200
-From:   Matti Vaittinen <mazziesaccount@gmail.com>
-To:     Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
-        Matti Vaittinen <mazziesaccount@gmail.com>
-Cc:     Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
+        with ESMTP id S229593AbjCFJTA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Mar 2023 04:19:00 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C85159ED7;
+        Mon,  6 Mar 2023 01:18:51 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 85BB4B80D11;
+        Mon,  6 Mar 2023 09:18:50 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5A0D9C433D2;
+        Mon,  6 Mar 2023 09:18:46 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1678094329;
+        bh=e7DGMlyFuT+Xr9OW9k1dxZOnlGNZRMNJeB3ZVMN6oOA=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=SMbSvP2qCbz7V6Je/+xoXoEb8fFTTErzI0eOeN+qo4rlvVQZPcokuOycud03oIt44
+         eHlNjNuF1GsFPGU4371sCaIJ+yeJzRTrhUh+6FF1MgiE1Nljs0WSmX2TpjhtDUpsJR
+         1R4b5v38swtVFVrkrLKI3D/x66X1DPStxH9QM6k8IA6hgrksJSTHmndUDEOeIxhCLz
+         0Sc0GJ3LpV5/095jW0z4qAAu6Rq2yw3aWEu/irt/vc2y2X/zSdsxN8gBAs0sfGGeHj
+         GDUvRX2hJq1rVSOthLdyKh8gddj6itI+bJSdjbjiRqYesWFPf5ikVRQJ+t8SGMIAIY
+         +1BWsiJOZhiLA==
+Date:   Mon, 6 Mar 2023 09:18:43 +0000
+From:   Lee Jones <lee@kernel.org>
+To:     Jakob Hauser <jahau@rocketmail.com>
+Cc:     Sebastian Reichel <sre@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Matti Vaittinen <mazziesaccount@gmail.com>,
-        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH v3 1/6] dt-bindings: iio: light: Support ROHM BU27034
-Message-ID: <0b31bbc3d4afa2663a83f08bd77ee2b20f677def.1678093787.git.mazziesaccount@gmail.com>
-References: <cover.1678093787.git.mazziesaccount@gmail.com>
+        Beomho Seo <beomho.seo@samsung.com>,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        Stephan Gerhold <stephan@gerhold.net>,
+        Raymond Hackley <raymondhackley@protonmail.com>,
+        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht
+Subject: Re: [PATCH 02/10] mfd: rt5033: Fix chip revision readout
+Message-ID: <20230306091843.GE9667@google.com>
+References: <cover.1677620677.git.jahau@rocketmail.com>
+ <a667a64d0cbeef00baed2d4b117ba9f50eaf3988.1677620677.git.jahau@rocketmail.com>
+ <20230305104704.GG2574592@google.com>
+ <96c54beb-228c-d606-5b9c-613ee2bc5e70@rocketmail.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="4HFgpxBb6NqVEr/y"
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <cover.1678093787.git.mazziesaccount@gmail.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <96c54beb-228c-d606-5b9c-613ee2bc5e70@rocketmail.com>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Sun, 05 Mar 2023, Jakob Hauser wrote:
 
---4HFgpxBb6NqVEr/y
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+> Hi Lee,
+> 
+> On 05.03.23 11:47, Lee Jones wrote:
+> > On Tue, 28 Feb 2023, Jakob Hauser wrote:
+> > 
+> > > After reading the data from the DEVICE_ID register, mask 0x0f needs to be
+> > > applied to extract the revision of the chip [1].
+> > > 
+> > > The other part of the DEVICE_ID register, mask 0xf0, is a vendor identification
+> > > code. That's how it is set up at similar products of Richtek, e.g. RT9455 [2]
+> > > page 21 top.
+> > > 
+> > > [1] https://github.com/msm8916-mainline/linux-downstream/blob/GT-I9195I/drivers/mfd/rt5033_core.c#L484
+> > > [2] https://www.richtek.com/assets/product_file/RT9455/DS9455-00.pdf
+> > > 
+> > > Signed-off-by: Jakob Hauser <jahau@rocketmail.com>
+> > > ---
+> > >   drivers/mfd/rt5033.c               | 8 +++++---
+> > >   include/linux/mfd/rt5033-private.h | 4 ++++
+> > >   2 files changed, 9 insertions(+), 3 deletions(-)
+> > > 
+> > > diff --git a/drivers/mfd/rt5033.c b/drivers/mfd/rt5033.c
+> > > index 8029d444b794..d32467174cb5 100644
+> > > --- a/drivers/mfd/rt5033.c
+> > > +++ b/drivers/mfd/rt5033.c
+> > > @@ -55,7 +55,8 @@ static const struct regmap_config rt5033_regmap_config = {
+> > >   static int rt5033_i2c_probe(struct i2c_client *i2c)
+> > >   {
+> > >   	struct rt5033_dev *rt5033;
+> > > -	unsigned int dev_id;
+> > > +	unsigned int data;
+> > 
+> > In terms of nomenclature, this is a regression.
+> > 
+> > 'data' is a terrible variable name.  Why not keep it as-is?
+> 
+> While not having a datasheet for RT5033 available, in similar products like
+> RT9455 the register is called "Device ID", the first part of that is
+> "VENDOR_ID" and the second part "CHIP_REV", [1] page 23 top. Or in RT5036
+> preliminary data sheet the register is called "ID", the first part
+> "VENDOR_ID" and the second part "CHIP_REV_ID", [2] page 27 top.
+> 
+> I wanted to avoid confusion between "dev_id" and "chip_rev". Therefore in
+> the patch it's written as getting some "data" from the register and extract
+> "chip_rev" from that data.
+> 
+> I could change it to "reg_data"? Or something in that direction? I still
+> think that getting "chip_rev" out of "dev_id" would be confusing.
 
-ROHM BU27034 is an ambient light sesnor with 3 channels and 3 photo diodes
-capable of detecting a very wide range of illuminance. Typical application
-is adjusting LCD and backlight power of TVs and mobile phones.
+You're reading from a register called RT5033_REG_DEVICE_ID.  I don't see
+any reason why the variable you read into can't reflect that.
 
-Add dt-bindings.
+> [1] https://www.richtek.com/assets/product_file/RT9455/DS9455-00.pdf
+> [2] https://media.digikey.com/pdf/Data%20Sheets/Richtek%20PDF/RT5036%20%20Preliminary.pdf
+> 
+> > 
+> > > +	unsigned int chip_rev;
+> > >   	int ret;
+> > >   	rt5033 = devm_kzalloc(&i2c->dev, sizeof(*rt5033), GFP_KERNEL);
+> > > @@ -73,12 +74,13 @@ static int rt5033_i2c_probe(struct i2c_client *i2c)
+> > >   		return PTR_ERR(rt5033->regmap);
+> > >   	}
+> > > -	ret = regmap_read(rt5033->regmap, RT5033_REG_DEVICE_ID, &dev_id);
+> > > +	ret = regmap_read(rt5033->regmap, RT5033_REG_DEVICE_ID, &data);
+> > >   	if (ret) {
+> > >   		dev_err(&i2c->dev, "Device not found\n");
+> > >   		return -ENODEV;
+> > >   	}
+> > > -	dev_info(&i2c->dev, "Device found Device ID: %04x\n", dev_id);
+> > > +	chip_rev = data & RT5033_CHIP_REV_MASK;
+> > > +	dev_info(&i2c->dev, "Device found (rev. %d)\n", chip_rev);
+> > 
+> > Why not print both?
+> 
+> As described above, the data "dev_id" consists of a first part which is a
+> vendor ID and a second part which is the chip revision.
+> 
+> The vendor ID is of no interest here. These bits[7:4] contain binary value
+> 1000 (decimal value 8) and I'd expect that to be the same on all RT5033
+> devices.
+> 
+> Contrary to this, the chip revision is an important information. The
+> downstream Android driver applies some quirks depending on the chip
+> revision. This seemed not yet necessary in the upstream driver. So far I've
+> seen chip rev. 6 on samsung-serranove & samsung-e7 and chip rev. 5 on
+> samsung-grandmax & samsung-fortuna, the behavior of the chip revisions are
+> slightly different.
+> 
+> Accordingly, the downstream Android driver as well reads [3] and prints [4]
+> the chip revision only – confusingly calling it "rev id".
+> [3] https://github.com/msm8916-mainline/linux-downstream/blob/GT-I9195I/drivers/mfd/rt5033_core.c#L484
+> [4] https://github.com/msm8916-mainline/linux-downstream/blob/GT-I9195I/drivers/mfd/rt5033_core.c#L486
+> 
+> > >   	ret = regmap_add_irq_chip(rt5033->regmap, rt5033->irq,
+> > >   			IRQF_TRIGGER_FALLING | IRQF_ONESHOT,
+> > > diff --git a/include/linux/mfd/rt5033-private.h b/include/linux/mfd/rt5033-private.h
+> > > index 2d1895c3efbf..d18cd4572208 100644
+> > > --- a/include/linux/mfd/rt5033-private.h
+> > > +++ b/include/linux/mfd/rt5033-private.h
+> > > @@ -71,6 +71,10 @@ enum rt5033_reg {
+> > 
+> > 
+> > 
+> > 
+> > 
+> > 
+> > 
+> > 
+> > 
+> > 
+> > 
+> > 
+> > 
+> > 
+> > g
+> 
+> What does the "g" mean, was this on purpose? I didn't get the meaning of it.
+> 
+> > >   /* RT5033 CHGCTRL2 register */
+> > >   #define RT5033_CHGCTRL2_CV_MASK		0xfc
+> > > +/* RT5033 DEVICE_ID register */
+> > > +#define RT5033_VENDOR_ID_MASK		0xf0
+> > > +#define RT5033_CHIP_REV_MASK		0x0f
+> > > +
+> > >   /* RT5033 CHGCTRL3 register */
+> > >   #define RT5033_CHGCTRL3_CFO_EN_MASK	0x40
+> > >   #define RT5033_CHGCTRL3_TIMER_MASK	0x38
+> > > -- 
+> > > 2.39.1
+> > > 
+> > 
+> 
+> Kind regards,
+> Jakob
 
-Signed-off-by: Matti Vaittinen <mazziesaccount@gmail.com>
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
----
-v2 =3D>
-- No changes
-
-Changes since RFCv1 =3D> v2
-- Fix binding file name and id by using comma instead of a hyphen to
-  separate the vendor and part names.
----
- .../bindings/iio/light/rohm,bu27034.yaml      | 46 +++++++++++++++++++
- 1 file changed, 46 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/iio/light/rohm,bu2703=
-4.yaml
-
-diff --git a/Documentation/devicetree/bindings/iio/light/rohm,bu27034.yaml =
-b/Documentation/devicetree/bindings/iio/light/rohm,bu27034.yaml
-new file mode 100644
-index 000000000000..30a109a1bf3b
---- /dev/null
-+++ b/Documentation/devicetree/bindings/iio/light/rohm,bu27034.yaml
-@@ -0,0 +1,46 @@
-+# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/iio/light/rohm,bu27034.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: ROHM BU27034 ambient light sensor
-+
-+maintainers:
-+  - Matti Vaittinen <mazziesaccount@gmail.com>
-+
-+description: |
-+  ROHM BU27034 is an ambient light sesnor with 3 channels and 3 photo diod=
-es
-+  capable of detecting a very wide range of illuminance. Typical applicati=
-on
-+  is adjusting LCD and backlight power of TVs and mobile phones.
-+  https://fscdn.rohm.com/en/products/databook/datasheet/ic/sensor/light/bu=
-27034nuc-e.pdf
-+
-+properties:
-+  compatible:
-+    const: rohm,bu27034
-+
-+  reg:
-+    maxItems: 1
-+
-+  vdd-supply: true
-+
-+required:
-+  - compatible
-+  - reg
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    i2c {
-+      #address-cells =3D <1>;
-+      #size-cells =3D <0>;
-+
-+      light-sensor@38 {
-+        compatible =3D "rohm,bu27034";
-+        reg =3D <0x38>;
-+        vdd-supply =3D <&vdd>;
-+      };
-+    };
-+
-+...
---=20
-2.39.2
-
-
---=20
-Matti Vaittinen, Linux device drivers
-ROHM Semiconductors, Finland SWDC
-Kiviharjunlenkki 1E
-90220 OULU
-FINLAND
-
-~~~ "I don't think so," said Rene Descartes. Just then he vanished ~~~
-Simon says - in Latin please.
-~~~ "non cogito me" dixit Rene Descarte, deinde evanescavit ~~~
-Thanks to Simon Glass for the translation =3D]=20
-
---4HFgpxBb6NqVEr/y
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAEBCAAdFiEEIx+f8wZb28fLKEhTeFA3/03aocUFAmQFr0kACgkQeFA3/03a
-ocV1vAgAmalrbKKA5F3ractzpAwDTYfI/hTJNHaPemDsZWaJfGNNCCt0XiIw++Br
-NWThdcLSPFJAMRftPaCDUTcme92bkGW+IJDXynkHuz4WiGVMEC0YxvylNvtyaPW2
-n+yv61rx7ekWfGtVy1V1Uac0IcVm6I896nElXA1obXo0S/hMK6ZhfSvrYi0pOGll
-+lIw0RwHczcd+LZ+Y7hTVnXtwmt8KSaXLl/0/d8l2HDKqolIIqLuSADm4qTFEAnt
-gVdEIyedj63hyzyFWW/sPASObb6V234MeRBiLQmvwWDF7Ga+L8UgTmQKw5BGHfzt
-QizkdA7cDB23O4mZiC7XX0I5FhHO8g==
-=G833
------END PGP SIGNATURE-----
-
---4HFgpxBb6NqVEr/y--
+-- 
+Lee Jones [李琼斯]
