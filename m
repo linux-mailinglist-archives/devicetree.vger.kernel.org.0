@@ -2,158 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C996F6ABEC3
-	for <lists+devicetree@lfdr.de>; Mon,  6 Mar 2023 12:53:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AA3FC6ABED1
+	for <lists+devicetree@lfdr.de>; Mon,  6 Mar 2023 12:55:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229928AbjCFLxO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 Mar 2023 06:53:14 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43908 "EHLO
+        id S229801AbjCFLzF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 Mar 2023 06:55:05 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44900 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229677AbjCFLxN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Mar 2023 06:53:13 -0500
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2C7CE8A59
-        for <devicetree@vger.kernel.org>; Mon,  6 Mar 2023 03:53:12 -0800 (PST)
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1pZ9Os-0007KR-PP; Mon, 06 Mar 2023 12:53:07 +0100
-Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
-        by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.94.2)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1pZ9Or-002EWs-PV; Mon, 06 Mar 2023 12:53:05 +0100
-Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.94.2)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1pZ9Oq-002fPG-Ud; Mon, 06 Mar 2023 12:53:04 +0100
-From:   =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= 
-        <u.kleine-koenig@pengutronix.de>
-To:     Philipp Zabel <p.zabel@pengutronix.de>,
+        with ESMTP id S230310AbjCFLyj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Mar 2023 06:54:39 -0500
+Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 14A6D193D8;
+        Mon,  6 Mar 2023 03:54:38 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1678103678; x=1709639678;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=/B77wICrKDHdpgDqRdwuMAvfyeoVzAc14xFIleXoV+U=;
+  b=EZHWbY+lpglGuJzatvVyIQGTaZ86PVbDSk4GWGjt6Yt4DcJy/a2ZhXqK
+   efKgaaN4fRqyDhW9NHei+ROoGPnPupq+WOMlqLi6ry9eF/8pSQ5/3S0wV
+   TikgbM/MkQV5rnROzdw6QySmtToC1ubGdQVcWDNjfIoPOiT/sDJxmIs4j
+   qslHXQ5zXh4Tygj1IdGkhjzMo2+kpktoEt2KFoInNnwV5sIjt8sRQwXKB
+   A5KXGhupLMDhbjiP0aZ4eP+l8pCXR1gCEI8qLDAE1+9nNBm1sxGXm/wNm
+   xHaWPIDTowqs9LK2/T1IOvqruI+jFHRCRXaKSqSNpghF16uA8ee+n8K8R
+   Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10640"; a="398116335"
+X-IronPort-AV: E=Sophos;i="5.98,236,1673942400"; 
+   d="scan'208";a="398116335"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+  by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 06 Mar 2023 03:54:37 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6500,9779,10640"; a="740298896"
+X-IronPort-AV: E=Sophos;i="5.98,236,1673942400"; 
+   d="scan'208";a="740298896"
+Received: from turnipsi.fi.intel.com (HELO kekkonen.fi.intel.com) ([10.237.72.44])
+  by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 06 Mar 2023 03:54:30 -0800
+Received: from kekkonen.localdomain (localhost [IPv6:::1])
+        by kekkonen.fi.intel.com (Postfix) with SMTP id 6C94112160F;
+        Mon,  6 Mar 2023 13:54:27 +0200 (EET)
+Date:   Mon, 6 Mar 2023 13:54:27 +0200
+From:   Sakari Ailus <sakari.ailus@linux.intel.com>
+To:     Pin-yen Lin <treapking@chromium.org>
+Cc:     Andrzej Hajda <andrzej.hajda@intel.com>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Robert Foss <rfoss@kernel.org>,
+        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+        Jonas Karlman <jonas@kwiboo.se>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
         David Airlie <airlied@gmail.com>,
         Daniel Vetter <daniel@ffwll.ch>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>
-Cc:     Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Rob Herring <robh@kernel.org>
-Subject: [PATCH v6 1/2] dt-bindings: display: imx: Describe drm binding for fsl,imx-lcdc
-Date:   Mon,  6 Mar 2023 12:52:48 +0100
-Message-Id: <20230306115249.2223042-2-u.kleine-koenig@pengutronix.de>
-X-Mailer: git-send-email 2.39.1
-In-Reply-To: <20230306115249.2223042-1-u.kleine-koenig@pengutronix.de>
-References: <20230306115249.2223042-1-u.kleine-koenig@pengutronix.de>
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Daniel Scally <djrscally@gmail.com>,
+        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        "Rafael J . Wysocki" <rafael@kernel.org>,
+        Prashant Malani <pmalani@chromium.org>,
+        Benson Leung <bleung@chromium.org>,
+        Guenter Roeck <groeck@chromium.org>,
+        Xin Ji <xji@analogixsemi.com>,
+        Javier Martinez Canillas <javierm@redhat.com>,
+        Lyude Paul <lyude@redhat.com>, linux-kernel@vger.kernel.org,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        chrome-platform@lists.linux.dev,
+        =?iso-8859-1?Q?N=EDcolas_F_=2E_R_=2E_A_=2E?= Prado 
+        <nfraprado@collabora.com>, Marek Vasut <marex@denx.de>,
+        Hsin-Yi Wang <hsinyi@chromium.org>, devicetree@vger.kernel.org,
+        Allen Chen <allen.chen@ite.com.tw>,
+        dri-devel@lists.freedesktop.org,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        Stephen Boyd <swboyd@chromium.org>, linux-acpi@vger.kernel.org
+Subject: Re: [PATCH v13 01/10] device property: Add remote endpoint to devcon
+ matcher
+Message-ID: <ZAXUc7dvhIZXr+lJ@kekkonen.localdomain>
+References: <20230303143350.815623-1-treapking@chromium.org>
+ <20230303143350.815623-2-treapking@chromium.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-X-Developer-Signature: v=1; a=openpgp-sha256; l=2297; i=u.kleine-koenig@pengutronix.de; h=from:subject; bh=LGBP388eXSDg5Sh4xW/Yqw1YR9mypcnK1JjPdoElm2E=; b=owEBbQGS/pANAwAKAcH8FHityuwJAcsmYgBkBdQKHwEYtxDaV/z5cjvnMONPwLCLR71/3xlxO Zb2eL5zhoOJATMEAAEKAB0WIQR+cioWkBis/z50pAvB/BR4rcrsCQUCZAXUCgAKCRDB/BR4rcrs CVrYB/4grsN2L140LJPRllDHrOmmq0VUt+jnyitg/LNSi5USndrgyBiEP0vnHzMYFs4klpJU1FD OwvRzZ4T5gIxycTWCsdT+FQf+XHnmkSJ/UCUzyEOHZmiZAwvVrGi3bmsKtJJEi/n3e9R810TRlj aE/V4ezD7B9Nyb3Lztx4ZyTCssIhYFzT6UJOvUioslNBDDyT2xmHW781Vl1HJpnQ+q//gxu/eus DlJZR9jBpM9kQ747BXwl8cPW5owDtePtlOUxEYALx1FN5qB9OWmNGzoeQDuYexNURW2/6QDP99z mLBD8SHIfN7BYklceHIptq4vxi5iWc9FQz0xSLEHGBklHRDk
-X-Developer-Key: i=u.kleine-koenig@pengutronix.de; a=openpgp; fpr=0D2511F322BFAB1C1580266BE2DCDD9132669BD6
-Content-Transfer-Encoding: 8bit
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: ukl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230303143350.815623-2-treapking@chromium.org>
+X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Modify the existing (fb-like) binding to support the drm-like binding in
-parallel.
+Hi Pin-yen,
 
-Reviewed-by: Rob Herring <robh@kernel.org>
-Signed-off-by: Uwe Kleine-König <u.kleine-koenig@pengutronix.de>
----
- .../bindings/display/imx/fsl,imx-lcdc.yaml    | 46 ++++++++++++++++++-
- 1 file changed, 45 insertions(+), 1 deletion(-)
+Thanks for the update.
 
-diff --git a/Documentation/devicetree/bindings/display/imx/fsl,imx-lcdc.yaml b/Documentation/devicetree/bindings/display/imx/fsl,imx-lcdc.yaml
-index 35a8fff036ca..c2b29622bceb 100644
---- a/Documentation/devicetree/bindings/display/imx/fsl,imx-lcdc.yaml
-+++ b/Documentation/devicetree/bindings/display/imx/fsl,imx-lcdc.yaml
-@@ -21,6 +21,9 @@ properties:
-               - fsl,imx25-fb
-               - fsl,imx27-fb
-           - const: fsl,imx21-fb
-+      - items:
-+          - const: fsl,imx25-lcdc
-+          - const: fsl,imx21-lcdc
- 
-   clocks:
-     maxItems: 3
-@@ -31,6 +34,9 @@ properties:
-       - const: ahb
-       - const: per
- 
-+  port:
-+    $ref: /schemas/graph.yaml#/properties/port
-+
-   display:
-     $ref: /schemas/types.yaml#/definitions/phandle
- 
-@@ -59,17 +65,55 @@ properties:
-     description:
-       LCDC Sharp Configuration Register value.
- 
-+allOf:
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            enum:
-+              - fsl,imx1-lcdc
-+              - fsl,imx21-lcdc
-+    then:
-+      properties:
-+        display: false
-+        fsl,dmacr: false
-+        fsl,lpccr: false
-+        fsl,lscr1: false
-+
-+      required:
-+        - port
-+
-+    else:
-+      properties:
-+        port: false
-+
-+      required:
-+        - display
-+
- required:
-   - compatible
-   - clocks
-   - clock-names
--  - display
-   - interrupts
-   - reg
- 
- additionalProperties: false
- 
- examples:
-+  - |
-+    lcdc@53fbc000 {
-+        compatible = "fsl,imx25-lcdc", "fsl,imx21-lcdc";
-+        reg = <0x53fbc000 0x4000>;
-+        interrupts = <39>;
-+        clocks = <&clks 103>, <&clks 66>, <&clks 49>;
-+        clock-names = "ipg", "ahb", "per";
-+
-+        port {
-+            parallel_out: endpoint {
-+              remote-endpoint = <&panel_in>;
-+            };
-+        };
-+    };
-   - |
-     imxfb: fb@10021000 {
-         compatible = "fsl,imx21-fb";
+On Fri, Mar 03, 2023 at 10:33:41PM +0800, Pin-yen Lin wrote:
+> From: Prashant Malani <pmalani@chromium.org>
+> 
+> When searching the device graph for device matches, check the
+> remote-endpoint itself for a match.
+> 
+> Some drivers register devices for individual endpoints. This allows
+> the matcher code to evaluate those for a match too, instead
+> of only looking at the remote parent devices. This is required when a
+> device supports two mode switches in its endpoints, so we can't simply
+> register the mode switch with the parent node.
+> 
+> Signed-off-by: Prashant Malani <pmalani@chromium.org>
+> Signed-off-by: Pin-yen Lin <treapking@chromium.org>
+
+Reviewed-by: Sakari Ailus <sakari.ailus@linux.intel.com>
+
 -- 
-2.39.1
-
+Sakari Ailus
