@@ -2,285 +2,230 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7761C6AC3DC
-	for <lists+devicetree@lfdr.de>; Mon,  6 Mar 2023 15:50:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D672C6AC3B0
+	for <lists+devicetree@lfdr.de>; Mon,  6 Mar 2023 15:46:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231233AbjCFOuf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 Mar 2023 09:50:35 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54966 "EHLO
+        id S231226AbjCFOqk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 Mar 2023 09:46:40 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47288 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231286AbjCFOuX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Mar 2023 09:50:23 -0500
-Received: from smtp-relay-internal-1.canonical.com (smtp-relay-internal-1.canonical.com [185.125.188.123])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4B27A2D56
-        for <devicetree@vger.kernel.org>; Mon,  6 Mar 2023 06:50:02 -0800 (PST)
-Received: from mail-qt1-f198.google.com (mail-qt1-f198.google.com [209.85.160.198])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id F1AC54168E
-        for <devicetree@vger.kernel.org>; Mon,  6 Mar 2023 14:39:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1678113596;
-        bh=qW5xSmxdKjIllEUHvJ4dJwdCFXtHwGvw1GNV6BFAGZk=;
-        h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-         To:Cc:Content-Type;
-        b=JjPouAMkJj8L1zYgf/hvvH9Hde2h2ZKnVYZ/aIxYzZQSX0KPRw0WJQhl4Vq4FJ78h
-         KUxdcL+L0bIkSMBO2PtFaq7fWx82exdssNNRF8ooTpyynPSYWcwuvdcdIpBJFhDXxc
-         N/4DLBmWEQCpl3jwKNW4lv3ITWqi41ujcJH1HfMmVJuVZqUmFHFZxARAjk++EPrgdy
-         rVLbcYpncm8CSpVe67+lYIgICLqouNSydsuQFRCiVRsZ03Sy1K08e1en9go/G31QhC
-         ZLAFSbpS5BfuYPg3A2V1Qk4xf2HlUdGovbGtvYaH5tbZt7F5XNaB3KjJJd58YCu9fe
-         PCDCh97wVVpOw==
-Received: by mail-qt1-f198.google.com with SMTP id z1-20020ac87ca1000000b003ba2a2c50f9so5258189qtv.23
-        for <devicetree@vger.kernel.org>; Mon, 06 Mar 2023 06:39:55 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678113595;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=qW5xSmxdKjIllEUHvJ4dJwdCFXtHwGvw1GNV6BFAGZk=;
-        b=JWS8db4nX0FMdOphVfHPzWo3yOvdROvIOqaIjqGrlDJey4l/dlJgg+bg6SgvP6PEEl
-         HYE3s464LnCHFaG5yGjvTZqIz0Da96iP2EX45vebt9MHPrEtK9GN5eYoOgz3xb+zP3a3
-         WIqqDE5KdefLDGPtUobwPVPvCxWrX3iLmKpZpLGK2FG1XBXKUyHnTnFlfcBR8jHP4ZJH
-         /savjncuL1nvNe1r/HpZ4mgrhQj1kufbvPrT2Vswig70qeCB0Uw3ba1qdZ3xG7ZnSxIW
-         L0PVgqtGhsWzjknNXdCUo7uPjh6qXSs1FBNp8PLWLSknrr1zuXKNjOkToQZtwKpydRmh
-         jeEQ==
-X-Gm-Message-State: AO0yUKWzgc0r9xpWSkm7lkzaAtui5XfJXNhf3q23Dbqex+7jqxAhz1Ru
-        CheceJzcziMnpZhhcdH2F5+pIp2fg+EpPeUSF9ndGTagZiCE36Att67eoHIGNkZt5n0dn26/hqk
-        7hFkG0SJ9ueXSwSbBeeg7LUNcoGKR+ydajNh5EMqtGDTjd3b2so8hcuopZYFIW/4=
-X-Received: by 2002:a05:6214:b04:b0:56e:917a:1c19 with SMTP id u4-20020a0562140b0400b0056e917a1c19mr2609273qvj.0.1678113594907;
-        Mon, 06 Mar 2023 06:39:54 -0800 (PST)
-X-Google-Smtp-Source: AK7set/ehV6HNf3S4FDeQyHkWVmBdfzUrtJQgMvbF9DrzBzPARNK/FID8eqVdEk5fo+Vs9b0LwywNHLGCvDf2s6ysZo=
-X-Received: by 2002:a05:6214:b04:b0:56e:917a:1c19 with SMTP id
- u4-20020a0562140b0400b0056e917a1c19mr2609267qvj.0.1678113594619; Mon, 06 Mar
- 2023 06:39:54 -0800 (PST)
+        with ESMTP id S229834AbjCFOqa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Mar 2023 09:46:30 -0500
+Received: from EUR03-DBA-obe.outbound.protection.outlook.com (mail-dbaeur03on2077.outbound.protection.outlook.com [40.107.104.77])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 03BB52A9BF;
+        Mon,  6 Mar 2023 06:46:09 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=topic.nl; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=bilTqpBJVi1t5QdFSDsTEGwGPT70rh/dBW2449Ga8Uo=;
+ b=t8PpGU1MBWaZIFT52fEFf3LCgrVzN9XqouOuogQzj7CnjKiLXA5JwVyAyTBGk6pqFrwqomEVRrRkZIY30zVhAUQG3XwAvyyi1HSNYMIf6aUCfh1n7wAQHaGueWx5O/pwx7CUUD1Np2wWXitKUe4J+mLM4mh6xDWt9rpwgnZmG2PO8tkSi3oWUidUloCdXdSfFXXk3hG/mEKWF8RzyaD4f2uumhORtGOTkJr1dxgkNCx9YfCod2lJRhppBC3k7Tk4QW17uuXUOrqeQqJbHkZWgo3jUxtxtlW42PJYVJt2WHjoZxTSRZY3Tyy7ZA2DaUKt7W1D35jsmw3+EuBRkAprhg==
+Received: from FR3P281CA0158.DEUP281.PROD.OUTLOOK.COM (2603:10a6:d10:a2::8) by
+ AS8PR04MB8417.eurprd04.prod.outlook.com (2603:10a6:20b:3f9::18) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6156.28; Mon, 6 Mar
+ 2023 14:44:28 +0000
+Received: from VE1EUR01FT018.eop-EUR01.prod.protection.outlook.com
+ (2603:10a6:d10:a2:cafe::7b) by FR3P281CA0158.outlook.office365.com
+ (2603:10a6:d10:a2::8) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6178.14 via Frontend
+ Transport; Mon, 6 Mar 2023 14:44:28 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 13.93.42.39)
+ smtp.mailfrom=topicproducts.com; dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=topic.nl;
+Received-SPF: Pass (protection.outlook.com: domain of topicproducts.com
+ designates 13.93.42.39 as permitted sender) receiver=protection.outlook.com;
+ client-ip=13.93.42.39; helo=westeu12-emailsignatures-cloud.codetwo.com; pr=C
+Received: from westeu12-emailsignatures-cloud.codetwo.com (13.93.42.39) by
+ VE1EUR01FT018.mail.protection.outlook.com (10.152.2.221) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.6178.12 via Frontend Transport; Mon, 6 Mar 2023 14:44:27 +0000
+Received: from EUR02-AM0-obe.outbound.protection.outlook.com (104.47.11.235) by westeu12-emailsignatures-cloud.codetwo.com with CodeTwo SMTP Server (TLS12) via SMTP; Mon, 06 Mar 2023 14:44:26 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=GXmFNojG5W/4WFojfZnpyQZhSid5Y/l+vobSJcZgIwkS9zKLkTeCcVZvdM97FUaXfpZPedRtIp5crG40hsQKy+hYHQWzP5RdMyzYQq6RWZEfgacdNmOKv1MHU0wj4wCW1d0wlEyzGRfaKYBWiTCCdcQaDEGIc0iMshCjAlkMJ9/4SomDgXwcQ0M2zqpWox1lAcU8KNKUCzipdFb0Sb/E7RnGXH2sN6+MzgF/iiJTfDG4kSpp91MZyBrBaV4v77FCglnCDKJrSV7zH0IStM3s0ST4IoscmxZS0peOxzUaRQD5R1OEZEIPCU2OOJU7vrYLsoRGzRGcC2Cyjd/8isiDCQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=9lbbXM/RyaZ2HbKIo5NlOhGknlUaoiReuaIZ4RFtyxs=;
+ b=lyt0NtdSx8GP2DX8V9pNjqOtTTkFYjaquunm4tjG+2W9uwjcYtrlz6OidSKsd7QYPZfAT03UbE82in+9CsMqkPKAchCcZGajhGGIVzApI0mZms8q87usJxCuMVTQDn+uh4/sJ/awS12LK6b3dePtehs3xbC9wDmMsAsaYNESSMKa9d51RqwSpj75DAJhGcj03AhTQeKEIc0o46/tzsiNVxOhLHa+1MosewsvwSWvpT+9tazfl+KqCZHH7/+kD8MHEA4MWc9aCgrKm12pem+7SuOvDXQmZUVBqIETC8n2tZKwflD6bcQFmfPl11veiqmAFp/XU6Ag8bOVXFyJC4xGOg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=topicproducts.com; dmarc=pass action=none header.from=topic.nl;
+ dkim=pass header.d=topic.nl; arc=none
+Authentication-Results-Original: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=topic.nl;
+Received: from DB8PR04MB6523.eurprd04.prod.outlook.com (2603:10a6:10:10f::26)
+ by DU2PR04MB9083.eurprd04.prod.outlook.com (2603:10a6:10:2f2::21) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6156.28; Mon, 6 Mar
+ 2023 14:44:24 +0000
+Received: from DB8PR04MB6523.eurprd04.prod.outlook.com
+ ([fe80::a7e7:768:5a54:777a]) by DB8PR04MB6523.eurprd04.prod.outlook.com
+ ([fe80::a7e7:768:5a54:777a%7]) with mapi id 15.20.6156.028; Mon, 6 Mar 2023
+ 14:44:24 +0000
+Message-ID: <8a1dc110-97fe-a9c8-ce53-918f403a16eb@topic.nl>
+Date:   Mon, 6 Mar 2023 15:44:23 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.1
+From:   Mike Looijmans <mike.looijmans@topic.nl>
+Subject: Re: [PATCH v4 2/2] iio: adc: Add TI ADS1100 and ADS1000
+Content-Language: en-US
+To:     Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+CC:     devicetree@vger.kernel.org, linux-iio@vger.kernel.org,
+        Caleb Connolly <caleb.connolly@linaro.org>,
+        ChiYuan Huang <cy_huang@richtek.com>,
+        ChiaEn Wu <chiaen_wu@richtek.com>,
+        Cosmin Tanislav <demonsingur@gmail.com>,
+        Ibrahim Tilki <Ibrahim.Tilki@analog.com>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Marcus Folkesson <marcus.folkesson@gmail.com>,
+        Ramona Bolboaca <ramona.bolboaca@analog.com>,
+        William Breathitt Gray <william.gray@linaro.org>,
+        linux-kernel@vger.kernel.org
+References: <20230306131312.7170-1-mike.looijmans@topic.nl>
+ <1b153bce-a66a-45ee-a5c6-963ea6fb1c82.949ef384-8293-46b8-903f-40a477c056ae.0270109b-145d-4024-b8ff-05d54be2ad97@emailsignatures365.codetwo.com>
+ <20230306131312.7170-2-mike.looijmans@topic.nl>
+ <ZAXqwaKA3Uh6TH2q@smile.fi.intel.com>
+Organization: Topic
+In-Reply-To: <ZAXqwaKA3Uh6TH2q@smile.fi.intel.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: quoted-printable
+X-ClientProxiedBy: AM0P190CA0008.EURP190.PROD.OUTLOOK.COM
+ (2603:10a6:208:190::18) To DB8PR04MB6523.eurprd04.prod.outlook.com
+ (2603:10a6:10:10f::26)
 MIME-Version: 1.0
-References: <20230306140430.28951-1-walker.chen@starfivetech.com> <20230306140430.28951-3-walker.chen@starfivetech.com>
-In-Reply-To: <20230306140430.28951-3-walker.chen@starfivetech.com>
-From:   Emil Renner Berthing <emil.renner.berthing@canonical.com>
-Date:   Mon, 6 Mar 2023 15:39:38 +0100
-Message-ID: <CAJM55Z_216xezPNE1tXBsWA9pKk1ZaKsNVM=4PuHrg5Cgs3zcw@mail.gmail.com>
-Subject: Re: [PATCH v4 2/3] dmaengine: dw-axi-dmac: Add support for StarFive
- JH7110 DMA
-To:     Walker Chen <walker.chen@starfivetech.com>
-Cc:     Eugeniy Paltsev <Eugeniy.Paltsev@synopsys.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor.dooley@microchip.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>, dmaengine@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-riscv@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+X-MS-TrafficTypeDiagnostic: DB8PR04MB6523:EE_|DU2PR04MB9083:EE_|VE1EUR01FT018:EE_|AS8PR04MB8417:EE_
+X-MS-Office365-Filtering-Correlation-Id: a4209f3d-a76e-49d0-687f-08db1e514997
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam-Untrusted: BCL:0;
+X-Microsoft-Antispam-Message-Info-Original: LsYqB8QixPrby658m9bCU44rYayFgDHfQ/Y+Lcrz8/V580V0/b/gS0z0vAOR0LlmZdK7iIkza4uTiVXbX9KP0WUi2q8GURls86VHN80jfeP9Qk9cZxMBk0dRKuSMWTEoA5DA3VPn6FZZpGimBBkLu0pUePkmY8cEFFWKPOhz/uDpg7dlpTy9Udkh2DLDmuKrChUFfge27QYzDh1wxxk1IuECzKuN5kdXI8fYrUlL1PBC/vNpzuTBjUkHmjuvuDOiFunlxCa48XGhCiYKnnISmrE//1JhyTD2C6N3VdWOWpyzi9mEkAsBNVt/78+lnUX8Aun2BzTxSc34pOyPKO/aqv/Ax3j9fNhPfeL31oTEKoP7KzSPuxVzGMs/FdFFh0X8RHEMrfZFfbBBbsdEwaarxAQH1oJrveob1taUphXh9UZm1g9UDrIOK2IKI0/NZiul0ZgLbmosaXQ/rcGrMSmmxnds5jm/0MA8PBm/5jXdKDF+/fJcs+X0J69p7Vmvyg0xsvbnZO604M7jFwZcSu5WEbnHUA9JFD8XRi9YX1V6GU3VBlh9w5l/bQGwdOjQ/Qqs4mkfdBQE1eZFpAjYKV/l9Kq2mC4Dt+qR5CNpqgnSx6PhvQWmsvGS17bj1gtOMWrXK82kXmEH/S2zDyxKCYG4WXnxOiFLe64IrLVPqnvO7aXDrc1ZRTqkEfNotaqYa3NJ+7nPZ5dZkm9OL01lHNRjVKerPp01mlcOg73xmN9cy2FbBcvCXKZ+9LkqXQt31DHroDplCVafHfSGAgLeHh3wmw==
+X-Forefront-Antispam-Report-Untrusted: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB8PR04MB6523.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230025)(4636009)(346002)(39840400004)(396003)(136003)(376002)(366004)(451199018)(6506007)(6512007)(53546011)(6486002)(36756003)(42882007)(83170400001)(83380400001)(31696002)(38100700002)(38350700002)(186003)(2616005)(26005)(41300700001)(66946007)(66556008)(66476007)(8676002)(4326008)(6916009)(2906002)(31686004)(8936002)(44832011)(5660300002)(7416002)(478600001)(36916002)(52116002)(316002)(54906003)(43740500002)(45980500001);DIR:OUT;SFP:1101;
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DU2PR04MB9083
+X-CodeTwo-MessageID: c2f39107-ca57-4038-a9a8-04c4f3c3db72.20230306144426@westeu12-emailsignatures-cloud.codetwo.com
+X-CodeTwoProcessed: true
+X-EOPAttributedMessage: 0
+X-MS-Exchange-Transport-CrossTenantHeadersStripped: VE1EUR01FT018.eop-EUR01.prod.protection.outlook.com
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id-Prvs: 174d2742-89be-41bc-462d-08db1e51476c
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: M0YjS182ERUTUa7KarCEBNOuXbu/ksraFPGAO0hJutz9p4lnV/kMfMsKZ3kU5oNidgf5o2U47LghUTd2TSUs3sT2yrz+PEmA7PvDIwSu4GCP+Sf2bmrHAEkhGis9iT4IHfTADI14IkLScprSwPJpYi+GgZCdvigZ/uelFCG4W/lJrGCxPBCba4eu3tYcL4FKb63A1NWIWRQjIi1GQOBNm6ci5IyTKboG6b/aLEqsJBXtvGmBY3rAdG83LoLTxpdukbQSA/u0FuI9EiSbKjBMQ87pW52nkY0EhJgfm1yHMvT5bk6dGVC9O9CuEyLH/Ti1WH9cfD/7oSUyW1d9ysjZMCwA2XyAEh2JQmkGrlw5+Y0WMYOL28LRWPGEPT44aU/IxEdL6YU0TzqKtxV9LkquMRaD9i5GPHZLgAeMKaUY6zrdWb2LEgb7Ce04EQSVazWSgOyFixDb29ZESDAYZ7phCA/XbGpUmJnUEaBOVDfwQ++zghliSk+L+hTr8wIfVUfwMC09UoiXZxBgluQFy+yr25r/f2yXPYpZUnk4FNlvJBNAE1Soo/HsJt7g/qo1Req7DCPppoLBbGmP7x+IasVXggN1xqI4QytLnaQ+oq2hkvQ6W6Z5SLOjaBB7axRIpkINEbtlZ5yN4SBaVaBZqz7lwwPUSIevW/Bim+mXIjfO8QfHrvE9ba/ZnzZNZvC6Pqhw
+X-Forefront-Antispam-Report: CIP:13.93.42.39;CTRY:NL;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:westeu12-emailsignatures-cloud.codetwo.com;PTR:westeu12-emailsignatures-cloud.codetwo.com;CAT:NONE;SFS:(13230025)(4636009)(39840400004)(136003)(376002)(396003)(346002)(451199018)(36840700001)(46966006)(26005)(6506007)(6512007)(53546011)(6486002)(36756003)(36860700001)(47076005)(82310400005)(83170400001)(356005)(15974865002)(83380400001)(31696002)(7596003)(7636003)(40480700001)(42882007)(186003)(2616005)(336012)(70206006)(70586007)(41300700001)(6916009)(8676002)(4326008)(2906002)(44832011)(31686004)(8936002)(7416002)(5660300002)(478600001)(36916002)(316002)(54906003)(43740500002);DIR:OUT;SFP:1101;
+X-OriginatorOrg: topic.nl
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Mar 2023 14:44:27.5775
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: a4209f3d-a76e-49d0-687f-08db1e514997
+X-MS-Exchange-CrossTenant-Id: 449607a5-3517-482d-8d16-41dd868cbda3
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=449607a5-3517-482d-8d16-41dd868cbda3;Ip=[13.93.42.39];Helo=[westeu12-emailsignatures-cloud.codetwo.com]
+X-MS-Exchange-CrossTenant-AuthSource: VE1EUR01FT018.eop-EUR01.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS8PR04MB8417
+X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 6 Mar 2023 at 15:04, Walker Chen <walker.chen@starfivetech.com> wrote:
->
-> Add dma reset operation in device probe and use different configuration
-> on CH_CFG registers according to match data. Update all uses of
-> of_device_is_compatible with of_device_get_match_data.
->
-> Reviewed-by: Emil Renner Berthing <emil.renner.berthing@canonical.com>
 
-Hi Walker,
+Met vriendelijke groet / kind regards,=0A=
+=0A=
+Mike Looijmans=0A=
+System Expert=0A=
+=0A=
+=0A=
+TOPIC Embedded Products B.V.=0A=
+Materiaalweg 4, 5681 RJ Best=0A=
+The Netherlands=0A=
+=0A=
+T: +31 (0) 499 33 69 69=0A=
+E: mike.looijmans@topicproducts.com=0A=
+W: www.topic.nl=0A=
+=0A=
+Please consider the environment before printing this e-mail=0A=
+On 06-03-2023 14:29, Andy Shevchenko wrote:
+> On Mon, Mar 06, 2023 at 02:13:12PM +0100, Mike Looijmans wrote:
+>> The ADS1100 is a 16-bit ADC (at 8 samples per second).
+>> The ADS1000 is similar, but has a fixed data rate.
+> ...
+>
+>> +	microvolts =3D regulator_get_voltage(data->reg_vdd);
+>> +	/*
+>> +	 * val2 is in 'micro' units, n =3D val2 / 1000000
+>> +	 * result must be millivolts, d =3D microvolts / 1000
+>> +	 * the full-scale value is d/n, corresponds to 2^15,
+>> +	 * hence the gain =3D (d / n) >> 15, factoring out the 1000 and moving=
+ the
+>> +	 * bitshift so everything fits in 32-bits yields this formula.
+>> +	 */
+>> +	gain =3D ((microvolts + BIT(14)) >> 15) * 1000 / val2;
+> Perhaps adding MICROVOLT_PER_MILLIVOLT (to units.h) and use it here?
 
-Again please remove my Reviewed-by when you're adding a bunch of new
-code as you're doing here.
+Would that require a separate patch?
 
-> Signed-off-by: Walker Chen <walker.chen@starfivetech.com>
-> ---
->  .../dma/dw-axi-dmac/dw-axi-dmac-platform.c    | 67 ++++++++++++++++---
->  drivers/dma/dw-axi-dmac/dw-axi-dmac.h         |  2 +
->  2 files changed, 61 insertions(+), 8 deletions(-)
->
-> diff --git a/drivers/dma/dw-axi-dmac/dw-axi-dmac-platform.c b/drivers/dma/dw-axi-dmac/dw-axi-dmac-platform.c
-> index bf85aa0979ec..d1148f6fbcf9 100644
-> --- a/drivers/dma/dw-axi-dmac/dw-axi-dmac-platform.c
-> +++ b/drivers/dma/dw-axi-dmac/dw-axi-dmac-platform.c
-> @@ -21,10 +21,12 @@
->  #include <linux/kernel.h>
->  #include <linux/module.h>
->  #include <linux/of.h>
-> +#include <linux/of_device.h>
->  #include <linux/of_dma.h>
->  #include <linux/platform_device.h>
->  #include <linux/pm_runtime.h>
->  #include <linux/property.h>
-> +#include <linux/reset.h>
->  #include <linux/slab.h>
->  #include <linux/types.h>
->
-> @@ -46,6 +48,12 @@
->         DMA_SLAVE_BUSWIDTH_32_BYTES     | \
->         DMA_SLAVE_BUSWIDTH_64_BYTES)
->
-> +struct axi_dma_chip_config {
-> +       int (*apb_setup)(struct platform_device *pdev, struct axi_dma_chip *chip);
-> +       int (*reset_init)(struct platform_device *pdev);
-> +       bool use_cfg2;
-> +};
-> +
->  static inline void
->  axi_dma_iowrite32(struct axi_dma_chip *chip, u32 reg, u32 val)
->  {
-> @@ -86,7 +94,8 @@ static inline void axi_chan_config_write(struct axi_dma_chan *chan,
->
->         cfg_lo = (config->dst_multblk_type << CH_CFG_L_DST_MULTBLK_TYPE_POS |
->                   config->src_multblk_type << CH_CFG_L_SRC_MULTBLK_TYPE_POS);
-> -       if (chan->chip->dw->hdata->reg_map_8_channels) {
-> +       if (chan->chip->dw->hdata->reg_map_8_channels &&
-> +           !chan->chip->dw->hdata->use_cfg2) {
->                 cfg_hi = config->tt_fc << CH_CFG_H_TT_FC_POS |
->                          config->hs_sel_src << CH_CFG_H_HS_SEL_SRC_POS |
->                          config->hs_sel_dst << CH_CFG_H_HS_SEL_DST_POS |
-> @@ -1142,7 +1151,7 @@ static int dma_chan_terminate_all(struct dma_chan *dchan)
->         axi_chan_disable(chan);
->
->         ret = readl_poll_timeout_atomic(chan->chip->regs + DMAC_CHEN, val,
-> -                                       !(val & chan_active), 1000, 10000);
-> +                                       !(val & chan_active), 1000, DMAC_TIMEOUT_US);
->         if (ret == -ETIMEDOUT)
->                 dev_warn(dchan2dev(dchan),
->                          "%s failed to stop\n", axi_chan_name(chan));
-> @@ -1367,13 +1376,33 @@ static int parse_device_properties(struct axi_dma_chip *chip)
->         return 0;
->  }
->
-> +static int intel_apb_setup(struct platform_device *pdev, struct axi_dma_chip *chip)
-> +{
-> +       chip->apb_regs = devm_platform_ioremap_resource(pdev, 1);
-> +       if (IS_ERR(chip->apb_regs))
-> +               return PTR_ERR(chip->apb_regs);
-> +       else
-> +               return 0;
-> +}
-> +
-> +static int jh7110_reset_init(struct platform_device *pdev)
-> +{
-> +       struct reset_control *resets;
-> +
-> +       resets = devm_reset_control_array_get_exclusive(&pdev->dev);
-> +       if (IS_ERR(resets))
-> +               return PTR_ERR(resets);
-> +
-> +       return reset_control_deassert(resets);
-> +}
-> +
->  static int dw_probe(struct platform_device *pdev)
->  {
-> -       struct device_node *node = pdev->dev.of_node;
->         struct axi_dma_chip *chip;
->         struct resource *mem;
->         struct dw_axi_dma *dw;
->         struct dw_axi_dma_hcfg *hdata;
-> +       const struct axi_dma_chip_config *ccfg;
->         u32 i;
->         int ret;
->
-> @@ -1402,10 +1431,21 @@ static int dw_probe(struct platform_device *pdev)
->         if (IS_ERR(chip->regs))
->                 return PTR_ERR(chip->regs);
->
-> -       if (of_device_is_compatible(node, "intel,kmb-axi-dma")) {
-> -               chip->apb_regs = devm_platform_ioremap_resource(pdev, 1);
-> -               if (IS_ERR(chip->apb_regs))
-> -                       return PTR_ERR(chip->apb_regs);
-> +       ccfg = of_device_get_match_data(&pdev->dev);
-> +       if (ccfg) {
-> +               if (ccfg->apb_setup) {
-> +                       ret = ccfg->apb_setup(pdev, chip);
-> +                       if (ret)
-> +                               return ret;
-> +               }
-> +
-> +               if (ccfg->reset_init) {
-> +                       ret = ccfg->reset_init(pdev);
-> +                       if (ret)
-> +                               return ret;
-> +               }
-> +
-> +               chip->dw->hdata->use_cfg2 = ccfg->use_cfg2;
+I fear that would get feedback like "why not MICROCOULOB_PER_MILLICOULOMB".
 
-This claims and deasserts the resets before the clocks, whereas your
-previous versions did it after turning the clocks on. Which is the
-correct order?
+If I fill in the equation then that "1000" is actually=20
+MICROVOLT_PER_MICROVOLT_PER_MILLIVOLT, which would evaluate to simply=20
+"MILLIVOLT".
 
-Also this certainly gets rid of of_device_is_compatible calls, but
-seems like a lot of code to do that. Did you consider something like
 
-+#define AXI_DMA_FLAG_HAS_APB_REGS BIT(0)
-+#define AXI_DMA_FLAG_HAS_RESETS BIT(1)
-+#define AXI_DMA_FLAG_USE_CFG2 BIT(2)
-
-+unsigned int flags = (uintptr_t)device_get_match_data(&pdev->dev);
-
--if (of_device_is_compatible(node, "intel,kmb-axi-dma")) {
-+if (flags & AXI_DMA_FLAG_HAS_APB_REGS) {
-
--if (of_device_is_compatible(node, "starfive,jh7110-axi-dma)) {
-+if (flags & AXI_DMA_FLAG_HAS_RESETS) {
-
-+chip->dw->hwdata->use_cfg2 = !!(flags & AXI_DMA_FLAG_USE_CFG2);
-
--{ .compatible = "intel,kmb-axi-dma" },
-+{ .compatible = "intel,kmb-axi-dma", .data = (void
-*)AXI_DMA_FLAG_HAS_APB_REGS },
-+{ .compatible = "starive,jh7110-axi-dma", .data = (void
-*)(AXI_DMA_FLAG_HAS_RESETS | AXI_DMA_FLAG_USE_CFG2) },
-
->         }
 >
->         chip->core_clk = devm_clk_get(chip->dev, "core-clk");
-> @@ -1557,9 +1597,20 @@ static const struct dev_pm_ops dw_axi_dma_pm_ops = {
->         SET_RUNTIME_PM_OPS(axi_dma_runtime_suspend, axi_dma_runtime_resume, NULL)
->  };
+> Besides that it's seems like
 >
-> +static const struct axi_dma_chip_config intel_chip_config = {
-> +       .apb_setup = intel_apb_setup,
-> +       .use_cfg2 = false,
-> +};
-> +
-> +static const struct axi_dma_chip_config jh7110_chip_config = {
-> +       .reset_init = jh7110_reset_init,
-> +       .use_cfg2 = true,
-> +};
-> +
->  static const struct of_device_id dw_dma_of_id_table[] = {
->         { .compatible = "snps,axi-dma-1.01a" },
-> -       { .compatible = "intel,kmb-axi-dma" },
-> +       { .compatible = "intel,kmb-axi-dma", .data = &intel_chip_config },
-> +       { .compatible = "starfive,jh7110-axi-dma", .data = &jh7110_chip_config },
->         {}
->  };
->  MODULE_DEVICE_TABLE(of, dw_dma_of_id_table);
-> diff --git a/drivers/dma/dw-axi-dmac/dw-axi-dmac.h b/drivers/dma/dw-axi-dmac/dw-axi-dmac.h
-> index e9d5eb0fd594..b906d5884efe 100644
-> --- a/drivers/dma/dw-axi-dmac/dw-axi-dmac.h
-> +++ b/drivers/dma/dw-axi-dmac/dw-axi-dmac.h
-> @@ -21,6 +21,7 @@
->  #define DMAC_MAX_CHANNELS      16
->  #define DMAC_MAX_MASTERS       2
->  #define DMAC_MAX_BLK_SIZE      0x200000
-> +#define DMAC_TIMEOUT_US                200000
+> 	microvolts =3D regulator_get_voltage(data->reg_vdd);
+> 	gain =3D DIV_ROUNDUP_CLOSEST(microvolts, BIT(15)) *
+> 	       MICROVOLT_PER_MILLIVOLT / val2;
+
+Yeah, the DIV_ROUNDUP_CLOSEST is more readable.
+
+
+>> +	if (gain <=3D 0 || gain > 8)
+>> +		return -EINVAL;
+> As I commented out in the previous discussion (please, give a chance to t=
+he
+> reviewers to answer before issuing a new version of the series) this bett=
+er
+> to be
 >
->  struct dw_axi_dma_hcfg {
->         u32     nr_channels;
-> @@ -33,6 +34,7 @@ struct dw_axi_dma_hcfg {
->         /* Register map for DMAX_NUM_CHANNELS <= 8 */
->         bool    reg_map_8_channels;
->         bool    restrict_axi_burst_len;
-> +       bool    use_cfg2;
->  };
+> 	if (gain < BIT(0) || gain > BIT(3))
 >
->  struct axi_dma_chan {
-> --
-> 2.17.1
+> which will show the nature of power of two implicitly.
 >
+>> +	regval =3D ffs(gain) - 1;
+>> +	ads1100_set_config_bits(data, ADS1100_PGA_MASK, regval);
+> Can be unified in one line.
+
+Combining it all, I'd arrive at this code:
+
+ =C2=A0=C2=A0=C2=A0 gain =3D DIV_ROUNDUP_CLOSEST(microvolts, BIT(15)) * MIL=
+LI / val2;
+ =C2=A0=C2=A0 =C2=A0if (gain < BIT(0) || gain > BIT(3))
+ =C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0=C2=A0 return -EINVAL;
+
+ =C2=A0=C2=A0 =C2=A0ads1100_set_config_bits(data, ADS1100_PGA_MASK, ffs(gai=
+n) - 1);
+
+
+>> +	return 0;
+>> +}
+> ...
+>
+>> +			return ads1100_set_config_bits(
+>> +					data, ADS1100_DR_MASK,
+>> +					FIELD_PREP(ADS1100_DR_MASK, i));
+> Wrong indentation.
+> Please, check all your code for this kind of issues.
+>
+I always run it through checkpatch.pl but that didn't report on this=20
+indentation.
+
+A bit of digging in the scripts directory yields "Lindent". Feeding my=20
+file to that indeed changes those lines (and some others too). I'll run=20
+my next patch through that.
+
+--=20
+Mike Looijmans
+
