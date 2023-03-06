@@ -2,55 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 26C736AC10F
-	for <lists+devicetree@lfdr.de>; Mon,  6 Mar 2023 14:32:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6A9656AC114
+	for <lists+devicetree@lfdr.de>; Mon,  6 Mar 2023 14:32:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231256AbjCFNcA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 Mar 2023 08:32:00 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44288 "EHLO
+        id S231290AbjCFNcM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 Mar 2023 08:32:12 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44562 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231252AbjCFNb7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Mar 2023 08:31:59 -0500
+        with ESMTP id S231264AbjCFNcD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Mar 2023 08:32:03 -0500
 Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0E06E2E80F;
-        Mon,  6 Mar 2023 05:31:57 -0800 (PST)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1CBBD2ED66;
+        Mon,  6 Mar 2023 05:32:00 -0800 (PST)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 749A360F10;
+        by dfw.source.kernel.org (Postfix) with ESMTPS id A826060F10;
+        Mon,  6 Mar 2023 13:31:59 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 61B25C4339C;
         Mon,  6 Mar 2023 13:31:56 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D2FF6C433D2;
-        Mon,  6 Mar 2023 13:31:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1678109515;
-        bh=xk2sxBEfsiN8aKVYWYbUYCkQgq5QDPcbaOkOnFjwYec=;
+        s=k20201202; t=1678109519;
+        bh=GGz/XSquEEkd/c1A8ozA7mQ9It/zjD2cp/cMY4WB4vA=;
         h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-        b=sddlj8enGoNsBB53XnM6yLjlWH6qW0MM4/OXj2+Rd0hDjZKdOA8lStIgrDIroyhqS
-         z3y7rgMjk3K0fqY2Wvs1ndD1L26gzBtFoNFxT6Sl+vOD+o+tVGnW0lHEWqTRn6YOwM
-         ptESxC8P7B5UMiwsRl1dHQEEgUl4gW4Gl1yv2I+8eQnA9Khh6P/Atisof+/iZLsjCw
-         YbZzdtgqrkrjTIULwrFsypWiN3RmoBcRrKua8GqJJYMWtehYD6ls1ftWD9T1mKO70W
-         mmXI8ERzpLqaQ3fedpWkCKXxWlKZm7H2U8NCLy8reO8GCxL3qDrQ4wiuO9D2S42qGk
-         8a8K8eDvN6yvA==
+        b=iBaz7RSpiIHju+faTJoDDbYnqmTn2YoDyADXL2vTPaHobu59JQLQT7lk3IOORGJdB
+         0ike2irMWoLD0BnVbFfW4l4Vhd9zdBvaTqjmyqMrp30fQPZTk6z/SElweq1D/d2gO1
+         M0Rfe35aZMF/Z/lnJEVVioyP6WK6U1VSJjhfXR6RzqAlYFWwkGLlbCGxBTNGFRjljk
+         pd3D8BWREFA3wcQM8gLvC5JSxBhHzNCSw55xylUXpfeeEV6J3mp25lQ75K6wZXapTS
+         PZq/MV4+1/V9uUTYi79oYIab4NqqASTK7vAWyVgeMlsS/uDLxPKdkCCbAi06YgHS+I
+         fZNTLSfJsfAVw==
 From:   Mark Brown <broonie@kernel.org>
-To:     Rob Herring <robh+dt@kernel.org>,
+To:     Liam Girdwood <lgirdwood@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
         Jaroslav Kysela <perex@perex.cz>,
         Takashi Iwai <tiwai@suse.com>,
-        Maxim Schwalm <maxim.schwalm@gmail.com>,
-        Dmitry Osipenko <digetx@gmail.com>,
-        Svyatoslav Ryhel <clamor95@gmail.com>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        alsa-devel@alsa-project.org, linux-tegra@vger.kernel.org,
-        linux-staging@lists.linux.dev
-In-Reply-To: <20230221183211.21964-1-clamor95@gmail.com>
-References: <20230221183211.21964-1-clamor95@gmail.com>
-Subject: Re: (subset) [PATCH v1 00/10] Fix sound on ASUS Transformers
-Message-Id: <167810951258.75807.6694477245258374695.b4-ty@kernel.org>
-Date:   Mon, 06 Mar 2023 13:31:52 +0000
+        Prabhakar <prabhakar.csengg@gmail.com>
+Cc:     alsa-devel@alsa-project.org, linux-renesas-soc@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Biju Das <biju.das.jz@bp.renesas.com>,
+        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+In-Reply-To: <20230217185225.43310-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+References: <20230217185225.43310-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: Re: (subset) [PATCH 0/4] RZ/G2L SSI: Update interrupt numbers
+Message-Id: <167810951612.75807.7701310254952965635.b4-ty@kernel.org>
+Date:   Mon, 06 Mar 2023 13:31:56 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
@@ -64,13 +62,13 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 21 Feb 2023 20:32:01 +0200, Svyatoslav Ryhel wrote:
-> - add quirk for headset detection used by some T30 devices
->   (ASUS Transformers, LG Optimus 4X HD and Vu);
-> - add RT5631 and MAX9808x machine drivers
-> - add Fortemedia FM34NE DSP driver used by ASUS Transformers
->   and mandatory for correct sound work
-> - bind everything into working configuration
+On Fri, 17 Feb 2023 18:52:21 +0000, Prabhakar wrote:
+> This patch series aims to fix interrupt numbers for SSI channels and updates
+> the DT binding and the driver accordingly.
+> 
+> Note, this patch series applies on top of [0].
+> 
+> [0] https://patchwork.kernel.org/project/linux-renesas-soc/cover/20230131223529.11905-1-prabhakar.mahadev-lad.rj@bp.renesas.com/
 > 
 > [...]
 
@@ -80,8 +78,10 @@ Applied to
 
 Thanks!
 
-[02/10] sound: soc: jack: allow multiple interrupt per gpio
-        commit: a2d4051b0bd6dffcd736888ae89a550d6f60b060
+[1/4] ASoC: dt-bindings: renesas,rz-ssi: Update interrupts and interrupt-names properties
+      commit: 56a3840486ae22c42176828e25d4073712837bfd
+[2/4] ASoC: sh: rz-ssi: Update interrupt handling for half duplex channels
+      commit: 38c042b59af0248a8b13f01b1a09d890997c9f6e
 
 All being well this means that it will be integrated into the linux-next
 tree (usually sometime in the next 24 hours) and sent to Linus during
