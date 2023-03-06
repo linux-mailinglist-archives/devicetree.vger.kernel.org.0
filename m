@@ -2,104 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 880286AC8C3
-	for <lists+devicetree@lfdr.de>; Mon,  6 Mar 2023 17:53:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2B3D26AC8F9
+	for <lists+devicetree@lfdr.de>; Mon,  6 Mar 2023 18:01:42 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230021AbjCFQxJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 Mar 2023 11:53:09 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52020 "EHLO
+        id S229972AbjCFRBi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 Mar 2023 12:01:38 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37944 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230316AbjCFQxC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Mar 2023 11:53:02 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 70165DBEC;
-        Mon,  6 Mar 2023 08:52:33 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 7C89561013;
-        Mon,  6 Mar 2023 16:51:24 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 25CECC433D2;
-        Mon,  6 Mar 2023 16:51:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1678121483;
-        bh=GVS/y+MCIowLXLF6a4iduBGUyMME07hIbPy+mGY4qhQ=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=OEhbI14sE/tmSa23Y3HRKEw+FlapnlHMP0Tr/ds6t8hQR+rt2bjg2JIDC4nBZTY9u
-         bnEse0o2RRMYYRkULM2NunUBvikQ6Cp1YcTMmp3FLkb9LYsCFL0Iol1bFVuqhhkKBK
-         271YX+cqrqRC9Y3sVWqozdrO+ToHQJ8ywi3uwmU4o95upEb/nny1xnO7l7NMGJhH2q
-         JmV12lo2yub9TFNMTE9fbx38iCzwvYi3Yr4ui29g3RKukkxRxpfufP6ndbxsu1V6nl
-         x/+YfDb2x0ZrRs03CNeTObRowG1rZ5BqVn5XjB9AXZYLeth/x2udMaBeyE2zJ/un8O
-         Dxak+Th/MwLoQ==
-Date:   Mon, 6 Mar 2023 16:51:14 +0000
-From:   Mark Brown <broonie@kernel.org>
-To:     Herve Codina <herve.codina@bootlin.com>
-Cc:     Li Yang <leoyang.li@nxp.com>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Christophe Leroy <christophe.leroy@csgroup.eu>,
-        Michael Ellerman <mpe@ellerman.id.au>,
-        Nicholas Piggin <npiggin@gmail.com>,
-        Qiang Zhao <qiang.zhao@nxp.com>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>,
-        Shengjiu Wang <shengjiu.wang@gmail.com>,
-        Xiubo Li <Xiubo.Lee@gmail.com>,
-        Fabio Estevam <festevam@gmail.com>,
-        Nicolin Chen <nicoleotsuka@gmail.com>,
-        linuxppc-dev@lists.ozlabs.org,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, alsa-devel@alsa-project.org,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH v7 00/10] Add the PowerQUICC audio support using the QMC
-Message-ID: <824314e0-b459-498b-9a7c-7dd4c94900aa@sirena.org.uk>
-References: <20230306161754.89146-1-herve.codina@bootlin.com>
+        with ESMTP id S230200AbjCFRBa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Mar 2023 12:01:30 -0500
+Received: from amity.mint.lgbt (vmi888983.contaboserver.net [149.102.157.145])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1967B42BC5
+        for <devicetree@vger.kernel.org>; Mon,  6 Mar 2023 09:01:11 -0800 (PST)
+Received: from amity.mint.lgbt (mx.mint.lgbt [127.0.0.1])
+        by amity.mint.lgbt (Postfix) with ESMTP id 4PVl5H4Hbnz1S5Jm
+        for <devicetree@vger.kernel.org>; Mon,  6 Mar 2023 11:53:23 -0500 (EST)
+Authentication-Results: amity.mint.lgbt (amavisd-new);
+        dkim=pass (2048-bit key) reason="pass (just generated, assumed good)"
+        header.d=mint.lgbt
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=mint.lgbt; h=
+        content-transfer-encoding:mime-version:x-mailer:message-id:date
+        :subject:to:from; s=dkim; t=1678121590; x=1678985591; bh=uK+glyg
+        nD/QeqUlfo72/hfCeJTh8hcZKk6WDctNDr6Q=; b=k3FuSrwIUvsUH9AwC8X8M3C
+        ygbT/QAmS7BvuJ4zBTvmpXEwb8fcZYdaEAdkIqGfOTwcFi0GtFOLVklNzn8DEfod
+        rBfwDBvj4Ja6HKaWLg+uagExiNjrRvMUeir5kflCJ5iRbSNha1LW+dRl3SYTrPXZ
+        caRe+3KEKOtOXTELtKb9Bq7WMjPZCq0+cPC9xVxh2gKTA+aOtu9FGR/DFVSFNsgd
+        5gJcIXxdzJduk5kPYnijhVyg9CqmC5/oChUDe9xalpCPMTCsVoUp0l8t2MZvhrpk
+        w0LFk0vd8meWrxE41Ca/PRk+Ule96OozCmALge3fkqCp8jDs3sO2ePS4dhM6Vmw=
+        =
+X-Virus-Scanned: amavisd-new at amity.mint.lgbt
+Received: from amity.mint.lgbt ([127.0.0.1])
+        by amity.mint.lgbt (amity.mint.lgbt [127.0.0.1]) (amavisd-new, port 10026)
+        with ESMTP id AdMT3iupITiN for <devicetree@vger.kernel.org>;
+        Mon,  6 Mar 2023 11:53:10 -0500 (EST)
+Received: from dorothy.. (unknown [186.105.8.42])
+        by amity.mint.lgbt (Postfix) with ESMTPSA id 4PVl4p1NzFz1S4vb;
+        Mon,  6 Mar 2023 11:52:57 -0500 (EST)
+From:   Lux Aliaga <they@mint.lgbt>
+To:     agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        vkoul@kernel.org, kishon@kernel.org, alim.akhtar@samsung.com,
+        avri.altman@wdc.com, bvanassche@acm.org, keescook@chromium.org,
+        tony.luck@intel.com, gpiccoli@igalia.com
+Cc:     ~postmarketos/upstreaming@lists.sr.ht,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org,
+        linux-scsi@vger.kernel.org, linux-hardening@vger.kernel.org,
+        phone-devel@vger.kernel.org, martin.botka@somainline.org,
+        marijn.suijten@somainline.org
+Subject: 
+Date:   Mon,  6 Mar 2023 13:52:39 -0300
+Message-Id: <20230306165246.14782-1-they@mint.lgbt>
+X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="O5OaE2O/CRe4hVyU"
-Content-Disposition: inline
-In-Reply-To: <20230306161754.89146-1-herve.codina@bootlin.com>
-X-Cookie: teamwork, n.:
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Introduce Universal Flash Storage support on SM6125 and add support for t=
+he Xiaomi Mi A3 based on the former platform.
 
---O5OaE2O/CRe4hVyU
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Changes since v6:
+- Add struct for v3-660 UFS PHY offsets and modify sm6115 UFS PHY to use =
+it
+- Set ufs_mem_phy reg size to 0xdb8 in sm6125.dtsi
+- Drop "#address-cells" and "#size-cells" properties on reserved-memory n=
+ode in xiaomi-laurel-sprout dts
+- Move "status" last on &pon_resin node in xiaomi-laurel-sprout dts
+- Modify "&pm6125_gpio" pointer to "&pm6125_gpios" in xiaomi-laurel-sprou=
+t dts
 
-On Mon, Mar 06, 2023 at 05:17:44PM +0100, Herve Codina wrote:
-> Hi,
->=20
-> This series adds support for audio using the QMC controller available in
-> some Freescale PowerQUICC SoCs.
->=20
-> This series contains three parts in order to show the different blocks
-> hierarchy and their usage in this support.
+v6: https://lore.kernel.org/linux-devicetree/20230108195336.388349-1-they=
+@mint.lgbt/
+v5: https://lore.kernel.org/linux-devicetree/20221231222420.75233-2-they@=
+mint.lgbt/
 
-I already applied this series, please send incremental patches with any
-changes.
 
---O5OaE2O/CRe4hVyU
-Content-Type: application/pgp-signature; name="signature.asc"
 
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmQGGgIACgkQJNaLcl1U
-h9D0Wwf/T+XbDDJ+a7hIsyWhV5O7eQGUIMp42yn1EGIJovbiv+GGxdWWJH9rKyON
-muUMiRiUb1jwUtkZdtfqSLXj/jL5+2UTEEVUGOpp1MANtVFxkay56wtwpLOwXB9d
-JSJrgbGOnkejnZzEBo8vFwotGy5ZayuYSbPAY3tbkZoAa7Qwy93eGXPxlhVmoOXj
-lO84zg5BNwrtvmwc/FaeLwx6isoBXtGA+qg1+4uZ8L4c2mFVohVdNd4b7H0pqkP+
-WKVUA/m4UfJErspOWi7hWL1MHNOfBVzF6TQ5hvNhJCjU1avbk9TGDYrMDC8RCLr1
-2bNd1WOHiiLR0lfBX5wiro998wpLTA==
-=vRUD
------END PGP SIGNATURE-----
-
---O5OaE2O/CRe4hVyU--
