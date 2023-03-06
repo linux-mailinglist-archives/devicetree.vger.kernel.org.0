@@ -2,135 +2,135 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2B9A46ABB5E
-	for <lists+devicetree@lfdr.de>; Mon,  6 Mar 2023 11:14:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F374B6ABB6D
+	for <lists+devicetree@lfdr.de>; Mon,  6 Mar 2023 11:15:53 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230401AbjCFKOP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 Mar 2023 05:14:15 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39086 "EHLO
+        id S230505AbjCFKPw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 Mar 2023 05:15:52 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39280 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230135AbjCFKNn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Mar 2023 05:13:43 -0500
-Received: from mail-wm1-x332.google.com (mail-wm1-x332.google.com [IPv6:2a00:1450:4864:20::332])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 56ECD3C15
-        for <devicetree@vger.kernel.org>; Mon,  6 Mar 2023 02:13:16 -0800 (PST)
-Received: by mail-wm1-x332.google.com with SMTP id k37so5299836wms.0
-        for <devicetree@vger.kernel.org>; Mon, 06 Mar 2023 02:13:16 -0800 (PST)
+        with ESMTP id S231352AbjCFKPT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Mar 2023 05:15:19 -0500
+Received: from mail-lj1-x22d.google.com (mail-lj1-x22d.google.com [IPv6:2a00:1450:4864:20::22d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 789633C10
+        for <devicetree@vger.kernel.org>; Mon,  6 Mar 2023 02:14:47 -0800 (PST)
+Received: by mail-lj1-x22d.google.com with SMTP id b13so9037340ljf.6
+        for <devicetree@vger.kernel.org>; Mon, 06 Mar 2023 02:14:47 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        d=linaro.org; s=google; t=1678097685;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=V0dZrCyZVePxq5BUU/YkTwP3QyVp97gUFcbVu16exZQ=;
-        b=VAMbs2MseNBShP/wYO7DA2LAXa9iQlURyyw2UcYxBUWgG1SUSHRAerNFWwn+z0f/o7
-         4W7fCfgIBC4yFyHNbODj7SqT2jgH6Gpx08FaIUvXoLlL8tZt5GwwYstRBNJkevp2ZRxn
-         9X3DpoRzIXo1hZCwoPE7aJpi7fKO1KAiUW9ljeRaDunHB5XhVI6p8h7p+BPco8Gt12+g
-         P/TN8V73RFa/+VbdF6bG5g8ITB3YTiNfDc9fzz1b3u7Dpw9BpT0Vz+rQKUURCnrr/R80
-         KBDgXbBqCtH0lzDe0ThStkYhzA/fgwiS2sAcPzHaNxTHxTiSB3gou5QeJRksi1FwF3VF
-         +3gA==
+        bh=JrRx1sQP+w0Wzx9jVsXvebGwwsVfi1BJFfOzeSnLMqk=;
+        b=Gl3q2aizIhlVSs3xqqFzzX6KxWsAAVJnmW6t4d/962bFbMKp86fgAovj0rIozcf2Kt
+         AbizXRC/UPIQwdG9kgaMJKq2WSlpwz3tDp5Qp+VyHMqEr131l9ZAtZZAhFPKnZIwY0Ds
+         C9lU5kLF2OIh7b6P5luEXeaAEnph78aouRqsq9KlzPDw3SvDwAp+T51lQh/z8CSx4oX8
+         3C+kIxdjC2RnbXEffOjPsyc7IZ0+XYhL+jXIW4/1TcUZOOda2Lda++8d8YSZiYOcZxNP
+         G99rjy0dgKY5M6qRWzlI7Y4RknYVM2eerJiJWB4T+EjFSuYHh9ycxTQy1HW4cphMTVAi
+         MrWA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20210112; t=1678097685;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=V0dZrCyZVePxq5BUU/YkTwP3QyVp97gUFcbVu16exZQ=;
-        b=R9qxggqMDQAsliX38Tf6gYwFXnwIZbFbLwrIIK0BSTiHFm33knVZsSN1m55TF33zh1
-         gUEQl0d0pDHOD0iEC/Wu8q+ngNTAqzuvEKgxve49/pGiB+xj/MoT4nMqUyLaCrEPODps
-         d+8DGksTSwYCXrvW96rbYFON4KAjNrcY20zhGBfQNZS75nCqQGPubiFbd3qMy36x2Pq6
-         9Tg94y40E4rF4VQhLrabvW2UeIqH8WR1SbECZy8LXgnRqmLiKWLU1yEM20N8y1OVmcae
-         cD4fl4nKA/mCaUSq1JPlKnwb55QJMSYw5Z2Trsv2P8v4VHT01g/yfLfS8obFbbNuOGIb
-         X4/Q==
-X-Gm-Message-State: AO0yUKVMLua9aLGpVNBNmOwfjKfi/2t7t3NXGn3mqjyDgA1bjXhj3YNo
-        cHetHczEKDgEyYKWnATpG4c4lg==
-X-Google-Smtp-Source: AK7set8pw6NSScyjKceJ3BvlYig59ULCK8zSwQcbBmWA6SGBC1dwfoZQ6UoO/+GVzY+PU3FI4YVnqA==
-X-Received: by 2002:a05:600c:4448:b0:3ea:82a9:3644 with SMTP id v8-20020a05600c444800b003ea82a93644mr8323670wmn.34.1678097590052;
-        Mon, 06 Mar 2023 02:13:10 -0800 (PST)
-Received: from [192.168.0.20] (ip-87.net-80-236-117.rev.numericable.fr. [80.236.117.87])
-        by smtp.gmail.com with ESMTPSA id p13-20020a056000018d00b002c5691f13eesm9251879wrx.50.2023.03.06.02.13.08
+        bh=JrRx1sQP+w0Wzx9jVsXvebGwwsVfi1BJFfOzeSnLMqk=;
+        b=luCzPmYH7R5R8iUArXK9MpYAR9ZkPPngGzmYt9vI82HQJMGsDfp+8C2xaMyQRgOya+
+         /qALONU2+2Kj2CO4YKkDegxq08nw+DrFa+I3DVnINGSYI9kVvizg6xhLCiE7QR8ziKIM
+         BKosJ6fCYCduwph5gwZHsm6/DbJVusicatMnk4bsLB83yS5IrkuXc2D5+f68MTt3vrcR
+         aIYQ0zOulRmFaR3Ge40bYUsLBIlsI+a7z0ewYX3+OHhA3T6CFxUOo8iiG/djsmx4Og/A
+         cZr5H5/wMN1FACMtD90DAf7i27iqLKOKi1FcH62rmMC8YdPYhvdtl3W9FFebMdHoWbVT
+         B9DA==
+X-Gm-Message-State: AO0yUKUqDQvEtleTcpOc2k6EQ+/doUDFpqlz5EMdIeOfdQDyq3LAzVbg
+        3NNZ3qa40eLtPhWRzt2FmiY13jksIzpmfNRtWx8=
+X-Google-Smtp-Source: AK7set/XqyJxSsGRdpyR3XOoBb5vbT24t+ttPDYPumeT0lesA6b7qXeCVGRw1scH3b2mVqRfJI/Lyw==
+X-Received: by 2002:a05:651c:1725:b0:295:9798:be51 with SMTP id be37-20020a05651c172500b002959798be51mr2729426ljb.4.1678097685015;
+        Mon, 06 Mar 2023 02:14:45 -0800 (PST)
+Received: from [192.168.1.101] (abym99.neoplus.adsl.tpnet.pl. [83.9.32.99])
+        by smtp.gmail.com with ESMTPSA id n20-20020a2e86d4000000b00295a35f30e1sm1626058ljj.115.2023.03.06.02.14.43
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 06 Mar 2023 02:13:09 -0800 (PST)
-Message-ID: <a328c1c5-7cec-4499-8e5f-92d8cc233d38@baylibre.com>
-Date:   Mon, 6 Mar 2023 11:13:08 +0100
+        Mon, 06 Mar 2023 02:14:44 -0800 (PST)
+Message-ID: <97676add-de6b-4057-a5ef-dab313cf7050@linaro.org>
+Date:   Mon, 6 Mar 2023 11:14:43 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.8.0
-Subject: Re: [PATCH v9 0/5] thermal: mediatek: Add support for MT8365 SoC
-To:     Daniel Lezcano <daniel.lezcano@linaro.org>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Amit Kucheria <amitk@kernel.org>,
-        Zhang Rui <rui.zhang@intel.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org,
-        Fabien Parent <fparent@baylibre.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Rob Herring <robh@kernel.org>,
-        Markus Schneider-Pargmann <msp@baylibre.com>,
-        Hsin-Yi Wang <hsinyi@chromium.org>,
-        Michael Kao <michael.kao@mediatek.com>
-References: <20221018-up-i350-thermal-bringup-v9-0-55a1ae14af74@baylibre.com>
- <afa4aacd-bacf-a545-3973-474286fd4b9c@linaro.org>
+Subject: Re: [PATCH] arm64: dts: qcom: msm8996: Add missing property for
+ OnePlus 3T
 Content-Language: en-US
-From:   Amjad Ouled-Ameur <aouledameur@baylibre.com>
-In-Reply-To: <afa4aacd-bacf-a545-3973-474286fd4b9c@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
-        autolearn=unavailable autolearn_force=no version=3.4.6
+To:     "Guilherme G. Piccoli" <gpiccoli@igalia.com>,
+        Harry Austen <hpausten@protonmail.com>
+Cc:     devicetree@vger.kernel.org, agross@kernel.org,
+        linux-arm-msm@vger.kernel.org, andersson@kernel.org,
+        konrad.dybcio@somainline.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, kernel-dev@igalia.com,
+        kernel@gpiccoli.net, Yassine Oudjana <y.oudjana@protonmail.com>
+References: <20230213201651.1902323-1-gpiccoli@igalia.com>
+ <d34d8851-fd73-9b87-9340-df25b64e96bb@linaro.org>
+ <09879b66-4f72-a205-3e2d-cd8d8113625c@igalia.com>
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <09879b66-4f72-a205-3e2d-cd8d8113625c@igalia.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Daniel,
 
-On 1/27/23 22:59, Daniel Lezcano wrote:
-> On 27/01/2023 16:44, Amjad Ouled-Ameur wrote:
->> This patchset adds thermal support for MT8365 SoC.
->>
->> MT8365 has 4 thermal sensors, one for CPUs and the rest for debug/dev
->> purposes. The CPU thermal zone uses passive cooling device with
->> CPU{0..3}.
->>
->> Changes in v9:
->> - Use delay between bank init and the thermal zone device register.
->> - Link to v8: https://lore.kernel.org/r/20221018-up-i350-thermal-bringup-v8-0-23e8fbb08837@baylibre.com
->>
->> Signed-off-by: Amjad Ouled-Ameur <aouledameur@baylibre.com>
->> ---
->> Amjad Ouled-Ameur (2):
->>        thermal: mediatek: add callback for raw to mcelsius conversion
->>        thermal: mediatek: add delay after thermal banks initialization
->>
->> Fabien Parent (2):
->>        dt-bindings: thermal: mediatek: add binding documentation for MT8365 SoC
->>        thermal: mediatek: add support for MT8365 SoC
->>
->> Markus Schneider-Pargmann (1):
->>        thermal: mediatek: control buffer enablement tweaks
->>
->>   .../bindings/thermal/mediatek-thermal.txt          |   1 +
->>   drivers/thermal/mtk_thermal.c                      | 117 +++++++++++++++++----
->>   2 files changed, 96 insertions(+), 22 deletions(-)
->> ---
->
-> Applied, with some changes and the subject fixed:
->
-Any news about this patchset ?
 
-Kindly,
+On 5.03.2023 16:36, Guilherme G. Piccoli wrote:
+> On 13/02/2023 18:49, Konrad Dybcio wrote:
+>> [...] 
+>>> diff --git a/arch/arm64/boot/dts/qcom/msm8996-oneplus3t.dts b/arch/arm64/boot/dts/qcom/msm8996-oneplus3t.dts
+>>> index 34f837dd0c12..5dc8f0adab30 100644
+>>> --- a/arch/arm64/boot/dts/qcom/msm8996-oneplus3t.dts
+>>> +++ b/arch/arm64/boot/dts/qcom/msm8996-oneplus3t.dts
+>>> @@ -14,6 +14,7 @@ / {
+>>>  	qcom,board-id = <8 0 15811 26>,
+>>>  			<8 0 15811 27>,
+>>>  			<8 0 15811 28>;
+>>> +	qcom,msm-id = <246 0x30001>;
+>> Hm, this doesn't sound right.. Internet says 3T has 8996Pro..
+>> Could you check:
+>>
+>> /sys/bus/soc/devices/soc0/soc_id  # reg[0]
+>> /sys/bus/soc/devices/soc0/revision # reg[1] after some shifting
+>>
+>> Also, please include include/dt-bindings/arm/qcom,ids.h and use
+>> the preprocessor constant from there instead of a magic number in
+>> the first part of the reg value.
+>>
+>> Konrad
+> 
+> Hi Konrad, thanks for your review!
+> 
+> Unfortunately I don't have this device, I based my patch in the other
+> Oneplus 3. Maybe Harry Austen (CCed) or anybody in this thread or list
+> have the device?
+> 
+> Curiosity questions, since I'm far from expert in the device-tree world:
+> what happens in case the device-tree doesn't export/contain this
+> property (exactly the case we have right now)? Does the device work
+> fine? Also, having it "wrong" (based on the other OnePlus 3) is worse
+> than not having it? In other words, what's the default value picked if
+> none is provided in the DT?
+Basically:
 
-Amjad
+if (msm_id) {
+    if is_close_enough(msm_id, internal_msm_id)
+        boot()
+    else
+        die()
+} else
+    die()
 
-> Subject format for thermal is: thermal/drivers/<thedriver>: [A-Z]*.
->
-> Thanks
->
->   -- Daniel
->
+Konrad
+> 
+> Cheers,
+> 
+> 
+> Guilherme
