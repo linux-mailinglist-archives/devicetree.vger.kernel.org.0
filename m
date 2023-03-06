@@ -2,98 +2,124 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6D78B6ABA44
-	for <lists+devicetree@lfdr.de>; Mon,  6 Mar 2023 10:45:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6CA506ABA4E
+	for <lists+devicetree@lfdr.de>; Mon,  6 Mar 2023 10:48:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230146AbjCFJpn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 Mar 2023 04:45:43 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60502 "EHLO
+        id S229659AbjCFJsa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 Mar 2023 04:48:30 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35002 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229764AbjCFJpm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Mar 2023 04:45:42 -0500
-Received: from mail-vs1-xe31.google.com (mail-vs1-xe31.google.com [IPv6:2607:f8b0:4864:20::e31])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3F108234F5
-        for <devicetree@vger.kernel.org>; Mon,  6 Mar 2023 01:45:37 -0800 (PST)
-Received: by mail-vs1-xe31.google.com with SMTP id by13so8528886vsb.3
-        for <devicetree@vger.kernel.org>; Mon, 06 Mar 2023 01:45:37 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bgdev-pl.20210112.gappssmtp.com; s=20210112; t=1678095936;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=oPVmKfCaANAjZJrIKOr0qCt2jk/eMM7c0eTy1k/k5gg=;
-        b=Qvlq96a6Xt557k3cWIbyTrFocT5TD3kvPiOJEyKsEYXHki/ydXIWb2xmvhOADfHM/a
-         ZoGLvKnYnlyQZpRrx0UYfqDE79QWne7tS+wGjH3fFoDuQ5ZJ5CmkHiATukwxLalT0Ayb
-         PURl0e6yQ9jGHTN4T8gRw9CvaVGYzRx0RQ/z/KrlyH7+U7SDiDcWJgLBWxPbVl2hxLDf
-         +0na7w4aiM1cTDxKYmfybSbOTBA8+6QtHzIroNSoVhdrM5uJIF46wO/tinCezU0lhjGV
-         t0iZs0yjR6dlZXXsi2PKQlvyKqHCDXCXafXatn/PXG68WmipzPRjaDCX1o2yvfD8l3DS
-         YuiA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678095936;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=oPVmKfCaANAjZJrIKOr0qCt2jk/eMM7c0eTy1k/k5gg=;
-        b=SKzaL02dZysWnbYp4VIrjdWbVQm5atldrP+ZLIi75wKAIvXntBB+MkqjfsC4oQwqSp
-         BagXzDZlrSeGmyeeit5BCVFo6t5B39M8zJJsAgQcvWa3MHU9pmOFCfDrDSrI4iMMQYAz
-         Zny8a09yrml463SEB01O+7CnkTx33Vhj2T/QfJD3q7N7hi2vGXgIBTBDLaGSxjAO9lAj
-         ihqiQjf9gFEZi+dCoM4QS48v2DvzWpMURaaR0R/ozyHIgZ1O1wj5H8eJqFrvElnIkMEZ
-         mfS7UB6NEbZ3cK7SA3yk1RC6l/KXIP99oiNodzDDr0CIOpYqv3PFaXAMZ4M6l1/nWNRT
-         4i0g==
-X-Gm-Message-State: AO0yUKV9vRAPAX33dUWI4rK6qNse3lL5uF4Yhwe5Pks4dvXr1cWkuOo3
-        giTSigNeFVsI/OEeyKsnLkDzhfUI0nDkNqXBHcHfOA==
-X-Google-Smtp-Source: AK7set/RpdGGWkoX++R1aG1uCQFgLfDv9PvyD88Er+OW9sYyv/vmNBtHI4pf/cR9PFe+u5yoCix2+PbH7+znkii6CIA=
-X-Received: by 2002:a67:fe14:0:b0:412:ba5:8002 with SMTP id
- l20-20020a67fe14000000b004120ba58002mr11209499vsr.1.1678095936307; Mon, 06
- Mar 2023 01:45:36 -0800 (PST)
+        with ESMTP id S229619AbjCFJsa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Mar 2023 04:48:30 -0500
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 70F9ECDCA;
+        Mon,  6 Mar 2023 01:48:27 -0800 (PST)
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 3269lukv076419;
+        Mon, 6 Mar 2023 03:47:56 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1678096076;
+        bh=1l5RxV9XXK7LPgaTQnjkhWmfaEwBS91fYlY2tG0yIYE=;
+        h=From:To:CC:Subject:Date;
+        b=oGeOPZgrr0OgbfFuoDjjjzEOq2ZLK8OI+k9BC/fB4iwMylAV0j+WztoD5+p26q029
+         IRvWCod5tLhrgOLFmnHmaadnjdJ5t5HFDCnQKt/mbZVlV3+1BFRNywA12uBBaX7XKn
+         pNbCUsYf9B2ifVtPZGNDoK+BzQ8xkya/NpNpeFBo=
+Received: from DFLE104.ent.ti.com (dfle104.ent.ti.com [10.64.6.25])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 3269luVJ094158
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Mon, 6 Mar 2023 03:47:56 -0600
+Received: from DFLE103.ent.ti.com (10.64.6.24) by DFLE104.ent.ti.com
+ (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Mon, 6
+ Mar 2023 03:47:55 -0600
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE103.ent.ti.com
+ (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
+ Frontend Transport; Mon, 6 Mar 2023 03:47:55 -0600
+Received: from uda0492258.dhcp.ti.com (ileaxei01-snat.itg.ti.com [10.180.69.5])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 3269lpUM019816;
+        Mon, 6 Mar 2023 03:47:51 -0600
+From:   Siddharth Vadapalli <s-vadapalli@ti.com>
+To:     <davem@davemloft.net>, <edumazet@google.com>, <kuba@kernel.org>,
+        <linux@armlinux.org.uk>, <pabeni@redhat.com>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski@linaro.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <nsekhar@ti.com>,
+        <rogerq@kernel.org>
+CC:     <netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <srk@ti.com>,
+        <s-vadapalli@ti.com>
+Subject: [PATCH net-next] dt-bindings: net: ti: k3-am654-cpsw-nuss: Document Serdes PHY
+Date:   Mon, 6 Mar 2023 15:17:50 +0530
+Message-ID: <20230306094750.159657-1-s-vadapalli@ti.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-References: <20230302081711.27334-1-zhuyinbo@loongson.cn> <20230302081711.27334-2-zhuyinbo@loongson.cn>
-In-Reply-To: <20230302081711.27334-2-zhuyinbo@loongson.cn>
-From:   Bartosz Golaszewski <brgl@bgdev.pl>
-Date:   Mon, 6 Mar 2023 10:45:25 +0100
-Message-ID: <CAMRc=MeF8mrmLN3Sr62xFFoauaohrABC5=s622S-vnV8mZduHw@mail.gmail.com>
-Subject: Re: [PATCH v12 2/2] gpio: loongson: add gpio driver support
-To:     Yinbo Zhu <zhuyinbo@loongson.cn>
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-        open list <linux-kernel@vger.kernel.org>,
-        Jianmin Lv <lvjianmin@loongson.cn>,
-        Liu Peibao <liupeibao@loongson.cn>, wanghongliang@loongson.cn,
-        loongson-kernel@lists.loongnix.cn,
-        Hongchen Zhang <zhanghongchen@loongson.cn>,
-        Juxin Gao <gaojuxin@loongson.cn>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Mar 2, 2023 at 9:17=E2=80=AFAM Yinbo Zhu <zhuyinbo@loongson.cn> wro=
-te:
->
-> The Loongson platforms GPIO controller contains 60 GPIO pins in total,
-> 4 of which are dedicated GPIO pins, and the remaining 56 are reused
-> with other functions. Each GPIO can set input/output and has the
-> interrupt capability.
->
-> This driver added support for Loongson GPIO controller and support to
-> use DTS or ACPI to descibe GPIO device resources.
->
-> Signed-off-by: Jianmin Lv <lvjianmin@loongson.cn>
-> Signed-off-by: Hongchen Zhang <zhanghongchen@loongson.cn>
-> Signed-off-by: Liu Peibao <liupeibao@loongson.cn>
-> Signed-off-by: Juxin Gao <gaojuxin@loongson.cn>
-> Signed-off-by: Yinbo Zhu <zhuyinbo@loongson.cn>
-> Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
-> ---
+Update bindings to include Serdes PHY as an optional PHY, in addition to
+the existing CPSW MAC's PHY. The CPSW MAC's PHY is required while the
+Serdes PHY is optional. The Serdes PHY handle has to be provided only
+when the Serdes is being configured in a Single-Link protocol. Using the
+name "serdes-phy" to represent the Serdes PHY handle, the am65-cpsw-nuss
+driver can obtain the Serdes PHY and request the Serdes to be
+configured.
 
-Applied, thanks!
+Signed-off-by: Siddharth Vadapalli <s-vadapalli@ti.com>
+---
 
-Bart
+Hello,
+
+This patch corresponds to the Serdes PHY bindings that were missed out in
+the series at:
+Link: https://lore.kernel.org/r/20230104103432.1126403-1-s-vadapalli@ti.com/
+This was pointed out at:
+https://lore.kernel.org/r/CAMuHMdW5atq-FuLEL3htuE3t2uO86anLL3zeY7n1RqqMP_rH1g@mail.gmail.com/
+
+ .../bindings/net/ti,k3-am654-cpsw-nuss.yaml   | 21 +++++++++++++++++--
+ 1 file changed, 19 insertions(+), 2 deletions(-)
+
+diff --git a/Documentation/devicetree/bindings/net/ti,k3-am654-cpsw-nuss.yaml b/Documentation/devicetree/bindings/net/ti,k3-am654-cpsw-nuss.yaml
+index 900063411a20..fab7df437dcc 100644
+--- a/Documentation/devicetree/bindings/net/ti,k3-am654-cpsw-nuss.yaml
++++ b/Documentation/devicetree/bindings/net/ti,k3-am654-cpsw-nuss.yaml
+@@ -126,8 +126,25 @@ properties:
+             description: CPSW port number
+ 
+           phys:
+-            maxItems: 1
+-            description: phandle on phy-gmii-sel PHY
++            minItems: 1
++            maxItems: 2
++            description:
++              phandle(s) on CPSW MAC's PHY (Required) and the Serdes
++              PHY (Optional). phandle to the Serdes PHY is required
++              when the Serdes has to be configured in Single-Link
++              configuration.
++
++          phy-names:
++            oneOf:
++              - items:
++                  - const: mac-phy
++                  - const: serdes-phy
++              - items:
++                  - const: mac-phy
++            description:
++              Identifiers for the CPSW MAC's PHY and the Serdes PHY.
++              CPSW MAC's PHY is required and therefore "mac-phy" is
++              required, while "serdes-phy" is optional.
+ 
+           label:
+             description: label associated with this port
+-- 
+2.25.1
+
