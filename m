@@ -2,137 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0F1476AB873
-	for <lists+devicetree@lfdr.de>; Mon,  6 Mar 2023 09:36:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EE48E6AB878
+	for <lists+devicetree@lfdr.de>; Mon,  6 Mar 2023 09:38:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229863AbjCFIgw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 Mar 2023 03:36:52 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38290 "EHLO
+        id S229651AbjCFIiI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 Mar 2023 03:38:08 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39744 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229816AbjCFIgv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Mar 2023 03:36:51 -0500
-Received: from mail-ed1-x52d.google.com (mail-ed1-x52d.google.com [IPv6:2a00:1450:4864:20::52d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 09E4686B6
-        for <devicetree@vger.kernel.org>; Mon,  6 Mar 2023 00:36:49 -0800 (PST)
-Received: by mail-ed1-x52d.google.com with SMTP id cy23so35004494edb.12
-        for <devicetree@vger.kernel.org>; Mon, 06 Mar 2023 00:36:48 -0800 (PST)
+        with ESMTP id S229519AbjCFIiH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Mar 2023 03:38:07 -0500
+Received: from mail-wr1-x429.google.com (mail-wr1-x429.google.com [IPv6:2a00:1450:4864:20::429])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 997CC7DBD
+        for <devicetree@vger.kernel.org>; Mon,  6 Mar 2023 00:38:05 -0800 (PST)
+Received: by mail-wr1-x429.google.com with SMTP id v16so7966492wrn.0
+        for <devicetree@vger.kernel.org>; Mon, 06 Mar 2023 00:38:05 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1678091807;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=63HRbRwWzcpKqYalyNzeBO90DICoMp8EPtmeHo1nNuY=;
-        b=WaZQilGe/8pjkfbsolKohbGGZCHAzFW0NDLxH38iZC5KLYtopd/AVagWOHWt7xvWkH
-         An6mMmVAiZGPhMXiPLnYk1YH0QZ/yTgrvIG6Ypdq8fWv72JpQAuOeFv/4sbiS1No6a3I
-         TeD/WKXRbuXW9ISZ6SUuZImwGTZ5yh28uyt6CJMOH4UfrXr6umejdporFQLBvM1N8IgC
-         P7hoFqCIlbD4eFDnVZNMhR1edBH4jBoxKph97XQiS62D1LaKmrrpZ/xEYlQPzYDXt2rf
-         mWumSK5kpXF/ZzlN/TAtQiVhwEOCmOyU/blz9N6i+EAxCwB5CjPqbfg2MGda5pVlfJN+
-         Jmyw==
+        d=linaro.org; s=google; t=1678091884;
+        h=content-transfer-encoding:mime-version:date:message-id:subject
+         :references:in-reply-to:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=yScVezbYDWz1/PWiaNDGxXrxcWymv3H9xhefZxRIETg=;
+        b=rCHD0Qe9siBIsahEHG0UCvqKu6ETf/q9a+33Gnl6jehVinsrovgwnQBADb2uqsDU3f
+         vKKRMkYXe9UarHSQ8MBmd3/MOhhBwnL3d65taEkJAukGSCne2n9DhN+UKhORTbe9qiHJ
+         rhBh88kEHhmg2/g6wjyj51kfc0hq+KZGJH7zvY7VYSJptxYfnq7kVP8/BDd7OO7hmqes
+         ZTp5LMZ5KSN6AdqaOqlEURRV8b17MVPWqHjCqrnYrMI9/y/sX+QALl7uBo/RKCSfdLL5
+         iT71Cm5yC8RH2j6AY+VFvEtwYklgtPJ0xB2M5CSMkTiS6hw+ecKTQ2FgMsciGDqG6ZVF
+         stig==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678091807;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=63HRbRwWzcpKqYalyNzeBO90DICoMp8EPtmeHo1nNuY=;
-        b=VBc+6T7QvW6ZxLnxlYzUhXl13jSBSsbR25w8DHZ3nja6Lw7izrEwVrHuCylM/wj1DM
-         /GlHFgjHgfLVxriEoWQUHlmucpneHvAXJnwUmdR3R+oNISWHvQ89Gvh1PFfQwOb4dzis
-         EWRRg7gVOPSirrFyKt2lZ/OsZNNDr+8m4E2ZlQfO/y6JS/F4rBN6AGq3ssyG1EcUKyR4
-         tVKbNmcbAbbgHiL+1VeOG1EdZimfonrovwlly3RMBqIC/Mt0gkIb+LpnhIh0/RdJWStO
-         9lTKtKsV02sGS2wVzKDnqlu+P62DTkTw551PKUp2wzUXEcV6Yt1GWXlPFqcRJ0PSKi1g
-         V++Q==
-X-Gm-Message-State: AO0yUKV+woezGKCMXMV9t+RFHfWh2nTE32PUs1QsoPYk02eRE3omfJD/
-        F9m8QyPicF63uFo6TzSgA+gJcQ==
-X-Google-Smtp-Source: AK7set+Q7Wa9E1bhKgOjdiBS3UQloHFzRMv4/c3qDMvX199R0Hd+uHkJr0idtxLPWDEFJq8rz0mywg==
-X-Received: by 2002:a05:6402:31fb:b0:4ac:c3c0:24d7 with SMTP id dy27-20020a05640231fb00b004acc3c024d7mr10352500edb.42.1678091807520;
-        Mon, 06 Mar 2023 00:36:47 -0800 (PST)
-Received: from ?IPV6:2a02:810d:15c0:828:d85d:5a4b:9830:fcfe? ([2a02:810d:15c0:828:d85d:5a4b:9830:fcfe])
-        by smtp.gmail.com with ESMTPSA id p24-20020a50cd98000000b004af6163f845sm4707551edi.28.2023.03.06.00.36.45
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 06 Mar 2023 00:36:47 -0800 (PST)
-Message-ID: <e82ca6f6-0870-f9b0-172f-bc6d54a9749b@linaro.org>
-Date:   Mon, 6 Mar 2023 09:36:45 +0100
+        d=1e100.net; s=20210112; t=1678091884;
+        h=content-transfer-encoding:mime-version:date:message-id:subject
+         :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=yScVezbYDWz1/PWiaNDGxXrxcWymv3H9xhefZxRIETg=;
+        b=jQc3lG7lehv9p+jvMmsrYXN/0PUYNr8opD5kd5fCpAqm4NFkDs93maHrXhT5RST3MI
+         HBvECEjZ+F8ehESUhXFDoAn7g5cIYeQQCLFopV+u8Jq8Lts7xqMX905IR2RU1ZEb7h0B
+         nTMaeK6Zg1BHAnFfGTx2idFcK4Ms/BXuMa3kw7rDSa/Eg+6o8T7KIO7gLOt13G8Nq7pt
+         Z/EmwzvfyhTxC5lRL/xfB5iak05U+g434Nr+Dw9DJu3pJCEUm9o/ADEHpnK21npJ+2Fl
+         NubIG4ZgI5cZ/nA5pNTrakyGM9cWAXut1GKOzBezo/LeZNkDFjdanawgKVsFSRn+wx3I
+         Qf3w==
+X-Gm-Message-State: AO0yUKU7jbe1DgnoWAZQsB0xAUElb3MXfBwj6SUPSBlOIIwz/f2si3qE
+        DQRkBfarhDLBxKounI2ozsB6aw==
+X-Google-Smtp-Source: AK7set8vfhN1fgMLRWrhruNGd8B/tShsgSyB3bFMD1pOorhvfnF83jaWjT0VckULYL2rLfOEJCE7mw==
+X-Received: by 2002:adf:edc8:0:b0:2c7:adb:db9 with SMTP id v8-20020adfedc8000000b002c70adb0db9mr6221870wro.63.1678091884080;
+        Mon, 06 Mar 2023 00:38:04 -0800 (PST)
+Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:8261:5fff:fe11:bdda])
+        by smtp.gmail.com with ESMTPSA id v7-20020a05600c444700b003eb0d6f48f3sm14184064wmn.27.2023.03.06.00.38.03
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 06 Mar 2023 00:38:03 -0800 (PST)
+From:   Neil Armstrong <neil.armstrong@linaro.org>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        Christian Hewitt <christianshewitt@gmail.com>,
+        Yuntian Zhang <yt@radxa.com>,
+        Neil Armstrong <neil.armstrong@linaro.org>
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
+In-Reply-To: <20230207-b4-amlogic-bindings-fixups-v2-v1-0-93b7e50286e7@linaro.org>
+References: <20230207-b4-amlogic-bindings-fixups-v2-v1-0-93b7e50286e7@linaro.org>
+Subject: Re: [PATCH 0/8] arm64: meson: bunch of DT fixes, take 2
+Message-Id: <167809188325.8899.9049191801315125808.b4-ty@linaro.org>
+Date:   Mon, 06 Mar 2023 09:38:03 +0100
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-Subject: Re: [PATCH v10 05/15] dt-bindings: soc: amd: amd,pensando-elbasr: Add
- AMD Pensando SoC System Controller
-Content-Language: en-US
-To:     Brad Larson <blarson@amd.com>, linux-arm-kernel@lists.infradead.org
-Cc:     linux-kernel@vger.kernel.org, linux-mmc@vger.kernel.org,
-        linux-spi@vger.kernel.org, adrian.hunter@intel.com,
-        alcooperx@gmail.com, andy.shevchenko@gmail.com, arnd@arndb.de,
-        brendan.higgins@linux.dev, briannorris@chromium.org,
-        brijeshkumar.singh@amd.com, catalin.marinas@arm.com,
-        davidgow@google.com, gsomlo@gmail.com, gerg@linux-m68k.org,
-        krzk@kernel.org, krzysztof.kozlowski+dt@linaro.org, lee@kernel.org,
-        lee.jones@linaro.org, broonie@kernel.org,
-        yamada.masahiro@socionext.com, p.zabel@pengutronix.de,
-        piotrs@cadence.com, p.yadav@ti.com, rdunlap@infradead.org,
-        robh+dt@kernel.org, samuel@sholland.org, fancer.lancer@gmail.com,
-        skhan@linuxfoundation.org, suravee.suthikulpanit@amd.com,
-        thomas.lendacky@amd.com, tonyhuang.sunplus@gmail.com,
-        ulf.hansson@linaro.org, vaishnav.a@ti.com, will@kernel.org,
-        devicetree@vger.kernel.org
-References: <20230306040739.51488-1-blarson@amd.com>
- <20230306040739.51488-6-blarson@amd.com>
- <52fb81e2-0d9b-600d-42af-1405fdd6509b@linaro.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <52fb81e2-0d9b-600d-42af-1405fdd6509b@linaro.org>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.12.1
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 06/03/2023 09:35, Krzysztof Kozlowski wrote:
-> On 06/03/2023 05:07, Brad Larson wrote:
->> Support the AMD Pensando SoC Controller which is a SPI connected device
->> providing a miscellaneous set of essential board control/status registers.
->> This device is present in all Pensando SoC based designs.
->>
->> Signed-off-by: Brad Larson <blarson@amd.com>
->> ---
->>
->> v10 changes:
->> - Property renamed to amd,pensando-ctrl
->> - Driver is renamed and moved to soc/drivers/amd affecting binding
->> - Delete cs property, driver handles device node creation from parent num-cs
->>   fixing schema reg error in a different way
->>
->> v9 changes:
->> - Instead of four nodes, one per chip-select, a single
->>   node is used with reset-cells in the parent.
->> - No MFD API is used anymore in the driver so it made
->>   sense to move this to drivers/spi.
->> - This driver is common for all Pensando SoC based designs
->>   so changed the name to pensando-sr.c to not make it Elba
->>   SoC specific.
->> - Added property cs for the chip-select number which is used
->>   by the driver to create /dev/pensr0.<cs>
->>
->> ---
->>  .../bindings/soc/amd/amd,pensando-ctrl.yaml   | 60 +++++++++++++++++++
->>  1 file changed, 60 insertions(+)
->>  create mode 100644 Documentation/devicetree/bindings/soc/amd/amd,pensando-ctrl.yaml
->>
->> diff --git a/Documentation/devicetree/bindings/soc/amd/amd,pensando-ctrl.yaml b/Documentation/devicetree/bindings/soc/amd/amd,pensando-ctrl.yaml
->> new file mode 100644
->> index 000000000000..36694077b2e6
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/soc/amd/amd,pensando-ctrl.yaml
+Hi,
+
+On Tue, 07 Feb 2023 16:07:53 +0100, Neil Armstrong wrote:
+> This is a bunch of fixes against the current applied and reviewed bindings.
 > 
-> Your subject suggests this is pensando-elbasr but you write everywhere
-> pensando-ctrl. Confusing. Pick one.
+> More DT fixes will be needed when full dt-schema conversion is done.
+> 
+> 
 
-Actually pensando-ctrl is for sure not correct, because it misses the
-name of the SoC (you call it everywhere "elba").
+Thanks, Applied to https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git (v6.4/arm64-dt)
 
-Best regards,
-Krzysztof
+[1/8] arm64: dts: amlogic: meson-sm1-bananapi: correct usb-hub hog node name
+      https://git.kernel.org/amlogic/c/f88f3dcbb145a0133292d5c9d8da5935a36c8914
+[2/8] arm64: dts: amlogic: meson-gxm-s912-libretech-pc: add simple connector node in fusb302 node
+      https://git.kernel.org/amlogic/c/d7ff22a6ec9dd154d027d6bc6b4f172c22f8c00d
+[3/8] arm64: dts: amlogic: meson-axg-jethome-jethub-j1xx: remove invalid #gpio-cells in onewire node
+      https://git.kernel.org/amlogic/c/bd47319f999e6055124a2b4d2a0da495d52759c3
+[4/8] arm64: dts: amlogic: meson-g12b-radxa-zero2: fix pwm clock names
+      https://git.kernel.org/amlogic/c/db217e84d0a3f4183ea5b6d5929e55b73128fcb2
+[5/8] arm64: dts: amlogic: meson-g12b-odroid-go-ultra: rename keypad-gpio pinctrl node
+      https://git.kernel.org/amlogic/c/50e7d712144e7246f4ad5ce0f8577aa09cd09bc6
+[6/8] arm64: dts: amlogic: meson-s4: fix apb4 bus node name
+      https://git.kernel.org/amlogic/c/d1e336eef1f4834bae0a54f203e9f74aa040726d
+[7/8] arm64: dts: amlogic: meson-sm1: use correct enable-gpios
+      https://git.kernel.org/amlogic/c/4bddf79acdc7ef15f8b913e8ef7861461b235df2
+[8/8] arm64: dts: amlogic: meson-gxm-s912-libretech-pc: remove unused pinctrl-names from phy node
+      https://git.kernel.org/amlogic/c/739e93e254e4797a29bdf397c10111a50a970734
+
+These changes has been applied on the intermediate git tree [1].
+
+The v6.4/arm64-dt branch will then be sent via a formal Pull Request to the Linux SoC maintainers
+for inclusion in their intermediate git branches in order to be sent to Linus during
+the next merge window, or sooner if it's a set of fixes.
+
+In the cases of fixes, those will be merged in the current release candidate
+kernel and as soon they appear on the Linux master branch they will be
+backported to the previous Stable and Long-Stable kernels [2].
+
+The intermediate git branches are merged daily in the linux-next tree [3],
+people are encouraged testing these pre-release kernels and report issues on the
+relevant mailing-lists.
+
+If problems are discovered on those changes, please submit a signed-off-by revert
+patch followed by a corrective changeset.
+
+[1] https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git
+[2] https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git
+[3] https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git
+
+-- 
+Neil
 
