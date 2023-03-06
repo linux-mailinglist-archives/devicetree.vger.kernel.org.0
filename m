@@ -2,62 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id ECC826AB988
-	for <lists+devicetree@lfdr.de>; Mon,  6 Mar 2023 10:19:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 030786AB992
+	for <lists+devicetree@lfdr.de>; Mon,  6 Mar 2023 10:19:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229742AbjCFJTB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 Mar 2023 04:19:01 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56434 "EHLO
+        id S229613AbjCFJTy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 Mar 2023 04:19:54 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57634 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229593AbjCFJTA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Mar 2023 04:19:00 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C85159ED7;
-        Mon,  6 Mar 2023 01:18:51 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 85BB4B80D11;
-        Mon,  6 Mar 2023 09:18:50 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5A0D9C433D2;
-        Mon,  6 Mar 2023 09:18:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1678094329;
-        bh=e7DGMlyFuT+Xr9OW9k1dxZOnlGNZRMNJeB3ZVMN6oOA=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=SMbSvP2qCbz7V6Je/+xoXoEb8fFTTErzI0eOeN+qo4rlvVQZPcokuOycud03oIt44
-         eHlNjNuF1GsFPGU4371sCaIJ+yeJzRTrhUh+6FF1MgiE1Nljs0WSmX2TpjhtDUpsJR
-         1R4b5v38swtVFVrkrLKI3D/x66X1DPStxH9QM6k8IA6hgrksJSTHmndUDEOeIxhCLz
-         0Sc0GJ3LpV5/095jW0z4qAAu6Rq2yw3aWEu/irt/vc2y2X/zSdsxN8gBAs0sfGGeHj
-         GDUvRX2hJq1rVSOthLdyKh8gddj6itI+bJSdjbjiRqYesWFPf5ikVRQJ+t8SGMIAIY
-         +1BWsiJOZhiLA==
-Date:   Mon, 6 Mar 2023 09:18:43 +0000
-From:   Lee Jones <lee@kernel.org>
-To:     Jakob Hauser <jahau@rocketmail.com>
-Cc:     Sebastian Reichel <sre@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S229993AbjCFJTs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Mar 2023 04:19:48 -0500
+Received: from mail-wr1-x42d.google.com (mail-wr1-x42d.google.com [IPv6:2a00:1450:4864:20::42d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D313E5FE4
+        for <devicetree@vger.kernel.org>; Mon,  6 Mar 2023 01:19:46 -0800 (PST)
+Received: by mail-wr1-x42d.google.com with SMTP id t15so8023003wrz.7
+        for <devicetree@vger.kernel.org>; Mon, 06 Mar 2023 01:19:46 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1678094385;
+        h=content-transfer-encoding:mime-version:date:message-id:subject
+         :references:in-reply-to:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=JTmNLGYu5Mcu9P2jNHBIhC8Wi04M9rJBLk23XMtTHVY=;
+        b=CmkBs+vWBlDaCqs84t52YAjZMnusZpu95a2vLlP42QmVjEgTR2gS56anHe4kAmzUxa
+         7wfejXFKjA1tstajkNkVzhvJoLwT4xHqmPqazFwbEq6rkWW+R7ZRaHKNNWlJDLc7Qt8u
+         9U8wHQybDDyDDj981o37ScOd7XKI/l1cluI1kjMOoGPscG4r6sa+8E++vz1bEcZGd3KE
+         nympXTGHNVAbkptz4Z6vU4fiNEgegs1632HCTLz+wD7mH6XGc/Mh3WHDzNGi2vkCl6mL
+         Kmq/skKEqbwc+0yTNwlbra0ZophJnPDiuArflOcXqOJC13Ss3GVEo7t0RZqwqSTf0ZvG
+         C9Ww==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1678094385;
+        h=content-transfer-encoding:mime-version:date:message-id:subject
+         :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=JTmNLGYu5Mcu9P2jNHBIhC8Wi04M9rJBLk23XMtTHVY=;
+        b=R8dhWwgmNoAtAs21yA6iIydS6Q1iI5WlCvZuETh4Z+k8mG3STnF5ugT+FYOo9J3s29
+         sO9dvBUKa7zVQZAoRqK+8qHZZcAGyN2InNxIkPzoGeMZVqeTIrMZlCKgopiigxCjEpbb
+         SI3zXvSt1b3P2BNf96NEI0JVo4fExBUAMLh4HC1HkLV1CWwtjHcSdsWjEmBssDKUPMoT
+         zgn2lCJlU/8JYmm/4D2dnrKZ4eMjPLsjo7mZpki+vYxgLHvcYynKA+2lzeFRt+fzHS4F
+         AKKJ2VPG5sRmX/iuMxjkw4o3A78OSzDvXCfUffNK9Y5fbv3USL5Z8/+zToU0fq4EiwNi
+         ThMQ==
+X-Gm-Message-State: AO0yUKWalyZDJptePKgklv+hFGSsV0WOacFY7CW4Eiom8Nv6tpUjOGTp
+        73TE1OPjlRweebZcVZjGSkrubqArEwMtE6wi8Gmjnw==
+X-Google-Smtp-Source: AK7set8LhmIS/Ewr0ABinGsnVv0gYSTQkOzX04VwMgU2SuXX1uxXZJQqh0ye5JCeOBKU0KFVlm1N+w==
+X-Received: by 2002:adf:e908:0:b0:2c3:e0a0:93f with SMTP id f8-20020adfe908000000b002c3e0a0093fmr6170846wrm.8.1678094385375;
+        Mon, 06 Mar 2023 01:19:45 -0800 (PST)
+Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:8261:5fff:fe11:bdda])
+        by smtp.gmail.com with ESMTPSA id k11-20020a5d628b000000b002c707b336c9sm9151304wru.36.2023.03.06.01.19.44
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 06 Mar 2023 01:19:45 -0800 (PST)
+From:   Neil Armstrong <neil.armstrong@linaro.org>
+To:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Beomho Seo <beomho.seo@samsung.com>,
-        Chanwoo Choi <cw00.choi@samsung.com>,
-        Stephan Gerhold <stephan@gerhold.net>,
-        Raymond Hackley <raymondhackley@protonmail.com>,
-        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht
-Subject: Re: [PATCH 02/10] mfd: rt5033: Fix chip revision readout
-Message-ID: <20230306091843.GE9667@google.com>
-References: <cover.1677620677.git.jahau@rocketmail.com>
- <a667a64d0cbeef00baed2d4b117ba9f50eaf3988.1677620677.git.jahau@rocketmail.com>
- <20230305104704.GG2574592@google.com>
- <96c54beb-228c-d606-5b9c-613ee2bc5e70@rocketmail.com>
+        Kevin Hilman <khilman@baylibre.com>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        Marc Zyngier <maz@kernel.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        =?utf-8?q?Uwe_Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Heiner Kallweit <hkallweit1@gmail.com>
+Cc:     devicetree@vger.kernel.org,
+        "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>,
+        linux-arm-kernel@lists.infradead.org, linux-pwm@vger.kernel.org
+In-Reply-To: <8df4ceec-663c-dc68-d775-5caeb02c0cca@gmail.com>
+References: <8df4ceec-663c-dc68-d775-5caeb02c0cca@gmail.com>
+Subject: Re: (subset) [PATCH 0/4] soc: amlogic: switch bindings to yaml and
+ adjust some dtbs's
+Message-Id: <167809438458.62434.12865612944830154623.b4-ty@linaro.org>
+Date:   Mon, 06 Mar 2023 10:19:44 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <96c54beb-228c-d606-5b9c-613ee2bc5e70@rocketmail.com>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.12.1
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -65,142 +82,50 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, 05 Mar 2023, Jakob Hauser wrote:
+Hi,
 
-> Hi Lee,
+On Wed, 01 Feb 2023 20:57:48 +0100, Heiner Kallweit wrote:
+> Switch two Amlogic Meson bindings to yaml. As prerequisite adjust the
+> order of some compatibles first.
 > 
-> On 05.03.23 11:47, Lee Jones wrote:
-> > On Tue, 28 Feb 2023, Jakob Hauser wrote:
-> > 
-> > > After reading the data from the DEVICE_ID register, mask 0x0f needs to be
-> > > applied to extract the revision of the chip [1].
-> > > 
-> > > The other part of the DEVICE_ID register, mask 0xf0, is a vendor identification
-> > > code. That's how it is set up at similar products of Richtek, e.g. RT9455 [2]
-> > > page 21 top.
-> > > 
-> > > [1] https://github.com/msm8916-mainline/linux-downstream/blob/GT-I9195I/drivers/mfd/rt5033_core.c#L484
-> > > [2] https://www.richtek.com/assets/product_file/RT9455/DS9455-00.pdf
-> > > 
-> > > Signed-off-by: Jakob Hauser <jahau@rocketmail.com>
-> > > ---
-> > >   drivers/mfd/rt5033.c               | 8 +++++---
-> > >   include/linux/mfd/rt5033-private.h | 4 ++++
-> > >   2 files changed, 9 insertions(+), 3 deletions(-)
-> > > 
-> > > diff --git a/drivers/mfd/rt5033.c b/drivers/mfd/rt5033.c
-> > > index 8029d444b794..d32467174cb5 100644
-> > > --- a/drivers/mfd/rt5033.c
-> > > +++ b/drivers/mfd/rt5033.c
-> > > @@ -55,7 +55,8 @@ static const struct regmap_config rt5033_regmap_config = {
-> > >   static int rt5033_i2c_probe(struct i2c_client *i2c)
-> > >   {
-> > >   	struct rt5033_dev *rt5033;
-> > > -	unsigned int dev_id;
-> > > +	unsigned int data;
-> > 
-> > In terms of nomenclature, this is a regression.
-> > 
-> > 'data' is a terrible variable name.  Why not keep it as-is?
+> New versions of the bindings have been submitted as individual
+> patches in between. Put it into a series again.
 > 
-> While not having a datasheet for RT5033 available, in similar products like
-> RT9455 the register is called "Device ID", the first part of that is
-> "VENDOR_ID" and the second part "CHIP_REV", [1] page 23 top. Or in RT5036
-> preliminary data sheet the register is called "ID", the first part
-> "VENDOR_ID" and the second part "CHIP_REV_ID", [2] page 27 top.
+> Heiner Kallweit (4):
+>   arm: dts: meson: adjust order of some compatibles
+>   arm64: dts: meson: adjust order of some compatibles
+>   dt-bindings: pwm: Convert Amlogic Meson PWM binding
+>   dt-bindings: interrupt-controller: Convert Amlogic Meson GPIO
+>     interrupt controller binding
 > 
-> I wanted to avoid confusion between "dev_id" and "chip_rev". Therefore in
-> the patch it's written as getting some "data" from the register and extract
-> "chip_rev" from that data.
-> 
-> I could change it to "reg_data"? Or something in that direction? I still
-> think that getting "chip_rev" out of "dev_id" would be confusing.
+> [...]
 
-You're reading from a register called RT5033_REG_DEVICE_ID.  I don't see
-any reason why the variable you read into can't reflect that.
+Thanks, Applied to https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git (v6.4/arm64-dt)
 
-> [1] https://www.richtek.com/assets/product_file/RT9455/DS9455-00.pdf
-> [2] https://media.digikey.com/pdf/Data%20Sheets/Richtek%20PDF/RT5036%20%20Preliminary.pdf
-> 
-> > 
-> > > +	unsigned int chip_rev;
-> > >   	int ret;
-> > >   	rt5033 = devm_kzalloc(&i2c->dev, sizeof(*rt5033), GFP_KERNEL);
-> > > @@ -73,12 +74,13 @@ static int rt5033_i2c_probe(struct i2c_client *i2c)
-> > >   		return PTR_ERR(rt5033->regmap);
-> > >   	}
-> > > -	ret = regmap_read(rt5033->regmap, RT5033_REG_DEVICE_ID, &dev_id);
-> > > +	ret = regmap_read(rt5033->regmap, RT5033_REG_DEVICE_ID, &data);
-> > >   	if (ret) {
-> > >   		dev_err(&i2c->dev, "Device not found\n");
-> > >   		return -ENODEV;
-> > >   	}
-> > > -	dev_info(&i2c->dev, "Device found Device ID: %04x\n", dev_id);
-> > > +	chip_rev = data & RT5033_CHIP_REV_MASK;
-> > > +	dev_info(&i2c->dev, "Device found (rev. %d)\n", chip_rev);
-> > 
-> > Why not print both?
-> 
-> As described above, the data "dev_id" consists of a first part which is a
-> vendor ID and a second part which is the chip revision.
-> 
-> The vendor ID is of no interest here. These bits[7:4] contain binary value
-> 1000 (decimal value 8) and I'd expect that to be the same on all RT5033
-> devices.
-> 
-> Contrary to this, the chip revision is an important information. The
-> downstream Android driver applies some quirks depending on the chip
-> revision. This seemed not yet necessary in the upstream driver. So far I've
-> seen chip rev. 6 on samsung-serranove & samsung-e7 and chip rev. 5 on
-> samsung-grandmax & samsung-fortuna, the behavior of the chip revisions are
-> slightly different.
-> 
-> Accordingly, the downstream Android driver as well reads [3] and prints [4]
-> the chip revision only – confusingly calling it "rev id".
-> [3] https://github.com/msm8916-mainline/linux-downstream/blob/GT-I9195I/drivers/mfd/rt5033_core.c#L484
-> [4] https://github.com/msm8916-mainline/linux-downstream/blob/GT-I9195I/drivers/mfd/rt5033_core.c#L486
-> 
-> > >   	ret = regmap_add_irq_chip(rt5033->regmap, rt5033->irq,
-> > >   			IRQF_TRIGGER_FALLING | IRQF_ONESHOT,
-> > > diff --git a/include/linux/mfd/rt5033-private.h b/include/linux/mfd/rt5033-private.h
-> > > index 2d1895c3efbf..d18cd4572208 100644
-> > > --- a/include/linux/mfd/rt5033-private.h
-> > > +++ b/include/linux/mfd/rt5033-private.h
-> > > @@ -71,6 +71,10 @@ enum rt5033_reg {
-> > 
-> > 
-> > 
-> > 
-> > 
-> > 
-> > 
-> > 
-> > 
-> > 
-> > 
-> > 
-> > 
-> > 
-> > g
-> 
-> What does the "g" mean, was this on purpose? I didn't get the meaning of it.
-> 
-> > >   /* RT5033 CHGCTRL2 register */
-> > >   #define RT5033_CHGCTRL2_CV_MASK		0xfc
-> > > +/* RT5033 DEVICE_ID register */
-> > > +#define RT5033_VENDOR_ID_MASK		0xf0
-> > > +#define RT5033_CHIP_REV_MASK		0x0f
-> > > +
-> > >   /* RT5033 CHGCTRL3 register */
-> > >   #define RT5033_CHGCTRL3_CFO_EN_MASK	0x40
-> > >   #define RT5033_CHGCTRL3_TIMER_MASK	0x38
-> > > -- 
-> > > 2.39.1
-> > > 
-> > 
-> 
-> Kind regards,
-> Jakob
+[2/4] arm64: dts: meson: adjust order of some compatibles
+      https://git.kernel.org/amlogic/c/4dcc844c99d3e47820f574911b495b58f7da1d94
+
+These changes has been applied on the intermediate git tree [1].
+
+The v6.4/arm64-dt branch will then be sent via a formal Pull Request to the Linux SoC maintainers
+for inclusion in their intermediate git branches in order to be sent to Linus during
+the next merge window, or sooner if it's a set of fixes.
+
+In the cases of fixes, those will be merged in the current release candidate
+kernel and as soon they appear on the Linux master branch they will be
+backported to the previous Stable and Long-Stable kernels [2].
+
+The intermediate git branches are merged daily in the linux-next tree [3],
+people are encouraged testing these pre-release kernels and report issues on the
+relevant mailing-lists.
+
+If problems are discovered on those changes, please submit a signed-off-by revert
+patch followed by a corrective changeset.
+
+[1] https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git
+[2] https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git
+[3] https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git
 
 -- 
-Lee Jones [李琼斯]
+Neil
+
