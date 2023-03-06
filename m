@@ -2,36 +2,40 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C51186AC15E
-	for <lists+devicetree@lfdr.de>; Mon,  6 Mar 2023 14:35:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 649D06AC18A
+	for <lists+devicetree@lfdr.de>; Mon,  6 Mar 2023 14:39:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231175AbjCFNfg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 Mar 2023 08:35:36 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51060 "EHLO
+        id S230018AbjCFNjo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 Mar 2023 08:39:44 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55448 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231249AbjCFNfd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Mar 2023 08:35:33 -0500
-Received: from relay3-d.mail.gandi.net (relay3-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::223])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1C69B93D9;
-        Mon,  6 Mar 2023 05:35:31 -0800 (PST)
-Received: (Authenticated sender: miquel.raynal@bootlin.com)
-        by mail.gandi.net (Postfix) with ESMTPSA id 6386260013;
-        Mon,  6 Mar 2023 13:35:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1678109730;
+        with ESMTP id S229907AbjCFNjl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Mar 2023 08:39:41 -0500
+Received: from mail.3ffe.de (0001.3ffe.de [159.69.201.130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3A7A72F79E;
+        Mon,  6 Mar 2023 05:39:38 -0800 (PST)
+Received: from 3ffe.de (0001.3ffe.de [IPv6:2a01:4f8:c0c:9d57::1])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by mail.3ffe.de (Postfix) with ESMTPSA id 0624661;
+        Mon,  6 Mar 2023 14:39:37 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2022082101;
+        t=1678109977;
         h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
          to:to:cc:cc:mime-version:mime-version:content-type:content-type:
          content-transfer-encoding:content-transfer-encoding:
          in-reply-to:in-reply-to:references:references;
-        bh=VnpGU86Ni72zhxHdNK/dhWD3Go/gB3mzWOJCmEu360g=;
-        b=Jk37TFlJrDLiUnBNheMFtT7rymsUHbSMxbmWDgzFV5GTJqxArTPg6NaoOOtgUWJ4yUqHj0
-        eOYmTWhLaaLH7O0qvtVpD3MxQsIXCPnGrfPCLjHbJzN7/SuTLC6RH4bvCS0zX7N5v4NivA
-        RtWeZ9sFj9DSRXkAkZLt8XsJqgMKz+wK4Zl5iA6OwQV1eaiZfXb+vuZboDl8Ooio4k1DUO
-        1zKXqhTgjvPNm7xO7O7wzON2GfmUb+mrc9DxgCHMG3RS6ntD/OcIZUVzQltX1chqO7J2w+
-        FNAApnnZn3Jk5tznVy/sgkSaQ1FAv5LjP/7m+yasTMOmoQlEFTnmNPkIvuRZBg==
-Date:   Mon, 6 Mar 2023 14:35:28 +0100
-From:   Miquel Raynal <miquel.raynal@bootlin.com>
-To:     Michael Walle <michael@walle.cc>
+        bh=CuGi+nnvASLj3QCZh43qyWjqOQVQw8vWY8x1yJbFcEE=;
+        b=vbQpb6MYYUC2zwMF6UJhU0C+TvXoJGh55Udb8rNp+jtwAmR1BEyIOTjm8XQN4vcq49ZEGZ
+        8OnzPocrO+sZvdmV/29UNtJB55XjyPCvaPqLW81dW8BURcOSel9KrWka7tM9/sY2oPXNLK
+        uR50I0rKDtgd8weu2B7UBJNMwQ8RAKRokKE2kyMYe1XFRRIdX2eN94Gtzs4GmhdEauKrMl
+        g8D2BGztDhSifG4UDuhtettWUUUD+6pXc5oKbq38gF8kYhVu/ZSB57QLxi3yOBcY9sIS4z
+        OiKgTXGXtbU/udklN4zwTl5LtgqbZjkI585vmwpqxSUVo30/7Tf7LKL6aZpOGw==
+MIME-Version: 1.0
+Date:   Mon, 06 Mar 2023 14:39:36 +0100
+From:   Michael Walle <michael@walle.cc>
+To:     Miquel Raynal <miquel.raynal@bootlin.com>
 Cc:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
         linux-kernel@vger.kernel.org,
         Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
@@ -42,63 +46,48 @@ Cc:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
         Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
         rafal@milecki.pl
 Subject: Re: [PATCH 0/8] nvmem: Let layout drivers be modules
-Message-ID: <20230306143528.7407fda5@xps-13>
-In-Reply-To: <ee7923a8b5fa8358e6805d20df7d8049@walle.cc>
+In-Reply-To: <20230306143528.7407fda5@xps-13>
 References: <20230301152239.531194-1-miquel.raynal@bootlin.com>
-        <ee7923a8b5fa8358e6805d20df7d8049@walle.cc>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
-MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+ <ee7923a8b5fa8358e6805d20df7d8049@walle.cc> <20230306143528.7407fda5@xps-13>
+User-Agent: Roundcube Webmail/1.4.13
+Message-ID: <301f9723dca9645e1b5c71eac6221f93@walle.cc>
+X-Sender: michael@walle.cc
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Michael,
+Hi Miquel,
 
-michael@walle.cc wrote on Mon, 06 Mar 2023 14:01:34 +0100:
+Am 2023-03-06 14:35, schrieb Miquel Raynal:
+> michael@walle.cc wrote on Mon, 06 Mar 2023 14:01:34 +0100:
+> 
+>> > Miquel Raynal (8):
+>> >   of: Fix modalias string generation
+>> >   of: Change of_device_get_modalias() main argument
+>> >   of: Create an of_device_request_module() receiving an OF node
+>> >   nvmem: core: Fix error path ordering
+>> >   nvmem: core: Handle the absence of expected layouts
+>> >   nvmem: core: Request layout modules loading
+>> >   nvmem: layouts: sl28vpd: Convert layout driver into a module
+>> >   nvmem: layouts: onie-tlv: Convert layout driver into a module
+>> 
+>> With the fixes series [1] applied:
+> 
+> Thanks for the series! Looks good to me. I believe both series can live
+> in separate tress, any reason why we would like to avoid this? I am 
+> keen
+> to apply [1] into the mtd tree rather soon.
 
-> > Miquel Raynal (8):
-> >   of: Fix modalias string generation
-> >   of: Change of_device_get_modalias() main argument
-> >   of: Create an of_device_request_module() receiving an OF node
-> >   nvmem: core: Fix error path ordering
-> >   nvmem: core: Handle the absence of expected layouts
-> >   nvmem: core: Request layout modules loading
-> >   nvmem: layouts: sl28vpd: Convert layout driver into a module
-> >   nvmem: layouts: onie-tlv: Convert layout driver into a module =20
->=20
-> With the fixes series [1] applied:
+I'm fine with that.
 
-Thanks for the series! Looks good to me. I believe both series can live
-in separate tress, any reason why we would like to avoid this? I am keen
-to apply [1] into the mtd tree rather soon.
+-michael
 
-I will handle the remaining deferral errors in the regular mtd path as
-discussed on IRC.
-
-> Tested-by: Michael Walle <michael@walle.cc>
->=20
-> I didn't test module autoloading, but I presume you did.
-
-Yes, I generated an initramfs with Buildroot, in which an overlay
-containing the result of modules_install got merged (storage device =3Dy
-and nvmem layout to =3Dm). I could observe the modprobe call being
-successful and the layout driver being loaded early.
-
-> Thanks for working on this!
-
-=F0=9F=91=8D
-
-> -michael
->=20
-> [1] https://lore.kernel.org/r/20230306125805.678668-1-michael@walle.cc/
-
-Thanks,
-Miqu=C3=A8l
+[1] https://lore.kernel.org/r/20230306125805.678668-1-michael@walle.cc/
