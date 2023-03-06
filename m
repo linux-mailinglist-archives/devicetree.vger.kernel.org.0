@@ -2,153 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CF1A06ABA34
-	for <lists+devicetree@lfdr.de>; Mon,  6 Mar 2023 10:43:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 800096ABA3E
+	for <lists+devicetree@lfdr.de>; Mon,  6 Mar 2023 10:45:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230115AbjCFJnQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 Mar 2023 04:43:16 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56338 "EHLO
+        id S230147AbjCFJpM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 Mar 2023 04:45:12 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59588 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229892AbjCFJnO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Mar 2023 04:43:14 -0500
-Received: from mail-lj1-x22c.google.com (mail-lj1-x22c.google.com [IPv6:2a00:1450:4864:20::22c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A867A211DE
-        for <devicetree@vger.kernel.org>; Mon,  6 Mar 2023 01:43:10 -0800 (PST)
-Received: by mail-lj1-x22c.google.com with SMTP id i20so8851575lja.11
-        for <devicetree@vger.kernel.org>; Mon, 06 Mar 2023 01:43:10 -0800 (PST)
+        with ESMTP id S229528AbjCFJpL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Mar 2023 04:45:11 -0500
+Received: from mail-ua1-x929.google.com (mail-ua1-x929.google.com [IPv6:2607:f8b0:4864:20::929])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6AFD710AAE
+        for <devicetree@vger.kernel.org>; Mon,  6 Mar 2023 01:45:10 -0800 (PST)
+Received: by mail-ua1-x929.google.com with SMTP id l24so5961445uac.12
+        for <devicetree@vger.kernel.org>; Mon, 06 Mar 2023 01:45:10 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=rasmusvillemoes.dk; s=google; t=1678095789;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+        d=bgdev-pl.20210112.gappssmtp.com; s=20210112; t=1678095909;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=zmz2nBmbaTO3qG2SmBLPZDQGKtRO+Ieydz7Ye8FP4As=;
-        b=AvTMfeE/Sh6nyegcz8yd+g1v/9paXcicB1uPpofJwnbvMQyAlt7cBCR8azL8NTTpaX
-         3/LNu8m+KawTxRa1AAlYWkPCX9viBpSIceGoQaeV+TqMVaYZao7zTjIaFnmjqtwmTfcy
-         Hmw9mlQu0XaZlACc8SoMglt1BlDV8OpzJJoEw=
+        bh=GKoFWJJzSudk3nwRzBdKY9XPLk69RDQhGQ1+c6jaE2w=;
+        b=Jt+t7xzqgKO/SnwFDFBrMQVqKg4vkZ8v+66kRuYjaxIodjiBTMtEkmNBw6XQrbQeGF
+         1XUJ0E1ZxMsrReSl56g4sTJ/oEv6hKRojODN1rLZT7OKr2oblJvvOsGcs/8pPAuMTKwL
+         6bXkLGyO0y2gGM34BwAeWhD1P/hY8iT1MiLBKR3NKw6oNh4GhstX4hXxjeMok6vUibGi
+         a7xRaXu0aQstZEdmNLJIzlznSrYLeqyfHnhpgq0RR7CiNrkMA/qJj6d70F/sr5m56TFu
+         qYjOGk7nyFo0mYiS003DYJ8p4L/HHzpcenC3CW6TM29LJUKfTmCntSeFiSLIixkYQFwz
+         N3oA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678095789;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+        d=1e100.net; s=20210112; t=1678095909;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=zmz2nBmbaTO3qG2SmBLPZDQGKtRO+Ieydz7Ye8FP4As=;
-        b=NWfQxGl/vM222elftqaZ8ekQ5Uu62a52x1qXXCriv1QzI1NQJUjSrwmiIEjAJfbI4N
-         GeeU5wRtwGTqV2ZAR1d4novigvrWYmPiqG+7jHvlrzLG06Haw50Xgatfy1VIIHJI5oRe
-         Qr0ji6ZB0R6MAvsnTFtBHuOTG8oZOVk4eVz94OuJ9l0uYOKfrUg+9Vll3rbPBNh2bjZz
-         ab8+3Do/Sbh8QsvNfFIFQesOKwjmRfr9VvRs8T2sjAL9mEkABe8dV2foez3JyuRH/GSb
-         qA4RQFoOloPqOCwVAO6g0yWrw+654dmb4soAgwgMTCRCYYhw3j5SfF/Eo7kn+Ejxa2n9
-         MRMQ==
-X-Gm-Message-State: AO0yUKXFrfY4O/pSKdhUel+eRMk+F7ak1zES4/tI9Aj7xPPnLx5Dwlrp
-        lzi6UMp/yM5cWbfve88cbZ1XwQ==
-X-Google-Smtp-Source: AK7set/pXVTPqmW95TTuDKezJ3g8v2qM1LMEWSb93i6C5mD8Y/D4z3Xo+hq6TQN0mrhY9LP5UzwdMQ==
-X-Received: by 2002:a2e:1505:0:b0:295:ba28:a42 with SMTP id s5-20020a2e1505000000b00295ba280a42mr3214076ljd.20.1678095788912;
-        Mon, 06 Mar 2023 01:43:08 -0800 (PST)
-Received: from prevas-ravi.prevas.se ([81.216.59.226])
-        by smtp.gmail.com with ESMTPSA id a22-20020a2e9816000000b002934ed148afsm1620091ljj.52.2023.03.06.01.43.08
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 06 Mar 2023 01:43:08 -0800 (PST)
-From:   Rasmus Villemoes <linux@rasmusvillemoes.dk>
-To:     Lars-Peter Clausen <lars@metafoo.de>,
-        Michael Hennerich <Michael.Hennerich@analog.com>,
-        Cosmin Tanislav <cosmin.tanislav@analog.com>,
-        Jonathan Cameron <jic23@kernel.org>
-Cc:     devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Rasmus Villemoes <linux@rasmusvillemoes.dk>,
-        linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v2 2/2] iio: ad74413r: wire up support for drive-strength-microamp property
-Date:   Mon,  6 Mar 2023 10:43:01 +0100
-Message-Id: <20230306094301.1357543-3-linux@rasmusvillemoes.dk>
-X-Mailer: git-send-email 2.37.2
-In-Reply-To: <20230306094301.1357543-1-linux@rasmusvillemoes.dk>
-References: <20230302134922.1120217-1-linux@rasmusvillemoes.dk>
- <20230306094301.1357543-1-linux@rasmusvillemoes.dk>
+        bh=GKoFWJJzSudk3nwRzBdKY9XPLk69RDQhGQ1+c6jaE2w=;
+        b=JNjmHRg31bQA4Z7ceE2IUR+U+dhscNPuOO0tQyY5CzjQqsGMkTcYYZ3xZxCDaylQy5
+         XBS5iTd8gLqK0UR2IxHWCM1oWxGMaUOGXDHbUOdYyp0lOv3tOCx23ux6nnQlBmcVmXv5
+         ffqJ2J+x2Hp3yfBsR+xNh9KQvbqusCJEt4ObyWGNdP14PVgiqk7j8BDAzXZc3RxZF1IR
+         QYZ/05m8EupzWQ5V5VH/x9+T2+F9u3OvW4q8tzPRIsRsCaSxyWc9mBiigg+Z9d7BC+fO
+         rWRCIiT8Zux8YkW1oM0cKsix1Atgn54pymX1aG4dGGj635uhOTin/T5ZkbWCbmVMYj18
+         XVrw==
+X-Gm-Message-State: AO0yUKWUgPnMmlrv+H/7m7tnP4hcLrbrLqLPFmnpTMdz4MzZC3GpC61D
+        KW6ustFep6ouMZmsJU1yYyp6hi+leXFwdG0hVxQJLw==
+X-Google-Smtp-Source: AK7set/bEVRc8TI95CoemZJh7+KtzC91SN3MLNASgDT+0oDrOOyzFT9nuOIx89wi/0U6lCt3IQk5Z4optHbj/h0U3h8=
+X-Received: by 2002:a1f:2dcb:0:b0:401:42e5:6d2e with SMTP id
+ t194-20020a1f2dcb000000b0040142e56d2emr6168043vkt.1.1678095909486; Mon, 06
+ Mar 2023 01:45:09 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+References: <20230302081711.27334-1-zhuyinbo@loongson.cn>
+In-Reply-To: <20230302081711.27334-1-zhuyinbo@loongson.cn>
+From:   Bartosz Golaszewski <brgl@bgdev.pl>
+Date:   Mon, 6 Mar 2023 10:44:58 +0100
+Message-ID: <CAMRc=Mfn8p_zVTruzJ4=5bWSmocg7y-Dvz85ogxawxixp_jbow@mail.gmail.com>
+Subject: Re: [PATCH v12 1/2] dt-bindings: gpio: add loongson gpio
+To:     Yinbo Zhu <zhuyinbo@loongson.cn>
+Cc:     Linus Walleij <linus.walleij@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+        open list <linux-kernel@vger.kernel.org>,
+        Jianmin Lv <lvjianmin@loongson.cn>,
+        Liu Peibao <liupeibao@loongson.cn>, wanghongliang@loongson.cn,
+        loongson-kernel@lists.loongnix.cn,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Use the value specified in the channel configuration node to populate
-the DIN_SINK field of the DIN_CONFIGx register.
+On Thu, Mar 2, 2023 at 9:17=E2=80=AFAM Yinbo Zhu <zhuyinbo@loongson.cn> wro=
+te:
+>
+> Add the Loongson platform gpio binding with DT schema format using
+> json-schema.
+>
+> Signed-off-by: Yinbo Zhu <zhuyinbo@loongson.cn>
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> ---
 
-Signed-off-by: Rasmus Villemoes <linux@rasmusvillemoes.dk>
----
- drivers/iio/addac/ad74413r.c | 23 +++++++++++++++++++++++
- 1 file changed, 23 insertions(+)
+Applied, thanks!
 
-diff --git a/drivers/iio/addac/ad74413r.c b/drivers/iio/addac/ad74413r.c
-index f32c8c2fb26d..4395758dbaa6 100644
---- a/drivers/iio/addac/ad74413r.c
-+++ b/drivers/iio/addac/ad74413r.c
-@@ -39,6 +39,7 @@ struct ad74413r_chip_info {
- 
- struct ad74413r_channel_config {
- 	u32		func;
-+	u32		drive_strength;
- 	bool		gpo_comparator;
- 	bool		initialized;
- };
-@@ -111,6 +112,7 @@ struct ad74413r_state {
- #define AD74413R_REG_DIN_CONFIG_X(x)	(0x09 + (x))
- #define AD74413R_DIN_DEBOUNCE_MASK	GENMASK(4, 0)
- #define AD74413R_DIN_DEBOUNCE_LEN	BIT(5)
-+#define AD74413R_DIN_SINK_MASK		GENMASK(9, 6)
- 
- #define AD74413R_REG_DAC_CODE_X(x)	(0x16 + (x))
- #define AD74413R_DAC_CODE_MAX		GENMASK(12, 0)
-@@ -261,6 +263,18 @@ static int ad74413r_set_comp_debounce(struct ad74413r_state *st,
- 				  val);
- }
- 
-+static int ad74413r_set_comp_drive_strength(struct ad74413r_state *st,
-+					    unsigned int offset,
-+					    unsigned int strength)
-+{
-+	strength = min(strength, 1800U);
-+
-+	return regmap_update_bits(st->regmap, AD74413R_REG_DIN_CONFIG_X(offset),
-+				  AD74413R_DIN_SINK_MASK,
-+				  FIELD_PREP(AD74413R_DIN_SINK_MASK, strength / 120));
-+}
-+
-+
- static void ad74413r_gpio_set(struct gpio_chip *chip,
- 			      unsigned int offset, int val)
- {
-@@ -1190,6 +1204,9 @@ static int ad74413r_parse_channel_config(struct iio_dev *indio_dev,
- 	config->gpo_comparator = fwnode_property_read_bool(channel_node,
- 		"adi,gpo-comparator");
- 
-+	fwnode_property_read_u32(channel_node, "drive-strength-microamp",
-+				 &config->drive_strength);
-+
- 	if (!config->gpo_comparator)
- 		st->num_gpo_gpios++;
- 
-@@ -1269,6 +1286,7 @@ static int ad74413r_setup_gpios(struct ad74413r_state *st)
- 	unsigned int gpo_gpio_i = 0;
- 	unsigned int i;
- 	u8 gpo_config;
-+	u32 strength;
- 	int ret;
- 
- 	for (i = 0; i < AD74413R_CHANNEL_MAX; i++) {
-@@ -1285,6 +1303,11 @@ static int ad74413r_setup_gpios(struct ad74413r_state *st)
- 		    config->func == CH_FUNC_DIGITAL_INPUT_LOOP_POWER)
- 			st->comp_gpio_offsets[comp_gpio_i++] = i;
- 
-+		strength = config->drive_strength;
-+		ret = ad74413r_set_comp_drive_strength(st, i, strength);
-+		if (ret)
-+			return ret;
-+
- 		ret = ad74413r_set_gpo_config(st, i, gpo_config);
- 		if (ret)
- 			return ret;
--- 
-2.37.2
-
+Bart
