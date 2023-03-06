@@ -2,45 +2,47 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 93ED86AB537
-	for <lists+devicetree@lfdr.de>; Mon,  6 Mar 2023 05:01:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 98A906AB52E
+	for <lists+devicetree@lfdr.de>; Mon,  6 Mar 2023 05:00:51 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229824AbjCFEA6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 5 Mar 2023 23:00:58 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34328 "EHLO
+        id S229801AbjCFEAp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 5 Mar 2023 23:00:45 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34312 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229752AbjCFEAp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 5 Mar 2023 23:00:45 -0500
+        with ESMTP id S229684AbjCFEAo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 5 Mar 2023 23:00:44 -0500
 Received: from bombadil.infradead.org (bombadil.infradead.org [IPv6:2607:7c80:54:3::133])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 25040F95E;
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1391FF764;
         Sun,  5 Mar 2023 20:00:43 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
         d=infradead.org; s=bombadil.20210309; h=Content-Transfer-Encoding:
-        MIME-Version:Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:
-        Content-ID:Content-Description:In-Reply-To:References;
-        bh=HPz4kPYhPZpQlfeOL2Al6sQo7BQmMegqzbJMsm991po=; b=kx8YsC+c/ytuN48zbGnBp9LIjb
-        yBCqh9LU1+Z3QYjzA2niS9adPj3dkCNPK9Ym8Od1Wr/BDHhrVVmDTWC0xkP4G4qNnSWNWP+q80HfG
-        f9lcxp240fKH5Z0CiTMK2JrECS3tK7Cr20AVXhTf0JqTPDcIVXplGJyHtvltgNahJ5xiSs11FIMPv
-        JgFX+62AKl2B9WxOmH3L7lLmiJWWwxADL57F961nZ5jfdby36oX0ExO1CuGi8lxT59Q9QxCoElI+8
-        0IiD724fEv9Hiqae7coN1EvEDNi4U+Dd9Wsie/jb8hAAE4xo5aZb1LljZxEVolHeppY9jfwQHA8qY
-        3iSISszQ==;
+        MIME-Version:References:In-Reply-To:Message-Id:Date:Subject:Cc:To:From:Sender
+        :Reply-To:Content-Type:Content-ID:Content-Description;
+        bh=UhjsCF+rddzzypyrP6fAf9gWJ0k8iBH1lmCoUVV1gpY=; b=4+eLkNkdnjDWSXISs50Rh16wOU
+        eWs4XaJTu6YSNuFj9fIjj/06b6S2VLIFPc+huvqMY6RwtgtbU5QAM6kn9bh+AmnfZnbIkvnWSzj7d
+        lGhCFcaEjMH9AQrtl2E6eVA8kfR7RHLYAJbovKNyOtroF66rIXxrli/vS2Kdq+0B/N7VXW4adis2T
+        ZDxpPFGFf4stqhZrj4iepC0PurUxSq3PUjOZqK3Fsv1DjlAsA2/EGmW/4I+ZQdAgISUFxJq6a4Zsz
+        ZXpIEmR76bGq652+QzZBk6UEm2vHJdmA889Hwua/q472BtlcS4OIeLE/Fr78NcNQD/3NCbsAOK1DU
+        K45Wekuw==;
 Received: from [2601:1c2:980:9ec0::df2f] (helo=bombadil.infradead.org)
         by bombadil.infradead.org with esmtpsa (Exim 4.94.2 #2 (Red Hat Linux))
-        id 1pZ21e-00B9yD-PB; Mon, 06 Mar 2023 04:00:38 +0000
+        id 1pZ21h-00B9yD-5Q; Mon, 06 Mar 2023 04:00:41 +0000
 From:   Randy Dunlap <rdunlap@infradead.org>
 To:     linux-kernel@vger.kernel.org
 Cc:     Randy Dunlap <rdunlap@infradead.org>,
-        John Paul Adrian Glaubitz <glaubitz@physik.fu-berlin.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        devicetree@vger.kernel.org, Rich Felker <dalias@libc.org>,
         Yoshinori Sato <ysato@users.sourceforge.jp>,
-        Rich Felker <dalias@libc.org>,
         Geert Uytterhoeven <geert+renesas@glider.be>,
-        Hitoshi Mitake <mitake@dcl.info.waseda.ac.jp>,
-        linux-sh@vger.kernel.org, Frank Rowand <frowand.list@gmail.com>,
-        devicetree@vger.kernel.org, Arnd Bergmann <arnd@arndb.de>
-Subject: [PATCH 0/7 v4] sh: various doc, build, init fixes
-Date:   Sun,  5 Mar 2023 20:00:30 -0800
-Message-Id: <20230306040037.20350-1-rdunlap@infradead.org>
+        John Paul Adrian Glaubitz <glaubitz@physik.fu-berlin.de>,
+        linux-sh@vger.kernel.org, stable@vger.kernel.org
+Subject: [PATCH 3/7 v4] sh: init: use OF_EARLY_FLATTREE for early init
+Date:   Sun,  5 Mar 2023 20:00:33 -0800
+Message-Id: <20230306040037.20350-4-rdunlap@infradead.org>
 X-Mailer: git-send-email 2.39.2
+In-Reply-To: <20230306040037.20350-1-rdunlap@infradead.org>
+References: <20230306040037.20350-1-rdunlap@infradead.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -52,43 +54,87 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-All of these patches have been sent previously, anywhere from
-one to 3 times.  All patches are now called "v4".
+When CONFIG_OF_EARLY_FLATTREE and CONFIG_SH_DEVICE_TREE are not set,
+SH3 build fails with a call to early_init_dt_scan(), so in
+arch/sh/kernel/setup.c and arch/sh/kernel/head_32.S, use
+CONFIG_OF_EARLY_FLATTREE instead of CONFIG_OF_FLATTREE.
 
-This refresh/resend is to assist the new SH maintainer.
+Fixes this build error:
+../arch/sh/kernel/setup.c: In function 'sh_fdt_init':
+../arch/sh/kernel/setup.c:262:26: error: implicit declaration of function 'early_init_dt_scan' [-Werror=implicit-function-declaration]
+  262 |         if (!dt_virt || !early_init_dt_scan(dt_virt)) {
 
- [PATCH 1/7 v4] sh: SH2007: drop the bad URL info
- [PATCH 2/7 v4] sh: nmi_debug: fix return value of __setup handler
- [PATCH 3/7 v4] sh: init: use OF_EARLY_FLATTREE for early init
- [PATCH 4/7 v4] sh: math-emu: fix macro redefined warning
- [PATCH 5/7 v4] sh: remove sh5/sh64 last fragments
- [PATCH 6/7 v4] sh: fix Kconfig entry for NUMA => SMP
- [PATCH 7/7 v4] sh: mcount.S: fix build error when PRINTK is not enabled
-
-diffstat:
- Documentation/kbuild/kbuild.rst                           |    1 -
- Documentation/scheduler/sched-arch.rst                    |    2 --
- Documentation/translations/zh_CN/scheduler/sched-arch.rst |    2 --
- arch/sh/Kconfig                                           |    4 ++++
- arch/sh/Kconfig.debug                                     |    2 +-
- arch/sh/boards/Kconfig                                    |    1 -
- arch/sh/kernel/head_32.S                                  |    6 +++---
- arch/sh/kernel/nmi_debug.c                                |    4 ++--
- arch/sh/kernel/setup.c                                    |    4 ++--
- arch/sh/math-emu/sfp-util.h                               |    4 ----
- scripts/checkstack.pl                                     |    7 -------
- tools/perf/arch/common.c                                  |    2 --
- tools/scripts/Makefile.arch                               |    5 -----
- tools/testing/selftests/mm/Makefile                       |    2 +-
- tools/testing/selftests/mm/run_vmtests.sh                 |    2 +-
- 15 files changed, 14 insertions(+), 34 deletions(-)
-
-Cc: John Paul Adrian Glaubitz <glaubitz@physik.fu-berlin.de>
-Cc: Yoshinori Sato <ysato@users.sourceforge.jp>
-Cc: Rich Felker <dalias@libc.org>
-Cc: Geert Uytterhoeven <geert+renesas@glider.be>
-Cc: Hitoshi Mitake <mitake@dcl.info.waseda.ac.jp>
-Cc: linux-sh@vger.kernel.org
+Fixes: 03767daa1387 ("sh: fix build regression with CONFIG_OF && !CONFIG_OF_FLATTREE")
+Fixes: eb6b6930a70f ("sh: fix memory corruption of unflattened device tree")
+Signed-off-by: Randy Dunlap <rdunlap@infradead.org>
+Suggested-by: Rob Herring <robh+dt@kernel.org>
 Cc: Frank Rowand <frowand.list@gmail.com>
 Cc: devicetree@vger.kernel.org
-Cc: Arnd Bergmann <arnd@arndb.de>
+Cc: Rich Felker <dalias@libc.org>
+Cc: Yoshinori Sato <ysato@users.sourceforge.jp>
+Cc: Geert Uytterhoeven <geert+renesas@glider.be>
+Cc: John Paul Adrian Glaubitz <glaubitz@physik.fu-berlin.de>
+Cc: linux-sh@vger.kernel.org
+Cc: stable@vger.kernel.org
+---
+v2: use Suggested-by: for Rob.
+    add more Cc's.
+v3: skipped
+v4: update Cc's, refresh & resend
+
+ arch/sh/kernel/head_32.S |    6 +++---
+ arch/sh/kernel/setup.c   |    4 ++--
+ 2 files changed, 5 insertions(+), 5 deletions(-)
+
+diff arch/sh/kernel/setup.c arch/sh/kernel/setup.c
+diff -- a/arch/sh/kernel/setup.c b/arch/sh/kernel/setup.c
+--- a/arch/sh/kernel/setup.c
++++ b/arch/sh/kernel/setup.c
+@@ -244,7 +244,7 @@ void __init __weak plat_early_device_set
+ {
+ }
+ 
+-#ifdef CONFIG_OF_FLATTREE
++#ifdef CONFIG_OF_EARLY_FLATTREE
+ void __ref sh_fdt_init(phys_addr_t dt_phys)
+ {
+ 	static int done = 0;
+@@ -326,7 +326,7 @@ void __init setup_arch(char **cmdline_p)
+ 	/* Let earlyprintk output early console messages */
+ 	sh_early_platform_driver_probe("earlyprintk", 1, 1);
+ 
+-#ifdef CONFIG_OF_FLATTREE
++#ifdef CONFIG_OF_EARLY_FLATTREE
+ #ifdef CONFIG_USE_BUILTIN_DTB
+ 	unflatten_and_copy_device_tree();
+ #else
+diff -- a/arch/sh/kernel/head_32.S b/arch/sh/kernel/head_32.S
+--- a/arch/sh/kernel/head_32.S
++++ b/arch/sh/kernel/head_32.S
+@@ -64,7 +64,7 @@ ENTRY(_stext)
+ 	ldc	r0, r6_bank
+ #endif
+ 
+-#ifdef CONFIG_OF_FLATTREE
++#ifdef CONFIG_OF_EARLY_FLATTREE
+ 	mov	r4, r12		! Store device tree blob pointer in r12
+ #endif
+ 	
+@@ -315,7 +315,7 @@ ENTRY(_stext)
+ 10:		
+ #endif
+ 
+-#ifdef CONFIG_OF_FLATTREE
++#ifdef CONFIG_OF_EARLY_FLATTREE
+ 	mov.l	8f, r0		! Make flat device tree available early.
+ 	jsr	@r0
+ 	 mov	r12, r4
+@@ -346,7 +346,7 @@ ENTRY(stack_start)
+ 5:	.long	start_kernel
+ 6:	.long	cpu_init
+ 7:	.long	init_thread_union
+-#if defined(CONFIG_OF_FLATTREE)
++#if defined(CONFIG_OF_EARLY_FLATTREE)
+ 8:	.long	sh_fdt_init
+ #endif
+ 
