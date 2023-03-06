@@ -2,178 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6A9B76AD032
-	for <lists+devicetree@lfdr.de>; Mon,  6 Mar 2023 22:27:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 20D696AD105
+	for <lists+devicetree@lfdr.de>; Mon,  6 Mar 2023 23:04:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229897AbjCFV1i (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 Mar 2023 16:27:38 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50768 "EHLO
+        id S229628AbjCFWD6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 Mar 2023 17:03:58 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57956 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229669AbjCFV1h (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Mar 2023 16:27:37 -0500
-Received: from EUR01-DB5-obe.outbound.protection.outlook.com (mail-db5eur01hn2242.outbound.protection.outlook.com [52.100.6.242])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3FAE238002;
-        Mon,  6 Mar 2023 13:27:35 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=seco.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=SrOEDK4oPo5spcq0mzZBWUJc9nSXUxbMfKxjyVrEh8o=;
- b=dM8O7Q37mqWt2BusLiGThHAibNYilXJeOb624WOW8fZXyFw+ECosfkGNRD/F+FEE988ZPjDg36/mweebb13TXupLAHyI6bnIBXoEsViXcFXPuKTr2LuC8J+eMqH7+4+t1BgST6bDEnwqLgLuRr6mr+ljdLSxlU974II3Ndy27iHBKNtUcmImn12wqTu8Teti21BZFGwAxG9umDYXx0jpS222TS/UaYJ6PvdemYOuO6TLY+84JFwbebCzNiSK8U3NV5cmzoBIDHxR+vTs9qn4pzccnwT7XHsHClJVVx/83WgTVejDM575VLDDhSVeVu/C8f2bD2dZRaxeB95Sxc9XPQ==
-Received: from FR0P281CA0010.DEUP281.PROD.OUTLOOK.COM (2603:10a6:d10:15::15)
- by DB4PR03MB9484.eurprd03.prod.outlook.com (2603:10a6:10:3f4::14) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6156.27; Mon, 6 Mar
- 2023 21:27:33 +0000
-Received: from VI1EUR05FT014.eop-eur05.prod.protection.outlook.com
- (2603:10a6:d10:15:cafe::10) by FR0P281CA0010.outlook.office365.com
- (2603:10a6:d10:15::15) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6178.15 via Frontend
- Transport; Mon, 6 Mar 2023 21:27:32 +0000
-X-MS-Exchange-Authentication-Results: spf=fail (sender IP is 20.160.56.84)
- smtp.mailfrom=seco.com; dkim=pass (signature was verified)
- header.d=seco.com;dmarc=pass action=none header.from=seco.com;
-Received-SPF: Fail (protection.outlook.com: domain of seco.com does not
- designate 20.160.56.84 as permitted sender) receiver=protection.outlook.com;
- client-ip=20.160.56.84; helo=inpost-eu.tmcas.trendmicro.com;
-Received: from inpost-eu.tmcas.trendmicro.com (20.160.56.84) by
- VI1EUR05FT014.mail.protection.outlook.com (10.233.242.121) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.6178.16 via Frontend Transport; Mon, 6 Mar 2023 21:27:32 +0000
-Received: from outmta (unknown [192.168.82.132])
-        by inpost-eu.tmcas.trendmicro.com (Trend Micro CAS) with ESMTP id 19B7A2008088D;
-        Mon,  6 Mar 2023 21:27:32 +0000 (UTC)
-Received: from EUR02-DB5-obe.outbound.protection.outlook.com (unknown [104.47.11.105])
-        by repre.tmcas.trendmicro.com (Trend Micro CAS) with ESMTPS id 1D2622008006F;
-        Mon,  6 Mar 2023 21:26:32 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=eKpdmthIwZEiMZisgRAg82SgN4Yu7IaqYjd59PtfVZsdTuLa3U1G+Yp++FUhwPGq+5NHQNu6zTwXPBwjb3VgVpU2wM2b9KEZaY8pfOE9MPDH1qZd2cJgrKILIxTMHpZ5EDhY6xULZcm9VbW1/dV5xTJUCEmSjdHnJmTaLUMaQ3qbgrAvfAU8mxroIOxUiFvKZZEvcDyRfDhld08XlaN6CRYyNfdYo0gZ6/QUBgUgUIk8LRusWr9yhsiBV1rpPTDug/MaL+gMequNnYdkt5QQLUMiNLn3E1tsQ7er9KvYP0Qe5LOYzpX6wotcX2xmyvmT8HfUcrTqXaPOLcI67V2zNA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=SrOEDK4oPo5spcq0mzZBWUJc9nSXUxbMfKxjyVrEh8o=;
- b=gOwVMYzXlfuEn24bNT4qfKCJpdGUMJT60a4vxLaQx3LvHBVsbgtz+EyW96gZrCYqclU4WC32jRT4WlK+P2+nRNSclRoWfNl2ie+gseimDevIdeg2XDe7HLKdNevy+9KzYXdIsFAbtYEPLDB5c/+wDYLOA3bkH3qruaSsbn6FYmD33y9T7lxEuJ1n1mw85I5zMsSVj2QLMGMUAJISE9ViOy+91yRUv+8guCtHB/I050aiqJFlBRUpcvevpM2EUjYsHfn1xE4mlUKIbAmYFL2L2LuOQ7hmeiiHyElyd2IZ89HanStRZIC38HBAdmLBvAdhoqscY35VaAM61CU3VF3iAg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=seco.com; dmarc=pass action=none header.from=seco.com;
- dkim=pass header.d=seco.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=seco.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=SrOEDK4oPo5spcq0mzZBWUJc9nSXUxbMfKxjyVrEh8o=;
- b=dM8O7Q37mqWt2BusLiGThHAibNYilXJeOb624WOW8fZXyFw+ECosfkGNRD/F+FEE988ZPjDg36/mweebb13TXupLAHyI6bnIBXoEsViXcFXPuKTr2LuC8J+eMqH7+4+t1BgST6bDEnwqLgLuRr6mr+ljdLSxlU974II3Ndy27iHBKNtUcmImn12wqTu8Teti21BZFGwAxG9umDYXx0jpS222TS/UaYJ6PvdemYOuO6TLY+84JFwbebCzNiSK8U3NV5cmzoBIDHxR+vTs9qn4pzccnwT7XHsHClJVVx/83WgTVejDM575VLDDhSVeVu/C8f2bD2dZRaxeB95Sxc9XPQ==
-Authentication-Results-Original: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=seco.com;
-Received: from DB9PR03MB8847.eurprd03.prod.outlook.com (2603:10a6:10:3dd::13)
- by AM7PR03MB6214.eurprd03.prod.outlook.com (2603:10a6:20b:136::23) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6156.28; Mon, 6 Mar
- 2023 21:27:22 +0000
-Received: from DB9PR03MB8847.eurprd03.prod.outlook.com
- ([fe80::dbcf:1089:3242:614e]) by DB9PR03MB8847.eurprd03.prod.outlook.com
- ([fe80::dbcf:1089:3242:614e%5]) with mapi id 15.20.6156.027; Mon, 6 Mar 2023
- 21:27:21 +0000
-Message-ID: <49b24502-1b21-f05b-ef4a-18d5aa375f8d@seco.com>
-Date:   Mon, 6 Mar 2023 16:27:16 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.0
-Subject: Re: [PATCH v10 03/13] dt-bindings: Convert gpio-mmio to yaml
-Content-Language: en-US
-To:     Jonas Gorski <jonas.gorski@gmail.com>
-Cc:     Vinod Koul <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
-        linux-phy@lists.infradead.org,
-        Madalin Bucur <madalin.bucur@nxp.com>,
-        linuxppc-dev@lists.ozlabs.org, devicetree@vger.kernel.org,
-        Ioana Ciornei <ioana.ciornei@nxp.com>,
+        with ESMTP id S229755AbjCFWD5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Mar 2023 17:03:57 -0500
+Received: from mail-4022.proton.ch (mail-4022.proton.ch [185.70.40.22])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AB768367E6
+        for <devicetree@vger.kernel.org>; Mon,  6 Mar 2023 14:03:56 -0800 (PST)
+Date:   Mon, 06 Mar 2023 22:03:49 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=connolly.tech;
+        s=protonmail; t=1678140234; x=1678399434;
+        bh=OTDepwlsOdLgprucsSOriozVDNnd/jcEVBfUOz9Dh+A=;
+        h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
+         Feedback-ID:From:To:Cc:Date:Subject:Reply-To:Feedback-ID:
+         Message-ID:BIMI-Selector;
+        b=LzdQQ8oY/Ukfzb2VBvlugRtJkjCLGNjiCoRNuGa6mSM0RIe6N03DUl1OXPbzIB0CL
+         zNVvuEs3icrrDVWc2/jrLx2sqBm+iWixV4WWmpqCcVMXL2z0MEyrp8+MJ6Ik9A1klb
+         2aMpH77AiFJTeE6IsalUySLkdDURRgFFvfpuTBJk=
+To:     Gergo Koteles <soyer@irl.hu>, Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Camelia Alexandra Groza <camelia.groza@nxp.com>,
-        linux-arm-kernel@lists.infradead.org,
-        Bagas Sanjaya <bagasdotme@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
-        =?UTF-8?Q?Fern=c3=a1ndez_Rojas?= <noltari@gmail.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        linux-gpio@vger.kernel.org
-References: <20230306191535.1917656-1-sean.anderson@seco.com>
- <20230306191535.1917656-4-sean.anderson@seco.com>
- <CAOiHx=mcANqHTk9=b0TGHa2rk9nppnKa2EB1v05uHb5jhzoawA@mail.gmail.com>
-From:   Sean Anderson <sean.anderson@seco.com>
-In-Reply-To: <CAOiHx=mcANqHTk9=b0TGHa2rk9nppnKa2EB1v05uHb5jhzoawA@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: MN2PR02CA0023.namprd02.prod.outlook.com
- (2603:10b6:208:fc::36) To DB9PR03MB8847.eurprd03.prod.outlook.com
- (2603:10a6:10:3dd::13)
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+From:   Caleb Connolly <caleb@connolly.tech>
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] arm64: dts: qcom: sdm845-oneplus-common: add Hall sensor
+Message-ID: <940dec11-dbcb-d6df-3722-0375bfe86508@connolly.tech>
+In-Reply-To: <20230306174147.185239-1-soyer@irl.hu>
+References: <20230306174147.185239-1-soyer@irl.hu>
+Feedback-ID: 10753939:user:proton
 MIME-Version: 1.0
-X-MS-TrafficTypeDiagnostic: DB9PR03MB8847:EE_|AM7PR03MB6214:EE_|VI1EUR05FT014:EE_|DB4PR03MB9484:EE_
-X-MS-Office365-Filtering-Correlation-Id: 885a2159-740f-4b82-7acc-08db1e8998c9
-X-TrendMicro-CAS-OUT-LOOP-IDENTIFIER: 656f966764b7fb185830381c646b41a1
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam-Untrusted: BCL:0;
-X-Microsoft-Antispam-Message-Info-Original: 9oUmUkXCkQQ3CE26tI8o2K25a5YKtZ7hSKstvE0FBaNXG0kNqzujGQ2FFw1SOlbqaKVPPLMcZ2bEkjzgZ4XCgseRm5qbCs3I5sWnC21qkTzoMyUbiJcb+6D8aIYJj8IBpEuHietAqpVgFbeDvtdvcLvg3Ld24LC8fehJLLwpjR9KqqoCyhgnZXwX1viTql7Wp2RuA40HocxY+Eab1fpPRPcLZDOvMoCWwlF60SAbabYKdOBEQHVIqO/YIzZudpPuwHzwG4GnzXf5cYnpJDFk+CTcybLq2ZAcRv79xE09PIkdVAG8jBFoOHIut4xjKKGlgklCeOK5UC6t+IgW9ZmlcIzFOyGGfducJCa6vmg56dF2SZJ/vYZ1hd332vHcgVBwQyIpos6qnGJ93IQAZ3E7u8AT+XYNxHtIqrlBZ6jQ75rWn9GaepfwIi8FzIHTs8GY1s6NEoCQc1AOK7Nfsaj1XkQGRK38t6HtbbYMbENZ2OfTD5S7UGLIcEEWFrp216zfw0kq0+Y/RMu0vh5siQE6wRfNGpfrHwiVC9YofL0NbeRpgZIZbTm3aLXwsKuxU5phmvQbesrBIJ1WVtGu5+DqDm9JzH7SvdaxlGYwkrFPc1gFVkBpVQL8cKSdnqqWdUwTwO/FJ4iw6BJBOQAqhpN93C8LhSa71V/R9evPotYAZ2hiB2bLD4D/hwJYJlLJeAAxWMyvq9d9ahpQM956yBmMNkMn+3U09AWOxP1APHQGMStOwKQHLZ+DQMi6TIKt5wPYTve0ebkV1kCEJARB8vfEjw==
-X-Forefront-Antispam-Report-Untrusted: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB9PR03MB8847.eurprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230025)(376002)(39850400004)(346002)(136003)(366004)(396003)(451199018)(86362001)(31696002)(38350700002)(38100700002)(66476007)(36756003)(44832011)(66946007)(5660300002)(2906002)(6916009)(4326008)(8936002)(8676002)(7416002)(41300700001)(66556008)(186003)(2616005)(26005)(53546011)(83380400001)(6512007)(6506007)(54906003)(316002)(478600001)(6666004)(52116002)(6486002)(31686004)(43740500002)(45980500001);DIR:OUT;SFP:1101;
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM7PR03MB6214
-X-EOPAttributedMessage: 0
-X-MS-Exchange-Transport-CrossTenantHeadersStripped: VI1EUR05FT014.eop-eur05.prod.protection.outlook.com
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id-Prvs: 88e7e9d4-accf-45a0-0f2f-08db1e899234
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: vX0Iq6r8YR+mJQHIz2tXkzCOOgKWD6JzDIq/uf30o6zbIHvKXXRLnoIG/Mq2HI7AbVMWMw1vTLaYvlgKlPodg5b8AOt27z/adDEJ5Mo2Bx0xH5c7R5SWpkf0B4J3ExE3KWSJtiPlLQ793zHjcoRNrPE6lP93nCXslQ402VK3NzcbghqxRZDIPJX7Agd20Fvp6UidJVNntRUg1yuwIE5TJ+oGNX4bpV6JX14jeyF6nUniip6bVt8tgUANtn1pbW/9du9TiqJVtehigOWF7A0tbTQj04EpI4s3S5f/j7eVn4tVUG/2r4TmvDrYQhUinhj0xrKYv/r9bqqEaCBHOv6/3IHlgXJFZlk2yyQevuRrKjWKCI2e9Xmex8IBQ7fxO5BC625qVzHaI3yZoDvXkylO+0Z2kcssicrha2tFPSX0NLSz/umozmocIEWTeqmJX9wlqOlEoit5ZNyhunwyBNzyhfFCfvb0j0t3bJdHL5I0VFtBfULv2Cq0/zSWgvCn03qUKGkPpIOM74SmVFbti72nc1d4t2O9UlQewYQsFOIDPgucezgfS8DyUgO0UoEZumx3QrO5s72LIiKxGbP36u+hfc+p8IZ4HAZMoWFove1WSUa1AJBDqVP8ZdxnNI27StJviauIAACxH6gj2T6L5zVsLVsj+3uOJew6+jbzQfGcRHmVaope44FXfySPhLaMxXvmlFbX3tKbXeDggfFZA0MUa2Bm5JzB4pCKejcbnAQzqZMDfjwVhzTK5ZJMDjwoKmagMbGwNclRhxkW97D5TbqLUkPuizaJGSJQdJTk+vox5TU=
-X-Forefront-Antispam-Report: CIP:20.160.56.84;CTRY:NL;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:inpost-eu.tmcas.trendmicro.com;PTR:inpost-eu.tmcas.trendmicro.com;CAT:NONE;SFS:(13230025)(39850400004)(396003)(346002)(136003)(376002)(451199018)(5400799012)(46966006)(36840700001)(186003)(7596003)(7636003)(356005)(36860700001)(6916009)(34020700004)(8936002)(41300700001)(70206006)(4326008)(8676002)(44832011)(5660300002)(70586007)(7416002)(26005)(53546011)(6666004)(478600001)(47076005)(2616005)(2906002)(6512007)(6506007)(82740400003)(336012)(6486002)(316002)(82310400005)(54906003)(36756003)(40480700001)(83380400001)(31696002)(86362001)(31686004)(43740500002)(45980500001)(12100799021);DIR:OUT;SFP:1501;
-X-OriginatorOrg: seco.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Mar 2023 21:27:32.4969
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 885a2159-740f-4b82-7acc-08db1e8998c9
-X-MS-Exchange-CrossTenant-Id: bebe97c3-6438-442e-ade3-ff17aa50e733
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=bebe97c3-6438-442e-ade3-ff17aa50e733;Ip=[20.160.56.84];Helo=[inpost-eu.tmcas.trendmicro.com]
-X-MS-Exchange-CrossTenant-AuthSource: VI1EUR05FT014.eop-eur05.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB4PR03MB9484
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 3/6/23 15:51, Jonas Gorski wrote:
-> Hi,
-> 
-> On Mon, 6 Mar 2023 at 20:16, Sean Anderson <sean.anderson@seco.com> wrote:
->>
->> This is a generic binding for simple MMIO GPIO controllers. Although we
->> have a single driver for these controllers, they were previously spread
->> over several files. Consolidate them. The register descriptions are
->> adapted from the comments in the source. There is no set order for the
->> registers, so I have not specified one.
->>
->> Signed-off-by: Sean Anderson <sean.anderson@seco.com>
->> ---
->>
->> Changes in v10:
->> - New
->>
->>  .../bindings/gpio/brcm,bcm6345-gpio.yaml      |  16 +--
->>  .../devicetree/bindings/gpio/gpio-mmio.yaml   | 136 ++++++++++++++++++
->>  .../bindings/gpio/ni,169445-nand-gpio.txt     |  38 -----
->>  .../devicetree/bindings/gpio/wd,mbl-gpio.txt  |  38 -----
->>  4 files changed, 137 insertions(+), 91 deletions(-)
->>  create mode 100644 Documentation/devicetree/bindings/gpio/gpio-mmio.yaml
->>  delete mode 100644 Documentation/devicetree/bindings/gpio/ni,169445-nand-gpio.txt
->>  delete mode 100644 Documentation/devicetree/bindings/gpio/wd,mbl-gpio.txt
->>
->> diff --git a/Documentation/devicetree/bindings/gpio/brcm,bcm6345-gpio.yaml b/Documentation/devicetree/bindings/gpio/brcm,bcm6345-gpio.yaml
->> index 4d69f79df859..e11f4af49c52 100644
->> --- a/Documentation/devicetree/bindings/gpio/brcm,bcm6345-gpio.yaml
->> +++ b/Documentation/devicetree/bindings/gpio/brcm,bcm6345-gpio.yaml
-> 
-> You are (re-)moving the compatible this file is named after, you might
-> want to rename the file as well then. Going by age bcm6358 would be
-> the next oldest one (bcm6318 would be the newest, despite the lowest
-> number).
 
-I can do that. Would it be fine to rename to e.g. brcm,bcm63xx-gpio.yaml?
 
---Sean
+On 06/03/2023 17:41, Gergo Koteles wrote:
+> Enable the Hall effect sensor (flip cover) for OnePlus 6/6T.
+> The GPIO is mapped to SW_LID events as in msm8916, msm8994,
+> msm8998 devices.
+>
+> Signed-off-by: Gergo Koteles <soyer@irl.hu>
+
+Reviewed-by: Caleb Connolly <caleb@connolly.tech>
+> ---
+>  .../boot/dts/qcom/sdm845-oneplus-common.dtsi  | 25 +++++++++++++++++++
+>  1 file changed, 25 insertions(+)
+>
+> diff --git a/arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi b/arch/a=
+rm64/boot/dts/qcom/sdm845-oneplus-common.dtsi
+> index 64638ea94db7..b01542d79ae2 100644
+> --- a/arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi
+> @@ -29,6 +29,23 @@ chosen {
+>  =09=09stdout-path =3D "serial0:115200n8";
+>  =09};
+>
+> +=09gpio-hall-sensor {
+> +=09=09compatible =3D "gpio-keys";
+> +=09=09label =3D "Hall effect sensor";
+> +
+> +=09=09pinctrl-0 =3D <&hall_sensor_default>;
+> +=09=09pinctrl-names =3D "default";
+> +
+> +=09=09event-hall-sensor {
+> +=09=09=09gpios =3D <&tlmm 124 GPIO_ACTIVE_LOW>;
+> +=09=09=09label =3D "Hall Effect Sensor";
+> +=09=09=09linux,input-type =3D <EV_SW>;
+> +=09=09=09linux,code =3D <SW_LID>;
+> +=09=09=09linux,can-disable;
+> +=09=09=09wakeup-source;
+> +=09=09};
+> +=09};
+> +
+>  =09gpio-keys {
+>  =09=09compatible =3D "gpio-keys";
+>  =09=09label =3D "Volume keys";
+> @@ -753,6 +770,14 @@ &usb_1_hsphy {
+>  &tlmm {
+>  =09gpio-reserved-ranges =3D <0 4>, <81 4>;
+>
+> +=09hall_sensor_default: hall-sensor-default-state {
+> +=09=09pins =3D "gpio124";
+> +=09=09function =3D "gpio";
+> +=09=09drive-strength =3D <2>;
+> +=09=09bias-disable;
+> +=09=09input-enable;
+> +=09};
+> +
+>  =09tri_state_key_default: tri-state-key-default-state {
+>  =09=09pins =3D "gpio40", "gpio42", "gpio26";
+>  =09=09function =3D "gpio";
+> --
+> 2.39.2
+>
+
+--
+Kind Regards,
+Caleb
 
