@@ -2,121 +2,316 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1792D6ACE2B
-	for <lists+devicetree@lfdr.de>; Mon,  6 Mar 2023 20:34:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6DE1E6ACD88
+	for <lists+devicetree@lfdr.de>; Mon,  6 Mar 2023 20:05:47 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229692AbjCFTeW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 Mar 2023 14:34:22 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34614 "EHLO
+        id S230106AbjCFTFp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 Mar 2023 14:05:45 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53972 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229798AbjCFTeV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Mar 2023 14:34:21 -0500
-Received: from amity.mint.lgbt (vmi888983.contaboserver.net [149.102.157.145])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9BB2A27D45
-        for <devicetree@vger.kernel.org>; Mon,  6 Mar 2023 11:34:17 -0800 (PST)
-Received: from amity.mint.lgbt (mx.mint.lgbt [127.0.0.1])
-        by amity.mint.lgbt (Postfix) with ESMTP id 4PVlRF2Vwzz1S5Jj
-        for <devicetree@vger.kernel.org>; Mon,  6 Mar 2023 12:08:57 -0500 (EST)
-Authentication-Results: amity.mint.lgbt (amavisd-new);
-        dkim=pass (2048-bit key) reason="pass (just generated, assumed good)"
-        header.d=mint.lgbt
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=mint.lgbt; h=
-        content-transfer-encoding:mime-version:references:in-reply-to
-        :x-mailer:message-id:date:subject:to:from; s=dkim; t=1678122536;
-         x=1678986537; bh=XBMOf7rDZmk1/gq6Hnv29VSjIdHlkH5Ie/sn9RbtUDE=; b=
-        WqUd8U1BT8RYfIBpzHuXSRbEmmRlkRzBbJrD0ZXpO1ZWQe9y+YVXwk8kgBwyX+3d
-        e5VndP3HAoNa/1NYSLax+LPn4uOA/hZWj0Zgibkn/mk+LxT3TIU2OTgsYVg6Ynsa
-        V/8u+eIKLRSmnDsTQixJenU6KXyJbHkhcPpaCRDTbGwYYQA5oLYizdT6ak9BbA53
-        ShfZM8whZPcQsOvsp31cxEkm6VdM7ikmBOsdwkIfEhsSJ6nFPP9xVnO04zeRioL0
-        A76x6NBmPjU0mS5lkGOGxb2UQuFnFqNn38lwJ9EcijugIda3Ww6yE9jOs9c40BTB
-        yForNXmKYNiGieSd3LYK8w==
-X-Virus-Scanned: amavisd-new at amity.mint.lgbt
-Received: from amity.mint.lgbt ([127.0.0.1])
-        by amity.mint.lgbt (amity.mint.lgbt [127.0.0.1]) (amavisd-new, port 10026)
-        with ESMTP id 1QYwFRwvmiZG for <devicetree@vger.kernel.org>;
-        Mon,  6 Mar 2023 12:08:56 -0500 (EST)
-Received: from dorothy.. (unknown [186.105.8.42])
-        by amity.mint.lgbt (Postfix) with ESMTPSA id 4PVlR46j1Tz1S5Jl;
-        Mon,  6 Mar 2023 12:08:48 -0500 (EST)
-From:   Lux Aliaga <they@mint.lgbt>
-To:     agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        vkoul@kernel.org, kishon@kernel.org, alim.akhtar@samsung.com,
-        avri.altman@wdc.com, bvanassche@acm.org, keescook@chromium.org,
-        tony.luck@intel.com, gpiccoli@igalia.com
-Cc:     ~postmarketos/upstreaming@lists.sr.ht,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org,
-        linux-scsi@vger.kernel.org, linux-hardening@vger.kernel.org,
-        phone-devel@vger.kernel.org, martin.botka@somainline.org,
-        marijn.suijten@somainline.org, Lux Aliaga <they@mint.lgbt>
-Subject: [PATCH v7 3/6] phy: qcom-qmp: Add SM6125 UFS PHY support
-Date:   Mon,  6 Mar 2023 14:08:13 -0300
-Message-Id: <20230306170817.3806-4-they@mint.lgbt>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20230306170817.3806-1-they@mint.lgbt>
-References: <20230306170817.3806-1-they@mint.lgbt>
+        with ESMTP id S230025AbjCFTFp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Mar 2023 14:05:45 -0500
+Received: from mx.sberdevices.ru (mx.sberdevices.ru [45.89.227.171])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D308A55B1;
+        Mon,  6 Mar 2023 11:05:42 -0800 (PST)
+Received: from s-lin-edge02.sberdevices.ru (localhost [127.0.0.1])
+        by mx.sberdevices.ru (Postfix) with ESMTP id D0BF25FD0A;
+        Mon,  6 Mar 2023 22:05:40 +0300 (MSK)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sberdevices.ru;
+        s=mail; t=1678129540;
+        bh=/40x545y6N3H4xvARhuWQ6W0qgSWl87tx0IbBsc6DTk=;
+        h=Date:From:To:Subject:Message-ID:MIME-Version:Content-Type;
+        b=msA1ul5xWibswwqECdFeXH4MH5rW7a8f0PJpfL0aHk+q6I4C51hkZco9lKWYI1Lci
+         fqykc22BJkdP81gsccDRAZNPm+Q/F4C7ptnJQeZohr/JWIF6lEtMB/JEnm1AwKB1NZ
+         Cmf90G4O1IcsuVHaGbB95OLeXTq5e7PTSHKv9+36fZ969HtAaDT1pHhhK1Wg7MJ3en
+         tUfX7oxM1j1Hx8PUWsqXZLBZr0xQvhaB2iQI1IepXb3M+1v081LFdTB2eP7s19YPlW
+         kqq1Q3Li1FM69RoSso8FkS0M2vK9YLzGblxe3/EP46fsJk/1KeYCLHxU5evvqcP6Jg
+         e77IfCLFiioHQ==
+Received: from S-MS-EXCH01.sberdevices.ru (S-MS-EXCH01.sberdevices.ru [172.16.1.4])
+        by mx.sberdevices.ru (Postfix) with ESMTP;
+        Mon,  6 Mar 2023 22:05:40 +0300 (MSK)
+Date:   Mon, 6 Mar 2023 22:05:39 +0300
+From:   Dmitry Rokosov <ddrokosov@sberdevices.ru>
+To:     Jerome Brunet <jbrunet@baylibre.com>
+CC:     <neil.armstrong@linaro.org>, <mturquette@baylibre.com>,
+        <sboyd@kernel.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <khilman@baylibre.com>,
+        <martin.blumenstingl@googlemail.com>, <jian.hu@amlogic.com>,
+        <kernel@sberdevices.ru>, <rockosov@gmail.com>,
+        <linux-amlogic@lists.infradead.org>, <linux-clk@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>
+Subject: Re: [PATCH v9 4/5] clk: meson: a1: add Amlogic A1 Peripherals clock
+ controller driver
+Message-ID: <20230306190539.kl6n347kev5pskz6@CAB-WSD-L081021>
+References: <20230301183759.16163-1-ddrokosov@sberdevices.ru>
+ <20230301183759.16163-5-ddrokosov@sberdevices.ru>
+ <1jilfeaync.fsf@starbuckisacylon.baylibre.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <1jilfeaync.fsf@starbuckisacylon.baylibre.com>
+User-Agent: NeoMutt/20220415
+X-Originating-IP: [172.16.1.6]
+X-ClientProxiedBy: S-MS-EXCH02.sberdevices.ru (172.16.1.5) To
+ S-MS-EXCH01.sberdevices.ru (172.16.1.4)
+X-KSMG-Rule-ID: 4
+X-KSMG-Message-Action: clean
+X-KSMG-AntiSpam-Status: not scanned, disabled by settings
+X-KSMG-AntiSpam-Interceptor-Info: not scanned
+X-KSMG-AntiPhishing: not scanned, disabled by settings
+X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 1.1.2.30, bases: 2023/03/06 16:19:00 #20919562
+X-KSMG-AntiVirus-Status: Clean, skipped
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The SM6125 UFS PHY is compatible with the one from SM6115. Add a
-compatible for it and modify the config from SM6115 to make them
-compatible with the SC8280XP binding
+Hello Jerome,
 
-Signed-off-by: Lux Aliaga <they@mint.lgbt>
-Reviewed-by: Martin Botka <martin.botka@somainline.org>
----
- drivers/phy/qualcomm/phy-qcom-qmp-ufs.c | 12 ++++++++++++
- 1 file changed, 12 insertions(+)
+Thanks a lot for such detailed review. Please find my comments and
+thoughts below.
 
-diff --git a/drivers/phy/qualcomm/phy-qcom-qmp-ufs.c b/drivers/phy/qualco=
-mm/phy-qcom-qmp-ufs.c
-index 318eea35b972..44c29fdfc551 100644
---- a/drivers/phy/qualcomm/phy-qcom-qmp-ufs.c
-+++ b/drivers/phy/qualcomm/phy-qcom-qmp-ufs.c
-@@ -620,6 +620,13 @@ static const char * const qmp_phy_vreg_l[] =3D {
- 	"vdda-phy", "vdda-pll",
- };
-=20
-+static const struct qmp_ufs_offsets qmp_ufs_offsets_v3_660 =3D {
-+	.serdes		=3D 0,
-+	.pcs		=3D 0xc00,
-+	.tx		=3D 0x400,
-+	.rx		=3D 0x600,
-+};
-+
- static const struct qmp_ufs_offsets qmp_ufs_offsets_v5 =3D {
- 	.serdes		=3D 0,
- 	.pcs		=3D 0xc00,
-@@ -693,6 +700,8 @@ static const struct qmp_phy_cfg sdm845_ufsphy_cfg =3D=
- {
- static const struct qmp_phy_cfg sm6115_ufsphy_cfg =3D {
- 	.lanes			=3D 1,
-=20
-+	.offsets		=3D &qmp_ufs_offsets_v3_660,
-+
- 	.serdes_tbl		=3D sm6115_ufsphy_serdes_tbl,
- 	.serdes_tbl_num		=3D ARRAY_SIZE(sm6115_ufsphy_serdes_tbl),
- 	.tx_tbl			=3D sm6115_ufsphy_tx_tbl,
-@@ -1172,6 +1181,9 @@ static const struct of_device_id qmp_ufs_of_match_t=
-able[] =3D {
- 	}, {
- 		.compatible =3D "qcom,sm6115-qmp-ufs-phy",
- 		.data =3D &sm6115_ufsphy_cfg,
-+	}, {
-+		.compatible =3D "qcom,sm6125-qmp-ufs-phy",
-+		.data =3D &sm6115_ufsphy_cfg,
- 	}, {
- 		.compatible =3D "qcom,sm6350-qmp-ufs-phy",
- 		.data =3D &sdm845_ufsphy_cfg,
---=20
-2.39.2
+On Mon, Mar 06, 2023 at 12:38:22PM +0100, Jerome Brunet wrote:
+> 
+> On Wed 01 Mar 2023 at 21:37, Dmitry Rokosov <ddrokosov@sberdevices.ru> wrote:
+> 
+> > Introduce Peripherals clock controller for Amlogic A1 SoC family.
+> >
+> > Signed-off-by: Jian Hu <jian.hu@amlogic.com>
+> > Signed-off-by: Dmitry Rokosov <ddrokosov@sberdevices.ru>
 
+[...]
+
+> > +static struct clk_regmap dspa_a_sel = {
+> > +	.data = &(struct clk_regmap_mux_data){
+> > +		.offset = DSPA_CLK_CTRL0,
+> > +		.mask = 0x7,
+> > +		.shift = 10,
+> > +		.table = mux_table_dsp_ab,
+> > +	},
+> > +	.hw.init = &(struct clk_init_data){
+> > +		.name = "dspa_a_sel",
+> > +		.ops = &clk_regmap_mux_ops,
+> > +		.parent_data = dsp_ab_parent_data,
+> > +		.num_parents = ARRAY_SIZE(dsp_ab_parent_data),
+> > +		/* DSPA_A clk parent should be set statically from dt */
+> > +		.flags = CLK_SET_RATE_NO_REPARENT,
+> > +	},
+> > +};
+> > +
+> > +static struct clk_regmap dspa_a_div = {
+> > +	.data = &(struct clk_regmap_div_data){
+> > +		.offset = DSPA_CLK_CTRL0,
+> > +		.shift = 0,
+> > +		.width = 10,
+> > +	},
+> > +	.hw.init = &(struct clk_init_data){
+> > +		.name = "dspa_a_div",
+> > +		.ops = &clk_regmap_divider_ops,
+> > +		.parent_hws = (const struct clk_hw *[]) {
+> > +			&dspa_a_sel.hw
+> > +		},
+> > +		.num_parents = 1,
+> > +		.flags = CLK_SET_RATE_PARENT,
+> > +	},
+> > +};
+> > +
+> > +static struct clk_regmap dspa_a = {
+> > +	.data = &(struct clk_regmap_gate_data){
+> > +		.offset = DSPA_CLK_CTRL0,
+> > +		.bit_idx = 13,
+> > +	},
+> > +	.hw.init = &(struct clk_init_data) {
+> > +		.name = "dspa_a",
+> > +		.ops = &clk_regmap_gate_ops,
+> > +		.parent_hws = (const struct clk_hw *[]) {
+> > +			&dspa_a_div.hw
+> > +		},
+> > +		.num_parents = 1,
+> > +		/*
+> > +		 * DSPA_A accelerator clk, cannot be disabled by CCF if it
+> > +		 * has been set by bootloader
+> 
+> Then IGNORE_UNUSED is wrong. use RO ops with you must retain the
+> bootloader config.
+
+I thought UNUSED logic will disable 'unused' clock during
+initialization. Or do you mean it's not relevant for ro ops clock,
+because disable() callback is not defined?
+
+> 
+> Note that it is usually a bad idea to depend on the bootloader config.
+> Things tends to go bad when other bootloader version join the fun, like
+> upstream u-boot
+
+To be honest, I don't have the ability to test such behavior on our side,
+because in my hands I have SoC SKUs w/o DSP only.
+But theoretically DSP FW can be started already from the bootloader, and
+then we shouldn't touch this clock.
+May be CCF has device tree tricks to solve such situations, don't know
+actually. On the other hand, appropriate driver logic would be a nice
+exit here.
+
+[...]
+
+> > +static struct clk_regmap dspa_en_nic = {
+> > +	.data = &(struct clk_regmap_gate_data){
+> > +		.offset = DSPA_CLK_EN,
+> > +		.bit_idx = 0,
+> > +	},
+> > +	.hw.init = &(struct clk_init_data) {
+> > +		.name = "dspa_en_nic",
+> > +		.ops = &clk_regmap_gate_ops,
+> > +		.parent_hws = (const struct clk_hw *[]) {
+> > +			&dspa_sel.hw
+> > +		},
+> > +		.num_parents = 1,
+> > +		/*
+> > +		 * DSPA_EN_NIC accelerator clk, cannot be disabled by CCF if it
+> > +		 * has been set by bootloader
+> > +		 */
+> > +		.flags = CLK_SET_RATE_PARENT | CLK_IGNORE_UNUSED,
+> 
+> All this just highlight the lack of proper drivers to handle the clock,
+> like remote proc one.
+> 
+
+Okay, let's imagine we have such a driver. If DSP is already running,
+we can skip the clock setup on this driver side. Hmmm. It looks like
+a proper solution...
+
+I would prefer to tag it with TODO and mark DSP clocks with ro_ops till
+we don't have such a driver.
+
+[...]
+
+> > +
+> > +static struct clk_regmap fclk_div2_divn = {
+> > +	.data = &(struct clk_regmap_gate_data){
+> > +		.offset = CLK12_24_CTRL,
+> > +		.bit_idx = 12,
+> > +	},
+> > +	.hw.init = &(struct clk_init_data){
+> > +		.name = "fclk_div2_divn",
+> > +		.ops = &clk_regmap_gate_ops,
+> > +		.parent_hws = (const struct clk_hw *[]) {
+> > +			&fclk_div2_divn_pre.hw
+> > +		},
+> > +		.num_parents = 1,
+> > +		.flags = CLK_SET_RATE_PARENT,
+> > +	},
+> > +};
+> > +
+> > +/*
+> > + * the index 2 is sys_pll_div16, it will be completed in the CPU clock ctrl,
+> 
+> I don't get this, what do you mean ? 
+> 
+
+I mean, it will be implemented in the CPU clock controller driver in the
+next patch series. Agree, I have to make a rephrase.
+
+> > + * the index 4 is the clock measurement source, it relies on
+> > + * the clock measurement register configuration.
+> 
+> Obviously ... What mean here is that clock measurement is a debug
+> feature and should be considered
+> 
+
+Should I mark it with TODO tag? I prefer to implement 'must have' logic
+first. Clock measurement are optional from my point of view.
+
+[...]
+
+> > +static struct clk_regmap pwm_a = {
+> > +	.data = &(struct clk_regmap_gate_data){
+> > +		.offset = PWM_CLK_AB_CTRL,
+> > +		.bit_idx = 8,
+> > +	},
+> > +	.hw.init = &(struct clk_init_data) {
+> > +		.name = "pwm_a",
+> > +		.ops = &clk_regmap_gate_ops,
+> > +		.parent_hws = (const struct clk_hw *[]) {
+> > +			&pwm_a_div.hw
+> > +		},
+> > +		.num_parents = 1,
+> > +		/*
+> > +		 * The CPU working voltage is controlled by pwm_a
+> > +		 * in BL2 firmware. The clock is required by the platform
+> > +		 * to operate correctly. Add the CLK_IS_CRITICAL flag to
+> > +		 * avoid changing at runtime.
+> > +		 * About critical, refer to sys
+> > +		 */
+> 
+> PWM_A required by the BL2 ... really ? Looks really fishy to me.
+> 
+> Is it possible it is used by regulator instead ?
+> 
+
+Honestly, this comment's information was grabbed from Amlogic custom
+driver. It has such words:
+
+/*
+ * add CLK_IGNORE_UNUSED flag for pwm controller GATE
+ * clk core will disable unused clock, it may disable
+ * vddcore voltage which contrlled by one pwm in bl21.
+ * add the flag to avoid changing cpu voltage.
+ */
+
+We don't have bl21 source code in the hands, so I can't check
+unfortunately. But I have no reasons to don't trust Amlogic custom
+clk driver decisions about low level bootloaders roles.
+
+[...]
+
+> > +static int meson_a1_periphs_probe(struct platform_device *pdev)
+> > +{
+> > +	struct device *dev = &pdev->dev;
+> > +	struct clk_hw *hw;
+> > +	void __iomem *base;
+> > +	struct regmap *map;
+> > +	int clkid, i, err;
+> > +
+> > +	base = devm_platform_ioremap_resource(pdev, 0);
+> > +	if (IS_ERR(base))
+> > +		return dev_err_probe(dev, PTR_ERR(base),
+> > +				     "can't ioremap resource\n");
+> > +
+> > +	map = devm_regmap_init_mmio(dev, base, &a1_periphs_regmap_cfg);
+> > +	if (IS_ERR(map))
+> > +		return dev_err_probe(dev, PTR_ERR(map),
+> > +				     "can't init regmap mmio region\n");
+> > +
+> > +	/* Populate regmap for the regmap backed clocks */
+> > +	for (i = 0; i < ARRAY_SIZE(a1_periphs_regmaps); i++)
+> > +		a1_periphs_regmaps[i]->map = map;
+> > +
+> > +	for (clkid = 0; clkid < a1_periphs_hw_onecell_data.num; clkid++) {
+> > +		hw = a1_periphs_hw_onecell_data.hws[clkid];
+> > +		err = devm_clk_hw_register(dev, hw);
+> > +		if (err)
+> > +			return dev_err_probe(dev, err,
+> > +					     "clock registration failed\n");
+> > +	}
+> > +
+> > +	return devm_of_clk_add_hw_provider(dev, of_clk_hw_onecell_get,
+> > +					   &a1_periphs_hw_onecell_data);
+> > +}
+> > +
+> > +#ifdef CONFIG_OF
+> 
+> Same as the PLL driver
+> 
+
+Sure, good point.
+
+[...]
+
+-- 
+Thank you,
+Dmitry
