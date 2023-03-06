@@ -2,1072 +2,240 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 025246AB63C
-	for <lists+devicetree@lfdr.de>; Mon,  6 Mar 2023 07:08:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 434C86AB653
+	for <lists+devicetree@lfdr.de>; Mon,  6 Mar 2023 07:31:55 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229437AbjCFGII (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 Mar 2023 01:08:08 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59868 "EHLO
+        id S229543AbjCFGbw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 Mar 2023 01:31:52 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45882 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229587AbjCFGIG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Mar 2023 01:08:06 -0500
-Received: from SHSQR01.spreadtrum.com (unknown [222.66.158.135])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0E56D10D8
-        for <devicetree@vger.kernel.org>; Sun,  5 Mar 2023 22:08:00 -0800 (PST)
-Received: from SHSend.spreadtrum.com (bjmbx02.spreadtrum.com [10.0.64.8])
-        by SHSQR01.spreadtrum.com with ESMTP id 326663FL007931;
-        Mon, 6 Mar 2023 14:06:03 +0800 (+08)
-        (envelope-from Chunyan.Zhang@unisoc.com)
-Received: from ubt.spreadtrum.com (10.0.74.87) by BJMBX02.spreadtrum.com
- (10.0.64.8) with Microsoft SMTP Server (TLS) id 15.0.1497.23; Mon, 6 Mar 2023
- 14:05:59 +0800
-From:   Chunyan Zhang <chunyan.zhang@unisoc.com>
-To:     Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
-        <soc@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-CC:     <devicetree@vger.kernel.org>,
-        Baolin Wang <baolin.wang@linux.alibaba.com>,
-        Orson Zhai <orsonzhai@gmail.com>,
-        Chunyan Zhang <zhang.lyra@gmail.com>,
-        Chunyan Zhang <chunyan.zhang@unisoc.com>,
-        LKML <linux-kernel@vger.kernel.org>
-Subject: [PATCH V3] arm64: dts: sprd: Add support for Unisoc's UMS512
-Date:   Mon, 6 Mar 2023 14:04:46 +0800
-Message-ID: <20230306060446.414986-1-chunyan.zhang@unisoc.com>
-X-Mailer: git-send-email 2.25.1
+        with ESMTP id S229457AbjCFGbu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Mar 2023 01:31:50 -0500
+Received: from EUR02-AM0-obe.outbound.protection.outlook.com (mail-am0eur02on2068.outbound.protection.outlook.com [40.107.247.68])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C4F4A1689A;
+        Sun,  5 Mar 2023 22:31:46 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=topic.nl; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=rqZ1ofKJK/JX4432vpsOKp1gxQZpBiqJSWM5dVfF06w=;
+ b=dk+k5tnca3tedYuanjtXgQDCVCTy1Mlk6+NmUS5EefntAFFY33MVQ39L7BxLzQCiWr5Szd8gH9Ds+ONUdVweJAC+cCt4clsevnepTOCuTTqNossVlvbPqdKsHl/zE1hfv9BRdSM5oVkH4y6N69PoY+FpCtwVzSgscGoZ7FZnDULDqh8OJrz0fTcAo4R2j9zYwlHOXWHAvyhF0SHVXPvqSm8DLl7WPY45nGk5xPi5Zn5jmvYqBRqn1oLKOM+lf+k4aecdHZGyyXZZz9h09e0Lf3yN4Gm3RfQKU3KqtWpEeR9qhc/VHFEz+Pgw4XH13UmsuWmZnmlAjO+OIGRddIuVVw==
+Received: from GV3P280CA0047.SWEP280.PROD.OUTLOOK.COM (2603:10a6:150:9::15) by
+ PAXPR04MB8475.eurprd04.prod.outlook.com (2603:10a6:102:1de::13) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6156.28; Mon, 6 Mar
+ 2023 06:31:42 +0000
+Received: from HE1EUR01FT027.eop-EUR01.prod.protection.outlook.com
+ (2603:10a6:150:9:cafe::50) by GV3P280CA0047.outlook.office365.com
+ (2603:10a6:150:9::15) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6156.28 via Frontend
+ Transport; Mon, 6 Mar 2023 06:31:42 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 13.93.42.39)
+ smtp.mailfrom=topicproducts.com; dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=topic.nl;
+Received-SPF: Pass (protection.outlook.com: domain of topicproducts.com
+ designates 13.93.42.39 as permitted sender) receiver=protection.outlook.com;
+ client-ip=13.93.42.39; helo=westeu12-emailsignatures-cloud.codetwo.com; pr=C
+Received: from westeu12-emailsignatures-cloud.codetwo.com (13.93.42.39) by
+ HE1EUR01FT027.mail.protection.outlook.com (10.152.0.161) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.6178.13 via Frontend Transport; Mon, 6 Mar 2023 06:31:41 +0000
+Received: from EUR03-VI1-obe.outbound.protection.outlook.com (104.47.30.109) by westeu12-emailsignatures-cloud.codetwo.com with CodeTwo SMTP Server (TLS12) via SMTP; Mon, 06 Mar 2023 06:31:40 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=Us0tiDNgsQR8iMbm6UsyTCJKSsDbbG7V2ZYJ8DsihdtHK1PxWWTzjJ81Sekk24OvvlXq0hNfbquP1+ax6Z5vNgaKmWIQ1LWKeGIXFyyC25ER5hSxib3UBspy0AY4Pl3UDiSnZquyj1v35ynVh9EEYL5T79UAOSZNdImYsrma7s1XP5T0xCdU/G3n7DCBJQ7cG7wOoyEP6pasYlylaiWejONRbu2mEeA1vzztn6H9bOrTBH1BuwUFGZ55mi11+lNjTWDsOYnyGZHpiZt+XYh1oSWDRyJKp1V4iGu13sG37ps5ySqsrtSMus2lHBQb11fcb3ZU/Z+n5BhXq5xfsS1qzg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=6YivThwGbBpYsM42yUyEJQHrU01PkIdsWXHkBv6T5h4=;
+ b=M3JKqrpK949lQ8NgB0lNcrlaSszQvViBJhA0BD4pzcoExSN/B/IZNdfgwLZ6v1t1WH71Q+9xZbedTsDwnkHFN8R/vT2gKozKS7qEIN5WLM7G24rdFloC6Pwz8tPJhuxoNz4pPAMzZGGUxhzhnPdi/qVmsc8EDwYcuIbhPfCrTkgSVb+sszvdpVG3kg9GJqMnzNi0XNnQlCwGnVS8Boan4zQfsstpPIpXtBweki3i6+zscgNc3o6p78nb6rCnoetNdHxdP2eSyB5o9lv2dARU+gCh1fHrHJfg4pVklw3H1ZWmD+XEsKxwvxk0G8ZTdT0IkftyWyLDvTD+y8i87xOF2g==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=topicproducts.com; dmarc=pass action=none header.from=topic.nl;
+ dkim=pass header.d=topic.nl; arc=none
+Authentication-Results-Original: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=topic.nl;
+Received: from DB8PR04MB6523.eurprd04.prod.outlook.com (2603:10a6:10:10f::26)
+ by DB9PR04MB9702.eurprd04.prod.outlook.com (2603:10a6:10:301::19) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6156.27; Mon, 6 Mar
+ 2023 06:31:38 +0000
+Received: from DB8PR04MB6523.eurprd04.prod.outlook.com
+ ([fe80::a7e7:768:5a54:777a]) by DB8PR04MB6523.eurprd04.prod.outlook.com
+ ([fe80::a7e7:768:5a54:777a%7]) with mapi id 15.20.6156.028; Mon, 6 Mar 2023
+ 06:31:38 +0000
+Message-ID: <ceb4f367-b910-578a-24bc-7c222e2f0b0f@topic.nl>
+Date:   Mon, 6 Mar 2023 07:31:36 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.1
+From:   Mike Looijmans <mike.looijmans@topic.nl>
+Subject: Re: [PATCH v3 2/2] iio: adc: Add TI ADS1100 and ADS1000
+Content-Language: en-US
+To:     Jonathan Cameron <jic23@kernel.org>
+CC:     devicetree@vger.kernel.org, linux-iio@vger.kernel.org,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Caleb Connolly <caleb.connolly@linaro.org>,
+        ChiYuan Huang <cy_huang@richtek.com>,
+        ChiaEn Wu <chiaen_wu@richtek.com>,
+        Cosmin Tanislav <demonsingur@gmail.com>,
+        Ibrahim Tilki <Ibrahim.Tilki@analog.com>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Ramona Bolboaca <ramona.bolboaca@analog.com>,
+        William Breathitt Gray <william.gray@linaro.org>,
+        linux-kernel@vger.kernel.org
+References: <20230228063151.17598-1-mike.looijmans@topic.nl>
+ <20230228063151.17598-2-mike.looijmans@topic.nl>
+ <20230304175751.2daae308@jic23-huawei>
+ <1b153bce-a66a-45ee-a5c6-963ea6fb1c82.949ef384-8293-46b8-903f-40a477c056ae.1e5d3371-10e4-4627-b16c-6b250afbb522@emailsignatures365.codetwo.com>
+Organization: Topic
+In-Reply-To: <20230304175751.2daae308@jic23-huawei>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: quoted-printable
+X-ClientProxiedBy: AM0PR03CA0045.eurprd03.prod.outlook.com (2603:10a6:208::22)
+ To DB8PR04MB6523.eurprd04.prod.outlook.com (2603:10a6:10:10f::26)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7BIT
-Content-Type:   text/plain; charset=US-ASCII
-X-Originating-IP: [10.0.74.87]
-X-ClientProxiedBy: SHCAS03.spreadtrum.com (10.0.1.207) To
- BJMBX02.spreadtrum.com (10.0.64.8)
-X-MAIL: SHSQR01.spreadtrum.com 326663FL007931
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
+X-MS-TrafficTypeDiagnostic: DB8PR04MB6523:EE_|DB9PR04MB9702:EE_|HE1EUR01FT027:EE_|PAXPR04MB8475:EE_
+X-MS-Office365-Filtering-Correlation-Id: 4eb81749-ad46-412e-ade6-08db1e0c72fb
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam-Untrusted: BCL:0;
+X-Microsoft-Antispam-Message-Info-Original: a/pxdho9NBFj+L2SS/8Y/wY5R5+xAlbCqJZF3hZlFYjBJKnRUmF3mxT84hLAMCezGiLjMYbrMolqB+uVqWzUlAgWHsxa1AAgc8MQ/79BupVsx03mbaksIOQWl6ikQcOoCY3bKfod5fcOWFrl1X9uBeg7XWL4SuZ4bJayubnbrZVTf1UlcAw5nb/ZoOCo9DNm0rb+95MlIxeecaQeaJDsGehpGbZPLQrOt37QJKcUT8fFaKS5zTxPjlaZeVN4FiBGg8vttm8cbITd5y6hnoBLH660BRjcnFnm9xYiu6LeTmW4tBIFwWcmCCx6/elmCNl4dNi9+Bh7YyzkoGfZmz+O7mElkEcmtmINNYKXTugy9M2y4Rb45bgnb2SJ2UpEqeHgidZvQnR4MHC1OdXInUz5VZpqBg1bPNXGwUxa8lv7ZOmAPPkdmzDhc16dG7lZuNEX3Ryu9kHV7JR25jYSU+JvXOytTUq93HLEVi5bjwzm7pF8kDgJkqXxq8eIqy/V6bttaDSvYvoNwaVsNN0wdppyKe2JA4QhXy3zETE/ANNrtBDVJPmy8rpNDYFPFyY+3MHRuVNh/VxC1J4eXIbzxc4IUrTx2JvlAEV0WlsteIoilwltzK4OhAj2mWaZcqkV/L21Aaa5VYqnkz+mCNj88Ye0ztqbp818DrzqoeFkjj3nYFsynVNjVSYXqhJ8GM8g41oS1YLvZZzuFOqOOhsAPPLCLWlVz2xAYgyZxSMaYy8mBPhOAn6KzWBJ/nuO34BN1kOCxxxLKIRGQjCVSgzQLETjnw==
+X-Forefront-Antispam-Report-Untrusted: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB8PR04MB6523.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230025)(4636009)(39830400003)(346002)(376002)(136003)(366004)(396003)(451199018)(31686004)(54906003)(36756003)(6486002)(42882007)(316002)(31696002)(83380400001)(186003)(2906002)(44832011)(5660300002)(8936002)(66556008)(66946007)(6916009)(4326008)(8676002)(41300700001)(478600001)(6506007)(26005)(6512007)(53546011)(66476007)(2616005)(7416002)(52116002)(36916002)(83170400001)(38100700002)(38350700002)(43740500002)(45980500001);DIR:OUT;SFP:1101;
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB9PR04MB9702
+X-CodeTwo-MessageID: fd528e66-bfd8-4a5d-b2d3-1b5eff61c4bd.20230306063140@westeu12-emailsignatures-cloud.codetwo.com
+X-CodeTwoProcessed: true
+X-EOPAttributedMessage: 0
+X-MS-Exchange-Transport-CrossTenantHeadersStripped: HE1EUR01FT027.eop-EUR01.prod.protection.outlook.com
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id-Prvs: 3fc02a5a-664d-43c9-f278-08db1e0c7084
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: adxxWCMTQSPd2TqISB/gyx9AHvVgqLxXwV1oyBNObuf3Cp5spl71OCg+xECm4aAfazbNkbSk8Rl6ExWNhb1eiNVnpkS+PmUwr22XutXKN+HbZgoQN19LS7sRkOpyotkmiyVoqeCSLwhhveK/IGux8c1s/PXoYFjq021gduWORb6jHR0lLnAv0z9DYiK4Ak8WeyOoe4fdDZnxbAb7b0k8jsaCCri326nIcXuK2MgAanelY3ZVqs8khdaYlK8kjW7NfWN3XX60a6IKqOIR0gDkJPReUqpqdpjUBC6d1g/mlzqiXIQYnxGMuoGjTd5AhUN8J2oFb/13TJmp5/jGaBXNfpAGQJ8QFdaJo7bVe84+bFszU+kiQWGQepJyGsSH3hj50n4ZqKXJAx+A9gS9oYBd1AAT/qTjgrfJKqMa9cNmiYK+60EPQte4W8ziVq0nFWHBofRLMQFNOefiy3TJtT6OH8RoK/rWHIabksf+OkthFiy7eNfyJg8N9056TgIa4dWzSgdTyDXq3hAWINfbB56UkHXBoD4ZEpMvpQKuDapx9H+jUqz9sldcNO4Uzw+LQqfDAEoTHOvT17du0vEVbqJGBxKHDomDGlyc2+ieEcfokWIubh3v1sjZSAuDgvJfmG14WdjUh6ON+WFUI1U8FnHtqKudlG27WMFO1+Ao2qEt5KmabrJF2iF2x6QYblIpwIOz
+X-Forefront-Antispam-Report: CIP:13.93.42.39;CTRY:NL;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:westeu12-emailsignatures-cloud.codetwo.com;PTR:westeu12-emailsignatures-cloud.codetwo.com;CAT:NONE;SFS:(13230025)(4636009)(39830400003)(136003)(346002)(396003)(376002)(451199018)(36840700001)(46966006)(186003)(7636003)(7596003)(356005)(83170400001)(8936002)(36860700001)(4326008)(6916009)(8676002)(41300700001)(44832011)(2906002)(70586007)(70206006)(5660300002)(7416002)(47076005)(36916002)(478600001)(2616005)(53546011)(6512007)(6506007)(26005)(336012)(6486002)(42882007)(316002)(54906003)(36756003)(40480700001)(82310400005)(31696002)(15974865002)(83380400001)(31686004)(43740500002);DIR:OUT;SFP:1101;
+X-OriginatorOrg: topic.nl
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Mar 2023 06:31:41.6688
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 4eb81749-ad46-412e-ade6-08db1e0c72fb
+X-MS-Exchange-CrossTenant-Id: 449607a5-3517-482d-8d16-41dd868cbda3
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=449607a5-3517-482d-8d16-41dd868cbda3;Ip=[13.93.42.39];Helo=[westeu12-emailsignatures-cloud.codetwo.com]
+X-MS-Exchange-CrossTenant-AuthSource: HE1EUR01FT027.eop-EUR01.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PAXPR04MB8475
+X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add basic support for Unisoc's UMS512, with this patch,
-the board ums512-1h10 can run into console.
 
-Signed-off-by: Chunyan Zhang <chunyan.zhang@unisoc.com>
----
-Changes since V2:
-* Removed redundant gpio.h from ums512-1h10.dts
+Met vriendelijke groet / kind regards,=0A=
+=0A=
+Mike Looijmans=0A=
+System Expert=0A=
+=0A=
+=0A=
+TOPIC Embedded Products B.V.=0A=
+Materiaalweg 4, 5681 RJ Best=0A=
+The Netherlands=0A=
+=0A=
+T: +31 (0) 499 33 69 69=0A=
+E: mike.looijmans@topicproducts.com=0A=
+W: www.topic.nl=0A=
+=0A=
+Please consider the environment before printing this e-mail=0A=
+On 04-03-2023 18:57, Jonathan Cameron wrote:
+> On Tue, 28 Feb 2023 07:31:51 +0100
+> Mike Looijmans <mike.looijmans@topic.nl> wrote:
+>
+>> The ADS1100 is a 16-bit ADC (at 8 samples per second).
+>> The ADS1000 is similar, but has a fixed data rate.
+>>
+>> Signed-off-by: Mike Looijmans <mike.looijmans@topic.nl>
+> Hi Mike,
+>
+> A few minor things + one request for a test as trying to chase a possible
+> ref count overflow around the runtime_pm was giving me a enough of a head=
+ache
+> that it's easier to ask you just to poke it and see.  If it doesn't fail =
+as
+> I expect I'll take a closer look!
 
-Changes since v1:
-* Addressed comments:
-  - Removed earlycon bootargs;
-  - Moved up gic reg as second property;
-  - Moved two sdio nodes under to the apb bus node;
-  - Renamed node name of all fixed clocks;
-  - Fixed warnings reported by dtbs_check.
----
- arch/arm64/boot/dts/sprd/Makefile        |   3 +-
- arch/arm64/boot/dts/sprd/ums512-1h10.dts |  61 ++
- arch/arm64/boot/dts/sprd/ums512.dtsi     | 911 +++++++++++++++++++++++
- 3 files changed, 974 insertions(+), 1 deletion(-)
- create mode 100644 arch/arm64/boot/dts/sprd/ums512-1h10.dts
- create mode 100644 arch/arm64/boot/dts/sprd/ums512.dtsi
+Will do, but it may take a few days to get access to the hardware again.=20
+I'll report on that later.
 
-diff --git a/arch/arm64/boot/dts/sprd/Makefile b/arch/arm64/boot/dts/sprd/Makefile
-index f4f1f5148cc2..97522fb0bf66 100644
---- a/arch/arm64/boot/dts/sprd/Makefile
-+++ b/arch/arm64/boot/dts/sprd/Makefile
-@@ -1,4 +1,5 @@
- # SPDX-License-Identifier: GPL-2.0
- dtb-$(CONFIG_ARCH_SPRD) += sc9836-openphone.dtb \
- 			sp9860g-1h10.dtb	\
--			sp9863a-1h10.dtb
-+			sp9863a-1h10.dtb	\
-+			ums512-1h10.dtb
-diff --git a/arch/arm64/boot/dts/sprd/ums512-1h10.dts b/arch/arm64/boot/dts/sprd/ums512-1h10.dts
-new file mode 100644
-index 000000000000..46890f6d140d
---- /dev/null
-+++ b/arch/arm64/boot/dts/sprd/ums512-1h10.dts
-@@ -0,0 +1,61 @@
-+// SPDX-License-Identifier: (GPL-2.0 OR MIT)
-+/*
-+ * Unisoc UMS512-1h10 boards DTS file
-+ *
-+ * Copyright (C) 2021, Unisoc Inc.
-+ */
-+
-+/dts-v1/;
-+
-+#include "ums512.dtsi"
-+
-+/ {
-+	model = "Unisoc UMS512-1H10 Board";
-+
-+	compatible = "sprd,ums512-1h10", "sprd,ums512";
-+
-+	aliases {
-+		serial0 = &uart0;
-+		serial1 = &uart1;
-+	};
-+
-+	memory@80000000 {
-+		device_type = "memory";
-+		reg = <0x0 0x80000000 0x0 0x80000000>;
-+	};
-+
-+	chosen {
-+		stdout-path = "serial1:115200n8";
-+	};
-+};
-+
-+&uart0 {
-+	status = "okay";
-+};
-+
-+&uart1 {
-+	status = "okay";
-+};
-+
-+/* SD card */
-+&sdio0 {
-+	bus-width = <4>;
-+	no-sdio;
-+	no-mmc;
-+	sprd,phy-delay-sd-uhs-sdr104 = <0x7f 0x73 0x72 0x72>;
-+	sprd,phy-delay-sd-uhs-sdr50 = <0x6e 0x7f 0x01 0x01>;
-+	sprd,phy-delay-sd-highspeed = <0x7f 0x1a 0x9a 0x9a>;
-+	sprd,phy-delay-legacy = <0x7f 0x1a 0x9a 0x9a>;
-+	sd-uhs-sdr104;
-+	sd-uhs-sdr50;
-+};
-+
-+/* EMMC storage */
-+&sdio3 {
-+	status = "okay";
-+	bus-width = <8>;
-+	no-sdio;
-+	no-sd;
-+	non-removable;
-+	cap-mmc-hw-reset;
-+};
-diff --git a/arch/arm64/boot/dts/sprd/ums512.dtsi b/arch/arm64/boot/dts/sprd/ums512.dtsi
-new file mode 100644
-index 000000000000..c9b8f0149b2d
---- /dev/null
-+++ b/arch/arm64/boot/dts/sprd/ums512.dtsi
-@@ -0,0 +1,911 @@
-+// SPDX-License-Identifier: (GPL-2.0 OR MIT)
-+/*
-+ * Unisoc UMS512 SoC DTS file
-+ *
-+ * Copyright (C) 2021, Unisoc Inc.
-+ */
-+
-+#include <dt-bindings/clock/sprd,ums512-clk.h>
-+#include <dt-bindings/interrupt-controller/arm-gic.h>
-+
-+/ {
-+	interrupt-parent = <&gic>;
-+	#address-cells = <2>;
-+	#size-cells = <2>;
-+
-+	cpus {
-+		#address-cells = <2>;
-+		#size-cells = <0>;
-+
-+		cpu-map {
-+			cluster0 {
-+				core0 {
-+					cpu = <&CPU0>;
-+				};
-+				core1 {
-+					cpu = <&CPU1>;
-+				};
-+				core2 {
-+					cpu = <&CPU2>;
-+				};
-+				core3 {
-+					cpu = <&CPU3>;
-+				};
-+				core4 {
-+					cpu = <&CPU4>;
-+				};
-+				core5 {
-+					cpu = <&CPU5>;
-+				};
-+				core6 {
-+					cpu = <&CPU6>;
-+				};
-+				core7 {
-+					cpu = <&CPU7>;
-+				};
-+			};
-+		};
-+
-+		CPU0: cpu@0 {
-+			device_type = "cpu";
-+			compatible = "arm,cortex-a55";
-+			reg = <0x0 0x0>;
-+			enable-method = "psci";
-+			cpu-idle-states = <&CORE_PD>;
-+		};
-+
-+		CPU1: cpu@100 {
-+			device_type = "cpu";
-+			compatible = "arm,cortex-a55";
-+			reg = <0x0 0x100>;
-+			enable-method = "psci";
-+			cpu-idle-states = <&CORE_PD>;
-+		};
-+
-+		CPU2: cpu@200 {
-+			device_type = "cpu";
-+			compatible = "arm,cortex-a55";
-+			reg = <0x0 0x200>;
-+			enable-method = "psci";
-+			cpu-idle-states = <&CORE_PD>;
-+		};
-+
-+		CPU3: cpu@300 {
-+			device_type = "cpu";
-+			compatible = "arm,cortex-a55";
-+			reg = <0x0 0x300>;
-+			enable-method = "psci";
-+			cpu-idle-states = <&CORE_PD>;
-+		};
-+
-+		CPU4: cpu@400 {
-+			device_type = "cpu";
-+			compatible = "arm,cortex-a55";
-+			reg = <0x0 0x400>;
-+			enable-method = "psci";
-+			cpu-idle-states = <&CORE_PD>;
-+		};
-+
-+		CPU5: cpu@500 {
-+			device_type = "cpu";
-+			compatible = "arm,cortex-a55";
-+			reg = <0x0 0x500>;
-+			enable-method = "psci";
-+			cpu-idle-states = <&CORE_PD>;
-+		};
-+
-+		CPU6: cpu@600 {
-+			device_type = "cpu";
-+			compatible = "arm,cortex-a55";
-+			reg = <0x0 0x600>;
-+			enable-method = "psci";
-+			cpu-idle-states = <&CORE_PD>;
-+		};
-+
-+		CPU7: cpu@700 {
-+			device_type = "cpu";
-+			compatible = "arm,cortex-a55";
-+			reg = <0x0 0x700>;
-+			enable-method = "psci";
-+			cpu-idle-states = <&CORE_PD>;
-+		};
-+	};
-+
-+	idle-states {
-+		entry-method = "psci";
-+		CORE_PD: core-pd {
-+			compatible = "arm,idle-state";
-+			entry-latency-us = <4000>;
-+			exit-latency-us = <4000>;
-+			min-residency-us = <10000>;
-+			local-timer-stop;
-+			arm,psci-suspend-param = <0x00010000>;
-+		};
-+	};
-+
-+	psci {
-+		compatible = "arm,psci-0.2";
-+		method = "smc";
-+	};
-+
-+	timer {
-+		compatible = "arm,armv8-timer";
-+		interrupts = <GIC_PPI 13 IRQ_TYPE_LEVEL_HIGH>, /* Physical Secure PPI */
-+			     <GIC_PPI 14 IRQ_TYPE_LEVEL_HIGH>, /* Physical Non-Secure PPI */
-+			     <GIC_PPI 11 IRQ_TYPE_LEVEL_HIGH>, /* Virtual PPI */
-+			     <GIC_PPI 10 IRQ_TYPE_LEVEL_HIGH>; /* Hipervisor PPI */
-+	};
-+
-+	pmu {
-+		compatible = "arm,armv8-pmuv3";
-+		interrupts = <GIC_SPI 112 IRQ_TYPE_LEVEL_HIGH>,
-+			     <GIC_SPI 113 IRQ_TYPE_LEVEL_HIGH>,
-+			     <GIC_SPI 114 IRQ_TYPE_LEVEL_HIGH>,
-+			     <GIC_SPI 115 IRQ_TYPE_LEVEL_HIGH>,
-+			     <GIC_SPI 116 IRQ_TYPE_LEVEL_HIGH>,
-+			     <GIC_SPI 117 IRQ_TYPE_LEVEL_HIGH>,
-+			     <GIC_SPI 118 IRQ_TYPE_LEVEL_HIGH>,
-+			     <GIC_SPI 119 IRQ_TYPE_LEVEL_HIGH>;
-+	};
-+
-+	soc: soc {
-+		compatible = "simple-bus";
-+		#address-cells = <2>;
-+		#size-cells = <2>;
-+		ranges;
-+
-+		gic: interrupt-controller@12000000 {
-+			compatible = "arm,gic-v3";
-+			reg = <0x0 0x12000000 0 0x20000>,	/* GICD */
-+			      <0x0 0x12040000 0 0x100000>;	/* GICR */
-+			#interrupt-cells = <3>;
-+			#address-cells = <2>;
-+			#size-cells = <2>;
-+			ranges;
-+			redistributor-stride = <0x0 0x20000>;	/* 128KB stride */
-+			#redistributor-regions = <1>;
-+			interrupt-controller;
-+			interrupts = <GIC_PPI 9 IRQ_TYPE_LEVEL_HIGH>;
-+		};
-+
-+		ap_ahb_regs: syscon@20100000 {
-+			compatible = "sprd,ums512-glbregs", "syscon",
-+				     "simple-mfd";
-+			reg = <0 0x20100000 0 0x4000>;
-+			#address-cells = <1>;
-+			#size-cells = <1>;
-+			ranges = <0 0 0x20100000 0x4000>;
-+
-+			apahb_gate: clock-controller@0 {
-+				compatible = "sprd,ums512-apahb-gate";
-+				reg = <0x0 0x3000>;
-+				clocks = <&ext_26m>;
-+				clock-names = "ext-26m";
-+				#clock-cells = <1>;
-+			};
-+		};
-+
-+		pub_apb_regs: syscon@31050000 {
-+			compatible = "sprd,ums512-glbregs", "syscon",
-+				     "simple-mfd";
-+			reg = <0 0x31050000 0 0x9000>;
-+		};
-+
-+		top_dvfs_apb_regs: syscon@322a0000 {
-+			compatible = "sprd,ums512-glbregs", "syscon",
-+				     "simple-mfd";
-+			reg = <0 0x322a0000 0 0x8000>;
-+		};
-+
-+		ap_intc0_regs: syscon@32310000 {
-+			compatible = "sprd,ums512-glbregs", "syscon",
-+				     "simple-mfd";
-+			reg = <0 0x32310000 0 0x1000>;
-+		};
-+
-+		ap_intc1_regs: syscon@32320000 {
-+			compatible = "sprd,ums512-glbregs", "syscon",
-+				     "simple-mfd";
-+			reg = <0 0x32320000 0 0x1000>;
-+		};
-+
-+		ap_intc2_regs: syscon@32330000 {
-+			compatible = "sprd,ums512-glbregs", "syscon",
-+				     "simple-mfd";
-+			reg = <0 0x32330000 0 0x1000>;
-+		};
-+
-+		ap_intc3_regs: syscon@32340000 {
-+			compatible = "sprd,ums512-glbregs", "syscon",
-+				     "simple-mfd";
-+			reg = <0 0x32340000 0 0x1000>;
-+		};
-+
-+		ap_intc4_regs: syscon@32350000 {
-+			compatible = "sprd,ums512-glbregs", "syscon",
-+				     "simple-mfd";
-+			reg = <0 0x32350000 0 0x1000>;
-+		};
-+
-+		ap_intc5_regs: syscon@32360000 {
-+			compatible = "sprd,ums512-glbregs", "syscon",
-+				     "simple-mfd";
-+			reg = <0 0x32360000 0 0x1000>;
-+		};
-+
-+		anlg_phy_g0_regs: syscon@32390000 {
-+			compatible = "sprd,ums512-glbregs", "syscon",
-+				     "simple-mfd";
-+			reg = <0 0x32390000 0 0x3000>;
-+			#address-cells = <1>;
-+			#size-cells = <1>;
-+			ranges = <0 0 0x32390000 0x3000>;
-+
-+			dpll0: clock-controller@0 {
-+				compatible = "sprd,ums512-g0-pll";
-+				reg = <0x0 0x100>;
-+				#clock-cells = <1>;
-+			};
-+		};
-+
-+		anlg_phy_g2_regs: syscon@323b0000 {
-+			compatible = "sprd,ums512-glbregs", "syscon",
-+				     "simple-mfd";
-+			reg = <0 0x323b0000 0 0x3000>;
-+			#address-cells = <1>;
-+			#size-cells = <1>;
-+			ranges = <0 0 0x323b0000 0x3000>;
-+
-+			mpll1: clock-controller@0 {
-+				compatible = "sprd,ums512-g2-pll";
-+				reg = <0x0 0x100>;
-+				#clock-cells = <1>;
-+			};
-+		};
-+
-+		anlg_phy_g3_regs: syscon@323c0000 {
-+			compatible = "sprd,ums512-glbregs", "syscon",
-+				     "simple-mfd";
-+			reg = <0 0x323c0000 0 0x3000>;
-+			#address-cells = <1>;
-+			#size-cells = <1>;
-+			ranges = <0 0 0x323c0000 0x3000>;
-+
-+			pll1: clock-controller@0 {
-+				compatible = "sprd,ums512-g3-pll";
-+				reg = <0x0 0x3000>;
-+				clocks = <&ext_26m>;
-+				clock-names = "ext-26m";
-+				#clock-cells = <1>;
-+			};
-+		};
-+
-+		anlg_phy_gc_regs: syscon@323e0000 {
-+			compatible = "sprd,ums512-glbregs", "syscon",
-+				     "simple-mfd";
-+			reg = <0 0x323e0000 0 0x3000>;
-+			#address-cells = <1>;
-+			#size-cells = <1>;
-+			ranges = <0 0 0x323e0000 0x3000>;
-+
-+			pll2: clock-controller@0 {
-+				compatible = "sprd,ums512-gc-pll";
-+				reg = <0x0 0x100>;
-+				clock-names = "ext-26m";
-+				#clock-cells = <1>;
-+			};
-+		};
-+
-+		anlg_phy_g10_regs: syscon@323f0000 {
-+			compatible = "sprd,ums512-glbregs", "syscon",
-+				     "simple-mfd";
-+			reg = <0 0x323f0000 0 0x3000>;
-+		};
-+
-+		aon_apb_regs: syscon@327d0000 {
-+			compatible = "sprd,ums512-glbregs", "syscon",
-+				     "simple-mfd";
-+			reg = <0 0x327d0000 0 0x3000>;
-+			#address-cells = <1>;
-+			#size-cells = <1>;
-+			ranges = <0 0 0x327d0000 0x3000>;
-+
-+			aonapb_gate: clock-controller@0 {
-+				compatible = "sprd,ums512-aon-gate";
-+				reg = <0x0 0x3000>;
-+				clocks = <&ext_26m>;
-+				clock-names = "ext-26m";
-+				#clock-cells = <1>;
-+			};
-+		};
-+
-+		pmu_apb_regs: syscon@327e0000 {
-+			compatible = "sprd,ums512-glbregs", "syscon",
-+				     "simple-mfd";
-+			reg = <0 0x327e0000 0 0x3000>;
-+			#address-cells = <1>;
-+			#size-cells = <1>;
-+			ranges = <0 0 0x327e0000 0x3000>;
-+
-+			pmu_gate: clock-controller@0 {
-+				compatible = "sprd,ums512-pmu-gate";
-+				reg = <0x0 0x3000>;
-+				clocks = <&ext_26m>;
-+				clock-names = "ext-26m";
-+				#clock-cells = <1>;
-+			};
-+		};
-+
-+		audcp_apb_regs: syscon@3350d000 {
-+			compatible = "sprd,ums512-glbregs", "syscon",
-+				     "simple-mfd";
-+			reg = <0 0x3350d000 0 0x1000>;
-+			#address-cells = <1>;
-+			#size-cells = <1>;
-+			ranges = <0 0 0x3350d000 0x1000>;
-+
-+			audcpapb_gate: clock-controller@0 {
-+				compatible = "sprd,ums512-audcpapb-gate";
-+				reg = <0x0 0x300>;
-+				#clock-cells = <1>;
-+			};
-+		};
-+
-+		audcp_ahb_regs: syscon@335e0000 {
-+			compatible = "sprd,ums512-glbregs", "syscon",
-+				     "simple-mfd";
-+			reg = <0 0x335e0000 0 0x1000>;
-+			#address-cells = <1>;
-+			#size-cells = <1>;
-+			ranges = <0 0 0x335e0000 0x1000>;
-+
-+			audcpahb_gate: clock-controller@0 {
-+				compatible = "sprd,ums512-audcpahb-gate";
-+				reg = <0x0 0x300>;
-+				#clock-cells = <1>;
-+			};
-+		};
-+
-+		gpu_apb_regs: syscon@60100000 {
-+			compatible = "sprd,ums512-glbregs", "syscon",
-+				     "simple-mfd";
-+			reg = <0 0x60100000 0 0x3000>;
-+			#address-cells = <1>;
-+			#size-cells = <1>;
-+			ranges = <0 0 0x60100000 0x3000>;
-+
-+			gpu_clk: clock-controller@0 {
-+				compatible = "sprd,ums512-gpu-clk";
-+				clocks = <&ext_26m>;
-+				clock-names = "ext-26m";
-+				reg = <0x0 0x100>;
-+				#clock-cells = <1>;
-+			};
-+		};
-+
-+		gpu_dvfs_apb_regs: syscon@60110000 {
-+			compatible = "sprd,ums512-glbregs", "syscon",
-+				     "simple-mfd";
-+			reg = <0 0x60110000 0 0x3000>;
-+		};
-+
-+		mm_ahb_regs: syscon@62200000 {
-+			compatible = "sprd,ums512-glbregs", "syscon",
-+				     "simple-mfd";
-+			reg = <0 0x62200000 0 0x3000>;
-+			#address-cells = <1>;
-+			#size-cells = <1>;
-+			ranges = <0 0 0x62200000 0x3000>;
-+
-+			mm_gate: clock-controller@0 {
-+				compatible = "sprd,ums512-mm-gate-clk";
-+				reg = <0x0 0x3000>;
-+				#clock-cells = <1>;
-+			};
-+		};
-+
-+		ap_apb_regs: syscon@71000000 {
-+			compatible = "sprd,ums512-glbregs", "syscon",
-+				     "simple-mfd";
-+			reg = <0 0x71000000 0 0x3000>;
-+			#address-cells = <1>;
-+			#size-cells = <1>;
-+			ranges = <0 0 0x71000000 0x3000>;
-+
-+			apapb_gate: clock-controller@0 {
-+				compatible = "sprd,ums512-apapb-gate";
-+				reg = <0x0 0x3000>;
-+				#clock-cells = <1>;
-+			};
-+		};
-+
-+		ap_clk: clock-controller@20200000 {
-+			compatible = "sprd,ums512-ap-clk";
-+			reg = <0 0x20200000 0 0x1000>;
-+			clocks = <&ext_26m>;
-+			clock-names = "ext-26m";
-+			#clock-cells = <1>;
-+		};
-+
-+		aon_clk: clock-controller@32080000 {
-+			compatible = "sprd,ums512-aonapb-clk";
-+			reg = <0 0x32080000 0 0x1000>;
-+			clocks = <&ext_26m>, <&ext_32k>,
-+				 <&ext_4m>, <&rco_100m>;
-+			clock-names = "ext-26m", "ext-32k",
-+				      "ext-4m", "rco-100m";
-+			#clock-cells = <1>;
-+		};
-+
-+		mm_clk: clock-controller@62100000 {
-+			compatible = "sprd,ums512-mm-clk";
-+			reg = <0 0x62100000 0 0x1000>;
-+			clocks = <&ext_26m>;
-+			clock-names = "ext-26m";
-+			#clock-cells = <1>;
-+		};
-+
-+		/* SoC Funnel */
-+		funnel@3c002000 {
-+			compatible = "arm,coresight-dynamic-funnel", "arm,primecell";
-+			reg = <0 0x3c002000 0 0x1000>;
-+			clocks = <&ext_26m>;
-+			clock-names = "apb_pclk";
-+
-+			out-ports {
-+				port {
-+					funnel_soc_out_port: endpoint {
-+						remote-endpoint = <&etb_in>;
-+					};
-+				};
-+			};
-+
-+			in-ports {
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+
-+				port@1 {
-+					reg = <1>;
-+					funnel_soc_in_port: endpoint {
-+						remote-endpoint =
-+						<&funnel_corinth_out_port>;
-+					};
-+				};
-+			};
-+		};
-+
-+		/* SoC ETF */
-+		soc_etb: etb@3c003000 {
-+			compatible = "arm,coresight-tmc", "arm,primecell";
-+			reg = <0 0x3c003000 0 0x1000>;
-+			clocks = <&ext_26m>;
-+			clock-names = "apb_pclk";
-+
-+			in-ports {
-+				port {
-+					etb_in: endpoint {
-+						remote-endpoint =
-+						<&funnel_soc_out_port>;
-+					};
-+				};
-+			};
-+		};
-+
-+		/* AP-CPU Funnel for core3/4/5/7 */
-+		funnel@3e001000 {
-+			compatible = "arm,coresight-dynamic-funnel", "arm,primecell";
-+			reg = <0 0x3e001000 0 0x1000>;
-+			clocks = <&ext_26m>;
-+			clock-names = "apb_pclk";
-+
-+			out-ports {
-+				port {
-+					funnel_corinth_lit_out_port: endpoint {
-+						remote-endpoint =
-+						<&corinth_etf_lit_in>;
-+					};
-+				};
-+			};
-+
-+			in-ports {
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+
-+				port@0 {
-+					reg = <0>;
-+					funnel_core_in_port3: endpoint {
-+						remote-endpoint = <&etm3_out>;
-+					};
-+				};
-+
-+				port@1 {
-+					reg = <1>;
-+					funnel_core_in_port4: endpoint {
-+						remote-endpoint = <&etm4_out>;
-+					};
-+				};
-+
-+				port@2 {
-+					reg = <2>;
-+					funnel_core_in_port5: endpoint {
-+						remote-endpoint = <&etm5_out>;
-+					};
-+				};
-+
-+				port@3 {
-+					reg = <3>;
-+					funnel_core_in_port7: endpoint {
-+						remote-endpoint = <&etm7_out>;
-+					};
-+				};
-+			};
-+		};
-+
-+		/* AP-CPU ETF for little cores */
-+		etf@3e002000 {
-+			compatible = "arm,coresight-tmc", "arm,primecell";
-+			reg = <0 0x3e002000 0 0x1000>;
-+			clocks = <&ext_26m>;
-+			clock-names = "apb_pclk";
-+
-+			out-ports {
-+				port {
-+					corinth_etf_lit_out: endpoint {
-+						remote-endpoint =
-+						<&funnel_corinth_from_lit_in_port>;
-+					};
-+				};
-+			};
-+
-+			in-ports {
-+				port {
-+					corinth_etf_lit_in: endpoint {
-+						remote-endpoint =
-+						<&funnel_corinth_lit_out_port>;
-+					};
-+				};
-+			};
-+		};
-+
-+		/* AP-CPU ETF for big cores */
-+		etf@3e003000 {
-+			compatible = "arm,coresight-tmc", "arm,primecell";
-+			reg = <0 0x3e003000 0 0x1000>;
-+			clocks = <&ext_26m>;
-+			clock-names = "apb_pclk";
-+
-+			out-ports {
-+				port {
-+					corinth_etf_big_out: endpoint {
-+						remote-endpoint =
-+						<&funnel_corinth_from_big_in_port>;
-+					};
-+				};
-+			};
-+
-+			in-ports {
-+				port {
-+					corinth_etf_big_in: endpoint {
-+						remote-endpoint =
-+						<&funnel_corinth_big_out_port>;
-+					};
-+				};
-+			};
-+		};
-+
-+		/* Funnel to SoC */
-+		funnel@3e004000 {
-+			compatible = "arm,coresight-dynamic-funnel", "arm,primecell";
-+			reg = <0 0x3e004000 0 0x1000>;
-+			clocks = <&ext_26m>;
-+			clock-names = "apb_pclk";
-+
-+			out-ports {
-+				port {
-+					funnel_corinth_out_port: endpoint {
-+						remote-endpoint =
-+						<&funnel_soc_in_port>;
-+					};
-+				};
-+			};
-+
-+			in-ports {
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+
-+				port@0 {
-+					reg = <0>;
-+					funnel_corinth_from_lit_in_port: endpoint {
-+						remote-endpoint = <&corinth_etf_lit_out>;
-+					};
-+				};
-+
-+				port@1 {
-+					reg = <1>;
-+					funnel_corinth_from_big_in_port: endpoint {
-+						remote-endpoint = <&corinth_etf_big_out>;
-+					};
-+				};
-+			};
-+		};
-+
-+		/* AP-CPU Funnel for core0/1/2/6 */
-+		funnel@3e005000 {
-+			compatible = "arm,coresight-dynamic-funnel", "arm,primecell";
-+			reg = <0 0x3e005000 0 0x1000>;
-+			clocks = <&ext_26m>;
-+			clock-names = "apb_pclk";
-+
-+			out-ports {
-+				port {
-+					funnel_corinth_big_out_port: endpoint {
-+						remote-endpoint = <&corinth_etf_big_in>;
-+					};
-+				};
-+			};
-+
-+			in-ports {
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+
-+				port@0 {
-+					reg = <0>;
-+					funnel_core_in_port0: endpoint {
-+						remote-endpoint = <&etm0_out>;
-+					};
-+				};
-+
-+				port@1 {
-+					reg = <1>;
-+					funnel_core_in_port1: endpoint {
-+						remote-endpoint = <&etm1_out>;
-+					};
-+				};
-+
-+				port@2 {
-+					reg = <2>;
-+					funnel_core_in_port2: endpoint {
-+						remote-endpoint = <&etm2_out>;
-+					};
-+				};
-+
-+				port@3 {
-+					reg = <3>;
-+					funnel_core_in_port6: endpoint {
-+						remote-endpoint = <&etm6_out>;
-+					};
-+				};
-+			};
-+		};
-+
-+		etm0: etm@3f040000 {
-+			compatible = "arm,coresight-etm4x", "arm,primecell";
-+			reg = <0 0x3f040000 0 0x1000>;
-+			cpu = <&CPU0>;
-+			clocks = <&ext_26m>, <&aon_clk CLK_CSSYS>, <&pll2 CLK_TWPLL_512M>;
-+			clock-names = "apb_pclk", "clk_cs", "cs_src";
-+
-+			out-ports {
-+				port {
-+					etm0_out: endpoint {
-+						remote-endpoint =
-+						<&funnel_core_in_port0>;
-+					};
-+				};
-+			};
-+		};
-+
-+		etm1: etm@3f140000 {
-+			compatible = "arm,coresight-etm4x", "arm,primecell";
-+			reg = <0 0x3f140000 0 0x1000>;
-+			cpu = <&CPU1>;
-+			clocks = <&ext_26m>, <&aon_clk CLK_CSSYS>, <&pll2 CLK_TWPLL_512M>;
-+			clock-names = "apb_pclk", "clk_cs", "cs_src";
-+
-+			out-ports {
-+				port {
-+					etm1_out: endpoint {
-+						remote-endpoint =
-+						<&funnel_core_in_port1>;
-+					};
-+				};
-+			};
-+		};
-+
-+		etm2: etm@3f240000 {
-+			compatible = "arm,coresight-etm4x", "arm,primecell";
-+			reg = <0 0x3f240000 0 0x1000>;
-+			cpu = <&CPU2>;
-+			clocks = <&ext_26m>, <&aon_clk CLK_CSSYS>, <&pll2 CLK_TWPLL_512M>;
-+			clock-names = "apb_pclk", "clk_cs", "cs_src";
-+
-+			out-ports {
-+				port {
-+					etm2_out: endpoint {
-+						remote-endpoint =
-+						<&funnel_core_in_port2>;
-+					};
-+				};
-+			};
-+		};
-+
-+		etm3: etm@3f340000 {
-+			compatible = "arm,coresight-etm4x", "arm,primecell";
-+			reg = <0 0x3f340000 0 0x1000>;
-+			cpu = <&CPU3>;
-+			clocks = <&ext_26m>, <&aon_clk CLK_CSSYS>, <&pll2 CLK_TWPLL_512M>;
-+			clock-names = "apb_pclk", "clk_cs", "cs_src";
-+
-+			out-ports {
-+				port {
-+					etm3_out: endpoint {
-+						remote-endpoint =
-+						<&funnel_core_in_port3>;
-+					};
-+				};
-+			};
-+		};
-+
-+		etm4: etm@3f440000 {
-+			compatible = "arm,coresight-etm4x", "arm,primecell";
-+			reg = <0 0x3f440000 0 0x1000>;
-+			cpu = <&CPU4>;
-+			clocks = <&ext_26m>, <&aon_clk CLK_CSSYS>, <&pll2 CLK_TWPLL_512M>;
-+			clock-names = "apb_pclk", "clk_cs", "cs_src";
-+
-+			out-ports {
-+				port {
-+					etm4_out: endpoint {
-+						remote-endpoint =
-+						<&funnel_core_in_port4>;
-+					};
-+				};
-+			};
-+		};
-+
-+		etm5: etm@3f540000 {
-+			compatible = "arm,coresight-etm4x", "arm,primecell";
-+			reg = <0 0x3f540000 0 0x1000>;
-+			cpu = <&CPU5>;
-+			clocks = <&ext_26m>, <&aon_clk CLK_CSSYS>, <&pll2 CLK_TWPLL_512M>;
-+			clock-names = "apb_pclk", "clk_cs", "cs_src";
-+
-+			out-ports {
-+				port {
-+					etm5_out: endpoint {
-+						remote-endpoint =
-+						<&funnel_core_in_port5>;
-+					};
-+				};
-+			};
-+		};
-+
-+		etm6: etm@3f640000 {
-+			compatible = "arm,coresight-etm4x", "arm,primecell";
-+			reg = <0 0x3f640000 0 0x1000>;
-+			cpu = <&CPU6>;
-+			clocks = <&ext_26m>, <&aon_clk CLK_CSSYS>, <&pll2 CLK_TWPLL_512M>;
-+			clock-names = "apb_pclk", "clk_cs", "cs_src";
-+
-+			out-ports {
-+				port {
-+					etm6_out: endpoint {
-+						remote-endpoint =
-+						<&funnel_core_in_port6>;
-+					};
-+				};
-+			};
-+		};
-+
-+		etm7: etm@3f740000 {
-+			compatible = "arm,coresight-etm4x", "arm,primecell";
-+			reg = <0 0x3f740000 0 0x1000>;
-+			cpu = <&CPU7>;
-+			clocks = <&ext_26m>, <&aon_clk CLK_CSSYS>, <&pll2 CLK_TWPLL_512M>;
-+			clock-names = "apb_pclk", "clk_cs", "cs_src";
-+
-+			out-ports {
-+				port {
-+					etm7_out: endpoint {
-+						remote-endpoint =
-+						<&funnel_core_in_port7>;
-+					};
-+				};
-+			};
-+		};
-+
-+		apb@70000000 {
-+			compatible = "simple-bus";
-+			#address-cells = <1>;
-+			#size-cells = <1>;
-+			ranges = <0 0x0 0x70000000 0x10000000>;
-+
-+			uart0: serial@0 {
-+				compatible = "sprd,ums512-uart",
-+					     "sprd,sc9836-uart";
-+				reg = <0x0 0x100>;
-+				interrupts = <GIC_SPI 2 IRQ_TYPE_LEVEL_HIGH>;
-+				clocks = <&ext_26m>;
-+				status = "disabled";
-+			};
-+
-+			uart1: serial@100000 {
-+				compatible = "sprd,ums512-uart",
-+					     "sprd,sc9836-uart";
-+				reg = <0x100000 0x100>;
-+				interrupts = <GIC_SPI 3 IRQ_TYPE_LEVEL_HIGH>;
-+				clocks = <&ext_26m>;
-+				status = "disabled";
-+			};
-+
-+			sdio0: sdio@1100000 {
-+				compatible = "sprd,sdhci-r11";
-+				reg = <0x1100000 0x1000>;
-+				interrupts = <GIC_SPI 19 IRQ_TYPE_LEVEL_HIGH>;
-+				clock-names = "sdio", "enable";
-+				clocks = <&ap_clk CLK_SDIO0_2X>,
-+					 <&apapb_gate CLK_SDIO0_EB>;
-+				assigned-clocks = <&ap_clk CLK_SDIO0_2X>;
-+				assigned-clock-parents = <&pll1 CLK_RPLL>;
-+				status = "disabled";
-+			};
-+
-+			sdio3: sdio@1400000 {
-+				compatible = "sprd,sdhci-r11";
-+				reg = <0x1400000 0x1000>;
-+				interrupts = <GIC_SPI 10 IRQ_TYPE_LEVEL_HIGH>;
-+				clock-names = "sdio", "enable";
-+				clocks = <&ap_clk CLK_EMMC_2X>,
-+					 <&apapb_gate CLK_EMMC_EB>;
-+				assigned-clocks = <&ap_clk CLK_EMMC_2X>;
-+				assigned-clock-parents = <&pll1 CLK_RPLL>;
-+				status = "disabled";
-+			};
-+		};
-+
-+		aon: bus@32000000 {
-+			compatible = "simple-bus";
-+			#address-cells = <1>;
-+			#size-cells = <1>;
-+			ranges = <0 0x0 0x32000000 0x1000000>;
-+
-+			adi_bus: spi@100000 {
-+				compatible = "sprd,ums512-adi";
-+				reg = <0x100000 0x100000>;
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+				sprd,hw-channels = <2 0x18cc>, <3 0x18cc>, <13 0x1854>, <15 0x1874>,
-+					<17 0x1844>,<19 0x1844>, <21 0x1864>, <30 0x1820>,
-+					<35 0x19b8>, <39 0x19ac>;
-+			};
-+		};
-+	};
-+
-+	ext_26m: clk-26m {
-+		compatible = "fixed-clock";
-+		#clock-cells = <0>;
-+		clock-frequency = <26000000>;
-+		clock-output-names = "ext-26m";
-+	};
-+
-+	ext_32k: clk-32k {
-+		compatible = "fixed-clock";
-+		#clock-cells = <0>;
-+		clock-frequency = <32768>;
-+		clock-output-names = "ext-32k";
-+	};
-+
-+	ext_4m: clk-4m {
-+		compatible = "fixed-clock";
-+		#clock-cells = <0>;
-+		clock-frequency = <4000000>;
-+		clock-output-names = "ext-4m";
-+	};
-+
-+	rco_100m: clk-100m {
-+		compatible = "fixed-clock";
-+		#clock-cells = <0>;
-+		clock-frequency = <100000000>;
-+		clock-output-names = "rco-100m";
-+	};
-+};
--- 
-2.25.1
+>> +static int ads1100_set_scale(struct ads1100_data *data, int val, int va=
+l2)
+>> +{
+>> +	int microvolts;
+>> +	int gain;
+>> +	int i;
+>> +
+>> +	/* With Vdd between 2.7 and 5V, the scale is always below 1 */
+>> +	if (val)
+>> +		return -EINVAL;
+>> +
+>> +	microvolts =3D regulator_get_voltage(data->reg_vdd);
+>> +	/* Calculate: gain =3D ((microvolts / 1000) / (val2 / 1000000)) >> 15 =
+*/
+>> +	gain =3D ((microvolts + BIT(14)) >> 15) * 1000 / val2;
+>> +
+>> +	for (i =3D 0; i < 4; i++) {
+>> +		if (BIT(i) =3D=3D gain) {
+>> +			ads1100_set_config_bits(data, ADS1100_PGA_MASK, i);
+>> +			return 0;
+>> +		}
+>> +	}
+> Andy's suggestion of something like..
+> 	if (!gain)
+> 		return -EINVAL;
+> 	i =3D ffs(gain);
+> 	if (i >=3D 4 || BIT(i) !=3D gain)
+> 		return -EINVAL;
+>
+> 	ads...
+>
+> Is perhaps nicer than the loop.
+
+Yes, takes out a loop.
+
+
+>
+>> +static void ads1100_disable_continuous(void *data)
+>> +{
+>> +	ads1100_set_config_bits(data, ADS1100_CFG_SC, ADS1100_SINGLESHOT);
+>> +}
+>> +
+>> +static int ads1100_probe(struct i2c_client *client)
+>> +{
+>> +	struct iio_dev *indio_dev;
+>> +	struct ads1100_data *data;
+>> +	struct device *dev =3D &client->dev;
+>> +	int ret;
+>> +
+>> +	indio_dev =3D devm_iio_device_alloc(dev, sizeof(*data));
+>> +	if (!indio_dev)
+>> +		return -ENOMEM;
+>> +
+>> +	data =3D iio_priv(indio_dev);
+>> +	i2c_set_clientdata(client, indio_dev);
+> You can avoid the slightly nasty mix of i2c_set_clientdata vs dev_get_drv=
+data()
+> below by taking advantage of the fact you have a local dev pointer.
+>
+> 	dev_set_drvdata(dev, indio_dev);
+> and no confusing mix is left.  Of course it's doing the same thing but to=
+ my
+> mind slightly nicer to use the same one.
+
+Since I don't need indio_dev anywhere, I might as well say this directly:
+
+dev_set_drvdata(dev, data);
+
+(Only the pm_ routines use this)
+
+> ...
+>
+
+--=20
+Mike Looijmans
 
