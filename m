@@ -2,123 +2,285 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5C02C6AC383
-	for <lists+devicetree@lfdr.de>; Mon,  6 Mar 2023 15:39:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7761C6AC3DC
+	for <lists+devicetree@lfdr.de>; Mon,  6 Mar 2023 15:50:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229968AbjCFOjo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 Mar 2023 09:39:44 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35270 "EHLO
+        id S231233AbjCFOuf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 Mar 2023 09:50:35 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54966 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229997AbjCFOjm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Mar 2023 09:39:42 -0500
-Received: from relay7-d.mail.gandi.net (relay7-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::227])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B803E234D3;
-        Mon,  6 Mar 2023 06:39:17 -0800 (PST)
-Received: (Authenticated sender: miquel.raynal@bootlin.com)
-        by mail.gandi.net (Postfix) with ESMTPSA id 24CE820010;
-        Mon,  6 Mar 2023 14:38:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1678113535;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=7CihFIQuO8EkmKbOqb/odYY87aF0bfbQPJr+dXyqKWM=;
-        b=imwyQChFmKzT+FDHfXvNHpYEw+0cNlqq2MzSIf0Y6kQRaRnympSOGcJyCF6oa+u0s++p1f
-        z0TZhBtyQLY3G4mMI2RJcpXyltBnvfqIRMmpCk/QB2jt1ItcexfiduaTzQHjv7dCHyT+Ew
-        fg6wrc11NJX8dsfzZ/4AlqToIGTn5U+35lJ8Z4GQAiLBy/OH/HH/EFfE2xQ2XXcxinDmTE
-        bi8an4Vs5CU+ULHj85iPNr/Vv9D8pPQwOFl6ugxdO2aOz3EYXuDOAfsmabOrOZimj4LV1b
-        ZJq50BHsr/xVg9cHoEb7RR/WgqiM9jwk9lWFotMS6aOIPc22YDwZFiPRPZzArg==
-Date:   Mon, 6 Mar 2023 15:38:51 +0100
-From:   Miquel Raynal <miquel.raynal@bootlin.com>
-To:     Md Sadre Alam <quic_mdalam@quicinc.com>
-Cc:     Boris Brezillon <boris.brezillon@collabora.com>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-mtd@lists.infradead.org>, <linux-arm-msm@vger.kernel.org>,
-        <robh+dt@kernel.org>, <vigneshr@ti.com>, <richard@nod.at>,
-        <agross@kernel.org>, <bjorn.andersson@linaro.org>,
-        <quic_srichara@quicinc.com>, <qpic_varada@quicinc.com>,
-        <quic_sjaganat@quicinc.com>
-Subject: Re: [PATCH 2/5] mtd: rawnand: qcom: Add initial support for qspi
- nand
-Message-ID: <20230306153851.0dcdda27@xps-13>
-In-Reply-To: <b70ddb40-a1f1-f967-6b7b-057a39b0bcc2@quicinc.com>
-References: <1602307902-16761-1-git-send-email-mdalam@codeaurora.org>
-        <1602307902-16761-3-git-send-email-mdalam@codeaurora.org>
-        <20201029100751.713e27df@collabora.com>
-        <b70ddb40-a1f1-f967-6b7b-057a39b0bcc2@quicinc.com>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
+        with ESMTP id S231286AbjCFOuX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Mar 2023 09:50:23 -0500
+Received: from smtp-relay-internal-1.canonical.com (smtp-relay-internal-1.canonical.com [185.125.188.123])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4B27A2D56
+        for <devicetree@vger.kernel.org>; Mon,  6 Mar 2023 06:50:02 -0800 (PST)
+Received: from mail-qt1-f198.google.com (mail-qt1-f198.google.com [209.85.160.198])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id F1AC54168E
+        for <devicetree@vger.kernel.org>; Mon,  6 Mar 2023 14:39:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+        s=20210705; t=1678113596;
+        bh=qW5xSmxdKjIllEUHvJ4dJwdCFXtHwGvw1GNV6BFAGZk=;
+        h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+         To:Cc:Content-Type;
+        b=JjPouAMkJj8L1zYgf/hvvH9Hde2h2ZKnVYZ/aIxYzZQSX0KPRw0WJQhl4Vq4FJ78h
+         KUxdcL+L0bIkSMBO2PtFaq7fWx82exdssNNRF8ooTpyynPSYWcwuvdcdIpBJFhDXxc
+         N/4DLBmWEQCpl3jwKNW4lv3ITWqi41ujcJH1HfMmVJuVZqUmFHFZxARAjk++EPrgdy
+         rVLbcYpncm8CSpVe67+lYIgICLqouNSydsuQFRCiVRsZ03Sy1K08e1en9go/G31QhC
+         ZLAFSbpS5BfuYPg3A2V1Qk4xf2HlUdGovbGtvYaH5tbZt7F5XNaB3KjJJd58YCu9fe
+         PCDCh97wVVpOw==
+Received: by mail-qt1-f198.google.com with SMTP id z1-20020ac87ca1000000b003ba2a2c50f9so5258189qtv.23
+        for <devicetree@vger.kernel.org>; Mon, 06 Mar 2023 06:39:55 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1678113595;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=qW5xSmxdKjIllEUHvJ4dJwdCFXtHwGvw1GNV6BFAGZk=;
+        b=JWS8db4nX0FMdOphVfHPzWo3yOvdROvIOqaIjqGrlDJey4l/dlJgg+bg6SgvP6PEEl
+         HYE3s464LnCHFaG5yGjvTZqIz0Da96iP2EX45vebt9MHPrEtK9GN5eYoOgz3xb+zP3a3
+         WIqqDE5KdefLDGPtUobwPVPvCxWrX3iLmKpZpLGK2FG1XBXKUyHnTnFlfcBR8jHP4ZJH
+         /savjncuL1nvNe1r/HpZ4mgrhQj1kufbvPrT2Vswig70qeCB0Uw3ba1qdZ3xG7ZnSxIW
+         L0PVgqtGhsWzjknNXdCUo7uPjh6qXSs1FBNp8PLWLSknrr1zuXKNjOkToQZtwKpydRmh
+         jeEQ==
+X-Gm-Message-State: AO0yUKWzgc0r9xpWSkm7lkzaAtui5XfJXNhf3q23Dbqex+7jqxAhz1Ru
+        CheceJzcziMnpZhhcdH2F5+pIp2fg+EpPeUSF9ndGTagZiCE36Att67eoHIGNkZt5n0dn26/hqk
+        7hFkG0SJ9ueXSwSbBeeg7LUNcoGKR+ydajNh5EMqtGDTjd3b2so8hcuopZYFIW/4=
+X-Received: by 2002:a05:6214:b04:b0:56e:917a:1c19 with SMTP id u4-20020a0562140b0400b0056e917a1c19mr2609273qvj.0.1678113594907;
+        Mon, 06 Mar 2023 06:39:54 -0800 (PST)
+X-Google-Smtp-Source: AK7set/ehV6HNf3S4FDeQyHkWVmBdfzUrtJQgMvbF9DrzBzPARNK/FID8eqVdEk5fo+Vs9b0LwywNHLGCvDf2s6ysZo=
+X-Received: by 2002:a05:6214:b04:b0:56e:917a:1c19 with SMTP id
+ u4-20020a0562140b0400b0056e917a1c19mr2609267qvj.0.1678113594619; Mon, 06 Mar
+ 2023 06:39:54 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+References: <20230306140430.28951-1-walker.chen@starfivetech.com> <20230306140430.28951-3-walker.chen@starfivetech.com>
+In-Reply-To: <20230306140430.28951-3-walker.chen@starfivetech.com>
+From:   Emil Renner Berthing <emil.renner.berthing@canonical.com>
+Date:   Mon, 6 Mar 2023 15:39:38 +0100
+Message-ID: <CAJM55Z_216xezPNE1tXBsWA9pKk1ZaKsNVM=4PuHrg5Cgs3zcw@mail.gmail.com>
+Subject: Re: [PATCH v4 2/3] dmaengine: dw-axi-dmac: Add support for StarFive
+ JH7110 DMA
+To:     Walker Chen <walker.chen@starfivetech.com>
+Cc:     Eugeniy Paltsev <Eugeniy.Paltsev@synopsys.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor.dooley@microchip.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>, dmaengine@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-riscv@lists.infradead.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello,
+On Mon, 6 Mar 2023 at 15:04, Walker Chen <walker.chen@starfivetech.com> wrote:
+>
+> Add dma reset operation in device probe and use different configuration
+> on CH_CFG registers according to match data. Update all uses of
+> of_device_is_compatible with of_device_get_match_data.
+>
+> Reviewed-by: Emil Renner Berthing <emil.renner.berthing@canonical.com>
 
-quic_mdalam@quicinc.com wrote on Mon, 6 Mar 2023 19:45:58 +0530:
+Hi Walker,
 
-> On 10/29/2020 2:37 PM, Boris Brezillon wrote:
-> > Hello,
-> >
-> > On Sat, 10 Oct 2020 11:01:39 +0530
-> > Md Sadre Alam <mdalam@codeaurora.org> wrote:
-> > =20
-> >> This change will add initial support for qspi (serial nand).
-> >>
-> >> QPIC Version v.2.0 onwards supports serial nand as well so this
-> >> change will initialize all required register to enable qspi (serial
-> >> nand).
-> >>
-> >> This change is supporting very basic functionality of qspi nand flash.
-> >>
-> >> 1. Reset device (Reset QSPI NAND device).
-> >>
-> >> 2. Device detection (Read id QSPI NAND device). =20
-> > Unfortunately, that's not going to work in the long term. You're
-> > basically hacking the raw NAND framework to make SPI NANDs fit. I do
-> > understand the rationale behind this decision (re-using the code for
-> > ECC and probably other things), but that's not going to work. So I'd
-> > recommend doing the following instead:
-> >
-> > 1/ implement a SPI-mem controller driver
-> > 2/ implement an ECC engine driver so the ECC logic can be shared
-> >     between the SPI controller and raw NAND controller drivers
-> > 3/ convert the raw NAND driver to the exec_op() interface (none of
-> >     this hack would have been possible if the driver was using the new
-> >     API)
-> >
-> > Regards,
-> >
-> > Boris
-> > =20
->  =C2=A0=C2=A0 Sorry for late reply, again started working on this feature=
- support.=C2=A0 The QPIC v2 on wards there is serial nand support got added=
- , its not a standard SPI controller
->=20
->  =C2=A0=C2=A0 its QPIC controller having support for serial nand. All SPI=
- related configuration done by QPIC hardware and its not exposed as SPI bus=
- to the external world. Only based on
->=20
->  =C2=A0=C2=A0 QPIC_SPI_CFG =3D 1, serial functionality will get selected.=
- So that no need to implement as SPI-mem controller driver, since its not a=
- SPI controller.
->=20
->  =C2=A0 Please check the below diagram for top view of QPIC controller.
+Again please remove my Reviewed-by when you're adding a bunch of new
+code as you're doing here.
 
-One of the hard things in the Linux kernel is to make devices fit
-frameworks. This feature does not fit the raw NAND framework. It does
-not follow any of the conventions taken there. It is not gonna be
-accepted there. You need to expose spi-mem functionalities, even if the
-spi-proper features are not available. I believe your situation still
-fits the spi-mem abstraction.
+> Signed-off-by: Walker Chen <walker.chen@starfivetech.com>
+> ---
+>  .../dma/dw-axi-dmac/dw-axi-dmac-platform.c    | 67 ++++++++++++++++---
+>  drivers/dma/dw-axi-dmac/dw-axi-dmac.h         |  2 +
+>  2 files changed, 61 insertions(+), 8 deletions(-)
+>
+> diff --git a/drivers/dma/dw-axi-dmac/dw-axi-dmac-platform.c b/drivers/dma/dw-axi-dmac/dw-axi-dmac-platform.c
+> index bf85aa0979ec..d1148f6fbcf9 100644
+> --- a/drivers/dma/dw-axi-dmac/dw-axi-dmac-platform.c
+> +++ b/drivers/dma/dw-axi-dmac/dw-axi-dmac-platform.c
+> @@ -21,10 +21,12 @@
+>  #include <linux/kernel.h>
+>  #include <linux/module.h>
+>  #include <linux/of.h>
+> +#include <linux/of_device.h>
+>  #include <linux/of_dma.h>
+>  #include <linux/platform_device.h>
+>  #include <linux/pm_runtime.h>
+>  #include <linux/property.h>
+> +#include <linux/reset.h>
+>  #include <linux/slab.h>
+>  #include <linux/types.h>
+>
+> @@ -46,6 +48,12 @@
+>         DMA_SLAVE_BUSWIDTH_32_BYTES     | \
+>         DMA_SLAVE_BUSWIDTH_64_BYTES)
+>
+> +struct axi_dma_chip_config {
+> +       int (*apb_setup)(struct platform_device *pdev, struct axi_dma_chip *chip);
+> +       int (*reset_init)(struct platform_device *pdev);
+> +       bool use_cfg2;
+> +};
+> +
+>  static inline void
+>  axi_dma_iowrite32(struct axi_dma_chip *chip, u32 reg, u32 val)
+>  {
+> @@ -86,7 +94,8 @@ static inline void axi_chan_config_write(struct axi_dma_chan *chan,
+>
+>         cfg_lo = (config->dst_multblk_type << CH_CFG_L_DST_MULTBLK_TYPE_POS |
+>                   config->src_multblk_type << CH_CFG_L_SRC_MULTBLK_TYPE_POS);
+> -       if (chan->chip->dw->hdata->reg_map_8_channels) {
+> +       if (chan->chip->dw->hdata->reg_map_8_channels &&
+> +           !chan->chip->dw->hdata->use_cfg2) {
+>                 cfg_hi = config->tt_fc << CH_CFG_H_TT_FC_POS |
+>                          config->hs_sel_src << CH_CFG_H_HS_SEL_SRC_POS |
+>                          config->hs_sel_dst << CH_CFG_H_HS_SEL_DST_POS |
+> @@ -1142,7 +1151,7 @@ static int dma_chan_terminate_all(struct dma_chan *dchan)
+>         axi_chan_disable(chan);
+>
+>         ret = readl_poll_timeout_atomic(chan->chip->regs + DMAC_CHEN, val,
+> -                                       !(val & chan_active), 1000, 10000);
+> +                                       !(val & chan_active), 1000, DMAC_TIMEOUT_US);
+>         if (ret == -ETIMEDOUT)
+>                 dev_warn(dchan2dev(dchan),
+>                          "%s failed to stop\n", axi_chan_name(chan));
+> @@ -1367,13 +1376,33 @@ static int parse_device_properties(struct axi_dma_chip *chip)
+>         return 0;
+>  }
+>
+> +static int intel_apb_setup(struct platform_device *pdev, struct axi_dma_chip *chip)
+> +{
+> +       chip->apb_regs = devm_platform_ioremap_resource(pdev, 1);
+> +       if (IS_ERR(chip->apb_regs))
+> +               return PTR_ERR(chip->apb_regs);
+> +       else
+> +               return 0;
+> +}
+> +
+> +static int jh7110_reset_init(struct platform_device *pdev)
+> +{
+> +       struct reset_control *resets;
+> +
+> +       resets = devm_reset_control_array_get_exclusive(&pdev->dev);
+> +       if (IS_ERR(resets))
+> +               return PTR_ERR(resets);
+> +
+> +       return reset_control_deassert(resets);
+> +}
+> +
+>  static int dw_probe(struct platform_device *pdev)
+>  {
+> -       struct device_node *node = pdev->dev.of_node;
+>         struct axi_dma_chip *chip;
+>         struct resource *mem;
+>         struct dw_axi_dma *dw;
+>         struct dw_axi_dma_hcfg *hdata;
+> +       const struct axi_dma_chip_config *ccfg;
+>         u32 i;
+>         int ret;
+>
+> @@ -1402,10 +1431,21 @@ static int dw_probe(struct platform_device *pdev)
+>         if (IS_ERR(chip->regs))
+>                 return PTR_ERR(chip->regs);
+>
+> -       if (of_device_is_compatible(node, "intel,kmb-axi-dma")) {
+> -               chip->apb_regs = devm_platform_ioremap_resource(pdev, 1);
+> -               if (IS_ERR(chip->apb_regs))
+> -                       return PTR_ERR(chip->apb_regs);
+> +       ccfg = of_device_get_match_data(&pdev->dev);
+> +       if (ccfg) {
+> +               if (ccfg->apb_setup) {
+> +                       ret = ccfg->apb_setup(pdev, chip);
+> +                       if (ret)
+> +                               return ret;
+> +               }
+> +
+> +               if (ccfg->reset_init) {
+> +                       ret = ccfg->reset_init(pdev);
+> +                       if (ret)
+> +                               return ret;
+> +               }
+> +
+> +               chip->dw->hdata->use_cfg2 = ccfg->use_cfg2;
 
-Thanks,
-Miqu=C3=A8l
+This claims and deasserts the resets before the clocks, whereas your
+previous versions did it after turning the clocks on. Which is the
+correct order?
+
+Also this certainly gets rid of of_device_is_compatible calls, but
+seems like a lot of code to do that. Did you consider something like
+
++#define AXI_DMA_FLAG_HAS_APB_REGS BIT(0)
++#define AXI_DMA_FLAG_HAS_RESETS BIT(1)
++#define AXI_DMA_FLAG_USE_CFG2 BIT(2)
+
++unsigned int flags = (uintptr_t)device_get_match_data(&pdev->dev);
+
+-if (of_device_is_compatible(node, "intel,kmb-axi-dma")) {
++if (flags & AXI_DMA_FLAG_HAS_APB_REGS) {
+
+-if (of_device_is_compatible(node, "starfive,jh7110-axi-dma)) {
++if (flags & AXI_DMA_FLAG_HAS_RESETS) {
+
++chip->dw->hwdata->use_cfg2 = !!(flags & AXI_DMA_FLAG_USE_CFG2);
+
+-{ .compatible = "intel,kmb-axi-dma" },
++{ .compatible = "intel,kmb-axi-dma", .data = (void
+*)AXI_DMA_FLAG_HAS_APB_REGS },
++{ .compatible = "starive,jh7110-axi-dma", .data = (void
+*)(AXI_DMA_FLAG_HAS_RESETS | AXI_DMA_FLAG_USE_CFG2) },
+
+>         }
+>
+>         chip->core_clk = devm_clk_get(chip->dev, "core-clk");
+> @@ -1557,9 +1597,20 @@ static const struct dev_pm_ops dw_axi_dma_pm_ops = {
+>         SET_RUNTIME_PM_OPS(axi_dma_runtime_suspend, axi_dma_runtime_resume, NULL)
+>  };
+>
+> +static const struct axi_dma_chip_config intel_chip_config = {
+> +       .apb_setup = intel_apb_setup,
+> +       .use_cfg2 = false,
+> +};
+> +
+> +static const struct axi_dma_chip_config jh7110_chip_config = {
+> +       .reset_init = jh7110_reset_init,
+> +       .use_cfg2 = true,
+> +};
+> +
+>  static const struct of_device_id dw_dma_of_id_table[] = {
+>         { .compatible = "snps,axi-dma-1.01a" },
+> -       { .compatible = "intel,kmb-axi-dma" },
+> +       { .compatible = "intel,kmb-axi-dma", .data = &intel_chip_config },
+> +       { .compatible = "starfive,jh7110-axi-dma", .data = &jh7110_chip_config },
+>         {}
+>  };
+>  MODULE_DEVICE_TABLE(of, dw_dma_of_id_table);
+> diff --git a/drivers/dma/dw-axi-dmac/dw-axi-dmac.h b/drivers/dma/dw-axi-dmac/dw-axi-dmac.h
+> index e9d5eb0fd594..b906d5884efe 100644
+> --- a/drivers/dma/dw-axi-dmac/dw-axi-dmac.h
+> +++ b/drivers/dma/dw-axi-dmac/dw-axi-dmac.h
+> @@ -21,6 +21,7 @@
+>  #define DMAC_MAX_CHANNELS      16
+>  #define DMAC_MAX_MASTERS       2
+>  #define DMAC_MAX_BLK_SIZE      0x200000
+> +#define DMAC_TIMEOUT_US                200000
+>
+>  struct dw_axi_dma_hcfg {
+>         u32     nr_channels;
+> @@ -33,6 +34,7 @@ struct dw_axi_dma_hcfg {
+>         /* Register map for DMAX_NUM_CHANNELS <= 8 */
+>         bool    reg_map_8_channels;
+>         bool    restrict_axi_burst_len;
+> +       bool    use_cfg2;
+>  };
+>
+>  struct axi_dma_chan {
+> --
+> 2.17.1
+>
