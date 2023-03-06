@@ -2,149 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8603E6AC0E8
-	for <lists+devicetree@lfdr.de>; Mon,  6 Mar 2023 14:29:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6092D6AC109
+	for <lists+devicetree@lfdr.de>; Mon,  6 Mar 2023 14:31:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230493AbjCFN3p (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 Mar 2023 08:29:45 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41180 "EHLO
+        id S230111AbjCFNbt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 Mar 2023 08:31:49 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44010 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230048AbjCFN3o (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Mar 2023 08:29:44 -0500
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 03AAE23671;
-        Mon,  6 Mar 2023 05:29:43 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1678109384; x=1709645384;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=dWELgJ6UKYulLa0yVyGSUh1o9vmjbEAcGp3BvCpR7/0=;
-  b=Ny6Bdmhyf+d/e8qS/LLEUEaaP9YCwje2Vn9J9bihSRqJPy1TH0+/TYIb
-   ZDQqMccGUINYeC9XZScfzLytp/baib9pFIGOFBP1bPCHa4in9X3QLPhv2
-   hMREARdufyrHtXFynlFFsb2chSgnBTaWWvTiYt9Pu7yjxacvfbZxhE7tN
-   6Kd+ker27OyjxxOEpU9QD6v+YzEXUqMglXwsQwerjcen2wvliIBtzJFlm
-   f62qt7Awsc4gayySv96/3TwxVNfEyovcCSFmEA9gQAJpsB8Y2C0oO6KiL
-   nqMXhy6i+KH4b8E2Bd/sjqO/yp2G2qoRrXXW8JLs4NuKqCcq5y5ce7jjf
-   w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10641"; a="400372283"
-X-IronPort-AV: E=Sophos;i="5.98,236,1673942400"; 
-   d="scan'208";a="400372283"
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
-  by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 06 Mar 2023 05:29:43 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10641"; a="799994608"
-X-IronPort-AV: E=Sophos;i="5.98,236,1673942400"; 
-   d="scan'208";a="799994608"
-Received: from smile.fi.intel.com ([10.237.72.54])
-  by orsmga004.jf.intel.com with ESMTP; 06 Mar 2023 05:29:39 -0800
-Received: from andy by smile.fi.intel.com with local (Exim 4.96)
-        (envelope-from <andriy.shevchenko@linux.intel.com>)
-        id 1pZAuH-00GRQZ-2v;
-        Mon, 06 Mar 2023 15:29:37 +0200
-Date:   Mon, 6 Mar 2023 15:29:37 +0200
-From:   Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To:     Mike Looijmans <mike.looijmans@topic.nl>
-Cc:     devicetree@vger.kernel.org, linux-iio@vger.kernel.org,
-        Caleb Connolly <caleb.connolly@linaro.org>,
-        ChiYuan Huang <cy_huang@richtek.com>,
-        ChiaEn Wu <chiaen_wu@richtek.com>,
-        Cosmin Tanislav <demonsingur@gmail.com>,
-        Ibrahim Tilki <Ibrahim.Tilki@analog.com>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Marcus Folkesson <marcus.folkesson@gmail.com>,
-        Ramona Bolboaca <ramona.bolboaca@analog.com>,
-        William Breathitt Gray <william.gray@linaro.org>,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v4 2/2] iio: adc: Add TI ADS1100 and ADS1000
-Message-ID: <ZAXqwaKA3Uh6TH2q@smile.fi.intel.com>
-References: <20230306131312.7170-1-mike.looijmans@topic.nl>
- <1b153bce-a66a-45ee-a5c6-963ea6fb1c82.949ef384-8293-46b8-903f-40a477c056ae.0270109b-145d-4024-b8ff-05d54be2ad97@emailsignatures365.codetwo.com>
- <20230306131312.7170-2-mike.looijmans@topic.nl>
+        with ESMTP id S229927AbjCFNbs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Mar 2023 08:31:48 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5DEF72E80F;
+        Mon,  6 Mar 2023 05:31:47 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id EEEF560F09;
+        Mon,  6 Mar 2023 13:31:46 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0819FC433EF;
+        Mon,  6 Mar 2023 13:31:42 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1678109506;
+        bh=n4vaoJypBj3ZnWOSr2/6ylu1yP0IfC9GLrLhygb790c=;
+        h=From:To:In-Reply-To:References:Subject:Date:From;
+        b=aNtuJJnY+2dUoUEevCcSGoR07uQjisGPJXDnw6+kOmA1iOd8khRlmgL5LGMuPca0/
+         dTFzP9/v76YbRn+S94AAHQoalLL86WBptYI8NhOyngZIjCgFufmoDCbXft8sEAW159
+         Vp71lQBEo44MT6gA2XFm6ewD5blb0GRGTpWUD3OcpmsbAo29kkj5CmJ2bmW+ppd8rf
+         d82y5DTgy+GxpGVD7NnBED4cq16EmyOdq53WeT/c6nDZbEnkqiPLGvX0iOHYzYiDKw
+         66JQZ++0QmDAFlX+nsZLG3c/9RsnEIHinD0SdkWHj4BUWxvRS4UgEo93sWG0AO4xq6
+         2U5EKzICKSgJQ==
+From:   Mark Brown <broonie@kernel.org>
+To:     Liam Girdwood <lgirdwood@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Alim Akhtar <alim.akhtar@samsung.com>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        - <patches@opensource.cirrus.com>,
+        Adrien Grassein <adrien.grassein@gmail.com>,
+        Randy Li <ayaka@soulik.info>, alsa-devel@alsa-project.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230217150627.779764-1-krzysztof.kozlowski@linaro.org>
+References: <20230217150627.779764-1-krzysztof.kozlowski@linaro.org>
+Subject: Re: (subset) [PATCH 1/3] ASoC: dt-bindings: wlf,wm8960: Convert to
+ dtschema
+Message-Id: <167810950275.75807.2993006253194931204.b4-ty@kernel.org>
+Date:   Mon, 06 Mar 2023 13:31:42 +0000
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230306131312.7170-2-mike.looijmans@topic.nl>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_NONE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.13-dev-bd1bf
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Mar 06, 2023 at 02:13:12PM +0100, Mike Looijmans wrote:
-> The ADS1100 is a 16-bit ADC (at 8 samples per second).
-> The ADS1000 is similar, but has a fixed data rate.
+On Fri, 17 Feb 2023 16:06:25 +0100, Krzysztof Kozlowski wrote:
+> Convert the Wolfson WM8960 audio codecs bindings to DT schema.
+> 
+> Changes against original binding:
+> 1. Document clocks and clock-names - already present in DTS and used
+>    by Linux driver.
+> 
+> 
+> [...]
 
-...
+Applied to
 
-> +	/* Value is always 16-bit 2's complement */
-> +	value = be16_to_cpu(buffer);
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
 
-+ Blank line?
+Thanks!
 
-> +	/* Shift result to compensate for bit resolution vs. sample rate */
-> +	value <<= 16 - ads1100_data_bits(data);
+[1/3] ASoC: dt-bindings: wlf,wm8960: Convert to dtschema
+      commit: af5932fc58d351d3908d0a732ccabaef088311a0
 
-+ Blank line?
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
 
-> +	*val = sign_extend32(value, 15);
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
 
-...
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
 
-> +	microvolts = regulator_get_voltage(data->reg_vdd);
-> +	/*
-> +	 * val2 is in 'micro' units, n = val2 / 1000000
-> +	 * result must be millivolts, d = microvolts / 1000
-> +	 * the full-scale value is d/n, corresponds to 2^15,
-> +	 * hence the gain = (d / n) >> 15, factoring out the 1000 and moving the
-> +	 * bitshift so everything fits in 32-bits yields this formula.
-> +	 */
-> +	gain = ((microvolts + BIT(14)) >> 15) * 1000 / val2;
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
 
-Perhaps adding MICROVOLT_PER_MILLIVOLT (to units.h) and use it here?
-
-Besides that it's seems like
-
-	microvolts = regulator_get_voltage(data->reg_vdd);
-	gain = DIV_ROUNDUP_CLOSEST(microvolts, BIT(15)) *
-	       MICROVOLT_PER_MILLIVOLT / val2;
-
-> +	if (gain <= 0 || gain > 8)
-> +		return -EINVAL;
-
-As I commented out in the previous discussion (please, give a chance to the
-reviewers to answer before issuing a new version of the series) this better
-to be
-
-	if (gain < BIT(0) || gain > BIT(3))
-
-which will show the nature of power of two implicitly.
-
-> +	regval = ffs(gain) - 1;
-> +	ads1100_set_config_bits(data, ADS1100_PGA_MASK, regval);
-
-Can be unified in one line.
-
-> +	return 0;
-> +}
-
-...
-
-> +			return ads1100_set_config_bits(
-> +					data, ADS1100_DR_MASK,
-> +					FIELD_PREP(ADS1100_DR_MASK, i));
-
-Wrong indentation.
-Please, check all your code for this kind of issues.
-
--- 
-With Best Regards,
-Andy Shevchenko
-
+Thanks,
+Mark
 
