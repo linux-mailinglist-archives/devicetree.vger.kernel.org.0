@@ -2,89 +2,151 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 501CC6AB36A
-	for <lists+devicetree@lfdr.de>; Mon,  6 Mar 2023 00:12:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1489E6AB3CF
+	for <lists+devicetree@lfdr.de>; Mon,  6 Mar 2023 01:43:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229502AbjCEXMs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 5 Mar 2023 18:12:48 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44920 "EHLO
+        id S229559AbjCFAnB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 5 Mar 2023 19:43:01 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57042 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229437AbjCEXMs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 5 Mar 2023 18:12:48 -0500
-Received: from mout.kundenserver.de (mout.kundenserver.de [217.72.192.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BEBA2CA0D;
-        Sun,  5 Mar 2023 15:12:46 -0800 (PST)
-Received: from stefanw-SCHENKER ([37.4.248.41]) by mrelayeu.kundenserver.de
- (mreue108 [212.227.15.183]) with ESMTPSA (Nemesis) id
- 1MEFrX-1pgPaK3LWf-00AHWq; Sun, 05 Mar 2023 23:59:33 +0100
-From:   Stefan Wahren <stefan.wahren@i2se.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>
-Cc:     linux-imx@nxp.com, Marek Vasut <marex@denx.de>,
-        Alexander Stein <alexander.stein@ew.tq-group.com>,
-        linux-crypto@vger.kernel.org, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Stefan Wahren <stefan.wahren@i2se.com>
-Subject: [PATCH 3/6] dt-bindings: imxgpt: add imx6ul compatible
-Date:   Sun,  5 Mar 2023 23:58:57 +0100
-Message-Id: <20230305225901.7119-4-stefan.wahren@i2se.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230305225901.7119-1-stefan.wahren@i2se.com>
-References: <20230305225901.7119-1-stefan.wahren@i2se.com>
+        with ESMTP id S229484AbjCFAm7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 5 Mar 2023 19:42:59 -0500
+Received: from mg.richtek.com (mg.richtek.com [220.130.44.152])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 441AB199F;
+        Sun,  5 Mar 2023 16:42:55 -0800 (PST)
+X-MailGates: (flag:4,DYNAMIC,BADHELO,RELAY,NOHOST:PASS)(compute_score:DE
+        LIVER,40,3)
+Received: from 192.168.10.46
+        by mg.richtek.com with MailGates ESMTP Server V5.0(16313:0:AUTH_RELAY)
+        (envelope-from <cy_huang@richtek.com>); Mon, 06 Mar 2023 08:42:40 +0800 (CST)
+Received: from ex4.rt.l (192.168.10.47) by ex3.rt.l (192.168.10.46) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.25; Mon, 6 Mar
+ 2023 08:42:39 +0800
+Received: from linuxcarl2.richtek.com (192.168.10.154) by ex4.rt.l
+ (192.168.10.45) with Microsoft SMTP Server id 15.2.1118.25 via Frontend
+ Transport; Mon, 6 Mar 2023 08:42:39 +0800
+From:   <cy_huang@richtek.com>
+To:     <broonie@kernel.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>
+CC:     <lgirdwood@gmail.com>, <cy_huang@richtek.com>,
+        <u0084500@gmail.com>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>
+Subject: [PATCH v3 1/2] dt-bindings: regulator: Add Richtek RT5739
+Date:   Mon, 6 Mar 2023 08:42:37 +0800
+Message-ID: <1678063358-18128-1-git-send-email-cy_huang@richtek.com>
+X-Mailer: git-send-email 1.8.3.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Provags-ID: V03:K1:IwT96KuCYihTleCJc6GGzhJZA3kr03QgpvJytzu99LqgSXUcPYZ
- VxEvLQhHH3dkX33xf0KM+M9Z2xOLi8NrW0HXSIM3gw/6KjCFRitXD0XYTldg1dbnfbBKxJK
- Gux3W1XIhXnVeLzubA830PmRA9jdiGZNCuBZc1PcbiDquCtMIqV58NRsJXKhxH1iRyDaISg
- KX+NIOQcC5Jfo3UzDGjeA==
-UI-OutboundReport: notjunk:1;M01:P0:9lR6X1DOui4=;XJK/c3uioJtI7hxFroeFkIPRxoz
- fpNHKajRI3qGWJMBUj2RKCfUzM/APfpBNhD3ZwftOSMyFO4/rbzpaP6doK3zlDV8tJAa4vZ8I
- lS/mD+NFCW5t/d3Cj11pAFjUBCs2zryfKl5/pEiNzOhUVAGkjcvnZrPrSu7MPGWMYgLPwhef4
- Jh7E+vW8p808kpots4hsCz7f+WScLeh/BsrST1OHQ37EDNoBVpNB909hNreyjMYgslzZx8yXO
- 9+blpetgafO7Hf+ksJmiqu1KVp1evBdOcSqwkc3pNXd0jpKvpAtkwXZwy0IFgEPEckGTXHnfa
- NASx1vPg6MXzExGGU2jPbtRMgEbICtlFbG5PCysTBQ4khicNAt2xY04vjljsbcNL+1mvy14hc
- /7Iwd2EYwsETppCcN9IbyYNzSuzUzBeZWb4FiW7z9YggOIpg+loMVYPezqbA2oMANh9OJlra2
- Mdjc5deEb2OhDTbsEmwzlvKD87hGmURIXsMrgLQIpwkunCkMhD5NzFwYCmSKlReQOthhpLYkC
- fEc/b+AhM/GVON+CyZYuspen8F6LQblXbpVei+GYovHkE9wm9O9laS7V0nDWj1R++x+MNXikQ
- ibpZxYl9PIL7Hk658tB5VmEipNQoxj+LwcSvHs0OGnftAi8IPG2ytrNfzqMEhuUkWOIiuHqfz
- gcjhd1K6Hx9+5Ap10dixaet/ha3VmtluytouQ2MuJw==
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Currently the dtbs_check for imx6ul generates warnings like this:
+From: ChiYuan Huang <cy_huang@richtek.com>
 
-['fsl,imx6ul-gpt', 'fsl,imx6sx-gpt'] is too long
+Add the binding document for Richtek RT5739.
 
-Since the imx6ul GPT IP is compatible to imx6dl, add the compatible
-to the enum. The mentioned warning also needs adjustment of the
-affected DTS, but this should be done in a different patch.
-
-Signed-off-by: Stefan Wahren <stefan.wahren@i2se.com>
+Signed-off-by: ChiYuan Huang <cy_huang@richtek.com>
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
- Documentation/devicetree/bindings/timer/fsl,imxgpt.yaml | 1 +
- 1 file changed, 1 insertion(+)
+Since v3:
+- Add 'Reviewed-by" tag.
 
-diff --git a/Documentation/devicetree/bindings/timer/fsl,imxgpt.yaml b/Documentation/devicetree/bindings/timer/fsl,imxgpt.yaml
-index 716c6afcca1f..8d9e8c1b7dcf 100644
---- a/Documentation/devicetree/bindings/timer/fsl,imxgpt.yaml
-+++ b/Documentation/devicetree/bindings/timer/fsl,imxgpt.yaml
-@@ -31,6 +31,7 @@ properties:
-           - enum:
-               - fsl,imx6sl-gpt
-               - fsl,imx6sx-gpt
-+              - fsl,imx6ul-gpt
-               - fsl,imxrt1050-gpt
-               - fsl,imxrt1170-gpt
-           - const: fsl,imx6dl-gpt
+Since v2:
+- Refine dt-binding patch subject
+- Shorten and refine title and description without too much marketing text.
+- Fix the typo from 'connecton' to 'connection' in 'richtek,vsel-active-high'
+  property description
+- Remove maxItems in property 'regulator-allowed-modes'
+- Fix the wrong min/max microvolt in binding example. Must be '300000' and
+  '1300000', respectively.
+---
+ .../bindings/regulator/richtek,rt5739.yaml         | 72 ++++++++++++++++++++++
+ 1 file changed, 72 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/regulator/richtek,rt5739.yaml
+
+diff --git a/Documentation/devicetree/bindings/regulator/richtek,rt5739.yaml b/Documentation/devicetree/bindings/regulator/richtek,rt5739.yaml
+new file mode 100644
+index 00000000..358297d
+--- /dev/null
++++ b/Documentation/devicetree/bindings/regulator/richtek,rt5739.yaml
+@@ -0,0 +1,72 @@
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/regulator/richtek,rt5739.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Richtek RT5739 Step-Down Buck Converter
++
++maintainers:
++  - ChiYuan Huang <cy_huang@richtek.com>
++
++description: |
++  The RT5739 is a step-down switching buck converter that can deliver the
++  programmable output voltage from 300mV to 1300mV with wide input voltage
++  supply of 2.5V to 5.5V. It can provide up to 3.5A continuous current
++  capability at over 80% high efficiency.
++
++allOf:
++  - $ref: regulator.yaml#
++
++properties:
++  compatible:
++    enum:
++      - richtek,rt5739
++
++  reg:
++    maxItems: 1
++
++  enable-gpios:
++    maxItems: 1
++
++  richtek,vsel-active-high:
++    description: |
++      If property is present, use the 'VSEL1' register group for buck control.
++      Else, use the 'VSEL0' register group. This depends on external hardware
++      'VSEL' pin connection.
++    type: boolean
++
++  regulator-allowed-modes:
++    description: |
++      buck allowed operating mode
++        0: Auto PFM/PWM mode
++        1: Forced PWM mode
++    items:
++      enum: [0, 1]
++
++required:
++  - compatible
++  - reg
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/gpio/gpio.h>
++
++    i2c {
++      #address-cells = <1>;
++      #size-cells = <0>;
++
++      regulator@50 {
++        compatible = "richtek,rt5739";
++        reg = <0x50>;
++        enable-gpios = <&gpio26 1 GPIO_ACTIVE_HIGH>;
++        richtek,vsel-active-high;
++        regulator-name = "richtek,rt5739-buck";
++        regulator-min-microvolt = <300000>;
++        regulator-max-microvolt = <1300000>;
++        regulator-allowed-modes = <0 1>;
++        regulator-boot-on;
++      };
++    };
 -- 
-2.34.1
+2.7.4
 
