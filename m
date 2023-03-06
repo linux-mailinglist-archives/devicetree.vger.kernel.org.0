@@ -2,409 +2,358 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0B2116AC89A
-	for <lists+devicetree@lfdr.de>; Mon,  6 Mar 2023 17:47:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 672C76AC79B
+	for <lists+devicetree@lfdr.de>; Mon,  6 Mar 2023 17:20:36 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230347AbjCFQrD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 Mar 2023 11:47:03 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39294 "EHLO
+        id S229670AbjCFQUe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 Mar 2023 11:20:34 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48254 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230337AbjCFQqs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Mar 2023 11:46:48 -0500
-Received: from mo4-p02-ob.smtp.rzone.de (mo4-p02-ob.smtp.rzone.de [85.215.255.80])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E97603E09E;
-        Mon,  6 Mar 2023 08:45:55 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1678119250; cv=none;
-    d=strato.com; s=strato-dkim-0002;
-    b=r0oJisPmVmiGhfBOquIsvykEt6GuagiLlQN3/aghpdIAGN6xOQzmJJS77ZXM68sjkY
-    I8wZnax46XbT9eUc+4dfK/xGTaaRA3GQJtWIIITRmKeFKY307FaFst3ZqiNsdmJ3zgzs
-    oKXiI4sRa7ndWY6qIsTTXT8agFnhT2ThvN590G1irEy0/zh8mlHXlwoj4xfvM2v3+J5B
-    mlOZHmCGiwmmtJZ9GjKtNYgfGZH+LYsye3l4dbqkScNDujxbPHkea2B7XJleJ+lhRlHF
-    qDEWhmWVJG+rashB/PMmNwvkqTx9fA/pjJQTelfWz2NGSJOzqzb5CEIUIvMKRsh0a3Ib
-    XXZg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; t=1678119250;
-    s=strato-dkim-0002; d=strato.com;
-    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
-    From:Subject:Sender;
-    bh=E5MgXFLGzXqV3kZmdi0um2+BJZgLBqfV9CY4BZsWLcI=;
-    b=oJKShJQQjwd41p6Hkl3y02zdklHVMxlsNG2nS3axF1McBpSRf+5kQLNyEJ1wC1rW2c
-    Sue1UdycnksjwLZJ4+34rQn7BHYB9gCkBpXHtr3nAZ71lsaDwohImCnq7s+nWdjYGJxX
-    +pj8SPm8g7byQ+V95NEE9eQUBGT/R6Pzw/JOaNWLBSyVUYfaJmi2u0fiuhSeVWzWrqxh
-    BH5fABJ8aTN6D2Z61gJ5HM401Y+Azdh2R5b/GQx6fXsg+GzBY7kgQcPb95pJ6htKAZyq
-    xWwUv3MurZZwcOpmErASNJYuf4ITZ7fLljVVvLrktI4qDWTBKCBVU5FMhj1npV5Lo2Ct
-    cdMQ==
-ARC-Authentication-Results: i=1; strato.com;
-    arc=none;
-    dkim=none
-X-RZG-CLASS-ID: mo02
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1678119250;
-    s=strato-dkim-0002; d=gerhold.net;
-    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
-    From:Subject:Sender;
-    bh=E5MgXFLGzXqV3kZmdi0um2+BJZgLBqfV9CY4BZsWLcI=;
-    b=YGr2At5ociglkixjIGpZr9H4tKF7PQcOrsKysdzF+u/wz1H/1QQdImdpI/nwF8IQyT
-    9X2m4U8BHBwnk32YdA3JkmI3bh3/j19WQi2Y57lFWupj0lrFnMdDR8u4AsabVWr3Ia4Q
-    Ie6GkaXJ4yfzpId/2FbxeY1S28SWKI/DPuQxlxclOapv9oDISyTmEO9Ax4/QBvgQbIgJ
-    1eN65wualCMaDkLWDd3ZT2wA9zfK77e7H1l5HIl089k9vbv4n69knWXQSUpicJ2JMnhO
-    z1dZsZpbpPIPDLVAvWjsTMldwIfZ+mnCS6RB/LDLea6t9Y4YNZGnd76Nllk90OTRSSbi
-    Qq6A==
-X-RZG-AUTH: ":P3gBZUipdd93FF5ZZvYFPugejmSTVR2nRPhVOQ/OcYgojyw4j34+u267FZF9PwpcNKjXrKw8/qY="
-Received: from gerhold.net
-    by smtp.strato.de (RZmta 49.3.0 AUTH)
-    with ESMTPSA id jba5bez26GE9Jsp
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
-        (Client did not present a certificate);
-    Mon, 6 Mar 2023 17:14:09 +0100 (CET)
-Date:   Mon, 6 Mar 2023 17:14:08 +0100
-From:   Stephan Gerhold <stephan@gerhold.net>
-To:     Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-Cc:     agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
-        djakov@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, linux-arm-msm@vger.kernel.org,
-        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, benl@squareup.com,
-        shawn.guo@linaro.org, fabien.parent@linaro.org, leo.yan@linaro.org,
-        dmitry.baryshkov@linaro.org
-Subject: Re: [PATCH v7 5/5] arm64: dts: qcom: Add msm8939 Sony Xperia M4 Aqua
-Message-ID: <ZAYRUIg0SwKOnBGx@gerhold.net>
-References: <20230223153655.262783-1-bryan.odonoghue@linaro.org>
- <20230223153655.262783-6-bryan.odonoghue@linaro.org>
+        with ESMTP id S230149AbjCFQTm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Mar 2023 11:19:42 -0500
+Received: from mail-oa1-x2b.google.com (mail-oa1-x2b.google.com [IPv6:2001:4860:4864:20::2b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 94D28A5D7;
+        Mon,  6 Mar 2023 08:17:07 -0800 (PST)
+Received: by mail-oa1-x2b.google.com with SMTP id 586e51a60fabf-176d1a112bfso3086079fac.5;
+        Mon, 06 Mar 2023 08:17:07 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112; t=1678119349;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=TgdT/YtWm0g09J975wQLLJKIJx3wVMWVgah7dEH2bco=;
+        b=I436onofBERXhxwZ8iyGU8YndM9/HbZKw04GlZ9RKvicO5pNTpMgmOa1D+AKT55Hzb
+         UGtBF55toPolPBCNGGMUo1mjijgWdbROYLyjxq8mcTBiPePGf3Cw3jMRe6VxIOVhoKJ6
+         eCZUxI8vqb5dn297zUtlQ+Yl5YjMhGc08Gu/IW/u49OTCeHo97eujy124kqNiJDmWPjo
+         RBoLhKUlBODwIqen8B6EtK1J7iOFqeLR+ka1/00S68FtU0ZvR9ER0OWm2DmtCu0nFspf
+         +wya8oyV+6DL+/estAnX9kYMQB8kUBVHAak2MRtIs9r952b1jEfDHPa2jQ8i8UNrxJqA
+         tsQQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1678119349;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=TgdT/YtWm0g09J975wQLLJKIJx3wVMWVgah7dEH2bco=;
+        b=ohcaAjsM6xRuvTkUBSFb9/GjQrquNtGR509eLNV5rOrWTuHnNauKoNxBoxZLZop4c4
+         /bbZh0rS6drKVTvpPEmRqpKAH59sVuyd5WmXjG3o1AmrbMOas+i4zkTCAlFf67tsHPLM
+         jK9DWpv+YgxPXD/lKyVhTppseyMYw+rp92FATmOTAjvFvbf9ggSnNfWVnPy7mmMW3Wf0
+         Vz45olyvG2VMPQ3VjvenyjaG+G0OMXbkgfYYDpMt3BBI9FLqlxnuJ6VtwuJRGyAtvbhs
+         2F1aaw+Pwixk8uotmsf0bbCPjp5ZIzYu9q39nt+9cZr6CdIjoug7REDTk8GPp1YHJu8E
+         omYw==
+X-Gm-Message-State: AO0yUKVy+eJtu7UHmdcFKPv5Ive/l8zcXu8otLdWV+F89nO/QVkrUmNo
+        m2touTH1NT/zvbQyLOJt9qdungMwu+gfOURlmtYIN2WT6lDTZQ==
+X-Google-Smtp-Source: AK7set9iTA9AO4Etm6Qa6BetwCKi4s9NKpG7X8X0EqbX+5L+CoaJUzr/UhCCfQS5fJIS/u7YsOAg2h5lNwb4vZhgsu4=
+X-Received: by 2002:a05:6870:d346:b0:176:2168:12a2 with SMTP id
+ h6-20020a056870d34600b00176216812a2mr3902807oag.2.1678119349301; Mon, 06 Mar
+ 2023 08:15:49 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230223153655.262783-6-bryan.odonoghue@linaro.org>
-Content-Transfer-Encoding: 7bit
+References: <20230303002850.51858-1-arinc.unal@arinc9.com> <20230303002850.51858-6-arinc.unal@arinc9.com>
+ <CAMhs-H-VGjP32AZc2cuY=Co4iqx8xPtvjr+hMg-haMMFaQzzsg@mail.gmail.com>
+ <CAMhs-H8OsG-SEWigimG3fT-SGjZruH-7tnjff198Z2qhb0O=yA@mail.gmail.com>
+ <2106f6d0-63cc-4656-1e52-19640994fb43@arinc9.com> <CAMhs-H869pR6CzaWfvf44w-ak+0OCyxnMEEU4kWYpw=C14ShsQ@mail.gmail.com>
+ <fc6dc970-5bae-1c27-9473-8c9d90ac79a1@arinc9.com> <CAMhs-H_SryQqCZ3mB_VsO20ZSvKCMR5V9E7wrt+a-kbcqQxsWQ@mail.gmail.com>
+ <00d4dd34-efe5-8bc7-031a-0f9d19a1b8e0@arinc9.com>
+In-Reply-To: <00d4dd34-efe5-8bc7-031a-0f9d19a1b8e0@arinc9.com>
+From:   Sergio Paracuellos <sergio.paracuellos@gmail.com>
+Date:   Mon, 6 Mar 2023 17:15:36 +0100
+Message-ID: <CAMhs-H_nTDZMQPQ8R5JeWtgWyP1y57uhym-A4f3LcTgJYV+8pw@mail.gmail.com>
+Subject: Re: [PATCH 05/20] pinctrl: ralink: move to mediatek as mtmips
+To:     =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>
+Cc:     Linus Walleij <linus.walleij@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-mediatek@lists.infradead.org, linux-mips@vger.kernel.org,
+        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Sean Wang <sean.wang@kernel.org>,
+        William Dean <williamsukatube@gmail.com>,
+        Daniel Golle <daniel@makrotopia.org>,
+        Daniel Santos <daniel.santos@pobox.com>,
+        Luiz Angelo Daros de Luca <luizluca@gmail.com>,
+        Frank Wunderlich <frank-w@public-files.de>,
+        Landen Chao <Landen.Chao@mediatek.com>,
+        DENG Qingfang <dqfext@gmail.com>,
+        Sean Wang <sean.wang@mediatek.com>, erkin.bozoglu@xeront.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_PASS,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Feb 23, 2023 at 03:36:55PM +0000, Bryan O'Donoghue wrote:
-> Add a basic booting DTS for the Sony Xperia M4 Aqua aka "tulip".
-> 
-> Tulip is paired with:
-> 
-> - wcn3660
-> - smb1360 battery charger
-> - 720p Truly NT35521 Panel
-> 
-> Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
-> Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-> ---
->  arch/arm64/boot/dts/qcom/Makefile             |   1 +
->  .../qcom/msm8939-sony-xperia-kanuti-tulip.dts | 457 ++++++++++++++++++
->  2 files changed, 458 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/qcom/msm8939-sony-xperia-kanuti-tulip.dts
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
-> index 2983e83a19061..81a38d46deba5 100644
-> --- a/arch/arm64/boot/dts/qcom/Makefile
-> +++ b/arch/arm64/boot/dts/qcom/Makefile
-> @@ -29,6 +29,7 @@ dtb-$(CONFIG_ARCH_QCOM)	+= msm8916-samsung-serranove.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= msm8916-thwc-uf896.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= msm8916-thwc-ufi001c.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= msm8916-wingtech-wt88047.dtb
-> +dtb-$(CONFIG_ARCH_QCOM)	+= msm8939-sony-xperia-kanuti-tulip.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= msm8953-motorola-potter.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= msm8953-xiaomi-daisy.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= msm8953-xiaomi-mido.dtb
-> diff --git a/arch/arm64/boot/dts/qcom/msm8939-sony-xperia-kanuti-tulip.dts b/arch/arm64/boot/dts/qcom/msm8939-sony-xperia-kanuti-tulip.dts
-> new file mode 100644
-> index 0000000000000..c646fada11a5a
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/qcom/msm8939-sony-xperia-kanuti-tulip.dts
-> @@ -0,0 +1,457 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * Copyright (c) 2015, The Linux Foundation. All rights reserved.
-> + * Copyright (c) 2022-2023, Bryan O'Donoghue.
-> + *
-> + */
-> +
-> +/dts-v1/;
-> +
-> +#include "msm8939.dtsi"
-> +#include "msm8939-pm8916.dtsi"
-> +#include <dt-bindings/arm/qcom,ids.h>
-> +#include <dt-bindings/gpio/gpio.h>
-> +#include <dt-bindings/pinctrl/qcom,pmic-gpio.h>
-> +
-> +/ {
-> +	model = "Sony Xperia M4 Aqua";
-> +	compatible = "sony,kanuti-tulip", "qcom,msm8939";
-> +
-> +	qcom,board-id = <8 0>;
+On Mon, Mar 6, 2023 at 4:06 PM Ar=C4=B1n=C3=A7 =C3=9CNAL <arinc.unal@arinc9=
+.com> wrote:
+>
+> On 6.03.2023 17:07, Sergio Paracuellos wrote:
+> > On Fri, Mar 3, 2023 at 3:18 PM Ar=C4=B1n=C3=A7 =C3=9CNAL <arinc.unal@ar=
+inc9.com> wrote:
+> >>
+> >> Heyo,
+> >>
+> >> On 3.03.2023 13:57, Sergio Paracuellos wrote:
+> >>> Hi Ar=C4=B1n=C3=A7,
+> >>>
+> >>> On Fri, Mar 3, 2023 at 9:16 AM Ar=C4=B1n=C3=A7 =C3=9CNAL <arinc.unal@=
+arinc9.com> wrote:
+> >>>>
+> >>>> Hey Sergio,
+> >>>>
+> >>>> On 3.03.2023 09:34, Sergio Paracuellos wrote:
+> >>>>> On Fri, Mar 3, 2023 at 7:17 AM Sergio Paracuellos
+> >>>>> <sergio.paracuellos@gmail.com> wrote:
+> >>>>>>
+> >>>>>>     Hi Ar=C4=B1n=C3=A7,
+> >>>>>>
+> >>>>>> On Fri, Mar 3, 2023 at 1:30 AM <arinc9.unal@gmail.com> wrote:
+> >>>>>>>
+> >>>>>>> From: Ar=C4=B1n=C3=A7 =C3=9CNAL <arinc.unal@arinc9.com>
+> >>>>>>>
+> >>>>>>> This platform from Ralink was acquired by MediaTek in 2011. Then,=
+ MediaTek
+> >>>>>>> introduced new SoCs which utilise this platform. Move the driver =
+to
+> >>>>>>> mediatek pinctrl directory. Rename the ralink core driver to mtmi=
+ps.
+> >>>>>>>
+> >>>>>>> Signed-off-by: Ar=C4=B1n=C3=A7 =C3=9CNAL <arinc.unal@arinc9.com>
+> >>>>>>> ---
+> >>>>>>>     drivers/pinctrl/Kconfig                       |  1 -
+> >>>>>>>     drivers/pinctrl/Makefile                      |  1 -
+> >>>>>>>     drivers/pinctrl/mediatek/Kconfig              | 51 ++++++++++=
+-
+> >>>>>>>     drivers/pinctrl/mediatek/Makefile             | 63 +++++++---=
+---
+> >>>>>>>     .../{ralink =3D> mediatek}/pinctrl-mt7620.c     | 34 +++----
+> >>>>>>>     .../{ralink =3D> mediatek}/pinctrl-mt7621.c     | 30 +++----
+> >>>>>>>     .../{ralink =3D> mediatek}/pinctrl-mt76x8.c     | 60 ++++++--=
+-----
+> >>>>>>>     .../pinctrl-mtmips.c}                         | 90 +++++++++-=
+---------
+> >>>>>>>     .../pinctrl-mtmips.h}                         | 16 ++--
+> >>>>>>>     .../{ralink =3D> mediatek}/pinctrl-rt2880.c     | 20 ++---
+> >>>>>>>     .../{ralink =3D> mediatek}/pinctrl-rt305x.c     | 44 ++++----=
+-
+> >>>>>>>     .../{ralink =3D> mediatek}/pinctrl-rt3883.c     | 28 +++---
+> >>>>>>>     drivers/pinctrl/ralink/Kconfig                | 40 ---------
+> >>>>>>>     drivers/pinctrl/ralink/Makefile               |  9 --
+> >>>>>>>     14 files changed, 246 insertions(+), 241 deletions(-)
+> >>>>>>>     rename drivers/pinctrl/{ralink =3D> mediatek}/pinctrl-mt7620.=
+c (81%)
+> >>>>>>>     rename drivers/pinctrl/{ralink =3D> mediatek}/pinctrl-mt7621.=
+c (80%)
+> >>>>>>>     rename drivers/pinctrl/{ralink =3D> mediatek}/pinctrl-mt76x8.=
+c (81%)
+> >>>>>>>     rename drivers/pinctrl/{ralink/pinctrl-ralink.c =3D> mediatek=
+/pinctrl-mtmips.c} (74%)
+> >>>>>>>     rename drivers/pinctrl/{ralink/pinctrl-ralink.h =3D> mediatek=
+/pinctrl-mtmips.h} (75%)
+> >>>>>>>     rename drivers/pinctrl/{ralink =3D> mediatek}/pinctrl-rt2880.=
+c (71%)
+> >>>>>>>     rename drivers/pinctrl/{ralink =3D> mediatek}/pinctrl-rt305x.=
+c (75%)
+> >>>>>>>     rename drivers/pinctrl/{ralink =3D> mediatek}/pinctrl-rt3883.=
+c (80%)
+> >>>>>>>     delete mode 100644 drivers/pinctrl/ralink/Kconfig
+> >>>>>>>     delete mode 100644 drivers/pinctrl/ralink/Makefile
+> >>>>>>>
+> >>>>>>> diff --git a/drivers/pinctrl/Kconfig b/drivers/pinctrl/Kconfig
+> >>>>>>> index dcb53c4a9584..8a6012770640 100644
+> >>>>>>> --- a/drivers/pinctrl/Kconfig
+> >>>>>>> +++ b/drivers/pinctrl/Kconfig
+> >>>>>>> @@ -537,7 +537,6 @@ source "drivers/pinctrl/nomadik/Kconfig"
+> >>>>>>>     source "drivers/pinctrl/nuvoton/Kconfig"
+> >>>>>>>     source "drivers/pinctrl/pxa/Kconfig"
+> >>>>>>>     source "drivers/pinctrl/qcom/Kconfig"
+> >>>>>>> -source "drivers/pinctrl/ralink/Kconfig"
+> >>>>>>>     source "drivers/pinctrl/renesas/Kconfig"
+> >>>>>>>     source "drivers/pinctrl/samsung/Kconfig"
+> >>>>>>>     source "drivers/pinctrl/spear/Kconfig"
+> >>>>>>> diff --git a/drivers/pinctrl/Makefile b/drivers/pinctrl/Makefile
+> >>>>>>> index d5939840bb2a..ada6ed1d4e91 100644
+> >>>>>>> --- a/drivers/pinctrl/Makefile
+> >>>>>>> +++ b/drivers/pinctrl/Makefile
+> >>>>>>> @@ -66,7 +66,6 @@ obj-y                         +=3D nomadik/
+> >>>>>>>     obj-y                          +=3D nuvoton/
+> >>>>>>>     obj-$(CONFIG_PINCTRL_PXA)      +=3D pxa/
+> >>>>>>>     obj-$(CONFIG_ARCH_QCOM)                +=3D qcom/
+> >>>>>>> -obj-$(CONFIG_PINCTRL_RALINK)   +=3D ralink/
+> >>>>>>>     obj-$(CONFIG_PINCTRL_RENESAS)  +=3D renesas/
+> >>>>>>>     obj-$(CONFIG_PINCTRL_SAMSUNG)  +=3D samsung/
+> >>>>>>>     obj-$(CONFIG_PINCTRL_SPEAR)    +=3D spear/
+> >>>>>>> diff --git a/drivers/pinctrl/mediatek/Kconfig b/drivers/pinctrl/m=
+ediatek/Kconfig
+> >>>>>>> index a71874fed3d6..2eeb55010563 100644
+> >>>>>>> --- a/drivers/pinctrl/mediatek/Kconfig
+> >>>>>>> +++ b/drivers/pinctrl/mediatek/Kconfig
+> >>>>>>> @@ -1,6 +1,6 @@
+> >>>>>>>     # SPDX-License-Identifier: GPL-2.0-only
+> >>>>>>>     menu "MediaTek pinctrl drivers"
+> >>>>>>> -       depends on ARCH_MEDIATEK || COMPILE_TEST
+> >>>>>>> +       depends on ARCH_MEDIATEK || RALINK || COMPILE_TEST
+> >>>>>>>
+> >>>>>>>     config EINT_MTK
+> >>>>>>>            tristate "MediaTek External Interrupt Support"
+> >>>>>>> @@ -22,6 +22,12 @@ config PINCTRL_MTK
+> >>>>>>>     config PINCTRL_MTK_V2
+> >>>>>>>            tristate
+> >>>>>>>
+> >>>>>>> +config PINCTRL_MTK_MTMIPS
+> >>>>>>> +       bool
+> >>>>>>> +       depends on RALINK
+> >>>>>>> +       select PINMUX
+> >>>>>>> +       select GENERIC_PINCONF
+> >>>>>>> +
+> >>>>>>>     config PINCTRL_MTK_MOORE
+> >>>>>>>            bool
+> >>>>>>>            depends on OF
+> >>>>>>> @@ -43,6 +49,49 @@ config PINCTRL_MTK_PARIS
+> >>>>>>>            select OF_GPIO
+> >>>>>>>            select PINCTRL_MTK_V2
+> >>>>>>>
+> >>>>>>> +# For MIPS SoCs
+> >>>>>>> +config PINCTRL_MT7620
+> >>>>>>> +       bool "MediaTek MT7620 pin control"
+> >>>>>>> +       depends on SOC_MT7620 || COMPILE_TEST
+> >>>>>>> +       depends on RALINK
+> >>>>>>> +       default SOC_MT7620
+> >>>>>>> +       select PINCTRL_MTK_MTMIPS
+> >>>>>>> +
+> >>>>>>> +config PINCTRL_MT7621
+> >>>>>>> +       bool "MediaTek MT7621 pin control"
+> >>>>>>> +       depends on SOC_MT7621 || COMPILE_TEST
+> >>>>>>> +       depends on RALINK
+> >>>>>>> +       default SOC_MT7621
+> >>>>>>> +       select PINCTRL_MTK_MTMIPS
+> >>>>>>> +
+> >>>>>>> +config PINCTRL_MT76X8
+> >>>>>>> +       bool "MediaTek MT76X8 pin control"
+> >>>>>>> +       depends on SOC_MT7620 || COMPILE_TEST
+> >>>>>>> +       depends on RALINK
+> >>>>>>> +       default SOC_MT7620
+> >>>>>>> +       select PINCTRL_MTK_MTMIPS
+> >>>>>>> +
+> >>>>>>> +config PINCTRL_RT2880
+> >>>>>>> +       bool "Ralink RT2880 pin control"
+> >>>>>>> +       depends on SOC_RT288X || COMPILE_TEST
+> >>>>>>> +       depends on RALINK
+> >>>>>>> +       default SOC_RT288X
+> >>>>>>> +       select PINCTRL_MTK_MTMIPS
+> >>>>>>> +
+> >>>>>>> +config PINCTRL_RT305X
+> >>>>>>> +       bool "Ralink RT305X pin control"
+> >>>>>>> +       depends on SOC_RT305X || COMPILE_TEST
+> >>>>>>> +       depends on RALINK
+> >>>>>>> +       default SOC_RT305X
+> >>>>>>> +       select PINCTRL_MTK_MTMIPS
+> >>>>>>> +
+> >>>>>>> +config PINCTRL_RT3883
+> >>>>>>> +       bool "Ralink RT3883 pin control"
+> >>>>>>> +       depends on SOC_RT3883 || COMPILE_TEST
+> >>>>>>> +       depends on RALINK
+> >>>>>>> +       default SOC_RT3883
+> >>>>>>> +       select PINCTRL_MTK_MTMIPS
+> >>>>>>> +
+> >>>>>>
+> >>>>>> I am not a Kconfig expert at all but...
+> >>>>>>
+> >>>>>> Should not all of these be depends on SOC_XXX || (COMPILE_TEST &&
+> >>>>>> RALINK) and avoid the " depends on RALINK" next line in all of the=
+m?
+> >>>>
+> >>>> This seems to do the same thing but I'm following the "either change
+> >>>> them all or fit into the crowd" ideology.
+> >>>>
+> >>>>>>
+> >>>>>> Just asking since we have yet arch read and write register operati=
+ons
+> >>>>>> in pinctrl common ralink code. Having in this way, when we address
+> >>>>>> this arch thing  in the next series just removing the "&& RALINK" =
+part
+> >>>>>> makes the review pretty obvious.
+> >>>>
+> >>>> You'd have to change RALINK with OF since we're still depending on t=
+hat.
+> >>>> RALINK selects OF by default so it's currently a hidden dependency.
+> >>>>
+> >>>>>>
+> >>>>>> Other than that, changes look good to me.
+> >>>>>
+> >>>>> I think "depends on SOC_XXX || (COMPILE_TEST && MIPS)" would work a=
+lso
+> >>>>> and might be more accurate for compile testing targets.
+> >>>
+> >>> Are you sure? SOC_XXX here is already being enabled only if RALINK is
+> >>> already enabled, right? [0]
+> >>
+> >> I'm not sure who's your reply to, or what it's about here.
+> >
+> > Bad insertion between lines, sorry :). I was just trying to explain to
+> > you that SOC_RTXX ralink stuff is only available when RALINK is
+> > already selected.
+>
+> Makes sense. However, I believe what I said below is still true. This
+> option will be available to compile if a Ralink SoC (and therefore
+> RALINK) is enabled, OR, COMPILE_TEST and MIPS is enabled. The latter
+> will fail to compile if the enabled MIPS platform is not RALINK.
+>
+> >
+> >>
+> >>>
+> >>>>
+> >>>> This is not OK in both cases. If the driver is dependent on Ralink
+> >>>> architecture code, choosing any other MIPS platform will make the dr=
+iver
+> >>>> available to compile, which will fail.
+> >>>
+> >>> SOC_XXX is already dependent on RALINK for real uses but the driver i=
+s
+> >>> going to be selected for other MIPS platforms only for COMPILE_TEST
+> >>> targets. Ideally drivers should be arch agnostic so can be selected
+> >>> for any single arch build. Now we have arch dependent read and write
+> >>> calls in the code, so you need the right headers to be properly found
+> >>> to be able to compile testing. I think MIPS is enough dependency here
+> >>> to properly find them. But if not, this should be (COMPILE_TEST &&
+> >>> RALINK)
+> >>
+> >> I expect below to work without requiring the MIPS option.
+> >>
+> >> ifeq ($(CONFIG_COMPILE_TEST),y)
+> >> CFLAGS_pinctrl-mtmips.o         +=3D -I$(srctree)/arch/mips/include
+> >> endif
+> >
+> > Yes, this will work but won't be necessary at all when we get rid of
+> > ralink arch dependent code in the next series.
+>
+> Oh, you plan to completely get rid of it, including headers. That's bette=
+r!
 
-Could use QCOM_BOARD_ID_MTP instead of 8 for more clarity here.
+I'd really love to get rid of all of that, yes.
 
-> [...]
-> +&dsi0 {
-> +	status = "okay";
-> +
-> +	panel@0 {
-> +		compatible = "sony,tulip-truly-nt35521";
-> +		reg = <0>;
-> +		positive5-supply = <&vreg_positive5_reg>;
-> +		negative5-supply = <&vreg_negative5_reg>;
-> +		reset-gpios = <&tlmm 25 GPIO_ACTIVE_LOW>;
-> +		enable-gpios = <&tlmm 10 GPIO_ACTIVE_LOW>;
+>
+> However, rt305x_pinctrl_probe() on pinctrl-rt305x.c needs them to find
+> out the SoC to match the pinmux data. Sure, splitting the driver further
+> will work but I'm wondering if you've got something else in mind to
+> address this.
 
-Have you tested this? While this matches the (likely incorrect)
-bindings, as far as I can tell the Linux tulip-truly-nt35521 driver
-wants "backlight-gpios" instead of "enable-gpios". And it's not an
-optional GPIO so I don't quite understand how the existing driver could
-probe successfully with what you have here.
-
-> +
-> +		ports {
-> +			port {
-> +				panel_in: endpoint {
-> +					remote-endpoint = <&dsi0_out>;
-> +				};
-> +			};
-> +		};
-> +
-> +	};
-> +};
-> +
-> [...]
-> +&tlmm {
-> +	ak8963_default: ak8963-default-state {
-> +		pins = "gpio69";
-> +		function = "gpio";
-> +		bias-pull-up;
-> +		drive-strength = <6>;
-> +	};
-> +
-> +	ak8963_sleep: ak8963-sleep-state {
-> +		pins = "gpio69";
-> +		function = "gpio";
-> +		bias-pull-down;
-> +		drive-strength = <2>;
-> +	};
-> +
-> +	/* Ambient light and proximity sensor apds9930 and apds9900 */
-> +	apds99xx_default: apds99xx-default-state {
-> +		pins = "gpio113";
-> +		function = "gpio";
-> +		bias-pull-up;
-> +		drive-strength = <6>;
-> +	};
-> +
-> +	apds99xx_sleep: apds99xx-sleep-state {
-> +		pins = "gpio113";
-> +		function = "gpio";
-> +		bias-pull-down;
-> +		drive-strength = <2>;
-> +	};
-> +
-> +	cam_sensor_flash_default: cam-sensor-flash-default-state {
-> +		pins = "gpio98", "gpio97";
-> +		function = "gpio";
-> +		bias-disable;
-> +		drive-strength = <2>;
-> +	};
-> +
-> +	cci1_default: cci1-default-state {
-> +		pins = "gpio31", "gpio32";
-> +		function = "cci_i2c";
-> +		bias-disable;
-> +		drive-strength = <2>;
-> +	};
-> +
-> +	cdc_ext_spk_pa_active: cdc-ext-spk-pa-on-state {
-> +		pins = "gpio0";
-> +		function = "gpio";
-> +		drive-strength = <8>;
-> +		output-low;
-> +	};
-> +
-> +	cdc_ext_spk_pa_sus: cdc-ext-spk-pa-off-state {
-> +		pins = "gpio0";
-> +		function = "gpio";
-> +		bias-disable;
-> +		drive-strength = <2>;
-> +	};
-> +
-> +	cdc_slim_lines_act: lines-on-state {
-> +		pins = "gpio63";
-> +		function = "cdc_pdm0";
-> +		drive-strength = <8>;
-> +		output-high;
-> +	};
-> +
-> +	cdc_slim_lines_sus: lines-off-state {
-> +		pins = "gpio63";
-> +		function = "cdc_pdm0";
-> +		bias-disable;
-> +		drive-strength = <2>;
-> +	};
-> +
-> +	cross_conn_det_act: lines-on-state {
-> +		pins = "gpio120";
-> +		function = "gpio";
-> +		bias-pull-down;
-> +		drive-strength = <8>;
-> +		output-low;
-> +	};
-> +
-> +	cross_conn_det_sus: lines-off-state {
-> +		pins = "gpio120";
-> +		function = "gpio";
-> +		bias-pull-down;
-> +		drive-strength = <2>;
-> +	};
-> +
-> +	ext_buck_vsel: vsel0-state {
-> +		pins = "gpio111";
-> +		function = "gpio";
-> +		drive-strength = <2>;
-> +	};
-> +
-> +	ext_cdc_tlmm_lines_act: tlmm-lines-on-state {
-> +		pins = "gpio116", "gpio112", "gpio117", "gpio118", "gpio119";
-> +		function = "gpio";
-> +		bias-disable;
-> +		drive-strength = <8>;
-> +	};
-> +
-> +	ext_cdc_tlmm_lines_sus: tlmm-lines-off-state {
-> +		pins = "gpio116", "gpio112", "gpio117", "gpio118", "gpio119";
-> +		function = "gpio";
-> +		bias-disable;
-> +		drive-strength = <2>;
-> +	};
-> +
-> +	gpio_key_suspend: gpio-key-suspend-state {
-> +		pins = "gpio107", "gpio108", "gpio109";
-> +		function = "gpio";
-> +		bias-pull-up;
-> +		drive-strength = <2>;
-> +	};
-> +
-> +	negative5_reg_default: negative5-reg-default-state {
-> +		pins = "gpio17";
-> +		function = "gpio";
-> +		output-low;
-> +	};
-> +
-> +	positive5_reg_default: positive5-reg-default-state {
-> +		pins = "gpio114";
-> +		function = "gpio";
-> +		output-low;
-> +	};
-> +
-> +	/* Gyroscope and accelerometer sensor combo */
-> +	mpu6050_default: mpu6050-default-state {
-> +		pins = "gpio115";
-> +		function = "gpio";
-> +		bias-pull-up;
-> +		drive-strength = <6>;
-> +	};
-> +
-> +	mpu6050_sleep: mpu6050-sleep-state {
-> +		pins = "gpio115";
-> +		function = "gpio";
-> +		bias-pull-down;
-> +		drive-strength = <2>;
-> +	};
-> +
-> +	nfc_disable_active: nfc-disable-active-state {
-> +		pins = "gpio20";
-> +		function = "gpio";
-> +		bias-pull-up;
-> +		drive-strength = <6>;
-> +	};
-> +
-> +	nfc_disable_suspend: nfc-disable-suspend-state {
-> +		pins = "gpio20";
-> +		function = "gpio";
-> +		bias-disable;
-> +		drive-strength = <6>;
-> +	};
-> +
-> +	nfc_int_active: nfc-int-active-state {
-> +		pins = "gpio21";
-> +		function = "gpio";
-> +		bias-pull-up;
-> +		drive-strength = <6>;
-> +	};
-> +
-> +	nfc_int_suspend: nfc-int-suspend-state {
-> +		pins = "gpio21";
-> +		function = "gpio";
-> +		bias-pull-up;
-> +		drive-strength = <6>;
-> +	};
-> +
-> +	nt35521_te_default: nt35521-te-default-state {
-> +		pins = "gpio24";
-> +		function = "gpio";
-> +		bias-pull-down;
-> +		drive-strength = <6>;
-> +	};
-> +
-> +	nt35521_backlight: nt35521-backlight-default-state {
-> +		pins = "gpio10";
-> +		function = "gpio";
-> +		bias-pull-down;
-> +		drive-strength = <6>;
-> +	};
-> +
-> +	smb_int: smb-int-default-state {
-> +		pins = "gpio62";
-> +		function = "gpio";
-> +		bias-pull-up;
-> +		drive-strength = <2>;
-> +	};
-> +
-> +	ts_int_active: ts-int-active-state {
-> +		pins = "gpio13";
-> +		function = "gpio";
-> +		bias-pull-up;
-> +		drive-strength = <16>;
-> +	};
-> +
-> +	ts_int_suspend: ts-int-suspend-state {
-> +		pins = "gpio13";
-> +		function = "gpio";
-> +		bias-pull-down;
-> +		drive-strength = <2>;
-> +	};
-> +
-> +	ts_reset_active: ts-reset-active-state {
-> +		pins = "gpio12";
-> +		function = "gpio";
-> +		bias-pull-up;
-> +		drive-strength = <16>;
-> +	};
-> +
-> +	ts_reset_suspend: ts-reset-suspend-state {
-> +		pins = "gpio12";
-> +		function = "gpio";
-> +		bias-pull-down;
-> +		drive-strength = <2>;
-> +	};
-> +
-> +	ts_release: ts-release-default-state {
-> +		pins = "gpio13", "gpio12";
-> +		function = "gpio";
-> +		bias-pull-down;
-> +		drive-strength = <2>;
-> +	};
-> +
-
-There are *a lot* of unused pinctrl entries here. If you don't reference
-them anywhere (by referencing them via label) they just waste space in
-the device tree. The GPIOs will still remain unconfigured.
-
-Please save them locally for later usage and only keep the used entries.
-This will ease review of upcoming patches since these are better
-understandable together with the actual device node making use of them.
+I know. Sharing the same compatible string makes really hard to do
+this easily. One of my thoughts was to split also that in the driver
+as you are pointing out here. I have also submitted this series [0] to
+be able to make use of soc_match stuff instead of relying on
+compatible strings for these kinds of situations. However I am not
+also sure that would be a valid approach. Let's see. At the end we can
+end up splitting the driver if nothing seems to work.
 
 Thanks,
-Stephan
+    Sergio Paracuellos
+
+[0]: https://lore.kernel.org/linux-mips/20230227105806.2394101-1-sergio.par=
+acuellos@gmail.com/T/#t
+
+>
+> Ar=C4=B1n=C3=A7
