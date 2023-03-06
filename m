@@ -2,75 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6CF886AB87A
-	for <lists+devicetree@lfdr.de>; Mon,  6 Mar 2023 09:38:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4B85E6AB880
+	for <lists+devicetree@lfdr.de>; Mon,  6 Mar 2023 09:39:36 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229837AbjCFIiL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 Mar 2023 03:38:11 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39772 "EHLO
+        id S229457AbjCFIjf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 Mar 2023 03:39:35 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41246 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229754AbjCFIiI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Mar 2023 03:38:08 -0500
-Received: from mail-wm1-x32a.google.com (mail-wm1-x32a.google.com [IPv6:2a00:1450:4864:20::32a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6206D7D99
-        for <devicetree@vger.kernel.org>; Mon,  6 Mar 2023 00:38:06 -0800 (PST)
-Received: by mail-wm1-x32a.google.com with SMTP id r19-20020a05600c459300b003eb3e2a5e7bso4691536wmo.0
-        for <devicetree@vger.kernel.org>; Mon, 06 Mar 2023 00:38:06 -0800 (PST)
+        with ESMTP id S229715AbjCFIjd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Mar 2023 03:39:33 -0500
+Received: from mail-wm1-x331.google.com (mail-wm1-x331.google.com [IPv6:2a00:1450:4864:20::331])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E73291CAE5
+        for <devicetree@vger.kernel.org>; Mon,  6 Mar 2023 00:39:30 -0800 (PST)
+Received: by mail-wm1-x331.google.com with SMTP id j3so5097531wms.2
+        for <devicetree@vger.kernel.org>; Mon, 06 Mar 2023 00:39:30 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1678091885;
+        d=linaro.org; s=google; t=1678091969;
         h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:to:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=NBn8YOHpxIfsYVyC9NKPdmAQvu8dSftWMYkzf80yjII=;
-        b=W5ml6sum57UIXTAX+I+A6X3qRi6NnIb34wqMkiVjr0JqSBycww3tEpf5jjrQ3q7Fzl
-         ZPMte+96aaRvGFd+38kFRgGbeShWJGfwXeEdo+eRV/vJzMUz25l04JpBjIq7LflIqer6
-         mQzV/aUA6HBAGzLwmZ5UK1yIH5vmESbMpIzb0NIDdpBjr+xHCrl4kk4xpilPdCHC1E+t
-         bpji6/DG3NB5B3TagNg09I3pAY8yozf4p/eIda7pujQx64PMNLAxoD9un8ZIxFCim0Y7
-         NxGjrY+zaZt0p3mFyBY3tKHCqTj0/cgImKQ5clOI0jTdBCXC5IgBEUyLeFf4kotNprnV
-         KNPA==
+         :references:in-reply-to:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=mdXHSSzFb0wf4Z5ebFpbSvGWzd8D68jDgoc9WISe18M=;
+        b=L/xCTT9oGeZPl+49XiWu7haaTjDD4Czfx7sdxvdImv6E0n4BYBAn3D4PuTH6iu1EfT
+         Qc+MRFZRe1qydY49icg8KJFQ51W7cm3Rxef7sE2j1vhiQUa4J11pURkUFQGRsIpom2Ys
+         Aa9qUv1vtAj+Mrxe/aA2EeDG+Uw8FMt2DE+kag/IMs6L4wFKz1Js3mmfscN1/k4JzxDD
+         pnP/u0qTCwjArowyXg0pmVt94fig6sxuZYh8GMOu+48+IsQwkeUxUvKMeT/A+R1NjqUi
+         umfU76E9s2VN2ERxo3ELDHjmiebm1GYGa+K4XsHT0v05y9chlfiMhOLeTgOM2hRtKM23
+         4k1w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678091885;
+        d=1e100.net; s=20210112; t=1678091969;
         h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:to:from:x-gm-message-state:from:to:cc
+         :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=NBn8YOHpxIfsYVyC9NKPdmAQvu8dSftWMYkzf80yjII=;
-        b=yqll8W/nXC2HNoGX3nWGGTajDyIYxadaVvm4PTYAuinTiFzxBuKgQDbtnTicUa+xSZ
-         tq7jgLx0554CGM0JenyhGqwcf3zRg6+wU9JkzBjTsJXhv2tWA3EygU0r4e1UWJXCEEqS
-         GONResksGKLB+kXow++21kcOhvguUa/zdpIl1Ygal+kqgGDGCJjDkdNskRh7y/zwGX6E
-         2Pb13wGwm7+FIJrpeMbfpVsa3/UTESRR/Ca19O6AfAnsJ4MYBHu66fQyvKDYQkKt+YsX
-         X/RGLeEVWz1hI7Afrj78R+7VbGKLd3UACmRCCi9Qxu/sV6QMhfa+6W8RIhHqCFW5fQcj
-         v5ZQ==
-X-Gm-Message-State: AO0yUKVZgZ8DTeZrgpDifLEhhwQ69+3QHb7NVfS3EU2ayMi6fIK9cepu
-        c9qaihnC5iu8oPTEuwP0fkOuww==
-X-Google-Smtp-Source: AK7set/5NtPMS9Adn1TyO9ajOxORLX91lowOP5e2ZAeZ0AY5dK2cmFRB765KQsI8Ua/Zauf+x5EFFg==
-X-Received: by 2002:a05:600c:470a:b0:3eb:3843:9f31 with SMTP id v10-20020a05600c470a00b003eb38439f31mr8678171wmo.10.1678091884891;
-        Mon, 06 Mar 2023 00:38:04 -0800 (PST)
+        bh=mdXHSSzFb0wf4Z5ebFpbSvGWzd8D68jDgoc9WISe18M=;
+        b=Vv0I5uYAP0MY0FQZvyu1Ggm3e95UQhwTO/0zfrqZBViSO3GHjIvGOeQej3ZeqS4cES
+         uyCOOj247q8r9Z6tmTGFTazwuDHsSwYo2zrH3B2mF7lHjgxblwqUdD7wmV3pH7XBRQxS
+         cySsQF3UxbCEEnpGO0xbHs7PXZrrbqwWLJmhWvdRv18lJXBknENPhRGc6ax1+fOBTtCa
+         frSKCT/FBr72x4FeUpjkEVM+S6C/GnYuXO/WA8sQjCeDMd68c8WtiICzCp+Me2CveA1O
+         Us0VXSFGE1IhpcuSJhKWnNeDkvAJxZNfoWiL7oidqvGrLaS7gZxvv06WqtpxiF1MeADZ
+         pMgw==
+X-Gm-Message-State: AO0yUKVBjkFpRYHaZVWcitCm62H1hf9Scop/708ne7OUPPsIAEMz+0UF
+        VprfwutO7QbjwBJlFLzQUU8C0A==
+X-Google-Smtp-Source: AK7set+ZWZw+hQJ/2sk3ResOt44ySPYhF3lJa5MGYX4FLkyMzo9GSQeeqZSK5eB9zmeofrYdEnx6Gw==
+X-Received: by 2002:a05:600c:350c:b0:3dc:40a0:3853 with SMTP id h12-20020a05600c350c00b003dc40a03853mr6535425wmq.11.1678091969437;
+        Mon, 06 Mar 2023 00:39:29 -0800 (PST)
 Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:8261:5fff:fe11:bdda])
-        by smtp.gmail.com with ESMTPSA id v7-20020a05600c444700b003eb0d6f48f3sm14184064wmn.27.2023.03.06.00.38.04
+        by smtp.gmail.com with ESMTPSA id d1-20020a5d4f81000000b002c54e26bca5sm9190736wru.49.2023.03.06.00.39.28
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 06 Mar 2023 00:38:04 -0800 (PST)
+        Mon, 06 Mar 2023 00:39:29 -0800 (PST)
 From:   Neil Armstrong <neil.armstrong@linaro.org>
-To:     Rob Herring <robh+dt@kernel.org>,
+To:     Alessandro Zummo <a.zummo@towertech.it>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Kevin Hilman <khilman@baylibre.com>,
         Jerome Brunet <jbrunet@baylibre.com>,
         Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Neil Armstrong <neil.armstrong@linaro.org>
+Cc:     linux-rtc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
         linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Christian Hewitt <christianshewitt@gmail.com>
-In-Reply-To: <20230305134512.1596572-1-christianshewitt@gmail.com>
-References: <20230305134512.1596572-1-christianshewitt@gmail.com>
-Subject: Re: [PATCH v2 0/2] arm64: amlogic: Add initial support for BPI-M2S
- variants
-Message-Id: <167809188415.8899.9019667584179852304.b4-ty@linaro.org>
-Date:   Mon, 06 Mar 2023 09:38:04 +0100
+        linux-clk@vger.kernel.org
+In-Reply-To: <20230209-b4-amlogic-bindings-convert-take2-v1-0-c4fe9049def9@linaro.org>
+References: <20230209-b4-amlogic-bindings-convert-take2-v1-0-c4fe9049def9@linaro.org>
+Subject: Re: (subset) [PATCH 0/6] dt-bindings: second batch of dt-schema
+ conversions for Amlogic Meson bindings
+Message-Id: <167809196860.10551.9031776722379367022.b4-ty@linaro.org>
+Date:   Mon, 06 Mar 2023 09:39:28 +0100
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
 X-Mailer: b4 0.12.1
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -79,27 +86,25 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 Hi,
 
-On Sun, 05 Mar 2023 13:45:10 +0000, Christian Hewitt wrote:
-> Add support for the BananaPi M2S which ships in two board variants with
-> the Amlogic S922X or A311D chipset. Schematics for the board are not
-> currently available from Sinovoip so the device-tree is largely derived
-> from the Khadas VIM3 (also S922X/A311D) and other recent BPI boards that
-> have public documentation. The device-tree also supports the RTL8822CS
-> WiFi/BT module. This is optional so the nodes must be enabled though an
-> overlay or fdtput.
+On Thu, 09 Feb 2023 14:41:36 +0100, Neil Armstrong wrote:
+> Batch conversion of the following bindings:
+> - rtc-meson-vrtc.txt
+> - amlogic,gxbb-clkc.txt
+> - amlogic,gxbb-aoclkc.txt
+> - clk-measure.txt
+> 
+> And in addition document the System Control registers top node.
 > 
 > [...]
 
-Thanks, Applied to https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git (v6.4/arm64-dt)
+Thanks, Applied to https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git (v6.4/drivers)
 
-[1/2] dt-bindings: arm: amlogic: add support for BananaPi M2S variants
-      https://git.kernel.org/amlogic/c/0e1598a112f2e270bdd5771bb821f12852c548ac
-[2/2] arm64: dts: meson: add support for BananaPi M2S variants
-      https://git.kernel.org/amlogic/c/14e14723d2f58964f13e825738d01f62a8629e90
+[2/6] dt-bindings: soc: amlogic: convert clk-measure.txt to dt-schema
+      https://git.kernel.org/amlogic/c/2227e738b30bf20380a48391a73752c52f5f5c6a
 
 These changes has been applied on the intermediate git tree [1].
 
-The v6.4/arm64-dt branch will then be sent via a formal Pull Request to the Linux SoC maintainers
+The v6.4/drivers branch will then be sent via a formal Pull Request to the Linux SoC maintainers
 for inclusion in their intermediate git branches in order to be sent to Linus during
 the next merge window, or sooner if it's a set of fixes.
 
