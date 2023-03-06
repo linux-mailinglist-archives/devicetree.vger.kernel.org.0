@@ -2,80 +2,137 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7233D6ABDB9
-	for <lists+devicetree@lfdr.de>; Mon,  6 Mar 2023 12:08:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EC4CB6ABDCD
+	for <lists+devicetree@lfdr.de>; Mon,  6 Mar 2023 12:10:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229528AbjCFLIo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 Mar 2023 06:08:44 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51622 "EHLO
+        id S229554AbjCFLKB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 Mar 2023 06:10:01 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52270 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229706AbjCFLIn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Mar 2023 06:08:43 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3B3FEF94E;
-        Mon,  6 Mar 2023 03:08:41 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id E54CEB80D99;
-        Mon,  6 Mar 2023 11:08:39 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 44DEFC433EF;
-        Mon,  6 Mar 2023 11:08:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1678100918;
-        bh=wrf7lgWdoNrOESaunxwp4Qf5wKYQR5fF6kIZkRfbk9s=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=n3ZEZ6dQsFvyB9YSnT51A7RcYl7bh0Xju4p/vj1UVJMPO0OfqgVmCZGfWr8Q5owYT
-         DncFkl3ixR2CTpp+dsWP3b2YmHotBI7hvJTkT+r9TvBYUeD5LcNtOF6yzQ8XlxHBFk
-         bQUO1Jy9b2yVG6Kl2x3Srz+/6m9E6TnrSYp3PWRSHJfqOJWRIlDf1I9D2SIN3iEDuU
-         nTG60DxN8AWqGNK/9yB3GqJtLgAtzeHSezXzbaTi6PQFeV/laj2kp9of84TZPsAWeo
-         dAKzWbT6E3S6xgojAMBBoHB14AxMm7+PpUkD1n1/DSuAhX7ze2NEqcc9AHcoAfeQ1g
-         4KHxh2xspUnzA==
-From:   Lorenzo Bianconi <lorenzo@kernel.org>
-To:     jic23@kernel.org
-Cc:     linux-iio@vger.kernel.org, lorenzo.bianconi@redhat.com,
-        devicetree@vger.kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org
-Subject: [PATCH 2/2] dt-bindings: iio: imu: st_lsm6dsx: add asm330lhb
-Date:   Mon,  6 Mar 2023 12:08:01 +0100
-Message-Id: <fecf1f20cc8e99fb8654cc733f14bd449ca7f87a.1678100533.git.lorenzo@kernel.org>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <cover.1678100533.git.lorenzo@kernel.org>
-References: <cover.1678100533.git.lorenzo@kernel.org>
+        with ESMTP id S229633AbjCFLJv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Mar 2023 06:09:51 -0500
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7093011170;
+        Mon,  6 Mar 2023 03:09:49 -0800 (PST)
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 326B9bHN092866;
+        Mon, 6 Mar 2023 05:09:37 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1678100977;
+        bh=APui5ODsGASJixKDz5f2o4ra32sJkUpdfE28YZNI8Ds=;
+        h=From:To:CC:Subject:Date;
+        b=nev6Hqn9U0FU46F7pOUPdlbqKovnD38cXbqYjBZKrTZRzrBmAStpiXDWFmUua0rBY
+         bqAbHY+39zxy+wsMWF7V4QGHPxMViiOIBR9q1as3CWA0eovaJ3I3DI7/vZTts5XZiv
+         XRxyjJ8vPzrVmmFEkARxlyMydyb13BAXx9WPdUbQ=
+Received: from DFLE110.ent.ti.com (dfle110.ent.ti.com [10.64.6.31])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 326B9biF042506
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Mon, 6 Mar 2023 05:09:37 -0600
+Received: from DFLE108.ent.ti.com (10.64.6.29) by DFLE110.ent.ti.com
+ (10.64.6.31) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Mon, 6
+ Mar 2023 05:09:36 -0600
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE108.ent.ti.com
+ (10.64.6.29) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
+ Frontend Transport; Mon, 6 Mar 2023 05:09:36 -0600
+Received: from lelv0854.itg.ti.com (lelv0854.itg.ti.com [10.181.64.140])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 326B9avF090142;
+        Mon, 6 Mar 2023 05:09:36 -0600
+Received: from localhost (a0501179-pc.dhcp.ti.com [10.24.69.114])
+        by lelv0854.itg.ti.com (8.14.7/8.14.7) with ESMTP id 326B9ZFv029563;
+        Mon, 6 Mar 2023 05:09:36 -0600
+From:   MD Danish Anwar <danishanwar@ti.com>
+To:     "Andrew F. Davis" <afd@ti.com>, Suman Anna <s-anna@ti.com>,
+        Roger Quadros <rogerq@kernel.org>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Tero Kristo <t-kristo@ti.com>,
+        MD Danish Anwar <danishanwar@ti.com>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        "Santosh Shilimkar" <ssantosh@kernel.org>,
+        Nishanth Menon <nm@ti.com>
+CC:     <linux-remoteproc@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <linux-omap@vger.kernel.org>,
+        <srk@ti.com>, <devicetree@vger.kernel.org>,
+        <netdev@vger.kernel.org>
+Subject: [PATCH v3 0/6] Introduce PRU platform consumer API
+Date:   Mon, 6 Mar 2023 16:39:28 +0530
+Message-ID: <20230306110934.2736465-1-danishanwar@ti.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add device bindings for asm330lhb IMU sensor.
-Use asm330lhh as fallback device for asm330lhb since it implements all
-the features currently supported by asm330lhb.
+Hi All,
+The Programmable Real-Time Unit and Industrial Communication Subsystem (PRU-ICSS
+or simply PRUSS) on various TI SoCs consists of dual 32-bit RISC cores
+(Programmable Real-Time Units, or PRUs) for program execution.
 
-Signed-off-by: Lorenzo Bianconi <lorenzo@kernel.org>
----
- Documentation/devicetree/bindings/iio/imu/st,lsm6dsx.yaml | 3 +++
- 1 file changed, 3 insertions(+)
+There are 3 foundation components for TI PRUSS subsystem: the PRUSS platform
+driver, the PRUSS INTC driver and the PRUSS remoteproc driver. All of them have
+already been merged and can be found under:
+1) drivers/soc/ti/pruss.c
+   Documentation/devicetree/bindings/soc/ti/ti,pruss.yaml
+2) drivers/irqchip/irq-pruss-intc.c
+   Documentation/devicetree/bindings/interrupt-controller/ti,pruss-intc.yaml
+3) drivers/remoteproc/pru_rproc.c
+   Documentation/devicetree/bindings/remoteproc/ti,pru-consumer.yaml
 
-diff --git a/Documentation/devicetree/bindings/iio/imu/st,lsm6dsx.yaml b/Documentation/devicetree/bindings/iio/imu/st,lsm6dsx.yaml
-index decf022335d8..b39f5217d8ff 100644
---- a/Documentation/devicetree/bindings/iio/imu/st,lsm6dsx.yaml
-+++ b/Documentation/devicetree/bindings/iio/imu/st,lsm6dsx.yaml
-@@ -46,6 +46,9 @@ properties:
-       - items:
-           - const: st,ism330is
-           - const: st,lsm6dso16is
-+      - items:
-+          - const: st,asm330lhb
-+          - const: st,asm330lhh
- 
-   reg:
-     maxItems: 1
+The programmable nature of the PRUs provide flexibility to implement custom
+peripheral interfaces, fast real-time responses, or specialized data handling.
+Example of a PRU consumer drivers will be: 
+  - Software UART over PRUSS
+  - PRU-ICSS Ethernet EMAC
+
+In order to make usage of common PRU resources and allow the consumer drivers to
+configure the PRU hardware for specific usage the PRU API is introduced.
+
+This is the v3 of the old patch series[1]. This doesn't have any functional 
+changes, the old series has been rebased on linux-next (tag: next-20230306).
+
+This series depends on another series which is already merged in the remoteproc
+tree[2] and is part of v6.3-rc1. This series and the remoteproc series form the
+PRUSS consumer API which can be used by consumer drivers to utilize the PRUs.
+
+One example of the consumer driver is the PRU-ICSSG ethernet driver [3],which 
+depends on this series and the remoteproc series[2].
+
+[1] https://lore.kernel.org/all/20220418123004.9332-1-p-mohan@ti.com/
+[2] https://lore.kernel.org/all/20230106121046.886863-1-danishanwar@ti.com/#t
+[3] https://lore.kernel.org/all/20230210114957.2667963-1-danishanwar@ti.com/
+
+Thanks and Regards,
+Md Danish Anwar
+
+Andrew F. Davis (1):
+  soc: ti: pruss: Add pruss_{request,release}_mem_region() API
+
+Suman Anna (3):
+  soc: ti: pruss: Add pruss_cfg_read()/update() API
+  soc: ti: pruss: Add helper functions to set GPI mode, MII_RT_event and
+    XFR
+  soc: ti: pruss: Add helper function to enable OCP master ports
+
+Tero Kristo (2):
+  soc: ti: pruss: Add pruss_get()/put() API
+  soc: ti: pruss: Add helper functions to get/set PRUSS_CFG_GPMUX
+
+ drivers/soc/ti/pruss.c           | 257 ++++++++++++++++++++++++++++++-
+ include/linux/pruss_driver.h     |  72 ++++++---
+ include/linux/remoteproc/pruss.h | 221 ++++++++++++++++++++++++++
+ 3 files changed, 526 insertions(+), 24 deletions(-)
+
 -- 
-2.39.2
+2.25.1
 
