@@ -2,137 +2,134 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C61FF6ACF45
-	for <lists+devicetree@lfdr.de>; Mon,  6 Mar 2023 21:36:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C37676ACF4E
+	for <lists+devicetree@lfdr.de>; Mon,  6 Mar 2023 21:40:22 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229645AbjCFUgT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 Mar 2023 15:36:19 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52076 "EHLO
+        id S229744AbjCFUkU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 Mar 2023 15:40:20 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55010 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229483AbjCFUgS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Mar 2023 15:36:18 -0500
-Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 030A36A439;
-        Mon,  6 Mar 2023 12:36:17 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1678134978; x=1709670978;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=QyfQf3oW8i9AUZwTmwi2bqZxBnfZLQi/ps8EZa7EynQ=;
-  b=SHgYYbGq5OPKihlKY2hPSuz8PbCZ+1z8F4jdvRZh0xm6uXQbM4/4wF4S
-   7EOWeid9iQH+AaZzjF/hiLrIVwjgjUO2cDnaT4cVnQ6+z0fakBuvEI33R
-   hanElmJxcOzmbIVL3uhkEDY+aiCt7oKdQBJ02X0FHFs/uzotYm0tVjIFm
-   5TVAWKndTkUJwMJ6S+KveTAqLHOZPpHlKD7m+YdhwR2MZwz296rN6PaKK
-   AJMaSvdQg/aZtLu/UBuPkIkd52dn0wxj2A4T4kOXY2wlzQe9RMbChfeiK
-   DODX1E0vqIf74g+cN/vFdsdjbuwjjLWFnGBY2CuUc2q7OMJkAuO+HWaeN
-   w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10641"; a="398250824"
-X-IronPort-AV: E=Sophos;i="5.98,238,1673942400"; 
-   d="scan'208";a="398250824"
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
-  by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 06 Mar 2023 12:36:17 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10641"; a="800123989"
-X-IronPort-AV: E=Sophos;i="5.98,238,1673942400"; 
-   d="scan'208";a="800123989"
-Received: from smile.fi.intel.com ([10.237.72.54])
-  by orsmga004.jf.intel.com with ESMTP; 06 Mar 2023 12:36:14 -0800
-Received: from andy by smile.fi.intel.com with local (Exim 4.96)
-        (envelope-from <andriy.shevchenko@linux.intel.com>)
-        id 1pZHZ6-00Gc9h-20;
-        Mon, 06 Mar 2023 22:36:12 +0200
-Date:   Mon, 6 Mar 2023 22:36:12 +0200
-From:   Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To:     Daniel Kaehn <kaehndan@gmail.com>
-Cc:     Benjamin Tissoires <benjamin.tissoires@redhat.com>,
-        Hans de Goede <hdegoede@redhat.com>, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, jikos@kernel.org,
-        bartosz.golaszewski@linaro.org, dmitry.torokhov@gmail.com,
-        devicetree@vger.kernel.org, linux-input@vger.kernel.org,
-        ethan.twardy@plexus.com
-Subject: Re: [PATCH v8 3/3] HID: cp2112: Fwnode Support
-Message-ID: <ZAZOvEvqNDq6jZNB@smile.fi.intel.com>
-References: <Y/03to4XFXPwkGH1@smile.fi.intel.com>
- <CAP+ZCCe=f3AtxvC1Z6zPErMEG9BcnCOjApc26n_9yjq2+U72pw@mail.gmail.com>
- <Y/9oO1AE6GK6CQmp@smile.fi.intel.com>
- <20230302170554.q3426ii255735rzw@mail.corp.redhat.com>
- <ZAXFNRuALYpXgL6F@smile.fi.intel.com>
- <b8423b0b-4f63-d598-6c8b-7c7e73549032@redhat.com>
- <ZAXlh9ZVjGJh0l7n@smile.fi.intel.com>
- <1cab1439-77f3-6739-d4cd-5862ce8512d8@redhat.com>
- <ZAYca0ADk0Uk1sK1@smile.fi.intel.com>
- <CAP+ZCCfsKdOyy5vzPh5OjpZjNQrYWDRzrqa_QxvG+kZDPYa+3A@mail.gmail.com>
+        with ESMTP id S229490AbjCFUkT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Mar 2023 15:40:19 -0500
+Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2020D32515;
+        Mon,  6 Mar 2023 12:40:18 -0800 (PST)
+Received: by mail-lf1-x12b.google.com with SMTP id g17so14479916lfv.4;
+        Mon, 06 Mar 2023 12:40:18 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112; t=1678135216;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=x5xCU+4K22QCJeXOZIHGB1ay03MsJ5ngq2oxjOOLycg=;
+        b=NJdmp+Ih53tVRJHSWwb3N1EuGsX8p3LXbOFhDc9zAoykcqXPUYw4BFkwedbXOxYbxf
+         EIyF9ueP7V1HSpPilQSjkXNTZUxB2p4/3pd4Xwq5klSjz1QBBRgAcoGyjv0jSIfN3Ay4
+         pWor+BcuFZ+iG4pt2RQKy1VAx5Hz8wQNNjemMW17pZCqftpmn7b0tdW0DLxj/NlDb4K3
+         95sUhGc6djMSAazA/qu3sg7/0dlixyKgEZNrOtw0w1Ej2klPlTa5YA4LO0mUB8Ys36zI
+         lyt9Y4SkHBgcU+PkVJ/VCePT/OXHiRSWSvIEzd/TRGyDkd6+ZQuPINYL14xQxqU5hZ83
+         5UvA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1678135216;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=x5xCU+4K22QCJeXOZIHGB1ay03MsJ5ngq2oxjOOLycg=;
+        b=Vxn9KhZ+6G539+dNBHB7nphOtrer4qCMZBbRInh786HZDbRIBXrRpZzZR+3+JQXUc+
+         5NnvYDwxCIB8PvyWD7e0ogxLsrpcw52UrezxtMdoChF84Yzg4WWAlp6C8Ijoc8oTRfL4
+         adWbIZJ9xAME0MUADtJ/GHQ7MfgUJX/Vw065M9b/HTxuxWgi5idykQhrivAA5XMQEflS
+         0gw3exHvWc3H1P7YJLX6O6sNRXSOfWvJ6sNqzsGrNfyj1KT8r9gT70G4qcn1r2NY5CsT
+         msb6D/RLJibvz4QTRDZpQU8C9rwhjR1L6/QJ2DfQLflpVvzFmEHaLTr3XdP4P5emZe2g
+         5eNg==
+X-Gm-Message-State: AO0yUKU7H3WzV7rzz1MDHaVuI9RPt88E3+LHnoHsCM68JLm5xGRaJAbO
+        BKkQCCYH0xEXd3Nv6XlP6FM=
+X-Google-Smtp-Source: AK7set+mLoGDuEDuRacjtiEHNZGI3k/nmUsqCORyUapp8CCuUtxWS7KHPJu00VHORByMX2kVT8IwdA==
+X-Received: by 2002:ac2:5a06:0:b0:4dc:260e:6b59 with SMTP id q6-20020ac25a06000000b004dc260e6b59mr3427147lfn.40.1678135216166;
+        Mon, 06 Mar 2023 12:40:16 -0800 (PST)
+Received: from mobilestation ([95.79.133.202])
+        by smtp.gmail.com with ESMTPSA id l30-20020ac2555e000000b004dab932248fsm1744188lfk.180.2023.03.06.12.40.14
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 06 Mar 2023 12:40:15 -0800 (PST)
+Date:   Mon, 6 Mar 2023 23:40:12 +0300
+From:   Serge Semin <fancer.lancer@gmail.com>
+To:     Andy Shevchenko <andy.shevchenko@gmail.com>
+Cc:     Brad Larson <blarson@amd.com>,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-mmc@vger.kernel.org, linux-spi@vger.kernel.org,
+        adrian.hunter@intel.com, alcooperx@gmail.com, arnd@arndb.de,
+        brendan.higgins@linux.dev, briannorris@chromium.org,
+        brijeshkumar.singh@amd.com, catalin.marinas@arm.com,
+        davidgow@google.com, gsomlo@gmail.com, gerg@linux-m68k.org,
+        krzk@kernel.org, krzysztof.kozlowski+dt@linaro.org, lee@kernel.org,
+        lee.jones@linaro.org, broonie@kernel.org,
+        yamada.masahiro@socionext.com, p.zabel@pengutronix.de,
+        piotrs@cadence.com, p.yadav@ti.com, rdunlap@infradead.org,
+        robh+dt@kernel.org, samuel@sholland.org, skhan@linuxfoundation.org,
+        suravee.suthikulpanit@amd.com, thomas.lendacky@amd.com,
+        tonyhuang.sunplus@gmail.com, ulf.hansson@linaro.org,
+        vaishnav.a@ti.com, will@kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v10 10/15] spi: dw: Add support for AMD Pensando Elba SoC
+Message-ID: <20230306204012.dgfqczwcwh2hkbii@mobilestation>
+References: <20230306040739.51488-1-blarson@amd.com>
+ <20230306040739.51488-11-blarson@amd.com>
+ <20230306160017.ptd3ogundxvus5zm@mobilestation>
+ <CAHp75VfFMiy35Q1bX3Az3HgkhK+4bfH+pCE2XwOYVpqT8UiFXA@mail.gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <CAP+ZCCfsKdOyy5vzPh5OjpZjNQrYWDRzrqa_QxvG+kZDPYa+3A@mail.gmail.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <CAHp75VfFMiy35Q1bX3Az3HgkhK+4bfH+pCE2XwOYVpqT8UiFXA@mail.gmail.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Mar 06, 2023 at 01:40:16PM -0600, Daniel Kaehn wrote:
-
-...
-
-> Device (SE9)
-> {
->     Name (_ADR, 0x001D0001) // _ADR: Address
->     Device (RHUB)
->     {
->         Name (_ADR, Zero)
->         Device (CP2) // the USB-hid & CP2112 shared node
->         {
->             Name (_ADR, One)
->         }
->     }
-> }
+On Mon, Mar 06, 2023 at 09:59:29PM +0200, Andy Shevchenko wrote:
+> On Mon, Mar 6, 2023 at 6:00 PM Serge Semin <fancer.lancer@gmail.com> wrote:
+> > On Sun, Mar 05, 2023 at 08:07:34PM -0800, Brad Larson wrote:
 > 
-> If I'm understanding correctly, this adds the SE9 device as function 1
-> of PCI device 0x1d,
-
-To be precise this does not add the device. It adds a description of
-the companion device in case the real one will appear on the PCI bus
-with BDF 00:1d.1.
-
-> then RHUB as the USB controller it provides, and finally, CP2 as the
-> USB device attached to port 1 of the controller.
+> ...
 > 
-> With this as the loaded dsdt table, the USB device now has a firmware_node :)
-> #> cat /sys/bus/usb/devices/3-1:1.0/firmware_node/path
-> \_SB_.PCI0.SE9_.RHUB.CP2_
+> > > -     node = of_parse_phandle(np, syscon_name, 0);
+> >
+> >         node = of_parse_phandle(dev_of_node(pdev->dev), syscon_name, 0);
 > 
-> After applying my patches, the HID device also references this node:
-> #> cat /sys/bus/hid/devices/0003:10C4:EA90.0003/firmware_node/path
-> \_SB_.PCI0.SE9_.RHUB.CP2_
+
+> Side note: I would rather see syscon_fwnode_to_regmap() instead of
+> this. And IIRC syscon already has an API to find by name.
+
+Ah, right. Though it's called syscon_regmap_lookup_by_phandle() and it
+can be used to replace the entire pattern: "Parse property; Find node
+by phandle; Get regmap by node". Basically the of_parse_phandle() and
+syscon_node_to_regmap() methods invocation can be replaced with just a
+single function call. Thus there won't be need to worry about
+decrementing the found DT-node ref-counter.
+
 > 
-> With this all said -- I noticed iasl prints this statement when trying
-> to create a node with a lowercase name:
-> "At least one lower case letter found in NameSeg, ASL is case
-> insensitive - converting to upper case (GPIO)"
+> > > +     if (!node)
+> >
+> > > +             return dev_err_probe(&pdev->dev, -ENODEV, "failed to find %s\n",
+> > > +                                  syscon_name);
+> >
+> > Hm, using dev_err_probe() with known error value seems overkill.
+> 
 
-Yes, because it should be in the upper case.
+> It's allowed use and it helps to drop a few unnecessary lines of code.
 
-> I wonder if this suggests that adding a call to toupper() to
-> acpi_fwnode_get_named_child_node would be
-> an appropriate solution for the node name casing issue....
+Ok, seeing there is no alternative to that method which would return
+the passed error but wouldn't have a name implying the silent
+deferred-probe error semantics.
 
-I dunno. You need to ask in the linux-acpi@ mailing list.
-To me this is corner case that can't be easily solved
-(because two different specifications treat it differently.
+-Serge(y)
 
-You also need to ask DT people about capital letters there.
-And my guts tell me that it's probably also carved in the spec
-as "must be lower case" or alike.
-
--- 
-With Best Regards,
-Andy Shevchenko
-
-
+> 
+> > > +     syscon = syscon_node_to_regmap(node);
+> > > +     if (IS_ERR(syscon))
+> > > +             return dev_err_probe(&pdev->dev, PTR_ERR(syscon),
+> > > +                                  "syscon regmap lookup failed\n");
+> 
+> -- 
+> With Best Regards,
+> Andy Shevchenko
