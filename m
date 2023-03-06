@@ -2,177 +2,347 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 025AF6AC4C6
-	for <lists+devicetree@lfdr.de>; Mon,  6 Mar 2023 16:25:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 813436AC513
+	for <lists+devicetree@lfdr.de>; Mon,  6 Mar 2023 16:32:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230222AbjCFPZ5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 Mar 2023 10:25:57 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46398 "EHLO
+        id S229579AbjCFPco (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 Mar 2023 10:32:44 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57328 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229888AbjCFPZz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Mar 2023 10:25:55 -0500
-Received: from mail-wm1-x332.google.com (mail-wm1-x332.google.com [IPv6:2a00:1450:4864:20::332])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 81063301A8
-        for <devicetree@vger.kernel.org>; Mon,  6 Mar 2023 07:25:53 -0800 (PST)
-Received: by mail-wm1-x332.google.com with SMTP id k37so5948502wms.0
-        for <devicetree@vger.kernel.org>; Mon, 06 Mar 2023 07:25:53 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1678116352;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=4M5EShhmBFcxGCEVKdfTzXS4LcKaSaPPMq/FXQBqpRY=;
-        b=rJc0ZmWlRsislesjGL/TkmWEjmzmC0aj+usOVImE2SGezdIOLdByoUGSgz5mseeIeg
-         G4+WoxAq/rA2gHbTtQP9RgGHR3QxenX03pIIWJKNsUydyH0hGrXGL39A/0n4tq+iorCH
-         pIWDOrWuID5Do6J9I5RRcfYiwXvzaAVFmYqWnajGg97ySn7gTO+ses+RAdtl6NE7YiFf
-         tzHO34Zi01bqNFN7V7bUB5lOB897U1X7xzx5kyoLjQupoqvC+Hta/3IjrLRYLFk7PAmz
-         491iCP118gNV7xBbNEsktjf1HA0xVweJhYFKoR7pd0fYqTaZVV6i6pjL4xEB3EqefZBp
-         BLVw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678116352;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=4M5EShhmBFcxGCEVKdfTzXS4LcKaSaPPMq/FXQBqpRY=;
-        b=c98ahfZQe5Ywi9npemcmF1jH276IMqEU6donha8nzd06iOLTE3cgx05KXCxdVbkQ9c
-         Gm5hNvaaSbZO/9r/GuH5dk1GXxTtf71dMmdX1dBsKzbqGQcJD7+douzjtgmXTDZYUhl8
-         PxNYaR8yVnYmVWJMyIDAlpSlYKWRuTWHEWR5ec28pLbqesX0baZ0pN2l7MJmTwML/r0/
-         AhLMslfVl1YTHdz9Z3y+tSBCesWePLoCihbs68kg+ZJRgrXvdmASHORRAYQmRnllZfVD
-         5YpR9Jnj9nDXlZf6CMoqubjFaWc39Mo+/KCcs+P10gW9nlVuz9fq1K48K99xQtVfv29t
-         fRcg==
-X-Gm-Message-State: AO0yUKVvU2/ZrQ0fmwPzhYyPldfkBObQdGiPehpZW0lEasiUKL5SwqZ8
-        baFuFIaxorc8SNnjWZK0FrtrCg==
-X-Google-Smtp-Source: AK7set8gtdgb5xFxUcPdEhKc20fGna/uDLX920yNR6Jzf7oVQ93NP0gO6L91ddBHqGZ1mW4lsscUmw==
-X-Received: by 2002:a05:600c:450d:b0:3d9:f769:2115 with SMTP id t13-20020a05600c450d00b003d9f7692115mr10152722wmo.26.1678116352022;
-        Mon, 06 Mar 2023 07:25:52 -0800 (PST)
-Received: from [192.168.0.162] (188-141-3-169.dynamic.upc.ie. [188.141.3.169])
-        by smtp.gmail.com with ESMTPSA id s19-20020a05600c45d300b003df7b40f99fsm15508874wmo.11.2023.03.06.07.25.50
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 06 Mar 2023 07:25:51 -0800 (PST)
-Message-ID: <a041186e-fd7d-0bd2-eb67-8e6000b50c32@linaro.org>
-Date:   Mon, 6 Mar 2023 15:25:50 +0000
+        with ESMTP id S230073AbjCFPcd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Mar 2023 10:32:33 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7349A269E;
+        Mon,  6 Mar 2023 07:32:00 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id F2DC160FEA;
+        Mon,  6 Mar 2023 15:31:59 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 64933C433B4;
+        Mon,  6 Mar 2023 15:31:59 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1678116719;
+        bh=rRHqdKMHPWS/LjhmJ23Rc1dXdnIHUm1Jr8BzRDwRJ+0=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=aSYzF2ecWPWDMaM6cUrTAMbvIsldA4drf9R+JCTEQvmvwViieJhkO01+/M5p98Kuo
+         saMe6/z+BUS9J4uZjhd/5krgzQdNI6x8QKQA8krznQtBcv/qf+MPI4/QIp5Q/9HuUF
+         tcBKeyQR+1FDqCJhMiHFLMB8axxHXDSLAmvHwdw0Li5Njdf2mBoqZ91W/R4FKECexw
+         EI3p/1pFrsqemTCqc/E/dQQuvzlGzQZb0hmDzQykxD1xliTpLrak7gyWalzAhLmnd7
+         wlSnfxNiPhjl+dBU47YD1fXyySt3wCUrbqjbG1SGq7tXvh80IjkFcKaaM4TaabS9YQ
+         xJYyRlkmo5Z/A==
+Received: by mail-lj1-f179.google.com with SMTP id z5so10056967ljc.8;
+        Mon, 06 Mar 2023 07:31:59 -0800 (PST)
+X-Gm-Message-State: AO0yUKXEfOH8zd9k2/y7hu26YlBHnEw7Tby2Twifmg2YAhlLxJnZGnob
+        1VO6zsPRqs6QyNI814D6yxwrJ9nR6Btm74jQIQ==
+X-Google-Smtp-Source: AK7set8UntwEJ6mrYVsM5Db2la8gI8Llk2OG70nJiG7YKqjsiVHpGpJYhjWb4W9quf1biMBNHaS9hrRgUlcM3rripuo=
+X-Received: by 2002:a2e:a0d2:0:b0:296:a59d:c969 with SMTP id
+ f18-20020a2ea0d2000000b00296a59dc969mr5890413ljm.5.1678116717143; Mon, 06 Mar
+ 2023 07:31:57 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-Subject: Re: [PATCH v7 2/5] arm64: dts: qcom: Add msm8939 SoC
-Content-Language: en-US
-To:     Stephan Gerhold <stephan@gerhold.net>
-Cc:     agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
-        djakov@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, linux-arm-msm@vger.kernel.org,
-        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, benl@squareup.com,
-        shawn.guo@linaro.org, fabien.parent@linaro.org, leo.yan@linaro.org,
-        dmitry.baryshkov@linaro.org, Jun Nie <jun.nie@linaro.org>,
-        James Willcox <jwillcox@squareup.com>,
-        Joseph Gates <jgates@squareup.com>,
-        Max Chen <mchen@squareup.com>, Zac Crosby <zac@squareup.com>,
-        Vincent Knecht <vincent.knecht@mailoo.org>
-References: <20230223153655.262783-1-bryan.odonoghue@linaro.org>
- <20230223153655.262783-3-bryan.odonoghue@linaro.org>
- <ZAYA4cdlpIfjdqt2@gerhold.net>
-From:   Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-In-Reply-To: <ZAYA4cdlpIfjdqt2@gerhold.net>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+References: <20221107072413.16178-1-nancy.lin@mediatek.com> <20221107072413.16178-2-nancy.lin@mediatek.com>
+In-Reply-To: <20221107072413.16178-2-nancy.lin@mediatek.com>
+From:   Chun-Kuang Hu <chunkuang.hu@kernel.org>
+Date:   Mon, 6 Mar 2023 23:31:45 +0800
+X-Gmail-Original-Message-ID: <CAAOTY__4R==J+v7etAHyaHokFGRC=phqBzR0oUXizhT2pFDotQ@mail.gmail.com>
+Message-ID: <CAAOTY__4R==J+v7etAHyaHokFGRC=phqBzR0oUXizhT2pFDotQ@mail.gmail.com>
+Subject: Re: [PATCH v28 1/7] dt-bindings: mediatek: add ethdr definition for mt8195
+To:     "Nancy.Lin" <nancy.lin@mediatek.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>, wim@linux-watchdog.org,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>, linux@roeck-us.net,
+        nfraprado@collabora.com, David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Nathan Chancellor <nathan@kernel.org>,
+        Nick Desaulniers <ndesaulniers@google.com>,
+        "jason-jh . lin" <jason-jh.lin@mediatek.com>,
+        Yongqiang Niu <yongqiang.niu@mediatek.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org,
+        dri-devel@lists.freedesktop.org, llvm@lists.linux.dev,
+        singo.chang@mediatek.com,
+        Project_Global_Chrome_Upstream_Group@mediatek.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 06/03/2023 15:04, Stephan Gerhold wrote:
-> Hi Bryan,
-> 
-> Thanks for making the changes. I only have some minor nitpicks now:
+Hi, Nancy:
 
->> +
->> +			tsens_base1: base1@a0 {
->> +				reg = <0xa0 0x1>;
->> +				bits = <0 8>;
->> +			};
->> +
->> +			tsens_s5_p1: s5-p1@a1 {
->> +				reg = <0xa1 0x1>;
->> +				bits = <0 6>;
->> +			};
->> [...]
->> +		tsens: thermal-sensor@4a9000 {
->> +			compatible = "qcom,msm8939-tsens", "qcom,tsens-v0_1";
->> +			reg = <0x004a9000 0x1000>, /* TM */
->> +			      <0x004a8000 0x1000>; /* SROT */
->> +			nvmem-cells = <&tsens_mode>,
->> +				      <&tsens_base1>, <&tsens_base2>,
->> +				      <&tsens_s0_p1>, <&tsens_s0_p2>,
->> +				      <&tsens_s1_p1>, <&tsens_s1_p2>,
->> +				      <&tsens_s2_p1>, <&tsens_s2_p2>,
->> +				      <&tsens_s3_p1>, <&tsens_s3_p2>,
->> +				      <&tsens_s4_p1>, <&tsens_s4_p2>,
->> +				      <&tsens_s4_p1>, <&tsens_s4_p2>,
->> +				      <&tsens_s5_p1>, <&tsens_s5_p2>,
->> +				      <&tsens_s6_p1>, <&tsens_s6_p2>,
->> +				      <&tsens_s7_p1>, <&tsens_s7_p2>,
->> +				      <&tsens_s8_p1>, <&tsens_s8_p2>;
->> +			nvmem-cell-names = "mode",
->> +					   "base1", "base2",
->> +					   "s0_p1", "s0_p2",
->> +					   "s1_p1", "s1_p2",
->> +					   "s2_p1", "s2_p2",
->> +					   "s3_p1", "s3_p2",
->> +					   "s4_p1", "s4_p2",
->> +					   "s4_p1", "s4_p2",
-> 
-> s4_p1/p2 are specified twice, is this on purpose or accidental?
+I've lost the v29 mail, so I reply in this mail for v29.
+I got some message by make dt_binding_check.
 
-On purpose I believe.
+/home/chunkuang/git/linux/Documentation/devicetree/bindings/display/mediate=
+k/mediatek,ethdr.example.dtb:
+hdr-engine@1c114000: mediatek,gce-client-reg:0: [4294967295, 7, 16384,
+4096, 4294967295, 7, 20480, 4096, 4294967295, 7, 28672, 4096,
+4294967295, 7, 36864, 4096, 4294967295, 7, 40960, 4096, 4294967295, 7,
+45056, 4096, 4294967295, 7, 49152, 4096] is too long
+From schema: /home/chunkuang/git/linux/Documentation/devicetree/bindings/di=
+splay/mediatek/mediatek,ethdr.yaml
+/home/chunkuang/git/linux/Documentation/devicetree/bindings/display/mediate=
+k/mediatek,ethdr.example.dtb:
+hdr-engine@1c114000: mediatek,gce-client-reg: [[4294967295, 7, 16384,
+4096, 4294967295, 7, 20480, 4096, 4294967295, 7, 28672, 4096,
+4294967295, 7, 36864, 4096, 4294967295, 7, 40960, 4096, 4294967295, 7,
+45056, 4096, 4294967295, 7, 49152, 4096]] is too short
+From schema: /home/chunkuang/git/linux/Documentation/devicetree/bindings/di=
+splay/mediatek/mediatek,ethdr.yaml
 
-@Dmitry ?
+Regards,
+Chun-Kuang.
 
-> 
->> +					   "s5_p1", "s5_p2",
->> +					   "s6_p1", "s6_p2",
->> +					   "s7_p1", "s7_p2",
->> +					   "s8_p1", "s8_p2";
->> +			#qcom,sensors = <9>;
->> +			interrupts = <GIC_SPI 184 IRQ_TYPE_LEVEL_HIGH>;
->> +			interrupt-names = "uplow";
->> +			#thermal-sensor-cells = <1>;
->> +		};
->> [...]
->> +		usb: usb@78d9000 {
->> +			compatible = "qcom,ci-hdrc";
->> +			reg = <0x078d9000 0x200>,
->> +			      <0x078d9200 0x200>;
->> +			interrupts = <GIC_SPI 134 IRQ_TYPE_LEVEL_HIGH>,
->> +				     <GIC_SPI 140 IRQ_TYPE_LEVEL_HIGH>;
->> +			clocks = <&gcc GCC_USB_HS_AHB_CLK>,
->> +				 <&gcc GCC_USB_HS_SYSTEM_CLK>;
->> +			clock-names = "iface", "core";
->> +			assigned-clocks = <&gcc GCC_USB_HS_SYSTEM_CLK>;
->> +			assigned-clock-rates = <80000000>;
->> +			resets = <&gcc GCC_USB_HS_BCR>;
->> +			reset-names = "core";
->> +			#reset-cells = <1>;
->> +			phy_type = "ulpi";
->> +			dr_mode = "otg";
-> 
-> Please add
-> 
-> 			hnp-disable;
-> 			srp-disable;
-> 			adp-disable;
-> 
-> here for consistency with msm8916.dtsi. These are needed for correct
-> behavior if you enable CONFIG_USB_OTG_FSM, see commit bfd5d21abcd5c
-> ("arm64: dts: qcom: msm8916: Move common USB properties to msm8916.dtsi")
-> https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id=bfd5d21abcd5c7941ad79b594f5f42e27496eb28
-> 
+Nancy.Lin <nancy.lin@mediatek.com> =E6=96=BC 2022=E5=B9=B411=E6=9C=887=E6=
+=97=A5 =E9=80=B1=E4=B8=80 =E4=B8=8B=E5=8D=883:24=E5=AF=AB=E9=81=93=EF=BC=9A
 
-Hmm, I haven't noticed any problems with OTG - then again, I'm looking 
-at my kernel config and +# CONFIG_USB_OTG_FSM is not set
-
-
+>
+> Add vdosys1 ETHDR definition.
+>
+> Signed-off-by: Nancy.Lin <nancy.lin@mediatek.com>
+> Reviewed-by: Chun-Kuang Hu <chunkuang.hu@kernel.org>
+> Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collab=
+ora.com>
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Tested-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabor=
+a.com>
+> ---
+>  .../display/mediatek/mediatek,ethdr.yaml      | 188 ++++++++++++++++++
+>  1 file changed, 188 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/display/mediatek/me=
+diatek,ethdr.yaml
+>
+> diff --git a/Documentation/devicetree/bindings/display/mediatek/mediatek,=
+ethdr.yaml b/Documentation/devicetree/bindings/display/mediatek/mediatek,et=
+hdr.yaml
+> new file mode 100644
+> index 000000000000..3b11e47a8834
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/display/mediatek/mediatek,ethdr.y=
+aml
+> @@ -0,0 +1,188 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/display/mediatek/mediatek,ethdr.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: MediaTek Ethdr Device
+> +
+> +maintainers:
+> +  - Chun-Kuang Hu <chunkuang.hu@kernel.org>
+> +  - Philipp Zabel <p.zabel@pengutronix.de>
+> +
+> +description:
+> +  ETHDR (ET High Dynamic Range) is a MediaTek internal HDR engine and is
+> +  designed for HDR video and graphics conversion in the external display=
+ path.
+> +  It handles multiple HDR input types and performs tone mapping, color
+> +  space/color format conversion, and then combine different layers,
+> +  output the required HDR or SDR signal to the subsequent display path.
+> +  This engine is composed of two video frontends, two graphic frontends,
+> +  one video backend and a mixer. ETHDR has two DMA function blocks, DS a=
+nd ADL.
+> +  These two function blocks read the pre-programmed registers from DRAM =
+and
+> +  set them to HW in the v-blanking period.
+> +
+> +properties:
+> +  compatible:
+> +    const: mediatek,mt8195-disp-ethdr
+> +
+> +  reg:
+> +    maxItems: 7
+> +
+> +  reg-names:
+> +    items:
+> +      - const: mixer
+> +      - const: vdo_fe0
+> +      - const: vdo_fe1
+> +      - const: gfx_fe0
+> +      - const: gfx_fe1
+> +      - const: vdo_be
+> +      - const: adl_ds
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  iommus:
+> +    minItems: 1
+> +    maxItems: 2
+> +
+> +  clocks:
+> +    items:
+> +      - description: mixer clock
+> +      - description: video frontend 0 clock
+> +      - description: video frontend 1 clock
+> +      - description: graphic frontend 0 clock
+> +      - description: graphic frontend 1 clock
+> +      - description: video backend clock
+> +      - description: autodownload and menuload clock
+> +      - description: video frontend 0 async clock
+> +      - description: video frontend 1 async clock
+> +      - description: graphic frontend 0 async clock
+> +      - description: graphic frontend 1 async clock
+> +      - description: video backend async clock
+> +      - description: ethdr top clock
+> +
+> +  clock-names:
+> +    items:
+> +      - const: mixer
+> +      - const: vdo_fe0
+> +      - const: vdo_fe1
+> +      - const: gfx_fe0
+> +      - const: gfx_fe1
+> +      - const: vdo_be
+> +      - const: adl_ds
+> +      - const: vdo_fe0_async
+> +      - const: vdo_fe1_async
+> +      - const: gfx_fe0_async
+> +      - const: gfx_fe1_async
+> +      - const: vdo_be_async
+> +      - const: ethdr_top
+> +
+> +  power-domains:
+> +    maxItems: 1
+> +
+> +  resets:
+> +    items:
+> +      - description: video frontend 0 async reset
+> +      - description: video frontend 1 async reset
+> +      - description: graphic frontend 0 async reset
+> +      - description: graphic frontend 1 async reset
+> +      - description: video backend async reset
+> +
+> +  reset-names:
+> +    items:
+> +      - const: vdo_fe0_async
+> +      - const: vdo_fe1_async
+> +      - const: gfx_fe0_async
+> +      - const: gfx_fe1_async
+> +      - const: vdo_be_async
+> +
+> +  mediatek,gce-client-reg:
+> +    $ref: /schemas/types.yaml#/definitions/phandle-array
+> +    description: The register of display function block to be set by gce=
+.
+> +      There are 4 arguments in this property, gce node, subsys id, offse=
+t and
+> +      register size. The subsys id is defined in the gce header of each =
+chips
+> +      include/dt-bindings/gce/<chip>-gce.h, mapping to the register of d=
+isplay
+> +      function block.
+> +    items:
+> +      items:
+> +        - description: phandle of GCE
+> +        - description: GCE subsys id
+> +        - description: register offset
+> +        - description: register size
+> +    minItems: 7
+> +    maxItems: 7
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - clocks
+> +  - clock-names
+> +  - interrupts
+> +  - power-domains
+> +  - resets
+> +  - mediatek,gce-client-reg
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +    #include <dt-bindings/clock/mt8195-clk.h>
+> +    #include <dt-bindings/gce/mt8195-gce.h>
+> +    #include <dt-bindings/memory/mt8195-memory-port.h>
+> +    #include <dt-bindings/power/mt8195-power.h>
+> +    #include <dt-bindings/reset/mt8195-resets.h>
+> +
+> +    soc {
+> +        #address-cells =3D <2>;
+> +        #size-cells =3D <2>;
+> +
+> +        hdr-engine@1c114000 {
+> +                compatible =3D "mediatek,mt8195-disp-ethdr";
+> +                reg =3D <0 0x1c114000 0 0x1000>,
+> +                      <0 0x1c115000 0 0x1000>,
+> +                      <0 0x1c117000 0 0x1000>,
+> +                      <0 0x1c119000 0 0x1000>,
+> +                      <0 0x1c11a000 0 0x1000>,
+> +                      <0 0x1c11b000 0 0x1000>,
+> +                      <0 0x1c11c000 0 0x1000>;
+> +                reg-names =3D "mixer", "vdo_fe0", "vdo_fe1", "gfx_fe0", =
+"gfx_fe1",
+> +                            "vdo_be", "adl_ds";
+> +                mediatek,gce-client-reg =3D <&gce0 SUBSYS_1c11XXXX 0x400=
+0 0x1000>,
+> +                                          <&gce0 SUBSYS_1c11XXXX 0x5000 =
+0x1000>,
+> +                                          <&gce0 SUBSYS_1c11XXXX 0x7000 =
+0x1000>,
+> +                                          <&gce0 SUBSYS_1c11XXXX 0x9000 =
+0x1000>,
+> +                                          <&gce0 SUBSYS_1c11XXXX 0xa000 =
+0x1000>,
+> +                                          <&gce0 SUBSYS_1c11XXXX 0xb000 =
+0x1000>,
+> +                                          <&gce0 SUBSYS_1c11XXXX 0xc000 =
+0x1000>;
+> +                clocks =3D <&vdosys1 CLK_VDO1_DISP_MIXER>,
+> +                         <&vdosys1 CLK_VDO1_HDR_VDO_FE0>,
+> +                         <&vdosys1 CLK_VDO1_HDR_VDO_FE1>,
+> +                         <&vdosys1 CLK_VDO1_HDR_GFX_FE0>,
+> +                         <&vdosys1 CLK_VDO1_HDR_GFX_FE1>,
+> +                         <&vdosys1 CLK_VDO1_HDR_VDO_BE>,
+> +                         <&vdosys1 CLK_VDO1_26M_SLOW>,
+> +                         <&vdosys1 CLK_VDO1_HDR_VDO_FE0_DL_ASYNC>,
+> +                         <&vdosys1 CLK_VDO1_HDR_VDO_FE1_DL_ASYNC>,
+> +                         <&vdosys1 CLK_VDO1_HDR_GFX_FE0_DL_ASYNC>,
+> +                         <&vdosys1 CLK_VDO1_HDR_GFX_FE1_DL_ASYNC>,
+> +                         <&vdosys1 CLK_VDO1_HDR_VDO_BE_DL_ASYNC>,
+> +                         <&topckgen CLK_TOP_ETHDR>;
+> +                clock-names =3D "mixer", "vdo_fe0", "vdo_fe1", "gfx_fe0"=
+, "gfx_fe1",
+> +                              "vdo_be", "adl_ds", "vdo_fe0_async", "vdo_=
+fe1_async",
+> +                              "gfx_fe0_async", "gfx_fe1_async","vdo_be_a=
+sync",
+> +                              "ethdr_top";
+> +                power-domains =3D <&spm MT8195_POWER_DOMAIN_VDOSYS1>;
+> +                iommus =3D <&iommu_vpp M4U_PORT_L3_HDR_DS>,
+> +                         <&iommu_vpp M4U_PORT_L3_HDR_ADL>;
+> +                interrupts =3D <GIC_SPI 517 IRQ_TYPE_LEVEL_HIGH 0>; /* d=
+isp mixer */
+> +                resets =3D <&vdosys1 MT8195_VDOSYS1_SW1_RST_B_HDR_VDO_FE=
+0_DL_ASYNC>,
+> +                         <&vdosys1 MT8195_VDOSYS1_SW1_RST_B_HDR_VDO_FE1_=
+DL_ASYNC>,
+> +                         <&vdosys1 MT8195_VDOSYS1_SW1_RST_B_HDR_GFX_FE0_=
+DL_ASYNC>,
+> +                         <&vdosys1 MT8195_VDOSYS1_SW1_RST_B_HDR_GFX_FE1_=
+DL_ASYNC>,
+> +                         <&vdosys1 MT8195_VDOSYS1_SW1_RST_B_HDR_VDO_BE_D=
+L_ASYNC>;
+> +                reset-names =3D "vdo_fe0_async", "vdo_fe1_async", "gfx_f=
+e0_async",
+> +                              "gfx_fe1_async", "vdo_be_async";
+> +        };
+> +    };
+> +...
+> --
+> 2.18.0
+>
