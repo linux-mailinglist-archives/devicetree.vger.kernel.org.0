@@ -2,73 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2E7C76AB892
-	for <lists+devicetree@lfdr.de>; Mon,  6 Mar 2023 09:41:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8EC966AB8DA
+	for <lists+devicetree@lfdr.de>; Mon,  6 Mar 2023 09:54:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229749AbjCFIl4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 Mar 2023 03:41:56 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44450 "EHLO
+        id S229825AbjCFIy5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 Mar 2023 03:54:57 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57938 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229940AbjCFIlz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Mar 2023 03:41:55 -0500
-Received: from mail-ed1-x529.google.com (mail-ed1-x529.google.com [IPv6:2a00:1450:4864:20::529])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B436821299
-        for <devicetree@vger.kernel.org>; Mon,  6 Mar 2023 00:41:53 -0800 (PST)
-Received: by mail-ed1-x529.google.com with SMTP id s11so35169815edy.8
-        for <devicetree@vger.kernel.org>; Mon, 06 Mar 2023 00:41:53 -0800 (PST)
+        with ESMTP id S229764AbjCFIy4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Mar 2023 03:54:56 -0500
+Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com [IPv6:2a00:1450:4864:20::52b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9FE9E158B2
+        for <devicetree@vger.kernel.org>; Mon,  6 Mar 2023 00:54:54 -0800 (PST)
+Received: by mail-ed1-x52b.google.com with SMTP id s11so35299937edy.8
+        for <devicetree@vger.kernel.org>; Mon, 06 Mar 2023 00:54:54 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1678092112;
+        d=linaro.org; s=google; t=1678092893;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=vC2UMy/rdFsJj0D2BlHZptJUd1EfeaZsqvifezHhP80=;
-        b=GlyLxJXQRtZVPo3XhuyN75NML1JaCyxuD2Mi4XOKvRip5DG/fEuki7mxlqpd9cpR1f
-         rUtTWXVvab9MczuD0fo5h8EWCHN/gcPmnwsjc10LUtFbCSXv2fJgyKn45jCvrxzOkPYf
-         E8hnWuwayUZcydUaXpXx16PT5hWrEjr3h6cyACAteAvczjOHzU4rv8MBYOuwBwAyCP8K
-         N33X1gkbC+DYrhrqgKV89tOPjv0/Ec9q6neM/BDELQNNCq8iX6VK+BxcA2wfirzuLX+G
-         4w3VUj+sLeR8jyCHqgWv6xzEYjO+8ZRoNfsrOrnS3MAxacWSZDVNm6vqVP02FwmxyFaB
-         etuQ==
+        bh=aLAhqnNFboMZ3Xspb0HEH0L2QkUdVCAZTGMLZDTo/AI=;
+        b=jczTpg4zXHb1ZQneDL/piIaCwC5Mr18d9VYx8iHeFhWIhnuV4wlFycQOhptE/+OUf5
+         rmR4fXrJzuHTIxI5k2HLJ2iQY/r1ZomAhCjBOL7w2vVguAg/NuPpOuBqyQoLUGaKOSqa
+         10uGpZ8NjOstj/WxKtZ700TO0vzwyX66VvCmxiF7VC4yforcMxQ96jDi7Po7n+8u5o9n
+         iAR0l28grFRon15ZCjmeDxZoqaR6psgehevlGDPfG9gFJkg6dqQsk4nd0Fm+zPJExFX6
+         QbrXxWa08Os3KE0V6eIoyAXU7PzanR95PNpvXtD8Oz1Nvv3R3oTI2G898drqhtt7hRsP
+         wbVQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678092112;
+        d=1e100.net; s=20210112; t=1678092893;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=vC2UMy/rdFsJj0D2BlHZptJUd1EfeaZsqvifezHhP80=;
-        b=5wGHCUBPZv57bTnK5zdU4qja6D+OXnLNlpxC+B/phfecf+n20kD5EIgTyRWH1EI2Xs
-         5tuedhL6Gw6VuvghXOisvFxHEUFEjB4rq2Z2P6NYnqF+kcrhQCY5v12kepFjBccRG2D8
-         qzXZm7VJKCswhypbMbCu4HFV4XWisCzBQ7/4hVjgHLCVbI4xEVYU766Ibn46sAzEL6qx
-         Spgp4bRPKB885CUldt6jEXZl3q9hDhgmrY6AHnfzULN2ZpfhAWCY2PcLoXjZA83F269k
-         OITCLkGq5wFHyPfhJqjmjJBZU9XCvvgkeEF6RCnHn/Aez9x5UhvckJ68GKsj/w3TTPH7
-         POQQ==
-X-Gm-Message-State: AO0yUKUBHuAJHuFpFRTVvgcuA/zpKA3oTrxNec3sWj1xWeR6ErDpt9gZ
-        Zjinr8v1f+0sijx1Q4LWb6ijRg==
-X-Google-Smtp-Source: AK7set/LZG0DGhn2WM9G7iZfaL/U03tBL9IUollWkti6wvZuDTVbK9E23k3Dq9iI1GyC/hL+s7VoOg==
-X-Received: by 2002:a17:906:b14f:b0:8b1:7de9:b38c with SMTP id bt15-20020a170906b14f00b008b17de9b38cmr9381185ejb.52.1678092112251;
-        Mon, 06 Mar 2023 00:41:52 -0800 (PST)
+        bh=aLAhqnNFboMZ3Xspb0HEH0L2QkUdVCAZTGMLZDTo/AI=;
+        b=rkyfU8l6vjbNEpfzF+U3YdSffEG6ZRBv3YDOgoc9QOGPv8DluN3/yMixJ0QKWi9EEy
+         60+bzGToocJ6LHZxfboqvSOhbM8uU25DHcZ9Fe8mDpMmZ5kA3AnMwDejGFxTMBFpzfnm
+         jn6492nVdmi3kmICFsTtnBcftO1eemIa+WgWukPy/D5VZlrfSaA6GnAMJ4AuSJEhNDWg
+         4mQ0nZBNIJRl33pOHsn3tjrgh4ep4qzEGFIYZcVx6gHO9NLBxeoFoI2u9YW9SvgWGf+u
+         nRsa8uUhEzOq6l8dLBhPnYEf48B1ir/FRik/907jxm+ZwS0VI6GmngjK0yCMFqyKurf3
+         1Y8A==
+X-Gm-Message-State: AO0yUKUksc5BGkUZVssQ/XJcuUaRjx2/lYJdMemvCXbGDdQ6RnXtHo/I
+        Va3KfVvaAAflQF+lkLMdbRLQkg==
+X-Google-Smtp-Source: AK7set/zYZbv8I8sb/J/hGNNCCXKArT9QRhK0vtY2AqjURZK5qxhyca6vR86eJgWBZt8MJTCfklSWg==
+X-Received: by 2002:a17:906:32d9:b0:8aa:bf4e:7b2c with SMTP id k25-20020a17090632d900b008aabf4e7b2cmr10892941ejk.21.1678092893196;
+        Mon, 06 Mar 2023 00:54:53 -0800 (PST)
 Received: from ?IPV6:2a02:810d:15c0:828:d85d:5a4b:9830:fcfe? ([2a02:810d:15c0:828:d85d:5a4b:9830:fcfe])
-        by smtp.gmail.com with ESMTPSA id c15-20020a170906170f00b008c6c47f59c1sm4208292eje.48.2023.03.06.00.41.51
+        by smtp.gmail.com with ESMTPSA id d5-20020a170906640500b008be0b7242d5sm4317499ejm.90.2023.03.06.00.54.51
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 06 Mar 2023 00:41:51 -0800 (PST)
-Message-ID: <95d5b97c-ccdc-cede-a6d7-8cc64086d62d@linaro.org>
-Date:   Mon, 6 Mar 2023 09:41:50 +0100
+        Mon, 06 Mar 2023 00:54:52 -0800 (PST)
+Message-ID: <67d51c44-7599-39d2-9616-573e07194550@linaro.org>
+Date:   Mon, 6 Mar 2023 09:54:50 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.8.0
-Subject: Re: [PATCH v1 1/2] dt-bindings: gpio: add fcs,fxl6408-gpio binding
- document
+Subject: Re: [PATCH v3 1/2] dt-bindings: display/msm: dsi-controller-main: Fix
+ deprecated compatible
 Content-Language: en-US
-To:     Francesco Dolcini <francesco@dolcini.it>,
-        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org
-Cc:     Emanuele Ghidoli <emanuele.ghidoli@toradex.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
+To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Clark <robdclark@gmail.com>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Sean Paul <sean@poorly.run>, David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-kernel@vger.kernel.org
-References: <20230306083446.41082-1-francesco@dolcini.it>
- <20230306083446.41082-2-francesco@dolcini.it>
+        Krishna Manikandan <quic_mkrishn@quicinc.com>,
+        Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+Cc:     Rob Herring <robh@kernel.org>, linux-arm-msm@vger.kernel.org,
+        dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20230304-topic-dsi_fixup-v3-0-b8565944d0e6@linaro.org>
+ <20230304-topic-dsi_fixup-v3-1-b8565944d0e6@linaro.org>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230306083446.41082-2-francesco@dolcini.it>
+In-Reply-To: <20230304-topic-dsi_fixup-v3-1-b8565944d0e6@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -81,128 +86,16 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 06/03/2023 09:34, Francesco Dolcini wrote:
-> From: Emanuele Ghidoli <emanuele.ghidoli@toradex.com>
-> 
-> Add binding document for Fairchild FXL6408 GPIO expander.
+On 04/03/2023 16:55, Konrad Dybcio wrote:
+> The point of the previous cleanup was to disallow "qcom,mdss-dsi-ctrl"
+> alone. This however didn't quite work out and the property became
 
-Subject: drop second/last, redundant "binding document". The
-"dt-bindings" prefix is already stating that these are bindings.
+s/property/compatible/
 
-> 
-> Signed-off-by: Emanuele Ghidoli <emanuele.ghidoli@toradex.com>
+> undocumented instead of deprecated. Fix that.
 
-Missing SoB.
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-> ---
->  .../bindings/gpio/fcs,fxl6408-gpio.yaml       | 73 +++++++++++++++++++
->  1 file changed, 73 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/gpio/fcs,fxl6408-gpio.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/gpio/fcs,fxl6408-gpio.yaml b/Documentation/devicetree/bindings/gpio/fcs,fxl6408-gpio.yaml
-> new file mode 100644
-> index 000000000000..ccf946040d00
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/gpio/fcs,fxl6408-gpio.yaml
-> @@ -0,0 +1,73 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/gpio/fcs,fxl6408-gpio.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: FXL6408 GPIO driver
-
-If "driver" means Linux driver, then drop.
-
-Fairchild FXL6408 GPIO Expander
-
-> +
-> +maintainers:
-> +  - Emanuele Ghidoli <emanuele.ghidoli@toradex.com>
-> +
-> +description: |
-> +  Driver for Fairchild FXL6408 GPIO expander
-
-This is not a driver. Drop entire description as it is duplicating title
-or add here something useful.
-
-
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - fcs,fxl6408
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  "#gpio-cells":
-> +    const: 2
-> +
-> +  gpio-controller: true
-> +
-> +  gpio-line-names:
-> +    minItems: 1
-> +    maxItems: 8
-> +
-> +patternProperties:
-> +  "^(hog-[0-9]+|.+-hog(-[0-9]+)?)$":
-
-From here....
-
-> +    type: object
-> +    properties:
-> +      gpio-hog: true
-> +      gpios: true
-> +      input: true
-> +      output-high: true
-> +      output-low: true
-> +      line-name: true
-> +
-> +    required:
-> +      - gpio-hog
-> +      - gpios
-> +
-> +    additionalProperties: false
-
-To here, all this can be simpler:
-
-  "^(hog-[0-9]+|.+-hog(-[0-9]+)?)$":
-    required:
-      - gpio-hog
-
-which selects gpio hog schema.
-
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - gpio-controller
-> +  - "#gpio-cells"
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    i2c {
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +
-> +        gpio_expander_43: gpio-expander@43 {
-> +            compatible = "fcs,fxl6408";
-> +            gpio-controller;
-> +            #gpio-cells = <2>;
-> +            reg = <0x43>;
-> +            gpio-line-names = "Wi-Fi_W_DISABLE", "Wi-Fi_WKUP_WLAN",
-> +              "PWR_EN_+V3.3_WiFi_N", "PCIe_REF_CLK_EN",
-
-Align with previous line/entries.
-
-> +              "USB_RESET_N", "USB_BYPASS_N", "Wi-Fi_PDn",
-> +              "Wi-Fi_WKUP_BT";
-> +        };
-> +    };
 
 Best regards,
 Krzysztof
