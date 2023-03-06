@@ -2,93 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CA3666AC8A4
-	for <lists+devicetree@lfdr.de>; Mon,  6 Mar 2023 17:47:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 57C0B6AC8B4
+	for <lists+devicetree@lfdr.de>; Mon,  6 Mar 2023 17:50:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230474AbjCFQr5 convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Mon, 6 Mar 2023 11:47:57 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39260 "EHLO
+        id S230304AbjCFQul (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 Mar 2023 11:50:41 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47826 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230198AbjCFQrh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Mar 2023 11:47:37 -0500
-Received: from mail-qt1-x836.google.com (mail-qt1-x836.google.com [IPv6:2607:f8b0:4864:20::836])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D3C75211F1;
-        Mon,  6 Mar 2023 08:47:03 -0800 (PST)
-Received: by mail-qt1-x836.google.com with SMTP id s12so11188440qtq.11;
-        Mon, 06 Mar 2023 08:47:03 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678121109;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=jvViXneQW0Y0NLgAFFQaV/kY8HJotQKpErXAhKId1Yg=;
-        b=gtIyHwFHGRKNHMB9aPCa4szwpRkGGLSEbcz+tN0uXgnrp87hPAniTRG72ZPZm9waU2
-         ctRK0+z0kwlN5xBYmaWgYTnnnRiSUnn5fnak1iCizfUQYF7H1oDFlRyRmzSGC4wSnIv+
-         Ib5VGLGzcOq34CIAsEY4V0QSntYko4LTs8P5OR4xaSFNqofvxuprspi2ROZIyDDuSB5c
-         NevY/XkhsetoSOp7hWFe/9Aoc0i4IqsG0NomFkVXaMeQxlE8UeoL/o1q+TOo/tB6Oxkw
-         kHCMpj3Xymq1/GD0h3tPhBJWkvi0tw0VoEN5ovbCN4NKl3rTzAJGRqEzKkIZU+KSZKpF
-         fKjw==
-X-Gm-Message-State: AO0yUKVnrkN8A7H0g0wsJ0FtwXEeLLZMmLy/HXQkmL7KFuI1LK4Jvkru
-        mPTW7cumUUp0zL8KgrkTcr+ilDyZz/J0yw==
-X-Google-Smtp-Source: AK7set8a7d6K2pBd8zdb2FExPiIjZFF6sq89g9Mhl3mhcmpUfZgdEgjMKNgrqQe0csF0/3ITZyaNVg==
-X-Received: by 2002:a05:622a:206:b0:3b9:17d7:66f4 with SMTP id b6-20020a05622a020600b003b917d766f4mr19711213qtx.11.1678121108736;
-        Mon, 06 Mar 2023 08:45:08 -0800 (PST)
-Received: from mail-yw1-f180.google.com (mail-yw1-f180.google.com. [209.85.128.180])
-        by smtp.gmail.com with ESMTPSA id p188-20020a3742c5000000b006fed58fc1a3sm7778914qka.119.2023.03.06.08.45.08
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 06 Mar 2023 08:45:08 -0800 (PST)
-Received: by mail-yw1-f180.google.com with SMTP id 00721157ae682-53916ab0c6bso194643897b3.7;
-        Mon, 06 Mar 2023 08:45:08 -0800 (PST)
-X-Received: by 2002:a81:af4b:0:b0:533:91d2:9d94 with SMTP id
- x11-20020a81af4b000000b0053391d29d94mr7137846ywj.5.1678121107857; Mon, 06 Mar
- 2023 08:45:07 -0800 (PST)
+        with ESMTP id S230315AbjCFQui (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Mar 2023 11:50:38 -0500
+Received: from sin.source.kernel.org (sin.source.kernel.org [IPv6:2604:1380:40e1:4800::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2747C20692;
+        Mon,  6 Mar 2023 08:50:04 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by sin.source.kernel.org (Postfix) with ESMTPS id 43DB0CE13BE;
+        Mon,  6 Mar 2023 16:49:06 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 377D6C433D2;
+        Mon,  6 Mar 2023 16:49:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1678121344;
+        bh=iBKApfgP69TuqiYuJl4EoYVR8pMAhT0OCMK5XuShs24=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=K5dKb+o3w8SKk29OcBokO4VZ7vJezJAvCvn5Qup4SuvnrvpGYCQjos7aEFx7+7Zae
+         y+cgUGf4pBanRndJwupF7M515vz3/KM5DLtwL9XUFnP/nLaUfMY53BFUB7iMXppOdu
+         UFj3+h1bctZ/ArS0VFmRRk3OQ/YuPjM5Y2n0ITzPtpb3Yfg5H2yrMp63ztnLH9aS1v
+         NTGIWh4AZZ7oBm8gvS3gqFQsv4kbYNqOXxp2GGhLWDR/Eb4MjHh/ufDxPDyEuBVfWd
+         o6Zdq1r5B5snE0umVZdbnI3lwKBHC1c+ZOs7iq28CdHg6bsFd7PpTKuMT6trEdt3C3
+         p6H95KBe8djAw==
+Received: from johan by xi.lan with local (Exim 4.94.2)
+        (envelope-from <johan@kernel.org>)
+        id 1pZE1w-0005kc-Tf; Mon, 06 Mar 2023 17:49:44 +0100
+Date:   Mon, 6 Mar 2023 17:49:44 +0100
+From:   Johan Hovold <johan@kernel.org>
+To:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Cc:     andersson@kernel.org, lpieralisi@kernel.org, kw@linux.com,
+        krzysztof.kozlowski+dt@linaro.org, robh@kernel.org,
+        konrad.dybcio@linaro.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-pci@vger.kernel.org,
+        linux-kernel@vger.kernel.org, quic_srichara@quicinc.com
+Subject: Re: [PATCH 15/19] dt-bindings: PCI: qcom: Add "mhi" register region
+ to supported SoCs
+Message-ID: <ZAYZqH2/vB7r9L4L@hovoldconsulting.com>
+References: <20230306153222.157667-1-manivannan.sadhasivam@linaro.org>
+ <20230306153222.157667-16-manivannan.sadhasivam@linaro.org>
 MIME-Version: 1.0
-References: <20230216175347.99778-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <20230216175347.99778-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
-In-Reply-To: <20230216175347.99778-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Mon, 6 Mar 2023 17:44:55 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdWh-nt7gMbfLOCNx79BrThAF+DqU6fKrQaqE+OHqcHQ6g@mail.gmail.com>
-Message-ID: <CAMuHMdWh-nt7gMbfLOCNx79BrThAF+DqU6fKrQaqE+OHqcHQ6g@mail.gmail.com>
-Subject: Re: [PATCH 1/3] arm64: dts: renesas: r9a07g044: Add CSI and CRU nodes
-To:     Prabhakar <prabhakar.csengg@gmail.com>
-Cc:     Magnus Damm <magnus.damm@gmail.com>,
-        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
-        =?UTF-8?Q?Niklas_S=C3=B6derlund?= 
-        <niklas.soderlund+renesas@ragnatech.se>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Biju Das <biju.das.jz@bp.renesas.com>,
-        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8BIT
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=no
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230306153222.157667-16-manivannan.sadhasivam@linaro.org>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Feb 16, 2023 at 6:54 PM Prabhakar <prabhakar.csengg@gmail.com> wrote:
-> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
->
-> Add CSI and CRU nodes r9a07g044 (RZ/G2L) SoC DTSI.
->
-> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+On Mon, Mar 06, 2023 at 09:02:18PM +0530, Manivannan Sadhasivam wrote:
+> "mhi" register region contains the MHI registers that could be used by
+> the PCIe controller drivers to get debug information like PCIe link
+> transition counts on newer SoCs.
+> 
+> Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+> ---
+>  Documentation/devicetree/bindings/pci/qcom,pcie.yaml | 12 ++++++++----
+>  1 file changed, 8 insertions(+), 4 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/pci/qcom,pcie.yaml b/Documentation/devicetree/bindings/pci/qcom,pcie.yaml
+> index fb32c43dd12d..2de6e7154025 100644
+> --- a/Documentation/devicetree/bindings/pci/qcom,pcie.yaml
+> +++ b/Documentation/devicetree/bindings/pci/qcom,pcie.yaml
+> @@ -44,11 +44,11 @@ properties:
+>  
+>    reg:
+>      minItems: 4
+> -    maxItems: 5
+> +    maxItems: 6
+>  
+>    reg-names:
+>      minItems: 4
+> -    maxItems: 5
+> +    maxItems: 6
+>  
+>    interrupts:
+>      minItems: 1
+> @@ -185,10 +185,12 @@ allOf:
+>        properties:
+>          reg:
+>            minItems: 4
+> -          maxItems: 4
+> +          maxItems: 5
+>          reg-names:
+> +          minItems: 4
+>            items:
+>              - const: parf # Qualcomm specific registers
+> +            - const: mhi # MHI registers
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+You need to add the new (optional) registers at the end.
 
-Gr{oetje,eeting}s,
+>              - const: dbi # DesignWare PCIe registers
+>              - const: elbi # External local bus interface registers
+>              - const: config # PCIe configuration space
 
-                        Geert
-
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+Johan
