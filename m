@@ -2,74 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 850446ABDF6
-	for <lists+devicetree@lfdr.de>; Mon,  6 Mar 2023 12:16:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A425B6ABDE4
+	for <lists+devicetree@lfdr.de>; Mon,  6 Mar 2023 12:12:37 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229680AbjCFLQF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 Mar 2023 06:16:05 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57510 "EHLO
+        id S229878AbjCFLMg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 Mar 2023 06:12:36 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53762 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230137AbjCFLPi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Mar 2023 06:15:38 -0500
-Received: from mail-wr1-x42c.google.com (mail-wr1-x42c.google.com [IPv6:2a00:1450:4864:20::42c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F0CE8274A8
-        for <devicetree@vger.kernel.org>; Mon,  6 Mar 2023 03:15:22 -0800 (PST)
-Received: by mail-wr1-x42c.google.com with SMTP id g3so8390435wri.6
-        for <devicetree@vger.kernel.org>; Mon, 06 Mar 2023 03:15:22 -0800 (PST)
+        with ESMTP id S229846AbjCFLMd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Mar 2023 06:12:33 -0500
+Received: from mail-lj1-x235.google.com (mail-lj1-x235.google.com [IPv6:2a00:1450:4864:20::235])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7B9061EBFC
+        for <devicetree@vger.kernel.org>; Mon,  6 Mar 2023 03:11:55 -0800 (PST)
+Received: by mail-lj1-x235.google.com with SMTP id i20so9107878lja.11
+        for <devicetree@vger.kernel.org>; Mon, 06 Mar 2023 03:11:55 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112; t=1678101321;
-        h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
-         :user-agent:references:from:to:cc:subject:date:message-id:reply-to;
-        bh=PyTn9tJm20fW8pZYDIuyfcLC54XHP85ntZPqOJKtjIk=;
-        b=4BUdLMw4Bzkp0FX7tdK0VT+WAV4PbmaJREU+/qlrti7Mm9ppJ4BNW4rhhx5ekAwLmK
-         MlaafUzNslF3E0996vg4leNMf/vFLgEi1ZJKUffZzUWka5kYu5Svj7a+SCFFmrjH+T6z
-         ID0Pa8KfL6GmK+N+j7j3GRTuZut+IOq2s9J7QgNILbuIWteZ7j26tWHoYTTzJLJkG9dN
-         m/tWaqOrZHTOOfJZXU6pzK9AQBe03s/qgrbci/hB1wXnYD9im54wLGtg8yTewYU8f5WR
-         G9avbdlB4QskIIns4vg5MU6e2tP+Sb9iSoEls2JXF4+jPDTPugLESC08gzn4Sbf2dIIZ
-         K6iw==
+        d=linaro.org; s=google; t=1678101113;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=5tF2QtFJ6zNPhW7I4oiDzHUw1lz0luW83V+WT6CN1JE=;
+        b=rKrbBbGnyYpCeGDUHtn27IvmYy1mDNlDStYnaIX8BrFMnWoDXXuxKUu5j+jWSUB86p
+         kzep5TGpPUece+FUoCRvdhRg5CBaC0U68TGSOliG8csgVMc0Ezgmjpa4n/1/fk/CpoxH
+         pHZ3fjrG9zzx5ReAkE5fn/YBj28wy0PY0ub5WINoLVr7M/qdxLr1jDg5v1OOJ594YWP1
+         u/bzFYtXKXTjnXNgYIofERJLASQVe87xugP9dNt5eY77FZ3ogCb3wEOCYrTGAadX8Cgr
+         QTzNpGiuJ5d46b/+bl/91ygbRihELzdk2OnEP+Zfwf2RIgbfqHgwfg76zqAPzXv/g8QT
+         6Rhw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678101321;
-        h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
-         :user-agent:references:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=PyTn9tJm20fW8pZYDIuyfcLC54XHP85ntZPqOJKtjIk=;
-        b=i7Wr4jtrc8YhtFh/beJlXTNy/YXq+M7T7JmBHSWk7Rmu2BExMDtwyjhuizynXx9x2o
-         A6w7W/Dtm/pD5GSF7w2kTbikYdQ4+IWqOK+/LisLQbjP2WzEfdDpL8EaoVqhkn5G6o7e
-         q22Mlbq8JTX4Vifetwl+c+FQ5dn7F17/F90d1X9aikN8LwuiBpJIEnxlg5gVTtADyEss
-         /l4nUSgg8HphJ+t02RrrWVBhb7V7Cd6j8n3NRoo6uqH0nYfCMYhqTYOf0yn5g9i/RW6e
-         OZZ7KsM3WLso54swtI2ZQU8FA124HeN1m6fJeC824UkF8ruUOdWzfAHkjNqwhVeZ/7hq
-         fyIA==
-X-Gm-Message-State: AO0yUKVm+tMJ+AKCn+soHhtyhOAp7CbCcodE2N86Oxi9LkWSpd5sBi3l
-        xYNICYVGWywXpRFL0jNj/fRfeA==
-X-Google-Smtp-Source: AK7set/9jsOhwv0D69Mil0vNvlkr+TK2jem1ThlpPjH+LdY5wwwBq/ex5iKyHi1KYshz4sZacWcocw==
-X-Received: by 2002:a5d:4b41:0:b0:2c5:58fb:fa92 with SMTP id w1-20020a5d4b41000000b002c558fbfa92mr6235081wrs.7.1678101321400;
-        Mon, 06 Mar 2023 03:15:21 -0800 (PST)
-Received: from localhost (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
-        by smtp.gmail.com with ESMTPSA id f2-20020adfdb42000000b002c54fb024b2sm9456658wrj.61.2023.03.06.03.15.20
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 06 Mar 2023 03:15:20 -0800 (PST)
-References: <20230301183759.16163-1-ddrokosov@sberdevices.ru>
- <20230301183759.16163-2-ddrokosov@sberdevices.ru>
-User-agent: mu4e 1.8.13; emacs 28.2
-From:   Jerome Brunet <jbrunet@baylibre.com>
-To:     Dmitry Rokosov <ddrokosov@sberdevices.ru>,
-        neil.armstrong@linaro.org, mturquette@baylibre.com,
-        sboyd@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, khilman@baylibre.com,
-        martin.blumenstingl@googlemail.com
-Cc:     jian.hu@amlogic.com, kernel@sberdevices.ru, rockosov@gmail.com,
-        linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v9 1/5] clk: meson: add support for A1 PLL clock ops
-Date:   Mon, 06 Mar 2023 12:09:35 +0100
-In-reply-to: <20230301183759.16163-2-ddrokosov@sberdevices.ru>
-Message-ID: <1jy1oab06v.fsf@starbuckisacylon.baylibre.com>
+        d=1e100.net; s=20210112; t=1678101113;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=5tF2QtFJ6zNPhW7I4oiDzHUw1lz0luW83V+WT6CN1JE=;
+        b=KknlDbAX+IRW9F5dRpEhtBU/+ZZBZUOafdw+NP9SbkrTqJkVlnoXJLhMIZ2rj752or
+         RJLRWSbqTdFkgvfpuB7bVBtY+vK3pZL6m1SIp9eU3zT2jtFdM1QDdCI2+R7epTLdeIB8
+         nmLV8+0Nw2C99Mppo6AIaNhlppoK+w4QUce/UEYCYUq46TTgAjJNQ5j0KVD1ksIyUT+C
+         Db4jD20QpHyx/RyHaYFIVwDSwVG6d+WnfHPzVuAhbz+NNuGrnLgwHX/tOssqPgY+jG0Y
+         2HXjc8tlVx6HBiCYsKtwecaCkwkCpVlbXFzkGAiUgWX9HDjdXgSyEmub4YQcyM7jjtL2
+         d6ug==
+X-Gm-Message-State: AO0yUKXKc6fuEIhfk7dJUg+JrpTyFLgFf6na40volXxUhShJ+0rRVSC3
+        VInP8T7l0IIjFeRcQS9FWwfqQQ==
+X-Google-Smtp-Source: AK7set8vx8XROVX/gPmes3ByDAEtphu13/SZr3yPTk6ZTFpinYY05pDXaTEGpFgJZhZ30FOkHw0Epw==
+X-Received: by 2002:a05:651c:2226:b0:295:b0aa:978a with SMTP id y38-20020a05651c222600b00295b0aa978amr4359863ljq.6.1678101113697;
+        Mon, 06 Mar 2023 03:11:53 -0800 (PST)
+Received: from [192.168.1.101] (abym99.neoplus.adsl.tpnet.pl. [83.9.32.99])
+        by smtp.gmail.com with ESMTPSA id t8-20020a05651c204800b00295b9d903b7sm1658686ljo.119.2023.03.06.03.11.52
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 06 Mar 2023 03:11:53 -0800 (PST)
+Message-ID: <2eb160ff-6d36-54c3-0c72-943b78fe338f@linaro.org>
+Date:   Mon, 6 Mar 2023 12:11:51 +0100
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
-        autolearn=unavailable autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.8.0
+Subject: Re: [PATCH 10/11] arm64: dts: qcom: sc7280: fix EUD port properties
+Content-Language: en-US
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Melody Olvera <quic_molvera@quicinc.com>,
+        Souradeep Chowdhury <quic_schowdhu@quicinc.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20230305125954.209559-1-krzysztof.kozlowski@linaro.org>
+ <20230305125954.209559-10-krzysztof.kozlowski@linaro.org>
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <20230305125954.209559-10-krzysztof.kozlowski@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -77,142 +82,54 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
-On Wed 01 Mar 2023 at 21:37, Dmitry Rokosov <ddrokosov@sberdevices.ru> wrote:
 
-> From: Jian Hu <jian.hu@amlogic.com>
->
-> Modern meson PLL IPs are a little bit different from early known PLLs.
-> The main difference is located in the init/enable/disable sequences; the
-> rate logic is the same.
-
-For the record, I find very odd that PLLs used to have an 'rst' bit in
-CTRL0:29 (see g12 for example), this bit goes un-documented in the a1
-datasheet, and following SoCs like s4 still have a rst bit, still in
-CTRL0:29
-
-I would not be surpized if the rst is actually still there in the a1.
-It is just my guess ...
-
-> Compared with the previous SoCs, self-adaption current module
-> is newly added for A1, and there is no reset parameter except the
-> fixed pll. In A1 PLL, the PLL enable sequence is different, using
-> the new power-on sequence to enable the PLL.
-
-Please split this patch:
-#1 make the rst optional (if you must)
-#2 add the self current adapt param.
-
-Apart from this, it looks good
-
->
-> Signed-off-by: Jian Hu <jian.hu@amlogic.com>
-> Acked-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-> Signed-off-by: Dmitry Rokosov <ddrokosov@sberdevices.ru>
+On 5.03.2023 13:59, Krzysztof Kozlowski wrote:
+> Nods with unit addresses must have also 'reg' property:
+> 
+>   sc7280-herobrine-crd.dtb: eud@88e0000: ports:port@0: 'reg' is a required property
+> 
+> Fixes: 0b059979090d ("arm64: dts: qcom: sc7280: Add EUD dt node and dwc3 connector")
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 > ---
->  drivers/clk/meson/clk-pll.c | 47 +++++++++++++++++++++++++++++++------
->  drivers/clk/meson/clk-pll.h |  2 ++
->  2 files changed, 42 insertions(+), 7 deletions(-)
->
-> diff --git a/drivers/clk/meson/clk-pll.c b/drivers/clk/meson/clk-pll.c
-> index afefeba6e458..56ec2210f1ad 100644
-> --- a/drivers/clk/meson/clk-pll.c
-> +++ b/drivers/clk/meson/clk-pll.c
-> @@ -295,10 +295,14 @@ static int meson_clk_pll_init(struct clk_hw *hw)
->  	struct meson_clk_pll_data *pll = meson_clk_pll_data(clk);
->  
->  	if (pll->init_count) {
-> -		meson_parm_write(clk->map, &pll->rst, 1);
-> +		if (MESON_PARM_APPLICABLE(&pll->rst))
-> +			meson_parm_write(clk->map, &pll->rst, 1);
-> +
->  		regmap_multi_reg_write(clk->map, pll->init_regs,
->  				       pll->init_count);
-> -		meson_parm_write(clk->map, &pll->rst, 0);
-> +
-> +		if (MESON_PARM_APPLICABLE(&pll->rst))
-> +			meson_parm_write(clk->map, &pll->rst, 0);
->  	}
->  
->  	return 0;
-> @@ -309,8 +313,11 @@ static int meson_clk_pll_is_enabled(struct clk_hw *hw)
->  	struct clk_regmap *clk = to_clk_regmap(hw);
->  	struct meson_clk_pll_data *pll = meson_clk_pll_data(clk);
->  
-> -	if (meson_parm_read(clk->map, &pll->rst) ||
-> -	    !meson_parm_read(clk->map, &pll->en) ||
-> +	if (MESON_PARM_APPLICABLE(&pll->rst) &&
-> +	    meson_parm_read(clk->map, &pll->rst))
-> +		return 0;
-> +
-> +	if (!meson_parm_read(clk->map, &pll->en) ||
->  	    !meson_parm_read(clk->map, &pll->l))
->  		return 0;
->  
-> @@ -341,13 +348,34 @@ static int meson_clk_pll_enable(struct clk_hw *hw)
->  		return 0;
->  
->  	/* Make sure the pll is in reset */
-> -	meson_parm_write(clk->map, &pll->rst, 1);
-> +	if (MESON_PARM_APPLICABLE(&pll->rst))
-> +		meson_parm_write(clk->map, &pll->rst, 1);
->  
->  	/* Enable the pll */
->  	meson_parm_write(clk->map, &pll->en, 1);
->  
->  	/* Take the pll out reset */
-> -	meson_parm_write(clk->map, &pll->rst, 0);
-> +	if (MESON_PARM_APPLICABLE(&pll->rst))
-> +		meson_parm_write(clk->map, &pll->rst, 0);
-> +
-> +	/*
-> +	 * Compared with the previous SoCs, self-adaption current module
-> +	 * is newly added for A1, keep the new power-on sequence to enable the
-> +	 * PLL. The sequence is:
-> +	 * 1. enable the pll, delay for 10us
-> +	 * 2. enable the pll self-adaption current module, delay for 40us
-> +	 * 3. enable the lock detect module
-> +	 */
-> +	if (MESON_PARM_APPLICABLE(&pll->current_en)) {
-> +		usleep_range(10, 20);
-> +		meson_parm_write(clk->map, &pll->current_en, 1);
-> +		usleep_range(40, 50);
-> +	};
-> +
-> +	if (MESON_PARM_APPLICABLE(&pll->l_detect)) {
-> +		meson_parm_write(clk->map, &pll->l_detect, 1);
-> +		meson_parm_write(clk->map, &pll->l_detect, 0);
-> +	}
->  
->  	if (meson_clk_pll_wait_lock(hw))
->  		return -EIO;
-> @@ -361,10 +389,15 @@ static void meson_clk_pll_disable(struct clk_hw *hw)
->  	struct meson_clk_pll_data *pll = meson_clk_pll_data(clk);
->  
->  	/* Put the pll is in reset */
-> -	meson_parm_write(clk->map, &pll->rst, 1);
-> +	if (MESON_PARM_APPLICABLE(&pll->rst))
-> +		meson_parm_write(clk->map, &pll->rst, 1);
->  
->  	/* Disable the pll */
->  	meson_parm_write(clk->map, &pll->en, 0);
-> +
-> +	/* Disable PLL internal self-adaption current module */
-> +	if (MESON_PARM_APPLICABLE(&pll->current_en))
-> +		meson_parm_write(clk->map, &pll->current_en, 0);
->  }
->  
->  static int meson_clk_pll_set_rate(struct clk_hw *hw, unsigned long rate,
-> diff --git a/drivers/clk/meson/clk-pll.h b/drivers/clk/meson/clk-pll.h
-> index 367efd0f6410..a2228c0fdce5 100644
-> --- a/drivers/clk/meson/clk-pll.h
-> +++ b/drivers/clk/meson/clk-pll.h
-> @@ -36,6 +36,8 @@ struct meson_clk_pll_data {
->  	struct parm frac;
->  	struct parm l;
->  	struct parm rst;
-> +	struct parm current_en;
-> +	struct parm l_detect;
->  	const struct reg_sequence *init_regs;
->  	unsigned int init_count;
->  	const struct pll_params_table *table;
+This could use some newlines, but that's a different topic.
 
+Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+
+Konrad
+>  arch/arm64/boot/dts/qcom/sc7280.dtsi | 9 +++++++++
+>  1 file changed, 9 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+> index bdcb74925313..71179182c3b8 100644
+> --- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+> @@ -3593,12 +3593,17 @@ eud: eud@88e0000 {
+>  			      <0 0x088e2000 0 0x1000>;
+>  			interrupts-extended = <&pdc 11 IRQ_TYPE_LEVEL_HIGH>;
+>  			ports {
+> +				#address-cells = <1>;
+> +				#size-cells = <0>;
+> +
+>  				port@0 {
+> +					reg = <0>;
+>  					eud_ep: endpoint {
+>  						remote-endpoint = <&usb2_role_switch>;
+>  					};
+>  				};
+>  				port@1 {
+> +					reg = <1>;
+>  					eud_con: endpoint {
+>  						remote-endpoint = <&con_eud>;
+>  					};
+> @@ -3609,7 +3614,11 @@ eud_con: endpoint {
+>  		eud_typec: connector {
+>  			compatible = "usb-c-connector";
+>  			ports {
+> +				#address-cells = <1>;
+> +				#size-cells = <0>;
+> +
+>  				port@0 {
+> +					reg = <0>;
+>  					con_eud: endpoint {
+>  						remote-endpoint = <&eud_con>;
+>  					};
