@@ -2,42 +2,42 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5769C6ACE0E
-	for <lists+devicetree@lfdr.de>; Mon,  6 Mar 2023 20:29:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1792D6ACE2B
+	for <lists+devicetree@lfdr.de>; Mon,  6 Mar 2023 20:34:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229846AbjCFT32 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 Mar 2023 14:29:28 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55148 "EHLO
+        id S229692AbjCFTeW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 Mar 2023 14:34:22 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34614 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229695AbjCFT31 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Mar 2023 14:29:27 -0500
+        with ESMTP id S229798AbjCFTeV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Mar 2023 14:34:21 -0500
 Received: from amity.mint.lgbt (vmi888983.contaboserver.net [149.102.157.145])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 221694A1FF
-        for <devicetree@vger.kernel.org>; Mon,  6 Mar 2023 11:29:16 -0800 (PST)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9BB2A27D45
+        for <devicetree@vger.kernel.org>; Mon,  6 Mar 2023 11:34:17 -0800 (PST)
 Received: from amity.mint.lgbt (mx.mint.lgbt [127.0.0.1])
-        by amity.mint.lgbt (Postfix) with ESMTP id 4PVlR45rWVz1S5Jf
-        for <devicetree@vger.kernel.org>; Mon,  6 Mar 2023 12:08:48 -0500 (EST)
+        by amity.mint.lgbt (Postfix) with ESMTP id 4PVlRF2Vwzz1S5Jj
+        for <devicetree@vger.kernel.org>; Mon,  6 Mar 2023 12:08:57 -0500 (EST)
 Authentication-Results: amity.mint.lgbt (amavisd-new);
         dkim=pass (2048-bit key) reason="pass (just generated, assumed good)"
         header.d=mint.lgbt
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=mint.lgbt; h=
         content-transfer-encoding:mime-version:references:in-reply-to
-        :x-mailer:message-id:date:subject:to:from; s=dkim; t=1678122528;
-         x=1678986529; bh=aZvyOxr+cceertzklNMJveGEzeMKKnPjb24BJXnn514=; b=
-        dzavqYnbX01y3LyZcNinIP6Iqo6a5j89THgwlWw1+MVB0kHa7dOfZf4Jgk2xRQ8r
-        bdJ2RpDSqy82mEhPfjE0ERDq/zeEfs19927Qxp72a1wgBVtoXTcDkC/tF2je0bD2
-        8sIa3IV0tnCXbgS0KEWk5JnNJin8SeYYZPj34O1fs8fIcrX0qsDOOGAhUJBrO4TQ
-        Ek14REQEJtIDrFzJTBSpnCkdZRYkox4kJZA9lVDemduHbj/hP7+4e/TdqFlC+O6t
-        KjCpXO5KweVSdya7XEyjvH/vEFiUkapOG/X/FLzuzweFD8kV/sGhQFeIGfbUyG3D
-        MaGQKdm5BdaurFIYi0nNDg==
+        :x-mailer:message-id:date:subject:to:from; s=dkim; t=1678122536;
+         x=1678986537; bh=XBMOf7rDZmk1/gq6Hnv29VSjIdHlkH5Ie/sn9RbtUDE=; b=
+        WqUd8U1BT8RYfIBpzHuXSRbEmmRlkRzBbJrD0ZXpO1ZWQe9y+YVXwk8kgBwyX+3d
+        e5VndP3HAoNa/1NYSLax+LPn4uOA/hZWj0Zgibkn/mk+LxT3TIU2OTgsYVg6Ynsa
+        V/8u+eIKLRSmnDsTQixJenU6KXyJbHkhcPpaCRDTbGwYYQA5oLYizdT6ak9BbA53
+        ShfZM8whZPcQsOvsp31cxEkm6VdM7ikmBOsdwkIfEhsSJ6nFPP9xVnO04zeRioL0
+        A76x6NBmPjU0mS5lkGOGxb2UQuFnFqNn38lwJ9EcijugIda3Ww6yE9jOs9c40BTB
+        yForNXmKYNiGieSd3LYK8w==
 X-Virus-Scanned: amavisd-new at amity.mint.lgbt
 Received: from amity.mint.lgbt ([127.0.0.1])
         by amity.mint.lgbt (amity.mint.lgbt [127.0.0.1]) (amavisd-new, port 10026)
-        with ESMTP id mPL9ivG5Ua3o for <devicetree@vger.kernel.org>;
-        Mon,  6 Mar 2023 12:08:48 -0500 (EST)
+        with ESMTP id 1QYwFRwvmiZG for <devicetree@vger.kernel.org>;
+        Mon,  6 Mar 2023 12:08:56 -0500 (EST)
 Received: from dorothy.. (unknown [186.105.8.42])
-        by amity.mint.lgbt (Postfix) with ESMTPSA id 4PVlQv3bcNz1S5Jn;
-        Mon,  6 Mar 2023 12:08:39 -0500 (EST)
+        by amity.mint.lgbt (Postfix) with ESMTPSA id 4PVlR46j1Tz1S5Jl;
+        Mon,  6 Mar 2023 12:08:48 -0500 (EST)
 From:   Lux Aliaga <they@mint.lgbt>
 To:     agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
         robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
@@ -49,13 +49,10 @@ Cc:     ~postmarketos/upstreaming@lists.sr.ht,
         linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org,
         linux-scsi@vger.kernel.org, linux-hardening@vger.kernel.org,
         phone-devel@vger.kernel.org, martin.botka@somainline.org,
-        marijn.suijten@somainline.org, Lux Aliaga <they@mint.lgbt>,
-        Dhruva Gole <d-gole@ti.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Rob Herring <robh@kernel.org>
-Subject: [PATCH v7 2/6] dt-bindings: phy: Add QMP UFS PHY compatible for SM6125
-Date:   Mon,  6 Mar 2023 14:08:12 -0300
-Message-Id: <20230306170817.3806-3-they@mint.lgbt>
+        marijn.suijten@somainline.org, Lux Aliaga <they@mint.lgbt>
+Subject: [PATCH v7 3/6] phy: qcom-qmp: Add SM6125 UFS PHY support
+Date:   Mon,  6 Mar 2023 14:08:13 -0300
+Message-Id: <20230306170817.3806-4-they@mint.lgbt>
 X-Mailer: git-send-email 2.39.2
 In-Reply-To: <20230306170817.3806-1-they@mint.lgbt>
 References: <20230306170817.3806-1-they@mint.lgbt>
@@ -70,33 +67,56 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Document the QMP UFS PHY compatible for SM6125.
+The SM6125 UFS PHY is compatible with the one from SM6115. Add a
+compatible for it and modify the config from SM6115 to make them
+compatible with the SC8280XP binding
 
 Signed-off-by: Lux Aliaga <they@mint.lgbt>
 Reviewed-by: Martin Botka <martin.botka@somainline.org>
-Acked-by: Dhruva Gole <d-gole@ti.com>
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Acked-by: Rob Herring <robh@kernel.org>
 ---
- .../devicetree/bindings/phy/qcom,sc8280xp-qmp-ufs-phy.yaml       | 1 +
- 1 file changed, 1 insertion(+)
+ drivers/phy/qualcomm/phy-qcom-qmp-ufs.c | 12 ++++++++++++
+ 1 file changed, 12 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-ufs-=
-phy.yaml b/Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-ufs-ph=
-y.yaml
-index dde86a19f792..a7af57931f32 100644
---- a/Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-ufs-phy.yam=
-l
-+++ b/Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-ufs-phy.yam=
-l
-@@ -17,6 +17,7 @@ properties:
-   compatible:
-     enum:
-       - qcom,sc8280xp-qmp-ufs-phy
-+      - qcom,sm6125-qmp-ufs-phy
+diff --git a/drivers/phy/qualcomm/phy-qcom-qmp-ufs.c b/drivers/phy/qualco=
+mm/phy-qcom-qmp-ufs.c
+index 318eea35b972..44c29fdfc551 100644
+--- a/drivers/phy/qualcomm/phy-qcom-qmp-ufs.c
++++ b/drivers/phy/qualcomm/phy-qcom-qmp-ufs.c
+@@ -620,6 +620,13 @@ static const char * const qmp_phy_vreg_l[] =3D {
+ 	"vdda-phy", "vdda-pll",
+ };
 =20
-   reg:
-     maxItems: 1
++static const struct qmp_ufs_offsets qmp_ufs_offsets_v3_660 =3D {
++	.serdes		=3D 0,
++	.pcs		=3D 0xc00,
++	.tx		=3D 0x400,
++	.rx		=3D 0x600,
++};
++
+ static const struct qmp_ufs_offsets qmp_ufs_offsets_v5 =3D {
+ 	.serdes		=3D 0,
+ 	.pcs		=3D 0xc00,
+@@ -693,6 +700,8 @@ static const struct qmp_phy_cfg sdm845_ufsphy_cfg =3D=
+ {
+ static const struct qmp_phy_cfg sm6115_ufsphy_cfg =3D {
+ 	.lanes			=3D 1,
+=20
++	.offsets		=3D &qmp_ufs_offsets_v3_660,
++
+ 	.serdes_tbl		=3D sm6115_ufsphy_serdes_tbl,
+ 	.serdes_tbl_num		=3D ARRAY_SIZE(sm6115_ufsphy_serdes_tbl),
+ 	.tx_tbl			=3D sm6115_ufsphy_tx_tbl,
+@@ -1172,6 +1181,9 @@ static const struct of_device_id qmp_ufs_of_match_t=
+able[] =3D {
+ 	}, {
+ 		.compatible =3D "qcom,sm6115-qmp-ufs-phy",
+ 		.data =3D &sm6115_ufsphy_cfg,
++	}, {
++		.compatible =3D "qcom,sm6125-qmp-ufs-phy",
++		.data =3D &sm6115_ufsphy_cfg,
+ 	}, {
+ 		.compatible =3D "qcom,sm6350-qmp-ufs-phy",
+ 		.data =3D &sdm845_ufsphy_cfg,
 --=20
 2.39.2
 
