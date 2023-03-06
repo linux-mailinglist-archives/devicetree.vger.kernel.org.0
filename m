@@ -2,69 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E11176ABA2D
-	for <lists+devicetree@lfdr.de>; Mon,  6 Mar 2023 10:43:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8978C6ABA30
+	for <lists+devicetree@lfdr.de>; Mon,  6 Mar 2023 10:43:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229968AbjCFJnM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 Mar 2023 04:43:12 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56246 "EHLO
+        id S229707AbjCFJnO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 Mar 2023 04:43:14 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56278 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229870AbjCFJnL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Mar 2023 04:43:11 -0500
-Received: from mail-lj1-x235.google.com (mail-lj1-x235.google.com [IPv6:2a00:1450:4864:20::235])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7553123109
-        for <devicetree@vger.kernel.org>; Mon,  6 Mar 2023 01:43:08 -0800 (PST)
-Received: by mail-lj1-x235.google.com with SMTP id i20so8851465lja.11
-        for <devicetree@vger.kernel.org>; Mon, 06 Mar 2023 01:43:08 -0800 (PST)
+        with ESMTP id S230035AbjCFJnN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Mar 2023 04:43:13 -0500
+Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8646F231CF
+        for <devicetree@vger.kernel.org>; Mon,  6 Mar 2023 01:43:09 -0800 (PST)
+Received: by mail-lf1-x12f.google.com with SMTP id t11so11892136lfr.1
+        for <devicetree@vger.kernel.org>; Mon, 06 Mar 2023 01:43:09 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=rasmusvillemoes.dk; s=google; t=1678095786;
+        d=rasmusvillemoes.dk; s=google; t=1678095788;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=xcMN9JbZ9ifDcLCp57SFNkdO1pBah9zhn6rddcb4N9U=;
-        b=SMu+sHcAvQi9deN6JwtNl1jeQXl5VLbmWVqeMFlMBrv9A8wi3LPwoAwQNMNtkUKuYQ
-         0YyGbBTSISJxegmefjs4LQ81NxAhg+KLFYmJutcczFDdTOocc3Wg6S8zi3FDAM74LQf6
-         s9cJasQ3MP49ILq9pq1BmIbSkn0mYDJ3RHtY0=
+        bh=8K7TxC9ujka7az5qWZ0Yj+PA8VwUCDcIymczB4ue3v8=;
+        b=aFKS2vQ/9k+skY1++q3trAV5GuR0ux9uZmknr0vtFJDh6nWnD0FSxSSDBtPnpTLnOg
+         pt2BVDnb7VuMXz1DPWdBFErXAgWf3Si4T6OwMmEl6y4c06N1si5jafB9WnZ1+dpvpAI1
+         FiMpjCX7zSDiHPkWObq+IZwD4Dggjsk4+xHWo=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678095786;
+        d=1e100.net; s=20210112; t=1678095788;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=xcMN9JbZ9ifDcLCp57SFNkdO1pBah9zhn6rddcb4N9U=;
-        b=BP+25t7QsD6BgtoP8IdNO2taiWdQ7Ujf4XgQ/1IcviMiqgqvqdYaqFfJccDdulCGPc
-         x/qShoOdoLrwQXUiK28KhhhCQzxwbAZhdIzWcnrwxeuJF1+CE/DefmbPLE6V+30dQXEC
-         Br8w5+B4bqLa0d/SD8lAVScYsyWN/kmoTVPULBhxW+FLueklWTw3s2lcY9WlHn+WcZbP
-         sSt7/AYUWJTdmWGd1GE3AaupTkGMGtOUBuxfOaazFa04Jqz88Kl0Dc4M1YQH876X4hrQ
-         WesyHRLqpjtopK/Owt7k8+ZM91arkgAcOvEb6uTGcvvEUp7jPCfQYA3KBPJEMc1g0FUk
-         Mftg==
-X-Gm-Message-State: AO0yUKXIiqTvZQQYLgjwaPLwsM1OFOQYhCndLnXxKL7hM3tdyUbpSaBy
-        4YzwEzKf6DlqTiHTc7A2KJm/Cg==
-X-Google-Smtp-Source: AK7set9x+mvolD3p05ZthWcLiglULj+eqru/lw1Gx6a+cBBIEqiG/7Tgp3cKZLEy6oedNS2+5HPKhg==
-X-Received: by 2002:a2e:910d:0:b0:295:c39c:d8ab with SMTP id m13-20020a2e910d000000b00295c39cd8abmr2691274ljg.39.1678095786609;
-        Mon, 06 Mar 2023 01:43:06 -0800 (PST)
+        bh=8K7TxC9ujka7az5qWZ0Yj+PA8VwUCDcIymczB4ue3v8=;
+        b=fHWy08aNsssschhaEXENmFsqo+3q7sokms9yr3Pu+9ewCxd8Kmtfsq2MLGyOR7wQqG
+         qkupawIboz8DVbD6WxIeT8XkNa5vV13CQKILi2/hFeETNJME5LZGNShCNpCpBlJhpa8W
+         cocn0JK773gLX0sGDynpLY4jqLYvlDMzlBDIwTfJOVqQ/3daq8Guv2O0q6v9uplg9T1K
+         1DhAqZRAKV8KYoSzx1JL1qN38BtgxMIMttQ3HQO1I7XRJ+HCvSPINXgygkVQTuErTMZN
+         27mbqLSwfFofI/m7NGtDhfeSzsEkn9z6ME0Sscueic2/nEg+3oLXgd+jN8lrz7c87cZr
+         dM0A==
+X-Gm-Message-State: AO0yUKUqiZYbtE/JxDp5gK5JWXVnMtw/GpNSm07Ukq17J2EZQ8S/vVqZ
+        hviuQmhgtWlteFtZgvuthuu8Rl1gvPfTYlAoyF/Oyw==
+X-Google-Smtp-Source: AK7set/EEjtZWbShl/9cou4SP3WB9m8PCl7zwjvqbkD4+okPV4JvEgzxiJnpwFXfPLHEOV7WcGNXjw==
+X-Received: by 2002:ac2:547c:0:b0:4b5:b06d:4300 with SMTP id e28-20020ac2547c000000b004b5b06d4300mr2766340lfn.29.1678095787838;
+        Mon, 06 Mar 2023 01:43:07 -0800 (PST)
 Received: from prevas-ravi.prevas.se ([81.216.59.226])
-        by smtp.gmail.com with ESMTPSA id a22-20020a2e9816000000b002934ed148afsm1620091ljj.52.2023.03.06.01.43.05
+        by smtp.gmail.com with ESMTPSA id a22-20020a2e9816000000b002934ed148afsm1620091ljj.52.2023.03.06.01.43.07
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 06 Mar 2023 01:43:06 -0800 (PST)
+        Mon, 06 Mar 2023 01:43:07 -0800 (PST)
 From:   Rasmus Villemoes <linux@rasmusvillemoes.dk>
-To:     Lars-Peter Clausen <lars@metafoo.de>,
+To:     Cosmin Tanislav <cosmin.tanislav@analog.com>,
+        Lars-Peter Clausen <lars@metafoo.de>,
         Michael Hennerich <Michael.Hennerich@analog.com>,
-        Cosmin Tanislav <cosmin.tanislav@analog.com>,
-        Jonathan Cameron <jic23@kernel.org>, linux-iio@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Rasmus Villemoes <linux@rasmusvillemoes.dk>
-Subject: [PATCH v2 0/2] iio: ad74413r: allow setting sink current for digital input
-Date:   Mon,  6 Mar 2023 10:42:59 +0100
-Message-Id: <20230306094301.1357543-1-linux@rasmusvillemoes.dk>
+        Jonathan Cameron <jic23@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     devicetree@vger.kernel.org,
+        Rasmus Villemoes <linux@rasmusvillemoes.dk>,
+        linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH v2 1/2] dt-bindings: iio: ad74413r: allow setting sink current for digital input
+Date:   Mon,  6 Mar 2023 10:43:00 +0100
+Message-Id: <20230306094301.1357543-2-linux@rasmusvillemoes.dk>
 X-Mailer: git-send-email 2.37.2
-In-Reply-To: <20230302134922.1120217-1-linux@rasmusvillemoes.dk>
+In-Reply-To: <20230306094301.1357543-1-linux@rasmusvillemoes.dk>
 References: <20230302134922.1120217-1-linux@rasmusvillemoes.dk>
+ <20230306094301.1357543-1-linux@rasmusvillemoes.dk>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -78,36 +82,31 @@ charge on the external 68 nF capacitor (cf. the data sheet's Figure
 34) will keep the channel as reading high even after the switch is
 turned off again.
 
-Add a DT binding and driver support for setting the desired sink current.
+Signed-off-by: Rasmus Villemoes <linux@rasmusvillemoes.dk>
+---
+ .../devicetree/bindings/iio/addac/adi,ad74413r.yaml      | 9 +++++++++
+ 1 file changed, 9 insertions(+)
 
-I have chosen the term "drive strength" because it matches existing
-practice, even if this is only a sink. E.g. there's
-
- * @PIN_CONFIG_DRIVE_STRENGTH_UA: the pin will sink or source at most the current
- *      passed as argument. The argument is in uA.
-
-and indeed it would be trivial to hook up that
-PIN_CONFIG_DRIVE_STRENGTH_UA in ad74413r_gpio_set_comp_config().
-
-However, unlike the debounce time, there does not appear to be any way
-to actually tweak the drive strength from userspace, nor do I know if
-that would actually be a good idea. For our application(s), the
-current sink needed is a property of the attached hardware, and thus
-can and should be defined in DT.
-
-v2:
-- remove redundant type info in binding per Rob's bot
-- use min() instead of if() in ad74413r_set_comp_drive_strength() per Jonathan
-
-Rasmus Villemoes (2):
-  dt-bindings: iio: ad74413r: allow setting sink current for digital
-    input
-  iio: ad74413r: wire up support for drive-strength-microamp property
-
- .../bindings/iio/addac/adi,ad74413r.yaml      |  9 ++++++++
- drivers/iio/addac/ad74413r.c                  | 23 +++++++++++++++++++
- 2 files changed, 32 insertions(+)
-
+diff --git a/Documentation/devicetree/bindings/iio/addac/adi,ad74413r.yaml b/Documentation/devicetree/bindings/iio/addac/adi,ad74413r.yaml
+index 9eb3ecc8bbc8..590ea7936ad7 100644
+--- a/Documentation/devicetree/bindings/iio/addac/adi,ad74413r.yaml
++++ b/Documentation/devicetree/bindings/iio/addac/adi,ad74413r.yaml
+@@ -101,6 +101,15 @@ patternProperties:
+           When not configured as a comparator, the GPO will be treated as an
+           output-only GPIO.
+ 
++      drive-strength-microamp:
++        description: |
++          For channels configured as digital input, this configures the sink
++          current.
++        minimum: 0
++        maximum: 1800
++        default: 0
++        multipleOf: 120
++
+     required:
+       - reg
+ 
 -- 
 2.37.2
 
