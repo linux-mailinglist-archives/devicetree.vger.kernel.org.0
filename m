@@ -2,83 +2,233 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 69F486AC054
-	for <lists+devicetree@lfdr.de>; Mon,  6 Mar 2023 14:06:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B75E26AC05D
+	for <lists+devicetree@lfdr.de>; Mon,  6 Mar 2023 14:07:29 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230223AbjCFNGb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 Mar 2023 08:06:31 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42642 "EHLO
+        id S230509AbjCFNH2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 Mar 2023 08:07:28 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43656 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230145AbjCFNGa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Mar 2023 08:06:30 -0500
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 68CD42C656;
-        Mon,  6 Mar 2023 05:06:27 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-        bh=FQqcuORaXLfMiKxDrJIZ8q68OPExEvTNfqCIywjvNAs=; b=T3EsYv0/u6FJJLnFYiWK90J/eP
-        t4hbyBL5ORJv/DSLRiTTqkkGS1gf/Qu/O9gATSBVksRA+tPgjTB/UVzBC0oE8wGAprl2JoWgtnb77
-        8dl32tz7yYUErAxgYRpbHlq//h2HkALXTjx5EeDjJQbJJF/ZxAsYkshyf95tl4Oh3XSY=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-        (envelope-from <andrew@lunn.ch>)
-        id 1pZAXk-006Z5s-Pg; Mon, 06 Mar 2023 14:06:20 +0100
-Date:   Mon, 6 Mar 2023 14:06:20 +0100
-From:   Andrew Lunn <andrew@lunn.ch>
-To:     Emil Renner Berthing <emil.renner.berthing@canonical.com>
-Cc:     Guo Samin <samin.guo@starfivetech.com>,
-        linux-riscv@lists.infradead.org, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        "David S . Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Emil Renner Berthing <kernel@esmil.dk>,
-        Richard Cochran <richardcochran@gmail.com>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Peter Geis <pgwipeout@gmail.com>,
-        Yanhong Wang <yanhong.wang@starfivetech.com>
-Subject: Re: [PATCH v5 08/12] net: stmmac: starfive_dmac: Add phy interface
- settings
-Message-ID: <52822ce5-0712-48e5-81e0-c6ac09d6a6ee@lunn.ch>
-References: <20230303085928.4535-1-samin.guo@starfivetech.com>
- <20230303085928.4535-9-samin.guo@starfivetech.com>
- <CAJM55Z-3CCY8xx81Qr9UqSSQ+gOer3XXJzOvnAe7yyESk23pQw@mail.gmail.com>
- <bc79afab-17d1-8789-3325-8e6d62123dce@starfivetech.com>
- <CAJM55Z8zYUQc33r9tJB1du-FSp+uDf40720taMuGTuPcPU+aZg@mail.gmail.com>
+        with ESMTP id S230506AbjCFNH0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Mar 2023 08:07:26 -0500
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D9FDA2D166;
+        Mon,  6 Mar 2023 05:07:24 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1678108044; x=1709644044;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:content-transfer-encoding:in-reply-to;
+  bh=K2XLwJDAgCn5cUp8HDBtYFb3RkUQScuiERg+YLrJ+zY=;
+  b=PRPzgI6U2FEpqZz1ihsDOcIEX2Wcwov49N38EB99eLCR86RiFXgb/raN
+   69kZ2CG8lnc2mh/7ncE7XzmYjVTe+jdK3W8GRrsZGzjBjizr2elY/qryE
+   Ez7sSHGLqvN71MYhbzFXUrZlAJLwqi/KdCoulKJSGDlqYpOvMbWBNNSY8
+   ZAhYGVmfzkmEKESIM0PZyst2x9S4W5oRhlvIoFE1cFW/Ld7Urrz40sjO+
+   XEOgPbi4gnLxNZPpW+fdEICLonoltyYRj8wjIwjHAvUufXFQB+JHEMq1r
+   /uDMjQnjjydIGqJPX9wbirVqjR760pyvAAZlQ5766uimWFStpc20c3+wc
+   A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10640"; a="337864356"
+X-IronPort-AV: E=Sophos;i="5.98,236,1673942400"; 
+   d="scan'208";a="337864356"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+  by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 06 Mar 2023 05:07:24 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6500,9779,10640"; a="676155837"
+X-IronPort-AV: E=Sophos;i="5.98,236,1673942400"; 
+   d="scan'208";a="676155837"
+Received: from smile.fi.intel.com ([10.237.72.54])
+  by orsmga002.jf.intel.com with ESMTP; 06 Mar 2023 05:07:21 -0800
+Received: from andy by smile.fi.intel.com with local (Exim 4.96)
+        (envelope-from <andriy.shevchenko@linux.intel.com>)
+        id 1pZAYh-00GQmq-2X;
+        Mon, 06 Mar 2023 15:07:19 +0200
+Date:   Mon, 6 Mar 2023 15:07:19 +0200
+From:   Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To:     Benjamin Tissoires <benjamin.tissoires@redhat.com>
+Cc:     Daniel Kaehn <kaehndan@gmail.com>,
+        Hans de Goede <hdegoede@redhat.com>, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, jikos@kernel.org,
+        bartosz.golaszewski@linaro.org, dmitry.torokhov@gmail.com,
+        devicetree@vger.kernel.org, linux-input@vger.kernel.org,
+        ethan.twardy@plexus.com
+Subject: Re: [PATCH v8 3/3] HID: cp2112: Fwnode Support
+Message-ID: <ZAXlh9ZVjGJh0l7n@smile.fi.intel.com>
+References: <20230227140758.1575-1-kaehndan@gmail.com>
+ <20230227140758.1575-4-kaehndan@gmail.com>
+ <Y/03to4XFXPwkGH1@smile.fi.intel.com>
+ <CAP+ZCCe=f3AtxvC1Z6zPErMEG9BcnCOjApc26n_9yjq2+U72pw@mail.gmail.com>
+ <Y/9oO1AE6GK6CQmp@smile.fi.intel.com>
+ <20230302170554.q3426ii255735rzw@mail.corp.redhat.com>
+ <ZAXFNRuALYpXgL6F@smile.fi.intel.com>
+ <b8423b0b-4f63-d598-6c8b-7c7e73549032@redhat.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <CAJM55Z8zYUQc33r9tJB1du-FSp+uDf40720taMuGTuPcPU+aZg@mail.gmail.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <b8423b0b-4f63-d598-6c8b-7c7e73549032@redhat.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> Ugh, you're right. Both the syscon block, the register offset and the
-> bit position in those registers are different from gmac0 to gmac1, and
-> since we need a phandle to the syscon block anyway passing those two
-> other parameters as arguments is probably the nicest solution. For the
-> next version I'd change the 2nd argument from mask to the bit position
-> though. It seems the field is always 3 bits wide and this makes it a
-> little clearer that we're not just putting register values in the
-> device tree.
+On Mon, Mar 06, 2023 at 01:36:51PM +0100, Benjamin Tissoires wrote:
+> On Mon, Mar 6, 2023 at 11:49 AM Andy Shevchenko <andriy.shevchenko@linux.intel.com> wrote:
+> > On Thu, Mar 02, 2023 at 06:06:06PM +0100, Benjamin Tissoires wrote:
+> > > On Mar 01 2023, Andy Shevchenko wrote:
+> > > > On Tue, Feb 28, 2023 at 01:05:54PM -0600, Daniel Kaehn wrote:
 
-I prefer bit position over mask.
+...
 
-But please fully document this in the device tree. This is something a
-board developer is going to get wrong, because they assume MAC blocks
-are identical, and normally need identical configuration.
+[1]: https://stackoverflow.com/a/60855157/2511795
 
-I assume this is also a hardware 'bug', and the next generation of the
-silicon will have this fixed? So this will go away?
+> > > Thanks Andy for your help here, and thanks for that link.
+> > >
+> > > I am trying to test Danny's patch as I want to use it for my HID CI,
+> > > being an owner of a CP2112 device myself.
+> > >
+> > > The current setup is using out of the tree patches [2] which are
+> > > implementing a platform i2c-hid support and some manual addition of a
+> > > I2C-HID device on top of it. This works fine but gets busted every now
+> > > and then when the tree sees a change that conflicts with these patches.
+> > >
+> > > So with Danny's series, I thought I could have an SSDT override to
+> > > declare that very same device instead of patching my kernel before
+> > > testing it.
+> > >
+> > > Of course, it gets tricky because I need to run that under qemu.
+> > >
+> > > I am currently stuck at the "sharing the firmware_node from usb with
+> > > HID" step and I'd like to know if you could help me.
+> > >
+> > > On my laptop, if I plug the CP2112 (without using a USB hub), I can get:
+> > >
+> > > $> ls -l /sys/bus/hid/devices/0003:10C4:EA90.*
+> > >   lrwxrwxrwx. 1 root root 0 Mar  2 17:02 /sys/bus/hid/devices/0003:10C4:EA90.0079 -> ../../../devices/pci0000:00/0000:00:14.0/usb2/2-9/2-9:1.0/0003:10C4:EA90.0079
+> > > $> ls -l /sys/bus/usb/devices/2-9*/firmware_node
+> > >   lrwxrwxrwx. 1 root root 0 Mar  2 17:03 /sys/bus/usb/devices/2-9:1.0/firmware_node -> ../../../../../LNXSYSTM:00/LNXSYBUS:00/PNP0A08:00/device:15/device:16/device:25
+> > >   lrwxrwxrwx. 1 root root 0 Mar  2 17:02 /sys/bus/usb/devices/2-9/firmware_node -> ../../../../LNXSYSTM:00/LNXSYBUS:00/PNP0A08:00/device:15/device:16/device:25
+> > >
+> > > So AFAIU the USB device is properly assigned a firmware node. My dsdt
+> > > also shows the "Device (RHUB)" and I guess everything is fine.
+> > 
+> > Yes, so far so good.
+> > 
+> > > However, playing with qemu is not so easy.
+> > >
+> > > I am running qemu with the following arguments (well, almost because I
+> > > have a wrapper script on top of it and I also run the compiled kernel
+> > > from the current tree):
+> > >
+> > > #> qemu-system-x86_64 -bios /usr/share/edk2/ovmf/OVMF_CODE.fd \
+> > >                       -netdev user,id=hostnet0 \
+> > >                       -device virtio-net-pci,netdev=hostnet0 \
+> > >                       -m 4G \
+> > >                       -enable-kvm \
+> > >                       -cpu host \
+> > >                       -device qemu-xhci -usb \
+> > >                       -device 'usb-host,vendorid=0x10c4,productid=0xea90' \
+> > >                       -cdrom ~/Downloads/Fedora-Workstation-Live-x86_64-37-1.7.iso
+> > 
+> > Side question, where can I get those blobs from (EDKII and Fedora Live CD)?
+> > I'm using Debian unstable.
+> 
+> You can install the ovmf package in debian[3], which should have a
+> similar file.
+> For the Fedora livecd -> https://getfedora.org/fr/workstation/download/
+> but any other distribution with a recent enough kernel should show the
+> same.
 
-	Andrew
+Thank you!
+
+> > > And this is what I get:
+> > >
+> > > #> ls -l /sys/bus/hid/devices/0003:10C4:EA90.*
+> > >   lrwxrwxrwx 1 root root 0 Mar  2 16:10 /sys/bus/hid/devices/0003:10C4:EA90.0001 -> ../../../devices/pci0000:00/0000:00:06.0/usb2/2-1/2-1:1.0/0003:10C4:EA90.0001
+> > >
+> > > #> ls -l /sys/bus/usb/devices/2-1*/firmware_node
+> > >   ls: cannot access '/sys/bus/usb/devices/2-1*/firmware_node': No such file or directory
+> > >
+> > > Looking at the DSDT, I do not see any reference to the USB hub, so I
+> > > wonder if the firmware_node needs to be populated first in the DSDT.
+> > 
+> > So, where QEMU takes DSDT (ACPI tables in general) from? Can you patch that?
+> > I believe that's the problem in qemu.
+> 
+> That's a good question and it's one I am not sure I have the answer to.
+> I would have assumed that the DSDT was in the OVMF firmware, but given
+> that we can arbitrarily add command line arguments, I believe it
+> probably just provides a baseline and then we are screwed. The OVMF bios
+> is compiled only once, so I doubt there is any mechanism to
+> enable/disable a component in the DSDT, or make it dynamically
+> generated.
+
+We have two ways of filling missing parts:
+1) update the original source of DSDT (firmware or bootloader,
+   whichever provides that);
+2) adding an overlay.
+
+The 2) works _if and only if_ there is *no* existing object in the tables.
+In such cases, you can simply provide a *full* hierarchy. See an example of
+PCI devices in the kernel documentation on how to do that. I believe something
+similar can be done for USB.
+
+> > > Also note that if I plug the CP2112 over a docking station, I lose the
+> > > firmware_node sysfs entries on the host too.
+> > 
+> > This seems like a lack of firmware node propagating in the USB hub code in
+> > the Linux kernel.
+> 
+> That would make a lot of sense.
+> 
+> FWIW, in the VM I see a firmware node on the pci controller itself:
+> #> ls -l /sys/devices/pci0000\:00/0000\:00\:06.0/firmware_node
+>   lrwxrwxrwx 1 root root 0 Mar  6 12:24 /sys/devices/pci0000:00/0000:00:06.0/firmware_node -> ../../LNXSYSTM:00/LNXSYBUS:00/PNP0A03:00/device:07
+> 
+> And one the host, through a USB hub:
+> 
+> #> ls -l /sys/bus/hid/devices/0003:10C4:EA90.*
+>   lrwxrwxrwx. 1 root root 0 Mar  6 13:26 /sys/bus/hid/devices/0003:10C4:EA90.007C -> ../../../devices/pci0000:00/0000:00:14.0/usb2/2-8/2-8.2/2-8.2.4/2-8.2.4:1.0/0003:10C4:EA90.007C
+> #> ls -l /sys/bus/usb/devices/2-8*/firmware_node
+>   lrwxrwxrwx. 1 root root 0 Mar  2 16:53 /sys/bus/usb/devices/2-8:1.0/firmware_node -> ../../../../../LNXSYSTM:00/LNXSYBUS:00/PNP0A08:00/device:15/device:16/device:1e
+>   lrwxrwxrwx. 1 root root 0 Mar  2 16:53 /sys/bus/usb/devices/2-8/firmware_node -> ../../../../LNXSYSTM:00/LNXSYBUS:00/PNP0A08:00/device:15/device:16/device:1e
+> 
+> Note that the firmware node propagation stopped at 2-8, and 2.8.2 is not
+> having a firmware node.
+
+It would be nice if you can run `grep -H 15 /sys/bus/acpi/devices/*/status`,
+filter out unneeded ones, and for the rest also print their paths:
+`cat filtered_list_of_acpi_devs | while read p; do grep -H . $p/path; done`
+
+With this we will see what devices are actually present and up and running
+in the system and what their paths in the ACPI namespace.
+
+> > > Do you think it would be achievable to emulate that over qemu and use a
+> > > mainline kernel without patches?
+> > 
+> > As long as qemu provides correct DSDT it should work I assume.
+> 
+> Just to be sure I understand, for this to work, we need the DSDT to
+> export a "Device(RHUB)"?
+
+Not sure I understand the term "export" here. We need a description
+of the (to describe) missing parts.
+
+> Or if we fix the USB fw_node propagation, could we just overwrite
+> "\_SB_.PCI0.S30_"?  "\_SB_.PCI0.S30_" is the name the ACPI is giving to
+> the USB port in my VM case AFAIU.
+
+I have no idea what is the S30 node.
+
+[2] https://gitlab.freedesktop.org/bentiss/gitlab-kernel-ci/-/tree/master/VM
+[3] https://packages.debian.org/buster/all/ovmf/filelist
+
+-- 
+With Best Regards,
+Andy Shevchenko
+
+
