@@ -2,153 +2,133 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A199A6ACCE5
-	for <lists+devicetree@lfdr.de>; Mon,  6 Mar 2023 19:44:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E33656ACD0E
+	for <lists+devicetree@lfdr.de>; Mon,  6 Mar 2023 19:52:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230060AbjCFSoa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 Mar 2023 13:44:30 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50126 "EHLO
+        id S230163AbjCFSwK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 Mar 2023 13:52:10 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59234 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230011AbjCFSo2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Mar 2023 13:44:28 -0500
-Received: from mail-pl1-x62d.google.com (mail-pl1-x62d.google.com [IPv6:2607:f8b0:4864:20::62d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2C18165C4E
-        for <devicetree@vger.kernel.org>; Mon,  6 Mar 2023 10:44:02 -0800 (PST)
-Received: by mail-pl1-x62d.google.com with SMTP id p6so11535428plf.0
-        for <devicetree@vger.kernel.org>; Mon, 06 Mar 2023 10:44:02 -0800 (PST)
+        with ESMTP id S230119AbjCFSwJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Mar 2023 13:52:09 -0500
+Received: from mail-wr1-x42d.google.com (mail-wr1-x42d.google.com [IPv6:2a00:1450:4864:20::42d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D2206497F3
+        for <devicetree@vger.kernel.org>; Mon,  6 Mar 2023 10:52:06 -0800 (PST)
+Received: by mail-wr1-x42d.google.com with SMTP id v16so9940072wrn.0
+        for <devicetree@vger.kernel.org>; Mon, 06 Mar 2023 10:52:06 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1678128241;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=365J6Piko6rztWGOR0yLK2bsAIKP4u5eMy2EMrLl6w0=;
-        b=tf2EZgbURrgBp9bwac8RT/sGU9/M1fIIhoYFbwBGIZCucpJpms9fV5d0sSKqeeBUTR
-         yvA3MbEO79BepXdOrT/5ZFy3mPpPCNjVGV4uIH7nphVdHFPwt7RJ+BtNrWr1SbPTiRpM
-         uY2u7IBYkTptpeqmiQatMMbTrSpZ3gugd7v/rhz/5vrB8Nst1NbnfjBC9Q4Gk6XnjT5j
-         wAekaMDoTtBVA8LkcCN8xJGcnrSON8plNIUjxVJjwKiM95yYIJ1s0VgQup0G5OntHy1T
-         EwlhGVYvgyeuk6OyxFPggK+oOIQ7fOyepEXF1cf1PFMIoRfOhFzWJbzP6+HosX0UcLYw
-         QN8w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678128241;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+        d=rivosinc-com.20210112.gappssmtp.com; s=20210112; t=1678128725;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=365J6Piko6rztWGOR0yLK2bsAIKP4u5eMy2EMrLl6w0=;
-        b=A8ofWsg5wNGS0TyAoHYBxM+qIZalYyWDQyg0u9n5ob6/lZ6RLzy/+8AX8YpNylVmy3
-         qgEa2ZjyVZyOdi5NjyxjM/8CfKnU5HPwqQspUvkqw6+gkxT68raJ8EZaccgg2P+LlMWk
-         cc7aNKRe5wKbOWeTd/aR0xkGpihC3q4BNm8i90RLFr4YNFsFW8NSRrg7ElPuJlt9mBKU
-         o9fAVy838eO3bslUVHkzYGfcr4IpKEc61mPJewXCRTJtOHa8/3IjJ553srbmXmIyrXHm
-         UpXwxxgE22imhAUUCUe3o0UtxqzNUHUPg8/Ih9zpMyDw6sIOzP2CtBfV4VU9ejbXPqgP
-         SIug==
-X-Gm-Message-State: AO0yUKUYLttwXqKDaezngqjpaaOsSwlmefer2PANQt5VL1Q5kOEvQujt
-        EXhTA737e8hQRQyK/j3psjMnqA==
-X-Google-Smtp-Source: AK7set+/MEIeQEy/F6GN5ZSD5HtwdnA/tFtpDPXbVIG5nrXJuyJNtIIVYf4bU3UboWwix9n+UDkZEw==
-X-Received: by 2002:a17:903:246:b0:19c:fd73:5586 with SMTP id j6-20020a170903024600b0019cfd735586mr14251090plh.38.1678128241615;
-        Mon, 06 Mar 2023 10:44:01 -0800 (PST)
-Received: from p14s ([2604:3d09:148c:c800:e8cc:984:8f0a:efd3])
-        by smtp.gmail.com with ESMTPSA id x6-20020a170902ec8600b0019c91d3bdb4sm7010259plg.304.2023.03.06.10.44.00
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 06 Mar 2023 10:44:01 -0800 (PST)
-Date:   Mon, 6 Mar 2023 11:43:58 -0700
-From:   Mathieu Poirier <mathieu.poirier@linaro.org>
-To:     MD Danish Anwar <danishanwar@ti.com>
-Cc:     "Andrew F. Davis" <afd@ti.com>, Suman Anna <s-anna@ti.com>,
-        Roger Quadros <rogerq@kernel.org>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Tero Kristo <t-kristo@ti.com>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Santosh Shilimkar <ssantosh@kernel.org>,
-        Nishanth Menon <nm@ti.com>, linux-remoteproc@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-omap@vger.kernel.org, srk@ti.com, devicetree@vger.kernel.org,
-        netdev@vger.kernel.org
-Subject: Re: [PATCH v3 0/6] Introduce PRU platform consumer API
-Message-ID: <20230306184358.GA1633717@p14s>
-References: <20230306110934.2736465-1-danishanwar@ti.com>
+        bh=b6Kcl5snT4dOT1Wk63DsCfYmCJln0IX3AMZ3xLgwxEE=;
+        b=tmdUDj4teYRPGPVmMc0RPsl1zl5vsv3S8+GCXAW0/s1S267aiJlsDabus51wc2BaFf
+         RQNpEKYrxga62mE8kwkh2pdz/ZqmbeLZIxQ4igs9EmQVEwMIMf5MI7QAsE6LzXfNK2+/
+         1Tm87rGjzxKEctE1klwstJe+gysP9trhlFv3M0VrHQczZFLI/2jkB6860mPzHgkJ/cEC
+         tONrDQC7H1ppljQ799985LTKaViqcIUzQlYWSOVcCC1IiEzbVnstvAF3EoMKxQfwD5dL
+         1CnQe6Eclrp5BkhYMqh7YIGq9iqXmEVPkxMzWA/rXop/9gdoqAwcAjlMzRww4PqhttMF
+         lwvQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1678128725;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=b6Kcl5snT4dOT1Wk63DsCfYmCJln0IX3AMZ3xLgwxEE=;
+        b=KNgxAEoids3h65peN7NtjGr4l6l9CME1ygfU7VoMZbeAwt1MaOwId0KH4aDbFX0Y6x
+         eouU6RoDJXvugG0xYsN1MeI6G648nHJpda2hy0ECL9/TeLn3Y2RR1qrOzlzArmSjrbLR
+         k9oUCzCRIrdtnRkqSxi6oASrovxGDuF3NMd9Lg9jAteeA2t2ykYUJR14utjnDBEuh6h3
+         5Y7ZtT1CVAn7BBJ8AQmpJL5CpAujw5uVKsh6Ss2VkzqXs9R3pqyD3OPXn6frwrnMyFD9
+         TPLKInx9Lt9A0xB34Y4pwJSj+zgzy/2Lm/ueZr/EFkXqR19VQrBXEkoD/Ue7r6fo64eI
+         AcmA==
+X-Gm-Message-State: AO0yUKVcK2y/lj+MsLuKOkheMgcVnNPPfnQY5aNU+pksnphS/WX2vRJ/
+        FcDtTIguE6WNA1GTbzjK8jEBCdqM/jYHkr2cIYZ21xreyj3btNYR
+X-Google-Smtp-Source: AK7set8I+3jxDfAUEo7frBA3dq8huNi9KnbKovbnIOQ0/OQKEcAAicBWKJUD2c5b7PTUdIxHwYxf1SZVe1fSQaWvLtY=
+X-Received: by 2002:a5d:5951:0:b0:2ce:7219:4d64 with SMTP id
+ e17-20020a5d5951000000b002ce72194d64mr373680wri.11.1678128725393; Mon, 06 Mar
+ 2023 10:52:05 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230306110934.2736465-1-danishanwar@ti.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+References: <20230301082552.274331-1-alexghiti@rivosinc.com> <CAK9=C2XAOKbyrbOnDP1GzW1VyO-f-V-oEVcp+PhGHeHKFh4C6A@mail.gmail.com>
+In-Reply-To: <CAK9=C2XAOKbyrbOnDP1GzW1VyO-f-V-oEVcp+PhGHeHKFh4C6A@mail.gmail.com>
+From:   Alexandre Ghiti <alexghiti@rivosinc.com>
+Date:   Mon, 6 Mar 2023 19:51:54 +0100
+Message-ID: <CAHVXubj9sCEuANsVe0N7YRMg8OPx_eALZfy0vERKU9P6QUDM0Q@mail.gmail.com>
+Subject: Re: [PATCH v6 0/2] riscv: Use PUD/P4D/PGD pages for the linear mapping
+To:     Anup Patel <apatel@ventanamicro.com>
+Cc:     Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Mar 06, 2023 at 04:39:28PM +0530, MD Danish Anwar wrote:
-> Hi All,
-> The Programmable Real-Time Unit and Industrial Communication Subsystem (PRU-ICSS
-> or simply PRUSS) on various TI SoCs consists of dual 32-bit RISC cores
-> (Programmable Real-Time Units, or PRUs) for program execution.
-> 
-> There are 3 foundation components for TI PRUSS subsystem: the PRUSS platform
-> driver, the PRUSS INTC driver and the PRUSS remoteproc driver. All of them have
-> already been merged and can be found under:
-> 1) drivers/soc/ti/pruss.c
->    Documentation/devicetree/bindings/soc/ti/ti,pruss.yaml
-> 2) drivers/irqchip/irq-pruss-intc.c
->    Documentation/devicetree/bindings/interrupt-controller/ti,pruss-intc.yaml
-> 3) drivers/remoteproc/pru_rproc.c
->    Documentation/devicetree/bindings/remoteproc/ti,pru-consumer.yaml
-> 
-> The programmable nature of the PRUs provide flexibility to implement custom
-> peripheral interfaces, fast real-time responses, or specialized data handling.
-> Example of a PRU consumer drivers will be: 
->   - Software UART over PRUSS
->   - PRU-ICSS Ethernet EMAC
-> 
-> In order to make usage of common PRU resources and allow the consumer drivers to
-> configure the PRU hardware for specific usage the PRU API is introduced.
-> 
-> This is the v3 of the old patch series[1]. This doesn't have any functional 
-> changes, the old series has been rebased on linux-next (tag: next-20230306).
-> 
-> This series depends on another series which is already merged in the remoteproc
-> tree[2] and is part of v6.3-rc1. This series and the remoteproc series form the
-> PRUSS consumer API which can be used by consumer drivers to utilize the PRUs.
-> 
-> One example of the consumer driver is the PRU-ICSSG ethernet driver [3],which 
-> depends on this series and the remoteproc series[2].
-> 
-> [1] https://lore.kernel.org/all/20220418123004.9332-1-p-mohan@ti.com/
-> [2] https://lore.kernel.org/all/20230106121046.886863-1-danishanwar@ti.com/#t
-> [3] https://lore.kernel.org/all/20230210114957.2667963-1-danishanwar@ti.com/
-> 
-> Thanks and Regards,
-> Md Danish Anwar
-> 
-> Andrew F. Davis (1):
->   soc: ti: pruss: Add pruss_{request,release}_mem_region() API
-> 
-> Suman Anna (3):
->   soc: ti: pruss: Add pruss_cfg_read()/update() API
->   soc: ti: pruss: Add helper functions to set GPI mode, MII_RT_event and
->     XFR
->   soc: ti: pruss: Add helper function to enable OCP master ports
-> 
-> Tero Kristo (2):
->   soc: ti: pruss: Add pruss_get()/put() API
->   soc: ti: pruss: Add helper functions to get/set PRUSS_CFG_GPMUX
-> 
->  drivers/soc/ti/pruss.c           | 257 ++++++++++++++++++++++++++++++-
->  include/linux/pruss_driver.h     |  72 ++++++---
->  include/linux/remoteproc/pruss.h | 221 ++++++++++++++++++++++++++
->  3 files changed, 526 insertions(+), 24 deletions(-)
+Hi Anup,
 
-The last revision of this set was sent out on April 18th 2022... It is always
-very difficult to follow-up with a patchset when it has been this long.
-Moreover, you added a SoB to patch 1 and 2 but none of the other ones.
+On Mon, Mar 6, 2023 at 5:33=E2=80=AFPM Anup Patel <apatel@ventanamicro.com>=
+ wrote:
+>
+> On Wed, Mar 1, 2023 at 1:56=E2=80=AFPM Alexandre Ghiti <alexghiti@rivosin=
+c.com> wrote:
+> >
+> > This patchset intends to improve tlb utilization by using hugepages for
+> > the linear mapping.
+> >
+> > base-commit-tag: v6.2-rc7
+> >
+> > v6:
+> > - quiet LLVM warning by casting phys_ram_base into an unsigned long
+> >
+> > v5:
+> > - Fix nommu builds by getting rid of riscv_pfn_base in patch 1, thanks
+> >   Conor
+> > - Add RB from Andrew
+> >
+> > v4:
+> > - Rebase on top of v6.2-rc3, as noted by Conor
+> > - Add Acked-by Rob
+> >
+> > v3:
+> > - Change the comment about initrd_start VA conversion so that it fits
+> >   ARM64 and RISCV64 (and others in the future if needed), as suggested
+> >   by Rob
+> >
+> > v2:
+> > - Add a comment on why RISCV64 does not need to set initrd_start/end th=
+at
+> >   early in the boot process, as asked by Rob
+> >
+> > Alexandre Ghiti (2):
+> >   riscv: Get rid of riscv_pfn_base variable
+> >   riscv: Use PUD/P4D/PGD pages for the linear mapping
+>
+> I tried this series but it is getting stuck after reaching user space.
+>
+> Does this series require some other dependent patches ?
 
-Roger had comments on the previous set - I will look at this revision when he
-has provided his RB for this entire set.
+No it should not. Let me take a look: what's your config and the base commi=
+t?
 
-Thanks,
-Mathieu
-
-> 
-> -- 
-> 2.25.1
-> 
+>
+> Regards,
+> Anup
+>
+> >
+> >  arch/riscv/include/asm/page.h | 19 +++++++++++++++++--
+> >  arch/riscv/mm/init.c          | 28 ++++++++++++++++++----------
+> >  arch/riscv/mm/physaddr.c      | 16 ++++++++++++++++
+> >  drivers/of/fdt.c              | 11 ++++++-----
+> >  4 files changed, 57 insertions(+), 17 deletions(-)
+> >
+> > --
+> > 2.37.2
+> >
