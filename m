@@ -2,59 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8A0BD6AC45D
-	for <lists+devicetree@lfdr.de>; Mon,  6 Mar 2023 16:05:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B5DB26AC465
+	for <lists+devicetree@lfdr.de>; Mon,  6 Mar 2023 16:07:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231294AbjCFPFd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 Mar 2023 10:05:33 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50508 "EHLO
+        id S230155AbjCFPHl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 Mar 2023 10:07:41 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53124 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231280AbjCFPF2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Mar 2023 10:05:28 -0500
-Received: from mail-ed1-x52e.google.com (mail-ed1-x52e.google.com [IPv6:2a00:1450:4864:20::52e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1013B28D0B
-        for <devicetree@vger.kernel.org>; Mon,  6 Mar 2023 07:05:26 -0800 (PST)
-Received: by mail-ed1-x52e.google.com with SMTP id o12so39794955edb.9
-        for <devicetree@vger.kernel.org>; Mon, 06 Mar 2023 07:05:25 -0800 (PST)
+        with ESMTP id S230035AbjCFPHl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Mar 2023 10:07:41 -0500
+Received: from mail-ed1-x530.google.com (mail-ed1-x530.google.com [IPv6:2a00:1450:4864:20::530])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 86E4193D0
+        for <devicetree@vger.kernel.org>; Mon,  6 Mar 2023 07:07:38 -0800 (PST)
+Received: by mail-ed1-x530.google.com with SMTP id s11so39862844edy.8
+        for <devicetree@vger.kernel.org>; Mon, 06 Mar 2023 07:07:38 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1678115124;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        d=linaro.org; s=google; t=1678115257;
+        h=content-transfer-encoding:in-reply-to:references:cc:to:from
+         :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=pNTmcPK/a/OakyotOC2ABwm7bqjCs9B5ikZ1KDGhAKM=;
-        b=vuV4Wj+bi0mYOFrswOQmM3/9OUdCeiaeyhsW/u1pnX8VJYB0t/9LQJ2gLsEXgAe+cW
-         +pgF9aeRpKgCgQlnacEFFADvoJUOhCMceIGNQ/URYKyVMo57e/rsoVleGKSBB17UOdTA
-         FGKsHoZUQEJW582UCatzWVVASlqvOMVipXeK8NqZ3IQQeYpppc80v+RmD6X44klPKZB8
-         HPnbZqDZAmYLUufMvlsLFMBAbeR1p1/hPo8dcn79eFSOleQ50Vv6RaYeO2kWYtrRModb
-         iKbAjVecCBCw5HPoy4a9U9ZiHV4d9U6cOUzXZn9eeKgh3jiGt5geRi6oGQF0IPduUsvo
-         P50Q==
+        bh=PNCMCCJvA2lBH9AQZq82JaqBkNnc4Fk7SX9dh1mZFDE=;
+        b=n8KD370ehXIp9BWjTZrIEe7SIXN1Ruc+QA8Sy1gDlPeFvejxDEeZZ3jhaptaFDMyUN
+         gxhANY6uCJfWUuX9JO56+4eS8LBE8axdcU8zmdoj0Jow0YrLGTljgpUlgPS+utIR3ARZ
+         sCL6QUb9+MOAVIIzucarsYPkx6eXOVgJFrG0SxBU/xO7MUaiYWiuZGT2N7e2+GlcuhHl
+         mW+8sBnwOHZFEt44JSRZ2SQcba53FKcmos3awHH/HfbTFzOsMD8Fnioq4Rae5swkx1rI
+         rFibEprIqP924HwutX+eBeEew5FQAeyMUEbIsuRCYpCl6IDWpYQTTB7mDOmQqGkHPOOW
+         eLLg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678115124;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20210112; t=1678115257;
+        h=content-transfer-encoding:in-reply-to:references:cc:to:from
+         :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=pNTmcPK/a/OakyotOC2ABwm7bqjCs9B5ikZ1KDGhAKM=;
-        b=lU42ZIur8dSgOmA77v3ldjBV3BZUWTLbcIFtgVy1D7enoL1wHZtSHIrjAf39qqJmrX
-         bvVS4XQT4U4NEdw2tj0vc2pUvimQKKbEK5UIQNvSMUxu4PZxQvXbM+zQ7xd02cWlhKEL
-         zB1SfmLy4GlRNTdJp7PttsO3O94S5a3ibDkDPJhLpdV0/huxlt82LLA5SRofIkP+kW0Y
-         tcLTO7BnWnNOHd+T6EQhQIF5/dseO3/2tiGAc52Xuhp3dHmos5cMaPHi04/Vzi2SA8Go
-         FVNyRA9jFxVNgPCPOLg12agl362Ppu6pvL/UxH5RGQri+4Am4eQValyAzv+wcdXvyNSc
-         I2wQ==
-X-Gm-Message-State: AO0yUKW/+t0KjoplXsG6iJomHQcsoGHvlBKEReVfq/B0GmFDWrcljYmA
-        40lB2V/ab3LLdi1XboOHnxkRvQ==
-X-Google-Smtp-Source: AK7set8q/phI9/yKdS3oU02Yiq5MUx1ZZRHV7xyomcMn6iPNZOgixX+zm4nOCBa5rB7Prld5uzpX8g==
-X-Received: by 2002:a17:906:4c84:b0:8b1:e78f:598b with SMTP id q4-20020a1709064c8400b008b1e78f598bmr11431619eju.50.1678115124552;
-        Mon, 06 Mar 2023 07:05:24 -0800 (PST)
+        bh=PNCMCCJvA2lBH9AQZq82JaqBkNnc4Fk7SX9dh1mZFDE=;
+        b=7JwylJvGqfnpqg3xnJEXsIt1ec/7f0b2cCVc3U9RJkSisR80yNTQNrg0UgLb1U5LhC
+         IfhWAoiEtdvbEh5dDUWT69yDwrxy+5Mnp6d4qo7woJ4j/aSVMHBhbFOexdpJ/HyDiJAb
+         hTwjOFWlaVdMRrzykjnSjCCP8f9WgX9C/UznjDTqQjepXgqdW6CkIMvo0C2oQ1lv4QVq
+         NP+ey0/8PH0ksA/9WfEkq2zj2jNgbf3u2GRczUqo7e7mN9luq5cBavhmtRV0/O9VfWH0
+         G7J2s22iUHSs/XnAGwslZzDYP9wah+yJOL6xhI5icq15Xqh0EKkpwWO9gvbFocYfjtnv
+         vdkg==
+X-Gm-Message-State: AO0yUKVVWEDGpOfkVLxvC9jTX0SP3wEXvSjhN63rBqA9SQ12jRoftXiR
+        FHqopwySJWruG8/opz8lZCUvBQ==
+X-Google-Smtp-Source: AK7set+6I3VosaTXUccYCOjwEcFmdFe+U57axCZnhCtUf+bZm7rvBuvWkHa/5us9zvfNvpjAGaT2ow==
+X-Received: by 2002:aa7:ce05:0:b0:4ac:bab1:feee with SMTP id d5-20020aa7ce05000000b004acbab1feeemr9330933edv.24.1678115257066;
+        Mon, 06 Mar 2023 07:07:37 -0800 (PST)
 Received: from ?IPV6:2a02:810d:15c0:828:c1e7:5006:98ac:f57? ([2a02:810d:15c0:828:c1e7:5006:98ac:f57])
-        by smtp.gmail.com with ESMTPSA id j6-20020a17090686c600b008c44438734csm4694692ejy.113.2023.03.06.07.05.23
+        by smtp.gmail.com with ESMTPSA id bi23-20020a170906a25700b008d356cafaedsm4658146ejb.40.2023.03.06.07.07.35
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 06 Mar 2023 07:05:24 -0800 (PST)
-Message-ID: <c8cf2435-8b18-7af7-c751-267021142f5a@linaro.org>
-Date:   Mon, 6 Mar 2023 16:05:22 +0100
+        Mon, 06 Mar 2023 07:07:36 -0800 (PST)
+Message-ID: <22525720-9def-27de-cf41-8fd8165d6e01@linaro.org>
+Date:   Mon, 6 Mar 2023 16:07:35 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.8.0
 Subject: Re: [Patch v2 0/9] Tegra234 Memory interconnect support
+Content-Language: en-US
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 To:     Sumit Gupta <sumitg@nvidia.com>, treding@nvidia.com,
         dmitry.osipenko@collabora.com, viresh.kumar@linaro.org,
         rafael@kernel.org, jonathanh@nvidia.com, robh+dt@kernel.org,
@@ -65,43 +67,45 @@ Cc:     linux-kernel@vger.kernel.org, linux-tegra@vger.kernel.org,
         bhelgaas@google.com, vidyas@nvidia.com, sanjayc@nvidia.com,
         ksitaraman@nvidia.com, ishah@nvidia.com, bbasu@nvidia.com
 References: <20230220140559.28289-1-sumitg@nvidia.com>
-Content-Language: en-US
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230220140559.28289-1-sumitg@nvidia.com>
+ <c8cf2435-8b18-7af7-c751-267021142f5a@linaro.org>
+In-Reply-To: <c8cf2435-8b18-7af7-c751-267021142f5a@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 20/02/2023 15:05, Sumit Gupta wrote:
-> This patch series adds memory interconnect support for Tegra234 SoC.
-> It is used to dynamically scale DRAM Frequency as per the bandwidth
-> requests from different Memory Controller (MC) clients.
-> MC Clients use ICC Framework's icc_set_bw() api to dynamically request
-> for the DRAM bandwidth (BW). As per path, the request will be routed
-> from MC to the EMC driver. MC driver passes the request info like the
-> Client ID, type, and frequency request info to the BPMP-FW which will
-> set the final DRAM freq considering all exisiting requests.
+On 06/03/2023 16:05, Krzysztof Kozlowski wrote:
+> On 20/02/2023 15:05, Sumit Gupta wrote:
+>> This patch series adds memory interconnect support for Tegra234 SoC.
+>> It is used to dynamically scale DRAM Frequency as per the bandwidth
+>> requests from different Memory Controller (MC) clients.
+>> MC Clients use ICC Framework's icc_set_bw() api to dynamically request
+>> for the DRAM bandwidth (BW). As per path, the request will be routed
+>> from MC to the EMC driver. MC driver passes the request info like the
+>> Client ID, type, and frequency request info to the BPMP-FW which will
+>> set the final DRAM freq considering all exisiting requests.
+>>
+>> MC and EMC are the ICC providers. Nodes in path for a request will be:
+>>      Client[1-n] -> MC -> EMC -> EMEM/DRAM
+>>
+>> The patch series also adds interconnect support in below client drivers:
+>> 1) CPUFREQ driver for scaling bandwidth with CPU frequency. For that,
+>>    added per cluster OPP table which will be used in the CPUFREQ driver
+>>    by requesting the minimum BW respective to the given CPU frequency in
+>>    the OPP table of given cluster.
+>> 2) PCIE driver to request BW required for different modes.
 > 
-> MC and EMC are the ICC providers. Nodes in path for a request will be:
->      Client[1-n] -> MC -> EMC -> EMEM/DRAM
-> 
-> The patch series also adds interconnect support in below client drivers:
-> 1) CPUFREQ driver for scaling bandwidth with CPU frequency. For that,
->    added per cluster OPP table which will be used in the CPUFREQ driver
->    by requesting the minimum BW respective to the given CPU frequency in
->    the OPP table of given cluster.
-> 2) PCIE driver to request BW required for different modes.
+> No dependencies or ordering written, so I am free to take memory
+> controller bits, I assume.
 
-No dependencies or ordering written, so I am free to take memory
-controller bits, I assume.
+And not.. NAK, since you decided to ignore my comments. Really, we do
+not have time for such useless ping pong.
 
 Best regards,
 Krzysztof
