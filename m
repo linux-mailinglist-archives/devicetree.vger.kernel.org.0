@@ -2,124 +2,147 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1652F6AD2F8
-	for <lists+devicetree@lfdr.de>; Tue,  7 Mar 2023 00:46:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8A4216AD313
+	for <lists+devicetree@lfdr.de>; Tue,  7 Mar 2023 00:58:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229621AbjCFXqV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 Mar 2023 18:46:21 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56562 "EHLO
+        id S229634AbjCFX6X (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 Mar 2023 18:58:23 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38830 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229559AbjCFXqU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Mar 2023 18:46:20 -0500
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0A887532A5;
-        Mon,  6 Mar 2023 15:46:18 -0800 (PST)
-Received: from [192.168.1.90] (unknown [188.24.156.231])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: cristicc)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id 3BA6B6602F5E;
-        Mon,  6 Mar 2023 23:46:15 +0000 (GMT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1678146376;
-        bh=NEoWyHe0xORmwmkapLJCDAiOtq7Nhqyrhrxnf11E9X0=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=b7wEyD48eZrqKBBwbQBZGMDDqMv7sy8/YQfCNfrJlB94wRymvBrK30IppzEUOccJg
-         EMi7WAao0h0YenfHKwuoTwA8eKHToT6ZoBkyjppspncS+qBobyyuBUoZUeZOoRRVGd
-         nleQJwIJCrxzdyMzcLGeVhykAaNIffgea13u3HiWF4LH0iBCQxDMvEGRDwLi8dKk2z
-         w+OXPZ3X29oxw7AM+9ZNaJCEWrQIHsq1/2F2mQYo6Q6+OyK3MBXR8iR9SplMEntAP9
-         yl4y5mQIqv0cNpHkh5jEFW/QGk+m7o/9PSs6iyFhQN9eaLlYyuIyaguPanA4/nNbR5
-         5FXdYSDVr4gKg==
-Message-ID: <243aebb3-70d8-3d83-cb8f-bd1e67e6707e@collabora.com>
-Date:   Tue, 7 Mar 2023 01:46:12 +0200
+        with ESMTP id S229557AbjCFX6W (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Mar 2023 18:58:22 -0500
+Received: from fgw22-7.mail.saunalahti.fi (fgw22-7.mail.saunalahti.fi [62.142.5.83])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 722425B9F
+        for <devicetree@vger.kernel.org>; Mon,  6 Mar 2023 15:58:20 -0800 (PST)
+Received: from localhost (88-113-24-128.elisa-laajakaista.fi [88.113.24.128])
+        by fgw22.mail.saunalahti.fi (Halon) with ESMTP
+        id c4170a49-bc7a-11ed-a9de-005056bdf889;
+        Tue, 07 Mar 2023 01:58:18 +0200 (EET)
+From:   andy.shevchenko@gmail.com
+Date:   Tue, 7 Mar 2023 01:58:17 +0200
+To:     Devi Priya <quic_devipriy@quicinc.com>
+Cc:     agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        mturquette@baylibre.com, sboyd@kernel.org,
+        linus.walleij@linaro.org, catalin.marinas@arm.com, will@kernel.org,
+        p.zabel@pengutronix.de, shawnguo@kernel.org, arnd@arndb.de,
+        marcel.ziswiler@toradex.com, dmitry.baryshkov@linaro.org,
+        nfraprado@collabora.com, broonie@kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
+        linux-gpio@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        quic_srichara@quicinc.com, quic_gokulsri@quicinc.com,
+        quic_sjaganat@quicinc.com, quic_kathirav@quicinc.com,
+        quic_arajkuma@quicinc.com, quic_anusha@quicinc.com,
+        quic_poovendh@quicinc.com
+Subject: Re: [PATCH V8 4/7] pinctrl: qcom: Add IPQ9574 pinctrl driver
+Message-ID: <ZAZ+GeGu8mW1XqpG@surfacebook>
+References: <20230214163116.9924-1-quic_devipriy@quicinc.com>
+ <20230214163116.9924-5-quic_devipriy@quicinc.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.2
-Subject: Re: [PATCH 03/12] soc: sifive: ccache: Add StarFive JH7100 support
-Content-Language: en-US
-To:     Conor Dooley <conor@kernel.org>
-Cc:     Lee Jones <lee@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Emil Renner Berthing <kernel@esmil.dk>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Jose Abreu <joabreu@synopsys.com>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Richard Cochran <richardcochran@gmail.com>,
-        Sagar Kadam <sagar.kadam@sifive.com>,
-        Yanhong Wang <yanhong.wang@starfivetech.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        netdev@vger.kernel.org, linux-riscv@lists.infradead.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        linux-arm-kernel@lists.infradead.org, kernel@collabora.com
-References: <20230211031821.976408-1-cristian.ciocaltea@collabora.com>
- <20230211031821.976408-4-cristian.ciocaltea@collabora.com>
- <b969cf86-d5df-462a-982b-c5b67f97c3d6@spud>
-From:   Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
-In-Reply-To: <b969cf86-d5df-462a-982b-c5b67f97c3d6@spud>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230214163116.9924-5-quic_devipriy@quicinc.com>
+X-Spam-Status: No, score=0.7 required=5.0 tests=BAYES_00,DKIM_ADSP_CUSTOM_MED,
+        FORGED_GMAIL_RCVD,FREEMAIL_FROM,NML_ADSP_CUSTOM_MED,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_SOFTFAIL autolearn=no autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 3/7/23 01:32, Conor Dooley wrote:
-> On Sat, Feb 11, 2023 at 05:18:12AM +0200, Cristian Ciocaltea wrote:
->> From: Emil Renner Berthing <kernel@esmil.dk>
->>
->> This adds support for the StarFive JH7100 SoC which also feature this
->> SiFive cache controller.
->>
->> Unfortunately the interrupt for uncorrected data is broken on the JH7100
->> and fires continuously, so add a quirk to not register a handler for it.
->>
->> Signed-off-by: Emil Renner Berthing <kernel@esmil.dk>
->> [drop JH7110, rework Kconfig]
->> Signed-off-by: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
-> 
-> This driver doesn't really do very much of anything as things stand, so
-> I don't see really see all that much value in picking it up right now,
-> since the non-coherent bits aren't usable yet.
-> 
->> ---
->>   drivers/soc/sifive/Kconfig         |  1 +
->>   drivers/soc/sifive/sifive_ccache.c | 11 ++++++++++-
->>   2 files changed, 11 insertions(+), 1 deletion(-)
->>
->> diff --git a/drivers/soc/sifive/Kconfig b/drivers/soc/sifive/Kconfig
->> index e86870be34c9..867cf16273a4 100644
->> --- a/drivers/soc/sifive/Kconfig
->> +++ b/drivers/soc/sifive/Kconfig
->> @@ -4,6 +4,7 @@ if SOC_SIFIVE || SOC_STARFIVE
->>   
->>   config SIFIVE_CCACHE
->>   	bool "Sifive Composable Cache controller"
->> +	default SOC_STARFIVE
-> 
-> I don't think this should have a default set w/ the support that this
-> patch brings in. Perhaps later we should be doing defaulting, but not at
-> this point in the series.
+Tue, Feb 14, 2023 at 10:01:13PM +0530, Devi Priya kirjoitti:
+> Add pinctrl definitions for the TLMM of IPQ9574
 
-I will handle this is v2 as soon as the non-coherency stuff is ready.
+...
 
-> Other than that, this is fine by me:
-> Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+> +	depends on OF
 
-Thanks for reviewing,
-Cristian
+No compile test on non-OF configurations?
 
-> Thanks,
-> Conor.
+> +	depends on ARM64 || COMPILE_TEST
+
+...
+
+> +#define FUNCTION(fname)			                \
+
+PINCTRL_PINFUNCTION() ?
+
+> +	[msm_mux_##fname] = {		                \
+> +		.name = #fname,				\
+> +		.groups = fname##_groups,               \
+> +		.ngroups = ARRAY_SIZE(fname##_groups),	\
+> +	}
+
+...
+
+> +#define REG_SIZE 0x1000
+> +#define PINGROUP(id, f1, f2, f3, f4, f5, f6, f7, f8, f9)	\
+> +	{					        \
+> +		.name = "gpio" #id,			\
+> +		.pins = gpio##id##_pins,		\
+> +		.npins = (unsigned int)ARRAY_SIZE(gpio##id##_pins),	\
+
+Can you embed struct pingroup?
+
+> +		.funcs = (int[]){			\
+> +			msm_mux_gpio, /* gpio mode */	\
+> +			msm_mux_##f1,			\
+> +			msm_mux_##f2,			\
+> +			msm_mux_##f3,			\
+> +			msm_mux_##f4,			\
+> +			msm_mux_##f5,			\
+> +			msm_mux_##f6,			\
+> +			msm_mux_##f7,			\
+> +			msm_mux_##f8,			\
+> +			msm_mux_##f9			\
+> +		},				        \
+> +		.nfuncs = 10,				\
+> +		.ctl_reg = REG_SIZE * id,			\
+> +		.io_reg = 0x4 + REG_SIZE * id,		\
+> +		.intr_cfg_reg = 0x8 + REG_SIZE * id,		\
+> +		.intr_status_reg = 0xc + REG_SIZE * id,	\
+> +		.intr_target_reg = 0x8 + REG_SIZE * id,	\
+> +		.mux_bit = 2,			\
+> +		.pull_bit = 0,			\
+> +		.drv_bit = 6,			\
+> +		.oe_bit = 9,			\
+> +		.in_bit = 0,			\
+> +		.out_bit = 1,			\
+> +		.intr_enable_bit = 0,		\
+> +		.intr_status_bit = 0,		\
+> +		.intr_target_bit = 5,		\
+> +		.intr_target_kpss_val = 3,	\
+> +		.intr_raw_status_bit = 4,	\
+> +		.intr_polarity_bit = 1,		\
+> +		.intr_detection_bit = 2,	\
+> +		.intr_detection_width = 2,	\
+> +	}
+
+...
+
+> +	PINGROUP(62, blsp1_spi, audio_sec, audio_pdm1, audio_sec, pta, prng_rosc2, gcc_plltest,
+> +		 _, _),
+
+Can be one line.
+
+...
+
+> +static const struct of_device_id ipq9574_pinctrl_of_match[] = {
+> +	{ .compatible = "qcom,ipq9574-tlmm", },
+
+> +	{ },
+
+No comma for terminator line.
+
+> +};
+
+No MODULE_DEVICE_TABLE()?
+
+-- 
+With Best Regards,
+Andy Shevchenko
+
+
