@@ -2,126 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4B84D6AC3F7
-	for <lists+devicetree@lfdr.de>; Mon,  6 Mar 2023 15:52:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5D4126AC404
+	for <lists+devicetree@lfdr.de>; Mon,  6 Mar 2023 15:54:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231210AbjCFOwg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 Mar 2023 09:52:36 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58182 "EHLO
+        id S229776AbjCFOyF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 Mar 2023 09:54:05 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33040 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231213AbjCFOwc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Mar 2023 09:52:32 -0500
-Received: from smtp-relay-internal-0.canonical.com (smtp-relay-internal-0.canonical.com [185.125.188.122])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3ECC230180
-        for <devicetree@vger.kernel.org>; Mon,  6 Mar 2023 06:52:09 -0800 (PST)
-Received: from mail-qt1-f198.google.com (mail-qt1-f198.google.com [209.85.160.198])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id 097AC412FD
-        for <devicetree@vger.kernel.org>; Mon,  6 Mar 2023 14:52:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1678114320;
-        bh=/Ed2pnKpFihOgpPVhJbTQbuHmKlsVltnb1sm0Sd0bF4=;
-        h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-         To:Cc:Content-Type;
-        b=a7/JSHVI51npvAWV0XP8n7D3hA3EGctpaj8WEazmLKtEsoDKufWJmBLi4sO9a0Udi
-         l7LOFg/QMl/5fJ51gjAT57GHgKYkB5JWwljy9l28AIf0VzNz+UuBCFd41bzQuRKA/k
-         3di35WLWGRt1ar9VXCDW9O1r1N+iUXOXOigJ8uK9EI8PUYhCKZyF42VWqmKYzM74Ro
-         Bww0A4tg+AwSYnrpwsFwr+OLBjQq+PLATL69bPddgcSKT7t5xY1IT7JuDOtb+EYXXt
-         KFp0q/dw1RYycp1USPePlWY9qBsEPEHfuFtA+cB4168xhWi5xvHHGadY+vsHIuUsIl
-         DrCKpbtR/BmZw==
-Received: by mail-qt1-f198.google.com with SMTP id c11-20020ac85a8b000000b003bfdd43ac76so5277819qtc.5
-        for <devicetree@vger.kernel.org>; Mon, 06 Mar 2023 06:51:59 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678114319;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=/Ed2pnKpFihOgpPVhJbTQbuHmKlsVltnb1sm0Sd0bF4=;
-        b=b/cenysnEdBCJIFwMi/4Z9MEunwzB6i/8e+CFi+BNgGybaPUingnSmnY6atOc7jZnx
-         UBLYwR/N4547KKDxNo4oMwjp0QQsok8d2VlOki0RURNqLoZFxzLm2S/npKhqgM8XWo1p
-         hxSQ0h0ehE6XVNSZVtR5ViFVkThu/LxEzc86CAVNxsREa9bhjbCRbhkDwyp40PYxzmfl
-         OrAfejvjTgLwAdu/0rWJQ748ZZqCtrD51WDZGLFYJIVa6JigaO+BEjOcn8+esJlWWO7B
-         O6lh4VfRj+ZMJq0o4d3xApF3gKnfRtjzWWVU/4XQnXkq9AhMTnJT4eTUtCEKPdzC0svs
-         wqig==
-X-Gm-Message-State: AO0yUKWyKrcC/HWkvOnueJi2uCV23sB0kn47Rua2qleaijSz5VkTDA7i
-        mVQVRZl/v0KNAQIHmOZosFJk3als3avaaFUxRT6t3SA2+DGyXEt74XaRzeZ1OsTUL5v4otGElno
-        7NfdAH48MS8AYvedmzEqGIniM/d1nqYeEdPgmqwKXYoKpxyVf56bMdyI=
-X-Received: by 2002:ac8:4289:0:b0:3bf:c266:da25 with SMTP id o9-20020ac84289000000b003bfc266da25mr2822561qtl.3.1678114319140;
-        Mon, 06 Mar 2023 06:51:59 -0800 (PST)
-X-Google-Smtp-Source: AK7set8hGVIO5dLFFjZH2MJTAfwE9FdnA1Tbubej5zA4FV5EKtDEGcMH23xPAGo7OGnX+zEfPlevEWgvQY4tT+oFLFQ=
-X-Received: by 2002:ac8:4289:0:b0:3bf:c266:da25 with SMTP id
- o9-20020ac84289000000b003bfc266da25mr2822551qtl.3.1678114318908; Mon, 06 Mar
- 2023 06:51:58 -0800 (PST)
+        with ESMTP id S229826AbjCFOyE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Mar 2023 09:54:04 -0500
+Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 25D4225B94;
+        Mon,  6 Mar 2023 06:53:32 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com;
+        s=20170329; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
+        References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
+        Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+        Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+        List-Subscribe:List-Post:List-Owner:List-Archive;
+        bh=NNhilVAt6dmcwGs0PfDq2BDBRY9wUkNpd3jlQa3ol1U=; b=bgMusvPdyx+sGt1nEnXi9BjEO2
+        T5iw3wgYkIVxiOm+NFD68Wo17qirTSNEmj5+3P3DaSvnH/nwqsXgqB2cdZWO2LdpHSTJ4n+YsWbrK
+        3Mpv3s/VoDn/QxiLRLPgI5jsUvz0TkeyJz1YoDJ36D7jcXBJi0vKuL19OWSoAVKD3TnpROcjJmA3Q
+        Pzl+pS8NLIFVD2aHzUicvLdgr8Lfc9vS0Oq7ytOsULWUTMHgEAMFoqW4b3HB7742ZOVqqIm8PwYTE
+        ovZoYOHWqK4WC1FY/6y1Hcvp6zRZewwXexFwZm670SBqwEwOfIbgyD5aXzCU44VkPzZh2AUYAfsFV
+        YRV+erfw==;
+Received: from 201-68-164-191.dsl.telesp.net.br ([201.68.164.191] helo=[192.168.1.60])
+        by fanzine2.igalia.com with esmtpsa 
+        (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_128_GCM:128) (Exim)
+        id 1pZCD3-006n3Z-Vx; Mon, 06 Mar 2023 15:53:07 +0100
+Message-ID: <7c25f97f-c4bf-0e99-c60f-a9026ca42965@igalia.com>
+Date:   Mon, 6 Mar 2023 11:52:55 -0300
 MIME-Version: 1.0
-References: <20230306140430.28951-1-walker.chen@starfivetech.com> <20230306140430.28951-4-walker.chen@starfivetech.com>
-In-Reply-To: <20230306140430.28951-4-walker.chen@starfivetech.com>
-From:   Emil Renner Berthing <emil.renner.berthing@canonical.com>
-Date:   Mon, 6 Mar 2023 15:51:42 +0100
-Message-ID: <CAJM55Z9j79mar+bXrFEu3sZ=THY=LWwQbqQMf0AqgtUs2uJfwg@mail.gmail.com>
-Subject: Re: [PATCH v4 3/3] riscv: dts: starfive: add dma controller node
-To:     Walker Chen <walker.chen@starfivetech.com>
-Cc:     Eugeniy Paltsev <Eugeniy.Paltsev@synopsys.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor.dooley@microchip.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>, dmaengine@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-riscv@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.8.0
+Subject: Re: [PATCH] arm64: dts: qcom: msm8996: Add missing property for
+ OnePlus 3T
+Content-Language: en-US
+To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Harry Austen <hpausten@protonmail.com>
+Cc:     devicetree@vger.kernel.org, agross@kernel.org,
+        linux-arm-msm@vger.kernel.org, andersson@kernel.org,
+        konrad.dybcio@somainline.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, kernel-dev@igalia.com,
+        kernel@gpiccoli.net, Yassine Oudjana <y.oudjana@protonmail.com>
+References: <20230213201651.1902323-1-gpiccoli@igalia.com>
+ <d34d8851-fd73-9b87-9340-df25b64e96bb@linaro.org>
+ <09879b66-4f72-a205-3e2d-cd8d8113625c@igalia.com>
+ <97676add-de6b-4057-a5ef-dab313cf7050@linaro.org>
+From:   "Guilherme G. Piccoli" <gpiccoli@igalia.com>
+In-Reply-To: <97676add-de6b-4057-a5ef-dab313cf7050@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 6 Mar 2023 at 15:04, Walker Chen <walker.chen@starfivetech.com> wrote:
-> Add the dma controller node for the Starfive JH7110 SoC.
->
-> Signed-off-by: Walker Chen <walker.chen@starfivetech.com>
+On 06/03/2023 07:14, Konrad Dybcio wrote:
+>[...] 
+>> Curiosity questions, since I'm far from expert in the device-tree world:
+>> what happens in case the device-tree doesn't export/contain this
+>> property (exactly the case we have right now)? Does the device work
+>> fine? Also, having it "wrong" (based on the other OnePlus 3) is worse
+>> than not having it? In other words, what's the default value picked if
+>> none is provided in the DT?
+> Basically:
+> 
+> if (msm_id) {
+>     if is_close_enough(msm_id, internal_msm_id)
+>         boot()
+>     else
+>         die()
+> } else
+>     die()
+> 
+> Konrad
+>>
 
-Thanks!
-Reviewed-by: Emil Renner Berthing <emil.renner.berthing@canonical.com>
+Thanks, interesting...
 
-> ---
->  arch/riscv/boot/dts/starfive/jh7110.dtsi | 18 ++++++++++++++++++
->  1 file changed, 18 insertions(+)
->
-> diff --git a/arch/riscv/boot/dts/starfive/jh7110.dtsi b/arch/riscv/boot/dts/starfive/jh7110.dtsi
-> index 697ab59191a1..191b6add72c8 100644
-> --- a/arch/riscv/boot/dts/starfive/jh7110.dtsi
-> +++ b/arch/riscv/boot/dts/starfive/jh7110.dtsi
-> @@ -510,6 +510,24 @@
->                         #gpio-cells = <2>;
->                 };
->
-> +               dma: dma-controller@16050000 {
-> +                       compatible = "starfive,jh7110-axi-dma";
-> +                       reg = <0x0 0x16050000 0x0 0x10000>;
-> +                       clocks = <&stgcrg JH7110_STGCLK_DMA1P_AXI>,
-> +                                <&stgcrg JH7110_STGCLK_DMA1P_AHB>;
-> +                       clock-names = "core-clk", "cfgr-clk";
-> +                       resets = <&stgcrg JH7110_STGRST_DMA1P_AXI>,
-> +                                <&stgcrg JH7110_STGRST_DMA1P_AHB>;
-> +                       interrupts = <73>;
-> +                       #dma-cells = <1>;
-> +                       dma-channels = <4>;
-> +                       snps,dma-masters = <1>;
-> +                       snps,data-width = <3>;
-> +                       snps,block-size = <65536 65536 65536 65536>;
-> +                       snps,priority = <0 1 2 3>;
-> +                       snps,axi-max-burst-len = <16>;
-> +               };
-> +
->                 aoncrg: clock-controller@17000000 {
->                         compatible = "starfive,jh7110-aoncrg";
->                         reg = <0x0 0x17000000 0x0 0x10000>;
-> --
-> 2.17.1
->
+So, if I understand correctly, currently we end-up in the 2nd else
+block, and we straight die(), right?
+
+With this patch, we have some chance to boot, by falling in the if()
+block or...if we're not lucky, we also die() heh
+
+With that said, any con in accepting this as-is if we don't find anybody
+to test? Notice it at least has the advantage of fixing the device-tree
+blob creation...
+
+Ah, of course by "as-is" I mean I'd send a V2 fixing what you mentioned
+before ("...use the preprocessor constant...etc").
+Thanks,
+
+
+Guilherme
