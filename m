@@ -2,233 +2,226 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3E8626ABE12
-	for <lists+devicetree@lfdr.de>; Mon,  6 Mar 2023 12:22:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 323FE6ABE1C
+	for <lists+devicetree@lfdr.de>; Mon,  6 Mar 2023 12:27:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230235AbjCFLWB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 Mar 2023 06:22:01 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38954 "EHLO
+        id S229549AbjCFL1D (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 Mar 2023 06:27:03 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43536 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230196AbjCFLV4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Mar 2023 06:21:56 -0500
-Received: from EUR03-DBA-obe.outbound.protection.outlook.com (mail-dbaeur03on2045.outbound.protection.outlook.com [40.107.104.45])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 872AD24112;
-        Mon,  6 Mar 2023 03:21:53 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=topic.nl; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=pDse2gtut33YR4HylOoyUIYXxS5SfDnV9tRbq41+7AE=;
- b=lVbuzEWouX9m/9lx9MbgjO/LqBYSef4qXf8FijOvpN9zsnMB6DedN1pcNVn/+lJs74sTD4wJ6GS8oh7auygfI4Csv28PKe5wvE+k62GtkGbXD6PufROMG3eRlQj8qNqft5j0tViZZ/cLqmJ2xKGp7KQCEXCErrpfornIJDEa7hPDRFRxdXhA4yzRaZQOH2nMlmXgS3HaIqgqE/k4D9HWqfcE51dd24ud2gA1Z0zExeXrn4BaQ5OViZANkK3mZNrAzugkn36Z210M9WC+2idCyaDHci4ZOdJfZpHzKYZELP0aWQNNfbuZKWFbIxvSSevMpgZ1BFlmyhbzmGmagpB2QQ==
-Received: from DB9PR02CA0002.eurprd02.prod.outlook.com (2603:10a6:10:1d9::7)
- by DB8PR04MB6923.eurprd04.prod.outlook.com (2603:10a6:10:114::23) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6156.27; Mon, 6 Mar
- 2023 11:21:50 +0000
-Received: from DB5EUR01FT077.eop-EUR01.prod.protection.outlook.com
- (2603:10a6:10:1d9:cafe::48) by DB9PR02CA0002.outlook.office365.com
- (2603:10a6:10:1d9::7) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6156.28 via Frontend
- Transport; Mon, 6 Mar 2023 11:21:50 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 13.93.42.39)
- smtp.mailfrom=topicproducts.com; dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=topic.nl;
-Received-SPF: Pass (protection.outlook.com: domain of topicproducts.com
- designates 13.93.42.39 as permitted sender) receiver=protection.outlook.com;
- client-ip=13.93.42.39; helo=westeu12-emailsignatures-cloud.codetwo.com; pr=C
-Received: from westeu12-emailsignatures-cloud.codetwo.com (13.93.42.39) by
- DB5EUR01FT077.mail.protection.outlook.com (10.152.5.216) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.6178.14 via Frontend Transport; Mon, 6 Mar 2023 11:21:49 +0000
-Received: from EUR01-HE1-obe.outbound.protection.outlook.com (104.47.0.54) by westeu12-emailsignatures-cloud.codetwo.com with CodeTwo SMTP Server (TLS12) via SMTP; Mon, 06 Mar 2023 11:21:49 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=BctXp3390JKPmX40CLLUUMwOrlUJZKcc8E9i0tKmGfmx+yl4aIsAy2TCiUnKREv1MkNQmdoH/wtzh9d6f1WJXyuzMZyUBOEIdYoc3Jl7YaQQHACZWvlqNUrbJSWU3ztbWwopQBsJNfUG4ByLlF+wpuSa8YIYTRqbcjsfy4A6gnNGQNIQrZVNPE6Gh8GnbdRrbpG1gJTumNHa5p6iugyF8+e4G5ALfOdxdpiq6hYNg4Rqy6HHV2DH6wP2Ue6VZVJwGb33EJRg3SfZdUJii4bnp1+hJ29AndWLMe10oLH1Mpe1js70ft263zits004+3dFFi79QnjDYCAW+Zf6vFGG7w==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=raHgdK/04B3ct08XR/v6nCOVRdeGfLIc0E3pDK8ntg0=;
- b=brbjUxqx5lAGT9hwgStjnOe/LnfvhP7Gjt2t64P6Os8+NkwhilaVK+UWM4qYAudNqATnjQ3uQ5wiu5ytB9KrBZ4/DsfBNv0SJaLivCewCKbdA07G4PxlQyVU0tNg+B5kI/NJCO8UYjSnulZRtdDMyaHKgzgdMuLgGdnjIL1rdMnbGEVqAEBhGoCK3uuQVrkIn9VVdFNzc0NckXByqPzL3JNRNNo1Wq4HgOnAgFBN5JcQIzISy+cCSrzW9cDWKYPbmAl3MeKLJHi23kiblYQgjQ5n+6C/gLdZ19aP4l7i/Aoilwx2X+2AUHvl2ZRU54llnmfsfX9bW/etnQnzAXSL5A==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=topicproducts.com; dmarc=pass action=none header.from=topic.nl;
- dkim=pass header.d=topic.nl; arc=none
-Authentication-Results-Original: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=topic.nl;
-Received: from DB8PR04MB6523.eurprd04.prod.outlook.com (2603:10a6:10:10f::26)
- by PA4PR04MB7501.eurprd04.prod.outlook.com (2603:10a6:102:ee::11) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6156.28; Mon, 6 Mar
- 2023 11:21:45 +0000
-Received: from DB8PR04MB6523.eurprd04.prod.outlook.com
- ([fe80::a7e7:768:5a54:777a]) by DB8PR04MB6523.eurprd04.prod.outlook.com
- ([fe80::a7e7:768:5a54:777a%7]) with mapi id 15.20.6156.028; Mon, 6 Mar 2023
- 11:21:45 +0000
-Message-ID: <f91d6d0a-e197-a66b-61b7-f2ea668429f7@topic.nl>
-Date:   Mon, 6 Mar 2023 12:21:44 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.1
-From:   Mike Looijmans <mike.looijmans@topic.nl>
-Subject: Re: [PATCH v3 2/2] iio: adc: Add TI ADS1100 and ADS1000
-Content-Language: en-US
-To:     Jonathan Cameron <jic23@kernel.org>
-CC:     devicetree@vger.kernel.org, linux-iio@vger.kernel.org,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Caleb Connolly <caleb.connolly@linaro.org>,
-        ChiYuan Huang <cy_huang@richtek.com>,
-        ChiaEn Wu <chiaen_wu@richtek.com>,
-        Cosmin Tanislav <demonsingur@gmail.com>,
-        Ibrahim Tilki <Ibrahim.Tilki@analog.com>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Ramona Bolboaca <ramona.bolboaca@analog.com>,
-        William Breathitt Gray <william.gray@linaro.org>,
-        linux-kernel@vger.kernel.org
-References: <20230228063151.17598-1-mike.looijmans@topic.nl>
- <20230228063151.17598-2-mike.looijmans@topic.nl>
- <20230304175751.2daae308@jic23-huawei>
- <1b153bce-a66a-45ee-a5c6-963ea6fb1c82.949ef384-8293-46b8-903f-40a477c056ae.c6259f01-fccb-4a0c-a50a-69f2dcd4ea5b@emailsignatures365.codetwo.com>
-Organization: Topic
-In-Reply-To: <20230304175751.2daae308@jic23-huawei>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: quoted-printable
-X-ClientProxiedBy: AM0PR02CA0201.eurprd02.prod.outlook.com
- (2603:10a6:20b:28f::8) To DB8PR04MB6523.eurprd04.prod.outlook.com
- (2603:10a6:10:10f::26)
+        with ESMTP id S229457AbjCFL1C (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Mar 2023 06:27:02 -0500
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EBFB625E05;
+        Mon,  6 Mar 2023 03:27:00 -0800 (PST)
+Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 326AsMia009533;
+        Mon, 6 Mar 2023 11:26:55 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=vccaepMqKUauOtZKuEm35sHqScVf3ibI9ugbL2S8QQU=;
+ b=QVuCH8zU91KSuKi/GagImM1G4XFFfKSrEGfYcj35dhVtyfNelC20FT1cidVp58jazppC
+ 2HJFHeKNLcJfs8A89MhMi95KvOsWVJnCxJo3ZXQaRu28P6/VmLSRVB/5oTKO6Pf7YgGT
+ T3vFEMMc6BoBsZsQUmIX2Dl1EjoEpNwan94cRFg4GtneegOFyRWwNdN+981ZKH2ahoIc
+ DXfBt9WY6Jgkn3iVN3wZ6Y6TsZX9WZlabwkOJoWWzRWI9E2WEz4rRhKTgIZN4GLHgix1
+ NvRzZjrsQ/NpJ75jjg7C9W8NcK0x4my/udhuYhCJU3erUxEMjCWNWG8WRQPOkfaW+S6b 1g== 
+Received: from nasanppmta02.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3p415acgxw-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Mon, 06 Mar 2023 11:26:55 +0000
+Received: from nasanex01a.na.qualcomm.com ([10.52.223.231])
+        by NASANPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 326BQsJe013801
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Mon, 6 Mar 2023 11:26:54 GMT
+Received: from [10.201.3.167] (10.80.80.8) by nasanex01a.na.qualcomm.com
+ (10.52.223.231) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.41; Mon, 6 Mar 2023
+ 03:26:51 -0800
+Message-ID: <61e8c730-e46d-728d-d770-f1ead4405d12@quicinc.com>
+Date:   Mon, 6 Mar 2023 16:56:48 +0530
 MIME-Version: 1.0
-X-MS-TrafficTypeDiagnostic: DB8PR04MB6523:EE_|PA4PR04MB7501:EE_|DB5EUR01FT077:EE_|DB8PR04MB6923:EE_
-X-MS-Office365-Filtering-Correlation-Id: 8c57c818-257a-4bf6-0461-08db1e34fb0b
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam-Untrusted: BCL:0;
-X-Microsoft-Antispam-Message-Info-Original: Zb9Whpze9XhvFh7h8f2jUEfhGuWgcRw/5hW1Lc8Ez6vDSGv5HszYgbEy1xJtNLfg1kiftmqHdyJ7p9hHvBR1In8rRW/Eneq54jtJmVM7LOw+47lPgRUAWu35qbSB3aX1sKdTXD6pFIyiFkjEzt5bPFnQeJ+hbgtVCxlH469JlsdP5ZPvBbDe+MziLIVCFe7wISMcXHG0hrngP0M5xJhImj2n3A2NaeFmgJ3nbTa7T0MTpHrS/Fwzzsy7ClHEomEfBuMAvDHEdxGr9kD7vqgoJQkeob76Z7aOj78HoDjb7oQOsUxIAtjXsGANRJNMerGTqOuTeGZdimcSEUurWprKv5kCS3VrMaKJ5lSoMDeBHi3xCplwrQIVb2OOnngmwHnh6ne0h51dpwfAM24n4RSQdE77wHiUqeg58Q0dVZfVPqLTXfJAGhdP+yvVb7ii/UedVTVch8IaH/6tQQVafM9jJIxYtrRiVlIOtFdWOvDnEOGes7gh8Zpujf7qyNQPWaKaxLkuNcs9CN2VRTV5F5xlr5PzvLQoO+daNmvamuaJXHgmQa6RuKtBHpbVayVQsQWdW/4k+A1hO3mU93Z7ccgWDQ4NNIQ0l/pqCgvyZOIDDjA2LXioiCHtIvcrRAar3Zy9D8Bjm4PxQPHWNR0kRAH7dvadHkbYlZKNTs9+u/5KCVmZ/37LPCcXwv5OIgdzlt2GgtIU1gTfRMlITttCCQ6Zgpehvu2GGFPafJgOzlZHDuHH1BbInuSAJNlylCbP3irwSioI4tdJp1JYgYY/WAuPUA==
-X-Forefront-Antispam-Report-Untrusted: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB8PR04MB6523.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230025)(4636009)(346002)(376002)(39840400004)(136003)(366004)(396003)(451199018)(8936002)(31686004)(7416002)(5660300002)(44832011)(66476007)(66946007)(66556008)(2906002)(8676002)(6916009)(4326008)(54906003)(316002)(478600001)(36916002)(52116002)(36756003)(6512007)(6506007)(6486002)(53546011)(26005)(2616005)(41300700001)(31696002)(83380400001)(83170400001)(42882007)(186003)(38350700002)(38100700002)(45980500001)(43740500002);DIR:OUT;SFP:1101;
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PA4PR04MB7501
-X-CodeTwo-MessageID: 2a585dcb-b21f-4aef-a927-90232e02947c.20230306112149@westeu12-emailsignatures-cloud.codetwo.com
-X-CodeTwoProcessed: true
-X-EOPAttributedMessage: 0
-X-MS-Exchange-Transport-CrossTenantHeadersStripped: DB5EUR01FT077.eop-EUR01.prod.protection.outlook.com
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id-Prvs: 1a17bd25-8868-4273-3baa-08db1e34f830
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: fPAQba8lcIhGNNrJ7f7Am0sxJr4mDwydhNvzUveT5UjJAqtLBtPpl5698bO3wUw6WKrWA8FW9QkRHWr4h/Mev5tLYe0VLx9KPw43/J0peZyHMfy/SRTTwhTtVKvL7SofQdOPdwyLgVkPrLNmz4emF4S+jUYaa5AmoQPeWF467C3SyGbBgB+jnB2jA/WGdYdmpfiwktS0xmnReU0zzk59HmM8HALEad6+tJcj/XKTVFY2sQUyaXD9C5jnWQklCJszjhs9748uxvb+aF4kOFUmSpJ1e6ry3Pay1vwtJpl8mXGtbY6SMwCaU4Gl9XzV2QggQPpR5nr0IaBOpF/PW5nvEQvvsh9B+iz6j2WS1Kgldv3WGGxpGWDRAXLi0wSGt3y+J3B5V9/TNBCHnL54yo/SP2U1jOZN1xvETn/XOcwNn2YlDgzJ+VU1+YaTVIUyZQKiKd2BojJ2NlIuQUZjhpwxqQpMRyc4ieEXcigQC5Ow7AgHoR29UGEJJkCao2c0CwA2HpzdMSHQbFH9+ekNxh8kxs90Vx3tKgxOBYej0dDsmypbd68A25ce/OX5V8/SMjGBTDxHzmozmG58+3sE/ezrdHTgMRdrLCuNAuQZ6f3qgFw/Cbf+nUMf1JMW4kfJ+NCkpN0LX1t7Z/MlLraO2mxgMl7s8Gybx51/ovPU/C7PUyjp/09uo6dDrk8xEvl+CCmQ
-X-Forefront-Antispam-Report: CIP:13.93.42.39;CTRY:NL;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:westeu12-emailsignatures-cloud.codetwo.com;PTR:westeu12-emailsignatures-cloud.codetwo.com;CAT:NONE;SFS:(13230025)(4636009)(39840400004)(396003)(376002)(136003)(346002)(451199018)(46966006)(36840700001)(186003)(7636003)(7596003)(83170400001)(356005)(8936002)(70206006)(41300700001)(4326008)(6916009)(8676002)(36860700001)(44832011)(2906002)(5660300002)(70586007)(7416002)(36916002)(478600001)(6506007)(2616005)(47076005)(53546011)(26005)(6512007)(42882007)(6486002)(54906003)(36756003)(31696002)(40480700001)(83380400001)(82310400005)(15974865002)(316002)(31686004)(336012)(43740500002);DIR:OUT;SFP:1101;
-X-OriginatorOrg: topic.nl
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Mar 2023 11:21:49.9024
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 8c57c818-257a-4bf6-0461-08db1e34fb0b
-X-MS-Exchange-CrossTenant-Id: 449607a5-3517-482d-8d16-41dd868cbda3
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=449607a5-3517-482d-8d16-41dd868cbda3;Ip=[13.93.42.39];Helo=[westeu12-emailsignatures-cloud.codetwo.com]
-X-MS-Exchange-CrossTenant-AuthSource: DB5EUR01FT077.eop-EUR01.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB8PR04MB6923
-X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
-        autolearn=no autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.1
+Subject: Re: [PATCH 7/8] arm64: dts: qcom: ipq9574: Add USB related nodes
+Content-Language: en-US
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+CC:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+References: <cover.1677749625.git.quic_varada@quicinc.com>
+ <6b8d17006d8ee9a1b0c4df803c1cc7caf53ea3ef.1677749625.git.quic_varada@quicinc.com>
+ <CAA8EJprbMybV0o1-436yLhVnnEX6qywrj=JmWDCL5usaH0DXiQ@mail.gmail.com>
+From:   Varadarajan Narayanan <quic_varada@quicinc.com>
+In-Reply-To: <CAA8EJprbMybV0o1-436yLhVnnEX6qywrj=JmWDCL5usaH0DXiQ@mail.gmail.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nasanex01a.na.qualcomm.com (10.52.223.231)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: b97YULQRoOF9o3faWvakX9gPOEaAKvvz
+X-Proofpoint-ORIG-GUID: b97YULQRoOF9o3faWvakX9gPOEaAKvvz
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.219,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
+ definitions=2023-03-06_04,2023-03-06_01,2023-02-09_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0 clxscore=1015
+ phishscore=0 adultscore=0 mlxlogscore=999 lowpriorityscore=0 mlxscore=0
+ malwarescore=0 spamscore=0 suspectscore=0 priorityscore=1501
+ impostorscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2212070000 definitions=main-2303060100
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Dmitry,
 
-Met vriendelijke groet / kind regards,=0A=
-=0A=
-Mike Looijmans=0A=
-System Expert=0A=
-=0A=
-=0A=
-TOPIC Embedded Products B.V.=0A=
-Materiaalweg 4, 5681 RJ Best=0A=
-The Netherlands=0A=
-=0A=
-T: +31 (0) 499 33 69 69=0A=
-E: mike.looijmans@topicproducts.com=0A=
-W: www.topic.nl=0A=
-=0A=
-Please consider the environment before printing this e-mail=0A=
-On 04-03-2023 18:57, Jonathan Cameron wrote:
-> On Tue, 28 Feb 2023 07:31:51 +0100
-> Mike Looijmans <mike.looijmans@topic.nl> wrote:
->
->> The ADS1100 is a 16-bit ADC (at 8 samples per second).
->> The ADS1000 is similar, but has a fixed data rate.
+On 3/2/2023 9:52 PM, Dmitry Baryshkov wrote:
+> On Thu, 2 Mar 2023 at 11:57, Varadarajan Narayanan
+> <quic_varada@quicinc.com> wrote:
+>> Add USB phy and controller related nodes
 >>
->> Signed-off-by: Mike Looijmans <mike.looijmans@topic.nl>
-> Hi Mike,
->
-> A few minor things + one request for a test as trying to chase a possible
-> ref count overflow around the runtime_pm was giving me a enough of a head=
-ache
-> that it's easier to ask you just to poke it and see.  If it doesn't fail =
-as
-> I expect I'll take a closer look!
->
-> Jonathan
->
-> ...
->> +	data->client =3D client;
->> +	mutex_init(&data->lock);
+>> Signed-off-by: Varadarajan Narayanan <quic_varada@quicinc.com>
+>> ---
+>>   arch/arm64/boot/dts/qcom/ipq9574.dtsi | 92 +++++++++++++++++++++++++++++++++++
+>>   1 file changed, 92 insertions(+)
+>>
+>> diff --git a/arch/arm64/boot/dts/qcom/ipq9574.dtsi b/arch/arm64/boot/dts/qcom/ipq9574.dtsi
+>> index 2bb4053..319b5bd 100644
+>> --- a/arch/arm64/boot/dts/qcom/ipq9574.dtsi
+>> +++ b/arch/arm64/boot/dts/qcom/ipq9574.dtsi
+>> @@ -215,6 +215,98 @@
+>>                  #size-cells = <1>;
+>>                  ranges = <0 0 0 0xffffffff>;
+>>
+>> +               ssphy_0: ssphy@7D000 {
+>> +                       compatible = "qcom,ipq9574-qmp-usb3-phy";
+>> +                       reg = <0x7D000 0x1C4>;
+>> +                       #clock-cells = <1>;
+>> +                       #address-cells = <1>;
+>> +                       #size-cells = <1>;
+>> +                       ranges;
 >> +
->> +	indio_dev->name =3D "ads1100";
->> +	indio_dev->modes =3D INDIO_DIRECT_MODE;
->> +	indio_dev->channels =3D &ads1100_channel;
->> +	indio_dev->num_channels =3D 1;
->> +	indio_dev->info =3D &ads1100_info;
+>> +                       clocks = <&gcc GCC_USB0_AUX_CLK>,
+>> +                                <&gcc GCC_USB0_PHY_CFG_AHB_CLK>;
+>> +                       clock-names = "aux", "cfg_ahb";
 >> +
->> +	data->reg_vdd =3D devm_regulator_get(dev, "vdd");
->> +	if (IS_ERR(data->reg_vdd))
->> +		return dev_err_probe(dev, PTR_ERR(data->reg_vdd),
->> +				     "Failed to get vdd regulator\n");
+>> +                       resets =  <&gcc GCC_USB0_PHY_BCR>,
+>> +                                <&gcc GCC_USB3PHY_0_PHY_BCR>;
+>> +                       reset-names = "phy","common";
+>> +                       status = "disabled";
 >> +
->> +	ret =3D regulator_enable(data->reg_vdd);
->> +	if (ret < 0)
->> +		return dev_err_probe(dev, PTR_ERR(data->reg_vdd),
->> +				     "Failed to enable vdd regulator\n");
+>> +                       usb0_ssphy: lane@7D200 {
+> Please use newer style device bindings for new PHYs.
+>
+>> +                               reg = <0x0007D200 0x130>,       /* Tx */
+>> +                                     <0x0007D400 0x200>,       /* Rx */
+>> +                                     <0x0007D800 0x1F8>,       /* PCS  */
+>> +                                     <0x0007D600 0x044>;       /* PCS misc */
+>> +                               #phy-cells = <0>;
+>> +                               clocks = <&gcc GCC_USB0_PIPE_CLK>;
+>> +                               clock-names = "pipe0";
+>> +                               clock-output-names = "gcc_usb0_pipe_clk_src";
+> No, this clock doesn't originate from gcc, so the gcc prefix is incorrect.
+>
+>> +                       };
+>> +               };
 >> +
->> +	ret =3D devm_add_action_or_reset(dev, ads1100_reg_disable, data->reg_v=
-dd);
->> +	if (ret)
->> +		return ret;
-> Please could you check a subtle interaction of runtime pm and this devm m=
-anaged
-> flow.
+>> +               qusb_phy_0: qusb@7B000 {
+>> +                       compatible = "qcom,ipq9574-qusb2-phy";
+>> +                       reg = <0x07B000 0x180>;
+>> +                       #phy-cells = <0>;
+>> +
+>> +                       clocks = <&gcc GCC_USB0_PHY_CFG_AHB_CLK>,
+>> +                               <&xo_board_clk>;
+>> +                       clock-names = "cfg_ahb", "ref";
+>> +
+>> +                       resets = <&gcc GCC_QUSB2_0_PHY_BCR>;
+>> +                       status = "disabled";
+>> +               };
+>> +
+>> +               usb3: usb3@8A00000 {
+> You know the drill. This node is in the wrong place.
 >
-> I think we can hit the following flow.
-> 1) In runtime suspend (wait long enough for this to happen).
-> 2) Unbind the driver (rmmod will do)
-> 3) During the unbind we exit suspend then enter it again before we call r=
-emove
->     (that's just part of the normal remove flow).
-> 4) We then end up calling regulator disable when it's already disabled.
+>> +                       compatible = "qcom,dwc3";
+>> +                       reg = <0x8AF8800 0x400>;
+>> +                       #address-cells = <1>;
+>> +                       #size-cells = <1>;
+>> +                       ranges;
+>> +
+>> +                       clocks = <&gcc GCC_SNOC_USB_CLK>,
+>> +                               <&gcc GCC_ANOC_USB_AXI_CLK>,
+>> +                               <&gcc GCC_USB0_MASTER_CLK>,
+>> +                               <&gcc GCC_USB0_SLEEP_CLK>,
+>> +                               <&gcc GCC_USB0_MOCK_UTMI_CLK>;
+>> +
+>> +                       clock-names = "sys_noc_axi",
+>> +                               "anoc_axi",
+>> +                               "master",
+>> +                               "sleep",
+>> +                               "mock_utmi";
+> Please fix the indentation of the lists.
 >
-> We've traditionally avoided that by having the remove explicitly call
-> pm_runtime_get_sync() before we then disable runtime pm.  I don't
-> think that happens with devm_pm_runtime_enable() but I could be missing
-> a path where it does.
+>> +
+>> +                       assigned-clocks = <&gcc GCC_SNOC_USB_CLK>,
+>> +                                         <&gcc GCC_ANOC_USB_AXI_CLK>,
+> Why do you assign clock rates to the NOC clocks? Should they be set
+> using the interconnect instead?
+
+The SNOC and ANOC run at a fixed speed of 350MHz and 342MHz respectively 
+and are not scaled. These clocks are for the interface between the USB 
+block and the SNOC/ANOC. Do we still need to use interconnect?
+
+>> +                                         <&gcc GCC_USB0_MASTER_CLK>,
+>> +                                         <&gcc GCC_USB0_MOCK_UTMI_CLK>;
+>> +                       assigned-clock-rates = <200000000>,
+>> +                                              <200000000>,
+>> +                                              <200000000>,
+>> +                                              <24000000>;
+>> +
+>> +                       resets = <&gcc GCC_USB_BCR>;
+>> +                       status = "disabled";
+>> +
+>> +                       dwc_0: dwc3@8A00000 {
+>> +                               compatible = "snps,dwc3";
+>> +                               reg = <0x8A00000 0xcd00>;
+>> +                               clock-names = "ref";
+>> +                               clocks = <&gcc GCC_USB0_MOCK_UTMI_CLK>;
+> clocks before clock-names
 >
-> If the sequence goes wrong you should get a warning about an unbalanced r=
-egulator
-> disable.  The fix would be an extra devm_add_action_or_reset() before the
-> devm_iio_device_register() below that just calls pm_runtime_get_sync()
-> to force the state to on.
->
-> Gah. These subtle paths always give me a headache.
-> We don't normally have too much problem with this because many
-> runtime_resume / suspend functions don't change reference counts.
+>> +                               interrupts = <GIC_SPI 140 IRQ_TYPE_LEVEL_HIGH>;
+>> +                               phys = <&qusb_phy_0>, <&usb0_ssphy>;
+>> +                               phy-names = "usb2-phy", "usb3-phy";
+>> +                               tx-fifo-resize;
+>> +                               snps,dis_ep_cache_eviction;
+>> +                               snps,is-utmi-l1-suspend;
+>> +                               snps,hird-threshold = /bits/ 8 <0x0>;
+>> +                               snps,dis_u2_susphy_quirk;
+>> +                               snps,dis_u3_susphy_quirk;
+>> +                               snps,quirk-frame-length-adjustment = <0x0A87F0A0>;
+>> +                               dr_mode = "host";
+>> +                       };
+>> +               };
+>> +
+>>                  pcie0_phy: phy@84000 {
+>>                          compatible = "qcom,ipq9574-qmp-gen3x1-pcie-phy";
+>>                          reg = <0x00084000 0x1bc>; /* Serdes PLL */
+>> --
+>> 2.7.4
 
-Just did this test, waited a few seconds, checked=20
-/sys/kernel/debug/regulator... that the regulator had been disabled.
+Will address these and post a new revision.
 
-Then executed:
-echo -n 3-004a > /sys/bus/i2c/drivers/ads1100/unbind
+Thanks
 
-to unload the driver, and no messages were added to the kernel log.
-
-I could see the driver going away and removing itself from iio and=20
-regulators.
-
-Tried this a couple of times (using bind/unbind), and no problem reported.
-
-Hopes this helps with your headaches...
-
---=20
-Mike Looijmans
+Varada
 
