@@ -2,123 +2,230 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C41C66AC822
-	for <lists+devicetree@lfdr.de>; Mon,  6 Mar 2023 17:35:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EEC356AC867
+	for <lists+devicetree@lfdr.de>; Mon,  6 Mar 2023 17:43:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229803AbjCFQfS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 Mar 2023 11:35:18 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46434 "EHLO
+        id S230144AbjCFQnZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 Mar 2023 11:43:25 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60468 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230080AbjCFQe4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Mar 2023 11:34:56 -0500
-Received: from mail-ua1-x932.google.com (mail-ua1-x932.google.com [IPv6:2607:f8b0:4864:20::932])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F40483B0E5
-        for <devicetree@vger.kernel.org>; Mon,  6 Mar 2023 08:34:23 -0800 (PST)
-Received: by mail-ua1-x932.google.com with SMTP id v48so6872523uad.6
-        for <devicetree@vger.kernel.org>; Mon, 06 Mar 2023 08:34:23 -0800 (PST)
+        with ESMTP id S230347AbjCFQnS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Mar 2023 11:43:18 -0500
+Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com [IPv6:2a00:1450:4864:20::52b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CDE8A3E094
+        for <devicetree@vger.kernel.org>; Mon,  6 Mar 2023 08:42:52 -0800 (PST)
+Received: by mail-ed1-x52b.google.com with SMTP id da10so41308604edb.3
+        for <devicetree@vger.kernel.org>; Mon, 06 Mar 2023 08:42:52 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ventanamicro.com; s=google; t=1678120410;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=MvApvSQPHB3PWpjKondY69ytQhcKZi3i19/amC3x9Y0=;
-        b=fZTqtDBGbeUdr9LhD6WLJ9SKEFZV9zc2fFUQaaCMkaWpH8XBQzcQ7hPVnwcaq0SIWB
-         mw90vDe23Rbf1BmQ0Ccl7vlKyP9/BJ1yDq2B2UuhOIz7PB/ESoDdltw0UuVCqAeIwpwy
-         XS/gsuzhpN0Utc6Lne2Qy2c2hbNxXjcOQGIHkbYHn99VN1AY9moNrsWivJhDpzHC72Pv
-         WuHyVU/lgG9ipSnrVv/pxZBpuhQRFgIhGIMc6wbXCC1LJSTeZwLBG8vBuvgE9Rcr8tIA
-         6ewFro2Ytvjzw1srqIcspp/h6Z6t9dxi4VewrzkdlwQASivLlNXs6J1DHz2xNO4FOgaG
-         LAog==
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112; t=1678120900;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=CBQLhMJNJwBxWCZBMKKd2ZioyWT7HHTdTuSHuSD5zeE=;
+        b=RymyUxEqXDN6lqEMPjXJTgOOGQgr5jbPevWg8i40M+/MPF9dFVfBLTwCZgxRLAl46d
+         Nw/KqOGzbnN3Q4Ki62BMdS7r2U3bvniAWizojRlbFsi2tCP9JpJ/kBxnPGuGrGT4q8xy
+         raXXBoV2dAXAfj90iQOvAzDND8z0f2MR5DjBr5lepEWwn/d0ZzmiuL74BixrSAxBIVcH
+         rREZOqtfY8LN8WH5mHd0lTO80qa/S8ovZopCCPZ1yjpC2F3ziHWty8MZ9gFFgAQhxW7n
+         TZiRddDGSdircQbHifgYgGIhdIbNL5yofWgbB4LX1Qrblg8MyEt90pqodeP9mhBrnavh
+         SNpQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678120410;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=MvApvSQPHB3PWpjKondY69ytQhcKZi3i19/amC3x9Y0=;
-        b=SM3EhOkuONLPBwAmTPILZ0mo3mEM4G/5V9TPrdiqotf2iE/XvheoGsQFte6S9NDU0q
-         0u40QMdLToFIoO8xhWeF6cK3glWSQoipMcC7dtQZbNMEu5RXBrMM4k8oJSGfv8TC6d4t
-         QzA1dNmE5fuEQ86biZMVoEiZd/yn63vFCbNFEwExk59AUlkV6qEADsedTPU1w0vZPduD
-         MtE/I5z00+kmfuL7twA2hErlOEYANCUYGHLsyx3mTWC61OcHxPf73bMaSDvBYb/BvRnX
-         Qbn71haPrlt7NSa8KKCarCZSc5IGMHpIu1HMPpZG0hHQeOXY5dSQYOHLZo56A/rE8Ipc
-         LMmw==
-X-Gm-Message-State: AO0yUKVf+ufO3xVUOQ2n77lduA8c7xb/gZoxiED9bpwZhlB/m/ryvXIn
-        rBzYIyySRc+pofhTxjMWaB6C2DHLcdE7P+30rWiuj+hOGwif+VGn
-X-Google-Smtp-Source: AK7set8lpZupzBC2wZxG8SF0D7v87NfGH9XR/gLCdfzuYWDFiF+Q9dg678R/UHm6bKolSv8rgGNbS0W1W68qRNi9xOo=
-X-Received: by 2002:a1f:4a81:0:b0:410:4a2c:1e9a with SMTP id
- x123-20020a1f4a81000000b004104a2c1e9amr6555050vka.1.1678120410113; Mon, 06
- Mar 2023 08:33:30 -0800 (PST)
+        d=1e100.net; s=20210112; t=1678120900;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=CBQLhMJNJwBxWCZBMKKd2ZioyWT7HHTdTuSHuSD5zeE=;
+        b=Q4cuVoYHjx4e7ZVSdmotDbqphPrgcHyK5gRwx72DdcbIMKc+EyyLgmVGAhkv7pSkZi
+         VQQpPGyxEG9Ie0JhCg0isqIfdB5nBkyv2uVPFNX054OiXGqhy4Jl9S7fTVZ9+msXCnnR
+         vnts06XviFaU587zoYOTnsYcqw1yKoPht4/1iAgyvuG7+ympXUGY8NuHSAUdv/erLkj3
+         atRLurHvtPzx/pBcRH1wrGVW7YVARz46Fn5xazzCQOV9fNwc5+J4LZ/gnHgy1dqobTQD
+         DASeibyvsUxhoNbNM0vz9pINUFaghVHgV+P70u3/MnDXFxXlhlK7PH0LK51m1ifF/Kdk
+         XiGg==
+X-Gm-Message-State: AO0yUKUen5LmE2zbczsYIW4R330ELOj3wTV5zflrKlozij3/xvmzU9m2
+        aJljoAelNyzXOzpaYXB1Y8VUEg==
+X-Google-Smtp-Source: AK7set8jxix0Za/DVd/wm3kcw43surTXMo2qOCiwMqzZSVfE/iqtn5rPhfFDjsexdGCVyoGKW4OM/Q==
+X-Received: by 2002:a17:906:ee9:b0:8af:2bb3:80d7 with SMTP id x9-20020a1709060ee900b008af2bb380d7mr15158307eji.31.1678120899857;
+        Mon, 06 Mar 2023 08:41:39 -0800 (PST)
+Received: from [192.168.1.70] (125.62.71.86.rev.sfr.net. [86.71.62.125])
+        by smtp.gmail.com with ESMTPSA id m30-20020a50d7de000000b004c13fe8fabfsm5355664edj.84.2023.03.06.08.41.38
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 06 Mar 2023 08:41:39 -0800 (PST)
+Message-ID: <7ade5f76-426c-297c-2809-af5f67279cf9@baylibre.com>
+Date:   Mon, 6 Mar 2023 17:41:37 +0100
 MIME-Version: 1.0
-References: <20230301082552.274331-1-alexghiti@rivosinc.com>
-In-Reply-To: <20230301082552.274331-1-alexghiti@rivosinc.com>
-From:   Anup Patel <apatel@ventanamicro.com>
-Date:   Mon, 6 Mar 2023 22:03:19 +0530
-Message-ID: <CAK9=C2XAOKbyrbOnDP1GzW1VyO-f-V-oEVcp+PhGHeHKFh4C6A@mail.gmail.com>
-Subject: Re: [PATCH v6 0/2] riscv: Use PUD/P4D/PGD pages for the linear mapping
-To:     Alexandre Ghiti <alexghiti@rivosinc.com>
-Cc:     Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.8.0
+Subject: Re: [PATCH v1 2/4] mfd: tps6594: Add driver for TI TPS6594 PMIC
+Content-Language: en-US
+To:     Lee Jones <lee@kernel.org>
+Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        corbet@lwn.net, hdegoede@redhat.com, eric.auger@redhat.com,
+        jgg@ziepe.ca, razor@blackwall.org, suma.hegde@amd.com,
+        stephen@networkplumber.org, arnd@arndb.de,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-doc@vger.kernel.org, eblanc@baylibre.com,
+        jneanne@baylibre.com
+References: <20230216114410.183489-1-jpanis@baylibre.com>
+ <20230216114410.183489-3-jpanis@baylibre.com>
+ <20230303150355.GQ2420672@google.com>
+From:   Julien Panis <jpanis@baylibre.com>
+In-Reply-To: <20230303150355.GQ2420672@google.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Mar 1, 2023 at 1:56=E2=80=AFPM Alexandre Ghiti <alexghiti@rivosinc.=
-com> wrote:
->
-> This patchset intends to improve tlb utilization by using hugepages for
-> the linear mapping.
->
-> base-commit-tag: v6.2-rc7
->
-> v6:
-> - quiet LLVM warning by casting phys_ram_base into an unsigned long
->
-> v5:
-> - Fix nommu builds by getting rid of riscv_pfn_base in patch 1, thanks
->   Conor
-> - Add RB from Andrew
->
-> v4:
-> - Rebase on top of v6.2-rc3, as noted by Conor
-> - Add Acked-by Rob
->
-> v3:
-> - Change the comment about initrd_start VA conversion so that it fits
->   ARM64 and RISCV64 (and others in the future if needed), as suggested
->   by Rob
->
-> v2:
-> - Add a comment on why RISCV64 does not need to set initrd_start/end that
->   early in the boot process, as asked by Rob
->
-> Alexandre Ghiti (2):
->   riscv: Get rid of riscv_pfn_base variable
->   riscv: Use PUD/P4D/PGD pages for the linear mapping
 
-I tried this series but it is getting stuck after reaching user space.
 
-Does this series require some other dependent patches ?
+On 3/3/23 16:03, Lee Jones wrote:
+> On Thu, 16 Feb 2023, Julien Panis wrote:
+>
+>> This patch adds support for TPS6594 PMIC MFD core. It provides
+>> communication through the I2C and SPI interfaces, and supports
+>> protocols with embedded CRC data fields for safety applications.
+>>
+>> Signed-off-by: Julien Panis <jpanis@baylibre.com>
+>> ---
 
-Regards,
-Anup
+(...)
+
+>> +
+>> +static int tps6594_check_crc_mode(struct tps6594 *tps, bool primary_pmic)
+>> +{
+>> +	int ret;
+>> +
+>> +	/*
+>> +	 * Ensure that CRC is enabled.
+>> +	 * Once CRC is enabled, it can't be disabled until next power cycle.
+>> +	 */
+>> +	tps->use_crc = true;
+>> +	ret = regmap_test_bits(tps->regmap, TPS6594_REG_SERIAL_IF_CONFIG,
+>> +			       TPS6594_BIT_I2C1_SPI_CRC_EN);
+>> +	if (ret < 0) {
+>> +		tps->use_crc = false;
+>> +	} else if (ret == 0) {
+>> +		tps->use_crc = false;
+> Will this value be used again after you return an error?
+
+No, it is not used any more. I will remove this line in v2.
 
 >
->  arch/riscv/include/asm/page.h | 19 +++++++++++++++++--
->  arch/riscv/mm/init.c          | 28 ++++++++++++++++++----------
->  arch/riscv/mm/physaddr.c      | 16 ++++++++++++++++
->  drivers/of/fdt.c              | 11 ++++++-----
->  4 files changed, 57 insertions(+), 17 deletions(-)
+>> +		ret = -EIO;
+>> +	} else {
+>> +		dev_info(tps->dev, "CRC feature enabled on %s PMIC",
+>> +			 primary_pmic ? "primary" : "secondary");
+>> +		ret = 0;
+> I would consider reversing the logic of the if()s, default to 'false'
+> then set 'true' in here before the print.
+
+Do you speak about 'tps->use_crc' value ?
+'tps->use_crc' is used in regmap read/write callbacks, so it
+must be set 'true' before calling 'regmap_test_bits()' function.
+In other words, CRC_EN bit must be read with 'tps->use_crc = true'.
+
 >
-> --
-> 2.37.2
+>> +	}
+>> +
+>> +	return ret;
+>> +}
+>> +
+>> +static int tps6594_set_crc_feature(struct tps6594 *tps)
+>> +{
+>> +	int ret;
+>> +
+>> +	/* Force PFSM I2C_2 trigger to enable CRC on primary PMIC */
+>> +	ret = regmap_write_bits(tps->regmap, TPS6594_REG_FSM_I2C_TRIGGERS,
+>> +				TPS6594_BIT_TRIGGER_I2C(2), TPS6594_BIT_TRIGGER_I2C(2));
+>> +	if (ret)
+>> +		return ret;
+>> +
+>> +	/* Wait for PFSM to process trigger */
+>> +	msleep(20);
+> Is this the time specified in the datasheet?
+
+I checked with the customer after your review and the datasheet
+specifies 2 ms.
+The clock specification is +/-5%. The customer recommends
+using 4ms, which is a simple number providing sufficient margin.
+As a consequence, I will adjust this delay in v2.
+
 >
+>> +	return tps6594_check_crc_mode(tps, true);
+>> +}
+>> +
+>> +int tps6594_device_init(struct tps6594 *tps)
+>> +{
+>> +	struct device *dev = tps->dev;
+>> +	unsigned int prop;
+> Since this only has a single use, better to rename it to something specific.
+>
+>> +	unsigned long timeout = msecs_to_jiffies(TPS6594_CRC_SYNC_TIMEOUT_MS);
+>> +	int n_dev = ARRAY_SIZE(tps6594_cells);
+>> +	int ret;
+>> +
+>> +	/* Keep PMIC in ACTIVE state */
+>> +	ret = regmap_set_bits(tps->regmap, TPS6594_REG_FSM_NSLEEP_TRIGGERS,
+>> +			      TPS6594_BIT_NSLEEP1B | TPS6594_BIT_NSLEEP2B);
+>> +	if (ret)
+>> +		return dev_err_probe(dev, ret, "Failed to set PMIC state\n");
+>> +
+>> +	/*
+>> +	 * CRC mode can be used with I2C or SPI protocols.
+>> +	 * If this mode is specified for primary PMIC, it will also be applied to secondary PMICs
+>> +	 * through SPMI serial interface.
+>> +	 * In this multi-PMIC synchronization scheme, the primary PMIC is the controller device
+>> +	 * on the SPMI bus, and the secondary PMICs are the target devices on the SPMI bus.
+>> +	 */
+>> +	prop = of_property_read_bool(dev->of_node, "ti,use-crc");
+
+As discussed with Krzysztof for dt-bindings, this 'ti,use-crc'
+property will be removed from the device tree, in v2.
+Instead, a property will be used to identify the primary PMIC.
+Moreover, since using CRC applies either to all the PMICs or
+to none of them, it is a global feature. That's why a driver
+parameter will be added to enable CRC feature at initialization
+(something like a 'enable_crc' bool).
+
+(...)
+
+>> diff --git a/include/linux/mfd/tps6594.h b/include/linux/mfd/tps6594.h
+>> new file mode 100644
+>> index 000000000000..e2ffd4dc034d
+>> --- /dev/null
+>> +++ b/include/linux/mfd/tps6594.h
+>> @@ -0,0 +1,1018 @@
+>> +/* SPDX-License-Identifier: GPL-2.0 */
+>> +/*
+>> + * Functions to access TPS6594 Power Management IC
+>> + *
+>> + * Copyright (C) 2022 BayLibre Incorporated - https://www.baylibre.com/
+>> + */
+>> +
+>> +#ifndef __LINUX_MFD_TPS6594_H
+>> +#define __LINUX_MFD_TPS6594_H
+>> +
+>> +#include <linux/device.h>
+>> +#include <linux/regmap.h>
+>> +
+>> +struct regmap_irq_chip_data;
+>> +
+>> +/* Chip id list */
+>> +#define TPS6594		0
+>> +#define TPS6593		1
+>> +#define LP8764X		2
+> enum?
+
+Yes indeed, I will fix that in v2.
+
+(...)
+
+Your others suggestions will also be implemented in v2.
+
+Thank you Lee for your time and feedback.
+
+Julien
