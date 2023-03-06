@@ -2,51 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 589B46AC10B
-	for <lists+devicetree@lfdr.de>; Mon,  6 Mar 2023 14:31:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 26C736AC10F
+	for <lists+devicetree@lfdr.de>; Mon,  6 Mar 2023 14:32:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231238AbjCFNb5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 Mar 2023 08:31:57 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44228 "EHLO
+        id S231256AbjCFNcA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 Mar 2023 08:32:00 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44288 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231240AbjCFNbz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Mar 2023 08:31:55 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AC5102ED6D;
-        Mon,  6 Mar 2023 05:31:51 -0800 (PST)
+        with ESMTP id S231252AbjCFNb7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Mar 2023 08:31:59 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0E06E2E80F;
+        Mon,  6 Mar 2023 05:31:57 -0800 (PST)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 65EC3B80E01;
-        Mon,  6 Mar 2023 13:31:50 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DB130C4339E;
-        Mon,  6 Mar 2023 13:31:46 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 749A360F10;
+        Mon,  6 Mar 2023 13:31:56 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D2FF6C433D2;
+        Mon,  6 Mar 2023 13:31:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1678109509;
-        bh=JHC0hb+WAOY9fqstxdj26yXXntSJNh6emfvVp8hEuGo=;
-        h=From:To:In-Reply-To:References:Subject:Date:From;
-        b=D4YBAEUOswQGwANMpLl1pETCzSNx7Ao0XyXYhOD8oGJ4poUBPTQNlY9NI+tD8Rfa4
-         v2tq1GTztJjUtuMysmF3B3Il4m5jJrMQlRaGF4jAIwl8PRnRc4gI+qlCdLBCJ0ecnf
-         YELopH+vQwJpWojdhKHIkVT3hl03AdnipCaHlJK9qcGPcX0MiCrPI2vjNXiLFReAEr
-         JxkrbpQ8YJfOxRKxmJAROGa34Pz1nby1g2F2GV2Uu6DnRpW+8Cx3vvk8uw4ao0L4BC
-         H8fFgbKjK/y+riJuIzRwl04PmsZxb3+F+nFImjhxlRfdp3OW/eU/yAJ1ixjRe5/q80
-         PU20dLstNpHnw==
+        s=k20201202; t=1678109515;
+        bh=xk2sxBEfsiN8aKVYWYbUYCkQgq5QDPcbaOkOnFjwYec=;
+        h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+        b=sddlj8enGoNsBB53XnM6yLjlWH6qW0MM4/OXj2+Rd0hDjZKdOA8lStIgrDIroyhqS
+         z3y7rgMjk3K0fqY2Wvs1ndD1L26gzBtFoNFxT6Sl+vOD+o+tVGnW0lHEWqTRn6YOwM
+         ptESxC8P7B5UMiwsRl1dHQEEgUl4gW4Gl1yv2I+8eQnA9Khh6P/Atisof+/iZLsjCw
+         YbZzdtgqrkrjTIULwrFsypWiN3RmoBcRrKua8GqJJYMWtehYD6ls1ftWD9T1mKO70W
+         mmXI8ERzpLqaQ3fedpWkCKXxWlKZm7H2U8NCLy8reO8GCxL3qDrQ4wiuO9D2S42qGk
+         8a8K8eDvN6yvA==
 From:   Mark Brown <broonie@kernel.org>
-To:     Liam Girdwood <lgirdwood@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
+To:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Kevin Cernekee <cernekee@chromium.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
         Jaroslav Kysela <perex@perex.cz>,
         Takashi Iwai <tiwai@suse.com>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Crt Mori <cmo@melexis.com>, alsa-devel@alsa-project.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Kamel Bouhara <kamel.bouhara@bootlin.com>
-In-Reply-To: <20230222083300.218523-1-kamel.bouhara@bootlin.com>
-References: <20230222083300.218523-1-kamel.bouhara@bootlin.com>
-Subject: Re: [PATCH 0/2] Add support for the TAS5733
-Message-Id: <167810950662.75807.17494624901046895740.b4-ty@kernel.org>
-Date:   Mon, 06 Mar 2023 13:31:46 +0000
+        Maxim Schwalm <maxim.schwalm@gmail.com>,
+        Dmitry Osipenko <digetx@gmail.com>,
+        Svyatoslav Ryhel <clamor95@gmail.com>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        alsa-devel@alsa-project.org, linux-tegra@vger.kernel.org,
+        linux-staging@lists.linux.dev
+In-Reply-To: <20230221183211.21964-1-clamor95@gmail.com>
+References: <20230221183211.21964-1-clamor95@gmail.com>
+Subject: Re: (subset) [PATCH v1 00/10] Fix sound on ASUS Transformers
+Message-Id: <167810951258.75807.6694477245258374695.b4-ty@kernel.org>
+Date:   Mon, 06 Mar 2023 13:31:52 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
@@ -60,13 +64,13 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 22 Feb 2023 09:32:58 +0100, Kamel Bouhara wrote:
-> This small series extends the tas571x driver to support the TAS5733
-> audio power amplifier.
-> 
-> Kamel Bouhara (2):
->   ASoC: tas571x: add tas5733 compatible
->   ASoC: tas571x: add support for TAS5733
+On Tue, 21 Feb 2023 20:32:01 +0200, Svyatoslav Ryhel wrote:
+> - add quirk for headset detection used by some T30 devices
+>   (ASUS Transformers, LG Optimus 4X HD and Vu);
+> - add RT5631 and MAX9808x machine drivers
+> - add Fortemedia FM34NE DSP driver used by ASUS Transformers
+>   and mandatory for correct sound work
+> - bind everything into working configuration
 > 
 > [...]
 
@@ -76,10 +80,8 @@ Applied to
 
 Thanks!
 
-[1/2] ASoC: tas571x: add tas5733 compatible
-      commit: 95a29d5f626a37dbefd0883f294ec4e22a8a7911
-[2/2] ASoC: tas571x: add support for TAS5733
-      commit: f5db4d00f73871988beba0277ea29cff73d38445
+[02/10] sound: soc: jack: allow multiple interrupt per gpio
+        commit: a2d4051b0bd6dffcd736888ae89a550d6f60b060
 
 All being well this means that it will be integrated into the linux-next
 tree (usually sometime in the next 24 hours) and sent to Linus during
