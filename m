@@ -2,210 +2,158 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D8FAA6AC564
-	for <lists+devicetree@lfdr.de>; Mon,  6 Mar 2023 16:35:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B1E036AC59C
+	for <lists+devicetree@lfdr.de>; Mon,  6 Mar 2023 16:38:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230285AbjCFPfF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 Mar 2023 10:35:05 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33176 "EHLO
+        id S231405AbjCFPia (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 Mar 2023 10:38:30 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33542 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231410AbjCFPeq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Mar 2023 10:34:46 -0500
-Received: from mail-pj1-x1034.google.com (mail-pj1-x1034.google.com [IPv6:2607:f8b0:4864:20::1034])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 14BFA36699
-        for <devicetree@vger.kernel.org>; Mon,  6 Mar 2023 07:34:11 -0800 (PST)
-Received: by mail-pj1-x1034.google.com with SMTP id bo22so10143317pjb.4
-        for <devicetree@vger.kernel.org>; Mon, 06 Mar 2023 07:34:11 -0800 (PST)
+        with ESMTP id S230110AbjCFPiI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Mar 2023 10:38:08 -0500
+Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 79273CA35;
+        Mon,  6 Mar 2023 07:37:29 -0800 (PST)
+Received: by mail-lf1-x12f.google.com with SMTP id f18so13313152lfa.3;
+        Mon, 06 Mar 2023 07:37:29 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1678116839;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=uQSjdI7jzklikUEcdFC/m9MKhjlXYCglW0uRGmTAYhE=;
-        b=oGw/hu1X4G3ndPSHZlB2CwZ1u14B1WYeLN+VJ8vLY/537eulqI4hhOd+tY+F7gtwk0
-         EInBDUc+DABgs4PmoOYDoiYk6FEHTIERbt72x/NncWPS16cdys8sucX+bevwtwx1FY0W
-         VMKdDGoB+7dx3BkQ1kz/1FfKkvYRDh56UI7Tc0rsHrAWFuVG5PkGim35BpxIAH+MnO25
-         q7JeT+F4sg53C0HbJb12ZM9+9CYi44QI4pGiLbbzXET54AliynlVtCs0dzCo0uGbAD1R
-         uaG/5KwjQ5TnqA0fpf5HfQr31lCvGgcQCcPXyfEoFjZn8ZXPkpdilC7+uXRhGwaZrv2c
-         WhRQ==
+        d=gmail.com; s=20210112; t=1678116992;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=L+6yc/IA9VHnC8pRgu9mfVgrlBPbE5fizj7nSsV8E5g=;
+        b=c25DXBkA1fKBCQDejUspbB/QBrzWnK1DDLCQSlbyFSZy5E2XrYtc9eD+FIkRoTaTbX
+         02Jmw6W7I+HHbBi6rbCJk89Zq6gPkhp2HM6YpW14m9KDSlzSkQW8zI7HbWRVPRs6ewRL
+         L8e/a+rk4QE1amPPk2Cf/afm9cwqZF7K55P68TqgkJqWEdXTP33RVmeyGM5goHped1Fd
+         NeySw4RZm2auNypOy/vihLdE2T6qD+VjYnywyTgjzenkI7RgO8kz8nnYXLK+ngDnQDMd
+         s2DVcf3oaXWsXtLgCMJcUpPTH0+aPgGUVk4EYQAnEIt8Ey5rmSixz1/801CgFtDDk+pW
+         oSeA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678116839;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=uQSjdI7jzklikUEcdFC/m9MKhjlXYCglW0uRGmTAYhE=;
-        b=3h9vsfOMePAmv2yGjlEmue9AaKwG0+nwlzGjJpA4oNQBA/46dLa3DGO846OAaRGcAp
-         dbWrQd0eBjhG1iuJYDjjk39MTokIUBV/fjjtBvTfxZ+Cgj1i3nrU1Bd0Xhmlg09YQLYA
-         OpQOjVtMjr3sCCM0jMqBRpu7dp6h1UH9RI+tAcZU4LX0G5UP5r5J/lnFNt82TjQES3r1
-         gGIQJhJfu9y3lpBmt0briY7zRiTsio2wXpCqRs1f938CH9LfTJdvIkpMZAJRzIREJAyG
-         jBuw6KeVYq/JsyZbf0HGNfXthcvc0+vxoCXT8crKFT9cFKJ/hIaD6YU6zoNEOQiA4xxY
-         QKeQ==
-X-Gm-Message-State: AO0yUKVv8lEXowt0+bEKc9MveGnF3+TOAXyG9NfhVoToSvY2AlalTB1v
-        dBrtIZ85DbMEanXhpshpS4/1
-X-Google-Smtp-Source: AK7set8YCJcbzbYudivA+ICnxXe6OZxc8x4lQ7rD0D0O7XCz0vraQeG88OIyptrFcyxV7E/UdRgKUQ==
-X-Received: by 2002:a17:903:283:b0:19c:d309:4612 with SMTP id j3-20020a170903028300b0019cd3094612mr14325092plr.6.1678116839683;
-        Mon, 06 Mar 2023 07:33:59 -0800 (PST)
-Received: from localhost.localdomain ([59.97.52.140])
-        by smtp.gmail.com with ESMTPSA id kl4-20020a170903074400b0019a7c890c61sm6837430plb.252.2023.03.06.07.33.56
+        d=1e100.net; s=20210112; t=1678116992;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=L+6yc/IA9VHnC8pRgu9mfVgrlBPbE5fizj7nSsV8E5g=;
+        b=T8UUVkhnxStuxN2wO3TaOfu2TNiyJ3nEOtpqAjfiZtncZJVX7beNurH1udfieOcnmM
+         +heb7LVOmL2zcoMc23laLlWk+7LaUVsYNYsM15RrClIu01s7M5J2k/zVhVriKQToXu3/
+         TfZlRFn0c2DfRuTTarrxyYW9lAi9zWMzIna3GpyTQiUKGouY7QCFu7Ca9SwG2wI5E3wd
+         GLoaNXaTuWxiirxohcayR19rDchKWIG2ayD7teba4U6W2gWUTgyCppU5U3jVyPbQWB1v
+         ELHGrmY8CiAQ1YIBvK4hIg1vGZoqI8gtOfgR4kuzaNn7wNNeyxD4nc1YOQxqoBD58DNc
+         o7lg==
+X-Gm-Message-State: AO0yUKVUlJWq1b5k9jFZ7uBFGFRFSCbPz0nBBt28zZBOkyqrePn13EPk
+        PZq2Qna/Sa5oJy6UzlFulOA=
+X-Google-Smtp-Source: AK7set/P9MuC7QjNHQu2OSksykfEn4TKWHwShmUSZNDa4bY/+Z6gtUpVsIzDKKxIDfMMUA8V15HsWQ==
+X-Received: by 2002:ac2:558d:0:b0:4db:3882:8f42 with SMTP id v13-20020ac2558d000000b004db38828f42mr3451671lfg.45.1678116992425;
+        Mon, 06 Mar 2023 07:36:32 -0800 (PST)
+Received: from mobilestation ([95.79.133.202])
+        by smtp.gmail.com with ESMTPSA id 21-20020ac24835000000b004db1d3bf9b4sm1675178lft.26.2023.03.06.07.36.30
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 06 Mar 2023 07:33:59 -0800 (PST)
-From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To:     andersson@kernel.org, lpieralisi@kernel.org, kw@linux.com,
-        krzysztof.kozlowski+dt@linaro.org, robh@kernel.org
-Cc:     konrad.dybcio@linaro.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-pci@vger.kernel.org,
-        linux-kernel@vger.kernel.org, quic_srichara@quicinc.com,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Subject: [PATCH 19/19] PCI: qcom: Expose link transition counts via debugfs
-Date:   Mon,  6 Mar 2023 21:02:22 +0530
-Message-Id: <20230306153222.157667-20-manivannan.sadhasivam@linaro.org>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20230306153222.157667-1-manivannan.sadhasivam@linaro.org>
-References: <20230306153222.157667-1-manivannan.sadhasivam@linaro.org>
+        Mon, 06 Mar 2023 07:36:31 -0800 (PST)
+Date:   Mon, 6 Mar 2023 18:36:28 +0300
+From:   Serge Semin <fancer.lancer@gmail.com>
+To:     Brad Larson <blarson@amd.com>
+Cc:     linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-mmc@vger.kernel.org, linux-spi@vger.kernel.org,
+        adrian.hunter@intel.com, alcooperx@gmail.com,
+        andy.shevchenko@gmail.com, arnd@arndb.de,
+        brendan.higgins@linux.dev, briannorris@chromium.org,
+        brijeshkumar.singh@amd.com, catalin.marinas@arm.com,
+        davidgow@google.com, gsomlo@gmail.com, gerg@linux-m68k.org,
+        krzk@kernel.org, krzysztof.kozlowski+dt@linaro.org, lee@kernel.org,
+        lee.jones@linaro.org, broonie@kernel.org,
+        yamada.masahiro@socionext.com, p.zabel@pengutronix.de,
+        piotrs@cadence.com, p.yadav@ti.com, rdunlap@infradead.org,
+        robh+dt@kernel.org, samuel@sholland.org, skhan@linuxfoundation.org,
+        suravee.suthikulpanit@amd.com, thomas.lendacky@amd.com,
+        tonyhuang.sunplus@gmail.com, ulf.hansson@linaro.org,
+        vaishnav.a@ti.com, will@kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v10 04/15] dt-bindings: spi: dw: Add AMD Pensando Elba
+ SoC SPI Controller
+Message-ID: <20230306153628.kg7kzm52ft2j57fa@mobilestation>
+References: <20230306040739.51488-1-blarson@amd.com>
+ <20230306040739.51488-5-blarson@amd.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230306040739.51488-5-blarson@amd.com>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Qualcomm PCIe controllers have debug registers in the MHI region that
-count PCIe link transitions. Expose them over debugfs to userspace to
-help debug the low power issues.
+On Sun, Mar 05, 2023 at 08:07:28PM -0800, Brad Larson wrote:
+> The AMD Pensando Elba SoC has integrated the DW APB SPI Controller
+> 
+> Signed-off-by: Brad Larson <blarson@amd.com>
 
-Note that even though the registers are prefixed as PARF_, they don't
-live under the "parf" register region. The register naming is following
-the Qualcomm's internal documentation as like other registers.
+Looks good. Thanks!
+Reviewed-by: Serge Semin <fancer.lancer@gmail.com>
 
-Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
----
- drivers/pci/controller/dwc/pcie-qcom.c | 59 ++++++++++++++++++++++++++
- 1 file changed, 59 insertions(+)
+-Serge(y)
 
-diff --git a/drivers/pci/controller/dwc/pcie-qcom.c b/drivers/pci/controller/dwc/pcie-qcom.c
-index e1180c84f0fa..6d9bde64c9e9 100644
---- a/drivers/pci/controller/dwc/pcie-qcom.c
-+++ b/drivers/pci/controller/dwc/pcie-qcom.c
-@@ -10,6 +10,7 @@
- 
- #include <linux/clk.h>
- #include <linux/crc8.h>
-+#include <linux/debugfs.h>
- #include <linux/delay.h>
- #include <linux/gpio/consumer.h>
- #include <linux/interconnect.h>
-@@ -62,6 +63,13 @@
- #define AXI_MSTR_RESP_COMP_CTRL1		0x81c
- #define MISC_CONTROL_1_REG			0x8bc
- 
-+/* MHI registers */
-+#define PARF_DEBUG_CNT_PM_LINKST_IN_L2		0xc04
-+#define PARF_DEBUG_CNT_PM_LINKST_IN_L1		0xc0c
-+#define PARF_DEBUG_CNT_PM_LINKST_IN_L0S		0xc10
-+#define PARF_DEBUG_CNT_AUX_CLK_IN_L1SUB_L1	0xc84
-+#define PARF_DEBUG_CNT_AUX_CLK_IN_L1SUB_L2	0xc88
-+
- /* PARF_SYS_CTRL register fields */
- #define MAC_PHY_POWERDOWN_IN_P2_D_MUX_EN	BIT(29)
- #define MST_WAKEUP_EN				BIT(13)
-@@ -229,11 +237,13 @@ struct qcom_pcie {
- 	struct dw_pcie *pci;
- 	void __iomem *parf;			/* DT parf */
- 	void __iomem *elbi;			/* DT elbi */
-+	void __iomem *mhi;
- 	union qcom_pcie_resources res;
- 	struct phy *phy;
- 	struct gpio_desc *reset;
- 	struct icc_path *icc_mem;
- 	const struct qcom_pcie_cfg *cfg;
-+	struct dentry *debugfs;
- };
- 
- #define to_qcom_pcie(x)		dev_get_drvdata((x)->dev)
-@@ -1385,6 +1395,37 @@ static void qcom_pcie_icc_update(struct qcom_pcie *pcie)
- 	}
- }
- 
-+static int qcom_pcie_link_transition_count(struct seq_file *s, void *data)
-+{
-+	struct qcom_pcie *pcie = (struct qcom_pcie *)
-+				     dev_get_drvdata(s->private);
-+
-+	seq_printf(s, "L0s transition count: %u\n",
-+		   readl_relaxed(pcie->mhi + PARF_DEBUG_CNT_PM_LINKST_IN_L0S));
-+
-+	seq_printf(s, "L1 transition count: %u\n",
-+		   readl_relaxed(pcie->mhi + PARF_DEBUG_CNT_PM_LINKST_IN_L1));
-+
-+	seq_printf(s, "L1.1 transition count: %u\n",
-+		   readl_relaxed(pcie->mhi + PARF_DEBUG_CNT_AUX_CLK_IN_L1SUB_L1));
-+
-+	seq_printf(s, "L1.2 transition count: %u\n",
-+		   readl_relaxed(pcie->mhi + PARF_DEBUG_CNT_AUX_CLK_IN_L1SUB_L2));
-+
-+	seq_printf(s, "L2 transition count: %u\n",
-+		   readl_relaxed(pcie->mhi + PARF_DEBUG_CNT_PM_LINKST_IN_L2));
-+
-+	return 0;
-+}
-+
-+static void qcom_pcie_init_debugfs(struct qcom_pcie *pcie)
-+{
-+	struct dw_pcie *pci = pcie->pci;
-+
-+	debugfs_create_devm_seqfile(pci->dev, "link_transition_count", pcie->debugfs,
-+				    qcom_pcie_link_transition_count);
-+}
-+
- static int qcom_pcie_probe(struct platform_device *pdev)
- {
- 	struct device *dev = &pdev->dev;
-@@ -1392,6 +1433,7 @@ static int qcom_pcie_probe(struct platform_device *pdev)
- 	struct dw_pcie *pci;
- 	struct qcom_pcie *pcie;
- 	const struct qcom_pcie_cfg *pcie_cfg;
-+	char *name;
- 	int ret;
- 
- 	pcie_cfg = of_device_get_match_data(dev);
-@@ -1439,6 +1481,12 @@ static int qcom_pcie_probe(struct platform_device *pdev)
- 		goto err_pm_runtime_put;
- 	}
- 
-+	pcie->mhi = devm_platform_ioremap_resource_byname(pdev, "mhi");
-+	if (IS_ERR(pcie->mhi)) {
-+		ret = PTR_ERR(pcie->mhi);
-+		goto err_pm_runtime_put;
-+	}
-+
- 	pcie->phy = devm_phy_optional_get(dev, "pciephy");
- 	if (IS_ERR(pcie->phy)) {
- 		ret = PTR_ERR(pcie->phy);
-@@ -1469,8 +1517,19 @@ static int qcom_pcie_probe(struct platform_device *pdev)
- 
- 	qcom_pcie_icc_update(pcie);
- 
-+	name = devm_kasprintf(dev, GFP_KERNEL, "%pOFP", dev->of_node);
-+	if (!name) {
-+		ret = -ENOMEM;
-+		goto err_host_deinit;
-+	}
-+
-+	pcie->debugfs = debugfs_create_dir(name, NULL);
-+	qcom_pcie_init_debugfs(pcie);
-+
- 	return 0;
- 
-+err_host_deinit:
-+	dw_pcie_host_deinit(&pcie->pci->pp);
- err_phy_exit:
- 	phy_exit(pcie->phy);
- err_pm_runtime_put:
--- 
-2.25.1
-
+> ---
+> 
+> v10 changes:
+> - Move definition of amd,pensando-elba-syscon into properties
+>   with a better description
+> - Add amd,pensando-elba-syscon: false for non elba designs
+> 
+> v9 changes:
+> - Define property amd,pensando-elba-syscon
+> - Move compatible amd,pensando-elba-spi ahead of baikal,bt1-ssi
+> 
+> ---
+>  .../bindings/spi/snps,dw-apb-ssi.yaml         | 19 +++++++++++++++++++
+>  1 file changed, 19 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/spi/snps,dw-apb-ssi.yaml b/Documentation/devicetree/bindings/spi/snps,dw-apb-ssi.yaml
+> index a132b5fc56e0..2383d6497b1e 100644
+> --- a/Documentation/devicetree/bindings/spi/snps,dw-apb-ssi.yaml
+> +++ b/Documentation/devicetree/bindings/spi/snps,dw-apb-ssi.yaml
+> @@ -37,6 +37,17 @@ allOf:
+>      else:
+>        required:
+>          - interrupts
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            const: amd,pensando-elba-spi
+> +    then:
+> +      required:
+> +        - amd,pensando-elba-syscon
+> +    else:
+> +      properties:
+> +        amd,pensando-elba-syscon: false
+>  
+>  properties:
+>    compatible:
+> @@ -63,6 +74,8 @@ properties:
+>          const: intel,keembay-ssi
+>        - description: Intel Thunder Bay SPI Controller
+>          const: intel,thunderbay-ssi
+> +      - description: AMD Pensando Elba SoC SPI Controller
+> +        const: amd,pensando-elba-spi
+>        - description: Baikal-T1 SPI Controller
+>          const: baikal,bt1-ssi
+>        - description: Baikal-T1 System Boot SPI Controller
+> @@ -136,6 +149,12 @@ properties:
+>        of the designware controller, and the upper limit is also subject to
+>        controller configuration.
+>  
+> +  amd,pensando-elba-syscon:
+> +    $ref: /schemas/types.yaml#/definitions/phandle-array
+> +    description: |
+> +      Block address to control SPI chip-selects.  The Elba SoC
+> +      does not use ssi.
+> +
+>  patternProperties:
+>    "^.*@[0-9a-f]+$":
+>      type: object
+> -- 
+> 2.17.1
+> 
