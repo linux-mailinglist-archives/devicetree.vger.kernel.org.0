@@ -2,226 +2,203 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 323FE6ABE1C
-	for <lists+devicetree@lfdr.de>; Mon,  6 Mar 2023 12:27:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id ABAC36ABE3B
+	for <lists+devicetree@lfdr.de>; Mon,  6 Mar 2023 12:34:36 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229549AbjCFL1D (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 Mar 2023 06:27:03 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43536 "EHLO
+        id S230092AbjCFLed (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 Mar 2023 06:34:33 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51174 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229457AbjCFL1C (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Mar 2023 06:27:02 -0500
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EBFB625E05;
-        Mon,  6 Mar 2023 03:27:00 -0800 (PST)
-Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 326AsMia009533;
-        Mon, 6 Mar 2023 11:26:55 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=vccaepMqKUauOtZKuEm35sHqScVf3ibI9ugbL2S8QQU=;
- b=QVuCH8zU91KSuKi/GagImM1G4XFFfKSrEGfYcj35dhVtyfNelC20FT1cidVp58jazppC
- 2HJFHeKNLcJfs8A89MhMi95KvOsWVJnCxJo3ZXQaRu28P6/VmLSRVB/5oTKO6Pf7YgGT
- T3vFEMMc6BoBsZsQUmIX2Dl1EjoEpNwan94cRFg4GtneegOFyRWwNdN+981ZKH2ahoIc
- DXfBt9WY6Jgkn3iVN3wZ6Y6TsZX9WZlabwkOJoWWzRWI9E2WEz4rRhKTgIZN4GLHgix1
- NvRzZjrsQ/NpJ75jjg7C9W8NcK0x4my/udhuYhCJU3erUxEMjCWNWG8WRQPOkfaW+S6b 1g== 
-Received: from nasanppmta02.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3p415acgxw-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Mon, 06 Mar 2023 11:26:55 +0000
-Received: from nasanex01a.na.qualcomm.com ([10.52.223.231])
-        by NASANPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 326BQsJe013801
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Mon, 6 Mar 2023 11:26:54 GMT
-Received: from [10.201.3.167] (10.80.80.8) by nasanex01a.na.qualcomm.com
- (10.52.223.231) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.41; Mon, 6 Mar 2023
- 03:26:51 -0800
-Message-ID: <61e8c730-e46d-728d-d770-f1ead4405d12@quicinc.com>
-Date:   Mon, 6 Mar 2023 16:56:48 +0530
+        with ESMTP id S230008AbjCFLeb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Mar 2023 06:34:31 -0500
+Received: from mail-wr1-x433.google.com (mail-wr1-x433.google.com [IPv6:2a00:1450:4864:20::433])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CE54C25E36
+        for <devicetree@vger.kernel.org>; Mon,  6 Mar 2023 03:34:26 -0800 (PST)
+Received: by mail-wr1-x433.google.com with SMTP id h14so8456844wru.4
+        for <devicetree@vger.kernel.org>; Mon, 06 Mar 2023 03:34:26 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112; t=1678102465;
+        h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
+         :user-agent:references:from:to:cc:subject:date:message-id:reply-to;
+        bh=kcFkvrShXbF2CFhK0/oJaKpo0rIrr4/wjiECE0Ry774=;
+        b=w1ITZjrGW/QOH32dwqCBDCxbtVTjziYE7WXm8LKh5W3RyN04hODHg58PYm+qGhBm98
+         ZX94ZnRvLkMhEHtTk4PGs8bNgjdjz4+8wRevETdd5TCQnCtxpDm9W9sxjiz+nhwhJIv9
+         jvhqKHdo4nikaFKjxUUgaYRH0kynXpx9QB8OvqEroBhhGNvyPp2Ga45vNO6R0WzwiPDQ
+         WHop+Pb18kIW5pYCmdtGfjjreG3LJaVE6oYvg5JY6g9H+Rfs1WM2SK87tkQb3EPm1Du5
+         /hJVZOH8gm0+OnikKifQFmUQGjbgH65+mGDLmjJuuMMQtuLciIVqOpDbaiaBFTrMrcRi
+         m1bA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1678102465;
+        h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
+         :user-agent:references:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=kcFkvrShXbF2CFhK0/oJaKpo0rIrr4/wjiECE0Ry774=;
+        b=UGMN5xMc/HfZsWf1bAiW6EmzS15gvdYapHJ4IkRAlEOVhFiHbZroq0hsRmEa5DqBFA
+         FrSNb/gNRCJDieXy+0aTNL+4Mh/OTHyv7mW2iJl7Eiw3ZqbGN8RmD41g0J1QR74uk//N
+         f+1vUD4s6DLj24TbwBGKNo5APzFze2NnpuIIeNRAus+4wnmiWbx4BUqlnNoxZeYMLt1x
+         P+rwd0ttYzVuTlyjPCmBgOToE07XfumjxdXY57hr1Vm/A/GIf1UWTzdnDby4U8cy1Ee4
+         tJBXq2S5TS/CdbpKn55jHcxAAcNC2+wK/VnXr+hY1mkleuGjVhEzCBcMRAC45hy+j5nP
+         0FRg==
+X-Gm-Message-State: AO0yUKUkQRBVl4pIe8XRLa8vV3bnzheElQWlhrvZY+GlvWMyOoeQSpsn
+        QQ9LQj6EcPmMjh4h3yIXDPDF4A==
+X-Google-Smtp-Source: AK7set9UafAXr/9TyjNLehZsI8q6PEwZzOGc97MEuj36r9xw0jHrushT4+jS9PqptIjPrV+Y8RSHyg==
+X-Received: by 2002:adf:eb87:0:b0:2ce:43c3:2fd with SMTP id t7-20020adfeb87000000b002ce43c302fdmr7064354wrn.4.1678102464886;
+        Mon, 06 Mar 2023 03:34:24 -0800 (PST)
+Received: from localhost (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
+        by smtp.gmail.com with ESMTPSA id e13-20020adff34d000000b002c53cc7504csm9525832wrp.78.2023.03.06.03.34.24
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 06 Mar 2023 03:34:24 -0800 (PST)
+References: <20230301183759.16163-1-ddrokosov@sberdevices.ru>
+ <20230301183759.16163-4-ddrokosov@sberdevices.ru>
+User-agent: mu4e 1.8.13; emacs 28.2
+From:   Jerome Brunet <jbrunet@baylibre.com>
+To:     Dmitry Rokosov <ddrokosov@sberdevices.ru>,
+        neil.armstrong@linaro.org, mturquette@baylibre.com,
+        sboyd@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, khilman@baylibre.com,
+        martin.blumenstingl@googlemail.com
+Cc:     jian.hu@amlogic.com, kernel@sberdevices.ru, rockosov@gmail.com,
+        linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v9 3/5] dt-bindings: clock: meson: add A1 PLL clock
+ controller bindings
+Date:   Mon, 06 Mar 2023 12:33:48 +0100
+In-reply-to: <20230301183759.16163-4-ddrokosov@sberdevices.ru>
+Message-ID: <1jmt4qazb3.fsf@starbuckisacylon.baylibre.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.1
-Subject: Re: [PATCH 7/8] arm64: dts: qcom: ipq9574: Add USB related nodes
-Content-Language: en-US
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-CC:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-References: <cover.1677749625.git.quic_varada@quicinc.com>
- <6b8d17006d8ee9a1b0c4df803c1cc7caf53ea3ef.1677749625.git.quic_varada@quicinc.com>
- <CAA8EJprbMybV0o1-436yLhVnnEX6qywrj=JmWDCL5usaH0DXiQ@mail.gmail.com>
-From:   Varadarajan Narayanan <quic_varada@quicinc.com>
-In-Reply-To: <CAA8EJprbMybV0o1-436yLhVnnEX6qywrj=JmWDCL5usaH0DXiQ@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nasanex01a.na.qualcomm.com (10.52.223.231)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: b97YULQRoOF9o3faWvakX9gPOEaAKvvz
-X-Proofpoint-ORIG-GUID: b97YULQRoOF9o3faWvakX9gPOEaAKvvz
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.219,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
- definitions=2023-03-06_04,2023-03-06_01,2023-02-09_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0 clxscore=1015
- phishscore=0 adultscore=0 mlxlogscore=999 lowpriorityscore=0 mlxscore=0
- malwarescore=0 spamscore=0 suspectscore=0 priorityscore=1501
- impostorscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2212070000 definitions=main-2303060100
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Dmitry,
 
-On 3/2/2023 9:52 PM, Dmitry Baryshkov wrote:
-> On Thu, 2 Mar 2023 at 11:57, Varadarajan Narayanan
-> <quic_varada@quicinc.com> wrote:
->> Add USB phy and controller related nodes
->>
->> Signed-off-by: Varadarajan Narayanan <quic_varada@quicinc.com>
->> ---
->>   arch/arm64/boot/dts/qcom/ipq9574.dtsi | 92 +++++++++++++++++++++++++++++++++++
->>   1 file changed, 92 insertions(+)
->>
->> diff --git a/arch/arm64/boot/dts/qcom/ipq9574.dtsi b/arch/arm64/boot/dts/qcom/ipq9574.dtsi
->> index 2bb4053..319b5bd 100644
->> --- a/arch/arm64/boot/dts/qcom/ipq9574.dtsi
->> +++ b/arch/arm64/boot/dts/qcom/ipq9574.dtsi
->> @@ -215,6 +215,98 @@
->>                  #size-cells = <1>;
->>                  ranges = <0 0 0 0xffffffff>;
->>
->> +               ssphy_0: ssphy@7D000 {
->> +                       compatible = "qcom,ipq9574-qmp-usb3-phy";
->> +                       reg = <0x7D000 0x1C4>;
->> +                       #clock-cells = <1>;
->> +                       #address-cells = <1>;
->> +                       #size-cells = <1>;
->> +                       ranges;
->> +
->> +                       clocks = <&gcc GCC_USB0_AUX_CLK>,
->> +                                <&gcc GCC_USB0_PHY_CFG_AHB_CLK>;
->> +                       clock-names = "aux", "cfg_ahb";
->> +
->> +                       resets =  <&gcc GCC_USB0_PHY_BCR>,
->> +                                <&gcc GCC_USB3PHY_0_PHY_BCR>;
->> +                       reset-names = "phy","common";
->> +                       status = "disabled";
->> +
->> +                       usb0_ssphy: lane@7D200 {
-> Please use newer style device bindings for new PHYs.
+On Wed 01 Mar 2023 at 21:37, Dmitry Rokosov <ddrokosov@sberdevices.ru> wrote:
+
+> Add the documentation for Amlogic A1 PLL clock driver, and A1 PLL
+> clock controller bindings.
+> Also include new A1 clock controller dt bindings to MAINTAINERS.
 >
->> +                               reg = <0x0007D200 0x130>,       /* Tx */
->> +                                     <0x0007D400 0x200>,       /* Rx */
->> +                                     <0x0007D800 0x1F8>,       /* PCS  */
->> +                                     <0x0007D600 0x044>;       /* PCS misc */
->> +                               #phy-cells = <0>;
->> +                               clocks = <&gcc GCC_USB0_PIPE_CLK>;
->> +                               clock-names = "pipe0";
->> +                               clock-output-names = "gcc_usb0_pipe_clk_src";
-> No, this clock doesn't originate from gcc, so the gcc prefix is incorrect.
+> Signed-off-by: Jian Hu <jian.hu@amlogic.com>
+> Signed-off-by: Dmitry Rokosov <ddrokosov@sberdevices.ru>
+
+patch order is wrong.
+Bindings before drivers please.
+
+> ---
+>  .../bindings/clock/amlogic,a1-pll-clkc.yaml   | 59 +++++++++++++++++++
+>  MAINTAINERS                                   |  1 +
+>  include/dt-bindings/clock/a1-pll-clkc.h       | 20 +++++++
+>  3 files changed, 80 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/clock/amlogic,a1-pll-clkc.yaml
+>  create mode 100644 include/dt-bindings/clock/a1-pll-clkc.h
 >
->> +                       };
->> +               };
->> +
->> +               qusb_phy_0: qusb@7B000 {
->> +                       compatible = "qcom,ipq9574-qusb2-phy";
->> +                       reg = <0x07B000 0x180>;
->> +                       #phy-cells = <0>;
->> +
->> +                       clocks = <&gcc GCC_USB0_PHY_CFG_AHB_CLK>,
->> +                               <&xo_board_clk>;
->> +                       clock-names = "cfg_ahb", "ref";
->> +
->> +                       resets = <&gcc GCC_QUSB2_0_PHY_BCR>;
->> +                       status = "disabled";
->> +               };
->> +
->> +               usb3: usb3@8A00000 {
-> You know the drill. This node is in the wrong place.
->
->> +                       compatible = "qcom,dwc3";
->> +                       reg = <0x8AF8800 0x400>;
->> +                       #address-cells = <1>;
->> +                       #size-cells = <1>;
->> +                       ranges;
->> +
->> +                       clocks = <&gcc GCC_SNOC_USB_CLK>,
->> +                               <&gcc GCC_ANOC_USB_AXI_CLK>,
->> +                               <&gcc GCC_USB0_MASTER_CLK>,
->> +                               <&gcc GCC_USB0_SLEEP_CLK>,
->> +                               <&gcc GCC_USB0_MOCK_UTMI_CLK>;
->> +
->> +                       clock-names = "sys_noc_axi",
->> +                               "anoc_axi",
->> +                               "master",
->> +                               "sleep",
->> +                               "mock_utmi";
-> Please fix the indentation of the lists.
->
->> +
->> +                       assigned-clocks = <&gcc GCC_SNOC_USB_CLK>,
->> +                                         <&gcc GCC_ANOC_USB_AXI_CLK>,
-> Why do you assign clock rates to the NOC clocks? Should they be set
-> using the interconnect instead?
-
-The SNOC and ANOC run at a fixed speed of 350MHz and 342MHz respectively 
-and are not scaled. These clocks are for the interface between the USB 
-block and the SNOC/ANOC. Do we still need to use interconnect?
-
->> +                                         <&gcc GCC_USB0_MASTER_CLK>,
->> +                                         <&gcc GCC_USB0_MOCK_UTMI_CLK>;
->> +                       assigned-clock-rates = <200000000>,
->> +                                              <200000000>,
->> +                                              <200000000>,
->> +                                              <24000000>;
->> +
->> +                       resets = <&gcc GCC_USB_BCR>;
->> +                       status = "disabled";
->> +
->> +                       dwc_0: dwc3@8A00000 {
->> +                               compatible = "snps,dwc3";
->> +                               reg = <0x8A00000 0xcd00>;
->> +                               clock-names = "ref";
->> +                               clocks = <&gcc GCC_USB0_MOCK_UTMI_CLK>;
-> clocks before clock-names
->
->> +                               interrupts = <GIC_SPI 140 IRQ_TYPE_LEVEL_HIGH>;
->> +                               phys = <&qusb_phy_0>, <&usb0_ssphy>;
->> +                               phy-names = "usb2-phy", "usb3-phy";
->> +                               tx-fifo-resize;
->> +                               snps,dis_ep_cache_eviction;
->> +                               snps,is-utmi-l1-suspend;
->> +                               snps,hird-threshold = /bits/ 8 <0x0>;
->> +                               snps,dis_u2_susphy_quirk;
->> +                               snps,dis_u3_susphy_quirk;
->> +                               snps,quirk-frame-length-adjustment = <0x0A87F0A0>;
->> +                               dr_mode = "host";
->> +                       };
->> +               };
->> +
->>                  pcie0_phy: phy@84000 {
->>                          compatible = "qcom,ipq9574-qmp-gen3x1-pcie-phy";
->>                          reg = <0x00084000 0x1bc>; /* Serdes PLL */
->> --
->> 2.7.4
-
-Will address these and post a new revision.
-
-Thanks
-
-Varada
+> diff --git a/Documentation/devicetree/bindings/clock/amlogic,a1-pll-clkc.yaml b/Documentation/devicetree/bindings/clock/amlogic,a1-pll-clkc.yaml
+> new file mode 100644
+> index 000000000000..8bd2c948df86
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/clock/amlogic,a1-pll-clkc.yaml
+> @@ -0,0 +1,59 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/clock/amlogic,a1-pll-clkc.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Amlogic Meson A/C serials PLL Clock Control Unit
+> +
+> +maintainers:
+> +  - Neil Armstrong <neil.armstrong@linaro.org>
+> +  - Jerome Brunet <jbrunet@baylibre.com>
+> +  - Jian Hu <jian.hu@jian.hu.com>
+> +  - Dmitry Rokosov <ddrokosov@sberdevices.ru>
+> +
+> +properties:
+> +  compatible:
+> +    const: amlogic,a1-pll-clkc
+> +
+> +  '#clock-cells':
+> +    const: 1
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    items:
+> +      - description: input fixpll_in
+> +      - description: input hifipll_in
+> +
+> +  clock-names:
+> +    items:
+> +      - const: fixpll_in
+> +      - const: hifipll_in
+> +
+> +required:
+> +  - compatible
+> +  - '#clock-cells'
+> +  - reg
+> +  - clocks
+> +  - clock-names
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/clock/a1-clkc.h>
+> +    apb {
+> +        #address-cells = <2>;
+> +        #size-cells = <2>;
+> +
+> +        clock-controller@7c80 {
+> +            compatible = "amlogic,a1-pll-clkc";
+> +            reg = <0 0x7c80 0 0x18c>;
+> +            #clock-cells = <1>;
+> +            clocks = <&clkc_periphs CLKID_FIXPLL_IN>,
+> +                     <&clkc_periphs CLKID_HIFIPLL_IN>;
+> +            clock-names = "fixpll_in", "hifipll_in";
+> +        };
+> +    };
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index 39ff1a717625..8438bc9bd636 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -1895,6 +1895,7 @@ L:	linux-amlogic@lists.infradead.org
+>  S:	Maintained
+>  F:	Documentation/devicetree/bindings/clock/amlogic*
+>  F:	drivers/clk/meson/
+> +F:	include/dt-bindings/clock/a1*
+>  F:	include/dt-bindings/clock/gxbb*
+>  F:	include/dt-bindings/clock/meson*
+>  
+> diff --git a/include/dt-bindings/clock/a1-pll-clkc.h b/include/dt-bindings/clock/a1-pll-clkc.h
+> new file mode 100644
+> index 000000000000..3a559518c6e6
+> --- /dev/null
+> +++ b/include/dt-bindings/clock/a1-pll-clkc.h
+> @@ -0,0 +1,20 @@
+> +/* SPDX-License-Identifier: (GPL-2.0+ OR MIT) */
+> +/*
+> + * Copyright (c) 2019 Amlogic, Inc. All rights reserved.
+> + * Author: Jian Hu <jian.hu@amlogic.com>
+> + *
+> + * Copyright (c) 2023, SberDevices. All Rights Reserved.
+> + * Author: Dmitry Rokosov <ddrokosov@sberdevices.ru>
+> + */
+> +
+> +#ifndef __A1_PLL_CLKC_H
+> +#define __A1_PLL_CLKC_H
+> +
+> +#define CLKID_FIXED_PLL		1
+> +#define CLKID_FCLK_DIV2		6
+> +#define CLKID_FCLK_DIV3		7
+> +#define CLKID_FCLK_DIV5		8
+> +#define CLKID_FCLK_DIV7		9
+> +#define CLKID_HIFI_PLL		10
+> +
+> +#endif /* __A1_PLL_CLKC_H */
 
