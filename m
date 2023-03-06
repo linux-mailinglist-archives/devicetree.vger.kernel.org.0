@@ -2,110 +2,340 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 71B946ACEB6
-	for <lists+devicetree@lfdr.de>; Mon,  6 Mar 2023 21:00:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9E9ED6ACED9
+	for <lists+devicetree@lfdr.de>; Mon,  6 Mar 2023 21:05:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229801AbjCFUAl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 Mar 2023 15:00:41 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38780 "EHLO
+        id S230218AbjCFUF4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 Mar 2023 15:05:56 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46908 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229937AbjCFUAf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Mar 2023 15:00:35 -0500
-Received: from mail-qk1-x730.google.com (mail-qk1-x730.google.com [IPv6:2607:f8b0:4864:20::730])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2DF617D547;
-        Mon,  6 Mar 2023 12:00:06 -0800 (PST)
-Received: by mail-qk1-x730.google.com with SMTP id bl39so3639673qkb.10;
-        Mon, 06 Mar 2023 12:00:06 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112; t=1678132805;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=eOHJOzqPvQPks7ewcZEge43RgKk8xjbbGR/W6FZli4o=;
-        b=n/CS1HG5g9PNCu3723xgx5TZttbLnMrfbsw+b0TMdjyaRVLYozddRpSAaKI0TiK0Yu
-         RHmKKiUAB9bjrubIKG/ue281pgYg3va5N7frVWd0nFBC7f59S4XnWPg9SQQsu+TAfHg+
-         XuweGm/37wlKHIMWCN8r8btL1VsPl/WBTtUW4i4wSkhIN6XZ6qVlbXTlQoCB7wLbfL46
-         hDwrhl6YHfvrHEZW0QgISAwEOEmOyESvqQ6+IAntIMTZqI6eBQ+v0JjIm9k/O1gl66Tg
-         N7JgRKkqPgZoftg9cEZtb9sbWsnFojknM5kFYRy9CSyDbXEuFAJzv1JdSy/aqBSSaN5y
-         Nk7A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678132805;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=eOHJOzqPvQPks7ewcZEge43RgKk8xjbbGR/W6FZli4o=;
-        b=b73z8Lk5i03vkAiLk6dxVL3c1BMNe1bHjYHxPglcdWNoPnxZuk56hBKA6VV1LGSCMt
-         V6HMRjIM6FGuRzovPHtdqo+b6D8ZuCmjaJ7AIROdF9JxseKpMQ4Hjriua07F1wzaRvkD
-         5q2dFm9mp5PN3jyO1SduOCbX/1EYXGLtFPJ7QfpWNaLC7tiLrh6/8TcpfA3nIQeOOr0l
-         EeMNvzomMbGACyeG1GCrCwtXSPihhrNCgVqLffV7bfGH1YF2pXBoZZa2KSY1bSvkO9eg
-         2JK1SkNpaEFdoFFlkHr9B9TDxUFjlWqR1Nex/mp0uSyKn+sMwsUzo1hnxtLu6uyU2Tg+
-         h3Yg==
-X-Gm-Message-State: AO0yUKVzZjGZ9FFOcmvY5Ham7BOJGamvju9sjromDNlIOO+hwhFRZS/R
-        yvayot/qAF9XUfZyL/FWxEnDQQIBscDBrUF0jv0=
-X-Google-Smtp-Source: AK7set80n5xFsKwOyX/PqUToJxUafo7yFE3/DjxPH/ROkBXEXcxDkrr4pDX3fsHyFCEHodiU6XFkw+iu9YZlHvFtFt4=
-X-Received: by 2002:ae9:eb4e:0:b0:71f:b908:7b7e with SMTP id
- b75-20020ae9eb4e000000b0071fb9087b7emr2936826qkg.10.1678132805183; Mon, 06
- Mar 2023 12:00:05 -0800 (PST)
+        with ESMTP id S230203AbjCFUFy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Mar 2023 15:05:54 -0500
+Received: from mx.sberdevices.ru (mx.sberdevices.ru [45.89.227.171])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 926186F49D;
+        Mon,  6 Mar 2023 12:05:52 -0800 (PST)
+Received: from s-lin-edge02.sberdevices.ru (localhost [127.0.0.1])
+        by mx.sberdevices.ru (Postfix) with ESMTP id 3590C5FD0A;
+        Mon,  6 Mar 2023 23:05:50 +0300 (MSK)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sberdevices.ru;
+        s=mail; t=1678133150;
+        bh=kfJP0RM/utPmyIadCM5quEpcMdJsmWpckynw55rXs3w=;
+        h=Date:From:To:Subject:Message-ID:MIME-Version:Content-Type;
+        b=qlHil6xZy9T9bb+R4Xr8gReHeXEiDZN5CLOcQRWCk7FMHDKGUp+hzKA7CwboPn43j
+         H7Sls7mXVOBOAU6S7sDdjColk4V5eRPu4tAhQA1CpUNJRCzmH6ttSZOIsN0rvZEL3I
+         YHEA7Mbin7zQUAeTF6uXh+jZ9p03TFsgZxbBzXAh7y2zAMtNQx6zQ8KIFyYbqA9is+
+         kHs8nAoRWvGonJ+w2bkKDveOu0/QnsgzEVTNdMQUuygoZSfZEvgpEa/HZnb9ybkjJL
+         jyLbWbN6AlJrp3Es7mCxsyOg4Q2FKYALTkKddLc8DH7vGChiQBnMWGkd6fuRcrILFz
+         kHc3K5z7syyaQ==
+Received: from S-MS-EXCH01.sberdevices.ru (S-MS-EXCH01.sberdevices.ru [172.16.1.4])
+        by mx.sberdevices.ru (Postfix) with ESMTP;
+        Mon,  6 Mar 2023 23:05:49 +0300 (MSK)
+Date:   Mon, 6 Mar 2023 23:05:49 +0300
+From:   Dmitry Rokosov <ddrokosov@sberdevices.ru>
+To:     Jerome Brunet <jbrunet@baylibre.com>
+CC:     <neil.armstrong@linaro.org>, <mturquette@baylibre.com>,
+        <sboyd@kernel.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <khilman@baylibre.com>,
+        <martin.blumenstingl@googlemail.com>, <jian.hu@amlogic.com>,
+        <kernel@sberdevices.ru>, <rockosov@gmail.com>,
+        <linux-amlogic@lists.infradead.org>, <linux-clk@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>
+Subject: Re: [PATCH v9 2/5] clk: meson: a1: add Amlogic A1 PLL clock
+ controller driver
+Message-ID: <20230306200549.7iuedbl27ejfhf6b@CAB-WSD-L081021>
+References: <20230301183759.16163-1-ddrokosov@sberdevices.ru>
+ <20230301183759.16163-3-ddrokosov@sberdevices.ru>
+ <1jr0u2azfi.fsf@starbuckisacylon.baylibre.com>
 MIME-Version: 1.0
-References: <20230306040739.51488-1-blarson@amd.com> <20230306040739.51488-11-blarson@amd.com>
- <20230306160017.ptd3ogundxvus5zm@mobilestation>
-In-Reply-To: <20230306160017.ptd3ogundxvus5zm@mobilestation>
-From:   Andy Shevchenko <andy.shevchenko@gmail.com>
-Date:   Mon, 6 Mar 2023 21:59:29 +0200
-Message-ID: <CAHp75VfFMiy35Q1bX3Az3HgkhK+4bfH+pCE2XwOYVpqT8UiFXA@mail.gmail.com>
-Subject: Re: [PATCH v10 10/15] spi: dw: Add support for AMD Pensando Elba SoC
-To:     Serge Semin <fancer.lancer@gmail.com>
-Cc:     Brad Larson <blarson@amd.com>,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-mmc@vger.kernel.org, linux-spi@vger.kernel.org,
-        adrian.hunter@intel.com, alcooperx@gmail.com, arnd@arndb.de,
-        brendan.higgins@linux.dev, briannorris@chromium.org,
-        brijeshkumar.singh@amd.com, catalin.marinas@arm.com,
-        davidgow@google.com, gsomlo@gmail.com, gerg@linux-m68k.org,
-        krzk@kernel.org, krzysztof.kozlowski+dt@linaro.org, lee@kernel.org,
-        lee.jones@linaro.org, broonie@kernel.org,
-        yamada.masahiro@socionext.com, p.zabel@pengutronix.de,
-        piotrs@cadence.com, p.yadav@ti.com, rdunlap@infradead.org,
-        robh+dt@kernel.org, samuel@sholland.org, skhan@linuxfoundation.org,
-        suravee.suthikulpanit@amd.com, thomas.lendacky@amd.com,
-        tonyhuang.sunplus@gmail.com, ulf.hansson@linaro.org,
-        vaishnav.a@ti.com, will@kernel.org, devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <1jr0u2azfi.fsf@starbuckisacylon.baylibre.com>
+User-Agent: NeoMutt/20220415
+X-Originating-IP: [172.16.1.6]
+X-ClientProxiedBy: S-MS-EXCH01.sberdevices.ru (172.16.1.4) To
+ S-MS-EXCH01.sberdevices.ru (172.16.1.4)
+X-KSMG-Rule-ID: 4
+X-KSMG-Message-Action: clean
+X-KSMG-AntiSpam-Status: not scanned, disabled by settings
+X-KSMG-AntiSpam-Interceptor-Info: not scanned
+X-KSMG-AntiPhishing: not scanned, disabled by settings
+X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 1.1.2.30, bases: 2023/03/06 16:19:00 #20919562
+X-KSMG-AntiVirus-Status: Clean, skipped
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Mar 6, 2023 at 6:00 PM Serge Semin <fancer.lancer@gmail.com> wrote:
-> On Sun, Mar 05, 2023 at 08:07:34PM -0800, Brad Larson wrote:
+On Mon, Mar 06, 2023 at 12:17:23PM +0100, Jerome Brunet wrote:
+> 
+> On Wed 01 Mar 2023 at 21:37, Dmitry Rokosov <ddrokosov@sberdevices.ru> wrote:
+> 
+> > Introduce PLL clock controller for Amlogic A1 SoC family.
+> >
+> > Signed-off-by: Jian Hu <jian.hu@amlogic.com>
+> > Signed-off-by: Dmitry Rokosov <ddrokosov@sberdevices.ru>
+> > ---
+> >  drivers/clk/meson/Kconfig  |  10 +
+> >  drivers/clk/meson/Makefile |   1 +
+> >  drivers/clk/meson/a1-pll.c | 365 +++++++++++++++++++++++++++++++++++++
+> >  drivers/clk/meson/a1-pll.h |  47 +++++
+> >  4 files changed, 423 insertions(+)
+> >  create mode 100644 drivers/clk/meson/a1-pll.c
+> >  create mode 100644 drivers/clk/meson/a1-pll.h
+> >
 
-...
+[...]
 
-> > -     node = of_parse_phandle(np, syscon_name, 0);
->
->         node = of_parse_phandle(dev_of_node(pdev->dev), syscon_name, 0);
+> > diff --git a/drivers/clk/meson/a1-pll.c b/drivers/clk/meson/a1-pll.c
+> > new file mode 100644
+> > index 000000000000..c565f9b2a8dd
+> > --- /dev/null
+> > +++ b/drivers/clk/meson/a1-pll.c
+> > @@ -0,0 +1,365 @@
+> > +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+> > +/*
+> > + * Copyright (c) 2019 Amlogic, Inc. All rights reserved.
+> > + * Author: Jian Hu <jian.hu@amlogic.com>
+> > + *
+> > + * Copyright (c) 2023, SberDevices. All Rights Reserved.
+> > + * Author: Dmitry Rokosov <ddrokosov@sberdevices.ru>
+> > + */
+> > +
+> > +#include <linux/clk-provider.h>
+> > +#include <linux/of_device.h>
+> > +#include <linux/platform_device.h>
+> > +#include "meson-a1-clkc.h"
+> 
+> As pointed out by the kernel robot, there is a problem here
+> 
 
-Side note: I would rather see syscon_fwnode_to_regmap() instead of
-this. And IIRC syscon already has an API to find by name.
+My fault. Really sorry for that.
 
-> > +     if (!node)
->
-> > +             return dev_err_probe(&pdev->dev, -ENODEV, "failed to find %s\n",
-> > +                                  syscon_name);
->
-> Hm, using dev_err_probe() with known error value seems overkill.
+[...]
 
-It's allowed use and it helps to drop a few unnecessary lines of code.
+> > +static struct clk_regmap fixed_pll = {
+> > +	.data = &(struct clk_regmap_gate_data){
+> > +		.offset = ANACTRL_FIXPLL_CTRL0,
+> > +		.bit_idx = 20,
+> > +	},
+> > +	.hw.init = &(struct clk_init_data) {
+> > +		.name = "fixed_pll",
+> > +		.ops = &clk_regmap_gate_ops,
+> > +		.parent_hws = (const struct clk_hw *[]) {
+> > +			&fixed_pll_dco.hw
+> > +		},
+> > +		.num_parents = 1,
+> > +		/*
+> > +		 * It is enough that the fdiv leaf has critical flag,
+> > +		 * No critical or unused flag here.
+> > +		 */
+> 
+> The comment is not useful
+> 
 
-> > +     syscon = syscon_node_to_regmap(node);
-> > +     if (IS_ERR(syscon))
-> > +             return dev_err_probe(&pdev->dev, PTR_ERR(syscon),
-> > +                                  "syscon regmap lookup failed\n");
+OK
+
+> > +	},
+> > +};
+> > +
+> > +static const struct pll_mult_range hifi_pll_mult_range = {
+> > +	.min = 32,
+> > +	.max = 64,
+> > +};
+> > +
+> > +static const struct reg_sequence hifi_init_regs[] = {
+> > +	{ .reg = ANACTRL_HIFIPLL_CTRL1, .def = 0x01800000 },
+> > +	{ .reg = ANACTRL_HIFIPLL_CTRL2, .def = 0x00001100 },
+> > +	{ .reg = ANACTRL_HIFIPLL_CTRL3, .def = 0x100a1100 },
+> > +	{ .reg = ANACTRL_HIFIPLL_CTRL4, .def = 0x00302000 },
+> > +	{ .reg = ANACTRL_HIFIPLL_CTRL0, .def = 0x01f18440 },
+> 
+> This last poke should not bits otherwise handled by parms.
+> This is a rate init in disguise.
+> 
+
+I believe, you are talking about hifi_pll clk_regmap conflicts with
+hifi_init_regs. The above init sequence shouldn't affect pll regmap setup,
+it doesn't touch them (we assume that default bit values are all zero):
+
+    .en = {
+        .reg_off = ANACTRL_HIFIPLL_CTRL0,
+        .shift   = 28,
+        .width   = 1,
+    },
+    // init_value = 0x01f18440
+    // en_mask    = 0x10000000
+
+    .m = {
+        .reg_off = ANACTRL_HIFIPLL_CTRL0,
+        .shift   = 0,
+        .width   = 8,
+    },
+    // init_value = 0x01f18440
+    // m_mask     = 0x0000000f
+
+    .n = {
+        .reg_off = ANACTRL_HIFIPLL_CTRL0,
+        .shift   = 10,
+        .width   = 5,
+    },
+    // init_value = 0x01f18440
+    // n_mask     = 0x00007c00
+                           ^
+                    oops, one overlap
+                    but why we can't set init value for pre_sel?
+
+    .frac = {
+        .reg_off = ANACTRL_HIFIPLL_CTRL1,
+        .shift   = 0,
+        .width   = 19,
+    },
+    // init_value = 0x01800000
+    // frac_mask  = 0x0007ffff
+
+    .current_en = {
+        .reg_off = ANACTRL_HIFIPLL_CTRL0,
+        .shift   = 26,
+        .width   = 1,
+    },
+    // init_value      = 0x01f18440
+    // current_en_mask = 0x04000000
+
+    .l_detect = {
+        .reg_off = ANACTRL_HIFIPLL_CTRL2,
+        .shift   = 6,
+        .width   = 1,
+    },
+    // init_value    = 0x00001100
+    // l_detect_mask = 0x00000040
+
+> > +};
+> > +
+> > +static struct clk_regmap hifi_pll = {
+> > +	.data = &(struct meson_clk_pll_data){
+> > +		.en = {
+> > +			.reg_off = ANACTRL_HIFIPLL_CTRL0,
+> > +			.shift   = 28,
+> > +			.width   = 1,
+> > +		},
+> > +		.m = {
+> > +			.reg_off = ANACTRL_HIFIPLL_CTRL0,
+> > +			.shift   = 0,
+> > +			.width   = 8,
+> > +		},
+> > +		.n = {
+> > +			.reg_off = ANACTRL_HIFIPLL_CTRL0,
+> > +			.shift   = 10,
+> > +			.width   = 5,
+> > +		},
+> > +		.frac = {
+> > +			.reg_off = ANACTRL_HIFIPLL_CTRL1,
+> > +			.shift   = 0,
+> > +			.width   = 19,
+> > +		},
+> > +		.l = {
+> > +			.reg_off = ANACTRL_HIFIPLL_STS,
+> > +			.shift   = 31,
+> > +			.width   = 1,
+> > +		},
+> > +		.current_en = {
+> > +			.reg_off = ANACTRL_HIFIPLL_CTRL0,
+> > +			.shift   = 26,
+> > +			.width   = 1,
+> > +		},
+> > +		.l_detect = {
+> 
+> What is this ?
+> 
+
+Lock detection module.
+
+This is IP module included to new PLL power-on sequence. From clk-pll.c
+patchset:
+
+/*
+ * Compared with the previous SoCs, self-adaption current module
+ * is newly added for A1, keep the new power-on sequence to enable the
+ * PLL. The sequence is:
+ * 1. enable the pll, delay for 10us
+ * 2. enable the pll self-adaption current module, delay for 40us
+ * 3. enable the lock detect module
+ */
+
+[...]
+
+> > +static struct clk_regmap fclk_div3 = {
+> > +	.data = &(struct clk_regmap_gate_data){
+> > +		.offset = ANACTRL_FIXPLL_CTRL0,
+> > +		.bit_idx = 22,
+> > +	},
+> > +	.hw.init = &(struct clk_init_data){
+> > +		.name = "fclk_div3",
+> > +		.ops = &clk_regmap_gate_ops,
+> > +		.parent_hws = (const struct clk_hw *[]) {
+> > +			&fclk_div3_div.hw
+> > +		},
+> > +		.num_parents = 1,
+> > +		/*
+> > +		 * This clock is used by APB bus which is set in boot ROM code
+> > +		 * and is required by the platform to operate correctly.
+> > +		 * About critical, refer to fclk_div2.
+> 
+> This last line is not useful. Same for other occurences
+> 
+
+Good point. Copy-paste detected :-)
+
+[...]
+
+> > +static int meson_a1_pll_probe(struct platform_device *pdev)
+> > +{
+> > +	struct device *dev = &pdev->dev;
+> > +	struct clk_hw *hw;
+> > +	void __iomem *base;
+> > +	struct regmap *map;
+> > +	int clkid, i, err;
+> > +
+> > +	base = devm_platform_ioremap_resource(pdev, 0);
+> > +	if (IS_ERR(base))
+> > +		return dev_err_probe(dev, PTR_ERR(base),
+> > +				     "can't ioremap resource\n");
+> > +
+> > +	map = devm_regmap_init_mmio(dev, base, &a1_pll_regmap_cfg);
+> > +	if (IS_ERR(map))
+> > +		return dev_err_probe(dev, PTR_ERR(map),
+> > +				     "can't init regmap mmio region\n");
+> > +
+> > +	/* Populate regmap for the regmap backed clocks */
+> > +	for (i = 0; i < ARRAY_SIZE(a1_pll_regmaps); i++)
+> > +		a1_pll_regmaps[i]->map = map;
+> > +
+> > +	for (clkid = 0; clkid < a1_pll_hw_onecell_data.num; clkid++) {
+> > +		hw = a1_pll_hw_onecell_data.hws[clkid];
+> > +		err = devm_clk_hw_register(dev, hw);
+> > +		if (err)
+> > +			return dev_err_probe(dev, err,
+> > +					     "clock registration failed\n");
+> > +	}
+> > +
+> > +	return devm_of_clk_add_hw_provider(dev, of_clk_hw_onecell_get,
+> > +					   &a1_pll_hw_onecell_data);
+> > +}
+> > +
+> > +#ifdef CONFIG_OF
+> 
+> This config is selected by ARM64 which this driver depends on
+> 
+
+Make sense, thanks a lot!
+
+[...]
 
 -- 
-With Best Regards,
-Andy Shevchenko
+Thank you,
+Dmitry
