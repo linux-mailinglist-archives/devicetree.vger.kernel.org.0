@@ -2,53 +2,47 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6A9656AC114
-	for <lists+devicetree@lfdr.de>; Mon,  6 Mar 2023 14:32:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A7C3B6AC11B
+	for <lists+devicetree@lfdr.de>; Mon,  6 Mar 2023 14:32:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231290AbjCFNcM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 Mar 2023 08:32:12 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44562 "EHLO
+        id S231341AbjCFNcY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 Mar 2023 08:32:24 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44550 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231264AbjCFNcD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Mar 2023 08:32:03 -0500
+        with ESMTP id S231285AbjCFNcM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Mar 2023 08:32:12 -0500
 Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1CBBD2ED66;
-        Mon,  6 Mar 2023 05:32:00 -0800 (PST)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 275E42F7A9;
+        Mon,  6 Mar 2023 05:32:04 -0800 (PST)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id A826060F10;
-        Mon,  6 Mar 2023 13:31:59 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 61B25C4339C;
-        Mon,  6 Mar 2023 13:31:56 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 9C64A60EB8;
+        Mon,  6 Mar 2023 13:32:03 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DDACFC433A1;
+        Mon,  6 Mar 2023 13:32:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1678109519;
-        bh=GGz/XSquEEkd/c1A8ozA7mQ9It/zjD2cp/cMY4WB4vA=;
-        h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-        b=iBaz7RSpiIHju+faTJoDDbYnqmTn2YoDyADXL2vTPaHobu59JQLQT7lk3IOORGJdB
-         0ike2irMWoLD0BnVbFfW4l4Vhd9zdBvaTqjmyqMrp30fQPZTk6z/SElweq1D/d2gO1
-         M0Rfe35aZMF/Z/lnJEVVioyP6WK6U1VSJjhfXR6RzqAlYFWwkGLlbCGxBTNGFRjljk
-         pd3D8BWREFA3wcQM8gLvC5JSxBhHzNCSw55xylUXpfeeEV6J3mp25lQ75K6wZXapTS
-         PZq/MV4+1/V9uUTYi79oYIab4NqqASTK7vAWyVgeMlsS/uDLxPKdkCCbAi06YgHS+I
-         fZNTLSfJsfAVw==
+        s=k20201202; t=1678109523;
+        bh=BXZROgul7p0wR6XPSJeK7cD2IBPYqzyTYqEG61d9fQA=;
+        h=From:To:In-Reply-To:References:Subject:Date:From;
+        b=Xkcd6yRNgOGHBjHNbbLGAOG7yAFGErGuCY7rckfNPUe+AJSuG9vvdGjuHw2QSaB1c
+         /rinzeDi+OMSawmiZcK1sMeyrrsTGKZVyIYKJBhGXkJUiANE2vnZjnjF/jpO9nYNOB
+         xsP9/ZBNIgBfdBg1U6gEdeA763/A1GKu/uG7JEv0cSp1NmPNIHvYXJbyB/sPs0DcBO
+         nHF+4DYdts0eWeXHSltVcGw3Enoqy8CffF3ngS+aj0KuMLIq7IRBt6+nve3lq/bLPp
+         Gc4yKJ5uy8UdnmTHAvmMYvrSrv/Eq3V/TRWZX9k7mQ9IoGx6a4tw5ahaSEk0ZAK81g
+         GvgkMpGYD8ceg==
 From:   Mark Brown <broonie@kernel.org>
-To:     Liam Girdwood <lgirdwood@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>,
-        Prabhakar <prabhakar.csengg@gmail.com>
-Cc:     alsa-devel@alsa-project.org, linux-renesas-soc@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Biju Das <biju.das.jz@bp.renesas.com>,
-        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-In-Reply-To: <20230217185225.43310-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
-References: <20230217185225.43310-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: Re: (subset) [PATCH 0/4] RZ/G2L SSI: Update interrupt numbers
-Message-Id: <167810951612.75807.7701310254952965635.b4-ty@kernel.org>
-Date:   Mon, 06 Mar 2023 13:31:56 +0000
+To:     lgirdwood@gmail.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, perex@perex.cz, tiwai@suse.com,
+        ckeepax@opensource.cirrus.com, patches@opensource.cirrus.com,
+        alsa-devel@alsa-project.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, Chancel Liu <chancel.liu@nxp.com>
+In-Reply-To: <20230227091938.1671416-1-chancel.liu@nxp.com>
+References: <20230227091938.1671416-1-chancel.liu@nxp.com>
+Subject: Re: (subset) [PATCH v2 1/2] ASoC: dt-bindings: wlf,wm8524: Convert
+ to json-schema
+Message-Id: <167810952063.75807.2679139979822517456.b4-ty@kernel.org>
+Date:   Mon, 06 Mar 2023 13:32:00 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
@@ -62,15 +56,11 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 17 Feb 2023 18:52:21 +0000, Prabhakar wrote:
-> This patch series aims to fix interrupt numbers for SSI channels and updates
-> the DT binding and the driver accordingly.
+On Mon, 27 Feb 2023 17:19:37 +0800, Chancel Liu wrote:
+> Convert the Wolfson WM8524 24-bit 192KHz Stereo DAC device tree
+> binding documentation to json-schema.
 > 
-> Note, this patch series applies on top of [0].
 > 
-> [0] https://patchwork.kernel.org/project/linux-renesas-soc/cover/20230131223529.11905-1-prabhakar.mahadev-lad.rj@bp.renesas.com/
-> 
-> [...]
 
 Applied to
 
@@ -78,10 +68,8 @@ Applied to
 
 Thanks!
 
-[1/4] ASoC: dt-bindings: renesas,rz-ssi: Update interrupts and interrupt-names properties
-      commit: 56a3840486ae22c42176828e25d4073712837bfd
-[2/4] ASoC: sh: rz-ssi: Update interrupt handling for half duplex channels
-      commit: 38c042b59af0248a8b13f01b1a09d890997c9f6e
+[1/2] ASoC: dt-bindings: wlf,wm8524: Convert to json-schema
+      commit: 5ddcf9768f7a15da997259038c16a9e00c06aa87
 
 All being well this means that it will be integrated into the linux-next
 tree (usually sometime in the next 24 hours) and sent to Linus during
