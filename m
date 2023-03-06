@@ -2,73 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F374B6ABB6D
-	for <lists+devicetree@lfdr.de>; Mon,  6 Mar 2023 11:15:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CFD2E6ABB7D
+	for <lists+devicetree@lfdr.de>; Mon,  6 Mar 2023 11:16:22 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230505AbjCFKPw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 Mar 2023 05:15:52 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39280 "EHLO
+        id S230493AbjCFKQU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 Mar 2023 05:16:20 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39260 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231352AbjCFKPT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Mar 2023 05:15:19 -0500
-Received: from mail-lj1-x22d.google.com (mail-lj1-x22d.google.com [IPv6:2a00:1450:4864:20::22d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 789633C10
-        for <devicetree@vger.kernel.org>; Mon,  6 Mar 2023 02:14:47 -0800 (PST)
-Received: by mail-lj1-x22d.google.com with SMTP id b13so9037340ljf.6
-        for <devicetree@vger.kernel.org>; Mon, 06 Mar 2023 02:14:47 -0800 (PST)
+        with ESMTP id S230489AbjCFKPs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Mar 2023 05:15:48 -0500
+Received: from mail-lj1-x22b.google.com (mail-lj1-x22b.google.com [IPv6:2a00:1450:4864:20::22b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D195324107
+        for <devicetree@vger.kernel.org>; Mon,  6 Mar 2023 02:15:12 -0800 (PST)
+Received: by mail-lj1-x22b.google.com with SMTP id y14so9047561ljq.4
+        for <devicetree@vger.kernel.org>; Mon, 06 Mar 2023 02:15:12 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1678097685;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+        d=linaro.org; s=google; t=1678097711;
+        h=content-transfer-encoding:in-reply-to:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=JrRx1sQP+w0Wzx9jVsXvebGwwsVfi1BJFfOzeSnLMqk=;
-        b=Gl3q2aizIhlVSs3xqqFzzX6KxWsAAVJnmW6t4d/962bFbMKp86fgAovj0rIozcf2Kt
-         AbizXRC/UPIQwdG9kgaMJKq2WSlpwz3tDp5Qp+VyHMqEr131l9ZAtZZAhFPKnZIwY0Ds
-         C9lU5kLF2OIh7b6P5luEXeaAEnph78aouRqsq9KlzPDw3SvDwAp+T51lQh/z8CSx4oX8
-         3C+kIxdjC2RnbXEffOjPsyc7IZ0+XYhL+jXIW4/1TcUZOOda2Lda++8d8YSZiYOcZxNP
-         G99rjy0dgKY5M6qRWzlI7Y4RknYVM2eerJiJWB4T+EjFSuYHh9ycxTQy1HW4cphMTVAi
-         MrWA==
+        bh=U3pbhbSJq+ZjD9gAm1LG1AvuTXhrDcMqLXEUKg4jeqQ=;
+        b=Dw/70j1shtqKVCMQRKqVeMr246XqcwpioJww0wYaTmKt3kAxYOwdCJWLg+HrdtGeko
+         tIdefXbhRJAxVBDvqbdtnMEQPvCiBcrWFb820UcGPeyrci17H+ZwFjvvCHHw1qqpcDFz
+         8zWxo8DtUzAm3KxxIbcp02sqaDpwu46qAP732vJCBamVbDb6ES79pbDxD6f3qQBkEnLa
+         szY75sungEluCd7LDZ0FZ1Lc3RkilVnooc3iEOXEz8/kg4q5k099e8J5BZQhyPUshREX
+         FwNSb+PEf6VH9JFWOzG9mO+jaWG7C3RsDretZfFhjJ4tctsjvBn+8UyCp+tTnnBM/Ef0
+         nGNw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678097685;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+        d=1e100.net; s=20210112; t=1678097711;
+        h=content-transfer-encoding:in-reply-to:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=JrRx1sQP+w0Wzx9jVsXvebGwwsVfi1BJFfOzeSnLMqk=;
-        b=luCzPmYH7R5R8iUArXK9MpYAR9ZkPPngGzmYt9vI82HQJMGsDfp+8C2xaMyQRgOya+
-         /qALONU2+2Kj2CO4YKkDegxq08nw+DrFa+I3DVnINGSYI9kVvizg6xhLCiE7QR8ziKIM
-         BKosJ6fCYCduwph5gwZHsm6/DbJVusicatMnk4bsLB83yS5IrkuXc2D5+f68MTt3vrcR
-         aIYQ0zOulRmFaR3Ge40bYUsLBIlsI+a7z0ewYX3+OHhA3T6CFxUOo8iiG/djsmx4Og/A
-         cZr5H5/wMN1FACMtD90DAf7i27iqLKOKi1FcH62rmMC8YdPYhvdtl3W9FFebMdHoWbVT
-         B9DA==
-X-Gm-Message-State: AO0yUKUqDQvEtleTcpOc2k6EQ+/doUDFpqlz5EMdIeOfdQDyq3LAzVbg
-        3NNZ3qa40eLtPhWRzt2FmiY13jksIzpmfNRtWx8=
-X-Google-Smtp-Source: AK7set/XqyJxSsGRdpyR3XOoBb5vbT24t+ttPDYPumeT0lesA6b7qXeCVGRw1scH3b2mVqRfJI/Lyw==
-X-Received: by 2002:a05:651c:1725:b0:295:9798:be51 with SMTP id be37-20020a05651c172500b002959798be51mr2729426ljb.4.1678097685015;
-        Mon, 06 Mar 2023 02:14:45 -0800 (PST)
+        bh=U3pbhbSJq+ZjD9gAm1LG1AvuTXhrDcMqLXEUKg4jeqQ=;
+        b=5kqzXIVDlEKFZE2GSBVPgIwNwA5z7yciiKYUnUuYOVY2W1hQAbSfMrIPiHVmxMDwwC
+         qY61EGBDo8ovmooHFNcXX4TTffKYCAmykVtGVk8D+59NWN01pB05Tac6MxjQofcvu/hU
+         Q7NEpkgq4T7yDz187vWY1GE4ONZiF3n94PnBYRpyYa1kQcSOggqGndtbJceLN5ITgJI9
+         nfTfVB5BWoOUvSiORjj4f5sTW6o4qqz103laKV/t4TOAA4EdriiYUiIRGuChuYFsoZuI
+         Y+7VFF4dhHcZbqGtl2ou8/IZEpjauNXMHc8iYhteZqORqg+hrfJEGiH4VqcemO/JZmFg
+         btmQ==
+X-Gm-Message-State: AO0yUKVfS5YuQbHnzSK1MMTwb4V2la3Z9xw5u2KunuSl2xLGfEAZZf3N
+        OVSMXHKUOXBgL1R/jvKzBHq8Xw==
+X-Google-Smtp-Source: AK7set/6352seV4dB0uwZtsgIwCViYWmi4QRlYYXvs6JeuqengMsisaxhROtPxSZEMflZqm4c09ONQ==
+X-Received: by 2002:a05:651c:199e:b0:295:9bb9:18c2 with SMTP id bx30-20020a05651c199e00b002959bb918c2mr3726329ljb.18.1678097711237;
+        Mon, 06 Mar 2023 02:15:11 -0800 (PST)
 Received: from [192.168.1.101] (abym99.neoplus.adsl.tpnet.pl. [83.9.32.99])
-        by smtp.gmail.com with ESMTPSA id n20-20020a2e86d4000000b00295a35f30e1sm1626058ljj.115.2023.03.06.02.14.43
+        by smtp.gmail.com with ESMTPSA id x2-20020a2e9c82000000b002935a8d9351sm1625753lji.55.2023.03.06.02.15.10
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 06 Mar 2023 02:14:44 -0800 (PST)
-Message-ID: <97676add-de6b-4057-a5ef-dab313cf7050@linaro.org>
-Date:   Mon, 6 Mar 2023 11:14:43 +0100
+        Mon, 06 Mar 2023 02:15:10 -0800 (PST)
+Message-ID: <50724ddd-3fd8-a7aa-e9f5-67d87b7d56d4@linaro.org>
+Date:   Mon, 6 Mar 2023 11:15:09 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.8.0
-Subject: Re: [PATCH] arm64: dts: qcom: msm8996: Add missing property for
- OnePlus 3T
+Subject: Re: [PATCH] arm64: dts: qcom: pm660: align thermal node names with
+ bindings
 Content-Language: en-US
-To:     "Guilherme G. Piccoli" <gpiccoli@igalia.com>,
-        Harry Austen <hpausten@protonmail.com>
-Cc:     devicetree@vger.kernel.org, agross@kernel.org,
-        linux-arm-msm@vger.kernel.org, andersson@kernel.org,
-        konrad.dybcio@somainline.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, kernel-dev@igalia.com,
-        kernel@gpiccoli.net, Yassine Oudjana <y.oudjana@protonmail.com>
-References: <20230213201651.1902323-1-gpiccoli@igalia.com>
- <d34d8851-fd73-9b87-9340-df25b64e96bb@linaro.org>
- <09879b66-4f72-a205-3e2d-cd8d8113625c@igalia.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20230305154308.241651-1-krzysztof.kozlowski@linaro.org>
 From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <09879b66-4f72-a205-3e2d-cd8d8113625c@igalia.com>
+In-Reply-To: <20230305154308.241651-1-krzysztof.kozlowski@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -82,55 +80,44 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 
 
-On 5.03.2023 16:36, Guilherme G. Piccoli wrote:
-> On 13/02/2023 18:49, Konrad Dybcio wrote:
->> [...] 
->>> diff --git a/arch/arm64/boot/dts/qcom/msm8996-oneplus3t.dts b/arch/arm64/boot/dts/qcom/msm8996-oneplus3t.dts
->>> index 34f837dd0c12..5dc8f0adab30 100644
->>> --- a/arch/arm64/boot/dts/qcom/msm8996-oneplus3t.dts
->>> +++ b/arch/arm64/boot/dts/qcom/msm8996-oneplus3t.dts
->>> @@ -14,6 +14,7 @@ / {
->>>  	qcom,board-id = <8 0 15811 26>,
->>>  			<8 0 15811 27>,
->>>  			<8 0 15811 28>;
->>> +	qcom,msm-id = <246 0x30001>;
->> Hm, this doesn't sound right.. Internet says 3T has 8996Pro..
->> Could you check:
->>
->> /sys/bus/soc/devices/soc0/soc_id  # reg[0]
->> /sys/bus/soc/devices/soc0/revision # reg[1] after some shifting
->>
->> Also, please include include/dt-bindings/arm/qcom,ids.h and use
->> the preprocessor constant from there instead of a magic number in
->> the first part of the reg value.
->>
->> Konrad
+On 5.03.2023 16:43, Krzysztof Kozlowski wrote:
+> Bindings expect thermal node names to end with '-thermal', so fix pm660
+> and pm660l:
 > 
-> Hi Konrad, thanks for your review!
+>   sda660-inforce-ifc6560.dtb: thermal-zones: 'pm660', 'pm660l' do not match any of the regexes: '^[a-zA-Z][a-zA-Z0-9\\-]{1,12}-thermal$', 'pinctrl-[0-9]+'
 > 
-> Unfortunately I don't have this device, I based my patch in the other
-> Oneplus 3. Maybe Harry Austen (CCed) or anybody in this thread or list
-> have the device?
-> 
-> Curiosity questions, since I'm far from expert in the device-tree world:
-> what happens in case the device-tree doesn't export/contain this
-> property (exactly the case we have right now)? Does the device work
-> fine? Also, having it "wrong" (based on the other OnePlus 3) is worse
-> than not having it? In other words, what's the default value picked if
-> none is provided in the DT?
-Basically:
-
-if (msm_id) {
-    if is_close_enough(msm_id, internal_msm_id)
-        boot()
-    else
-        die()
-} else
-    die()
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> ---
+Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 
 Konrad
+>  arch/arm64/boot/dts/qcom/pm660.dtsi  | 2 +-
+>  arch/arm64/boot/dts/qcom/pm660l.dtsi | 2 +-
+>  2 files changed, 2 insertions(+), 2 deletions(-)
 > 
-> Cheers,
-> 
-> 
-> Guilherme
+> diff --git a/arch/arm64/boot/dts/qcom/pm660.dtsi b/arch/arm64/boot/dts/qcom/pm660.dtsi
+> index fc0eccaccdf6..4bc717917f44 100644
+> --- a/arch/arm64/boot/dts/qcom/pm660.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/pm660.dtsi
+> @@ -11,7 +11,7 @@
+>  
+>  / {
+>  	thermal-zones {
+> -		pm660 {
+> +		pm660-thermal {
+>  			polling-delay-passive = <250>;
+>  			polling-delay = <1000>;
+>  
+> diff --git a/arch/arm64/boot/dts/qcom/pm660l.dtsi b/arch/arm64/boot/dts/qcom/pm660l.dtsi
+> index f9b3864bd3b9..87b71b7205b8 100644
+> --- a/arch/arm64/boot/dts/qcom/pm660l.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/pm660l.dtsi
+> @@ -11,7 +11,7 @@
+>  
+>  / {
+>  	thermal-zones {
+> -		pm660l {
+> +		pm660l-thermal {
+>  			polling-delay-passive = <250>;
+>  			polling-delay = <1000>;
+>  
