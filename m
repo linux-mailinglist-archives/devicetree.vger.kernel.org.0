@@ -2,101 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 196F86AD1F3
-	for <lists+devicetree@lfdr.de>; Mon,  6 Mar 2023 23:48:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A78E06AD212
+	for <lists+devicetree@lfdr.de>; Mon,  6 Mar 2023 23:54:22 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229744AbjCFWsn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 Mar 2023 17:48:43 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55766 "EHLO
+        id S229680AbjCFWyV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 Mar 2023 17:54:21 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36100 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229609AbjCFWsm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Mar 2023 17:48:42 -0500
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F2FD293CD;
-        Mon,  6 Mar 2023 14:48:34 -0800 (PST)
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 326MlrDX115255;
-        Mon, 6 Mar 2023 16:47:53 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1678142873;
-        bh=zST2Uq1Yk5/nvPXLdcXYWYoOoUQgSnXBsOKPcs2+Eos=;
-        h=From:To:CC:Subject:Date;
-        b=uoblTd4XqMikiLDSZt4fE5R0V7xgTd/KNPY9lU2vxvtUOCCfZJjYZqsipAPGOzf0N
-         BDnJfxcJvkVNw7Cn8QZMbf31tX5WBFxDjVMvsCBfoCi6R56MVi8ZBx6N/rM5HK6B/x
-         SVezx+JOq0ETQmnk4L2FEUYwIaJMs1ehqUny/CX8=
-Received: from DLEE103.ent.ti.com (dlee103.ent.ti.com [157.170.170.33])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 326MlrXl075417
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Mon, 6 Mar 2023 16:47:53 -0600
-Received: from DLEE104.ent.ti.com (157.170.170.34) by DLEE103.ent.ti.com
- (157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Mon, 6
- Mar 2023 16:47:52 -0600
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE104.ent.ti.com
- (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
- Frontend Transport; Mon, 6 Mar 2023 16:47:52 -0600
-Received: from ula0226330.dal.design.ti.com (ileaxei01-snat2.itg.ti.com [10.180.69.6])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 326MlqAK047744;
-        Mon, 6 Mar 2023 16:47:52 -0600
-From:   Andrew Davis <afd@ti.com>
-To:     Sascha Hauer <s.hauer@pengutronix.de>,
+        with ESMTP id S229718AbjCFWyU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Mar 2023 17:54:20 -0500
+Received: from mail-yb1-xb29.google.com (mail-yb1-xb29.google.com [IPv6:2607:f8b0:4864:20::b29])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 91DB737728
+        for <devicetree@vger.kernel.org>; Mon,  6 Mar 2023 14:54:18 -0800 (PST)
+Received: by mail-yb1-xb29.google.com with SMTP id n18so9792921ybm.10
+        for <devicetree@vger.kernel.org>; Mon, 06 Mar 2023 14:54:18 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1678143258;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=gbmLnGKrG3nA18MfvK9iBAHGPLTSeiBIXaYitNv/z88=;
+        b=tlraTyXREqtAP2UrVSR6YS/Kz1st5VpBCWQiVkWr3o5QUqtqy/SE+L6dqVLVmSr1JY
+         ZuRVOS3QTiuNHyIg6DhWv3LfolS1cl2JBLtWx96+el26Envpv0LZzQP2dv6EdDjdheqa
+         YcK/SCMWOtntTOomOIo0zQ+aP8lvu+wK2c/Db9f7oDgSehascET3tHrjTJVrhh9WVMJx
+         PrOMqEgEd3AFBCnRxVSOtCSHy06HvYQKO/5kXzFgQoMoc7Hbz9yCYpyVk8pxgUhKXC9O
+         CB46JteCnI/3BFNHfYCkVN3aOwoIJufPgZZOU7Nhz3VoV6ZUJcIyDHYMLtJWudXzO6Yq
+         cgHQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1678143258;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=gbmLnGKrG3nA18MfvK9iBAHGPLTSeiBIXaYitNv/z88=;
+        b=yha7CcZ1XUGBhuEqQpu0TJOz/uUT+1WQt3oql+59cT0vUsaiHMNAtnTC+tcw2bMO/B
+         K/+zHVCBPvm/h1c/38uS2ojVgvRoQ4ncNCERnCq4aeIVMAj5J5dnNipoc0LzZgTgcaVa
+         jS57LIesT1ba7y1pK45EYEw7XGJIDX6HfoKOAH8jkF+yYFwyRqP3u37Qh9xzdL1u+gS/
+         FWacSUaootQos+906Nm06eg9iyR9R0AQGmR9ZWFrV2wQlZppyF3vNaR2/mr9HX3hdfOx
+         dq13T62huREIaqSeSLixToMHeDWg2RXxiFE5OnuwTEQAeESMhSHOCk+hHl5nem4vqa1b
+         Uy+Q==
+X-Gm-Message-State: AO0yUKVq2DM9xFWa+/XCOxTHPI90tXeYFcMclVyJfAxDjqOJi5ubcWuJ
+        4RYVAUuOgYU2MZenAjTI7P83aqXSsarCJs+vO2K+lA==
+X-Google-Smtp-Source: AK7set+PS9GBBwkHRVoZNv3pbU3OyN55f5gv4I3Y/ZR1+5llyDjFZ1dQaKRUlmphEgQ/suPEtbmkMn19NMB2E4n+G7Y=
+X-Received: by 2002:a5b:b84:0:b0:ab8:1ed9:cfd2 with SMTP id
+ l4-20020a5b0b84000000b00ab81ed9cfd2mr7420988ybq.5.1678143257824; Mon, 06 Mar
+ 2023 14:54:17 -0800 (PST)
+MIME-Version: 1.0
+References: <20230227205035.18551-1-git@apitzsch.eu> <20230227205035.18551-2-git@apitzsch.eu>
+In-Reply-To: <20230227205035.18551-2-git@apitzsch.eu>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Mon, 6 Mar 2023 23:54:06 +0100
+Message-ID: <CACRpkdbZCO556z0WvR81KU-07kt5h6no4gvEh0HxvqSwY47Sbw@mail.gmail.com>
+Subject: Re: [PATCH 2/2] Input: atmel_mxt_ts - support capacitive keys
+To:     =?UTF-8?Q?Andr=C3=A9_Apitzsch?= <git@apitzsch.eu>
+Cc:     Nick Dyer <nick@shmanahar.org>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Nishanth Menon <nm@ti.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Michal Marek <michal.lkml@markovi.net>,
-        Geert Uytterhoeven <geert@linux-m68k.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Andy Shevchenko <andriy.shevchenko@intel.com>,
-        Masahiro Yamada <masahiroy@kernel.org>,
-        Nathan Chancellor <nathan@kernel.org>,
-        Nick Desaulniers <ndesaulniers@google.com>,
-        Nicolas Schier <nicolas@fjasle.eu>
-CC:     <devicetree@vger.kernel.org>, <linux-kbuild@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, Andrew Davis <afd@ti.com>
-Subject: [PATCH] kbuild: Disallow DTB overlays to built from .dts named source files
-Date:   Mon, 6 Mar 2023 16:47:52 -0600
-Message-ID: <20230306224752.8417-1-afd@ti.com>
-X-Mailer: git-send-email 2.39.2
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        Nicolas Ferre <nicolas.ferre@microchip.com>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Claudiu Beznea <claudiu.beznea@microchip.com>,
+        linux-input@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        ~postmarketos/upstreaming@lists.sr.ht
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-As a follow up to the series allowing DTB overlays to built from .dtso
-files. Now that all overlays have been renamed, remove the ability to
-build from overlays from .dts files to prevent any files with the old
-name from accidental being added.
+On Mon, Feb 27, 2023 at 9:50=E2=80=AFPM Andr=C3=A9 Apitzsch <git@apitzsch.e=
+u> wrote:
 
-Signed-off-by: Andrew Davis <afd@ti.com>
----
- scripts/Makefile.lib | 3 ---
- 1 file changed, 3 deletions(-)
+> Add support for touch keys found in some Atmel touch controller
+> configurations.
+>
+> Signed-off-by: Andr=C3=A9 Apitzsch <git@apitzsch.eu>
 
-diff --git a/scripts/Makefile.lib b/scripts/Makefile.lib
-index 100a386fcd71..68d0134bdbf9 100644
---- a/scripts/Makefile.lib
-+++ b/scripts/Makefile.lib
-@@ -418,9 +418,6 @@ endif
- $(obj)/%.dtb: $(src)/%.dts $(DTC) $(DT_TMP_SCHEMA) FORCE
- 	$(call if_changed_dep,dtb)
- 
--$(obj)/%.dtbo: $(src)/%.dts $(DTC) FORCE
--	$(call if_changed_dep,dtc)
--
- $(obj)/%.dtbo: $(src)/%.dtso $(DTC) FORCE
- 	$(call if_changed_dep,dtc)
- 
--- 
-2.39.2
+Looks good to me.
+Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
 
+Yours,
+Linus Walleij
