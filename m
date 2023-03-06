@@ -2,133 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E33656ACD0E
-	for <lists+devicetree@lfdr.de>; Mon,  6 Mar 2023 19:52:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 608386ACD46
+	for <lists+devicetree@lfdr.de>; Mon,  6 Mar 2023 19:56:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230163AbjCFSwK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 Mar 2023 13:52:10 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59234 "EHLO
+        id S229684AbjCFS4I (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 Mar 2023 13:56:08 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60178 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230119AbjCFSwJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Mar 2023 13:52:09 -0500
-Received: from mail-wr1-x42d.google.com (mail-wr1-x42d.google.com [IPv6:2a00:1450:4864:20::42d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D2206497F3
-        for <devicetree@vger.kernel.org>; Mon,  6 Mar 2023 10:52:06 -0800 (PST)
-Received: by mail-wr1-x42d.google.com with SMTP id v16so9940072wrn.0
-        for <devicetree@vger.kernel.org>; Mon, 06 Mar 2023 10:52:06 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=rivosinc-com.20210112.gappssmtp.com; s=20210112; t=1678128725;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=b6Kcl5snT4dOT1Wk63DsCfYmCJln0IX3AMZ3xLgwxEE=;
-        b=tmdUDj4teYRPGPVmMc0RPsl1zl5vsv3S8+GCXAW0/s1S267aiJlsDabus51wc2BaFf
-         RQNpEKYrxga62mE8kwkh2pdz/ZqmbeLZIxQ4igs9EmQVEwMIMf5MI7QAsE6LzXfNK2+/
-         1Tm87rGjzxKEctE1klwstJe+gysP9trhlFv3M0VrHQczZFLI/2jkB6860mPzHgkJ/cEC
-         tONrDQC7H1ppljQ799985LTKaViqcIUzQlYWSOVcCC1IiEzbVnstvAF3EoMKxQfwD5dL
-         1CnQe6Eclrp5BkhYMqh7YIGq9iqXmEVPkxMzWA/rXop/9gdoqAwcAjlMzRww4PqhttMF
-         lwvQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678128725;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=b6Kcl5snT4dOT1Wk63DsCfYmCJln0IX3AMZ3xLgwxEE=;
-        b=KNgxAEoids3h65peN7NtjGr4l6l9CME1ygfU7VoMZbeAwt1MaOwId0KH4aDbFX0Y6x
-         eouU6RoDJXvugG0xYsN1MeI6G648nHJpda2hy0ECL9/TeLn3Y2RR1qrOzlzArmSjrbLR
-         k9oUCzCRIrdtnRkqSxi6oASrovxGDuF3NMd9Lg9jAteeA2t2ykYUJR14utjnDBEuh6h3
-         5Y7ZtT1CVAn7BBJ8AQmpJL5CpAujw5uVKsh6Ss2VkzqXs9R3pqyD3OPXn6frwrnMyFD9
-         TPLKInx9Lt9A0xB34Y4pwJSj+zgzy/2Lm/ueZr/EFkXqR19VQrBXEkoD/Ue7r6fo64eI
-         AcmA==
-X-Gm-Message-State: AO0yUKVcK2y/lj+MsLuKOkheMgcVnNPPfnQY5aNU+pksnphS/WX2vRJ/
-        FcDtTIguE6WNA1GTbzjK8jEBCdqM/jYHkr2cIYZ21xreyj3btNYR
-X-Google-Smtp-Source: AK7set8I+3jxDfAUEo7frBA3dq8huNi9KnbKovbnIOQ0/OQKEcAAicBWKJUD2c5b7PTUdIxHwYxf1SZVe1fSQaWvLtY=
-X-Received: by 2002:a5d:5951:0:b0:2ce:7219:4d64 with SMTP id
- e17-20020a5d5951000000b002ce72194d64mr373680wri.11.1678128725393; Mon, 06 Mar
- 2023 10:52:05 -0800 (PST)
+        with ESMTP id S229685AbjCFSzy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Mar 2023 13:55:54 -0500
+Received: from mx.sberdevices.ru (mx.sberdevices.ru [45.89.227.171])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 03D1538039;
+        Mon,  6 Mar 2023 10:54:15 -0800 (PST)
+Received: from s-lin-edge02.sberdevices.ru (localhost [127.0.0.1])
+        by mx.sberdevices.ru (Postfix) with ESMTP id 67EBA5FD0A;
+        Mon,  6 Mar 2023 21:53:54 +0300 (MSK)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sberdevices.ru;
+        s=mail; t=1678128834;
+        bh=DBAxHW4F3m3jlrgYwBiCU5dDtVa0huLSFWaR9cqGTRs=;
+        h=From:To:Subject:Date:Message-ID:Content-Type:MIME-Version;
+        b=lfAPjKXwtBgFoS4HZh2/2mc2A2jy4eQRXk93RoqpihXA0iCEC1Y0tpfZauzFzBpS5
+         yak3/vd5y4PIMROJz/27NsAI6ef8lydzbI8vY8VA5utcJDX6LkZ9edaRGZoooxT6Uq
+         MMRzfD42KDHwXrA2J7aPVB4X0CpOQ5gp9W9C/3VQaN/3/rlCAsNfypBtdhJnn3HsPP
+         9p0i1oFyFkhLXJ4xIf+UT7Gv9dCsHjnx0ROICcbMCHeMEh7euIf2PaKdlk24s60jzf
+         P9mxssoVa298PruybjgUgc0ATMhAYakHY5zRULTfTAeIV1jxqxAmATv+NTyJANte1d
+         gn7p2gq84C3EA==
+Received: from S-MS-EXCH02.sberdevices.ru (S-MS-EXCH02.sberdevices.ru [172.16.1.5])
+        by mx.sberdevices.ru (Postfix) with ESMTP;
+        Mon,  6 Mar 2023 21:53:52 +0300 (MSK)
+From:   Alexey Romanov <AVRomanov@sberdevices.ru>
+To:     Neil Armstrong <neil.armstrong@linaro.org>
+CC:     "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "khilman@baylibre.com" <khilman@baylibre.com>,
+        "jbrunet@baylibre.com" <jbrunet@baylibre.com>,
+        "martin.blumenstingl@googlemail.com" 
+        <martin.blumenstingl@googlemail.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-amlogic@lists.infradead.org" 
+        <linux-amlogic@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        kernel <kernel@sberdevices.ru>
+Subject: Re: [PATCH v1 1/2] arm64: dts: meson-a1: add gpio_intc node
+Thread-Topic: [PATCH v1 1/2] arm64: dts: meson-a1: add gpio_intc node
+Thread-Index: AQHZNxDMFNGdYZWqIECM18Y2pLjN2K7E0tUAgClGs4A=
+Date:   Mon, 6 Mar 2023 18:53:52 +0000
+Message-ID: <20230306185324.2n65uw3uqgtnc5vx@cab-wsm-0029881.sigma.sbrf.ru>
+References: <20230202141520.40003-1-avromanov@sberdevices.ru>
+ <3a06d80c-7f52-2c5c-840e-09a0a08400f4@linaro.org>
+In-Reply-To: <3a06d80c-7f52-2c5c-840e-09a0a08400f4@linaro.org>
+Accept-Language: ru-RU, en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [172.16.0.25]
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <D18ECF9035574649BCC96986028AD074@sberdevices.ru>
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-References: <20230301082552.274331-1-alexghiti@rivosinc.com> <CAK9=C2XAOKbyrbOnDP1GzW1VyO-f-V-oEVcp+PhGHeHKFh4C6A@mail.gmail.com>
-In-Reply-To: <CAK9=C2XAOKbyrbOnDP1GzW1VyO-f-V-oEVcp+PhGHeHKFh4C6A@mail.gmail.com>
-From:   Alexandre Ghiti <alexghiti@rivosinc.com>
-Date:   Mon, 6 Mar 2023 19:51:54 +0100
-Message-ID: <CAHVXubj9sCEuANsVe0N7YRMg8OPx_eALZfy0vERKU9P6QUDM0Q@mail.gmail.com>
-Subject: Re: [PATCH v6 0/2] riscv: Use PUD/P4D/PGD pages for the linear mapping
-To:     Anup Patel <apatel@ventanamicro.com>
-Cc:     Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+X-KSMG-Rule-ID: 4
+X-KSMG-Message-Action: clean
+X-KSMG-AntiSpam-Status: not scanned, disabled by settings
+X-KSMG-AntiSpam-Interceptor-Info: not scanned
+X-KSMG-AntiPhishing: not scanned, disabled by settings
+X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 1.1.2.30, bases: 2023/03/06 16:19:00 #20919562
+X-KSMG-AntiVirus-Status: Clean, skipped
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Anup,
-
-On Mon, Mar 6, 2023 at 5:33=E2=80=AFPM Anup Patel <apatel@ventanamicro.com>=
- wrote:
->
-> On Wed, Mar 1, 2023 at 1:56=E2=80=AFPM Alexandre Ghiti <alexghiti@rivosin=
-c.com> wrote:
-> >
-> > This patchset intends to improve tlb utilization by using hugepages for
-> > the linear mapping.
-> >
-> > base-commit-tag: v6.2-rc7
-> >
-> > v6:
-> > - quiet LLVM warning by casting phys_ram_base into an unsigned long
-> >
-> > v5:
-> > - Fix nommu builds by getting rid of riscv_pfn_base in patch 1, thanks
-> >   Conor
-> > - Add RB from Andrew
-> >
-> > v4:
-> > - Rebase on top of v6.2-rc3, as noted by Conor
-> > - Add Acked-by Rob
-> >
-> > v3:
-> > - Change the comment about initrd_start VA conversion so that it fits
-> >   ARM64 and RISCV64 (and others in the future if needed), as suggested
-> >   by Rob
-> >
-> > v2:
-> > - Add a comment on why RISCV64 does not need to set initrd_start/end th=
-at
-> >   early in the boot process, as asked by Rob
-> >
-> > Alexandre Ghiti (2):
-> >   riscv: Get rid of riscv_pfn_base variable
-> >   riscv: Use PUD/P4D/PGD pages for the linear mapping
->
-> I tried this series but it is getting stuck after reaching user space.
->
-> Does this series require some other dependent patches ?
-
-No it should not. Let me take a look: what's your config and the base commi=
-t?
-
->
-> Regards,
-> Anup
->
-> >
-> >  arch/riscv/include/asm/page.h | 19 +++++++++++++++++--
-> >  arch/riscv/mm/init.c          | 28 ++++++++++++++++++----------
-> >  arch/riscv/mm/physaddr.c      | 16 ++++++++++++++++
-> >  drivers/of/fdt.c              | 11 ++++++-----
-> >  4 files changed, 57 insertions(+), 17 deletions(-)
-> >
-> > --
-> > 2.37.2
-> >
+SGVsbG8sIE5laWwhDQoNCk9uIFdlZCwgRmViIDA4LCAyMDIzIGF0IDAxOjM0OjA0UE0gKzAxMDAs
+IE5laWwgQXJtc3Ryb25nIHdyb3RlOg0KPiBMZSAwMi8wMi8yMDIzIMOgIDE1OjE1LCBBbGV4ZXkg
+Um9tYW5vdiBhIMOpY3JpdMKgOg0KPiA+IEFkZCBncGlvIGludGVycnVwdCBjb250cm9sbGVyIG5v
+ZGUuDQo+ID4gDQo+ID4gU2lnbmVkLW9mZi1ieTogQWxleGV5IFJvbWFub3YgPGF2cm9tYW5vdkBz
+YmVyZGV2aWNlcy5ydT4NCj4gPiAtLS0NCj4gPiAgIGFyY2gvYXJtNjQvYm9vdC9kdHMvYW1sb2dp
+Yy9tZXNvbi1hMS5kdHNpIHwgMTAgKysrKysrKysrKw0KPiA+ICAgMSBmaWxlIGNoYW5nZWQsIDEw
+IGluc2VydGlvbnMoKykNCj4gPiANCj4gPiBkaWZmIC0tZ2l0IGEvYXJjaC9hcm02NC9ib290L2R0
+cy9hbWxvZ2ljL21lc29uLWExLmR0c2kgYi9hcmNoL2FybTY0L2Jvb3QvZHRzL2FtbG9naWMvbWVz
+b24tYTEuZHRzaQ0KPiA+IGluZGV4IDYyNjhjMzIzYTgxMC4uYTA0ZGRmMGY0Y2QzIDEwMDY0NA0K
+PiA+IC0tLSBhL2FyY2gvYXJtNjQvYm9vdC9kdHMvYW1sb2dpYy9tZXNvbi1hMS5kdHNpDQo+ID4g
+KysrIGIvYXJjaC9hcm02NC9ib290L2R0cy9hbWxvZ2ljL21lc29uLWExLmR0c2kNCj4gPiBAQCAt
+MTU4LDYgKzE1OCwxNiBAQCBjbGtjX3BsbDogcGxsLWNsb2NrLWNvbnRyb2xsZXJAN2M4MCB7DQo+
+ID4gICAJCQkJCSA8JmNsa2NfcGVyaXBocyBDTEtJRF9YVEFMX0hJRklQTEw+Ow0KPiA+ICAgCQkJ
+CWNsb2NrLW5hbWVzID0gInh0YWxfZml4cGxsIiwgInh0YWxfaGlmaXBsbCI7DQo+ID4gICAJCQl9
+Ow0KPiA+ICsNCj4gPiArCQkJZ3Bpb19pbnRjOiBpbnRlcnJ1cHQtY29udHJvbGxlckAwNDQwIHsN
+Cj4gPiArCQkJCWNvbXBhdGlibGUgPSAiYW1sb2dpYyxtZXNvbi1hMS1ncGlvLWludGMiLA0KPiA+
+ICsJCQkJCSAgICAgImFtbG9naWMsbWVzb24tZ3Bpby1pbnRjIjsNCj4gPiArCQkJCXJlZyA9IDww
+eDAgMHgwNDQwIDB4MCAweDE0PjsNCj4gPiArCQkJCWludGVycnVwdC1jb250cm9sbGVyOw0KPiA+
+ICsJCQkJI2ludGVycnVwdC1jZWxscyA9IDwyPjsNCj4gPiArCQkJCWFtbG9naWMsY2hhbm5lbC1p
+bnRlcnJ1cHRzID0NCj4gPiArCQkJCQk8NDkgNTAgNTEgNTIgNTMgNTQgNTUgNTY+Ow0KPiA+ICsJ
+CQl9Ow0KPiA+ICAgCQl9Ow0KPiA+ICAgCQlnaWM6IGludGVycnVwdC1jb250cm9sbGVyQGZmOTAx
+MDAwIHsNCj4gDQo+IFJldmlld2VkLWJ5OiBOZWlsIEFybXN0cm9uZyA8bmVpbC5hcm1zdHJvbmdA
+bGluYXJvLm9yZz4NCj4gDQo+IA0KPiBJJ2xsIHRha2UgaXQgb25jZSB2Ni4zLXJjMSBpcyB0YWdn
+ZWQuDQo+IA0KPiANCj4gVGhhbmtzLA0KPiANCj4gTmVpbA0KDQp2Ni4zIGlzIHRhZ2dlZCwgYnV0
+IHdlIGRpZG4ndCBmaW5kIG15IHBhdGNoIGluIEFtbG9naWMgYnJhbmNoLg0KDQpEaWQgeW91IGhh
+cHBlbiB0byBmb3JnZXQgYWJvdXQgaGltPw0KDQotLSANClRoYW5rIHlvdSwNCkFsZXhleQ==
