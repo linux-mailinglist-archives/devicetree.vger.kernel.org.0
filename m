@@ -2,116 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 20D696AD105
-	for <lists+devicetree@lfdr.de>; Mon,  6 Mar 2023 23:04:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 00F486AD10A
+	for <lists+devicetree@lfdr.de>; Mon,  6 Mar 2023 23:04:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229628AbjCFWD6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 Mar 2023 17:03:58 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57956 "EHLO
+        id S229811AbjCFWEY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 Mar 2023 17:04:24 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58548 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229755AbjCFWD5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Mar 2023 17:03:57 -0500
-Received: from mail-4022.proton.ch (mail-4022.proton.ch [185.70.40.22])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AB768367E6
-        for <devicetree@vger.kernel.org>; Mon,  6 Mar 2023 14:03:56 -0800 (PST)
-Date:   Mon, 06 Mar 2023 22:03:49 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=connolly.tech;
-        s=protonmail; t=1678140234; x=1678399434;
-        bh=OTDepwlsOdLgprucsSOriozVDNnd/jcEVBfUOz9Dh+A=;
-        h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
-         Feedback-ID:From:To:Cc:Date:Subject:Reply-To:Feedback-ID:
-         Message-ID:BIMI-Selector;
-        b=LzdQQ8oY/Ukfzb2VBvlugRtJkjCLGNjiCoRNuGa6mSM0RIe6N03DUl1OXPbzIB0CL
-         zNVvuEs3icrrDVWc2/jrLx2sqBm+iWixV4WWmpqCcVMXL2z0MEyrp8+MJ6Ik9A1klb
-         2aMpH77AiFJTeE6IsalUySLkdDURRgFFvfpuTBJk=
-To:     Gergo Koteles <soyer@irl.hu>, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-From:   Caleb Connolly <caleb@connolly.tech>
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] arm64: dts: qcom: sdm845-oneplus-common: add Hall sensor
-Message-ID: <940dec11-dbcb-d6df-3722-0375bfe86508@connolly.tech>
-In-Reply-To: <20230306174147.185239-1-soyer@irl.hu>
-References: <20230306174147.185239-1-soyer@irl.hu>
-Feedback-ID: 10753939:user:proton
+        with ESMTP id S229805AbjCFWEY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Mar 2023 17:04:24 -0500
+Received: from mail-yb1-xb34.google.com (mail-yb1-xb34.google.com [IPv6:2607:f8b0:4864:20::b34])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9199C37B5D
+        for <devicetree@vger.kernel.org>; Mon,  6 Mar 2023 14:04:22 -0800 (PST)
+Received: by mail-yb1-xb34.google.com with SMTP id y144so9687038yby.12
+        for <devicetree@vger.kernel.org>; Mon, 06 Mar 2023 14:04:22 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1678140262;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=cj4SlGol6U5c/Lr/TI0kdwQqKkOnoBxkEowA782E81I=;
+        b=cj7ECO5tujuJz/Nv/pvwK/z+E/6PFURiEjAL8ZP6rwxHBj4TymSexHzYdOgSjbwSDg
+         MwQKGhMdlya1ElMltvorZEfo6ZJ73Ip6mNFYPgFoZG3RBG9n8vd8aO3gFOKxb4hLKtcj
+         5UurvCPm2SDS+D03MpgZtk7gpME+iyTgrrdpbUq4a9UamJ4XMWvLnKuADHOuTqCeur8n
+         pzsgEAn2H6bn9WO7y2PbUC5fQdieXYo9qRfN9qAaGlvD+3LwzrYpu2Anrpzsvin4/kIS
+         bCZtYTtSuMj3T6uNjKtmD1D6ZC3ueRRTkRQsADXbaO5VEWWe1Fb3pChYkPpvHmdgyQqM
+         +WbA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1678140262;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=cj4SlGol6U5c/Lr/TI0kdwQqKkOnoBxkEowA782E81I=;
+        b=IHm5ofGGSW9blQt+LQhI4UyOm6j8Fu1gfdSJai8RfRzUTdr/DWl7nJKtoDhqOir9cU
+         kEC8ac6St46RlO3Nq2J81pzJG1+YeFp/4/V8vlvvHMJLfoLvDS97qMUoNxyi32cQKwkp
+         adp9N87rNwG7EFQja5G4SxKTOodbKjH9prIDzjYjuHheuPM8RR8o8CczMRV5T4tXJ+er
+         RgND+80WlGrKhJe4E28dpW9A54BjE9OHAz+tZdqitz0EAsORI0htebVAjCTcmc5FgRbR
+         i+VmJ0vUrkKii2tqXPFUFKuJLCU1Um5APRQmHO6c9S7W/h22LqFGjGb92C+z2b5oX97h
+         0C4A==
+X-Gm-Message-State: AO0yUKU+bxSjU3Zbz2vQf04OezLoKcdrnD9mNRS6eYQejqXDOOlpVGFc
+        TdhG50oeQtQvbZgcsydS5BbV0LLW5Jv3xkDHpgbfhQ==
+X-Google-Smtp-Source: AK7set+wFCsgXgUYIDGEpMHMB73UyMnPBcZS5Za+NjqsbNmPAPmuIolhDFJR/AUEXYiry/T4wHPpmiOkMAbODo6SuV8=
+X-Received: by 2002:a25:9281:0:b0:b0a:7108:71e9 with SMTP id
+ y1-20020a259281000000b00b0a710871e9mr3142078ybl.4.1678140261781; Mon, 06 Mar
+ 2023 14:04:21 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+References: <20230306191535.1917656-1-sean.anderson@seco.com> <20230306191535.1917656-4-sean.anderson@seco.com>
+In-Reply-To: <20230306191535.1917656-4-sean.anderson@seco.com>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Mon, 6 Mar 2023 23:04:10 +0100
+Message-ID: <CACRpkdZ-adsE1siz+MKvewNPoBLfwqhT_EjwDue3N9K9n0ET3A@mail.gmail.com>
+Subject: Re: [PATCH v10 03/13] dt-bindings: Convert gpio-mmio to yaml
+To:     Sean Anderson <sean.anderson@seco.com>
+Cc:     Vinod Koul <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@kernel.org>,
+        linux-phy@lists.infradead.org,
+        Madalin Bucur <madalin.bucur@nxp.com>,
+        linuxppc-dev@lists.ozlabs.org, devicetree@vger.kernel.org,
+        Ioana Ciornei <ioana.ciornei@nxp.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Camelia Alexandra Groza <camelia.groza@nxp.com>,
+        linux-arm-kernel@lists.infradead.org,
+        Bagas Sanjaya <bagasdotme@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Bartosz Golaszewski <brgl@bgdev.pl>,
+        =?UTF-8?Q?Fern=C3=A1ndez_Rojas?= <noltari@gmail.com>,
+        Jonas Gorski <jonas.gorski@gmail.com>,
+        linux-gpio@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Sean,
 
+thanks for doing this. I never got around to because time.
 
-On 06/03/2023 17:41, Gergo Koteles wrote:
-> Enable the Hall effect sensor (flip cover) for OnePlus 6/6T.
-> The GPIO is mapped to SW_LID events as in msm8916, msm8994,
-> msm8998 devices.
->
-> Signed-off-by: Gergo Koteles <soyer@irl.hu>
+On Mon, Mar 6, 2023 at 8:16=E2=80=AFPM Sean Anderson <sean.anderson@seco.co=
+m> wrote:
 
-Reviewed-by: Caleb Connolly <caleb@connolly.tech>
-> ---
->  .../boot/dts/qcom/sdm845-oneplus-common.dtsi  | 25 +++++++++++++++++++
->  1 file changed, 25 insertions(+)
+> This is a generic binding for simple MMIO GPIO controllers. Although we
+> have a single driver for these controllers, they were previously spread
+> over several files. Consolidate them. The register descriptions are
+> adapted from the comments in the source. There is no set order for the
+> registers, so I have not specified one.
 >
-> diff --git a/arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi b/arch/a=
-rm64/boot/dts/qcom/sdm845-oneplus-common.dtsi
-> index 64638ea94db7..b01542d79ae2 100644
-> --- a/arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi
-> @@ -29,6 +29,23 @@ chosen {
->  =09=09stdout-path =3D "serial0:115200n8";
->  =09};
->
-> +=09gpio-hall-sensor {
-> +=09=09compatible =3D "gpio-keys";
-> +=09=09label =3D "Hall effect sensor";
-> +
-> +=09=09pinctrl-0 =3D <&hall_sensor_default>;
-> +=09=09pinctrl-names =3D "default";
-> +
-> +=09=09event-hall-sensor {
-> +=09=09=09gpios =3D <&tlmm 124 GPIO_ACTIVE_LOW>;
-> +=09=09=09label =3D "Hall Effect Sensor";
-> +=09=09=09linux,input-type =3D <EV_SW>;
-> +=09=09=09linux,code =3D <SW_LID>;
-> +=09=09=09linux,can-disable;
-> +=09=09=09wakeup-source;
-> +=09=09};
-> +=09};
-> +
->  =09gpio-keys {
->  =09=09compatible =3D "gpio-keys";
->  =09=09label =3D "Volume keys";
-> @@ -753,6 +770,14 @@ &usb_1_hsphy {
->  &tlmm {
->  =09gpio-reserved-ranges =3D <0 4>, <81 4>;
->
-> +=09hall_sensor_default: hall-sensor-default-state {
-> +=09=09pins =3D "gpio124";
-> +=09=09function =3D "gpio";
-> +=09=09drive-strength =3D <2>;
-> +=09=09bias-disable;
-> +=09=09input-enable;
-> +=09};
-> +
->  =09tri_state_key_default: tri-state-key-default-state {
->  =09=09pins =3D "gpio40", "gpio42", "gpio26";
->  =09=09function =3D "gpio";
-> --
-> 2.39.2
->
+> Signed-off-by: Sean Anderson <sean.anderson@seco.com>
+(...)
 
---
-Kind Regards,
-Caleb
+> +  compatible:
+> +    enum:
+> +      - brcm,bcm6345-gpio # Broadcom BCM6345 GPIO controller
+> +      - wd,mbl-gpio # Western Digital MyBook Live memory-mapped GPIO con=
+troller
+> +      - ni,169445-nand-gpio # National Instruments 169445 GPIO NAND cont=
+roller
 
+I think you can inline description: statements in the enum instead of
+the # hash comments, however IIRC you have to use oneOf and
+const: to do it, like I do in
+Documentation/devicetree/bindings/input/touchscreen/cypress,cy8ctma340.yaml
+but don't overinvest in this if it is cumbersome.
+
+Either way:
+Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
+
+Yours,
+Linus Walleij
