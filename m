@@ -2,128 +2,139 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 84A636ACD4A
-	for <lists+devicetree@lfdr.de>; Mon,  6 Mar 2023 19:57:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 95D216ACF31
+	for <lists+devicetree@lfdr.de>; Mon,  6 Mar 2023 21:31:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230043AbjCFS5D (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 Mar 2023 13:57:03 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60124 "EHLO
+        id S229579AbjCFUbU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 Mar 2023 15:31:20 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46006 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230058AbjCFS4t (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Mar 2023 13:56:49 -0500
-Received: from mail-pg1-x531.google.com (mail-pg1-x531.google.com [IPv6:2607:f8b0:4864:20::531])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2A425848F9
-        for <devicetree@vger.kernel.org>; Mon,  6 Mar 2023 10:55:25 -0800 (PST)
-Received: by mail-pg1-x531.google.com with SMTP id y19so6184696pgk.5
-        for <devicetree@vger.kernel.org>; Mon, 06 Mar 2023 10:55:25 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1678128916;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=R/SLFvJsUujuShQfZT5sk4tBl30biEXQxhjzUcMVQlY=;
-        b=actdtHBwAm2I4J/E5BvEwKoX3Pq87A+DLbO8chSzsJcKmsM238DQPiy1QauwFtHpJP
-         TQN+8jDKlP0M+FSbw1VvIL6kBkQoRLEByOHFG9ISAb7g529gCiSHkyEzcdtd0uLzVFBi
-         LV7+UFwuDsYtTrU5m9KxutxLZCZfBZB+T2HJcr2HRL5w3j2wD4tGOtWvG3Oi+VTD9XxE
-         AcSO2kGX6hwQ5H2bXXYFe3MEqLe66QtzoN8XQkPYnoAvXmfH3MDQ7rYx+iApoCwgRICz
-         p6YoJ5SMu57B7I+Bd2svL6GfnFkyxTQDIIWkjcumMS7fT9vkl5E9SaTXdzh1Td5B/W4T
-         s0Rw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678128916;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=R/SLFvJsUujuShQfZT5sk4tBl30biEXQxhjzUcMVQlY=;
-        b=zAlyePUHtBw9UJ3ON7guMX2eFUJwwyRO4YeuwWxXlTVSfdx27x1jy6bsLB5idhqspE
-         vLccIwcJd4r3d/pFRGDoOEqQhQVJDsgCMqbHYpOeWvDtz83GxLuV+KsaZojlMQi+HUQN
-         +gX+X4jRGApcLGQQlGd4PWHqIt1rQT6koOkqvtRbbmImjDZLNOb3VKv+8EH/82gUAZcs
-         eNN63pbnRNtr9zaMWNxf/xuLUvrGLMf/JGJIQPWt2szncupcbOuKCBQXxMAjL2j/vlRL
-         U/B4e9odVsnPU87UMBuEhKeuboxnfvlbiRT7FAwjgrXUx2LJ9j3PGAxfFkep+iljUB9X
-         Hnyw==
-X-Gm-Message-State: AO0yUKWma58JaXea+vYTD/HeZ8IQiBwiaYtaYPAa44JEIAQVA6GPhqxg
-        FlsHuLtm+uqEEpPfn43oyLb92AxIjFn1uu2GR9G18w==
-X-Google-Smtp-Source: AK7set9lhwqpVKZ4u2/ZN//+vl67fX5+f/0VMJrj/dzV8JrVkGMm8tkBCY24bEdB6+ZBXCEejqEt4MqRYNiG5s7KOIk=
-X-Received: by 2002:a65:6a85:0:b0:503:25af:f50d with SMTP id
- q5-20020a656a85000000b0050325aff50dmr4143071pgu.4.1678128916514; Mon, 06 Mar
- 2023 10:55:16 -0800 (PST)
+        with ESMTP id S230076AbjCFUbT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Mar 2023 15:31:19 -0500
+X-Greylist: delayed 20366 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Mon, 06 Mar 2023 12:31:16 PST
+Received: from 11.mo561.mail-out.ovh.net (11.mo561.mail-out.ovh.net [87.98.184.158])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EBED6474DD
+        for <devicetree@vger.kernel.org>; Mon,  6 Mar 2023 12:31:16 -0800 (PST)
+Received: from director5.ghost.mail-out.ovh.net (unknown [10.109.146.19])
+        by mo561.mail-out.ovh.net (Postfix) with ESMTP id D957B26619
+        for <devicetree@vger.kernel.org>; Mon,  6 Mar 2023 14:34:50 +0000 (UTC)
+Received: from ghost-submission-6684bf9d7b-c69ts (unknown [10.110.115.217])
+        by director5.ghost.mail-out.ovh.net (Postfix) with ESMTPS id 7145F1FDDB;
+        Mon,  6 Mar 2023 14:34:50 +0000 (UTC)
+Received: from RCM-web1.webmail.mail.ovh.net ([176.31.238.120])
+        by ghost-submission-6684bf9d7b-c69ts with ESMTPSA
+        id CPlUGgr6BWSpMwEA9+Jaug
+        (envelope-from <rafal@milecki.pl>); Mon, 06 Mar 2023 14:34:50 +0000
 MIME-Version: 1.0
-References: <20230223042133.26551-1-semen.protsenko@linaro.org>
- <167811290503.11716.15730246749418548221.b4-ty@linaro.org> <48c8a0cf-08dc-a831-33ef-3b8e32eef2d3@linaro.org>
-In-Reply-To: <48c8a0cf-08dc-a831-33ef-3b8e32eef2d3@linaro.org>
-From:   Sam Protsenko <semen.protsenko@linaro.org>
-Date:   Mon, 6 Mar 2023 12:55:05 -0600
-Message-ID: <CAPLW+4=9Vwxd4upa3j_cKtRrNyyx_XCz+TgOOziMguEonbHb0g@mail.gmail.com>
-Subject: Re: [PATCH v2 0/6] clk: samsung: exynos850: Add missing clocks for PM
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Chanwoo Choi <cw00.choi@samsung.com>,
-        Sylwester Nawrocki <s.nawrocki@samsung.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Chanho Park <chanho61.park@samsung.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Tomasz Figa <tomasz.figa@gmail.com>,
-        linux-arm-kernel@lists.infradead.org,
-        Stephen Boyd <sboyd@kernel.org>,
-        Alim Akhtar <alim.akhtar@samsung.com>,
-        linux-clk@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
-        Michael Turquette <mturquette@baylibre.com>,
-        David Virag <virag.david003@gmail.com>,
-        Sumit Semwal <sumit.semwal@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Date:   Mon, 06 Mar 2023 15:34:50 +0100
+From:   =?UTF-8?Q?Rafa=C5=82_Mi=C5=82ecki?= <rafal@milecki.pl>
+To:     Miquel Raynal <miquel.raynal@bootlin.com>
+Cc:     Michael Walle <michael@walle.cc>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        linux-kernel@vger.kernel.org,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Robert Marko <robert.marko@sartura.hr>,
+        Luka Perkov <luka.perkov@sartura.hr>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH 0/8] nvmem: Let layout drivers be modules
+In-Reply-To: <20230306152954.5b72154f@xps-13>
+References: <20230301152239.531194-1-miquel.raynal@bootlin.com>
+ <ee7923a8b5fa8358e6805d20df7d8049@walle.cc> <20230306143528.7407fda5@xps-13>
+ <73a04afaf658292c05ef27117c60b21d@milecki.pl>
+ <20230306151829.57c689b4@xps-13>
+ <0b94d38a25f5d8ea70f228213ba14fa4@milecki.pl>
+ <20230306152954.5b72154f@xps-13>
+User-Agent: Roundcube Webmail/1.4.13
+Message-ID: <55aec068346e75008d84587ac2dad40b@milecki.pl>
+X-Sender: rafal@milecki.pl
+X-Originating-IP: 194.187.74.233
+X-Webmail-UserID: rafal@milecki.pl
+Content-Type: text/plain; charset=UTF-8;
+ format=flowed
+Content-Transfer-Encoding: 8bit
+X-Ovh-Tracer-Id: 18017213262722804720
+X-VR-SPAMSTATE: OK
+X-VR-SPAMSCORE: -85
+X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrgedvhedrvddtkedgfeekucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuqfggjfdpvefjgfevmfevgfenuceurghilhhouhhtmecuhedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmnegfrhhlucfvnfffucdludehmdenucfjughrpeggfffhvfevufgjfhgfkfigihgtgfesthekjhdttderjeenucfhrhhomheptfgrfhgrlhcuofhilhgvtghkihcuoehrrghfrghlsehmihhlvggtkhhirdhplheqnecuggftrfgrthhtvghrnhepjedvlefguedthfefleehgeeftdeludeluedvgfeffeevhfevtdehteejteefheegnecukfhppeduvdejrddtrddtrddupdduleegrddukeejrdejgedrvdeffedpudejiedrfedurddvfeekrdduvddtnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehinhgvthepuddvjedrtddrtddruddpmhgrihhlfhhrohhmpeeorhgrfhgrlhesmhhilhgvtghkihdrphhlqedpnhgspghrtghpthhtohepuddprhgtphhtthhopeguvghvihgtvghtrhgvvgesvhhgvghrrdhkvghrnhgvlhdrohhrghdpoffvtefjohhsthepmhhoheeiuddpmhhouggvpehsmhhtphhouhht
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 6 Mar 2023 at 09:51, Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
->
-> On 06/03/2023 15:28, Krzysztof Kozlowski wrote:
-> > On Wed, 22 Feb 2023 22:21:27 -0600, Sam Protsenko wrote:
-> >> As a part of preparation for PM enablement in Exynos850 clock driver,
-> >> this patch series implements CMU_G3D, and also main gate clocks for AUD
-> >> and HSI CMUs. The series brings corresponding changes to bindings, the
-> >> driver and SoC dts file.
-> >>
-> >> Changes in v2:
-> >>   - Rebased all patches on top of the most recent soc/for-next tree
-> >>   - Added A-b and R-b tags
-> >>   - Minor fixes
-> >>
-> >> [...]
-> >
-> > Applied, thanks!
-> >
-> > [1/6] dt-bindings: clock: exynos850: Add Exynos850 CMU_G3D
-> >       https://git.kernel.org/krzk/linux/c/067ba1605806e52118bb598afb357718df9f0e19
-> > [2/6] dt-bindings: clock: exynos850: Add AUD and HSI main gate clocks
-> >       https://git.kernel.org/krzk/linux/c/e289665ed0d6df9fca3ebc128f1232d305e4600b
-> > [3/6] clk: samsung: clk-pll: Implement pll0818x PLL type
-> >       https://git.kernel.org/krzk/linux/c/a6feedab8ab9a9e4483deb0bcc87919d92c88b7e
-> > [4/6] clk: samsung: exynos850: Implement CMU_G3D domain
-> >       https://git.kernel.org/krzk/linux/c/c5704a56893b4e77e434597c7c53d878bb3073b0
-> > [5/6] clk: samsung: exynos850: Add AUD and HSI main gate clocks
-> >       https://git.kernel.org/krzk/linux/c/d8d12e0d079aff4b1d8079a0a55944c0596f1d67
-> > [6/6] arm64: dts: exynos: Add CMU_G3D node for Exynos850 SoC
-> >       https://git.kernel.org/krzk/linux/c/ad8f6ad9a4f219950df65731a8ff91baa022c4b0
->
-> And builds are broken. Please mention in cover letter or commit
-> dependencies and ordering...
->
+On 2023-03-06 15:29, Miquel Raynal wrote:
+> Hi Rafał,
+> 
+> rafal@milecki.pl wrote on Mon, 06 Mar 2023 15:23:50 +0100:
+> 
+>> On 2023-03-06 15:18, Miquel Raynal wrote:
+>> > Hi Rafał,
+>> >
+>> > rafal@milecki.pl wrote on Mon, 06 Mar 2023 14:57:03 +0100:
+>> >
+>> >> On 2023-03-06 14:35, Miquel Raynal wrote:
+>> >> > Hi Michael,
+>> >> >
+>> >> > michael@walle.cc wrote on Mon, 06 Mar 2023 14:01:34 +0100:
+>> >> >
+>> >> >> > Miquel Raynal (8):
+>> >> >> >   of: Fix modalias string generation
+>> >> >> >   of: Change of_device_get_modalias() main argument
+>> >> >> >   of: Create an of_device_request_module() receiving an OF node
+>> >> >> >   nvmem: core: Fix error path ordering
+>> >> >> >   nvmem: core: Handle the absence of expected layouts
+>> >> >> >   nvmem: core: Request layout modules loading
+>> >> >> >   nvmem: layouts: sl28vpd: Convert layout driver into a module
+>> >> >> >   nvmem: layouts: onie-tlv: Convert layout driver into a module
+>> >> >> >> With the fixes series [1] applied:
+>> >> >
+>> >> > Thanks for the series! Looks good to me. I believe both series can live
+>> >> > in separate tress, any reason why we would like to avoid this? I am > keen
+>> >> > to apply [1] into the mtd tree rather soon.
+>> >> >> Given past events with nvmem patches I'm against that.
+>> >> >> Let's wait for Srinivas to collect pending patches, let them spend a
+>> >> moment in linux-next maybe, ask Srinivas to send them to Greg early if
+>> >> he can. That way maybe you can merge Greg's branch (assuming he >> doesn't
+>> >> rebase).
+>> >
+>> > Just to be on the same page, we're talking about the mtd core fixups to
+>> > handle correctly probe deferrals in the nvmem side.
+>> >
+>> > Applying mtd patches then nvmem patches is totally fine in this order.
+>> > Applying nvmem patches and then mtd patches creates a range of commits
+>> > where some otp devices might have troubles probing if:
+>> > - a layout driver is used
+>> > - the driver is compiled as a module
+>> > - the driver is also not installed in an initramfs
+>> >
+>> > I was actually asking out loud whether we should care about this
+>> > commit range given the unlikelihood that someone would have troubles
+>> > with this while bisecting a linux-next kernel.
+>> >
+>> > So getting an immutable tag from Greg would not help. The opposite
+>> > might make sense though, and involves that I apply [1] to mtd/next
+>> > rather soon anyway, I guess?
+>> 
+>> The problem IIUC is nvmem.git / for-next containing broken code after
+>> adding nvmem stuff. That is unless Srinivas takes your patches in some
+>> way. Hopefully not by waiting for 6.4-rc1.
+> 
+> I don't follow. There will be nothing broken after applying the nvmem
+> patches, at least nothing more than today. I will apply the patches
+> provided by Michael, they fix existing issues, nothing related to the
+> nvmem changes. Just, it is easier to trigger these issues with the
+> nvmem series thanks to the probe deferral situations.
+> 
+> Both series can live on their own. If required I will produce an
+> immutable tag to Greg.
 
-Just checked all most recent commits on your for-next and next/clk
-branches. Seem to build fine for me. AFAIR I checked all patches in
-that series, and I guess there shouldn't be any issues if you apply
-those in the same order they are numbered inside the series. Or you
-mean you have some clash between different series? Anyways, I'm glad
-to help, but I'd need more details on where exactly the problem is (or
-maybe you already fixed it?).
+OK, it's me how didn't follow then.
 
-Thanks!
+I thought your mtd fixes are needed before applying nvmem stuff.
 
-> Best regards,
-> Krzysztof
->
+It sounds OK then.
