@@ -2,166 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 40B5D6ABD40
-	for <lists+devicetree@lfdr.de>; Mon,  6 Mar 2023 11:49:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BE8876ABD74
+	for <lists+devicetree@lfdr.de>; Mon,  6 Mar 2023 11:57:03 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229646AbjCFKte (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 Mar 2023 05:49:34 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57610 "EHLO
+        id S230016AbjCFK5C (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 Mar 2023 05:57:02 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38066 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229717AbjCFKtb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Mar 2023 05:49:31 -0500
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 29F0810401;
-        Mon,  6 Mar 2023 02:49:30 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1678099770; x=1709635770;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=OXqYMXl/hlgYZxIDFM1ZqZhMh7ad081WKSCNnyp9lLk=;
-  b=OctXOis3ZudZWeQN0tx5m78FfBbHOn0ki6njdk/pRu2VgcFqMOwPJqGV
-   uJH9+A+M1i35s2Hu04OSGhTXX9ezaq5ntWB4hvMR5xs/PW0lvY1imqHtd
-   QUCYOATg3ZrfxDgXn+EC20NXXWAGwx+35QnL/EQXJwL7jav1iBMhqkffl
-   aEENim2t3hkkbGG5Wx0P415YaN0LYZk7FRnOVT3Gf4Zv0sNjcAYK6qwuC
-   pk/znIikYGsGqfbT5Dehf4rgUIi0zVBWU9PdO6pFc7H8IhufykbVOxnDV
-   IjAcwauh+/Iz+NamX+FUIoECJxD+YbV/3z+I7PvWgNbcM7jOZ7ddN69lZ
-   w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10640"; a="363139478"
-X-IronPort-AV: E=Sophos;i="5.98,236,1673942400"; 
-   d="scan'208";a="363139478"
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
-  by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 06 Mar 2023 02:49:29 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10640"; a="1005343475"
-X-IronPort-AV: E=Sophos;i="5.98,236,1673942400"; 
-   d="scan'208";a="1005343475"
-Received: from smile.fi.intel.com ([10.237.72.54])
-  by fmsmga005.fm.intel.com with ESMTP; 06 Mar 2023 02:49:27 -0800
-Received: from andy by smile.fi.intel.com with local (Exim 4.96)
-        (envelope-from <andriy.shevchenko@linux.intel.com>)
-        id 1pZ8PF-00GJBT-1A;
-        Mon, 06 Mar 2023 12:49:25 +0200
-Date:   Mon, 6 Mar 2023 12:49:25 +0200
-From:   Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To:     Benjamin Tissoires <benjamin.tissoires@redhat.com>
-Cc:     Daniel Kaehn <kaehndan@gmail.com>,
-        Hans de Goede <hdegoede@redhat.com>, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, jikos@kernel.org,
-        bartosz.golaszewski@linaro.org, dmitry.torokhov@gmail.com,
-        devicetree@vger.kernel.org, linux-input@vger.kernel.org,
-        ethan.twardy@plexus.com
-Subject: Re: [PATCH v8 3/3] HID: cp2112: Fwnode Support
-Message-ID: <ZAXFNRuALYpXgL6F@smile.fi.intel.com>
-References: <20230227140758.1575-1-kaehndan@gmail.com>
- <20230227140758.1575-4-kaehndan@gmail.com>
- <Y/03to4XFXPwkGH1@smile.fi.intel.com>
- <CAP+ZCCe=f3AtxvC1Z6zPErMEG9BcnCOjApc26n_9yjq2+U72pw@mail.gmail.com>
- <Y/9oO1AE6GK6CQmp@smile.fi.intel.com>
- <20230302170554.q3426ii255735rzw@mail.corp.redhat.com>
+        with ESMTP id S229918AbjCFK5A (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Mar 2023 05:57:00 -0500
+Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 80EC224C92
+        for <devicetree@vger.kernel.org>; Mon,  6 Mar 2023 02:56:58 -0800 (PST)
+Received: by mail-lf1-x129.google.com with SMTP id g17so12149811lfv.4
+        for <devicetree@vger.kernel.org>; Mon, 06 Mar 2023 02:56:58 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1678100217;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=t16VJ8HN3i2Mxttb1V2YQz28AmL+/99D0f1GpXqEHuU=;
+        b=dLgujvQz4qltbrfDfuCNPQISB1tezs52IbxJi2ndkui64xQxlY9BXjNmX5CF/5dFXj
+         isBEqwL9n6chsJceaI3T21O/H5h65xzHGw0fo0rhJp1BthyyOc/HNWUX3PuFkbRaUccf
+         ig457BgwN/KZXySmsRCL+z52SAvT/NL0h3qVKw88cjjtVim7FYGALVekrnHrOde1peab
+         pw7XIxhG4NySGD69mYbpS3ppgdZouZoc9nnrPFLW0vn7bATDcgkjJmnABuRdVon8LzIO
+         hrEniqQIYnnSnz/x6YR+9U91qiTVrpUfkY4Pb8/rSAxRh6FqJEHs8sYrdJCB+43BTmEE
+         m8OA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1678100217;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=t16VJ8HN3i2Mxttb1V2YQz28AmL+/99D0f1GpXqEHuU=;
+        b=vGCMXqx0dfCaCzXfDwNwlV5spCMIlocqWgFetjmk+OMrz1PKYmFVL0FmjXexxnyA3P
+         AEgSBZ9Brm91sqNtLX1jPSu64mKkziAErKe6QbQXBw0PO20ZU+eML3L0zyxtVXkOrtRb
+         0VublexY7VmNCmUL2CXIGH7JwE7TWhrTnUTN5UH7e1bRzNMU/rvlJwD40ukB5ySXyX3F
+         KoAYqpj00MaiV+lnaZVkMrcC7xKY30ws6KoNX6iuPHOQJHN6dSGp3cxPP8dCFpKjY8lr
+         ws+5DZfOI5sd5Rpu7Jt6ixjIBY+rSreeTRLRvZKEFdPjdTnc2eVj5QMnkxgA3GMFPrVH
+         EDxg==
+X-Gm-Message-State: AO0yUKWPAbXPwFpRTn+ULEwWuRIfqMFZlYLskh0GilT1+xjZRkSIo6sK
+        LW2jCxGjSJYbRZ1CF21s+2wLwQ==
+X-Google-Smtp-Source: AK7set9BEwHzuIsRJnewmr9Wn1WXxKvRQG/F70MHUYG1zPBNs7JV7KHYTUD/Fz+kviavtjFnUqmA6Q==
+X-Received: by 2002:ac2:5dec:0:b0:4d6:df2e:16f6 with SMTP id z12-20020ac25dec000000b004d6df2e16f6mr2735079lfq.36.1678100216836;
+        Mon, 06 Mar 2023 02:56:56 -0800 (PST)
+Received: from [192.168.1.101] (abym99.neoplus.adsl.tpnet.pl. [83.9.32.99])
+        by smtp.gmail.com with ESMTPSA id g18-20020ac25392000000b004d19e442d53sm1576841lfh.249.2023.03.06.02.56.55
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 06 Mar 2023 02:56:56 -0800 (PST)
+Message-ID: <586bafd0-5ead-83d7-226f-d26e46d44c09@linaro.org>
+Date:   Mon, 6 Mar 2023 11:56:55 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230302170554.q3426ii255735rzw@mail.corp.redhat.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE
-        autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.8.0
+Subject: Re: [PATCH 04/11] arm64: dts: qcom: sdm845-db845c: drop SPI label
+Content-Language: en-US
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Melody Olvera <quic_molvera@quicinc.com>,
+        Souradeep Chowdhury <quic_schowdhu@quicinc.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20230305125954.209559-1-krzysztof.kozlowski@linaro.org>
+ <20230305125954.209559-4-krzysztof.kozlowski@linaro.org>
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <20230305125954.209559-4-krzysztof.kozlowski@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Mar 02, 2023 at 06:06:06PM +0100, Benjamin Tissoires wrote:
-> On Mar 01 2023, Andy Shevchenko wrote:
-> > On Tue, Feb 28, 2023 at 01:05:54PM -0600, Daniel Kaehn wrote:
 
-...
 
-> > [1]: https://stackoverflow.com/a/60855157/2511795
+On 5.03.2023 13:59, Krzysztof Kozlowski wrote:
+> The SPI controller nodes do not use/allow label property:
 > 
-> Thanks Andy for your help here, and thanks for that link.
+>   sdm845-db845c.dtb: spi@888000: Unevaluated properties are not allowed ('label' was unexpected)
 > 
-> I am trying to test Danny's patch as I want to use it for my HID CI,
-> being an owner of a CP2112 device myself.
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> ---
+Doesn't even seem to be used downstream, hm.
+
+Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+
+Konrad
+>  arch/arm64/boot/dts/qcom/sdm845-db845c.dts | 1 -
+>  1 file changed, 1 deletion(-)
 > 
-> The current setup is using out of the tree patches [2] which are
-> implementing a platform i2c-hid support and some manual addition of a
-> I2C-HID device on top of it. This works fine but gets busted every now
-> and then when the tree sees a change that conflicts with these patches.
-> 
-> So with Danny's series, I thought I could have an SSDT override to
-> declare that very same device instead of patching my kernel before
-> testing it.
-> 
-> Of course, it gets tricky because I need to run that under qemu.
-> 
-> I am currently stuck at the "sharing the firmware_node from usb with
-> HID" step and I'd like to know if you could help me.
-> 
-> On my laptop, if I plug the CP2112 (without using a USB hub), I can get:
-> 
-> $> ls -l /sys/bus/hid/devices/0003:10C4:EA90.*
->   lrwxrwxrwx. 1 root root 0 Mar  2 17:02 /sys/bus/hid/devices/0003:10C4:EA90.0079 -> ../../../devices/pci0000:00/0000:00:14.0/usb2/2-9/2-9:1.0/0003:10C4:EA90.0079
-> $> ls -l /sys/bus/usb/devices/2-9*/firmware_node
->   lrwxrwxrwx. 1 root root 0 Mar  2 17:03 /sys/bus/usb/devices/2-9:1.0/firmware_node -> ../../../../../LNXSYSTM:00/LNXSYBUS:00/PNP0A08:00/device:15/device:16/device:25
->   lrwxrwxrwx. 1 root root 0 Mar  2 17:02 /sys/bus/usb/devices/2-9/firmware_node -> ../../../../LNXSYSTM:00/LNXSYBUS:00/PNP0A08:00/device:15/device:16/device:25
-> 
-> So AFAIU the USB device is properly assigned a firmware node. My dsdt
-> also shows the "Device (RHUB)" and I guess everything is fine.
-
-Yes, so far so good.
-
-> However, playing with qemu is not so easy.
-> 
-> I am running qemu with the following arguments (well, almost because I
-> have a wrapper script on top of it and I also run the compiled kernel
-> from the current tree):
-> 
-> #> qemu-system-x86_64 -bios /usr/share/edk2/ovmf/OVMF_CODE.fd \
->                       -netdev user,id=hostnet0 \
->                       -device virtio-net-pci,netdev=hostnet0 \
->                       -m 4G \
->                       -enable-kvm \
->                       -cpu host \
->                       -device qemu-xhci -usb \
->                       -device 'usb-host,vendorid=0x10c4,productid=0xea90' \
->                       -cdrom ~/Downloads/Fedora-Workstation-Live-x86_64-37-1.7.iso
-
-Side question, where can I get those blobs from (EDKII and Fedora Live CD)?
-I'm using Debian unstable.
-
-> And this is what I get:
-> 
-> #> ls -l /sys/bus/hid/devices/0003:10C4:EA90.*
->   lrwxrwxrwx 1 root root 0 Mar  2 16:10 /sys/bus/hid/devices/0003:10C4:EA90.0001 -> ../../../devices/pci0000:00/0000:00:06.0/usb2/2-1/2-1:1.0/0003:10C4:EA90.0001
-> 
-> #> ls -l /sys/bus/usb/devices/2-1*/firmware_node
->   ls: cannot access '/sys/bus/usb/devices/2-1*/firmware_node': No such file or directory
-> 
-> Looking at the DSDT, I do not see any reference to the USB hub, so I
-> wonder if the firmware_node needs to be populated first in the DSDT.
-
-So, where QEMU takes DSDT (ACPI tables in general) from? Can you patch that?
-I believe that's the problem in qemu.
-
-> Also note that if I plug the CP2112 over a docking station, I lose the
-> firmware_node sysfs entries on the host too.
-
-This seems like a lack of firmware node propagating in the USB hub code in
-the Linux kernel.
-
-> Do you think it would be achievable to emulate that over qemu and use a
-> mainline kernel without patches?
-
-As long as qemu provides correct DSDT it should work I assume.
-
-> [2] https://gitlab.freedesktop.org/bentiss/gitlab-kernel-ci/-/tree/master/VM
-
--- 
-With Best Regards,
-Andy Shevchenko
-
-
+> diff --git a/arch/arm64/boot/dts/qcom/sdm845-db845c.dts b/arch/arm64/boot/dts/qcom/sdm845-db845c.dts
+> index d4866feef2c4..acd4f9ca6c09 100644
+> --- a/arch/arm64/boot/dts/qcom/sdm845-db845c.dts
+> +++ b/arch/arm64/boot/dts/qcom/sdm845-db845c.dts
+> @@ -819,7 +819,6 @@ can@0 {
+>  
+>  &spi2 {
+>  	/* On Low speed expansion */
+> -	label = "LS-SPI0";
+>  	status = "okay";
+>  };
+>  
