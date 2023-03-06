@@ -2,72 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A78E06AD212
-	for <lists+devicetree@lfdr.de>; Mon,  6 Mar 2023 23:54:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 652CD6AD219
+	for <lists+devicetree@lfdr.de>; Mon,  6 Mar 2023 23:56:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229680AbjCFWyV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 Mar 2023 17:54:21 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36100 "EHLO
+        id S229815AbjCFW4c (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 Mar 2023 17:56:32 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38174 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229718AbjCFWyU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Mar 2023 17:54:20 -0500
-Received: from mail-yb1-xb29.google.com (mail-yb1-xb29.google.com [IPv6:2607:f8b0:4864:20::b29])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 91DB737728
-        for <devicetree@vger.kernel.org>; Mon,  6 Mar 2023 14:54:18 -0800 (PST)
-Received: by mail-yb1-xb29.google.com with SMTP id n18so9792921ybm.10
-        for <devicetree@vger.kernel.org>; Mon, 06 Mar 2023 14:54:18 -0800 (PST)
+        with ESMTP id S229570AbjCFW4b (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Mar 2023 17:56:31 -0500
+Received: from mail-wr1-x431.google.com (mail-wr1-x431.google.com [IPv6:2a00:1450:4864:20::431])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1699851F9C
+        for <devicetree@vger.kernel.org>; Mon,  6 Mar 2023 14:56:30 -0800 (PST)
+Received: by mail-wr1-x431.google.com with SMTP id g3so10440416wri.6
+        for <devicetree@vger.kernel.org>; Mon, 06 Mar 2023 14:56:30 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1678143258;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=gbmLnGKrG3nA18MfvK9iBAHGPLTSeiBIXaYitNv/z88=;
-        b=tlraTyXREqtAP2UrVSR6YS/Kz1st5VpBCWQiVkWr3o5QUqtqy/SE+L6dqVLVmSr1JY
-         ZuRVOS3QTiuNHyIg6DhWv3LfolS1cl2JBLtWx96+el26Envpv0LZzQP2dv6EdDjdheqa
-         YcK/SCMWOtntTOomOIo0zQ+aP8lvu+wK2c/Db9f7oDgSehascET3tHrjTJVrhh9WVMJx
-         PrOMqEgEd3AFBCnRxVSOtCSHy06HvYQKO/5kXzFgQoMoc7Hbz9yCYpyVk8pxgUhKXC9O
-         CB46JteCnI/3BFNHfYCkVN3aOwoIJufPgZZOU7Nhz3VoV6ZUJcIyDHYMLtJWudXzO6Yq
-         cgHQ==
+        d=linaro.org; s=google; t=1678143388;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=oMs91jBxp5byb1ls4+Bz7qIbLmtcQaw3+WDyooyO6aI=;
+        b=ahEoQS5Wx3GBfvytSnMgrENh8dM/erW4qaKb76kVo+qwJQgfaeLyrFyAgIAxWMeF5X
+         t20iaGq0illSzXjwPx4k4s36ghi0qFqU/8UZK14rIdppH+seuThXB8OhoQihMwklwO6D
+         1wg0r/HYrqRCLv9THbJaFN2cLxAar1u/3jMvNPO477v8mnlvlQHzvPRvaT8w/gVHmHEm
+         GVQlG3qGeMC5kTSLlNgaPZM+ZCD2dEwpy5FhafrqtZreHg6p5Mhjhau0hOyCSnL0xTbP
+         8ms2gKXXdaV5FYJ52lSWPHU6mLgyP8a5oIhqsaRzl53ayiZ6G2DpZLmNZxSEVqlwEmF1
+         gDKw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678143258;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=gbmLnGKrG3nA18MfvK9iBAHGPLTSeiBIXaYitNv/z88=;
-        b=yha7CcZ1XUGBhuEqQpu0TJOz/uUT+1WQt3oql+59cT0vUsaiHMNAtnTC+tcw2bMO/B
-         K/+zHVCBPvm/h1c/38uS2ojVgvRoQ4ncNCERnCq4aeIVMAj5J5dnNipoc0LzZgTgcaVa
-         jS57LIesT1ba7y1pK45EYEw7XGJIDX6HfoKOAH8jkF+yYFwyRqP3u37Qh9xzdL1u+gS/
-         FWacSUaootQos+906Nm06eg9iyR9R0AQGmR9ZWFrV2wQlZppyF3vNaR2/mr9HX3hdfOx
-         dq13T62huREIaqSeSLixToMHeDWg2RXxiFE5OnuwTEQAeESMhSHOCk+hHl5nem4vqa1b
-         Uy+Q==
-X-Gm-Message-State: AO0yUKVq2DM9xFWa+/XCOxTHPI90tXeYFcMclVyJfAxDjqOJi5ubcWuJ
-        4RYVAUuOgYU2MZenAjTI7P83aqXSsarCJs+vO2K+lA==
-X-Google-Smtp-Source: AK7set+PS9GBBwkHRVoZNv3pbU3OyN55f5gv4I3Y/ZR1+5llyDjFZ1dQaKRUlmphEgQ/suPEtbmkMn19NMB2E4n+G7Y=
-X-Received: by 2002:a5b:b84:0:b0:ab8:1ed9:cfd2 with SMTP id
- l4-20020a5b0b84000000b00ab81ed9cfd2mr7420988ybq.5.1678143257824; Mon, 06 Mar
- 2023 14:54:17 -0800 (PST)
+        d=1e100.net; s=20210112; t=1678143388;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=oMs91jBxp5byb1ls4+Bz7qIbLmtcQaw3+WDyooyO6aI=;
+        b=4Yw3SYGTKhf/omN8G0xFxCcyWeWqehgh4KjYXKJNTJG+gsmt5BJDc+5BbSKb576tTD
+         R2kfp2FSA5lR9ry6flmnVQ2HQHGOUq17HUuqYaVVhJThDjU0cv0YNlTwD0ta00mKBMSy
+         Q0W02HvGicgL2jOfeQHrvmKWN5+M160x4trawExg8G+6pzqLA81wOkroLj4IGyhFD1mH
+         BconEeqYmEfIvl91LrpW+HceW4HqjfNzNaLn+nouwKbK42yc53jE0fSYZd9sBrUx88TK
+         0Ic32KaOAycq8u8tON5pnvPf66POygEq9cjAFT5JtbOcnTOV1vGP09WFnKfM4xA266H/
+         VjAQ==
+X-Gm-Message-State: AO0yUKVt7q5JvkxvPHC0boQ6Rukpp8vlLiMndk1RcryNYyIk7bSUJmYj
+        cJOhH87JKFAZgUWmR1o1hnYZVw==
+X-Google-Smtp-Source: AK7set89+YfS8ddABA3YzaCxy8e8Cn5D9/WQNPz7W4DLSM17JrpGTTUhJPc4kvKltthEjn/ySDgwXA==
+X-Received: by 2002:a5d:56c9:0:b0:2c7:6ce2:bb37 with SMTP id m9-20020a5d56c9000000b002c76ce2bb37mr7701595wrw.29.1678143388534;
+        Mon, 06 Mar 2023 14:56:28 -0800 (PST)
+Received: from [192.168.0.162] (188-141-3-169.dynamic.upc.ie. [188.141.3.169])
+        by smtp.gmail.com with ESMTPSA id r22-20020a05600c435600b003eae73ee4a1sm11293813wme.17.2023.03.06.14.56.27
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 06 Mar 2023 14:56:28 -0800 (PST)
+Message-ID: <f4b3d8b1-bbe5-2c47-46a9-a33ebec2492f@linaro.org>
+Date:   Mon, 6 Mar 2023 22:56:26 +0000
 MIME-Version: 1.0
-References: <20230227205035.18551-1-git@apitzsch.eu> <20230227205035.18551-2-git@apitzsch.eu>
-In-Reply-To: <20230227205035.18551-2-git@apitzsch.eu>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Mon, 6 Mar 2023 23:54:06 +0100
-Message-ID: <CACRpkdbZCO556z0WvR81KU-07kt5h6no4gvEh0HxvqSwY47Sbw@mail.gmail.com>
-Subject: Re: [PATCH 2/2] Input: atmel_mxt_ts - support capacitive keys
-To:     =?UTF-8?Q?Andr=C3=A9_Apitzsch?= <git@apitzsch.eu>
-Cc:     Nick Dyer <nick@shmanahar.org>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Nicolas Ferre <nicolas.ferre@microchip.com>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Claudiu Beznea <claudiu.beznea@microchip.com>,
-        linux-input@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.8.0
+Subject: Re: [PATCH v7 5/5] arm64: dts: qcom: Add msm8939 Sony Xperia M4 Aqua
+Content-Language: en-US
+To:     Stephan Gerhold <stephan@gerhold.net>,
+        Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+Cc:     agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
+        djakov@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, linux-arm-msm@vger.kernel.org,
+        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, benl@squareup.com,
+        shawn.guo@linaro.org, fabien.parent@linaro.org, leo.yan@linaro.org,
+        dmitry.baryshkov@linaro.org
+References: <20230223153655.262783-1-bryan.odonoghue@linaro.org>
+ <20230223153655.262783-6-bryan.odonoghue@linaro.org>
+ <ZAYRUIg0SwKOnBGx@gerhold.net>
+From:   Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+In-Reply-To: <ZAYRUIg0SwKOnBGx@gerhold.net>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -76,16 +82,19 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Feb 27, 2023 at 9:50=E2=80=AFPM Andr=C3=A9 Apitzsch <git@apitzsch.e=
-u> wrote:
+On 06/03/2023 16:14, Stephan Gerhold wrote:
+> There are*a lot*  of unused pinctrl entries here. If you don't reference
+> them anywhere (by referencing them via label) they just waste space in
+> the device tree. The GPIOs will still remain unconfigured.
+> 
+> Please save them locally for later usage and only keep the used entries.
+> This will ease review of upcoming patches since these are better
+> understandable together with the actual device node making use of them.
 
-> Add support for touch keys found in some Atmel touch controller
-> configurations.
->
-> Signed-off-by: Andr=C3=A9 Apitzsch <git@apitzsch.eu>
+TBH, I really would have rather received this comment @ version 1, 
+before doing all the work to sanitise the incoming downstream DTS.
 
-Looks good to me.
-Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
+But sure, no problem, I'll drop.
 
-Yours,
-Linus Walleij
+---
+bod
