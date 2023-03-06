@@ -2,72 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E0E376AB88C
-	for <lists+devicetree@lfdr.de>; Mon,  6 Mar 2023 09:41:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2E7C76AB892
+	for <lists+devicetree@lfdr.de>; Mon,  6 Mar 2023 09:41:58 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230004AbjCFIlR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 Mar 2023 03:41:17 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43574 "EHLO
+        id S229749AbjCFIl4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 Mar 2023 03:41:56 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44450 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229457AbjCFIlQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Mar 2023 03:41:16 -0500
-Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A65021CAF6
-        for <devicetree@vger.kernel.org>; Mon,  6 Mar 2023 00:41:14 -0800 (PST)
-Received: by mail-ed1-x533.google.com with SMTP id j11so15660348edq.4
-        for <devicetree@vger.kernel.org>; Mon, 06 Mar 2023 00:41:14 -0800 (PST)
+        with ESMTP id S229940AbjCFIlz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Mar 2023 03:41:55 -0500
+Received: from mail-ed1-x529.google.com (mail-ed1-x529.google.com [IPv6:2a00:1450:4864:20::529])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B436821299
+        for <devicetree@vger.kernel.org>; Mon,  6 Mar 2023 00:41:53 -0800 (PST)
+Received: by mail-ed1-x529.google.com with SMTP id s11so35169815edy.8
+        for <devicetree@vger.kernel.org>; Mon, 06 Mar 2023 00:41:53 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
+        d=linaro.org; s=google; t=1678092112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=s0hvCUS2RnuyKyKcSKPMu82+TR7YTLGF+96x9KM1C2g=;
-        b=Oieuslgh80ioeucxJfkCVgFiWEZcE+/HZugeV+So9Pw3NECRxw+KIbOz21P6uRN0V1
-         YZCeQ1XSZv+RiZZODXnqhLVqe0ikVw6rMd2jwtcyhWHh1qtNCxyw3mkl5Wy5iio2AFBk
-         zV0ykIyoqUbqhdTeY9NuKt+43NepdSxh6zC7RBowcgZBkO3Y8ZI8KieksO/KKmdj40Iy
-         wBQIxSXwGtZLOpL6MM+t5X1UIFBtFFO/La/tmS3BeBq0xi6DBv0/EmVJrXmWY8CmTjcw
-         Ak7qGYDl+vq838sDk9+H+BYKKNbqeHquYgmygTXNA6x3ehGWy4OuyrtjSXURSV68Dxt1
-         z5OA==
+        bh=vC2UMy/rdFsJj0D2BlHZptJUd1EfeaZsqvifezHhP80=;
+        b=GlyLxJXQRtZVPo3XhuyN75NML1JaCyxuD2Mi4XOKvRip5DG/fEuki7mxlqpd9cpR1f
+         rUtTWXVvab9MczuD0fo5h8EWCHN/gcPmnwsjc10LUtFbCSXv2fJgyKn45jCvrxzOkPYf
+         E8hnWuwayUZcydUaXpXx16PT5hWrEjr3h6cyACAteAvczjOHzU4rv8MBYOuwBwAyCP8K
+         N33X1gkbC+DYrhrqgKV89tOPjv0/Ec9q6neM/BDELQNNCq8iX6VK+BxcA2wfirzuLX+G
+         4w3VUj+sLeR8jyCHqgWv6xzEYjO+8ZRoNfsrOrnS3MAxacWSZDVNm6vqVP02FwmxyFaB
+         etuQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
+        d=1e100.net; s=20210112; t=1678092112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=s0hvCUS2RnuyKyKcSKPMu82+TR7YTLGF+96x9KM1C2g=;
-        b=Yf66yL5TYGS4C9gcQ9VdvM0xzbvENNAsU/vQ+3F5RvWYv2SPyAvAMHMP3j9+yF+d5Y
-         KYMDQ7JubHdJo4EBylVucIf/FV5TJT6PB4QQw9h1pgxrmtyD659eX+LDoByqgB4UJ/kf
-         0hNjqRrL3r+yzA5iIbuckd7t/iJphzH3j6LCf0Bic9MPlAg/mRHaTrJ7+4VrDDuEaq60
-         ebzyOTWyq8h8yXwRyfzX/chfh0UNCcK1GkznTaxwDK0mKFUEky+DY9YC/B8Y2cl4wb+Q
-         3f/XypiR4mNxBUvcz/VzystlAJB4VSd+L30l4IIrmrUd0S+qjyhdnV3+Xu4/RCSyU6eb
-         YOMQ==
-X-Gm-Message-State: AO0yUKUeexeoIojLDxdIu9ZzpzxqEv9f/sEoE89X6ngplEP/JlgjdnDt
-        +hb8/oGUhoWVg/V+dMQOfhM6Ww==
-X-Google-Smtp-Source: AK7set+yE7GU1CBgum6GZtjjr6iJIj0W3qxiDFILIz/saxdFocyofEegQHo8SY3j/QZJyEDTv34Y4g==
-X-Received: by 2002:aa7:c14e:0:b0:4ac:d2cd:81c7 with SMTP id r14-20020aa7c14e000000b004acd2cd81c7mr9999053edp.5.1678092073290;
-        Mon, 06 Mar 2023 00:41:13 -0800 (PST)
-Received: from [10.203.3.194] ([185.202.34.81])
-        by smtp.gmail.com with ESMTPSA id b2-20020a50b402000000b004be64b284b2sm4768770edh.3.2023.03.06.00.41.12
+        bh=vC2UMy/rdFsJj0D2BlHZptJUd1EfeaZsqvifezHhP80=;
+        b=5wGHCUBPZv57bTnK5zdU4qja6D+OXnLNlpxC+B/phfecf+n20kD5EIgTyRWH1EI2Xs
+         5tuedhL6Gw6VuvghXOisvFxHEUFEjB4rq2Z2P6NYnqF+kcrhQCY5v12kepFjBccRG2D8
+         qzXZm7VJKCswhypbMbCu4HFV4XWisCzBQ7/4hVjgHLCVbI4xEVYU766Ibn46sAzEL6qx
+         Spgp4bRPKB885CUldt6jEXZl3q9hDhgmrY6AHnfzULN2ZpfhAWCY2PcLoXjZA83F269k
+         OITCLkGq5wFHyPfhJqjmjJBZU9XCvvgkeEF6RCnHn/Aez9x5UhvckJ68GKsj/w3TTPH7
+         POQQ==
+X-Gm-Message-State: AO0yUKUBHuAJHuFpFRTVvgcuA/zpKA3oTrxNec3sWj1xWeR6ErDpt9gZ
+        Zjinr8v1f+0sijx1Q4LWb6ijRg==
+X-Google-Smtp-Source: AK7set/LZG0DGhn2WM9G7iZfaL/U03tBL9IUollWkti6wvZuDTVbK9E23k3Dq9iI1GyC/hL+s7VoOg==
+X-Received: by 2002:a17:906:b14f:b0:8b1:7de9:b38c with SMTP id bt15-20020a170906b14f00b008b17de9b38cmr9381185ejb.52.1678092112251;
+        Mon, 06 Mar 2023 00:41:52 -0800 (PST)
+Received: from ?IPV6:2a02:810d:15c0:828:d85d:5a4b:9830:fcfe? ([2a02:810d:15c0:828:d85d:5a4b:9830:fcfe])
+        by smtp.gmail.com with ESMTPSA id c15-20020a170906170f00b008c6c47f59c1sm4208292eje.48.2023.03.06.00.41.51
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 06 Mar 2023 00:41:12 -0800 (PST)
-Message-ID: <302654ee-3ecb-2274-af1a-9b58f7d0f49d@linaro.org>
-Date:   Mon, 6 Mar 2023 10:41:12 +0200
+        Mon, 06 Mar 2023 00:41:51 -0800 (PST)
+Message-ID: <95d5b97c-ccdc-cede-a6d7-8cc64086d62d@linaro.org>
+Date:   Mon, 6 Mar 2023 09:41:50 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.8.0
-Subject: Re: [PATCH 3/6] ARM: dts: qcom: sdx65: Add support for PCIe PHY
-Content-Language: en-GB
-To:     Rohit Agarwal <quic_rohiagar@quicinc.com>, agross@kernel.org,
-        andersson@kernel.org, konrad.dybcio@linaro.org, lee@kernel.org,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        mani@kernel.org, lpieralisi@kernel.org, kw@linux.com,
-        bhelgaas@google.com, manivannan.sadhasivam@linaro.org
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org
-References: <1678080302-29691-1-git-send-email-quic_rohiagar@quicinc.com>
- <1678080302-29691-4-git-send-email-quic_rohiagar@quicinc.com>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-In-Reply-To: <1678080302-29691-4-git-send-email-quic_rohiagar@quicinc.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Subject: Re: [PATCH v1 1/2] dt-bindings: gpio: add fcs,fxl6408-gpio binding
+ document
+Content-Language: en-US
+To:     Francesco Dolcini <francesco@dolcini.it>,
+        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org
+Cc:     Emanuele Ghidoli <emanuele.ghidoli@toradex.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <brgl@bgdev.pl>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-kernel@vger.kernel.org
+References: <20230306083446.41082-1-francesco@dolcini.it>
+ <20230306083446.41082-2-francesco@dolcini.it>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230306083446.41082-2-francesco@dolcini.it>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
@@ -79,63 +81,129 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 06/03/2023 07:24, Rohit Agarwal wrote:
-> Add devicetree support for PCIe PHY used in SDX65 platform. This PHY is
-> used by the PCIe EP controller.
+On 06/03/2023 09:34, Francesco Dolcini wrote:
+> From: Emanuele Ghidoli <emanuele.ghidoli@toradex.com>
 > 
-> Signed-off-by: Rohit Agarwal <quic_rohiagar@quicinc.com>
+> Add binding document for Fairchild FXL6408 GPIO expander.
+
+Subject: drop second/last, redundant "binding document". The
+"dt-bindings" prefix is already stating that these are bindings.
+
+> 
+> Signed-off-by: Emanuele Ghidoli <emanuele.ghidoli@toradex.com>
+
+Missing SoB.
+
 > ---
->   arch/arm/boot/dts/qcom-sdx65.dtsi | 32 ++++++++++++++++++++++++++++++++
->   1 file changed, 32 insertions(+)
+>  .../bindings/gpio/fcs,fxl6408-gpio.yaml       | 73 +++++++++++++++++++
+>  1 file changed, 73 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/gpio/fcs,fxl6408-gpio.yaml
 > 
-> diff --git a/arch/arm/boot/dts/qcom-sdx65.dtsi b/arch/arm/boot/dts/qcom-sdx65.dtsi
-> index b073e0c..246290d 100644
-> --- a/arch/arm/boot/dts/qcom-sdx65.dtsi
-> +++ b/arch/arm/boot/dts/qcom-sdx65.dtsi
-> @@ -292,6 +292,38 @@
->   			status = "disabled";
->   		};
->   
-> +		pcie0_phy: phy@1c07000 {
-> +			compatible = "qcom,sdx65-qmp-pcie-phy";
-> +			reg = <0x01c07000 0x1e4>;
-> +			#address-cells = <1>;
-> +			#size-cells = <1>;
-> +			ranges;
-> +			clocks = <&gcc GCC_PCIE_AUX_PHY_CLK_SRC>,
-> +				 <&gcc GCC_PCIE_CFG_AHB_CLK>,
-> +				 <&gcc GCC_PCIE_0_CLKREF_EN>,
-> +				 <&gcc GCC_PCIE_RCHNG_PHY_CLK>;
-> +			clock-names = "aux", "cfg_ahb", "ref", "refgen";
+> diff --git a/Documentation/devicetree/bindings/gpio/fcs,fxl6408-gpio.yaml b/Documentation/devicetree/bindings/gpio/fcs,fxl6408-gpio.yaml
+> new file mode 100644
+> index 000000000000..ccf946040d00
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/gpio/fcs,fxl6408-gpio.yaml
+> @@ -0,0 +1,73 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/gpio/fcs,fxl6408-gpio.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
-> +			resets = <&gcc GCC_PCIE_PHY_BCR>;
-> +			reset-names = "phy";
-> +			assigned-clocks = <&gcc GCC_PCIE_RCHNG_PHY_CLK>;
-> +			assigned-clock-rates = <100000000>;
-> +			status = "disabled";
+> +title: FXL6408 GPIO driver
+
+If "driver" means Linux driver, then drop.
+
+Fairchild FXL6408 GPIO Expander
+
 > +
-> +			pcie0_lane: lanes@1c06000 {
-
-Please use new style bindings found in qcom,sc8280xp-qmp-pcie-phy.yaml
-
-> +				reg = <0x01c06000 0xf0>, /* tx0 */
-> +				      <0x01c06200 0x2f0>, /* rx0 */
-> +				      <0x01c07200 0x1e8>, /* pcs */
-> +				      <0x01c06800 0xf0>, /* tx1 */
-> +				      <0x01c06a00 0x2f0>, /* rx1 */
-> +				      <0x01c07400 0xc00>; /* pcs_misc */
-> +				clocks = <&gcc GCC_PCIE_PIPE_CLK>;
-> +				clock-names = "pipe0";
-> +				#phy-cells = <0>;
-> +				clock-output-names = "pcie_pipe_clk";
-> +			};
-> +		};
+> +maintainers:
+> +  - Emanuele Ghidoli <emanuele.ghidoli@toradex.com>
 > +
->   		tcsr_mutex: hwlock@1f40000 {
->   			compatible = "qcom,tcsr-mutex";
->   			reg = <0x01f40000 0x40000>;
+> +description: |
+> +  Driver for Fairchild FXL6408 GPIO expander
 
--- 
-With best wishes
-Dmitry
+This is not a driver. Drop entire description as it is duplicating title
+or add here something useful.
+
+
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - fcs,fxl6408
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  "#gpio-cells":
+> +    const: 2
+> +
+> +  gpio-controller: true
+> +
+> +  gpio-line-names:
+> +    minItems: 1
+> +    maxItems: 8
+> +
+> +patternProperties:
+> +  "^(hog-[0-9]+|.+-hog(-[0-9]+)?)$":
+
+From here....
+
+> +    type: object
+> +    properties:
+> +      gpio-hog: true
+> +      gpios: true
+> +      input: true
+> +      output-high: true
+> +      output-low: true
+> +      line-name: true
+> +
+> +    required:
+> +      - gpio-hog
+> +      - gpios
+> +
+> +    additionalProperties: false
+
+To here, all this can be simpler:
+
+  "^(hog-[0-9]+|.+-hog(-[0-9]+)?)$":
+    required:
+      - gpio-hog
+
+which selects gpio hog schema.
+
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - gpio-controller
+> +  - "#gpio-cells"
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    i2c {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        gpio_expander_43: gpio-expander@43 {
+> +            compatible = "fcs,fxl6408";
+> +            gpio-controller;
+> +            #gpio-cells = <2>;
+> +            reg = <0x43>;
+> +            gpio-line-names = "Wi-Fi_W_DISABLE", "Wi-Fi_WKUP_WLAN",
+> +              "PWR_EN_+V3.3_WiFi_N", "PCIe_REF_CLK_EN",
+
+Align with previous line/entries.
+
+> +              "USB_RESET_N", "USB_BYPASS_N", "Wi-Fi_PDn",
+> +              "Wi-Fi_WKUP_BT";
+> +        };
+> +    };
+
+Best regards,
+Krzysztof
 
