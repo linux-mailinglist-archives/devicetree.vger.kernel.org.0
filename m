@@ -2,106 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 608386ACD46
-	for <lists+devicetree@lfdr.de>; Mon,  6 Mar 2023 19:56:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 84A636ACD4A
+	for <lists+devicetree@lfdr.de>; Mon,  6 Mar 2023 19:57:05 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229684AbjCFS4I (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 Mar 2023 13:56:08 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60178 "EHLO
+        id S230043AbjCFS5D (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 Mar 2023 13:57:03 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60124 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229685AbjCFSzy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Mar 2023 13:55:54 -0500
-Received: from mx.sberdevices.ru (mx.sberdevices.ru [45.89.227.171])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 03D1538039;
-        Mon,  6 Mar 2023 10:54:15 -0800 (PST)
-Received: from s-lin-edge02.sberdevices.ru (localhost [127.0.0.1])
-        by mx.sberdevices.ru (Postfix) with ESMTP id 67EBA5FD0A;
-        Mon,  6 Mar 2023 21:53:54 +0300 (MSK)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sberdevices.ru;
-        s=mail; t=1678128834;
-        bh=DBAxHW4F3m3jlrgYwBiCU5dDtVa0huLSFWaR9cqGTRs=;
-        h=From:To:Subject:Date:Message-ID:Content-Type:MIME-Version;
-        b=lfAPjKXwtBgFoS4HZh2/2mc2A2jy4eQRXk93RoqpihXA0iCEC1Y0tpfZauzFzBpS5
-         yak3/vd5y4PIMROJz/27NsAI6ef8lydzbI8vY8VA5utcJDX6LkZ9edaRGZoooxT6Uq
-         MMRzfD42KDHwXrA2J7aPVB4X0CpOQ5gp9W9C/3VQaN/3/rlCAsNfypBtdhJnn3HsPP
-         9p0i1oFyFkhLXJ4xIf+UT7Gv9dCsHjnx0ROICcbMCHeMEh7euIf2PaKdlk24s60jzf
-         P9mxssoVa298PruybjgUgc0ATMhAYakHY5zRULTfTAeIV1jxqxAmATv+NTyJANte1d
-         gn7p2gq84C3EA==
-Received: from S-MS-EXCH02.sberdevices.ru (S-MS-EXCH02.sberdevices.ru [172.16.1.5])
-        by mx.sberdevices.ru (Postfix) with ESMTP;
-        Mon,  6 Mar 2023 21:53:52 +0300 (MSK)
-From:   Alexey Romanov <AVRomanov@sberdevices.ru>
-To:     Neil Armstrong <neil.armstrong@linaro.org>
-CC:     "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "khilman@baylibre.com" <khilman@baylibre.com>,
-        "jbrunet@baylibre.com" <jbrunet@baylibre.com>,
-        "martin.blumenstingl@googlemail.com" 
-        <martin.blumenstingl@googlemail.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-amlogic@lists.infradead.org" 
-        <linux-amlogic@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        kernel <kernel@sberdevices.ru>
-Subject: Re: [PATCH v1 1/2] arm64: dts: meson-a1: add gpio_intc node
-Thread-Topic: [PATCH v1 1/2] arm64: dts: meson-a1: add gpio_intc node
-Thread-Index: AQHZNxDMFNGdYZWqIECM18Y2pLjN2K7E0tUAgClGs4A=
-Date:   Mon, 6 Mar 2023 18:53:52 +0000
-Message-ID: <20230306185324.2n65uw3uqgtnc5vx@cab-wsm-0029881.sigma.sbrf.ru>
-References: <20230202141520.40003-1-avromanov@sberdevices.ru>
- <3a06d80c-7f52-2c5c-840e-09a0a08400f4@linaro.org>
-In-Reply-To: <3a06d80c-7f52-2c5c-840e-09a0a08400f4@linaro.org>
-Accept-Language: ru-RU, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [172.16.0.25]
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <D18ECF9035574649BCC96986028AD074@sberdevices.ru>
-Content-Transfer-Encoding: base64
+        with ESMTP id S230058AbjCFS4t (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Mar 2023 13:56:49 -0500
+Received: from mail-pg1-x531.google.com (mail-pg1-x531.google.com [IPv6:2607:f8b0:4864:20::531])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2A425848F9
+        for <devicetree@vger.kernel.org>; Mon,  6 Mar 2023 10:55:25 -0800 (PST)
+Received: by mail-pg1-x531.google.com with SMTP id y19so6184696pgk.5
+        for <devicetree@vger.kernel.org>; Mon, 06 Mar 2023 10:55:25 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1678128916;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=R/SLFvJsUujuShQfZT5sk4tBl30biEXQxhjzUcMVQlY=;
+        b=actdtHBwAm2I4J/E5BvEwKoX3Pq87A+DLbO8chSzsJcKmsM238DQPiy1QauwFtHpJP
+         TQN+8jDKlP0M+FSbw1VvIL6kBkQoRLEByOHFG9ISAb7g529gCiSHkyEzcdtd0uLzVFBi
+         LV7+UFwuDsYtTrU5m9KxutxLZCZfBZB+T2HJcr2HRL5w3j2wD4tGOtWvG3Oi+VTD9XxE
+         AcSO2kGX6hwQ5H2bXXYFe3MEqLe66QtzoN8XQkPYnoAvXmfH3MDQ7rYx+iApoCwgRICz
+         p6YoJ5SMu57B7I+Bd2svL6GfnFkyxTQDIIWkjcumMS7fT9vkl5E9SaTXdzh1Td5B/W4T
+         s0Rw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1678128916;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=R/SLFvJsUujuShQfZT5sk4tBl30biEXQxhjzUcMVQlY=;
+        b=zAlyePUHtBw9UJ3ON7guMX2eFUJwwyRO4YeuwWxXlTVSfdx27x1jy6bsLB5idhqspE
+         vLccIwcJd4r3d/pFRGDoOEqQhQVJDsgCMqbHYpOeWvDtz83GxLuV+KsaZojlMQi+HUQN
+         +gX+X4jRGApcLGQQlGd4PWHqIt1rQT6koOkqvtRbbmImjDZLNOb3VKv+8EH/82gUAZcs
+         eNN63pbnRNtr9zaMWNxf/xuLUvrGLMf/JGJIQPWt2szncupcbOuKCBQXxMAjL2j/vlRL
+         U/B4e9odVsnPU87UMBuEhKeuboxnfvlbiRT7FAwjgrXUx2LJ9j3PGAxfFkep+iljUB9X
+         Hnyw==
+X-Gm-Message-State: AO0yUKWma58JaXea+vYTD/HeZ8IQiBwiaYtaYPAa44JEIAQVA6GPhqxg
+        FlsHuLtm+uqEEpPfn43oyLb92AxIjFn1uu2GR9G18w==
+X-Google-Smtp-Source: AK7set9lhwqpVKZ4u2/ZN//+vl67fX5+f/0VMJrj/dzV8JrVkGMm8tkBCY24bEdB6+ZBXCEejqEt4MqRYNiG5s7KOIk=
+X-Received: by 2002:a65:6a85:0:b0:503:25af:f50d with SMTP id
+ q5-20020a656a85000000b0050325aff50dmr4143071pgu.4.1678128916514; Mon, 06 Mar
+ 2023 10:55:16 -0800 (PST)
 MIME-Version: 1.0
-X-KSMG-Rule-ID: 4
-X-KSMG-Message-Action: clean
-X-KSMG-AntiSpam-Status: not scanned, disabled by settings
-X-KSMG-AntiSpam-Interceptor-Info: not scanned
-X-KSMG-AntiPhishing: not scanned, disabled by settings
-X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 1.1.2.30, bases: 2023/03/06 16:19:00 #20919562
-X-KSMG-AntiVirus-Status: Clean, skipped
+References: <20230223042133.26551-1-semen.protsenko@linaro.org>
+ <167811290503.11716.15730246749418548221.b4-ty@linaro.org> <48c8a0cf-08dc-a831-33ef-3b8e32eef2d3@linaro.org>
+In-Reply-To: <48c8a0cf-08dc-a831-33ef-3b8e32eef2d3@linaro.org>
+From:   Sam Protsenko <semen.protsenko@linaro.org>
+Date:   Mon, 6 Mar 2023 12:55:05 -0600
+Message-ID: <CAPLW+4=9Vwxd4upa3j_cKtRrNyyx_XCz+TgOOziMguEonbHb0g@mail.gmail.com>
+Subject: Re: [PATCH v2 0/6] clk: samsung: exynos850: Add missing clocks for PM
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Chanwoo Choi <cw00.choi@samsung.com>,
+        Sylwester Nawrocki <s.nawrocki@samsung.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Chanho Park <chanho61.park@samsung.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Tomasz Figa <tomasz.figa@gmail.com>,
+        linux-arm-kernel@lists.infradead.org,
+        Stephen Boyd <sboyd@kernel.org>,
+        Alim Akhtar <alim.akhtar@samsung.com>,
+        linux-clk@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
+        Michael Turquette <mturquette@baylibre.com>,
+        David Virag <virag.david003@gmail.com>,
+        Sumit Semwal <sumit.semwal@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-SGVsbG8sIE5laWwhDQoNCk9uIFdlZCwgRmViIDA4LCAyMDIzIGF0IDAxOjM0OjA0UE0gKzAxMDAs
-IE5laWwgQXJtc3Ryb25nIHdyb3RlOg0KPiBMZSAwMi8wMi8yMDIzIMOgIDE1OjE1LCBBbGV4ZXkg
-Um9tYW5vdiBhIMOpY3JpdMKgOg0KPiA+IEFkZCBncGlvIGludGVycnVwdCBjb250cm9sbGVyIG5v
-ZGUuDQo+ID4gDQo+ID4gU2lnbmVkLW9mZi1ieTogQWxleGV5IFJvbWFub3YgPGF2cm9tYW5vdkBz
-YmVyZGV2aWNlcy5ydT4NCj4gPiAtLS0NCj4gPiAgIGFyY2gvYXJtNjQvYm9vdC9kdHMvYW1sb2dp
-Yy9tZXNvbi1hMS5kdHNpIHwgMTAgKysrKysrKysrKw0KPiA+ICAgMSBmaWxlIGNoYW5nZWQsIDEw
-IGluc2VydGlvbnMoKykNCj4gPiANCj4gPiBkaWZmIC0tZ2l0IGEvYXJjaC9hcm02NC9ib290L2R0
-cy9hbWxvZ2ljL21lc29uLWExLmR0c2kgYi9hcmNoL2FybTY0L2Jvb3QvZHRzL2FtbG9naWMvbWVz
-b24tYTEuZHRzaQ0KPiA+IGluZGV4IDYyNjhjMzIzYTgxMC4uYTA0ZGRmMGY0Y2QzIDEwMDY0NA0K
-PiA+IC0tLSBhL2FyY2gvYXJtNjQvYm9vdC9kdHMvYW1sb2dpYy9tZXNvbi1hMS5kdHNpDQo+ID4g
-KysrIGIvYXJjaC9hcm02NC9ib290L2R0cy9hbWxvZ2ljL21lc29uLWExLmR0c2kNCj4gPiBAQCAt
-MTU4LDYgKzE1OCwxNiBAQCBjbGtjX3BsbDogcGxsLWNsb2NrLWNvbnRyb2xsZXJAN2M4MCB7DQo+
-ID4gICAJCQkJCSA8JmNsa2NfcGVyaXBocyBDTEtJRF9YVEFMX0hJRklQTEw+Ow0KPiA+ICAgCQkJ
-CWNsb2NrLW5hbWVzID0gInh0YWxfZml4cGxsIiwgInh0YWxfaGlmaXBsbCI7DQo+ID4gICAJCQl9
-Ow0KPiA+ICsNCj4gPiArCQkJZ3Bpb19pbnRjOiBpbnRlcnJ1cHQtY29udHJvbGxlckAwNDQwIHsN
-Cj4gPiArCQkJCWNvbXBhdGlibGUgPSAiYW1sb2dpYyxtZXNvbi1hMS1ncGlvLWludGMiLA0KPiA+
-ICsJCQkJCSAgICAgImFtbG9naWMsbWVzb24tZ3Bpby1pbnRjIjsNCj4gPiArCQkJCXJlZyA9IDww
-eDAgMHgwNDQwIDB4MCAweDE0PjsNCj4gPiArCQkJCWludGVycnVwdC1jb250cm9sbGVyOw0KPiA+
-ICsJCQkJI2ludGVycnVwdC1jZWxscyA9IDwyPjsNCj4gPiArCQkJCWFtbG9naWMsY2hhbm5lbC1p
-bnRlcnJ1cHRzID0NCj4gPiArCQkJCQk8NDkgNTAgNTEgNTIgNTMgNTQgNTUgNTY+Ow0KPiA+ICsJ
-CQl9Ow0KPiA+ICAgCQl9Ow0KPiA+ICAgCQlnaWM6IGludGVycnVwdC1jb250cm9sbGVyQGZmOTAx
-MDAwIHsNCj4gDQo+IFJldmlld2VkLWJ5OiBOZWlsIEFybXN0cm9uZyA8bmVpbC5hcm1zdHJvbmdA
-bGluYXJvLm9yZz4NCj4gDQo+IA0KPiBJJ2xsIHRha2UgaXQgb25jZSB2Ni4zLXJjMSBpcyB0YWdn
-ZWQuDQo+IA0KPiANCj4gVGhhbmtzLA0KPiANCj4gTmVpbA0KDQp2Ni4zIGlzIHRhZ2dlZCwgYnV0
-IHdlIGRpZG4ndCBmaW5kIG15IHBhdGNoIGluIEFtbG9naWMgYnJhbmNoLg0KDQpEaWQgeW91IGhh
-cHBlbiB0byBmb3JnZXQgYWJvdXQgaGltPw0KDQotLSANClRoYW5rIHlvdSwNCkFsZXhleQ==
+On Mon, 6 Mar 2023 at 09:51, Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
+>
+> On 06/03/2023 15:28, Krzysztof Kozlowski wrote:
+> > On Wed, 22 Feb 2023 22:21:27 -0600, Sam Protsenko wrote:
+> >> As a part of preparation for PM enablement in Exynos850 clock driver,
+> >> this patch series implements CMU_G3D, and also main gate clocks for AUD
+> >> and HSI CMUs. The series brings corresponding changes to bindings, the
+> >> driver and SoC dts file.
+> >>
+> >> Changes in v2:
+> >>   - Rebased all patches on top of the most recent soc/for-next tree
+> >>   - Added A-b and R-b tags
+> >>   - Minor fixes
+> >>
+> >> [...]
+> >
+> > Applied, thanks!
+> >
+> > [1/6] dt-bindings: clock: exynos850: Add Exynos850 CMU_G3D
+> >       https://git.kernel.org/krzk/linux/c/067ba1605806e52118bb598afb357718df9f0e19
+> > [2/6] dt-bindings: clock: exynos850: Add AUD and HSI main gate clocks
+> >       https://git.kernel.org/krzk/linux/c/e289665ed0d6df9fca3ebc128f1232d305e4600b
+> > [3/6] clk: samsung: clk-pll: Implement pll0818x PLL type
+> >       https://git.kernel.org/krzk/linux/c/a6feedab8ab9a9e4483deb0bcc87919d92c88b7e
+> > [4/6] clk: samsung: exynos850: Implement CMU_G3D domain
+> >       https://git.kernel.org/krzk/linux/c/c5704a56893b4e77e434597c7c53d878bb3073b0
+> > [5/6] clk: samsung: exynos850: Add AUD and HSI main gate clocks
+> >       https://git.kernel.org/krzk/linux/c/d8d12e0d079aff4b1d8079a0a55944c0596f1d67
+> > [6/6] arm64: dts: exynos: Add CMU_G3D node for Exynos850 SoC
+> >       https://git.kernel.org/krzk/linux/c/ad8f6ad9a4f219950df65731a8ff91baa022c4b0
+>
+> And builds are broken. Please mention in cover letter or commit
+> dependencies and ordering...
+>
+
+Just checked all most recent commits on your for-next and next/clk
+branches. Seem to build fine for me. AFAIR I checked all patches in
+that series, and I guess there shouldn't be any issues if you apply
+those in the same order they are numbered inside the series. Or you
+mean you have some clash between different series? Anyways, I'm glad
+to help, but I'd need more details on where exactly the problem is (or
+maybe you already fixed it?).
+
+Thanks!
+
+> Best regards,
+> Krzysztof
+>
