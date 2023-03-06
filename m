@@ -2,99 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6F4476AB707
-	for <lists+devicetree@lfdr.de>; Mon,  6 Mar 2023 08:26:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C7F356AB720
+	for <lists+devicetree@lfdr.de>; Mon,  6 Mar 2023 08:33:29 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229622AbjCFH0n (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 Mar 2023 02:26:43 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58296 "EHLO
+        id S229557AbjCFHd1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 Mar 2023 02:33:27 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37420 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229650AbjCFH0k (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Mar 2023 02:26:40 -0500
-Received: from mail-ed1-x536.google.com (mail-ed1-x536.google.com [IPv6:2a00:1450:4864:20::536])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B74E16A4C
-        for <devicetree@vger.kernel.org>; Sun,  5 Mar 2023 23:26:39 -0800 (PST)
-Received: by mail-ed1-x536.google.com with SMTP id j11so14970394edq.4
-        for <devicetree@vger.kernel.org>; Sun, 05 Mar 2023 23:26:39 -0800 (PST)
+        with ESMTP id S229539AbjCFHd1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Mar 2023 02:33:27 -0500
+Received: from mail-ua1-x932.google.com (mail-ua1-x932.google.com [IPv6:2607:f8b0:4864:20::932])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 435EE900D;
+        Sun,  5 Mar 2023 23:33:25 -0800 (PST)
+Received: by mail-ua1-x932.google.com with SMTP id g19so5782288ual.4;
+        Sun, 05 Mar 2023 23:33:25 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1678087598;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=qU/N2SZuHfp40jH83jpd6W5fBvF0TFtfLtqFPBncCHU=;
-        b=IvRC69OqO80YWWxd+2ZG1Wl3b8cSTV2LvUQMot4vby8psEzDMuqCBUjC/4nmaYDz2F
-         e7C3QCqB1b2hWolvI1LhEB76WgvLNsjIX91ngrA7fjD+QJjQbDVGoqBxrE+HbQu8PkaR
-         hWfDpCe6SUoIxbNumtDKkzZZRh3ne/Ao5MhEOxm7n27laPduKZNvg9vg97INx9dxKC1o
-         58xwi9jpij/bppIv/OTxpnNnOwlq0j0EETP5BfUCrnCgPJ2blK+XTB6+YnaEWgAFhqZV
-         nUpqTYr9Wx0Cvu0X4EbYSyyUxd4kMzo/Yixn267cuRGsc1gOQUvhaw/JGLWGCYUM5+iG
-         gCeg==
+        d=gmail.com; s=20210112; t=1678088004;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=ZwT3eldxo/iPkI6KVTduFAN5XrNMFKHna3JySQ6zjpg=;
+        b=UlbV2lIFjWa2GbmRsXwvUfabN12EMRWLp5vigUKs7Zb/+0CVmvtVjJskLmRyMjAv+T
+         X9wP2JBMF2Im7B+0Azpb3wcP2nOwac+DuFXQnQq3HOD05caNSvz0KF06t5l4EOma555l
+         XJ9L9ZlMfNTY1TeX2YXyDNpFx491B1sTv9hL3YlCTUjY7wKImKanN1c5WP5gh1pJFfS/
+         RYLQ7bLME0QNtRKsUtwh0TgcsPgQ0bs4eljI4+qUxhhZ6NG9iNwkNg1uI/sXQiEKhVOT
+         zXnWGoVcXB+1yBffe6NPUkums0oAdC/9+TvzpLL9a1eg/jqNmeV1w09+1tzpTHcikeDF
+         1xtA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678087598;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=qU/N2SZuHfp40jH83jpd6W5fBvF0TFtfLtqFPBncCHU=;
-        b=XfVh8IH3iClqlwCgpNM/ydfUjlKBjPFUkZft8Bw7Rh82ivmPskae/R2FOt3cL50PLR
-         p6v77I48tr5NS3lTtVQFyE/QiDVg7Ui265++iTQDRTu8i4y37N2cNWzjQclxYO0Qdtmz
-         xqt7rC/2It8YXHr2mYCiCUnOYKsNfHKRx90S2KeIze5bkY7L2hu5zoi1SfRlhDJex8lF
-         7tVz5LcmpQ6/AdymbYcU2lzhozOHonDpL97lS4O4YGyisopJGFXUo8zYt84SBCxjmbJr
-         KP1dl20PIV0IH1nxb5LV7VoCdXnr1aC6MkpOnK0lbXwgZVCtOrRWA9DK1ggjQFrxlSpb
-         rB+g==
-X-Gm-Message-State: AO0yUKWKOzYQqDdObbN+l0MrMyCYDs+Nd4WqFt+98uftDN/qChAbAPJd
-        jDm11UC4+Bm2bYbbtoEl3B9UgkYxRWcRfb25aBs=
-X-Google-Smtp-Source: AK7set9UWU34DneSo3jycrjlfyMHWDeqxBV0XlGd3ZRAVIFkeGm10o/WbZz70NiAEcMlulT3RS3Gsg==
-X-Received: by 2002:a17:906:da82:b0:88f:9f5e:f40 with SMTP id xh2-20020a170906da8200b0088f9f5e0f40mr14276040ejb.68.1678087598216;
-        Sun, 05 Mar 2023 23:26:38 -0800 (PST)
-Received: from krzk-bin.. ([2a02:810d:15c0:828:d85d:5a4b:9830:fcfe])
-        by smtp.gmail.com with ESMTPSA id t26-20020a50d71a000000b004be774e4587sm4652020edi.80.2023.03.05.23.26.36
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 05 Mar 2023 23:26:37 -0800 (PST)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Lee Jones <lee@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH 2/2] ARM: dts: qcom: sdx55: add dedicated SDX55 TCSR compatible
-Date:   Mon,  6 Mar 2023 08:26:18 +0100
-Message-Id: <20230306072618.10770-2-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230306072618.10770-1-krzysztof.kozlowski@linaro.org>
-References: <20230306072618.10770-1-krzysztof.kozlowski@linaro.org>
+        d=1e100.net; s=20210112; t=1678088004;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=ZwT3eldxo/iPkI6KVTduFAN5XrNMFKHna3JySQ6zjpg=;
+        b=4suBfVwuNo+sKhYtBQ95Wq6ClKldaZGfm1Pz8nye7ByKbqQpWCKQKgpAZYNf3uSjta
+         KyKhz/pmVAP2zUyRoNl0tkQKnjzDR/pn2oEw/nn5/BbKKIODkLViH4eQLO+Bf/HXNsms
+         vwuJEYa3tQoHm1CkgOHPJXbgPxhclCirF93BRn/sqP0+DKDSkKr0DFGYqaUI2afZ88F9
+         +q3FkkPfwomcLf3qaCEtlhCa/j7LQ7iuAwv3ibd31TT1hwM1WW0+MFHI7LUU11cVeRQQ
+         jC7JhQzLGQm2X1jXXG2dlOE3aETeqpN4t8vLWElOvf/uhfDzNRKvH9+amUToAJI3Tf4+
+         aZ+A==
+X-Gm-Message-State: AO0yUKUdNGZme2H/iJ04Z4o6ReTFmpNl529H4RtIaRfYQZcrN0w8Nebb
+        XwxNdD+z196365zzCLnHvYboKuNnyQJR323rlIiXxDrDBYY=
+X-Google-Smtp-Source: AK7set98sNsa3iImK3NXtj2PY5UoUo0QqQyGXvqndN7K7nelgRBglTlvrpxQ0H4twZHpNASiQRcJqMGtXBw4Q/xdVvY=
+X-Received: by 2002:a1f:1888:0:b0:401:8c72:4cf4 with SMTP id
+ 130-20020a1f1888000000b004018c724cf4mr6264627vky.1.1678088004199; Sun, 05 Mar
+ 2023 23:33:24 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20230306060446.414986-1-chunyan.zhang@unisoc.com> <fecb3d5c-86b7-f052-6cba-f92b45714665@linaro.org>
+In-Reply-To: <fecb3d5c-86b7-f052-6cba-f92b45714665@linaro.org>
+From:   Chunyan Zhang <zhang.lyra@gmail.com>
+Date:   Mon, 6 Mar 2023 15:32:48 +0800
+Message-ID: <CAAfSe-vNR_c-Uf9_Yay6rC63s3EK2dQs7G2jd6qp+u7SCmB2xQ@mail.gmail.com>
+Subject: Re: [PATCH V3] arm64: dts: sprd: Add support for Unisoc's UMS512
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Chunyan Zhang <chunyan.zhang@unisoc.com>,
+        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
+        soc@kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        devicetree@vger.kernel.org,
+        Baolin Wang <baolin.wang@linux.alibaba.com>,
+        Orson Zhai <orsonzhai@gmail.com>,
+        LKML <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-syscon should not be used alone as compatible.
+On Mon, 6 Mar 2023 at 14:43, Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
+>
+> On 06/03/2023 07:04, Chunyan Zhang wrote:
+> > Add basic support for Unisoc's UMS512, with this patch,
+> > the board ums512-1h10 can run into console.
+> >
+> > Signed-off-by: Chunyan Zhang <chunyan.zhang@unisoc.com>
+> > ---
+> > Changes since V2:
+> > * Removed redundant gpio.h from ums512-1h10.dts
+> >
+> > Changes since v1:
+> > * Addressed comments:
+> >   - Removed earlycon bootargs;
+> >   - Moved up gic reg as second property;
+> >   - Moved two sdio nodes under to the apb bus node;
+> >   - Renamed node name of all fixed clocks;
+> >   - Fixed warnings reported by dtbs_check.
+>
+> Please always mention  under --- why you do not send a binding for new
+> board compatible.
 
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
----
- arch/arm/boot/dts/qcom-sdx55.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Actually, the patchset including dts and bindings changes got merged
+before, the dts patch was reverted due to compile issue[1] at that
+time.
+And after that I had a very long holiday, so resubmit the dts changes
+after such a long time.
 
-diff --git a/arch/arm/boot/dts/qcom-sdx55.dtsi b/arch/arm/boot/dts/qcom-sdx55.dtsi
-index df7303c5c843..72de632b5265 100644
---- a/arch/arm/boot/dts/qcom-sdx55.dtsi
-+++ b/arch/arm/boot/dts/qcom-sdx55.dtsi
-@@ -385,7 +385,7 @@ tcsr_mutex: hwlock@1f40000 {
- 		};
- 
- 		tcsr: syscon@1fcb000 {
--			compatible = "syscon";
-+			compatible = "qcom,sdx55-tcsr", "syscon";
- 			reg = <0x01fc0000 0x1000>;
- 		};
- 
--- 
-2.34.1
+[1] https://lkml.org/lkml/2021/10/11/1349
 
+Thanks,
+Chunyan
