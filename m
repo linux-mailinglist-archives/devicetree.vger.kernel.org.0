@@ -2,266 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D7D366AC5D8
-	for <lists+devicetree@lfdr.de>; Mon,  6 Mar 2023 16:48:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 32C3B6AC5E5
+	for <lists+devicetree@lfdr.de>; Mon,  6 Mar 2023 16:51:42 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230135AbjCFPsC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 Mar 2023 10:48:02 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55168 "EHLO
+        id S229764AbjCFPvk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 Mar 2023 10:51:40 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60388 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229636AbjCFPr7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Mar 2023 10:47:59 -0500
-Received: from mo4-p02-ob.smtp.rzone.de (mo4-p02-ob.smtp.rzone.de [85.215.255.84])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B003B1CF52;
-        Mon,  6 Mar 2023 07:47:43 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1678117661; cv=none;
-    d=strato.com; s=strato-dkim-0002;
-    b=OpO31gyeAiyfGj7Qq0n9i+LLyix+4Fz8YP+IIprBlVCVH535SVSp58mNFLYTzDnGsx
-    dzpLfYv09VS/E+OMpg5hOcRlp6rIxGgkO6h7mDVkYWmhRcbI5c7AwFanoeNBAibdejan
-    1GBYqkyUU21mW6F1tApVmLZ/5nhwP9KMdlE2a/JQSnfdB3yTP593hvGo1wpmHtS+Bwt7
-    xq+hBuvZ9MSmGNbkVM4ywN1ToSqWXcT//tq4lXdeEVmt68Hx6rPdTsCkGMVzrXICB01l
-    kI/cZfXfGyu973rP8M36ta9R/9yD1UReZadRhcFAd9XQbh2JpyT82cao0QNUeuBNO+WA
-    J3zQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; t=1678117661;
-    s=strato-dkim-0002; d=strato.com;
-    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
-    From:Subject:Sender;
-    bh=KmIA5wadD9AJClhPdtpitOvaCeW1sQ+zwa4MQNlW01E=;
-    b=dlV0ArgL82FH0c8qaZ+Mn/DPje+7T1ZRC02tU2D1L4gZupuHjT5OPXaPIVtdAf4KXu
-    q2atHQolU4BcNo4uPylfpMvJiAXiEetKvxYL5WX4fCGMAAw3pb2rW1FUFXVHlxvB6aDj
-    +i9DUFmZV4uOXBnUfKdWsnrs6gaVqyGn3n6j+V5BggeCPk0A8wb/THj5te/W0ZKxZLmQ
-    gu0tMe2AhfFd2S7nAU3k5JWtlXQv2TNNBYoXQlA4eYBk7bOYDuMrioUsPDrVw+ofckgG
-    Rg/i5CEm+mVuli9OPML5PjEIFdQnOUFdYbX9MQbP1ZwjoawGsYpQa23wQ95YLMOLQZhG
-    LK8A==
-ARC-Authentication-Results: i=1; strato.com;
-    arc=none;
-    dkim=none
-X-RZG-CLASS-ID: mo02
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1678117660;
-    s=strato-dkim-0002; d=gerhold.net;
-    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
-    From:Subject:Sender;
-    bh=KmIA5wadD9AJClhPdtpitOvaCeW1sQ+zwa4MQNlW01E=;
-    b=XAeZ5UtgcmAvDnW/RhUyFSm1QUBZFPE1cGODH42NTTZrh0HY8BK8kiUehgmz6TetjV
-    UDNDphTOYFM7x41wyZEl16JlR9xu+pASMYGQ8RjuzNArfiMkh1KL/86CphLE94+1Utjm
-    gYJYxoRYrV/TVNqs8ljY0cAZVHolcoYfhbXDkqqPdd7mkokchuZcYphxajvZpUSRXqc/
-    eBi4t3+L7JNps/fA2luQMPhCyIcpd5QMgatFaLTGBvPLiJM5wATzzIF2gHk9/ITLPIir
-    Ov9jEEzjtaZq+538ctKhI0MCrCSSJCch0krgLxQyp5w5LYfmvY95thaNaCSsRvNr730V
-    Z6rg==
-X-RZG-AUTH: ":P3gBZUipdd93FF5ZZvYFPugejmSTVR2nRPhVOQ/OcYgojyw4j34+u267FZF9PwpcNKjXrKw8/qY="
-Received: from gerhold.net
-    by smtp.strato.de (RZmta 49.3.0 AUTH)
-    with ESMTPSA id jba5bez26FleJnt
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
-        (Client did not present a certificate);
-    Mon, 6 Mar 2023 16:47:40 +0100 (CET)
-Date:   Mon, 6 Mar 2023 16:47:39 +0100
-From:   Stephan Gerhold <stephan@gerhold.net>
-To:     Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-Cc:     agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
-        djakov@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, linux-arm-msm@vger.kernel.org,
-        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, benl@squareup.com,
-        shawn.guo@linaro.org, fabien.parent@linaro.org, leo.yan@linaro.org,
-        dmitry.baryshkov@linaro.org, Jun Nie <jun.nie@linaro.org>,
-        James Willcox <jwillcox@squareup.com>,
-        Joseph Gates <jgates@squareup.com>,
-        Max Chen <mchen@squareup.com>, Zac Crosby <zac@squareup.com>
-Subject: Re: [PATCH v7 4/5] arm64: dts: qcom: Add Square apq8039-t2 board
-Message-ID: <ZAYLG7JkcIHQeVcz@gerhold.net>
-References: <20230223153655.262783-1-bryan.odonoghue@linaro.org>
- <20230223153655.262783-5-bryan.odonoghue@linaro.org>
+        with ESMTP id S230153AbjCFPvj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Mar 2023 10:51:39 -0500
+Received: from mail-ed1-x530.google.com (mail-ed1-x530.google.com [IPv6:2a00:1450:4864:20::530])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 853D836470
+        for <devicetree@vger.kernel.org>; Mon,  6 Mar 2023 07:51:37 -0800 (PST)
+Received: by mail-ed1-x530.google.com with SMTP id cw28so40538837edb.5
+        for <devicetree@vger.kernel.org>; Mon, 06 Mar 2023 07:51:37 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1678117896;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=t5WKaU91nJ+P694TRYOMgx3cq+DGCFPwL6ikgUxC3C8=;
+        b=ESjcJLj063dMnQZWJplGSMwup2iaf+HjpoquiqJhkDgqe+Bwe6KLmnVVMs75iGiqRx
+         Vr7OqpYnid1HjGlasFK+9AhAlB5S4IHdRaeE/MWdSmSHDascJfwiIIieyVNjC3qXv56F
+         cbaFPprTTejA/Ub9UwI0JUHkt+6AktbMoISxFB9Dm4DzWvxl/s9nj4l1nVolAUlQNaeq
+         NRcq0O1+qSCYXKjQcUioybt/B+ExBG9Qdq+9ayEOYY0NnfidFsmtP6dFJ6uZ7ch/mSL7
+         W5subhoHbAsx1NXexaN2YeqvF7Fv6QOC7RFeQQlenvKCZcVsvUJCf9r/K/FrhKb2+BS0
+         yyFQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1678117896;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=t5WKaU91nJ+P694TRYOMgx3cq+DGCFPwL6ikgUxC3C8=;
+        b=GMd+5Hc0biamxNw9J9gc/2imCgmW52PgQXBdDMem3maoqoPD5l6vx81wPjxZMNtM05
+         SnAoJlJVReuWqHjOqEr+8ZxWQfuaZW7eOZkCvZjtIiRq4O6PDdkBhcFXpuuDEo03zRbn
+         UqtIY76do7t2PfiRuVC5qvTtndDLs5e26vPAOKUv8WMFiQ668t7+c2+B0L4GCSMTQpzT
+         +h622OmRDlgF4WzOtbWsAGh/VBt2MN3xlXxXU6+zr4KGKOoy4F26cufmDo4UqLxedDNc
+         eF8I0zjqhmlohtqu7JT/PrxwaHUmRtTSpmvS3oOPVdXdtRcRG7ls+nJ2kiI6IdJJXujh
+         C/9g==
+X-Gm-Message-State: AO0yUKUUaZfCtrpxAscUNjd9fqBeYtyvaMXhVbDn4iMm6jCQB+ZeAzz/
+        ziWyLsoCUgaspp+4P1iujrr0Dg==
+X-Google-Smtp-Source: AK7set9lwg+x+76RsWJ6nVbbLxkGydKTP4r6kdOcHarLbeeJ9W9GJHfsJJMd5ctUdgw3OxunMd+uEA==
+X-Received: by 2002:aa7:c2d4:0:b0:4ae:eab6:9ff8 with SMTP id m20-20020aa7c2d4000000b004aeeab69ff8mr11998310edp.13.1678117896054;
+        Mon, 06 Mar 2023 07:51:36 -0800 (PST)
+Received: from ?IPV6:2a02:810d:15c0:828:c1e7:5006:98ac:f57? ([2a02:810d:15c0:828:c1e7:5006:98ac:f57])
+        by smtp.gmail.com with ESMTPSA id n26-20020a50c21a000000b004a27046b7a7sm5320836edf.73.2023.03.06.07.51.34
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 06 Mar 2023 07:51:35 -0800 (PST)
+Message-ID: <48c8a0cf-08dc-a831-33ef-3b8e32eef2d3@linaro.org>
+Date:   Mon, 6 Mar 2023 16:51:34 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230223153655.262783-5-bryan.odonoghue@linaro.org>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.8.0
+Subject: Re: [PATCH v2 0/6] clk: samsung: exynos850: Add missing clocks for PM
+Content-Language: en-US
+To:     Chanwoo Choi <cw00.choi@samsung.com>,
+        Sylwester Nawrocki <s.nawrocki@samsung.com>,
+        Sam Protsenko <semen.protsenko@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     Chanho Park <chanho61.park@samsung.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Tomasz Figa <tomasz.figa@gmail.com>,
+        linux-arm-kernel@lists.infradead.org,
+        Stephen Boyd <sboyd@kernel.org>,
+        Alim Akhtar <alim.akhtar@samsung.com>,
+        linux-clk@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
+        Michael Turquette <mturquette@baylibre.com>,
+        David Virag <virag.david003@gmail.com>,
+        Sumit Semwal <sumit.semwal@linaro.org>
+References: <20230223042133.26551-1-semen.protsenko@linaro.org>
+ <167811290503.11716.15730246749418548221.b4-ty@linaro.org>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <167811290503.11716.15730246749418548221.b4-ty@linaro.org>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_PASS,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Feb 23, 2023 at 03:36:54PM +0000, Bryan O'Donoghue wrote:
-> The apq8039-t2 is an apq8039 based board paired with a wcn3680b WiFi
-> chipset.
+On 06/03/2023 15:28, Krzysztof Kozlowski wrote:
+> On Wed, 22 Feb 2023 22:21:27 -0600, Sam Protsenko wrote:
+>> As a part of preparation for PM enablement in Exynos850 clock driver,
+>> this patch series implements CMU_G3D, and also main gate clocks for AUD
+>> and HSI CMUs. The series brings corresponding changes to bindings, the
+>> driver and SoC dts file.
+>>
+>> Changes in v2:
+>>   - Rebased all patches on top of the most recent soc/for-next tree
+>>   - Added A-b and R-b tags
+>>   - Minor fixes
+>>
+>> [...]
 > 
-> Co-developed-by: Shawn Guo <shawn.guo@linaro.org>
-> Signed-off-by: Shawn Guo <shawn.guo@linaro.org>
-> Co-developed-by: Jun Nie <jun.nie@linaro.org>
-> Signed-off-by: Jun Nie <jun.nie@linaro.org>
-> Co-developed-by: Benjamin Li <benl@squareup.com>
-> Signed-off-by: Benjamin Li <benl@squareup.com>
-> Co-developed-by: James Willcox <jwillcox@squareup.com>
-> Signed-off-by: James Willcox <jwillcox@squareup.com>
-> Co-developed-by: Leo Yan <leo.yan@linaro.org>
-> Signed-off-by: Leo Yan <leo.yan@linaro.org>
-> Co-developed-by: Joseph Gates <jgates@squareup.com>
-> Signed-off-by: Joseph Gates <jgates@squareup.com>
-> Co-developed-by: Max Chen <mchen@squareup.com>
-> Signed-off-by: Max Chen <mchen@squareup.com>
-> Co-developed-by: Zac Crosby <zac@squareup.com>
-> Signed-off-by: Zac Crosby <zac@squareup.com>
-> Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
-> Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-> ---
->  arch/arm64/boot/dts/qcom/Makefile       |   1 +
->  arch/arm64/boot/dts/qcom/apq8039-t2.dts | 550 ++++++++++++++++++++++++
->  2 files changed, 551 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/qcom/apq8039-t2.dts
+> Applied, thanks!
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
-> index 31aa54f0428c3..2983e83a19061 100644
-> --- a/arch/arm64/boot/dts/qcom/Makefile
-> +++ b/arch/arm64/boot/dts/qcom/Makefile
-> @@ -1,5 +1,6 @@
->  # SPDX-License-Identifier: GPL-2.0
->  dtb-$(CONFIG_ARCH_QCOM)	+= apq8016-sbc.dtb
-> +dtb-$(CONFIG_ARCH_QCOM)	+= apq8039-t2.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= apq8094-sony-xperia-kitakami-karin_windy.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= apq8096-db820c.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= apq8096-ifc6640.dtb
-> diff --git a/arch/arm64/boot/dts/qcom/apq8039-t2.dts b/arch/arm64/boot/dts/qcom/apq8039-t2.dts
-> new file mode 100644
-> index 0000000000000..6ff044bfe2ebc
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/qcom/apq8039-t2.dts
-> @@ -0,0 +1,550 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * Copyright (c) 2015, The Linux Foundation. All rights reserved.
-> + * Copyright (c) 2020-2023, Linaro Ltd.
-> + *
-> + */
-> +
-> +/dts-v1/;
-> +
-> +#include "msm8939.dtsi"
-> +#include "msm8939-pm8916.dtsi"
-> +#include <dt-bindings/arm/qcom,ids.h>
-> +#include <dt-bindings/gpio/gpio.h>
-> +#include <dt-bindings/pinctrl/qcom,pmic-gpio.h>
-> +#include <dt-bindings/sound/apq8016-lpass.h>
-> +
-> +/ {
-> +	model = "Square, Inc. T2 Devkit";
-> +	compatible = "square,apq8039-t2", "qcom,msm8939";
-> +
-> +	qcom,board-id = <0x53 0x54>;
-> +	qcom,msm-id = <QCOM_ID_MSM8939 0>, <QCOM_ID_MSM8939 0x30000>, <QCOM_ID_APQ8039 0x30000>;
+> [1/6] dt-bindings: clock: exynos850: Add Exynos850 CMU_G3D
+>       https://git.kernel.org/krzk/linux/c/067ba1605806e52118bb598afb357718df9f0e19
+> [2/6] dt-bindings: clock: exynos850: Add AUD and HSI main gate clocks
+>       https://git.kernel.org/krzk/linux/c/e289665ed0d6df9fca3ebc128f1232d305e4600b
+> [3/6] clk: samsung: clk-pll: Implement pll0818x PLL type
+>       https://git.kernel.org/krzk/linux/c/a6feedab8ab9a9e4483deb0bcc87919d92c88b7e
+> [4/6] clk: samsung: exynos850: Implement CMU_G3D domain
+>       https://git.kernel.org/krzk/linux/c/c5704a56893b4e77e434597c7c53d878bb3073b0
+> [5/6] clk: samsung: exynos850: Add AUD and HSI main gate clocks
+>       https://git.kernel.org/krzk/linux/c/d8d12e0d079aff4b1d8079a0a55944c0596f1d67
+> [6/6] arm64: dts: exynos: Add CMU_G3D node for Exynos850 SoC
+>       https://git.kernel.org/krzk/linux/c/ad8f6ad9a4f219950df65731a8ff91baa022c4b0
 
-Does the board have variants with MSM8939 v2, MSM8939 v3.0 and APQ8039
-v3.0? If not it should be enough to list only a single item (the actual
-SoC in use).
+And builds are broken. Please mention in cover letter or commit
+dependencies and ordering...
 
-> [...]
-> +&blsp1_uart1 {
-> +	pinctrl-names = "default", "sleep";
-> +	pinctrl-0 = <&blsp1_uart1_default>;
-> +	pinctrl-1 = <&blsp1_uart1_sleep>;
-> +	status = "okay";
-> +};
-> +
-> +&blsp1_uart2 {
-> +	pinctrl-names = "default", "sleep";
-> +	pinctrl-0 = <&blsp1_uart2_default>;
-> +	pinctrl-1 = <&blsp1_uart2_sleep>;
+Best regards,
+Krzysztof
 
-This is in msm8939.dtsi already.
-
-> [...]
-> +&pronto {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&wcnss_pin_a>;
-
-This is also in msm8939.dtsi already.
-
-> +	status = "okay";
-> +
-> +	iris {
-> +		compatible = "qcom,wcn3680";
-> +	};
-> +};
-> +
-> [...]
-> +	blsp1_uart1_default: blsp1-uart1-default-state {
-> +		pins = "gpio0", "gpio1";
-> +		function = "blsp_uart1";
-> +		drive-strength = <16>;
-> +		bias-disable;
-> +	};
-> +
-> +	blsp1_uart1_sleep: blsp1-uart1-sleep-state {
-> +		pins = "gpio0", "gpio1";
-> +		function = "gpio";
-> +		drive-strength = <2>;
-> +		bias-pull-down;
-> +	};
-
-Personally I'd override just the pins of the definition in msm8939.dtsi
-since everything else is exactly the same. Not a strict change request
-though, I guess this is subjective:
-
-&blsp1_uart1_default {
-	pins = "gpio0", "gpio1";
-};
-
-&blsp1_uart1_sleep {
-	pins = "gpio0", "gpio1";
-};
-
-> +
-> +	ext_buck_vsel_reg: ext-buck-vsel-reg-state {
-> +		function = "gpio";
-> +		pins = "gpio111";
-> +		drive-strength = <2>;
-> +	};
-
-This seems unused.
-
-> [...]
-> +	sq_spe_enable: sq-spe-enable-state {
-> +		pins = "gpio35";
-> +		function = "gpio";
-> +		output-low;
-> +	};
-
-This seems unused as well.
-
-> +
-> +	tlmm_crq_reg: tlmm-crq-reg-state {
-> +		function = "gpio";
-> +		pins = "gpio12";
-> +		output-high;
-> +	};
-> +
-> +	tlmm_spe_reg: tlmm-spe-reg-state {
-> +		pins = "gpio108";
-> +		function = "gpio";
-> +		output-high;
-> +	};
-> +
-
-Does output-high really make sense here? These are assigned to a
-regulator-fixed. The driver for fixed regulators initializes the
-GPIO state based on the "regulator-boot-on" property. If the property
-exists it does gpiod_get(... GPIOD_OUT_HIGH), otherwise GPIOD_OUT_LOW.
-
-You don't have regulator-boot-on. So I would expect the GPIO/regulator
-state to toggle unnecessarily during initialization:
-
-  - First pinctrl is applied so the GPIO is set to output-high.
-    The regulator gets turned on for a few ms/ns.
-  - Then the driver probes which initializes it to GPIOD_OUT_LOW.
-    The regulator turns back off.
-
-I'd just drop the output-high here and leave it up to the regulator
-driver to initialize the GPIO state. If you want the regulator on during
-boot, use regulator-boot-on.
-
-Thanks,
-Stephan
