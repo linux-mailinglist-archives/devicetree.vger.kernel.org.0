@@ -2,92 +2,150 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 649D06AC18A
-	for <lists+devicetree@lfdr.de>; Mon,  6 Mar 2023 14:39:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9E47C6AC19B
+	for <lists+devicetree@lfdr.de>; Mon,  6 Mar 2023 14:40:42 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230018AbjCFNjo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 Mar 2023 08:39:44 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55448 "EHLO
+        id S231182AbjCFNkl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 Mar 2023 08:40:41 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56120 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229907AbjCFNjl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Mar 2023 08:39:41 -0500
-Received: from mail.3ffe.de (0001.3ffe.de [159.69.201.130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3A7A72F79E;
-        Mon,  6 Mar 2023 05:39:38 -0800 (PST)
-Received: from 3ffe.de (0001.3ffe.de [IPv6:2a01:4f8:c0c:9d57::1])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by mail.3ffe.de (Postfix) with ESMTPSA id 0624661;
-        Mon,  6 Mar 2023 14:39:37 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2022082101;
-        t=1678109977;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=CuGi+nnvASLj3QCZh43qyWjqOQVQw8vWY8x1yJbFcEE=;
-        b=vbQpb6MYYUC2zwMF6UJhU0C+TvXoJGh55Udb8rNp+jtwAmR1BEyIOTjm8XQN4vcq49ZEGZ
-        8OnzPocrO+sZvdmV/29UNtJB55XjyPCvaPqLW81dW8BURcOSel9KrWka7tM9/sY2oPXNLK
-        uR50I0rKDtgd8weu2B7UBJNMwQ8RAKRokKE2kyMYe1XFRRIdX2eN94Gtzs4GmhdEauKrMl
-        g8D2BGztDhSifG4UDuhtettWUUUD+6pXc5oKbq38gF8kYhVu/ZSB57QLxi3yOBcY9sIS4z
-        OiKgTXGXtbU/udklN4zwTl5LtgqbZjkI585vmwpqxSUVo30/7Tf7LKL6aZpOGw==
+        with ESMTP id S229985AbjCFNki (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Mar 2023 08:40:38 -0500
+Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 480512FCEC
+        for <devicetree@vger.kernel.org>; Mon,  6 Mar 2023 05:40:30 -0800 (PST)
+Received: by mail-ed1-x533.google.com with SMTP id a25so38906147edb.0
+        for <devicetree@vger.kernel.org>; Mon, 06 Mar 2023 05:40:30 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112; t=1678110029;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=ZW1Oqg+WLuWWxkuIkyJR54a4c3JXn+NZetW0zwSCeSw=;
+        b=cuvBAavVvAQVUP54IBvXmzklqerlQN2fNulM+x734wtvrCyyyrFSIbHxMeBokGLcIP
+         pkkJ6uBVZTDQqpgRfgEM0/sIW+6WotEmGDeNJMHIFUnsKW3h8CT0EyAbw4DyCwPjrhpE
+         WudN8Y2KYBCkeTqmo098LV4W0EhF8FQ9AG47GHRVeqay66sObxfm7csAncStrbk90EAh
+         p9MuucTj6mF/pYqJInvyqLxpp9ZRxUGgvEILHxA+E3oSzZkir0BQGVEe8UTKEG9HPT3V
+         keZBOsBoCo7mHVVRWvvMxGhqTWmwssFJzwzm/VEmYdUSYA4o6m1U5i9ucyxuwjw+8PSw
+         r9Qg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1678110029;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=ZW1Oqg+WLuWWxkuIkyJR54a4c3JXn+NZetW0zwSCeSw=;
+        b=i8417l5Nt+MtgwOVvPgYIC1WeuzYTdtBxKb9TV9pup/9X/7AJq0jDp/DhjxzAWJCzv
+         jzpjQPXyjH9i0aRAbWQn2GO7XAI8OFmwoNDoHPH/vA3xbLV971k600qW/JjKzltWY0EI
+         DSYNYy45wvQwuwoymprNIXpztcho5C4CDQQbu2aLwUs5MV8+BlmKOLSfJK2DQE3t4Wbc
+         PD0kloCcjhwbAtPOKcvCqAiT8tVNaRMsFKCpksZNsFW8n9ieyVGkaFKDIzY3qfMIg8TB
+         zQ5qmycgKtKZ3pU5j+MSOMBZHvR7TL2r89cj9dtAYcO/c2H4o2kCXWpTEXWjxcy/f3p8
+         kSbA==
+X-Gm-Message-State: AO0yUKU4xpfgx9aTCvrfiU0LMf3S2Q5ykIUTxztEE3dSiOP330tJbYOU
+        BLa4hbpMKR0kcGl6riRYdLc3IQ==
+X-Google-Smtp-Source: AK7set/0XrGcKW6yxv/wJZcYC83SiD0kz0lIalXfaXFBbdXe/zoJAr5MHbFp08xZq8Th54ZnERWtsw==
+X-Received: by 2002:aa7:cf90:0:b0:4bc:502e:e7de with SMTP id z16-20020aa7cf90000000b004bc502ee7demr9831944edx.32.1678110028679;
+        Mon, 06 Mar 2023 05:40:28 -0800 (PST)
+Received: from [127.0.1.1] (158.22.5.93.rev.sfr.net. [93.5.22.158])
+        by smtp.googlemail.com with ESMTPSA id u2-20020a170906c40200b008e2dfc6382asm4574959ejz.125.2023.03.06.05.40.27
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 06 Mar 2023 05:40:28 -0800 (PST)
+From:   Alexandre Mergnat <amergnat@baylibre.com>
+Date:   Mon, 06 Mar 2023 14:40:11 +0100
+Subject: [PATCH] Fixes dt-bindings: display: mediatek: Fix the fallback for
+ mediatek,mt8186-disp-ccorr
 MIME-Version: 1.0
-Date:   Mon, 06 Mar 2023 14:39:36 +0100
-From:   Michael Walle <michael@walle.cc>
-To:     Miquel Raynal <miquel.raynal@bootlin.com>
-Cc:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        linux-kernel@vger.kernel.org,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Robert Marko <robert.marko@sartura.hr>,
-        Luka Perkov <luka.perkov@sartura.hr>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        rafal@milecki.pl
-Subject: Re: [PATCH 0/8] nvmem: Let layout drivers be modules
-In-Reply-To: <20230306143528.7407fda5@xps-13>
-References: <20230301152239.531194-1-miquel.raynal@bootlin.com>
- <ee7923a8b5fa8358e6805d20df7d8049@walle.cc> <20230306143528.7407fda5@xps-13>
-User-Agent: Roundcube Webmail/1.4.13
-Message-ID: <301f9723dca9645e1b5c71eac6221f93@walle.cc>
-X-Sender: michael@walle.cc
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+Message-Id: <20230306-ccorr-binding-fix-v1-0-177d81d60c69@baylibre.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Allen-KH Cheng <allen-kh.cheng@mediatek.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        David Airlie <airlied@gmail.com>,
+        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Daniel Vetter <daniel@ffwll.ch>
+Cc:     linux-kernel@vger.kernel.org,
+        Alexandre Mergnat <amergnat@baylibre.com>,
+        dri-devel@lists.freedesktop.org,
+        linux-arm-kernel@lists.infradead.org,
+        Rob Herring <robh@kernel.org>,
+        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org
+X-Mailer: b4 0.10.1
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2033; i=amergnat@baylibre.com;
+ h=from:subject:message-id; bh=Sllvr1qcJosNPm/127wltPmXLo/4qloGmkwT8rLTdQs=;
+ b=owEBbQKS/ZANAwAKAStGSZ1+MdRFAcsmYgBkBe1Lg8S54sdx+TkgJNo3Q94C1ufIjETI8glahloA
+ wAMPhpWJAjMEAAEKAB0WIQQjG17X8+qqcA5g/osrRkmdfjHURQUCZAXtSwAKCRArRkmdfjHURYxBD/
+ 0TgSfGN1WScR5N5YN6E/+DvS8lJCRDx+Ky+06JfD0PD/Oskchz6XpYCjhFeSKztRXMpZZIbonI1aa0
+ fyxq18BAhYPzBeELrCMD8fWqGuC069YvDqTVQeIE3pz9XpooTDesaQWHh59UgT4119MCpLnLHM2xE+
+ rdpm+l7he9szKBSEdvS9RbBHYh/GUY22ipY6APt5qFgua2DsCr+QPrcNxlnY75p7DbifXqBu3V3NPZ
+ QBywL/k0JnIraVsSTr20XYmhGtKYv1GmwimQ1uXxGjDbIQM9CxaM6Eg2Ngeob9m4KUZwa9AdPTo52l
+ kP7dELhSgd+qei7U/kKgQVj0vCQv8w/JjRJkR2ylQO1SDTdoJmfbGOr49GWsWE/aqp3AV5QsBHiful
+ 17Xcw5DcnpG/5wbbuNc472Fr7uWwxIkSvvLZxuiER3g8+3oF8O0rx/JXFKTZvzf3S4fzNNuyglXTt+
+ fOMYxL3iB5pjsOMJmPtRKenLhJnde6pGHcBMFJo28ZG9aRVLQDOV+Mp8kAPRwjqaI1bPWOLrDyOsfj
+ Z9w8RwWVBKXHC3XXkRiSMtER76zkOZdiTHo3An37wNV98cTQ5VWuyuiscunseNUjqqnbdad17m2Moj
+ /8HwAtPOqMmrdoWqDXF1RAzdGPD/BuXBlelZvYCVZN20LXGywmz0hMDFG3Yw==
+X-Developer-Key: i=amergnat@baylibre.com; a=openpgp;
+ fpr=231B5ED7F3EAAA700E60FE8B2B46499D7E31D445
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Miquel,
+The item which have the mediatek,mt8192-disp-ccorr const compatible already
+exist above. Remove duplicated fallback.
 
-Am 2023-03-06 14:35, schrieb Miquel Raynal:
-> michael@walle.cc wrote on Mon, 06 Mar 2023 14:01:34 +0100:
-> 
->> > Miquel Raynal (8):
->> >   of: Fix modalias string generation
->> >   of: Change of_device_get_modalias() main argument
->> >   of: Create an of_device_request_module() receiving an OF node
->> >   nvmem: core: Fix error path ordering
->> >   nvmem: core: Handle the absence of expected layouts
->> >   nvmem: core: Request layout modules loading
->> >   nvmem: layouts: sl28vpd: Convert layout driver into a module
->> >   nvmem: layouts: onie-tlv: Convert layout driver into a module
->> 
->> With the fixes series [1] applied:
-> 
-> Thanks for the series! Looks good to me. I believe both series can live
-> in separate tress, any reason why we would like to avoid this? I am 
-> keen
-> to apply [1] into the mtd tree rather soon.
+Fixes: 137272ef1b0f ("dt-bindings: display: mediatek: Fix the fallback for mediatek,mt8186-disp-ccorr")
 
-I'm fine with that.
+Signed-off-by: Alexandre Mergnat <amergnat@baylibre.com>
+---
+Fix MTK color correction binding
 
--michael
+The fallback compatible has been duplicated in the 137272ef1b0f commit.
 
-[1] https://lore.kernel.org/r/20230306125805.678668-1-michael@walle.cc/
+To: Chun-Kuang Hu <chunkuang.hu@kernel.org>
+To: Philipp Zabel <p.zabel@pengutronix.de>
+To: David Airlie <airlied@gmail.com>
+To: Daniel Vetter <daniel@ffwll.ch>
+To: Rob Herring <robh+dt@kernel.org>
+To: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+To: Matthias Brugger <matthias.bgg@gmail.com>
+To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+To: Allen-KH Cheng <allen-kh.cheng@mediatek.com>
+Cc: Rob Herring <robh@kernel.org>
+Cc: dri-devel@lists.freedesktop.org
+Cc: linux-mediatek@lists.infradead.org
+Cc: devicetree@vger.kernel.org
+Cc: linux-kernel@vger.kernel.org
+Cc: linux-arm-kernel@lists.infradead.org
+---
+ Documentation/devicetree/bindings/display/mediatek/mediatek,ccorr.yaml | 3 ---
+ 1 file changed, 3 deletions(-)
+
+diff --git a/Documentation/devicetree/bindings/display/mediatek/mediatek,ccorr.yaml b/Documentation/devicetree/bindings/display/mediatek/mediatek,ccorr.yaml
+index b04820c95b22..3aaf44719786 100644
+--- a/Documentation/devicetree/bindings/display/mediatek/mediatek,ccorr.yaml
++++ b/Documentation/devicetree/bindings/display/mediatek/mediatek,ccorr.yaml
+@@ -29,9 +29,6 @@ properties:
+           - enum:
+               - mediatek,mt8188-disp-ccorr
+               - mediatek,mt8195-disp-ccorr
+-          - const: mediatek,mt8192-disp-ccorr
+-      - items:
+-          - enum:
+               - mediatek,mt8186-disp-ccorr
+           - const: mediatek,mt8192-disp-ccorr
+ 
+
+---
+base-commit: add072536971d7ce891fde3cdbf68c55e7cfa95a
+change-id: 20230306-ccorr-binding-fix-718c6d725088
+
+Best regards,
+-- 
+Alexandre Mergnat <amergnat@baylibre.com>
