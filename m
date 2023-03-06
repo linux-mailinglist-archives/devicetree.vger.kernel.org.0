@@ -2,79 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A425B6ABDE4
-	for <lists+devicetree@lfdr.de>; Mon,  6 Mar 2023 12:12:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 06C9B6ABE2D
+	for <lists+devicetree@lfdr.de>; Mon,  6 Mar 2023 12:31:53 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229878AbjCFLMg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 Mar 2023 06:12:36 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53762 "EHLO
+        id S229677AbjCFLbw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 Mar 2023 06:31:52 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46966 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229846AbjCFLMd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Mar 2023 06:12:33 -0500
-Received: from mail-lj1-x235.google.com (mail-lj1-x235.google.com [IPv6:2a00:1450:4864:20::235])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7B9061EBFC
-        for <devicetree@vger.kernel.org>; Mon,  6 Mar 2023 03:11:55 -0800 (PST)
-Received: by mail-lj1-x235.google.com with SMTP id i20so9107878lja.11
-        for <devicetree@vger.kernel.org>; Mon, 06 Mar 2023 03:11:55 -0800 (PST)
+        with ESMTP id S229633AbjCFLbv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Mar 2023 06:31:51 -0500
+Received: from mail-wr1-x42f.google.com (mail-wr1-x42f.google.com [IPv6:2a00:1450:4864:20::42f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4F8CA25BA6
+        for <devicetree@vger.kernel.org>; Mon,  6 Mar 2023 03:31:48 -0800 (PST)
+Received: by mail-wr1-x42f.google.com with SMTP id bw19so8408776wrb.13
+        for <devicetree@vger.kernel.org>; Mon, 06 Mar 2023 03:31:48 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1678101113;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=5tF2QtFJ6zNPhW7I4oiDzHUw1lz0luW83V+WT6CN1JE=;
-        b=rKrbBbGnyYpCeGDUHtn27IvmYy1mDNlDStYnaIX8BrFMnWoDXXuxKUu5j+jWSUB86p
-         kzep5TGpPUece+FUoCRvdhRg5CBaC0U68TGSOliG8csgVMc0Ezgmjpa4n/1/fk/CpoxH
-         pHZ3fjrG9zzx5ReAkE5fn/YBj28wy0PY0ub5WINoLVr7M/qdxLr1jDg5v1OOJ594YWP1
-         u/bzFYtXKXTjnXNgYIofERJLASQVe87xugP9dNt5eY77FZ3ogCb3wEOCYrTGAadX8Cgr
-         QTzNpGiuJ5d46b/+bl/91ygbRihELzdk2OnEP+Zfwf2RIgbfqHgwfg76zqAPzXv/g8QT
-         6Rhw==
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112; t=1678102307;
+        h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
+         :user-agent:references:from:to:cc:subject:date:message-id:reply-to;
+        bh=nnlcQ9BMkF8waA7bPhK9VWqd4dpYj1ZoQnDYqo4mOfE=;
+        b=bVX8s2GN3q6PpSkCba1aWnSI90a08cvYhaxFPHFsVXrDdgrtQSUhr+2tP8/QhciMAD
+         75hFj6rSq+OLiXeIRYV/AN2ynd5Ml+Og0pBiqdEw279tV0TmvalyrW/uBWItVG/bWlda
+         0ccBMIi3AwLOR3p9tM/jDgSoh7HGnz09Ptws84mfdUD7W+wHwdZdfYvAWlY51unP84vo
+         aTwSCd1I2Jwj5ObRujVZE/oFuNqZpu56hfREWhn98BpdmyaLZNm5iDt1UJa1+vxr0TIF
+         7Lb6oyEQ+NURJd9Yx9zZ/mSgs4Y8PtxU+hm3dY4kSoiKgTyvWIr6glwAmVExXlPsw69z
+         eEvg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678101113;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=5tF2QtFJ6zNPhW7I4oiDzHUw1lz0luW83V+WT6CN1JE=;
-        b=KknlDbAX+IRW9F5dRpEhtBU/+ZZBZUOafdw+NP9SbkrTqJkVlnoXJLhMIZ2rj752or
-         RJLRWSbqTdFkgvfpuB7bVBtY+vK3pZL6m1SIp9eU3zT2jtFdM1QDdCI2+R7epTLdeIB8
-         nmLV8+0Nw2C99Mppo6AIaNhlppoK+w4QUce/UEYCYUq46TTgAjJNQ5j0KVD1ksIyUT+C
-         Db4jD20QpHyx/RyHaYFIVwDSwVG6d+WnfHPzVuAhbz+NNuGrnLgwHX/tOssqPgY+jG0Y
-         2HXjc8tlVx6HBiCYsKtwecaCkwkCpVlbXFzkGAiUgWX9HDjdXgSyEmub4YQcyM7jjtL2
-         d6ug==
-X-Gm-Message-State: AO0yUKXKc6fuEIhfk7dJUg+JrpTyFLgFf6na40volXxUhShJ+0rRVSC3
-        VInP8T7l0IIjFeRcQS9FWwfqQQ==
-X-Google-Smtp-Source: AK7set8vx8XROVX/gPmes3ByDAEtphu13/SZr3yPTk6ZTFpinYY05pDXaTEGpFgJZhZ30FOkHw0Epw==
-X-Received: by 2002:a05:651c:2226:b0:295:b0aa:978a with SMTP id y38-20020a05651c222600b00295b0aa978amr4359863ljq.6.1678101113697;
-        Mon, 06 Mar 2023 03:11:53 -0800 (PST)
-Received: from [192.168.1.101] (abym99.neoplus.adsl.tpnet.pl. [83.9.32.99])
-        by smtp.gmail.com with ESMTPSA id t8-20020a05651c204800b00295b9d903b7sm1658686ljo.119.2023.03.06.03.11.52
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 06 Mar 2023 03:11:53 -0800 (PST)
-Message-ID: <2eb160ff-6d36-54c3-0c72-943b78fe338f@linaro.org>
-Date:   Mon, 6 Mar 2023 12:11:51 +0100
+        d=1e100.net; s=20210112; t=1678102307;
+        h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
+         :user-agent:references:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=nnlcQ9BMkF8waA7bPhK9VWqd4dpYj1ZoQnDYqo4mOfE=;
+        b=SoYS874mirPT3SP3LaymLunJT7kvUn1c3XK8YjlDlc5y8ZxyLSkdKVXvAfnBwENw4y
+         Zm3FaXUaEKihEylRLN2tJK51zhkwIADRjZEtr/rocuypP83X5IGXfcwuk14TXcdBrx+v
+         Dr7HFmW4MtF7keVsF4gFrSAm0/+7rxHAl/BqSNCkbZEZHnzM+4EXDVd4c8r4rD5qxYGu
+         a8W7Gn0rR9DV0PPakzFa80/QxBP6hxtcsPd+jtlHvw+1LmCuNlBfrshAutWqSj6aZWGu
+         fprPLeNYy828fTKHg7kRdpZawt/xtFAiGZJWCOPxxkJaQkYP8e99++nOza3Aa9bVfKdh
+         y5iA==
+X-Gm-Message-State: AO0yUKUEkckpNvzYKVmY+J14rr+uhBP+BCOnuXjltkuBvcWK2ovAIqW2
+        lWLkods8f4gNIsJ4a8dDwnx9bw==
+X-Google-Smtp-Source: AK7set9TXIhj/F7Wc0bIk7vwZU1tUUJx2VynrxW4tLjr1wGsRz7gqz3+pE0SN8Ys5JjDvOP3hkuY/w==
+X-Received: by 2002:a05:6000:1ce:b0:2c7:e909:5fcf with SMTP id t14-20020a05600001ce00b002c7e9095fcfmr6430048wrx.3.1678102306731;
+        Mon, 06 Mar 2023 03:31:46 -0800 (PST)
+Received: from localhost (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
+        by smtp.gmail.com with ESMTPSA id l3-20020a5d4103000000b002c55521903bsm9537724wrp.51.2023.03.06.03.31.46
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 06 Mar 2023 03:31:46 -0800 (PST)
+References: <20230301183759.16163-1-ddrokosov@sberdevices.ru>
+ <20230301183759.16163-3-ddrokosov@sberdevices.ru>
+User-agent: mu4e 1.8.13; emacs 28.2
+From:   Jerome Brunet <jbrunet@baylibre.com>
+To:     Dmitry Rokosov <ddrokosov@sberdevices.ru>,
+        neil.armstrong@linaro.org, mturquette@baylibre.com,
+        sboyd@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, khilman@baylibre.com,
+        martin.blumenstingl@googlemail.com
+Cc:     jian.hu@amlogic.com, kernel@sberdevices.ru, rockosov@gmail.com,
+        linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v9 2/5] clk: meson: a1: add Amlogic A1 PLL clock
+ controller driver
+Date:   Mon, 06 Mar 2023 12:17:23 +0100
+In-reply-to: <20230301183759.16163-3-ddrokosov@sberdevices.ru>
+Message-ID: <1jr0u2azfi.fsf@starbuckisacylon.baylibre.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-Subject: Re: [PATCH 10/11] arm64: dts: qcom: sc7280: fix EUD port properties
-Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Melody Olvera <quic_molvera@quicinc.com>,
-        Souradeep Chowdhury <quic_schowdhu@quicinc.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20230305125954.209559-1-krzysztof.kozlowski@linaro.org>
- <20230305125954.209559-10-krzysztof.kozlowski@linaro.org>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20230305125954.209559-10-krzysztof.kozlowski@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -82,54 +78,495 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
+On Wed 01 Mar 2023 at 21:37, Dmitry Rokosov <ddrokosov@sberdevices.ru> wrote:
 
-On 5.03.2023 13:59, Krzysztof Kozlowski wrote:
-> Nods with unit addresses must have also 'reg' property:
-> 
->   sc7280-herobrine-crd.dtb: eud@88e0000: ports:port@0: 'reg' is a required property
-> 
-> Fixes: 0b059979090d ("arm64: dts: qcom: sc7280: Add EUD dt node and dwc3 connector")
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Introduce PLL clock controller for Amlogic A1 SoC family.
+>
+> Signed-off-by: Jian Hu <jian.hu@amlogic.com>
+> Signed-off-by: Dmitry Rokosov <ddrokosov@sberdevices.ru>
 > ---
-This could use some newlines, but that's a different topic.
-
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
-
-Konrad
->  arch/arm64/boot/dts/qcom/sc7280.dtsi | 9 +++++++++
->  1 file changed, 9 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> index bdcb74925313..71179182c3b8 100644
-> --- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> @@ -3593,12 +3593,17 @@ eud: eud@88e0000 {
->  			      <0 0x088e2000 0 0x1000>;
->  			interrupts-extended = <&pdc 11 IRQ_TYPE_LEVEL_HIGH>;
->  			ports {
-> +				#address-cells = <1>;
-> +				#size-cells = <0>;
+>  drivers/clk/meson/Kconfig  |  10 +
+>  drivers/clk/meson/Makefile |   1 +
+>  drivers/clk/meson/a1-pll.c | 365 +++++++++++++++++++++++++++++++++++++
+>  drivers/clk/meson/a1-pll.h |  47 +++++
+>  4 files changed, 423 insertions(+)
+>  create mode 100644 drivers/clk/meson/a1-pll.c
+>  create mode 100644 drivers/clk/meson/a1-pll.h
+>
+> diff --git a/drivers/clk/meson/Kconfig b/drivers/clk/meson/Kconfig
+> index fc002c155bc3..f56da2a4b000 100644
+> --- a/drivers/clk/meson/Kconfig
+> +++ b/drivers/clk/meson/Kconfig
+> @@ -99,6 +99,16 @@ config COMMON_CLK_AXG_AUDIO
+>  	  Support for the audio clock controller on AmLogic A113D devices,
+>  	  aka axg, Say Y if you want audio subsystem to work.
+>  
+> +config COMMON_CLK_A1_PLL
+> +	tristate "Meson A1 SoC PLL controller support"
+> +	depends on ARM64
+> +	select COMMON_CLK_MESON_REGMAP
+> +	select COMMON_CLK_MESON_PLL
+> +	help
+> +	  Support for the PLL clock controller on Amlogic A113L based
+> +	  device, A1 SoC Family. Say Y if you want A1 PLL clock controller
+> +	  to work.
 > +
->  				port@0 {
-> +					reg = <0>;
->  					eud_ep: endpoint {
->  						remote-endpoint = <&usb2_role_switch>;
->  					};
->  				};
->  				port@1 {
-> +					reg = <1>;
->  					eud_con: endpoint {
->  						remote-endpoint = <&con_eud>;
->  					};
-> @@ -3609,7 +3614,11 @@ eud_con: endpoint {
->  		eud_typec: connector {
->  			compatible = "usb-c-connector";
->  			ports {
-> +				#address-cells = <1>;
-> +				#size-cells = <0>;
+>  config COMMON_CLK_G12A
+>  	tristate "G12 and SM1 SoC clock controllers support"
+>  	depends on ARM64
+> diff --git a/drivers/clk/meson/Makefile b/drivers/clk/meson/Makefile
+> index 6eca2a406ee3..2f17f475a48f 100644
+> --- a/drivers/clk/meson/Makefile
+> +++ b/drivers/clk/meson/Makefile
+> @@ -16,6 +16,7 @@ obj-$(CONFIG_COMMON_CLK_MESON_VID_PLL_DIV) += vid-pll-div.o
+>  
+>  obj-$(CONFIG_COMMON_CLK_AXG) += axg.o axg-aoclk.o
+>  obj-$(CONFIG_COMMON_CLK_AXG_AUDIO) += axg-audio.o
+> +obj-$(CONFIG_COMMON_CLK_A1_PLL) += a1-pll.o
+>  obj-$(CONFIG_COMMON_CLK_GXBB) += gxbb.o gxbb-aoclk.o
+>  obj-$(CONFIG_COMMON_CLK_G12A) += g12a.o g12a-aoclk.o
+>  obj-$(CONFIG_COMMON_CLK_MESON8B) += meson8b.o meson8-ddr.o
+> diff --git a/drivers/clk/meson/a1-pll.c b/drivers/clk/meson/a1-pll.c
+> new file mode 100644
+> index 000000000000..c565f9b2a8dd
+> --- /dev/null
+> +++ b/drivers/clk/meson/a1-pll.c
+> @@ -0,0 +1,365 @@
+> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+> +/*
+> + * Copyright (c) 2019 Amlogic, Inc. All rights reserved.
+> + * Author: Jian Hu <jian.hu@amlogic.com>
+> + *
+> + * Copyright (c) 2023, SberDevices. All Rights Reserved.
+> + * Author: Dmitry Rokosov <ddrokosov@sberdevices.ru>
+> + */
 > +
->  				port@0 {
-> +					reg = <0>;
->  					con_eud: endpoint {
->  						remote-endpoint = <&eud_con>;
->  					};
+> +#include <linux/clk-provider.h>
+> +#include <linux/of_device.h>
+> +#include <linux/platform_device.h>
+> +#include "meson-a1-clkc.h"
+
+As pointed out by the kernel robot, there is a problem here
+
+> +#include "a1-pll.h"
+> +#include "clk-regmap.h"
+> +
+> +static struct clk_regmap fixed_pll_dco = {
+> +	.data = &(struct meson_clk_pll_data){
+> +		.en = {
+> +			.reg_off = ANACTRL_FIXPLL_CTRL0,
+> +			.shift   = 28,
+> +			.width   = 1,
+> +		},
+> +		.m = {
+> +			.reg_off = ANACTRL_FIXPLL_CTRL0,
+> +			.shift   = 0,
+> +			.width   = 8,
+> +		},
+> +		.n = {
+> +			.reg_off = ANACTRL_FIXPLL_CTRL0,
+> +			.shift   = 10,
+> +			.width   = 5,
+> +		},
+> +		.frac = {
+> +			.reg_off = ANACTRL_FIXPLL_CTRL1,
+> +			.shift   = 0,
+> +			.width   = 19,
+> +		},
+> +		.l = {
+> +			.reg_off = ANACTRL_FIXPLL_STS,
+> +			.shift   = 31,
+> +			.width   = 1,
+> +		},
+> +		.rst = {
+> +			.reg_off = ANACTRL_FIXPLL_CTRL0,
+> +			.shift   = 29,
+> +			.width   = 1,
+> +		},
+> +	},
+> +	.hw.init = &(struct clk_init_data){
+> +		.name = "fixed_pll_dco",
+> +		.ops = &meson_clk_pll_ro_ops,
+> +		.parent_data = &(const struct clk_parent_data) {
+> +			.fw_name = "fixpll_in",
+> +		},
+> +		.num_parents = 1,
+> +	},
+> +};
+> +
+> +static struct clk_regmap fixed_pll = {
+> +	.data = &(struct clk_regmap_gate_data){
+> +		.offset = ANACTRL_FIXPLL_CTRL0,
+> +		.bit_idx = 20,
+> +	},
+> +	.hw.init = &(struct clk_init_data) {
+> +		.name = "fixed_pll",
+> +		.ops = &clk_regmap_gate_ops,
+> +		.parent_hws = (const struct clk_hw *[]) {
+> +			&fixed_pll_dco.hw
+> +		},
+> +		.num_parents = 1,
+> +		/*
+> +		 * It is enough that the fdiv leaf has critical flag,
+> +		 * No critical or unused flag here.
+> +		 */
+
+The comment is not useful
+
+> +	},
+> +};
+> +
+> +static const struct pll_mult_range hifi_pll_mult_range = {
+> +	.min = 32,
+> +	.max = 64,
+> +};
+> +
+> +static const struct reg_sequence hifi_init_regs[] = {
+> +	{ .reg = ANACTRL_HIFIPLL_CTRL1, .def = 0x01800000 },
+> +	{ .reg = ANACTRL_HIFIPLL_CTRL2, .def = 0x00001100 },
+> +	{ .reg = ANACTRL_HIFIPLL_CTRL3, .def = 0x100a1100 },
+> +	{ .reg = ANACTRL_HIFIPLL_CTRL4, .def = 0x00302000 },
+> +	{ .reg = ANACTRL_HIFIPLL_CTRL0, .def = 0x01f18440 },
+
+This last poke should not bits otherwise handled by parms.
+This is a rate init in disguise.
+
+> +};
+> +
+> +static struct clk_regmap hifi_pll = {
+> +	.data = &(struct meson_clk_pll_data){
+> +		.en = {
+> +			.reg_off = ANACTRL_HIFIPLL_CTRL0,
+> +			.shift   = 28,
+> +			.width   = 1,
+> +		},
+> +		.m = {
+> +			.reg_off = ANACTRL_HIFIPLL_CTRL0,
+> +			.shift   = 0,
+> +			.width   = 8,
+> +		},
+> +		.n = {
+> +			.reg_off = ANACTRL_HIFIPLL_CTRL0,
+> +			.shift   = 10,
+> +			.width   = 5,
+> +		},
+> +		.frac = {
+> +			.reg_off = ANACTRL_HIFIPLL_CTRL1,
+> +			.shift   = 0,
+> +			.width   = 19,
+> +		},
+> +		.l = {
+> +			.reg_off = ANACTRL_HIFIPLL_STS,
+> +			.shift   = 31,
+> +			.width   = 1,
+> +		},
+> +		.current_en = {
+> +			.reg_off = ANACTRL_HIFIPLL_CTRL0,
+> +			.shift   = 26,
+> +			.width   = 1,
+> +		},
+> +		.l_detect = {
+
+What is this ?
+
+> +			.reg_off = ANACTRL_HIFIPLL_CTRL2,
+> +			.shift   = 6,
+> +			.width   = 1,
+> +		},
+> +		.range = &hifi_pll_mult_range,
+> +		.init_regs = hifi_init_regs,
+> +		.init_count = ARRAY_SIZE(hifi_init_regs),
+> +	},
+> +	.hw.init = &(struct clk_init_data){
+> +		.name = "hifi_pll",
+> +		.ops = &meson_clk_pll_ops,
+> +		.parent_data = &(const struct clk_parent_data) {
+> +			.fw_name = "hifipll_in",
+> +		},
+> +		.num_parents = 1,
+> +	},
+> +};
+> +
+> +static struct clk_fixed_factor fclk_div2_div = {
+> +	.mult = 1,
+> +	.div = 2,
+> +	.hw.init = &(struct clk_init_data){
+> +		.name = "fclk_div2_div",
+> +		.ops = &clk_fixed_factor_ops,
+> +		.parent_hws = (const struct clk_hw *[]) {
+> +			&fixed_pll.hw
+> +		},
+> +		.num_parents = 1,
+> +	},
+> +};
+> +
+> +static struct clk_regmap fclk_div2 = {
+> +	.data = &(struct clk_regmap_gate_data){
+> +		.offset = ANACTRL_FIXPLL_CTRL0,
+> +		.bit_idx = 21,
+> +	},
+> +	.hw.init = &(struct clk_init_data){
+> +		.name = "fclk_div2",
+> +		.ops = &clk_regmap_gate_ops,
+> +		.parent_hws = (const struct clk_hw *[]) {
+> +			&fclk_div2_div.hw
+> +		},
+> +		.num_parents = 1,
+> +		/*
+> +		 * This clock is used by DDR clock in BL2 firmware
+> +		 * and is required by the platform to operate correctly.
+> +		 * Until the following condition are met, we need this clock to
+> +		 * be marked as critical:
+> +		 * a) Mark the clock used by a firmware resource, if possible
+> +		 * b) CCF has a clock hand-off mechanism to make the sure the
+> +		 *    clock stays on until the proper driver comes along
+> +		 */
+> +		.flags = CLK_IS_CRITICAL,
+> +	},
+> +};
+> +
+> +static struct clk_fixed_factor fclk_div3_div = {
+> +	.mult = 1,
+> +	.div = 3,
+> +	.hw.init = &(struct clk_init_data){
+> +		.name = "fclk_div3_div",
+> +		.ops = &clk_fixed_factor_ops,
+> +		.parent_hws = (const struct clk_hw *[]) {
+> +			&fixed_pll.hw
+> +		},
+> +		.num_parents = 1,
+> +	},
+> +};
+> +
+> +static struct clk_regmap fclk_div3 = {
+> +	.data = &(struct clk_regmap_gate_data){
+> +		.offset = ANACTRL_FIXPLL_CTRL0,
+> +		.bit_idx = 22,
+> +	},
+> +	.hw.init = &(struct clk_init_data){
+> +		.name = "fclk_div3",
+> +		.ops = &clk_regmap_gate_ops,
+> +		.parent_hws = (const struct clk_hw *[]) {
+> +			&fclk_div3_div.hw
+> +		},
+> +		.num_parents = 1,
+> +		/*
+> +		 * This clock is used by APB bus which is set in boot ROM code
+> +		 * and is required by the platform to operate correctly.
+> +		 * About critical, refer to fclk_div2.
+
+This last line is not useful. Same for other occurences
+
+> +		 */
+> +		.flags = CLK_IS_CRITICAL,
+> +	},
+> +};
+> +
+> +static struct clk_fixed_factor fclk_div5_div = {
+> +	.mult = 1,
+> +	.div = 5,
+> +	.hw.init = &(struct clk_init_data){
+> +		.name = "fclk_div5_div",
+> +		.ops = &clk_fixed_factor_ops,
+> +		.parent_hws = (const struct clk_hw *[]) {
+> +			&fixed_pll.hw
+> +		},
+> +		.num_parents = 1,
+> +	},
+> +};
+> +
+> +static struct clk_regmap fclk_div5 = {
+> +	.data = &(struct clk_regmap_gate_data){
+> +		.offset = ANACTRL_FIXPLL_CTRL0,
+> +		.bit_idx = 23,
+> +	},
+> +	.hw.init = &(struct clk_init_data){
+> +		.name = "fclk_div5",
+> +		.ops = &clk_regmap_gate_ops,
+> +		.parent_hws = (const struct clk_hw *[]) {
+> +			&fclk_div5_div.hw
+> +		},
+> +		.num_parents = 1,
+> +		/*
+> +		 * This clock is used by AXI bus which setted in Romcode
+> +		 * and is required by the platform to operate correctly.
+> +		 * About critical, refer to fclk_div2.
+> +		 */
+> +		.flags = CLK_IS_CRITICAL,
+> +	},
+> +};
+> +
+> +static struct clk_fixed_factor fclk_div7_div = {
+> +	.mult = 1,
+> +	.div = 7,
+> +	.hw.init = &(struct clk_init_data){
+> +		.name = "fclk_div7_div",
+> +		.ops = &clk_fixed_factor_ops,
+> +		.parent_hws = (const struct clk_hw *[]) {
+> +			&fixed_pll.hw
+> +		},
+> +		.num_parents = 1,
+> +	},
+> +};
+> +
+> +static struct clk_regmap fclk_div7 = {
+> +	.data = &(struct clk_regmap_gate_data){
+> +		.offset = ANACTRL_FIXPLL_CTRL0,
+> +		.bit_idx = 24,
+> +	},
+> +	.hw.init = &(struct clk_init_data){
+> +		.name = "fclk_div7",
+> +		.ops = &clk_regmap_gate_ops,
+> +		.parent_hws = (const struct clk_hw *[]) {
+> +			&fclk_div7_div.hw
+> +		},
+> +		.num_parents = 1,
+> +	},
+> +};
+> +
+> +/* Array of all clocks provided by this provider */
+> +static struct clk_hw_onecell_data a1_pll_hw_onecell_data = {
+> +	.hws = {
+> +		[CLKID_FIXED_PLL_DCO]	= &fixed_pll_dco.hw,
+> +		[CLKID_FIXED_PLL]	= &fixed_pll.hw,
+> +		[CLKID_FCLK_DIV2_DIV]	= &fclk_div2_div.hw,
+> +		[CLKID_FCLK_DIV3_DIV]	= &fclk_div3_div.hw,
+> +		[CLKID_FCLK_DIV5_DIV]	= &fclk_div5_div.hw,
+> +		[CLKID_FCLK_DIV7_DIV]	= &fclk_div7_div.hw,
+> +		[CLKID_FCLK_DIV2]	= &fclk_div2.hw,
+> +		[CLKID_FCLK_DIV3]	= &fclk_div3.hw,
+> +		[CLKID_FCLK_DIV5]	= &fclk_div5.hw,
+> +		[CLKID_FCLK_DIV7]	= &fclk_div7.hw,
+> +		[CLKID_HIFI_PLL]	= &hifi_pll.hw,
+> +		[NR_PLL_CLKS]		= NULL,
+> +	},
+> +	.num = NR_PLL_CLKS,
+> +};
+> +
+> +static struct clk_regmap *const a1_pll_regmaps[] = {
+> +	&fixed_pll_dco,
+> +	&fixed_pll,
+> +	&fclk_div2,
+> +	&fclk_div3,
+> +	&fclk_div5,
+> +	&fclk_div7,
+> +	&hifi_pll,
+> +};
+> +
+> +static struct regmap_config a1_pll_regmap_cfg = {
+> +	.reg_bits   = 32,
+> +	.val_bits   = 32,
+> +	.reg_stride = 4,
+> +};
+> +
+> +static int meson_a1_pll_probe(struct platform_device *pdev)
+> +{
+> +	struct device *dev = &pdev->dev;
+> +	struct clk_hw *hw;
+> +	void __iomem *base;
+> +	struct regmap *map;
+> +	int clkid, i, err;
+> +
+> +	base = devm_platform_ioremap_resource(pdev, 0);
+> +	if (IS_ERR(base))
+> +		return dev_err_probe(dev, PTR_ERR(base),
+> +				     "can't ioremap resource\n");
+> +
+> +	map = devm_regmap_init_mmio(dev, base, &a1_pll_regmap_cfg);
+> +	if (IS_ERR(map))
+> +		return dev_err_probe(dev, PTR_ERR(map),
+> +				     "can't init regmap mmio region\n");
+> +
+> +	/* Populate regmap for the regmap backed clocks */
+> +	for (i = 0; i < ARRAY_SIZE(a1_pll_regmaps); i++)
+> +		a1_pll_regmaps[i]->map = map;
+> +
+> +	for (clkid = 0; clkid < a1_pll_hw_onecell_data.num; clkid++) {
+> +		hw = a1_pll_hw_onecell_data.hws[clkid];
+> +		err = devm_clk_hw_register(dev, hw);
+> +		if (err)
+> +			return dev_err_probe(dev, err,
+> +					     "clock registration failed\n");
+> +	}
+> +
+> +	return devm_of_clk_add_hw_provider(dev, of_clk_hw_onecell_get,
+> +					   &a1_pll_hw_onecell_data);
+> +}
+> +
+> +#ifdef CONFIG_OF
+
+This config is selected by ARM64 which this driver depends on
+
+> +static const struct of_device_id a1_pll_clkc_match_table[] = {
+> +	{ .compatible = "amlogic,a1-pll-clkc", },
+> +	{},
+> +};
+> +MODULE_DEVICE_TABLE(of, a1_pll_clkc_match_table);
+> +#endif /* CONFIG_OF */
+> +
+> +static struct platform_driver a1_pll_clkc_driver = {
+> +	.probe = meson_a1_pll_probe,
+> +	.driver = {
+> +		.name = "a1-pll-clkc",
+> +		.of_match_table = of_match_ptr(a1_pll_clkc_match_table),
+> +	},
+> +};
+> +
+> +module_platform_driver(a1_pll_clkc_driver);
+> +MODULE_AUTHOR("Jian Hu <jian.hu@amlogic.com>");
+> +MODULE_AUTHOR("Dmitry Rokosov <ddrokosov@sberdevices.ru>");
+> +MODULE_LICENSE("GPL");
+> diff --git a/drivers/clk/meson/a1-pll.h b/drivers/clk/meson/a1-pll.h
+> new file mode 100644
+> index 000000000000..de2eebce98af
+> --- /dev/null
+> +++ b/drivers/clk/meson/a1-pll.h
+> @@ -0,0 +1,47 @@
+> +/* SPDX-License-Identifier: (GPL-2.0+ OR MIT) */
+> +/*
+> + * Amlogic Meson-A1 PLL Clock Controller internals
+> + *
+> + * Copyright (c) 2019 Amlogic, Inc. All rights reserved.
+> + * Author: Jian Hu <jian.hu@amlogic.com>
+> + *
+> + * Copyright (c) 2023, SberDevices. All Rights Reserved.
+> + * Author: Dmitry Rokosov <ddrokosov@sberdevices.ru>
+> + */
+> +
+> +#ifndef __A1_PLL_H
+> +#define __A1_PLL_H
+> +
+> +#include "clk-pll.h"
+> +
+> +/* PLL register offset */
+> +#define ANACTRL_FIXPLL_CTRL0	0x0
+> +#define ANACTRL_FIXPLL_CTRL1	0x4
+> +#define ANACTRL_FIXPLL_STS	0x14
+> +#define ANACTRL_HIFIPLL_CTRL0	0xc0
+> +#define ANACTRL_HIFIPLL_CTRL1	0xc4
+> +#define ANACTRL_HIFIPLL_CTRL2	0xc8
+> +#define ANACTRL_HIFIPLL_CTRL3	0xcc
+> +#define ANACTRL_HIFIPLL_CTRL4	0xd0
+> +#define ANACTRL_HIFIPLL_STS	0xd4
+> +
+> +/*
+> + * CLKID index values
+> + *
+> + * These indices are entirely contrived and do not map onto the hardware.
+> + * It has now been decided to expose everything by default in the DT header:
+> + * include/dt-bindings/clock/a1-pll-clkc.h. Only the clocks ids we don't want
+> + * to expose, such as the internal muxes and dividers of composite clocks,
+> + * will remain defined here.
+> + */
+> +#define CLKID_FIXED_PLL_DCO	0
+> +#define CLKID_FCLK_DIV2_DIV	2
+> +#define CLKID_FCLK_DIV3_DIV	3
+> +#define CLKID_FCLK_DIV5_DIV	4
+> +#define CLKID_FCLK_DIV7_DIV	5
+> +#define NR_PLL_CLKS		11
+> +
+> +/* include the CLKIDs that have been made part of the DT binding */
+> +#include <dt-bindings/clock/a1-pll-clkc.h>
+> +
+> +#endif /* __A1_PLL_H */
+
