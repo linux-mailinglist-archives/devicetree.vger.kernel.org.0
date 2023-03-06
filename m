@@ -2,85 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1953B6AC973
-	for <lists+devicetree@lfdr.de>; Mon,  6 Mar 2023 18:11:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C932B6AC990
+	for <lists+devicetree@lfdr.de>; Mon,  6 Mar 2023 18:16:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229898AbjCFRLc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 Mar 2023 12:11:32 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57410 "EHLO
+        id S229651AbjCFRQI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 Mar 2023 12:16:08 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37734 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229803AbjCFRLa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Mar 2023 12:11:30 -0500
-Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 11C7721A30
-        for <devicetree@vger.kernel.org>; Mon,  6 Mar 2023 09:10:47 -0800 (PST)
-Received: by mail-lf1-x135.google.com with SMTP id g17so13713538lfv.4
-        for <devicetree@vger.kernel.org>; Mon, 06 Mar 2023 09:10:46 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1678122576;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=9qYKcnlpWdMlBpcagLtIlBclO/koVb4A2hugmwuDjQQ=;
-        b=K/ALNyiVmwk2B7FaiVr9+CnGKCB/lcBSgTRyxUeKfghmfQ3LfkadXwYITQfgwcIYec
-         yjLbnMfJ3Y5IcIHbvOSl0YxygbcPkImfyfF3A+daz2LzVPW5u/4J5vPm/5tQEFILCaUh
-         WIg/nIbiQWKn450exLKg18eyoDQDd+A+VKIimnJd80kN1/NU6uuVcML52mI8fWP08JAw
-         xlycx5pHeYzmF5FEiOmVmHyUN40f0U2Dw1GfbIStj1/0Pzf0DsZ0V0osDVJMRw53sgEf
-         uafbaitDMcI/Gj7p0Emovr44UvrTN4G03BCks7HKCrIOLCewObrOT6IiwpTYtCTE00XI
-         F53Q==
+        with ESMTP id S229894AbjCFRQH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Mar 2023 12:16:07 -0500
+Received: from mail-qt1-x82c.google.com (mail-qt1-x82c.google.com [IPv6:2607:f8b0:4864:20::82c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D9283B5;
+        Mon,  6 Mar 2023 09:15:27 -0800 (PST)
+Received: by mail-qt1-x82c.google.com with SMTP id d7so11295362qtr.12;
+        Mon, 06 Mar 2023 09:15:27 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678122576;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=9qYKcnlpWdMlBpcagLtIlBclO/koVb4A2hugmwuDjQQ=;
-        b=2JLDYQWKgfxl7tWTfBnhlNq4WTNE6HwiW0dcyrVuvtfEwRzMJwSHu/YsngQVWHh584
-         nxoog81GM/v0KPh4Mvld0pwLlsjsLPEyxODixPg3qcpulhqdVmiKqxzYa4AP5Yv7opAa
-         LH9DdAKvLO/VGlFc6spD9otyevANRZqTOU7biZ5CkAk/nclrufkr6iNPogTxXbKKSJhd
-         DWh0KgXPsFUueq4OcRAY4aVTyy/44Y2mktWteWIqaAf/F2SVMgOtz8g1BNifukjb8aQH
-         2qujxshjHCmioN/JKM3J3DfPi0PwJLwammVayNrKlN1WcwE+JBnR0dEArXaHAgnSuyw7
-         5xSQ==
-X-Gm-Message-State: AO0yUKU2nX9eUi0HFAls+GVdHjQM1PcQ4zl/DX7bIZfYXqKuVtHTJ7lt
-        FPrGdgMupvSKcogiYwojDw5pg/gr3EeGY3gbEiw=
-X-Google-Smtp-Source: AK7set/Go5uO6Ko/jxC1RRWHo5FHKFy68YfXEpfah8KL+MgdxvhaMrkjjPKYCkUBXnHCDbX3tV62AA==
-X-Received: by 2002:ac2:558d:0:b0:4db:3882:8f42 with SMTP id v13-20020ac2558d000000b004db38828f42mr3558231lfg.45.1678122576059;
-        Mon, 06 Mar 2023 09:09:36 -0800 (PST)
-Received: from [192.168.1.101] (abym99.neoplus.adsl.tpnet.pl. [83.9.32.99])
-        by smtp.gmail.com with ESMTPSA id x19-20020a19f613000000b004db1cd5efcesm1692927lfe.241.2023.03.06.09.09.34
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 06 Mar 2023 09:09:35 -0800 (PST)
-Message-ID: <dfd1d81e-76a0-f8eb-e529-9f8ea1e927b6@linaro.org>
-Date:   Mon, 6 Mar 2023 18:09:33 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-Subject: Re: [PATCH v7 1/6] dt-bindings: ufs: qcom: Add SM6125 compatible
- string
-Content-Language: en-US
-To:     Lux Aliaga <they@mint.lgbt>, agross@kernel.org,
-        andersson@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, vkoul@kernel.org,
-        kishon@kernel.org, alim.akhtar@samsung.com, avri.altman@wdc.com,
-        bvanassche@acm.org, keescook@chromium.org, tony.luck@intel.com,
-        gpiccoli@igalia.com
-Cc:     ~postmarketos/upstreaming@lists.sr.ht,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org,
-        linux-scsi@vger.kernel.org, linux-hardening@vger.kernel.org,
-        phone-devel@vger.kernel.org, martin.botka@somainline.org,
-        marijn.suijten@somainline.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-References: <20230306165246.14782-1-they@mint.lgbt>
- <20230306165246.14782-2-they@mint.lgbt>
- <4670ddae-6b01-1e5c-b0ed-1f2f498a4f66@mint.lgbt>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <4670ddae-6b01-1e5c-b0ed-1f2f498a4f66@mint.lgbt>
-Content-Type: text/plain; charset=UTF-8
+        d=1e100.net; s=20210112; t=1678122808;
+        h=date:subject:message-id:references:in-reply-to:cc:to:from
+         :mime-version:content-transfer-encoding:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=RsrrIzM0j0FRIx/53yOww37Xy9tl2yPouPmm4wECPj0=;
+        b=5qwpPoNpOKot6TvBE3hkkC9m3qmj9CJSPKpjWYQ0QahSUEjtAphegOlWRwO3RmwN97
+         HyGJVLIXSkjSLBE5yY+4O15Lh6OI8Zqw088kTPzX8RT945BXHAh6eyvduxQAoudxKE9e
+         BDaOFYAksjJYweJ+8fr6t52oO4t/4iW8L8GT46YT9Od0gz6+UFMqonskqsxF77sm4cwc
+         e7OL+LlQ6EbyOwAFZSwjyFEyMQghQ1StgxA3UAA244wlKoRVLUby3Xxr2CTexELpDOFr
+         IMkKWhp6EG8u8uAzKJbw+vYBoZwHoxJ3lXzLwmYVDDfJRfmF3KuAUcIudjl1P+ul4uJL
+         fXiQ==
+X-Gm-Message-State: AO0yUKWky1kwU++Vj2C1dfVSdMiy/pH/5rSkBHOZtTdUCwLC5VPFp/Rt
+        0Fa7Io7cawhdP9JmcGL8RGZvjXq8v7VU
+X-Google-Smtp-Source: AK7set80EMN6nl7xz9iucMUCgSZOjRxVHMMG3Ss3AYHLRrOgawkk6PGGlxbecoJVBRoWNdguuot2Ug==
+X-Received: by 2002:a05:622a:1042:b0:3bf:d1c6:d375 with SMTP id f2-20020a05622a104200b003bfd1c6d375mr21079816qte.36.1678122807720;
+        Mon, 06 Mar 2023 09:13:27 -0800 (PST)
+Received: from robh_at_kernel.org (adsl-72-50-3-187.prtc.net. [72.50.3.187])
+        by smtp.gmail.com with ESMTPSA id m8-20020aed27c8000000b003bfc355c3a6sm7926318qtg.80.2023.03.06.09.13.26
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 06 Mar 2023 09:13:27 -0800 (PST)
+Received: (nullmailer pid 197991 invoked by uid 1000);
+        Mon, 06 Mar 2023 17:13:23 -0000
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+MIME-Version: 1.0
+From:   Rob Herring <robh@kernel.org>
+To:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Cc:     devicetree@vger.kernel.org, konrad.dybcio@linaro.org,
+        linux-kernel@vger.kernel.org, lpieralisi@kernel.org,
+        andersson@kernel.org, quic_srichara@quicinc.com,
+        linux-pci@vger.kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        kw@linux.com, linux-arm-msm@vger.kernel.org
+In-Reply-To: <20230306153222.157667-14-manivannan.sadhasivam@linaro.org>
+References: <20230306153222.157667-1-manivannan.sadhasivam@linaro.org>
+ <20230306153222.157667-14-manivannan.sadhasivam@linaro.org>
+Message-Id: <167812271142.181001.17686194952985575975.robh@kernel.org>
+Subject: Re: [PATCH 13/19] dt-bindings: PCI: qcom-ep: Rename "mmio" region
+ to "mhi"
+Date:   Mon, 06 Mar 2023 11:13:23 -0600
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,
+        SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -88,41 +67,31 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
-
-On 6.03.2023 18:01, Lux Aliaga wrote:
+On Mon, 06 Mar 2023 21:02:16 +0530, Manivannan Sadhasivam wrote:
+> As per Qualcomm's internal documentation, the name of the region is "mhi"
+> and not "mmio". So let's rename it to follow the convention.
 > 
-> On 06/03/2023 13:52, Lux Aliaga wrote:
->> Document the compatible for UFS found on the SM6125.
->>
->> Signed-off-by: Lux Aliaga <they@mint.lgbt>
->> Reviewed-by: Martin Botka <martin.botka@somainline.org>
->> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->> ---
->>   Documentation/devicetree/bindings/ufs/qcom,ufs.yaml | 2 ++
->>   1 file changed, 2 insertions(+)
->>
->> diff --git a/Documentation/devicetree/bindings/ufs/qcom,ufs.yaml b/Documentation/devicetree/bindings/ufs/qcom,ufs.yaml
->> index b517d76215e3..42422f3471b3 100644
->> --- a/Documentation/devicetree/bindings/ufs/qcom,ufs.yaml
->> +++ b/Documentation/devicetree/bindings/ufs/qcom,ufs.yaml
->> @@ -29,6 +29,7 @@ properties:
->>             - qcom,sc8280xp-ufshc
->>             - qcom,sdm845-ufshc
->>             - qcom,sm6115-ufshc
->> +          - qcom,sm6125-ufshc
->>             - qcom,sm6350-ufshc
->>             - qcom,sm8150-ufshc
->>             - qcom,sm8250-ufshc
->> @@ -185,6 +186,7 @@ allOf:
->>             contains:
->>               enum:
->>                 - qcom,sm6115-ufshc
->> +              - qcom,sm6125-ufshc
->>       then:
->>         properties:
->>           clocks:
-> I have to apologize. I worked on a changelog for this patchset but I skipped the subject header, therefore it didn't send, and as I realized this I interrupted the process, leaving the patchset incomplete. I'll retry sending it, this time correctly.
-Happens, next time resend it with a RESEND prefix, e.g. [RESEND PATCH 1/2]
-
-Konrad
+> Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+> ---
+>  Documentation/devicetree/bindings/pci/qcom,pcie-ep.yaml | 6 +++---
+>  1 file changed, 3 insertions(+), 3 deletions(-)
 > 
+
+Running 'make dtbs_check' with the schema in this patch gives the
+following warnings. Consider if they are expected or the schema is
+incorrect. These may not be new warnings.
+
+Note that it is not yet a requirement to have 0 warnings for dtbs_check.
+This will change in the future.
+
+Full log is available here: https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20230306153222.157667-14-manivannan.sadhasivam@linaro.org
+
+
+pcie-ep@40000000: reg-names:5: 'mhi' was expected
+	arch/arm/boot/dts/qcom-sdx55-mtp.dtb
+	arch/arm/boot/dts/qcom-sdx55-t55.dtb
+	arch/arm/boot/dts/qcom-sdx55-telit-fn980-tlb.dtb
+
+pcie-ep@40000000: Unevaluated properties are not allowed ('reg-names' was unexpected)
+	arch/arm/boot/dts/qcom-sdx55-telit-fn980-tlb.dtb
+
