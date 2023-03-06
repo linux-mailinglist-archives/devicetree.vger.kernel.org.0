@@ -2,176 +2,227 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 148706ACE41
-	for <lists+devicetree@lfdr.de>; Mon,  6 Mar 2023 20:40:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D10036ACE4A
+	for <lists+devicetree@lfdr.de>; Mon,  6 Mar 2023 20:41:58 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229616AbjCFTkb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 Mar 2023 14:40:31 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40688 "EHLO
+        id S229638AbjCFTl5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 Mar 2023 14:41:57 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42046 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229556AbjCFTka (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Mar 2023 14:40:30 -0500
-Received: from mail-vs1-xe2e.google.com (mail-vs1-xe2e.google.com [IPv6:2607:f8b0:4864:20::e2e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AA88B39B8B;
-        Mon,  6 Mar 2023 11:40:29 -0800 (PST)
-Received: by mail-vs1-xe2e.google.com with SMTP id m10so10250743vso.4;
-        Mon, 06 Mar 2023 11:40:29 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112; t=1678131628;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=50qzc6WD2nrbOh892nmzl1AVo/ViXdtXCdM3w+9KPdw=;
-        b=m2K87Mke1XXFLtw5HmO4wDPEYvfextGDTGA2B2HAGtahyJXOcKfq5pwv1vDPJSX2sN
-         6tn9zGcqZo49GUiLn+tAwJzTmr4PwxSrwFv6lE6nFKsYhRkV5R6L3tPKUvMwh3S+Xz7X
-         CuQnALiV5dKqgnlMWL3yAoKHSn2DhAQh8ZAO+LE/oPXXoww+KF5N0CkfQXhLdNhItNzl
-         eB7h2oabDuiIr4FLxHTo4KQu3C+8/FLDWTRaje+X5CG86tTwrN/Xcl5R3LsqA3TxWwfp
-         HnUCtIlriLIuwyJ5SoLJyJ59qO7tBMoLeDnDTNiUH2XgW4oesBopQbCQo+wVJ0gb8gY2
-         pywQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678131628;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=50qzc6WD2nrbOh892nmzl1AVo/ViXdtXCdM3w+9KPdw=;
-        b=ZE27z4r7HFrUvlpKfYEwAApwfQyz3VHHaPmZioMFTj7UPMieynaek3741V4XBbPevR
-         zCIZJGLayEJ+K5B9cwZFSamGB9vtFfIKHJNzGaa/NxFUye9tLVtSuxW9jzcGY6AiPWFK
-         xU4zQ++BD09IRMZbksPo076ujVy7bjOJCvAR6Kp+SRVQim7ZVYwQIHGJIvfOP0FYt3T9
-         UJP5HRiDyVz8ZL3BsQHKwToE5euVNp9mM0ICtYw5tBAYD7Z534J0kZUdqcBhkoWUDt6l
-         Mob6iai/Ju5+YCb3oZlrWu/1KDTwfNm/1sXd7lGvmijvQpc9IE8JPo837iB2k8k2lIBy
-         ddLw==
-X-Gm-Message-State: AO0yUKWgCxOuCbW7ghIKTElZuqLLtqUrlSx7eOHlFTIoA84eWA0dvG6m
-        Tl7WwXEsFQrMWsiJ/KNqQYCVaIR6dLyZVef8TmU=
-X-Google-Smtp-Source: AK7set+1yTdfOkCma+ANXP4GN5jjYn34NBFM8TpRoemiDYWOmTeB7K2gc15y+/gBb5FH0o6HMV+rrzwRGXajdf0jCD8=
-X-Received: by 2002:a67:f8c7:0:b0:412:4e02:ba9f with SMTP id
- c7-20020a67f8c7000000b004124e02ba9fmr7950396vsp.1.1678131628444; Mon, 06 Mar
- 2023 11:40:28 -0800 (PST)
+        with ESMTP id S229565AbjCFTl4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Mar 2023 14:41:56 -0500
+Received: from NAM11-DM6-obe.outbound.protection.outlook.com (mail-dm6nam11on2044.outbound.protection.outlook.com [40.107.223.44])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4707B410AB;
+        Mon,  6 Mar 2023 11:41:54 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=fSTHxKv919jVAzHd8uzIxytrEF1TyI0GAbAGtT+97DdYSkteL6Daq6TpkAHiSetB+37eZeuJxEGzGT6CeUsD3Kkpms6iqdSJlWc1gveZ1h8WtRJjVjIYXKrT7ucgmca078xFSc6fAwtvdCoQjaMR9jWRtut+dFs1up6ilgZc5LMLiOECIRtGZOPZ8kYjCwSmbClg2XJ3Ur8fzNABnGKtS3FLcSS3C6VSsgLRunh8i7vd7FqV7Q/qlgoRkmn+AEcZg26n7af64uVt1fLzOasdP+xp85EbKBAAb1sJVxG8Ou/jwdlpNmrkMtw605FyvP0PNbSlIBrrBRuleeIg+wgj3Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=YaYxfwHrZzy+lOTlSglIYjCGSrSapVtqWK0s7EBESh8=;
+ b=FfG/JIGl0KxF0MJfYnZQWzejWVamgDBZcm8rVkjsj/MkNBTesC9/0JG2YnCahGM9ySXgqqmwKgUz0AH9Zwdb7zfLoqphgfKPAR4zqP+ULOMx/LsW26G7A2zDf5ooYMqcMiyXrpdVmVTEBlsYckUc41/ZA+O12nIlo4ajsPIiprF+Xw0vsiWIwHBCjYKaGrfj3xuv7+lU0PG9ZjBpgTrfrgUQNWVfWZ05ncpUImdLhWfL6++18m6Ial3LubnB01Mpcmrugn1EEdQDRgIl+fmOCyGtLQbvfBvsJgSpMVFx7f0RRiz0srqBtknHikXwKr/bjThlK6WGr9vDEs8TAygLxw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 216.228.117.160) smtp.rcpttodomain=linaro.org smtp.mailfrom=nvidia.com;
+ dmarc=pass (p=reject sp=reject pct=100) action=none header.from=nvidia.com;
+ dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=YaYxfwHrZzy+lOTlSglIYjCGSrSapVtqWK0s7EBESh8=;
+ b=f6d1MAN00JHRQnEYaeMbJHf6FGlVN2+hpEGuBcZ7XjJxfs3rXljHAvrnJ/epV2HX2yHe9+TZPLQ1JqraOEBpdOIIKBq4kHpWzdVNgFLhbJykuvcFkcFwxDRSonN3L6/hiXu9uW5UTpwa8unUFI3qPZyIbBVQUtvzDnw1qAtByKOLvXGdQuO5JKXB1asDgejOqOVuFuvvdL6TdgM5XvQftwMZjl3mMW0lbWuQdXFJMNxqBhjwLXEP6pEim81J2ydxCe2T3+/1HY0lHlYg/LP5VxSoplGiq8AAO9qwfw8exwfJR3CUYhCklC3erS5QfiFe0/3eoYccQOAWk+S/Ry5Ibw==
+Received: from DS7PR05CA0062.namprd05.prod.outlook.com (2603:10b6:8:57::8) by
+ MN2PR12MB4456.namprd12.prod.outlook.com (2603:10b6:208:266::15) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6156.27; Mon, 6 Mar
+ 2023 19:41:52 +0000
+Received: from DM6NAM11FT018.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:8:57:cafe::ce) by DS7PR05CA0062.outlook.office365.com
+ (2603:10b6:8:57::8) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6178.15 via Frontend
+ Transport; Mon, 6 Mar 2023 19:41:52 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 216.228.117.160)
+ smtp.mailfrom=nvidia.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=nvidia.com;
+Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
+ 216.228.117.160 as permitted sender) receiver=protection.outlook.com;
+ client-ip=216.228.117.160; helo=mail.nvidia.com; pr=C
+Received: from mail.nvidia.com (216.228.117.160) by
+ DM6NAM11FT018.mail.protection.outlook.com (10.13.172.110) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.6156.18 via Frontend Transport; Mon, 6 Mar 2023 19:41:51 +0000
+Received: from rnnvmail201.nvidia.com (10.129.68.8) by mail.nvidia.com
+ (10.129.200.66) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.5; Mon, 6 Mar 2023
+ 11:41:43 -0800
+Received: from [10.41.21.79] (10.126.230.37) by rnnvmail201.nvidia.com
+ (10.129.68.8) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.37; Mon, 6 Mar 2023
+ 11:41:39 -0800
+Message-ID: <ed82fe57-fade-7dc7-50e4-acce014a5d2a@nvidia.com>
+Date:   Tue, 7 Mar 2023 01:11:37 +0530
 MIME-Version: 1.0
-References: <20230227140758.1575-1-kaehndan@gmail.com> <20230227140758.1575-4-kaehndan@gmail.com>
- <Y/03to4XFXPwkGH1@smile.fi.intel.com> <CAP+ZCCe=f3AtxvC1Z6zPErMEG9BcnCOjApc26n_9yjq2+U72pw@mail.gmail.com>
- <Y/9oO1AE6GK6CQmp@smile.fi.intel.com> <20230302170554.q3426ii255735rzw@mail.corp.redhat.com>
- <ZAXFNRuALYpXgL6F@smile.fi.intel.com> <b8423b0b-4f63-d598-6c8b-7c7e73549032@redhat.com>
- <ZAXlh9ZVjGJh0l7n@smile.fi.intel.com> <1cab1439-77f3-6739-d4cd-5862ce8512d8@redhat.com>
- <ZAYca0ADk0Uk1sK1@smile.fi.intel.com>
-In-Reply-To: <ZAYca0ADk0Uk1sK1@smile.fi.intel.com>
-From:   Daniel Kaehn <kaehndan@gmail.com>
-Date:   Mon, 6 Mar 2023 13:40:16 -0600
-Message-ID: <CAP+ZCCfsKdOyy5vzPh5OjpZjNQrYWDRzrqa_QxvG+kZDPYa+3A@mail.gmail.com>
-Subject: Re: [PATCH v8 3/3] HID: cp2112: Fwnode Support
-To:     Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Cc:     Benjamin Tissoires <benjamin.tissoires@redhat.com>,
-        Hans de Goede <hdegoede@redhat.com>, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, jikos@kernel.org,
-        bartosz.golaszewski@linaro.org, dmitry.torokhov@gmail.com,
-        devicetree@vger.kernel.org, linux-input@vger.kernel.org,
-        ethan.twardy@plexus.com
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.1
+Subject: Re: [Patch v1 04/10] memory: tegra: add support for software mc
+ clients in Tegra234
+Content-Language: en-US
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        <treding@nvidia.com>, <dmitry.osipenko@collabora.com>,
+        <viresh.kumar@linaro.org>, <rafael@kernel.org>,
+        <jonathanh@nvidia.com>, <robh+dt@kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-tegra@vger.kernel.org>,
+        <linux-pm@vger.kernel.org>, <devicetree@vger.kernel.org>
+CC:     <sanjayc@nvidia.com>, <ksitaraman@nvidia.com>, <ishah@nvidia.com>,
+        <bbasu@nvidia.com>, Sumit Gupta <sumitg@nvidia.com>
+References: <20221220160240.27494-1-sumitg@nvidia.com>
+ <20221220160240.27494-5-sumitg@nvidia.com>
+ <ec955be9-affb-e84c-0b27-c27235608a81@linaro.org>
+From:   Sumit Gupta <sumitg@nvidia.com>
+In-Reply-To: <ec955be9-affb-e84c-0b27-c27235608a81@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.126.230.37]
+X-ClientProxiedBy: rnnvmail202.nvidia.com (10.129.68.7) To
+ rnnvmail201.nvidia.com (10.129.68.8)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DM6NAM11FT018:EE_|MN2PR12MB4456:EE_
+X-MS-Office365-Filtering-Correlation-Id: b04f57b0-297a-4b49-231d-08db1e7ad597
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: auLdylmuchcpOqE9nt/F0S2EfTdtWQnc8ScZ///kXuNoCKXtXfAbuAKK6iJ7aW3CsFuOG5AgFCehksqzpfBKaZub9kx+I5x0ffNxzQtiFDTKzIyX0iAv+L7na5YXF4WhhGIF47nUMApHI379tW9o4DUT+OSVg/0GSlUl5ZUa/9fIJK3cCwUhhUMToE4x1ntAxuQhH2lOnfr5d5V/Sdy6bM9tHjYBHc0qXD6sbNDh+1F7PqKnDyCq+WT+j56Mh6V8VBrx7DFG1oOFZwILbf1VTXl9PK30WWHtxwrUcXiMAN4f/9FD12aejF/TsFfYXcdCoOYikOaLHsA91PFoEo/PTbxqvvjNbzEwkVGhLmpooMBe/Gwphlg/1mfH7XpA/SH4VujAzVTLutv+KvAVFBbI2omaZIYXKzPo/DqQ+yBi6Xyr9TC+xG4dwOqHwEMdRVOJV0B+W7q4xoHMf0f68GH9GlpSsE2x4VKOgPXWv26LweUJidsjNTG2fDC66ib3aHUm4My77WLjwk3oTxHPS9cmZcP5Z2HFGjYrtv6K6kLg7tzdXaXhWwvUGdX7IyDlEJl00WbhhWqLAs+9V6YKH0oDjiLC2IbGvSB/Qgh7CLGWf4VYli/laHtCF4fO4unJy3BB6bOxqoYGaWth4E1mfigUlok+jYP+ZSRDD+161GLSvwkUNdrhqQyOujoavpc7Lcnkn3L+2NBxA+ygWZuPnBgSBV3zXhVfg2kEPasajO26wKydde7TlIIH2QeTKmQdQuUlug2tWASb+h0kY0PigYkSGerWWQUNuzteowtWq79DSTQ=
+X-Forefront-Antispam-Report: CIP:216.228.117.160;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:mail.nvidia.com;PTR:dc6edge1.nvidia.com;CAT:NONE;SFS:(13230025)(4636009)(39860400002)(376002)(396003)(136003)(346002)(451199018)(36840700001)(46966006)(40470700004)(26005)(966005)(82310400005)(53546011)(107886003)(36756003)(36860700001)(426003)(47076005)(40460700003)(356005)(921005)(31696002)(86362001)(7636003)(40480700001)(83380400001)(82740400003)(16526019)(2616005)(186003)(336012)(70206006)(41300700001)(4326008)(8676002)(70586007)(2906002)(31686004)(8936002)(5660300002)(478600001)(316002)(16576012)(54906003)(110136005)(43740500002);DIR:OUT;SFP:1101;
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Mar 2023 19:41:51.9946
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: b04f57b0-297a-4b49-231d-08db1e7ad597
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a;Ip=[216.228.117.160];Helo=[mail.nvidia.com]
+X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT018.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB4456
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,
+        NICE_REPLY_A,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,
+        SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello,
-
-Sorry about the radio silence from me --
-I've been trying to get this working on my end as well.
-
-I was able to get my passed-through USB device  on a qemu system to
-have a firmware_node by
-using the "Upgrading ACPI tables via initrd" kernel feature [1]. In
-case this provides helpful information,
-the below describes what I did.
-
-This was using the default yocto core-image-minimal image and
-qemu-system-x86_64.
-
-I invoke qemu with the convenience "runqemu" script, as follows:
-runqemu nographic qemuparams="
-    -initrd ../acpi-overlay/instrumented_initrd
-    -device 'usb-host,vendorid=0x10c4,productid=0xea90'
-    -pflash ./build/tmp/work/core2-64-poky-linux/ovmf/edk2-stable202211-r0/ovmf/ovmf.fd
-    "
-
-Which invokes qemu with something like the following (sorry about the
-long lines..):
-qemu-system-x86_64 \
-    -device virtio-net-pci,netdev=net0,mac=52:54:00:12:34:02 \
-    -netdev tap,id=net0,ifname=tap0,script=no,downscript=no \
-    -object rng-random,filename=/dev/urandom,id=rng0 \
-    -device virtio-rng-pci,rng=rng0 \
-    -drive file=/home/kaehnd/src/local/x86/build/tmp/deploy/images/qemux86-64/core-image-minimal-qemux86-64-20230306143252.rootfs.ext4,if=virtio,format=raw
-\
-    -usb -device usb-tablet -usb -device usb-kbd   -cpu IvyBridge \
-    -machine q35,i8042=off -smp 4 -m 256 \
-    -device 'usb-host,vendorid=0x10c4,productid=0xea90' \
-    -serial mon:stdio -serial null -nographic \
-    -kernel /home/kaehnd/src/local/x86/build/tmp/deploy/images/qemux86-64/bzImage
-\
-    -append 'root=/dev/vda
-        rw  ip=192.168.7.2::192.168.7.1:255.255.255.0::eth0:off:8.8.8.8
-        console=ttyS0 console=ttyS1 oprofile.timer=1
-        tsc=reliable no_timer_check rcupdate.rcu_expedited=1 '
 
 
-The sysfs path tree for the CP2112 was as follows:
-#> ls -l  /sys/bus/hid/devices/0003:10C4:EA90.0003
-lrwxrwxrwx    1 root     root             0 Mar  6 19:24
-/sys/bus/hid/devices/0003:10C4:EA90.0003 ->
-../../../devices/pci0000:00/0000:00:1d.1/usb3/3-1/3-1:1.0/0003:10C4:EA90.0003
+On 22/12/22 17:06, Krzysztof Kozlowski wrote:
+> External email: Use caution opening links or attachments
+> 
+> 
+> On 20/12/2022 17:02, Sumit Gupta wrote:
+>> Adding support for dummy memory controller clients for use by
+>> software.
+> 
+> Use imperative mode (applies to other commits as well)
+> https://elixir.bootlin.com/linux/v5.17.1/source/Documentation/process/submitting-patches.rst#L95
+> 
+Thank you for suggesting.
+I referred this and changed in v2.
 
+>> ---
+>>   drivers/memory/tegra/mc.c       | 65 +++++++++++++++++++++++----------
+>>   drivers/memory/tegra/tegra234.c | 21 +++++++++++
+>>   include/soc/tegra/mc.h          |  3 ++
+>>   include/soc/tegra/tegra-icc.h   |  7 ++++
+>>   4 files changed, 76 insertions(+), 20 deletions(-)
+>>
+>> diff --git a/drivers/memory/tegra/mc.c b/drivers/memory/tegra/mc.c
+>> index ff887fb03bce..4ddf9808fe6b 100644
+>> --- a/drivers/memory/tegra/mc.c
+>> +++ b/drivers/memory/tegra/mc.c
+>> @@ -755,6 +755,39 @@ const char *const tegra_mc_error_names[8] = {
+>>        [6] = "SMMU translation error",
+>>   };
+>>
+>> +static int tegra_mc_add_icc_node(struct tegra_mc *mc, unsigned int id, const char *name,
+>> +                              unsigned int bpmp_id, unsigned int type)
+>> +{
+>> +     struct tegra_icc_node *tnode;
+>> +     struct icc_node *node;
+>> +     int err;
+>> +
+>> +     tnode = kzalloc(sizeof(*tnode), GFP_KERNEL);
+>> +     if (!tnode)
+>> +             return -ENOMEM;
+>> +
+>> +     /* create MC client node */
+>> +     node = icc_node_create(id);
+>> +     if (IS_ERR(node))
+>> +             return -EINVAL;
+> 
+> Why do you return other error? It does not look like you moved the code
+> correctly, but with changes. I also do not see how this is related to
+> commit msg...
+> 
+Corrected in v2.
 
-Out of the box, firmware_node files existed only through what I assume
-is the PCI bus:
-/sys/devices/pci0000:00
+Thanks,
+Sumit
 
-It's ACPI path:
-#> cat /sys/devices/pci0000:00/firmware_node/path
-\_SB_.PCI0
-
-Using the instructions at [1], I grabbed the dsdt table, and modified
-it as follows.
-
-Underneath the PCI0 node, I added the following ASL
-
-```
-Device (SE9)
-{
-    Name (_ADR, 0x001D0001) // _ADR: Address
-    Device (RHUB)
-    {
-        Name (_ADR, Zero)
-        Device (CP2) // the USB-hid & CP2112 shared node
-        {
-            Name (_ADR, One)
-        }
-    }
-}
-```
-
-If I'm understanding correctly, this adds the SE9 device as function 1
-of PCI device 0x1d,
-then RHUB as the USB controller it provides, and finally, CP2 as the
-USB device attached to port 1 of the controller.
-
-With this as the loaded dsdt table, the USB device now has a firmware_node :)
-#> cat /sys/bus/usb/devices/3-1:1.0/firmware_node/path
-\_SB_.PCI0.SE9_.RHUB.CP2_
-
-After applying my patches, the HID device also references this node:
-#> cat /sys/bus/hid/devices/0003:10C4:EA90.0003/firmware_node/path
-\_SB_.PCI0.SE9_.RHUB.CP2_
-
-With this all said -- I noticed iasl prints this statement when trying
-to create a node with a lowercase name:
-"At least one lower case letter found in NameSeg, ASL is case
-insensitive - converting to upper case (GPIO)"
-
-I wonder if this suggests that adding a call to toupper() to
-acpi_fwnode_get_named_child_node would be
-an appropriate solution for the node name casing issue....
-
-[1] https://www.kernel.org/doc/html/latest/admin-guide/acpi/initrd_table_override.html
+>> +
+>> +     node->name = name;
+>> +     icc_node_add(node, &mc->provider);
+>> +
+>> +     /* link Memory Client to Memory Controller */
+>> +     err = icc_link_create(node, TEGRA_ICC_MC);
+>> +     if (err)
+>> +             return err;
+>> +
+>> +     node->data = tnode;
+>> +     tnode->node = node;
+>> +     tnode->bpmp_id = bpmp_id;
+>> +     tnode->type = type;
+>> +     tnode->mc = mc;
+>> +
+>> +     return 0;
+>> +}
+>> +
+>>   /*
+>>    * Memory Controller (MC) has few Memory Clients that are issuing memory
+>>    * bandwidth allocation requests to the MC interconnect provider. The MC
+>> @@ -780,7 +813,6 @@ const char *const tegra_mc_error_names[8] = {
+>>    */
+>>   static int tegra_mc_interconnect_setup(struct tegra_mc *mc)
+>>   {
+>> -     struct tegra_icc_node *tnode;
+>>        struct icc_node *node;
+>>        unsigned int i;
+>>        int err;
+>> @@ -820,30 +852,23 @@ static int tegra_mc_interconnect_setup(struct tegra_mc *mc)
+>>                goto remove_nodes;
+>>
+>>        for (i = 0; i < mc->soc->num_clients; i++) {
+>> -             tnode = kzalloc(sizeof(*tnode), GFP_KERNEL);
+>> -             if (!tnode)
+>> -                     return -ENOMEM;
+>> -
+>> -             /* create MC client node */
+>> -             node = icc_node_create(mc->soc->clients[i].id);
+>> -             if (IS_ERR(node)) {
+>> -                     err = PTR_ERR(node);
+>> +             err = tegra_mc_add_icc_node(mc, mc->soc->clients[i].id,
+>> +                                         mc->soc->clients[i].name,
+>> +                                         mc->soc->clients[i].bpmp_id,
+>> +                                         mc->soc->clients[i].type);
+>> +             if (err)
+>>                        goto remove_nodes;
+>> -             }
+>>
+>> -             node->name = mc->soc->clients[i].name;
+>> -             icc_node_add(node, &mc->provider);
+>> +     }
+>> +
+> 
+> Best regards,
+> Krzysztof
+> 
