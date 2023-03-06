@@ -2,131 +2,174 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DA0886AB99A
-	for <lists+devicetree@lfdr.de>; Mon,  6 Mar 2023 10:21:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 511C76AB9CF
+	for <lists+devicetree@lfdr.de>; Mon,  6 Mar 2023 10:27:16 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229568AbjCFJV1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 Mar 2023 04:21:27 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59340 "EHLO
+        id S229871AbjCFJ1N (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 Mar 2023 04:27:13 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36890 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229870AbjCFJVY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Mar 2023 04:21:24 -0500
-Received: from mail-wr1-x42e.google.com (mail-wr1-x42e.google.com [IPv6:2a00:1450:4864:20::42e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 57E6022DFC
-        for <devicetree@vger.kernel.org>; Mon,  6 Mar 2023 01:21:20 -0800 (PST)
-Received: by mail-wr1-x42e.google.com with SMTP id v16so8091275wrn.0
-        for <devicetree@vger.kernel.org>; Mon, 06 Mar 2023 01:21:20 -0800 (PST)
+        with ESMTP id S229917AbjCFJ1K (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Mar 2023 04:27:10 -0500
+Received: from mail-ua1-x92d.google.com (mail-ua1-x92d.google.com [IPv6:2607:f8b0:4864:20::92d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7223E23132
+        for <devicetree@vger.kernel.org>; Mon,  6 Mar 2023 01:27:07 -0800 (PST)
+Received: by mail-ua1-x92d.google.com with SMTP id x1so5945279uav.9
+        for <devicetree@vger.kernel.org>; Mon, 06 Mar 2023 01:27:07 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1678094478;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:from:to:cc:subject:date
+        d=bgdev-pl.20210112.gappssmtp.com; s=20210112; t=1678094826;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=6QTaTg1M82nHPuHpSBS+WU4NCi+YuYDcZym+3+BNoD0=;
-        b=hY3zQEkaEFt7L8jf2l7rZVQ3WSnXzuIYX/YnXzeyUdnnkCARe0Ec4S4+mzCPLpmnga
-         q1OxpBZ3DldwFuzEN95tjGEbuzVKMOsitKZtGkU3ZU8xSr+LBTGGhazcmsd/c80KJ5c+
-         XjYKDAM9Et4UWcA0au7RTZpYuVG7KWUE8LtjsftwbJ/D9fehDjKQEx/W27u5Kv+OP9eB
-         Ko2Fofulg2zHSkYhuIAnnfhU8CY87VprzXN9szg0Ni/j+mTWe4sssCc8y7bScULLVaJy
-         LFGz5/R77awfacg4KoZIkOFdqkeTzrwAx2lkOuZGbpvqjYRBPpMErMMY9zTNy1sTWh2R
-         sGVw==
+        bh=zhS37jgP1oSKDQocHToehtxxyITsXcT+owYbmJ0INPU=;
+        b=4t56tDC/G+oovfdiW5rxFZCyYsIfw/WmqyS1QgC9FKLy44l3wGWvPNPrKaEI6mAvIe
+         ELD4XcqhLxDYPapof54et2VAMu4KrZDT7kUwAj9Hrs6wS7u5XxJjEWAUEaYcKiG/Zn39
+         LbYGMfhwfIZ4JLhat+2hMudxk6CM3YJdkOXGSLSfaulwOvc6XpKpqL1F+6VUjzq55xQy
+         y2JSmDTTT0sTDy7JHDzT8MfLrGyiRKAqCmO15rXFhnzLrphpS2zddGj0+LqedgxxL0hV
+         0N2PQS1jMZSutIFgUay8tQ8K/XSrnWtb4nxvfgnG2GPyXj9/IYPjvJKK9fj6DB19DqZ2
+         l4GA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678094478;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
+        d=1e100.net; s=20210112; t=1678094826;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=6QTaTg1M82nHPuHpSBS+WU4NCi+YuYDcZym+3+BNoD0=;
-        b=mbt3CZdEG6sMVTzO1fYVtqK3C/QJzC+oYvtzPZfpinzBUuReaYF9cuJWrAFDvio6w2
-         6hlV88uA363/fscIz24sfTuYi4eU87WZ02U4gWkHTlRTA+E/1xkQ5ud/JVMOntpja7/b
-         2CBLfNeGJyk22AjDx6Yrog6JYJ8PeYheq+f5LJfkEkANkzqIf7LQZrDPeexKqsdGa0jK
-         gNrNSlQvsfTATkPRsdj8OsR9oOkkUHiDPPekwmzkMHcKBvrVp52cX1E9YcG3gxUn+Wcy
-         lL/ptzyigrMWJEt04mUX21M/ald1b7G23zN7E3ziKwXnUFe+sAgYg3jb/b9vy14OUlik
-         G2kw==
-X-Gm-Message-State: AO0yUKVxGpL1uhVOkjxskqueD1a3RrrUNTZLYRh9fleikGZLmTtBu5X+
-        pn81FNYGCzw1cZ9tM6aGDvbLMA==
-X-Google-Smtp-Source: AK7set9PhQC/LAWuijBZyi1RnO+m0uSLl7osxh+Et8GDOHCxy9UxpG6DiUCb2nJKyQHWzg5n+chgsQ==
-X-Received: by 2002:a5d:4a51:0:b0:2c7:778:5da6 with SMTP id v17-20020a5d4a51000000b002c707785da6mr6233079wrs.42.1678094478663;
-        Mon, 06 Mar 2023 01:21:18 -0800 (PST)
-Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:8261:5fff:fe11:bdda])
-        by smtp.gmail.com with ESMTPSA id j17-20020adff011000000b002c5a1bd527dsm9235217wro.96.2023.03.06.01.21.17
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 06 Mar 2023 01:21:18 -0800 (PST)
-From:   Neil Armstrong <neil.armstrong@linaro.org>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        Marc Zyngier <maz@kernel.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        =?utf-8?q?Uwe_Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Heiner Kallweit <hkallweit1@gmail.com>
-Cc:     devicetree@vger.kernel.org,
-        "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>,
-        linux-arm-kernel@lists.infradead.org, linux-pwm@vger.kernel.org
-In-Reply-To: <8df4ceec-663c-dc68-d775-5caeb02c0cca@gmail.com>
-References: <8df4ceec-663c-dc68-d775-5caeb02c0cca@gmail.com>
-Subject: Re: (subset) [PATCH 0/4] soc: amlogic: switch bindings to yaml and
- adjust some dtbs's
-Message-Id: <167809447788.73638.7893425529034972741.b4-ty@linaro.org>
-Date:   Mon, 06 Mar 2023 10:21:17 +0100
+        bh=zhS37jgP1oSKDQocHToehtxxyITsXcT+owYbmJ0INPU=;
+        b=2xSxI0mfbsU65B9S0QEN+38Otl2EXp5p/IQsDEgpbj0SsO/SbH6LWL4JC6/vwcNeeQ
+         fem+1Umyh9wE30N8cTV8K9VgmuWkeEI8dSQfqWx0JvRDZt3VPKUjeZrSFIk/Oyk0noZ+
+         jjJxJ0oJjMEc/Gqm61JGj3BUYn7KOg6l1P6DF3DZG05KE7kTemMIKXPQ2cO5A0PxdEF6
+         Kl2vLAJ3xsZ8xXKyJs0JXbNz3X4BbCtyB93qfvLVY9Ht2sYIUc8EjkGi/QwcFc6OyLnM
+         1zZQlTNvs1bG1d0I7W+h1JSWbZBVtwXwqDBCMcFgmjwAAs5ipCArdHTudMlXN25yiPFY
+         xIjw==
+X-Gm-Message-State: AO0yUKUIIWVty3jNuMLsmj2fkliEjAaeizMBzkyqI4Cb2+rlzk87StCX
+        Ramy7YaBOIjle/ejwB7JNuR8DjBWluaWZVa1c8d6Ow==
+X-Google-Smtp-Source: AK7set+CHskqiSsm+6Cmi6WHgSSwP4myqJ1YcVc2LU1gm2fnO90Xr69irT8NxRARr/yjxDC8cjTLGID26SceOFHbVxE=
+X-Received: by 2002:a9f:3104:0:b0:687:afc8:ffb9 with SMTP id
+ m4-20020a9f3104000000b00687afc8ffb9mr6636458uab.2.1678094826467; Mon, 06 Mar
+ 2023 01:27:06 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.12.1
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+References: <20230228215433.3944508-1-robh@kernel.org>
+In-Reply-To: <20230228215433.3944508-1-robh@kernel.org>
+From:   Bartosz Golaszewski <brgl@bgdev.pl>
+Date:   Mon, 6 Mar 2023 10:26:55 +0100
+Message-ID: <CAMRc=Mfouay5Z6M6VYnBX7Pe+ahTVfvfQsJ+kToWAwZJxZWJZg@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: Fix SPI and I2C bus node names in examples
+To:     Rob Herring <robh@kernel.org>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        devicetree@vger.kernel.org, Miguel Ojeda <ojeda@kernel.org>,
+        Benson Leung <bleung@chromium.org>,
+        Guenter Roeck <groeck@chromium.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Andrzej Hajda <andrzej.hajda@intel.com>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Robert Foss <rfoss@kernel.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        MyungJoo Ham <myungjoo.ham@samsung.com>,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Pavel Machek <pavel@ucw.cz>, Lee Jones <lee@kernel.org>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Wolfgang Grandegger <wg@grandegger.com>,
+        Kalle Valo <kvalo@kernel.org>,
+        Sebastian Reichel <sre@kernel.org>,
+        Mark Brown <broonie@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        linux-clk@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        linux-gpio@vger.kernel.org, linux-i2c@vger.kernel.org,
+        linux-leds@vger.kernel.org, linux-media@vger.kernel.org,
+        netdev@vger.kernel.org, linux-can@vger.kernel.org,
+        linux-wireless@vger.kernel.org, linux-pm@vger.kernel.org,
+        alsa-devel@alsa-project.org, linux-usb@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+On Tue, Feb 28, 2023 at 10:54=E2=80=AFPM Rob Herring <robh@kernel.org> wrot=
+e:
+>
+> SPI and I2C bus node names are expected to be "spi" or "i2c",
+> respectively, with nothing else, a unit-address, or a '-N' index. A
+> pattern of 'spi0' or 'i2c0' or similar has crept in. Fix all these
+> cases. Mostly scripted with the following commands:
+>
+> git grep -l '\si2c[0-9] {' Documentation/devicetree/ | xargs sed -i -e 's=
+/i2c[0-9] {/i2c {/'
+> git grep -l '\sspi[0-9] {' Documentation/devicetree/ | xargs sed -i -e 's=
+/spi[0-9] {/spi {/'
+>
+> With this, a few errors in examples were exposed and fixed.
+>
+> Signed-off-by: Rob Herring <robh@kernel.org>
+> ---
+> Cc: Miguel Ojeda <ojeda@kernel.org>
+> Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+> Cc: Benson Leung <bleung@chromium.org>
+> Cc: Guenter Roeck <groeck@chromium.org>
+> Cc: Stephen Boyd <sboyd@kernel.org>
+> Cc: Andrzej Hajda <andrzej.hajda@intel.com>
+> Cc: Neil Armstrong <neil.armstrong@linaro.org>
+> Cc: Robert Foss <rfoss@kernel.org>
+> Cc: Thierry Reding <thierry.reding@gmail.com>
+> Cc: Sam Ravnborg <sam@ravnborg.org>
+> Cc: MyungJoo Ham <myungjoo.ham@samsung.com>
+> Cc: Chanwoo Choi <cw00.choi@samsung.com>
+> Cc: Linus Walleij <linus.walleij@linaro.org>
+> Cc: Bartosz Golaszewski <brgl@bgdev.pl>
+> Cc: Pavel Machek <pavel@ucw.cz>
+> Cc: Lee Jones <lee@kernel.org>
+> Cc: Mauro Carvalho Chehab <mchehab@kernel.org>
+> Cc: "David S. Miller" <davem@davemloft.net>
+> Cc: Eric Dumazet <edumazet@google.com>
+> Cc: Jakub Kicinski <kuba@kernel.org>
+> Cc: Paolo Abeni <pabeni@redhat.com>
+> Cc: Wolfgang Grandegger <wg@grandegger.com>
+> Cc: Kalle Valo <kvalo@kernel.org>
+> Cc: Sebastian Reichel <sre@kernel.org>
+> Cc: Mark Brown <broonie@kernel.org>
+> Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+> Cc: linux-clk@vger.kernel.org
+> Cc: dri-devel@lists.freedesktop.org
+> Cc: linux-gpio@vger.kernel.org
+> Cc: linux-i2c@vger.kernel.org
+> Cc: linux-leds@vger.kernel.org
+> Cc: linux-media@vger.kernel.org
+> Cc: netdev@vger.kernel.org
+> Cc: linux-can@vger.kernel.org
+> Cc: linux-wireless@vger.kernel.org
+> Cc: linux-pm@vger.kernel.org
+> Cc: alsa-devel@alsa-project.org
+> Cc: linux-usb@vger.kernel.org
+> ---
+>  .../bindings/auxdisplay/holtek,ht16k33.yaml       |  2 +-
+>  .../bindings/chrome/google,cros-ec-typec.yaml     |  2 +-
+>  .../chrome/google,cros-kbd-led-backlight.yaml     |  2 +-
+>  .../devicetree/bindings/clock/ti,lmk04832.yaml    |  2 +-
+>  .../bindings/display/bridge/analogix,anx7625.yaml |  2 +-
+>  .../bindings/display/bridge/anx6345.yaml          |  2 +-
+>  .../bindings/display/bridge/lontium,lt8912b.yaml  |  2 +-
+>  .../bindings/display/bridge/nxp,ptn3460.yaml      |  2 +-
+>  .../bindings/display/bridge/ps8640.yaml           |  2 +-
+>  .../bindings/display/bridge/sil,sii9234.yaml      |  2 +-
+>  .../bindings/display/bridge/ti,dlpc3433.yaml      |  2 +-
+>  .../bindings/display/bridge/toshiba,tc358762.yaml |  2 +-
+>  .../bindings/display/bridge/toshiba,tc358768.yaml |  2 +-
+>  .../bindings/display/panel/nec,nl8048hl11.yaml    |  2 +-
+>  .../bindings/display/solomon,ssd1307fb.yaml       |  4 ++--
+>  .../devicetree/bindings/eeprom/at25.yaml          |  2 +-
+>  .../bindings/extcon/extcon-usbc-cros-ec.yaml      |  2 +-
+>  .../bindings/extcon/extcon-usbc-tusb320.yaml      |  2 +-
+>  .../devicetree/bindings/gpio/gpio-pca9570.yaml    |  2 +-
+>  .../devicetree/bindings/gpio/gpio-pca95xx.yaml    |  8 ++++----
 
-On Wed, 01 Feb 2023 20:57:48 +0100, Heiner Kallweit wrote:
-> Switch two Amlogic Meson bindings to yaml. As prerequisite adjust the
-> order of some compatibles first.
-> 
-> New versions of the bindings have been submitted as individual
-> patches in between. Put it into a series again.
-> 
-> Heiner Kallweit (4):
->   arm: dts: meson: adjust order of some compatibles
->   arm64: dts: meson: adjust order of some compatibles
->   dt-bindings: pwm: Convert Amlogic Meson PWM binding
->   dt-bindings: interrupt-controller: Convert Amlogic Meson GPIO
->     interrupt controller binding
-> 
-> [...]
-
-Thanks, Applied to https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git (v6.4/arm-dt)
-
-[1/4] arm: dts: meson: adjust order of some compatibles
-      https://git.kernel.org/amlogic/c/0c187cca73291f2c355fae31eed3fc7aa783b2de
-
-These changes has been applied on the intermediate git tree [1].
-
-The v6.4/arm-dt branch will then be sent via a formal Pull Request to the Linux SoC maintainers
-for inclusion in their intermediate git branches in order to be sent to Linus during
-the next merge window, or sooner if it's a set of fixes.
-
-In the cases of fixes, those will be merged in the current release candidate
-kernel and as soon they appear on the Linux master branch they will be
-backported to the previous Stable and Long-Stable kernels [2].
-
-The intermediate git branches are merged daily in the linux-next tree [3],
-people are encouraged testing these pre-release kernels and report issues on the
-relevant mailing-lists.
-
-If problems are discovered on those changes, please submit a signed-off-by revert
-patch followed by a corrective changeset.
-
-[1] https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git
-[2] https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git
-[3] https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git
-
--- 
-Neil
-
+Acked-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
