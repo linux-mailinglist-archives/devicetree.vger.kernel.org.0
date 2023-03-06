@@ -2,150 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9E47C6AC19B
-	for <lists+devicetree@lfdr.de>; Mon,  6 Mar 2023 14:40:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 99D5A6AC1AC
+	for <lists+devicetree@lfdr.de>; Mon,  6 Mar 2023 14:43:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231182AbjCFNkl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 Mar 2023 08:40:41 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56120 "EHLO
+        id S229726AbjCFNnq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 Mar 2023 08:43:46 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60500 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229985AbjCFNki (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Mar 2023 08:40:38 -0500
-Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 480512FCEC
-        for <devicetree@vger.kernel.org>; Mon,  6 Mar 2023 05:40:30 -0800 (PST)
-Received: by mail-ed1-x533.google.com with SMTP id a25so38906147edb.0
-        for <devicetree@vger.kernel.org>; Mon, 06 Mar 2023 05:40:30 -0800 (PST)
+        with ESMTP id S229587AbjCFNnU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Mar 2023 08:43:20 -0500
+Received: from mail-yb1-xb32.google.com (mail-yb1-xb32.google.com [IPv6:2607:f8b0:4864:20::b32])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CD16723C7C
+        for <devicetree@vger.kernel.org>; Mon,  6 Mar 2023 05:43:18 -0800 (PST)
+Received: by mail-yb1-xb32.google.com with SMTP id t39so8126326ybi.3
+        for <devicetree@vger.kernel.org>; Mon, 06 Mar 2023 05:43:18 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112; t=1678110029;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=ZW1Oqg+WLuWWxkuIkyJR54a4c3JXn+NZetW0zwSCeSw=;
-        b=cuvBAavVvAQVUP54IBvXmzklqerlQN2fNulM+x734wtvrCyyyrFSIbHxMeBokGLcIP
-         pkkJ6uBVZTDQqpgRfgEM0/sIW+6WotEmGDeNJMHIFUnsKW3h8CT0EyAbw4DyCwPjrhpE
-         WudN8Y2KYBCkeTqmo098LV4W0EhF8FQ9AG47GHRVeqay66sObxfm7csAncStrbk90EAh
-         p9MuucTj6mF/pYqJInvyqLxpp9ZRxUGgvEILHxA+E3oSzZkir0BQGVEe8UTKEG9HPT3V
-         keZBOsBoCo7mHVVRWvvMxGhqTWmwssFJzwzm/VEmYdUSYA4o6m1U5i9ucyxuwjw+8PSw
-         r9Qg==
+        d=linaro.org; s=google; t=1678110198;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=7JJkVYaR6k4y/YwEKjFCoaiSSS5E0lC7DyrGlhsXf5w=;
+        b=LOz7FoweylZgi9J6lwrdz6tiy8AS1nZ7HN40BnYhblypkghOkEBKFBr+jlAqBpJNb7
+         4GX60HwmND/rfdFczU9lOL0+8O2ZIcIrfexnmQEzHOOXlhuKQGCanKDZmwvu32Yp+Fai
+         L7xrpgnnchYQweepB3wyfcZ48YRGNXsftoZAISo+b7h3u114MgufTVwYYvHVSr7WhugT
+         qnNFHWJHnH4n8+1lOp2cVBXMT1ixUlb9SNBX6ze0kWkNFMjkLSk3H7TWJM4/hlH8a9He
+         v63npSxGzFUEN2/d8CgGxXpWCJT1g8GjAXrmA8+k5bBc+642oEwRdb2nZ/2ukKZQl8bC
+         dcNA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678110029;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
+        d=1e100.net; s=20210112; t=1678110198;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=ZW1Oqg+WLuWWxkuIkyJR54a4c3JXn+NZetW0zwSCeSw=;
-        b=i8417l5Nt+MtgwOVvPgYIC1WeuzYTdtBxKb9TV9pup/9X/7AJq0jDp/DhjxzAWJCzv
-         jzpjQPXyjH9i0aRAbWQn2GO7XAI8OFmwoNDoHPH/vA3xbLV971k600qW/JjKzltWY0EI
-         DSYNYy45wvQwuwoymprNIXpztcho5C4CDQQbu2aLwUs5MV8+BlmKOLSfJK2DQE3t4Wbc
-         PD0kloCcjhwbAtPOKcvCqAiT8tVNaRMsFKCpksZNsFW8n9ieyVGkaFKDIzY3qfMIg8TB
-         zQ5qmycgKtKZ3pU5j+MSOMBZHvR7TL2r89cj9dtAYcO/c2H4o2kCXWpTEXWjxcy/f3p8
-         kSbA==
-X-Gm-Message-State: AO0yUKU4xpfgx9aTCvrfiU0LMf3S2Q5ykIUTxztEE3dSiOP330tJbYOU
-        BLa4hbpMKR0kcGl6riRYdLc3IQ==
-X-Google-Smtp-Source: AK7set/0XrGcKW6yxv/wJZcYC83SiD0kz0lIalXfaXFBbdXe/zoJAr5MHbFp08xZq8Th54ZnERWtsw==
-X-Received: by 2002:aa7:cf90:0:b0:4bc:502e:e7de with SMTP id z16-20020aa7cf90000000b004bc502ee7demr9831944edx.32.1678110028679;
-        Mon, 06 Mar 2023 05:40:28 -0800 (PST)
-Received: from [127.0.1.1] (158.22.5.93.rev.sfr.net. [93.5.22.158])
-        by smtp.googlemail.com with ESMTPSA id u2-20020a170906c40200b008e2dfc6382asm4574959ejz.125.2023.03.06.05.40.27
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 06 Mar 2023 05:40:28 -0800 (PST)
-From:   Alexandre Mergnat <amergnat@baylibre.com>
-Date:   Mon, 06 Mar 2023 14:40:11 +0100
-Subject: [PATCH] Fixes dt-bindings: display: mediatek: Fix the fallback for
- mediatek,mt8186-disp-ccorr
+        bh=7JJkVYaR6k4y/YwEKjFCoaiSSS5E0lC7DyrGlhsXf5w=;
+        b=h3JQx17pWVH+9zchx5nW8T6qQXuTuXdND+tZ+6cJGDoZVRZ+9B2LkKkbeT7eYyE7oE
+         kU5IwzltTXjFCBoEfsekFF1yBY2HKeGEZXP+4cVb6fN7ToU+DT1JdK5apgTQ6GCKaU7t
+         RQEDJ8j6x/xSCu150VNWSW6rDL+SewnmyF9E377wbLcgneqxC1IvnZesKO5B/s13a5rn
+         ZTB8ZQEBzqzKLwHbojrm27/UxP3KqU8ozYOqEQHdNT28DicoG3hOgBMdQr9s+Cyh7AOg
+         mlz+HvmFQZTq0qrq8meWgjTDLrRcsWx4CrUxsmRz5P3tw0bmW/dntgvbvnFv2xXIPwEg
+         qSuA==
+X-Gm-Message-State: AO0yUKUG6rH3301IZClgJxm734LVSYffXLax1dYsqEuCJnfADX+f3Ad0
+        XwoVWIByn5GD/MVWDq0tVc2fsDtC6ApPOOm9TPplSQ==
+X-Google-Smtp-Source: AK7set8YCn4Jsg6jPH4qYG0BJbp6vWpxECdQH2wjw+INvQEWWcKTR4Gyu0b6jwpzUsU4ixquh/OWea0HjiSteilI90o=
+X-Received: by 2002:a5b:647:0:b0:932:8dcd:3a13 with SMTP id
+ o7-20020a5b0647000000b009328dcd3a13mr6489593ybq.5.1678110197962; Mon, 06 Mar
+ 2023 05:43:17 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-Message-Id: <20230306-ccorr-binding-fix-v1-0-177d81d60c69@baylibre.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Allen-KH Cheng <allen-kh.cheng@mediatek.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        David Airlie <airlied@gmail.com>,
-        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+References: <20230209143702.44408-1-hal.feng@starfivetech.com>
+ <CACRpkdbao9M5dMHFO_QE8z4_E6DZLZsMUW1OnUNjKSfQc59=ew@mail.gmail.com>
+ <4211d93d-702c-6759-6f25-f86160c0be5d@starfivetech.com> <CAJM55Z-+Cxdebcn4MLXfQdOVhx4c2SQ+zMH8cjn-Yq35xO8g0A@mail.gmail.com>
+In-Reply-To: <CAJM55Z-+Cxdebcn4MLXfQdOVhx4c2SQ+zMH8cjn-Yq35xO8g0A@mail.gmail.com>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Mon, 6 Mar 2023 14:43:06 +0100
+Message-ID: <CACRpkdYvzbK-ZJVzh6mGY3Sf5fT3u9LQYkW52BBtiFd2REgwNA@mail.gmail.com>
+Subject: Re: [PATCH v5 0/4] Basic pinctrl support for StarFive JH7110 RISC-V SoC
+To:     Emil Renner Berthing <emil.renner.berthing@canonical.com>
+Cc:     Hal Feng <hal.feng@starfivetech.com>, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
+        Andreas Schwab <schwab@suse.de>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Daniel Vetter <daniel@ffwll.ch>
-Cc:     linux-kernel@vger.kernel.org,
-        Alexandre Mergnat <amergnat@baylibre.com>,
-        dri-devel@lists.freedesktop.org,
-        linux-arm-kernel@lists.infradead.org,
-        Rob Herring <robh@kernel.org>,
-        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org
-X-Mailer: b4 0.10.1
-X-Developer-Signature: v=1; a=openpgp-sha256; l=2033; i=amergnat@baylibre.com;
- h=from:subject:message-id; bh=Sllvr1qcJosNPm/127wltPmXLo/4qloGmkwT8rLTdQs=;
- b=owEBbQKS/ZANAwAKAStGSZ1+MdRFAcsmYgBkBe1Lg8S54sdx+TkgJNo3Q94C1ufIjETI8glahloA
- wAMPhpWJAjMEAAEKAB0WIQQjG17X8+qqcA5g/osrRkmdfjHURQUCZAXtSwAKCRArRkmdfjHURYxBD/
- 0TgSfGN1WScR5N5YN6E/+DvS8lJCRDx+Ky+06JfD0PD/Oskchz6XpYCjhFeSKztRXMpZZIbonI1aa0
- fyxq18BAhYPzBeELrCMD8fWqGuC069YvDqTVQeIE3pz9XpooTDesaQWHh59UgT4119MCpLnLHM2xE+
- rdpm+l7he9szKBSEdvS9RbBHYh/GUY22ipY6APt5qFgua2DsCr+QPrcNxlnY75p7DbifXqBu3V3NPZ
- QBywL/k0JnIraVsSTr20XYmhGtKYv1GmwimQ1uXxGjDbIQM9CxaM6Eg2Ngeob9m4KUZwa9AdPTo52l
- kP7dELhSgd+qei7U/kKgQVj0vCQv8w/JjRJkR2ylQO1SDTdoJmfbGOr49GWsWE/aqp3AV5QsBHiful
- 17Xcw5DcnpG/5wbbuNc472Fr7uWwxIkSvvLZxuiER3g8+3oF8O0rx/JXFKTZvzf3S4fzNNuyglXTt+
- fOMYxL3iB5pjsOMJmPtRKenLhJnde6pGHcBMFJo28ZG9aRVLQDOV+Mp8kAPRwjqaI1bPWOLrDyOsfj
- Z9w8RwWVBKXHC3XXkRiSMtER76zkOZdiTHo3An37wNV98cTQ5VWuyuiscunseNUjqqnbdad17m2Moj
- /8HwAtPOqMmrdoWqDXF1RAzdGPD/BuXBlelZvYCVZN20LXGywmz0hMDFG3Yw==
-X-Developer-Key: i=amergnat@baylibre.com; a=openpgp;
- fpr=231B5ED7F3EAAA700E60FE8B2B46499D7E31D445
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        Conor Dooley <conor@kernel.org>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Jianlong Huang <jianlong.huang@starfivetech.com>,
+        linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The item which have the mediatek,mt8192-disp-ccorr const compatible already
-exist above. Remove duplicated fallback.
+On Mon, Feb 20, 2023 at 11:16 AM Emil Renner Berthing
+<emil.renner.berthing@canonical.com> wrote:
 
-Fixes: 137272ef1b0f ("dt-bindings: display: mediatek: Fix the fallback for mediatek,mt8186-disp-ccorr")
+> Hi Hal and Linus
+>
+> I'm curious if there is a plan to address Icenowy's concerns here:
+> https://lore.kernel.org/linux-gpio/52dcbe48dbf5f2561713a9642943353216fef15a.camel@icenowy.me/
+>
+> The problem is that input from "GPIO" pins is configured a little
+> differently on the StarFive SoCs. Instead of having a register pr.
+> pin(grroup) there is a register pr. control line to the peripherals,
+> and into these you write the pin number + 2 of the pin you want the
+> peripheral to react to. Why +2? That's because 0 is a special "always
+> low" signal and similarly 1 is a special "always high" signal.
+>
+> With the current bindings one hacky way to solve this is to treat
+> those two special values as kind of "virtual pins" that will always be
+> high or low. So that would be something like
+>
+> pinmux = <GPIOMUX(GPIO_ALWAYS_LOW, GPOUT_IGNORED, GPOEN_DISABLE,
+> GPI_SYS_USB_OVERCURRENT)>;
+>
+> ..but this means we might need to mux these two virtual pins to
+> multiple peripherals. I'm not sure the pinmux framework is prepared
+> for that.
 
-Signed-off-by: Alexandre Mergnat <amergnat@baylibre.com>
----
-Fix MTK color correction binding
+I am not a fan of the magic numbers approach to pin muxing at all and I
+often point out that I prefer that you use strings and connect groups with
+functions using strings.
 
-The fallback compatible has been duplicated in the 137272ef1b0f commit.
+The above mentioned problems is one of the reasons.
 
-To: Chun-Kuang Hu <chunkuang.hu@kernel.org>
-To: Philipp Zabel <p.zabel@pengutronix.de>
-To: David Airlie <airlied@gmail.com>
-To: Daniel Vetter <daniel@ffwll.ch>
-To: Rob Herring <robh+dt@kernel.org>
-To: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-To: Matthias Brugger <matthias.bgg@gmail.com>
-To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-To: Allen-KH Cheng <allen-kh.cheng@mediatek.com>
-Cc: Rob Herring <robh@kernel.org>
-Cc: dri-devel@lists.freedesktop.org
-Cc: linux-mediatek@lists.infradead.org
-Cc: devicetree@vger.kernel.org
-Cc: linux-kernel@vger.kernel.org
-Cc: linux-arm-kernel@lists.infradead.org
----
- Documentation/devicetree/bindings/display/mediatek/mediatek,ccorr.yaml | 3 ---
- 1 file changed, 3 deletions(-)
+As maintainer I have been repeatedly hammered down by maintainers
+who think magic numbers is good for them, usually because it saves
+space in the DTS file and is easier to code a driver for. So this alternative
+approach is acceptable, as a compromise.
 
-diff --git a/Documentation/devicetree/bindings/display/mediatek/mediatek,ccorr.yaml b/Documentation/devicetree/bindings/display/mediatek/mediatek,ccorr.yaml
-index b04820c95b22..3aaf44719786 100644
---- a/Documentation/devicetree/bindings/display/mediatek/mediatek,ccorr.yaml
-+++ b/Documentation/devicetree/bindings/display/mediatek/mediatek,ccorr.yaml
-@@ -29,9 +29,6 @@ properties:
-           - enum:
-               - mediatek,mt8188-disp-ccorr
-               - mediatek,mt8195-disp-ccorr
--          - const: mediatek,mt8192-disp-ccorr
--      - items:
--          - enum:
-               - mediatek,mt8186-disp-ccorr
-           - const: mediatek,mt8192-disp-ccorr
- 
+My apologies if I didn't point this out as sternly as I often do for
+StarFive. Really sorry. I guess I have just started to give up on insisting,
+as so many people like their magic numbers.
 
----
-base-commit: add072536971d7ce891fde3cdbf68c55e7cfa95a
-change-id: 20230306-ccorr-binding-fix-718c6d725088
+If you switch to stop using the "pinmux" property and instead use
+string arrays function and groups as defined in
+Documentation/devicetree/bindings/pinctrl/pinmux-node.yaml
+this should fix it, the old pinmux device trees can be supported
+as fallback, if pinmux is present but function and groups are
+missing.
 
-Best regards,
--- 
-Alexandre Mergnat <amergnat@baylibre.com>
+So that is my suggestion.
+
+Usually people don't like this suggestion, so I suspect you might
+not like it either and come up with something else to work around
+it.
+
+Yours,
+Linus Walleij
