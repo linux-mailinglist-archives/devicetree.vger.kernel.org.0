@@ -2,151 +2,315 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0E7386AC79A
-	for <lists+devicetree@lfdr.de>; Mon,  6 Mar 2023 17:20:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BEDB96AC915
+	for <lists+devicetree@lfdr.de>; Mon,  6 Mar 2023 18:03:29 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229667AbjCFQUe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 Mar 2023 11:20:34 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47782 "EHLO
+        id S230366AbjCFRD2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 Mar 2023 12:03:28 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38328 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231718AbjCFQUB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Mar 2023 11:20:01 -0500
-Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com [IPv6:2a00:1450:4864:20::52b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2D89339BB4
-        for <devicetree@vger.kernel.org>; Mon,  6 Mar 2023 08:17:51 -0800 (PST)
-Received: by mail-ed1-x52b.google.com with SMTP id o12so40809456edb.9
-        for <devicetree@vger.kernel.org>; Mon, 06 Mar 2023 08:17:51 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112; t=1678119366;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=e9niV0lDM32nqHqYgD5Iv+BIY49mmSBNqShco7CYbZ0=;
-        b=7l6dijN1SxoxyfdVaf28yN2A4H8PFN9TLFpsI6hPiPiQl2zozrvl2sv+2WzHCSCQpL
-         h08Zy2G7uf8A1sp4/NLO6Qj3oCSq4B5rvwH3hdIyMgmqYRLOcsUnpA5ScoycxdHo2eQg
-         7AAc9r9HtATADNErnkJ7sZpe+MP6DyqTKAJk/eZLhPyoVV4/Mf5XvvsrGEHHEIRarTmQ
-         xrRY24e3Mj+0UaClfTt89hBdKVKE4S0+MkWnMF3qZjKSP56KHUfLnumAhyfJtFdZNTbt
-         tgPKBQcJ6SqFHJU57Ode24vvYMhmhj7vBPQEkafD9o/B8jJkoUUGi+WObszt8LDS7Okh
-         SKMQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678119366;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=e9niV0lDM32nqHqYgD5Iv+BIY49mmSBNqShco7CYbZ0=;
-        b=TDNyxu99hB5NNqY6txi8GCjh7SrHnKxZSBPakkBDVjckWehCjMktYMpptJEHX/H2HV
-         aG8JlCf+rEGoLBqry82iV61prveFTvJCPiEyRXHRlX+EgNYFeyChkYkbwBX0lVNCbODV
-         JcJjGUXO0CQaQuucqfX9GcvYOun/eonrRXEbIsvcxRJfRdKGgiCxerpkJ+/V/xJUSmqA
-         xFQq2Uh9udlMf6grC6NdXxqFdMJw9JnY3kY5VoTsOu9Zrhvvz5gI1+5o+zwOsyvbD/BK
-         v7trUsmKk56yBaB3F7Rt7HqBHY/kvkj0jFfYIJIV6fW6wXMGwlpTz74VKw/1XdSGuGi2
-         cABQ==
-X-Gm-Message-State: AO0yUKWsavhdpzflEhXo0amLeaB+3XjYQ7ALf3n+d7OjP4E97gi/AhO4
-        pOTMZi29c8r2toxkXCOgoZ0S7A==
-X-Google-Smtp-Source: AK7set8UJgx+RtN6p8sM/0DeC3tPMU8VJqx5A4m0mRCX7TvoPE1tRwsLeEzWPyNIXYZdIXH4gkDKDQ==
-X-Received: by 2002:a17:906:fe07:b0:8b1:7de3:cfaa with SMTP id wy7-20020a170906fe0700b008b17de3cfaamr15805736ejb.3.1678119366668;
-        Mon, 06 Mar 2023 08:16:06 -0800 (PST)
-Received: from [127.0.1.1] (158.22.5.93.rev.sfr.net. [93.5.22.158])
-        by smtp.googlemail.com with ESMTPSA id f14-20020a1709067f8e00b008c16025b318sm4725074ejr.155.2023.03.06.08.16.05
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 06 Mar 2023 08:16:06 -0800 (PST)
-From:   Alexandre Mergnat <amergnat@baylibre.com>
-Date:   Mon, 06 Mar 2023 17:15:55 +0100
-Subject: [PATCH v2] dt-bindings: display: mediatek: Fix the duplicated fallback
-MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-Message-Id: <20230306-ccorr-binding-fix-v2-0-4822939a837d@baylibre.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Allen-KH Cheng <allen-kh.cheng@mediatek.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Rob Herring <robh@kernel.org>,
+        with ESMTP id S230403AbjCFRDM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Mar 2023 12:03:12 -0500
+Received: from mslow1.mail.gandi.net (mslow1.mail.gandi.net [217.70.178.240])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2FF545553C;
+        Mon,  6 Mar 2023 09:02:33 -0800 (PST)
+Received: from relay1-d.mail.gandi.net (unknown [IPv6:2001:4b98:dc4:8::221])
+        by mslow1.mail.gandi.net (Postfix) with ESMTP id 5B40ECBCDD;
+        Mon,  6 Mar 2023 16:20:10 +0000 (UTC)
+Received: (Authenticated sender: herve.codina@bootlin.com)
+        by mail.gandi.net (Postfix) with ESMTPA id 67A6C240009;
+        Mon,  6 Mar 2023 16:18:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1678119489;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=5ZSZUb7GNlBfiAchjhGPnlmY1wyc58r4uqf5a2BVKcc=;
+        b=WW0u8X/CwCxTy1Budp77BMxj8RY9TQRC6HFhAEHtEaK01/F/46ewNM9a+/1eSeow0vKHMH
+        SP7Ri1/OXEStAzybIXos6AQWWV9/L8lib2izVJIsNz9xwR+gU1WM/qX0rGjHDLTC0ZqOkV
+        R1zSoEL9TSZdqBPOdUOEfi2YFHrz7w+WCJvTwI0f0FcEY/46kXKGF8v32NuBCrK5HvB+CT
+        yRrb5oEA1+RQIok3DHk48idjPStF48gtr3gBLMdrMY9k7KkOWIVUHS8oxOGpkU0PZTlex/
+        3sQMydMigPFj6nmrN810mJi0ERCsdhf976rRdEWSjJUj8rDGbzDQSSTMfKjDPA==
+From:   Herve Codina <herve.codina@bootlin.com>
+To:     Herve Codina <herve.codina@bootlin.com>,
+        Li Yang <leoyang.li@nxp.com>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Christophe Leroy <christophe.leroy@csgroup.eu>,
+        Michael Ellerman <mpe@ellerman.id.au>,
+        Nicholas Piggin <npiggin@gmail.com>,
+        Qiang Zhao <qiang.zhao@nxp.com>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>,
+        Shengjiu Wang <shengjiu.wang@gmail.com>,
+        Xiubo Li <Xiubo.Lee@gmail.com>,
+        Fabio Estevam <festevam@gmail.com>,
+        Nicolin Chen <nicoleotsuka@gmail.com>
+Cc:     linuxppc-dev@lists.ozlabs.org,
         linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        Alexandre Mergnat <amergnat@baylibre.com>,
-        dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
-        linux-mediatek@lists.infradead.org
-X-Mailer: b4 0.10.1
-X-Developer-Signature: v=1; a=openpgp-sha256; l=2172; i=amergnat@baylibre.com;
- h=from:subject:message-id; bh=4agDtIQ77F9ME6yRsPUjLAJBlnLGzpQX4bZnM0RC0x4=;
- b=owEBbQKS/ZANAwAKAStGSZ1+MdRFAcsmYgBkBhHFIaq0Oa2uH87DGmClu+FpsQAsxEPqMLB5HFNL
- i3nTFg2JAjMEAAEKAB0WIQQjG17X8+qqcA5g/osrRkmdfjHURQUCZAYRxQAKCRArRkmdfjHURcHRD/
- 9MhoXFudTD4tZBPgh+Gp2RJsoD30POoNUwZRp0mjM/CQzuvWbkSoEKVOfDsjD7vYeM87ZaWl9TsWVe
- qXA2y0Dk0P2KrnThxIOx4SEB3cnKapUKxkD7NeyxQ8x5JttdB98Vs+Ndrm8Le9b1yScoxwskgtnhgH
- AosTF9wPB6SM31tRkr9vsAiznTgv7uhKiCttF9Qq30jdy/nTonScrsWo56HDRRC7EZk/JtS7yYnn9r
- L1DTWPuk+jam1HcwBKWwQR3GZWazffHpuWYlkJ9LrjHmSjqjmNL6eBgXbhjhlVonskoOZmrNoUWlmj
- g+fDofLPIVYkxQFDIjpDHUDtqQzxIHIN7a50vIECNGUdFZsmo7X3kj+51ljXMxsGg8GN2obSwiSfwY
- azGs8OqIV5YOaCSX2eT5Ork2Ysufqo3Cqk8IgHKq5nFwWIDJ44untGuLwOf0m2o9fgePQUWRMIaU0G
- 0B0hW0p+G6izKCRfhaWfZ1HglzG8WwpGq51n+TRy3o23OQAXMRKvstdtKSWS5vD0uyh/Mvxu9Mc4zi
- 95TNB+K8CDf7GJi16s6r5V8+TGCr6banMuY0yFEfHOPqOVV+2Y7RbOBeIYKshj4qOkpW3xOk5my05i
- YP3VRVJQLGZcMYZyq8ChWV7/CTAyFr1zC9enBdQbzk/j8xO8zweMTd1DnI8Q==
-X-Developer-Key: i=amergnat@baylibre.com; a=openpgp;
- fpr=231B5ED7F3EAAA700E60FE8B2B46499D7E31D445
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        linux-kernel@vger.kernel.org, alsa-devel@alsa-project.org,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: [PATCH v7 01/10] dt-bindings: soc: fsl: cpm_qe: Add TSA controller
+Date:   Mon,  6 Mar 2023 17:17:45 +0100
+Message-Id: <20230306161754.89146-2-herve.codina@bootlin.com>
+X-Mailer: git-send-email 2.39.2
+In-Reply-To: <20230306161754.89146-1-herve.codina@bootlin.com>
+References: <20230306161754.89146-1-herve.codina@bootlin.com>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The item which have the mediatek,mt8192-disp-ccorr const compatible already
-exist above. Remove duplicated fallback.
+Add support for the time slot assigner (TSA) available in some
+PowerQUICC SoC such as MPC885 or MPC866.
 
-Fixes: 137272ef1b0f ("dt-bindings: display: mediatek: Fix the fallback for mediatek,mt8186-disp-ccorr")
-Signed-off-by: Alexandre Mergnat <amergnat@baylibre.com>
+Signed-off-by: Herve Codina <herve.codina@bootlin.com>
+Reviewed-by: Christophe Leroy <christophe.leroy@csgroup.eu>
 ---
-Fix MTK color correction binding
+ .../bindings/soc/fsl/cpm_qe/fsl,cpm1-tsa.yaml | 205 ++++++++++++++++++
+ include/dt-bindings/soc/cpm1-fsl,tsa.h        |  13 ++
+ 2 files changed, 218 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/soc/fsl/cpm_qe/fsl,cpm1-tsa.yaml
+ create mode 100644 include/dt-bindings/soc/cpm1-fsl,tsa.h
 
-The fallback compatible has been duplicated in the 137272ef1b0f commit.
-
-To: Chun-Kuang Hu <chunkuang.hu@kernel.org>
-To: Philipp Zabel <p.zabel@pengutronix.de>
-To: David Airlie <airlied@gmail.com>
-To: Daniel Vetter <daniel@ffwll.ch>
-To: Rob Herring <robh+dt@kernel.org>
-To: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-To: Matthias Brugger <matthias.bgg@gmail.com>
-To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-To: Allen-KH Cheng <allen-kh.cheng@mediatek.com>
-Cc: Rob Herring <robh@kernel.org>
-Cc: dri-devel@lists.freedesktop.org
-Cc: linux-mediatek@lists.infradead.org
-Cc: devicetree@vger.kernel.org
-Cc: linux-kernel@vger.kernel.org
-Cc: linux-arm-kernel@lists.infradead.org
----
-Changes in v2:
-- Fix commit title.
-- Link to v1: https://lore.kernel.org/r/20230306-ccorr-binding-fix-v1-0-177d81d60c69@baylibre.com
----
- Documentation/devicetree/bindings/display/mediatek/mediatek,ccorr.yaml | 3 ---
- 1 file changed, 3 deletions(-)
-
-diff --git a/Documentation/devicetree/bindings/display/mediatek/mediatek,ccorr.yaml b/Documentation/devicetree/bindings/display/mediatek/mediatek,ccorr.yaml
-index b04820c95b22..3aaf44719786 100644
---- a/Documentation/devicetree/bindings/display/mediatek/mediatek,ccorr.yaml
-+++ b/Documentation/devicetree/bindings/display/mediatek/mediatek,ccorr.yaml
-@@ -29,9 +29,6 @@ properties:
-           - enum:
-               - mediatek,mt8188-disp-ccorr
-               - mediatek,mt8195-disp-ccorr
--          - const: mediatek,mt8192-disp-ccorr
--      - items:
--          - enum:
-               - mediatek,mt8186-disp-ccorr
-           - const: mediatek,mt8192-disp-ccorr
- 
-
----
-base-commit: add072536971d7ce891fde3cdbf68c55e7cfa95a
-change-id: 20230306-ccorr-binding-fix-718c6d725088
-
-Best regards,
+diff --git a/Documentation/devicetree/bindings/soc/fsl/cpm_qe/fsl,cpm1-tsa.yaml b/Documentation/devicetree/bindings/soc/fsl/cpm_qe/fsl,cpm1-tsa.yaml
+new file mode 100644
+index 000000000000..7e51c639a79a
+--- /dev/null
++++ b/Documentation/devicetree/bindings/soc/fsl/cpm_qe/fsl,cpm1-tsa.yaml
+@@ -0,0 +1,205 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/soc/fsl/cpm_qe/fsl,cpm1-tsa.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: PowerQUICC CPM Time-slot assigner (TSA) controller
++
++maintainers:
++  - Herve Codina <herve.codina@bootlin.com>
++
++description:
++  The TSA is the time-slot assigner that can be found on some PowerQUICC SoC.
++  Its purpose is to route some TDM time-slots to other internal serial
++  controllers.
++
++properties:
++  compatible:
++    items:
++      - enum:
++          - fsl,mpc885-tsa
++          - fsl,mpc866-tsa
++      - const: fsl,cpm1-tsa
++
++  reg:
++    items:
++      - description: SI (Serial Interface) register base
++      - description: SI RAM base
++
++  reg-names:
++    items:
++      - const: si_regs
++      - const: si_ram
++
++  '#address-cells':
++    const: 1
++
++  '#size-cells':
++    const: 0
++
++patternProperties:
++  '^tdm@[0-1]$':
++    description:
++      The TDM managed by this controller
++    type: object
++
++    additionalProperties: false
++
++    properties:
++      reg:
++        minimum: 0
++        maximum: 1
++        description:
++          The TDM number for this TDM, 0 for TDMa and 1 for TDMb
++
++      fsl,common-rxtx-pins:
++        $ref: /schemas/types.yaml#/definitions/flag
++        description:
++          The hardware can use four dedicated pins for Tx clock, Tx sync, Rx
++          clock and Rx sync or use only two pins, Tx/Rx clock and Tx/Rx sync.
++          Without the 'fsl,common-rxtx-pins' property, the four pins are used.
++          With the 'fsl,common-rxtx-pins' property, two pins are used.
++
++      clocks:
++        minItems: 2
++        items:
++          - description: External clock connected to L1RSYNC pin
++          - description: External clock connected to L1RCLK pin
++          - description: External clock connected to L1TSYNC pin
++          - description: External clock connected to L1TCLK pin
++
++      clock-names:
++        minItems: 2
++        items:
++          - const: l1rsync
++          - const: l1rclk
++          - const: l1tsync
++          - const: l1tclk
++
++      fsl,rx-frame-sync-delay-bits:
++        enum: [0, 1, 2, 3]
++        default: 0
++        description: |
++          Receive frame sync delay in number of bits.
++          Indicates the delay between the Rx sync and the first bit of the Rx
++          frame. 0 for no bit delay. 1, 2 or 3 for 1, 2 or 3 bits delay.
++
++      fsl,tx-frame-sync-delay-bits:
++        enum: [0, 1, 2, 3]
++        default: 0
++        description: |
++          Transmit frame sync delay in number of bits.
++          Indicates the delay between the Tx sync and the first bit of the Tx
++          frame. 0 for no bit delay. 1, 2 or 3 for 1, 2 or 3 bits delay.
++
++      fsl,clock-falling-edge:
++        $ref: /schemas/types.yaml#/definitions/flag
++        description:
++          Data is sent on falling edge of the clock (and received on the rising
++          edge). If 'clock-falling-edge' is not present, data is sent on the
++          rising edge (and received on the falling edge).
++
++      fsl,fsync-rising-edge:
++        $ref: /schemas/types.yaml#/definitions/flag
++        description:
++          Frame sync pulses are sampled with the rising edge of the channel
++          clock. If 'fsync-rising-edge' is not present, pulses are sampled with
++          the falling edge.
++
++      fsl,double-speed-clock:
++        $ref: /schemas/types.yaml#/definitions/flag
++        description:
++          The channel clock is twice the data rate.
++
++    patternProperties:
++      '^fsl,[rt]x-ts-routes$':
++        $ref: /schemas/types.yaml#/definitions/uint32-matrix
++        description: |
++          A list of tuple that indicates the Tx or Rx time-slots routes.
++        items:
++          items:
++            - description:
++                The number of time-slots
++              minimum: 1
++              maximum: 64
++            - description: |
++                The source (Tx) or destination (Rx) serial interface
++                (dt-bindings/soc/cpm1-fsl,tsa.h defines these values)
++                 - 0: No destination
++                 - 1: SCC2
++                 - 2: SCC3
++                 - 3: SCC4
++                 - 4: SMC1
++                 - 5: SMC2
++              enum: [0, 1, 2, 3, 4, 5]
++        minItems: 1
++        maxItems: 64
++
++    allOf:
++      # If fsl,common-rxtx-pins is present, only 2 clocks are needed.
++      # Else, the 4 clocks must be present.
++      - if:
++          required:
++            - fsl,common-rxtx-pins
++        then:
++          properties:
++            clocks:
++              maxItems: 2
++            clock-names:
++              maxItems: 2
++        else:
++          properties:
++            clocks:
++              minItems: 4
++            clock-names:
++              minItems: 4
++
++    required:
++      - reg
++      - clocks
++      - clock-names
++
++required:
++  - compatible
++  - reg
++  - reg-names
++  - '#address-cells'
++  - '#size-cells'
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/soc/cpm1-fsl,tsa.h>
++
++    tsa@ae0 {
++        compatible = "fsl,mpc885-tsa", "fsl,cpm1-tsa";
++        reg = <0xae0 0x10>,
++              <0xc00 0x200>;
++        reg-names = "si_regs", "si_ram";
++
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        tdm@0 {
++            /* TDMa */
++            reg = <0>;
++
++            clocks = <&clk_l1rsynca>, <&clk_l1rclka>;
++            clock-names = "l1rsync", "l1rclk";
++
++            fsl,common-rxtx-pins;
++            fsl,fsync-rising-edge;
++
++            fsl,tx-ts-routes = <2 0>,             /* TS 0..1 */
++                           <24 FSL_CPM_TSA_SCC4>, /* TS 2..25 */
++                           <1 0>,                 /* TS 26 */
++                           <5 FSL_CPM_TSA_SCC3>;  /* TS 27..31 */
++
++            fsl,rx-ts-routes = <2 0>,             /* TS 0..1 */
++                           <24 FSL_CPM_TSA_SCC4>, /* 2..25 */
++                           <1 0>,                 /* TS 26 */
++                           <5 FSL_CPM_TSA_SCC3>;  /* TS 27..31 */
++        };
++    };
+diff --git a/include/dt-bindings/soc/cpm1-fsl,tsa.h b/include/dt-bindings/soc/cpm1-fsl,tsa.h
+new file mode 100644
+index 000000000000..2cc44e867dbe
+--- /dev/null
++++ b/include/dt-bindings/soc/cpm1-fsl,tsa.h
+@@ -0,0 +1,13 @@
++/* SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause */
++
++#ifndef __DT_BINDINGS_SOC_FSL_TSA_H
++#define __DT_BINDINGS_SOC_FSL_TSA_H
++
++#define FSL_CPM_TSA_NU		0	/* Pseuso Cell Id for not used item */
++#define FSL_CPM_TSA_SCC2	1
++#define FSL_CPM_TSA_SCC3	2
++#define FSL_CPM_TSA_SCC4	3
++#define FSL_CPM_TSA_SMC1	4
++#define FSL_CPM_TSA_SMC2	5
++
++#endif
 -- 
-Alexandre Mergnat <amergnat@baylibre.com>
+2.39.2
+
