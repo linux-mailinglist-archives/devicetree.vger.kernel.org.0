@@ -2,408 +2,162 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 236CC6AB80F
-	for <lists+devicetree@lfdr.de>; Mon,  6 Mar 2023 09:14:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D3EB36AB81A
+	for <lists+devicetree@lfdr.de>; Mon,  6 Mar 2023 09:17:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229854AbjCFIOl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 Mar 2023 03:14:41 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46810 "EHLO
+        id S229884AbjCFIRB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 Mar 2023 03:17:01 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48898 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229812AbjCFIOk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Mar 2023 03:14:40 -0500
-Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A9B1FCC28
-        for <devicetree@vger.kernel.org>; Mon,  6 Mar 2023 00:14:36 -0800 (PST)
-Received: by mail-ed1-x535.google.com with SMTP id da10so35007432edb.3
-        for <devicetree@vger.kernel.org>; Mon, 06 Mar 2023 00:14:36 -0800 (PST)
+        with ESMTP id S229864AbjCFIRA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Mar 2023 03:17:00 -0500
+Received: from smtp16.bhosted.nl (smtp16.bhosted.nl [IPv6:2a02:9e0:8000::27])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 89C3B1ADC5
+        for <devicetree@vger.kernel.org>; Mon,  6 Mar 2023 00:16:57 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1678090475;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=NP1GBEgY0DTXZ+qZFCDhhZAO9ueeufCtO9aUwktz8Cs=;
-        b=fNGZKOZDq94XjwnG6QYvixnFQ8KNTTO3gQUP78ue6i+FdonnCkZSz6ww0vOR++nDow
-         FKRO4IxNct7TwMzUrczWmT/tv4WmIH31mRNhprOLRtuNOXWspvet3Zrs0x3n6aXqDju0
-         slU7tdWu55nLFzob5Z0FuFV+l8o36Usu9008/sgTmRsFUJr5PW0Jl83IT2czGOgz3wYe
-         kDd6TDKMsNiPU+INZnM8ue5JKNG7S23xMy7jRA0L+TeiWDkjOa599mwYbBSYADkAlZxS
-         d7PR6ai66Qaf4LyEqmSrZCtEMCl/lHnFvFkFRBc8KFPHsnb3erWsfDyJfbpmh7tRONg2
-         0SiQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678090475;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=NP1GBEgY0DTXZ+qZFCDhhZAO9ueeufCtO9aUwktz8Cs=;
-        b=F8pNLfZ9M2yZJkmkqvxw1XahlOoRFxNwa+djA0zMpBYaEhtdBiloTu3TZ4n+dsb1h3
-         Tj+SvrwsyZ8LPeR4jcL9X8PYmKW0tGIi9Hu0Pr8+axiEjJ2JS5koX0fHOWOjeca49u4Z
-         4nBm2P/M+n6JPy+l6D6dMrwbZXmSt3PzMTK5WaV1WyVbi5ImBzcNiFVNjuQR0PfnPG8V
-         hnLvYCdqbZRaKuBjPzQMVLHOywRvp054npky6KmcRlu/K6QKTGZFf3dL7JFz2RoDS0dU
-         3DN/GENCbKEAq/Z1plNyeUI/Vuhz0mJ4DQhzU7A0FLBgB4I65PwoJYLhmvQwSt8+ph1D
-         OCZA==
-X-Gm-Message-State: AO0yUKUZdVeTLMuTF4QXQzxwetC3m1XxmIy1CGyIKrQr3x2vI1w12KJv
-        Dl5jgo+Vyv1C+4BS+9fYfvbuPQ==
-X-Google-Smtp-Source: AK7set98xOEk1+IvCJ28pFJn5eZ6vpdWruBqie4qL25bttCONjh3ySVEZQESBQCtcBxfFNWWTjXC1Q==
-X-Received: by 2002:a17:907:1c1d:b0:8b1:3a8e:232 with SMTP id nc29-20020a1709071c1d00b008b13a8e0232mr12350407ejc.74.1678090475153;
-        Mon, 06 Mar 2023 00:14:35 -0800 (PST)
-Received: from krzk-bin.. ([2a02:810d:15c0:828:d85d:5a4b:9830:fcfe])
-        by smtp.gmail.com with ESMTPSA id w26-20020a1709064a1a00b008c1952b63d8sm4247615eju.137.2023.03.06.00.14.34
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 06 Mar 2023 00:14:34 -0800 (PST)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH 2/2] arm64: dts: qcom: drop redundant line breaks
-Date:   Mon,  6 Mar 2023 09:14:30 +0100
-Message-Id: <20230306081430.28491-2-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230306081430.28491-1-krzysztof.kozlowski@linaro.org>
-References: <20230306081430.28491-1-krzysztof.kozlowski@linaro.org>
+        d=protonic.nl; s=202111;
+        h=message-id:references:in-reply-to:reply-to:subject:cc:to:from:date:
+         content-transfer-encoding:content-type:mime-version:from;
+        bh=iGJBerep9CUnwc0kKc070FLg5wgjahdY5flMGzZYQMs=;
+        b=oDYibHiF3QQbdSnLfVFRXWqS6z3NQmb6kugL8YV+AzvXesLHyr5JzoQv36TlUtoc6W5KCotN1l9wN
+         9LSOB4Bu9Yfgb0XpMplMCVfXibebalo7a5aESxI1lFy0L3DA6RZo6UFgR79W8gl98jQrxQ/tLvd2T2
+         0xEQnuRgzH1ORWF+wpRq+raboR/TqFqi3nosbBYytoNMkARO5GE2FASMRvbgozacXT968pNevzID08
+         kd2Bb6hh7pzuv819gTpRFHFjwmhc4+RnlmqnZW8aNjXY3z24ty79Y1uQG7spYocRbf484LhNNLEwf4
+         6CAVA7hl0v6jQA7FXN1mdH2h85/uHYw==
+X-MSG-ID: 412d5329-bbf7-11ed-829c-0050569d2c73
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8;
+ format=flowed
 Content-Transfer-Encoding: 8bit
+Date:   Mon, 06 Mar 2023 09:16:54 +0100
+From:   Robin van der Gracht <robin@protonic.nl>
+To:     Rob Herring <robh@kernel.org>
+Cc:     devicetree@vger.kernel.org, Miguel Ojeda <ojeda@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        linux-i2c@vger.kernel.org, linux-gpio@vger.kernel.org,
+        linux-leds@vger.kernel.org, linux-media@vger.kernel.org,
+        netdev@vger.kernel.org, linux-can@vger.kernel.org,
+        linux-wireless@vger.kernel.org, linux-pm@vger.kernel.org,
+        alsa-devel@alsa-project.org, linux-usb@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: Fix SPI and I2C bus node names in examples
+Organization: Protonic Holland
+Reply-To: robin@protonic.nl
+Mail-Reply-To: robin@protonic.nl
+In-Reply-To: <CANiq72mm9qX8uuS2y_vvtcza2hAgG3zFEy24koQTfSEOWkKDYQ@mail.gmail.com>
+References: <20230228215433.3944508-1-robh@kernel.org>
+ <CANiq72mm9qX8uuS2y_vvtcza2hAgG3zFEy24koQTfSEOWkKDYQ@mail.gmail.com>
+Message-ID: <61190cb766083d73ef3b1455dcf3ff61@protonic.nl>
+X-Sender: robin@protonic.nl
+User-Agent: Roundcube Webmail/1.3.1 
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Remove trailing, redundant line breaks.
+> From: Rob Herring <robh@kernel.org>
+> Date: Tue, Feb 28, 2023 at 10:54 PM
+> Subject: [PATCH] dt-bindings: Fix SPI and I2C bus node names in 
+> examples
+> To: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+> Cc: <devicetree@vger.kernel.org>, Miguel Ojeda <ojeda@kernel.org>,
+> Benson Leung <bleung@chromium.org>, Guenter Roeck
+> <groeck@chromium.org>, Stephen Boyd <sboyd@kernel.org>, Andrzej Hajda
+> <andrzej.hajda@intel.com>, Neil Armstrong <neil.armstrong@linaro.org>,
+> Robert Foss <rfoss@kernel.org>, Thierry Reding
+> <thierry.reding@gmail.com>, Sam Ravnborg <sam@ravnborg.org>, MyungJoo
+> Ham <myungjoo.ham@samsung.com>, Chanwoo Choi <cw00.choi@samsung.com>,
+> Linus Walleij <linus.walleij@linaro.org>, Bartosz Golaszewski
+> <brgl@bgdev.pl>, Pavel Machek <pavel@ucw.cz>, Lee Jones
+> <lee@kernel.org>, Mauro Carvalho Chehab <mchehab@kernel.org>, David S.
+> Miller <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
+> Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+> Wolfgang Grandegger <wg@grandegger.com>, Kalle Valo
+> <kvalo@kernel.org>, Sebastian Reichel <sre@kernel.org>, Mark Brown
+> <broonie@kernel.org>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+> <linux-clk@vger.kernel.org>, <dri-devel@lists.freedesktop.org>,
+> <linux-gpio@vger.kernel.org>, <linux-i2c@vger.kernel.org>,
+> <linux-leds@vger.kernel.org>, <linux-media@vger.kernel.org>,
+> <netdev@vger.kernel.org>, <linux-can@vger.kernel.org>,
+> <linux-wireless@vger.kernel.org>, <linux-pm@vger.kernel.org>,
+> <alsa-devel@alsa-project.org>, <linux-usb@vger.kernel.org>
+> 
+> 
+> SPI and I2C bus node names are expected to be "spi" or "i2c",
+> respectively, with nothing else, a unit-address, or a '-N' index. A
+> pattern of 'spi0' or 'i2c0' or similar has crept in. Fix all these
+> cases. Mostly scripted with the following commands:
+> 
+> git grep -l '\si2c[0-9] {' Documentation/devicetree/ | xargs sed -i -e
+> 's/i2c[0-9] {/i2c {/'
+> git grep -l '\sspi[0-9] {' Documentation/devicetree/ | xargs sed -i -e
+> 's/spi[0-9] {/spi {/'
+> 
+> With this, a few errors in examples were exposed and fixed.
+> 
+> Signed-off-by: Rob Herring <robh@kernel.org>
+> ---
+> Cc: Miguel Ojeda <ojeda@kernel.org>
+> Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+> Cc: Benson Leung <bleung@chromium.org>
+> Cc: Guenter Roeck <groeck@chromium.org>
+> Cc: Stephen Boyd <sboyd@kernel.org>
+> Cc: Andrzej Hajda <andrzej.hajda@intel.com>
+> Cc: Neil Armstrong <neil.armstrong@linaro.org>
+> Cc: Robert Foss <rfoss@kernel.org>
+> Cc: Thierry Reding <thierry.reding@gmail.com>
+> Cc: Sam Ravnborg <sam@ravnborg.org>
+> Cc: MyungJoo Ham <myungjoo.ham@samsung.com>
+> Cc: Chanwoo Choi <cw00.choi@samsung.com>
+> Cc: Linus Walleij <linus.walleij@linaro.org>
+> Cc: Bartosz Golaszewski <brgl@bgdev.pl>
+> Cc: Pavel Machek <pavel@ucw.cz>
+> Cc: Lee Jones <lee@kernel.org>
+> Cc: Mauro Carvalho Chehab <mchehab@kernel.org>
+> Cc: "David S. Miller" <davem@davemloft.net>
+> Cc: Eric Dumazet <edumazet@google.com>
+> Cc: Jakub Kicinski <kuba@kernel.org>
+> Cc: Paolo Abeni <pabeni@redhat.com>
+> Cc: Wolfgang Grandegger <wg@grandegger.com>
+> Cc: Kalle Valo <kvalo@kernel.org>
+> Cc: Sebastian Reichel <sre@kernel.org>
+> Cc: Mark Brown <broonie@kernel.org>
+> Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+> Cc: linux-clk@vger.kernel.org
+> Cc: dri-devel@lists.freedesktop.org
+> Cc: linux-gpio@vger.kernel.org
+> Cc: linux-i2c@vger.kernel.org
+> Cc: linux-leds@vger.kernel.org
+> Cc: linux-media@vger.kernel.org
+> Cc: netdev@vger.kernel.org
+> Cc: linux-can@vger.kernel.org
+> Cc: linux-wireless@vger.kernel.org
+> Cc: linux-pm@vger.kernel.org
+> Cc: alsa-devel@alsa-project.org
+> Cc: linux-usb@vger.kernel.org
+> ---
+>  .../bindings/auxdisplay/holtek,ht16k33.yaml       |  2 +-
 
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
----
- arch/arm64/boot/dts/qcom/apq8096-db820c.dts                 | 1 -
- arch/arm64/boot/dts/qcom/msm8916.dtsi                       | 1 -
- arch/arm64/boot/dts/qcom/msm8996.dtsi                       | 2 --
- arch/arm64/boot/dts/qcom/sc7180.dtsi                        | 1 -
- arch/arm64/boot/dts/qcom/sc7280.dtsi                        | 3 ---
- arch/arm64/boot/dts/qcom/sc8280xp.dtsi                      | 2 --
- arch/arm64/boot/dts/qcom/sdm670-google-sargo.dts            | 1 -
- arch/arm64/boot/dts/qcom/sdm845-oneplus-fajita.dts          | 1 -
- arch/arm64/boot/dts/qcom/sm6350-sony-xperia-lena-pdx213.dts | 2 --
- arch/arm64/boot/dts/qcom/sm6350.dtsi                        | 2 --
- arch/arm64/boot/dts/qcom/sm6375.dtsi                        | 1 -
- arch/arm64/boot/dts/qcom/sm8150.dtsi                        | 1 -
- arch/arm64/boot/dts/qcom/sm8250.dtsi                        | 4 ----
- arch/arm64/boot/dts/qcom/sm8350-hdk.dts                     | 1 -
- arch/arm64/boot/dts/qcom/sm8350.dtsi                        | 1 -
- arch/arm64/boot/dts/qcom/sm8450-hdk.dts                     | 1 -
- arch/arm64/boot/dts/qcom/sm8450-qrd.dts                     | 1 -
- arch/arm64/boot/dts/qcom/sm8450.dtsi                        | 3 ---
- 18 files changed, 29 deletions(-)
+....
 
-diff --git a/arch/arm64/boot/dts/qcom/apq8096-db820c.dts b/arch/arm64/boot/dts/qcom/apq8096-db820c.dts
-index 842836ed680a..5ceaab5d4039 100644
---- a/arch/arm64/boot/dts/qcom/apq8096-db820c.dts
-+++ b/arch/arm64/boot/dts/qcom/apq8096-db820c.dts
-@@ -1137,7 +1137,6 @@ &usb3phy {
- 
- 	vdda-phy-supply = <&vreg_l28a_0p925>;
- 	vdda-pll-supply = <&vreg_l12a_1p8>;
--
- };
- 
- &venus {
-diff --git a/arch/arm64/boot/dts/qcom/msm8916.dtsi b/arch/arm64/boot/dts/qcom/msm8916.dtsi
-index 0733c2f4f379..bea56955cb30 100644
---- a/arch/arm64/boot/dts/qcom/msm8916.dtsi
-+++ b/arch/arm64/boot/dts/qcom/msm8916.dtsi
-@@ -2180,7 +2180,6 @@ modem_alert0: trip-point0 {
- 				};
- 			};
- 		};
--
- 	};
- 
- 	timer {
-diff --git a/arch/arm64/boot/dts/qcom/msm8996.dtsi b/arch/arm64/boot/dts/qcom/msm8996.dtsi
-index 293ed2e60691..0efef2efd847 100644
---- a/arch/arm64/boot/dts/qcom/msm8996.dtsi
-+++ b/arch/arm64/boot/dts/qcom/msm8996.dtsi
-@@ -1882,7 +1882,6 @@ pcie0: pcie@600000 {
- 						"cfg",
- 						"bus_master",
- 						"bus_slave";
--
- 			};
- 
- 			pcie1: pcie@608000 {
-@@ -3468,7 +3467,6 @@ q6routing: routing {
- 						};
- 					};
- 				};
--
- 			};
- 		};
- 
-diff --git a/arch/arm64/boot/dts/qcom/sc7180.dtsi b/arch/arm64/boot/dts/qcom/sc7180.dtsi
-index 51bb0a2f25ef..99ec844da32e 100644
---- a/arch/arm64/boot/dts/qcom/sc7180.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7180.dtsi
-@@ -3019,7 +3019,6 @@ opp-460000000 {
- 						required-opps = <&rpmhpd_opp_nom>;
- 					};
- 				};
--
- 			};
- 
- 			dsi0: dsi@ae94000 {
-diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-index 71179182c3b8..90ed277dc821 100644
---- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-@@ -935,7 +935,6 @@ opp-384000000 {
- 					opp-avg-kBps = <390000 0>;
- 				};
- 			};
--
- 		};
- 
- 		gpi_dma0: dma-controller@900000 {
-@@ -3289,7 +3288,6 @@ opp-202000000 {
- 					opp-avg-kBps = <200000 0>;
- 				};
- 			};
--
- 		};
- 
- 		usb_1_hsphy: phy@88e3000 {
-@@ -3757,7 +3755,6 @@ opp-460000048 {
- 					required-opps = <&rpmhpd_opp_turbo>;
- 				};
- 			};
--
- 		};
- 
- 		videocc: clock-controller@aaf0000 {
-diff --git a/arch/arm64/boot/dts/qcom/sc8280xp.dtsi b/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
-index 1bb4b658065d..1a3d15e6d381 100644
---- a/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
-@@ -2772,7 +2772,6 @@ data-pins {
- 					drive-strength = <2>;
- 					slew-rate = <1>;
- 					bias-bus-hold;
--
- 				};
- 			};
- 
-@@ -4397,7 +4396,6 @@ opp-810000000 {
- 						required-opps = <&rpmhpd_opp_nom>;
- 					};
- 				};
--
- 			};
- 
- 			mdss1_dp1: displayport-controller@22098000 {
-diff --git a/arch/arm64/boot/dts/qcom/sdm670-google-sargo.dts b/arch/arm64/boot/dts/qcom/sdm670-google-sargo.dts
-index e3e61b9d1b9d..32a7bd59e1ec 100644
---- a/arch/arm64/boot/dts/qcom/sdm670-google-sargo.dts
-+++ b/arch/arm64/boot/dts/qcom/sdm670-google-sargo.dts
-@@ -395,7 +395,6 @@ vreg_bob: bob {
- 			regulator-enable-ramp-delay = <500>;
- 		};
- 	};
--
- };
- 
- &gcc {
-diff --git a/arch/arm64/boot/dts/qcom/sdm845-oneplus-fajita.dts b/arch/arm64/boot/dts/qcom/sdm845-oneplus-fajita.dts
-index 086d14e2de92..d82c0d4407f0 100644
---- a/arch/arm64/boot/dts/qcom/sdm845-oneplus-fajita.dts
-+++ b/arch/arm64/boot/dts/qcom/sdm845-oneplus-fajita.dts
-@@ -45,7 +45,6 @@ &sound {
- 			"AMIC3", "MIC BIAS4",
- 			"AMIC4", "MIC BIAS1",
- 			"AMIC5", "MIC BIAS3";
--
- };
- 
- /*
-diff --git a/arch/arm64/boot/dts/qcom/sm6350-sony-xperia-lena-pdx213.dts b/arch/arm64/boot/dts/qcom/sm6350-sony-xperia-lena-pdx213.dts
-index 4916d0db5b47..2a3ad478892b 100644
---- a/arch/arm64/boot/dts/qcom/sm6350-sony-xperia-lena-pdx213.dts
-+++ b/arch/arm64/boot/dts/qcom/sm6350-sony-xperia-lena-pdx213.dts
-@@ -233,7 +233,6 @@ pm6150l_l6: ldo6 {
- 			regulator-allow-set-load;
- 			regulator-allowed-modes = <RPMH_REGULATOR_MODE_LPM
- 						   RPMH_REGULATOR_MODE_HPM>;
--
- 		};
- 
- 		pm6150l_l7: ldo7 {
-@@ -255,7 +254,6 @@ pm6150l_l9: ldo9 {
- 			regulator-allow-set-load;
- 			regulator-allowed-modes = <RPMH_REGULATOR_MODE_LPM
- 						   RPMH_REGULATOR_MODE_HPM>;
--
- 		};
- 
- 		pm6150l_l10: ldo10 {
-diff --git a/arch/arm64/boot/dts/qcom/sm6350.dtsi b/arch/arm64/boot/dts/qcom/sm6350.dtsi
-index 1e1d366c92c1..1668f05ade12 100644
---- a/arch/arm64/boot/dts/qcom/sm6350.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm6350.dtsi
-@@ -170,7 +170,6 @@ L2_500: l2-cache {
- 				cache-level = <2>;
- 				next-level-cache = <&L3_0>;
- 			};
--
- 		};
- 
- 		CPU6: cpu@600 {
-@@ -880,7 +879,6 @@ i2c10: i2c@990000 {
- 				interconnect-names = "qup-core", "qup-config", "qup-memory";
- 				status = "disabled";
- 			};
--
- 		};
- 
- 		config_noc: interconnect@1500000 {
-diff --git a/arch/arm64/boot/dts/qcom/sm6375.dtsi b/arch/arm64/boot/dts/qcom/sm6375.dtsi
-index 31b88c738510..a99a5641623f 100644
---- a/arch/arm64/boot/dts/qcom/sm6375.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm6375.dtsi
-@@ -132,7 +132,6 @@ L2_500: l2-cache {
- 			      compatible = "cache";
- 			      next-level-cache = <&L3_0>;
- 			};
--
- 		};
- 
- 		CPU6: cpu@600 {
-diff --git a/arch/arm64/boot/dts/qcom/sm8150.dtsi b/arch/arm64/boot/dts/qcom/sm8150.dtsi
-index f89abf131e01..d565f56ec4d2 100644
---- a/arch/arm64/boot/dts/qcom/sm8150.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm8150.dtsi
-@@ -90,7 +90,6 @@ L2_100: l2-cache {
- 				cache-level = <2>;
- 				next-level-cache = <&L3_0>;
- 			};
--
- 		};
- 
- 		CPU2: cpu@200 {
-diff --git a/arch/arm64/boot/dts/qcom/sm8250.dtsi b/arch/arm64/boot/dts/qcom/sm8250.dtsi
-index 88870d9e3348..79d67b466856 100644
---- a/arch/arm64/boot/dts/qcom/sm8250.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm8250.dtsi
-@@ -241,7 +241,6 @@ L2_500: l2-cache {
- 				cache-unified;
- 				next-level-cache = <&L3_0>;
- 			};
--
- 		};
- 
- 		CPU6: cpu@600 {
-@@ -2420,7 +2419,6 @@ data-pins {
- 					drive-strength = <2>;
- 					slew-rate = <1>;
- 					bias-bus-hold;
--
- 				};
- 			};
- 
-@@ -2439,7 +2437,6 @@ data-pins {
- 					drive-strength = <2>;
- 					input-enable;
- 					bias-pull-down;
--
- 				};
- 			};
- 
-@@ -2923,7 +2920,6 @@ funnel_swao_in_funnel_merg: endpoint {
- 					};
- 				};
- 			};
--
- 		};
- 
- 		etf@6b05000 {
-diff --git a/arch/arm64/boot/dts/qcom/sm8350-hdk.dts b/arch/arm64/boot/dts/qcom/sm8350-hdk.dts
-index 09baf6959c71..b0fbfac43df7 100644
---- a/arch/arm64/boot/dts/qcom/sm8350-hdk.dts
-+++ b/arch/arm64/boot/dts/qcom/sm8350-hdk.dts
-@@ -644,7 +644,6 @@ wake-pins {
- 			bias-pull-up;
- 		};
- 	};
--
- };
- 
- &uart2 {
-diff --git a/arch/arm64/boot/dts/qcom/sm8350.dtsi b/arch/arm64/boot/dts/qcom/sm8350.dtsi
-index 1c97e28da6ad..2431b77e38d8 100644
---- a/arch/arm64/boot/dts/qcom/sm8350.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm8350.dtsi
-@@ -149,7 +149,6 @@ L2_500: l2-cache {
- 			      cache-level = <2>;
- 			      next-level-cache = <&L3_0>;
- 			};
--
- 		};
- 
- 		CPU6: cpu@600 {
-diff --git a/arch/arm64/boot/dts/qcom/sm8450-hdk.dts b/arch/arm64/boot/dts/qcom/sm8450-hdk.dts
-index feef3837e4cd..9fa1a83d9554 100644
---- a/arch/arm64/boot/dts/qcom/sm8450-hdk.dts
-+++ b/arch/arm64/boot/dts/qcom/sm8450-hdk.dts
-@@ -343,7 +343,6 @@ vreg_l3h_0p91: ldo3 {
- 			regulator-max-microvolt = <912000>;
- 			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
- 		};
--
- 	};
- 
- 	regulators-3 {
-diff --git a/arch/arm64/boot/dts/qcom/sm8450-qrd.dts b/arch/arm64/boot/dts/qcom/sm8450-qrd.dts
-index f7592946c783..65a94dfaf5ae 100644
---- a/arch/arm64/boot/dts/qcom/sm8450-qrd.dts
-+++ b/arch/arm64/boot/dts/qcom/sm8450-qrd.dts
-@@ -282,7 +282,6 @@ vreg_l3h_0p91: ldo3 {
- 			regulator-max-microvolt = <912000>;
- 			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
- 		};
--
- 	};
- 
- 	regulators-3 {
-diff --git a/arch/arm64/boot/dts/qcom/sm8450.dtsi b/arch/arm64/boot/dts/qcom/sm8450.dtsi
-index 1a744a33bcf4..42833188a257 100644
---- a/arch/arm64/boot/dts/qcom/sm8450.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm8450.dtsi
-@@ -154,7 +154,6 @@ L2_500: l2-cache {
- 			      cache-level = <2>;
- 			      next-level-cache = <&L3_0>;
- 			};
--
- 		};
- 
- 		CPU6: cpu@600 {
-@@ -2762,7 +2761,6 @@ dpu_intf2_out: endpoint {
- 							remote-endpoint = <&mdss_dsi1_in>;
- 						};
- 					};
--
- 				};
- 
- 				mdp_opp_table: opp-table {
-@@ -3569,7 +3567,6 @@ qup_uart20_default: qup-uart20-default-state {
- 				pins = "gpio76", "gpio77", "gpio78", "gpio79";
- 				function = "qup20";
- 			};
--
- 		};
- 
- 		lpass_tlmm: pinctrl@3440000 {
--- 
-2.34.1
+>  86 files changed, 110 insertions(+), 103 deletions(-)
+> 
+> diff --git 
+> a/Documentation/devicetree/bindings/auxdisplay/holtek,ht16k33.yaml
+> b/Documentation/devicetree/bindings/auxdisplay/holtek,ht16k33.yaml
+> index fc4873deb76f..286e726cd052 100644
+> --- a/Documentation/devicetree/bindings/auxdisplay/holtek,ht16k33.yaml
+> +++ b/Documentation/devicetree/bindings/auxdisplay/holtek,ht16k33.yaml
+> @@ -72,7 +72,7 @@ examples:
+>      #include <dt-bindings/interrupt-controller/irq.h>
+>      #include <dt-bindings/input/input.h>
+>      #include <dt-bindings/leds/common.h>
+> -    i2c1 {
+> +    i2c {
+>              #address-cells = <1>;
+>              #size-cells = <0>;
 
+Acked-by: Robin van der Gracht <robin@protonic.nl>
