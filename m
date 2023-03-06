@@ -2,125 +2,196 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2618D6ABEBA
-	for <lists+devicetree@lfdr.de>; Mon,  6 Mar 2023 12:52:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 991396ABEB9
+	for <lists+devicetree@lfdr.de>; Mon,  6 Mar 2023 12:52:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229993AbjCFLwB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 Mar 2023 06:52:01 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41996 "EHLO
+        id S229956AbjCFLv7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 Mar 2023 06:51:59 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41974 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229962AbjCFLwA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Mar 2023 06:52:00 -0500
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BF0A428D2A;
-        Mon,  6 Mar 2023 03:51:59 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1678103519; x=1709639519;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=+vJI7YuA2cKvI0b1Mt8oP5n5z7Z9J/WAV96Z+3jwwp0=;
-  b=YoR/0BlFufDt82EfuDw+8VenkZw7/aP8F2rQgNG1Y1jqAtXN+/iJOEA8
-   iwFUoJNXeAr6YBE5Nl5KS5bIIa3TrnALEjSyae3+/JWHpqpelDFeRfCrm
-   XAQt868omreiOIlKahzP+Ql+SlgW2tmUbIKGPJEG31ywXY/xDLDkZRGXJ
-   1pZ4PTIQwFjodZpqDTPM7QbyUlMI3ObU9+PhqVEGzROUTlqgMghtzzClL
-   1qsRkYuJvJkM4sel2E2oKvUD/rxVWiBCGP/lMK/ovMC6MOkLvyVq2jQwl
-   l2mBHkHko99bmVNTbIddUD3QbZuDgrytROykC9rcgwiwBF+g5Gr8HqCrP
-   w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10640"; a="421805982"
-X-IronPort-AV: E=Sophos;i="5.98,236,1673942400"; 
-   d="scan'208";a="421805982"
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
-  by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 06 Mar 2023 03:51:56 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10640"; a="678444901"
-X-IronPort-AV: E=Sophos;i="5.98,236,1673942400"; 
-   d="scan'208";a="678444901"
-Received: from smile.fi.intel.com ([10.237.72.54])
-  by fmsmga007.fm.intel.com with ESMTP; 06 Mar 2023 03:51:48 -0800
-Received: from andy by smile.fi.intel.com with local (Exim 4.96)
-        (envelope-from <andriy.shevchenko@linux.intel.com>)
-        id 1pZ9NY-00GKgD-22;
-        Mon, 06 Mar 2023 13:51:44 +0200
-Date:   Mon, 6 Mar 2023 13:51:44 +0200
-From:   Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To:     Pin-yen Lin <treapking@chromium.org>
-Cc:     Andrzej Hajda <andrzej.hajda@intel.com>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Robert Foss <rfoss@kernel.org>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Jonas Karlman <jonas@kwiboo.se>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
+        with ESMTP id S229929AbjCFLv6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Mar 2023 06:51:58 -0500
+Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com [IPv6:2a00:1450:4864:20::532])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1AE7728227
+        for <devicetree@vger.kernel.org>; Mon,  6 Mar 2023 03:51:57 -0800 (PST)
+Received: by mail-ed1-x532.google.com with SMTP id ec29so6508196edb.6
+        for <devicetree@vger.kernel.org>; Mon, 06 Mar 2023 03:51:57 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1678103515;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=wSAV2m6KPnFi6yjsalmahzmYCHOYaQ3prrwvNZxIwUk=;
+        b=lSPY5dswBAhuVTG7FDrB7pDSL8QXUWReKgCO5HiLMYm/YEJ/Y7XrsV7R2P6J57XtAE
+         3vS/tWEzT9qVwbWbjqDOq9HF1xxtjC/bE1Wl1wwAlOiAcHr+q7d7S/oVid6pxGjZLYz8
+         CJyPL9sjKZrI8zYMOmyV+Bo5/VmQZbxfRCk4DP1HySHRsKbnnlOJrETeiVBGAar/Vxj6
+         a/PXcfbKU+9yn0a+XrZG2FmMUdJ17stvk+cbrCsMEXNVsVktotWMtxIMKKXJc8EnxFtO
+         W8nlURVuJOTe275dv0AVvqIwsroqkKUpFG0AvalViKQ8rdSzOnij7JXswuJgdiZc7Pb6
+         vxSw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1678103515;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=wSAV2m6KPnFi6yjsalmahzmYCHOYaQ3prrwvNZxIwUk=;
+        b=oMp8KjSr3ND4oJFa4FfSp2X2S8fN871PspPbLVuIxDidjyK83HZz/5xCVx4iZoCEIi
+         3kSza4mfBIoO6p3M7T+eqnwKh7KiK02+8JeVWOckwD2+wCbBkKdhhbUpH7AdEorheN/c
+         SY7EpTESj79bZCLv8tzK1RXDHzFQGURb6eIqciZfKpRpO70wtZE77iC6pZVHoe15htZE
+         7JEJf1it+uz2MrEhl/s3jXDPKnhrPEk79mEqygogM1fYdMyHPx6wvXguKrLDacdHH6Ve
+         8jVgh0k2mvOEtNLYL7btT6by6jlgyXLp56amjZTiBEJ8wxEE9NPpFusmFuthooEscYX8
+         QM8g==
+X-Gm-Message-State: AO0yUKXKJKp0Q7TZlmrhza+r9NimjE1jXTu5NHEOFMRz4uWdS89lOovK
+        Ncu4mmooAeHEzrpYOdPSUduTJQ==
+X-Google-Smtp-Source: AK7set/vC98WymMaTZojQxVThW3BMzKq0AfTssygkCIDMIaOQFrL22hYj+heOJimoqFt0Z71CfI6sw==
+X-Received: by 2002:a17:907:3da7:b0:8de:baf0:338c with SMTP id he39-20020a1709073da700b008debaf0338cmr11663314ejc.14.1678103515621;
+        Mon, 06 Mar 2023 03:51:55 -0800 (PST)
+Received: from [10.203.3.194] ([185.202.34.81])
+        by smtp.gmail.com with ESMTPSA id r16-20020a170906a21000b008cafeec917dsm4469267ejy.101.2023.03.06.03.51.54
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 06 Mar 2023 03:51:55 -0800 (PST)
+Message-ID: <83184da4-b183-3271-983f-3a1a62fb9f1a@linaro.org>
+Date:   Mon, 6 Mar 2023 13:51:54 +0200
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.8.0
+Subject: Re: [PATCH 7/8] arm64: dts: qcom: ipq9574: Add USB related nodes
+Content-Language: en-GB
+To:     Varadarajan Narayanan <quic_varada@quicinc.com>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Daniel Scally <djrscally@gmail.com>,
-        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        "Rafael J . Wysocki" <rafael@kernel.org>,
-        Prashant Malani <pmalani@chromium.org>,
-        Benson Leung <bleung@chromium.org>,
-        Guenter Roeck <groeck@chromium.org>,
-        Xin Ji <xji@analogixsemi.com>,
-        Javier Martinez Canillas <javierm@redhat.com>,
-        Lyude Paul <lyude@redhat.com>, linux-kernel@vger.kernel.org,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        chrome-platform@lists.linux.dev,
-        =?iso-8859-1?Q?N=EDcolas_F_=2E_R_=2E_A_=2E?= Prado 
-        <nfraprado@collabora.com>, Marek Vasut <marex@denx.de>,
-        Hsin-Yi Wang <hsinyi@chromium.org>, devicetree@vger.kernel.org,
-        Allen Chen <allen.chen@ite.com.tw>,
-        dri-devel@lists.freedesktop.org,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        Stephen Boyd <swboyd@chromium.org>, linux-acpi@vger.kernel.org,
-        Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= 
-        <u.kleine-koenig@pengutronix.de>
-Subject: Re: [PATCH v13 05/10] drm/bridge: anx7625: Check for Type-C during
- panel registration
-Message-ID: <ZAXT0JFjERb8Q36f@smile.fi.intel.com>
-References: <20230303143350.815623-1-treapking@chromium.org>
- <20230303143350.815623-6-treapking@chromium.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230303143350.815623-6-treapking@chromium.org>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <cover.1677749625.git.quic_varada@quicinc.com>
+ <6b8d17006d8ee9a1b0c4df803c1cc7caf53ea3ef.1677749625.git.quic_varada@quicinc.com>
+ <CAA8EJprbMybV0o1-436yLhVnnEX6qywrj=JmWDCL5usaH0DXiQ@mail.gmail.com>
+ <61e8c730-e46d-728d-d770-f1ead4405d12@quicinc.com>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+In-Reply-To: <61e8c730-e46d-728d-d770-f1ead4405d12@quicinc.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Mar 03, 2023 at 10:33:45PM +0800, Pin-yen Lin wrote:
-> The output port endpoints can be connected to USB-C connectors.
-> Running drm_of_find_panel_or_bridge() with such endpoints leads to
-> a continuous return value of -EPROBE_DEFER, even though there is
-> no panel present.
+On 06/03/2023 13:26, Varadarajan Narayanan wrote:
+> Dmitry,
 > 
-> To avoid this, check for the existence of a "mode-switch" property in
-> the port endpoint, and skip panel registration completely if so.
+> On 3/2/2023 9:52 PM, Dmitry Baryshkov wrote:
+>> On Thu, 2 Mar 2023 at 11:57, Varadarajan Narayanan
+>> <quic_varada@quicinc.com> wrote:
+>>> Add USB phy and controller related nodes
+>>>
+>>> Signed-off-by: Varadarajan Narayanan <quic_varada@quicinc.com>
+>>> ---
+>>>   arch/arm64/boot/dts/qcom/ipq9574.dtsi | 92 
+>>> +++++++++++++++++++++++++++++++++++
+>>>   1 file changed, 92 insertions(+)
+>>>
+>>> diff --git a/arch/arm64/boot/dts/qcom/ipq9574.dtsi 
+>>> b/arch/arm64/boot/dts/qcom/ipq9574.dtsi
+>>> index 2bb4053..319b5bd 100644
+>>> --- a/arch/arm64/boot/dts/qcom/ipq9574.dtsi
+>>> +++ b/arch/arm64/boot/dts/qcom/ipq9574.dtsi
 
-...
+[skipped]
 
-> +	port_node = of_graph_get_port_by_id(np, 1);
-> +	count = typec_mode_switch_node_count(&port_node->fwnode);
 
-Do you need to drop reference count here?
-(I don't know myself, so, please check this)
+>>> +               usb3: usb3@8A00000 {
+>> You know the drill. This node is in the wrong place.
+>>
+>>> +                       compatible = "qcom,dwc3";
+>>> +                       reg = <0x8AF8800 0x400>;
+>>> +                       #address-cells = <1>;
+>>> +                       #size-cells = <1>;
+>>> +                       ranges;
+>>> +
+>>> +                       clocks = <&gcc GCC_SNOC_USB_CLK>,
+>>> +                               <&gcc GCC_ANOC_USB_AXI_CLK>,
+>>> +                               <&gcc GCC_USB0_MASTER_CLK>,
+>>> +                               <&gcc GCC_USB0_SLEEP_CLK>,
+>>> +                               <&gcc GCC_USB0_MOCK_UTMI_CLK>;
+>>> +
+>>> +                       clock-names = "sys_noc_axi",
+>>> +                               "anoc_axi",
+>>> +                               "master",
+>>> +                               "sleep",
+>>> +                               "mock_utmi";
+>> Please fix the indentation of the lists.
+>>
+>>> +
+>>> +                       assigned-clocks = <&gcc GCC_SNOC_USB_CLK>,
+>>> +                                         <&gcc GCC_ANOC_USB_AXI_CLK>,
+>> Why do you assign clock rates to the NOC clocks? Should they be set
+>> using the interconnect instead?
+> 
+> The SNOC and ANOC run at a fixed speed of 350MHz and 342MHz respectively 
+> and are not scaled. These clocks are for the interface between the USB 
+> block and the SNOC/ANOC. Do we still need to use interconnect?
 
-If no, patch LGTM.
+Maybe I misunderstand something here. If the snoc and anoc speeds are at 
+350 MHz and 342 MHz, why do you assign clock-rates of 200 MHz?
 
-> +	if (count)
-> +		return 0;
+Is it enough to call clk_prepare_enable() for these clocks or the rate 
+really needs to be set?
+
+
+> 
+>>> +                                         <&gcc GCC_USB0_MASTER_CLK>,
+>>> +                                         <&gcc GCC_USB0_MOCK_UTMI_CLK>;
+>>> +                       assigned-clock-rates = <200000000>,
+>>> +                                              <200000000>,
+>>> +                                              <200000000>,
+>>> +                                              <24000000>;
+>>> +
+>>> +                       resets = <&gcc GCC_USB_BCR>;
+>>> +                       status = "disabled";
+>>> +
+>>> +                       dwc_0: dwc3@8A00000 {
+>>> +                               compatible = "snps,dwc3";
+>>> +                               reg = <0x8A00000 0xcd00>;
+>>> +                               clock-names = "ref";
+>>> +                               clocks = <&gcc GCC_USB0_MOCK_UTMI_CLK>;
+>> clocks before clock-names
+>>
+>>> +                               interrupts = <GIC_SPI 140 
+>>> IRQ_TYPE_LEVEL_HIGH>;
+>>> +                               phys = <&qusb_phy_0>, <&usb0_ssphy>;
+>>> +                               phy-names = "usb2-phy", "usb3-phy";
+>>> +                               tx-fifo-resize;
+>>> +                               snps,dis_ep_cache_eviction;
+>>> +                               snps,is-utmi-l1-suspend;
+>>> +                               snps,hird-threshold = /bits/ 8 <0x0>;
+>>> +                               snps,dis_u2_susphy_quirk;
+>>> +                               snps,dis_u3_susphy_quirk;
+>>> +                               snps,quirk-frame-length-adjustment = 
+>>> <0x0A87F0A0>;
+>>> +                               dr_mode = "host";
+>>> +                       };
+>>> +               };
+>>> +
+>>>                  pcie0_phy: phy@84000 {
+>>>                          compatible = 
+>>> "qcom,ipq9574-qmp-gen3x1-pcie-phy";
+>>>                          reg = <0x00084000 0x1bc>; /* Serdes PLL */
+>>> -- 
+>>> 2.7.4
+> 
+> Will address these and post a new revision.
+> 
+> Thanks
+> 
+> Varada
+> 
 
 -- 
-With Best Regards,
-Andy Shevchenko
-
+With best wishes
+Dmitry
 
