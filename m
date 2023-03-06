@@ -2,121 +2,216 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 32C3B6AC5E5
-	for <lists+devicetree@lfdr.de>; Mon,  6 Mar 2023 16:51:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 164156AC613
+	for <lists+devicetree@lfdr.de>; Mon,  6 Mar 2023 17:00:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229764AbjCFPvk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 Mar 2023 10:51:40 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60388 "EHLO
+        id S229890AbjCFQAh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 Mar 2023 11:00:37 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41126 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230153AbjCFPvj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Mar 2023 10:51:39 -0500
-Received: from mail-ed1-x530.google.com (mail-ed1-x530.google.com [IPv6:2a00:1450:4864:20::530])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 853D836470
-        for <devicetree@vger.kernel.org>; Mon,  6 Mar 2023 07:51:37 -0800 (PST)
-Received: by mail-ed1-x530.google.com with SMTP id cw28so40538837edb.5
-        for <devicetree@vger.kernel.org>; Mon, 06 Mar 2023 07:51:37 -0800 (PST)
+        with ESMTP id S230178AbjCFQAZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Mar 2023 11:00:25 -0500
+Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C077925E09;
+        Mon,  6 Mar 2023 08:00:22 -0800 (PST)
+Received: by mail-lf1-x133.google.com with SMTP id i28so13483874lfv.0;
+        Mon, 06 Mar 2023 08:00:22 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1678117896;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=t5WKaU91nJ+P694TRYOMgx3cq+DGCFPwL6ikgUxC3C8=;
-        b=ESjcJLj063dMnQZWJplGSMwup2iaf+HjpoquiqJhkDgqe+Bwe6KLmnVVMs75iGiqRx
-         Vr7OqpYnid1HjGlasFK+9AhAlB5S4IHdRaeE/MWdSmSHDascJfwiIIieyVNjC3qXv56F
-         cbaFPprTTejA/Ub9UwI0JUHkt+6AktbMoISxFB9Dm4DzWvxl/s9nj4l1nVolAUlQNaeq
-         NRcq0O1+qSCYXKjQcUioybt/B+ExBG9Qdq+9ayEOYY0NnfidFsmtP6dFJ6uZ7ch/mSL7
-         W5subhoHbAsx1NXexaN2YeqvF7Fv6QOC7RFeQQlenvKCZcVsvUJCf9r/K/FrhKb2+BS0
-         yyFQ==
+        d=gmail.com; s=20210112; t=1678118421;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=NpbO5ncGnDzpZr6YC052o6uN32ao407Zw1CpSvpKERU=;
+        b=F30/sL+RqJKTB+NaaNd06xAIo+sfskWfMomf4CK+edpMovUhLDm9saSLVISHpaND5Z
+         ww4AtebTagU+wP79yKTHM6SDVSxEoKJoT5cRMYyCjlRE7w6cYF+gH1KC4nLQui4xZZlG
+         s0sKxaoTXoYGp8wqDQaayeaUYuzf6JYhr8LZL43B9ElPtWMn8xKR2YPJDBO3zbNavFx2
+         eIiH3ZNd7dQKBaeluh1xp1vpkTLoT2AX0y2CFfA3IfLO7QpxrrfeKU29G8n5Z7kFS4lp
+         +49MLbar1Ma/0inQO8f578TyZ68ziDRxMJd8JSMQxuCo0I318Yb0OWbpE9K9ly7ANMA6
+         3h5A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678117896;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=t5WKaU91nJ+P694TRYOMgx3cq+DGCFPwL6ikgUxC3C8=;
-        b=GMd+5Hc0biamxNw9J9gc/2imCgmW52PgQXBdDMem3maoqoPD5l6vx81wPjxZMNtM05
-         SnAoJlJVReuWqHjOqEr+8ZxWQfuaZW7eOZkCvZjtIiRq4O6PDdkBhcFXpuuDEo03zRbn
-         UqtIY76do7t2PfiRuVC5qvTtndDLs5e26vPAOKUv8WMFiQ668t7+c2+B0L4GCSMTQpzT
-         +h622OmRDlgF4WzOtbWsAGh/VBt2MN3xlXxXU6+zr4KGKOoy4F26cufmDo4UqLxedDNc
-         eF8I0zjqhmlohtqu7JT/PrxwaHUmRtTSpmvS3oOPVdXdtRcRG7ls+nJ2kiI6IdJJXujh
-         C/9g==
-X-Gm-Message-State: AO0yUKUUaZfCtrpxAscUNjd9fqBeYtyvaMXhVbDn4iMm6jCQB+ZeAzz/
-        ziWyLsoCUgaspp+4P1iujrr0Dg==
-X-Google-Smtp-Source: AK7set9lwg+x+76RsWJ6nVbbLxkGydKTP4r6kdOcHarLbeeJ9W9GJHfsJJMd5ctUdgw3OxunMd+uEA==
-X-Received: by 2002:aa7:c2d4:0:b0:4ae:eab6:9ff8 with SMTP id m20-20020aa7c2d4000000b004aeeab69ff8mr11998310edp.13.1678117896054;
-        Mon, 06 Mar 2023 07:51:36 -0800 (PST)
-Received: from ?IPV6:2a02:810d:15c0:828:c1e7:5006:98ac:f57? ([2a02:810d:15c0:828:c1e7:5006:98ac:f57])
-        by smtp.gmail.com with ESMTPSA id n26-20020a50c21a000000b004a27046b7a7sm5320836edf.73.2023.03.06.07.51.34
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 06 Mar 2023 07:51:35 -0800 (PST)
-Message-ID: <48c8a0cf-08dc-a831-33ef-3b8e32eef2d3@linaro.org>
-Date:   Mon, 6 Mar 2023 16:51:34 +0100
+        d=1e100.net; s=20210112; t=1678118421;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=NpbO5ncGnDzpZr6YC052o6uN32ao407Zw1CpSvpKERU=;
+        b=LA6N+78uzrrxPc4wt3wblTB6SPa1K5bpcJInhD3SV0phyPpYC+8fz2mIt/zSegQm/H
+         CnjK4k3Z0TLWeJTFIs5fwsmQgCKUoensg88lrDw/73pHi5y4n1Ljbv1iTJvEtmDyPqaz
+         ueTro2i5JayHSUqddlVnIMwdR+vyr2rUwvJKFsILK0rzUA6rIJhEaOQu6sXOuZlK7Lgs
+         Mch5qsH4qbX7/5U5/AdzlqJ09zE/VJFmmZsbv6sCxo8rr05tlIlLfWLmD+l0756ozZ5z
+         kanJS9Ar7bnFhaDEuKEAbW81AoaritTa1bEhIdEUFRctccppJOtAJ23MMow7ay5/oNZH
+         UmVg==
+X-Gm-Message-State: AO0yUKUVp02TkFgr64ik0cI6IBtGTzL/atGnouJjK49OrkyXZREE767d
+        Q0gelt+OIzhWKUJs5kvZihE=
+X-Google-Smtp-Source: AK7set+1yYqL+fKPD8QU3g1uNsKWPgVaZhQ8+wRLThgWDAfaf3a8UpA8DcyN0jfp6kMd2J2kjjbWeg==
+X-Received: by 2002:ac2:53a2:0:b0:4b5:7096:23ff with SMTP id j2-20020ac253a2000000b004b5709623ffmr2895396lfh.66.1678118420857;
+        Mon, 06 Mar 2023 08:00:20 -0800 (PST)
+Received: from mobilestation ([95.79.133.202])
+        by smtp.gmail.com with ESMTPSA id w13-20020a19c50d000000b004e8017a2510sm890868lfe.183.2023.03.06.08.00.18
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 06 Mar 2023 08:00:20 -0800 (PST)
+Date:   Mon, 6 Mar 2023 19:00:17 +0300
+From:   Serge Semin <fancer.lancer@gmail.com>
+To:     Brad Larson <blarson@amd.com>
+Cc:     linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-mmc@vger.kernel.org, linux-spi@vger.kernel.org,
+        adrian.hunter@intel.com, alcooperx@gmail.com,
+        andy.shevchenko@gmail.com, arnd@arndb.de,
+        brendan.higgins@linux.dev, briannorris@chromium.org,
+        brijeshkumar.singh@amd.com, catalin.marinas@arm.com,
+        davidgow@google.com, gsomlo@gmail.com, gerg@linux-m68k.org,
+        krzk@kernel.org, krzysztof.kozlowski+dt@linaro.org, lee@kernel.org,
+        lee.jones@linaro.org, broonie@kernel.org,
+        yamada.masahiro@socionext.com, p.zabel@pengutronix.de,
+        piotrs@cadence.com, p.yadav@ti.com, rdunlap@infradead.org,
+        robh+dt@kernel.org, samuel@sholland.org, skhan@linuxfoundation.org,
+        suravee.suthikulpanit@amd.com, thomas.lendacky@amd.com,
+        tonyhuang.sunplus@gmail.com, ulf.hansson@linaro.org,
+        vaishnav.a@ti.com, will@kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v10 10/15] spi: dw: Add support for AMD Pensando Elba SoC
+Message-ID: <20230306160017.ptd3ogundxvus5zm@mobilestation>
+References: <20230306040739.51488-1-blarson@amd.com>
+ <20230306040739.51488-11-blarson@amd.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-Subject: Re: [PATCH v2 0/6] clk: samsung: exynos850: Add missing clocks for PM
-Content-Language: en-US
-To:     Chanwoo Choi <cw00.choi@samsung.com>,
-        Sylwester Nawrocki <s.nawrocki@samsung.com>,
-        Sam Protsenko <semen.protsenko@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     Chanho Park <chanho61.park@samsung.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Tomasz Figa <tomasz.figa@gmail.com>,
-        linux-arm-kernel@lists.infradead.org,
-        Stephen Boyd <sboyd@kernel.org>,
-        Alim Akhtar <alim.akhtar@samsung.com>,
-        linux-clk@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
-        Michael Turquette <mturquette@baylibre.com>,
-        David Virag <virag.david003@gmail.com>,
-        Sumit Semwal <sumit.semwal@linaro.org>
-References: <20230223042133.26551-1-semen.protsenko@linaro.org>
- <167811290503.11716.15730246749418548221.b4-ty@linaro.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <167811290503.11716.15730246749418548221.b4-ty@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230306040739.51488-11-blarson@amd.com>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 06/03/2023 15:28, Krzysztof Kozlowski wrote:
-> On Wed, 22 Feb 2023 22:21:27 -0600, Sam Protsenko wrote:
->> As a part of preparation for PM enablement in Exynos850 clock driver,
->> this patch series implements CMU_G3D, and also main gate clocks for AUD
->> and HSI CMUs. The series brings corresponding changes to bindings, the
->> driver and SoC dts file.
->>
->> Changes in v2:
->>   - Rebased all patches on top of the most recent soc/for-next tree
->>   - Added A-b and R-b tags
->>   - Minor fixes
->>
->> [...]
+On Sun, Mar 05, 2023 at 08:07:34PM -0800, Brad Larson wrote:
+> The AMD Pensando Elba SoC includes a DW apb_ssi v4 controller
+> with device specific chip-select control.  The Elba SoC
+> provides four chip-selects where the native DW IP supports
+> two chip-selects.  The Elba DW_SPI instance has two native
+> CS signals that are always overridden.
 > 
-> Applied, thanks!
+> Signed-off-by: Brad Larson <blarson@amd.com>
+> ---
 > 
-> [1/6] dt-bindings: clock: exynos850: Add Exynos850 CMU_G3D
->       https://git.kernel.org/krzk/linux/c/067ba1605806e52118bb598afb357718df9f0e19
-> [2/6] dt-bindings: clock: exynos850: Add AUD and HSI main gate clocks
->       https://git.kernel.org/krzk/linux/c/e289665ed0d6df9fca3ebc128f1232d305e4600b
-> [3/6] clk: samsung: clk-pll: Implement pll0818x PLL type
->       https://git.kernel.org/krzk/linux/c/a6feedab8ab9a9e4483deb0bcc87919d92c88b7e
-> [4/6] clk: samsung: exynos850: Implement CMU_G3D domain
->       https://git.kernel.org/krzk/linux/c/c5704a56893b4e77e434597c7c53d878bb3073b0
-> [5/6] clk: samsung: exynos850: Add AUD and HSI main gate clocks
->       https://git.kernel.org/krzk/linux/c/d8d12e0d079aff4b1d8079a0a55944c0596f1d67
-> [6/6] arm64: dts: exynos: Add CMU_G3D node for Exynos850 SoC
->       https://git.kernel.org/krzk/linux/c/ad8f6ad9a4f219950df65731a8ff91baa022c4b0
+> v10 changes:
+> - Delete struct dw_spi_elba, use regmap directly in priv
+> 
+> v9 changes:
+> - Add use of macros GENMASK() and BIT()
+> - Change ELBA_SPICS_SHIFT() to ELBA_SPICS_OFFSET()
+> 
+> ---
+>  drivers/spi/spi-dw-mmio.c | 65 +++++++++++++++++++++++++++++++++++++++
+>  1 file changed, 65 insertions(+)
+> 
+> diff --git a/drivers/spi/spi-dw-mmio.c b/drivers/spi/spi-dw-mmio.c
+> index 26c40ea6dd12..2076cb83a11b 100644
+> --- a/drivers/spi/spi-dw-mmio.c
+> +++ b/drivers/spi/spi-dw-mmio.c
+> @@ -53,6 +53,20 @@ struct dw_spi_mscc {
+>  	void __iomem        *spi_mst; /* Not sparx5 */
+>  };
+>  
+> +/*
+> + * Elba SoC does not use ssi, pin override is used for cs 0,1 and
+> + * gpios for cs 2,3 as defined in the device tree.
+> + *
+> + * cs:  |       1               0
+> + * bit: |---3-------2-------1-------0
+> + *      |  cs1   cs1_ovr   cs0   cs0_ovr
+> + */
+> +#define ELBA_SPICS_REG			0x2468
+> +#define ELBA_SPICS_OFFSET(cs)		((cs) << 1)
+> +#define ELBA_SPICS_MASK(cs)		(GENMASK(1, 0) << ELBA_SPICS_OFFSET(cs))
+> +#define ELBA_SPICS_SET(cs, val)		\
+> +		((((val) << 1) | BIT(0)) << ELBA_SPICS_OFFSET(cs))
+> +
+>  /*
+>   * The Designware SPI controller (referred to as master in the documentation)
+>   * automatically deasserts chip select when the tx fifo is empty. The chip
+> @@ -237,6 +251,56 @@ static int dw_spi_canaan_k210_init(struct platform_device *pdev,
+>  	return 0;
+>  }
+>  
+> +static void dw_spi_elba_override_cs(struct regmap *syscon, int cs, int enable)
+> +{
+> +	regmap_update_bits(syscon, ELBA_SPICS_REG, ELBA_SPICS_MASK(cs),
+> +			   ELBA_SPICS_SET(cs, enable));
+> +}
+> +
+> +static void dw_spi_elba_set_cs(struct spi_device *spi, bool enable)
+> +{
+> +	struct dw_spi *dws = spi_master_get_devdata(spi->master);
+> +	struct dw_spi_mmio *dwsmmio = container_of(dws, struct dw_spi_mmio, dws);
+> +	struct regmap *syscon = dwsmmio->priv;
+> +	u8 cs;
+> +
+> +	cs = spi->chip_select;
+> +	if (cs < 2)
+> +		dw_spi_elba_override_cs(syscon, spi->chip_select, enable);
+> +
+> +	/*
+> +	 * The DW SPI controller needs a native CS bit selected to start
+> +	 * the serial engine.
+> +	 */
+> +	spi->chip_select = 0;
+> +	dw_spi_set_cs(spi, enable);
+> +	spi->chip_select = cs;
+> +}
+> +
+> +static int dw_spi_elba_init(struct platform_device *pdev,
+> +			    struct dw_spi_mmio *dwsmmio)
+> +{
+> +	const char *syscon_name = "amd,pensando-elba-syscon";
 
-And builds are broken. Please mention in cover letter or commit
-dependencies and ordering...
+> +	struct device_node *np = pdev->dev.of_node;
 
-Best regards,
-Krzysztof
+Drop this since it's used only once below. 
+                                                                          
+> +	struct device_node *node;                                         
+> +	struct regmap *syscon;                                            
+> +                                                                       
+> -	node = of_parse_phandle(np, syscon_name, 0);                      
 
+	node = of_parse_phandle(dev_of_node(pdev->dev), syscon_name, 0);
+
+> +	if (!node)
+
+> +		return dev_err_probe(&pdev->dev, -ENODEV, "failed to find %s\n",
+> +				     syscon_name);
+
+Hm, using dev_err_probe() with known error value seems overkill.
+
+> +
+
+> +	syscon = syscon_node_to_regmap(node);
+> +	if (IS_ERR(syscon))
+> +		return dev_err_probe(&pdev->dev, PTR_ERR(syscon),
+> +				     "syscon regmap lookup failed\n");
+
+of_node_put() is missing in the error and success paths.
+
+-Serge(y)
+
+> +
+> +	dwsmmio->priv = syscon;
+> +	dwsmmio->dws.set_cs = dw_spi_elba_set_cs;
+> +
+> +	return 0;
+> +}
+> +
+>  static int dw_spi_mmio_probe(struct platform_device *pdev)
+>  {
+>  	int (*init_func)(struct platform_device *pdev,
+> @@ -352,6 +416,7 @@ static const struct of_device_id dw_spi_mmio_of_match[] = {
+>  	{ .compatible = "intel,thunderbay-ssi", .data = dw_spi_intel_init},
+>  	{ .compatible = "microchip,sparx5-spi", dw_spi_mscc_sparx5_init},
+>  	{ .compatible = "canaan,k210-spi", dw_spi_canaan_k210_init},
+> +	{ .compatible = "amd,pensando-elba-spi", .data = dw_spi_elba_init},
+>  	{ /* end of table */}
+>  };
+>  MODULE_DEVICE_TABLE(of, dw_spi_mmio_of_match);
+> -- 
+> 2.17.1
+> 
