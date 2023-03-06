@@ -2,158 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B1E036AC59C
-	for <lists+devicetree@lfdr.de>; Mon,  6 Mar 2023 16:38:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A85AF6AC5B6
+	for <lists+devicetree@lfdr.de>; Mon,  6 Mar 2023 16:42:56 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231405AbjCFPia (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 Mar 2023 10:38:30 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33542 "EHLO
+        id S230185AbjCFPmy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 Mar 2023 10:42:54 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46548 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230110AbjCFPiI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Mar 2023 10:38:08 -0500
-Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 79273CA35;
-        Mon,  6 Mar 2023 07:37:29 -0800 (PST)
-Received: by mail-lf1-x12f.google.com with SMTP id f18so13313152lfa.3;
-        Mon, 06 Mar 2023 07:37:29 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112; t=1678116992;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=L+6yc/IA9VHnC8pRgu9mfVgrlBPbE5fizj7nSsV8E5g=;
-        b=c25DXBkA1fKBCQDejUspbB/QBrzWnK1DDLCQSlbyFSZy5E2XrYtc9eD+FIkRoTaTbX
-         02Jmw6W7I+HHbBi6rbCJk89Zq6gPkhp2HM6YpW14m9KDSlzSkQW8zI7HbWRVPRs6ewRL
-         L8e/a+rk4QE1amPPk2Cf/afm9cwqZF7K55P68TqgkJqWEdXTP33RVmeyGM5goHped1Fd
-         NeySw4RZm2auNypOy/vihLdE2T6qD+VjYnywyTgjzenkI7RgO8kz8nnYXLK+ngDnQDMd
-         s2DVcf3oaXWsXtLgCMJcUpPTH0+aPgGUVk4EYQAnEIt8Ey5rmSixz1/801CgFtDDk+pW
-         oSeA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678116992;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=L+6yc/IA9VHnC8pRgu9mfVgrlBPbE5fizj7nSsV8E5g=;
-        b=T8UUVkhnxStuxN2wO3TaOfu2TNiyJ3nEOtpqAjfiZtncZJVX7beNurH1udfieOcnmM
-         +heb7LVOmL2zcoMc23laLlWk+7LaUVsYNYsM15RrClIu01s7M5J2k/zVhVriKQToXu3/
-         TfZlRFn0c2DfRuTTarrxyYW9lAi9zWMzIna3GpyTQiUKGouY7QCFu7Ca9SwG2wI5E3wd
-         GLoaNXaTuWxiirxohcayR19rDchKWIG2ayD7teba4U6W2gWUTgyCppU5U3jVyPbQWB1v
-         ELHGrmY8CiAQ1YIBvK4hIg1vGZoqI8gtOfgR4kuzaNn7wNNeyxD4nc1YOQxqoBD58DNc
-         o7lg==
-X-Gm-Message-State: AO0yUKVUlJWq1b5k9jFZ7uBFGFRFSCbPz0nBBt28zZBOkyqrePn13EPk
-        PZq2Qna/Sa5oJy6UzlFulOA=
-X-Google-Smtp-Source: AK7set/P9MuC7QjNHQu2OSksykfEn4TKWHwShmUSZNDa4bY/+Z6gtUpVsIzDKKxIDfMMUA8V15HsWQ==
-X-Received: by 2002:ac2:558d:0:b0:4db:3882:8f42 with SMTP id v13-20020ac2558d000000b004db38828f42mr3451671lfg.45.1678116992425;
-        Mon, 06 Mar 2023 07:36:32 -0800 (PST)
-Received: from mobilestation ([95.79.133.202])
-        by smtp.gmail.com with ESMTPSA id 21-20020ac24835000000b004db1d3bf9b4sm1675178lft.26.2023.03.06.07.36.30
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 06 Mar 2023 07:36:31 -0800 (PST)
-Date:   Mon, 6 Mar 2023 18:36:28 +0300
-From:   Serge Semin <fancer.lancer@gmail.com>
-To:     Brad Larson <blarson@amd.com>
-Cc:     linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-mmc@vger.kernel.org, linux-spi@vger.kernel.org,
-        adrian.hunter@intel.com, alcooperx@gmail.com,
-        andy.shevchenko@gmail.com, arnd@arndb.de,
-        brendan.higgins@linux.dev, briannorris@chromium.org,
-        brijeshkumar.singh@amd.com, catalin.marinas@arm.com,
-        davidgow@google.com, gsomlo@gmail.com, gerg@linux-m68k.org,
-        krzk@kernel.org, krzysztof.kozlowski+dt@linaro.org, lee@kernel.org,
-        lee.jones@linaro.org, broonie@kernel.org,
-        yamada.masahiro@socionext.com, p.zabel@pengutronix.de,
-        piotrs@cadence.com, p.yadav@ti.com, rdunlap@infradead.org,
-        robh+dt@kernel.org, samuel@sholland.org, skhan@linuxfoundation.org,
-        suravee.suthikulpanit@amd.com, thomas.lendacky@amd.com,
-        tonyhuang.sunplus@gmail.com, ulf.hansson@linaro.org,
-        vaishnav.a@ti.com, will@kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v10 04/15] dt-bindings: spi: dw: Add AMD Pensando Elba
- SoC SPI Controller
-Message-ID: <20230306153628.kg7kzm52ft2j57fa@mobilestation>
-References: <20230306040739.51488-1-blarson@amd.com>
- <20230306040739.51488-5-blarson@amd.com>
+        with ESMTP id S230151AbjCFPmv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Mar 2023 10:42:51 -0500
+Received: from relay1-d.mail.gandi.net (relay1-d.mail.gandi.net [217.70.183.193])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9EC351FCC;
+        Mon,  6 Mar 2023 07:42:15 -0800 (PST)
+Received: (Authenticated sender: herve.codina@bootlin.com)
+        by mail.gandi.net (Postfix) with ESMTPSA id B37C4240009;
+        Mon,  6 Mar 2023 15:41:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1678117328;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=4+e/cUqhhX/VA/vt11SGpFMg3F+XphXS1/Hro38i4j0=;
+        b=Y7pgUr7QHXRIZk9xlTpsJCwpUTN6J93viTIZPEPSAu5ZhECKJ2jOfMP9JFBqxLQNuei34Z
+        tKLWB7FoAqSYE1PTY6ROhpqYUfgTlToyScGeKDgIVmUER65rZTwF9S1kKKWTu/P2Wrno5b
+        fjLhWcgMRzdMyJCOtqls3mPQbmf6lgBIJJzqhScg+Vc5VY+ufSUGvRYmuaHL/vScl+JD+h
+        5iPYWJhDzoQX5TLjFPLfFYWP8nErrdcYz0KDIE1sjeJcH67gkRx79N2SEaiVlz/MkMJK4L
+        UwV37a+dm/zpn1w7yGKYoqjcPjwxlcQ7wOcVaX2spOpnPyfxvvOgD5jlmJbnAg==
+Date:   Mon, 6 Mar 2023 16:41:58 +0100
+From:   Herve Codina <herve.codina@bootlin.com>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Li Yang <leoyang.li@nxp.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Christophe Leroy <christophe.leroy@csgroup.eu>,
+        Michael Ellerman <mpe@ellerman.id.au>,
+        Nicholas Piggin <npiggin@gmail.com>,
+        Qiang Zhao <qiang.zhao@nxp.com>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>,
+        Shengjiu Wang <shengjiu.wang@gmail.com>,
+        Xiubo Li <Xiubo.Lee@gmail.com>,
+        Fabio Estevam <festevam@gmail.com>,
+        Nicolin Chen <nicoleotsuka@gmail.com>,
+        linuxppc-dev@lists.ozlabs.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, alsa-devel@alsa-project.org,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH v6 01/10] dt-bindings: soc: fsl: cpm_qe: Add TSA
+ controller
+Message-ID: <20230306164158.767e6420@bootlin.com>
+In-Reply-To: <20230226174833.GA76710-robh@kernel.org>
+References: <20230217145645.1768659-1-herve.codina@bootlin.com>
+        <20230217145645.1768659-2-herve.codina@bootlin.com>
+        <20230226174833.GA76710-robh@kernel.org>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.1.1 (GTK 3.24.36; x86_64-redhat-linux-gnu)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230306040739.51488-5-blarson@amd.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Mar 05, 2023 at 08:07:28PM -0800, Brad Larson wrote:
-> The AMD Pensando Elba SoC has integrated the DW APB SPI Controller
-> 
-> Signed-off-by: Brad Larson <blarson@amd.com>
+Hi Rob,
+On Sun, 26 Feb 2023 11:48:33 -0600
+Rob Herring <robh@kernel.org> wrote:
 
-Looks good. Thanks!
-Reviewed-by: Serge Semin <fancer.lancer@gmail.com>
+[...]
+> > +  '#size-cells':
+> > +    const: 0
+> > +
+> > +  '#fsl,serial-cells': =20
+>=20
+> #foo-cells is for when there are differing foo providers which need=20
+> different number of cells. That's not the case here.
+>=20
 
--Serge(y)
+Ok, I will remove the #fsl,serial-cells property on the next iteration.
 
-> ---
-> 
-> v10 changes:
-> - Move definition of amd,pensando-elba-syscon into properties
->   with a better description
-> - Add amd,pensando-elba-syscon: false for non elba designs
-> 
-> v9 changes:
-> - Define property amd,pensando-elba-syscon
-> - Move compatible amd,pensando-elba-spi ahead of baikal,bt1-ssi
-> 
-> ---
->  .../bindings/spi/snps,dw-apb-ssi.yaml         | 19 +++++++++++++++++++
->  1 file changed, 19 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/spi/snps,dw-apb-ssi.yaml b/Documentation/devicetree/bindings/spi/snps,dw-apb-ssi.yaml
-> index a132b5fc56e0..2383d6497b1e 100644
-> --- a/Documentation/devicetree/bindings/spi/snps,dw-apb-ssi.yaml
-> +++ b/Documentation/devicetree/bindings/spi/snps,dw-apb-ssi.yaml
-> @@ -37,6 +37,17 @@ allOf:
->      else:
->        required:
->          - interrupts
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            const: amd,pensando-elba-spi
-> +    then:
-> +      required:
-> +        - amd,pensando-elba-syscon
-> +    else:
-> +      properties:
-> +        amd,pensando-elba-syscon: false
->  
->  properties:
->    compatible:
-> @@ -63,6 +74,8 @@ properties:
->          const: intel,keembay-ssi
->        - description: Intel Thunder Bay SPI Controller
->          const: intel,thunderbay-ssi
-> +      - description: AMD Pensando Elba SoC SPI Controller
-> +        const: amd,pensando-elba-spi
->        - description: Baikal-T1 SPI Controller
->          const: baikal,bt1-ssi
->        - description: Baikal-T1 System Boot SPI Controller
-> @@ -136,6 +149,12 @@ properties:
->        of the designware controller, and the upper limit is also subject to
->        controller configuration.
->  
-> +  amd,pensando-elba-syscon:
-> +    $ref: /schemas/types.yaml#/definitions/phandle-array
-> +    description: |
-> +      Block address to control SPI chip-selects.  The Elba SoC
-> +      does not use ssi.
-> +
->  patternProperties:
->    "^.*@[0-9a-f]+$":
->      type: object
-> -- 
-> 2.17.1
-> 
+On the next series iteration, I will also remove the #fsl,chan-cells proper=
+ty
+present later on a patch related to the QMC binding. The #fsl,chan-cells ne=
+eds
+to be removed exactly for the same reason.
+
+> > +    $ref: /schemas/types.yaml#/definitions/uint32
+> > +    const: 1
+> > +    description:
+> > +      TSA consumers that use a phandle to TSA need to pass the serial =
+identifier
+> > +      with this phandle (defined in dt-bindings/soc/fsl,tsa.h).
+> > +      For instance "fsl,tsa-serial =3D <&tsa FSL_CPM_TSA_SCC4>;". =20
+
+Thanks for the review.
+Herv=C3=A9
