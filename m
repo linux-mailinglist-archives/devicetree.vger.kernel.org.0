@@ -2,139 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B1A556AC492
-	for <lists+devicetree@lfdr.de>; Mon,  6 Mar 2023 16:14:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 988CE6AC496
+	for <lists+devicetree@lfdr.de>; Mon,  6 Mar 2023 16:15:23 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231210AbjCFPOK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 Mar 2023 10:14:10 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34202 "EHLO
+        id S231345AbjCFPPV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 Mar 2023 10:15:21 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35894 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230255AbjCFPOJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Mar 2023 10:14:09 -0500
-Received: from mail-wm1-x335.google.com (mail-wm1-x335.google.com [IPv6:2a00:1450:4864:20::335])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C7984222D3
-        for <devicetree@vger.kernel.org>; Mon,  6 Mar 2023 07:14:06 -0800 (PST)
-Received: by mail-wm1-x335.google.com with SMTP id fm20-20020a05600c0c1400b003ead37e6588so8412426wmb.5
-        for <devicetree@vger.kernel.org>; Mon, 06 Mar 2023 07:14:06 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112; t=1678115645;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=vDsVKUJtlRFJ3s7/7Fhta8tnir6GRw1n4iIHe/gNKzU=;
-        b=g6TpI3EaF6Mnq6dVosVQi2ooR09TYPHSfAA7xspAY+SO2DiCQRQnuvLzjy4X7arWDm
-         ssgDWuQLSngJE6j6CHHvB4Qd+XyXRHBNQbpBSpfnooqBOavpGqw6z13dtSW9W/CLeFSS
-         GcPJprT3JEAq4cjsAwxQoV5mlhRe8+jcjRfT9NMlzoaI++FBM2Q97u5pp3F4gmB32/AS
-         HovaV+YmPPOaRho60WlIirttF4g+HX6a0NMiTgsGfifQ15X/wQ4lPLiIzFcHqaJs0AyM
-         cFT8bvXy30vvqJ8ueVP2Fnm1FtlkJv1CqlwHuv67cYzF+53Agrs47sXr3Dpum/GlRLZ6
-         tiCg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678115645;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=vDsVKUJtlRFJ3s7/7Fhta8tnir6GRw1n4iIHe/gNKzU=;
-        b=PXlYJ4OtNkL1MlZO+S4z9OLLjXsUPnNYsws90pt25gv9ty/3JB/lgqWfhvxjB0aD/O
-         MLRuFcn+jvNfstHMKzEvvsUeWJbn5YwaNK2T5p85LqRSW703R17zSsI2YF9qfVk3iX6O
-         5LwVUCaiNDcG1ZoAW/8sA5jeWysAKL8c7ZWXxlYef8O2lO14E/91crTPU/vIsg8/ZJFO
-         8yIEPXwZv12pqIJJIr87rWcOWu4q/VB+y9SeVmqlr1Ty4DT9G2pwhU1nnFEEdiJ5yFkT
-         EXqveM9LOkjPU1AC/+cOfz0YcxgJTZWnTrMezaV5R5tUYB8oPUZ7/HjAfUVsaoafW0Tu
-         hssw==
-X-Gm-Message-State: AO0yUKXsnel/jra+EvUOjK3Yd52rX3ZzbAB3tKk0yZMQNkEd9heJjTf9
-        8T1uemgtJEuNPsv8CuZtfz4wzA==
-X-Google-Smtp-Source: AK7set/P4TgN3KWNiQpuKTiNllOykldbwBd5AH2H1IH7KoOoCIMCopw9mjcunu/lB7pwcErFNQdh/A==
-X-Received: by 2002:a05:600c:a47:b0:3eb:2b88:9adc with SMTP id c7-20020a05600c0a4700b003eb2b889adcmr8826948wmq.25.1678115645173;
-        Mon, 06 Mar 2023 07:14:05 -0800 (PST)
-Received: from localhost.localdomain (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
-        by smtp.googlemail.com with ESMTPSA id o2-20020a05600c510200b003e208cec49bsm23156746wms.3.2023.03.06.07.14.04
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 06 Mar 2023 07:14:04 -0800 (PST)
-From:   Jerome Brunet <jbrunet@baylibre.com>
-To:     Neil Armstrong <neil.armstrong@linaro.org>,
-        Kevin Hilman <khilman@baylibre.com>,
-        linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org
-Cc:     Jerome Brunet <jbrunet@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH] arm64: dts: amlogic: gxl: use gxl mdio multiplexer
-Date:   Mon,  6 Mar 2023 16:13:54 +0100
-Message-Id: <20230306151354.132973-1-jbrunet@baylibre.com>
-X-Mailer: git-send-email 2.39.2
+        with ESMTP id S231238AbjCFPPS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Mar 2023 10:15:18 -0500
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4527A28D10;
+        Mon,  6 Mar 2023 07:14:58 -0800 (PST)
+Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 326BCcBo009765;
+        Mon, 6 Mar 2023 15:14:52 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=Wg+4lrM+uJFEj915XHYQWom2ik0PMtGmy04CrQS8vaY=;
+ b=fbHV66+VqDJ7NpcYcRlUug3l3i37DzGqr+G41WFWm+tv/ACMVVhmug9tN8gJ6DYuIv+U
+ /uXEc4miXRWbPmU1D2JulPX1uWAUOSrYiW46iQy5RboGEzAGa9g9Rk1RtdbmsiGStE9d
+ gS1fK6KhkpXzbqySgedyCmePqDF2UsivNpkzrU3+aenoZxQRmLRsEkQr041ayKzRIXxI
+ Bj72KZgzug8en7P4lcZLfoMhksHFGFRJoJ4I0kG//N/OItEleyYwW8AfUGOVwwGQS3Ob
+ JEkNtVRoatwI8IvFgwO8+oE8CZ22V19TkIdwVw6P3A8DlMBckKNDYtHL+WQnjKrFH2+o XQ== 
+Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3p417d512t-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Mon, 06 Mar 2023 15:14:52 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+        by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 326FEpHR010018
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Mon, 6 Mar 2023 15:14:51 GMT
+Received: from [10.216.34.19] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.41; Mon, 6 Mar 2023
+ 07:14:44 -0800
+Message-ID: <785e0072-b9a1-38d5-cefc-67accf77d705@quicinc.com>
+Date:   Mon, 6 Mar 2023 20:44:39 +0530
 MIME-Version: 1.0
-X-Patchwork-Bot: notify
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
-        autolearn=unavailable autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.6.0
+Subject: Re: [PATCH 5/6] ARM: dts: qcom: sdx65-mtp: Enable PCIE0 PHY
+Content-Language: en-US
+To:     Konrad Dybcio <konrad.dybcio@linaro.org>, <agross@kernel.org>,
+        <andersson@kernel.org>, <lee@kernel.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <mani@kernel.org>,
+        <lpieralisi@kernel.org>, <kw@linux.com>, <bhelgaas@google.com>,
+        <manivannan.sadhasivam@linaro.org>
+CC:     <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-pci@vger.kernel.org>
+References: <1678080302-29691-1-git-send-email-quic_rohiagar@quicinc.com>
+ <1678080302-29691-6-git-send-email-quic_rohiagar@quicinc.com>
+ <f2660adc-e6c8-9de6-e1d6-7abdc7ad7249@linaro.org>
+From:   Rohit Agarwal <quic_rohiagar@quicinc.com>
+In-Reply-To: <f2660adc-e6c8-9de6-e1d6-7abdc7ad7249@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: RginryrlZM-pK5PlBwNCrX6Rtbm--8PJ
+X-Proofpoint-ORIG-GUID: RginryrlZM-pK5PlBwNCrX6Rtbm--8PJ
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.219,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
+ definitions=2023-03-06_08,2023-03-06_01,2023-02-09_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
+ suspectscore=0 spamscore=0 malwarescore=0 bulkscore=0 mlxlogscore=602
+ phishscore=0 clxscore=1015 adultscore=0 priorityscore=1501 mlxscore=0
+ impostorscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2212070000 definitions=main-2303060134
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-So the far, GXL SoCs were using the generic mmio register based mdio
-multiplexer. This properly sets one of the glue register but the SoC
-actually has 3 of those registers.
 
-One of them sets the ID under which the internal phy will advertise
-itself. If nothing sets this register before linux boots (like u-boot), the
-internal phy path is broken.
+On 3/6/2023 4:00 PM, Konrad Dybcio wrote:
+>
+> On 6.03.2023 06:25, Rohit Agarwal wrote:
+>> Enable PCIE0 PHY on SDX65 MTP for PCIE EP.
+>>
+>> Signed-off-by: Rohit Agarwal <quic_rohiagar@quicinc.com>
+>> ---
+> Status should go last. It would be nice if you could update
+> that for the other nodes in this dt while at it.
 
-To address this problem, a dedicated MDIO mux driver has been
-introduced. Switch to this new driver.
+Yes, Surely will do.
 
-Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
----
- arch/arm64/boot/dts/amlogic/meson-gxl.dtsi | 25 +++++++++++-----------
- 1 file changed, 13 insertions(+), 12 deletions(-)
-
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi b/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi
-index 6f3c2bc36919..17bcfa4702e1 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi
-@@ -773,16 +773,23 @@ mux {
- 		};
- 	};
- 
--	eth-phy-mux@55c {
--		compatible = "mdio-mux-mmioreg", "mdio-mux";
-+	eth_phy_mux: mdio@558 {
-+		reg = <0x0 0x558 0x0 0xc>;
-+		compatible = "amlogic,gxl-mdio-mux";
- 		#address-cells = <1>;
- 		#size-cells = <0>;
--		reg = <0x0 0x55c 0x0 0x4>;
--		mux-mask = <0xffffffff>;
-+		clocks = <&clkc CLKID_FCLK_DIV4>;
-+		clock-names = "ref";
- 		mdio-parent-bus = <&mdio0>;
- 
--		internal_mdio: mdio@e40908ff {
--			reg = <0xe40908ff>;
-+		external_mdio: mdio@0 {
-+			reg = <0x0>;
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+		};
-+
-+		internal_mdio: mdio@1 {
-+			reg = <0x1>;
- 			#address-cells = <1>;
- 			#size-cells = <0>;
- 
-@@ -793,12 +800,6 @@ internal_phy: ethernet-phy@8 {
- 				max-speed = <100>;
- 			};
- 		};
--
--		external_mdio: mdio@2009087f {
--			reg = <0x2009087f>;
--			#address-cells = <1>;
--			#size-cells = <0>;
--		};
- 	};
- };
- 
--- 
-2.39.2
-
+Thanks,
+Rohit.
+>
+> Konrad
+>>   arch/arm/boot/dts/qcom-sdx65-mtp.dts | 7 +++++++
+>>   1 file changed, 7 insertions(+)
+>>
+>> diff --git a/arch/arm/boot/dts/qcom-sdx65-mtp.dts b/arch/arm/boot/dts/qcom-sdx65-mtp.dts
+>> index 85ea02d..86bb853 100644
+>> --- a/arch/arm/boot/dts/qcom-sdx65-mtp.dts
+>> +++ b/arch/arm/boot/dts/qcom-sdx65-mtp.dts
+>> @@ -245,6 +245,13 @@
+>>   	status = "okay";
+>>   };
+>>   
+>> +&pcie0_phy {
+>> +	status = "okay";
+>> +
+>> +	vdda-phy-supply = <&vreg_l1b_1p2>;
+>> +	vdda-pll-supply = <&vreg_l4b_0p88>;
+>> +};
+>> +
+>>   &qpic_bam {
+>>   	status = "okay";
+>>   };
