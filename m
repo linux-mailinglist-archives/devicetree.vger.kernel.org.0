@@ -2,109 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 029296AC996
-	for <lists+devicetree@lfdr.de>; Mon,  6 Mar 2023 18:16:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B3B556AC9FB
+	for <lists+devicetree@lfdr.de>; Mon,  6 Mar 2023 18:25:03 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230315AbjCFRQl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 Mar 2023 12:16:41 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38462 "EHLO
+        id S229789AbjCFRZB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 Mar 2023 12:25:01 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53278 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230267AbjCFRQh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Mar 2023 12:16:37 -0500
-Received: from mail-qv1-xf2e.google.com (mail-qv1-xf2e.google.com [IPv6:2607:f8b0:4864:20::f2e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EDCE827D53;
-        Mon,  6 Mar 2023 09:16:13 -0800 (PST)
-Received: by mail-qv1-xf2e.google.com with SMTP id nf5so7104060qvb.5;
-        Mon, 06 Mar 2023 09:16:13 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678122806;
-        h=date:subject:message-id:references:in-reply-to:cc:to:from
-         :mime-version:content-transfer-encoding:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=+bLdlPkAM7xv+jzPUTz78iNnMt7Nmi2WO7mB0hfQVa0=;
-        b=DTzpG8j7UDS1AACXzvwiWATzkRyoZDbsdzvfIyc0X1FyHpPcs0epkP8RLO+r4BN97p
-         VqGyIMnwg5vm0kicssiR2gJCan9A/QAxM8IQ2/1hOIdRPwa7LThEHrvxW3/3qpzuNOSN
-         vuPr8b3+THTWKQyK/u4vwM1rKSN0B3WBdVRRZ7YsyT4oiSJbh4aWaOGMMagetq5WWIiN
-         eReJEVrfOWYOIpbqEzPzni+5DubKQNt0fKw398UzohlvjWFpX17TSOyhEI+upfkY91vq
-         kVjGDt2QfvrVgO3bNIg1DYwcTClWmSTyC7PxXoKo+o4cGLAb/JnTJjVpNZea91zvPPG/
-         Al9Q==
-X-Gm-Message-State: AO0yUKU+a9dAPrQinEQx9rJfBJ0uIbtN3bO3S3tmlx2y7asFbJmPRRuG
-        8pm5xQADZ57vGustO5lgJChf6ZnupXoN
-X-Google-Smtp-Source: AK7set+n3z+Cmz26lZdjyATRzB6SM0aW1T+cCpCgQB6/nTfwbWaHGtMvxBXH03hZ+lgyf7YXpLORPg==
-X-Received: by 2002:a05:6214:2424:b0:56e:9da4:831c with SMTP id gy4-20020a056214242400b0056e9da4831cmr21362209qvb.46.1678122805633;
-        Mon, 06 Mar 2023 09:13:25 -0800 (PST)
-Received: from robh_at_kernel.org (adsl-72-50-0-7.prtc.net. [72.50.0.7])
-        by smtp.gmail.com with ESMTPSA id 69-20020a370548000000b007426f115a4esm7840609qkf.129.2023.03.06.09.13.24
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 06 Mar 2023 09:13:25 -0800 (PST)
-Received: (nullmailer pid 197984 invoked by uid 1000);
-        Mon, 06 Mar 2023 17:13:23 -0000
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+        with ESMTP id S230161AbjCFRYp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Mar 2023 12:24:45 -0500
+Received: from mout.kundenserver.de (mout.kundenserver.de [217.72.192.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 837083A82;
+        Mon,  6 Mar 2023 09:24:15 -0800 (PST)
+Received: from stefanw-SCHENKER ([37.4.248.41]) by mrelayeu.kundenserver.de
+ (mreue108 [212.227.15.183]) with ESMTPSA (Nemesis) id
+ 1N3KY0-1qYSBu0EqI-010Jxc; Mon, 06 Mar 2023 18:23:12 +0100
+From:   Stefan Wahren <stefan.wahren@i2se.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
+        Evgeniy Polyakov <zbr@ioremap.net>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>
+Cc:     linux-imx@nxp.com, Li Yang <leoyang.li@nxp.com>,
+        Denis Ciocca <denis.ciocca@st.com>, soc@kernel.org,
+        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        Stefan Wahren <stefan.wahren@i2se.com>
+Subject: [PATCH 0/8] ARM: dts: imx6ull: Add chargebyte Tarragon support
+Date:   Mon,  6 Mar 2023 18:22:41 +0100
+Message-Id: <20230306172249.74003-1-stefan.wahren@i2se.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-From:   Rob Herring <robh@kernel.org>
-To:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Cc:     krzysztof.kozlowski+dt@linaro.org, linux-arm-msm@vger.kernel.org,
-        kw@linux.com, lpieralisi@kernel.org, linux-kernel@vger.kernel.org,
-        andersson@kernel.org, linux-pci@vger.kernel.org,
-        quic_srichara@quicinc.com, konrad.dybcio@linaro.org,
-        devicetree@vger.kernel.org
-In-Reply-To: <20230306153222.157667-16-manivannan.sadhasivam@linaro.org>
-References: <20230306153222.157667-1-manivannan.sadhasivam@linaro.org>
- <20230306153222.157667-16-manivannan.sadhasivam@linaro.org>
-Message-Id: <167812270103.178940.8497593560794226489.robh@kernel.org>
-Subject: Re: [PATCH 15/19] dt-bindings: PCI: qcom: Add "mhi" register
- region to supported SoCs
-Date:   Mon, 06 Mar 2023 11:13:23 -0600
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,
-        SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Provags-ID: V03:K1:7X3G3jIfDeolQi6iDz99jJ77T1hJ6MIzBoLP/VTGvpwuL7H+am6
+ i4jpzJZ+tJ1+9IJ0NWg9+L9a/eL+NIdTe6xSEUVZqrHjGaIqrCndO/l7+gMKBo5pXdqjbfI
+ SvadKtkiC6z51w9fjaukEJYchDbTKMR4lQtsvJ1OsLxJkD9T/MXw3JTywK89H8qeDRw5J7l
+ WrZDBj+iqz/RhEAfMPo2g==
+UI-OutboundReport: notjunk:1;M01:P0:biCDQeY6+Jo=;1X6prIbhiEw2GYPBvslN2bHlYBP
+ GkhTcJQIw+3yCzCEaDo6uwutJkOSOpar09JxGwC8XVzd4r3yAEPOYT2u/EUtJ3jzv5fpBWFa8
+ qohA47qvUI9g/sb572uWSP8wHkuNJZmL3GS0VkLtQniXLC0cQ4IglHJiGExdD45qzy0Ydhsmv
+ iU71YHrv/R8jCMvpOZ9hDP8n9UfqW8FSI23XCsJaB0AWSXImmSy1SwW3mAimIEW4D7cU8OZwA
+ GsfmYH4vfpr9vDS4jUDYUifzSNp/r3jwCXcGgGHSMhNW9huSAX6Rf9La4aosYKuAGWpXPXl0P
+ HdpDYMOgFOk+Qvte9kGxtO2FrOxTV84fQeAE6ye89s4jz4P8JScBtXvjrkw7n6/cZFq/dzUoY
+ W6WDtZVtbpMfJdLGKiKntnuqu3hzX76h00YpEojAEwLU9Woxi31+Z+xyfNR+mRhVjlf0gO++W
+ jOiugNjVpBE6W+7p7kk2QMwuNB2DMc1NeLm4Q+0+DW0KucZ/oK+EhNi1xPNVFd+8PehIpVqmp
+ RGpabjmpit1hA9jSlzfrn+zmm+XCd7mwyjUAjTLhWE+EG63BzDyAFp3ihOb72vXMa99HRyeR+
+ 2lxPhFTqnvfWcvlRNuIsMyTSE2sbH3IVP4dxlj90Lu3T+CpETlyEkb7X6vPuLK+SUZgIPCI7o
+ zFdRifosFGflTS276kmmbH2e3oSdrmBscYbv1DgGtw==
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+This series adds the support for chargebyte Tarragon, which is an Electrical
+Vehicle Supply Equipment (EVSE) for AC charging stations
+(according to IEC 61851, ISO 15118).
 
-On Mon, 06 Mar 2023 21:02:18 +0530, Manivannan Sadhasivam wrote:
-> "mhi" register region contains the MHI registers that could be used by
-> the PCIe controller drivers to get debug information like PCIe link
-> transition counts on newer SoCs.
-> 
-> Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-> ---
->  Documentation/devicetree/bindings/pci/qcom,pcie.yaml | 12 ++++++++----
->  1 file changed, 8 insertions(+), 4 deletions(-)
-> 
+The Tarragon board is based on an i.MX6ULL SoC and is available in
+4 variants (Master, Slave, SlaveXT, Micro), which provide more or
+less peripherals.
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+Supported features:
+  * 512 MB DDR RAM
+  * eMMC
+  * Debug UART
+  * 100 Mbit Ethernet
+  * USB 2.0 Host interface
+  * Powerline communication (QCA700x)
+  * 2x RS485
+  * Digital in- and outputs (12 V)
+  * One-Wire master for external temp sensors
+  * 2x relay outputs
+  * 2x motor interfaces
+  
+The Tarragon hardware is bundled with a charging stack under the name Charge Control C: 
+https://chargebyte.com/products/charging-station-communication/charge-control-c
 
-yamllint warnings/errors:
+This series is rebased on top of:
+https://git.kernel.org/pub/scm/linux/kernel/git/shawnguo/linux.git?h=for-next
 
-dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pci/qcom,pcie.example.dtb: pcie@fc520000: reg-names:1: 'mhi' was expected
-	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pci/qcom,pcie.yaml
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pci/qcom,pcie.example.dtb: pcie@fc520000: reg-names:2: 'dbi' was expected
-	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pci/qcom,pcie.yaml
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pci/qcom,pcie.example.dtb: pcie@fc520000: reg-names:3: 'elbi' was expected
-	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pci/qcom,pcie.yaml
+Stefan Wahren (8):
+  dt-bindings: vendor-prefixes: add chargebyte
+  dt-bindings: Add DS2482/DS2484 as trivial device
+  w1: ds2482: add i2c id for ds2484
+  dt-bindings: iio: st-sensors: Add IIS328DQ accelerometer
+  iio: accel: add support for IIS328DQ variant
+  dt-bindings: ARM: fsl: Add chargebyte Tarragon
+  ARM: dts: imx6ull: Add chargebyte Tarragon support
+  ARM: imx_v6_v7_defconfig: Enable Tarragon peripheral drivers
 
-doc reference errors (make refcheckdocs):
+ .../devicetree/bindings/arm/fsl.yaml          |   9 +
+ .../bindings/iio/st,st-sensors.yaml           |   1 +
+ .../devicetree/bindings/trivial-devices.yaml  |   4 +
+ .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
+ arch/arm/boot/dts/Makefile                    |   4 +
+ .../arm/boot/dts/imx6ull-tarragon-common.dtsi | 858 ++++++++++++++++++
+ arch/arm/boot/dts/imx6ull-tarragon-master.dts |  82 ++
+ arch/arm/boot/dts/imx6ull-tarragon-micro.dts  |  10 +
+ arch/arm/boot/dts/imx6ull-tarragon-slave.dts  |  32 +
+ .../arm/boot/dts/imx6ull-tarragon-slavext.dts |  64 ++
+ arch/arm/configs/imx_v6_v7_defconfig          |   6 +
+ drivers/iio/accel/st_accel.h                  |   1 +
+ drivers/iio/accel/st_accel_core.c             |   1 +
+ drivers/iio/accel/st_accel_i2c.c              |   5 +
+ drivers/iio/accel/st_accel_spi.c              |   5 +
+ drivers/w1/masters/ds2482.c                   |   1 +
+ 16 files changed, 1085 insertions(+)
+ create mode 100644 arch/arm/boot/dts/imx6ull-tarragon-common.dtsi
+ create mode 100644 arch/arm/boot/dts/imx6ull-tarragon-master.dts
+ create mode 100644 arch/arm/boot/dts/imx6ull-tarragon-micro.dts
+ create mode 100644 arch/arm/boot/dts/imx6ull-tarragon-slave.dts
+ create mode 100644 arch/arm/boot/dts/imx6ull-tarragon-slavext.dts
 
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20230306153222.157667-16-manivannan.sadhasivam@linaro.org
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
+-- 
+2.34.1
 
