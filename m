@@ -2,124 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A0B3A6AF277
-	for <lists+devicetree@lfdr.de>; Tue,  7 Mar 2023 19:53:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9F1DF6AF33A
+	for <lists+devicetree@lfdr.de>; Tue,  7 Mar 2023 20:02:33 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233428AbjCGSx2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Mar 2023 13:53:28 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49936 "EHLO
+        id S233600AbjCGTCb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Mar 2023 14:02:31 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44108 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233240AbjCGSwu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Mar 2023 13:52:50 -0500
-Received: from mout.kundenserver.de (mout.kundenserver.de [212.227.126.133])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7852182363
-        for <devicetree@vger.kernel.org>; Tue,  7 Mar 2023 10:41:04 -0800 (PST)
-Received: from stefanw-SCHENKER ([37.4.248.41]) by mrelayeu.kundenserver.de
- (mreue010 [212.227.15.167]) with ESMTPSA (Nemesis) id
- 1MMXDj-1ppM6Q0EfX-00Jb6w; Tue, 07 Mar 2023 19:40:25 +0100
-From:   Stefan Wahren <stefan.wahren@i2se.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>
-Cc:     linux-imx@nxp.com, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        Stefan Wahren <stefan.wahren@i2se.com>,
-        =?UTF-8?q?Lothar=20Wa=C3=9Fmann?= <LW@KARO-electronics.de>
-Subject: [PATCH V2 9/9] ARM: dts: imx28-tx28: add SPDX-License-Identifier
-Date:   Tue,  7 Mar 2023 19:40:07 +0100
-Message-Id: <20230307184007.10672-10-stefan.wahren@i2se.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230307184007.10672-1-stefan.wahren@i2se.com>
-References: <20230307184007.10672-1-stefan.wahren@i2se.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
+        with ESMTP id S233196AbjCGTBr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Mar 2023 14:01:47 -0500
+Received: from mail-oa1-f48.google.com (mail-oa1-f48.google.com [209.85.160.48])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9E05F92728;
+        Tue,  7 Mar 2023 10:48:12 -0800 (PST)
+Received: by mail-oa1-f48.google.com with SMTP id 586e51a60fabf-176261d7f45so16061631fac.11;
+        Tue, 07 Mar 2023 10:48:12 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1678214861;
+        h=date:subject:message-id:references:in-reply-to:cc:to:from
+         :mime-version:content-transfer-encoding:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=EYv+2HBstCYOAGO0B/PqnqkLSTg8ReJUcduYsWRrFq4=;
+        b=FD5iEPjwx8xTIi5yG+I5mUcCHQVwk6+lpzTfySD26+4OdH1M2RF/DZKP/w+GrEkzeN
+         TWSbSQ6xSlPBRQEMf0V1rPfGl/84WGcs2ll7SQCZawpHelQfBdnsN/w0wtCsp4m1qLYW
+         pJnyQlqHZr25qYQ2GzRCFm3T3WW9/HFGM2gSxBhVqRXynfZPgO6Feg2h3/QBymGjVvWh
+         rtvqChqsGuTKIR1kZhj9AO2BH8CHLIAgqPDfIk2boXqljLCMjWbQsIORgzYKwMxEI9t0
+         aZxrLsPqLs4D6Pb6fjBLFENCN4XaO6ZRP3ncAqnXJTSX8/r5wi4FAgujGQppIHPlncIi
+         Vnqw==
+X-Gm-Message-State: AO0yUKVuzd9IJUYvWw/nTfMe968iuQD9chX4wLvVEQumX6e1os68vA5b
+        S3OldhPLtUQ16gujfWmqnQ==
+X-Google-Smtp-Source: AK7set/JqDyA+rmOGAi8FVuE/rNvFjo7TJGk4GVdnIOtbdb9IJ7/xaQBSceult7k1VVkVPcVKar00Q==
+X-Received: by 2002:a05:6870:9724:b0:14b:bdda:7754 with SMTP id n36-20020a056870972400b0014bbdda7754mr9986559oaq.37.1678214861419;
+        Tue, 07 Mar 2023 10:47:41 -0800 (PST)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id u10-20020a4ae68a000000b00524f47b4682sm5308118oot.10.2023.03.07.10.47.40
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 07 Mar 2023 10:47:41 -0800 (PST)
+Received: (nullmailer pid 5166 invoked by uid 1000);
+        Tue, 07 Mar 2023 18:47:40 -0000
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-X-Provags-ID: V03:K1:W9DN4tOBza9WQ1i6QQtBYdRfO0YmVD1X20zQAnF2GnUu8lW8f5g
- evNSIxsNak8XrXC/keo4rx2O4qwppZt5JiKyeV1Zm78CiZNF6QcNu5voh+o671yBPyV6CQi
- t5l9/CZTZxW9YS7fySxJhyrocuJKcGexupIdOJecmqVY8ZPXxGWRwRCNOqrt1YlKoDlUuNb
- emtam8nIZdviqHdA/XJ5w==
-UI-OutboundReport: notjunk:1;M01:P0:Pgie/PK5OGI=;cEJFVep3Ik40CIst5RUfqMgEKw9
- kCW+9hjFWULK2xgxvn08DbnD4DINgmYPxIvgWbFed6sPaBMHh1gqVu+0ApRolkiCg6DzGlxWP
- S3yRk4w6jzxl9luPk4XOId2HIPVoOTY7l5X/qTsmoTypQauqEfdKD72NDM2gs6HYn3zC5twaM
- Ys94ctD5+MDi4Na0PTs4pJzub37AJPHHagUTumLRIkF223Y52+Pyk9mX3NLiS59hlBGFFgQxo
- wVDrxHvEyww0Pm2AGdqMb5PWlMnYeeBwzaDhPQidrvp7tbde0eT6RP1e0jVmvNBqFU9v3EPVY
- h8MqIUT0dsQC4LYd2yrwOFV4/v/8inZGPia4YOTIlLS7RXiojG7IWeRE3rb/0M8qXCTNMVSfX
- lYwYqJ683Y9I0TNn2qWyeyhRYTLI11VOryQXDLWkbgvRrKk0nB5OHateDJ6/z8qvm/bZ3Pdti
- 5uLE4a1+D/9HBCq61tO6yYo10hZRmO4GcEX2WEHSFgQiP7z7Z+SpYQvUcImLNrmCFqryHzdhm
- QKpSMzIwI8JGeeSzKiv9K6Cfp6inEsl+Vko9R91znirxgMS0+cLBZ6xteyOQME15s888TaN47
- pUZnDaTd2DWkZEV7DxYTCxMQD5Q3W5cDfc+Z//hWH/v8DLtG5MrLgUZI0Tx9E6YMM1+zdf4BM
- Aw56eWyBkfX9UN0NeSDcOQXD1YKiqHLNPDwWnF2VgA==
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+MIME-Version: 1.0
+From:   Rob Herring <robh@kernel.org>
+To:     Konrad Dybcio <konrad.dybcio@linaro.org>
+Cc:     Rob Clark <robdclark@gmail.com>,
+        Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+        freedreno@lists.freedesktop.org, Daniel Vetter <daniel@ffwll.ch>,
+        Andy Gross <agross@kernel.org>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        Krishna Manikandan <quic_mkrishn@quicinc.com>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        Sean Paul <sean@poorly.run>,
+        Bjorn Andersson <andersson@kernel.org>,
+        David Airlie <airlied@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        dri-devel@lists.freedesktop.org
+In-Reply-To: <20230307-topic-dsi_qcm-v3-1-8bd7e1add38a@linaro.org>
+References: <20230307-topic-dsi_qcm-v3-0-8bd7e1add38a@linaro.org>
+ <20230307-topic-dsi_qcm-v3-1-8bd7e1add38a@linaro.org>
+Message-Id: <167821477672.5007.12890440677076105146.robh@kernel.org>
+Subject: Re: [PATCH v3 01/10] dt-bindings: display/msm:
+ dsi-controller-main: Fix deprecated QCM2290 compatible
+Date:   Tue, 07 Mar 2023 12:47:40 -0600
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=no autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Replace the license blob by a clean SPDX-License-Identifier with GPL2
-or MIT even if X11 is specified in the original blob since the actual
-license text corresponds to a MIT license.
 
-Signed-off-by: Stefan Wahren <stefan.wahren@i2se.com>
-Cc: Lothar Waßmann <LW@KARO-electronics.de>
-Acked-by: Lothar Waßmann <LW@KARO-electronics.de>
----
- arch/arm/boot/dts/imx28-tx28.dts | 38 +-------------------------------
- 1 file changed, 1 insertion(+), 37 deletions(-)
+On Tue, 07 Mar 2023 14:01:39 +0100, Konrad Dybcio wrote:
+> The qcom, prefix was missed previously. Fix it.
+> 
+> Fixes: 0c0f65c6dd44 ("dt-bindings: msm: dsi-controller-main: Add compatible strings for every current SoC")
+> Acked-by: Rob Herring <robh@kernel.org>
+> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+> ---
+>  Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
 
-diff --git a/arch/arm/boot/dts/imx28-tx28.dts b/arch/arm/boot/dts/imx28-tx28.dts
-index 096f246032c6..ffe58c7093e1 100644
---- a/arch/arm/boot/dts/imx28-tx28.dts
-+++ b/arch/arm/boot/dts/imx28-tx28.dts
-@@ -1,43 +1,7 @@
-+// SPDX-License-Identifier: GPL-2.0 OR MIT
- /*
-  * Copyright 2012 Shawn Guo <shawn.guo@linaro.org>
-  * Copyright 2013-2017 Lothar Waßmann <LW@KARO-electronics.de>
-- *
-- * This file is dual-licensed: you can use it either under the terms
-- * of the GPL or the X11 license, at your option. Note that this dual
-- * licensing only applies to this file, and not this project as a
-- * whole.
-- *
-- *  a) This file is free software; you can redistribute it and/or
-- *     modify it under the terms of the GNU General Public License
-- *     version 2 as published by the Free Software Foundation.
-- *
-- *     This file is distributed in the hope that it will be useful,
-- *     but WITHOUT ANY WARRANTY; without even the implied warranty of
-- *     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-- *     GNU General Public License for more details.
-- *
-- * Or, alternatively,
-- *
-- *  b) Permission is hereby granted, free of charge, to any person
-- *     obtaining a copy of this software and associated documentation
-- *     files (the "Software"), to deal in the Software without
-- *     restriction, including without limitation the rights to use,
-- *     copy, modify, merge, publish, distribute, sublicense, and/or
-- *     sell copies of the Software, and to permit persons to whom the
-- *     Software is furnished to do so, subject to the following
-- *     conditions:
-- *
-- *     The above copyright notice and this permission notice shall be
-- *     included in all copies or substantial portions of the Software.
-- *
-- *     THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
-- *     EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
-- *     OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
-- *     NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
-- *     HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
-- *     WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
-- *     FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
-- *     OTHER DEALINGS IN THE SOFTWARE.
-  */
- 
- /dts-v1/;
--- 
-2.34.1
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
+
+yamllint warnings/errors:
+
+dtschema/dtc warnings/errors:
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/display/msm/qcom,sm6115-mdss.example.dtb: dsi@5e94000: compatible: 'oneOf' conditional failed, one must be fixed:
+	['qcom,dsi-ctrl-6g-qcm2290'] is too short
+	'qcom,dsi-ctrl-6g-qcm2290' is not one of ['qcom,apq8064-dsi-ctrl', 'qcom,msm8916-dsi-ctrl', 'qcom,msm8953-dsi-ctrl', 'qcom,msm8974-dsi-ctrl', 'qcom,msm8996-dsi-ctrl', 'qcom,msm8998-dsi-ctrl', 'qcom,qcm2290-dsi-ctrl', 'qcom,sc7180-dsi-ctrl', 'qcom,sc7280-dsi-ctrl', 'qcom,sdm660-dsi-ctrl', 'qcom,sdm845-dsi-ctrl', 'qcom,sm8150-dsi-ctrl', 'qcom,sm8250-dsi-ctrl', 'qcom,sm8350-dsi-ctrl', 'qcom,sm8450-dsi-ctrl', 'qcom,sm8550-dsi-ctrl']
+	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/display/msm/qcom,sm6115-mdss.example.dtb: dsi@5e94000: Unevaluated properties are not allowed ('compatible' was unexpected)
+	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/display/msm/qcom,qcm2290-mdss.example.dtb: dsi@5e94000: compatible: 'oneOf' conditional failed, one must be fixed:
+	['qcom,dsi-ctrl-6g-qcm2290'] is too short
+	'qcom,dsi-ctrl-6g-qcm2290' is not one of ['qcom,apq8064-dsi-ctrl', 'qcom,msm8916-dsi-ctrl', 'qcom,msm8953-dsi-ctrl', 'qcom,msm8974-dsi-ctrl', 'qcom,msm8996-dsi-ctrl', 'qcom,msm8998-dsi-ctrl', 'qcom,qcm2290-dsi-ctrl', 'qcom,sc7180-dsi-ctrl', 'qcom,sc7280-dsi-ctrl', 'qcom,sdm660-dsi-ctrl', 'qcom,sdm845-dsi-ctrl', 'qcom,sm8150-dsi-ctrl', 'qcom,sm8250-dsi-ctrl', 'qcom,sm8350-dsi-ctrl', 'qcom,sm8450-dsi-ctrl', 'qcom,sm8550-dsi-ctrl']
+	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/display/msm/qcom,qcm2290-mdss.example.dtb: dsi@5e94000: Unevaluated properties are not allowed ('compatible' was unexpected)
+	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20230307-topic-dsi_qcm-v3-1-8bd7e1add38a@linaro.org
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
 
