@@ -2,72 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A25A86AE0EF
-	for <lists+devicetree@lfdr.de>; Tue,  7 Mar 2023 14:43:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3D9E76AE10F
+	for <lists+devicetree@lfdr.de>; Tue,  7 Mar 2023 14:47:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229794AbjCGNmz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Mar 2023 08:42:55 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41588 "EHLO
+        id S229929AbjCGNrn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Mar 2023 08:47:43 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45384 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229975AbjCGNmv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Mar 2023 08:42:51 -0500
-Received: from mail-wr1-x433.google.com (mail-wr1-x433.google.com [IPv6:2a00:1450:4864:20::433])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9691E298E2
-        for <devicetree@vger.kernel.org>; Tue,  7 Mar 2023 05:42:49 -0800 (PST)
-Received: by mail-wr1-x433.google.com with SMTP id bx12so12135489wrb.11
-        for <devicetree@vger.kernel.org>; Tue, 07 Mar 2023 05:42:49 -0800 (PST)
+        with ESMTP id S229636AbjCGNrV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Mar 2023 08:47:21 -0500
+Received: from mail-wr1-x430.google.com (mail-wr1-x430.google.com [IPv6:2a00:1450:4864:20::430])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E21C084F5B
+        for <devicetree@vger.kernel.org>; Tue,  7 Mar 2023 05:46:37 -0800 (PST)
+Received: by mail-wr1-x430.google.com with SMTP id r18so12188946wrx.1
+        for <devicetree@vger.kernel.org>; Tue, 07 Mar 2023 05:46:37 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112; t=1678196568;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Eeel5XHVDoFzIY2YG1FRNg5liLwMdDxd6X70lesaeNg=;
-        b=cbqb/e/w8w236fE3rmjvQsm/3PyhLPMdyuWqyoTBlqyuTuh4Zx/mzq9dD/hjQM321F
-         EPB63dMqDynEzEDCff8rJuhWAX0PUbR47loqbnjH60nmVA00l41/8wBdy7xRukr/QcUB
-         ++pbWDmgErb4+w499XFEq4DfaPlLlTf3SdD8SrXqLCdEL2MyhQvoRBTKg20+piBh5+m/
-         CCCuJRSWnewbDQIs/r6yxYgEhDO4p3noRsmSDMMaAnHkeTvDz7rQxGYCDnkyJAU1AC7U
-         1dy7QQb3V8jKCHqPH19PBYbF6nyFthwQQZ6D+8uFXby+DfyGtvOZHdG91NHBDkmmwQ5u
-         OPSg==
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112; t=1678196796;
+        h=cc:to:message-id:date:from:content-transfer-encoding:mime-version
+         :subject:from:to:cc:subject:date:message-id:reply-to;
+        bh=3QcLxqc/EMQ7vTX+ppb3WUMx4kSFKtn1M+ctQl6WKSw=;
+        b=pF6YzMiqMpo7uXvApBRAXO5v+ieRxCELpvGFAUsC5/07FkJiFomXVJ6LCm2+em1pjb
+         4+3o2BEa/cS2Tr0BdwFG9oKJpGFDFk12BVz9jghe7Y0IYw0lP3Z8kakSzqw0O4tk8UNW
+         VWe2oEx4MKHkf45LgXriHP0cILJTN6eS8Yegi/0E9hRfIxsjcAz+tpUCAd7LTnxC3FAQ
+         zINJyCZdtFUAKvSL6dwF5yC59j0ZMbW5VhGw5kl7quwCuvEcF5s7WCbm6Klh6CUEmFxu
+         wfXvDf6aps3IJgsK3gFJPVYTc+4enVYn+WFN9Bl84WOncaP9eqnV9CtYUjccE+KiQfzE
+         Q7ow==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678196568;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Eeel5XHVDoFzIY2YG1FRNg5liLwMdDxd6X70lesaeNg=;
-        b=1MkeWf7x5ZIwSc4fMEnDGUNoRUCcLEbuEDS0Bi1KcixawipDsEpoh8S4hzfqwQ2Irp
-         +egrxP1SeG0bS0rppD5ATXRAwDcD+yCCD3IpowvH8jvztlHz04KrwuuuzR9AnF0GwiMT
-         FLV6YQaUgmcBcAxW8PzX954aTGZYReR5IqydkIdakUrd94SIKVi+xUrc1wAjT92JDNvd
-         l8Eg4HupXZS8JuNRuuiqNrLOpRRrB9rt3DcLv5ex/GBxhEtYln0VXg+uxYOGgg3lfvU/
-         E4o0td3rkYqiqM4ExdcknHZ3nH4qvVjIEdldebYOKNZa7ff5H6nLmgnKdWKyIsjYmxlX
-         eNRg==
-X-Gm-Message-State: AO0yUKWdcwLl8hiYmYmC14NhNWP1J0+j3h1HMvJ+aFkiJUDlrkLpB1/2
-        hndyFQ8SPBCRyQmDsrFKH3pRqw==
-X-Google-Smtp-Source: AK7set+aspRSIaTh4/XbS+bw8KYAx2Ifi6PVWrobx0AWeOOli8vUV5Ail29oq9+yZ42Y9gSmbdGEzw==
-X-Received: by 2002:adf:ea90:0:b0:2c9:d90c:56c3 with SMTP id s16-20020adfea90000000b002c9d90c56c3mr8924250wrm.53.1678196568111;
-        Tue, 07 Mar 2023 05:42:48 -0800 (PST)
-Received: from localhost.localdomain (laubervilliers-657-1-248-155.w90-24.abo.wanadoo.fr. [90.24.137.155])
-        by smtp.gmail.com with ESMTPSA id f2-20020a5d4dc2000000b002be5bdbe40csm12495589wru.27.2023.03.07.05.42.47
+        d=1e100.net; s=20210112; t=1678196796;
+        h=cc:to:message-id:date:from:content-transfer-encoding:mime-version
+         :subject:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=3QcLxqc/EMQ7vTX+ppb3WUMx4kSFKtn1M+ctQl6WKSw=;
+        b=WV8UgGZR7n8sls+9b5BGg9uSayHp6bKREEektOSgdjLmbqA1kllZmvK+TUEthPKkYz
+         gxC5MV7mle/26o/R0MawiGL8OXNbH6da41WKKtCwluP+h2R+3SphMGNC3zOhAYbI48ts
+         hrrcPJPa7pbyWZvjHRSVhDB/3HYZj99dUWFzBAlGRnMApXzgkocc7P2I91C1EQLfInEm
+         m0cybxxJOsgVv4OF9CckwPnv6xw3AP1MfQt0Y2ZaHzOoDXZpo91Hf/NeGET//UC8s3mg
+         GgujrkHyi7pFOhyAdfd/rdpIegmAAJh/D/cnwGWet0XKWJicB922BudIr24XggUe6Y4U
+         qM+g==
+X-Gm-Message-State: AO0yUKWUtTOKXAuUSQPNPxywUklaCsH9VFIjCPBtLlb43aV0J5UVOWlN
+        LE21n1bU+IK3eqJqhhxyJEXEYQ==
+X-Google-Smtp-Source: AK7set+JSjliJoe7MHdfV/BnLWtWTYS3B+zFrCxJjvW7M8NLA/sGpGyEPk2L4vIJN6ZF9G0DkQWnJw==
+X-Received: by 2002:a5d:5544:0:b0:242:1809:7e17 with SMTP id g4-20020a5d5544000000b0024218097e17mr9700189wrw.6.1678196796365;
+        Tue, 07 Mar 2023 05:46:36 -0800 (PST)
+Received: from [127.0.1.1] (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
+        by smtp.googlemail.com with ESMTPSA id o13-20020a5d670d000000b002c8476dde7asm12657607wru.114.2023.03.07.05.46.35
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 07 Mar 2023 05:42:47 -0800 (PST)
-From:   bchihi@baylibre.com
-To:     daniel.lezcano@linaro.org, angelogioacchino.delregno@collabora.com,
-        rafael@kernel.org, amitk@kernel.org, rui.zhang@intel.com,
-        matthias.bgg@gmail.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, rdunlap@infradead.org,
-        ye.xingchen@zte.com.cn, p.zabel@pengutronix.de
-Cc:     linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
-        khilman@baylibre.com, james.lo@mediatek.com,
-        rex-bc.chen@mediatek.com
-Subject: [PATCH] thermal/drivers/mediatek/lvts_thermal: fix memcpy's number of bytes in lvts_calibration_init()
-Date:   Tue,  7 Mar 2023 14:42:45 +0100
-Message-Id: <20230307134245.83599-1-bchihi@baylibre.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230126161048.94089-1-bchihi@baylibre.com>
-References: <20230126161048.94089-1-bchihi@baylibre.com>
+        Tue, 07 Mar 2023 05:46:36 -0800 (PST)
+Subject: [PATCH 0/6] Add IOMMU support to MT8365 SoC
 MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
+X-b4-tracking: H4sIADFAB2QC/w3LwQ5AMAwA0F+RnjWZYsLfbDQ0mU1WcxH/bsd3eC8oZ2GFpXkh8yMqKVZ0bQPr4e
+ LOKFs1kKHekJlQ0nkW1HJdKd84siUzk+WBGOrxThl9dnE96oolhO/7AejW71RkAAAA
+From:   Alexandre Mergnat <amergnat@baylibre.com>
+Date:   Tue, 07 Mar 2023 14:46:25 +0100
+Message-Id: <20230207-iommu-support-v1-0-4f0c81fd52c1@baylibre.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Yong Wu <yong.wu@mediatek.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+Cc:     linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org,
+        Alexandre Mergnat <amergnat@baylibre.com>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
+X-Mailer: b4 0.10.1
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1947; i=amergnat@baylibre.com;
+ h=from:subject:message-id; bh=03Ugo53d84FTdWBX9oQiR9MrVn5qSFZ7/cxlmIhFGCU=;
+ b=owEBbQKS/ZANAwAKAStGSZ1+MdRFAcsmYgBkB0A753nOSUCwQYV1X9uTdM+tzoOEkDcA/gdDvICW
+ lcKaa7GJAjMEAAEKAB0WIQQjG17X8+qqcA5g/osrRkmdfjHURQUCZAdAOwAKCRArRkmdfjHURRUpD/
+ 9vIk78xkY/EbZ1WxCn9ZnY/y6I1ZFt5oiGvLUkOo4ktMG3kjm9yuROircgRYKM912Quzno3NMh/jQq
+ 5offIoGO8XPmsAzKfQS/1xlRkMtHWDId9dkcLssvqTpvLH5hXmcLuITNL1FKGHfwBIgxvf+hr+a828
+ g0BB9Ift5CCrAt2T36U0etElG52NiRB7bIZWl2eOCpreFuuieo2SyrsZ5kHHNo7p35Fps5ewZ/J9Ne
+ QXUB1VUib1EciOTXoH81frDx5+CqBuKjv0zYZd201gaT/Q3A22cIkFLnElMs5shDApecNrGbgLaIdm
+ 0+JgAbM417F6JfkGEO4CLY4hRhO2tRcqX9D1ABHp7oL8K6nefslJJe6AzOwslB1CgPrXAeF9aiOujQ
+ ud+KLqiHLgvntnRyYed5wmyeO2auHXjQwjAzL/2eHrsD7K5CeoD6WIgZwfS+C+otfwSUSPXY2OLKyR
+ 35xnfQLla7SjzGs/iZzvhN123QdhM/rPmPx8E7CBsn41fh+bZNqzXMWJEHXyDSzKbHEZluACcYO5Bb
+ rmBn7lAKxQ52WSIYfCG/e0jo2uyp9NCe9VTTOqKTGvqLVo6cInPDu+80L1rdQ+gB08cv3g3F6HOCUj
+ SVd5TYnXDbTgOnLJMH/H22rDJLUwbztiSS/f18FN1+DqzADJ9tcVA7HtS0TQ==
+X-Developer-Key: i=amergnat@baylibre.com; a=openpgp;
+ fpr=231B5ED7F3EAAA700E60FE8B2B46499D7E31D445
 X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
@@ -77,80 +92,53 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Balsam CHIHI <bchihi@baylibre.com>
+This commits are based on the Fabien Parent <fparent@baylibre.com> work.
 
-Replace memcpy 2 bytes by sizeof(int) bytes of LVTS calibration data.
+The purpose of this series is to add the following HWs / IPs support for
+the MT8365 SoC:
+- System Power Manager
+- MultiMedia Memory Management Unit "M4U" (IOMMU)
+  - Smart Multimedia Interface "SMI"
+    - Local arbiter "LARB"
 
-Reported-by: Dan Carpenter <error27@gmail.com>
-Signed-off-by: Balsam CHIHI <bchihi@baylibre.com>
+This series depends to two others which add power support for MT8365 SoC
+[1] [2].
+
+Regards,
+Alex
+
+[1]: https://lore.kernel.org/all/20230203-evk-board-support-v2-0-6ec7cdb10ccf@baylibre.com/
+[2]: https://lore.kernel.org/lkml/20230105170735.1637416-1-msp@baylibre.com/
+
+To: Yong Wu <yong.wu@mediatek.com>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To: Rob Herring <robh+dt@kernel.org>
+To: Matthias Brugger <matthias.bgg@gmail.com>
+To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+To: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc: linux-mediatek@lists.infradead.org
+Cc: linux-kernel@vger.kernel.org
+Cc: devicetree@vger.kernel.org
+Cc: linux-arm-kernel@lists.infradead.org
+Signed-off-by: Alexandre Mergnat <amergnat@baylibre.com>
+
 ---
-Rebased on top of thermal/linux-next
-base-commit: 6828e402d06f7c574430b61c05db784cd847b19f
+Alexandre Mergnat (6):
+      dt-bindings: memory-controllers: mediatek,smi-common: add mt8365
+      dt-bindings: memory-controllers: mediatek,smi-larb: add mt8365
+      arm64: dts: mediatek: add power domain support for mt8365 SoC
+      arm64: dts: mediatek: add smi support for mt8365 SoC
+      arm64: dts: mediatek: add larb support for mt8365 SoC
+      arm64: dts: mediatek: add iommu support for mt8365 SoC
 
-Original email :
-Hello Balsam CHIHI,
-
-The patch f5f633b18234: "thermal/drivers/mediatek: Add the Low
-Voltage Thermal Sensor driver" from Feb 9, 2023, leads to the
-following Smatch static checker warning:
-
-        drivers/thermal/mediatek/lvts_thermal.c:562 lvts_calibration_init()
-        warn: not copying enough bytes for '&lvts_ctrl->calibration[i]' (4 vs 2 bytes)
-
-drivers/thermal/mediatek/lvts_thermal.c
-    555 static int lvts_calibration_init(struct device *dev, struct lvts_ctrl *lvts_ctrl,
-    556                                         const struct lvts_ctrl_data *lvts_ctrl_data,
-    557                                         u8 *efuse_calibration)
-    558 {
-    559         int i;
-    560
-    561         for (i = 0; i < lvts_ctrl_data->num_lvts_sensor; i++)
---> 562                 memcpy(&lvts_ctrl->calibration[i],
-    563                        efuse_calibration + lvts_ctrl_data->cal_offset[i], 2);
-                                                                                  ^
-This is copying an array of known ints to a u32 array.  It should copy
-sizeof(int) instead of 2.  It only works because the data you're on
-little endian and the data is small.
-
-    564
-    565         return 0;
-    566 }
-
-regards,
-dan carpenter
+ .../memory-controllers/mediatek,smi-common.yaml    |   4 +
+ .../memory-controllers/mediatek,smi-larb.yaml      |   4 +
+ arch/arm64/boot/dts/mediatek/mt8365.dtsi           | 211 +++++++++++++++++++++
+ 3 files changed, 219 insertions(+)
 ---
----
- drivers/thermal/mediatek/lvts_thermal.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+base-commit: 1db7fc94e6e116f43f7bf3adb33407f21bc29fd9
+change-id: 20230207-iommu-support-5e620926e42e
 
-diff --git a/drivers/thermal/mediatek/lvts_thermal.c b/drivers/thermal/mediatek/lvts_thermal.c
-index ddfdcbcf6d86..b505c6b49031 100644
---- a/drivers/thermal/mediatek/lvts_thermal.c
-+++ b/drivers/thermal/mediatek/lvts_thermal.c
-@@ -575,7 +575,7 @@ static int lvts_calibration_init(struct device *dev, struct lvts_ctrl *lvts_ctrl
- 
- 	for (i = 0; i < lvts_ctrl_data->num_lvts_sensor; i++)
- 		memcpy(&lvts_ctrl->calibration[i],
--		       efuse_calibration + lvts_ctrl_data->cal_offset[i], 2);
-+		       efuse_calibration + lvts_ctrl_data->cal_offset[i], sizeof(int));
- 
- 	return 0;
- }
-
-base-commit: 6828e402d06f7c574430b61c05db784cd847b19f
-prerequisite-patch-id: 73be949bd16979769e5b94905b244dcee4a8f687
-prerequisite-patch-id: d23d83a946e5b876ef01a717fd51b07df1fa08dd
-prerequisite-patch-id: d67f2455eef1c4a9ecc460dbf3c2e3ad47d213ec
-prerequisite-patch-id: 9076e9b3bd3cc411b7b80344211364db5f0cca17
-prerequisite-patch-id: e220d6ae26786f524c249588433f02e5f5f906ad
-prerequisite-patch-id: b407d2998e57678952128b3a4bac92a379132b09
-prerequisite-patch-id: fbb9212ce8c3530da17d213f56fa334ce4fa1b2b
-prerequisite-patch-id: 5db9eed2659028cf4419f2de3d093af7df6c2dad
-prerequisite-patch-id: a83c00c628605d1c8fbe1d97074f9f28efb1bcfc
-prerequisite-patch-id: 56a245620a4f8238cf1ba3844dc348de3db33845
-prerequisite-patch-id: 7df24b0bf11129ddd3356eacf192cc3fdb2bcded
-prerequisite-patch-id: 3213ca70cb5b26d54a7137ff40ca8cd2a795c414
-prerequisite-patch-id: 6c2202e85215d1c7e8ab16a6b85922e994c68d9b
+Best regards,
 -- 
-2.34.1
-
+Alexandre Mergnat <amergnat@baylibre.com>
