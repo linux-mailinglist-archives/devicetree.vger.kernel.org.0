@@ -2,255 +2,313 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 335ED6ADE76
-	for <lists+devicetree@lfdr.de>; Tue,  7 Mar 2023 13:14:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CA4016ADE89
+	for <lists+devicetree@lfdr.de>; Tue,  7 Mar 2023 13:19:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230197AbjCGMOY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Mar 2023 07:14:24 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53396 "EHLO
+        id S229843AbjCGMTi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Mar 2023 07:19:38 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37560 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231489AbjCGMOG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Mar 2023 07:14:06 -0500
-Received: from mail-wm1-x335.google.com (mail-wm1-x335.google.com [IPv6:2a00:1450:4864:20::335])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2BEBD574C6
-        for <devicetree@vger.kernel.org>; Tue,  7 Mar 2023 04:13:19 -0800 (PST)
-Received: by mail-wm1-x335.google.com with SMTP id l7-20020a05600c4f0700b003e79fa98ce1so7055478wmq.2
-        for <devicetree@vger.kernel.org>; Tue, 07 Mar 2023 04:13:19 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=9elements.com; s=google; t=1678191172;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=UfDnMsccuY/ndGZVL6qcJSsEfgpizqVf8lX2ZPdvjCc=;
-        b=NL//aG3TEBgwiHffCL3u8qcMw8vS+7iOjQ+KzdUAf7AI1T/ny3XDqIRLkzZOw6Sj72
-         6/VQCiw87jHpCSuRp/EIdFPo8Q7KJau/eBCB3IMp0m2Lh94w5sA6zYm5impW78R5IxCg
-         DCeRhasQo8ihxa5cYl2ddDxfOQnstG+nVXRyZilOFH95i82pvIhj0tgDp3q80QrGsSUG
-         b7Sa2rvbtgWiQbVOmNADGkjAvxaBhE/ezSr7MNA7lrk0sOR5lB9yFa1aqY66mR6xN+OF
-         +ZMU7xU4q2rQsZn3bv1zcAM+ITP2s0+5o2Q0IAlI52bpnZ5kPdrVihtTz5gLrwFdOHcu
-         aAZQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678191172;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=UfDnMsccuY/ndGZVL6qcJSsEfgpizqVf8lX2ZPdvjCc=;
-        b=zwq17X1RU+JFrUanWxL91Z7VNH/4gFGOcmhcEFYrF5Ln17D9XbtoNWHEIx/sFbSzmu
-         2ijMF02r/UZd/SGTT9hjMKw7Axhwjz8z4M/2bBkwi9wflc/B/m0rWfv54QIJkjY9M0w+
-         Q0ToQ4Gu6wgw30zGCxcUMb2n82UAcgL/WkTNVRcTsGM26WuluXUPEZlhbQlQP1y/6xy1
-         v70jr2zK4Us6lNwPS8Vh2llGeS3wHullZKCrS8NiCbVEYP6/yLCYO96Ia7uIgUwsVbhO
-         jQnGw6QqeMPdLJHEV3XZYMAN7ndetP3liyXUz7kQRi3B1GTDl89awoBGiIpTSKxeSvX/
-         KV9Q==
-X-Gm-Message-State: AO0yUKXmDAAlBsUJemrdsgKuefGLJQ8H+kj3AeR64tnvLRlmT+SEXaHo
-        ffY43KJQhFzu8RKh5aJ3hQGXNw==
-X-Google-Smtp-Source: AK7set/hJgYNt+V+wmfFWOKqxiB443oqj8JKv6nkGeZo0JVWIt0Dcgnx0Bc/zvsy06vjv37EUpmE2Q==
-X-Received: by 2002:a05:600c:3c9d:b0:3eb:4150:a476 with SMTP id bg29-20020a05600c3c9d00b003eb4150a476mr12269132wmb.0.1678191171979;
-        Tue, 07 Mar 2023 04:12:51 -0800 (PST)
-Received: from stroh80.sec.9e.network (ip-078-094-000-051.um19.pools.vodafone-ip.de. [78.94.0.51])
-        by smtp.gmail.com with ESMTPSA id ip21-20020a05600ca69500b003eb596cbc54sm12954925wmb.0.2023.03.07.04.12.51
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 07 Mar 2023 04:12:51 -0800 (PST)
-From:   Naresh Solanki <naresh.solanki@9elements.com>
-X-Google-Original-From: Naresh Solanki <Naresh.Solanki@9elements.com>
-To:     Lee Jones <lee@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S229657AbjCGMTh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Mar 2023 07:19:37 -0500
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4D7785B93;
+        Tue,  7 Mar 2023 04:19:35 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1678191575; x=1709727575;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=3di06ayinW6tCA25mZtwfq2OGV5n6VNp2EqiMO+fCYY=;
+  b=LB8QDH7l+/nrKpu4NWVbcA2c8h6U1FdA70UDWQ2xgQHNVug59pF3Ocns
+   m1OPRhy4zeg4pekrfjO1edS53QbSqQTCCZD4NYWU4q/nRwk18pjBsBJqf
+   p/qooQU7gRNh37+m/aJuT8HMqSTMOBzOXjgyFB2YgVfxx7H1UThFC5uQ0
+   ohhhEjqOeKo0ejUeBB5MHcoopiqkPwZ31nPDJMAl9sGtNowGBdeuw8d8i
+   R4KM/mwLgtzLDmtdgmzP67Ede7juChSdKR97OOPGgtJ+tVYP/VQgVYGYa
+   q+uFW+j1UZDojGknom1VDalPvbcMcXAu4pD0j8LQtWpSSQiRiZKwISn47
+   g==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10641"; a="422108751"
+X-IronPort-AV: E=Sophos;i="5.98,240,1673942400"; 
+   d="scan'208";a="422108751"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+  by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 07 Mar 2023 04:19:34 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6500,9779,10641"; a="676552612"
+X-IronPort-AV: E=Sophos;i="5.98,240,1673942400"; 
+   d="scan'208";a="676552612"
+Received: from smile.fi.intel.com ([10.237.72.54])
+  by orsmga002.jf.intel.com with ESMTP; 07 Mar 2023 04:19:28 -0800
+Received: from andy by smile.fi.intel.com with local (Exim 4.96)
+        (envelope-from <andriy.shevchenko@linux.intel.com>)
+        id 1pZWHu-00GuYx-0e;
+        Tue, 07 Mar 2023 14:19:26 +0200
+Date:   Tue, 7 Mar 2023 14:19:25 +0200
+From:   Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To:     Okan Sahin <okan.sahin@analog.com>
+Cc:     Lee Jones <lee@kernel.org>, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Patrick Rudolph <patrick.rudolph@9elements.com>
-Cc:     Marcello Sylvester Bauer <sylv@sylv.io>,
-        Naresh Solanki <Naresh.Solanki@9elements.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v12 1/2] dt-bindings: mfd: Add MAX5970 and MAX5978
-Date:   Tue,  7 Mar 2023 13:12:44 +0100
-Message-Id: <20230307121246.127425-1-Naresh.Solanki@9elements.com>
-X-Mailer: git-send-email 2.39.1
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Cosmin Tanislav <demonsingur@gmail.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        William Breathitt Gray <william.gray@linaro.org>,
+        Caleb Connolly <caleb.connolly@linaro.org>,
+        ChiYuan Huang <cy_huang@richtek.com>,
+        Ramona Bolboaca <ramona.bolboaca@analog.com>,
+        Ibrahim Tilki <Ibrahim.Tilki@analog.com>,
+        ChiaEn Wu <chiaen_wu@richtek.com>,
+        Arnd Bergmann <arnd@arndb.de>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Hugo Villeneuve <hvilleneuve@dimonoff.com>,
+        Haibo Chen <haibo.chen@nxp.com>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org
+Subject: Re: [PATCH v6 2/5] regulator: max77541: Add ADI MAX77541/MAX77540
+ Regulator Support
+Message-ID: <ZAcrzYNesiTYLCH3@smile.fi.intel.com>
+References: <20230307112835.81886-1-okan.sahin@analog.com>
+ <20230307112835.81886-3-okan.sahin@analog.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230307112835.81886-3-okan.sahin@analog.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_NONE,URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Marcello Sylvester Bauer <sylv@sylv.io>
+On Tue, Mar 07, 2023 at 02:28:12PM +0300, Okan Sahin wrote:
+> Regulator driver for both MAX77541 and MAX77540.
+> The MAX77541 is a high-efficiency step-down converter
+> with two 3A switching phases for single-cell Li+ battery
+> and 5VDC systems.
+> 
+> The MAX77540 is a high-efficiency step-down converter
+> with two 3A switching phases.
 
-The MAX597x is a hot swap controller with configurable fault protection.
-It also has 10bit ADC for current & voltage measurements.
+Reviewed-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
 
-Signed-off-by: Marcello Sylvester Bauer <sylv@sylv.io>
-Co-developed-by: Patrick Rudolph <patrick.rudolph@9elements.com>
-Signed-off-by: Patrick Rudolph <patrick.rudolph@9elements.com>
-Co-developed-by: Naresh Solanki <Naresh.Solanki@9elements.com>
-Signed-off-by: Naresh Solanki <Naresh.Solanki@9elements.com>
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-...
-Changes in V12:
-- Update title
----
- .../bindings/mfd/maxim,max5970.yaml           | 151 ++++++++++++++++++
- 1 file changed, 151 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/mfd/maxim,max5970.yaml
+But see below.
 
-diff --git a/Documentation/devicetree/bindings/mfd/maxim,max5970.yaml b/Documentation/devicetree/bindings/mfd/maxim,max5970.yaml
-new file mode 100644
-index 000000000000..da67742c5aa9
---- /dev/null
-+++ b/Documentation/devicetree/bindings/mfd/maxim,max5970.yaml
-@@ -0,0 +1,151 @@
-+# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/mfd/maxim,max5970.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Regulator for MAX5970 Smart Switch from Maxim Integrated
-+
-+maintainers:
-+  - Patrick Rudolph <patrick.rudolph@9elements.com>
-+
-+description: |
-+  The smart switch provides no output regulation, but independent fault protection
-+  and voltage and current sensing.
-+  Programming is done through I2C bus.
-+
-+  Datasheets:
-+    https://datasheets.maximintegrated.com/en/ds/MAX5970.pdf
-+    https://datasheets.maximintegrated.com/en/ds/MAX5978.pdf
-+
-+properties:
-+  compatible:
-+    enum:
-+      - maxim,max5970
-+      - maxim,max5978
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  leds:
-+    type: object
-+    description:
-+      Properties for four LEDS.
-+
-+    properties:
-+      "#address-cells":
-+        const: 1
-+
-+      "#size-cells":
-+        const: 0
-+
-+    patternProperties:
-+      "^led@[0-3]$":
-+        $ref: /schemas/leds/common.yaml#
-+        type: object
-+
-+    additionalProperties: false
-+
-+  vss1-supply:
-+    description: Supply of the first channel.
-+
-+  vss2-supply:
-+    description: Supply of the second channel.
-+
-+  regulators:
-+    type: object
-+    description:
-+      Properties for both hot swap control/switch.
-+
-+    patternProperties:
-+      "^sw[0-1]$":
-+        $ref: /schemas/regulator/regulator.yaml#
-+        type: object
-+        properties:
-+          shunt-resistor-micro-ohms:
-+            description: |
-+              The value of current sense resistor in microohms.
-+
-+        required:
-+          - shunt-resistor-micro-ohms
-+
-+        unevaluatedProperties: false
-+
-+    additionalProperties: false
-+
-+required:
-+  - compatible
-+  - reg
-+  - regulators
-+  - vss1-supply
-+
-+allOf:
-+  - if:
-+      properties:
-+        compatible:
-+          enum:
-+            - maxim,max5970
-+    then:
-+      required:
-+        - vss2-supply
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    i2c {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+        regulator@3a {
-+            compatible = "maxim,max5978";
-+            reg = <0x3a>;
-+            vss1-supply = <&p3v3>;
-+
-+            regulators {
-+                sw0_ref_0: sw0 {
-+                    shunt-resistor-micro-ohms = <12000>;
-+                };
-+            };
-+
-+            leds {
-+                #address-cells = <1>;
-+                #size-cells = <0>;
-+                led@0 {
-+                    reg = <0>;
-+                    label = "led0";
-+                    default-state = "on";
-+                };
-+                led@1 {
-+                    reg = <1>;
-+                    label = "led1";
-+                    default-state = "on";
-+                };
-+            };
-+        };
-+    };
-+
-+  - |
-+    i2c {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        regulator@3a {
-+            compatible = "maxim,max5970";
-+            reg = <0x3a>;
-+            vss1-supply = <&p3v3>;
-+            vss2-supply = <&p5v>;
-+
-+            regulators {
-+                sw0_ref_1: sw0 {
-+                    shunt-resistor-micro-ohms = <12000>;
-+                };
-+                sw1_ref_1: sw1 {
-+                    shunt-resistor-micro-ohms = <10000>;
-+                };
-+            };
-+        };
-+    };
-+...
+> Signed-off-by: Okan Sahin <okan.sahin@analog.com>
+> ---
+>  drivers/regulator/Kconfig              |   9 ++
+>  drivers/regulator/Makefile             |   1 +
+>  drivers/regulator/max77541-regulator.c | 153 +++++++++++++++++++++++++
+>  3 files changed, 163 insertions(+)
+>  create mode 100644 drivers/regulator/max77541-regulator.c
+> 
+> diff --git a/drivers/regulator/Kconfig b/drivers/regulator/Kconfig
+> index aae28d0a489c..f0418274c083 100644
+> --- a/drivers/regulator/Kconfig
+> +++ b/drivers/regulator/Kconfig
+> @@ -556,6 +556,15 @@ config REGULATOR_MAX597X
+>  	  The MAX5970/5978 is a smart switch with no output regulation, but
+>  	  fault protection and voltage and current monitoring capabilities.
+>  
+> +config REGULATOR_MAX77541
+> +	tristate "Analog Devices MAX77541/77540 Regulator"
+> +	depends on MFD_MAX77541
+> +	help
+> +	  This driver controls a Analog Devices MAX77541/77540 regulators
+> +	  via I2C bus. Both MAX77540 and MAX77541 are dual-phase
+> +	  high-efficiency buck converter. Say Y here to
+> +	  enable the regulator driver.
 
-base-commit: e3ba37699d8ffef2aae8b672c3b87fc1c045eaca
+Maybe adding what would be the module name if M is chosen?
+
+>  config REGULATOR_MAX77620
+>  	tristate "Maxim 77620/MAX20024 voltage regulator"
+>  	depends on MFD_MAX77620 || COMPILE_TEST
+> diff --git a/drivers/regulator/Makefile b/drivers/regulator/Makefile
+> index ee383d8fc835..1c852f3140a3 100644
+> --- a/drivers/regulator/Makefile
+> +++ b/drivers/regulator/Makefile
+> @@ -68,6 +68,7 @@ obj-$(CONFIG_REGULATOR_LTC3676) += ltc3676.o
+>  obj-$(CONFIG_REGULATOR_MAX14577) += max14577-regulator.o
+>  obj-$(CONFIG_REGULATOR_MAX1586) += max1586.o
+>  obj-$(CONFIG_REGULATOR_MAX597X) += max597x-regulator.o
+> +obj-$(CONFIG_REGULATOR_MAX77541) += max77541-regulator.o
+>  obj-$(CONFIG_REGULATOR_MAX77620) += max77620-regulator.o
+>  obj-$(CONFIG_REGULATOR_MAX77650) += max77650-regulator.o
+>  obj-$(CONFIG_REGULATOR_MAX8649)	+= max8649.o
+> diff --git a/drivers/regulator/max77541-regulator.c b/drivers/regulator/max77541-regulator.c
+> new file mode 100644
+> index 000000000000..f99caf3f3990
+> --- /dev/null
+> +++ b/drivers/regulator/max77541-regulator.c
+> @@ -0,0 +1,153 @@
+> +// SPDX-License-Identifier: GPL-2.0-or-later
+> +/*
+> + * Copyright (c) 2022 Analog Devices, Inc.
+> + * ADI Regulator driver for the MAX77540 and MAX77541
+> + */
+
+I believe Mark asked to have this C++ comment style as well.
+
+// Copyright (c) 2022 Analog Devices, Inc.
+// ADI Regulator driver for the MAX77540 and MAX77541
+
+> +#include <linux/mfd/max77541.h>
+> +#include <linux/mod_devicetable.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/regmap.h>
+> +#include <linux/regulator/driver.h>
+> +
+> +static const struct regulator_ops max77541_buck_ops = {
+> +	.enable			= regulator_enable_regmap,
+> +	.disable		= regulator_disable_regmap,
+> +	.is_enabled		= regulator_is_enabled_regmap,
+> +	.list_voltage		= regulator_list_voltage_pickable_linear_range,
+> +	.get_voltage_sel	= regulator_get_voltage_sel_pickable_regmap,
+> +	.set_voltage_sel	= regulator_set_voltage_sel_pickable_regmap,
+> +};
+> +
+> +static const struct linear_range max77540_buck_ranges[] = {
+> +	/* Ranges when VOLT_SEL bits are 0x00 */
+> +	REGULATOR_LINEAR_RANGE(500000, 0x00, 0x8B, 5000),
+> +	REGULATOR_LINEAR_RANGE(1200000, 0x8C, 0xFF, 0),
+> +	/* Ranges when VOLT_SEL bits are 0x40 */
+> +	REGULATOR_LINEAR_RANGE(1200000, 0x00, 0x8B, 10000),
+> +	REGULATOR_LINEAR_RANGE(2400000, 0x8C, 0xFF, 0),
+> +	/* Ranges when VOLT_SEL bits are  0x80 */
+> +	REGULATOR_LINEAR_RANGE(2000000, 0x00, 0x9F, 20000),
+> +	REGULATOR_LINEAR_RANGE(5200000, 0xA0, 0xFF, 0),
+> +};
+> +
+> +static const struct linear_range max77541_buck_ranges[] = {
+> +	/* Ranges when VOLT_SEL bits are 0x00 */
+> +	REGULATOR_LINEAR_RANGE(300000, 0x00, 0xB3, 5000),
+> +	REGULATOR_LINEAR_RANGE(1200000, 0xB4, 0xFF, 0),
+> +	/* Ranges when VOLT_SEL bits are 0x40 */
+> +	REGULATOR_LINEAR_RANGE(1200000, 0x00, 0x8B, 10000),
+> +	REGULATOR_LINEAR_RANGE(2400000, 0x8C, 0xFF, 0),
+> +	/* Ranges when VOLT_SEL bits are  0x80 */
+> +	REGULATOR_LINEAR_RANGE(2000000, 0x00, 0x9F, 20000),
+> +	REGULATOR_LINEAR_RANGE(5200000, 0xA0, 0xFF, 0),
+> +};
+> +
+> +static const unsigned int max77541_buck_volt_range_sel[] = {
+> +	0x00, 0x00, 0x40, 0x40, 0x80, 0x80,
+> +};
+> +
+> +enum max77541_regulators {
+> +	MAX77541_BUCK1 = 1,
+> +	MAX77541_BUCK2,
+> +};
+> +
+> +#define MAX77540_BUCK(_id, _ops)					\
+> +	{	.id = MAX77541_BUCK ## _id,				\
+> +		.name = "buck"#_id,					\
+> +		.of_match = "buck"#_id,					\
+> +		.regulators_node = "regulators",			\
+> +		.enable_reg = MAX77541_REG_EN_CTRL,			\
+> +		.enable_mask = MAX77541_BIT_M ## _id ## _EN,		\
+> +		.ops = &(_ops),						\
+> +		.type = REGULATOR_VOLTAGE,				\
+> +		.linear_ranges = max77540_buck_ranges,			\
+> +		.n_linear_ranges = ARRAY_SIZE(max77540_buck_ranges),	\
+> +		.vsel_reg = MAX77541_REG_M ## _id ## _VOUT,		\
+> +		.vsel_mask = MAX77541_BITS_MX_VOUT,			\
+> +		.vsel_range_reg = MAX77541_REG_M ## _id ## _CFG1,	\
+> +		.vsel_range_mask = MAX77541_BITS_MX_CFG1_RNG,		\
+> +		.linear_range_selectors = max77541_buck_volt_range_sel, \
+> +		.owner = THIS_MODULE,					\
+> +	}
+> +
+> +#define MAX77541_BUCK(_id, _ops)					\
+> +	{	.id = MAX77541_BUCK ## _id,				\
+> +		.name = "buck"#_id,					\
+> +		.of_match = "buck"#_id,					\
+> +		.regulators_node = "regulators",			\
+> +		.enable_reg = MAX77541_REG_EN_CTRL,			\
+> +		.enable_mask = MAX77541_BIT_M ## _id ## _EN,		\
+> +		.ops = &(_ops),						\
+> +		.type = REGULATOR_VOLTAGE,				\
+> +		.linear_ranges = max77541_buck_ranges,			\
+> +		.n_linear_ranges = ARRAY_SIZE(max77541_buck_ranges),	\
+> +		.vsel_reg = MAX77541_REG_M ## _id ## _VOUT,		\
+> +		.vsel_mask = MAX77541_BITS_MX_VOUT,			\
+> +		.vsel_range_reg = MAX77541_REG_M ## _id ## _CFG1,	\
+> +		.vsel_range_mask = MAX77541_BITS_MX_CFG1_RNG,		\
+> +		.linear_range_selectors = max77541_buck_volt_range_sel, \
+> +		.owner = THIS_MODULE,					\
+> +	}
+> +
+> +static const struct regulator_desc max77540_regulators_desc[] = {
+> +	MAX77540_BUCK(1, max77541_buck_ops),
+> +	MAX77540_BUCK(2, max77541_buck_ops),
+> +};
+> +
+> +static const struct regulator_desc max77541_regulators_desc[] = {
+> +	MAX77541_BUCK(1, max77541_buck_ops),
+> +	MAX77541_BUCK(2, max77541_buck_ops),
+> +};
+> +
+> +static int max77541_regulator_probe(struct platform_device *pdev)
+> +{
+> +	struct regulator_config config = {};
+> +	const struct regulator_desc *desc;
+> +	struct device *dev = &pdev->dev;
+> +	struct regulator_dev *rdev;
+> +	struct max77541 *max77541 = dev_get_drvdata(dev->parent);
+> +	unsigned int i;
+> +
+> +	config.dev = dev->parent;
+> +
+> +	switch (max77541->chip->id) {
+> +	case MAX77540:
+> +		desc = max77540_regulators_desc;
+> +		break;
+> +	case MAX77541:
+> +		desc = max77541_regulators_desc;
+> +		break;
+> +	default:
+> +		return -EINVAL;
+> +	}
+> +
+> +	for (i = 0; i < MAX77541_MAX_REGULATORS; i++) {
+> +		rdev = devm_regulator_register(dev, &desc[i], &config);
+> +		if (IS_ERR(rdev))
+> +			return dev_err_probe(dev, PTR_ERR(rdev),
+> +					     "Failed to register regulator\n");
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static const struct platform_device_id max77541_regulator_platform_id[] = {
+> +	{ "max77540-regulator" },
+> +	{ "max77541-regulator" },
+> +	{ }
+> +};
+> +MODULE_DEVICE_TABLE(platform, max77541_regulator_platform_id);
+> +
+> +static struct platform_driver max77541_regulator_driver = {
+> +	.driver = {
+> +		.name = "max77541-regulator",
+> +	},
+> +	.probe = max77541_regulator_probe,
+> +	.id_table = max77541_regulator_platform_id,
+> +};
+> +module_platform_driver(max77541_regulator_driver);
+> +
+> +MODULE_AUTHOR("Okan Sahin <Okan.Sahin@analog.com>");
+> +MODULE_DESCRIPTION("MAX77540/MAX77541 regulator driver");
+> +MODULE_LICENSE("GPL");
+> -- 
+> 2.30.2
+> 
+
 -- 
-2.39.1
+With Best Regards,
+Andy Shevchenko
+
 
