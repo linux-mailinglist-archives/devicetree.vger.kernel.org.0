@@ -2,94 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 623296AE7FA
-	for <lists+devicetree@lfdr.de>; Tue,  7 Mar 2023 18:11:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 976256AE849
+	for <lists+devicetree@lfdr.de>; Tue,  7 Mar 2023 18:15:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229907AbjCGRL0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Mar 2023 12:11:26 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50838 "EHLO
+        id S231414AbjCGRPA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Mar 2023 12:15:00 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59600 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229870AbjCGRLF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Mar 2023 12:11:05 -0500
-Received: from mail.3ffe.de (0001.3ffe.de [IPv6:2a01:4f8:c0c:9d57::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AFA0B9CFF5;
-        Tue,  7 Mar 2023 09:05:49 -0800 (PST)
-Received: from 3ffe.de (0001.3ffe.de [IPv6:2a01:4f8:c0c:9d57::1])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by mail.3ffe.de (Postfix) with ESMTPSA id EB091124;
-        Tue,  7 Mar 2023 18:04:37 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2022082101;
-        t=1678208678;
+        with ESMTP id S230202AbjCGROd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Mar 2023 12:14:33 -0500
+Received: from relay11.mail.gandi.net (relay11.mail.gandi.net [IPv6:2001:4b98:dc4:8::231])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 697C1911C3;
+        Tue,  7 Mar 2023 09:09:18 -0800 (PST)
+Received: (Authenticated sender: miquel.raynal@bootlin.com)
+        by mail.gandi.net (Postfix) with ESMTPSA id 3209B10000C;
+        Tue,  7 Mar 2023 17:09:11 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1678208956;
         h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
          to:to:cc:cc:mime-version:mime-version:content-type:content-type:
          content-transfer-encoding:content-transfer-encoding:
          in-reply-to:in-reply-to:references:references;
-        bh=MnPC/dx2pZinfk0Ola2wbvkMss8Crat96y40veuYQjU=;
-        b=lEq+23SJ1QPwyEFqQkXp1Prs1SVNz2226k8aboOabP0a4S59Ky5JMD44yE7pHdaL7DfsHy
-        b4P28jnpujI6a/Ix+sT/zQ8CqOClQyzGwAoucxKFhIvgk9PzC03FaSCKiBK6w7eOhgPRDD
-        P3em48gt3vhbqlX0U24/RuOKTxkBp2f8UikmJhrdZp/MTCh3Rdj/e7V6zRM0kfpqkycxDF
-        ohm+n33XaGaLG9FPha0HZboLLazgNZLOdldf2/5ZfhSssrVlWA7Jx1SQxqDbZ+IKurSK00
-        ftd4sNGMPns4kyYZB0q9jHLe8DwofBv0fgEHi6/JCyQISxY/yJHwNyzLIyDSvw==
-MIME-Version: 1.0
-Date:   Tue, 07 Mar 2023 18:04:37 +0100
-From:   Michael Walle <michael@walle.cc>
-To:     Miquel Raynal <miquel.raynal@bootlin.com>
-Cc:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        linux-kernel@vger.kernel.org,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        =?UTF-8?Q?Rafa=C5=82_Mi=C5=82ecki?= <rafal@milecki.pl>,
+        bh=wKTxcXraR76Y5r9+YplRylhvukCb5ywkGhpumsLDoPE=;
+        b=hfL7Q4MWNW6MQkkcWKlFAGBMhvPi8XdKdndsDr4lvxNDyzLZQZYWD2yPKg5ruePlRtGgMs
+        2sMslRs2ub0/c3rgFn/yi+jB9cAd/v0VTyhsRpfe6nQ4KwzpbC6hbWMMBKPHwItX6A4N1B
+        PlTZYERuYcZ4DxBv1pfwokA0Asv/R9OuOcHUh4NQOm8QqbNtctG6xrVWnwe7YefhTHwcvZ
+        IfyJmafed7gWjSk1eGBY1udh8YEzunqzd9ZTep0Wffd0cVNQN48/CXx9+97YA1EfuPCT6C
+        IxrxKhyCkt/qCpty68gX7D//9v48NFMpOsL4fqIsW09eiX/DDPm5Ja8x2y6Pjw==
+Date:   Tue, 7 Mar 2023 18:09:09 +0100
+From:   Miquel Raynal <miquel.raynal@bootlin.com>
+To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        <linux-kernel@vger.kernel.org>
+Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Michael Walle <michael@walle.cc>,
+        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>,
         Robert Marko <robert.marko@sartura.hr>,
         Luka Perkov <luka.perkov@sartura.hr>,
         Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
         Rob Herring <robh+dt@kernel.org>,
         Frank Rowand <frowand.list@gmail.com>,
-        devicetree@vger.kernel.org,
-        Alexander Stein <alexander.stein@ew.tq-group.com>
-Subject: Re: [PATCH v2 09/21] nvmem: core: return -ENOENT if nvmem cell is not
- found
-In-Reply-To: <20230307165359.225361-10-miquel.raynal@bootlin.com>
+        devicetree@vger.kernel.org, Stephen Boyd <sboyd@kernel.org>,
+        Peter Chen <peter.chen@kernel.org>,
+        "Rafael J . Wysocki" <rafael@kernel.org>,
+        Len Brown <lenb@kernel.org>,
+        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        Sebastian Reichel <sre@kernel.org>,
+        Wolfram Sang <wsa@kernel.org>, Mark Brown <broonie@kernel.org>,
+        Heikki Krogerus <heikki.krogerus@linux.intel.com>
+Subject: Re: [PATCH v2 00/21] nvmem: Layouts support
+Message-ID: <20230307180909.3a722948@xps-13>
+In-Reply-To: <20230307165359.225361-1-miquel.raynal@bootlin.com>
 References: <20230307165359.225361-1-miquel.raynal@bootlin.com>
- <20230307165359.225361-10-miquel.raynal@bootlin.com>
-User-Agent: Roundcube Webmail/1.4.13
-Message-ID: <b1457acdc76dbf4f945fcf8e8285d463@walle.cc>
-X-Sender: michael@walle.cc
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+Organization: Bootlin
+X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Am 2023-03-07 17:53, schrieb Miquel Raynal:
-> From: Michael Walle <michael@walle.cc>
-> 
-> Prior to commit 3cb05fdbaed6 ("nvmem: core: add an index parameter to
-> the cell") of_nvmem_cell_get() would return -ENOENT if the cell wasn't
-> found. Particularly, if of_property_match_string() returned -EINVAL,
-> that return code was passed as the index to of_parse_phandle(), which
-> then detected it as invalid and returned NULL. That led to an return
-> code of -ENOENT.
-> 
-> With the new code, the negative index will lead to an -EINVAL of
-> of_parse_phandle_with_optional_args() which pass straight to the
-> caller and break those who expect an -ENOENT.
-> 
-> Fix it by always returning -ENOENT.
-> 
-> Fixes: efff2655ab0f ("nvmem: core: add an index parameter to the cell")
-> Reported-by: Alexander Stein <alexander.stein@ew.tq-group.com>
-> Signed-off-by: Michael Walle <michael@walle.cc>
-> Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
+Hi all,
 
-Misses the Tested-by: Alexander Stein <alexander.stein@ew.tq-group.com>
-tag. But.. this is already applied anyways:
-https://lore.kernel.org/r/515d5fed-2083-c1fd-eea5-148d9e1c45bd@linaro.org/
+miquel.raynal@bootlin.com wrote on Tue,  7 Mar 2023 17:53:38 +0100:
 
--michael
+> Hello,
+>=20
+> This is a fully featured series with hopefully all what is needed for
+> upstream acceptance, ie:
+> * A bit of OF cleanup
+> * Full nvmem layout support merging Michael's and my patches
+> * Only the fixes not applying to this series have been kept "un merged"
+> * Support for SL28 VPD and ONIE TLV table layouts
+> * Layouts can be compiled as modules
+
+Unfortunately that is not gonna fly, I of course messed with the base
+branch. Please ignore this, I will update, make everything fit and
+resend.
+
+Sincere apologies for the noise.
+
+Thanks,
+Miqu=C3=A8l
