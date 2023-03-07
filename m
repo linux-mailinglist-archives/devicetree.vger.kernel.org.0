@@ -2,328 +2,156 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2ADD86AD73C
-	for <lists+devicetree@lfdr.de>; Tue,  7 Mar 2023 07:20:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7D3F86AD746
+	for <lists+devicetree@lfdr.de>; Tue,  7 Mar 2023 07:23:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230104AbjCGGUZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Mar 2023 01:20:25 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52970 "EHLO
+        id S230388AbjCGGXl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Mar 2023 01:23:41 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55998 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229869AbjCGGUY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Mar 2023 01:20:24 -0500
-Received: from fd01.gateway.ufhost.com (fd01.gateway.ufhost.com [61.152.239.71])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 96FA4367EC;
-        Mon,  6 Mar 2023 22:20:22 -0800 (PST)
-Received: from EXMBX166.cuchost.com (unknown [175.102.18.54])
-        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-        (Client CN "EXMBX166", Issuer "EXMBX166" (not verified))
-        by fd01.gateway.ufhost.com (Postfix) with ESMTP id EF19D24E2F7;
-        Tue,  7 Mar 2023 14:20:14 +0800 (CST)
-Received: from EXMBX073.cuchost.com (172.16.6.83) by EXMBX166.cuchost.com
- (172.16.6.76) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Tue, 7 Mar
- 2023 14:20:14 +0800
-Received: from [192.168.60.139] (180.164.60.184) by EXMBX073.cuchost.com
- (172.16.6.83) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Tue, 7 Mar
- 2023 14:20:14 +0800
-Message-ID: <15e1d04d-5667-5780-f93b-c4a0a85ef774@starfivetech.com>
-Date:   Tue, 7 Mar 2023 14:20:14 +0800
+        with ESMTP id S230459AbjCGGXh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Mar 2023 01:23:37 -0500
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 808F320D2F;
+        Mon,  6 Mar 2023 22:23:21 -0800 (PST)
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3270S0Xm002087;
+        Tue, 7 Mar 2023 06:22:55 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-type; s=qcppdkim1;
+ bh=v3eSfLi0MQiyxhJ9lHQLpvuKHcG5QUEYJSJ4qQfA1gM=;
+ b=Hfs2GRc+kFu6JITbCvQ8tmHzP5YYZjWxsl9tuTksGGMo8ixVsZAjbEDmhXo8/GmmONI2
+ gJRH/61cZlcVn+FRstedYulhxwBHWEJoYOBnkIsgCGUIbuCgnHE80eKrxP6PgA4V2une
+ 8vh4VyhJSit0aoKgAhUwujocOLOX2umYAwnS5HNQ4LmxYxJ2QxW5IJjxuJ+w1sMQ6wNE
+ AOfBCNRw9/acdKQAn0FVCgRIuKvfR7xALadR7gDexUAExNaVaZyO9StbwZ+eWZVsntra
+ aL7rYRglwS3mM+3ZpSVrizz2sgMke5Y7FOR5f5NsFfup6Mi5pjnQcX65URF/1iUEK+Cn kQ== 
+Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3p4g3mwxh1-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 07 Mar 2023 06:22:54 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+        by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3276Mr76020667
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 7 Mar 2023 06:22:53 GMT
+Received: from kathirav-linux.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.41; Mon, 6 Mar 2023 22:22:45 -0800
+From:   Kathiravan T <quic_kathirav@quicinc.com>
+To:     <agross@kernel.org>, <andersson@kernel.org>,
+        <konrad.dybcio@linaro.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <mturquette@baylibre.com>,
+        <sboyd@kernel.org>, <catalin.marinas@arm.com>, <will@kernel.org>,
+        <arnd@arndb.de>, <dmitry.baryshkov@linaro.org>,
+        <geert+renesas@glider.be>, <nfraprado@collabora.com>,
+        <broonie@kernel.org>, <rafal@milecki.pl>, <robimarko@gmail.com>,
+        <quic_gurus@quicinc.com>, <linux-arm-msm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-clk@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>
+CC:     Kathiravan T <quic_kathirav@quicinc.com>
+Subject: [PATCH V6 0/9] Add minimal boot support for IPQ5332
+Date:   Tue, 7 Mar 2023 11:52:23 +0530
+Message-ID: <20230307062232.4889-1-quic_kathirav@quicinc.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-Subject: Re: [PATCH v1 01/11] media: dt-bindings: starfive,jh7110-camss: add
- binding document
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        "Mauro Carvalho Chehab" <mchehab@kernel.org>,
-        Robert Foss <rfoss@kernel.org>,
-        Todor Tomov <todor.too@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Maxime Ripard <mripard@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>
-CC:     <linux-media@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <changhuang.liang@starfivetech.com>
-References: <20230302091921.43309-1-jack.zhu@starfivetech.com>
- <20230302091921.43309-2-jack.zhu@starfivetech.com>
- <10e4ac1e-5c4d-4d6d-53e6-fbc1142940f9@linaro.org>
-Content-Language: en-US
-From:   Jack Zhu <jack.zhu@starfivetech.com>
-In-Reply-To: <10e4ac1e-5c4d-4d6d-53e6-fbc1142940f9@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [180.164.60.184]
-X-ClientProxiedBy: EXCAS064.cuchost.com (172.16.6.24) To EXMBX073.cuchost.com
- (172.16.6.83)
-X-YovoleRuleAgent: yovoleflag
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,URIBL_BLOCKED autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: zfLHgFxHVa_otHj8EkbLfcXCS6W3uFzY
+X-Proofpoint-GUID: zfLHgFxHVa_otHj8EkbLfcXCS6W3uFzY
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.219,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
+ definitions=2023-03-06_14,2023-03-06_01,2023-02-09_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0
+ lowpriorityscore=0 bulkscore=0 impostorscore=0 priorityscore=1501
+ suspectscore=0 mlxscore=0 clxscore=1011 adultscore=0 malwarescore=0
+ phishscore=0 mlxlogscore=725 classifier=spam adjust=0 reason=mlx
+ scancount=1 engine=8.12.0-2212070000 definitions=main-2303070056
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+The IPQ5332 is Qualcomm's 802.11be SoC for Routers, Gateways and
+Access Points.
+
+This series adds minimal board boot support for ipq5332-mi01.2 board.
+
+Changes in V6:
+	- Added couple of patches 1/9 and 5/9 in the series to make sure
+	  all the dependent patches are together
+	- V5 can be found at
+	  https://lore.kernel.org/linux-arm-msm/20230217075835.460-1-quic_kathirav@quicinc.com/
+
+Changes in V5:
+	- Dropped the clock-names from binding and DTS
+	- Detailed change log is present in respective patches
+	- V4 can be found at
+	  https://lore.kernel.org/linux-arm-msm/20230208155232.11500-1-quic_kathirav@quicinc.com/
+
+Changes in V4:
+	- Dropped the pinctrl driver and its binding, since it is
+	  already part of linux-next/master
+	- Detailed change log is present in respective patches
+	- V3 can be found at
+	  https://lore.kernel.org/linux-arm-msm/20230206071217.29313-1-quic_kathirav@quicinc.com/
+
+Changes in V3:
+	- Detailed change log is present in respective patches
+	- V2 can be found at
+	  https://lore.kernel.org/linux-arm-msm/20230130114702.20606-1-quic_kathirav@quicinc.com/
+
+Changes in V2:
+	- Rebased on linux-next/master
+	- Dropped the 'dt-bindings: mmc: sdhci-msm: add IPQ5332 compatible',
+	  since it is already part of linux-next/master
+	- Added a new patch 'clk: qcom: ipq5332: mark GPLL4 as critical temporarily'
+	- Detailed change log is present in respective patches
+	- V1 can be found at
+	  https://lore.kernel.org/linux-arm-msm/20230125104520.89684-1-quic_kathirav@quicinc.com/
+
+Kathiravan T (8):
+  clk: qcom: Add STROMER PLUS PLL type for IPQ5332
+  dt-bindings: clock: Add Qualcomm IPQ5332 GCC
+  clk: qcom: add Global Clock controller (GCC) driver for IPQ5332 SoC
+  clk: qcom: ipq5332: mark GPLL4 as ignore unused temporarily
+  dt-bindings: qcom: add ipq5332 boards
+  dt-bindings: firmware: qcom,scm: document IPQ5332 SCM
+  arm64: dts: qcom: add IPQ5332 SoC and MI01.2 board support
+  arm64: defconfig: Enable IPQ5332 SoC base configs
+
+Varadarajan Narayanan (1):
+  clk: qcom: clk-alpha-pll: Add support for Stromer PLLs
+
+ .../devicetree/bindings/arm/qcom.yaml         |    7 +
+ .../bindings/clock/qcom,ipq5332-gcc.yaml      |   53 +
+ .../bindings/firmware/qcom,scm.yaml           |    1 +
+ arch/arm64/boot/dts/qcom/Makefile             |    1 +
+ arch/arm64/boot/dts/qcom/ipq5332-mi01.2.dts   |   75 +
+ arch/arm64/boot/dts/qcom/ipq5332.dtsi         |  263 ++
+ arch/arm64/configs/defconfig                  |    2 +
+ drivers/clk/qcom/Kconfig                      |    8 +
+ drivers/clk/qcom/Makefile                     |    1 +
+ drivers/clk/qcom/clk-alpha-pll.c              |  139 +-
+ drivers/clk/qcom/clk-alpha-pll.h              |   14 +-
+ drivers/clk/qcom/gcc-ipq5332.c                | 3824 +++++++++++++++++
+ include/dt-bindings/clock/qcom,ipq5332-gcc.h  |  356 ++
+ 13 files changed, 4742 insertions(+), 2 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/clock/qcom,ipq5332-gcc.yaml
+ create mode 100644 arch/arm64/boot/dts/qcom/ipq5332-mi01.2.dts
+ create mode 100644 arch/arm64/boot/dts/qcom/ipq5332.dtsi
+ create mode 100644 drivers/clk/qcom/gcc-ipq5332.c
+ create mode 100644 include/dt-bindings/clock/qcom,ipq5332-gcc.h
 
 
-On 2023/3/3 16:34, Krzysztof Kozlowski wrote:
-> On 02/03/2023 10:19, jack.zhu wrote:
->> Add DT binding document for Starfive Camera subsystem driver
->> 
->> Signed-off-by: jack.zhu <jack.zhu@starfivetech.com>
->> ---
->>  .../bindings/media/starfive,jh7110-camss.yaml | 150 ++++++++++++++++++
->>  1 file changed, 150 insertions(+)
->>  create mode 100644 Documentation/devicetree/bindings/media/starfive,jh7110-camss.yaml
->> 
->> diff --git a/Documentation/devicetree/bindings/media/starfive,jh7110-camss.yaml b/Documentation/devicetree/bindings/media/starfive,jh7110-camss.yaml
->> new file mode 100644
->> index 000000000000..9a34944ca0ab
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/media/starfive,jh7110-camss.yaml
->> @@ -0,0 +1,150 @@
->> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
->> +
->> +%YAML 1.2
->> +---
->> +$id: "http://devicetree.org/schemas/media/starfive,jh7110-camss.yaml#"
->> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
-> 
-> Drop quotes from both.
+base-commit: dc837c1a5137a8cf2e9432c1891392b6a66f4d8d
+-- 
+2.17.1
 
-OK, I will fix it in V2 version.
-
-> 
->> +
->> +title: Starfive SoC CAMSS ISP
->> +
->> +maintainers:
->> +  - Jack Zhu <jack.zhu@starfivetech.com>
->> +  - Changhuang Liang <changhuang.liang@starfivetech.com>
->> +
->> +description: |
-> 
-> No need for '|'
-
-OK, I will fix it.
-
-> 
->> +  The Starfive CAMSS ISP is a Camera interface for Starfive JH7110 SoC.It
->> +  consists of a VIN controller(Video In Controller, a top-level control until)
->> +  and a ISP.
-> 
-> "an ISP", I think
-
-I will revise it.
-
-> 
->> +
->> +properties:
->> +  compatible:
->> +    const: starfive,jh7110-camss
->> +
->> +  reg:
->> +    minItems: 2
-> 
-> Drop minItems, no need.
-
-OK, I will drop it.
-
-> 
->> +    maxItems: 2
->> +
->> +  reg-names:
->> +    items:
->> +      - const: syscon
->> +      - const: isp
->> +
->> +  clocks:
->> +    minItems: 7
-> 
-> Drop mintems
-
-I will drop it.
-
-> 
->> +    maxItems: 7
->> +
->> +  clock-names:
->> +    items:
->> +      - const: clk_apb_func
->> +      - const: clk_wrapper_clk_c
->> +      - const: clk_dvp_inv
->> +      - const: clk_axiwr
->> +      - const: clk_mipi_rx0_pxl
->> +      - const: clk_ispcore_2x
->> +      - const: clk_isp_axi
-> 
-> Drop "clk" prefix
-
-I will drop it.
-
-> 
->> +
->> +  resets:
->> +    minItems: 6
-> 
-> Drop
-
-I will drop it.
-
-> 
->> +    maxItems: 6
->> +
->> +  reset-names:
->> +    items:
->> +      - const: rst_wrapper_p
-> 
-> Drop rst prefix
-
-OK, will fix it.
-
-> 
->> +      - const: rst_wrapper_c
->> +      - const: rst_axird
->> +      - const: rst_axiwr
->> +      - const: rst_isp_top_n
->> +      - const: rst_isp_top_axi
->> +
->> +  power-domains:
->> +    items:
->> +      - description: JH7110 PD ISP - ISP Power Domain Switch Controller.
-> 
-> Drop redundant pieces, e.g. "PD ISP"
-
-OK, will fix it.
-
-> 
->> +
->> +  interrupts:
->> +    minItems: 4
-> 
-> Drop
-
-OK, will drop it.
-
-> 
->> +    maxItems: 4
->> +
->> +  ports:
->> +    $ref: /schemas/graph.yaml#/properties/ports
->> +
->> +    properties:
->> +      port@1:
-> 
-> And what about port@0?
-
-port@0 is reserved for DVP sensor, although it is not supported yet.
-
-> 
->> +        $ref: /schemas/graph.yaml#/$defs/port-base
->> +        unevaluatedProperties: false
->> +        description:
->> +          Input port for receiving CSI data.
->> +
->> +        properties:
->> +          endpoint@1:
-> 
-> Hm, do you have more than one endpoint in this port? Why unit address?
-
-OK, I will change it to "endpoint:"
-
-> 
->> +            $ref: video-interfaces.yaml#
->> +            unevaluatedProperties: false
->> +
->> +    required:
->> +      - port@1
->> +
->> +required:
->> +  - compatible
->> +  - reg
->> +  - reg-names
->> +  - clocks
->> +  - clock-names
->> +  - resets
->> +  - reset-names
->> +  - power-domains
->> +  - interrupts
->> +
->> +additionalProperties: false
->> +
->> +examples:
->> +  - |
->> +
-> 
-> Drop blank line
-
-I will drop it.
-
-> 
->> +    stfcamss: camss@19840000 {
-> 
-> isp@
-
-I will alter it.
-
-> 
->> +        compatible = "starfive,jh7110-camss";
->> +        reg = <0x19840000 0x10000>,
->> +            <0x19870000 0x30000>;
-> 
-> All this looks misaligned
->> +        reg-names = "syscon", "isp";
->> +        clocks = <&ispcrg 0>,
->> +            <&ispcrg 13>,
-> 
-> Looks even worse...
-
-I will fix it.
-
-> 
->> +            <&ispcrg 2>,
->> +            <&ispcrg 12>,
->> +            <&ispcrg 1>,
->> +            <&syscrg 51>,
->> +            <&syscrg 52>;
->> +        clock-names = "clk_apb_func",
->> +            "clk_wrapper_clk_c",
->> +            "clk_dvp_inv",
->> +            "clk_axiwr",
->> +            "clk_mipi_rx0_pxl",
->> +            "clk_ispcore_2x",
->> +            "clk_isp_axi";
->> +        resets = <&ispcrg 0>,
->> +            <&ispcrg 1>,
->> +            <&ispcrg 10>,
->> +            <&ispcrg 11>,
->> +            <&syscrg 41>,
->> +            <&syscrg 42>;
->> +        reset-names = "rst_wrapper_p",
->> +            "rst_wrapper_c",
->> +            "rst_axird",
->> +            "rst_axiwr",
->> +            "rst_isp_top_n",
->> +            "rst_isp_top_axi";
->> +        power-domains = <&pwrc 5>;
->> +        interrupts = <92>, <87>, <88>, <90>;
->> +
->> +        ports {
->> +            #address-cells = <1>;
->> +            #size-cells = <0>;
->> +
->> +            port@1 {
->> +                reg = <1>;
->> +                #address-cells = <1>;
->> +                #size-cells = <0>;
->> +
->> +                vin_from_csi2rx: endpoint@1 {
->> +                    reg = <1>;
->> +                    remote-endpoint = <&csi2rx_to_vin>;
->> +                };
->> +            };
->> +        };
->> +    };
-> 
-> Best regards,
-> Krzysztof
-> 
