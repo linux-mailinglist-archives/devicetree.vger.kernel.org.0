@@ -2,125 +2,517 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9F1DF6AF33A
-	for <lists+devicetree@lfdr.de>; Tue,  7 Mar 2023 20:02:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8C6CC6AF3DC
+	for <lists+devicetree@lfdr.de>; Tue,  7 Mar 2023 20:10:38 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233600AbjCGTCb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Mar 2023 14:02:31 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44108 "EHLO
+        id S229762AbjCGTKe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Mar 2023 14:10:34 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53266 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233196AbjCGTBr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Mar 2023 14:01:47 -0500
-Received: from mail-oa1-f48.google.com (mail-oa1-f48.google.com [209.85.160.48])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9E05F92728;
-        Tue,  7 Mar 2023 10:48:12 -0800 (PST)
-Received: by mail-oa1-f48.google.com with SMTP id 586e51a60fabf-176261d7f45so16061631fac.11;
-        Tue, 07 Mar 2023 10:48:12 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678214861;
-        h=date:subject:message-id:references:in-reply-to:cc:to:from
-         :mime-version:content-transfer-encoding:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=EYv+2HBstCYOAGO0B/PqnqkLSTg8ReJUcduYsWRrFq4=;
-        b=FD5iEPjwx8xTIi5yG+I5mUcCHQVwk6+lpzTfySD26+4OdH1M2RF/DZKP/w+GrEkzeN
-         TWSbSQ6xSlPBRQEMf0V1rPfGl/84WGcs2ll7SQCZawpHelQfBdnsN/w0wtCsp4m1qLYW
-         pJnyQlqHZr25qYQ2GzRCFm3T3WW9/HFGM2gSxBhVqRXynfZPgO6Feg2h3/QBymGjVvWh
-         rtvqChqsGuTKIR1kZhj9AO2BH8CHLIAgqPDfIk2boXqljLCMjWbQsIORgzYKwMxEI9t0
-         aZxrLsPqLs4D6Pb6fjBLFENCN4XaO6ZRP3ncAqnXJTSX8/r5wi4FAgujGQppIHPlncIi
-         Vnqw==
-X-Gm-Message-State: AO0yUKVuzd9IJUYvWw/nTfMe968iuQD9chX4wLvVEQumX6e1os68vA5b
-        S3OldhPLtUQ16gujfWmqnQ==
-X-Google-Smtp-Source: AK7set/JqDyA+rmOGAi8FVuE/rNvFjo7TJGk4GVdnIOtbdb9IJ7/xaQBSceult7k1VVkVPcVKar00Q==
-X-Received: by 2002:a05:6870:9724:b0:14b:bdda:7754 with SMTP id n36-20020a056870972400b0014bbdda7754mr9986559oaq.37.1678214861419;
-        Tue, 07 Mar 2023 10:47:41 -0800 (PST)
-Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id u10-20020a4ae68a000000b00524f47b4682sm5308118oot.10.2023.03.07.10.47.40
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 07 Mar 2023 10:47:41 -0800 (PST)
-Received: (nullmailer pid 5166 invoked by uid 1000);
-        Tue, 07 Mar 2023 18:47:40 -0000
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-MIME-Version: 1.0
-From:   Rob Herring <robh@kernel.org>
-To:     Konrad Dybcio <konrad.dybcio@linaro.org>
-Cc:     Rob Clark <robdclark@gmail.com>,
-        Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
-        freedreno@lists.freedesktop.org, Daniel Vetter <daniel@ffwll.ch>,
-        Andy Gross <agross@kernel.org>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        Krishna Manikandan <quic_mkrishn@quicinc.com>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        Sean Paul <sean@poorly.run>,
-        Bjorn Andersson <andersson@kernel.org>,
-        David Airlie <airlied@gmail.com>,
+        with ESMTP id S233616AbjCGTKH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Mar 2023 14:10:07 -0500
+Received: from mout.kundenserver.de (mout.kundenserver.de [212.227.126.134])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 388EBC8085
+        for <devicetree@vger.kernel.org>; Tue,  7 Mar 2023 10:54:46 -0800 (PST)
+Received: from stefanw-SCHENKER ([37.4.248.41]) by mrelayeu.kundenserver.de
+ (mreue010 [212.227.15.167]) with ESMTPSA (Nemesis) id
+ 1MfHUx-1qETh02Vg3-00gmne; Tue, 07 Mar 2023 19:40:21 +0100
+From:   Stefan Wahren <stefan.wahren@i2se.com>
+To:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        dri-devel@lists.freedesktop.org
-In-Reply-To: <20230307-topic-dsi_qcm-v3-1-8bd7e1add38a@linaro.org>
-References: <20230307-topic-dsi_qcm-v3-0-8bd7e1add38a@linaro.org>
- <20230307-topic-dsi_qcm-v3-1-8bd7e1add38a@linaro.org>
-Message-Id: <167821477672.5007.12890440677076105146.robh@kernel.org>
-Subject: Re: [PATCH v3 01/10] dt-bindings: display/msm:
- dsi-controller-main: Fix deprecated QCM2290 compatible
-Date:   Tue, 07 Mar 2023 12:47:40 -0600
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=no autolearn_force=no
-        version=3.4.6
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>
+Cc:     linux-imx@nxp.com, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        Stefan Wahren <stefan.wahren@i2se.com>, support@armadeus.com
+Subject: [PATCH V2 1/9] ARM: dts: imx28-apf28: Convert to use label references
+Date:   Tue,  7 Mar 2023 19:39:59 +0100
+Message-Id: <20230307184007.10672-2-stefan.wahren@i2se.com>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20230307184007.10672-1-stefan.wahren@i2se.com>
+References: <20230307184007.10672-1-stefan.wahren@i2se.com>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Provags-ID: V03:K1:ZiSw4GmPlVi6GDzG6+OAf6IsuDoULNrOcGoT++9vi1e7MY7wyee
+ sY1IGoak/YO8irBzTwwzSwej2gU4SA3MiuWIU54brk6asHBDtYqlhOQwBcd6pSka5yQVkPG
+ SGfD0+d9+iXva/f9+ZGl11JGxMjK3ZWIjLy3nhaJ9Bh4HlcZFrhAEJmzpSVvi5jlC4bNeG6
+ jQ/k5tKlCj5JhntmrmJJg==
+UI-OutboundReport: notjunk:1;M01:P0:ffPGaoEaM9E=;W8DV7ymFWVu7w0wIJC93sqTJbE1
+ 1o2gz2U7pinT2tXVdRM/ti+E544kxsPqN1DY2kkafBwPqeesHhymktBo/p3v6naklQxQnkJCq
+ iiJucpdAK2eMdRhh3D7Jsw665iejuC1QywAIROey96J1pw4P5Rt1bVpPbeRuLAe7OUK1Dzfkl
+ Wfpy9lxB5Kd15GO0+7nULHE9Qb+T41J0LJxliqvY2p7AJbyyq/FMXGXoxVvX7XKdNKnUCSaHr
+ /xyyfaVfOBEmrUb/5SjHCeaC1bcTFvAd5RXTSWpUY3XIpStjfo5g3U4M+E91HRcdqEGUc/Pod
+ UF9EeCRcZwcGjv/NmNeTZPm1wFLVyFFx3V4rnMua0apBF8IeVRy1pSxgY06D99AZlZg4RUmBb
+ xLvrMcXBkiAJP/r1M4t97sojX0W/j1VpxapqU6h4HpPLsu3BlseYiGAUg/wczePssnybHPvgZ
+ v+jTxxKiuG7vy+DefM6M495Dk5Jv3T7m918XXNnnDqx6SmGfyQ69+Pu4xNHpg01kjrdSfAHC5
+ R/soyl50ViyJAT6ySHzqCU/1JZGkDno+z1k9L46JKuj2YZLu9tExrQEltuIsUDIp/wEoDSeGO
+ Cx12B/GT1Ow0jrvNYIsZ9HE4ByH8VSdLo6AmJ0TTBnTScWGVQiopSFxKylQsvp8qooqS6LsL0
+ 7H4QAx/SFdBg2sQ12tr1qkn1qSTojked600SyqAjeg==
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+These Armadeus board files still use node name and unit address
+to reference parts from the imx28.dtsi . This causes a lot of
+redundancy. So use label references in order to make it easier
+to maintain.
 
-On Tue, 07 Mar 2023 14:01:39 +0100, Konrad Dybcio wrote:
-> The qcom, prefix was missed previously. Fix it.
-> 
-> Fixes: 0c0f65c6dd44 ("dt-bindings: msm: dsi-controller-main: Add compatible strings for every current SoC")
-> Acked-by: Rob Herring <robh@kernel.org>
-> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
-> ---
->  Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
+Signed-off-by: Stefan Wahren <stefan.wahren@i2se.com>
+Cc: <support@armadeus.com>
+---
+ arch/arm/boot/dts/imx28-apf28.dts    |  96 ++++-----
+ arch/arm/boot/dts/imx28-apf28dev.dts | 312 +++++++++++++--------------
+ 2 files changed, 196 insertions(+), 212 deletions(-)
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
-
-yamllint warnings/errors:
-
-dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/display/msm/qcom,sm6115-mdss.example.dtb: dsi@5e94000: compatible: 'oneOf' conditional failed, one must be fixed:
-	['qcom,dsi-ctrl-6g-qcm2290'] is too short
-	'qcom,dsi-ctrl-6g-qcm2290' is not one of ['qcom,apq8064-dsi-ctrl', 'qcom,msm8916-dsi-ctrl', 'qcom,msm8953-dsi-ctrl', 'qcom,msm8974-dsi-ctrl', 'qcom,msm8996-dsi-ctrl', 'qcom,msm8998-dsi-ctrl', 'qcom,qcm2290-dsi-ctrl', 'qcom,sc7180-dsi-ctrl', 'qcom,sc7280-dsi-ctrl', 'qcom,sdm660-dsi-ctrl', 'qcom,sdm845-dsi-ctrl', 'qcom,sm8150-dsi-ctrl', 'qcom,sm8250-dsi-ctrl', 'qcom,sm8350-dsi-ctrl', 'qcom,sm8450-dsi-ctrl', 'qcom,sm8550-dsi-ctrl']
-	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/display/msm/qcom,sm6115-mdss.example.dtb: dsi@5e94000: Unevaluated properties are not allowed ('compatible' was unexpected)
-	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/display/msm/qcom,qcm2290-mdss.example.dtb: dsi@5e94000: compatible: 'oneOf' conditional failed, one must be fixed:
-	['qcom,dsi-ctrl-6g-qcm2290'] is too short
-	'qcom,dsi-ctrl-6g-qcm2290' is not one of ['qcom,apq8064-dsi-ctrl', 'qcom,msm8916-dsi-ctrl', 'qcom,msm8953-dsi-ctrl', 'qcom,msm8974-dsi-ctrl', 'qcom,msm8996-dsi-ctrl', 'qcom,msm8998-dsi-ctrl', 'qcom,qcm2290-dsi-ctrl', 'qcom,sc7180-dsi-ctrl', 'qcom,sc7280-dsi-ctrl', 'qcom,sdm660-dsi-ctrl', 'qcom,sdm845-dsi-ctrl', 'qcom,sm8150-dsi-ctrl', 'qcom,sm8250-dsi-ctrl', 'qcom,sm8350-dsi-ctrl', 'qcom,sm8450-dsi-ctrl', 'qcom,sm8550-dsi-ctrl']
-	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/display/msm/qcom,qcm2290-mdss.example.dtb: dsi@5e94000: Unevaluated properties are not allowed ('compatible' was unexpected)
-	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20230307-topic-dsi_qcm-v3-1-8bd7e1add38a@linaro.org
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
+diff --git a/arch/arm/boot/dts/imx28-apf28.dts b/arch/arm/boot/dts/imx28-apf28.dts
+index 14a92fe59770..98672932e41b 100644
+--- a/arch/arm/boot/dts/imx28-apf28.dts
++++ b/arch/arm/boot/dts/imx28-apf28.dts
+@@ -14,67 +14,59 @@ memory@40000000 {
+ 		device_type = "memory";
+ 		reg = <0x40000000 0x08000000>;
+ 	};
++};
+ 
+-	apb@80000000 {
+-		apbh@80000000 {
+-			nand-controller@8000c000 {
+-				pinctrl-names = "default";
+-				pinctrl-0 = <&gpmi_pins_a &gpmi_status_cfg>;
+-				status = "okay";
+-
+-				partition@0 {
+-					label = "u-boot";
+-					reg = <0x0 0x300000>;
+-				};
++&duart {
++	pinctrl-names = "default";
++	pinctrl-0 = <&duart_pins_a>;
++	status = "okay";
++};
+ 
+-				partition@300000 {
+-					label = "env";
+-					reg = <0x300000 0x80000>;
+-				};
++&gpmi {
++	pinctrl-names = "default";
++	pinctrl-0 = <&gpmi_pins_a &gpmi_status_cfg>;
++	status = "okay";
+ 
+-				partition@380000 {
+-					label = "env2";
+-					reg = <0x380000 0x80000>;
+-				};
++	partition@0 {
++		label = "u-boot";
++		reg = <0x0 0x300000>;
++	};
+ 
+-				partition@400000 {
+-					label = "dtb";
+-					reg = <0x400000 0x80000>;
+-				};
++	partition@300000 {
++		label = "env";
++		reg = <0x300000 0x80000>;
++	};
+ 
+-				partition@480000 {
+-					label = "splash";
+-					reg = <0x480000 0x80000>;
+-				};
++	partition@380000 {
++		label = "env2";
++		reg = <0x380000 0x80000>;
++	};
+ 
+-				partition@500000 {
+-					label = "kernel";
+-					reg = <0x500000 0x800000>;
+-				};
++	partition@400000 {
++		label = "dtb";
++		reg = <0x400000 0x80000>;
++	};
+ 
+-				partition@d00000 {
+-					label = "rootfs";
+-					reg = <0xd00000 0xf300000>;
+-				};
+-			};
+-		};
++	partition@480000 {
++		label = "splash";
++		reg = <0x480000 0x80000>;
++	};
+ 
+-		apbx@80040000 {
+-			duart: serial@80074000 {
+-				pinctrl-names = "default";
+-				pinctrl-0 = <&duart_pins_a>;
+-				status = "okay";
+-			};
+-		};
++	partition@500000 {
++		label = "kernel";
++		reg = <0x500000 0x800000>;
+ 	};
+ 
+-	ahb@80080000 {
+-		mac0: ethernet@800f0000 {
+-			phy-mode = "rmii";
+-			pinctrl-names = "default";
+-			pinctrl-0 = <&mac0_pins_a>;
+-			phy-reset-gpios = <&gpio4 13 GPIO_ACTIVE_LOW>;
+-			status = "okay";
+-		};
++	partition@d00000 {
++		label = "rootfs";
++		reg = <0xd00000 0xf300000>;
+ 	};
+ };
++
++&mac0 {
++	phy-mode = "rmii";
++	pinctrl-names = "default";
++	pinctrl-0 = <&mac0_pins_a>;
++	phy-reset-gpios = <&gpio4 13 GPIO_ACTIVE_LOW>;
++	status = "okay";
++};
+diff --git a/arch/arm/boot/dts/imx28-apf28dev.dts b/arch/arm/boot/dts/imx28-apf28dev.dts
+index 1b253b47006c..4704b6141836 100644
+--- a/arch/arm/boot/dts/imx28-apf28dev.dts
++++ b/arch/arm/boot/dts/imx28-apf28dev.dts
+@@ -10,166 +10,6 @@ / {
+ 	model = "Armadeus Systems APF28Dev docking/development board";
+ 	compatible = "armadeus,imx28-apf28dev", "armadeus,imx28-apf28", "fsl,imx28";
+ 
+-	apb@80000000 {
+-		apbh@80000000 {
+-			ssp0: spi@80010000 {
+-				compatible = "fsl,imx28-mmc";
+-				pinctrl-names = "default";
+-				pinctrl-0 = <&mmc0_4bit_pins_a
+-					&mmc0_cd_cfg &mmc0_sck_cfg>;
+-				bus-width = <4>;
+-				status = "okay";
+-			};
+-
+-			ssp2: spi@80014000 {
+-				compatible = "fsl,imx28-spi";
+-				pinctrl-names = "default";
+-				pinctrl-0 = <&spi2_pins_a>;
+-				status = "okay";
+-			};
+-
+-			pinctrl@80018000 {
+-				pinctrl-names = "default";
+-				pinctrl-0 = <&hog_pins_apf28dev>;
+-
+-				hog_pins_apf28dev: hog@0 {
+-					reg = <0>;
+-					fsl,pinmux-ids = <
+-						MX28_PAD_LCD_D16__GPIO_1_16
+-						MX28_PAD_LCD_D17__GPIO_1_17
+-						MX28_PAD_LCD_D18__GPIO_1_18
+-						MX28_PAD_LCD_D19__GPIO_1_19
+-						MX28_PAD_LCD_D20__GPIO_1_20
+-						MX28_PAD_LCD_D21__GPIO_1_21
+-						MX28_PAD_LCD_D22__GPIO_1_22
+-						MX28_PAD_GPMI_CE1N__GPIO_0_17
+-					>;
+-					fsl,drive-strength = <MXS_DRIVE_4mA>;
+-					fsl,voltage = <MXS_VOLTAGE_HIGH>;
+-					fsl,pull-up = <MXS_PULL_DISABLE>;
+-				};
+-
+-				lcdif_pins_apf28dev: lcdif-apf28dev@0 {
+-					reg = <0>;
+-					fsl,pinmux-ids = <
+-						MX28_PAD_LCD_RD_E__LCD_VSYNC
+-						MX28_PAD_LCD_WR_RWN__LCD_HSYNC
+-						MX28_PAD_LCD_RS__LCD_DOTCLK
+-						MX28_PAD_LCD_CS__LCD_ENABLE
+-					>;
+-					fsl,drive-strength = <MXS_DRIVE_4mA>;
+-					fsl,voltage = <MXS_VOLTAGE_HIGH>;
+-					fsl,pull-up = <MXS_PULL_DISABLE>;
+-				};
+-
+-				usb0_otg_apf28dev: otg-apf28dev@0 {
+-					reg = <0>;
+-					fsl,pinmux-ids = <
+-						MX28_PAD_LCD_D23__GPIO_1_23
+-					>;
+-					fsl,drive-strength = <MXS_DRIVE_4mA>;
+-					fsl,voltage = <MXS_VOLTAGE_HIGH>;
+-					fsl,pull-up = <MXS_PULL_DISABLE>;
+-				};
+-			};
+-
+-			lcdif@80030000 {
+-				pinctrl-names = "default";
+-				pinctrl-0 = <&lcdif_16bit_pins_a
+-						&lcdif_pins_apf28dev>;
+-				display = <&display0>;
+-				status = "okay";
+-
+-				display0: display0 {
+-					bits-per-pixel = <16>;
+-					bus-width = <16>;
+-
+-					display-timings {
+-						native-mode = <&timing0>;
+-						timing0: timing0 {
+-							clock-frequency = <33000033>;
+-							hactive = <800>;
+-							vactive = <480>;
+-							hback-porch = <96>;
+-							hfront-porch = <96>;
+-							vback-porch = <20>;
+-							vfront-porch = <21>;
+-							hsync-len = <64>;
+-							vsync-len = <4>;
+-							hsync-active = <1>;
+-							vsync-active = <1>;
+-							de-active = <1>;
+-							pixelclk-active = <0>;
+-						};
+-					};
+-				};
+-			};
+-
+-			can0: can@80032000 {
+-				pinctrl-names = "default";
+-				pinctrl-0 = <&can0_pins_a>;
+-				xceiver-supply = <&reg_can0_vcc>;
+-				status = "okay";
+-			};
+-		};
+-
+-		apbx@80040000 {
+-			lradc@80050000 {
+-				fsl,lradc-touchscreen-wires = <4>;
+-				status = "okay";
+-			};
+-
+-			i2c0: i2c@80058000 {
+-				pinctrl-names = "default";
+-				pinctrl-0 = <&i2c0_pins_a>;
+-				status = "okay";
+-			};
+-
+-			pwm: pwm@80064000 {
+-				pinctrl-names = "default";
+-				pinctrl-0 = <&pwm3_pins_a &pwm4_pins_a>;
+-				status = "okay";
+-			};
+-
+-			auart0: serial@8006a000 {
+-				pinctrl-names = "default";
+-				pinctrl-0 = <&auart0_pins_a>;
+-				uart-has-rtscts;
+-				status = "okay";
+-			};
+-
+-			usbphy0: usbphy@8007c000 {
+-				status = "okay";
+-			};
+-
+-			usbphy1: usbphy@8007e000 {
+-				status = "okay";
+-			};
+-		};
+-	};
+-
+-	ahb@80080000 {
+-		usb0: usb@80080000 {
+-			pinctrl-names = "default";
+-			pinctrl-0 = <&usb0_otg_apf28dev
+-					&usb0_id_pins_b>;
+-			vbus-supply = <&reg_usb0_vbus>;
+-			status = "okay";
+-		};
+-
+-		usb1: usb@80090000 {
+-			status = "okay";
+-		};
+-
+-		mac1: ethernet@800f4000 {
+-			phy-mode = "rmii";
+-			pinctrl-names = "default";
+-			pinctrl-0 = <&mac1_pins_a>;
+-			phy-reset-gpios = <&gpio1 29 GPIO_ACTIVE_LOW>;
+-			status = "okay";
+-		};
+-	};
+-
+ 	regulators {
+ 		compatible = "simple-bus";
+ 		#address-cells = <1>;
+@@ -223,3 +63,155 @@ user-button {
+ 		};
+ 	};
+ };
++
++&auart0 {
++	pinctrl-names = "default";
++	pinctrl-0 = <&auart0_pins_a>;
++	uart-has-rtscts;
++	status = "okay";
++};
++
++&can0 {
++	pinctrl-names = "default";
++	pinctrl-0 = <&can0_pins_a>;
++	xceiver-supply = <&reg_can0_vcc>;
++	status = "okay";
++};
++
++&i2c0 {
++	pinctrl-names = "default";
++	pinctrl-0 = <&i2c0_pins_a>;
++	status = "okay";
++};
++
++&lcdif {
++	pinctrl-names = "default";
++	pinctrl-0 = <&lcdif_16bit_pins_a
++		     &lcdif_pins_apf28dev>;
++	display = <&display0>;
++	status = "okay";
++
++	display0: display0 {
++		bits-per-pixel = <16>;
++		bus-width = <16>;
++
++		display-timings {
++			native-mode = <&timing0>;
++			timing0: timing0 {
++				clock-frequency = <33000033>;
++				hactive = <800>;
++				vactive = <480>;
++				hback-porch = <96>;
++				hfront-porch = <96>;
++				vback-porch = <20>;
++				vfront-porch = <21>;
++				hsync-len = <64>;
++				vsync-len = <4>;
++				hsync-active = <1>;
++				vsync-active = <1>;
++				de-active = <1>;
++				pixelclk-active = <0>;
++			};
++		};
++	};
++};
++
++&lradc {
++	fsl,lradc-touchscreen-wires = <4>;
++	status = "okay";
++};
++
++&mac1 {
++	phy-mode = "rmii";
++	pinctrl-names = "default";
++	pinctrl-0 = <&mac1_pins_a>;
++	phy-reset-gpios = <&gpio1 29 GPIO_ACTIVE_LOW>;
++	status = "okay";
++};
++
++&pinctrl {
++	pinctrl-names = "default";
++	pinctrl-0 = <&hog_pins_apf28dev>;
++
++	hog_pins_apf28dev: hog@0 {
++		reg = <0>;
++		fsl,pinmux-ids = <
++			MX28_PAD_LCD_D16__GPIO_1_16
++			MX28_PAD_LCD_D17__GPIO_1_17
++			MX28_PAD_LCD_D18__GPIO_1_18
++			MX28_PAD_LCD_D19__GPIO_1_19
++			MX28_PAD_LCD_D20__GPIO_1_20
++			MX28_PAD_LCD_D21__GPIO_1_21
++			MX28_PAD_LCD_D22__GPIO_1_22
++			MX28_PAD_GPMI_CE1N__GPIO_0_17
++		>;
++		fsl,drive-strength = <MXS_DRIVE_4mA>;
++		fsl,voltage = <MXS_VOLTAGE_HIGH>;
++		fsl,pull-up = <MXS_PULL_DISABLE>;
++	};
++
++	lcdif_pins_apf28dev: lcdif-apf28dev@0 {
++		reg = <0>;
++		fsl,pinmux-ids = <
++			MX28_PAD_LCD_RD_E__LCD_VSYNC
++			MX28_PAD_LCD_WR_RWN__LCD_HSYNC
++			MX28_PAD_LCD_RS__LCD_DOTCLK
++			MX28_PAD_LCD_CS__LCD_ENABLE
++		>;
++		fsl,drive-strength = <MXS_DRIVE_4mA>;
++		fsl,voltage = <MXS_VOLTAGE_HIGH>;
++		fsl,pull-up = <MXS_PULL_DISABLE>;
++	};
++
++	usb0_otg_apf28dev: otg-apf28dev@0 {
++		reg = <0>;
++		fsl,pinmux-ids = <
++			MX28_PAD_LCD_D23__GPIO_1_23
++		>;
++		fsl,drive-strength = <MXS_DRIVE_4mA>;
++		fsl,voltage = <MXS_VOLTAGE_HIGH>;
++		fsl,pull-up = <MXS_PULL_DISABLE>;
++	};
++};
++
++&pwm {
++	pinctrl-names = "default";
++	pinctrl-0 = <&pwm3_pins_a &pwm4_pins_a>;
++	status = "okay";
++};
++
++&ssp0 {
++	compatible = "fsl,imx28-mmc";
++	pinctrl-names = "default";
++	pinctrl-0 = <&mmc0_4bit_pins_a
++		     &mmc0_cd_cfg &mmc0_sck_cfg>;
++	bus-width = <4>;
++	status = "okay";
++};
++
++&ssp2 {
++	compatible = "fsl,imx28-spi";
++	pinctrl-names = "default";
++	pinctrl-0 = <&spi2_pins_a>;
++	status = "okay";
++};
++
++&usb0 {
++	pinctrl-names = "default";
++	pinctrl-0 = <&usb0_otg_apf28dev
++		     &usb0_id_pins_b>;
++	vbus-supply = <&reg_usb0_vbus>;
++	status = "okay";
++};
++
++&usb1 {
++	status = "okay";
++};
++
++&usbphy0 {
++	status = "okay";
++};
++
++&usbphy1 {
++	status = "okay";
++};
+-- 
+2.34.1
 
