@@ -2,543 +2,815 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8826A6AE4F2
-	for <lists+devicetree@lfdr.de>; Tue,  7 Mar 2023 16:36:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9CCEE6AE50D
+	for <lists+devicetree@lfdr.de>; Tue,  7 Mar 2023 16:40:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231352AbjCGPg4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Mar 2023 10:36:56 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38194 "EHLO
+        id S229579AbjCGPkX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Mar 2023 10:40:23 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44736 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229849AbjCGPgq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Mar 2023 10:36:46 -0500
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 558981BADC;
-        Tue,  7 Mar 2023 07:36:35 -0800 (PST)
-Received: from jupiter.universe (dyndsl-091-248-189-073.ewe-ip-backbone.de [91.248.189.73])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits))
-        (No client certificate requested)
-        (Authenticated sender: sre)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id D0E346602FF2;
-        Tue,  7 Mar 2023 15:36:23 +0000 (GMT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1678203384;
-        bh=7gC0NSY34iAZF6bfxbC5gdEmQ+Af/fTPAVJFg33GcTw=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=S6X74IlgADJRhpNQXhPhuJRmz157aql65/spWQ8eckpMHjfx58rJJT6fOce/n8hgD
-         OmebYmB3Pq01H6PFsaTeChhrZ83rRQm2GvezkAEj9IhnxYj1R/a1sDjeZ3PkSx5WdQ
-         OLDPW2N4r5q4e/RtkguXSzt1kqOPAJC8G4zrEavMwVtBM7meY4xWwYSzjLVuMAEOJS
-         fhd3cKowJUK4MtpJ+zwarlXNSfjFfyzXviZuk/3ndDYXddvcqZO/XTK0R7f+3GSlRW
-         8RGkRFa6rhaUw26MERRjZvy11w6YQXrfFINcvg8gScpVSc6SCT2txukX4R4kIXaAcJ
-         hmbGPW618/iZg==
-Received: by jupiter.universe (Postfix, from userid 1000)
-        id 39CFC480126; Tue,  7 Mar 2023 16:36:19 +0100 (CET)
-From:   Sebastian Reichel <sebastian.reichel@collabora.com>
-To:     Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Lee Jones <lee@kernel.org>
-Cc:     Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Mark Brown <broonie@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Alessandro Zummo <a.zummo@towertech.it>,
-        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Sebastian Reichel <sebastian.reichel@collabora.com>,
-        kernel@collabora.com, shengfei Xu <xsf@rock-chips.com>,
-        Matti Vaittinen <mazziesaccount@gmail.com>
-Subject: [PATCHv7 11/11] regulator: rk808: add rk806 support
-Date:   Tue,  7 Mar 2023 16:36:17 +0100
-Message-Id: <20230307153617.643260-12-sebastian.reichel@collabora.com>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20230307153617.643260-1-sebastian.reichel@collabora.com>
-References: <20230307153617.643260-1-sebastian.reichel@collabora.com>
+        with ESMTP id S231442AbjCGPkD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Mar 2023 10:40:03 -0500
+Received: from mail-ed1-x529.google.com (mail-ed1-x529.google.com [IPv6:2a00:1450:4864:20::529])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4FE2F83889
+        for <devicetree@vger.kernel.org>; Tue,  7 Mar 2023 07:39:20 -0800 (PST)
+Received: by mail-ed1-x529.google.com with SMTP id s11so53932964edy.8
+        for <devicetree@vger.kernel.org>; Tue, 07 Mar 2023 07:39:20 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1678203560;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=NBP4yZy0AVeC0MnD40cQqAFe/SHBra0LCgpXTLIauoo=;
+        b=trVxxTQOYz0Su1ie3bNBkqYpGwqjWhQup5lfaC+uL+kNNLkqAoe/KeoPJFPCGyPIfd
+         jX/zWg+L607/6JPCXz1CQVGTdn9fKQLAtHibGn3kJ0YztKcQM6Ip8C0rwx2IjY1q7Usv
+         s6Y0uKaFjsLsJEl/ON1yT9Blsx6DUZd6w3N7MUosPdD1fUwdNtvkGomlDRbf1QrRXho6
+         zPAB/ABqBcVJhXLvfyixBVRdaF9PoRuarLMXDr0AYcYKd2Q2Ut+Glc4KUEgnT+xYkxAR
+         eK5ph8+8dXw2wM5aNE0KaqMTX60pUYrZXHGKRt0p/ktrX4NKKNRnnMBRISz8DMQKmLQs
+         JLMQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1678203560;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=NBP4yZy0AVeC0MnD40cQqAFe/SHBra0LCgpXTLIauoo=;
+        b=oH9ncdl4K5mjFRJEeJJjVrCCC7+FQRwRCZJ2Di6trLN9eu/r5sr7/mgB8+4hnfGmzm
+         Afz8f0UAQ1YiJUNedNIvfjdVJbHR0SM/fJc9bxipLGY3ujDDsx0ZP/014mdxbIWcUOsM
+         rfQHzjAKOxsGKMLhJ0s5DJPb/UIyRETS3lf83Tr7BDXd8izrlgfy2QNcnkOVn/o4BTwz
+         n3KHjU+MkpT3BWSYDI1407V+YjoOn/LGrS1F3STXXqCQwx8DgW8OYxIt4uyeKxPBU21T
+         IfintHX4md2pq057loDjUY+EB60lcHui2rGPA7cstKGcaFE941znq8WfpXGJ1qtS7eX5
+         Vuqw==
+X-Gm-Message-State: AO0yUKWXtq7HNw/fZAUwCkvnz4rgRZmd6Ovu75gOjfaEju9QlESS+Wbc
+        63hdM6tRnE0C6HMLcSWW3Aqzdw==
+X-Google-Smtp-Source: AK7set+xTuAJzQc0uULFQeqTwUTCoMklSzXAufpbBVloRdxCMVGokbPwteSaL1f1+7dcXUf7gQLZDA==
+X-Received: by 2002:a17:907:9713:b0:861:7a02:1046 with SMTP id jg19-20020a170907971300b008617a021046mr20673191ejc.37.1678203559630;
+        Tue, 07 Mar 2023 07:39:19 -0800 (PST)
+Received: from ?IPV6:2a02:810d:15c0:828:a60f:e604:c252:1f3d? ([2a02:810d:15c0:828:a60f:e604:c252:1f3d])
+        by smtp.gmail.com with ESMTPSA id q10-20020a50c34a000000b004bda465da32sm6965274edb.1.2023.03.07.07.39.17
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 07 Mar 2023 07:39:19 -0800 (PST)
+Message-ID: <059bec3f-0c77-fc16-83a3-d78cf82d543f@linaro.org>
+Date:   Tue, 7 Mar 2023 16:39:17 +0100
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.8.0
+Subject: Re: [PATCH 08/11] remoteproc: qcom: Add Hexagon based multipd rproc
+ driver
+Content-Language: en-US
+To:     Manikanta Mylavarapu <quic_mmanikan@quicinc.com>,
+        agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        jassisinghbrar@gmail.com, mathieu.poirier@linaro.org,
+        mturquette@baylibre.com, sboyd@kernel.org, quic_gurus@quicinc.com,
+        loic.poulain@linaro.org, quic_eberman@quicinc.com,
+        robimarko@gmail.com, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-remoteproc@vger.kernel.org, linux-clk@vger.kernel.org
+Cc:     quic_srichara@quicinc.com, quic_gokulsri@quicinc.com,
+        quic_sjaganat@quicinc.com, quic_kathirav@quicinc.com,
+        quic_arajkuma@quicinc.com, quic_anusha@quicinc.com,
+        quic_poovendh@quicinc.com
+References: <1678164097-13247-1-git-send-email-quic_mmanikan@quicinc.com>
+ <1678164097-13247-9-git-send-email-quic_mmanikan@quicinc.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <1678164097-13247-9-git-send-email-quic_mmanikan@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add rk806 support to the existing rk808 regulator
-driver.
+On 07/03/2023 05:41, Manikanta Mylavarapu wrote:
+> APSS brings Q6 out of reset and then Q6 brings
+> WCSS block (wifi radio's) out of reset.
+> 
+> 				   ---------------
+> 			      -->  |WiFi 2G radio|
+> 			      |	   --------------
+> 			      |
+> --------	-------	      |
+> | APSS | --->   |QDSP6|  -----|
+> ---------	-------       |
+>                               |
+>       			      |
+> 			      |   --------------
+> 			      --> |WiFi 5G radio|
+> 				  --------------
+> 
+> Problem here is if any radio crashes, subsequently other
+> radio also should crash because Q6 crashed. Let's say
+> 2G radio crashed, Q6 should pass this info to APSS. Only
+> Q6 processor interrupts registered with APSS. Obviously
+> Q6 should crash and raise fatal interrupt to APSS. Due
+> to this 5G radio also crashed. But no issue in 5G radio,
+> because of 2G radio crash 5G radio also impacted.
+> 
 
-This has been implemented using shengfei Xu's rk806
-specific driver from the vendor tree as reference.
 
-Co-Developed-by: shengfei Xu <xsf@rock-chips.com>
-Signed-off-by: shengfei Xu <xsf@rock-chips.com>
-Reviewed-by: Matti Vaittinen <mazziesaccount@gmail.com>
-Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
----
- drivers/regulator/rk808-regulator.c | 383 ++++++++++++++++++++++++++++
- 1 file changed, 383 insertions(+)
+Please wrap commit message according to Linux coding style / submission
+process (neither too early nor over the limit):
+https://elixir.bootlin.com/linux/v5.18-rc4/source/Documentation/process/submitting-patches.rst#L586
 
-diff --git a/drivers/regulator/rk808-regulator.c b/drivers/regulator/rk808-regulator.c
-index fa9fc1aa1ae3..3d534d411104 100644
---- a/drivers/regulator/rk808-regulator.c
-+++ b/drivers/regulator/rk808-regulator.c
-@@ -3,9 +3,11 @@
-  * Regulator driver for Rockchip RK805/RK808/RK818
-  *
-  * Copyright (c) 2014, Fuzhou Rockchip Electronics Co., Ltd
-+ * Copyright (c) 2021 Rockchip Electronics Co., Ltd.
-  *
-  * Author: Chris Zhong <zyw@rock-chips.com>
-  * Author: Zhang Qing <zhangqing@rock-chips.com>
-+ * Author: Xu Shengfei <xsf@rock-chips.com>
-  *
-  * Copyright (C) 2016 PHYTEC Messtechnik GmbH
-  *
-@@ -39,6 +41,13 @@
- #define RK818_LDO3_ON_VSEL_MASK		0xf
- #define RK818_BOOST_ON_VSEL_MASK	0xe0
- 
-+#define RK806_DCDC_SLP_REG_OFFSET	0x0A
-+#define RK806_NLDO_SLP_REG_OFFSET	0x05
-+#define RK806_PLDO_SLP_REG_OFFSET	0x06
-+
-+#define RK806_BUCK_SEL_CNT		0xff
-+#define RK806_LDO_SEL_CNT		0xff
-+
- /* Ramp rate definitions for buck1 / buck2 only */
- #define RK808_RAMP_RATE_OFFSET		3
- #define RK808_RAMP_RATE_MASK		(3 << RK808_RAMP_RATE_OFFSET)
-@@ -117,6 +126,34 @@
- 	RK8XX_DESC_COM(_id, _match, _supply, _min, _max, _step, _vreg,	\
- 	_vmask, _ereg, _emask, 0, 0, _etime, &rk805_reg_ops)
- 
-+#define RK806_REGULATOR(_name, _supply_name, _id, _ops,\
-+			_n_voltages, _vr, _er, _lr, ctrl_bit,\
-+			_rr, _rm, _rt)\
-+[_id] = {\
-+		.name = _name,\
-+		.supply_name = _supply_name,\
-+		.of_match = of_match_ptr(_name),\
-+		.regulators_node = of_match_ptr("regulators"),\
-+		.id = _id,\
-+		.ops = &_ops,\
-+		.type = REGULATOR_VOLTAGE,\
-+		.n_voltages = _n_voltages,\
-+		.linear_ranges = _lr,\
-+		.n_linear_ranges = ARRAY_SIZE(_lr),\
-+		.vsel_reg = _vr,\
-+		.vsel_mask = 0xff,\
-+		.enable_reg = _er,\
-+		.enable_mask = ENABLE_MASK(ctrl_bit),\
-+		.enable_val = ENABLE_MASK(ctrl_bit),\
-+		.disable_val = DISABLE_VAL(ctrl_bit),\
-+		.of_map_mode = rk8xx_regulator_of_map_mode,\
-+		.ramp_reg = _rr,\
-+		.ramp_mask = _rm,\
-+		.ramp_delay_table = _rt, \
-+		.n_ramp_values = ARRAY_SIZE(_rt), \
-+		.owner = THIS_MODULE,\
-+	}
-+
- #define RK8XX_DESC(_id, _match, _supply, _min, _max, _step, _vreg,	\
- 	_vmask, _ereg, _emask, _etime)					\
- 	RK8XX_DESC_COM(_id, _match, _supply, _min, _max, _step, _vreg,	\
-@@ -153,6 +190,17 @@
- 	RKXX_DESC_SWITCH_COM(_id, _match, _supply, _ereg, _emask,	\
- 	0, 0, &rk808_switch_ops)
- 
-+struct rk8xx_register_bit {
-+	u8 reg;
-+	u8 bit;
-+};
-+
-+#define RK8XX_REG_BIT(_reg, _bit)					\
-+	{								\
-+		.reg = _reg,						\
-+		.bit = BIT(_bit),						\
-+	}
-+
- struct rk808_regulator_data {
- 	struct gpio_desc *dvs_gpio[2];
- };
-@@ -216,6 +264,133 @@ static const unsigned int rk817_buck1_4_ramp_table[] = {
- 	3000, 6300, 12500, 25000
- };
- 
-+static int rk806_set_mode_dcdc(struct regulator_dev *rdev, unsigned int mode)
-+{
-+	int rid = rdev_get_id(rdev);
-+	int ctr_bit, reg;
-+
-+	reg = RK806_POWER_FPWM_EN0 + rid / 8;
-+	ctr_bit = rid % 8;
-+
-+	switch (mode) {
-+	case REGULATOR_MODE_FAST:
-+		return regmap_update_bits(rdev->regmap, reg,
-+					  PWM_MODE_MSK << ctr_bit,
-+					  FPWM_MODE << ctr_bit);
-+	case REGULATOR_MODE_NORMAL:
-+		return regmap_update_bits(rdev->regmap, reg,
-+					  PWM_MODE_MSK << ctr_bit,
-+					  AUTO_PWM_MODE << ctr_bit);
-+	default:
-+		dev_err(rdev_get_dev(rdev), "mode unsupported: %u\n", mode);
-+		return -EINVAL;
-+	}
-+
-+	return 0;
-+}
-+
-+static unsigned int rk806_get_mode_dcdc(struct regulator_dev *rdev)
-+{
-+	int rid = rdev_get_id(rdev);
-+	int ctr_bit, reg;
-+	unsigned int val;
-+	int err;
-+
-+	reg = RK806_POWER_FPWM_EN0 + rid / 8;
-+	ctr_bit = rid % 8;
-+
-+	err = regmap_read(rdev->regmap, reg, &val);
-+	if (err)
-+		return err;
-+
-+	if ((val >> ctr_bit) & FPWM_MODE)
-+		return REGULATOR_MODE_FAST;
-+	else
-+		return REGULATOR_MODE_NORMAL;
-+}
-+
-+static const struct rk8xx_register_bit rk806_dcdc_rate2[] = {
-+	RK8XX_REG_BIT(0xEB, 0),
-+	RK8XX_REG_BIT(0xEB, 1),
-+	RK8XX_REG_BIT(0xEB, 2),
-+	RK8XX_REG_BIT(0xEB, 3),
-+	RK8XX_REG_BIT(0xEB, 4),
-+	RK8XX_REG_BIT(0xEB, 5),
-+	RK8XX_REG_BIT(0xEB, 6),
-+	RK8XX_REG_BIT(0xEB, 7),
-+	RK8XX_REG_BIT(0xEA, 0),
-+	RK8XX_REG_BIT(0xEA, 1),
-+};
-+
-+static const unsigned int rk806_ramp_delay_table_dcdc[] = {
-+	50000, 25000, 12500, 6250, 3125, 1560, 961, 390
-+};
-+
-+static int rk806_set_ramp_delay_dcdc(struct regulator_dev *rdev, int ramp_delay)
-+{
-+	int rid = rdev_get_id(rdev);
-+	int regval, ramp_value, ret;
-+
-+	ret = regulator_find_closest_bigger(ramp_delay, rdev->desc->ramp_delay_table,
-+					    rdev->desc->n_ramp_values, &ramp_value);
-+	if (ret) {
-+		dev_warn(rdev_get_dev(rdev),
-+			 "Can't set ramp-delay %u, setting %u\n", ramp_delay,
-+			 rdev->desc->ramp_delay_table[ramp_value]);
-+	}
-+
-+	regval = ramp_value << (ffs(rdev->desc->ramp_mask) - 1);
-+
-+	ret = regmap_update_bits(rdev->regmap, rdev->desc->ramp_reg,
-+				 rdev->desc->ramp_mask, regval);
-+	if (ret)
-+		return ret;
-+
-+	/*
-+	 * The above is effectively a copy of regulator_set_ramp_delay_regmap(),
-+	 * but that only stores the lower 2 bits for rk806 DCDC ramp. The MSB must
-+	 * be stored in a separate register, so this open codes the implementation
-+	 * to have access to the ramp_value.
-+	 */
-+
-+	regval = (ramp_value >> 2) & 0x1 ? rk806_dcdc_rate2[rid].bit : 0;
-+	return regmap_update_bits(rdev->regmap, rk806_dcdc_rate2[rid].reg,
-+				  rk806_dcdc_rate2[rid].bit,
-+				  regval);
-+}
-+
-+static const unsigned int rk806_ramp_delay_table_ldo[] = {
-+	100000, 50000, 25000, 12500, 6280, 3120, 1900, 780
-+};
-+
-+static int rk806_set_suspend_voltage_range(struct regulator_dev *rdev, int reg_offset, int uv)
-+{
-+	int sel = regulator_map_voltage_linear_range(rdev, uv, uv);
-+	unsigned int reg;
-+
-+	if (sel < 0)
-+		return -EINVAL;
-+
-+	reg = rdev->desc->vsel_reg + reg_offset;
-+
-+	return regmap_update_bits(rdev->regmap, reg, rdev->desc->vsel_mask, sel);
-+}
-+
-+static int rk806_set_suspend_voltage_range_dcdc(struct regulator_dev *rdev, int uv)
-+{
-+	return rk806_set_suspend_voltage_range(rdev, RK806_DCDC_SLP_REG_OFFSET, uv);
-+}
-+
-+static int rk806_set_suspend_voltage_range_nldo(struct regulator_dev *rdev, int uv)
-+{
-+	return rk806_set_suspend_voltage_range(rdev, RK806_NLDO_SLP_REG_OFFSET, uv);
-+}
-+
-+static int rk806_set_suspend_voltage_range_pldo(struct regulator_dev *rdev, int uv)
-+{
-+	return rk806_set_suspend_voltage_range(rdev, RK806_PLDO_SLP_REG_OFFSET, uv);
-+}
-+
- static int rk808_buck1_2_get_voltage_sel_regmap(struct regulator_dev *rdev)
- {
- 	struct rk808_regulator_data *pdata = rdev_get_drvdata(rdev);
-@@ -393,6 +568,45 @@ static int rk805_set_suspend_disable(struct regulator_dev *rdev)
- 				  0);
- }
- 
-+static const struct rk8xx_register_bit rk806_suspend_bits[] = {
-+	RK8XX_REG_BIT(RK806_POWER_SLP_EN0, 0),
-+	RK8XX_REG_BIT(RK806_POWER_SLP_EN0, 1),
-+	RK8XX_REG_BIT(RK806_POWER_SLP_EN0, 2),
-+	RK8XX_REG_BIT(RK806_POWER_SLP_EN0, 3),
-+	RK8XX_REG_BIT(RK806_POWER_SLP_EN0, 4),
-+	RK8XX_REG_BIT(RK806_POWER_SLP_EN0, 5),
-+	RK8XX_REG_BIT(RK806_POWER_SLP_EN0, 6),
-+	RK8XX_REG_BIT(RK806_POWER_SLP_EN0, 7),
-+	RK8XX_REG_BIT(RK806_POWER_SLP_EN1, 6),
-+	RK8XX_REG_BIT(RK806_POWER_SLP_EN1, 7),
-+	RK8XX_REG_BIT(RK806_POWER_SLP_EN1, 0),
-+	RK8XX_REG_BIT(RK806_POWER_SLP_EN1, 1),
-+	RK8XX_REG_BIT(RK806_POWER_SLP_EN1, 2),
-+	RK8XX_REG_BIT(RK806_POWER_SLP_EN1, 3),
-+	RK8XX_REG_BIT(RK806_POWER_SLP_EN1, 4),
-+	RK8XX_REG_BIT(RK806_POWER_SLP_EN2, 1),
-+	RK8XX_REG_BIT(RK806_POWER_SLP_EN2, 2),
-+	RK8XX_REG_BIT(RK806_POWER_SLP_EN2, 3),
-+	RK8XX_REG_BIT(RK806_POWER_SLP_EN2, 4),
-+	RK8XX_REG_BIT(RK806_POWER_SLP_EN2, 5),
-+	RK8XX_REG_BIT(RK806_POWER_SLP_EN2, 0),
-+};
-+
-+static int rk806_set_suspend_enable(struct regulator_dev *rdev)
-+{
-+	int rid = rdev_get_id(rdev);
-+	return regmap_update_bits(rdev->regmap, rk806_suspend_bits[rid].reg,
-+				  rk806_suspend_bits[rid].bit,
-+				  rk806_suspend_bits[rid].bit);
-+}
-+
-+static int rk806_set_suspend_disable(struct regulator_dev *rdev)
-+{
-+	int rid = rdev_get_id(rdev);
-+	return regmap_update_bits(rdev->regmap, rk806_suspend_bits[rid].reg,
-+				  rk806_suspend_bits[rid].bit, 0);
-+}
-+
- static int rk808_set_suspend_enable(struct regulator_dev *rdev)
- {
- 	unsigned int reg;
-@@ -561,6 +775,64 @@ static const struct regulator_ops rk805_switch_ops = {
- 	.set_suspend_disable    = rk805_set_suspend_disable,
- };
- 
-+static const struct regulator_ops rk806_ops_dcdc = {
-+	.list_voltage		= regulator_list_voltage_linear_range,
-+	.map_voltage		= regulator_map_voltage_linear_range,
-+	.get_voltage_sel	= regulator_get_voltage_sel_regmap,
-+	.set_voltage_sel        = regulator_set_voltage_sel_regmap,
-+	.set_voltage_time_sel	= regulator_set_voltage_time_sel,
-+	.set_mode		= rk806_set_mode_dcdc,
-+	.get_mode		= rk806_get_mode_dcdc,
-+
-+	.enable			= regulator_enable_regmap,
-+	.disable		= regulator_disable_regmap,
-+	.is_enabled		= rk8xx_is_enabled_wmsk_regmap,
-+
-+	.set_suspend_mode	= rk806_set_mode_dcdc,
-+	.set_ramp_delay		= rk806_set_ramp_delay_dcdc,
-+
-+	.set_suspend_voltage	= rk806_set_suspend_voltage_range_dcdc,
-+	.set_suspend_enable	= rk806_set_suspend_enable,
-+	.set_suspend_disable	= rk806_set_suspend_disable,
-+};
-+
-+static const struct regulator_ops rk806_ops_nldo = {
-+	.list_voltage		= regulator_list_voltage_linear_range,
-+	.map_voltage		= regulator_map_voltage_linear_range,
-+	.get_voltage_sel	= regulator_get_voltage_sel_regmap,
-+	.set_voltage_sel        = regulator_set_voltage_sel_regmap,
-+	.set_voltage_time_sel	= regulator_set_voltage_time_sel,
-+
-+	.enable			= regulator_enable_regmap,
-+	.disable		= regulator_disable_regmap,
-+	.is_enabled		= regulator_is_enabled_regmap,
-+
-+	.set_ramp_delay		= regulator_set_ramp_delay_regmap,
-+
-+	.set_suspend_voltage	= rk806_set_suspend_voltage_range_nldo,
-+	.set_suspend_enable	= rk806_set_suspend_enable,
-+	.set_suspend_disable	= rk806_set_suspend_disable,
-+};
-+
-+static const struct regulator_ops rk806_ops_pldo = {
-+	.list_voltage		= regulator_list_voltage_linear_range,
-+	.map_voltage		= regulator_map_voltage_linear_range,
-+
-+	.get_voltage_sel	= regulator_get_voltage_sel_regmap,
-+	.set_voltage_sel        = regulator_set_voltage_sel_regmap,
-+	.set_voltage_time_sel	= regulator_set_voltage_time_sel,
-+
-+	.enable			= regulator_enable_regmap,
-+	.disable		= regulator_disable_regmap,
-+	.is_enabled		= regulator_is_enabled_regmap,
-+
-+	.set_ramp_delay		= regulator_set_ramp_delay_regmap,
-+
-+	.set_suspend_voltage	= rk806_set_suspend_voltage_range_pldo,
-+	.set_suspend_enable	= rk806_set_suspend_enable,
-+	.set_suspend_disable	= rk806_set_suspend_disable,
-+};
-+
- static const struct regulator_ops rk808_buck1_2_ops = {
- 	.list_voltage		= regulator_list_voltage_linear,
- 	.map_voltage		= regulator_map_voltage_linear,
-@@ -743,6 +1015,112 @@ static const struct regulator_desc rk805_reg[] = {
- 		BIT(2), 400),
- };
- 
-+static const struct linear_range rk806_buck_voltage_ranges[] = {
-+	REGULATOR_LINEAR_RANGE(500000, 0, 160, 6250), /* 500mV ~ 1500mV */
-+	REGULATOR_LINEAR_RANGE(1500000, 161, 237, 25000), /* 1500mV ~ 3400mV */
-+	REGULATOR_LINEAR_RANGE(3400000, 238, 255, 0),
-+};
-+
-+static const struct linear_range rk806_ldo_voltage_ranges[] = {
-+	REGULATOR_LINEAR_RANGE(500000, 0, 232, 12500), /* 500mV ~ 3400mV */
-+	REGULATOR_LINEAR_RANGE(3400000, 233, 255, 0), /* 500mV ~ 3400mV */
-+};
-+
-+static const struct regulator_desc rk806_reg[] = {
-+	RK806_REGULATOR("dcdc-reg1", "vcc1", RK806_ID_DCDC1, rk806_ops_dcdc,
-+			RK806_BUCK_SEL_CNT, RK806_BUCK1_ON_VSEL,
-+			RK806_POWER_EN0, rk806_buck_voltage_ranges, 0,
-+			RK806_BUCK1_CONFIG, 0xc0, rk806_ramp_delay_table_dcdc),
-+	RK806_REGULATOR("dcdc-reg2", "vcc2", RK806_ID_DCDC2, rk806_ops_dcdc,
-+			RK806_BUCK_SEL_CNT, RK806_BUCK2_ON_VSEL,
-+			RK806_POWER_EN0, rk806_buck_voltage_ranges, 1,
-+			RK806_BUCK2_CONFIG, 0xc0, rk806_ramp_delay_table_dcdc),
-+	RK806_REGULATOR("dcdc-reg3", "vcc3", RK806_ID_DCDC3, rk806_ops_dcdc,
-+			RK806_BUCK_SEL_CNT, RK806_BUCK3_ON_VSEL,
-+			RK806_POWER_EN0, rk806_buck_voltage_ranges, 2,
-+			RK806_BUCK3_CONFIG, 0xc0, rk806_ramp_delay_table_dcdc),
-+	RK806_REGULATOR("dcdc-reg4", "vcc4", RK806_ID_DCDC4, rk806_ops_dcdc,
-+			RK806_BUCK_SEL_CNT, RK806_BUCK4_ON_VSEL,
-+			RK806_POWER_EN0, rk806_buck_voltage_ranges, 3,
-+			RK806_BUCK4_CONFIG, 0xc0, rk806_ramp_delay_table_dcdc),
-+
-+	RK806_REGULATOR("dcdc-reg5", "vcc5", RK806_ID_DCDC5, rk806_ops_dcdc,
-+			RK806_BUCK_SEL_CNT, RK806_BUCK5_ON_VSEL,
-+			RK806_POWER_EN1, rk806_buck_voltage_ranges, 0,
-+			RK806_BUCK5_CONFIG, 0xc0, rk806_ramp_delay_table_dcdc),
-+	RK806_REGULATOR("dcdc-reg6", "vcc6", RK806_ID_DCDC6, rk806_ops_dcdc,
-+			RK806_BUCK_SEL_CNT, RK806_BUCK6_ON_VSEL,
-+			RK806_POWER_EN1, rk806_buck_voltage_ranges, 1,
-+			RK806_BUCK6_CONFIG, 0xc0, rk806_ramp_delay_table_dcdc),
-+	RK806_REGULATOR("dcdc-reg7", "vcc7", RK806_ID_DCDC7, rk806_ops_dcdc,
-+			RK806_BUCK_SEL_CNT, RK806_BUCK7_ON_VSEL,
-+			RK806_POWER_EN1, rk806_buck_voltage_ranges, 2,
-+			RK806_BUCK7_CONFIG, 0xc0, rk806_ramp_delay_table_dcdc),
-+	RK806_REGULATOR("dcdc-reg8", "vcc8", RK806_ID_DCDC8, rk806_ops_dcdc,
-+			RK806_BUCK_SEL_CNT, RK806_BUCK8_ON_VSEL,
-+			RK806_POWER_EN1, rk806_buck_voltage_ranges, 3,
-+			RK806_BUCK8_CONFIG, 0xc0, rk806_ramp_delay_table_dcdc),
-+
-+	RK806_REGULATOR("dcdc-reg9", "vcc9", RK806_ID_DCDC9, rk806_ops_dcdc,
-+			RK806_BUCK_SEL_CNT, RK806_BUCK9_ON_VSEL,
-+			RK806_POWER_EN2, rk806_buck_voltage_ranges, 0,
-+			RK806_BUCK9_CONFIG, 0xc0, rk806_ramp_delay_table_dcdc),
-+	RK806_REGULATOR("dcdc-reg10", "vcc10", RK806_ID_DCDC10, rk806_ops_dcdc,
-+			RK806_BUCK_SEL_CNT, RK806_BUCK10_ON_VSEL,
-+			RK806_POWER_EN2, rk806_buck_voltage_ranges, 1,
-+			RK806_BUCK10_CONFIG, 0xc0, rk806_ramp_delay_table_dcdc),
-+
-+	RK806_REGULATOR("nldo-reg1", "vcc13", RK806_ID_NLDO1, rk806_ops_nldo,
-+			RK806_LDO_SEL_CNT, RK806_NLDO1_ON_VSEL,
-+			RK806_POWER_EN3, rk806_ldo_voltage_ranges, 0,
-+			0xEA, 0x38, rk806_ramp_delay_table_ldo),
-+	RK806_REGULATOR("nldo-reg2", "vcc13", RK806_ID_NLDO2, rk806_ops_nldo,
-+			RK806_LDO_SEL_CNT, RK806_NLDO2_ON_VSEL,
-+			RK806_POWER_EN3, rk806_ldo_voltage_ranges, 1,
-+			0xEA, 0x38, rk806_ramp_delay_table_ldo),
-+	RK806_REGULATOR("nldo-reg3", "vcc13", RK806_ID_NLDO3, rk806_ops_nldo,
-+			RK806_LDO_SEL_CNT, RK806_NLDO3_ON_VSEL,
-+			RK806_POWER_EN3, rk806_ldo_voltage_ranges, 2,
-+			0xEA, 0x38, rk806_ramp_delay_table_ldo),
-+	RK806_REGULATOR("nldo-reg4", "vcc14", RK806_ID_NLDO4, rk806_ops_nldo,
-+			RK806_LDO_SEL_CNT, RK806_NLDO4_ON_VSEL,
-+			RK806_POWER_EN3, rk806_ldo_voltage_ranges, 3,
-+			0xEA, 0x38, rk806_ramp_delay_table_ldo),
-+
-+	RK806_REGULATOR("nldo-reg5", "vcc14", RK806_ID_NLDO5, rk806_ops_nldo,
-+			RK806_LDO_SEL_CNT, RK806_NLDO5_ON_VSEL,
-+			RK806_POWER_EN5, rk806_ldo_voltage_ranges, 2,
-+			0xEA, 0x38, rk806_ramp_delay_table_ldo),
-+
-+	RK806_REGULATOR("pldo-reg1", "vcc11", RK806_ID_PLDO1, rk806_ops_pldo,
-+			RK806_LDO_SEL_CNT, RK806_PLDO1_ON_VSEL,
-+			RK806_POWER_EN4, rk806_ldo_voltage_ranges, 1,
-+			0xEA, 0x38, rk806_ramp_delay_table_ldo),
-+	RK806_REGULATOR("pldo-reg2", "vcc11", RK806_ID_PLDO2, rk806_ops_pldo,
-+			RK806_LDO_SEL_CNT, RK806_PLDO2_ON_VSEL,
-+			RK806_POWER_EN4, rk806_ldo_voltage_ranges, 2,
-+			0xEA, 0x38, rk806_ramp_delay_table_ldo),
-+	RK806_REGULATOR("pldo-reg3", "vcc11", RK806_ID_PLDO3, rk806_ops_pldo,
-+			RK806_LDO_SEL_CNT, RK806_PLDO3_ON_VSEL,
-+			RK806_POWER_EN4, rk806_ldo_voltage_ranges, 3,
-+			0xEA, 0x38, rk806_ramp_delay_table_ldo),
-+
-+	RK806_REGULATOR("pldo-reg4", "vcc12", RK806_ID_PLDO4, rk806_ops_pldo,
-+			RK806_LDO_SEL_CNT, RK806_PLDO4_ON_VSEL,
-+			RK806_POWER_EN5, rk806_ldo_voltage_ranges, 0,
-+			0xEA, 0x38, rk806_ramp_delay_table_ldo),
-+	RK806_REGULATOR("pldo-reg5", "vcc12", RK806_ID_PLDO5, rk806_ops_pldo,
-+			RK806_LDO_SEL_CNT, RK806_PLDO5_ON_VSEL,
-+			RK806_POWER_EN5, rk806_ldo_voltage_ranges, 1,
-+			0xEA, 0x38, rk806_ramp_delay_table_ldo),
-+
-+	RK806_REGULATOR("pldo-reg6", "vcca", RK806_ID_PLDO6, rk806_ops_pldo,
-+			RK806_LDO_SEL_CNT, RK806_PLDO6_ON_VSEL,
-+			RK806_POWER_EN4, rk806_ldo_voltage_ranges, 0,
-+			0xEA, 0x38, rk806_ramp_delay_table_ldo),
-+};
-+
-+
- static const struct regulator_desc rk808_reg[] = {
- 	{
- 		.name = "DCDC_REG1",
-@@ -1312,6 +1690,10 @@ static int rk808_regulator_probe(struct platform_device *pdev)
- 		regulators = rk805_reg;
- 		nregulators = RK805_NUM_REGULATORS;
- 		break;
-+	case RK806_ID:
-+		regulators = rk806_reg;
-+		nregulators = ARRAY_SIZE(rk806_reg);
-+		break;
- 	case RK808_ID:
- 		regulators = rk808_reg;
- 		nregulators = RK808_NUM_REGULATORS;
-@@ -1365,5 +1747,6 @@ MODULE_AUTHOR("Tony xie <tony.xie@rock-chips.com>");
- MODULE_AUTHOR("Chris Zhong <zyw@rock-chips.com>");
- MODULE_AUTHOR("Zhang Qing <zhangqing@rock-chips.com>");
- MODULE_AUTHOR("Wadim Egorov <w.egorov@phytec.de>");
-+MODULE_AUTHOR("Xu Shengfei <xsf@rock-chips.com>");
- MODULE_LICENSE("GPL");
- MODULE_ALIAS("platform:rk808-regulator");
--- 
-2.39.2
+> In multi pd model, this problem is resolved. Here WCSS
+> functionality (WiFi radio's) moved out from Q6 root pd
+> to a separate user pd. Due to this, radio's independently
+> pass their status info to APPS with out crashing Q6. So
+> other radio's won't be impacted.
+> 
+> 						---------
+> 					    	|WiFi    |
+> 					    --> |2G radio|
+> 					    | 	---------
+> ------	Start Q6     		-------     |
+> |    |	------------------>     |     |     |
+> |    |  Start WCSS PD1 (2G)   	|     |	    |
+> |APSS|	----------------------->|QDSP6|-----|
+> |    |	Start WCSS PD1 (5G)	|     |
+> |    |	----------------------->|     |-----|
+> ------		     		-------     |
+> 					    |
+> 					    |	-----------
+> 					    |-->|WiFi	  |
+> 						|5G radio |
+> 						-----------
+> According to linux terminology, here consider Q6 as root
+> i.e it provide all services, WCSS (wifi radio's) as user
+> i.e it uses services provided by root.
+> 
+> Since Q6 root & WCSS user pd's able to communicate with
+> APSS individually, multipd remoteproc driver registers
+> each PD with rproc framework. Here clients (Wifi host drivers)
+> intrested on WCSS PD rproc, so multipd driver start's root
+> pd in the context of WCSS user pd rproc start. Similarly
+> on down path, root pd will be stopped after wcss user pd
+> stopped.
+> 
+> Here WCSS(user) PD is dependent on Q6(root) PD, so first
+> q6 pd should be up before wcss pd. After wcss pd goes down,
+> q6 pd should be turned off.
+> 
+> rproc->ops->start(userpd_rproc) {
+> 	/* Boot root pd rproc */
+> 	rproc_boot(upd_dev->parent);
+> 	---
+> 	/* user pd rproc start sequence */
+> 	---
+> 	---
+> }
+> With this way we ensure that root pd brought up before userpd.
+> 
+> rproc->ops->stop(userpd_rproc) {
+> 	---
+> 	---
+> 	/* user pd rproc stop sequence */
+> 	---
+> 	---
+> 	/* Shutdown root pd rproc */
+> 	rproc_shutdown(upd_dev->parent);
+> }
+> After userpd rproc stops, root pd rproc will be stopped.
+> IPQ5018, IPQ9574 supports multipd remoteproc driver.
+> 
+> Signed-off-by: Manikanta Mylavarapu <quic_mmanikan@quicinc.com>
+> ---
+>  drivers/firmware/qcom_scm.c            | 114 +++++
+>  drivers/firmware/qcom_scm.h            |   6 +
+>  drivers/remoteproc/Kconfig             |  20 +
+>  drivers/remoteproc/Makefile            |   1 +
+>  drivers/remoteproc/qcom_common.c       |  23 +
+>  drivers/remoteproc/qcom_common.h       |   1 +
+>  drivers/remoteproc/qcom_q6v5.c         |  41 +-
+>  drivers/remoteproc/qcom_q6v5.h         |  15 +-
+>  drivers/remoteproc/qcom_q6v5_adsp.c    |   5 +-
+>  drivers/remoteproc/qcom_q6v5_mpd.c     | 668 +++++++++++++++++++++++++
+
+Why exactly do you need a new driver for this instead of extending
+existing PIL? I feel all this is growing because no one wants to touch
+existing code and merge with it...
+
+
+>  drivers/remoteproc/qcom_q6v5_mss.c     |   4 +-
+>  drivers/remoteproc/qcom_q6v5_pas.c     |   3 +-
+>  drivers/soc/qcom/mdt_loader.c          | 314 ++++++++++++
+>  include/linux/firmware/qcom/qcom_scm.h |   3 +
+>  include/linux/soc/qcom/mdt_loader.h    |  19 +
+>  15 files changed, 1228 insertions(+), 9 deletions(-)
+>  create mode 100644 drivers/remoteproc/qcom_q6v5_mpd.c
+> 
+> diff --git a/drivers/firmware/qcom_scm.c b/drivers/firmware/qcom_scm.c
+> index d88c5f14bd54..d69560963353 100644
+> --- a/drivers/firmware/qcom_scm.c
+> +++ b/drivers/firmware/qcom_scm.c
+> @@ -654,6 +654,120 @@ int qcom_scm_pas_shutdown(u32 peripheral)
+>  }
+>  EXPORT_SYMBOL(qcom_scm_pas_shutdown);
+>  
+> +/**
+> + * qti_scm_int_radio_powerup - Bring up internal radio userpd
+> + *
+> + * @peripheral:	peripheral id
+> + *
+> + * Return 0 on success.
+> + */
+
+...
+
+> diff --git a/drivers/remoteproc/Makefile b/drivers/remoteproc/Makefile
+> index 91314a9b43ce..b64051080ec1 100644
+> --- a/drivers/remoteproc/Makefile
+> +++ b/drivers/remoteproc/Makefile
+> @@ -25,6 +25,7 @@ obj-$(CONFIG_QCOM_PIL_INFO)		+= qcom_pil_info.o
+>  obj-$(CONFIG_QCOM_RPROC_COMMON)		+= qcom_common.o
+>  obj-$(CONFIG_QCOM_Q6V5_COMMON)		+= qcom_q6v5.o
+>  obj-$(CONFIG_QCOM_Q6V5_ADSP)		+= qcom_q6v5_adsp.o
+> +obj-$(CONFIG_QCOM_Q6V5_MPD)		+= qcom_q6v5_mpd.o
+>  obj-$(CONFIG_QCOM_Q6V5_MSS)		+= qcom_q6v5_mss.o
+>  obj-$(CONFIG_QCOM_Q6V5_PAS)		+= qcom_q6v5_pas.o
+>  obj-$(CONFIG_QCOM_Q6V5_WCSS)		+= qcom_q6v5_wcss.o
+> diff --git a/drivers/remoteproc/qcom_common.c b/drivers/remoteproc/qcom_common.c
+> index a0d4238492e9..b72fbda02242 100644
+> --- a/drivers/remoteproc/qcom_common.c
+> +++ b/drivers/remoteproc/qcom_common.c
+> @@ -510,5 +510,28 @@ void qcom_remove_ssr_subdev(struct rproc *rproc, struct qcom_rproc_ssr *ssr)
+>  }
+>  EXPORT_SYMBOL_GPL(qcom_remove_ssr_subdev);
+>  
+> +/**
+> + * qcom_get_pd_asid() - get the pd asid number from DT node
+> + * @node:	device tree node
+> + *
+> + * Returns asid if node name has 'pd' string
+> + */
+> +s8 qcom_get_pd_asid(struct device_node *node)
+> +{
+> +	char *str;
+> +	u8 pd_asid;
+> +
+> +	if (!node)
+> +		return -EINVAL;
+> +
+> +	str = strstr(node->name, "pd");
+> +	if (!str)
+> +		return 0;
+> +
+> +	str += strlen("pd");
+> +	return kstrtos8(str, 10, &pd_asid) ? -EINVAL : pd_asid;
+> +}
+> +EXPORT_SYMBOL(qcom_get_pd_asid);
+
+Why do you need it in shared file?
+
+> +
+>  MODULE_DESCRIPTION("Qualcomm Remoteproc helper driver");
+>  MODULE_LICENSE("GPL v2");
+> diff --git a/drivers/remoteproc/qcom_common.h b/drivers/remoteproc/qcom_common.h
+> index 9ef4449052a9..9f3fb11224aa 100644
+> --- a/drivers/remoteproc/qcom_common.h
+> +++ b/drivers/remoteproc/qcom_common.h
+> @@ -75,5 +75,6 @@ static inline bool qcom_sysmon_shutdown_acked(struct qcom_sysmon *sysmon)
+>  	return false;
+>  }
+>  #endif
+> +s8 qcom_get_pd_asid(struct device_node *node);
+>  
+>  #endif
+> diff --git a/drivers/remoteproc/qcom_q6v5.c b/drivers/remoteproc/qcom_q6v5.c
+> index 192c7aa0e39e..b88bf3a8e53b 100644
+> --- a/drivers/remoteproc/qcom_q6v5.c
+> +++ b/drivers/remoteproc/qcom_q6v5.c
+> @@ -118,7 +118,7 @@ static irqreturn_t q6v5_wdog_interrupt(int irq, void *data)
+>  	return IRQ_HANDLED;
+>  }
+>  
+> -static irqreturn_t q6v5_fatal_interrupt(int irq, void *data)
+> +irqreturn_t q6v5_fatal_interrupt(int irq, void *data)
+
+The amount of changes you are doing to other interfaces is worrying...
+Actually it points to the fact that you are duplicating a lot instead of
+merging the code.
+
+Also this patch is doing so many things at the same time.
+
+>  {
+>  	struct qcom_q6v5 *q6v5 = data;
+>  	size_t len;
+> @@ -139,7 +139,7 @@ static irqreturn_t q6v5_fatal_interrupt(int irq, void *data)
+>  	return IRQ_HANDLED;
+>  }
+>  
+> -static irqreturn_t q6v5_ready_interrupt(int irq, void *data)
+> +irqreturn_t q6v5_ready_interrupt(int irq, void *data)
+>  {
+>  	struct qcom_q6v5 *q6v5 = data;
+>  
+> @@ -183,7 +183,16 @@ static irqreturn_t q6v5_handover_interrupt(int irq, void *data)
+>  	return IRQ_HANDLED;
+>  }
+>  
+> -static irqreturn_t q6v5_stop_interrupt(int irq, void *data)
+> +irqreturn_t q6v5_spawn_interrupt(int irq, void *data)
+
+> +{
+> +	struct qcom_q6v5 *q6v5 = data;
+> +
+> +	complete(&q6v5->spawn_done);
+> +
+> +	return IRQ_HANDLED;
+> +}
+> +
+> +irqreturn_t q6v5_stop_interrupt(int irq, void *data)
+>  {
+>  	struct qcom_q6v5 *q6v5 = data;
+>  
+> @@ -220,6 +229,28 @@ int qcom_q6v5_request_stop(struct qcom_q6v5 *q6v5, struct qcom_sysmon *sysmon)
+>  }
+>  EXPORT_SYMBOL_GPL(qcom_q6v5_request_stop);
+>  
+> +/**
+> + * qcom_q6v5_request_spawn() - request the remote processor to spawn
+> + * @q6v5:      reference to qcom_q6v5 context
+> + *
+> + * Return: 0 on success, negative errno on failure
+> + */
+> +int qcom_q6v5_request_spawn(struct qcom_q6v5 *q6v5)
+> +{
+> +	int ret;
+> +
+> +	ret = qcom_smem_state_update_bits(q6v5->spawn_state,
+> +					  BIT(q6v5->spawn_bit), BIT(q6v5->spawn_bit));
+> +
+> +	ret = wait_for_completion_timeout(&q6v5->spawn_done, 5 * HZ);
+> +
+> +	qcom_smem_state_update_bits(q6v5->spawn_state,
+> +				    BIT(q6v5->spawn_bit), 0);
+> +
+> +	return ret == 0 ? -ETIMEDOUT : 0;
+> +}
+> +EXPORT_SYMBOL_GPL(qcom_q6v5_request_spawn);
+> +
+>  /**
+>   * qcom_q6v5_panic() - panic handler to invoke a stop on the remote
+>   * @q6v5:	reference to qcom_q6v5 context
+> @@ -250,7 +281,8 @@ EXPORT_SYMBOL_GPL(qcom_q6v5_panic);
+>   * Return: 0 on success, negative errno on failure
+>   */
+>  int qcom_q6v5_init(struct qcom_q6v5 *q6v5, struct platform_device *pdev,
+> -		   struct rproc *rproc, int crash_reason, const char *load_state,
+> +		   struct rproc *rproc, int remote_id, int crash_reason,
+> +		   const char *load_state,
+>  		   void (*handover)(struct qcom_q6v5 *q6v5))
+>  {
+>  	int ret;
+> @@ -258,6 +290,7 @@ int qcom_q6v5_init(struct qcom_q6v5 *q6v5, struct platform_device *pdev,
+>  	q6v5->rproc = rproc;
+>  	q6v5->dev = &pdev->dev;
+>  	q6v5->crash_reason = crash_reason;
+> +	q6v5->remote_id = remote_id;
+>  	q6v5->handover = handover;
+>  
+>  	init_completion(&q6v5->start_done);
+> diff --git a/drivers/remoteproc/qcom_q6v5.h b/drivers/remoteproc/qcom_q6v5.h
+> index 5a859c41896e..d00568339d46 100644
+> --- a/drivers/remoteproc/qcom_q6v5.h
+> +++ b/drivers/remoteproc/qcom_q6v5.h
+> @@ -18,22 +18,29 @@ struct qcom_q6v5 {
+>  
+>  	struct qcom_smem_state *state;
+>  	struct qmp *qmp;
+> +	struct qcom_smem_state *shutdown_state;
+> +	struct qcom_smem_state *spawn_state;
+>  
+>  	struct icc_path *path;
+>  
+>  	unsigned stop_bit;
+> +	unsigned shutdown_bit;
+> +	unsigned spawn_bit;
+>  
+>  	int wdog_irq;
+>  	int fatal_irq;
+>  	int ready_irq;
+>  	int handover_irq;
+>  	int stop_irq;
+> +	int spawn_irq;
+>  
+>  	bool handover_issued;
+>  
+>  	struct completion start_done;
+>  	struct completion stop_done;
+> +	struct completion spawn_done;
+>  
+> +	int remote_id;
+>  	int crash_reason;
+>  
+>  	bool running;
+> @@ -43,14 +50,20 @@ struct qcom_q6v5 {
+>  };
+>  
+>  int qcom_q6v5_init(struct qcom_q6v5 *q6v5, struct platform_device *pdev,
+> -		   struct rproc *rproc, int crash_reason, const char *load_state,
+> +		   struct rproc *rproc, int remote_id, int crash_reason,
+> +		   const char *load_state,
+>  		   void (*handover)(struct qcom_q6v5 *q6v5));
+>  void qcom_q6v5_deinit(struct qcom_q6v5 *q6v5);
+>  
+>  int qcom_q6v5_prepare(struct qcom_q6v5 *q6v5);
+>  int qcom_q6v5_unprepare(struct qcom_q6v5 *q6v5);
+>  int qcom_q6v5_request_stop(struct qcom_q6v5 *q6v5, struct qcom_sysmon *sysmon);
+> +int qcom_q6v5_request_spawn(struct qcom_q6v5 *q6v5);
+>  int qcom_q6v5_wait_for_start(struct qcom_q6v5 *q6v5, int timeout);
+>  unsigned long qcom_q6v5_panic(struct qcom_q6v5 *q6v5);
+> +irqreturn_t q6v5_fatal_interrupt(int irq, void *data);
+> +irqreturn_t q6v5_ready_interrupt(int irq, void *data);
+> +irqreturn_t q6v5_spawn_interrupt(int irq, void *data);
+> +irqreturn_t q6v5_stop_interrupt(int irq, void *data);
+>  
+>  #endif
+> diff --git a/drivers/remoteproc/qcom_q6v5_adsp.c b/drivers/remoteproc/qcom_q6v5_adsp.c
+> index 08d8dad22ca7..bf8909ad5ff5 100644
+> --- a/drivers/remoteproc/qcom_q6v5_adsp.c
+> +++ b/drivers/remoteproc/qcom_q6v5_adsp.c
+> @@ -733,8 +733,9 @@ static int adsp_probe(struct platform_device *pdev)
+>  	if (ret)
+>  		goto disable_pm;
+>  
+> -	ret = qcom_q6v5_init(&adsp->q6v5, pdev, rproc, desc->crash_reason_smem,
+> -			     desc->load_state, qcom_adsp_pil_handover);
+> +	ret = qcom_q6v5_init(&adsp->q6v5, pdev, rproc, QCOM_SMEM_HOST_ANY,
+> +			     desc->crash_reason_smem, desc->load_state,
+> +			     qcom_adsp_pil_handover);
+>  	if (ret)
+>  		goto disable_pm;
+>  
+> diff --git a/drivers/remoteproc/qcom_q6v5_mpd.c b/drivers/remoteproc/qcom_q6v5_mpd.c
+> new file mode 100644
+> index 000000000000..853aa3bc5859
+> --- /dev/null
+> +++ b/drivers/remoteproc/qcom_q6v5_mpd.c
+> @@ -0,0 +1,668 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * Copyright (C) 2016-2018 Linaro Ltd.
+> + * Copyright (C) 2014 Sony Mobile Communications AB
+> + * Copyright (c) 2012-2018, 2021 The Linux Foundation. All rights reserved.
+> + */
+> +#include <linux/clk.h>
+> +#include <linux/delay.h>
+> +#include <linux/io.h>
+> +#include <linux/iopoll.h>
+> +#include <linux/kernel.h>
+> +#include <linux/module.h>
+> +#include <linux/of_address.h>
+> +#include <linux/of_device.h>
+> +#include <linux/of_reserved_mem.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/reset.h>
+> +#include <linux/soc/qcom/mdt_loader.h>
+> +#include <linux/soc/qcom/smem.h>
+> +#include <linux/soc/qcom/smem_state.h>
+> +#include <linux/firmware/qcom/qcom_scm.h>
+> +#include <linux/interrupt.h>
+> +#include "qcom_common.h"
+> +#include "qcom_q6v5.h"
+> +
+> +#include "remoteproc_internal.h"
+> +
+> +#define WCSS_CRASH_REASON		421
+> +#define WCSS_SMEM_HOST			1
+> +
+> +#define WCNSS_PAS_ID			6
+> +#define MPD_WCNSS_PAS_ID        0xD
+> +
+> +#define BUF_SIZE			35
+> +
+> +/**
+> + * enum state - state of a wcss (private)
+> + * @WCSS_NORMAL: subsystem is operating normally
+> + * @WCSS_CRASHED: subsystem has crashed and hasn't been shutdown
+> + * @WCSS_RESTARTING: subsystem has been shutdown and is now restarting
+> + * @WCSS_SHUTDOWN: subsystem has been shutdown
+> + *
+> + */
+> +enum q6_wcss_state {
+> +	WCSS_NORMAL,
+> +	WCSS_CRASHED,
+> +	WCSS_RESTARTING,
+> +	WCSS_SHUTDOWN,
+> +};
+> +
+> +enum {
+> +	Q6_IPQ,
+> +	WCSS_AHB_IPQ,
+> +	WCSS_PCIE_IPQ,
+> +};
+> +
+> +struct q6_wcss {
+> +	struct device *dev;
+> +	struct qcom_rproc_glink glink_subdev;
+> +	struct qcom_rproc_ssr ssr_subdev;
+> +	struct qcom_q6v5 q6;
+> +	phys_addr_t mem_phys;
+> +	phys_addr_t mem_reloc;
+> +	void *mem_region;
+> +	size_t mem_size;
+> +	int crash_reason_smem;
+> +	u32 version;
+> +	s8 pd_asid;
+> +	enum q6_wcss_state state;
+> +};
+> +
+> +struct wcss_data {
+> +	int (*init_irq)(struct qcom_q6v5 *q6, struct platform_device *pdev,
+> +			struct rproc *rproc, int remote_id,
+> +			int crash_reason, const char *load_state,
+> +			void (*handover)(struct qcom_q6v5 *q6));
+> +	const char *q6_firmware_name;
+> +	int crash_reason_smem;
+> +	int remote_id;
+> +	u32 version;
+> +	const char *ssr_name;
+> +	const struct rproc_ops *ops;
+> +	bool need_auto_boot;
+> +	bool glink_subdev_required;
+> +	s8 pd_asid;
+> +	bool reset_seq;
+> +	u32 pasid;
+> +	int (*mdt_load_sec)(struct device *dev, const struct firmware *fw,
+> +			    const char *fw_name, int pas_id, void *mem_region,
+> +			    phys_addr_t mem_phys, size_t mem_size,
+> +			    phys_addr_t *reloc_base);
+> +};
+> +
+> +static int q6_wcss_start(struct rproc *rproc)
+> +{
+> +	struct q6_wcss *wcss = rproc->priv;
+> +	int ret;
+> +	struct device_node *upd_np;
+> +	struct platform_device *upd_pdev;
+> +	struct rproc *upd_rproc;
+> +	struct q6_wcss *upd_wcss;
+> +	const struct wcss_data *desc;
+> +
+> +	desc = of_device_get_match_data(wcss->dev);
+
+Why do you match in start callback, not in probe?
+
+> +	if (!desc)
+> +		return -EINVAL;
+> +
+> +	qcom_q6v5_prepare(&wcss->q6);
+> +
+> +	ret = qcom_scm_pas_auth_and_reset(desc->pasid);
+> +	if (ret) {
+> +		dev_err(wcss->dev, "wcss_reset failed\n");
+> +		return ret;
+> +	}
+> +
+> +	ret = qcom_q6v5_wait_for_start(&wcss->q6, 5 * HZ);
+> +	if (ret == -ETIMEDOUT)
+> +		dev_err(wcss->dev, "start timed out\n");
+> +
+> +	/* Bring userpd wcss state to default value */
+> +	for_each_available_child_of_node(wcss->dev->of_node, upd_np) {
+> +		if (!strstr(upd_np->name, "pd"))
+
+Device node names are not an ABI. Don't try to make them, NAK.
+
+> +			continue;
+> +		upd_pdev = of_find_device_by_node(upd_np);
+> +		upd_rproc = platform_get_drvdata(upd_pdev);
+> +		upd_wcss = upd_rproc->priv;
+> +		upd_wcss->state = WCSS_NORMAL;
+> +	}
+> +	return ret;
+
+So all this looks pretty standard and simialr to other wcss/pils...
+
+> +}
+> +
+> +static int q6_wcss_spawn_pd(struct rproc *rproc)
+> +{
+> +	int ret;
+> +	struct q6_wcss *wcss = rproc->priv;
+> +
+> +	ret = qcom_q6v5_request_spawn(&wcss->q6);
+> +	if (ret == -ETIMEDOUT) {
+> +		pr_err("%s spawn timedout\n", rproc->name);
+> +		return ret;
+> +	}
+> +
+> +	ret = qcom_q6v5_wait_for_start(&wcss->q6, msecs_to_jiffies(10000));
+> +	if (ret == -ETIMEDOUT) {
+> +		pr_err("%s start timedout\n", rproc->name);
+> +		wcss->q6.running = false;
+> +		return ret;
+> +	}
+> +	wcss->q6.running = true;
+> +	return ret;
+> +}
+> +
+> +static int wcss_ahb_pcie_pd_start(struct rproc *rproc)
+> +{
+> +	struct q6_wcss *wcss = rproc->priv;
+> +	const struct wcss_data *desc = of_device_get_match_data(wcss->dev);
+> +	int ret;
+> +
+> +	if (desc->reset_seq) {
+> +		ret = qti_scm_int_radio_powerup(desc->pasid);
+> +		if (ret) {
+> +			dev_err(wcss->dev, "failed to power up ahb pd\n");
+> +			return ret;
+> +		}
+> +	}
+> +
+> +	if (wcss->q6.spawn_bit) {
+> +		ret = q6_wcss_spawn_pd(rproc);
+> +		if (ret)
+> +			return ret;
+> +	}
+> +
+> +	wcss->state = WCSS_NORMAL;
+> +	return 0;
+> +}
+> +
+> +static int q6_wcss_stop(struct rproc *rproc)
+> +{
+> +	struct q6_wcss *wcss = rproc->priv;
+> +	int ret;
+> +	const struct wcss_data *desc =
+> +			of_device_get_match_data(wcss->dev);
+> +
+> +	if (!desc)
+> +		return -EINVAL;
+> +
+> +	ret = qcom_scm_pas_shutdown(desc->pasid);
+> +	if (ret) {
+> +		dev_err(wcss->dev, "not able to shutdown\n");
+> +		return ret;
+> +	}
+> +	qcom_q6v5_unprepare(&wcss->q6);
+> +
+> +	return 0;
+> +}
+> +
+> +static int wcss_ahb_pcie_pd_stop(struct rproc *rproc)
+> +{
+> +	struct q6_wcss *wcss = rproc->priv;
+> +	struct rproc *rpd_rproc = dev_get_drvdata(wcss->dev->parent);
+> +	const struct wcss_data *desc = of_device_get_match_data(wcss->dev);
+> +	int ret;
+> +
+> +	if (rproc->state != RPROC_CRASHED && wcss->q6.stop_bit) {
+> +		ret = qcom_q6v5_request_stop(&wcss->q6, NULL);
+> +		if (ret) {
+> +			dev_err(&rproc->dev, "pd not stopped\n");
+> +			return ret;
+> +		}
+> +	}
+> +
+> +	if (desc->reset_seq) {
+> +		ret = qti_scm_int_radio_powerdown(desc->pasid);
+> +		if (ret) {
+> +			dev_err(wcss->dev, "failed to power down pd\n");
+> +			return ret;
+> +		}
+> +	}
+> +
+> +	if (rproc->state != RPROC_CRASHED)
+> +		rproc_shutdown(rpd_rproc);
+> +
+> +	wcss->state = WCSS_SHUTDOWN;
+> +	return 0;
+> +}
+> +
+> +static void *q6_wcss_da_to_va(struct rproc *rproc, u64 da, size_t len,
+> +			      bool *is_iomem)
+> +{
+> +	struct q6_wcss *wcss = rproc->priv;
+> +	int offset;
+> +
+> +	offset = da - wcss->mem_reloc;
+> +	if (offset < 0 || offset + len > wcss->mem_size)
+> +		return NULL;
+> +
+> +	return wcss->mem_region + offset;
+> +}
+> +
+> +static int q6_wcss_load(struct rproc *rproc, const struct firmware *fw)
+> +{
+> +	struct q6_wcss *wcss = rproc->priv;
+> +	const struct firmware *m3_fw;
+> +	int ret;
+> +	const char *m3_fw_name;
+> +	struct device_node *upd_np;
+> +	struct platform_device *upd_pdev;
+> +	const struct wcss_data *desc =
+> +				of_device_get_match_data(wcss->dev);
+> +
+> +	if (!desc)
+> +		return -EINVAL;
+> +
+> +	/* load m3 firmware */
+> +	for_each_available_child_of_node(wcss->dev->of_node, upd_np) {
+> +		if (!strstr(upd_np->name, "pd"))
+> +			continue;
+> +		upd_pdev = of_find_device_by_node(upd_np);
+> +
+> +		ret = of_property_read_string(upd_np, "m3_firmware",
+> +					      &m3_fw_name);
+
+Undocumented property. Drop.
+
+> +		if (!ret && m3_fw_name) {
+> +			ret = request_firmware(&m3_fw, m3_fw_name,
+> +					       &upd_pdev->dev);
+> +			if (ret)
+> +				continue;
+> +
+> +			ret = qcom_mdt_load_no_init(wcss->dev, m3_fw,
+> +						    m3_fw_name, 0,
+> +						    wcss->mem_region,
+> +						    wcss->mem_phys,
+> +						    wcss->mem_size,
+> +						    &wcss->mem_reloc);
+> +
+> +			release_firmware(m3_fw);
+> +
+> +			if (ret) {
+> +				dev_err(wcss->dev,
+> +					"can't load m3_fw.bXX ret:%d\n", ret);
+> +				return ret;
+> +			}
+> +		}
+> +	}
+> +
+> +	return qcom_mdt_load(wcss->dev, fw, rproc->firmware,
+> +				desc->pasid, wcss->mem_region,
+> +				wcss->mem_phys, wcss->mem_size,
+> +				&wcss->mem_reloc);
+> +}
+> +
+> +static int wcss_ahb_pcie_pd_load(struct rproc *rproc, const struct firmware *fw)
+> +{
+> +	struct q6_wcss *wcss = rproc->priv, *wcss_rpd;
+> +	struct rproc *rpd_rproc = dev_get_drvdata(wcss->dev->parent);
+> +	int ret;
+> +	const struct wcss_data *desc =
+> +				of_device_get_match_data(wcss->dev);
+
+Actually now I see you match devices in all over the place. Don't do it,
+there is no need. Match it once and use the result.
+
+This really should not introduce its own patterns and coding style.
+
+> +
+> +	if (!desc)
+> +		return -EINVAL;
+> +
+> +	wcss_rpd = rpd_rproc->priv;
+> +
+> +	/* Boot rootpd rproc */
+> +	ret = rproc_boot(rpd_rproc);
+> +	if (ret || wcss->state == WCSS_NORMAL)
+> +		return ret;
+> +
+> +	return desc->mdt_load_sec(wcss->dev, fw, rproc->firmware,
+> +				desc->pasid, wcss->mem_region,
+> +				wcss->mem_phys, wcss->mem_size,
+> +				&wcss->mem_reloc);
+> +}
+
+(...)
+
+> +MODULE_DESCRIPTION("Hexagon WCSS Multipd Peripheral Image Loader");
+> +MODULE_LICENSE("GPL v2");
+> diff --git a/drivers/remoteproc/qcom_q6v5_mss.c b/drivers/remoteproc/qcom_q6v5_mss.c
+> index ab053084f7a2..48685bb85718 100644
+> --- a/drivers/remoteproc/qcom_q6v5_mss.c
+> +++ b/drivers/remoteproc/qcom_q6v5_mss.c
+> @@ -28,6 +28,7 @@
+>  #include <linux/soc/qcom/mdt_loader.h>
+>  #include <linux/iopoll.h>
+>  #include <linux/slab.h>
+> +#include <linux/soc/qcom/smem.h>
+>  
+>  #include "remoteproc_internal.h"
+>  #include "qcom_common.h"
+> @@ -2070,7 +2071,8 @@ static int q6v5_probe(struct platform_device *pdev)
+>  	qproc->need_mem_protection = desc->need_mem_protection;
+>  	qproc->has_mba_logs = desc->has_mba_logs;
+>  
+> -	ret = qcom_q6v5_init(&qproc->q6v5, pdev, rproc, MPSS_CRASH_REASON_SMEM, "modem",
+> +	ret = qcom_q6v5_init(&qproc->q6v5, pdev, rproc, QCOM_SMEM_HOST_ANY,
+
+Not obvious... aren't you doing multiple things in one patch?
+
+
+Best regards,
+Krzysztof
 
