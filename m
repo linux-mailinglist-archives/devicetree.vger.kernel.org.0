@@ -2,130 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 672CF6AF64D
-	for <lists+devicetree@lfdr.de>; Tue,  7 Mar 2023 21:00:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8B25A6AF6FF
+	for <lists+devicetree@lfdr.de>; Tue,  7 Mar 2023 21:55:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232030AbjCGUAv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Mar 2023 15:00:51 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60758 "EHLO
+        id S229785AbjCGUzt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Mar 2023 15:55:49 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51566 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232478AbjCGUA2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Mar 2023 15:00:28 -0500
-Received: from mail-vs1-xe34.google.com (mail-vs1-xe34.google.com [IPv6:2607:f8b0:4864:20::e34])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 61E671ADDF;
-        Tue,  7 Mar 2023 11:57:40 -0800 (PST)
-Received: by mail-vs1-xe34.google.com with SMTP id d7so13416175vsj.2;
-        Tue, 07 Mar 2023 11:57:40 -0800 (PST)
+        with ESMTP id S229798AbjCGUzs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Mar 2023 15:55:48 -0500
+Received: from mail-pl1-x631.google.com (mail-pl1-x631.google.com [IPv6:2607:f8b0:4864:20::631])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C70DDAB8A6
+        for <devicetree@vger.kernel.org>; Tue,  7 Mar 2023 12:55:46 -0800 (PST)
+Received: by mail-pl1-x631.google.com with SMTP id i3so15497549plg.6
+        for <devicetree@vger.kernel.org>; Tue, 07 Mar 2023 12:55:46 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112; t=1678219058;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Coz1Ept+oTL6DJoVxPr0XCDM/DsjkaueRu0Xzo9vK2s=;
-        b=GJcHkqIsvwCo0S5PIOX6oKQc9z35CEQnFt6pDVvXrOAZ5plnPbxjLFTastWmhOyTG0
-         XYfsUe6pKDr63w6qERWAqCSh4Sbb93y7P4ESYwsJ57UhpJEgiXVJ8Cx27Ymegi9J3fsC
-         KUACxeaNYNcWsFE/JOftKjvV8kPEtGoXQJ6iEsd9s3TwDMmRT2qgb3MDmqseKU+MOqL2
-         dKAIROZGXqv/HQelM806qlAELN1DBLy8ziEHNF2m8tjZvhdTOU2XyUUVevMVxmXqyG34
-         DP4bEtoK2bhJBQZXU3LXQm24jngThO0B1k+YyxoSV4+i85+rxOtj4qmGnLXtAMxg1rFn
-         b9Sg==
+        d=dabbelt-com.20210112.gappssmtp.com; s=20210112; t=1678222546;
+        h=content-transfer-encoding:mime-version:message-id:to:from:cc
+         :in-reply-to:subject:date:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=PO0KQCxzIVJEU61zfS2DoDmuDuWz5uR1jN4Ijq9LhZo=;
+        b=lpHxnwwPK15OkkFaTvNUoMCaaJEJi5c9/PYeQlJ2jMiPjoPkgwrepzfmkgtyO8O+HT
+         wu3juAerU/L8cjIvUiZtQspVCHC1d+932kvi9FW+xS58qaCCsLdpwmai+bjXxQUdzCBk
+         l5mlHFpS9jE3/r4xQTsIA2O/p/CuMHJIkcb3A1pOHy9/Eybrn33WBmaDgDf4G3UIfr1c
+         iefB4omy/roI6W5ox5wVdjkHqU98G/aw2ZD5T4ZB2CVf1Z6vufEQTV3jCShu28V1PcbC
+         KCwAXE2IWqbcaM7JP5Wtn8oVYsGG0J89eG+an5RJcAvSARQQ+1X9OB8PkFV4ARWVOREC
+         56Pg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678219058;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Coz1Ept+oTL6DJoVxPr0XCDM/DsjkaueRu0Xzo9vK2s=;
-        b=L7T8kERykRAY5PU1nLe3TAWNlANnom59BzW99K/FgBduRe8ShSQGW32NOYvk0N06Dc
-         uLNtEfnqXefy3C4nBCYrD3zgmY8WBEHnQdOUNGqka0XeIfAWI8lSSbRSAi+WsLMiQgvM
-         /Gd2s/+oe9W0MVgfBo3EyS75vHJGQCsj1LIbPMgRnMdGP9foYSTHFI0DKqFWiU45dOrE
-         f5ZaTzemfMONUjQejLI7sa/EuBAClsinRm8y2j2GeUhTavyfVzJTnsBu5jsh3yQktfrw
-         /RLjv+nUSr0OGGK45yEBsVY5Vgi15osjnEA+D4/ZDurhpes6FKfYmgtjFFTXz1qHcsJt
-         Hwog==
-X-Gm-Message-State: AO0yUKWWQEBtXjOLpJb1nnOsDflgwMtpbtGHyvMTArF/2s7wbDBZo2Lh
-        nQgnGxi7n6Z5Tb/y1sWrUNMFQEp4SOYPQb4umbE=
-X-Google-Smtp-Source: AK7set8v5+iAed+VoX1ySqrjhXWYrSuH3bm0ByTFEhQ4a7Zi2TAVn3RYSxm2TjeQ02lBYUtHMjInlAdGB+SwUWyvei4=
-X-Received: by 2002:a67:b142:0:b0:41b:dc0c:a668 with SMTP id
- z2-20020a67b142000000b0041bdc0ca668mr10583641vsl.7.1678219058185; Tue, 07 Mar
- 2023 11:57:38 -0800 (PST)
-MIME-Version: 1.0
-References: <Y/9oO1AE6GK6CQmp@smile.fi.intel.com> <20230302170554.q3426ii255735rzw@mail.corp.redhat.com>
- <ZAXFNRuALYpXgL6F@smile.fi.intel.com> <b8423b0b-4f63-d598-6c8b-7c7e73549032@redhat.com>
- <ZAXlh9ZVjGJh0l7n@smile.fi.intel.com> <1cab1439-77f3-6739-d4cd-5862ce8512d8@redhat.com>
- <ZAYca0ADk0Uk1sK1@smile.fi.intel.com> <CAP+ZCCfsKdOyy5vzPh5OjpZjNQrYWDRzrqa_QxvG+kZDPYa+3A@mail.gmail.com>
- <ZAZOvEvqNDq6jZNB@smile.fi.intel.com> <20230307131706.olnb4qzo4ynu7gce@mail.corp.redhat.com>
- <ZAd+/fHeQ3zuvoTN@smile.fi.intel.com>
-In-Reply-To: <ZAd+/fHeQ3zuvoTN@smile.fi.intel.com>
-From:   Daniel Kaehn <kaehndan@gmail.com>
-Date:   Tue, 7 Mar 2023 13:57:27 -0600
-Message-ID: <CAP+ZCCe6mdtNmg0QEtQKFCKMyhM9xRffFoMHtxHEGnjNOEAedg@mail.gmail.com>
-Subject: Re: [PATCH v8 3/3] HID: cp2112: Fwnode Support
-To:     Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Cc:     Benjamin Tissoires <benjamin.tissoires@redhat.com>,
-        Hans de Goede <hdegoede@redhat.com>, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, jikos@kernel.org,
-        bartosz.golaszewski@linaro.org, dmitry.torokhov@gmail.com,
-        devicetree@vger.kernel.org, linux-input@vger.kernel.org,
-        ethan.twardy@plexus.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        d=1e100.net; s=20210112; t=1678222546;
+        h=content-transfer-encoding:mime-version:message-id:to:from:cc
+         :in-reply-to:subject:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=PO0KQCxzIVJEU61zfS2DoDmuDuWz5uR1jN4Ijq9LhZo=;
+        b=FEwsWpO11byOyVer+a6MzTl6wTb43aMmDbjsh5Gey5Cp7QFA1wMVz/fJ9AptNlv9e4
+         hsQiF+ohBicVXw6AXMUHzWk5wffMRg5Q0+eDcjZPkP4IudadgsMAY3kGLt1VVdgvc9e2
+         JEaY2srEW0UXLbbmnGrqbMorOSVNeKx55Kmcb5aunzONijfu2rzkVToYUV4EwRpDrByv
+         saGDpsTJol7qaI/FfWhPUjddnJ/19QfMC/PxoHrxDeaJNDW4YWwBo4NJ142Ge5E/kUk9
+         K9GY7tSoVCVqYZel3TICsUcEm3+gr1yFRBsZZrrsQ82YdIFCTj5aveF4bFrr+gHIaDC9
+         oQ7g==
+X-Gm-Message-State: AO0yUKUe1KCNt2gCUnuwGL17C4qbpCdwatJNjxn8qx0Sy7fkzETeIOb7
+        A0aeuqhfHmf2+f60TfIO4l4ZCw==
+X-Google-Smtp-Source: AK7set8dzNL26UJcqtdZJRUN5setrL9jyj2OiCFQRqVQnRmvelN4BI2oq+p+jIfWk57Ieeg5LqLM/Q==
+X-Received: by 2002:a17:902:bc42:b0:19e:6a4c:9fa0 with SMTP id t2-20020a170902bc4200b0019e6a4c9fa0mr14126770plz.49.1678222546093;
+        Tue, 07 Mar 2023 12:55:46 -0800 (PST)
+Received: from localhost ([50.221.140.188])
+        by smtp.gmail.com with ESMTPSA id c6-20020a170902c1c600b0019c2cf1554csm8814373plc.13.2023.03.07.12.55.45
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 07 Mar 2023 12:55:45 -0800 (PST)
+Date:   Tue, 07 Mar 2023 12:55:45 -0800 (PST)
+X-Google-Original-Date: Tue, 07 Mar 2023 12:54:38 PST (-0800)
+Subject:     Re: [PATCH v2 3/3] riscv: dts: allwinner: d1: Add crypto engine node
+In-Reply-To: <20221231220146.646-4-samuel@sholland.org>
+CC:     clabbe.montjoie@gmail.com, herbert@gondor.apana.org.au,
+        davem@davemloft.net, wens@csie.org, jernej.skrabec@gmail.com,
+        krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
+        samuel@sholland.org, aou@eecs.berkeley.edu,
+        Conor Dooley <conor@kernel.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-crypto@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-riscv@lists.infradead.org, linux-sunxi@lists.linux.dev
+From:   Palmer Dabbelt <palmer@dabbelt.com>
+To:     samuel@sholland.org
+Message-ID: <mhng-0ef61e01-7731-4c5f-9487-e4ab8553b87c@palmer-ri-x1c9a>
+Mime-Version: 1.0 (MHng)
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Mar 7, 2023 at 12:14=E2=80=AFPM Andy Shevchenko
-<andriy.shevchenko@linux.intel.com> wrote:
+On Sat, 31 Dec 2022 14:01:45 PST (-0800), samuel@sholland.org wrote:
+> D1 contains a crypto engine which is supported by the sun8i-ce driver.
 >
-> On Tue, Mar 07, 2023 at 02:17:06PM +0100, Benjamin Tissoires wrote:
-> > On Mar 06 2023, Andy Shevchenko wrote:
-> > It is commonly accepted in the ACPI world that the names do not carry
-> > meaning AFAICT, and so I think I agree with Andy's initial comment
-> > regarding using indexes, not names to also fetch the I2C and GPIO nodes=
-.
-> > You can probably have a fallback mechanism for when "i2c" is not
-> > present, or simply check if you are in DT or not and use the names only
-> > if we are in DT.
+> Signed-off-by: Samuel Holland <samuel@sholland.org>
+> ---
 >
-> The solution is to provide in the main node the list of cell names, that =
-way
-> you will always know the indices:
+> Changes in v2:
+>  - New patch for v2
 >
->   Device (DEV) {
->           _DSD
->                   "cell-names" { "i2c", "gpio" } // index of the name is =
-the
->                                                  // index of the cell
+>  arch/riscv/boot/dts/allwinner/sunxi-d1s-t113.dtsi | 12 ++++++++++++
+>  1 file changed, 12 insertions(+)
 >
->         Device (I2C0) {
->         }
+> diff --git a/arch/riscv/boot/dts/allwinner/sunxi-d1s-t113.dtsi b/arch/riscv/boot/dts/allwinner/sunxi-d1s-t113.dtsi
+> index dff363a3c934..b30b4b1465f6 100644
+> --- a/arch/riscv/boot/dts/allwinner/sunxi-d1s-t113.dtsi
+> +++ b/arch/riscv/boot/dts/allwinner/sunxi-d1s-t113.dtsi
+> @@ -378,6 +378,18 @@ sid: efuse@3006000 {
+>  			#size-cells = <1>;
+>  		};
 >
->         Device (GPI0) {
->         }
->   }
->
-> Problem solved.
->
+> +		crypto: crypto@3040000 {
+> +			compatible = "allwinner,sun20i-d1-crypto";
+> +			reg = <0x3040000 0x800>;
+> +			interrupts = <SOC_PERIPHERAL_IRQ(52) IRQ_TYPE_LEVEL_HIGH>;
+> +			clocks = <&ccu CLK_BUS_CE>,
+> +				 <&ccu CLK_CE>,
+> +				 <&ccu CLK_MBUS_CE>,
+> +				 <&rtc CLK_IOSC>;
+> +			clock-names = "bus", "mod", "ram", "trng";
+> +			resets = <&ccu RST_BUS_CE>;
+> +		};
+> +
+>  		mbus: dram-controller@3102000 {
+>  			compatible = "allwinner,sun20i-d1-mbus";
+>  			reg = <0x3102000 0x1000>,
 
-Just to make sure I'm understanding you correctly:
-
-Are you proposing that specifically this driver directly reads "cell-names"
-from the ACPI DSD to implement this indexing? Or are you proposing a
-kernel-wide mechanism of "overriding" a fwnode name with ACPI?
-(assuming this doesn't exist already, and I'm not just missing it in
-the kernel source)
-
-Or are you proposing something else entirely?
-(apologies if this should be obvious -- throwing up the ACPI newbie
-card again here :) )
-
-In any case, would this be something I should post to the email chain
-with DT and ACPI
-folks for opinions before I start to implement it?
-
-Thanks,
-
-Danny Kaehn
+Acked-by: Palmer Dabbelt <palmer@rivosinc.com>
