@@ -2,67 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 138A46AE177
-	for <lists+devicetree@lfdr.de>; Tue,  7 Mar 2023 14:55:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 299756AE18F
+	for <lists+devicetree@lfdr.de>; Tue,  7 Mar 2023 15:01:54 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230134AbjCGNzF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Mar 2023 08:55:05 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34762 "EHLO
+        id S229838AbjCGOBv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Mar 2023 09:01:51 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42036 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231338AbjCGNzB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Mar 2023 08:55:01 -0500
-Received: from mail-qt1-f179.google.com (mail-qt1-f179.google.com [209.85.160.179])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B7A147680;
-        Tue,  7 Mar 2023 05:54:58 -0800 (PST)
-Received: by mail-qt1-f179.google.com with SMTP id w23so14295559qtn.6;
-        Tue, 07 Mar 2023 05:54:58 -0800 (PST)
+        with ESMTP id S229787AbjCGOBt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Mar 2023 09:01:49 -0500
+Received: from mail-qt1-f180.google.com (mail-qt1-f180.google.com [209.85.160.180])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4772A54CAD;
+        Tue,  7 Mar 2023 06:01:46 -0800 (PST)
+Received: by mail-qt1-f180.google.com with SMTP id c19so14277083qtn.13;
+        Tue, 07 Mar 2023 06:01:46 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678197298;
+        d=1e100.net; s=20210112; t=1678197705;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=TBuvwas5rakj2aP+tfufeJWmOAoxKZkeTAO/lqCOX7Y=;
-        b=7HJvcClAIyA+e+zYbahKa6RFX54g3JSGOlqkgYLSI6y6Yj17qPOEzqfbGWOHQwFdBr
-         UUKWXjCcegPNpff774L1y8Q6l87GLbzmjmd2Q0b+dSK6eqKyqjPcudkCQR7w+JqDX0OM
-         DxK45P7tCluYboRY2vACdfdMhw0HB409rmjgZ+xRUB+KlPpYkR5mFXxvd8BqwaG1cbfj
-         ylt+IoWZR/OMwrGCKTv9H+0SkvX9PrSk5ipbGEEDPLEjAJhWRH8jgoitEF+Yoti/+a0m
-         bPz9ZiVnv1VqzcRbdCfqWPX83zik3fCLSSQVcjQmPsaXcR9MRmE7NZ2GnBnsJMWR43uj
-         7PuA==
-X-Gm-Message-State: AO0yUKVQzjMpYzF+bfrrHfO1M/AWPGdTl9AmBpA6wkPaK1Pt0bMYHyCp
-        qdlnZJpwFHpmSZYlPYL3Qi3t+RcQXsZd
-X-Google-Smtp-Source: AK7set9zEQJsORvw11+R68g/FTC6hxiSU4XxzVnHwBl7f39BIrqhsnQ4o9WNyTK3wtztOi5cj/ArOg==
-X-Received: by 2002:ac8:5cc5:0:b0:3bf:c849:4971 with SMTP id s5-20020ac85cc5000000b003bfc8494971mr22049332qta.62.1678197297693;
-        Tue, 07 Mar 2023 05:54:57 -0800 (PST)
+        bh=ZIwtnbs3hhla8EYiCStTsWUllaDHjZv8F8tfryJtRbU=;
+        b=bZ9mWl8l/LK+BrEGpJYUyBoWfy95z60fZV3xygHVryhx1KBP+QhHWI+eyoaFtlsFJ7
+         E1W15jUDV8vVj5RbEY4xmKw3OWDRyMHEVnvD4ZRIjQZwOB5LqT8Pw9s72+91o6BnDUqw
+         +VUgI60fHsvDnL67KsiO3cgASM8/KCvXOMTOHHi01Fh7PiEuEy7c5Uk/Nu9b5HkbqEd8
+         ydQvvnHXJjNAfa/kX/IYQCsq/oQLm87oVFXpy1PHMrr4mW7EZqjJbJCCI8zRmtLIBdr5
+         BK4cvO6UBaeTyZ1pu4QPwEIcDuyojDFMDo30QHMXlDWCA0naZ/yrlKL/VWm9ozFc00Aa
+         fqEg==
+X-Gm-Message-State: AO0yUKWtu6ylwFQl+OhT1HlHx9aZwxdiIJlANUu8c0zypK6T4GlQ573w
+        obmHEQTt2D+MvNqp6LbrEA==
+X-Google-Smtp-Source: AK7set/ie2Czy1LR7jpiOaAypsEJpBOiJDLh02ocsL9PmQMfeZBp9nReUBtCOPjsaf3yPB5BHxvbMQ==
+X-Received: by 2002:a05:622a:488:b0:3bf:c431:ea6e with SMTP id p8-20020a05622a048800b003bfc431ea6emr4245426qtx.3.1678197705142;
+        Tue, 07 Mar 2023 06:01:45 -0800 (PST)
 Received: from robh_at_kernel.org ([2605:ef80:8082:8c7f:9efe:1ea4:c2ba:e845])
-        by smtp.gmail.com with ESMTPSA id 69-20020a370548000000b007426f115a4esm9572273qkf.129.2023.03.07.05.54.55
+        by smtp.gmail.com with ESMTPSA id s15-20020ac85ecf000000b003afbf704c7csm9360921qtx.24.2023.03.07.06.01.41
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 07 Mar 2023 05:54:57 -0800 (PST)
-Received: (nullmailer pid 45537 invoked by uid 1000);
-        Tue, 07 Mar 2023 13:54:54 -0000
-Date:   Tue, 7 Mar 2023 07:54:54 -0600
+        Tue, 07 Mar 2023 06:01:44 -0800 (PST)
+Received: (nullmailer pid 54639 invoked by uid 1000);
+        Tue, 07 Mar 2023 14:01:39 -0000
+Date:   Tue, 7 Mar 2023 08:01:39 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Francesco Dolcini <francesco@dolcini.it>
-Cc:     linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-        Emanuele Ghidoli <emanuele.ghidoli@toradex.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v1 1/2] dt-bindings: gpio: add fcs,fxl6408-gpio binding
- document
-Message-ID: <20230307135454.GA40797-robh@kernel.org>
-References: <20230306083446.41082-1-francesco@dolcini.it>
- <20230306083446.41082-2-francesco@dolcini.it>
- <95d5b97c-ccdc-cede-a6d7-8cc64086d62d@linaro.org>
+To:     Siddharth Vadapalli <s-vadapalli@ti.com>
+Cc:     davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
+        linux@armlinux.org.uk, pabeni@redhat.com,
+        krzysztof.kozlowski@linaro.org, krzysztof.kozlowski+dt@linaro.org,
+        nsekhar@ti.com, rogerq@kernel.org, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, srk@ti.com
+Subject: Re: [PATCH net-next] dt-bindings: net: ti: k3-am654-cpsw-nuss:
+ Document Serdes PHY
+Message-ID: <20230307140139.GA48063-robh@kernel.org>
+References: <20230306094750.159657-1-s-vadapalli@ti.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <95d5b97c-ccdc-cede-a6d7-8cc64086d62d@linaro.org>
+In-Reply-To: <20230306094750.159657-1-s-vadapalli@ti.com>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
         HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=no
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -70,133 +67,71 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Mar 06, 2023 at 09:41:50AM +0100, Krzysztof Kozlowski wrote:
-> On 06/03/2023 09:34, Francesco Dolcini wrote:
-> > From: Emanuele Ghidoli <emanuele.ghidoli@toradex.com>
-> > 
-> > Add binding document for Fairchild FXL6408 GPIO expander.
+On Mon, Mar 06, 2023 at 03:17:50PM +0530, Siddharth Vadapalli wrote:
+> Update bindings to include Serdes PHY as an optional PHY, in addition to
+> the existing CPSW MAC's PHY. The CPSW MAC's PHY is required while the
+> Serdes PHY is optional. The Serdes PHY handle has to be provided only
+> when the Serdes is being configured in a Single-Link protocol. Using the
+> name "serdes-phy" to represent the Serdes PHY handle, the am65-cpsw-nuss
+> driver can obtain the Serdes PHY and request the Serdes to be
+> configured.
 > 
-> Subject: drop second/last, redundant "binding document". The
-> "dt-bindings" prefix is already stating that these are bindings.
+> Signed-off-by: Siddharth Vadapalli <s-vadapalli@ti.com>
+> ---
 > 
-> > 
-> > Signed-off-by: Emanuele Ghidoli <emanuele.ghidoli@toradex.com>
+> Hello,
 > 
-> Missing SoB.
+> This patch corresponds to the Serdes PHY bindings that were missed out in
+> the series at:
+> Link: https://lore.kernel.org/r/20230104103432.1126403-1-s-vadapalli@ti.com/
+> This was pointed out at:
+> https://lore.kernel.org/r/CAMuHMdW5atq-FuLEL3htuE3t2uO86anLL3zeY7n1RqqMP_rH1g@mail.gmail.com/
 > 
-> > ---
-> >  .../bindings/gpio/fcs,fxl6408-gpio.yaml       | 73 +++++++++++++++++++
+>  .../bindings/net/ti,k3-am654-cpsw-nuss.yaml   | 21 +++++++++++++++++--
+>  1 file changed, 19 insertions(+), 2 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/net/ti,k3-am654-cpsw-nuss.yaml b/Documentation/devicetree/bindings/net/ti,k3-am654-cpsw-nuss.yaml
+> index 900063411a20..fab7df437dcc 100644
+> --- a/Documentation/devicetree/bindings/net/ti,k3-am654-cpsw-nuss.yaml
+> +++ b/Documentation/devicetree/bindings/net/ti,k3-am654-cpsw-nuss.yaml
+> @@ -126,8 +126,25 @@ properties:
+>              description: CPSW port number
+>  
+>            phys:
+> -            maxItems: 1
+> -            description: phandle on phy-gmii-sel PHY
+> +            minItems: 1
+> +            maxItems: 2
+> +            description:
+> +              phandle(s) on CPSW MAC's PHY (Required) and the Serdes
+> +              PHY (Optional). phandle to the Serdes PHY is required
+> +              when the Serdes has to be configured in Single-Link
+> +              configuration.
 
-Also, match the compatible string here dropping '-gpio'.
+Like this:
 
-> >  1 file changed, 73 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/gpio/fcs,fxl6408-gpio.yaml
-> > 
-> > diff --git a/Documentation/devicetree/bindings/gpio/fcs,fxl6408-gpio.yaml b/Documentation/devicetree/bindings/gpio/fcs,fxl6408-gpio.yaml
-> > new file mode 100644
-> > index 000000000000..ccf946040d00
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/gpio/fcs,fxl6408-gpio.yaml
-> > @@ -0,0 +1,73 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/gpio/fcs,fxl6408-gpio.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: FXL6408 GPIO driver
-> 
-> If "driver" means Linux driver, then drop.
-> 
-> Fairchild FXL6408 GPIO Expander
-> 
-> > +
-> > +maintainers:
-> > +  - Emanuele Ghidoli <emanuele.ghidoli@toradex.com>
-> > +
-> > +description: |
-> > +  Driver for Fairchild FXL6408 GPIO expander
-> 
-> This is not a driver. Drop entire description as it is duplicating title
-> or add here something useful.
-> 
-> 
-> > +
-> > +properties:
-> > +  compatible:
-> > +    enum:
-> > +      - fcs,fxl6408
-> > +
-> > +  reg:
-> > +    maxItems: 1
-> > +
-> > +  "#gpio-cells":
-> > +    const: 2
-> > +
-> > +  gpio-controller: true
-> > +
-> > +  gpio-line-names:
-> > +    minItems: 1
-> > +    maxItems: 8
-> > +
-> > +patternProperties:
-> > +  "^(hog-[0-9]+|.+-hog(-[0-9]+)?)$":
-> 
-> >From here....
-> 
-> > +    type: object
-> > +    properties:
-> > +      gpio-hog: true
-> > +      gpios: true
-> > +      input: true
-> > +      output-high: true
-> > +      output-low: true
-> > +      line-name: true
-> > +
-> > +    required:
-> > +      - gpio-hog
-> > +      - gpios
-> > +
-> > +    additionalProperties: false
-> 
-> To here, all this can be simpler:
-> 
->   "^(hog-[0-9]+|.+-hog(-[0-9]+)?)$":
->     required:
->       - gpio-hog
-> 
-> which selects gpio hog schema.
-> 
-> > +
-> > +required:
-> > +  - compatible
-> > +  - reg
-> > +  - gpio-controller
-> > +  - "#gpio-cells"
-> > +
-> > +additionalProperties: false
-> > +
-> > +examples:
-> > +  - |
-> > +    i2c {
-> > +        #address-cells = <1>;
-> > +        #size-cells = <0>;
-> > +
-> > +        gpio_expander_43: gpio-expander@43 {
-> > +            compatible = "fcs,fxl6408";
-> > +            gpio-controller;
-> > +            #gpio-cells = <2>;
-> > +            reg = <0x43>;
-> > +            gpio-line-names = "Wi-Fi_W_DISABLE", "Wi-Fi_WKUP_WLAN",
-> > +              "PWR_EN_+V3.3_WiFi_N", "PCIe_REF_CLK_EN",
-> 
-> Align with previous line/entries.
-> 
-> > +              "USB_RESET_N", "USB_BYPASS_N", "Wi-Fi_PDn",
-> > +              "Wi-Fi_WKUP_BT";
-> > +        };
-> > +    };
-> 
-> Best regards,
-> Krzysztof
-> 
+minItems: 1
+items:
+  - description: CPSW MAC's PHY
+  - description: Serdes PHY. Serdes PHY is required
+      when the Serdes has to be configured in Single-Link
+
+> +
+> +          phy-names:
+> +            oneOf:
+> +              - items:
+> +                  - const: mac-phy
+> +                  - const: serdes-phy
+> +              - items:
+> +                  - const: mac-phy
+
+Drop this and use minItems in 1st 'items' entry.
+
+> +            description:
+> +              Identifiers for the CPSW MAC's PHY and the Serdes PHY.
+> +              CPSW MAC's PHY is required and therefore "mac-phy" is
+> +              required, while "serdes-phy" is optional.
+
+No need to state in plain text what the schema already says.
+
+Rob
