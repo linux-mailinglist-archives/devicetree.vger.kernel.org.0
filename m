@@ -2,186 +2,238 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B02916ADDE8
-	for <lists+devicetree@lfdr.de>; Tue,  7 Mar 2023 12:48:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 95D716ADDFA
+	for <lists+devicetree@lfdr.de>; Tue,  7 Mar 2023 12:51:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231349AbjCGLsm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Mar 2023 06:48:42 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54024 "EHLO
+        id S231384AbjCGLvP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Mar 2023 06:51:15 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54136 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231350AbjCGLsW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Mar 2023 06:48:22 -0500
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6C79A7B129;
-        Tue,  7 Mar 2023 03:47:26 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1678189646; x=1709725646;
-  h=date:from:to:cc:subject:in-reply-to:message-id:
-   references:mime-version;
-  bh=ABa115dzYhbKqxSWjzfNIHa1e+/UpB5wXI8AqnFj1B8=;
-  b=ND3BhInNqYYDdwVTdXvVkZLjlzB7QOtSTX6sc5q5u8KLubZNnj4iM75f
-   UQDU/qKA+Qd7wFWVvr0Jv/DPPlZp5VmuopDndctr34otG95hhjvYP9mc3
-   xWByA5stMt19+Fuhax0v9ZxMA9YNigR7gLBG5LmGEsUCfx+yPqjjid6BX
-   H2n7Hf+Vl0pvNntWBCrqOf+Dhmv2pS5FjaoYcxroF80yl95HIp2aL8XMi
-   EDBaNdaHHe7XzqOO0tsflFlsvqsj7UKiOUmN28v/9nVFKO6u0LphbSSqT
-   o0ZrBq5jgfDzvV+Vd9sf/uSViXqTWw4ylnR0I2OGIIQU/0ul8hIcBf7ew
-   g==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10641"; a="316229508"
-X-IronPort-AV: E=Sophos;i="5.98,240,1673942400"; 
-   d="scan'208";a="316229508"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
-  by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 07 Mar 2023 03:43:44 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10641"; a="706777464"
-X-IronPort-AV: E=Sophos;i="5.98,240,1673942400"; 
-   d="scan'208";a="706777464"
-Received: from unknown (HELO ijarvine-MOBL2.mshome.net) ([10.237.66.32])
-  by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 07 Mar 2023 03:43:37 -0800
-Date:   Tue, 7 Mar 2023 13:43:35 +0200 (EET)
-From:   =?ISO-8859-15?Q?Ilpo_J=E4rvinen?= <ilpo.jarvinen@linux.intel.com>
-To:     Neeraj sanjay kale <neeraj.sanjaykale@nxp.com>
-cc:     "davem@davemloft.net" <davem@davemloft.net>,
-        "edumazet@google.com" <edumazet@google.com>,
-        "kuba@kernel.org" <kuba@kernel.org>,
-        "pabeni@redhat.com" <pabeni@redhat.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "marcel@holtmann.org" <marcel@holtmann.org>,
-        "johan.hedberg@gmail.com" <johan.hedberg@gmail.com>,
-        "luiz.dentz@gmail.com" <luiz.dentz@gmail.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Jiri Slaby <jirislaby@kernel.org>,
-        "alok.a.tiwari@oracle.com" <alok.a.tiwari@oracle.com>,
-        "hdanton@sina.com" <hdanton@sina.com>,
-        "leon@kernel.org" <leon@kernel.org>,
-        Netdev <netdev@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        LKML <linux-kernel@vger.kernel.org>,
-        "linux-bluetooth@vger.kernel.org" <linux-bluetooth@vger.kernel.org>,
-        linux-serial <linux-serial@vger.kernel.org>,
-        Amitkumar Karwar <amitkumar.karwar@nxp.com>,
-        Rohit Fule <rohit.fule@nxp.com>,
-        Sherry Sun <sherry.sun@nxp.com>
-Subject: Re: [PATCH v6 3/3] Bluetooth: NXP: Add protocol support for NXP
- Bluetooth chipsets
-In-Reply-To: <AM9PR04MB86037CDF6A032963405AF0CEE7B69@AM9PR04MB8603.eurprd04.prod.outlook.com>
-Message-ID: <48e776a1-7526-5b77-568b-322d4555a138@linux.intel.com>
-References: <20230301154514.3292154-1-neeraj.sanjaykale@nxp.com> <20230301154514.3292154-4-neeraj.sanjaykale@nxp.com> <73527cb7-6546-6c47-768c-5f4648b6d477@linux.intel.com> <AM9PR04MB86037CDF6A032963405AF0CEE7B69@AM9PR04MB8603.eurprd04.prod.outlook.com>
+        with ESMTP id S231414AbjCGLu5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Mar 2023 06:50:57 -0500
+Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D18654FF30
+        for <devicetree@vger.kernel.org>; Tue,  7 Mar 2023 03:49:45 -0800 (PST)
+Received: by mail-lf1-x12c.google.com with SMTP id r27so16665503lfe.10
+        for <devicetree@vger.kernel.org>; Tue, 07 Mar 2023 03:49:45 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1678189781;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=8NLnfgcJkBrupO9VeOIsatAqwiLwPWa5rkw2fb5PnaE=;
+        b=UYvQ5bO2RzR51Mh38ODTgBjtWo2rd01w2DzKJ+NpS1vMuXxsIZJk1UL0Y9tvMY/erS
+         WdcNtewN6BoWBvzNWdC7D5OzAVWUwrl418t7qzmoVXLW7HeQHGUJUllTxOAxPKMuos/I
+         FnEFJdlTkGoepl4EBTUDhWvpEm1hlggXZgbJrM2QDGjqMvK09RAhyBe4g/zdhhWeZs19
+         2H7fcl1zyhk9DpjhmRDIDtaXkwftLIFWTRPHIHuoKTmaWO3N6eMFm5Cla1kFSe7fPjxJ
+         Tas0sI2JB1IcP++DNwbqE8ksYqoqgZh125kLDgfhq0VIpwRgE5vveM3yXSMv/dLCUqEN
+         /+TA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1678189781;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=8NLnfgcJkBrupO9VeOIsatAqwiLwPWa5rkw2fb5PnaE=;
+        b=7LVZN4EiE9NwoxZyOTrBbTmT5SFyFpM/HEMnCc7YhT4J0dNebXahtqdiimQkAJJ62G
+         JgGIpeyrhVCspsJVqcDtjg9XD9HD/wXvx3gv9zNVogxq64RmNczrT2y2m+DoKmSiKqBL
+         iYHBOBJH/oHYngF8TgBvmZBB5p02qNMSHb7pDKLT3N5Qe4Ryebgl3uAd/bxnkqt8ejnL
+         srf+jca+CGCyPLP+G2OcXJ0eFtmDRciYrjZXgFWKstCq6c9oDGjVEJ9BxVReLSzHf8vX
+         IfEdg5W5KJ9t24ukAiA5R1n1OOB2cDyYeTqjqRjuRZCOH5XY9SldhaBGpEWVRGGYEDf/
+         uXtQ==
+X-Gm-Message-State: AO0yUKUVzX47Yj5EDyD8Zh+/8zZgf8Zgevcr2xr3SWWD2wIlQHwgWuk1
+        J1zW4YRblT+CwW10hOAuM7f4uQ==
+X-Google-Smtp-Source: AK7set820Wh82BGJ6Ihvrw7CYOrPuMDU5y9XvpQtW63tea7D4cxj+nT71DKMYqTpL9A9f0fzFll76w==
+X-Received: by 2002:ac2:558e:0:b0:4dc:852d:9b88 with SMTP id v14-20020ac2558e000000b004dc852d9b88mr3812252lfg.45.1678189781415;
+        Tue, 07 Mar 2023 03:49:41 -0800 (PST)
+Received: from [10.10.15.130] ([192.130.178.91])
+        by smtp.gmail.com with ESMTPSA id j19-20020a19f513000000b004dc721ea6a1sm1997226lfb.273.2023.03.07.03.49.40
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 07 Mar 2023 03:49:40 -0800 (PST)
+Message-ID: <47b591c0-2f68-429d-6d1b-fa8b701785ac@linaro.org>
+Date:   Tue, 7 Mar 2023 13:49:40 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_NONE,URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.8.0
+Subject: Re: [PATCH 7/8] arm64: dts: qcom: ipq9574: Add USB related nodes
+To:     Varadarajan Narayanan <quic_varada@quicinc.com>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Georgi Djakov <djakov@kernel.org>
+References: <cover.1677749625.git.quic_varada@quicinc.com>
+ <6b8d17006d8ee9a1b0c4df803c1cc7caf53ea3ef.1677749625.git.quic_varada@quicinc.com>
+ <CAA8EJprbMybV0o1-436yLhVnnEX6qywrj=JmWDCL5usaH0DXiQ@mail.gmail.com>
+ <61e8c730-e46d-728d-d770-f1ead4405d12@quicinc.com>
+ <83184da4-b183-3271-983f-3a1a62fb9f1a@linaro.org>
+ <365f2609-d3b4-df23-5b6e-7a190815a640@quicinc.com>
+Content-Language: en-GB
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+In-Reply-To: <365f2609-d3b4-df23-5b6e-7a190815a640@quicinc.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 6 Mar 2023, Neeraj sanjay kale wrote:
-
-> Hi Ilpo,
+On 07/03/2023 08:36, Varadarajan Narayanan wrote:
 > 
-> Thank you for reviewing this patch. I have resolved most of your review comments in v7 patch, and I have some clarification inline below:
+> On 3/6/2023 5:21 PM, Dmitry Baryshkov wrote:
+>> On 06/03/2023 13:26, Varadarajan Narayanan wrote:
+>>> Dmitry,
+>>>
+>>> On 3/2/2023 9:52 PM, Dmitry Baryshkov wrote:
+>>>> On Thu, 2 Mar 2023 at 11:57, Varadarajan Narayanan
+>>>> <quic_varada@quicinc.com> wrote:
+>>>>> Add USB phy and controller related nodes
+>>>>>
+>>>>> Signed-off-by: Varadarajan Narayanan <quic_varada@quicinc.com>
+>>>>> ---
+>>>>>   arch/arm64/boot/dts/qcom/ipq9574.dtsi | 92 
+>>>>> +++++++++++++++++++++++++++++++++++
+>>>>>   1 file changed, 92 insertions(+)
+>>>>>
+>>>>> diff --git a/arch/arm64/boot/dts/qcom/ipq9574.dtsi 
+>>>>> b/arch/arm64/boot/dts/qcom/ipq9574.dtsi
+>>>>> index 2bb4053..319b5bd 100644
+>>>>> --- a/arch/arm64/boot/dts/qcom/ipq9574.dtsi
+>>>>> +++ b/arch/arm64/boot/dts/qcom/ipq9574.dtsi
+>>
+>> [skipped]
+>>
+>>
+>>>>> +               usb3: usb3@8A00000 {
+>>>> You know the drill. This node is in the wrong place.
+>>>>
+>>>>> +                       compatible = "qcom,dwc3";
+>>>>> +                       reg = <0x8AF8800 0x400>;
+>>>>> +                       #address-cells = <1>;
+>>>>> +                       #size-cells = <1>;
+>>>>> +                       ranges;
+>>>>> +
+>>>>> +                       clocks = <&gcc GCC_SNOC_USB_CLK>,
+>>>>> +                               <&gcc GCC_ANOC_USB_AXI_CLK>,
+>>>>> +                               <&gcc GCC_USB0_MASTER_CLK>,
+>>>>> +                               <&gcc GCC_USB0_SLEEP_CLK>,
+>>>>> +                               <&gcc GCC_USB0_MOCK_UTMI_CLK>;
+>>>>> +
+>>>>> +                       clock-names = "sys_noc_axi",
+>>>>> +                               "anoc_axi",
+>>>>> +                               "master",
+>>>>> +                               "sleep",
+>>>>> +                               "mock_utmi";
+>>>> Please fix the indentation of the lists.
+>>>>
+>>>>> +
+>>>>> +                       assigned-clocks = <&gcc GCC_SNOC_USB_CLK>,
+>>>>> +                                         <&gcc GCC_ANOC_USB_AXI_CLK>,
+>>>> Why do you assign clock rates to the NOC clocks? Should they be set
+>>>> using the interconnect instead?
+>>>
+>>> The SNOC and ANOC run at a fixed speed of 350MHz and 342MHz 
+>>> respectively and are not scaled. These clocks are for the interface 
+>>> between the USB block and the SNOC/ANOC. Do we still need to use 
+>>> interconnect?
+>>
+>> Maybe I misunderstand something here. If the snoc and anoc speeds are 
+>> at 350 MHz and 342 MHz, why do you assign clock-rates of 200 MHz?
+>>
+>> Is it enough to call clk_prepare_enable() for these clocks or the rate 
+>> really needs to be set?
+> 
+> The rate of 200MHz is not being set for the SNOC/ANOC. It is for the
+> NIU that connects the USB and SNOC/ANOC. The reason for setting the
+> rate to 200MHz is to configure the RCG parent for these interface
+> clocks. That said can we configure this RCG standalone in the driver
+> and enable these clocks?
 
-Further discussion below + I sent a few against v7.
+We discussed this separately with Georgi Djakov. Let me quote his IRC 
+message: "it sounds like this is for USB port that connects to the NOC. 
+if bandwidth scaling is not needed (or other interconnect 
+configuration), then maybe this can go without interconnect provider 
+driver."
 
- 
-> > > +static bool nxp_fw_change_baudrate(struct hci_dev *hdev, u16 req_len)
-> > > +{
-> > > +     struct btnxpuart_dev *nxpdev = hci_get_drvdata(hdev);
-> > > +     struct nxp_bootloader_cmd nxp_cmd5;
-> > > +     struct uart_config uart_config;
-> > > +
-> > > +     if (req_len == sizeof(nxp_cmd5)) {
-> > > +             nxp_cmd5.header = __cpu_to_le32(5);
-> > > +             nxp_cmd5.arg = 0;
-> > > +             nxp_cmd5.payload_len = __cpu_to_le32(sizeof(uart_config));
-> > > +             nxp_cmd5.crc = swab32(crc32_be(0UL, (char *)&nxp_cmd5,
-> > > +                                            sizeof(nxp_cmd5) - 4));
-> > 
-> > swab32(crc32_be(...)) seems and odd construct instead of __cpu_to_le32().
-> Earlier I had tried using __cpu_to_le32() but that did not work. The FW expects a swapped
-> CRC value for it's header and payload data.
+However as we discover more and more about this platform (e.g. PCIe 
+using the aggre_noc region to setup some magic registers, see [1]), I'm 
+more and more biased towards suggesting implementing the interconnect 
+driver to setup all these tiny little things. With the DT tree being an 
+ABI, it is much preferable to overestimate the needs rather than 
+underestimating them (and having to cope with the backwards 
+compatibility issues).
 
-So the .crc member should be __be32 then?
+Generally I think that PCIe/USB/whatever should not poke into NoC 
+registers or NoC/NIU clocks directly (because this is a very 
+platform-specific item). Rather than that it should tell the 
+icc/opp/whatever subsystem, "please configure the SoC for me to work".
 
-> > > +     serdev_device_write_buf(nxpdev->serdev, (u8 *)&nxp_cmd7,
-> > > + req_len);
-> > 
-> > Is it safe to assume req_len is small enough to not leak stack content?
-> The chip requests chunk of FW data which is never more than 2048 bytes 
-> at a time. 
+[1] 
+https://lore.kernel.org/linux-arm-msm/30cf9717-dcca-e984-c506-c71b7f8e32cd@quicinc.com/
 
-Eh, sizeof(*nxp_cmd7) is 16 bytes!?! Are you sure that req_len given to 
-serdev_device_write_buf() is not larger than 16 bytes?
-
-> > > +static bool nxp_check_boot_sign(struct btnxpuart_dev *nxpdev) {
-> > > +     int ret;
-> > > +
-> > > +     serdev_device_set_baudrate(nxpdev->serdev,
-> > HCI_NXP_PRI_BAUDRATE);
-> > > +     serdev_device_set_flow_control(nxpdev->serdev, 0);
-> > > +     set_bit(BTNXPUART_CHECK_BOOT_SIGNATURE, &nxpdev->tx_state);
-> > > +
-> > > +     ret = wait_event_interruptible_timeout(nxpdev-
-> > >check_boot_sign_wait_q,
-> > > +                                            !test_bit(BTNXPUART_CHECK_BOOT_SIGNATURE,
-> > > +                                                      &nxpdev->tx_state),
-> > > +                                            msecs_to_jiffies(1000));
-> > > +     if (ret == 0)
-> > > +             return false;
-> > > +     else
-> > > +             return true;
-> > 
-> > How does does this handle -ERESTARTSYS? But this runs in nxp_setup() so is
-> > that even relevant (I don't know).
-> This function is waits for 1 second and checks if it is receiving any bootloader signatures
-> over UART. If yes, it means FW download is needed. If no, it means FW is already present
-> on the chip, and we skip FW download.
-
-Okay, it seems your changes had a side-effect of addressing this.
-
-> > > +static int nxp_enqueue(struct hci_dev *hdev, struct sk_buff *skb) {
-> > > +     struct btnxpuart_dev *nxpdev = hci_get_drvdata(hdev);
-> > > +     struct ps_data *psdata = nxpdev->psdata;
-> > > +     struct hci_command_hdr *hdr;
-> > > +     u8 param[MAX_USER_PARAMS];
-> > > +
-> > > +     if (!nxpdev || !psdata)
-> > > +             goto free_skb;
-> > > +
-> > > +     /* if vendor commands are received from user space (e.g. hcitool),
-> > update
-> > > +      * driver flags accordingly and ask driver to re-send the command to
-> > FW.
-> > > +      */
-> > > +     if (bt_cb(skb)->pkt_type == HCI_COMMAND_PKT &&
-> > > + !psdata->driver_sent_cmd) {
-> > 
-> > Should this !psdata->driver_sent_cmd do something else than end up into a
-> > place labelled send_skb. Maybe return early (or free skb + return)?
-> > There's a comment elsewhere stating: "set flag to prevent re-sending
-> > command in nxp_enqueue."
-> I'm sorry if the comment was misleading. This flag is set to prevent nxp_enqueue() from
-> Parsing the command parameters again, and calling hci_cmd_sync_queue() again.
-> The commands sent from user space, as well as the commands sent by __hci_cmd_sync(),
-> both endup in nxp_enqueue().
-> Hope this helps!
-
-Okay, makes sense now and the logic is also clearer now. However, the
-brace blocks you added into those cases in bxp_enqueue() you should try to 
-remove. I realize you do it to avoid name collisions because you reused 
-param in each but they introduced these ugly constructs:
-	case XX:
-		{
-			...
-			goto free_skb;
-		}
-		break;
+> 
+> Thanks
+> Varada
+> 
+> 
+>>
+>>
+>>>
+>>>>> + <&gcc GCC_USB0_MASTER_CLK>,
+>>>>> +                                         <&gcc 
+>>>>> GCC_USB0_MOCK_UTMI_CLK>;
+>>>>> +                       assigned-clock-rates = <200000000>,
+>>>>> + <200000000>,
+>>>>> + <200000000>,
+>>>>> + <24000000>;
+>>>>> +
+>>>>> +                       resets = <&gcc GCC_USB_BCR>;
+>>>>> +                       status = "disabled";
+>>>>> +
+>>>>> +                       dwc_0: dwc3@8A00000 {
+>>>>> +                               compatible = "snps,dwc3";
+>>>>> +                               reg = <0x8A00000 0xcd00>;
+>>>>> +                               clock-names = "ref";
+>>>>> +                               clocks = <&gcc 
+>>>>> GCC_USB0_MOCK_UTMI_CLK>;
+>>>> clocks before clock-names
+>>>>
+>>>>> + interrupts = <GIC_SPI 140 IRQ_TYPE_LEVEL_HIGH>;
+>>>>> +                               phys = <&qusb_phy_0>, <&usb0_ssphy>;
+>>>>> +                               phy-names = "usb2-phy", "usb3-phy";
+>>>>> +                               tx-fifo-resize;
+>>>>> +                               snps,dis_ep_cache_eviction;
+>>>>> +                               snps,is-utmi-l1-suspend;
+>>>>> +                               snps,hird-threshold = /bits/ 8 <0x0>;
+>>>>> +                               snps,dis_u2_susphy_quirk;
+>>>>> +                               snps,dis_u3_susphy_quirk;
+>>>>> + snps,quirk-frame-length-adjustment = <0x0A87F0A0>;
+>>>>> +                               dr_mode = "host";
+>>>>> +                       };
+>>>>> +               };
+>>>>> +
+>>>>>                  pcie0_phy: phy@84000 {
+>>>>>                          compatible = 
+>>>>> "qcom,ipq9574-qmp-gen3x1-pcie-phy";
+>>>>>                          reg = <0x00084000 0x1bc>; /* Serdes PLL */
+>>>>> -- 
+>>>>> 2.7.4
+>>>
+>>> Will address these and post a new revision.
+>>>
+>>> Thanks
+>>>
+>>> Varada
+>>>
+>>
 
 -- 
- i.
+With best wishes
+Dmitry
 
