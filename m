@@ -2,74 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C58446ADF0B
-	for <lists+devicetree@lfdr.de>; Tue,  7 Mar 2023 13:48:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1DD536ADF10
+	for <lists+devicetree@lfdr.de>; Tue,  7 Mar 2023 13:48:54 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229470AbjCGMsE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Mar 2023 07:48:04 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41018 "EHLO
+        id S229587AbjCGMsu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Mar 2023 07:48:50 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43218 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229545AbjCGMrp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Mar 2023 07:47:45 -0500
+        with ESMTP id S229548AbjCGMst (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Mar 2023 07:48:49 -0500
 Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com [IPv6:2a00:1450:4864:20::534])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 324F97B980
-        for <devicetree@vger.kernel.org>; Tue,  7 Mar 2023 04:47:44 -0800 (PST)
-Received: by mail-ed1-x534.google.com with SMTP id ay14so48021790edb.11
-        for <devicetree@vger.kernel.org>; Tue, 07 Mar 2023 04:47:44 -0800 (PST)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B12C873032
+        for <devicetree@vger.kernel.org>; Tue,  7 Mar 2023 04:48:47 -0800 (PST)
+Received: by mail-ed1-x534.google.com with SMTP id g3so51866229eda.1
+        for <devicetree@vger.kernel.org>; Tue, 07 Mar 2023 04:48:47 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1678193262;
+        d=linaro.org; s=google; t=1678193326;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=MiOMw3LK/5OLzUtn41VD8A10+TPR+DMf9b3It0y1guw=;
-        b=GfvhCA4Tlxl2L4aX/6Sh6y/b6EtasmFOro5keWY86lAZ8++Xzo7zyqoqYHVHbsqAbE
-         HCw+aujjmrHB2hQHnb/dwbJFQPgbqy5MZMwtzcqnZJzYep5I23Vgep4oc6E8yOvcvg/c
-         /uqA1aDHO9KOeaEfa9G2pfPXZnIlgcAJuAUCt9H4ttYJyGfmvRubtqtAcleTbXZrHiD2
-         2kKhBmW4MoRUAQQ52RDzV//ERmEO7pdTWRW0ppS4SiWYyqpqnpdqYVYXoTshH9BhIK8j
-         qa/zfDeLY8nbuU4ZVbkOp7oNTz8wtYaauLFDZEZsihPBk4dNy2OJi/74Ef+xYbOkUI9N
-         X0wA==
+        bh=gXMDjluJDUvPLUicyi9DzXJkAKHHUVttkvC/e23H4Xg=;
+        b=gBNpW4hE+viaph3Z9oHqJD+5k9T0kLFVksSmYDaYHCpYrjYet2Y7xzwCXwhRqORnWg
+         wE/6W9M/kc2+Vve5aDGSeGrXaWB8YjgQ1XUCQyjvp3SwsV+/jnfGbM0RdpGcyF9bbsYV
+         lOYcZyKaGNtFSN4ipuq8gqyuTT3TnA4YFmx2/+HNIVvKoDFUhMgSCOj0EOxNurAeeMHR
+         BKML1W/QnpTHpizWDwPqbpCTwS8V3VqmklGMmeFRE+B+KdKB43IAX7OGr9zWxyZm3Tp3
+         zA0DYbSuK1C1R2g2MQFf5E8PEfKrZpH6MuFnOzGHIORxpGRoS/T/AApE89N8YE7aN/l5
+         UWXA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678193262;
+        d=1e100.net; s=20210112; t=1678193326;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=MiOMw3LK/5OLzUtn41VD8A10+TPR+DMf9b3It0y1guw=;
-        b=SrWWncU/k6W4UGpRUs3ahi/8b5RhgzvZjYWus45+yKcEOAh88YvtwZ2MLbwbWQsqO+
-         fiuycYTtrKtJqb3UDYneLW6JuMEq3ZNLxQDuOvKWkdvVUCmQOMBnnazeevyb2fIRcyUs
-         qZSnge2ibYQa+746UiOF9l1zgoIfTe6BveL0N48e+T3FYl69QH6254jZ1Uuico6qiTLc
-         vAQOQoC3yBTujKtCl2mEv8neVnS9uxqn6SRPY3KavsvGJqlV0nR/HzU/YpM53dC/TxMO
-         487qXn3WcssZJqS+wlAmJp79Oq7CdlqOz3oiMV1eOd4LqN4oeXyOvtaYdSkX60Mi6C8f
-         oEyQ==
-X-Gm-Message-State: AO0yUKXz3mOIiywM0k+OxZpng6Bcaf/zJSRzx+9BtO2/+UmgXz6GTpvW
-        rh58t0b/K7GUnexwfhHv9XS+qA==
-X-Google-Smtp-Source: AK7set+YuJPZN+mtGN0+4Lu5lpIp2vpZ1xwMAygXesjgftRMUQnfjD9C9uBPunnWrkl0dV+LGfhlaA==
-X-Received: by 2002:a05:6402:350:b0:4c0:eab4:af12 with SMTP id r16-20020a056402035000b004c0eab4af12mr12941292edw.12.1678193262693;
-        Tue, 07 Mar 2023 04:47:42 -0800 (PST)
+        bh=gXMDjluJDUvPLUicyi9DzXJkAKHHUVttkvC/e23H4Xg=;
+        b=SFxomzE5pE0+VWO3jZEGV8nKrq0VCuUgmlBEG+dCtDjOL5zzbGClbTmofX1reurRte
+         b14jw8m7QrfeBfEnYWWxoGurfdCn2a3aovQ9O4L71LkTf4jz7Famb+NBnWmqgtx3o/bG
+         4XqdTAgwI8B07w6mMIhzLXSNr8d4wzzCpeK67+NqycjR44huc3UzeX7S5HW1xoi9r1ID
+         PhHPaLQZeKh/ynljD6xjM/q52cktqsk6/KyXRRS5nTlzsB5MCpI52X1NIcf9/kX9X6bw
+         tQJJ88GMA3+FebALGBpODL16VGt9CpTZJGv4eW8fPugeGJ/XjuJoz4eAFOUCi0JiZLAg
+         x+rw==
+X-Gm-Message-State: AO0yUKWUSMbVrzNE1xtv4DYTw+zjAvNYTjtqvsJvQoDwAFfy+nLceVcx
+        ESgFkl3M0WB4Hmj3GTW1B9E/qw==
+X-Google-Smtp-Source: AK7set8MCzzEe4umSH1sYZCblI6WJ1yy9vx+YgB8ty6up6YK0RjeqU1A/CLPMaRwTV8qico7a1qLyw==
+X-Received: by 2002:a05:6402:7ce:b0:4c0:57b:47a9 with SMTP id u14-20020a05640207ce00b004c0057b47a9mr13267661edy.35.1678193326220;
+        Tue, 07 Mar 2023 04:48:46 -0800 (PST)
 Received: from ?IPV6:2a02:810d:15c0:828:a60f:e604:c252:1f3d? ([2a02:810d:15c0:828:a60f:e604:c252:1f3d])
-        by smtp.gmail.com with ESMTPSA id x33-20020a50baa4000000b004af7191fe35sm6669195ede.22.2023.03.07.04.47.41
+        by smtp.gmail.com with ESMTPSA id le16-20020a170907171000b008da6a37de1bsm6174070ejc.10.2023.03.07.04.48.45
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 07 Mar 2023 04:47:42 -0800 (PST)
-Message-ID: <692a62da-a9a1-fa23-6e24-723d73c3a423@linaro.org>
-Date:   Tue, 7 Mar 2023 13:47:40 +0100
+        Tue, 07 Mar 2023 04:48:45 -0800 (PST)
+Message-ID: <de9d5cdb-29d5-8252-6884-dd50a22d1580@linaro.org>
+Date:   Tue, 7 Mar 2023 13:48:44 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.8.0
-Subject: Re: [PATCH v13 1/2] dt-bindings: clock: add loongson-2 boot clock
- index
+Subject: Re: [PATCH v2 8/9] dt-bindings: display/msm: dsi-controller-main: Add
+ SM6115
 Content-Language: en-US
-To:     Yinbo Zhu <zhuyinbo@loongson.cn>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
+To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
+        linux-arm-msm@vger.kernel.org, andersson@kernel.org,
+        agross@kernel.org
+Cc:     marijn.suijten@somainline.org, Rob Clark <robdclark@gmail.com>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Sean Paul <sean@poorly.run>, David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org
-Cc:     Jianmin Lv <lvjianmin@loongson.cn>,
-        Liu Peibao <liupeibao@loongson.cn>, wanghongliang@loongson.cn,
-        loongson-kernel@lists.loongnix.cn
-References: <20230307115022.12846-1-zhuyinbo@loongson.cn>
+        Krishna Manikandan <quic_mkrishn@quicinc.com>,
+        dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20230213121012.1768296-1-konrad.dybcio@linaro.org>
+ <20230213121012.1768296-9-konrad.dybcio@linaro.org>
+ <bcb5c17f-da78-9d68-66eb-b620ee583602@linaro.org>
+ <22970751-8bc0-9cbd-eec1-cbc92f0b4ea7@linaro.org>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230307115022.12846-1-zhuyinbo@loongson.cn>
+In-Reply-To: <22970751-8bc0-9cbd-eec1-cbc92f0b4ea7@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -82,46 +88,36 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 07/03/2023 12:50, Yinbo Zhu wrote:
-> The Loongson-2 boot clock was used to spi and lio peripheral and
-> this patch was to add boot clock index number.
+On 07/03/2023 12:14, Konrad Dybcio wrote:
 > 
-> Signed-off-by: Yinbo Zhu <zhuyinbo@loongson.cn>
-> ---
-
-This is v13? Where is the changelog then?
-
-
->  include/dt-bindings/clock/loongson,ls2k-clk.h | 25 ++++++++++---------
->  1 file changed, 13 insertions(+), 12 deletions(-)
 > 
-> diff --git a/include/dt-bindings/clock/loongson,ls2k-clk.h b/include/dt-bindings/clock/loongson,ls2k-clk.h
-> index db1e27e792ff1..e86804365e506 100644
-> --- a/include/dt-bindings/clock/loongson,ls2k-clk.h
-> +++ b/include/dt-bindings/clock/loongson,ls2k-clk.h
-> @@ -13,17 +13,18 @@
->  #define LOONGSON2_DC_PLL				3
->  #define LOONGSON2_PIX0_PLL				4
->  #define LOONGSON2_PIX1_PLL				5
-> -#define LOONGSON2_NODE_CLK				6
-> -#define LOONGSON2_HDA_CLK				7
-> -#define LOONGSON2_GPU_CLK				8
-> -#define LOONGSON2_DDR_CLK				9
-> -#define LOONGSON2_GMAC_CLK				10
-> -#define LOONGSON2_DC_CLK				11
-> -#define LOONGSON2_APB_CLK				12
-> -#define LOONGSON2_USB_CLK				13
-> -#define LOONGSON2_SATA_CLK				14
-> -#define LOONGSON2_PIX0_CLK				15
-> -#define LOONGSON2_PIX1_CLK				16
-> -#define LOONGSON2_CLK_END				17
-> +#define LOONGSON2_BOOT_CLK				6
+> On 7.03.2023 10:17, Krzysztof Kozlowski wrote:
+>> On 13/02/2023 13:10, Konrad Dybcio wrote:
+>>> Add a compatible for the DSI on SM6115.
+>>>
+>>> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+>>> ---
+>>>  .../devicetree/bindings/display/msm/dsi-controller-main.yaml    | 2 ++
+>>>  1 file changed, 2 insertions(+)
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml b/Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml
+>>> index 2494817c1bd6..f195530ae964 100644
+>>> --- a/Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml
+>>> +++ b/Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml
+>>> @@ -25,6 +25,7 @@ properties:
+>>>                - qcom,sc7280-dsi-ctrl
+>>>                - qcom,sdm660-dsi-ctrl
+>>>                - qcom,sdm845-dsi-ctrl
+>>> +              - qcom,sm6115-dsi-ctrl
+>>
+>> This looks incomplete. You also need to add it to MDSS binding.
+> https://lore.kernel.org/linux-arm-msm/145066db-5723-6baa-237d-7c2b8fd476d9@linaro.org/
+> 
+> Does this.. but I guess I'll resend this as one series, as it only
+> makes sense.
 
-That's an ABI break and commit msg does not explain it.
-
-> +#define LOONGSON2_NODE_CLK				7
-
-
+It should be one commit. Adding sm6115 here is incomplete if other
+binding (using this one) does not allow it.
 
 Best regards,
 Krzysztof
