@@ -2,128 +2,256 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4F99E6AD8A9
-	for <lists+devicetree@lfdr.de>; Tue,  7 Mar 2023 09:06:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B1CF86AD8DA
+	for <lists+devicetree@lfdr.de>; Tue,  7 Mar 2023 09:12:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229808AbjCGIGi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Mar 2023 03:06:38 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36326 "EHLO
+        id S229994AbjCGIL5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Mar 2023 03:11:57 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44830 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229787AbjCGIGf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Mar 2023 03:06:35 -0500
-Received: from mail-wm1-x32e.google.com (mail-wm1-x32e.google.com [IPv6:2a00:1450:4864:20::32e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ACC4288EC2
-        for <devicetree@vger.kernel.org>; Tue,  7 Mar 2023 00:06:26 -0800 (PST)
-Received: by mail-wm1-x32e.google.com with SMTP id l7-20020a05600c1d0700b003eb5e6d906bso6622152wms.5
-        for <devicetree@vger.kernel.org>; Tue, 07 Mar 2023 00:06:26 -0800 (PST)
+        with ESMTP id S229981AbjCGIL4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Mar 2023 03:11:56 -0500
+Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com [IPv6:2a00:1450:4864:20::52a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DE5242C67B
+        for <devicetree@vger.kernel.org>; Tue,  7 Mar 2023 00:11:39 -0800 (PST)
+Received: by mail-ed1-x52a.google.com with SMTP id s11so48919643edy.8
+        for <devicetree@vger.kernel.org>; Tue, 07 Mar 2023 00:11:39 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1678176385;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=wlixcmRPU0kwlxyRa6XJ1Wvf4b87DZOdNPk167ILrOo=;
-        b=he6cKusNCUpkvICX9VIckGy2epdvPViwko/K7fRoU5NihoUHmLgLPMeeh2w/Zz3jrh
-         /GlaAAxI5qDtv3W5/Jf43SezLl5FaSNnS9V8OZI8j+nw9zYh+UAQy47tH/mUNa8KXAsi
-         6VT/fSI4f9wwXxHzc79DQhVAumzXWp7XgiQiNN0S/LaofJgq951JLwgUbhCZySVnO1cl
-         o4/dtStSWUIQWH/orQI/LnfwjFCq7iGbsrlYWPx/fmzNXErTi31vKGx3W/wnCzzbl7ub
-         9BS9uhbdAcWHvpPFfB2ruYbTBI2Q/GkodWJh6QVauTmxHF7xN2xftPvNPF/1dAFoJefj
-         xBhw==
+        d=linaro.org; s=google; t=1678176698;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=+gmLTaMxh+UgKG/kflrxb/f3sNJaZcDEgaX2MESY0eU=;
+        b=q3PBcvB1zvsXE87gITbF/SzJQLo4Xx88B32/Tmw3dv2IrNfQYd8YbzJyVUtxwcFMDx
+         rDtF1kRD/J5rUZPOvdQrEAbExMBQTrNf0mRJwrTD4e0RYlDjbmuEVLPhc59kpXOuBguq
+         NyTY2kmk766MwbnpQMj2RcnYDPRvYilXFFVXrGGXa6GA9A20SUrpFbYn5+sC/xnzSEjE
+         FKhWGUqha329de9TWzywrqVay3P5xsD6TFOP7FdCGyCFWBqV4svNe0CvcyDUW8zR9Ieu
+         GkyggizmmZfQzDjfqt/w1nTLu3jfwmjXH29xP1JazPuuDhlWLd974oZW9quGhCvR2Jt1
+         hokg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678176385;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=wlixcmRPU0kwlxyRa6XJ1Wvf4b87DZOdNPk167ILrOo=;
-        b=TF6wVoaNHMN2RfXzr+JXy8yHpV5cn0ZYtz4Rh4hRD8rgX0aEuIx9jxfHTKZZJh6uRE
-         ItidEToTuvlnidPaJAFhOU6amgKgOLJi89kqF29BeujFEj7423VluzTUCHby1PXyZqOQ
-         iiHHeVx0j9y8tNtoCN86XJWXMALDxI/Lt6ytmwhdEFqoylt+m0oVd01uHGL9C0+edN3n
-         D/6C59JDZ+56bQ1VQbt0VkIJ0V9dImt8SOoRjUwQlCircogPfcTjExK/OqlqM9fwKJjR
-         lNy6ALaJGUsa5na0en9tqUdKukbuG5pP78MNM8bW8KV+cQxSqerCrZGn4y9exBXSWaYO
-         z+Vg==
-X-Gm-Message-State: AO0yUKVE7MHa612fGwMUmKz4sgE7lDA9iaA41isiovcq03ebVkTcnHun
-        uwXbNKNOH6gtL2n6hWJHEZ+MwA==
-X-Google-Smtp-Source: AK7set9/dRT/dzFhPvrICG4vwvaMfeiVpFBx/GhL+4bReBNVsMts2vq/bj2VLCXRaf4cWgBN6DcMlA==
-X-Received: by 2002:a05:600c:3b9b:b0:3eb:3998:36f1 with SMTP id n27-20020a05600c3b9b00b003eb399836f1mr12408519wms.41.1678176385065;
-        Tue, 07 Mar 2023 00:06:25 -0800 (PST)
-Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:52eb:f6ff:feb3:451a])
-        by smtp.gmail.com with ESMTPSA id s17-20020adfea91000000b002c6e8cb612fsm11671889wrm.92.2023.03.07.00.06.24
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 07 Mar 2023 00:06:24 -0800 (PST)
-From:   Neil Armstrong <neil.armstrong@linaro.org>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        Neil Armstrong <neil.armstrong@linaro.org>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-amlogic@lists.infradead.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Christian Hewitt <christianshewitt@gmail.com>
-In-Reply-To: <20230303-topic-amlogic-upstream-bpi-cm4-v2-0-2ecfde76fc4d@linaro.org>
-References: <20230303-topic-amlogic-upstream-bpi-cm4-v2-0-2ecfde76fc4d@linaro.org>
-Subject: Re: [PATCH v2 0/2] arm64: amlogic: Add initial support for BPI-CM4
- module with BPI-CM4IO baseboard
-Message-Id: <167817638406.768652.1431202103503389441.b4-ty@linaro.org>
-Date:   Tue, 07 Mar 2023 09:06:24 +0100
+        d=1e100.net; s=20210112; t=1678176698;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=+gmLTaMxh+UgKG/kflrxb/f3sNJaZcDEgaX2MESY0eU=;
+        b=uS2pHyDYbdMAzzQcu7wk2GSYBv6d3Oy60YJiMbGPtWNqiAD3iBhGHbjtJW0j0/gNAz
+         L1wiYWAksjFvTyPEAoL3hmXn/f2y3mXBXUBqiv755GAfM+AX02UHs8JQQPFO2Y1yf+JF
+         HTh27UJ459YNGc7a1JESQ5a6Pa0BXZGPfDxojYjLHpLdrQ9bbuiLQGuUSPW1gU/wLI5z
+         pmpadCBM0MxITleuwVSzg2XsudQL4iTsUHm0gC81dlMS8G7VhkFR18pamkyClSvZDz/X
+         WYwfbS8Yu7Ig1MoDtEfxuouPVWimChOsky4vYScpvCPVD93Oy+BCPAHM6q2pUuEmpXCt
+         6i1Q==
+X-Gm-Message-State: AO0yUKXNYCxv5XMFeYQRDUDa3TVmsiQpukOb64nuoR1Fs6l0tfjctmSN
+        3pfPfFNrZxxJU2iA1Yz9uXJPksF+0RTihz0xZyw=
+X-Google-Smtp-Source: AK7set8K0X83pfhJzpDlAHKtkhFREUYDfeXRLHVhI+OBX7UgwhDddxevyD4fRlkYHGhDqm65b0Wfbw==
+X-Received: by 2002:a50:ed18:0:b0:4af:7bdc:1891 with SMTP id j24-20020a50ed18000000b004af7bdc1891mr12995254eds.11.1678176698410;
+        Tue, 07 Mar 2023 00:11:38 -0800 (PST)
+Received: from ?IPV6:2a02:810d:15c0:828:5310:35c7:6f9e:2cd3? ([2a02:810d:15c0:828:5310:35c7:6f9e:2cd3])
+        by smtp.gmail.com with ESMTPSA id u2-20020a50d502000000b004c0057b478bsm6341543edi.34.2023.03.07.00.11.37
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 07 Mar 2023 00:11:38 -0800 (PST)
+Message-ID: <d33145c3-e985-4d3c-a08c-6a249a8dc463@linaro.org>
+Date:   Tue, 7 Mar 2023 09:11:36 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.12.1
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.8.0
+Subject: Re: [PATCH v6 1/2] dt-bindings: i2c: aspeed: support for
+ AST2600-i2cv2
+Content-Language: en-US
+To:     Ryan Chen <ryan_chen@aspeedtech.com>, Wolfram Sang <wsa@kernel.org>
+Cc:     Joel Stanley <joel@jms.id.au>,
+        Brendan Higgins <brendan.higgins@linux.dev>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Andrew Jeffery <andrew@aj.id.au>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
+        "linux-aspeed@lists.ozlabs.org" <linux-aspeed@lists.ozlabs.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "openbmc@lists.ozlabs.org" <openbmc@lists.ozlabs.org>,
+        "linux-i2c@vger.kernel.org" <linux-i2c@vger.kernel.org>
+References: <20230226031321.3126756-1-ryan_chen@aspeedtech.com>
+ <20230226031321.3126756-2-ryan_chen@aspeedtech.com>
+ <53090449-58c9-bc03-56df-aa8ae93c0c26@linaro.org>
+ <SEZPR06MB52699DEB2255EB54F35C2A59F2AD9@SEZPR06MB5269.apcprd06.prod.outlook.com>
+ <fc20a2d1-e2f9-c22b-dcdf-153cb527eea8@linaro.org>
+ <SEZPR06MB526902637624A97D7DFB8523F2B39@SEZPR06MB5269.apcprd06.prod.outlook.com>
+ <c41ee6b5-ddb4-1253-de54-a295b3bab2cc@linaro.org>
+ <SEZPR06MB5269E7B8785B3CB56A63A916F2B39@SEZPR06MB5269.apcprd06.prod.outlook.com>
+ <a3615fe7-aa2a-53e9-2732-ba4512b9369d@linaro.org>
+ <SEZPR06MB5269E7B070B239F8E349C427F2B39@SEZPR06MB5269.apcprd06.prod.outlook.com>
+ <c5cf6e0a-05dc-dff7-6218-df0984d1ba47@linaro.org>
+ <SEZPR06MB5269CB53B51B89C3CA039442F2B09@SEZPR06MB5269.apcprd06.prod.outlook.com>
+ <e59fe30a-75d1-eb59-52a3-014fe3c961a6@linaro.org>
+ <SEZPR06MB5269B541150855BF0DABFACFF2B69@SEZPR06MB5269.apcprd06.prod.outlook.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <SEZPR06MB5269B541150855BF0DABFACFF2B69@SEZPR06MB5269.apcprd06.prod.outlook.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
-
-On Mon, 06 Mar 2023 09:31:37 +0100, Neil Armstrong wrote:
-> Add support for both the BananaPi BPI-CM4 module and the BananaPi
-> baseboard which is comnpatible with the RaspberryPi CM4IO baseboard.
+On 06/03/2023 01:48, Ryan Chen wrote:
+> Hello Krzysztof,
 > 
-> The BananaPi BPI-CM4 module follows the CM4 specifications at [1],
-> but with a single HDMI port and a since DSI output.
+>> -----Original Message-----
+>> From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>> Sent: Sunday, March 5, 2023 5:49 PM
+>> To: Ryan Chen <ryan_chen@aspeedtech.com>; Wolfram Sang
+>> <wsa@kernel.org>
+>> Cc: Joel Stanley <joel@jms.id.au>; Brendan Higgins
+>> <brendan.higgins@linux.dev>; Krzysztof Kozlowski
+>> <krzysztof.kozlowski+dt@linaro.org>; Andrew Jeffery <andrew@aj.id.au>;
+>> devicetree@vger.kernel.org; Philipp Zabel <p.zabel@pengutronix.de>; Rob
+>> Herring <robh+dt@kernel.org>; Benjamin Herrenschmidt
+>> <benh@kernel.crashing.org>; linux-aspeed@lists.ozlabs.org;
+>> linux-arm-kernel@lists.infradead.org; linux-kernel@vger.kernel.org;
+>> openbmc@lists.ozlabs.org; linux-i2c@vger.kernel.org
+>> Subject: Re: [PATCH v6 1/2] dt-bindings: i2c: aspeed: support for AST2600-i2cv2
+>>
+>> On 04/03/2023 02:33, Ryan Chen wrote:
+>>> Hello Krzysztof,
+>>>
+>>>> -----Original Message-----
+>>>> From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>>>> Sent: Friday, March 3, 2023 6:41 PM
+>>>> To: Ryan Chen <ryan_chen@aspeedtech.com>; Wolfram Sang
+>>>> <wsa@kernel.org>
+>>>> Cc: Joel Stanley <joel@jms.id.au>; Brendan Higgins
+>>>> <brendan.higgins@linux.dev>; Krzysztof Kozlowski
+>>>> <krzysztof.kozlowski+dt@linaro.org>; Andrew Jeffery
+>>>> <andrew@aj.id.au>; devicetree@vger.kernel.org; Philipp Zabel
+>>>> <p.zabel@pengutronix.de>; Rob Herring <robh+dt@kernel.org>; Benjamin
+>>>> Herrenschmidt <benh@kernel.crashing.org>;
+>>>> linux-aspeed@lists.ozlabs.org; linux-arm-kernel@lists.infradead.org;
+>>>> linux-kernel@vger.kernel.org; openbmc@lists.ozlabs.org;
+>>>> linux-i2c@vger.kernel.org
+>>>> Subject: Re: [PATCH v6 1/2] dt-bindings: i2c: aspeed: support for
+>>>> AST2600-i2cv2
+>>>>
+>>>> On 03/03/2023 11:16, Ryan Chen wrote:
+>>>>>>>>>>> aspeed,timout properites:
+>>>>>>>>>>> For example I2C controller as slave mode, and suddenly
+>>>>>> disconnected.
+>>>>>>>>>>> Slave state machine will keep waiting for master clock in for
+>>>>>>>>>>> rx/tx
+>>>>>>>> transmit.
+>>>>>>>>>>> So it need timeout setting to enable timeout unlock controller
+>> state.
+>>>>>>>>>>> And in another side. In Master side also need avoid suddenly
+>>>>>>>>>>> slave
+>>>>>>>>>> miss(un-plug), Master will timeout and release the SDA/SCL.
+>>>>>>>>>>>
+>>>>>>>>>>> Do you mean add those description into ore aspeed,timout
+>>>>>>>>>>> properites
+>>>>>>>>>> description?
+>>>>>>>>>>
+>>>>>>>>>> You are describing here one particular feature you want to
+>>>>>>>>>> enable in the driver which looks non-scalable and more
+>>>>>>>>>> difficult to
+>>>>>> configure/use.
+>>>>>>>>>> What I was looking for is to describe the actual configuration
+>>>>>>>>>> you have
+>>>>>> (e.g.
+>>>>>>>>>> multi-master) which leads to enable or disable such feature in
+>>>>>>>>>> your
+>>>>>>>> hardware.
+>>>>>>>>>> Especially that bool value does not scale later to actual
+>>>>>>>>>> timeout values in time (ms)...
+>>>>>>>>>>
+>>>>>>>>>> I don't know I2C that much, but I wonder - why this should be
+>>>>>>>>>> specific to Aspeed I2C and no other I2C controllers implement it?
+>>>>>>>>>> IOW, this looks quite generic and every I2C controller should
+>>>>>>>>>> have it. Adding it specific to Aspeed suggests that either we
+>>>>>>>>>> miss a generic property or this should not be in DT at all
+>>>>>>>>>> (because no one else has
+>>>>>>>> it...).
+>>>>>>>>>>
+>>>>>>>>>> Also I wonder, why you wouldn't enable timeout always...
+>>>>>>>>>>
+>>>>>>>>>> +Cc Wolfram,
+>>>>>>>>>> Maybe you know whether bool "timeout" property for one
+>>>>>>>>>> controller makes sense? Why we do not have it for all controllers?
+>>>>>>>>>>
+>>>>>>>>> Because, i2c bus didn’t specific timeout.
+>>>>>>>>> But SMBus defines a clock low time-out, TIMEOUT of 35 ms.
+>>>>>>>>>
+>>>>>>>>> It have definition in SMBus specification.
+>>>>>>>>> http://smbus.org/specs/SMBus_3_1_20180319.pdf
+>>>>>>>>> You can check Page 18, Note3 that have timeout description.
+>>>>>>>>
+>>>>>>>> Then you have already property for this - "smbus"?
+>>>>>>> To be a property "smbus", that would be a big topic, I saw fsl i2c
+>>>>>>> also have this.
+>>>>>>> https://github.com/torvalds/linux/blob/master/Documentation/device
+>>>>>>> tr
+>>>>>>> ee
+>>>>>>> /bindings/i2c/i2c-mpc.yaml#L43-L47
+>>>>>>> So, I just think the "timeout" property.
+>>>>>>
+>>>>>> Yeah and this is the only place. It also differs because it allows
+>>>>>> actual timeout values.
+>>>>> Thanks, So can I still keep the property "aspeed,timeout" here?
+>>>>> It is the only place.
+>>>>
+>>>> No, because none of my concerns above are addressed.
+>>>>
+>>> Thanks, I realize your concerns.
+>>>
+>>> So, I modify it like i2c-mpc.yaml
+>>> https://github.com/torvalds/linux/blob/master/Documentation/devicetree
+>>> /bindings/i2c/i2c-mpc.yaml#L43-L47
+>>>
+>>>   aspeed,timeout:
+>>>     $ref: /schemas/types.yaml#/definitions/uint32
+>>>     description: |
+>>>       I2C bus timeout in microseconds
+>>> Is this way acceptable?
+>>
+>> So, let's repeat my last questions:
+>>
+>> 1. Why you wouldn't enable timeout always...
+>>
+>> You wrote:
+>>> http://smbus.org/specs/SMBus_3_1_20180319.pdf
+>>> You can check Page 18, Note3 that have timeout description.
+>>
+>> which indicates you should always use timeout, doesn't it?
 > 
-> The current CM4IO baseboard DT should work fine on the Raspberry CM4
-> baseboard and other derivatives baseboards, but proper DT should
-> be written for other baseboards.
+> Yes, if board design the bus is connected with SMBUS device, it should enable.
+> But in my previous statement, the board design is two multi-master devices connected each other. 
+
+For which you have the property, thus case is solved, isn't it? You want
+timeout always except for multi-master?
+
+> And both device is transfer with MCTP protocol. 
+> That will not SMBUS protocol. 
+> They need have timeout that prevent unexpected un-plug.
+> I do the study with smbus in Linux, that will different slave call back. Compare with smbus slave and mctp slave.
+> So in this scenario, that is only enable for timeout. 
+
+And the driver knows which protocol it is going to talk and such choice
+should not be in DT.
+
+>  
+>> 2. Why we do not have it for all controllers with SMBus v3? Why this one is
+>> special?
 > 
-> [...]
+> Not all bus is connected with smbus. Most are i2c device connected in board.
+> That will be specific statement for each bus.
 
-Thanks, Applied to https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git (v6.4/arm64-dt)
+That's not the answer to my question. Why other controllers which can be
+connected to I2C or SMBus devices do not need this property?
 
-[1/2] dt-bindings: arm: amlogic: Document the boards with the BPI-CM4 connected
-      https://git.kernel.org/amlogic/c/92c0b261c294f12e329976a6d4ef72651e8f07f2
-[2/2] arm64: dts: amlogic: Add initial support for BPI-CM4 module with BPI-CM4IO baseboard
-      https://git.kernel.org/amlogic/c/0262f2736978b1763363224698f47112a148dab0
-
-These changes has been applied on the intermediate git tree [1].
-
-The v6.4/arm64-dt branch will then be sent via a formal Pull Request to the Linux SoC maintainers
-for inclusion in their intermediate git branches in order to be sent to Linus during
-the next merge window, or sooner if it's a set of fixes.
-
-In the cases of fixes, those will be merged in the current release candidate
-kernel and as soon they appear on the Linux master branch they will be
-backported to the previous Stable and Long-Stable kernels [2].
-
-The intermediate git branches are merged daily in the linux-next tree [3],
-people are encouraged testing these pre-release kernels and report issues on the
-relevant mailing-lists.
-
-If problems are discovered on those changes, please submit a signed-off-by revert
-patch followed by a corrective changeset.
-
-[1] https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git
-[2] https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git
-[3] https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git
-
--- 
-Neil
+Best regards,
+Krzysztof
 
