@@ -2,309 +2,186 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 834E46ADDBE
-	for <lists+devicetree@lfdr.de>; Tue,  7 Mar 2023 12:42:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B02916ADDE8
+	for <lists+devicetree@lfdr.de>; Tue,  7 Mar 2023 12:48:44 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231408AbjCGLmj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Mar 2023 06:42:39 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39624 "EHLO
+        id S231349AbjCGLsm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Mar 2023 06:48:42 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54024 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230467AbjCGLlp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Mar 2023 06:41:45 -0500
-Received: from mail-yw1-x112b.google.com (mail-yw1-x112b.google.com [IPv6:2607:f8b0:4864:20::112b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 675D57D09A
-        for <devicetree@vger.kernel.org>; Tue,  7 Mar 2023 03:39:17 -0800 (PST)
-Received: by mail-yw1-x112b.google.com with SMTP id 00721157ae682-536bbef1c5eso239144227b3.9
-        for <devicetree@vger.kernel.org>; Tue, 07 Mar 2023 03:39:17 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1678189150;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=p2QEPXAzp21Sp6krYXcMnpxNWR2KzEzr6+4RDpVrUlI=;
-        b=MZdIoa/638A2Xrr3aud37732QkFaaI23u93mUrKyx6hNqR+dj0TaQC+E8tBxYlg39i
-         L/nH+SGtV7eGgg/PH796jVppU9Ei/QUJfz6q87mKD5GhxAxOoDPEgO/cZatjxymQzf37
-         42vkTmcghIT1E1yUCpWhoKqAccG+KBBVheQz0Zfzfky2xjIOWnWNtgdtNSm8xyvhMhkK
-         c81jL8WhZzIZytyFxESA5Rk4LOth1GYguzxCQNaJ84tL7NMeJWBTOJzoVEbunqIGtfH8
-         XFURYFjvPIvO1pEdUE6hlmMg6Ibn2XB+FlNLycbR4iPAMi/LBU+Sc2jGQvrVRa1Z5UvN
-         jewg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678189150;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=p2QEPXAzp21Sp6krYXcMnpxNWR2KzEzr6+4RDpVrUlI=;
-        b=ekDp3JHCvW9EKbpkzlwOOxwFwspx/AiYgH487C7q6oJP6B3/al+3PNfQHEmUa93Yhc
-         r4ALNd070gLf4gEGejzRus1WvawKYnG1gMHcfDwpm8sGCBPGDrfmOna5OyXKFvqLh91n
-         Zu+QSWnZ7DZkXcE4pSNvfAPjt5U8+l/9WamZyRkLH25BMhBcZSwIFaG4Qv8yJfCQt7Oj
-         Pb7sRjZ5Tgo/Crz9ZG48NKkRGudvMt9VRCKqbs81MTMpAmHjG+Tv4hZDCOHIf0CFH/nL
-         rvP6swNPKqhw42k3MjnG6TH6BCIK2ir09s3xh3+CPsOdtUiiZOh8/A8iyMFL5fCUUfBw
-         uaQA==
-X-Gm-Message-State: AO0yUKVp/DI8W/GzNkte9pYOuglSev1n7lbU7gQ0Y+OhAbuQn9XNyPRJ
-        S592DUNg4bEsalZ8uMCjleZjUuUQvciOg+uYkErGsQ==
-X-Google-Smtp-Source: AK7set+pIPRCkUCY1DQn3/UnCDXcMdFY3wcXRpn0sqH288ZQWy/jCdAUknswqsGd/FYMEDrTW7d8/OAqi9oBGUQj+6g=
-X-Received: by 2002:a81:b243:0:b0:52e:d380:ab14 with SMTP id
- q64-20020a81b243000000b0052ed380ab14mr7473835ywh.3.1678189150311; Tue, 07 Mar
- 2023 03:39:10 -0800 (PST)
+        with ESMTP id S231350AbjCGLsW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Mar 2023 06:48:22 -0500
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6C79A7B129;
+        Tue,  7 Mar 2023 03:47:26 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1678189646; x=1709725646;
+  h=date:from:to:cc:subject:in-reply-to:message-id:
+   references:mime-version;
+  bh=ABa115dzYhbKqxSWjzfNIHa1e+/UpB5wXI8AqnFj1B8=;
+  b=ND3BhInNqYYDdwVTdXvVkZLjlzB7QOtSTX6sc5q5u8KLubZNnj4iM75f
+   UQDU/qKA+Qd7wFWVvr0Jv/DPPlZp5VmuopDndctr34otG95hhjvYP9mc3
+   xWByA5stMt19+Fuhax0v9ZxMA9YNigR7gLBG5LmGEsUCfx+yPqjjid6BX
+   H2n7Hf+Vl0pvNntWBCrqOf+Dhmv2pS5FjaoYcxroF80yl95HIp2aL8XMi
+   EDBaNdaHHe7XzqOO0tsflFlsvqsj7UKiOUmN28v/9nVFKO6u0LphbSSqT
+   o0ZrBq5jgfDzvV+Vd9sf/uSViXqTWw4ylnR0I2OGIIQU/0ul8hIcBf7ew
+   g==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10641"; a="316229508"
+X-IronPort-AV: E=Sophos;i="5.98,240,1673942400"; 
+   d="scan'208";a="316229508"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+  by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 07 Mar 2023 03:43:44 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6500,9779,10641"; a="706777464"
+X-IronPort-AV: E=Sophos;i="5.98,240,1673942400"; 
+   d="scan'208";a="706777464"
+Received: from unknown (HELO ijarvine-MOBL2.mshome.net) ([10.237.66.32])
+  by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 07 Mar 2023 03:43:37 -0800
+Date:   Tue, 7 Mar 2023 13:43:35 +0200 (EET)
+From:   =?ISO-8859-15?Q?Ilpo_J=E4rvinen?= <ilpo.jarvinen@linux.intel.com>
+To:     Neeraj sanjay kale <neeraj.sanjaykale@nxp.com>
+cc:     "davem@davemloft.net" <davem@davemloft.net>,
+        "edumazet@google.com" <edumazet@google.com>,
+        "kuba@kernel.org" <kuba@kernel.org>,
+        "pabeni@redhat.com" <pabeni@redhat.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "marcel@holtmann.org" <marcel@holtmann.org>,
+        "johan.hedberg@gmail.com" <johan.hedberg@gmail.com>,
+        "luiz.dentz@gmail.com" <luiz.dentz@gmail.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Jiri Slaby <jirislaby@kernel.org>,
+        "alok.a.tiwari@oracle.com" <alok.a.tiwari@oracle.com>,
+        "hdanton@sina.com" <hdanton@sina.com>,
+        "leon@kernel.org" <leon@kernel.org>,
+        Netdev <netdev@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        LKML <linux-kernel@vger.kernel.org>,
+        "linux-bluetooth@vger.kernel.org" <linux-bluetooth@vger.kernel.org>,
+        linux-serial <linux-serial@vger.kernel.org>,
+        Amitkumar Karwar <amitkumar.karwar@nxp.com>,
+        Rohit Fule <rohit.fule@nxp.com>,
+        Sherry Sun <sherry.sun@nxp.com>
+Subject: Re: [PATCH v6 3/3] Bluetooth: NXP: Add protocol support for NXP
+ Bluetooth chipsets
+In-Reply-To: <AM9PR04MB86037CDF6A032963405AF0CEE7B69@AM9PR04MB8603.eurprd04.prod.outlook.com>
+Message-ID: <48e776a1-7526-5b77-568b-322d4555a138@linux.intel.com>
+References: <20230301154514.3292154-1-neeraj.sanjaykale@nxp.com> <20230301154514.3292154-4-neeraj.sanjaykale@nxp.com> <73527cb7-6546-6c47-768c-5f4648b6d477@linux.intel.com> <AM9PR04MB86037CDF6A032963405AF0CEE7B69@AM9PR04MB8603.eurprd04.prod.outlook.com>
 MIME-Version: 1.0
-References: <20230214164135.17039-1-quic_devipriy@quicinc.com>
- <20230214164135.17039-2-quic_devipriy@quicinc.com> <20230224082332.GA5443@thinkpad>
- <bd153038-4427-1f11-1941-5f13fec01cf7@quicinc.com> <20230228063358.GA4839@thinkpad>
- <9BD62D8E-4E14-4269-B72D-C83EF4D43040@linaro.org> <20230303174036.GB6782@thinkpad>
- <30cf9717-dcca-e984-c506-c71b7f8e32cd@quicinc.com>
-In-Reply-To: <30cf9717-dcca-e984-c506-c71b7f8e32cd@quicinc.com>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date:   Tue, 7 Mar 2023 13:38:59 +0200
-Message-ID: <CAA8EJpohnJvFKMc5Ty4CQF65Gt1Kknqsf1B4mFZq4TvW7_dcnw@mail.gmail.com>
-Subject: Re: [PATCH 1/7] dt-bindings: PCI: qcom: Add IPQ9574 specific compatible
-To:     Devi Priya <quic_devipriy@quicinc.com>
-Cc:     Manivannan Sadhasivam <mani@kernel.org>, agross@kernel.org,
-        andersson@kernel.org, konrad.dybcio@linaro.org,
-        lpieralisi@kernel.org, kw@linux.com, robh@kernel.org,
-        bhelgaas@google.com, krzysztof.kozlowski+dt@linaro.org,
-        vkoul@kernel.org, kishon@kernel.org, mturquette@baylibre.com,
-        sboyd@kernel.org, p.zabel@pengutronix.de, svarbanov@mm-sol.com,
-        linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-phy@lists.infradead.org, linux-clk@vger.kernel.org,
-        quic_srichara@quicinc.com, quic_gokulsri@quicinc.com,
-        quic_sjaganat@quicinc.com, quic_kathirav@quicinc.com,
-        quic_arajkuma@quicinc.com, quic_anusha@quicinc.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=US-ASCII
+X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_NONE,URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 7 Mar 2023 at 11:45, Devi Priya <quic_devipriy@quicinc.com> wrote:
->
->
->
-> On 3/3/2023 11:10 PM, Manivannan Sadhasivam wrote:
-> > On Fri, Mar 03, 2023 at 05:16:58PM +0200, Dmitry Baryshkov wrote:
-> >> 28 =D1=84=D0=B5=D0=B2=D1=80=D0=B0=D0=BB=D1=8F 2023 =D0=B3. 08:33:58 GM=
-T+02:00, Manivannan Sadhasivam <mani@kernel.org> =D0=BF=D0=B8=D1=88=D0=B5=
-=D1=82:
-> >>> On Tue, Feb 28, 2023 at 10:56:53AM +0530, Devi Priya wrote:
-> >>>>
-> >>>>
-> >>>> On 2/24/2023 1:53 PM, Manivannan Sadhasivam wrote:
-> >>>>> On Tue, Feb 14, 2023 at 10:11:29PM +0530, Devi Priya wrote:
-> >>>>>> Document the compatible for IPQ9574
-> >>>>>>
-> >>>> Hi Mani, Thanks for taking time to review the patch.
-> >>>>>
-> >>>>> You didn't mention about the "msi-parent" property that is being ad=
-ded
-> >>>>> by this patch
-> >>>> Sure, will update the commit message in the next spin
-> >>>>>
-> >>>>>> Signed-off-by: Devi Priya <quic_devipriy@quicinc.com>
-> >>>>>> ---
-> >>>>>>    .../devicetree/bindings/pci/qcom,pcie.yaml    | 72 ++++++++++++=
-++++++-
-> >>>>>>    1 file changed, 70 insertions(+), 2 deletions(-)
-> >>>>>>
-> >>>>>> diff --git a/Documentation/devicetree/bindings/pci/qcom,pcie.yaml =
-b/Documentation/devicetree/bindings/pci/qcom,pcie.yaml
-> >>>>>> index 872817d6d2bd..dabdf2684e2d 100644
-> >>>>>> --- a/Documentation/devicetree/bindings/pci/qcom,pcie.yaml
-> >>>>>> +++ b/Documentation/devicetree/bindings/pci/qcom,pcie.yaml
-> >>>>>> @@ -26,6 +26,7 @@ properties:
-> >>>>>>              - qcom,pcie-ipq8064-v2
-> >>>>>>              - qcom,pcie-ipq8074
-> >>>>>>              - qcom,pcie-ipq8074-gen3
-> >>>>>> +          - qcom,pcie-ipq9574
-> >>>>>>              - qcom,pcie-msm8996
-> >>>>>>              - qcom,pcie-qcs404
-> >>>>>>              - qcom,pcie-sa8540p
-> >>>>>> @@ -44,11 +45,11 @@ properties:
-> >>>>>>      reg:
-> >>>>>>        minItems: 4
-> >>>>>> -    maxItems: 5
-> >>>>>> +    maxItems: 6
-> >>>>>>      reg-names:
-> >>>>>>        minItems: 4
-> >>>>>> -    maxItems: 5
-> >>>>>> +    maxItems: 6
-> >>>>>>      interrupts:
-> >>>>>>        minItems: 1
-> >>>>>> @@ -105,6 +106,8 @@ properties:
-> >>>>>>        items:
-> >>>>>>          - const: pciephy
-> >>>>>> +  msi-parent: true
-> >>>>>> +
-> >>>>>>      power-domains:
-> >>>>>>        maxItems: 1
-> >>>>>> @@ -173,6 +176,27 @@ allOf:
-> >>>>>>                - const: parf # Qualcomm specific registers
-> >>>>>>                - const: config # PCIe configuration space
-> >>>>>> +  - if:
-> >>>>>> +      properties:
-> >>>>>> +        compatible:
-> >>>>>> +          contains:
-> >>>>>> +            enum:
-> >>>>>> +              - qcom,pcie-ipq9574
-> >>>>>> +    then:
-> >>>>>> +      properties:
-> >>>>>> +        reg:
-> >>>>>> +          minItems: 5
-> >>>>>> +          maxItems: 6
-> >>>>>> +        reg-names:
-> >>>>>> +          minItems: 5
-> >>>>>> +          items:
-> >>>>>> +            - const: dbi # DesignWare PCIe registers
-> >>>>>> +            - const: elbi # External local bus interface register=
-s
-> >>>>>> +            - const: atu # ATU address space
-> >>>>>> +            - const: parf # Qualcomm specific registers
-> >>>>>> +            - const: config # PCIe configuration space
-> >>>>>> +            - const: aggr_noc #PCIe aggr_noc
-> >>>>>
-> >>>>> Why do you need this region unlike other SoCs? Is the driver making=
- use of it?
-> >>>> We have the aggr_noc region in ipq9574 to achieve higher throughput =
-& to
-> >>>> handle multiple PCIe instances. The driver uses it to rate adapt 1-l=
-ane PCIe
-> >>>> clocks. My bad, missed it. Will add the driver changes in V2.
-> >>>
-> >>> Hmm, this is something new. How can you achieve higher throughput wit=
-h this
-> >>> region? Can you explain more on how it is used?
-> >>
-> >> Based on the name of the region, it looks like it is an interconnect r=
-egion.
-> >>
-> >
-> > Well, we only have BCM based interconnects so far. That's why I was cur=
-ious
-> > about this region and its purpose.
-> For connected PCIe slave devices that are running at frequency lesser
-> than the ANOC frequency (342MHz), the rate adapter of ANOC needs to be
-> configured
-> >
-> >> Devi, if this is the case, then you have to handle it through the inte=
-rconnect driver, rather than poking directly into these registers.
-> >
-> > If that so, it doesn't need to be added in this series itself. I believ=
-e that
-> > without aggr_noc region, the PCIe controller can still function properl=
-y with
-> > reduced performance. But you can add the interconnect support later as =
-a
-> > separate series.
-> Sure, okay. The ANOC runs at a fixed frequency of 342MHz and the
-> interconnect clocks are not scaled. The aggr_noc register is just a
-> magic register for configuring it's rate adapter to ensure no wait
-> cycles are inserted.
+On Mon, 6 Mar 2023, Neeraj sanjay kale wrote:
 
-I have been hesitant at some point, but this looks more and more like
-a special kind of interconnect. Please consider moving all the NoC
-stuff into a separate driver implementing the ICC API.
+> Hi Ilpo,
+> 
+> Thank you for reviewing this patch. I have resolved most of your review comments in v7 patch, and I have some clarification inline below:
 
->
-> >
-> > Thanks,
-> > Mani
-> >
-> >>
-> >>
-> >>>
-> >>> Thanks,
-> >>> Mani
-> >>>
-> >>>>>
-> >>>>> Thanks,
-> >>>>> Mani
-> >>>>>
-> >>>>>> +
-> >>>>>>      - if:
-> >>>>>>          properties:
-> >>>>>>            compatible:
-> >>>>>> @@ -365,6 +389,39 @@ allOf:
-> >>>>>>                - const: ahb # AHB Reset
-> >>>>>>                - const: axi_m_sticky # AXI Master Sticky reset
-> >>>>>> +  - if:
-> >>>>>> +      properties:
-> >>>>>> +        compatible:
-> >>>>>> +          contains:
-> >>>>>> +            enum:
-> >>>>>> +              - qcom,pcie-ipq9574
-> >>>>>> +    then:
-> >>>>>> +      properties:
-> >>>>>> +        clocks:
-> >>>>>> +          minItems: 6
-> >>>>>> +          maxItems: 6
-> >>>>>> +        clock-names:
-> >>>>>> +          items:
-> >>>>>> +            - const: ahb  # AHB clock
-> >>>>>> +            - const: aux  # Auxiliary clock
-> >>>>>> +            - const: axi_m # AXI Master clock
-> >>>>>> +            - const: axi_s # AXI Slave clock
-> >>>>>> +            - const: axi_bridge # AXI bridge clock
-> >>>>>> +            - const: rchng
-> >>>>>> +        resets:
-> >>>>>> +          minItems: 8
-> >>>>>> +          maxItems: 8
-> >>>>>> +        reset-names:
-> >>>>>> +          items:
-> >>>>>> +            - const: pipe # PIPE reset
-> >>>>>> +            - const: sticky # Core Sticky reset
-> >>>>>> +            - const: axi_s_sticky # AXI Slave Sticky reset
-> >>>>>> +            - const: axi_s # AXI Slave reset
-> >>>>>> +            - const: axi_m_sticky # AXI Master Sticky reset
-> >>>>>> +            - const: axi_m # AXI Master reset
-> >>>>>> +            - const: aux # AUX Reset
-> >>>>>> +            - const: ahb # AHB Reset
-> >>>>>> +
-> >>>>>>      - if:
-> >>>>>>          properties:
-> >>>>>>            compatible:
-> >>>>>> @@ -681,6 +738,16 @@ allOf:
-> >>>>>>            - interconnects
-> >>>>>>            - interconnect-names
-> >>>>>> +  - if:
-> >>>>>> +      properties:
-> >>>>>> +        compatible:
-> >>>>>> +          contains:
-> >>>>>> +            enum:
-> >>>>>> +              - qcom,pcie-ipq9574
-> >>>>>> +    then:
-> >>>>>> +      required:
-> >>>>>> +        - msi-parent
-> >>>>>> +
-> >>>>>>      - if:
-> >>>>>>          not:
-> >>>>>>            properties:
-> >>>>>> @@ -693,6 +760,7 @@ allOf:
-> >>>>>>                    - qcom,pcie-ipq8064v2
-> >>>>>>                    - qcom,pcie-ipq8074
-> >>>>>>                    - qcom,pcie-ipq8074-gen3
-> >>>>>> +                - qcom,pcie-ipq9574
-> >>>>>>                    - qcom,pcie-qcs404
-> >>>>>>        then:
-> >>>>>>          required:
-> >>>>>> --
-> >>>>>> 2.17.1
-> >>>>>>
-> >>>>>
-> >>>> Thanks,
-> >>>> Devi Priya
-> >>>
-> >>
-> >
-> Thanks,
-> Devi Priya
+Further discussion below + I sent a few against v7.
 
+ 
+> > > +static bool nxp_fw_change_baudrate(struct hci_dev *hdev, u16 req_len)
+> > > +{
+> > > +     struct btnxpuart_dev *nxpdev = hci_get_drvdata(hdev);
+> > > +     struct nxp_bootloader_cmd nxp_cmd5;
+> > > +     struct uart_config uart_config;
+> > > +
+> > > +     if (req_len == sizeof(nxp_cmd5)) {
+> > > +             nxp_cmd5.header = __cpu_to_le32(5);
+> > > +             nxp_cmd5.arg = 0;
+> > > +             nxp_cmd5.payload_len = __cpu_to_le32(sizeof(uart_config));
+> > > +             nxp_cmd5.crc = swab32(crc32_be(0UL, (char *)&nxp_cmd5,
+> > > +                                            sizeof(nxp_cmd5) - 4));
+> > 
+> > swab32(crc32_be(...)) seems and odd construct instead of __cpu_to_le32().
+> Earlier I had tried using __cpu_to_le32() but that did not work. The FW expects a swapped
+> CRC value for it's header and payload data.
 
+So the .crc member should be __be32 then?
 
---=20
-With best wishes
-Dmitry
+> > > +     serdev_device_write_buf(nxpdev->serdev, (u8 *)&nxp_cmd7,
+> > > + req_len);
+> > 
+> > Is it safe to assume req_len is small enough to not leak stack content?
+> The chip requests chunk of FW data which is never more than 2048 bytes 
+> at a time. 
+
+Eh, sizeof(*nxp_cmd7) is 16 bytes!?! Are you sure that req_len given to 
+serdev_device_write_buf() is not larger than 16 bytes?
+
+> > > +static bool nxp_check_boot_sign(struct btnxpuart_dev *nxpdev) {
+> > > +     int ret;
+> > > +
+> > > +     serdev_device_set_baudrate(nxpdev->serdev,
+> > HCI_NXP_PRI_BAUDRATE);
+> > > +     serdev_device_set_flow_control(nxpdev->serdev, 0);
+> > > +     set_bit(BTNXPUART_CHECK_BOOT_SIGNATURE, &nxpdev->tx_state);
+> > > +
+> > > +     ret = wait_event_interruptible_timeout(nxpdev-
+> > >check_boot_sign_wait_q,
+> > > +                                            !test_bit(BTNXPUART_CHECK_BOOT_SIGNATURE,
+> > > +                                                      &nxpdev->tx_state),
+> > > +                                            msecs_to_jiffies(1000));
+> > > +     if (ret == 0)
+> > > +             return false;
+> > > +     else
+> > > +             return true;
+> > 
+> > How does does this handle -ERESTARTSYS? But this runs in nxp_setup() so is
+> > that even relevant (I don't know).
+> This function is waits for 1 second and checks if it is receiving any bootloader signatures
+> over UART. If yes, it means FW download is needed. If no, it means FW is already present
+> on the chip, and we skip FW download.
+
+Okay, it seems your changes had a side-effect of addressing this.
+
+> > > +static int nxp_enqueue(struct hci_dev *hdev, struct sk_buff *skb) {
+> > > +     struct btnxpuart_dev *nxpdev = hci_get_drvdata(hdev);
+> > > +     struct ps_data *psdata = nxpdev->psdata;
+> > > +     struct hci_command_hdr *hdr;
+> > > +     u8 param[MAX_USER_PARAMS];
+> > > +
+> > > +     if (!nxpdev || !psdata)
+> > > +             goto free_skb;
+> > > +
+> > > +     /* if vendor commands are received from user space (e.g. hcitool),
+> > update
+> > > +      * driver flags accordingly and ask driver to re-send the command to
+> > FW.
+> > > +      */
+> > > +     if (bt_cb(skb)->pkt_type == HCI_COMMAND_PKT &&
+> > > + !psdata->driver_sent_cmd) {
+> > 
+> > Should this !psdata->driver_sent_cmd do something else than end up into a
+> > place labelled send_skb. Maybe return early (or free skb + return)?
+> > There's a comment elsewhere stating: "set flag to prevent re-sending
+> > command in nxp_enqueue."
+> I'm sorry if the comment was misleading. This flag is set to prevent nxp_enqueue() from
+> Parsing the command parameters again, and calling hci_cmd_sync_queue() again.
+> The commands sent from user space, as well as the commands sent by __hci_cmd_sync(),
+> both endup in nxp_enqueue().
+> Hope this helps!
+
+Okay, makes sense now and the logic is also clearer now. However, the
+brace blocks you added into those cases in bxp_enqueue() you should try to 
+remove. I realize you do it to avoid name collisions because you reused 
+param in each but they introduced these ugly constructs:
+	case XX:
+		{
+			...
+			goto free_skb;
+		}
+		break;
+
+-- 
+ i.
+
