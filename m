@@ -2,71 +2,134 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F13E56AE3AD
-	for <lists+devicetree@lfdr.de>; Tue,  7 Mar 2023 16:02:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3C3536AE3B6
+	for <lists+devicetree@lfdr.de>; Tue,  7 Mar 2023 16:03:38 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229925AbjCGPC0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Mar 2023 10:02:26 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37542 "EHLO
+        id S229527AbjCGPDg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Mar 2023 10:03:36 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45964 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229926AbjCGPBq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Mar 2023 10:01:46 -0500
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B8EDF11E82
-        for <devicetree@vger.kernel.org>; Tue,  7 Mar 2023 06:49:02 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-        s=mimecast20190719; t=1678200541;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=cqeh1cnHkI8hSmi75qFP5czF6puTCaAntwBTSJfFU2g=;
-        b=cRKhtCsNqNmdl10oMipUDbrX5/+puj8u10hq0MhxMIkhAzltAqJRHWq5GQH5aeDrv8eOjT
-        53avlPk8nG59XF3G4K577HrfKepjSShCqnEn1+4ypgcCyfxMhAunEnN5A43VWlXDybn+13
-        4ia33HxXcNLXaXXnl0KQ7Yw+N5oWQOU=
-Received: from mimecast-mx02.redhat.com (mimecast-mx02.redhat.com
- [66.187.233.88]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- us-mta-644-M1xaZq3yM5Kv_aWTSm67Qw-1; Tue, 07 Mar 2023 09:48:57 -0500
-X-MC-Unique: M1xaZq3yM5Kv_aWTSm67Qw-1
-Received: from smtp.corp.redhat.com (int-mx03.intmail.prod.int.rdu2.redhat.com [10.11.54.3])
-        (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
-        (No client certificate requested)
-        by mimecast-mx02.redhat.com (Postfix) with ESMTPS id 4B3FC101A52E;
-        Tue,  7 Mar 2023 14:48:56 +0000 (UTC)
-Received: from mail.corp.redhat.com (unknown [10.22.8.23])
-        by smtp.corp.redhat.com (Postfix) with ESMTPS id BF3951121314;
-        Tue,  7 Mar 2023 14:48:54 +0000 (UTC)
-Date:   Tue, 7 Mar 2023 15:48:52 +0100
-From:   Benjamin Tissoires <benjamin.tissoires@redhat.com>
-To:     Daniel Kaehn <kaehndan@gmail.com>
-Cc:     Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Hans de Goede <hdegoede@redhat.com>, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, jikos@kernel.org,
-        bartosz.golaszewski@linaro.org, dmitry.torokhov@gmail.com,
-        devicetree@vger.kernel.org, linux-input@vger.kernel.org,
-        ethan.twardy@plexus.com
-Subject: Re: [PATCH v8 3/3] HID: cp2112: Fwnode Support
-Message-ID: <20230307144852.ueyaotkeeqfjlgk7@mail.corp.redhat.com>
-References: <20230302170554.q3426ii255735rzw@mail.corp.redhat.com>
- <ZAXFNRuALYpXgL6F@smile.fi.intel.com>
- <b8423b0b-4f63-d598-6c8b-7c7e73549032@redhat.com>
- <ZAXlh9ZVjGJh0l7n@smile.fi.intel.com>
- <1cab1439-77f3-6739-d4cd-5862ce8512d8@redhat.com>
- <ZAYca0ADk0Uk1sK1@smile.fi.intel.com>
- <CAP+ZCCfsKdOyy5vzPh5OjpZjNQrYWDRzrqa_QxvG+kZDPYa+3A@mail.gmail.com>
- <ZAZOvEvqNDq6jZNB@smile.fi.intel.com>
- <20230307131706.olnb4qzo4ynu7gce@mail.corp.redhat.com>
- <CAP+ZCCcbXqPOY5Xzq9v8JNSzH9+xOqgfkTezJdLQY=vwQco4vQ@mail.gmail.com>
-MIME-Version: 1.0
+        with ESMTP id S230030AbjCGPDK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Mar 2023 10:03:10 -0500
+Received: from EUR03-DBA-obe.outbound.protection.outlook.com (mail-dbaeur03on2088.outbound.protection.outlook.com [40.107.104.88])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 56DDF769FA;
+        Tue,  7 Mar 2023 06:53:20 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=dnVoUVVC3rMUCKDVqTx2IxeUMWVQssu0vRUY9cIKhd3m/yD8zOImqvnUpFFm1CCjBGUH2vyAB5SXABy6UpgknIFjl07wJTGfxzl8HHWKrKxAJ8npOonwE3VZO/YSWYN9YJVQp9uipc9NAjDDyPlUEhyy0q+sehTeQsUq/HJI81VgnCeXiWmIEZWD/OLIk4jcv7TLUjHyVY+kPQnkUsHk4998PF5arFn9sX99YGrQo8kO7eYdyZaulwdU6FDj3Dm/fPDW7sjlgvZP3zPJY/GSloE4sN6a2NE7eook7uMaA0L1nGejeNhBUuRmE17Z4u4EcBJz435Gq1AJxrVIMZE4/Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=vDFp1DOIjaVlSVjO56oeVuziKJUq4Eyc9t3kiH7YCiY=;
+ b=oWcOS8pODTJrIrUyfmknGZdRx/Z1ecD3MC3hKma7ZWevXhx+xjssZXy/f76K0O+0/ieyemSrSqQCEJVwSGgzB+bRcuSoU4ElpfqeFgoN5v8GVtHlwDQhHI/txLNjypXbDfjBK9Y0rp0EfpCvp2ZwlJ1mI8SQWmZRUjb976zeJiAmzGbFZ96kNikT+vlGXGrnOabnAKfZVjHYUE1OFvSU3PQugFg+lV5a34N++QHZLZqfYbyNiJeRqp6+H0/7h9LYlVcEwBD36F9DV6RpEC2fbUScFJdYZ8JvkRl3V6DxtQFpwllOCCmkCqZVy8mZJaTdEGkV9kLWF1uzbH6/GV6X5w==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=suse.com; dmarc=pass action=none header.from=suse.com;
+ dkim=pass header.d=suse.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=vDFp1DOIjaVlSVjO56oeVuziKJUq4Eyc9t3kiH7YCiY=;
+ b=Y0GNUUo563jLjYyEOstT1E0ybRzLPdazfpzKS/cI64hsDPtSABjjrHKwwkCqHd9YYLVLejRHplA0tUSgA9v+g2VlbfSOjvUC/TQVIA5hEFacHOKmQnJw7ybeXmPAUXFWp8m86n6U3Hp0+cZ1kLObv7YlY8FILTOBWCDgwuk3f9zNz9Igz+LgIUu73vdFxpmUu3lRMJQ8L+ofQXmxqRxeFhiEEy4h8ygi0RF78WMt0pYc2q3d+UcUfbic7kPkzBd3O2aWjuXquoCAoyZxIXggapEHE2QDp1XoxNXVEUXHtlUhZ3QtqRARxTWqOQxgIVQDmhtiK0PznLArzJwty0767w==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=suse.com;
+Received: from VI1PR0402MB3439.eurprd04.prod.outlook.com (2603:10a6:803:4::13)
+ by PAWPR04MB9815.eurprd04.prod.outlook.com (2603:10a6:102:381::19) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6156.28; Tue, 7 Mar
+ 2023 14:53:18 +0000
+Received: from VI1PR0402MB3439.eurprd04.prod.outlook.com
+ ([fe80::6802:b2c3:5f12:8f9f]) by VI1PR0402MB3439.eurprd04.prod.outlook.com
+ ([fe80::6802:b2c3:5f12:8f9f%2]) with mapi id 15.20.6156.029; Tue, 7 Mar 2023
+ 14:53:17 +0000
+Date:   Tue, 7 Mar 2023 22:53:09 +0800
+From:   Chester Lin <clin@suse.com>
+To:     Linus Walleij <linus.walleij@linaro.org>
+Cc:     Andy Shevchenko <andy.shevchenko@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Andreas =?iso-8859-1?Q?F=E4rber?= <afaerber@suse.de>,
+        s32@nxp.com, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        Larisa Grigore <larisa.grigore@nxp.com>,
+        Ghennadi Procopciuc <Ghennadi.Procopciuc@oss.nxp.com>,
+        Andrei Stefanescu <andrei.stefanescu@nxp.com>,
+        Radu Pirea <radu-nicolae.pirea@nxp.com>,
+        Matthias Brugger <mbrugger@suse.com>
+Subject: Re: [PATCH v5 0/3] Add pinctrl support for S32 SoC family
+Message-ID: <ZAdP1Z+LcgOQWvtK@linux-8mug>
+References: <20230220023320.3499-1-clin@suse.com>
+ <CACRpkdYknZo3Q7_CeSkOL2XwwAmKERskx24o-toaVy=rs0Yf5Q@mail.gmail.com>
+ <ZAZ3JZQ4Tuz5vyH1@surfacebook>
+ <CACRpkdbksZ59ndrRAQpTGa01GTq4c_2EcOQ2mtz1PLjqU8_nug@mail.gmail.com>
+ <CAHp75Vf3ve-NdMG6iti-KSs=tGGgGf9tNj=aK7Jofk9233WocQ@mail.gmail.com>
+ <CACRpkdaCZSoem31GmDC97LPYcZqRjkyf=6VGtXdXK0iwrV74qA@mail.gmail.com>
+ <ZAc3nKEiYbUEX2xv@linux-8mug>
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAP+ZCCcbXqPOY5Xzq9v8JNSzH9+xOqgfkTezJdLQY=vwQco4vQ@mail.gmail.com>
-X-Scanned-By: MIMEDefang 3.1 on 10.11.54.3
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_NONE autolearn=ham
+In-Reply-To: <ZAc3nKEiYbUEX2xv@linux-8mug>
+X-ClientProxiedBy: FR2P281CA0181.DEUP281.PROD.OUTLOOK.COM
+ (2603:10a6:d10:9f::17) To VI1PR0402MB3439.eurprd04.prod.outlook.com
+ (2603:10a6:803:4::13)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: VI1PR0402MB3439:EE_|PAWPR04MB9815:EE_
+X-MS-Office365-Filtering-Correlation-Id: 748b6f9c-c666-47ce-efcb-08db1f1baf6c
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 5jSmnMJB/74zXU4fIX6r7kqOSviFCevGoFj55N9AEw42hvmhb8CKBNzaKmDsCohUM1LawGC14ba80RYEoDCn92VLu2fn4ospbfFW3N0nQdd/N/eN2EGnYdsctqA2MtQbkWJY5IVFf5twP0zuk4Ah9reFf000rsY4epbl/ygjD9uBylY5n+GjZ7rPxPI1pOdw6C5yvjZVqFwE8oypj7Ah9LI3NiwYh7lTXdsHuJHNUbEKUOzJ+UtiWdVR9gcwSaYcTpCZUQ1Lo/cNw9Izj3w7MP8VBFl+s7CoCwua/nYOuNTiKei6vRttBC/Pi6PG7HD/tpa+1StzUrTODJ1ETJunqKGm5nG9dbu88EcfkxGbX/Poen59FiR3uK5d93kItaHQVHPtzIo2aUUUcYlmHuVYdaz6vgnD5Tux7LxzvCtutdmtKhteKSq7yMQi2vDRXBPzzhZWOFPha3lOeaau54JhSG5WyKZGiCS/94YiJ8ylXC53ZRL0QQQp8SwtGbX2eLi5TqmaGMcPHOz1i63Ypbq5StV+3P0UfsejZ8v9Yu9P+nrYAOiUrWywnf5DiZdZu4LsORY+WIVBuw55wY/F3QXdrnmWwKNXSjZWrE/zQEGswZ4tCPCiXYJzO4SEVas9xW4HPz1/x2X1VF8Vr1i3vwHARVZ4NwRx6XKafugk+KWBApHgJiUsCrGg2mtOe6ZCcYqT
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VI1PR0402MB3439.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230025)(7916004)(136003)(346002)(376002)(396003)(39860400002)(366004)(451199018)(86362001)(38100700002)(66476007)(2906002)(66946007)(5660300002)(7416002)(41300700001)(6916009)(4326008)(8676002)(66556008)(8936002)(33716001)(186003)(9686003)(83380400001)(6506007)(53546011)(6512007)(54906003)(478600001)(6666004)(107886003)(26005)(316002)(6486002)(67856001);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?TWFubVduc1lJR1ZycU9XcFIrQ0lkMUt3MUlZVTdCVnU0aS9abm4vb0VhYWkz?=
+ =?utf-8?B?ZXFhSjVHQUc1aENDTkZuS3ZEVHhHNmNSdUpyem1EWDRwSks0YWxjOGJIaUkz?=
+ =?utf-8?B?TGpTdmp5bGJqZlVDOWpUZ2VYN1NSeUtvVHR0NXlORGE5SGhSU0U5c1FkYXBY?=
+ =?utf-8?B?c0QxMjlTT1ZjQjgxUDlTWkRyQ2pSanl5TC8vN2w2ZmdzZzY1Q0VoSGkwcDA0?=
+ =?utf-8?B?eGxmQ0pRR3hrV0E2SmFLV0Vwc1lHN0NFaHg1SFlNWnFUYnA1NXM4NVp3V2Mw?=
+ =?utf-8?B?YmxkSzllamk0YXdkdlNFbDgxNEJ3SWlIUEhOejNKOExZc0dhc2h6QTBKWXJQ?=
+ =?utf-8?B?UzkwV2NmdTVSNjNPMTN1dlpVOS9kVmN1WlNBa3JrOFA3ZHJDNEpLY1MxVTdl?=
+ =?utf-8?B?VGg1a3hoQy9jVndSNjlMTStqUXJpVWoyZ2RFTldvUUxxbTlsYjg4UG12M0kz?=
+ =?utf-8?B?QU5DTVArNDNydzhDYzU5bkZld2dScHdQT1d4YU1yOGh6SGU5bWVuS1pFejhm?=
+ =?utf-8?B?aE1kUmRmVDhjRkczS2tiazZjTkwrdzdRU3BWWFY5ZXR2L1hqUkhybTRiLzhn?=
+ =?utf-8?B?ZW9DNXQyR2xKZ0NER1ByOWNJRUJBNzlMenE4aUpFWDhDUm52dHQ2TE5NdW4x?=
+ =?utf-8?B?ak9uNkd0d1NMUlQzTjAzODJOdE5Vam5HRWlDZHkwVFlSVVpuU3Q4c3FhRVZt?=
+ =?utf-8?B?U29BRnM1b1Rhc0pIaTJBMk1KajU1OTZDNzI5U3hhNE5ZY3c2UkNCbThPeVkv?=
+ =?utf-8?B?a2E2cVZ1WUpod2FzUnpTMVlBKzJMcm1ramdzcXY3WnVobTluYXdwRlRGZ1c0?=
+ =?utf-8?B?eGZmT2V1VkRnTGRMVVBDNkJ6RnRtSmduTVhYRWxiYVBJM2Z6YlZ6d0Jxc3Bq?=
+ =?utf-8?B?SENzR2llYlA3OFRXaVBSQjNDbHRDTDJOSUsvV01SQ3NId2pCSUJzYzJDUmJN?=
+ =?utf-8?B?SHd0SDFBdWpnS2dZdTFJRVJta1luRm54L3M3N1E4MTBuZ2JMRG43Z3pNWXND?=
+ =?utf-8?B?SlNqQjdFUWUwZStBTXVxV2ZvbjhUbkdTSEdGaEwwV2ZDd3pkem9zdiswMzdO?=
+ =?utf-8?B?THh1bzFrQkh1STkwWVo4WW4rcXFoSVNTMEhLUlBtV1NKU0ppQU9VS0ZnSlJp?=
+ =?utf-8?B?ZEFHdFA2RVdpMTdGQUg4d3hZbDdUQWoxSmExN3BpU2lTVmV0OStzMDhGSFY1?=
+ =?utf-8?B?emtVbHpXU3lSbTIzYlBIeEU2bm9yNHNXQzhwdnFFYmtqbm9LdWlJTkpqS1VN?=
+ =?utf-8?B?QUpmOEFGMVlMdlpvRThaeW10TnZWWmtBa3l1emxDNlVBTkhjcTh3SzNTZjJR?=
+ =?utf-8?B?aGNRSWN5akJXd05abDVsUWhwZDkvbnFETXpnWktBVlY0QWttdlc5ZHVXR2Nx?=
+ =?utf-8?B?T3EzcWVDdGxEUFVad3lKVkR1cklqdldZNlRMelVwUU42cVFGekZQRmlWZHIr?=
+ =?utf-8?B?V2ZnSEkyYnBHb01zV2lyTWo5bWRSbmF1WVJXVGZmQ2dlaGk1N25SdVJWTHpX?=
+ =?utf-8?B?VzVOcVNPRUZlbVQ0QnZiK2pNZEl1aEhqRWVWbFRqRzA4ekVoQmQzSHhvOWh6?=
+ =?utf-8?B?V0N6MHpxV3dUZWhpNEJGY1NHRGxJM2NpemIrdlNuV0V5Z0lwOGhGbDQ0NFg2?=
+ =?utf-8?B?d2ZlMm1SR1FBRHA2elFTOWNLaUpaVDdlUmNtYmRnbzVnS3d5dHlGd3RNZmc0?=
+ =?utf-8?B?cHJwcHcvdW4vNklqbjB3Mmw5TnpFTjBPODRNdjZaakVJa3U4emJuUGo2QUZp?=
+ =?utf-8?B?KzAyLzMyd1Q4K2kzU0t5M3F4MXZsOC9zazlzcFZucjRlMjVZYzgvNjVqMHM0?=
+ =?utf-8?B?K1Y5bkY2M2c3aFpva1VvTm5hQmpzbC82M1ViWGxpWG5LbGRTdmwvZkxvZkxV?=
+ =?utf-8?B?LzRuZHJvYzNsckIzU25ZYUU4dnRERWQvRlM2VjhZMzdUakJpTDJEYng0a0VU?=
+ =?utf-8?B?QXpHN1hrTnZSeTBZc2hzbW5tKzNjaDcrc2R1ck9XWmhjQzc1WXV3cXRiUVdU?=
+ =?utf-8?B?U1F3Mkc2bHAxb3lTVjlOb3JJWk8zR05lalJjUEZuZFo3cTIwNExoV1I2aGhm?=
+ =?utf-8?B?L2k2bTM4bktxNW1lZU5vcDRPS0pQeEVtd1ZBMTlGVWNzOEswNUpqTEtTdWVZ?=
+ =?utf-8?Q?8a78=3D?=
+X-OriginatorOrg: suse.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 748b6f9c-c666-47ce-efcb-08db1f1baf6c
+X-MS-Exchange-CrossTenant-AuthSource: VI1PR0402MB3439.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Mar 2023 14:53:17.5161
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: f7a17af6-1c5c-4a36-aa8b-f5be247aa4ba
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: HdBdTgq72EcI2oDkKSOKonQciZI07I8UOWqj65rCfg0Mm7E3yV61S8U495lMAKNT
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PAWPR04MB9815
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -74,310 +137,60 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mar 07 2023, Daniel Kaehn wrote:
-> On Tue, Mar 7, 2023 at 7:17 AM Benjamin Tissoires
-> <benjamin.tissoires@redhat.com> wrote:
-> >
-> > On Mar 06 2023, Andy Shevchenko wrote:
-> > > On Mon, Mar 06, 2023 at 01:40:16PM -0600, Daniel Kaehn wrote:
+On Tue, Mar 07, 2023 at 09:09:59PM +0800, Chester Lin wrote:
+> Hi Linus and Andy,
+> 
+> On Tue, Mar 07, 2023 at 01:49:00PM +0100, Linus Walleij wrote:
+> > On Tue, Mar 7, 2023 at 10:56 AM Andy Shevchenko
+> > <andy.shevchenko@gmail.com> wrote:
+> > > On Tue, Mar 7, 2023 at 11:22 AM Linus Walleij <linus.walleij@linaro.org> wrote:
+> > > > On Tue, Mar 7, 2023 at 12:28 AM <andy.shevchenko@gmail.com> wrote:
 > > >
 > > > ...
 > > >
-> > > > Device (SE9)
-> > > > {
-> > > >     Name (_ADR, 0x001D0001) // _ADR: Address
-> > > >     Device (RHUB)
-> > > >     {
-> > > >         Name (_ADR, Zero)
-> > > >         Device (CP2) // the USB-hid & CP2112 shared node
-> > > >         {
-> > > >             Name (_ADR, One)
-> > > >         }
-> > > >     }
-> > > > }
+> > > > > Can you unpull this?
+> > >
+> > > > If need be.
 > > > >
-> > > > If I'm understanding correctly, this adds the SE9 device as function 1
-> > > > of PCI device 0x1d,
+> > > > Are there serious issues with the patch set such that they cannot be fixed
+> > > > by add-on patches?
 > > >
-> > > To be precise this does not add the device. It adds a description of
-> > > the companion device in case the real one will appear on the PCI bus
-> > > with BDF 00:1d.1.
+> > > There are a few absent error checks, some error code shadowing, etc.
+> > > I can't tell if these all are serious, but the amount of them is like a dozen.
 > > >
-> > > > then RHUB as the USB controller it provides, and finally, CP2 as the
-> > > > USB device attached to port 1 of the controller.
-> > > >
-> > > > With this as the loaded dsdt table, the USB device now has a firmware_node :)
-> > > > #> cat /sys/bus/usb/devices/3-1:1.0/firmware_node/path
-> > > > \_SB_.PCI0.SE9_.RHUB.CP2_
-> > > >
-> > > > After applying my patches, the HID device also references this node:
-> > > > #> cat /sys/bus/hid/devices/0003:10C4:EA90.0003/firmware_node/path
-> > > > \_SB_.PCI0.SE9_.RHUB.CP2_
-> > > >
-> >
-> > Great! Thanks a lot for that. Turns out that with both of your inputs I
-> > can also do the same, but without the need for OVMF and DSDT patching,
-> > with just an SSDT override.
-> >
-> Ah, interesting.. I tried the SSDT override route initially, but tried
-> applying it
-> through EFI variables and through configfs, neither of which worked since
-> they appeared to be applied after the relevant drivers were already loaded
-> (at least that was my suspicion). I wonder if loading the overlay through the
-> initramfs was the key.
-
-Yeah, there were a few items missing from a "blank" qemu:
-- loading the SSDT overlay in the initramfs so it's seen before anything
-  else
-- actually define the description of the device in the DSDT at the
-  matching PCI bus address
-- your patch :)
-
+> > > I reviewed the patch, so you can look into that yourself and decide.
+> > 
+> > I looked at it and some of the comments are pretty serious and need
+> > addressing ASAP.
+> > 
 > 
-> > Turns out that the override documentation [1] mentions "This option
-> > allows loading of user defined SSDTs from initrd and it is useful when
-> > the system does not support EFI or ..."
-> >
-> > FWIW, I am attaching my full DSDT override in case it is valuable:
-> > (on my system, the default USB controller (non-xhc) is at PCI address
-> > 1.2, which explains the slight difference). It can be loaded in the same
-> > way you are overriding the full DSDT, but with just that compilation
-> > output:
-> >
-> > ---
-> > DefinitionBlock ("cp2112.aml", "SSDT", 5, "", "CP2112", 1)
-> > {
-> >   External (_SB_.PCI0, DeviceObj)
-> >
-> >   Scope (\_SB_.PCI0)
-> >   {
-> >     Device (USB0)
-> >     {
-> >       Name (_ADR, 0x00010002) // _ADR: Address
-> >       Device (RHUB)
-> >       {
-> >         Name (_ADR, Zero)
-> >         Device (CP21) // the USB-hid & CP2112 shared node
-> >         {
-> >           Name (_ADR, One)
-> >           Device (I2C)
-> >           {
-> >             Name (_ADR, Zero)
-> >             Name (_STA, 0x0F)
-> >           }
-> >
-> >           Device (GPIO)
-> >           {
-> >             Name (_ADR, One)
-> >             Name (_STA, 0x0F)
-> >           }
-> >         }
-> >       }
-> >     }
-> >   }
+> Thanks for reviewing the patch.
 > 
-> To get this to work -- I assume you had to change the driver to look
-> for uppercase
-> "GPIO" and "I2C", or some similar change?
-> 
-> 
-> >
-> >   Scope (\_SB_.PCI0.USB0.RHUB.CP21.I2C)
-> >   {
-> >     Device (TPD0)
-> >     {
-> >       Name (_HID, "RMI40001")
-> >       Name (_CID, "PNP0C50")
-> >       Name (_STA, 0x0F)
-> >
-> >       Name (SBFB, ResourceTemplate ()
-> >       {
-> >           I2cSerialBusV2 (0x00c, ControllerInitiated, 100000,
-> >               AddressingMode7Bit, "\\_SB_.PCI0.USB0.RHUB.CP21.I2C",
-> >               0x00, ResourceConsumer,, Exclusive,
-> >               )
-> >       })
-> >       Name (SBFG, ResourceTemplate ()
-> >       {
-> >           GpioInt (Level, ActiveLow, Exclusive, PullDefault, 0x0000,
-> >               "\\_SB_.PCI0.USB0.RHUB.CP21.GPIO", 0x00, ResourceConsumer, ,
-> >               )
-> >               {   // Pin list
-> >                   0x0002
-> >               }
-> >       })
-> >       Method(_CRS, 0x0, NotSerialized)
-> >       {
-> >         Return (ConcatenateResTemplate (SBFB, SBFG))
-> >       }
-> >
-> >       Method(_DSM, 0x4, Serialized)
-> >       {
-> >         // DSM UUID
-> >         switch (ToBuffer (Arg0))
-> >         {
-> >           // ACPI DSM UUID for HIDI2C
-> >           case (ToUUID ("3CDFF6F7-4267-4555-AD05-B30A3D8938DE"))
-> >           {
-> >               // DSM Function
-> >               switch (ToInteger (Arg2))
-> >               {
-> >                   // Function 0: Query function, return based on revision
-> >                   case(0)
-> >                   {
-> >                       // DSM Revision
-> >                       switch (ToInteger (Arg1))
-> >                       {
-> >                           // Revision 1: Function 1 supported
-> >                           case (1)
-> >                           {
-> >                               Return (Buffer (One) { 0x03 })
-> >                           }
-> >
-> >                           default
-> >                           {
-> >                               // Revision 2+: no functions supported
-> >                               Return (Buffer (One) { 0x00 })
-> >                           }
-> >                       }
-> >                   }
-> >
-> >                   // Function 1 : HID Function
-> >                   case(1)
-> >                   {
-> >                       // HID Descriptor Address
-> >                       Return (0x0020)
-> >                   }
-> >
-> >                   default
-> >                   {
-> >                       // Functions 2+: not supported
-> >                       Return (Buffer (One) { 0x00 })
-> >                   }
-> >               }
-> >           }
-> >
-> >           default
-> >           {
-> >               // No other GUIDs supported
-> >               Return (Buffer (One) { 0x00 })
-> >           }
-> >         }
-> >       }
-> >     }
-> >   }
-> > }
-> > ---
-> >
-> > This almost works. Almost because the I2C device is correctly created,
-> > but I have an issue with the GpioInt call which is not properly set by
-> > the kernel and which returns -EDEFER. /o\
-> >
-> 
-> Ahh, yep, I've had this issue as well -- I suspect the issue you're
-> having is that the
-> CP2112 driver initializes the i2c controller before the gpiochip, and
-> if any i2c devices
-> on the bus depend on the CP2112's gpio, the probe will never succeed!
-> I have made
-> and been testing with a patch to fix this, but since it was midway
-> through submitting
-> this series, thought it might be bad practice to "tack on" additional
-> patches to a patchset
-> mid-review (since it only causes an issue in some (admittedly fairly
-> common) use-cases)
-> so I was going to send it as an individual patch once (if) these were applied.
+> Please kindly leave review comments if it doesn't take too much time for you.
+> I just want to ensure that I won't miss anything.
 > 
 
-I don't think this is the issue. When the device is initially probed,
-the I2C acpi implementation tries to attach an IRQ, but failed at it,
-returning -EPROBE_DEFER, which makes the device being retried a few
-times.
+Sorry that I just found that my mailbox didn't receive Andy's mail [comments on
+v5 2/3]. I will try answering it and come up with a patch ASAP.
 
-After I get my shell available I even get the pr_err I included few
-seconds later, for a last attempt by the kernel to bind it when
-everything has settled.
+Thanks for your patience,
+Chester
 
-So I can see that the device gets probed, and that all ACPI resources
-are tried to get the IRQ.
-Right now, I see that it's attempting to bind to the acpi resource in 
-acpi_dev_resource_interrupt() (in file drivers/acpi/resources.c), but
-instead of having a ACPI_RESOURCE_TYPE_EXTENDED_IRQ I only get a
-ACPI_RESOURCE_TYPE_GPIO for the GpioInt() definition in the _CRS method.
-
-So I am missing the proper transition from GpioInt to IRQ in the acpi.
-
-Note that I tried applying what was describe at
-Documentation/firmware_guide/acpi/gpio-properties.rst but the _DSD
-method doesn't seem to be properly applied to the CP2112 GPIO, which is
-highly suspicious.
-
-> If you think that would be necessary to include for these to merge,
-> I'd be happy to append
-> it to this review. I also have another patch which adds i2c bus
-> recovery to the driver, but
-> that seems independent enough that it should be sent on its own.
-
-As I mentioned above I don't think the issue is in the ordering of the
-I2C vs gpio resources.
-
+> > However it only affects this hardware so it's not like it's breaking the
+> > world. I generally prefer in-tree development over too many big patch
+> > iterations, it gets more focused.
+> > 
+> > I think if Chester can follow up with a patch or several addressing the
+> > comments in the next week or two that's fine.
+> > 
 > 
-> > > > With this all said -- I noticed iasl prints this statement when trying
-> > > > to create a node with a lowercase name:
-> > > > "At least one lower case letter found in NameSeg, ASL is case
-> > > > insensitive - converting to upper case (GPIO)"
-> > >
-> > > Yes, because it should be in the upper case.
-> > >
-> > > > I wonder if this suggests that adding a call to toupper() to
-> > > > acpi_fwnode_get_named_child_node would be
-> > > > an appropriate solution for the node name casing issue....
-> > >
-> > > I dunno. You need to ask in the linux-acpi@ mailing list.
-> > > To me this is corner case that can't be easily solved
-> > > (because two different specifications treat it differently.
-> > >
-> > > You also need to ask DT people about capital letters there.
-> > > And my guts tell me that it's probably also carved in the spec
-> > > as "must be lower case" or alike.
-> >
-> > FWIW while trying to enable this, at some point I named the I2C and the
-> > GPIO entries "I2C0" and "GPI0" (with the number '0', not the letter
-> > 'o'), and it was not working as you would expect.
-> >
-> > It is commonly accepted in the ACPI world that the names do not carry
-> > meaning AFAICT, and so I think I agree with Andy's initial comment
-> > regarding using indexes, not names to also fetch the I2C and GPIO nodes.
-> > You can probably have a fallback mechanism for when "i2c" is not
-> > present, or simply check if you are in DT or not and use the names only
-> > if we are in DT.
+> I will do my best to solve it.
 > 
-> More and more, after actually seeing and working with ACPI, I suspect that
-> you both are right. Maybe (hopefully) though, there is some unified way that can
-> be made to do this, so that individual drivers won't have to directly code for /
-> be aware of the differences in the firmware languages (at least, that seemed
-> to be the intent of the fw_node/device api in the first place). Maybe a
-> `device_get_child_by_name_or_index` (terribly long name) sort of function
-> might fill in that gap?
-
-I don't know. Though the _DSD documentation I mentioned above looks very
-similar to what you are describing in the DT case, so maybe the ACPI
-folks will just tell us "why don't you use XXXX?" and we will have the
-solution :) (we can't be the first to have that same issue TBH)
-
+> Thanks,
+> Chester
 > 
-> I plan to send an email asking this question more generically to ACPI & DT folks
-> as Andy suggested, so hopefully there will be some ideas.
-> 
-> >
-> > Thanks a lot to both of you, this will be tremendously helpful to me.
-> >
-> > Cheers,
-> > Benjamin
-> >
-> Thanks for testing this out! Glad that ACPI support ended up being worked into
-> this after all :)
-
-Cheers,
-Benjamin
-
+> > However if we get closer to -rc6 and nothing has happened I would
+> > not be so happy and then I might just revert the driver patch.
+> > 
+> > Yours,
+> > Linus Walleij
