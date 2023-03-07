@@ -2,128 +2,176 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 774446ADA42
-	for <lists+devicetree@lfdr.de>; Tue,  7 Mar 2023 10:24:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6B4146ADA44
+	for <lists+devicetree@lfdr.de>; Tue,  7 Mar 2023 10:24:47 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230374AbjCGJY3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Mar 2023 04:24:29 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43306 "EHLO
+        id S230119AbjCGJYq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Mar 2023 04:24:46 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43774 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230368AbjCGJY1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Mar 2023 04:24:27 -0500
-Received: from NAM11-BN8-obe.outbound.protection.outlook.com (mail-bn8nam11on20601.outbound.protection.outlook.com [IPv6:2a01:111:f400:7eae::601])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CC2243B0E0
-        for <devicetree@vger.kernel.org>; Tue,  7 Mar 2023 01:24:13 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=SL5Gs1KruXM4ZwyyQkM8c7PMn4l8FqH0sNgdWT0uk8JBlRtnIAGqkR7JXRY/5qOD/Cj1jmm6BzVUQQ84bFPP2pBVh9UnYNl7hATWR0CA7/62mEKFkD4vYig4m5m18Mf6p9KN3YFna5oBKifxPHra6yCkzsXHXImfStvO0/YSIzzAQ14GQA+2aXEXN2HpIAq57Yne6mii8NibPs0CxUTrssaJJlm8OVoboqfttxF4/pmtpGQaIblChKheS8Fu1Wz5PSO8x+XxAnBrVvGeiRd+TOcHEZUXfTBW40cVqEw+pDr7ICni9OaVPzywIMqeQu/hCNBb87qqhJOfZ6MDYCFXbg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=SGU+5tYx/Q1ETppAAz8dZHr3OZh0OggPJMU6ek11oe8=;
- b=K+PDZrCHOTqVjNfGHv15Y4lVY3klL5hajC8yI7/HueuRTeScmOfrXuDr9LRQwNITPiTcFSQdUmusqKGB59QsQ8J9b7GOkHK7d3GxbSsfTgSXeebQfw3JkFsRfVSP7aXv200US+R2flc3cRj5MMqCv5EpMS+V486Gfj3k5sfLlBUhPuc0jcBKFl1ptFs6Vg9iLoYcRHt/MYhfHqHBgIfsI0HA0f2rSayWsNrF1/jGf+KnDkNdi+7hThDfAcV2WSJhNVZRsEdw+XJuNdRj3SYkS3UQ4zDevAnBHdNWv+8X9Vkm8/wQa1MQVoqt0TeSEWGRCrYu42gPqc76llaIoJbu6Q==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=kernel.org smtp.mailfrom=amd.com; dmarc=pass
- (p=quarantine sp=quarantine pct=100) action=none header.from=amd.com;
- dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=SGU+5tYx/Q1ETppAAz8dZHr3OZh0OggPJMU6ek11oe8=;
- b=Nf0dUxb7tCafA9K4MjdawSK5GM3v9DLaL+39+Ywhs+d0rFoVKqgviuWIYfwZ0C0kohxe8JkMaWxELT6+Vmc6WJbqsJlBZSTYEJPtTQ/LfLcudYO3iS/75d8Z8iV2hnNiqzPTLvUfsIr0Qz4HVuJjFHHASBYCXT+fEt50IWP6lZE=
-Received: from DS7PR06CA0052.namprd06.prod.outlook.com (2603:10b6:8:54::30) by
- SJ2PR12MB7943.namprd12.prod.outlook.com (2603:10b6:a03:4c8::10) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6156.21; Tue, 7 Mar
- 2023 09:24:09 +0000
-Received: from DS1PEPF0000E645.namprd02.prod.outlook.com
- (2603:10b6:8:54:cafe::86) by DS7PR06CA0052.outlook.office365.com
- (2603:10b6:8:54::30) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6156.29 via Frontend
- Transport; Tue, 7 Mar 2023 09:24:09 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB03.amd.com; pr=C
-Received: from SATLEXMB03.amd.com (165.204.84.17) by
- DS1PEPF0000E645.mail.protection.outlook.com (10.167.17.203) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.6178.13 via Frontend Transport; Tue, 7 Mar 2023 09:24:09 +0000
-Received: from SATLEXMB08.amd.com (10.181.40.132) by SATLEXMB03.amd.com
- (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.34; Tue, 7 Mar
- 2023 03:24:07 -0600
-Received: from SATLEXMB03.amd.com (10.181.40.144) by SATLEXMB08.amd.com
- (10.181.40.132) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.34; Tue, 7 Mar
- 2023 01:24:06 -0800
-Received: from xsjvarunkum50.xilinx.com (10.180.168.240) by SATLEXMB03.amd.com
- (10.181.40.144) with Microsoft SMTP Server id 15.1.2375.34 via Frontend
- Transport; Tue, 7 Mar 2023 03:24:05 -0600
-From:   Parth Gajjar <parth.gajjar@amd.com>
-To:     <robh@kernel.org>, <mripard@kernel.org>, <heiko@sntech.de>
-CC:     <git-dev@xilinx.com>, <michal.simek@amd.com>,
-        <varunkumar.allagadapa@amd.com>, <vishal.sagar@amd.com>,
-        <robh+dt@kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        Parth Gajjar <parth.gajjar@amd.com>
-Subject: [RESENT PATCH 2/2] dt-bindings: gpu: mali-utgard: Add xlnx,zynqmp-mali compatible
-Date:   Tue, 7 Mar 2023 01:23:21 -0800
-Message-ID: <1678181001-2327-3-git-send-email-parth.gajjar@amd.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1678181001-2327-1-git-send-email-parth.gajjar@amd.com>
-References: <1678181001-2327-1-git-send-email-parth.gajjar@amd.com>
+        with ESMTP id S230332AbjCGJYo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Mar 2023 04:24:44 -0500
+Received: from mail-ua1-x92d.google.com (mail-ua1-x92d.google.com [IPv6:2607:f8b0:4864:20::92d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6A178144B5
+        for <devicetree@vger.kernel.org>; Tue,  7 Mar 2023 01:24:40 -0800 (PST)
+Received: by mail-ua1-x92d.google.com with SMTP id f17so8400127uax.7
+        for <devicetree@vger.kernel.org>; Tue, 07 Mar 2023 01:24:40 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google; t=1678181079;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=2KEjIGIP7k4933B+btGoksmvrPyH6BRppEBQn/EZ6nA=;
+        b=hVe6Sb3vULw3t8joPXyJizdO/5PxqGwox55+I7vxTiXYKJ0qwlXt6/LqiGX9tqqE/b
+         nk4UimZQaU0d9iKv62y+OHGrxmGZ30Rg+l1tmtH486aWXB/oPzRZJOCh98gaG8qn2iOQ
+         asNP6HvdtcY8Jj1N2XPu2lCt+dWqp9/a2Dai0=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1678181079;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=2KEjIGIP7k4933B+btGoksmvrPyH6BRppEBQn/EZ6nA=;
+        b=PRxwpa8pXcuaq8iJGTZE5uA+2LtQVNKHZgIxNdWA2tOpJw22CwDjd+esyVCyt8Az52
+         7Rp/s7qGZJ4OsV7ydOIP1nrs2fUs4rtJbM52v0Mi7yqtqtJXbp987thsMpCmrgKDmBzS
+         ZSFZwzUt0FnBNDSyw26d/k2dRkQ6L0uitmiyv41tHnbGA3VS/NkjqfkZiIKyQee4Rg/M
+         ndir7U12zbfnlQ/VFBe3L+jcYnngrbnRSLJyKVNSDhDKrgrLmd3EO02aR34vsQD6194E
+         /9+eE1uzYjQPDfOoM6no3MhcrPnyY3Ab6TSL8oDQa/59chvRVamb2N/HQzlqPRXWo6YC
+         LdVQ==
+X-Gm-Message-State: AO0yUKWE4+jfiWKMqcf5epsXZLfpNONMK0fj8R0PoBW7Am2EGBPuv+Z2
+        ze+ERL41a8NVtGUonEKMKgbxHnulOd0VujKN3HJvrSjQTIjD8+a69U0=
+X-Google-Smtp-Source: AK7set+da9sAeR326t9LNfp7UZouQJyP9uKjC8RgBcg9Kg3WklPbE8tDN9/nwn0EBb9q00Bh4xZa0t6X7HiSBNUylAo=
+X-Received: by 2002:a9f:3104:0:b0:68a:5bba:ba40 with SMTP id
+ m4-20020a9f3104000000b0068a5bbaba40mr8809625uab.1.1678181079476; Tue, 07 Mar
+ 2023 01:24:39 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS1PEPF0000E645:EE_|SJ2PR12MB7943:EE_
-X-MS-Office365-Filtering-Correlation-Id: a2f8bc12-eb7d-400d-b274-08db1eedb4df
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: cJMnxbuXC6szb95jm7qoL7BHRjtG/3BMbJPbx5NZGdU1nbBmFWEkJMvtzCQUbtz/6TVam5oxm0Qx4M8ihn83YcUwwUGBlW79xsa8n254vl7zeGerQsDhykCXoOyz14su2/WvV97jUY2bSZBdNngEvhdtYzgMWbOhChxvmk7xb10pvOLnR0BKgaNcbq/DbRt60ccoEIVwIrEbEMpgtmRyzKxg2h5mXI0zx9rmTU3shC1KyW92NYnsYpy7nxFaNVCs6FSlAXNwAmd+wcArugZcRoKDI1vyupUx9UU5iLp2XaRb5EbjN7Q3WkUVieg93MYZlsRI1te/2kKHjpljKGxI0pQU3VxvSVI2maCdkiQ/ItBjL0MDDsLnRCTmRwUtBffxXuzw5kC2b3c6zL0ud3Myi+D8P37IbRDMA6ef4MhE6bfVueKUxUDMcvuhkXfGpIQJrGzcjZZKB20AMpINZIxOLydj/RO9Vrlc5bCODDHlsyRTn/WfsDOKyomdXm5bNtTnbw8tUFwFPHuQTAqFIsJh2mjwnzb+LK+jklA6amJV5yGU7NQQRF/UWzz9Pptub15f/hXhy00ZhgmHavKlnnohm3CrEpCpc21NsGirzpinu6LSpp2CvDp2zcsA/AYbrpC2X4OWpcYBqJLHFhh0uA55SOTAMUfryaaoNEngb0hTesbo5LtkPWSltnlqTuWsWCggHMogFb+cHuMvqWVrykBOpwAR/ACa8nniD3mLAzJ0gX8=
-X-Forefront-Antispam-Report: CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:SATLEXMB03.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230025)(4636009)(136003)(39860400002)(396003)(376002)(346002)(451199018)(36840700001)(40470700004)(46966006)(40460700003)(2906002)(186003)(81166007)(356005)(41300700001)(44832011)(36860700001)(8676002)(4326008)(8936002)(70206006)(5660300002)(82740400003)(4744005)(70586007)(47076005)(426003)(6666004)(26005)(2616005)(478600001)(54906003)(110136005)(82310400005)(40480700001)(36756003)(86362001)(316002)(336012)(36900700001);DIR:OUT;SFP:1101;
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Mar 2023 09:24:09.2917
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: a2f8bc12-eb7d-400d-b274-08db1eedb4df
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[SATLEXMB03.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: DS1PEPF0000E645.namprd02.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ2PR12MB7943
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,SPF_HELO_PASS,
-        SPF_NONE,URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+References: <20230301095523.428461-1-angelogioacchino.delregno@collabora.com>
+ <20230301095523.428461-13-angelogioacchino.delregno@collabora.com>
+ <CAGXv+5GHdtbheL6wxtDo-szk+=3BGk2z93SBowd4Z=E9XupZkw@mail.gmail.com>
+ <5dba27e1-d480-ea24-c1ba-03bb7f77b1b1@collabora.com> <CAGXv+5FwNfZ7TwKVMM5_uAjYQ6ZmhZVFsWREb_da-jxC6EUVJw@mail.gmail.com>
+In-Reply-To: <CAGXv+5FwNfZ7TwKVMM5_uAjYQ6ZmhZVFsWREb_da-jxC6EUVJw@mail.gmail.com>
+From:   Chen-Yu Tsai <wenst@chromium.org>
+Date:   Tue, 7 Mar 2023 17:24:27 +0800
+Message-ID: <CAGXv+5F8A4kLq3y8dE4mrcVb338-afDorWsS5MRBvWVPgiAhEA@mail.gmail.com>
+Subject: Re: [PATCH v4 12/19] arm64: dts: mediatek: mt8192-asurada: Couple
+ VGPU and VSRAM_OTHER regulators
+To:     AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+Cc:     matthias.bgg@gmail.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Xilinx zynqmp SoC contains Mali400, so add its specific compatible to
-bindings.
+On Fri, Mar 3, 2023 at 12:09=E2=80=AFPM Chen-Yu Tsai <wenst@chromium.org> w=
+rote:
+>
+> On Thu, Mar 2, 2023 at 6:17=E2=80=AFPM AngeloGioacchino Del Regno
+> <angelogioacchino.delregno@collabora.com> wrote:
+> >
+> > Il 02/03/23 11:03, Chen-Yu Tsai ha scritto:
+> > > On Wed, Mar 1, 2023 at 5:55=E2=80=AFPM AngeloGioacchino Del Regno
+> > > <angelogioacchino.delregno@collabora.com> wrote:
+> > >>
+> > >> Add coupling for these regulators, as VSRAM_OTHER is used to power t=
+he
+> > >> GPU SRAM, and they have a strict voltage output relation to satisfy =
+in
+> > >> order to ensure GPU stable operation.
+> > >> While at it, also add voltage constraint overrides for the GPU SRAM
+> > >> regulator "mt6359_vsram_others" so that we stay in a safe range of
+> > >> 0.75-0.80V.
+> > >>
+> > >> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno=
+@collabora.com>
+> > >> ---
+> > >>   arch/arm64/boot/dts/mediatek/mt8192-asurada.dtsi | 9 +++++++++
+> > >>   1 file changed, 9 insertions(+)
+> > >>
+> > >> diff --git a/arch/arm64/boot/dts/mediatek/mt8192-asurada.dtsi b/arch=
+/arm64/boot/dts/mediatek/mt8192-asurada.dtsi
+> > >> index 8570b78c04a4..f858eca219d7 100644
+> > >> --- a/arch/arm64/boot/dts/mediatek/mt8192-asurada.dtsi
+> > >> +++ b/arch/arm64/boot/dts/mediatek/mt8192-asurada.dtsi
+> > >> @@ -447,6 +447,13 @@ &mt6359_vrf12_ldo_reg {
+> > >>          regulator-always-on;
+> > >>   };
+> > >>
+> > >> +&mt6359_vsram_others_ldo_reg {
+> > >> +       regulator-min-microvolt =3D <750000>;
+> > >> +       regulator-max-microvolt =3D <800000>;
+> > >> +       regulator-coupled-with =3D <&mt6315_7_vbuck1>;
+> > >> +       regulator-coupled-max-spread =3D <10000>;
+> > >
+> > > Looking again at the downstream OPP table, it seems there's no voltag=
+e
+> > > difference requirement. It only needs V_SRAM >=3D V_GPU. Same applies=
+ to
+> > > MT8195. Looks like only MT8183 and MT8186 need V_SRAM - V_GPU >=3D 10=
+000.
+> >
+> > On MT8195 we don't need any regulator coupling. There, the GPU-SRAM vol=
+tage
+> > is fixed at .. I don't remember, 0.7V? - anyway - MT8195 doesn't need t=
+o
+> > scale the vsram.
+>
+> Looks like it's fixed at 0.75V. I guess we're Ok on MT8195.
+>
+> > >
+> > > Would setting max-spread to 0 work? I ask because with both regulator=
+'s
+> > > maximum voltage set to 0.8V, there's no way we can reach the highest
+> > > OPP.
+> > >
+> >
+> > No that doesn't work. I can raise the Vgpu max voltage to 0.88V to solv=
+e the
+> > issue right here and right now, or we can leave it like that and revisi=
+t it
+> > later.
+> >
+> > I would at this point go for setting mt6315_7_vbuck1's max-microvolt to
+> > 880000, as this is the maximum recommended voltage for the GPU as per t=
+he
+> > MT8192 datasheet, it would also make sense as we would be still describ=
+ing
+> > the hardware in a correct manner.
+> >
+> > What do you think?
+>
+> If it's just to accommodate the coupler stuff, I say just set the maximum
+> at the lowest possible setting that satisfies the coupler constraint and
+> granularity of the regulator. The regulator does 6250 uV steps, so I gues=
+s
+> we could set the maximum at 812500 uV, with a comment stating the nominal
+> voltage of 800000 uV and that the extra 12500 uV is to workaround coupler
+> limitations.
+>
+> Does that sound OK?
 
-Signed-off-by: Parth Gajjar <parth.gajjar@amd.com>
-Signed-off-by: Vishal Sagar <vishal.sagar@amd.com>
----
- Documentation/devicetree/bindings/gpu/arm,mali-utgard.yaml | 1 +
- 1 file changed, 1 insertion(+)
+Even without changing anything, the coupler seems to work OK:
 
-diff --git a/Documentation/devicetree/bindings/gpu/arm,mali-utgard.yaml b/Documentation/devicetree/bindings/gpu/arm,mali-utgard.yaml
-index 318122d95eb5..0fae1ef013be 100644
---- a/Documentation/devicetree/bindings/gpu/arm,mali-utgard.yaml
-+++ b/Documentation/devicetree/bindings/gpu/arm,mali-utgard.yaml
-@@ -33,6 +33,7 @@ properties:
-               - rockchip,rk3228-mali
-               - samsung,exynos4210-mali
-               - stericsson,db8500-mali
-+              - xlnx,zynqmp-mali
-           - const: arm,mali-400
-       - items:
-           - enum:
--- 
-2.17.1
+ vsram_others                     1    1      0  normal   800mV
+0mA   750mV   800mV
+    10006000.syscon:power-controller-domain   1
+         0mA     0mV     0mV
+ Vgpu                             2    2      0  normal   800mV
+0mA   606mV   800mV
+    13000000.gpu-mali             1
+0mA   800mV   800mV
+    10006000.syscon:power-controller-domain   1
+         0mA     0mV     0mV
 
+Am I missing something?
+
+ChenYu
