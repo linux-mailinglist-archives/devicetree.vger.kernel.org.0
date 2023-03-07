@@ -2,55 +2,54 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B690E6ADB03
-	for <lists+devicetree@lfdr.de>; Tue,  7 Mar 2023 10:53:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5FF5B6ADB0C
+	for <lists+devicetree@lfdr.de>; Tue,  7 Mar 2023 10:53:55 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230332AbjCGJxV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Mar 2023 04:53:21 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52610 "EHLO
+        id S230461AbjCGJxw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Mar 2023 04:53:52 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53398 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230455AbjCGJxO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Mar 2023 04:53:14 -0500
-Received: from mail-ua1-x933.google.com (mail-ua1-x933.google.com [IPv6:2607:f8b0:4864:20::933])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DF0B736095
-        for <devicetree@vger.kernel.org>; Tue,  7 Mar 2023 01:53:07 -0800 (PST)
-Received: by mail-ua1-x933.google.com with SMTP id s23so8452101uae.5
-        for <devicetree@vger.kernel.org>; Tue, 07 Mar 2023 01:53:07 -0800 (PST)
+        with ESMTP id S230477AbjCGJxm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Mar 2023 04:53:42 -0500
+Received: from mail-ua1-x932.google.com (mail-ua1-x932.google.com [IPv6:2607:f8b0:4864:20::932])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 60234460A9
+        for <devicetree@vger.kernel.org>; Tue,  7 Mar 2023 01:53:36 -0800 (PST)
+Received: by mail-ua1-x932.google.com with SMTP id x1so8431383uav.9
+        for <devicetree@vger.kernel.org>; Tue, 07 Mar 2023 01:53:36 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1678182787;
+        d=chromium.org; s=google; t=1678182815;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=3KQIAhdlXww65eUhy0j2w15z+KgD81bSw/EYAnBg8cI=;
-        b=GqIUUxkGszWnMyOJ9v/BsV0SLfdciSErtv2GTbk1+4kZkly8MVF9kX6UN6NjIVjb32
-         HKoSqSqoaG/6JON51LwZn+0Q0RhUULLXfVGKSoXK7kbasF/aigKMDSoXh/l9ADVNG9g3
-         Vv3UPAnqRbJrkXBZry3fPmnF+a0p7piAnFTnA=
+        bh=g5DlCuYa7/0gszYKTKl13EbxZ9aUeXgRvcmWQ1j6cpk=;
+        b=iYVNJhITTewI0WpMkOykHA9MEJqLR9u5GxtRG70p5Zu/GSgLThwV/iZ8limQX6EPfM
+         QsUNbKXXHV4j72gPV9NqqX/s7VJ+8MlE3JEPlKPZsPCh9I1iLiORTPTvoXJG0S3jK7Ed
+         2g14iWOM2PvMqyYjxVBaV1NDiYlCAidKKmc4c=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678182787;
+        d=1e100.net; s=20210112; t=1678182815;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=3KQIAhdlXww65eUhy0j2w15z+KgD81bSw/EYAnBg8cI=;
-        b=t9b5CzbiD2LQ41u9A1hkmIC6UUSGG8JmPBi4KOBUoECqV2+RplkrcJ8u2tz/Py+Bbp
-         lRZUXQyboRVTFLquZaLap9YTmz3O+F1cxhl3wDz/lYA23Hvhs3Ay98HmJUjamRjzJgar
-         6azSjfMQTiwro35+LDak/SO/wSQs+i+1TGoRWdeQj0WV+ik7JEXAdGPUnf5RuFnUYmA2
-         DhshCHt+kjQUmMlHgVVrf2s/WDJeN7qRAKSxJPjs/4yNi1k/mV3TukNlpkqJiSShVrca
-         04SsqKjGSEAxih8ETx7UgyWcdYmbGDU3aZ7cHBeZE5fBoDyWmd1Ant8Ro6xr7DKtVwTU
-         dh6g==
-X-Gm-Message-State: AO0yUKV1i6mcAUI3O/MiF4dz8+uUXrYvCUx9mnK62RR4b8PiY80YFGqz
-        /sEJw0y4qQSoAS0xRD7lwyCk6I5F671v78HTxP0gVg==
-X-Google-Smtp-Source: AK7set/+w8N6bIxRsr/VdjA+rzkO3mjOWFu0972MmNK+MtYl7ZKujQy20Hpt6L+Qt7IMdIula/6V0iHxgFoTKB6NZYQ=
-X-Received: by 2002:ab0:544e:0:b0:68a:5c52:7f2b with SMTP id
- o14-20020ab0544e000000b0068a5c527f2bmr8829170uaa.1.1678182786803; Tue, 07 Mar
- 2023 01:53:06 -0800 (PST)
+        bh=g5DlCuYa7/0gszYKTKl13EbxZ9aUeXgRvcmWQ1j6cpk=;
+        b=7Ps5AxN7m/eLpvti3wqXdPy4IDP8pmd059QcYeuRSgh3Vz3eArx37i+DxOIz6P5PwW
+         EKhBE7jaoNR9g2SjdlcEKz2AGBkkZupx5UbHsIbWmPvEt94HAW/m/GP5hW5cnDgaM/Zh
+         qYdpgx8TM0SnmiK5Y0CenMywjkW9H1e943d8yby/GAKVza2pEgQtSPuMIPpdKJswACmU
+         njX+yvfuugUc1xJYgSgIkyxPDr+0rmaBXtjBOUK2Co88Z6vokf4C1hA6OUE5lbDKlFWk
+         KoCWrXFUTH9eq62/yT/6yulNiP8po2xFI2HCqvF34eWJ0OmdsXc8o70TEjC6BIaSMxkX
+         8Zmw==
+X-Gm-Message-State: AO0yUKXIrTjTjABvVozjjlHGYg9kBAZ2QLDt+mSi+Vf2XlkNBACMP6I/
+        qlxjFnd+5l9+9HxslNhQDoMN7SOtlgPbN7iYuNT92A==
+X-Google-Smtp-Source: AK7set+q9jiPd9ivFHGiyrKW+e476+Rr3GZq5Ktk/6QxdnYWJr3wJ1xgCC/Coq26W/IugJcUukY4aCFPLpWw0ND7HAI=
+X-Received: by 2002:a1f:9dc2:0:b0:406:1fd2:bb76 with SMTP id
+ g185-20020a1f9dc2000000b004061fd2bb76mr8622549vke.0.1678182815197; Tue, 07
+ Mar 2023 01:53:35 -0800 (PST)
 MIME-Version: 1.0
-References: <20230228102704.708150-1-angelogioacchino.delregno@collabora.com> <20230228102704.708150-11-angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20230228102704.708150-11-angelogioacchino.delregno@collabora.com>
+References: <20230228102704.708150-1-angelogioacchino.delregno@collabora.com> <20230228102704.708150-10-angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20230228102704.708150-10-angelogioacchino.delregno@collabora.com>
 From:   Chen-Yu Tsai <wenst@chromium.org>
-Date:   Tue, 7 Mar 2023 17:52:55 +0800
-Message-ID: <CAGXv+5G=fm_R8yqkFGXN0999uZVTjSRW-gyM+1FCA+=TmZFt7w@mail.gmail.com>
-Subject: Re: [PATCH v4 11/12] drm/panfrost: Add new compatible for Mali on the
- MT8183 SoC
+Date:   Tue, 7 Mar 2023 17:53:24 +0800
+Message-ID: <CAGXv+5G-2knqWMd9EtbAqXDwmRH+-ou0w__uXAXcfzyMoWdbRQ@mail.gmail.com>
+Subject: Re: [PATCH v4 10/12] drm/panfrost: Add mediatek,mt8192-mali compatible
 To:     AngeloGioacchino Del Regno 
         <angelogioacchino.delregno@collabora.com>
 Cc:     airlied@gmail.com, daniel@ffwll.ch, robh+dt@kernel.org,
@@ -75,22 +74,16 @@ X-Mailing-List: devicetree@vger.kernel.org
 On Tue, Feb 28, 2023 at 6:27=E2=80=AFPM AngeloGioacchino Del Regno
 <angelogioacchino.delregno@collabora.com> wrote:
 >
-> The "mediatek,mt8183-mali" compatible uses platform data that calls for
-> getting (and managing) two regulators ("mali" and "sram") but devfreq
-> does not support this usecase, resulting in DVFS not working.
+> From: Alyssa Rosenzweig <alyssa.rosenzweig@collabora.com>
 >
-> Since a lot of MediaTek SoCs need to set the voltages for the GPU SRAM
-> regulator in a specific relation to the GPU VCORE regulator, a MediaTek
-> SoC specific driver was introduced to automatically satisfy, through
-> coupling, these constraints: this means that there is at all no need to
-> manage both regulators in panfrost but to otherwise just manage the main
-> "mali" (-> gpu vcore) regulator instead.
+> Required for Mali-G57 on the Mediatek MT8192 and MT8195, which
+> uses even more power domains than the MT8183 before it.
 >
-> Keeping in mind that we cannot break the ABI, the most sensible route
-> (avoiding hacks and uselessly overcomplicated code) to get a MT8183
-> node with one power supply was to add a new "mediatek,mt8183b-mali"
-> compatible, which effectively deprecates the former.
->
+> Signed-off-by: Alyssa Rosenzweig <alyssa.rosenzweig@collabora.com>
+> [Angelo: Removed unneeded "sram" supply, added mt8195 to commit descripti=
+on]
+> Co-developed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@co=
+llabora.com>
 > Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@coll=
 abora.com>
 > Reviewed-by: Steven Price <steven.price@arm.com>
