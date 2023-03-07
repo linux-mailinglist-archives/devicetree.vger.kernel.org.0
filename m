@@ -2,167 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 00F9C6AE0AC
-	for <lists+devicetree@lfdr.de>; Tue,  7 Mar 2023 14:36:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0317D6AE0DE
+	for <lists+devicetree@lfdr.de>; Tue,  7 Mar 2023 14:40:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229869AbjCGNgr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Mar 2023 08:36:47 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60396 "EHLO
+        id S230255AbjCGNku (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Mar 2023 08:40:50 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39224 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229593AbjCGNgq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Mar 2023 08:36:46 -0500
-Received: from mail-wr1-x42a.google.com (mail-wr1-x42a.google.com [IPv6:2a00:1450:4864:20::42a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 33AC047408
-        for <devicetree@vger.kernel.org>; Tue,  7 Mar 2023 05:36:44 -0800 (PST)
-Received: by mail-wr1-x42a.google.com with SMTP id v16so12206143wrn.0
-        for <devicetree@vger.kernel.org>; Tue, 07 Mar 2023 05:36:44 -0800 (PST)
+        with ESMTP id S230256AbjCGNkk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Mar 2023 08:40:40 -0500
+Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B4BBB81CE5
+        for <devicetree@vger.kernel.org>; Tue,  7 Mar 2023 05:40:02 -0800 (PST)
+Received: by mail-ed1-x535.google.com with SMTP id u9so52476905edd.2
+        for <devicetree@vger.kernel.org>; Tue, 07 Mar 2023 05:40:02 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=rivosinc-com.20210112.gappssmtp.com; s=20210112; t=1678196202;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=psTRywtzl68njLyoyMeFGZqYTnFyd3ofmQ3diHYsd3k=;
-        b=dZNhqcjc+Tyw7rHD240aQ69pbdZ7dN1ncj4vPHqRrgjYBOen6TwvDeBWaSH5Igte7X
-         7C/RYeDGxzzhpm8yfFsLR6gfLaVN+W6Q586eFpjRNWVHXHPcbOyeRmr6/9CJtjfyA7gb
-         blGDXSBcWZmaSfemM7JL8lVRkOncrTP4mMca73KdFqvxQ/+NgtuoyBbb3ekzZhEUb0sB
-         yxXDHoKwn4H2IQqNNWd72/mAghCto8ubanep2HgZFn3Qh9t3LO85lzAWyE9ANBxhzH+t
-         SRz907v0NM1lmUZ9y6ZGhVF05ij0iSlwSE+eYYjObIQyJOb+OkigEjOM974VBBMKRq4O
-         ADOA==
+        d=linaro.org; s=google; t=1678196401;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=XC4sVtRhs3Zf6p7vrRaYLHSxDBdL4Db27wMBtNXLbys=;
+        b=rUV2Kjw3Vymhi+3LKUBky0XBHG5Bn1YsrJOxxxgNTd/dIPrFQa0FRIoo4OJVabJWKC
+         ektMNMm9qE+yli/81Yj1BBSBM+L8jcraUhWPIgjWV1GGnFSZJltoowdn8WgQGDg4/3Jf
+         chAOi0h/L4I6TwCh9AfTdguU0Cqpeo048SkVAynoadLVkiOr/zyDz5Ey5N0tpU7Ekmc8
+         KMtQb0dfhpnKwcLFWLhvXDvBTJ+RQvHTuiEUt82hV/ZJrBqyJ0d8MxtXEih5R+b+ujbA
+         TCekESNVB6kCqT2dJbKl5bQtdZ0kPVHQS7d689xPq3c90SV1hNsccw34xMkGNzXGEyk6
+         HZew==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678196202;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=psTRywtzl68njLyoyMeFGZqYTnFyd3ofmQ3diHYsd3k=;
-        b=fU27u0JmIkk9hhVZP+cGXfzIjNItdn/9XRGq+POJxRN9kEBC/Ofdysx80XVN0RYE7O
-         emBrT4Eal4vUVHmIV44S/Z2aK9MOxKDtzLGplkSrjYeoD6rQE2DcIUi5WruOi3DQFS2K
-         T/f9gmWD6TF0csF8EXy3vRMoodw5TtmlYzDRedGtCtpoRWGILNIM35XkQIi9DKn6Tser
-         Eb14+yMLwlL9HpWosHRsvUjuJiCmZ/jkwPaJ+iERY5Z492cSpU8besv3zmuITzkK7T19
-         kgVJ2DMebaIpY5B3L250b40exjQ2oBE9GdzCBCxBTWQFG5CGnaV3lOifhIyzqL2IJOus
-         EoiQ==
-X-Gm-Message-State: AO0yUKV9LgB0VOttkG7L+I6cBSogVTA5iVnOExDrv7fkeTC6u7nzbP0f
-        0qo4x8V6TpSX+/0v8jxzuN8Jlwx/gn+dXN3seqo1dg==
-X-Google-Smtp-Source: AK7set/BsN6tbDw8kZ/LkJFYQlT9RdjOo7dvo8ti9Techq1p7qOOko8EcxaT1uAy5MUHI2bAqFOUDwH2UlDF1pkJZpw=
-X-Received: by 2002:a5d:534e:0:b0:2c9:e34e:7d2 with SMTP id
- t14-20020a5d534e000000b002c9e34e07d2mr2655948wrv.11.1678196202706; Tue, 07
- Mar 2023 05:36:42 -0800 (PST)
+        d=1e100.net; s=20210112; t=1678196401;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=XC4sVtRhs3Zf6p7vrRaYLHSxDBdL4Db27wMBtNXLbys=;
+        b=ProyJEPitjGJN58fXNyM0EjMFNa3TdYvyQlzHukq0wp50D41dcjPeBo4ozCqZwwVRm
+         0gT6hListVhZMsb+ECl5oC7PWGXm2T37HB7LWJoqxVc6cIgHfk1mqigUpfrqTFO+FIYi
+         osGIMtqngf0mRygGjfHGgXuUHb+l2yekbWVmzjImZWgE/BmyeZU0r8LbEzq04Cg98Qnd
+         uCjZTlog/yyIYcp1qOheHKCT5H7mQAQL22hWLTIha41ekduQoBwJM2sgF+p/SCER4oE5
+         1OFWmz+zzB7eAEIsEHDT52PFbS1b+pr4uCnEFV1TFAJNrl+7bXXXTvME+aE6m9cCPKvh
+         9S2Q==
+X-Gm-Message-State: AO0yUKVC3gmfnSYWonfFOYeEZ7yJRma513RNPtTRpXh311QElOpxfcYF
+        yXWVZLgPIme2gXHJ/5xLEqWF8Q==
+X-Google-Smtp-Source: AK7set+FpSCgfpPHYilbHlEYTxWZBSw+CdQ3OZVBTpRaGlOWlMx6OlovVFAPZa2UCli9MyVzxG6i3g==
+X-Received: by 2002:a17:907:6e1f:b0:8af:2a97:91d4 with SMTP id sd31-20020a1709076e1f00b008af2a9791d4mr16691610ejc.14.1678196401027;
+        Tue, 07 Mar 2023 05:40:01 -0800 (PST)
+Received: from ?IPV6:2a02:810d:15c0:828:a60f:e604:c252:1f3d? ([2a02:810d:15c0:828:a60f:e604:c252:1f3d])
+        by smtp.gmail.com with ESMTPSA id ga1-20020a170906b84100b008b17879ec95sm6090160ejb.22.2023.03.07.05.40.00
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 07 Mar 2023 05:40:00 -0800 (PST)
+Message-ID: <08aa9325-ed36-250c-d4d6-de6af1e82de5@linaro.org>
+Date:   Tue, 7 Mar 2023 14:39:59 +0100
 MIME-Version: 1.0
-References: <20230301082552.274331-1-alexghiti@rivosinc.com>
- <CAK9=C2XAOKbyrbOnDP1GzW1VyO-f-V-oEVcp+PhGHeHKFh4C6A@mail.gmail.com>
- <CAHVXubj9sCEuANsVe0N7YRMg8OPx_eALZfy0vERKU9P6QUDM0Q@mail.gmail.com> <CAK9=C2XDkgZuaxO1fOWCxyCsGgiD=B_O4DmuAPwEhC65Mck9eA@mail.gmail.com>
-In-Reply-To: <CAK9=C2XDkgZuaxO1fOWCxyCsGgiD=B_O4DmuAPwEhC65Mck9eA@mail.gmail.com>
-From:   Alexandre Ghiti <alexghiti@rivosinc.com>
-Date:   Tue, 7 Mar 2023 14:36:31 +0100
-Message-ID: <CAHVXubg6dgr9dM1-mR+xh6D+5cmistWmo2dJQaZavcWGcCshag@mail.gmail.com>
-Subject: Re: [PATCH v6 0/2] riscv: Use PUD/P4D/PGD pages for the linear mapping
-To:     Anup Patel <apatel@ventanamicro.com>
-Cc:     Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.8.0
+Subject: Re: [PATCH] dt-bindings: pinctrl: qcom: lpass-lpi: correct
+ description of second reg
+Content-Language: en-US
+To:     Linus Walleij <linus.walleij@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20230302155255.857065-1-krzysztof.kozlowski@linaro.org>
+ <CACRpkdbe=sHG9KVaGrbEaFoVbMY-2=r2X4WkcbNhCfZ9KOw1sQ@mail.gmail.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <CACRpkdbe=sHG9KVaGrbEaFoVbMY-2=r2X4WkcbNhCfZ9KOw1sQ@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Mar 7, 2023 at 2:19=E2=80=AFPM Anup Patel <apatel@ventanamicro.com>=
- wrote:
->
-> Hi Alex,
->
-> On Tue, Mar 7, 2023 at 12:22=E2=80=AFAM Alexandre Ghiti <alexghiti@rivosi=
-nc.com> wrote:
-> >
-> > Hi Anup,
-> >
-> > On Mon, Mar 6, 2023 at 5:33=E2=80=AFPM Anup Patel <apatel@ventanamicro.=
-com> wrote:
-> > >
-> > > On Wed, Mar 1, 2023 at 1:56=E2=80=AFPM Alexandre Ghiti <alexghiti@riv=
-osinc.com> wrote:
-> > > >
-> > > > This patchset intends to improve tlb utilization by using hugepages=
- for
-> > > > the linear mapping.
-> > > >
-> > > > base-commit-tag: v6.2-rc7
-> > > >
-> > > > v6:
-> > > > - quiet LLVM warning by casting phys_ram_base into an unsigned long
-> > > >
-> > > > v5:
-> > > > - Fix nommu builds by getting rid of riscv_pfn_base in patch 1, tha=
-nks
-> > > >   Conor
-> > > > - Add RB from Andrew
-> > > >
-> > > > v4:
-> > > > - Rebase on top of v6.2-rc3, as noted by Conor
-> > > > - Add Acked-by Rob
-> > > >
-> > > > v3:
-> > > > - Change the comment about initrd_start VA conversion so that it fi=
-ts
-> > > >   ARM64 and RISCV64 (and others in the future if needed), as sugges=
-ted
-> > > >   by Rob
-> > > >
-> > > > v2:
-> > > > - Add a comment on why RISCV64 does not need to set initrd_start/en=
-d that
-> > > >   early in the boot process, as asked by Rob
-> > > >
-> > > > Alexandre Ghiti (2):
-> > > >   riscv: Get rid of riscv_pfn_base variable
-> > > >   riscv: Use PUD/P4D/PGD pages for the linear mapping
-> > >
-> > > I tried this series but it is getting stuck after reaching user space=
-.
-> > >
-> > > Does this series require some other dependent patches ?
-> >
-> > No it should not. Let me take a look: what's your config and the base c=
-ommit?
->
-> Please try the alexghiti_test branch at:
-> https://github.com/avpatel/linux.git
->
-> Compile the kernel with defconfig and launch QEMU as follows:
-> qemu-system-riscv64 -M virt -m 1G -nographic -bios
-> opensbi/build/platform/generic/firmware/fw_jump.bin -kernel
-> ./build-riscv64/arch/riscv/boot/Image -append "root=3D/dev/ram rw
-> console=3DttyS0 earlycon" -initrd ./rootfs_riscv64.img
->
-> In the above command, rootfs_riscv64.img is a busybox based rootfs.
+On 07/03/2023 14:32, Linus Walleij wrote:
+> On Thu, Mar 2, 2023 at 4:52 PM Krzysztof Kozlowski
+> <krzysztof.kozlowski@linaro.org> wrote:
+> 
+>> The description of second IO address is a bit confusing.  It is supposed
+>> to be the MCC range which contains the slew rate registers, not the slew
+>> rate register base.  The Linux driver then accesses slew rate register
+>> with hard-coded offset (0xa000).
+>>
+>> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> 
+> LGTM, is this something I should just apply or will you collect a larger
+> series of Qcom DT patches this time around as well?
 
-Ok I can reproduce the problem. I'll debug that a bit further but
-increasing memory allows booting to userspace.
+Please grab it. I think I cleaned up Qualcomm pinctrl bindings from
+technical debt, thus no more work for me!
 
->
-> Regards,
-> Anup
->
-> >
-> > >
-> > > Regards,
-> > > Anup
-> > >
-> > > >
-> > > >  arch/riscv/include/asm/page.h | 19 +++++++++++++++++--
-> > > >  arch/riscv/mm/init.c          | 28 ++++++++++++++++++----------
-> > > >  arch/riscv/mm/physaddr.c      | 16 ++++++++++++++++
-> > > >  drivers/of/fdt.c              | 11 ++++++-----
-> > > >  4 files changed, 57 insertions(+), 17 deletions(-)
-> > > >
-> > > > --
-> > > > 2.37.2
-> > > >
+Best regards,
+Krzysztof
+
