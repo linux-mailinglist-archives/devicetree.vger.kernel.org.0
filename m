@@ -2,82 +2,57 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2956E6AD885
-	for <lists+devicetree@lfdr.de>; Tue,  7 Mar 2023 08:53:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2F80B6AD89E
+	for <lists+devicetree@lfdr.de>; Tue,  7 Mar 2023 09:00:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229670AbjCGHxe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Mar 2023 02:53:34 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51270 "EHLO
+        id S229715AbjCGIAr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Mar 2023 03:00:47 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58688 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229953AbjCGHxQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Mar 2023 02:53:16 -0500
-Received: from mail-ed1-x529.google.com (mail-ed1-x529.google.com [IPv6:2a00:1450:4864:20::529])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 887DD2B612
-        for <devicetree@vger.kernel.org>; Mon,  6 Mar 2023 23:53:08 -0800 (PST)
-Received: by mail-ed1-x529.google.com with SMTP id k10so24868407edk.13
-        for <devicetree@vger.kernel.org>; Mon, 06 Mar 2023 23:53:08 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1678175587;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=2fbNVSLqIHvV0bqpOfDOpCzWFojulNanBN36qBfwsNY=;
-        b=rVPWF+vVajj/Wd3RGxj9W095GMsUmEBJ+RFpZsT2scO9I9NRRnLYld/8Q1hJ1G5fwj
-         GmzFnNH9zU/khqjqWTOVykHFA2d+oRCJZtisU8Ic+P2sBTV1fpvBUhs9T5gKgVYeJQyo
-         g8/XAOXuwpAVabq+UbSdS4NOAHMzwzc31lV5sSjyKqAz6BxhkOvAgE4T4Fqp1a2RtjMJ
-         SKeBrvJY83OYH0Oy3vdr73E0NfvlZMbFTNznEuFQH+LPEZWqPAvcBCiiDPh1oE3s1Xes
-         ZGURO/lZdyMOQIPo7tjaCnaUzxLwetkd9bqk4R7yFrYEcQF4pIIKUTmiu+2R19RzG3yk
-         uqZg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678175587;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=2fbNVSLqIHvV0bqpOfDOpCzWFojulNanBN36qBfwsNY=;
-        b=D0zzYq64l+IehZhFJLFNVE2DgMk8Bk1M+VAFtorODDEqgtExNDwBCYmGsdUAhefbR/
-         JNXfvvGYugkh/9EoAeO3O3X2bNgPqRPoR1nC/yUkv3tOYhQg+0ZQRqAFNmVD7BGY/9An
-         StPcEf0ZuT6qPRTt+EAihkdFD6aEXqVzORUF+dsrEwQX0bXNCeuI2DM1tMaSzSxydCQN
-         QTLPm6uP3dp8YLEwXabydomZChoO8GSoyzK1hOwQPSzj51RQ6Kq1j/kWgfiycT/CC4gS
-         JuPEKR0ULZwewskfqpl8ur2PTtaMRp6xbBy61hj/JGJe+I5QsvlEN00B192w4sIO2P6/
-         xvXw==
-X-Gm-Message-State: AO0yUKV4DUL27kofCT6J54AHRlL0VnmE9GKVM0sB3HlzPOHtcniBkff0
-        O9IIa71sfvqI7Sec5JAyD8Fs1A==
-X-Google-Smtp-Source: AK7set86p4C3BL6LTMri6M4GNxY1CcyOYdrJhQ/9UfGZbb6pzNqA9GJE7GOxr4oUcC+vU7iKO++hNQ==
-X-Received: by 2002:a17:906:b1cc:b0:8b1:7684:dfab with SMTP id bv12-20020a170906b1cc00b008b17684dfabmr14962870ejb.38.1678175587076;
-        Mon, 06 Mar 2023 23:53:07 -0800 (PST)
-Received: from ?IPV6:2a02:810d:15c0:828:5310:35c7:6f9e:2cd3? ([2a02:810d:15c0:828:5310:35c7:6f9e:2cd3])
-        by smtp.gmail.com with ESMTPSA id b2-20020a50b402000000b004be64b284b2sm6252792edh.3.2023.03.06.23.53.06
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 06 Mar 2023 23:53:06 -0800 (PST)
-Message-ID: <6aeaa895-7f99-3598-2490-88eb48735a15@linaro.org>
-Date:   Tue, 7 Mar 2023 08:53:05 +0100
+        with ESMTP id S229830AbjCGIAh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Mar 2023 03:00:37 -0500
+X-Greylist: delayed 329 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Tue, 07 Mar 2023 00:00:29 PST
+Received: from mout-u-107.mailbox.org (mout-u-107.mailbox.org [IPv6:2001:67c:2050:101:465::107])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 95A902597E;
+        Tue,  7 Mar 2023 00:00:29 -0800 (PST)
+Received: from smtp2.mailbox.org (smtp2.mailbox.org [IPv6:2001:67c:2050:b231:465::2])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (P-384) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        by mout-u-107.mailbox.org (Postfix) with ESMTPS id 4PW75X5zJPz9sX0;
+        Tue,  7 Mar 2023 08:54:56 +0100 (CET)
+Message-ID: <aecca8c5-687d-ddf3-94fd-9d65d8f5c1d2@denx.de>
+Date:   Tue, 7 Mar 2023 08:54:52 +0100
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-Subject: Re: [PATCH v1 02/11] media: dt-bindings: starfive,jh7110-mipi-csi2:
- add binding docmuent
+Subject: Re: [PATCH V7 0/3] Generate device tree node for pci devices
+To:     Rob Herring <robh@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>
+Cc:     clement.leger@bootlin.com, Lizhi Hou <lizhi.hou@amd.com>,
+        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, helgaas@kernel.org, max.zhen@amd.com,
+        sonal.santan@amd.com, larry.liu@amd.com, brian.xu@amd.com,
+        stefano.stabellini@xilinx.com, trix@redhat.com,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        "Steen.Hegelund@microchip.com" <Steen.Hegelund@microchip.com>,
+        "Horatiu.Vultur@microchip.com" <Horatiu.Vultur@microchip.com>,
+        "Allan.Nielsen@microchip.com" <Allan.Nielsen@microchip.com>,
+        Vincent Whitchurch <vincent.whitchurch@axis.com>
+References: <1674183732-5157-1-git-send-email-lizhi.hou@amd.com>
+ <af2a6686-ea35-e5fc-7541-27e5d6ca9311@gmail.com>
+ <20230227113150.398dcfa7@fixe.home>
+ <52b8f136-c73f-a97d-2bb6-48aff3755f98@gmail.com>
+ <f927790dc9839cd93902c0d2e5afe5e8@bootlin.com>
+ <1886b888-a0e8-b1ee-c48a-ddbc8b5b0c63@gmail.com>
+ <CAL_JsqL_ER32ys-yW_7-QKLjEmKK8StOeM5yvH2ChuvX++fe5Q@mail.gmail.com>
 Content-Language: en-US
-To:     Jack Zhu <jack.zhu@starfivetech.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Robert Foss <rfoss@kernel.org>,
-        Todor Tomov <todor.too@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Maxime Ripard <mripard@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>
-Cc:     linux-media@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, changhuang.liang@starfivetech.com
-References: <20230302091921.43309-1-jack.zhu@starfivetech.com>
- <20230302091921.43309-3-jack.zhu@starfivetech.com>
- <11e7c986-e6cc-ee57-b36e-816af8cc11a7@linaro.org>
- <30000009-cf05-988a-9817-97a7af36db37@starfivetech.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <30000009-cf05-988a-9817-97a7af36db37@starfivetech.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
+From:   Stefan Roese <sr@denx.de>
+In-Reply-To: <CAL_JsqL_ER32ys-yW_7-QKLjEmKK8StOeM5yvH2ChuvX++fe5Q@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Rspamd-Queue-Id: 4PW75X5zJPz9sX0
+X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW,
+        SPF_HELO_NONE,SPF_NEUTRAL autolearn=unavailable autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -85,27 +60,206 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 07/03/2023 07:41, Jack Zhu wrote:
-> 
-> 
-> On 2023/3/3 16:47, Krzysztof Kozlowski wrote:
->> On 02/03/2023 10:19, jack.zhu wrote:
->>> Add DT binding document for Starfive MIPI CSI2 receiver
+On 3/7/23 01:52, Rob Herring wrote:
+> On Mon, Mar 6, 2023 at 3:24 PM Frank Rowand <frowand.list@gmail.com> wrote:
 >>
->> Ehh... you have entire commit msg to explain what you do here. Yet there
->> is nothing mentioning that you actually have Cadence MIPI CSI here.
+>> On 3/6/23 02:35, clement.leger@bootlin.com wrote:
+>>> Le 2023-03-04 00:42, Frank Rowand a écrit :
+>>>> On 2/27/23 04:31, Clément Léger wrote:
+>>>>> Le Mon, 27 Feb 2023 00:51:29 -0600,
+>>>>> Frank Rowand <frowand.list@gmail.com> a écrit :
+>>>>>
+>>>>>> On 1/19/23 21:02, Lizhi Hou wrote:
+>>>>>>> This patch series introduces OF overlay support for PCI devices
+>>>>>>> which
+>>>>>>> primarily addresses two use cases. First, it provides a data driven
+>>>>>>> method
+>>>>>>> to describe hardware peripherals that are present in a PCI endpoint
+>>>>>>> and
+>>>>>>> hence can be accessed by the PCI host. Second, it allows reuse of a
+>>>>>>> OF
+>>>>>>> compatible driver -- often used in SoC platforms -- in a PCI host
+>>>>>>> based
+>>>>>>> system.
+>>>>>>>
+>>>>>>> There are 2 series devices rely on this patch:
+>>>>>>>
+>>>>>>>    1) Xilinx Alveo Accelerator cards (FPGA based device)
+>>>>>>>    2) Microchip LAN9662 Ethernet Controller
+>>>>>>>
+>>>>>>>       Please see:
+>>>>>>> https://lore.kernel.org/lkml/20220427094502.456111-1-clement.leger@bootlin.com/
+>>>>>>>
+>>>>>>
+>>>>>>
+>>>>>>> Normally, the PCI core discovers PCI devices and their BARs using
+>>>>>>> the
+>>>>>>> PCI enumeration process. However, the process does not provide a way
+>>>>>>> to
+>>>>>>> discover the hardware peripherals that are present in a PCI device,
+>>>>>>> and
+>>>>>>> which can be accessed through the PCI BARs. Also, the enumeration
+>>>>>>> process
+>>>>>>
+>>>>>> I'm confused.  The PCI Configuration Header Registers should describe
+>>>>>> the
+>>>>>> hardware on the PCI card.
+>>>>>>
+>>>>>> Ignoring case 1 above _for the moment_ (FPGA devices are a world unto
+>>>>>> themselves, so I would like to analyze that case separately), does
+>>>>>> the
+>>>>>> second device, "Microchip LAN9662 Ethernet Controller" properly
+>>>>>> implement
+>>>>>> the PCI Configuration Header Registers?  What additional information
+>>>>>> is
+>>>>>> needed that is not provided in those registers?
+>>>>>
+>>>>> Hi Frank,
+>>>>>
+>>>>> I guess Lizhi wanted to say that it does not provide a way to describe
+>>>>> all the "platform" devices that are exposed by this PCI device. Which
+>>>>> is of course the whole point of the work we are doing right now. But
+>>>>> all the BARs are correctly described by the LAN9662 PCI card.
+>>>>>
+>>>>> Clément
+>>>>
+>>>> I remain confused.
+>>>>
+>>>> [RFC 00/10] add support for fwnode in i2c mux system and sfp
+>>>> https://lore.kernel.org/lkml/YhQHqDJvahgriDZK@lunn.ch/t/
+>>>>
+>>>>    references a PCIe driver:
+>>>>    [2]
+>>>> https://github.com/clementleger/linux/blob/fwnode_support/drivers/mfd/lan966x_pci_mfd.c
+>>>>
+>>>> So there is a PCIe driver that works.
+>>>>
+>>>> However, the RFC patch series was proposing adding fwnode support to
+>>>> the driver.  My first
+>>>> surface reading (just part of that one email, not the entire series or
+>>>> the replies yet),
+>>>> notes:
+>>>>
+>>>>    ... However, when
+>>>>    plugged in a PCIe slot (on a x86), there is no device-tree support
+>>>> and
+>>>>    the peripherals that are present must be described in some other way.
+>>>>
+>>>> I am assuming that the peripherals are what you mentioned above as
+>>>> '"platform"
+>>>> devices'.  This is where my current confusion lies.  Are the "platform"
+>>>> devices accessed via the PCI bus or is there some other electrical
+>>>> connection
+>>>> between the host system and the PCIe card?
+>>>
+>>> Hi Frank,
+>>>
+>>> The platform devices exposed by this PCIe card are available via some
+>>> BAR using PCI memory mapped areas, so it's totally standard PCI stuff.
+>>>
+>>>>
+>>>> If the "platform" devices are accessed via the PCI bus, then I would
+>>>> expect them
+>>>> to be described by PCI configuration header registers.  Are the PCI
+>>>> configuration
+>>>> registers to describe the "platform" devices not present?
+>>>
+>>> I'm not sure to understand what you mean here. PCI configuration headers
+>>> only provides some basic registers allowing to identify the PCI device
+>>> (vendor/product) and some memory areas that are exposed (BAR). They do
+>>> not provides the "list" of peripherals that are exposed by the devices,
+>>> only some BARs that can be mapped and that allows to access.
 >>
->> Since you decided to add new bindings, you receive review matching new
->> bindings. I don't think this is correct approach (duplicated bindings),
->> but could work for me. However how are you going to solve all the points
->> of my review?
+>> Yes, "identify the PCI device (vendor/product) and some memory areas".
+>> The driver for the (vendor/product) 'knows' what peripherals are exposed
+>> by the device and where within the BAR to find the registers for each
+>> of the devices.
+>>
+>> A normal PCI driver would contain this information.  If I understand the
+>> proposal of this patch series, of_pci_make_dev_node() adds a node to
+>> the devicetree, when invoked via a PCI quirk for certain specific
+>> vendor/product cards.  This node must exist for the flattened device
+>> tree (FDT) overlay for the card to be loaded.  The driver for the card
+>> will get the overlay FDT from the card and load it into the kernel.
+>> The driver will use the information that then exists in the devicetree
+>> describing the card, instead of using information from the PCI configuration
+>> headers from the card.
 > 
-> Maybe I don't need to add the CSI yaml file, since it already exists on the Linux mainline.
+> How would all the sub devices be defined by the PCI config space other
+> than a VID/PID implies *everything*. That's the same as the pre-DT
+> world where the ARM machine ID number (from RMK's registry) implied
+> everything. These days, we can have an entire SoC exposed behind a PCI
+> BAR which I think is pretty much Clement's usecase. Putting an SoC
+> behind a PCI BAR is no more discoverable than a "normal" SoC.
+> 
+>>
+>> The intent is to be able to re-use devicetree based drivers instead of
+>> having the driver be a native PCI driver.
+> 
+> Not instead of. There's the PCI driver for the FPGA or SoC bus with
+> multiple unrelated devices behind it. The PCI driver is just a bus
+> driver much like we have for various custom SoC bus drivers.
+> 
+>> This goes against historical Linux practice.  The idea of taking a driver
+>> from another environment (eg Windows, HP Unix, Sun Unix, IBM Unix, etc)
+>> and adding a shim layer to translate between Linux and the other
+>> environment has been rejected.  Ironically, in this case, the other
+>> environment is Linux (more specifically the Linux OF implementation).
+> 
+> I don't see how your example relates to this in any way whatsoever.
+> We're talking about different discovery mechanisms, not different
+> driver models/environments.
+> 
+>> Even thought the other environment is Linux, this is still adding a
+>> shim layer to translate between that other environment and the native
+>> Linux PCI environment for which the driver would normally be written.
+>>
+>> In other words, this is not acceptable.  Normal alternatives would be
+>> something like
+>> (1) add the PCI awareness to the existing drivers,
+> 
+> The downstream devices don't have their own PCI config space. That
+> won't work. PCI drivers expect a device with PCI config space. Devices
+> to drivers are always 1:1, so we couldn't share the config space among
+> multiple drivers or something. For devices which are not discoverable
+> like these are, our choices are DT, ACPI or s/w nodes (aka
+> platform_data 2.0).
+> 
+>> (2) split the devicetree aware and PCI aware portions of the driver
+>> to common code that would be invoked from separate devicetree and PCI
+>> drivers,
+> 
+> That only makes sense for something that is a single driver. Not the
+> case here. For the FPGA, the devices are not known up front.
+> 
+>> (3) write entirely separate devicetree and PCI drivers, or
+> 
+> For the same reason as 1, that simply won't work.
+> 
+>> (4) some other creative solution.
+>>
+>> Am I mis-interpretting or misunderstanding anything crucial here?
+> 
+> Yes...
+> 
+> We now have 3 different use cases all needing the same thing. The
+> 3rd[1] is the recent test infrastructure change to have test devices
+> added. They all have non-discoverable devices downstream of a PCI
+> device. We need a solution here.
 
-If you add *only* new compatible, you do not need new binding. If you
-add any new properties, then depends, but old binding anyway would need
-conversion from TXT.
+Thanks Rob for this explanation. I would like to second that, as I've
+been looking for a "solution" for exact this situation for a few years
+now in multiple system configurations. The setup mostly being identical:
+An FPGA connected via PCIe to the host CPU, embedded in the FPGA misc
+devices like NS16550 UART, GPIO controller, etc which often have
+existing drivers in the Kernel. Using this dynamic device tree node
+approach for the PCIe EP with the possibility to describe the FPGA-
+internal devices via device tree seems to be the most elegant solution
+IMHO.
 
-Best regards,
-Krzysztof
+Thanks,
+Stefan
 
+> Rob
+> 
+> [1] https://lore.kernel.org/lkml/20230120-simple-mfd-pci-v1-1-c46b3d6601ef@axis.com/
