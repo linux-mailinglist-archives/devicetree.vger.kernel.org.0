@@ -2,129 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 099C66AD766
-	for <lists+devicetree@lfdr.de>; Tue,  7 Mar 2023 07:25:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5ADE06AD764
+	for <lists+devicetree@lfdr.de>; Tue,  7 Mar 2023 07:25:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230092AbjCGGZL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Mar 2023 01:25:11 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58404 "EHLO
+        id S230473AbjCGGZK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Mar 2023 01:25:10 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58400 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230105AbjCGGZI (ORCPT
+        with ESMTP id S229527AbjCGGZI (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Tue, 7 Mar 2023 01:25:08 -0500
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A1AD16F639;
-        Mon,  6 Mar 2023 22:24:29 -0800 (PST)
-Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3271mHHS003770;
-        Tue, 7 Mar 2023 06:24:01 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
- subject : date : message-id : in-reply-to : references : mime-version :
- content-type; s=qcppdkim1;
- bh=Ox6aJHVeZNy1sPDhB/6FU6KCZJIRXrrUr9um+E3WVXk=;
- b=Asow6rpQ/YH76AXbWt0RlmctChh2oaGVV37V0xLzooJmZB1PCThZ/4uOiZ84X42GPlyO
- 1Hjw4Npl+3V4jkAqGp8efQmgUZ2XE5hHrn6joN3DQS9JeRJpXRm3AAq9VD72gmbLP6jg
- X6/VcfmInxx+Z2tZ26tupNAgmm49MAeo+OeTgYsQzw9ej+yheMea1CqPDV7h/oamRsIf
- FvcswvREo349attbq4c3JJSzIp9DFjadDiX/uDgeixAtrcyckfHhiXizxr1lo11cY920
- sbf1Cn5sXBmKA8LJpDyEPOJWJ8Bj4N5teoNRrDq5NFzOe/aDbQ0+0zne62ZUwzylD6AB ng== 
-Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3p5rqjryww-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 07 Mar 2023 06:24:01 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-        by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3276NxGW023457
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 7 Mar 2023 06:23:59 GMT
-Received: from kathirav-linux.qualcomm.com (10.80.80.8) by
- nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.41; Mon, 6 Mar 2023 22:23:52 -0800
-From:   Kathiravan T <quic_kathirav@quicinc.com>
-To:     <agross@kernel.org>, <andersson@kernel.org>,
-        <konrad.dybcio@linaro.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <mturquette@baylibre.com>,
-        <sboyd@kernel.org>, <catalin.marinas@arm.com>, <will@kernel.org>,
-        <arnd@arndb.de>, <dmitry.baryshkov@linaro.org>,
-        <geert+renesas@glider.be>, <nfraprado@collabora.com>,
-        <broonie@kernel.org>, <rafal@milecki.pl>, <robimarko@gmail.com>,
-        <quic_gurus@quicinc.com>, <linux-arm-msm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-clk@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>
-CC:     Kathiravan T <quic_kathirav@quicinc.com>
-Subject: [PATCH V6 9/9] arm64: defconfig: Enable IPQ5332 SoC base configs
-Date:   Tue, 7 Mar 2023 11:52:32 +0530
-Message-ID: <20230307062232.4889-10-quic_kathirav@quicinc.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20230307062232.4889-1-quic_kathirav@quicinc.com>
-References: <20230307062232.4889-1-quic_kathirav@quicinc.com>
+Received: from mail-ed1-x52c.google.com (mail-ed1-x52c.google.com [IPv6:2a00:1450:4864:20::52c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ED21E311DA
+        for <devicetree@vger.kernel.org>; Mon,  6 Mar 2023 22:24:27 -0800 (PST)
+Received: by mail-ed1-x52c.google.com with SMTP id cw28so48140726edb.5
+        for <devicetree@vger.kernel.org>; Mon, 06 Mar 2023 22:24:27 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1678170251;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=PDyVs5Tp4AmEIa4jJHYQ3YxnzQdYO9FwD0+92LrKRCs=;
+        b=lIBnbYq+X0k7yTPgkk68JfKWSUVPxUVeg1zzbTSiRDJN1muXvqal/zgtajEw5/l5SP
+         peUaVxqMflNB8BNDKQrXMdYz66IrjJ3gufIabO8UTjpFb3zeK07r/BgsRQL1DVvNFymF
+         sKxo55F2RFUqzG8sMXWldVCP2EBXD0wPBTeKtrEk2wmryXKgfBeYIY9mHHLUdXrZdZQK
+         8qWotIDshyKvDGY29RgjBaOHOeoJLuPqxG53Gi8G4y9eVldc0oaW+yB5v+WYbUrdnbME
+         TKmQYEpuPlBCBs9FoLKTsIXcf0uE/8k3x6okurqM4P/pwha6JDjBeLczZZwRvAniwm9h
+         4xbQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1678170251;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=PDyVs5Tp4AmEIa4jJHYQ3YxnzQdYO9FwD0+92LrKRCs=;
+        b=iHVkLOwuumavmhkn854iACVKz2u89Z/PkYzxCEXoOZ674L+BMQwr23j47RF0RiCqVY
+         8bj3KRYS7etH+5DtbyTX3amLP2ib4+yv6SPiYatHbtHa+dwZC9n1Bfeu7Jzik/G/qBQE
+         nRG6XaYoZivxnKw0AtL6u7RIFgXOfUztQZa9R4OPQhuQUMHx8EfmSvGsDdMMBCJVfbMd
+         xLk0P0g5l7/0ugY3bp9kBFANEPmCwBp5Nr/OneCMqPNfxrrSWun+GBnEBpUTQZEvctKJ
+         U22LM7HWCwfGsPxdGr+6G9irYSNlkrnP+5NEIhYbKcDhbjfLhc49xkLuwPWP2EFVsql2
+         N9BQ==
+X-Gm-Message-State: AO0yUKXRxO94UsBDvXGfwHoVEploXmVo0msnv7GDUHe0GHT4sk9jyV7T
+        G8Ul/oa70jPQN7XtIJsV1UAKkQ==
+X-Google-Smtp-Source: AK7set9bfSWk2Ij76CUHd0mZjRoajT+I8B6prfDGq0xDriLI755FLba/huCF+jlLTB9dH3TQa9jBdg==
+X-Received: by 2002:a17:907:7746:b0:88a:2e57:9813 with SMTP id kx6-20020a170907774600b0088a2e579813mr14641357ejc.33.1678170251625;
+        Mon, 06 Mar 2023 22:24:11 -0800 (PST)
+Received: from ?IPV6:2a02:810d:15c0:828:5310:35c7:6f9e:2cd3? ([2a02:810d:15c0:828:5310:35c7:6f9e:2cd3])
+        by smtp.gmail.com with ESMTPSA id x22-20020a170906b09600b008d9ddd2da88sm5552849ejy.6.2023.03.06.22.24.10
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 06 Mar 2023 22:24:11 -0800 (PST)
+Message-ID: <9838a507-4eae-61ff-53d7-44dce932d2df@linaro.org>
+Date:   Tue, 7 Mar 2023 07:24:10 +0100
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: 0e1Kb4T3opJOuZixQUpzGLaJRqrKT-ij
-X-Proofpoint-GUID: 0e1Kb4T3opJOuZixQUpzGLaJRqrKT-ij
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.219,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
- definitions=2023-03-06_14,2023-03-06_01,2023-02-09_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0 phishscore=0
- priorityscore=1501 clxscore=1015 lowpriorityscore=0 adultscore=0
- mlxscore=0 spamscore=0 suspectscore=0 bulkscore=0 impostorscore=0
- mlxlogscore=875 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2212070000 definitions=main-2303070056
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.8.0
+Subject: Re: [PATCH v12 2/2] dt-bindings: arm: fsl: Add i.MX8MM-EVK revision B
+To:     Johannes Schneider <johannes.schneider@leica-geosystems.com>,
+        Shawn Guo <shawnguo@kernel.org>
+Cc:     Pengutronix Kernel Team <kernel@pengutronix.de>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        Li Yang <leoyang.li@nxp.com>,
+        Shengjiu Wang <shengjiu.wang@nxp.com>,
+        Richard Zhu <hongxing.zhu@nxp.com>,
+        linux-arm-kernel@lists.infradead.org,
+        Marco Felsch <m.felsch@pengutronix.de>
+References: <20230307044449.2714529-1-johannes.schneider@leica-geosystems.com>
+ <20230307044449.2714529-3-johannes.schneider@leica-geosystems.com>
+Content-Language: en-US
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230307044449.2714529-3-johannes.schneider@leica-geosystems.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Enable the clock and pinctrl configs for Qualcomm IPQ5332 SoC
+On 07/03/2023 05:44, Johannes Schneider wrote:
+> Add DT compatible strings for recent EVKs, that come with a different PMIC.
+> 
+> The most recent revision of the 'original' EVK CPU module is C2 and the most
+> recent revision of EVKB CPU2 module is A4.
+> 
+> Reviewed-by: Shawn Guo <shawnguo@kernel.org>
 
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Signed-off-by: Kathiravan T <quic_kathirav@quicinc.com>
----
-Changed in V6:
-	- No changes
+Where did you get this tag?
 
-Changed in V5:
-	- No changes
+> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Reviewed-by: Marco Felsch <m.felsch@pengutronix.de>
+> Signed-off-by: Johannes Schneider <johannes.schneider@leica-geosystems.com>
 
-Changed in V4:
-	- Pick up R-b tag
-
-Changes in V3:
-	- Updated the commit message
-
-Changed in V2:
-	- No changes
-
- arch/arm64/configs/defconfig | 2 ++
- 1 file changed, 2 insertions(+)
-
-diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
-index 7790ee42c68a..4a8b3f5e07be 100644
---- a/arch/arm64/configs/defconfig
-+++ b/arch/arm64/configs/defconfig
-@@ -545,6 +545,7 @@ CONFIG_PINCTRL_IMX8ULP=y
- CONFIG_PINCTRL_IMX93=y
- CONFIG_PINCTRL_MSM=y
- CONFIG_PINCTRL_IPQ8074=y
-+CONFIG_PINCTRL_IPQ5332=y
- CONFIG_PINCTRL_IPQ6018=y
- CONFIG_PINCTRL_MSM8916=y
- CONFIG_PINCTRL_MSM8953=y
-@@ -1122,6 +1123,7 @@ CONFIG_QCOM_CLK_APCS_MSM8916=y
- CONFIG_QCOM_CLK_APCC_MSM8996=y
- CONFIG_QCOM_CLK_SMD_RPM=y
- CONFIG_QCOM_CLK_RPMH=y
-+CONFIG_IPQ_GCC_5332=y
- CONFIG_IPQ_GCC_6018=y
- CONFIG_IPQ_GCC_8074=y
- CONFIG_MSM_GCC_8916=y
--- 
-2.17.1
+Best regards,
+Krzysztof
 
