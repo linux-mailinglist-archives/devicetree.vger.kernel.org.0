@@ -2,133 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 82D876AE011
-	for <lists+devicetree@lfdr.de>; Tue,  7 Mar 2023 14:12:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 695526AE031
+	for <lists+devicetree@lfdr.de>; Tue,  7 Mar 2023 14:18:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230379AbjCGNMU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Mar 2023 08:12:20 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51044 "EHLO
+        id S230155AbjCGNS4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Mar 2023 08:18:56 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58182 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229932AbjCGNMC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Mar 2023 08:12:02 -0500
-Received: from EUR02-AM0-obe.outbound.protection.outlook.com (mail-am0eur02on2053.outbound.protection.outlook.com [40.107.247.53])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8650087DA7;
-        Tue,  7 Mar 2023 05:10:39 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=ZO+FLlvsCjxMk0wrrrCWidqELr+SwIvCl9LpkbRs3Csjp4vN8OCVe4S79nnuGojedyMBg/ck34iA8Vm3yRtYjluBBaUv3G3Vb8dyPFg27WyUfh2Ov5lubVZ3J1L/HHsP+K1wWJ4U6JM4t5mNcSD+ipKYjOS05sv99zhK8wwEADfejfZomc3CzZMdoCQ0vQoyoY3M3zHnoAqdwRdp4OpsCFCcb8NkvDNKlFnXnxwbHNfGO00FWiX6sqkivq1VbIa9mz4kFhOyjadQiqzgdFoU9YACQjNfpBwvDQE990hUB93pcIQ9zqDHv9zdwBpuk2VTxV/a+dSK8ZDOf9z0BcPg7Q==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=bGQeh1JUZeB6K9waOOJEqw6W5uvOnktLWWDpAMzIwLQ=;
- b=UVo7pmoYhMKN0FIfblIo9elBAQ9b+HqIDWXNQWbLEp74HS/8/wekRGfMvbur80w94uRCS+m9S9ztwDpNcq29+8/8bOV2CkrJ8IN5gul5iO0c2MBzotm+LhTKheGGkpC43v3n0zbS5tvuX06AnJc+QC5xUUWt9WYWV1IEUnLFJ6o4ZkGomNGpKFjstw7QJMLSZg105+14CeCdp2lpZpcRbaNjzA/dA8SYrDboF7qTOxcual1wlHSfZBQtYjCJvgNCnPGeTpsM9Yb51VkMOkK39PZklzYHj0OMhirkEnPqnoD26j/KfTFNIqCG0zFWB++VuCLORX6PkpVwwe8LLxkkSw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=suse.com; dmarc=pass action=none header.from=suse.com;
- dkim=pass header.d=suse.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=bGQeh1JUZeB6K9waOOJEqw6W5uvOnktLWWDpAMzIwLQ=;
- b=ilT48FomgTbR8s65RPoxOAMlPNoQZgPLpxnMvjbjZ6cTwliUknDCKb8CCQSqX67/zlWQJhD97Azc5T56++R5hVs0jUyV0JEtSMjwRDDZa1Mn03SGL5kje6KzH7B7yIxHkfEMz40CA6oPfHZroFfqtEVdt0DuE/5OHz+tSNnZTPEjV45XSlfvwh2SOcMw0KYeepSbjdQ1il02UGYZaun7xCDzHMDytu1H2g6w8B8pyn91bUZ5es3SAyULLBgLpMcd+FHMyxjsGnNg0dScf7AQtnq1lJZVyUL5diUCgW7HWQ4/UMim4DDcf5F2wEiVyPLdU/zhMRpbgnPqcjZL7VdLxQ==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=suse.com;
-Received: from VI1PR0402MB3439.eurprd04.prod.outlook.com (2603:10a6:803:4::13)
- by DB8PR04MB7098.eurprd04.prod.outlook.com (2603:10a6:10:fd::19) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6156.29; Tue, 7 Mar
- 2023 13:09:59 +0000
-Received: from VI1PR0402MB3439.eurprd04.prod.outlook.com
- ([fe80::6802:b2c3:5f12:8f9f]) by VI1PR0402MB3439.eurprd04.prod.outlook.com
- ([fe80::6802:b2c3:5f12:8f9f%2]) with mapi id 15.20.6156.029; Tue, 7 Mar 2023
- 13:09:59 +0000
-Date:   Tue, 7 Mar 2023 21:09:48 +0800
-From:   Chester Lin <clin@suse.com>
-To:     Linus Walleij <linus.walleij@linaro.org>
-Cc:     Andy Shevchenko <andy.shevchenko@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andreas =?iso-8859-1?Q?F=E4rber?= <afaerber@suse.de>,
-        s32@nxp.com, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        Larisa Grigore <larisa.grigore@nxp.com>,
-        Ghennadi Procopciuc <Ghennadi.Procopciuc@oss.nxp.com>,
-        Andrei Stefanescu <andrei.stefanescu@nxp.com>,
-        Radu Pirea <radu-nicolae.pirea@nxp.com>,
-        Matthias Brugger <mbrugger@suse.com>
-Subject: Re: [PATCH v5 0/3] Add pinctrl support for S32 SoC family
-Message-ID: <ZAc3nKEiYbUEX2xv@linux-8mug>
-References: <20230220023320.3499-1-clin@suse.com>
- <CACRpkdYknZo3Q7_CeSkOL2XwwAmKERskx24o-toaVy=rs0Yf5Q@mail.gmail.com>
- <ZAZ3JZQ4Tuz5vyH1@surfacebook>
- <CACRpkdbksZ59ndrRAQpTGa01GTq4c_2EcOQ2mtz1PLjqU8_nug@mail.gmail.com>
- <CAHp75Vf3ve-NdMG6iti-KSs=tGGgGf9tNj=aK7Jofk9233WocQ@mail.gmail.com>
- <CACRpkdaCZSoem31GmDC97LPYcZqRjkyf=6VGtXdXK0iwrV74qA@mail.gmail.com>
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CACRpkdaCZSoem31GmDC97LPYcZqRjkyf=6VGtXdXK0iwrV74qA@mail.gmail.com>
-X-ClientProxiedBy: FR2P281CA0099.DEUP281.PROD.OUTLOOK.COM
- (2603:10a6:d10:9c::9) To VI1PR0402MB3439.eurprd04.prod.outlook.com
- (2603:10a6:803:4::13)
+        with ESMTP id S229967AbjCGNSk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Mar 2023 08:18:40 -0500
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C8E7C1B556
+        for <devicetree@vger.kernel.org>; Tue,  7 Mar 2023 05:17:16 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+        s=mimecast20190719; t=1678195035;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=W+ygoGubyf3twf0j32IrnMaEy5WCJEE/nnSufW1Ej/I=;
+        b=asi8n62xlM2DF/uVyVFfhIn26f92lqBEP2BwHAfgDO1steR1v9A48xu0LxnZFOEZbKuMuU
+        eNQRYj2hh4oWqGyFrD/PxDZ/ANtZ1ePq5Nqx+VhGg8tiNBF/ympPegF3irD1g00IxnY0cq
+        H/v25mKTdR7i6cTl6Ho3HE9LXPm6XUE=
+Received: from mimecast-mx02.redhat.com (mx3-rdu2.redhat.com
+ [66.187.233.73]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ us-mta-224-4AyKS0rtPmyMhiJFgO1Mtg-1; Tue, 07 Mar 2023 08:17:10 -0500
+X-MC-Unique: 4AyKS0rtPmyMhiJFgO1Mtg-1
+Received: from smtp.corp.redhat.com (int-mx01.intmail.prod.int.rdu2.redhat.com [10.11.54.1])
+        (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
+        (No client certificate requested)
+        by mimecast-mx02.redhat.com (Postfix) with ESMTPS id E38873813F23;
+        Tue,  7 Mar 2023 13:17:09 +0000 (UTC)
+Received: from mail.corp.redhat.com (unknown [10.22.8.23])
+        by smtp.corp.redhat.com (Postfix) with ESMTPS id 7B8A44010E7B;
+        Tue,  7 Mar 2023 13:17:08 +0000 (UTC)
+Date:   Tue, 7 Mar 2023 14:17:06 +0100
+From:   Benjamin Tissoires <benjamin.tissoires@redhat.com>
+To:     Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Daniel Kaehn <kaehndan@gmail.com>
+Cc:     Hans de Goede <hdegoede@redhat.com>, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, jikos@kernel.org,
+        bartosz.golaszewski@linaro.org, dmitry.torokhov@gmail.com,
+        devicetree@vger.kernel.org, linux-input@vger.kernel.org,
+        ethan.twardy@plexus.com
+Subject: Re: [PATCH v8 3/3] HID: cp2112: Fwnode Support
+Message-ID: <20230307131706.olnb4qzo4ynu7gce@mail.corp.redhat.com>
+References: <CAP+ZCCe=f3AtxvC1Z6zPErMEG9BcnCOjApc26n_9yjq2+U72pw@mail.gmail.com>
+ <Y/9oO1AE6GK6CQmp@smile.fi.intel.com>
+ <20230302170554.q3426ii255735rzw@mail.corp.redhat.com>
+ <ZAXFNRuALYpXgL6F@smile.fi.intel.com>
+ <b8423b0b-4f63-d598-6c8b-7c7e73549032@redhat.com>
+ <ZAXlh9ZVjGJh0l7n@smile.fi.intel.com>
+ <1cab1439-77f3-6739-d4cd-5862ce8512d8@redhat.com>
+ <ZAYca0ADk0Uk1sK1@smile.fi.intel.com>
+ <CAP+ZCCfsKdOyy5vzPh5OjpZjNQrYWDRzrqa_QxvG+kZDPYa+3A@mail.gmail.com>
+ <ZAZOvEvqNDq6jZNB@smile.fi.intel.com>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: VI1PR0402MB3439:EE_|DB8PR04MB7098:EE_
-X-MS-Office365-Filtering-Correlation-Id: ba07354f-893c-4778-4620-08db1f0d4133
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: GyHp5Ftaa8jpzAXSB+aHYORUv83NgWlU4Xl+Y9U6whHxLEMacGsM1KSYapi4H5JeM+BhZsIi++hpg7+Jqb7+h/8s0hWuVHMDUABbVCRDGc/AKWHY1d3/bFjE7/BEZ3j5OAp43LXNvfJ2bCE0OS9uNOs1y9xVXO5eLgOcy6JFP+AAKgslnVBxZNuzS+JbYmf9cS0+1/WHQJ60f0tT9++Iog5yr6CsimkLtJtOBuRgdoezMBbX/kgbKS2HdiIuPqfLn+jD+hZx7azqIfUr6QRr4B+a9AhNauBP4cOMWBZpYUpXRL/NGQVZ4QOe+k6VumNG3fMx5VM3gzA9tin/jSX3Uy3Yk9wLg7rKaopqgCZlo9gghP7+dk1WyjUr7RjP1UTcMU8fbYoH+D0WqgFxcf8mf5E5HwYsx6AhniLCHOvR0vmjhVxo9c1St+QQvCIYYz1JnyNradzaElUw06HgQUDo2gdqaFnD8ysGAiz/kyLxx7/k+0bLM/zAJo/y8pHv0Q/3qPYonsjTDiAwXsqmU1XeE03rNBeeiTy0SX3vmSRl460vE9WOm8hhHBWjw4xIAJqPbahp6hd7ap4oMHDeKBen4iVlju/nRPx/5tQRRPza4y4bLIkbd7m8kdm1g+ia+9rUdHn7wTzcPxPn3bvzkqHhGg==
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VI1PR0402MB3439.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230025)(7916004)(39860400002)(136003)(366004)(346002)(376002)(396003)(451199018)(2906002)(83380400001)(33716001)(66946007)(7416002)(4326008)(6916009)(66476007)(66556008)(8676002)(5660300002)(186003)(6512007)(9686003)(26005)(41300700001)(8936002)(6506007)(53546011)(6666004)(107886003)(38100700002)(478600001)(6486002)(54906003)(316002)(86362001);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?SG9jTlA1V3JHQVlaalE1azlhZXVYTVkvTStBYmIzUE9oUStzZzFJV3NRc2pq?=
- =?utf-8?B?bE0vMFo1dkJWWlR3alNuSCt2SFEwM0FJWmM0WXdSNHBibnlVay96RlZHVisr?=
- =?utf-8?B?RlhrVDRYL0lYVFVvVkdhQzZjWFJkQVQrQUc5Y21IbHpud3N0ZlcwRDJ1V1Zh?=
- =?utf-8?B?ZGJ3aHN4YVk0ekkzdGJYR09GYStHaHB4ZVlvaE9NcFI4T3VMeUR4Z29kVmlB?=
- =?utf-8?B?eHlvZmRBZWcvUWd1VE1GM1BYai9VSGxVSU5QZmJzYXpCZnp0WUVxTzZUVmpM?=
- =?utf-8?B?cmJ4dXhKRGNwNko2Z3NYQXFEQWZiYmhaM1ZXU0EvWW9XWDR1U012dnRWVGpt?=
- =?utf-8?B?d2w0TTZVUThVSjR1SFNZejZxVThGZ2NRS2MwdmRFRUVPWk0wa0R4WXdPL1pM?=
- =?utf-8?B?aXc1dnk3VS9oci96S0ZZQURsMkd3ZnY1SlFhQXhIYVpER3pKOVZYditVN1JQ?=
- =?utf-8?B?NlNRc1lvVy9ZdjczcjhaUU9XdkdoczA3N0xUYmlqMXJsYXF0SGtuMkdQY0JH?=
- =?utf-8?B?aGdOZUg2RTNIUEhsWjZnYlRNc2s3YTdQTzdoUzNXc1BtSlZWUTRnSEFvQit4?=
- =?utf-8?B?elUzWjliSmZUclFGV2RSeWNVS1dOY3QySmp2VkttUTlxN1BFNnh3a1lwVnJx?=
- =?utf-8?B?SUhrSi8xckJaTjVDUGFOeFd2dkJNVk9vNzFkbFV3SXdRL1E3K3ppdng0Ky9s?=
- =?utf-8?B?MHVIdWg5VVdKczRGOThnZmdoWW93MkU2alhBaW5TVHJmMzN2eHVlbmVSVkpI?=
- =?utf-8?B?S2pOTmZmZ2U5V0JuNHFtbmVKQzlieDFUdFYzSkc1VE1Qd2EwSXV1UzFYOEZU?=
- =?utf-8?B?RmhwUjE5Qk9lSWxRK1IvSXhaem5mRzRPd1BBV0Zjd3VUY0VmT21HNUx4Tkc2?=
- =?utf-8?B?a3U3Mm5sc1NjcG92S1BYdE1udzk5WU43eWE3TDBMMGhySzZ1RndkZlc5UUVG?=
- =?utf-8?B?ZFJGcjIvaDhqQjJHbnBPRE0wZ1FsSklwYWdUcWdnWnQvMzR1ZlgvOS8wcnJX?=
- =?utf-8?B?VDZLV1ZjR0ZFbDgwR281SkRZWGVsR1I1cHdYSjQ0QlhJdXA0YVNha1dVcDN6?=
- =?utf-8?B?QThhSWJVKzRYWWtwSzAxK2RmUHVIOXdYSVZLQXd1REV5Z1QvemVZK05xclMx?=
- =?utf-8?B?cWtjSGZNMGM1OU8rZnF5S2plb3ZWMStwd3h5NnhmQkVSVGpDQnErbHJlKzNX?=
- =?utf-8?B?cVRqeTlnRTRPMHZxMHZEYTI0a0R4cjg2QWQ1K2VYRlh6SVlHZkZtaG9aa29S?=
- =?utf-8?B?dnl3NWxSb01BeG5WekZMQ1BMMzdIdStwK2VHV0g0ZFBTeFhFQmxRbUJiME5R?=
- =?utf-8?B?RVFkNWkwQWtLdVgraXFrbmU3NTdRcnZIcWdJNDMvTWF0aVZGaUlwTlpheFAw?=
- =?utf-8?B?Ny95T0x0OXJnQXc0NWp5K1ZYbUdHKzNuclczeTU2K0djZEx3Q2xZMWkzOVRi?=
- =?utf-8?B?YWRpbWh4empLbFlrcWs1TjNvN1dvTjRwYWxab09md0VqMXFDQVl6ZGRjWUFF?=
- =?utf-8?B?VFo1OXdzSnBybXd1YVE1Z25WdjBmeGd3WVQwWnFwTU85NWFzZ0l2Zmtxd3BM?=
- =?utf-8?B?ZDZZV3NpdTFyeWdlWWd0cGxsdWJLVFZMZThCVnVNRncxSXlkcDBDakZ1NmQ4?=
- =?utf-8?B?dFFtdTIrK0V4WVBTazBQdmF2WnBWNUtkRlZ2Rm5uZXJHQzVUU3ZDQzFJWC8r?=
- =?utf-8?B?YmdINnhQUDVSQVBDWHdjUTdZc3gwdEJyeU5pUTFlSnNtS2RuR2NkVXpvZ0VC?=
- =?utf-8?B?NWpkZjRscUZoTytmNGdYck9kWjVqbmJjeUhUWkxKQW1WU1dJbVVPc0VUendU?=
- =?utf-8?B?Ukw0d0VQRXdaVGIwQkt4VFVrVFg0U1E3T2VNWmxZZ296Qkc5OVFLOWV2bWwz?=
- =?utf-8?B?ZmROTkpOYzlOL1VKODFVdjkrcnJoUlI0QUYycWtHVUlIcHk1Z3pJTDFWcWhv?=
- =?utf-8?B?bExvWnFMMVlsWXI4N3BtaHIzOVRiV0ZZb2YrZ2U5SHBoeXN6dmJJSjZWRURu?=
- =?utf-8?B?ZldNdk9JckxodUxiSXR5aXV3aHJtUmpscUl0dzhnMWhmTW5qaVAyMUw3M3M5?=
- =?utf-8?B?dk1ROGhnZ2dXSnJnSGpuQVAwK0RITEJCdU01bWZ5UVRhaFo3Ym5YRmtad0I4?=
- =?utf-8?Q?pIR8=3D?=
-X-OriginatorOrg: suse.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: ba07354f-893c-4778-4620-08db1f0d4133
-X-MS-Exchange-CrossTenant-AuthSource: VI1PR0402MB3439.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Mar 2023 13:09:59.4940
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: f7a17af6-1c5c-4a36-aa8b-f5be247aa4ba
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 2qbyPEb7k8EYtnmA6dVhvBWi1tk+GhjFska7DAapNM6vj9Ap7PGzn16nbrymOKvc
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB8PR04MB7098
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,URIBL_BLOCKED autolearn=ham
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <ZAZOvEvqNDq6jZNB@smile.fi.intel.com>
+X-Scanned-By: MIMEDefang 3.1 on 10.11.54.1
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_NONE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -136,52 +72,214 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Linus and Andy,
-
-On Tue, Mar 07, 2023 at 01:49:00PM +0100, Linus Walleij wrote:
-> On Tue, Mar 7, 2023 at 10:56 AM Andy Shevchenko
-> <andy.shevchenko@gmail.com> wrote:
-> > On Tue, Mar 7, 2023 at 11:22 AM Linus Walleij <linus.walleij@linaro.org> wrote:
-> > > On Tue, Mar 7, 2023 at 12:28 AM <andy.shevchenko@gmail.com> wrote:
-> >
-> > ...
-> >
-> > > > Can you unpull this?
-> >
-> > > If need be.
-> > >
-> > > Are there serious issues with the patch set such that they cannot be fixed
-> > > by add-on patches?
-> >
-> > There are a few absent error checks, some error code shadowing, etc.
-> > I can't tell if these all are serious, but the amount of them is like a dozen.
-> >
-> > I reviewed the patch, so you can look into that yourself and decide.
+On Mar 06 2023, Andy Shevchenko wrote:
+> On Mon, Mar 06, 2023 at 01:40:16PM -0600, Daniel Kaehn wrote:
 > 
-> I looked at it and some of the comments are pretty serious and need
-> addressing ASAP.
+> ...
 > 
-
-Thanks for reviewing the patch.
-
-Please kindly leave review comments if it doesn't take too much time for you.
-I just want to ensure that I won't miss anything.
-
-> However it only affects this hardware so it's not like it's breaking the
-> world. I generally prefer in-tree development over too many big patch
-> iterations, it gets more focused.
+> > Device (SE9)
+> > {
+> >     Name (_ADR, 0x001D0001) // _ADR: Address
+> >     Device (RHUB)
+> >     {
+> >         Name (_ADR, Zero)
+> >         Device (CP2) // the USB-hid & CP2112 shared node
+> >         {
+> >             Name (_ADR, One)
+> >         }
+> >     }
+> > }
+> > 
+> > If I'm understanding correctly, this adds the SE9 device as function 1
+> > of PCI device 0x1d,
 > 
-> I think if Chester can follow up with a patch or several addressing the
-> comments in the next week or two that's fine.
+> To be precise this does not add the device. It adds a description of
+> the companion device in case the real one will appear on the PCI bus
+> with BDF 00:1d.1.
 > 
+> > then RHUB as the USB controller it provides, and finally, CP2 as the
+> > USB device attached to port 1 of the controller.
+> > 
+> > With this as the loaded dsdt table, the USB device now has a firmware_node :)
+> > #> cat /sys/bus/usb/devices/3-1:1.0/firmware_node/path
+> > \_SB_.PCI0.SE9_.RHUB.CP2_
+> > 
+> > After applying my patches, the HID device also references this node:
+> > #> cat /sys/bus/hid/devices/0003:10C4:EA90.0003/firmware_node/path
+> > \_SB_.PCI0.SE9_.RHUB.CP2_
+> > 
 
-I will do my best to solve it.
+Great! Thanks a lot for that. Turns out that with both of your inputs I
+can also do the same, but without the need for OVMF and DSDT patching,
+with just an SSDT override.
 
-Thanks,
-Chester
+Turns out that the override documentation [1] mentions "This option
+allows loading of user defined SSDTs from initrd and it is useful when
+the system does not support EFI or ..."
 
-> However if we get closer to -rc6 and nothing has happened I would
-> not be so happy and then I might just revert the driver patch.
+FWIW, I am attaching my full DSDT override in case it is valuable:
+(on my system, the default USB controller (non-xhc) is at PCI address
+1.2, which explains the slight difference). It can be loaded in the same
+way you are overriding the full DSDT, but with just that compilation
+output:
+
+---
+DefinitionBlock ("cp2112.aml", "SSDT", 5, "", "CP2112", 1)
+{
+  External (_SB_.PCI0, DeviceObj)
+
+  Scope (\_SB_.PCI0)
+  {
+    Device (USB0)
+    {
+      Name (_ADR, 0x00010002) // _ADR: Address
+      Device (RHUB)
+      {
+        Name (_ADR, Zero)
+        Device (CP21) // the USB-hid & CP2112 shared node
+        {
+          Name (_ADR, One)
+          Device (I2C)
+          {
+            Name (_ADR, Zero)
+            Name (_STA, 0x0F)
+          }
+
+          Device (GPIO)
+          {
+            Name (_ADR, One)
+            Name (_STA, 0x0F)
+          }
+        }
+      }
+    }
+  }
+
+  Scope (\_SB_.PCI0.USB0.RHUB.CP21.I2C)
+  {
+    Device (TPD0)
+    {
+      Name (_HID, "RMI40001")
+      Name (_CID, "PNP0C50")
+      Name (_STA, 0x0F)
+
+      Name (SBFB, ResourceTemplate ()
+      {
+          I2cSerialBusV2 (0x00c, ControllerInitiated, 100000,
+              AddressingMode7Bit, "\\_SB_.PCI0.USB0.RHUB.CP21.I2C",
+              0x00, ResourceConsumer,, Exclusive,
+              )
+      })
+      Name (SBFG, ResourceTemplate ()
+      {
+          GpioInt (Level, ActiveLow, Exclusive, PullDefault, 0x0000,
+              "\\_SB_.PCI0.USB0.RHUB.CP21.GPIO", 0x00, ResourceConsumer, ,
+              )
+              {   // Pin list
+                  0x0002
+              }
+      })
+      Method(_CRS, 0x0, NotSerialized)
+      {
+        Return (ConcatenateResTemplate (SBFB, SBFG))
+      }
+
+      Method(_DSM, 0x4, Serialized)
+      {
+        // DSM UUID
+        switch (ToBuffer (Arg0))
+        {
+          // ACPI DSM UUID for HIDI2C
+          case (ToUUID ("3CDFF6F7-4267-4555-AD05-B30A3D8938DE"))
+          {
+              // DSM Function
+              switch (ToInteger (Arg2))
+              {
+                  // Function 0: Query function, return based on revision
+                  case(0)
+                  {
+                      // DSM Revision
+                      switch (ToInteger (Arg1))
+                      {
+                          // Revision 1: Function 1 supported
+                          case (1)
+                          {
+                              Return (Buffer (One) { 0x03 })
+                          }
+
+                          default
+                          {
+                              // Revision 2+: no functions supported
+                              Return (Buffer (One) { 0x00 })
+                          }
+                      }
+                  }
+
+                  // Function 1 : HID Function
+                  case(1)
+                  {
+                      // HID Descriptor Address
+                      Return (0x0020)
+                  }
+
+                  default
+                  {
+                      // Functions 2+: not supported
+                      Return (Buffer (One) { 0x00 })
+                  }
+              }
+          }
+
+          default
+          {
+              // No other GUIDs supported
+              Return (Buffer (One) { 0x00 })
+          }
+        }
+      }
+    }
+  }
+}
+---
+
+This almost works. Almost because the I2C device is correctly created,
+but I have an issue with the GpioInt call which is not properly set by
+the kernel and which returns -EDEFER. /o\ 
+
+> > With this all said -- I noticed iasl prints this statement when trying
+> > to create a node with a lowercase name:
+> > "At least one lower case letter found in NameSeg, ASL is case
+> > insensitive - converting to upper case (GPIO)"
 > 
-> Yours,
-> Linus Walleij
+> Yes, because it should be in the upper case.
+> 
+> > I wonder if this suggests that adding a call to toupper() to
+> > acpi_fwnode_get_named_child_node would be
+> > an appropriate solution for the node name casing issue....
+> 
+> I dunno. You need to ask in the linux-acpi@ mailing list.
+> To me this is corner case that can't be easily solved
+> (because two different specifications treat it differently.
+> 
+> You also need to ask DT people about capital letters there.
+> And my guts tell me that it's probably also carved in the spec
+> as "must be lower case" or alike.
+
+FWIW while trying to enable this, at some point I named the I2C and the
+GPIO entries "I2C0" and "GPI0" (with the number '0', not the letter
+'o'), and it was not working as you would expect.
+
+It is commonly accepted in the ACPI world that the names do not carry
+meaning AFAICT, and so I think I agree with Andy's initial comment
+regarding using indexes, not names to also fetch the I2C and GPIO nodes.
+You can probably have a fallback mechanism for when "i2c" is not
+present, or simply check if you are in DT or not and use the names only
+if we are in DT.
+
+Thanks a lot to both of you, this will be tremendously helpful to me.
+
+Cheers,
+Benjamin
+
+[1] https://www.kernel.org/doc/html/latest/admin-guide/acpi/ssdt-overlays.html#loading-acpi-ssdts-from-initrd
+
