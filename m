@@ -2,407 +2,382 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4B7466AE386
-	for <lists+devicetree@lfdr.de>; Tue,  7 Mar 2023 15:59:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F13E56AE3AD
+	for <lists+devicetree@lfdr.de>; Tue,  7 Mar 2023 16:02:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229709AbjCGO7y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Mar 2023 09:59:54 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37604 "EHLO
+        id S229925AbjCGPC0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Mar 2023 10:02:26 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37542 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229621AbjCGO7d (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Mar 2023 09:59:33 -0500
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8EFF830DB;
-        Tue,  7 Mar 2023 06:42:54 -0800 (PST)
-Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 327Bkl0S012653;
-        Tue, 7 Mar 2023 14:42:40 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : from : subject : to : cc : references : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=Fvo30gbRhGuaT9z0lbU6iqwACOjYaP9OqUzlO2c5XS8=;
- b=hF7B9wigMBFHN3jiZ3XMdck5AkE8acHFz8zs5JQ7rmWaty0Ah+T5iTKwts/p/EyQdN9D
- 9Kgxl5qiTzwEeHRpQ5yPZQjK1S4f0l67AcU1vukuCSVxdltMb81cjQmU1DcRfaD/coiF
- 89fl+1+ntZ7xR6bvj4uYYWTfD+bQmOXmm9PaDLw16GkRoGGJioU2d7Y+T/09scojdWP4
- 3bOE5aPZrufL1QuMwpD9lnTS8poKvAcRfHUE0Ve1Z6iStAM3XnqUWBwMRCyjEag11A4W
- 9k/4VriUwAN7H0cgA05A2LQY7BIBRLzVZlO+NKP3aQcdV5d6wIsAceHYCBX8yuE6JAgW TA== 
-Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3p417k0b9q-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 07 Mar 2023 14:42:40 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-        by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 327EgdkW012791
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 7 Mar 2023 14:42:39 GMT
-Received: from [10.216.11.93] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.41; Tue, 7 Mar 2023
- 06:42:29 -0800
-Message-ID: <1350dee1-a79d-6169-1eb7-4ab93f97c8d6@quicinc.com>
-Date:   Tue, 7 Mar 2023 20:12:25 +0530
+        with ESMTP id S229926AbjCGPBq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Mar 2023 10:01:46 -0500
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B8EDF11E82
+        for <devicetree@vger.kernel.org>; Tue,  7 Mar 2023 06:49:02 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+        s=mimecast20190719; t=1678200541;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=cqeh1cnHkI8hSmi75qFP5czF6puTCaAntwBTSJfFU2g=;
+        b=cRKhtCsNqNmdl10oMipUDbrX5/+puj8u10hq0MhxMIkhAzltAqJRHWq5GQH5aeDrv8eOjT
+        53avlPk8nG59XF3G4K577HrfKepjSShCqnEn1+4ypgcCyfxMhAunEnN5A43VWlXDybn+13
+        4ia33HxXcNLXaXXnl0KQ7Yw+N5oWQOU=
+Received: from mimecast-mx02.redhat.com (mimecast-mx02.redhat.com
+ [66.187.233.88]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ us-mta-644-M1xaZq3yM5Kv_aWTSm67Qw-1; Tue, 07 Mar 2023 09:48:57 -0500
+X-MC-Unique: M1xaZq3yM5Kv_aWTSm67Qw-1
+Received: from smtp.corp.redhat.com (int-mx03.intmail.prod.int.rdu2.redhat.com [10.11.54.3])
+        (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
+        (No client certificate requested)
+        by mimecast-mx02.redhat.com (Postfix) with ESMTPS id 4B3FC101A52E;
+        Tue,  7 Mar 2023 14:48:56 +0000 (UTC)
+Received: from mail.corp.redhat.com (unknown [10.22.8.23])
+        by smtp.corp.redhat.com (Postfix) with ESMTPS id BF3951121314;
+        Tue,  7 Mar 2023 14:48:54 +0000 (UTC)
+Date:   Tue, 7 Mar 2023 15:48:52 +0100
+From:   Benjamin Tissoires <benjamin.tissoires@redhat.com>
+To:     Daniel Kaehn <kaehndan@gmail.com>
+Cc:     Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Hans de Goede <hdegoede@redhat.com>, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, jikos@kernel.org,
+        bartosz.golaszewski@linaro.org, dmitry.torokhov@gmail.com,
+        devicetree@vger.kernel.org, linux-input@vger.kernel.org,
+        ethan.twardy@plexus.com
+Subject: Re: [PATCH v8 3/3] HID: cp2112: Fwnode Support
+Message-ID: <20230307144852.ueyaotkeeqfjlgk7@mail.corp.redhat.com>
+References: <20230302170554.q3426ii255735rzw@mail.corp.redhat.com>
+ <ZAXFNRuALYpXgL6F@smile.fi.intel.com>
+ <b8423b0b-4f63-d598-6c8b-7c7e73549032@redhat.com>
+ <ZAXlh9ZVjGJh0l7n@smile.fi.intel.com>
+ <1cab1439-77f3-6739-d4cd-5862ce8512d8@redhat.com>
+ <ZAYca0ADk0Uk1sK1@smile.fi.intel.com>
+ <CAP+ZCCfsKdOyy5vzPh5OjpZjNQrYWDRzrqa_QxvG+kZDPYa+3A@mail.gmail.com>
+ <ZAZOvEvqNDq6jZNB@smile.fi.intel.com>
+ <20230307131706.olnb4qzo4ynu7gce@mail.corp.redhat.com>
+ <CAP+ZCCcbXqPOY5Xzq9v8JNSzH9+xOqgfkTezJdLQY=vwQco4vQ@mail.gmail.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.1
-From:   Devi Priya <quic_devipriy@quicinc.com>
-Subject: Re: [PATCH 7/7] arm64: dts: qcom: ipq9574: Add PCIe PHYs and
- controller nodes
-To:     Manivannan Sadhasivam <mani@kernel.org>
-CC:     <agross@kernel.org>, <andersson@kernel.org>,
-        <konrad.dybcio@linaro.org>, <lpieralisi@kernel.org>,
-        <kw@linux.com>, <robh@kernel.org>, <bhelgaas@google.com>,
-        <krzysztof.kozlowski+dt@linaro.org>, <vkoul@kernel.org>,
-        <kishon@kernel.org>, <mturquette@baylibre.com>, <sboyd@kernel.org>,
-        <p.zabel@pengutronix.de>, <svarbanov@mm-sol.com>,
-        <linux-arm-msm@vger.kernel.org>, <linux-pci@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-phy@lists.infradead.org>, <linux-clk@vger.kernel.org>,
-        <quic_srichara@quicinc.com>, <quic_gokulsri@quicinc.com>,
-        <quic_sjaganat@quicinc.com>, <quic_kathirav@quicinc.com>,
-        <quic_arajkuma@quicinc.com>, <quic_anusha@quicinc.com>
-References: <20230214164135.17039-1-quic_devipriy@quicinc.com>
- <20230214164135.17039-8-quic_devipriy@quicinc.com>
- <20230224085902.GC5443@thinkpad>
-Content-Language: en-US
-In-Reply-To: <20230224085902.GC5443@thinkpad>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: zPu9AwwOwNLsfXpvZgreshGezWA2tLf9
-X-Proofpoint-ORIG-GUID: zPu9AwwOwNLsfXpvZgreshGezWA2tLf9
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.219,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
- definitions=2023-03-07_08,2023-03-07_01,2023-02-09_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 bulkscore=0
- clxscore=1015 adultscore=0 impostorscore=0 lowpriorityscore=0
- malwarescore=0 phishscore=0 suspectscore=0 priorityscore=1501 spamscore=0
- mlxlogscore=999 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2212070000 definitions=main-2303070131
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAP+ZCCcbXqPOY5Xzq9v8JNSzH9+xOqgfkTezJdLQY=vwQco4vQ@mail.gmail.com>
+X-Scanned-By: MIMEDefang 3.1 on 10.11.54.3
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_NONE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Mar 07 2023, Daniel Kaehn wrote:
+> On Tue, Mar 7, 2023 at 7:17 AM Benjamin Tissoires
+> <benjamin.tissoires@redhat.com> wrote:
+> >
+> > On Mar 06 2023, Andy Shevchenko wrote:
+> > > On Mon, Mar 06, 2023 at 01:40:16PM -0600, Daniel Kaehn wrote:
+> > >
+> > > ...
+> > >
+> > > > Device (SE9)
+> > > > {
+> > > >     Name (_ADR, 0x001D0001) // _ADR: Address
+> > > >     Device (RHUB)
+> > > >     {
+> > > >         Name (_ADR, Zero)
+> > > >         Device (CP2) // the USB-hid & CP2112 shared node
+> > > >         {
+> > > >             Name (_ADR, One)
+> > > >         }
+> > > >     }
+> > > > }
+> > > >
+> > > > If I'm understanding correctly, this adds the SE9 device as function 1
+> > > > of PCI device 0x1d,
+> > >
+> > > To be precise this does not add the device. It adds a description of
+> > > the companion device in case the real one will appear on the PCI bus
+> > > with BDF 00:1d.1.
+> > >
+> > > > then RHUB as the USB controller it provides, and finally, CP2 as the
+> > > > USB device attached to port 1 of the controller.
+> > > >
+> > > > With this as the loaded dsdt table, the USB device now has a firmware_node :)
+> > > > #> cat /sys/bus/usb/devices/3-1:1.0/firmware_node/path
+> > > > \_SB_.PCI0.SE9_.RHUB.CP2_
+> > > >
+> > > > After applying my patches, the HID device also references this node:
+> > > > #> cat /sys/bus/hid/devices/0003:10C4:EA90.0003/firmware_node/path
+> > > > \_SB_.PCI0.SE9_.RHUB.CP2_
+> > > >
+> >
+> > Great! Thanks a lot for that. Turns out that with both of your inputs I
+> > can also do the same, but without the need for OVMF and DSDT patching,
+> > with just an SSDT override.
+> >
+> Ah, interesting.. I tried the SSDT override route initially, but tried
+> applying it
+> through EFI variables and through configfs, neither of which worked since
+> they appeared to be applied after the relevant drivers were already loaded
+> (at least that was my suspicion). I wonder if loading the overlay through the
+> initramfs was the key.
 
-
-On 2/24/2023 2:29 PM, Manivannan Sadhasivam wrote:
-> On Tue, Feb 14, 2023 at 10:11:35PM +0530, Devi Priya wrote:
->> Add PCIe0, PCIe1, PCIe2, PCIe3 (and corresponding PHY) devices
->> found on IPQ9574 platform. The PCIe0 & PCIe1 are 1-lane Gen3
->> host whereas PCIe2 & PCIe3 are 2-lane Gen3 host.
->>
-> 
-> Please split the board devicetree changes into a separate patch.
-Sure, okay
-> 
->> Co-developed-by: Anusha Rao <quic_anusha@quicinc.com>
->> Signed-off-by: Anusha Rao <quic_anusha@quicinc.com>
->> Signed-off-by: Devi Priya <quic_devipriy@quicinc.com>
->> ---
->>   arch/arm64/boot/dts/qcom/ipq9574-al02-c7.dts |  28 ++
->>   arch/arm64/boot/dts/qcom/ipq9574.dtsi        | 477 ++++++++++++++++++-
->>   2 files changed, 499 insertions(+), 6 deletions(-)
->>
->> diff --git a/arch/arm64/boot/dts/qcom/ipq9574-al02-c7.dts b/arch/arm64/boot/dts/qcom/ipq9574-al02-c7.dts
->> index 2c8430197ec0..21b53f34ce84 100644
->> --- a/arch/arm64/boot/dts/qcom/ipq9574-al02-c7.dts
->> +++ b/arch/arm64/boot/dts/qcom/ipq9574-al02-c7.dts
->> @@ -8,6 +8,7 @@
->>   
->>   /dts-v1/;
->>   
->> +#include <dt-bindings/gpio/gpio.h>
->>   #include "ipq9574.dtsi"
->>   
->>   / {
->> @@ -29,6 +30,33 @@
->>   	status = "okay";
->>   };
->>   
->> +&pcie1_phy {
->> +	status = "okay";
-> 
-> No PHY power supply needed? Same comment for rest of the PHY nodes.
-The PHY power supplies (VDDA_0P9 and VDDA_1P8) would be turned 'on'
-by default and so no supply is added here
+Yeah, there were a few items missing from a "blank" qemu:
+- loading the SSDT overlay in the initramfs so it's seen before anything
+  else
+- actually define the description of the device in the DSDT at the
+  matching PCI bus address
+- your patch :)
 
 > 
->> +};
->> +
->> +&pcie1_x1 {
+> > Turns out that the override documentation [1] mentions "This option
+> > allows loading of user defined SSDTs from initrd and it is useful when
+> > the system does not support EFI or ..."
+> >
+> > FWIW, I am attaching my full DSDT override in case it is valuable:
+> > (on my system, the default USB controller (non-xhc) is at PCI address
+> > 1.2, which explains the slight difference). It can be loaded in the same
+> > way you are overriding the full DSDT, but with just that compilation
+> > output:
+> >
+> > ---
+> > DefinitionBlock ("cp2112.aml", "SSDT", 5, "", "CP2112", 1)
+> > {
+> >   External (_SB_.PCI0, DeviceObj)
+> >
+> >   Scope (\_SB_.PCI0)
+> >   {
+> >     Device (USB0)
+> >     {
+> >       Name (_ADR, 0x00010002) // _ADR: Address
+> >       Device (RHUB)
+> >       {
+> >         Name (_ADR, Zero)
+> >         Device (CP21) // the USB-hid & CP2112 shared node
+> >         {
+> >           Name (_ADR, One)
+> >           Device (I2C)
+> >           {
+> >             Name (_ADR, Zero)
+> >             Name (_STA, 0x0F)
+> >           }
+> >
+> >           Device (GPIO)
+> >           {
+> >             Name (_ADR, One)
+> >             Name (_STA, 0x0F)
+> >           }
+> >         }
+> >       }
+> >     }
+> >   }
 > 
-> No need to add a suffix to node label indicating the lane config.
-Okay
+> To get this to work -- I assume you had to change the driver to look
+> for uppercase
+> "GPIO" and "I2C", or some similar change?
 > 
->> +	perst-gpios = <&tlmm 26 GPIO_ACTIVE_LOW>;
 > 
-> What about "wake" pin? Don't you need pinctrl definitions for these GPIOs?
-> Same comment for rest of the PCIe nodes.
-In IPQ9574, Wake pin isn't required as the slave devices are not
-hot-pluggable & they get enumerated during the bootup. Will add the
-pinctrl definition for the Perst gpio in V2
+> >
+> >   Scope (\_SB_.PCI0.USB0.RHUB.CP21.I2C)
+> >   {
+> >     Device (TPD0)
+> >     {
+> >       Name (_HID, "RMI40001")
+> >       Name (_CID, "PNP0C50")
+> >       Name (_STA, 0x0F)
+> >
+> >       Name (SBFB, ResourceTemplate ()
+> >       {
+> >           I2cSerialBusV2 (0x00c, ControllerInitiated, 100000,
+> >               AddressingMode7Bit, "\\_SB_.PCI0.USB0.RHUB.CP21.I2C",
+> >               0x00, ResourceConsumer,, Exclusive,
+> >               )
+> >       })
+> >       Name (SBFG, ResourceTemplate ()
+> >       {
+> >           GpioInt (Level, ActiveLow, Exclusive, PullDefault, 0x0000,
+> >               "\\_SB_.PCI0.USB0.RHUB.CP21.GPIO", 0x00, ResourceConsumer, ,
+> >               )
+> >               {   // Pin list
+> >                   0x0002
+> >               }
+> >       })
+> >       Method(_CRS, 0x0, NotSerialized)
+> >       {
+> >         Return (ConcatenateResTemplate (SBFB, SBFG))
+> >       }
+> >
+> >       Method(_DSM, 0x4, Serialized)
+> >       {
+> >         // DSM UUID
+> >         switch (ToBuffer (Arg0))
+> >         {
+> >           // ACPI DSM UUID for HIDI2C
+> >           case (ToUUID ("3CDFF6F7-4267-4555-AD05-B30A3D8938DE"))
+> >           {
+> >               // DSM Function
+> >               switch (ToInteger (Arg2))
+> >               {
+> >                   // Function 0: Query function, return based on revision
+> >                   case(0)
+> >                   {
+> >                       // DSM Revision
+> >                       switch (ToInteger (Arg1))
+> >                       {
+> >                           // Revision 1: Function 1 supported
+> >                           case (1)
+> >                           {
+> >                               Return (Buffer (One) { 0x03 })
+> >                           }
+> >
+> >                           default
+> >                           {
+> >                               // Revision 2+: no functions supported
+> >                               Return (Buffer (One) { 0x00 })
+> >                           }
+> >                       }
+> >                   }
+> >
+> >                   // Function 1 : HID Function
+> >                   case(1)
+> >                   {
+> >                       // HID Descriptor Address
+> >                       Return (0x0020)
+> >                   }
+> >
+> >                   default
+> >                   {
+> >                       // Functions 2+: not supported
+> >                       Return (Buffer (One) { 0x00 })
+> >                   }
+> >               }
+> >           }
+> >
+> >           default
+> >           {
+> >               // No other GUIDs supported
+> >               Return (Buffer (One) { 0x00 })
+> >           }
+> >         }
+> >       }
+> >     }
+> >   }
+> > }
+> > ---
+> >
+> > This almost works. Almost because the I2C device is correctly created,
+> > but I have an issue with the GpioInt call which is not properly set by
+> > the kernel and which returns -EDEFER. /o\
+> >
 > 
->> +	status = "okay";
->> +};
->> +
->> +&pcie2_phy {
->> +	status = "okay";
->> +};
->> +
->> +&pcie2_x2 {
->> +	perst-gpios = <&tlmm 29 GPIO_ACTIVE_LOW>;
->> +	status = "okay";
->> +};
->> +
->> +&pcie3_phy {
->> +	status = "okay";
->> +};
->> +
->> +&pcie3_x2 {
->> +	perst-gpios = <&tlmm 32 GPIO_ACTIVE_LOW>;
->> +	status = "okay";
->> +};
->> +
->>   &sdhc_1 {
->>   	pinctrl-0 = <&sdc_default_state>;
->>   	pinctrl-names = "default";
->> diff --git a/arch/arm64/boot/dts/qcom/ipq9574.dtsi b/arch/arm64/boot/dts/qcom/ipq9574.dtsi
->> index 062f80798ebb..a32dbdeb5bed 100644
->> --- a/arch/arm64/boot/dts/qcom/ipq9574.dtsi
->> +++ b/arch/arm64/boot/dts/qcom/ipq9574.dtsi
->> @@ -6,8 +6,8 @@
->>    * Copyright (c) 2023, Qualcomm Innovation Center, Inc. All rights reserved.
->>    */
->>   
->> -#include <dt-bindings/interrupt-controller/arm-gic.h>
->>   #include <dt-bindings/clock/qcom,ipq9574-gcc.h>
->> +#include <dt-bindings/interrupt-controller/arm-gic.h>
->>   #include <dt-bindings/reset/qcom,ipq9574-gcc.h>
->>   
->>   / {
->> @@ -22,11 +22,41 @@
->>   			#clock-cells = <0>;
->>   		};
->>   
->> +		pcie30_phy0_pipe_clk: pcie30_phy0_pipe_clk {
->> +			compatible = "fixed-clock";
->> +			clock-frequency = <250000000>;
->> +			#clock-cells = <0>;
->> +		};
->> +
->> +		pcie30_phy1_pipe_clk: pcie30_phy1_pipe_clk {
->> +			compatible = "fixed-clock";
->> +			clock-frequency = <250000000>;
->> +			#clock-cells = <0>;
->> +		};
->> +
->> +		pcie30_phy2_pipe_clk: pcie30_phy2_pipe_clk {
->> +			compatible = "fixed-clock";
->> +			clock-frequency = <250000000>;
->> +			#clock-cells = <0>;
->> +		};
->> +
->> +		pcie30_phy3_pipe_clk: pcie30_phy3_pipe_clk {
->> +			compatible = "fixed-clock";
->> +			clock-frequency = <250000000>;
->> +			#clock-cells = <0>;
->> +		};
+> Ahh, yep, I've had this issue as well -- I suspect the issue you're
+> having is that the
+> CP2112 driver initializes the i2c controller before the gpiochip, and
+> if any i2c devices
+> on the bus depend on the CP2112's gpio, the probe will never succeed!
+> I have made
+> and been testing with a patch to fix this, but since it was midway
+> through submitting
+> this series, thought it might be bad practice to "tack on" additional
+> patches to a patchset
+> mid-review (since it only causes an issue in some (admittedly fairly
+> common) use-cases)
+> so I was going to send it as an individual patch once (if) these were applied.
 > 
-> Why PIPE clocks are modeled as fixed clocks unlike other SoCs?
-Sure, will add the clocks to corresponding PHY node and use the phandle
-similar to other targets
+
+I don't think this is the issue. When the device is initially probed,
+the I2C acpi implementation tries to attach an IRQ, but failed at it,
+returning -EPROBE_DEFER, which makes the device being retried a few
+times.
+
+After I get my shell available I even get the pr_err I included few
+seconds later, for a last attempt by the kernel to bind it when
+everything has settled.
+
+So I can see that the device gets probed, and that all ACPI resources
+are tried to get the IRQ.
+Right now, I see that it's attempting to bind to the acpi resource in 
+acpi_dev_resource_interrupt() (in file drivers/acpi/resources.c), but
+instead of having a ACPI_RESOURCE_TYPE_EXTENDED_IRQ I only get a
+ACPI_RESOURCE_TYPE_GPIO for the GpioInt() definition in the _CRS method.
+
+So I am missing the proper transition from GpioInt to IRQ in the acpi.
+
+Note that I tried applying what was describe at
+Documentation/firmware_guide/acpi/gpio-properties.rst but the _DSD
+method doesn't seem to be properly applied to the CP2112 GPIO, which is
+highly suspicious.
+
+> If you think that would be necessary to include for these to merge,
+> I'd be happy to append
+> it to this review. I also have another patch which adds i2c bus
+> recovery to the driver, but
+> that seems independent enough that it should be sent on its own.
+
+As I mentioned above I don't think the issue is in the ordering of the
+I2C vs gpio resources.
+
 > 
->> +
->>   		sleep_clk: sleep-clk {
->>   			compatible = "fixed-clock";
->>   			#clock-cells = <0>;
->>   		};
->>   
->> +		usb3phy_0_cc_pipe_clk: usb3phy_0_cc_pipe_clk {
->> +			compatible = "fixed-clock";
->> +			clock-frequency = <125000000>;
->> +			#clock-cells = <0>;
->> +		};
+> > > > With this all said -- I noticed iasl prints this statement when trying
+> > > > to create a node with a lowercase name:
+> > > > "At least one lower case letter found in NameSeg, ASL is case
+> > > > insensitive - converting to upper case (GPIO)"
+> > >
+> > > Yes, because it should be in the upper case.
+> > >
+> > > > I wonder if this suggests that adding a call to toupper() to
+> > > > acpi_fwnode_get_named_child_node would be
+> > > > an appropriate solution for the node name casing issue....
+> > >
+> > > I dunno. You need to ask in the linux-acpi@ mailing list.
+> > > To me this is corner case that can't be easily solved
+> > > (because two different specifications treat it differently.
+> > >
+> > > You also need to ask DT people about capital letters there.
+> > > And my guts tell me that it's probably also carved in the spec
+> > > as "must be lower case" or alike.
+> >
+> > FWIW while trying to enable this, at some point I named the I2C and the
+> > GPIO entries "I2C0" and "GPI0" (with the number '0', not the letter
+> > 'o'), and it was not working as you would expect.
+> >
+> > It is commonly accepted in the ACPI world that the names do not carry
+> > meaning AFAICT, and so I think I agree with Andy's initial comment
+> > regarding using indexes, not names to also fetch the I2C and GPIO nodes.
+> > You can probably have a fallback mechanism for when "i2c" is not
+> > present, or simply check if you are in DT or not and use the names only
+> > if we are in DT.
 > 
-> Spurious?
-Will drop it
+> More and more, after actually seeing and working with ACPI, I suspect that
+> you both are right. Maybe (hopefully) though, there is some unified way that can
+> be made to do this, so that individual drivers won't have to directly code for /
+> be aware of the differences in the firmware languages (at least, that seemed
+> to be the intent of the fw_node/device api in the first place). Maybe a
+> `device_get_child_by_name_or_index` (terribly long name) sort of function
+> might fill in that gap?
+
+I don't know. Though the _DSD documentation I mentioned above looks very
+similar to what you are describing in the DT case, so maybe the ACPI
+folks will just tell us "why don't you use XXXX?" and we will have the
+solution :) (we can't be the first to have that same issue TBH)
+
 > 
->> +
->>   		xo_board_clk: xo-board-clk {
->>   			compatible = "fixed-clock";
->>   			#clock-cells = <0>;
->> @@ -121,6 +151,155 @@
->>   		#size-cells = <1>;
->>   		ranges = <0 0 0 0xffffffff>;
->>   
->> +		pcie0_phy: phy@84000 {
->> +			compatible = "qcom,ipq9574-qmp-gen3x1-pcie-phy";
->> +			reg = <0x00084000 0x1bc>; /* Serdes PLL */
->> +			#address-cells = <1>;
->> +			#size-cells = <1>;
->> +			ranges;
->> +			clocks = <&gcc GCC_PCIE0_AUX_CLK>,
->> +				 <&gcc GCC_PCIE0_AHB_CLK>,
->> +				 <&gcc GCC_ANOC_PCIE0_1LANE_M_CLK>,
->> +				 <&gcc GCC_SNOC_PCIE0_1LANE_S_CLK>;
->> +			clock-names = "aux", "cfg_ahb", "anoc_lane", "snoc_lane";
+> I plan to send an email asking this question more generically to ACPI & DT folks
+> as Andy suggested, so hopefully there will be some ideas.
 > 
-> Care to explain what these anoc_lane and snoc_lane clocks are?
-snoc & anoc lane clocks are used in the SNOC/ANOC Network Interface Unit
-(NIU) which connects to the corresponding PCIE master/slave interface
-> 
->> +
->> +			assigned-clocks = <&gcc GCC_PCIE0_AUX_CLK>;
->> +			assigned-clock-rates = <20000000>;
->> +
->> +			resets = <&gcc GCC_PCIE0_PHY_BCR>,
->> +				 <&gcc GCC_PCIE0PHY_PHY_BCR>;
->> +			reset-names = "phy", "common";
->> +
->> +			status = "disabled";
->> +
->> +			pcie0_lane: phy@84200 {
->> +				reg = <0x00084200 0x16c>, /* Serdes Tx */
->> +				      <0x00084400 0x200>, /* Serdes Rx */
->> +				      <0x00084800 0x1f0>, /* PCS: Lane0, COM, PCIE */
->> +				      <0x00084c00 0xf4>;  /* pcs_misc */
->> +				#phy-cells = <0>;
->> +
->> +				clocks = <&gcc GCC_PCIE0_PIPE_CLK>;
->> +				clock-names = "pipe0";
->> +				clock-output-names = "gcc_pcie0_pipe_clk_src";
->> +				#clock-cells = <0>;
->> +			};
->> +		};
->> +
-> 
-> [...]
-> 
->> +		pcie1_x1: pci@10000000 {
->> +			compatible = "qcom,pcie-ipq9574";
->> +			reg =  <0x10000000 0xf1d>,
->> +			       <0x10000F20 0xa8>,
->> +			       <0x10001000 0x1000>,
->> +			       <0x000F8000 0x4000>,
->> +			       <0x10100000 0x1000>,
->> +			       <0x00618108 0x4>;
->> +			reg-names = "dbi", "elbi", "atu", "parf", "config", "aggr_noc";
-> 
-> As I asked in the binding patch, why "aggr_noc" region is required?
-The ANOC runs at a fixed frequency of 342MHz.
-For the connected PCIe slave devices that run at lesser frequency,
-the aggr_noc's rate adapter register is updated to configure
-the packet transmission rate to ensure no wait cycles are inserted.
-Can we use the 'syscon' property here to set the rate adapter?
-> 
->> +			device_type = "pci";
->> +			linux,pci-domain = <2>;
->> +			bus-range = <0x00 0xff>;
->> +			num-lanes = <1>;
->> +			#address-cells = <3>;
->> +			#size-cells = <2>;
->> +
->> +			ranges = <0x81000000 0 0x10200000 0x10200000
->> +				  0 0x00100000   /* downstream I/O */
->> +				  0x82000000 0 0x10300000 0x10300000
->> +				  0 0x07d00000>; /* non-prefetchable memory */
-> 
-> Don't split the ranges and encode them in a single line.
-Okay
-> 
-> Also, the I'm not sure why you have set the relocatable flag (n) for both
-> ranges i.e., in 0x81000000 and 0x82000000.
-Will check and add comment in V2
-> 
->> +
->> +			#interrupt-cells = <1>;
->> +			interrupt-map-mask = <0 0 0 0x7>;
->> +			interrupt-map = <0 0 0 1 &intc 0 35
->> +					IRQ_TYPE_LEVEL_HIGH>, /* int_a */
->> +					<0 0 0 2 &intc 0 49
->> +					IRQ_TYPE_LEVEL_HIGH>, /* int_b */
->> +					<0 0 0 3 &intc 0 84
->> +					IRQ_TYPE_LEVEL_HIGH>, /* int_c */
->> +					<0 0 0 4 &intc 0 85
->> +					IRQ_TYPE_LEVEL_HIGH>; /* int_d */
->> +
-> 
-> Again, wrap the interrupts in a single line.
-Sure, okay
-> 
->> +			interrupts = <GIC_SPI 25 IRQ_TYPE_LEVEL_HIGH>;
->> +			interrupt-names = "global_irq";
->> +
-> 
-> Linux doesn't support global_irq yet. But since devicetree is supposed to
-> describe the hardware, you can keep it.
-Okay
-> 
-> Above comment applies to rest of the PCIe nodes.
-> 
->> +			/* clocks and clock-names are used to enable the clock in CBCR */
->> +			clocks = <&gcc GCC_PCIE1_AHB_CLK>,
->> +				 <&gcc GCC_PCIE1_AUX_CLK>,
->> +				 <&gcc GCC_PCIE1_AXI_M_CLK>,
->> +				 <&gcc GCC_PCIE1_AXI_S_CLK>,
->> +				 <&gcc GCC_PCIE1_AXI_S_BRIDGE_CLK>,
->> +				 <&gcc GCC_PCIE1_RCHNG_CLK>;
->> +			clock-names = "ahb",
->> +				      "aux",
->> +				      "axi_m",
->> +				      "axi_s",
->> +				      "axi_bridge",
->> +				      "rchng";
->> +
->> +			resets = <&gcc GCC_PCIE1_PIPE_ARES>,
->> +				 <&gcc GCC_PCIE1_CORE_STICKY_ARES>,
->> +				 <&gcc GCC_PCIE1_AXI_S_STICKY_ARES>,
->> +				 <&gcc GCC_PCIE1_AXI_S_ARES>,
->> +				 <&gcc GCC_PCIE1_AXI_M_STICKY_ARES>,
->> +				 <&gcc GCC_PCIE1_AXI_M_ARES>,
->> +				 <&gcc GCC_PCIE1_AUX_ARES>,
->> +				 <&gcc GCC_PCIE1_AHB_ARES>;
->> +			reset-names = "pipe",
->> +				      "sticky",
->> +				      "axi_s_sticky",
->> +				      "axi_s",
->> +				      "axi_m_sticky",
->> +				      "axi_m",
->> +				      "aux",
->> +				      "ahb";
->> +
->> +			phys = <&pcie1_lane>;
->> +			phy-names = "pciephy";
->> +			msi-parent = <&v2m0>;
->> +			status = "disabled";
->> +		};
->> +
-> 
-> [...]
-> 
->> +		pcie2_x2: pci@20000000 {
->> +			compatible = "qcom,pcie-ipq9574";
->> +			reg =  <0x20000000 0xf1d>,
->> +			       <0x20000F20 0xa8>,
->> +			       <0x20001000 0x1000>,
->> +			       <0x00088000 0x4000>,
->> +			       <0x20100000 0x1000>;
->> +			reg-names = "dbi", "elbi", "atu", "parf", "config";
->> +			device_type = "pci";
->> +			linux,pci-domain = <3>;
->> +			bus-range = <0x00 0xff>;
->> +			num-lanes =<2>;
-> 
-> Space after =
-Sure, okay
-> 
-> Thanks,
-> Mani
-> 
+> >
+> > Thanks a lot to both of you, this will be tremendously helpful to me.
+> >
+> > Cheers,
+> > Benjamin
+> >
+> Thanks for testing this out! Glad that ACPI support ended up being worked into
+> this after all :)
+
+Cheers,
+Benjamin
+
