@@ -2,102 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E12E76AF626
-	for <lists+devicetree@lfdr.de>; Tue,  7 Mar 2023 20:54:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7FF0C6AF637
+	for <lists+devicetree@lfdr.de>; Tue,  7 Mar 2023 20:57:16 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231669AbjCGTyZ convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Tue, 7 Mar 2023 14:54:25 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52146 "EHLO
+        id S230460AbjCGT5O (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Mar 2023 14:57:14 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56920 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229698AbjCGTx6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Mar 2023 14:53:58 -0500
-Received: from mail-pl1-x636.google.com (mail-pl1-x636.google.com [IPv6:2607:f8b0:4864:20::636])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 23F34A7291
-        for <devicetree@vger.kernel.org>; Tue,  7 Mar 2023 11:45:54 -0800 (PST)
-Received: by mail-pl1-x636.google.com with SMTP id p20so15262055plw.13
-        for <devicetree@vger.kernel.org>; Tue, 07 Mar 2023 11:45:54 -0800 (PST)
+        with ESMTP id S229689AbjCGT4E (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Mar 2023 14:56:04 -0500
+Received: from mail-yw1-x1135.google.com (mail-yw1-x1135.google.com [IPv6:2607:f8b0:4864:20::1135])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4EE938480A;
+        Tue,  7 Mar 2023 11:49:08 -0800 (PST)
+Received: by mail-yw1-x1135.google.com with SMTP id 00721157ae682-53916ab0c6bso264537287b3.7;
+        Tue, 07 Mar 2023 11:49:08 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112; t=1678218547;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=ODAdwNVzEJVs/dVcubwVWxE4VHHfEBFygq2METYrA4Y=;
+        b=EBGWV9P9hc3MhvtusP8cy+4BsbVkm6N67AT3jWnp1OFU5rEaEQi5sduiRH5mTr+8ei
+         mWQ8ihfvkC5X+ezWw45gQhzNl/nlwPwUfENgT3rns1tmdW8YB8WAI7i94BrBU8mKwhEz
+         2SXKy/89P2gnp9O1ZeaTkb59HQYtRUX15S6V6dtANB2bJ8rFVe6VwSW2HdZmZ01Ogpi1
+         3CJpbCtndTp3o5BDLE3N5VumJziHOXtc7FwsSG3f5j7BqvnLU1ZquM5vVveCzukkIs9Q
+         WOF8YncBVIBEydqfhUIF2zmFwB9MszGOD/OM3n+Ftr9IutT8/FWE+7YSaHT1dMqTLgwz
+         7ALg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678218046;
-        h=content-transfer-encoding:mime-version:message-id:date:references
-         :in-reply-to:subject:to:from:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=CWFDL0Togo3L/5bvFloyMlrVxNWJz2dZaxBpDesLPPY=;
-        b=1ab6T7mKaVR5H+S13cpyLoTxwfuEa4VhaaEWZguh/CsUHxVRa/l/ADlwaKUna9vu5g
-         Iaw5+Dgag1oVZVujakLhQYrDDkeu5iLQoeAQn+efsrJeGjt9OX24jbqWrrE9KyeaO+pn
-         QHSDl2PvZcspVdluj9ofODj6qg8IAzVDyZXQZnrLAtRHZc+CB/qYdzSpiSOb8QAH1CHR
-         ViobMVnNmQHLU+jHjEQ2ITKobmeOq4fIyfJ/YDXpLvHdHmVEKsiMeVi+5NMHFFXVdQ5Q
-         /8qeJcO1kwt7SxgO4slmpEbnr8pI98j3ppf+IlrkJdLnUzo5jEePxLDaFY1mTX71su27
-         nikA==
-X-Gm-Message-State: AO0yUKWpEOE+xrayDHvebMNU9D3KLtl46In0SYfIqcCTyXFmf8uNrRdG
-        CPW1N3dSX14RyHG9VdWUPIp/TA==
-X-Google-Smtp-Source: AK7set9Pfl0SQYm8o4d/CzeLw+E0U3nXeg314CNzFcmKQNtPX+Scglz04h5m+eRyrouDFqS1XFo04A==
-X-Received: by 2002:a17:90b:4b49:b0:234:234c:72d9 with SMTP id mi9-20020a17090b4b4900b00234234c72d9mr16195349pjb.14.1678218046516;
-        Tue, 07 Mar 2023 11:40:46 -0800 (PST)
-Received: from localhost (63-228-113-140.tukw.qwest.net. [63.228.113.140])
-        by smtp.gmail.com with ESMTPSA id fy1-20020a17090b020100b0022bfcf5d297sm9742902pjb.9.2023.03.07.11.40.45
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 07 Mar 2023 11:40:45 -0800 (PST)
-From:   Kevin Hilman <khilman@kernel.org>
-To:     Matthias Brugger <matthias.bgg@gmail.com>,
-        Bernhard =?utf-8?Q?Rosenkr?= =?utf-8?Q?=C3=A4nzer?= 
-        <bero@baylibre.com>, linux-mediatek@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-gpio@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-serial@vger.kernel.org, linux-usb@vger.kernel.org,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        tglx@linutronix.de, maz@kernel.org, lee@kernel.org,
-        linus.walleij@linaro.org, gregkh@linuxfoundation.org,
-        daniel.lezcano@linaro.org, chunfeng.yun@mediatek.com,
-        angelogioacchino.delregno@collabora.com, nfraprado@collabora.com,
-        allen-kh.cheng@mediatek.com, sean.wang@mediatek.com,
-        zhiyong.tao@mediatek.com,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-Subject: Re: [PATCH v9 8/9] dt-bindings: serial: mediatek,uart: add MT8365
-In-Reply-To: <0dec66ce-424c-e682-3f73-594e5b1edb65@gmail.com>
-References: <20230125143503.1015424-1-bero@baylibre.com>
- <20230125143503.1015424-9-bero@baylibre.com>
- <0dec66ce-424c-e682-3f73-594e5b1edb65@gmail.com>
-Date:   Tue, 07 Mar 2023 11:40:45 -0800
-Message-ID: <7httywfiyq.fsf@baylibre.com>
+        d=1e100.net; s=20210112; t=1678218547;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=ODAdwNVzEJVs/dVcubwVWxE4VHHfEBFygq2METYrA4Y=;
+        b=1I8E1VRjLgV3xsNvv3MfoLfCZeedNvzc9LDwUMX8d+5n93NimXjBW9vO3v/nFx/ZsU
+         h+OsozPUUHmFkD75ci4kY+4CKp2Uve5ZRmlGhKp/mIJ2S+wCvoJcwSmSrobGLF3rNcdw
+         ot5/vq0WfpfbZmRkJ5B2ILaTlrVY76ENIgR2blmh3lerYqtfc8IH0KjuO8G+Ue6b6pus
+         /1q+rKnBkByV76FJ2TzdgxhY3TaB2nf1Eq0IisUc+gUzvJZeBCgaga0RWphP+j5dkO3d
+         +AJxoZqzrxDrqCunMRzzY9awNdGmA0Q8UDWU2c8yYzunWZ510dwfpoCysnn8D/Vjbc8F
+         HUcQ==
+X-Gm-Message-State: AO0yUKV/HGh65WVPy79pwIfJ5E0fvy+IjCEenv5pKJxEO+zE745H4WoH
+        sPVXwOnXZvX9sPWHfr2Lq/1Rj3E/A2ysPpEXHHA=
+X-Google-Smtp-Source: AK7set8HTAxm99sXyODDgRgvKbJw/T/FIqvJQcIBrp4hcUm2oTnHRLqYjSKe2ZK5X06Pk2qEoBKlCPMSxsoxGSXENgY=
+X-Received: by 2002:a81:b64f:0:b0:52f:b5a:9643 with SMTP id
+ h15-20020a81b64f000000b0052f0b5a9643mr9943432ywk.8.1678218547453; Tue, 07 Mar
+ 2023 11:49:07 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: 8BIT
-X-Spam-Status: No, score=-1.6 required=5.0 tests=BAYES_00,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,
-        SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+References: <20230305122428.167580-1-krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230305122428.167580-1-krzysztof.kozlowski@linaro.org>
+From:   Petr Vorel <petr.vorel@gmail.com>
+Date:   Tue, 7 Mar 2023 20:48:54 +0100
+Message-ID: <CAB1t1CzF+E=h9bWWwKf1vpt+ThOOxHvYZ1Nh0f5ep6A=1WZNEw@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: soc: qcom: smd-rpm: re-add missing qcom,rpm-msm8994
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Kathiravan T <kathirav@codeaurora.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Matthias,
+Hi all,
 
-Matthias Brugger <matthias.bgg@gmail.com> writes:
+Reviewed-by: Petr Vorel <petr.vorel@gmail.com>
 
-> On 25/01/2023 15:35, Bernhard Rosenkränzer wrote:
->> Add binding description for mediatek,mt8365-uart
->> 
->> Signed-off-by: Bernhard Rosenkränzer <bero@baylibre.com>
->> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->> Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
->
-> Reviewed-by: Matthias Brugger <matthias.bgg@gmail.com>
->
-> Greg will you take 5,6 and 8 from this series through your branch or are you Ok 
-> if I take them. They are all just adding a new compatible string to the 
-> following files:
-> Documentation/devicetree/bindings/usb/mediatek,mtu3.yaml
-> Documentation/devicetree/bindings/usb/mediatek,mtk-xhci.yaml
-> and
-> Documentation/devicetree/bindings/serial/mediatek,uart.yaml
-
-Might I gently suggest that you take these along with patch 9 through
-your tree?
-
-The driver portions were all been merged and the bindings and DT all
-reviewed since end of January.
-
-Thanks,
-
-Kevin
+Kind regards,
+Petr
