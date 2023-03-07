@@ -2,137 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 353806AD5CE
-	for <lists+devicetree@lfdr.de>; Tue,  7 Mar 2023 04:45:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 542EC6AD5E3
+	for <lists+devicetree@lfdr.de>; Tue,  7 Mar 2023 04:48:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229963AbjCGDp4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 Mar 2023 22:45:56 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37146 "EHLO
+        id S230200AbjCGDsS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 Mar 2023 22:48:18 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40866 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229619AbjCGDpz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Mar 2023 22:45:55 -0500
-Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com [IPv6:2a00:1450:4864:20::534])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9AC7B3250C;
-        Mon,  6 Mar 2023 19:45:54 -0800 (PST)
-Received: by mail-ed1-x534.google.com with SMTP id g3so47340480eda.1;
-        Mon, 06 Mar 2023 19:45:54 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112; t=1678160753;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=7WFYzmYMI13NGyI9RVWU+B5u5ZNy5SSZeg3RTeQ3FS4=;
-        b=RbGZd472V0mVea6Q/CdYoaWjP6UZwTd+MXhE38lo2a4xGqBjdGJBk/FxdFXeribDDi
-         3zDaZmVB7PU2pwW/kHOM2RuQFCkUTuLt9OIRjqHmoVIbrxY9+NlxD9PjMsk67Llj5L2o
-         qgQuRhr/fNfRypyEir8uyuKCNINxA71JFHyfxAFRal+zMnJEIiUOikmzR3oiqcefc76m
-         X7SBfQQVCJw0CCpMWhLPPvme8sPIlbztqy8VqrwdmrBP3Nv98hrK1MbB3fdd0Nu25N0L
-         Gkwozz8oRk1N2ZPFA6lPCPqMr4gCVCNbycQCMyu2rhd+yDXCKkRmEEbdGgKtCeWaEkX+
-         3LEA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678160753;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=7WFYzmYMI13NGyI9RVWU+B5u5ZNy5SSZeg3RTeQ3FS4=;
-        b=xiuhe3XH7IZfxjGh4kuB6Pk6pLXdiPU7mqeaD0miF1fmN/DQowENxP8VP9RcK2+KpH
-         2/OgR51dlbgoxfEXc37mNsqHD0H+NlQMPt/Yc/fxOVFRsCL5+GjKepNrumy1h3jXceM+
-         fVIBjlu4id9QqcJcp7/vSLWU1CNjDB858/+6IDv45AfixtZawYsU3Kdtl7RN+aRaW8n9
-         aa8CIesNevcaO2aZQKRZC2Hs94xqKir0Xqy+PzCVp2kb1q3LtGMzWz2ACRIkBelIBvf1
-         7MvBM/j/WYYN09k+ulvlLBQloBLVMB7rejTyx40rQFxdQUqzQxcJ1DXPBhKdWbJI12ls
-         hhYQ==
-X-Gm-Message-State: AO0yUKXGydHu/uvutjoLOL1WMNbjjsVfOopQDR2cbfhtTHgZdKxrbQiT
-        wLNaKmKjnxEx2PcrVSKs6OkMG1D2KPQmzhb7tek=
-X-Google-Smtp-Source: AK7set/bDf7jZs8BadF17KUJmFRr2SpATO3txBELeojm6hKxTx9bH/strG41JGbMxurM5Eq8vfjECTwY7Abzb+ve+gg=
-X-Received: by 2002:a50:d581:0:b0:4ab:4b85:a6a8 with SMTP id
- v1-20020a50d581000000b004ab4b85a6a8mr7092721edi.4.1678160753041; Mon, 06 Mar
- 2023 19:45:53 -0800 (PST)
+        with ESMTP id S229627AbjCGDsP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Mar 2023 22:48:15 -0500
+Received: from ex01.ufhost.com (ex01.ufhost.com [61.152.239.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BCCE258C20;
+        Mon,  6 Mar 2023 19:47:44 -0800 (PST)
+Received: from EXMBX166.cuchost.com (unknown [175.102.18.54])
+        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+        (Client CN "EXMBX166", Issuer "EXMBX166" (not verified))
+        by ex01.ufhost.com (Postfix) with ESMTP id 03FF224E023;
+        Tue,  7 Mar 2023 11:47:42 +0800 (CST)
+Received: from EXMBX061.cuchost.com (172.16.6.61) by EXMBX166.cuchost.com
+ (172.16.6.76) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Tue, 7 Mar
+ 2023 11:47:41 +0800
+Received: from [192.168.125.128] (183.27.97.46) by EXMBX061.cuchost.com
+ (172.16.6.61) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Tue, 7 Mar
+ 2023 11:47:40 +0800
+Message-ID: <c745392f-6d8a-8e00-803b-dd61a0a008a0@starfivetech.com>
+Date:   Tue, 7 Mar 2023 11:47:45 +0800
 MIME-Version: 1.0
-References: <20230302125215.214014-1-keguang.zhang@gmail.com>
- <20230302125215.214014-3-keguang.zhang@gmail.com> <CAMRc=Me3yVwQm8=CmUVM2gyYnFxntW47-OOPdmq1TzXTJB5ETg@mail.gmail.com>
-In-Reply-To: <CAMRc=Me3yVwQm8=CmUVM2gyYnFxntW47-OOPdmq1TzXTJB5ETg@mail.gmail.com>
-From:   Keguang Zhang <keguang.zhang@gmail.com>
-Date:   Tue, 7 Mar 2023 11:45:36 +0800
-Message-ID: <CAJhJPsX1q6PGSb+eoCSdCC2_vDtbaShLLzEbuNOqD_Jzd8Ozdw@mail.gmail.com>
-Subject: Re: [PATCH v2 2/5] gpio: loongson1: Use readl() & writel()
-To:     Bartosz Golaszewski <brgl@bgdev.pl>
-Cc:     linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-mips@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Linus Walleij <linus.walleij@linaro.org>,
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.8.0
+Subject: Re: [PATCH v1 2/3] clocksource: Add StarFive timer driver
+To:     Andreas Schwab <schwab@suse.de>
+CC:     <linux-riscv@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        "Daniel Lezcano" <daniel.lezcano@linaro.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        "Palmer Dabbelt" <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        "Philipp Zabel" <p.zabel@pengutronix.de>,
+        Samin Guo <samin.guo@starfivetech.com>,
+        <linux-kernel@vger.kernel.org>
+References: <20221223094801.181315-1-xingyu.wu@starfivetech.com>
+ <20221223094801.181315-3-xingyu.wu@starfivetech.com>
+ <mvmzg8vlcfk.fsf@suse.de>
+Content-Language: en-US
+From:   Xingyu Wu <xingyu.wu@starfivetech.com>
+In-Reply-To: <mvmzg8vlcfk.fsf@suse.de>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [183.27.97.46]
+X-ClientProxiedBy: EXCAS066.cuchost.com (172.16.6.26) To EXMBX061.cuchost.com
+ (172.16.6.61)
+X-YovoleRuleAgent: yovoleflag
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Mar 6, 2023 at 5:30=E2=80=AFPM Bartosz Golaszewski <brgl@bgdev.pl> =
-wrote:
->
-> On Thu, Mar 2, 2023 at 1:52=E2=80=AFPM Keguang Zhang <keguang.zhang@gmail=
-.com> wrote:
-> >
-> > This patch replace __raw_readl() & __raw_writel() with readl() & writel=
-().
-> >
->
-> Please say WHY you're doing this.
->
-readl & writel contain memory barriers which can guarantee access order.
+On 2023/3/2 17:39, Andreas Schwab wrote:
+> drivers/clocksource/timer-starfive.c:117:13: error: conflicting types for 'timer_shutdown'; have 'void(struct starfive_clkevt *)'
+>   117 | static void timer_shutdown(struct starfive_clkevt *clkevt)
+>       |             ^~~~~~~~~~~~~~
+> In file included from ./include/linux/workqueue.h:9,
+>                  from ./include/linux/srcu.h:21,
+>                  from ./include/linux/notifier.h:16,
+>                  from ./include/linux/clk.h:14,
+>                  from drivers/clocksource/timer-starfive.c:12:
+> ./include/linux/timer.h:188:12: note: previous declaration of 'timer_shutdown' with type 'int(struct timer_list *)'
+>   188 | extern int timer_shutdown(struct timer_list *timer);
+>       |            ^~~~~~~~~~~~~~
+> 
 
-> Bart
->
-> > Signed-off-by: Keguang Zhang <keguang.zhang@gmail.com>
-> > ---
-> > V1 -> V2: Split this change to a separate patch
-> > ---
-> >  drivers/gpio/gpio-loongson1.c | 8 ++++----
-> >  1 file changed, 4 insertions(+), 4 deletions(-)
-> >
-> > diff --git a/drivers/gpio/gpio-loongson1.c b/drivers/gpio/gpio-loongson=
-1.c
-> > index 8862c9ea0d41..b6c11caa3ade 100644
-> > --- a/drivers/gpio/gpio-loongson1.c
-> > +++ b/drivers/gpio/gpio-loongson1.c
-> > @@ -23,8 +23,8 @@ static int ls1x_gpio_request(struct gpio_chip *gc, un=
-signed int offset)
-> >         unsigned long flags;
-> >
-> >         raw_spin_lock_irqsave(&gc->bgpio_lock, flags);
-> > -       __raw_writel(__raw_readl(gpio_reg_base + GPIO_CFG) | BIT(offset=
-),
-> > -                    gpio_reg_base + GPIO_CFG);
-> > +       writel(readl(gpio_reg_base + GPIO_CFG) | BIT(offset),
-> > +              gpio_reg_base + GPIO_CFG);
-> >         raw_spin_unlock_irqrestore(&gc->bgpio_lock, flags);
-> >
-> >         return 0;
-> > @@ -35,8 +35,8 @@ static void ls1x_gpio_free(struct gpio_chip *gc, unsi=
-gned int offset)
-> >         unsigned long flags;
-> >
-> >         raw_spin_lock_irqsave(&gc->bgpio_lock, flags);
-> > -       __raw_writel(__raw_readl(gpio_reg_base + GPIO_CFG) & ~BIT(offse=
-t),
-> > -                    gpio_reg_base + GPIO_CFG);
-> > +       writel(readl(gpio_reg_base + GPIO_CFG) & ~BIT(offset),
-> > +              gpio_reg_base + GPIO_CFG);
-> >         raw_spin_unlock_irqrestore(&gc->bgpio_lock, flags);
-> >  }
-> >
-> > --
-> > 2.34.1
-> >
+Oh, this timer_shutdown(struct timer_list *timer) function was not available
+in 6.1-rc5 which this patchset was base on. And in the new version, it's the
+same name as my own function. I will change the name of this function.
 
-
-
---
 Best regards,
-
-Kelvin Cheung
+Xingyu Wu
