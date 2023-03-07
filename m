@@ -2,157 +2,144 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D8EF56AF8A6
-	for <lists+devicetree@lfdr.de>; Tue,  7 Mar 2023 23:28:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9DB536AF8FA
+	for <lists+devicetree@lfdr.de>; Tue,  7 Mar 2023 23:37:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229991AbjCGW2I (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Mar 2023 17:28:08 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54430 "EHLO
+        id S231694AbjCGWhi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Mar 2023 17:37:38 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41156 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229590AbjCGW1q (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Mar 2023 17:27:46 -0500
-Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com [IPv6:2a00:1450:4864:20::534])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 52F21968C2;
-        Tue,  7 Mar 2023 14:27:06 -0800 (PST)
-Received: by mail-ed1-x534.google.com with SMTP id u9so58597337edd.2;
-        Tue, 07 Mar 2023 14:27:06 -0800 (PST)
+        with ESMTP id S231251AbjCGWhM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Mar 2023 17:37:12 -0500
+Received: from mail-yb1-xb33.google.com (mail-yb1-xb33.google.com [IPv6:2607:f8b0:4864:20::b33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3AD2DB1EF0
+        for <devicetree@vger.kernel.org>; Tue,  7 Mar 2023 14:36:21 -0800 (PST)
+Received: by mail-yb1-xb33.google.com with SMTP id y144so12935948yby.12
+        for <devicetree@vger.kernel.org>; Tue, 07 Mar 2023 14:36:21 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=googlemail.com; s=20210112; t=1678228024;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+        d=linaro.org; s=google; t=1678228506;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=ExpR60rlK67/XKPCeTgOHd008brYtjClGvCmbWSFbwI=;
-        b=Zb/ggaaQyv+CkyxjYqpj/Dy3WUdP/IdFF0xtREUhsz/4gu2BR3xwDR29s1j2lq5Nr3
-         gMibyzTFlzcEArZliny/JoXY2WWrfPF3m74+XGzSLtzdixRjF0OTfvjpdSeL8pb5b7iy
-         tfIKXizsoEbEjJImbsAkw7ejDSKfzuh2BlS7uxXsNNlUmSh45ITD8m2l3mTgbznGBSXV
-         1N/3mG9zXst+s2dhcQXG57D9G9NobHu15G5IcDiiDgS9tJwsbWcRU+O7BCzwmWJcAcqt
-         uMZ+QqJ1VbozXtBKmC/I4AWnTRW3jXGxyVCZAqKOKrOhgIDrM6mO1ckkt5xNjBWLKER8
-         sQ0g==
+        bh=Yyb0rhnuV7oh3CLMKShl+J+wi5X4qG87kgpZAdrNvLo=;
+        b=j2eJjWOeqSZqBlt1Ya6O396ehMlnu7bun7PacqdauNEkRClrB8l8duBGCZVtvxoS+N
+         RpjWcYF+kLNzDgxJiKJH7/eQWNNMu5Vh3/AyEuy+++8brALwbb1CfyaXBvFZuPuDv/46
+         e7+wyKEt41FixpsMi/mmgIACA2+6+MNGOfGRpBzHOw2DT2Ln98zlicoDcfiHFjxgnhGV
+         0P+kxVAvbAVCjRaiKILKxjcQHTzFKgb+OIKfWKyCwN8BMUWIoyPUA7NLEM03KmA+VxnO
+         fo47X0aDdRhCRXOv4KCWvSCqWHyMubIrLBjt0T0IvaMMmMlIiL4QmpeWKpeUFImkc6o+
+         OR4w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678228024;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+        d=1e100.net; s=20210112; t=1678228506;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=ExpR60rlK67/XKPCeTgOHd008brYtjClGvCmbWSFbwI=;
-        b=skvoPiVoVrNYfs7uO1o+7ftVPzQ7WMDoziCQ8J/DuSg6ZdMplre9P1gaEG+yEUXhgt
-         RTlTSwilVclWt6zo0C7R5OAjANYUZtR8H7NeBjtZT7yXMlKeNV4p1PSTe137eE+rvufJ
-         95cTGaNdP9VcGf/ddC12NyXjTsdrTCqTqK6x5LdMnZs2ZQ516trUa6noNaJXcE4mW7hB
-         P2hylZkZ3mjcgkembKifI2ahWgg/8iYDQr/1JqWzvzzXxo7c5LC4Id3Gm35ez6Kc9eEj
-         ZZ79CC610HZZT44aN+dw5J3y8F8Zt/KWlc93ZltWTEITZ2rkduoUUKZDW7FXRtOaY0gk
-         PDsg==
-X-Gm-Message-State: AO0yUKXGekgdhkpLe5rIIuYlYRxMBQ+rT8Ok0JNEupSFaKpdA2sER3Wv
-        IHWkrMGQzY62UVEKNqnVVzE=
-X-Google-Smtp-Source: AK7set/o0PL2VR+sAsODNx7yzEKziGZhE38Th2SLl9L8Pm3Fk4SOFX1CvOJbUItRhB8Vx6c43w6oPg==
-X-Received: by 2002:a17:906:c9c2:b0:8a0:7158:15dc with SMTP id hk2-20020a170906c9c200b008a0715815dcmr13158932ejb.74.1678228024215;
-        Tue, 07 Mar 2023 14:27:04 -0800 (PST)
-Received: from localhost.localdomain (dynamic-2a01-0c23-c485-ef00-0000-0000-0000-0e63.c23.pool.telefonica.de. [2a01:c23:c485:ef00::e63])
-        by smtp.googlemail.com with ESMTPSA id t19-20020a170906065300b008be996c1630sm6669412ejb.39.2023.03.07.14.27.03
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 07 Mar 2023 14:27:03 -0800 (PST)
-From:   Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-To:     linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org
-Cc:     linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        jirislaby@kernel.org, neil.armstrong@linaro.org,
-        krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
-        gregkh@linuxfoundation.org,
-        Christian Hewitt <christianshewitt@gmail.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Subject: [PATCH v3 3/3] arm64: dts: meson-g12-common: Use the G12A UART compatible string
-Date:   Tue,  7 Mar 2023 23:26:51 +0100
-Message-Id: <20230307222651.2106615-4-martin.blumenstingl@googlemail.com>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20230307222651.2106615-1-martin.blumenstingl@googlemail.com>
-References: <20230307222651.2106615-1-martin.blumenstingl@googlemail.com>
+        bh=Yyb0rhnuV7oh3CLMKShl+J+wi5X4qG87kgpZAdrNvLo=;
+        b=JfCDnh+vGSwBoRQ5GZhcUJOoi0CmlwgzP1QH+IX5nNPr9EkUzTUwNrKkn98MbQlmjv
+         tl+0FsKyYLtX9CU+Pb1s/Y7OHHQhqHdqzuG4kKfMOr9vpyVWXhz1jeM50BCS5WX/8Cv2
+         SmKc311R3+rDbZrNXE4cNO3b6uozUsSzEK56+ItUT2zj/tZSpqro24eHOEolTTp9FaS7
+         5FcMqcX6eYq8nAv2P3ARQ0m7UJp4/FjEUKZMKBNvg6FkMx3YDmKinJ4FuewPdTzjZvwV
+         jmoPd+RNWi7ezgRO1TIEMtf0qaYcAZ1cVC4PxCiuG/mK99apekZtHBy3/62YNkTG7wDH
+         kbKw==
+X-Gm-Message-State: AO0yUKUtrfuTKV+LtI+j3n0ckiKCN8b/nhknAcOTrWstJfP5F9ylULGK
+        7B0eveQbetiZra0kZ/6D3RTomaNGSn0dyiCGGadmsg==
+X-Google-Smtp-Source: AK7set+qjWLKdRokY0PE/Ly5XTIkGJNsmaouJx7H7eHeFmFlb5PHA7OryQsrT4nZo7WdvCLp9Fsxze+058KE7Clp5w4=
+X-Received: by 2002:a05:6902:c3:b0:9f1:6c48:f95f with SMTP id
+ i3-20020a05690200c300b009f16c48f95fmr7774360ybs.5.1678228506476; Tue, 07 Mar
+ 2023 14:35:06 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20230220121258.10727-1-lujianhua000@gmail.com> <20230220121258.10727-2-lujianhua000@gmail.com>
+In-Reply-To: <20230220121258.10727-2-lujianhua000@gmail.com>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Tue, 7 Mar 2023 23:34:55 +0100
+Message-ID: <CACRpkdbZCZiMM_qeqMd9=txVvPVHEzM4szOnPR-gCYdiXW_9eA@mail.gmail.com>
+Subject: Re: [PATCH v2 2/2] drm/panel: Add driver for Novatek NT36523
+To:     Jianhua Lu <lujianhua000@gmail.com>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>
+Cc:     Thierry Reding <thierry.reding@gmail.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        dri-devel@lists.freedesktop.org,
+        ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Switch meson-12-common.dtsi to use the Meson G12A specific UART
-compatible string. This enables the "divide XTAL by 2" divider which
-improves support for UART attached Bluetooth modules (for example
-RTL8822CS) running at a baud rate of 1500000. Without dividing XTAL
-(24MHz) by 2 a baud rate of 1500000 cannot be generated cleanly and the
-resulting jitter breaks communication with the module.
+Hi Jianhua,
 
-Tested-by: Christian Hewitt <christianshewitt@gmail.com>
-Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
----
-Greg, please don't take this through your tree. I included this patch
-to show the overall goal of this series. If Neil won't take this as
-part of another series then I'll send it separately.
+thanks for your patch!
 
-Changes from v1 -> v2:
-- keep meson-gx-uart as fallback compatible string
+It appears Konrad is working on a very similar driver, so I suggest merging
+them into one Novatek NT36523 driver.
 
-Changes from v2 -> v3:
-- none
+Possibly we can fix this up first and then add Konrads Lenovo-panel with
+a patch on top.
 
+On Mon, Feb 20, 2023 at 1:13=E2=80=AFPM Jianhua Lu <lujianhua000@gmail.com>=
+ wrote:
 
- arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi | 15 ++++++++++-----
- 1 file changed, 10 insertions(+), 5 deletions(-)
+> Add a driver for panels using the Novatek NT36523 display driver IC.
+>
+> Signed-off-by: Jianhua Lu <lujianhua000@gmail.com>
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
-index 123a56f7f818..904bcd4d2acf 100644
---- a/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
-@@ -2046,7 +2046,8 @@ pwm_AO_cd: pwm@2000 {
- 			};
- 
- 			uart_AO: serial@3000 {
--				compatible = "amlogic,meson-gx-uart",
-+				compatible = "amlogic,meson-g12a-uart",
-+					     "amlogic,meson-gx-uart",
- 					     "amlogic,meson-ao-uart";
- 				reg = <0x0 0x3000 0x0 0x18>;
- 				interrupts = <GIC_SPI 193 IRQ_TYPE_EDGE_RISING>;
-@@ -2056,7 +2057,8 @@ uart_AO: serial@3000 {
- 			};
- 
- 			uart_AO_B: serial@4000 {
--				compatible = "amlogic,meson-gx-uart",
-+				compatible = "amlogic,meson-g12a-uart",
-+					     "amlogic,meson-gx-uart",
- 					     "amlogic,meson-ao-uart";
- 				reg = <0x0 0x4000 0x0 0x18>;
- 				interrupts = <GIC_SPI 197 IRQ_TYPE_EDGE_RISING>;
-@@ -2293,7 +2295,8 @@ clk_msr: clock-measure@18000 {
- 			};
- 
- 			uart_C: serial@22000 {
--				compatible = "amlogic,meson-gx-uart";
-+				compatible = "amlogic,meson-g12a-uart",
-+					     "amlogic,meson-gx-uart";
- 				reg = <0x0 0x22000 0x0 0x18>;
- 				interrupts = <GIC_SPI 93 IRQ_TYPE_EDGE_RISING>;
- 				clocks = <&xtal>, <&clkc CLKID_UART2>, <&xtal>;
-@@ -2302,7 +2305,8 @@ uart_C: serial@22000 {
- 			};
- 
- 			uart_B: serial@23000 {
--				compatible = "amlogic,meson-gx-uart";
-+				compatible = "amlogic,meson-g12a-uart",
-+					     "amlogic,meson-gx-uart";
- 				reg = <0x0 0x23000 0x0 0x18>;
- 				interrupts = <GIC_SPI 75 IRQ_TYPE_EDGE_RISING>;
- 				clocks = <&xtal>, <&clkc CLKID_UART1>, <&xtal>;
-@@ -2311,7 +2315,8 @@ uart_B: serial@23000 {
- 			};
- 
- 			uart_A: serial@24000 {
--				compatible = "amlogic,meson-gx-uart";
-+				compatible = "amlogic,meson-g12a-uart",
-+					     "amlogic,meson-gx-uart";
- 				reg = <0x0 0x24000 0x0 0x18>;
- 				interrupts = <GIC_SPI 26 IRQ_TYPE_EDGE_RISING>;
- 				clocks = <&xtal>, <&clkc CLKID_UART0>, <&xtal>;
--- 
-2.39.2
+(...)
 
+I like how you abstract the panel with init commands in the panel info.
+
+> +enum dsi_cmd_type {
+> +       INIT_DCS_CMD,
+> +       DELAY_CMD,
+> +};
+> +
+> +struct panel_init_cmd {
+> +       enum dsi_cmd_type type;
+> +       size_t len;
+> +       const char *data;
+> +};
+> +
+> +#define _INIT_DCS_CMD(...) { \
+> +       .type =3D INIT_DCS_CMD, \
+> +       .len =3D sizeof((char[]){__VA_ARGS__}), \
+> +       .data =3D (char[]){__VA_ARGS__} }
+> +
+> +#define _INIT_DELAY_CMD(...) { \
+> +       .type =3D DELAY_CMD,\
+> +       .len =3D sizeof((char[]){__VA_ARGS__}), \
+> +       .data =3D (char[]){__VA_ARGS__} }
+
+I have seen this type of reinvented wheels a few times now. Don't do this.
+
+Look into other recently merged drivers and look how they do it, for exampl=
+e
+drivers/gpu/drm/panel/panel-himax-hx8394.c
+
+For example:
+
+- Use mipi_dsi_dcs_write_seq()
+
+- If the delay is just used at one point in the sequence, do not invent
+  a command language like above for it, open code the delay instead
+
+- Try to decode as much magic as possible, if you look in Konrads
+  driver you clearly see some standard MIPI commands, I bet you have
+  some too.
+
+- Maybe use callbacks to send sequences instead of tables, like in
+  the himax driver?
+
+Other than that it seems like something that could also handle the Lenovo
+display, or the other way around, I don't know which driver is the best
+starting point, but this one has the right Novatek name at least.
+
+Yours,
+Linus Walleij
