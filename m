@@ -2,148 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4154B6AD953
-	for <lists+devicetree@lfdr.de>; Tue,  7 Mar 2023 09:36:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 18EBF6AD969
+	for <lists+devicetree@lfdr.de>; Tue,  7 Mar 2023 09:42:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229689AbjCGIgs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Mar 2023 03:36:48 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44364 "EHLO
+        id S229808AbjCGImi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Mar 2023 03:42:38 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50940 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229673AbjCGIgr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Mar 2023 03:36:47 -0500
-Received: from ex01.ufhost.com (ex01.ufhost.com [61.152.239.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1D35C4D62B;
-        Tue,  7 Mar 2023 00:36:45 -0800 (PST)
-Received: from EXMBX165.cuchost.com (unknown [175.102.18.54])
-        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-        (Client CN "EXMBX165", Issuer "EXMBX165" (not verified))
-        by ex01.ufhost.com (Postfix) with ESMTP id 9648024E023;
-        Tue,  7 Mar 2023 16:36:43 +0800 (CST)
-Received: from EXMBX172.cuchost.com (172.16.6.92) by EXMBX165.cuchost.com
- (172.16.6.75) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Tue, 7 Mar
- 2023 16:36:43 +0800
-Received: from [192.168.125.124] (183.27.97.46) by EXMBX172.cuchost.com
- (172.16.6.92) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Tue, 7 Mar
- 2023 16:36:42 +0800
-Message-ID: <3a605bc8-104e-0935-4fd8-2da16ab9053b@starfivetech.com>
-Date:   Tue, 7 Mar 2023 16:36:41 +0800
+        with ESMTP id S229746AbjCGImh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Mar 2023 03:42:37 -0500
+Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com [IPv6:2a00:1450:4864:20::52a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 601F9521C2
+        for <devicetree@vger.kernel.org>; Tue,  7 Mar 2023 00:42:36 -0800 (PST)
+Received: by mail-ed1-x52a.google.com with SMTP id k10so25301456edk.13
+        for <devicetree@vger.kernel.org>; Tue, 07 Mar 2023 00:42:36 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1678178555;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=unqTYip/nZX7WkFVVubRKmL0WM29EpJsVS8P0OsOpaE=;
+        b=Eusd+XKKTE+5SuOXFhD4Jk4H8VMkJJ50GMAWk0gBxQei4r0OxVLwrd1mTkzNzFUiz2
+         1wRs9FOXpNIKdrkWQ9ERJnKiotHtLrwu3n36DYL0+5ZEar49+NINtEXWHqwwPn4xNR5Y
+         NWljxAdz10RbCv0R1G1rinKUjT/kKAIOf5kcs1qSA2HLqZOvfrvwYmskUjaxcuvWxnCb
+         zUJc9Vg627t75Taw73EldUXKGTig9uECMUp/+1TqHVlAbwxt/hVAtt+0sJLByiKzYXlk
+         2wdDyyfHBsKcrLjieYpPG1bgTCGHX706/B2Yj2HQG34z5CtkFsHDt0eU1lxIyKGotnaD
+         uaCQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1678178555;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=unqTYip/nZX7WkFVVubRKmL0WM29EpJsVS8P0OsOpaE=;
+        b=CLUHSaMENNzS07pONLdEVK8PgMzUX5lyr0muTlPUNGPwazy1VaQbrTy7klKqeHd2pi
+         9irHo4CZ3BuKg+ss6v1hbrAuMvNRlGU/dccSZA/9HK9XLQfIuFqFp0dAuQIoEZGIYgCI
+         N0Nx+lKGmOmzDySAnV/blm0Vbs65u3ibsCfpfuZx0wnJwpUWG4TF4XAZ9PYUsr8ZirAe
+         KbUKsAofJ7Y3natDE4iDfZK/xpR5XbJa7aWlfy01+F9YbELrmkKqsRqG18Oeuh//3k8i
+         b7EqNXsaxAfSL+9CsHvzpJmSOFBxDVxoIdx+sOaTf+CqUilGmszvm2ZM4zSTVWI/nDy1
+         VjAg==
+X-Gm-Message-State: AO0yUKUVacLF+OnGTbK+Jhb8awZO7gGRUOrlILXgK5KMA9XGywcHJp8k
+        QxXO1QFaDgc4TDZOkwVZmM59aA==
+X-Google-Smtp-Source: AK7set8Rs3NbWr/+syYwZkWacBKqzhW8dHm3qaImZJYpVxvN4EL2d7wEi9d0aVvqf+tbGrSHBr3kZA==
+X-Received: by 2002:a17:907:7f09:b0:8b1:7e21:f0e9 with SMTP id qf9-20020a1709077f0900b008b17e21f0e9mr16867174ejc.18.1678178554921;
+        Tue, 07 Mar 2023 00:42:34 -0800 (PST)
+Received: from ?IPV6:2a02:810d:15c0:828:5310:35c7:6f9e:2cd3? ([2a02:810d:15c0:828:5310:35c7:6f9e:2cd3])
+        by smtp.gmail.com with ESMTPSA id r17-20020a50aad1000000b004bfa4f747d2sm6301772edc.54.2023.03.07.00.42.33
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 07 Mar 2023 00:42:34 -0800 (PST)
+Message-ID: <4c039e53-e3ca-29d7-e5ea-f24e385d28b0@linaro.org>
+Date:   Tue, 7 Mar 2023 09:42:33 +0100
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.3.2
-Subject: Re: [PATCH v4 00/19] Basic clock, reset & device tree support for
- StarFive JH7110 RISC-V SoC
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.8.0
+Subject: Re: [PATCH v10 03/13] dt-bindings: Convert gpio-mmio to yaml
 Content-Language: en-US
-To:     Conor Dooley <conor@kernel.org>, <linux-riscv@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-clk@vger.kernel.org>
-CC:     Stephen Boyd <sboyd@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        "Rob Herring" <robh+dt@kernel.org>,
+To:     Sean Anderson <sean.anderson@seco.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@kernel.org>,
+        linux-phy@lists.infradead.org
+Cc:     Madalin Bucur <madalin.bucur@nxp.com>,
+        linuxppc-dev@lists.ozlabs.org, devicetree@vger.kernel.org,
+        Ioana Ciornei <ioana.ciornei@nxp.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Camelia Alexandra Groza <camelia.groza@nxp.com>,
+        linux-arm-kernel@lists.infradead.org,
+        Bagas Sanjaya <bagasdotme@gmail.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Ben Dooks <ben.dooks@sifive.com>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>,
-        "Emil Renner Berthing" <emil.renner.berthing@canonical.com>,
-        <linux-kernel@vger.kernel.org>
-References: <20230221024645.127922-1-hal.feng@starfivetech.com>
-From:   Hal Feng <hal.feng@starfivetech.com>
-In-Reply-To: <20230221024645.127922-1-hal.feng@starfivetech.com>
-Content-Type: text/plain; charset="UTF-8"
+        Bartosz Golaszewski <brgl@bgdev.pl>,
+        =?UTF-8?Q?Fern=c3=a1ndez_Rojas?= <noltari@gmail.com>,
+        Jonas Gorski <jonas.gorski@gmail.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        linux-gpio@vger.kernel.org
+References: <20230306191535.1917656-1-sean.anderson@seco.com>
+ <20230306191535.1917656-4-sean.anderson@seco.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230306191535.1917656-4-sean.anderson@seco.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Originating-IP: [183.27.97.46]
-X-ClientProxiedBy: EXCAS061.cuchost.com (172.16.6.21) To EXMBX172.cuchost.com
- (172.16.6.92)
-X-YovoleRuleAgent: yovoleflag
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 21 Feb 2023 10:46:26 +0800, Hal Feng wrote:
-> This patch series adds basic clock, reset & DT support for StarFive
-> JH7110 SoC. Patch 17 depends on series [1] which provides pinctrl
-> dt-bindings. Patch 19 depends on series [2] which provides dt-bindings
-> of VisionFive 2 board and JH7110 SoC.
+On 06/03/2023 20:15, Sean Anderson wrote:
+> This is a generic binding for simple MMIO GPIO controllers. Although we
+> have a single driver for these controllers, they were previously spread
+> over several files. Consolidate them. The register descriptions are
+> adapted from the comments in the source. There is no set order for the
+> registers, so I have not specified one.
 > 
-> You can simply review or test the patches at the link [3].
+> Signed-off-by: Sean Anderson <sean.anderson@seco.com>
+> ---
 > 
-> [1]: https://lore.kernel.org/all/20230209143702.44408-1-hal.feng@starfivetech.com/
-> [2]: https://lore.kernel.org/all/20230216131511.3327943-1-conor.dooley@microchip.com/
-> [3]: https://github.com/hal-feng/linux/commits/visionfive2-minimal
+> Changes in v10:
+> - New
+> 
+>  .../bindings/gpio/brcm,bcm6345-gpio.yaml      |  16 +--
+>  .../devicetree/bindings/gpio/gpio-mmio.yaml   | 136 ++++++++++++++++++
+>  .../bindings/gpio/ni,169445-nand-gpio.txt     |  38 -----
+>  .../devicetree/bindings/gpio/wd,mbl-gpio.txt  |  38 -----
+>  4 files changed, 137 insertions(+), 91 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/gpio/gpio-mmio.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/gpio/ni,169445-nand-gpio.txt
+>  delete mode 100644 Documentation/devicetree/bindings/gpio/wd,mbl-gpio.txt
 
-Hi Conor,
+https://lore.kernel.org/all/20230126-gpio-mmio-fix-v2-1-38397aace340@ncr.com/
 
-When I tried to rebase these patches on v6.3-rc1, I found the kernel
-would crash on the VisionFive 2 board during startup. The logs are as
-below. I checkout the branch to the mainline and found that the kernel
-would also crash on the VisionFive board which is equipped with JH7100
-SoC.
+https://lore.kernel.org/all/9bc9349d6e13d81c6200b0cd8fa20c76263043f6.1462543458.git.chunkeey@googlemail.com/
 
---------------------------------
-Unable to handle kernel paging request at virtual address 0000004cccccccd4
-Oops [#1]
-Modules linked in:
-CPU: 3 PID: 87 Comm: udevd Not tainted 6.3.0-rc1-00019-g239e7809f291 #305
-Hardware name: StarFive VisionFive 2 v1.3B (DT)
-epc : enqueue_timer+0x18/0x90
- ra : internal_add_timer+0x2c/0x38
-epc : ffffffff8006a714 ra : ffffffff8006a7b8 sp : ffffffc80443bc80
- gp : ffffffff80eb5100 tp : ffffffd8c01db200 t0 : 0000000000000000
- t1 : 000000000000000f t2 : 0000000038b3ea28 s0 : ffffffc80443bcb0
- s1 : ffffffff80813940 a0 : ffffffff80813940 a1 : ffffffc80443bd48
- a2 : 000000000000020b a3 : cccccccd0b000000 a4 : cccccccccccccccc
- a5 : 000000000000020b a6 : ffffffff80814a08 a7 : 0000000000000001
- s2 : ffffffc80443bd48 s3 : 0000000008400040 s4 : ffffffff80813940
- s5 : ffffffff80eea0b8 s6 : ffffffff80eb7220 s7 : 0000000000000040
- s8 : ffffffff80eb61e0 s9 : 0000002ac84a2548 s10: 0000002ad53e92c0
- s11: 0000000000000001 t3 : 000000000000003f t4 : 0000000000000000
- t5 : 0000000000000004 t6 : 0000000000000003
-status: 0000000200000100 badaddr: 0000004cccccccd4 cause: 000000000000000f
-[<ffffffff8006a714>] enqueue_timer+0x18/0x90
-[<ffffffff8006aa64>] add_timer_on+0xf0/0x134
-[<ffffffff80500f18>] try_to_generate_entropy+0x1ec/0x232
-[<ffffffff8035a636>] urandom_read_iter+0x42/0xc2
-[<ffffffff800fff16>] vfs_read+0x17c/0x1e4
-[<ffffffff801005b6>] ksys_read+0x78/0x98
-[<ffffffff801005e4>] sys_read+0xe/0x16
-[<ffffffff800035dc>] ret_from_syscall+0x0/0x2
-Code: 9381 9713 0037 0813 0705 983a 3703 0008 e198 c311 (e70c) d713 
----[ end trace 0000000000000000 ]---
-note: udevd[87] exited with irqs disabled
-Segmentation fault
-FAIL
-Saving random seed: 
-rcu: INFO: rcu_sched detected stalls on CPUs/tasks:
-rcu: 	1-...0: (0 ticks this GP) idle=19c4/1/0x4000000000000000 softirq=42/42 fqs=7474
-rcu: 	(detected by 2, t=15005 jiffies, g=-195, q=35 ncpus=4)
-Task dump for CPU 1:
-task:dd              state:R  running task     stack:0     pid:92    ppid:88     flags:0x00000008
-Call Trace:
-[<ffffffff80003764>] ret_from_fork+0x0/0xc
-rcu: INFO: rcu_sched detected stalls on CPUs/tasks:
-rcu: 	1-...0: (0 ticks this GP) idle=19c4/1/0x4000000000000000 softirq=42/42 fqs=29814
-rcu: 	(detected by 2, t=60018 jiffies, g=-195, q=35 ncpus=4)
-Task dump for CPU 1:
-task:dd              state:R  running task     stack:0     pid:92    ppid:88     flags:0x00000008
-Call Trace:
-[<ffffffff80003764>] ret_from_fork+0x0/0xc
-...
---------------------------------
 
-I used 'git bisect' and found out the commit 9493e6f3ce02 is the
-cause. I tried to revert this commit on the tag v6.3-rc1, but it
-seems there is no improvement.
-
-Any options I am missing? Could you please give me some suggestions
-to adapt to the new changes between 6.2 and 6.3? Thank you in
-advance.
 
 Best regards,
-Hal
+Krzysztof
+
