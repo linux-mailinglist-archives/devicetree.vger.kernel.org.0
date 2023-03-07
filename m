@@ -2,135 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 581CD6ADA2A
-	for <lists+devicetree@lfdr.de>; Tue,  7 Mar 2023 10:21:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 515896ADA37
+	for <lists+devicetree@lfdr.de>; Tue,  7 Mar 2023 10:22:58 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230306AbjCGJVp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Mar 2023 04:21:45 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38090 "EHLO
+        id S230335AbjCGJWz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Mar 2023 04:22:55 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39900 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229614AbjCGJVn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Mar 2023 04:21:43 -0500
-Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6A7B753733
-        for <devicetree@vger.kernel.org>; Tue,  7 Mar 2023 01:21:19 -0800 (PST)
-Received: by mail-ed1-x531.google.com with SMTP id cw28so49593585edb.5
-        for <devicetree@vger.kernel.org>; Tue, 07 Mar 2023 01:21:19 -0800 (PST)
+        with ESMTP id S230358AbjCGJWv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Mar 2023 04:22:51 -0500
+Received: from mail-yw1-x1133.google.com (mail-yw1-x1133.google.com [IPv6:2607:f8b0:4864:20::1133])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 492DE53718
+        for <devicetree@vger.kernel.org>; Tue,  7 Mar 2023 01:22:37 -0800 (PST)
+Received: by mail-yw1-x1133.google.com with SMTP id 00721157ae682-536af432ee5so234884797b3.0
+        for <devicetree@vger.kernel.org>; Tue, 07 Mar 2023 01:22:37 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1678180878;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=ImknzI3+zNXeJrlCA1icMSZ6b0iyjrhhLI3KblQlRyU=;
-        b=O+VlgSxtnovXaHyjEVIV8KV4l+J3jKScOqh1e165d5VfDiFCAHHgiwejOdiNgeLx0m
-         pa2FEhdQ1dzivAuXUTujmVmrR7WgoTvYBpfU5EF8AhbzxOIHNCMqNziQeQXlsG5BnCpB
-         G1IWqJT4rySWpHTpwugW8CX3cwxhlaI4ihhEVfncQXuT5UFoynyXvSvUCQm7v3C0eKQY
-         ekXmoIqiPNZrK2A6FMlDTCfC4GeYbTQedGx50meYT9O0RHoOmWB4AMVwwssOAyDQ7icI
-         io9GYUHX4xQh8cUJmIR+Nm+DA5r3jBueMVmK39FdFF3jtjNVmG8KMGmemJ7SaPNa8Xx7
-         s+KQ==
+        d=linaro.org; s=google; t=1678180956;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=JYW/40WXc1mZFSpERayfTf6+aBHoaVcoZeiR5Zlwa5k=;
+        b=OD1tiV5gfwq1q30wOH/HZwVUKillOPvqvmg+zHS4gzKsQo2PAhv32wRMkqMwr0riXU
+         M12yyfFTeiR7ipa5Jy6dagZNn1RUquURdzmlh8SjnfOIIBQv7/NbJj9R3UrL03xeX+ur
+         z0oiiQqZjR7hsWuPFIplhJuPlJvmHjc6c3x/URIVHraoVPFPQJHFlaIuPUdyL98T5lyr
+         lL2LLvmD8lXOr1S9sqsq65QBP8OdzyRXmCjzrZnJKx1JjW53xnp52Qy/Q8QfggNDozQC
+         fMQtpdQzu4gOp5JnSP3rqjWqqIZOLU5Wb0H6UvB5t4dS+/bxklQv0kzEmFgAXLvY1kVF
+         U8qQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678180878;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=ImknzI3+zNXeJrlCA1icMSZ6b0iyjrhhLI3KblQlRyU=;
-        b=MYSFEOEu4Pb4a4F28nQNU8BkR7/2yLFgtL4aMbvtqKVtcQDMv6QzpZn9u3+YqFl60s
-         jwv1LDnyxRXYYUg3u1vp+TXHECXuird/so0Ygx28zSp/2xxDgHznMdqAvnBPu25pEc8J
-         TBUD0PqfCEXEH4gam/PXyulSCAyf/W20A/2m0PG+lpMU2PBVUsS41e3CnyijdF5PLIDQ
-         9qXJWSNf4d33Nkmm/BXTf7lp9ScOqWbaWXndGHv99XRqXNryode2Qrs8MCvkrZywDDOu
-         aNZTjgwmeg6RDABy+UZ6t9aavZmErGFNqF8pR/Z1uDzBmHwzLh9lIjJ+UKFmbLQ9DTVM
-         pEgw==
-X-Gm-Message-State: AO0yUKVXZWn60lhMOMuIiuju7k7i6JzxAER9XV9jgr7HrSYfvreUuAYT
-        +OV/38tjlDh5kWditKchAXGZVw==
-X-Google-Smtp-Source: AK7set/8q1Dpn1fKoXGTnw4DYza29NwMw6JpXmdx/lsPqm8Z5LVvZcCJ0RLSFQYk3xrmhvSUrtjLLA==
-X-Received: by 2002:a17:906:ce34:b0:8e0:2887:8263 with SMTP id sd20-20020a170906ce3400b008e028878263mr13454388ejb.39.1678180877879;
-        Tue, 07 Mar 2023 01:21:17 -0800 (PST)
-Received: from ?IPV6:2a02:810d:15c0:828:5310:35c7:6f9e:2cd3? ([2a02:810d:15c0:828:5310:35c7:6f9e:2cd3])
-        by smtp.gmail.com with ESMTPSA id v7-20020a170906338700b008e51a1fd7bfsm5843951eja.172.2023.03.07.01.21.16
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 07 Mar 2023 01:21:17 -0800 (PST)
-Message-ID: <87271ce2-8db4-187f-4bb6-31a7ef687557@linaro.org>
-Date:   Tue, 7 Mar 2023 10:21:15 +0100
+        d=1e100.net; s=20210112; t=1678180956;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=JYW/40WXc1mZFSpERayfTf6+aBHoaVcoZeiR5Zlwa5k=;
+        b=oURvCcOCTeGVCOIeKNGLXGu6CWBOMhCyYhuSUvB22JbvMUE9BHzz5GoCJeGRwF3pLG
+         PzLZ3MX99BRqMyYHAet4Ic1wmklemUa1cliVEhXVvWGloDVcAtSgqdtx9cvqbrrcaHWG
+         6G84CB8sASOhhCsTUKyFOUxmA6C0rQxu9uNeAkBam4Vp6IlPyqwUNjR9zzSx4AKQv6fS
+         RhyjvFfPRbNHoHKr3pFb2UFQGNZ23kjOwdOKTqqW3vEYziu8X5YpP/c4GAUIFExptQCY
+         00OYSLE3XsMeUxyBEgQiLQ69vZkL9wx5ZLWVvCDUDW33bLgUADV21gNifxmA082MXjf8
+         TWAg==
+X-Gm-Message-State: AO0yUKWeRZm+EovVt1a61lulBDFous5Hm4jI+An1CgK04MyBeP8nJ8L9
+        7pAeRx8rQNJ4MUhsS2JeM3L0FB8XXc4a8XBL97Di1Q==
+X-Google-Smtp-Source: AK7set8aVuKJvLzBh+CzD4AGBJpKjDwrv/rCWM61y1Bvum+SRltrS9eFgNVY29/1Yu+ZTWWFG05LKOPXxp39Q0Hdhlw=
+X-Received: by 2002:a81:ac4b:0:b0:533:9ffb:cb12 with SMTP id
+ z11-20020a81ac4b000000b005339ffbcb12mr9037322ywj.10.1678180956477; Tue, 07
+ Mar 2023 01:22:36 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-Subject: Re: [Patch v2 0/9] Tegra234 Memory interconnect support
-Content-Language: en-US
-To:     Sumit Gupta <sumitg@nvidia.com>, treding@nvidia.com,
-        dmitry.osipenko@collabora.com, viresh.kumar@linaro.org,
-        rafael@kernel.org, jonathanh@nvidia.com, robh+dt@kernel.org,
-        lpieralisi@kernel.org
-Cc:     linux-kernel@vger.kernel.org, linux-tegra@vger.kernel.org,
-        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-pci@vger.kernel.org, mmaddireddy@nvidia.com, kw@linux.com,
-        bhelgaas@google.com, vidyas@nvidia.com, sanjayc@nvidia.com,
-        ksitaraman@nvidia.com, ishah@nvidia.com, bbasu@nvidia.com
-References: <20230220140559.28289-1-sumitg@nvidia.com>
- <c8cf2435-8b18-7af7-c751-267021142f5a@linaro.org>
- <22525720-9def-27de-cf41-8fd8165d6e01@linaro.org>
- <b1a98a10-cc8d-e2f1-f234-c4804763b6ab@nvidia.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <b1a98a10-cc8d-e2f1-f234-c4804763b6ab@nvidia.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+References: <20230220023320.3499-1-clin@suse.com> <CACRpkdYknZo3Q7_CeSkOL2XwwAmKERskx24o-toaVy=rs0Yf5Q@mail.gmail.com>
+ <ZAZ3JZQ4Tuz5vyH1@surfacebook>
+In-Reply-To: <ZAZ3JZQ4Tuz5vyH1@surfacebook>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Tue, 7 Mar 2023 10:22:25 +0100
+Message-ID: <CACRpkdbksZ59ndrRAQpTGa01GTq4c_2EcOQ2mtz1PLjqU8_nug@mail.gmail.com>
+Subject: Re: [PATCH v5 0/3] Add pinctrl support for S32 SoC family
+To:     andy.shevchenko@gmail.com
+Cc:     Chester Lin <clin@suse.com>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        =?UTF-8?Q?Andreas_F=C3=A4rber?= <afaerber@suse.de>, s32@nxp.com,
+        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Larisa Grigore <larisa.grigore@nxp.com>,
+        Ghennadi Procopciuc <Ghennadi.Procopciuc@oss.nxp.com>,
+        Andrei Stefanescu <andrei.stefanescu@nxp.com>,
+        Radu Pirea <radu-nicolae.pirea@nxp.com>,
+        Matthias Brugger <mbrugger@suse.com>
+Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 06/03/2023 21:43, Sumit Gupta wrote:
-> 
-> 
-> On 06/03/23 20:37, Krzysztof Kozlowski wrote:
->> External email: Use caution opening links or attachments
->>
->>
->> On 06/03/2023 16:05, Krzysztof Kozlowski wrote:
->>> On 20/02/2023 15:05, Sumit Gupta wrote:
->>>> This patch series adds memory interconnect support for Tegra234 SoC.
->>>> It is used to dynamically scale DRAM Frequency as per the bandwidth
->>>> requests from different Memory Controller (MC) clients.
->>>> MC Clients use ICC Framework's icc_set_bw() api to dynamically request
->>>> for the DRAM bandwidth (BW). As per path, the request will be routed
->>>> from MC to the EMC driver. MC driver passes the request info like the
->>>> Client ID, type, and frequency request info to the BPMP-FW which will
->>>> set the final DRAM freq considering all exisiting requests.
->>>>
->>>> MC and EMC are the ICC providers. Nodes in path for a request will be:
->>>>       Client[1-n] -> MC -> EMC -> EMEM/DRAM
->>>>
->>>> The patch series also adds interconnect support in below client drivers:
->>>> 1) CPUFREQ driver for scaling bandwidth with CPU frequency. For that,
->>>>     added per cluster OPP table which will be used in the CPUFREQ driver
->>>>     by requesting the minimum BW respective to the given CPU frequency in
->>>>     the OPP table of given cluster.
->>>> 2) PCIE driver to request BW required for different modes.
->>>
->>> No dependencies or ordering written, so I am free to take memory
->>> controller bits, I assume.
->>
->> And not.. NAK, since you decided to ignore my comments. Really, we do
->> not have time for such useless ping pong.
->>
->> Best regards,
->> Krzysztof
->>
-> 
-> Hi Krzysztof,
-> 
-> I tried to address the comments given during review of v1 in v2.
-> I am sorry if in case I missed any suggestion. Please let me know so I 
-> can incorporate that.
-> 
+On Tue, Mar 7, 2023 at 12:28 AM <andy.shevchenko@gmail.com> wrote:
+> Mon, Mar 06, 2023 at 02:28:56PM +0100, Linus Walleij kirjoitti:
+> > On Mon, Feb 20, 2023 at 3:33 AM Chester Lin <clin@suse.com> wrote:
+> >
+> > > Here I want to introduce a new patch series, which aims to support IOMUX
+> > > functions provided by SIUL2 [System Integration Unit Lite2] on S32 SoCs,
+> > > such as S32G2. This series is originally from NXP's implementation on
+> > > nxp-auto-linux repo[1] and it will be required by upstream kernel for
+> > > supporting a variety of devices on S32 SoCs which need to config PINMUXs,
+> > > such as PHYs and MAC controllers.
+> > >
+> > > Thanks,
+> > > Chester
+> > >
+> > > Changes in v5:
+> > > - dt-bindings: No change
+> > > - driver:
+> > >   - Refactor register r/w access based on REGMAP_MMIO and regmap APIs.
+> > >   - Tag PM functions with '__maybe_unused'.
+> > >   - Add mask check while parsing pin ID from a pinmux value.
+> > >   - Simplify s32_pinconf_mscr_* functions.
+> >
+> > This looks really good any no more comments arrived, so patches are applied
+> > for v6.4!
+> >
+> > Thanks for your work on this so far Chester! (I suppose there will be
+> > maintenance
+> > for this family going forward.)
+>
+> Can you unpull this?
 
-I never got any feedback and my first glance suggested nothing changed.
-Let me check again.
+If need be.
 
-Best regards,
-Krzysztof
+Are there serious issues with the patch set such that they cannot be fixed
+by add-on patches?
 
+Yours,
+Linus Walleij
