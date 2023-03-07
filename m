@@ -2,86 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2CC396AFB9F
-	for <lists+devicetree@lfdr.de>; Wed,  8 Mar 2023 01:58:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4AD976AFA15
+	for <lists+devicetree@lfdr.de>; Wed,  8 Mar 2023 00:10:03 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229913AbjCHA6B (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Mar 2023 19:58:01 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33164 "EHLO
+        id S229748AbjCGXKA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Mar 2023 18:10:00 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43142 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229484AbjCHA57 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Mar 2023 19:57:59 -0500
-Received: from mail-wr1-x432.google.com (mail-wr1-x432.google.com [IPv6:2a00:1450:4864:20::432])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 69EB721961;
-        Tue,  7 Mar 2023 16:57:58 -0800 (PST)
-Received: by mail-wr1-x432.google.com with SMTP id t15so13880352wrz.7;
-        Tue, 07 Mar 2023 16:57:58 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112; t=1678237077;
-        h=in-reply-to:content-disposition:mime-version:references:subject:cc
-         :to:from:date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=HS6FPXIvmqqNsIYAM5JYJ/QIONzW3Nl9HxNsbGlenoM=;
-        b=XEYOm62uQkBq9a1kTtaYUa/sXQmdDN1evfVVkYdRuHIlDQocAZ/DVDu/t7HoxxJAzU
-         sdG/iNf/SqbSE1smhqUQ1e/KdDdMiX5bRgrFL/iRpuVmhAzZ8eO8QrEHRqhJ4X6Zqkg7
-         jHtArVRmnWuTOiZWEQEKL+Z+32WIKouf+jG+4l7YrXjStuvpeLHadXReq0IuhYxTgjqw
-         URMCAAEe70JWXIfxeUsF+lFjbB3soaxGW2fxNC+OYtbuEt0+ybv+2RpoGMKdvrw5DY8Z
-         fxRwqsFh1hy/Kokpd8xvtii6H9uJ3+H7vn0y7IjwKjKMobxdIwpiVRoGGfAsHJb2pJQ+
-         7Pbg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678237077;
-        h=in-reply-to:content-disposition:mime-version:references:subject:cc
-         :to:from:date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=HS6FPXIvmqqNsIYAM5JYJ/QIONzW3Nl9HxNsbGlenoM=;
-        b=t4CwKAGQyK8ao1Am3y/uaAU3xMked+E4goiyGpdJxLwIsLNq6Fwq9Y3NT80+QuWsxI
-         qrO4B2ZSUdFysaH/QWxZYft2HvNOpGcFBAY8WC0alwt2Wa03Ub+vX/17zn6IHcvYaYbd
-         slipAGoa+UEKiySLr7iP4lJFwkN/tVFFPvM7/Cf+gozixRodFetJgQNe3ipvrqmt2QQY
-         m8jQ2cD0iVE1S2bzeTXPPvtVCnsSfW+Xf51U98T6C1XOfmzUEbkJ84mce669IN9RAdJC
-         R6pfs/1n3/ZQRmviHu2rPN54nOxF/PYUbIZTp2cEMEt/sOjvVROTz56GZMiEXzN7ayoq
-         +U1A==
-X-Gm-Message-State: AO0yUKUoRDsyKxJjTHcuHKiBt65N+IZYIpYVpL1Jbv22OuITKlXyDstK
-        4WdYBZ4owPow08O/iG5+pK0=
-X-Google-Smtp-Source: AK7set9tO5H/alRCXfzjN/mP1zUeZLrxFfo+KwylfdU81WRcdlFvzou1cKKbs+HkFxOzr2ExWYrOAw==
-X-Received: by 2002:adf:f30f:0:b0:2cb:f4:e5a2 with SMTP id i15-20020adff30f000000b002cb00f4e5a2mr12312806wro.14.1678237076605;
-        Tue, 07 Mar 2023 16:57:56 -0800 (PST)
-Received: from Ansuel-xps. (93-34-89-197.ip49.fastwebnet.it. [93.34.89.197])
-        by smtp.gmail.com with ESMTPSA id f2-20020adfdb42000000b002c54fb024b2sm13605789wrj.61.2023.03.07.16.57.55
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 07 Mar 2023 16:57:56 -0800 (PST)
-Message-ID: <6407dd94.df0a0220.b4618.52e4@mx.google.com>
-X-Google-Original-Message-ID: <ZAeTg7Tb41tmut7q@Ansuel-xps.>
-Date:   Tue, 7 Mar 2023 20:41:55 +0100
-From:   Christian Marangi <ansuelsmth@gmail.com>
-To:     Andrew Lunn <andrew@lunn.ch>
-Cc:     Florian Fainelli <f.fainelli@gmail.com>,
-        Vladimir Oltean <olteanv@gmail.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Russell King <linux@armlinux.org.uk>,
-        Gregory Clement <gregory.clement@bootlin.com>,
-        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
-        John Crispin <john@phrozen.org>, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, Lee Jones <lee@kernel.org>,
-        linux-leds@vger.kernel.org
-Subject: Re: [net-next PATCH 01/11] net: dsa: qca8k: add LEDs basic support
-References: <20230307170046.28917-1-ansuelsmth@gmail.com>
- <20230307170046.28917-2-ansuelsmth@gmail.com>
- <b03334df-4389-44b5-ac85-8b0878c64512@lunn.ch>
- <6407c6ea.050a0220.7c931.824f@mx.google.com>
- <d1226e21-8150-4959-95b0-e9df2c460b81@lunn.ch>
+        with ESMTP id S229746AbjCGXJ6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Mar 2023 18:09:58 -0500
+Received: from esa5.hgst.iphmx.com (esa5.hgst.iphmx.com [216.71.153.144])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7E5539B9BD
+        for <devicetree@vger.kernel.org>; Tue,  7 Mar 2023 15:09:57 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=wdc.com; i=@wdc.com; q=dns/txt; s=dkim.wdc.com;
+  t=1678230597; x=1709766597;
+  h=message-id:date:mime-version:subject:to:cc:references:
+   from:in-reply-to:content-transfer-encoding;
+  bh=3JBuqtbm+k8WUUQLAuD/H5xdXwubIsT2+ne5pBOD+nA=;
+  b=HhxQB13nM9KsGHPbrhAnjEYeJHEJ3JuUhUv2iuknAFXCnHrGHwMZ1HC8
+   YXEbc94GOLx3rBSc1IHjN/KPGi2V1vvt4y5pbsSQkLSMdPIcFju73o4c6
+   7Ssmhvoa6UCDy8dtFu6z+mosRzyQPP09vX/AUB+A4gfBzQJdQrv96HXtw
+   08OKrw3u8JSjtVrFjQ6L6MrakLdH9Juz/CyhR/ergoMWf+xL906w63WO+
+   fO5WSOrxE+r0u1jeh3aRDRHqouTx5xx7JI1KzkCpO7ZYiwRuR+igH1unB
+   mmfhnKeHwBXJReCbg8OFEXobS64GMkQpm2ry7V4Vbp6T8NCAxZkKfmmyK
+   g==;
+X-IronPort-AV: E=Sophos;i="5.98,242,1673884800"; 
+   d="scan'208";a="224834933"
+Received: from uls-op-cesaip01.wdc.com (HELO uls-op-cesaep01.wdc.com) ([199.255.45.14])
+  by ob1.hgst.iphmx.com with ESMTP; 08 Mar 2023 07:09:55 +0800
+IronPort-SDR: w6Ltj7BxmXSGW2tzKmxywg7CCXLS9cm8xAY+lCs3CY3JJdEoNvQpeaR4xexXHLx7J3y5JJWPit
+ Spt+EuUMRiffpm/K7KwwhuxePxMebypWaNQykMXhYrY4bui+uW7IlbUhaj/m1wlCuHZpb4GH59
+ bJGbeY6N54l/dOMM29QzzZGqsjLlu31zLX16zyN5sBQDjhtG3jMvzSGUBd3cFuMnu2GzaSJfIq
+ qYsdQLdb2O2zcnGN1eer1MNCXnqnJo3stWwqLZKJ8WnFuc1BSgHLm7w5xbxEs23R9GxBj0trkv
+ +O8=
+Received: from uls-op-cesaip01.wdc.com ([10.248.3.36])
+  by uls-op-cesaep01.wdc.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 07 Mar 2023 14:26:35 -0800
+IronPort-SDR: WBi9lU3CHEQJebtKnSbpbHoay1rMP4u6wfyXh9aGozTJKe+gBUdRrQ0GtrX2VgNMaTTR9+MXqo
+ 1EcjmbuWt/s7SXPc7HtiryboEXe8do96X9U7i8a3qXpyYeWnXebDSmvmO24ozbjSFBzNn0C5DV
+ 0Qlnfxn3HjDPSi1fGpYa2WgcgCyjlfyVX4ek/6NPS0FVQ7En/TLFEddkr7naOqTNIIx/c9vnIg
+ /X5ij2FrADU9mf33t9qRN2Y0Xn2p//ecVdgtWbIF1Mrn9dnnq4BpYDJolmXxxAso/ycQgg+XrE
+ KBc=
+WDCIronportException: Internal
+Received: from usg-ed-osssrv.wdc.com ([10.3.10.180])
+  by uls-op-cesaip01.wdc.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 07 Mar 2023 15:09:55 -0800
+Received: from usg-ed-osssrv.wdc.com (usg-ed-osssrv.wdc.com [127.0.0.1])
+        by usg-ed-osssrv.wdc.com (Postfix) with ESMTP id 4PWWPH3rFtz1RvTp
+        for <devicetree@vger.kernel.org>; Tue,  7 Mar 2023 15:09:55 -0800 (PST)
+Authentication-Results: usg-ed-osssrv.wdc.com (amavisd-new); dkim=pass
+        reason="pass (just generated, assumed good)"
+        header.d=opensource.wdc.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=
+        opensource.wdc.com; h=content-transfer-encoding:content-type
+        :in-reply-to:organization:from:references:to:content-language
+        :subject:user-agent:mime-version:date:message-id; s=dkim; t=
+        1678230590; x=1680822591; bh=3JBuqtbm+k8WUUQLAuD/H5xdXwubIsT2+ne
+        5pBOD+nA=; b=s6YyVLCZvrRj+GqDYs0xaQZefkSZeISklzq+JMxQeWm10869Aav
+        3Erh/UQbw/g8iMtCk417ox2J3gzFEca3ZniHAtXiv2jMOjXF1ZVaPvntnwOYSu95
+        FUCSc/VGzHePokluR5I+yPJaYKito0a76cPlHerdQLAJ2bynfWUMcchcKFPOZa6o
+        3SKgTjOOIK6PaPIG3bveO4AuplL9ToCABS8vOiv2GG69lHMYaWe7hAAkU/OjJ6zH
+        s8m6d3V9HsBmRfGTGEJqmfIILUISBsHid5njV46XiDVRY9XZJXBg0tj/2/n2gAcb
+        LXu934fE+B+ZaxOPRRSUeEveapbDZtZEFsQ==
+X-Virus-Scanned: amavisd-new at usg-ed-osssrv.wdc.com
+Received: from usg-ed-osssrv.wdc.com ([127.0.0.1])
+        by usg-ed-osssrv.wdc.com (usg-ed-osssrv.wdc.com [127.0.0.1]) (amavisd-new, port 10026)
+        with ESMTP id QQUyqSOn9JTT for <devicetree@vger.kernel.org>;
+        Tue,  7 Mar 2023 15:09:50 -0800 (PST)
+Received: from [10.225.163.63] (unknown [10.225.163.63])
+        by usg-ed-osssrv.wdc.com (Postfix) with ESMTPSA id 4PWWP86TQ3z1RvLy;
+        Tue,  7 Mar 2023 15:09:48 -0800 (PST)
+Message-ID: <662d2bf8-0094-cb05-04c8-cc43780e3bb0@opensource.wdc.com>
+Date:   Wed, 8 Mar 2023 08:09:47 +0900
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <d1226e21-8150-4959-95b0-e9df2c460b81@lunn.ch>
-X-Spam-Status: No, score=-0.5 required=5.0 tests=BAYES_00,DATE_IN_PAST_03_06,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=no
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.8.0
+Subject: Re: [PATCH v4] dt-bindings: ata: Add UniPhier controller binding
+Content-Language: en-US
+To:     Rob Herring <robh@kernel.org>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Kunihiko Hayashi <hayashi.kunihiko@socionext.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Hans de Goede <hdegoede@redhat.com>,
+        Jens Axboe <axboe@kernel.dk>, linux-ide@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20230222155906.19403-1-hayashi.kunihiko@socionext.com>
+ <9d36818f-3ce3-0fb6-1a3e-85e3879af08c@opensource.wdc.com>
+ <a6425bde-5b6d-2fb2-2396-a35677b19e8f@linaro.org>
+ <e5ed284a-77ac-df6d-1473-e4d96955f65b@opensource.wdc.com>
+ <bf6d6b20-8479-80f7-1899-d58e03e6c6c8@linaro.org>
+ <f800c8f5-d6d4-8a93-f8e2-3ea46e6d7d31@opensource.wdc.com>
+ <20230307224013.GA276357-robh@kernel.org>
+From:   Damien Le Moal <damien.lemoal@opensource.wdc.com>
+Organization: Western Digital Research
+In-Reply-To: <20230307224013.GA276357-robh@kernel.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
+        SPF_HELO_PASS,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -89,81 +107,44 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Mar 08, 2023 at 01:49:55AM +0100, Andrew Lunn wrote:
-> On Tue, Mar 07, 2023 at 06:57:10PM +0100, Christian Marangi wrote:
-> > On Wed, Mar 08, 2023 at 12:16:13AM +0100, Andrew Lunn wrote:
-> > > > +qca8k_setup_led_ctrl(struct qca8k_priv *priv)
-> > > > +{
-> > > > +	struct fwnode_handle *ports, *port;
-> > > > +	int port_num;
-> > > > +	int ret;
-> > > > +
-> > > > +	ports = device_get_named_child_node(priv->dev, "ports");
-> > > > +	if (!ports) {
-> > > > +		dev_info(priv->dev, "No ports node specified in device tree!\n");
-> > > > +		return 0;
-> > > > +	}
-> > > > +
-> > > > +	fwnode_for_each_child_node(ports, port) {
-> > > > +		struct fwnode_handle *phy_node, *reg_port_node = port;
-> > > > +
-> > > > +		phy_node = fwnode_find_reference(port, "phy-handle", 0);
-> > > > +		if (!IS_ERR(phy_node))
-> > > > +			reg_port_node = phy_node;
-> > > 
-> > > I don't understand this bit. Why are you looking at the phy-handle?
-> > > 
-> > > > +
-> > > > +		if (fwnode_property_read_u32(reg_port_node, "reg", &port_num))
-> > > > +			continue;
-> > > 
-> > > I would of expect port, not reg_port_node. I'm missing something
-> > > here....
-> > > 
-> > 
-> > It's really not to implement ugly things like "reg - 1"
-> > 
-> > On qca8k the port index goes from 0 to 6.
-> > 0 is cpu port 1
-> > 1 is port0 at mdio reg 0
-> > 2 is port1 at mdio reg 1
-> > ...
-> > 6 is cpu port 2
-> > 
-> > Each port have a phy-handle that refer to a phy node with the correct
-> > reg and that reflect the correct port index.
-> > 
-> > Tell me if this looks wrong, for qca8k we have qca8k_port_to_phy() and
-> > at times we introduced the mdio thing to describe the port - 1 directly
-> > in DT. If needed I can drop the additional fwnode and use this function
-> > but I would love to use what is defined in DT thatn a simple - 1.
+On 3/8/23 07:40, Rob Herring wrote:
+> On Wed, Mar 08, 2023 at 07:02:32AM +0900, Damien Le Moal wrote:
+>> On 3/8/23 00:52, Krzysztof Kozlowski wrote:
+>>> On 07/03/2023 11:42, Damien Le Moal wrote:
+>>>> On 3/7/23 17:13, Krzysztof Kozlowski wrote:
+>>>>> On 06/03/2023 02:22, Damien Le Moal wrote:
+>>>>>> On 2/23/23 00:59, Kunihiko Hayashi wrote:
+>>>>>>> Add UniPhier SATA controller compatible string to the platform binding.
+>>>>>>> This controller needs three reset controls for Pro4 SoC, or two reset
+>>>>>>> controls for PXs2 and PXs3 SoCs.
+>>>>>>>
+>>>>>>> Signed-off-by: Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
+>>>>>>
+>>>>>> Rob,
+>>>>>>
+>>>>>> Are you OK with this patch ? I can take it for 6.4.
+>>>>>>
+>>>>>
+>>>>> You got Review (which includes also "Ack"), what are you missing here?
+>>>>
+>>>> By the way, I am not seeing/have not received any Ack. Hence why I checked with Rob.
+>>>
+>>> You were on Cc... Did I end up in spam?
+>>
+>> I did get your review email, but I do not see any Ack with it. Was it a
+>> different email ? I do check my spam folder from time to time but didn't see
+>> anything in there that would not make me rich :)
 > 
-> This comes back to the off list discussion earlier today. What you
-> actually have here are MAC LEDs, not PHY LEDs. They are implemented in
-> the MAC, not the PHY. To the end user, it should not matter, they
-> blink when you would expect.
-> 
-> So your addressing should be based around the MAC port number, not the
-> PHY.
+> Reviewed-by is more than an Acked-by, so if you have either one you can 
+> take it. And Krzysztof is also a DT maintainer, so no need to wait for 
+> me.
 
-Ok will drop this.
+Thanks for the clarification.
 
 > 
-> Also, at the moment, all we are adding are a bunch of LEDs. There is
-> no link to a netdev at this point. At least, i don't see one. Be once
-> we start using ledtrig-netdev we will need that link to a netdev. Take
-> a look in my git tree at the last four patch. They add an additional
-> call to get the device an LED is attached to.
-> 
-
-No currently we have no link for netdev, hence we are setting keep and
-not setting a default trigger in DT.
-Just checked them, interesting concept, guess we can think of something
-also for the interval setting. That would effectively make all the
-setting of the trigger set. Just my concern is that they may be too much
-specific to netdev trigger and may be problematic for other kind of hw
-control. (one main argument that was made for this feature was that some
-stuff were too much specific and actually not that generic)
+> Rob
 
 -- 
-	Ansuel
+Damien Le Moal
+Western Digital Research
+
