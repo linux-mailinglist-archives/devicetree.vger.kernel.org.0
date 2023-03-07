@@ -2,148 +2,199 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4A0886AD983
-	for <lists+devicetree@lfdr.de>; Tue,  7 Mar 2023 09:47:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 709CB6AD996
+	for <lists+devicetree@lfdr.de>; Tue,  7 Mar 2023 09:52:29 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229750AbjCGIre (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Mar 2023 03:47:34 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56386 "EHLO
+        id S229833AbjCGIw1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Mar 2023 03:52:27 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33554 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229605AbjCGIrc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Mar 2023 03:47:32 -0500
-Received: from mail-ed1-x529.google.com (mail-ed1-x529.google.com [IPv6:2a00:1450:4864:20::529])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 14D4C6B5D4
-        for <devicetree@vger.kernel.org>; Tue,  7 Mar 2023 00:47:30 -0800 (PST)
-Received: by mail-ed1-x529.google.com with SMTP id da10so49328011edb.3
-        for <devicetree@vger.kernel.org>; Tue, 07 Mar 2023 00:47:30 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1678178848;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=F7j1dxawSrzqkrX+B4b2Ope1wZoGmjsuZyY/TvC7R90=;
-        b=KrPnQCQzPUPY60yp/upZkZQ+xtOhVLkA6VUoRtFFyu2Rg6pVzIDB7vzQHvy1OpxUrD
-         J7/r4Bzgfsx71H24CQbUR2kCqY34qfEhSVr+689pLtfvll8VzYEphha7p6v9OjxA3i3F
-         rOmx8CIySFGYXeh8Vz6fViQv0qsgTGaMIUkOt1ElTiz6VnOVHCFfgvs9j3oA3LK0x0cs
-         USTJwFWiRI6afGVjDET/0Yr7dYdT145F0Hw004rY94ewMbi9oTo1ULB8VSGm8PP1M6ci
-         vY8q+eTfH4boLWE/3agfobFX5Jn/wJkxNnbPGTP/+xK8ZC2wqrP7RxstQQGI9NpH6wmC
-         djew==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678178848;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=F7j1dxawSrzqkrX+B4b2Ope1wZoGmjsuZyY/TvC7R90=;
-        b=P82mXw1UV2mxzEwEDEqbZYYT9q6dge8LgHQlsc0ekVxeTJsjrmVgZXjjMcfvd2P1tr
-         dG/Rxtc7mh863rC+J5Ok4+4C8ZW/F5E6JNR96QmCctAp+rNeg/OndE4dhkaPzC104rDn
-         JdWhZ369bylLHHPB/89yAvOESKUTn44n4x4pzGIVF9jTJPTamSlA73PyFkFwAGY3cDET
-         LJMY6fGsu6rv3jBgFClLCz2EBKH1owSx5S7Dfv3zM03rsJ13mK8/EKCnpCBmjQxeUe0V
-         LtW0HEBYXl6R95ULSoFgWV54F5GL8nHlK/uRG5yvUVKQWw4N6DE2d/uZbhAm3qKPWliQ
-         0CIw==
-X-Gm-Message-State: AO0yUKWYZqMhbBm/5J0qxLOc3oxp5Gfb+D9D1ecA71BFjMT8gP63u8hE
-        fZfmjCmd29rk8PqIpwq050GfpYGfqPnXpMV39I4=
-X-Google-Smtp-Source: AK7set8yb4W6UUL7Tlxzj+98ZRvi1NqN0Ko2zYCzCmsu+d5uG+xYuK7RP0uMGVGKYNML4Q3cYpACLQ==
-X-Received: by 2002:a05:6402:510:b0:4bb:83fa:5e83 with SMTP id m16-20020a056402051000b004bb83fa5e83mr11967349edv.12.1678178848606;
-        Tue, 07 Mar 2023 00:47:28 -0800 (PST)
-Received: from ?IPV6:2a02:810d:15c0:828:5310:35c7:6f9e:2cd3? ([2a02:810d:15c0:828:5310:35c7:6f9e:2cd3])
-        by smtp.gmail.com with ESMTPSA id q2-20020a50cc82000000b004acbda55f6bsm6274500edi.27.2023.03.07.00.47.27
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 07 Mar 2023 00:47:28 -0800 (PST)
-Message-ID: <227d9815-cf5f-6d2b-d52c-dbcc95729a59@linaro.org>
-Date:   Tue, 7 Mar 2023 09:47:26 +0100
+        with ESMTP id S229549AbjCGIw0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Mar 2023 03:52:26 -0500
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 709B92CFF1;
+        Tue,  7 Mar 2023 00:52:22 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1678179142; x=1709715142;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=5GBiPeesd8xFReVcLee1l9cVo8XbRI4la4GvpsLYlT8=;
+  b=elavBS9zHOL8roNB80cIoVwNG2htbeKOBy/b3afssyXzunOoEtcLL+UF
+   l7YJthb4RHDsfBseXZIW5uoTR2YWLf3cyzdTttXNavpLmS/5vqZaUqCRX
+   3O+/Z5ExYNtKLarpy9kvVhz3PXZfP2xtLAYfz/5rd83mxubusASo7nD6L
+   RSVtuJTyH1Iw7fBXCW4BlkpVs5vMtz2T0p2je+wIHQwcRmAFGUehMI4Yj
+   jxqSYCwnfZxaQzSVlthZpNHTVMSGscqe86Su+OAi9DpAjMMUrO6kY99PK
+   JLuFTW3oPtBNsR0/gOnrXkJIiiKvLPYTUAnwer4M17ilQSTKAFEa1rIkC
+   Q==;
+X-IronPort-AV: E=Sophos;i="5.98,240,1673938800"; 
+   d="asc'?scan'208";a="204037593"
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa2.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 07 Mar 2023 01:52:20 -0700
+Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
+ chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.16; Tue, 7 Mar 2023 01:52:20 -0700
+Received: from wendy (10.10.115.15) by chn-vm-ex01.mchp-main.com
+ (10.10.85.143) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.16 via Frontend
+ Transport; Tue, 7 Mar 2023 01:52:17 -0700
+Date:   Tue, 7 Mar 2023 08:51:49 +0000
+From:   Conor Dooley <conor.dooley@microchip.com>
+To:     Hal Feng <hal.feng@starfivetech.com>
+CC:     Conor Dooley <conor@kernel.org>, <linux-riscv@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-clk@vger.kernel.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Ben Dooks <ben.dooks@sifive.com>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>,
+        Emil Renner Berthing <emil.renner.berthing@canonical.com>,
+        <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v4 00/19] Basic clock, reset & device tree support for
+ StarFive JH7110 RISC-V SoC
+Message-ID: <ZAb7JVghuiwZF1Q5@wendy>
+References: <20230221024645.127922-1-hal.feng@starfivetech.com>
+ <3a605bc8-104e-0935-4fd8-2da16ab9053b@starfivetech.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-Subject: Re: [PATCH v2 1/3] dt-bindings: serial: amlogic,meson-uart: Add
- compatible string for G12A
-Content-Language: en-US
-To:     Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org
-Cc:     linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        jirislaby@kernel.org, neil.armstrong@linaro.org,
-        krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
-        gregkh@linuxfoundation.org,
-        Christian Hewitt <christianshewitt@gmail.com>
-References: <20230306194223.1869814-1-martin.blumenstingl@googlemail.com>
- <20230306194223.1869814-2-martin.blumenstingl@googlemail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230306194223.1869814-2-martin.blumenstingl@googlemail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="BPAAyqVe2vfLu2rd"
+Content-Disposition: inline
+In-Reply-To: <3a605bc8-104e-0935-4fd8-2da16ab9053b@starfivetech.com>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,URIBL_BLOCKED autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 06/03/2023 20:42, Martin Blumenstingl wrote:
-> Amlogic G12A SoCs gained a new "divide XTAL by 2" bit. Everything else
-> (we know about) is identical to the UART IP on GX (GXBB/GXL/GXM) SoCs.
-> Add a new compatible string for this SoC so this new bit can be managed
-> accordingly while keeping "amlogic,meson-gx-uart" as fallback compatible
-> string.
-> 
-> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-> ---
-> Changes from v1 -> v2:
-> - make meson-gx-uart a valid compatible string for meson-g12a-uart
-> 
-> 
->  .../bindings/serial/amlogic,meson-uart.yaml   | 28 +++++++++++++------
->  1 file changed, 19 insertions(+), 9 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/serial/amlogic,meson-uart.yaml b/Documentation/devicetree/bindings/serial/amlogic,meson-uart.yaml
-> index 3cbdde85ed71..f3af0da8edaf 100644
-> --- a/Documentation/devicetree/bindings/serial/amlogic,meson-uart.yaml
-> +++ b/Documentation/devicetree/bindings/serial/amlogic,meson-uart.yaml
-> @@ -26,21 +26,31 @@ properties:
->    compatible:
->      oneOf:
->        - description: Always-on power domain UART controller
-> -        items:
-> +        oneOf:
-> +          - items:
-> +              - enum:
-> +                  - amlogic,meson6-uart
-> +                  - amlogic,meson8-uart
-> +                  - amlogic,meson8b-uart
-> +                  - amlogic,meson-gx-uart
-> +                  - amlogic,meson-s4-uart
-> +              - const: amlogic,meson-ao-uart
-> +          - items:
-> +              - const: amlogic,meson-g12a-uart
-> +              - const: amlogic,meson-gx-uart
-> +              - const: amlogic,meson-ao-uart
-> +      - description: Everything-Else power domain UART controller
-> +        oneOf:
->            - enum:
->                - amlogic,meson6-uart
->                - amlogic,meson8-uart
->                - amlogic,meson8b-uart
->                - amlogic,meson-gx-uart
-> +              - amlogic,meson-g12a-uart
->                - amlogic,meson-s4-uart
-> -          - const: amlogic,meson-ao-uart
-> -      - description: Everything-Else power domain UART controller
-> -        enum:
-> -          - amlogic,meson6-uart
-> -          - amlogic,meson8-uart
-> -          - amlogic,meson8b-uart
-> -          - amlogic,meson-gx-uart
-> -          - amlogic,meson-s4-uart
-> +          - items:
-> +              - const: amlogic,meson-g12a-uart
-> +              - const: amlogic,meson-gx-uart
+--BPAAyqVe2vfLu2rd
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Difficult to review... You claim you add only g12a which seems like is
-happening there but with some other changes. I see g12a three times and
-a lot of reshuffling. I also see multiple oneOf, so something is clearly
-wrong. oneOf is only one.
+On Tue, Mar 07, 2023 at 04:36:41PM +0800, Hal Feng wrote:
+> On Tue, 21 Feb 2023 10:46:26 +0800, Hal Feng wrote:
+> > This patch series adds basic clock, reset & DT support for StarFive
+> > JH7110 SoC. Patch 17 depends on series [1] which provides pinctrl
+> > dt-bindings. Patch 19 depends on series [2] which provides dt-bindings
+> > of VisionFive 2 board and JH7110 SoC.
+> >=20
+> > You can simply review or test the patches at the link [3].
+> >=20
+> > [1]: https://lore.kernel.org/all/20230209143702.44408-1-hal.feng@starfi=
+vetech.com/
+> > [2]: https://lore.kernel.org/all/20230216131511.3327943-1-conor.dooley@=
+microchip.com/
+> > [3]: https://github.com/hal-feng/linux/commits/visionfive2-minimal
+>=20
+> Hi Conor,
+>=20
+> When I tried to rebase these patches on v6.3-rc1, I found the kernel
+> would crash on the VisionFive 2 board during startup. The logs are as
+> below. I checkout the branch to the mainline and found that the kernel
+> would also crash on the VisionFive board which is equipped with JH7100
+> SoC.
+>=20
+> --------------------------------
+> Unable to handle kernel paging request at virtual address 0000004cccccccd4
+> Oops [#1]
+> Modules linked in:
+> CPU: 3 PID: 87 Comm: udevd Not tainted 6.3.0-rc1-00019-g239e7809f291 #305
+> Hardware name: StarFive VisionFive 2 v1.3B (DT)
+> epc : enqueue_timer+0x18/0x90
+>  ra : internal_add_timer+0x2c/0x38
+> epc : ffffffff8006a714 ra : ffffffff8006a7b8 sp : ffffffc80443bc80
+>  gp : ffffffff80eb5100 tp : ffffffd8c01db200 t0 : 0000000000000000
+>  t1 : 000000000000000f t2 : 0000000038b3ea28 s0 : ffffffc80443bcb0
+>  s1 : ffffffff80813940 a0 : ffffffff80813940 a1 : ffffffc80443bd48
+>  a2 : 000000000000020b a3 : cccccccd0b000000 a4 : cccccccccccccccc
+>  a5 : 000000000000020b a6 : ffffffff80814a08 a7 : 0000000000000001
+>  s2 : ffffffc80443bd48 s3 : 0000000008400040 s4 : ffffffff80813940
+>  s5 : ffffffff80eea0b8 s6 : ffffffff80eb7220 s7 : 0000000000000040
+>  s8 : ffffffff80eb61e0 s9 : 0000002ac84a2548 s10: 0000002ad53e92c0
+>  s11: 0000000000000001 t3 : 000000000000003f t4 : 0000000000000000
+>  t5 : 0000000000000004 t6 : 0000000000000003
+> status: 0000000200000100 badaddr: 0000004cccccccd4 cause: 000000000000000f
+> [<ffffffff8006a714>] enqueue_timer+0x18/0x90
+> [<ffffffff8006aa64>] add_timer_on+0xf0/0x134
+> [<ffffffff80500f18>] try_to_generate_entropy+0x1ec/0x232
+> [<ffffffff8035a636>] urandom_read_iter+0x42/0xc2
+> [<ffffffff800fff16>] vfs_read+0x17c/0x1e4
+> [<ffffffff801005b6>] ksys_read+0x78/0x98
+> [<ffffffff801005e4>] sys_read+0xe/0x16
+> [<ffffffff800035dc>] ret_from_syscall+0x0/0x2
+> Code: 9381 9713 0037 0813 0705 983a 3703 0008 e198 c311 (e70c) d713=20
+> ---[ end trace 0000000000000000 ]---
+> note: udevd[87] exited with irqs disabled
+> Segmentation fault
+> FAIL
+> Saving random seed:=20
+> rcu: INFO: rcu_sched detected stalls on CPUs/tasks:
+> rcu: 	1-...0: (0 ticks this GP) idle=3D19c4/1/0x4000000000000000 softirq=
+=3D42/42 fqs=3D7474
+> rcu: 	(detected by 2, t=3D15005 jiffies, g=3D-195, q=3D35 ncpus=3D4)
+> Task dump for CPU 1:
+> task:dd              state:R  running task     stack:0     pid:92    ppid=
+:88     flags:0x00000008
+> Call Trace:
+> [<ffffffff80003764>] ret_from_fork+0x0/0xc
+> rcu: INFO: rcu_sched detected stalls on CPUs/tasks:
+> rcu: 	1-...0: (0 ticks this GP) idle=3D19c4/1/0x4000000000000000 softirq=
+=3D42/42 fqs=3D29814
+> rcu: 	(detected by 2, t=3D60018 jiffies, g=3D-195, q=3D35 ncpus=3D4)
+> Task dump for CPU 1:
+> task:dd              state:R  running task     stack:0     pid:92    ppid=
+:88     flags:0x00000008
+> Call Trace:
+> [<ffffffff80003764>] ret_from_fork+0x0/0xc
+> ...
+> --------------------------------
+>=20
+> I used 'git bisect' and found out the commit 9493e6f3ce02 is the
+> cause. I tried to revert this commit on the tag v6.3-rc1, but it
+> seems there is no improvement.
 
-Best regards,
-Krzysztof
+Hmm, I'm not entirely sure that that is a good bisect.
+This is a fix for my stupidity in the commit you mention:
+https://lore.kernel.org/linux-riscv/20230302174154.970746-1-conor@kernel.or=
+g/
 
+But the main backtrace there is not from that patch at all, I think it
+is Linus' fault.
+The HEAD of Linus' tree is currently 8ca09d5fa3549 ("cpumask: fix
+incorrect cpumask scanning result checks") should be a fix for the
+backtrace that you are seeing above.
+
+> Any options I am missing? Could you please give me some suggestions
+> to adapt to the new changes between 6.2 and 6.3? Thank you in
+> advance.
+
+LMK if the above two things don't fix it for you & I'll go digging
+tonight.
+
+Cheers,
+Conor.
+
+--BPAAyqVe2vfLu2rd
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZAb7FQAKCRB4tDGHoIJi
+0qVTAPsHSMwYMcrmOSnP3im30f+2vZGSFqHJchJxrpjd09D3+AD/W49wo6JYEE0K
+54n79wuFUj4pxEaLUIJptbE2s62iGQU=
+=7ad+
+-----END PGP SIGNATURE-----
+
+--BPAAyqVe2vfLu2rd--
