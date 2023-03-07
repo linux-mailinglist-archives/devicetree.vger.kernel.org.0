@@ -2,59 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 674C86AD92C
-	for <lists+devicetree@lfdr.de>; Tue,  7 Mar 2023 09:22:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 79F7D6AD92F
+	for <lists+devicetree@lfdr.de>; Tue,  7 Mar 2023 09:23:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229689AbjCGIWP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Mar 2023 03:22:15 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60074 "EHLO
+        id S229874AbjCGIXL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Mar 2023 03:23:11 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33202 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230155AbjCGIWB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Mar 2023 03:22:01 -0500
-Received: from mail-ed1-x52e.google.com (mail-ed1-x52e.google.com [IPv6:2a00:1450:4864:20::52e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 17318127
-        for <devicetree@vger.kernel.org>; Tue,  7 Mar 2023 00:21:51 -0800 (PST)
-Received: by mail-ed1-x52e.google.com with SMTP id a25so49246855edb.0
-        for <devicetree@vger.kernel.org>; Tue, 07 Mar 2023 00:21:51 -0800 (PST)
+        with ESMTP id S230019AbjCGIXJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Mar 2023 03:23:09 -0500
+Received: from mail-ed1-x536.google.com (mail-ed1-x536.google.com [IPv6:2a00:1450:4864:20::536])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2E8C81CF50
+        for <devicetree@vger.kernel.org>; Tue,  7 Mar 2023 00:23:08 -0800 (PST)
+Received: by mail-ed1-x536.google.com with SMTP id ay14so45324216edb.11
+        for <devicetree@vger.kernel.org>; Tue, 07 Mar 2023 00:23:08 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1678177309;
+        d=linaro.org; s=google; t=1678177386;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=51J152pj392A2NnLtlE2jtA0bt6EHZvfk9Vi21ByDWk=;
-        b=jlCbbh/RfcHZ5kCuqH8fEEas8BEwpuAbS6yIKE0tgoJzqe7C0mmGtMVqBatBxhLw4h
-         LF8tRQ+YvtszCLJA8q1AXT6q5Zr1GAJntyb6zHR4JPBgXnTgdLFgDGVia7Xu7dNOj9tG
-         kuIsQw+qdXujiISN0h8F6onN0JdUzuhYNpeq+YXg8G6L4Ek/wxFumAeviuf/iefia+kL
-         NlVlWxDbLkFWhZcw3SSa4gi5FAzw7qbjP3g7a3CBC5wPuAIab2KyejJSqUzDOcNuhO2F
-         DHI6GkUuKtFNKiwaI5UvW+VJprdw4E2RhLAELlRhWLjIybosQnHgDD5GzV1CX8/1HF5z
-         uJjg==
+        bh=bsvQEVxWDlGqG69PjKx9UwP7aecD3y/kUgXUmvfhHcQ=;
+        b=lsQEz275pvH+8FEj/h7Ww0GEFcurhFSWm4+mdoMwomxK5qXxkz2O/re+ouGJQQUs2M
+         yqgZlws2ppqtaEwPjP8/OIA0TaDB6hFJ4YPfu/twHafTCHBhb7e3ToeH8eVKGt6iEvSp
+         q1vHYlnf7bGpikgLk1zIrov7DJ0xl+b11ROJ7DETq60rJR6PRcSlB3rWCNlrd5Ldt9Ry
+         5kpNhu5TwJieQ+RhUUcqWk7CuGZXLdEOu7F/f916zkGuv82pE0E1kjmTUkYc8ujylZAQ
+         J4TUYTAPwHBfWHNk4AXWXs3UOX4+VgyWEPf+ywmjvnY0nUt+VgkyCrNagRpmNEwj5pSh
+         8gMw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678177309;
+        d=1e100.net; s=20210112; t=1678177386;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=51J152pj392A2NnLtlE2jtA0bt6EHZvfk9Vi21ByDWk=;
-        b=rLt9njxYXX7S5uWpWBFIraal6Kol6YDqhgQIkU3QoG8RYCMixyHXwwheb1kQHpB6mJ
-         gpaDWv9YT/ph6IsKoguO/6pYY3RlGMA1tTqlADj+Nu7p22tkpms+3IhkUMSDF39YQ6WD
-         h+n0wG2qWLC750WEpTLYhBbl6B5xEC9PW7N2XDCFh2JZIHNeWR1Pp0jROLj1xWzhoJ7U
-         qsQOV0TaHM+HJfE2LfSAD6WH0wscjESOdlKtpWJ1FenWvyoBqktks3p8h9ptDw3oq2Im
-         fvqQZr5cIftE25l1Bl/IfOfwlmyXUhO0fQejJNfvk/g8hFSk8Q+Sn0yX1uXPqY3RuVxB
-         0xIg==
-X-Gm-Message-State: AO0yUKUTjo/YFGgAkNJkiqdfi/TIKbk9mVAkzIS/T/C6tB/jsIT2/LX5
-        ZILa5JL2JqaKaXhKbWYMwIf/Ww==
-X-Google-Smtp-Source: AK7set/wYEgj+FKri+Qrl5oXX8zSnSlYPjM7x3/Bnf8PhufCbetefH+6e/OMuUMBHks246EiNyvDmQ==
-X-Received: by 2002:a17:906:4783:b0:8af:2107:6ce5 with SMTP id cw3-20020a170906478300b008af21076ce5mr18042086ejc.35.1678177309629;
-        Tue, 07 Mar 2023 00:21:49 -0800 (PST)
+        bh=bsvQEVxWDlGqG69PjKx9UwP7aecD3y/kUgXUmvfhHcQ=;
+        b=zwFmi3eKInr5UPW0g3d29Tqxe5JK3DthLgR8AreGQfC/Z0rI93bPq0PZ5WK+0u1h17
+         wLlKq7aQuy2p0svYk+jmQyFCScbg/js9+J3GOWstFVAr08js3hi/mJk1jRjTEWg2dix5
+         KtE5S3RB/4V//OveZPyxlTMoD6ozoZxT1pfco27H/3RhzR7oTr/6pXFtLNgtJw6qB1Y5
+         I5DNC8ePz8U60Tufkq7DuBni9wfZTV2gGQzuoMYwnmWLhpOWucH+D9RtRrrafbyDmlP+
+         DzCNYDxqHIfplAStXZYjnsKaFWNAaKkqupAdvPnQwFujdaK17tEUSNhqG/sxRbcLaih3
+         LpkQ==
+X-Gm-Message-State: AO0yUKUkb90a9r5sWCUTUTzGFpmsTGwmyCvn4Y6Bq+CXts2KO824Izf2
+        v0PgLepk/dc4o6Bdgp3d93C+0Q==
+X-Google-Smtp-Source: AK7set/pI4T5zAiugz10LG3mVZbxPx0VWV8mlvPrlq47VZ6OHWxQlyt6zxG0+wRCbDHpRtbVbNP0Yw==
+X-Received: by 2002:a17:906:8a72:b0:881:a3ec:2b40 with SMTP id hy18-20020a1709068a7200b00881a3ec2b40mr12386452ejc.59.1678177386739;
+        Tue, 07 Mar 2023 00:23:06 -0800 (PST)
 Received: from ?IPV6:2a02:810d:15c0:828:5310:35c7:6f9e:2cd3? ([2a02:810d:15c0:828:5310:35c7:6f9e:2cd3])
-        by smtp.gmail.com with ESMTPSA id 20-20020a170906301400b008cf1b61a73esm5708654ejz.41.2023.03.07.00.21.48
+        by smtp.gmail.com with ESMTPSA id y7-20020a170906470700b008ef13127b5fsm5714065ejq.29.2023.03.07.00.23.05
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 07 Mar 2023 00:21:49 -0800 (PST)
-Message-ID: <6567c9ac-7208-9262-39c4-2e728207b34c@linaro.org>
-Date:   Tue, 7 Mar 2023 09:21:47 +0100
+        Tue, 07 Mar 2023 00:23:06 -0800 (PST)
+Message-ID: <633b1e27-d148-62d2-ef83-2d0da432c0a7@linaro.org>
+Date:   Tue, 7 Mar 2023 09:23:05 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.8.0
-Subject: Re: [PATCH 2/8] dt-bindings: Add DS2482/DS2484 as trivial device
+Subject: Re: [PATCH 4/8] dt-bindings: iio: st-sensors: Add IIS328DQ
+ accelerometer
 Content-Language: en-US
 To:     Stefan Wahren <stefan.wahren@i2se.com>,
         Rob Herring <robh+dt@kernel.org>,
@@ -70,12 +71,11 @@ Cc:     linux-imx@nxp.com, Li Yang <leoyang.li@nxp.com>,
         Denis Ciocca <denis.ciocca@st.com>, soc@kernel.org,
         linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org,
-        Stefan Wahren <stefan.wahren@chargebyte.com>,
-        Steffen Trumtrar <s.trumtrar@pengutronix.de>
+        Stefan Wahren <stefan.wahren@chargebyte.com>
 References: <20230306172249.74003-1-stefan.wahren@i2se.com>
- <20230306172249.74003-3-stefan.wahren@i2se.com>
+ <20230306172249.74003-5-stefan.wahren@i2se.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230306172249.74003-3-stefan.wahren@i2se.com>
+In-Reply-To: <20230306172249.74003-5-stefan.wahren@i2se.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -91,15 +91,11 @@ X-Mailing-List: devicetree@vger.kernel.org
 On 06/03/2023 18:22, Stefan Wahren wrote:
 > From: Stefan Wahren <stefan.wahren@chargebyte.com>
 > 
-> Both chips are I2C to 1-wire bridges.
-> 
-> Signed-off-by: Stefan Wahren <stefan.wahren@chargebyte.com>
-> Signed-off-by: Stefan Wahren <stefan.wahren@i2se.com>
-> Cc: Steffen Trumtrar <s.trumtrar@pengutronix.de>
-> ---
+> The ST IIS328DQ is an accelerometer sensor compatible with
+> the existing ST sensor binding.
 
-
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+If it is compatible with existing binding, then make it compatible.
+Although your driver change suggests it is not compatible...
 
 Best regards,
 Krzysztof
