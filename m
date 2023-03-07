@@ -2,85 +2,166 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3D7EA6ADB32
-	for <lists+devicetree@lfdr.de>; Tue,  7 Mar 2023 10:57:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 720686ADB62
+	for <lists+devicetree@lfdr.de>; Tue,  7 Mar 2023 11:07:30 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230500AbjCGJ5F (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Mar 2023 04:57:05 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56208 "EHLO
+        id S229785AbjCGKH3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Mar 2023 05:07:29 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44194 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231150AbjCGJ4u (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Mar 2023 04:56:50 -0500
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 61C0E135;
-        Tue,  7 Mar 2023 01:56:40 -0800 (PST)
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits))
-        (No client certificate requested)
-        (Authenticated sender: kholk11)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id 1524D66018CA;
-        Tue,  7 Mar 2023 09:56:38 +0000 (GMT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1678182999;
-        bh=b2sW59AfaGFgFUY1ZzjTm6KZ66xi/bkthdwC/r+4TgA=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=LJxMvDvw6Q83K+ttDjzaDidUrhIXIZx+I98if6nPAtt4g6mQCFgOVenRXYHxce70M
-         67XrHxS+XgTAN5WD1IsqbuC8VE0QJWcNQDfBAYbcMQ+6De/Rtijk5uN6v2X8Wfp8eq
-         PncHZ6GVV3tgwpc5Ng+Hdvhrg+B4r/kwJuSnkD/fKgEeREj2g/SavYamspcy2n+RUU
-         AisM8yrgNrCJLUvVRnTTISHlXA68st2K3KUrkNNsOu5BGY0QKljeMKDNN+EabQ5yK5
-         nZOn3tKpQtOx4ZbnM5C6FH5av8/Kkc7Mjhkf4ARmofNjomCzaxxwBkFAy9oekokfwI
-         8q2PjlQJqqxJg==
-Message-ID: <7e5aac3a-8edc-fd90-666b-0649182ad8a5@collabora.com>
-Date:   Tue, 7 Mar 2023 10:56:35 +0100
+        with ESMTP id S229636AbjCGKH1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Mar 2023 05:07:27 -0500
+Received: from mail-wm1-x32d.google.com (mail-wm1-x32d.google.com [IPv6:2a00:1450:4864:20::32d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2856B2E824
+        for <devicetree@vger.kernel.org>; Tue,  7 Mar 2023 02:07:25 -0800 (PST)
+Received: by mail-wm1-x32d.google.com with SMTP id m25-20020a7bcb99000000b003e7842b75f2so6831523wmi.3
+        for <devicetree@vger.kernel.org>; Tue, 07 Mar 2023 02:07:25 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112; t=1678183643;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=a99hADv24Oq3ePO/xWvEGujHuLCx8t+cyBnnFpp72io=;
+        b=YSCUIcYocqMFAD+dkwuethgWjxG3R4uzFSWinK5RLr140QsCU9/Oe0rM5ZuaIhjjlZ
+         vLkeaHOAcmuKVZ4jiUMD6z4xU/D3k31VgNAqaDG+ftVlNyRfytFVYE88oMwdz55UYkBc
+         dPHaWmbI2+Hci/kGAvHYh+JEYcRcAsKBFMw9R3Q6xBp344epu5ycicCpYVNC11FzxRkg
+         p+jb84OS2IF1+c1CY4XRBPNlCfoRoKIRoG9g2Km1pCYxgJDzkCVrjTIY1tKh404zn5mH
+         mK7095HXFummUmioTMTIU0ZAMdx8D10VtV94aJ4rOQ1hih7MrXGvayUUYd6vLKQXjpgV
+         mqKw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1678183643;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=a99hADv24Oq3ePO/xWvEGujHuLCx8t+cyBnnFpp72io=;
+        b=HxY68Yr5nOLuFeR3XlLFlPxFz0ctAp9f/bZHY/3A+BapMUl6RW3ugTU4mE36/+D0xe
+         hlU0JT0DoSSc5b488d7oQrFTnZj1ioZbGkfHjoNZsDh1gzMk7qQH0HGoFM1jSkyBque2
+         WprBGjcgRGLVRe58OWRX7twQ/Gc6AAHk9bIw514Yd39X3WBfIc/Va+7rFCOMXme28NGe
+         GibGiKg8RU/7smH6/2jyFXuVGeRE+pE5R6bCKTtzOLC/IP77vmG4Wq5QHLM1OO9SHGDJ
+         /FaAy/9KxgpbpTCBE9fBwXC6OVP8fAAA9zFIgWm5f1g1mQbflQG52qWqJxuPwGSfE1g0
+         Qimg==
+X-Gm-Message-State: AO0yUKXfMjEe0VhHSztaSQldN1kowOSTktZYZ5nUoWXBsj4GkMDAsGIJ
+        TKcoP2UvZkXkvF5WCWN21q9RPQ==
+X-Google-Smtp-Source: AK7set9LisboRMIbelSbZwB9/xid+f7oLBqZmrU5e7MBZwglzYbYVjzgLLCrOA+yg2thby9TmUO7ZQ==
+X-Received: by 2002:a05:600c:4448:b0:3dc:18de:b20d with SMTP id v8-20020a05600c444800b003dc18deb20dmr12895539wmn.33.1678183643561;
+        Tue, 07 Mar 2023 02:07:23 -0800 (PST)
+Received: from [127.0.1.1] (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
+        by smtp.googlemail.com with ESMTPSA id i16-20020a05600c355000b003dc4480df80sm18026288wmq.34.2023.03.07.02.07.22
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 07 Mar 2023 02:07:23 -0800 (PST)
+From:   Alexandre Mergnat <amergnat@baylibre.com>
+Date:   Tue, 07 Mar 2023 11:07:14 +0100
+Subject: [PATCH v4] dt-bindings: display: mediatek: clean unnecessary item
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-Subject: Re: [PATCH v8 7/7] iommu/mediatek: mt8188: Add iova_region_larb_msk
-Content-Language: en-US
-To:     Yong Wu <yong.wu@mediatek.com>, Joerg Roedel <joro@8bytes.org>,
-        Will Deacon <will@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>
-Cc:     Robin Murphy <robin.murphy@arm.com>,
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+Message-Id: <20230306-ccorr-binding-fix-v4-0-117daea88efb@baylibre.com>
+To:     Chun-Kuang Hu <chunkuang.hu@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        iommu@lists.linux.dev, linux-mediatek@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, mingyuan.ma@mediatek.com,
-        yf.wang@mediatek.com, jianjiao.zeng@mediatek.com,
-        chengci.xu@mediatek.com, youlin.pei@mediatek.com
-References: <20230307080555.14399-1-yong.wu@mediatek.com>
- <20230307080555.14399-8-yong.wu@mediatek.com>
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20230307080555.14399-8-yong.wu@mediatek.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+        Daniel Vetter <daniel@ffwll.ch>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Allen-KH Cheng <allen-kh.cheng@mediatek.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        David Airlie <airlied@gmail.com>
+Cc:     Alexandre Mergnat <amergnat@baylibre.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Rob Herring <robh@kernel.org>, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
+        dri-devel@lists.freedesktop.org
+X-Mailer: b4 0.10.1
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2628; i=amergnat@baylibre.com;
+ h=from:subject:message-id; bh=G42YvKxkrZJb/teIAV/+HSCiQBvvc6k4e2mWKdkwM3Y=;
+ b=owEBbQKS/ZANAwAKAStGSZ1+MdRFAcsmYgBkBwzaI++vi8o18d0x4WW7CSZlcGaJz7zBjybAHxbD
+ 0V0R9veJAjMEAAEKAB0WIQQjG17X8+qqcA5g/osrRkmdfjHURQUCZAcM2gAKCRArRkmdfjHUReLqD/
+ 4pmKEEHsKgsyphpRf2jTAS+qD61DtVytoGOcCZ4giSLMXJY928D5l57zSrlei1a8RnOoIlg1DGp5r4
+ iPALGAhEz2FBWrvEb83xeukIb+2xHJiYXEmrNjh92YYVp4RuvlMBecTQHkElypf9zdRIOaerymRzgA
+ 98zV6VxYjO3A5Gqxm/G8YQVSvCFHBtWktRpco3h505EFQ40A6UilfZ14lqK+GhmZj07ueoaU8Mmo8D
+ vn0yK59187hXXJqO2RdZ2P7zUtuJlq1we1SxMueoI+7EAOoQneokgl3UtJ722DUsYXpKzkcDeB5/lb
+ /d6i1Cud3Xm2+RrpV2lKkbD3Yn8y/ycGJ5cOQGHFoApUCFhaxBiuOcfSscyoWvx+o8MN+9sCndHWin
+ IqS5fZjGZ8Fez0VV4HicvFI/IXwsieGUAnV+LEJ06FVHTjN005Y8sDnbqqJlYCZcPa2VKv7ijuWaCy
+ CzXs2P0a5mG0AOvR0mVFvn4DkW27zkRa6B0lcbe/rOPF0ELOTwHKyhUVWeqftAcmubptyOn+LJGxGh
+ qNLzvBb3pZoNxVNp/K4Izf97hQ4+VFHgrOnyojV9D70keC/+sIdcXuB+u4XYEgBz9PQTx01SjvA8ny
+ aAYYnop6rMjZIaoqrfxd2Zo2YfFPwqQAOrP3T7kJxtnPJloGNVPirysHrzHQ==
+X-Developer-Key: i=amergnat@baylibre.com; a=openpgp;
+ fpr=231B5ED7F3EAAA700E60FE8B2B46499D7E31D445
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 07/03/23 09:05, Yong Wu ha scritto:
-> Add iova_region_larb_msk for mt8188. We separate the 16GB iova regions
-> by each device's larbid/portid.
-> Refer to include/dt-bindings/memory/mediatek,mt8188-memory-port.h
-> 
-> Note: larb19(21) as commented in that h above, it means larb19 while its SW
-> index is 21.
-> 
-> Signed-off-by: Yong Wu <yong.wu@mediatek.com>
+The item which have the mediatek,mt8192-disp-ccorr as const compatible
+already exist above. Merge all compatibles which have the same fallback
+under the same item.
 
-Please clarify the commit description:
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Signed-off-by: Alexandre Mergnat <amergnat@baylibre.com>
+---
+Fix MTK color correction binding
 
-"larb19(21) as commented in that h above" => "As commented in the code, larb19(21)
-means .."
+The fallback compatible has been duplicated in the 137272ef1b0f commit.
 
-After which:
+To: Chun-Kuang Hu <chunkuang.hu@kernel.org>
+To: Philipp Zabel <p.zabel@pengutronix.de>
+To: David Airlie <airlied@gmail.com>
+To: Daniel Vetter <daniel@ffwll.ch>
+To: Rob Herring <robh+dt@kernel.org>
+To: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+To: Matthias Brugger <matthias.bgg@gmail.com>
+To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+To: Allen-KH Cheng <allen-kh.cheng@mediatek.com>
+Cc: Rob Herring <robh@kernel.org>
+Cc: dri-devel@lists.freedesktop.org
+Cc: linux-mediatek@lists.infradead.org
+Cc: devicetree@vger.kernel.org
+Cc: linux-kernel@vger.kernel.org
+Cc: linux-arm-kernel@lists.infradead.org
+---
+Changes in v4:
+- Reword commit title and message.
+- Link to v3: https://lore.kernel.org/r/20230306-ccorr-binding-fix-v3-0-7877613a35cb@baylibre.com
 
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Changes in v3:
+- Re-order compatible.
+- Link to v2: https://lore.kernel.org/r/20230306-ccorr-binding-fix-v2-0-4822939a837d@baylibre.com
 
+Changes in v2:
+- Fix commit title.
+- Link to v1: https://lore.kernel.org/r/20230306-ccorr-binding-fix-v1-0-177d81d60c69@baylibre.com
+---
+ .../devicetree/bindings/display/mediatek/mediatek,ccorr.yaml         | 5 +----
+ 1 file changed, 1 insertion(+), 4 deletions(-)
+
+diff --git a/Documentation/devicetree/bindings/display/mediatek/mediatek,ccorr.yaml b/Documentation/devicetree/bindings/display/mediatek/mediatek,ccorr.yaml
+index b04820c95b22..bda86e6857f5 100644
+--- a/Documentation/devicetree/bindings/display/mediatek/mediatek,ccorr.yaml
++++ b/Documentation/devicetree/bindings/display/mediatek/mediatek,ccorr.yaml
+@@ -27,13 +27,10 @@ properties:
+           - const: mediatek,mt8192-disp-ccorr
+       - items:
+           - enum:
++              - mediatek,mt8186-disp-ccorr
+               - mediatek,mt8188-disp-ccorr
+               - mediatek,mt8195-disp-ccorr
+           - const: mediatek,mt8192-disp-ccorr
+-      - items:
+-          - enum:
+-              - mediatek,mt8186-disp-ccorr
+-          - const: mediatek,mt8192-disp-ccorr
+ 
+   reg:
+     maxItems: 1
+
+---
+base-commit: add072536971d7ce891fde3cdbf68c55e7cfa95a
+change-id: 20230306-ccorr-binding-fix-718c6d725088
+
+Best regards,
+-- 
+Alexandre Mergnat <amergnat@baylibre.com>
