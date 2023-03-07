@@ -2,76 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B1A856ADA16
-	for <lists+devicetree@lfdr.de>; Tue,  7 Mar 2023 10:19:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 428FA6ADA19
+	for <lists+devicetree@lfdr.de>; Tue,  7 Mar 2023 10:20:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230092AbjCGJTE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Mar 2023 04:19:04 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34748 "EHLO
+        id S229871AbjCGJUK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Mar 2023 04:20:10 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35478 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230089AbjCGJTD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Mar 2023 04:19:03 -0500
-Received: from mail-ed1-x529.google.com (mail-ed1-x529.google.com [IPv6:2a00:1450:4864:20::529])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A0016848D7
-        for <devicetree@vger.kernel.org>; Tue,  7 Mar 2023 01:18:55 -0800 (PST)
-Received: by mail-ed1-x529.google.com with SMTP id cw28so49569675edb.5
-        for <devicetree@vger.kernel.org>; Tue, 07 Mar 2023 01:18:55 -0800 (PST)
+        with ESMTP id S230358AbjCGJT5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Mar 2023 04:19:57 -0500
+Received: from mail-wm1-x329.google.com (mail-wm1-x329.google.com [IPv6:2a00:1450:4864:20::329])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 65B5188DAA
+        for <devicetree@vger.kernel.org>; Tue,  7 Mar 2023 01:19:53 -0800 (PST)
+Received: by mail-wm1-x329.google.com with SMTP id t25-20020a1c7719000000b003eb052cc5ccso9927023wmi.4
+        for <devicetree@vger.kernel.org>; Tue, 07 Mar 2023 01:19:53 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1678180734;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=CuNf2NVvheJLNGxzqkvv/znv6+L+XM0ua/fxZ/zPfpQ=;
-        b=oRrMDrqei7CGPwxbyw236kyApFkrPIdJ11fmQ8WkLo11P6Fq2x+JFZr9numC2lo9yU
-         j82Fjb09cZBmpitQ8NvTbPAimsycx3FGogjvLXK2MOnkDvg7jQ2jd+w+9UXtrxLUJ5c8
-         8L94s/lu+iFX6d5HpCbq9/LTo2dgnLKohZoLWBtKj3BqY9Qg5c+jrHdm8rmne1z907K+
-         4QtkPjuy3QJJUb9OYXfcORixCqd/g/rlDdwihiB0edle2J3WvQ9muGppMgLoXz0iP37h
-         eqPNlSAJlqIvMyCL+ZpwumKpy6tm79SeNAF5fYXqMnS0Uk2voVdxGMB+DUcrSphMUwY6
-         9j0A==
+        d=linaro.org; s=google; t=1678180792;
+        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
+         :content-language:subject:reply-to:from:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=Xvf3J0opIvDUcxf9EVO52WF3b9vkBrT7WnUb6TfxtQw=;
+        b=qlSONsvqCrRJCiKnQemhSWVzmW8IkLxHGjVLW+q3uPKfZB74eSAgFyNGsjVpOIppKR
+         N7WvqjftsfK69mezO3QyBdmQeRB48X/cA/zRMbjS401KI8VVZa/VpmnM0rgvi3WW/iAs
+         4+JqUn3vf8CiUvM10mRD8HJgsZnRr9AzQJVu6K7xatmQF67cDI7+i98GC3FZV6qvsmzX
+         PSastNPqf1afvY4XteO+Y/ooO5tuuF/UIREF1YpZtfJ8cVrv8BwN+Q04csKll7eO7mUi
+         JKAvh8MKLkhF/bzJDgIzbLl3fLg4kwPJVEFLYRoiiT5N+zx2PpBCDVEdhWDYANtCSfNd
+         McmA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678180734;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=CuNf2NVvheJLNGxzqkvv/znv6+L+XM0ua/fxZ/zPfpQ=;
-        b=an5y9dJwtWqRxfwzplEMV1Am/9hZocWiAChN9img/+5OX5tbPbp6bFAaqOFTMGtmH8
-         gJn7yiNeoKaNwWNQdJEkGaMxitA/SVHAyMANb3lOcF14SGOm1UuPNCSd+j1wpscy7q7t
-         Pmh0VLR+0mhuMr/QSgrtYzUgofkCXErUvWY2RpU115hfE4B2g0GwMpiB9WsYnsob9uKl
-         O0I/pl8RCK3Y1MRXrMI1c2QFTEh7nsZcbmNFAKLRUDeKZyMbqTKzgBQ+bjp1uhYc+u0q
-         v6tAUekhuP2Te/W7/Xp/LxXappUudu8VrGdZi6AuD4/wU+MxUfvSTd2lCPhIOYdCnzJQ
-         wksw==
-X-Gm-Message-State: AO0yUKWDZ+ItdNlh7yertaGLJNMeWFwB/SQw9mp4xBCGT4Q2UVOYpoBn
-        wDsmY3h3EzG/fdgnIUL1afRx9Q==
-X-Google-Smtp-Source: AK7set8ZqbdOkkb/xSNuHWppBANKiagMl18dobUwwKvuJMnuKz6DSJMz+wIB6MhHUIedrtqve3DC1Q==
-X-Received: by 2002:a17:906:3087:b0:8b1:7eda:702e with SMTP id 7-20020a170906308700b008b17eda702emr13933690ejv.32.1678180734152;
-        Tue, 07 Mar 2023 01:18:54 -0800 (PST)
-Received: from ?IPV6:2a02:810d:15c0:828:5310:35c7:6f9e:2cd3? ([2a02:810d:15c0:828:5310:35c7:6f9e:2cd3])
-        by smtp.gmail.com with ESMTPSA id jy24-20020a170907763800b008d7a8083dffsm5777576ejc.222.2023.03.07.01.18.53
+        d=1e100.net; s=20210112; t=1678180792;
+        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
+         :content-language:subject:reply-to:from:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Xvf3J0opIvDUcxf9EVO52WF3b9vkBrT7WnUb6TfxtQw=;
+        b=VOcNhpeKgm2e6gYN3kSElyJXPsXprcnXUOgaqFnJr83Qlr+K1po4FWNsJiqBy/Vme6
+         VQ1zNyikDEc2x+zMst0Rq4wzaNemZqTpGJzjGPLNNIItUy4Z/mvBlHu22UokSnAeH4Lf
+         /oU79CEwn8LkeuOPC1NvM1K5t98RPp6SiFAOFhRtZRQaV8TZjsgz4o1+KfF29N3g9oXv
+         CyYAQStmi4y+OBsNgVeeRUzK/L01Nw6/vBrhfLhD/UvhqQMaWNnQcIf/FhjgcMzcmkGo
+         XScl6GQk1otxmPbjdSFVkPm5+HP/NWqjDH3li6I9JSpzYC23yEsK+a0AioDtad4o4s3c
+         fXGw==
+X-Gm-Message-State: AO0yUKWa86uZ/rDOu7h+bBolRevbkkbjNsQMRelRa2yG86IGhDSGqJ3C
+        qlsJW5PqeYzudIpgX8twi747Yg==
+X-Google-Smtp-Source: AK7set/k5WpOi8Sz3yDYvf2/fNpy2N6KzP1JdktA73cysUhzQQJhzb0GXWO8S+TNxvAb6p0yyfaazA==
+X-Received: by 2002:a05:600c:4448:b0:3ea:82a9:3644 with SMTP id v8-20020a05600c444800b003ea82a93644mr11655011wmn.34.1678180791874;
+        Tue, 07 Mar 2023 01:19:51 -0800 (PST)
+Received: from ?IPV6:2a01:e0a:982:cbb0:6faa:6d13:586e:871d? ([2a01:e0a:982:cbb0:6faa:6d13:586e:871d])
+        by smtp.gmail.com with ESMTPSA id c12-20020a5d63cc000000b002c5801aa9b0sm12141821wrw.40.2023.03.07.01.19.51
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 07 Mar 2023 01:18:53 -0800 (PST)
-Message-ID: <48905ae2-a18c-40f4-15af-86cda7c343e6@linaro.org>
-Date:   Tue, 7 Mar 2023 10:18:52 +0100
+        Tue, 07 Mar 2023 01:19:51 -0800 (PST)
+Message-ID: <6c58497d-47c4-002f-4f39-977706f9df87@linaro.org>
+Date:   Tue, 7 Mar 2023 10:19:50 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-Subject: Re: [PATCH 0/9] ARM: dts: imx28: Clean up older DTS files
+ Thunderbird/102.7.2
+From:   Neil Armstrong <neil.armstrong@linaro.org>
+Reply-To: neil.armstrong@linaro.org
+Subject: Re: [PATCH 2/2] gpu/drm/panel: Add Lenovo NT36523W BOE panel
 Content-Language: en-US
-To:     Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>
-Cc:     =?UTF-8?Q?S=c3=a9bastien_Szymanski?= 
-        <sebastien.szymanski@armadeus.com>,
-        Stefan Wahren <stefan.wahren@i2se.com>,
+To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Fabio Estevam <festevam@gmail.com>, linux-imx@nxp.com,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-References: <20230201203338.9525-1-stefan.wahren@i2se.com>
- <46eb7d7e-4e44-e0d8-c591-30e06757900c@armadeus.com>
- <20230203131303.GY13319@pengutronix.de> <20230306025826.GE143566@dragon>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230306025826.GE143566@dragon>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20230217-topic-lenovo-panel-v1-0-9d7ee1602089@linaro.org>
+ <20230217-topic-lenovo-panel-v1-2-9d7ee1602089@linaro.org>
+Organization: Linaro Developer Services
+In-Reply-To: <20230217-topic-lenovo-panel-v1-2-9d7ee1602089@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
@@ -82,69 +84,84 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 06/03/2023 03:58, Shawn Guo wrote:
-> On Fri, Feb 03, 2023 at 02:13:03PM +0100, Sascha Hauer wrote:
->> On Fri, Feb 03, 2023 at 10:44:49AM +0100, Sébastien Szymanski wrote:
->>> Hello,
->>>
->>> On 2/1/23 21:33, Stefan Wahren wrote:
->>>> Since the imx28 belongs to the early ARM platforms which has been
->>>> adapted to DT, a lot of these DTS files are not in the best shape.
->>>> So this series tries to address this by using label references
->>>> and SPDX tags.
->>>>
->>>> Theses patches doesn't include functional changes. The resulting
->>>> DTB files has been verified with dtdiff.
->>>>
->>>> Stefan Wahren (9):
->>>>    ARM: dts: imx28-apf28: Convert to use label references
->>>>    ARM: dts: imx28-m28/sps1: Convert to use label references
->>>>    ARM: dts: imx28-apx4devkit: Convert to use label references
->>>>    ARM: dts: imx28-cfa10036: Convert to use label references
->>>>    ARM: dts: imx28-duckbill: Convert to use label references
->>>>    ARM: dts: imx28-duckbill-2: Include base board
->>>>    ARM: dts: imx28-evk: Convert to use label references
->>>>    ARM: dts: imx28-ts4600: Convert to use label references
->>>>    ARM: dts: imx28-tx28: add SPDX-License-Identifier
->>>>
->>>>   arch/arm/boot/dts/imx28-apf28.dts             |  96 ++--
->>>>   arch/arm/boot/dts/imx28-apf28dev.dts          | 312 ++++++------
->>>>   arch/arm/boot/dts/imx28-apx4devkit.dts        | 380 +++++++-------
->>>>   arch/arm/boot/dts/imx28-cfa10036.dts          | 193 ++++----
->>>>   arch/arm/boot/dts/imx28-cfa10049.dts          | 454 +++++++++--------
->>>>   arch/arm/boot/dts/imx28-cfa10055.dts          | 224 +++++----
->>>>   arch/arm/boot/dts/imx28-cfa10056.dts          | 146 +++---
->>>>   arch/arm/boot/dts/imx28-cfa10057.dts          | 252 +++++-----
->>>>   arch/arm/boot/dts/imx28-cfa10058.dts          | 186 ++++---
->>>>   arch/arm/boot/dts/imx28-duckbill-2-485.dts    | 174 +------
->>>>   .../arm/boot/dts/imx28-duckbill-2-enocean.dts | 198 +-------
->>>>   arch/arm/boot/dts/imx28-duckbill-2-spi.dts    | 211 ++------
->>>>   arch/arm/boot/dts/imx28-duckbill-2.dts        | 256 +++++-----
->>>>   arch/arm/boot/dts/imx28-duckbill.dts          | 196 ++++----
->>>>   arch/arm/boot/dts/imx28-evk.dts               | 462 +++++++++---------
->>>>   arch/arm/boot/dts/imx28-m28.dtsi              |  44 +-
->>>>   arch/arm/boot/dts/imx28-m28cu3.dts            | 354 +++++++-------
->>>>   arch/arm/boot/dts/imx28-m28evk.dts            | 420 ++++++++--------
->>>>   arch/arm/boot/dts/imx28-sps1.dts              | 201 ++++----
->>>>   arch/arm/boot/dts/imx28-ts4600.dts            |  80 ++-
->>>>   arch/arm/boot/dts/imx28-tx28.dts              |  38 +-
->>>>   21 files changed, 2142 insertions(+), 2735 deletions(-)
->>>>
->>>
->>> FYI, such changes have been rejected years ago:
->>>
->>> https://lore.kernel.org/linux-arm-kernel/20140512141814.GE8330@dragon/
->>
->> I hope the attitude has changed here in the last years. Device trees
->> with label references are so much easier to read and to maintain.
+Hi,
+
+On 17/02/2023 12:29, Konrad Dybcio wrote:
+> Introduce support for the BOE panel with a NT36523W touch/driver IC
+> found on some Lenovo Tab P11 devices. It's a 2000x1200, 24bit RGB
+> MIPI DSI panel with integrated DCS-controlled backlight (that expects
+> big-endian communication).
 > 
-> Ok, I'm flexible on this.  Considering Krzysztof has been doing the same
-> for other platforms, I guess arm-soc folks changed their thoughts.
+> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+> ---
+>   drivers/gpu/drm/panel/Kconfig                     |  12 +
+>   drivers/gpu/drm/panel/Makefile                    |   1 +
+>   drivers/gpu/drm/panel/panel-lenovo-nt36523w-boe.c | 751 ++++++++++++++++++++++
+>   3 files changed, 764 insertions(+)
+> 
 
-I know only one platform - Tegra - as intentionally not using labels.
-When I was converting old DTS to label-style, I found several issues -
-both minor and more important - thus it's a clear win for me.
+<snip>
 
-Best regards,
-Krzysztof
+> diff --git a/drivers/gpu/drm/panel/panel-lenovo-nt36523w-boe.c b/drivers/gpu/drm/panel/panel-lenovo-nt36523w-boe.c
+> new file mode 100644
+> index 000000000000..83478e471493
+> --- /dev/null
+> +++ b/drivers/gpu/drm/panel/panel-lenovo-nt36523w-boe.c
+> @@ -0,0 +1,751 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
+> +/*
+> + * Copyright (c) 2023 Linaro Limited
+> + *
+> + * Generated with linux-mdss-dsi-panel-driver-generator with
+> + * some manual adjustments.
+> + */
 
+<snip>
+
+> +static int nt36523w_boe_bl_update_status(struct backlight_device *bl)
+> +{
+> +	struct mipi_dsi_device *dsi = bl_get_data(bl);
+> +	u16 brightness = backlight_get_brightness(bl);
+> +	int ret;
+> +
+> +	brightness = cpu_to_be16(brightness);
+> +
+> +	dsi->mode_flags &= ~MIPI_DSI_MODE_LPM;
+> +
+> +	ret = mipi_dsi_dcs_set_display_brightness(dsi, brightness);
+> +	if (ret < 0)
+> +		return ret;
+
+It's not wrong as is, but could you switch to mipi_dsi_dcs_set_display_brightness_large() ?
+
+> +
+> +	dsi->mode_flags |= MIPI_DSI_MODE_LPM;
+> +
+> +	return 0;
+> +}
+> +
+> +static int nt36523w_boe_bl_get_brightness(struct backlight_device *bl)
+> +{
+> +	struct mipi_dsi_device *dsi = bl_get_data(bl);
+> +	u16 brightness;
+> +	int ret;
+> +
+> +	dsi->mode_flags &= ~MIPI_DSI_MODE_LPM;
+> +
+> +	ret = mipi_dsi_dcs_get_display_brightness(dsi, &brightness);
+
+And here to  mipi_dsi_dcs_get_display_brightness_large() ?
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	dsi->mode_flags |= MIPI_DSI_MODE_LPM;
+> +
+> +	brightness = be16_to_cpu(brightness);
+> +
+> +	return brightness;
+> +}
+> +
+Please send a v2 with those changes and keep my reviewed-by
+
+Thanks!
+Neil
