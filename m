@@ -2,88 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 298796AE7B2
-	for <lists+devicetree@lfdr.de>; Tue,  7 Mar 2023 18:00:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 52F286AE7D7
+	for <lists+devicetree@lfdr.de>; Tue,  7 Mar 2023 18:02:55 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229716AbjCGRAV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Mar 2023 12:00:21 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57992 "EHLO
+        id S230211AbjCGRCw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Mar 2023 12:02:52 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56958 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231193AbjCGQ6v (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Mar 2023 11:58:51 -0500
-Received: from relay6-d.mail.gandi.net (relay6-d.mail.gandi.net [217.70.183.198])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8175E943BC;
-        Tue,  7 Mar 2023 08:55:20 -0800 (PST)
-Received: (Authenticated sender: miquel.raynal@bootlin.com)
-        by mail.gandi.net (Postfix) with ESMTPSA id 3F2D4C000A;
-        Tue,  7 Mar 2023 16:55:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1678208119;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=k63jGN/pF5yVaAtIx4C9Ich6YXdGC8EJlNRF1GK/q1I=;
-        b=UFBRY4l/f08YOv+HYmfpChl6+sKBr3zSHIW7SXpp4bKwfeufsZPq1IsDhyAzOmm047DR+0
-        9R++NTCF2LyrXgZTT3rJnUhVvm8CPYRIbwH2lD24DoHadXsRsqA1b55QFAh7UKwpK2O+jC
-        PaHVdYBhp/QRio55ivxzKm2ztdvm6EJ3z+eQqOeq4yKg02abSwqJTdFiRdjF9tBJDwBgYw
-        6M8BPviPJgdHwdw1Y7pe/2EC1UtMZdhut64C6H/n9bLE9qttt3yPM/5m7SA1YZaR51nAxw
-        aLW3pS2fEAAOu8XNHGFrxAoK+rS61UJffI7S5gv9V7yessuyF4pj6Cw1Mv1Isw==
-From:   Miquel Raynal <miquel.raynal@bootlin.com>
-To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        <linux-kernel@vger.kernel.org>
-Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Michael Walle <michael@walle.cc>,
-        =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>,
-        Robert Marko <robert.marko@sartura.hr>,
-        Luka Perkov <luka.perkov@sartura.hr>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        devicetree@vger.kernel.org,
-        Miquel Raynal <miquel.raynal@bootlin.com>
-Subject: [PATCH v2 21/21] MAINTAINERS: Add myself as ONIE tlv NVMEM layout maintainer
-Date:   Tue,  7 Mar 2023 17:53:59 +0100
-Message-Id: <20230307165359.225361-22-miquel.raynal@bootlin.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230307165359.225361-1-miquel.raynal@bootlin.com>
-References: <20230307165359.225361-1-miquel.raynal@bootlin.com>
+        with ESMTP id S229590AbjCGRCZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Mar 2023 12:02:25 -0500
+Received: from mail-lj1-x233.google.com (mail-lj1-x233.google.com [IPv6:2a00:1450:4864:20::233])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BB8D15615F
+        for <devicetree@vger.kernel.org>; Tue,  7 Mar 2023 08:58:16 -0800 (PST)
+Received: by mail-lj1-x233.google.com with SMTP id f16so13829086ljq.10
+        for <devicetree@vger.kernel.org>; Tue, 07 Mar 2023 08:58:16 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1678208295;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=GYPS6T0GQT0YMU3PoBe/ezLSZBLT3NTyr0o7Ri1kY9k=;
+        b=UY5DImM1KYh2Pcll+wLQFh6ZZ9XeQVrzKMzij0we3VeD/meacUUkLWEfu9XdsAnuJH
+         fKQqrD56jeBFjR/LND7RB3LfloFCotsIPs72SS+/Y1XbOpal1JNSScf8Av1ucq+KmAj1
+         W6g7quXpehwu703Puvoqt1yzFOY2Q6bI99Pk941TcN7pZ04BO9AeA0nG+dzLFbXcSQ7J
+         J+Nfx3EJOBf5TgQwRgf5JD4QriI8MifmzZzu5hTSS9oCHSpsv4LePN1LJyReVFhlS3US
+         2In1jrqo/YgeTLfhMVZuixBzECuWC9i+7oIEILlaqdmbiQZjAjduVLXjM5/kfp/GJrgt
+         JFEw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1678208295;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=GYPS6T0GQT0YMU3PoBe/ezLSZBLT3NTyr0o7Ri1kY9k=;
+        b=ce5+hhu0/N/T72kv03z5nQ9sDGy80fmhFzG9NZAXqLN4XqE1UPcJeIIJCJyhMblcg6
+         YTdmFHNhdw0nC/A/qH8sW9UQsppjF3WECgo9+ymVvNsEuEBDSTsghyc7/nMezzhFA92H
+         DHLK0FyuXjcxKf+NCPVzIIggFaO0axXDn6Q5ow34UtBh+/vvtek0QyvFZYDZr5vvvWSf
+         B3QaQffRMYNpbEsI4ZFIWXvzJxYtqQhE1Rdmzjn6EKx+npkhac/Cgqv68CLUVqEI9Q0t
+         1j2sdTSuL/7+zxTVVl51cdbxs+SuogRCAt3ev6v+2t612lQsrBT6zR8AReXRkWGfBdCQ
+         /TyQ==
+X-Gm-Message-State: AO0yUKWqIXaVXKQxnAIC0ULcjjLJpli0dSP5X1RwexKk2lmORAYm7iPk
+        lXr5L+w7CerdR/ZZWeO4hBkZnA==
+X-Google-Smtp-Source: AK7set/BvoPPVaX8qUlMUC5WSo8HDQZFTRScfOMiSPiSx0DvSiUNYFHH9jM3kIhnoq2STd3i6igBVQ==
+X-Received: by 2002:a2e:910d:0:b0:295:c39c:d8ab with SMTP id m13-20020a2e910d000000b00295c39cd8abmr4207730ljg.39.1678208295021;
+        Tue, 07 Mar 2023 08:58:15 -0800 (PST)
+Received: from [10.10.15.130] ([192.130.178.91])
+        by smtp.gmail.com with ESMTPSA id l18-20020a2ea312000000b00290716d65dcsm2236391lje.136.2023.03.07.08.58.14
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 07 Mar 2023 08:58:14 -0800 (PST)
+Message-ID: <d237d1c6-4b07-2f7f-8812-34365e56380b@linaro.org>
+Date:   Tue, 7 Mar 2023 18:58:13 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.8.0
+Subject: Re: [PATCH v3 6/6] iommu/qcom: Add support for QSMMUv2 and QSMMU-500
+ secured contexts
+Content-Language: en-GB
+To:     AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>, agross@kernel.org
+Cc:     andersson@kernel.org, konrad.dybcio@linaro.org, joro@8bytes.org,
+        will@kernel.org, robin.murphy@arm.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, robdclark@gmail.com,
+        linux-arm-msm@vger.kernel.org, iommu@lists.linux.dev,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        marijn.suijten@somainline.org, kernel@collabora.com,
+        luca@z3ntu.xyz, a39.skl@gmail.com, phone-devel@vger.kernel.org,
+        ~postmarketos/upstreaming@lists.sr.ht
+References: <20221115101122.155440-1-angelogioacchino.delregno@collabora.com>
+ <20221115101122.155440-7-angelogioacchino.delregno@collabora.com>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+In-Reply-To: <20221115101122.155440-7-angelogioacchino.delregno@collabora.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Following the introduction of the bindings for this NVMEM parser and the
-layout driver, add myself as maintainer.
+On 15/11/2022 12:11, AngeloGioacchino Del Regno wrote:
+> On some SoCs like MSM8956, MSM8976 and others, secure contexts are
+> also secured: these get programmed by the bootloader or TZ (as usual)
+> but their "interesting" registers are locked out by the hypervisor,
+> disallowing direct register writes from Linux and, in many cases,
+> completely disallowing the reprogramming of TTBR, TCR, MAIR and other
+> registers including, but not limited to, resetting contexts.
+> This is referred downstream as a "v2" IOMMU but this is effectively
+> a "v2 firmware configuration" instead.
+> 
+> Luckily, the described behavior of version 2 is effective only on
+> secure contexts and not on non-secure ones: add support for that,
+> finally getting a completely working IOMMU on at least MSM8956/76.
+> 
+> Signed-off-by: Marijn Suijten <marijn.suijten@somainline.org>
+> [Marijn: Rebased over next-20221111]
+> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+> ---
+>   drivers/iommu/arm/arm-smmu/qcom_iommu.c | 22 +++++++++++++++++++---
+>   1 file changed, 19 insertions(+), 3 deletions(-)
 
-Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
----
- MAINTAINERS | 6 ++++++
- 1 file changed, 6 insertions(+)
+Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 70aa4547d784..60b8f2c07e7f 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -15577,6 +15577,12 @@ L:	linux-hwmon@vger.kernel.org
- S:	Maintained
- F:	drivers/hwmon/oxp-sensors.c
- 
-+ONIE TLV NVMEM LAYOUT DRIVER
-+M:	Miquel Raynal <miquel.raynal@bootlin.com>
-+S:	Maintained
-+F:	Documentation/devicetree/bindings/nvmem/layouts/onie,tlv-layout.yaml
-+F:	drivers/nvmem/layouts/onie-tlv.c
-+
- ONION OMEGA2+ BOARD
- M:	Harvey Hunt <harveyhuntnexus@gmail.com>
- L:	linux-mips@vger.kernel.org
 -- 
-2.34.1
+With best wishes
+Dmitry
 
