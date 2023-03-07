@@ -2,84 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1DD536ADF10
-	for <lists+devicetree@lfdr.de>; Tue,  7 Mar 2023 13:48:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9FA1C6ADF13
+	for <lists+devicetree@lfdr.de>; Tue,  7 Mar 2023 13:49:16 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229587AbjCGMsu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Mar 2023 07:48:50 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43218 "EHLO
+        id S229646AbjCGMtP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Mar 2023 07:49:15 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43816 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229548AbjCGMst (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Mar 2023 07:48:49 -0500
-Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com [IPv6:2a00:1450:4864:20::534])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B12C873032
-        for <devicetree@vger.kernel.org>; Tue,  7 Mar 2023 04:48:47 -0800 (PST)
-Received: by mail-ed1-x534.google.com with SMTP id g3so51866229eda.1
-        for <devicetree@vger.kernel.org>; Tue, 07 Mar 2023 04:48:47 -0800 (PST)
+        with ESMTP id S229624AbjCGMtN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Mar 2023 07:49:13 -0500
+Received: from mail-yb1-xb33.google.com (mail-yb1-xb33.google.com [IPv6:2607:f8b0:4864:20::b33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 72BAA77C92
+        for <devicetree@vger.kernel.org>; Tue,  7 Mar 2023 04:49:12 -0800 (PST)
+Received: by mail-yb1-xb33.google.com with SMTP id e82so11219395ybh.9
+        for <devicetree@vger.kernel.org>; Tue, 07 Mar 2023 04:49:12 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1678193326;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=gXMDjluJDUvPLUicyi9DzXJkAKHHUVttkvC/e23H4Xg=;
-        b=gBNpW4hE+viaph3Z9oHqJD+5k9T0kLFVksSmYDaYHCpYrjYet2Y7xzwCXwhRqORnWg
-         wE/6W9M/kc2+Vve5aDGSeGrXaWB8YjgQ1XUCQyjvp3SwsV+/jnfGbM0RdpGcyF9bbsYV
-         lOYcZyKaGNtFSN4ipuq8gqyuTT3TnA4YFmx2/+HNIVvKoDFUhMgSCOj0EOxNurAeeMHR
-         BKML1W/QnpTHpizWDwPqbpCTwS8V3VqmklGMmeFRE+B+KdKB43IAX7OGr9zWxyZm3Tp3
-         zA0DYbSuK1C1R2g2MQFf5E8PEfKrZpH6MuFnOzGHIORxpGRoS/T/AApE89N8YE7aN/l5
-         UWXA==
+        d=linaro.org; s=google; t=1678193351;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=7XIqvRUKvQi+9JwXJqk6zez0fEefEYHQDHJYoFfFR+A=;
+        b=rLt1p1SNjdPluxKsu++nLxNZQwpVEkRtWzWUCcFxSG0c1fQFKSfOGx6QIpKAgezf2s
+         5Lv/iA4ARtZr61sN69lXr2Eu0S34rjvmJJiXA5/rv1vDZ7P2GPOovLB9/XDOJFxw9C3M
+         oLKQ5mSRFQyfRDikwk8wdHorn+brKP95FY67X9DcHfR4FDmZlZJFM3ZgIbLYcQlkENnn
+         bD6d9csZj2pWHorjM2kw/8/6vXWyrTBtwPEOI+JACS9ySb1TWK0F/ikoFUvEIG+dslbl
+         j6Sput8UzaDGzRo2UCtGj0ce7yT3aBu8nzgIWZ6OROXseegOxGOfqbJwS4MhMunOo4GW
+         g8Lg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678193326;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=gXMDjluJDUvPLUicyi9DzXJkAKHHUVttkvC/e23H4Xg=;
-        b=SFxomzE5pE0+VWO3jZEGV8nKrq0VCuUgmlBEG+dCtDjOL5zzbGClbTmofX1reurRte
-         b14jw8m7QrfeBfEnYWWxoGurfdCn2a3aovQ9O4L71LkTf4jz7Famb+NBnWmqgtx3o/bG
-         4XqdTAgwI8B07w6mMIhzLXSNr8d4wzzCpeK67+NqycjR44huc3UzeX7S5HW1xoi9r1ID
-         PhHPaLQZeKh/ynljD6xjM/q52cktqsk6/KyXRRS5nTlzsB5MCpI52X1NIcf9/kX9X6bw
-         tQJJ88GMA3+FebALGBpODL16VGt9CpTZJGv4eW8fPugeGJ/XjuJoz4eAFOUCi0JiZLAg
-         x+rw==
-X-Gm-Message-State: AO0yUKWUSMbVrzNE1xtv4DYTw+zjAvNYTjtqvsJvQoDwAFfy+nLceVcx
-        ESgFkl3M0WB4Hmj3GTW1B9E/qw==
-X-Google-Smtp-Source: AK7set8MCzzEe4umSH1sYZCblI6WJ1yy9vx+YgB8ty6up6YK0RjeqU1A/CLPMaRwTV8qico7a1qLyw==
-X-Received: by 2002:a05:6402:7ce:b0:4c0:57b:47a9 with SMTP id u14-20020a05640207ce00b004c0057b47a9mr13267661edy.35.1678193326220;
-        Tue, 07 Mar 2023 04:48:46 -0800 (PST)
-Received: from ?IPV6:2a02:810d:15c0:828:a60f:e604:c252:1f3d? ([2a02:810d:15c0:828:a60f:e604:c252:1f3d])
-        by smtp.gmail.com with ESMTPSA id le16-20020a170907171000b008da6a37de1bsm6174070ejc.10.2023.03.07.04.48.45
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 07 Mar 2023 04:48:45 -0800 (PST)
-Message-ID: <de9d5cdb-29d5-8252-6884-dd50a22d1580@linaro.org>
-Date:   Tue, 7 Mar 2023 13:48:44 +0100
+        d=1e100.net; s=20210112; t=1678193351;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=7XIqvRUKvQi+9JwXJqk6zez0fEefEYHQDHJYoFfFR+A=;
+        b=T57YQQE/yalRaVDLVxSzJvhhzFY1X9oK+N5wiT7UA7RAk18w+hkLlngI0gV+YhmMUV
+         QhHcxqGRl6Zse45EQAqjz2JmCwkInDF8fVn/GWYTasMbwLKXpa/lTmMLn99mNNQnx9/+
+         Pg4kxvIHqm01Ywt5G09h+u9UwRwP7a4QMIpAV+TlPtG4AloPt3Y8OqMpJtMJBWBDvQ5i
+         rFvi2toxyZklYzjpB2YTdRuvVAdtHSFFa3HqFOdA1PHgzpnlag/3RIPx8zMHwn30QK1t
+         JwSyYx0aSTC4JSvUA6bJGYqLe6O8D5YPERpxMXr6GRz1baW9k+kNMWtMSC5Gtm+1nKkH
+         XZgg==
+X-Gm-Message-State: AO0yUKUOFp4plLylTBoHy2sdDJLzs3u5NvfU2t18qiZoaIRMh2hrW7UP
+        unfx/A466iBa/rWoiW1nPQ83ptakM4rizu6NQRUYZA==
+X-Google-Smtp-Source: AK7set91EayilxgeJgYG9wtl/O7pFWz++OFEQ6LsxD0etm1zImXNSTs+wbVLlvILysTuMohj7y6VGndYE/7U5GJKapA=
+X-Received: by 2002:a05:6902:4f4:b0:a06:5ef5:3a82 with SMTP id
+ w20-20020a05690204f400b00a065ef53a82mr6731524ybs.5.1678193351638; Tue, 07 Mar
+ 2023 04:49:11 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-Subject: Re: [PATCH v2 8/9] dt-bindings: display/msm: dsi-controller-main: Add
- SM6115
-Content-Language: en-US
-To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
-        linux-arm-msm@vger.kernel.org, andersson@kernel.org,
-        agross@kernel.org
-Cc:     marijn.suijten@somainline.org, Rob Clark <robdclark@gmail.com>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Sean Paul <sean@poorly.run>, David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
+References: <20230220023320.3499-1-clin@suse.com> <CACRpkdYknZo3Q7_CeSkOL2XwwAmKERskx24o-toaVy=rs0Yf5Q@mail.gmail.com>
+ <ZAZ3JZQ4Tuz5vyH1@surfacebook> <CACRpkdbksZ59ndrRAQpTGa01GTq4c_2EcOQ2mtz1PLjqU8_nug@mail.gmail.com>
+ <CAHp75Vf3ve-NdMG6iti-KSs=tGGgGf9tNj=aK7Jofk9233WocQ@mail.gmail.com>
+In-Reply-To: <CAHp75Vf3ve-NdMG6iti-KSs=tGGgGf9tNj=aK7Jofk9233WocQ@mail.gmail.com>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Tue, 7 Mar 2023 13:49:00 +0100
+Message-ID: <CACRpkdaCZSoem31GmDC97LPYcZqRjkyf=6VGtXdXK0iwrV74qA@mail.gmail.com>
+Subject: Re: [PATCH v5 0/3] Add pinctrl support for S32 SoC family
+To:     Andy Shevchenko <andy.shevchenko@gmail.com>
+Cc:     Chester Lin <clin@suse.com>, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Krishna Manikandan <quic_mkrishn@quicinc.com>,
-        dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20230213121012.1768296-1-konrad.dybcio@linaro.org>
- <20230213121012.1768296-9-konrad.dybcio@linaro.org>
- <bcb5c17f-da78-9d68-66eb-b620ee583602@linaro.org>
- <22970751-8bc0-9cbd-eec1-cbc92f0b4ea7@linaro.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <22970751-8bc0-9cbd-eec1-cbc92f0b4ea7@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+        =?UTF-8?Q?Andreas_F=C3=A4rber?= <afaerber@suse.de>, s32@nxp.com,
+        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Larisa Grigore <larisa.grigore@nxp.com>,
+        Ghennadi Procopciuc <Ghennadi.Procopciuc@oss.nxp.com>,
+        Andrei Stefanescu <andrei.stefanescu@nxp.com>,
+        Radu Pirea <radu-nicolae.pirea@nxp.com>,
+        Matthias Brugger <mbrugger@suse.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -88,37 +78,40 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 07/03/2023 12:14, Konrad Dybcio wrote:
-> 
-> 
-> On 7.03.2023 10:17, Krzysztof Kozlowski wrote:
->> On 13/02/2023 13:10, Konrad Dybcio wrote:
->>> Add a compatible for the DSI on SM6115.
->>>
->>> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
->>> ---
->>>  .../devicetree/bindings/display/msm/dsi-controller-main.yaml    | 2 ++
->>>  1 file changed, 2 insertions(+)
->>>
->>> diff --git a/Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml b/Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml
->>> index 2494817c1bd6..f195530ae964 100644
->>> --- a/Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml
->>> +++ b/Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml
->>> @@ -25,6 +25,7 @@ properties:
->>>                - qcom,sc7280-dsi-ctrl
->>>                - qcom,sdm660-dsi-ctrl
->>>                - qcom,sdm845-dsi-ctrl
->>> +              - qcom,sm6115-dsi-ctrl
->>
->> This looks incomplete. You also need to add it to MDSS binding.
-> https://lore.kernel.org/linux-arm-msm/145066db-5723-6baa-237d-7c2b8fd476d9@linaro.org/
-> 
-> Does this.. but I guess I'll resend this as one series, as it only
-> makes sense.
+On Tue, Mar 7, 2023 at 10:56 AM Andy Shevchenko
+<andy.shevchenko@gmail.com> wrote:
+> On Tue, Mar 7, 2023 at 11:22=E2=80=AFAM Linus Walleij <linus.walleij@lina=
+ro.org> wrote:
+> > On Tue, Mar 7, 2023 at 12:28 AM <andy.shevchenko@gmail.com> wrote:
+>
+> ...
+>
+> > > Can you unpull this?
+>
+> > If need be.
+> >
+> > Are there serious issues with the patch set such that they cannot be fi=
+xed
+> > by add-on patches?
+>
+> There are a few absent error checks, some error code shadowing, etc.
+> I can't tell if these all are serious, but the amount of them is like a d=
+ozen.
+>
+> I reviewed the patch, so you can look into that yourself and decide.
 
-It should be one commit. Adding sm6115 here is incomplete if other
-binding (using this one) does not allow it.
+I looked at it and some of the comments are pretty serious and need
+addressing ASAP.
 
-Best regards,
-Krzysztof
+However it only affects this hardware so it's not like it's breaking the
+world. I generally prefer in-tree development over too many big patch
+iterations, it gets more focused.
 
+I think if Chester can follow up with a patch or several addressing the
+comments in the next week or two that's fine.
+
+However if we get closer to -rc6 and nothing has happened I would
+not be so happy and then I might just revert the driver patch.
+
+Yours,
+Linus Walleij
