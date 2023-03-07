@@ -2,151 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B6C066AF202
-	for <lists+devicetree@lfdr.de>; Tue,  7 Mar 2023 19:49:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A58366AF27A
+	for <lists+devicetree@lfdr.de>; Tue,  7 Mar 2023 19:53:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233308AbjCGStd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Mar 2023 13:49:33 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40586 "EHLO
+        id S232489AbjCGSx1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Mar 2023 13:53:27 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52026 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233298AbjCGStL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Mar 2023 13:49:11 -0500
-Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8402BBE5D3
-        for <devicetree@vger.kernel.org>; Tue,  7 Mar 2023 10:37:39 -0800 (PST)
-Received: by mail-lf1-x12d.google.com with SMTP id i28so18425085lfv.0
-        for <devicetree@vger.kernel.org>; Tue, 07 Mar 2023 10:37:39 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1678214239;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=QMmwYY2pGzkzSB5ytf8m0RJgBXPWAAa+gKUWc1OULJw=;
-        b=so7LEuVRSsWNM9+euTAo1bxo7J/6iHbLQQVZwsXb5HDivVcmtfujaD+VwbqO1Fd41P
-         k5IJQWX6zwHjUXKRR8ivCD8Rw3nGDI/lGZ16oq6Kkn45Xb2FddhsSUmbRJZFK1eRnrkY
-         1RWLpG9RrHdN+k7lRgu+z/lfBG6CkysKPpTE6ggRQG5rWrA8hkgALMNiFe7oLomhpZN8
-         hJtxgq7CFij8NBXXaJLlsl3P7WNIyMkJ00E6jtlY7/wSCkomHhvwdBT5TZeOkyCXMyJ+
-         d+nwGSiHDnybScBRXK7OPLFytCrWEsa8J756WZQ1PGnnZHd4WMh6AffQ1nLriATV5417
-         /Ycw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678214239;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=QMmwYY2pGzkzSB5ytf8m0RJgBXPWAAa+gKUWc1OULJw=;
-        b=lAGDTR67B0ebxQPzrIBBM8kWT2oaw0t0/GugtQf074/2FgvrNWacMassVEW09HeYRl
-         xF8YUw+xuWgXx/iQA6ysaWiX66N+JPJWDHHqio9J9Myj86/2Xmatj1MniAeMECZ0BVcA
-         R7dWM9LJV75zxTp2WlK7P/3IaNMUs+K1r8WsPv5d6/SbbnTOFDNX3+7OyrYxW7jwGcXy
-         X0Mr6AjAsSPLr6A7AoDI2m88Q+TZ45+6RLBTOam+2nTe4uRXXhwuJL9VNOB3EP2aGvMy
-         ckFx8trwtFyaLbROJMlO+V/kFoQpDtW+WptTqJxju6EMLisqKLNiq3saN7Q0uP+CEJsE
-         QA8A==
-X-Gm-Message-State: AO0yUKVZv/KQ0Cs+5sZASsng3ozmLC8O+MHZRybQ6e4Sp3Cgv7XMl+lX
-        /Lnv0kI09gdlP21eOn95ExBfWA==
-X-Google-Smtp-Source: AK7set+nOGQBW+k8K+d7jpihJIfCw0ggnA5E1cu3X+tgp+RVqS4IKjkohoMrigAYMnhAN5l2mSYvaA==
-X-Received: by 2002:ac2:5106:0:b0:4df:c2bd:58e0 with SMTP id q6-20020ac25106000000b004dfc2bd58e0mr4264560lfb.59.1678214239278;
-        Tue, 07 Mar 2023 10:37:19 -0800 (PST)
-Received: from [192.168.1.101] (abyj16.neoplus.adsl.tpnet.pl. [83.9.29.16])
-        by smtp.gmail.com with ESMTPSA id m15-20020a056512014f00b004d34238ca44sm2093851lfo.214.2023.03.07.10.37.18
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 07 Mar 2023 10:37:18 -0800 (PST)
-Message-ID: <6897084a-79bd-809f-763e-6451034b40fa@linaro.org>
-Date:   Tue, 7 Mar 2023 19:37:17 +0100
+        with ESMTP id S233178AbjCGSwt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Mar 2023 13:52:49 -0500
+Received: from mout.kundenserver.de (mout.kundenserver.de [212.227.126.135])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7CCD5AB080
+        for <devicetree@vger.kernel.org>; Tue,  7 Mar 2023 10:41:03 -0800 (PST)
+Received: from stefanw-SCHENKER ([37.4.248.41]) by mrelayeu.kundenserver.de
+ (mreue010 [212.227.15.167]) with ESMTPSA (Nemesis) id
+ 1MGzI3-1pm2ha0hdL-00E4oY; Tue, 07 Mar 2023 19:40:21 +0100
+From:   Stefan Wahren <stefan.wahren@i2se.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>
+Cc:     linux-imx@nxp.com, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        Stefan Wahren <stefan.wahren@i2se.com>
+Subject: [PATCH V2 0/9] ARM: dts: imx28: Clean up older DTS files
+Date:   Tue,  7 Mar 2023 19:39:58 +0100
+Message-Id: <20230307184007.10672-1-stefan.wahren@i2se.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-Subject: Re: [PATCH] arm64: dts: qcom: sdm845-oneplus-common: add PN553 NFC
-Content-Language: en-US
-To:     Gergo Koteles <soyer@irl.hu>, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, phone-devel@vger.kernel.org
-References: <20230307183219.1643743-1-soyer@irl.hu>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20230307183219.1643743-1-soyer@irl.hu>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-0.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_SORBS_HTTP,RCVD_IN_SORBS_SOCKS,SPF_HELO_NONE,SPF_PASS,
-        URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Provags-ID: V03:K1:/3lJZZ/E33mnmLCU1BYSQWvog0gKmaKy0sBdnhUNdsfRb8ZvK19
+ ss/Y1RfKouJ9FP9JKwxzHIpJBcZl05eNe34hFD3KMIbOOQm6CAWdpOTH9SeafAC2LiN/nNM
+ EmE5zzg+Ty2FQ3Hr7HFUR0U/6GWp3QXBWQHXYWRUCxHWlx17xCiclLEvbu4Gp3yT4fbFNLS
+ IqZ4pabeSMPuzFRI/80aA==
+UI-OutboundReport: notjunk:1;M01:P0:M+9AR+U4oJs=;RG+Obzu66tHBZylmSCxcThyMYI2
+ pAvM6vNfWo0hTNnKgN2MhEfR0OJ0k2QM0bNKjRCUuk5uKwP1FboYH2c0BhNnxYvG6YQ92KtS8
+ W24QKtEYiK1bndcNfUB3f2DU01PyYbGge8t+7HmdPeSZ0I2ngv6waCdJOIf+qLbf9pdQUdosX
+ lhaFLnaoe6+dxwNiKpU4A4wKxYm+9o3Kd3ow7g5wscTwrTopV1+hOPpO2jA2AorK5+T5w1T14
+ xPLJeHinlFRzF8EISgb+qxwgvZtOec34L41irfTJsJOfc+jsL/ZYNYhviyvGIezYM0OPl+f8V
+ g6KVzn8P5xqlx+p/ZnfrAcTOmUatfB2DdSb/pd4qKjICy4qH7xCMKTh7E0BYckCPcTc7g++a0
+ SYQjX3fxBrBI5bSD4qlI4K+LNOFxjUxxwQJZU7Lzz0FcAipO566ZZrYnvbrrbwLT59r0Zi7FT
+ 8GUoP5FehfI7Qk8/31iwdYWjsnupeXu/xkd+VZg8YJT/dPJ9FCE9lwqPJPp72rsba0IvxrwpE
+ q/pKUgvzhYg0NhGQoDG2pIt0+o7WZQuhgJjNiOMMi2qRMCz/0hxG5cpRBX6Oo3xz55pTBMVls
+ rp9KXDLD3v5MVysCh866YkMOfhVGuQbWV7m0dbM/9JEzN6FmoegE/JIojyd6bZl4BP8l427XL
+ c0uA2oO2PG41AK4jtgiiQl3oRsidFthI1Q/+iuAAGw==
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Since the imx28 belongs to the early ARM platforms which has been
+adapted to DT, a lot of these DTS files are not in the best shape.
+So this series tries to address this by using label references
+and SPDX tags.
 
+Theses patches doesn't include functional changes. The resulting
+DTB files has been verified with dtdiff.
 
-On 7.03.2023 19:32, Gergo Koteles wrote:
-> The OnePlus 6/6T both have a NQ330 (PN553 + P73N2M0).
-> The PN533 supported by the nxp-nci-i2c driver in mainline.
-> It detects/reads NFC tags using "nfctool".
-> 
-> Signed-off-by: Gergo Koteles <soyer@irl.hu>
-> ---
->  .../boot/dts/qcom/sdm845-oneplus-common.dtsi  | 33 +++++++++++++++++++
->  1 file changed, 33 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi b/arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi
-> index 64638ea94db7..4dfc9ade7596 100644
-> --- a/arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi
-> @@ -380,6 +380,25 @@ zap-shader {
->  	};
->  };
->  
-> +&i2c3 {
-> +	status = "okay";
-> +	clock-frequency = <400000>;
-status last
+Changes in V2:
+- fix alphabetical order of i2c label reference in patch 1
+- add Wolfgang Grandegger in Cc for patch 2
+- replace Anson's address in patch 7 with linux-imx@nxp.com because
+  his address isn't available anymore
+- remove Cc from patch 8 because the address isn't available anymore
+- add Acked-by for patch 9
 
-> +
-> +	nfc@28 {
-> +		compatible = "nxp,nxp-nci-i2c";
-> +		reg = <0x28>;
-> +
-> +		interrupt-parent = <&tlmm>;
-> +		interrupts = <63 IRQ_TYPE_EDGE_RISING>;
-interrupts-extended = <&tlmm 63 IRQ_TYPE_EDGE_RISING>;
-> +
-> +		enable-gpios = <&tlmm 12 GPIO_ACTIVE_HIGH>;
-> +		firmware-gpios = <&tlmm 62 GPIO_ACTIVE_HIGH>;
-> +
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&nfc_int_active &nfc_enable_active>;
-property-n
-property-names
+Stefan Wahren (9):
+  ARM: dts: imx28-apf28: Convert to use label references
+  ARM: dts: imx28-m28/sps1: Convert to use label references
+  ARM: dts: imx28-apx4devkit: Convert to use label references
+  ARM: dts: imx28-cfa10036: Convert to use label references
+  ARM: dts: imx28-duckbill: Convert to use label references
+  ARM: dts: imx28-duckbill-2: Include base board
+  ARM: dts: imx28-evk: Convert to use label references
+  ARM: dts: imx28-ts4600: Convert to use label references
+  ARM: dts: imx28-tx28: add SPDX-License-Identifier
 
-> +	};
-> +};
-> +
->  &i2c10 {
->  	status = "okay";
->  	clock-frequency = <100000>;
-> @@ -753,6 +772,20 @@ &usb_1_hsphy {
->  &tlmm {
->  	gpio-reserved-ranges = <0 4>, <81 4>;
->  
-> +	nfc_int_active: nfc-int-active-state {
-> +		pins = "gpio63";
-> +		function = "gpio";
-> +		drive-strength = <2>;
-> +		bias-pull-up;
-> +	};
-> +
-> +	nfc_enable_active: nfc-enable-active-state {
-While it works as-is, I think adding a separate gpio node
-for the firmware pin would make more sense logically.
+ arch/arm/boot/dts/imx28-apf28.dts             |  96 ++--
+ arch/arm/boot/dts/imx28-apf28dev.dts          | 312 ++++++------
+ arch/arm/boot/dts/imx28-apx4devkit.dts        | 380 +++++++-------
+ arch/arm/boot/dts/imx28-cfa10036.dts          | 193 ++++----
+ arch/arm/boot/dts/imx28-cfa10049.dts          | 454 +++++++++--------
+ arch/arm/boot/dts/imx28-cfa10055.dts          | 224 +++++----
+ arch/arm/boot/dts/imx28-cfa10056.dts          | 146 +++---
+ arch/arm/boot/dts/imx28-cfa10057.dts          | 252 +++++-----
+ arch/arm/boot/dts/imx28-cfa10058.dts          | 186 ++++---
+ arch/arm/boot/dts/imx28-duckbill-2-485.dts    | 174 +------
+ .../arm/boot/dts/imx28-duckbill-2-enocean.dts | 198 +-------
+ arch/arm/boot/dts/imx28-duckbill-2-spi.dts    | 211 ++------
+ arch/arm/boot/dts/imx28-duckbill-2.dts        | 256 +++++-----
+ arch/arm/boot/dts/imx28-duckbill.dts          | 196 ++++----
+ arch/arm/boot/dts/imx28-evk.dts               | 462 +++++++++---------
+ arch/arm/boot/dts/imx28-m28.dtsi              |  44 +-
+ arch/arm/boot/dts/imx28-m28cu3.dts            | 354 +++++++-------
+ arch/arm/boot/dts/imx28-m28evk.dts            | 420 ++++++++--------
+ arch/arm/boot/dts/imx28-sps1.dts              | 201 ++++----
+ arch/arm/boot/dts/imx28-ts4600.dts            |  80 ++-
+ arch/arm/boot/dts/imx28-tx28.dts              |  38 +-
+ 21 files changed, 2142 insertions(+), 2735 deletions(-)
 
-Konrad
-> +		pins = "gpio12", "gpio62";
-> +		function = "gpio";
-> +		drive-strength = <2>;
-> +		bias-pull-up;
-> +	};
-> +
->  	tri_state_key_default: tri-state-key-default-state {
->  		pins = "gpio40", "gpio42", "gpio26";
->  		function = "gpio";
+-- 
+2.34.1
+
