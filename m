@@ -2,90 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C89876AE118
-	for <lists+devicetree@lfdr.de>; Tue,  7 Mar 2023 14:48:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EABAE6AE158
+	for <lists+devicetree@lfdr.de>; Tue,  7 Mar 2023 14:52:05 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229833AbjCGNsG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Mar 2023 08:48:06 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45502 "EHLO
+        id S230378AbjCGNwE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Mar 2023 08:52:04 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53104 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229960AbjCGNrZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Mar 2023 08:47:25 -0500
-Received: from mail-wm1-x32d.google.com (mail-wm1-x32d.google.com [IPv6:2a00:1450:4864:20::32d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2CF4727D54
-        for <devicetree@vger.kernel.org>; Tue,  7 Mar 2023 05:46:43 -0800 (PST)
-Received: by mail-wm1-x32d.google.com with SMTP id az36so7808092wmb.1
-        for <devicetree@vger.kernel.org>; Tue, 07 Mar 2023 05:46:43 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112; t=1678196801;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=HzSPP7tKpmDgMygbv6FfzcwtKqtIWlRKr/CY2KHoGGA=;
-        b=Z7ODCrFGa6AJ0GtvhIqso5qyFzfQ8NsAQww90erwC3wSHzob3XEBgT8+zkwqAAORlW
-         ZZ8Mt2vbk9KeWXzHXDWyAvj+6nFDZ9x/8qZZmAMKci64xOmal08AK8sJXsrFg/BgJ39h
-         d9ct/pBRpECWYRlubAPXty4ThI7dXf91+0nq32uzEMwN3oqa/0B71B8fAMdakcpatp2u
-         Y6m9prXwx6kg5mYWnjSq1RjTpicRxTvKQbkX7TwYVTJExKScvio6GZ8p01yks0k99Biy
-         vLHKnJoTXbfg7bluVCIeZtuX6aqdr4MK0R8LgJxiA0PizJgGpBySg+8a3O3QYTJ78uMY
-         ckCg==
+        with ESMTP id S230382AbjCGNvt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Mar 2023 08:51:49 -0500
+Received: from mail-qt1-f181.google.com (mail-qt1-f181.google.com [209.85.160.181])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 926C185A44;
+        Tue,  7 Mar 2023 05:51:06 -0800 (PST)
+Received: by mail-qt1-f181.google.com with SMTP id l18so14329962qtp.1;
+        Tue, 07 Mar 2023 05:51:06 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678196801;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=HzSPP7tKpmDgMygbv6FfzcwtKqtIWlRKr/CY2KHoGGA=;
-        b=MbI5Y7e4cSfgZ3eow225tS7gmA17fBlCX91VDosCj3LpPO5G9YLbO7oCZHP9qR82g9
-         P7SGqxUToLuohRvjsU3qkp5OMkJzonhkzHCKIgRGjIOMU0kS1Gyr1kjJ9MjJMwHmwlto
-         7gLhTwYQq67O/akhV6ZKdNMVESFc4wKa9oiOuTM5F98VXXXDvzPZTow4JdRpG1sfLOkq
-         fJcenDJ7ZM1g5H7FWrft69NpwihVVMJd5s4FHTEZwZEylfJ+pk6Z5K9MRac5nm19Prmg
-         F4449fsakkdQB1kOuhoFjcqVJ3aHdSdpCZ2fUkbb8e+jhkKSY5CJ4ymy5dqKWnF7YNTv
-         mmMw==
-X-Gm-Message-State: AO0yUKVQq367V09z1ygt5BMUq6zTr9F+Hjr/3AmdraKPJA1HydupwPSX
-        eAXr8r3J2707l4bgOINb4NhAew==
-X-Google-Smtp-Source: AK7set9A80XTJaBJRZGJ0NFVW6xppDxlmeTE+Ac0G8GrQqsRd4V/lXRbnCKr6tsJrhN0QVT2zxdufQ==
-X-Received: by 2002:a05:600c:474c:b0:3eb:2de8:b74e with SMTP id w12-20020a05600c474c00b003eb2de8b74emr13385054wmo.27.1678196801725;
-        Tue, 07 Mar 2023 05:46:41 -0800 (PST)
-Received: from [127.0.1.1] (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
-        by smtp.googlemail.com with ESMTPSA id o13-20020a5d670d000000b002c8476dde7asm12657607wru.114.2023.03.07.05.46.40
+        d=1e100.net; s=20210112; t=1678197053;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=QkT33vlgNt//t2eiEBaAGprv91xiJjaEz4Fy+NYb+5c=;
+        b=x1G34rEiRvCmWTR/D4klgWxp1F3rm2NJ7jOX86d5ZplBl2i86MCf3TaGpesrCNJxq7
+         KAulVnnEGkpqHztfGEb2IpU22QUKKl1gMjQj44rUSoyJjywsSDr1jkoKgGDCBrzWo5/T
+         +448cDKOT6IyyFNzB9O3IsvimyfDRIpXbXVccxF/ZiUu2W3H8F5e532wb88stBmG4706
+         en7TEZH010V6edfDu1DRESt/Z5Z12Ox327cIkMKOLMSSW5Q97Y2SZpwoDlFJWm0rPUmG
+         hAJ6M4WINKBi8EAd3bteWBLvAr+qVpPdyAwu1LCLqyrCGcecYQa1JRGIpnv4JtkoflHI
+         LZqg==
+X-Gm-Message-State: AO0yUKUratoCYeSyoqmS3/O0hq2AmiUn3+mof3uF3ZBDLkjLergvyiJt
+        wOfirVr4ysUMSGT5i463llp0cmbzv0Bo
+X-Google-Smtp-Source: AK7set8FcvNphlcY+fE9vM0WYuT5WJWwzH50ueQN0ZAAPkNv3iM7V5dtZdyXQbn75pxgsSyLIjHGTQ==
+X-Received: by 2002:ac8:5a46:0:b0:3bf:d9f3:debe with SMTP id o6-20020ac85a46000000b003bfd9f3debemr25180162qta.59.1678197052841;
+        Tue, 07 Mar 2023 05:50:52 -0800 (PST)
+Received: from robh_at_kernel.org ([2605:ef80:8082:8c7f:9efe:1ea4:c2ba:e845])
+        by smtp.gmail.com with ESMTPSA id g186-20020a37b6c3000000b007430494ab92sm9452110qkf.67.2023.03.07.05.50.50
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 07 Mar 2023 05:46:41 -0800 (PST)
-From:   Alexandre Mergnat <amergnat@baylibre.com>
-Date:   Tue, 07 Mar 2023 14:46:31 +0100
-Subject: [PATCH 6/6] arm64: dts: mediatek: add iommu support for mt8365 SoC
-MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-Message-Id: <20230207-iommu-support-v1-6-4f0c81fd52c1@baylibre.com>
-References: <20230207-iommu-support-v1-0-4f0c81fd52c1@baylibre.com>
-In-Reply-To: <20230207-iommu-support-v1-0-4f0c81fd52c1@baylibre.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Yong Wu <yong.wu@mediatek.com>,
+        Tue, 07 Mar 2023 05:50:52 -0800 (PST)
+Received: (nullmailer pid 39932 invoked by uid 1000);
+        Tue, 07 Mar 2023 13:50:48 -0000
+Date:   Tue, 7 Mar 2023 07:50:48 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-Cc:     linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org,
-        Alexandre Mergnat <amergnat@baylibre.com>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
-X-Mailer: b4 0.10.1
-X-Developer-Signature: v=1; a=openpgp-sha256; l=969; i=amergnat@baylibre.com;
- h=from:subject:message-id; bh=r7GkCkHYdd12Bt7dFmR03rMsJTMhNcidJ4FTEsGU2Yk=;
- b=owEBbQKS/ZANAwAKAStGSZ1+MdRFAcsmYgBkB0A7CDFByNdlviQNt8kE2Cw9wrh0z75ZvZpOdikX
- kFOxAUGJAjMEAAEKAB0WIQQjG17X8+qqcA5g/osrRkmdfjHURQUCZAdAOwAKCRArRkmdfjHURYKWD/
- 94UAAbnpoF14YAwi4BJcFcufFpJmrKQxWeHQnzyW4ELK2wbH5OUOcak4XA4TcLSl6Re4TlCu8DQt4w
- UFvzMALTpLAF1FHEXQ+Z4bQJ5Ejcg6vsv3EJogtvguC/TBwl6AsJdrEU5QBaULWNdOJ+zRsGAW+Nmy
- PXDGOcIhPUFMoEU1TOoQiLhECf6n+/JXr+lUskFw5+nSnUtNmW7UgB80CHgbkhznncOdoVaGhSO2n7
- 8XIVHMWUyfrcNOCUElq+HzYFjo66T9Mc/EyoEgBFdKJA6kxzfOnigv5SxTRGhYa5wOLp/8aQhUVNdw
- bGzseWg8NbAas+ViGqwB4J/+BKCvLLWbFcmccTg6WZ+L2MeLqO6iLwMrz7ejVOIhVawn9nMvU0OUjY
- MYDM0V/qS/OMaeD3Ecj5NRBKWIKD2H5tkgVg5NFEBPsVrqx/85DLfIQzNuTorMzniJTzlxFy5a8JO6
- h1uV90ov460FnvMbPkuEiBrtrCyNdVHM+TGtlifHNIVevMZL6u9pwBsjLQspfH5giaiRzj4XvmijZW
- SeulrzQrnKx0FUUV7r0ATeH1BZmuQeSakFevKCi7cUoxxZldlKL7h5FO5m9CqUmA1BZgtknWttAIEv
- JFgNMvi/ylZqDx4vPPib+Yq//xdlLY1pMP7xolKZYzFf03OxSA7+OKiWiVcA==
-X-Developer-Key: i=amergnat@baylibre.com; a=openpgp;
- fpr=231B5ED7F3EAAA700E60FE8B2B46499D7E31D445
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        Lee Jones <lee@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>
+Subject: Re: [PATCH 1/2] dt-bindings: mfd: qcom,tcsr: document SDX55 TCSR
+Message-ID: <167819704835.39874.7191179198144936686.robh@kernel.org>
+References: <20230306072618.10770-1-krzysztof.kozlowski@linaro.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230306072618.10770-1-krzysztof.kozlowski@linaro.org>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -93,32 +67,15 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add iommu support in the SoC DTS using the 4 local arbiters (LARBs)
 
-Signed-off-by: Alexandre Mergnat <amergnat@baylibre.com>
----
- arch/arm64/boot/dts/mediatek/mt8365.dtsi | 8 ++++++++
- 1 file changed, 8 insertions(+)
+On Mon, 06 Mar 2023 08:26:17 +0100, Krzysztof Kozlowski wrote:
+> Add compatible for SDX55 TCSR block.
+> 
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> ---
+>  Documentation/devicetree/bindings/mfd/qcom,tcsr.yaml | 1 +
+>  1 file changed, 1 insertion(+)
+> 
 
-diff --git a/arch/arm64/boot/dts/mediatek/mt8365.dtsi b/arch/arm64/boot/dts/mediatek/mt8365.dtsi
-index db0b897f58bb..c713471c59dc 100644
---- a/arch/arm64/boot/dts/mediatek/mt8365.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt8365.dtsi
-@@ -456,6 +456,14 @@ sysirq: interrupt-controller@10200a80 {
- 			reg = <0 0x10200a80 0 0x20>;
- 		};
- 
-+		iommu: iommu@10205000 {
-+			compatible = "mediatek,mt8365-m4u";
-+			reg = <0 0x10205000 0 0x1000>;
-+			interrupts = <GIC_SPI 102 IRQ_TYPE_LEVEL_LOW>;
-+			mediatek,larbs = <&larb0>, <&larb1>, <&larb2>, <&larb3>;
-+			#iommu-cells = <1>;
-+		};
-+
- 		infracfg_nao: infracfg@1020e000 {
- 			compatible = "mediatek,mt8365-infracfg", "syscon";
- 			reg = <0 0x1020e000 0 0x1000>;
+Acked-by: Rob Herring <robh@kernel.org>
 
--- 
-b4 0.10.1
