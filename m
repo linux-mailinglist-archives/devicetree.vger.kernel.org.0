@@ -2,141 +2,142 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 061AA6AF7F8
-	for <lists+devicetree@lfdr.de>; Tue,  7 Mar 2023 22:49:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7050F6AF82B
+	for <lists+devicetree@lfdr.de>; Tue,  7 Mar 2023 23:02:47 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231526AbjCGVtP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Mar 2023 16:49:15 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59778 "EHLO
+        id S230340AbjCGWCo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Mar 2023 17:02:44 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46850 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231571AbjCGVtF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Mar 2023 16:49:05 -0500
-Received: from amity.mint.lgbt (vmi888983.contaboserver.net [149.102.157.145])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2C49687373
-        for <devicetree@vger.kernel.org>; Tue,  7 Mar 2023 13:48:58 -0800 (PST)
-Received: from amity.mint.lgbt (mx.mint.lgbt [127.0.0.1])
-        by amity.mint.lgbt (Postfix) with ESMTP id 4PWTbq2S2vz1S5Jd
-        for <devicetree@vger.kernel.org>; Tue,  7 Mar 2023 16:48:55 -0500 (EST)
-Authentication-Results: amity.mint.lgbt (amavisd-new);
-        dkim=pass (2048-bit key) reason="pass (just generated, assumed good)"
-        header.d=mint.lgbt
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=mint.lgbt; h=
-        content-transfer-encoding:content-type:in-reply-to:from
-        :references:to:content-language:subject:user-agent:mime-version
-        :date:message-id; s=dkim; t=1678225729; x=1679089730; bh=LBDNRan
-        2Cd8nNBtnj8IHxtHFO6mc9pcFTMtM8qGwz6s=; b=xAgAAROPLNLx2fAXRP7QMkE
-        fxvtm8OJXI/t3L53Y6VzIf39LJslo0eDyDqK3GKM+DACodINACYzkG6mzttpN5gO
-        8pOBBuAUlXA1ypjSRhwe9QNZ2sG6cZ9LQF4cVGWfD5EaGAdtwUeW+c0ea3anO5wL
-        ZqeR7tCj30dDuTzWaf92YE+Gi9wAK1JhRBKgjs+vidbb8t+tiS9HQERo09X8927L
-        Y7sVGDytyqcFg+ppr2OnT+55VRPcpdtcxfUEgDIlvWO5vZl/68QWZMBmf5Gw6de0
-        JwNaWz3+Gb53/wmYz04B5Q1mn0IjKxLRazrOF0DjNDn8AWf79B8mYIlwHu3dAVA=
-        =
-X-Virus-Scanned: amavisd-new at amity.mint.lgbt
-Received: from amity.mint.lgbt ([127.0.0.1])
-        by amity.mint.lgbt (amity.mint.lgbt [127.0.0.1]) (amavisd-new, port 10026)
-        with ESMTP id aQdEhfJhr0ci for <devicetree@vger.kernel.org>;
-        Tue,  7 Mar 2023 16:48:49 -0500 (EST)
-Received: from [192.168.1.90] (unknown [186.105.8.42])
-        by amity.mint.lgbt (Postfix) with ESMTPSA id 4PWTbS4Kjkz1S4yx;
-        Tue,  7 Mar 2023 16:48:35 -0500 (EST)
-Message-ID: <18156dee-4fd2-80e5-b04d-c96c267fb615@mint.lgbt>
-Date:   Tue, 7 Mar 2023 18:48:30 -0300
+        with ESMTP id S229823AbjCGWCn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Mar 2023 17:02:43 -0500
+Received: from esa4.hgst.iphmx.com (esa4.hgst.iphmx.com [216.71.154.42])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 58C4E72B4
+        for <devicetree@vger.kernel.org>; Tue,  7 Mar 2023 14:02:42 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=wdc.com; i=@wdc.com; q=dns/txt; s=dkim.wdc.com;
+  t=1678226562; x=1709762562;
+  h=message-id:date:mime-version:subject:to:cc:references:
+   from:in-reply-to:content-transfer-encoding;
+  bh=EviAZJp9Cw5i9H3BBqXkLv53Dp0208QTzjUygOiD26U=;
+  b=MqCP8gYqJa5x2ISIKv2JmKFUxMoAAoizyH+O2hahX0spCokoF1WXogLe
+   9qPVXlmvYestF4fJ4+TVYcTTfgh2RqhRYUxS+ozcqdQfE8Lo7PshUCjeW
+   II2CavRQExUx6R6pWt6xVusfvb+n64xlQhXuEimP5qrQIephdbxbKZMZF
+   VrQUPbFjnYrF0rPy/YJ5y42KeKPz+mTDbSY2HMVQPW8NxiQ0xccCPxL6F
+   0JqvtBN2+9a7058J7/AoVZKpEi6qKoyaipjtiMb9nFgN6OYZDTHZQp0nz
+   aQc+UyRV4+pE1bfT+KFm4xa2xJG5KTmnfY0RhJ6G9ifxByazDXIO/A+If
+   Q==;
+X-IronPort-AV: E=Sophos;i="5.98,242,1673884800"; 
+   d="scan'208";a="223334439"
+Received: from uls-op-cesaip02.wdc.com (HELO uls-op-cesaep02.wdc.com) ([199.255.45.15])
+  by ob1.hgst.iphmx.com with ESMTP; 08 Mar 2023 06:02:38 +0800
+IronPort-SDR: vKNq/+k0JcsVvo8ye0FsujdV5wZTTg15e3Jdq5/JzcuM6x1kUGrB9xClXdtiXJseRSC5XK88/f
+ K6k0khk4FERYGl9aLJDCm8Yqm7ZBU8oCnSIxu5V5mWaP+9QkYcUc+c1WgdDZlO5FAzp1ctVctQ
+ VvnldfoWCH1a6YUV/yUIy7eo9Ev8FTYdoy+VirUHVOwfv86sErUPABO5tg+hGcUpfi4hqRBA4V
+ Ao76We1zIQga0QPTUYnJN0FG+uRIKwPwls+Bhgg07Rdtf6uI2lJEJi4wPeGAtgGzJaS32pD1Xx
+ ri4=
+Received: from uls-op-cesaip02.wdc.com ([10.248.3.37])
+  by uls-op-cesaep02.wdc.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 07 Mar 2023 13:13:37 -0800
+IronPort-SDR: m9GEAe+IHIpS7Jfz4OWZlg0U0LYqt0D5vRhfCvJ0pS7j5qpYEbOZidk9pai5iVpHflEIsFES8V
+ +sWTP8GWmw+WEDAmb4Bey2GndfC9G/NrUPY5Np15y4NbfXuFz3F5GpDPLclAMEmQKjhLFS+l7J
+ Zc3pI+bQXhBZOnSqC3oFgC4sPaOmQjTGf0y6QsrEhoUOyY+yQj6q8372wZk/HKnHrurkcLEgnh
+ CXFiCNF8Et2B7L15k5pC68Pz2WuW1jirnLNyeZ+CF/o9qMBJZwTuSDBeDMRUtlJE5OKYEQLvK/
+ 5zI=
+WDCIronportException: Internal
+Received: from usg-ed-osssrv.wdc.com ([10.3.10.180])
+  by uls-op-cesaip02.wdc.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 07 Mar 2023 14:02:39 -0800
+Received: from usg-ed-osssrv.wdc.com (usg-ed-osssrv.wdc.com [127.0.0.1])
+        by usg-ed-osssrv.wdc.com (Postfix) with ESMTP id 4PWTvg0Xfpz1RvTp
+        for <devicetree@vger.kernel.org>; Tue,  7 Mar 2023 14:02:39 -0800 (PST)
+Authentication-Results: usg-ed-osssrv.wdc.com (amavisd-new); dkim=pass
+        reason="pass (just generated, assumed good)"
+        header.d=opensource.wdc.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=
+        opensource.wdc.com; h=content-transfer-encoding:content-type
+        :in-reply-to:organization:from:references:to:content-language
+        :subject:user-agent:mime-version:date:message-id; s=dkim; t=
+        1678226555; x=1680818556; bh=EviAZJp9Cw5i9H3BBqXkLv53Dp0208QTzjU
+        ygOiD26U=; b=oQh5rvHGuTN+og6m4RdofnNxXfKQ6FOij7HodCau0YROd3W2vMP
+        sAdB64d1gilHxx4OvumXJwN0hEtvRWbGH2tou7uVrD+qGj0myjPD5nnyNKNk9E8g
+        /xJRkjJvyWytiygFploRUteaR2Fd0g29vaIutBat/ar1VbtUL/P6SvqKHsqUzH7y
+        ibccEv58Hr5/VExPhL7hsEcpp4JvRIfY2caZBgJKYNj6C5K8ix6UnHeBYqstn97X
+        IhLVkB67rWFF/rIJUuPsCjvc48ZWh1fc9Ojq63Y9s6EJ3rJ4iEOekWXE0YW1tYXO
+        BBoaPCCaIRqVm+x9xZ85/fkP0aZHPNLxQRw==
+X-Virus-Scanned: amavisd-new at usg-ed-osssrv.wdc.com
+Received: from usg-ed-osssrv.wdc.com ([127.0.0.1])
+        by usg-ed-osssrv.wdc.com (usg-ed-osssrv.wdc.com [127.0.0.1]) (amavisd-new, port 10026)
+        with ESMTP id ZCSBZyNXiU05 for <devicetree@vger.kernel.org>;
+        Tue,  7 Mar 2023 14:02:35 -0800 (PST)
+Received: from [10.225.163.63] (unknown [10.225.163.63])
+        by usg-ed-osssrv.wdc.com (Postfix) with ESMTPSA id 4PWTvZ0Zgkz1RvLy;
+        Tue,  7 Mar 2023 14:02:33 -0800 (PST)
+Message-ID: <f800c8f5-d6d4-8a93-f8e2-3ea46e6d7d31@opensource.wdc.com>
+Date:   Wed, 8 Mar 2023 07:02:32 +0900
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.1
-Subject: Re: [PATCH v7 1/6] dt-bindings: ufs: qcom: Add SM6125 compatible
- string
-Content-Language: en-US, es-CL
-To:     Konrad Dybcio <konrad.dybcio@linaro.org>, agross@kernel.org,
-        andersson@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, vkoul@kernel.org,
-        kishon@kernel.org, alim.akhtar@samsung.com, avri.altman@wdc.com,
-        bvanassche@acm.org, keescook@chromium.org, tony.luck@intel.com,
-        gpiccoli@igalia.com
-Cc:     ~postmarketos/upstreaming@lists.sr.ht,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org,
-        linux-scsi@vger.kernel.org, linux-hardening@vger.kernel.org,
-        phone-devel@vger.kernel.org, martin.botka@somainline.org,
-        marijn.suijten@somainline.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-References: <20230306165246.14782-1-they@mint.lgbt>
- <20230306165246.14782-2-they@mint.lgbt>
- <4670ddae-6b01-1e5c-b0ed-1f2f498a4f66@mint.lgbt>
- <dfd1d81e-76a0-f8eb-e529-9f8ea1e927b6@linaro.org>
-From:   Lux Aliaga <they@mint.lgbt>
-In-Reply-To: <dfd1d81e-76a0-f8eb-e529-9f8ea1e927b6@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.8.0
+Subject: Re: [PATCH v4] dt-bindings: ata: Add UniPhier controller binding
+Content-Language: en-US
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Kunihiko Hayashi <hayashi.kunihiko@socionext.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Hans de Goede <hdegoede@redhat.com>,
+        Jens Axboe <axboe@kernel.dk>
+Cc:     linux-ide@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20230222155906.19403-1-hayashi.kunihiko@socionext.com>
+ <9d36818f-3ce3-0fb6-1a3e-85e3879af08c@opensource.wdc.com>
+ <a6425bde-5b6d-2fb2-2396-a35677b19e8f@linaro.org>
+ <e5ed284a-77ac-df6d-1473-e4d96955f65b@opensource.wdc.com>
+ <bf6d6b20-8479-80f7-1899-d58e03e6c6c8@linaro.org>
+From:   Damien Le Moal <damien.lemoal@opensource.wdc.com>
+Organization: Western Digital Research
+In-Reply-To: <bf6d6b20-8479-80f7-1899-d58e03e6c6c8@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
+        SPF_HELO_PASS,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 3/6/2023 14:09, Konrad Dybcio wrote:
-
->
-> On 6.03.2023 18:01, Lux Aliaga wrote:
->> On 06/03/2023 13:52, Lux Aliaga wrote:
->>> Document the compatible for UFS found on the SM6125.
+On 3/8/23 00:52, Krzysztof Kozlowski wrote:
+> On 07/03/2023 11:42, Damien Le Moal wrote:
+>> On 3/7/23 17:13, Krzysztof Kozlowski wrote:
+>>> On 06/03/2023 02:22, Damien Le Moal wrote:
+>>>> On 2/23/23 00:59, Kunihiko Hayashi wrote:
+>>>>> Add UniPhier SATA controller compatible string to the platform binding.
+>>>>> This controller needs three reset controls for Pro4 SoC, or two reset
+>>>>> controls for PXs2 and PXs3 SoCs.
+>>>>>
+>>>>> Signed-off-by: Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
+>>>>
+>>>> Rob,
+>>>>
+>>>> Are you OK with this patch ? I can take it for 6.4.
+>>>>
 >>>
->>> Signed-off-by: Lux Aliaga <they@mint.lgbt>
->>> Reviewed-by: Martin Botka <martin.botka@somainline.org>
->>> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->>> ---
->>>  =C2=A0 Documentation/devicetree/bindings/ufs/qcom,ufs.yaml | 2 ++
->>>  =C2=A0 1 file changed, 2 insertions(+)
->>>
->>> diff --git a/Documentation/devicetree/bindings/ufs/qcom,ufs.yaml b/Do=
-cumentation/devicetree/bindings/ufs/qcom,ufs.yaml
->>> index b517d76215e3..42422f3471b3 100644
->>> --- a/Documentation/devicetree/bindings/ufs/qcom,ufs.yaml
->>> +++ b/Documentation/devicetree/bindings/ufs/qcom,ufs.yaml
->>> @@ -29,6 +29,7 @@ properties:
->>>  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 -=
- qcom,sc8280xp-ufshc
->>>  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 -=
- qcom,sdm845-ufshc
->>>  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 -=
- qcom,sm6115-ufshc
->>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - qcom,sm6125=
--ufshc
->>>  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 -=
- qcom,sm6350-ufshc
->>>  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 -=
- qcom,sm8150-ufshc
->>>  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 -=
- qcom,sm8250-ufshc
->>> @@ -185,6 +186,7 @@ allOf:
->>>  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 c=
-ontains:
->>>  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0 enum:
->>>  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0 - qcom,sm6115-ufshc
->>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0 - qcom,sm6125-ufshc
->>>  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 then:
->>>  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 properties:
->>>  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 clocks:
->> I have to apologize. I worked on a changelog for this patchset but I s=
-kipped the subject header, therefore it didn't send, and as I realized th=
-is I interrupted the process, leaving the patchset incomplete. I'll retry=
- sending it, this time correctly.
-> Happens, next time resend it with a RESEND prefix, e.g. [RESEND PATCH 1=
-/2]
->
-> Konrad
+>>> You got Review (which includes also "Ack"), what are you missing here?
+>>
+>> By the way, I am not seeing/have not received any Ack. Hence why I checked with Rob.
+> 
+> You were on Cc... Did I end up in spam?
 
-Thank you! Will take this into consideration for the future. I received=20
-this email after I resent the patchset, so that's why I didn't add the=20
-prefix.
+I did get your review email, but I do not see any Ack with it. Was it a
+different email ? I do check my spam folder from time to time but didn't see
+anything in there that would not make me rich :)
 
---=20
-Lux Aliaga
-https://nixgoat.me/
+> 
+> Best regards,
+> Krzysztof
+> 
+
+-- 
+Damien Le Moal
+Western Digital Research
 
