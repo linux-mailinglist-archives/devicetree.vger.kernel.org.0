@@ -2,165 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id ECD9D6AF5B2
-	for <lists+devicetree@lfdr.de>; Tue,  7 Mar 2023 20:29:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E12E76AF626
+	for <lists+devicetree@lfdr.de>; Tue,  7 Mar 2023 20:54:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233932AbjCGT35 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Mar 2023 14:29:57 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37190 "EHLO
+        id S231669AbjCGTyZ convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Tue, 7 Mar 2023 14:54:25 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52146 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231636AbjCGT3d (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Mar 2023 14:29:33 -0500
-Received: from EUR05-DB8-obe.outbound.protection.outlook.com (mail-db8eur05hn2208.outbound.protection.outlook.com [52.100.20.208])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C893CB71A3;
-        Tue,  7 Mar 2023 11:15:04 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=seco.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=2Z19/KYxHJfZbjRC2u9g8OcNWWEVAHhKTVS+8o4WBBM=;
- b=c7U3X7QH8s9e6HHAtwKDuzUQEjUny9H9fOzXYGZjVEfaV58OXG9CdtHHy7GaQZVO3x9+5D1X2vdueibbvaMpeJwBR3f9dva+/DoGC1oxx4gXrd7Mq8APgwBVoad4OQYnjR1R0N8LuGegcwn3aGZP8qFkSAeVPlnCAGryoSxzhoKyOPJPjpWlhRWdefrxahMFAo0hbx/QlF9aEwzuuLtJ/xpOSdiqyDO8Cvd+/G6cniVRTM+8me7A8CUTNe04nWpUiMUaFtgTQoFbsPbwmh1rwnuw83x/no+5drvrxGyKWCiP7E65NBi2DNKSl5OSnBCVhqxxgpIFDz7rSo9hA9Y8Ew==
-Received: from DB6PR1001CA0030.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:4:55::16)
- by DB9PR03MB8399.eurprd03.prod.outlook.com (2603:10a6:10:396::15) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6178.16; Tue, 7 Mar
- 2023 19:14:48 +0000
-Received: from DB8EUR05FT029.eop-eur05.prod.protection.outlook.com
- (2603:10a6:4:55:cafe::5c) by DB6PR1001CA0030.outlook.office365.com
- (2603:10a6:4:55::16) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6156.27 via Frontend
- Transport; Tue, 7 Mar 2023 19:14:48 +0000
-X-MS-Exchange-Authentication-Results: spf=fail (sender IP is 20.160.56.82)
- smtp.mailfrom=seco.com; dkim=pass (signature was verified)
- header.d=seco.com;dmarc=pass action=none header.from=seco.com;
-Received-SPF: Fail (protection.outlook.com: domain of seco.com does not
- designate 20.160.56.82 as permitted sender) receiver=protection.outlook.com;
- client-ip=20.160.56.82; helo=inpost-eu.tmcas.trendmicro.com;
-Received: from inpost-eu.tmcas.trendmicro.com (20.160.56.82) by
- DB8EUR05FT029.mail.protection.outlook.com (10.233.239.51) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.6178.16 via Frontend Transport; Tue, 7 Mar 2023 19:14:47 +0000
-Received: from outmta (unknown [192.168.82.133])
-        by inpost-eu.tmcas.trendmicro.com (Trend Micro CAS) with ESMTP id 4772F2008088D;
-        Tue,  7 Mar 2023 19:14:47 +0000 (UTC)
-Received: from EUR05-AM6-obe.outbound.protection.outlook.com (unknown [104.47.18.106])
-        by repre.tmcas.trendmicro.com (Trend Micro CAS) with ESMTPS id EFCE72008006F;
-        Tue,  7 Mar 2023 19:13:04 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=MAcXen+1Hh0nazcfvqWaEYc3s69fAQCqLe/UloQB2sSHnWgz4g4ijXPfjkl4MYQKo5YjnsE8ySc2kIoLBxLi5MeqV0ZEY0Lqstb1B7rH1EOTXCTtkWdyD3jhJizK6k+0p2d+oPX/LqsDd0skCPR1qf1AZmDaY5eJKQWnv3NpETBsv6ZIk4lC3FibccUX0DKC9E0GFlHnYg5INM3sT9VXgQyjVO7y9gwDLy8OXxEWEPD2tcNAonjv1Ni2PGzSAeTDl9/N+FZqIGN+dvqtCXKmKzjt6AaH86hBK0jjOwSUSmoA85IBv7j3C02FI0FxzWE4w+iQZkNLyWsHasNwotuFkA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=2Z19/KYxHJfZbjRC2u9g8OcNWWEVAHhKTVS+8o4WBBM=;
- b=atX0q3IGjx1S21OssRArlTYZ3jR7XkY0KkJxMPHjbcemFeqNVFKcdInMoQ3js1nPcB9zx7BwktfTBFTuSo4/+XJmkXjpfOuGwc1wqzlEPsCg111/uAGSEz1csPE66HSwHWOyx+CY+vKFuGmldmubCgO8SAe+gou48PRrnPYZLv9D88dTR9eHjYMaKyyMyuQPgIrjB6d4OmMpQVH9zES2cGwtSUW52+SsywximCvUuv2JwYvAa+I4uQKQQW5YcuNYUbFDqL5hcxYriAUtsRRYf1HzEDRbj+eFrNbPx6OP0LByv0vCTjZcOG8K2XrIbtG4KEW8vt4gHctm1qoyvhs4Tg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=seco.com; dmarc=pass action=none header.from=seco.com;
- dkim=pass header.d=seco.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=seco.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=2Z19/KYxHJfZbjRC2u9g8OcNWWEVAHhKTVS+8o4WBBM=;
- b=c7U3X7QH8s9e6HHAtwKDuzUQEjUny9H9fOzXYGZjVEfaV58OXG9CdtHHy7GaQZVO3x9+5D1X2vdueibbvaMpeJwBR3f9dva+/DoGC1oxx4gXrd7Mq8APgwBVoad4OQYnjR1R0N8LuGegcwn3aGZP8qFkSAeVPlnCAGryoSxzhoKyOPJPjpWlhRWdefrxahMFAo0hbx/QlF9aEwzuuLtJ/xpOSdiqyDO8Cvd+/G6cniVRTM+8me7A8CUTNe04nWpUiMUaFtgTQoFbsPbwmh1rwnuw83x/no+5drvrxGyKWCiP7E65NBi2DNKSl5OSnBCVhqxxgpIFDz7rSo9hA9Y8Ew==
-Authentication-Results-Original: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=seco.com;
-Received: from DB9PR03MB8847.eurprd03.prod.outlook.com (2603:10a6:10:3dd::13)
- by AS8PR03MB9024.eurprd03.prod.outlook.com (2603:10a6:20b:5b6::11) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6156.28; Tue, 7 Mar
- 2023 19:14:38 +0000
-Received: from DB9PR03MB8847.eurprd03.prod.outlook.com
- ([fe80::dbcf:1089:3242:614e]) by DB9PR03MB8847.eurprd03.prod.outlook.com
- ([fe80::dbcf:1089:3242:614e%5]) with mapi id 15.20.6156.027; Tue, 7 Mar 2023
- 19:14:38 +0000
-Message-ID: <91e59ee2-d686-1afb-e639-d260fe8111ac@seco.com>
-Date:   Tue, 7 Mar 2023 14:14:33 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.0
-Subject: Re: [PATCH v10 02/13] dt-bindings: phy: Add Lynx 10G phy binding
-Content-Language: en-US
-To:     Vinod Koul <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
-        linux-phy@lists.infradead.org
-Cc:     Madalin Bucur <madalin.bucur@nxp.com>,
-        linuxppc-dev@lists.ozlabs.org, devicetree@vger.kernel.org,
-        Ioana Ciornei <ioana.ciornei@nxp.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Camelia Alexandra Groza <camelia.groza@nxp.com>,
-        linux-arm-kernel@lists.infradead.org,
-        Bagas Sanjaya <bagasdotme@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>, linux-clk@vger.kernel.org
-References: <20230306191535.1917656-1-sean.anderson@seco.com>
- <20230306191535.1917656-3-sean.anderson@seco.com>
-From:   Sean Anderson <sean.anderson@seco.com>
-In-Reply-To: <20230306191535.1917656-3-sean.anderson@seco.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: MN2PR15CA0024.namprd15.prod.outlook.com
- (2603:10b6:208:1b4::37) To DB9PR03MB8847.eurprd03.prod.outlook.com
- (2603:10a6:10:3dd::13)
+        with ESMTP id S229698AbjCGTx6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Mar 2023 14:53:58 -0500
+Received: from mail-pl1-x636.google.com (mail-pl1-x636.google.com [IPv6:2607:f8b0:4864:20::636])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 23F34A7291
+        for <devicetree@vger.kernel.org>; Tue,  7 Mar 2023 11:45:54 -0800 (PST)
+Received: by mail-pl1-x636.google.com with SMTP id p20so15262055plw.13
+        for <devicetree@vger.kernel.org>; Tue, 07 Mar 2023 11:45:54 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1678218046;
+        h=content-transfer-encoding:mime-version:message-id:date:references
+         :in-reply-to:subject:to:from:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=CWFDL0Togo3L/5bvFloyMlrVxNWJz2dZaxBpDesLPPY=;
+        b=1ab6T7mKaVR5H+S13cpyLoTxwfuEa4VhaaEWZguh/CsUHxVRa/l/ADlwaKUna9vu5g
+         Iaw5+Dgag1oVZVujakLhQYrDDkeu5iLQoeAQn+efsrJeGjt9OX24jbqWrrE9KyeaO+pn
+         QHSDl2PvZcspVdluj9ofODj6qg8IAzVDyZXQZnrLAtRHZc+CB/qYdzSpiSOb8QAH1CHR
+         ViobMVnNmQHLU+jHjEQ2ITKobmeOq4fIyfJ/YDXpLvHdHmVEKsiMeVi+5NMHFFXVdQ5Q
+         /8qeJcO1kwt7SxgO4slmpEbnr8pI98j3ppf+IlrkJdLnUzo5jEePxLDaFY1mTX71su27
+         nikA==
+X-Gm-Message-State: AO0yUKWpEOE+xrayDHvebMNU9D3KLtl46In0SYfIqcCTyXFmf8uNrRdG
+        CPW1N3dSX14RyHG9VdWUPIp/TA==
+X-Google-Smtp-Source: AK7set9Pfl0SQYm8o4d/CzeLw+E0U3nXeg314CNzFcmKQNtPX+Scglz04h5m+eRyrouDFqS1XFo04A==
+X-Received: by 2002:a17:90b:4b49:b0:234:234c:72d9 with SMTP id mi9-20020a17090b4b4900b00234234c72d9mr16195349pjb.14.1678218046516;
+        Tue, 07 Mar 2023 11:40:46 -0800 (PST)
+Received: from localhost (63-228-113-140.tukw.qwest.net. [63.228.113.140])
+        by smtp.gmail.com with ESMTPSA id fy1-20020a17090b020100b0022bfcf5d297sm9742902pjb.9.2023.03.07.11.40.45
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 07 Mar 2023 11:40:45 -0800 (PST)
+From:   Kevin Hilman <khilman@kernel.org>
+To:     Matthias Brugger <matthias.bgg@gmail.com>,
+        Bernhard =?utf-8?Q?Rosenkr?= =?utf-8?Q?=C3=A4nzer?= 
+        <bero@baylibre.com>, linux-mediatek@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-gpio@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-serial@vger.kernel.org, linux-usb@vger.kernel.org,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        tglx@linutronix.de, maz@kernel.org, lee@kernel.org,
+        linus.walleij@linaro.org, gregkh@linuxfoundation.org,
+        daniel.lezcano@linaro.org, chunfeng.yun@mediatek.com,
+        angelogioacchino.delregno@collabora.com, nfraprado@collabora.com,
+        allen-kh.cheng@mediatek.com, sean.wang@mediatek.com,
+        zhiyong.tao@mediatek.com,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Subject: Re: [PATCH v9 8/9] dt-bindings: serial: mediatek,uart: add MT8365
+In-Reply-To: <0dec66ce-424c-e682-3f73-594e5b1edb65@gmail.com>
+References: <20230125143503.1015424-1-bero@baylibre.com>
+ <20230125143503.1015424-9-bero@baylibre.com>
+ <0dec66ce-424c-e682-3f73-594e5b1edb65@gmail.com>
+Date:   Tue, 07 Mar 2023 11:40:45 -0800
+Message-ID: <7httywfiyq.fsf@baylibre.com>
 MIME-Version: 1.0
-X-MS-TrafficTypeDiagnostic: DB9PR03MB8847:EE_|AS8PR03MB9024:EE_|DB8EUR05FT029:EE_|DB9PR03MB8399:EE_
-X-MS-Office365-Filtering-Correlation-Id: 007585cf-b159-4b74-8b4a-08db1f4037d5
-X-TrendMicro-CAS-OUT-LOOP-IDENTIFIER: 656f966764b7fb185830381c646b41a1
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam-Untrusted: BCL:0;
-X-Microsoft-Antispam-Message-Info-Original: 6H/lH7noXf8RQAyCyXbH8LaGIq5MqmLjXEVraGmxGFkM48E58JcscIW5ZODMAPm9hEW4s74TI0LAb04Hv0ovZjyLd5im58la7NXzW5XUaz6sOnTeFEA33tTM58LA1O7poi3v00D+3LL3kdihGWLJE0KAah0hFKxeInU6NIjgASlAmCpQPSOGEWROk5J3hEd/T/F1GYGvBPjb/eXAsgIP7fkh5+C8sMM/yLdr7N8prL7vhAUJljkFv5CVgcNqR4Eb+fHrs8Vzn7eGrd1wxjJZJ4rUVcjeDmD89DiQ8TAZjsZoZCdVpD7XhjEGA7fjSsxRe++cJXObROIiGlDGHRcqolDv5thl7haLWEW8dcKx4gMjaUf2CyDyWP+ooToY6qPiIlO1q72/jv3uCmqGZ36rXaoOnL2RyaN/q4X4UsvpJz377CTKbd1p266Tsr1TkfQ9612ahQrlp5Smr+SRAATZjpSZnwjb15/GrkbZQ4TLZz5KeH51UHy8CSLKwUFSz0uebAkHyjPsFHKb3WKOsYDGHkp1G2UeJFGaiJxTKBujHVHE68KnkdaVWMv97xYBxYXyfwq5Qbde9+VGePPdIWdPtGqQoeYOOBw3akHXTDGvAEIAeA6NLY463avJBLU/3WP0M84J3Ta6dq+2zzkUrls3Qy29nFRBFYTe68oamDcIshYwW1fzX1a6cbWD+E/4++ESGr6DLoK+Tzwx4RPwT3NMdFtiCH+RXMZtXpZ8qYvgIs2RknizjTS5WKwNZs9/CzT+pXgHx2rsnm/2JAL7eqEMhg==
-X-Forefront-Antispam-Report-Untrusted: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB9PR03MB8847.eurprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230025)(346002)(396003)(376002)(366004)(136003)(39850400004)(451199018)(316002)(110136005)(54906003)(83380400001)(36756003)(86362001)(31696002)(6506007)(31686004)(6486002)(186003)(2906002)(4326008)(66476007)(66946007)(41300700001)(8676002)(7416002)(26005)(44832011)(66556008)(6512007)(52116002)(53546011)(478600001)(2616005)(8936002)(6666004)(5660300002)(38100700002)(38350700002)(43740500002)(45980500001);DIR:OUT;SFP:1101;
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS8PR03MB9024
-X-EOPAttributedMessage: 0
-X-MS-Exchange-Transport-CrossTenantHeadersStripped: DB8EUR05FT029.eop-eur05.prod.protection.outlook.com
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id-Prvs: d3203212-0f43-48a7-dee4-08db1f40320c
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 5EOj/7HOzN0ke2dMDqYJgjKI4b2agwR2du0FprViJ6ibiWow8+ljDbC7agkSnpFZKlvas294Pdo78G8cIHx+lrRwVoIYolADbek2YPwaPWnsrzmXnO6xblLyzkpC/T/4toRaFh0M48rm1iWnryRlFz5Glta8jBniypA0FtJskkkIZM/wxlas1fjiAqDZyOiGiXm1QWr2H9A1NJ3fYDEIpcqsR79G+i98EbLICcw3zLLVHUMUmNerGRhyOcxEqWReU2l4ktHVAdXnfVcazrKxqn1x+FZzDF+b1hIyikdGvJJtAgDNTKh+ylDSwwgoGgwIsJqg+OKrB1Feb7U6HHUkwqy+cXmy3lpSYU0KCNBzudj09biNc8EiR8rgk7GCMDiUYPdC3Yle/ZCSIuwOxCECM1qyNgj4CpXqcyZ7GgP0s5GvUP1skGO15nw5uewjPLr7Jb60UdEAUHfovGXLuzJxpIXAYPdgSEEJe7lxIiVqg3viVdhlWCiQCGAlaamc0vR/INxma5Q+24eZz3Q/WrXOTphiGr67hF8kpzgeA2ofUC/rYQULylmdfHSsfEQ21bde8rMDCe7oJY+zqAjRFCK5pNQDM2K+9rRG95tv1gEcqJmR9PJdaPzrW4k00QfzQqC04v+KO0gMSKs6dkzWX4vBt/CAAEBvk9KbCND7oF8LV+one8d7Q8OoqGKjyaPQtuxK6DqLXAsuB58pselnjsWcxRrXWoSUulD2MrXP7NBwCiKjgZVoajah+aYpY3sg64m2Ql7X8RfxNSOsQnw0QGu9IdXpfMDuDU0d0lwIeCz8viFJOQoBJCVwqkdGggfQ5y96RCvqVXeXobnuMW4Uq+2yBnH/fr1iADPBW/AUq27jVWk=
-X-Forefront-Antispam-Report: CIP:20.160.56.82;CTRY:NL;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:inpost-eu.tmcas.trendmicro.com;PTR:inpost-eu.tmcas.trendmicro.com;CAT:NONE;SFS:(13230025)(39850400004)(136003)(346002)(376002)(396003)(451199018)(5400799012)(46966006)(36840700001)(40470700004)(31686004)(336012)(47076005)(54906003)(316002)(110136005)(40460700003)(36756003)(356005)(40480700001)(86362001)(31696002)(6512007)(7596003)(82740400003)(7636003)(34070700002)(34020700004)(36860700001)(6506007)(26005)(53546011)(82310400005)(83380400001)(186003)(2616005)(8936002)(5660300002)(7416002)(6486002)(478600001)(4326008)(41300700001)(6666004)(44832011)(2906002)(70586007)(70206006)(8676002)(45980500001)(43740500002)(12100799021);DIR:OUT;SFP:1501;
-X-OriginatorOrg: seco.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Mar 2023 19:14:47.7229
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 007585cf-b159-4b74-8b4a-08db1f4037d5
-X-MS-Exchange-CrossTenant-Id: bebe97c3-6438-442e-ade3-ff17aa50e733
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=bebe97c3-6438-442e-ade3-ff17aa50e733;Ip=[20.160.56.82];Helo=[inpost-eu.tmcas.trendmicro.com]
-X-MS-Exchange-CrossTenant-AuthSource: DB8EUR05FT029.eop-eur05.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB9PR03MB8399
-X-Spam-Status: No, score=-0.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,RCVD_IN_VALIDITY_RPBL,SPF_HELO_PASS,SPF_PASS,
-        URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 8BIT
+X-Spam-Status: No, score=-1.6 required=5.0 tests=BAYES_00,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,
+        SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 3/6/23 14:15, Sean Anderson wrote:
-> This adds a binding for the SerDes module found on QorIQ processors.
-> Each phy is a subnode of the top-level device, possibly supporting
-> multiple lanes and protocols. This "thick" #phy-cells is used due to
-> allow for better organization of parameters. Note that the particular
-> parameters necessary to select a protocol-controller/lane combination
-> vary across different SoCs, and even within different SerDes on the same
-> SoC.
-> 
-> The driver is designed to be able to completely reconfigure lanes at
-> runtime. Generally, the phy consumer can select the appropriate
-> protocol using set_mode.
-> 
-> There are two PLLs, each of which can be used as the master clock for
-> each lane. Each PLL has its own reference. For the moment they are
-> required, because it simplifies the driver implementation. Absent
-> reference clocks can be modeled by a fixed-clock with a rate of 0.
-> 
-> Signed-off-by: Sean Anderson <sean.anderson@seco.com>
-> ---
-> 
-> (no changes since v9)
+Hi Matthias,
 
-I forgot to add Rob's review from last time
+Matthias Brugger <matthias.bgg@gmail.com> writes:
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+> On 25/01/2023 15:35, Bernhard Rosenkränzer wrote:
+>> Add binding description for mediatek,mt8365-uart
+>> 
+>> Signed-off-by: Bernhard Rosenkränzer <bero@baylibre.com>
+>> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>> Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+>
+> Reviewed-by: Matthias Brugger <matthias.bgg@gmail.com>
+>
+> Greg will you take 5,6 and 8 from this series through your branch or are you Ok 
+> if I take them. They are all just adding a new compatible string to the 
+> following files:
+> Documentation/devicetree/bindings/usb/mediatek,mtu3.yaml
+> Documentation/devicetree/bindings/usb/mediatek,mtk-xhci.yaml
+> and
+> Documentation/devicetree/bindings/serial/mediatek,uart.yaml
 
-If another revision is necessary, I will add this.
+Might I gently suggest that you take these along with patch 9 through
+your tree?
 
---Sean
+The driver portions were all been merged and the bindings and DT all
+reviewed since end of January.
+
+Thanks,
+
+Kevin
