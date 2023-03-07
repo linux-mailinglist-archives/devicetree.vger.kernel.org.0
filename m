@@ -2,62 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9E9286ADF70
-	for <lists+devicetree@lfdr.de>; Tue,  7 Mar 2023 14:01:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B6AA66ADF78
+	for <lists+devicetree@lfdr.de>; Tue,  7 Mar 2023 14:01:54 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229707AbjCGNBq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Mar 2023 08:01:46 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33010 "EHLO
+        id S229943AbjCGNBw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Mar 2023 08:01:52 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33064 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229545AbjCGNBp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Mar 2023 08:01:45 -0500
-Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7B8B37A8E
-        for <devicetree@vger.kernel.org>; Tue,  7 Mar 2023 05:01:43 -0800 (PST)
-Received: by mail-lf1-x12d.google.com with SMTP id f18so16972244lfa.3
-        for <devicetree@vger.kernel.org>; Tue, 07 Mar 2023 05:01:43 -0800 (PST)
+        with ESMTP id S229843AbjCGNBr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Mar 2023 08:01:47 -0500
+Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2D9A59ECA
+        for <devicetree@vger.kernel.org>; Tue,  7 Mar 2023 05:01:45 -0800 (PST)
+Received: by mail-lf1-x135.google.com with SMTP id j11so16889449lfg.13
+        for <devicetree@vger.kernel.org>; Tue, 07 Mar 2023 05:01:45 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1678194102;
-        h=cc:to:content-transfer-encoding:mime-version:message-id:date
-         :subject:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=kAKt9oLN/3E5C6T5cNeSMYOM4tUix3c4gih76FZI0vA=;
-        b=IahDkcbRQh6PRKBga5k1xpkX1K12Pac+lBTOjur4Ti0gLOjDDwv1ebWjja2Amzvrhm
-         AVSfZeAxWC3H+QVzUX4wJh3PQPOP+uPGPtASewchwgX8v1WgPcJSxGgVQgBCroTPB/mg
-         HsMcEAxc695nc9l0DXFd6VCs9bT1zMaTsLnPVxLrfyQiZz305RiOFq5NmWZFETCwTxTc
-         9oRwQCpKs9+s2PIOpFs5WN8r4hx5aUJWzDWusUYGb0WLaHKFd0dV7mYbeEp0kMuhqCe6
-         Y2KZ83aFKHOAIT87E8HKO9M7AnhXKP18iZf56tRgRKqvRaMDaK5wzV+2K9LsK8WYusBs
-         wuiQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678194102;
-        h=cc:to:content-transfer-encoding:mime-version:message-id:date
-         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+        d=linaro.org; s=google; t=1678194103;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=kAKt9oLN/3E5C6T5cNeSMYOM4tUix3c4gih76FZI0vA=;
-        b=3mQlEtyaD4HI41BrJyIkzCWixPFPmGjryyIDwB1YSvdje3/LUvodYQzmxor8y+MF6D
-         mn28rg/u5zth+rODuBCS42Riw7I4sZy38aywBYElLLsWGXa8YGT38/i6LKYK4J5JDsaJ
-         0IhZgAlWNqW4q4mKcavJx5vQxRE/UR7NxWxvVKpDQEJhVBUv4F8Dgn79kbWZ0Goh677Y
-         SqDB0MdwW3iiBu3oYExQQFuom0MPdjxKsX7tkKekeZiXC69MQ6mR2BXqe+eBxyyYwyHi
-         7fgnOouWPd1GhTLXbOoW/3BbPX5ljfqk6OxLFANd4kycsr+mQlLQtEaD2DCi/q5/LxV7
-         DbFg==
-X-Gm-Message-State: AO0yUKVUzbKyNDafY6zP8IjT9qRzCWiCOO2UkabHS5nLGtCDMJv74j3A
-        C+wjmZiM8HRR90ieGdnHkFG5eg==
-X-Google-Smtp-Source: AK7set8z/qcx87HDZWoD6FwIXZM8Cu3r1uLjF3xt83ugybLjz1wVUQBna8yb7yA/JzAybC+nxf9qHQ==
-X-Received: by 2002:ac2:446b:0:b0:4d5:831a:1af8 with SMTP id y11-20020ac2446b000000b004d5831a1af8mr4246862lfl.40.1678194101601;
-        Tue, 07 Mar 2023 05:01:41 -0800 (PST)
+        bh=ZBjV0MIGjzxWCA4dde9ccbuSp/4SeZ0AfFye0IJguH0=;
+        b=S8K842lXW/grOayUPiw1/stytcPwZSZw0ib3Rwy0G8TyU3BoqzW3i8GNnezA75iJe0
+         F7HbbM9q2lxbK5+c3ta6HNsfVLqMBtL+CzPhG4mIP/5W7xIU+socPmju4EYLTcIUOU79
+         +zj5AxGzs7WfjpWK/llomuMJ7Vp3dns4XOpOPPDLIZvJPcHMrWMDIkpBBQ0DVaik4aeC
+         Myyy6/XxwQ8T9XVXJbWlX0/rC6juLAo+ZwwGNEAbopbofiS91kTYa9nKLJpyw/MP7lHw
+         P0jWblIUN56/EU3Een7Ib8YU0ugO5btmCZdq2y6MOVR/gimEISu0JfHR37i7PelEw5ig
+         eetg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1678194103;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=ZBjV0MIGjzxWCA4dde9ccbuSp/4SeZ0AfFye0IJguH0=;
+        b=NOA3Ig/9hxBD0oYKp52KqE6ACimZhAqAFPVcL8B9OW5cYeAxModMtPxqqcp4iaH1fX
+         wR7TxL6aBqWljQgsxMuxshYumlZxkt9mOW6vK3y+psLumntDIH4QCiAflyHwtlRCPolw
+         b8fzjcsA9qysZXPtQw2d6Zi9KCkc49qs1OOXxbVQuj42IJ1ZFvF5MpjiTboN6Tn1NrbR
+         y7SbfGDarjmSAHBIhlurne6b/r8s+xBb1b+ypbT0qoQgeLc1RZ40fNr3s5J/FnFIomsh
+         H/0H8L+XeOe2PZPEFB0JUeYKvaLoj/+qItzjOGfI+itwJkClZJRU+yzBhTCJiBPV/Ksu
+         e2dQ==
+X-Gm-Message-State: AO0yUKW3z77xWKZtTfVO3SolMEt8gsZWzOIKYsTyegb9kbXPhITLQZGc
+        aw7825nkl2JLEr4c2u8wkkrAKQ==
+X-Google-Smtp-Source: AK7set/BUtMgR4MG5rcNS3SZZlwGfqldYfAdp5uYc++c6d8LEm3HWAca8HOGIbFj8Oi5XqD7hswj6A==
+X-Received: by 2002:ac2:43aa:0:b0:4b5:6042:d136 with SMTP id t10-20020ac243aa000000b004b56042d136mr4125457lfl.22.1678194103253;
+        Tue, 07 Mar 2023 05:01:43 -0800 (PST)
 Received: from [192.168.1.101] (abyj16.neoplus.adsl.tpnet.pl. [83.9.29.16])
-        by smtp.gmail.com with ESMTPSA id u2-20020ac248a2000000b004cc5e97d356sm2048265lfg.148.2023.03.07.05.01.40
+        by smtp.gmail.com with ESMTPSA id u2-20020ac248a2000000b004cc5e97d356sm2048265lfg.148.2023.03.07.05.01.41
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 07 Mar 2023 05:01:41 -0800 (PST)
+        Tue, 07 Mar 2023 05:01:42 -0800 (PST)
 From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-Subject: [PATCH v3 00/10] Fix DSI host idx detection on HW revision clash
-Date:   Tue, 07 Mar 2023 14:01:38 +0100
-Message-Id: <20230307-topic-dsi_qcm-v3-0-8bd7e1add38a@linaro.org>
+Date:   Tue, 07 Mar 2023 14:01:39 +0100
+Subject: [PATCH v3 01/10] dt-bindings: display/msm: dsi-controller-main:
+ Fix deprecated QCM2290 compatible
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIALI1B2QC/x2N0QqDMAxFf0XybKBYxsRfkSE1TWdAq2tUBuK/L
- +zxnMvhXqBchBW66oLCp6is2cDXFdAU8ptRojE0rvHOuyfu6yaEUWX40IIPis6TTalNYM0YlHE
- sIdNkVT7m2eRWOMn3f9K/7vsHASMEV3QAAAA=
+Message-Id: <20230307-topic-dsi_qcm-v3-1-8bd7e1add38a@linaro.org>
+References: <20230307-topic-dsi_qcm-v3-0-8bd7e1add38a@linaro.org>
+In-Reply-To: <20230307-topic-dsi_qcm-v3-0-8bd7e1add38a@linaro.org>
 To:     Rob Clark <robdclark@gmail.com>,
         Abhinav Kumar <quic_abhinavk@quicinc.com>,
         Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
@@ -74,11 +75,11 @@ Cc:     Rob Herring <robh@kernel.org>, linux-arm-msm@vger.kernel.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
         Konrad Dybcio <konrad.dybcio@linaro.org>
 X-Mailer: b4 0.12.1
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1678194100; l=2768;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1678194100; l=1022;
  i=konrad.dybcio@linaro.org; s=20230215; h=from:subject:message-id;
- bh=w8f97gizhKeQlAufN/gAw/Y5LqIn6pMqeGASKnoEWho=;
- b=eOnovxHa4VCfpFjQWjo/7ouKcm1gRhvXoxkVoIem0sV72MWp0RQkRWdMHfoK464VMtQQ+jCEmvl8
- xv1AhdMGB6qQcL0Lqc6wVBgRMxS0VmSQ/b3zjT9XMv3HuJRhyP+u
+ bh=yadLtYUd+NaBlrHtthnWah/BoxxYiya5SpI6g5dSH5k=;
+ b=VXFbvloo8L6tf6wwoMkScWR9GbZ6ztU3t6q9TPy+AM8ughrYGsc0FKWNJHCSqgBFQH3zp2bjnBiP
+ 1u/l49IqAkFsvhNRiqUfofrrCrYY3xmsfHQCG0TIA5f8YQPX277W
 X-Developer-Key: i=konrad.dybcio@linaro.org; a=ed25519;
  pk=iclgkYvtl2w05SSXO5EjjSYlhFKsJ+5OSZBjOkQuEms=
 X-Spam-Status: No, score=-0.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -91,63 +92,29 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-v2 -> v3:
-- Merge with [1], I should have done that earlier..
-  - Squash 6115 compatible patches into one
-- Pick up tags (except Rob's ack in 6115 compatible addition, as it was changed)
-- Use b4 (sorry if you got an incomplete set of messages before..)
+The qcom, prefix was missed previously. Fix it.
 
-[1] https://lore.kernel.org/linux-arm-msm/145066db-5723-6baa-237d-7c2b8fd476d9@linaro.org/
-v2: https://lore.kernel.org/linux-arm-msm/20230213121012.1768296-1-konrad.dybcio@linaro.org/
-
-v1 -> v2:
-- squash the 2d-array-ification and fixing up the logic into one patch
-- drop num_variants, loop over VARIANTS_MAX*DSI_MAX unconditionally
-- drop inadequate Fixes: tags
-- pick up rbs
-
-v1: https://lore.kernel.org/linux-arm-msm/20230211115110.1462920-1-konrad.dybcio@linaro.org/
-
-Some DSI host versions are implemented on multiple SoCs which use
-vastly different register maps. This messes with our current
-assumptions of being able to map {dsi0, dsi1} to {reg0, reg1}.
-Solve that by adding a way of specifying multiple sets of base
-registers and try comparing them against the register specified in DT
-until we find a match.
-
-This removes the need for the QCM2290-specific compatible which was
-used in the SM6115 DT (which uses DSIv2.4.1, just like SC7180).
-The series also takes care of that.
-
-Tested on SM6115P Lenovo Tab P11 and SM8350 PDX215
-
+Fixes: 0c0f65c6dd44 ("dt-bindings: msm: dsi-controller-main: Add compatible strings for every current SoC")
+Acked-by: Rob Herring <robh@kernel.org>
 Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 ---
-Konrad Dybcio (10):
-      dt-bindings: display/msm: dsi-controller-main: Fix deprecated QCM2290 compatible
-      drm/msm/dsi: Get rid of msm_dsi_config::num_dsi
-      drm/msm/dsi: Fix DSI index detection when version clash occurs
-      drm/msm/dsi: dsi_cfg: Deduplicate identical structs
-      drm/msm/dsi: dsi_cfg: Merge SC7180 config into SDM845
-      drm/msm/dsi: Switch the QCM2290-specific compatible to index autodetection
-      drm/msm/dsi: Remove custom DSI config handling
-      dt-bindings: display/msm: dsi-controller-main: Fix deprecated compatible
-      dt-bindings: display/msm: dsi-controller-main: Add SM6115
-      arm64: dts: qcom: sm6115: Use the correct DSI compatible
+ Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
- .../bindings/display/msm/dsi-controller-main.yaml  |   6 +-
- .../bindings/display/msm/qcom,sm6115-mdss.yaml     |   8 +-
- arch/arm64/boot/dts/qcom/sm6115.dtsi               |   2 +-
- drivers/gpu/drm/msm/dsi/dsi.c                      |   6 +-
- drivers/gpu/drm/msm/dsi/dsi_cfg.c                  | 161 ++++++++-------------
- drivers/gpu/drm/msm/dsi/dsi_cfg.h                  |   6 +-
- drivers/gpu/drm/msm/dsi/dsi_host.c                 |  14 +-
- 7 files changed, 82 insertions(+), 121 deletions(-)
----
-base-commit: dc837c1a5137a8cf2e9432c1891392b6a66f4d8d
-change-id: 20230307-topic-dsi_qcm-5cd03c230f8f
+diff --git a/Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml b/Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml
+index e75a3efe4dac..2494817c1bd6 100644
+--- a/Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml
++++ b/Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml
+@@ -33,7 +33,7 @@ properties:
+           - const: qcom,mdss-dsi-ctrl
+       - items:
+           - enum:
+-              - dsi-ctrl-6g-qcm2290
++              - qcom,dsi-ctrl-6g-qcm2290
+           - const: qcom,mdss-dsi-ctrl
+         deprecated: true
+ 
 
-Best regards,
 -- 
-Konrad Dybcio <konrad.dybcio@linaro.org>
+2.39.2
 
