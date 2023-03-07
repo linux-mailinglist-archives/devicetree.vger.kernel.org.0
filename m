@@ -2,175 +2,141 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5EE846ADAE3
-	for <lists+devicetree@lfdr.de>; Tue,  7 Mar 2023 10:49:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 114A26ADAEB
+	for <lists+devicetree@lfdr.de>; Tue,  7 Mar 2023 10:50:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230258AbjCGJsx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Mar 2023 04:48:53 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44516 "EHLO
+        id S229850AbjCGJu5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Mar 2023 04:50:57 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48210 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230501AbjCGJsL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Mar 2023 04:48:11 -0500
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7EC4854CA4;
-        Tue,  7 Mar 2023 01:47:44 -0800 (PST)
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits))
-        (No client certificate requested)
-        (Authenticated sender: kholk11)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id 75E7B6602FE6;
-        Tue,  7 Mar 2023 09:47:41 +0000 (GMT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1678182462;
-        bh=FIy3VD1GcrwVsZV6x47mkmmqykaahfq9tEgiYJql5Dw=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=AcS5VvvvocXA1mATfJ1yLsnVJXSonHGJFAjamsq7Df9hwXl8FiLubQx5r1Zc+JBbf
-         y6e6FQ9q8IEdd/qZDiOXUOw7A/YcJczybOx9O+ml3scQNTvyh436KGEoZDzY56oPs9
-         YJz2WhQInhdERkkVE/ub+lAu3+mY8vDuYaS9hgdnBFmyVMHSNGMyFJ6b4z8NzhKsno
-         bNPxNpoHdF2HTwwX7nCGBClWaiEKCXJJOCjkn9zlNWlRxc+fqYQqMfGJANfLlKLOtm
-         Bj2c8X6SoFft0i7NaGYNzWoPlbwGmleC+/+IQAeoGzm7TSfDcH2GtRGpnnTVWpD2p4
-         RVmOFyaIqMwGw==
-Message-ID: <f7453c57-d921-a789-75f6-c837ca50187c@collabora.com>
-Date:   Tue, 7 Mar 2023 10:47:39 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-Subject: Re: [PATCH v4 12/19] arm64: dts: mediatek: mt8192-asurada: Couple
- VGPU and VSRAM_OTHER regulators
-Content-Language: en-US
-To:     Chen-Yu Tsai <wenst@chromium.org>
-Cc:     matthias.bgg@gmail.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org,
+        with ESMTP id S229890AbjCGJuw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Mar 2023 04:50:52 -0500
+Received: from mail-wm1-x32d.google.com (mail-wm1-x32d.google.com [IPv6:2a00:1450:4864:20::32d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C42254488;
+        Tue,  7 Mar 2023 01:50:18 -0800 (PST)
+Received: by mail-wm1-x32d.google.com with SMTP id p23-20020a05600c1d9700b003ead4835046so628303wms.0;
+        Tue, 07 Mar 2023 01:50:18 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112; t=1678182617;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=yl2mpHuveUP7tQhvAv3v7QFO0cT2TOycTTxsdGGCBaU=;
+        b=DO0/ionGVI+UCkpAP0wJ0Ky4zV5JZ4ipAfi4ou5qX9KaKgTXlOUNeMIgPkPYsBxbOe
+         SSPbbBpHSWxw3H61cawOk/3Rwl/9yI2a9bKwMwMCkCME5LBo4v8O5l5GRX+vCsf28I9K
+         uPtXvVhfmyyRqIO9AlF8RyoIEQqd1SttVIyCAIl8yAuOVsLHymKx55pNRaenW4JK83Ot
+         rmvILk6HMWy0cuAptYPwIeFc94YchYKy8pCZHgydZSA4ok0PyccCb23MN/QaSyWz6nMP
+         dyElaKAXnPTDZKYZaEfBJiXFyX1y4kLF/1N3zYP6hT3vgDdOxLw8AO7mdXTDspYE8coj
+         tw0w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1678182617;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=yl2mpHuveUP7tQhvAv3v7QFO0cT2TOycTTxsdGGCBaU=;
+        b=k8GWY0bMignN7OoxT5RGG0BUjOo/Usrdi+cbA/nwjVNWSsW9V/IFRYoKiri6mpcppm
+         3TZiMCQPL+f/mI5kKjslj5gU41gEDvf+ygUl9IOEDioo20yKsbQW5YxYgZKfRnMV9tF9
+         jCHs65s/Pq4l+f08ryeYlr5VjnLmdQ8LcQIgQKv6aYP+s3KwPhFaRucE5BZiNZ2sUWvk
+         yv4CkX/CZjwMoaSYOQ0/3Zq5VkuLObtjb9hqlh+VPV3m3lhGj6u6+m+/yvEpV2VKn4L+
+         tWlO9rAlf0SRXrVefpAOA+eyrUbgjKfOgFdybzF37YZ6ZszoN7kzjBLB3RRHJTHr+ZWT
+         i1kg==
+X-Gm-Message-State: AO0yUKWzCFH/CDKEKbndckqyM7b/QIeqK8xsOOsrNscf6WvfCzST3DOa
+        CRVo8et7A/iTr2Z+8f/HZAw=
+X-Google-Smtp-Source: AK7set/ppE7inaeTkWIv4ddlbRUVSqik1YeZrdxSZaUZnn15JQHNkAkVC05c0k8FepeErWjWwG5+ew==
+X-Received: by 2002:a05:600c:a01:b0:3eb:29fe:70ec with SMTP id z1-20020a05600c0a0100b003eb29fe70ecmr13133009wmp.27.1678182616641;
+        Tue, 07 Mar 2023 01:50:16 -0800 (PST)
+Received: from arinc9-PC.lan ([212.68.60.226])
+        by smtp.gmail.com with ESMTPSA id o6-20020a5d6706000000b002c573778432sm11841451wru.102.2023.03.07.01.50.13
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 07 Mar 2023 01:50:16 -0800 (PST)
+From:   "=?UTF-8?q?Ar=C4=B1n=C3=A7=20=C3=9CNAL?=" <arinc9.unal@gmail.com>
+X-Google-Original-From: =?UTF-8?q?Ar=C4=B1n=C3=A7=20=C3=9CNAL?= <arinc.unal@arinc9.com>
+To:     Andrew Lunn <andrew@lunn.ch>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Vladimir Oltean <olteanv@gmail.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Landen Chao <Landen.Chao@mediatek.com>,
+        DENG Qingfang <dqfext@gmail.com>,
+        Sean Wang <sean.wang@mediatek.com>
+Cc:     =?UTF-8?q?Ar=C4=B1n=C3=A7=20=C3=9CNAL?= <arinc.unal@arinc9.com>,
+        Rob Herring <robh@kernel.org>, erkin.bozoglu@xeront.com,
+        netdev@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
         linux-mediatek@lists.infradead.org
-References: <20230301095523.428461-1-angelogioacchino.delregno@collabora.com>
- <20230301095523.428461-13-angelogioacchino.delregno@collabora.com>
- <CAGXv+5GHdtbheL6wxtDo-szk+=3BGk2z93SBowd4Z=E9XupZkw@mail.gmail.com>
- <5dba27e1-d480-ea24-c1ba-03bb7f77b1b1@collabora.com>
- <CAGXv+5FwNfZ7TwKVMM5_uAjYQ6ZmhZVFsWREb_da-jxC6EUVJw@mail.gmail.com>
- <CAGXv+5F8A4kLq3y8dE4mrcVb338-afDorWsS5MRBvWVPgiAhEA@mail.gmail.com>
- <e1b9d901-421c-3509-c92a-c59d49ff2b0d@collabora.com>
- <CAGXv+5EcAMmGro9UFLmQvkgcBykS9rsUdF_YsdbRUbtipfEFJA@mail.gmail.com>
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <CAGXv+5EcAMmGro9UFLmQvkgcBykS9rsUdF_YsdbRUbtipfEFJA@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Subject: [PATCH] dt-bindings: net: dsa: mediatek,mt7530: change some descriptions to literal
+Date:   Tue,  7 Mar 2023 12:49:48 +0300
+Message-Id: <20230307094947.12450-1-arinc.unal@arinc9.com>
+X-Mailer: git-send-email 2.37.2
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 07/03/23 10:44, Chen-Yu Tsai ha scritto:
-> On Tue, Mar 7, 2023 at 5:30 PM AngeloGioacchino Del Regno
-> <angelogioacchino.delregno@collabora.com> wrote:
->>
->> Il 07/03/23 10:24, Chen-Yu Tsai ha scritto:
->>> On Fri, Mar 3, 2023 at 12:09 PM Chen-Yu Tsai <wenst@chromium.org> wrote:
->>>>
->>>> On Thu, Mar 2, 2023 at 6:17 PM AngeloGioacchino Del Regno
->>>> <angelogioacchino.delregno@collabora.com> wrote:
->>>>>
->>>>> Il 02/03/23 11:03, Chen-Yu Tsai ha scritto:
->>>>>> On Wed, Mar 1, 2023 at 5:55 PM AngeloGioacchino Del Regno
->>>>>> <angelogioacchino.delregno@collabora.com> wrote:
->>>>>>>
->>>>>>> Add coupling for these regulators, as VSRAM_OTHER is used to power the
->>>>>>> GPU SRAM, and they have a strict voltage output relation to satisfy in
->>>>>>> order to ensure GPU stable operation.
->>>>>>> While at it, also add voltage constraint overrides for the GPU SRAM
->>>>>>> regulator "mt6359_vsram_others" so that we stay in a safe range of
->>>>>>> 0.75-0.80V.
->>>>>>>
->>>>>>> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
->>>>>>> ---
->>>>>>>     arch/arm64/boot/dts/mediatek/mt8192-asurada.dtsi | 9 +++++++++
->>>>>>>     1 file changed, 9 insertions(+)
->>>>>>>
->>>>>>> diff --git a/arch/arm64/boot/dts/mediatek/mt8192-asurada.dtsi b/arch/arm64/boot/dts/mediatek/mt8192-asurada.dtsi
->>>>>>> index 8570b78c04a4..f858eca219d7 100644
->>>>>>> --- a/arch/arm64/boot/dts/mediatek/mt8192-asurada.dtsi
->>>>>>> +++ b/arch/arm64/boot/dts/mediatek/mt8192-asurada.dtsi
->>>>>>> @@ -447,6 +447,13 @@ &mt6359_vrf12_ldo_reg {
->>>>>>>            regulator-always-on;
->>>>>>>     };
->>>>>>>
->>>>>>> +&mt6359_vsram_others_ldo_reg {
->>>>>>> +       regulator-min-microvolt = <750000>;
->>>>>>> +       regulator-max-microvolt = <800000>;
->>>>>>> +       regulator-coupled-with = <&mt6315_7_vbuck1>;
->>>>>>> +       regulator-coupled-max-spread = <10000>;
->>>>>>
->>>>>> Looking again at the downstream OPP table, it seems there's no voltage
->>>>>> difference requirement. It only needs V_SRAM >= V_GPU. Same applies to
->>>>>> MT8195. Looks like only MT8183 and MT8186 need V_SRAM - V_GPU >= 10000.
->>>>>
->>>>> On MT8195 we don't need any regulator coupling. There, the GPU-SRAM voltage
->>>>> is fixed at .. I don't remember, 0.7V? - anyway - MT8195 doesn't need to
->>>>> scale the vsram.
->>>>
->>>> Looks like it's fixed at 0.75V. I guess we're Ok on MT8195.
->>>>
->>>>>>
->>>>>> Would setting max-spread to 0 work? I ask because with both regulator's
->>>>>> maximum voltage set to 0.8V, there's no way we can reach the highest
->>>>>> OPP.
->>>>>>
->>>>>
->>>>> No that doesn't work. I can raise the Vgpu max voltage to 0.88V to solve the
->>>>> issue right here and right now, or we can leave it like that and revisit it
->>>>> later.
->>>>>
->>>>> I would at this point go for setting mt6315_7_vbuck1's max-microvolt to
->>>>> 880000, as this is the maximum recommended voltage for the GPU as per the
->>>>> MT8192 datasheet, it would also make sense as we would be still describing
->>>>> the hardware in a correct manner.
->>>>>
->>>>> What do you think?
->>>>
->>>> If it's just to accommodate the coupler stuff, I say just set the maximum
->>>> at the lowest possible setting that satisfies the coupler constraint and
->>>> granularity of the regulator. The regulator does 6250 uV steps, so I guess
->>>> we could set the maximum at 812500 uV, with a comment stating the nominal
->>>> voltage of 800000 uV and that the extra 12500 uV is to workaround coupler
->>>> limitations.
->>>>
->>>> Does that sound OK?
->>>
->>> Even without changing anything, the coupler seems to work OK:
->>>
->>>    vsram_others                     1    1      0  normal   800mV
->>> 0mA   750mV   800mV
->>>       10006000.syscon:power-controller-domain   1
->>>            0mA     0mV     0mV
->>>    Vgpu                             2    2      0  normal   800mV
->>> 0mA   606mV   800mV
->>>       13000000.gpu-mali             1
->>> 0mA   800mV   800mV
->>>       10006000.syscon:power-controller-domain   1
->>>            0mA     0mV     0mV
->>>
->>> Am I missing something?
->>>
->>
->> I don't think you are... I may be getting confused by all of the changesets
->> that I'm pushing at once.
->>
->> Hence, is this commit fine as it is?
-> 
-> It works for some reason. Maybe it's a bug in the coupler. Either way I
-> think it works, even though the numbers might be a bit off. We can revisit
-> it later.
-> 
-> Reviewed-by: Chen-Yu Tsai <wenst@chromium.org>
+The line endings must be preserved on gpio-controller, io-supply, and
+reset-gpios properties to look proper when the YAML file is parsed.
 
+Currently it's interpreted as a single line when parsed. Change the style
+of the description of these properties to literal style to preserve the
+line endings.
 
-Thanks!
+Signed-off-by: Arınç ÜNAL <arinc.unal@arinc9.com>
+Acked-by: Rob Herring <robh@kernel.org>
+---
 
-Angelo
+Sending again now that net-next is open.
+
+Arınç
+
+---
+ .../devicetree/bindings/net/dsa/mediatek,mt7530.yaml        | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+diff --git a/Documentation/devicetree/bindings/net/dsa/mediatek,mt7530.yaml b/Documentation/devicetree/bindings/net/dsa/mediatek,mt7530.yaml
+index 449ee0735012..5ae9cd8f99a2 100644
+--- a/Documentation/devicetree/bindings/net/dsa/mediatek,mt7530.yaml
++++ b/Documentation/devicetree/bindings/net/dsa/mediatek,mt7530.yaml
+@@ -93,7 +93,7 @@ properties:
+ 
+   gpio-controller:
+     type: boolean
+-    description:
++    description: |
+       If defined, LED controller of the MT7530 switch will run on GPIO mode.
+ 
+       There are 15 controllable pins.
+@@ -112,7 +112,7 @@ properties:
+     maxItems: 1
+ 
+   io-supply:
+-    description:
++    description: |
+       Phandle to the regulator node necessary for the I/O power.
+       See Documentation/devicetree/bindings/regulator/mt6323-regulator.txt for
+       details for the regulator setup on these boards.
+@@ -124,7 +124,7 @@ properties:
+       switch is a part of the multi-chip module.
+ 
+   reset-gpios:
+-    description:
++    description: |
+       GPIO to reset the switch. Use this if mediatek,mcm is not used.
+       This property is optional because some boards share the reset line with
+       other components which makes it impossible to probe the switch if the
+-- 
+2.37.2
 
