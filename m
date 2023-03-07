@@ -2,85 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8C17F6AF912
-	for <lists+devicetree@lfdr.de>; Tue,  7 Mar 2023 23:42:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 593C76AF9A6
+	for <lists+devicetree@lfdr.de>; Tue,  7 Mar 2023 23:59:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231672AbjCGWmh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Mar 2023 17:42:37 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49502 "EHLO
+        id S230009AbjCGW66 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Mar 2023 17:58:58 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57076 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231778AbjCGWmD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Mar 2023 17:42:03 -0500
-Received: from mail-oa1-f48.google.com (mail-oa1-f48.google.com [209.85.160.48])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5AC33A21A9;
-        Tue,  7 Mar 2023 14:41:24 -0800 (PST)
-Received: by mail-oa1-f48.google.com with SMTP id 586e51a60fabf-1763e201bb4so16901597fac.1;
-        Tue, 07 Mar 2023 14:41:24 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678228877;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+        with ESMTP id S229672AbjCGW6k (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Mar 2023 17:58:40 -0500
+Received: from mail-yw1-x112d.google.com (mail-yw1-x112d.google.com [IPv6:2607:f8b0:4864:20::112d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B67FE81CD7
+        for <devicetree@vger.kernel.org>; Tue,  7 Mar 2023 14:55:45 -0800 (PST)
+Received: by mail-yw1-x112d.google.com with SMTP id 00721157ae682-536bbe5f888so273022737b3.8
+        for <devicetree@vger.kernel.org>; Tue, 07 Mar 2023 14:55:45 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1678229744;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=SdL/R02qmyzFiSBcSjVn/CMgNSN3krQ7Vn67jKjzdW0=;
-        b=PoWCFtj/I6vQziL3U8sD8ZNl8qCBnOE/4erOTBYtuS4OvhjJ4wfj4BkpUyqWYHfQZR
-         i6iAhZ1MGwnUx3YGGa4OYsiG0LFzN9w28VhlJxxu11lKs6FsQ4VXhl2FUmvHC/M97XfO
-         lsHQyTBTNRDRldiUarLUaD967Q3tqch1Vma5Qsixr5z9G+XyhNUpy/sq1+Q12NhCdD7l
-         zuYsBcd/7lqqYYKb6XzWBpQAM6YYXh6la6ADie5ti3lbksfLMJ7IbzgqHQ6LsHtMdLPT
-         sPjXBlN09h7jfzLC02H1J7g4TmxRjP+L0TxThWpQ2akQa5Yb26FbRjJrm2T52s778OdD
-         iqXA==
-X-Gm-Message-State: AO0yUKV+IvhG/kndF46fODi2R/+GJlVlZlgVW06lgkcPt6LaWknUTlT8
-        AXzhhT4SuL+7MzYQPSV00s+0rL62c9dj
-X-Google-Smtp-Source: AK7set8tUxbhN3A3pCUrkwop9UL6fMQuERje7A26njTW++SNyE/+tZM8yIR+tNqcnjaZ6E8Vdx9xfQ==
-X-Received: by 2002:a05:6870:5486:b0:176:5258:51ba with SMTP id f6-20020a056870548600b00176525851bamr11425417oan.51.1678228877585;
-        Tue, 07 Mar 2023 14:41:17 -0800 (PST)
-Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id dx4-20020a056870768400b0017255c79736sm5530198oab.43.2023.03.07.14.41.16
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 07 Mar 2023 14:41:17 -0800 (PST)
-Received: (nullmailer pid 281021 invoked by uid 1000);
-        Tue, 07 Mar 2023 22:41:16 -0000
-Date:   Tue, 7 Mar 2023 16:41:16 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Nava kishore Manne <nava.kishore.manne@amd.com>
-Cc:     yilun.xu@intel.com, robh+dt@kernel.org, mdf@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, michal.simek@xilinx.com,
-        hao.wu@intel.com, linux-arm-kernel@lists.infradead.org,
-        trix@redhat.com, devicetree@vger.kernel.org,
-        linux-fpga@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2] dt-bindings: fpga: xilinx-spi: convert bindings to
- json-schema
-Message-ID: <167822887485.280954.7540905992697547856.robh@kernel.org>
-References: <20230227110213.291225-1-nava.kishore.manne@amd.com>
+        bh=VOumxYNupJ270oxfqqpBEcjU4dd6uD/r4togrRDieg4=;
+        b=Lkva8Yqv6yfbbe56NAGI6TppDFJfd9ensNRUWXkdcF5LkmTeW55SEDYN3Qy+C2p9ai
+         YUlDDqKvcV24AFRf8W5qUxIU2gbHlDjFfhw9c69zvRJAFfmRUUgyIs3Jy8ye7F5W+yBn
+         6201eqKNf3VQMA2vlijZkLl+4M1P7lDqY1isu1mM7MKBiAHq/AUKY2yuN2ENw7IV2beP
+         xQnxBK6E2Iadt3LmOkoEhsqvin5VOhEbFDyOhKuXql1Fteg8j7yiOnhAnvutX6f6c2JF
+         YXjMcH4CJr37LyqPUIVFhNMkIjUTMkmEqFA/y67WMvUrq+HkVFQNnDQGNnDgxOlGQ33z
+         1MEg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1678229744;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=VOumxYNupJ270oxfqqpBEcjU4dd6uD/r4togrRDieg4=;
+        b=dlyZ2ovZ4eNeXllmAi9ErTXn+XomX8wotZYaJ7awNMRciI9iGFd4+2pjye2lOZz38W
+         k4wNFr0KL6CpVwFV9kTzn/PfQwSPVL9sFQQ7VapS9Hpfz8wfhV7a9A81me+jvf9dsssr
+         rH6LWRipUD+fkWUMUoNr3Rk6U9FSl8iywBAOcRzzM6aRq50b4N30i0AUUWJhmkA2Lb+6
+         wFl1WSveClmWnMJ35kMVTNJfAsOGom5/e3xqqcQUH1+OS3XW10lO8IiTc1+ttK4TbmtB
+         iS5TB3KC67sv9A2HI22Ulz4TzPdJXLokK3pXzIOmoU0gVJe/PfusA/uRzYXRGsyUqWKz
+         OZmg==
+X-Gm-Message-State: AO0yUKWgiNOXtckfwnsmYsv7E1wDDCGdvmGN+RGQ9cSXbb0/rGZ7ImMs
+        xyxP2PzjZDCqO7NXXGAvkFj2fVP7avU76JzkEZk9iQ==
+X-Google-Smtp-Source: AK7set9MfC1PxNng6Vma+yRI7hRnqfXJxNmDi52QuFYnS9zfjs79ZjNGCHl8MlsdVidRYygFsWFznmMwQJa3NB16f9E=
+X-Received: by 2002:a81:ac4b:0:b0:533:9ffb:cb12 with SMTP id
+ z11-20020a81ac4b000000b005339ffbcb12mr10523196ywj.10.1678229743868; Tue, 07
+ Mar 2023 14:55:43 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230227110213.291225-1-nava.kishore.manne@amd.com>
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+References: <20230119163201.580858-1-konrad.dybcio@linaro.org> <20230119163201.580858-2-konrad.dybcio@linaro.org>
+In-Reply-To: <20230119163201.580858-2-konrad.dybcio@linaro.org>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Tue, 7 Mar 2023 23:55:32 +0100
+Message-ID: <CACRpkdakgumdpkEdbcUkmSgGRzSOxX6rFD_a9bjMaE1yemgUbw@mail.gmail.com>
+Subject: Re: [PATCH v4 2/2] gpu/drm/panel: Add Sony TD4353 JDI panel driver
+To:     Konrad Dybcio <konrad.dybcio@linaro.org>
+Cc:     linux-arm-msm@vger.kernel.org, andersson@kernel.org,
+        agross@kernel.org, krzysztof.kozlowski@linaro.org,
+        devicetree@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        dri-devel@lists.freedesktop.org, marijn.suijten@somainline.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Thu, Jan 19, 2023 at 5:32=E2=80=AFPM Konrad Dybcio <konrad.dybcio@linaro=
+.org> wrote:
 
-On Mon, 27 Feb 2023 16:32:13 +0530, Nava kishore Manne wrote:
-> Convert xilinx-spi bindings to DT schema format using json-schema.
-> 
-> Signed-off-by: Nava kishore Manne <nava.kishore.manne@amd.com>
-> ---
-> Changes for v2:
->               - Removed 'fpga-region.txt' relevant info from the description
->                 and addressed some minor comments as suggested by Krzysztof.
-> 
->  .../bindings/fpga/xilinx-slave-serial.txt     | 51 ------------
->  .../bindings/fpga/xlnx,fpga-slave-serial.yaml | 80 +++++++++++++++++++
->  2 files changed, 80 insertions(+), 51 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/fpga/xilinx-slave-serial.txt
->  create mode 100644 Documentation/devicetree/bindings/fpga/xlnx,fpga-slave-serial.yaml
-> 
+> From: Konrad Dybcio <konrad.dybcio@somainline.org>
+>
+> Add support for the Sony TD4353 JDI 2160x1080 display panel used in
+> some Sony Xperia XZ2 and XZ2 Compact smartphones. Due to the specifics
+> of smartphone manufacturing, it is impossible to retrieve a better name
+> for this panel.
+>
+> This revision adds support for the default 60 Hz configuration, however
+> there could possibly be some room for expansion, as the display panels
+> used on Sony devices have historically been capable of >2x refresh rate
+> overclocking.
+>
+> Signed-off-by: Konrad Dybcio <konrad.dybcio@somainline.org>
+> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+> Reviewed-by: Marijn Suijten <marijn.suijten@somainline.org>
 
-Applied, thanks!
+Looks good, so patch applied to drm-misc-next.
 
+Yours,
+Linus Walleij
