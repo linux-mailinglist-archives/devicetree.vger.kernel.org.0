@@ -2,104 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AF0406ADAEF
-	for <lists+devicetree@lfdr.de>; Tue,  7 Mar 2023 10:52:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B5D896ADAF9
+	for <lists+devicetree@lfdr.de>; Tue,  7 Mar 2023 10:52:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229639AbjCGJwK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Mar 2023 04:52:10 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49766 "EHLO
+        id S230250AbjCGJwr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Mar 2023 04:52:47 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50814 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230248AbjCGJwH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Mar 2023 04:52:07 -0500
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D85597384C;
-        Tue,  7 Mar 2023 01:51:42 -0800 (PST)
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits))
-        (No client certificate requested)
-        (Authenticated sender: kholk11)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id C39856602FE5;
-        Tue,  7 Mar 2023 09:51:27 +0000 (GMT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1678182688;
-        bh=vkkFYd3loRrOSSOnY088flgwXtY2fsz3MI2px8MiqHQ=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=FvjkZSoKncFHS3NEPw0+fU1qd1+2i3EiXrC6U9A1GQ+9sb9zw2STaKQRZaLD63ii0
-         Zff6jfIyfc7M3vzAkM0UtGpuFYeDkRWxH6Dn8UwkRadngbfhh0sxFJK9gWWURrp7Ws
-         5hOABq0FmfjP1t19KBgpd5Eym35qs3J9xT9zJSgvKwztrdQQTAKn6u2NDA1tuuea3G
-         x/g55xmr8/N9BgmPqUZOpE9AZ/r/wsbrSPRr+qt6TlwI8IvdTtiY/jcn28jX3At/zS
-         6euu71DP9uXJuT3uKiN2VHx3s+tJhKwQjVu6KFZ7fomQeQugkXe2RLr738NfeV36EX
-         s1C1e7kFrsVQA==
-Message-ID: <d74bbde8-c419-c906-2df3-7bc31fc6563c@collabora.com>
-Date:   Tue, 7 Mar 2023 10:51:25 +0100
+        with ESMTP id S230300AbjCGJwq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Mar 2023 04:52:46 -0500
+Received: from mail-ua1-x92c.google.com (mail-ua1-x92c.google.com [IPv6:2607:f8b0:4864:20::92c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 20BBF3A98
+        for <devicetree@vger.kernel.org>; Tue,  7 Mar 2023 01:52:43 -0800 (PST)
+Received: by mail-ua1-x92c.google.com with SMTP id f17so8445255uax.7
+        for <devicetree@vger.kernel.org>; Tue, 07 Mar 2023 01:52:43 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google; t=1678182762;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=rUGE4NLp1dzlaCpuRsuoXh7GQOmh7Ex8Ez1qpO97Cww=;
+        b=BVAJ05WjjYYe15giRYYRnN18GQChdYZf706gda4lAbHnGoRJe8RXTaG0wJnnwOcLEG
+         hNR6rzX5zoi5OXDO+2A00TzCqWW2vx2T8li26kEjNl7rEAaVmTYnoUvQjtIKPAbVu3vh
+         ZhEqsZL3FF++lT86RJGglOGZl/4WljehR4z6Y=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1678182762;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=rUGE4NLp1dzlaCpuRsuoXh7GQOmh7Ex8Ez1qpO97Cww=;
+        b=ADE7rhseR+v9M0ipyZo+aKvlv5JVUC3aMgVzkqjrGdxv8COpibXyGymee53TKaZljM
+         fmRsM1PieF809Aup/MKN+adwbaIUaEPmaJ++cjaFnWj/PSBbhbx7IdFVYMfcrRNnpnjU
+         ifmb2Wi+uEdxCTi6o/958PGBu3W5/Uer6FN9ZABSsc+/ga3uAkWMgnZXuypKX64idpkY
+         YmFYirsUgHZNaex5/dA3oeghBhnjC21CQPml5F9bd35ZGYsZxM/+gf/sqHPn9G6YC5jT
+         xua/G6F/S5L7gw35DtQFwv6HeiHzyZ3fDnAxNxxjrhSLDVeFS7h5ELIWrE5w0bMh0dgA
+         KrDQ==
+X-Gm-Message-State: AO0yUKXaH1R7FyrAB6sbXDY9I4SOhlU1SnmyonuDnyli/DeLd0JVJS/a
+        n+dj1Znk9ElJXm2sbmUMsKireNO1iMBX3bw2RY/G2w==
+X-Google-Smtp-Source: AK7set99pajDzF78Cn1Ybb/FJD0puSgRBTD5C6iX7PfjJMAHS1OJ7pSRgHhIKA1sI9K6oLm73zy7R2g+hfTT8VQSDKQ=
+X-Received: by 2002:a9f:310a:0:b0:68e:33d7:7e6b with SMTP id
+ m10-20020a9f310a000000b0068e33d77e6bmr9296190uab.1.1678182762200; Tue, 07 Mar
+ 2023 01:52:42 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-Subject: Re: [PATCH v8 1/7] dt-bindings: mediatek: mt8188: Add binding for MM
- & INFRA IOMMU
-Content-Language: en-US
-To:     Yong Wu <yong.wu@mediatek.com>, Joerg Roedel <joro@8bytes.org>,
-        Will Deacon <will@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>
-Cc:     Robin Murphy <robin.murphy@arm.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        iommu@lists.linux.dev, linux-mediatek@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, mingyuan.ma@mediatek.com,
-        yf.wang@mediatek.com, jianjiao.zeng@mediatek.com,
-        chengci.xu@mediatek.com, youlin.pei@mediatek.com,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-References: <20230307080555.14399-1-yong.wu@mediatek.com>
- <20230307080555.14399-2-yong.wu@mediatek.com>
-From:   AngeloGioacchino Del Regno 
+References: <20230228102704.708150-1-angelogioacchino.delregno@collabora.com> <20230228102704.708150-12-angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20230228102704.708150-12-angelogioacchino.delregno@collabora.com>
+From:   Chen-Yu Tsai <wenst@chromium.org>
+Date:   Tue, 7 Mar 2023 17:52:31 +0800
+Message-ID: <CAGXv+5F9afH2x=yioheatsaWvf9y8XDSdXCs=R3eM_1GRDieEw@mail.gmail.com>
+Subject: Re: [PATCH v4 12/12] drm/panfrost: Add support for Mali on the MT8186 SoC
+To:     AngeloGioacchino Del Regno 
         <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20230307080555.14399-2-yong.wu@mediatek.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+Cc:     airlied@gmail.com, daniel@ffwll.ch, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, steven.price@arm.com,
+        alyssa.rosenzweig@collabora.com, matthias.bgg@gmail.com,
+        robh@kernel.org, dri-devel@lists.freedesktop.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 07/03/23 09:05, Yong Wu ha scritto:
-> From: "Chengci.Xu" <chengci.xu@mediatek.com>
-> 
-> Add descriptions for mt8188 IOMMU which also use ARM Short-Descriptor
-> translation table format.
-> 
-> In mt8188, there are two smi-common HW and IOMMU, one is for vdo(video
-> output), the other is for vpp(video processing pipe). They connects
-> with different smi-larbs, then some setting(larbid_remap) is different.
-> Differentiate them with the compatible string.
-> 
-> Something like this:
-> 
->    IOMMU(VDO)          IOMMU(VPP)
->        |                   |
-> SMI_COMMON_VDO      SMI_COMMON_VPP
-> 
-> ---------------     ----------------
->    |     |    ...      |     |    ...
-> larb0 larb2  ...    larb1 larb3  ...
-> 
-> We also have an IOMMU that is for infra master like PCIe.
-> And infra master don't have the larb and ports.
-> 
-> Signed-off-by: Chengci.Xu <chengci.xu@mediatek.com>
-> Reviewed-by: Yong Wu <yong.wu@mediatek.com>
-> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+On Tue, Feb 28, 2023 at 6:27=E2=80=AFPM AngeloGioacchino Del Regno
+<angelogioacchino.delregno@collabora.com> wrote:
+>
+> MediaTek MT8186 has a Mali-G52 MC2 2EE (Bifrost): add a new compatible
+> and platform data using the same supplies list as "mt8183_b" (only one
+> regulator), and a new pm_domains list with only two power domains.
+>
+> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@coll=
+abora.com>
+> Reviewed-by: Steven Price <steven.price@arm.com>
 
-Yong, if you're sending someone else's patch, you have to add your own signoff tag,
-otherwise it's not going to be accepted.
-
-With that fixed:
-
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-
-
+Reviewed-by: Chen-Yu Tsai <wenst@chromium.org>
+Tested-by: Chen-Yu Tsai <wenst@chromium.org>
