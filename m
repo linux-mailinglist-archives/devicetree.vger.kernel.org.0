@@ -2,136 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 299756AE18F
-	for <lists+devicetree@lfdr.de>; Tue,  7 Mar 2023 15:01:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8D4CF6AE210
+	for <lists+devicetree@lfdr.de>; Tue,  7 Mar 2023 15:22:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229838AbjCGOBv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Mar 2023 09:01:51 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42036 "EHLO
+        id S230112AbjCGOWR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Mar 2023 09:22:17 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41176 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229787AbjCGOBt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Mar 2023 09:01:49 -0500
-Received: from mail-qt1-f180.google.com (mail-qt1-f180.google.com [209.85.160.180])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4772A54CAD;
-        Tue,  7 Mar 2023 06:01:46 -0800 (PST)
-Received: by mail-qt1-f180.google.com with SMTP id c19so14277083qtn.13;
-        Tue, 07 Mar 2023 06:01:46 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678197705;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=ZIwtnbs3hhla8EYiCStTsWUllaDHjZv8F8tfryJtRbU=;
-        b=bZ9mWl8l/LK+BrEGpJYUyBoWfy95z60fZV3xygHVryhx1KBP+QhHWI+eyoaFtlsFJ7
-         E1W15jUDV8vVj5RbEY4xmKw3OWDRyMHEVnvD4ZRIjQZwOB5LqT8Pw9s72+91o6BnDUqw
-         +VUgI60fHsvDnL67KsiO3cgASM8/KCvXOMTOHHi01Fh7PiEuEy7c5Uk/Nu9b5HkbqEd8
-         ydQvvnHXJjNAfa/kX/IYQCsq/oQLm87oVFXpy1PHMrr4mW7EZqjJbJCCI8zRmtLIBdr5
-         BK4cvO6UBaeTyZ1pu4QPwEIcDuyojDFMDo30QHMXlDWCA0naZ/yrlKL/VWm9ozFc00Aa
-         fqEg==
-X-Gm-Message-State: AO0yUKWtu6ylwFQl+OhT1HlHx9aZwxdiIJlANUu8c0zypK6T4GlQ573w
-        obmHEQTt2D+MvNqp6LbrEA==
-X-Google-Smtp-Source: AK7set/ie2Czy1LR7jpiOaAypsEJpBOiJDLh02ocsL9PmQMfeZBp9nReUBtCOPjsaf3yPB5BHxvbMQ==
-X-Received: by 2002:a05:622a:488:b0:3bf:c431:ea6e with SMTP id p8-20020a05622a048800b003bfc431ea6emr4245426qtx.3.1678197705142;
-        Tue, 07 Mar 2023 06:01:45 -0800 (PST)
-Received: from robh_at_kernel.org ([2605:ef80:8082:8c7f:9efe:1ea4:c2ba:e845])
-        by smtp.gmail.com with ESMTPSA id s15-20020ac85ecf000000b003afbf704c7csm9360921qtx.24.2023.03.07.06.01.41
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 07 Mar 2023 06:01:44 -0800 (PST)
-Received: (nullmailer pid 54639 invoked by uid 1000);
-        Tue, 07 Mar 2023 14:01:39 -0000
-Date:   Tue, 7 Mar 2023 08:01:39 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Siddharth Vadapalli <s-vadapalli@ti.com>
-Cc:     davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
-        linux@armlinux.org.uk, pabeni@redhat.com,
-        krzysztof.kozlowski@linaro.org, krzysztof.kozlowski+dt@linaro.org,
-        nsekhar@ti.com, rogerq@kernel.org, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, srk@ti.com
-Subject: Re: [PATCH net-next] dt-bindings: net: ti: k3-am654-cpsw-nuss:
- Document Serdes PHY
-Message-ID: <20230307140139.GA48063-robh@kernel.org>
-References: <20230306094750.159657-1-s-vadapalli@ti.com>
+        with ESMTP id S230031AbjCGOVv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Mar 2023 09:21:51 -0500
+Received: from relay11.mail.gandi.net (relay11.mail.gandi.net [IPv6:2001:4b98:dc4:8::231])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3FF9C6A7D;
+        Tue,  7 Mar 2023 06:17:28 -0800 (PST)
+Received: (Authenticated sender: herve.codina@bootlin.com)
+        by mail.gandi.net (Postfix) with ESMTPA id 1D0CB10001D;
+        Tue,  7 Mar 2023 14:15:12 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1678198526;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:
+         content-transfer-encoding:content-transfer-encoding;
+        bh=TroEz27wSqUZ40T3hjcBwjx8v3Ktx9rBSE/61eZDZtI=;
+        b=N8l72tsWCIEJS91MPLTyLmuiZYcZWigc7Rfx1cvouryTxhJusO3Jbv5HS6cmngwWTIZEbR
+        QoR1VFWjY8jUsL9fB8o/Oh0g5b0NkRfjO3digjSKxH2YYU7ogl0I6zhLooz5mQEu2TBa+N
+        6QT2p1FrxqMPUArCM5CH2488I5tn22EiYWviQho1zO6Edh08YNmqmaIsu5gligNl/M7H2Q
+        5VtiC3uRkm5oYj+A0rLJUM5TDFtsUr3lNeCi8X+5LcQnDu49XntlbMEPWNd0eVRXyQQreJ
+        8c8gE6fgZM19nfKZgjmJHpClYfae7c5AX/fUASmeH7UTmNiRMj8UcpBTC2eMag==
+From:   Herve Codina <herve.codina@bootlin.com>
+To:     Herve Codina <herve.codina@bootlin.com>,
+        Li Yang <leoyang.li@nxp.com>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Christophe Leroy <christophe.leroy@csgroup.eu>,
+        Michael Ellerman <mpe@ellerman.id.au>,
+        Nicholas Piggin <npiggin@gmail.com>,
+        Qiang Zhao <qiang.zhao@nxp.com>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>,
+        Shengjiu Wang <shengjiu.wang@gmail.com>,
+        Xiubo Li <Xiubo.Lee@gmail.com>,
+        Fabio Estevam <festevam@gmail.com>,
+        Nicolin Chen <nicoleotsuka@gmail.com>
+Cc:     linuxppc-dev@lists.ozlabs.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, alsa-devel@alsa-project.org,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: [PATCH 0/3] Fix the PowerQUICC audio support using the QMC
+Date:   Tue,  7 Mar 2023 15:15:00 +0100
+Message-Id: <20230307141503.159766-1-herve.codina@bootlin.com>
+X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230306094750.159657-1-s-vadapalli@ti.com>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Mar 06, 2023 at 03:17:50PM +0530, Siddharth Vadapalli wrote:
-> Update bindings to include Serdes PHY as an optional PHY, in addition to
-> the existing CPSW MAC's PHY. The CPSW MAC's PHY is required while the
-> Serdes PHY is optional. The Serdes PHY handle has to be provided only
-> when the Serdes is being configured in a Single-Link protocol. Using the
-> name "serdes-phy" to represent the Serdes PHY handle, the am65-cpsw-nuss
-> driver can obtain the Serdes PHY and request the Serdes to be
-> configured.
-> 
-> Signed-off-by: Siddharth Vadapalli <s-vadapalli@ti.com>
-> ---
-> 
-> Hello,
-> 
-> This patch corresponds to the Serdes PHY bindings that were missed out in
-> the series at:
-> Link: https://lore.kernel.org/r/20230104103432.1126403-1-s-vadapalli@ti.com/
-> This was pointed out at:
-> https://lore.kernel.org/r/CAMuHMdW5atq-FuLEL3htuE3t2uO86anLL3zeY7n1RqqMP_rH1g@mail.gmail.com/
-> 
->  .../bindings/net/ti,k3-am654-cpsw-nuss.yaml   | 21 +++++++++++++++++--
->  1 file changed, 19 insertions(+), 2 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/net/ti,k3-am654-cpsw-nuss.yaml b/Documentation/devicetree/bindings/net/ti,k3-am654-cpsw-nuss.yaml
-> index 900063411a20..fab7df437dcc 100644
-> --- a/Documentation/devicetree/bindings/net/ti,k3-am654-cpsw-nuss.yaml
-> +++ b/Documentation/devicetree/bindings/net/ti,k3-am654-cpsw-nuss.yaml
-> @@ -126,8 +126,25 @@ properties:
->              description: CPSW port number
->  
->            phys:
-> -            maxItems: 1
-> -            description: phandle on phy-gmii-sel PHY
-> +            minItems: 1
-> +            maxItems: 2
-> +            description:
-> +              phandle(s) on CPSW MAC's PHY (Required) and the Serdes
-> +              PHY (Optional). phandle to the Serdes PHY is required
-> +              when the Serdes has to be configured in Single-Link
-> +              configuration.
+A previous series added the PowerQUICC audio support using the QMC.
+The v6 version of this previous series was applied but some feedbacks
+lead to a v7 version.
 
-Like this:
+The v6 can be found here:
+ https://lore.kernel.org/linux-kernel/20230217145645.1768659-1-herve.codina@bootlin.com/
+and the v7, here:
+ https://lore.kernel.org/linux-kernel/20230306161754.89146-1-herve.codina@bootlin.com/
 
-minItems: 1
-items:
-  - description: CPSW MAC's PHY
-  - description: Serdes PHY. Serdes PHY is required
-      when the Serdes has to be configured in Single-Link
+This 'fix' series is the incremental version of v6 -> v7 and can only be
+applied on the Marc Brown's tree as the v6 patches it fixes are only
+present on this tree.
 
-> +
-> +          phy-names:
-> +            oneOf:
-> +              - items:
-> +                  - const: mac-phy
-> +                  - const: serdes-phy
-> +              - items:
-> +                  - const: mac-phy
+Regards,
+Herve Codina
 
-Drop this and use minItems in 1st 'items' entry.
+Herve Codina (3):
+  dt-bindings: soc: fsl: cpm_qe: cpm1-scc-qmc: Remove unneeded property
+  dt-bindings: soc: fsl: cpm_qe: cpm1-tsa: Remove unneeded property
+  soc: fsl: cpm1: qmc: Fix assigned timeslot masks
 
-> +            description:
-> +              Identifiers for the CPSW MAC's PHY and the Serdes PHY.
-> +              CPSW MAC's PHY is required and therefore "mac-phy" is
-> +              required, while "serdes-phy" is optional.
+ .../bindings/soc/fsl/cpm_qe/fsl,cpm1-scc-qmc.yaml      | 10 ----------
+ .../bindings/soc/fsl/cpm_qe/fsl,cpm1-tsa.yaml          | 10 ----------
+ drivers/soc/fsl/qe/qmc.c                               | 10 +++++++---
+ 3 files changed, 7 insertions(+), 23 deletions(-)
 
-No need to state in plain text what the schema already says.
+-- 
+2.39.2
 
-Rob
