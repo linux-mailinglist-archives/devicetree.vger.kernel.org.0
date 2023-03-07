@@ -2,178 +2,201 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BE0C36AE4DE
-	for <lists+devicetree@lfdr.de>; Tue,  7 Mar 2023 16:36:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 735926AE4E8
+	for <lists+devicetree@lfdr.de>; Tue,  7 Mar 2023 16:36:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229648AbjCGPf6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Mar 2023 10:35:58 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36870 "EHLO
+        id S231223AbjCGPgi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Mar 2023 10:36:38 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37916 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229558AbjCGPf5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Mar 2023 10:35:57 -0500
-Received: from EUR05-AM6-obe.outbound.protection.outlook.com (mail-am6eur05hn2220.outbound.protection.outlook.com [52.100.174.220])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E782F1BF9;
-        Tue,  7 Mar 2023 07:35:55 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=seco.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=dXteK4Vft4N/Ad2bwozkXL58dzp+8D6gowBR79z/vMU=;
- b=nKuB2MFvJ3peWQdXXyu4fCCGSlmysOreLyHlAmB6jYUKWLb6N+gQM43i151r2eFf0Kqy0BIaCOj2m6a1XypZ29Z+ynt97uvL5/Ekhb6U3QhBgrUkRtJcqPsymhPgZOUIsv0UEUdukoymcIjf4jIKuIFq8Q68ULxyKJHX3Ad+R5STCoYc0qbcveBwAGw3hiRshB2dLtQ79IIEMEshK7vY/Gl8LLTNfZQUJHw+DGxwK+VpKVyJwdl2tkUz+9RYYkfaUAnTdSqVDnelmCSGBW0g3a7deysFkCeI7SPrRwnAxWti0VsOl8Yy7skaJbWU5FOdtwm4MEDXABJBEMmSkVlItA==
-Received: from AS9PR05CA0349.eurprd05.prod.outlook.com (2603:10a6:20b:490::33)
- by AS8PR03MB7637.eurprd03.prod.outlook.com (2603:10a6:20b:345::11) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6134.27; Tue, 7 Mar
- 2023 15:35:53 +0000
-Received: from AM6EUR05FT058.eop-eur05.prod.protection.outlook.com
- (2603:10a6:20b:490:cafe::9b) by AS9PR05CA0349.outlook.office365.com
- (2603:10a6:20b:490::33) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6156.28 via Frontend
- Transport; Tue, 7 Mar 2023 15:35:53 +0000
-X-MS-Exchange-Authentication-Results: spf=fail (sender IP is 20.160.56.86)
- smtp.mailfrom=seco.com; dkim=pass (signature was verified)
- header.d=seco.com;dmarc=pass action=none header.from=seco.com;
-Received-SPF: Fail (protection.outlook.com: domain of seco.com does not
- designate 20.160.56.86 as permitted sender) receiver=protection.outlook.com;
- client-ip=20.160.56.86; helo=inpost-eu.tmcas.trendmicro.com;
-Received: from inpost-eu.tmcas.trendmicro.com (20.160.56.86) by
- AM6EUR05FT058.mail.protection.outlook.com (10.233.240.72) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.6178.16 via Frontend Transport; Tue, 7 Mar 2023 15:35:53 +0000
-Received: from outmta (unknown [192.168.82.133])
-        by inpost-eu.tmcas.trendmicro.com (Trend Micro CAS) with ESMTP id 327CB2008026E;
-        Tue,  7 Mar 2023 15:35:53 +0000 (UTC)
-Received: from EUR05-DB8-obe.outbound.protection.outlook.com (unknown [104.47.17.105])
-        by repre.tmcas.trendmicro.com (Trend Micro CAS) with ESMTPS id 6ADA220080075;
-        Tue,  7 Mar 2023 15:27:37 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=egHi37QIgarby3IrBj0uiJLYnNPlUzHLiiDptIr2PNztExC/FAbF/GMF8UHisQA3lw5hN1IjdFybAhjdO02jW3TW3U+VA53PaPN044MtFwm7s0DWCNV3/+Ur+H4l2jInJTKyjIyPBfAacMnVbOGmLQOVZbUHPjWIdv+AyYCCBrWE7xm6P7/07vDiIFQosqeOIbpob0XTWB/5mPwOa1O9hdX8t8OvC8hk5fnC3/FWJtRuJC+pYP6ObrihOJK2NZtmVtpsdJ5hRfelLtFrYsjkeAwj2HVLEiV5AUboGewoQ/B0w2RrvQ9Q8pCI5ux9qZjJPe6cQvZjhyuMdAIuoDsbkQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=dXteK4Vft4N/Ad2bwozkXL58dzp+8D6gowBR79z/vMU=;
- b=PrYLloRYT+yrXrwMgrMSo0dabA89vx3BsVY5TN4ibjKiincikCDM5ovynHR8c67YxXZZriXfvOESG5b7C+2jTkGKtkjwQEgWTBazh0LCBvMhFCsSO1SPcWsCbkvx+zruqbV1g+hHIJT3CLEWmHAY3JAwA3YTZNePmtFWuggut3MOCiyWqpw9Rw+JlsDfJEB8h6lOLQUimLFm9415re6P6UO8xqVLBO6aTGaNeeBTCVMSZrSvhKSeNZbCZNvLmsWd+TKCT6XKvZ8k/8WZxIT8qaz5F/0SEh75UTGitBciIGwXzDKgizLEsNwfPxkDpX05OwB091RvOn1EryQkSnIkGQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=seco.com; dmarc=pass action=none header.from=seco.com;
- dkim=pass header.d=seco.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=seco.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=dXteK4Vft4N/Ad2bwozkXL58dzp+8D6gowBR79z/vMU=;
- b=nKuB2MFvJ3peWQdXXyu4fCCGSlmysOreLyHlAmB6jYUKWLb6N+gQM43i151r2eFf0Kqy0BIaCOj2m6a1XypZ29Z+ynt97uvL5/Ekhb6U3QhBgrUkRtJcqPsymhPgZOUIsv0UEUdukoymcIjf4jIKuIFq8Q68ULxyKJHX3Ad+R5STCoYc0qbcveBwAGw3hiRshB2dLtQ79IIEMEshK7vY/Gl8LLTNfZQUJHw+DGxwK+VpKVyJwdl2tkUz+9RYYkfaUAnTdSqVDnelmCSGBW0g3a7deysFkCeI7SPrRwnAxWti0VsOl8Yy7skaJbWU5FOdtwm4MEDXABJBEMmSkVlItA==
-Authentication-Results-Original: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=seco.com;
-Received: from DB9PR03MB8847.eurprd03.prod.outlook.com (2603:10a6:10:3dd::13)
- by GV1PR03MB8687.eurprd03.prod.outlook.com (2603:10a6:150:91::13) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6156.29; Tue, 7 Mar
- 2023 15:35:48 +0000
-Received: from DB9PR03MB8847.eurprd03.prod.outlook.com
- ([fe80::dbcf:1089:3242:614e]) by DB9PR03MB8847.eurprd03.prod.outlook.com
- ([fe80::dbcf:1089:3242:614e%5]) with mapi id 15.20.6156.027; Tue, 7 Mar 2023
- 15:35:47 +0000
-Message-ID: <42ccbac0-53e2-f599-fb3d-064b896bde4a@seco.com>
-Date:   Tue, 7 Mar 2023 10:35:40 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.0
-Subject: Re: [PATCH v10 03/13] dt-bindings: Convert gpio-mmio to yaml
-Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Vinod Koul <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
-        linux-phy@lists.infradead.org, Niall Leonard <nl250060@ncr.com>
-Cc:     Madalin Bucur <madalin.bucur@nxp.com>,
-        linuxppc-dev@lists.ozlabs.org, devicetree@vger.kernel.org,
-        Ioana Ciornei <ioana.ciornei@nxp.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Camelia Alexandra Groza <camelia.groza@nxp.com>,
-        linux-arm-kernel@lists.infradead.org,
-        Bagas Sanjaya <bagasdotme@gmail.com>,
+        with ESMTP id S230252AbjCGPgf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Mar 2023 10:36:35 -0500
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5A3DB7A93F;
+        Tue,  7 Mar 2023 07:36:23 -0800 (PST)
+Received: from jupiter.universe (dyndsl-091-248-189-073.ewe-ip-backbone.de [91.248.189.73])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: sre)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 160D966003AC;
+        Tue,  7 Mar 2023 15:36:21 +0000 (GMT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1678203381;
+        bh=/cm+7vcUIl0ZGAO+fxHlSvD7Rq1Txcv5uS1nOXjAm4s=;
+        h=From:To:Cc:Subject:Date:From;
+        b=mNx5Jer5Us1/AeqV9cYkxKHE2nmDFAPBK/YrjY5U5zza5RqOI56FrIuYM890MVTcd
+         7m+P5km9Ma0lUZpsVpBMNRN6iFlKbuspQnuI3uKr32kQErwpdZ8aU8S7eVags0gn84
+         qP36+3caUrxis2pvh9esXteX7oeYh7Qfnh+i8za95vGdgZdEvhGJ27kQKm2kuReO/b
+         EYkG0ArI7GEg9nPJ/is0ddfA7xkTPdiF8Xrndqzb5P1Jb0y58gJVM/PEfXk2Ehs5+A
+         Vk2FfFmae8Uxz+1ah8IYKkd8kKtNhI5NVT6E7tTo06qCX9cTtjfGo+tjBMqzWFwFBF
+         H7z2mXGYs817w==
+Received: by jupiter.universe (Postfix, from userid 1000)
+        id 1D36248010E; Tue,  7 Mar 2023 16:36:19 +0100 (CET)
+From:   Sebastian Reichel <sebastian.reichel@collabora.com>
+To:     Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
-        =?UTF-8?Q?Fern=c3=a1ndez_Rojas?= <noltari@gmail.com>,
-        Jonas Gorski <jonas.gorski@gmail.com>,
+        Lee Jones <lee@kernel.org>
+Cc:     Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
         Linus Walleij <linus.walleij@linaro.org>,
-        linux-gpio@vger.kernel.org
-References: <20230306191535.1917656-1-sean.anderson@seco.com>
- <20230306191535.1917656-4-sean.anderson@seco.com>
- <4c039e53-e3ca-29d7-e5ea-f24e385d28b0@linaro.org>
-From:   Sean Anderson <sean.anderson@seco.com>
-In-Reply-To: <4c039e53-e3ca-29d7-e5ea-f24e385d28b0@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: YT4P288CA0048.CANP288.PROD.OUTLOOK.COM
- (2603:10b6:b01:d3::25) To DB9PR03MB8847.eurprd03.prod.outlook.com
- (2603:10a6:10:3dd::13)
+        Mark Brown <broonie@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Alessandro Zummo <a.zummo@towertech.it>,
+        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Sebastian Reichel <sebastian.reichel@collabora.com>,
+        kernel@collabora.com
+Subject: [PATCHv7 00/11] Introduce RK806 Support
+Date:   Tue,  7 Mar 2023 16:36:06 +0100
+Message-Id: <20230307153617.643260-1-sebastian.reichel@collabora.com>
+X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
-X-MS-TrafficTypeDiagnostic: DB9PR03MB8847:EE_|GV1PR03MB8687:EE_|AM6EUR05FT058:EE_|AS8PR03MB7637:EE_
-X-MS-Office365-Filtering-Correlation-Id: c5bb7284-4a89-4fe0-6289-08db1f21a330
-X-TrendMicro-CAS-OUT-LOOP-IDENTIFIER: 656f966764b7fb185830381c646b41a1
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam-Untrusted: BCL:0;
-X-Microsoft-Antispam-Message-Info-Original: Y9RQ0g87oM8U0C0kPWjZyH9WEtdyYRiTMhqL6BYnIKH0lAFCsig19reFEhY6sPrzlXOv7aHWnLR/8SwSBYD2hfdKNYy8bcYnCAkfB9tjcsrRc1bR/aEtktinWBowALWITUlpiMZExjJu4D8KWOunUlvucM0dPIB8mWNdjvWZzvv0bsEvSHb/55GzPWewYZ4zhqhJ10Lz/Fuq1uJHe4qqSSc4p74AP6NgkU56au4oYNxWIV8X6JxqrjxVkFwfwCdLrI2ZEQeK0QjVfqk8C+n8bOlPYaRZCB7k5xyCn5BEfA6hEdhnK+LC9Xu8kr5VutdHF35rtR9Uus27UIaaOLvBt/0ebrU68xvF6x3NOQSlDV2ZlSa0rsCzOap49+iSvJGBpXbD9mj87CPkeTzSfc+VYscXlzixRZqQ4I/97NRjxMFufPYDURnHZmfR27PUCpqVZ6GU6IVD3sgekFpJvN2yUWjjmGSeg42aUM8FCbknJv90JR/bkyne5X9T6A1INZdJMqQsvI1EiWtxSVsDwGN1E1E/LnpbclxYOW33MJdVYgnSFYc0iN/Kfk+Jts9aoU/A/x7FENWAdpHmcztPPzNziGtWJFoTvpX/3gB9cQ0bruzYM6cmBlO2sex2umNufpwI+oJdDFrYVcy+34rrmZ6sOI2yVAHYJqe2xyMif7v9L7vCOWodVyeLc+4xT59b17t5WmrqZi3lkANiffn/+kDcjYNthbJE2sD7+Mcpw4vzh8Z1/ceZaLZm02mia/Fd+V04
-X-Forefront-Antispam-Report-Untrusted: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB9PR03MB8847.eurprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230025)(346002)(39850400004)(366004)(376002)(136003)(396003)(451199018)(5660300002)(186003)(6512007)(26005)(7416002)(8676002)(66946007)(4326008)(66476007)(66556008)(6486002)(478600001)(966005)(52116002)(54906003)(31696002)(86362001)(316002)(110136005)(6506007)(8936002)(41300700001)(38350700002)(53546011)(38100700002)(36756003)(6666004)(83380400001)(2906002)(2616005)(31686004)(44832011)(45980500001)(43740500002);DIR:OUT;SFP:1101;
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: GV1PR03MB8687
-X-EOPAttributedMessage: 0
-X-MS-Exchange-Transport-CrossTenantHeadersStripped: AM6EUR05FT058.eop-eur05.prod.protection.outlook.com
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id-Prvs: f9434d9a-0072-4cf2-1d5d-08db1f219fb2
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: iCgRf3re9nGfyJApyzUV5ysBQT9Mi1gzkWAc/yf6MHtqfIdrM+fhNw3fvBILFlt8MJbsV4fLfaeze6jscrxm22IzPrMU9zjjyhFqNq4Wk0Btf0SYn4XJrV+wDlMZ7YNZHagHW7guUXbkDHzVJqgkDEqeVyVKP+bp71Wb/NXrtYvC+ACl9qfJSv4CXu4P/dEkW04o86rp9BNKp/Pj8T0nuErMG7cKb1wVwOO5/S7UzU+hcQcDlW5hoX0whPwURctIfu8S6RcDNnbBtiSLqi4JcFjcZuIvaXe+tmht7JqE2xwfxndwrqqp3eserJrDXd4VAMJ8MXfRt5wJaVS3b8U0blOGqcaoCY6xTdvReH8kKxXGOXs0CImGlUsu/8MZQVBZgDN640ynkSaby59/tkka+3KiKNxsR/X+EZ7Bry2sGzgRVUSUJ9vOdZh/PclyAh1Nt9FwCO/+bFjXhbjKqBL/VhklEL8VV67e/rfRAUELJ8cs28iCBiYLQlb9dAcQexBAIk/bsF2ADERvAtSZzgMy0eNSaMpm5kETYoiETKjM2UAyDYLGP7AH0hbfoA6WsWGK5nZTezoM1n/B8AnN+bTFIPQq6YnXkHdaDRxdBzdZGsNv0LdhTy1cR/kruRJov3LWZrlwmWnync1qW5r/ghHa7Zk6Ck4+LMVrIOz+uWQyDpRnnP5gTCX1hfaneqMUig1nNSVgRzeKf0LTNbDb9XP36zZGVCv+JUkgDMIuX3uVxNoy33p8mKVR094FngX9SgqX/ot84fLkt9kd62RlCnNur7EaBkNc4bnlLFrQuYHBERbKSAjSaqpf1v2DbpXskluBpdTc4cNon0eWqTYU6cmHnRnPKVwMOEaDg06Pl8+G2dE=
-X-Forefront-Antispam-Report: CIP:20.160.56.86;CTRY:NL;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:inpost-eu.tmcas.trendmicro.com;PTR:inpost-eu.tmcas.trendmicro.com;CAT:NONE;SFS:(13230025)(39850400004)(376002)(396003)(136003)(346002)(451199018)(5400799012)(46966006)(36840700001)(40470700004)(356005)(82310400005)(8676002)(4326008)(70586007)(70206006)(6512007)(6666004)(6506007)(53546011)(26005)(186003)(7416002)(36756003)(2616005)(8936002)(47076005)(336012)(40480700001)(41300700001)(7636003)(7596003)(44832011)(5660300002)(34070700002)(34020700004)(2906002)(83380400001)(36860700001)(82740400003)(478600001)(40460700003)(86362001)(31696002)(31686004)(6486002)(316002)(966005)(110136005)(54906003)(45980500001)(43740500002)(12100799021);DIR:OUT;SFP:1501;
-X-OriginatorOrg: seco.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Mar 2023 15:35:53.4827
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: c5bb7284-4a89-4fe0-6289-08db1f21a330
-X-MS-Exchange-CrossTenant-Id: bebe97c3-6438-442e-ade3-ff17aa50e733
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=bebe97c3-6438-442e-ade3-ff17aa50e733;Ip=[20.160.56.86];Helo=[inpost-eu.tmcas.trendmicro.com]
-X-MS-Exchange-CrossTenant-AuthSource: AM6EUR05FT058.eop-eur05.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS8PR03MB7637
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_PASS,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Krzysztof,
+Hi,
 
-On 3/7/23 03:42, Krzysztof Kozlowski wrote:
-> On 06/03/2023 20:15, Sean Anderson wrote:
->> This is a generic binding for simple MMIO GPIO controllers. Although we
->> have a single driver for these controllers, they were previously spread
->> over several files. Consolidate them. The register descriptions are
->> adapted from the comments in the source. There is no set order for the
->> registers, so I have not specified one.
->> 
->> Signed-off-by: Sean Anderson <sean.anderson@seco.com>
->> ---
->> 
->> Changes in v10:
->> - New
->> 
->>  .../bindings/gpio/brcm,bcm6345-gpio.yaml      |  16 +--
->>  .../devicetree/bindings/gpio/gpio-mmio.yaml   | 136 ++++++++++++++++++
->>  .../bindings/gpio/ni,169445-nand-gpio.txt     |  38 -----
->>  .../devicetree/bindings/gpio/wd,mbl-gpio.txt  |  38 -----
->>  4 files changed, 137 insertions(+), 91 deletions(-)
->>  create mode 100644 Documentation/devicetree/bindings/gpio/gpio-mmio.yaml
->>  delete mode 100644 Documentation/devicetree/bindings/gpio/ni,169445-nand-gpio.txt
->>  delete mode 100644 Documentation/devicetree/bindings/gpio/wd,mbl-gpio.txt
-> 
-> https://lore.kernel.org/all/20230126-gpio-mmio-fix-v2-1-38397aace340@ncr.com/
+The Rockchip RK3588 Evaluation Boards as well as the Rock 5
+boards and probably most other RK3588 boards use SPI connected
+RK806 PMICs. Downstream this is handled by a new driver, but
+apart from being SPI connected this chip is quite similar to
+the other Rockchip PMICs (and RK806 is promoted to also support
+I2C). Thus this series instead updates the RK808 driver(s).
 
-Thanks for linking to that.
+Changelog since PATCHv6:
+ * https://lore.kernel.org/all/20230127181244.160887-1-sebastian.reichel@collabora.com/
+ * rebased to v6.3-rc1
+ * add Lee Jones' Acked-by-for-MFD to patches 5 & 6
+ * add Linus Walleij Acked-by to patch 9
+ * fix review comments provided by Lee Jones
+   - remove spaces around ## in RK806_CMD_WITH_SIZE
+   - add spaces around - in RK806_CMD_WITH_SIZE
+   - change regmap init error message
+   - further improve readability of buffer handling in rk806_spi_bus_write
+   - use define for maximum buffer size
+ * add .max_register to regmap_config, so that they can be analyzed in debugfs
+ * switch to 16 bit register addresses to further simplify the code
+ * fix max. buffer size by using RK806_CMD_LEN_MSK,
+   which is 4 bit (max. 16 bytes) instead of 7 bit (max. 128 bytes)
+ * add RK806_CMD_CRC_DIS to RK806_CMD_WITH_SIZE define to explicitly
+   initialize all bits of the command byte
 
-I believe this patch should be applied instead of that one because
+Changelog since PATCHv5:
+ * https://lore.kernel.org/all/20230109172723.60304-1-sebastian.reichel@collabora.com/
+ * add Reviewed-by from Rob Herring to the rk806 DT binding patch
+ * drop useless wrapper functions for rk8xx_i2c_suspend and rk8xx_i2c_resume
+ * put .num_resources after .resources for rk806_pwrkey_resources
+ * simplify dual_support logic by storing IRQF_SHARED or 0 instead of bool
+ * add missing spaces around + and - in rk806
+ * add new patch using device_get_match_data() in rk8xx-i2c and removing
+   the pointless dev_info printing the chip version
+ * call devm_mfd_add_devices() with id=0 and rely on mfd_cell to have the .id
+   field configured to either PLATFORM_DEVID_AUTO or PLATFORM_DEVID_NONE
+ * add check if more than 128 bytes are tried to be received/sent, which would
+   overflow the command register
+ * add RK806_CMD_WITH_SIZE() define
 
-- It documents all the registers, which were previously only documented
-  in the driver
-- It handles the endianness properties.
-- It consolidates the various descriptions of this binding into one
-  schema.
+Changelog since PATCHv4:
+ * https://lore.kernel.org/all/20221020204251.108565-1-sebastian.reichel@collabora.com/
+ * rebase to v6.2-rc1
+   - dropped 'regulator: rk808: reduce 'struct rk808' usage' (queued to 6.2-rc1)
+   - dropped 'regulator: rk808: Use dev_err_probe' (queued to 6.2-rc1)
+   - dropped 'rtc: rk808: reduce 'struct rk808' usage' (queued to 6.2-rc1)
+ * use 'MFD_RK8XX' for the MFD driver supporting all the MFD8XX chips
+ * added author tags to drivers/mfd/rk8xx-core.c. They were missing because
+   I moved the original header over to the i2c specific file and wrote the
+   new header from scratch. I suppose it's better to have the author tags
+   in both files.
+ * fix Rob's comments for the rk806 YAML binding
+ * add defines for rk806 command indexes
+ * modify rk806 code, so that it is capable of mult-write
 
---Sean
+Changelog since PATCHv3:
+ * https://lore.kernel.org/all/20220909175522.179175-1-sebastian.reichel@collabora.com/
+ * Dropped removing REGMAP_I2C dependency from RK817 ASoC driver (applied)
+ * Rename MFD_RK808 to MFD_RK8XX to be consistent. It makes sense to do this now,
+   since the patchset touches all the child drivers anyways.
+ * rebase to v6.1-rc1
+ * collected a couple of Acks
+ * update rk806 DT binding according to DT maintainer feedback
+ * add missing pinmux config to the rk806 DT binding
+ * update rk806_spi_bus_write and rk806_spi_bus_read
+ * replaced some constants with sizeof or defines
+ * used capitalized comments
+ * rename regmap_find_closest_bigger to regulator_find_closest_bigger, not sure
+   why I prefixed it with regmap_ in the first place
+ * use rk8xx_is_enabled_wmsk_regmap instead of regulator_is_enabled_regmap for
+   the switching regulators to correctly report the state
+ * reordered the first few patches grouping the MFD patches together
+
+Changelog since PATCHv2:
+ * https://lore.kernel.org/all/20220908003107.220143-1-sebastian.reichel@collabora.com/
+ * Change DT binding to not allow nldo-reg6
+ * Fix DT binding to check for [np]ldo-reg instead of [np]ldo_reg
+ * remove rk806_get_voltage_sel_regmap in favour of regulator_get_voltage_sel_regmap
+ * drop rk806_set_voltage in favour of regulator_set_voltage_sel_regmap
+ * use regulator_set_ramp_delay_regmap
+ * drop possibly incorrect printing of chip id register address in case of errors
+
+Changelog since PATCHv1:
+ * https://lore.kernel.org/all/20220831215437.117880-1-sebastian.reichel@collabora.com/
+ * Collect Acked-by
+ * Avoid if/else checks for regulator id in rk806 regulator driver
+ * Fix indentation in DTS example section of the rk806 binding
+ * Use absolute path for regulator.yaml referencing in the rk806 binding
+ * Reduce pattern for DCDC regulators to only allow 1-10
+ * replace uppercase name with lowercase ones in regulator names
+ * replace _ with - in regulator names
+
+-- Sebastian
+
+Sebastian Reichel (11):
+  clk: RK808: reduce 'struct rk808' usage
+  mfd: rk808: convert to device managed resources
+  mfd: rk808: use dev_err_probe
+  mfd: rk808: replace 'struct i2c_client' with 'struct device'
+  mfd: rk808: split into core and i2c
+  mfd: rk8xx-i2c: use device_get_match_data
+  dt-bindings: mfd: add rk806 binding
+  mfd: rk8xx: add rk806 support
+  pinctrl: rk805: add rk806 pinctrl support
+  regulator: expose regulator_find_closest_bigger
+  regulator: rk808: add rk806 support
+
+ .../bindings/mfd/rockchip,rk806.yaml          | 406 +++++++++++++++++
+ drivers/clk/Kconfig                           |   2 +-
+ drivers/clk/clk-rk808.c                       |  34 +-
+ drivers/input/misc/Kconfig                    |   2 +-
+ drivers/mfd/Kconfig                           |  21 +-
+ drivers/mfd/Makefile                          |   4 +-
+ drivers/mfd/{rk808.c => rk8xx-core.c}         | 352 +++++----------
+ drivers/mfd/rk8xx-i2c.c                       | 185 ++++++++
+ drivers/mfd/rk8xx-spi.c                       | 124 ++++++
+ drivers/pinctrl/Kconfig                       |   2 +-
+ drivers/pinctrl/pinctrl-rk805.c               | 189 +++++++-
+ drivers/power/supply/Kconfig                  |   2 +-
+ drivers/regulator/Kconfig                     |   2 +-
+ drivers/regulator/helpers.c                   |  22 +-
+ drivers/regulator/rk808-regulator.c           | 383 ++++++++++++++++
+ drivers/rtc/Kconfig                           |   2 +-
+ include/linux/mfd/rk808.h                     | 417 +++++++++++++++++-
+ include/linux/regulator/driver.h              |   2 +
+ sound/soc/codecs/Kconfig                      |   2 +-
+ 19 files changed, 1867 insertions(+), 286 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/mfd/rockchip,rk806.yaml
+ rename drivers/mfd/{rk808.c => rk8xx-core.c} (71%)
+ create mode 100644 drivers/mfd/rk8xx-i2c.c
+ create mode 100644 drivers/mfd/rk8xx-spi.c
+
+-- 
+2.39.2
+
