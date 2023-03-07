@@ -2,99 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 851C56AD898
-	for <lists+devicetree@lfdr.de>; Tue,  7 Mar 2023 08:59:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A7E2F6AD8A0
+	for <lists+devicetree@lfdr.de>; Tue,  7 Mar 2023 09:00:55 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229744AbjCGH70 convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Tue, 7 Mar 2023 02:59:26 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57070 "EHLO
+        id S229787AbjCGIAv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Mar 2023 03:00:51 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58258 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229760AbjCGH7Y (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Mar 2023 02:59:24 -0500
-Received: from mail-qt1-f178.google.com (mail-qt1-f178.google.com [209.85.160.178])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AA1D03B64B;
-        Mon,  6 Mar 2023 23:59:18 -0800 (PST)
-Received: by mail-qt1-f178.google.com with SMTP id l13so13517048qtv.3;
-        Mon, 06 Mar 2023 23:59:18 -0800 (PST)
+        with ESMTP id S229880AbjCGIAm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Mar 2023 03:00:42 -0500
+Received: from mail-wr1-x429.google.com (mail-wr1-x429.google.com [IPv6:2a00:1450:4864:20::429])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8ABDF88D84
+        for <devicetree@vger.kernel.org>; Tue,  7 Mar 2023 00:00:38 -0800 (PST)
+Received: by mail-wr1-x429.google.com with SMTP id r18so11222773wrx.1
+        for <devicetree@vger.kernel.org>; Tue, 07 Mar 2023 00:00:38 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1678176037;
+        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
+         :content-language:subject:reply-to:from:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=ijEoAYIJJ5+odRylDAm2UWfSFdsaYTaLyRF8UzmTqYs=;
+        b=zV24IqvnRETCGgK1BvWcspkXtXxEtsKqsnUGLw30uEv4VyHEnOxSgqLmPiDuSMMelD
+         072MwQ3moInax0wm+YHR4KUU529vc9HKg702nItnzwz99PcJ6RUTIM4xXsNiJdsCTaam
+         vzmJ1/VgBGo5fuMj/sxD2B58Q05F1v9YZJKNilkef3D4RXG81nUQKSLh10hRGHUll0W7
+         nBvSCmcQ5Uw5yWQ1v4wCsZroe1uMm3UPVpW49JX965GKOF3G7f8eoq1EMMxdIoPcRNvI
+         PtoolfPQvOLn3AbCZStuDapDeyl4rg60UmKY0DUF+ex0i2ByYtO6AC8CKsPwuc/yNrO8
+         84Sw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678175957;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=LXHZjwfjtfEafDBqZYZAbPiu3rBa6YtCoijdnzn31fc=;
-        b=co3YxAx2peetv1980jqFdLhlnaq97GmTE87wZLxM9oyFA6DQvv4ScAt1gqzVQP+NRf
-         r/N9pS6+oQKY3sn+4bn7qMqM0iWpS5mEyzvWMrmM4PaTVy+DUTadlHjkW+7kIyuDJL1s
-         LyitDSXjzGbzjrJzLst4v8A682VdFMUao7mosExeyC0MzwwDGzXXu6emCEcRMYrlQk2R
-         gJObv6uR5ssmCo0jAr4qRsHHKud9ofMYAj7ifhCRYV4PjCfgqtEXveIzEqXwNXKeIFRF
-         JuYSRkMPlVEBe0zGYheoZe07DRQbH8r3ZB0EGHJpbxwqjVQUQDXXPVABUfQTk5h6dAyJ
-         MCFw==
-X-Gm-Message-State: AO0yUKWStWkrDZrAhpbAGtTvm6rLgqxpAE+HQVD6IK1YkX6Yy7ey8ydk
-        Ggr+XaNliUZbkw3BoZXT/ZprJ74cYB3ljg==
-X-Google-Smtp-Source: AK7set9vcMi9r6ZCL77C3hdaKICcHi7R1Hh/mTc25ZeevprTHbDrTX8fEQRs8oD7cXLUb2oPH3YCuw==
-X-Received: by 2002:a05:622a:1002:b0:3b9:bc8c:c200 with SMTP id d2-20020a05622a100200b003b9bc8cc200mr31633719qte.11.1678175957664;
-        Mon, 06 Mar 2023 23:59:17 -0800 (PST)
-Received: from mail-yb1-f180.google.com (mail-yb1-f180.google.com. [209.85.219.180])
-        by smtp.gmail.com with ESMTPSA id b198-20020ae9ebcf000000b007429d1f6176sm9080274qkg.94.2023.03.06.23.59.13
+        d=1e100.net; s=20210112; t=1678176037;
+        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
+         :content-language:subject:reply-to:from:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=ijEoAYIJJ5+odRylDAm2UWfSFdsaYTaLyRF8UzmTqYs=;
+        b=z14lyfKy383hgRFLoIfmPrmn8J+yeecQfPpW6gG0v2Qb3uRHPgU4M7saC14y8CHuUm
+         sAQEj0fZ6K8QZR5Eng54qTwj1KvkDDtyz/0bKg8CKnmdxHL69yJ70PMBAylWzhod/+HI
+         4etOd76GH8PeGdLODgFXjhB3ZfEXwfkEHLujKE1zJHxw31s3PBj/XsYIB07i3Vow99rq
+         MEcSun8TSVAdLYXHL3F4TtOJzuWML64RqIVxw+OX6Sb6Bf/rS6R3rpC2s4rXOuQP/lYT
+         f6N0PjvYrGCEWegSRVs8qAysz4E9bY31CmMFrhZQjRvJazsE4LJBRIImba+JdTXNkaj1
+         eUwA==
+X-Gm-Message-State: AO0yUKXKxMONL8akiC2A0RooU0Px0JyFF6JRrTMMmOa1v8X2eq8IKrOP
+        gNLNpqmFuIVJ5DSgn1U6SdajQA==
+X-Google-Smtp-Source: AK7set+TxhLq7JwU5QjThhhQelWeF10eqEhDIkLTdWn+y+uBaBK0ICJkwu0mOEc4uCOOHqjNhhs3Hg==
+X-Received: by 2002:a05:6000:10cc:b0:2c7:e60:abe8 with SMTP id b12-20020a05600010cc00b002c70e60abe8mr12062223wrx.9.1678176037002;
+        Tue, 07 Mar 2023 00:00:37 -0800 (PST)
+Received: from ?IPV6:2a01:e0a:982:cbb0:6faa:6d13:586e:871d? ([2a01:e0a:982:cbb0:6faa:6d13:586e:871d])
+        by smtp.gmail.com with ESMTPSA id m18-20020a05600c3b1200b003db0ad636d1sm17430831wms.28.2023.03.07.00.00.34
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 06 Mar 2023 23:59:14 -0800 (PST)
-Received: by mail-yb1-f180.google.com with SMTP id x12so10550821ybt.7;
-        Mon, 06 Mar 2023 23:59:13 -0800 (PST)
-X-Received: by 2002:a5b:308:0:b0:90d:af77:9ca6 with SMTP id
- j8-20020a5b0308000000b0090daf779ca6mr8146138ybp.7.1678175953631; Mon, 06 Mar
- 2023 23:59:13 -0800 (PST)
+        Tue, 07 Mar 2023 00:00:35 -0800 (PST)
+Message-ID: <9623bc3f-760a-e838-c80f-40d2f9b79f35@linaro.org>
+Date:   Tue, 7 Mar 2023 09:00:34 +0100
 MIME-Version: 1.0
-References: <20230306224752.8417-1-afd@ti.com>
-In-Reply-To: <20230306224752.8417-1-afd@ti.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Tue, 7 Mar 2023 08:59:02 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdW8hkMhEfKm3Xv-0JWo02bxm2kSULjzJC+caMEw-z3dbg@mail.gmail.com>
-Message-ID: <CAMuHMdW8hkMhEfKm3Xv-0JWo02bxm2kSULjzJC+caMEw-z3dbg@mail.gmail.com>
-Subject: Re: [PATCH] kbuild: Disallow DTB overlays to built from .dts named
- source files
-To:     Andrew Davis <afd@ti.com>
-Cc:     Sascha Hauer <s.hauer@pengutronix.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Nishanth Menon <nm@ti.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Michal Marek <michal.lkml@markovi.net>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Andy Shevchenko <andriy.shevchenko@intel.com>,
-        Masahiro Yamada <masahiroy@kernel.org>,
-        Nathan Chancellor <nathan@kernel.org>,
-        Nick Desaulniers <ndesaulniers@google.com>,
-        Nicolas Schier <nicolas@fjasle.eu>, devicetree@vger.kernel.org,
-        linux-kbuild@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8BIT
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,
-        SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.2
+From:   neil.armstrong@linaro.org
+Reply-To: neil.armstrong@linaro.org
+Subject: Re: [PATCH v1 1/2] arm64: dts: meson-a1: add gpio_intc node
+Content-Language: en-US
+To:     Alexey Romanov <avromanov@sberdevices.ru>, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, khilman@baylibre.com,
+        jbrunet@baylibre.com, martin.blumenstingl@googlemail.com
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
+        kernel@sberdevices.ru
+References: <20230202141520.40003-1-avromanov@sberdevices.ru>
+Organization: Linaro Developer Services
+In-Reply-To: <20230202141520.40003-1-avromanov@sberdevices.ru>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Mar 6, 2023 at 11:48 PM Andrew Davis <afd@ti.com> wrote:
-> As a follow up to the series allowing DTB overlays to built from .dtso
-> files. Now that all overlays have been renamed, remove the ability to
-> build from overlays from .dts files to prevent any files with the old
-> name from accidental being added.
->
-> Signed-off-by: Andrew Davis <afd@ti.com>
+On 02/02/2023 15:15, Alexey Romanov wrote:
+> Add gpio interrupt controller node.
+> 
+> Signed-off-by: Alexey Romanov <avromanov@sberdevices.ru>
+> ---
+>   arch/arm64/boot/dts/amlogic/meson-a1.dtsi | 10 ++++++++++
+>   1 file changed, 10 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/amlogic/meson-a1.dtsi b/arch/arm64/boot/dts/amlogic/meson-a1.dtsi
+> index 6268c323a810..a04ddf0f4cd3 100644
+> --- a/arch/arm64/boot/dts/amlogic/meson-a1.dtsi
+> +++ b/arch/arm64/boot/dts/amlogic/meson-a1.dtsi
+> @@ -158,6 +158,16 @@ clkc_pll: pll-clock-controller@7c80 {
+>   					 <&clkc_periphs CLKID_XTAL_HIFIPLL>;
+>   				clock-names = "xtal_fixpll", "xtal_hifipll";
+>   			};
+> +
+> +			gpio_intc: interrupt-controller@0440 {
+> +				compatible = "amlogic,meson-a1-gpio-intc",
+> +					     "amlogic,meson-gpio-intc";
+> +				reg = <0x0 0x0440 0x0 0x14>;
+> +				interrupt-controller;
+> +				#interrupt-cells = <2>;
+> +				amlogic,channel-interrupts =
+> +					<49 50 51 52 53 54 55 56>;
+> +			};
+>   		};
+>   
+>   		gic: interrupt-controller@ff901000 {
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+The [PATCH 1/2] highly confused b4, anyway it's applied on v6.4/arm64-dt.
 
-Gr{oetje,eeting}s,
-
-                        Geert
-
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+Thanks,
+Neil
