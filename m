@@ -2,213 +2,210 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8BDBC6ADD4E
-	for <lists+devicetree@lfdr.de>; Tue,  7 Mar 2023 12:29:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BDBF06ADD8A
+	for <lists+devicetree@lfdr.de>; Tue,  7 Mar 2023 12:36:30 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230286AbjCGL3W (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Mar 2023 06:29:22 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55674 "EHLO
+        id S230492AbjCGLg0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Mar 2023 06:36:26 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37794 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230247AbjCGL3V (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Mar 2023 06:29:21 -0500
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BDA2048E33;
-        Tue,  7 Mar 2023 03:29:09 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1678188549; x=1709724549;
-  h=date:from:to:cc:subject:in-reply-to:message-id:
-   references:mime-version;
-  bh=1mX4LRq0+12Aka49QpG0ZBKYtnX84ry57MkwdauthQg=;
-  b=l3RphQtLqF8h8rJRSC9xz8ujQ6zF16/syJz8YJSTFOAvQvKaxQfJ5Q1z
-   oKyfpZYR0nOC1MrpnUWQcRWs4YCZqjOl5QgpLIAT9n889xEzljR/c4Q7X
-   UnRfQs09yfyV98wH6fR+CDAb7GsgN0WGFmyfPgOOcqSuMIJdVtnazU7US
-   K9O0tHC1saoCBOz5RqXAwqzHN1XEpJirmXEddm3I+dbRe+GLUmU6TGxOn
-   aOlO5GWXt+ADCK8mp9iwIJGBa8LG73M975L9S5M7VET/74+viSa42obLx
-   SxC6UNbBgzweAqmS0b34sxedoR+j4oiwJstRbUYvhp5JVtjCWwcY8c0xs
-   w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10641"; a="334542577"
-X-IronPort-AV: E=Sophos;i="5.98,240,1673942400"; 
-   d="scan'208";a="334542577"
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
-  by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 07 Mar 2023 03:29:09 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10641"; a="678899577"
-X-IronPort-AV: E=Sophos;i="5.98,240,1673942400"; 
-   d="scan'208";a="678899577"
-Received: from unknown (HELO ijarvine-MOBL2.mshome.net) ([10.237.66.32])
-  by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 07 Mar 2023 03:29:02 -0800
-Date:   Tue, 7 Mar 2023 13:29:00 +0200 (EET)
-From:   =?ISO-8859-15?Q?Ilpo_J=E4rvinen?= <ilpo.jarvinen@linux.intel.com>
-To:     Neeraj Sanjay Kale <neeraj.sanjaykale@nxp.com>
-cc:     davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
-        pabeni@redhat.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, marcel@holtmann.org,
-        johan.hedberg@gmail.com, luiz.dentz@gmail.com,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Jiri Slaby <jirislaby@kernel.org>, alok.a.tiwari@oracle.com,
-        hdanton@sina.com, leon@kernel.org, Netdev <netdev@vger.kernel.org>,
-        devicetree@vger.kernel.org, LKML <linux-kernel@vger.kernel.org>,
-        linux-bluetooth@vger.kernel.org,
-        linux-serial <linux-serial@vger.kernel.org>,
-        amitkumar.karwar@nxp.com, rohit.fule@nxp.com, sherry.sun@nxp.com
-Subject: Re: [PATCH v7 3/3] Bluetooth: NXP: Add protocol support for NXP
- Bluetooth chipsets
-In-Reply-To: <20230306170525.3732605-4-neeraj.sanjaykale@nxp.com>
-Message-ID: <f7a1c4de-1865-533e-c0cb-944bfdc19052@linux.intel.com>
-References: <20230306170525.3732605-1-neeraj.sanjaykale@nxp.com> <20230306170525.3732605-4-neeraj.sanjaykale@nxp.com>
+        with ESMTP id S230482AbjCGLgY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Mar 2023 06:36:24 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 55BC94988E;
+        Tue,  7 Mar 2023 03:35:56 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 660CE6130B;
+        Tue,  7 Mar 2023 11:35:27 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 54D8DC433EF;
+        Tue,  7 Mar 2023 11:35:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1678188926;
+        bh=O9DxrT2ixzFtnLxnoTmcA3HN02EolxbP4FBXHA9+mNc=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=PCIUqadSagCnW6VTReL42z91XP19DLmi3J3CNWGdQhGxEr4fv0G9EWEdh1EVEdn12
+         40xaXubONu33hsoCK9HHtA1SDTfevLaUYFtHnySvhT+1E2hd4WZZqFqWn0GoH7nu5i
+         HiSX18mnUsuZrXoE84Fr6z5+4lmeJRjiLwOvuy5fmVrKjRFLagAOzQA2VPpfwld5IL
+         Wu3m2AyUH2DcpiOtdkWufSI5zsdcEMCFNDZ52YUkaWIqQJWFaI7p+qTmhNMqCEBGu+
+         Dejo1bJvHwjq5tYi562262K6MRvPUbGr//5ZYFcPcMe2K2xV06Zq9/vwzw4o1CNUfy
+         dI/AwfhpRemHQ==
+Date:   Tue, 7 Mar 2023 13:35:11 +0200
+From:   Mike Rapoport <rppt@kernel.org>
+To:     Conor Dooley <conor@kernel.org>
+Cc:     Conor.Dooley@microchip.com, palmer@dabbelt.com,
+        linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, frowand.list@gmail.com,
+        robh+dt@kernel.org, mick@ics.forth.gr, paul.walmsley@sifive.com,
+        aou@eecs.berkeley.edu, Valentina.FernandezAlanis@microchip.com,
+        Daire.McNamara@microchip.com
+Subject: Re: RISC-V reserved memory problems
+Message-ID: <ZAchb/DfbIh+qaE4@kernel.org>
+References: <8e10bf15-9fa9-fe90-1656-35bf3e87e7f8@microchip.com>
+ <f8e67f82-103d-156c-deb0-d6d6e2756f5e@microchip.com>
+ <Y9wytv5KSt1ca+td@spud>
 MIME-Version: 1.0
-Content-Type: multipart/mixed; boundary="8323329-796130503-1678188547=:2203"
-X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_NONE,URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <Y9wytv5KSt1ca+td@spud>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-  This message is in MIME format.  The first part should be readable text,
-  while the remaining parts are likely unreadable without MIME-aware tools.
+Hi Conor,
 
---8323329-796130503-1678188547=:2203
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8BIT
+Sorry for the delay, somehow this slipped between the cracks.
 
-On Mon, 6 Mar 2023, Neeraj Sanjay Kale wrote:
-
-> This adds a driver based on serdev driver for the NXP BT serial protocol
-> based on running H:4, which can enable the built-in Bluetooth device
-> inside an NXP BT chip.
+On Thu, Feb 02, 2023 at 10:01:26PM +0000, Conor Dooley wrote:
+> Hullo Palmer, Mike & whoever else may read this,
 > 
-> This driver has Power Save feature that will put the chip into sleep state
-> whenever there is no activity for 2000ms, and will be woken up when any
-> activity is to be initiated over UART.
+> Just reviving this thread from a little while ago as I have been in the
+> area again recently...
+
+TBH, I didn't really dig deep into the issues, but the thought I had was
+what if DT was mapped via fixmap until the setup_vm_final() and then it
+would be possible to call DT methods early.
+
+Could be I'm shooting in the dark :)
+ 
+> On Tue, Aug 16, 2022 at 08:41:05PM +0000, Conor.Dooley@microchip.com wrote:
+> > Hey all,
+> > We've run into a bit of a problem with reserved memory on PolarFire, or
+> > more accurately a pair of problems that seem to have opposite fixes.
+> > 
+> > The first of these problems is triggered when trying to implement a
+> > remoteproc driver. To get the reserved memory buffer, remoteproc
+> > does an of_reserved_mem_lookup(), something like:
+> > 
+> > 	np = of_parse_phandle(pdev->of_node, "memory-region", 0);
+> > 	if (!np)
+> > 		return -EINVAL;
+> > 
+> > 	rmem = of_reserved_mem_lookup(np);
+> > 	if (!rmem)
+> > 		return -EINVAL;
+> > 
+> > of_reserved_mem_lookup() then uses reserved_mem[i].name to try and find
+> > a match - but this was triggering kernel panics for us. We did some
+> > debugging and found that the name string's pointer was pointing to an
+> > address in the 0x4000_0000 range. The minimum reproduction for this
+> > crash is attached - it hacks in some print_reserved_mem()s into
+> > setup_vm_final() around a tlb flush so you can see the before/after.
+> > (You'll need a reserved memory node in your dts to replicate)
+> > 
+> > The output is like so, with the same crash as in the remoteproc driver:
+> > 
+> > [    0.000000] Linux version 6.0.0-rc1-00001-g0d9d6953d834 (conor@wendy) (riscv64-unknown-linux-gnu-gcc (g5964b5cd727) 11.1.0, GNU ld (GNU Binutils) 2.37) #1 SMP Tue Aug 16 13:42:09 IST 2022
 > 
-> This driver enables the power save feature by default by sending the vendor
-> specific commands to the chip during setup.
+> [...]
 > 
-> During setup, the driver checks if a FW is already running on the chip
-> by waiting for the bootloader signature, and downloads device specific FW
-> file into the chip over UART if bootloader signature is received..
+> > [    0.000000] ---[ end Kernel panic - not syncing: Attempted to kill the idle task! ]---
+> > 
+> > We traced this back to early_init_fdt_scan_reserved_mem() in
+> > setup_bootmem() - moving it later back up the boot sequence to
+> > after the dt has been remapped etc has fixed the problem for us.
+> > 
+> > The least movement to get it working is attached, and also pushed
+> > here: git.kernel.org/conor/c/1735589baefc
 > 
-> Signed-off-by: Neeraj Sanjay Kale <neeraj.sanjaykale@nxp.com>
-> ---
-> v2: Removed conf file support and added static data for each chip based
-> on compatibility devices mentioned in DT bindings. Handled potential
-> memory leaks and null pointer dereference issues, simplified FW download
-> feature, handled byte-order and few cosmetic changes. (Ilpo Järvinen,
-> Alok Tiwari, Hillf Danton)
-> v3: Added conf file support necessary to support different vendor modules,
-> moved .h file contents to .c, cosmetic changes. (Luiz Augusto von Dentz,
-> Rob Herring, Leon Romanovsky)
-> v4: Removed conf file support, optimized driver data, add logic to select
-> FW name based on chip signature (Greg KH, Ilpo Järvinen, Sherry Sun)
-> v5: Replaced bt_dev_info() with bt_dev_dbg(), handled user-space cmd
-> parsing in nxp_enqueue() in a better way. (Greg KH, Luiz Augusto von Dentz)
-> v6: Add support for fw-init-baudrate parameter from device tree,
-> modified logic to detect FW download is needed or FW is running. (Greg
-> KH, Sherry Sun)
-> v7: Renamed variables, improved FW download functions, include ps_data
-> into btnxpuart_dev. (Ilpo Järvinen)
-> ---
->  MAINTAINERS                   |    1 +
->  drivers/bluetooth/Kconfig     |   11 +
->  drivers/bluetooth/Makefile    |    1 +
->  drivers/bluetooth/btnxpuart.c | 1309 +++++++++++++++++++++++++++++++++
->  4 files changed, 1322 insertions(+)
->  create mode 100644 drivers/bluetooth/btnxpuart.c
+> This one is fixed now, as of commit 50e63dd8ed92 ("riscv: fix reserved
+> memory setup").
 > 
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index 030ec6fe89df..fdb9b0788c89 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -22840,6 +22840,7 @@ M:	Amitkumar Karwar <amitkumar.karwar@nxp.com>
->  M:	Neeraj Kale <neeraj.sanjaykale@nxp.com>
->  S:	Maintained
->  F:	Documentation/devicetree/bindings/net/bluetooth/nxp,88w8987-bt.yaml
-> +F:	drivers/bluetooth/btnxpuart.c
->  
->  THE REST
->  M:	Linus Torvalds <torvalds@linux-foundation.org>
-> diff --git a/drivers/bluetooth/Kconfig b/drivers/bluetooth/Kconfig
-> index 5a1a7bec3c42..359a4833e31f 100644
-> --- a/drivers/bluetooth/Kconfig
-> +++ b/drivers/bluetooth/Kconfig
-> @@ -465,4 +465,15 @@ config BT_VIRTIO
->  	  Say Y here to compile support for HCI over Virtio into the
->  	  kernel or say M to compile as a module.
->  
-> +config BT_NXPUART
-> +	tristate "NXP protocol support"
-> +	depends on SERIAL_DEV_BUS
+> > The second problem is a bit more complicated to explain - but we
+> > found the solution conflicted with the remoteproc fix as we had
+> > to move early_init_fdt_scan_reserved_mem() _earlier_ in the boot
+> > process to solve this one.
+> > 
+> > We want to have a node in our devicetree that contains some memory
+> > that is non-cached & marked as reserved-memory. Maybe we have just
+> > missed something, but from what we've seen:
+> > - the really early setup looks at the dtb, picks the highest bit
+> >    of memory and puts the dtb etc there so it can start using it
+> > - early_init_fdt_scan_reserved_mem() is then called, which figures
+> >    out if memory is reserved or not.
+> > 
+> > Unfortunately, the highest bit of memory is the non-cached bit so
+> > everything falls over, but we can avoid this by moving the call to
+> > early_init_fdt_scan_reserved_mem() above the dtb memblock alloc that
+> > takes place right before it in setup_bootmem().
+> > 
+> > Obviously, both of these changes are moving the function call in
+> > opposite directions and we can only really do one of them. We are not
+> > sure if what we are doing with the non-cached reserved-memory section
+> > is just not permitted & cannot work - or if this is something that
+> > was overlooked for RISC-V specifically and works for other archs.
+> 
+> We ended up working around this one by making sure that U-Boot loaded
+> the dtb to somewhere that would be inside the kernel's memory map, thus
+> avoiding the remapping in the first place.
+> 
+> We did run into another problem recently though, and 50e63dd8ed92 is
+> kinda at fault for it.
+> This particular issue was encountered with a devicetree where the
+> top-most memory region was entirely reserved & was not observed prior
+> to my fix for the first issue.
+> 
+> On RISC-V, the boot sequence is something like:
+> 	setup_bootmem();
+> 	setup_vm_final();
+> 	unflatten_device_tree();
+> 	early_init_fdt_scan_reserved_mem();
+> 
+> Whereas, before my patch it used to be (give-or-take):
+> 	setup_bootmem();
+> 	early_init_fdt_scan_reserved_mem();
+> 	setup_vm_final();
+> 	unflatten_device_tree();
+> 
+> The difference being that we used to have scanned the reserved memory
+> regions before calling setup_vm_final() & therefore know which regions
+> we cannot use. As a reminder, calling early_init_fdt_scan_reserved_mem()
+> before we've got the dt in a proper virtual memory address will cause
+> the kernel to panic if it tries to read a reserved memory node's label.
+> 
+> As we are now calling setup_vm_final() *before* we know what the
+> reserved memory regions are & as RISC-V allocates memblocks from the top
+> down, the allocations in setup_vm_final() will be done in the highest
+> memory region.
+> When early_init_fdt_scan_reserved_mem() then tries to reserve the
+> entirety of that top-most memory region, the reservation fails as part
+> of this region has already been allocated.
+> In the scenario where I found this bug, that top-most region is non-
+> cached memory & the kernel ends up panicking.
+> The memblock debug code made this pretty easy to spot, otherwise I'd
+> probably have spent more than just a few hours trying to figure out why
+> it was panicking!
+> 
+> My "this needs to be fixed today" solution for this problem was calling
+> memblock_set_bottom_up(true) in setup_bootmem() & that's what we are
+> going to carry downstream for now.
+> 
+> I haven't tested it (yet) but I suspect that it would also fix our
+> problem of the dtb being remapped into a non-cached region of memory
+> that we would later go on to reserve too. Non-cached being an issue
+> mainly due to the panicking, but failing to reserve (and using!) memory
+> regions that are meant to be reserved is very far from ideal even when
+> they are memory that the kernel can actually use.
+> 
+> I have no idea if that is an acceptable solution for upstream though, so
+> I guess this is me putting out feelers as to whether this is something I
+> should send a patch to do *OR* if this is another sign of the issues
+> that you (Mike, Palmer) mentioned in the past.
+> If it isn't an acceptable solution, I'm not really too sure how to
+> proceed!
+> 
+> Cheers,
+> Conor.
+> 
 
-select CRC32 since you're using it now.
-
-> +	help
-> +	  NXP is serial driver required for NXP Bluetooth
-> +	  devices with UART interface.
-> +
-> +	  Say Y here to compile support for NXP Bluetooth UART device into
-> +	  the kernel, or say M here to compile as a module (btnxpuart).
-> +
-> +
->  endmenu
-
-
-> +static void ps_control(struct hci_dev *hdev, u8 ps_state)
-> +{
-> +	struct btnxpuart_dev *nxpdev = hci_get_drvdata(hdev);
-> +	struct ps_data *psdata = &nxpdev->psdata;
-> +	int status;
-> +
-> +	if (psdata->ps_state == ps_state ||
-> +	    !test_bit(BTNXPUART_SERDEV_OPEN, &nxpdev->tx_state))
-> +		return;
-> +
-> +	switch (psdata->cur_h2c_wakeupmode) {
-> +	case WAKEUP_METHOD_DTR:
-> +		if (ps_state == PS_STATE_AWAKE)
-> +			status = serdev_device_set_tiocm(nxpdev->serdev, TIOCM_DTR, 0);
-> +		else
-> +			status = serdev_device_set_tiocm(nxpdev->serdev, 0, TIOCM_DTR);
-> +		break;
-> +	case WAKEUP_METHOD_BREAK:
-> +	default:
-> +		if (ps_state == PS_STATE_AWAKE)
-> +			status = serdev_device_break_ctl(nxpdev->serdev, 0);
-> +		else
-> +			status = serdev_device_break_ctl(nxpdev->serdev, -1);
-> +		bt_dev_dbg(hdev, "Set UART break: %s, status=%d",
-> +			   str_on_off(ps_state == PS_STATE_SLEEP), status);
-
-Add the #include for str_on_off too.
-
-
-> +/* for legacy chipsets with V1 bootloader */
-> +static int nxp_recv_fw_req_v1(struct hci_dev *hdev, struct sk_buff *skb)
-> +{
-> +	struct btnxpuart_dev *nxpdev = hci_get_drvdata(hdev);
-> +	struct btnxpuart_data *nxp_data = nxpdev->nxp_data;
-> +	struct v1_data_req *req;
-> +	u32 requested_len;
-> +
-> +	if (test_bit(BTNXPUART_CHECK_BOOT_SIGNATURE, &nxpdev->tx_state)) {
-> +		clear_bit(BTNXPUART_CHECK_BOOT_SIGNATURE, &nxpdev->tx_state);
-> +		wake_up_interruptible(&nxpdev->check_boot_sign_wait_q);
-> +		goto ret;
-> +	}
-> +
-> +	if (!is_fw_downloading(nxpdev))
-> +		goto ret;
-
-That BTNXPUART_CHECK_BOOT_SIGNATURE check above is also the same in 3 
-callsites of is_fw_downloading() so too should be moved into a common 
-helper (there was 4th call into is_fw_downloading() so make another 
-help for these 3 users).
 
 
 -- 
- i.
-
---8323329-796130503-1678188547=:2203--
+Sincerely yours,
+Mike.
