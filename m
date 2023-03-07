@@ -2,93 +2,144 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 03AEE6AEA5E
-	for <lists+devicetree@lfdr.de>; Tue,  7 Mar 2023 18:33:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E3BCB6AEB3D
+	for <lists+devicetree@lfdr.de>; Tue,  7 Mar 2023 18:41:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231512AbjCGRdO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Mar 2023 12:33:14 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33264 "EHLO
+        id S231717AbjCGRlo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Mar 2023 12:41:44 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54484 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231562AbjCGRcu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Mar 2023 12:32:50 -0500
-Received: from mout.kundenserver.de (mout.kundenserver.de [212.227.17.24])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 25D7646146;
-        Tue,  7 Mar 2023 09:28:27 -0800 (PST)
-Received: from [192.168.1.141] ([37.4.248.41]) by mrelayeu.kundenserver.de
- (mreue106 [212.227.15.183]) with ESMTPSA (Nemesis) id
- 1Ma1D8-1q3AgD15cq-00VyvW; Tue, 07 Mar 2023 18:27:57 +0100
-Message-ID: <9c2d0ca3-660e-72d2-d158-5c921cd9d607@i2se.com>
-Date:   Tue, 7 Mar 2023 18:27:53 +0100
+        with ESMTP id S232043AbjCGRla (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Mar 2023 12:41:30 -0500
+Received: from mail-pl1-x635.google.com (mail-pl1-x635.google.com [IPv6:2607:f8b0:4864:20::635])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CE592A6BDA
+        for <devicetree@vger.kernel.org>; Tue,  7 Mar 2023 09:37:28 -0800 (PST)
+Received: by mail-pl1-x635.google.com with SMTP id h8so14903405plf.10
+        for <devicetree@vger.kernel.org>; Tue, 07 Mar 2023 09:37:28 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1678210648;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=o3zPHvN5mm4IalrCf6zpCmyS4kHEJ7HoGLzRUhQSOoA=;
+        b=o2ytZ6qS0PtfXoLYe5TafISzM6/h2NxL3pqfUqiGJeoJyjjcLmWruuJ3X0G/cQZI/Y
+         GA8IYvcfCRsdkKAPInrw3325Sv6gVIjQvQZMQxeDW96heslTnIO2xfDZjDmjHC8W6S8x
+         8Z/2W26QDYD+sh27LwKdicEwMxzzwNiKSCkfYYiyxDmhqDTlfyv/GgQVFNeN9y63ynUc
+         FJWQqXZIYzZfNoOQhPSUGyELPnY1YZET2qLKlry8+WtVnxDK6ZPqoUCsVZmIiYTHYfmu
+         AdbkopUuQy/vh3LicKLoQLp/1cN+bszEMZwG8pn13IbJ1xhfs2KAVC1bJolPRpetFKGQ
+         3vcw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1678210648;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=o3zPHvN5mm4IalrCf6zpCmyS4kHEJ7HoGLzRUhQSOoA=;
+        b=EbWdHy+oZyksVWOEumlNVNNJvVvq4VqVHZ10JzK+W7NOY5sAIVZjpt0V5IJKutZUOI
+         b42kPMuOhvz4lvm4pzBA5bKkX0NPp+cjuXZxi5FhMlyCyxYXHlnTknaYcIKxDDnrHLSS
+         KAQ8lMt0Um5Pc459uiAcCqkpX7WwKLLSOfFs3QhS1TNmWktpVmHyJLkEZcCwu+wmeClE
+         srlG7mLbinqTjAOGW9YHYAg4/q7HPdpDT2Eb/gDy6Wa/8+agDO3HRJ/WOzErhUjQgrpb
+         7eRTKmH2N69sMdvPQaFX1NK9EltoN0UxL31ReqknXl/HKPLR3yh3voGC1M/fP76ObZ3W
+         yKAw==
+X-Gm-Message-State: AO0yUKU3WUH9K0uOGYM42uZ/BlwzU8qAUVIGm/rVH4uhMKV5cwxhanJw
+        QM8lrq+AOAExG/2iwSQx0sfWYI3Ue4mcr+Cp3bwMqQ==
+X-Google-Smtp-Source: AK7set+Kh/juOXVGFGBZq6ZQe/2ECYCsr+2HZ6cR5iMeJ5OSD5b0x9Znktqaib7dBWyXbAGUvwFiALZMirOESQVRZNg=
+X-Received: by 2002:a17:90a:9295:b0:233:fa52:828e with SMTP id
+ n21-20020a17090a929500b00233fa52828emr5658345pjo.1.1678210648212; Tue, 07 Mar
+ 2023 09:37:28 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.1
-Subject: Re: [PATCH 4/8] dt-bindings: iio: st-sensors: Add IIS328DQ
- accelerometer
-Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+References: <20230223042133.26551-1-semen.protsenko@linaro.org>
+ <167811290503.11716.15730246749418548221.b4-ty@linaro.org>
+ <48c8a0cf-08dc-a831-33ef-3b8e32eef2d3@linaro.org> <CAPLW+4=9Vwxd4upa3j_cKtRrNyyx_XCz+TgOOziMguEonbHb0g@mail.gmail.com>
+ <3a27febc-4d4e-1cfd-45dc-6ade4f25ca13@linaro.org>
+In-Reply-To: <3a27febc-4d4e-1cfd-45dc-6ade4f25ca13@linaro.org>
+From:   Sam Protsenko <semen.protsenko@linaro.org>
+Date:   Tue, 7 Mar 2023 11:37:17 -0600
+Message-ID: <CAPLW+4nZF2POmD1kRUDktn2_gUWH_e84Lnqx=8qhuqbSnrdJ2A@mail.gmail.com>
+Subject: Re: [PATCH v2 0/6] clk: samsung: exynos850: Add missing clocks for PM
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Chanwoo Choi <cw00.choi@samsung.com>,
+        Sylwester Nawrocki <s.nawrocki@samsung.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
-        Evgeniy Polyakov <zbr@ioremap.net>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>
-Cc:     linux-imx@nxp.com, Li Yang <leoyang.li@nxp.com>,
-        Denis Ciocca <denis.ciocca@st.com>, soc@kernel.org,
-        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+        Chanho Park <chanho61.park@samsung.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Tomasz Figa <tomasz.figa@gmail.com>,
         linux-arm-kernel@lists.infradead.org,
-        Stefan Wahren <stefan.wahren@chargebyte.com>
-References: <20230306172249.74003-1-stefan.wahren@i2se.com>
- <20230306172249.74003-5-stefan.wahren@i2se.com>
- <633b1e27-d148-62d2-ef83-2d0da432c0a7@linaro.org>
-From:   Stefan Wahren <stefan.wahren@i2se.com>
-In-Reply-To: <633b1e27-d148-62d2-ef83-2d0da432c0a7@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Provags-ID: V03:K1:O/1gCxxJ4Mw2c/1cIrf968QzB5NcAlRw7etSNcRG5kKSxI8cG+j
- JmTbjPMIG3c+z2pw6/pb5b9VSARGq5Zt88DTdZtvbYX4jK+4AKsTwsVa3O/PB4ugfPy/EOh
- SAN1xIukGhsOhVgK9AJewTBz0SG+yfF0uCpxLbcwhpJPPIdBFq5tTAYkFyuVtiekrYxCGqh
- rxnkXEU0wokKSLutyBkDA==
-UI-OutboundReport: notjunk:1;M01:P0:qIJq0AFaHo4=;vgLd/xuL9mm0K+pmb6vrKBNF7kd
- prKnd7qZcxOwDaKJJ+iC1XQHH7EO59KzsO9akK5h1/uj6Hkt4HrIen7jnS1Yn8IcA3EZJFn54
- FNsoDRyN47wBuK22WCXxlEocqvMWZfr7kbIKUUKK0ZnKN4TbLes9RM10DN3gnk7sTrD7Smpqm
- XgNY1cDB2pkGILR/x28ZuwROiZ8dtyJobq+JtXGojZU71FM39MUYsWdiXCzy7MPBwYHzqSfn9
- 3ZqzCxkXc105LyN7WMsnvt7StBDB6KftgCckTOIZLNGxIWjNpHJwCJ5Ynlum6uwkw9L4OtSYf
- woVwkjFHjO0hbrOnczsKkI6eM2hXxn5kt/rGSflFnsQ+dLHuZ+l/R1IRcyM+R02ZU33R6lEzC
- zbmR2D5j65Ik6Gu/NxqCwfBEFnP13O3Id7qWUZMyh92LKZ+DU2QWpgsn0tn4o+y6NuAmQbZTb
- wW4ZY2jRcmSEUM/mnvf9jVR5spY44f/LS+iwplopGHHgocHMuoOpyZZVwt+mseMtUWIfTuy9x
- uCo0euC4GyzZpJCe1Fy3QAwqrn9XMwMWw3Dz+dCuZs0wBS40AKfoqIJ26O8ozbkSPu8ZuIMe0
- inns/O9BhtKuLog30TstP8kORE9rS3j6VtYfci36bx8nCKjf/f2GoAKzXguMgokIpubuKMgl1
- 9lQm7dsi6LvfDVOWjdi+jSk+1v3m2zRHTB6SXhzafg==
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+        Stephen Boyd <sboyd@kernel.org>,
+        Alim Akhtar <alim.akhtar@samsung.com>,
+        linux-clk@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
+        Michael Turquette <mturquette@baylibre.com>,
+        David Virag <virag.david003@gmail.com>,
+        Sumit Semwal <sumit.semwal@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Krzysztof,
-
-Am 07.03.23 um 09:23 schrieb Krzysztof Kozlowski:
-> On 06/03/2023 18:22, Stefan Wahren wrote:
->> From: Stefan Wahren <stefan.wahren@chargebyte.com>
->>
->> The ST IIS328DQ is an accelerometer sensor compatible with
->> the existing ST sensor binding.
-> If it is compatible with existing binding, then make it compatible.
-> Although your driver change suggests it is not compatible...
-since the policy is to make the compatible so specific as possible, i 
-will fix the wording here.
+On Tue, 7 Mar 2023 at 01:47, Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
 >
+> On 06/03/2023 19:55, Sam Protsenko wrote:
+> > On Mon, 6 Mar 2023 at 09:51, Krzysztof Kozlowski
+> > <krzysztof.kozlowski@linaro.org> wrote:
+> >>
+> >> On 06/03/2023 15:28, Krzysztof Kozlowski wrote:
+> >>> On Wed, 22 Feb 2023 22:21:27 -0600, Sam Protsenko wrote:
+> >>>> As a part of preparation for PM enablement in Exynos850 clock driver,
+> >>>> this patch series implements CMU_G3D, and also main gate clocks for AUD
+> >>>> and HSI CMUs. The series brings corresponding changes to bindings, the
+> >>>> driver and SoC dts file.
+> >>>>
+> >>>> Changes in v2:
+> >>>>   - Rebased all patches on top of the most recent soc/for-next tree
+> >>>>   - Added A-b and R-b tags
+> >>>>   - Minor fixes
+> >>>>
+> >>>> [...]
+> >>>
+> >>> Applied, thanks!
+> >>>
+> >>> [1/6] dt-bindings: clock: exynos850: Add Exynos850 CMU_G3D
+> >>>       https://git.kernel.org/krzk/linux/c/067ba1605806e52118bb598afb357718df9f0e19
+> >>> [2/6] dt-bindings: clock: exynos850: Add AUD and HSI main gate clocks
+> >>>       https://git.kernel.org/krzk/linux/c/e289665ed0d6df9fca3ebc128f1232d305e4600b
+> >>> [3/6] clk: samsung: clk-pll: Implement pll0818x PLL type
+> >>>       https://git.kernel.org/krzk/linux/c/a6feedab8ab9a9e4483deb0bcc87919d92c88b7e
+> >>> [4/6] clk: samsung: exynos850: Implement CMU_G3D domain
+> >>>       https://git.kernel.org/krzk/linux/c/c5704a56893b4e77e434597c7c53d878bb3073b0
+> >>> [5/6] clk: samsung: exynos850: Add AUD and HSI main gate clocks
+> >>>       https://git.kernel.org/krzk/linux/c/d8d12e0d079aff4b1d8079a0a55944c0596f1d67
+> >>> [6/6] arm64: dts: exynos: Add CMU_G3D node for Exynos850 SoC
+> >>>       https://git.kernel.org/krzk/linux/c/ad8f6ad9a4f219950df65731a8ff91baa022c4b0
+> >>
+> >> And builds are broken. Please mention in cover letter or commit
+> >> dependencies and ordering...
+> >>
+> >
+> > Just checked all most recent commits on your for-next and next/clk
+> > branches. Seem to build fine for me. AFAIR I checked all patches in
+> > that series, and I guess there shouldn't be any issues if you apply
+> > those in the same order they are numbered inside the series. Or you
+> > mean you have some clash between different series? Anyways, I'm glad
+> > to help, but I'd need more details on where exactly the problem is (or
+> > maybe you already fixed it?).
+>
+> The builds were failing after I applied everything to respective
+> branches (so DTS separate). I did not notice that your DTS and driver
+> (both) depend on bindings header constant. This requires special
+> handling. It actually always required, because it was going through
+> different trees. Now it goes through my tree, but I still need to handle
+> it. I reworked the branches and force-pushed, thus you did not see the
+> exact issue.
+>
+
+Thanks for explaining this. Next time I'll provide the dependencies
+info in my patch #0.
+
 > Best regards,
 > Krzysztof
 >
->
-> _______________________________________________
-> linux-arm-kernel mailing list
-> linux-arm-kernel@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-arm-kernel
