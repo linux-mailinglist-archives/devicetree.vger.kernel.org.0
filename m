@@ -2,284 +2,629 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 695526AE031
-	for <lists+devicetree@lfdr.de>; Tue,  7 Mar 2023 14:18:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1485B6AE037
+	for <lists+devicetree@lfdr.de>; Tue,  7 Mar 2023 14:20:03 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230155AbjCGNS4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Mar 2023 08:18:56 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58182 "EHLO
+        id S229619AbjCGNUA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Mar 2023 08:20:00 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57406 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229967AbjCGNSk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Mar 2023 08:18:40 -0500
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C8E7C1B556
-        for <devicetree@vger.kernel.org>; Tue,  7 Mar 2023 05:17:16 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-        s=mimecast20190719; t=1678195035;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=W+ygoGubyf3twf0j32IrnMaEy5WCJEE/nnSufW1Ej/I=;
-        b=asi8n62xlM2DF/uVyVFfhIn26f92lqBEP2BwHAfgDO1steR1v9A48xu0LxnZFOEZbKuMuU
-        eNQRYj2hh4oWqGyFrD/PxDZ/ANtZ1ePq5Nqx+VhGg8tiNBF/ympPegF3irD1g00IxnY0cq
-        H/v25mKTdR7i6cTl6Ho3HE9LXPm6XUE=
-Received: from mimecast-mx02.redhat.com (mx3-rdu2.redhat.com
- [66.187.233.73]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- us-mta-224-4AyKS0rtPmyMhiJFgO1Mtg-1; Tue, 07 Mar 2023 08:17:10 -0500
-X-MC-Unique: 4AyKS0rtPmyMhiJFgO1Mtg-1
-Received: from smtp.corp.redhat.com (int-mx01.intmail.prod.int.rdu2.redhat.com [10.11.54.1])
-        (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
-        (No client certificate requested)
-        by mimecast-mx02.redhat.com (Postfix) with ESMTPS id E38873813F23;
-        Tue,  7 Mar 2023 13:17:09 +0000 (UTC)
-Received: from mail.corp.redhat.com (unknown [10.22.8.23])
-        by smtp.corp.redhat.com (Postfix) with ESMTPS id 7B8A44010E7B;
-        Tue,  7 Mar 2023 13:17:08 +0000 (UTC)
-Date:   Tue, 7 Mar 2023 14:17:06 +0100
-From:   Benjamin Tissoires <benjamin.tissoires@redhat.com>
-To:     Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Daniel Kaehn <kaehndan@gmail.com>
-Cc:     Hans de Goede <hdegoede@redhat.com>, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, jikos@kernel.org,
-        bartosz.golaszewski@linaro.org, dmitry.torokhov@gmail.com,
-        devicetree@vger.kernel.org, linux-input@vger.kernel.org,
-        ethan.twardy@plexus.com
-Subject: Re: [PATCH v8 3/3] HID: cp2112: Fwnode Support
-Message-ID: <20230307131706.olnb4qzo4ynu7gce@mail.corp.redhat.com>
-References: <CAP+ZCCe=f3AtxvC1Z6zPErMEG9BcnCOjApc26n_9yjq2+U72pw@mail.gmail.com>
- <Y/9oO1AE6GK6CQmp@smile.fi.intel.com>
- <20230302170554.q3426ii255735rzw@mail.corp.redhat.com>
- <ZAXFNRuALYpXgL6F@smile.fi.intel.com>
- <b8423b0b-4f63-d598-6c8b-7c7e73549032@redhat.com>
- <ZAXlh9ZVjGJh0l7n@smile.fi.intel.com>
- <1cab1439-77f3-6739-d4cd-5862ce8512d8@redhat.com>
- <ZAYca0ADk0Uk1sK1@smile.fi.intel.com>
- <CAP+ZCCfsKdOyy5vzPh5OjpZjNQrYWDRzrqa_QxvG+kZDPYa+3A@mail.gmail.com>
- <ZAZOvEvqNDq6jZNB@smile.fi.intel.com>
+        with ESMTP id S230287AbjCGNTZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Mar 2023 08:19:25 -0500
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6453B5B85;
+        Tue,  7 Mar 2023 05:18:49 -0800 (PST)
+Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 327Bklhu020712;
+        Tue, 7 Mar 2023 13:18:11 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=nqBhim365t5/zpmvHMndpkKevfyJEPgxBX+jFsRlvDc=;
+ b=L5HzvFLana0Bv0LuhAEUfCdibACGFG8zS4WWIV3rwwrgn71TQymwwRz57u6m8dGWbc0w
+ 2h4s1hoWMCwO933o7Uqb0IoOCYboeFcKTdV7YR4spa9di0nNtetm88Sj8IO2rvS156kM
+ 7rx9/niOTrBj3RnIrMYQWcjheQmES3+Ur95LXzzU1uNjksemXidlktNkxmL+mOO4+eI1
+ szKz2ivnz9Hxa0PMpFXo4CDVcxUn5JrjzLjBSiGIPAlB2ainvcHAUJpMrMnmJjCAvWfQ
+ A6Py+4tvUt/POqG39MQSl+8IpOlPii1spJS4hIBNzz6IYNAVCW3HbXsKvESVMOMLvI02 Uw== 
+Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3p5usx1jv1-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 07 Mar 2023 13:18:11 +0000
+Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
+        by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 327DIAob000715
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 7 Mar 2023 13:18:10 GMT
+Received: from [10.201.3.182] (10.80.80.8) by nalasex01c.na.qualcomm.com
+ (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.41; Tue, 7 Mar 2023
+ 05:18:02 -0800
+Message-ID: <366ed962-dedb-0e88-036d-a1a806d0b589@quicinc.com>
+Date:   Tue, 7 Mar 2023 18:47:51 +0530
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <ZAZOvEvqNDq6jZNB@smile.fi.intel.com>
-X-Scanned-By: MIMEDefang 3.1 on 10.11.54.1
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_NONE autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.8.0
+Subject: Re: [PATCH 08/11] remoteproc: qcom: Add Hexagon based multipd rproc
+ driver
+Content-Language: en-US
+To:     Manikanta Mylavarapu <quic_mmanikan@quicinc.com>,
+        <agross@kernel.org>, <andersson@kernel.org>,
+        <konrad.dybcio@linaro.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <jassisinghbrar@gmail.com>,
+        <mathieu.poirier@linaro.org>, <mturquette@baylibre.com>,
+        <sboyd@kernel.org>, <quic_gurus@quicinc.com>,
+        <loic.poulain@linaro.org>, <quic_eberman@quicinc.com>,
+        <robimarko@gmail.com>, <linux-arm-msm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-remoteproc@vger.kernel.org>, <linux-clk@vger.kernel.org>
+CC:     <quic_gokulsri@quicinc.com>, <quic_sjaganat@quicinc.com>,
+        <quic_kathirav@quicinc.com>, <quic_arajkuma@quicinc.com>,
+        <quic_anusha@quicinc.com>, <quic_poovendh@quicinc.com>
+References: <1678164097-13247-1-git-send-email-quic_mmanikan@quicinc.com>
+ <1678164097-13247-9-git-send-email-quic_mmanikan@quicinc.com>
+From:   Sricharan Ramabadhran <quic_srichara@quicinc.com>
+In-Reply-To: <1678164097-13247-9-git-send-email-quic_mmanikan@quicinc.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01c.na.qualcomm.com (10.47.97.35)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: prbeg8BftcvX2w2bext1j-wghoHyNsZn
+X-Proofpoint-GUID: prbeg8BftcvX2w2bext1j-wghoHyNsZn
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.219,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
+ definitions=2023-03-07_07,2023-03-07_01,2023-02-09_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0 spamscore=0
+ clxscore=1015 priorityscore=1501 mlxscore=0 bulkscore=0 impostorscore=0
+ phishscore=0 adultscore=0 mlxlogscore=999 suspectscore=0
+ lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2212070000 definitions=main-2303070120
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mar 06 2023, Andy Shevchenko wrote:
-> On Mon, Mar 06, 2023 at 01:40:16PM -0600, Daniel Kaehn wrote:
+
+
+On 3/7/2023 10:11 AM, Manikanta Mylavarapu wrote:
+> APSS brings Q6 out of reset and then Q6 brings
+> WCSS block (wifi radio's) out of reset.
 > 
-> ...
+> 				   ---------------
+> 			      -->  |WiFi 2G radio|
+> 			      |	   --------------
+> 			      |
+> --------	-------	      |
+> | APSS | --->   |QDSP6|  -----|
+> ---------	-------       |
+>                                |
+>        			      |
+> 			      |   --------------
+> 			      --> |WiFi 5G radio|
+> 				  --------------
 > 
-> > Device (SE9)
-> > {
-> >     Name (_ADR, 0x001D0001) // _ADR: Address
-> >     Device (RHUB)
-> >     {
-> >         Name (_ADR, Zero)
-> >         Device (CP2) // the USB-hid & CP2112 shared node
-> >         {
-> >             Name (_ADR, One)
-> >         }
-> >     }
-> > }
-> > 
-> > If I'm understanding correctly, this adds the SE9 device as function 1
-> > of PCI device 0x1d,
+> Problem here is if any radio crashes, subsequently other
+> radio also should crash because Q6 crashed. Let's say
+> 2G radio crashed, Q6 should pass this info to APSS. Only
+> Q6 processor interrupts registered with APSS. Obviously
+> Q6 should crash and raise fatal interrupt to APSS. Due
+> to this 5G radio also crashed. But no issue in 5G radio,
+> because of 2G radio crash 5G radio also impacted.
 > 
-> To be precise this does not add the device. It adds a description of
-> the companion device in case the real one will appear on the PCI bus
-> with BDF 00:1d.1.
+> In multi pd model, this problem is resolved. Here WCSS
+> functionality (WiFi radio's) moved out from Q6 root pd
+> to a separate user pd. Due to this, radio's independently
+> pass their status info to APPS with out crashing Q6. So
+> other radio's won't be impacted.
 > 
-> > then RHUB as the USB controller it provides, and finally, CP2 as the
-> > USB device attached to port 1 of the controller.
-> > 
-> > With this as the loaded dsdt table, the USB device now has a firmware_node :)
-> > #> cat /sys/bus/usb/devices/3-1:1.0/firmware_node/path
-> > \_SB_.PCI0.SE9_.RHUB.CP2_
-> > 
-> > After applying my patches, the HID device also references this node:
-> > #> cat /sys/bus/hid/devices/0003:10C4:EA90.0003/firmware_node/path
-> > \_SB_.PCI0.SE9_.RHUB.CP2_
-> > 
-
-Great! Thanks a lot for that. Turns out that with both of your inputs I
-can also do the same, but without the need for OVMF and DSDT patching,
-with just an SSDT override.
-
-Turns out that the override documentation [1] mentions "This option
-allows loading of user defined SSDTs from initrd and it is useful when
-the system does not support EFI or ..."
-
-FWIW, I am attaching my full DSDT override in case it is valuable:
-(on my system, the default USB controller (non-xhc) is at PCI address
-1.2, which explains the slight difference). It can be loaded in the same
-way you are overriding the full DSDT, but with just that compilation
-output:
-
----
-DefinitionBlock ("cp2112.aml", "SSDT", 5, "", "CP2112", 1)
-{
-  External (_SB_.PCI0, DeviceObj)
-
-  Scope (\_SB_.PCI0)
-  {
-    Device (USB0)
-    {
-      Name (_ADR, 0x00010002) // _ADR: Address
-      Device (RHUB)
-      {
-        Name (_ADR, Zero)
-        Device (CP21) // the USB-hid & CP2112 shared node
-        {
-          Name (_ADR, One)
-          Device (I2C)
-          {
-            Name (_ADR, Zero)
-            Name (_STA, 0x0F)
-          }
-
-          Device (GPIO)
-          {
-            Name (_ADR, One)
-            Name (_STA, 0x0F)
-          }
-        }
-      }
-    }
-  }
-
-  Scope (\_SB_.PCI0.USB0.RHUB.CP21.I2C)
-  {
-    Device (TPD0)
-    {
-      Name (_HID, "RMI40001")
-      Name (_CID, "PNP0C50")
-      Name (_STA, 0x0F)
-
-      Name (SBFB, ResourceTemplate ()
-      {
-          I2cSerialBusV2 (0x00c, ControllerInitiated, 100000,
-              AddressingMode7Bit, "\\_SB_.PCI0.USB0.RHUB.CP21.I2C",
-              0x00, ResourceConsumer,, Exclusive,
-              )
-      })
-      Name (SBFG, ResourceTemplate ()
-      {
-          GpioInt (Level, ActiveLow, Exclusive, PullDefault, 0x0000,
-              "\\_SB_.PCI0.USB0.RHUB.CP21.GPIO", 0x00, ResourceConsumer, ,
-              )
-              {   // Pin list
-                  0x0002
-              }
-      })
-      Method(_CRS, 0x0, NotSerialized)
-      {
-        Return (ConcatenateResTemplate (SBFB, SBFG))
-      }
-
-      Method(_DSM, 0x4, Serialized)
-      {
-        // DSM UUID
-        switch (ToBuffer (Arg0))
-        {
-          // ACPI DSM UUID for HIDI2C
-          case (ToUUID ("3CDFF6F7-4267-4555-AD05-B30A3D8938DE"))
-          {
-              // DSM Function
-              switch (ToInteger (Arg2))
-              {
-                  // Function 0: Query function, return based on revision
-                  case(0)
-                  {
-                      // DSM Revision
-                      switch (ToInteger (Arg1))
-                      {
-                          // Revision 1: Function 1 supported
-                          case (1)
-                          {
-                              Return (Buffer (One) { 0x03 })
-                          }
-
-                          default
-                          {
-                              // Revision 2+: no functions supported
-                              Return (Buffer (One) { 0x00 })
-                          }
-                      }
-                  }
-
-                  // Function 1 : HID Function
-                  case(1)
-                  {
-                      // HID Descriptor Address
-                      Return (0x0020)
-                  }
-
-                  default
-                  {
-                      // Functions 2+: not supported
-                      Return (Buffer (One) { 0x00 })
-                  }
-              }
-          }
-
-          default
-          {
-              // No other GUIDs supported
-              Return (Buffer (One) { 0x00 })
-          }
-        }
-      }
-    }
-  }
-}
----
-
-This almost works. Almost because the I2C device is correctly created,
-but I have an issue with the GpioInt call which is not properly set by
-the kernel and which returns -EDEFER. /o\ 
-
-> > With this all said -- I noticed iasl prints this statement when trying
-> > to create a node with a lowercase name:
-> > "At least one lower case letter found in NameSeg, ASL is case
-> > insensitive - converting to upper case (GPIO)"
+> 						---------
+> 					    	|WiFi    |
+> 					    --> |2G radio|
+> 					    | 	---------
+> ------	Start Q6     		-------     |
+> |    |	------------------>     |     |     |
+> |    |  Start WCSS PD1 (2G)   	|     |	    |
+> |APSS|	----------------------->|QDSP6|-----|
+> |    |	Start WCSS PD1 (5G)	|     |
+> |    |	----------------------->|     |-----|
+> ------		     		-------     |
+> 					    |
+> 					    |	-----------
+> 					    |-->|WiFi	  |
+> 						|5G radio |
+> 						-----------
+> According to linux terminology, here consider Q6 as root
+> i.e it provide all services, WCSS (wifi radio's) as user
+> i.e it uses services provided by root.
 > 
-> Yes, because it should be in the upper case.
+> Since Q6 root & WCSS user pd's able to communicate with
+> APSS individually, multipd remoteproc driver registers
+> each PD with rproc framework. Here clients (Wifi host drivers)
+> intrested on WCSS PD rproc, so multipd driver start's root
+> pd in the context of WCSS user pd rproc start. Similarly
+> on down path, root pd will be stopped after wcss user pd
+> stopped.
 > 
-> > I wonder if this suggests that adding a call to toupper() to
-> > acpi_fwnode_get_named_child_node would be
-> > an appropriate solution for the node name casing issue....
+> Here WCSS(user) PD is dependent on Q6(root) PD, so first
+> q6 pd should be up before wcss pd. After wcss pd goes down,
+> q6 pd should be turned off.
 > 
-> I dunno. You need to ask in the linux-acpi@ mailing list.
-> To me this is corner case that can't be easily solved
-> (because two different specifications treat it differently.
+> rproc->ops->start(userpd_rproc) {
+> 	/* Boot root pd rproc */
+> 	rproc_boot(upd_dev->parent);
+> 	---
+> 	/* user pd rproc start sequence */
+> 	---
+> 	---
+> }
+> With this way we ensure that root pd brought up before userpd.
 > 
-> You also need to ask DT people about capital letters there.
-> And my guts tell me that it's probably also carved in the spec
-> as "must be lower case" or alike.
+> rproc->ops->stop(userpd_rproc) {
+> 	---
+> 	---
+> 	/* user pd rproc stop sequence */
+> 	---
+> 	---
+> 	/* Shutdown root pd rproc */
+> 	rproc_shutdown(upd_dev->parent);
+> }
+> After userpd rproc stops, root pd rproc will be stopped.
+> IPQ5018, IPQ9574 supports multipd remoteproc driver.
+> 
+> Signed-off-by: Manikanta Mylavarapu <quic_mmanikan@quicinc.com>
+> ---
+>   drivers/firmware/qcom_scm.c            | 114 +++++
+>   drivers/firmware/qcom_scm.h            |   6 +
+>   drivers/remoteproc/Kconfig             |  20 +
+>   drivers/remoteproc/Makefile            |   1 +
+>   drivers/remoteproc/qcom_common.c       |  23 +
+>   drivers/remoteproc/qcom_common.h       |   1 +
+>   drivers/remoteproc/qcom_q6v5.c         |  41 +-
+>   drivers/remoteproc/qcom_q6v5.h         |  15 +-
+>   drivers/remoteproc/qcom_q6v5_adsp.c    |   5 +-
+>   drivers/remoteproc/qcom_q6v5_mpd.c     | 668 +++++++++++++++++++++++++
+>   drivers/remoteproc/qcom_q6v5_mss.c     |   4 +-
+>   drivers/remoteproc/qcom_q6v5_pas.c     |   3 +-
+>   drivers/soc/qcom/mdt_loader.c          | 314 ++++++++++++
+>   include/linux/firmware/qcom/qcom_scm.h |   3 +
+>   include/linux/soc/qcom/mdt_loader.h    |  19 +
+>   15 files changed, 1228 insertions(+), 9 deletions(-)
+>   create mode 100644 drivers/remoteproc/qcom_q6v5_mpd.c
+> 
+> diff --git a/drivers/firmware/qcom_scm.c b/drivers/firmware/qcom_scm.c
+> index d88c5f14bd54..d69560963353 100644
+> --- a/drivers/firmware/qcom_scm.c
+> +++ b/drivers/firmware/qcom_scm.c
+> @@ -654,6 +654,120 @@ int qcom_scm_pas_shutdown(u32 peripheral)
+>   }
+>   EXPORT_SYMBOL(qcom_scm_pas_shutdown);
+>   
+> +/**
+> + * qti_scm_int_radio_powerup - Bring up internal radio userpd
+> + *
+> + * @peripheral:	peripheral id
+> + *
+> + * Return 0 on success.
+> + */
+> +int qti_scm_int_radio_powerup(u32 peripheral)
+> +{
 
-FWIW while trying to enable this, at some point I named the I2C and the
-GPIO entries "I2C0" and "GPI0" (with the number '0', not the letter
-'o'), and it was not working as you would expect.
+qcom instead and in other places too.
 
-It is commonly accepted in the ACPI world that the names do not carry
-meaning AFAICT, and so I think I agree with Andy's initial comment
-regarding using indexes, not names to also fetch the I2C and GPIO nodes.
-You can probably have a fallback mechanism for when "i2c" is not
-present, or simply check if you are in DT or not and use the names only
-if we are in DT.
+> +	int ret;
+> +	struct qcom_scm_desc desc = {
+> +		.svc = QCOM_SCM_PD_LOAD_SVC_ID,
+> +		.cmd = QCOM_SCM_INT_RAD_PWR_UP_CMD_ID,
+> +		.arginfo = QCOM_SCM_ARGS(1),
+> +		.args[0] = peripheral,
+> +		.owner = ARM_SMCCC_OWNER_SIP,
+> +	};
+> +	struct qcom_scm_res res;
+> +
+> +	ret = qcom_scm_clk_enable();
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret = qcom_scm_bw_enable();
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret = qcom_scm_call(__scm->dev, &desc, &res);
+> +	qcom_scm_bw_disable();
+> +	qcom_scm_clk_disable();
+> +
+> +	return ret ? : res.result[0];
+> +}
+> +EXPORT_SYMBOL(qti_scm_int_radio_powerup);
+> +
+> +/**
+> + * qti_scm_int_radio_powerdown() - Shut down internal radio userpd
+> + *
+> + * @peripheral: peripheral id
+> + *
+> + * Returns 0 on success.
+> + */
+> +int qti_scm_int_radio_powerdown(u32 peripheral)
+> +{
+> +	int ret;
+> +	struct qcom_scm_desc desc = {
+> +		.svc = QCOM_SCM_PD_LOAD_SVC_ID,
+> +		.cmd = QCOM_SCM_INT_RAD_PWR_DN_CMD_ID,
+> +		.arginfo = QCOM_SCM_ARGS(1),
+> +		.args[0] = peripheral,
+> +		.owner = ARM_SMCCC_OWNER_SIP,
+> +	};
+> +	struct qcom_scm_res res;
+> +
+> +	ret = qcom_scm_clk_enable();
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret = qcom_scm_bw_enable();
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret = qcom_scm_call(__scm->dev, &desc, &res);
+> +	qcom_scm_bw_disable();
+> +	qcom_scm_clk_disable();
+> +
+> +	return ret ? : res.result[0];
+> +}
+> +EXPORT_SYMBOL(qti_scm_int_radio_powerdown);
+> +
+> +/**
+> + * qti_scm_pdseg_memcpy_v2() - copy userpd PIL segments data to dma blocks
+> + *
+> + * @peripheral:		peripheral id
+> + * @phno:		program header no
+> + * @dma:		handle of dma region
+> + * @seg_cnt:		no of dma blocks
+> + *
+> + * Returns 0 if trustzone successfully loads userpd PIL segments from dma
+> + * blocks to DDR
+> + */
+> +int qti_scm_pdseg_memcpy_v2(u32 peripheral, int phno, dma_addr_t dma,
+> +			    int seg_cnt)
+> +{
+> +	int ret;
+> +	struct qcom_scm_desc desc = {
+> +		.svc = QCOM_SCM_PD_LOAD_SVC_ID,
+> +		.cmd = QCOM_SCM_PD_LOAD_V2_CMD_ID,
+> +		.arginfo = QCOM_SCM_ARGS(4, QCOM_SCM_VAL, QCOM_SCM_VAL,
+> +						QCOM_SCM_RW, QCOM_SCM_VAL),
+> +		.args[0] = peripheral,
+> +		.args[1] = phno,
+> +		.args[2] = dma,
+> +		.args[3] = seg_cnt,
+> +		.owner = ARM_SMCCC_OWNER_SIP,
+> +	};
+> +	struct qcom_scm_res res;
+> +
+> +	ret = qcom_scm_clk_enable();
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret = qcom_scm_bw_enable();
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret = qcom_scm_call(__scm->dev, &desc, &res);
+> +	qcom_scm_bw_disable();
+> +	qcom_scm_clk_disable();
+> +
+> +	return ret ? : res.result[0];
+> +}
+> +EXPORT_SYMBOL(qti_scm_pdseg_memcpy_v2);
+> +
 
-Thanks a lot to both of you, this will be tremendously helpful to me.
+This patch should be split further.
+btw, this new scm apis should go in as one patch first separately.
 
-Cheers,
-Benjamin
+>   /**
+>    * qcom_scm_pas_supported() - Check if the peripheral authentication service is
+>    *			      available for the given peripherial
+> diff --git a/drivers/firmware/qcom_scm.h b/drivers/firmware/qcom_scm.h
+> index e6e512bd57d1..99e3ab2f1986 100644
+> --- a/drivers/firmware/qcom_scm.h
+> +++ b/drivers/firmware/qcom_scm.h
+> @@ -132,6 +132,12 @@ extern int scm_legacy_call(struct device *dev, const struct qcom_scm_desc *desc,
+>   #define QCOM_SCM_SMMU_CONFIG_ERRATA1		0x03
+>   #define QCOM_SCM_SMMU_CONFIG_ERRATA1_CLIENT_ALL	0x02
+>   
+> +#define QCOM_SCM_PD_LOAD_SVC_ID			0x2
+> +#define QCOM_SCM_PD_LOAD_CMD_ID			0x16
+> +#define QCOM_SCM_PD_LOAD_V2_CMD_ID		0x19
+> +#define QCOM_SCM_INT_RAD_PWR_UP_CMD_ID		0x17
+> +#define QCOM_SCM_INT_RAD_PWR_DN_CMD_ID		0x18
+> +
+>   #define QCOM_SCM_SVC_WAITQ			0x24
+>   #define QCOM_SCM_WAITQ_RESUME			0x02
+>   #define QCOM_SCM_WAITQ_GET_WQ_CTX		0x03
+> diff --git a/drivers/remoteproc/Kconfig b/drivers/remoteproc/Kconfig
+> index a850e9f486dd..44af5c36f67e 100644
+> --- a/drivers/remoteproc/Kconfig
+> +++ b/drivers/remoteproc/Kconfig
+> @@ -234,6 +234,26 @@ config QCOM_Q6V5_PAS
+>   	  CDSP (Compute DSP), MPSS (Modem Peripheral SubSystem), and
+>   	  SLPI (Sensor Low Power Island).
+>   
+> +config QCOM_Q6V5_MPD
+> +	tristate "Qualcomm Hexagon based MPD model Peripheral Image Loader"
+> +	depends on OF && ARCH_QCOM
+> +	depends on QCOM_SMEM
+> +	depends on RPMSG_QCOM_SMD || RPMSG_QCOM_SMD=n
+> +	depends on RPMSG_QCOM_GLINK_SMEM || RPMSG_QCOM_GLINK_SMEM=n
+> +	depends on QCOM_SYSMON || QCOM_SYSMON=n
+> +	depends on RPMSG_QCOM_GLINK || RPMSG_QCOM_GLINK=n
+> +	depends on QCOM_AOSS_QMP || QCOM_AOSS_QMP=n
+> +	select MFD_SYSCON
+> +	select QCOM_MDT_LOADER
+> +	select QCOM_PIL_INFO
+> +	select QCOM_Q6V5_COMMON
+> +	select QCOM_RPROC_COMMON
+> +	select QCOM_SCM
+> +	help
+> +	  Say y here to support the Qualcomm Secure Peripheral Image Loader
+> +	  for the Hexagon based MultiPD model remote processors on e.g. IPQ5018.
+> +	  This is trustZone wireless subsystem.
+> +
+>   config QCOM_Q6V5_WCSS
+>   	tristate "Qualcomm Hexagon based WCSS Peripheral Image Loader"
+>   	depends on OF && ARCH_QCOM
+> diff --git a/drivers/remoteproc/Makefile b/drivers/remoteproc/Makefile
+> index 91314a9b43ce..b64051080ec1 100644
+> --- a/drivers/remoteproc/Makefile
+> +++ b/drivers/remoteproc/Makefile
+> @@ -25,6 +25,7 @@ obj-$(CONFIG_QCOM_PIL_INFO)		+= qcom_pil_info.o
+>   obj-$(CONFIG_QCOM_RPROC_COMMON)		+= qcom_common.o
+>   obj-$(CONFIG_QCOM_Q6V5_COMMON)		+= qcom_q6v5.o
+>   obj-$(CONFIG_QCOM_Q6V5_ADSP)		+= qcom_q6v5_adsp.o
+> +obj-$(CONFIG_QCOM_Q6V5_MPD)		+= qcom_q6v5_mpd.o
+>   obj-$(CONFIG_QCOM_Q6V5_MSS)		+= qcom_q6v5_mss.o
+>   obj-$(CONFIG_QCOM_Q6V5_PAS)		+= qcom_q6v5_pas.o
+>   obj-$(CONFIG_QCOM_Q6V5_WCSS)		+= qcom_q6v5_wcss.o
+> diff --git a/drivers/remoteproc/qcom_common.c b/drivers/remoteproc/qcom_common.c
+> index a0d4238492e9..b72fbda02242 100644
+> --- a/drivers/remoteproc/qcom_common.c
+> +++ b/drivers/remoteproc/qcom_common.c
+> @@ -510,5 +510,28 @@ void qcom_remove_ssr_subdev(struct rproc *rproc, struct qcom_rproc_ssr *ssr)
+>   }
+>   EXPORT_SYMBOL_GPL(qcom_remove_ssr_subdev);
+>   
+> +/**
+> + * qcom_get_pd_asid() - get the pd asid number from DT node
+> + * @node:	device tree node
+> + *
+> + * Returns asid if node name has 'pd' string
+> + */
+> +s8 qcom_get_pd_asid(struct device_node *node)
+> +{
+> +	char *str;
+> +	u8 pd_asid;
+> +
+> +	if (!node)
+> +		return -EINVAL;
+> +
+> +	str = strstr(node->name, "pd");
+> +	if (!str)
+> +		return 0;
+> +
+> +	str += strlen("pd");
+> +	return kstrtos8(str, 10, &pd_asid) ? -EINVAL : pd_asid;
+> +}
+> +EXPORT_SYMBOL(qcom_get_pd_asid);
+> +
+>   MODULE_DESCRIPTION("Qualcomm Remoteproc helper driver");
+>   MODULE_LICENSE("GPL v2");
+> diff --git a/drivers/remoteproc/qcom_common.h b/drivers/remoteproc/qcom_common.h
+> index 9ef4449052a9..9f3fb11224aa 100644
+> --- a/drivers/remoteproc/qcom_common.h
+> +++ b/drivers/remoteproc/qcom_common.h
+> @@ -75,5 +75,6 @@ static inline bool qcom_sysmon_shutdown_acked(struct qcom_sysmon *sysmon)
+>   	return false;
+>   }
+>   #endif
+> +s8 qcom_get_pd_asid(struct device_node *node);
+>   
+>   #endif
+> diff --git a/drivers/remoteproc/qcom_q6v5.c b/drivers/remoteproc/qcom_q6v5.c
+> index 192c7aa0e39e..b88bf3a8e53b 100644
+> --- a/drivers/remoteproc/qcom_q6v5.c
+> +++ b/drivers/remoteproc/qcom_q6v5.c
+> @@ -118,7 +118,7 @@ static irqreturn_t q6v5_wdog_interrupt(int irq, void *data)
+>   	return IRQ_HANDLED;
+>   }
+>   
+> -static irqreturn_t q6v5_fatal_interrupt(int irq, void *data)
+> +irqreturn_t q6v5_fatal_interrupt(int irq, void *data)
+>   {
+>   	struct qcom_q6v5 *q6v5 = data;
+>   	size_t len;
+> @@ -139,7 +139,7 @@ static irqreturn_t q6v5_fatal_interrupt(int irq, void *data)
+>   	return IRQ_HANDLED;
+>   }
+>   
+> -static irqreturn_t q6v5_ready_interrupt(int irq, void *data)
+> +irqreturn_t q6v5_ready_interrupt(int irq, void *data)
+>   {
+>   	struct qcom_q6v5 *q6v5 = data;
+>   
+> @@ -183,7 +183,16 @@ static irqreturn_t q6v5_handover_interrupt(int irq, void *data)
+>   	return IRQ_HANDLED;
+>   }
+>   
+> -static irqreturn_t q6v5_stop_interrupt(int irq, void *data)
+> +irqreturn_t q6v5_spawn_interrupt(int irq, void *data)
+> +{
+> +	struct qcom_q6v5 *q6v5 = data;
+> +
+> +	complete(&q6v5->spawn_done);
+> +
+> +	return IRQ_HANDLED;
+> +}
+> +
+> +irqreturn_t q6v5_stop_interrupt(int irq, void *data)
+>   {
+>   	struct qcom_q6v5 *q6v5 = data;
+>   
+> @@ -220,6 +229,28 @@ int qcom_q6v5_request_stop(struct qcom_q6v5 *q6v5, struct qcom_sysmon *sysmon)
+>   }
+>   EXPORT_SYMBOL_GPL(qcom_q6v5_request_stop);
+>   
+> +/**
+> + * qcom_q6v5_request_spawn() - request the remote processor to spawn
+> + * @q6v5:      reference to qcom_q6v5 context
+> + *
+> + * Return: 0 on success, negative errno on failure
+> + */
+> +int qcom_q6v5_request_spawn(struct qcom_q6v5 *q6v5)
+> +{
+> +	int ret;
+> +
+> +	ret = qcom_smem_state_update_bits(q6v5->spawn_state,
+> +					  BIT(q6v5->spawn_bit), BIT(q6v5->spawn_bit));
+> +
+> +	ret = wait_for_completion_timeout(&q6v5->spawn_done, 5 * HZ);
+> +
+> +	qcom_smem_state_update_bits(q6v5->spawn_state,
+> +				    BIT(q6v5->spawn_bit), 0);
+> +
+> +	return ret == 0 ? -ETIMEDOUT : 0;
+> +}
+> +EXPORT_SYMBOL_GPL(qcom_q6v5_request_spawn);
+> +
+>   /**
+>    * qcom_q6v5_panic() - panic handler to invoke a stop on the remote
+>    * @q6v5:	reference to qcom_q6v5 context
+> @@ -250,7 +281,8 @@ EXPORT_SYMBOL_GPL(qcom_q6v5_panic);
+>    * Return: 0 on success, negative errno on failure
+>    */
+>   int qcom_q6v5_init(struct qcom_q6v5 *q6v5, struct platform_device *pdev,
+> -		   struct rproc *rproc, int crash_reason, const char *load_state,
+> +		   struct rproc *rproc, int remote_id, int crash_reason,
+> +		   const char *load_state,
+>   		   void (*handover)(struct qcom_q6v5 *q6v5))
+>   {
+>   	int ret;
+> @@ -258,6 +290,7 @@ int qcom_q6v5_init(struct qcom_q6v5 *q6v5, struct platform_device *pdev,
+>   	q6v5->rproc = rproc;
+>   	q6v5->dev = &pdev->dev;
+>   	q6v5->crash_reason = crash_reason;
+> +	q6v5->remote_id = remote_id;
+>   	q6v5->handover = handover;
+>   
+>   	init_completion(&q6v5->start_done);
+> diff --git a/drivers/remoteproc/qcom_q6v5.h b/drivers/remoteproc/qcom_q6v5.h
+> index 5a859c41896e..d00568339d46 100644
+> --- a/drivers/remoteproc/qcom_q6v5.h
+> +++ b/drivers/remoteproc/qcom_q6v5.h
+> @@ -18,22 +18,29 @@ struct qcom_q6v5 {
+>   
+>   	struct qcom_smem_state *state;
+>   	struct qmp *qmp;
+> +	struct qcom_smem_state *shutdown_state;
+> +	struct qcom_smem_state *spawn_state;
+>   
+>   	struct icc_path *path;
+>   
+>   	unsigned stop_bit;
+> +	unsigned shutdown_bit;
+> +	unsigned spawn_bit;
+>   
+>   	int wdog_irq;
+>   	int fatal_irq;
+>   	int ready_irq;
+>   	int handover_irq;
+>   	int stop_irq;
+> +	int spawn_irq;
+>   
+>   	bool handover_issued;
+>   
+>   	struct completion start_done;
+>   	struct completion stop_done;
+> +	struct completion spawn_done;
+>   
+> +	int remote_id;
+>   	int crash_reason;
+>   
+>   	bool running;
+> @@ -43,14 +50,20 @@ struct qcom_q6v5 {
+>   };
+>   
+>   int qcom_q6v5_init(struct qcom_q6v5 *q6v5, struct platform_device *pdev,
+> -		   struct rproc *rproc, int crash_reason, const char *load_state,
+> +		   struct rproc *rproc, int remote_id, int crash_reason,
+> +		   const char *load_state,
+>   		   void (*handover)(struct qcom_q6v5 *q6v5));
+>   void qcom_q6v5_deinit(struct qcom_q6v5 *q6v5);
+>   
+>   int qcom_q6v5_prepare(struct qcom_q6v5 *q6v5);
+>   int qcom_q6v5_unprepare(struct qcom_q6v5 *q6v5);
+>   int qcom_q6v5_request_stop(struct qcom_q6v5 *q6v5, struct qcom_sysmon *sysmon);
+> +int qcom_q6v5_request_spawn(struct qcom_q6v5 *q6v5);
+>   int qcom_q6v5_wait_for_start(struct qcom_q6v5 *q6v5, int timeout);
+>   unsigned long qcom_q6v5_panic(struct qcom_q6v5 *q6v5);
+> +irqreturn_t q6v5_fatal_interrupt(int irq, void *data);
+> +irqreturn_t q6v5_ready_interrupt(int irq, void *data);
+> +irqreturn_t q6v5_spawn_interrupt(int irq, void *data);
+> +irqreturn_t q6v5_stop_interrupt(int irq, void *data);
 
-[1] https://www.kernel.org/doc/html/latest/admin-guide/acpi/ssdt-overlays.html#loading-acpi-ssdts-from-initrd
+Even this also you can keep it as a separate preparatory patch to pull
+out the common functions.
 
+>   
+>   #endif
+> diff --git a/drivers/remoteproc/qcom_q6v5_adsp.c b/drivers/remoteproc/qcom_q6v5_adsp.c
+> index 08d8dad22ca7..bf8909ad5ff5 100644
+> --- a/drivers/remoteproc/qcom_q6v5_adsp.c
+> +++ b/drivers/remoteproc/qcom_q6v5_adsp.c
+> @@ -733,8 +733,9 @@ static int adsp_probe(struct platform_device *pdev)
+>   	if (ret)
+>   		goto disable_pm;
+>   
+> -	ret = qcom_q6v5_init(&adsp->q6v5, pdev, rproc, desc->crash_reason_smem,
+> -			     desc->load_state, qcom_adsp_pil_handover);
+> +	ret = qcom_q6v5_init(&adsp->q6v5, pdev, rproc, QCOM_SMEM_HOST_ANY,
+> +			     desc->crash_reason_smem, desc->load_state,
+> +			     qcom_adsp_pil_handover);
+>   	if (ret)
+>   		goto disable_pm;
+>   
+> diff --git a/drivers/remoteproc/qcom_q6v5_mpd.c b/drivers/remoteproc/qcom_q6v5_mpd.c
+> new file mode 100644
+> index 000000000000..853aa3bc5859
+> --- /dev/null
+> +++ b/drivers/remoteproc/qcom_q6v5_mpd.c
+> @@ -0,0 +1,668 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * Copyright (C) 2016-2018 Linaro Ltd.
+> + * Copyright (C) 2014 Sony Mobile Communications AB
+> + * Copyright (c) 2012-2018, 2021 The Linux Foundation. All rights reserved.
+> + */
+> +#include <linux/clk.h>
+> +#include <linux/delay.h>
+> +#include <linux/io.h>
+> +#include <linux/iopoll.h>
+> +#include <linux/kernel.h>
+> +#include <linux/module.h>
+> +#include <linux/of_address.h>
+> +#include <linux/of_device.h>
+> +#include <linux/of_reserved_mem.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/reset.h>
+> +#include <linux/soc/qcom/mdt_loader.h>
+> +#include <linux/soc/qcom/smem.h>
+> +#include <linux/soc/qcom/smem_state.h>
+> +#include <linux/firmware/qcom/qcom_scm.h>
+> +#include <linux/interrupt.h>
+
+  Alphabetical order.
+
+Regards,
+  Sricharan
