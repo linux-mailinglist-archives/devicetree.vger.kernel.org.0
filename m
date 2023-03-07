@@ -2,180 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8DB526AED9A
-	for <lists+devicetree@lfdr.de>; Tue,  7 Mar 2023 19:05:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7FC936AEEAF
+	for <lists+devicetree@lfdr.de>; Tue,  7 Mar 2023 19:14:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229874AbjCGSF5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Mar 2023 13:05:57 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37320 "EHLO
+        id S232489AbjCGSOh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Mar 2023 13:14:37 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56964 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229972AbjCGSFh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Mar 2023 13:05:37 -0500
-Received: from mail-oa1-x36.google.com (mail-oa1-x36.google.com [IPv6:2001:4860:4864:20::36])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 78FCEA1012;
-        Tue,  7 Mar 2023 09:58:38 -0800 (PST)
-Received: by mail-oa1-x36.google.com with SMTP id 586e51a60fabf-176b48a9a05so8487997fac.0;
-        Tue, 07 Mar 2023 09:58:38 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112; t=1678211915;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:sender:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=t7Dj956z7zlWgar9S6Lis3J9Q3P6kOtz+RnDkzL7hwk=;
-        b=JH9f3ubVIpHZlVZS3/FdKRZy7OFbB04pOcOdkX6NzYHugyQUvy7Cm7DCPJAVMKZDbQ
-         xR/mBDW0v5HctbFTZ4GNx+6iYIVKcescKxzw3s2GnA7wfl5NvlFuc8jtmTqZdu18Y473
-         mOW7cQvlrpI1u+5szD2fA4zt0g1xbtP6pqRz/3/XDy6XIowNdMBWM4143O2PElXmYKmw
-         Gcv1b0ZrCA5xN4xkgaQXSmMWo5Sf0REnWVyeQvPnZdMdPsDlWqizPYF0Vrc3PCbEdfD6
-         q9+8qIUREhTuoHHp1hBJLkj0M/61Xn3qYkvCJjcBXnVJkiuvDLcF88LjqK/PfUEZiqSw
-         A1fw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678211915;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:sender:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=t7Dj956z7zlWgar9S6Lis3J9Q3P6kOtz+RnDkzL7hwk=;
-        b=E/VYK5F+zHviSS4GUvdFDJt4tHPVQwGeAVoaHr9Uc7YWXWAsFW+TNOf6Mq+yjHA0Gj
-         Uup4VAT2BXsczEDt1kEJwlTDEy1C34QV7pejksm5+OT7W4EtoAt4/qDewlYvKmIGhU8B
-         zbyit4SHkJta4HdnROlmDEq0iGCHIYP+t2xPYokSnExGP6gK/ZHDGBTHcVcD0PWZtQPk
-         2tPxDlc3UnXLiry/c8kfCZJlthnG2QbypqzsK2aCugYzvpwA4QJdNPw4hNWU8AzgCbuF
-         fqTlZdT1AaeNavmSc5gMiNgJdTbu/nc2fL6VkfPITi5h0oxaBSG8reQfC5N4hVIiewqF
-         wS9w==
-X-Gm-Message-State: AO0yUKXg2MbN7xxm8gqlnODh0ufyCBT1+QPRuZ0L394xgZVyfae0lXJs
-        ugVJa1TXU2g3gMUYljojl4+9/doP3YU=
-X-Google-Smtp-Source: AK7set+8sgZzLXe6OxGMtrBOVojQfoKc7RKmMe8VookJMCejPnhNvEahzce35WEOND5QL/cY1vtyLw==
-X-Received: by 2002:a05:6870:3a06:b0:176:3218:a837 with SMTP id du6-20020a0568703a0600b001763218a837mr7467248oab.16.1678211915625;
-        Tue, 07 Mar 2023 09:58:35 -0800 (PST)
-Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id j6-20020a056870020600b001723f29f6e2sm2073271oad.37.2023.03.07.09.58.34
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 07 Mar 2023 09:58:35 -0800 (PST)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Date:   Tue, 7 Mar 2023 09:58:34 -0800
-From:   Guenter Roeck <linux@roeck-us.net>
-To:     Sergio Paracuellos <sergio.paracuellos@gmail.com>
-Cc:     devicetree@vger.kernel.org, linux-watchdog@vger.kernel.org,
-        wim@linux-watchdog.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org
-Subject: Re: [PATCH v3] dt-bindings: watchdog: migrate rt2880 text bindings
- to YAML
-Message-ID: <96b9712e-3c89-4425-9f34-580ff76aeec9@roeck-us.net>
-References: <20230302085914.2858645-1-sergio.paracuellos@gmail.com>
+        with ESMTP id S232488AbjCGSOT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Mar 2023 13:14:19 -0500
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C352DA8C70;
+        Tue,  7 Mar 2023 10:09:51 -0800 (PST)
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 327I9hk1013901;
+        Tue, 7 Mar 2023 12:09:43 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1678212583;
+        bh=ph2Figx56FATStGHNkxc7u4pO/c/ka4E9KIZKF5CNag=;
+        h=From:To:CC:Subject:Date;
+        b=LgWY0qnnFSsaRswI3N2D0dULwwBvijGiz0S6YXEs4VY3hPizADZAg1+YekIsh8g0y
+         mQRjBEvBDyUKDnzqAe2eS7z7EbaQpqzorCe86TaXPO3CMsaYafGZBgJtFZdIlQcPjT
+         6McZS8XjQL5fdovs7F0rii2y0npyFSx/0DfMDG4U=
+Received: from DLEE100.ent.ti.com (dlee100.ent.ti.com [157.170.170.30])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 327I9hW6124469
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Tue, 7 Mar 2023 12:09:43 -0600
+Received: from DLEE104.ent.ti.com (157.170.170.34) by DLEE100.ent.ti.com
+ (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Tue, 7
+ Mar 2023 12:09:42 -0600
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE104.ent.ti.com
+ (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
+ Frontend Transport; Tue, 7 Mar 2023 12:09:42 -0600
+Received: from ula0226330.dal.design.ti.com (ileaxei01-snat.itg.ti.com [10.180.69.5])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 327I9gFI025285;
+        Tue, 7 Mar 2023 12:09:42 -0600
+From:   Andrew Davis <afd@ti.com>
+To:     Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
+        Tero Kristo <kristo@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        <linux-arm-kernel@lists.infradead.org>
+CC:     <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        Andrew Davis <afd@ti.com>
+Subject: [PATCH] arm64: dts: ti: k3-j721e-sk: Remove firmware-name override for R5F
+Date:   Tue, 7 Mar 2023 12:09:42 -0600
+Message-ID: <20230307180942.2719-1-afd@ti.com>
+X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230302085914.2858645-1-sergio.paracuellos@gmail.com>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=no
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_PASS,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Mar 02, 2023 at 09:59:14AM +0100, Sergio Paracuellos wrote:
-> Ralink RT2880 Watchdog bindings used text format, so migrate them to YAML.
-> There are some additions to the binding that were not in the original
-> txt file. This binding is used in RT2880, RT3050, RT3352, RT3883, RT5350,
-> and MT7620 SoCs. To properly align binding with driver code we need to add
-> to the schema 'clocks' and 'resets' properties.
-> 
-> Signed-off-by: Sergio Paracuellos <sergio.paracuellos@gmail.com>
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+The firmware name for this core should stay as the default name
+"j7-main-r5f0_0-fw". This is expected to by a symlink to the actual
+firmware file. If one wants to use a different firmware they should
+change where the symlink points. This is usually achieved with
+an update-alternative or other distro specific selection mechanisms.
 
-Reviewed-by: Guenter Roeck <linux@roeck-us.net>
+The actual selection is policy and does not belong in DT.
+Remove this name override.
 
-> ---
-> Changes in v3:
->  - Re-do commit message.
->  - add 'clocks' property and update example using it.
->  - drop 'reset-names'.
->  - Use 'unevaluatedProperties' instead of 'additionalProperties'.
-> 
-> Changes in v2:
->  - Fix reg address and size in example.
-> 
->  .../bindings/watchdog/ralink,rt2880-wdt.yaml  | 46 +++++++++++++++++++
->  .../bindings/watchdog/rt2880-wdt.txt          | 18 --------
->  2 files changed, 46 insertions(+), 18 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/watchdog/ralink,rt2880-wdt.yaml
->  delete mode 100644 Documentation/devicetree/bindings/watchdog/rt2880-wdt.txt
-> 
-> diff --git a/Documentation/devicetree/bindings/watchdog/ralink,rt2880-wdt.yaml b/Documentation/devicetree/bindings/watchdog/ralink,rt2880-wdt.yaml
-> new file mode 100644
-> index 000000000000..51e00de947e9
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/watchdog/ralink,rt2880-wdt.yaml
-> @@ -0,0 +1,46 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/watchdog/ralink,rt2880-wdt.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Ralink Watchdog Timers
-> +
-> +maintainers:
-> +  - Sergio Paracuellos <sergio.paracuellos@gmail.com>
-> +
-> +allOf:
-> +  - $ref: watchdog.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    const: ralink,rt2880-wdt
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    maxItems: 1
-> +
-> +  resets:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +
-> +unevaluatedProperties: false
-> +
-> +examples:
-> +  - |
-> +    watchdog@100 {
-> +      compatible = "ralink,rt2880-wdt";
-> +      reg = <0x120 0x10>;
-> +      clocks = <&clkref>;
-> +      resets = <&rstctrl 8>;
-> +      interrupt-parent = <&intc>;
-> +      interrupts = <1>;
-> +    };
-> diff --git a/Documentation/devicetree/bindings/watchdog/rt2880-wdt.txt b/Documentation/devicetree/bindings/watchdog/rt2880-wdt.txt
-> deleted file mode 100644
-> index 05b95bfa2a89..000000000000
-> --- a/Documentation/devicetree/bindings/watchdog/rt2880-wdt.txt
-> +++ /dev/null
-> @@ -1,18 +0,0 @@
-> -Ralink Watchdog Timers
-> -
-> -Required properties:
-> -- compatible: must be "ralink,rt2880-wdt"
-> -- reg: physical base address of the controller and length of the register range
-> -
-> -Optional properties:
-> -- interrupts: Specify the INTC interrupt number
-> -
-> -Example:
-> -
-> -	watchdog@120 {
-> -		compatible = "ralink,rt2880-wdt";
-> -		reg = <0x120 0x10>;
-> -
-> -		interrupt-parent = <&intc>;
-> -		interrupts = <1>;
-> -	};
+Signed-off-by: Andrew Davis <afd@ti.com>
+---
+ arch/arm64/boot/dts/ti/k3-j721e-sk.dts | 4 ----
+ 1 file changed, 4 deletions(-)
+
+diff --git a/arch/arm64/boot/dts/ti/k3-j721e-sk.dts b/arch/arm64/boot/dts/ti/k3-j721e-sk.dts
+index 4640d280c85c..f650a7fd66b4 100644
+--- a/arch/arm64/boot/dts/ti/k3-j721e-sk.dts
++++ b/arch/arm64/boot/dts/ti/k3-j721e-sk.dts
+@@ -687,10 +687,6 @@ &wkup_gpio1 {
+ 	status = "disabled";
+ };
+ 
+-&main_r5fss0_core0{
+-	firmware-name = "pdk-ipc/ipc_echo_test_mcu2_0_release_strip.xer5f";
+-};
+-
+ &usb_serdes_mux {
+ 	idle-states = <1>, <1>; /* USB0 to SERDES3, USB1 to SERDES2 */
+ };
+-- 
+2.39.2
+
