@@ -2,129 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 038586AD79B
-	for <lists+devicetree@lfdr.de>; Tue,  7 Mar 2023 07:47:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D05656AD7BB
+	for <lists+devicetree@lfdr.de>; Tue,  7 Mar 2023 07:55:31 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230306AbjCGGry (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Mar 2023 01:47:54 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48728 "EHLO
+        id S230410AbjCGGz2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Mar 2023 01:55:28 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57008 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229483AbjCGGrx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Mar 2023 01:47:53 -0500
-Received: from EUR05-VI1-obe.outbound.protection.outlook.com (mail-vi1eur05on2051.outbound.protection.outlook.com [40.107.21.51])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4A022410BF;
-        Mon,  6 Mar 2023 22:47:51 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=HTDrTqBLhU8Mgiv7//BuXU6OTmkXRk/Z25xO6RxcBOQ1R9IfMplCRysOFhNZ2tgRMthPt1RjOa+K+5yliR9dJUUjqZK6lIgXRWgoFzO3eKx/jdSPP+jP1oM3+ibpsNJOaGdbClxA1cSzpvy/bPuWGoOHYXVeJtmC4DuhPIxTgidylBAEq+qUiy/njDavZOBWz0WNVbYMDr6YC/ZYqmBuQvtqHT5wikWmLRtrxlKKYWiGHH9OyOcAsVamLBUshM0Se+tKkVvpLqpfJd9X/ifk0Kif7/WSJ82uwI04h43upWMp3nMJP3xHL/S2cepFslCOl0DQl7dZP8+FgxEVi/0lAg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=FqYAeHDK5sRPaQ2XGAdQkGDM2mco4Zz/b/NFioZYEzQ=;
- b=d7+5Dq4/GnubPtWTg5CAK9/DZOaNoY2tyt4D4AQyvYcuJF40SkMndwIZYpywArPGmlFQY7G1I2vnzBq6af3uy7cqZKTI82zoziS0x7KqULpq9zjrr8QpLkoVJO95Qpnpe9O3QxXX//qG+yyF8pd5duXosEwt8NW9dEcF0yH0CVY0dfsJGuuFvwsy0VbhN/4L/MaVq4AfavQvKAzTOndcxziLRyfgMwxLyESMR/HpC41MIENjCYVDqxtpmZ6IkQYoYP7Adq84JOdf5dgYcglFY0hw7ndBfHp9dl3u66y/eKy7lXoQprH3xJMTAdS/5KT5da+fJbl7vYR6OcLrANe53w==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=FqYAeHDK5sRPaQ2XGAdQkGDM2mco4Zz/b/NFioZYEzQ=;
- b=M/qHXqcNKEpVJnBRqGh668M6D3Fr0wGg3WwxttXqBFx/cOBaf7J3d5gT3frvSfn/3ZuFdrW6m+MdAz+UXOU4O7jGrJHefyQBSBi5IHIGXsyfJFQKBqTjrNpJ1/2FrfLIu8518BloiDk4ojX1zbd5wc3+PCS/iYCEpyAUXVCqCpg=
-Received: from AM0PR04MB6004.eurprd04.prod.outlook.com (2603:10a6:208:11a::11)
- by PAXPR04MB8592.eurprd04.prod.outlook.com (2603:10a6:102:21b::15) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6156.29; Tue, 7 Mar
- 2023 06:47:48 +0000
-Received: from AM0PR04MB6004.eurprd04.prod.outlook.com
- ([fe80::c2c7:5798:7033:5f87]) by AM0PR04MB6004.eurprd04.prod.outlook.com
- ([fe80::c2c7:5798:7033:5f87%7]) with mapi id 15.20.6156.028; Tue, 7 Mar 2023
- 06:47:47 +0000
-From:   Gaurav Jain <gaurav.jain@nxp.com>
-To:     "Peng Fan (OSS)" <peng.fan@oss.nxp.com>,
-        "herbert@gondor.apana.org.au" <herbert@gondor.apana.org.au>,
-        "davem@davemloft.net" <davem@davemloft.net>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        Horia Geanta <horia.geanta@nxp.com>,
-        Pankaj Gupta <pankaj.gupta@nxp.com>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>
-CC:     "kernel@pengutronix.de" <kernel@pengutronix.de>,
-        "stefan@agner.ch" <stefan@agner.ch>,
-        "linux-crypto@vger.kernel.org" <linux-crypto@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>, Peng Fan <peng.fan@nxp.com>
-Subject: RE: [PATCH 6/9] dt-bindings: crypto: fsl-sec4-snvs: add fsl sec 5.x
- compatible
-Thread-Topic: [PATCH 6/9] dt-bindings: crypto: fsl-sec4-snvs: add fsl sec 5.x
- compatible
-Thread-Index: AQHZS+B6izhEfVoXwkOn0bxXLVGs7q7u6TDw
-Date:   Tue, 7 Mar 2023 06:47:47 +0000
-Message-ID: <AM0PR04MB6004756C673A5141BA0529B6E7B79@AM0PR04MB6004.eurprd04.prod.outlook.com>
-References: <20230301015702.3388458-1-peng.fan@oss.nxp.com>
- <20230301015702.3388458-7-peng.fan@oss.nxp.com>
-In-Reply-To: <20230301015702.3388458-7-peng.fan@oss.nxp.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: AM0PR04MB6004:EE_|PAXPR04MB8592:EE_
-x-ms-office365-filtering-correlation-id: 60188d95-86be-4310-1583-08db1ed7dd1a
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: ICc+yJ3+/6honRe9YT3X1JVsWtcO7K1wS0xgreMcHtqvTCvjxGLSXlYGLVMoFzKWVPHx7l8DJIF7dLIQrbI1f066jOBoNs3myiwhNRA7bC4UcpZad3fLx3fADTRpHJbZ8zFUt6FyMt0wTgydqaz9Znji4GOloJxzVzd9KOqpp463KhoOZhQ+9KvjLwFHkLcbQGglWcIzoM/eDXRAYqfzqrVmTogQEQrTXGCDFSa3BDjEMnyzNYGlY1vOBJtoRmR31V7B1FWq5CNrlpKge4zEHidm9gBA0CYm3g17V5DKPTK3Tz3DoOBa22knvkjXI9LWjtDXgbC6jNqsPEbFgIF0emlz5tOZpKVaQfJS8lkxDxjjP3DjxOCj6TH1pYiDv0Ws4wmYbD7PuCFsA/ndtbR94mB74q4v1qY4s4b61HKOjWZXqPQIdtIYceFcelQpyzcVOMbAw1/WHrOCj7FRVS5+h+sWJHJbzfvv/udzJFMdY1OFXzb3/PFptU/uytwBHwkpXDQhNOrjQkmKll9WqlDbfVBh3fbb+Y1I7CykmYxmjKUmwFazz9XxCa2uqcexuEN7nch68DA29aOa3v5ywY6LdbRgv0KmuKE/UIz13No0Whgnje+vohNxMKkMnilNXBdeuslfik10AymI2IXRO+AO+BfFHzr8+EFTrW2Q1PJ8Wuzd3oP4vtJltb2mc+oFOEVCOL2pHwJiu1Dv0NXq6FZWAg==
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM0PR04MB6004.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230025)(4636009)(376002)(346002)(39860400002)(136003)(396003)(366004)(451199018)(2906002)(38100700002)(52536014)(122000001)(9686003)(186003)(26005)(6506007)(53546011)(55236004)(44832011)(38070700005)(66946007)(64756008)(76116006)(66446008)(66476007)(66556008)(478600001)(8936002)(5660300002)(7416002)(41300700001)(7696005)(71200400001)(55016003)(110136005)(316002)(54906003)(4326008)(8676002)(33656002)(83380400001)(86362001);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?UtutDizrqpTW4dIy87RYCO1zPAsN3LwGGiOAKfSC65aBJWCPAd1IdBXVoyml?=
- =?us-ascii?Q?+ry5hE4+hnDOhsvQQqVokRChCjX9f8GKycgUPgP7L+CSJuAbr0y5v35Np020?=
- =?us-ascii?Q?nhEqpJPbgNVQuKHuPN+7rVWgX3pD1PnyeYtFvsCznBbQ8lRlDl+besCA5GZS?=
- =?us-ascii?Q?9h+wcMxloX7qruO5VMLEXPKbp/WAqlsnOxk+djpq52Z96a11XUkrB8JFWyAY?=
- =?us-ascii?Q?08YvOLocPu6H3DgDrB8gwGgykzjxqK+lCp6txL+E9OqZy+biV8gYUkJjldsa?=
- =?us-ascii?Q?e0t4OWQTmWleiFhVaoIBpt7HsAmOoSQEAPNCV6+pC6VTEfeWFhVv4DdK+24h?=
- =?us-ascii?Q?HLRnjN2c+xW6P3X9q9IKTXys4NgaX1gdLzpC4lvAeL++hhcCBrx+ft2Llo1v?=
- =?us-ascii?Q?xWx3Q3QFAMDhYD8dZlzSyv5nxOdKF7akduZTjgo6V2UD8Fb8JOx2n7P3aIfi?=
- =?us-ascii?Q?NR6ZRzqmP5ZnDZjsPFKNbi76d28zEQ9G4UzMg6zoctdD4kjIgAUkLPhwcDTs?=
- =?us-ascii?Q?IykRTeQvryzq/dJ+eMlVV3gltwVCzY242BD+fKVdwUgbT1F2ZfleTuJ6vBWF?=
- =?us-ascii?Q?H3DvaDRQOPTJEU7YjJaOrRHFxJxZAl4RdDq9KoHYem6PWULrx15sQKZJnjIt?=
- =?us-ascii?Q?e4Uo+cZ0agyRiakun4QRDOHGzY1BZrSSHPUeh9jJWLDHeslums9a5EtrZwkB?=
- =?us-ascii?Q?qhpz1pYEGpxFWBHpY8VjHJWr7/yHkou+92vO/elsmonAib9ro4ED6m6PoFjS?=
- =?us-ascii?Q?7Nf/j4sKCttzSIy46iSSSdt8MDqs55bshiSFT+On2/ESXhFBXJumGs0d6EAc?=
- =?us-ascii?Q?8h26u+qONUklfdsf09QLG2ihUgjuxAzRW2NCByMOKoD9G0RNF9LdLzySNgiW?=
- =?us-ascii?Q?kK4CWvOWbuCRyRooNjH0Qbh5fdR8bZEA3+pyrpR/EBi3cuM22eUVDPUoIAd3?=
- =?us-ascii?Q?eDGFa44xsPWgApi+jEJVD6LHuFDrxiNsE2P3Ze94qyCGP05IGXM+qnHA6JOG?=
- =?us-ascii?Q?/O3dqDh7iVQ+7agnHK75rIhSS+N2PVz+/lPDhAcPeOYOThp7iQUA1qayCSll?=
- =?us-ascii?Q?YBoSjD0VD1J4oypRMeYTVH/+Sf6kslTygnoUwVuTQjhZ9mDL5sZ2ZsQcHcJa?=
- =?us-ascii?Q?1df6EM+B9kWEWVg8aSTmvYAPXs97P1t1ccucy2QMTayQB7PQfYbBO0pvOyT+?=
- =?us-ascii?Q?dyZt4exK3dDvFDYrYz8/1++xTYSOOQvpZ1M9VopuifEiBD61wjbxZwrk7TqP?=
- =?us-ascii?Q?q8wqNWnUlk8NKQQugou83Q9QJ2ro5aNYa+gWz/0SB/czSE6hOJvgFj0pM/k+?=
- =?us-ascii?Q?cC5Bl9VUIuYJfmdoNhXJkcOMmrUlAPAVd5p8VnVw/0T3RZll0gGz73MCH5kR?=
- =?us-ascii?Q?nJNREJ0J7gaqSrYB/+tLdPTCU+/0k3l4LW5kzEjPXp80kSfREghIyJIuOqoZ?=
- =?us-ascii?Q?izAFpmPqPXqaU7btr3Rpm+bosvOBtRvxeX/sJz8FkAslJEKf+eXMK7id5FUG?=
- =?us-ascii?Q?xwMYF+BpQ0s4Y2vaGp3gpQuWip5FzXZSHGeBIPDAQlfKBsJvtB8wMrgc6EYA?=
- =?us-ascii?Q?Uz4xeX5uUPX1wd6x+X927x0kqbb9EU4MzQ3X/4L0?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+        with ESMTP id S229933AbjCGGz1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Mar 2023 01:55:27 -0500
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7FD4E80E22;
+        Mon,  6 Mar 2023 22:55:25 -0800 (PST)
+Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3272qbnm012056;
+        Tue, 7 Mar 2023 06:55:19 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : from : subject : to : cc : references : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=6qyG8W66Fue/dlI7Zw9rSFpro2Vquj/791dofXZi4jY=;
+ b=kfmSUZ/wzqLBnSpk87jdaK97tdlkAxW2VM0Ke794GDEeJJfXWRKOFJtMHK7ht/RryCuf
+ +3wffB7JsX8mTs/b5TcTpTgiwVk5/uT2Gvr/6dqLB04aoP4ZHrZbge53kyXX7iPMixzI
+ NfEzB3h2Xt/H8Rq6GsaE5u1eBVeM6BlJQpGzAjAYIepke/E3jWVlqnJzw7Fv6M4Kk+DY
+ FdKacPlknlt0fO+Y3QIWrG9bnBDARcihCiF7A0K/1Iv48OsK8qbLbl93ZjsMN0Ru88RG
+ qXn2xLz1W//NYt3mD4/+z2a6ewXWYMRk5xZ2yVVvfrzc7l5MlYIf5mxd6DQg/JM2J3kD Cw== 
+Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3p5usx0pa9-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 07 Mar 2023 06:55:19 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+        by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3276tHZ1032531
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 7 Mar 2023 06:55:18 GMT
+Received: from [10.216.11.93] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.41; Mon, 6 Mar 2023
+ 22:55:12 -0800
+Message-ID: <751e5129-3c11-0156-719e-3fe996a149be@quicinc.com>
+Date:   Tue, 7 Mar 2023 12:25:04 +0530
 MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: AM0PR04MB6004.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 60188d95-86be-4310-1583-08db1ed7dd1a
-X-MS-Exchange-CrossTenant-originalarrivaltime: 07 Mar 2023 06:47:47.9177
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: eN8MkPdbRT5qGgMXDRWntHMzOBy9JIRwKsw7kvH3G0vEFAZF+pdwlKQWWkFOmsO3wQcqXFYHVgkjsvMGi4McBw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PAXPR04MB8592
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.1
+From:   Devi Priya <quic_devipriy@quicinc.com>
+Subject: Re: [PATCH V2 4/6] regulator: qcom_smd: Add support to define the
+ bootup voltage
+To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Mark Brown <broonie@kernel.org>
+CC:     <agross@kernel.org>, <andersson@kernel.org>, <lgirdwood@gmail.com>,
+        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <linux-arm-msm@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <quic_srichara@quicinc.com>,
+        <quic_gokulsri@quicinc.com>, <quic_sjaganat@quicinc.com>,
+        <quic_kathirav@quicinc.com>, <quic_arajkuma@quicinc.com>,
+        <quic_anusha@quicinc.com>, <quic_ipkumar@quicinc.com>
+References: <20230217142030.16012-1-quic_devipriy@quicinc.com>
+ <20230217142030.16012-5-quic_devipriy@quicinc.com>
+ <907628d1-b88d-5ac6-ed9d-7f63e2875738@linaro.org>
+ <Y/aeu5ua7cY5cGON@sirena.org.uk>
+ <39f73580-f263-de0e-6819-89c3f4c75c3a@quicinc.com>
+ <8ce07abd-2d02-69d2-8dc6-fe11525aecda@linaro.org>
+ <11b05b9f-b969-6648-2204-2da5f8465c96@quicinc.com>
+Content-Language: en-US
+In-Reply-To: <11b05b9f-b969-6648-2204-2da5f8465c96@quicinc.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: N850cjBQg4iZRhnlJHKtCfuPrcCiZdeV
+X-Proofpoint-GUID: N850cjBQg4iZRhnlJHKtCfuPrcCiZdeV
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.219,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
+ definitions=2023-03-07_02,2023-03-06_01,2023-02-09_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0 spamscore=0
+ clxscore=1015 priorityscore=1501 mlxscore=0 bulkscore=0 impostorscore=0
+ phishscore=0 adultscore=0 mlxlogscore=999 suspectscore=0
+ lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2212070000 definitions=main-2303070061
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,URIBL_BLOCKED autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -133,48 +92,68 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 
 
-> -----Original Message-----
-> From: Peng Fan (OSS) <peng.fan@oss.nxp.com>
-> Sent: Wednesday, March 1, 2023 7:27 AM
-> To: herbert@gondor.apana.org.au; davem@davemloft.net;
-> robh+dt@kernel.org; krzysztof.kozlowski+dt@linaro.org; Horia Geanta
-> <horia.geanta@nxp.com>; Pankaj Gupta <pankaj.gupta@nxp.com>; Gaurav Jain
-> <gaurav.jain@nxp.com>; shawnguo@kernel.org; s.hauer@pengutronix.de
-> Cc: kernel@pengutronix.de; stefan@agner.ch; linux-crypto@vger.kernel.org;
-> devicetree@vger.kernel.org; linux-kernel@vger.kernel.org; linux-arm-
-> kernel@lists.infradead.org; Peng Fan <peng.fan@nxp.com>
-> Subject: [PATCH 6/9] dt-bindings: crypto: fsl-sec4-snvs: add fsl sec 5.x
-> compatible
->=20
-> From: Peng Fan <peng.fan@nxp.com>
->=20
-> Add fsl sec 5.x compatible, which is used by layerscape SoCs.
-I can see sec-v5.2-mon, sec-v5.3-mon for Qoriq.
-
-Regards
-Gaurav
->=20
-> Signed-off-by: Peng Fan <peng.fan@nxp.com>
-> ---
->  Documentation/devicetree/bindings/crypto/fsl-sec4-snvs.yaml | 4 ++++
->  1 file changed, 4 insertions(+)
->=20
-> diff --git a/Documentation/devicetree/bindings/crypto/fsl-sec4-snvs.yaml
-> b/Documentation/devicetree/bindings/crypto/fsl-sec4-snvs.yaml
-> index 6878ae8127ec..1a4b4975e1d9 100644
-> --- a/Documentation/devicetree/bindings/crypto/fsl-sec4-snvs.yaml
-> +++ b/Documentation/devicetree/bindings/crypto/fsl-sec4-snvs.yaml
-> @@ -24,6 +24,10 @@ maintainers:
->  properties:
->    compatible:
->      oneOf:
-> +      - items:
-> +          - const: fsl,sec-v5.4-mon
-> +          - const: fsl,sec-v5.0-mon
-> +          - const: fsl,sec-v4.0-mon
->        - items:
->            - const: fsl,sec-v4.0-mon
->            - const: syscon
-> --
-> 2.37.1
-
+On 3/6/2023 6:39 PM, Devi Priya wrote:
+> 
+> 
+> On 3/3/2023 6:57 PM, Konrad Dybcio wrote:
+>>
+>>
+>> On 3.03.2023 14:21, Devi Priya wrote:
+>>>
+>>>
+>>> On 2/23/2023 4:31 AM, Mark Brown wrote:
+>>>> On Wed, Feb 22, 2023 at 11:11:42PM +0100, Konrad Dybcio wrote:
+>>>>
+>>>>> Thinking about it again, this seems like something that could be
+>>>>> generalized and introduced into regulator core.. Hardcoding this
+>>>>> will not end well.. Not to mention it'll affect all mp5496-using
+>>>>> boards that are already upstream.
+>>>>
+>>>>> WDYT about regulator-init-microvolts Mark?
+>>>>
+>>>> The overwhelming majority of devices that have variable voltages
+>>>> support readback, these Qualcomm firmware devices are pretty much
+>>>> unique in this regard.  We don't want a general property to set a
+>>>> specific voltage since normally we should be using the
+>>>> constraints and don't normally need to adjust things immediately
+>>>> since we can tell what the current voltage is.
+>>>>
+>>>> This is pretty much just going to be a device specific bodge,
+>>>> ideally something that does know what the voltage is would be
+>>>> able to tell us at runtime but if that's not possible then
+>>>> there's no good options.  If the initial voltage might vary based
+>>>> on board then a device specific DT property might be less
+>>>> terrible, if it's determined by the regulator the current code
+>>>> seems fine.  Or just leave the current behavour, if the
+>>>> constraints are accurate then hopefully a temporary dip in
+>>>> voltage is just inelegant rather than an issue.  Indeed the
+>>>> current behaviour might well save power if you've got a voltage
+>>>> range configured and nothing actually ever gets round to setting
+>>>> the voltage (which is depressingly common, people seem keen on
+>>>> setting voltage ranges even when the voltage is never varied in
+>>>> practice).
+>>>
+>>> Hi Mark, The initial bootup voltage is actually blown into the OTP 
+>>> register of the PMIC and it remains the same across boards for 
+>>> IPQ9574 SoC.
+>> But what about IPQ6018 which also uses MP5496? That's also gonna
+>> set the voltage on there, it may be too high/low..
+For IPQ6018, the bootup voltage is the same as that of IPQ9574 which is
+875mV
+>>
+>>   Initially the SoC runs at 800MHz with a voltage of 875mV set by the 
+>> bootloaders. As kernel does not know the initial voltage, during 
+>> regulator registration the framework considers the current voltage to 
+>> be zero and tries to bring up the regulator to minimum supported 
+>> voltage of 600mV. This causes the dip which might be of concern in SS 
+>> parts where the voltage might be insufficient leading to silent reboots.
+>> That's an SoC-specific thing, the same regulator can be used with
+>> many different ones. We can't just assume it'll always be like this.
+>> I see the problem, but I believe this is not the correct solution
+Okay, As we had discussions on reading back the voltage & the generic
+DT property, do you suggest any other possible solutions here?
+>>
+>> Konrad
+>>>
+>>> Best Regards,
+>>> Devi Priya
