@@ -2,274 +2,148 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 670A16AD943
-	for <lists+devicetree@lfdr.de>; Tue,  7 Mar 2023 09:30:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4154B6AD953
+	for <lists+devicetree@lfdr.de>; Tue,  7 Mar 2023 09:36:51 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229587AbjCGIas (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Mar 2023 03:30:48 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39512 "EHLO
+        id S229689AbjCGIgs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Mar 2023 03:36:48 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44364 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229572AbjCGIaq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Mar 2023 03:30:46 -0500
-Received: from mail-ed1-x536.google.com (mail-ed1-x536.google.com [IPv6:2a00:1450:4864:20::536])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8C6C3474C0
-        for <devicetree@vger.kernel.org>; Tue,  7 Mar 2023 00:30:42 -0800 (PST)
-Received: by mail-ed1-x536.google.com with SMTP id ay14so45391424edb.11
-        for <devicetree@vger.kernel.org>; Tue, 07 Mar 2023 00:30:42 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1678177841;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=B797IxtRv3mfI28zuNtqQlSFbuT7ZIuv6u5nuOEa+wA=;
-        b=uM7W9pWblGX5LZDKxpuQtiTON5A1m5LqrZ/xIGbnNnV3tEAFsjic3KvUL32Y/JJbws
-         NjSLibYIaYOjEaYox83RdwbidCRQwdNOf4nR3lIFeHm109ZMSUB355SKGIDQ0WKh+LgS
-         G2Hf3mejbX2SMqslgsaSrw1N2Kj6nb4rzl7bcw1ZH3v5HDRxEjSTXCGfXY3h7gvaxn9i
-         Iu/QErRvmTzc2b2KH0j17sD2Uy7lpFGhqU9aFmDxym72h6a+LRhwyuEBK1EF8ynXF9Wy
-         n87Cv9myNhjGIjCijwKvphjc73RjRx+FXdgXzcRHsuns0pQLJa3ZFQKF0LmOWqbNzaLw
-         IDRQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678177841;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=B797IxtRv3mfI28zuNtqQlSFbuT7ZIuv6u5nuOEa+wA=;
-        b=J7+mm2qtqD559OqgYePw68DAuvmj/uMegIR+6k/iW2JjBpvXM6XlS1dYyhuUvBRZ9V
-         X71CbZ5adagaeHE4xPHyRwsYSYdtpcs0HW4F16ZPYVmiiJlhHSf7oyPP7+2buMWCUKOs
-         bZpUUFdiAbTDebT9mPffcNrU895Dr56N4wuUhb2ouKwTszkrxdwez4gGoTzWo8qKLY37
-         09/TXnoLDYvYJp2Dkr2t6NIR0ivKVT8B1fpcvG7/+9QUX040GpRYJBX9N6L9IJmjlHaN
-         Ex6IT2M+/wD2G3kv7ALq1PnnkBQAQHrm+2zJy8O/DPMYLQeiLFq4RqzDQvZjvcMXW0yx
-         86gw==
-X-Gm-Message-State: AO0yUKUQY0iMDvtKeB4v4dlrpjvXIRiHsk2E8bvbqS83KcwwO4BoHauO
-        EMft5ysJ5mhO3nNLOeJf2FILDA==
-X-Google-Smtp-Source: AK7set9r2bJjvG8iK8PdX1VUCpCGcHBd3/LfU5idMNfZkuljorIRSVh6qEy2VnlGpV3rz2XY+wam+A==
-X-Received: by 2002:a17:907:8747:b0:87f:a197:5666 with SMTP id qo7-20020a170907874700b0087fa1975666mr15181726ejc.5.1678177840765;
-        Tue, 07 Mar 2023 00:30:40 -0800 (PST)
-Received: from ?IPV6:2a02:810d:15c0:828:5310:35c7:6f9e:2cd3? ([2a02:810d:15c0:828:5310:35c7:6f9e:2cd3])
-        by smtp.gmail.com with ESMTPSA id bo6-20020a170906d04600b008eb5877a221sm5709942ejb.75.2023.03.07.00.30.39
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 07 Mar 2023 00:30:40 -0800 (PST)
-Message-ID: <d77c2938-bcef-4586-77b5-1cb93b113eb5@linaro.org>
-Date:   Tue, 7 Mar 2023 09:30:39 +0100
+        with ESMTP id S229673AbjCGIgr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Mar 2023 03:36:47 -0500
+Received: from ex01.ufhost.com (ex01.ufhost.com [61.152.239.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1D35C4D62B;
+        Tue,  7 Mar 2023 00:36:45 -0800 (PST)
+Received: from EXMBX165.cuchost.com (unknown [175.102.18.54])
+        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+        (Client CN "EXMBX165", Issuer "EXMBX165" (not verified))
+        by ex01.ufhost.com (Postfix) with ESMTP id 9648024E023;
+        Tue,  7 Mar 2023 16:36:43 +0800 (CST)
+Received: from EXMBX172.cuchost.com (172.16.6.92) by EXMBX165.cuchost.com
+ (172.16.6.75) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Tue, 7 Mar
+ 2023 16:36:43 +0800
+Received: from [192.168.125.124] (183.27.97.46) by EXMBX172.cuchost.com
+ (172.16.6.92) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Tue, 7 Mar
+ 2023 16:36:42 +0800
+Message-ID: <3a605bc8-104e-0935-4fd8-2da16ab9053b@starfivetech.com>
+Date:   Tue, 7 Mar 2023 16:36:41 +0800
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-Subject: Re: [PATCH 7/8] ARM: dts: imx6ull: Add chargebyte Tarragon support
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.3.2
+Subject: Re: [PATCH v4 00/19] Basic clock, reset & device tree support for
+ StarFive JH7110 RISC-V SoC
 Content-Language: en-US
-To:     Stefan Wahren <stefan.wahren@i2se.com>,
-        Rob Herring <robh+dt@kernel.org>,
+To:     Conor Dooley <conor@kernel.org>, <linux-riscv@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-clk@vger.kernel.org>
+CC:     Stephen Boyd <sboyd@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        "Rob Herring" <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
-        Evgeniy Polyakov <zbr@ioremap.net>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>
-Cc:     linux-imx@nxp.com, Li Yang <leoyang.li@nxp.com>,
-        Denis Ciocca <denis.ciocca@st.com>, soc@kernel.org,
-        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        Stefan Wahren <stefan.wahren@chargebyte.com>
-References: <20230306172249.74003-1-stefan.wahren@i2se.com>
- <20230306172249.74003-8-stefan.wahren@i2se.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230306172249.74003-8-stefan.wahren@i2se.com>
-Content-Type: text/plain; charset=UTF-8
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Ben Dooks <ben.dooks@sifive.com>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>,
+        "Emil Renner Berthing" <emil.renner.berthing@canonical.com>,
+        <linux-kernel@vger.kernel.org>
+References: <20230221024645.127922-1-hal.feng@starfivetech.com>
+From:   Hal Feng <hal.feng@starfivetech.com>
+In-Reply-To: <20230221024645.127922-1-hal.feng@starfivetech.com>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
-        autolearn_force=no version=3.4.6
+X-Originating-IP: [183.27.97.46]
+X-ClientProxiedBy: EXCAS061.cuchost.com (172.16.6.21) To EXMBX172.cuchost.com
+ (172.16.6.92)
+X-YovoleRuleAgent: yovoleflag
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 06/03/2023 18:22, Stefan Wahren wrote:
-> From: Stefan Wahren <stefan.wahren@chargebyte.com>
+On Tue, 21 Feb 2023 10:46:26 +0800, Hal Feng wrote:
+> This patch series adds basic clock, reset & DT support for StarFive
+> JH7110 SoC. Patch 17 depends on series [1] which provides pinctrl
+> dt-bindings. Patch 19 depends on series [2] which provides dt-bindings
+> of VisionFive 2 board and JH7110 SoC.
 > 
-> This adds the support for chargebyte Tarragon, which is an Electrical
-> Vehicle Supply Equipment (EVSE) for AC charging stations
-> (according to IEC 61851, ISO 15118).
+> You can simply review or test the patches at the link [3].
 > 
-> The Tarragon board is based on an i.MX6ULL SoC and is available in
-> 4 variants (Master, Slave, SlaveXT, Micro), which provide more or
-> less peripherals.
-> 
-> Supported features:
->   * 512 MB DDR RAM
->   * eMMC
->   * Debug UART
->   * 100 Mbit Ethernet
->   * USB 2.0 Host interface
->   * Powerline communication (QCA700x)
->   * 2x RS485
->   * Digital in- and outputs (12 V)
->   * One-Wire master for external temp sensors
->   * 2x relay outputs
->   * 2x motor interfaces
-> 
-> Link: https://chargebyte.com/products/charging-station-communication/charge-control-c
-> Signed-off-by: Stefan Wahren <stefan.wahren@chargebyte.com>
-> Signed-off-by: Stefan Wahren <stefan.wahren@i2se.com>
-> ---
->  arch/arm/boot/dts/Makefile                    |   4 +
->  .../arm/boot/dts/imx6ull-tarragon-common.dtsi | 858 ++++++++++++++++++
->  arch/arm/boot/dts/imx6ull-tarragon-master.dts |  82 ++
->  arch/arm/boot/dts/imx6ull-tarragon-micro.dts  |  10 +
->  arch/arm/boot/dts/imx6ull-tarragon-slave.dts  |  32 +
->  .../arm/boot/dts/imx6ull-tarragon-slavext.dts |  64 ++
->  6 files changed, 1050 insertions(+)
->  create mode 100644 arch/arm/boot/dts/imx6ull-tarragon-common.dtsi
->  create mode 100644 arch/arm/boot/dts/imx6ull-tarragon-master.dts
->  create mode 100644 arch/arm/boot/dts/imx6ull-tarragon-micro.dts
->  create mode 100644 arch/arm/boot/dts/imx6ull-tarragon-slave.dts
->  create mode 100644 arch/arm/boot/dts/imx6ull-tarragon-slavext.dts
-> 
-> diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
-> index efe4152e5846..aae52a6380bc 100644
-> --- a/arch/arm/boot/dts/Makefile
-> +++ b/arch/arm/boot/dts/Makefile
-> @@ -755,6 +755,10 @@ dtb-$(CONFIG_SOC_IMX6UL) += \
->  	imx6ull-phytec-segin-lc-rdk-nand.dtb \
->  	imx6ull-phytec-tauri-emmc.dtb \
->  	imx6ull-phytec-tauri-nand.dtb \
-> +	imx6ull-tarragon-master.dtb \
-> +	imx6ull-tarragon-micro.dtb \
-> +	imx6ull-tarragon-slave.dtb \
-> +	imx6ull-tarragon-slavext.dtb \
->  	imx6ull-tqma6ull2-mba6ulx.dtb \
->  	imx6ull-tqma6ull2l-mba6ulx.dtb \
->  	imx6ulz-14x14-evk.dtb \
-> diff --git a/arch/arm/boot/dts/imx6ull-tarragon-common.dtsi b/arch/arm/boot/dts/imx6ull-tarragon-common.dtsi
-> new file mode 100644
-> index 000000000000..1099dd688e80
-> --- /dev/null
-> +++ b/arch/arm/boot/dts/imx6ull-tarragon-common.dtsi
-> @@ -0,0 +1,858 @@
-> +// SPDX-License-Identifier: GPL-2.0 OR MIT
-> +//
-> +// Copyright (C) 2023 chargebyte GmbH
-> +
-> +/dts-v1/;
-> +
-> +#include <dt-bindings/input/input.h>
-> +#include <dt-bindings/leds/common.h>
-> +#include <dt-bindings/pwm/pwm.h>
-> +#include "imx6ull.dtsi"
-> +
-> +/ {
-> +	aliases {
-> +		mmc0 = &usdhc2; /* eMMC */
-> +	};
-> +
-> +	chosen {
-> +		stdout-path = &uart4;
-> +	};
-> +
-> +	memory@80000000 {
-> +		device_type = "memory";
-> +		reg = <0x80000000 0x20000000>;
-> +	};
-> +
-> +	emmc_pwrseq: emmc-pwrseq {
-> +		compatible = "mmc-pwrseq-emmc";
-> +		pinctrl-0 = <&pinctrl_emmc_rst>;
-> +		pinctrl-names = "default";
-> +		reset-gpios = <&gpio4 10 GPIO_ACTIVE_LOW>;
-> +	};
-> +
-> +	reg_dcdc_3v3: regulator-dcdc-3v3 {
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "dcdc-3v3";
-> +		regulator-min-microvolt = <3300000>;
-> +		regulator-max-microvolt = <3300000>;
-> +		regulator-boot-on;
-> +		regulator-always-on;
-> +	};
-> +
-> +	reg_1v8: regulator-1v8 {
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "ldo-1v8";
-> +		regulator-min-microvolt = <1800000>;
-> +		regulator-max-microvolt = <1800000>;
-> +		regulator-boot-on;
-> +		regulator-always-on;
-> +	};
-> +
-> +	leds {
-> +		compatible = "gpio-leds";
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&pinctrl_status_leds>;
-> +
-> +		led1 {
+> [1]: https://lore.kernel.org/all/20230209143702.44408-1-hal.feng@starfivetech.com/
+> [2]: https://lore.kernel.org/all/20230216131511.3327943-1-conor.dooley@microchip.com/
+> [3]: https://github.com/hal-feng/linux/commits/visionfive2-minimal
 
-Does not look like you tested the DTS against bindings. Please run `make
-dtbs_check` (see Documentation/devicetree/bindings/writing-schema.rst
-for instructions).
+Hi Conor,
 
-> +			label = "evse:green:led1";
+When I tried to rebase these patches on v6.3-rc1, I found the kernel
+would crash on the VisionFive 2 board during startup. The logs are as
+below. I checkout the branch to the mainline and found that the kernel
+would also crash on the VisionFive board which is equipped with JH7100
+SoC.
 
-Drop the label.
+--------------------------------
+Unable to handle kernel paging request at virtual address 0000004cccccccd4
+Oops [#1]
+Modules linked in:
+CPU: 3 PID: 87 Comm: udevd Not tainted 6.3.0-rc1-00019-g239e7809f291 #305
+Hardware name: StarFive VisionFive 2 v1.3B (DT)
+epc : enqueue_timer+0x18/0x90
+ ra : internal_add_timer+0x2c/0x38
+epc : ffffffff8006a714 ra : ffffffff8006a7b8 sp : ffffffc80443bc80
+ gp : ffffffff80eb5100 tp : ffffffd8c01db200 t0 : 0000000000000000
+ t1 : 000000000000000f t2 : 0000000038b3ea28 s0 : ffffffc80443bcb0
+ s1 : ffffffff80813940 a0 : ffffffff80813940 a1 : ffffffc80443bd48
+ a2 : 000000000000020b a3 : cccccccd0b000000 a4 : cccccccccccccccc
+ a5 : 000000000000020b a6 : ffffffff80814a08 a7 : 0000000000000001
+ s2 : ffffffc80443bd48 s3 : 0000000008400040 s4 : ffffffff80813940
+ s5 : ffffffff80eea0b8 s6 : ffffffff80eb7220 s7 : 0000000000000040
+ s8 : ffffffff80eb61e0 s9 : 0000002ac84a2548 s10: 0000002ad53e92c0
+ s11: 0000000000000001 t3 : 000000000000003f t4 : 0000000000000000
+ t5 : 0000000000000004 t6 : 0000000000000003
+status: 0000000200000100 badaddr: 0000004cccccccd4 cause: 000000000000000f
+[<ffffffff8006a714>] enqueue_timer+0x18/0x90
+[<ffffffff8006aa64>] add_timer_on+0xf0/0x134
+[<ffffffff80500f18>] try_to_generate_entropy+0x1ec/0x232
+[<ffffffff8035a636>] urandom_read_iter+0x42/0xc2
+[<ffffffff800fff16>] vfs_read+0x17c/0x1e4
+[<ffffffff801005b6>] ksys_read+0x78/0x98
+[<ffffffff801005e4>] sys_read+0xe/0x16
+[<ffffffff800035dc>] ret_from_syscall+0x0/0x2
+Code: 9381 9713 0037 0813 0705 983a 3703 0008 e198 c311 (e70c) d713 
+---[ end trace 0000000000000000 ]---
+note: udevd[87] exited with irqs disabled
+Segmentation fault
+FAIL
+Saving random seed: 
+rcu: INFO: rcu_sched detected stalls on CPUs/tasks:
+rcu: 	1-...0: (0 ticks this GP) idle=19c4/1/0x4000000000000000 softirq=42/42 fqs=7474
+rcu: 	(detected by 2, t=15005 jiffies, g=-195, q=35 ncpus=4)
+Task dump for CPU 1:
+task:dd              state:R  running task     stack:0     pid:92    ppid:88     flags:0x00000008
+Call Trace:
+[<ffffffff80003764>] ret_from_fork+0x0/0xc
+rcu: INFO: rcu_sched detected stalls on CPUs/tasks:
+rcu: 	1-...0: (0 ticks this GP) idle=19c4/1/0x4000000000000000 softirq=42/42 fqs=29814
+rcu: 	(detected by 2, t=60018 jiffies, g=-195, q=35 ncpus=4)
+Task dump for CPU 1:
+task:dd              state:R  running task     stack:0     pid:92    ppid:88     flags:0x00000008
+Call Trace:
+[<ffffffff80003764>] ret_from_fork+0x0/0xc
+...
+--------------------------------
 
-> +			function = LED_FUNCTION_BOOT;
-> +			color = <LED_COLOR_ID_GREEN>;
-> +			gpios = <&gpio3 14 GPIO_ACTIVE_HIGH>;
-> +			linux,default-trigger = "timer";
-> +		};
-> +
-> +		led2 {
-> +			label = "evse:yellow:led2";
+I used 'git bisect' and found out the commit 9493e6f3ce02 is the
+cause. I tried to revert this commit on the tag v6.3-rc1, but it
+seems there is no improvement.
 
-Drop the label.
-
-> +			function = LED_FUNCTION_PROGRAMMING;
-> +			color = <LED_COLOR_ID_YELLOW>;
-> +			gpios = <&gpio3 15 GPIO_ACTIVE_HIGH>;
-> +		};
-> +
-> +		led3 {
-> +			label = "evse:red:led3";
-
-Drop the label.
-
-> +			function = LED_FUNCTION_HEARTBEAT;
-> +			color = <LED_COLOR_ID_RED>;
-> +			gpios = <&gpio3 19 GPIO_ACTIVE_HIGH>;
-> +			linux,default-trigger = "heartbeat";
-> +		};
-> +	};
-> +};
-
-(...)
-
-> +};
-> +
-> +&usdhc2 {
-> +	pinctrl-names = "default", "state_100mhz", "state_200mhz";
-> +	pinctrl-0 = <&pinctrl_usdhc2>;
-> +	pinctrl-1 = <&pinctrl_usdhc2_100mhz>;
-> +	pinctrl-2 = <&pinctrl_usdhc2_200mhz>;
-> +	vmmc-supply = <&sw2_reg>;
-> +	vqmmc-supply = <&reg_1v8>;
-> +	mmc-pwrseq = <&emmc_pwrseq>;
-> +	bus-width = <8>;
-> +	broken-cd;
-> +	non-removable;
-
-Hm, isn't polling for CD a contradictory to non-removable card? Few
-other boards also have it but it looks wrong.
-
-> +	status = "okay";
-> +};
-> +
-> +&wdog1 {
-> +	status = "disabled";
-> +};
-
+Any options I am missing? Could you please give me some suggestions
+to adapt to the new changes between 6.2 and 6.3? Thank you in
+advance.
 
 Best regards,
-Krzysztof
-
+Hal
