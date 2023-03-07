@@ -2,274 +2,173 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3B6DE6AE535
-	for <lists+devicetree@lfdr.de>; Tue,  7 Mar 2023 16:45:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 58CFC6AE560
+	for <lists+devicetree@lfdr.de>; Tue,  7 Mar 2023 16:52:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231326AbjCGPpl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Mar 2023 10:45:41 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53940 "EHLO
+        id S229870AbjCGPv7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Mar 2023 10:51:59 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35332 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231313AbjCGPph (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Mar 2023 10:45:37 -0500
-Received: from mail-wr1-x42b.google.com (mail-wr1-x42b.google.com [IPv6:2a00:1450:4864:20::42b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2925985344
-        for <devicetree@vger.kernel.org>; Tue,  7 Mar 2023 07:45:32 -0800 (PST)
-Received: by mail-wr1-x42b.google.com with SMTP id e13so12553150wro.10
-        for <devicetree@vger.kernel.org>; Tue, 07 Mar 2023 07:45:32 -0800 (PST)
+        with ESMTP id S229849AbjCGPv4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Mar 2023 10:51:56 -0500
+Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com [IPv6:2a00:1450:4864:20::534])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 858CD8C512
+        for <devicetree@vger.kernel.org>; Tue,  7 Mar 2023 07:51:54 -0800 (PST)
+Received: by mail-ed1-x534.google.com with SMTP id i34so54094255eda.7
+        for <devicetree@vger.kernel.org>; Tue, 07 Mar 2023 07:51:54 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112; t=1678203930;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=JY0Ro4rQcxnhRsiPxJHCXtVEYXHerbDIXQMmbNIdWm4=;
-        b=HPRCUxRSNyyA/oVsmJzaxnWi/aGeU+cplMFkWIaR2F7aOlur6xHyVOmHaPAKxhi6S5
-         6HE4UAsO2+d0XsL5fLTME2qD1b9iemXabrKBz99/HFrLWyXgqZ10sOYFVcFPsXlzy/AS
-         qt417U9I2jHYrPuL5Wu4SH7jhN8rWtLitFhGDLuldeq4REKk8ZLMdIpSTJm9bOwakbQI
-         bsD2NwGi2p+IwZVSEEGnUIqRmG3GS4QFXwJ5n7Mx+wZ+zK+dywTlSMSeZp+gLtCSjkZ6
-         JYg57EDiQZ3V7pMCmUA9qHRyOz+/J/8UADAxwLqYYLNvcg7sDXZnmTRvVIWvty46O2Yi
-         E0Ow==
+        d=linaro.org; s=google; t=1678204313;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=RcDQzVN19ofjg8Tgdw5tyOv/MuABZ5E/YdFtUvot80Q=;
+        b=YFJygNIbp45Ch4nXFzOoHjdOtcWm38mODz32cOZACaptJnRWrDMIWR9xzC4+D1aXyB
+         QUoUK6gEMMp6rabx4Hr1Uz50KlcGeOnUBPx6RCXOvBYGZoTgaraSCT15eVcTXieGo/SL
+         id7Gt85z552OTBu98ZiqtTYdE/Rhc6Zs5a8SEJADZGQuUa+F5qIXCihEUGKlveW5/iV/
+         T0h0Y9Oj3oolzzrWona14BG8KcuHcbW3eB9CRfoQeevRX0ceBnu82fIRdw5DMS0LRWaF
+         gYlqrLdNrMBBxjA2SuK2d4T29F372atFGo7OYkpIJcpyXfN2qiFVfh4bKq3V/HfejG2C
+         +VjQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678203930;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=JY0Ro4rQcxnhRsiPxJHCXtVEYXHerbDIXQMmbNIdWm4=;
-        b=LzB0BAEGZkRfn7hg6zEzoErcfHvO9h+TcFkvla8u6NLq7CdVi7PhkboRbkcR+SGuXr
-         +laxSTzlzawXw6d9r2Fs6OZTKqdUncuIiX9aFQdBhRE23CusB9yNFgG7a+dgdHeI14Mo
-         N0YouKUPiv1rLWcwOJBt+QmmNKvepGEjNMXMo57/xuXf4uUO7w/W2qZGdvQ9nX4BreaR
-         DfgJsQYJsYqw781yMlKUmuln/JcA2WNwnDz9ktDHJna0Sgn5NjiIN7DncwV33/vhKUuV
-         RaHxgkJSc+mChsanyIRYeBkU9LktgUaanihML3Ks2Oe+MKX0l88W4BC/IjRh6WKVSqwu
-         ZZ1Q==
-X-Gm-Message-State: AO0yUKWa9zJHWSFRpkBuWjuptsXFtHFTxsU9x6kpnDoE9ejsftmGKSL+
-        H+586lBaZS5cxft5/FC9cdobcg==
-X-Google-Smtp-Source: AK7set8RZzUjacZh8k2s+HDG9BdJ+pG4VhUR6FtsQdsozL54tKbWq3T7WAAE627gMEVl78AJPnNVIw==
-X-Received: by 2002:a5d:6a48:0:b0:2c7:dec:77a7 with SMTP id t8-20020a5d6a48000000b002c70dec77a7mr8356572wrw.71.1678203930693;
-        Tue, 07 Mar 2023 07:45:30 -0800 (PST)
-Received: from localhost.localdomain (laubervilliers-657-1-248-155.w90-24.abo.wanadoo.fr. [90.24.137.155])
-        by smtp.gmail.com with ESMTPSA id f2-20020a5d50c2000000b002c704271b05sm12697905wrt.66.2023.03.07.07.45.30
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 07 Mar 2023 07:45:30 -0800 (PST)
-From:   bchihi@baylibre.com
-To:     daniel.lezcano@linaro.org, angelogioacchino.delregno@collabora.com,
-        rafael@kernel.org, amitk@kernel.org, rui.zhang@intel.com,
-        matthias.bgg@gmail.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, rdunlap@infradead.org,
-        ye.xingchen@zte.com.cn, p.zabel@pengutronix.de
-Cc:     linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
-        khilman@baylibre.com, james.lo@mediatek.com,
-        rex-bc.chen@mediatek.com
-Subject: [PATCH 4/4] arm64: dts: mediatek: mt8195: Add AP domain temperature thresholds
-Date:   Tue,  7 Mar 2023 16:45:24 +0100
-Message-Id: <20230307154524.118541-5-bchihi@baylibre.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230307154524.118541-1-bchihi@baylibre.com>
-References: <20230307154524.118541-1-bchihi@baylibre.com>
+        d=1e100.net; s=20210112; t=1678204313;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=RcDQzVN19ofjg8Tgdw5tyOv/MuABZ5E/YdFtUvot80Q=;
+        b=J+iwinKwMtw999JjWl3UAytJFDgr1OhMS8NxuSvwMH8/UvOeDDqgo2sAeLhV9Lz1nP
+         Sn25iaLMLdmz7CJjjDjTFkaaYps+ia8rf6KslI7m3paWCbCpBxyxaECaUIJYLMKhXd/j
+         2q/NoivbDn93y8DTlP1GH3y8iVo0qJa5hZCqZU8MtgpCgAxirkPhdNgu6gpxR98M+KGM
+         ZrBn912yIHaleTn57Zrt/dQMihSWNaaoFA4jlaA8p8ndqJh2/GcOY2/yC8RzeglLVwD9
+         2LTGzmEqO2/v8xv9EdbKT6/BI+qDx63cm5vOgSLB2QvtVm+4AkNVCbpUFNSiiEPXt+8q
+         2s9w==
+X-Gm-Message-State: AO0yUKU6K5wkYdmstuq88DMcQyvkAn4VoJrTdfGP1xyp81gvf+huNpKU
+        GndKPUh5NDaWG8yjqYusZ6EdoA==
+X-Google-Smtp-Source: AK7set9L4TCnhGG3SxprVoNK/2nNWxTQQ0uvBtCv1oRmv5bm89yo39bZ/2uW8VInhxLWFZixBqCbUw==
+X-Received: by 2002:a17:907:86a5:b0:8b1:7fe9:ac69 with SMTP id qa37-20020a17090786a500b008b17fe9ac69mr19571063ejc.75.1678204313020;
+        Tue, 07 Mar 2023 07:51:53 -0800 (PST)
+Received: from ?IPV6:2a02:810d:15c0:828:a60f:e604:c252:1f3d? ([2a02:810d:15c0:828:a60f:e604:c252:1f3d])
+        by smtp.gmail.com with ESMTPSA id qw15-20020a170906fcaf00b008d57e796dcbsm6238380ejb.25.2023.03.07.07.51.52
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 07 Mar 2023 07:51:52 -0800 (PST)
+Message-ID: <e3da08df-a5cb-3fbd-2356-64416f48c073@linaro.org>
+Date:   Tue, 7 Mar 2023 16:51:51 +0100
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.8.0
+Subject: Re: [PATCH v4 1/3] dt-bindings: dma: snps,dw-axi-dmac: constrain
+ resets items for JH7110 dma
+Content-Language: en-US
+To:     Walker Chen <walker.chen@starfivetech.com>,
+        Eugeniy Paltsev <Eugeniy.Paltsev@synopsys.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor.dooley@microchip.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Emil Renner Berthing <emil.renner.berthing@canonical.com>
+Cc:     dmaengine@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org
+References: <20230306140430.28951-1-walker.chen@starfivetech.com>
+ <20230306140430.28951-2-walker.chen@starfivetech.com>
+ <b2b36909-b0b1-7507-3145-141eb5ec0f3f@linaro.org>
+ <0725e451-7c0b-0aac-ecd3-502b02276a9a@starfivetech.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <0725e451-7c0b-0aac-ecd3-502b02276a9a@starfivetech.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Balsam CHIHI <bchihi@baylibre.com>
+On 07/03/2023 11:30, Walker Chen wrote:
+> 
+> 
+> On 2023/3/7 17:03, Krzysztof Kozlowski wrote:
+>> On 06/03/2023 15:04, Walker Chen wrote:
+>>> The DMA controller needs two reset items to work properly on JH7110 SoC,
+>>> so there is need to constrain the items' value to 2, other platforms
+>>> have 1 reset item at most.
+>>>
+>>> Signed-off-by: Walker Chen <walker.chen@starfivetech.com>
+>>> ---
+>>>  .../bindings/dma/snps,dw-axi-dmac.yaml        | 24 +++++++++++++++----
+>>>  1 file changed, 20 insertions(+), 4 deletions(-)
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/dma/snps,dw-axi-dmac.yaml b/Documentation/devicetree/bindings/dma/snps,dw-axi-dmac.yaml
+>>> index ad107a4d3b33..d8b5439f215c 100644
+>>> --- a/Documentation/devicetree/bindings/dma/snps,dw-axi-dmac.yaml
+>>> +++ b/Documentation/devicetree/bindings/dma/snps,dw-axi-dmac.yaml
+>>> @@ -12,14 +12,12 @@ maintainers:
+>>>  description:
+>>>    Synopsys DesignWare AXI DMA Controller DT Binding
+>>>  
+>>> -allOf:
+>>> -  - $ref: "dma-controller.yaml#"
+>>> -
+>>>  properties:
+>>>    compatible:
+>>>      enum:
+>>>        - snps,axi-dma-1.01a
+>>>        - intel,kmb-axi-dma
+>>> +      - starfive,jh7110-axi-dma
+>>>  
+>>>    reg:
+>>>      minItems: 1
+>>> @@ -58,7 +56,8 @@ properties:
+>>>      maximum: 8
+>>>  
+>>>    resets:
+>>> -    maxItems: 1
+>>> +    minItems: 1
+>>> +    maxItems: 2
+>>>  
+>>>    snps,dma-masters:
+>>>      description: |
+>>> @@ -109,6 +108,23 @@ required:
+>>>    - snps,priority
+>>>    - snps,block-size
+>>>  
+>>> +allOf:
+>>> +  - $ref: "dma-controller.yaml#"
+>>
+>> Rebase your patches on something recent... I would argue that it should
+>> be based on maintainer's (or linux-next) tree, but that would be too
+>> good to be true.
+> 
+> This was written by referring to the syntax of other dt-binding, but your suggestion 
+> is a good one, the next version of patches will be rebased on kernel 6.3.
 
-Specify the targeted temperature thresholds.
+Rebasing on old kernel was referring to syntax of other binding? I don't
+understand this. How old code which you copied is related anyhow to
+other binding? You are expected to send patches always based on recent
+one, not something old.
 
-Signed-off-by: Balsam CHIHI <bchihi@baylibre.com>
----
- arch/arm64/boot/dts/mediatek/mt8195.dtsi | 90 +++++++++++++++++++-----
- 1 file changed, 72 insertions(+), 18 deletions(-)
+> 
+>>
+>>> +  - if:
+>>> +      properties:
+>>> +        compatible:
+>>> +          contains:
+>>> +            enum:
+>>> +              - starfive,jh7110-axi-dma
+>>> +    then:
+>>> +      properties:
+>>> +        resets:
+>>> +          minItems: 2
+>>
+>> What are the items expected here?
+> 
+> Do you mean to add descriptions for items here ?
 
-diff --git a/arch/arm64/boot/dts/mediatek/mt8195.dtsi b/arch/arm64/boot/dts/mediatek/mt8195.dtsi
-index b066d1eab1dc..0dab67d283a6 100644
---- a/arch/arm64/boot/dts/mediatek/mt8195.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt8195.dtsi
-@@ -2654,11 +2654,17 @@ map0 {
- 		};
- 
- 		vpu0-thermal {
--			polling-delay = <0>;
--			polling-delay-passive = <0>;
-+			polling-delay = <1000>;
-+			polling-delay-passive = <250>;
- 			thermal-sensors = <&lvts_ap MT8195_AP_VPU0>;
- 
- 			trips {
-+				vpu0_alert: trip-alert {
-+					temperature = <85000>;
-+					hysteresis = <2000>;
-+					type = "passive";
-+				};
-+
- 				vpu0_crit: trip-crit {
- 					temperature = <100000>;
- 					hysteresis = <2000>;
-@@ -2668,11 +2674,17 @@ vpu0_crit: trip-crit {
- 		};
- 
- 		vpu1-thermal {
--			polling-delay = <0>;
--			polling-delay-passive = <0>;
-+			polling-delay = <1000>;
-+			polling-delay-passive = <250>;
- 			thermal-sensors = <&lvts_ap MT8195_AP_VPU1>;
- 
- 			trips {
-+				vpu1_alert: trip-alert {
-+					temperature = <85000>;
-+					hysteresis = <2000>;
-+					type = "passive";
-+				};
-+
- 				vpu1_crit: trip-crit {
- 					temperature = <100000>;
- 					hysteresis = <2000>;
-@@ -2682,11 +2694,17 @@ vpu1_crit: trip-crit {
- 		};
- 
- 		gpu0-thermal {
--			polling-delay = <0>;
--			polling-delay-passive = <0>;
-+			polling-delay = <1000>;
-+			polling-delay-passive = <250>;
- 			thermal-sensors = <&lvts_ap MT8195_AP_GPU0>;
- 
- 			trips {
-+				gpu0_alert: trip-alert {
-+					temperature = <85000>;
-+					hysteresis = <2000>;
-+					type = "passive";
-+				};
-+
- 				gpu0_crit: trip-crit {
- 					temperature = <100000>;
- 					hysteresis = <2000>;
-@@ -2696,11 +2714,17 @@ gpu0_crit: trip-crit {
- 		};
- 
- 		gpu1-thermal {
--			polling-delay = <0>;
--			polling-delay-passive = <0>;
-+			polling-delay = <1000>;
-+			polling-delay-passive = <250>;
- 			thermal-sensors = <&lvts_ap MT8195_AP_GPU1>;
- 
- 			trips {
-+				gpu1_alert: trip-alert {
-+					temperature = <85000>;
-+					hysteresis = <2000>;
-+					type = "passive";
-+				};
-+
- 				gpu1_crit: trip-crit {
- 					temperature = <100000>;
- 					hysteresis = <2000>;
-@@ -2710,11 +2734,17 @@ gpu1_crit: trip-crit {
- 		};
- 
- 		vdec-thermal {
--			polling-delay = <0>;
--			polling-delay-passive = <0>;
-+			polling-delay = <1000>;
-+			polling-delay-passive = <250>;
- 			thermal-sensors = <&lvts_ap MT8195_AP_VDEC>;
- 
- 			trips {
-+				vdec_alert: trip-alert {
-+					temperature = <85000>;
-+					hysteresis = <2000>;
-+					type = "passive";
-+				};
-+
- 				vdec_crit: trip-crit {
- 					temperature = <100000>;
- 					hysteresis = <2000>;
-@@ -2724,11 +2754,17 @@ vdec_crit: trip-crit {
- 		};
- 
- 		img-thermal {
--			polling-delay = <0>;
--			polling-delay-passive = <0>;
-+			polling-delay = <1000>;
-+			polling-delay-passive = <250>;
- 			thermal-sensors = <&lvts_ap MT8195_AP_IMG>;
- 
- 			trips {
-+				img_alert: trip-alert {
-+					temperature = <85000>;
-+					hysteresis = <2000>;
-+					type = "passive";
-+				};
-+
- 				img_crit: trip-crit {
- 					temperature = <100000>;
- 					hysteresis = <2000>;
-@@ -2738,11 +2774,17 @@ img_crit: trip-crit {
- 		};
- 
- 		infra-thermal {
--			polling-delay = <0>;
--			polling-delay-passive = <0>;
-+			polling-delay = <1000>;
-+			polling-delay-passive = <250>;
- 			thermal-sensors = <&lvts_ap MT8195_AP_INFRA>;
- 
- 			trips {
-+				infra_alert: trip-alert {
-+					temperature = <85000>;
-+					hysteresis = <2000>;
-+					type = "passive";
-+				};
-+
- 				infra_crit: trip-crit {
- 					temperature = <100000>;
- 					hysteresis = <2000>;
-@@ -2752,11 +2794,17 @@ infra_crit: trip-crit {
- 		};
- 
- 		cam0-thermal {
--			polling-delay = <0>;
--			polling-delay-passive = <0>;
-+			polling-delay = <1000>;
-+			polling-delay-passive = <250>;
- 			thermal-sensors = <&lvts_ap MT8195_AP_CAM0>;
- 
- 			trips {
-+				cam0_alert: trip-alert {
-+					temperature = <85000>;
-+					hysteresis = <2000>;
-+					type = "passive";
-+				};
-+
- 				cam0_crit: trip-crit {
- 					temperature = <100000>;
- 					hysteresis = <2000>;
-@@ -2766,11 +2814,17 @@ cam0_crit: trip-crit {
- 		};
- 
- 		cam1-thermal {
--			polling-delay = <0>;
--			polling-delay-passive = <0>;
-+			polling-delay = <1000>;
-+			polling-delay-passive = <250>;
- 			thermal-sensors = <&lvts_ap MT8195_AP_CAM1>;
- 
- 			trips {
-+				cam1_alert: trip-alert {
-+					temperature = <85000>;
-+					hysteresis = <2000>;
-+					type = "passive";
-+				};
-+
- 				cam1_crit: trip-crit {
- 					temperature = <100000>;
- 					hysteresis = <2000>;
--- 
-2.34.1
+Yes, because order of the items is fixed.
+
+
+
+Best regards,
+Krzysztof
 
