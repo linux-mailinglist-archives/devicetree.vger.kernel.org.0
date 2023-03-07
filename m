@@ -2,146 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A92D06ADEF9
-	for <lists+devicetree@lfdr.de>; Tue,  7 Mar 2023 13:41:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C58446ADF0B
+	for <lists+devicetree@lfdr.de>; Tue,  7 Mar 2023 13:48:05 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229785AbjCGMl3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Mar 2023 07:41:29 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34450 "EHLO
+        id S229470AbjCGMsE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Mar 2023 07:48:04 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41018 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229764AbjCGMlW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Mar 2023 07:41:22 -0500
-Received: from mail-wr1-x430.google.com (mail-wr1-x430.google.com [IPv6:2a00:1450:4864:20::430])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 666247C942
-        for <devicetree@vger.kernel.org>; Tue,  7 Mar 2023 04:41:19 -0800 (PST)
-Received: by mail-wr1-x430.google.com with SMTP id r18so11987421wrx.1
-        for <devicetree@vger.kernel.org>; Tue, 07 Mar 2023 04:41:18 -0800 (PST)
+        with ESMTP id S229545AbjCGMrp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Mar 2023 07:47:45 -0500
+Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com [IPv6:2a00:1450:4864:20::534])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 324F97B980
+        for <devicetree@vger.kernel.org>; Tue,  7 Mar 2023 04:47:44 -0800 (PST)
+Received: by mail-ed1-x534.google.com with SMTP id ay14so48021790edb.11
+        for <devicetree@vger.kernel.org>; Tue, 07 Mar 2023 04:47:44 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112; t=1678192877;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=Da3gycm9GaSOTxM2r6GKDW6btSTz1Fl+GtonHRy4OIs=;
-        b=CeuK0gBWMnnVxKXxuaS4TbHqVvqx/XcRViY6Ab8AN5ulApgZO1xLbviliDSE8SggCv
-         0oROsCCoztpy4OEIaM453xTfC+EaR6i6iWS+mzmQBhKyWMgaliV3Heff6IujzglBKc2d
-         mpP0OgwLpfktzGbumYthAreBwgMeplwXW6dih2aPW13Bmi7Bg5hW9GMyFBuKKEzhUfrp
-         WhIA+AJBhV4aRgMXikn4aEY96bWjucyydAZWpKz33v6QcC4MI0LsglG7EkX0JaLVbwjx
-         /o5Wy6x0NNQAURfDWBOdjG6HznTOR31Gza8TyI7VHMWpBtWTuIGqcHga1x7bDUANvEZZ
-         qpCg==
+        d=linaro.org; s=google; t=1678193262;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=MiOMw3LK/5OLzUtn41VD8A10+TPR+DMf9b3It0y1guw=;
+        b=GfvhCA4Tlxl2L4aX/6Sh6y/b6EtasmFOro5keWY86lAZ8++Xzo7zyqoqYHVHbsqAbE
+         HCw+aujjmrHB2hQHnb/dwbJFQPgbqy5MZMwtzcqnZJzYep5I23Vgep4oc6E8yOvcvg/c
+         /uqA1aDHO9KOeaEfa9G2pfPXZnIlgcAJuAUCt9H4ttYJyGfmvRubtqtAcleTbXZrHiD2
+         2kKhBmW4MoRUAQQ52RDzV//ERmEO7pdTWRW0ppS4SiWYyqpqnpdqYVYXoTshH9BhIK8j
+         qa/zfDeLY8nbuU4ZVbkOp7oNTz8wtYaauLFDZEZsihPBk4dNy2OJi/74Ef+xYbOkUI9N
+         X0wA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678192877;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Da3gycm9GaSOTxM2r6GKDW6btSTz1Fl+GtonHRy4OIs=;
-        b=oWQTnYBj86k8RJjVA2osI6ta3w+f+ePTs1Xzj2wCfxUvoXXWBHvf1VWU3G/EZHAmsw
-         po58Ujtft2zpzF5307ZdNpbeGLgykZW7kAJasOotxbCoYBiNFh/HrlL3df/jtxWjB+l+
-         TNWPSj/AtWbqkQ7aHkQ9Hezv651Hy/bc3MSCkZavEto+9GE1+2vCk7VIJdjneR97pwgi
-         PCk85lgVhOiDoDARRrrvVrPDjSHtaSy3PODfrWKOtJBsu/m3xxlHhSRzHqOF8CT+3OJt
-         9vTns/h90Rqj/EmWr4ztPzLRSCqV2VCDsmzwUemDgZQ7Tlhkxx1gdnLEZam2mMtWOVIC
-         e6BQ==
-X-Gm-Message-State: AO0yUKWvbaICFW7jLR2scs74mJo5EFeAV9PjKoMjozDOapJHluqo3RLw
-        4JYXcW4HbHblIjjqJ+8sZCpp7n8VmmwyO3gn4es=
-X-Google-Smtp-Source: AK7set8ho3AE5slu0eVuVQjsVB3HmQggDT+fS0otKyV+eMbPIkDH2/8BRv6LrVQf2lZZpiaBnlISXQ==
-X-Received: by 2002:a5d:4ec5:0:b0:2c7:1e32:f7ff with SMTP id s5-20020a5d4ec5000000b002c71e32f7ffmr8350736wrv.16.1678192877556;
-        Tue, 07 Mar 2023 04:41:17 -0800 (PST)
-Received: from [127.0.1.1] (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
-        by smtp.googlemail.com with ESMTPSA id w9-20020a05600018c900b002c5a1bd5280sm12434670wrq.95.2023.03.07.04.41.16
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 07 Mar 2023 04:41:17 -0800 (PST)
-From:   Alexandre Mergnat <amergnat@baylibre.com>
-Date:   Tue, 07 Mar 2023 13:41:08 +0100
-Subject: [PATCH v4 2/2] arm64: dts: mediatek: enable i2c0 for mt8365-evk board
+        d=1e100.net; s=20210112; t=1678193262;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=MiOMw3LK/5OLzUtn41VD8A10+TPR+DMf9b3It0y1guw=;
+        b=SrWWncU/k6W4UGpRUs3ahi/8b5RhgzvZjYWus45+yKcEOAh88YvtwZ2MLbwbWQsqO+
+         fiuycYTtrKtJqb3UDYneLW6JuMEq3ZNLxQDuOvKWkdvVUCmQOMBnnazeevyb2fIRcyUs
+         qZSnge2ibYQa+746UiOF9l1zgoIfTe6BveL0N48e+T3FYl69QH6254jZ1Uuico6qiTLc
+         vAQOQoC3yBTujKtCl2mEv8neVnS9uxqn6SRPY3KavsvGJqlV0nR/HzU/YpM53dC/TxMO
+         487qXn3WcssZJqS+wlAmJp79Oq7CdlqOz3oiMV1eOd4LqN4oeXyOvtaYdSkX60Mi6C8f
+         oEyQ==
+X-Gm-Message-State: AO0yUKXz3mOIiywM0k+OxZpng6Bcaf/zJSRzx+9BtO2/+UmgXz6GTpvW
+        rh58t0b/K7GUnexwfhHv9XS+qA==
+X-Google-Smtp-Source: AK7set+YuJPZN+mtGN0+4Lu5lpIp2vpZ1xwMAygXesjgftRMUQnfjD9C9uBPunnWrkl0dV+LGfhlaA==
+X-Received: by 2002:a05:6402:350:b0:4c0:eab4:af12 with SMTP id r16-20020a056402035000b004c0eab4af12mr12941292edw.12.1678193262693;
+        Tue, 07 Mar 2023 04:47:42 -0800 (PST)
+Received: from ?IPV6:2a02:810d:15c0:828:a60f:e604:c252:1f3d? ([2a02:810d:15c0:828:a60f:e604:c252:1f3d])
+        by smtp.gmail.com with ESMTPSA id x33-20020a50baa4000000b004af7191fe35sm6669195ede.22.2023.03.07.04.47.41
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 07 Mar 2023 04:47:42 -0800 (PST)
+Message-ID: <692a62da-a9a1-fa23-6e24-723d73c3a423@linaro.org>
+Date:   Tue, 7 Mar 2023 13:47:40 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-Message-Id: <20221122-mt8365-i2c-support-v4-2-885ad3301d5a@baylibre.com>
-References: <20221122-mt8365-i2c-support-v4-0-885ad3301d5a@baylibre.com>
-In-Reply-To: <20221122-mt8365-i2c-support-v4-0-885ad3301d5a@baylibre.com>
-To:     Rob Herring <robh+dt@kernel.org>,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.8.0
+Subject: Re: [PATCH v13 1/2] dt-bindings: clock: add loongson-2 boot clock
+ index
+Content-Language: en-US
+To:     Yinbo Zhu <zhuyinbo@loongson.cn>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Qii Wang <qii.wang@mediatek.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>
-Cc:     linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        devicetree@vger.kernel.org,
-        Alexandre Mergnat <amergnat@baylibre.com>,
-        Fabien Parent <fparent@baylibre.com>,
-        Rob Herring <robh@kernel.org>, linux-kernel@vger.kernel.org,
-        linux-i2c@vger.kernel.org
-X-Mailer: b4 0.10.1
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1291; i=amergnat@baylibre.com;
- h=from:subject:message-id; bh=/2/cjSO2mF7U+slihZOD76PFWiM0Jv1Qz+ElLd/bOnw=;
- b=owEBbQKS/ZANAwAKAStGSZ1+MdRFAcsmYgBkBzDqcQGDX7mF+2FUnSGPLDJyNAnKOn4NaJfOwzgl
- MmtGUVSJAjMEAAEKAB0WIQQjG17X8+qqcA5g/osrRkmdfjHURQUCZAcw6gAKCRArRkmdfjHURYkYD/
- 9KfGHtkTIXYn298xwf9hQ8ovbQgNJm4iLoD0gTwEbNJbtAQWcm+pf/kgA5UzVtT6LolXsRv6xkDDFg
- HtHgOj/0G6IQrF9O3BuUX7c1MW5ynG/CTjXxf/uYzlDG95t7NAQIxy7MzHKMlDur6zTNmVrks7GI5z
- s9EDsvMqQx1j+LBOv1Jj0Moq6vzCXrP4+LucyqXzSg7hMmXn7mRFalNAd+TJpN295ZFwwmL3Qg3EQs
- UnAuqUywmHwMWYxwRm9fFKutfibO2LvXfmQOs1Mgo+9NpQfuQxmtenzmqwqcvAyW0qhU/Ai8GFd5Wz
- w9/2JIXAN4K3kquecBWSkFZNGfux0VlX63Womo8TbX1mDWq3TNvNeH5g7mdqKdkccBF8XU2F7K/+5L
- 3s/7x3JaCafJg1A/ckS5I1+eeDleUiHGtk5ZNYYEWNTMJdi64+G3bhL6OeU1DZdCx/ACZJv+Qgn4ta
- HMdFJgqwFGG3qnM0TxbgjGoGFtYn1E1Y8DI1BNhHugJHGg/Em9usE2p/nZxShBJrRbM7VGxaMWb5Wh
- 2UsHNmnXEA8Qnu+FIL/w4Bi4o6PQw+AVgHrBxdDRscOaCeMd6axkQWAmFEsTSCiG7cMtwj+oAcSlI7
- IYdbwUpMSrB7sIeFan52LlY4xfCjYz/+APqYAGG9BpSyF31DoOnVHpqvrHAg==
-X-Developer-Key: i=amergnat@baylibre.com; a=openpgp;
- fpr=231B5ED7F3EAAA700E60FE8B2B46499D7E31D445
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org
+Cc:     Jianmin Lv <lvjianmin@loongson.cn>,
+        Liu Peibao <liupeibao@loongson.cn>, wanghongliang@loongson.cn,
+        loongson-kernel@lists.loongnix.cn
+References: <20230307115022.12846-1-zhuyinbo@loongson.cn>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230307115022.12846-1-zhuyinbo@loongson.cn>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Enable the I2C0 bus provides communication with:
-- The integrated RT9466 Switching Battery Charger.
-- The integrated MT6691 LP4X buck for VDDQ.
-- The integrated MT6691 LP4X buck for VDD2.
-- The pin header, to plug external I2C devices.
+On 07/03/2023 12:50, Yinbo Zhu wrote:
+> The Loongson-2 boot clock was used to spi and lio peripheral and
+> this patch was to add boot clock index number.
+> 
+> Signed-off-by: Yinbo Zhu <zhuyinbo@loongson.cn>
+> ---
 
-Signed-off-by: Alexandre Mergnat <amergnat@baylibre.com>
----
- arch/arm64/boot/dts/mediatek/mt8365-evk.dts | 17 +++++++++++++++++
- 1 file changed, 17 insertions(+)
+This is v13? Where is the changelog then?
 
-diff --git a/arch/arm64/boot/dts/mediatek/mt8365-evk.dts b/arch/arm64/boot/dts/mediatek/mt8365-evk.dts
-index 4683704ea235..bfaee9a4a38b 100644
---- a/arch/arm64/boot/dts/mediatek/mt8365-evk.dts
-+++ b/arch/arm64/boot/dts/mediatek/mt8365-evk.dts
-@@ -87,6 +87,13 @@ optee_reserved: optee@43200000 {
- 	};
- };
- 
-+&i2c0 {
-+	clock-frequency = <100000>;
-+	pinctrl-0 = <&i2c0_pins>;
-+	pinctrl-names = "default";
-+	status = "okay";
-+};
-+
- &pio {
- 	gpio_keys: gpio-keys-pins {
- 		pins {
-@@ -96,6 +103,16 @@ pins {
- 		};
- 	};
- 
-+	i2c0_pins: i2c0-pins {
-+		pins {
-+			bias-pull-up;
-+			mediatek,drive-strength-adv = <0>;
-+			mediatek,pull-up-adv = <3>;
-+			pinmux = <MT8365_PIN_57_SDA0__FUNC_SDA0_0>,
-+				 <MT8365_PIN_58_SCL0__FUNC_SCL0_0>;
-+		};
-+	};
-+
- 	uart0_pins: uart0-pins {
- 		pins {
- 			pinmux = <MT8365_PIN_35_URXD0__FUNC_URXD0>,
 
--- 
-b4 0.10.1
+>  include/dt-bindings/clock/loongson,ls2k-clk.h | 25 ++++++++++---------
+>  1 file changed, 13 insertions(+), 12 deletions(-)
+> 
+> diff --git a/include/dt-bindings/clock/loongson,ls2k-clk.h b/include/dt-bindings/clock/loongson,ls2k-clk.h
+> index db1e27e792ff1..e86804365e506 100644
+> --- a/include/dt-bindings/clock/loongson,ls2k-clk.h
+> +++ b/include/dt-bindings/clock/loongson,ls2k-clk.h
+> @@ -13,17 +13,18 @@
+>  #define LOONGSON2_DC_PLL				3
+>  #define LOONGSON2_PIX0_PLL				4
+>  #define LOONGSON2_PIX1_PLL				5
+> -#define LOONGSON2_NODE_CLK				6
+> -#define LOONGSON2_HDA_CLK				7
+> -#define LOONGSON2_GPU_CLK				8
+> -#define LOONGSON2_DDR_CLK				9
+> -#define LOONGSON2_GMAC_CLK				10
+> -#define LOONGSON2_DC_CLK				11
+> -#define LOONGSON2_APB_CLK				12
+> -#define LOONGSON2_USB_CLK				13
+> -#define LOONGSON2_SATA_CLK				14
+> -#define LOONGSON2_PIX0_CLK				15
+> -#define LOONGSON2_PIX1_CLK				16
+> -#define LOONGSON2_CLK_END				17
+> +#define LOONGSON2_BOOT_CLK				6
+
+That's an ABI break and commit msg does not explain it.
+
+> +#define LOONGSON2_NODE_CLK				7
+
+
+
+Best regards,
+Krzysztof
+
