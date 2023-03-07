@@ -2,119 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D37566ADC9E
-	for <lists+devicetree@lfdr.de>; Tue,  7 Mar 2023 11:58:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DB8276ADCC3
+	for <lists+devicetree@lfdr.de>; Tue,  7 Mar 2023 12:04:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230437AbjCGK5m (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Mar 2023 05:57:42 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42866 "EHLO
+        id S229977AbjCGLD6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Mar 2023 06:03:58 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48130 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231217AbjCGK51 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Mar 2023 05:57:27 -0500
-Received: from mail.zeus03.de (www.zeus03.de [194.117.254.33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B26C55BCA4
-        for <devicetree@vger.kernel.org>; Tue,  7 Mar 2023 02:57:12 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple; d=sang-engineering.com; h=
-        from:to:cc:subject:date:message-id:in-reply-to:references
-        :mime-version:content-transfer-encoding; s=k1; bh=ps06TxmpnW1uip
-        6DKrBKFug1BJdUQMidCdmlJPWOKXc=; b=uQPboEB7hHus6O/J6mOarrpsry0H3V
-        cQFnc/zujgCskc310FAqOhlWQoawUwBq1W4jVG55fJYhKSsR4hquCS+ECU255LS0
-        z2RVJhqSjgcoC2C8qtAC+lngT0UAyMcRJr4aNJ3qjbb28K7gaxnJ8kvFtBnwEZdW
-        1SXpyG7a+z0RM=
-Received: (qmail 651009 invoked from network); 7 Mar 2023 11:57:08 +0100
-Received: by mail.zeus03.de with ESMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 7 Mar 2023 11:57:08 +0100
-X-UD-Smtp-Session: l3s3148p1@ITzXRU32eI4gAQnoAFQ+AGEn9EY5VOxJ
-From:   Wolfram Sang <wsa+renesas@sang-engineering.com>
-To:     linux-renesas-soc@vger.kernel.org
-Cc:     Wolfram Sang <wsa+renesas@sang-engineering.com>,
-        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: [PATCH 4/5] soc: renesas: rcar-sysc: remove R-Car H3 ES1.* handling
-Date:   Tue,  7 Mar 2023 11:56:40 +0100
-Message-Id: <20230307105645.5285-5-wsa+renesas@sang-engineering.com>
-X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20230307105645.5285-1-wsa+renesas@sang-engineering.com>
-References: <20230307105645.5285-1-wsa+renesas@sang-engineering.com>
+        with ESMTP id S230296AbjCGLDZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Mar 2023 06:03:25 -0500
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D8A5C746E7;
+        Tue,  7 Mar 2023 03:00:37 -0800 (PST)
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: kholk11)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id EDB346602081;
+        Tue,  7 Mar 2023 10:58:49 +0000 (GMT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1678186731;
+        bh=Ck1cmr3V4MIdHWHjn15OPkA+GXk0Ufq03PURMw4YhVU=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=ev4yYdeFaLYFHUAJbWaGT+Z2UhHzNzWsXbWDGif2MYRnkCc1F+5p5xATTyov62D1Q
+         eF4l8k+ZMIu6MSUP6OihpfAinKOD7BkMRAVvKhBTryn6cKxHU7nWcnTz+3YcqgbG1F
+         96pA8Ogn7oh82qBRmR6w5ZKiNODdSj0+flTb1Rtvg3wwc+LMB0UE3OSrjEuZ6hVy0l
+         QP0Nk0JjLqxrzgTgNHuQbMp5CmtOHCIwwlvizAQs6/jpF/O8E8B154JcwdJ9GbLXSG
+         yHbWSXvNRaWEliVnorx6qoU4dw8oT/wy1hFPCKPcqUNdt59388t0+B4pvp45OEdWgW
+         xfdKGeN+kvPUQ==
+Message-ID: <a8116598-f4ca-5bc3-5c9c-c96d9e1c9836@collabora.com>
+Date:   Tue, 7 Mar 2023 11:58:47 +0100
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.8.0
+Subject: Re: [PATCH v4] dt-bindings: display: mediatek: clean unnecessary item
+Content-Language: en-US
+To:     Alexandre Mergnat <amergnat@baylibre.com>
+Cc:     Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Allen-KH Cheng <allen-kh.cheng@mediatek.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        David Airlie <airlied@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Rob Herring <robh@kernel.org>, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
+        dri-devel@lists.freedesktop.org
+References: <20230306-ccorr-binding-fix-v4-0-117daea88efb@baylibre.com>
+ <25019fb1-87f7-b863-48e8-a164d0e08265@collabora.com>
+ <CAFGrd9qV40Re=bJY-kToAcYcv+d3nBje-zxxKcsvwfiE1a9OjQ@mail.gmail.com>
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <CAFGrd9qV40Re=bJY-kToAcYcv+d3nBje-zxxKcsvwfiE1a9OjQ@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.7 required=5.0 tests=BAYES_00,DKIM_INVALID,
-        DKIM_SIGNED,FORGED_SPF_HELO,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,
-        SPF_HELO_PASS,SPF_NONE,URIBL_BLOCKED autolearn=no autolearn_force=no
-        version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-R-Car H3 ES1.* was only available to an internal development group and
-needed a lot of quirks and workarounds. These become a maintenance
-burden now, so our development group decided to remove upstream support
-and disable booting for this SoC. Public users only have ES2 onwards.
+Il 07/03/23 11:50, Alexandre Mergnat ha scritto:
+> Hi Angelo
+> 
+> Le mar. 7 mars 2023 à 11:17, AngeloGioacchino Del Regno
+> <angelogioacchino.delregno@collabora.com> a écrit :
+>>
+>> Il 07/03/23 11:07, Alexandre Mergnat ha scritto:
+>>> The item which have the mediatek,mt8192-disp-ccorr as const compatible
+>>> already exist above. Merge all compatibles which have the same fallback
+>>> under the same item.
+>>>
+>>> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>>> Signed-off-by: Alexandre Mergnat <amergnat@baylibre.com>
+>>
+>> Alexandre, the Acked-by tag from Krzysztof goes *after* your S-o-b :-)
+> 
+> This is managed by the B4 tools.
+> Also, I know this is an unsolved topic in the community, but I agree
+> with people thinking the last trailer must be the guy in charge of the
+> commit.
 
-Reviewed-by: Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-Signed-off-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
----
- drivers/soc/renesas/r8a7795-sysc.c       | 10 ----------
- include/dt-bindings/power/r8a7795-sysc.h |  1 -
- 2 files changed, 11 deletions(-)
+I was told so multiple times, hence my reply.
 
-diff --git a/drivers/soc/renesas/r8a7795-sysc.c b/drivers/soc/renesas/r8a7795-sysc.c
-index 91074411b8cf..cbe1ff0fc583 100644
---- a/drivers/soc/renesas/r8a7795-sysc.c
-+++ b/drivers/soc/renesas/r8a7795-sysc.c
-@@ -38,8 +38,6 @@ static struct rcar_sysc_area r8a7795_areas[] __initdata = {
- 	{ "a3vp",	0x340, 0, R8A7795_PD_A3VP,	R8A7795_PD_ALWAYS_ON },
- 	{ "cr7",	0x240, 0, R8A7795_PD_CR7,	R8A7795_PD_ALWAYS_ON },
- 	{ "a3vc",	0x380, 0, R8A7795_PD_A3VC,	R8A7795_PD_ALWAYS_ON },
--	/* A2VC0 exists on ES1.x only */
--	{ "a2vc0",	0x3c0, 0, R8A7795_PD_A2VC0,	R8A7795_PD_A3VC },
- 	{ "a2vc1",	0x3c0, 1, R8A7795_PD_A2VC1,	R8A7795_PD_A3VC },
- 	{ "3dg-a",	0x100, 0, R8A7795_PD_3DG_A,	R8A7795_PD_ALWAYS_ON },
- 	{ "3dg-b",	0x100, 1, R8A7795_PD_3DG_B,	R8A7795_PD_3DG_A },
-@@ -54,14 +52,10 @@ static struct rcar_sysc_area r8a7795_areas[] __initdata = {
- 	 * Fixups for R-Car H3 revisions
- 	 */
- 
--#define HAS_A2VC0	BIT(0)		/* Power domain A2VC0 is present */
- #define NO_EXTMASK	BIT(1)		/* Missing SYSCEXTMASK register */
- 
- static const struct soc_device_attribute r8a7795_quirks_match[] __initconst = {
- 	{
--		.soc_id = "r8a7795", .revision = "ES1.*",
--		.data = (void *)(HAS_A2VC0 | NO_EXTMASK),
--	}, {
- 		.soc_id = "r8a7795", .revision = "ES2.*",
- 		.data = (void *)(NO_EXTMASK),
- 	},
-@@ -77,10 +71,6 @@ static int __init r8a7795_sysc_init(void)
- 	if (attr)
- 		quirks = (uintptr_t)attr->data;
- 
--	if (!(quirks & HAS_A2VC0))
--		rcar_sysc_nullify(r8a7795_areas, ARRAY_SIZE(r8a7795_areas),
--				  R8A7795_PD_A2VC0);
--
- 	if (quirks & NO_EXTMASK)
- 		r8a7795_sysc_info.extmask_val = 0;
- 
-diff --git a/include/dt-bindings/power/r8a7795-sysc.h b/include/dt-bindings/power/r8a7795-sysc.h
-index eea6ad69f0b0..ff5323858572 100644
---- a/include/dt-bindings/power/r8a7795-sysc.h
-+++ b/include/dt-bindings/power/r8a7795-sysc.h
-@@ -30,7 +30,6 @@
- #define R8A7795_PD_CA53_SCU		21
- #define R8A7795_PD_3DG_E		22
- #define R8A7795_PD_A3IR			24
--#define R8A7795_PD_A2VC0		25	/* ES1.x only */
- #define R8A7795_PD_A2VC1		26
- 
- /* Always-on power area */
--- 
-2.35.1
+I personally do not care much where the tags are put, as long as they are
+consistently put in a specific order; if I had strong opinions, I wouldn't
+have given you a R-b tag preventively... so... whatever! :-)
 
+Angelo
