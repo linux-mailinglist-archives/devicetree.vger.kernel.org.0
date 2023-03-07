@@ -2,97 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B094F6ADB0A
-	for <lists+devicetree@lfdr.de>; Tue,  7 Mar 2023 10:53:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E67026ADB17
+	for <lists+devicetree@lfdr.de>; Tue,  7 Mar 2023 10:54:23 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230447AbjCGJxw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Mar 2023 04:53:52 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53400 "EHLO
+        id S230516AbjCGJyW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Mar 2023 04:54:22 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53610 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230478AbjCGJxm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Mar 2023 04:53:42 -0500
-Received: from ex01.ufhost.com (ex01.ufhost.com [61.152.239.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D0735474ED;
-        Tue,  7 Mar 2023 01:53:36 -0800 (PST)
-Received: from EXMBX166.cuchost.com (unknown [175.102.18.54])
-        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-        (Client CN "EXMBX166", Issuer "EXMBX166" (not verified))
-        by ex01.ufhost.com (Postfix) with ESMTP id 552CA24E25A;
-        Tue,  7 Mar 2023 17:53:35 +0800 (CST)
-Received: from EXMBX073.cuchost.com (172.16.6.83) by EXMBX166.cuchost.com
- (172.16.6.76) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Tue, 7 Mar
- 2023 17:53:35 +0800
-Received: from [192.168.60.139] (180.164.60.184) by EXMBX073.cuchost.com
- (172.16.6.83) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Tue, 7 Mar
- 2023 17:53:34 +0800
-Message-ID: <0a0fbd68-9398-b6ac-3d78-e8765e4c2af9@starfivetech.com>
-Date:   Tue, 7 Mar 2023 17:53:34 +0800
+        with ESMTP id S230520AbjCGJx7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Mar 2023 04:53:59 -0500
+Received: from mail-vs1-xe34.google.com (mail-vs1-xe34.google.com [IPv6:2607:f8b0:4864:20::e34])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1407A39CCC
+        for <devicetree@vger.kernel.org>; Tue,  7 Mar 2023 01:53:53 -0800 (PST)
+Received: by mail-vs1-xe34.google.com with SMTP id s1so11795951vsk.5
+        for <devicetree@vger.kernel.org>; Tue, 07 Mar 2023 01:53:53 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google; t=1678182832;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=ZiJUwfXXWKebxDkpzA7S70ZvbXc9ROq8nFsaPfKDwtA=;
+        b=LCnLo+1Lt8yESm8HOaYnZDce+UzPbTLSyBa9jOeFGnomDhvHHP3JVwfDhwEYufqpRL
+         mvx/zBNfZq1ThX2nv1i8W+7g4cppdPw6UB7tyvfCR5g+2h3CEE/U6RnJsH2KkZGbRF80
+         PBe1EBCPuFy0zFp5oi7VY95HQZSdqmMN0VrFM=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1678182832;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=ZiJUwfXXWKebxDkpzA7S70ZvbXc9ROq8nFsaPfKDwtA=;
+        b=VIwRxQmMnwyaiJyWkRflZMuqWPLvO8sqOwnlsCNcPIZparucqLFzsFGmpZL6c+pST1
+         jeQWaZBgQ4r71wN2QrfwN+LnqAS/XE6W3ppM+SIBYYyhoRovzyZXadrXP0/X+6sorpQ+
+         G8NsSHp5qXZfOAFBuyQhyprf7T0yEwPffVbzwGezHZpb8orGfLT+dZnraZWuModJ1ZJQ
+         Bl92VRGJfN6woGxTKc3WWcIxsKdGVP0+d7c2hIemeo3/Rpnvv2oeotX1q8QyxBATuWT2
+         o3LUfjymVeoLj3EWC4yGVcRpuWHWEpiWd5xk+sVm3X9Zw0Auzwem5PKY9ZGUpaxbJHRK
+         izwA==
+X-Gm-Message-State: AO0yUKWyACAuIiVOUguzX+eGzWZykss6/ub6avLdFRqh/JHoUAhxkHB4
+        S+/NDUMh/yAW0yDJmDoGDULT0EhV1eHK/ygPqs0m6Q==
+X-Google-Smtp-Source: AK7set+6irPSk3s8bwrc7X4UKLc0k0PJT/LZgEKEVJOKB17JmYB6LU5bRJAQFAFODuPu7JFfjvtfu1Vqd9CK04niu14=
+X-Received: by 2002:a67:d583:0:b0:411:fff6:3cc4 with SMTP id
+ m3-20020a67d583000000b00411fff63cc4mr9654426vsj.3.1678182832240; Tue, 07 Mar
+ 2023 01:53:52 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-Subject: Re: [PATCH v1 06/11] media: starfive: add ISP driver files
-Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        "Mauro Carvalho Chehab" <mchehab@kernel.org>,
-        Robert Foss <rfoss@kernel.org>,
-        Todor Tomov <todor.too@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Maxime Ripard <mripard@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>
-CC:     <linux-media@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <changhuang.liang@starfivetech.com>
-References: <20230302091921.43309-1-jack.zhu@starfivetech.com>
- <20230302091921.43309-7-jack.zhu@starfivetech.com>
- <1270c1a6-9e12-3f0b-c90b-f1715ea07f80@linaro.org>
-From:   Jack Zhu <jack.zhu@starfivetech.com>
-In-Reply-To: <1270c1a6-9e12-3f0b-c90b-f1715ea07f80@linaro.org>
+References: <20230228102704.708150-1-angelogioacchino.delregno@collabora.com> <20230228102704.708150-9-angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20230228102704.708150-9-angelogioacchino.delregno@collabora.com>
+From:   Chen-Yu Tsai <wenst@chromium.org>
+Date:   Tue, 7 Mar 2023 17:53:41 +0800
+Message-ID: <CAGXv+5HSAM46wzQ4ef+S3SPg3yhFVS9nar8wRmtzFc_hzsyn3g@mail.gmail.com>
+Subject: Re: [PATCH v4 09/12] drm/panfrost: Add the MT8192 GPU ID
+To:     AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+Cc:     airlied@gmail.com, daniel@ffwll.ch, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, steven.price@arm.com,
+        alyssa.rosenzweig@collabora.com, matthias.bgg@gmail.com,
+        robh@kernel.org, dri-devel@lists.freedesktop.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [180.164.60.184]
-X-ClientProxiedBy: EXCAS066.cuchost.com (172.16.6.26) To EXMBX073.cuchost.com
- (172.16.6.83)
-X-YovoleRuleAgent: yovoleflag
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Tue, Feb 28, 2023 at 6:27=E2=80=AFPM AngeloGioacchino Del Regno
+<angelogioacchino.delregno@collabora.com> wrote:
+>
+> From: Alyssa Rosenzweig <alyssa.rosenzweig@collabora.com>
+>
+> MediaTek MT8192 has a Mali-G57 with a special GPU ID. Add its GPU ID,
+> but treat it as otherwise identical to a standard Mali-G57.
+>
+> We do _not_ fix up the GPU ID here -- userspace needs to be aware of the
+> special GPU ID, in case we find functional differences between
+> MediaTek's implementation and the standard Mali-G57 down the line.
+>
+> Signed-off-by: Alyssa Rosenzweig <alyssa.rosenzweig@collabora.com>
+> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@coll=
+abora.com>
+> Reviewed-by: Steven Price <steven.price@arm.com>
 
-
-On 2023/3/3 16:45, Krzysztof Kozlowski wrote:
-> On 02/03/2023 10:19, jack.zhu wrote:
->> Add base driver for Starfive Image Signal Processing Unit which
->> handles the data streams from the CSI2 receiver.
->> 
->> Signed-off-by: jack.zhu <jack.zhu@starfivetech.com>
->> ---
->>  drivers/media/platform/starfive/stf_isp.c     | 1079 ++++++++++++++
->>  drivers/media/platform/starfive/stf_isp.h     |  183 +++
->>  .../media/platform/starfive/stf_isp_hw_ops.c  | 1286 +++++++++++++++++
->>  3 files changed, 2548 insertions(+)
->>  create mode 100644 drivers/media/platform/starfive/stf_isp.c
->>  create mode 100644 drivers/media/platform/starfive/stf_isp.h
->>  create mode 100644 drivers/media/platform/starfive/stf_isp_hw_ops.c
-> 
-> 
->> +}
->> +
->> +static int stf_isp_reg_read(struct stf_isp_dev *isp_dev, void *arg)
->> +{
->> +	void __iomem *ispbase = stf_isp_get_ispbase(isp_dev);
->> +	struct isp_reg_param *reg_param = arg;
-> 
-> 
-> Didn't you add now code which does not even build and is not bisectable?
-> 
-
-use patch 11 to build all files in the starfive directory.
-
-> 
-> Best regards,
-> Krzysztof
-> 
+Reviewed-by: Chen-Yu Tsai <wenst@chromium.org>
+Tested-by: Chen-Yu Tsai <wenst@chromium.org>
