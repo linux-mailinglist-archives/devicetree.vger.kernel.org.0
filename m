@@ -2,91 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5FF5B6ADB0C
-	for <lists+devicetree@lfdr.de>; Tue,  7 Mar 2023 10:53:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BF55A6ADB10
+	for <lists+devicetree@lfdr.de>; Tue,  7 Mar 2023 10:53:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230461AbjCGJxw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Mar 2023 04:53:52 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53398 "EHLO
+        id S230493AbjCGJxz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Mar 2023 04:53:55 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53486 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230477AbjCGJxm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Mar 2023 04:53:42 -0500
-Received: from mail-ua1-x932.google.com (mail-ua1-x932.google.com [IPv6:2607:f8b0:4864:20::932])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 60234460A9
-        for <devicetree@vger.kernel.org>; Tue,  7 Mar 2023 01:53:36 -0800 (PST)
-Received: by mail-ua1-x932.google.com with SMTP id x1so8431383uav.9
-        for <devicetree@vger.kernel.org>; Tue, 07 Mar 2023 01:53:36 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1678182815;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=g5DlCuYa7/0gszYKTKl13EbxZ9aUeXgRvcmWQ1j6cpk=;
-        b=iYVNJhITTewI0WpMkOykHA9MEJqLR9u5GxtRG70p5Zu/GSgLThwV/iZ8limQX6EPfM
-         QsUNbKXXHV4j72gPV9NqqX/s7VJ+8MlE3JEPlKPZsPCh9I1iLiORTPTvoXJG0S3jK7Ed
-         2g14iWOM2PvMqyYjxVBaV1NDiYlCAidKKmc4c=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678182815;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=g5DlCuYa7/0gszYKTKl13EbxZ9aUeXgRvcmWQ1j6cpk=;
-        b=7Ps5AxN7m/eLpvti3wqXdPy4IDP8pmd059QcYeuRSgh3Vz3eArx37i+DxOIz6P5PwW
-         EKhBE7jaoNR9g2SjdlcEKz2AGBkkZupx5UbHsIbWmPvEt94HAW/m/GP5hW5cnDgaM/Zh
-         qYdpgx8TM0SnmiK5Y0CenMywjkW9H1e943d8yby/GAKVza2pEgQtSPuMIPpdKJswACmU
-         njX+yvfuugUc1xJYgSgIkyxPDr+0rmaBXtjBOUK2Co88Z6vokf4C1hA6OUE5lbDKlFWk
-         KoCWrXFUTH9eq62/yT/6yulNiP8po2xFI2HCqvF34eWJ0OmdsXc8o70TEjC6BIaSMxkX
-         8Zmw==
-X-Gm-Message-State: AO0yUKXIrTjTjABvVozjjlHGYg9kBAZ2QLDt+mSi+Vf2XlkNBACMP6I/
-        qlxjFnd+5l9+9HxslNhQDoMN7SOtlgPbN7iYuNT92A==
-X-Google-Smtp-Source: AK7set+q9jiPd9ivFHGiyrKW+e476+Rr3GZq5Ktk/6QxdnYWJr3wJ1xgCC/Coq26W/IugJcUukY4aCFPLpWw0ND7HAI=
-X-Received: by 2002:a1f:9dc2:0:b0:406:1fd2:bb76 with SMTP id
- g185-20020a1f9dc2000000b004061fd2bb76mr8622549vke.0.1678182815197; Tue, 07
- Mar 2023 01:53:35 -0800 (PST)
+        with ESMTP id S230484AbjCGJxo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Mar 2023 04:53:44 -0500
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 800104DBCC;
+        Tue,  7 Mar 2023 01:53:39 -0800 (PST)
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits))
+        (No client certificate requested)
+        (Authenticated sender: kholk11)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 367666602FE5;
+        Tue,  7 Mar 2023 09:53:37 +0000 (GMT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1678182818;
+        bh=vOeT3Ma4VCBuwsG6yxTjz0hhW4n6wBQ0pRmiNCigU4Q=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=VcID3wSgiRgGRYsYRldHpyMmkM9q9Iwj7PmDLnNVemLF8K/Q0FQ7c0oOHsxU4K/Hn
+         RE99gklE/DYhCxYx8uHMbbk7HhYWiV6Rqdul73r+xhWoiBucpULpGYxBiLONCuryJq
+         Czj7vMF0sG1gY43EUld5eFbC/CWuj0Yk50H/Hs+ebTiL0AHr6cnQigCJRzqidyC+gL
+         9gpTjtnMciNE2iMejiwJLMhvdlgy+gNxCgW29vcua+X9dAbj4pOcDAGDug2rRzvm07
+         jp72R1UTHATxpR7OQE/gntZ8TYjZipCQCuJzHsH90L8aiCfmvwegMKhsbqnZm4zOu0
+         U7EKfFtV9gOZA==
+Message-ID: <33587fba-566e-38f9-1f27-868133a854f0@collabora.com>
+Date:   Tue, 7 Mar 2023 10:53:34 +0100
 MIME-Version: 1.0
-References: <20230228102704.708150-1-angelogioacchino.delregno@collabora.com> <20230228102704.708150-10-angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20230228102704.708150-10-angelogioacchino.delregno@collabora.com>
-From:   Chen-Yu Tsai <wenst@chromium.org>
-Date:   Tue, 7 Mar 2023 17:53:24 +0800
-Message-ID: <CAGXv+5G-2knqWMd9EtbAqXDwmRH+-ou0w__uXAXcfzyMoWdbRQ@mail.gmail.com>
-Subject: Re: [PATCH v4 10/12] drm/panfrost: Add mediatek,mt8192-mali compatible
-To:     AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-Cc:     airlied@gmail.com, daniel@ffwll.ch, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, steven.price@arm.com,
-        alyssa.rosenzweig@collabora.com, matthias.bgg@gmail.com,
-        robh@kernel.org, dri-devel@lists.freedesktop.org,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.8.0
+Subject: Re: [PATCH v8 2/7] iommu/mediatek: Set dma_mask for PGTABLE_PA_35_EN
+Content-Language: en-US
+To:     Yong Wu <yong.wu@mediatek.com>, Joerg Roedel <joro@8bytes.org>,
+        Will Deacon <will@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>
+Cc:     Robin Murphy <robin.murphy@arm.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        iommu@lists.linux.dev, linux-mediatek@lists.infradead.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
-        autolearn_force=no version=3.4.6
+        linux-arm-kernel@lists.infradead.org, mingyuan.ma@mediatek.com,
+        yf.wang@mediatek.com, jianjiao.zeng@mediatek.com,
+        chengci.xu@mediatek.com, youlin.pei@mediatek.com
+References: <20230307080555.14399-1-yong.wu@mediatek.com>
+ <20230307080555.14399-3-yong.wu@mediatek.com>
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20230307080555.14399-3-yong.wu@mediatek.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Feb 28, 2023 at 6:27=E2=80=AFPM AngeloGioacchino Del Regno
-<angelogioacchino.delregno@collabora.com> wrote:
->
-> From: Alyssa Rosenzweig <alyssa.rosenzweig@collabora.com>
->
-> Required for Mali-G57 on the Mediatek MT8192 and MT8195, which
-> uses even more power domains than the MT8183 before it.
->
-> Signed-off-by: Alyssa Rosenzweig <alyssa.rosenzweig@collabora.com>
-> [Angelo: Removed unneeded "sram" supply, added mt8195 to commit descripti=
-on]
-> Co-developed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@co=
-llabora.com>
-> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@coll=
-abora.com>
-> Reviewed-by: Steven Price <steven.price@arm.com>
+Il 07/03/23 09:05, Yong Wu ha scritto:
+> When we enable PGTABLE_PA_35_EN, the PA for pgtable may be 35bits.
+> Thus add dma_mask for it.
+> 
+> Fixes: 301c3ca12576 ("iommu/mediatek: Allow page table PA up to 35bit")
+> Signed-off-by: Chengci.Xu <chengci.xu@mediatek.com>
+> Signed-off-by: Yong Wu <yong.wu@mediatek.com>
 
-Reviewed-by: Chen-Yu Tsai <wenst@chromium.org>
-Tested-by: Chen-Yu Tsai <wenst@chromium.org>
+I would send this patch separately from the MT8188 series, as that's purely a
+(quite important) fix that is not specific to the introduction of MT8188, even
+though that SoC needs that fix.
+
+Regardless of that,
+
+Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+
+
