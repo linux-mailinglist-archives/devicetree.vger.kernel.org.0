@@ -2,210 +2,309 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BDBF06ADD8A
-	for <lists+devicetree@lfdr.de>; Tue,  7 Mar 2023 12:36:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 834E46ADDBE
+	for <lists+devicetree@lfdr.de>; Tue,  7 Mar 2023 12:42:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230492AbjCGLg0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Mar 2023 06:36:26 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37794 "EHLO
+        id S231408AbjCGLmj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Mar 2023 06:42:39 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39624 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230482AbjCGLgY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Mar 2023 06:36:24 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 55BC94988E;
-        Tue,  7 Mar 2023 03:35:56 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 660CE6130B;
-        Tue,  7 Mar 2023 11:35:27 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 54D8DC433EF;
-        Tue,  7 Mar 2023 11:35:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1678188926;
-        bh=O9DxrT2ixzFtnLxnoTmcA3HN02EolxbP4FBXHA9+mNc=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=PCIUqadSagCnW6VTReL42z91XP19DLmi3J3CNWGdQhGxEr4fv0G9EWEdh1EVEdn12
-         40xaXubONu33hsoCK9HHtA1SDTfevLaUYFtHnySvhT+1E2hd4WZZqFqWn0GoH7nu5i
-         HiSX18mnUsuZrXoE84Fr6z5+4lmeJRjiLwOvuy5fmVrKjRFLagAOzQA2VPpfwld5IL
-         Wu3m2AyUH2DcpiOtdkWufSI5zsdcEMCFNDZ52YUkaWIqQJWFaI7p+qTmhNMqCEBGu+
-         Dejo1bJvHwjq5tYi562262K6MRvPUbGr//5ZYFcPcMe2K2xV06Zq9/vwzw4o1CNUfy
-         dI/AwfhpRemHQ==
-Date:   Tue, 7 Mar 2023 13:35:11 +0200
-From:   Mike Rapoport <rppt@kernel.org>
-To:     Conor Dooley <conor@kernel.org>
-Cc:     Conor.Dooley@microchip.com, palmer@dabbelt.com,
-        linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, frowand.list@gmail.com,
-        robh+dt@kernel.org, mick@ics.forth.gr, paul.walmsley@sifive.com,
-        aou@eecs.berkeley.edu, Valentina.FernandezAlanis@microchip.com,
-        Daire.McNamara@microchip.com
-Subject: Re: RISC-V reserved memory problems
-Message-ID: <ZAchb/DfbIh+qaE4@kernel.org>
-References: <8e10bf15-9fa9-fe90-1656-35bf3e87e7f8@microchip.com>
- <f8e67f82-103d-156c-deb0-d6d6e2756f5e@microchip.com>
- <Y9wytv5KSt1ca+td@spud>
+        with ESMTP id S230467AbjCGLlp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Mar 2023 06:41:45 -0500
+Received: from mail-yw1-x112b.google.com (mail-yw1-x112b.google.com [IPv6:2607:f8b0:4864:20::112b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 675D57D09A
+        for <devicetree@vger.kernel.org>; Tue,  7 Mar 2023 03:39:17 -0800 (PST)
+Received: by mail-yw1-x112b.google.com with SMTP id 00721157ae682-536bbef1c5eso239144227b3.9
+        for <devicetree@vger.kernel.org>; Tue, 07 Mar 2023 03:39:17 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1678189150;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=p2QEPXAzp21Sp6krYXcMnpxNWR2KzEzr6+4RDpVrUlI=;
+        b=MZdIoa/638A2Xrr3aud37732QkFaaI23u93mUrKyx6hNqR+dj0TaQC+E8tBxYlg39i
+         L/nH+SGtV7eGgg/PH796jVppU9Ei/QUJfz6q87mKD5GhxAxOoDPEgO/cZatjxymQzf37
+         42vkTmcghIT1E1yUCpWhoKqAccG+KBBVheQz0Zfzfky2xjIOWnWNtgdtNSm8xyvhMhkK
+         c81jL8WhZzIZytyFxESA5Rk4LOth1GYguzxCQNaJ84tL7NMeJWBTOJzoVEbunqIGtfH8
+         XFURYFjvPIvO1pEdUE6hlmMg6Ibn2XB+FlNLycbR4iPAMi/LBU+Sc2jGQvrVRa1Z5UvN
+         jewg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1678189150;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=p2QEPXAzp21Sp6krYXcMnpxNWR2KzEzr6+4RDpVrUlI=;
+        b=ekDp3JHCvW9EKbpkzlwOOxwFwspx/AiYgH487C7q6oJP6B3/al+3PNfQHEmUa93Yhc
+         r4ALNd070gLf4gEGejzRus1WvawKYnG1gMHcfDwpm8sGCBPGDrfmOna5OyXKFvqLh91n
+         Zu+QSWnZ7DZkXcE4pSNvfAPjt5U8+l/9WamZyRkLH25BMhBcZSwIFaG4Qv8yJfCQt7Oj
+         Pb7sRjZ5Tgo/Crz9ZG48NKkRGudvMt9VRCKqbs81MTMpAmHjG+Tv4hZDCOHIf0CFH/nL
+         rvP6swNPKqhw42k3MjnG6TH6BCIK2ir09s3xh3+CPsOdtUiiZOh8/A8iyMFL5fCUUfBw
+         uaQA==
+X-Gm-Message-State: AO0yUKVp/DI8W/GzNkte9pYOuglSev1n7lbU7gQ0Y+OhAbuQn9XNyPRJ
+        S592DUNg4bEsalZ8uMCjleZjUuUQvciOg+uYkErGsQ==
+X-Google-Smtp-Source: AK7set+pIPRCkUCY1DQn3/UnCDXcMdFY3wcXRpn0sqH288ZQWy/jCdAUknswqsGd/FYMEDrTW7d8/OAqi9oBGUQj+6g=
+X-Received: by 2002:a81:b243:0:b0:52e:d380:ab14 with SMTP id
+ q64-20020a81b243000000b0052ed380ab14mr7473835ywh.3.1678189150311; Tue, 07 Mar
+ 2023 03:39:10 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <Y9wytv5KSt1ca+td@spud>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+References: <20230214164135.17039-1-quic_devipriy@quicinc.com>
+ <20230214164135.17039-2-quic_devipriy@quicinc.com> <20230224082332.GA5443@thinkpad>
+ <bd153038-4427-1f11-1941-5f13fec01cf7@quicinc.com> <20230228063358.GA4839@thinkpad>
+ <9BD62D8E-4E14-4269-B72D-C83EF4D43040@linaro.org> <20230303174036.GB6782@thinkpad>
+ <30cf9717-dcca-e984-c506-c71b7f8e32cd@quicinc.com>
+In-Reply-To: <30cf9717-dcca-e984-c506-c71b7f8e32cd@quicinc.com>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date:   Tue, 7 Mar 2023 13:38:59 +0200
+Message-ID: <CAA8EJpohnJvFKMc5Ty4CQF65Gt1Kknqsf1B4mFZq4TvW7_dcnw@mail.gmail.com>
+Subject: Re: [PATCH 1/7] dt-bindings: PCI: qcom: Add IPQ9574 specific compatible
+To:     Devi Priya <quic_devipriy@quicinc.com>
+Cc:     Manivannan Sadhasivam <mani@kernel.org>, agross@kernel.org,
+        andersson@kernel.org, konrad.dybcio@linaro.org,
+        lpieralisi@kernel.org, kw@linux.com, robh@kernel.org,
+        bhelgaas@google.com, krzysztof.kozlowski+dt@linaro.org,
+        vkoul@kernel.org, kishon@kernel.org, mturquette@baylibre.com,
+        sboyd@kernel.org, p.zabel@pengutronix.de, svarbanov@mm-sol.com,
+        linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-phy@lists.infradead.org, linux-clk@vger.kernel.org,
+        quic_srichara@quicinc.com, quic_gokulsri@quicinc.com,
+        quic_sjaganat@quicinc.com, quic_kathirav@quicinc.com,
+        quic_arajkuma@quicinc.com, quic_anusha@quicinc.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Conor,
+On Tue, 7 Mar 2023 at 11:45, Devi Priya <quic_devipriy@quicinc.com> wrote:
+>
+>
+>
+> On 3/3/2023 11:10 PM, Manivannan Sadhasivam wrote:
+> > On Fri, Mar 03, 2023 at 05:16:58PM +0200, Dmitry Baryshkov wrote:
+> >> 28 =D1=84=D0=B5=D0=B2=D1=80=D0=B0=D0=BB=D1=8F 2023 =D0=B3. 08:33:58 GM=
+T+02:00, Manivannan Sadhasivam <mani@kernel.org> =D0=BF=D0=B8=D1=88=D0=B5=
+=D1=82:
+> >>> On Tue, Feb 28, 2023 at 10:56:53AM +0530, Devi Priya wrote:
+> >>>>
+> >>>>
+> >>>> On 2/24/2023 1:53 PM, Manivannan Sadhasivam wrote:
+> >>>>> On Tue, Feb 14, 2023 at 10:11:29PM +0530, Devi Priya wrote:
+> >>>>>> Document the compatible for IPQ9574
+> >>>>>>
+> >>>> Hi Mani, Thanks for taking time to review the patch.
+> >>>>>
+> >>>>> You didn't mention about the "msi-parent" property that is being ad=
+ded
+> >>>>> by this patch
+> >>>> Sure, will update the commit message in the next spin
+> >>>>>
+> >>>>>> Signed-off-by: Devi Priya <quic_devipriy@quicinc.com>
+> >>>>>> ---
+> >>>>>>    .../devicetree/bindings/pci/qcom,pcie.yaml    | 72 ++++++++++++=
+++++++-
+> >>>>>>    1 file changed, 70 insertions(+), 2 deletions(-)
+> >>>>>>
+> >>>>>> diff --git a/Documentation/devicetree/bindings/pci/qcom,pcie.yaml =
+b/Documentation/devicetree/bindings/pci/qcom,pcie.yaml
+> >>>>>> index 872817d6d2bd..dabdf2684e2d 100644
+> >>>>>> --- a/Documentation/devicetree/bindings/pci/qcom,pcie.yaml
+> >>>>>> +++ b/Documentation/devicetree/bindings/pci/qcom,pcie.yaml
+> >>>>>> @@ -26,6 +26,7 @@ properties:
+> >>>>>>              - qcom,pcie-ipq8064-v2
+> >>>>>>              - qcom,pcie-ipq8074
+> >>>>>>              - qcom,pcie-ipq8074-gen3
+> >>>>>> +          - qcom,pcie-ipq9574
+> >>>>>>              - qcom,pcie-msm8996
+> >>>>>>              - qcom,pcie-qcs404
+> >>>>>>              - qcom,pcie-sa8540p
+> >>>>>> @@ -44,11 +45,11 @@ properties:
+> >>>>>>      reg:
+> >>>>>>        minItems: 4
+> >>>>>> -    maxItems: 5
+> >>>>>> +    maxItems: 6
+> >>>>>>      reg-names:
+> >>>>>>        minItems: 4
+> >>>>>> -    maxItems: 5
+> >>>>>> +    maxItems: 6
+> >>>>>>      interrupts:
+> >>>>>>        minItems: 1
+> >>>>>> @@ -105,6 +106,8 @@ properties:
+> >>>>>>        items:
+> >>>>>>          - const: pciephy
+> >>>>>> +  msi-parent: true
+> >>>>>> +
+> >>>>>>      power-domains:
+> >>>>>>        maxItems: 1
+> >>>>>> @@ -173,6 +176,27 @@ allOf:
+> >>>>>>                - const: parf # Qualcomm specific registers
+> >>>>>>                - const: config # PCIe configuration space
+> >>>>>> +  - if:
+> >>>>>> +      properties:
+> >>>>>> +        compatible:
+> >>>>>> +          contains:
+> >>>>>> +            enum:
+> >>>>>> +              - qcom,pcie-ipq9574
+> >>>>>> +    then:
+> >>>>>> +      properties:
+> >>>>>> +        reg:
+> >>>>>> +          minItems: 5
+> >>>>>> +          maxItems: 6
+> >>>>>> +        reg-names:
+> >>>>>> +          minItems: 5
+> >>>>>> +          items:
+> >>>>>> +            - const: dbi # DesignWare PCIe registers
+> >>>>>> +            - const: elbi # External local bus interface register=
+s
+> >>>>>> +            - const: atu # ATU address space
+> >>>>>> +            - const: parf # Qualcomm specific registers
+> >>>>>> +            - const: config # PCIe configuration space
+> >>>>>> +            - const: aggr_noc #PCIe aggr_noc
+> >>>>>
+> >>>>> Why do you need this region unlike other SoCs? Is the driver making=
+ use of it?
+> >>>> We have the aggr_noc region in ipq9574 to achieve higher throughput =
+& to
+> >>>> handle multiple PCIe instances. The driver uses it to rate adapt 1-l=
+ane PCIe
+> >>>> clocks. My bad, missed it. Will add the driver changes in V2.
+> >>>
+> >>> Hmm, this is something new. How can you achieve higher throughput wit=
+h this
+> >>> region? Can you explain more on how it is used?
+> >>
+> >> Based on the name of the region, it looks like it is an interconnect r=
+egion.
+> >>
+> >
+> > Well, we only have BCM based interconnects so far. That's why I was cur=
+ious
+> > about this region and its purpose.
+> For connected PCIe slave devices that are running at frequency lesser
+> than the ANOC frequency (342MHz), the rate adapter of ANOC needs to be
+> configured
+> >
+> >> Devi, if this is the case, then you have to handle it through the inte=
+rconnect driver, rather than poking directly into these registers.
+> >
+> > If that so, it doesn't need to be added in this series itself. I believ=
+e that
+> > without aggr_noc region, the PCIe controller can still function properl=
+y with
+> > reduced performance. But you can add the interconnect support later as =
+a
+> > separate series.
+> Sure, okay. The ANOC runs at a fixed frequency of 342MHz and the
+> interconnect clocks are not scaled. The aggr_noc register is just a
+> magic register for configuring it's rate adapter to ensure no wait
+> cycles are inserted.
 
-Sorry for the delay, somehow this slipped between the cracks.
+I have been hesitant at some point, but this looks more and more like
+a special kind of interconnect. Please consider moving all the NoC
+stuff into a separate driver implementing the ICC API.
 
-On Thu, Feb 02, 2023 at 10:01:26PM +0000, Conor Dooley wrote:
-> Hullo Palmer, Mike & whoever else may read this,
-> 
-> Just reviving this thread from a little while ago as I have been in the
-> area again recently...
-
-TBH, I didn't really dig deep into the issues, but the thought I had was
-what if DT was mapped via fixmap until the setup_vm_final() and then it
-would be possible to call DT methods early.
-
-Could be I'm shooting in the dark :)
- 
-> On Tue, Aug 16, 2022 at 08:41:05PM +0000, Conor.Dooley@microchip.com wrote:
-> > Hey all,
-> > We've run into a bit of a problem with reserved memory on PolarFire, or
-> > more accurately a pair of problems that seem to have opposite fixes.
-> > 
-> > The first of these problems is triggered when trying to implement a
-> > remoteproc driver. To get the reserved memory buffer, remoteproc
-> > does an of_reserved_mem_lookup(), something like:
-> > 
-> > 	np = of_parse_phandle(pdev->of_node, "memory-region", 0);
-> > 	if (!np)
-> > 		return -EINVAL;
-> > 
-> > 	rmem = of_reserved_mem_lookup(np);
-> > 	if (!rmem)
-> > 		return -EINVAL;
-> > 
-> > of_reserved_mem_lookup() then uses reserved_mem[i].name to try and find
-> > a match - but this was triggering kernel panics for us. We did some
-> > debugging and found that the name string's pointer was pointing to an
-> > address in the 0x4000_0000 range. The minimum reproduction for this
-> > crash is attached - it hacks in some print_reserved_mem()s into
-> > setup_vm_final() around a tlb flush so you can see the before/after.
-> > (You'll need a reserved memory node in your dts to replicate)
-> > 
-> > The output is like so, with the same crash as in the remoteproc driver:
-> > 
-> > [    0.000000] Linux version 6.0.0-rc1-00001-g0d9d6953d834 (conor@wendy) (riscv64-unknown-linux-gnu-gcc (g5964b5cd727) 11.1.0, GNU ld (GNU Binutils) 2.37) #1 SMP Tue Aug 16 13:42:09 IST 2022
-> 
-> [...]
-> 
-> > [    0.000000] ---[ end Kernel panic - not syncing: Attempted to kill the idle task! ]---
-> > 
-> > We traced this back to early_init_fdt_scan_reserved_mem() in
-> > setup_bootmem() - moving it later back up the boot sequence to
-> > after the dt has been remapped etc has fixed the problem for us.
-> > 
-> > The least movement to get it working is attached, and also pushed
-> > here: git.kernel.org/conor/c/1735589baefc
-> 
-> This one is fixed now, as of commit 50e63dd8ed92 ("riscv: fix reserved
-> memory setup").
-> 
-> > The second problem is a bit more complicated to explain - but we
-> > found the solution conflicted with the remoteproc fix as we had
-> > to move early_init_fdt_scan_reserved_mem() _earlier_ in the boot
-> > process to solve this one.
-> > 
-> > We want to have a node in our devicetree that contains some memory
-> > that is non-cached & marked as reserved-memory. Maybe we have just
-> > missed something, but from what we've seen:
-> > - the really early setup looks at the dtb, picks the highest bit
-> >    of memory and puts the dtb etc there so it can start using it
-> > - early_init_fdt_scan_reserved_mem() is then called, which figures
-> >    out if memory is reserved or not.
-> > 
-> > Unfortunately, the highest bit of memory is the non-cached bit so
-> > everything falls over, but we can avoid this by moving the call to
-> > early_init_fdt_scan_reserved_mem() above the dtb memblock alloc that
-> > takes place right before it in setup_bootmem().
-> > 
-> > Obviously, both of these changes are moving the function call in
-> > opposite directions and we can only really do one of them. We are not
-> > sure if what we are doing with the non-cached reserved-memory section
-> > is just not permitted & cannot work - or if this is something that
-> > was overlooked for RISC-V specifically and works for other archs.
-> 
-> We ended up working around this one by making sure that U-Boot loaded
-> the dtb to somewhere that would be inside the kernel's memory map, thus
-> avoiding the remapping in the first place.
-> 
-> We did run into another problem recently though, and 50e63dd8ed92 is
-> kinda at fault for it.
-> This particular issue was encountered with a devicetree where the
-> top-most memory region was entirely reserved & was not observed prior
-> to my fix for the first issue.
-> 
-> On RISC-V, the boot sequence is something like:
-> 	setup_bootmem();
-> 	setup_vm_final();
-> 	unflatten_device_tree();
-> 	early_init_fdt_scan_reserved_mem();
-> 
-> Whereas, before my patch it used to be (give-or-take):
-> 	setup_bootmem();
-> 	early_init_fdt_scan_reserved_mem();
-> 	setup_vm_final();
-> 	unflatten_device_tree();
-> 
-> The difference being that we used to have scanned the reserved memory
-> regions before calling setup_vm_final() & therefore know which regions
-> we cannot use. As a reminder, calling early_init_fdt_scan_reserved_mem()
-> before we've got the dt in a proper virtual memory address will cause
-> the kernel to panic if it tries to read a reserved memory node's label.
-> 
-> As we are now calling setup_vm_final() *before* we know what the
-> reserved memory regions are & as RISC-V allocates memblocks from the top
-> down, the allocations in setup_vm_final() will be done in the highest
-> memory region.
-> When early_init_fdt_scan_reserved_mem() then tries to reserve the
-> entirety of that top-most memory region, the reservation fails as part
-> of this region has already been allocated.
-> In the scenario where I found this bug, that top-most region is non-
-> cached memory & the kernel ends up panicking.
-> The memblock debug code made this pretty easy to spot, otherwise I'd
-> probably have spent more than just a few hours trying to figure out why
-> it was panicking!
-> 
-> My "this needs to be fixed today" solution for this problem was calling
-> memblock_set_bottom_up(true) in setup_bootmem() & that's what we are
-> going to carry downstream for now.
-> 
-> I haven't tested it (yet) but I suspect that it would also fix our
-> problem of the dtb being remapped into a non-cached region of memory
-> that we would later go on to reserve too. Non-cached being an issue
-> mainly due to the panicking, but failing to reserve (and using!) memory
-> regions that are meant to be reserved is very far from ideal even when
-> they are memory that the kernel can actually use.
-> 
-> I have no idea if that is an acceptable solution for upstream though, so
-> I guess this is me putting out feelers as to whether this is something I
-> should send a patch to do *OR* if this is another sign of the issues
-> that you (Mike, Palmer) mentioned in the past.
-> If it isn't an acceptable solution, I'm not really too sure how to
-> proceed!
-> 
-> Cheers,
-> Conor.
-> 
+>
+> >
+> > Thanks,
+> > Mani
+> >
+> >>
+> >>
+> >>>
+> >>> Thanks,
+> >>> Mani
+> >>>
+> >>>>>
+> >>>>> Thanks,
+> >>>>> Mani
+> >>>>>
+> >>>>>> +
+> >>>>>>      - if:
+> >>>>>>          properties:
+> >>>>>>            compatible:
+> >>>>>> @@ -365,6 +389,39 @@ allOf:
+> >>>>>>                - const: ahb # AHB Reset
+> >>>>>>                - const: axi_m_sticky # AXI Master Sticky reset
+> >>>>>> +  - if:
+> >>>>>> +      properties:
+> >>>>>> +        compatible:
+> >>>>>> +          contains:
+> >>>>>> +            enum:
+> >>>>>> +              - qcom,pcie-ipq9574
+> >>>>>> +    then:
+> >>>>>> +      properties:
+> >>>>>> +        clocks:
+> >>>>>> +          minItems: 6
+> >>>>>> +          maxItems: 6
+> >>>>>> +        clock-names:
+> >>>>>> +          items:
+> >>>>>> +            - const: ahb  # AHB clock
+> >>>>>> +            - const: aux  # Auxiliary clock
+> >>>>>> +            - const: axi_m # AXI Master clock
+> >>>>>> +            - const: axi_s # AXI Slave clock
+> >>>>>> +            - const: axi_bridge # AXI bridge clock
+> >>>>>> +            - const: rchng
+> >>>>>> +        resets:
+> >>>>>> +          minItems: 8
+> >>>>>> +          maxItems: 8
+> >>>>>> +        reset-names:
+> >>>>>> +          items:
+> >>>>>> +            - const: pipe # PIPE reset
+> >>>>>> +            - const: sticky # Core Sticky reset
+> >>>>>> +            - const: axi_s_sticky # AXI Slave Sticky reset
+> >>>>>> +            - const: axi_s # AXI Slave reset
+> >>>>>> +            - const: axi_m_sticky # AXI Master Sticky reset
+> >>>>>> +            - const: axi_m # AXI Master reset
+> >>>>>> +            - const: aux # AUX Reset
+> >>>>>> +            - const: ahb # AHB Reset
+> >>>>>> +
+> >>>>>>      - if:
+> >>>>>>          properties:
+> >>>>>>            compatible:
+> >>>>>> @@ -681,6 +738,16 @@ allOf:
+> >>>>>>            - interconnects
+> >>>>>>            - interconnect-names
+> >>>>>> +  - if:
+> >>>>>> +      properties:
+> >>>>>> +        compatible:
+> >>>>>> +          contains:
+> >>>>>> +            enum:
+> >>>>>> +              - qcom,pcie-ipq9574
+> >>>>>> +    then:
+> >>>>>> +      required:
+> >>>>>> +        - msi-parent
+> >>>>>> +
+> >>>>>>      - if:
+> >>>>>>          not:
+> >>>>>>            properties:
+> >>>>>> @@ -693,6 +760,7 @@ allOf:
+> >>>>>>                    - qcom,pcie-ipq8064v2
+> >>>>>>                    - qcom,pcie-ipq8074
+> >>>>>>                    - qcom,pcie-ipq8074-gen3
+> >>>>>> +                - qcom,pcie-ipq9574
+> >>>>>>                    - qcom,pcie-qcs404
+> >>>>>>        then:
+> >>>>>>          required:
+> >>>>>> --
+> >>>>>> 2.17.1
+> >>>>>>
+> >>>>>
+> >>>> Thanks,
+> >>>> Devi Priya
+> >>>
+> >>
+> >
+> Thanks,
+> Devi Priya
 
 
 
--- 
-Sincerely yours,
-Mike.
+--=20
+With best wishes
+Dmitry
