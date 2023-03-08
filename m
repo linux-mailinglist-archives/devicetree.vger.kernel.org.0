@@ -2,79 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D762B6B0B52
-	for <lists+devicetree@lfdr.de>; Wed,  8 Mar 2023 15:35:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B6DFB6B0B68
+	for <lists+devicetree@lfdr.de>; Wed,  8 Mar 2023 15:38:05 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231483AbjCHOfJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Mar 2023 09:35:09 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41852 "EHLO
+        id S231718AbjCHOiD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Mar 2023 09:38:03 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46370 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232078AbjCHOez (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Mar 2023 09:34:55 -0500
-Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0A989C1C28
-        for <devicetree@vger.kernel.org>; Wed,  8 Mar 2023 06:34:49 -0800 (PST)
-Received: by mail-ed1-x531.google.com with SMTP id g3so66707474eda.1
-        for <devicetree@vger.kernel.org>; Wed, 08 Mar 2023 06:34:48 -0800 (PST)
+        with ESMTP id S231658AbjCHOiB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Mar 2023 09:38:01 -0500
+Received: from mail-ed1-x52f.google.com (mail-ed1-x52f.google.com [IPv6:2a00:1450:4864:20::52f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 028C0A244
+        for <devicetree@vger.kernel.org>; Wed,  8 Mar 2023 06:37:58 -0800 (PST)
+Received: by mail-ed1-x52f.google.com with SMTP id da10so66710626edb.3
+        for <devicetree@vger.kernel.org>; Wed, 08 Mar 2023 06:37:58 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1678286087;
+        d=linaro.org; s=google; t=1678286277;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=Sr9+Tr2n8Mmt58h0Z1F/3/sRtkDaHU1uY4sWcQnY2kw=;
-        b=D3jvffyWRbATIx1tWCrE5xoyQZcZC8E9+8+nWdoUdAuP8/yur58qwkkJ3rCeayNSwB
-         x/sD2F27qa/cR9KujFQR2RB/7vd2KvvYtj1pokUp7oYxOmJXEcVUfDf4WF8I3ers35XA
-         ZAdrxDDlx6ewJPB8Ix38VSDwW2HTMSraR9ikJ4OhFmGJOd6cJkytJnFo2gGGzelljLW3
-         q8oUh/LCduRqu0u59rQjO0j4MlAw1JdkoxG9W9Z8EcSRv6KiSP0tvsC5oE9ulsgwydxH
-         s9sOzU4BLRQFnksGP1sltQa+GJkbMxOoWNCLNwOqk+K+QIr2q0Gs8i24/uqZksWxemMm
-         Zfqw==
+        bh=IswmBeGDujtpSeyrahtx2BBhupqfPmXINK1Qc/Od5So=;
+        b=Y0uHWC456U/oCFTWFkzg842eAyPPsA9wRLoFWBcw+bq0YFXbSnS+Iixk1cAHP0ZECo
+         uB4hST+fylxggFmTrIhSZUy4NKrksR/q4aG7DxhKMbMktBqc6i6dAiutGRT/+I0Epn8z
+         L02ERPOXLJeKJWG4UDJ4119pTiAwR34s3YnRaErMTFrL9VpGsZcH+INbgvpRwlfdNHEB
+         RlIG3nmmSELH21YymDfRuNdCB/3HmMnf/mvCHVvmBUOC2AMsZDw/J7hI6r3K91UAvsJL
+         ki6Jkq6YFNBS6+OwQffCxDLm2CWYfd7i+XX0QG0SIDpMKF4SeQYyI44QiNTWPjHMzMs/
+         gMHg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678286087;
+        d=1e100.net; s=20210112; t=1678286277;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Sr9+Tr2n8Mmt58h0Z1F/3/sRtkDaHU1uY4sWcQnY2kw=;
-        b=Is9hwD+MNue8VNemGXyD2Y4jmSw7fScwHV5b585preNwHeskJivcVwFpIZEkw9LnCT
-         x48uRw37L+HMUkhdPmrWaHLWRsT54WTq7FL1ZOqKULt6SkMUh9IwwLYGRY+Cfd5v1L1L
-         ELKfO1+N1q1gX45dLf83qeNmdMWg77Lu3y2J7kh/+jPEkAWOUok/F1PxpyZvnOWHgo2U
-         kCinyAiVNRl4Gu3J1D26n82gN5k0g0L9L7W0EeGU/iijnFhTSHZP9HVjLcsHwVyTiKpW
-         D1NfxHcJBcfbrh646kaeQ6QqatiQFpVA2GiHP4/C8S6+yHxKM7jmsJyHwT3Lr0/2AFtE
-         RmyA==
-X-Gm-Message-State: AO0yUKXpEsGH1/s4ZpU2hOk//mTemRx3yecOYVMJ5+O7OHQwjZCIqOaw
-        NiNrMxxVMiO2ouhZoTVpT4TC+Q==
-X-Google-Smtp-Source: AK7set9jEeIVuUFx7pZKgIdZdftTYm6ZL2N8ApryA/j4etXuJ0VT+nxTTGZBOYPeCwyCC43ushGqag==
-X-Received: by 2002:a17:907:8a06:b0:889:ed81:dff7 with SMTP id sc6-20020a1709078a0600b00889ed81dff7mr23174446ejc.9.1678286087563;
-        Wed, 08 Mar 2023 06:34:47 -0800 (PST)
+        bh=IswmBeGDujtpSeyrahtx2BBhupqfPmXINK1Qc/Od5So=;
+        b=tmcC/6tzK+mXxCehIKF6VcYGj/MXdLuRTvDDw2nLIxlaMx5OW3/eKFK03zoOYRncJU
+         RPBrTBz/R5IpbbyWmzNVdKGMgS/jllOj+55ZLRmemIctQbyuUj+npBP6qcr+xwF29VM+
+         kS8Up+ZMNi3Gaahtnu/C0xKDkkWSNSz1WZqR0lX5R77FT6lSBe9CoWHL1/1rkw//ydFM
+         4L9fpmT0G7euX5ttV4jkvAbWUVa21UbUz4poBlnrJsfTdWWbs/tDK0dSE5AKVvvtZyov
+         BpQP9rquRbFL66n7hr47ZjOq9/caq37EVzB5WT9jgFD5ocvECoz0fiCwxuKrYbhNGlUO
+         /WYA==
+X-Gm-Message-State: AO0yUKXxO/sRos//KiVQScLy2WhNTgP2VP7oV4RLLxopighz2F9cxnPM
+        nob30VI/smJEnhnAVwO7pCvjrw==
+X-Google-Smtp-Source: AK7set9+IzJD5CqH8haTjWU1/y5zJiGgFWDJmbLkSNeyLdj0vKmCTEnqxayI0EfYpnPVJb7gZ07BWg==
+X-Received: by 2002:a17:907:9713:b0:8b1:a3c7:a9c9 with SMTP id jg19-20020a170907971300b008b1a3c7a9c9mr22751328ejc.70.1678286276907;
+        Wed, 08 Mar 2023 06:37:56 -0800 (PST)
 Received: from ?IPV6:2a02:810d:15c0:828:ff33:9b14:bdd2:a3da? ([2a02:810d:15c0:828:ff33:9b14:bdd2:a3da])
-        by smtp.gmail.com with ESMTPSA id i24-20020a50d758000000b004ad15d5ef08sm8388372edj.58.2023.03.08.06.34.46
+        by smtp.gmail.com with ESMTPSA id u17-20020a50c2d1000000b004af759bc79asm8266873edf.7.2023.03.08.06.37.55
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 08 Mar 2023 06:34:47 -0800 (PST)
-Message-ID: <1a837bec-8658-3200-edff-76809de3fae6@linaro.org>
-Date:   Wed, 8 Mar 2023 15:34:46 +0100
+        Wed, 08 Mar 2023 06:37:56 -0800 (PST)
+Message-ID: <8f855f2d-fbe8-fc51-0524-390605c9f91e@linaro.org>
+Date:   Wed, 8 Mar 2023 15:37:55 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.8.0
-Subject: Re: [PATCH v1 17/25] arm64: dts: colibri-imx8x: eval: Add spi-to-can
+Subject: Re: [PATCH v1 1/2] dt-bindings: hwmon: ina2xx: add supply property
 Content-Language: en-US
-To:     dev@pschenker.ch, devicetree@vger.kernel.org,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>
-Cc:     NXP Linux Team <linux-imx@nxp.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+To:     Svyatoslav Ryhel <clamor95@gmail.com>,
+        Mark Brown <broonie@kernel.org>
+Cc:     Guenter Roeck <linux@roeck-us.net>,
+        Jean Delvare <jdelvare@suse.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Frank Rowand <frowand.list@gmail.com>,
-        linux-arm-kernel@lists.infradead.org,
-        Fabio Estevam <festevam@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
-References: <20230308125300.58244-1-dev@pschenker.ch>
- <20230308125300.58244-18-dev@pschenker.ch>
- <07e64710-6b91-9da6-f483-03706b7ea95a@linaro.org>
- <3730a506119804b5740854c74d1558010ce37b47.camel@pschenker.ch>
+References: <20230308094024.14115-1-clamor95@gmail.com>
+ <20230308094024.14115-2-clamor95@gmail.com>
+ <31ca0ede-012c-4849-bf25-d0492b116681@sirena.org.uk>
+ <6DBD0F5A-4625-4FCD-8D64-23293D734A82@gmail.com>
+ <5cd6764c-9b04-42ea-932d-9f14aa465605@sirena.org.uk>
+ <135993BF-B4AC-42C1-AD36-94F66EE1620D@gmail.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <3730a506119804b5740854c74d1558010ce37b47.camel@pschenker.ch>
+In-Reply-To: <135993BF-B4AC-42C1-AD36-94F66EE1620D@gmail.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
@@ -85,32 +85,26 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 08/03/2023 14:43, Philippe Schenker wrote:
->>> +       mcp2515: can@0 {
->>> +               compatible = "microchip,mcp2515";
->>> +               reg = <0>;
->>> +               interrupt-parent = <&lsio_gpio3>;
->>> +               interrupts = <13 IRQ_TYPE_EDGE_FALLING>;
->>> +               pinctrl-0 = <&pinctrl_can_int>;
->>> +               pinctrl-names = "default";
->>> +               clocks = <&clk16m>;
+On 08/03/2023 15:01, Svyatoslav Ryhel wrote:
+>>>>> +  vdd-supply: true
+>>>>> +
+>>>>>  required:
+>>>>>    - compatible
+>>>>>    - reg
 >>
->> You just sorted all nodes in previous patches and add something
->> unsorted? What is then the style of order? Random name?
+>>>> Unless the device can work without power the supply should be required.
+>>
+>>> Device can work without supply defined on most devices, but in my case power is gated with gpio and devices will not work without fixed regulator.
+>>
+>> If there are devices that work without any source of power at all that
+>> would be very surprising.  It doesn't matter if a particular system has
+>> a non-controllable regulator, the binding should still make it mandatory
+>> to describe that.
 > 
-> My logic behind this one is
-> 
-> 1. compatible property
-> 2. reg property
-> 3. standard properties 
->    - first interrupt
->    - then pinctrl
-> 4. specific properties
->    - again alphabetically: clocks, spi-max-frequency
+> Then question is WHY and WHO passed driver without power supply system implemented? Why it pops only now?
 
-clocks and spi-max-frequency are standard properties.
-
-BTW, what is a specific property?
+Why do you mention driver? We talk about bindings and device. What the
+driver does, matters less here.
 
 Best regards,
 Krzysztof
