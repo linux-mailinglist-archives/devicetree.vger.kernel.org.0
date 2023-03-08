@@ -2,30 +2,31 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0197F6B07CC
-	for <lists+devicetree@lfdr.de>; Wed,  8 Mar 2023 14:02:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4CD966B07D7
+	for <lists+devicetree@lfdr.de>; Wed,  8 Mar 2023 14:02:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231523AbjCHNCZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Mar 2023 08:02:25 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39106 "EHLO
+        id S230346AbjCHNCt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Mar 2023 08:02:49 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38942 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231534AbjCHNBH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Mar 2023 08:01:07 -0500
-Received: from smtp-bc0e.mail.infomaniak.ch (smtp-bc0e.mail.infomaniak.ch [45.157.188.14])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ED90EC5637
-        for <devicetree@vger.kernel.org>; Wed,  8 Mar 2023 05:00:13 -0800 (PST)
+        with ESMTP id S229874AbjCHNCP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Mar 2023 08:02:15 -0500
+X-Greylist: delayed 430 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Wed, 08 Mar 2023 05:00:25 PST
+Received: from smtp-42ac.mail.infomaniak.ch (smtp-42ac.mail.infomaniak.ch [84.16.66.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 111E0867FF
+        for <devicetree@vger.kernel.org>; Wed,  8 Mar 2023 05:00:24 -0800 (PST)
 Received: from smtp-2-0000.mail.infomaniak.ch (unknown [10.5.36.107])
-        by smtp-3-3000.mail.infomaniak.ch (Postfix) with ESMTPS id 4PWsgL52tszMrV3l;
-        Wed,  8 Mar 2023 13:53:18 +0100 (CET)
-Received: from unknown by smtp-2-0000.mail.infomaniak.ch (Postfix) with ESMTPA id 4PWsgL1LbNzMslsG;
+        by smtp-3-3000.mail.infomaniak.ch (Postfix) with ESMTPS id 4PWsgM3BnJzMrQkn;
+        Wed,  8 Mar 2023 13:53:19 +0100 (CET)
+Received: from unknown by smtp-2-0000.mail.infomaniak.ch (Postfix) with ESMTPA id 4PWsgL5r3MzMsl1Z;
         Wed,  8 Mar 2023 13:53:18 +0100 (CET)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=pschenker.ch;
-        s=20220412; t=1678279998;
-        bh=0aQVO4QE3EMr93GN5aXwmbhmG3BGBh3gFzNFrkt2N0g=;
+        s=20220412; t=1678279999;
+        bh=ws9lUnpRTqnTj/i1ccaVLSwptFwo0tpcYo9l93lctbo=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=gsg65/KV/cgzEWYToZ/LwcomvquWGvXDVck548yXZVn0mIHYPi/a9Izsza8lHr8vO
-         x9bbrNwrU2cngGB6Q5otz7ha1f0DvP3Rd8wJnkBFQH4+JUP2STcgdDTLEo8UoxKLeO
-         qOUcQlZH4jCLmeRF6DrKYDwmUJUI/UM1RmNhX26Y=
+        b=SqMMTMWsfwGiKCeZTDBiw2lYF+xKu6SyiqqUsnmRCOB0JCrmh1hNGOShARuMoVO5y
+         oItqtvyWMhwf3dIg9S68mvbXziH7YMad7MMlcbn8HSQZVz+ILWfkSOpp3pW/55iUub
+         rqORvCdLWZA7Q24Yjy9dAUSM2hPhUz3goM1k31Gg=
 From:   Philippe Schenker <dev@pschenker.ch>
 To:     devicetree@vger.kernel.org, Shawn Guo <shawnguo@kernel.org>,
         Sascha Hauer <s.hauer@pengutronix.de>
@@ -38,9 +39,9 @@ Cc:     NXP Linux Team <linux-imx@nxp.com>,
         Fabio Estevam <festevam@gmail.com>,
         Philippe Schenker <philippe.schenker@toradex.com>,
         linux-kernel@vger.kernel.org
-Subject: [PATCH v1 20/25] arm64: dts: colibri-imx8x: Move gpio-keys to som level
-Date:   Wed,  8 Mar 2023 13:52:54 +0100
-Message-Id: <20230308125300.58244-21-dev@pschenker.ch>
+Subject: [PATCH v1 21/25] arm64: dts: colibri-imx8x: Add todo comments
+Date:   Wed,  8 Mar 2023 13:52:55 +0100
+Message-Id: <20230308125300.58244-22-dev@pschenker.ch>
 X-Mailer: git-send-email 2.39.2
 In-Reply-To: <20230308125300.58244-1-dev@pschenker.ch>
 References: <20230308125300.58244-1-dev@pschenker.ch>
@@ -59,72 +60,88 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 From: Philippe Schenker <philippe.schenker@toradex.com>
 
-SODIMM_45 that is connected to "&lsio_gpio3 10" is defined in the
-Colibri standard to be a wakeup pin.
-Move this to the SoM level device-tree and keep it disabled by default
-but do enable it again on the carrier-board.
+Highlight what is still missing.
 
 Signed-off-by: Philippe Schenker <philippe.schenker@toradex.com>
 ---
 
- .../dts/freescale/imx8x-colibri-eval-v3.dtsi     | 16 +++-------------
- arch/arm64/boot/dts/freescale/imx8x-colibri.dtsi | 15 +++++++++++++++
- 2 files changed, 18 insertions(+), 13 deletions(-)
+ .../boot/dts/freescale/imx8x-colibri.dtsi     | 28 +++++++++++++++++++
+ 1 file changed, 28 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8x-colibri-eval-v3.dtsi b/arch/arm64/boot/dts/freescale/imx8x-colibri-eval-v3.dtsi
-index e7e3cf462408..8dfcb2cfdb68 100644
---- a/arch/arm64/boot/dts/freescale/imx8x-colibri-eval-v3.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8x-colibri-eval-v3.dtsi
-@@ -17,20 +17,10 @@ clk16m: clock-16mhz-fixed {
- 		#clock-cells = <0>;
- 		clock-frequency = <16000000>;
- 	};
-+};
- 
--	gpio-keys {
--		compatible = "gpio-keys";
--		pinctrl-names = "default";
--		pinctrl-0 = <&pinctrl_gpiokeys>;
--
--		key-wakeup {
--			label = "Wake-Up";
--			gpios = <&lsio_gpio3 10 GPIO_ACTIVE_HIGH>;
--			linux,code = <KEY_WAKEUP>;
--			debounce-interval = <10>;
--			wakeup-source;
--		};
--	};
-+&colibri_gpio_keys {
-+	status = "okay";
- };
- 
- /* Colibri FastEthernet */
 diff --git a/arch/arm64/boot/dts/freescale/imx8x-colibri.dtsi b/arch/arm64/boot/dts/freescale/imx8x-colibri.dtsi
-index 2f86a2eb4ff3..e93e22c4053b 100644
+index e93e22c4053b..f70ab4db92ed 100644
 --- a/arch/arm64/boot/dts/freescale/imx8x-colibri.dtsi
 +++ b/arch/arm64/boot/dts/freescale/imx8x-colibri.dtsi
-@@ -8,6 +8,21 @@ chosen {
- 		stdout-path = &lpuart3;
+@@ -31,6 +31,10 @@ reg_module_3v3: regulator-module-3v3 {
  	};
+ };
  
-+	colibri_gpio_keys: gpio-keys {
-+		compatible = "gpio-keys";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_gpiokeys>;
-+		status = "disabled";
++/* TODO Analogue Inputs */
 +
-+		key-wakeup {
-+			debounce-interval = <10>;
-+			gpios = <&lsio_gpio3 10 GPIO_ACTIVE_HIGH>;
-+			label = "Wake-Up";
-+			linux,code = <KEY_WAKEUP>;
-+			wakeup-source;
-+		};
-+	};
++/* TODO Cooling maps for DX */
 +
- 	reg_module_3v3: regulator-module-3v3 {
- 		compatible = "regulator-fixed";
- 		regulator-max-microvolt = <3300000>;
+ &cpu_alert0 {
+ 	hysteresis = <2000>;
+ 	temperature = <90000>;
+@@ -64,6 +68,10 @@ ethphy0: ethernet-phy@2 {
+ 	};
+ };
+ 
++/* TODO flexcan1 - 3 */
++
++/* TODO GPU */
++
+ /* On-module I2C */
+ &i2c0 {
+ 	#address-cells = <1>;
+@@ -92,6 +100,10 @@ touchscreen@2c {
+ 	};
+ };
+ 
++/* TODO i2c lvds0 accessible on FFC (X2) */
++
++/* TODO i2c lvds1 accessible on FFC (X3) */
++
+ /* Colibri I2C */
+ &i2c1 {
+ 	#address-cells = <1>;
+@@ -109,6 +121,8 @@ &jpegenc {
+ 	status = "okay";
+ };
+ 
++/* TODO Parallel RRB */
++
+ /* Colibri UART_B */
+ &lpuart0 {
+ 	pinctrl-names = "default";
+@@ -307,6 +321,14 @@ &lsio_pwm2 {
+ 	pinctrl-names = "default";
+ };
+ 
++/* TODO MIPI CSI */
++
++/* TODO MIPI DSI with DSI-to-HDMI bridge lt8912 */
++
++/* TODO on-module PCIe for Wi-Fi */
++
++/* TODO On-module i2s / Audio */
++
+ /* On-module eMMC */
+ &usdhc1 {
+ 	pinctrl-names = "default", "state_100mhz", "state_200mhz";
+@@ -334,6 +356,12 @@ &usdhc2 {
+ 	vmmc-supply = <&reg_module_3v3>;
+ };
+ 
++/* TODO USB Client/Host */
++
++/* TODO USB Host */
++
++/* TODO VPU Encoder/Decoder */
++
+ &iomuxc {
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&pinctrl_ext_io0>, <&pinctrl_hog0>, <&pinctrl_hog1>,
 -- 
 2.39.2
 
