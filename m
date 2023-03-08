@@ -2,157 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 27A186B072A
-	for <lists+devicetree@lfdr.de>; Wed,  8 Mar 2023 13:34:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5997A6B072D
+	for <lists+devicetree@lfdr.de>; Wed,  8 Mar 2023 13:35:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230261AbjCHMec (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Mar 2023 07:34:32 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33514 "EHLO
+        id S229651AbjCHMfD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Mar 2023 07:35:03 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34272 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229770AbjCHMea (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Mar 2023 07:34:30 -0500
-Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CB4E15F50D
-        for <devicetree@vger.kernel.org>; Wed,  8 Mar 2023 04:34:28 -0800 (PST)
-Received: by mail-ed1-x535.google.com with SMTP id cy23so64953645edb.12
-        for <devicetree@vger.kernel.org>; Wed, 08 Mar 2023 04:34:28 -0800 (PST)
+        with ESMTP id S229893AbjCHMfC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Mar 2023 07:35:02 -0500
+Received: from mail-pl1-x632.google.com (mail-pl1-x632.google.com [IPv6:2607:f8b0:4864:20::632])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C73AABCB8F
+        for <devicetree@vger.kernel.org>; Wed,  8 Mar 2023 04:34:56 -0800 (PST)
+Received: by mail-pl1-x632.google.com with SMTP id a2so17507996plm.4
+        for <devicetree@vger.kernel.org>; Wed, 08 Mar 2023 04:34:56 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1678278867;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=lHnWVWK4WJysT8nTvpm+ezeTdv9yWzInP/ANaSJalnE=;
-        b=VguaXxgdrVNJ6ewt6Lcu2U5zfjODDwprmRErFl1yVDEs6YJM6ae5ih+FlbGaI6vpOg
-         BvVdY9I+OBJuGy9IppdW00Ayq1m5JTUzCv5yqvAw5WOCkgYMNFQRN3lenLMSzl2YV7nq
-         gx9pncpbeAaOTImFfOQlXekji0AzH/w0ofn/cXAeinaQk0f2Ska3rM4S0fiyQrkshql2
-         yumZb3jzUA2bRxUFUPgrjXDa3bFHkYjfSpup//WaDLB+zlIeFWTFqniUNYldCxdZ77Iu
-         ZgWwkqECd7cPdXLgugOSNZTtwPtLuaqASBNfS0bcFrr7JXzIPFwgtc06gODGjsh1PO/a
-         ZaJQ==
+        d=gmail.com; s=20210112; t=1678278896;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=zHuDgvlCE/5a9+1aGAitgplyFrJpaa48jFZWHTER884=;
+        b=EUJUIzwhx5ZOLfjs56PfPm2MZ1SOYq6t773REs/PoM+logtX5oJWDeHGaZnjhe+wdG
+         MHSIt4rtxU1/cewTmBbp7rfrnqppxomQ//s1kbFF95U2YOwzlGuOWXf/LSiwTMgLOErF
+         vN6ZnO8fy8KDtvNk/qy/VeK1OtOF+C7DuGRQ/VgQt9CaiH/TOgNXxGAoPGiJWjaxJc8S
+         sCAFj9MDjPwQ5lawNC8havEbww7hOXxedm3eN/h1x/w5yL7TOq4iC47MRGj5lDwHfoDb
+         c0+xJs/fT3pI9FWPJRfptHTr5JkktBAMzDveQQcfowiSRA9raxJIFVJj8Ix1NU+CLJIm
+         YmDA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678278867;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=lHnWVWK4WJysT8nTvpm+ezeTdv9yWzInP/ANaSJalnE=;
-        b=ww+vzYPl6vnKlWrR98KvsOkgIPvUyWVqmKyB8j+z+GXRlwH80dXGTaZI9ZQbH2N/VM
-         kXq5mLjwCzevnV0kvfhuwut8irEbtcwG+yr2CWCeMGpCJnB2gZGQBjQZTWoDlj2h+nzA
-         yAvMdPSXJC227y8/vT2GG9XgzSC6KIuVPWKLmJtAP/epnyE4m+EaBmi7BU1R1lddjj/9
-         8mh3Z+K68Q2jxIBXipMgtqroxtXSkJgpeHWtxefB/sGzjHz0++9b+unG1SkERPNE/vez
-         ZqfXD5+nJrMyPu20QFZij63qIku+GkSGwqdQJZBlhiuy/Jd96sYvSjtwU4iMLCaRws4G
-         RbzQ==
-X-Gm-Message-State: AO0yUKW1DvHX58b9Kw/LjfsXUl9N0Gw+XG2TGihjcg4iSGn294/wBYFF
-        7MfHYpauJgQfRTwZ5BwNK65y0A==
-X-Google-Smtp-Source: AK7set+OkhR9+9zDqw1AYMDA4XeRaaNxz/Gcl9uZU/AQnE6yeWfL8seN9zhdzyFWr7q3YqFl/tr7ng==
-X-Received: by 2002:aa7:c14e:0:b0:4ac:d2cd:81c7 with SMTP id r14-20020aa7c14e000000b004acd2cd81c7mr18034215edp.5.1678278867282;
-        Wed, 08 Mar 2023 04:34:27 -0800 (PST)
-Received: from ?IPV6:2a02:810d:15c0:828:ff33:9b14:bdd2:a3da? ([2a02:810d:15c0:828:ff33:9b14:bdd2:a3da])
-        by smtp.gmail.com with ESMTPSA id u25-20020a50a419000000b004bd6e3ed196sm8107904edb.86.2023.03.08.04.34.25
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 08 Mar 2023 04:34:26 -0800 (PST)
-Message-ID: <dbbe3cd2-3329-d267-338b-8e513209ddcd@linaro.org>
-Date:   Wed, 8 Mar 2023 13:34:25 +0100
+        d=1e100.net; s=20210112; t=1678278896;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=zHuDgvlCE/5a9+1aGAitgplyFrJpaa48jFZWHTER884=;
+        b=VDL3x8QKEAUnLOs3mdN4ifInOxqbM7+KNJ8XGms9o+kGwOqbhOBJ65jRdSxbi0CuBF
+         wZg8Wjyn18OblFk/Rbwy8zhOFq2JhGS0iNhptVaGHeWopF0HcDJIiyxusioPxqzxt/Ie
+         X9MPst9M6WLQTHn8RK8gHvJZqw9ebHv0EJUBKaP9nKhig4tTlJkijwjFZnXRjp1NF668
+         JBRoC6zxjznd9SwXLLX3U3n7m8nFbRsHh4xcfPDztKaKUoX2TXjTnt7nu8SZAYQuLBH3
+         mR+oc52FSUoYkzb7PFyVkWWLbPzUtcrp0GhLDhX2GBU28uGBqUJ6ICKalE6vW0UuPEy1
+         3VZQ==
+X-Gm-Message-State: AO0yUKVQZ1l3k5l2vi8NYtq3pwX/JuG/PmxTcQNR0FeO5F9V9nxGsxSp
+        +LOB8rpQB8cnzw51TPby5OaB8889adM8PGvFqK8=
+X-Google-Smtp-Source: AK7set9j3MYpH/pDS1Tu/sjnEelIBRJc/QZ5emFBX/PM6Z8GgezMhpXsCfH+ZFUsM13ztNzndYGAcfu8+fNi/oxvSms=
+X-Received: by 2002:a17:90a:69c4:b0:233:bc72:1c69 with SMTP id
+ s62-20020a17090a69c400b00233bc721c69mr6277736pjj.9.1678278896224; Wed, 08 Mar
+ 2023 04:34:56 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-Subject: Re: [PATCH net-next v2] dt-bindings: net: ti: k3-am654-cpsw-nuss:
- Document Serdes PHY
-Content-Language: en-US
-To:     Siddharth Vadapalli <s-vadapalli@ti.com>,
-        krzysztof.kozlowski+dt@linaro.org
-Cc:     davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
-        linux@armlinux.org.uk, pabeni@redhat.com, robh+dt@kernel.org,
-        nsekhar@ti.com, rogerq@kernel.org, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, srk@ti.com
-References: <20230308051835.276552-1-s-vadapalli@ti.com>
- <1ffed720-322c-fa73-1160-5fd73ce3c7c2@linaro.org>
- <7b6e8131-8e5b-88bc-69f7-b737c0c35bb6@ti.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <7b6e8131-8e5b-88bc-69f7-b737c0c35bb6@ti.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+References: <20230227093846.151474-1-alexander.stein@ew.tq-group.com>
+In-Reply-To: <20230227093846.151474-1-alexander.stein@ew.tq-group.com>
+From:   Fabio Estevam <festevam@gmail.com>
+Date:   Wed, 8 Mar 2023 09:34:44 -0300
+Message-ID: <CAOMZO5Ao8-AW_LXdVbrxcHO1Yn9YP8UPyNy7U3ecy+G+9ZD7Eg@mail.gmail.com>
+Subject: Re: [PATCH 1/1] arm64: dts: imx93: add missing tpm pwm instances
+To:     Alexander Stein <alexander.stein@ew.tq-group.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Markus Niebel <Markus.Niebel@ew.tq-group.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 08/03/2023 09:38, Siddharth Vadapalli wrote:
-> Hello Krzysztof,
-> 
-> On 08/03/23 14:04, Krzysztof Kozlowski wrote:
->> On 08/03/2023 06:18, Siddharth Vadapalli wrote:
->>> Update bindings to include Serdes PHY as an optional PHY, in addition to
->>> the existing CPSW MAC's PHY. The CPSW MAC's PHY is required while the
->>> Serdes PHY is optional. The Serdes PHY handle has to be provided only
->>> when the Serdes is being configured in a Single-Link protocol. Using the
->>> name "serdes-phy" to represent the Serdes PHY handle, the am65-cpsw-nuss
->>> driver can obtain the Serdes PHY and request the Serdes to be
->>> configured.
->>>
->>> Signed-off-by: Siddharth Vadapalli <s-vadapalli@ti.com>
->>> ---
->>>
->>> Hello,
->>>
->>> This patch corresponds to the Serdes PHY bindings that were missed out in
->>> the series at:
->>> https://lore.kernel.org/r/20230104103432.1126403-1-s-vadapalli@ti.com/
->>> This was pointed out at:
->>> https://lore.kernel.org/r/CAMuHMdW5atq-FuLEL3htuE3t2uO86anLL3zeY7n1RqqMP_rH1g@mail.gmail.com/
->>>
->>> Changes from v1:
->>> 1. Describe phys property with minItems, items and description.
->>> 2. Use minItems and items in phy-names.
->>> 3. Remove the description in phy-names.
->>>
->>> v1:
->>> https://lore.kernel.org/r/20230306094750.159657-1-s-vadapalli@ti.com/
->>>
->>>  .../bindings/net/ti,k3-am654-cpsw-nuss.yaml        | 14 ++++++++++++--
->>>  1 file changed, 12 insertions(+), 2 deletions(-)
->>>
->>> diff --git a/Documentation/devicetree/bindings/net/ti,k3-am654-cpsw-nuss.yaml b/Documentation/devicetree/bindings/net/ti,k3-am654-cpsw-nuss.yaml
->>> index 900063411a20..0fb48bb6a041 100644
->>> --- a/Documentation/devicetree/bindings/net/ti,k3-am654-cpsw-nuss.yaml
->>> +++ b/Documentation/devicetree/bindings/net/ti,k3-am654-cpsw-nuss.yaml
->>> @@ -126,8 +126,18 @@ properties:
->>>              description: CPSW port number
->>>  
->>>            phys:
->>> -            maxItems: 1
->>> -            description: phandle on phy-gmii-sel PHY
->>> +            minItems: 1
->>> +            items:
->>> +              - description: CPSW MAC's PHY.
->>> +              - description: Serdes PHY. Serdes PHY is required only if
->>> +                             the Serdes has to be configured in the
->>> +                             Single-Link configuration.
->>> +
->>> +          phy-names:
->>> +            minItems: 1
->>> +            items:
->>> +              - const: mac-phy
->>> +              - const: serdes-phy
->>
->> Drop "phy" suffixes.
-> 
-> The am65-cpsw driver fetches the Serdes PHY by looking for the string
-> "serdes-phy". Therefore, modifying the string will require changing the driver's
-> code as well. Please let me know if it is absolutely necessary to drop the phy
-> suffix. If so, I will post a new series with the changes involving dt-bindings
-> changes and the driver changes.
+Hi Alexander,
 
-Why the driver uses some properties before adding them to the binding?
+On Mon, Feb 27, 2023 at 6:38=E2=80=AFAM Alexander Stein
+<alexander.stein@ew.tq-group.com> wrote:
+>
+> TPM1/TPM3 are missing, add them.
+>
+> Signed-off-by: Markus Niebel <Markus.Niebel@ew.tq-group.com>
+> Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
 
-And is it correct method of adding ABI? You add incorrect properties
-without documentation and then use this as an argument "driver already
-does it"?
+Who is the original author? If it is Markus, then his name should
+appear in the From: line.
 
-Best regards,
-Krzysztof
+Apart from that:
 
+Reviewed-by: Fabio Estevam <festevam@gmail.com>
