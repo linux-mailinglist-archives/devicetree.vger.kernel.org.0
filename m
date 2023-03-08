@@ -2,78 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 234686AFC2A
-	for <lists+devicetree@lfdr.de>; Wed,  8 Mar 2023 02:21:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4EEE86AFC42
+	for <lists+devicetree@lfdr.de>; Wed,  8 Mar 2023 02:27:30 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230051AbjCHBVC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Mar 2023 20:21:02 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33636 "EHLO
+        id S230089AbjCHB11 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Mar 2023 20:27:27 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41434 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230074AbjCHBU6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Mar 2023 20:20:58 -0500
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A4409A8C78;
-        Tue,  7 Mar 2023 17:20:54 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-        bh=NUT8XDwfJnM0Ve3yK5qLipuIqwpKgQYWlXsjVs9AxDU=; b=A3/aecGkgpEC3hKokQQqdKAUjM
-        hS9ozJCzRh621CUQhzeYehcE0c3fYmEfoEa0JSVE4k5lm3YiF7Gpu6v8LGt5ucM+dI6VrLtFn/u11
-        ygxzpJ7xGu6dZcYpWUdLNTFQbhjvJe5wFjiviZ/BSN2M6LI48nTjTfZgRYb1TiA8MQ9I=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-        (envelope-from <andrew@lunn.ch>)
-        id 1pZiTz-006j0k-0w; Wed, 08 Mar 2023 02:20:43 +0100
-Date:   Wed, 8 Mar 2023 02:20:43 +0100
-From:   Andrew Lunn <andrew@lunn.ch>
-To:     Christian Marangi <ansuelsmth@gmail.com>
-Cc:     Florian Fainelli <f.fainelli@gmail.com>,
-        Vladimir Oltean <olteanv@gmail.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
+        with ESMTP id S230051AbjCHB10 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Mar 2023 20:27:26 -0500
+Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 528629E053
+        for <devicetree@vger.kernel.org>; Tue,  7 Mar 2023 17:27:18 -0800 (PST)
+Received: by mail-lf1-x129.google.com with SMTP id k14so19479791lfj.7
+        for <devicetree@vger.kernel.org>; Tue, 07 Mar 2023 17:27:18 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1678238836;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=fnkuEnGdkuVKTgCNdaVXaPdrwyMARXY+OCtr+H09yOk=;
+        b=SO8rsVQb7F8kyhL8IL4sklmWEmag8ksGKG9KXYX8J7XW6uz5MMN8Cv5jkwwjnvMeRb
+         zzbUVcPk6wsgzo3zwSPBy+oiD+KTfpx9nMOpEsE6su2NsGFXRNF9VhOO7YhdtSi0GZ81
+         GUtxZY0QBgfMEsiuctE7rPV4Sd4+YcntUhzJcVEa1eh9Gmdwn29JiB343rit3oWCwIEN
+         k5bYnEzwC91x+hGr2VRBFMYCUqjJwQJ/MBdLPAbYGkmAPwXgxv9ubUVA6bbzFsov+o5f
+         OoLh6S7HKopaevgtcunc35L+8x6gWGTK/FqorJrQAqeGiJTlwF/3L5Bka6VlfeYqUS0D
+         HIXg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1678238836;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=fnkuEnGdkuVKTgCNdaVXaPdrwyMARXY+OCtr+H09yOk=;
+        b=Ajcz83asHNSEtw5gz/NkJUdOpClHvjUAs4y3MFNNKac9hP9x26ruYrkipkiU3Ibf8U
+         QzNsfo7dV5a7Ju0KVK20GGrQdU/wjdpgIb/xYTPZE2Ku6rQ/8BmdhpRsSs+Ag5pWGBKj
+         jyuZ6oDnO2vR87WVnrvHvg836nS1Tser5A1EdT5glsS5q+AVmsb+sHkgAAsCHLwVD+e5
+         cYjFGsIrwzAk/DXunxiP7a9uvfYfULAGjG2PgLTP+srONRlchOKU8nijxO/P1nAD++yk
+         ZSCKm10FASOTblDrm1PE+ttASCY4VhqDh1YV9H7SJEPgSs+BN3wDWyvewCGc7TsL8X4k
+         GwHA==
+X-Gm-Message-State: AO0yUKU0Rc3MrmmTXEiD1p0NlffXh/lMapFGKG5SC9NoENDw4/u5/wQf
+        eWCigE7kUF4OuHjoJkyXz8eeDw==
+X-Google-Smtp-Source: AK7set/RGVBfMaBWTEVNbiNbTiWzRl6Q/cw6AtLGHBJGzwGHwR46rq/MiE6MhHcZHekKWQViNwv3hQ==
+X-Received: by 2002:a19:c214:0:b0:4ca:98ec:7d9a with SMTP id l20-20020a19c214000000b004ca98ec7d9amr4386825lfc.15.1678238836571;
+        Tue, 07 Mar 2023 17:27:16 -0800 (PST)
+Received: from [192.168.1.101] (abyj16.neoplus.adsl.tpnet.pl. [83.9.29.16])
+        by smtp.gmail.com with ESMTPSA id o24-20020a056512051800b004a2c447598fsm2182944lfb.159.2023.03.07.17.27.15
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 07 Mar 2023 17:27:15 -0800 (PST)
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+Subject: [PATCH 0/8] qcom-cpufreq-hw binding improvements
+Date:   Wed, 08 Mar 2023 02:26:57 +0100
+Message-Id: <20230308-topic-cpufreq_bindings-v1-0-3368473ec52d@linaro.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAGHkB2QC/x2N0QrCMAwAf2Xk2UBdmU5/RUTaLt0CI6uNk8HYv
+ xt8vIPjdlCqTAr3ZodKX1ZexOB8aiBNQUZCHoyhda133vX4WQonTGXNld6vyDKwjIpdvvbkQ75
+ dogeLY1DCWIOkyXJZ59lkqZR5+98ez+P4AXvYZLZ9AAAA
+To:     "Rafael J. Wysocki" <rafael@kernel.org>,
+        Viresh Kumar <viresh.kumar@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Russell King <linux@armlinux.org.uk>,
-        Gregory Clement <gregory.clement@bootlin.com>,
-        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
-        John Crispin <john@phrozen.org>, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, Lee Jones <lee@kernel.org>,
-        linux-leds@vger.kernel.org
-Subject: Re: [net-next PATCH 00/11] net: Add basic LED support for switch/phy
-Message-ID: <b852b170-1290-4089-bfda-6ac44db89c7d@lunn.ch>
-References: <20230307170046.28917-1-ansuelsmth@gmail.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230307170046.28917-1-ansuelsmth@gmail.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+        Manivannan Sadhasivam <mani@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>
+Cc:     linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        Konrad Dybcio <konrad.dybcio@linaro.org>
+X-Mailer: b4 0.12.1
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1678238834; l=1470;
+ i=konrad.dybcio@linaro.org; s=20230215; h=from:subject:message-id;
+ bh=xI1zlOQmpQoj7NqQfsUAGQS5w5X6WW+TqN5bUGAVdZY=;
+ b=KxPHiETKTjI7JvF17ebvbBEqnysNlVPhuiU5/ZPy9YqTyLKrLtTimseEW+3EgQJVTkWkzL2/kHRh
+ eXcQejQyDxudWrEVbEFwRqbb6v1h4Em4I5Njl0fnmEezETDLXh2j
+X-Developer-Key: i=konrad.dybcio@linaro.org; a=ed25519;
+ pk=iclgkYvtl2w05SSXO5EjjSYlhFKsJ+5OSZBjOkQuEms=
+X-Spam-Status: No, score=-0.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_SORBS_HTTP,RCVD_IN_SORBS_SOCKS,SPF_HELO_NONE,SPF_PASS,
+        URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Mar 07, 2023 at 06:00:35PM +0100, Christian Marangi wrote:
-> This is a continue of [1]. It was decided to take a more gradual
-> approach to implement LEDs support for switch and phy starting with
-> basic support and then implementing the hw control part when we have all
-> the prereq done.
+This series tries to better sanitize what's actually allowed on which
+SoC and lowers the minimum frequency domain count to 1, as that's what's
+present on at least QCM2290.
 
-In the end, there are likely to be 3 or 4 patchsets. There are going
-to be patches to both the LED subsystem and the netdev subsystem, plus
-device tree bindings and some ARM DT patches.
+Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+---
+Konrad Dybcio (8):
+      dt-bindings: cpufreq: cpufreq-qcom-hw: Allow just 1 frequency domain
+      dt-bindings: cpufreq: cpufreq-qcom-hw: Sanitize data per compatible
+      dt-bindings: cpufreq: cpufreq-qcom-hw: Add QCM2290
+      arm64: dts: qcom: sc7180: Add SoC-specific compatible to cpufreq_hw
+      arm64: dts: qcom: sdm845: Add SoC-specific compatible to cpufreq_hw
+      arm64: dts: qcom: sm6115: Add SoC-specific compatible to cpufreq_hw
+      arm64: dts: qcom: sm6350: Add SoC-specific compatible to cpufreq_hw
+      arm64: dts: qcom: sm8150: Add SoC-specific compatible to cpufreq_hw
 
-Ideally we would like all the patches to go through one tree, so we
-can keep everything together and buildable. We will cross post patches
-to both major subsystems, but my guess is, merging via netdev will be
-best. If not, a stable branch for the LED subsystem which can be
-pulled into netdev could maybe made be to work.
+ .../bindings/cpufreq/cpufreq-qcom-hw.yaml          | 118 ++++++++++++++++++++-
+ arch/arm64/boot/dts/qcom/sc7180.dtsi               |   2 +-
+ arch/arm64/boot/dts/qcom/sdm845.dtsi               |   2 +-
+ arch/arm64/boot/dts/qcom/sm6115.dtsi               |   2 +-
+ arch/arm64/boot/dts/qcom/sm6350.dtsi               |   2 +-
+ arch/arm64/boot/dts/qcom/sm8150.dtsi               |   2 +-
+ 6 files changed, 120 insertions(+), 8 deletions(-)
+---
+base-commit: 709c6adf19dc558e44ab5c01659b09a16a2d3c82
+change-id: 20230308-topic-cpufreq_bindings-5f78e3af96b3
 
-       Andrew
+Best regards,
+-- 
+Konrad Dybcio <konrad.dybcio@linaro.org>
+
