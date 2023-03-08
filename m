@@ -2,395 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7BB5E6B1641
-	for <lists+devicetree@lfdr.de>; Thu,  9 Mar 2023 00:11:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0B6346B1644
+	for <lists+devicetree@lfdr.de>; Thu,  9 Mar 2023 00:11:30 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230345AbjCHXLF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Mar 2023 18:11:05 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53204 "EHLO
+        id S230336AbjCHXL0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Mar 2023 18:11:26 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53624 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230347AbjCHXKh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Mar 2023 18:10:37 -0500
-Received: from mail-oo1-f41.google.com (mail-oo1-f41.google.com [209.85.161.41])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B2BA9D49DB;
-        Wed,  8 Mar 2023 15:10:20 -0800 (PST)
-Received: by mail-oo1-f41.google.com with SMTP id o19-20020a056820041300b005259de79accso22986oou.9;
-        Wed, 08 Mar 2023 15:10:20 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678317020;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=XD0ikGmSsZrvW4Icaq2NiBnGVE41WkYau9ANqfCeE4g=;
-        b=uPrDvGyIlwhV/kS0G/w8GGmuECOac8YyXYWxX7ETLIIGzcfq0+rSdogAFMwj/cKR0x
-         N0OTGxv+PKHISveg7iEofBvCpfuYKithxJ5V5QwsuT+mgAQ6bQGd5zleQBt6kCCvjA6E
-         NzKEbQXSSA/L3VPLCuSrKqi4MoshZfXGG8/uH+guP9JzksLaPdAf8v1OhNvvYIhI/mry
-         GrkGW6IwelG+b2iYdDzZw1YZK3ThZ5CVb3hhYrWxH0f3CngFlulcdVj0HJXv0llmNJSv
-         nMxG6cn3GiN9MOc4dw5GnYzlxC7+XgZFSyeCGFlYpVCohMG56lvuVK6HHVE6HWWDYMba
-         eNlg==
-X-Gm-Message-State: AO0yUKW6ZpEuXSSMPR+dNhr56vFwnd6fpm93KEqPUC/MHUbWQtc58yX8
-        xXB38+daLzgowoD9bzT/Gw==
-X-Google-Smtp-Source: AK7set8A0SF0DbY+UQqrMG/aKU7uVszgRiyuv7wgsb0tBBXkzXbyyzJllVMOKOb47Lq8JItYy/gAMw==
-X-Received: by 2002:a4a:8685:0:b0:525:4b8b:8f38 with SMTP id x5-20020a4a8685000000b005254b8b8f38mr46622ooh.3.1678317019733;
-        Wed, 08 Mar 2023 15:10:19 -0800 (PST)
-Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id d29-20020a9d72dd000000b0068bcef4f543sm3066374otk.21.2023.03.08.15.10.18
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 08 Mar 2023 15:10:19 -0800 (PST)
-Received: (nullmailer pid 4046807 invoked by uid 1000);
-        Wed, 08 Mar 2023 23:10:18 -0000
-Date:   Wed, 8 Mar 2023 17:10:18 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Sean Anderson <sean.anderson@seco.com>
-Cc:     Vinod Koul <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
-        linux-phy@lists.infradead.org,
-        Madalin Bucur <madalin.bucur@nxp.com>,
-        linuxppc-dev@lists.ozlabs.org, devicetree@vger.kernel.org,
-        Ioana Ciornei <ioana.ciornei@nxp.com>,
-        Camelia Alexandra Groza <camelia.groza@nxp.com>,
-        linux-arm-kernel@lists.infradead.org,
-        Bagas Sanjaya <bagasdotme@gmail.com>,
+        with ESMTP id S230126AbjCHXLJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Mar 2023 18:11:09 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2D6CC6923C;
+        Wed,  8 Mar 2023 15:10:41 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id AF7856193B;
+        Wed,  8 Mar 2023 23:10:31 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B3F94C433EF;
+        Wed,  8 Mar 2023 23:10:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1678317031;
+        bh=6K5Aos/pHDOzNcZcmESeumuhe0HreLjKYHuJ1XTrzPQ=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=k/DseVQbYHn/At0guNyNZP4BN8i6WzjB0uRmhQobxO94ZBF0jJgd1PQlMGc04OpGE
+         lIyKOJJTGkFOUXl1nCFzpKhe2MBgIyG30zjvFh8gaq/Ry3OWbr6iw/+DwdTHfdbfT6
+         g6tDn+K/sH73TtnH0pXB6xFjCYSDJE5U8ygmaBnmDVCUtS25eS1W9ltWXSYuZK1Lzi
+         iDbk9WM5rfiKALXn+gKk6Nwn52Qcpy8GlvtIpdkRhyG0wvRL1waJ4isIaHZAuLd/8b
+         zYsmc2akgBrq5ajRhZNYtg8BOomZdsybcO3o7ld6yFFSh3hJ8IslyB0hPBarBpdIEO
+         E4LzQ0XBIIc5A==
+Date:   Wed, 8 Mar 2023 23:10:29 +0000
+From:   Eric Biggers <ebiggers@kernel.org>
+To:     Abel Vesa <abel.vesa@linaro.org>
+Cc:     Ulf Hansson <ulf.hansson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
-        =?iso-8859-1?Q?Fern=E1ndez?= Rojas <noltari@gmail.com>,
-        Jonas Gorski <jonas.gorski@gmail.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        linux-gpio@vger.kernel.org
-Subject: Re: [PATCH v10 03/13] dt-bindings: Convert gpio-mmio to yaml
-Message-ID: <20230308231018.GA4039466-robh@kernel.org>
-References: <20230306191535.1917656-1-sean.anderson@seco.com>
- <20230306191535.1917656-4-sean.anderson@seco.com>
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Manivannan Sadhasivam <mani@kernel.org>,
+        Alim Akhtar <alim.akhtar@samsung.com>,
+        Avri Altman <avri.altman@wdc.com>,
+        Bart Van Assche <bvanassche@acm.org>,
+        Adrian Hunter <adrian.hunter@intel.com>,
+        "James E . J . Bottomley" <jejb@linux.ibm.com>,
+        "Martin K . Petersen" <martin.petersen@oracle.com>,
+        linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        linux-arm-msm@vger.kernel.org, linux-scsi@vger.kernel.org
+Subject: Re: [RFC PATCH v2 4/7] soc: qcom: Make the Qualcomm UFS/SDCC ICE a
+ dedicated driver
+Message-ID: <ZAkV5ZNeK5iHU0Uq@gmail.com>
+References: <20230308155838.1094920-1-abel.vesa@linaro.org>
+ <20230308155838.1094920-5-abel.vesa@linaro.org>
+ <ZAjppY2K0/XPBHxG@sol.localdomain>
+ <ZAkBwZNWMTsXlt+p@linaro.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20230306191535.1917656-4-sean.anderson@seco.com>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=no
-        autolearn_force=no version=3.4.6
+In-Reply-To: <ZAkBwZNWMTsXlt+p@linaro.org>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Mar 06, 2023 at 02:15:25PM -0500, Sean Anderson wrote:
-> This is a generic binding for simple MMIO GPIO controllers. Although we
-> have a single driver for these controllers, they were previously spread
-> over several files. Consolidate them. The register descriptions are
-> adapted from the comments in the source. There is no set order for the
-> registers, so I have not specified one.
+On Wed, Mar 08, 2023 at 11:44:33PM +0200, Abel Vesa wrote:
+> On 23-03-08 12:01:41, Eric Biggers wrote:
+> > On Wed, Mar 08, 2023 at 05:58:35PM +0200, Abel Vesa wrote:
+> > >  * Switched QCOM_INLINE_CRYPTO_ENGINE to tristate and made it built-in
+> > >    if any of the UFS or the SDHC drivers are built-in. This is to allow
+> > >    the API to be available even if the built-in driver doesn't have
+> > >    crypto enabled.
+> > [...]
+> > > diff --git a/drivers/soc/qcom/Kconfig b/drivers/soc/qcom/Kconfig
+> > > index a8f283086a21..c584369e9810 100644
+> > > --- a/drivers/soc/qcom/Kconfig
+> > > +++ b/drivers/soc/qcom/Kconfig
+> > > @@ -275,4 +275,10 @@ config QCOM_ICC_BWMON
+> > >  	  the fixed bandwidth votes from cpufreq (CPU nodes) thus achieve high
+> > >  	  memory throughput even with lower CPU frequencies.
+> > >  
+> > > +config QCOM_INLINE_CRYPTO_ENGINE
+> > > +	tristate
+> > > +	depends on SCSI_UFS_CRYPTO || MMC_CRYPTO
+> > > +	default y if SCSI_UFS_QCOM=y || MMC_SDHCI_MSM=y
+> > > +	select QCOM_SCM
+> > 
+> > What are the "depends on" and "default y" lines above for?
+> > 
+> > You're already selecting this from SCSI_UFS_QCOM and MSM_SDHCI_MSM, as I had
+> > suggested.  Isn't that enough?
 > 
-> Signed-off-by: Sean Anderson <sean.anderson@seco.com>
-> ---
+> We have the following:
+> (SCSI_UFS_QCOM && SCSI_UFS_CRYPTO) || (MMC_SDHCI_MSM && MMC_CRYPTO)
 > 
-> Changes in v10:
-> - New
+> So lets take as example the scenario: (m && y) || (y && n).
 > 
->  .../bindings/gpio/brcm,bcm6345-gpio.yaml      |  16 +--
->  .../devicetree/bindings/gpio/gpio-mmio.yaml   | 136 ++++++++++++++++++
->  .../bindings/gpio/ni,169445-nand-gpio.txt     |  38 -----
->  .../devicetree/bindings/gpio/wd,mbl-gpio.txt  |  38 -----
->  4 files changed, 137 insertions(+), 91 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/gpio/gpio-mmio.yaml
->  delete mode 100644 Documentation/devicetree/bindings/gpio/ni,169445-nand-gpio.txt
->  delete mode 100644 Documentation/devicetree/bindings/gpio/wd,mbl-gpio.txt
+> The QCOM_INLINE_CRYPTO_ENGINE will be set to 'm' and the sdhci driver
+> will not be able to link properly since the ICE API is part of a module.
 > 
-> diff --git a/Documentation/devicetree/bindings/gpio/brcm,bcm6345-gpio.yaml b/Documentation/devicetree/bindings/gpio/brcm,bcm6345-gpio.yaml
-> index 4d69f79df859..e11f4af49c52 100644
-> --- a/Documentation/devicetree/bindings/gpio/brcm,bcm6345-gpio.yaml
-> +++ b/Documentation/devicetree/bindings/gpio/brcm,bcm6345-gpio.yaml
-> @@ -4,7 +4,7 @@
->  $id: http://devicetree.org/schemas/gpio/brcm,bcm6345-gpio.yaml#
->  $schema: http://devicetree.org/meta-schemas/core.yaml#
->  
-> -title: Broadcom BCM6345 GPIO controller
-> +title: Broadcom BCM63xx GPIO controller
->  
->  maintainers:
->    - Álvaro Fernández Rojas <noltari@gmail.com>
-> @@ -18,8 +18,6 @@ description: |+
->  
->    BCM6338 have 8-bit data and dirout registers, where GPIO state can be read
->    and/or written, and the direction changed from input to output.
-> -  BCM6345 have 16-bit data and dirout registers, where GPIO state can be read
-> -  and/or written, and the direction changed from input to output.
->    BCM6318, BCM6328, BCM6358, BCM6362, BCM6368 and BCM63268 have 32-bit data
->    and dirout registers, where GPIO state can be read and/or written, and the
->    direction changed from input to output.
-> @@ -29,7 +27,6 @@ properties:
->      enum:
->        - brcm,bcm6318-gpio
->        - brcm,bcm6328-gpio
-> -      - brcm,bcm6345-gpio
->        - brcm,bcm6358-gpio
->        - brcm,bcm6362-gpio
->        - brcm,bcm6368-gpio
-> @@ -63,17 +60,6 @@ required:
->  additionalProperties: false
->  
->  examples:
-> -  - |
-> -    gpio@fffe0406 {
-> -      compatible = "brcm,bcm6345-gpio";
-> -      reg-names = "dirout", "dat";
-> -      reg = <0xfffe0406 2>, <0xfffe040a 2>;
-> -      native-endian;
-> -
-> -      gpio-controller;
-> -      #gpio-cells = <2>;
-> -    };
-> -
->    - |
->      gpio@0 {
->        compatible = "brcm,bcm63268-gpio";
-> diff --git a/Documentation/devicetree/bindings/gpio/gpio-mmio.yaml b/Documentation/devicetree/bindings/gpio/gpio-mmio.yaml
-> new file mode 100644
-> index 000000000000..fd5c7055d542
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/gpio/gpio-mmio.yaml
-> @@ -0,0 +1,136 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/gpio/gpio-mmio.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Generic MMIO GPIO
-> +
-> +maintainers:
-> +  - Linus Walleij <linus.walleij@linaro.org>
-> +  - Bartosz Golaszewski <brgl@bgdev.pl>
-> +
-> +description: |
-
-Don't need '|' unless you want line endings preserved. Elsewhere too.
-
-> +  Some simple GPIO controllers may consist of a single data register or a pair
-> +  of set/clear-bit registers. Such controllers are common for glue logic in
-> +  FPGAs or ASICs. Commonly, these controllers are accessed over memory-mapped
-> +  NAND-style parallel busses.
-> +
-> +properties:
-> +  big-endian:
-> +    true
-
-big-endian: true
-
-> +
-> +  compatible:
-> +    enum:
-> +      - brcm,bcm6345-gpio # Broadcom BCM6345 GPIO controller
-> +      - wd,mbl-gpio # Western Digital MyBook Live memory-mapped GPIO controller
-> +      - ni,169445-nand-gpio # National Instruments 169445 GPIO NAND controller
-> +
-> +  '#gpio-cells':
-> +    const: 2
-> +
-> +  gpio-controller:
-> +    true
-
-ditto.
-
-> +
-> +  reg:
-> +    minItems: 1
-> +    description: |
-> +      A list of registers in the controller. The width of each register is
-> +      determined by its size. All registers must have the same width. The number
-> +      of GPIOs is set by the width, with bit 0 corresponding to GPIO 0.
-> +    items:
-> +      - description: |
-> +          Register to READ the value of the GPIO lines. If GPIO line is high,
-> +          the bit will be set. If the GPIO line is low, the bit will be cleared.
-> +          This register may also be used to drive GPIOs if the SET register is
-> +          omitted.
-> +      - description: |
-> +          Register to SET the value of the GPIO lines. Setting a bit in this
-> +          register will drive the GPIO line high.
-> +      - description: |
-> +          Register to CLEAR the value of the GPIO lines. Setting a bit in this
-> +          register will drive the GPIO line low. If this register is omitted,
-> +          the SET register will be used to clear the GPIO lines as well, by
-> +          actively writing the line with 0.
-> +      - description: |
-> +          Register to set the line as OUTPUT. Setting a bit in this register
-> +          will turn that line into an output line. Conversely, clearing a bit
-> +          will turn that line into an input.
-> +      - description: |
-> +          Register to set this line as INPUT. Setting a bit in this register
-> +          will turn that line into an input line. Conversely, clearing a bit
-> +          will turn that line into an output.
-> +
-> +  reg-names:
-> +    minItems: 1
-> +    maxItems: 5
-> +    items:
-> +      enum:
-> +        - dat
-> +        - set
-> +        - clr
-> +        - dirout
-> +        - dirin
-> +
-> +  native-endian:
-> +    true
-> +
-> +  no-output:
-> +    $ref: /schemas/types.yaml#/definitions/flag
-> +    description: |
-> +      If this property is present, the controller cannot drive the GPIO lines.
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - reg-names
-> +  - '#gpio-cells'
-> +  - gpio-controller
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    nand-gpio-out@1f300010 {
-
-Use generic node name:
-
-gpio@...
-
-> +      compatible = "ni,169445-nand-gpio";
-> +      reg = <0x1f300010 0x4>;
-> +      reg-names = "dat";
-> +      gpio-controller;
-> +      #gpio-cells = <2>;
-> +    };
-> +
-> +    nand-gpio-in@1f300014 {
-> +      compatible = "ni,169445-nand-gpio";
-> +      reg = <0x1f300014 0x4>;
-> +      reg-names = "dat";
-> +      gpio-controller;
-> +      #gpio-cells = <2>;
-> +      no-output;
-> +    };
-> +
-> +    gpio0@e0000000 {
-> +      compatible = "wd,mbl-gpio";
-> +      reg-names = "dat";
-> +      reg = <0xe0000000 0x1>;
-> +      #gpio-cells = <2>;
-> +      gpio-controller;
-> +    };
-> +
-> +    gpio1@e0100000 {
-> +      compatible = "wd,mbl-gpio";
-> +      reg-names = "dat";
-> +      reg = <0xe0100000 0x1>;
-> +      #gpio-cells = <2>;
-> +      gpio-controller;
-> +      no-output;
-> +    };
-> +
-> +    gpio@fffe0406 {
-> +      compatible = "brcm,bcm6345-gpio";
-> +      reg-names = "dirout", "dat";
-> +      reg = <0xfffe0406 2>, <0xfffe040a 2>;
-> +      native-endian;
-> +
-> +      gpio-controller;
-> +      #gpio-cells = <2>;
-> +    };
-> diff --git a/Documentation/devicetree/bindings/gpio/ni,169445-nand-gpio.txt b/Documentation/devicetree/bindings/gpio/ni,169445-nand-gpio.txt
-> deleted file mode 100644
-> index ca2f8c745a27..000000000000
-> --- a/Documentation/devicetree/bindings/gpio/ni,169445-nand-gpio.txt
-> +++ /dev/null
-> @@ -1,38 +0,0 @@
-> -Bindings for the National Instruments 169445 GPIO NAND controller
-> -
-> -The 169445 GPIO NAND controller has two memory mapped GPIO registers, one
-> -for input (the ready signal) and one for output (control signals).  It is
-> -intended to be used with the GPIO NAND driver.
-> -
-> -Required properties:
-> -	- compatible: should be "ni,169445-nand-gpio"
-> -	- reg-names: must contain
-> -		"dat" - data register
-> -	- reg: address + size pairs describing the GPIO register sets;
-> -		order must correspond with the order of entries in reg-names
-> -	- #gpio-cells: must be set to 2. The first cell is the pin number and
-> -			the second cell is used to specify the gpio polarity:
-> -			0 = active high
-> -			1 = active low
-> -	- gpio-controller: Marks the device node as a gpio controller.
-> -
-> -Optional properties:
-> -	- no-output: disables driving output on the pins
-> -
-> -Examples:
-> -	gpio1: nand-gpio-out@1f300010 {
-> -		compatible = "ni,169445-nand-gpio";
-> -		reg = <0x1f300010 0x4>;
-> -		reg-names = "dat";
-> -		gpio-controller;
-> -		#gpio-cells = <2>;
-> -	};
-> -
-> -	gpio2: nand-gpio-in@1f300014 {
-> -		compatible = "ni,169445-nand-gpio";
-> -		reg = <0x1f300014 0x4>;
-> -		reg-names = "dat";
-> -		gpio-controller;
-> -		#gpio-cells = <2>;
-> -		no-output;
-> -	};
-> diff --git a/Documentation/devicetree/bindings/gpio/wd,mbl-gpio.txt b/Documentation/devicetree/bindings/gpio/wd,mbl-gpio.txt
-> deleted file mode 100644
-> index 038c3a6a1f4d..000000000000
-> --- a/Documentation/devicetree/bindings/gpio/wd,mbl-gpio.txt
-> +++ /dev/null
-> @@ -1,38 +0,0 @@
-> -Bindings for the Western Digital's MyBook Live memory-mapped GPIO controllers.
-> -
-> -The Western Digital MyBook Live has two memory-mapped GPIO controllers.
-> -Both GPIO controller only have a single 8-bit data register, where GPIO
-> -state can be read and/or written.
-> -
-> -Required properties:
-> -	- compatible: should be "wd,mbl-gpio"
-> -	- reg-names: must contain
-> -		"dat" - data register
-> -	- reg: address + size pairs describing the GPIO register sets;
-> -		order must correspond with the order of entries in reg-names
-> -	- #gpio-cells: must be set to 2. The first cell is the pin number and
-> -			the second cell is used to specify the gpio polarity:
-> -			0 = active high
-> -			1 = active low
-> -	- gpio-controller: Marks the device node as a gpio controller.
-> -
-> -Optional properties:
-> -	- no-output: GPIOs are read-only.
-> -
-> -Examples:
-> -	gpio0: gpio0@e0000000 {
-> -		compatible = "wd,mbl-gpio";
-> -		reg-names = "dat";
-> -		reg = <0xe0000000 0x1>;
-> -		#gpio-cells = <2>;
-> -		gpio-controller;
-> -	};
-> -
-> -	gpio1: gpio1@e0100000 {
-> -		compatible = "wd,mbl-gpio";
-> -		reg-names = "dat";
-> -		reg = <0xe0100000 0x1>;
-> -		#gpio-cells = <2>;
-> -		gpio-controller;
-> -		no-output;
-> -	};
-> -- 
-> 2.35.1.1320.gc452695387.dirty
+> Therefore, if just one of SCSI_UFS_QCOM and MMC_SDHCI_MSM is built-in
+> and at least one of the crypto options are enabled, set the
+> QCOM_INLINE_CRYPTO_ENGINE to 'y' by default in order to make the
+> built-in one linkage will not fail.
 > 
+
+That does not make sense.  If MMC_CRYPTO is disabled, then the sdhci-msm driver
+should not call any of the ICE APIs.  Likewise for ufs-qcom and SCSI_UFS_CRYPTO.
+
+- Eric
