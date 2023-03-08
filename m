@@ -2,167 +2,166 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 384D86B0239
-	for <lists+devicetree@lfdr.de>; Wed,  8 Mar 2023 10:02:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D706D6B0257
+	for <lists+devicetree@lfdr.de>; Wed,  8 Mar 2023 10:05:33 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230263AbjCHJCh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Mar 2023 04:02:37 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47560 "EHLO
+        id S229623AbjCHJFb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Mar 2023 04:05:31 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53852 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230170AbjCHJCe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Mar 2023 04:02:34 -0500
-Received: from mail-ed1-x529.google.com (mail-ed1-x529.google.com [IPv6:2a00:1450:4864:20::529])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 094B596630;
-        Wed,  8 Mar 2023 01:02:33 -0800 (PST)
-Received: by mail-ed1-x529.google.com with SMTP id ay14so59058960edb.11;
-        Wed, 08 Mar 2023 01:02:32 -0800 (PST)
+        with ESMTP id S230043AbjCHJF1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Mar 2023 04:05:27 -0500
+Received: from mail-ed1-x536.google.com (mail-ed1-x536.google.com [IPv6:2a00:1450:4864:20::536])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ED52E9B9BA
+        for <devicetree@vger.kernel.org>; Wed,  8 Mar 2023 01:04:58 -0800 (PST)
+Received: by mail-ed1-x536.google.com with SMTP id ay14so59082859edb.11
+        for <devicetree@vger.kernel.org>; Wed, 08 Mar 2023 01:04:58 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112; t=1678266151;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=TEBnaA7Pocw3dv+NsTA6Pe6Z7NrAaUzWWBCKZZ7bpik=;
-        b=XUIxg1o+QTWEt4lY8LFNcNA6q9TOsxPd5LnR7Al1Ho74+ONybkBrE9xoh0LoUg3pue
-         QZTkcVjfNlU+XvVeKKuEHo61q2rU1XAxZXUi24Bh56XarWx8SHuvMp0DTVrl0//u3WnY
-         0GbOqKZdiFEXG0KM2lBru/BD9MOW8abOT0PyEPP/am15BvinLSiVbGhElLK6x2sOsJvH
-         Jqu0xsCKuy+J+HIcdmibFJjOpXM+uAPCGrcxY39B8DmagFo/NvB9UN3WKgWHLonF7o7f
-         nbyhCEeoPKGCUbYTLAzoOtQAc04uE09bGcjkFT6XG4/a5WPJBVZQLqmLf6a9Gnk7vnhI
-         a7zQ==
+        d=linaro.org; s=google; t=1678266297;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=269a+hSFqGP/XBfE02KYCbxQFTM7xuOYsDEHsUDIoiw=;
+        b=C/f+eUOIEi3uxqK85NzLLkIaMc3bYeiNLchyXLYpEu9fdTe4m8/2IzR2Yrz35BVypJ
+         By70P9SvUMhJnhepKxiEcoXwrhK+GpEDkZLQ4v6+AGhLQsPeWUsf+uMM1l7GSMyxHg1j
+         7mTMftIMI8wA+oG4zEi9N9UYjsWcvw6/dx5ALQ9ViwpO4Yhv1soyo0oWtIlnPrwVgRWV
+         iqcxukrmFtpkSea7QszjGQfMYMCx96IYdJCWZcRTgrg7xbw/iCuS9vpH8xoZHaSxF/H2
+         dc/ECeXdsZHD7nfDjTUTG/J0o/vgjlrfexfpsUtm8WW2J8o/7pQ7nHF2GQbc39KwkEaU
+         5UCg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678266151;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=TEBnaA7Pocw3dv+NsTA6Pe6Z7NrAaUzWWBCKZZ7bpik=;
-        b=Ff0vfCpCm+hLFh+sUVom/HqGvqZUJW0rhoalIFq+ws9/FHVhV0DjqfPf7d6JkIlfEm
-         P89J05lEWXg+uNObamn9TSTimHjM2jaJPBS/9QhINIRd7sn9ljUIirvZHU/74QZWE6rR
-         8JZOuHVh+HiPJSIp3pkxqpCoTREknoKAdZ3rO6h4k+9CZEbYAjzpBaTvAk+Of3nk4juq
-         1GwIFxHjz1aigozqNfob4N8KnX15VdV9J1vmk3UvDQv0XSmp9UyChooyG8XYxZOoDy7L
-         OtulX7nTDet+rtmTit1aftCal594d2hFehjqaIqTSxAf2UW0ggYsLqm9V5F+zyisyRja
-         j3tw==
-X-Gm-Message-State: AO0yUKV4S7kJWjigO7sBzjzgPPZOQQFv2V/aSfVNvMUxUyn0r5n13jWQ
-        Ckujy6pTp7chz3mJZ6yxU/E=
-X-Google-Smtp-Source: AK7set+gK3tu0aYc3/9HyceNCeSVYp/6QHEDkpiqGlrrd+bpN+n/S46i82CZx6AQzELESatZ8dWn9g==
-X-Received: by 2002:a17:906:718d:b0:8b1:81eb:158f with SMTP id h13-20020a170906718d00b008b181eb158fmr17410801ejk.62.1678266151580;
-        Wed, 08 Mar 2023 01:02:31 -0800 (PST)
-Received: from xeon.. ([188.163.112.76])
-        by smtp.gmail.com with ESMTPSA id j7-20020a17090643c700b008caaae1f1e1sm7153709ejn.110.2023.03.08.01.02.30
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 08 Mar 2023 01:02:31 -0800 (PST)
-From:   Svyatoslav Ryhel <clamor95@gmail.com>
-To:     Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Derek Kiernan <derek.kiernan@xilinx.com>,
-        Dragan Cvetic <dragan.cvetic@xilinx.com>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Svyatoslav Ryhel <clamor95@gmail.com>,
-        Dmitry Osipenko <dmitry.osipenko@collabora.com>
-Cc:     linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH v1 4/4] iio: light: move apds990x into proper place
-Date:   Wed,  8 Mar 2023 11:02:19 +0200
-Message-Id: <20230308090219.12710-5-clamor95@gmail.com>
-X-Mailer: git-send-email 2.37.2
-In-Reply-To: <20230308090219.12710-1-clamor95@gmail.com>
-References: <20230308090219.12710-1-clamor95@gmail.com>
+        d=1e100.net; s=20210112; t=1678266297;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=269a+hSFqGP/XBfE02KYCbxQFTM7xuOYsDEHsUDIoiw=;
+        b=wwCZv5wtLSJc+1giGzUg88JQYTeP/nM5iTHHZrvGZsQVOARsc/cyf5N4jZCJqanbD9
+         61LnllrjPJlnNiUGS+jfM8hJec0+Q5YyjwnqIIJFNFkiNKUi/DZ/OvjguEf26Bend68g
+         +Bpd8aW3BzjjyF6ORBKh7TtnKdRfqgIAXvsrFnOYf7kV9W3+OefjWAiVM/fTp9g/M63w
+         CPVHI7qkrcL5qohF1uELG/YczGGHqPmoaNXDJ8wtnveZwAgdVhUB4C5uzaw752SqpFdf
+         SnA6uDw+ukY+zMG7aOsmL/hKG8gQx8Mt3i72SvwXyAnP6ODF9c1uMCvfOjAXm20ayU8B
+         Wy9w==
+X-Gm-Message-State: AO0yUKVYlL7GC1v8vJlHJIEJICsD/fXm9yMf9PsskNTnJHywn6pKi9PQ
+        4lWT3wM1DrAXAEx71OIpwW7VWg==
+X-Google-Smtp-Source: AK7set+2qTfpfpduh8f17lysCrO27en5LVth7P9pVbPwi6AtQ+YAQ0MG4sEuKa+PIBipFEgB54KvEA==
+X-Received: by 2002:a17:907:6e87:b0:879:ec1a:4ac with SMTP id sh7-20020a1709076e8700b00879ec1a04acmr21367004ejc.76.1678266297454;
+        Wed, 08 Mar 2023 01:04:57 -0800 (PST)
+Received: from ?IPV6:2a02:810d:15c0:828:bba:fbfa:8aec:a133? ([2a02:810d:15c0:828:bba:fbfa:8aec:a133])
+        by smtp.gmail.com with ESMTPSA id u15-20020a1709064acf00b0090766deae98sm7115207ejt.166.2023.03.08.01.04.56
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 08 Mar 2023 01:04:57 -0800 (PST)
+Message-ID: <95fa5f0f-cf53-7a37-2170-98b81c0982f1@linaro.org>
+Date:   Wed, 8 Mar 2023 10:04:56 +0100
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.8.0
+Subject: Re: [PATCH v1 1/4] dt-bindings: power: supply: maxim,max17040: update
+ properties
+Content-Language: en-US
+To:     Svyatoslav Ryhel <clamor95@gmail.com>,
+        Iskren Chernev <me@iskren.info>,
+        Marek Szyprowski <m.szyprowski@samsung.com>,
+        Matheus Castello <matheus@castello.eng.br>,
+        Sebastian Reichel <sre@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20230308084419.11934-1-clamor95@gmail.com>
+ <20230308084419.11934-2-clamor95@gmail.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230308084419.11934-2-clamor95@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Since now apds990x supports IIO, it should be moved here from
-misc folder.
+On 08/03/2023 09:44, Svyatoslav Ryhel wrote:
+> Add simple cell, status, health and temperature properties.
+> 
+> Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
+> ---
+>  .../bindings/power/supply/maxim,max17040.yaml | 37 +++++++++++++++++++
+>  1 file changed, 37 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/power/supply/maxim,max17040.yaml b/Documentation/devicetree/bindings/power/supply/maxim,max17040.yaml
+> index 3a529326ecbd..6f1c25b4729f 100644
+> --- a/Documentation/devicetree/bindings/power/supply/maxim,max17040.yaml
+> +++ b/Documentation/devicetree/bindings/power/supply/maxim,max17040.yaml
+> @@ -55,6 +55,20 @@ properties:
+>    interrupts:
+>      maxItems: 1
+>  
+> +  monitored-battery:
+> +    $ref: /schemas/types.yaml#/definitions/phandle
+> +    description: phandle to the battery node being monitored
+> +
+> +  power-supplies: true
 
-Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
----
- drivers/iio/light/Kconfig              | 10 ++++++++++
- drivers/iio/light/Makefile             |  1 +
- drivers/{misc => iio/light}/apds990x.c |  0
- drivers/misc/Kconfig                   | 10 ----------
- drivers/misc/Makefile                  |  1 -
- 5 files changed, 11 insertions(+), 11 deletions(-)
- rename drivers/{misc => iio/light}/apds990x.c (100%)
+This should be rather specific input name, e.g. vdd-supply.
 
-diff --git a/drivers/iio/light/Kconfig b/drivers/iio/light/Kconfig
-index 0d4447df7200..49c17eb72c73 100644
---- a/drivers/iio/light/Kconfig
-+++ b/drivers/iio/light/Kconfig
-@@ -73,6 +73,16 @@ config APDS9300
- 	  To compile this driver as a module, choose M here: the
- 	  module will be called apds9300.
- 
-+config APDS990X
-+	tristate "APDS990X combined als and proximity sensors"
-+	depends on I2C
-+	help
-+	   Say Y here if you want to build a driver for Avago APDS990x
-+	   combined ambient light and proximity sensor chip.
-+
-+	   To compile this driver as a module, choose M here: the
-+	   module will be called apds990x. If unsure, say N here.
-+
- config APDS9960
- 	tristate "Avago APDS9960 gesture/RGB/ALS/proximity sensor"
- 	select REGMAP_I2C
-diff --git a/drivers/iio/light/Makefile b/drivers/iio/light/Makefile
-index 6f23817fae6f..f1ff7934318b 100644
---- a/drivers/iio/light/Makefile
-+++ b/drivers/iio/light/Makefile
-@@ -10,6 +10,7 @@ obj-$(CONFIG_ADUX1020)		+= adux1020.o
- obj-$(CONFIG_AL3010)		+= al3010.o
- obj-$(CONFIG_AL3320A)		+= al3320a.o
- obj-$(CONFIG_APDS9300)		+= apds9300.o
-+obj-$(CONFIG_APDS990X)		+= apds990x.o
- obj-$(CONFIG_APDS9960)		+= apds9960.o
- obj-$(CONFIG_AS73211)		+= as73211.o
- obj-$(CONFIG_BH1750)		+= bh1750.o
-diff --git a/drivers/misc/apds990x.c b/drivers/iio/light/apds990x.c
-similarity index 100%
-rename from drivers/misc/apds990x.c
-rename to drivers/iio/light/apds990x.c
-diff --git a/drivers/misc/Kconfig b/drivers/misc/Kconfig
-index 9947b7892bd5..2856b6c57ca0 100644
---- a/drivers/misc/Kconfig
-+++ b/drivers/misc/Kconfig
-@@ -359,16 +359,6 @@ config SENSORS_BH1770
- 	   To compile this driver as a module, choose M here: the
- 	   module will be called bh1770glc. If unsure, say N here.
- 
--config SENSORS_APDS990X
--	 tristate "APDS990X combined als and proximity sensors"
--	 depends on I2C
--	help
--	   Say Y here if you want to build a driver for Avago APDS990x
--	   combined ambient light and proximity sensor chip.
--
--	   To compile this driver as a module, choose M here: the
--	   module will be called apds990x. If unsure, say N here.
--
- config HMC6352
- 	tristate "Honeywell HMC6352 compass"
- 	depends on I2C
-diff --git a/drivers/misc/Makefile b/drivers/misc/Makefile
-index 87b54a4a4422..3e3e510cb315 100644
---- a/drivers/misc/Makefile
-+++ b/drivers/misc/Makefile
-@@ -18,7 +18,6 @@ obj-$(CONFIG_PHANTOM)		+= phantom.o
- obj-$(CONFIG_QCOM_COINCELL)	+= qcom-coincell.o
- obj-$(CONFIG_QCOM_FASTRPC)	+= fastrpc.o
- obj-$(CONFIG_SENSORS_BH1770)	+= bh1770glc.o
--obj-$(CONFIG_SENSORS_APDS990X)	+= apds990x.o
- obj-$(CONFIG_ENCLOSURE_SERVICES) += enclosure.o
- obj-$(CONFIG_KGDB_TESTS)	+= kgdbts.o
- obj-$(CONFIG_SGI_XP)		+= sgi-xp/
--- 
-2.37.2
+> +
+> +  io-channels:
+> +    items:
+> +      - description: battery temperature
+
+
+
+max17040 does not have ADC temperature input... so is it system
+configuration?
+
+
+> +
+> +  io-channel-names:
+> +    items:
+> +      - const: temp
+
+Drop the names property, not needed for one item.
+
+> +
+>    wakeup-source:
+>      type: boolean
+>      description: |
+> @@ -95,3 +109,26 @@ examples:
+>          wakeup-source;
+>        };
+>      };
+> +  - |
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +    i2c0 {
+> +      #address-cells = <1>;
+> +      #size-cells = <0>;
+> +
+> +      fuel-gauge@36 {
+> +        compatible = "maxim,max17043";
+> +        reg = <0x36>;
+> +
+> +        interrupt-parent = <&gpio>;
+> +        interrupts = <144 IRQ_TYPE_EDGE_FALLING>;
+> +
+> +        monitored-battery = <&battery>;
+> +        power-supplies = <&charger>;
+
+But here you suggests something else than VDD... The hardware does not
+take charger as input. It takes power supply - vdd.
+
+> +
+> +        io-channels = <&adc 8>;
+
+Just add these to existing example.
+
+> +        io-channel-names = "temp";
+> +
+> +        maxim,alert-low-soc-level = <10>;
+> +        wakeup-source;
+> +      };
+> +    };
+
+Best regards,
+Krzysztof
 
