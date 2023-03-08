@@ -2,127 +2,248 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8461C6B001D
-	for <lists+devicetree@lfdr.de>; Wed,  8 Mar 2023 08:45:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2B2276B0053
+	for <lists+devicetree@lfdr.de>; Wed,  8 Mar 2023 08:57:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229646AbjCHHpv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Mar 2023 02:45:51 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49670 "EHLO
+        id S229468AbjCHH46 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Mar 2023 02:56:58 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33018 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229634AbjCHHpu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Mar 2023 02:45:50 -0500
-Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 534E69BA4B
-        for <devicetree@vger.kernel.org>; Tue,  7 Mar 2023 23:45:48 -0800 (PST)
-Received: by mail-lf1-x135.google.com with SMTP id k14so20199097lfj.7
-        for <devicetree@vger.kernel.org>; Tue, 07 Mar 2023 23:45:48 -0800 (PST)
+        with ESMTP id S229549AbjCHH45 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Mar 2023 02:56:57 -0500
+Received: from mail-pf1-x435.google.com (mail-pf1-x435.google.com [IPv6:2607:f8b0:4864:20::435])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 280D09BA69
+        for <devicetree@vger.kernel.org>; Tue,  7 Mar 2023 23:56:56 -0800 (PST)
+Received: by mail-pf1-x435.google.com with SMTP id n5so9656426pfv.11
+        for <devicetree@vger.kernel.org>; Tue, 07 Mar 2023 23:56:56 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1678261546;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=AFL3ZUb7HpahLDE8FfXA001OsdRV/Xs92oVS76+8kYw=;
-        b=zXKgDeV1enxfpTyMsDWf+08lPxrZhVG52NgFQopDBhqMWtn4uhlFcMMBHLrSVPGLrT
-         Ee+2i19gF62b3yc1tdEvwElZu2rSUQbRZE/LFyyVgibXnBuP81fKh54xMRfhY1QrlFyf
-         XtzNBmI5BwpSfR2KX925lNUlLLHBWewHsV5+fjHx8ILojDp0JXuEpWxEvP6lGPicPpFM
-         E2mV+uBWZ9/05ExW38foIvbmSu6vQTeFZwoxAJcYNHfdI80wIKUts22q7UdPmj0PaAMQ
-         f+Hutel/Wb9i7Lcvgw/opIG/Pm+CLKhyJ/V+AOXoX9rUir/r0oKRSzX2DlVqpzOhtRdY
-         BpNg==
+        d=linaro.org; s=google; t=1678262215;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=FrwgidfL5ATDTcKj1WN5LLsg6LHsipfNpzW/NMIXfVc=;
+        b=k5P+q19svLG4J5CRTWrL14HGCAT+jvabDyWSyJ0VzPMzaW1jIr5T07EampCioeKdcg
+         OxvHwvsGQ0fwVyyWOAp3x0x/Q4QA9dfA7VSIdTD0jUhHOQmr01pgk5f+sqJUGNea4nks
+         3hhFMYV5jSe8VoTu9z3g05Ju37RCf/MDn8ujgwvjSOCxgYNkJeafbvhcMS7KTQTZbMVM
+         nLCTedoYF+Of/7XcKm7aQ6dTpeuITtd4UZ7X3ihoQCrWii9HK7LjfrB+XkUCBwok4U6m
+         0f94vF69JFYpKTzY/8BXtFqB7u9Jt9+e+5imuzRB+SQ0xXT4KUqLYnjM14LaZrpjBimA
+         HlsA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678261546;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=AFL3ZUb7HpahLDE8FfXA001OsdRV/Xs92oVS76+8kYw=;
-        b=FUfZimDKHDVof+RorMA/DG723xkLBi/fq9qLnqI0Z0kbIyI4A7dPGYkrrkkMZc1oLI
-         dELa9twR5zboVLYEDD7FckeU/l0NciTEugwB1/msaf/Do3s5ehyrwWjNQ+gF0JqNR3AL
-         mta3m1puHOTYlLVxNU6lqIy16GCLzWjUjxGKHGOsCTPINXYqWReOKUhh8eZG3s6gU6zi
-         z6efKEj4mq4EkmzrGm1Hu6qEcJSajg+5UMXLD209KlJMsCPG8BzUvObAHjr7g7wph9ir
-         /yl90cVHR/SAb5J42Ty8ip9eCk+AJePga+29EYP2ppGjwrtSMPU0j9NnSx0nyZi3tbUz
-         80vQ==
-X-Gm-Message-State: AO0yUKXnEqpVt5wI1kfZN4bLeqFLmP8wfL1gClFdyH80wmmfws4osrkp
-        nt7cls4PeRU8zoIFKmM0oppvcw==
-X-Google-Smtp-Source: AK7set9fueMt93wtX8Sf+Pq3yfiV3O1MMRZAIydubcT3yM73j94cXzxjjri0Y+Qvya+N8kAqSLEt5g==
-X-Received: by 2002:ac2:5317:0:b0:4b5:61e8:8934 with SMTP id c23-20020ac25317000000b004b561e88934mr4724659lfh.64.1678261546608;
-        Tue, 07 Mar 2023 23:45:46 -0800 (PST)
-Received: from [192.168.1.101] (abyj16.neoplus.adsl.tpnet.pl. [83.9.29.16])
-        by smtp.gmail.com with ESMTPSA id w25-20020ac24439000000b004d86808fd33sm2287696lfl.15.2023.03.07.23.45.45
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 07 Mar 2023 23:45:46 -0800 (PST)
-Message-ID: <9858ecfc-6a51-71a9-70e7-dd1e3eb9ba65@linaro.org>
-Date:   Wed, 8 Mar 2023 08:45:44 +0100
+        d=1e100.net; s=20210112; t=1678262215;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=FrwgidfL5ATDTcKj1WN5LLsg6LHsipfNpzW/NMIXfVc=;
+        b=6U7/RWcMXFOZzYvkM9h3wrsXXuCd6dMED6T6WwAn+AgLedEHPaDxWSNbaj3CaIX9m4
+         aPHbFflmQ8RlwxVh946wv1Z3/hHGrr32SG6t3x45koP+DudW2MG2V1L8sYXhLt4aWel0
+         iHoWYpII7FDM9qSFtsUgHZVPPoF/NIyhP/ScFOB0ABVt4OFscLn7kcaokaVEz644x8bU
+         Ry8MAG1FBCdxq4YcnZ8zh7GHX8bx6ZwfcGkPljmEE8UpIkCLy/OZ2mexa7HXJLBRfdge
+         RvA9Z3CSE83B15UpDWvoYwTBqT2CJhVWbYs0Ap52Q1dFhtKIc8Ogbn3K9r7kXwUdM9zA
+         gFGg==
+X-Gm-Message-State: AO0yUKW2PP3WZnSw8n/JGxB88hdgdqPY352odGc2TuccUnAMkiEqmSOx
+        TLAZUt6ejIN4YFQZCo2T3wVJ
+X-Google-Smtp-Source: AK7set/szOUrKmNv9NhOizS3XUAjlmltJB2runIynxxL2Sww6s6HwR5K5QuVwmHQXrSEFRJZbSdL9g==
+X-Received: by 2002:a62:4ecb:0:b0:593:f191:966 with SMTP id c194-20020a624ecb000000b00593f1910966mr13799358pfb.1.1678262215533;
+        Tue, 07 Mar 2023 23:56:55 -0800 (PST)
+Received: from localhost.localdomain ([59.97.52.140])
+        by smtp.gmail.com with ESMTPSA id c17-20020a631c51000000b004facf728b19sm8631840pgm.4.2023.03.07.23.56.52
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 07 Mar 2023 23:56:55 -0800 (PST)
+From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+To:     andersson@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org
+Cc:     konrad.dybcio@linaro.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        Rob Herring <robh@kernel.org>
+Subject: [PATCH] arm64: dts: qcom: Remove "iommus" property from PCIe nodes
+Date:   Wed,  8 Mar 2023 13:26:48 +0530
+Message-Id: <20230308075648.134119-1-manivannan.sadhasivam@linaro.org>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-Subject: Re: [PATCH] dt-bindings: interrupt-controller: Allow
- #power-domain-cells
-Content-Language: en-US
-To:     Shawn Guo <shawn.guo@linaro.org>
-Cc:     linux-arm-msm@vger.kernel.org, andersson@kernel.org,
-        agross@kernel.org, marijn.suijten@somainline.org,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-References: <20230308011705.291337-1-konrad.dybcio@linaro.org>
- <CAAQ0ZWSXP59cgyHNkR8UfXRHqRrJGLxuNwMBh2N6=W_x18-BTg@mail.gmail.com>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <CAAQ0ZWSXP59cgyHNkR8UfXRHqRrJGLxuNwMBh2N6=W_x18-BTg@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-0.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_SORBS_HTTP,RCVD_IN_SORBS_SOCKS,SPF_HELO_NONE,SPF_PASS,
-        URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Currently, most of the Qualcomm SoCs specify both "iommus" and "iommu-map"
+properties for the PCIe nodes. First one passes the SMR mask to the iommu
+driver and the latter specifies the SID for each PCIe device.
 
+But with "iommus" property, the PCIe controller will be added to the
+iommu group along with the devices. This makes no sense because the
+controller will not initiate any DMA transaction on its own. And moreover,
+it is not strictly required to pass the SMR mask to the iommu driver. If
+the "iommus" property is not present, then the default mask of "0" would be
+used which should work for all PCIe devices.
 
-On 8.03.2023 08:24, Shawn Guo wrote:
-> On Wed, Mar 8, 2023 at 9:17 AM Konrad Dybcio <konrad.dybcio@linaro.org> wrote:
->>
->> MPM provides a single genpd. Allow #power-domain-cells = <0>.
-> 
-> Indeed! It was missing from the initial submission.  Thanks for fixing it up!
-> 
->>
->> Fixes: 54fc9851c0e0 ("dt-bindings: interrupt-controller: Add Qualcomm MPM support")
->> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
->> ---
->>  .../devicetree/bindings/interrupt-controller/qcom,mpm.yaml     | 3 +++
->>  1 file changed, 3 insertions(+)
->>
->> diff --git a/Documentation/devicetree/bindings/interrupt-controller/qcom,mpm.yaml b/Documentation/devicetree/bindings/interrupt-controller/qcom,mpm.yaml
->> index 509d20c091af..4c470dc143e5 100644
->> --- a/Documentation/devicetree/bindings/interrupt-controller/qcom,mpm.yaml
->> +++ b/Documentation/devicetree/bindings/interrupt-controller/qcom,mpm.yaml
->> @@ -62,6 +62,9 @@ properties:
->>          - description: MPM pin number
->>          - description: GIC SPI number for the MPM pin
->>
->> +  '#power-domain-cells':
-> 
-> Should we add it to the "required" list and examples?
-I was debating it.. it's definitely not *required*, as the
-irqchip part works even without it and then on SoCs with MPM
-but without PSCI the setup may be tricky..
+On the other side, if the SMR mask specified doesn't match the one expected
+by the hypervisor, then all the PCIe transactions will end up triggering
+"Unidentified Stream Fault" by the SMMU.
 
-About the example, both yes/no are okay for me
+So to get rid of these hassles and also prohibit PCIe controllers from
+adding to the iommu group, let's remove the "iommus" property from PCIe
+nodes.
 
-Konrad
-> 
-> Shawn
-> 
->> +    const: 0
->> +
->>  required:
->>    - compatible
->>    - reg
->> --
->> 2.39.2
->>
+Reported-by: Rob Herring <robh@kernel.org>
+Link: https://lore.kernel.org/linux-arm-msm/20230227195535.GA749409-robh@kernel.org
+Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+---
+ arch/arm64/boot/dts/qcom/sc7280.dtsi | 2 --
+ arch/arm64/boot/dts/qcom/sdm845.dtsi | 2 --
+ arch/arm64/boot/dts/qcom/sm8150.dtsi | 2 --
+ arch/arm64/boot/dts/qcom/sm8250.dtsi | 3 ---
+ arch/arm64/boot/dts/qcom/sm8350.dtsi | 2 --
+ arch/arm64/boot/dts/qcom/sm8450.dtsi | 2 --
+ arch/arm64/boot/dts/qcom/sm8550.dtsi | 2 --
+ 7 files changed, 15 deletions(-)
+
+diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+index 8f4ab6bd2886..9f7269029a02 100644
+--- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
++++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+@@ -2133,8 +2133,6 @@ pcie1: pci@1c08000 {
+ 
+ 			dma-coherent;
+ 
+-			iommus = <&apps_smmu 0x1c80 0x1>;
+-
+ 			iommu-map = <0x0 &apps_smmu 0x1c80 0x1>,
+ 				    <0x100 &apps_smmu 0x1c81 0x1>;
+ 
+diff --git a/arch/arm64/boot/dts/qcom/sdm845.dtsi b/arch/arm64/boot/dts/qcom/sdm845.dtsi
+index 479859bd8ab3..5f110b0062d9 100644
+--- a/arch/arm64/boot/dts/qcom/sdm845.dtsi
++++ b/arch/arm64/boot/dts/qcom/sdm845.dtsi
+@@ -2319,7 +2319,6 @@ pcie0: pci@1c00000 {
+ 				      "slave_q2a",
+ 				      "tbu";
+ 
+-			iommus = <&apps_smmu 0x1c10 0xf>;
+ 			iommu-map = <0x0   &apps_smmu 0x1c10 0x1>,
+ 				    <0x100 &apps_smmu 0x1c11 0x1>,
+ 				    <0x200 &apps_smmu 0x1c12 0x1>,
+@@ -2429,7 +2428,6 @@ pcie1: pci@1c08000 {
+ 			assigned-clocks = <&gcc GCC_PCIE_1_AUX_CLK>;
+ 			assigned-clock-rates = <19200000>;
+ 
+-			iommus = <&apps_smmu 0x1c00 0xf>;
+ 			iommu-map = <0x0   &apps_smmu 0x1c00 0x1>,
+ 				    <0x100 &apps_smmu 0x1c01 0x1>,
+ 				    <0x200 &apps_smmu 0x1c02 0x1>,
+diff --git a/arch/arm64/boot/dts/qcom/sm8150.dtsi b/arch/arm64/boot/dts/qcom/sm8150.dtsi
+index 13e0ce828606..6a383e918329 100644
+--- a/arch/arm64/boot/dts/qcom/sm8150.dtsi
++++ b/arch/arm64/boot/dts/qcom/sm8150.dtsi
+@@ -1826,7 +1826,6 @@ pcie0: pci@1c00000 {
+ 				      "slave_q2a",
+ 				      "tbu";
+ 
+-			iommus = <&apps_smmu 0x1d80 0x3f>;
+ 			iommu-map = <0x0   &apps_smmu 0x1d80 0x1>,
+ 				    <0x100 &apps_smmu 0x1d81 0x1>;
+ 
+@@ -1925,7 +1924,6 @@ pcie1: pci@1c08000 {
+ 			assigned-clocks = <&gcc GCC_PCIE_1_AUX_CLK>;
+ 			assigned-clock-rates = <19200000>;
+ 
+-			iommus = <&apps_smmu 0x1e00 0x3f>;
+ 			iommu-map = <0x0   &apps_smmu 0x1e00 0x1>,
+ 				    <0x100 &apps_smmu 0x1e01 0x1>;
+ 
+diff --git a/arch/arm64/boot/dts/qcom/sm8250.dtsi b/arch/arm64/boot/dts/qcom/sm8250.dtsi
+index 2f0e460acccd..c7682fda9d8c 100644
+--- a/arch/arm64/boot/dts/qcom/sm8250.dtsi
++++ b/arch/arm64/boot/dts/qcom/sm8250.dtsi
+@@ -1871,7 +1871,6 @@ pcie0: pci@1c00000 {
+ 				      "tbu",
+ 				      "ddrss_sf_tbu";
+ 
+-			iommus = <&apps_smmu 0x1c00 0x7f>;
+ 			iommu-map = <0x0   &apps_smmu 0x1c00 0x1>,
+ 				    <0x100 &apps_smmu 0x1c01 0x1>;
+ 
+@@ -1977,7 +1976,6 @@ pcie1: pci@1c08000 {
+ 			assigned-clocks = <&gcc GCC_PCIE_1_AUX_CLK>;
+ 			assigned-clock-rates = <19200000>;
+ 
+-			iommus = <&apps_smmu 0x1c80 0x7f>;
+ 			iommu-map = <0x0   &apps_smmu 0x1c80 0x1>,
+ 				    <0x100 &apps_smmu 0x1c81 0x1>;
+ 
+@@ -2085,7 +2083,6 @@ pcie2: pci@1c10000 {
+ 			assigned-clocks = <&gcc GCC_PCIE_2_AUX_CLK>;
+ 			assigned-clock-rates = <19200000>;
+ 
+-			iommus = <&apps_smmu 0x1d00 0x7f>;
+ 			iommu-map = <0x0   &apps_smmu 0x1d00 0x1>,
+ 				    <0x100 &apps_smmu 0x1d01 0x1>;
+ 
+diff --git a/arch/arm64/boot/dts/qcom/sm8350.dtsi b/arch/arm64/boot/dts/qcom/sm8350.dtsi
+index 1c97e28da6ad..365b9d773b5c 100644
+--- a/arch/arm64/boot/dts/qcom/sm8350.dtsi
++++ b/arch/arm64/boot/dts/qcom/sm8350.dtsi
+@@ -1526,7 +1526,6 @@ pcie0: pci@1c00000 {
+ 				      "aggre1",
+ 				      "aggre0";
+ 
+-			iommus = <&apps_smmu 0x1c00 0x7f>;
+ 			iommu-map = <0x0   &apps_smmu 0x1c00 0x1>,
+ 				    <0x100 &apps_smmu 0x1c01 0x1>;
+ 
+@@ -1610,7 +1609,6 @@ pcie1: pci@1c08000 {
+ 				      "ddrss_sf_tbu",
+ 				      "aggre1";
+ 
+-			iommus = <&apps_smmu 0x1c80 0x7f>;
+ 			iommu-map = <0x0   &apps_smmu 0x1c80 0x1>,
+ 				    <0x100 &apps_smmu 0x1c81 0x1>;
+ 
+diff --git a/arch/arm64/boot/dts/qcom/sm8450.dtsi b/arch/arm64/boot/dts/qcom/sm8450.dtsi
+index 1a744a33bcf4..e3201b1b07a5 100644
+--- a/arch/arm64/boot/dts/qcom/sm8450.dtsi
++++ b/arch/arm64/boot/dts/qcom/sm8450.dtsi
+@@ -1790,7 +1790,6 @@ pcie0: pci@1c00000 {
+ 				      "aggre0",
+ 				      "aggre1";
+ 
+-			iommus = <&apps_smmu 0x1c00 0x7f>;
+ 			iommu-map = <0x0   &apps_smmu 0x1c00 0x1>,
+ 				    <0x100 &apps_smmu 0x1c01 0x1>;
+ 
+@@ -1904,7 +1903,6 @@ pcie1: pci@1c08000 {
+ 				      "ddrss_sf_tbu",
+ 				      "aggre1";
+ 
+-			iommus = <&apps_smmu 0x1c80 0x7f>;
+ 			iommu-map = <0x0   &apps_smmu 0x1c80 0x1>,
+ 				    <0x100 &apps_smmu 0x1c81 0x1>;
+ 
+diff --git a/arch/arm64/boot/dts/qcom/sm8550.dtsi b/arch/arm64/boot/dts/qcom/sm8550.dtsi
+index 25f51245fe9b..6edb3acb91ef 100644
+--- a/arch/arm64/boot/dts/qcom/sm8550.dtsi
++++ b/arch/arm64/boot/dts/qcom/sm8550.dtsi
+@@ -1692,7 +1692,6 @@ pcie0: pci@1c00000 {
+ 			interconnect-names = "pcie-mem";
+ 			interconnects = <&pcie_noc MASTER_PCIE_0 0 &mc_virt SLAVE_EBI1 0>;
+ 
+-			iommus = <&apps_smmu 0x1400 0x7f>;
+ 			iommu-map = <0x0   &apps_smmu 0x1400 0x1>,
+ 				    <0x100 &apps_smmu 0x1401 0x1>;
+ 
+@@ -1796,7 +1795,6 @@ pcie1: pci@1c08000 {
+ 			interconnect-names = "pcie-mem";
+ 			interconnects = <&pcie_noc MASTER_PCIE_1 0 &mc_virt SLAVE_EBI1 0>;
+ 
+-			iommus = <&apps_smmu 0x1480 0x7f>;
+ 			iommu-map = <0x0   &apps_smmu 0x1480 0x1>,
+ 				    <0x100 &apps_smmu 0x1481 0x1>;
+ 
+-- 
+2.25.1
+
