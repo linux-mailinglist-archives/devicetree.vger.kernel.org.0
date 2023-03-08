@@ -2,166 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 89EED6B0D2B
-	for <lists+devicetree@lfdr.de>; Wed,  8 Mar 2023 16:44:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8B2A66B0D43
+	for <lists+devicetree@lfdr.de>; Wed,  8 Mar 2023 16:46:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232012AbjCHPo3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Mar 2023 10:44:29 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42520 "EHLO
+        id S232215AbjCHPqE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Mar 2023 10:46:04 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49958 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231460AbjCHPoH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Mar 2023 10:44:07 -0500
-Received: from mail-lj1-x231.google.com (mail-lj1-x231.google.com [IPv6:2a00:1450:4864:20::231])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F06C31A674;
-        Wed,  8 Mar 2023 07:43:00 -0800 (PST)
-Received: by mail-lj1-x231.google.com with SMTP id z5so17039251ljc.8;
-        Wed, 08 Mar 2023 07:43:00 -0800 (PST)
+        with ESMTP id S229889AbjCHPpq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Mar 2023 10:45:46 -0500
+Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7E118CA1FC
+        for <devicetree@vger.kernel.org>; Wed,  8 Mar 2023 07:44:37 -0800 (PST)
+Received: by mail-lf1-x135.google.com with SMTP id k14so21895341lfj.7
+        for <devicetree@vger.kernel.org>; Wed, 08 Mar 2023 07:44:37 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112; t=1678290178;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to:subject
-         :user-agent:mime-version:date:message-id:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=vOs0iyxhwHc1V8xriX+vpDIxtXfxz3jlhHgNbQ6dRkY=;
-        b=KD42Vr+glYj1oCL8i0V2FYuzc9WtlLulVscKDIrjTKPoJxkIg6x11Y7p0Wv8iP4Sex
-         yVFuv0chGe4+SbpPZnNUluOjDEDYorU0/ZKpwEUzngcG06SezQYFKim7c/OuQ4l8UVfw
-         Ozke2M0wqNjmv6cN2MbU//+A6dCcHLdn+vjN682rehANzzLSASMTqq7tqBmTzYSyAo4z
-         p5QDSYdLxmKU71+4B4TYs4xVT/utPFUosyspyE+LpPy7Fh47pbYnI/iFAL0TSFYjNu06
-         4eVL4awgqVgYZWb1MNl3t8pJHcU8t5hnxyX/B0SxzwSG9jIyVmi56s10848a7afHKFk2
-         Kp1g==
+        d=linaro.org; s=google; t=1678290276;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=+sHa0ynl+/MvZYCzLTdvR272aMTGiQ/CuCrcneTS2vg=;
+        b=wpHZ9Sg2UxLqyLfdW0cPzczzTANQFHOWQ3eNovcKucdxK4yfjlZSzOxeDANPma39kG
+         WHQsfz4VFj+VmYm/ztMzatN2Uu8LCuj9u4aP3+JLzsOpprmYatQ22Xjb0y4ocIHdXBZd
+         hPQKFL5tHhyR2+hRASVE9NJB61EUN3Cuqn01rEZfCA66VN5W86YsnD/Mw9dP7mUie2WY
+         Y0CxOTLAT2CUXIwcX0BHwvC/WkCw3U79VOBxoaDETNINnuMRi3bpqzPJ33jfom716HXL
+         rfPLV9d64z+ZbUsyUzpNBwOSV2MRpGtCcTK45VfGINe3vWWhwBTGDyJuXKwjKHlXcTYt
+         65sQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678290178;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to:subject
-         :user-agent:mime-version:date:message-id:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=vOs0iyxhwHc1V8xriX+vpDIxtXfxz3jlhHgNbQ6dRkY=;
-        b=yjMDMLqiXaTBJcbL4FsLXTZrjxSH98vdwO+zs3vex5angNFT0ibPH0eFiBey6vN8y6
-         IQgoGNg0C2hQqYHRvQXpeLUWZXDN35v2yWPKvZIdBRAa5Rm0tE+WDiAwnOBlSH/DRxJP
-         dosLfP4+J9n3ahSUK75TPWfOG5N3ramFxUwPgItZdFVUDhniokPKXoLew3zVvWMCVbmz
-         LI0Co2ds9n8CGjceg1QADqvsentRqLw9bCtE70HjN4f36AORNwsrOBAviBP2GodAbfLe
-         c8d7BdXOXoV0ODeCprGF4rJUClYOtrpiGBgfxvwswK09u5AnD1YGz74NM8VUK5IoYzZO
-         BtHA==
-X-Gm-Message-State: AO0yUKUpeOORp7tUTs7H4/nIk74dTOjGoMMWLRzicS2cdKvHlCfmnrW9
-        Kp1Q8V+TRECDiI7ht5i4rOHfizrNxwg=
-X-Google-Smtp-Source: AK7set9ANgxfUA3AnstqXs0zAbjnZVAktlqKsWKgvMz6DSCnyBEYt7t6Os79HTpsoPUzpt844g0qMg==
-X-Received: by 2002:a2e:a26b:0:b0:295:bc01:6d98 with SMTP id k11-20020a2ea26b000000b00295bc016d98mr5849330ljm.48.1678290178143;
-        Wed, 08 Mar 2023 07:42:58 -0800 (PST)
-Received: from [192.168.26.149] (ip-194-187-74-233.konfederacka.maverick.com.pl. [194.187.74.233])
-        by smtp.googlemail.com with ESMTPSA id d2-20020a2e96c2000000b00295a2d07558sm2620211ljj.112.2023.03.08.07.42.56
+        d=1e100.net; s=20210112; t=1678290276;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=+sHa0ynl+/MvZYCzLTdvR272aMTGiQ/CuCrcneTS2vg=;
+        b=Rxi3WrAmaY/tpgRduGLEp8w/VQPUkLq2K2urEW0DoAh3BeRkSqxSFCZmOPYk3lm/3c
+         xyOyl9AsrX+rEvad9RSh4aLy+KdWvhj9jv+KQ+lgToKYgQluJjFQT1ksfe82euDlQJ2A
+         YKXWl/IrmewTlxiSot76QFEv66crUMsA9FQIb8qnCzbBSeLPhLlOguelaz2fCvbPzdgt
+         qYCVVHP7MjT19Gg7chd5Qvr+GjsR09WmQSdLAzVyTfXjhg//8hNv8DNl+8G3Mmgg+ePV
+         LzouhSlUPn6CLM5FPww8D8ptJuEtR7OklCUc0FNRM+0Cx5+3x8dIKB0V5TTvk6WodLTn
+         D/og==
+X-Gm-Message-State: AO0yUKXa492r2FbEJOvuaZFtgUym+0Q8QqlcVEgYnykjuR8hI52NBB8h
+        OAYQNjakX5NdPhZU0rg0Cv17RA==
+X-Google-Smtp-Source: AK7set97hJxmBBCQx/SjdIQvs90ErVjhDQ41dncyLnZREk1fb5W+VAu2rtaXfzz/1glKcmJfAWRqFQ==
+X-Received: by 2002:ac2:4a8b:0:b0:4e0:c0d0:e209 with SMTP id l11-20020ac24a8b000000b004e0c0d0e209mr5182126lfp.29.1678290275720;
+        Wed, 08 Mar 2023 07:44:35 -0800 (PST)
+Received: from [192.168.1.101] (abyj16.neoplus.adsl.tpnet.pl. [83.9.29.16])
+        by smtp.gmail.com with ESMTPSA id q8-20020ac24a68000000b004db4936c866sm2352538lfp.38.2023.03.08.07.44.33
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 08 Mar 2023 07:42:57 -0800 (PST)
-Message-ID: <83c3e403-7e4c-a29a-95de-f30d74863769@gmail.com>
-Date:   Wed, 8 Mar 2023 16:42:55 +0100
+        Wed, 08 Mar 2023 07:44:35 -0800 (PST)
+Message-ID: <2d1661fe-92bd-a117-27a5-cf1803ce363f@linaro.org>
+Date:   Wed, 8 Mar 2023 16:44:32 +0100
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:96.0) Gecko/20100101
- Thunderbird/96.0
-Subject: Re: [PATCH V4 2/2] nvmem: add generic driver for devices with MMIO
- access
-To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Matthias Brugger <matthias.bgg@gmail.com>,
-        Kunihiko Hayashi <hayashi.kunihiko@socionext.com>,
-        Masami Hiramatsu <mhiramat@kernel.org>,
-        linux-mediatek@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
-References: <20230228072936.1108-1-zajec5@gmail.com>
- <20230228072936.1108-3-zajec5@gmail.com>
- <7853ff04-02cf-9430-d84a-c8fe8b1d6725@linaro.org>
-From:   =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
-In-Reply-To: <7853ff04-02cf-9430-d84a-c8fe8b1d6725@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.8.0
+Subject: Re: [PATCH V6 7/9] dt-bindings: firmware: qcom,scm: document IPQ5332
+ SCM
+Content-Language: en-US
+To:     Kathiravan T <quic_kathirav@quicinc.com>, agross@kernel.org,
+        andersson@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, mturquette@baylibre.com,
+        sboyd@kernel.org, catalin.marinas@arm.com, will@kernel.org,
+        arnd@arndb.de, dmitry.baryshkov@linaro.org,
+        geert+renesas@glider.be, nfraprado@collabora.com,
+        broonie@kernel.org, rafal@milecki.pl, robimarko@gmail.com,
+        quic_gurus@quicinc.com, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+References: <20230307062232.4889-1-quic_kathirav@quicinc.com>
+ <20230307062232.4889-8-quic_kathirav@quicinc.com>
+ <754a2d38-dd7b-48b6-80e5-683ca193e0b1@linaro.org>
+ <ab803e21-76bf-308c-9df0-8b7b45b472b2@quicinc.com>
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <ab803e21-76bf-308c-9df0-8b7b45b472b2@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-0.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_SORBS_HTTP,RCVD_IN_SORBS_SOCKS,SPF_HELO_NONE,SPF_PASS,
+        URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 8.03.2023 14:31, Srinivas Kandagatla wrote:
-> Thanks for doing this,
-
-Thank you for reviewing. Sadly it seems it still isn't clear if we can
-have this generic driver.
-
-I guess I missed some important questions or comments. In previous
-series we were discussing implementation details so I thought it's OK to
-have this driver after all. Not sure if I didn't waste time working on
-V4. I'll see if I can I address your concerns (see below).
 
 
-> On 28/02/2023 07:29, Rafał Miłecki wrote:
->> From: Rafał Miłecki <rafal@milecki.pl>
->>
->> Some NVMEM devices can be accessed by simply mapping memory and reading
->> from / writing to it. This driver adds support for a generic
->> "mmio-nvmem" DT binding used by such devices.
->>
->> One of such devices is Broadcom's NVRAM. It's already supported (see
->> NVMEM_BRCM_NVRAM) but existing driver covers both:
+On 8.03.2023 16:39, Kathiravan T wrote:
 > 
-> What will happen to the old "brcm,nvram" compatible and the dt firmware that already have this node?
-
-I treat backward compatibility with previouly used bindings very
-seriously. I'm going to keep it. I may make an attempt to drop it in
-few years if it's very unlikely to break any setups.
-
-
-> If there is only one user for this then one would object that why do we need this DT level of abstraction to start with?
-> If this is not the case please consider adding those patches to this series.
-
-Existing Linux drivers prove that there is more hardware with MMIO based
-read access: brcm_nvram, mtk-efuse, uniphier-efuse. Migration of other
-drivers (mtk, unipher) is on hold as apparently there may be support for
-writing support soon. In any case this MMIO solution isn't completely
-unique to Broadcom.
-I don't have other patches to add to it right now.
-
-
->> 1. NVMEM device access
->> 2. NVMEM content parsing
+> On 3/8/2023 4:31 PM, Konrad Dybcio wrote:
 >>
->> Once we get support for NVMEM layouts then existing NVRAM driver will
->> get converted into a layout and generic driver will take over
->> responsibility for data access.
->>
+>> On 7.03.2023 07:22, Kathiravan T wrote:
+>>> Document the compatible for IPQ5332 SCM.
+>>>
+>>> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>>> Signed-off-by: Kathiravan T <quic_kathirav@quicinc.com>
+>>> ---
+>> Does this board not have a crypto engine / CE1 clock exposed via
+>> RPMCC? It will be enabled by default, but Linux should be aware
+>> of it, so that we don't gate it by accident.
 > 
-> Even though this series is simple, but it is really confusing for two reasons.
 > 
-> 1> Generic mmio nvmem bindings are incomplete and potentially change/evolve on every new user. Ex clks, regulators, endianess ... So it looks really fragile and incomplete to me as a generic bindings.
-> Is this want you are expecting?
+> IPQ5332 doesn't have the crypto engine and also it doesn't have RPMCC. Sorry, could you please help to explain how it is related to SCM?
+SCM usually requires certain clocks to be up and that often includes
+the CE1 clock on fairly recent designs.
 
-All 3 existing hardware support MMIO reads without extra clocks or
-regulators. I'm not sure if endianess belongs to this layer. Isn't that
-NVMEM content thing?
-
-I'm not claiming this driver is in its final and perfect state. For
-simple hardware that needs minor fixups we can add those later to this
-generic driver. Adding clocks should be possible, fine and easy.
-
-I'm sure there will be more complex hardware that we will not be able
-to support with this driver. It's require another driver and I'm fine
-with that.
-
-
-> 2> As you mentioned that this will replace broadcom NVMRAM, but this patch does nothing in relation to updating that driver, so the code is dead as it is. If you are considering to use it for Broadcom NVMRAM, please add those patches to this series so that we could see the real user for this code.
-
-Of course it does nothing because there are no layouts yet. I could
-migrate brcm_nvram into layout once there is layouts support.
-
-I don't agree this code is dead. It support new binding. It works.
-Every new binding and its driver are "dead" until you add first DT
-users.
-
-Here is real use:
-
-nvmem@1eff0000 {
-	compatible = "mmio-nvmem";
-	reg = <0x1eff0000 0x10000>;
-};
-
+Konrad
+> 
+> Thanks, Kathiravan T.
