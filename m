@@ -2,112 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 829376B034F
-	for <lists+devicetree@lfdr.de>; Wed,  8 Mar 2023 10:44:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A20316B0361
+	for <lists+devicetree@lfdr.de>; Wed,  8 Mar 2023 10:52:23 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230197AbjCHJob (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Mar 2023 04:44:31 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53794 "EHLO
+        id S229737AbjCHJwV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Mar 2023 04:52:21 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40454 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230083AbjCHJoO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Mar 2023 04:44:14 -0500
-Received: from eu-smtp-delivery-151.mimecast.com (eu-smtp-delivery-151.mimecast.com [185.58.86.151])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 622C438667
-        for <devicetree@vger.kernel.org>; Wed,  8 Mar 2023 01:43:07 -0800 (PST)
-Received: from AcuMS.aculab.com (156.67.243.121 [156.67.243.121]) by
- relay.mimecast.com with ESMTP with both STARTTLS and AUTH (version=TLSv1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
- uk-mta-33-CAryPP8kPFqZSO2VJYhQlQ-1; Wed, 08 Mar 2023 09:42:45 +0000
-X-MC-Unique: CAryPP8kPFqZSO2VJYhQlQ-1
-Received: from AcuMS.Aculab.com (10.202.163.6) by AcuMS.aculab.com
- (10.202.163.6) with Microsoft SMTP Server (TLS) id 15.0.1497.47; Wed, 8 Mar
- 2023 09:42:43 +0000
-Received: from AcuMS.Aculab.com ([::1]) by AcuMS.aculab.com ([::1]) with mapi
- id 15.00.1497.047; Wed, 8 Mar 2023 09:42:43 +0000
-From:   David Laight <David.Laight@ACULAB.COM>
-To:     'Keguang Zhang' <keguang.zhang@gmail.com>,
-        Bartosz Golaszewski <brgl@bgdev.pl>
-CC:     "linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-mips@vger.kernel.org" <linux-mips@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
+        with ESMTP id S229468AbjCHJwV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Mar 2023 04:52:21 -0500
+Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com [IPv6:2a00:1450:4864:20::532])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6796798873;
+        Wed,  8 Mar 2023 01:52:19 -0800 (PST)
+Received: by mail-ed1-x532.google.com with SMTP id o12so63235114edb.9;
+        Wed, 08 Mar 2023 01:52:19 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112; t=1678269138;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=9fGQKKxWePBgtAu1PyWT3YZ6ScQV2tPn02GMb8I55bc=;
+        b=mBhAw6oLvvleh6eJgbOS6wHeKDdLZdyAyaIphVeItu53m331p/9u9np3us4+q1HvrA
+         3ipQ1Bv3HIGGTjjWoN2POzNKtcrKUK8XmPVIruybWhttScgPW4GZoeqHrozLVtc5bV5G
+         MYWBvrZj2uzXreinHQ2J3qV7oitrvSRWRBPb4u/rHLg6ojJ214ilyP4NFKQPZY7blQQI
+         4m1PuNfFTXGZ/o+m/u60/foen1VScuWLcFNxQ1P5NUjGhrK4mhH5ASL2wUzNC96pMGiC
+         1BCXzOddrMSr2RWHVfoGQN59FWXzsqEWrNrcDUKw3CJXW3bdMZRuu1p4Pe2CPWSOKpB/
+         EB0Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1678269138;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=9fGQKKxWePBgtAu1PyWT3YZ6ScQV2tPn02GMb8I55bc=;
+        b=5HY8dObuENKnUZa+gO6jzQUSWfvuMaspMi/NES6hMBHfcFRkcRsm0z3mp12a99f1QO
+         7P//GCd/at7tKPkNLJsGxMbz9xxfN9sElJKOXDAg2EM8zEn6vmJW50+wbjrgn5FCXaco
+         4P7ScEU86LD2PVCyXkQdZn6FAVgvuSeUIDNQ1u1mN0qvSszxRMVhWcylIRG4Ab2OJf4a
+         hfWxw6Jkr3Ratwv+fecuCS2tdkVIAjgS4XtLT1EbVqEPfEJhiMYRzBmbHhvevhvk6Y5l
+         VOMgnu3TgFLNzECK8nKtEV/GCL0yNhWGQbTRUiA+L/sHwQmxcOdzgUN8OlB+biruldvC
+         AZtQ==
+X-Gm-Message-State: AO0yUKXOsTta7auan9bgFbd6BCQrNvqqqlNdrwycDfhfRhAKxaj8OlDE
+        y87KmkRCYKp+QhsnZXSbM7A=
+X-Google-Smtp-Source: AK7set8SDLMd/irQQE0sU6gZhxP+XSR5vgSRWJe5+J0sEnyryADK8bGZn0AdNfvMNW/Y0Y5UWr5w4Q==
+X-Received: by 2002:a17:907:70e:b0:8f5:8da0:a482 with SMTP id xb14-20020a170907070e00b008f58da0a482mr18683260ejb.25.1678269137928;
+        Wed, 08 Mar 2023 01:52:17 -0800 (PST)
+Received: from xeon.. ([188.163.112.76])
+        by smtp.gmail.com with ESMTPSA id s15-20020a170906454f00b008d8f1b238fdsm7369177ejq.149.2023.03.08.01.52.16
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 08 Mar 2023 01:52:17 -0800 (PST)
+From:   Svyatoslav Ryhel <clamor95@gmail.com>
+To:     Mauro Carvalho Chehab <mchehab@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>
-Subject: RE: [PATCH v2 2/5] gpio: loongson1: Use readl() & writel()
-Thread-Topic: [PATCH v2 2/5] gpio: loongson1: Use readl() & writel()
-Thread-Index: AQHZUKdVlp3MaV2isEWZMPAiZIsbQK7woloA
-Date:   Wed, 8 Mar 2023 09:42:43 +0000
-Message-ID: <2d5521ff21ea4b99be3dd2e449f53934@AcuMS.aculab.com>
-References: <20230302125215.214014-1-keguang.zhang@gmail.com>
- <20230302125215.214014-3-keguang.zhang@gmail.com>
- <CAMRc=Me3yVwQm8=CmUVM2gyYnFxntW47-OOPdmq1TzXTJB5ETg@mail.gmail.com>
- <CAJhJPsX1q6PGSb+eoCSdCC2_vDtbaShLLzEbuNOqD_Jzd8Ozdw@mail.gmail.com>
-In-Reply-To: <CAJhJPsX1q6PGSb+eoCSdCC2_vDtbaShLLzEbuNOqD_Jzd8Ozdw@mail.gmail.com>
-Accept-Language: en-GB, en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-ms-exchange-transport-fromentityheader: Hosted
-x-originating-ip: [10.202.205.107]
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Svyatoslav Ryhel <clamor95@gmail.com>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Luca Ceresoli <luca.ceresoli@bootlin.com>,
+        Jean Delvare <jdelvare@suse.de>,
+        Sebastian Reichel <sebastian.reichel@collabora.com>,
+        Daniel Jeong <gshark.jeong@gmail.com>,
+        Ldd-Mlp <ldd-mlp@list.ti.com>
+Cc:     linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH v1 0/2] Add OF support for LM3560
+Date:   Wed,  8 Mar 2023 11:52:07 +0200
+Message-Id: <20230308095209.14700-1-clamor95@gmail.com>
+X-Mailer: git-send-email 2.37.2
 MIME-Version: 1.0
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: aculab.com
-Content-Language: en-US
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: base64
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-RnJvbTogS2VndWFuZyBaaGFuZw0KPiBTZW50OiAwNyBNYXJjaCAyMDIzIDAzOjQ2DQo+IA0KPiBP
-biBNb24sIE1hciA2LCAyMDIzIGF0IDU6MzDigK9QTSBCYXJ0b3N6IEdvbGFzemV3c2tpIDxicmds
-QGJnZGV2LnBsPiB3cm90ZToNCj4gPg0KPiA+IE9uIFRodSwgTWFyIDIsIDIwMjMgYXQgMTo1MuKA
-r1BNIEtlZ3VhbmcgWmhhbmcgPGtlZ3VhbmcuemhhbmdAZ21haWwuY29tPiB3cm90ZToNCj4gPiA+
-DQo+ID4gPiBUaGlzIHBhdGNoIHJlcGxhY2UgX19yYXdfcmVhZGwoKSAmIF9fcmF3X3dyaXRlbCgp
-IHdpdGggcmVhZGwoKSAmIHdyaXRlbCgpLg0KPiA+ID4NCj4gPg0KPiA+IFBsZWFzZSBzYXkgV0hZ
-IHlvdSdyZSBkb2luZyB0aGlzLg0KPiA+DQo+IHJlYWRsICYgd3JpdGVsIGNvbnRhaW4gbWVtb3J5
-IGJhcnJpZXJzIHdoaWNoIGNhbiBndWFyYW50ZWUgYWNjZXNzIG9yZGVyLg0KDQpTbyB3aGF0Li4u
-DQoNClRoZXJlIGlzIGEgZGF0YSBkZXBlbmRlbmN5IGJldHdlZW4gdGhlIHJlYWQgYW5kIHdyaXRl
-Lg0KVGhlIHJlYWQgY2FuJ3QgYmUgc2NoZWR1bGVkIGJlZm9yZSB0aGUgbG9jayBpcyBhY3F1aXJl
-ZC4NClRoZSB3cml0ZSBjYW4ndCBiZSBzY2hlZHVsZWQgYWZ0ZXIgdGhlIGxvY2sgaXMgcmVsZWFz
-ZWQuDQoNClNvIGFueSBiYXJyaWVycyBpbiByZWFkbCgpL3dyaXRlbCgpIGFyZW4ndCBuZWVkZWQu
-DQoNCklmIHRoZXkgYXJlIG9ubHkgY29tcGlsZSBiYXJyaWVycyB0aGV5J2xsIGhhdmUgbm8gcmVh
-bCBlZmZlY3QuDQpPVE9IIGlmIHRoZSBjcHUgbmVlZHMgYWN0dWFsIHN5bmNocm9uaXNpbmcgaW5z
-dHJ1Y3Rpb25zIChhcyBzb21lDQpwcGMgZG8pIHRoZW4gdGhleSB3aWxsIHNsb3cgdGhpbmdzIGRv
-d24uDQoNCglEYXZpZA0KDQo+IA0KPiA+IEJhcnQNCj4gPg0KPiA+ID4gU2lnbmVkLW9mZi1ieTog
-S2VndWFuZyBaaGFuZyA8a2VndWFuZy56aGFuZ0BnbWFpbC5jb20+DQo+ID4gPiAtLS0NCj4gPiA+
-IFYxIC0+IFYyOiBTcGxpdCB0aGlzIGNoYW5nZSB0byBhIHNlcGFyYXRlIHBhdGNoDQo+ID4gPiAt
-LS0NCj4gPiA+ICBkcml2ZXJzL2dwaW8vZ3Bpby1sb29uZ3NvbjEuYyB8IDggKysrKy0tLS0NCj4g
-PiA+ICAxIGZpbGUgY2hhbmdlZCwgNCBpbnNlcnRpb25zKCspLCA0IGRlbGV0aW9ucygtKQ0KPiA+
-ID4NCj4gPiA+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwaW8vZ3Bpby1sb29uZ3NvbjEuYyBiL2Ry
-aXZlcnMvZ3Bpby9ncGlvLWxvb25nc29uMS5jDQo+ID4gPiBpbmRleCA4ODYyYzllYTBkNDEuLmI2
-YzExY2FhM2FkZSAxMDA2NDQNCj4gPiA+IC0tLSBhL2RyaXZlcnMvZ3Bpby9ncGlvLWxvb25nc29u
-MS5jDQo+ID4gPiArKysgYi9kcml2ZXJzL2dwaW8vZ3Bpby1sb29uZ3NvbjEuYw0KPiA+ID4gQEAg
-LTIzLDggKzIzLDggQEAgc3RhdGljIGludCBsczF4X2dwaW9fcmVxdWVzdChzdHJ1Y3QgZ3Bpb19j
-aGlwICpnYywgdW5zaWduZWQgaW50IG9mZnNldCkNCj4gPiA+ICAgICAgICAgdW5zaWduZWQgbG9u
-ZyBmbGFnczsNCj4gPiA+DQo+ID4gPiAgICAgICAgIHJhd19zcGluX2xvY2tfaXJxc2F2ZSgmZ2Mt
-PmJncGlvX2xvY2ssIGZsYWdzKTsNCj4gPiA+IC0gICAgICAgX19yYXdfd3JpdGVsKF9fcmF3X3Jl
-YWRsKGdwaW9fcmVnX2Jhc2UgKyBHUElPX0NGRykgfCBCSVQob2Zmc2V0KSwNCj4gPiA+IC0gICAg
-ICAgICAgICAgICAgICAgIGdwaW9fcmVnX2Jhc2UgKyBHUElPX0NGRyk7DQo+ID4gPiArICAgICAg
-IHdyaXRlbChyZWFkbChncGlvX3JlZ19iYXNlICsgR1BJT19DRkcpIHwgQklUKG9mZnNldCksDQo+
-ID4gPiArICAgICAgICAgICAgICBncGlvX3JlZ19iYXNlICsgR1BJT19DRkcpOw0KPiA+ID4gICAg
-ICAgICByYXdfc3Bpbl91bmxvY2tfaXJxcmVzdG9yZSgmZ2MtPmJncGlvX2xvY2ssIGZsYWdzKTsN
-Cj4gPiA+DQo+ID4gPiAgICAgICAgIHJldHVybiAwOw0KPiA+ID4gQEAgLTM1LDggKzM1LDggQEAg
-c3RhdGljIHZvaWQgbHMxeF9ncGlvX2ZyZWUoc3RydWN0IGdwaW9fY2hpcCAqZ2MsIHVuc2lnbmVk
-IGludCBvZmZzZXQpDQo+ID4gPiAgICAgICAgIHVuc2lnbmVkIGxvbmcgZmxhZ3M7DQo+ID4gPg0K
-PiA+ID4gICAgICAgICByYXdfc3Bpbl9sb2NrX2lycXNhdmUoJmdjLT5iZ3Bpb19sb2NrLCBmbGFn
-cyk7DQo+ID4gPiAtICAgICAgIF9fcmF3X3dyaXRlbChfX3Jhd19yZWFkbChncGlvX3JlZ19iYXNl
-ICsgR1BJT19DRkcpICYgfkJJVChvZmZzZXQpLA0KPiA+ID4gLSAgICAgICAgICAgICAgICAgICAg
-Z3Bpb19yZWdfYmFzZSArIEdQSU9fQ0ZHKTsNCj4gPiA+ICsgICAgICAgd3JpdGVsKHJlYWRsKGdw
-aW9fcmVnX2Jhc2UgKyBHUElPX0NGRykgJiB+QklUKG9mZnNldCksDQo+ID4gPiArICAgICAgICAg
-ICAgICBncGlvX3JlZ19iYXNlICsgR1BJT19DRkcpOw0KPiA+ID4gICAgICAgICByYXdfc3Bpbl91
-bmxvY2tfaXJxcmVzdG9yZSgmZ2MtPmJncGlvX2xvY2ssIGZsYWdzKTsNCj4gPiA+ICB9DQo+ID4g
-Pg0KPiA+ID4gLS0NCj4gPiA+IDIuMzQuMQ0KPiA+ID4NCj4gDQo+IA0KPiANCj4gLS0NCj4gQmVz
-dCByZWdhcmRzLA0KPiANCj4gS2VsdmluIENoZXVuZw0KDQotDQpSZWdpc3RlcmVkIEFkZHJlc3Mg
-TGFrZXNpZGUsIEJyYW1sZXkgUm9hZCwgTW91bnQgRmFybSwgTWlsdG9uIEtleW5lcywgTUsxIDFQ
-VCwgVUsNClJlZ2lzdHJhdGlvbiBObzogMTM5NzM4NiAoV2FsZXMpDQo=
+Implement device tree support to lm3560 and make some 
+minor style adjustmets.
+
+Svyatoslav Ryhel (2):
+  dt-bindings: media: i2c: add lm3560 binding
+  media: lm3560: convent to OF
+
+ .../bindings/media/i2c/ti,lm3560.yaml         | 130 ++++++++++++++++++
+ drivers/media/i2c/lm3560.c                    | 128 ++++++++++++-----
+ 2 files changed, 223 insertions(+), 35 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/media/i2c/ti,lm3560.yaml
+
+-- 
+2.37.2
 
