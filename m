@@ -2,313 +2,177 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 81CAF6B0578
-	for <lists+devicetree@lfdr.de>; Wed,  8 Mar 2023 12:10:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3028E6B0588
+	for <lists+devicetree@lfdr.de>; Wed,  8 Mar 2023 12:12:36 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231270AbjCHLKU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Mar 2023 06:10:20 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50646 "EHLO
+        id S230130AbjCHLMe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Mar 2023 06:12:34 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53584 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230206AbjCHLJ5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Mar 2023 06:09:57 -0500
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3C8F7193D5;
-        Wed,  8 Mar 2023 03:09:55 -0800 (PST)
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 328B9i9N011850;
-        Wed, 8 Mar 2023 05:09:44 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1678273784;
-        bh=u+E/yLwxMLPWaC5RU9iAE96Q8XEEa5su6Km3KDAJ9Lw=;
-        h=Date:Subject:To:CC:References:From:In-Reply-To;
-        b=IlEiplZQD+0NkaDfcfT5BbGq6gF9iAX1c3QOHYxX8XKj4geHyESlSD4ldP1J3INcb
-         A0XN8RsR+7ZOCx1WXMX/qschqWSEIL6lbXADjAYcONjlrJ/3gOQkpJPn0NM+CX9szY
-         gpcnP6b3CGOLuYT3PuKD/imn6GgMzEGhh89XhG9A=
-Received: from DLEE108.ent.ti.com (dlee108.ent.ti.com [157.170.170.38])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 328B9i4u052803
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Wed, 8 Mar 2023 05:09:44 -0600
-Received: from DLEE102.ent.ti.com (157.170.170.32) by DLEE108.ent.ti.com
- (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Wed, 8
- Mar 2023 05:09:43 -0600
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE102.ent.ti.com
- (157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
- Frontend Transport; Wed, 8 Mar 2023 05:09:43 -0600
-Received: from [10.24.69.114] (ileaxei01-snat.itg.ti.com [10.180.69.5])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 328B9cTa097586;
-        Wed, 8 Mar 2023 05:09:39 -0600
-Message-ID: <c5c2fbcc-0955-0325-ef05-289b7a339110@ti.com>
-Date:   Wed, 8 Mar 2023 16:39:38 +0530
+        with ESMTP id S229922AbjCHLMc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Mar 2023 06:12:32 -0500
+Received: from mail-ed1-x536.google.com (mail-ed1-x536.google.com [IPv6:2a00:1450:4864:20::536])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8F032B4F5F
+        for <devicetree@vger.kernel.org>; Wed,  8 Mar 2023 03:12:31 -0800 (PST)
+Received: by mail-ed1-x536.google.com with SMTP id cy23so64063501edb.12
+        for <devicetree@vger.kernel.org>; Wed, 08 Mar 2023 03:12:31 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1678273950;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=/fPU2tBHNpDiK+ESgZE1NTwFx8PfPKs+ZFdXAJHf1Us=;
+        b=ek4n97I6m7J1I7V8osSw5E/BSUnz2l4DlNr7gyCms2kGkO8VyZDNtvDcxcpsJm0166
+         DVdBRLbmkrcHfYYhPVPam/4UGIB1YXAucMriTobxa4gz230CO7EIM1mTQHwraZ/jEeyp
+         8phE66PcghfaKEBrkaMzseEVZKJRjM3/67TslZ8vyGCoFCeIevd0AsH3n1j2IwgzsF1H
+         pAafVOqSdRtmGMhXHWmtFgq0YpB/S3o3CodXv20J9+XosQd8NFVAP8+AQAlyeI5sS/YG
+         xgUeycolP4MSqyHXF10erja1nHWQRHvpUGf79OlBRwKIGZHbP9QJB/Aqgzir674An66X
+         GCMQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1678273950;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=/fPU2tBHNpDiK+ESgZE1NTwFx8PfPKs+ZFdXAJHf1Us=;
+        b=C3yp4ZuQNYZK/XDQAWx89nHXvLRdHipfFvCS9wl0S/3r6oFZqH4bLF9+8nrSy1tGOP
+         ATPhH0y7rx4b2QnErB65FpwPMMJ7P3xcokKQbQi6ITuZQmtzoujCR09s2iTJsK+NNWr5
+         4wlCkeZsTamBmdwqDJR3zMVomSerDeVjRtaNacaNVDWqc15bkaWyYq9jnnV4+RP1UEhm
+         zmZGCHrqTLDRmZwhPpb3+zOG0Uc+YAnhCUGkJWXVDJ6JI54Vj59/d4oukoe4gxyHhxMO
+         EZlBzUPPLggPMBcDxL/0H4VBL8A2vpznfj6yG2v/Yb0JrnRP737y1wx7a26HQ2EBca/T
+         1zlA==
+X-Gm-Message-State: AO0yUKVqvbeAv+6vQ6JOxrRAJlIQy6zU1aLOchx0tLoK7msksgrWsPfn
+        Wdc8DSkI8uVmj5mFx2JTAisO4w==
+X-Google-Smtp-Source: AK7set++rAeeM8NbXauRa/wWHNjpsGMjgc+w2yOa/uMVzR5gQlC86O3rLyVM0FHfN5jqs94GQLPt2A==
+X-Received: by 2002:a17:906:6dd3:b0:878:8249:bef6 with SMTP id j19-20020a1709066dd300b008788249bef6mr17342106ejt.59.1678273949751;
+        Wed, 08 Mar 2023 03:12:29 -0800 (PST)
+Received: from ?IPV6:2a02:810d:15c0:828:ff33:9b14:bdd2:a3da? ([2a02:810d:15c0:828:ff33:9b14:bdd2:a3da])
+        by smtp.gmail.com with ESMTPSA id kt21-20020a170906aad500b008d398a4e687sm7313409ejb.158.2023.03.08.03.12.28
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 08 Mar 2023 03:12:29 -0800 (PST)
+Message-ID: <d3190ecb-76fb-2d57-c4a9-2d65bb0e8d33@linaro.org>
+Date:   Wed, 8 Mar 2023 12:12:28 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.1
-Subject: Re: [EXTERNAL] Re: [PATCH v3 5/6] soc: ti: pruss: Add helper function
- to enable OCP master ports
+ Thunderbird/102.8.0
+Subject: Re: [PATCH v1 1/4] dt-bindings: power: supply: maxim,max17040: update
+ properties
 Content-Language: en-US
-To:     Roger Quadros <rogerq@kernel.org>,
-        MD Danish Anwar <danishanwar@ti.com>,
-        "Andrew F. Davis" <afd@ti.com>, Suman Anna <s-anna@ti.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Santosh Shilimkar <ssantosh@kernel.org>,
-        Nishanth Menon <nm@ti.com>
-CC:     <linux-remoteproc@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <linux-omap@vger.kernel.org>,
-        <srk@ti.com>, <devicetree@vger.kernel.org>,
-        <netdev@vger.kernel.org>
-References: <20230306110934.2736465-1-danishanwar@ti.com>
- <20230306110934.2736465-6-danishanwar@ti.com>
- <39879d9f-041b-9156-95a5-a81702721739@kernel.org>
-From:   Md Danish Anwar <a0501179@ti.com>
-Organization: Texas Instruments
-In-Reply-To: <39879d9f-041b-9156-95a5-a81702721739@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_PASS,SPF_PASS,URIBL_BLOCKED autolearn=ham
-        autolearn_force=no version=3.4.6
+To:     Svyatoslav Ryhel <clamor95@gmail.com>
+Cc:     Iskren Chernev <me@iskren.info>,
+        Marek Szyprowski <m.szyprowski@samsung.com>,
+        Matheus Castello <matheus@castello.eng.br>,
+        Sebastian Reichel <sre@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20230308084419.11934-1-clamor95@gmail.com>
+ <20230308084419.11934-2-clamor95@gmail.com>
+ <95fa5f0f-cf53-7a37-2170-98b81c0982f1@linaro.org>
+ <CAPVz0n1QDFyHiGAa7UOuuwPiSH+ELiYNeO9-fxPWrOWkWqEuHg@mail.gmail.com>
+ <bbc7c183-3f98-9ea4-d5e5-0d58dd65d416@linaro.org>
+ <CAPVz0n3sKH_7x=aNVLaHVN0F1FWLVRW+MGoj9qBO9V=TDuv_jQ@mail.gmail.com>
+ <d0d0617d-8a2e-7a71-f4fe-f69896f84ede@linaro.org>
+ <CAPVz0n2XTJdSELoE9-P=r6ntAOT0PHEgoFTiyMz577z5wzF1QQ@mail.gmail.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <CAPVz0n2XTJdSELoE9-P=r6ntAOT0PHEgoFTiyMz577z5wzF1QQ@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Roger,
-
-On 08/03/23 14:11, Roger Quadros wrote:
-> 
-> 
-> On 06/03/2023 13:09, MD Danish Anwar wrote:
->> From: Suman Anna <s-anna@ti.com>
+On 08/03/2023 12:06, Svyatoslav Ryhel wrote:
+> ср, 8 бер. 2023 р. о 12:53 Krzysztof Kozlowski
+> <krzysztof.kozlowski@linaro.org> пише:
 >>
->> The PRU-ICSS subsystem on OMAP-architecture based SoCS (AM33xx, AM437x
->> and AM57xx SoCs) has a control bit STANDBY_INIT in the PRUSS_CFG register
->> to initiate a Standby sequence (when set) and trigger a MStandby request
->> to the SoC's PRCM module. This same bit is also used to enable the OCP
->> master ports (when cleared). The clearing of the STANDBY_INIT bit requires
->> an acknowledgment from PRCM and is done through the monitoring of the
->> PRUSS_SYSCFG.SUB_MWAIT bit.
+>> On 08/03/2023 11:51, Svyatoslav Ryhel wrote:
+>>> ср, 8 бер. 2023 р. о 12:44 Krzysztof Kozlowski
+>>> <krzysztof.kozlowski@linaro.org> пише:
+>>>>
+>>>> On 08/03/2023 10:15, Svyatoslav Ryhel wrote:
+>>>>
+>>>>>> max17040 does not have ADC temperature input... so is it system
+>>>>>> configuration?
+>>>>>>
+>>>>>
+>>>>> yes, I own a device (LG Optimus Vu P895) which uses max17043
+>>>>> coupled with ADC thermal sensor
+>>>>>
+>>>>>>> +
+>>>>>>> +  io-channel-names:
+>>>>>>> +    items:
+>>>>>>> +      - const: temp
+>>>>>>
+>>>>>> Drop the names property, not needed for one item.
+>>>>>>
+>>>>>
+>>>>> Alright, but driver patch expects temp name. I will look if this
+>>>>> is adjustable.
+>>>>
+>>>> I think I saw cases without names.
+>>>>
+>>>
+>>> There is no io-channel without a name. And io-channels are mostly used
+>>> by power supply devices.
+>>>
+>>>>>
+>>>>>>> +
+>>>>>>>    wakeup-source:
+>>>>>>>      type: boolean
+>>>>>>>      description: |
+>>>>>>> @@ -95,3 +109,26 @@ examples:
+>>>>>>>          wakeup-source;
+>>>>>>>        };
+>>>>>>>      };
+>>>>>>> +  - |
+>>>>>>> +    #include <dt-bindings/interrupt-controller/irq.h>
+>>>>>>> +    i2c0 {
+>>>>>>> +      #address-cells = <1>;
+>>>>>>> +      #size-cells = <0>;
+>>>>>>> +
+>>>>>>> +      fuel-gauge@36 {
+>>>>>>> +        compatible = "maxim,max17043";
+>>>>>>> +        reg = <0x36>;
+>>>>>>> +
+>>>>>>> +        interrupt-parent = <&gpio>;
+>>>>>>> +        interrupts = <144 IRQ_TYPE_EDGE_FALLING>;
+>>>>>>> +
+>>>>>>> +        monitored-battery = <&battery>;
+>>>>>>> +        power-supplies = <&charger>;
+>>>>>>
+>>>>>> But here you suggests something else than VDD... The hardware does not
+>>>>>> take charger as input. It takes power supply - vdd.
+>>>>>>
+>>>>>
+>>>>> Power system allows passing properties from other power devices.
+>>>>> In this case battery health and status are passed from charger.
+>>>>
+>>>> So this is not an input to device? Then it does not really look like
+>>>> property of this hardware. Fuel gauge does not control the charger, also
+>>>> from system configuration point of view.
+>>>>
+>>>
+>>> It is not controlling charger, the charger provides the status and
+>>> health of the battery to the fuel gauge. This option is also used in
+>>> other fuel gauges.
 >>
->> Add a helper function pruss_cfg_ocp_master_ports() to allow the PRU
->> client drivers to control this bit and enable or disable the firmware
->> running on PRU cores access to any peripherals or memory to achieve
->> desired functionality. The access is disabled by default on power-up
->> and on any suspend (context is not maintained).
+>> How regulator provides health and status of the battery? I don't understand.
 >>
->> Signed-off-by: Suman Anna <s-anna@ti.com>
->> Co-developed-by: Grzegorz Jaszczyk <grzegorz.jaszczyk@linaro.org>
->> Signed-off-by: Grzegorz Jaszczyk <grzegorz.jaszczyk@linaro.org>
->> Signed-off-by: Puranjay Mohan <p-mohan@ti.com>
->> ---
->>  drivers/soc/ti/pruss.c           | 81 +++++++++++++++++++++++++++++++-
->>  include/linux/remoteproc/pruss.h |  6 +++
->>  2 files changed, 85 insertions(+), 2 deletions(-)
->>
->> diff --git a/drivers/soc/ti/pruss.c b/drivers/soc/ti/pruss.c
->> index 537a3910ffd8..dc3abda0b8c2 100644
->> --- a/drivers/soc/ti/pruss.c
->> +++ b/drivers/soc/ti/pruss.c
->> @@ -22,14 +22,19 @@
->>  #include <linux/remoteproc.h>
->>  #include <linux/slab.h>
->>  
->> +#define SYSCFG_STANDBY_INIT	BIT(4)
->> +#define SYSCFG_SUB_MWAIT_READY	BIT(5)
->> +
->>  /**
->>   * struct pruss_private_data - PRUSS driver private data
->>   * @has_no_sharedram: flag to indicate the absence of PRUSS Shared Data RAM
->>   * @has_core_mux_clock: flag to indicate the presence of PRUSS core clock
->> + * @has_ocp_syscfg: flag to indicate if OCP SYSCFG is present
->>   */
->>  struct pruss_private_data {
->>  	bool has_no_sharedram;
->>  	bool has_core_mux_clock;
->> +	bool has_ocp_syscfg;
->>  };
->>  
->>  /**
->> @@ -205,6 +210,72 @@ int pruss_cfg_update(struct pruss *pruss, unsigned int reg,
->>  }
->>  EXPORT_SYMBOL_GPL(pruss_cfg_update);
->>  
->> +/**
->> + * pruss_cfg_ocp_master_ports() - configure PRUSS OCP master ports
->> + * @pruss: the pruss instance handle
->> + * @enable: set to true for enabling or false for disabling the OCP master ports
->> + *
->> + * This function programs the PRUSS_SYSCFG.STANDBY_INIT bit either to enable or
->> + * disable the OCP master ports (applicable only on SoCs using OCP interconnect
->> + * like the OMAP family). Clearing the bit achieves dual functionalities - one
->> + * is to deassert the MStandby signal to the device PRCM, and the other is to
->> + * enable OCP master ports to allow accesses outside of the PRU-ICSS. The
->> + * function has to wait for the PRCM to acknowledge through the monitoring of
->> + * the PRUSS_SYSCFG.SUB_MWAIT bit when enabling master ports. Setting the bit
->> + * disables the master access, and also signals the PRCM that the PRUSS is ready
->> + * for Standby.
->> + *
->> + * Return: 0 on success, or an error code otherwise. ETIMEDOUT is returned
->> + * when the ready-state fails.
->> + */
->> +int pruss_cfg_ocp_master_ports(struct pruss *pruss, bool enable)
->> +{
->> +	int ret;
->> +	u32 syscfg_val, i;
->> +	const struct pruss_private_data *data;
->> +
->> +	if (IS_ERR_OR_NULL(pruss))
->> +		return -EINVAL;
->> +
->> +	data = of_device_get_match_data(pruss->dev);
->> +
->> +	/* nothing to do on non OMAP-SoCs */
->> +	if (!data || !data->has_ocp_syscfg)
->> +		return 0;
->> +
->> +	/* assert the MStandby signal during disable path */
->> +	if (!enable)
->> +		return pruss_cfg_update(pruss, PRUSS_CFG_SYSCFG,
->> +					SYSCFG_STANDBY_INIT,
->> +					SYSCFG_STANDBY_INIT);
 > 
-> You can omit the above if() if you just encapsulate the below in
-> 
-> if (enable) {
-> 
-> 
-Sure, I can omit the above if() and put the below block inside if (enable) {}.
+> It is not a regulator, it is a charger! Dedicated chip responsible for
+> controlling charging. And its configuration allows it to get battery
+> health and status, because this fuel gauge does not have this
+> function.
 
-Currently when API pruss_cfg_ocp_master_ports()is called with enable as false
-i.e. disabling PRUSS OCP master ports is requested, we directly return
-pruss_cfg_update() where as if we remove the above if() section and encapsulate
-below block in if (enable) {}, then in disable scenario, call flow will
-directly reach the label disable. In the label disable, we are updating cfg and
-then returning "ret", but at this point the variable ret is not assigned.
 
-To counter this should I change the label disable to below?
+Ah, you are right. I confused with power-supply. It is fine.
 
-disable:
-	return pruss_cfg_update(pruss, PRUSS_CFG_SYSCFG, SYSCFG_STANDBY_INIT,
-			 SYSCFG_STANDBY_INIT);
 
->> +
->> +	/* enable the OCP master ports and disable MStandby */
->> +	ret = pruss_cfg_update(pruss, PRUSS_CFG_SYSCFG, SYSCFG_STANDBY_INIT, 0);
->> +	if (ret)
->> +		return ret;
->> +
->> +	/* wait till we are ready for transactions - delay is arbitrary */
->> +	for (i = 0; i < 10; i++) {
->> +		ret = pruss_cfg_read(pruss, PRUSS_CFG_SYSCFG, &syscfg_val);
->> +		if (ret)
->> +			goto disable;
->> +
+Best regards,
+Krzysztof
 
-Changing the disable label will also result in losing the return value of
-pruss_cfg_read() API call here.
-
->> +		if (!(syscfg_val & SYSCFG_SUB_MWAIT_READY))
->> +			return 0;
->> +
->> +		udelay(5);
->> +	}
->> +
->> +	dev_err(pruss->dev, "timeout waiting for SUB_MWAIT_READY\n");
->> +	ret = -ETIMEDOUT;
-
-Changing the disable label will also result in losing ret = -ETIMEDOUT here.
-
-> 
-> }
-> 
->> +
->> +disable:
->> +	pruss_cfg_update(pruss, PRUSS_CFG_SYSCFG, SYSCFG_STANDBY_INIT,
->> +			 SYSCFG_STANDBY_INIT);
->> +	return ret;
->> +}
-
-So should I do this modification or keep it as it is?
-
->> +EXPORT_SYMBOL_GPL(pruss_cfg_ocp_master_ports);
->> +
->>  static void pruss_of_free_clk_provider(void *data)
->>  {
->>  	struct device_node *clk_mux_np = data;
->> @@ -495,10 +566,16 @@ static int pruss_remove(struct platform_device *pdev)
->>  /* instance-specific driver private data */
->>  static const struct pruss_private_data am437x_pruss1_data = {
->>  	.has_no_sharedram = false,
->> +	.has_ocp_syscfg = true,
->>  };
->>  
->>  static const struct pruss_private_data am437x_pruss0_data = {
->>  	.has_no_sharedram = true,
->> +	.has_ocp_syscfg = false,
->> +};
->> +
->> +static const struct pruss_private_data am33xx_am57xx_data = {
->> +	.has_ocp_syscfg = true,
->>  };
-> 
-> How about keeping platform data for different platforms separate?
-> 
-> i.e. am33xx_pruss_data and am57xx_pruss_data
-> 
-
-Sure. I'll split am33xx_am57xx_data into am33xx_pruss_data and
-am57xx_pruss_data as well as am65x_j721e_pruss_data into am65x_pruss_data and
-j721e_pruss_data.
-
->>  
->>  static const struct pruss_private_data am65x_j721e_pruss_data = {
->> @@ -506,10 +583,10 @@ static const struct pruss_private_data am65x_j721e_pruss_data = {
->>  };
->>  
->>  static const struct of_device_id pruss_of_match[] = {
->> -	{ .compatible = "ti,am3356-pruss" },
->> +	{ .compatible = "ti,am3356-pruss", .data = &am33xx_am57xx_data },
->>  	{ .compatible = "ti,am4376-pruss0", .data = &am437x_pruss0_data, },
->>  	{ .compatible = "ti,am4376-pruss1", .data = &am437x_pruss1_data, },
->> -	{ .compatible = "ti,am5728-pruss" },
->> +	{ .compatible = "ti,am5728-pruss", .data = &am33xx_am57xx_data },
->>  	{ .compatible = "ti,k2g-pruss" },
->>  	{ .compatible = "ti,am654-icssg", .data = &am65x_j721e_pruss_data, },
->>  	{ .compatible = "ti,j721e-icssg", .data = &am65x_j721e_pruss_data, },
->> diff --git a/include/linux/remoteproc/pruss.h b/include/linux/remoteproc/pruss.h
->> index 7952f250301a..8cb99d3cad0d 100644
->> --- a/include/linux/remoteproc/pruss.h
->> +++ b/include/linux/remoteproc/pruss.h
->> @@ -168,6 +168,7 @@ int pruss_release_mem_region(struct pruss *pruss,
->>  int pruss_cfg_read(struct pruss *pruss, unsigned int reg, unsigned int *val);
->>  int pruss_cfg_update(struct pruss *pruss, unsigned int reg,
->>  		     unsigned int mask, unsigned int val);
->> +int pruss_cfg_ocp_master_ports(struct pruss *pruss, bool enable);
->>  
->>  #else
->>  
->> @@ -203,6 +204,11 @@ static inline int pruss_cfg_update(struct pruss *pruss, unsigned int reg,
->>  	return -EOPNOTSUPP;
->>  }
->>  
->> +static inline int pruss_cfg_ocp_master_ports(struct pruss *pruss, bool enable)
->> +{
->> +	return -EOPNOTSUPP;
->> +}
->> +
->>  #endif /* CONFIG_TI_PRUSS */
->>  
->>  #if IS_ENABLED(CONFIG_PRU_REMOTEPROC)
-> 
-> cheers,
-> -roger
-
--- 
-Thanks and Regards,
-Danish.
