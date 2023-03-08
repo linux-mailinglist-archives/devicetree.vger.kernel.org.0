@@ -2,70 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B5EBC6B02C9
-	for <lists+devicetree@lfdr.de>; Wed,  8 Mar 2023 10:24:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F07F16B02D4
+	for <lists+devicetree@lfdr.de>; Wed,  8 Mar 2023 10:25:08 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230522AbjCHJYV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Mar 2023 04:24:21 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54974 "EHLO
+        id S229976AbjCHJZG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Mar 2023 04:25:06 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55330 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230521AbjCHJYL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Mar 2023 04:24:11 -0500
-Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com [IPv6:2a00:1450:4864:20::52a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 839DFA17F0;
-        Wed,  8 Mar 2023 01:23:59 -0800 (PST)
-Received: by mail-ed1-x52a.google.com with SMTP id ec29so32142375edb.6;
-        Wed, 08 Mar 2023 01:23:59 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112; t=1678267438;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=CDrNWFI668GD0hnej03xw5wrA2ehb8uxzEH/VH608bc=;
-        b=WWUXmy11KRg3Y9ocgjf6+kaMCvpWsm1AD55PYIG1Nnb9vv2vvdZB99P89xhsOUaK24
-         /Y4Oy5lyM5Q/8tHdbIvhiAiZTdDwYuofjpD+UPKqwAitN90a0Cw6tUwt+boGWjcF5ay1
-         r3uvCt1uAgV6codhBt1JWgNXUmQJHNYeUI3g2HwmGciClIs2wGuukluuNbrG47lhxSvb
-         8xrS62W3aY8Saa5pli6zhsOy04kYX/D/k7boaR3B24/bXnHG101UzPIrA6+r+3ygZWZH
-         sZRe9XVCSqfxOj0LAE1/Vc0zt7fvLIPp1lGO87IirRUI2irQ7RcyuBrPoQ0JqjLehan8
-         Jw4Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678267438;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=CDrNWFI668GD0hnej03xw5wrA2ehb8uxzEH/VH608bc=;
-        b=FkF/2vlAes2GjuQKCbWSnQG5AVCciGEAJ/AWqKa1AI663GVuNlJhI1LxwrpDZVKH11
-         xsW7fC5HYzTWpiXxbEAerrVwq3SmO38vIL75MLd7ZXj4WAEMgWSb4mOg5Sg7AToSRBPH
-         BX0QZ+1AbdRtxu29PPFn85URcfJjvHaDqrP0PEA19LASBKCwtvr21icAMKqoEjAl2bKh
-         NQAnEx+bIbzrGhnfq60toc0hJ+8nngxfXgmelEL4R6x5NVVkpN4G2Di19JkfH6HVf9y7
-         i1D9xOqTkkfqYVyxAFReMXKY/BX9/iiSByzNaMUMqLV/IWC9UHFUUmPULPMQ4B665VqF
-         cjTQ==
-X-Gm-Message-State: AO0yUKUMA43AQD+xe8ugkPcW5L8RVTskVejCCdV7kme3Thgm6cPxexhQ
-        wTQRGYCbqyBMo32RiKry7XGiWwKZ5CRCYqcb2qHOAMlCqks=
-X-Google-Smtp-Source: AK7set++oYRF40WedQZ6ojGmG/FH1iT/MTSIZRr49bD9esqX8F65/q+8irUkZWmgB9gJFQmt/yR6D2wvx6t6Awuhtlo=
-X-Received: by 2002:a17:907:ca29:b0:882:cdb5:4e60 with SMTP id
- uk41-20020a170907ca2900b00882cdb54e60mr8742615ejc.11.1678267437991; Wed, 08
- Mar 2023 01:23:57 -0800 (PST)
+        with ESMTP id S231162AbjCHJYo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Mar 2023 04:24:44 -0500
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0369F9E534;
+        Wed,  8 Mar 2023 01:24:23 -0800 (PST)
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 3289O4cl051801;
+        Wed, 8 Mar 2023 03:24:04 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1678267444;
+        bh=rzTr8bnTeROzzh3w38D9zwnOYt+bZ9ojJe2+VMJVvnQ=;
+        h=Date:Subject:To:CC:References:From:In-Reply-To;
+        b=JLB8xsUVNWLxbNHbo2UlxozT+V1MrRfZo1gn1FVRQp6nLaXRgVVpUvi6dVzJqYrIS
+         VfpvhgZx955yyH1pwxTZJIaweCbQZi7CPRulD6orUv8rcX06ejRa+NJUGT3u4z0Oqe
+         X9FPiQUgPsi6qt3TaoYzWfgtOZCLzHvLygiedqbU=
+Received: from DLEE108.ent.ti.com (dlee108.ent.ti.com [157.170.170.38])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 3289O4F1118337
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Wed, 8 Mar 2023 03:24:04 -0600
+Received: from DLEE102.ent.ti.com (157.170.170.32) by DLEE108.ent.ti.com
+ (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Wed, 8
+ Mar 2023 03:24:04 -0600
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE102.ent.ti.com
+ (157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
+ Frontend Transport; Wed, 8 Mar 2023 03:24:04 -0600
+Received: from [10.24.69.114] (ileaxei01-snat.itg.ti.com [10.180.69.5])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 3289NwCP003784;
+        Wed, 8 Mar 2023 03:23:59 -0600
+Message-ID: <ed3dd4b6-658f-07d2-a055-4c38f2ec9db0@ti.com>
+Date:   Wed, 8 Mar 2023 14:53:57 +0530
 MIME-Version: 1.0
-References: <20230308084419.11934-1-clamor95@gmail.com> <20230308084419.11934-5-clamor95@gmail.com>
- <c04d4306-de81-363c-2d2e-60f5283a5249@linaro.org>
-In-Reply-To: <c04d4306-de81-363c-2d2e-60f5283a5249@linaro.org>
-From:   Svyatoslav Ryhel <clamor95@gmail.com>
-Date:   Wed, 8 Mar 2023 11:23:27 +0200
-Message-ID: <CAPVz0n0DNpn7uO+2X9QREpdc51R--ogsLSXWTyL1TybDsO2GvQ@mail.gmail.com>
-Subject: Re: [PATCH v1 4/4] power: max17040: get thermal data from adc if available
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Iskren Chernev <me@iskren.info>,
-        Marek Szyprowski <m.szyprowski@samsung.com>,
-        Matheus Castello <matheus@castello.eng.br>,
-        Sebastian Reichel <sre@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.1
+Subject: Re: [EXTERNAL] Re: [PATCH v3 4/6] soc: ti: pruss: Add helper
+ functions to set GPI mode, MII_RT_event and XFR
+To:     Roger Quadros <rogerq@kernel.org>,
+        MD Danish Anwar <danishanwar@ti.com>,
+        "Andrew F. Davis" <afd@ti.com>, Suman Anna <s-anna@ti.com>,
+        "Vignesh Raghavendra" <vigneshr@ti.com>,
+        Tero Kristo <t-kristo@ti.com>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        "Santosh Shilimkar" <ssantosh@kernel.org>,
+        Nishanth Menon <nm@ti.com>
+CC:     <linux-remoteproc@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <linux-omap@vger.kernel.org>,
+        <srk@ti.com>, <devicetree@vger.kernel.org>,
+        <netdev@vger.kernel.org>
+References: <20230306110934.2736465-1-danishanwar@ti.com>
+ <20230306110934.2736465-5-danishanwar@ti.com>
+ <2f039534-dd21-7361-0fcd-b91da1636a3a@kernel.org>
+Content-Language: en-US
+From:   Md Danish Anwar <a0501179@ti.com>
+Organization: Texas Instruments
+In-Reply-To: <2f039534-dd21-7361-0fcd-b91da1636a3a@kernel.org>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_PASS,SPF_PASS,URIBL_BLOCKED autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -73,73 +80,106 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-=D1=81=D1=80, 8 =D0=B1=D0=B5=D1=80. 2023=E2=80=AF=D1=80. =D0=BE 11:08 Krzys=
-ztof Kozlowski
-<krzysztof.kozlowski@linaro.org> =D0=BF=D0=B8=D1=88=D0=B5:
->
-> On 08/03/2023 09:44, Svyatoslav Ryhel wrote:
-> > Since fuel gauge does not support thermal monitoring,
-> > some vendors may couple this fuel gauge with thermal/adc
-> > sensor to monitor battery cell exact temperature.
-> >
-> > Add this feature by adding optional iio thermal channel.
-> >
-> > Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
-> > ---
-> >  drivers/power/supply/max17040_battery.c | 24 ++++++++++++++++++++++++
-> >  1 file changed, 24 insertions(+)
-> >
-> > diff --git a/drivers/power/supply/max17040_battery.c b/drivers/power/su=
-pply/max17040_battery.c
-> > index 6dfce7b1309e..8c743c26dc6e 100644
-> > --- a/drivers/power/supply/max17040_battery.c
-> > +++ b/drivers/power/supply/max17040_battery.c
-> > @@ -18,6 +18,7 @@
-> >  #include <linux/of_device.h>
-> >  #include <linux/regmap.h>
-> >  #include <linux/slab.h>
-> > +#include <linux/iio/consumer.h>
-> >
-> >  #define MAX17040_VCELL       0x02
-> >  #define MAX17040_SOC 0x04
-> > @@ -143,6 +144,7 @@ struct max17040_chip {
-> >       struct power_supply             *battery;
-> >       struct power_supply_battery_info        *batt_info;
-> >       struct chip_data                data;
-> > +     struct iio_channel              *channel_temp;
-> >
-> >       /* battery capacity */
-> >       int soc;
-> > @@ -416,6 +418,11 @@ static int max17040_get_property(struct power_supp=
-ly *psy,
-> >       case POWER_SUPPLY_PROP_CHARGE_FULL_DESIGN:
-> >               val->intval =3D chip->batt_info->charge_full_design_uah;
-> >               break;
-> > +     case POWER_SUPPLY_PROP_TEMP:
-> > +             iio_read_channel_raw(chip->channel_temp,
-> > +                                  &val->intval);
-> > +             val->intval *=3D 10;
->
-> I am not convinced this is needed at all. You basically chain two
-> subsystems only to report to user-space via power supply, but it is
-> already reported via IIO. I would understand it if you use the value for
-> something, e.g. control the charger. Here, it's just feeding different
-> user-space interface. Therefore:
-> 1. IO channels are not a hardware property of the fuel gauge,
-> 2. I have doubts this should be even exposed via power supply interface.
->
+Hi Roger,
 
-I can assure you that this is only the beginning of weird vendor solutions
-I have discovered. Nonetheless, max17040 has no battery temp property,
-this means in case I have a critical battery overheating, userspace
-will tell me nothing
-since instead of having direct battery temp property under power supply I h=
-ave
-separate iio sensor, which may not even be monitored. It is always nice to =
-have
-battery explosions.
+On 08/03/23 14:04, Roger Quadros wrote:
+> Hi Danish,
+> 
+> On 06/03/2023 13:09, MD Danish Anwar wrote:
+>> From: Suman Anna <s-anna@ti.com>
+>>
+>> The PRUSS CFG module is represented as a syscon node and is currently
+>> managed by the PRUSS platform driver. Add easy accessor functions to set
+>> GPI mode, MII_RT event enable/disable and XFR (XIN XOUT) enable/disable
+>> to enable the PRUSS Ethernet usecase. These functions reuse the generic
+>> pruss_cfg_update() API function.
+>>
+>> Signed-off-by: Suman Anna <s-anna@ti.com>
+>> Co-developed-by: Grzegorz Jaszczyk <grzegorz.jaszczyk@linaro.org>
+>> Signed-off-by: Grzegorz Jaszczyk <grzegorz.jaszczyk@linaro.org>
+>> Signed-off-by: Puranjay Mohan <p-mohan@ti.com>
+>> ---
+>>  include/linux/remoteproc/pruss.h | 55 ++++++++++++++++++++++++++++++++
+>>  1 file changed, 55 insertions(+)
+>>
+>> diff --git a/include/linux/remoteproc/pruss.h b/include/linux/remoteproc/pruss.h
+>> index d41bec448f06..7952f250301a 100644
+>> --- a/include/linux/remoteproc/pruss.h
+>> +++ b/include/linux/remoteproc/pruss.h
+>> @@ -240,4 +240,59 @@ static inline bool is_pru_rproc(struct device *dev)
+>>  	return true;
+>>  }
+>>  
+>> +/**
+>> + * pruss_cfg_gpimode() - set the GPI mode of the PRU
+>> + * @pruss: the pruss instance handle
+>> + * @pru_id: id of the PRU core within the PRUSS
+>> + * @mode: GPI mode to set
+>> + *
+>> + * Sets the GPI mode for a given PRU by programming the
+>> + * corresponding PRUSS_CFG_GPCFGx register
+>> + *
+>> + * Return: 0 on success, or an error code otherwise
+>> + */
+>> +static inline int pruss_cfg_gpimode(struct pruss *pruss,
+>> +				    enum pruss_pru_id pru_id,
+>> +				    enum pruss_gpi_mode mode)
+>> +{
+>> +	if (pru_id < 0 || pru_id >= PRUSS_NUM_PRUS)
+>> +		return -EINVAL;
+>> +
+> 
+> Should we check for invalid gpi mode and error out if so?
+> 
+Sure we can check for invalid gpi mode.
 
->
-> Best regards,
-> Krzysztof
->
+Does the below code snippet looks good to you?
+
+	if(mode < PRUSS_GPI_MODE_DIRECT || mode > PRUSS_GPI_MODE_MII)
+		return -EINVAL;
+
+>> +	return pruss_cfg_update(pruss, PRUSS_CFG_GPCFG(pru_id),
+>> +				PRUSS_GPCFG_PRU_GPI_MODE_MASK,
+>> +				mode << PRUSS_GPCFG_PRU_GPI_MODE_SHIFT);
+>> +}
+>> +
+>> +/**
+>> + * pruss_cfg_miirt_enable() - Enable/disable MII RT Events
+>> + * @pruss: the pruss instance
+>> + * @enable: enable/disable
+>> + *
+>> + * Enable/disable the MII RT Events for the PRUSS.
+>> + *
+>> + * Return: 0 on success, or an error code otherwise
+>> + */
+>> +static inline int pruss_cfg_miirt_enable(struct pruss *pruss, bool enable)
+>> +{
+>> +	u32 set = enable ? PRUSS_MII_RT_EVENT_EN : 0;
+>> +
+>> +	return pruss_cfg_update(pruss, PRUSS_CFG_MII_RT,
+>> +				PRUSS_MII_RT_EVENT_EN, set);
+>> +}
+>> +
+>> +/**
+>> + * pruss_cfg_xfr_enable() - Enable/disable XIN XOUT shift functionality
+>> + * @pruss: the pruss instance
+>> + * @enable: enable/disable
+>> + *
+>> + * Return: 0 on success, or an error code otherwise
+>> + */
+>> +static inline int pruss_cfg_xfr_enable(struct pruss *pruss, bool enable)
+>> +{
+>> +	u32 set = enable ? PRUSS_SPP_XFER_SHIFT_EN : 0;
+>> +
+>> +	return pruss_cfg_update(pruss, PRUSS_CFG_SPP,
+>> +				PRUSS_SPP_XFER_SHIFT_EN, set);
+>> +}
+>> +
+>>  #endif /* __LINUX_PRUSS_H */
+> 
+> cheers,
+> -roger
+
+-- 
+Thanks and Regards,
+Danish.
