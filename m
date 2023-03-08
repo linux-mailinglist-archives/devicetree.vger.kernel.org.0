@@ -2,158 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A66F76AFBC5
-	for <lists+devicetree@lfdr.de>; Wed,  8 Mar 2023 02:08:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 227EF6AFC04
+	for <lists+devicetree@lfdr.de>; Wed,  8 Mar 2023 02:17:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229812AbjCHBIu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Mar 2023 20:08:50 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47294 "EHLO
+        id S229794AbjCHBR0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Mar 2023 20:17:26 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55446 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229772AbjCHBIt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Mar 2023 20:08:49 -0500
-Received: from fd01.gateway.ufhost.com (fd01.gateway.ufhost.com [61.152.239.71])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 88D9E8480B;
-        Tue,  7 Mar 2023 17:08:44 -0800 (PST)
-Received: from EXMBX165.cuchost.com (unknown [175.102.18.54])
-        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-        (Client CN "EXMBX165", Issuer "EXMBX165" (not verified))
-        by fd01.gateway.ufhost.com (Postfix) with ESMTP id 9683E24E20D;
-        Wed,  8 Mar 2023 09:08:32 +0800 (CST)
-Received: from EXMBX168.cuchost.com (172.16.6.78) by EXMBX165.cuchost.com
- (172.16.6.75) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Wed, 8 Mar
- 2023 09:08:32 +0800
-Received: from [192.168.125.96] (183.27.97.46) by EXMBX168.cuchost.com
- (172.16.6.78) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Wed, 8 Mar
- 2023 09:08:31 +0800
-Message-ID: <f4f81330-645c-e5bc-3dc8-69160337b7dc@starfivetech.com>
-Date:   Wed, 8 Mar 2023 09:08:33 +0800
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-Subject: Re: [PATCH v4 1/3] dt-bindings: dma: snps,dw-axi-dmac: constrain
- resets items for JH7110 dma
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Eugeniy Paltsev <Eugeniy.Paltsev@synopsys.com>,
-        Vinod Koul <vkoul@kernel.org>,
+        with ESMTP id S229484AbjCHBRY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Mar 2023 20:17:24 -0500
+Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 396A75A6CE
+        for <devicetree@vger.kernel.org>; Tue,  7 Mar 2023 17:17:23 -0800 (PST)
+Received: by mail-lf1-x12e.google.com with SMTP id bi9so19497972lfb.2
+        for <devicetree@vger.kernel.org>; Tue, 07 Mar 2023 17:17:23 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1678238241;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=gnNZH9Drw/MoaoUZbOvjj8rfTjtiFcEzRwtiu8frN6A=;
+        b=RQ07lhei6sASNDadIFt8TAzr9uPXoWua6pYttLSe2YpNRAynfMfJSciJUmyQFGmvRN
+         fi5D9OtC4b59JEVUPiXBwhXuUCSJw3X6R/wpSN4b5Id7/Ywjwdh2/YiwW2vBCRLGOsOl
+         GZMlyQ1dq7AEJ5pnjRXptijJtNzMEG+N0mLGdD8x945i3uTC0ontT3Mq+xd8FEfsdJ9g
+         l+jIjT3BAPCXAWAypfIsB0iNVabZ9E2JWfStnK4/yp5MMUHpCO9mQjBmMJzcHR0jOuUV
+         CHgKGDrxHisMvFmDefWiIA2uxuEfmJqo+y5zJVRcyRiGvXgQWVpVHkkXIbleq9gh151d
+         D1+g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1678238241;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=gnNZH9Drw/MoaoUZbOvjj8rfTjtiFcEzRwtiu8frN6A=;
+        b=F+6hcD9/zG+HyMaq8KAy9jlVd/isKtOz+XSuacLZzAH8qbvefIhMAi8HfzrG7ipnL9
+         4aRpfL6x7BrF3ZvmpmBIH1mhqoIyR2tH94LymPumjKNz9OSESsw6bacnwn0WUZ0UmhK5
+         Z4gxJEUj3hAbjx8TXkJhyhb9rKsRaokj5fMRNF19DARKvac7DKexq4DWi45aNSxwnMsm
+         kvhZaSPYM0UnugXtTH515UmrX4adj8hAgkL9wQCVuN1/ql3lhaawUCXTwdItHC1eJ1jy
+         tIBH0Kn7dvwgc3bi7I6C8xJC41ZQfppYcgIVHp0sxX8aWbF9NnMXNMi5o+AAC9nL5AgY
+         Wmeg==
+X-Gm-Message-State: AO0yUKXnYYE2eAtymd96nGTyJLXDsiJcI0cSf2r7k8ZTkzt9upQYEhD7
+        Z/30ONOw5ZniuQKwpzFkAiObRg==
+X-Google-Smtp-Source: AK7set/ga/+XC0HT4xLnuFeRdhBtdQE+1XK4NqdBxHRXvRxadMdq+a5GwDdfLw6LfZKqeMmiGENrMA==
+X-Received: by 2002:a19:c208:0:b0:4bc:af5:b8d9 with SMTP id l8-20020a19c208000000b004bc0af5b8d9mr4291879lfc.6.1678238241433;
+        Tue, 07 Mar 2023 17:17:21 -0800 (PST)
+Received: from localhost.localdomain (abyj16.neoplus.adsl.tpnet.pl. [83.9.29.16])
+        by smtp.gmail.com with ESMTPSA id u3-20020ac243c3000000b004dc4cb4f9c4sm2183207lfl.35.2023.03.07.17.17.19
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 07 Mar 2023 17:17:20 -0800 (PST)
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+To:     linux-arm-msm@vger.kernel.org, andersson@kernel.org,
+        agross@kernel.org
+Cc:     marijn.suijten@somainline.org,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor.dooley@microchip.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        "Emil Renner Berthing" <emil.renner.berthing@canonical.com>
-CC:     <dmaengine@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-riscv@lists.infradead.org>
-References: <20230306140430.28951-1-walker.chen@starfivetech.com>
- <20230306140430.28951-2-walker.chen@starfivetech.com>
- <b2b36909-b0b1-7507-3145-141eb5ec0f3f@linaro.org>
- <0725e451-7c0b-0aac-ecd3-502b02276a9a@starfivetech.com>
- <e3da08df-a5cb-3fbd-2356-64416f48c073@linaro.org>
-Content-Language: en-US
-From:   Walker Chen <walker.chen@starfivetech.com>
-In-Reply-To: <e3da08df-a5cb-3fbd-2356-64416f48c073@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [183.27.97.46]
-X-ClientProxiedBy: EXCAS066.cuchost.com (172.16.6.26) To EXMBX168.cuchost.com
- (172.16.6.78)
-X-YovoleRuleAgent: yovoleflag
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        Shawn Guo <shawn.guo@linaro.org>, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: [PATCH] dt-bindings: interrupt-controller: Allow #power-domain-cells
+Date:   Wed,  8 Mar 2023 02:17:05 +0100
+Message-Id: <20230308011705.291337-1-konrad.dybcio@linaro.org>
+X-Mailer: git-send-email 2.39.2
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-0.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_SORBS_HTTP,RCVD_IN_SORBS_SOCKS,SPF_HELO_NONE,SPF_PASS,
+        URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+MPM provides a single genpd. Allow #power-domain-cells = <0>.
 
+Fixes: 54fc9851c0e0 ("dt-bindings: interrupt-controller: Add Qualcomm MPM support")
+Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+---
+ .../devicetree/bindings/interrupt-controller/qcom,mpm.yaml     | 3 +++
+ 1 file changed, 3 insertions(+)
 
-On 2023/3/7 23:51, Krzysztof Kozlowski wrote:
-> On 07/03/2023 11:30, Walker Chen wrote:
->> 
->> 
->> On 2023/3/7 17:03, Krzysztof Kozlowski wrote:
->>> On 06/03/2023 15:04, Walker Chen wrote:
->>>> The DMA controller needs two reset items to work properly on JH7110 SoC,
->>>> so there is need to constrain the items' value to 2, other platforms
->>>> have 1 reset item at most.
->>>>
->>>> Signed-off-by: Walker Chen <walker.chen@starfivetech.com>
->>>> ---
->>>>  .../bindings/dma/snps,dw-axi-dmac.yaml        | 24 +++++++++++++++----
->>>>  1 file changed, 20 insertions(+), 4 deletions(-)
->>>>
->>>> diff --git a/Documentation/devicetree/bindings/dma/snps,dw-axi-dmac.yaml b/Documentation/devicetree/bindings/dma/snps,dw-axi-dmac.yaml
->>>> index ad107a4d3b33..d8b5439f215c 100644
->>>> --- a/Documentation/devicetree/bindings/dma/snps,dw-axi-dmac.yaml
->>>> +++ b/Documentation/devicetree/bindings/dma/snps,dw-axi-dmac.yaml
->>>> @@ -12,14 +12,12 @@ maintainers:
->>>>  description:
->>>>    Synopsys DesignWare AXI DMA Controller DT Binding
->>>>  
->>>> -allOf:
->>>> -  - $ref: "dma-controller.yaml#"
->>>> -
->>>>  properties:
->>>>    compatible:
->>>>      enum:
->>>>        - snps,axi-dma-1.01a
->>>>        - intel,kmb-axi-dma
->>>> +      - starfive,jh7110-axi-dma
->>>>  
->>>>    reg:
->>>>      minItems: 1
->>>> @@ -58,7 +56,8 @@ properties:
->>>>      maximum: 8
->>>>  
->>>>    resets:
->>>> -    maxItems: 1
->>>> +    minItems: 1
->>>> +    maxItems: 2
->>>>  
->>>>    snps,dma-masters:
->>>>      description: |
->>>> @@ -109,6 +108,23 @@ required:
->>>>    - snps,priority
->>>>    - snps,block-size
->>>>  
->>>> +allOf:
->>>> +  - $ref: "dma-controller.yaml#"
->>>
->>> Rebase your patches on something recent... I would argue that it should
->>> be based on maintainer's (or linux-next) tree, but that would be too
->>> good to be true.
->> 
->> This was written by referring to the syntax of other dt-binding, but your suggestion 
->> is a good one, the next version of patches will be rebased on kernel 6.3.
-> 
-> Rebasing on old kernel was referring to syntax of other binding? I don't
-> understand this. How old code which you copied is related anyhow to
-> other binding? You are expected to send patches always based on recent
-> one, not something old.
+diff --git a/Documentation/devicetree/bindings/interrupt-controller/qcom,mpm.yaml b/Documentation/devicetree/bindings/interrupt-controller/qcom,mpm.yaml
+index 509d20c091af..4c470dc143e5 100644
+--- a/Documentation/devicetree/bindings/interrupt-controller/qcom,mpm.yaml
++++ b/Documentation/devicetree/bindings/interrupt-controller/qcom,mpm.yaml
+@@ -62,6 +62,9 @@ properties:
+         - description: MPM pin number
+         - description: GIC SPI number for the MPM pin
+ 
++  '#power-domain-cells':
++    const: 0
++
+ required:
+   - compatible
+   - reg
+-- 
+2.39.2
 
-Okay, I understand what you mean.
-
-> 
->> 
->>>
->>>> +  - if:
->>>> +      properties:
->>>> +        compatible:
->>>> +          contains:
->>>> +            enum:
->>>> +              - starfive,jh7110-axi-dma
->>>> +    then:
->>>> +      properties:
->>>> +        resets:
->>>> +          minItems: 2
->>>
->>> What are the items expected here?
->> 
->> Do you mean to add descriptions for items here ?
-> 
-> Yes, because order of the items is fixed.
-
-Thanks!
-
-Best regards,
-Walker
