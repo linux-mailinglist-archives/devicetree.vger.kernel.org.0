@@ -2,149 +2,191 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 64BAE6AFDCC
-	for <lists+devicetree@lfdr.de>; Wed,  8 Mar 2023 05:20:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6F9D96AFDF0
+	for <lists+devicetree@lfdr.de>; Wed,  8 Mar 2023 05:37:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229718AbjCHEUU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Mar 2023 23:20:20 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58990 "EHLO
+        id S229606AbjCHEhT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Mar 2023 23:37:19 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48346 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229651AbjCHEUS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Mar 2023 23:20:18 -0500
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 51D899E310;
-        Tue,  7 Mar 2023 20:20:16 -0800 (PST)
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 3284JkNt116986;
-        Tue, 7 Mar 2023 22:19:46 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1678249186;
-        bh=IORDEtukZF4j1fvmSt9qIQDEcCv14014bX6b0oyW4J0=;
-        h=Date:CC:Subject:To:References:From:In-Reply-To;
-        b=LS+RdFjNdUJh39dqJSR9dNpbjFm6JwXOVvpHcXIXAvCbWwvxT7bpcoPRsAbhUTor7
-         iJQ4DFXflaIsfulvU8m3G3hxARtcNgX/J4VCIVzXVqox76PkO/mdGXdibflu+ykexA
-         qO0uXUc9cHbhZNQgHEz6fUVOb0GDGucBsgw45yVc=
-Received: from DFLE113.ent.ti.com (dfle113.ent.ti.com [10.64.6.34])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 3284JjDJ073294
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Tue, 7 Mar 2023 22:19:46 -0600
-Received: from DFLE115.ent.ti.com (10.64.6.36) by DFLE113.ent.ti.com
- (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Tue, 7
- Mar 2023 22:19:46 -0600
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE115.ent.ti.com
- (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
- Frontend Transport; Tue, 7 Mar 2023 22:19:45 -0600
-Received: from [172.24.145.61] (ileaxei01-snat2.itg.ti.com [10.180.69.6])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 3284JeXX118018;
-        Tue, 7 Mar 2023 22:19:41 -0600
-Message-ID: <28de6e62-5bc3-b986-b069-32150b0c81eb@ti.com>
-Date:   Wed, 8 Mar 2023 09:49:40 +0530
+        with ESMTP id S229577AbjCHEhR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Mar 2023 23:37:17 -0500
+Received: from mail-pg1-x536.google.com (mail-pg1-x536.google.com [IPv6:2607:f8b0:4864:20::536])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3534617140;
+        Tue,  7 Mar 2023 20:37:16 -0800 (PST)
+Received: by mail-pg1-x536.google.com with SMTP id y19so8937533pgk.5;
+        Tue, 07 Mar 2023 20:37:16 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112; t=1678250235;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=gnMf/i3TlL6S5YVPOH4S4B14wxLlA4nM+QSKzTGWPAc=;
+        b=ayqm8K+BoGBFmvsnebMCxbZl+hPHhT7YsAFaFMUX4RPDqP/K0LQvXyY0VuowAEqPXC
+         07acv1biOJZvz+C/fH6lj7zZRHU2lUtsErNhedvjP8Jp3sDkus64lJMiuDFePunMiLOw
+         TKLRZ99q8Kd96VZ23rYCCkfsRu8uCQwtIThVpruAuBHjmsMw3wmRzsia/TCuvqmh2jrw
+         4jFp1VcY+ufsRitT1pe5RlY9guhfzot3UqsUveATl+h70aIjEgxWw448OF8ZV6Iirurx
+         556kKakv50u5CVrjZrpTAfQpZp3evooyhMDnzYq5hqpfcO2qJUhDZIuGhAP/BiQ8uA4+
+         45EQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1678250235;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=gnMf/i3TlL6S5YVPOH4S4B14wxLlA4nM+QSKzTGWPAc=;
+        b=0CQlo6TH8tP190Ze3/hmSPFKmsfv8qROUbgfdfjyBDYQX8utM0cYZadp/Swv54jzP6
+         t7MzstnNRUJWEYgsFoWOJC7hlVwPWAwLM5qcAw3QH9Esb5F3FVLRXm2dkLheI7P5/OAL
+         7UolDihU5pKXuH7ZTq/ITy6lkeuQsg1U9P/CpoE6YLvvXnQ89cT5VqYCpbkHUWO/C/v9
+         GG0nekXa35CtxoEouIcS2YdjE1TFNuxeH38AOFkzdWM479vWsYH239drPr9oTOMNL6hW
+         6u9idLsGMAvUqKC/G565or7GqQtICfq3yNoYHFk6qfLMP0PDa9nyayrJKonePlaisHdd
+         Pa3g==
+X-Gm-Message-State: AO0yUKWbODNQhh9efBvMK7//agD+Q58/xaRyyD+rKpvSiAWdqkEhuJau
+        VyHSBqCd0vZ3wvnhFwM4byQ=
+X-Google-Smtp-Source: AK7set8Lyowx9lwv0uq5oer8od4eZgTfTRFSr3qVMtH2tfCe4aLbTMeclyt/nSKkGIe+J/sn+d+Lsw==
+X-Received: by 2002:aa7:9434:0:b0:5aa:9ef7:4f7f with SMTP id y20-20020aa79434000000b005aa9ef74f7fmr14256423pfo.9.1678250235690;
+        Tue, 07 Mar 2023 20:37:15 -0800 (PST)
+Received: from localhost.localdomain (n220246252084.netvigator.com. [220.246.252.84])
+        by smtp.gmail.com with ESMTPSA id j14-20020a62e90e000000b005a8de0f4c76sm8909257pfh.17.2023.03.07.20.37.10
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 07 Mar 2023 20:37:15 -0800 (PST)
+From:   Jianhua Lu <lujianhua000@gmail.com>
+To:     Thierry Reding <thierry.reding@gmail.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Neil Armstrong <neil.armstrong@linaro.org>
+Cc:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
+        Jianhua Lu <lujianhua000@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH v3 1/2] dt-bindings: display: panel: Add Novatek NT36523 bindings
+Date:   Wed,  8 Mar 2023 12:37:05 +0800
+Message-Id: <20230308043706.16318-1-lujianhua000@gmail.com>
+X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.1
-CC:     <davem@davemloft.net>, <edumazet@google.com>, <kuba@kernel.org>,
-        <linux@armlinux.org.uk>, <pabeni@redhat.com>,
-        <krzysztof.kozlowski@linaro.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <nsekhar@ti.com>,
-        <rogerq@kernel.org>, <netdev@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <srk@ti.com>,
-        <s-vadapalli@ti.com>
-Subject: Re: [PATCH net-next] dt-bindings: net: ti: k3-am654-cpsw-nuss:
- Document Serdes PHY
-To:     Rob Herring <robh@kernel.org>
-References: <20230306094750.159657-1-s-vadapalli@ti.com>
- <20230307140139.GA48063-robh@kernel.org>
-Content-Language: en-US
-From:   Siddharth Vadapalli <s-vadapalli@ti.com>
-In-Reply-To: <20230307140139.GA48063-robh@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_PASS,SPF_PASS,URIBL_BLOCKED autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello Rob,
+Novatek NT36523 is a display driver IC used to drive DSI panels.
 
-On 07/03/23 19:31, Rob Herring wrote:
-> On Mon, Mar 06, 2023 at 03:17:50PM +0530, Siddharth Vadapalli wrote:
->> Update bindings to include Serdes PHY as an optional PHY, in addition to
->> the existing CPSW MAC's PHY. The CPSW MAC's PHY is required while the
->> Serdes PHY is optional. The Serdes PHY handle has to be provided only
->> when the Serdes is being configured in a Single-Link protocol. Using the
->> name "serdes-phy" to represent the Serdes PHY handle, the am65-cpsw-nuss
->> driver can obtain the Serdes PHY and request the Serdes to be
->> configured.
->>
->> Signed-off-by: Siddharth Vadapalli <s-vadapalli@ti.com>
->> ---
->>
->> Hello,
->>
->> This patch corresponds to the Serdes PHY bindings that were missed out in
->> the series at:
->> Link: https://lore.kernel.org/r/20230104103432.1126403-1-s-vadapalli@ti.com/
->> This was pointed out at:
->> https://lore.kernel.org/r/CAMuHMdW5atq-FuLEL3htuE3t2uO86anLL3zeY7n1RqqMP_rH1g@mail.gmail.com/
->>
->>  .../bindings/net/ti,k3-am654-cpsw-nuss.yaml   | 21 +++++++++++++++++--
->>  1 file changed, 19 insertions(+), 2 deletions(-)
->>
->> diff --git a/Documentation/devicetree/bindings/net/ti,k3-am654-cpsw-nuss.yaml b/Documentation/devicetree/bindings/net/ti,k3-am654-cpsw-nuss.yaml
->> index 900063411a20..fab7df437dcc 100644
->> --- a/Documentation/devicetree/bindings/net/ti,k3-am654-cpsw-nuss.yaml
->> +++ b/Documentation/devicetree/bindings/net/ti,k3-am654-cpsw-nuss.yaml
->> @@ -126,8 +126,25 @@ properties:
->>              description: CPSW port number
->>  
->>            phys:
->> -            maxItems: 1
->> -            description: phandle on phy-gmii-sel PHY
->> +            minItems: 1
->> +            maxItems: 2
->> +            description:
->> +              phandle(s) on CPSW MAC's PHY (Required) and the Serdes
->> +              PHY (Optional). phandle to the Serdes PHY is required
->> +              when the Serdes has to be configured in Single-Link
->> +              configuration.
-> 
-> Like this:
-> 
-> minItems: 1
-> items:
->   - description: CPSW MAC's PHY
->   - description: Serdes PHY. Serdes PHY is required
->       when the Serdes has to be configured in Single-Link
-> 
->> +
->> +          phy-names:
->> +            oneOf:
->> +              - items:
->> +                  - const: mac-phy
->> +                  - const: serdes-phy
->> +              - items:
->> +                  - const: mac-phy
-> 
-> Drop this and use minItems in 1st 'items' entry.
-> 
->> +            description:
->> +              Identifiers for the CPSW MAC's PHY and the Serdes PHY.
->> +              CPSW MAC's PHY is required and therefore "mac-phy" is
->> +              required, while "serdes-phy" is optional.
-> 
-> No need to state in plain text what the schema already says.
+Signed-off-by: Jianhua Lu <lujianhua000@gmail.com>
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+---
+Changes in v3:
+  - pick up Krzysztof's R-b
 
-Thank you for reviewing the patch. I will implement your feedback and post the
-v2 patch.
+Changes in v2:
+  - Drop unnecessary description
+  - dsi0 -> dsi
+  - Correct indentation
 
-Regards,
-Siddharth.
+ .../display/panel/novatek,nt36523.yaml        | 85 +++++++++++++++++++
+ 1 file changed, 85 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/display/panel/novatek,nt36523.yaml
+
+diff --git a/Documentation/devicetree/bindings/display/panel/novatek,nt36523.yaml b/Documentation/devicetree/bindings/display/panel/novatek,nt36523.yaml
+new file mode 100644
+index 000000000000..0039561ef04c
+--- /dev/null
++++ b/Documentation/devicetree/bindings/display/panel/novatek,nt36523.yaml
+@@ -0,0 +1,85 @@
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/display/panel/novatek,nt36523.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Novatek NT36523 based DSI display Panels
++
++maintainers:
++  - Jianhua Lu <lujianhua000@gmail.com>
++
++description: |
++  The Novatek NT36523 is a generic DSI Panel IC used to drive dsi
++  panels. Support video mode panels from China Star Optoelectronics
++  Technology (CSOT) and BOE Technology.
++
++allOf:
++  - $ref: panel-common.yaml#
++
++properties:
++  compatible:
++    items:
++      - enum:
++          - xiaomi,elish-boe-nt36523
++          - xiaomi,elish-csot-nt36523
++      - const: novatek,nt36523
++
++  reset-gpios:
++    maxItems: 1
++    description: phandle of gpio for reset line - This should be 8mA
++
++  vddio-supply:
++    description: regulator that supplies the I/O voltage
++
++  reg: true
++  ports: true
++  backlight: true
++
++required:
++  - compatible
++  - reg
++  - vddio-supply
++  - reset-gpios
++  - ports
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/gpio/gpio.h>
++
++    dsi {
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        panel@0 {
++            compatible = "xiaomi,elish-csot-nt36523", "novatek,nt36523";
++            reg = <0>;
++
++            vddio-supply = <&vreg_l14a_1p88>;
++            reset-gpios = <&tlmm 75 GPIO_ACTIVE_LOW>;
++            backlight = <&backlight>;
++
++            ports {
++                #address-cells = <1>;
++                #size-cells = <0>;
++
++                port@0 {
++                    reg = <0>;
++                    panel_in_0: endpoint {
++                        remote-endpoint = <&dsi0_out>;
++                    };
++                };
++
++                port@1{
++                    reg = <1>;
++                    panel_in_1: endpoint {
++                        remote-endpoint = <&dsi1_out>;
++                    };
++                };
++            };
++        };
++    };
++
++...
+-- 
+2.39.2
+
