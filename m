@@ -2,53 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0C2796B04BD
-	for <lists+devicetree@lfdr.de>; Wed,  8 Mar 2023 11:40:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 50C5E6B04C0
+	for <lists+devicetree@lfdr.de>; Wed,  8 Mar 2023 11:40:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229993AbjCHKkX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Mar 2023 05:40:23 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57806 "EHLO
+        id S231184AbjCHKkY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Mar 2023 05:40:24 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57866 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230228AbjCHKkU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Mar 2023 05:40:20 -0500
-Received: from mail-wm1-x330.google.com (mail-wm1-x330.google.com [IPv6:2a00:1450:4864:20::330])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 431E09C997
-        for <devicetree@vger.kernel.org>; Wed,  8 Mar 2023 02:40:19 -0800 (PST)
-Received: by mail-wm1-x330.google.com with SMTP id j19-20020a05600c191300b003eb3e1eb0caso944885wmq.1
-        for <devicetree@vger.kernel.org>; Wed, 08 Mar 2023 02:40:19 -0800 (PST)
+        with ESMTP id S230148AbjCHKkV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Mar 2023 05:40:21 -0500
+Received: from mail-wm1-x32a.google.com (mail-wm1-x32a.google.com [IPv6:2a00:1450:4864:20::32a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1AA7D9CBF6
+        for <devicetree@vger.kernel.org>; Wed,  8 Mar 2023 02:40:20 -0800 (PST)
+Received: by mail-wm1-x32a.google.com with SMTP id fm20-20020a05600c0c1400b003ead37e6588so929647wmb.5
+        for <devicetree@vger.kernel.org>; Wed, 08 Mar 2023 02:40:20 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=bgdev-pl.20210112.gappssmtp.com; s=20210112; t=1678272018;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=B8KzYFaNC31XGy3z1a5fC/b9IAo0DBq/FXy8tjU946A=;
-        b=iEiNPFrVRZgp6UeK76MKsr4LSlEfNy+RDadnfmcA0hqvRgWu/rRNg7FyLmAwMNtDvX
-         W/Ktb3jSec+QnE25SRijY1oGalG4fY3Prlwv3iePD5GZOtfW3SeC43LOyEZn4fTaq1JH
-         /xzfI4trKN8UMQ4kzTKuJAkP6Ne+CE/Wk2xZgOagJ/EVAuhX03HXIfx2sCll6ADWN+qQ
-         v+BPeMqPp/jVnAGtS8JN6l2iTCzxv2p0MTJE3ndBQ+cvFNTMyvlxxLnC8WtIwUYF0ehy
-         x/lLfnMUG7n2cwrtlcoKq8ozLX8d2D+wewDk8kE/iFLk9w0sLmO72EDnRyL2e5+t2qC1
-         2HfA==
+        bh=AROI/tjMFfPnWcGbgejV93q7I8+DDtZkPpKGekOFje0=;
+        b=55+wbjaAZC++56lCkeffC5qxVDk5por5b7MVu9k0NYiH3ucpnW8s0o8k+OQ6RuLEnN
+         GDDBaONSzh8472XE4SMV4ttWE/QgKmmIBpBQsK5OF9hVWmAwLwpcgJlBW6VyePL73H8e
+         PslwiFNNP4NVY5hd3ixCM0Y0QQmYpy/Z3VJSW055aPsmHl3znAKXXjTlHJsMIICRCMi0
+         pHmVIQS46qozosJoD8sCm1apn8S0MPd+nc4g72+GgM5R8lFl1DIyrOKDE67g75B+gVCA
+         9q3i4TcpkTVmxLvPst371oOswD7rduGNA7/iYKn6FHTbHsyC/7k7btHVYyGM1ZZpOVcu
+         qpig==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112; t=1678272018;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=B8KzYFaNC31XGy3z1a5fC/b9IAo0DBq/FXy8tjU946A=;
-        b=41r3hNozJkS2idfV+hM0TJeKNmnHTN8s5/ANbXktaMkGTlm+xWO1ISUHdewv92Jfp1
-         9uI1Rt2ZzkIEMJ2ut4J/BlbLYGAdnuO/thqrwENBRWhjkf+jX+ZwNWeSPMwR1CTlaCx0
-         opu0pCPxLlGdL3bE3zTzKAA7xRJYS9OGNsEsx/Nf54LJeAONVfPdIGFmqOKSIVdBRQ1V
-         xsJABDkNKAsIQFdUb2o2OL1x+heUUmaF6PoOii+sv5RUkCpufooeHFvb6nFL4uXlSTm2
-         KPDlWGCUHdq1NuK0sFPyl5xVYsR1X06nU7Jsok+4n0XQ61Gv8+GIkrEG0ikga2Ueh5Z1
-         Ck2Q==
-X-Gm-Message-State: AO0yUKXyuszajkDRyHLusvhMtkFcdfo3LNk+SO0JN91f/CIT1jUdPMld
-        VRiDt+oqlvTb/GzUdKFxs5F+pQ==
-X-Google-Smtp-Source: AK7set8JlMSJJAkZIH01wjnaoBY+0ByHFrbLviRcPTx3bd4/mTymDWbmGcSXlkT6ZbdDyEOn+b2izQ==
-X-Received: by 2002:a05:600c:1908:b0:3eb:39c3:8844 with SMTP id j8-20020a05600c190800b003eb39c38844mr16229922wmq.12.1678272017760;
-        Wed, 08 Mar 2023 02:40:17 -0800 (PST)
+        bh=AROI/tjMFfPnWcGbgejV93q7I8+DDtZkPpKGekOFje0=;
+        b=GhPIE5cEiVGhzgPvl0s6JbedNeSxqAnCk9FaGOV5FudQQEt1Yak8gGhtYGrcQE2TY6
+         NxfmU6GXm1wH+EdvM43uIWPsakxV7qDs47L8/rpxfQDQE7GY9QL8ah3zWQOcYI4eK3u4
+         7CIlooQ52r5x+ZVf2K8dko/7hwmLyKNOLeFgZmuIwix2kqvNg+jfddrQmjRqrcou65tD
+         jbW6cdDwT0tFQYex4CS0XSHQVbp0WmTbTqbwUhBvPgHvdRM4I8/t3AUYxs5v0ROaI25B
+         J3RDsqMlCLTXmhQ30itFneGT6G/lFL5bDpkZzwzsmjZTfJBUhSg9Rx9WzEmlFDFoJg6E
+         E7OQ==
+X-Gm-Message-State: AO0yUKV7E4HvJ14NLyK7Kmjq+Ili+bAUkDaH/rYn6eRIVzFGXeA82khH
+        /mL7ENVQsdGRlo922mkj2RvxCA==
+X-Google-Smtp-Source: AK7set+X7b24X/6+T2kGBFdyBpd/aLdfW3UNW37shaF8FcWsQgON6LDSoydJHdbPnBAcc9SdMDnwEw==
+X-Received: by 2002:a05:600c:3c9c:b0:3ea:bc08:b63e with SMTP id bg28-20020a05600c3c9c00b003eabc08b63emr15964755wmb.2.1678272018709;
+        Wed, 08 Mar 2023 02:40:18 -0800 (PST)
 Received: from brgl-uxlite.home ([2a01:cb1d:334:ac00:2326:fd4c:82e3:7e07])
         by smtp.gmail.com with ESMTPSA id v7-20020a05600c444700b003eb0d6f48f3sm20664135wmn.27.2023.03.08.02.40.17
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 08 Mar 2023 02:40:17 -0800 (PST)
+        Wed, 08 Mar 2023 02:40:18 -0800 (PST)
 From:   Bartosz Golaszewski <brgl@bgdev.pl>
 To:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
@@ -58,9 +58,9 @@ To:     Andy Gross <agross@kernel.org>,
 Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org,
         Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-Subject: [PATCH v4 4/9] arm64: dts: qcom: sa8775p-ride: enable i2c18
-Date:   Wed,  8 Mar 2023 11:40:04 +0100
-Message-Id: <20230308104009.260451-5-brgl@bgdev.pl>
+Subject: [PATCH v4 5/9] arm64: dts: qcom: sa8775p: add the spi16 node
+Date:   Wed,  8 Mar 2023 11:40:05 +0100
+Message-Id: <20230308104009.260451-6-brgl@bgdev.pl>
 X-Mailer: git-send-email 2.37.2
 In-Reply-To: <20230308104009.260451-1-brgl@bgdev.pl>
 References: <20230308104009.260451-1-brgl@bgdev.pl>
@@ -77,54 +77,47 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
 
-This enables the I2C interface on the sa8775p-ride development board.
+Add the SPI controller node for the interface exposed on the sa8775p-ride
+development board.
 
 Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
 Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 ---
- arch/arm64/boot/dts/qcom/sa8775p-ride.dts | 15 +++++++++++++++
- 1 file changed, 15 insertions(+)
+ arch/arm64/boot/dts/qcom/sa8775p.dtsi | 21 +++++++++++++++++++++
+ 1 file changed, 21 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/qcom/sa8775p-ride.dts b/arch/arm64/boot/dts/qcom/sa8775p-ride.dts
-index a538bb79c04a..5fdce8279537 100644
---- a/arch/arm64/boot/dts/qcom/sa8775p-ride.dts
-+++ b/arch/arm64/boot/dts/qcom/sa8775p-ride.dts
-@@ -13,6 +13,7 @@ / {
+diff --git a/arch/arm64/boot/dts/qcom/sa8775p.dtsi b/arch/arm64/boot/dts/qcom/sa8775p.dtsi
+index d65e7826f1d7..992864e3e0c8 100644
+--- a/arch/arm64/boot/dts/qcom/sa8775p.dtsi
++++ b/arch/arm64/boot/dts/qcom/sa8775p.dtsi
+@@ -504,6 +504,27 @@ qupv3_id_2: geniqup@8c0000 {
+ 			iommus = <&apps_smmu 0x5a3 0x0>;
+ 			status = "disabled";
  
- 	aliases {
- 		serial0 = &uart10;
-+		i2c18 = &i2c18;
- 	};
- 
- 	chosen {
-@@ -20,6 +21,13 @@ chosen {
- 	};
- };
- 
-+&i2c18 {
-+	clock-frequency = <400000>;
-+	pinctrl-0 = <&qup_i2c18_default>;
-+	pinctrl-names = "default";
-+	status = "okay";
-+};
++			spi16: spi@888000 {
++				compatible = "qcom,geni-spi";
++				reg = <0x0 0x00888000 0x0 0x4000>;
++				#address-cells = <1>;
++				#size-cells = <0>;
++				interrupts = <GIC_SPI 584 IRQ_TYPE_LEVEL_HIGH>;
++				clocks = <&gcc GCC_QUPV3_WRAP2_S2_CLK>;
++				clock-names = "se";
++				interconnects = <&clk_virt MASTER_QUP_CORE_2 QCOM_ICC_TAG_ALWAYS
++						 &clk_virt SLAVE_QUP_CORE_2 QCOM_ICC_TAG_ALWAYS>,
++						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
++						 &config_noc SLAVE_QUP_2 QCOM_ICC_TAG_ALWAYS>,
++						<&aggre2_noc MASTER_QUP_2 QCOM_ICC_TAG_ALWAYS
++						 &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ALWAYS>;
++				interconnect-names = "qup-core",
++						     "qup-config",
++						     "qup-memory";
++				power-domains = <&rpmhpd SA8775P_CX>;
++				status = "disabled";
++			};
 +
- &qupv3_id_1 {
- 	status = "okay";
- };
-@@ -37,6 +45,13 @@ qup_uart10_default: qup-uart10-state {
- 		pins = "gpio46", "gpio47";
- 		function = "qup1_se3";
- 	};
-+
-+	qup_i2c18_default: qup-i2c18-state {
-+		pins = "gpio95", "gpio96";
-+		function = "qup2_se4";
-+		drive-strength = <2>;
-+		bias-pull-up;
-+	};
- };
- 
- &uart10 {
+ 			i2c18: i2c@890000 {
+ 				compatible = "qcom,geni-i2c";
+ 				reg = <0x0 0x00890000 0x0 0x4000>;
 -- 
 2.37.2
 
