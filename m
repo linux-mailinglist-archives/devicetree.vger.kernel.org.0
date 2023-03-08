@@ -2,59 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B49FA6B11BB
-	for <lists+devicetree@lfdr.de>; Wed,  8 Mar 2023 20:06:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 566A56B11BE
+	for <lists+devicetree@lfdr.de>; Wed,  8 Mar 2023 20:07:03 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229691AbjCHTGj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Mar 2023 14:06:39 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46846 "EHLO
+        id S230226AbjCHTHB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Mar 2023 14:07:01 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46324 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229904AbjCHTGJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Mar 2023 14:06:09 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 72BA443470;
-        Wed,  8 Mar 2023 11:05:32 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 0991261908;
-        Wed,  8 Mar 2023 19:05:17 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D6582C4339B;
-        Wed,  8 Mar 2023 19:05:13 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1678302316;
-        bh=4579myHlZN9028AWu5vKlgKiQpdTskFF5YbznY9DXHs=;
-        h=Date:Subject:To:References:From:In-Reply-To:From;
-        b=fMaPrr+CXmlgTlLTxYN07FtYLmw0su0eIQl4b3c01QC2HWnHNTMK2FM7grL+JWhKK
-         3iTjUiIGJ/9BLo2f/6k557BuIeYkCpScSSiAklScWLhTQRiY1LIx++j6WRfJT7zxFx
-         IRyfLBAZFRnIcFSumGoRhS6dulelz81qRLLWoqSFfPsyqwn7iMnyA545gSAaIHKlAS
-         r1wT4ng7BoLkruuTtYaCic4X/a6jRJu35Ejb66uSoEPHgJK7pbTzKZD3iwjLI/LLit
-         HZQ2Bfil4QeATZXS50OlUfhaVNO8/cRtzWVU7iQnFOCa9KK5VGaSRqheGtWYnAmKP3
-         8/AKOw16m1IAQ==
-Message-ID: <a5e897e5-4cb9-d50f-47a8-ffb8bd8774cb@kernel.org>
-Date:   Wed, 8 Mar 2023 20:05:11 +0100
+        with ESMTP id S230098AbjCHTGS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Mar 2023 14:06:18 -0500
+Received: from mail-oo1-f49.google.com (mail-oo1-f49.google.com [209.85.161.49])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E58E6D6EB2;
+        Wed,  8 Mar 2023 11:05:42 -0800 (PST)
+Received: by mail-oo1-f49.google.com with SMTP id p6-20020a4ab386000000b005252182b0e0so2696730ooo.6;
+        Wed, 08 Mar 2023 11:05:42 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1678302323;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=NordxQdldE7XmbCvmG0YEn0Zd0AFIRjo3oCJVh/XdZ8=;
+        b=IxA+Tx7znS5aTSXPeYTTmE7rD8Dbh/KdeEk7XxPSLGLWlPhoF+cvLQD9r/+RP/1gbp
+         Hcu06hJii09ZV/ZdXyqmDNWJ5QHgqIpGhNWa/e3bQYpiCFiZA8how+875YLcABEakezB
+         M8wJsBDxZo/7SHDYA8v0n0D8aQqIgICA29SVy4YHBXgViH6dkGFGnqYpbXZXVpTlAQD6
+         +k1kWlXsvqKeqnjj4VESRHAnNRnFblVMfXNjxxToj+l9560Eoa7J/WeqJ2Er/vcxldpE
+         6V7hCI2zdRHEYIOwEB07TC787jFfXR8bL/isHlexkdrATTcGD1oH4J4/7jFKyya5YrPQ
+         cK+w==
+X-Gm-Message-State: AO0yUKXxojXxi2/D4amuemnPMvSjRS4EJl3UtG1gNXyija3R5zd1vrE0
+        rmaGlBLPt22uUvRobA0J0A==
+X-Google-Smtp-Source: AK7set+Gao+jPPAsPOQnMfcd9chRmvzfSEYvOGdZLRscxWI5Q71DpwiJgOdNY61QW8hZMQmLiCEi+g==
+X-Received: by 2002:a4a:d014:0:b0:525:48a9:9ba with SMTP id h20-20020a4ad014000000b0052548a909bamr7229438oor.0.1678302323463;
+        Wed, 08 Mar 2023 11:05:23 -0800 (PST)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id ee6-20020a056870c80600b0016dbf59175bsm6399696oab.47.2023.03.08.11.05.22
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 08 Mar 2023 11:05:23 -0800 (PST)
+Received: (nullmailer pid 3608251 invoked by uid 1000);
+        Wed, 08 Mar 2023 19:05:22 -0000
+Date:   Wed, 8 Mar 2023 13:05:22 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        devicetree@vger.kernel.org,
+        =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        linux-usb@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: usb: allow evaluated properties in OHCI
+ controllers
+Message-ID: <167830232197.3608175.18443271589392840573.robh@kernel.org>
+References: <20230228152105.25358-1-zajec5@gmail.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-Subject: Re: [PATCH V2 4/6] dt-bindings: timestamp: Add Tegra234 support
-Content-Language: en-US
-To:     Dipen Patel <dipenp@nvidia.com>, thierry.reding@gmail.com,
-        jonathanh@nvidia.com, linux-kernel@vger.kernel.org,
-        linux-tegra@vger.kernel.org, linux-gpio@vger.kernel.org,
-        linus.walleij@linaro.org, devicetree@vger.kernel.org,
-        linux-doc@vger.kernel.org, robh+dt@kernel.org,
-        timestamp@lists.linux.dev
-References: <20230214115553.10416-1-dipenp@nvidia.com>
- <20230214115553.10416-5-dipenp@nvidia.com>
- <3c0ad963-ce69-bd5b-20cd-888e5fbdecaf@kernel.org>
- <7a8027c9-dc73-3684-c5f2-3071f315b3cd@nvidia.com>
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-In-Reply-To: <7a8027c9-dc73-3684-c5f2-3071f315b3cd@nvidia.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_HI,SPF_HELO_NONE,SPF_PASS autolearn=ham
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20230228152105.25358-1-zajec5@gmail.com>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -62,45 +69,19 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 08/03/2023 19:45, Dipen Patel wrote:
-> On 2/16/23 6:17 AM, Krzysztof Kozlowski wrote:
->> On 14/02/2023 12:55, Dipen Patel wrote:
->>> Added timestamp provider support for the Tegra234 in devicetree
->>> bindings.
->>
->> 1. Your commit does much more. You need to explain it why you drop some
->> property.
-> ACK, will address it next patch
->>
->> 2. Bindings go before its usage (in the patchset).
-> Ack...
->>
->> 3. Please use scripts/get_maintainers.pl to get a list of necessary
->> people and lists to CC.  It might happen, that command when run on an
->> older kernel, gives you outdated entries.  Therefore please be sure you
->> base your patches on recent Linux kernel.
-> It is based on recent linux at the time patch series was sent...
 
-That's good but then why you do not use scripts/get_maintainers.pl? The
-hint about recent kernel was just a hint... Just do not invent addresses
-by yourself and use the tool to get them right.
+On Tue, 28 Feb 2023 16:21:05 +0100, Rafał Miłecki wrote:
+> From: Rafał Miłecki <rafal@milecki.pl>
+> 
+> This binding uses usb-hcd.yaml so replace additionalProperties with
+> unevaluatedProperties to allow generic USB HCD properties. It's how EHCI
+> and XHCI bindings work too.
+> 
+> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
+> ---
+>  Documentation/devicetree/bindings/usb/generic-ohci.yaml | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
 
-(...)
-
->>> +  properties:
->>> +    compatible:
->>> +      contains:
->>> +        enum:
->>> +          - nvidia,tegra194-gte-aon
->>
->> This is an ABI break. Does your driver handle it?
-> yes, handling patch is part of this patch series.
-
-Can you point me to the code which does it? I see "return -ENODEV;", so
-I think you do not handle ABI break. I could miss something but since
-you disagree with me, please at least bring some arguments...
-
-
-Best regards,
-Krzysztof
+Acked-by: Rob Herring <robh@kernel.org>
 
