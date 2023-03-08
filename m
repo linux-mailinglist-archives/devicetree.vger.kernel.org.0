@@ -2,162 +2,181 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 488D96B0607
-	for <lists+devicetree@lfdr.de>; Wed,  8 Mar 2023 12:34:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D403C6B0612
+	for <lists+devicetree@lfdr.de>; Wed,  8 Mar 2023 12:37:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230109AbjCHLeY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Mar 2023 06:34:24 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56640 "EHLO
+        id S230392AbjCHLgh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Mar 2023 06:36:37 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58240 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230094AbjCHLeX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Mar 2023 06:34:23 -0500
-Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5DB549964E
-        for <devicetree@vger.kernel.org>; Wed,  8 Mar 2023 03:34:20 -0800 (PST)
-Received: by mail-lf1-x12c.google.com with SMTP id bi9so20961717lfb.2
-        for <devicetree@vger.kernel.org>; Wed, 08 Mar 2023 03:34:20 -0800 (PST)
+        with ESMTP id S230059AbjCHLgE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Mar 2023 06:36:04 -0500
+Received: from mail-ed1-x52c.google.com (mail-ed1-x52c.google.com [IPv6:2a00:1450:4864:20::52c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 31684AF294;
+        Wed,  8 Mar 2023 03:36:03 -0800 (PST)
+Received: by mail-ed1-x52c.google.com with SMTP id a25so64692931edb.0;
+        Wed, 08 Mar 2023 03:36:03 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1678275258;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=qEIlAOLqJOUEga8jWhhCTfIkDeYpmS53nHyd5ftpdw4=;
-        b=gzNuAFeHu67qA3jHUwFjwfCv3mmKuwAbDAkUqtUl4onK2bQyZOy0/x0IMyaY3yYxnF
-         EvYOnuWXh7TSXJeIYsvxPHwIbgOCKNZQm/v5FCu5L+lRo3kAav4sZAPMSfgxF4uId3KD
-         XhA1D4oE4okvpInh6KtwraZSdPynW5O898MwOuVmhGItAbwarj1ql4Xkp/GTklxP4SsN
-         VsrST1Stm2lNllEIxgdXq2S9RVSyT0Gyyk/fv5fhX3OwFRTDdPXibLSLzeHgP1xEBtG0
-         NQAEZCz3bTULePFpQLly8Nu3tbjFRsIgfX0l6TE82wMIQc0V8+KnfnrpArVoY4S0c5BT
-         SrrQ==
+        d=gmail.com; s=20210112; t=1678275361;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=pkqtkcAPDhHcKXHJJhzZGkadcuoCSlM8Je8c/sebOSk=;
+        b=Uxditw6bMjdlAa4tQirez9bPQT80pkxBdU0vkvdov83E7EJCKgtMgvvEzigUMmICqo
+         7r/28EKK/HXqXqGNu15VJbPT/3FwMttnWz4rKiQcNDFj1ZpavEgj7JulU+J/Q0vYFNQO
+         Dg4rQpFnQetRbBsl2TFx10mpdUpQ9XHuPuDagLxxMQ2VCgIYgBul67bTcSjTYfNmluYF
+         WJQvqrJRnlRhnNV10ouHOMtcuwSlTh5yQP9UcydhkTx16LtxJJcFrsk3f0MhooN+RwQ8
+         qHPdkuOKtekXLgETObHPMZqt4UJw/xk5X4tfcJYCHGQ7qCWSpoOspReezBbzdOt2ZpJA
+         lVxw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678275258;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=qEIlAOLqJOUEga8jWhhCTfIkDeYpmS53nHyd5ftpdw4=;
-        b=mSFXZj6svrR08a7QBd3uL/lCuQid9uWXR/KAyJ00PhuUk/aCwOg6DkdseLE7E5jnb3
-         zJst8CeEkibItEG5HLGyF9W4BCV9wEX6bL0ltzkGGWUNmEQjtr1GHr+6bj6VisC5ouxD
-         EUw5hm0TeD4KC7ylG/9dz0Gkso4Qk0DVRHT/Bds6Im1GaXhXDnF0AgZpWS5dMcnl+7fj
-         m7NAbsPvJjUPCqBQNL/WLJfR4B77VgxRbLKTPS/QPqda2GcojMgG+gC7u9U7K1qBA8IG
-         HkL2FrE4QRiKV4LbplRaDzfytZAAhikkgtW+3fAEWwbROju77VkwF9JgWuqPww7PfbgY
-         V+wg==
-X-Gm-Message-State: AO0yUKU1oWTjRIUfk5GBiq/aTZXNhDR28MMYtvQFU+6VV3XNzVzuohLa
-        rYw2AppqSO54DTh+tnty3V3CpA==
-X-Google-Smtp-Source: AK7set+jHlT9ogIKu5mT4G8gT8OABan5198fY6k3RPqdGCoJd95XO36AFMf8+59KJJKUt4o8QUirvw==
-X-Received: by 2002:a19:f508:0:b0:4dc:4bda:c26f with SMTP id j8-20020a19f508000000b004dc4bdac26fmr4630854lfb.23.1678275258643;
-        Wed, 08 Mar 2023 03:34:18 -0800 (PST)
-Received: from [192.168.1.101] (abyj16.neoplus.adsl.tpnet.pl. [83.9.29.16])
-        by smtp.gmail.com with ESMTPSA id t15-20020ac24c0f000000b004cb35b31b96sm2311175lfq.257.2023.03.08.03.34.16
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 08 Mar 2023 03:34:18 -0800 (PST)
-Message-ID: <cf6af928-78a9-7990-71d4-9f17daf718d8@linaro.org>
-Date:   Wed, 8 Mar 2023 12:34:15 +0100
+        d=1e100.net; s=20210112; t=1678275361;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=pkqtkcAPDhHcKXHJJhzZGkadcuoCSlM8Je8c/sebOSk=;
+        b=tXNX81rztjA3XYCJ97q0PVaAkPH6rZSWCGMkOMIiKt/qGc8fyF9WTQCn8HZpFs6fAR
+         uk/XCkHdIAqeoplov+ACdx0hsehAblQDgROlbk5MkuNNybDX/XGQ9Oq0io/kdkDaXfZc
+         fI0nPxhosgJN9wBWBaxK7q0J+VR2U6ezRhcCZoAFqMqL0e78F6zKO2SxtJ/0dt+ygopu
+         yfi6R1VeJmFbWU0X80gbRLv6kCS8+kIHHs+uLUdHdz51Vl2gIhbbEzGjydljfMUINCt2
+         5tRYfDDfOK46RtapZtSsLBHHruOiXCjJl69iVUVYujoPMaDpSV/aOG+E7R16F1Hck3JT
+         B+dg==
+X-Gm-Message-State: AO0yUKVzzeRIRrWAHVHtcTdo3PkypiBPJagSdDyzK6k6YxwI1Xjza1RJ
+        ICouQhVxifU4s41IndZcX42dxtBWqhCnSRAdsZ0=
+X-Google-Smtp-Source: AK7set+8IVqHUCP7lpW4Tu0PFR/uGhVXOh2XCgJ0nI8owJdMs3y7iNlYcasQPs28+hxxB5z53ejUH1b0gSyCIQYYEl4=
+X-Received: by 2002:a50:baa6:0:b0:4c1:6acc:ea5 with SMTP id
+ x35-20020a50baa6000000b004c16acc0ea5mr9818706ede.4.1678275361500; Wed, 08 Mar
+ 2023 03:36:01 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-Subject: Re: [PATCH v7 3/6] phy: qcom-qmp: Add SM6125 UFS PHY support
-Content-Language: en-US
-To:     Johan Hovold <johan@kernel.org>
-Cc:     Lux Aliaga <they@mint.lgbt>, agross@kernel.org,
-        andersson@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, vkoul@kernel.org,
-        kishon@kernel.org, alim.akhtar@samsung.com, avri.altman@wdc.com,
-        bvanassche@acm.org, keescook@chromium.org, tony.luck@intel.com,
-        gpiccoli@igalia.com, ~postmarketos/upstreaming@lists.sr.ht,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org,
-        linux-scsi@vger.kernel.org, linux-hardening@vger.kernel.org,
-        phone-devel@vger.kernel.org, martin.botka@somainline.org,
-        marijn.suijten@somainline.org
-References: <20230306170817.3806-1-they@mint.lgbt>
- <20230306170817.3806-4-they@mint.lgbt>
- <25c17af5-8f6b-a2c3-dab3-f9bc69711db7@linaro.org>
- <ZAhrT1ICTQjfdeGq@hovoldconsulting.com>
- <64ab4061-6a8b-662e-1c7a-99b0da26751c@linaro.org>
- <ZAhwTcMZoCQVULQe@hovoldconsulting.com>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <ZAhwTcMZoCQVULQe@hovoldconsulting.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-0.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_SORBS_HTTP,RCVD_IN_SORBS_SOCKS,SPF_HELO_NONE,SPF_PASS,
-        URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.6
+References: <20230302125215.214014-1-keguang.zhang@gmail.com>
+ <20230302125215.214014-3-keguang.zhang@gmail.com> <CAMRc=Me3yVwQm8=CmUVM2gyYnFxntW47-OOPdmq1TzXTJB5ETg@mail.gmail.com>
+ <CAJhJPsX1q6PGSb+eoCSdCC2_vDtbaShLLzEbuNOqD_Jzd8Ozdw@mail.gmail.com> <2d5521ff21ea4b99be3dd2e449f53934@AcuMS.aculab.com>
+In-Reply-To: <2d5521ff21ea4b99be3dd2e449f53934@AcuMS.aculab.com>
+From:   Keguang Zhang <keguang.zhang@gmail.com>
+Date:   Wed, 8 Mar 2023 19:35:45 +0800
+Message-ID: <CAJhJPsUy0U-SdP2Vk9B8qz=CGA=oDSxbaaqqS+HOiDnQoBAThA@mail.gmail.com>
+Subject: Re: [PATCH v2 2/5] gpio: loongson1: Use readl() & writel()
+To:     David Laight <David.Laight@aculab.com>
+Cc:     Bartosz Golaszewski <brgl@bgdev.pl>,
+        "linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-mips@vger.kernel.org" <linux-mips@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Wed, Mar 8, 2023 at 5:42=E2=80=AFPM David Laight <David.Laight@aculab.co=
+m> wrote:
+>
+> From: Keguang Zhang
+> > Sent: 07 March 2023 03:46
+> >
+> > On Mon, Mar 6, 2023 at 5:30=E2=80=AFPM Bartosz Golaszewski <brgl@bgdev.=
+pl> wrote:
+> > >
+> > > On Thu, Mar 2, 2023 at 1:52=E2=80=AFPM Keguang Zhang <keguang.zhang@g=
+mail.com> wrote:
+> > > >
+> > > > This patch replace __raw_readl() & __raw_writel() with readl() & wr=
+itel().
+> > > >
+> > >
+> > > Please say WHY you're doing this.
+> > >
+> > readl & writel contain memory barriers which can guarantee access order=
+.
+>
+> So what...
+>
+> There is a data dependency between the read and write.
+> The read can't be scheduled before the lock is acquired.
+> The write can't be scheduled after the lock is released.
+>
+> So any barriers in readl()/writel() aren't needed.
+>
+> If they are only compile barriers they'll have no real effect.
+> OTOH if the cpu needs actual synchronising instructions (as some
+> ppc do) then they will slow things down.
+>
+Thanks for the explanation.
+The intention of this change is to prevent possible order issues.
+At present, __raw_readl() & __raw_writel() do work fine.
+I will drop this patch in the next version.
 
 
-On 8.03.2023 12:23, Johan Hovold wrote:
-> On Wed, Mar 08, 2023 at 12:15:39PM +0100, Konrad Dybcio wrote:
->>
->>
->> On 8.03.2023 12:02, Johan Hovold wrote:
->>> On Wed, Mar 08, 2023 at 11:09:48AM +0100, Konrad Dybcio wrote:
->>>>
->>>>
->>>> On 6.03.2023 18:08, Lux Aliaga wrote:
->>>>> The SM6125 UFS PHY is compatible with the one from SM6115. Add a
->>>>> compatible for it and modify the config from SM6115 to make them
->>>>> compatible with the SC8280XP binding
->>>>>
->>>>> Signed-off-by: Lux Aliaga <they@mint.lgbt>
->>>>> Reviewed-by: Martin Botka <martin.botka@somainline.org>
->>>>> ---
->>>>>  drivers/phy/qualcomm/phy-qcom-qmp-ufs.c | 12 ++++++++++++
->>>>>  1 file changed, 12 insertions(+)
->>>>>
->>>>> diff --git a/drivers/phy/qualcomm/phy-qcom-qmp-ufs.c b/drivers/phy/qualcomm/phy-qcom-qmp-ufs.c
->>>>> index 318eea35b972..44c29fdfc551 100644
->>>>> --- a/drivers/phy/qualcomm/phy-qcom-qmp-ufs.c
->>>>> +++ b/drivers/phy/qualcomm/phy-qcom-qmp-ufs.c
->>>>> @@ -620,6 +620,13 @@ static const char * const qmp_phy_vreg_l[] = {
->>>>>  	"vdda-phy", "vdda-pll",
->>>>>  };
->>>>>  
->>>>> +static const struct qmp_ufs_offsets qmp_ufs_offsets_v3_660 = {
->>>>> +	.serdes		= 0,
->>>>> +	.pcs		= 0xc00,
->>>>> +	.tx		= 0x400,
->>>>> +	.rx		= 0x600,
->>>>> +};
->>>>> +
->>>>>  static const struct qmp_ufs_offsets qmp_ufs_offsets_v5 = {
->>>>>  	.serdes		= 0,
->>>>>  	.pcs		= 0xc00,
->>>>> @@ -693,6 +700,8 @@ static const struct qmp_phy_cfg sdm845_ufsphy_cfg = {
->>>>>  static const struct qmp_phy_cfg sm6115_ufsphy_cfg = {
->>>>>  	.lanes			= 1,
->>>>>  
->>>>> +	.offsets		= &qmp_ufs_offsets_v3_660,
->>>> Will this not trigger OOB r/w for the users of qcom,sm6115-smp-ufs-phy
->>>> which specify the regions separately (old binding style)?
->>>
->>> No, that should work fine.
->> So do you think the SM6115 binding could be updated too? Or should
->> we keep it as-is for ABI purposes?..
-> 
-> They could be and the possibility has been raised. I think it may be
-> more important to convert the old combo-phy binding (it's on my list,
-> but I keep getting preempted), but at some point we can get rid of the
-> legacy UFS binding as well.
-Okay sounds good!
+>         David
+>
+> >
+> > > Bart
+> > >
+> > > > Signed-off-by: Keguang Zhang <keguang.zhang@gmail.com>
+> > > > ---
+> > > > V1 -> V2: Split this change to a separate patch
+> > > > ---
+> > > >  drivers/gpio/gpio-loongson1.c | 8 ++++----
+> > > >  1 file changed, 4 insertions(+), 4 deletions(-)
+> > > >
+> > > > diff --git a/drivers/gpio/gpio-loongson1.c b/drivers/gpio/gpio-loon=
+gson1.c
+> > > > index 8862c9ea0d41..b6c11caa3ade 100644
+> > > > --- a/drivers/gpio/gpio-loongson1.c
+> > > > +++ b/drivers/gpio/gpio-loongson1.c
+> > > > @@ -23,8 +23,8 @@ static int ls1x_gpio_request(struct gpio_chip *gc=
+, unsigned int offset)
+> > > >         unsigned long flags;
+> > > >
+> > > >         raw_spin_lock_irqsave(&gc->bgpio_lock, flags);
+> > > > -       __raw_writel(__raw_readl(gpio_reg_base + GPIO_CFG) | BIT(of=
+fset),
+> > > > -                    gpio_reg_base + GPIO_CFG);
+> > > > +       writel(readl(gpio_reg_base + GPIO_CFG) | BIT(offset),
+> > > > +              gpio_reg_base + GPIO_CFG);
+> > > >         raw_spin_unlock_irqrestore(&gc->bgpio_lock, flags);
+> > > >
+> > > >         return 0;
+> > > > @@ -35,8 +35,8 @@ static void ls1x_gpio_free(struct gpio_chip *gc, =
+unsigned int offset)
+> > > >         unsigned long flags;
+> > > >
+> > > >         raw_spin_lock_irqsave(&gc->bgpio_lock, flags);
+> > > > -       __raw_writel(__raw_readl(gpio_reg_base + GPIO_CFG) & ~BIT(o=
+ffset),
+> > > > -                    gpio_reg_base + GPIO_CFG);
+> > > > +       writel(readl(gpio_reg_base + GPIO_CFG) & ~BIT(offset),
+> > > > +              gpio_reg_base + GPIO_CFG);
+> > > >         raw_spin_unlock_irqrestore(&gc->bgpio_lock, flags);
+> > > >  }
+> > > >
+> > > > --
+> > > > 2.34.1
+> > > >
+> >
+> >
+> >
+> > --
+> > Best regards,
+> >
+> > Kelvin Cheung
+>
+> -
+> Registered Address Lakeside, Bramley Road, Mount Farm, Milton Keynes, MK1=
+ 1PT, UK
+> Registration No: 1397386 (Wales)
 
-> 
->>> But looks like this series needs to be rebased on 6.3-rc1 as these
->>> offsets are now already set in mainline.
->> ..Or did you do that already and I can't find it?
-> 
-> It seems a previous version of this patch was merged almost two months
-> ago.
-> 
-> 	9b9e29af984c ("phy: qcom-qmp: Add SM6125 UFS PHY support")
-> 
-> Not sure what failed here.
-My eyes :)
 
-Konrad
-> 
-> Johan
+
+--
+Best regards,
+
+Kelvin Cheung
