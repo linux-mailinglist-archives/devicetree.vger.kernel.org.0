@@ -2,113 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CF7836B053E
-	for <lists+devicetree@lfdr.de>; Wed,  8 Mar 2023 12:02:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C2D906B054D
+	for <lists+devicetree@lfdr.de>; Wed,  8 Mar 2023 12:03:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231307AbjCHLCD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Mar 2023 06:02:03 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36480 "EHLO
+        id S231372AbjCHLDa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Mar 2023 06:03:30 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38672 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231290AbjCHLBz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Mar 2023 06:01:55 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3E6EDB4201;
-        Wed,  8 Mar 2023 03:01:54 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id CEDE861760;
-        Wed,  8 Mar 2023 11:01:53 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 311E2C433D2;
-        Wed,  8 Mar 2023 11:01:53 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1678273313;
-        bh=tS9tmSwCiCb5Gj7uPqDRGFFYeZ7A5dLeyFKgap0zzuU=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=CMfX0sW3iJt8hkidpnTtasIdXfvgQhFiwmwRvHf+AEvlcP53j0zEeGcQVYUDbbJDc
-         tH94Qov0LYPeIrgbvpO87XFD4j+JOppbuvHymSaFYdUzMqEW89yS0Cj2amM5ZVfErV
-         P7k60e0NKUq+DjoWBau93zKM/bPTL8Qw69BTuqp/MWDZDbJqlc/sHS25ze1FvWuE9H
-         ylhqpg2oX6F02fcIMF7AzoQwG8TZcEeRp8E8T0PIUB5nZKmWjXgKMDfW1zlPyjWqOw
-         Z/GwZallNZxsL3JpkGzPwwXF1Dfs1yf11qQVH9Ns33ZrkYBk1TeL/DLG2ELezbcnjT
-         ySnFnjBbCvAkg==
-Received: from johan by xi.lan with local (Exim 4.94.2)
-        (envelope-from <johan@kernel.org>)
-        id 1pZrZ9-0005wP-1P; Wed, 08 Mar 2023 12:02:39 +0100
-Date:   Wed, 8 Mar 2023 12:02:39 +0100
-From:   Johan Hovold <johan@kernel.org>
-To:     Konrad Dybcio <konrad.dybcio@linaro.org>
-Cc:     Lux Aliaga <they@mint.lgbt>, agross@kernel.org,
-        andersson@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, vkoul@kernel.org,
-        kishon@kernel.org, alim.akhtar@samsung.com, avri.altman@wdc.com,
-        bvanassche@acm.org, keescook@chromium.org, tony.luck@intel.com,
-        gpiccoli@igalia.com, ~postmarketos/upstreaming@lists.sr.ht,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org,
-        linux-scsi@vger.kernel.org, linux-hardening@vger.kernel.org,
-        phone-devel@vger.kernel.org, martin.botka@somainline.org,
-        marijn.suijten@somainline.org
-Subject: Re: [PATCH v7 3/6] phy: qcom-qmp: Add SM6125 UFS PHY support
-Message-ID: <ZAhrT1ICTQjfdeGq@hovoldconsulting.com>
-References: <20230306170817.3806-1-they@mint.lgbt>
- <20230306170817.3806-4-they@mint.lgbt>
- <25c17af5-8f6b-a2c3-dab3-f9bc69711db7@linaro.org>
+        with ESMTP id S231371AbjCHLDD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Mar 2023 06:03:03 -0500
+Received: from mail-ed1-x536.google.com (mail-ed1-x536.google.com [IPv6:2a00:1450:4864:20::536])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9CC31BAECC
+        for <devicetree@vger.kernel.org>; Wed,  8 Mar 2023 03:02:48 -0800 (PST)
+Received: by mail-ed1-x536.google.com with SMTP id x3so63996336edb.10
+        for <devicetree@vger.kernel.org>; Wed, 08 Mar 2023 03:02:48 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1678273367;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=k80FxeJerPUTe5+cMAy1ESh6Ajb9kzwQ2sNMq2PHkUE=;
+        b=y6J1U+DEAr44b6ONBQvcjwqRCpi6ifaA7Ef8AKQHLdwv0HFwCmxo6klNVD4nFasBMx
+         LXQZ7D7Ybilz/jkKjemDBIiBkY4C+J1lPIedVjxBtRQ23YCCA+5f6Ye5bQ1FKu23mtZ/
+         MPIHcd09Et10Hc3yUzkidzidbTo8K36CuYNWc+/FOwcA+URltJDXcfrJ449+0hyYTX9M
+         hQEkM0karO7uCHYz8suCFzMvI+Zj4DZDDUxOSRVS6aXgRmgvtu2Ai/pTuJ/dB+VA2scL
+         hyzyCNtmlrgJDDo93pDtLKe0jaSqMvXQuznR3s3PVt6hHg3ysW3UFpot7JCyCmbWcCzI
+         5v5A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1678273367;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=k80FxeJerPUTe5+cMAy1ESh6Ajb9kzwQ2sNMq2PHkUE=;
+        b=v2W4t91argwO45+jI3e4NW4JZuz41c54usCvH3RZlriD79yEF2bHnpX6x78xLNIkqh
+         PJ3r7rXqAW0GJJZL1OHVECmRh6WGZw+18u/21I8NrijGK614A9b8l8sgAaCkab1vlsHO
+         fQiYfrczkSoOpwGr3LmXxcPDMru5Z/Cr6aSy1swaBVVSTZP5BhvHU/+I/ZLt3JTlyxot
+         1+6ssWfnEpJj/6GG7D7wCqxChV36xvO1nawLGGB9g7nIbz4oD4AJ3l03fn9xrKs7fIuE
+         6mMn8w7lESuT+NGfYcw+b4cgsOuNvR/FvW0tyz/IhcYdPO0ne9IgtgyCY6+0tYcjYXeR
+         y7eQ==
+X-Gm-Message-State: AO0yUKU3XOpBNIJ1xBbx7WVWZ14gveD8gwCaTmQlwmXETZFG/eq3gwRx
+        cUxGUt+KSsoMGvyK0RRdMwsB4A==
+X-Google-Smtp-Source: AK7set/ArpYmcUcM28cuvqr+z9jdgU4VQTOPhT9VclgPwbZWgL1KJjomKcNhXvek9qwmGUU38jNmlQ==
+X-Received: by 2002:a17:907:9493:b0:87e:9441:4c6c with SMTP id dm19-20020a170907949300b0087e94414c6cmr24160431ejc.49.1678273367175;
+        Wed, 08 Mar 2023 03:02:47 -0800 (PST)
+Received: from ?IPV6:2a02:810d:15c0:828:ff33:9b14:bdd2:a3da? ([2a02:810d:15c0:828:ff33:9b14:bdd2:a3da])
+        by smtp.gmail.com with ESMTPSA id lc9-20020a170906f90900b008e34bcd7940sm7274120ejb.132.2023.03.08.03.02.46
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 08 Mar 2023 03:02:46 -0800 (PST)
+Message-ID: <ebc59782-4cd0-ad0d-e8a9-15008d93a7c8@linaro.org>
+Date:   Wed, 8 Mar 2023 12:02:45 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <25c17af5-8f6b-a2c3-dab3-f9bc69711db7@linaro.org>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.8.0
+Subject: Re: [PATCH v3 1/3] dt-bindings: serial: amlogic,meson-uart: Add
+ compatible string for G12A
+Content-Language: en-US
+To:     Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org
+Cc:     linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        jirislaby@kernel.org, neil.armstrong@linaro.org,
+        krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
+        gregkh@linuxfoundation.org,
+        Christian Hewitt <christianshewitt@gmail.com>
+References: <20230307222651.2106615-1-martin.blumenstingl@googlemail.com>
+ <20230307222651.2106615-2-martin.blumenstingl@googlemail.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230307222651.2106615-2-martin.blumenstingl@googlemail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Mar 08, 2023 at 11:09:48AM +0100, Konrad Dybcio wrote:
+On 07/03/2023 23:26, Martin Blumenstingl wrote:
+> Amlogic G12A SoCs gained a new "divide XTAL by 2" bit. Everything else
+> (we know about) is identical to the UART IP on GX (GXBB/GXL/GXM) SoCs.
+> Add a new compatible string for this SoC so this new bit can be managed
+> accordingly while keeping "amlogic,meson-gx-uart" as fallback compatible
+> string.
 > 
+> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+> ---
+> Changes from v1 -> v2:
+> - make meson-gx-uart a valid compatible string for meson-g12a-uart
 > 
-> On 6.03.2023 18:08, Lux Aliaga wrote:
-> > The SM6125 UFS PHY is compatible with the one from SM6115. Add a
-> > compatible for it and modify the config from SM6115 to make them
-> > compatible with the SC8280XP binding
-> > 
-> > Signed-off-by: Lux Aliaga <they@mint.lgbt>
-> > Reviewed-by: Martin Botka <martin.botka@somainline.org>
-> > ---
-> >  drivers/phy/qualcomm/phy-qcom-qmp-ufs.c | 12 ++++++++++++
-> >  1 file changed, 12 insertions(+)
-> > 
-> > diff --git a/drivers/phy/qualcomm/phy-qcom-qmp-ufs.c b/drivers/phy/qualcomm/phy-qcom-qmp-ufs.c
-> > index 318eea35b972..44c29fdfc551 100644
-> > --- a/drivers/phy/qualcomm/phy-qcom-qmp-ufs.c
-> > +++ b/drivers/phy/qualcomm/phy-qcom-qmp-ufs.c
-> > @@ -620,6 +620,13 @@ static const char * const qmp_phy_vreg_l[] = {
-> >  	"vdda-phy", "vdda-pll",
-> >  };
-> >  
-> > +static const struct qmp_ufs_offsets qmp_ufs_offsets_v3_660 = {
-> > +	.serdes		= 0,
-> > +	.pcs		= 0xc00,
-> > +	.tx		= 0x400,
-> > +	.rx		= 0x600,
-> > +};
-> > +
-> >  static const struct qmp_ufs_offsets qmp_ufs_offsets_v5 = {
-> >  	.serdes		= 0,
-> >  	.pcs		= 0xc00,
-> > @@ -693,6 +700,8 @@ static const struct qmp_phy_cfg sdm845_ufsphy_cfg = {
-> >  static const struct qmp_phy_cfg sm6115_ufsphy_cfg = {
-> >  	.lanes			= 1,
-> >  
-> > +	.offsets		= &qmp_ufs_offsets_v3_660,
-> Will this not trigger OOB r/w for the users of qcom,sm6115-smp-ufs-phy
-> which specify the regions separately (old binding style)?
+> Changes from v2 -> v3:
+> - don't add extra oneOf as all of the entries are enclosed in oneOf
+>   already
+> - don't allow amlogic,meson-g12a-uart as standalone compatible string
+>   (which slipped through in v2 due to all of the formatting changes
+>   that the extra oneOf required)
+> 
 
-No, that should work fine.
 
-But looks like this series needs to be rebased on 6.3-rc1 as these
-offsets are now already set in mainline.
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-Johan
+Best regards,
+Krzysztof
+
