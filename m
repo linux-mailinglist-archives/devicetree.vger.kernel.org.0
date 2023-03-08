@@ -2,75 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BD2876B0A6E
-	for <lists+devicetree@lfdr.de>; Wed,  8 Mar 2023 15:04:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B1E7C6B0A8C
+	for <lists+devicetree@lfdr.de>; Wed,  8 Mar 2023 15:08:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232107AbjCHOEm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Mar 2023 09:04:42 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48666 "EHLO
+        id S231928AbjCHOIR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Mar 2023 09:08:17 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48948 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231887AbjCHOEZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Mar 2023 09:04:25 -0500
-Received: from mail-ed1-x52f.google.com (mail-ed1-x52f.google.com [IPv6:2a00:1450:4864:20::52f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 535BBCDA19;
-        Wed,  8 Mar 2023 06:01:47 -0800 (PST)
-Received: by mail-ed1-x52f.google.com with SMTP id cw28so66145317edb.5;
-        Wed, 08 Mar 2023 06:01:47 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112; t=1678284106;
-        h=content-transfer-encoding:mime-version:message-id:references
-         :in-reply-to:user-agent:subject:cc:to:from:date:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=B1bXJOyXjPOrWGNoY1T7rRsDOWzuuEM286YNL5pDWXg=;
-        b=fdp+qaegXNOzS3XIjm6hn5VGF+bbxueEXNFjOjuKS+e/gbhGC9Gx8DTcBp22wgrnsy
-         HCS9msReZl9IkVwKoGyavMbRrxcISGNfI1IEcsY4Jtj/JNMzKjwpk/5m7UyUhHcUHqsq
-         vu0C0NjjGnPE6GZrpJ0MCy7uAT/zgd6WRbUbbm+hDy645jKQUzqcqzhQO0dIwFZmHFpd
-         IXKDJeyE9jb/VU0iTLJZPJv7Ly5GyMBMDXi4m11Ma6C77jSTCPkwqDH4m6mGdLGfU67W
-         ZZrFFEZYT7hab0QnfZZKDEIBsc9JujpSejpNpjiIYJzc47OKWjnVoDMBmn3OB7NYaUQV
-         hFdg==
+        with ESMTP id S229482AbjCHOHw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Mar 2023 09:07:52 -0500
+Received: from mail-oa1-f45.google.com (mail-oa1-f45.google.com [209.85.160.45])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 172F35C9FB;
+        Wed,  8 Mar 2023 06:06:31 -0800 (PST)
+Received: by mail-oa1-f45.google.com with SMTP id 586e51a60fabf-176d93cd0daso9394872fac.4;
+        Wed, 08 Mar 2023 06:06:31 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678284106;
-        h=content-transfer-encoding:mime-version:message-id:references
-         :in-reply-to:user-agent:subject:cc:to:from:date:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=B1bXJOyXjPOrWGNoY1T7rRsDOWzuuEM286YNL5pDWXg=;
-        b=KjhI44iyeOKXqPmBUsFkOiqnoh5lWQ0FlbYXF8IbT/6/yTJHW5D5agNYCZHhty6Wi/
-         Rwz1Ac5b9mhmztDpmy5gJ5oDsQeHwbYIuwD74sAWEcdaWfism/m2vvv6/yUmZI4ptnDl
-         viXFbcT9FiMYv5/tSiD9X+UTfiGCTtFU3J3yP0VTTeyz1gkXL1mwyY7Ye3iPw581TpJ9
-         McIgqvxff3pnyfYY8LT8CRgpeNaP/7NPqUfQEyKUslbSgp+11lBK7lwJ5E98qkY+boFV
-         5AWx61nW4myjPfsf/2ILdiHFwkll2OBbIR9MPmCkLqgPh89saQTxVLp3NMqmpHJLXuNq
-         qpdw==
-X-Gm-Message-State: AO0yUKU0CLuGEKPv+EyFFcyDIugIFTY5KvEMJJYBRWyv5/ELCxLoEGKW
-        +DjxiITx8louQLE1Sc9oIOTJrjr0EIdF+g==
-X-Google-Smtp-Source: AK7set8posVtu3K86DBJkt0PWWC/HrybdhiW+IG2rlMrXHozpU/5tccCOX3TilQFS5W2y2fuI51tNg==
-X-Received: by 2002:a17:907:7f13:b0:884:3174:119d with SMTP id qf19-20020a1709077f1300b008843174119dmr24705007ejc.14.1678284106452;
-        Wed, 08 Mar 2023 06:01:46 -0800 (PST)
-Received: from [127.0.0.1] ([46.211.69.230])
-        by smtp.gmail.com with ESMTPSA id y7-20020a170906470700b008ef13127b5fsm7529758ejq.29.2023.03.08.06.01.45
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 08 Mar 2023 06:01:46 -0800 (PST)
-Date:   Wed, 08 Mar 2023 16:01:44 +0200
-From:   Svyatoslav Ryhel <clamor95@gmail.com>
-To:     Mark Brown <broonie@kernel.org>
-CC:     Guenter Roeck <linux@roeck-us.net>,
-        Jean Delvare <jdelvare@suse.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v1 1/2] dt-bindings: hwmon: ina2xx: add supply property
-User-Agent: K-9 Mail for Android
-In-Reply-To: <5cd6764c-9b04-42ea-932d-9f14aa465605@sirena.org.uk>
-References: <20230308094024.14115-1-clamor95@gmail.com> <20230308094024.14115-2-clamor95@gmail.com> <31ca0ede-012c-4849-bf25-d0492b116681@sirena.org.uk> <6DBD0F5A-4625-4FCD-8D64-23293D734A82@gmail.com> <5cd6764c-9b04-42ea-932d-9f14aa465605@sirena.org.uk>
-Message-ID: <135993BF-B4AC-42C1-AD36-94F66EE1620D@gmail.com>
+        d=1e100.net; s=20210112; t=1678284391;
+        h=date:subject:message-id:references:in-reply-to:cc:to:from
+         :mime-version:content-transfer-encoding:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=8yIx/AU8JzW8uSjkdg01a/PYhxpFU04JXt4ilid73Fg=;
+        b=05hqTsNe/GBJpIiI4Xr8N7xFUSXrqqy/szG2Tn16qnmpAFNWLo7lY2CgPxbCTIkjij
+         TFbtw1VvlQmpg3FkGQZPyDLvx443M5IQu4wmIXf0c3DJSjMkzg3GbROxoWummC/afUI7
+         vqvIvfiBnEHYuQ2IHYHOmC6mehBxiP5W9VPhPAkRWSGhFltYqoZy+W3eOz/XK+yaZ5JV
+         YnTZ1SniAsWmqQQ0YUUIPoPozdBGU59L8j7xB/GbFA4xWoxcWh9P213/KTTu0nLMD+2L
+         Mb9DbSs8NeEz+zbMTUeHA0FapqPnz9N27ky5+s5mOYDUJ+Lbs7Y3DeNmwojrq0n9CIxo
+         HJxA==
+X-Gm-Message-State: AO0yUKVXni7RgvZ1fCPnEnY+QFnJsMbQdPo2b8Ntpa0FBK6z4nsbWygm
+        jiKGCVgbDXrwzv4fSdq8Mg==
+X-Google-Smtp-Source: AK7set9TNvbhYkYF/07vHAjhIjW7nnPGoUTxEfCExr/KeTykPce7GTNhjs/xFb+8h0xD1/EUloG4jQ==
+X-Received: by 2002:a05:6870:414e:b0:176:554d:235b with SMTP id r14-20020a056870414e00b00176554d235bmr690543oad.59.1678284391145;
+        Wed, 08 Mar 2023 06:06:31 -0800 (PST)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id v22-20020a4ac916000000b0052532296449sm6208690ooq.20.2023.03.08.06.06.29
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 08 Mar 2023 06:06:30 -0800 (PST)
+Received: (nullmailer pid 2666472 invoked by uid 1000);
+        Wed, 08 Mar 2023 14:06:21 -0000
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 MIME-Version: 1.0
-Content-Type: text/plain;
- charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+From:   Rob Herring <robh@kernel.org>
+To:     Prathamesh Shete <pshete@nvidia.com>
+Cc:     jonathanh@nvidia.com, linux-tegra@vger.kernel.org,
+        thierry.reding@gmail.com, krzysztof.kozlowski+dt@linaro.org,
+        linux-gpio@vger.kernel.org, linus.walleij@linaro.org,
+        smangipudi@nvidia.com, robh+dt@kernel.org,
+        devicetree@vger.kernel.org
+In-Reply-To: <20230308114432.27133-1-pshete@nvidia.com>
+References: <20230308114432.27133-1-pshete@nvidia.com>
+Message-Id: <167828360289.2613214.7109201794709064028.robh@kernel.org>
+Subject: Re: [PATCH v2 1/3] dt-bindings: pinctrl: tegra234
+Date:   Wed, 08 Mar 2023 08:06:21 -0600
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=no
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -79,34 +66,39 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
+On Wed, 08 Mar 2023 17:14:30 +0530, Prathamesh Shete wrote:
+> Add DT binding doc for Tegra234 pinmux driver.
+> 
+> Signed-off-by: Prathamesh Shete <pshete@nvidia.com>
+> ---
+>  .../pinctrl/nvidia,tegra234-pinmux.yaml       | 232 ++++++++++++++++++
+>  1 file changed, 232 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/pinctrl/nvidia,tegra234-pinmux.yaml
+> 
 
-8 =D0=B1=D0=B5=D1=80=D0=B5=D0=B7=D0=BD=D1=8F 2023 =D1=80=2E 15:46:52 GMT+0=
-2:00, Mark Brown <broonie@kernel=2Eorg> =D0=BD=D0=B0=D0=BF=D0=B8=D1=81=D0=
-=B0=D0=B2(-=D0=BB=D0=B0):
->On Wed, Mar 08, 2023 at 02:58:20PM +0200, Svyatoslav Ryhel wrote:
->> 8 =D0=B1=D0=B5=D1=80=D0=B5=D0=B7=D0=BD=D1=8F 2023 =D1=80=2E 14:54:34 GM=
-T+02:00, Mark Brown <broonie@kernel=2Eorg> =D0=BD=D0=B0=D0=BF=D0=B8=D1=81=
-=D0=B0=D0=B2(-=D0=BB=D0=B0):
->> >On Wed, Mar 08, 2023 at 11:40:23AM +0200, Svyatoslav Ryhel wrote:
->> >> Add supply property=2E
->
->> >> +  vdd-supply: true
->> >> +
->> >>  required:
->> >>    - compatible
->> >>    - reg
->
->> >Unless the device can work without power the supply should be required=
-=2E
->
->> Device can work without supply defined on most devices, but in my case =
-power is gated with gpio and devices will not work without fixed regulator=
-=2E
->
->If there are devices that work without any source of power at all that
->would be very surprising=2E  It doesn't matter if a particular system has
->a non-controllable regulator, the binding should still make it mandatory
->to describe that=2E
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-Then question is WHY and WHO passed driver without power supply system imp=
-lemented? Why it pops only now?
+yamllint warnings/errors:
+
+dtschema/dtc warnings/errors:
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pinctrl/nvidia,tegra234-pinmux.example.dtb: pinmux@2430000: 'pinmux-pex-rst-c5-out' does not match any of the regexes: '^pinmux(-[a-z0-9]+)?$', 'pinctrl-[0-9]+'
+	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pinctrl/nvidia,tegra234-pinmux.yaml
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20230308114432.27133-1-pshete@nvidia.com
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
+
