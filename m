@@ -2,100 +2,150 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E845B6B051D
-	for <lists+devicetree@lfdr.de>; Wed,  8 Mar 2023 11:55:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A072F6B0522
+	for <lists+devicetree@lfdr.de>; Wed,  8 Mar 2023 11:57:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231260AbjCHKzz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Mar 2023 05:55:55 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55326 "EHLO
+        id S231255AbjCHK5J (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Mar 2023 05:57:09 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57394 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231197AbjCHKzu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Mar 2023 05:55:50 -0500
-Received: from mail-ed1-x52d.google.com (mail-ed1-x52d.google.com [IPv6:2a00:1450:4864:20::52d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A7300BA87F
-        for <devicetree@vger.kernel.org>; Wed,  8 Mar 2023 02:55:36 -0800 (PST)
-Received: by mail-ed1-x52d.google.com with SMTP id i34so63985037eda.7
-        for <devicetree@vger.kernel.org>; Wed, 08 Mar 2023 02:55:36 -0800 (PST)
+        with ESMTP id S230322AbjCHK5I (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Mar 2023 05:57:08 -0500
+Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5CEA35D453
+        for <devicetree@vger.kernel.org>; Wed,  8 Mar 2023 02:57:05 -0800 (PST)
+Received: by mail-lf1-x130.google.com with SMTP id m6so20796775lfq.5
+        for <devicetree@vger.kernel.org>; Wed, 08 Mar 2023 02:57:05 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1678272935;
+        d=linaro.org; s=google; t=1678273023;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=R4h2FY+X2SHJL5D/w63hFPZQVBBm0zbY0tUXPSa+dEU=;
-        b=J+dLbTIne4bumfpOBr7e9LqYt+Wa+Z9T0zBInXT0GSS0qlSmlpiUYrmb9lHXgkj1BB
-         ULUVqNV86biaEGn0lEdoahVFuHrqTyHZ6uIWcP1Se+iMJRIwWxB/TRZ05Yizj0GWM7np
-         ICOGLEhdjgIFHHhdWVFGBEa31/z0C2RFBRZutfST+r5l7n8ckq6SBauls1hVD24sg6IE
-         khUr+D/zpRwXVLum7KxqdJHoP+ISB3nVXd8bXCPRqnR8rrbxqA/8ea6Tq3LBxDS0FqhY
-         5lBThWrCO3i+XlD98BL971vYS41YaECzX3vk0O/VBEkGvPofNT0wFiAYjzZ36RahNcM4
-         dg1Q==
+        bh=Jjrvifk3hoLu+5A7NzoK71qTT7T1RL2golQG0+F871E=;
+        b=lnPsrGa+Rim39l1kDJTZU14avWSF6O9tpV3+ZkOS7ewyx9eXEgKVMByDlfAPPs+j3n
+         844XI4s4b510R8B4VfJIKQIsPSKKNOl0/NJdZQHbMwt4/dW6sVjcPmSYDk1Osn8AkKTj
+         0IGa3uzTQOKAmItuUH2YoEwJkDbKXffVf0KHJdcpBgbLgzs5/9J64O78XomnugB3Gnf1
+         c2HfxCBGIsAmtltHSV9jSm3uZhA4Zd/HAKj/uVFVLgNBFdoyv93jFu0zc0PznKsw6WZV
+         WT1k47Gv/f4nw6C2VSVLaWJkjq10kBj7UpMCflz8R+MncDcmcOqhgPvxwiwXbUdDX7ve
+         CM9g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678272935;
+        d=1e100.net; s=20210112; t=1678273023;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=R4h2FY+X2SHJL5D/w63hFPZQVBBm0zbY0tUXPSa+dEU=;
-        b=Uh/plR5O9opt9YPfpKftL6YQfEw9EKdd4gV/nUAvSZz9Q+GJ3LnXVfVU/prPUMb9g3
-         gS22LUVJfGxP1QHj4RWYBKkyH/I+Lk2nh7l1sCrFIf+yADjR2i3WI4vAMx9grNUrao3K
-         b3Znigw9ru10GGlIfQNC4+f2aWHsumbWcw6UfDGIl1oim+y9wCCo6MjFsk3yxvz8eJ9B
-         Wf1zogZntcNYxGY3M4lHEpkL0QTQztkBIcLicjCTkQXzYsbfeJSZpEgEvPuy+OLZ6aNb
-         SwO//bPr+Jjwo6kNt6YU1qdSzFPxbZc/fVC12MsOcBPx7ybODE964NjeIwejhk6Ijuwu
-         r40g==
-X-Gm-Message-State: AO0yUKXKWrWob0UTbFlAYOQwWNuYJrkj8K1qGK21GsHp7s0EMT+ghN1w
-        dNsD2xP+EAhd1nKwP1O4oZ9WHg==
-X-Google-Smtp-Source: AK7set/jz2AnF63tB8p00z47gnyjjREBhBa4nYjrJe4txxjqSyfWR9lCxSiLVcOC6zjDw4RWTaQ/Hw==
-X-Received: by 2002:a17:906:af67:b0:8b1:2ebf:386c with SMTP id os7-20020a170906af6700b008b12ebf386cmr16593671ejb.11.1678272935154;
-        Wed, 08 Mar 2023 02:55:35 -0800 (PST)
-Received: from ?IPV6:2a02:810d:15c0:828:ff33:9b14:bdd2:a3da? ([2a02:810d:15c0:828:ff33:9b14:bdd2:a3da])
-        by smtp.gmail.com with ESMTPSA id p12-20020a17090628cc00b008b1797b77b2sm7340991ejd.221.2023.03.08.02.55.34
+        bh=Jjrvifk3hoLu+5A7NzoK71qTT7T1RL2golQG0+F871E=;
+        b=vPkZg7dw/rQLEqc1wjdTrcE+9j7Jyu3neAdAVspCty3ENsASb3mUNopWjKHeioKpmX
+         bdpoyxdXsGm+enhzNunhx2JOkMyLacfr8upu5qCDZsvF7bBa/7Fd/QWuYZf/Lh9L9NGA
+         zoEP12o7ZEBvXewA9rPasvlkKeoJkMVKhm+bJRl6Uhz171WOPde2RofZ55xCcABan6Fe
+         e3UkYRoK3/oxTVWxXx4eSfJXZEzVrNeALSwpx96eyPT1NC9wiiPlCi26QXvYRWR2lSKz
+         Qk6hQEoFUryRkoJLmFzf2dggVdfvmisOoDWjsNwvlmXwRmR9AWPqCr5HovUIkWAMnjv+
+         6PFg==
+X-Gm-Message-State: AO0yUKV19Yj1fdULqG575Lh+5N9l1X85hE2AKeMfPzgXje5VZIsq+kk0
+        BQi9vSD/CDQg4DwT4iNLd/3i3g==
+X-Google-Smtp-Source: AK7set8IUiobytVzogXsg+T3ARfx0uDbLVnBQfqBlnGONNwk+E4xgjjZ/7jObj9J4UsG1Pk2KkGwIw==
+X-Received: by 2002:ac2:5973:0:b0:4b6:e494:a98d with SMTP id h19-20020ac25973000000b004b6e494a98dmr4652502lfp.44.1678273023569;
+        Wed, 08 Mar 2023 02:57:03 -0800 (PST)
+Received: from [192.168.1.101] (abyj16.neoplus.adsl.tpnet.pl. [83.9.29.16])
+        by smtp.gmail.com with ESMTPSA id i25-20020ac25239000000b004e81fdac4a1sm200980lfl.278.2023.03.08.02.57.02
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 08 Mar 2023 02:55:34 -0800 (PST)
-Message-ID: <c3080319-b8c4-ab9d-334b-c0ce776b59a9@linaro.org>
-Date:   Wed, 8 Mar 2023 11:55:33 +0100
+        Wed, 08 Mar 2023 02:57:03 -0800 (PST)
+Message-ID: <ca257415-afd4-155d-bbdb-822f6eedd554@linaro.org>
+Date:   Wed, 8 Mar 2023 11:57:01 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.8.0
-Subject: Re: [PATCH 1/2] dt-bindings: reset: Add binding for MediaTek MT6735
- TOPRGU/WDT
+Subject: Re: [PATCH v4 7/9] arm64: dts: qcom: sa8775p: add high-speed UART
+ nodes
 Content-Language: en-US
-To:     Yassine Oudjana <yassine.oudjana@gmail.com>,
-        Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Guenter Roeck <linux@roeck-us.net>,
+To:     Bartosz Golaszewski <brgl@bgdev.pl>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>
-Cc:     Yassine Oudjana <y.oudjana@protonmail.com>,
-        linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org
-References: <20230302124015.75546-1-y.oudjana@protonmail.com>
- <20230302124015.75546-2-y.oudjana@protonmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230302124015.75546-2-y.oudjana@protonmail.com>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+References: <20230308104009.260451-1-brgl@bgdev.pl>
+ <20230308104009.260451-8-brgl@bgdev.pl>
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <20230308104009.260451-8-brgl@bgdev.pl>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+X-Spam-Status: No, score=-0.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+        RCVD_IN_SORBS_HTTP,RCVD_IN_SORBS_SOCKS,SPF_HELO_NONE,SPF_PASS,
+        URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 02/03/2023 13:40, Yassine Oudjana wrote:
-> From: Yassine Oudjana <y.oudjana@protonmail.com>
+
+
+On 8.03.2023 11:40, Bartosz Golaszewski wrote:
+> From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
 > 
-> Add a DT binding for the MT6735 top reset generation unit/watchdog timer.
+> Add two UART nodes that are known to be used by existing development
+> boards with this SoC.
 > 
-> Signed-off-by: Yassine Oudjana <y.oudjana@protonmail.com>
+> Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+> ---
+>  arch/arm64/boot/dts/qcom/sa8775p.dtsi | 31 +++++++++++++++++++++++++++
+>  1 file changed, 31 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/sa8775p.dtsi b/arch/arm64/boot/dts/qcom/sa8775p.dtsi
+> index 992864e3e0c8..5ebfe8c10eac 100644
+> --- a/arch/arm64/boot/dts/qcom/sa8775p.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sa8775p.dtsi
+> @@ -490,6 +490,21 @@ &clk_virt SLAVE_QUP_CORE_1 0>,
+>  				operating-points-v2 = <&qup_opp_table_100mhz>;
+>  				status = "disabled";
+>  			};
+> +
+> +			uart12: serial@a94000 {
+> +				compatible = "qcom,geni-uart";
+> +				reg = <0x0 0x00a94000 0x0 0x4000>;
+> +				interrupts = <GIC_SPI 358 IRQ_TYPE_LEVEL_HIGH>;
+> +				clocks = <&gcc GCC_QUPV3_WRAP1_S5_CLK>;
+> +				clock-names = "se";
+> +				interconnects = <&clk_virt MASTER_QUP_CORE_1 QCOM_ICC_TAG_ALWAYS
+> +						 &clk_virt SLAVE_QUP_CORE_1 QCOM_ICC_TAG_ALWAYS>,
+> +						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
+> +						 &config_noc SLAVE_QUP_1 QCOM_ICC_TAG_ALWAYS>;
+> +				interconnect-names = "qup-core", "qup-config";
+> +				power-domains = <&rpmhpd SA8775P_CX>;
+> +				status = "disabled";
+> +			};
+>  		};
+>  
+>  		qupv3_id_2: geniqup@8c0000 {
+> @@ -525,6 +540,22 @@ &config_noc SLAVE_QUP_2 QCOM_ICC_TAG_ALWAYS>,
+>  				status = "disabled";
+>  			};
+>  
+> +			uart17: serial@88c000 {
+> +				compatible = "qcom,geni-uart";
+> +				reg = <0x0 0x0088c000 0x0 0x4000>;
+> +				interrupts-extended = <&intc GIC_SPI 585 IRQ_TYPE_LEVEL_HIGH>,
+> +						      <&tlmm 94 IRQ_TYPE_LEVEL_HIGH>;
+This hunk is board-specific and only makes sense if bluetooth
+(or some other "important" peripheral) is connected to this
+uart. Generally the uart interrupt is the one coming from the GIC
+and the other one should probably go to the board dtsi.
 
-
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
-Best regards,
-Krzysztof
-
+Konrad
+> +				clocks = <&gcc GCC_QUPV3_WRAP2_S3_CLK>;
+> +				clock-names = "se";
+> +				interconnects = <&clk_virt MASTER_QUP_CORE_2 QCOM_ICC_TAG_ALWAYS
+> +						 &clk_virt SLAVE_QUP_CORE_2 QCOM_ICC_TAG_ALWAYS>,
+> +						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
+> +						 &config_noc SLAVE_QUP_2 QCOM_ICC_TAG_ALWAYS>;
+> +				interconnect-names = "qup-core", "qup-config";
+> +				power-domains = <&rpmhpd SA8775P_CX>;
+> +				status = "disabled";
+> +			};
+> +
+>  			i2c18: i2c@890000 {
+>  				compatible = "qcom,geni-i2c";
+>  				reg = <0x0 0x00890000 0x0 0x4000>;
