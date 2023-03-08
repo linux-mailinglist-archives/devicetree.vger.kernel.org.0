@@ -2,105 +2,290 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8551C6B0D5B
-	for <lists+devicetree@lfdr.de>; Wed,  8 Mar 2023 16:50:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7D5866B0DDD
+	for <lists+devicetree@lfdr.de>; Wed,  8 Mar 2023 16:59:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230409AbjCHPue (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Mar 2023 10:50:34 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57924 "EHLO
+        id S232321AbjCHP7S (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Mar 2023 10:59:18 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36964 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232012AbjCHPu3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Mar 2023 10:50:29 -0500
-Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CF742C560E;
-        Wed,  8 Mar 2023 07:50:17 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1678290618; x=1709826618;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=GZQqCG8YbLknd0IuMXthLn8/SmzMsrOGTTUmqOEcoHk=;
-  b=UHxHUG4ZrV2mPJPLdbr0R7SWyMA0nFlRcIS7i3DPPAe87F9g3uwuvbfo
-   mGNBPHj9JyNLj21oBL2jWhOYxPQG/52PgmFmdsH2OYj0/gu+3F8ev34ti
-   /8sLbS1myKzuWVwn2G+Mks4U35FO08omOxlrn/HP7pcO8OLyfGgRjigpg
-   CCvlbrlq2aKTTuzZQINJAzSok3UVzqaXccNv+ELt/koRzEYqsbuKCwlN+
-   nbaQNFVC1FLjw79F4Wk8RbLwUB3uF5k1gzqZF8VdgSZXeY3JrXYJ52FLu
-   +jgk00hrIWbE1ms/KYlzaaFbLYb1+LaSGP+hBu9k7vFqCRGMYv5cFuwf1
-   w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10642"; a="398768049"
-X-IronPort-AV: E=Sophos;i="5.98,244,1673942400"; 
-   d="scan'208";a="398768049"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-  by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 08 Mar 2023 07:50:16 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10642"; a="820273640"
-X-IronPort-AV: E=Sophos;i="5.98,244,1673942400"; 
-   d="scan'208";a="820273640"
-Received: from kuha.fi.intel.com ([10.237.72.185])
-  by fmsmga001.fm.intel.com with SMTP; 08 Mar 2023 07:50:12 -0800
-Received: by kuha.fi.intel.com (sSMTP sendmail emulation); Wed, 08 Mar 2023 17:50:11 +0200
-Date:   Wed, 8 Mar 2023 17:50:11 +0200
-From:   Heikki Krogerus <heikki.krogerus@linux.intel.com>
-To:     Miquel Raynal <miquel.raynal@bootlin.com>
-Cc:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        linux-kernel@vger.kernel.org,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Michael Walle <michael@walle.cc>,
-        =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>,
-        Robert Marko <robert.marko@sartura.hr>,
-        Luka Perkov <luka.perkov@sartura.hr>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        devicetree@vger.kernel.org, Rob Herring <robh@kernel.org>
-Subject: Re: [PATCH v3 06/20] usb: ulpi: Use of_request_module()
-Message-ID: <ZAius+X1eX0BaOkg@kuha.fi.intel.com>
-References: <20230308153200.682248-1-miquel.raynal@bootlin.com>
- <20230308153200.682248-7-miquel.raynal@bootlin.com>
+        with ESMTP id S232356AbjCHP64 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Mar 2023 10:58:56 -0500
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 54220C889E
+        for <devicetree@vger.kernel.org>; Wed,  8 Mar 2023 07:57:38 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+        s=mimecast20190719; t=1678290934;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=XISNUzBBCpQw9qCmD16wfk4bNgTWDc1iqenIgFH5QaY=;
+        b=D5fdey9zbNvfqerelXjl1xQyGJYGls7nh6ezqwZxKTZ7SfuG57BIOKlIRKBBq6HamrgK7y
+        QF/fOeS27moz/wXtFA4+Ca4spSJ/fNHJXE57Oxt5zRrEP4ipRzfxlPZ52sHeJ9E2Wszeeg
+        0IWSBmDtVEujMoq2Mz4TryzBlWLDfDY=
+Received: from mimecast-mx02.redhat.com (mimecast-mx02.redhat.com
+ [66.187.233.88]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ us-mta-614-GlyyoOWcP8y_qjls5RLcuw-1; Wed, 08 Mar 2023 10:55:31 -0500
+X-MC-Unique: GlyyoOWcP8y_qjls5RLcuw-1
+Received: from smtp.corp.redhat.com (int-mx07.intmail.prod.int.rdu2.redhat.com [10.11.54.7])
+        (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
+        (No client certificate requested)
+        by mimecast-mx02.redhat.com (Postfix) with ESMTPS id 9E458857D07;
+        Wed,  8 Mar 2023 15:55:30 +0000 (UTC)
+Received: from mail.corp.redhat.com (unknown [10.22.8.23])
+        by smtp.corp.redhat.com (Postfix) with ESMTPS id 4294A14171B6;
+        Wed,  8 Mar 2023 15:55:29 +0000 (UTC)
+Date:   Wed, 8 Mar 2023 16:55:27 +0100
+From:   Benjamin Tissoires <benjamin.tissoires@redhat.com>
+To:     Daniel Kaehn <kaehndan@gmail.com>
+Cc:     Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Hans de Goede <hdegoede@redhat.com>, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, jikos@kernel.org,
+        bartosz.golaszewski@linaro.org, dmitry.torokhov@gmail.com,
+        devicetree@vger.kernel.org, linux-input@vger.kernel.org,
+        ethan.twardy@plexus.com
+Subject: Re: [PATCH v8 3/3] HID: cp2112: Fwnode Support
+Message-ID: <20230308155527.jnrsowubvnk22ica@mail.corp.redhat.com>
+References: <1cab1439-77f3-6739-d4cd-5862ce8512d8@redhat.com>
+ <ZAYca0ADk0Uk1sK1@smile.fi.intel.com>
+ <CAP+ZCCfsKdOyy5vzPh5OjpZjNQrYWDRzrqa_QxvG+kZDPYa+3A@mail.gmail.com>
+ <ZAZOvEvqNDq6jZNB@smile.fi.intel.com>
+ <20230307131706.olnb4qzo4ynu7gce@mail.corp.redhat.com>
+ <CAP+ZCCcbXqPOY5Xzq9v8JNSzH9+xOqgfkTezJdLQY=vwQco4vQ@mail.gmail.com>
+ <20230307144852.ueyaotkeeqfjlgk7@mail.corp.redhat.com>
+ <ZAeADcJWmJR+1ycJ@smile.fi.intel.com>
+ <20230308152611.tae2pnmflakrcyhh@mail.corp.redhat.com>
+ <CAP+ZCCcntCn4yaVKtTxDuDRvPgLXfP1kC7mYe2qKuhSGzVZMog@mail.gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20230308153200.682248-7-miquel.raynal@bootlin.com>
-X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_NONE,URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAP+ZCCcntCn4yaVKtTxDuDRvPgLXfP1kC7mYe2qKuhSGzVZMog@mail.gmail.com>
+X-Scanned-By: MIMEDefang 3.1 on 10.11.54.7
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_NONE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Mar 08, 2023 at 04:31:46PM +0100, Miquel Raynal wrote:
-> There is a new helper supposed to replace of_device_request_module(),
-> called of_request_module(). They are both strictly equivalent, besides
-> the fact the latter receives a "struct device_node" directly. Use it.
+On Mar 08 2023, Daniel Kaehn wrote:
+> On Wed, Mar 8, 2023 at 9:26 AM Benjamin Tissoires
+> <benjamin.tissoires@redhat.com> wrote:
+> > But if I refer "\\_SB_.PCI0.USB0.RHUB.CP21.GPIO", the IRQ is never assigned.
+> > With the parent (CP21), it works.
+> >
+> > So I wonder if the cp2112 driver is correctly assigning the gc->parent
+> > field.
 > 
-> Cc: Heikki Krogerus <heikki.krogerus@linux.intel.com>
-> Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-> Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
-> Acked-by: Rob Herring <robh@kernel.org>
-
-Acked-by: Heikki Krogerus <heikki.krogerus@linux.intel.com>
-
-> ---
->  drivers/usb/common/ulpi.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
 > 
-> diff --git a/drivers/usb/common/ulpi.c b/drivers/usb/common/ulpi.c
-> index a98b2108376a..6977cf380838 100644
-> --- a/drivers/usb/common/ulpi.c
-> +++ b/drivers/usb/common/ulpi.c
-> @@ -229,7 +229,7 @@ static int ulpi_read_id(struct ulpi *ulpi)
->  	request_module("ulpi:v%04xp%04x", ulpi->id.vendor, ulpi->id.product);
->  	return 0;
->  err:
-> -	of_device_request_module(&ulpi->dev);
-> +	of_request_module(ulpi->dev.of_node);
->  	return 0;
->  }
->  
-> -- 
-> 2.34.1
+> Did you make a change to the CP2112 driver patch to look for uppercase
+> "I2C" and "GPIO"?
 
--- 
-heikki
+yes, sorry I should have mentioned it. This is the only modification I
+have compared to the upstream kernel plus your patch series.
+
+> Otherwise, it won't assign those child nodes appropriately, and the
+> gpiochip code will use
+> the parent node by default if the gpiochip's fwnode isn't assigned (I believe).
+
+I don't think it's a fwnode issue, but a problem with the assignment of
+the parent of the gc:
+---
+dev->gc.parent = &hdev->dev;
+---
+
+Because the function acpi_gpiochip_find() in drivers/gpio/gpiolib-acpi.c
+compares the acpi handle returned by fetching the ACPI path
+("\\_SB_.PCI0.USB0.RHUB.CP21.GPIO") and the one of gc->parent, which in
+the hid-cp2112 case is the HID device itself.
+
+> 
+> If that was indeed your problem all along (and I'm not missing
+> something else), sorry about that --
+> I made a comment above, but didn't add much spacing around it to make
+> it stand out (since I noticed you didn't reply to that part in your response)
+
+Yeah, sorry I should have been explicit about this.
+
+For reference, I am appending the full SSDT override which works.
+
+Even if you don't have an i2c-hid device connected, this should at
+least call the probe function in i2c-hid-core.c, which is a proof that
+the ACPI binding is properly done (the first SMBus read will fail with a
+timeout)
+
+Also, I played around with the _DSD that Andy was mentioning (and some
+others), hopefully this will help you getting the mapping from the
+"cell-names" to the fwnode child index faster.
+
+Cheers,
+Benjamin
+
+---
+DefinitionBlock ("cp2112.aml", "SSDT", 5, "", "CP2112", 1)
+{
+  External (_SB_.PCI0, DeviceObj)
+
+  Scope (\_SB_.PCI0)
+  {
+    Device (USB0)
+    {
+      Name (_ADR, 0x00010002) // _ADR: Address
+      Device (RHUB)
+      {
+        Name (_ADR, Zero)
+        Device (CP21) // the USB-hid & CP2112 shared node
+        {
+          Name (_ADR, One)
+					Name (_DSD, Package ()
+					{
+						ToUUID("daffd814-6eba-4d8c-8a91-bc9bbf4aa301"),
+						Package () {
+							Package () { "cell-names", Package () {
+									"i2c",
+									"gpio",
+								}
+							}
+						}
+					})
+
+          Device (I2C)
+          {
+            Name (_ADR, Zero)
+            Name (_STA, 0x0F)
+          }
+
+          Device (GPIO)
+          {
+            Name (_ADR, One)
+            Name (_STA, 0x0F)
+
+            Name (_DSD, Package () {
+              ToUUID("daffd814-6eba-4d8c-8a91-bc9bbf4aa301"),
+              Package () {
+                Package () { "gpio-hog", 1 },
+                Package () { "gpios", Package () { 4, 0 } },
+                Package () { "output-high", 1 },
+                Package () { "line-name", "gpio4-pullup" },
+              },
+              ToUUID("daffd814-6eba-4d8c-8a91-bc9bbf4aa301"),
+              Package () {
+                Package () { "gpio-line-names", Package () {
+                            "",
+                            "",
+                            "irq-rmi4",
+                            "",
+                            "power", // set to 1 with gpio-hog above
+                            "",
+                            "",
+                            "",
+                            ""}},
+              }
+            })
+          }
+        }
+      }
+    }
+  }
+
+  Scope (\_SB_.PCI0.USB0.RHUB.CP21.I2C)
+  {
+    Device (TPD0)
+    {
+      Name (_HID, "RMI40001")
+      Name (_CID, "PNP0C50")
+      Name (_STA, 0x0F)
+
+      Name (SBFB, ResourceTemplate ()
+      {
+          I2cSerialBusV2 (0x2c, ControllerInitiated, 100000,
+              AddressingMode7Bit, "\\_SB_.PCI0.USB0.RHUB.CP21.I2C",
+              0x00, ResourceConsumer,, Exclusive,
+              )
+      })
+      Name (SBFG, ResourceTemplate ()
+      {
+          GpioInt (Level, ActiveLow, Exclusive, PullDefault, 0x0000,
+              "\\_SB_.PCI0.USB0.RHUB.CP21", 0x00, ResourceConsumer, ,
+              )
+              {   // Pin list
+                  0x0002
+              }
+      })
+      Name (_DSD, Package ()
+      {
+          ToUUID("daffd814-6eba-4d8c-8a91-bc9bbf4aa301"),
+          Package ()
+          {
+              Package () { "irq-gpios", Package () { ^TPD0, 1, 0, 0 } },
+          }
+      })
+      Method(_CRS, 0x0, NotSerialized)
+      {
+        Return (ConcatenateResTemplate (SBFG, SBFB))
+      }
+
+      Method(_DSM, 0x4, Serialized)
+      {
+        // DSM UUID
+        switch (ToBuffer (Arg0))
+        {
+          // ACPI DSM UUID for HIDI2C
+          case (ToUUID ("3CDFF6F7-4267-4555-AD05-B30A3D8938DE"))
+          {
+              // DSM Function
+              switch (ToInteger (Arg2))
+              {
+                  // Function 0: Query function, return based on revision
+                  case(0)
+                  {
+                      // DSM Revision
+                      switch (ToInteger (Arg1))
+                      {
+                          // Revision 1: Function 1 supported
+                          case (1)
+                          {
+                              Return (Buffer (One) { 0x03 })
+                          }
+
+                          default
+                          {
+                              // Revision 2+: no functions supported
+                              Return (Buffer (One) { 0x00 })
+                          }
+                      }
+                  }
+
+                  // Function 1 : HID Function
+                  case(1)
+                  {
+                      // HID Descriptor Address
+                      Return (0x0020)
+                  }
+
+                  default
+                  {
+                      // Functions 2+: not supported
+                      Return (Buffer (One) { 0x00 })
+                  }
+              }
+          }
+
+          default
+          {
+              // No other GUIDs supported
+              Return (Buffer (One) { 0x00 })
+          }
+        }
+      }
+    }
+  }
+}
+---
+
