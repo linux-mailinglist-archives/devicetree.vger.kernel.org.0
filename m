@@ -2,171 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 551C96B03D3
-	for <lists+devicetree@lfdr.de>; Wed,  8 Mar 2023 11:17:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A05D16B03D6
+	for <lists+devicetree@lfdr.de>; Wed,  8 Mar 2023 11:18:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230379AbjCHKR3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Mar 2023 05:17:29 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45382 "EHLO
+        id S230380AbjCHKSI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Mar 2023 05:18:08 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46194 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229527AbjCHKR2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Mar 2023 05:17:28 -0500
-Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5D23BA6BDA
-        for <devicetree@vger.kernel.org>; Wed,  8 Mar 2023 02:17:24 -0800 (PST)
+        with ESMTP id S230315AbjCHKSH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Mar 2023 05:18:07 -0500
+Received: from mail-lj1-x22b.google.com (mail-lj1-x22b.google.com [IPv6:2a00:1450:4864:20::22b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 30D121C311
+        for <devicetree@vger.kernel.org>; Wed,  8 Mar 2023 02:18:03 -0800 (PST)
+Received: by mail-lj1-x22b.google.com with SMTP id by8so16032340ljb.7
+        for <devicetree@vger.kernel.org>; Wed, 08 Mar 2023 02:18:03 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1678270644; x=1709806644;
-  h=from:to:cc:subject:date:message-id:mime-version:
-   content-transfer-encoding;
-  bh=ea11wll1JJ0Kd7SnJp+LOrRgpzliUwJUS8LkunFigKY=;
-  b=V+jyTDv04F2qGWq12m7cK7aHbDBAXDENhL3vPhNrK2RUwth/ISYCNLoa
-   2x0nfz6vpxA+Rw6E9I3RX2+aaeuUDZm1jTcJyEnyoA0GxZ3UHIpNCS/Ok
-   Kf+Ig/qBk2ZhgKV5Q0BzMPyZGgqBnHw+VlxvQJeMwj3zXzHd5PjBbnzY/
-   HK9pwqVy5b1zWnGscUmbvR1GsDlk5Z22D2vOBVm4Q7XHQv4wiZYi4cqRw
-   w9X8ouR7ZQumsuYePdSdKjnJiNXzTWKMVqXFawUs21KgtRCuCG6sGzt4S
-   YbOdaN/I7GLvIkvh9gwAlABMsw0qJP3KeAIA3OH0P0O1dnl027jVaUjnB
-   g==;
-X-IronPort-AV: E=Sophos;i="5.98,243,1673910000"; 
-   d="scan'208";a="29542284"
-Received: from unknown (HELO tq-pgp-pr1.tq-net.de) ([192.168.6.15])
-  by mx1-pgp.tq-group.com with ESMTP; 08 Mar 2023 11:17:22 +0100
-Received: from mx1.tq-group.com ([192.168.6.7])
-  by tq-pgp-pr1.tq-net.de (PGP Universal service);
-  Wed, 08 Mar 2023 11:17:22 +0100
-X-PGP-Universal: processed;
-        by tq-pgp-pr1.tq-net.de on Wed, 08 Mar 2023 11:17:22 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1678270642; x=1709806642;
-  h=from:to:cc:subject:date:message-id:mime-version:
-   content-transfer-encoding;
-  bh=ea11wll1JJ0Kd7SnJp+LOrRgpzliUwJUS8LkunFigKY=;
-  b=NbP3GfDGxlo9iWVJZloNfqTk4O2dnQQnvE+XpWYjsAjHRfJrhSudi7Ju
-   FPkMokJ6lE4/W81mjvn4QSTroJ6ADmV6lyu31/gXFtH/ie2Ffk8JvTJ5a
-   67bbQtJ1rnIAM0eT4Wo/PJgQGCk57Yti7qBcDwHiWgvGQptli6jztmdNc
-   e3AF7cmTkrjUvAObXJPHL2al67K3YTc8AcZQYQRAR3S91Sq0GXqnc5wzx
-   UuN5Z3TUDAWj6LhzlF0uBWJeQol+85djZsNzLwk/bvcbHeGIQh0MNopsB
-   W2w7kAS7lapolkfBwvTONgy8ZuB50XHX20WQX7FQ2V7Ehg2d+ftCnsPbv
-   g==;
-X-IronPort-AV: E=Sophos;i="5.98,243,1673910000"; 
-   d="scan'208";a="29542283"
-Received: from vtuxmail01.tq-net.de ([10.115.0.20])
-  by mx1.tq-group.com with ESMTP; 08 Mar 2023 11:17:22 +0100
-Received: from steina-w.tq-net.de (unknown [10.123.53.21])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
-        (No client certificate requested)
-        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id 73B49280056;
-        Wed,  8 Mar 2023 11:17:22 +0100 (CET)
-From:   Alexander Stein <alexander.stein@ew.tq-group.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>
-Cc:     Alexander Stein <alexander.stein@ew.tq-group.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: [PATCH 1/1] arm64: dts: imx93: add missing #address-cells and #size-cells to i2c nodes
-Date:   Wed,  8 Mar 2023 11:17:20 +0100
-Message-Id: <20230308101720.2781627-1-alexander.stein@ew.tq-group.com>
-X-Mailer: git-send-email 2.34.1
+        d=linaro.org; s=google; t=1678270681;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=krZQpr7uIm4vLx88h00ljILNedqe5S23Jc9CthZt6vU=;
+        b=PEerjSzms92KVfFhY/EDDlsfRjdHx3uWqwcch/aK80fwALOeLAy74p2WPgAFoQNSSr
+         sonOqt17DNZvs3NnL7QFpRcFnb/rklcHvxjsoXqPYtgwyQe8ahAiuPmtrYNDQLWG+XTb
+         tbvH0r/yU5DXqsZxHw4ggMmgkQgS/DOmH2q3TLWciwkiXcnwB7pQFO8y78XRgdoK+v0H
+         2FT7VtiOankxEG3I3fZUkq6pNqY5MQJtuGBlLYr88pEuOw2Q/ddpZz6JPf+1gtzX8KqH
+         +WizrEyfHbtEKvSwd8SG6RyPFdt273usiyvAh84KpFdLTG2bDzvdZeoGpfg3xL3nqSsf
+         NMWg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1678270681;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=krZQpr7uIm4vLx88h00ljILNedqe5S23Jc9CthZt6vU=;
+        b=AwJbG5E5TgNsYQibUOWLbBCzJ65DvO3RapsWcUen9zIInDQQsGBMk8zda/Fr6/7Rds
+         ZuVvg0U/Foa3Q4cpldrvCHSAqw2mFltZ5fDRBx9/MiPoao4aHN07C68+58SLxGmAtWgR
+         coB0GeUj1AwC40nS2Qbh7opqn20F1gud+Xbp832Cnkg/ZTPWpUNhygbfusMQjJ40avbw
+         vxrcIQVMcRfUf7kA6V9PLXYdRgCNeWjoQYbEc5IB+EJfoXQ/pisdytW2oIIKXQskzISL
+         UHrY3U8YGn309rAaxXF0XiRIr2OyHalGUODQtsooPjSoh3nmQS+9i/DCaf1t0F6nWsPK
+         KIKw==
+X-Gm-Message-State: AO0yUKWktlh02BM+DEt5Gu9TUnxO/g/NxO9a8kWTUrIW1uWm/B2oXIh+
+        jbSyM7wB+BdsTWRjbZIHIwpqMA==
+X-Google-Smtp-Source: AK7set9n1U1YMBH0wlOoSKEkMVTtc4syUR8K40rQA+XD5LofbKGrhDBmIn2Es6laJf5Gpzy+YqdFcg==
+X-Received: by 2002:a2e:3111:0:b0:290:6e3b:be34 with SMTP id x17-20020a2e3111000000b002906e3bbe34mr4957732ljx.42.1678270681440;
+        Wed, 08 Mar 2023 02:18:01 -0800 (PST)
+Received: from [192.168.1.101] (abyj16.neoplus.adsl.tpnet.pl. [83.9.29.16])
+        by smtp.gmail.com with ESMTPSA id c19-20020ac244b3000000b004cc9c2932a9sm2304433lfm.302.2023.03.08.02.17.59
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 08 Mar 2023 02:18:01 -0800 (PST)
+Message-ID: <b72d54ac-5152-bc6c-55a9-dd59d32614d6@linaro.org>
+Date:   Wed, 8 Mar 2023 11:17:58 +0100
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.8.0
+Subject: Re: [PATCH v7 4/6] arm64: dts: qcom: sm6125: Add UFS nodes
+Content-Language: en-US
+To:     Lux Aliaga <they@mint.lgbt>, agross@kernel.org,
+        andersson@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, vkoul@kernel.org,
+        kishon@kernel.org, alim.akhtar@samsung.com, avri.altman@wdc.com,
+        bvanassche@acm.org, keescook@chromium.org, tony.luck@intel.com,
+        gpiccoli@igalia.com
+Cc:     ~postmarketos/upstreaming@lists.sr.ht,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org,
+        linux-scsi@vger.kernel.org, linux-hardening@vger.kernel.org,
+        phone-devel@vger.kernel.org, martin.botka@somainline.org,
+        marijn.suijten@somainline.org
+References: <20230306170817.3806-1-they@mint.lgbt>
+ <20230306170817.3806-5-they@mint.lgbt>
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <20230306170817.3806-5-they@mint.lgbt>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-0.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_SORBS_HTTP,RCVD_IN_SORBS_SOCKS,SPF_HELO_NONE,SPF_PASS,
+        URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add them to the SoC .dtsi, so that not every board has to specify them.
 
-Fixes: 1225396fefea ("arm64: dts: imx93: add lpi2c nodes")
-Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
----
- arch/arm64/boot/dts/freescale/imx93.dtsi | 16 ++++++++++++++++
- 1 file changed, 16 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/freescale/imx93.dtsi b/arch/arm64/boot/dts/freescale/imx93.dtsi
-index 0ed405fd381b..cace9bb5c186 100644
---- a/arch/arm64/boot/dts/freescale/imx93.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx93.dtsi
-@@ -190,6 +190,8 @@ tpm2: pwm@44320000 {
- 			lpi2c1: i2c@44340000 {
- 				compatible = "fsl,imx93-lpi2c", "fsl,imx7ulp-lpi2c";
- 				reg = <0x44340000 0x10000>;
-+				#address-cells = <1>;
-+				#size-cells = <0>;
- 				interrupts = <GIC_SPI 13 IRQ_TYPE_LEVEL_HIGH>;
- 				clocks = <&clk IMX93_CLK_LPI2C1_GATE>,
- 					 <&clk IMX93_CLK_BUS_AON>;
-@@ -200,6 +202,8 @@ lpi2c1: i2c@44340000 {
- 			lpi2c2: i2c@44350000 {
- 				compatible = "fsl,imx93-lpi2c", "fsl,imx7ulp-lpi2c";
- 				reg = <0x44350000 0x10000>;
-+				#address-cells = <1>;
-+				#size-cells = <0>;
- 				interrupts = <GIC_SPI 14 IRQ_TYPE_LEVEL_HIGH>;
- 				clocks = <&clk IMX93_CLK_LPI2C2_GATE>,
- 					 <&clk IMX93_CLK_BUS_AON>;
-@@ -420,6 +424,8 @@ tpm6: pwm@42510000 {
- 			lpi2c3: i2c@42530000 {
- 				compatible = "fsl,imx93-lpi2c", "fsl,imx7ulp-lpi2c";
- 				reg = <0x42530000 0x10000>;
-+				#address-cells = <1>;
-+				#size-cells = <0>;
- 				interrupts = <GIC_SPI 62 IRQ_TYPE_LEVEL_HIGH>;
- 				clocks = <&clk IMX93_CLK_LPI2C3_GATE>,
- 					 <&clk IMX93_CLK_BUS_WAKEUP>;
-@@ -430,6 +436,8 @@ lpi2c3: i2c@42530000 {
- 			lpi2c4: i2c@42540000 {
- 				compatible = "fsl,imx93-lpi2c", "fsl,imx7ulp-lpi2c";
- 				reg = <0x42540000 0x10000>;
-+				#address-cells = <1>;
-+				#size-cells = <0>;
- 				interrupts = <GIC_SPI 63 IRQ_TYPE_LEVEL_HIGH>;
- 				clocks = <&clk IMX93_CLK_LPI2C4_GATE>,
- 					 <&clk IMX93_CLK_BUS_WAKEUP>;
-@@ -547,6 +555,8 @@ lpuart8: serial@426a0000 {
- 			lpi2c5: i2c@426b0000 {
- 				compatible = "fsl,imx93-lpi2c", "fsl,imx7ulp-lpi2c";
- 				reg = <0x426b0000 0x10000>;
-+				#address-cells = <1>;
-+				#size-cells = <0>;
- 				interrupts = <GIC_SPI 195 IRQ_TYPE_LEVEL_HIGH>;
- 				clocks = <&clk IMX93_CLK_LPI2C5_GATE>,
- 					 <&clk IMX93_CLK_BUS_WAKEUP>;
-@@ -557,6 +567,8 @@ lpi2c5: i2c@426b0000 {
- 			lpi2c6: i2c@426c0000 {
- 				compatible = "fsl,imx93-lpi2c", "fsl,imx7ulp-lpi2c";
- 				reg = <0x426c0000 0x10000>;
-+				#address-cells = <1>;
-+				#size-cells = <0>;
- 				interrupts = <GIC_SPI 196 IRQ_TYPE_LEVEL_HIGH>;
- 				clocks = <&clk IMX93_CLK_LPI2C6_GATE>,
- 					 <&clk IMX93_CLK_BUS_WAKEUP>;
-@@ -567,6 +579,8 @@ lpi2c6: i2c@426c0000 {
- 			lpi2c7: i2c@426d0000 {
- 				compatible = "fsl,imx93-lpi2c", "fsl,imx7ulp-lpi2c";
- 				reg = <0x426d0000 0x10000>;
-+				#address-cells = <1>;
-+				#size-cells = <0>;
- 				interrupts = <GIC_SPI 197 IRQ_TYPE_LEVEL_HIGH>;
- 				clocks = <&clk IMX93_CLK_LPI2C7_GATE>,
- 					 <&clk IMX93_CLK_BUS_WAKEUP>;
-@@ -577,6 +591,8 @@ lpi2c7: i2c@426d0000 {
- 			lpi2c8: i2c@426e0000 {
- 				compatible = "fsl,imx93-lpi2c", "fsl,imx7ulp-lpi2c";
- 				reg = <0x426e0000 0x10000>;
-+				#address-cells = <1>;
-+				#size-cells = <0>;
- 				interrupts = <GIC_SPI 198 IRQ_TYPE_LEVEL_HIGH>;
- 				clocks = <&clk IMX93_CLK_LPI2C8_GATE>,
- 					 <&clk IMX93_CLK_BUS_WAKEUP>;
--- 
-2.34.1
+On 6.03.2023 18:08, Lux Aliaga wrote:
+> Adds a UFS host controller node and its corresponding PHY to
+> the sm6125 platform.
+> 
+> Signed-off-by: Lux Aliaga <they@mint.lgbt>
+> ---
+[...]
 
+> +		ufs_mem_phy: phy@4807000 {
+> +			compatible = "qcom,sm6125-qmp-ufs-phy";
+> +			reg = <0x04807000 0xdb8>;
+> +
+> +			clocks = <&gcc GCC_UFS_MEM_CLKREF_CLK>, <&gcc GCC_UFS_PHY_PHY_AUX_CLK>;
+> +			clock-names = "ref", "ref_aux";
+Please wrap it into
+
+clocks = <&gcc GCC_UFS_MEM_CLKREF_CLK>,
+	 <&gcc GCC_UFS_PHY_PHY_AUX_CLK>;
+clock-names = "ref",
+	      "ref_aux";
+
+
+and resolve the binding/offset situation. Otherwise, LGTM!
+
+Konrad
+> +
+> +			resets = <&ufs_mem_hc 0>;
+> +			reset-names = "ufsphy";
+> +
+> +			power-domains = <&gcc UFS_PHY_GDSC>;
+> +
+> +			#phy-cells = <0>;
+> +
+> +			status = "disabled";
+> +		};
+> +
+>  		gpi_dma0: dma-controller@4a00000 {
+>  			compatible = "qcom,sm6125-gpi-dma", "qcom,sdm845-gpi-dma";
+>  			reg = <0x04a00000 0x60000>;
