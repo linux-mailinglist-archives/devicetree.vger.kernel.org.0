@@ -2,82 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 49A786B1196
-	for <lists+devicetree@lfdr.de>; Wed,  8 Mar 2023 20:00:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3943E6B12D3
+	for <lists+devicetree@lfdr.de>; Wed,  8 Mar 2023 21:19:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229705AbjCHTAt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Mar 2023 14:00:49 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39444 "EHLO
+        id S230200AbjCHUTI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Mar 2023 15:19:08 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38270 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229727AbjCHTAs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Mar 2023 14:00:48 -0500
-Received: from mail-ed1-x52e.google.com (mail-ed1-x52e.google.com [IPv6:2a00:1450:4864:20::52e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D169C8DCDF
-        for <devicetree@vger.kernel.org>; Wed,  8 Mar 2023 11:00:45 -0800 (PST)
-Received: by mail-ed1-x52e.google.com with SMTP id s11so69749685edy.8
-        for <devicetree@vger.kernel.org>; Wed, 08 Mar 2023 11:00:45 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1678302044;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=t11cxmne+0VdAolMvDq/xltshYeH2IXmpwmlXchwk3k=;
-        b=AGLZkhWFlMA8ZWIjUlo0+w3j+VFetWhvUJxpWk0y0IoM53AD4KkK9U4PLEdndBDqQg
-         xu5jkIFSsnXO74ausz2POBUYhA7DpXBG7rJIc4SXzSBYunKc/Uq0Y848Fi0ibHHV/t5n
-         MTQPTJxKtdipKusQ+0r6Ct67v3Uhl12P3UszYAS9WvufRH08OOT4Ija27PAYJQRdXlKp
-         XZNnumm6spmdNIbzNbaDDPOLazEWmpj0RwawvbRfKEcEXr/FwTB8KDX7I7koQNrwq5cO
-         2NnwC/96XcIxWGgxA/jq9dJF5MOv+mIIfBpddgzLuiAxZeAWBbrYLNKr0ssGSGaGbQxJ
-         B3uQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678302044;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=t11cxmne+0VdAolMvDq/xltshYeH2IXmpwmlXchwk3k=;
-        b=ssYaPOewRZ3cUbkzDTAwXBbba1cQfXcIpTjIKkaVBKWhmY3hEOMFxkYIklKCGwul/d
-         c133QsvIUT7Sl4b1hvUT7m3oT7Vyv6VGz/cLePzrJMkfILQI2z1mBqgJ4a7sex8NyTom
-         gM2rU5UqZHFLYjjySWcKgQ0H4ylebQbn4mC7RYStXjLq2iNIEZ6MuSji99IaJMKR9AQe
-         NgwzAuTYtXnS8uGHZuQuWc/2XiSZ8XSPfQ4mAIoS4bkLKTBjQweB1UFinxxM5e4rcv0s
-         Qyt0idAFc2nayd4nXMQwnb2j81qGXaTCPgMYtOcfQvpGjfRrmVeRDeEbb9XVq5loS065
-         9Zrw==
-X-Gm-Message-State: AO0yUKUKNA9uDp7UAUA6tvPfWhZdPqsj7pgbT+BfEMX3bXwGO04hmu+Y
-        QC292HL3OTNZXFMWFgGRdEbAgsU7MkjPWJD90AI=
-X-Google-Smtp-Source: AK7set/+5jp0MA8IXZg5DhthNgI1lxVOkSh+a5PHrXyYyfbVxm4Qz0kTiahcu3zvWUYmETajoJJw5w==
-X-Received: by 2002:a17:907:7e9a:b0:88a:a27c:c282 with SMTP id qb26-20020a1709077e9a00b0088aa27cc282mr25411368ejc.47.1678302044260;
-        Wed, 08 Mar 2023 11:00:44 -0800 (PST)
-Received: from ?IPV6:2a02:810d:15c0:828:ff33:9b14:bdd2:a3da? ([2a02:810d:15c0:828:ff33:9b14:bdd2:a3da])
-        by smtp.gmail.com with ESMTPSA id dt2-20020a170906b78200b008dcf89a72d7sm7955386ejb.147.2023.03.08.11.00.43
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 08 Mar 2023 11:00:43 -0800 (PST)
-Message-ID: <def9197e-bb3c-b9f2-35c5-168b632ef93e@linaro.org>
-Date:   Wed, 8 Mar 2023 20:00:42 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-Subject: Re: [PATCH v2 1/2] dt-bindings: power: Add binding for MediaTek
- MT6735 power controller
-Content-Language: en-US
-To:     Yassine Oudjana <yassine.oudjana@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S230171AbjCHUTH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Mar 2023 15:19:07 -0500
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 92CF36286E;
+        Wed,  8 Mar 2023 12:19:06 -0800 (PST)
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 328GtvkC017364;
+        Wed, 8 Mar 2023 10:55:57 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1678294557;
+        bh=nEXDI2pP8NrRKO9ZRFc0Igp655a88nKLbVqk5OIrnVs=;
+        h=From:To:CC:Subject:Date:In-Reply-To:References;
+        b=rEtoy58UESPPfcrT/8wanfDyNo0o+xU4dQvOuBH040BFoZIwI+MQIkv7DxW0WGGXL
+         2rwUneTQ+eVfnJM6AIbFtLmIsq1RdIlfemfRIK29Pjzhp9kVjBgaYz3gz5JKH5noyx
+         UFOjUUsOq+bO4c1x0kxcqNCBAyo+CM68uVDq3f04=
+Received: from DLEE111.ent.ti.com (dlee111.ent.ti.com [157.170.170.22])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 328GtvGs018199
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Wed, 8 Mar 2023 10:55:57 -0600
+Received: from DLEE100.ent.ti.com (157.170.170.30) by DLEE111.ent.ti.com
+ (157.170.170.22) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Wed, 8
+ Mar 2023 10:55:57 -0600
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE100.ent.ti.com
+ (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
+ Frontend Transport; Wed, 8 Mar 2023 10:55:57 -0600
+Received: from ula0226330.dal.design.ti.com (ileaxei01-snat2.itg.ti.com [10.180.69.6])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 328Gtvaj014057;
+        Wed, 8 Mar 2023 10:55:57 -0600
+From:   Andrew Davis <afd@ti.com>
+To:     Lee Jones <lee@kernel.org>, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Tinghan Shen <tinghan.shen@mediatek.com>,
-        "Garmin.Chang" <Garmin.Chang@mediatek.com>,
-        MandyJH Liu <mandyjh.liu@mediatek.com>
-Cc:     Yassine Oudjana <y.oudjana@protonmail.com>,
-        devicetree@vger.kernel.org, linux-mediatek@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20230302122708.73848-1-y.oudjana@protonmail.com>
- <20230302122708.73848-2-y.oudjana@protonmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230302122708.73848-2-y.oudjana@protonmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        Arnd Bergmann <arnd@arndb.de>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Daniel Tang <dt.tangr@gmail.com>,
+        Fabian Vogt <fabian@ritter-vogt.de>
+CC:     <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, Andrew Davis <afd@ti.com>
+Subject: [PATCH v6 1/9] dt-bindings: mfd: Add TI-Nspire misc registers
+Date:   Wed, 8 Mar 2023 10:55:48 -0600
+Message-ID: <20230308165557.2242-2-afd@ti.com>
+X-Mailer: git-send-email 2.39.2
+In-Reply-To: <20230308165557.2242-1-afd@ti.com>
+References: <20230308165557.2242-1-afd@ti.com>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_PASS,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -85,63 +70,74 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 02/03/2023 13:27, Yassine Oudjana wrote:
-> From: Yassine Oudjana <y.oudjana@protonmail.com>
-> 
-> Add DT binding for MediaTek MT6735 SCPSYS power controller.
-> 
-> Signed-off-by: Yassine Oudjana <y.oudjana@protonmail.com>
-> ---
->  .../bindings/power/mediatek,power-controller.yaml  |  2 ++
->  .../devicetree/bindings/soc/mediatek/scpsys.txt    |  1 +
->  include/dt-bindings/power/mt6735-power.h           | 14 ++++++++++++++
->  3 files changed, 17 insertions(+)
->  create mode 100644 include/dt-bindings/power/mt6735-power.h
-> 
-> diff --git a/Documentation/devicetree/bindings/power/mediatek,power-controller.yaml b/Documentation/devicetree/bindings/power/mediatek,power-controller.yaml
-> index c9acef80f452..710db61cab53 100644
-> --- a/Documentation/devicetree/bindings/power/mediatek,power-controller.yaml
-> +++ b/Documentation/devicetree/bindings/power/mediatek,power-controller.yaml
-> @@ -23,6 +23,7 @@ properties:
->  
->    compatible:
->      enum:
-> +      - mediatek,mt6735-power-controller
->        - mediatek,mt6795-power-controller
->        - mediatek,mt8167-power-controller
->        - mediatek,mt8173-power-controller
-> @@ -81,6 +82,7 @@ $defs:
->        reg:
->          description: |
->            Power domain index. Valid values are defined in:
-> +              "include/dt-bindings/power/mt6735-power.h" - for MT6735 type power domain.
+The TI Nspire devices contain a set of registers with a seemingly
+miscellaneous set of functionality. This area is known simply as the
+"misc" region.
 
-Isn't the comment obvious? Maybe let's stop adding them?
+Signed-off-by: Andrew Davis <afd@ti.com>
+Reviewed-by: Rob Herring <robh@kernel.org>
+---
+ .../bindings/mfd/ti,nspire-misc.yaml          | 51 +++++++++++++++++++
+ 1 file changed, 51 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/mfd/ti,nspire-misc.yaml
 
->                "include/dt-bindings/power/mt6795-power.h" - for MT8167 type power domain.
->                "include/dt-bindings/power/mt8167-power.h" - for MT8167 type power domain.
->                "include/dt-bindings/power/mt8173-power.h" - for MT8173 type power domain.
-> diff --git a/Documentation/devicetree/bindings/soc/mediatek/scpsys.txt b/Documentation/devicetree/bindings/soc/mediatek/scpsys.txt
-> index 2bc367793aec..3530a6668b48 100644
-> --- a/Documentation/devicetree/bindings/soc/mediatek/scpsys.txt
-> +++ b/Documentation/devicetree/bindings/soc/mediatek/scpsys.txt
-> @@ -20,6 +20,7 @@ Required properties:
->  - compatible: Should be one of:
->  	- "mediatek,mt2701-scpsys"
->  	- "mediatek,mt2712-scpsys"
-> +	- "mediatek,mt6735-scpsys"
->  	- "mediatek,mt6765-scpsys"
->  	- "mediatek,mt6797-scpsys"
->  	- "mediatek,mt7622-scpsys"
-> diff --git a/include/dt-bindings/power/mt6735-power.h b/include/dt-bindings/power/mt6735-power.h
-> new file mode 100644
-> index 000000000000..782b49a88773
-> --- /dev/null
-> +++ b/include/dt-bindings/power/mt6735-power.h
-
-I am pretty sure we already discussed the file naming with some other
-patches... mediatek,mt6735-power-controller.h
-
-Best regards,
-Krzysztof
+diff --git a/Documentation/devicetree/bindings/mfd/ti,nspire-misc.yaml b/Documentation/devicetree/bindings/mfd/ti,nspire-misc.yaml
+new file mode 100644
+index 000000000000..28cd5164d46f
+--- /dev/null
++++ b/Documentation/devicetree/bindings/mfd/ti,nspire-misc.yaml
+@@ -0,0 +1,51 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++# Copyright (C) 2022-2023 Texas Instruments Incorporated - https://www.ti.com/
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/mfd/ti,nspire-misc.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: TI Nspire MISC hardware block
++
++maintainers:
++  - Andrew Davis <afd@ti.com>
++
++description:
++  System controller node represents a register region containing a set
++  of miscellaneous registers. The registers are not cohesive enough to
++  represent as any specific type of device. Currently there is a reset
++  controller.
++
++properties:
++  compatible:
++    items:
++      - enum:
++          - ti,nspire-misc
++      - const: syscon
++      - const: simple-mfd
++
++  reg:
++    maxItems: 1
++
++  reboot:
++    $ref: /schemas/power/reset/syscon-reboot.yaml#
++
++required:
++  - compatible
++  - reg
++  - reboot
++
++additionalProperties: false
++
++examples:
++  - |
++    misc: misc@900a0000 {
++      compatible = "ti,nspire-misc", "syscon", "simple-mfd";
++      reg = <0x900a0000 0x1000>;
++
++      reboot {
++        compatible = "syscon-reboot";
++        offset = <0x08>;
++        value = <0x02>;
++      };
++    };
+-- 
+2.39.2
 
