@@ -2,166 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C88736B0E1A
-	for <lists+devicetree@lfdr.de>; Wed,  8 Mar 2023 17:05:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6BCBE6B0E2A
+	for <lists+devicetree@lfdr.de>; Wed,  8 Mar 2023 17:07:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231239AbjCHQFI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Mar 2023 11:05:08 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57822 "EHLO
+        id S232318AbjCHQHl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Mar 2023 11:07:41 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57294 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232479AbjCHQEu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Mar 2023 11:04:50 -0500
-Received: from mail-vs1-xe34.google.com (mail-vs1-xe34.google.com [IPv6:2607:f8b0:4864:20::e34])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 75B801B2C0
-        for <devicetree@vger.kernel.org>; Wed,  8 Mar 2023 08:03:15 -0800 (PST)
-Received: by mail-vs1-xe34.google.com with SMTP id o32so15800820vsv.12
-        for <devicetree@vger.kernel.org>; Wed, 08 Mar 2023 08:03:15 -0800 (PST)
+        with ESMTP id S232335AbjCHQHP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Mar 2023 11:07:15 -0500
+Received: from mail-ed1-x536.google.com (mail-ed1-x536.google.com [IPv6:2a00:1450:4864:20::536])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2FAA5B56C3
+        for <devicetree@vger.kernel.org>; Wed,  8 Mar 2023 08:06:13 -0800 (PST)
+Received: by mail-ed1-x536.google.com with SMTP id s11so67759938edy.8
+        for <devicetree@vger.kernel.org>; Wed, 08 Mar 2023 08:06:13 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bgdev-pl.20210112.gappssmtp.com; s=20210112; t=1678291390;
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112; t=1678291571;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=jdlt+ZRsYcl0EZ0IPQW4LrlvKlc0DVKPn3zh8RuEzuo=;
-        b=Khvy+yYd3OImEDEJ++rMBWWC2g+Ruw1z8vFX/QmRw3tHrtnVZKPkfK88iF69ZSBC4D
-         k/XZ76IchXN7iczRn4g1N75LoblDmaQ+KyL+WR+boEa9EN9czgGAWFp0bj7jnIu7u6Za
-         8Y+mbEu9ZdokbXziB+iNrO4Mm/EDkr4VPViWDEXLCRrLZpqIYFoGO6Wcl+EW+SWgEkiG
-         BFS1AmKRokj4m+iuglLvL/8FeB+7iBmMDbNVeR8H1cETySDm+lAC0+JDvx1W4pNxZrs6
-         3X0d0yq9ELFSMy7rPEuWx+wicmfRBh6Pm1MJ5WCwa8BxC8xvYIZsctT+4Ctb6Uc67ecl
-         vhaw==
+        bh=pUOD/X3MLXbaSFinuRbww5tKoyJ/4JSfYyoEzJIPkIg=;
+        b=Rg3SgBcpYBK+DKWE8tmQoSeFokOAj8h+6SfVAZZrcMVcD1fjv6zoukEd68kmJVfB1U
+         rtXl4gzwdGPBeGN7Axms/raMcUjg+U4TcKeexu2o2C6K54xuOZ+iYw5YPoB0ybO69NAs
+         1BP0+07mCjH3lHUXfQOu6PGKlpFp5PRHRoWkBIQRuLGd6OGNVB4gHXQU+uK9FXdJyEI0
+         rG+nmhLXy2sMKceLAOZBGMYYSiXtfsD+p3vfnP0o4rupbtGQ+cmLlLpn2wYFhHFXCK8S
+         NjL/0QKisG47gol+EKvwZeR3en4zINPSMlki3pGW4LjfiddGJAPjK4JdvB0vm5k7Fbmz
+         08+Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678291390;
+        d=1e100.net; s=20210112; t=1678291571;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=jdlt+ZRsYcl0EZ0IPQW4LrlvKlc0DVKPn3zh8RuEzuo=;
-        b=loRI2pI5pOpnMnOJYfJyN4N+CWTu5o5sTRcv+C5jHklKEGByy/mm/VPuoBDp+pSDHv
-         U0dA4004p1UOfm0M2tONPnfoDOb1DOUb2HQ9G7ZlrmEubIDLZYLu74gDaVSHkfYJg2hI
-         mJt2v2my/m+kHCKbrs9IV6n64ZbX2q4JFbeUMY5RI63xNKjSuIxPQHM6bGGbaUyJUdnF
-         CZFWT2KwtWNuZPNGrbLayM6PGC2K1npZ9kfmu+pqlLF8Mtr7r2NsuQwwpNfJ2hZTazKW
-         4YDOFz8nOhVQOZ/YjcgBcoOX9FB134Am2A4xMVTwK2LZvOrbk+71YbL7am6DSuqSZgeS
-         3JkA==
-X-Gm-Message-State: AO0yUKWN5hx95e4bGWtpnqA9/mrPbWtU9mKH6NgIzqdgI548wR9dFgT6
-        gIYUT/x7D+HgPkG+s29ZU2rFFMq+IycaD1wmTVKZ18CtpJ7EwcEE
-X-Google-Smtp-Source: AK7set/CUYM0PZkPJ6h7pa3w77NuZJc6zqxCCc/jOGYzS2BQxBKjWyXyMyRqclxGmcKiDv7XVTR1CjcEjALF9AHgPPw=
-X-Received: by 2002:a67:f406:0:b0:414:48a5:473f with SMTP id
- p6-20020a67f406000000b0041448a5473fmr12449959vsn.0.1678291390335; Wed, 08 Mar
- 2023 08:03:10 -0800 (PST)
+        bh=pUOD/X3MLXbaSFinuRbww5tKoyJ/4JSfYyoEzJIPkIg=;
+        b=gtqVE8od1/JvtXCq4/HpQ8l0PHFKyXSiXf+il1gu8BEXQkpEtac6K76OI35eDTF9Eq
+         a3o2hG1Qwo6aoF85GNYePA6Nz2Mt1i13AODlIWeKLlKsvytp2++kPb7/LJmhPF5c47Kx
+         uU7wBjwZIlmIOrlpxXiCsnRYmu/jaXQma8MdWRwiBJHo7HsJ1DU7Vc7oXD1lNlSgOyPR
+         7rAbv72FsRLqBEGVnqk+381qcIp+6AbxgqRPQLus7B6oq33SadrYqiNVGrbnKFI8XOwy
+         6kG6R7nKPiwoU5gJpHX4c9upxWdcFsMjDp3tTye+CIso3oVkFpA4wdBZWrDBeOhAW8jS
+         XDow==
+X-Gm-Message-State: AO0yUKWPqk7Z4hS6pHWssgaF4PqLSf5ZQZa8zrdIZ7KNq5dMrUBsYC1X
+        h28lWiI1LEOsXsZK3bxNCPGRjYRVIIuTrjpSSW6UAQ==
+X-Google-Smtp-Source: AK7set8DCQYR6EeCLCdicp+N7+vPQpFqmFvqGYAUUsZf3YwgIQkfZ7vvmfspmzmc3Ic0/+IpWN2QQYksgERyDGcPThc=
+X-Received: by 2002:a17:906:1850:b0:8b1:780d:e43d with SMTP id
+ w16-20020a170906185000b008b1780de43dmr9541197eje.13.1678291571683; Wed, 08
+ Mar 2023 08:06:11 -0800 (PST)
 MIME-Version: 1.0
-References: <20230308104009.260451-1-brgl@bgdev.pl> <20230308104009.260451-8-brgl@bgdev.pl>
- <ca257415-afd4-155d-bbdb-822f6eedd554@linaro.org>
-In-Reply-To: <ca257415-afd4-155d-bbdb-822f6eedd554@linaro.org>
-From:   Bartosz Golaszewski <brgl@bgdev.pl>
-Date:   Wed, 8 Mar 2023 17:02:59 +0100
-Message-ID: <CAMRc=MfZCQSsPN7SVXAVAsnRyE1LsszHSG0YuXGz72wwZ5b00w@mail.gmail.com>
-Subject: Re: [PATCH v4 7/9] arm64: dts: qcom: sa8775p: add high-speed UART nodes
-To:     Konrad Dybcio <konrad.dybcio@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+References: <20230307154524.118541-1-bchihi@baylibre.com> <20230307154524.118541-3-bchihi@baylibre.com>
+ <6b1e9d19-b176-280d-0277-492120e3a1fa@collabora.com>
+In-Reply-To: <6b1e9d19-b176-280d-0277-492120e3a1fa@collabora.com>
+From:   Balsam CHIHI <bchihi@baylibre.com>
+Date:   Wed, 8 Mar 2023 17:05:35 +0100
+Message-ID: <CAGuA+or+r-RwrD0htS=fMsAi5rGaWRCb8ZFdJRRZ7cayL3w_Wg@mail.gmail.com>
+Subject: Re: [PATCH 2/4] thermal/drivers/mediatek/lvts_thermal: Add AP domain
+ for mt8195
+To:     AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+Cc:     daniel.lezcano@linaro.org, rafael@kernel.org, amitk@kernel.org,
+        rui.zhang@intel.com, matthias.bgg@gmail.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, rdunlap@infradead.org,
+        ye.xingchen@zte.com.cn, p.zabel@pengutronix.de,
+        linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
+        khilman@baylibre.com, james.lo@mediatek.com,
+        rex-bc.chen@mediatek.com
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Mar 8, 2023 at 11:57=E2=80=AFAM Konrad Dybcio <konrad.dybcio@linaro=
-.org> wrote:
+On Wed, Mar 8, 2023 at 10:15=E2=80=AFAM AngeloGioacchino Del Regno
+<angelogioacchino.delregno@collabora.com> wrote:
 >
+> Il 07/03/23 16:45, bchihi@baylibre.com ha scritto:
+> > From: Balsam CHIHI <bchihi@baylibre.com>
+> >
+> > Add MT8195 AP Domain support to LVTS Driver.
 >
->
-> On 8.03.2023 11:40, Bartosz Golaszewski wrote:
-> > From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-> >
-> > Add two UART nodes that are known to be used by existing development
-> > boards with this SoC.
-> >
-> > Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-> > ---
-> >  arch/arm64/boot/dts/qcom/sa8775p.dtsi | 31 +++++++++++++++++++++++++++
-> >  1 file changed, 31 insertions(+)
-> >
-> > diff --git a/arch/arm64/boot/dts/qcom/sa8775p.dtsi b/arch/arm64/boot/dt=
-s/qcom/sa8775p.dtsi
-> > index 992864e3e0c8..5ebfe8c10eac 100644
-> > --- a/arch/arm64/boot/dts/qcom/sa8775p.dtsi
-> > +++ b/arch/arm64/boot/dts/qcom/sa8775p.dtsi
-> > @@ -490,6 +490,21 @@ &clk_virt SLAVE_QUP_CORE_1 0>,
-> >                               operating-points-v2 =3D <&qup_opp_table_1=
-00mhz>;
-> >                               status =3D "disabled";
-> >                       };
-> > +
-> > +                     uart12: serial@a94000 {
-> > +                             compatible =3D "qcom,geni-uart";
-> > +                             reg =3D <0x0 0x00a94000 0x0 0x4000>;
-> > +                             interrupts =3D <GIC_SPI 358 IRQ_TYPE_LEVE=
-L_HIGH>;
-> > +                             clocks =3D <&gcc GCC_QUPV3_WRAP1_S5_CLK>;
-> > +                             clock-names =3D "se";
-> > +                             interconnects =3D <&clk_virt MASTER_QUP_C=
-ORE_1 QCOM_ICC_TAG_ALWAYS
-> > +                                              &clk_virt SLAVE_QUP_CORE=
-_1 QCOM_ICC_TAG_ALWAYS>,
-> > +                                             <&gem_noc MASTER_APPSS_PR=
-OC QCOM_ICC_TAG_ALWAYS
-> > +                                              &config_noc SLAVE_QUP_1 =
-QCOM_ICC_TAG_ALWAYS>;
-> > +                             interconnect-names =3D "qup-core", "qup-c=
-onfig";
-> > +                             power-domains =3D <&rpmhpd SA8775P_CX>;
-> > +                             status =3D "disabled";
-> > +                     };
-> >               };
-> >
-> >               qupv3_id_2: geniqup@8c0000 {
-> > @@ -525,6 +540,22 @@ &config_noc SLAVE_QUP_2 QCOM_ICC_TAG_ALWAYS>,
-> >                               status =3D "disabled";
-> >                       };
-> >
-> > +                     uart17: serial@88c000 {
-> > +                             compatible =3D "qcom,geni-uart";
-> > +                             reg =3D <0x0 0x0088c000 0x0 0x4000>;
-> > +                             interrupts-extended =3D <&intc GIC_SPI 58=
-5 IRQ_TYPE_LEVEL_HIGH>,
-> > +                                                   <&tlmm 94 IRQ_TYPE_=
-LEVEL_HIGH>;
-> This hunk is board-specific and only makes sense if bluetooth
-> (or some other "important" peripheral) is connected to this
-> uart. Generally the uart interrupt is the one coming from the GIC
-> and the other one should probably go to the board dtsi.
+> Please mention the documentation changes in the commit description.
 >
 
-Right, the second one will be consumed by whatever driver will be
-there to control GNSS or bluetooth. I'll drop it in the next spin.
+Hi Angelo,
 
-Bart
+A new commit will be created for the documentation in the new upcoming
+series for both SoCs,
+as you asked.
 
-> Konrad
-> > +                             clocks =3D <&gcc GCC_QUPV3_WRAP2_S3_CLK>;
-> > +                             clock-names =3D "se";
-> > +                             interconnects =3D <&clk_virt MASTER_QUP_C=
-ORE_2 QCOM_ICC_TAG_ALWAYS
-> > +                                              &clk_virt SLAVE_QUP_CORE=
-_2 QCOM_ICC_TAG_ALWAYS>,
-> > +                                             <&gem_noc MASTER_APPSS_PR=
-OC QCOM_ICC_TAG_ALWAYS
-> > +                                              &config_noc SLAVE_QUP_2 =
-QCOM_ICC_TAG_ALWAYS>;
-> > +                             interconnect-names =3D "qup-core", "qup-c=
-onfig";
-> > +                             power-domains =3D <&rpmhpd SA8775P_CX>;
-> > +                             status =3D "disabled";
-> > +                     };
-> > +
-> >                       i2c18: i2c@890000 {
-> >                               compatible =3D "qcom,geni-i2c";
-> >                               reg =3D <0x0 0x00890000 0x0 0x4000>;
+Best regards,
+Balsam
+
+> Regards,
+> Angelo
+>
+>
