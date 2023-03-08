@@ -2,76 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4DD356B01B4
-	for <lists+devicetree@lfdr.de>; Wed,  8 Mar 2023 09:40:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7D37A6B01C0
+	for <lists+devicetree@lfdr.de>; Wed,  8 Mar 2023 09:42:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229667AbjCHIkU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Mar 2023 03:40:20 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44106 "EHLO
+        id S229889AbjCHIl7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Mar 2023 03:41:59 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47796 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230377AbjCHIj7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Mar 2023 03:39:59 -0500
-Received: from mail-ed1-x52d.google.com (mail-ed1-x52d.google.com [IPv6:2a00:1450:4864:20::52d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C54125BB6
-        for <devicetree@vger.kernel.org>; Wed,  8 Mar 2023 00:39:57 -0800 (PST)
-Received: by mail-ed1-x52d.google.com with SMTP id cy23so62417051edb.12
-        for <devicetree@vger.kernel.org>; Wed, 08 Mar 2023 00:39:57 -0800 (PST)
+        with ESMTP id S230241AbjCHIlt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Mar 2023 03:41:49 -0500
+Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com [IPv6:2a00:1450:4864:20::52a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9675D9CBF4
+        for <devicetree@vger.kernel.org>; Wed,  8 Mar 2023 00:41:26 -0800 (PST)
+Received: by mail-ed1-x52a.google.com with SMTP id ec29so31738308edb.6
+        for <devicetree@vger.kernel.org>; Wed, 08 Mar 2023 00:41:26 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1678264796;
+        d=linaro.org; s=google; t=1678264884;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=oCATe+ES1QvWDk0NlxC4dgDiGw0qgM6ywBS9VU95eKQ=;
-        b=SvAbix98aHr0n+4XlR2eJCiwQlHeIqX5t5/Qv+ConfYAZD8oJmse0VAK7zS6hoR9AI
-         2MslmufvRsU0s4jKXcmiO27eW8Mo98spP1BnyJ3j1tRPclEEfpyQTB0iyUXd2IG39S3T
-         oOG7UjkkfT0DLr5XregCqpZjy18qq/7/5idSzC7PdbM/rOaxwZTL+XWgDMH1TPsXt2RK
-         smj/4w4BajVsm4Oq5v/Xj7+4DkSkcl10NxmEN3lp/yEMki70wBtZ5sk0b7a0ODiDz1dt
-         TdQvO5ZXJYoUNxGkSTWxvMNEhowu4H62kg74XfTEWdeCHqt9Otnb+y8FTWVqeJsR/Kb1
-         npTg==
+        bh=tCs89pw+P8cjJtlM4LSB8KM5CQ8T7G/wA0iscV42Tco=;
+        b=SL7reMSUkGlsENR8kCgNcPCg7nHJpfnx9oMWVKmZ0pSUbgl26d80MUc+7jKfxRQlyo
+         bR9//nqwlB0Me/3eFfF7biVwAbihU/L06wx0Mx2sterw4D4Ie7kVGYsZm2yjgsVAEvFj
+         HYWNJfYdIU+gjS8YC8Ju1bkIWmEkkPhy2/BI4LptpqMkZ4p/c3Z760VaW4qKyjHG0PAB
+         Ci5kU+6HOXFBIdohJCHeH/ek9/KIBrXzw1/GPEn54Dc8X/FnO5LasEyccoTWuK2FKxWw
+         U3dolQ5QdzD6gnzddTkFgKQZl0Ac6iBILTHqYex9UlN4GV9xZt5uoT7bNDLjQCVk+lCX
+         kcEg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678264796;
+        d=1e100.net; s=20210112; t=1678264884;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=oCATe+ES1QvWDk0NlxC4dgDiGw0qgM6ywBS9VU95eKQ=;
-        b=K0yf7N8H2O0y39815PxI/1FjkByaIS80unItwjXeUzxplBFMU5QUP8ckzvga0ctHpd
-         Hr22tb2jxcGThzYhWkBavj0jYWcSCG/vXcwCM8bf/5hUYhmxOLwyO5y6h0kAHT7g8kgc
-         UQNv3BKBvLgGdu0SPbUTOeV8/o1SZ4kOxOHoB0fNFMd0AIq2d/1wapJ/GohoTxbsgG/t
-         MsMHL0DvRBEy2k9+QbU+rGoEETJFx4UWVWaPLTVCzfMtVrvbJx3MI0VChs2tA6ZQtTLX
-         CUOvPBNnV96O59IY82c4GLK9IO8uo8gQG0ngoWDAjQ0RLSQpRriLsBI8QHEYaJInerD2
-         +wdg==
-X-Gm-Message-State: AO0yUKUFQyNK7OFwl8jfsWP9OEYeDIOxfb7pTxhBpU3NT3BUETurbOnT
-        DjylTM3/k6T4F1KdxqYcxEOz8w==
-X-Google-Smtp-Source: AK7set9wkUBdhf1G1i8b8fndGqKLSOFkvtThJa77CTISAHIS9U9+bfcE9q7p5tpR9nlB/XPo7ysVmg==
-X-Received: by 2002:a17:906:bcda:b0:8a4:e0a2:e77f with SMTP id lw26-20020a170906bcda00b008a4e0a2e77fmr18414259ejb.34.1678264796361;
-        Wed, 08 Mar 2023 00:39:56 -0800 (PST)
+        bh=tCs89pw+P8cjJtlM4LSB8KM5CQ8T7G/wA0iscV42Tco=;
+        b=d6t2UUw2vIlK3Ko9isAeYdPipKrvyoqnHoysSqinRTTWz1NIwMMytqVb3gqJ5pXZAW
+         pcFYzSY5q7zflKAMHZAnzW5A6POZ9ztaJkh+3mrcfWuSvj9XBUiQPIMIlHUGfwA+PHgm
+         UnC0jssL6zmFeqT/6dIBU2MmwtZHROqJHN5zS2VHjLsQl0+wNLoaAD6+/FbZU+bIypzt
+         HDvS/FcUdknaQAvibgJKL57doUYdSNBJ3Tmn95xawv5RNVJH2vej9Zj3f6b1svtyOYe+
+         Q+2vtRH12tfIQeHOKGmWNDQlXCm93Sl4eDDTfWYqgFHVD1q1212VxQ4przQcLdtgcmcT
+         VRhA==
+X-Gm-Message-State: AO0yUKX3XaMRoRoiUMoVpl/QGkrsRTKwhznWlGlSb4W1CCaXIKvl7qGY
+        iUtzktr71IHTxD2Ye6j/OL3jBA==
+X-Google-Smtp-Source: AK7set/3Dx0duu8l2Mp+JzTJRoeH9ueDFnjoOGADwh+ZziLDmOYI+MMkObsdQ2ouyppnyRRqhx/Onw==
+X-Received: by 2002:a17:906:7b8b:b0:885:8f79:d6d7 with SMTP id s11-20020a1709067b8b00b008858f79d6d7mr16265293ejo.61.1678264884549;
+        Wed, 08 Mar 2023 00:41:24 -0800 (PST)
 Received: from ?IPV6:2a02:810d:15c0:828:bba:fbfa:8aec:a133? ([2a02:810d:15c0:828:bba:fbfa:8aec:a133])
-        by smtp.gmail.com with ESMTPSA id n21-20020a17090625d500b00905a1abecbfsm7145329ejb.47.2023.03.08.00.39.55
+        by smtp.gmail.com with ESMTPSA id bs13-20020a170906d1cd00b008e204a57e70sm7156164ejb.214.2023.03.08.00.41.23
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 08 Mar 2023 00:39:55 -0800 (PST)
-Message-ID: <990821fd-3271-9fe9-3bb3-a07ec57dcba0@linaro.org>
-Date:   Wed, 8 Mar 2023 09:39:55 +0100
+        Wed, 08 Mar 2023 00:41:24 -0800 (PST)
+Message-ID: <15374680-b9bc-a7a2-2723-570294456d24@linaro.org>
+Date:   Wed, 8 Mar 2023 09:41:23 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.8.0
-Subject: Re: [PATCH] dt-bindings: soc: qcom: smd-rpm: re-add missing
- qcom,rpm-msm8994
+Subject: Re: [PATCH v3 1/3] dt-bindings: remoteproc: k3-m4f: Add bindings for
+ K3 AM64x SoCs
 Content-Language: en-US
-To:     Petr Vorel <petr.vorel@gmail.com>
-Cc:     Andy Gross <agross@kernel.org>,
+To:     Martyn Welch <martyn.welch@collabora.com>,
         Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Kathiravan T <kathirav@codeaurora.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20230305122428.167580-1-krzysztof.kozlowski@linaro.org>
- <CAB1t1CzF+E=h9bWWwKf1vpt+ThOOxHvYZ1Nh0f5ep6A=1WZNEw@mail.gmail.com>
+        Hari Nagalla <hnagalla@ti.com>
+Cc:     kernel@collabora.com, linux-remoteproc@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20230302171450.1598576-1-martyn.welch@collabora.com>
+ <20230302171450.1598576-2-martyn.welch@collabora.com>
+ <5c9130de-5092-9446-6e00-d86de7dcd6b4@linaro.org>
+ <c2bebcbf9d463d656ae69d489e0e5a88f2540c2e.camel@collabora.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <CAB1t1CzF+E=h9bWWwKf1vpt+ThOOxHvYZ1Nh0f5ep6A=1WZNEw@mail.gmail.com>
+In-Reply-To: <c2bebcbf9d463d656ae69d489e0e5a88f2540c2e.camel@collabora.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
@@ -82,12 +83,66 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 07/03/2023 20:48, Petr Vorel wrote:
-> Hi all,
+On 07/03/2023 19:26, Martyn Welch wrote:
+> On Fri, 2023-03-03 at 09:06 +0100, Krzysztof Kozlowski wrote:
+>> On 02/03/2023 18:14, Martyn Welch wrote:
+>>
+>>> +
+>>> +  mboxes:
+>>> +    description: |
+>>> +      OMAP Mailbox specifier denoting the sub-mailbox, to be used
+>>> for
+>>
+>> OMAP?
+>>
 > 
-> Reviewed-by: Petr Vorel <petr.vorel@gmail.com>
+> This device uses a mailbox compatible with the OMAP Mailbox, as defined
+> in Documentation/devicetree/bindings/mailbox/ti,omap-mailbox.yaml.
+> 
+> I note that documents title reads "TI OMAP2+ and K3 Mailbox devices".
+> I'll drop the "OMAP" here.
+> 
+>>> +      communication with the remote processor. This property
+>>> should match
+>>> +      with the sub-mailbox node used in the firmware image.
+>>> +    maxItems: 1
+>>> +
+>>> +  memory-region:
+>>> +    description: |
+>>> +      phandle to the reserved memory nodes to be associated with
+>>> the
+>>> +      remoteproc device. There should be at least two reserved
+>>> memory nodes
+>>> +      defined. 
+>>
+>> Don't repeat constraints in free form text.
+>>
+>>> The reserved memory nodes should be carveout nodes, and
+>>> +      should be defined with a "no-map" property as per the
+>>> bindings in
+>>> +      Documentation/devicetree/bindings/reserved-memory/reserved-
+>>> memory.yaml
+>>> +    minItems: 2
+>>> +    maxItems: 8
+>>> +    items:
+>>> +      - description: region used for dynamic DMA allocations like
+>>> vrings and
+>>> +                     vring buffers
+>>> +      - description: region reserved for firmware image sections
+>>> +    additionalItems: true
+>>
+>> And what is the purpose of the rest of reserved nodes?
+>>
+> 
+> Up to 8 regions can be specified with their purpose determined by the
+> firmware running on the M4F core. The suggestion (and the
+> implementation in the example firmware) is to use the first 2 regions
+> as defined above for remoteproc with the others available to be used
+> for other purposes if necessary. The address translation module used
+> can cope with up to 8 regions.
 
-What did you review?
+Then mention the rest is just dedicated to the firmware and it's purpose
+depends on the firmware.
 
 Best regards,
 Krzysztof
