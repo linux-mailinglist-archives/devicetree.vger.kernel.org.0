@@ -2,126 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E52536B0A92
-	for <lists+devicetree@lfdr.de>; Wed,  8 Mar 2023 15:08:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4D5E36B0A96
+	for <lists+devicetree@lfdr.de>; Wed,  8 Mar 2023 15:09:05 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232179AbjCHOIp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Mar 2023 09:08:45 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48674 "EHLO
+        id S232118AbjCHOJB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Mar 2023 09:09:01 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48864 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232116AbjCHOIE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Mar 2023 09:08:04 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DE3065ADF5;
-        Wed,  8 Mar 2023 06:06:53 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 9AD2AB81BEB;
-        Wed,  8 Mar 2023 14:06:52 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 55EF7C433D2;
-        Wed,  8 Mar 2023 14:06:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1678284411;
-        bh=c4godVAn6HjOWriTqbDfMbdcTlhXhbEHeIYFkgIhqE4=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=c3zW/ilEvzKm8sQ1YvCRc6PMjZ7hUSBRDaM+R6u5gVm2j/XlCYYzKs+Yj9sgoWfaK
-         xF4oQ4mfPeQ1DazAWbdh1Wd9v7QLs6GCRa8c1hzqxDR/ERqNNWwNusJ2Bwuk+y12zu
-         OssN1SK/Ow+Zvo9pn+pEDhuwXOr6V2DJlwEi6rC6PzOU34j8T8BTaXnhS+eVRwQRAL
-         YmikLUlLzN6gbzRa+rxcSullmPtvdq7B9lzvoFXmkGv3gIq3BJs/b6ZVHeVzoFYfUs
-         PRAYGunOslzfulvMunLELAY6zqPgEeg+YXmIwEuIKJnQ8FuXYBpiYWhqT8lyZ5OJg0
-         daD58umJZWimw==
-Date:   Wed, 8 Mar 2023 14:06:42 +0000
-From:   Lee Jones <lee@kernel.org>
-To:     Christian Marangi <ansuelsmth@gmail.com>
-Cc:     Andrew Lunn <andrew@lunn.ch>, Pavel Machek <pavel@ucw.cz>,
+        with ESMTP id S232146AbjCHOIJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Mar 2023 09:08:09 -0500
+Received: from relay7-d.mail.gandi.net (relay7-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::227])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 314E01B2E5;
+        Wed,  8 Mar 2023 06:07:25 -0800 (PST)
+Received: (Authenticated sender: miquel.raynal@bootlin.com)
+        by mail.gandi.net (Postfix) with ESMTPSA id CCD3720002;
+        Wed,  8 Mar 2023 14:07:22 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1678284444;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=33EBWkqEWMsTEF83ZPwNzzm0AxSe+La9Qde3jKBW+ZQ=;
+        b=l3bc+md3Q6sI36R/w2cStuusZFECsF7l5/UpgaA0ZIboxFlTikDg3ZBG7J2VPCiiou9ob5
+        rErf5MpCDMq9d3LRfrm/n3SgFZ/SyI0hikw0oEZNDnZE0k+fsW+69dbxGcqdvk3C1NiKka
+        2aXVHAIWcagMio9MG6jHn7xEMpJjqTHhPjAvLzj6JwhM8OfhcGZSt+KEveAZa9jibMRg3S
+        f/iQN0i0qEZ9b2HHNR7wwT1/dsCuVfLNDmrnrFWaCaIMvWdJwlNI+G+QeCNsZGoBn9Vuv4
+        k+etjelvtMXxN4gMFwjUl2uOC0eLt5axMvPKN8Bv7DbnSmkYMNtjLSW0Kaxc6g==
+Date:   Wed, 8 Mar 2023 15:07:21 +0100
+From:   Miquel Raynal <miquel.raynal@bootlin.com>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Colin Ian King <colin.i.king@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Vladimir Oltean <olteanv@gmail.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Russell King <linux@armlinux.org.uk>,
-        Jonathan Corbet <corbet@lwn.net>,
-        "Russell King (Oracle)" <rmk+kernel@armlinux.org.uk>,
-        Jacek Anaszewski <jacek.anaszewski@gmail.com>,
-        John Crispin <john@phrozen.org>, linux-leds@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        netdev@vger.kernel.org, linux-doc@vger.kernel.org,
-        Tim Harvey <tharvey@gateworks.com>,
-        Alexander Stein <alexander.stein@ew.tq-group.com>,
-        Rasmus Villemoes <rasmus.villemoes@prevas.dk>,
-        Bagas Sanjaya <bagasdotme@gmail.com>,
-        Arun.Ramadoss@microchip.com
-Subject: Re: [PATCH v8 00/13] Adds support for PHY LEDs with offload triggers
-Message-ID: <20230308140642.GO9667@google.com>
-References: <20230216013230.22978-1-ansuelsmth@gmail.com>
- <Y++PdVq+DlzdotMq@lunn.ch>
- <Y/YubNUBvQ5fBjtG@google.com>
- <6406344a.050a0220.693b3.6689@mx.google.com>
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>,
+        Michael Walle <michael@walle.cc>, devicetree@vger.kernel.org,
+        Frank Rowand <frowand.list@gmail.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        linux-kernel@vger.kernel.org,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Luka Perkov <luka.perkov@sartura.hr>,
+        Robert Marko <robert.marko@sartura.hr>
+Subject: Re: [PATCH v2 08/21] dt-bindings: nvmem: Fix spelling mistake
+ "platforn" -> "platform"
+Message-ID: <20230308150721.59ea37a7@xps-13>
+In-Reply-To: <167823407854.511949.8644806672046927604.robh@kernel.org>
+References: <20230307165359.225361-1-miquel.raynal@bootlin.com>
+        <20230307165359.225361-9-miquel.raynal@bootlin.com>
+        <167823407854.511949.8644806672046927604.robh@kernel.org>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <6406344a.050a0220.693b3.6689@mx.google.com>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 06 Mar 2023, Christian Marangi wrote:
+Hi Rob,
 
-> On Wed, Feb 22, 2023 at 03:02:04PM +0000, Lee Jones wrote:
-> > On Fri, 17 Feb 2023, Andrew Lunn wrote:
-> >
-> > > On Thu, Feb 16, 2023 at 02:32:17AM +0100, Christian Marangi wrote:
-> > > > This is another attempt on adding this feature on LEDs, hoping this is
-> > > > the right time and someone finally notice this.
-> > >
-> > > Hi Christian
-> > >
-> > > Thanks for keeping working on this.
-> > >
-> > > I want to review it, and maybe implement LED support in a PHY
-> > > driver. But i'm busy with reworking EEE at the moment.
-> > >
-> > > The merge window is about to open, so patches are not going to be
-> > > accepted for the next two weeks. So i will take a look within that
-> > > time and give you feedback.
-> >
-> > Thanks Andrew.  If Pavel is still unavailable to conduct reviews, I'm
-> > going to need all the help I can get with complex submissions such as
-> > these.
-> >
->
-> Hi Lee,
-> thanks for stepping in. Just wanted to tell you I got some message with
-> Andrew to make this thing less problematic and to dry/make it more
-> review friendly.
->
-> We decided on pushing this in 3 step:
-> 1. Propose most basic things for some switch and some PHY. (brightness
-> and blink_set support only, already supported by LED core)
-> 2. A small series that should be just a cleanup for the netdev trigger
-> 3. Support for hw_control in the most possible clean and way with small
-> patch to they are not hard to track and understand the concept of this
-> feature.
->
-> I'm starting with the step 1 and sending some of my patch and Andrew
-> patch to add basic support and I will add you and LED mailing list in
-> Cc.
+robh@kernel.org wrote on Tue, 7 Mar 2023 18:08:54 -0600:
 
-Sounds like a plan.  Thank you both.
+> On Tue, 07 Mar 2023 17:53:46 +0100, Miquel Raynal wrote:
+> > From: Colin Ian King <colin.i.king@gmail.com>
+> >=20
+> > There is a spelling mistake in platforn-name. Fix it.
+> >=20
+> > Signed-off-by: Colin Ian King <colin.i.king@gmail.com>
+> > Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
+> > ---
+> >  .../devicetree/bindings/nvmem/layouts/onie,tlv-layout.yaml      | 2 +-
+> >  1 file changed, 1 insertion(+), 1 deletion(-)
+> >  =20
+>=20
+>=20
+> Please add Acked-by/Reviewed-by tags when posting new versions. However,
+> there's no need to repost patches *only* to add the tags. The upstream
+> maintainer will do that for acks received on the version they apply.
+>=20
+> If a tag was not added on purpose, please state why and what changed.
+>=20
+> Missing tags:
+>=20
+> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-> Again thanks for starting checking this and feel free to ask any
-> question about this to me also privately, I'm very open to any help.
+I am absolutely sorry for dropping that tag, I took the patches from
+the mailing list directly after an e-mail listing a set of patches that
+have been dropped right before the merge window. I did not remember that
+Ack when I performed that painful cherry-pick.
 
---
-Lee Jones [李琼斯]
+Thanks,
+Miqu=C3=A8l
