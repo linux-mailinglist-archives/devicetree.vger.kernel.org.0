@@ -2,65 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D331B6B0A7B
-	for <lists+devicetree@lfdr.de>; Wed,  8 Mar 2023 15:08:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4957B6B0A82
+	for <lists+devicetree@lfdr.de>; Wed,  8 Mar 2023 15:08:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231969AbjCHOIH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Mar 2023 09:08:07 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48760 "EHLO
+        id S231971AbjCHOIL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Mar 2023 09:08:11 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53186 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231971AbjCHOHt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Mar 2023 09:07:49 -0500
-Received: from mail-ot1-f46.google.com (mail-ot1-f46.google.com [209.85.210.46])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9ECA430B25;
-        Wed,  8 Mar 2023 06:06:24 -0800 (PST)
-Received: by mail-ot1-f46.google.com with SMTP id 32-20020a9d0323000000b0069426a71d79so9005640otv.10;
-        Wed, 08 Mar 2023 06:06:24 -0800 (PST)
+        with ESMTP id S232128AbjCHOHv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Mar 2023 09:07:51 -0500
+Received: from mail-oi1-f175.google.com (mail-oi1-f175.google.com [209.85.167.175])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6265C4DE35;
+        Wed,  8 Mar 2023 06:06:30 -0800 (PST)
+Received: by mail-oi1-f175.google.com with SMTP id q15so12199279oiw.11;
+        Wed, 08 Mar 2023 06:06:30 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678284384;
+        d=1e100.net; s=20210112; t=1678284389;
         h=date:subject:message-id:references:in-reply-to:cc:to:from
          :mime-version:content-transfer-encoding:x-gm-message-state:from:to
          :cc:subject:date:message-id:reply-to;
-        bh=qsP4LH+jP/I53IC0MPmff0Hsl8QZENzWh0+pWXfTco4=;
-        b=EJX8z89ngMLKnLjLrr+O38I9MG7mbYVlghmDgUOFNcyNcBFCwmAjYFU1/+aO5BZYIn
-         kKDD3NA9IucEgi8km3cQn0orBSuA+YpWMNe9zMqx2yQ1dlYZ2S508t/9JW1BiQ8MiKtm
-         ySPLMAN13zAypL25QlsngBXl1nO5r9JeKkTa14+dd8IQdAG9N3ipCpUJkPtA/vm+QmxF
-         KRfV2OVRp4DmLq32hrKW2GdGg0sElpRbiqthj6EdUZLfh3yS9p3/NCy5CxNBtBlSqq3I
-         4k+Xj4TvJTTCFHtj2aTWfLe71gAyU3zZs9eUUpIY47rgdbf2Y1yz3p9kUaRa6aU/RDgN
-         VI0g==
-X-Gm-Message-State: AO0yUKWXG/YfFGpk0ubmYtGQRXJH5Rxyh70YzdO72sX615mV18FYy6yK
-        RchTjvOQ+ClSwd44ryDwcA==
-X-Google-Smtp-Source: AK7set+Zbw7EyeuNPMCkpj6IQPnLXaNQIQOMlGUW7lXZ4HwtW5PLAJ2eBzxT4rkdpmbwwGgjfgVofQ==
-X-Received: by 2002:a05:6830:24b6:b0:68b:dcbe:d0af with SMTP id v22-20020a05683024b600b0068bdcbed0afmr8794679ots.2.1678284383790;
-        Wed, 08 Mar 2023 06:06:23 -0800 (PST)
+        bh=46ifXtx7H5qHUf/TrPJ9mIvLhusVn1artVDZ/aEfyqY=;
+        b=KWFUyO0nioE5dQ7vHHl//5hg/neJ0gcA6fLP4BsYkFKL2k7ukG2RASWWdjPOsxrKrb
+         oCvayFtAzWC++0SJnFA03XE7HxUpkx9ti4QJb/ARvO9rGUhjgsiHxZi5aYZYYoHksRvy
+         R/FEi8Np8/k+ZU8J7lCV3BFy5VC07qMALGgjQt9zL0Wm/MUJWlqAZLi4XDEGQzqHvKJp
+         S8GipnhT/M871QNNjW2aIwfG2fOx9VPcMX0IAVVk1TzNoi5LDUSuynX0yiZpgvg2+uR/
+         CYNIFYb63AYYK3R4fOYAoqflFFEsEEEG9b8i4uKxbpKFU0SwXtC4VgNkthRttQE2bCS4
+         QTng==
+X-Gm-Message-State: AO0yUKU4KxJIrT8bHxWBiyuSxvhyB4JIQCdnxMMzKBmW9MXU1WboS8pB
+        6FWsiX0LU4zfG3+H1VmraQ==
+X-Google-Smtp-Source: AK7set8gAyNjY8BkNBNF90LL+mmM7D2sm8zj5SI+095OPsrGhbzhNlHil1wu52ljYCwndnnZtwARTA==
+X-Received: by 2002:a05:6808:251:b0:384:637:a4f with SMTP id m17-20020a056808025100b0038406370a4fmr8319226oie.10.1678284389579;
+        Wed, 08 Mar 2023 06:06:29 -0800 (PST)
 Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id y22-20020a056830071600b0068d4dda3d61sm6434007ots.39.2023.03.08.06.06.21
+        by smtp.gmail.com with ESMTPSA id p13-20020a05680811cd00b0037d59e90a07sm6336512oiv.55.2023.03.08.06.06.27
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 08 Mar 2023 06:06:22 -0800 (PST)
-Received: (nullmailer pid 2666443 invoked by uid 1000);
+        Wed, 08 Mar 2023 06:06:28 -0800 (PST)
+Received: (nullmailer pid 2666447 invoked by uid 1000);
         Wed, 08 Mar 2023 14:06:21 -0000
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 MIME-Version: 1.0
 From:   Rob Herring <robh@kernel.org>
-To:     Yinbo Zhu <zhuyinbo@loongson.cn>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Liu Peibao <liupeibao@loongson.cn>, devicetree@vger.kernel.org,
-        linux-spi@vger.kernel.org, linux-kernel@vger.kernel.org,
-        loongson-kernel@lists.loongnix.cn, Mark Brown <broonie@kernel.org>,
-        Jianmin Lv <lvjianmin@loongson.cn>,
-        Rob Herring <robh+dt@kernel.org>, wanghongliang@loongson.cn
-In-Reply-To: <20230308025908.21491-2-zhuyinbo@loongson.cn>
-References: <20230308025908.21491-1-zhuyinbo@loongson.cn>
- <20230308025908.21491-2-zhuyinbo@loongson.cn>
-Message-Id: <167828359942.2612999.3798783623764270312.robh@kernel.org>
-Subject: Re: [PATCH v1 1/2] dt-bindings: spi: add loongson spi
+To:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+Cc:     marek.vasut+renesas@gmail.com, lpieralisi@kernel.org,
+        jingoohan1@gmail.com, linux-renesas-soc@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-pci@vger.kernel.org,
+        bhelgaas@google.com, Sergey.Semin@baikalelectronics.ru,
+        kw@linux.com, robh+dt@kernel.org, gustavo.pimentel@synopsys.com
+In-Reply-To: <20230308082352.491561-5-yoshihiro.shimoda.uh@renesas.com>
+References: <20230308082352.491561-1-yoshihiro.shimoda.uh@renesas.com>
+ <20230308082352.491561-5-yoshihiro.shimoda.uh@renesas.com>
+Message-Id: <167828360013.2613033.9597953469083757730.robh@kernel.org>
+Subject: Re: [PATCH v10 04/12] dt-bindings: PCI: renesas: Add R-Car Gen4
+ PCIe Endpoint
 Date:   Wed, 08 Mar 2023 08:06:21 -0600
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=no
-        autolearn_force=no version=3.4.6
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=no autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -68,16 +68,16 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
-On Wed, 08 Mar 2023 10:59:07 +0800, Yinbo Zhu wrote:
-> Add the Loongson platform spi binding with DT schema format using
-> json-schema.
+On Wed, 08 Mar 2023 17:23:44 +0900, Yoshihiro Shimoda wrote:
+> Document bindings for Renesas R-Car Gen4 and R-Car S4-8 (R8A779F0)
+> PCIe endpoint module.
 > 
-> Signed-off-by: Yinbo Zhu <zhuyinbo@loongson.cn>
+> Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+> Reviewed-by: Rob Herring <robh@kernel.org>
 > ---
->  .../bindings/spi/loongson,ls-spi.yaml         | 47 +++++++++++++++++++
->  MAINTAINERS                                   |  6 +++
->  2 files changed, 53 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/spi/loongson,ls-spi.yaml
+>  .../bindings/pci/rcar-gen4-pci-ep.yaml        | 95 +++++++++++++++++++
+>  1 file changed, 95 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/pci/rcar-gen4-pci-ep.yaml
 > 
 
 My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
@@ -86,15 +86,12 @@ on your patch (DT_CHECKER_FLAGS is new in v5.13):
 yamllint warnings/errors:
 
 dtschema/dtc warnings/errors:
-Error: Documentation/devicetree/bindings/spi/loongson,ls-spi.example.dts:22.28-29 syntax error
-FATAL ERROR: Unable to parse input tree
-make[1]: *** [scripts/Makefile.lib:419: Documentation/devicetree/bindings/spi/loongson,ls-spi.example.dtb] Error 1
-make[1]: *** Waiting for unfinished jobs....
-make: *** [Makefile:1512: dt_binding_check] Error 2
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pci/rcar-gen4-pci-ep.example.dtb: pcie-ep@e65d0000: reg-names:2: 'app' was expected
+	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pci/rcar-gen4-pci-ep.yaml
 
 doc reference errors (make refcheckdocs):
 
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20230308025908.21491-2-zhuyinbo@loongson.cn
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20230308082352.491561-5-yoshihiro.shimoda.uh@renesas.com
 
 The base for the series is generally the latest rc1. A different dependency
 should be noted in *this* patch.
