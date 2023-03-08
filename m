@@ -2,197 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 653C36B09DD
-	for <lists+devicetree@lfdr.de>; Wed,  8 Mar 2023 14:51:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E96A16B09FB
+	for <lists+devicetree@lfdr.de>; Wed,  8 Mar 2023 14:53:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231253AbjCHNvw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Mar 2023 08:51:52 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51574 "EHLO
+        id S231710AbjCHNxl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Mar 2023 08:53:41 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54832 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231416AbjCHNvj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Mar 2023 08:51:39 -0500
-Received: from mail-io1-xd34.google.com (mail-io1-xd34.google.com [IPv6:2607:f8b0:4864:20::d34])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 018BABE5D1
-        for <devicetree@vger.kernel.org>; Wed,  8 Mar 2023 05:51:30 -0800 (PST)
-Received: by mail-io1-xd34.google.com with SMTP id t129so6771043iof.12
-        for <devicetree@vger.kernel.org>; Wed, 08 Mar 2023 05:51:30 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1678283490;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=O2ScB8i7PrG39DRTErC7kF+bBBVGcw9XNhNSA0VqouI=;
-        b=imkqhCCosUh66ifIsRQPbANxZXdmJpEwCj2rF7iSVxboMb7R9EE2AFrdMjLL16Y/Kw
-         ooGlAR2bIPsm2FI/6N4VeIN+MSDg7j79K5/3wNTcuCOl8Gx8dM0twquGzlpwCcPl1klq
-         NicNIX+rKLK1R+g/ECbCTeA/17uvvBo5G2SJU=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678283490;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=O2ScB8i7PrG39DRTErC7kF+bBBVGcw9XNhNSA0VqouI=;
-        b=PTbUQQjkRMHXOuaEQd212dVYN8mxt+qkWZlvh0yz1NUP8g0zEh49WoWqX9IWiwP6NV
-         Tjhf+R3Un6Vs2k4uQ7dKpItxqwebLurKAcvhrVsufJJqnsFZj/HhNhpzfYgyUct7w/XQ
-         W9Oa9tWwsAzuKspOqXubRUMWTIqwaCLtbniZwv+vpLFj9AEGkFdu/JxArEnPUNs3Mp/Q
-         vY/wigZMLD4TzQzs4IAHkqhnwECqUoecdzOOx1i02tnpB3S/tCjdy3cvJEcSOpLDY3R6
-         OiUQ5BI5UCVQ476ZNUHR7a5Y9SlMUgBfLvvw3cGefBJmbTsrHI+U+c/jG1nBKbt4aoMJ
-         SvRA==
-X-Gm-Message-State: AO0yUKWaKnjrdgnqzLLNUzuVQG+XqnOciVQ+6ImQPLIR1p5L14SrQxy8
-        Vmi2MepOfBBBZa31RCTqr8co6I9PfAKh5HjBSOTyWg==
-X-Google-Smtp-Source: AK7set8VM1H7ES454XkYoww9M66+Aop3lkGBIArzYN2bvLHb4IHDHyckUz3PiQcAOs/tKbPekPyLMzsgcHMc8Vkk8wo=
-X-Received: by 2002:a6b:dc0c:0:b0:743:5fb0:2ca8 with SMTP id
- s12-20020a6bdc0c000000b007435fb02ca8mr8414193ioc.4.1678283490142; Wed, 08 Mar
- 2023 05:51:30 -0800 (PST)
+        with ESMTP id S231704AbjCHNxK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Mar 2023 08:53:10 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 945914C6F3;
+        Wed,  8 Mar 2023 05:53:07 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 17E26B81CE5;
+        Wed,  8 Mar 2023 13:53:06 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 42A86C4339B;
+        Wed,  8 Mar 2023 13:53:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1678283584;
+        bh=z6Fl1IZWcy0KRIvlPtXRkINhMxXIEpmPhQork/dwI7o=;
+        h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+        b=KrSLM8/PvZvSU1n/mv6jFpQS9K/SJmnvHaHdNiunwWuFgzyJcTLms0X013zKKsdBu
+         kxJPfvAmEPgXos1p4UTT4kru4dVakOD49+2RgYEySYdSfMm0pKNITskxwBEw6OeIdq
+         IYCZpNfaVsFwbpGgEavFc8QVCTvcvW8bLbIvzLm2eYdX68jh724CBLL3DsbtE2Bi48
+         lL3FCfXOfyg9+ebMP7B/lzKTqbxmeMzYFF8TQJG8y3RxhHaoJCtwAYgkQu8VMA6fWI
+         W3rWg4oIDf29JHEayMw9yHYZienmAUDP6CkdlXbAzqDHWhYhMlC95xu3pC9EsoZ1wG
+         /QaZNJpTXXsvQ==
+From:   Mark Brown <broonie@kernel.org>
+To:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        cy_huang@richtek.com
+Cc:     lgirdwood@gmail.com, u0084500@gmail.com,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+In-Reply-To: <1678063358-18128-1-git-send-email-cy_huang@richtek.com>
+References: <1678063358-18128-1-git-send-email-cy_huang@richtek.com>
+Subject: Re: [PATCH v3 1/2] dt-bindings: regulator: Add Richtek RT5739
+Message-Id: <167828358298.32113.17014444602601238459.b4-ty@kernel.org>
+Date:   Wed, 08 Mar 2023 13:53:02 +0000
 MIME-Version: 1.0
-References: <20230303143350.815623-1-treapking@chromium.org>
- <20230303143350.815623-11-treapking@chromium.org> <ZAXWbkq4oLfrWUR7@smile.fi.intel.com>
-In-Reply-To: <ZAXWbkq4oLfrWUR7@smile.fi.intel.com>
-From:   Pin-yen Lin <treapking@chromium.org>
-Date:   Wed, 8 Mar 2023 21:51:19 +0800
-Message-ID: <CAEXTbpe=e1iA7cnzuTtcsyFxpG37YCWSK_SqZb2A8hxcyCnJBg@mail.gmail.com>
-Subject: Re: [PATCH v13 10/10] drm/bridge: it6505: Register Type C mode switches
-To:     Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Cc:     Andrzej Hajda <andrzej.hajda@intel.com>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Robert Foss <rfoss@kernel.org>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Jonas Karlman <jonas@kwiboo.se>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Daniel Scally <djrscally@gmail.com>,
-        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        "Rafael J . Wysocki" <rafael@kernel.org>,
-        Prashant Malani <pmalani@chromium.org>,
-        Benson Leung <bleung@chromium.org>,
-        Guenter Roeck <groeck@chromium.org>,
-        Xin Ji <xji@analogixsemi.com>,
-        Javier Martinez Canillas <javierm@redhat.com>,
-        Lyude Paul <lyude@redhat.com>, linux-kernel@vger.kernel.org,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        chrome-platform@lists.linux.dev,
-        =?UTF-8?B?TsOtY29sYXMgRiAuIFIgLiBBIC4gUHJhZG8=?= 
-        <nfraprado@collabora.com>, Marek Vasut <marex@denx.de>,
-        Hsin-Yi Wang <hsinyi@chromium.org>, devicetree@vger.kernel.org,
-        Allen Chen <allen.chen@ite.com.tw>,
-        dri-devel@lists.freedesktop.org,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        Stephen Boyd <swboyd@chromium.org>, linux-acpi@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.13-dev-bd1bf
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Andy,
+On Mon, 06 Mar 2023 08:42:37 +0800, cy_huang@richtek.com wrote:
+> Add the binding document for Richtek RT5739.
+> 
+> 
 
-Thanks for the review.
+Applied to
 
-On Mon, Mar 6, 2023 at 8:03=E2=80=AFPM Andy Shevchenko
-<andriy.shevchenko@linux.intel.com> wrote:
->
-> On Fri, Mar 03, 2023 at 10:33:50PM +0800, Pin-yen Lin wrote:
-> > Register USB Type-C mode switches when the "mode-switch" property and
-> > relevant port are available in Device Tree. Configure the "lane_swap"
-> > state based on the entered alternate mode for a specific Type-C
-> > connector, which ends up updating the lane swap registers of the it6505
-> > chip.
->
-> ...
->
-> > +     it6505->port_data =3D devm_kcalloc(dev, switch_desc->num_typec_sw=
-itches,
-> > +                                      sizeof(struct it6505_typec_port_=
-data),
-> > +                                      GFP_KERNEL);
->
-> > +
->
-> Same, no need for a blank line here.
->
-I'll fix this in the next version.
-> > +     if (!it6505->port_data) {
-> > +             ret =3D -ENOMEM;
-> > +             goto unregister_mux;
-> > +     }
->
-> ...
->
-> > +             it6505->port_data[i].lane_swap =3D (dp_lanes[0] / 2 =3D=
-=3D 1);
->
-> ' % 2 =3D=3D 0' ?
->
-Per another patch, I'll update this into `< 2`
-> ...
->
-> Wouldn't be better to have
->
->         ret =3D PTR_ERR_OR_ZERO(extcon);
->
-> here and amend the following accordingly?
->
-> >       if (PTR_ERR(extcon) =3D=3D -EPROBE_DEFER)
-> >               return -EPROBE_DEFER;
-> >       if (IS_ERR(extcon)) {
-> > -             dev_err(dev, "can not get extcon device!");
-> > -             return PTR_ERR(extcon);
-> > +             if (PTR_ERR(extcon) !=3D -ENODEV)
-> > +                     dev_warn(dev, "Cannot get extcon device: %ld\n",
-> > +                              PTR_ERR(extcon));
-> > +             it6505->extcon =3D NULL;
-> > +     } else {
-> > +             it6505->extcon =3D extcon;
-> >       }
-> >
-> > -     it6505->extcon =3D extcon;
-> > +     init_completion(&it6505->mux_register);
-> > +     ret =3D it6505_register_typec_switches(dev, it6505);
-> > +     if (ret) {
-> > +             if (ret !=3D -ENODEV)
-> > +                     dev_warn(dev, "Didn't register Type-C switches, e=
-rr: %d\n",
-> > +                              ret);
-> > +             if (!it6505->extcon) {
-> > +                     dev_err(dev, "Both extcon and typec-switch are no=
-t registered.\n");
-> > +                     return -EINVAL;
-> > +             }
-> > +     }
->
->
-> Perhaps
->
->         if (ret !=3D -ENODEV)
->                 dev_warn(dev, "Didn't register Type-C switches, err: %d\n=
-", ret);
->
->         if (ret && !it6505->extcon) {
->                 dev_err(dev, "Both extcon and typec-switch are not regist=
-ered.\n");
->                 return ret;
->         }
->
-> ?
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/regulator.git for-next
 
+Thanks!
 
-Thanks for the suggestion! I'll update this in v14.
->
-> --
-> With Best Regards,
-> Andy Shevchenko
->
->
-Best regards,
-Pin-yen
+[1/2] dt-bindings: regulator: Add Richtek RT5739
+      commit: 2e238605a9d631fc8b9b130ba79cd54f2a22df10
+[2/2] regulator: Add support for Richtek RT5739 voltage regulator
+      commit: 4536f3b93a3373cac21911103cbaa8c4c2932c38
+
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+Thanks,
+Mark
+
