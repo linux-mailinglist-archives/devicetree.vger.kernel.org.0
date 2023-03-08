@@ -2,52 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 884246B1629
-	for <lists+devicetree@lfdr.de>; Thu,  9 Mar 2023 00:09:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 862FA6B162C
+	for <lists+devicetree@lfdr.de>; Thu,  9 Mar 2023 00:09:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230036AbjCHXJg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Mar 2023 18:09:36 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52128 "EHLO
+        id S229886AbjCHXJh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Mar 2023 18:09:37 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52134 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229623AbjCHXJf (ORCPT
+        with ESMTP id S230007AbjCHXJf (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Wed, 8 Mar 2023 18:09:35 -0500
-Received: from mail-oa1-x33.google.com (mail-oa1-x33.google.com [IPv6:2001:4860:4864:20::33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3750962B43
-        for <devicetree@vger.kernel.org>; Wed,  8 Mar 2023 15:09:33 -0800 (PST)
-Received: by mail-oa1-x33.google.com with SMTP id 586e51a60fabf-1767a208b30so506275fac.2
-        for <devicetree@vger.kernel.org>; Wed, 08 Mar 2023 15:09:33 -0800 (PST)
+Received: from mail-oa1-x32.google.com (mail-oa1-x32.google.com [IPv6:2001:4860:4864:20::32])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 61F4F637E6
+        for <devicetree@vger.kernel.org>; Wed,  8 Mar 2023 15:09:34 -0800 (PST)
+Received: by mail-oa1-x32.google.com with SMTP id 586e51a60fabf-176e43eb199so476285fac.7
+        for <devicetree@vger.kernel.org>; Wed, 08 Mar 2023 15:09:34 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1678316972;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=BSUy9pqri34RafzXpduDuTiVpZ9W29iQLOdXi9MBbjc=;
-        b=W8Fgv56006OYf+0vMpu9nCC7xSYySTNCf0Cq58RxoqFSqWBy3WHUMo0PhtBQmLY2Qh
-         JBGa+5hpuL9dZLX2aVOx8lBr+srtTvlGXu/f5ZhjYUzyfKmBBoOY6kENHqWDKBYixMr8
-         FwNqVkzrAsR9lMFG0iRbN1LRBTVvPDsVGalUcxtRqIxTbNSDYNy3TW30lH5qZ6LvztCE
-         F0Y3hoAAkI8Sb108QzNayVfT7Q4aN+ra9IjCZRR4WrsD1VUETaceIp4CHoa3OyrIBt1i
-         ucAL1bOZqlOnn/rLQ78+Ah6f1T48YKRJ5BG5y4Sf0bsGSjpqhaBNSD36Aa4buBlYA1O6
-         X6MA==
+        d=linaro.org; s=google; t=1678316973;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=+EZCn0NdbTVrvM23U+e5p/n9AtAvNh9rjheRTu832dQ=;
+        b=U2CVKkl/ZZuBfeI0jW1ZRVsvfuNzbJ2tfTxcMSf7yfLuNGGUEAos2v9A5+76sjUOMn
+         bLfP0R9A21kYBAMAsP2q5NrLkd1Nk0j12aoP0R8SNFbxCSz2Xhn/4q2Iqw6Bq0eczdXq
+         CFlHSvrKbNpb6us/ow+CgWfcjNJ8+osRuuUCUQOq+LPXVOmIsJDEjREmDvyYRk2eIKVO
+         7pE0gWM/6/bcO2dUaBKUPejJWb3RX2lVSmHa2S4pTQ0apLSnx+xNghPARTX4sp2f+utz
+         D98WBVxCB5evOgVqd/CvsrirOv7krNr2sCtPZGzZjXhWUQrYY4tOESrS4yFHpCr/86H4
+         psaQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678316972;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=BSUy9pqri34RafzXpduDuTiVpZ9W29iQLOdXi9MBbjc=;
-        b=Fm5nGVK4mGxV2q1vaqWqqZ9i+8l2p4eV9u90nlbTpBKW6NooBvUKttt3f5Lp6LNO55
-         yH06dgAkjFxvLGh1zzmMHKbJgctgSC5H8xHQBkH7PAY81/MFZ9KBC9UQlXNxyU2Pg4LN
-         FfsQM8nnBnDB0PBnRXfhw9o2J7rTcjKNi21ZBKAp8CISGNdWyOx/tgmBNEsg3uk+vlnM
-         w0b4cAt2Z1ixhFVfE0C5/cb9YBgLKkWNpU6iu4QH2Hq65TTbgNF5PjMx/4z4KjxvKs6G
-         HGIN13BSvVu3y+uaHX2D70vsH9CCbSFgUf31gkZVP1c0UCIWzHdH975+7KQ3+WrvzH92
-         tKHA==
-X-Gm-Message-State: AO0yUKVCeODKkEBjdZIwO3uh9Hi/NjAafHt+EcHjVFIc3NiimipJ7Giz
-        flkvDG5UdP5/AL1YtlUb5Udbfg==
-X-Google-Smtp-Source: AK7set8N1gB2a3Ev0DG0ifVpKRpIm2ymT29/NKvYWTyo6j5FanN5C+/s4trt5ujy9fqa+Tgwue1MVw==
-X-Received: by 2002:a05:6871:6a0:b0:172:55c5:780 with SMTP id l32-20020a05687106a000b0017255c50780mr12841967oao.23.1678316972450;
-        Wed, 08 Mar 2023 15:09:32 -0800 (PST)
+        d=1e100.net; s=20210112; t=1678316973;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=+EZCn0NdbTVrvM23U+e5p/n9AtAvNh9rjheRTu832dQ=;
+        b=UbYPVvbPmb5NjPPZT86IObQNdk5Q8fno9Qcti6Ld+o03yGZjFdxvuLkaoit0GA+Ls7
+         +vJeclgMHZyXoalDluOchvVXGSJC59n2qrgxN4w6Kg08FEFffq4vqW4v5TTLDFr1kZAm
+         g/aMWQb73/qEhovDNa5r59+AxIq30LEsKIJuQVgsB+2Y9HonmwfBeuSlW0rNAOBhX8Vj
+         Q/ZYrYBK4z4xq04MUrJ90I1Fxi/GORRDat2RNKQ7jQcY4NmR28NyysQTy7yY1q1MJMEC
+         kmV7mIiNj1Kux/b84WiYm5DpTtERyd/BGuxvHUi8t6oOuMVfFtimHYpMoVbzXPCbC1PQ
+         FBDA==
+X-Gm-Message-State: AO0yUKUQ5Fp3yA0el38eLMoOqVmPKBIQ+jiE5yxXb8GP6K378fZNHpwZ
+        JBpAnMW87lGdpV2tZZ8mJONllg==
+X-Google-Smtp-Source: AK7set8WrlFPXvBp65SgkmLYgtk/hwpjy3GwLMvFVTawJ5bKZVU6MMUVfwzfFfbn6b215ppGtxMHFw==
+X-Received: by 2002:a05:6870:a786:b0:172:9ad0:8d5 with SMTP id x6-20020a056870a78600b001729ad008d5mr11331196oao.35.1678316973745;
+        Wed, 08 Mar 2023 15:09:33 -0800 (PST)
 Received: from localhost ([136.49.140.41])
-        by smtp.gmail.com with ESMTPSA id h21-20020a056870d25500b0016e9308e17bsm6704527oac.52.2023.03.08.15.09.31
+        by smtp.gmail.com with ESMTPSA id w16-20020a056870431000b00172428894e0sm6633286oah.28.2023.03.08.15.09.33
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 08 Mar 2023 15:09:32 -0800 (PST)
+        Wed, 08 Mar 2023 15:09:33 -0800 (PST)
 From:   Sam Protsenko <semen.protsenko@linaro.org>
 To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
         Rob Herring <robh+dt@kernel.org>
@@ -59,10 +60,12 @@ Cc:     Alim Akhtar <alim.akhtar@samsung.com>,
         linux-arm-kernel@lists.infradead.org,
         linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
-Subject: [PATCH 0/6] soc: samsung: pm_domains: Add Exynos850 support
-Date:   Wed,  8 Mar 2023 17:09:25 -0600
-Message-Id: <20230308230931.27261-1-semen.protsenko@linaro.org>
+Subject: [PATCH 1/6] dt-bindings: power: pd-samsung: Add Exynos850 support
+Date:   Wed,  8 Mar 2023 17:09:26 -0600
+Message-Id: <20230308230931.27261-2-semen.protsenko@linaro.org>
 X-Mailer: git-send-email 2.39.2
+In-Reply-To: <20230308230931.27261-1-semen.protsenko@linaro.org>
+References: <20230308230931.27261-1-semen.protsenko@linaro.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -75,52 +78,65 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Power Domains in Exynos850 are not really different from other Exynos
-platforms. Enabling Exynos850 support in the PD driver is really just a
-matter of adding:
+Document the compatible string for Exynos850 power domains controller.
+Also add power domain indices which can be used in "samsung,pd-index"
+property to specify a particular power domain in the device tree.
 
-    static const struct exynos_pm_domain_config exynos850_cfg = {
-        .local_pwr_cfg = 0x1,
-    };
-
-to the driver. But in the face of recent developments, e.g. this patch:
-
-    arm64: dts: exynos: move MIPI phy to PMU node in Exynos5433
-
-it looked logical to rework the PD driver a bit to support its nesting
-under the PMU node, while adding Exynos850 support to it. Initially I
-only wanted to add syscon regmap support via some dedicated property,
-but pulling PD nodes under the PMU syscon looks like more correct way.
-
-This patch series provides next changes:
-
-  1. Make it possible for PD nodes to be children of PMU
-  2. Add Exynos850 support to PD driver
-  3. A bit of refactoring in PD driver
-  4. Corresponding changes to dt-bindings
-
-Dependencies inside of the series:
-
-  - patch #2 depends on patch #1
-  - patch #6 depends on patch #1
-  - patches 3,4,5,6 should be applied in the same order as in the series
-
-Sam Protsenko (6):
-  dt-bindings: power: pd-samsung: Add Exynos850 support
-  dt-bindings: power: pd-samsung: Allow pd nodes to be children of PMU
-  soc: samsung: pm_domains: Extract DT handling into a separate function
-  soc: samsung: pm_domains: Implement proper I/O operations
-  soc: samsung: pm_domains: Allow PD to be a child of PMU syscon
-  soc: samsung: pm_domains: Add Exynos850 support
-
- .../devicetree/bindings/power/pd-samsung.yaml |  12 +-
- MAINTAINERS                                   |   1 +
- drivers/soc/samsung/Kconfig                   |   1 +
- drivers/soc/samsung/pm_domains.c              | 132 +++++++++++++++---
- .../power/samsung,exynos850-power.h           |  17 +++
- 5 files changed, 142 insertions(+), 21 deletions(-)
+Signed-off-by: Sam Protsenko <semen.protsenko@linaro.org>
+---
+ .../devicetree/bindings/power/pd-samsung.yaml   |  1 +
+ MAINTAINERS                                     |  1 +
+ .../dt-bindings/power/samsung,exynos850-power.h | 17 +++++++++++++++++
+ 3 files changed, 19 insertions(+)
  create mode 100644 include/dt-bindings/power/samsung,exynos850-power.h
 
+diff --git a/Documentation/devicetree/bindings/power/pd-samsung.yaml b/Documentation/devicetree/bindings/power/pd-samsung.yaml
+index 9c2c51133457..a353a705292c 100644
+--- a/Documentation/devicetree/bindings/power/pd-samsung.yaml
++++ b/Documentation/devicetree/bindings/power/pd-samsung.yaml
+@@ -21,6 +21,7 @@ properties:
+     enum:
+       - samsung,exynos4210-pd
+       - samsung,exynos5433-pd
++      - samsung,exynos850-pd
+ 
+   reg:
+     maxItems: 1
+diff --git a/MAINTAINERS b/MAINTAINERS
+index 8d5bc223f305..53e11e48639c 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -2720,6 +2720,7 @@ F:	drivers/pwm/pwm-samsung.c
+ F:	drivers/soc/samsung/
+ F:	drivers/tty/serial/samsung*
+ F:	include/clocksource/samsung_pwm.h
++F:	include/dt-bindings/power/samsung,*
+ F:	include/linux/platform_data/*s3c*
+ F:	include/linux/serial_s3c.h
+ F:	include/linux/soc/samsung/
+diff --git a/include/dt-bindings/power/samsung,exynos850-power.h b/include/dt-bindings/power/samsung,exynos850-power.h
+new file mode 100644
+index 000000000000..a8d877b5515a
+--- /dev/null
++++ b/include/dt-bindings/power/samsung,exynos850-power.h
+@@ -0,0 +1,17 @@
++/* SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) */
++/*
++ * Copyright (c) 2023 Linaro Ltd.
++ * Author: Sam Protsenko <semen.protsenko@linaro.org>
++ */
++
++#ifndef _DT_BINDINGS_POWER_EXYNOS850_POWER_H
++#define _DT_BINDINGS_POWER_EXYNOS850_POWER_H
++
++#define EXYNOS850_PD_HSI		0
++#define EXYNOS850_PD_G3D		1
++#define EXYNOS850_PD_MFCMSCL		2
++#define EXYNOS850_PD_DPU		3
++#define EXYNOS850_PD_AUD		4
++#define EXYNOS850_PD_IS			5
++
++#endif /* _DT_BINDINGS_POWER_EXYNOS850_POWER_H */
 -- 
 2.39.2
 
