@@ -2,165 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0D4A76B01DB
-	for <lists+devicetree@lfdr.de>; Wed,  8 Mar 2023 09:44:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2D3BA6B01E1
+	for <lists+devicetree@lfdr.de>; Wed,  8 Mar 2023 09:45:08 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229999AbjCHIon (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Mar 2023 03:44:43 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53786 "EHLO
+        id S229885AbjCHIpE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Mar 2023 03:45:04 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53934 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229851AbjCHIok (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Mar 2023 03:44:40 -0500
-Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2C6219F067;
-        Wed,  8 Mar 2023 00:44:39 -0800 (PST)
-Received: by mail-ed1-x533.google.com with SMTP id ec29so31767239edb.6;
-        Wed, 08 Mar 2023 00:44:39 -0800 (PST)
+        with ESMTP id S230263AbjCHIov (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Mar 2023 03:44:51 -0500
+Received: from mail-ed1-x529.google.com (mail-ed1-x529.google.com [IPv6:2a00:1450:4864:20::529])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 39402A5916
+        for <devicetree@vger.kernel.org>; Wed,  8 Mar 2023 00:44:47 -0800 (PST)
+Received: by mail-ed1-x529.google.com with SMTP id x3so62515407edb.10
+        for <devicetree@vger.kernel.org>; Wed, 08 Mar 2023 00:44:47 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112; t=1678265077;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=bt0rP56ZVICJXZOyWcT1Og4PPdYTw7SSYjSP/fByF9w=;
-        b=q4jDMXjbnN11ZJAbkD1K3MPkAEmb7KJT9Syk3m40F8SthEU/wy5ivzobAFc7jLuLdn
-         Sp+76WjLsufxK8FxW+bqXlr59Us4r3k3qqRIkdxMaeuKQkYHbOP8PfvTxFgns4CYHR3T
-         w5SIXGD7hpHTE6oDLsSSMAn6oZj0pmOtcNboOUr2NAroAWYdDjgxGmd+KnI4WOj4zQyq
-         uHj1w4Y8orQ9y6T28/gMEZAq3SBdZeEKijZ3Qiiv0Zmd4X+w3zb/xGgK8oKgvwz4/Z30
-         VYb6S2UubuL1DicrTTsXYmYCS7TF8kagHYV1DwC/KlxEbqdRb6BV9Og8RX0vBOIcKM1m
-         bkvw==
+        d=linaro.org; s=google; t=1678265086;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=8X8oossssHZ/mYv0HHxeiQFRMY1H8SzjxfV4O0bYpxc=;
+        b=eOZ30U3mjKF/Cw9QM6xyMeQcI4S12Jzpe/WsVPpZSKlo9hSirDtP0v25PuRMKwY9SJ
+         F6Vxp/LKWQGTJF2re07vLGRbI/qR7axk59dnlw0TPiKhT1P/eMQfSGK5xPjN5t8boyKO
+         QNuMJR1NmoDaIkoaz+Fewxz3E6ilRLy3SF2qGOlobFHGNyoaWsOPTAAcOyXn8Fqvxz6+
+         ISpFkJxLz5zYNs1+n6uQmPdYkF8NX4ilxEoyILSYMTBCgLa2wlTgdquO3QW/dmwtyMBt
+         F6QBhj4MFNoAtQp3X2ZmNaHWJz9P8yN9NY3Cleu/L8jXGxkSAavgNzM8QJfuHg4TsyGg
+         GetQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678265077;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=bt0rP56ZVICJXZOyWcT1Og4PPdYTw7SSYjSP/fByF9w=;
-        b=i3eZLC4EyV1S1gd93D/47vKxE0Nffe5oNugDMOFDhIugtN2Ydsol+TjaDSzeuaOXHT
-         w42nIMHRjQJU3PrKdeQzyXdbvaYLYJhuVWkKc/fUbHLykM42+ATVPHVbgOjXOykn01qv
-         hVocWgKQXrAb6lBfF72Nur5bCZEdI7Ft31S0PJ9NxW2X09f19fLZDl+89WDvU4rj1/Zq
-         VszEWhlikDnS5FSNoMQ1zrtQh+Gp3gFQRa6w1olNwrvdt/iWILHexMGyulvMm2ZtNO0B
-         vyn8mdxQxTvGmp9UmiODY9MYx+uSsY4LciA94X5I5sYUbaYeDNw+k/KUEwF2ahH6KbUp
-         fdEA==
-X-Gm-Message-State: AO0yUKXKQankySWoL82fhbLiu2jM++0Swe0MIge8CPvTbTLQzIhedcx/
-        2WP87kugxTjUJ9HTIscFToE=
-X-Google-Smtp-Source: AK7set9w4xe0l2DA2T2YXSTNptqTRXa6rFYbyI3xApG9MdT2T3iw5Xg1Zl7QA4HyNMWshKpnVCy7iw==
-X-Received: by 2002:a17:906:b1cc:b0:8b1:7684:dfab with SMTP id bv12-20020a170906b1cc00b008b17684dfabmr19005757ejb.38.1678265077771;
-        Wed, 08 Mar 2023 00:44:37 -0800 (PST)
-Received: from xeon.. ([188.163.112.76])
-        by smtp.gmail.com with ESMTPSA id p8-20020a170906838800b008ee95ccfe06sm7163891ejx.119.2023.03.08.00.44.37
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 08 Mar 2023 00:44:37 -0800 (PST)
-From:   Svyatoslav Ryhel <clamor95@gmail.com>
-To:     Iskren Chernev <me@iskren.info>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Marek Szyprowski <m.szyprowski@samsung.com>,
-        Matheus Castello <matheus@castello.eng.br>,
-        Sebastian Reichel <sre@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Svyatoslav Ryhel <clamor95@gmail.com>
-Cc:     linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH v1 4/4] power: max17040: get thermal data from adc if available
-Date:   Wed,  8 Mar 2023 10:44:19 +0200
-Message-Id: <20230308084419.11934-5-clamor95@gmail.com>
-X-Mailer: git-send-email 2.37.2
-In-Reply-To: <20230308084419.11934-1-clamor95@gmail.com>
-References: <20230308084419.11934-1-clamor95@gmail.com>
+        d=1e100.net; s=20210112; t=1678265086;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=8X8oossssHZ/mYv0HHxeiQFRMY1H8SzjxfV4O0bYpxc=;
+        b=j/lU//FAEgHeQVuwieft0DC7li1JTgP/G7cbpcrnsY9TmhvvLV8Xa7kBnMJ58U9bzi
+         U4rUybmFOaKt3ctqQuKMynNALQkvur8R5KOmbUEknjWO1azoKtCGHVibsVM6Y/wuL/tl
+         ytl1arLuY6Cv+2oKEJp/OQooN1xYznfFaMebqM06HP0Qpsv+Io1CK4IrQ3wU/dmuFMY3
+         ZjPFmwmS4tYP+ODEA8oaChNIDKhH4JBC0C+mkE0IQ5RRZflnknYjyU0imz7S1gX+EJ8e
+         3MqX1agz/AAffDQ3JsnycppQgCfHps9lKxWBFYU//qYl4brY0j21KxHcKv2hiH0sApmH
+         k8aA==
+X-Gm-Message-State: AO0yUKXZyftP6BAfQLd1mesGt3qjzgz0GCS9btuD3IAhbUloIkEP/Zlj
+        ZBhdbRtidcfD628qX2oE+XnV7Q==
+X-Google-Smtp-Source: AK7set8/wsFI8ZE50pH5OXcMjKAp1LL2QuSi7azOjwKIJIm0TYE9nRCHhZVDF5Boa+jt+w5u3dpdIA==
+X-Received: by 2002:a17:906:948f:b0:8f6:c7cc:92ad with SMTP id t15-20020a170906948f00b008f6c7cc92admr19206592ejx.43.1678265086658;
+        Wed, 08 Mar 2023 00:44:46 -0800 (PST)
+Received: from ?IPV6:2a02:810d:15c0:828:bba:fbfa:8aec:a133? ([2a02:810d:15c0:828:bba:fbfa:8aec:a133])
+        by smtp.gmail.com with ESMTPSA id h9-20020a1709060f4900b008d2683e24c4sm7237416ejj.69.2023.03.08.00.44.45
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 08 Mar 2023 00:44:46 -0800 (PST)
+Message-ID: <d4405379-04dd-1bdb-b1a9-56a4621727d1@linaro.org>
+Date:   Wed, 8 Mar 2023 09:44:45 +0100
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.8.0
+Subject: Re: [PATCH 7/8] ARM: dts: imx6ull: Add chargebyte Tarragon support
+Content-Language: en-US
+To:     Stefan Wahren <stefan.wahren@i2se.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
+        Evgeniy Polyakov <zbr@ioremap.net>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>
+Cc:     linux-imx@nxp.com, Li Yang <leoyang.li@nxp.com>,
+        Denis Ciocca <denis.ciocca@st.com>, soc@kernel.org,
+        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        Stefan Wahren <stefan.wahren@chargebyte.com>
+References: <20230306172249.74003-1-stefan.wahren@i2se.com>
+ <20230306172249.74003-8-stefan.wahren@i2se.com>
+ <d77c2938-bcef-4586-77b5-1cb93b113eb5@linaro.org>
+ <a2a39419-86e9-2dff-644a-391248b51a0e@i2se.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <a2a39419-86e9-2dff-644a-391248b51a0e@i2se.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Since fuel gauge does not support thermal monitoring,
-some vendors may couple this fuel gauge with thermal/adc
-sensor to monitor battery cell exact temperature.
+On 07/03/2023 18:25, Stefan Wahren wrote:
+> Hi Krzysztof,
+> 
 
-Add this feature by adding optional iio thermal channel.
+>      From schema: 
+> /home/stefanw/mainline/Documentation/devicetree/bindings/serial/fsl-imx-uart.yaml
+> arch/arm/boot/dts/imx6ull-tarragon-master.dtb: 
+> /soc/bus@2200000/iomuxc-snvs@2290000: failed to match any schema with 
+> compatible: ['fsl,imx6ull-iomuxc-snvs']
+> arch/arm/boot/dts/imx6ull-tarragon-master.dtb: /pwm-fan: failed to match 
+> any schema with compatible: ['pwm-fan']
+> 
+> Can you please point me, what is wrong or did you refer just to the 
+> deprecated "label" property which doesn't throw a warning in my case?
+> 
+> Did i missed a parameter?
 
-Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
----
- drivers/power/supply/max17040_battery.c | 24 ++++++++++++++++++++++++
- 1 file changed, 24 insertions(+)
+No, you are right, this will pass the tests. I was pretty sure the regex
+for leds will fail here but it turns out it is very flexible and led can
+appear anywhere. Anyway the doc states that first form is preferred,
+(because it is preferred for all other cases) so: led-1, led-2, led-3
 
-diff --git a/drivers/power/supply/max17040_battery.c b/drivers/power/supply/max17040_battery.c
-index 6dfce7b1309e..8c743c26dc6e 100644
---- a/drivers/power/supply/max17040_battery.c
-+++ b/drivers/power/supply/max17040_battery.c
-@@ -18,6 +18,7 @@
- #include <linux/of_device.h>
- #include <linux/regmap.h>
- #include <linux/slab.h>
-+#include <linux/iio/consumer.h>
- 
- #define MAX17040_VCELL	0x02
- #define MAX17040_SOC	0x04
-@@ -143,6 +144,7 @@ struct max17040_chip {
- 	struct power_supply		*battery;
- 	struct power_supply_battery_info	*batt_info;
- 	struct chip_data		data;
-+	struct iio_channel		*channel_temp;
- 
- 	/* battery capacity */
- 	int soc;
-@@ -416,6 +418,11 @@ static int max17040_get_property(struct power_supply *psy,
- 	case POWER_SUPPLY_PROP_CHARGE_FULL_DESIGN:
- 		val->intval = chip->batt_info->charge_full_design_uah;
- 		break;
-+	case POWER_SUPPLY_PROP_TEMP:
-+		iio_read_channel_raw(chip->channel_temp,
-+				     &val->intval);
-+		val->intval *= 10;
-+		break;
- 	case POWER_SUPPLY_PROP_TEMP_MIN:
- 		if (chip->batt_info->temp_min == INT_MIN)
- 			return -ENODATA;
-@@ -452,6 +459,7 @@ static enum power_supply_property max17040_battery_props[] = {
- 	POWER_SUPPLY_PROP_HEALTH,
- 	POWER_SUPPLY_PROP_ENERGY_FULL_DESIGN,
- 	POWER_SUPPLY_PROP_CHARGE_FULL_DESIGN,
-+	POWER_SUPPLY_PROP_TEMP,
- 	POWER_SUPPLY_PROP_TEMP_MIN,
- 	POWER_SUPPLY_PROP_TEMP_MAX,
- };
-@@ -560,9 +568,24 @@ static int max17040_probe(struct i2c_client *client)
- 		}
- 	}
- 
-+	if (of_property_read_bool(client->dev.of_node, "io-channels")) {
-+		chip->channel_temp = iio_channel_get(&client->dev, "temp");
-+		if (IS_ERR(chip->channel_temp))
-+			return dev_err_probe(&client->dev, PTR_ERR(chip->channel_temp),
-+					     "failed to get temp\n");
-+	};
-+
- 	return 0;
- }
- 
-+static void max17040_remove(struct i2c_client *client)
-+{
-+	struct max17040_chip *chip = i2c_get_clientdata(client);
-+
-+	if (chip->channel_temp)
-+		iio_channel_release(chip->channel_temp);
-+}
-+
- #ifdef CONFIG_PM_SLEEP
- 
- static int max17040_suspend(struct device *dev)
-@@ -642,6 +665,7 @@ static struct i2c_driver max17040_i2c_driver = {
- 		.pm	= MAX17040_PM_OPS,
- 	},
- 	.probe_new	= max17040_probe,
-+	.remove		= max17040_remove,
- 	.id_table	= max17040_id,
- };
- module_i2c_driver(max17040_i2c_driver);
--- 
-2.37.2
+
+
+Best regards,
+Krzysztof
 
