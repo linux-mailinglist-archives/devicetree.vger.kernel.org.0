@@ -2,70 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D85426AFF24
-	for <lists+devicetree@lfdr.de>; Wed,  8 Mar 2023 07:54:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6D1BF6AFF9D
+	for <lists+devicetree@lfdr.de>; Wed,  8 Mar 2023 08:24:58 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229501AbjCHGyk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Mar 2023 01:54:40 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41704 "EHLO
+        id S229576AbjCHHY4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Mar 2023 02:24:56 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48220 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229484AbjCHGyj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Mar 2023 01:54:39 -0500
-Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C3ECB8B072;
-        Tue,  7 Mar 2023 22:54:38 -0800 (PST)
-Received: by mail-lf1-x12b.google.com with SMTP id g17so20103499lfv.4;
-        Tue, 07 Mar 2023 22:54:38 -0800 (PST)
+        with ESMTP id S229746AbjCHHYw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Mar 2023 02:24:52 -0500
+Received: from mail-pg1-x52b.google.com (mail-pg1-x52b.google.com [IPv6:2607:f8b0:4864:20::52b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 17CA092F07
+        for <devicetree@vger.kernel.org>; Tue,  7 Mar 2023 23:24:51 -0800 (PST)
+Received: by mail-pg1-x52b.google.com with SMTP id p6so9126620pga.0
+        for <devicetree@vger.kernel.org>; Tue, 07 Mar 2023 23:24:51 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112; t=1678258477;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=TseeJ+D4f++ygeWDUw0ivxIheeYmTO3mYfOEGNASe7s=;
-        b=Nu4y+enq2ZUXYQ0jDT4mcHmOZF6Bqwi9RKKuOZWilU8bJOMTTCekGKwSFDE0C2uc/n
-         Z+6+XGuS7sh1YEEmUZo4Vl3brluLR08wsBjHUpzm1EIaZJ7qFCfQUNqntqWjz+xN4FDI
-         ROwKekXm4iaauSpZqGR0o17ZgqViO/Ty09feuRx3sQQJ1Guo08K8Snh6NnLtUKzeMZ6P
-         PDA/5s3YhxkXNeueXoMk3izywPyPTkUi/9gIgr74g1EvuMKE5r0IOY4osy4aO6xl7pMM
-         /fGuTftAfyF9t4ZnCZXUp7URxo+Q9R91AuHMVsnDO1n4VuSJd/HclAQJIq3fXTl4A6fd
-         t8HA==
+        d=linaro.org; s=google; t=1678260290;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=qQc7CAsTKOJjZMBNjLgh8fMUOuZomOoWr2XcnNoS/7Q=;
+        b=P2UsjBYvxzIn/XkZe/qA+ewHk/RYUradsV5wapw2t4/MXUlY996SHWntxOLfD3Xu5Q
+         WxprnHIkswK9pPrWYePrgqZx+MGxTUE5RKmYsEWzoqk2m9Ow7+fgkZGXc2J1juyDYDvB
+         +WVnZMcw8dRNxSiCI2I37AEbHnbxu1IGXFXdsEboHiQHc+0/ZbN9MkBr7pKpQuw+pj5F
+         yd7m7zXPnzN6rBquyIBjffNffVgftK+JdFA2sP2IqeqPn6VBJaTDSsPxzWH0qRN4Fr0Y
+         aTezEyZxeSKAt8WvAmeTAGmyBwtcPwv1eoHaa66xx3yxg8kYSGIea+dX9PeTrqEMl+cn
+         lKXw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678258477;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=TseeJ+D4f++ygeWDUw0ivxIheeYmTO3mYfOEGNASe7s=;
-        b=MGdIs+0Zeh5G8BZPILgEpjWFdQkCiDp2KrLvYHwZV6GtJ8F1cy2NZqHyNLCJbCkRBF
-         H+6mkp7ge4QczI5m7AOI6Gl5BSPvX70OeO1ZHgdzhFyIc6JpRDWyk90hu8zQ7uo4ydow
-         DLchc6LiK7evhe0/DFLA5kK2UDhA94e641mBIW6rElTw1RRDV75jRWIzSwN3Uv+MxWDR
-         EM4tM+K9Q8f9b355+f0wUfpP9hijqzr7XpwIzDvtmkVA9LQ4dX47x58NJtDjtRDKRwYI
-         0oGzlPt+cjmxEHH9huQ7nBjnSgJyKGd0oam0M8+VTK6n++F7ceba6afzaf9lA8jm2u39
-         ArdQ==
-X-Gm-Message-State: AO0yUKWJMG+w+J6S6bT9kmM8SU3d30MXGAISCUVRHCZSWAfzDsr4YiKF
-        n8NBCAiufwsrD+inUBFWT8Csub6QmcI=
-X-Google-Smtp-Source: AK7set9Po5HuBKzV7pKBri6kMiMT3FFXoAkXpEwvjicMBm2QdGOR/F24SwRlHJ4h46UiPXWFxVzO9w==
-X-Received: by 2002:ac2:508e:0:b0:4db:3e32:b92a with SMTP id f14-20020ac2508e000000b004db3e32b92amr4817746lfm.69.1678258476888;
-        Tue, 07 Mar 2023 22:54:36 -0800 (PST)
-Received: from localhost.lan (ip-194-187-74-233.konfederacka.maverick.com.pl. [194.187.74.233])
-        by smtp.gmail.com with ESMTPSA id d3-20020ac25ec3000000b004db9dbe09c6sm2244210lfq.89.2023.03.07.22.54.35
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 07 Mar 2023 22:54:36 -0800 (PST)
-From:   =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Pavel Machek <pavel@ucw.cz>, Lee Jones <lee@kernel.org>,
-        Jacek Anaszewski <jacek.anaszewski@gmail.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        devicetree@vger.kernel.org, linux-leds@vger.kernel.org,
-        =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>
-Subject: [PATCH V2] dt-bindings: leds: add "usbport" trigger
-Date:   Wed,  8 Mar 2023 07:54:24 +0100
-Message-Id: <20230308065424.29113-1-zajec5@gmail.com>
-X-Mailer: git-send-email 2.34.1
+        d=1e100.net; s=20210112; t=1678260290;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=qQc7CAsTKOJjZMBNjLgh8fMUOuZomOoWr2XcnNoS/7Q=;
+        b=tSNIsEqF46dKg4Nutl8oL2MFblhJdK7m9TADnik+YFci6DoDnIsp8thvOMJ/gwDbVH
+         oLsKtJTh3i4sI54a96uMv1Qa+EiVFc+019Jxt+aLPgh6Wh+vqqKv0+qHr3oBshbEYEsA
+         pKUtPr6DpbvbOSzrVaAwGfg3WaflYY0CgGRNZz3/Gne4C9sVUasjj10yHgay61zwfkQy
+         ZxGO8Z5rYiam4P7fXxuhr3mCtyuKEq6nzqQcWUBmkz98L9I3ASySasQraaXHRi4O9+9t
+         nKJXTsDW72kXO4HtgCAg4hPxvnbIZhRV71Q2Na4vsMyGHyhDZW1jPnUbZFk02YkQPTrT
+         fBZw==
+X-Gm-Message-State: AO0yUKVQV+TUZ23BxWm/mHna5Otv6ekb7NlkqroT/Fao7RcGuJwDThCF
+        Gb+LgwL9Hhjrywt89E98mbXPNYAntDvirFud3AJfzA==
+X-Google-Smtp-Source: AK7set8PT4b7GPLMPJQ/gWYMowNcMok2Y2rgbNkVB5uyal+ySQwZLgR67XsEEmEY3nJtoGw1U2d9T76TL8SScICx5O0=
+X-Received: by 2002:a63:931e:0:b0:503:2561:6fed with SMTP id
+ b30-20020a63931e000000b0050325616fedmr6084269pge.1.1678260290507; Tue, 07 Mar
+ 2023 23:24:50 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+References: <20230308011705.291337-1-konrad.dybcio@linaro.org>
+In-Reply-To: <20230308011705.291337-1-konrad.dybcio@linaro.org>
+From:   Shawn Guo <shawn.guo@linaro.org>
+Date:   Wed, 8 Mar 2023 15:24:38 +0800
+Message-ID: <CAAQ0ZWSXP59cgyHNkR8UfXRHqRrJGLxuNwMBh2N6=W_x18-BTg@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: interrupt-controller: Allow #power-domain-cells
+To:     Konrad Dybcio <konrad.dybcio@linaro.org>
+Cc:     linux-arm-msm@vger.kernel.org, andersson@kernel.org,
+        agross@kernel.org, marijn.suijten@somainline.org,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -73,39 +73,45 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Rafał Miłecki <rafal@milecki.pl>
+On Wed, Mar 8, 2023 at 9:17=E2=80=AFAM Konrad Dybcio <konrad.dybcio@linaro.=
+org> wrote:
+>
+> MPM provides a single genpd. Allow #power-domain-cells =3D <0>.
 
-Linux's "usbport" trigger is a bit specific one. It allows LED to follow
-state of multiple USB ports which have to be selected additionally
-(there isn't a single trigger for each port).
+Indeed! It was missing from the initial submission.  Thanks for fixing it u=
+p!
 
-Default list of USB ports to monitor can be specified using
-"trigger-sources" DT property. Theoretically it should be possible for
-Linux to deduce applicable trigger based on the references nodes in the
-"trigger-sources". It hasn't been implemented however (probably due to
-laziness).
+>
+> Fixes: 54fc9851c0e0 ("dt-bindings: interrupt-controller: Add Qualcomm MPM=
+ support")
+> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+> ---
+>  .../devicetree/bindings/interrupt-controller/qcom,mpm.yaml     | 3 +++
+>  1 file changed, 3 insertions(+)
+>
+> diff --git a/Documentation/devicetree/bindings/interrupt-controller/qcom,=
+mpm.yaml b/Documentation/devicetree/bindings/interrupt-controller/qcom,mpm.=
+yaml
+> index 509d20c091af..4c470dc143e5 100644
+> --- a/Documentation/devicetree/bindings/interrupt-controller/qcom,mpm.yam=
+l
+> +++ b/Documentation/devicetree/bindings/interrupt-controller/qcom,mpm.yam=
+l
+> @@ -62,6 +62,9 @@ properties:
+>          - description: MPM pin number
+>          - description: GIC SPI number for the MPM pin
+>
+> +  '#power-domain-cells':
 
-Milk spilled - we already have DT files specifying "usbport" manually -
-allow that value in the binding. This fixes validation of in-kernel and
-external DT files.
+Should we add it to the "required" list and examples?
 
-Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
----
- Documentation/devicetree/bindings/leds/common.yaml | 1 +
- 1 file changed, 1 insertion(+)
+Shawn
 
-diff --git a/Documentation/devicetree/bindings/leds/common.yaml b/Documentation/devicetree/bindings/leds/common.yaml
-index 15e3f6645682..95b316ee3146 100644
---- a/Documentation/devicetree/bindings/leds/common.yaml
-+++ b/Documentation/devicetree/bindings/leds/common.yaml
-@@ -99,6 +99,7 @@ properties:
-           - pattern
-           - usb-gadget
-           - usb-host
-+          - usbport
-       - pattern: "^cpu[0-9]*$"
-       - pattern: "^hci[0-9]+-power$"
-         # LED is triggered by Bluetooth activity
--- 
-2.34.1
-
+> +    const: 0
+> +
+>  required:
+>    - compatible
+>    - reg
+> --
+> 2.39.2
+>
