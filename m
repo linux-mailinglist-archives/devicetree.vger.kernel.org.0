@@ -2,61 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 220026AFC4C
-	for <lists+devicetree@lfdr.de>; Wed,  8 Mar 2023 02:27:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9D3636AFC62
+	for <lists+devicetree@lfdr.de>; Wed,  8 Mar 2023 02:28:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230206AbjCHB1l (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Mar 2023 20:27:41 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41526 "EHLO
+        id S230167AbjCHB2A (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Mar 2023 20:28:00 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41982 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230131AbjCHB1g (ORCPT
+        with ESMTP id S230145AbjCHB1g (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Tue, 7 Mar 2023 20:27:36 -0500
-Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4957385A6D
-        for <devicetree@vger.kernel.org>; Tue,  7 Mar 2023 17:27:27 -0800 (PST)
-Received: by mail-lf1-x134.google.com with SMTP id f18so19506984lfa.3
-        for <devicetree@vger.kernel.org>; Tue, 07 Mar 2023 17:27:27 -0800 (PST)
+Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B24D3AF0FF
+        for <devicetree@vger.kernel.org>; Tue,  7 Mar 2023 17:27:28 -0800 (PST)
+Received: by mail-lf1-x131.google.com with SMTP id d36so16328079lfv.8
+        for <devicetree@vger.kernel.org>; Tue, 07 Mar 2023 17:27:28 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1678238845;
+        d=linaro.org; s=google; t=1678238847;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=SKOVO54SiVpfxv4+5zgH7MWB6ZLGjxgqeNl0uxBicO4=;
-        b=qYx+PK8xju6nmSnWKlmCpbBpWZJQjs2PqTpuOqky6k3t1bnVBvYm80xxP7q8l3BhoA
-         JIgYo5/l/E8r2+OnIq0kFtpRePwPfV0/zKM6w9+Quq/cquXG5afX06BjI8G6k28w7fqT
-         KTbz1KH5rr8i1C1ChoBJ6Jm1K10S3W6dgH0AwdWGhdDNEM2J7UTfmlM33C8R2HEeeVzV
-         6bzINX9G2giHg3wzwktG0l6ONP+MjmyNdbJ4v4316OYv3Pgd1tIvgcGy3pOs33TSH58Z
-         dMXWt0TQq925km6cDa2QH3/J2nm+OIZysld5DeshBOqw/h1akQWyAB+SOrrOnoXbRESp
-         Iknw==
+        bh=uK/plytj2pGh3hnWNU3A4OsxYVbVd2G45N7GCK+reGA=;
+        b=ZO/pu5w8RX3as2eYI0FqEb7KM/sh1Ev4U1ow0QZX0mol1tlCvCwFEAuC+UnwH6u/pD
+         kOOi+LVvZEnm2el9sWCvhvTaU0lDQDV5Xfj0j8zi4A0zxEdW1RiGkc/PSPWts0kSioN6
+         8OVrALhNaneE3lV/Xb+vwgTN8kvmI/kvfF3QwuUnzRDIpmxlW38dECTCG/T4XmTAT3EX
+         qRXgogvkE2vzSzAjIXRtut5FIa39ppOmmm9ycKD8tnHBTpHDTAj5wm+hMlIvctRjCZxi
+         srQAb+Y5nTuF3qwKEyieVfjzBLd6ZERrMFxBFHlLjCZqpqwFn4j7sWnypkS+VjhjNRqr
+         d5Dg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678238845;
+        d=1e100.net; s=20210112; t=1678238847;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=SKOVO54SiVpfxv4+5zgH7MWB6ZLGjxgqeNl0uxBicO4=;
-        b=IcpI8citKhE4vDr6LoMB0RNLapC7Jz8RG3s/KQmD9axH9Dgk7DxF6emMvhWv1fzxqx
-         CZzNNn4yVB0UgdAE1F66Z1p5McWOfZ0ZeNKcEcy5CT7JYAIlScM0StmOP5BVXbKcDAb3
-         jS4BX33C9CAmY6a+dZqHEZB7fEvN5Fc2VcYXUqiMBEtZZuiY+nlzhLWsRkKlwzWKw9L4
-         QaoAOJkV2rH9Sk9ymlfUTjSy9lw661MOAibaYHijBxBicQZzfN1LC9ZDJhvhjyYUc/uX
-         40joTI6sFL0ZBBfHZrsE8/SmfOTSR/xIacRd4T8aebDC0Cvl2S2/JQuzlvk1FAs9xZMq
-         io0w==
-X-Gm-Message-State: AO0yUKV9M7V8uqe1q0TuO0CcFOdU0peDN99Olvvo629HD1IQv5K2+cuK
-        2JGarZfItV5LWRurwOC68cmhZA==
-X-Google-Smtp-Source: AK7set9UqDkj4+BXq1sW1C5c0COf2YrAQcsUo3O44VivI78Hc2B/mpXTUhVDiHer84R2120h5ualjA==
-X-Received: by 2002:a05:6512:951:b0:4b5:1545:222b with SMTP id u17-20020a056512095100b004b51545222bmr5028114lft.47.1678238845611;
-        Tue, 07 Mar 2023 17:27:25 -0800 (PST)
+        bh=uK/plytj2pGh3hnWNU3A4OsxYVbVd2G45N7GCK+reGA=;
+        b=slr4qYksQUyozIKnYAE2FhVpaJ/UfFVOKGhZAmbj0cBMc6T4D6lxuNmEww1piFy2KU
+         2+ysUB5o6KrmLHCV1DqyXamnseQ6xYVXVMcwnDm0TPwsAq56dCf3bq3OMEWmibQ4b3/K
+         3Z+NoDcmnhgXw5K1X8WqfCXduDt6n7EE4RP/odcEuSpKUhiAJcAVAR5USOq2BAp1t3aI
+         nUyQvuKIlzRvVnhb5PYE1AaEvSIxy6/Ey4FaoDtSq4flwkSwZ/5hxqWyk8194AU2+rzG
+         zXdvavG7R3W6C4bqHuhbRRqAiZ4yMDvkyTvVe6zX85gpDVWk5ntuQ5T6rkJJN6bDgFTe
+         vW2Q==
+X-Gm-Message-State: AO0yUKUJ0/ndu2nYOuxqC7SY/NHR2/qTQUnT/gV2uN+lwcLaqAHDRmGi
+        H8MpuankBbrQjpTf0ivOUVFHcg==
+X-Google-Smtp-Source: AK7set+8UZ76Ii7/yJJ75KWZzTyIzgVB7VSw92xi8kyqMwdeEda6lmvSWK+4eGnUQTSpd41yuvueTA==
+X-Received: by 2002:a05:6512:481:b0:4a4:68b9:60ae with SMTP id v1-20020a056512048100b004a468b960aemr4587431lfq.57.1678238847021;
+        Tue, 07 Mar 2023 17:27:27 -0800 (PST)
 Received: from [192.168.1.101] (abyj16.neoplus.adsl.tpnet.pl. [83.9.29.16])
-        by smtp.gmail.com with ESMTPSA id o24-20020a056512051800b004a2c447598fsm2182944lfb.159.2023.03.07.17.27.23
+        by smtp.gmail.com with ESMTPSA id o24-20020a056512051800b004a2c447598fsm2182944lfb.159.2023.03.07.17.27.25
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 07 Mar 2023 17:27:25 -0800 (PST)
+        Tue, 07 Mar 2023 17:27:26 -0800 (PST)
 From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-Date:   Wed, 08 Mar 2023 02:27:03 +0100
-Subject: [PATCH 6/8] arm64: dts: qcom: sm6115: Add SoC-specific compatible
+Date:   Wed, 08 Mar 2023 02:27:04 +0100
+Subject: [PATCH 7/8] arm64: dts: qcom: sm6350: Add SoC-specific compatible
  to cpufreq_hw
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20230308-topic-cpufreq_bindings-v1-6-3368473ec52d@linaro.org>
+Message-Id: <20230308-topic-cpufreq_bindings-v1-7-3368473ec52d@linaro.org>
 References: <20230308-topic-cpufreq_bindings-v1-0-3368473ec52d@linaro.org>
 In-Reply-To: <20230308-topic-cpufreq_bindings-v1-0-3368473ec52d@linaro.org>
 To:     "Rafael J. Wysocki" <rafael@kernel.org>,
@@ -70,11 +70,11 @@ Cc:     linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
         Konrad Dybcio <konrad.dybcio@linaro.org>
 X-Mailer: b4 0.12.1
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1678238834; l=756;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1678238834; l=831;
  i=konrad.dybcio@linaro.org; s=20230215; h=from:subject:message-id;
- bh=RU8Ns/8Vu4I/6Nvy8BWPrvWThEZ3MktRh9CnLyJhBWs=;
- b=oBwciSdBkhIqhFhs8iBQeo0lNm052icB/7xOxOj6O0CmrW0YEdR3Ao5cGx5szEXNko2lSVzEIFi9
- yseFhglbC61p9U3g7l2FNVaC4ZFBbm/me9vaEXAe02WZXZS0Gz84
+ bh=+CETfRtA+2dftHc8AjtHAgxUAslRxj6c2rgtY/K3MCM=;
+ b=1Cok6m8m/10QMMyHcZsY7afVxCNFdOabAQIebdgi2ivqUtBwBa4T/cynfRcKo7KxvQEi59S0OosR
+ Y7MA/jV8AG6NrYM40LFINQgQsJZXIMhQl9JQSj2rV7HQ3WvYZUE8
 X-Developer-Key: i=konrad.dybcio@linaro.org; a=ed25519;
  pk=iclgkYvtl2w05SSXO5EjjSYlhFKsJ+5OSZBjOkQuEms=
 X-Spam-Status: No, score=-0.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -91,22 +91,22 @@ Add a SoC-specific compatbile to cpufreq_hw for compliancy with bindings.
 
 Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 ---
- arch/arm64/boot/dts/qcom/sm6115.dtsi | 2 +-
+ arch/arm64/boot/dts/qcom/sm6350.dtsi | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/arch/arm64/boot/dts/qcom/sm6115.dtsi b/arch/arm64/boot/dts/qcom/sm6115.dtsi
-index 4d6ec815b78b..fae30bf31e08 100644
---- a/arch/arm64/boot/dts/qcom/sm6115.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm6115.dtsi
-@@ -2114,7 +2114,7 @@ intc: interrupt-controller@f200000 {
+diff --git a/arch/arm64/boot/dts/qcom/sm6350.dtsi b/arch/arm64/boot/dts/qcom/sm6350.dtsi
+index 1e1d366c92c1..c18ca947618e 100644
+--- a/arch/arm64/boot/dts/qcom/sm6350.dtsi
++++ b/arch/arm64/boot/dts/qcom/sm6350.dtsi
+@@ -1995,7 +1995,7 @@ osm_l3: interconnect@18321000 {
  		};
  
- 		cpufreq_hw: cpufreq@f521000 {
+ 		cpufreq_hw: cpufreq@18323000 {
 -			compatible = "qcom,cpufreq-hw";
-+			compatible = "qcom,sm6115-cpufreq-hw", "qcom,cpufreq-hw";
- 			reg = <0x0 0x0f521000 0x0 0x1000>,
- 			      <0x0 0x0f523000 0x0 0x1000>;
- 
++			compatible = "qcom,sm6350-cpufreq-hw", "qcom,cpufreq-hw";
+ 			reg = <0 0x18323000 0 0x1000>, <0 0x18325800 0 0x1000>;
+ 			reg-names = "freq-domain0", "freq-domain1";
+ 			clocks = <&rpmhcc RPMH_CXO_CLK>, <&gcc GPLL0>;
 
 -- 
 2.39.2
