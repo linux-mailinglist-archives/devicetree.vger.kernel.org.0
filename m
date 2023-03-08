@@ -2,155 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D4BA16B09B1
-	for <lists+devicetree@lfdr.de>; Wed,  8 Mar 2023 14:46:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 149F66B09BE
+	for <lists+devicetree@lfdr.de>; Wed,  8 Mar 2023 14:47:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230379AbjCHNqH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Mar 2023 08:46:07 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60842 "EHLO
+        id S230496AbjCHNrc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Mar 2023 08:47:32 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42224 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231337AbjCHNpq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Mar 2023 08:45:46 -0500
-Received: from mail-io1-xd2b.google.com (mail-io1-xd2b.google.com [IPv6:2607:f8b0:4864:20::d2b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 707FE13D4D
-        for <devicetree@vger.kernel.org>; Wed,  8 Mar 2023 05:45:10 -0800 (PST)
-Received: by mail-io1-xd2b.google.com with SMTP id f14so6780337iow.5
-        for <devicetree@vger.kernel.org>; Wed, 08 Mar 2023 05:45:10 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1678283110;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=8Gz/Fal0kRuGQs4te+QLHZr2SvmaC9a9yoIN2O4rmEs=;
-        b=FzOehmgGzILhkooEFO0biilFd7kiTA0NZcKrhcfEw83BGlvb/DRX3HApX0gd0asQu+
-         zXYldxA3v4VRudBB014jDadWTIgo79RaVquXI8m+ip2DXj5WS98GeAQOpgEvrX+7tpbU
-         SWqY8TrecDN3LvK2tWghCzQbSw+b/IEJKg1ys=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678283110;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=8Gz/Fal0kRuGQs4te+QLHZr2SvmaC9a9yoIN2O4rmEs=;
-        b=cR4aIaW3pgQvqNrJk+WVsIUSOPjy3hSGE4Bh295tup8pjrfXfld/ztTGLPuCt7zfRa
-         OCayH0iz/rLS8P3zLoG0GDqInHYfDKXc0KhmNxj9oX0tfTYzWkW4J/1eAHR6RI3ZhBc2
-         rGzD5n4Y6Qn9fJk5n+uCZmB/8Kze+jrYmGIwN0viupRY9lf79vPnCeoXfktt8ktcM8+s
-         8cKIQ7YyPWjjp0sEsyvjZGmWrobIxphhUvd7A6NjwmcE/gd3cLIiOSG1PSptWs0dQmt+
-         1r5QbAFPcETx5ZEjpEhdCYwqWJ7fGYZ3Ocm87PHhuFJWFEmtxgkMo6lE2bZLc2IgEvXf
-         n/qA==
-X-Gm-Message-State: AO0yUKVh8LcmZV9q5nopsF5i2lDDWpbCurqRAfSYDbnsYmabUHWfVdSz
-        8puvAq+PohR9fS1K0uVJMulkg9OckwTv7BVhbf4uvw==
-X-Google-Smtp-Source: AK7set9vEwKu1Idu63ibGwE2iFEiZ7o1hncWOqoEWkYY6ycvzgr26jaWtmtsgD0Zy8mBVQpsXMl2fE6U84RedlItoHs=
-X-Received: by 2002:a05:6602:4287:b0:745:50e5:c861 with SMTP id
- cd7-20020a056602428700b0074550e5c861mr8454903iob.4.1678283109499; Wed, 08 Mar
- 2023 05:45:09 -0800 (PST)
-MIME-Version: 1.0
-References: <20230303143350.815623-1-treapking@chromium.org>
- <20230303143350.815623-8-treapking@chromium.org> <ZAXUrJDtHmm7+50H@smile.fi.intel.com>
-In-Reply-To: <ZAXUrJDtHmm7+50H@smile.fi.intel.com>
-From:   Pin-yen Lin <treapking@chromium.org>
-Date:   Wed, 8 Mar 2023 21:44:58 +0800
-Message-ID: <CAEXTbpftCVFBQK0bNiWvF0NnbNoMoF=dFStHy1HXOq8LvWYjsA@mail.gmail.com>
-Subject: Re: [PATCH v13 07/10] drm/bridge: anx7625: Register Type C mode switches
-To:     Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Cc:     Andrzej Hajda <andrzej.hajda@intel.com>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Robert Foss <rfoss@kernel.org>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Jonas Karlman <jonas@kwiboo.se>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
+        with ESMTP id S230434AbjCHNrN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Mar 2023 08:47:13 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E2B0C8734F;
+        Wed,  8 Mar 2023 05:47:01 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 8992FB81CC2;
+        Wed,  8 Mar 2023 13:47:00 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E7B09C433EF;
+        Wed,  8 Mar 2023 13:46:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1678283219;
+        bh=Dzgnpfbs+yKJWVDVrz+SM2ZC2bUbXHfqK4bikVA/M18=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=CHGYRzxYhAAVcNVUPcbyyBQ4jgkn4MFQo6OvvzVpkJGBqgTrQg0Dm6sJe61ewYZrH
+         bkhBN0NpteamYmOYwAEEaB5kdEGZxB1G7lxQh+QwhkIp//+PsaFBIMNx/uCIYjZICh
+         BImANFNNazfOSrK7cFYD4f09XNR7JyGt07+J0GvLw+zIKR+iTXHnoEgb19O3SpHXBP
+         wNrJeRgqh8uajmUdqqn7+yGXCMUug+oDk8+3fPIQ11y6ehWJ/OjiOc9n3qra8SAM7V
+         LIgj3FoV6nBlp0hFz/GS1lHwhDqUBv3rxMiP4aPeMhx7azX44+jwH4ZbYHF6DaIBfX
+         ie6Zj+gDUWiag==
+Date:   Wed, 8 Mar 2023 13:46:52 +0000
+From:   Mark Brown <broonie@kernel.org>
+To:     Svyatoslav Ryhel <clamor95@gmail.com>
+Cc:     Guenter Roeck <linux@roeck-us.net>,
+        Jean Delvare <jdelvare@suse.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Daniel Scally <djrscally@gmail.com>,
-        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        "Rafael J . Wysocki" <rafael@kernel.org>,
-        Prashant Malani <pmalani@chromium.org>,
-        Benson Leung <bleung@chromium.org>,
-        Guenter Roeck <groeck@chromium.org>,
-        Xin Ji <xji@analogixsemi.com>,
-        Javier Martinez Canillas <javierm@redhat.com>,
-        Lyude Paul <lyude@redhat.com>, linux-kernel@vger.kernel.org,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        chrome-platform@lists.linux.dev,
-        =?UTF-8?B?TsOtY29sYXMgRiAuIFIgLiBBIC4gUHJhZG8=?= 
-        <nfraprado@collabora.com>, Marek Vasut <marex@denx.de>,
-        Hsin-Yi Wang <hsinyi@chromium.org>, devicetree@vger.kernel.org,
-        Allen Chen <allen.chen@ite.com.tw>,
-        dri-devel@lists.freedesktop.org,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        Stephen Boyd <swboyd@chromium.org>, linux-acpi@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+        Liam Girdwood <lgirdwood@gmail.com>,
+        linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v1 1/2] dt-bindings: hwmon: ina2xx: add supply property
+Message-ID: <5cd6764c-9b04-42ea-932d-9f14aa465605@sirena.org.uk>
+References: <20230308094024.14115-1-clamor95@gmail.com>
+ <20230308094024.14115-2-clamor95@gmail.com>
+ <31ca0ede-012c-4849-bf25-d0492b116681@sirena.org.uk>
+ <6DBD0F5A-4625-4FCD-8D64-23293D734A82@gmail.com>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="emhiT6n8SP5ckuD4"
+Content-Disposition: inline
+In-Reply-To: <6DBD0F5A-4625-4FCD-8D64-23293D734A82@gmail.com>
+X-Cookie: Minnie Mouse is a slow maze learner.
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Andy,
 
-Thanks for the review.
+--emhiT6n8SP5ckuD4
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-On Mon, Mar 6, 2023 at 7:55=E2=80=AFPM Andy Shevchenko
-<andriy.shevchenko@linux.intel.com> wrote:
->
-> On Fri, Mar 03, 2023 at 10:33:47PM +0800, Pin-yen Lin wrote:
-> > Register USB Type-C mode switches when the "mode-switch" property and
-> > relevant ports are available in Device Tree. Configure the crosspoint
-> > switch based on the entered alternate mode for a specific Type-C
-> > connector.
-> >
-> > Crosspoint switch can also be used for switching the output signal for
-> > different orientations of a single USB Type-C connector, but the
-> > orientation switch is not implemented yet. A TODO is added for this.
->
-> ...
->
-> > +     ctx->port_data =3D devm_kcalloc(
-> > +             dev, switch_desc->num_typec_switches,
-> > +             sizeof(struct anx7625_typec_port_data), GFP_KERNEL);
->
-> I believe I have commented on this (indentation)...
->
-> > +
->
-> ...and this (blank line).
+On Wed, Mar 08, 2023 at 02:58:20PM +0200, Svyatoslav Ryhel wrote:
+> 8 =D0=B1=D0=B5=D1=80=D0=B5=D0=B7=D0=BD=D1=8F 2023 =D1=80. 14:54:34 GMT+02=
+:00, Mark Brown <broonie@kernel.org> =D0=BD=D0=B0=D0=BF=D0=B8=D1=81=D0=B0=
+=D0=B2(-=D0=BB=D0=B0):
+> >On Wed, Mar 08, 2023 at 11:40:23AM +0200, Svyatoslav Ryhel wrote:
+> >> Add supply property.
 
-Sorry for missing this one. I'll fix this in v14.
->
-> > +     if (!ctx->port_data) {
-> > +             ret =3D -ENOMEM;
-> > +             goto unregister_mux;
-> > +     }
->
-> ...
->
-> > +             ctx->port_data[i].orientation =3D (dp_lanes[0] / 2 =3D=3D=
- 0) ?
-> > +                     TYPEC_ORIENTATION_REVERSE : TYPEC_ORIENTATION_NOR=
-MAL;
->
-> I believe that this is an error prone check, you should rather do the opp=
-osite,
-> i.e.  ' % 2  =3D=3D 0'.
->
-The orientation should be TYPEC_ORIENTATION_REVERSE when the
-data-lanes value is 0/1, so ` / 2` is what I meant here.
+> >> +  vdd-supply: true
+> >> +
+> >>  required:
+> >>    - compatible
+> >>    - reg
 
-Though, after second thought, I think it would be clearer if I use
-`dp_lanes[0] < 2`. I'll update this in v14 as well.
-> --
-> With Best Regards,
-> Andy Shevchenko
->
->
-Best regards,
-Pin-yen
+> >Unless the device can work without power the supply should be required.
+
+> Device can work without supply defined on most devices, but in my case po=
+wer is gated with gpio and devices will not work without fixed regulator.
+
+If there are devices that work without any source of power at all that
+would be very surprising.  It doesn't matter if a particular system has
+a non-controllable regulator, the binding should still make it mandatory
+to describe that.
+
+--emhiT6n8SP5ckuD4
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmQIkcsACgkQJNaLcl1U
+h9DLjgf+JwLFER7NTybJIWpDUEcwfYmI40mRfAH7UE8En493f/0pMebcBBHNFa6J
+KVUCJkGtFM3EPf3u0uX/kKfgqyIqHQ6NFwz0mBs3tA2jvWTCTlwqgjIrIMtqnyJl
+pboxy1NkaLnKWZr7qSmEf5OVgJU5vCv1WIR3FXzBoe3M6HXof3Sxet1xCoJr1yGj
+rPIM5Zb+9cwwEC7flYl5VAt8IIDEPbV1u6uFxdNpEuT2439csNp0iOnJpel0Hrlp
+EttKtNc23ASQ40l5CTv459qRUOfU+1/wizGfc7LneTI8n/oU8E/hT9R3bpGAaFB5
+VCzUnH64yOc+QSGT1cbe7BqGVePF0A==
+=iM/u
+-----END PGP SIGNATURE-----
+
+--emhiT6n8SP5ckuD4--
