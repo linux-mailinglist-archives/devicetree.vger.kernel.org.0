@@ -2,87 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F00806B1086
-	for <lists+devicetree@lfdr.de>; Wed,  8 Mar 2023 19:00:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EFCBB6B10B1
+	for <lists+devicetree@lfdr.de>; Wed,  8 Mar 2023 19:12:02 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229645AbjCHSAa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Mar 2023 13:00:30 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37958 "EHLO
+        id S230019AbjCHSL6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Mar 2023 13:11:58 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52478 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229691AbjCHSA3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Mar 2023 13:00:29 -0500
-Received: from mail-wm1-x334.google.com (mail-wm1-x334.google.com [IPv6:2a00:1450:4864:20::334])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E525CC5611
-        for <devicetree@vger.kernel.org>; Wed,  8 Mar 2023 10:00:27 -0800 (PST)
-Received: by mail-wm1-x334.google.com with SMTP id p26so10317030wmc.4
-        for <devicetree@vger.kernel.org>; Wed, 08 Mar 2023 10:00:27 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1678298426;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=aHQFyw10BVunJxsxfMJNLLH0YrstlFb/O3uzZ6Wfpjg=;
-        b=ufyRbw83qMR9Tdb34LRa+lUAFh1PAN8VwgGsw0takIfgH/kTPequORWhdtOk/hz5TD
-         uRxobnLYhVlG+PW0wIj1K+cJm0mLhmrmqXvQER3wRGFHdw7ddbyx2E0NGGU0xaDUN9dT
-         1jme7DeSFewuaURlDbgMvR3SjknlL/1TH8PLnBVBldHtbqonpBflPeRQ/DiO6gl4jHzw
-         3KMmb7RulbUuusz8Q1dpE8PPu7jEni9L+dAPnnDD4Vz3LDHbV5XocVtJT1zor4B8UDWx
-         /VZOqy5NR9DrnbUzr2m/2Vg/se5GqLAZDeSKleWyH3pkj2F9BIx3p9dn8YOga/ccjCKo
-         g8pA==
+        with ESMTP id S229626AbjCHSL5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Mar 2023 13:11:57 -0500
+Received: from mail-ot1-f50.google.com (mail-ot1-f50.google.com [209.85.210.50])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 09410CE96E;
+        Wed,  8 Mar 2023 10:11:55 -0800 (PST)
+Received: by mail-ot1-f50.google.com with SMTP id e9-20020a056830200900b00694651d19f6so6569443otp.12;
+        Wed, 08 Mar 2023 10:11:55 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678298426;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=aHQFyw10BVunJxsxfMJNLLH0YrstlFb/O3uzZ6Wfpjg=;
-        b=BNKYMJ0YbGTaiJ3dW8hd8/a0MUpmlHEaLTutb+NKDVK5QcLAswlVZ+J1542cMVC1E2
-         ZkFK2pc6q3byZ2kuJMPP8mocmlCqB4lZ4iXOky53DSeGLACE5KdaCDhLQcAT+X+myi+F
-         vJpvTorfrU5ZgdPj/QSutRDIGAb9t3gjhTgU7CvruIDdxjrWCptVgNjEFjdOP1l8Msg3
-         49vFYQnJsp4yeOMDM49Qto6mV23okWLqbpAP+bMCHirO1sbihFeVzaW2nUvk4I3l1/5l
-         3+beIDdJKItkrFGREbKbrV7Bg54XCRUb0MhsMLK7E6L1cY2g4IYcTO5Dxunzad/70wKF
-         Fihw==
-X-Gm-Message-State: AO0yUKX+0xKRfdIJzZa+YnnVcMwAIa6sLWgrfJ5MBgdN47QSxdDWJCgF
-        gpKH1uk0yYEPBIr4pNxEw3DXGA==
-X-Google-Smtp-Source: AK7set+jvMl0EhuBZoHUFo60bJY0uF8ULFjfyqCjDSi5m2PvUIoskKxq3Mw/V3oU38SLKMDcpmJjBA==
-X-Received: by 2002:a05:600c:4509:b0:3eb:29fe:7343 with SMTP id t9-20020a05600c450900b003eb29fe7343mr16964033wmo.33.1678298426297;
-        Wed, 08 Mar 2023 10:00:26 -0800 (PST)
-Received: from ?IPV6:2a05:6e02:1041:c10:4213:ad42:5630:43c4? ([2a05:6e02:1041:c10:4213:ad42:5630:43c4])
-        by smtp.googlemail.com with ESMTPSA id t1-20020a5d49c1000000b002c563b124basm15585115wrs.103.2023.03.08.10.00.25
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 08 Mar 2023 10:00:25 -0800 (PST)
-Message-ID: <aefb1a57-6ec4-fefc-b5eb-42c899228255@linaro.org>
-Date:   Wed, 8 Mar 2023 19:00:24 +0100
+        d=1e100.net; s=20210112; t=1678299114;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=SIxmU/QtppDrzLwRQM4/EQwwRkPiWGOq6+7u8fs1B9E=;
+        b=KIyuip82zCUZ3tJBEAdGR5DkYNQRqUvHETB03T4NSIDff0TZ7j0LLeGC0ZvsCHkVpO
+         GvJBnpLTNwMq83/0Q97eqj8cKhHM56QS0P0UioJdqeeP+QGVB5kYlysDCyJFGIt3nUwy
+         z2738obH1ONby9hp1Otqi1fpQ2KBm3e0H0urqmMVazligMQ3uvPXn/V1/aJ7+mUK/4dY
+         k65T2FaU0RXHLHK8n1XaZB2aRHy5vps0STG3Uz6Zwr1T4O9fveR5EP90SCuKbes3iNml
+         qRG2tZyapqo0fXYb9KWkbO5bvs/NmqQ+2N46pX0TPL/p0jYemuIQctyUhEkRfUNars3r
+         b0Fg==
+X-Gm-Message-State: AO0yUKWdmfc/jHC+sH+MEv0+HxemLfU3fdDt9d60yiayCrAmbZPoXboo
+        yHCHE95J7hfCY9PXMsrGmQ==
+X-Google-Smtp-Source: AK7set9H8k0goZQjGPEgNkkixy3gs3vd/sHKzFTM0Gx4xSIKWRHwsc1ffnNsJ1R+prua9m2CbtMAgg==
+X-Received: by 2002:a9d:7103:0:b0:690:d498:56d2 with SMTP id n3-20020a9d7103000000b00690d49856d2mr7763163otj.4.1678299114187;
+        Wed, 08 Mar 2023 10:11:54 -0800 (PST)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id d1-20020a056830138100b0068bb73bd95esm6636451otq.58.2023.03.08.10.11.52
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 08 Mar 2023 10:11:53 -0800 (PST)
+Received: (nullmailer pid 3526245 invoked by uid 1000);
+        Wed, 08 Mar 2023 18:11:52 -0000
+Date:   Wed, 8 Mar 2023 12:11:52 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Rob Herring <robh@kernel.org>
+Cc:     linux-crypto@vger.kernel.org, Rob Clark <robdclark@gmail.com>,
+        linux-riscv@lists.infradead.org,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Eric Dumazet <edumazet@google.com>,
+        freedreno@lists.freedesktop.org, Paolo Abeni <pabeni@redhat.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        linux-gpio@vger.kernel.org, linux-media@vger.kernel.org,
+        Andrew Lunn <andrew@lunn.ch>, Stephen Boyd <sboyd@kernel.org>,
+        Mark Brown <broonie@kernel.org>, Sean Paul <sean@poorly.run>,
+        netdev@vger.kernel.org, Conor Dooley <conor.dooley@microchip.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@kernel.org>,
+        linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org,
+        linux-spi@vger.kernel.org, Jakub Kicinski <kuba@kernel.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        linux-arm-kernel@lists.infradead.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Marc Zyngier <maz@kernel.org>, dri-devel@lists.freedesktop.org,
+        alsa-devel@alsa-project.org,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        linux-clk@vger.kernel.org, Heiner Kallweit <hkallweit1@gmail.com>,
+        Herbert Xu <herbert@gondor.apana.org.au>,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: yamllint: Require a space after a comment
+ '#'
+Message-ID: <167828471597.2730705.13533520056770041535.robh@kernel.org>
+References: <20230303214223.49451-1-robh@kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.1
-Subject: Re: [PATCH v9 0/5] thermal: mediatek: Add support for MT8365 SoC
-Content-Language: en-US
-To:     Amjad Ouled-Ameur <aouledameur@baylibre.com>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Amit Kucheria <amitk@kernel.org>,
-        Zhang Rui <rui.zhang@intel.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org,
-        Fabien Parent <fparent@baylibre.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Rob Herring <robh@kernel.org>,
-        Markus Schneider-Pargmann <msp@baylibre.com>,
-        Hsin-Yi Wang <hsinyi@chromium.org>,
-        Michael Kao <michael.kao@mediatek.com>
-References: <20221018-up-i350-thermal-bringup-v9-0-55a1ae14af74@baylibre.com>
- <afa4aacd-bacf-a545-3973-474286fd4b9c@linaro.org>
- <a328c1c5-7cec-4499-8e5f-92d8cc233d38@baylibre.com>
-From:   Daniel Lezcano <daniel.lezcano@linaro.org>
-In-Reply-To: <a328c1c5-7cec-4499-8e5f-92d8cc233d38@baylibre.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230303214223.49451-1-robh@kernel.org>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -90,52 +85,80 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 06/03/2023 11:13, Amjad Ouled-Ameur wrote:
-> Hi Daniel,
+
+On Fri, 03 Mar 2023 15:42:23 -0600, Rob Herring wrote:
+> Enable yamllint to check the prefered commenting style of requiring a
+> space after a comment character '#'. Fix the cases in the tree which
+> have a warning with this enabled. Most cases just need a space after the
+> '#'. A couple of cases with comments which were not intended to be
+> comments are revealed. Those were in ti,sa2ul.yaml, ti,cal.yaml, and
+> brcm,bcmgenet.yaml.
 > 
-> On 1/27/23 22:59, Daniel Lezcano wrote:
->> On 27/01/2023 16:44, Amjad Ouled-Ameur wrote:
->>> This patchset adds thermal support for MT8365 SoC.
->>>
->>> MT8365 has 4 thermal sensors, one for CPUs and the rest for debug/dev
->>> purposes. The CPU thermal zone uses passive cooling device with
->>> CPU{0..3}.
->>>
->>> Changes in v9:
->>> - Use delay between bank init and the thermal zone device register.
->>> - Link to v8: 
->>> https://lore.kernel.org/r/20221018-up-i350-thermal-bringup-v8-0-23e8fbb08837@baylibre.com
->>>
->>> Signed-off-by: Amjad Ouled-Ameur <aouledameur@baylibre.com>
->>> ---
->>> Amjad Ouled-Ameur (2):
->>>        thermal: mediatek: add callback for raw to mcelsius conversion
->>>        thermal: mediatek: add delay after thermal banks initialization
->>>
->>> Fabien Parent (2):
->>>        dt-bindings: thermal: mediatek: add binding documentation for 
->>> MT8365 SoC
->>>        thermal: mediatek: add support for MT8365 SoC
->>>
->>> Markus Schneider-Pargmann (1):
->>>        thermal: mediatek: control buffer enablement tweaks
->>>
->>>   .../bindings/thermal/mediatek-thermal.txt          |   1 +
->>>   drivers/thermal/mtk_thermal.c                      | 117 
->>> +++++++++++++++++----
->>>   2 files changed, 96 insertions(+), 22 deletions(-)
->>> ---
->>
->> Applied, with some changes and the subject fixed:
->>
-> Any news about this patchset ?
+> Signed-off-by: Rob Herring <robh@kernel.org>
+> ---
+> Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+> Cc: Stephen Boyd <sboyd@kernel.org>
+> Cc: Herbert Xu <herbert@gondor.apana.org.au>
+> Cc: "David S. Miller" <davem@davemloft.net>
+> Cc: Rob Clark <robdclark@gmail.com>
+> Cc: Abhinav Kumar <quic_abhinavk@quicinc.com>
+> Cc: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> Cc: Sean Paul <sean@poorly.run>
+> Cc: Thomas Gleixner <tglx@linutronix.de>
+> Cc: Marc Zyngier <maz@kernel.org>
+> Cc: Mauro Carvalho Chehab <mchehab@kernel.org>
+> Cc: Eric Dumazet <edumazet@google.com>
+> Cc: Jakub Kicinski <kuba@kernel.org>
+> Cc: Paolo Abeni <pabeni@redhat.com>
+> Cc: Andrew Lunn <andrew@lunn.ch>
+> Cc: Heiner Kallweit <hkallweit1@gmail.com>
+> Cc: Vinod Koul <vkoul@kernel.org>
+> Cc: Kishon Vijay Abraham I <kishon@kernel.org>
+> Cc: Mark Brown <broonie@kernel.org>
+> Cc: Conor Dooley <conor.dooley@microchip.com>
+> Cc: linux-clk@vger.kernel.org
+> Cc: linux-crypto@vger.kernel.org
+> Cc: dri-devel@lists.freedesktop.org
+> Cc: freedreno@lists.freedesktop.org
+> Cc: linux-media@vger.kernel.org
+> Cc: netdev@vger.kernel.org
+> Cc: linux-arm-kernel@lists.infradead.org
+> Cc: linux-phy@lists.infradead.org
+> Cc: linux-gpio@vger.kernel.org
+> Cc: alsa-devel@alsa-project.org
+> Cc: linux-riscv@lists.infradead.org
+> Cc: linux-spi@vger.kernel.org
+> ---
+>  Documentation/devicetree/bindings/.yamllint   |  2 +-
+>  .../bindings/clock/qcom,a53pll.yaml           |  4 ++--
+>  .../devicetree/bindings/crypto/ti,sa2ul.yaml  |  4 ++--
+>  .../bindings/display/msm/qcom,mdp5.yaml       |  2 +-
+>  .../interrupt-controller/arm,gic.yaml         |  4 ++--
+>  .../loongson,pch-msi.yaml                     |  2 +-
+>  .../bindings/media/renesas,vin.yaml           |  4 ++--
+>  .../devicetree/bindings/media/ti,cal.yaml     |  4 ++--
+>  .../bindings/net/brcm,bcmgenet.yaml           |  2 --
+>  .../bindings/net/cortina,gemini-ethernet.yaml |  6 ++---
+>  .../devicetree/bindings/net/mdio-gpio.yaml    |  4 ++--
+>  .../phy/marvell,armada-cp110-utmi-phy.yaml    |  2 +-
+>  .../bindings/phy/phy-stm32-usbphyc.yaml       |  2 +-
+>  .../phy/qcom,sc7180-qmp-usb3-dp-phy.yaml      |  2 +-
+>  .../bindings/pinctrl/pinctrl-mt8192.yaml      |  2 +-
+>  .../regulator/nxp,pca9450-regulator.yaml      |  8 +++----
+>  .../regulator/rohm,bd71828-regulator.yaml     | 20 ++++++++--------
+>  .../regulator/rohm,bd71837-regulator.yaml     |  6 ++---
+>  .../regulator/rohm,bd71847-regulator.yaml     |  6 ++---
+>  .../bindings/soc/renesas/renesas.yaml         |  2 +-
+>  .../devicetree/bindings/soc/ti/ti,pruss.yaml  |  2 +-
+>  .../bindings/sound/amlogic,axg-tdm-iface.yaml |  2 +-
+>  .../bindings/sound/qcom,lpass-rx-macro.yaml   |  4 ++--
+>  .../bindings/sound/qcom,lpass-tx-macro.yaml   |  4 ++--
+>  .../bindings/sound/qcom,lpass-va-macro.yaml   |  4 ++--
+>  .../sound/qcom,q6dsp-lpass-ports.yaml         |  2 +-
+>  .../bindings/sound/simple-card.yaml           | 24 +++++++++----------
+>  .../bindings/spi/microchip,mpfs-spi.yaml      |  2 +-
+>  28 files changed, 65 insertions(+), 67 deletions(-)
+> 
 
-Yep, sorry for that. It will be in bleeding-edge soon.
-
--- 
-<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
-
-Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
-<http://twitter.com/#!/linaroorg> Twitter |
-<http://www.linaro.org/linaro-blog/> Blog
+Applied, thanks!
 
