@@ -2,69 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EB0E16B0A7E
-	for <lists+devicetree@lfdr.de>; Wed,  8 Mar 2023 15:08:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E90A96B0A81
+	for <lists+devicetree@lfdr.de>; Wed,  8 Mar 2023 15:08:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232141AbjCHOII (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Mar 2023 09:08:08 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48758 "EHLO
+        id S231990AbjCHOIJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Mar 2023 09:08:09 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45934 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231979AbjCHOHu (ORCPT
+        with ESMTP id S232124AbjCHOHu (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Wed, 8 Mar 2023 09:07:50 -0500
-Received: from mail-oi1-f181.google.com (mail-oi1-f181.google.com [209.85.167.181])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2020734002;
-        Wed,  8 Mar 2023 06:06:26 -0800 (PST)
-Received: by mail-oi1-f181.google.com with SMTP id e21so12247136oie.1;
-        Wed, 08 Mar 2023 06:06:26 -0800 (PST)
+Received: from mail-ot1-f51.google.com (mail-ot1-f51.google.com [209.85.210.51])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 39ADD34F48;
+        Wed,  8 Mar 2023 06:06:28 -0800 (PST)
+Received: by mail-ot1-f51.google.com with SMTP id g6-20020a056830308600b0068d4b30536aso9008486ots.9;
+        Wed, 08 Mar 2023 06:06:28 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678284385;
+        d=1e100.net; s=20210112; t=1678284387;
         h=date:subject:message-id:references:in-reply-to:cc:to:from
          :mime-version:content-transfer-encoding:x-gm-message-state:from:to
          :cc:subject:date:message-id:reply-to;
-        bh=WpczFTCXijyH6v2uFsL0r+ne6zhQWpuAxK6dZ8HLc8w=;
-        b=hhPn5vzzQnLsj55S5avkZt0cS4CDLTPUSDXszASAkbS21eMuAtebnHidYBRu1PsVAp
-         VoYeDUu7wltur3k8eLOxienPgGPLxNCgB8/j7jBN9ZpsO6l1icSydI6BvXPWUlDqzJgl
-         l5IHb0rNMbK4LxhNH7ow8haaLrKoQUzZ5MNzOhqBiukKnh/dTGK3U5ABf84GLvwDOPIq
-         Yoi7pWkgtBen/X0t6hqTKs+GC5Sv4ZCQKp9nShfAMujNPRP+BHsBUFeKDSx3ku5ZJyoX
-         BdEUh+GAYzQt//ThtZekS0R/U7xBCjFgEXCd+Y3/zZvaziZIOdOS/HdDSnd71PMCdIm1
-         r6RQ==
-X-Gm-Message-State: AO0yUKV3kzx1f53qUEmqEBULDGyx7mvPkgXPHjT/vbzIz2kizFdZhNGX
-        m9gs3V6sex2rzDDlb7xS5A==
-X-Google-Smtp-Source: AK7set9TY7ANnw+LvWD6zq/I9SejqdyfAIYH25nwUFoQ1NaWeLROsqghaWZaYYnPSagPS99RJ5mp5A==
-X-Received: by 2002:a05:6808:c7:b0:384:3a4d:7f72 with SMTP id t7-20020a05680800c700b003843a4d7f72mr7023522oic.9.1678284385296;
-        Wed, 08 Mar 2023 06:06:25 -0800 (PST)
+        bh=W3V1JTSU4mAasV6Yy4rBnCyWxykGtCx/CwR52o/KvEc=;
+        b=nnP+miKgKM/KR2c1KRRD4udbdSculU2TMaEuxACq1Uhxy8fwllFzYOZZBklvcu6qlT
+         jHQK0ZQlfTY6ZW3iRQau9dMhm/ek6eiR4xJN5n/5JWBroSdlxEkYFPfJLMkQm/WcM83o
+         pqae3rk7hQmPCAEAUllStD/i5HJYfBV0kh/Gs9jMDWak2FcxujhXEFKlcDU/3+5Fu3m0
+         YnVa8bZES4BFfLyUstl8FPHYI8Sqc1E77i7VNdyuJ7aYI9Llaqd2arq1extz/R0uxXQ4
+         t4tfrLQGCGP/yIqpAZSl1srAKInyKDHQHlWdjy9nEGip+DHW8Y8z5tKcbxLb9xC4fmre
+         V0wA==
+X-Gm-Message-State: AO0yUKV8CNdMxNbng2t8+iRPjScThNEtvSCIqLqic6fRyWKi7dXxniXR
+        ftZatoSZkTjwQgWkmlkkHA==
+X-Google-Smtp-Source: AK7set+6pXcrDnyjZYZJ0PqF6YB97KGKOLOLPb2e+N3hu1Ms1rlAgf+tDK3agSRy0jFFRDTN4/rVRQ==
+X-Received: by 2002:a9d:18f:0:b0:690:e7f9:bb61 with SMTP id e15-20020a9d018f000000b00690e7f9bb61mr8863276ote.26.1678284387420;
+        Wed, 08 Mar 2023 06:06:27 -0800 (PST)
 Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id s82-20020acadb55000000b00383ecd10ea6sm6354226oig.20.2023.03.08.06.06.24
+        by smtp.gmail.com with ESMTPSA id y22-20020a056830071600b0068d4dda3d61sm6434064ots.39.2023.03.08.06.06.25
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 08 Mar 2023 06:06:24 -0800 (PST)
-Received: (nullmailer pid 2666455 invoked by uid 1000);
+        Wed, 08 Mar 2023 06:06:26 -0800 (PST)
+Received: (nullmailer pid 2666451 invoked by uid 1000);
         Wed, 08 Mar 2023 14:06:21 -0000
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 MIME-Version: 1.0
 From:   Rob Herring <robh@kernel.org>
-To:     Svyatoslav Ryhel <clamor95@gmail.com>
-Cc:     Lars-Peter Clausen <lars@metafoo.de>,
-        Derek Kiernan <derek.kiernan@xilinx.com>,
-        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Dragan Cvetic <dragan.cvetic@xilinx.com>,
-        Jonathan Cameron <jic23@kernel.org>,
+To:     Minda Chen <minda.chen@starfivetech.com>
+Cc:     Pawel Laszczak <pawell@cadence.com>, Vinod Koul <vkoul@kernel.org>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Kishon Vijay Abraham I <kishon@kernel.org>,
+        Peter Chen <peter.chen@kernel.org>,
+        Roger Quadros <rogerq@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        devicetree@vger.kernel.org,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
+        linux-phy@lists.infradead.org,
+        Emil Renner Berthing <emil.renner.berthing@canonical.com>,
+        linux-usb@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Conor Dooley <conor@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Arnd Bergmann <arnd@arndb.de>, linux-iio@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Dmitry Osipenko <dmitry.osipenko@collabora.com>
-In-Reply-To: <20230308090219.12710-2-clamor95@gmail.com>
-References: <20230308090219.12710-1-clamor95@gmail.com>
- <20230308090219.12710-2-clamor95@gmail.com>
-Message-Id: <167828360145.2613122.1172986827662465150.robh@kernel.org>
-Subject: Re: [PATCH v1 1/4] dt-bindings: iio: light: add apds990x binding
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+In-Reply-To: <20230308082800.3008-2-minda.chen@starfivetech.com>
+References: <20230308082800.3008-1-minda.chen@starfivetech.com>
+ <20230308082800.3008-2-minda.chen@starfivetech.com>
+Message-Id: <167828360080.2613078.14112010625330944896.robh@kernel.org>
+Subject: Re: [PATCH v2 1/3] dt-bindings: phy: Add StarFive JH7110 USB
+ dt-binding
 Date:   Wed, 08 Mar 2023 08:06:21 -0600
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=no autolearn_force=no
-        version=3.4.6
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -72,14 +79,15 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
-On Wed, 08 Mar 2023 11:02:16 +0200, Svyatoslav Ryhel wrote:
-> Add dt-binding for apds990x ALS/proximity sensor.
+On Wed, 08 Mar 2023 16:27:58 +0800, Minda Chen wrote:
+> Add StarFive JH7110 SoC USB 3.0 phy dt-binding.
+> USB controller is cadence USB 3.0 IP.
 > 
-> Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
+> Signed-off-by: Minda Chen <minda.chen@starfivetech.com>
 > ---
->  .../bindings/iio/light/avago,apds990x.yaml    | 76 +++++++++++++++++++
->  1 file changed, 76 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/iio/light/avago,apds990x.yaml
+>  .../bindings/phy/starfive,jh7110-usb-phy.yaml | 158 ++++++++++++++++++
+>  1 file changed, 158 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/phy/starfive,jh7110-usb-phy.yaml
 > 
 
 My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
@@ -88,12 +96,16 @@ on your patch (DT_CHECKER_FLAGS is new in v5.13):
 yamllint warnings/errors:
 
 dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/iio/light/avago,apds990x.example.dtb: light-sensor@39: 'interrupt' is a required property
-	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/iio/light/avago,apds990x.yaml
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/phy/starfive,jh7110-usb-phy.example.dtb: usb@10100000: phy-names:1: 'anyOf' conditional failed, one must be fixed:
+	'cdns3,usb2-phy' was expected
+	'cdns3,usb3-phy' was expected
+	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/usb/cdns,usb3.yaml
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/phy/starfive,jh7110-usb-phy.example.dtb: usb@10100000: 'phys' is a dependency of 'phy-names'
+	From schema: /usr/local/lib/python3.10/dist-packages/dtschema/schemas/phy/phy-consumer.yaml
 
 doc reference errors (make refcheckdocs):
 
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20230308090219.12710-2-clamor95@gmail.com
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20230308082800.3008-2-minda.chen@starfivetech.com
 
 The base for the series is generally the latest rc1. A different dependency
 should be noted in *this* patch.
