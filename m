@@ -2,60 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D706D6B0257
-	for <lists+devicetree@lfdr.de>; Wed,  8 Mar 2023 10:05:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 31D2C6B0276
+	for <lists+devicetree@lfdr.de>; Wed,  8 Mar 2023 10:10:54 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229623AbjCHJFb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Mar 2023 04:05:31 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53852 "EHLO
+        id S229876AbjCHJKw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Mar 2023 04:10:52 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60334 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230043AbjCHJF1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Mar 2023 04:05:27 -0500
-Received: from mail-ed1-x536.google.com (mail-ed1-x536.google.com [IPv6:2a00:1450:4864:20::536])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ED52E9B9BA
-        for <devicetree@vger.kernel.org>; Wed,  8 Mar 2023 01:04:58 -0800 (PST)
-Received: by mail-ed1-x536.google.com with SMTP id ay14so59082859edb.11
-        for <devicetree@vger.kernel.org>; Wed, 08 Mar 2023 01:04:58 -0800 (PST)
+        with ESMTP id S230406AbjCHJJR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Mar 2023 04:09:17 -0500
+Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com [IPv6:2a00:1450:4864:20::52b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D707C14217
+        for <devicetree@vger.kernel.org>; Wed,  8 Mar 2023 01:08:38 -0800 (PST)
+Received: by mail-ed1-x52b.google.com with SMTP id s11so62821639edy.8
+        for <devicetree@vger.kernel.org>; Wed, 08 Mar 2023 01:08:38 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1678266297;
+        d=linaro.org; s=google; t=1678266517;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=269a+hSFqGP/XBfE02KYCbxQFTM7xuOYsDEHsUDIoiw=;
-        b=C/f+eUOIEi3uxqK85NzLLkIaMc3bYeiNLchyXLYpEu9fdTe4m8/2IzR2Yrz35BVypJ
-         By70P9SvUMhJnhepKxiEcoXwrhK+GpEDkZLQ4v6+AGhLQsPeWUsf+uMM1l7GSMyxHg1j
-         7mTMftIMI8wA+oG4zEi9N9UYjsWcvw6/dx5ALQ9ViwpO4Yhv1soyo0oWtIlnPrwVgRWV
-         iqcxukrmFtpkSea7QszjGQfMYMCx96IYdJCWZcRTgrg7xbw/iCuS9vpH8xoZHaSxF/H2
-         dc/ECeXdsZHD7nfDjTUTG/J0o/vgjlrfexfpsUtm8WW2J8o/7pQ7nHF2GQbc39KwkEaU
-         5UCg==
+        bh=y24Ykwkv97HFDt8eai42TYISOmR0ZU7vtQ9YWiXtTfk=;
+        b=wZBUXSVrnXvp1MXRDy00+hzHbT4U3mblM0bISrnMWQqdnsCZBVp/4yEVElO8zy84I3
+         nQ59vniQ26fdsjTx+GSeQA2WCicAxAKBpTfAKuf3IrLqoCvMvVm/5nMA4ec0fQETSTuu
+         EDd5+eWHzaEgfvaXk1yhaBuO5IjPd2FtzQln5RRid2sD8OW36tV0vWrk1gIxdyZbbZtE
+         9Po/KtzsoruH93Sxv6CDm2HSEBC2A29F7FJK3PvUI1tNu1wjlUaRPqPWiWMdpWmjNs5h
+         f853bHbMfFEMJBTxRbelbm1mgXdJSRHIuXyrUD+NsOkE4x1qQ6dZFwyaqCVHAMmFelpb
+         b5og==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678266297;
+        d=1e100.net; s=20210112; t=1678266517;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=269a+hSFqGP/XBfE02KYCbxQFTM7xuOYsDEHsUDIoiw=;
-        b=wwCZv5wtLSJc+1giGzUg88JQYTeP/nM5iTHHZrvGZsQVOARsc/cyf5N4jZCJqanbD9
-         61LnllrjPJlnNiUGS+jfM8hJec0+Q5YyjwnqIIJFNFkiNKUi/DZ/OvjguEf26Bend68g
-         +Bpd8aW3BzjjyF6ORBKh7TtnKdRfqgIAXvsrFnOYf7kV9W3+OefjWAiVM/fTp9g/M63w
-         CPVHI7qkrcL5qohF1uELG/YczGGHqPmoaNXDJ8wtnveZwAgdVhUB4C5uzaw752SqpFdf
-         SnA6uDw+ukY+zMG7aOsmL/hKG8gQx8Mt3i72SvwXyAnP6ODF9c1uMCvfOjAXm20ayU8B
-         Wy9w==
-X-Gm-Message-State: AO0yUKVYlL7GC1v8vJlHJIEJICsD/fXm9yMf9PsskNTnJHywn6pKi9PQ
-        4lWT3wM1DrAXAEx71OIpwW7VWg==
-X-Google-Smtp-Source: AK7set+2qTfpfpduh8f17lysCrO27en5LVth7P9pVbPwi6AtQ+YAQ0MG4sEuKa+PIBipFEgB54KvEA==
-X-Received: by 2002:a17:907:6e87:b0:879:ec1a:4ac with SMTP id sh7-20020a1709076e8700b00879ec1a04acmr21367004ejc.76.1678266297454;
-        Wed, 08 Mar 2023 01:04:57 -0800 (PST)
+        bh=y24Ykwkv97HFDt8eai42TYISOmR0ZU7vtQ9YWiXtTfk=;
+        b=pLXOid6ywHW1lJFS4GiitHLttFRAsVErxEjz+WRu5CveASCfWt5m+9ST9wD4rAS6Ey
+         d/X43ck+hOZERIo4wGliYZ22i7pZg1qJzgfT2ZXlYbdVeLGBZNZBoyT+PfY5QsxTAnA7
+         HKa3LcqjYtxo4lnS/n3uyHqlQXUlVASf9P50WJXSJzt6lVVIl5Wlv1CgjTt0ZamVKnEh
+         rb7JnBg5kH+zBKfpB8I80kOFTfLdWt5OrVM7Mkuce5hgSEqNEvEMYoNR5ldJFD+7kM33
+         RjY4QZKYCpntGdv5/cEdA49tvkWcgC6EMK3UKwcKUL7R8bpcccuuxFxdwiBgEdeyrbnt
+         54Pw==
+X-Gm-Message-State: AO0yUKWN5Zy138flwfigkqwGmjqMUhmrUhk57xKE2NYAnyyfss0BnR1S
+        GcTB0C/f5rSLcY+VHFvHacqFcrwrG9zgUnW71Jg=
+X-Google-Smtp-Source: AK7set9/MsIXlWmLU6Q6FB0uz9Fc0F3Jwt8Zhj3GLREP5f/y1fLLhbf5cce7IhYca0dyA2QLdK+IWw==
+X-Received: by 2002:aa7:da15:0:b0:4ac:c72b:5eb5 with SMTP id r21-20020aa7da15000000b004acc72b5eb5mr15479970eds.40.1678266517348;
+        Wed, 08 Mar 2023 01:08:37 -0800 (PST)
 Received: from ?IPV6:2a02:810d:15c0:828:bba:fbfa:8aec:a133? ([2a02:810d:15c0:828:bba:fbfa:8aec:a133])
-        by smtp.gmail.com with ESMTPSA id u15-20020a1709064acf00b0090766deae98sm7115207ejt.166.2023.03.08.01.04.56
+        by smtp.gmail.com with ESMTPSA id 20-20020a508e54000000b004d8d2735251sm5832239edx.43.2023.03.08.01.08.36
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 08 Mar 2023 01:04:57 -0800 (PST)
-Message-ID: <95fa5f0f-cf53-7a37-2170-98b81c0982f1@linaro.org>
-Date:   Wed, 8 Mar 2023 10:04:56 +0100
+        Wed, 08 Mar 2023 01:08:37 -0800 (PST)
+Message-ID: <c04d4306-de81-363c-2d2e-60f5283a5249@linaro.org>
+Date:   Wed, 8 Mar 2023 10:08:36 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.8.0
-Subject: Re: [PATCH v1 1/4] dt-bindings: power: supply: maxim,max17040: update
- properties
+Subject: Re: [PATCH v1 4/4] power: max17040: get thermal data from adc if
+ available
 Content-Language: en-US
 To:     Svyatoslav Ryhel <clamor95@gmail.com>,
         Iskren Chernev <me@iskren.info>,
@@ -66,9 +66,9 @@ To:     Svyatoslav Ryhel <clamor95@gmail.com>,
 Cc:     linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
 References: <20230308084419.11934-1-clamor95@gmail.com>
- <20230308084419.11934-2-clamor95@gmail.com>
+ <20230308084419.11934-5-clamor95@gmail.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230308084419.11934-2-clamor95@gmail.com>
+In-Reply-To: <20230308084419.11934-5-clamor95@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -82,85 +82,54 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 08/03/2023 09:44, Svyatoslav Ryhel wrote:
-> Add simple cell, status, health and temperature properties.
+> Since fuel gauge does not support thermal monitoring,
+> some vendors may couple this fuel gauge with thermal/adc
+> sensor to monitor battery cell exact temperature.
+> 
+> Add this feature by adding optional iio thermal channel.
 > 
 > Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
 > ---
->  .../bindings/power/supply/maxim,max17040.yaml | 37 +++++++++++++++++++
->  1 file changed, 37 insertions(+)
+>  drivers/power/supply/max17040_battery.c | 24 ++++++++++++++++++++++++
+>  1 file changed, 24 insertions(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/power/supply/maxim,max17040.yaml b/Documentation/devicetree/bindings/power/supply/maxim,max17040.yaml
-> index 3a529326ecbd..6f1c25b4729f 100644
-> --- a/Documentation/devicetree/bindings/power/supply/maxim,max17040.yaml
-> +++ b/Documentation/devicetree/bindings/power/supply/maxim,max17040.yaml
-> @@ -55,6 +55,20 @@ properties:
->    interrupts:
->      maxItems: 1
+> diff --git a/drivers/power/supply/max17040_battery.c b/drivers/power/supply/max17040_battery.c
+> index 6dfce7b1309e..8c743c26dc6e 100644
+> --- a/drivers/power/supply/max17040_battery.c
+> +++ b/drivers/power/supply/max17040_battery.c
+> @@ -18,6 +18,7 @@
+>  #include <linux/of_device.h>
+>  #include <linux/regmap.h>
+>  #include <linux/slab.h>
+> +#include <linux/iio/consumer.h>
 >  
-> +  monitored-battery:
-> +    $ref: /schemas/types.yaml#/definitions/phandle
-> +    description: phandle to the battery node being monitored
-> +
-> +  power-supplies: true
+>  #define MAX17040_VCELL	0x02
+>  #define MAX17040_SOC	0x04
+> @@ -143,6 +144,7 @@ struct max17040_chip {
+>  	struct power_supply		*battery;
+>  	struct power_supply_battery_info	*batt_info;
+>  	struct chip_data		data;
+> +	struct iio_channel		*channel_temp;
+>  
+>  	/* battery capacity */
+>  	int soc;
+> @@ -416,6 +418,11 @@ static int max17040_get_property(struct power_supply *psy,
+>  	case POWER_SUPPLY_PROP_CHARGE_FULL_DESIGN:
+>  		val->intval = chip->batt_info->charge_full_design_uah;
+>  		break;
+> +	case POWER_SUPPLY_PROP_TEMP:
+> +		iio_read_channel_raw(chip->channel_temp,
+> +				     &val->intval);
+> +		val->intval *= 10;
 
-This should be rather specific input name, e.g. vdd-supply.
+I am not convinced this is needed at all. You basically chain two
+subsystems only to report to user-space via power supply, but it is
+already reported via IIO. I would understand it if you use the value for
+something, e.g. control the charger. Here, it's just feeding different
+user-space interface. Therefore:
+1. IO channels are not a hardware property of the fuel gauge,
+2. I have doubts this should be even exposed via power supply interface.
 
-> +
-> +  io-channels:
-> +    items:
-> +      - description: battery temperature
-
-
-
-max17040 does not have ADC temperature input... so is it system
-configuration?
-
-
-> +
-> +  io-channel-names:
-> +    items:
-> +      - const: temp
-
-Drop the names property, not needed for one item.
-
-> +
->    wakeup-source:
->      type: boolean
->      description: |
-> @@ -95,3 +109,26 @@ examples:
->          wakeup-source;
->        };
->      };
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/irq.h>
-> +    i2c0 {
-> +      #address-cells = <1>;
-> +      #size-cells = <0>;
-> +
-> +      fuel-gauge@36 {
-> +        compatible = "maxim,max17043";
-> +        reg = <0x36>;
-> +
-> +        interrupt-parent = <&gpio>;
-> +        interrupts = <144 IRQ_TYPE_EDGE_FALLING>;
-> +
-> +        monitored-battery = <&battery>;
-> +        power-supplies = <&charger>;
-
-But here you suggests something else than VDD... The hardware does not
-take charger as input. It takes power supply - vdd.
-
-> +
-> +        io-channels = <&adc 8>;
-
-Just add these to existing example.
-
-> +        io-channel-names = "temp";
-> +
-> +        maxim,alert-low-soc-level = <10>;
-> +        wakeup-source;
-> +      };
-> +    };
 
 Best regards,
 Krzysztof
