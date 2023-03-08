@@ -2,30 +2,30 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F09DD6B07B3
-	for <lists+devicetree@lfdr.de>; Wed,  8 Mar 2023 14:01:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D9EC96B07B1
+	for <lists+devicetree@lfdr.de>; Wed,  8 Mar 2023 14:01:05 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231539AbjCHNBO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Mar 2023 08:01:14 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39096 "EHLO
+        id S231332AbjCHNBD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Mar 2023 08:01:03 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38714 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231440AbjCHNAf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Mar 2023 08:00:35 -0500
+        with ESMTP id S231372AbjCHNAc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Mar 2023 08:00:32 -0500
 Received: from smtp-8fae.mail.infomaniak.ch (smtp-8fae.mail.infomaniak.ch [IPv6:2001:1600:4:17::8fae])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 901B0C2211
-        for <devicetree@vger.kernel.org>; Wed,  8 Mar 2023 04:59:57 -0800 (PST)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 39F3187D9B
+        for <devicetree@vger.kernel.org>; Wed,  8 Mar 2023 04:59:54 -0800 (PST)
 Received: from smtp-2-0000.mail.infomaniak.ch (unknown [10.5.36.107])
-        by smtp-3-3000.mail.infomaniak.ch (Postfix) with ESMTPS id 4PWsgJ1XnbzMqs7l;
-        Wed,  8 Mar 2023 13:53:16 +0100 (CET)
-Received: from unknown by smtp-2-0000.mail.infomaniak.ch (Postfix) with ESMTPA id 4PWsgH5C43zMslsF;
-        Wed,  8 Mar 2023 13:53:15 +0100 (CET)
+        by smtp-3-3000.mail.infomaniak.ch (Postfix) with ESMTPS id 4PWsgL0R36zMrTBC;
+        Wed,  8 Mar 2023 13:53:18 +0100 (CET)
+Received: from unknown by smtp-2-0000.mail.infomaniak.ch (Postfix) with ESMTPA id 4PWsgK45GXzMslsc;
+        Wed,  8 Mar 2023 13:53:17 +0100 (CET)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=pschenker.ch;
-        s=20220412; t=1678279996;
-        bh=JXingivvb7re9pagMlQsVFdFYwLAWOaPZ43ldOrpBVA=;
+        s=20220412; t=1678279997;
+        bh=ieLvZpXNqo1ScKL96FKroIXWyLYGJO//PsmsMl4tB5A=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=Hd9ky80NPbUHCYLIp5NSLNVK5GRSGqWjIra8CyYkHy8B70PC9BUiCoUbvbGIINihE
-         f0/SScb8T8q1I2Uu7mLcBuzEZy/MBPNyjjLLr54smfY2xBLODmmNrcs9vGuIzRI1ke
-         yqQhOO0//nWMTontZQhO+8yls45NirzOuFkKwgYg=
+        b=UoMW9J5kCiQMXFOFXu18O07VSxWMefr3vlMTZkBLyHBRw6/GfrfT/6BRC/StAXHSp
+         9x40EujC5k/Khz3HDQboLZ6kqEYcRAi95m4lpfmfGqBYF4CdcOKui16XoumraXcNQf
+         YEdWM0BFmRIYquLKmTafjxHkSy8VZSZ8tlvPsPhQ=
 From:   Philippe Schenker <dev@pschenker.ch>
 To:     devicetree@vger.kernel.org, Shawn Guo <shawnguo@kernel.org>,
         Sascha Hauer <s.hauer@pengutronix.de>
@@ -38,9 +38,9 @@ Cc:     NXP Linux Team <linux-imx@nxp.com>,
         Fabio Estevam <festevam@gmail.com>,
         Philippe Schenker <philippe.schenker@toradex.com>,
         linux-kernel@vger.kernel.org
-Subject: [PATCH v1 16/25] arm64: dts: colibri-imx8x: Add colibri pwm b, c, d
-Date:   Wed,  8 Mar 2023 13:52:50 +0100
-Message-Id: <20230308125300.58244-17-dev@pschenker.ch>
+Subject: [PATCH v1 19/25] arm64: dts: colibri-imx8x: Set thermal thresholds
+Date:   Wed,  8 Mar 2023 13:52:53 +0100
+Message-Id: <20230308125300.58244-20-dev@pschenker.ch>
 X-Mailer: git-send-email 2.39.2
 In-Reply-To: <20230308125300.58244-1-dev@pschenker.ch>
 References: <20230308125300.58244-1-dev@pschenker.ch>
@@ -58,74 +58,39 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 From: Philippe Schenker <philippe.schenker@toradex.com>
 
-Add Colibri PWM_B, PWM_C, PWM_D to the module-level device-tree and set
-the status to ok on the eval-board.
+Set critical/alert thermal thresholds for all relevant SOC
+temperature trips to the IT value (max T_junction 105 degree
+Celsius) in accordance with the IT grade of the SOM.
 
 Signed-off-by: Philippe Schenker <philippe.schenker@toradex.com>
 ---
 
- .../dts/freescale/imx8x-colibri-eval-v3.dtsi  | 15 +++++++++++++
- .../boot/dts/freescale/imx8x-colibri.dtsi     | 21 +++++++++++++++++++
- 2 files changed, 36 insertions(+)
+ arch/arm64/boot/dts/freescale/imx8x-colibri.dtsi | 12 ++++++++++++
+ 1 file changed, 12 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8x-colibri-eval-v3.dtsi b/arch/arm64/boot/dts/freescale/imx8x-colibri-eval-v3.dtsi
-index 77222d76bd95..625d2caaf5d1 100644
---- a/arch/arm64/boot/dts/freescale/imx8x-colibri-eval-v3.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8x-colibri-eval-v3.dtsi
-@@ -56,6 +56,21 @@ &lpuart2 {
- 	status = "okay";
- };
- 
-+/* Colibri PWM_B */
-+&lsio_pwm0 {
-+	status = "okay";
-+};
-+
-+/* Colibri PWM_C */
-+&lsio_pwm1 {
-+	status = "okay";
-+};
-+
-+/* Colibri PWM_D */
-+&lsio_pwm2 {
-+	status = "okay";
-+};
-+
- /* Colibri UART_A */
- &lpuart3 {
- 	status = "okay";
 diff --git a/arch/arm64/boot/dts/freescale/imx8x-colibri.dtsi b/arch/arm64/boot/dts/freescale/imx8x-colibri.dtsi
-index b849b378b017..180a1d940b8d 100644
+index f09a6aad6275..2f86a2eb4ff3 100644
 --- a/arch/arm64/boot/dts/freescale/imx8x-colibri.dtsi
 +++ b/arch/arm64/boot/dts/freescale/imx8x-colibri.dtsi
-@@ -259,6 +259,27 @@ &lsio_gpio5 {
- 			  "UNUSABLE_SODIMM_184";
+@@ -16,6 +16,18 @@ reg_module_3v3: regulator-module-3v3 {
+ 	};
  };
  
-+/* Colibri PWM_B */
-+&lsio_pwm0 {
-+	#pwm-cells = <3>;
-+	pinctrl-0 = <&pinctrl_pwm_b>;
-+	pinctrl-names = "default";
++&cpu_alert0 {
++	hysteresis = <2000>;
++	temperature = <90000>;
++	type = "passive";
 +};
 +
-+/* Colibri PWM_C */
-+&lsio_pwm1 {
-+	#pwm-cells = <3>;
-+	pinctrl-0 = <&pinctrl_pwm_c>;
-+	pinctrl-names = "default";
++&cpu_crit0 {
++	hysteresis = <2000>;
++	temperature = <105000>;
++	type = "critical";
 +};
 +
-+/* Colibri PWM_D */
-+&lsio_pwm2 {
-+	#pwm-cells = <3>;
-+	pinctrl-0 = <&pinctrl_pwm_d>;
-+	pinctrl-names = "default";
-+};
-+
- /* On-module eMMC */
- &usdhc1 {
- 	pinctrl-names = "default", "state_100mhz", "state_200mhz";
+ /* Colibri FastEthernet */
+ &fec1 {
+ 	pinctrl-names = "default", "sleep";
 -- 
 2.39.2
 
