@@ -2,93 +2,161 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D83146AFD83
-	for <lists+devicetree@lfdr.de>; Wed,  8 Mar 2023 04:41:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 349796AFDC2
+	for <lists+devicetree@lfdr.de>; Wed,  8 Mar 2023 05:13:38 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229928AbjCHDlN convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Tue, 7 Mar 2023 22:41:13 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43288 "EHLO
+        id S229682AbjCHENg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Mar 2023 23:13:36 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52334 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229891AbjCHDku (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Mar 2023 22:40:50 -0500
-Received: from fd01.gateway.ufhost.com (fd01.gateway.ufhost.com [61.152.239.71])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0CCB893E3F;
-        Tue,  7 Mar 2023 19:40:47 -0800 (PST)
-Received: from EXMBX166.cuchost.com (unknown [175.102.18.54])
-        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-        (Client CN "EXMBX166", Issuer "EXMBX166" (not verified))
-        by fd01.gateway.ufhost.com (Postfix) with ESMTP id 6C07524E328;
-        Wed,  8 Mar 2023 11:40:40 +0800 (CST)
-Received: from EXMBX061.cuchost.com (172.16.6.61) by EXMBX166.cuchost.com
- (172.16.6.76) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Wed, 8 Mar
- 2023 11:40:40 +0800
-Received: from localhost.localdomain (183.27.97.46) by EXMBX061.cuchost.com
- (172.16.6.61) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Wed, 8 Mar
- 2023 11:40:39 +0800
-From:   Xingyu Wu <xingyu.wu@starfivetech.com>
-To:     <linux-riscv@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-watchdog@vger.kernel.org>,
-        Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Emil Renner Berthing <kernel@esmil.dk>,
-        Conor Dooley <conor@kernel.org>
-CC:     Rob Herring <robh+dt@kernel.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Xingyu Wu <xingyu.wu@starfivetech.com>,
-        Samin Guo <samin.guo@starfivetech.com>,
-        <linux-kernel@vger.kernel.org>
-Subject: [PATCH v4 3/3] riscv: dts: starfive: jh7100: Add watchdog node
-Date:   Wed, 8 Mar 2023 11:40:36 +0800
-Message-ID: <20230308034036.99213-4-xingyu.wu@starfivetech.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20230308034036.99213-1-xingyu.wu@starfivetech.com>
-References: <20230308034036.99213-1-xingyu.wu@starfivetech.com>
+        with ESMTP id S229653AbjCHENe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Mar 2023 23:13:34 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D1FA54D2BD;
+        Tue,  7 Mar 2023 20:13:31 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 4E43CB81BA3;
+        Wed,  8 Mar 2023 04:13:30 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CF59AC433D2;
+        Wed,  8 Mar 2023 04:13:28 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1678248808;
+        bh=KZvivIcdP43nYQjxQV2iwy3EY21Hd7biSu6JBWcNfhA=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=FY3fSwVznCdLYf12nQOi9w6m5JC9HIX1lu0oTTGwzhae4vR1xHUFne0K9vM3k3gx/
+         WK26UtVGMZbRKFpErJt2X4Q7NypRWu/59n0HDZooOBq/VXz3mP/AsN8KGsNAztJKAW
+         RwGjAvM/6WwK9M+Jb8/qOPKoGDdAZEGT3MQkmDNO12dk6s15lVhr578O2Lf1wp1BtY
+         AILSFO5FOHQMdPpZFCrvk06w/anJ5hFe7RW7k2iMKW9QGNAiovFll/9CgKr10qGLl/
+         BtRGBgah4wK0dZenNkWN7Ow40Sx7B4Q/sZ7gHrOt8x+nbAvjXQ6rgR4LOEV3D6rK9m
+         WGglQ6e3QwO3A==
+Received: by mail-ed1-f48.google.com with SMTP id da10so60871535edb.3;
+        Tue, 07 Mar 2023 20:13:28 -0800 (PST)
+X-Gm-Message-State: AO0yUKUPaJVWp2rFYUSp06Z7U/EHExAoGJ6+AkY7JrIi9LUlF4iMSTv9
+        dgzgvQWfMw/VnbNwOjz6IkPfEEDskkhtOFGnpcM=
+X-Google-Smtp-Source: AK7set/OXHamMd30xa9MOxiTaztHdq2/uUI5fxgIghiVMrlHV5++je5CqfJuFdwe8KixFa9DHTv2yqkrJAn+QxpPD+o=
+X-Received: by 2002:a50:9b53:0:b0:4ae:f648:950b with SMTP id
+ a19-20020a509b53000000b004aef648950bmr9192549edj.7.1678248807011; Tue, 07 Mar
+ 2023 20:13:27 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [183.27.97.46]
-X-ClientProxiedBy: EXCAS066.cuchost.com (172.16.6.26) To EXMBX061.cuchost.com
- (172.16.6.61)
-X-YovoleRuleAgent: yovoleflag
-Content-Transfer-Encoding: 8BIT
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+References: <20221231235541.13568-1-samuel@sholland.org>
+In-Reply-To: <20221231235541.13568-1-samuel@sholland.org>
+From:   Guo Ren <guoren@kernel.org>
+Date:   Wed, 8 Mar 2023 12:13:15 +0800
+X-Gmail-Original-Message-ID: <CAJF2gTTgV=xTq-vqf4KHcpcRndp1=o74NebvAVfpC8CMRv8qWA@mail.gmail.com>
+Message-ID: <CAJF2gTTgV=xTq-vqf4KHcpcRndp1=o74NebvAVfpC8CMRv8qWA@mail.gmail.com>
+Subject: Re: [RESEND PATCH v7 0/5] leds: Allwinner A100 LED controller support
+To:     Samuel Holland <samuel@sholland.org>
+Cc:     Lee Jones <lee@kernel.org>, Pavel Machek <pavel@ucw.cz>,
+        linux-leds@vger.kernel.org, Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Conor Dooley <conor@kernel.org>,
+        Heiko Stuebner <heiko.stuebner@vrull.eu>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Jisheng Zhang <jszhang@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-riscv@lists.infradead.org, linux-sunxi@lists.linux.dev
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add watchdog node for the StarFive JH7100 RISC-V SoC.
+Thx Samuel,
 
-Signed-off-by: Xingyu Wu <xingyu.wu@starfivetech.com>
----
- arch/riscv/boot/dts/starfive/jh7100.dtsi | 10 ++++++++++
- 1 file changed, 10 insertions(+)
+On Sun, Jan 1, 2023 at 7:55=E2=80=AFAM Samuel Holland <samuel@sholland.org>=
+ wrote:
+>
+> [Resending because it has been a couple of months since v7 with no LED
+> maintainer feedback, and LEDs now have an additional maintainer.]
+>
+> This series adds bindings and a driver for the RGB LED controller found
+> in some Allwinner SoCs, starting with A100. The hardware in the R329 and
+> D1 SoCs appears to be identical.
+>
+> Patches 4-5 depend on the D1 devicetree series[1], but the rest of this
+> series can/should be merged without them.
+>
+> This driver was tested on the D1 Nezha board.
+>
+> [1]: https://lore.kernel.org/lkml/20221231233851.24923-1-samuel@sholland.=
+org/
+>
+> Changes in v7:
+>  - Use DEFINE_SIMPLE_DEV_PM_OPS
+>
+> Changes in v6:
+>  - Drop the A100 DMA controller DT node patch, which was merged via a
+>    different series
+>
+> Changes in v5:
+>  - A100 contains the original implementation, so use that as the base
+>    compatible string, and rename the binding to match
+>  - Add "unevaluatedProperties: false" to the child multi-led binding
+>  - Rename the driver R329 -> A100, since that is the actual original
+>    implementation
+>
+> Changes in v4:
+>  - Use "default" instead of "maxItems" for timing properties
+>  - Depend on LEDS_CLASS_MULTICOLOR
+>
+> Changes in v3:
+>  - Removed quotes from enumeration values
+>  - Added vendor prefix to timing/format properties
+>  - Renamed "format" property to "pixel-format" for clarity
+>  - Dropped "vled-supply" as it is unrelated to the controller hardware
+>  - Added vendor prefix to timing/format properties
+>  - Renamed "format" property to "pixel-format" for clarity
+>  - Dropped "vled-supply" as it is unrelated to the controller hardware
+>  - Changed "writesl" to "iowrite32_rep" so the driver builds on hppa
+>
+> Changes in v2:
+>  - Fixed typo leading to duplicate t1h-ns property
+>  - Removed "items" layer in definition of dmas/dma-names
+>  - Replaced uint32 type reference with maxItems in timing properties
+>  - Renamed from sunxi-ledc to sun50i-r329-ledc
+>  - Added missing "static" to functions/globals as reported by 0day bot
+>
+> Samuel Holland (5):
+>   dt-bindings: leds: Add Allwinner A100 LED controller
+>   leds: sun50i-a100: New driver for the A100 LED controller
+>   arm64: dts: allwinner: a100: Add LED controller node
+>   riscv: dts: allwinner: d1: Add LED controller node
+>   riscv: dts: allwinner: d1: Add RGB LEDs to boards
+>
+>  .../leds/allwinner,sun50i-a100-ledc.yaml      | 139 +++++
+>  .../arm64/boot/dts/allwinner/sun50i-a100.dtsi |  14 +
+>  .../allwinner/sun20i-d1-lichee-rv-dock.dts    |  12 +
+>  .../boot/dts/allwinner/sun20i-d1-nezha.dts    |  13 +
+>  arch/riscv/boot/dts/allwinner/sun20i-d1.dtsi  |   6 +
+>  .../boot/dts/allwinner/sunxi-d1s-t113.dtsi    |  15 +
+>  drivers/leds/Kconfig                          |   9 +
+>  drivers/leds/Makefile                         |   1 +
+>  drivers/leds/leds-sun50i-a100.c               | 555 ++++++++++++++++++
+>  9 files changed, 764 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/leds/allwinner,sun5=
+0i-a100-ledc.yaml
+>  create mode 100644 drivers/leds/leds-sun50i-a100.c
+Acked-by: Guo Ren <guoren@kernel.org>
 
-diff --git a/arch/riscv/boot/dts/starfive/jh7100.dtsi b/arch/riscv/boot/dts/starfive/jh7100.dtsi
-index 000447482aca..1eb7c21a94fd 100644
---- a/arch/riscv/boot/dts/starfive/jh7100.dtsi
-+++ b/arch/riscv/boot/dts/starfive/jh7100.dtsi
-@@ -238,5 +238,15 @@ i2c3: i2c@12460000 {
- 			#size-cells = <0>;
- 			status = "disabled";
- 		};
-+
-+		wdog: watchdog@12480000 {
-+			compatible = "starfive,jh7100-wdt";
-+			reg = <0x0 0x12480000 0x0 0x10000>;
-+			clocks = <&clkgen JH7100_CLK_WDTIMER_APB>,
-+				 <&clkgen JH7100_CLK_WDT_CORE>;
-+			clock-names = "apb", "core";
-+			resets = <&rstgen JH7100_RSTN_WDTIMER_APB>,
-+				 <&rstgen JH7100_RSTN_WDT>;
-+		};
- 	};
- };
--- 
-2.25.1
+>
+> --
+> 2.37.4
+>
 
+
+--=20
+Best Regards
+ Guo Ren
