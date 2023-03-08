@@ -2,115 +2,137 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6E79F6B0600
-	for <lists+devicetree@lfdr.de>; Wed,  8 Mar 2023 12:31:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A88D46B0683
+	for <lists+devicetree@lfdr.de>; Wed,  8 Mar 2023 12:59:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229814AbjCHLbm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Mar 2023 06:31:42 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53684 "EHLO
+        id S230416AbjCHL7R (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Mar 2023 06:59:17 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37200 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229482AbjCHLbl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Mar 2023 06:31:41 -0500
-Received: from mail-ed1-x529.google.com (mail-ed1-x529.google.com [IPv6:2a00:1450:4864:20::529])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8856FA6174
-        for <devicetree@vger.kernel.org>; Wed,  8 Mar 2023 03:31:40 -0800 (PST)
-Received: by mail-ed1-x529.google.com with SMTP id o12so64363108edb.9
-        for <devicetree@vger.kernel.org>; Wed, 08 Mar 2023 03:31:40 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1678275099;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=SlEPc3hcrmapBm9NauxvzSjilndCIvXC382t1TVmJ6w=;
-        b=yrXqGP4vYmpFUk6t4mwR+2OQS943kWX0+q9ngxezl5yW+dv3aIvRnye8fIHWujpoKV
-         Y/dw9uVzHqTEwJtjpoK54vX58BApIurr5vNmHTSlOwtYTqH3Z4ruQ8+V5sfQkBg3fl0t
-         lJ0rKK9VO1LosNr8QGSieZf949tzYhEcUUhXg2ly6E/dxMchlkgNyfN+rsvKBNtwt7oe
-         oqybiYwJVH0bUSiEJY0p0CsPw+VwHJ4eUN3jJdvW5JLwV3Z3mJRmExL82oHi7k7C1mJx
-         6JZTg+dg1qfsnI3l3eTNcERj72RurlTNKGBpOP4w7ABTf1m21rLGArARA2RkAs5xqd0v
-         mVDg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678275099;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=SlEPc3hcrmapBm9NauxvzSjilndCIvXC382t1TVmJ6w=;
-        b=wD221AStHS437IA1G7cDQb5nzstUu32YKobTxfnHznZ1qErKHTwFWGBlMxpwy8+qcn
-         18EupSw8LO4iHkunttW99LQDxrajpGqE6R106pjj25wdhFTEJg5rPd+tYU1VpZeS8tPl
-         rmWHBgvEm6uquGlbz5nCBmpPIFXbn6XfVSmvDGmZ5wzlPTnP2+6KDx6AO65HWJMCaCum
-         MdqBg61VuTUrdFnP3fB682wPqMd1omxXOqyMryHsb4fBhVhmALURVQ+QMsRnV/cJotSk
-         bOXHS+Yl3dbb1gcDixPLhpnjYLSWosos24F0cAaxsc0u7ccqFBPbzXifG70zDkvaWSq8
-         GzJQ==
-X-Gm-Message-State: AO0yUKVPCnMg4bTlSwxGerguyOHuKT+nUw5OfCcZWYZ1efNvnox0kKfw
-        yCMef1kMCWv72oD4aXwkpFdOTA==
-X-Google-Smtp-Source: AK7set+avemZThhDRSso8zHgwhY4mcE82Opsw6cakNWEKQlVoJSZxxbxy34TPwRQ/xGFmLTADrekIg==
-X-Received: by 2002:a17:906:64d:b0:8b1:77bf:3be6 with SMTP id t13-20020a170906064d00b008b177bf3be6mr17141027ejb.10.1678275099075;
-        Wed, 08 Mar 2023 03:31:39 -0800 (PST)
-Received: from ?IPV6:2a02:810d:15c0:828:ff33:9b14:bdd2:a3da? ([2a02:810d:15c0:828:ff33:9b14:bdd2:a3da])
-        by smtp.gmail.com with ESMTPSA id s15-20020a170906454f00b008d8f1b238fdsm7480048ejq.149.2023.03.08.03.31.37
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 08 Mar 2023 03:31:38 -0800 (PST)
-Message-ID: <4204317f-6715-cdeb-343d-611aea0d554a@linaro.org>
-Date:   Wed, 8 Mar 2023 12:31:36 +0100
+        with ESMTP id S230404AbjCHL7P (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Mar 2023 06:59:15 -0500
+X-Greylist: delayed 1571 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Wed, 08 Mar 2023 03:59:14 PST
+Received: from www381.your-server.de (www381.your-server.de [78.46.137.84])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7780782373;
+        Wed,  8 Mar 2023 03:59:14 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=metafoo.de;
+        s=default2002; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
+        References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
+        Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+        Resent-To:Resent-Cc:Resent-Message-ID;
+        bh=2K9uVgNLJ8zhyr40M8P3UHt1yzkrIUdnvgfd5nwEeNY=; b=dBTqazkMRHLJLmakcB17035K+L
+        tDEWF4UinIZH6gy+nYiUN/ySLkuoVapqCz4w8MJxGmaYwUTxGPpRiW3soX60jBqp23kcIK/ua4JNI
+        fHHGbDcrlcYxNPvS3M8GiXrCoej5acV8ZOfSxSh0BMg5SLCT4ap4padg8BLqsj+/UicmTso/gN7gy
+        DaqM/7X0ZB4pYTkCBSwOPfno93EU6qmNJU91e/ANbQVOx1zeDTRAxyl5bsG0PXUYKHi3QIAkj6zvk
+        8328ae6zn5apvi+CbECVhVm3pO04qoqeUCDZNiaOHD9S1aXwyK6NR7LzF9I7DyB6iRW0YjYkg1gy4
+        sl1+BjhQ==;
+Received: from sslproxy06.your-server.de ([78.46.172.3])
+        by www381.your-server.de with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
+        (Exim 4.94.2)
+        (envelope-from <lars@metafoo.de>)
+        id 1pZs2V-0007r9-PG; Wed, 08 Mar 2023 12:32:59 +0100
+Received: from [2604:5500:c0e5:eb00:da5e:d3ff:feff:933b]
+        by sslproxy06.your-server.de with esmtpsa (TLSv1.3:TLS_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <lars@metafoo.de>)
+        id 1pZs2V-000FRN-9y; Wed, 08 Mar 2023 12:32:59 +0100
+Message-ID: <bf88f6f6-681e-866f-4bd4-8c9a80796ac5@metafoo.de>
+Date:   Wed, 8 Mar 2023 03:32:56 -0800
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.8.0
-Subject: Re: [PATCH 1/2] dt-bindings: Add doc for FriendlyARM NanoPi R5S
-Content-Language: en-US
-To:     Vasily Khoruzhick <anarsoul@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
+Subject: Re: [PATCH v1 2/2] hwmon: ina2xx: add optional regulator support
+To:     Svyatoslav Ryhel <clamor95@gmail.com>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Jean Delvare <jdelvare@suse.com>, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Jagan Teki <jagan@amarulasolutions.com>,
-        Peter Geis <pgwipeout@gmail.com>, Andy Yan <andyshrk@163.com>,
-        Chris Morgan <macromorgan@hotmail.com>,
-        Nicolas Frattaroli <frattaroli.nicolas@gmail.com>,
-        Brian Norris <briannorris@chromium.org>,
-        Sebastian Reichel <sebastian.reichel@collabora.com>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Michael Riesch <michael.riesch@wolfvision.net>,
-        Maya Matuszczyk <maccraft123mc@gmail.com>,
-        Chukun Pan <amadeus@jmu.edu.cn>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org,
-        Tianling Shen <cnsztl@gmail.com>
-References: <20230308063240.107178-1-anarsoul@gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230308063240.107178-1-anarsoul@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>, linux-hwmon@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20230308094024.14115-1-clamor95@gmail.com>
+ <20230308094024.14115-3-clamor95@gmail.com>
+ <378db0d7-4d5a-a445-3e1a-ee6d8da5a9e2@linaro.org>
+ <CAPVz0n2KgUKi-m+kjvbxq8fA_G0+KNHtkNe4T0UGpmasMjWK2A@mail.gmail.com>
+ <a1187c2e-122e-36d1-dddd-c7beba282800@roeck-us.net>
+ <70325083-25B9-434F-9F48-9EE7AE28B550@gmail.com>
+Content-Language: en-US
+From:   Lars-Peter Clausen <lars@metafoo.de>
+In-Reply-To: <70325083-25B9-434F-9F48-9EE7AE28B550@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Authenticated-Sender: lars@metafoo.de
+X-Virus-Scanned: Clear (ClamAV 0.103.8/26835/Wed Mar  8 09:35:43 2023)
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 08/03/2023 07:32, Vasily Khoruzhick wrote:
-> Add devicetree binding documentation for the FriendlyARM NanoPi R5S.
-> 
-> Signed-off-by: Vasily Khoruzhick <anarsoul@gmail.com>
-> ---
->  Documentation/devicetree/bindings/arm/rockchip.yaml | 5 +++++
->  1 file changed, 5 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/arm/rockchip.yaml b/Documentation/devicetree/bindings/arm/rockchip.yaml
-> index 35f74eda30ae..0813ad22dc76 100644
-> --- a/Documentation/devicetree/bindings/arm/rockchip.yaml
-> +++ b/Documentation/devicetree/bindings/arm/rockchip.yaml
-> @@ -201,6 +201,11 @@ properties:
->                - friendlyarm,nanopi-r4s-enterprise
->            - const: rockchip,rk3399
->  
-> +      - description: FriendlyElec NanoPi R5S board
-> +
+On 3/8/23 03:19, Svyatoslav Ryhel wrote:
+>
+> 8 березня 2023 р. 13:13:18 GMT+02:00, Guenter Roeck <linux@roeck-us.net> написав(-ла):
+>> On 3/8/23 02:35, Svyatoslav Ryhel wrote:
+>>> ср, 8 бер. 2023 р. о 12:25 Krzysztof Kozlowski
+>>> <krzysztof.kozlowski@linaro.org> пише:
+>>>> On 08/03/2023 10:40, Svyatoslav Ryhel wrote:
+>>>>> Some devices may need a specific supply provided
+>>>>> for this sensor to work properly, like p895 does.
+>>>>>
+>>>>> Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
+>>>>> ---
+>>>>>    drivers/hwmon/ina2xx.c | 12 ++++++++++++
+>>>>>    1 file changed, 12 insertions(+)
+>>>>>
+>>>>> diff --git a/drivers/hwmon/ina2xx.c b/drivers/hwmon/ina2xx.c
+>>>>> index 00fc70305a89..4a3e2b1bbe8b 100644
+>>>>> --- a/drivers/hwmon/ina2xx.c
+>>>>> +++ b/drivers/hwmon/ina2xx.c
+>>>>> @@ -119,6 +119,7 @@ struct ina2xx_data {
+>>>>>         long power_lsb_uW;
+>>>>>         struct mutex config_lock;
+>>>>>         struct regmap *regmap;
+>>>>> +     struct regulator *vdd_supply;
+>>>>>
+>>>>>         const struct attribute_group *groups[INA2XX_MAX_ATTRIBUTE_GROUPS];
+>>>>>    };
+>>>>> @@ -656,6 +657,17 @@ static int ina2xx_probe(struct i2c_client *client)
+>>>>>                 return PTR_ERR(data->regmap);
+>>>>>         }
+>>>>>
+>>>>> +     data->vdd_supply = devm_regulator_get_optional(dev, "vdd");
+>>>>> +     if (IS_ERR(data->vdd_supply))
+>>>>> +             return dev_err_probe(dev, PTR_ERR(data->vdd_supply),
+>>>>> +                                  "failed to get vdd regulator\n");
+>>>>> +
+>>>>> +     ret = regulator_enable(data->vdd_supply);
+>>>>> +     if (ret < 0) {
+>>>>> +             dev_err(dev, "failed to enable vdd power supply\n");
+>>>>> +             return ret;
+>>>> And where is disable? On each error path, removal etc.
+>>>>
+>>> error path ok, should I create a remove function just to disable the regulator?
+>>>
+>> Use devm_add_action_or_reset().
+>>
+>> Guenter
+>>
+> That is good suggestion. Thanks!
 
-Does not look like ordered alphabetically. Are you sure this is correct
-place for it?
+There is a new function devm_regulator_get_enable(). It will both 
+request the regulator and enable in and then automatically disable and 
+free it when the device is removed.
 
-Best regards,
-Krzysztof
+The API can be slightly confusing in this regard. In your case you also 
+want to use the non-optional API. The optional API is for cases where 
+you need to know whether a regulator is connected or not. If you do not 
+need to know use the non-optional API, if no regulator is specified the 
+regulator framework will just a return a noop regulator as a 
+placeholder. The optional version will actually return an error if no 
+regulator is specified, so with your patch existing users of this driver 
+will break.
+
 
