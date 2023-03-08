@@ -2,75 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5BFC16B163A
-	for <lists+devicetree@lfdr.de>; Thu,  9 Mar 2023 00:10:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7BB5E6B1641
+	for <lists+devicetree@lfdr.de>; Thu,  9 Mar 2023 00:11:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230159AbjCHXKU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Mar 2023 18:10:20 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52490 "EHLO
+        id S230345AbjCHXLF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Mar 2023 18:11:05 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53204 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230163AbjCHXJn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Mar 2023 18:09:43 -0500
-Received: from mail-ot1-x32d.google.com (mail-ot1-x32d.google.com [IPv6:2607:f8b0:4864:20::32d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 409F78C591
-        for <devicetree@vger.kernel.org>; Wed,  8 Mar 2023 15:09:41 -0800 (PST)
-Received: by mail-ot1-x32d.google.com with SMTP id r23-20020a05683001d700b00690eb18529fso116536ota.1
-        for <devicetree@vger.kernel.org>; Wed, 08 Mar 2023 15:09:41 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1678316980;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=LqP7runz9fYVY1TUY6ik+MRNc/PM8+/25wcHDRNrCqg=;
-        b=pMeJTUMMw8Ia7l1IPPUUsdvR7xspLZEDohgXXQH/vDj7exFL9MWOAAnxhMUHw9xEi9
-         q+EoBXK+9I748gNWpHzqG0R6Ara+yLGh1qbSF6lHBdxZT96b3l8MUa242OxPTQMV7xLg
-         hQAO9hP8fvXLArgDEj6X/R7pw+WSgtBmchw/srR0PH0Ft+wypT5hIfZV9XqBF0c+KCLh
-         kgInsvI7lf7pAiTiq8Fq0MFNkk+c2PfgzSbLju3iffONoUCZBqJWLlkBW1OlXYT+64/b
-         JKK/cmWqYLctN66VueXT93bhwZC4VpTjIzoAhyRuG897cU84E4eWNfSe6pHN6KJ7ISLg
-         nPwg==
+        with ESMTP id S230347AbjCHXKh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Mar 2023 18:10:37 -0500
+Received: from mail-oo1-f41.google.com (mail-oo1-f41.google.com [209.85.161.41])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B2BA9D49DB;
+        Wed,  8 Mar 2023 15:10:20 -0800 (PST)
+Received: by mail-oo1-f41.google.com with SMTP id o19-20020a056820041300b005259de79accso22986oou.9;
+        Wed, 08 Mar 2023 15:10:20 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678316980;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=LqP7runz9fYVY1TUY6ik+MRNc/PM8+/25wcHDRNrCqg=;
-        b=3IXWOwMYCRFX1hDcTtrp6dx8LccNBNgLWEK3NjU2Hc8Npgw5CZy3RVz3j9fUFbMg7M
-         te6LmuVus4xij7K4GEpGImyU/5BbFbp52R/YM5RBluV5D0OAYIaRIm9lKtZRxBVbm0d2
-         6Mtp0TQI/NLEeW+jIW3G5hSeqlj8gBObxWDTLS/80Kigh+jn2Aa38akrjdpPBBm5VouM
-         Nm+8Tabv1KGLQQ6n4SdyojFncUVljjw/yOj8a2DbzdBViBAeyKyztXg2d76Wi6Yg5JdE
-         GHTAubkl6Wf+G2xVssZB1UXUWmZP32yxaBa584Xyo+wsLOQqdE4+Nd6YQJXoPHwoWLuC
-         rTQQ==
-X-Gm-Message-State: AO0yUKX4xLPGZq0FV4/TS4diyxoxGt2cDLPejPDTh39y1Lm8HO4p4Kkp
-        u1yEW1lf/ZjDaCRlg/k6uOpoGA==
-X-Google-Smtp-Source: AK7set/tBJXhTZUXyy437vmJNBgUKb2EX1mJ5MLUT6s+oNNf/7TzTYa0XXmwK2tWKREM5hmGZM2/cQ==
-X-Received: by 2002:a05:6830:3142:b0:68b:e4e6:cc9c with SMTP id c2-20020a056830314200b0068be4e6cc9cmr11426374ots.33.1678316980169;
-        Wed, 08 Mar 2023 15:09:40 -0800 (PST)
-Received: from localhost ([136.49.140.41])
-        by smtp.gmail.com with ESMTPSA id z25-20020a056830129900b00686574e98d6sm6919220otp.72.2023.03.08.15.09.39
+        d=1e100.net; s=20210112; t=1678317020;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=XD0ikGmSsZrvW4Icaq2NiBnGVE41WkYau9ANqfCeE4g=;
+        b=uPrDvGyIlwhV/kS0G/w8GGmuECOac8YyXYWxX7ETLIIGzcfq0+rSdogAFMwj/cKR0x
+         N0OTGxv+PKHISveg7iEofBvCpfuYKithxJ5V5QwsuT+mgAQ6bQGd5zleQBt6kCCvjA6E
+         NzKEbQXSSA/L3VPLCuSrKqi4MoshZfXGG8/uH+guP9JzksLaPdAf8v1OhNvvYIhI/mry
+         GrkGW6IwelG+b2iYdDzZw1YZK3ThZ5CVb3hhYrWxH0f3CngFlulcdVj0HJXv0llmNJSv
+         nMxG6cn3GiN9MOc4dw5GnYzlxC7+XgZFSyeCGFlYpVCohMG56lvuVK6HHVE6HWWDYMba
+         eNlg==
+X-Gm-Message-State: AO0yUKW6ZpEuXSSMPR+dNhr56vFwnd6fpm93KEqPUC/MHUbWQtc58yX8
+        xXB38+daLzgowoD9bzT/Gw==
+X-Google-Smtp-Source: AK7set8A0SF0DbY+UQqrMG/aKU7uVszgRiyuv7wgsb0tBBXkzXbyyzJllVMOKOb47Lq8JItYy/gAMw==
+X-Received: by 2002:a4a:8685:0:b0:525:4b8b:8f38 with SMTP id x5-20020a4a8685000000b005254b8b8f38mr46622ooh.3.1678317019733;
+        Wed, 08 Mar 2023 15:10:19 -0800 (PST)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id d29-20020a9d72dd000000b0068bcef4f543sm3066374otk.21.2023.03.08.15.10.18
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 08 Mar 2023 15:09:39 -0800 (PST)
-From:   Sam Protsenko <semen.protsenko@linaro.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     Alim Akhtar <alim.akhtar@samsung.com>,
-        Marek Szyprowski <m.szyprowski@samsung.com>,
-        Chanwoo Choi <cw00.choi@samsung.com>,
-        Chanho Park <chanho61.park@samsung.com>,
-        David Virag <virag.david003@gmail.com>,
+        Wed, 08 Mar 2023 15:10:19 -0800 (PST)
+Received: (nullmailer pid 4046807 invoked by uid 1000);
+        Wed, 08 Mar 2023 23:10:18 -0000
+Date:   Wed, 8 Mar 2023 17:10:18 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Sean Anderson <sean.anderson@seco.com>
+Cc:     Vinod Koul <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@kernel.org>,
+        linux-phy@lists.infradead.org,
+        Madalin Bucur <madalin.bucur@nxp.com>,
+        linuxppc-dev@lists.ozlabs.org, devicetree@vger.kernel.org,
+        Ioana Ciornei <ioana.ciornei@nxp.com>,
+        Camelia Alexandra Groza <camelia.groza@nxp.com>,
         linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH 6/6] soc: samsung: pm_domains: Add Exynos850 support
-Date:   Wed,  8 Mar 2023 17:09:31 -0600
-Message-Id: <20230308230931.27261-7-semen.protsenko@linaro.org>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20230308230931.27261-1-semen.protsenko@linaro.org>
-References: <20230308230931.27261-1-semen.protsenko@linaro.org>
+        Bagas Sanjaya <bagasdotme@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Bartosz Golaszewski <brgl@bgdev.pl>,
+        =?iso-8859-1?Q?Fern=E1ndez?= Rojas <noltari@gmail.com>,
+        Jonas Gorski <jonas.gorski@gmail.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        linux-gpio@vger.kernel.org
+Subject: Re: [PATCH v10 03/13] dt-bindings: Convert gpio-mmio to yaml
+Message-ID: <20230308231018.GA4039466-robh@kernel.org>
+References: <20230306191535.1917656-1-sean.anderson@seco.com>
+ <20230306191535.1917656-4-sean.anderson@seco.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
+In-Reply-To: <20230306191535.1917656-4-sean.anderson@seco.com>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=no
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -78,59 +77,320 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add a new compatible string for Exynos850, providing all HW specific
-data, which enables Exynos PD support for this chip.
+On Mon, Mar 06, 2023 at 02:15:25PM -0500, Sean Anderson wrote:
+> This is a generic binding for simple MMIO GPIO controllers. Although we
+> have a single driver for these controllers, they were previously spread
+> over several files. Consolidate them. The register descriptions are
+> adapted from the comments in the source. There is no set order for the
+> registers, so I have not specified one.
+> 
+> Signed-off-by: Sean Anderson <sean.anderson@seco.com>
+> ---
+> 
+> Changes in v10:
+> - New
+> 
+>  .../bindings/gpio/brcm,bcm6345-gpio.yaml      |  16 +--
+>  .../devicetree/bindings/gpio/gpio-mmio.yaml   | 136 ++++++++++++++++++
+>  .../bindings/gpio/ni,169445-nand-gpio.txt     |  38 -----
+>  .../devicetree/bindings/gpio/wd,mbl-gpio.txt  |  38 -----
+>  4 files changed, 137 insertions(+), 91 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/gpio/gpio-mmio.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/gpio/ni,169445-nand-gpio.txt
+>  delete mode 100644 Documentation/devicetree/bindings/gpio/wd,mbl-gpio.txt
+> 
+> diff --git a/Documentation/devicetree/bindings/gpio/brcm,bcm6345-gpio.yaml b/Documentation/devicetree/bindings/gpio/brcm,bcm6345-gpio.yaml
+> index 4d69f79df859..e11f4af49c52 100644
+> --- a/Documentation/devicetree/bindings/gpio/brcm,bcm6345-gpio.yaml
+> +++ b/Documentation/devicetree/bindings/gpio/brcm,bcm6345-gpio.yaml
+> @@ -4,7 +4,7 @@
+>  $id: http://devicetree.org/schemas/gpio/brcm,bcm6345-gpio.yaml#
+>  $schema: http://devicetree.org/meta-schemas/core.yaml#
+>  
+> -title: Broadcom BCM6345 GPIO controller
+> +title: Broadcom BCM63xx GPIO controller
+>  
+>  maintainers:
+>    - Álvaro Fernández Rojas <noltari@gmail.com>
+> @@ -18,8 +18,6 @@ description: |+
+>  
+>    BCM6338 have 8-bit data and dirout registers, where GPIO state can be read
+>    and/or written, and the direction changed from input to output.
+> -  BCM6345 have 16-bit data and dirout registers, where GPIO state can be read
+> -  and/or written, and the direction changed from input to output.
+>    BCM6318, BCM6328, BCM6358, BCM6362, BCM6368 and BCM63268 have 32-bit data
+>    and dirout registers, where GPIO state can be read and/or written, and the
+>    direction changed from input to output.
+> @@ -29,7 +27,6 @@ properties:
+>      enum:
+>        - brcm,bcm6318-gpio
+>        - brcm,bcm6328-gpio
+> -      - brcm,bcm6345-gpio
+>        - brcm,bcm6358-gpio
+>        - brcm,bcm6362-gpio
+>        - brcm,bcm6368-gpio
+> @@ -63,17 +60,6 @@ required:
+>  additionalProperties: false
+>  
+>  examples:
+> -  - |
+> -    gpio@fffe0406 {
+> -      compatible = "brcm,bcm6345-gpio";
+> -      reg-names = "dirout", "dat";
+> -      reg = <0xfffe0406 2>, <0xfffe040a 2>;
+> -      native-endian;
+> -
+> -      gpio-controller;
+> -      #gpio-cells = <2>;
+> -    };
+> -
+>    - |
+>      gpio@0 {
+>        compatible = "brcm,bcm63268-gpio";
+> diff --git a/Documentation/devicetree/bindings/gpio/gpio-mmio.yaml b/Documentation/devicetree/bindings/gpio/gpio-mmio.yaml
+> new file mode 100644
+> index 000000000000..fd5c7055d542
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/gpio/gpio-mmio.yaml
+> @@ -0,0 +1,136 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/gpio/gpio-mmio.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Generic MMIO GPIO
+> +
+> +maintainers:
+> +  - Linus Walleij <linus.walleij@linaro.org>
+> +  - Bartosz Golaszewski <brgl@bgdev.pl>
+> +
+> +description: |
 
-Signed-off-by: Sam Protsenko <semen.protsenko@linaro.org>
----
- drivers/soc/samsung/pm_domains.c | 20 ++++++++++++++++++++
- 1 file changed, 20 insertions(+)
+Don't need '|' unless you want line endings preserved. Elsewhere too.
 
-diff --git a/drivers/soc/samsung/pm_domains.c b/drivers/soc/samsung/pm_domains.c
-index ec630a151247..795d8a9cd4b5 100644
---- a/drivers/soc/samsung/pm_domains.c
-+++ b/drivers/soc/samsung/pm_domains.c
-@@ -20,6 +20,8 @@
- #include <linux/mfd/syscon.h>
- #include <linux/regmap.h>
- 
-+#include <dt-bindings/power/samsung,exynos850-power.h>
-+
- /* Register offsets inside Power Domain area in PMU */
- #define EXYNOS_PD_CONF		0x0
- #define EXYNOS_PD_STATUS	0x4
-@@ -132,6 +134,21 @@ static const struct exynos_pm_domain_config exynos5433_cfg = {
- 	.local_pwr_cfg		= 0xf,
- };
- 
-+static const unsigned int exynos850_pd_offsets[] = {
-+	[EXYNOS850_PD_HSI]	= 0x1c80,
-+	[EXYNOS850_PD_G3D]	= 0x1d00,
-+	[EXYNOS850_PD_MFCMSCL]	= 0x1d80,
-+	[EXYNOS850_PD_DPU]	= 0x2000,
-+	[EXYNOS850_PD_AUD]	= 0x2080,
-+	[EXYNOS850_PD_IS]	= 0x2100,
-+};
-+
-+static const struct exynos_pm_domain_config exynos850_cfg = {
-+	.local_pwr_cfg		= 0x1,
-+	.pd_offsets		= exynos850_pd_offsets,
-+	.pd_offsets_num		= ARRAY_SIZE(exynos850_pd_offsets),
-+};
-+
- static const struct of_device_id exynos_pm_domain_of_match[] = {
- 	{
- 		.compatible = "samsung,exynos4210-pd",
-@@ -139,6 +156,9 @@ static const struct of_device_id exynos_pm_domain_of_match[] = {
- 	}, {
- 		.compatible = "samsung,exynos5433-pd",
- 		.data = &exynos5433_cfg,
-+	}, {
-+		.compatible = "samsung,exynos850-pd",
-+		.data = &exynos850_cfg,
- 	},
- 	{ },
- };
--- 
-2.39.2
+> +  Some simple GPIO controllers may consist of a single data register or a pair
+> +  of set/clear-bit registers. Such controllers are common for glue logic in
+> +  FPGAs or ASICs. Commonly, these controllers are accessed over memory-mapped
+> +  NAND-style parallel busses.
+> +
+> +properties:
+> +  big-endian:
+> +    true
 
+big-endian: true
+
+> +
+> +  compatible:
+> +    enum:
+> +      - brcm,bcm6345-gpio # Broadcom BCM6345 GPIO controller
+> +      - wd,mbl-gpio # Western Digital MyBook Live memory-mapped GPIO controller
+> +      - ni,169445-nand-gpio # National Instruments 169445 GPIO NAND controller
+> +
+> +  '#gpio-cells':
+> +    const: 2
+> +
+> +  gpio-controller:
+> +    true
+
+ditto.
+
+> +
+> +  reg:
+> +    minItems: 1
+> +    description: |
+> +      A list of registers in the controller. The width of each register is
+> +      determined by its size. All registers must have the same width. The number
+> +      of GPIOs is set by the width, with bit 0 corresponding to GPIO 0.
+> +    items:
+> +      - description: |
+> +          Register to READ the value of the GPIO lines. If GPIO line is high,
+> +          the bit will be set. If the GPIO line is low, the bit will be cleared.
+> +          This register may also be used to drive GPIOs if the SET register is
+> +          omitted.
+> +      - description: |
+> +          Register to SET the value of the GPIO lines. Setting a bit in this
+> +          register will drive the GPIO line high.
+> +      - description: |
+> +          Register to CLEAR the value of the GPIO lines. Setting a bit in this
+> +          register will drive the GPIO line low. If this register is omitted,
+> +          the SET register will be used to clear the GPIO lines as well, by
+> +          actively writing the line with 0.
+> +      - description: |
+> +          Register to set the line as OUTPUT. Setting a bit in this register
+> +          will turn that line into an output line. Conversely, clearing a bit
+> +          will turn that line into an input.
+> +      - description: |
+> +          Register to set this line as INPUT. Setting a bit in this register
+> +          will turn that line into an input line. Conversely, clearing a bit
+> +          will turn that line into an output.
+> +
+> +  reg-names:
+> +    minItems: 1
+> +    maxItems: 5
+> +    items:
+> +      enum:
+> +        - dat
+> +        - set
+> +        - clr
+> +        - dirout
+> +        - dirin
+> +
+> +  native-endian:
+> +    true
+> +
+> +  no-output:
+> +    $ref: /schemas/types.yaml#/definitions/flag
+> +    description: |
+> +      If this property is present, the controller cannot drive the GPIO lines.
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - reg-names
+> +  - '#gpio-cells'
+> +  - gpio-controller
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    nand-gpio-out@1f300010 {
+
+Use generic node name:
+
+gpio@...
+
+> +      compatible = "ni,169445-nand-gpio";
+> +      reg = <0x1f300010 0x4>;
+> +      reg-names = "dat";
+> +      gpio-controller;
+> +      #gpio-cells = <2>;
+> +    };
+> +
+> +    nand-gpio-in@1f300014 {
+> +      compatible = "ni,169445-nand-gpio";
+> +      reg = <0x1f300014 0x4>;
+> +      reg-names = "dat";
+> +      gpio-controller;
+> +      #gpio-cells = <2>;
+> +      no-output;
+> +    };
+> +
+> +    gpio0@e0000000 {
+> +      compatible = "wd,mbl-gpio";
+> +      reg-names = "dat";
+> +      reg = <0xe0000000 0x1>;
+> +      #gpio-cells = <2>;
+> +      gpio-controller;
+> +    };
+> +
+> +    gpio1@e0100000 {
+> +      compatible = "wd,mbl-gpio";
+> +      reg-names = "dat";
+> +      reg = <0xe0100000 0x1>;
+> +      #gpio-cells = <2>;
+> +      gpio-controller;
+> +      no-output;
+> +    };
+> +
+> +    gpio@fffe0406 {
+> +      compatible = "brcm,bcm6345-gpio";
+> +      reg-names = "dirout", "dat";
+> +      reg = <0xfffe0406 2>, <0xfffe040a 2>;
+> +      native-endian;
+> +
+> +      gpio-controller;
+> +      #gpio-cells = <2>;
+> +    };
+> diff --git a/Documentation/devicetree/bindings/gpio/ni,169445-nand-gpio.txt b/Documentation/devicetree/bindings/gpio/ni,169445-nand-gpio.txt
+> deleted file mode 100644
+> index ca2f8c745a27..000000000000
+> --- a/Documentation/devicetree/bindings/gpio/ni,169445-nand-gpio.txt
+> +++ /dev/null
+> @@ -1,38 +0,0 @@
+> -Bindings for the National Instruments 169445 GPIO NAND controller
+> -
+> -The 169445 GPIO NAND controller has two memory mapped GPIO registers, one
+> -for input (the ready signal) and one for output (control signals).  It is
+> -intended to be used with the GPIO NAND driver.
+> -
+> -Required properties:
+> -	- compatible: should be "ni,169445-nand-gpio"
+> -	- reg-names: must contain
+> -		"dat" - data register
+> -	- reg: address + size pairs describing the GPIO register sets;
+> -		order must correspond with the order of entries in reg-names
+> -	- #gpio-cells: must be set to 2. The first cell is the pin number and
+> -			the second cell is used to specify the gpio polarity:
+> -			0 = active high
+> -			1 = active low
+> -	- gpio-controller: Marks the device node as a gpio controller.
+> -
+> -Optional properties:
+> -	- no-output: disables driving output on the pins
+> -
+> -Examples:
+> -	gpio1: nand-gpio-out@1f300010 {
+> -		compatible = "ni,169445-nand-gpio";
+> -		reg = <0x1f300010 0x4>;
+> -		reg-names = "dat";
+> -		gpio-controller;
+> -		#gpio-cells = <2>;
+> -	};
+> -
+> -	gpio2: nand-gpio-in@1f300014 {
+> -		compatible = "ni,169445-nand-gpio";
+> -		reg = <0x1f300014 0x4>;
+> -		reg-names = "dat";
+> -		gpio-controller;
+> -		#gpio-cells = <2>;
+> -		no-output;
+> -	};
+> diff --git a/Documentation/devicetree/bindings/gpio/wd,mbl-gpio.txt b/Documentation/devicetree/bindings/gpio/wd,mbl-gpio.txt
+> deleted file mode 100644
+> index 038c3a6a1f4d..000000000000
+> --- a/Documentation/devicetree/bindings/gpio/wd,mbl-gpio.txt
+> +++ /dev/null
+> @@ -1,38 +0,0 @@
+> -Bindings for the Western Digital's MyBook Live memory-mapped GPIO controllers.
+> -
+> -The Western Digital MyBook Live has two memory-mapped GPIO controllers.
+> -Both GPIO controller only have a single 8-bit data register, where GPIO
+> -state can be read and/or written.
+> -
+> -Required properties:
+> -	- compatible: should be "wd,mbl-gpio"
+> -	- reg-names: must contain
+> -		"dat" - data register
+> -	- reg: address + size pairs describing the GPIO register sets;
+> -		order must correspond with the order of entries in reg-names
+> -	- #gpio-cells: must be set to 2. The first cell is the pin number and
+> -			the second cell is used to specify the gpio polarity:
+> -			0 = active high
+> -			1 = active low
+> -	- gpio-controller: Marks the device node as a gpio controller.
+> -
+> -Optional properties:
+> -	- no-output: GPIOs are read-only.
+> -
+> -Examples:
+> -	gpio0: gpio0@e0000000 {
+> -		compatible = "wd,mbl-gpio";
+> -		reg-names = "dat";
+> -		reg = <0xe0000000 0x1>;
+> -		#gpio-cells = <2>;
+> -		gpio-controller;
+> -	};
+> -
+> -	gpio1: gpio1@e0100000 {
+> -		compatible = "wd,mbl-gpio";
+> -		reg-names = "dat";
+> -		reg = <0xe0100000 0x1>;
+> -		#gpio-cells = <2>;
+> -		gpio-controller;
+> -		no-output;
+> -	};
+> -- 
+> 2.35.1.1320.gc452695387.dirty
+> 
