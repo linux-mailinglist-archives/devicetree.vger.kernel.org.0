@@ -2,30 +2,30 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AAECD6B07CB
-	for <lists+devicetree@lfdr.de>; Wed,  8 Mar 2023 14:02:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 265896B07BB
+	for <lists+devicetree@lfdr.de>; Wed,  8 Mar 2023 14:01:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231532AbjCHNCY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Mar 2023 08:02:24 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39096 "EHLO
+        id S231489AbjCHNBV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Mar 2023 08:01:21 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39146 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231523AbjCHNBF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Mar 2023 08:01:05 -0500
-Received: from smtp-bc0e.mail.infomaniak.ch (smtp-bc0e.mail.infomaniak.ch [45.157.188.14])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2B0C0C5631
-        for <devicetree@vger.kernel.org>; Wed,  8 Mar 2023 05:00:12 -0800 (PST)
+        with ESMTP id S231486AbjCHNAj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Mar 2023 08:00:39 -0500
+Received: from smtp-bc0a.mail.infomaniak.ch (smtp-bc0a.mail.infomaniak.ch [IPv6:2001:1600:4:17::bc0a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4D26EC489A
+        for <devicetree@vger.kernel.org>; Wed,  8 Mar 2023 04:59:59 -0800 (PST)
 Received: from smtp-2-0000.mail.infomaniak.ch (unknown [10.5.36.107])
-        by smtp-3-3000.mail.infomaniak.ch (Postfix) with ESMTPS id 4PWsg92MnTzMrT9x;
-        Wed,  8 Mar 2023 13:53:09 +0100 (CET)
-Received: from unknown by smtp-2-0000.mail.infomaniak.ch (Postfix) with ESMTPA id 4PWsg85xHpzMslsW;
-        Wed,  8 Mar 2023 13:53:08 +0100 (CET)
+        by smtp-3-3000.mail.infomaniak.ch (Postfix) with ESMTPS id 4PWsgB4L80zMrTB1;
+        Wed,  8 Mar 2023 13:53:10 +0100 (CET)
+Received: from unknown by smtp-2-0000.mail.infomaniak.ch (Postfix) with ESMTPA id 4PWsgB0KBwzMslsV;
+        Wed,  8 Mar 2023 13:53:10 +0100 (CET)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=pschenker.ch;
-        s=20220412; t=1678279989;
-        bh=Z/W9Y8z78AI62F9IAb60Dw83aMzrKQzekSMZDmWIZR4=;
+        s=20220412; t=1678279990;
+        bh=VG5XVHemEYXmdQeztm//MWBEt3exZaox2vLjN4m5Nz0=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=n9Rkg9QdwRNM0CgJnkXZbs66hC+nmx1UK3B+4Gz+Zce/6Ts9kOUswW1j5eF1ErHQn
-         MUz0mjY5g95DvjZsrcq5JL4G4wcy+jyAYXzuZLvJRSsDKbyx/wV66ig5u+gYv2t+Lv
-         AtXPtgMGlMXZ9bMPtd9VWW1OnHONC9eZ/TzLKa/w=
+        b=FYdLpbX9gaNyU3JxrDqfscnX8HyPp2r6cTfx6kEWKqB8MlDMJjCSs03yMUeMrXYN9
+         lBvM2ykVK0elo0wsI35T3BY+zu6jlT5vcTHfQFP9GwMQRtUrtQ9u/dcCnH49uvyKbM
+         4keWjjtbsTnphzcjFxxKRrdDbexr0icIl/FK2+cI=
 From:   Philippe Schenker <dev@pschenker.ch>
 To:     devicetree@vger.kernel.org, Shawn Guo <shawnguo@kernel.org>,
         Sascha Hauer <s.hauer@pengutronix.de>
@@ -38,19 +38,18 @@ Cc:     NXP Linux Team <linux-imx@nxp.com>,
         Fabio Estevam <festevam@gmail.com>,
         Philippe Schenker <philippe.schenker@toradex.com>,
         linux-kernel@vger.kernel.org
-Subject: [PATCH v1 05/25] arm64: dts: colibri-imx8x: Add atmel pinctrl groups
-Date:   Wed,  8 Mar 2023 13:52:39 +0100
-Message-Id: <20230308125300.58244-6-dev@pschenker.ch>
+Subject: [PATCH v1 07/25] arm64: dts: colibri-imx8x: Split pinctrl_hog1
+Date:   Wed,  8 Mar 2023 13:52:41 +0100
+Message-Id: <20230308125300.58244-8-dev@pschenker.ch>
 X-Mailer: git-send-email 2.39.2
 In-Reply-To: <20230308125300.58244-1-dev@pschenker.ch>
 References: <20230308125300.58244-1-dev@pschenker.ch>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Infomaniak-Routing: alpha
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS,URIBL_BLOCKED autolearn=unavailable autolearn_force=no
-        version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -59,56 +58,40 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 From: Philippe Schenker <philippe.schenker@toradex.com>
 
-Add pinctrl groups for enabling atmel touchscreen support.
-Remove the pads out of pinctrl_hog0 as they now can be enabled more
-specific using pinctrl_atmel_conn label.
+Split pinctrl_hog1 into a second group so CSI_MCLK can be muxed to a
+gpio on its own.
 
 Signed-off-by: Philippe Schenker <philippe.schenker@toradex.com>
 ---
 
- .../boot/dts/freescale/imx8x-colibri.dtsi      | 18 ++++++++++++++++--
- 1 file changed, 16 insertions(+), 2 deletions(-)
+ arch/arm64/boot/dts/freescale/imx8x-colibri.dtsi | 7 ++++++-
+ 1 file changed, 6 insertions(+), 1 deletion(-)
 
 diff --git a/arch/arm64/boot/dts/freescale/imx8x-colibri.dtsi b/arch/arm64/boot/dts/freescale/imx8x-colibri.dtsi
-index 7fea99206020..0b84b65c846a 100644
+index e1b907b7a85d..432449359625 100644
 --- a/arch/arm64/boot/dts/freescale/imx8x-colibri.dtsi
 +++ b/arch/arm64/boot/dts/freescale/imx8x-colibri.dtsi
-@@ -134,6 +134,22 @@ pinctrl_adc0: adc0grp {
- 			   <IMX8QXP_ADC_IN5_ADMA_ADC_IN5			0x60>;		/* SODIMM   2 */
+@@ -119,7 +119,8 @@ &usdhc2 {
+ 
+ &iomuxc {
+ 	pinctrl-names = "default";
+-	pinctrl-0 = <&pinctrl_ext_io0>, <&pinctrl_hog0>, <&pinctrl_hog1>;
++	pinctrl-0 = <&pinctrl_ext_io0>, <&pinctrl_hog0>, <&pinctrl_hog1>,
++		    <&pinctrl_hog2>;
+ 
+ 	/* On-module touch pen-down interrupt */
+ 	pinctrl_ad7879_int: ad7879intgrp {
+@@ -253,6 +254,10 @@ pinctrl_hog1: hog1grp {
+ 			   <IMX8QXP_QSPI0A_SCLK_LSIO_GPIO3_IO16			0x20>;		/* SODIMM  93 */
  	};
  
-+	/* Atmel MXT touchsceen + Capacitive Touch Adapter */
-+	/* NOTE: This pingroup conflicts with pingroups
-+	 * pinctrl_pwm_b/pinctrl_pwm_c. Don't enable them
-+	 * simultaneously.
-+	 */
-+	pinctrl_atmel_adap: atmeladaptergrp {
-+		fsl,pins = <IMX8QXP_UART1_RX_LSIO_GPIO0_IO22			0x21>,		/* SODIMM  30 */
-+			   <IMX8QXP_UART1_TX_LSIO_GPIO0_IO21			0x4000021>;	/* SODIMM  28 */
++	pinctrl_hog2: hog2grp {
++		fsl,pins = <IMX8QXP_CSI_MCLK_LSIO_GPIO3_IO01			0x20>;		/* SODIMM  75 */
 +	};
 +
-+	/* Atmel MXT touchsceen + boards with built-in Capacitive Touch Connector */
-+	pinctrl_atmel_conn: atmelconnectorgrp {
-+		fsl,pins = <IMX8QXP_QSPI0B_DATA2_LSIO_GPIO3_IO20		0x4000021>,	/* SODIMM 107 */
-+			   <IMX8QXP_QSPI0B_SS1_B_LSIO_GPIO3_IO24		0x21>;		/* SODIMM 106 */
-+	};
-+
- 	pinctrl_can_int: canintgrp {
- 		fsl,pins = <IMX8QXP_QSPI0A_DQS_LSIO_GPIO3_IO13			0x40>;		/* SODIMM  73 */
- 	};
-@@ -214,12 +230,10 @@ pinctrl_hog0: hog0grp {
- 			   <IMX8QXP_QSPI0A_DATA2_LSIO_GPIO3_IO11		0x20>,		/* SODIMM  69 */
- 			   <IMX8QXP_QSPI0B_DATA0_LSIO_GPIO3_IO18		0x20>,		/* SODIMM  99 */
- 			   <IMX8QXP_QSPI0B_DATA1_LSIO_GPIO3_IO19		0x20>,		/* SODIMM 105 */
--			   <IMX8QXP_QSPI0B_DATA2_LSIO_GPIO3_IO20		0x20>,		/* SODIMM 107 */
- 			   <IMX8QXP_QSPI0B_DATA3_LSIO_GPIO3_IO21		0x20>,		/* SODIMM  98 */
- 			   <IMX8QXP_QSPI0B_DQS_LSIO_GPIO3_IO22			0x20>,		/* SODIMM 102 */
- 			   <IMX8QXP_QSPI0B_SCLK_LSIO_GPIO3_IO17			0x20>,		/* SODIMM  95 */
- 			   <IMX8QXP_QSPI0B_SS0_B_LSIO_GPIO3_IO23		0x20>,		/* SODIMM 104 */
--			   <IMX8QXP_QSPI0B_SS1_B_LSIO_GPIO3_IO24		0x20>,		/* SODIMM 106 */
- 			   <IMX8QXP_SAI0_RXD_LSIO_GPIO0_IO27			0x20>,		/* SODIMM  97 */
- 			   <IMX8QXP_SAI0_TXC_LSIO_GPIO0_IO26			0x20>,		/* SODIMM  79 */
- 			   <IMX8QXP_SAI0_TXD_LSIO_GPIO0_IO25			0x20>,		/* SODIMM 103 */
+ 	/*
+ 	 * This pin is used in the SCFW as a UART. Using it from
+ 	 * Linux would require rewritting the SCFW board file.
 -- 
 2.39.2
 
