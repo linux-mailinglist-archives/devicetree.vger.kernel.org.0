@@ -2,143 +2,169 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C8DE76B11E3
-	for <lists+devicetree@lfdr.de>; Wed,  8 Mar 2023 20:17:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DA97F6B11F1
+	for <lists+devicetree@lfdr.de>; Wed,  8 Mar 2023 20:23:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230059AbjCHTRo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Mar 2023 14:17:44 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35460 "EHLO
+        id S230164AbjCHTXS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Mar 2023 14:23:18 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42856 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230043AbjCHTRm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Mar 2023 14:17:42 -0500
-Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5F05AC2D9F
-        for <devicetree@vger.kernel.org>; Wed,  8 Mar 2023 11:17:35 -0800 (PST)
-Received: by mail-ed1-x531.google.com with SMTP id o12so69881884edb.9
-        for <devicetree@vger.kernel.org>; Wed, 08 Mar 2023 11:17:35 -0800 (PST)
+        with ESMTP id S230203AbjCHTXM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Mar 2023 14:23:12 -0500
+Received: from mail-wm1-x32b.google.com (mail-wm1-x32b.google.com [IPv6:2a00:1450:4864:20::32b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 860623D08C;
+        Wed,  8 Mar 2023 11:23:09 -0800 (PST)
+Received: by mail-wm1-x32b.google.com with SMTP id r19-20020a05600c459300b003eb3e2a5e7bso1819262wmo.0;
+        Wed, 08 Mar 2023 11:23:09 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1678303054;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=+j1A5nq879FGymtJIOLfCFQYA850/WCrr7kXX+qHOEs=;
-        b=zeDS16/Gi9QUKLx1C5FpeQuIe+Zo3B/uvTM5nhSrXlAshjY4756tOpSY3Op1nqIaFX
-         K0y6bZeOOfg+1PT1us8/Bmt08yrbJ8dLSc/Mln0Rd7AhteySFz9zOQnWY/jxTxPyI0f8
-         2BWpEhuYeL6u5ruhFpiAMM97U7hgm8vs4ExjL7U76ewoF4aCKUc6Kw5L/hUNsUbMojG2
-         Bqs17OYPJc49E08mcRtYZ8DltLAj79JyxdVdTfmYKDthqrTEVXv4shIsbCCsAilI1pxy
-         qcbuc1a8pqrXhRAx/9fVcE+D0XuOwaAf5DLSuPZVKimPAu+ATMOqXtiMFNMpq6f8o86W
-         IAZA==
+        d=gmail.com; s=20210112; t=1678303388;
+        h=in-reply-to:content-disposition:mime-version:references:subject:cc
+         :to:from:date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=4wtQRnwR5Mg8rvvMFL3tnEvl5qGz8ggKCs5aOpMnmKQ=;
+        b=WY4Py3gy4Wb1Gf8TmeS2pdMIPyj5iXUzZ5Zorhj1v3ERciWeToD4eoX2S+Q381LHuH
+         jtnw3IkoJUDuZbMKmM0ggNU7YFvLPFmFyzkqcTPioK1C45Vw9H5SnmQfvfV8h6qbyKNL
+         U8VHukqFnR8sF0dBs4tVuxAjU/yOZ2QAv+A841mxfPFcHO/7mL4/IYO3tXLhdBvLElog
+         lBP6AGLBo5GHZfyWb5CP9qNT7G2hyAgiW6GShMfLyssV0sY1X3fyMUi+bgeQTQOJKx0f
+         ZJ1gyD1AWf5Ib2aJH7ZB3PLn2ORhVimz3urFHfbgrduzJ8D/3rC/xcf0OM1w838EyqZM
+         bY0w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678303054;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=+j1A5nq879FGymtJIOLfCFQYA850/WCrr7kXX+qHOEs=;
-        b=RFlmB78UYh2SVJiVP9tUKosPgoAJCkxBzsFRYAsb5yce3qN1sat9S/1CHKb3OVvl7l
-         Drszrr7o7W9rLLNT2DkkZaqdwpribaS6dhuTVXIYk5bahO3U4ChyqYw51QCczOX6FnP0
-         3osXJ/6e+BZwM4EsZz9emoqlIf1C6KukFvyJYQ8aYGx+h56wOt/bLA3sbqBlGeVtAHN7
-         rLRMHb544PqakwBk4j0ymhb1A+G4q4GeNzIyKI7hyyFs8XA9FCyUauKgKJJ04rPuD4S2
-         UyIP71rt66Jf0CC7bYROPsQKsz0FN1lH5p4Ye5eb75xfhBWr/1LS17NMaQvbM/sSfxxb
-         9TiQ==
-X-Gm-Message-State: AO0yUKUiLVkZad6CHTSEpM/EJsf2OzQxdGB/5h0Q4vOBhBSQEoQV9pX2
-        qRy31NVydXvvOg6hgqlXJTVX5uA16S9ASnin6DM=
-X-Google-Smtp-Source: AK7set8nDlQWKilmK4zWDKyoqGuc9I13CYUVWS+rcxPqNRc2eW1ffTN01i4z+nPFgRiRZJlTA9wwXw==
-X-Received: by 2002:aa7:d782:0:b0:4ad:8fc5:3d2a with SMTP id s2-20020aa7d782000000b004ad8fc53d2amr16722112edq.11.1678303053834;
-        Wed, 08 Mar 2023 11:17:33 -0800 (PST)
-Received: from ?IPV6:2a02:810d:15c0:828:ff33:9b14:bdd2:a3da? ([2a02:810d:15c0:828:ff33:9b14:bdd2:a3da])
-        by smtp.gmail.com with ESMTPSA id d27-20020a50f69b000000b004acb696a0f6sm8592200edn.91.2023.03.08.11.17.32
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 08 Mar 2023 11:17:33 -0800 (PST)
-Message-ID: <6cbe6c71-2d2d-0f79-1270-7f8ed2ddc1d6@linaro.org>
-Date:   Wed, 8 Mar 2023 20:17:32 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-Subject: Re: [PATCH RFC 1/3] dt-bindings: clock: Add Renesas versa3 clock
- generator bindings
-Content-Language: en-US
-To:     Biju Das <biju.das.jz@bp.renesas.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
+        d=1e100.net; s=20210112; t=1678303388;
+        h=in-reply-to:content-disposition:mime-version:references:subject:cc
+         :to:from:date:message-id:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=4wtQRnwR5Mg8rvvMFL3tnEvl5qGz8ggKCs5aOpMnmKQ=;
+        b=h/6qxNgcuOOXqgW+yWWMskQPgRlSksnkUV/y++9O/jmb6PnZGSFZEJQnUtiRh5Wh4o
+         CpKcftwKrXneb9pc76KPcBBqTQa4y2mDZRYEiWNyZmz28RMAU09eZ9uaPcnMYn1s+q6b
+         oIjnEP9CJZZVbd9mSM+sSbMrfFH5VB2MlaSZJn4XpVuaHJ6cIzEWWHXmzqie8/rY3DcY
+         O7dX9PgsHfWIauBHZxWCjDMduFmKusspNc7qMmIU2IC08rydzvh2rImfa1Y945YNRAIZ
+         qT+CK3wLDCxocS7cMuHMQWfpPNleea+tYrT8yuQHPNcgBApK+a3HeBV2Gn0BvPMEIhWY
+         8odQ==
+X-Gm-Message-State: AO0yUKXkHoaPvTHmKTIP0LWPsxgCiUVwJuf1IBt1Tvrc8S5qr5PhxTNZ
+        dhwmibjB7bnXbU2GzNYoWXI=
+X-Google-Smtp-Source: AK7set8nW/rKm1sDbLXnRKDOIkYDxQtwQnWmrQKRlX2PVNHLoRzcZ3Zr/aqSaUe8vsW333owVqdLDA==
+X-Received: by 2002:a05:600c:4448:b0:3dc:18de:b20d with SMTP id v8-20020a05600c444800b003dc18deb20dmr18376738wmn.33.1678303387685;
+        Wed, 08 Mar 2023 11:23:07 -0800 (PST)
+Received: from Ansuel-xps. (93-34-89-197.ip49.fastwebnet.it. [93.34.89.197])
+        by smtp.gmail.com with ESMTPSA id r1-20020a05600c35c100b003dfe5190376sm315634wmq.35.2023.03.08.11.23.06
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 08 Mar 2023 11:23:07 -0800 (PST)
+Message-ID: <6408e09b.050a0220.e7ce5.1e98@mx.google.com>
+X-Google-Original-Message-ID: <ZAjgidYdvOrN37Iu@Ansuel-xps.>
+Date:   Wed, 8 Mar 2023 20:23:03 +0100
+From:   Christian Marangi <ansuelsmth@gmail.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Andrew Lunn <andrew@lunn.ch>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Vladimir Oltean <olteanv@gmail.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Geert Uytterhoeven <geert+renesas@glider.be>,
-        "linux-renesas-soc@vger.kernel.org" 
-        <linux-renesas-soc@vger.kernel.org>,
-        "linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        Fabrizio Castro <fabrizio.castro.jz@renesas.com>
-References: <20230220131307.269100-1-biju.das.jz@bp.renesas.com>
- <20230220131307.269100-2-biju.das.jz@bp.renesas.com>
- <e9e63c87-b491-b4d5-b226-0539ef0de2d0@linaro.org>
- <OS0PR01MB59221C8C937EF20347149E4886B49@OS0PR01MB5922.jpnprd01.prod.outlook.com>
- <36e06397-2189-4f1b-99cc-d39e720ebc71@linaro.org>
- <OS0PR01MB5922BDA0632ACCCC0100EEBD86B49@OS0PR01MB5922.jpnprd01.prod.outlook.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <OS0PR01MB5922BDA0632ACCCC0100EEBD86B49@OS0PR01MB5922.jpnprd01.prod.outlook.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Russell King <linux@armlinux.org.uk>,
+        Gregory Clement <gregory.clement@bootlin.com>,
+        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+        John Crispin <john@phrozen.org>, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, Lee Jones <lee@kernel.org>,
+        linux-leds@vger.kernel.org
+Subject: Re: [net-next PATCH 09/11] dt-bindings: net: dsa: qca8k: add LEDs
+ definition example
+References: <20230307170046.28917-1-ansuelsmth@gmail.com>
+ <20230307170046.28917-10-ansuelsmth@gmail.com>
+ <ad43a809-b9fd-bd24-ee1a-9e509939023b@linaro.org>
+ <df6264de-36c5-41f2-a2a0-08b61d692c75@lunn.ch>
+ <5992cb0a-50a0-a19c-3ad1-03dd347a630b@linaro.org>
+ <6408dbbb.1c0a0220.a28ce.1b32@mx.google.com>
+ <36169a8a-d418-6d7e-b64c-a7c346b9a218@linaro.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <36169a8a-d418-6d7e-b64c-a7c346b9a218@linaro.org>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 08/03/2023 19:55, Biju Das wrote:
+On Wed, Mar 08, 2023 at 08:09:34PM +0100, Krzysztof Kozlowski wrote:
+> On 08/03/2023 20:02, Christian Marangi wrote:
+> > On Wed, Mar 08, 2023 at 07:49:26PM +0100, Krzysztof Kozlowski wrote:
+> >> On 08/03/2023 14:57, Andrew Lunn wrote:
+> >>> On Wed, Mar 08, 2023 at 11:58:33AM +0100, Krzysztof Kozlowski wrote:
+> >>>> On 07/03/2023 18:00, Christian Marangi wrote:
+> >>>>> Add LEDs definition example for qca8k Switch Family to describe how they
+> >>>>> should be defined for a correct usage.
+> >>>>>
+> >>>>> Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
+> >>>>
+> >>>> Where is the changelog? This was v8 already! What happened with all
+> >>>> review, changes?
+> >>>
+> >>> Did you read patch 0?
+> >>>
+> >>> We have decided to start again, starting small and working up. This
+> >>> patchset just adds plain, boring LEDs. No acceleration, on hardware
+> >>> offload. Just on/off, and fixed blink.
+> >>
+> >> Sure, but the patch is carried over. So what happened with all its
+> >> feedback? Was there or was not? How can we know?
+> >>
+> > 
+> > The history of the old series is a bit sad, not enough review, another
+> > dev asking for a different implementation and me doing an hybrid to
+> > reach a common point (and then disappear intro oblivion)...
+> > 
+> > Short story is that this current series have nothing related to the HW
+> > offload feature and only in v7 it was asked to put the LED nodes in
+> > ethernet-phy.yaml
+> > 
+> > I can put in the cover letter of v2 of this series the changelog of the
+> > previous series but they would only be related to other part that are
+> > not related to this.
+> > 
+> > Just to give you some context and explain why the changelog was dropped.
 > 
-> Renesas 8T49N241 has 4 outputs, 1 integral and 3 fractional dividers.
-> The 8T49N241 accepts up to two differential or single-ended input clocks
-> and a fundamental-mode crystal input. The internal PLL can lock to either
-> of the input reference clocks or to the crystal to behave as a frequency
-> synthesizer.
+> I am less interested in the changelog of entire patchset but of the
+> patches which are for me to review. Sending vX as v1 suggests that all
+> previous review work on this patch could be in some limbo state. Maybe
+> nothing happened in all previous version, but it's now my task to dig it?
 > 
-> Signed-off-by: Alex Helms <alexander.helms.jy@renesas.com>
-> Reviewed-by: Rob Herring <robh@kernel.org>
 
-Ah, indeed, fine then.
+OK, if you are intrested only on the DT changes I can list:
+From v0 to v6:
+- There was only qca8k Documentation addition for the leds node.
+  Some extra binding were dropped due to implementation change but they
+  were only specific to qca8k.
 
->>
->>>>
->>>>> +
->>>>> +  renesas,clock-flags:
->>>>> +    description: Flags used in common clock frame work for configuring
->>>>> +      clk outputs. See include/linux/clk-provider.h
->>>>
->>>> These are not bindings, so why do you non-bindings constants as bindings?
->>>> They can change anytime. Choose one:
->>>> 1. Drop entire property,
->>>> 2. Make it a proper binding property, so an ABI and explain why this
->>>> is DT specific. None of clock providers have to do it, so you need
->>>> here good explanation.
->>>
->>> I will choose 2 and will explain as user should be allowed to
->>> configure the output clock from clk generator, so that it has
->>> flexibility for
->>> 1) changing the rates (propagate rate change up one level)
->>> 2) fixed always
->>> 3) don't gate the ouput clk at all.
->>
->> User's choice is task for user-space, so not a good explanation for DT.
-> 
-> I don't think clock generator HW has any business with user space.
-> 
-> It is clk generator HW specific. Clk generator is vital component which
-> provides clocks to the system. 
+In v7:
+- The default-trigger for netdev was introduced (this caused some
+  warning for missing netdev trigger for that binding)
+- It was suggested and asked to make the LEDs generic and add
+  Documentration for phy-ethernet.yaml
 
-Every clock controller is vital...
+In v8:
+- The netdev trigger was added to the list of accepted default-trigger
+- The Documentation for phy-ethernet.yaml was added
 
-> We are providing some hardware feature which
-> is exposed as dt properties.
-> 
-> Like clock output is fixed rate clock or dynamic rate clock/
+Then we decided to "reboot" the series and:
+In v1:
+- The default-trigger is dropped (will be introduced later when the work
+  for the netdev trigger will be done)
+- We use the default state to "keep"
 
-OK, I wait then for proper description which will explain and justify this.
+This should be the entire changelog excluding some changed things done
+from v0 to v6 with low review and implementation changed at least 3
+times during the life of that series.
 
 
-Best regards,
-Krzysztof
+> This is why you have "---" for the patch changelog.
 
+-- 
+	Ansuel
