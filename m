@@ -2,60 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CB5FB6B1656
-	for <lists+devicetree@lfdr.de>; Thu,  9 Mar 2023 00:14:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 660D96B165E
+	for <lists+devicetree@lfdr.de>; Thu,  9 Mar 2023 00:15:53 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229951AbjCHXOm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Mar 2023 18:14:42 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33210 "EHLO
+        id S229772AbjCHXPv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Mar 2023 18:15:51 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34972 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230154AbjCHXOe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Mar 2023 18:14:34 -0500
-Received: from mail-ot1-f46.google.com (mail-ot1-f46.google.com [209.85.210.46])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8E0566486F;
-        Wed,  8 Mar 2023 15:14:29 -0800 (PST)
-Received: by mail-ot1-f46.google.com with SMTP id g73-20020a9d12cf000000b006943a7df072so96290otg.11;
-        Wed, 08 Mar 2023 15:14:29 -0800 (PST)
+        with ESMTP id S229910AbjCHXPu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Mar 2023 18:15:50 -0500
+Received: from mail-oa1-f53.google.com (mail-oa1-f53.google.com [209.85.160.53])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 50A5DEB41;
+        Wed,  8 Mar 2023 15:15:49 -0800 (PST)
+Received: by mail-oa1-f53.google.com with SMTP id 586e51a60fabf-1763e201bb4so526288fac.1;
+        Wed, 08 Mar 2023 15:15:49 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678317269;
+        d=1e100.net; s=20210112; t=1678317348;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=kHu/oGGSXQlPy/uql3D2VDJcT0bQkL/85Y5X0Ql3e9A=;
-        b=Msss3uZ3NJslCQ19C7r/KAN4gQyr/MSClkcU8RADuZ9ZsLMZ4o+nrqjN1flQv9UsOM
-         OQhOzsLcaGkBjkR7M5D1MkX/7qUftG+MhkQignlvSkPo7n96jVLLqkoEsCHmSsNYcwp3
-         5yHU/oNeiJmaj5EH2NjD/h4kxS49DwBoDxn8CvZvt1dzULPgWXyAGUQeRlkCpSBRKaFt
-         eK71MS2Yx5bGunpSJ9TABWUaCiE/bzq80aTazeQKdmdaw1nHAqKkIVy+Ss9YQA0bprOp
-         ADEuYSx4VtDxaka1ilgvHtvphLdWh0bZ6q0lFZfDHAfObrgRHdKNa0iNNPmy8ScL+pEY
-         oaPg==
-X-Gm-Message-State: AO0yUKWMPtYLFkeKb88YZoDUC8QhZM4JjgxFsL3ckqqfg78c+ty8pMDG
-        ZdOI6+ZHVOofSBcCWWCuROJ+AlG60w==
-X-Google-Smtp-Source: AK7set/tyoSQViAmxTaUHy/Tj2H+uzwC8gFhM1OGhh8Tsia2+9aUxqpaCMsm85alcWBG/GLP99nbvw==
-X-Received: by 2002:a9d:6d16:0:b0:68b:dd2c:77cf with SMTP id o22-20020a9d6d16000000b0068bdd2c77cfmr1772195otp.32.1678317268758;
-        Wed, 08 Mar 2023 15:14:28 -0800 (PST)
+        bh=AYN1mGvw+BesOGmjKnVjW5qaCYL2NLcUZN6bNj4hymY=;
+        b=KMT6qYf9SBJo9WH7FJ5k1kEKKuqGElq071qllOw3C7++00glR50BuZBmuVzgWP9ybS
+         ncE94x3dpOq8WqpoltM52kJd3PyPnZT+6vHgkOelD0f94FurXmWgQvbdsx/s5wte8RI2
+         98d+EYT3Obv9U/bosmsr5cH3Gr9iF2iuW7a0WVwDowtJFBvHyRYdBFZfn7GiQB7WuP/t
+         OUHnZ6RBeSg6h/5zRCtiBcR19QcdYkabnLxFBT0S0a189ylx2r+ifaLOxjqJbGRkwjxX
+         IB64REMfqTmjaGY3JBKUmnh6GLKcjgksa+ua92L4Ih3bNWCCdIHapY9v8UHIcPio0SzA
+         GR3A==
+X-Gm-Message-State: AO0yUKUETJTNaQDevi2sa/knreGULJi3Zovx9EBl1Zx4Xf95XCEDMnBF
+        cFst0VkxR4xGvnIUuf34cw==
+X-Google-Smtp-Source: AK7set+3Y1yRqQD4GNMNIxwBax8DMgnGF3zYCmHgGncdqoy23QFMf9depa6oFnXU7lhmUYbk+ssRow==
+X-Received: by 2002:a05:6870:a118:b0:172:4d60:d4ef with SMTP id m24-20020a056870a11800b001724d60d4efmr12164922oae.14.1678317348534;
+        Wed, 08 Mar 2023 15:15:48 -0800 (PST)
 Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id y12-20020a9d714c000000b006864b5f4650sm7140599otj.46.2023.03.08.15.14.28
+        by smtp.gmail.com with ESMTPSA id zq41-20020a0568718ea900b0017703cd8ff6sm2080703oab.7.2023.03.08.15.15.47
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 08 Mar 2023 15:14:28 -0800 (PST)
-Received: (nullmailer pid 4053194 invoked by uid 1000);
-        Wed, 08 Mar 2023 23:14:27 -0000
-Date:   Wed, 8 Mar 2023 17:14:27 -0600
+        Wed, 08 Mar 2023 15:15:48 -0800 (PST)
+Received: (nullmailer pid 4055139 invoked by uid 1000);
+        Wed, 08 Mar 2023 23:15:47 -0000
+Date:   Wed, 8 Mar 2023 17:15:47 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Wolfram Sang <wsa+renesas@sang-engineering.com>
-Cc:     Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
-        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Subject: Re: [PATCH 3/5] dt-bindings: soc: renesas: remove R-Car H3 ES1.*
-Message-ID: <167831726687.4053115.9108602835932174936.robh@kernel.org>
-References: <20230307105645.5285-1-wsa+renesas@sang-engineering.com>
- <20230307105645.5285-4-wsa+renesas@sang-engineering.com>
+To:     Janne Grunau <j@jannau.net>
+Cc:     asahi@lists.linux.dev, devicetree@vger.kernel.org,
+        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sven Peter <sven@svenpeter.dev>, Marc Zyngier <maz@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-kernel@lists.infradead.org,
+        Mark Kettenis <kettenis@openbsd.org>,
+        linux-kernel@vger.kernel.org, Hector Martin <marcan@marcan.st>
+Subject: Re: [PATCH v3 05/15] dt-bindings: interrupt-controller: apple,aic2:
+ Add apple,t8112-aic compatible
+Message-ID: <167831734698.4055079.137179018203660288.robh@kernel.org>
+References: <20230202-asahi-t8112-dt-v3-0-d1a5f6383d95@jannau.net>
+ <20230202-asahi-t8112-dt-v3-5-d1a5f6383d95@jannau.net>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230307105645.5285-4-wsa+renesas@sang-engineering.com>
+In-Reply-To: <20230202-asahi-t8112-dt-v3-5-d1a5f6383d95@jannau.net>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
         HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
@@ -68,19 +71,19 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
-On Tue, 07 Mar 2023 11:56:39 +0100, Wolfram Sang wrote:
-> R-Car H3 ES1.* was only available to an internal development group and
-> needed a lot of quirks and workarounds. These become a maintenance
-> burden now, so our development group decided to remove upstream support
-> and disable booting for this SoC. Public users only have ES2 onwards.
+On Tue, 07 Mar 2023 13:10:11 +0100, Janne Grunau wrote:
+> The Apple M2 SoC uses AICv2 and is compatible with the existing driver.
+> Add its per-SoC compatible.
+> Since multi-die versions of the M2 are not expected decrease
+> '#interrupt-cells' to 3 for apple,t8112-aic. This is seamlessly handled
+> inside the driver.
 > 
-> Reviewed-by: Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
-> Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-> Signed-off-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
+> Acked-by: Marc Zyngier <maz@kernel.org>
+> Signed-off-by: Janne Grunau <j@jannau.net>
 > ---
->  .../devicetree/bindings/soc/renesas/renesas.yaml          | 8 ++++----
->  1 file changed, 4 insertions(+), 4 deletions(-)
+>  .../bindings/interrupt-controller/apple,aic2.yaml  | 22 +++++++++++++++++++---
+>  1 file changed, 19 insertions(+), 3 deletions(-)
 > 
 
-Acked-by: Rob Herring <robh@kernel.org>
+Reviewed-by: Rob Herring <robh@kernel.org>
 
