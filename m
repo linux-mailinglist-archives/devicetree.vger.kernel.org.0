@@ -2,115 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AB5C66B0E3E
-	for <lists+devicetree@lfdr.de>; Wed,  8 Mar 2023 17:10:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 203646B0E3F
+	for <lists+devicetree@lfdr.de>; Wed,  8 Mar 2023 17:10:44 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229938AbjCHQKl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Mar 2023 11:10:41 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39422 "EHLO
+        id S232508AbjCHQKm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Mar 2023 11:10:42 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39066 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232149AbjCHQKQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Mar 2023 11:10:16 -0500
-Received: from mail-wm1-x32c.google.com (mail-wm1-x32c.google.com [IPv6:2a00:1450:4864:20::32c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4FC02468B
-        for <devicetree@vger.kernel.org>; Wed,  8 Mar 2023 08:09:49 -0800 (PST)
-Received: by mail-wm1-x32c.google.com with SMTP id j19-20020a05600c191300b003eb3e1eb0caso1682465wmq.1
-        for <devicetree@vger.kernel.org>; Wed, 08 Mar 2023 08:09:49 -0800 (PST)
+        with ESMTP id S232155AbjCHQKR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Mar 2023 11:10:17 -0500
+Received: from mail-ed1-x530.google.com (mail-ed1-x530.google.com [IPv6:2a00:1450:4864:20::530])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5F5604C16
+        for <devicetree@vger.kernel.org>; Wed,  8 Mar 2023 08:09:51 -0800 (PST)
+Received: by mail-ed1-x530.google.com with SMTP id ay14so64096138edb.11
+        for <devicetree@vger.kernel.org>; Wed, 08 Mar 2023 08:09:51 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112; t=1678291788;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=L+dYWSqa/ZOUrUL1r8q0LpgzDp7Tt9DA2CXNGpPqdso=;
-        b=azSMzAOW9FuJWqRn2SbptxwSUxQXTBWdLmGq+oIfVbGZoebTgMTqP58raNghgqTiIi
-         nHVo450JZWQ8UxhfZOlgB6IYO/+j/y1aYFtMElOp9MC5KQ9EJZ5WqjV+U3dZiLrHaMU/
-         82hhMkxhmo6FdFxTHQMDuulwtQpYIGVO4wV+f0nUxq+sTXs2lis6RAIaDgQ0syc+26In
-         5HKaJirzKA3I6gk+VQmM4GbBRV38/R+7KPrtasf+orr1MUAjEykSik/eenj/kUPBUhLk
-         Pz8dm3JUEgBbJ8CZiApJgYXkNuSSDSWR0rPYAIVJjchySpWKVUmfVxUYFzpqEkIDiGw8
-         wTmg==
+        d=linaro.org; s=google; t=1678291790;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=SGGriQOuoP9kPU93+WJixjM30L7MDeV/RexEhwJQnac=;
+        b=K/kj03yTh+emS5BuNrc7xTSb+Urjz1BnqRQzYuCGjKwf3OoLW0P7B3ikSA+vYPUOIN
+         wHsFm6gRZfvzL9PKgORvS6wt29D942wNj0ndlH9fXVHlOsZF7MexapThzNnmtPdQZn8H
+         fGrcj5zupXS3s6C96l5cvPgar3gb+zx0Swx0aBO0g0Z1mkG/4izlHAC5dt/AgWLs+KzV
+         CTNgOxD24E2RjXWE8+BMrbw1czJjU8XZYjteixEqn3fYuXPtARvFCe7VEJZzSaTKYOmf
+         SfMaF3FG33EBvnXie3yEKLP09hytpd8U1nzrqI0k5CtserA/RNhwMqW386oNBn5v3Lxb
+         FVzQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678291788;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=L+dYWSqa/ZOUrUL1r8q0LpgzDp7Tt9DA2CXNGpPqdso=;
-        b=ipqZ+RBxhgaPPsnb6ViRXB0N+eDbx5DSpR84B5mfi2L8kFF+x3oqseec1sO5FjslQl
-         W0j4zO1NDK+c8/6Fge+X8bmhRf4sagmfSc/0L/hvGoW+zKxddzDscJ5n+8mlurU5jfLy
-         nEiwj39czxwLFdpFghZVt2JIZBUZXdGYw3lUkWbHw0Oq57hzCz++Qz2ewYFYuOeUKRKj
-         uIbHGmVOFp4xB9sEQJW5EK8G7ACRnRprKYkWPouTG5a0zi9lsokCjyl5dDnXj0GpbjFq
-         r+JQKn+H1V4YobbfNyB8J+ayHUGjtfoYy0Jxb5bbZyIwkdNufbxSF0AGPh4F6hwTs0E2
-         UmZA==
-X-Gm-Message-State: AO0yUKWf97j/N/OcEORiAlQ2757dkmxkpcTD5OKSuG0gU82rWWbqgmHs
-        ynUUHSk/+R8MUxvS8jA+j4VrUkSVWTZ4XQhXgXM=
-X-Google-Smtp-Source: AK7set9z6R4A9KaMfNYvy1lKGvlnpbKKO6hcw1gFadDpG1l9Ii+ICzQ/NIFpZr3WgwWhxV0xv4eaIFcX7T21ikloZuA=
-X-Received: by 2002:a05:600c:16c6:b0:3eb:2e68:5c86 with SMTP id
- l6-20020a05600c16c600b003eb2e685c86mr4385123wmn.6.1678291787690; Wed, 08 Mar
- 2023 08:09:47 -0800 (PST)
+        d=1e100.net; s=20210112; t=1678291790;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=SGGriQOuoP9kPU93+WJixjM30L7MDeV/RexEhwJQnac=;
+        b=qZr+f2eRCi6wjYQpNwmIq/enoNp8uWtoX204l0KKiIkONDZb3Ss+9iRL9KN8yg2i6f
+         1+I4iPclBvKZa8pHo+3IGiZe00HtgzH633VTj0e56q8Dw4ylofaVkLKvNHgdOWkaLYJo
+         TbG1+mTaO9b2/YwCuqi4aM93r8vmgM1lvV0rP8cjZqyxhrGKLKS+ZQS2YAvMubnyzc5c
+         5ku49ZzMoHldOwGp0w4D56RNYWC11tgeRwYO+RptMy5lPZJt99AoWUwM7bvxPEEhTKzR
+         KjGmtSYgCE4XJsUU2FEDc/dSzOEwB43X5jqaBg1wE1LG8V7gNubqz1avcH8ppSY+4t7T
+         +o1g==
+X-Gm-Message-State: AO0yUKW+sQ88qVHmEF7sOQePB1HEdP2sSvxfhX47MTyxAcZ9groGpuHu
+        Vy1dYPIafbjPwivTBTZHQR/RUw==
+X-Google-Smtp-Source: AK7set+iqB4Hpm8jcUdAQowcPEzmB13/jDv7C3DQQbWj4fu09WfsV5q4xZCp1V7pLJ2Z8Ew7BK6QYg==
+X-Received: by 2002:a17:906:434c:b0:908:6a98:5b48 with SMTP id z12-20020a170906434c00b009086a985b48mr17955463ejm.40.1678291789830;
+        Wed, 08 Mar 2023 08:09:49 -0800 (PST)
+Received: from ?IPV6:2a02:810d:15c0:828:ff33:9b14:bdd2:a3da? ([2a02:810d:15c0:828:ff33:9b14:bdd2:a3da])
+        by smtp.gmail.com with ESMTPSA id ch10-20020a170906c2ca00b008cf8c6f5c43sm7590578ejb.83.2023.03.08.08.09.48
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 08 Mar 2023 08:09:49 -0800 (PST)
+Message-ID: <21db93cb-883b-8799-b3a2-b143b4294a29@linaro.org>
+Date:   Wed, 8 Mar 2023 17:09:47 +0100
 MIME-Version: 1.0
-References: <20230308063240.107178-1-anarsoul@gmail.com> <4204317f-6715-cdeb-343d-611aea0d554a@linaro.org>
-In-Reply-To: <4204317f-6715-cdeb-343d-611aea0d554a@linaro.org>
-From:   Vasily Khoruzhick <anarsoul@gmail.com>
-Date:   Wed, 8 Mar 2023 08:09:20 -0800
-Message-ID: <CA+E=qVepknVmYjC8+uxp+TUF=uqvm3t4rLk8yjs+h5zYm6HiSw@mail.gmail.com>
-Subject: Re: [PATCH 1/2] dt-bindings: Add doc for FriendlyARM NanoPi R5S
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.8.0
+Subject: Re: [PATCH v1 03/25] arm64: dts: colibri-imx8x: Sort properties
+Content-Language: en-US
+To:     dev@pschenker.ch, devicetree@vger.kernel.org,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>
+Cc:     NXP Linux Team <linux-imx@nxp.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Jagan Teki <jagan@amarulasolutions.com>,
-        Peter Geis <pgwipeout@gmail.com>, Andy Yan <andyshrk@163.com>,
-        Chris Morgan <macromorgan@hotmail.com>,
-        Nicolas Frattaroli <frattaroli.nicolas@gmail.com>,
-        Brian Norris <briannorris@chromium.org>,
-        Sebastian Reichel <sebastian.reichel@collabora.com>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Michael Riesch <michael.riesch@wolfvision.net>,
-        Maya Matuszczyk <maccraft123mc@gmail.com>,
-        Chukun Pan <amadeus@jmu.edu.cn>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org,
-        Tianling Shen <cnsztl@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+        Rob Herring <robh+dt@kernel.org>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Frank Rowand <frowand.list@gmail.com>,
+        linux-arm-kernel@lists.infradead.org,
+        Fabio Estevam <festevam@gmail.com>,
+        linux-kernel@vger.kernel.org
+References: <20230308125300.58244-1-dev@pschenker.ch>
+ <20230308125300.58244-4-dev@pschenker.ch>
+ <9d213504-d457-21a6-d467-41d8783d53d3@linaro.org>
+ <309ec2042a73b943485671f926ec0f25c5d8f80a.camel@pschenker.ch>
+ <48d0217d-283f-354b-fcb5-12801895376a@linaro.org>
+ <93b5c8bb6ec2010792c117bc7ffad9692fdf063c.camel@pschenker.ch>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <93b5c8bb6ec2010792c117bc7ffad9692fdf063c.camel@pschenker.ch>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Mar 8, 2023 at 3:31=E2=80=AFAM Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
-> > diff --git a/Documentation/devicetree/bindings/arm/rockchip.yaml b/Docu=
-mentation/devicetree/bindings/arm/rockchip.yaml
-> > index 35f74eda30ae..0813ad22dc76 100644
-> > --- a/Documentation/devicetree/bindings/arm/rockchip.yaml
-> > +++ b/Documentation/devicetree/bindings/arm/rockchip.yaml
-> > @@ -201,6 +201,11 @@ properties:
-> >                - friendlyarm,nanopi-r4s-enterprise
-> >            - const: rockchip,rk3399
-> >
-> > +      - description: FriendlyElec NanoPi R5S board
-> > +
->
-> Does not look like ordered alphabetically. Are you sure this is correct
-> place for it?
+On 08/03/2023 15:50, Philippe Schenker wrote:
+> On Wed, 2023-03-08 at 15:32 +0100, Krzysztof Kozlowski wrote:
+>> On 08/03/2023 14:29, Philippe Schenker wrote:
+>>> On Wed, 2023-03-08 at 13:57 +0100, Krzysztof Kozlowski wrote:
+>>>> Is this approved coding style for IMX DTS?
+>>>
+>>> How the ordering should be done is nowhere specifically documented
+>>> (at
+>>> least this is my current understanding).
+>>> The ordering how I noted it is what we gathered from multiple
+>>> feedback
+>>> on mailinglist discussions.
+>>>
+>>> With that ordering I hope everyone is happy.
+>>>
+>>> Philippe
+>>
+>> Yeah, but what if next developer next month re-orders all your nodes
+>> again because he will use different coding style?
+> 
+> Someone from Toradex will complain that we want to have it the way I
+> sent now, since this is the way we agreed on internally.
 
-Hmm, strictly speaking, "FriendlyElec NanoPi R5S board" should go in
-between of "FriendlyElec NanoPi R2S" and "FriendlyElec NanoPi4 series
-boards" if we want it in alphabetical order, not after "FriendlyElec
-NanoPi4 series boards" like in this patch. But it doesn't look nice
-(because R5S will go before R4S).
+I am sorry, but coding style is per subsystem, not per Toradex boards.
+Even if my example is not applicable, someone might come soon with
+something different for entire iMX and again re-order it.
 
-There is already similar ordering (alphabetical/chronological for
-model) for Radxa Rock Pi - "Radxa ROCK Pi S", "Radxa Rock2 Square",
-"Radxa ROCK3 Model A", "Radxa ROCK 5 Model A".
+Either make a rule for entire iMX or do not make re-shufflings. They are
+not useful.
 
-However if you want me to sort it strictly alphabetically, I can send a v2.
+Best regards,
+Krzysztof
 
-Regards,
-Vasily
