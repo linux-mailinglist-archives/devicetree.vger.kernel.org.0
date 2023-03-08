@@ -2,102 +2,230 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3D5DE6B071C
-	for <lists+devicetree@lfdr.de>; Wed,  8 Mar 2023 13:31:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B385C6B0728
+	for <lists+devicetree@lfdr.de>; Wed,  8 Mar 2023 13:33:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229606AbjCHMbg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Mar 2023 07:31:36 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57238 "EHLO
+        id S229986AbjCHMdq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Mar 2023 07:33:46 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60944 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229733AbjCHMbf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Mar 2023 07:31:35 -0500
-Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 10C96BE5FC
-        for <devicetree@vger.kernel.org>; Wed,  8 Mar 2023 04:31:33 -0800 (PST)
-Received: by mail-ed1-x531.google.com with SMTP id cw28so65070967edb.5
-        for <devicetree@vger.kernel.org>; Wed, 08 Mar 2023 04:31:32 -0800 (PST)
+        with ESMTP id S229627AbjCHMdp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Mar 2023 07:33:45 -0500
+Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BB493AF6BD
+        for <devicetree@vger.kernel.org>; Wed,  8 Mar 2023 04:33:43 -0800 (PST)
+Received: by mail-lf1-x12e.google.com with SMTP id k14so21115837lfj.7
+        for <devicetree@vger.kernel.org>; Wed, 08 Mar 2023 04:33:43 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1678278691;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=QPuBOY3KpDNSmY+QpQEaalWB+vfw9Nm3uyiJNt0uQhk=;
-        b=FYWj7zks4LdjrffCkcTVs2C3JbUxBhvmWJNQi56yJYUbVI/R7vke4upWvXGJ329O9j
-         ACpbjnVHVXGOZZ1X1vIjmLVXhnJAr5UgCTW904vn8tpz3yz86Q9fWOqa+tTBJmwts34q
-         HGUxkF7LWxsIozrxRGVvsUnDh5oUFMpxr0PMTAlaPTaOVI9JM/r13AU4f+4Zp+9p+pI/
-         jMPdr8hIWKsdYr5byW3qXaK2HZKFsGD3//XhUtNJwudPj68s86T7u2LBhH8RZ4JIcFvV
-         X++7U+U72MI0p/esejtftCVmlMl/WSXrdFZoaB4zxNvCC0/wIdc86zqQVCN7xJoMAI+1
-         JbsA==
+        d=linaro.org; s=google; t=1678278822;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=vhaVVI8Pk6jsBYMTTZwOYmA0OkqSfPfRqSJgsvlWR0A=;
+        b=uaLLOe+LSkgl3SEz4u/FHqZtFMo4rWuPMdrHzYTd1fSJjRlIRdjrVXVMMd5DhI4bfn
+         MNUrAulMgaGghPavb9xJHYh4XP5Sl2xEXaIkrxET2OinzH4xrifP0V/zwmmh5g5mhxRz
+         XHpLPDYGArYU8v4h2aZYX6L14h0MHZVXzUv8R97xLPKV+e4K/7Y/k1cYDOHOHhhinXG3
+         N9O0XPycgqrZqD0xSlrFi+nrt2ZNkegwGCaHH50VBL4iM3UTbAp4FBxnW70Eh7e54X3g
+         Th56Ua2oaeiWghC3fnFXtF/XLP+s+VYRFN02l6rizYhTj5/ULEB9o6af9c0thvd9v9Ru
+         S6Mw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678278691;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=QPuBOY3KpDNSmY+QpQEaalWB+vfw9Nm3uyiJNt0uQhk=;
-        b=2Ddl+xRp4JTYh+QI8Rt5d8FjNnzGWWY2KFlNdiq46F7rm1t3c4b3MHo0JODplgXdgH
-         AQhsx4lQYsBwAlgX/obpxroAbxMsdUn7PztvxtQOnt8Qor2ZWXKy/tc1WtnBD1aBiLnn
-         P7J93aTS5mwJuQpsAyjzJe/gf1WWriMDiwlI5CVGFVKpAWBUJHxYJAhr8MS8gb8bjjSg
-         dhYwz1jNPMz/N979PTmkoOWAtYzCdUjaBFT8ZUH3EQDgRQd8fVgstpkyMYfi4nqurmaR
-         +tUYuacUl6k/t0qPK3M8WarauKi+POaHuE+TVtNGE98a1RD4G4QvoFMcyO8bPt8ih1kI
-         pI5g==
-X-Gm-Message-State: AO0yUKUVwsMj4WpAi4l1qt8l3itKVMJW+mz0Fe4nmDna6yxtlSet+m/S
-        pB0jaGU7XUVCnwcNbq3Y/3v+8w==
-X-Google-Smtp-Source: AK7set+U9Cx3ePVKsToO//f1PXc8sDfP5c23Y5WYFV2nOT14n+uE0yYjXmCi6DPiNNi+CGxP40fnIQ==
-X-Received: by 2002:a17:906:2887:b0:8b1:2eef:154c with SMTP id o7-20020a170906288700b008b12eef154cmr21878100ejd.0.1678278691527;
-        Wed, 08 Mar 2023 04:31:31 -0800 (PST)
-Received: from krzk-bin.. ([2a02:810d:15c0:828:ff33:9b14:bdd2:a3da])
-        by smtp.gmail.com with ESMTPSA id uo17-20020a170907cc1100b008b17ed98d05sm7391612ejc.120.2023.03.08.04.31.30
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 08 Mar 2023 04:31:31 -0800 (PST)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        d=1e100.net; s=20210112; t=1678278822;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=vhaVVI8Pk6jsBYMTTZwOYmA0OkqSfPfRqSJgsvlWR0A=;
+        b=rFtbojbaxMgtUk3bE4T/3AGrTThsVV4jGAKwlW/4ODjdrynRwPFLphXRvOlhJUSPrp
+         fV2A0oRfDmMiSKfY0FZGME1um7DtMOmgX1NJqSVINXA+kJ4hz6WWXlWH7M5ydWc1Q2T9
+         Pf6DG7nIeczarIOcDm5v2A8ltTwXpAo/zOxpk9dUt5elMTgDUtCGXt2UaPNp0idxQ2Jp
+         mwviveVyxGD3IhmYU0+Wyy0zSMMq1c/DNiPUOhwn24pD4MM+nhjIQ2S2up6/pRMs2ldZ
+         WJb2JKRMrs5GP1N6ek9AyrtyDZzjHEwILQmekaqAri/4mgIoQ9oSXYTt/GtOFX2aN+11
+         W1LQ==
+X-Gm-Message-State: AO0yUKW9u4RAUsIi5TwDn70/XBFQTla6H1++UEI1xkvs5CHGx0h18acW
+        HWGU5yDu3UEQzaLTtRqzZ97Dhg==
+X-Google-Smtp-Source: AK7set9ZKLPMf6pQVimofwO7qW0KFvn3tzJdxJ0trKBorpusBuJT3MCj3un+UlZDWKJyVhG5QUlPcQ==
+X-Received: by 2002:ac2:44d7:0:b0:4d8:68f5:747b with SMTP id d23-20020ac244d7000000b004d868f5747bmr4745902lfm.37.1678278821996;
+        Wed, 08 Mar 2023 04:33:41 -0800 (PST)
+Received: from [192.168.1.101] (abyj16.neoplus.adsl.tpnet.pl. [83.9.29.16])
+        by smtp.gmail.com with ESMTPSA id l7-20020ac24a87000000b004b5ab5e904esm2349754lfp.306.2023.03.08.04.33.40
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 08 Mar 2023 04:33:41 -0800 (PST)
+Message-ID: <1cbe9e29-13a4-574e-6d8c-b2506e7a36b3@linaro.org>
+Date:   Wed, 8 Mar 2023 13:33:39 +0100
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.8.0
+Subject: Re: [PATCH v3 2/2] drm/panel: Add driver for Novatek NT36523
+Content-Language: en-US
+To:     Jianhua Lu <lujianhua000@gmail.com>
+Cc:     Thierry Reding <thierry.reding@gmail.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH] arm64: dts: qcom: sm8450: correct WSA2 assigned clocks
-Date:   Wed,  8 Mar 2023 13:31:29 +0100
-Message-Id: <20230308123129.232642-1-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.34.1
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
-        autolearn_force=no version=3.4.6
+        Linus Walleij <linus.walleij@linaro.org>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org
+References: <20230308043706.16318-1-lujianhua000@gmail.com>
+ <20230308043706.16318-2-lujianhua000@gmail.com>
+ <66d293a8-f850-cb80-0c83-2ebf7e29d0c2@linaro.org> <ZAh3MSpQ30YyPAVe@Gentoo>
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <ZAh3MSpQ30YyPAVe@Gentoo>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-0.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_SORBS_HTTP,RCVD_IN_SORBS_SOCKS,SPF_HELO_NONE,SPF_PASS,
+        URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The WSA2 assigned-clocks were copied from WSA, but the WSA2 uses its
-own.
 
-Fixes: 14341e76dbc7 ("arm64: dts: qcom: sm8450: add Soundwire and LPASS")
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
----
- arch/arm64/boot/dts/qcom/sm8450.dtsi | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/qcom/sm8450.dtsi b/arch/arm64/boot/dts/qcom/sm8450.dtsi
-index 42833188a257..a315c0a61c5f 100644
---- a/arch/arm64/boot/dts/qcom/sm8450.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm8450.dtsi
-@@ -2142,8 +2142,8 @@ wsa2macro: codec@31e0000 {
- 				 <&q6prmcc LPASS_HW_DCODEC_VOTE LPASS_CLK_ATTRIBUTE_COUPLE_NO>,
- 				 <&vamacro>;
- 			clock-names = "mclk", "npl", "macro", "dcodec", "fsgen";
--			assigned-clocks = <&q6prmcc LPASS_CLK_ID_WSA_CORE_TX_MCLK LPASS_CLK_ATTRIBUTE_COUPLE_NO>,
--					  <&q6prmcc LPASS_CLK_ID_WSA_CORE_TX_2X_MCLK LPASS_CLK_ATTRIBUTE_COUPLE_NO>;
-+			assigned-clocks = <&q6prmcc LPASS_CLK_ID_WSA2_CORE_TX_MCLK LPASS_CLK_ATTRIBUTE_COUPLE_NO>,
-+					  <&q6prmcc LPASS_CLK_ID_WSA2_CORE_TX_2X_MCLK LPASS_CLK_ATTRIBUTE_COUPLE_NO>;
- 			assigned-clock-rates = <19200000>, <19200000>;
- 
- 			#clock-cells = <0>;
--- 
-2.34.1
+On 8.03.2023 12:53, Jianhua Lu wrote:
+> On Wed, Mar 08, 2023 at 12:13:53PM +0100, Konrad Dybcio wrote:
+>>
+>>
+>> On 8.03.2023 05:37, Jianhua Lu wrote:
+>>> Add a driver for panels using the Novatek NT36523 display driver IC.
+>>>
+>>> Signed-off-by: Jianhua Lu <lujianhua000@gmail.com>
+>>> ---
+>>> Changes in v3:
+>>>   - Refactor source code
+>>>
+>>> Changes in v2:
+>>>   - Refactor and clean up source code
+>> This is a veeery vague changelog, akin to "change patch", please
+>> be more specific the next time around.
+>>
+> Acked, thanks
+>>
+>> [...]
+>>
+>>> +#define DSI_NUM_MIN 1
+>>> +
+>>> +/* Macro modified from mipi_dual_dsi_dcs_write_seq */
+>>> +#define mipi_dual_dsi_dcs_write_seq(dsi, cmd, seq...)           	   \
+>>> +	do {                                                               \
+>>> +		static const u8 d[] = { cmd, seq };                        \
+>>> +		int i, ret;                                                \
+>>> +		for (i = 0; i < ARRAY_SIZE(dsi); i++) {                    \
+>>> +			ret = mipi_dsi_dcs_write_buffer(dsi[i], d, ARRAY_SIZE(d));    \
+>>> +			if (ret < 0) {                                             \
+>>> +				dev_err_ratelimited(                               \
+>>> +					&dsi[i]->dev, "sending command %#02x failed: %d\n", \
+>>> +					cmd, ret);                                 \
+>>> +				return ret;                                        \
+>>> +			}                                                          \
+>>> +		}                                                                  \
+>>> +	} while (0)
+>>> +
+>> This should definitely be put in a common file..
+> Acked.
+>>
+>>
+>>> +static const struct drm_display_mode elish_boe_mode = {
+>>> +	/* Current max freqency is 104HZ, TODO 120HZ */
+>> Is it a DPU issue, or does the panel not work correctly when you
+>> jack up the clocks? Did you use the correct init sequence and porches
+>> for the 120Hz mode, including the mode switch command set?
+>>
+> panel will turn into bluescreen when freqency overs 104HZ, downstream
+> seems use a dsi-cphy enhance feature to make it working. Init sequence
+> and porches are right
+Documentation/devicetree/bindings/display/msm/dsi-phy-7nm.yaml
 
+phy-type:
+    description: D-PHY (default) or C-PHY mode
+    enum: [ 10, 11 ]
+    default: 10
+
+try setting that to 11 under your DSI PHYs (or one? not sure).
+
+Konrad
+> 
+>> Could you also implement a 60 (or whatever other value is also
+>> implemented downstream) Hz mode?
+> I will try to implement it.
+>>
+>>> +	.clock = (1600 + 60 + 8 + 60) * (2560 + 26 + 4 + 168) * 104 / 1000,
+>>> +	.hdisplay = 1600,
+>>> +	.hsync_start = 1600 + 60,
+>>> +	.hsync_end = 1600 + 60 + 8,
+>>> +	.htotal = 1600 + 60 + 8 + 60,
+>>> +	.vdisplay = 2560,
+>>> +	.vsync_start = 2560 + 26,
+>>> +	.vsync_end = 2560 + 26 + 4,
+>>> +	.vtotal = 2560 + 26 + 4 + 168,
+>>> +};
+>>> +
+>>> +static const struct drm_display_mode elish_csot_mode = {
+>>> +	/* Current max freqency is 104HZ, TODO 120HZ */
+>>> +	.clock = (1600 + 200 + 40 + 52) * (2560 + 26 + 4 + 168) * 104 / 1000,
+>>> +	.hdisplay = 1600,
+>>> +	.hsync_start = 1600 + 200,
+>>> +	.hsync_end = 1600 + 200 + 40,
+>>> +	.htotal = 1600 + 200 + 40 + 52,
+>>> +	.vdisplay = 2560,
+>>> +	.vsync_start = 2560 + 26,
+>>> +	.vsync_end = 2560 + 26 + 4,
+>>> +	.vtotal = 2560 + 26 + 4 + 168,
+>>> +};
+>>> +
+>>> +static const struct panel_desc elish_boe_desc = {
+>>> +	.modes = &elish_boe_mode,
+>>> +	.dsi_info = {
+>>> +		.type = "NT36523",
+>> That's a bit vague, the driver IC is not very telling about the
+>> panel itself. Since we're not able to determine much more information,
+>> this could contain the panel manufacturer and the device name.
+> Acked.
+>>
+>>> +		.channel = 0,
+>>> +		.node = NULL,
+>>> +	},
+>>> +	.width_mm = 127,
+>>> +	.height_mm = 203,
+>>> +	.bpc = 8,
+>>> +	.lanes = 3,
+>>> +	.format = MIPI_DSI_FMT_RGB888,
+>>> +	.mode_flags = MIPI_DSI_MODE_VIDEO | MIPI_DSI_CLOCK_NON_CONTINUOUS | MIPI_DSI_MODE_LPM,
+>>> +	.init_sequence = elish_boe_init_sequence,
+>>> +	.is_dual_dsi = true,
+>>> +};
+>>> +
+>> [...]
+>>
+>>> +static int nt36523_probe(struct mipi_dsi_device *dsi)
+>>> +{
+>> [...]
+>>
+>>> +	/* If the panel is dual dsi, register DSI1 */
+>>> +	if (pinfo->desc->is_dual_dsi) {
+>>> +		info = &pinfo->desc->dsi_info;
+>>> +
+>>> +		dsi1 = of_graph_get_remote_node(dsi->dev.of_node, 1, -1);
+>>> +		if (!dsi1) {
+>>> +			dev_err(dev, "cannot get secondary DSI node.\n");
+>>> +			return -ENODEV;
+>>> +		}
+>>> +
+>>> +		dsi1_host = of_find_mipi_dsi_host_by_node(dsi1);
+>>> +		of_node_put(dsi1);
+>> Shouldn't you put the reference only if it's found?
+> thanks for spot it.
+>>
+>>> +		if (!dsi1_host) {
+>>> +			dev_err(dev, "cannot get secondary DSI host\n");
+>>> +			return -EPROBE_DEFER;
+>> dev_err_probe, here and in neighbouring exit return paths?
+> Acked.
+>>
+>>
+>> Konrad
