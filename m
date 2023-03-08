@@ -2,101 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 227EF6AFC04
-	for <lists+devicetree@lfdr.de>; Wed,  8 Mar 2023 02:17:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 234686AFC2A
+	for <lists+devicetree@lfdr.de>; Wed,  8 Mar 2023 02:21:05 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229794AbjCHBR0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Mar 2023 20:17:26 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55446 "EHLO
+        id S230051AbjCHBVC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Mar 2023 20:21:02 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33636 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229484AbjCHBRY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Mar 2023 20:17:24 -0500
-Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 396A75A6CE
-        for <devicetree@vger.kernel.org>; Tue,  7 Mar 2023 17:17:23 -0800 (PST)
-Received: by mail-lf1-x12e.google.com with SMTP id bi9so19497972lfb.2
-        for <devicetree@vger.kernel.org>; Tue, 07 Mar 2023 17:17:23 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1678238241;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=gnNZH9Drw/MoaoUZbOvjj8rfTjtiFcEzRwtiu8frN6A=;
-        b=RQ07lhei6sASNDadIFt8TAzr9uPXoWua6pYttLSe2YpNRAynfMfJSciJUmyQFGmvRN
-         fi5D9OtC4b59JEVUPiXBwhXuUCSJw3X6R/wpSN4b5Id7/Ywjwdh2/YiwW2vBCRLGOsOl
-         GZMlyQ1dq7AEJ5pnjRXptijJtNzMEG+N0mLGdD8x945i3uTC0ontT3Mq+xd8FEfsdJ9g
-         l+jIjT3BAPCXAWAypfIsB0iNVabZ9E2JWfStnK4/yp5MMUHpCO9mQjBmMJzcHR0jOuUV
-         CHgKGDrxHisMvFmDefWiIA2uxuEfmJqo+y5zJVRcyRiGvXgQWVpVHkkXIbleq9gh151d
-         D1+g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678238241;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=gnNZH9Drw/MoaoUZbOvjj8rfTjtiFcEzRwtiu8frN6A=;
-        b=F+6hcD9/zG+HyMaq8KAy9jlVd/isKtOz+XSuacLZzAH8qbvefIhMAi8HfzrG7ipnL9
-         4aRpfL6x7BrF3ZvmpmBIH1mhqoIyR2tH94LymPumjKNz9OSESsw6bacnwn0WUZ0UmhK5
-         Z4gxJEUj3hAbjx8TXkJhyhb9rKsRaokj5fMRNF19DARKvac7DKexq4DWi45aNSxwnMsm
-         kvhZaSPYM0UnugXtTH515UmrX4adj8hAgkL9wQCVuN1/ql3lhaawUCXTwdItHC1eJ1jy
-         tIBH0Kn7dvwgc3bi7I6C8xJC41ZQfppYcgIVHp0sxX8aWbF9NnMXNMi5o+AAC9nL5AgY
-         Wmeg==
-X-Gm-Message-State: AO0yUKXnYYE2eAtymd96nGTyJLXDsiJcI0cSf2r7k8ZTkzt9upQYEhD7
-        Z/30ONOw5ZniuQKwpzFkAiObRg==
-X-Google-Smtp-Source: AK7set/ga/+XC0HT4xLnuFeRdhBtdQE+1XK4NqdBxHRXvRxadMdq+a5GwDdfLw6LfZKqeMmiGENrMA==
-X-Received: by 2002:a19:c208:0:b0:4bc:af5:b8d9 with SMTP id l8-20020a19c208000000b004bc0af5b8d9mr4291879lfc.6.1678238241433;
-        Tue, 07 Mar 2023 17:17:21 -0800 (PST)
-Received: from localhost.localdomain (abyj16.neoplus.adsl.tpnet.pl. [83.9.29.16])
-        by smtp.gmail.com with ESMTPSA id u3-20020ac243c3000000b004dc4cb4f9c4sm2183207lfl.35.2023.03.07.17.17.19
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 07 Mar 2023 17:17:20 -0800 (PST)
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-To:     linux-arm-msm@vger.kernel.org, andersson@kernel.org,
-        agross@kernel.org
-Cc:     marijn.suijten@somainline.org,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>,
+        with ESMTP id S230074AbjCHBU6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Mar 2023 20:20:58 -0500
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A4409A8C78;
+        Tue,  7 Mar 2023 17:20:54 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+        bh=NUT8XDwfJnM0Ve3yK5qLipuIqwpKgQYWlXsjVs9AxDU=; b=A3/aecGkgpEC3hKokQQqdKAUjM
+        hS9ozJCzRh621CUQhzeYehcE0c3fYmEfoEa0JSVE4k5lm3YiF7Gpu6v8LGt5ucM+dI6VrLtFn/u11
+        ygxzpJ7xGu6dZcYpWUdLNTFQbhjvJe5wFjiviZ/BSN2M6LI48nTjTfZgRYb1TiA8MQ9I=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+        (envelope-from <andrew@lunn.ch>)
+        id 1pZiTz-006j0k-0w; Wed, 08 Mar 2023 02:20:43 +0100
+Date:   Wed, 8 Mar 2023 02:20:43 +0100
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Christian Marangi <ansuelsmth@gmail.com>
+Cc:     Florian Fainelli <f.fainelli@gmail.com>,
+        Vladimir Oltean <olteanv@gmail.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Shawn Guo <shawn.guo@linaro.org>, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: [PATCH] dt-bindings: interrupt-controller: Allow #power-domain-cells
-Date:   Wed,  8 Mar 2023 02:17:05 +0100
-Message-Id: <20230308011705.291337-1-konrad.dybcio@linaro.org>
-X-Mailer: git-send-email 2.39.2
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Russell King <linux@armlinux.org.uk>,
+        Gregory Clement <gregory.clement@bootlin.com>,
+        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+        John Crispin <john@phrozen.org>, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, Lee Jones <lee@kernel.org>,
+        linux-leds@vger.kernel.org
+Subject: Re: [net-next PATCH 00/11] net: Add basic LED support for switch/phy
+Message-ID: <b852b170-1290-4089-bfda-6ac44db89c7d@lunn.ch>
+References: <20230307170046.28917-1-ansuelsmth@gmail.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-0.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_SORBS_HTTP,RCVD_IN_SORBS_SOCKS,SPF_HELO_NONE,SPF_PASS,
-        URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230307170046.28917-1-ansuelsmth@gmail.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-MPM provides a single genpd. Allow #power-domain-cells = <0>.
+On Tue, Mar 07, 2023 at 06:00:35PM +0100, Christian Marangi wrote:
+> This is a continue of [1]. It was decided to take a more gradual
+> approach to implement LEDs support for switch and phy starting with
+> basic support and then implementing the hw control part when we have all
+> the prereq done.
 
-Fixes: 54fc9851c0e0 ("dt-bindings: interrupt-controller: Add Qualcomm MPM support")
-Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
----
- .../devicetree/bindings/interrupt-controller/qcom,mpm.yaml     | 3 +++
- 1 file changed, 3 insertions(+)
+In the end, there are likely to be 3 or 4 patchsets. There are going
+to be patches to both the LED subsystem and the netdev subsystem, plus
+device tree bindings and some ARM DT patches.
 
-diff --git a/Documentation/devicetree/bindings/interrupt-controller/qcom,mpm.yaml b/Documentation/devicetree/bindings/interrupt-controller/qcom,mpm.yaml
-index 509d20c091af..4c470dc143e5 100644
---- a/Documentation/devicetree/bindings/interrupt-controller/qcom,mpm.yaml
-+++ b/Documentation/devicetree/bindings/interrupt-controller/qcom,mpm.yaml
-@@ -62,6 +62,9 @@ properties:
-         - description: MPM pin number
-         - description: GIC SPI number for the MPM pin
- 
-+  '#power-domain-cells':
-+    const: 0
-+
- required:
-   - compatible
-   - reg
--- 
-2.39.2
+Ideally we would like all the patches to go through one tree, so we
+can keep everything together and buildable. We will cross post patches
+to both major subsystems, but my guess is, merging via netdev will be
+best. If not, a stable branch for the LED subsystem which can be
+pulled into netdev could maybe made be to work.
 
+       Andrew
