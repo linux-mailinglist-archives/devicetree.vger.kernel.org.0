@@ -2,67 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B1A1A6B11A9
-	for <lists+devicetree@lfdr.de>; Wed,  8 Mar 2023 20:04:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BD4C26B11AD
+	for <lists+devicetree@lfdr.de>; Wed,  8 Mar 2023 20:05:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230171AbjCHTD7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Mar 2023 14:03:59 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42066 "EHLO
+        id S229558AbjCHTFF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Mar 2023 14:05:05 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45914 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230170AbjCHTDY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Mar 2023 14:03:24 -0500
-Received: from mail-oa1-f45.google.com (mail-oa1-f45.google.com [209.85.160.45])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DEE859E64E;
-        Wed,  8 Mar 2023 11:03:22 -0800 (PST)
-Received: by mail-oa1-f45.google.com with SMTP id 586e51a60fabf-176261d7f45so19749043fac.11;
-        Wed, 08 Mar 2023 11:03:22 -0800 (PST)
+        with ESMTP id S230133AbjCHTEe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Mar 2023 14:04:34 -0500
+Received: from mail-wr1-x42e.google.com (mail-wr1-x42e.google.com [IPv6:2a00:1450:4864:20::42e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4B7EC61892;
+        Wed,  8 Mar 2023 11:03:58 -0800 (PST)
+Received: by mail-wr1-x42e.google.com with SMTP id v16so16435568wrn.0;
+        Wed, 08 Mar 2023 11:03:58 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112; t=1678302230;
+        h=in-reply-to:content-disposition:mime-version:references:subject:cc
+         :to:from:date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=GyEWSQ+G2MWKOlELKWDgQ+RU89YhI2uCRrCVz5D3irU=;
+        b=gPFP5RFz8fdqZUUyrGaqnfYAtrqd3NpQIq9pM1B5/5roMkDm+vAl1z7Jl/Li5gwSkS
+         uWR9XsAkodbakTFbuNqdic8XU2LOjW2imL4qGQrTOB7aeklok8jTtgub3ecVvcTzgR+z
+         SWSgB3TRSnn19P2F4T5SB8IGVRqDGfvAZ1vnP4Idz9QOupp1hyjkV+sobJJnPgJpSVvo
+         dTu3qcTdlgFuPPwlsAEgEPywj9fY7QiPKfwYw7f3aVUElP2rkDflTq6mnmfNlG33CPOK
+         EFxYI667fT5+6kI4JDUUJU0FTQRDVBkTbNoxFfvsGk6yYaHGBUDv7ediPHfY2j6CYuRi
+         p0vg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678302202;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+        d=1e100.net; s=20210112; t=1678302230;
+        h=in-reply-to:content-disposition:mime-version:references:subject:cc
+         :to:from:date:message-id:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=9il/DGJIQiu6Ue8jvxZUwoY7ORjCm0v/Im7Io+dDxPs=;
-        b=1+DmG54gF+Vfqn3vPES1nflB5L6mo89DnGvVArtTKoVWoMRzaAvt0R5gNybmsdThkq
-         QS+SvBr5nxLHVwkDkVPj3uIXhroynxk54SXt39sfPXUyZ2lJ86NFIExXVlJHLq37gqiE
-         gPM7WXVUZrK9berxrR2SWtwX93eFyxtENa786q9aqHQkiO39ZVFmrzngpurH6ZYQ02s5
-         x82w5y6QbicItC7Xr5W8K1Ryi9NyoaiBDjCv2cFLeld8U6JJWKax2LLNKFhfY4VFH6VP
-         VGTYBsImOcyc9LOCyotFZpt+C+oaNZSIWrkkWuzijDPfwAopMvuXYuVHT1fYu8MAoXF6
-         dqhQ==
-X-Gm-Message-State: AO0yUKUNXQL4gZcoro+4HtXMUbV/id8OErSEizPCac8znye3RjDizo0E
-        p2289gqOc7SfBGk8j1c7ig==
-X-Google-Smtp-Source: AK7set/POqWuscJib/lrSJTB9epA2owd4C+73BtnHIuJFrEFJL2xeHZhaNT4yQoIOLqI2Iaqknu/XQ==
-X-Received: by 2002:a05:6870:f292:b0:172:c578:d78b with SMTP id u18-20020a056870f29200b00172c578d78bmr1164117oap.23.1678302201744;
-        Wed, 08 Mar 2023 11:03:21 -0800 (PST)
-Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id dx12-20020a056870768c00b0017281100b75sm6506505oab.42.2023.03.08.11.03.20
+        bh=GyEWSQ+G2MWKOlELKWDgQ+RU89YhI2uCRrCVz5D3irU=;
+        b=UhFTlaNXffhaGdR1ioivsbBJk+7NXrasNYg1Q7ixk2smqokSFyWKQXJZgNROZ6a2mi
+         ky3jrOQMNrWkmsKBbZfWqqlwxswAe2EAvApeJ3ik/ncm1v2ryMXaniCpw6H3kPuxniDJ
+         AD+nmnHoFXsSgnqM3iOr+0d/EfZ0FBmbbAC2goP+EdTKy+gzjmwiQfaNOdholVTWKGAt
+         kraQeDxKIpmA1WmIWSsNdtwL5zC7xubGqDA0bD8wZFughHRgUGWogh3Y3RBSJ34Tijz7
+         Erqo5HMVR7t9n//rxKIUyjKb9l87ML6cWnXpTOqlYwweg4pfYVFK3+d2Goikrt79yddi
+         CnSw==
+X-Gm-Message-State: AO0yUKXyWWsqcP+xMeXIEP1s0O4dD+zN+MokLQJETI65HK1KvwiP9bGZ
+        ZQ2dbbo3XhHJ3xELZK1cTJs=
+X-Google-Smtp-Source: AK7set9zWhFR+fhSCmw/by0OxIhyJDhKvuE8Ndxn+7KOiJv5qWAkVRPqq00/gtyaC1fGqc6JucygyQ==
+X-Received: by 2002:adf:fe47:0:b0:2c7:e26:97c2 with SMTP id m7-20020adffe47000000b002c70e2697c2mr12732792wrs.33.1678302230524;
+        Wed, 08 Mar 2023 11:03:50 -0800 (PST)
+Received: from Ansuel-xps. (93-34-89-197.ip49.fastwebnet.it. [93.34.89.197])
+        by smtp.gmail.com with ESMTPSA id w2-20020a5d6802000000b002c7163660a9sm15880471wru.105.2023.03.08.11.03.48
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 08 Mar 2023 11:03:21 -0800 (PST)
-Received: (nullmailer pid 3605141 invoked by uid 1000);
-        Wed, 08 Mar 2023 19:03:20 -0000
-Date:   Wed, 8 Mar 2023 13:03:20 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-Cc:     steven.price@arm.com, devicetree@vger.kernel.org,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        linux-kernel@vger.kernel.org, wenst@chromium.org,
-        linux-arm-kernel@lists.infradead.org, matthias.bgg@gmail.com,
-        daniel@ffwll.ch, alyssa.rosenzweig@collabora.com,
-        dri-devel@lists.freedesktop.org,
-        linux-mediatek@lists.infradead.org, airlied@gmail.com
-Subject: Re: [PATCH v4 06/12] dt-bindings: gpu: mali-bifrost: Add support for
- MediaTek MT8186
-Message-ID: <167830220018.3605078.16960763301333635462.robh@kernel.org>
-References: <20230228102704.708150-1-angelogioacchino.delregno@collabora.com>
- <20230228102704.708150-6-angelogioacchino.delregno@collabora.com>
+        Wed, 08 Mar 2023 11:03:50 -0800 (PST)
+Message-ID: <6408dc16.5d0a0220.dc775.18e5@mx.google.com>
+X-Google-Original-Message-ID: <ZAjcEpmB1qBHEpdH@Ansuel-xps.>
+Date:   Wed, 8 Mar 2023 20:03:46 +0100
+From:   Christian Marangi <ansuelsmth@gmail.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Andrew Lunn <andrew@lunn.ch>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Vladimir Oltean <olteanv@gmail.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Russell King <linux@armlinux.org.uk>,
+        Gregory Clement <gregory.clement@bootlin.com>,
+        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+        John Crispin <john@phrozen.org>, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, Lee Jones <lee@kernel.org>,
+        linux-leds@vger.kernel.org
+Subject: Re: [net-next PATCH 10/11] dt-bindings: net: phy: Document support
+ for LEDs node
+References: <20230307170046.28917-1-ansuelsmth@gmail.com>
+ <20230307170046.28917-11-ansuelsmth@gmail.com>
+ <7c6a70d1-fd64-66cc-688b-3e04634066bb@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230228102704.708150-6-angelogioacchino.delregno@collabora.com>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
+In-Reply-To: <7c6a70d1-fd64-66cc-688b-3e04634066bb@linaro.org>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -70,17 +89,43 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-On Tue, 28 Feb 2023 11:26:58 +0100, AngeloGioacchino Del Regno wrote:
-> MT8186 has a Mali-G52 MC2 2EE GPU (two cores): add a binding with
-> two power domains (one per core) for it.
+On Wed, Mar 08, 2023 at 07:56:57PM +0100, Krzysztof Kozlowski wrote:
+> On 07/03/2023 18:00, Christian Marangi wrote:
+> > Document support for LEDs node in phy and add an example for it.
+> > PHY LED will have to match led pattern and should be treated as a
+> > generic led.
+> > 
+> > Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
+> > ---
+> >  .../devicetree/bindings/net/ethernet-phy.yaml | 22 +++++++++++++++++++
+> >  1 file changed, 22 insertions(+)
+> > 
+> > diff --git a/Documentation/devicetree/bindings/net/ethernet-phy.yaml b/Documentation/devicetree/bindings/net/ethernet-phy.yaml
+> > index 1327b81f15a2..0ec8ef6b0d8a 100644
+> > --- a/Documentation/devicetree/bindings/net/ethernet-phy.yaml
+> > +++ b/Documentation/devicetree/bindings/net/ethernet-phy.yaml
+> > @@ -197,6 +197,13 @@ properties:
+> >        PHY's that have configurable TX internal delays. If this property is
+> >        present then the PHY applies the TX delay.
+> >  
+> > +  leds:
+> > +    type: object
 > 
-> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-> Reviewed-by: Chen-Yu Tsai <wenst@chromium.org>
-> ---
->  .../bindings/gpu/arm,mali-bifrost.yaml         | 18 ++++++++++++++++++
->  1 file changed, 18 insertions(+)
+> additionalProperties: false
+> 
+> although maybe this was already said in one of previous ten reviews...
+>
+
+Thanks for the review. (this is rather new from the old patch (appeared
+only in v7 so sorry if I didn't see that in the old series. Will fix in
+v2 of this!)
+
+> > +
+> > +    patternProperties:
+> > +      '^led(@[a-f0-9]+)?$':
+> > +        $ref: /schemas/leds/common.yaml#
+> > +
 > 
 
-Reviewed-by: Rob Herring <robh@kernel.org>
-
+-- 
+	Ansuel
