@@ -2,231 +2,164 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 041F56B10EE
-	for <lists+devicetree@lfdr.de>; Wed,  8 Mar 2023 19:21:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7A75B6B10FE
+	for <lists+devicetree@lfdr.de>; Wed,  8 Mar 2023 19:27:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230104AbjCHSVW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Mar 2023 13:21:22 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40290 "EHLO
+        id S229925AbjCHS1L (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Mar 2023 13:27:11 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48002 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230146AbjCHSVQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Mar 2023 13:21:16 -0500
-Received: from mail-oi1-f171.google.com (mail-oi1-f171.google.com [209.85.167.171])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4FB94CF9AF;
-        Wed,  8 Mar 2023 10:21:13 -0800 (PST)
-Received: by mail-oi1-f171.google.com with SMTP id t22so12819720oiw.12;
-        Wed, 08 Mar 2023 10:21:13 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678299672;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=5K9M/WGoEfXxcoKbYphxqAy7GDsCNUya755BhLVY2l0=;
-        b=RvS8y/iuLGaYfZkFX05j2rjtwCxz93KHBoTI6W7FJqY+1emMhGKNrc6k9QgwF6/Hkm
-         qRUm4uJ5dykyEoHRLgS5EwuaVd9huuVUEpU1BHl7gDtP23uZc0N5hTnIiiJZVpVq8p5G
-         NmCxIrMyKjdtBpMGQYoprcXuai4Ha0T/zyQJv/j77QR1xCUEkEjc/QtmifTy9PTUJJ7V
-         YzyhVq83quDFSvJFxoje20wAoia3kpyCDq1nOEINCNsCE32Ovhy/bGgBkBtVG5n7nOfR
-         RnE5Mfw4+qkJeufPl+TNnsQyTAvmN67XazDclm3s8u+kWKjCqpvAphUirtOrL8AHIT9L
-         gTkA==
-X-Gm-Message-State: AO0yUKWlH5E4g68y8T9nwP7t+rbIQz8yBZp1emxSZE9akUaX540c3l9k
-        zoIKpql9puoJYdBmjUOLGQ==
-X-Google-Smtp-Source: AK7set96SwfHtjO5POTOqFp+IXOvf8KHwTGt8xR4WiBhJ3lblZG49hQldEdmfsp3/f768W93V0f2Pw==
-X-Received: by 2002:a05:6808:21aa:b0:37b:8dde:4a98 with SMTP id be42-20020a05680821aa00b0037b8dde4a98mr1523367oib.0.1678299672366;
-        Wed, 08 Mar 2023 10:21:12 -0800 (PST)
-Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id g5-20020a05687085c500b001724d631f92sm6505603oal.30.2023.03.08.10.21.11
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 08 Mar 2023 10:21:11 -0800 (PST)
-Received: (nullmailer pid 3539159 invoked by uid 1000);
-        Wed, 08 Mar 2023 18:21:11 -0000
-Date:   Wed, 8 Mar 2023 12:21:11 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Svyatoslav Ryhel <clamor95@gmail.com>
-Cc:     Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Luca Ceresoli <luca.ceresoli@bootlin.com>,
-        Jean Delvare <jdelvare@suse.de>,
-        Sebastian Reichel <sebastian.reichel@collabora.com>,
-        Daniel Jeong <gshark.jeong@gmail.com>,
-        Ldd-Mlp <ldd-mlp@list.ti.com>, linux-media@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v1 1/2] dt-bindings: media: i2c: add lm3560 binding
-Message-ID: <20230308182111.GA3533712-robh@kernel.org>
-References: <20230308095209.14700-1-clamor95@gmail.com>
- <20230308095209.14700-2-clamor95@gmail.com>
+        with ESMTP id S229456AbjCHS1K (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Mar 2023 13:27:10 -0500
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F058EC3631;
+        Wed,  8 Mar 2023 10:27:08 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1678300029; x=1709836029;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:content-transfer-encoding:in-reply-to;
+  bh=5xt+Oxmh4ZD99PRtVYMgcMoTdrC8s3y2I1hzYqDESF4=;
+  b=nspyLdK5mKMGDTI7D1yLYjHx8gQNWhu1yvlF1D7zDX9fcrhWtyV8cse+
+   5MsiQIkG/lZOxPgtm60zEEPo20FoLzqvEOk2eUQQV564EKuX0Z5Mbp0kZ
+   uthrBgfNGHQatgDJgVK6mH0+/tNCj+fhJfqLiH7cc4lNtpy17I8cx5gjL
+   2USyzKQ3zgpzVivB8Lfq00u2952l8XrwVnUqc8FDaTkxeLLKF/95dfHdy
+   76U8EbmTgV3Ow4CFPhDbOrkFLWzWEVRK6KgpgYkdZ3If7dfsFWvKWpQp6
+   sso397daB51yuNj1oR4VPlx0IV7Pu+42FdHg4pOyFm8/V0sjmAnzDbpc2
+   w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10643"; a="401065305"
+X-IronPort-AV: E=Sophos;i="5.98,244,1673942400"; 
+   d="scan'208";a="401065305"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+  by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 08 Mar 2023 10:27:02 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6500,9779,10643"; a="766100262"
+X-IronPort-AV: E=Sophos;i="5.98,244,1673942400"; 
+   d="scan'208";a="766100262"
+Received: from lkp-server01.sh.intel.com (HELO b613635ddfff) ([10.239.97.150])
+  by FMSMGA003.fm.intel.com with ESMTP; 08 Mar 2023 10:26:55 -0800
+Received: from kbuild by b613635ddfff with local (Exim 4.96)
+        (envelope-from <lkp@intel.com>)
+        id 1pZyV5-0002Kv-0g;
+        Wed, 08 Mar 2023 18:26:55 +0000
+Date:   Thu, 9 Mar 2023 02:26:13 +0800
+From:   kernel test robot <lkp@intel.com>
+To:     =?iso-8859-1?Q?K=F6ry?= Maincent <kory.maincent@bootlin.com>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Heiner Kallweit <hkallweit1@gmail.com>, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-doc@vger.kernel.org, linux-omap@vger.kernel.org
+Cc:     oe-kbuild-all@lists.linux.dev, Michael Walle <michael@walle.cc>,
+        Maxime Chevallier <maxime.chevallier@bootlin.com>,
+        Richard Cochran <richardcochran@gmail.com>,
+        Kory Maincent <kory.maincent@bootlin.com>,
+        thomas.petazzoni@bootlin.com, Russell King <linux@armlinux.org.uk>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Jonathan Corbet <corbet@lwn.net>,
+        Jay Vosburgh <j.vosburgh@gmail.com>,
+        Veaceslav Falico <vfalico@gmail.com>,
+        Andy Gospodarek <andy@greyhouse.net>,
+        Joakim Zhang <qiangqing.zhang@nxp.com>,
+        Vladimir Oltean <vladimir.oltean@nxp.com>,
+        Claudiu Manoil <claudiu.manoil@nxp.com>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        UNGLinuxDriver@microchip.com,
+        Grygorii Strashko <grygorii.strashko@ti.com>,
+        Minghao Chi <chi.minghao@zte.com.cn>
+Subject: Re: [PATCH v3 3/5] net: Let the active time stamping layer be
+ selectable.
+Message-ID: <202303090220.EervgFvH-lkp@intel.com>
+References: <20230308135936.761794-4-kory.maincent@bootlin.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <20230308095209.14700-2-clamor95@gmail.com>
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=no autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20230308135936.761794-4-kory.maincent@bootlin.com>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_NONE,URIBL_BLOCKED autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Mar 08, 2023 at 11:52:08AM +0200, Svyatoslav Ryhel wrote:
-> Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
-> ---
->  .../bindings/media/i2c/ti,lm3560.yaml         | 130 ++++++++++++++++++
->  1 file changed, 130 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/media/i2c/ti,lm3560.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/media/i2c/ti,lm3560.yaml b/Documentation/devicetree/bindings/media/i2c/ti,lm3560.yaml
-> new file mode 100644
-> index 000000000000..b3c2ccb83a30
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/media/i2c/ti,lm3560.yaml
-> @@ -0,0 +1,130 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/media/i2c/ti,lm3560.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: TI LM3560 Synchronous Boost Flash Driver
-> +
-> +maintainers:
-> +  - Daniel Jeong <gshark.jeong@gmail.com>
-> +  - Ldd-Mlp <ldd-mlp@list.ti.com>
-> +
-> +description: |
-> +  The LM3560 is a 2-MHz fixed frequency synchronous boost
-> +  converter with two 1000-mA constant current drivers for
-> +  high-current white LEDs. The dual highside current sources
-> +  allow for grounded cathode LED operation and can be tied
-> +  together for providing flash currents at up to 2 A through
-> +  a single LED. An adaptive regulation method ensures the
-> +  current for each LED remains in regulation and maximizes
-> +  efficiency.
-> +
-> +properties:
-> +  compatible:
-> +    items:
-> +      - enum:
-> +          - ti,lm3559
-> +          - ti,lm3560
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  enable-gpios:
-> +    maxItems: 1
-> +
-> +  ti,peak-current:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    enum: [0, 0x20, 0x40, 0x60]
-> +    default: 0x60
-> +    description: |
-> +      Peak current can be set to 4 values 1.6A (0x00),
-> +      2.3A (0x20), 3.0A (0x40) and 3.6A (0x60).
+Hi Köry,
 
-Pretty sure we have common properties for this.
+I love your patch! Perhaps something to improve:
 
-> +
-> +  ti,max-flash-timeout:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    minimum: 32
-> +    maximum: 1024
-> +    default: 1024
-> +    description: |
-> +      Maximum flash timeout in ms with step 32ms.
+[auto build test WARNING on v6.2]
+[cannot apply to robh/for-next horms-ipvs/master net/master net-next/master linus/master v6.3-rc1 next-20230308]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-And this too.
+url:    https://github.com/intel-lab-lkp/linux/commits/K-ry-Maincent/net-ethtool-Refactor-identical-get_ts_info-implementations/20230308-220453
+patch link:    https://lore.kernel.org/r/20230308135936.761794-4-kory.maincent%40bootlin.com
+patch subject: [PATCH v3 3/5] net: Let the active time stamping layer be selectable.
+config: riscv-allmodconfig (https://download.01.org/0day-ci/archive/20230309/202303090220.EervgFvH-lkp@intel.com/config)
+compiler: riscv64-linux-gcc (GCC) 12.1.0
+reproduce (this is a W=1 build):
+        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+        chmod +x ~/bin/make.cross
+        # https://github.com/intel-lab-lkp/linux/commit/d81a36f239360e7e3b9ca2633e52b3cb12205590
+        git remote add linux-review https://github.com/intel-lab-lkp/linux
+        git fetch --no-tags linux-review K-ry-Maincent/net-ethtool-Refactor-identical-get_ts_info-implementations/20230308-220453
+        git checkout d81a36f239360e7e3b9ca2633e52b3cb12205590
+        # save the config file
+        mkdir build_dir && cp config build_dir/.config
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.1.0 make.cross W=1 O=build_dir ARCH=riscv olddefconfig
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.1.0 make.cross W=1 O=build_dir ARCH=riscv SHELL=/bin/bash drivers/net/phy/
 
-> +
-> +  '#address-cells':
-> +    const: 1
-> +
-> +  '#size-cells':
-> +    const: 0
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - '#address-cells'
-> +  - '#size-cells'
-> +
-> +patternProperties:
-> +  "^led@[01]$":
-> +    type: object
-> +    description: |
-> +      Properties for a connected LEDs.
-> +    properties:
-> +      reg:
-> +        minimum: 0
-> +        maximum: 1
-> +
-> +      ti,max-flash-current:
-> +        $ref: /schemas/types.yaml#/definitions/uint32
-> +        minimum: 62500
-> +        maximum: 1000000
-> +        default: 1000000
-> +        description: |
-> +          Maximum current in flash mode in uA with step 62500uA.
+If you fix the issue, kindly add following tag where applicable
+| Reported-by: kernel test robot <lkp@intel.com>
+| Link: https://lore.kernel.org/oe-kbuild-all/202303090220.EervgFvH-lkp@intel.com/
 
-Or maybe it's these per LED settings that are common.
+All warnings (new ones prefixed by >>):
 
-BTW, anything with units, should have a standard unit suffix.
+>> drivers/net/phy/phy_device.c:1384:6: warning: no previous prototype for 'of_set_timestamp' [-Wmissing-prototypes]
+    1384 | void of_set_timestamp(struct net_device *netdev, struct phy_device *phydev)
+         |      ^~~~~~~~~~~~~~~~
 
-> +
-> +      ti,max-torch-current:
-> +        $ref: /schemas/types.yaml#/definitions/uint32
-> +        minimum: 31250
-> +        maximum: 250000
-> +        default: 250000
-> +        description: |
-> +          Maximum current in tourch mode in uA with step 31250uA.
-> +
-> +    required:
-> +      - reg
-> +
-> +    additionalProperties: false
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    i2c {
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +
-> +        flash-led@53 {
 
-led-controller@53
+vim +/of_set_timestamp +1384 drivers/net/phy/phy_device.c
 
-> +            compatible = "ti,lm3559";
-> +            reg = <0x53>;
-> +
-> +            enable-gpios = <&gpio 219 GPIO_ACTIVE_HIGH>;
-> +
-> +            ti,peak-current = <0>;
-> +            ti,max-flash-timeout = <1024>;
-> +
-> +            #address-cells = <1>;
-> +            #size-cells = <0>;
-> +
-> +            led@0 {
-> +                reg = <0>;
-> +
-> +                ti,max-flash-current = <562500>;
-> +                ti,max-torch-current = <156250>;
-> +            };
-> +
-> +            led@1 {
-> +                reg = <1>;
-> +
-> +                ti,max-flash-current = <562500>;
-> +                ti,max-torch-current = <156250>;
-> +            };
-> +        };
-> +    };
-> +...
-> -- 
-> 2.37.2
-> 
+  1383	
+> 1384	void of_set_timestamp(struct net_device *netdev, struct phy_device *phydev)
+  1385	{
+  1386		struct device_node *node = phydev->mdio.dev.of_node;
+  1387		const struct ethtool_ops *ops = netdev->ethtool_ops;
+  1388		const char *s;
+  1389		enum timestamping_layer ts_layer = 0;
+  1390	
+  1391		if (phy_has_hwtstamp(phydev))
+  1392			ts_layer = PHY_TIMESTAMPING;
+  1393		else if (ops->get_ts_info)
+  1394			ts_layer = MAC_TIMESTAMPING;
+  1395	
+  1396		if (of_property_read_string(node, "preferred-timestamp", &s))
+  1397			goto out;
+  1398	
+  1399		if (!s)
+  1400			goto out;
+  1401	
+  1402		if (phy_has_hwtstamp(phydev) && !strcmp(s, "phy"))
+  1403			ts_layer = PHY_TIMESTAMPING;
+  1404	
+  1405		if (ops->get_ts_info && !strcmp(s, "mac"))
+  1406			ts_layer = MAC_TIMESTAMPING;
+  1407	
+  1408	out:
+  1409		netdev->selected_timestamping_layer = ts_layer;
+  1410	}
+  1411	
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests
