@@ -2,113 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 459606B1431
-	for <lists+devicetree@lfdr.de>; Wed,  8 Mar 2023 22:37:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D106B6B1468
+	for <lists+devicetree@lfdr.de>; Wed,  8 Mar 2023 22:45:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230374AbjCHVg7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Mar 2023 16:36:59 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54022 "EHLO
+        id S229577AbjCHVpS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Mar 2023 16:45:18 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42248 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230093AbjCHVgY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Mar 2023 16:36:24 -0500
-Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E4EED99D65
-        for <devicetree@vger.kernel.org>; Wed,  8 Mar 2023 13:35:59 -0800 (PST)
-Received: by mail-lf1-x12e.google.com with SMTP id s20so23096791lfb.11
-        for <devicetree@vger.kernel.org>; Wed, 08 Mar 2023 13:35:59 -0800 (PST)
+        with ESMTP id S230358AbjCHVpG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Mar 2023 16:45:06 -0500
+Received: from mail-wr1-x435.google.com (mail-wr1-x435.google.com [IPv6:2a00:1450:4864:20::435])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AD555E058
+        for <devicetree@vger.kernel.org>; Wed,  8 Mar 2023 13:44:42 -0800 (PST)
+Received: by mail-wr1-x435.google.com with SMTP id v16so70991wrn.0
+        for <devicetree@vger.kernel.org>; Wed, 08 Mar 2023 13:44:42 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1678311359;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=ZubkqDM02FAiEq3eW9W/hQGkoIRi+LbMNFc2dkt329w=;
-        b=U2+2EA4Y3hZZ4IySjfJI7Rl8yoiGa46ugFf4hmN9QuuP8TmiomTY4CaHr6rB8HomBu
-         1d58zX7S00aWHBBZPR/9Qn0NTAtJnx4USs+nIOvlr4IZkdCbpiqX2iFUgWZhVmtjwMhF
-         HwjoziRqgFYuPmfsOT0ZS+HAnLTHRS9MNFAqStOd4lVU8TSR8VgUBKPsgLLnr5hZOL/p
-         aQQzjQFknH52GZKA90Mjip+qHUNF15Q2GKbuq3ZeRxgpOBgMZ742kRiF0mDniqN3ygUL
-         PRE7HiM63+DplQpxJGy+qf4hW3UYDcYevICm0uYsosmmjnr9HSLo2RoMKZKCsi2leuyV
-         cWJw==
+        d=linaro.org; s=google; t=1678311875;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=6Z0DHi72Ho6QJq4m3N8OZ9dErQvB6DsgdYARNWx4l/8=;
+        b=Qmz6hTSfStErW/uuYxt22VPPZUMOP+dEC8iLow0ink6piNJrG6Gr86nYzMQp0kbcPy
+         PvD4sVjLKeBEr+MrEPd01+8fajyY65TTeZxLw78L0CN8dYGG3qA0bZq76bQ7b6ibPv19
+         VQvUoAA5HRwPy9Ey91e3ifnr2P44/jKAYDB5i2D2juWmDjFZM5YZwIGAugncAXOj+LZp
+         ry2HUFsrd6q/QpIE381/h414FFVPsS1+jZgNl2uFrJhKsjHakyx6yAKueswrC5jRwQTH
+         LDSYIckdebYgbAA/DEGxEResPBl8sZ1oezJlbwqD8pFXgwJDkr7k3kOGaVRWyU455kms
+         TeJg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678311359;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=ZubkqDM02FAiEq3eW9W/hQGkoIRi+LbMNFc2dkt329w=;
-        b=XzDCekwny41wMwMdl8jepvkFfedzXrzxSI9RMdC4IKZo0TtRzH/zRO/buPxHrlaPkz
-         bQqe/EptCRiXyAQCCYXdp6nHd3alOFMnH7KNu/g2MbQo8T/CYjvRhkVc+C3ZG13b9fHZ
-         ySL76jG4a6uLmbEl0J4c84Q/pALC/xeS0h9jUyiWMM5E2yYT2bPUgWzilUtSESLo42Qg
-         rBTpQAQA3kfZdjV0l6CPxFlTwsimLMfRLQyuYWPiLE/j2zZy8ozmu80fzLtjcQxeRKcj
-         o0s07Nv4ihLTfXAVjAssKkaWaEaZ4bwYMdpTYp5FJ56nfa8v6hlrz8P5xojjBcD3qn9q
-         O9tA==
-X-Gm-Message-State: AO0yUKVg5wU0jzHXEIPnPgnc+854ubStaGJJQIuRHSp4oXaAf8DqRIhs
-        KG46PQt4benH2w9wh7jdxsvT+7fcQmSO9yc7Xso=
-X-Google-Smtp-Source: AK7set+G3EUNHPXsQ1i0gem4UXH/5P0KEDgfYTdtkCno0b2iCeMPN8kRgDjX9mylfukjLAE3B1WfPA==
-X-Received: by 2002:ac2:508f:0:b0:4dd:a5aa:accb with SMTP id f15-20020ac2508f000000b004dda5aaaccbmr5350543lfm.44.1678311359487;
-        Wed, 08 Mar 2023 13:35:59 -0800 (PST)
-Received: from [192.168.1.101] (abyj16.neoplus.adsl.tpnet.pl. [83.9.29.16])
-        by smtp.gmail.com with ESMTPSA id u7-20020ac243c7000000b004dc4d26c324sm2467479lfl.143.2023.03.08.13.35.58
+        d=1e100.net; s=20210112; t=1678311875;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=6Z0DHi72Ho6QJq4m3N8OZ9dErQvB6DsgdYARNWx4l/8=;
+        b=BMt4KJLswNxY21Ii/ALcZ+cK9Y7Ygek+QbPONSA+7tk8bMLyDno4Pwr/aDK2YvG034
+         0SqpofSB9mlTU97Z5yMKQwBfaroqjzFMraPOOWLSGgfAZbjB531VFy5c6iYTwdxvdcuJ
+         7kjQ16cmhhAJFhJNVSezTQzRDuLP6JMqSHAwExqQd7/4h/RSg+kdXJVpnBjwDspCKowF
+         lOcayaZioT+0ZvD7iA9YjR00AH+wzZwTKVkVTjVNfrY0lgvphGogJi/9i3yxQetxoSQU
+         XooRBxTTtvMLlNLucD6gnynIa908hJ2fL3kEohcrQbbdGZYIyqQ/1J2n7YOHLHS/0/fA
+         0Gzg==
+X-Gm-Message-State: AO0yUKXwd4SMeSgls4W6MW6dh13LGCsXK5fKNQn6Qb2JkXANAY7E0bAd
+        brr3E1o2eE5399fCIqITwFCToQ==
+X-Google-Smtp-Source: AK7set82QrXg3puqALBiBX/T3axcFBDmM3MURhZbG3RHzTinBQBBF2402lh8DaHdmAhABXc6oxlhhA==
+X-Received: by 2002:adf:ee8c:0:b0:2c7:9931:4f7d with SMTP id b12-20020adfee8c000000b002c799314f7dmr12344475wro.18.1678311875322;
+        Wed, 08 Mar 2023 13:44:35 -0800 (PST)
+Received: from linaro.org ([94.52.112.99])
+        by smtp.gmail.com with ESMTPSA id w7-20020a5d6087000000b002c567b58e9asm16416772wrt.56.2023.03.08.13.44.33
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 08 Mar 2023 13:35:58 -0800 (PST)
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-Date:   Wed, 08 Mar 2023 22:35:30 +0100
-Subject: [PATCH RFT v2 14/14] arm64: dts: qcom: msm8996: Enable rpmcc
- unused clk disablement
-MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20230303-topic-rpmcc_sleep-v2-14-ae80a325fe94@linaro.org>
-References: <20230303-topic-rpmcc_sleep-v2-0-ae80a325fe94@linaro.org>
-In-Reply-To: <20230303-topic-rpmcc_sleep-v2-0-ae80a325fe94@linaro.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
+        Wed, 08 Mar 2023 13:44:34 -0800 (PST)
+Date:   Wed, 8 Mar 2023 23:44:33 +0200
+From:   Abel Vesa <abel.vesa@linaro.org>
+To:     Eric Biggers <ebiggers@kernel.org>
+Cc:     Ulf Hansson <ulf.hansson@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        devicetree@vger.kernel.org,
-        Konrad Dybcio <konrad.dybcio@linaro.org>
-X-Mailer: b4 0.12.1
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1678311334; l=658;
- i=konrad.dybcio@linaro.org; s=20230215; h=from:subject:message-id;
- bh=ymIRVOgSTZj4llDzbcFS8Jduc30n2FcF0wczQdKvVS8=;
- b=7LtP5xJlOff5hrptxWCmxeFmHS62ygyBcYYVTgt92Z6PwhXkfshXJ2lTCW00E24p6ufcwyRA44Pe
- zx7PeJN/D0AhenvXl0rkAAO1hHKJfYaoWqp532nuqUb1Ua8I72gw
-X-Developer-Key: i=konrad.dybcio@linaro.org; a=ed25519;
- pk=iclgkYvtl2w05SSXO5EjjSYlhFKsJ+5OSZBjOkQuEms=
-X-Spam-Status: No, score=-0.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Manivannan Sadhasivam <mani@kernel.org>,
+        Alim Akhtar <alim.akhtar@samsung.com>,
+        Avri Altman <avri.altman@wdc.com>,
+        Bart Van Assche <bvanassche@acm.org>,
+        Adrian Hunter <adrian.hunter@intel.com>,
+        "James E . J . Bottomley" <jejb@linux.ibm.com>,
+        "Martin K . Petersen" <martin.petersen@oracle.com>,
+        linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        linux-arm-msm@vger.kernel.org, linux-scsi@vger.kernel.org
+Subject: Re: [RFC PATCH v2 4/7] soc: qcom: Make the Qualcomm UFS/SDCC ICE a
+ dedicated driver
+Message-ID: <ZAkBwZNWMTsXlt+p@linaro.org>
+References: <20230308155838.1094920-1-abel.vesa@linaro.org>
+ <20230308155838.1094920-5-abel.vesa@linaro.org>
+ <ZAjppY2K0/XPBHxG@sol.localdomain>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <ZAjppY2K0/XPBHxG@sol.localdomain>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_SORBS_HTTP,RCVD_IN_SORBS_SOCKS,SPF_HELO_NONE,SPF_PASS,
-        URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-MSM8996 is in a good enough state to shut down unused RPM clocks.
-Do it!
+On 23-03-08 12:01:41, Eric Biggers wrote:
+> On Wed, Mar 08, 2023 at 05:58:35PM +0200, Abel Vesa wrote:
+> >  * Switched QCOM_INLINE_CRYPTO_ENGINE to tristate and made it built-in
+> >    if any of the UFS or the SDHC drivers are built-in. This is to allow
+> >    the API to be available even if the built-in driver doesn't have
+> >    crypto enabled.
+> [...]
+> > diff --git a/drivers/soc/qcom/Kconfig b/drivers/soc/qcom/Kconfig
+> > index a8f283086a21..c584369e9810 100644
+> > --- a/drivers/soc/qcom/Kconfig
+> > +++ b/drivers/soc/qcom/Kconfig
+> > @@ -275,4 +275,10 @@ config QCOM_ICC_BWMON
+> >  	  the fixed bandwidth votes from cpufreq (CPU nodes) thus achieve high
+> >  	  memory throughput even with lower CPU frequencies.
+> >  
+> > +config QCOM_INLINE_CRYPTO_ENGINE
+> > +	tristate
+> > +	depends on SCSI_UFS_CRYPTO || MMC_CRYPTO
+> > +	default y if SCSI_UFS_QCOM=y || MMC_SDHCI_MSM=y
+> > +	select QCOM_SCM
+> 
+> What are the "depends on" and "default y" lines above for?
+> 
+> You're already selecting this from SCSI_UFS_QCOM and MSM_SDHCI_MSM, as I had
+> suggested.  Isn't that enough?
 
-Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
----
- arch/arm64/boot/dts/qcom/msm8996.dtsi | 1 +
- 1 file changed, 1 insertion(+)
+We have the following:
+(SCSI_UFS_QCOM && SCSI_UFS_CRYPTO) || (MMC_SDHCI_MSM && MMC_CRYPTO)
 
-diff --git a/arch/arm64/boot/dts/qcom/msm8996.dtsi b/arch/arm64/boot/dts/qcom/msm8996.dtsi
-index 905678e7175d..59451d87cfbf 100644
---- a/arch/arm64/boot/dts/qcom/msm8996.dtsi
-+++ b/arch/arm64/boot/dts/qcom/msm8996.dtsi
-@@ -488,6 +488,7 @@ rpmcc: clock-controller {
- 				#clock-cells = <1>;
- 				clocks = <&xo_board>;
- 				clock-names = "xo";
-+				qcom,clk-disable-unused;
- 			};
- 
- 			rpmpd: power-controller {
+So lets take as example the scenario: (m && y) || (y && n).
 
--- 
-2.39.2
+The QCOM_INLINE_CRYPTO_ENGINE will be set to 'm' and the sdhci driver
+will not be able to link properly since the ICE API is part of a module.
 
+Therefore, if just one of SCSI_UFS_QCOM and MMC_SDHCI_MSM is built-in
+and at least one of the crypto options are enabled, set the
+QCOM_INLINE_CRYPTO_ENGINE to 'y' by default in order to make the
+built-in one linkage will not fail.
+
+Might not be the cleanest way to do this, so I'm open to suggestions.
+
+> 
+> - Eric
