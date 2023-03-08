@@ -2,123 +2,137 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3921E6B0BDB
-	for <lists+devicetree@lfdr.de>; Wed,  8 Mar 2023 15:51:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E66D36B0BDF
+	for <lists+devicetree@lfdr.de>; Wed,  8 Mar 2023 15:52:16 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231597AbjCHOvi convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Wed, 8 Mar 2023 09:51:38 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41660 "EHLO
+        id S230030AbjCHOwP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Mar 2023 09:52:15 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45776 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232208AbjCHOvH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Mar 2023 09:51:07 -0500
-Received: from mail-qt1-f178.google.com (mail-qt1-f178.google.com [209.85.160.178])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F20291FED;
-        Wed,  8 Mar 2023 06:51:03 -0800 (PST)
-Received: by mail-qt1-f178.google.com with SMTP id y10so18311434qtj.2;
-        Wed, 08 Mar 2023 06:51:03 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678287063;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=8NC4sXPFEIb8o+5ZtP/SeLE/mr+OOoJLvEPXDHrHk6k=;
-        b=d+86pRkJK1zLStQeJBvJB8N/2dhQWNawVXz+wqk4akoV8Yhc/N4EG8djR8jJoo+1EH
-         6EReCg07F5uOvGHZRx28/CqFkXQzMJvJ6HzhmB9/i4NFvftMNI4/WunXGue3e+VrUPD8
-         8N2jVSSsN5pqCFA30YPXkjLNf0s+jxtjQzDctUB0DcKQSSuvoh3+lTLMT9qc3UOFkz/7
-         GM+uVWu+zFS2y3QlFzYMPOGG47k2OqQ30/qYwmi9EhNTogAJndBgZfm1OZcHLJpsnl0V
-         7XqLeUdW+63Ufsu6YRyc22srjHHImPIcDQGe2YjHv15/Xyj9V5nTJLU+n/YA9Na3ErqM
-         Tkmg==
-X-Gm-Message-State: AO0yUKUEF81bYTHNkGRqFJsZsyvQibOF+1aawYhboP6dDr53d1BJPNHf
-        Ex04mvTlIWzbay5J0AkVLAS6AtpwhIgvxS77
-X-Google-Smtp-Source: AK7set88XghNomA2BJ3Pc3dGvPA43DcOoCBJ6dk48IqisEoqmztovmy7KnkFnsNesNIwRnke03rYEg==
-X-Received: by 2002:ac8:5e0e:0:b0:3bf:a8cf:3096 with SMTP id h14-20020ac85e0e000000b003bfa8cf3096mr33596515qtx.33.1678287062913;
-        Wed, 08 Mar 2023 06:51:02 -0800 (PST)
-Received: from mail-yb1-f174.google.com (mail-yb1-f174.google.com. [209.85.219.174])
-        by smtp.gmail.com with ESMTPSA id z24-20020ac84318000000b003c03b33e6f5sm3021604qtm.90.2023.03.08.06.51.01
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 08 Mar 2023 06:51:02 -0800 (PST)
-Received: by mail-yb1-f174.google.com with SMTP id t39so14866121ybi.3;
-        Wed, 08 Mar 2023 06:51:01 -0800 (PST)
-X-Received: by 2002:a5b:2cc:0:b0:a02:a3a6:78fa with SMTP id
- h12-20020a5b02cc000000b00a02a3a678famr8794564ybp.12.1678287061631; Wed, 08
- Mar 2023 06:51:01 -0800 (PST)
+        with ESMTP id S231876AbjCHOwG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Mar 2023 09:52:06 -0500
+Received: from relay9-d.mail.gandi.net (relay9-d.mail.gandi.net [217.70.183.199])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D9A78358C;
+        Wed,  8 Mar 2023 06:52:02 -0800 (PST)
+Received: (Authenticated sender: miquel.raynal@bootlin.com)
+        by mail.gandi.net (Postfix) with ESMTPSA id C9AE8FF80B;
+        Wed,  8 Mar 2023 14:51:59 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1678287121;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=QCzOOOnS+zYy1dphlSYdevee9Uf5FRZUlz22AyL3o4c=;
+        b=HwV4nNMfPCSVyjJbjzMU7LKkzSJ33ar8ScAHGwVLq5CuxQJdWV5j7F1mhfZPTsBtF+vkUB
+        rrB5aY1t0XriiNOnKIDT3okoqppx4fQiutIw7YFJV/LFjf4iAW4Q6J+XW47070lTrXzsSP
+        x28wtow8tK4ylSWOgsoVlz2niEZDCweKXOhW7lryqO35do/aFCpOK3ycDLkKE5ck5Vzks9
+        o2UbZ3+hZGAiTnZGQffoS70VooyHPNe2JyjqLhb/Aj8MSiqitSqDgIx1pBLRfWsUN9ovHv
+        OOY7/e9Y40cT6lb2fn74rYoblsZKHmcVaYUvMwMYiKu7gqwo1h6+jb/eKCES2Q==
+Date:   Wed, 8 Mar 2023 15:51:58 +0100
+From:   Miquel Raynal <miquel.raynal@bootlin.com>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        linux-kernel@vger.kernel.org,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Michael Walle <michael@walle.cc>,
+        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>,
+        Robert Marko <robert.marko@sartura.hr>,
+        Luka Perkov <luka.perkov@sartura.hr>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Frank Rowand <frowand.list@gmail.com>,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 04/21] of: Move of_modalias() to module.c
+Message-ID: <20230308155158.4ceecc05@xps-13>
+In-Reply-To: <20230308002306.GB513330-robh@kernel.org>
+References: <20230307165359.225361-1-miquel.raynal@bootlin.com>
+        <20230307165359.225361-5-miquel.raynal@bootlin.com>
+        <20230308002306.GB513330-robh@kernel.org>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-References: <20230220131307.269100-1-biju.das.jz@bp.renesas.com>
- <20230220131307.269100-2-biju.das.jz@bp.renesas.com> <e9e63c87-b491-b4d5-b226-0539ef0de2d0@linaro.org>
- <OS0PR01MB59221C8C937EF20347149E4886B49@OS0PR01MB5922.jpnprd01.prod.outlook.com>
-In-Reply-To: <OS0PR01MB59221C8C937EF20347149E4886B49@OS0PR01MB5922.jpnprd01.prod.outlook.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Wed, 8 Mar 2023 15:50:50 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdXRym-ROY73KYJmt7RhmZC0a+Cb5HTdrhdDy4=huSuOzw@mail.gmail.com>
-Message-ID: <CAMuHMdXRym-ROY73KYJmt7RhmZC0a+Cb5HTdrhdDy4=huSuOzw@mail.gmail.com>
-Subject: Re: [PATCH RFC 1/3] dt-bindings: clock: Add Renesas versa3 clock
- generator bindings
-To:     Biju Das <biju.das.jz@bp.renesas.com>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        "linux-renesas-soc@vger.kernel.org" 
-        <linux-renesas-soc@vger.kernel.org>,
-        "linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        Fabrizio Castro <fabrizio.castro.jz@renesas.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8BIT
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,
-        SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Biju,
+Hi Rob,
 
-On Wed, Mar 8, 2023 at 3:39 PM Biju Das <biju.das.jz@bp.renesas.com> wrote:
-> > From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> > On 20/02/2023 14:13, Biju Das wrote:
-> > > Document Renesas versa3 clock generator(5P35023) bindings.
-> > >
-> > > The 5P35023 is a VersaClock programmable clock generator and is
-> > > designed for low-power, consumer, and high-performance PCI Express
-> > > applications. The 5P35023 device is a three PLL architecture design,
-> > > and each PLL is individually programmable and allowing for up to 6
-> > > unique frequency outputs.
-> > >
-> > > Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+robh@kernel.org wrote on Tue, 7 Mar 2023 18:23:06 -0600:
 
-> > > --- /dev/null
-> > > +++ b/Documentation/devicetree/bindings/clock/renesas,versaclock3.yaml
+> On Tue, Mar 07, 2023 at 05:53:42PM +0100, Miquel Raynal wrote:
+> > Create a specific .c file for of related module handling.
+> > Move of_modalias() inside as a first step. =20
+>=20
+> Perhaps a comment as to why it needs to be public? Or is it just shared=20
+> within the DT core? If so, we have of_private.h for that.
 
-> > > +  clock-names:
-> > > +    oneOf:
-> > > +      - items:
-> > > +          - const: x1
-> > > +      - items:
-> > > +          - const: clkin
-> >
-> > This should be specific, not one or another. Why do you have two entirely
-> > different clock inputs?
->
-> Reference input can be Crystal oscillator interface input(x1) or differential
-> clock input pin(clkin)
+Good point. This helper is actually only used internally (was static
+before). At first I wanted to convert all users to use the "new" OF
+module-related helpers, but unfortunately, the "dev->of_node_reused"
+check makes this impossible. I thus need to keep a few users of
+of_modalias() in of_device.h in the coming patches. I could move
+of_modalias() to of_private.h but that would mean exposing all the
+internals and private definitions to the drivers including of_device.h,
+which seemed extremely unsatisfying to me.
 
-I believe that's purely a hardware feature, which does not need any
-software configuration?
-I.e. logically, there's just a single clock input, i.e. no need for clock-names.
+I've updated the commit log with:
 
-Gr{oetje,eeting}s,
+    The helper is exposed through of.h even though it is only used by core
+    files because the users from device.c will soon be split into an OF-only
+    helper in module.c as well as a device-oriented inline helper in
+    of_device.h. Putting this helper in of_private.h would require to
+    include of_private.h from of_device.h, which is not acceptable.
 
-                        Geert
+>=20
+> >=20
+> > Suggested-by: Rob Herring <robh+dt@kernel.org>
+> > Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
+> > ---
+> >  drivers/of/Makefile |  2 +-
+> >  drivers/of/device.c | 37 -------------------------------------
+> >  drivers/of/module.c | 43 +++++++++++++++++++++++++++++++++++++++++++
+> >  include/linux/of.h  |  8 ++++++++
+> >  4 files changed, 52 insertions(+), 38 deletions(-)
+> >  create mode 100644 drivers/of/module.c
+> >=20
+> > diff --git a/drivers/of/Makefile b/drivers/of/Makefile
+> > index e0360a44306e..ae9923fd2940 100644
+> > --- a/drivers/of/Makefile
+> > +++ b/drivers/of/Makefile
+> > @@ -1,5 +1,5 @@
+> >  # SPDX-License-Identifier: GPL-2.0
+> > -obj-y =3D base.o device.o platform.o property.o
+> > +obj-y =3D base.o device.o module.o platform.o property.o
+> >  obj-$(CONFIG_OF_KOBJ) +=3D kobj.o
+> >  obj-$(CONFIG_OF_DYNAMIC) +=3D dynamic.o
+> >  obj-$(CONFIG_OF_FLATTREE) +=3D fdt.o
+> > diff --git a/drivers/of/device.c b/drivers/of/device.c
+> > index 2bbb67798916..44f1f2ef12b7 100644
+> > --- a/drivers/of/device.c
+> > +++ b/drivers/of/device.c
 
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+[...]
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+> > diff --git a/drivers/of/module.c b/drivers/of/module.c
+> > new file mode 100644
+> > index 000000000000..9c6a53f32c0f
+> > --- /dev/null
+> > +++ b/drivers/of/module.c
+> > @@ -0,0 +1,43 @@
+> > +// SPDX-License-Identifier: GPL-2.0+ =20
+>=20
+> Existing license was GPL-2.0 (-only).
+
+Oh right, I took the license from base.c, you're right I should have
+taken the one from device.c.
+
+Thanks,
+Miqu=C3=A8l
