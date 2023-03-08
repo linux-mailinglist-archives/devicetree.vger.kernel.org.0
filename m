@@ -2,78 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1E2EA6B0197
-	for <lists+devicetree@lfdr.de>; Wed,  8 Mar 2023 09:34:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 34C3E6B019E
+	for <lists+devicetree@lfdr.de>; Wed,  8 Mar 2023 09:36:35 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230309AbjCHIee (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Mar 2023 03:34:34 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56656 "EHLO
+        id S230365AbjCHIgd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Mar 2023 03:36:33 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38374 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230314AbjCHIdw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Mar 2023 03:33:52 -0500
-Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com [IPv6:2a00:1450:4864:20::52b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C1B2650F8A
-        for <devicetree@vger.kernel.org>; Wed,  8 Mar 2023 00:33:15 -0800 (PST)
-Received: by mail-ed1-x52b.google.com with SMTP id cw28so62524284edb.5
-        for <devicetree@vger.kernel.org>; Wed, 08 Mar 2023 00:33:15 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1678264392;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=7ue0NqDmKrjgpyNEx5D7GNBoWR2ZdRspc55ofKNDbaw=;
-        b=C8SNgoJ/P6E60Py0cw5PYuEs80mFIR9Wf8aoG4b95aZpDnbLg69MXom/fSLfaGO2GJ
-         z6KDDfgc3PRo/Zd8r/pqWQR7cpQu7b/lZiScEgULeBDUn//+7nlC3bER3y+wP9aSKoS6
-         qrLQtBuJQaqk+VbSb8FCnCOTESErvHfQPpPJ/L6xC5rKjfauETnj0cywgb44mK1rCTru
-         kQoJLdqP2jPYPjUtNv80uO8iv/978zHV2n0qQc+klDnO3dGW0w8GKEhUOyqGL+vvcd/7
-         nWgSxeVBVtBQ2I8d4Jb6IEkFG0M88Rg1RaRqxvTV8+YixtmOgWVu70F2Sgle64iKl5gq
-         D58Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678264392;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=7ue0NqDmKrjgpyNEx5D7GNBoWR2ZdRspc55ofKNDbaw=;
-        b=wX6IMgZ0vJJIKnkVthBZAohIP56ToQbGa8lxdevkk5egI32q+KoscRMh4o4kvCXsBV
-         ZLWNF1x+y2W76mgHiQvOFhRxAozNUHjuObWMKJGSUnG3bsBpnsa0wn5gqCiaUazSI7iA
-         IXoJ7WfdAxGKkk43uhij9e8LmuPwNmLwcEp+qrAvvTOmR9f+Ew4BZq4Ga3LwcPXgt5R0
-         Ua4BgedpEVVVpt54BQp0GeiTDZu0zubmNbXCXjU1nrcf8ILr9LQL6e1oWVA/beE6+bh4
-         n8zVhHBB7WiafKzOr6umxg6lYcz8TfhbhuqyTjyX0nBnMcI7NlSnYhzWBKfDgZ2d+V9L
-         t2oQ==
-X-Gm-Message-State: AO0yUKUxjaYscXiS2DToFa2Fg+aSpNQAYsor7in5azUmOpkockBcjVT2
-        tVZmyzXYTNogXEqlM3pEUD9QdQ==
-X-Google-Smtp-Source: AK7set9nTlKFw37WTDFhuyvxUVC/TCbnN4R/TKLSbNeBQ/9zLgDXA9as1YOus3xU65mYSxvowAm8iQ==
-X-Received: by 2002:a05:6402:687:b0:4ac:d90e:92b with SMTP id f7-20020a056402068700b004acd90e092bmr22535880edy.10.1678264391957;
-        Wed, 08 Mar 2023 00:33:11 -0800 (PST)
-Received: from ?IPV6:2a02:810d:15c0:828:bba:fbfa:8aec:a133? ([2a02:810d:15c0:828:bba:fbfa:8aec:a133])
-        by smtp.gmail.com with ESMTPSA id k26-20020a508ada000000b004af6b93f00asm7761947edk.23.2023.03.08.00.33.11
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 08 Mar 2023 00:33:11 -0800 (PST)
-Message-ID: <0c1ad8a7-a0a7-9a92-369c-3ede2ef82e58@linaro.org>
-Date:   Wed, 8 Mar 2023 09:33:10 +0100
+        with ESMTP id S230451AbjCHIgE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Mar 2023 03:36:04 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 96D55B3730;
+        Wed,  8 Mar 2023 00:35:13 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 8B138616EB;
+        Wed,  8 Mar 2023 08:34:18 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 75CAAC433EF;
+        Wed,  8 Mar 2023 08:34:14 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1678264458;
+        bh=g6FWDWTVvtbUVJ0kus/OK9I+nhtkZyDFnv104tDpUdg=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=KJayE8QeTlag7cnxN2nStkgFonskLPD56vS7wrJt+yEbZIwhYJINJVweCe2mwGX2f
+         LealC9F1CqMnXhkgKUGh/1H2M8d/N8+IAVzeFOW1tyuTTORDlUiU7EapRTleS5DdMz
+         CBfkBuiaUcm5DvlHs6UK1QFx6qN4SuZ5ai812CgrkCg3Q8mbMk6Hdkk2M7vE+d1woQ
+         EQ5o1TtFdU94PHElLD7IXLKn+GRjq1wUrvdLXq2xWIbmZe4a1rfGakc1/6q2ycFmC6
+         L91jKRyk6/z7unULkymS1imZT2yLyVsBPOB9ipPjS53SudX8BBI4h6otu2iQTIHqq0
+         TnbJ12NOPyLHw==
+Message-ID: <2f039534-dd21-7361-0fcd-b91da1636a3a@kernel.org>
+Date:   Wed, 8 Mar 2023 10:34:12 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-Subject: Re: [PATCH 16/19] arm64: dts: qcom: sdm845: Add "mhi" region to the
- PCIe nodes
-To:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Cc:     andersson@kernel.org, lpieralisi@kernel.org, kw@linux.com,
-        krzysztof.kozlowski+dt@linaro.org, robh@kernel.org,
-        konrad.dybcio@linaro.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-pci@vger.kernel.org,
-        linux-kernel@vger.kernel.org, quic_srichara@quicinc.com
-References: <20230306153222.157667-1-manivannan.sadhasivam@linaro.org>
- <20230306153222.157667-17-manivannan.sadhasivam@linaro.org>
- <1587de60-244a-d97f-dea0-36fe8a5be2c2@linaro.org>
- <20230308083152.GD134293@thinkpad>
+ Thunderbird/102.7.1
+Subject: Re: [PATCH v3 4/6] soc: ti: pruss: Add helper functions to set GPI
+ mode, MII_RT_event and XFR
 Content-Language: en-US
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230308083152.GD134293@thinkpad>
+To:     MD Danish Anwar <danishanwar@ti.com>,
+        "Andrew F. Davis" <afd@ti.com>, Suman Anna <s-anna@ti.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Tero Kristo <t-kristo@ti.com>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Santosh Shilimkar <ssantosh@kernel.org>,
+        Nishanth Menon <nm@ti.com>
+Cc:     linux-remoteproc@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-omap@vger.kernel.org, srk@ti.com, devicetree@vger.kernel.org,
+        netdev@vger.kernel.org
+References: <20230306110934.2736465-1-danishanwar@ti.com>
+ <20230306110934.2736465-5-danishanwar@ti.com>
+From:   Roger Quadros <rogerq@kernel.org>
+In-Reply-To: <20230306110934.2736465-5-danishanwar@ti.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_HI,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -81,41 +67,92 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 08/03/2023 09:31, Manivannan Sadhasivam wrote:
-> On Tue, Mar 07, 2023 at 09:20:23AM +0100, Krzysztof Kozlowski wrote:
->> On 06/03/2023 16:32, Manivannan Sadhasivam wrote:
->>> The "mhi" region contains the debug registers that could be used to monitor
->>> the PCIe link transitions.
->>>
->>> Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
->>> ---
->>>  arch/arm64/boot/dts/qcom/sdm845.dtsi | 6 ++++--
->>>  1 file changed, 4 insertions(+), 2 deletions(-)
->>>
->>> diff --git a/arch/arm64/boot/dts/qcom/sdm845.dtsi b/arch/arm64/boot/dts/qcom/sdm845.dtsi
->>> index 479859bd8ab3..0104e77dd8d5 100644
->>> --- a/arch/arm64/boot/dts/qcom/sdm845.dtsi
->>> +++ b/arch/arm64/boot/dts/qcom/sdm845.dtsi
->>> @@ -2280,10 +2280,11 @@ opp-4 {
->>>  		pcie0: pci@1c00000 {
->>>  			compatible = "qcom,pcie-sdm845";
->>>  			reg = <0 0x01c00000 0 0x2000>,
->>> +			      <0 0x01c07000 0 0x1000>,
->>>  			      <0 0x60000000 0 0xf1d>,
->>>  			      <0 0x60000f20 0 0xa8>,
->>>  			      <0 0x60100000 0 0x100000>;
->>> -			reg-names = "parf", "dbi", "elbi", "config";
->>> +			reg-names = "parf", "mhi", "dbi", "elbi", "config";
->>
->> Indexes are fixed, thus this breaks other users of DTS.
->>
+Hi Danish,
+
+On 06/03/2023 13:09, MD Danish Anwar wrote:
+> From: Suman Anna <s-anna@ti.com>
 > 
-> Are you suggesting to move the "mhi" to the end and do not care about sorting?
+> The PRUSS CFG module is represented as a syscon node and is currently
+> managed by the PRUSS platform driver. Add easy accessor functions to set
+> GPI mode, MII_RT event enable/disable and XFR (XIN XOUT) enable/disable
+> to enable the PRUSS Ethernet usecase. These functions reuse the generic
+> pruss_cfg_update() API function.
+> 
+> Signed-off-by: Suman Anna <s-anna@ti.com>
+> Co-developed-by: Grzegorz Jaszczyk <grzegorz.jaszczyk@linaro.org>
+> Signed-off-by: Grzegorz Jaszczyk <grzegorz.jaszczyk@linaro.org>
+> Signed-off-by: Puranjay Mohan <p-mohan@ti.com>
+> ---
+>  include/linux/remoteproc/pruss.h | 55 ++++++++++++++++++++++++++++++++
+>  1 file changed, 55 insertions(+)
+> 
+> diff --git a/include/linux/remoteproc/pruss.h b/include/linux/remoteproc/pruss.h
+> index d41bec448f06..7952f250301a 100644
+> --- a/include/linux/remoteproc/pruss.h
+> +++ b/include/linux/remoteproc/pruss.h
+> @@ -240,4 +240,59 @@ static inline bool is_pru_rproc(struct device *dev)
+>  	return true;
+>  }
+>  
+> +/**
+> + * pruss_cfg_gpimode() - set the GPI mode of the PRU
+> + * @pruss: the pruss instance handle
+> + * @pru_id: id of the PRU core within the PRUSS
+> + * @mode: GPI mode to set
+> + *
+> + * Sets the GPI mode for a given PRU by programming the
+> + * corresponding PRUSS_CFG_GPCFGx register
+> + *
+> + * Return: 0 on success, or an error code otherwise
+> + */
+> +static inline int pruss_cfg_gpimode(struct pruss *pruss,
+> +				    enum pruss_pru_id pru_id,
+> +				    enum pruss_gpi_mode mode)
+> +{
+> +	if (pru_id < 0 || pru_id >= PRUSS_NUM_PRUS)
+> +		return -EINVAL;
+> +
 
-Yes, any new entry must be added at the end. What sorting do you mean?
-Entries are not sorted.
+Should we check for invalid gpi mode and error out if so?
 
+> +	return pruss_cfg_update(pruss, PRUSS_CFG_GPCFG(pru_id),
+> +				PRUSS_GPCFG_PRU_GPI_MODE_MASK,
+> +				mode << PRUSS_GPCFG_PRU_GPI_MODE_SHIFT);
+> +}
+> +
+> +/**
+> + * pruss_cfg_miirt_enable() - Enable/disable MII RT Events
+> + * @pruss: the pruss instance
+> + * @enable: enable/disable
+> + *
+> + * Enable/disable the MII RT Events for the PRUSS.
+> + *
+> + * Return: 0 on success, or an error code otherwise
+> + */
+> +static inline int pruss_cfg_miirt_enable(struct pruss *pruss, bool enable)
+> +{
+> +	u32 set = enable ? PRUSS_MII_RT_EVENT_EN : 0;
+> +
+> +	return pruss_cfg_update(pruss, PRUSS_CFG_MII_RT,
+> +				PRUSS_MII_RT_EVENT_EN, set);
+> +}
+> +
+> +/**
+> + * pruss_cfg_xfr_enable() - Enable/disable XIN XOUT shift functionality
+> + * @pruss: the pruss instance
+> + * @enable: enable/disable
+> + *
+> + * Return: 0 on success, or an error code otherwise
+> + */
+> +static inline int pruss_cfg_xfr_enable(struct pruss *pruss, bool enable)
+> +{
+> +	u32 set = enable ? PRUSS_SPP_XFER_SHIFT_EN : 0;
+> +
+> +	return pruss_cfg_update(pruss, PRUSS_CFG_SPP,
+> +				PRUSS_SPP_XFER_SHIFT_EN, set);
+> +}
+> +
+>  #endif /* __LINUX_PRUSS_H */
 
-Best regards,
-Krzysztof
-
+cheers,
+-roger
