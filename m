@@ -2,98 +2,124 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3FB006AFC89
-	for <lists+devicetree@lfdr.de>; Wed,  8 Mar 2023 02:54:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A50C16AFCFB
+	for <lists+devicetree@lfdr.de>; Wed,  8 Mar 2023 03:46:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229614AbjCHByS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Mar 2023 20:54:18 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45430 "EHLO
+        id S229823AbjCHCqj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Mar 2023 21:46:39 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40666 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229477AbjCHByR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Mar 2023 20:54:17 -0500
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C2AD75F531;
-        Tue,  7 Mar 2023 17:54:16 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1678240456; x=1709776456;
-  h=message-id:date:mime-version:cc:subject:to:references:
-   from:in-reply-to:content-transfer-encoding;
-  bh=6/zv7m3IA6CkY+ozpRASdY5fBVx8Ky1TfJQ7tvgNfng=;
-  b=ieYTNiYa4jqePsO3JoXTACiErSX7pKPNZUMnIqlYlWBuoT+NWyyaFjVc
-   1myg5JdOaIWvVAdHB5QgvW8qZ3IeYyisAkqdVWH4++gu4iLPj3w64BBgN
-   a7i7PUaKzy7otQTgBGhd+ABOIFjlTXp48O3sD0xY2936oMK/xRkm6s4e+
-   g6t2WdOXXSCxh++C2RlbyJbuv6MTXOkEoHrxwfIWX2Ce91rgnb52EB+wG
-   LNvMZj4gXLlhOuzB3xLzu28Q7lDun+OCjlwsIEE9iwTl+nK0aQSjw/uYh
-   WABzGP2f5O+J+d8Qn0QTmiXkuHcyBI2sJ2XGU8Kz7bkPhcwxykQf27hb/
-   Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10642"; a="333501355"
-X-IronPort-AV: E=Sophos;i="5.98,242,1673942400"; 
-   d="scan'208";a="333501355"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-  by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 07 Mar 2023 17:54:16 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10642"; a="676794837"
-X-IronPort-AV: E=Sophos;i="5.98,242,1673942400"; 
-   d="scan'208";a="676794837"
-Received: from allen-box.sh.intel.com (HELO [10.239.159.48]) ([10.239.159.48])
-  by orsmga002.jf.intel.com with ESMTP; 07 Mar 2023 17:54:07 -0800
-Message-ID: <63a49364-21c4-e82d-6449-18f163efff61@linux.intel.com>
-Date:   Wed, 8 Mar 2023 09:53:10 +0800
+        with ESMTP id S229477AbjCHCqi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Mar 2023 21:46:38 -0500
+Received: from mail-ed1-x52c.google.com (mail-ed1-x52c.google.com [IPv6:2a00:1450:4864:20::52c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A65404617C;
+        Tue,  7 Mar 2023 18:46:36 -0800 (PST)
+Received: by mail-ed1-x52c.google.com with SMTP id j11so40781504edq.4;
+        Tue, 07 Mar 2023 18:46:36 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112; t=1678243595;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=RrKMiwGYeVx1STAfxRYkJBqPZfFoqtzB1W9N4+PknWc=;
+        b=NywrVP/0Lx73MjbKGOcCV1MT5EUgqxwK3D+U9hPTdWfVPUmv/DrF39ocdb0BKdYY05
+         y+HJuEhSfvLSoPE761mXyXSU9dHpFvVVbMdb6MNnbrxyRdnGKagWTbP6Zvew6CsJZdQU
+         AqAQDia5yNhbyvl1rrB62puySOAWBt2oyG4moNlV1jT0S7FAeTMgvQc+wSuJkAItJN2y
+         j8MsbA0mT0Epv61gRpuyWIapgj6N+ehBA14lVThzhZf4dHV8w6kEPT5rvCa1Qp/ehl2D
+         KptjFgO/CPYf8EUPHYj1hTnKaiYgxvQ+j2I0bZG3JGPpGHuAKJ+UT3L/xhwZEsu8y9nt
+         utCw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1678243595;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=RrKMiwGYeVx1STAfxRYkJBqPZfFoqtzB1W9N4+PknWc=;
+        b=Bb22urqu2twdVrqrScXcsjnMm6JRHaeskBapDCjurw5Suzrw+LJIicEXjF83rTSuDc
+         E/PZSmgUKra0G89130EmjI4JJfxf7TX2fk3ycSEXQsT5KN56uqxRq7BGTqk989xcSGRo
+         bs+5NC8II3V9UbuW/isqJf3V8eUGtHN4YW+Zj4N4aQ//1f/hvgRFHpVmgNXfG1nnRwtH
+         f25jbLd/mOZoxp5DH9GCUKUlFZfF/VcLZT0G3BkPVP4g2er7hui8aSI8SEj3YVaUs6sR
+         lo07IxvzMjQSlz7l1SN4hQQUGB2378FH3Rdt/mBM49UPUpB3PDGbmhLb3Vjsj5CkJfs9
+         FpOA==
+X-Gm-Message-State: AO0yUKU3y+oDhGU+f7xa2+npbqaQCrOxR0KLSBkZuylhhFc2SNl2Ch5X
+        c6gHfoazW5KAGE7dVzqaJl2sBskjtoA1dpYHi5RhbwYjU4NP+A==
+X-Google-Smtp-Source: AK7set9aFJDvx+U0Z7Cj5PrVkC8DU9/0MT+LP7J1ksieiqbJxabr8nWd5xbsIEKQlqhz+YGs0xMRfS6oVwr0nKVoPV8=
+X-Received: by 2002:a17:906:498e:b0:901:e556:6e23 with SMTP id
+ p14-20020a170906498e00b00901e5566e23mr8310102eju.0.1678243595008; Tue, 07 Mar
+ 2023 18:46:35 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.1
-Cc:     baolu.lu@linux.intel.com, okaya@kernel.org, harpreet.anand@amd.com,
-        nikhil.agarwal@amd.com, michal.simek@amd.com,
-        pieter.jansen-van-vuuren@amd.com, pablo.cascon@amd.com, git@amd.com
-Subject: Re: [PATCH v9 2/7] iommu: Support ops registration for CDX bus
-Content-Language: en-US
-To:     Nipun Gupta <nipun.gupta@amd.com>, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, gregkh@linuxfoundation.org,
-        rafael@kernel.org, eric.auger@redhat.com,
-        alex.williamson@redhat.com, cohuck@redhat.com,
-        song.bao.hua@hisilicon.com, mchehab+huawei@kernel.org,
-        maz@kernel.org, f.fainelli@gmail.com, jeffrey.l.hugo@gmail.com,
-        saravanak@google.com, Michael.Srba@seznam.cz, mani@kernel.org,
-        yishaih@nvidia.com, jgg@ziepe.ca, jgg@nvidia.com,
-        robin.murphy@arm.com, will@kernel.org, joro@8bytes.org,
-        masahiroy@kernel.org, ndesaulniers@google.com,
-        rdunlap@infradead.org, linux-arm-kernel@lists.infradead.org,
-        linux-kbuild@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-References: <20230307131917.30605-1-nipun.gupta@amd.com>
- <20230307131917.30605-3-nipun.gupta@amd.com>
-From:   Baolu Lu <baolu.lu@linux.intel.com>
-In-Reply-To: <20230307131917.30605-3-nipun.gupta@amd.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_NONE,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+References: <20230302125215.214014-1-keguang.zhang@gmail.com>
+ <20230302125215.214014-2-keguang.zhang@gmail.com> <CAMRc=Me=Yrr5BuRaMd4r91URzmdYHWUvVGvLL9YFuZPaV0WYFA@mail.gmail.com>
+ <CAJhJPsVf8EvFc9N8eMtc8Qu2BhODv7PzZm9C5ePR+GdTFiAY1w@mail.gmail.com> <CACRpkda_y1Hz69XyDjcDPd=gEi_n2PChJOgKsonXcvYyxQzg4w@mail.gmail.com>
+In-Reply-To: <CACRpkda_y1Hz69XyDjcDPd=gEi_n2PChJOgKsonXcvYyxQzg4w@mail.gmail.com>
+From:   Keguang Zhang <keguang.zhang@gmail.com>
+Date:   Wed, 8 Mar 2023 10:46:18 +0800
+Message-ID: <CAJhJPsXLs6OqHEUrCwoybDP4MiKE1D050Dj2auZ4fdQ-Rb+BWA@mail.gmail.com>
+Subject: Re: [PATCH v2 1/5] gpio: loongson1: Convert to SPDX identifier
+To:     Linus Walleij <linus.walleij@linaro.org>
+Cc:     Bartosz Golaszewski <brgl@bgdev.pl>, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-mips@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 3/7/23 9:19 PM, Nipun Gupta wrote:
-> With new CDX bus supported for AMD FPGA devices on ARM
-> platform, the bus requires registration for the SMMU v3
-> driver.
-> 
-> Signed-off-by: Nipun Gupta<nipun.gupta@amd.com>
-> Reviewed-by: Pieter Jansen van Vuuren<pieter.jansen-van-vuuren@amd.com>
-> Tested-by: Nikhil Agarwal<nikhil.agarwal@amd.com>
+On Tue, Mar 7, 2023 at 9:31=E2=80=AFPM Linus Walleij <linus.walleij@linaro.=
+org> wrote:
+>
+> On Tue, Mar 7, 2023 at 3:25 AM Keguang Zhang <keguang.zhang@gmail.com> wr=
+ote:
+> > On Mon, Mar 6, 2023 at 5:29=E2=80=AFPM Bartosz Golaszewski <brgl@bgdev.=
+pl> wrote:
+> > > On Thu, Mar 2, 2023 at 1:52=E2=80=AFPM Keguang Zhang <keguang.zhang@g=
+mail.com> wrote:
+> > > >
+> > > > Use SPDX-License-Identifier instead of the license text and
+> > > > update the author information.
+> > > >
+> > > > Signed-off-by: Keguang Zhang <keguang.zhang@gmail.com>
+>
+> > > Why are you removing credits of the old author?
+>
+> > Kelvin Cheung and Keguang Zhang are the same person.
+> > This change is to keep pace with the related entry of MAINTAINERS.
+>
+> That's a pretty interesting change!
+>
+> Is Kelvin Cheung the "westernized" name and Keguang Zhang the
+> closer to the real name, such as pinyin form? That would make
+> a lot of sense.
+>
+Exactly.
+Kelvin Cheung is easy to pronounce, but has no direct relationship
+with my real name.
+Keguang Zhang, the Pinyin form of my real name, is the official name.
+That is why I'd like to make this change.
 
-Nit:
+> I think some authors even use the native characters these days,
+> as git and all tools and terminals should support Unicode now.
+> It might make it hard for us to answer mails (not knowing which
+> characters to refer to as given name) but I kind of like it when I
+> see it.
+>
+Yes, I did see the names written in native characters.
+But it's even harder for western people to identify.
+Maybe the real name with native characters + "westernized" name is better.
 
-The bus iommu ops is about to retire. So probably the commit title could
-be "iommu: Add iommu probe for CDX bus"?
+> Yours,
+> Linus Walleij
 
-Anyway,
 
-Reviewed-by: Lu Baolu <baolu.lu@linux.intel.com>
 
+--=20
 Best regards,
-baolu
+
+Kelvin Cheung
