@@ -2,140 +2,148 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C1D0E6B066D
-	for <lists+devicetree@lfdr.de>; Wed,  8 Mar 2023 12:55:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1D8256B0687
+	for <lists+devicetree@lfdr.de>; Wed,  8 Mar 2023 13:00:49 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230495AbjCHLzO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Mar 2023 06:55:14 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55868 "EHLO
+        id S230360AbjCHMAr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Mar 2023 07:00:47 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39148 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231307AbjCHLyw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Mar 2023 06:54:52 -0500
-Received: from mail-ed1-x52d.google.com (mail-ed1-x52d.google.com [IPv6:2a00:1450:4864:20::52d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B5DDFBE5C1;
-        Wed,  8 Mar 2023 03:54:19 -0800 (PST)
-Received: by mail-ed1-x52d.google.com with SMTP id s11so64658840edy.8;
-        Wed, 08 Mar 2023 03:54:19 -0800 (PST)
+        with ESMTP id S230463AbjCHMAq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Mar 2023 07:00:46 -0500
+Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 006D6A224D
+        for <devicetree@vger.kernel.org>; Wed,  8 Mar 2023 04:00:43 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112; t=1678276457;
-        h=content-transfer-encoding:mime-version:message-id:references
-         :in-reply-to:user-agent:subject:cc:to:from:date:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=prMOVdj6+AfmjBbKNSRQcwypgnPVuhbNxoqo8gheSlg=;
-        b=ajZ+1GdcL0pkCZJ2KHGDoFhjwIKEEv5QOItZVY94jmSO7egkV1w6foj4+qSvK4JPDI
-         P6J6Ua0/kkfsLvCwQu9oHjEGengVUQ7uFCCTodVE1GJu+ooAsnDeSIp64JOGLsJ3j6DI
-         hqgiPNr+YZaTcS6ZYe/i/wlVqEeGsHl2NBzl7OjJYlCmM+ja6A7FTwAiDMUSpSOJ+QcA
-         KdPYNwofIZJ4r9ScubEMRK0sNy3rmQcO0oRcGGenqizDCZapTCfp/Lb1salqHoIafalD
-         0cUnhnyJQJ3eT80u7BvCAurVIwJYnejEw+dGGHu3tQnMqpjowHXhe5oNkJ6CZuWVWdyS
-         ivFw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678276457;
-        h=content-transfer-encoding:mime-version:message-id:references
-         :in-reply-to:user-agent:subject:cc:to:from:date:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=prMOVdj6+AfmjBbKNSRQcwypgnPVuhbNxoqo8gheSlg=;
-        b=tcRmfUOWhELzIC2BGtMjTay417VZqB/B7jtvbX6rjMxid69wMPeQYd+o+mUiD0xl4P
-         daX0aEC00wErwNDbIRP24+ebFFyRhpcyfPZ2oqTffNxClvGYio3g3S0LjE14LUzsueuc
-         hrADHrb83Ofr6+zqeqDbF0mQBzsfRkkFun32rDEtQMh51dybPueHVLUfKZEhZi6RkTLO
-         DICNdDNHh6aiFObxuV2yPUjKHjcoLEIK0phXbCHDD4pcdFCxQfHM2iDS0rkaBJZgx/0s
-         6Qm01ZCfw6nZAhCu4v5I0SSjnuK5iNnKpBhWfAXk4pGz5IgWcgq1oRQc3FtW8scaedzX
-         1N/Q==
-X-Gm-Message-State: AO0yUKVV3jyRKZwUv6LMjoZtBL2gjtS69b3aqrrzb+182Tp//MzuwFVx
-        ePpLevhfTwbXqtNGMBC2JPwJm3zG3tPCwg==
-X-Google-Smtp-Source: AK7set+JQsoNNK/epTCCGejFTXeTSQ6dvBDEFSBI6EPFzoscMZN3KGS5Z5MLIRsTzcV96vh5IPaNww==
-X-Received: by 2002:a17:906:154:b0:881:d1ad:1640 with SMTP id 20-20020a170906015400b00881d1ad1640mr19222532ejh.57.1678276456848;
-        Wed, 08 Mar 2023 03:54:16 -0800 (PST)
-Received: from [127.0.0.1] ([46.211.69.230])
-        by smtp.gmail.com with ESMTPSA id v19-20020a170906b01300b008db605598b9sm7375077ejy.67.2023.03.08.03.54.16
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 08 Mar 2023 03:54:16 -0800 (PST)
-Date:   Wed, 08 Mar 2023 13:54:14 +0200
-From:   Svyatoslav Ryhel <clamor95@gmail.com>
-To:     Guenter Roeck <linux@roeck-us.net>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-CC:     Jean Delvare <jdelvare@suse.com>, Rob Herring <robh+dt@kernel.org>,
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1678276844; x=1709812844;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=sQZrX009ibCJyc27f7gZBf3x3irgTSpX9dkAR3wxWn0=;
+  b=DKSh4YgZwUv5BTgTzMb0sDIx7OFvqz0eAk7Wz8071a6h8jgJSHTA7onO
+   wrZNnDbwjba8ZUB760A4jSMCjPWunzO0Ecp4g+uzWm3V9lCQpV3ZJiNzn
+   QdeZdJpxkVyo/+Fn++jATOK8qE5A7R/gTlqvBGZCeCjntEr9v35spZymr
+   cOSYBY27t2V+MME+RmzGAIASbHbjwFYISx/8oSWbCeaPqJxy2s8/zKNhj
+   3pSeAg1acF6Kmg45MvfsvVEf819kXthOmCx6LCHegn1tsbDltbr47YKHL
+   1KKU693ZnjDImXaJywqlvYJrKb3YDHKEhGyTyEhSNR+65bqcMS0g5q9Ds
+   w==;
+X-IronPort-AV: E=Sophos;i="5.98,243,1673910000"; 
+   d="scan'208";a="29545858"
+Received: from unknown (HELO tq-pgp-pr1.tq-net.de) ([192.168.6.15])
+  by mx1-pgp.tq-group.com with ESMTP; 08 Mar 2023 13:00:42 +0100
+Received: from mx1.tq-group.com ([192.168.6.7])
+  by tq-pgp-pr1.tq-net.de (PGP Universal service);
+  Wed, 08 Mar 2023 13:00:42 +0100
+X-PGP-Universal: processed;
+        by tq-pgp-pr1.tq-net.de on Wed, 08 Mar 2023 13:00:42 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1678276842; x=1709812842;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=sQZrX009ibCJyc27f7gZBf3x3irgTSpX9dkAR3wxWn0=;
+  b=Xm5Aiu0iWtDwaFpPlDMZV327oFVQ+jC5AnKYOArmvtnkVc/snuA0asuQ
+   BilEZy+AMRFvpHZv3A6yNW2wKDWbJfT+9D2VHnQp6y1VTeSkYOVwTqdxp
+   bk8bdasbL50aoKdp6nApQKL/v8FFWH0avvOKYxwyHKR2qin4x5fdjEcms
+   Wt/98UYc4LJ8Zkzaq6AnKh6VHzoZIKRuI80ImzpUdMjfjRvvBU93QfGLo
+   5W5Gr0XeKeE69B+8812otqUq0NBQpG8kR6lz1AjyvNHCu3LmVEkJXzXpf
+   +Lna7Vg25CS1Un5ZYFSIS6tT/lCmnwbiJ1Tzc159JcnGhmLyF6zfbQ6uX
+   g==;
+X-IronPort-AV: E=Sophos;i="5.98,243,1673910000"; 
+   d="scan'208";a="29545857"
+Received: from vtuxmail01.tq-net.de ([10.115.0.20])
+  by mx1.tq-group.com with ESMTP; 08 Mar 2023 13:00:42 +0100
+Received: from steina-w.localnet (unknown [10.123.53.21])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+        (No client certificate requested)
+        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id E7681280056;
+        Wed,  8 Mar 2023 13:00:41 +0100 (CET)
+From:   Alexander Stein <alexander.stein@ew.tq-group.com>
+To:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>, linux-hwmon@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v1 1/2] dt-bindings: hwmon: ina2xx: add supply property
-User-Agent: K-9 Mail for Android
-In-Reply-To: <2b012916-3955-6c4a-a74b-1e86eaa19485@roeck-us.net>
-References: <20230308094024.14115-1-clamor95@gmail.com> <20230308094024.14115-2-clamor95@gmail.com> <559c2588-e586-b4fb-97f8-5fe25bb79607@linaro.org> <CAPVz0n38LtyAqBP4GfC003xzaW78FaZ91zjdTNe46ormL5RY=Q@mail.gmail.com> <2b012916-3955-6c4a-a74b-1e86eaa19485@roeck-us.net>
-Message-ID: <0BB6AD07-D102-4DF2-ADBD-C1A6473A1019@gmail.com>
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>
+Cc:     Pengutronix Kernel Team <kernel@pengutronix.de>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Markus Niebel <Markus.Niebel@ew.tq-group.com>
+Subject: Re: [PATCH 1/1] arm64: dts: imx93: add missing tpm pwm instances
+Date:   Wed, 08 Mar 2023 13:00:41 +0100
+Message-ID: <5887137.DvuYhMxLoT@steina-w>
+Organization: TQ-Systems GmbH
+In-Reply-To: <20230227093846.151474-1-alexander.stein@ew.tq-group.com>
+References: <20230227093846.151474-1-alexander.stein@ew.tq-group.com>
 MIME-Version: 1.0
-Content-Type: text/plain;
- charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset="iso-8859-1"
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi everyone,
+
+any feedback on this?
+
+Thanks,
+Alexander
+
+Am Montag, 27. Februar 2023, 10:38:46 CET schrieb Alexander Stein:
+> TPM1/TPM3 are missing, add them.
+>=20
+> Signed-off-by: Markus Niebel <Markus.Niebel@ew.tq-group.com>
+> Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+> ---
+>  arch/arm64/boot/dts/freescale/imx93.dtsi | 16 ++++++++++++++++
+>  1 file changed, 16 insertions(+)
+>=20
+> diff --git a/arch/arm64/boot/dts/freescale/imx93.dtsi
+> b/arch/arm64/boot/dts/freescale/imx93.dtsi index 2076f9c9983a..a30c5d5f4d=
+13
+> 100644
+> --- a/arch/arm64/boot/dts/freescale/imx93.dtsi
+> +++ b/arch/arm64/boot/dts/freescale/imx93.dtsi
+> @@ -153,6 +153,14 @@ system_counter: timer@44290000 {
+>  				nxp,no-divider;
+>  			};
+>=20
+> +			tpm1: pwm@44310000 {
+> +				compatible =3D "fsl,imx7ulp-pwm";
+> +				reg =3D <0x44310000 0x1000>;
+> +				clocks =3D <&clk IMX93_CLK_TPM1_GATE>;
+> +				#pwm-cells =3D <3>;
+> +				status =3D "disabled";
+> +			};
+> +
+>  			tpm2: pwm@44320000 {
+>  				compatible =3D "fsl,imx7ulp-pwm";
+>  				reg =3D <0x44320000 0x10000>;
+> @@ -316,6 +324,14 @@ mu2: mailbox@42440000 {
+>  				status =3D "disabled";
+>  			};
+>=20
+> +			tpm3: pwm@424e0000 {
+> +				compatible =3D "fsl,imx7ulp-pwm";
+> +				reg =3D <0x424e0000 0x1000>;
+> +				clocks =3D <&clk IMX93_CLK_TPM3_GATE>;
+> +				#pwm-cells =3D <3>;
+> +				status =3D "disabled";
+> +			};
+> +
+>  			tpm4: pwm@424f0000 {
+>  				compatible =3D "fsl,imx7ulp-pwm";
+>  				reg =3D <0x424f0000 0x10000>;
 
 
-8 =D0=B1=D0=B5=D1=80=D0=B5=D0=B7=D0=BD=D1=8F 2023 =D1=80=2E 13:35:46 GMT+0=
-2:00, Guenter Roeck <linux@roeck-us=2Enet> =D0=BD=D0=B0=D0=BF=D0=B8=D1=81=
-=D0=B0=D0=B2(-=D0=BB=D0=B0):
->On 3/8/23 02:32, Svyatoslav Ryhel wrote:
->> =D1=81=D1=80, 8 =D0=B1=D0=B5=D1=80=2E 2023=E2=80=AF=D1=80=2E =D0=BE 12:=
-27 Krzysztof Kozlowski
->> <krzysztof=2Ekozlowski@linaro=2Eorg> =D0=BF=D0=B8=D1=88=D0=B5:
->>>=20
->>> On 08/03/2023 10:40, Svyatoslav Ryhel wrote:
->>>> Add supply property=2E
->>>=20
->>> You have entire commit msg to explain and give background, but instead
->>> there is just sentence duplicating subject=2E And since you did not
->>> explain anything, we have questions=2E=2E=2E like: INA238 does not hav=
-e VDD,
->>> so this does not look correct=2E
->>>=20
->>=20
->> This is why a regulator is not mandatory=2E If ina238 does not have vdd
->> then one who needs ina238 may omit this prop=2E How about looking from
->> this perspective?
->>=20
->
->If a chip does not have VDD, the driver should not even try to get it
->for that chip=2E INS238 is supported by a different driver, so that does
->not require special code, but it needs to be spelled out in the devicetre=
-e
->bindings=2E Devicetree has a means to specify if a property is valid for
->a given device=2E
->
->Having said this, as it turns out, _none_ of the chips supported by
->the ina2xx and the ina238 drivers have VDD=2E All of them have Vs, and
->all but INA219 have Vbus=2E The bindings don't even explain which one
->of those is supposed to refer to "VDD"=2E
->
+=2D-=20
+TQ-Systems GmbH | M=FChlstra=DFe 2, Gut Delling | 82229 Seefeld, Germany
+Amtsgericht M=FCnchen, HRB 105018
+Gesch=E4ftsf=FChrer: Detlef Schneider, R=FCdiger Stahl, Stefan Schneider
+http://www.tq-group.com/
 
-So you refer to vdd as to a real name=2E Now I understand this misundersta=
-nd=2E Regulator I am interested in is Vs=2E Since you confirmed that Vs is =
-supported by all ina2xx there should be no contraversions further=2E
 
->Also, regulator_get_optional() returns -ENODEV if CONFIG_REGULATOR
->is not enabled, so it isn't entirely optional=2E We can not suddenly fail
->to load the driver on systems with CONFIG_REGULATOR=3Dn, so some conditio=
-nal
->code will unfortunately be necessary=2E
->
->Guenter
->
-
-Hm, then Lars-Peter Clausen suggestion should be applicable in this case=
-=2E
-
->>>=20
->>> Best regards,
->>> Krzysztof
->>>=20
->>=20
->> Best regards,
->> Svyatoslav R=2E
->
