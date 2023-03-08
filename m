@@ -2,43 +2,43 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B63E66B0F80
-	for <lists+devicetree@lfdr.de>; Wed,  8 Mar 2023 17:59:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A58CE6B1079
+	for <lists+devicetree@lfdr.de>; Wed,  8 Mar 2023 18:55:24 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229972AbjCHQ7f (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Mar 2023 11:59:35 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33300 "EHLO
+        id S229885AbjCHRzV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Mar 2023 12:55:21 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59658 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230093AbjCHQ7F (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Mar 2023 11:59:05 -0500
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8D224CC306;
-        Wed,  8 Mar 2023 08:57:47 -0800 (PST)
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 328Gtwax018211;
-        Wed, 8 Mar 2023 10:55:58 -0600
+        with ESMTP id S229894AbjCHRzU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Mar 2023 12:55:20 -0500
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1C18DC48AB;
+        Wed,  8 Mar 2023 09:55:17 -0800 (PST)
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 328GtvmT046087;
+        Wed, 8 Mar 2023 10:55:57 -0600
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1678294558;
-        bh=4hxkiIkDEsrqNH3DFrHY3y6iLBIDRC+fqBtSL4tX3e8=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=hJApcFGkkJqN+kuvOAVViVUfzwXTipRS7Yl8jYPyKkMzZaA5bWgZdoQq06aMi1q/q
-         LBuznode0gDb4Bfmkm965nixXKxd2XdhOyUPp7WnqRGkFv/bKdnLSDgP/k3XBOTEC1
-         8Q81TaYefEd73xyL6HrBmHs5qYFk7tYuSN3oratM=
-Received: from DFLE113.ent.ti.com (dfle113.ent.ti.com [10.64.6.34])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 328Gtwib018231
+        s=ti-com-17Q1; t=1678294557;
+        bh=K7IHF7+UstWFxZtDSa0HAMg1EDco2fgoiSsKWkjkgVs=;
+        h=From:To:CC:Subject:Date;
+        b=Dy3aHNe5LN+9T+BCsix/y8yh9FpC0GDF98XBhJo7N77mUDPKkwImwCuOo+fPuLQ7U
+         nF2i4ifwg6Rz0FohHaNF0DNuo0vJXWMWErubiyrBeMouDes3lCdN5pXdkRr6yG2MZq
+         wWykJ62udcL/SiO15qWq2vGnhxjtABdsAPPID4wQ=
+Received: from DLEE114.ent.ti.com (dlee114.ent.ti.com [157.170.170.25])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 328GtvuF126391
         (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Wed, 8 Mar 2023 10:55:58 -0600
-Received: from DFLE106.ent.ti.com (10.64.6.27) by DFLE113.ent.ti.com
- (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
+        Wed, 8 Mar 2023 10:55:57 -0600
+Received: from DLEE114.ent.ti.com (157.170.170.25) by DLEE114.ent.ti.com
+ (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Wed, 8
- Mar 2023 10:55:58 -0600
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE106.ent.ti.com
- (10.64.6.27) with Microsoft SMTP Server (version=TLS1_2,
+ Mar 2023 10:55:57 -0600
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE114.ent.ti.com
+ (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
- Frontend Transport; Wed, 8 Mar 2023 10:55:58 -0600
+ Frontend Transport; Wed, 8 Mar 2023 10:55:57 -0600
 Received: from ula0226330.dal.design.ti.com (ileaxei01-snat2.itg.ti.com [10.180.69.6])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 328Gtvar014057;
-        Wed, 8 Mar 2023 10:55:58 -0600
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 328Gtvai014057;
+        Wed, 8 Mar 2023 10:55:57 -0600
 From:   Andrew Davis <afd@ti.com>
 To:     Lee Jones <lee@kernel.org>, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
@@ -50,12 +50,10 @@ To:     Lee Jones <lee@kernel.org>, Rob Herring <robh+dt@kernel.org>,
 CC:     <devicetree@vger.kernel.org>,
         <linux-arm-kernel@lists.infradead.org>,
         <linux-kernel@vger.kernel.org>, Andrew Davis <afd@ti.com>
-Subject: [PATCH v6 9/9] ARM: nspire: Remove unused header file mmio.h
-Date:   Wed, 8 Mar 2023 10:55:56 -0600
-Message-ID: <20230308165557.2242-10-afd@ti.com>
+Subject: [PATCH v6 0/9] TI-Nspire cleanups
+Date:   Wed, 8 Mar 2023 10:55:47 -0600
+Message-ID: <20230308165557.2242-1-afd@ti.com>
 X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20230308165557.2242-1-afd@ti.com>
-References: <20230308165557.2242-1-afd@ti.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
@@ -70,66 +68,68 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The Nspire boardfile platform drivers have all been converted. None
-of the definitions in this header are used anymore. Remove it.
+Hello all,
 
-While here lets remove all the other unused headers and the file
-name from in the file itself.
+This series is an extended version of the series started here[0]
+and here[1].
 
-Signed-off-by: Andrew Davis <afd@ti.com>
----
- arch/arm/mach-nspire/mmio.h   | 13 -------------
- arch/arm/mach-nspire/nspire.c | 14 --------------
- 2 files changed, 27 deletions(-)
+We break out what was the first patch into one for DTS change and
+one for code changes as suggested by Krzysztof. Those are now patches
+2 and 8 of this series (I kept the ACKs, hope that is okay).
+
+As also pointed out by Krzysztof syscon nodes need a specific
+compatible, add that as patch 1.
+
+While I was adding that, I noticed some other dtbs_check issues,
+so while here fixed some of those up too (patches 3-6).
+
+Thanks,
+Andrew
+
+[0] https://lore.kernel.org/lkml/20221026161302.5319-1-afd@ti.com/
+[1] https://lore.kernel.org/linux-arm-kernel/20221027181337.8651-1-afd@ti.com/
+
+Changes from v5:
+ - Rebase on latest master
+ - Fix DT binding comments from Rob and add ACK
+
+Changes from v4:
+ - Rebase on latest master
+
+Changes from v3:
+ - Add Reviewed-by
+ - Make new binding for patch #1
+
+Changes from v2:
+ - See cover letter message
+
+Changes from v1:
+ - Add ACKs
+ - Rebase on latest
+
+Andrew Davis (9):
+  dt-bindings: mfd: Add TI-Nspire misc registers
+  ARM: dts: nspire: Use syscon-reboot to handle restart
+  ARM: dts: nspire: Fix cpu node to conform with DT binding
+  ARM: dts: nspire: Fix sram node to conform with DT binding
+  ARM: dts: nspire: Fix vbus_reg node to conform with DT binding
+  ARM: dts: nspire: Fix uart node to conform with DT binding
+  ARM: dts: nspire: Use MATRIX_KEY macro for linux,keymap
+  ARM: nspire: Use syscon-reboot to handle restart
+  ARM: nspire: Remove unused header file mmio.h
+
+ .../bindings/mfd/ti,nspire-misc.yaml          | 51 ++++++++++
+ arch/arm/boot/dts/nspire-clp.dts              | 90 +++++++++++++-----
+ arch/arm/boot/dts/nspire-cx.dts               | 92 ++++++++++++++-----
+ arch/arm/boot/dts/nspire-tp.dts               | 90 +++++++++++++-----
+ arch/arm/boot/dts/nspire.dtsi                 | 24 ++++-
+ arch/arm/mach-nspire/Kconfig                  |  2 +
+ arch/arm/mach-nspire/mmio.h                   | 16 ----
+ arch/arm/mach-nspire/nspire.c                 | 24 -----
+ 8 files changed, 279 insertions(+), 110 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/mfd/ti,nspire-misc.yaml
  delete mode 100644 arch/arm/mach-nspire/mmio.h
 
-diff --git a/arch/arm/mach-nspire/mmio.h b/arch/arm/mach-nspire/mmio.h
-deleted file mode 100644
-index 2ce0656139ec..000000000000
---- a/arch/arm/mach-nspire/mmio.h
-+++ /dev/null
-@@ -1,13 +0,0 @@
--/* SPDX-License-Identifier: GPL-2.0-only */
--/*
-- *	linux/arch/arm/mach-nspire/mmio.h
-- *
-- *	Copyright (C) 2013 Daniel Tang <tangrs@tangrs.id.au>
-- */
--
--#define NSPIRE_PWR_PHYS_BASE		0x900B0000
--#define NSPIRE_PWR_VIRT_BASE		0xFEEB0000
--#define NSPIRE_PWR_BUS_DISABLE1		0x18
--#define NSPIRE_PWR_BUS_DISABLE2		0x20
--
--#define NSPIRE_LCD_PHYS_BASE		0xC0000000
-diff --git a/arch/arm/mach-nspire/nspire.c b/arch/arm/mach-nspire/nspire.c
-index 1e13337972dd..2fbfc23237ff 100644
---- a/arch/arm/mach-nspire/nspire.c
-+++ b/arch/arm/mach-nspire/nspire.c
-@@ -1,23 +1,9 @@
- // SPDX-License-Identifier: GPL-2.0-only
- /*
-- *	linux/arch/arm/mach-nspire/nspire.c
-- *
-  *	Copyright (C) 2013 Daniel Tang <tangrs@tangrs.id.au>
-  */
--#include <linux/init.h>
--#include <linux/of_irq.h>
--#include <linux/of_address.h>
--#include <linux/of_platform.h>
--#include <linux/irqchip.h>
--#include <linux/irqchip/arm-vic.h>
--#include <linux/clkdev.h>
--#include <linux/amba/bus.h>
- 
- #include <asm/mach/arch.h>
--#include <asm/mach-types.h>
--#include <asm/mach/map.h>
--
--#include "mmio.h"
- 
- static const char *const nspire_dt_match[] __initconst = {
- 	"ti,nspire",
 -- 
 2.39.2
 
