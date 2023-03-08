@@ -2,116 +2,136 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2D3BA6B01E1
-	for <lists+devicetree@lfdr.de>; Wed,  8 Mar 2023 09:45:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5BF836B01F1
+	for <lists+devicetree@lfdr.de>; Wed,  8 Mar 2023 09:48:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229885AbjCHIpE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Mar 2023 03:45:04 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53934 "EHLO
+        id S229613AbjCHIsb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Mar 2023 03:48:31 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59822 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230263AbjCHIov (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Mar 2023 03:44:51 -0500
-Received: from mail-ed1-x529.google.com (mail-ed1-x529.google.com [IPv6:2a00:1450:4864:20::529])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 39402A5916
-        for <devicetree@vger.kernel.org>; Wed,  8 Mar 2023 00:44:47 -0800 (PST)
-Received: by mail-ed1-x529.google.com with SMTP id x3so62515407edb.10
-        for <devicetree@vger.kernel.org>; Wed, 08 Mar 2023 00:44:47 -0800 (PST)
+        with ESMTP id S229922AbjCHIsa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Mar 2023 03:48:30 -0500
+Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com [IPv6:2a00:1450:4864:20::534])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 659DE94385
+        for <devicetree@vger.kernel.org>; Wed,  8 Mar 2023 00:48:28 -0800 (PST)
+Received: by mail-ed1-x534.google.com with SMTP id ec29so31801581edb.6
+        for <devicetree@vger.kernel.org>; Wed, 08 Mar 2023 00:48:28 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1678265086;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
+        d=linaro.org; s=google; t=1678265307;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=8X8oossssHZ/mYv0HHxeiQFRMY1H8SzjxfV4O0bYpxc=;
-        b=eOZ30U3mjKF/Cw9QM6xyMeQcI4S12Jzpe/WsVPpZSKlo9hSirDtP0v25PuRMKwY9SJ
-         F6Vxp/LKWQGTJF2re07vLGRbI/qR7axk59dnlw0TPiKhT1P/eMQfSGK5xPjN5t8boyKO
-         QNuMJR1NmoDaIkoaz+Fewxz3E6ilRLy3SF2qGOlobFHGNyoaWsOPTAAcOyXn8Fqvxz6+
-         ISpFkJxLz5zYNs1+n6uQmPdYkF8NX4ilxEoyILSYMTBCgLa2wlTgdquO3QW/dmwtyMBt
-         F6QBhj4MFNoAtQp3X2ZmNaHWJz9P8yN9NY3Cleu/L8jXGxkSAavgNzM8QJfuHg4TsyGg
-         GetQ==
+        bh=1IW/RS0aLSSxBgB22OqTCxBSr+YdxHtk+0LFWe36vG8=;
+        b=fWi10K1WTyMK+4gDA9j0bPprPuyGTBeu+XpocgR0cj+w9BYHj8UpNgU5t7v3PylQf4
+         wY74bZ0VgPsmZ8GVnLZyawG4vExQk4VcpD8Sy0ZZgjLsoHTB/p4JGasSRwFQVP8ViAYf
+         WHpwv0Mg5L+yjUF3WBMF54f2a2kM7teDdMKvcEZ8x1/hxlvMOJa3ayKvTtSdw6XnOinN
+         42qPZITrCQ9SggMQB/mIKJWFKZbdt8OCZwawYh2mDlhPjzhsD2B27DiZmPzywHUBFkmE
+         JZqgDm/dydu/Ju6adDOlnoDIvWPGAZEA9meFjPpRMZWO92uiHM2/um7Ka996PE42nENe
+         VcMA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678265086;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20210112; t=1678265307;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=8X8oossssHZ/mYv0HHxeiQFRMY1H8SzjxfV4O0bYpxc=;
-        b=j/lU//FAEgHeQVuwieft0DC7li1JTgP/G7cbpcrnsY9TmhvvLV8Xa7kBnMJ58U9bzi
-         U4rUybmFOaKt3ctqQuKMynNALQkvur8R5KOmbUEknjWO1azoKtCGHVibsVM6Y/wuL/tl
-         ytl1arLuY6Cv+2oKEJp/OQooN1xYznfFaMebqM06HP0Qpsv+Io1CK4IrQ3wU/dmuFMY3
-         ZjPFmwmS4tYP+ODEA8oaChNIDKhH4JBC0C+mkE0IQ5RRZflnknYjyU0imz7S1gX+EJ8e
-         3MqX1agz/AAffDQ3JsnycppQgCfHps9lKxWBFYU//qYl4brY0j21KxHcKv2hiH0sApmH
-         k8aA==
-X-Gm-Message-State: AO0yUKXZyftP6BAfQLd1mesGt3qjzgz0GCS9btuD3IAhbUloIkEP/Zlj
-        ZBhdbRtidcfD628qX2oE+XnV7Q==
-X-Google-Smtp-Source: AK7set8/wsFI8ZE50pH5OXcMjKAp1LL2QuSi7azOjwKIJIm0TYE9nRCHhZVDF5Boa+jt+w5u3dpdIA==
-X-Received: by 2002:a17:906:948f:b0:8f6:c7cc:92ad with SMTP id t15-20020a170906948f00b008f6c7cc92admr19206592ejx.43.1678265086658;
-        Wed, 08 Mar 2023 00:44:46 -0800 (PST)
+        bh=1IW/RS0aLSSxBgB22OqTCxBSr+YdxHtk+0LFWe36vG8=;
+        b=09ZaW/bYK6znBHSm1OdUc+G0XM4k+I5zmSAqKZlLqAwQvZ/NMlbS22OV44vQpLqMOE
+         fQ/18A3cDbGhPLjBBSek/s933iJwL8hLCkx6u+uc5v/43U9BfUPXerr502khhK5NY3qA
+         FhNzbjPE0v0N97LYv84SF6WUaqPCCOlcrc1CgNoeHsCOAavSroN2Q7XwQelaximSQ+2n
+         VisPFvvn7jpUzjoWJn+Z8ZmH2F7VWCklblRXMlbE0dH2l3IO1OajpH7xbAxZTw1aKezi
+         we++ixJY+vP+2Dx/Iqt+WRm9lhJmowmr/1uT8oRype8K6nl8Ziyq4xzDLtF4gBasotpz
+         8U3g==
+X-Gm-Message-State: AO0yUKWdFaKaGmrCcYfFXzYOWYGjTIqSzHQ3dsb8jGzvAaJzj8u7j4jq
+        QVfaGo7S064QUNGhxP7TKJYqhA==
+X-Google-Smtp-Source: AK7set+/a5vYatHyXTm+A6Q49AO+MfL5eXvY6zaULzOwyp5e47XvyDA35K8uivkmDjkP8sa9O9411w==
+X-Received: by 2002:a17:906:1846:b0:8b8:c06e:52d8 with SMTP id w6-20020a170906184600b008b8c06e52d8mr16121027eje.36.1678265306937;
+        Wed, 08 Mar 2023 00:48:26 -0800 (PST)
 Received: from ?IPV6:2a02:810d:15c0:828:bba:fbfa:8aec:a133? ([2a02:810d:15c0:828:bba:fbfa:8aec:a133])
-        by smtp.gmail.com with ESMTPSA id h9-20020a1709060f4900b008d2683e24c4sm7237416ejj.69.2023.03.08.00.44.45
+        by smtp.gmail.com with ESMTPSA id a4-20020a17090682c400b008d4b6f086c9sm7141528ejy.185.2023.03.08.00.48.25
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 08 Mar 2023 00:44:46 -0800 (PST)
-Message-ID: <d4405379-04dd-1bdb-b1a9-56a4621727d1@linaro.org>
-Date:   Wed, 8 Mar 2023 09:44:45 +0100
+        Wed, 08 Mar 2023 00:48:26 -0800 (PST)
+Message-ID: <0013ce4d-d4a8-2a82-c72b-042dd4d9779c@linaro.org>
+Date:   Wed, 8 Mar 2023 09:48:25 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.8.0
-Subject: Re: [PATCH 7/8] ARM: dts: imx6ull: Add chargebyte Tarragon support
-Content-Language: en-US
-To:     Stefan Wahren <stefan.wahren@i2se.com>,
+Subject: Re: [PATCH v10 03/13] dt-bindings: Convert gpio-mmio to yaml
+To:     Sean Anderson <sean.anderson@seco.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@kernel.org>,
+        linux-phy@lists.infradead.org, Niall Leonard <nl250060@ncr.com>
+Cc:     Madalin Bucur <madalin.bucur@nxp.com>,
+        linuxppc-dev@lists.ozlabs.org, devicetree@vger.kernel.org,
+        Ioana Ciornei <ioana.ciornei@nxp.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
-        Evgeniy Polyakov <zbr@ioremap.net>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>
-Cc:     linux-imx@nxp.com, Li Yang <leoyang.li@nxp.com>,
-        Denis Ciocca <denis.ciocca@st.com>, soc@kernel.org,
-        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+        Camelia Alexandra Groza <camelia.groza@nxp.com>,
         linux-arm-kernel@lists.infradead.org,
-        Stefan Wahren <stefan.wahren@chargebyte.com>
-References: <20230306172249.74003-1-stefan.wahren@i2se.com>
- <20230306172249.74003-8-stefan.wahren@i2se.com>
- <d77c2938-bcef-4586-77b5-1cb93b113eb5@linaro.org>
- <a2a39419-86e9-2dff-644a-391248b51a0e@i2se.com>
+        Bagas Sanjaya <bagasdotme@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Bartosz Golaszewski <brgl@bgdev.pl>,
+        =?UTF-8?Q?Fern=c3=a1ndez_Rojas?= <noltari@gmail.com>,
+        Jonas Gorski <jonas.gorski@gmail.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        linux-gpio@vger.kernel.org
+References: <20230306191535.1917656-1-sean.anderson@seco.com>
+ <20230306191535.1917656-4-sean.anderson@seco.com>
+ <4c039e53-e3ca-29d7-e5ea-f24e385d28b0@linaro.org>
+ <42ccbac0-53e2-f599-fb3d-064b896bde4a@seco.com>
+Content-Language: en-US
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <a2a39419-86e9-2dff-644a-391248b51a0e@i2se.com>
+In-Reply-To: <42ccbac0-53e2-f599-fb3d-064b896bde4a@seco.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 07/03/2023 18:25, Stefan Wahren wrote:
+On 07/03/2023 16:35, Sean Anderson wrote:
 > Hi Krzysztof,
 > 
-
->      From schema: 
-> /home/stefanw/mainline/Documentation/devicetree/bindings/serial/fsl-imx-uart.yaml
-> arch/arm/boot/dts/imx6ull-tarragon-master.dtb: 
-> /soc/bus@2200000/iomuxc-snvs@2290000: failed to match any schema with 
-> compatible: ['fsl,imx6ull-iomuxc-snvs']
-> arch/arm/boot/dts/imx6ull-tarragon-master.dtb: /pwm-fan: failed to match 
-> any schema with compatible: ['pwm-fan']
+> On 3/7/23 03:42, Krzysztof Kozlowski wrote:
+>> On 06/03/2023 20:15, Sean Anderson wrote:
+>>> This is a generic binding for simple MMIO GPIO controllers. Although we
+>>> have a single driver for these controllers, they were previously spread
+>>> over several files. Consolidate them. The register descriptions are
+>>> adapted from the comments in the source. There is no set order for the
+>>> registers, so I have not specified one.
+>>>
+>>> Signed-off-by: Sean Anderson <sean.anderson@seco.com>
+>>> ---
+>>>
+>>> Changes in v10:
+>>> - New
+>>>
+>>>  .../bindings/gpio/brcm,bcm6345-gpio.yaml      |  16 +--
+>>>  .../devicetree/bindings/gpio/gpio-mmio.yaml   | 136 ++++++++++++++++++
+>>>  .../bindings/gpio/ni,169445-nand-gpio.txt     |  38 -----
+>>>  .../devicetree/bindings/gpio/wd,mbl-gpio.txt  |  38 -----
+>>>  4 files changed, 137 insertions(+), 91 deletions(-)
+>>>  create mode 100644 Documentation/devicetree/bindings/gpio/gpio-mmio.yaml
+>>>  delete mode 100644 Documentation/devicetree/bindings/gpio/ni,169445-nand-gpio.txt
+>>>  delete mode 100644 Documentation/devicetree/bindings/gpio/wd,mbl-gpio.txt
+>>
+>> https://lore.kernel.org/all/20230126-gpio-mmio-fix-v2-1-38397aace340@ncr.com/
 > 
-> Can you please point me, what is wrong or did you refer just to the 
-> deprecated "label" property which doesn't throw a warning in my case?
+> Thanks for linking to that.
 > 
-> Did i missed a parameter?
+> I believe this patch should be applied instead of that one because
+> 
+> - It documents all the registers, which were previously only documented
+>   in the driver
+> - It handles the endianness properties.
+> - It consolidates the various descriptions of this binding into one
+>   schema.
 
-No, you are right, this will pass the tests. I was pretty sure the regex
-for leds will fail here but it turns out it is very flexible and led can
-appear anywhere. Anyway the doc states that first form is preferred,
-(because it is preferred for all other cases) so: led-1, led-2, led-3
-
-
+Sure, sounds reasonable. You can just quickly check if my other comments
+apply here as well (but seems not):
+https://lore.kernel.org/all/4df3ec7a-e4af-89bc-9eda-21150395a935@linaro.org/
 
 Best regards,
 Krzysztof
