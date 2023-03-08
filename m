@@ -2,107 +2,138 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D54266B0AC3
-	for <lists+devicetree@lfdr.de>; Wed,  8 Mar 2023 15:14:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 12D276B0ADB
+	for <lists+devicetree@lfdr.de>; Wed,  8 Mar 2023 15:17:54 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232132AbjCHOOf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Mar 2023 09:14:35 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57476 "EHLO
+        id S229482AbjCHORv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Mar 2023 09:17:51 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42608 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231741AbjCHON5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Mar 2023 09:13:57 -0500
-X-Greylist: delayed 2595 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Wed, 08 Mar 2023 06:12:49 PST
-Received: from smtp-bc0f.mail.infomaniak.ch (smtp-bc0f.mail.infomaniak.ch [IPv6:2001:1600:3:17::bc0f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1B796618BC
-        for <devicetree@vger.kernel.org>; Wed,  8 Mar 2023 06:12:48 -0800 (PST)
-Received: from smtp-2-0000.mail.infomaniak.ch (unknown [10.5.36.107])
-        by smtp-2-3000.mail.infomaniak.ch (Postfix) with ESMTPS id 4PWvR32CmfzMrXSn;
-        Wed,  8 Mar 2023 15:12:47 +0100 (CET)
-Received: from unknown by smtp-2-0000.mail.infomaniak.ch (Postfix) with ESMTPA id 4PWvR24YypzMslsf;
-        Wed,  8 Mar 2023 15:12:46 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=pschenker.ch;
-        s=20220412; t=1678284767;
-        bh=WrlHTBrezRUb+ZKhea5biLw3bhhxS6dMpZxCWWjM7HY=;
-        h=Subject:From:Reply-To:To:Cc:Date:In-Reply-To:References:From;
-        b=wbPqVUr3XbO0KuHZ80dhydiruIY/kpaKs6Dsvw6qbHjMKssOFfBhgOWQ1UOQZB2zD
-         nFjM5JwjgBvnxYJhQZtoW/hlJynvhtC0zl2yt9TwugoTgdGm2MQaNHpN296PxjsZat
-         nybB2ijojcaY9AEmmDPRPM5jm94FwI03DFHLgTbA=
-Message-ID: <897936e47217205feaf07d6de67f70aed97f48dc.camel@pschenker.ch>
-Subject: Re: [PATCH v1 17/25] arm64: dts: colibri-imx8x: eval: Add spi-to-can
-From:   Philippe Schenker <dev@pschenker.ch>
-Reply-To: dev@pschenker.ch
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        devicetree@vger.kernel.org, Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>
-Cc:     NXP Linux Team <linux-imx@nxp.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        with ESMTP id S230060AbjCHORt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Mar 2023 09:17:49 -0500
+Received: from relay11.mail.gandi.net (relay11.mail.gandi.net [217.70.178.231])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5C55961B7;
+        Wed,  8 Mar 2023 06:17:47 -0800 (PST)
+Received: (Authenticated sender: miquel.raynal@bootlin.com)
+        by mail.gandi.net (Postfix) with ESMTPSA id 5B3B3100005;
+        Wed,  8 Mar 2023 14:17:41 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1678285064;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=ckkizSkqfpuXz8Zx7JuXXhRPSLg148Bi0uyN9GWvRkY=;
+        b=Ye3jjzSRHlTOHCsl1IB74N9vmV2LrUMuAsXM5yKHN7ARBB0v4S77tRtpZwtTLpfGpxDp1a
+        JZK5Kk493uko8aQf/VxTCJ5sld/Utp3aRm3fC4+4tvNS+6rzTNkOjOWmAsSzHLor44dFCw
+        yLhX1niT43lbts5DmVAHuIin581W7gtBGy4L6JK5CX8eIwF5BSSbCnbfPpDgza2kzqCI5V
+        wH4WWm6ScN9ubEF5pbmCar8Pkb/5ZHOxlc8IMwrLoesTV4ZRtEfdkHovuxKdA9mO0+hxnN
+        wT6JnJAsG2flx4N8hLeNvuMt2swTfzd3w4cYQxVAybVY88M4wSGH2m3NeuGCGQ==
+Date:   Wed, 8 Mar 2023 15:17:40 +0100
+From:   Miquel Raynal <miquel.raynal@bootlin.com>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        linux-kernel@vger.kernel.org,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Michael Walle <michael@walle.cc>,
+        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>,
+        Robert Marko <robert.marko@sartura.hr>,
+        Luka Perkov <luka.perkov@sartura.hr>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
         Frank Rowand <frowand.list@gmail.com>,
-        linux-arm-kernel@lists.infradead.org,
-        Fabio Estevam <festevam@gmail.com>,
-        Philippe Schenker <philippe.schenker@toradex.com>,
-        linux-kernel@vger.kernel.org
-Date:   Wed, 08 Mar 2023 15:12:46 +0100
-In-Reply-To: <07e64710-6b91-9da6-f483-03706b7ea95a@linaro.org>
-References: <20230308125300.58244-1-dev@pschenker.ch>
-         <20230308125300.58244-18-dev@pschenker.ch>
-         <07e64710-6b91-9da6-f483-03706b7ea95a@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: base64
-User-Agent: Evolution 3.46.4 
+        devicetree@vger.kernel.org,
+        "Rafael J . Wysocki" <rafael@kernel.org>,
+        Len Brown <lenb@kernel.org>,
+        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        Sebastian Reichel <sre@kernel.org>,
+        Wolfram Sang <wsa@kernel.org>, Mark Brown <broonie@kernel.org>
+Subject: Re: [PATCH v2 03/21] of: Rename of_modalias_node()
+Message-ID: <20230308151740.673f863f@xps-13>
+In-Reply-To: <20230308001903.GA513330-robh@kernel.org>
+References: <20230307165359.225361-1-miquel.raynal@bootlin.com>
+        <20230307165359.225361-4-miquel.raynal@bootlin.com>
+        <20230308001903.GA513330-robh@kernel.org>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-X-Infomaniak-Routing: alpha
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-T24gV2VkLCAyMDIzLTAzLTA4IGF0IDE0OjAwICswMTAwLCBLcnp5c3p0b2YgS296bG93c2tpIHdy
-b3RlOgo+IE9uIDA4LzAzLzIwMjMgMTM6NTIsIFBoaWxpcHBlIFNjaGVua2VyIHdyb3RlOgo+ID4g
-RnJvbTogUGhpbGlwcGUgU2NoZW5rZXIgPHBoaWxpcHBlLnNjaGVua2VyQHRvcmFkZXguY29tPgo+
-ID4gCj4gPiBBZGQgbWNwMjUxNSBzcGktdG8tY2FuIHRvICZscHNwaTIuCj4gPiAKPiA+IFNpZ25l
-ZC1vZmYtYnk6IFBoaWxpcHBlIFNjaGVua2VyIDxwaGlsaXBwZS5zY2hlbmtlckB0b3JhZGV4LmNv
-bT4KPiA+IC0tLQo+ID4gCj4gPiDCoC4uLi9kdHMvZnJlZXNjYWxlL2lteDh4LWNvbGlicmktZXZh
-bC12My5kdHNpwqAgfCAxOQo+ID4gKysrKysrKysrKysrKysrKysrKwo+ID4gwqAxIGZpbGUgY2hh
-bmdlZCwgMTkgaW5zZXJ0aW9ucygrKQo+ID4gCj4gPiBkaWZmIC0tZ2l0IGEvYXJjaC9hcm02NC9i
-b290L2R0cy9mcmVlc2NhbGUvaW14OHgtY29saWJyaS1ldmFsLQo+ID4gdjMuZHRzaSBiL2FyY2gv
-YXJtNjQvYm9vdC9kdHMvZnJlZXNjYWxlL2lteDh4LWNvbGlicmktZXZhbC12My5kdHNpCj4gPiBp
-bmRleCA2MjVkMmNhYWY1ZDEuLmU3ZTNjZjQ2MjQwOCAxMDA2NDQKPiA+IC0tLSBhL2FyY2gvYXJt
-NjQvYm9vdC9kdHMvZnJlZXNjYWxlL2lteDh4LWNvbGlicmktZXZhbC12My5kdHNpCj4gPiArKysg
-Yi9hcmNoL2FybTY0L2Jvb3QvZHRzL2ZyZWVzY2FsZS9pbXg4eC1jb2xpYnJpLWV2YWwtdjMuZHRz
-aQo+IAo+IFRoZXJlIGlzIG5vIHN1Y2ggZmlsZS4KPiAKPiA+IEBAIC0xMSw2ICsxMSwxMyBAQCBh
-bGlhc2VzIHsKPiA+IMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgcnRjMSA9ICZydGM7
-Cj4gPiDCoMKgwqDCoMKgwqDCoMKgfTsKPiA+IMKgCj4gPiArwqDCoMKgwqDCoMKgwqAvKiBmaXhl
-ZCBjcnlzdGFsIGRlZGljYXRlZCB0byBtY3AyNXh4ICovCj4gPiArwqDCoMKgwqDCoMKgwqBjbGsx
-Nm06IGNsb2NrLTE2bWh6LWZpeGVkIHsKPiAKPiBEcm9wICJmaXhlZCIuCj4gCj4gPiArwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgY29tcGF0aWJsZSA9ICJmaXhlZC1jbG9jayI7Cj4gPiAr
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgI2Nsb2NrLWNlbGxzID0gPDA+Owo+ID4gK8Kg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoGNsb2NrLWZyZXF1ZW5jeSA9IDwxNjAwMDAwMD47
-Cj4gPiArwqDCoMKgwqDCoMKgwqB9Owo+ID4gKwo+ID4gwqDCoMKgwqDCoMKgwqDCoGdwaW8ta2V5
-cyB7Cj4gPiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoGNvbXBhdGlibGUgPSAiZ3Bp
-by1rZXlzIjsKPiA+IMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgcGluY3RybC1uYW1l
-cyA9ICJkZWZhdWx0IjsKPiA+IEBAIC00NCw2ICs1MSwxOCBAQCBydGNfaTJjOiBydGNANjggewo+
-ID4gwqAvKiBDb2xpYnJpIFNQSSAqLwo+ID4gwqAmbHBzcGkyIHsKPiA+IMKgwqDCoMKgwqDCoMKg
-wqBzdGF0dXMgPSAib2theSI7Cj4gPiArCj4gPiArwqDCoMKgwqDCoMKgwqBtY3AyNTE1OiBjYW5A
-MCB7Cj4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgY29tcGF0aWJsZSA9ICJtaWNy
-b2NoaXAsbWNwMjUxNSI7Cj4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgcmVnID0g
-PDA+Owo+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoGludGVycnVwdC1wYXJlbnQg
-PSA8JmxzaW9fZ3BpbzM+Owo+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoGludGVy
-cnVwdHMgPSA8MTMgSVJRX1RZUEVfRURHRV9GQUxMSU5HPjsKPiA+ICvCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqBwaW5jdHJsLTAgPSA8JnBpbmN0cmxfY2FuX2ludD47Cj4gPiArwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgcGluY3RybC1uYW1lcyA9ICJkZWZhdWx0IjsKPiA+ICvC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqBjbG9ja3MgPSA8JmNsazE2bT47Cj4gCj4gWW91
-IGp1c3Qgc29ydGVkIGFsbCBub2RlcyBpbiBwcmV2aW91cyBwYXRjaGVzIGFuZCBhZGQgc29tZXRo
-aW5nCj4gdW5zb3J0ZWQ/IFdoYXQgaXMgdGhlbiB0aGUgc3R5bGUgb2Ygb3JkZXI/IFJhbmRvbSBu
-YW1lPwo+IAo+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoHNwaS1tYXgtZnJlcXVl
-bmN5ID0gPDEwMDAwMDAwPjsKPiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqBzdGF0
-dXMgPSAib2theSI7Cj4gCj4gV2h5IGRvIHlvdSBuZWVkIGl0PwoKT2ssIG5vdyBJIGtub3cgd2hh
-dCB5b3UgbWVhbi4gV2lsbCByZW1vdmUgaXQgaW4gdjIuCgo+IAo+ID4gK8KgwqDCoMKgwqDCoMKg
-fTsKPiA+IMKgfTsKPiA+IMKgCj4gPiDCoC8qIENvbGlicmkgVUFSVF9CICovCj4gCj4gQmVzdCBy
-ZWdhcmRzLAo+IEtyenlzenRvZgo+IAoK
+Hi Rob,
 
+robh@kernel.org wrote on Tue, 7 Mar 2023 18:19:03 -0600:
+
+> On Tue, Mar 07, 2023 at 05:53:41PM +0100, Miquel Raynal wrote:
+> > This helper does not produce a real modalias, but tries to get the
+> > "product" compatible part of the "vendor,product" compatibles only. It
+> > is far from creating a purely useful modalias string and does not seem
+> > to be used like that directly anyway, so let's try to give this helper a
+> > more meaningful name before moving there a real modalias helper (already
+> > existing under of/device.c).
+> >=20
+> > Also update the various documentations to refer to the strings as
+> > "aliases" rather than "modaliases" which has a real meaning in the Linux
+> > kernel.
+> >=20
+> > There is no functional change.
+> >=20
+> > Cc: Rafael J. Wysocki <rafael@kernel.org>
+> > Cc: Len Brown <lenb@kernel.org>
+> > Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+> > Cc: Maxime Ripard <mripard@kernel.org>
+> > Cc: Thomas Zimmermann <tzimmermann@suse.de>
+> > Cc: Sebastian Reichel <sre@kernel.org>
+> > Cc: Wolfram Sang <wsa@kernel.org>
+> > Cc: Mark Brown <broonie@kernel.org>
+> > Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
+> > ---
+> >  drivers/acpi/bus.c                |  7 ++++---
+> >  drivers/gpu/drm/drm_mipi_dsi.c    |  2 +-
+> >  drivers/hsi/hsi_core.c            |  2 +- =20
+>=20
+> These should not have been using this function. The matching on just the=
+=20
+> product was a relic from I2C and SPI which we don't want to propogate.=20
+> No clue why ACPI needed it...
+>=20
+> If you respin or want to fixup while applying, can you add a kerneldoc=20
+> comment to not add new users of the function. Not that anyone will=20
+> follow that... :(
+
+I extensively scratched my forehead while trying to understand the use
+of this function. I've added this to my v3:
+
+  * It does this by stripping the manufacturer prefix (as delimited by a ',=
+')
+  * from the first entry in the compatible list property.
+  *
++ * Note: The matching on just the "product" side of the compatible is a re=
+lic
++ * from I2C and SPI. Please do not add any new user.
++ *
+  * Return: This routine returns 0 on success, <0 on failure.
+  */
+
+> Reviewed-by: Rob Herring <robh@kernel.org>
+>=20
+> >  drivers/i2c/busses/i2c-powermac.c |  2 +-
+> >  drivers/i2c/i2c-core-of.c         |  2 +-
+> >  drivers/of/base.c                 | 15 ++++++++-------
+> >  drivers/spi/spi.c                 |  4 ++--
+> >  include/linux/of.h                |  2 +-
+> >  8 files changed, 19 insertions(+), 17 deletions(-) =20
+
+
+Thanks,
+Miqu=C3=A8l
