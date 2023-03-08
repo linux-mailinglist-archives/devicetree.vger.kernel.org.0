@@ -2,108 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 004286AFC65
-	for <lists+devicetree@lfdr.de>; Wed,  8 Mar 2023 02:30:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 409966AFC72
+	for <lists+devicetree@lfdr.de>; Wed,  8 Mar 2023 02:36:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230007AbjCHBaB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Mar 2023 20:30:01 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47154 "EHLO
+        id S229477AbjCHBgH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Mar 2023 20:36:07 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55030 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229727AbjCHBaA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Mar 2023 20:30:00 -0500
-Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6E34A91B6B
-        for <devicetree@vger.kernel.org>; Tue,  7 Mar 2023 17:29:20 -0800 (PST)
-Received: by mail-lf1-x131.google.com with SMTP id i28so19575269lfv.0
-        for <devicetree@vger.kernel.org>; Tue, 07 Mar 2023 17:29:20 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1678238940;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=wcH6ChrdybSOEpD7JCkvJREKmTq11gzbfL1luIuLXkc=;
-        b=WmCAqaprgGN011ev+tuC6gu8/acpauS9IYp7lJcpFioq7F2/WLgU3NW9A5dF9AwsrF
-         R5H6XwXd1tHuiypD7DoIr6e1pSNoLm166oGUlJrE0/jZXzBvDA99YeOjSsxpHed9J3z9
-         nBHt/Zp0C71yln6yjUpOdMrPVK9keRog1l816ixjn1WtnT7bibSa8UIipjd69TBX39Z7
-         nF5m5c2vIIP1TdG/w10l1p+OJXBVPY4ipVrF0iktNQJHHiIyzqxe9PxD2Y8yPn7DFIIo
-         CrnYHlL5H2GbGKBjDRJQALiMN0oifRnPbuQ9qK04rjlz2vLCLQnhH3EmKJXaZpY+fi99
-         GVXw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678238940;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=wcH6ChrdybSOEpD7JCkvJREKmTq11gzbfL1luIuLXkc=;
-        b=V3cH2E8z6Pth8RSqiOjJGyt/ozW1UsHuhROaBSpWGz4e/XV8vXMCEyj9sezqUFLJ/x
-         yOoOZGxSA6fI8v0M7LS3xfRKxTzYp9NlDBsn8MAYW0ZZeVWhxJnt5lJpdxKRy3mj6x+o
-         i0d8bZxKl0ci6YiPuV9kHkSsXDJlN7dghU4AtZaGPSUbJrg3TNJ7i3pvkKZqBSHqGD0b
-         bhQ/6/xef2aIaaLTPjovNKkYmB3vvWqq1fvaQYujB9Dmp7EDZ6mnVHsQvsIh9W2df5tI
-         2HKjzS7ygdvD6vuV9Zikyp/EGEI2bguJIoosJDTeqt2e2CBdKKLon4j+5T3ZLEYa1lT8
-         8vbQ==
-X-Gm-Message-State: AO0yUKXgM9pltupXZx1k0R7AiX4ZxT7bzWGSOsXhriowrv+EAzhtHyab
-        /sWdz6rLxkXaYSHb7EN/BkKW8w==
-X-Google-Smtp-Source: AK7set/O2zOF0Eaq703LtV0Eck2mcIfZt4f+MvTQ56hwhaKSJtxi6wC+KRR0lHtAlI17pP5pDT60Rw==
-X-Received: by 2002:ac2:4ac9:0:b0:4dc:84dd:eb91 with SMTP id m9-20020ac24ac9000000b004dc84ddeb91mr5202676lfp.22.1678238939731;
-        Tue, 07 Mar 2023 17:28:59 -0800 (PST)
-Received: from localhost.localdomain (abyj16.neoplus.adsl.tpnet.pl. [83.9.29.16])
-        by smtp.gmail.com with ESMTPSA id u17-20020ac25191000000b004db3aa3c542sm2174173lfi.47.2023.03.07.17.28.58
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 07 Mar 2023 17:28:59 -0800 (PST)
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-To:     linux-arm-msm@vger.kernel.org, andersson@kernel.org,
-        agross@kernel.org
-Cc:     marijn.suijten@somainline.org,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
+        with ESMTP id S229610AbjCHBgG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Mar 2023 20:36:06 -0500
+Received: from loongson.cn (mail.loongson.cn [114.242.206.163])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id CF7FE59E73;
+        Tue,  7 Mar 2023 17:36:00 -0800 (PST)
+Received: from loongson.cn (unknown [10.20.42.35])
+        by gateway (Coremail) with SMTP id _____8DxAf9_5gdkiagJAA--.12791S3;
+        Wed, 08 Mar 2023 09:35:59 +0800 (CST)
+Received: from [10.20.42.35] (unknown [10.20.42.35])
+        by localhost.localdomain (Coremail) with SMTP id AQAAf8Bxzr535gdkMctOAA--.16378S3;
+        Wed, 08 Mar 2023 09:35:58 +0800 (CST)
+Subject: Re: [PATCH v13 1/2] dt-bindings: clock: add loongson-2 boot clock
+ index
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Marc Zyngier <maz@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: [PATCH] dt-bindings: timer: armv7: Don't sanction address/size-cells values
-Date:   Wed,  8 Mar 2023 02:28:53 +0100
-Message-Id: <20230308012854.294939-1-konrad.dybcio@linaro.org>
-X-Mailer: git-send-email 2.39.2
+        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org
+Cc:     Jianmin Lv <lvjianmin@loongson.cn>,
+        Liu Peibao <liupeibao@loongson.cn>, wanghongliang@loongson.cn,
+        loongson-kernel@lists.loongnix.cn, zhuyinbo@loongson.cn
+References: <20230307115022.12846-1-zhuyinbo@loongson.cn>
+ <692a62da-a9a1-fa23-6e24-723d73c3a423@linaro.org>
+From:   zhuyinbo <zhuyinbo@loongson.cn>
+Message-ID: <5e9b3bd5-d885-6237-5e14-2becb3c956cc@loongson.cn>
+Date:   Wed, 8 Mar 2023 09:35:50 +0800
+User-Agent: Mozilla/5.0 (X11; Linux loongarch64; rv:68.0) Gecko/20100101
+ Thunderbird/68.7.0
 MIME-Version: 1.0
+In-Reply-To: <692a62da-a9a1-fa23-6e24-723d73c3a423@linaro.org>
+Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-0.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_SORBS_HTTP,RCVD_IN_SORBS_SOCKS,SPF_HELO_NONE,SPF_PASS,
-        URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.6
+Content-Language: en-US
+X-CM-TRANSID: AQAAf8Bxzr535gdkMctOAA--.16378S3
+X-CM-SenderInfo: 52kx5xhqerqz5rrqw2lrqou0/
+X-Coremail-Antispam: 1Uk129KBjvJXoW7Aw47tFW5JF1kGr1UAFW5Wrg_yoW8AFyxpr
+        4v9FW3KFW2yF4Igws2qwnxKr45uw47J3WUCF47ur1UZF17J3W8JrsrJF4fArn8XrZ3JFyx
+        ZFWDuw4F9ayDWw7anT9S1TB71UUUUUJqnTZGkaVYY2UrUUUUj1kv1TuYvTs0mT0YCTnIWj
+        qI5I8CrVACY4xI64kE6c02F40Ex7xfYxn0WfASr-VFAUDa7-sFnT9fnUUIcSsGvfJTRUUU
+        bD8Fc2x0x2IEx4CE42xK8VAvwI8IcIk0rVWrJVCq3wAFIxvE14AKwVWUXVWUAwA2ocxC64
+        kIII0Yj41l84x0c7CEw4AK67xGY2AK021l84ACjcxK6xIIjxv20xvE14v26r4j6ryUM28E
+        F7xvwVC0I7IYx2IY6xkF7I0E14v26r4j6F4UM28EF7xvwVC2z280aVAFwI0_Cr0_Gr1UM2
+        8EF7xvwVC2z280aVCY1x0267AKxVW8JVW8Jr1ln4kS14v26r1Y6r17M2AIxVAIcxkEcVAq
+        07x20xvEncxIr21l57IF6xkI12xvs2x26I8E6xACxx1l5I8CrVACY4xI64kE6c02F40Ex7
+        xfMcIj6xIIjxv20xvE14v26r1Y6r17McIj6I8E87Iv67AKxVWUJVW8JwAm72CE4IkC6x0Y
+        z7v_Jr0_Gr1lF7xvr2IY64vIr41lc7I2V7IY0VAS07AlzVAYIcxG8wCY1x0262kKe7AKxV
+        WUAVWUtwCF04k20xvY0x0EwIxGrwCF04k20xvE74AGY7Cv6cx26rWl4I8I3I0E4IkC6x0Y
+        z7v_Jr0_Gr1l4IxYO2xFxVAFwI0_Jrv_JF1lx2IqxVAqx4xG67AKxVWUJVWUGwC20s026x
+        8GjcxK67AKxVWUGVWUWwC2zVAF1VAY17CE14v26r1q6r43MIIYrxkI7VAKI48JMIIF0xvE
+        2Ix0cI8IcVAFwI0_Jr0_JF4lIxAIcVC0I7IYx2IY6xkF7I0E14v26r1j6r4UMIIF0xvE42
+        xK8VAvwI8IcIk0rVWUJVWUCwCI42IY6I8E87Iv67AKxVWUJVW8JwCI42IY6I8E87Iv6xkF
+        7I0E14v26r1j6r4UYxBIdaVFxhVjvjDU0xZFpf9x07j0HqcUUUUU=
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The driver itself does not read the -cells values (and frankly, it
-shouldn't), so there's little sense in only allowing [1, 2] x [1].
-Allow any values.
 
-Fixes: 4d2bb3e65035 ("dt-bindings: timer: Convert ARM timer bindings to json-schema")
-Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
----
- .../devicetree/bindings/timer/arm,arch_timer_mmio.yaml      | 6 ++----
- 1 file changed, 2 insertions(+), 4 deletions(-)
+在 2023/3/7 下午8:47, Krzysztof Kozlowski 写道:
+> On 07/03/2023 12:50, Yinbo Zhu wrote:
+>> The Loongson-2 boot clock was used to spi and lio peripheral and
+>> this patch was to add boot clock index number.
+>>
+>> Signed-off-by: Yinbo Zhu <zhuyinbo@loongson.cn>
+>> ---
+> This is v13? Where is the changelog then?
 
-diff --git a/Documentation/devicetree/bindings/timer/arm,arch_timer_mmio.yaml b/Documentation/devicetree/bindings/timer/arm,arch_timer_mmio.yaml
-index f6efa48c4256..236e2a05c1ad 100644
---- a/Documentation/devicetree/bindings/timer/arm,arch_timer_mmio.yaml
-+++ b/Documentation/devicetree/bindings/timer/arm,arch_timer_mmio.yaml
-@@ -26,11 +26,9 @@ properties:
-     maxItems: 1
-     description: The control frame base address
- 
--  '#address-cells':
--    enum: [1, 2]
-+  '#address-cells': true
- 
--  '#size-cells':
--    const: 1
-+  '#size-cells': true
- 
-   ranges: true
- 
--- 
-2.39.2
+in fact, this is a new patch(v1),   but another clock driver patch in 
+this series had send as v13 and need depend on
+
+this patch so set current patch as v13.
+
+>
+>
+>>   include/dt-bindings/clock/loongson,ls2k-clk.h | 25 ++++++++++---------
+>>   1 file changed, 13 insertions(+), 12 deletions(-)
+>>
+>> diff --git a/include/dt-bindings/clock/loongson,ls2k-clk.h b/include/dt-bindings/clock/loongson,ls2k-clk.h
+>> index db1e27e792ff1..e86804365e506 100644
+>> --- a/include/dt-bindings/clock/loongson,ls2k-clk.h
+>> +++ b/include/dt-bindings/clock/loongson,ls2k-clk.h
+>> @@ -13,17 +13,18 @@
+>>   #define LOONGSON2_DC_PLL				3
+>>   #define LOONGSON2_PIX0_PLL				4
+>>   #define LOONGSON2_PIX1_PLL				5
+>> -#define LOONGSON2_NODE_CLK				6
+>> -#define LOONGSON2_HDA_CLK				7
+>> -#define LOONGSON2_GPU_CLK				8
+>> -#define LOONGSON2_DDR_CLK				9
+>> -#define LOONGSON2_GMAC_CLK				10
+>> -#define LOONGSON2_DC_CLK				11
+>> -#define LOONGSON2_APB_CLK				12
+>> -#define LOONGSON2_USB_CLK				13
+>> -#define LOONGSON2_SATA_CLK				14
+>> -#define LOONGSON2_PIX0_CLK				15
+>> -#define LOONGSON2_PIX1_CLK				16
+>> -#define LOONGSON2_CLK_END				17
+>> +#define LOONGSON2_BOOT_CLK				6
+> That's an ABI break and commit msg does not explain it.
+you meaning is that need add a explanation in commit msg that why
+
+LOONGSON2_BOOT_CLK was added after LOONGSON2_PIX1_PLL and not add it in ending, right?
+
+>
+>> +#define LOONGSON2_NODE_CLK				7
+>
+>
+> Best regards,
+> Krzysztof
 
