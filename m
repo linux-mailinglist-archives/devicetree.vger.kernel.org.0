@@ -2,62 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 371B86B0B4C
-	for <lists+devicetree@lfdr.de>; Wed,  8 Mar 2023 15:34:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D762B6B0B52
+	for <lists+devicetree@lfdr.de>; Wed,  8 Mar 2023 15:35:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231929AbjCHOdz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Mar 2023 09:33:55 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40724 "EHLO
+        id S231483AbjCHOfJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Mar 2023 09:35:09 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41852 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230053AbjCHOdy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Mar 2023 09:33:54 -0500
-Received: from mail-ed1-x52c.google.com (mail-ed1-x52c.google.com [IPv6:2a00:1450:4864:20::52c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D605A457E1
-        for <devicetree@vger.kernel.org>; Wed,  8 Mar 2023 06:33:47 -0800 (PST)
-Received: by mail-ed1-x52c.google.com with SMTP id i34so66557969eda.7
-        for <devicetree@vger.kernel.org>; Wed, 08 Mar 2023 06:33:47 -0800 (PST)
+        with ESMTP id S232078AbjCHOez (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Mar 2023 09:34:55 -0500
+Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0A989C1C28
+        for <devicetree@vger.kernel.org>; Wed,  8 Mar 2023 06:34:49 -0800 (PST)
+Received: by mail-ed1-x531.google.com with SMTP id g3so66707474eda.1
+        for <devicetree@vger.kernel.org>; Wed, 08 Mar 2023 06:34:48 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1678286026;
+        d=linaro.org; s=google; t=1678286087;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=pY55357dkgIJHtMmft1f0nkUwBVH6QdF76V6vHUnWRQ=;
-        b=EwgLnIRKAvNBZKGoXoxbVjxB7DNSU683oqoi5sKcMqW44byB/oXEAiy99GQ/e0UOhx
-         jjyba+mB074zRUYfywqUb16WRSjHZJTOkb9BpfUhsTOZwLkpirGHq0jwUYP8goUCrQKN
-         2OFARaqqaY6vK3ZROVUPqlp6G6YM9Yo73uQlTiunA0pikini2IQE0YFJikFoAgpT3ksR
-         3pK8jYsGE2U8KFIMLx2TrFzoowQEKNX6ktIhw5uuLCyMxT5LoAJl3Ad7ZupBLL7eIvCb
-         oooS/uSx5efIK8gjDshoI2yL5tw8SICHkT9BfVnxtxvMIVgifJPjdsKOSwDnTA9sW+qY
-         KQRQ==
+        bh=Sr9+Tr2n8Mmt58h0Z1F/3/sRtkDaHU1uY4sWcQnY2kw=;
+        b=D3jvffyWRbATIx1tWCrE5xoyQZcZC8E9+8+nWdoUdAuP8/yur58qwkkJ3rCeayNSwB
+         x/sD2F27qa/cR9KujFQR2RB/7vd2KvvYtj1pokUp7oYxOmJXEcVUfDf4WF8I3ers35XA
+         ZAdrxDDlx6ewJPB8Ix38VSDwW2HTMSraR9ikJ4OhFmGJOd6cJkytJnFo2gGGzelljLW3
+         q8oUh/LCduRqu0u59rQjO0j4MlAw1JdkoxG9W9Z8EcSRv6KiSP0tvsC5oE9ulsgwydxH
+         s9sOzU4BLRQFnksGP1sltQa+GJkbMxOoWNCLNwOqk+K+QIr2q0Gs8i24/uqZksWxemMm
+         Zfqw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678286026;
+        d=1e100.net; s=20210112; t=1678286087;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=pY55357dkgIJHtMmft1f0nkUwBVH6QdF76V6vHUnWRQ=;
-        b=46M43n4s6CHocLYY6zRlktVvefGkM0SDyfe3L6brdTEroUINWari+uvv8SAMndikkb
-         jD4fLCbVbGFEmuGhY71o+tih6XQ560LWjGIGKZEy89eLe4ToqEelVWnY0g4iJNwgf6wS
-         X67CAPdlFuqCAuQ2wqFbAgRN5RYEND6ausfo5IOnHJCeXez+GrGpeqVmCBuqTrl3qxyy
-         Aqq+Ny4wdxUgW0x0L+YbXpBpRUGbIPeeFWbQVQvSQLueuQ9g1aiTMmgYN8ae3Mt8LGUY
-         dkiXtIGxmE3fwMwD/K7hvD7LhkORKTvS6m1EJnGoyZ6Y6x0o5NRMQ3oi/Bm/LMU86qgu
-         fvIA==
-X-Gm-Message-State: AO0yUKV87BhtN3YqfuIJ1B361HIiuWJeiPCVsWsJfUW9QRUMAoDs1jeQ
-        yy8GazIjkJW+sF11FmbIIpWrfw==
-X-Google-Smtp-Source: AK7set9VB1j9ytIOlayHEEbp9UwYl/A/qcegCMyS/RXOPIgA8bDCdREDYhZ3VpNVlRRWgZxAGEOrBw==
-X-Received: by 2002:a17:906:6b83:b0:8e5:c06b:90e2 with SMTP id l3-20020a1709066b8300b008e5c06b90e2mr16842327ejr.21.1678286026388;
-        Wed, 08 Mar 2023 06:33:46 -0800 (PST)
+        bh=Sr9+Tr2n8Mmt58h0Z1F/3/sRtkDaHU1uY4sWcQnY2kw=;
+        b=Is9hwD+MNue8VNemGXyD2Y4jmSw7fScwHV5b585preNwHeskJivcVwFpIZEkw9LnCT
+         x48uRw37L+HMUkhdPmrWaHLWRsT54WTq7FL1ZOqKULt6SkMUh9IwwLYGRY+Cfd5v1L1L
+         ELKfO1+N1q1gX45dLf83qeNmdMWg77Lu3y2J7kh/+jPEkAWOUok/F1PxpyZvnOWHgo2U
+         kCinyAiVNRl4Gu3J1D26n82gN5k0g0L9L7W0EeGU/iijnFhTSHZP9HVjLcsHwVyTiKpW
+         D1NfxHcJBcfbrh646kaeQ6QqatiQFpVA2GiHP4/C8S6+yHxKM7jmsJyHwT3Lr0/2AFtE
+         RmyA==
+X-Gm-Message-State: AO0yUKXpEsGH1/s4ZpU2hOk//mTemRx3yecOYVMJ5+O7OHQwjZCIqOaw
+        NiNrMxxVMiO2ouhZoTVpT4TC+Q==
+X-Google-Smtp-Source: AK7set9jEeIVuUFx7pZKgIdZdftTYm6ZL2N8ApryA/j4etXuJ0VT+nxTTGZBOYPeCwyCC43ushGqag==
+X-Received: by 2002:a17:907:8a06:b0:889:ed81:dff7 with SMTP id sc6-20020a1709078a0600b00889ed81dff7mr23174446ejc.9.1678286087563;
+        Wed, 08 Mar 2023 06:34:47 -0800 (PST)
 Received: from ?IPV6:2a02:810d:15c0:828:ff33:9b14:bdd2:a3da? ([2a02:810d:15c0:828:ff33:9b14:bdd2:a3da])
-        by smtp.gmail.com with ESMTPSA id op20-20020a170906bcf400b008ca52f7fbcbsm7512984ejb.1.2023.03.08.06.33.45
+        by smtp.gmail.com with ESMTPSA id i24-20020a50d758000000b004ad15d5ef08sm8388372edj.58.2023.03.08.06.34.46
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 08 Mar 2023 06:33:46 -0800 (PST)
-Message-ID: <efe2d0a5-7e4a-c4ff-0bcc-c7e64f5538d3@linaro.org>
-Date:   Wed, 8 Mar 2023 15:33:44 +0100
+        Wed, 08 Mar 2023 06:34:47 -0800 (PST)
+Message-ID: <1a837bec-8658-3200-edff-76809de3fae6@linaro.org>
+Date:   Wed, 8 Mar 2023 15:34:46 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.8.0
-Subject: Re: [PATCH v1 01/25] arm64: dts: colibri-imx8x: Prepare for qxp and
- dx variants
+Subject: Re: [PATCH v1 17/25] arm64: dts: colibri-imx8x: eval: Add spi-to-can
 Content-Language: en-US
-To:     Philippe Schenker <dev@pschenker.ch>, devicetree@vger.kernel.org,
+To:     dev@pschenker.ch, devicetree@vger.kernel.org,
         Shawn Guo <shawnguo@kernel.org>,
         Sascha Hauer <s.hauer@pengutronix.de>
 Cc:     NXP Linux Team <linux-imx@nxp.com>,
@@ -67,50 +66,51 @@ Cc:     NXP Linux Team <linux-imx@nxp.com>,
         Frank Rowand <frowand.list@gmail.com>,
         linux-arm-kernel@lists.infradead.org,
         Fabio Estevam <festevam@gmail.com>,
-        Philippe Schenker <philippe.schenker@toradex.com>,
         linux-kernel@vger.kernel.org
 References: <20230308125300.58244-1-dev@pschenker.ch>
- <20230308125300.58244-2-dev@pschenker.ch>
+ <20230308125300.58244-18-dev@pschenker.ch>
+ <07e64710-6b91-9da6-f483-03706b7ea95a@linaro.org>
+ <3730a506119804b5740854c74d1558010ce37b47.camel@pschenker.ch>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230308125300.58244-2-dev@pschenker.ch>
+In-Reply-To: <3730a506119804b5740854c74d1558010ce37b47.camel@pschenker.ch>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
-        autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 08/03/2023 13:52, Philippe Schenker wrote:
-> From: Philippe Schenker <philippe.schenker@toradex.com>
-
-Subject: Split? Or Rename? Because prepare is too vague.
-
+On 08/03/2023 14:43, Philippe Schenker wrote:
+>>> +       mcp2515: can@0 {
+>>> +               compatible = "microchip,mcp2515";
+>>> +               reg = <0>;
+>>> +               interrupt-parent = <&lsio_gpio3>;
+>>> +               interrupts = <13 IRQ_TYPE_EDGE_FALLING>;
+>>> +               pinctrl-0 = <&pinctrl_can_int>;
+>>> +               pinctrl-names = "default";
+>>> +               clocks = <&clk16m>;
+>>
+>> You just sorted all nodes in previous patches and add something
+>> unsorted? What is then the style of order? Random name?
 > 
-> Toradex sells the Colibri iMX8X module in variants with the i.MX 8QXP
-> and i.MX8DX SoC. Prepare for this by moving majority of stuff from
-> imx8qxp-colibri.dtsi into imx8x-colibri.dtsi.
+> My logic behind this one is
 > 
-> Remove DX from the model string.
-> 
-> This commit intends no functional change.
-> 
-> Signed-off-by: Philippe Schenker <philippe.schenker@toradex.com>
-> ---
-> 
->  .../dts/freescale/imx8qxp-colibri-eval-v3.dts |   4 +-
->  .../boot/dts/freescale/imx8qxp-colibri.dtsi   | 590 +----------------
->  ...val-v3.dtsi => imx8x-colibri-eval-v3.dtsi} |   0
->  .../boot/dts/freescale/imx8x-colibri.dtsi     | 593 ++++++++++++++++++
+> 1. compatible property
+> 2. reg property
+> 3. standard properties 
+>    - first interrupt
+>    - then pinctrl
+> 4. specific properties
+>    - again alphabetically: clocks, spi-max-frequency
 
-Use proper -B/-C/-M settings so copy will be detected. It's not possible
-to review it otherwise.
+clocks and spi-max-frequency are standard properties.
 
-
+BTW, what is a specific property?
 
 Best regards,
 Krzysztof
