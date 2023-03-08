@@ -2,112 +2,143 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6FF426B02D1
-	for <lists+devicetree@lfdr.de>; Wed,  8 Mar 2023 10:25:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B8EFE6B02D8
+	for <lists+devicetree@lfdr.de>; Wed,  8 Mar 2023 10:25:16 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229525AbjCHJZF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Mar 2023 04:25:05 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57038 "EHLO
+        id S231127AbjCHJZN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Mar 2023 04:25:13 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56466 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230518AbjCHJYp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Mar 2023 04:24:45 -0500
-Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AC7F4A1FD7
-        for <devicetree@vger.kernel.org>; Wed,  8 Mar 2023 01:24:26 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1678267467; x=1709803467;
-  h=from:to:cc:subject:date:message-id:mime-version:
-   content-transfer-encoding;
-  bh=3ZxyGCq/TNB3ZgFnljYXTNz9Hea23GLhgn5o+xe9WtY=;
-  b=CulOKKf6PuSZZxxFuhAmvcjMDiPfjH11Bg9DkrHIFNrYCObDOn+w2awd
-   Kq8vl/m8TU3aTcPMBphEVVxUcC/OjBcncRM/luV8HSvkwP/zSgBJtsc/M
-   wmWF0xBRNyJBgiS35HO3iqD21dhqHJRZX/+pFS9nTriu28CkxtP/hK5pF
-   Qp27t6oERRDIS3yVtAwAX4jFRlHn3RHcjyRweemqDFErIMwcgeUKua7Rb
-   QEFC7irrw7xH6ZgLMu3w8BU25DIB8aFXQyMtwoHcW4EtOvuk2du5qW0B9
-   LIiaKVnQz0j1/Qx112SNpl55C8KaHudi82FLc1blyjDOfVBSgcxKn4Lmq
-   A==;
-X-IronPort-AV: E=Sophos;i="5.98,243,1673910000"; 
-   d="scan'208";a="29539998"
-Received: from unknown (HELO tq-pgp-pr1.tq-net.de) ([192.168.6.15])
-  by mx1-pgp.tq-group.com with ESMTP; 08 Mar 2023 10:24:24 +0100
-Received: from mx1.tq-group.com ([192.168.6.7])
-  by tq-pgp-pr1.tq-net.de (PGP Universal service);
-  Wed, 08 Mar 2023 10:24:24 +0100
-X-PGP-Universal: processed;
-        by tq-pgp-pr1.tq-net.de on Wed, 08 Mar 2023 10:24:24 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1678267464; x=1709803464;
-  h=from:to:cc:subject:date:message-id:mime-version:
-   content-transfer-encoding;
-  bh=3ZxyGCq/TNB3ZgFnljYXTNz9Hea23GLhgn5o+xe9WtY=;
-  b=iLBrZhB05K3REVTgUO0rfb45YMLHy/d9IE2Ncg+xHX69u25WJ8L21PWg
-   t5SPjM9ooHM1RGw2QYm2vMDpdn4h/HBwMX2TV0PO+hB5JXpTxoKtcQ3Za
-   8Y4LWgMXfUoK2kwH8sGpEizqijKSCRg7bmVCVgO1dQWyB1qPJbTOVEhpW
-   m7Tmf/sOMIxE5cwN08x4gAZCWWeedAfjueIMh1OVssdQGMwbfv9TpgQ3O
-   X7gB+Ld0OC9g7luFdaBvLunPBKA8/rkLJV6X2nIZlzWYNYd2ZS5yiRcaS
-   N2G46Gz5ste42xfAsYjVueoun3oseEhO+6pz/oywSxzlF6I1lpice8zeL
-   Q==;
-X-IronPort-AV: E=Sophos;i="5.98,243,1673910000"; 
-   d="scan'208";a="29539997"
-Received: from vtuxmail01.tq-net.de ([10.115.0.20])
-  by mx1.tq-group.com with ESMTP; 08 Mar 2023 10:24:24 +0100
-Received: from steina-w.tq-net.de (unknown [10.123.53.21])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
-        (No client certificate requested)
-        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id B73E9280056;
-        Wed,  8 Mar 2023 10:24:23 +0100 (CET)
-From:   Alexander Stein <alexander.stein@ew.tq-group.com>
-To:     Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S231232AbjCHJYv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Mar 2023 04:24:51 -0500
+Received: from loongson.cn (mail.loongson.cn [114.242.206.163])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 384D79DE33;
+        Wed,  8 Mar 2023 01:24:30 -0800 (PST)
+Received: from loongson.cn (unknown [10.20.42.35])
+        by gateway (Coremail) with SMTP id _____8BxMI9NVAhk1c8JAA--.12949S3;
+        Wed, 08 Mar 2023 17:24:29 +0800 (CST)
+Received: from [10.20.42.35] (unknown [10.20.42.35])
+        by localhost.localdomain (Coremail) with SMTP id AQAAf8Ax+71KVAhkbDlPAA--.6030S3;
+        Wed, 08 Mar 2023 17:24:28 +0800 (CST)
+Subject: Re: [PATCH v13 1/2] dt-bindings: clock: add loongson-2 boot clock
+ index
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>, zhuyinbo@loongson.cn,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>
-Cc:     Alexander Stein <alexander.stein@ew.tq-group.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: [PATCH 1/1] arm64: dts: imx8mp: fix address length for LCDIF2
-Date:   Wed,  8 Mar 2023 10:24:19 +0100
-Message-Id: <20230308092420.2742432-1-alexander.stein@ew.tq-group.com>
-X-Mailer: git-send-email 2.34.1
+        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org
+Cc:     Jianmin Lv <lvjianmin@loongson.cn>,
+        Liu Peibao <liupeibao@loongson.cn>, wanghongliang@loongson.cn,
+        loongson-kernel@lists.loongnix.cn
+References: <20230307115022.12846-1-zhuyinbo@loongson.cn>
+ <692a62da-a9a1-fa23-6e24-723d73c3a423@linaro.org>
+ <5e9b3bd5-d885-6237-5e14-2becb3c956cc@loongson.cn>
+ <31e2a67a-c046-9501-80de-e754ed450195@linaro.org>
+From:   zhuyinbo <zhuyinbo@loongson.cn>
+Message-ID: <ace5159b-ebbd-7805-518c-ed3d39e4793e@loongson.cn>
+Date:   Wed, 8 Mar 2023 17:24:26 +0800
+User-Agent: Mozilla/5.0 (X11; Linux loongarch64; rv:68.0) Gecko/20100101
+ Thunderbird/68.7.0
 MIME-Version: 1.0
+In-Reply-To: <31e2a67a-c046-9501-80de-e754ed450195@linaro.org>
+Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Language: en-US
+X-CM-TRANSID: AQAAf8Ax+71KVAhkbDlPAA--.6030S3
+X-CM-SenderInfo: 52kx5xhqerqz5rrqw2lrqou0/
+X-Coremail-Antispam: 1Uk129KBjvJXoWxAw48ArW7CFy7WF4kGr43trb_yoW5Gry8pr
+        4vgFsxKFW2yF4xKw4IqwnxKr1Y9w4xJr1UAF4Uur1UXr17Xwn5tFs7JF4fur90grWxJFyx
+        ZFWq9w4Fva1DZwUanT9S1TB71UUUUUJqnTZGkaVYY2UrUUUUj1kv1TuYvTs0mT0YCTnIWj
+        qI5I8CrVACY4xI64kE6c02F40Ex7xfYxn0WfASr-VFAUDa7-sFnT9fnUUIcSsGvfJTRUUU
+        bfxFc2x0x2IEx4CE42xK8VAvwI8IcIk0rVWrJVCq3wAFIxvE14AKwVWUXVWUAwA2ocxC64
+        kIII0Yj41l84x0c7CEw4AK67xGY2AK021l84ACjcxK6xIIjxv20xvE14v26r1I6r4UM28E
+        F7xvwVC0I7IYx2IY6xkF7I0E14v26r4j6F4UM28EF7xvwVC2z280aVAFwI0_Gr1j6F4UJw
+        A2z4x0Y4vEx4A2jsIEc7CjxVAFwI0_Gr1j6F4UJwAaw2AFwI0_Jrv_JF1le2I262IYc4CY
+        6c8Ij28IcVAaY2xG8wAqjxCEc2xF0cIa020Ex4CE44I27wAqx4xG64xvF2IEw4CE5I8CrV
+        C2j2WlYx0E2Ix0cI8IcVAFwI0_Jrv_JF1lYx0Ex4A2jsIE14v26r4j6F4UMcvjeVCFs4IE
+        7xkEbVWUJVW8JwACjcxG0xvEwIxGrwCYjI0SjxkI62AI1cAE67vIY487MxAIw28IcxkI7V
+        AKI48JMxAIw28IcVCjz48v1sIEY20_WwCFx2IqxVCFs4IE7xkEbVWUJVW8JwCFI7km07C2
+        67AKxVWUXVWUAwC20s026c02F40E14v26r1j6r18MI8I3I0E7480Y4vE14v26r106r1rMI
+        8E67AF67kF1VAFwI0_Jw0_GFylIxkGc2Ij64vIr41lIxAIcVC0I7IYx2IY67AKxVWUJVWU
+        CwCI42IY6xIIjxv20xvEc7CjxVAFwI0_Jr0_Gr1lIxAIcVCF04k26cxKx2IYs7xG6r1j6r
+        1xMIIF0xvEx4A2jsIE14v26r4j6F4UMIIF0xvEx4A2jsIEc7CjxVAFwI0_Gr0_Gr1UYxBI
+        daVFxhVjvjDU0xZFpf9x07j5HUDUUUUU=
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-0x238 is the offset for PANIC0_THRES, so the length needs to be 4 bytes
-greater than that.
 
-Fixes: 94e6197dadc9 ("arm64: dts: imx8mp: Add LCDIF2 & LDB nodes")
-Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
----
-Does it make sense to increase the length to 0x10000 instead which
-is the size mentioned in the memory map in the RM?
+在 2023/3/8 下午4:37, Krzysztof Kozlowski 写道:
+> On 08/03/2023 02:35, zhuyinbo wrote:
+>> 在 2023/3/7 下午8:47, Krzysztof Kozlowski 写道:
+>>> On 07/03/2023 12:50, Yinbo Zhu wrote:
+>>>> The Loongson-2 boot clock was used to spi and lio peripheral and
+>>>> this patch was to add boot clock index number.
+>>>>
+>>>> Signed-off-by: Yinbo Zhu <zhuyinbo@loongson.cn>
+>>>> ---
+>>> This is v13? Where is the changelog then?
+>> in fact, this is a new patch(v1),   but another clock driver patch in
+>> this series had send as v13 and need depend on
+>>
+>> this patch so set current patch as v13.
+> This should be explained in changelog.
 
- arch/arm64/boot/dts/freescale/imx8mp.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+okay I got it , and I whether need resend a v14 patch that in order to  
+add this explain in changelog ?
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mp.dtsi b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-index a19224fe1a6a..722e36d7b420 100644
---- a/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-@@ -1128,7 +1128,7 @@ aips4: bus@32c00000 {
- 
- 			lcdif2: display-controller@32e90000 {
- 				compatible = "fsl,imx8mp-lcdif";
--				reg = <0x32e90000 0x238>;
-+				reg = <0x32e90000 0x23c>;
- 				interrupts = <GIC_SPI 6 IRQ_TYPE_LEVEL_HIGH>;
- 				clocks = <&clk IMX8MP_CLK_MEDIA_DISP2_PIX_ROOT>,
- 					 <&clk IMX8MP_CLK_MEDIA_AXI_ROOT>,
--- 
-2.34.1
+>
+>>>
+>>>>    include/dt-bindings/clock/loongson,ls2k-clk.h | 25 ++++++++++---------
+>>>>    1 file changed, 13 insertions(+), 12 deletions(-)
+>>>>
+>>>> diff --git a/include/dt-bindings/clock/loongson,ls2k-clk.h b/include/dt-bindings/clock/loongson,ls2k-clk.h
+>>>> index db1e27e792ff1..e86804365e506 100644
+>>>> --- a/include/dt-bindings/clock/loongson,ls2k-clk.h
+>>>> +++ b/include/dt-bindings/clock/loongson,ls2k-clk.h
+>>>> @@ -13,17 +13,18 @@
+>>>>    #define LOONGSON2_DC_PLL				3
+>>>>    #define LOONGSON2_PIX0_PLL				4
+>>>>    #define LOONGSON2_PIX1_PLL				5
+>>>> -#define LOONGSON2_NODE_CLK				6
+>>>> -#define LOONGSON2_HDA_CLK				7
+>>>> -#define LOONGSON2_GPU_CLK				8
+>>>> -#define LOONGSON2_DDR_CLK				9
+>>>> -#define LOONGSON2_GMAC_CLK				10
+>>>> -#define LOONGSON2_DC_CLK				11
+>>>> -#define LOONGSON2_APB_CLK				12
+>>>> -#define LOONGSON2_USB_CLK				13
+>>>> -#define LOONGSON2_SATA_CLK				14
+>>>> -#define LOONGSON2_PIX0_CLK				15
+>>>> -#define LOONGSON2_PIX1_CLK				16
+>>>> -#define LOONGSON2_CLK_END				17
+>>>> +#define LOONGSON2_BOOT_CLK				6
+>>> That's an ABI break and commit msg does not explain it.
+>> you meaning is that need add a explanation in commit msg that why
+> You need good explanation to break the ABI. I don't understand the
+> commit msg, but anyway I could not find there justification for ABI
+> break. If you do not have good justification, don't break the ABI,
+
+The commit msg is the patch commit  log,  and I maybe not got it about 
+break the ABI.  You said about "break the ABI"
+
+is whether is location issue about "LOONGSON2_BOOT_CLK"?   if yes,   the 
+LOONGSON2_BOOT_CLK was placed
+
+after LOONGSON2_PIX1_PLL that is due to their clock parent is same.     
+and I whether need add this explanation
+
+in patch commit log description?
+
+>
+>
+>
+> Best regards,
+> Krzysztof
 
