@@ -2,98 +2,137 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 72DA16B069F
-	for <lists+devicetree@lfdr.de>; Wed,  8 Mar 2023 13:07:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2C8216B06C8
+	for <lists+devicetree@lfdr.de>; Wed,  8 Mar 2023 13:17:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230509AbjCHMHO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Mar 2023 07:07:14 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46066 "EHLO
+        id S230211AbjCHMRv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Mar 2023 07:17:51 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33312 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230381AbjCHMHN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Mar 2023 07:07:13 -0500
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E52C4B8F3F
-        for <devicetree@vger.kernel.org>; Wed,  8 Mar 2023 04:06:25 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-        s=mimecast20190719; t=1678277184;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=fPaX9pdabP6JQosCXDJl3Igxu4+FbhmhgJXUTxNfUvs=;
-        b=O0kk8dnkvxyDfqKo3AZvFOvhC9fUfoBsA/SAxPdRoa8beqJaeJxSMOa6V7Gg/B2G4hXUEo
-        WRMLki7fM44pkxajICwwQs0nuFXCjXILMpggTiKathPv3Z/4yaWsOjcsNqoQ6yy+Ffs8bq
-        KQUjaczVrgsBHsGz5O8Oj06RR8wRPKU=
-Received: from mail-io1-f71.google.com (mail-io1-f71.google.com
- [209.85.166.71]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-653-xKE7-edXNxKx1lPlYA-lHg-1; Wed, 08 Mar 2023 07:06:23 -0500
-X-MC-Unique: xKE7-edXNxKx1lPlYA-lHg-1
-Received: by mail-io1-f71.google.com with SMTP id b26-20020a5d805a000000b0074cfe3a44aeso8553738ior.10
-        for <devicetree@vger.kernel.org>; Wed, 08 Mar 2023 04:06:22 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678277181;
-        h=user-agent:in-reply-to:content-disposition:mime-version:references
-         :message-id:subject:cc:to:from:date:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=fPaX9pdabP6JQosCXDJl3Igxu4+FbhmhgJXUTxNfUvs=;
-        b=wwkU4bqDo6624KQxFKS5Eb1L7dZOxWfKV8oNjI4TdICP7i5d1Rj9Ma/tAU9KjiDiaq
-         6vMz5Ts3YNEUfr8Jdq9dD1leDPTYqEgNwNa4NVyaOta4a6/0f6uQX5EsbBln5cSkEaNs
-         lOcqOBUqPSKi6ytXKG3zPo/zG5g+BtoWu9ydmS/6TlXlbD1k4s3XjxggZr74USxzTT5h
-         mqbgcmo0P92kBsebSD3RV83EFGFfEGe1ZBoszKVOfNnYSkUvzGgBqDumDM+xJtEeiJmg
-         UuOFwibnyZfw7o1kLdBGlL1FY9f3LD/GXrZGe98A1Kc1Ce/QVhaN/DF1QGPU+Jd4JWot
-         3NyA==
-X-Gm-Message-State: AO0yUKXtkv+3arS42sUmgy7DEdoz+ycRvtafwFxz/9zd7s9wjQLCvzWK
-        urvtwR3re+A/xC2yMjOnXDmceS2EBTu28HK6OsTV+57EJpBLIC8WkWUAlTnBjSJLjC9DUs0f2fj
-        veQP7sbs+t2QXrmi8eX3x4A==
-X-Received: by 2002:a05:6e02:1987:b0:316:b0b2:c2f2 with SMTP id g7-20020a056e02198700b00316b0b2c2f2mr16913183ilf.3.1678277181568;
-        Wed, 08 Mar 2023 04:06:21 -0800 (PST)
-X-Google-Smtp-Source: AK7set9uY+GlPLXK8LkX+GE1LtB5w/LJF1oVXckLfL3zNH8Xsv3v09degyuUCbAT1+n+cqB1ZJ1vCw==
-X-Received: by 2002:a05:6e02:1987:b0:316:b0b2:c2f2 with SMTP id g7-20020a056e02198700b00316b0b2c2f2mr16913166ilf.3.1678277181374;
-        Wed, 08 Mar 2023 04:06:21 -0800 (PST)
-Received: from x1 (c-73-214-169-22.hsd1.pa.comcast.net. [73.214.169.22])
-        by smtp.gmail.com with ESMTPSA id u5-20020a02c045000000b003b1d7fbf810sm4971683jam.148.2023.03.08.04.06.19
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 08 Mar 2023 04:06:20 -0800 (PST)
-Date:   Wed, 8 Mar 2023 07:06:19 -0500
-From:   Brian Masney <bmasney@redhat.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     andersson@kernel.org, quic_shazhuss@quicinc.com, agross@kernel.org,
-        konrad.dybcio@linaro.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] arm64: dts: qcom: sa8540p-ride: correct name of
- remoteproc_nsp0 firmware
-Message-ID: <ZAh6O9TbX/pnOnxp@x1>
-References: <20230307232340.2370476-1-bmasney@redhat.com>
- <1a915c33-ef32-852c-a856-10c8d35be151@linaro.org>
+        with ESMTP id S229774AbjCHMRt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Mar 2023 07:17:49 -0500
+Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B38E999D7A;
+        Wed,  8 Mar 2023 04:17:48 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1678277868; x=1709813868;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=Vgbsx8r3QuxIB3RjFJxSxX9wWfwdsEyw2KJep8+k8dw=;
+  b=IBppv/DL66oC5r6EAyAPJOlsdiTw0KXW/2ZExZs2+qr83eq4zTHrprkf
+   gyh3gQt355+j86zDjnwDTAlMBgJANkPC4zObVHnTnwmw2SEzb4mgIc9Bt
+   SrhDIQGMQFQengY+BpTrNYoRwWcgt9CoXjIhQF0OYW42avoo21W8Ysnqh
+   XCW8YEs1TQ9W/v+YWV2spjMQ5j/89k+4Ex0GA0ou3iOSkV2hT4gV3yRF4
+   ZpNNl62GvbLnEpXo3brOVQfyDJB9Gipyq8NeLEn6uc53Ku3VPdPhnrIEH
+   HciMKSlsEUPO2fdFvMN6/r2EkTb7N8lom4cQTw/ZYnARJgeS2N6B7JwaE
+   g==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10642"; a="398717354"
+X-IronPort-AV: E=Sophos;i="5.98,243,1673942400"; 
+   d="scan'208";a="398717354"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+  by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 08 Mar 2023 04:17:48 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6500,9779,10642"; a="851063973"
+X-IronPort-AV: E=Sophos;i="5.98,243,1673942400"; 
+   d="scan'208";a="851063973"
+Received: from lkp-server01.sh.intel.com (HELO b613635ddfff) ([10.239.97.150])
+  by orsmga005.jf.intel.com with ESMTP; 08 Mar 2023 04:17:45 -0800
+Received: from kbuild by b613635ddfff with local (Exim 4.96)
+        (envelope-from <lkp@intel.com>)
+        id 1pZsjo-00027f-1Q;
+        Wed, 08 Mar 2023 12:17:44 +0000
+Date:   Wed, 8 Mar 2023 20:16:51 +0800
+From:   kernel test robot <lkp@intel.com>
+To:     Yinbo Zhu <zhuyinbo@loongson.cn>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org
+Cc:     oe-kbuild-all@lists.linux.dev, Jianmin Lv <lvjianmin@loongson.cn>,
+        Liu Peibao <liupeibao@loongson.cn>, wanghongliang@loongson.cn,
+        loongson-kernel@lists.loongnix.cn, Yinbo Zhu <zhuyinbo@loongson.cn>
+Subject: Re: [PATCH v13 2/2] clk: clk-loongson2: add clock controller driver
+ support
+Message-ID: <202303082037.QPfBP64A-lkp@intel.com>
+References: <20230307115022.12846-2-zhuyinbo@loongson.cn>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <1a915c33-ef32-852c-a856-10c8d35be151@linaro.org>
-User-Agent: Mutt/2.2.7 (2022-08-07)
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_NONE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+In-Reply-To: <20230307115022.12846-2-zhuyinbo@loongson.cn>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_NONE,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Mar 08, 2023 at 12:02:04PM +0100, Krzysztof Kozlowski wrote:
-> On 08/03/2023 00:23, Brian Masney wrote:
-> > The cdsp.mbn firmware that's referenced in sa8540p-ride.dts is actually
-> > named cdsp0.mbn in the deliverables from Qualcomm. Let's go ahead and
-> > correct the name to match what's in Qualcomm's deliverable.
-> 
-> I don't think vendor deliverables matter. linux-firmware is here more
-> important. The file will be cdsp.mbn in the firmware, won't it?
+Hi Yinbo,
 
-cdsp0.mbn and cdsp1.mbn for the sa8540p are not in linux-firmware and I
-far as I know there's no plan for someone to submit those since QC would
-need to approve that. I can ask though since the DTS for these two bits
-has been submitted upstream.
+I love your patch! Yet something to improve:
 
-Brian
+[auto build test ERROR on clk/clk-next]
+[also build test ERROR on robh/for-next linus/master v6.3-rc1 next-20230308]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
+url:    https://github.com/intel-lab-lkp/linux/commits/Yinbo-Zhu/clk-clk-loongson2-add-clock-controller-driver-support/20230307-195252
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/clk/linux.git clk-next
+patch link:    https://lore.kernel.org/r/20230307115022.12846-2-zhuyinbo%40loongson.cn
+patch subject: [PATCH v13 2/2] clk: clk-loongson2: add clock controller driver support
+config: mips-allyesconfig (https://download.01.org/0day-ci/archive/20230308/202303082037.QPfBP64A-lkp@intel.com/config)
+compiler: mips-linux-gcc (GCC) 12.1.0
+reproduce (this is a W=1 build):
+        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+        chmod +x ~/bin/make.cross
+        # https://github.com/intel-lab-lkp/linux/commit/391d6fc63ac65f5456e4755c9dd85232a6296285
+        git remote add linux-review https://github.com/intel-lab-lkp/linux
+        git fetch --no-tags linux-review Yinbo-Zhu/clk-clk-loongson2-add-clock-controller-driver-support/20230307-195252
+        git checkout 391d6fc63ac65f5456e4755c9dd85232a6296285
+        # save the config file
+        mkdir build_dir && cp config build_dir/.config
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.1.0 make.cross W=1 O=build_dir ARCH=mips olddefconfig
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.1.0 make.cross W=1 O=build_dir ARCH=mips SHELL=/bin/bash drivers/
+
+If you fix the issue, kindly add following tag where applicable
+| Reported-by: kernel test robot <lkp@intel.com>
+| Link: https://lore.kernel.org/oe-kbuild-all/202303082037.QPfBP64A-lkp@intel.com/
+
+All errors (new ones prefixed by >>):
+
+   drivers/clk/clk-loongson2.c: In function 'loongson2_calc_pll_rate':
+>> drivers/clk/clk-loongson2.c:79:15: error: implicit declaration of function 'readq'; did you mean 'readl'? [-Werror=implicit-function-declaration]
+      79 |         val = readq(loongson2_pll_base + offset);
+         |               ^~~~~
+         |               readl
+   cc1: some warnings being treated as errors
+
+
+vim +79 drivers/clk/clk-loongson2.c
+
+    73	
+    74	static unsigned long loongson2_calc_pll_rate(int offset, unsigned long rate)
+    75	{
+    76		u64 val;
+    77		u32 mult = 1, div = 1;
+    78	
+  > 79		val = readq(loongson2_pll_base + offset);
+    80	
+    81		mult = (val >> LOONGSON2_PLL_MULT_SHIFT) &
+    82				clk_div_mask(LOONGSON2_PLL_MULT_WIDTH);
+    83		div = (val >> LOONGSON2_PLL_DIV_SHIFT) &
+    84				clk_div_mask(LOONGSON2_PLL_DIV_WIDTH);
+    85	
+    86		return div_u64((u64)rate * mult, div);
+    87	}
+    88	
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests
