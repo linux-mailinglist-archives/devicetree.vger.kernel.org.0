@@ -2,108 +2,197 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 149F66B09BE
-	for <lists+devicetree@lfdr.de>; Wed,  8 Mar 2023 14:47:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 653C36B09DD
+	for <lists+devicetree@lfdr.de>; Wed,  8 Mar 2023 14:51:54 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230496AbjCHNrc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Mar 2023 08:47:32 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42224 "EHLO
+        id S231253AbjCHNvw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Mar 2023 08:51:52 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51574 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230434AbjCHNrN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Mar 2023 08:47:13 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E2B0C8734F;
-        Wed,  8 Mar 2023 05:47:01 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 8992FB81CC2;
-        Wed,  8 Mar 2023 13:47:00 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E7B09C433EF;
-        Wed,  8 Mar 2023 13:46:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1678283219;
-        bh=Dzgnpfbs+yKJWVDVrz+SM2ZC2bUbXHfqK4bikVA/M18=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=CHGYRzxYhAAVcNVUPcbyyBQ4jgkn4MFQo6OvvzVpkJGBqgTrQg0Dm6sJe61ewYZrH
-         bkhBN0NpteamYmOYwAEEaB5kdEGZxB1G7lxQh+QwhkIp//+PsaFBIMNx/uCIYjZICh
-         BImANFNNazfOSrK7cFYD4f09XNR7JyGt07+J0GvLw+zIKR+iTXHnoEgb19O3SpHXBP
-         wNrJeRgqh8uajmUdqqn7+yGXCMUug+oDk8+3fPIQ11y6ehWJ/OjiOc9n3qra8SAM7V
-         LIgj3FoV6nBlp0hFz/GS1lHwhDqUBv3rxMiP4aPeMhx7azX44+jwH4ZbYHF6DaIBfX
-         ie6Zj+gDUWiag==
-Date:   Wed, 8 Mar 2023 13:46:52 +0000
-From:   Mark Brown <broonie@kernel.org>
-To:     Svyatoslav Ryhel <clamor95@gmail.com>
-Cc:     Guenter Roeck <linux@roeck-us.net>,
-        Jean Delvare <jdelvare@suse.com>,
+        with ESMTP id S231416AbjCHNvj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Mar 2023 08:51:39 -0500
+Received: from mail-io1-xd34.google.com (mail-io1-xd34.google.com [IPv6:2607:f8b0:4864:20::d34])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 018BABE5D1
+        for <devicetree@vger.kernel.org>; Wed,  8 Mar 2023 05:51:30 -0800 (PST)
+Received: by mail-io1-xd34.google.com with SMTP id t129so6771043iof.12
+        for <devicetree@vger.kernel.org>; Wed, 08 Mar 2023 05:51:30 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google; t=1678283490;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=O2ScB8i7PrG39DRTErC7kF+bBBVGcw9XNhNSA0VqouI=;
+        b=imkqhCCosUh66ifIsRQPbANxZXdmJpEwCj2rF7iSVxboMb7R9EE2AFrdMjLL16Y/Kw
+         ooGlAR2bIPsm2FI/6N4VeIN+MSDg7j79K5/3wNTcuCOl8Gx8dM0twquGzlpwCcPl1klq
+         NicNIX+rKLK1R+g/ECbCTeA/17uvvBo5G2SJU=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1678283490;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=O2ScB8i7PrG39DRTErC7kF+bBBVGcw9XNhNSA0VqouI=;
+        b=PTbUQQjkRMHXOuaEQd212dVYN8mxt+qkWZlvh0yz1NUP8g0zEh49WoWqX9IWiwP6NV
+         Tjhf+R3Un6Vs2k4uQ7dKpItxqwebLurKAcvhrVsufJJqnsFZj/HhNhpzfYgyUct7w/XQ
+         W9Oa9tWwsAzuKspOqXubRUMWTIqwaCLtbniZwv+vpLFj9AEGkFdu/JxArEnPUNs3Mp/Q
+         vY/wigZMLD4TzQzs4IAHkqhnwECqUoecdzOOx1i02tnpB3S/tCjdy3cvJEcSOpLDY3R6
+         OiUQ5BI5UCVQ476ZNUHR7a5Y9SlMUgBfLvvw3cGefBJmbTsrHI+U+c/jG1nBKbt4aoMJ
+         SvRA==
+X-Gm-Message-State: AO0yUKWaKnjrdgnqzLLNUzuVQG+XqnOciVQ+6ImQPLIR1p5L14SrQxy8
+        Vmi2MepOfBBBZa31RCTqr8co6I9PfAKh5HjBSOTyWg==
+X-Google-Smtp-Source: AK7set8VM1H7ES454XkYoww9M66+Aop3lkGBIArzYN2bvLHb4IHDHyckUz3PiQcAOs/tKbPekPyLMzsgcHMc8Vkk8wo=
+X-Received: by 2002:a6b:dc0c:0:b0:743:5fb0:2ca8 with SMTP id
+ s12-20020a6bdc0c000000b007435fb02ca8mr8414193ioc.4.1678283490142; Wed, 08 Mar
+ 2023 05:51:30 -0800 (PST)
+MIME-Version: 1.0
+References: <20230303143350.815623-1-treapking@chromium.org>
+ <20230303143350.815623-11-treapking@chromium.org> <ZAXWbkq4oLfrWUR7@smile.fi.intel.com>
+In-Reply-To: <ZAXWbkq4oLfrWUR7@smile.fi.intel.com>
+From:   Pin-yen Lin <treapking@chromium.org>
+Date:   Wed, 8 Mar 2023 21:51:19 +0800
+Message-ID: <CAEXTbpe=e1iA7cnzuTtcsyFxpG37YCWSK_SqZb2A8hxcyCnJBg@mail.gmail.com>
+Subject: Re: [PATCH v13 10/10] drm/bridge: it6505: Register Type C mode switches
+To:     Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+Cc:     Andrzej Hajda <andrzej.hajda@intel.com>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Robert Foss <rfoss@kernel.org>,
+        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+        Jonas Karlman <jonas@kwiboo.se>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v1 1/2] dt-bindings: hwmon: ina2xx: add supply property
-Message-ID: <5cd6764c-9b04-42ea-932d-9f14aa465605@sirena.org.uk>
-References: <20230308094024.14115-1-clamor95@gmail.com>
- <20230308094024.14115-2-clamor95@gmail.com>
- <31ca0ede-012c-4849-bf25-d0492b116681@sirena.org.uk>
- <6DBD0F5A-4625-4FCD-8D64-23293D734A82@gmail.com>
-MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="emhiT6n8SP5ckuD4"
-Content-Disposition: inline
-In-Reply-To: <6DBD0F5A-4625-4FCD-8D64-23293D734A82@gmail.com>
-X-Cookie: Minnie Mouse is a slow maze learner.
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        Daniel Scally <djrscally@gmail.com>,
+        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        "Rafael J . Wysocki" <rafael@kernel.org>,
+        Prashant Malani <pmalani@chromium.org>,
+        Benson Leung <bleung@chromium.org>,
+        Guenter Roeck <groeck@chromium.org>,
+        Xin Ji <xji@analogixsemi.com>,
+        Javier Martinez Canillas <javierm@redhat.com>,
+        Lyude Paul <lyude@redhat.com>, linux-kernel@vger.kernel.org,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        chrome-platform@lists.linux.dev,
+        =?UTF-8?B?TsOtY29sYXMgRiAuIFIgLiBBIC4gUHJhZG8=?= 
+        <nfraprado@collabora.com>, Marek Vasut <marex@denx.de>,
+        Hsin-Yi Wang <hsinyi@chromium.org>, devicetree@vger.kernel.org,
+        Allen Chen <allen.chen@ite.com.tw>,
+        dri-devel@lists.freedesktop.org,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        Stephen Boyd <swboyd@chromium.org>, linux-acpi@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Andy,
 
---emhiT6n8SP5ckuD4
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Thanks for the review.
 
-On Wed, Mar 08, 2023 at 02:58:20PM +0200, Svyatoslav Ryhel wrote:
-> 8 =D0=B1=D0=B5=D1=80=D0=B5=D0=B7=D0=BD=D1=8F 2023 =D1=80. 14:54:34 GMT+02=
-:00, Mark Brown <broonie@kernel.org> =D0=BD=D0=B0=D0=BF=D0=B8=D1=81=D0=B0=
-=D0=B2(-=D0=BB=D0=B0):
-> >On Wed, Mar 08, 2023 at 11:40:23AM +0200, Svyatoslav Ryhel wrote:
-> >> Add supply property.
+On Mon, Mar 6, 2023 at 8:03=E2=80=AFPM Andy Shevchenko
+<andriy.shevchenko@linux.intel.com> wrote:
+>
+> On Fri, Mar 03, 2023 at 10:33:50PM +0800, Pin-yen Lin wrote:
+> > Register USB Type-C mode switches when the "mode-switch" property and
+> > relevant port are available in Device Tree. Configure the "lane_swap"
+> > state based on the entered alternate mode for a specific Type-C
+> > connector, which ends up updating the lane swap registers of the it6505
+> > chip.
+>
+> ...
+>
+> > +     it6505->port_data =3D devm_kcalloc(dev, switch_desc->num_typec_sw=
+itches,
+> > +                                      sizeof(struct it6505_typec_port_=
+data),
+> > +                                      GFP_KERNEL);
+>
+> > +
+>
+> Same, no need for a blank line here.
+>
+I'll fix this in the next version.
+> > +     if (!it6505->port_data) {
+> > +             ret =3D -ENOMEM;
+> > +             goto unregister_mux;
+> > +     }
+>
+> ...
+>
+> > +             it6505->port_data[i].lane_swap =3D (dp_lanes[0] / 2 =3D=
+=3D 1);
+>
+> ' % 2 =3D=3D 0' ?
+>
+Per another patch, I'll update this into `< 2`
+> ...
+>
+> Wouldn't be better to have
+>
+>         ret =3D PTR_ERR_OR_ZERO(extcon);
+>
+> here and amend the following accordingly?
+>
+> >       if (PTR_ERR(extcon) =3D=3D -EPROBE_DEFER)
+> >               return -EPROBE_DEFER;
+> >       if (IS_ERR(extcon)) {
+> > -             dev_err(dev, "can not get extcon device!");
+> > -             return PTR_ERR(extcon);
+> > +             if (PTR_ERR(extcon) !=3D -ENODEV)
+> > +                     dev_warn(dev, "Cannot get extcon device: %ld\n",
+> > +                              PTR_ERR(extcon));
+> > +             it6505->extcon =3D NULL;
+> > +     } else {
+> > +             it6505->extcon =3D extcon;
+> >       }
+> >
+> > -     it6505->extcon =3D extcon;
+> > +     init_completion(&it6505->mux_register);
+> > +     ret =3D it6505_register_typec_switches(dev, it6505);
+> > +     if (ret) {
+> > +             if (ret !=3D -ENODEV)
+> > +                     dev_warn(dev, "Didn't register Type-C switches, e=
+rr: %d\n",
+> > +                              ret);
+> > +             if (!it6505->extcon) {
+> > +                     dev_err(dev, "Both extcon and typec-switch are no=
+t registered.\n");
+> > +                     return -EINVAL;
+> > +             }
+> > +     }
+>
+>
+> Perhaps
+>
+>         if (ret !=3D -ENODEV)
+>                 dev_warn(dev, "Didn't register Type-C switches, err: %d\n=
+", ret);
+>
+>         if (ret && !it6505->extcon) {
+>                 dev_err(dev, "Both extcon and typec-switch are not regist=
+ered.\n");
+>                 return ret;
+>         }
+>
+> ?
 
-> >> +  vdd-supply: true
-> >> +
-> >>  required:
-> >>    - compatible
-> >>    - reg
 
-> >Unless the device can work without power the supply should be required.
-
-> Device can work without supply defined on most devices, but in my case po=
-wer is gated with gpio and devices will not work without fixed regulator.
-
-If there are devices that work without any source of power at all that
-would be very surprising.  It doesn't matter if a particular system has
-a non-controllable regulator, the binding should still make it mandatory
-to describe that.
-
---emhiT6n8SP5ckuD4
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmQIkcsACgkQJNaLcl1U
-h9DLjgf+JwLFER7NTybJIWpDUEcwfYmI40mRfAH7UE8En493f/0pMebcBBHNFa6J
-KVUCJkGtFM3EPf3u0uX/kKfgqyIqHQ6NFwz0mBs3tA2jvWTCTlwqgjIrIMtqnyJl
-pboxy1NkaLnKWZr7qSmEf5OVgJU5vCv1WIR3FXzBoe3M6HXof3Sxet1xCoJr1yGj
-rPIM5Zb+9cwwEC7flYl5VAt8IIDEPbV1u6uFxdNpEuT2439csNp0iOnJpel0Hrlp
-EttKtNc23ASQ40l5CTv459qRUOfU+1/wizGfc7LneTI8n/oU8E/hT9R3bpGAaFB5
-VCzUnH64yOc+QSGT1cbe7BqGVePF0A==
-=iM/u
------END PGP SIGNATURE-----
-
---emhiT6n8SP5ckuD4--
+Thanks for the suggestion! I'll update this in v14.
+>
+> --
+> With Best Regards,
+> Andy Shevchenko
+>
+>
+Best regards,
+Pin-yen
