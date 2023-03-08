@@ -2,53 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3699E6B0138
-	for <lists+devicetree@lfdr.de>; Wed,  8 Mar 2023 09:26:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 55E516B013D
+	for <lists+devicetree@lfdr.de>; Wed,  8 Mar 2023 09:26:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230325AbjCHIZ7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Mar 2023 03:25:59 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44976 "EHLO
+        id S230124AbjCHI0J (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Mar 2023 03:26:09 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39600 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229871AbjCHIZJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Mar 2023 03:25:09 -0500
-Received: from mail-pl1-x636.google.com (mail-pl1-x636.google.com [IPv6:2607:f8b0:4864:20::636])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E6C04A2F2F
-        for <devicetree@vger.kernel.org>; Wed,  8 Mar 2023 00:25:07 -0800 (PST)
-Received: by mail-pl1-x636.google.com with SMTP id i3so16952491plg.6
-        for <devicetree@vger.kernel.org>; Wed, 08 Mar 2023 00:25:07 -0800 (PST)
+        with ESMTP id S230168AbjCHIZV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Mar 2023 03:25:21 -0500
+Received: from mail-pj1-x1036.google.com (mail-pj1-x1036.google.com [IPv6:2607:f8b0:4864:20::1036])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 81978B1A58
+        for <devicetree@vger.kernel.org>; Wed,  8 Mar 2023 00:25:12 -0800 (PST)
+Received: by mail-pj1-x1036.google.com with SMTP id qa18-20020a17090b4fd200b0023750b675f5so1503099pjb.3
+        for <devicetree@vger.kernel.org>; Wed, 08 Mar 2023 00:25:12 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1678263907;
+        d=linaro.org; s=google; t=1678263912;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=Yjf3s2TyGH/y+9CG/Fm2q4b8eA0ln6/5386V6jiDwps=;
-        b=S4csL0AFz9Q8BpY56T295R/66sbYxsEYPViYEZxKxvR7pWoQSDV1UmUErdiwfN6B6b
-         DzGYFqkj5rFWvfYm3SP7+vP8vLKvObNofzzQX2iRRAm8CCxl/LwP26irLW8VabWJWLtP
-         alugDw4gcyy8XLZZFsBy+U+DVkDy3bT6nlzBe+ParDXCv3P7W5C4fOP3HijTiixC5aWN
-         XXXZrY+VhETVPLG0U5OQqsPaCHjFPmgfkRxTk/EHq5ZaLNwkjeXMP3C8BhKRb1aka9+7
-         rc7roPaDBeZ5RBtrncbkXWn6/kk3/+vPLGr6jBKzqBXHfvs/fwLr+0eAAdJFYRjIMd8c
-         1NEg==
+        bh=AfPfJbuBCr/z6UPf30LbgTiprhegyjugmOR3U4nPOZw=;
+        b=JzrgFsMkZEbo/x9XSaSLYAe3Xh0Ys+qsISvV8tYJb1YGAkQL1+CAgyekEEDsUIsPI6
+         iaegsZRji2odfHxrMAnzaRtslPruxPs/i3tMqJoMrKFfL6ADGXfB5UvR80s6BXm8tK7U
+         CjNyNJdShcE0omGpLz+KWJPgCaGD1Rvn5fmd3PEYED9ZSrr7sGaLvpl/D/hB5HHEDNvz
+         Kxtu6WNVa0GjT3O4TtJP59xFfzguORhj2CzPWkLxhYmHTph8qGeH+uPRMsKF58SyHDbC
+         yG7tpeWMzXzcT3Tx7GKIFC0kSL4FfmMbnXJG71GP6oQIZ+8sffc9ykpKGql0zCiBN0NR
+         a9fA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678263907;
+        d=1e100.net; s=20210112; t=1678263912;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=Yjf3s2TyGH/y+9CG/Fm2q4b8eA0ln6/5386V6jiDwps=;
-        b=rtOQOH55ogxQLG6XS7S671w6L6SgpdtltUnWt+YCzcpU+ph8unraNFH3bu6b++Iila
-         AqrGX1OZErxw0zvwhDj1lg1eWaHvWWKHzhDtEB6MVi7kS7VpEOedWdGyQZL8c1M2GoW8
-         u+knitp3Dd58jdHxglTik6jJgxasZljJIsrsvrjpRut05OLZ7J2iAgQjd3dYRSHzvyr1
-         FrjPHY/xKO5210X+W8wO88vHKCbf7Ym38UYCLaQFiGbPdGsc7WwgvvslG5W0K2ZVVbfE
-         LafU/qysFm9qb7py9MP9jfg2HMHiUKBrEqcwwOSqnWGZzZ1Va/se06pg0UA0M4AG4Xxs
-         NG7A==
-X-Gm-Message-State: AO0yUKVZB4xiqzETYBT0hkHiFFs5xniCuRtgB/6CcKbZwTf8q+aYFAME
-        W3dBCZqtLQBXTQsY2S5y8E4C
-X-Google-Smtp-Source: AK7set/x/Tt/Gaf7cyi7yIYio3Lv8+0KLkcs+FxHic0Ne0UGCi8t1RDH7aRoWDm/p5Xwxbhqgd+K9w==
-X-Received: by 2002:a17:902:c10a:b0:19e:7b09:bd4d with SMTP id 10-20020a170902c10a00b0019e7b09bd4dmr15605996pli.47.1678263907564;
-        Wed, 08 Mar 2023 00:25:07 -0800 (PST)
+        bh=AfPfJbuBCr/z6UPf30LbgTiprhegyjugmOR3U4nPOZw=;
+        b=eLdl3BZPK4iac+olkcodaUzSfTXKgKuEcOfmADZnfySd43RpVddoqhfDiqQUwWeOD8
+         rI+6Qyki0cI2yqfooW1c/oVIC+r8x+3CFrpuYHpH19kXGArhQDjqrASx+rIDXRkHuX1r
+         RSlCm55HeFgWUkTcokJuiy38KRObpQhtUI0li5iOXUh4qydPfvo7pv2H2FG7XAMTG8zi
+         sREboyMEQKJO5XNOkwUgWUTL/75z50NqNM2qt8u1elkJb1kmv5+sXk2bYUc6kLDhSPa2
+         1YrlDEx0XP5ITiC8VV7SstZ37BED16XXUb2wwK5QN2Edd8jHqLqpL0vZo7xYTc1N4KxV
+         QpNg==
+X-Gm-Message-State: AO0yUKWKgxUcAagYU3BGG0oBB1hTpHePiUbNQKyLQwwBDG6NRwvSFC5J
+        hMmylCD2FsjSVju7J0GbI2IJ
+X-Google-Smtp-Source: AK7set/L1dsF97m39ajoh8yMTStHAFCR7t7AZ4VJpnF8cskdN97rs2QONWSB8stY+iDUtg3E0onT5w==
+X-Received: by 2002:a17:903:441:b0:19a:b5cd:6e73 with SMTP id iw1-20020a170903044100b0019ab5cd6e73mr13939201plb.3.1678263911955;
+        Wed, 08 Mar 2023 00:25:11 -0800 (PST)
 Received: from localhost.localdomain ([59.97.52.140])
-        by smtp.gmail.com with ESMTPSA id s10-20020a170902ea0a00b0019aaab3f9d7sm9448086plg.113.2023.03.08.00.25.03
+        by smtp.gmail.com with ESMTPSA id s10-20020a170902ea0a00b0019aaab3f9d7sm9448086plg.113.2023.03.08.00.25.07
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 08 Mar 2023 00:25:07 -0800 (PST)
+        Wed, 08 Mar 2023 00:25:11 -0800 (PST)
 From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
 To:     andersson@kernel.org, lpieralisi@kernel.org, robh@kernel.org,
         kw@linux.com, krzysztof.kozlowski+dt@linaro.org, vkoul@kernel.org
@@ -57,9 +57,9 @@ Cc:     konrad.dybcio@linaro.org, bhelgaas@google.com, kishon@kernel.org,
         linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
         devicetree@vger.kernel.org,
         Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Subject: [PATCH v3 08/13] ARM: dts: qcom: sdx55: List the property values vertically
-Date:   Wed,  8 Mar 2023 13:54:19 +0530
-Message-Id: <20230308082424.140224-9-manivannan.sadhasivam@linaro.org>
+Subject: [PATCH v3 09/13] ARM: dts: qcom: sdx55-t55: Enable PCIe RC support
+Date:   Wed,  8 Mar 2023 13:54:20 +0530
+Message-Id: <20230308082424.140224-10-manivannan.sadhasivam@linaro.org>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20230308082424.140224-1-manivannan.sadhasivam@linaro.org>
 References: <20230308082424.140224-1-manivannan.sadhasivam@linaro.org>
@@ -75,68 +75,74 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-To align with the rest of the devicetree files and the relative properties,
-let's list the values of properties such as {reg/clock/interrupt}-names
-vertically.
+Enable PCIe RC support on Thundercomm T55 board.
 
-Suggested-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
 ---
- arch/arm/boot/dts/qcom-sdx55.dtsi | 23 ++++++++++++++++++-----
- 1 file changed, 18 insertions(+), 5 deletions(-)
+ arch/arm/boot/dts/qcom-sdx55-t55.dts | 42 ++++++++++++++++++++++++++++
+ 1 file changed, 42 insertions(+)
 
-diff --git a/arch/arm/boot/dts/qcom-sdx55.dtsi b/arch/arm/boot/dts/qcom-sdx55.dtsi
-index 9dabb94eafbc..286fa92da428 100644
---- a/arch/arm/boot/dts/qcom-sdx55.dtsi
-+++ b/arch/arm/boot/dts/qcom-sdx55.dtsi
-@@ -393,7 +393,11 @@ pcie_ep: pcie-ep@1c00000 {
- 			      <0x40001000 0x1000>,
- 			      <0x40200000 0x100000>,
- 			      <0x01c03000 0x3000>;
--			reg-names = "parf", "dbi", "elbi", "atu", "addr_space",
-+			reg-names = "parf",
-+				    "dbi",
-+				    "elbi",
-+				    "atu",
-+				    "addr_space",
- 				    "mmio";
+diff --git a/arch/arm/boot/dts/qcom-sdx55-t55.dts b/arch/arm/boot/dts/qcom-sdx55-t55.dts
+index d5343bb0daee..5edc09af8e0d 100644
+--- a/arch/arm/boot/dts/qcom-sdx55-t55.dts
++++ b/arch/arm/boot/dts/qcom-sdx55-t55.dts
+@@ -242,6 +242,23 @@ &ipa {
+ 	status = "okay";
+ };
  
- 			qcom,perst-regs = <&tcsr 0xb258 0xb270>;
-@@ -405,12 +409,18 @@ pcie_ep: pcie-ep@1c00000 {
- 				 <&gcc GCC_PCIE_SLV_Q2A_AXI_CLK>,
- 				 <&gcc GCC_PCIE_SLEEP_CLK>,
- 				 <&gcc GCC_PCIE_0_CLKREF_CLK>;
--			clock-names = "aux", "cfg", "bus_master", "bus_slave",
--				      "slave_q2a", "sleep", "ref";
-+			clock-names = "aux",
-+				      "cfg",
-+				      "bus_master",
-+				      "bus_slave",
-+				      "slave_q2a",
-+				      "sleep",
-+				      "ref";
++&pcie_phy {
++	vdda-phy-supply = <&vreg_l1e_bb_1p2>;
++	vdda-pll-supply = <&vreg_l4e_bb_0p875>;
++
++	status = "okay";
++};
++
++&pcie_rc {
++	perst-gpios = <&tlmm 57 GPIO_ACTIVE_LOW>;
++	wake-gpios = <&tlmm 53 GPIO_ACTIVE_HIGH>;
++
++	pinctrl-0 = <&pcie_default>;
++	pinctrl-names = "default";
++
++	status = "okay";
++};
++
+ &qpic_bam {
+ 	status = "okay";
+ };
+@@ -265,6 +282,31 @@ &remoteproc_mpss {
+ 	memory-region = <&mpss_adsp_mem>;
+ };
  
- 			interrupts = <GIC_SPI 140 IRQ_TYPE_LEVEL_HIGH>,
- 				     <GIC_SPI 145 IRQ_TYPE_LEVEL_HIGH>;
--			interrupt-names = "global", "doorbell";
-+			interrupt-names = "global",
-+					  "doorbell";
- 			reset-gpios = <&tlmm 57 GPIO_ACTIVE_LOW>;
- 			wake-gpios = <&tlmm 53 GPIO_ACTIVE_LOW>;
- 			resets = <&gcc GCC_PCIE_BCR>;
-@@ -434,7 +444,10 @@ pcie_phy: phy@1c07000 {
- 				 <&gcc GCC_PCIE_CFG_AHB_CLK>,
- 				 <&gcc GCC_PCIE_0_CLKREF_CLK>,
- 				 <&gcc GCC_PCIE_RCHNG_PHY_CLK>;
--			clock-names = "aux", "cfg_ahb", "ref", "refgen";
-+			clock-names = "aux",
-+				      "cfg_ahb",
-+				      "ref",
-+				      "refgen";
- 
- 			resets = <&gcc GCC_PCIE_PHY_BCR>;
- 			reset-names = "phy";
++&tlmm {
++	pcie_default: pcie-default-state {
++		clkreq-pins {
++			pins = "gpio56";
++			function = "pcie_clkreq";
++			drive-strength = <2>;
++			bias-pull-up;
++		};
++
++		perst-pins {
++			pins = "gpio57";
++			function = "gpio";
++			drive-strength = <2>;
++			bias-pull-down;
++		};
++
++		wake-pins {
++		       pins = "gpio53";
++		       function = "gpio";
++		       drive-strength = <2>;
++		       bias-pull-up;
++	       };
++	};
++};
++
+ &usb_hsphy {
+ 	status = "okay";
+ 	vdda-pll-supply = <&vreg_l4e_bb_0p875>;
 -- 
 2.25.1
 
