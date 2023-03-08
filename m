@@ -2,53 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 293536B078F
-	for <lists+devicetree@lfdr.de>; Wed,  8 Mar 2023 13:59:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7C7436B078D
+	for <lists+devicetree@lfdr.de>; Wed,  8 Mar 2023 13:59:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229729AbjCHM7S (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Mar 2023 07:59:18 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37294 "EHLO
+        id S229973AbjCHM7R (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Mar 2023 07:59:17 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37256 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230388AbjCHM7Q (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Mar 2023 07:59:16 -0500
-Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com [IPv6:2a00:1450:4864:20::534])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5DB588483A
+        with ESMTP id S229729AbjCHM7P (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Mar 2023 07:59:15 -0500
+Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com [IPv6:2a00:1450:4864:20::52a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1F97A5F23F
         for <devicetree@vger.kernel.org>; Wed,  8 Mar 2023 04:59:14 -0800 (PST)
-Received: by mail-ed1-x534.google.com with SMTP id a25so65582127edb.0
+Received: by mail-ed1-x52a.google.com with SMTP id k10so41455804edk.13
         for <devicetree@vger.kernel.org>; Wed, 08 Mar 2023 04:59:14 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google; t=1678280353;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=N8kMsbIG/XKTFlKgeGb5WDX3CusbAYjjN7Fik1ZtUDA=;
-        b=zrdy7iH6gnpbgt6dSC3hvg6j49jdz6D0fn+Skgu/Aum8loR4EvbLsiugiuGpSxgpqF
-         9dQaaTuRzqyK2hZtE/AwOCpKGF5AfHta9WZE7iAD/z7/MLEW4JCMV+8PnWV3DzBn8AbJ
-         bBQoSL9xzloHvYqhwdzZY653o71bwLtbwFK/bbBEVBO6GRE78ifBdixkQrjN06k2OULX
-         jfqCik6BKgnlHMBjakaW0yKzYKrTYYNCM8VtIxG8p5XeR/p1g8hJyZkZmJkaiweU74n1
-         GIqzZsuKTLYOEOXhEPtnRTTGMxuNfMDRdinlo9/K1/mnycGqs30E/NfCHBaJ79JGG4lW
-         U9ig==
+        bh=Is03OJ4mQJUe1cHowCP0OZJPLl5QGT88Km2eA43ho8o=;
+        b=qj/VUygnuQqRd2/7da6w2SacNPIFTRbk7kM3kX/xqwllAL0SfUDThk1BURnWZkw96C
+         96tFtvsTjFcavykwP7Uc0v/YgXQw2CL7HDTqZbQ7IVwu6p2yCjWfdbV/6Pr9Ky/GVgz/
+         BLNEjZ4BamCPiBgjRw8Q8yV0MQv2sd3DM03rQNzc/YI4eF64w2z9pWNAqyllDa1mca5e
+         OP3A2t9SQsMjilV67gwBWN9s7o+opGkJ9tvcg5ZYrizp8CHcBhC0NanJsdGd0jIS2zrp
+         TvRbgP9ZXQ1oHb/kVs7pKbBFx+Gf9upU//tKg1y7pJLdMfovhwcoXxOFc5Y84sYD1Iyv
+         jQIQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112; t=1678280353;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=N8kMsbIG/XKTFlKgeGb5WDX3CusbAYjjN7Fik1ZtUDA=;
-        b=x3n04ysLLvjztsxRYTkBN7d/x5eVm+IoXOPmyhW74xtDV8jJMpH6DoJ9uzFOBu8j0P
-         kOsYfS9jtQceDeVrUFH60x0nOKFD2F2VYhOoXblIgyNfVnoEi8wXXsioQOivytB+uTNI
-         Z4iqvSDJwx/gWJz5ukPGELCDb/VpR9Cg68u0ucrFyiGR6kcaqHi4E88xd4K/lXORS2de
-         VJA/s1I40YmXHs0dfA7z5FGqTxBdEs3k3AhR9GB5kpLU3b9f5Jw88if85/HVxScZL2Ee
-         ynEBIaCLRa5/zv9aCGsfWvd9OnH6KAUUcJY63s/DJnFt5S+cyx86Pa8DOQhdLGtPv2zU
-         fCgA==
-X-Gm-Message-State: AO0yUKXX6UOKdzi8Jt0+f9q8ZATxCd+j+U/cDPxj+W3JdepcmFlNUL07
-        cg4vMbEbhtFK9jn84L8Vp7Y+oA==
-X-Google-Smtp-Source: AK7set+cUuW3z0oQUmlyy7+awsz2o8PWzXcFT7f4tzgBIp/xX22JmiZIeFIVD92IANl5aE/wPHwL2g==
-X-Received: by 2002:a17:906:da89:b0:8b1:7de6:e292 with SMTP id xh9-20020a170906da8900b008b17de6e292mr23958736ejb.9.1678280352804;
-        Wed, 08 Mar 2023 04:59:12 -0800 (PST)
+        bh=Is03OJ4mQJUe1cHowCP0OZJPLl5QGT88Km2eA43ho8o=;
+        b=yyRlwj/WVYAl7kTCb/LvR8WnE4S2l9ZaYQcM8MespENAuaTwKKrFd/Gol3v5uAXye+
+         fby1XNj7jEx6XmmRIPJknM6BniSwDhEwbje5PrrVLBC3qveLj3S5mGaYCVaF21A+0Rvd
+         5jBSMQwc74PXDB49+hW/STm0ZDd2+aicls17jftfMBatgwkTEm1/lCjpnMpOrAtMCDon
+         v3yjLBW1t6vnABPnHh4eifAIxf0MF7m57b37fGnyK0+zWr1Hx8v2idpqEl+ixA1uQEn9
+         WpuMddKEo/fPwFJWlnHRyW3IIV1abOuoUerIkcHTO1bboV9lhpaxTisoWW+/KtjMKHba
+         9MWQ==
+X-Gm-Message-State: AO0yUKVOHJT8kmdjZatbNNB1Az5fYvof/dasQeN2FAUAkCehWQTfsDUH
+        YaS91vlmGBep5riC5EHCIQsfTg==
+X-Google-Smtp-Source: AK7set+IabKSS8d13E0Wa0MBP0JkFXhqz2tmIVYpv3jg2bayZ+iBAGl8eGlLsO4zj9kJQ/x99rkkeA==
+X-Received: by 2002:a17:906:4bcd:b0:8b1:812f:2578 with SMTP id x13-20020a1709064bcd00b008b1812f2578mr15564387ejv.45.1678280353722;
+        Wed, 08 Mar 2023 04:59:13 -0800 (PST)
 Received: from krzk-bin.. ([2a02:810d:15c0:828:ff33:9b14:bdd2:a3da])
         by smtp.gmail.com with ESMTPSA id h25-20020a1709063b5900b008d0dbf15b8bsm7464141ejf.212.2023.03.08.04.59.12
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 08 Mar 2023 04:59:12 -0800 (PST)
+        Wed, 08 Mar 2023 04:59:13 -0800 (PST)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 To:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
@@ -61,9 +61,9 @@ To:     Andy Gross <agross@kernel.org>,
         linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
 Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH v2 04/11] arm64: dts: qcom: sdm845-db845c: drop SPI label
-Date:   Wed,  8 Mar 2023 13:58:59 +0100
-Message-Id: <20230308125906.236885-4-krzysztof.kozlowski@linaro.org>
+Subject: [PATCH v2 05/11] arm64: dts: qcom: apq8096-db820c: drop SPI label
+Date:   Wed,  8 Mar 2023 13:59:00 +0100
+Message-Id: <20230308125906.236885-5-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20230308125906.236885-1-krzysztof.kozlowski@linaro.org>
 References: <20230308125906.236885-1-krzysztof.kozlowski@linaro.org>
@@ -71,8 +71,8 @@ MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
-        autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -81,7 +81,7 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 The SPI controller nodes do not use/allow label property:
 
-  sdm845-db845c.dtb: spi@888000: Unevaluated properties are not allowed ('label' was unexpected)
+  apq8096-db820c.dtb: spi@7575000: Unevaluated properties are not allowed ('label' was unexpected)
 
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
@@ -91,18 +91,26 @@ Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 Changes since v1:
 1. None
 ---
- arch/arm64/boot/dts/qcom/sdm845-db845c.dts | 1 -
- 1 file changed, 1 deletion(-)
+ arch/arm64/boot/dts/qcom/apq8096-db820c.dts | 2 --
+ 1 file changed, 2 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/qcom/sdm845-db845c.dts b/arch/arm64/boot/dts/qcom/sdm845-db845c.dts
-index 1dc7076964ff..e14fe9bbb386 100644
---- a/arch/arm64/boot/dts/qcom/sdm845-db845c.dts
-+++ b/arch/arm64/boot/dts/qcom/sdm845-db845c.dts
-@@ -819,7 +819,6 @@ can@0 {
+diff --git a/arch/arm64/boot/dts/qcom/apq8096-db820c.dts b/arch/arm64/boot/dts/qcom/apq8096-db820c.dts
+index 9ffa0e66e276..5ceaab5d4039 100644
+--- a/arch/arm64/boot/dts/qcom/apq8096-db820c.dts
++++ b/arch/arm64/boot/dts/qcom/apq8096-db820c.dts
+@@ -146,7 +146,6 @@ &blsp1_i2c3 {
  
- &spi2 {
+ &blsp1_spi1 {
  	/* On Low speed expansion */
 -	label = "LS-SPI0";
+ 	status = "okay";
+ };
+ 
+@@ -183,7 +182,6 @@ &blsp2_i2c1 {
+ 
+ &blsp2_spi6 {
+ 	/* On High speed expansion */
+-	label = "HS-SPI1";
  	status = "okay";
  };
  
