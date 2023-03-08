@@ -2,63 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E900B6B0A86
-	for <lists+devicetree@lfdr.de>; Wed,  8 Mar 2023 15:08:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D331B6B0A7B
+	for <lists+devicetree@lfdr.de>; Wed,  8 Mar 2023 15:08:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232166AbjCHOIM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Mar 2023 09:08:12 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48904 "EHLO
+        id S231969AbjCHOIH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Mar 2023 09:08:07 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48760 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231936AbjCHOHw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Mar 2023 09:07:52 -0500
-Received: from mail-oa1-f54.google.com (mail-oa1-f54.google.com [209.85.160.54])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A88F4521F8;
-        Wed,  8 Mar 2023 06:06:33 -0800 (PST)
-Received: by mail-oa1-f54.google.com with SMTP id 586e51a60fabf-176eae36feaso8068691fac.6;
-        Wed, 08 Mar 2023 06:06:33 -0800 (PST)
+        with ESMTP id S231971AbjCHOHt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Mar 2023 09:07:49 -0500
+Received: from mail-ot1-f46.google.com (mail-ot1-f46.google.com [209.85.210.46])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9ECA430B25;
+        Wed,  8 Mar 2023 06:06:24 -0800 (PST)
+Received: by mail-ot1-f46.google.com with SMTP id 32-20020a9d0323000000b0069426a71d79so9005640otv.10;
+        Wed, 08 Mar 2023 06:06:24 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678284393;
+        d=1e100.net; s=20210112; t=1678284384;
         h=date:subject:message-id:references:in-reply-to:cc:to:from
          :mime-version:content-transfer-encoding:x-gm-message-state:from:to
          :cc:subject:date:message-id:reply-to;
-        bh=oxgkrPx+GT1CZkfZ5/WiXENKk4kTVmkKWF9GsEdsJ5Y=;
-        b=Yz3ZJQQJGjIiprI6zAxlQ4p5seH2yb8hFqu7vHQXPMIQ/jLrJan77WMj5190ddJOHe
-         49BbwJ3NMNqgvbq1kXmGnA7uv9a+b6LCIqLmDqt2Pwdhd2RcupdRXZ4ujSYUTJERwmXL
-         qDaRjs6/NixLJeDvrsFO1E6MGPAYSJN6OuGQhe33/rYeA0DxiW/qQd7ALckiZAsxmztc
-         2sLxtleiGZd4p6beju4saEshe6In7D0LdZLY6h14gDQe2pD9CC0QNnaV5GsKHnXgEeeH
-         uFnvnLihVxSilesEwtIQYoz7Myo1atxuRL/Vp8+LosHDQ+2SOR50JoPUgoPdmD8LkalI
-         PR+w==
-X-Gm-Message-State: AO0yUKXl/XIsc72Vu9JsWRO78de6/WIFZ2UcSIARMRsCR+kJIeU87vQN
-        2HpMJbGNkuQ2nrfjlbbYKw==
-X-Google-Smtp-Source: AK7set/HkdLMFQ9Tad0ddCcyExnPUvCLXXfIw9IIgZBgi6e47Y7G6aGMR9sDcD51hu8Z/QSdiyx/+Q==
-X-Received: by 2002:a05:6870:b525:b0:172:8941:f360 with SMTP id v37-20020a056870b52500b001728941f360mr12151211oap.4.1678284392883;
-        Wed, 08 Mar 2023 06:06:32 -0800 (PST)
+        bh=qsP4LH+jP/I53IC0MPmff0Hsl8QZENzWh0+pWXfTco4=;
+        b=EJX8z89ngMLKnLjLrr+O38I9MG7mbYVlghmDgUOFNcyNcBFCwmAjYFU1/+aO5BZYIn
+         kKDD3NA9IucEgi8km3cQn0orBSuA+YpWMNe9zMqx2yQ1dlYZ2S508t/9JW1BiQ8MiKtm
+         ySPLMAN13zAypL25QlsngBXl1nO5r9JeKkTa14+dd8IQdAG9N3ipCpUJkPtA/vm+QmxF
+         KRfV2OVRp4DmLq32hrKW2GdGg0sElpRbiqthj6EdUZLfh3yS9p3/NCy5CxNBtBlSqq3I
+         4k+Xj4TvJTTCFHtj2aTWfLe71gAyU3zZs9eUUpIY47rgdbf2Y1yz3p9kUaRa6aU/RDgN
+         VI0g==
+X-Gm-Message-State: AO0yUKWXG/YfFGpk0ubmYtGQRXJH5Rxyh70YzdO72sX615mV18FYy6yK
+        RchTjvOQ+ClSwd44ryDwcA==
+X-Google-Smtp-Source: AK7set+Zbw7EyeuNPMCkpj6IQPnLXaNQIQOMlGUW7lXZ4HwtW5PLAJ2eBzxT4rkdpmbwwGgjfgVofQ==
+X-Received: by 2002:a05:6830:24b6:b0:68b:dcbe:d0af with SMTP id v22-20020a05683024b600b0068bdcbed0afmr8794679ots.2.1678284383790;
+        Wed, 08 Mar 2023 06:06:23 -0800 (PST)
 Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id x38-20020a4a97e9000000b005251f71250dsm6135080ooi.37.2023.03.08.06.06.31
+        by smtp.gmail.com with ESMTPSA id y22-20020a056830071600b0068d4dda3d61sm6434007ots.39.2023.03.08.06.06.21
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 08 Mar 2023 06:06:32 -0800 (PST)
-Received: (nullmailer pid 2666467 invoked by uid 1000);
+        Wed, 08 Mar 2023 06:06:22 -0800 (PST)
+Received: (nullmailer pid 2666443 invoked by uid 1000);
         Wed, 08 Mar 2023 14:06:21 -0000
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 MIME-Version: 1.0
 From:   Rob Herring <robh@kernel.org>
-To:     Svyatoslav Ryhel <clamor95@gmail.com>
-Cc:     linux-media@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Ldd-Mlp <ldd-mlp@list.ti.com>,
-        Daniel Jeong <gshark.jeong@gmail.com>,
-        Jean Delvare <jdelvare@suse.de>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Luca Ceresoli <luca.ceresoli@bootlin.com>,
-        Sebastian Reichel <sebastian.reichel@collabora.com>
-In-Reply-To: <20230308095209.14700-2-clamor95@gmail.com>
-References: <20230308095209.14700-1-clamor95@gmail.com>
- <20230308095209.14700-2-clamor95@gmail.com>
-Message-Id: <167828360220.2613154.17895980579184472148.robh@kernel.org>
-Subject: Re: [PATCH v1 1/2] dt-bindings: media: i2c: add lm3560 binding
+To:     Yinbo Zhu <zhuyinbo@loongson.cn>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Liu Peibao <liupeibao@loongson.cn>, devicetree@vger.kernel.org,
+        linux-spi@vger.kernel.org, linux-kernel@vger.kernel.org,
+        loongson-kernel@lists.loongnix.cn, Mark Brown <broonie@kernel.org>,
+        Jianmin Lv <lvjianmin@loongson.cn>,
+        Rob Herring <robh+dt@kernel.org>, wanghongliang@loongson.cn
+In-Reply-To: <20230308025908.21491-2-zhuyinbo@loongson.cn>
+References: <20230308025908.21491-1-zhuyinbo@loongson.cn>
+ <20230308025908.21491-2-zhuyinbo@loongson.cn>
+Message-Id: <167828359942.2612999.3798783623764270312.robh@kernel.org>
+Subject: Re: [PATCH v1 1/2] dt-bindings: spi: add loongson spi
 Date:   Wed, 08 Mar 2023 08:06:21 -0600
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
@@ -72,12 +68,16 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
-On Wed, 08 Mar 2023 11:52:08 +0200, Svyatoslav Ryhel wrote:
-> Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
+On Wed, 08 Mar 2023 10:59:07 +0800, Yinbo Zhu wrote:
+> Add the Loongson platform spi binding with DT schema format using
+> json-schema.
+> 
+> Signed-off-by: Yinbo Zhu <zhuyinbo@loongson.cn>
 > ---
->  .../bindings/media/i2c/ti,lm3560.yaml         | 130 ++++++++++++++++++
->  1 file changed, 130 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/media/i2c/ti,lm3560.yaml
+>  .../bindings/spi/loongson,ls-spi.yaml         | 47 +++++++++++++++++++
+>  MAINTAINERS                                   |  6 +++
+>  2 files changed, 53 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/spi/loongson,ls-spi.yaml
 > 
 
 My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
@@ -86,15 +86,15 @@ on your patch (DT_CHECKER_FLAGS is new in v5.13):
 yamllint warnings/errors:
 
 dtschema/dtc warnings/errors:
-Error: Documentation/devicetree/bindings/media/i2c/ti,lm3560.example.dts:26.43-44 syntax error
+Error: Documentation/devicetree/bindings/spi/loongson,ls-spi.example.dts:22.28-29 syntax error
 FATAL ERROR: Unable to parse input tree
-make[1]: *** [scripts/Makefile.lib:419: Documentation/devicetree/bindings/media/i2c/ti,lm3560.example.dtb] Error 1
+make[1]: *** [scripts/Makefile.lib:419: Documentation/devicetree/bindings/spi/loongson,ls-spi.example.dtb] Error 1
 make[1]: *** Waiting for unfinished jobs....
 make: *** [Makefile:1512: dt_binding_check] Error 2
 
 doc reference errors (make refcheckdocs):
 
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20230308095209.14700-2-clamor95@gmail.com
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20230308025908.21491-2-zhuyinbo@loongson.cn
 
 The base for the series is generally the latest rc1. A different dependency
 should be noted in *this* patch.
