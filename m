@@ -2,79 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 408DD6AFFD5
-	for <lists+devicetree@lfdr.de>; Wed,  8 Mar 2023 08:35:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5F8EF6AFFE2
+	for <lists+devicetree@lfdr.de>; Wed,  8 Mar 2023 08:39:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229941AbjCHHfu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Mar 2023 02:35:50 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33750 "EHLO
+        id S229716AbjCHHjH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Mar 2023 02:39:07 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40894 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229785AbjCHHfj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Mar 2023 02:35:39 -0500
-Received: from mail-ed1-x52c.google.com (mail-ed1-x52c.google.com [IPv6:2a00:1450:4864:20::52c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0F420768F;
-        Tue,  7 Mar 2023 23:35:34 -0800 (PST)
-Received: by mail-ed1-x52c.google.com with SMTP id i34so62023467eda.7;
-        Tue, 07 Mar 2023 23:35:33 -0800 (PST)
+        with ESMTP id S229613AbjCHHjF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Mar 2023 02:39:05 -0500
+Received: from mail-qt1-x834.google.com (mail-qt1-x834.google.com [IPv6:2607:f8b0:4864:20::834])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9B7551E9EB;
+        Tue,  7 Mar 2023 23:38:54 -0800 (PST)
+Received: by mail-qt1-x834.google.com with SMTP id y10so17309189qtj.2;
+        Tue, 07 Mar 2023 23:38:54 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112; t=1678260932;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=uwmnzBCq63isuXl3Q6C2EI4fASZ8/CUk+jrNqzYxJ44=;
-        b=VbzEV/VvOn0aSQHQgw9+0pNrIzr+/yH5ubUhN1HKeSmTXf94BdvU0QAKeTG/UexecP
-         ZICikcpLbHW2e0fYNwJ1vyGRLpXhwmMMlXD9YP4uO+DI5vvTfwVk203z/MAYV7iNWyaM
-         LzAP5cU4wfatBnoKPgcGA8qelmXohuXnpZcu1lSeTbjjW3JnQg7Lwe2dS93Db7T778FE
-         cBvDSoBmgp6dMUeoYjAojgWZRchmdsvquJU223oHpOImJgsuy1k8R4gIJQ1WmoZmx8pJ
-         N8S7zxDTRsGGvpgIvE+YkAOd2Hsg6lQsjUcJTHv2ZjlZBM3GeR1S2dA9jZ8xNEj38m4l
-         TbHQ==
+        d=gmail.com; s=20210112; t=1678261134;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=FmJf3elsRQglUzYF2oMUMZXx4drRKi7p3UUlL0oZm9w=;
+        b=mHBV5It7+WjDj0SYME2FcKjQemx+SzQXHtdaf+N6/vx7Xw8hT2H76ffO823kb8dWBP
+         HeN+VqMZxufa2qAmjPJiDhcqz58zoKjoO39O366txcyjBXQwM8i4KQjTUUFvbDY1/PeQ
+         BWCXkcUED9rnyMmNlOL7hpMDHiB+B+f8K3MWOV1IMfGtGMv/uH6ArIAtATBEb2BKu+C+
+         KXoBfGbgEpWCmtqlws5EoQRyeXUh2vE5932Hp1oykZsGFG9po7fbofRxUfn06N+RT/co
+         i+kir/85CKFvzJ6vNLlNXT1bgXflg37IVuLdzznCNd+nhZF5od9Ykjc9saeL/W4YSebD
+         9njQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678260932;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=uwmnzBCq63isuXl3Q6C2EI4fASZ8/CUk+jrNqzYxJ44=;
-        b=QRoaVuvEejaXxFL2QIvvozunDgJzuBpF7ocfTTsI6MnpkT1KPvjWGZULa9UK8gDiEq
-         Uhz7WnvmXhp5dukvcWWMNNI8cJrHLwSM2XJLu6zPSDQtbOtQJV21C3u34HGCQPdzz5BQ
-         sjXLBNhWZTdwpwe45/RcNCkw0ibJ2fZrkWwQxs4d6ItgC76j1tHkipLhzKBVGZ08Xi3d
-         TW43zwxj+ZCQraDrPPtRrbaOrxLsgqYUlKvuSV3SsDD5NfJmrT4amUOjjQR+776P11W3
-         +P3mH8YaaMHkmagD5iqPx9mxc3p/u6dmy+J1c1GlBDXfRcJys6v5LD9JfBOvtLxDNMyv
-         wghA==
-X-Gm-Message-State: AO0yUKW7lnkhdWkFF+bhVImY7MbB6uzEWL0lIB9d+CP3NP5xDv52hSr6
-        FN3EdzqZcfYJZZyC7Nn0txop5dkczr0=
-X-Google-Smtp-Source: AK7set8yXe5XLI1jn/5JXFxjt5s2N24GAa37Qe0PvcVxhvZdWMgW9+5PjfaVT0zEhW3uEJtj78YZ1w==
-X-Received: by 2002:a17:907:6f18:b0:8f8:5779:f1af with SMTP id sy24-20020a1709076f1800b008f85779f1afmr18421549ejc.15.1678260932432;
-        Tue, 07 Mar 2023 23:35:32 -0800 (PST)
-Received: from xeon.. ([188.163.112.76])
-        by smtp.gmail.com with ESMTPSA id h15-20020a1709062dcf00b008dffda52d71sm7051880eji.124.2023.03.07.23.35.31
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 07 Mar 2023 23:35:32 -0800 (PST)
-From:   Svyatoslav Ryhel <clamor95@gmail.com>
-To:     Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>,
-        Svyatoslav Ryhel <clamor95@gmail.com>,
-        Maxim Schwalm <maxim.schwalm@gmail.com>,
-        Dmitry Osipenko <digetx@gmail.com>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        alsa-devel@alsa-project.org, linux-tegra@vger.kernel.org,
-        linux-staging@lists.linux.dev
-Subject: [PATCH v2 8/8] ASoC: tegra: Support MAX9808x by machine driver
-Date:   Wed,  8 Mar 2023 09:35:02 +0200
-Message-Id: <20230308073502.5421-9-clamor95@gmail.com>
-X-Mailer: git-send-email 2.37.2
-In-Reply-To: <20230308073502.5421-1-clamor95@gmail.com>
-References: <20230308073502.5421-1-clamor95@gmail.com>
+        d=1e100.net; s=20210112; t=1678261134;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=FmJf3elsRQglUzYF2oMUMZXx4drRKi7p3UUlL0oZm9w=;
+        b=PfZ/yx6y2RSr+7Ca3cwqRiS3B7yW+ArmnP735dYImgZVXIps8fyonxC/QV8xGqNIkb
+         UAm69KBXiGO7CARVesNsZJMDJpK0iRDBtHcLAekrrw5uFb7rbbqJt9+6uR4EkE1XpixH
+         Odm/GGV1xgjOphjPkKu7RvOEnJy4x8kzZbkTpKPDYVfMn29ySFbFDMGcVm0Ce6r0Ix39
+         dHhgHaW1YFFGmyx/sMU4c83Y1DLaiztO26MhvtKTMer3+byXvWimy57LO40XXoiHjnGc
+         EQkxp25EDfbEpwIfcupH/Izfi/VCsFeBeuSvJVTJasBu+IK7zqMYeMk5oXw6jSHBMVv1
+         8lMA==
+X-Gm-Message-State: AO0yUKW8aEK1UtJgG9rqyKihx8PQ1Yb1i16vNDgXsVQjl8Yn3iu9KhoR
+        FX2noFWfYLnNAUgCQwcYTHM=
+X-Google-Smtp-Source: AK7set9ZfUtsBA5ZvUJk7UPw8AXig6UUFkscVRdtupz/qEFZ5Y5AEnXryOUfy1lBySlvLr1qjvHNJw==
+X-Received: by 2002:a05:622a:1b9e:b0:3bd:db4:b967 with SMTP id bp30-20020a05622a1b9e00b003bd0db4b967mr30332577qtb.58.1678261133693;
+        Tue, 07 Mar 2023 23:38:53 -0800 (PST)
+Received: from ?IPV6:2600:1700:2442:6db0:4cdf:396a:50a:e093? ([2600:1700:2442:6db0:4cdf:396a:50a:e093])
+        by smtp.gmail.com with ESMTPSA id g5-20020ac87d05000000b003b68d445654sm11308994qtb.91.2023.03.07.23.38.52
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 07 Mar 2023 23:38:53 -0800 (PST)
+Message-ID: <663f29a9-8c4f-1cc6-a6c4-a4c4dfd756d8@gmail.com>
+Date:   Wed, 8 Mar 2023 01:38:52 -0600
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.1
+Subject: Re: [PATCH V7 0/3] Generate device tree node for pci devices
+Content-Language: en-US
+To:     Stefan Roese <sr@denx.de>, Rob Herring <robh@kernel.org>
+Cc:     clement.leger@bootlin.com, Lizhi Hou <lizhi.hou@amd.com>,
+        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, helgaas@kernel.org, max.zhen@amd.com,
+        sonal.santan@amd.com, larry.liu@amd.com, brian.xu@amd.com,
+        stefano.stabellini@xilinx.com, trix@redhat.com,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        "Steen.Hegelund@microchip.com" <Steen.Hegelund@microchip.com>,
+        "Horatiu.Vultur@microchip.com" <Horatiu.Vultur@microchip.com>,
+        "Allan.Nielsen@microchip.com" <Allan.Nielsen@microchip.com>,
+        Vincent Whitchurch <vincent.whitchurch@axis.com>
+References: <1674183732-5157-1-git-send-email-lizhi.hou@amd.com>
+ <af2a6686-ea35-e5fc-7541-27e5d6ca9311@gmail.com>
+ <20230227113150.398dcfa7@fixe.home>
+ <52b8f136-c73f-a97d-2bb6-48aff3755f98@gmail.com>
+ <f927790dc9839cd93902c0d2e5afe5e8@bootlin.com>
+ <1886b888-a0e8-b1ee-c48a-ddbc8b5b0c63@gmail.com>
+ <CAL_JsqL_ER32ys-yW_7-QKLjEmKK8StOeM5yvH2ChuvX++fe5Q@mail.gmail.com>
+ <aecca8c5-687d-ddf3-94fd-9d65d8f5c1d2@denx.de>
+From:   Frank Rowand <frowand.list@gmail.com>
+In-Reply-To: <aecca8c5-687d-ddf3-94fd-9d65d8f5c1d2@denx.de>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -82,127 +90,224 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add Maxim MAX9808x codec support to the Tegra ASoC machine driver.
-This codec is found on LG T30 devices like Optimus 4X HD and
-Optimus Vu.
+On 3/7/23 01:54, Stefan Roese wrote:
+> On 3/7/23 01:52, Rob Herring wrote:
+>> On Mon, Mar 6, 2023 at 3:24 PM Frank Rowand <frowand.list@gmail.com> wrote:
+>>>
+>>> On 3/6/23 02:35, clement.leger@bootlin.com wrote:
+>>>> Le 2023-03-04 00:42, Frank Rowand a écrit :
+>>>>> On 2/27/23 04:31, Clément Léger wrote:
+>>>>>> Le Mon, 27 Feb 2023 00:51:29 -0600,
+>>>>>> Frank Rowand <frowand.list@gmail.com> a écrit :
+>>>>>>
+>>>>>>> On 1/19/23 21:02, Lizhi Hou wrote:
+>>>>>>>> This patch series introduces OF overlay support for PCI devices
+>>>>>>>> which
+>>>>>>>> primarily addresses two use cases. First, it provides a data driven
+>>>>>>>> method
+>>>>>>>> to describe hardware peripherals that are present in a PCI endpoint
+>>>>>>>> and
+>>>>>>>> hence can be accessed by the PCI host. Second, it allows reuse of a
+>>>>>>>> OF
+>>>>>>>> compatible driver -- often used in SoC platforms -- in a PCI host
+>>>>>>>> based
+>>>>>>>> system.
+>>>>>>>>
+>>>>>>>> There are 2 series devices rely on this patch:
+>>>>>>>>
+>>>>>>>>    1) Xilinx Alveo Accelerator cards (FPGA based device)
+>>>>>>>>    2) Microchip LAN9662 Ethernet Controller
+>>>>>>>>
+>>>>>>>>       Please see:
+>>>>>>>> https://lore.kernel.org/lkml/20220427094502.456111-1-clement.leger@bootlin.com/
+>>>>>>>>
+>>>>>>>
+>>>>>>>
+>>>>>>>> Normally, the PCI core discovers PCI devices and their BARs using
+>>>>>>>> the
+>>>>>>>> PCI enumeration process. However, the process does not provide a way
+>>>>>>>> to
+>>>>>>>> discover the hardware peripherals that are present in a PCI device,
+>>>>>>>> and
+>>>>>>>> which can be accessed through the PCI BARs. Also, the enumeration
+>>>>>>>> process
+>>>>>>>
+>>>>>>> I'm confused.  The PCI Configuration Header Registers should describe
+>>>>>>> the
+>>>>>>> hardware on the PCI card.
+>>>>>>>
+>>>>>>> Ignoring case 1 above _for the moment_ (FPGA devices are a world unto
+>>>>>>> themselves, so I would like to analyze that case separately), does
+>>>>>>> the
+>>>>>>> second device, "Microchip LAN9662 Ethernet Controller" properly
+>>>>>>> implement
+>>>>>>> the PCI Configuration Header Registers?  What additional information
+>>>>>>> is
+>>>>>>> needed that is not provided in those registers?
+>>>>>>
+>>>>>> Hi Frank,
+>>>>>>
+>>>>>> I guess Lizhi wanted to say that it does not provide a way to describe
+>>>>>> all the "platform" devices that are exposed by this PCI device. Which
+>>>>>> is of course the whole point of the work we are doing right now. But
+>>>>>> all the BARs are correctly described by the LAN9662 PCI card.
+>>>>>>
+>>>>>> Clément
+>>>>>
+>>>>> I remain confused.
+>>>>>
+>>>>> [RFC 00/10] add support for fwnode in i2c mux system and sfp
+>>>>> https://lore.kernel.org/lkml/YhQHqDJvahgriDZK@lunn.ch/t/
+>>>>>
+>>>>>    references a PCIe driver:
+>>>>>    [2]
+>>>>> https://github.com/clementleger/linux/blob/fwnode_support/drivers/mfd/lan966x_pci_mfd.c
+>>>>>
+>>>>> So there is a PCIe driver that works.
+>>>>>
+>>>>> However, the RFC patch series was proposing adding fwnode support to
+>>>>> the driver.  My first
+>>>>> surface reading (just part of that one email, not the entire series or
+>>>>> the replies yet),
+>>>>> notes:
+>>>>>
+>>>>>    ... However, when
+>>>>>    plugged in a PCIe slot (on a x86), there is no device-tree support
+>>>>> and
+>>>>>    the peripherals that are present must be described in some other way.
+>>>>>
+>>>>> I am assuming that the peripherals are what you mentioned above as
+>>>>> '"platform"
+>>>>> devices'.  This is where my current confusion lies.  Are the "platform"
+>>>>> devices accessed via the PCI bus or is there some other electrical
+>>>>> connection
+>>>>> between the host system and the PCIe card?
+>>>>
+>>>> Hi Frank,
+>>>>
+>>>> The platform devices exposed by this PCIe card are available via some
+>>>> BAR using PCI memory mapped areas, so it's totally standard PCI stuff.
+>>>>
+>>>>>
+>>>>> If the "platform" devices are accessed via the PCI bus, then I would
+>>>>> expect them
+>>>>> to be described by PCI configuration header registers.  Are the PCI
+>>>>> configuration
+>>>>> registers to describe the "platform" devices not present?
+>>>>
+>>>> I'm not sure to understand what you mean here. PCI configuration headers
+>>>> only provides some basic registers allowing to identify the PCI device
+>>>> (vendor/product) and some memory areas that are exposed (BAR). They do
+>>>> not provides the "list" of peripherals that are exposed by the devices,
+>>>> only some BARs that can be mapped and that allows to access.
+>>>
+>>> Yes, "identify the PCI device (vendor/product) and some memory areas".
+>>> The driver for the (vendor/product) 'knows' what peripherals are exposed
+>>> by the device and where within the BAR to find the registers for each
+>>> of the devices.
+>>>
+>>> A normal PCI driver would contain this information.  If I understand the
+>>> proposal of this patch series, of_pci_make_dev_node() adds a node to
+>>> the devicetree, when invoked via a PCI quirk for certain specific
+>>> vendor/product cards.  This node must exist for the flattened device
+>>> tree (FDT) overlay for the card to be loaded.  The driver for the card
+>>> will get the overlay FDT from the card and load it into the kernel.
+>>> The driver will use the information that then exists in the devicetree
+>>> describing the card, instead of using information from the PCI configuration
+>>> headers from the card.
+>>
+>> How would all the sub devices be defined by the PCI config space other
+>> than a VID/PID implies *everything*. That's the same as the pre-DT
+>> world where the ARM machine ID number (from RMK's registry) implied
+>> everything. These days, we can have an entire SoC exposed behind a PCI
+>> BAR which I think is pretty much Clement's usecase. Putting an SoC
+>> behind a PCI BAR is no more discoverable than a "normal" SoC.
+>>
+>>>
+>>> The intent is to be able to re-use devicetree based drivers instead of
+>>> having the driver be a native PCI driver.
+>>
+>> Not instead of. There's the PCI driver for the FPGA or SoC bus with
+>> multiple unrelated devices behind it. The PCI driver is just a bus
+>> driver much like we have for various custom SoC bus drivers.
+>>
+>>> This goes against historical Linux practice.  The idea of taking a driver
+>>> from another environment (eg Windows, HP Unix, Sun Unix, IBM Unix, etc)
+>>> and adding a shim layer to translate between Linux and the other
+>>> environment has been rejected.  Ironically, in this case, the other
+>>> environment is Linux (more specifically the Linux OF implementation).
+>>
+>> I don't see how your example relates to this in any way whatsoever.
+>> We're talking about different discovery mechanisms, not different
+>> driver models/environments.
+>>
+>>> Even thought the other environment is Linux, this is still adding a
+>>> shim layer to translate between that other environment and the native
+>>> Linux PCI environment for which the driver would normally be written.
+>>>
+>>> In other words, this is not acceptable.  Normal alternatives would be
+>>> something like
+>>> (1) add the PCI awareness to the existing drivers,
+>>
+>> The downstream devices don't have their own PCI config space. That
+>> won't work. PCI drivers expect a device with PCI config space. Devices
+>> to drivers are always 1:1, so we couldn't share the config space among
+>> multiple drivers or something. For devices which are not discoverable
+>> like these are, our choices are DT, ACPI or s/w nodes (aka
+>> platform_data 2.0).
+>>
+>>> (2) split the devicetree aware and PCI aware portions of the driver
+>>> to common code that would be invoked from separate devicetree and PCI
+>>> drivers,
+>>
+>> That only makes sense for something that is a single driver. Not the
+>> case here. For the FPGA, the devices are not known up front.
+>>
+>>> (3) write entirely separate devicetree and PCI drivers, or
+>>
+>> For the same reason as 1, that simply won't work.
+>>
+>>> (4) some other creative solution.
+>>>
+>>> Am I mis-interpretting or misunderstanding anything crucial here?
+>>
+>> Yes...
+>>
+>> We now have 3 different use cases all needing the same thing. The
+>> 3rd[1] is the recent test infrastructure change to have test devices
+>> added. They all have non-discoverable devices downstream of a PCI
+>> device. We need a solution here.
+> 
+> Thanks Rob for this explanation. I would like to second that, as I've
+> been looking for a "solution" for exact this situation for a few years
+> now in multiple system configurations. The setup mostly being identical:
 
-Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
----
- sound/soc/tegra/Kconfig              |  9 ++++++
- sound/soc/tegra/tegra_asoc_machine.c | 46 +++++++++++++++++++++++++---
- 2 files changed, 51 insertions(+), 4 deletions(-)
+Please don't hijack this subthread.
 
-diff --git a/sound/soc/tegra/Kconfig b/sound/soc/tegra/Kconfig
-index ff905e5dcd86..950f490b8d54 100644
---- a/sound/soc/tegra/Kconfig
-+++ b/sound/soc/tegra/Kconfig
-@@ -263,6 +263,15 @@ config SND_SOC_TEGRA_MAX98090
- 	  Say Y or M here if you want to add support for SoC audio on Tegra
- 	  boards using the MAX98090 codec, such as Venice2.
- 
-+config SND_SOC_TEGRA_MAX98088
-+	tristate "SoC Audio support for Tegra boards using a MAX9808x codec"
-+	depends on I2C && GPIOLIB
-+	select SND_SOC_TEGRA_MACHINE_DRV
-+	select SND_SOC_MAX98088
-+	help
-+	  Say Y or M here if you want to add support for SoC audio on Tegra
-+	  boards using the MAX98088 codec, such as LG X3.
-+
- config SND_SOC_TEGRA_RT5677
- 	tristate "SoC Audio support for Tegra boards using a RT5677 codec"
- 	depends on I2C && GPIOLIB
-diff --git a/sound/soc/tegra/tegra_asoc_machine.c b/sound/soc/tegra/tegra_asoc_machine.c
-index 020f03349373..cc08325d523b 100644
---- a/sound/soc/tegra/tegra_asoc_machine.c
-+++ b/sound/soc/tegra/tegra_asoc_machine.c
-@@ -86,11 +86,11 @@ static int tegra_machine_event(struct snd_soc_dapm_widget *w,
- 		gpiod_set_value_cansleep(machine->gpiod_spkr_en,
- 					 SND_SOC_DAPM_EVENT_ON(event));
- 
--	if (!strcmp(w->name, "Mic Jack"))
-+	if (!strcmp(w->name, "Mic Jack") || !strcmp(w->name, "Headset Mic"))
- 		gpiod_set_value_cansleep(machine->gpiod_ext_mic_en,
- 					 SND_SOC_DAPM_EVENT_ON(event));
- 
--	if (!strcmp(w->name, "Int Mic"))
-+	if (!strcmp(w->name, "Int Mic") || !strcmp(w->name, "Internal Mic 2"))
- 		gpiod_set_value_cansleep(machine->gpiod_int_mic_en,
- 					 SND_SOC_DAPM_EVENT_ON(event));
- 
-@@ -108,11 +108,12 @@ static const struct snd_soc_dapm_widget tegra_machine_dapm_widgets[] = {
- 	SND_SOC_DAPM_HP("Headphones", NULL),
- 	SND_SOC_DAPM_SPK("Speakers", tegra_machine_event),
- 	SND_SOC_DAPM_SPK("Int Spk", tegra_machine_event),
-+	SND_SOC_DAPM_SPK("Earpiece", NULL),
- 	SND_SOC_DAPM_MIC("Int Mic", tegra_machine_event),
- 	SND_SOC_DAPM_MIC("Mic Jack", tegra_machine_event),
- 	SND_SOC_DAPM_MIC("Internal Mic 1", NULL),
--	SND_SOC_DAPM_MIC("Internal Mic 2", NULL),
--	SND_SOC_DAPM_MIC("Headset Mic", NULL),
-+	SND_SOC_DAPM_MIC("Internal Mic 2", tegra_machine_event),
-+	SND_SOC_DAPM_MIC("Headset Mic", tegra_machine_event),
- 	SND_SOC_DAPM_MIC("Digital Mic", NULL),
- 	SND_SOC_DAPM_MIC("Mic", NULL),
- 	SND_SOC_DAPM_LINE("Line In Jack", NULL),
-@@ -123,6 +124,7 @@ static const struct snd_soc_dapm_widget tegra_machine_dapm_widgets[] = {
- static const struct snd_kcontrol_new tegra_machine_controls[] = {
- 	SOC_DAPM_PIN_SWITCH("Speakers"),
- 	SOC_DAPM_PIN_SWITCH("Int Spk"),
-+	SOC_DAPM_PIN_SWITCH("Earpiece"),
- 	SOC_DAPM_PIN_SWITCH("Int Mic"),
- 	SOC_DAPM_PIN_SWITCH("Headset Mic"),
- 	SOC_DAPM_PIN_SWITCH("Internal Mic 1"),
-@@ -718,6 +720,40 @@ static const struct tegra_asoc_data tegra_max98090_data = {
- 	.add_hp_jack = true,
- };
- 
-+/* MAX98088 machine */
-+
-+SND_SOC_DAILINK_DEFS(max98088_hifi,
-+	DAILINK_COMP_ARRAY(COMP_EMPTY()),
-+	DAILINK_COMP_ARRAY(COMP_CODEC(NULL, "HiFi")),
-+	DAILINK_COMP_ARRAY(COMP_EMPTY()));
-+
-+static struct snd_soc_dai_link tegra_max98088_dai = {
-+	.name = "MAX98088",
-+	.stream_name = "MAX98088 PCM",
-+	.init = tegra_asoc_machine_init,
-+	.dai_fmt = SND_SOC_DAIFMT_I2S |
-+		   SND_SOC_DAIFMT_NB_NF |
-+		   SND_SOC_DAIFMT_CBS_CFS,
-+	SND_SOC_DAILINK_REG(max98088_hifi),
-+};
-+
-+static struct snd_soc_card snd_soc_tegra_max98088 = {
-+	.components = "codec:max98088",
-+	.dai_link = &tegra_max98088_dai,
-+	.num_links = 1,
-+	.fully_routed = true,
-+};
-+
-+static const struct tegra_asoc_data tegra_max98088_data = {
-+	.mclk_rate = tegra_machine_mclk_rate_12mhz,
-+	.card = &snd_soc_tegra_max98088,
-+	.add_common_dapm_widgets = true,
-+	.add_common_controls = true,
-+	.add_common_snd_ops = true,
-+	.add_mic_jack = true,
-+	.add_hp_jack = true,
-+};
-+
- /* SGTL5000 machine */
- 
- SND_SOC_DAILINK_DEFS(sgtl5000_hifi,
-@@ -946,6 +982,8 @@ static const struct tegra_asoc_data tegra_rt5631_data = {
- static const struct of_device_id tegra_machine_of_match[] = {
- 	{ .compatible = "nvidia,tegra-audio-trimslice", .data = &tegra_trimslice_data },
- 	{ .compatible = "nvidia,tegra-audio-max98090", .data = &tegra_max98090_data },
-+	{ .compatible = "nvidia,tegra-audio-max98088", .data = &tegra_max98088_data },
-+	{ .compatible = "nvidia,tegra-audio-max98089", .data = &tegra_max98088_data },
- 	{ .compatible = "nvidia,tegra-audio-sgtl5000", .data = &tegra_sgtl5000_data },
- 	{ .compatible = "nvidia,tegra-audio-wm9712", .data = &tegra_wm9712_data },
- 	{ .compatible = "nvidia,tegra-audio-wm8753", .data = &tegra_wm8753_data },
--- 
-2.37.2
+I am really struggling to get a correct understanding of the issues
+specifically related to the example of the Microchip LAN9662 Ethernet
+Controller on a PCI card.  I want this subthread to remain focused
+on that, as much as possible.
+
+The below info will be useful in the bigger picture discussion, and
+the main thread discussion, but I want to keep this subthread focused
+on the one specific example item of hardware.
+
+Thanks (and thanks for all your useful participation over many years),
+
+Frank
+
+> An FPGA connected via PCIe to the host CPU, embedded in the FPGA misc
+> devices like NS16550 UART, GPIO controller, etc which often have
+> existing drivers in the Kernel. Using this dynamic device tree node
+> approach for the PCIe EP with the possibility to describe the FPGA-
+> internal devices via device tree seems to be the most elegant solution
+> IMHO.
+> 
+> Thanks,
+> Stefan
+> 
+>> Rob
+>>
+>> [1] https://lore.kernel.org/lkml/20230120-simple-mfd-pci-v1-1-c46b3d6601ef@axis.com/
 
