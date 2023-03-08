@@ -2,91 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5997A6B072D
-	for <lists+devicetree@lfdr.de>; Wed,  8 Mar 2023 13:35:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 15E676B072F
+	for <lists+devicetree@lfdr.de>; Wed,  8 Mar 2023 13:35:08 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229651AbjCHMfD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Mar 2023 07:35:03 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34272 "EHLO
+        id S230071AbjCHMfF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Mar 2023 07:35:05 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34286 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229893AbjCHMfC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Mar 2023 07:35:02 -0500
-Received: from mail-pl1-x632.google.com (mail-pl1-x632.google.com [IPv6:2607:f8b0:4864:20::632])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C73AABCB8F
-        for <devicetree@vger.kernel.org>; Wed,  8 Mar 2023 04:34:56 -0800 (PST)
-Received: by mail-pl1-x632.google.com with SMTP id a2so17507996plm.4
-        for <devicetree@vger.kernel.org>; Wed, 08 Mar 2023 04:34:56 -0800 (PST)
+        with ESMTP id S230257AbjCHMfD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Mar 2023 07:35:03 -0500
+Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 443A75F22E
+        for <devicetree@vger.kernel.org>; Wed,  8 Mar 2023 04:34:59 -0800 (PST)
+Received: by mail-lf1-x131.google.com with SMTP id m6so21135459lfq.5
+        for <devicetree@vger.kernel.org>; Wed, 08 Mar 2023 04:34:59 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112; t=1678278896;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=zHuDgvlCE/5a9+1aGAitgplyFrJpaa48jFZWHTER884=;
-        b=EUJUIzwhx5ZOLfjs56PfPm2MZ1SOYq6t773REs/PoM+logtX5oJWDeHGaZnjhe+wdG
-         MHSIt4rtxU1/cewTmBbp7rfrnqppxomQ//s1kbFF95U2YOwzlGuOWXf/LSiwTMgLOErF
-         vN6ZnO8fy8KDtvNk/qy/VeK1OtOF+C7DuGRQ/VgQt9CaiH/TOgNXxGAoPGiJWjaxJc8S
-         sCAFj9MDjPwQ5lawNC8havEbww7hOXxedm3eN/h1x/w5yL7TOq4iC47MRGj5lDwHfoDb
-         c0+xJs/fT3pI9FWPJRfptHTr5JkktBAMzDveQQcfowiSRA9raxJIFVJj8Ix1NU+CLJIm
-         YmDA==
+        d=linaro.org; s=google; t=1678278897;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=Bm/wFhbM4wm/xhFq134yVQd8tiMNGqmrnN+0G9WMMBo=;
+        b=jezxfYXi0ZzQdUXQiclKaruTD3zvxoLksYnruQsiQqBwDKaH8n36RCyM0npUBwOV6B
+         IVB3hwX529vMxqRUMOV0nhehAYbEXB8hfbTzA3qSk73gbtbwKKqA53GdPCmfT3T7y0fS
+         hFj5UQfd+b7fcCBDZfTMr8xiTIFr2Pzs994o4QMmE3c8HMzhLwYvq3/G/7Qxk6QTmr8I
+         qlf7Be6eyMUYYZp64djVLq6oIVjeDNfLyyOEN157cMVX0Wk4NF6w+AhiqC0al66fVeCb
+         ztz3wVSQ84P1wU0tYnnrFTrhc05EIcPWriUd8J8Q6NyVGUZ0HtZfRYKkM/iPut5uLggo
+         8EMA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678278896;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=zHuDgvlCE/5a9+1aGAitgplyFrJpaa48jFZWHTER884=;
-        b=VDL3x8QKEAUnLOs3mdN4ifInOxqbM7+KNJ8XGms9o+kGwOqbhOBJ65jRdSxbi0CuBF
-         wZg8Wjyn18OblFk/Rbwy8zhOFq2JhGS0iNhptVaGHeWopF0HcDJIiyxusioPxqzxt/Ie
-         X9MPst9M6WLQTHn8RK8gHvJZqw9ebHv0EJUBKaP9nKhig4tTlJkijwjFZnXRjp1NF668
-         JBRoC6zxjznd9SwXLLX3U3n7m8nFbRsHh4xcfPDztKaKUoX2TXjTnt7nu8SZAYQuLBH3
-         mR+oc52FSUoYkzb7PFyVkWWLbPzUtcrp0GhLDhX2GBU28uGBqUJ6ICKalE6vW0UuPEy1
-         3VZQ==
-X-Gm-Message-State: AO0yUKVQZ1l3k5l2vi8NYtq3pwX/JuG/PmxTcQNR0FeO5F9V9nxGsxSp
-        +LOB8rpQB8cnzw51TPby5OaB8889adM8PGvFqK8=
-X-Google-Smtp-Source: AK7set9j3MYpH/pDS1Tu/sjnEelIBRJc/QZ5emFBX/PM6Z8GgezMhpXsCfH+ZFUsM13ztNzndYGAcfu8+fNi/oxvSms=
-X-Received: by 2002:a17:90a:69c4:b0:233:bc72:1c69 with SMTP id
- s62-20020a17090a69c400b00233bc721c69mr6277736pjj.9.1678278896224; Wed, 08 Mar
- 2023 04:34:56 -0800 (PST)
+        d=1e100.net; s=20210112; t=1678278897;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=Bm/wFhbM4wm/xhFq134yVQd8tiMNGqmrnN+0G9WMMBo=;
+        b=ySM9FeWUVWVG3ZcnKwXHU18ihDdihWO7OWIrPUkZV/YCFkYXIYgDrrrpOBTtpZ5Iu/
+         pkczDFxo3vkIjWVZRjNF+BD31pDglJga2ZicAFubYWaQYN5B5JBMNg85kwG27UPaaznj
+         vRhNqjCvSNchs/gExEWXo8OAOm1sCuQaBHK53cxxqNXJuprCLeqgmnU/Alvlp07Mmqd+
+         eHWAs46OPuI55hoiuOASa/g7PCoYfIAlpWUpd3GlNyQus+BQQKLOp60irEFwYDegVdhN
+         ZKnZP1tE+mo0EPqmoLZsKLohMBWAqWHu93jsUInWVKUnYemQyZVxf8XcGcSI45cS5mxb
+         fX5g==
+X-Gm-Message-State: AO0yUKX/6vPLPh3yxyPlG9/cik0EppxaU+BCX0ZWy9njHY2PCDgIPR7P
+        Ca6NAbxcxaibHNqQis8gKn24tA==
+X-Google-Smtp-Source: AK7set9Fwpz4ucWoyfrUg0MFawQVc4nuIyYWmuOSFKkGSlG8En1qe8k2LLAB82bku8RZnPRIt+xXgQ==
+X-Received: by 2002:ac2:5613:0:b0:4cb:13d7:77e2 with SMTP id v19-20020ac25613000000b004cb13d777e2mr5109380lfd.26.1678278897568;
+        Wed, 08 Mar 2023 04:34:57 -0800 (PST)
+Received: from [192.168.1.101] (abyj16.neoplus.adsl.tpnet.pl. [83.9.29.16])
+        by smtp.gmail.com with ESMTPSA id d2-20020a2e96c2000000b00295a2d07558sm2569871ljj.112.2023.03.08.04.34.56
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 08 Mar 2023 04:34:57 -0800 (PST)
+Message-ID: <2fbf7a1c-fa1a-8834-63b0-0796b2993293@linaro.org>
+Date:   Wed, 8 Mar 2023 13:34:55 +0100
 MIME-Version: 1.0
-References: <20230227093846.151474-1-alexander.stein@ew.tq-group.com>
-In-Reply-To: <20230227093846.151474-1-alexander.stein@ew.tq-group.com>
-From:   Fabio Estevam <festevam@gmail.com>
-Date:   Wed, 8 Mar 2023 09:34:44 -0300
-Message-ID: <CAOMZO5Ao8-AW_LXdVbrxcHO1Yn9YP8UPyNy7U3ecy+G+9ZD7Eg@mail.gmail.com>
-Subject: Re: [PATCH 1/1] arm64: dts: imx93: add missing tpm pwm instances
-To:     Alexander Stein <alexander.stein@ew.tq-group.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.8.0
+Subject: Re: [PATCH] arm64: dts: qcom: sm8450: correct WSA2 assigned clocks
+Content-Language: en-US
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Markus Niebel <Markus.Niebel@ew.tq-group.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20230308123129.232642-1-krzysztof.kozlowski@linaro.org>
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <20230308123129.232642-1-krzysztof.kozlowski@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-0.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_SORBS_HTTP,RCVD_IN_SORBS_SOCKS,SPF_HELO_NONE,SPF_PASS,
+        URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Alexander,
 
-On Mon, Feb 27, 2023 at 6:38=E2=80=AFAM Alexander Stein
-<alexander.stein@ew.tq-group.com> wrote:
->
-> TPM1/TPM3 are missing, add them.
->
-> Signed-off-by: Markus Niebel <Markus.Niebel@ew.tq-group.com>
-> Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
 
-Who is the original author? If it is Markus, then his name should
-appear in the From: line.
+On 8.03.2023 13:31, Krzysztof Kozlowski wrote:
+> The WSA2 assigned-clocks were copied from WSA, but the WSA2 uses its
+> own.
+> 
+> Fixes: 14341e76dbc7 ("arm64: dts: qcom: sm8450: add Soundwire and LPASS")
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> ---
+Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 
-Apart from that:
-
-Reviewed-by: Fabio Estevam <festevam@gmail.com>
+Konrad
+>  arch/arm64/boot/dts/qcom/sm8450.dtsi | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/sm8450.dtsi b/arch/arm64/boot/dts/qcom/sm8450.dtsi
+> index 42833188a257..a315c0a61c5f 100644
+> --- a/arch/arm64/boot/dts/qcom/sm8450.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sm8450.dtsi
+> @@ -2142,8 +2142,8 @@ wsa2macro: codec@31e0000 {
+>  				 <&q6prmcc LPASS_HW_DCODEC_VOTE LPASS_CLK_ATTRIBUTE_COUPLE_NO>,
+>  				 <&vamacro>;
+>  			clock-names = "mclk", "npl", "macro", "dcodec", "fsgen";
+> -			assigned-clocks = <&q6prmcc LPASS_CLK_ID_WSA_CORE_TX_MCLK LPASS_CLK_ATTRIBUTE_COUPLE_NO>,
+> -					  <&q6prmcc LPASS_CLK_ID_WSA_CORE_TX_2X_MCLK LPASS_CLK_ATTRIBUTE_COUPLE_NO>;
+> +			assigned-clocks = <&q6prmcc LPASS_CLK_ID_WSA2_CORE_TX_MCLK LPASS_CLK_ATTRIBUTE_COUPLE_NO>,
+> +					  <&q6prmcc LPASS_CLK_ID_WSA2_CORE_TX_2X_MCLK LPASS_CLK_ATTRIBUTE_COUPLE_NO>;
+>  			assigned-clock-rates = <19200000>, <19200000>;
+>  
+>  			#clock-cells = <0>;
