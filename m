@@ -2,63 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B1E7C6B0A8C
-	for <lists+devicetree@lfdr.de>; Wed,  8 Mar 2023 15:08:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EB0E16B0A7E
+	for <lists+devicetree@lfdr.de>; Wed,  8 Mar 2023 15:08:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231928AbjCHOIR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Mar 2023 09:08:17 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48948 "EHLO
+        id S232141AbjCHOII (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Mar 2023 09:08:08 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48758 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229482AbjCHOHw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Mar 2023 09:07:52 -0500
-Received: from mail-oa1-f45.google.com (mail-oa1-f45.google.com [209.85.160.45])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 172F35C9FB;
-        Wed,  8 Mar 2023 06:06:31 -0800 (PST)
-Received: by mail-oa1-f45.google.com with SMTP id 586e51a60fabf-176d93cd0daso9394872fac.4;
-        Wed, 08 Mar 2023 06:06:31 -0800 (PST)
+        with ESMTP id S231979AbjCHOHu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Mar 2023 09:07:50 -0500
+Received: from mail-oi1-f181.google.com (mail-oi1-f181.google.com [209.85.167.181])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2020734002;
+        Wed,  8 Mar 2023 06:06:26 -0800 (PST)
+Received: by mail-oi1-f181.google.com with SMTP id e21so12247136oie.1;
+        Wed, 08 Mar 2023 06:06:26 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678284391;
+        d=1e100.net; s=20210112; t=1678284385;
         h=date:subject:message-id:references:in-reply-to:cc:to:from
          :mime-version:content-transfer-encoding:x-gm-message-state:from:to
          :cc:subject:date:message-id:reply-to;
-        bh=8yIx/AU8JzW8uSjkdg01a/PYhxpFU04JXt4ilid73Fg=;
-        b=05hqTsNe/GBJpIiI4Xr8N7xFUSXrqqy/szG2Tn16qnmpAFNWLo7lY2CgPxbCTIkjij
-         TFbtw1VvlQmpg3FkGQZPyDLvx443M5IQu4wmIXf0c3DJSjMkzg3GbROxoWummC/afUI7
-         vqvIvfiBnEHYuQ2IHYHOmC6mehBxiP5W9VPhPAkRWSGhFltYqoZy+W3eOz/XK+yaZ5JV
-         YnTZ1SniAsWmqQQ0YUUIPoPozdBGU59L8j7xB/GbFA4xWoxcWh9P213/KTTu0nLMD+2L
-         Mb9DbSs8NeEz+zbMTUeHA0FapqPnz9N27ky5+s5mOYDUJ+Lbs7Y3DeNmwojrq0n9CIxo
-         HJxA==
-X-Gm-Message-State: AO0yUKVXni7RgvZ1fCPnEnY+QFnJsMbQdPo2b8Ntpa0FBK6z4nsbWygm
-        jiKGCVgbDXrwzv4fSdq8Mg==
-X-Google-Smtp-Source: AK7set9TNvbhYkYF/07vHAjhIjW7nnPGoUTxEfCExr/KeTykPce7GTNhjs/xFb+8h0xD1/EUloG4jQ==
-X-Received: by 2002:a05:6870:414e:b0:176:554d:235b with SMTP id r14-20020a056870414e00b00176554d235bmr690543oad.59.1678284391145;
-        Wed, 08 Mar 2023 06:06:31 -0800 (PST)
+        bh=WpczFTCXijyH6v2uFsL0r+ne6zhQWpuAxK6dZ8HLc8w=;
+        b=hhPn5vzzQnLsj55S5avkZt0cS4CDLTPUSDXszASAkbS21eMuAtebnHidYBRu1PsVAp
+         VoYeDUu7wltur3k8eLOxienPgGPLxNCgB8/j7jBN9ZpsO6l1icSydI6BvXPWUlDqzJgl
+         l5IHb0rNMbK4LxhNH7ow8haaLrKoQUzZ5MNzOhqBiukKnh/dTGK3U5ABf84GLvwDOPIq
+         Yoi7pWkgtBen/X0t6hqTKs+GC5Sv4ZCQKp9nShfAMujNPRP+BHsBUFeKDSx3ku5ZJyoX
+         BdEUh+GAYzQt//ThtZekS0R/U7xBCjFgEXCd+Y3/zZvaziZIOdOS/HdDSnd71PMCdIm1
+         r6RQ==
+X-Gm-Message-State: AO0yUKV3kzx1f53qUEmqEBULDGyx7mvPkgXPHjT/vbzIz2kizFdZhNGX
+        m9gs3V6sex2rzDDlb7xS5A==
+X-Google-Smtp-Source: AK7set9TY7ANnw+LvWD6zq/I9SejqdyfAIYH25nwUFoQ1NaWeLROsqghaWZaYYnPSagPS99RJ5mp5A==
+X-Received: by 2002:a05:6808:c7:b0:384:3a4d:7f72 with SMTP id t7-20020a05680800c700b003843a4d7f72mr7023522oic.9.1678284385296;
+        Wed, 08 Mar 2023 06:06:25 -0800 (PST)
 Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id v22-20020a4ac916000000b0052532296449sm6208690ooq.20.2023.03.08.06.06.29
+        by smtp.gmail.com with ESMTPSA id s82-20020acadb55000000b00383ecd10ea6sm6354226oig.20.2023.03.08.06.06.24
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 08 Mar 2023 06:06:30 -0800 (PST)
-Received: (nullmailer pid 2666472 invoked by uid 1000);
+        Wed, 08 Mar 2023 06:06:24 -0800 (PST)
+Received: (nullmailer pid 2666455 invoked by uid 1000);
         Wed, 08 Mar 2023 14:06:21 -0000
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 MIME-Version: 1.0
 From:   Rob Herring <robh@kernel.org>
-To:     Prathamesh Shete <pshete@nvidia.com>
-Cc:     jonathanh@nvidia.com, linux-tegra@vger.kernel.org,
-        thierry.reding@gmail.com, krzysztof.kozlowski+dt@linaro.org,
-        linux-gpio@vger.kernel.org, linus.walleij@linaro.org,
-        smangipudi@nvidia.com, robh+dt@kernel.org,
-        devicetree@vger.kernel.org
-In-Reply-To: <20230308114432.27133-1-pshete@nvidia.com>
-References: <20230308114432.27133-1-pshete@nvidia.com>
-Message-Id: <167828360289.2613214.7109201794709064028.robh@kernel.org>
-Subject: Re: [PATCH v2 1/3] dt-bindings: pinctrl: tegra234
+To:     Svyatoslav Ryhel <clamor95@gmail.com>
+Cc:     Lars-Peter Clausen <lars@metafoo.de>,
+        Derek Kiernan <derek.kiernan@xilinx.com>,
+        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Dragan Cvetic <dragan.cvetic@xilinx.com>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Arnd Bergmann <arnd@arndb.de>, linux-iio@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Dmitry Osipenko <dmitry.osipenko@collabora.com>
+In-Reply-To: <20230308090219.12710-2-clamor95@gmail.com>
+References: <20230308090219.12710-1-clamor95@gmail.com>
+ <20230308090219.12710-2-clamor95@gmail.com>
+Message-Id: <167828360145.2613122.1172986827662465150.robh@kernel.org>
+Subject: Re: [PATCH v1 1/4] dt-bindings: iio: light: add apds990x binding
 Date:   Wed, 08 Mar 2023 08:06:21 -0600
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=no
-        autolearn_force=no version=3.4.6
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=no autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -66,14 +72,14 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
-On Wed, 08 Mar 2023 17:14:30 +0530, Prathamesh Shete wrote:
-> Add DT binding doc for Tegra234 pinmux driver.
+On Wed, 08 Mar 2023 11:02:16 +0200, Svyatoslav Ryhel wrote:
+> Add dt-binding for apds990x ALS/proximity sensor.
 > 
-> Signed-off-by: Prathamesh Shete <pshete@nvidia.com>
+> Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
 > ---
->  .../pinctrl/nvidia,tegra234-pinmux.yaml       | 232 ++++++++++++++++++
->  1 file changed, 232 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/pinctrl/nvidia,tegra234-pinmux.yaml
+>  .../bindings/iio/light/avago,apds990x.yaml    | 76 +++++++++++++++++++
+>  1 file changed, 76 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/iio/light/avago,apds990x.yaml
 > 
 
 My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
@@ -82,12 +88,12 @@ on your patch (DT_CHECKER_FLAGS is new in v5.13):
 yamllint warnings/errors:
 
 dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pinctrl/nvidia,tegra234-pinmux.example.dtb: pinmux@2430000: 'pinmux-pex-rst-c5-out' does not match any of the regexes: '^pinmux(-[a-z0-9]+)?$', 'pinctrl-[0-9]+'
-	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pinctrl/nvidia,tegra234-pinmux.yaml
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/iio/light/avago,apds990x.example.dtb: light-sensor@39: 'interrupt' is a required property
+	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/iio/light/avago,apds990x.yaml
 
 doc reference errors (make refcheckdocs):
 
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20230308114432.27133-1-pshete@nvidia.com
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20230308090219.12710-2-clamor95@gmail.com
 
 The base for the series is generally the latest rc1. A different dependency
 should be noted in *this* patch.
