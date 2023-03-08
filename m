@@ -2,90 +2,123 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E49726B0BD8
-	for <lists+devicetree@lfdr.de>; Wed,  8 Mar 2023 15:51:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3921E6B0BDB
+	for <lists+devicetree@lfdr.de>; Wed,  8 Mar 2023 15:51:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230369AbjCHOvV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Mar 2023 09:51:21 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42650 "EHLO
+        id S231597AbjCHOvi convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Wed, 8 Mar 2023 09:51:38 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41660 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230268AbjCHOu5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Mar 2023 09:50:57 -0500
-Received: from smtp-bc0a.mail.infomaniak.ch (smtp-bc0a.mail.infomaniak.ch [IPv6:2001:1600:4:17::bc0a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 44E692FCD6
-        for <devicetree@vger.kernel.org>; Wed,  8 Mar 2023 06:50:07 -0800 (PST)
-Received: from smtp-3-0000.mail.infomaniak.ch (unknown [10.4.36.107])
-        by smtp-3-3000.mail.infomaniak.ch (Postfix) with ESMTPS id 4PWwG55Yx3zMq40q;
-        Wed,  8 Mar 2023 15:50:05 +0100 (CET)
-Received: from unknown by smtp-3-0000.mail.infomaniak.ch (Postfix) with ESMTPA id 4PWwG520w1z27K4;
-        Wed,  8 Mar 2023 15:50:05 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=pschenker.ch;
-        s=20220412; t=1678287005;
-        bh=YhDejNIAOWA2ocTNivyb1veTdzyn6P8nvP8lg5eW2YY=;
-        h=Subject:From:Reply-To:To:Cc:Date:In-Reply-To:References:From;
-        b=hdNHd40PY4zOReDL1q7gbVE7q3MzfsWeo6BGF32ub7HnboqIoF/oFd8NIoZo4igGE
-         IowvS3Ee3E9Upt1x8k9hZDtfriCOOVBeYrtcP7oQJKzpVXlJQa4dbN49Ov8HQRSc40
-         G9jEMYvl0jfhQPGpHBe06lFyXF8sapQSdfZxw6AY=
-Message-ID: <93b5c8bb6ec2010792c117bc7ffad9692fdf063c.camel@pschenker.ch>
-Subject: Re: [PATCH v1 03/25] arm64: dts: colibri-imx8x: Sort properties
-From:   Philippe Schenker <dev@pschenker.ch>
-Reply-To: dev@pschenker.ch
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        devicetree@vger.kernel.org, Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>
-Cc:     NXP Linux Team <linux-imx@nxp.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Frank Rowand <frowand.list@gmail.com>,
-        linux-arm-kernel@lists.infradead.org,
-        Fabio Estevam <festevam@gmail.com>,
-        linux-kernel@vger.kernel.org
-Date:   Wed, 08 Mar 2023 15:50:05 +0100
-In-Reply-To: <48d0217d-283f-354b-fcb5-12801895376a@linaro.org>
-References: <20230308125300.58244-1-dev@pschenker.ch>
-         <20230308125300.58244-4-dev@pschenker.ch>
-         <9d213504-d457-21a6-d467-41d8783d53d3@linaro.org>
-         <309ec2042a73b943485671f926ec0f25c5d8f80a.camel@pschenker.ch>
-         <48d0217d-283f-354b-fcb5-12801895376a@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.46.4 
+        with ESMTP id S232208AbjCHOvH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Mar 2023 09:51:07 -0500
+Received: from mail-qt1-f178.google.com (mail-qt1-f178.google.com [209.85.160.178])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F20291FED;
+        Wed,  8 Mar 2023 06:51:03 -0800 (PST)
+Received: by mail-qt1-f178.google.com with SMTP id y10so18311434qtj.2;
+        Wed, 08 Mar 2023 06:51:03 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1678287063;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=8NC4sXPFEIb8o+5ZtP/SeLE/mr+OOoJLvEPXDHrHk6k=;
+        b=d+86pRkJK1zLStQeJBvJB8N/2dhQWNawVXz+wqk4akoV8Yhc/N4EG8djR8jJoo+1EH
+         6EReCg07F5uOvGHZRx28/CqFkXQzMJvJ6HzhmB9/i4NFvftMNI4/WunXGue3e+VrUPD8
+         8N2jVSSsN5pqCFA30YPXkjLNf0s+jxtjQzDctUB0DcKQSSuvoh3+lTLMT9qc3UOFkz/7
+         GM+uVWu+zFS2y3QlFzYMPOGG47k2OqQ30/qYwmi9EhNTogAJndBgZfm1OZcHLJpsnl0V
+         7XqLeUdW+63Ufsu6YRyc22srjHHImPIcDQGe2YjHv15/Xyj9V5nTJLU+n/YA9Na3ErqM
+         Tkmg==
+X-Gm-Message-State: AO0yUKUEF81bYTHNkGRqFJsZsyvQibOF+1aawYhboP6dDr53d1BJPNHf
+        Ex04mvTlIWzbay5J0AkVLAS6AtpwhIgvxS77
+X-Google-Smtp-Source: AK7set88XghNomA2BJ3Pc3dGvPA43DcOoCBJ6dk48IqisEoqmztovmy7KnkFnsNesNIwRnke03rYEg==
+X-Received: by 2002:ac8:5e0e:0:b0:3bf:a8cf:3096 with SMTP id h14-20020ac85e0e000000b003bfa8cf3096mr33596515qtx.33.1678287062913;
+        Wed, 08 Mar 2023 06:51:02 -0800 (PST)
+Received: from mail-yb1-f174.google.com (mail-yb1-f174.google.com. [209.85.219.174])
+        by smtp.gmail.com with ESMTPSA id z24-20020ac84318000000b003c03b33e6f5sm3021604qtm.90.2023.03.08.06.51.01
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 08 Mar 2023 06:51:02 -0800 (PST)
+Received: by mail-yb1-f174.google.com with SMTP id t39so14866121ybi.3;
+        Wed, 08 Mar 2023 06:51:01 -0800 (PST)
+X-Received: by 2002:a5b:2cc:0:b0:a02:a3a6:78fa with SMTP id
+ h12-20020a5b02cc000000b00a02a3a678famr8794564ybp.12.1678287061631; Wed, 08
+ Mar 2023 06:51:01 -0800 (PST)
 MIME-Version: 1.0
-X-Infomaniak-Routing: alpha
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
-        URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.6
+References: <20230220131307.269100-1-biju.das.jz@bp.renesas.com>
+ <20230220131307.269100-2-biju.das.jz@bp.renesas.com> <e9e63c87-b491-b4d5-b226-0539ef0de2d0@linaro.org>
+ <OS0PR01MB59221C8C937EF20347149E4886B49@OS0PR01MB5922.jpnprd01.prod.outlook.com>
+In-Reply-To: <OS0PR01MB59221C8C937EF20347149E4886B49@OS0PR01MB5922.jpnprd01.prod.outlook.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Wed, 8 Mar 2023 15:50:50 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdXRym-ROY73KYJmt7RhmZC0a+Cb5HTdrhdDy4=huSuOzw@mail.gmail.com>
+Message-ID: <CAMuHMdXRym-ROY73KYJmt7RhmZC0a+Cb5HTdrhdDy4=huSuOzw@mail.gmail.com>
+Subject: Re: [PATCH RFC 1/3] dt-bindings: clock: Add Renesas versa3 clock
+ generator bindings
+To:     Biju Das <biju.das.jz@bp.renesas.com>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        "linux-renesas-soc@vger.kernel.org" 
+        <linux-renesas-soc@vger.kernel.org>,
+        "linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        Fabrizio Castro <fabrizio.castro.jz@renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8BIT
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,
+        SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 2023-03-08 at 15:32 +0100, Krzysztof Kozlowski wrote:
-> On 08/03/2023 14:29, Philippe Schenker wrote:
-> > On Wed, 2023-03-08 at 13:57 +0100, Krzysztof Kozlowski wrote:
-> > > Is this approved coding style for IMX DTS?
-> >=20
-> > How the ordering should be done is nowhere specifically documented
-> > (at
-> > least this is my current understanding).
-> > The ordering how I noted it is what we gathered from multiple
-> > feedback
-> > on mailinglist discussions.
-> >=20
-> > With that ordering I hope everyone is happy.
-> >=20
-> > Philippe
->=20
-> Yeah, but what if next developer next month re-orders all your nodes
-> again because he will use different coding style?
+Hi Biju,
 
-Someone from Toradex will complain that we want to have it the way I
-sent now, since this is the way we agreed on internally.
+On Wed, Mar 8, 2023 at 3:39 PM Biju Das <biju.das.jz@bp.renesas.com> wrote:
+> > From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> > On 20/02/2023 14:13, Biju Das wrote:
+> > > Document Renesas versa3 clock generator(5P35023) bindings.
+> > >
+> > > The 5P35023 is a VersaClock programmable clock generator and is
+> > > designed for low-power, consumer, and high-performance PCI Express
+> > > applications. The 5P35023 device is a three PLL architecture design,
+> > > and each PLL is individually programmable and allowing for up to 6
+> > > unique frequency outputs.
+> > >
+> > > Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
 
->=20
-> Best regards,
-> Krzysztof
->=20
+> > > --- /dev/null
+> > > +++ b/Documentation/devicetree/bindings/clock/renesas,versaclock3.yaml
 
+> > > +  clock-names:
+> > > +    oneOf:
+> > > +      - items:
+> > > +          - const: x1
+> > > +      - items:
+> > > +          - const: clkin
+> >
+> > This should be specific, not one or another. Why do you have two entirely
+> > different clock inputs?
+>
+> Reference input can be Crystal oscillator interface input(x1) or differential
+> clock input pin(clkin)
+
+I believe that's purely a hardware feature, which does not need any
+software configuration?
+I.e. logically, there's just a single clock input, i.e. no need for clock-names.
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
