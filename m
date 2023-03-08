@@ -2,77 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 56E286B0ACC
-	for <lists+devicetree@lfdr.de>; Wed,  8 Mar 2023 15:16:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 745766B0819
+	for <lists+devicetree@lfdr.de>; Wed,  8 Mar 2023 14:13:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231826AbjCHOQK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Mar 2023 09:16:10 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38978 "EHLO
+        id S230029AbjCHNNL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Mar 2023 08:13:11 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60596 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231845AbjCHOPu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Mar 2023 09:15:50 -0500
-Received: from mx.kernkonzept.com (serv1.kernkonzept.com [IPv6:2a01:4f8:1c1c:b490::2])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CC6AA900E
-        for <devicetree@vger.kernel.org>; Wed,  8 Mar 2023 06:14:56 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=kernkonzept.com; s=mx1; h=Content-Transfer-Encoding:MIME-Version:Message-Id
-        :Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:
-        Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-        :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
-        List-Subscribe:List-Post:List-Owner:List-Archive;
-        bh=WlXRewEJFvIoy+L9dwIgvESfgt98IneCSo08niNe2CM=; b=kn3LYHhP7CvYm8qMQSx4FNFHBj
-        SqsZaqmVNkRJMvD8D2GXl6v6hyyKqTmUl0A+abEibfJwxFtZaUIf6/fOgp9UKlfQ7i4LEoZVzfmlH
-        M4o2fgPUXJEmCaIxjV7umAt0PaiqU3YFRO0ZukSBpEwH7Nlp4yaJZLLSNthqg7fbAwynaBpF+vWXz
-        DT8qN4SCTW6w4kd413GjH1k9bFnMQ68XFIZW6Z46nxDXuPKUf/078yu4zSh3qcvGJq+IksdEgqfko
-        bN0jcERGQA1I43zM2fjrjo1MF/Lcc+Ek+7g0npCuoLV3ZUdNCrnswJGu1ZQmgCtURabCI2Dkb/hSC
-        l41+cqNQ==;
-Received: from [10.22.3.24] (helo=kernkonzept.com)
-        by mx.kernkonzept.com with esmtpsa (TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim 4.94.2)
-        id 1pZt1w-00FCip-0f; Wed, 08 Mar 2023 13:36:28 +0100
-From:   Stephan Gerhold <stephan.gerhold@kernkonzept.com>
-To:     Bjorn Andersson <andersson@kernel.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        Stephan Gerhold <stephan.gerhold@kernkonzept.com>
-Subject: [PATCH] arm64: dts: qcom: msm8916: Fix tsens_mode unit address
-Date:   Wed,  8 Mar 2023 13:36:17 +0100
-Message-Id: <20230308123617.101211-1-stephan.gerhold@kernkonzept.com>
-X-Mailer: git-send-email 2.30.2
+        with ESMTP id S231382AbjCHNMs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Mar 2023 08:12:48 -0500
+Received: from smtp-1908.mail.infomaniak.ch (smtp-1908.mail.infomaniak.ch [IPv6:2001:1600:4:17::1908])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 70237C80AE;
+        Wed,  8 Mar 2023 05:10:00 -0800 (PST)
+Received: from smtp-2-0000.mail.infomaniak.ch (unknown [10.5.36.107])
+        by smtp-3-3000.mail.infomaniak.ch (Postfix) with ESMTPS id 4PWsg96jYjzMrTBT;
+        Wed,  8 Mar 2023 13:53:09 +0100 (CET)
+Received: from unknown by smtp-2-0000.mail.infomaniak.ch (Postfix) with ESMTPA id 4PWsg934QyzMslsG;
+        Wed,  8 Mar 2023 13:53:09 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=pschenker.ch;
+        s=20220412; t=1678279989;
+        bh=Q1nzKQ150Q4X0uS6VSJZfX77+4AiYSqc1/pfiBJryZM=;
+        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+        b=mweahVRWrc7rNpBJX2Bv9tN4fYxgIJ/9wktrXK3aTMkyfhLzB+y1kgQhjpTOlt5YD
+         P7UzOXtoPBO2MfYdUkFp4h4qYUHhVC8ZRchk0yRbdPLQ3fWbtsQ22Idb4kBWVuaCE7
+         ea+eXy5MquFBR/orW8EU6AUrXFIoA9wmdio3OAfc=
+From:   Philippe Schenker <dev@pschenker.ch>
+To:     devicetree@vger.kernel.org, Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>
+Cc:     NXP Linux Team <linux-imx@nxp.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Frank Rowand <frowand.list@gmail.com>,
+        linux-arm-kernel@lists.infradead.org,
+        Fabio Estevam <festevam@gmail.com>,
+        Philippe Schenker <philippe.schenker@toradex.com>,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH v1 06/25] arm64: dts: colibri-imx8x: Add pinctrl group for csi_mclk
+Date:   Wed,  8 Mar 2023 13:52:40 +0100
+Message-Id: <20230308125300.58244-7-dev@pschenker.ch>
+X-Mailer: git-send-email 2.39.2
+In-Reply-To: <20230308125300.58244-1-dev@pschenker.ch>
+References: <20230308125300.58244-1-dev@pschenker.ch>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
+X-Infomaniak-Routing: alpha
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
-        URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.6
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The reg address of the tsens_mode nvmem cell is correct but the unit
-address does not match (0xec vs 0xef). Fix it. No functional change.
+From: Philippe Schenker <philippe.schenker@toradex.com>
 
-Fixes: 24aafd041fb2 ("arm64: dts: qcom: msm8916: specify per-sensor calibration cells")
-Signed-off-by: Stephan Gerhold <stephan.gerhold@kernkonzept.com>
+Add missing pinctrl groups that can be used to enable the correct
+muxing if csi_mclk is needed on SODIMM 75.
+
+Signed-off-by: Philippe Schenker <philippe.schenker@toradex.com>
 ---
- arch/arm64/boot/dts/qcom/msm8916.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/arch/arm64/boot/dts/qcom/msm8916.dtsi b/arch/arm64/boot/dts/qcom/msm8916.dtsi
-index 0733c2f4f379..0d5283805f42 100644
---- a/arch/arm64/boot/dts/qcom/msm8916.dtsi
-+++ b/arch/arm64/boot/dts/qcom/msm8916.dtsi
-@@ -503,7 +503,7 @@ tsens_base2: base2@d7 {
- 				bits = <1 7>;
- 			};
+ arch/arm64/boot/dts/freescale/imx8x-colibri.dtsi | 4 ++++
+ 1 file changed, 4 insertions(+)
+
+diff --git a/arch/arm64/boot/dts/freescale/imx8x-colibri.dtsi b/arch/arm64/boot/dts/freescale/imx8x-colibri.dtsi
+index 0b84b65c846a..e1b907b7a85d 100644
+--- a/arch/arm64/boot/dts/freescale/imx8x-colibri.dtsi
++++ b/arch/arm64/boot/dts/freescale/imx8x-colibri.dtsi
+@@ -159,6 +159,10 @@ pinctrl_csi_ctl: csictlgrp {
+ 			   <IMX8QXP_QSPI0A_SS1_B_LSIO_GPIO3_IO15		0x20>;		/* SODIMM  89 */
+ 	};
  
--			tsens_mode: mode@ec {
-+			tsens_mode: mode@ef {
- 				reg = <0xef 0x1>;
- 				bits = <5 3>;
- 			};
++	pinctrl_csi_mclk: csimclkgrp {
++		fsl,pins = <IMX8QXP_CSI_MCLK_CI_PI_MCLK				0xC0000041>;	/* SODIMM  75 / X3-12 */
++	};
++
+ 	pinctrl_ext_io0: extio0grp {
+ 		fsl,pins = <IMX8QXP_ENET0_RGMII_RXD3_LSIO_GPIO5_IO08		0x06000040>;	/* SODIMM 135 */
+ 	};
 -- 
-2.30.2
+2.39.2
 
