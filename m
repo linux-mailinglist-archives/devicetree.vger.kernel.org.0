@@ -2,32 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 134736B07D9
-	for <lists+devicetree@lfdr.de>; Wed,  8 Mar 2023 14:02:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E4C696B07DD
+	for <lists+devicetree@lfdr.de>; Wed,  8 Mar 2023 14:03:22 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231655AbjCHNCs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Mar 2023 08:02:48 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38444 "EHLO
+        id S231609AbjCHNDP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Mar 2023 08:03:15 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37720 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231424AbjCHNCO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Mar 2023 08:02:14 -0500
-Received: from smtp-1908.mail.infomaniak.ch (smtp-1908.mail.infomaniak.ch [185.125.25.8])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4A897C5616
-        for <devicetree@vger.kernel.org>; Wed,  8 Mar 2023 05:00:24 -0800 (PST)
-Received: from smtp-2-0000.mail.infomaniak.ch (unknown [10.5.36.107])
-        by smtp-3-3000.mail.infomaniak.ch (Postfix) with ESMTPS id 4PWsgK3H2MzMqrZ8;
-        Wed,  8 Mar 2023 13:53:17 +0100 (CET)
-Received: from unknown by smtp-2-0000.mail.infomaniak.ch (Postfix) with ESMTPA id 4PWsgJ6mt9zMsl17;
-        Wed,  8 Mar 2023 13:53:16 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=pschenker.ch;
-        s=20220412; t=1678279997;
-        bh=D/Bwcn9ct9hGVp/HejFmpJ8/8S1VgnELr/+g/GheFts=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=RcJ3ZqcqkehRuJkeohwXTkl/Vzpu1MkGfHwckgN6IVW6etUZ+IpnWSOhWUByWii/F
-         6oMe7UekMrUS6XD3ek+Nzk4KHqF0Rh8LCuitqGfMtqWaxDf9OMpQETtft/RyxBLgu/
-         dyyFVhpMcszePU/lc2LUh3qWNz2vIOjydmXmrkUA=
-From:   Philippe Schenker <dev@pschenker.ch>
-To:     devicetree@vger.kernel.org, Shawn Guo <shawnguo@kernel.org>,
+        with ESMTP id S231615AbjCHNC0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Mar 2023 08:02:26 -0500
+Received: from mail-ed1-x529.google.com (mail-ed1-x529.google.com [IPv6:2a00:1450:4864:20::529])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D2C43C222D
+        for <devicetree@vger.kernel.org>; Wed,  8 Mar 2023 05:00:35 -0800 (PST)
+Received: by mail-ed1-x529.google.com with SMTP id da10so65444537edb.3
+        for <devicetree@vger.kernel.org>; Wed, 08 Mar 2023 05:00:35 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1678280429;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=ff6ZYtge2XSaRFAxXPbBZN5DiMrvN5/dtH5AyaKgyL8=;
+        b=n3ypomq0r4xqKWRNX37+zo1ENCoOWwDYXqUBlIpMF95kNEgV5ea5K7rKURWd2Wxzea
+         u/bT1Ddu2qzrfZRXOhEVcm9zbFKD5Y/B5+r0PDGMs3yOkrzRc+KOufeiR5K8t+5jZCpz
+         NUd5NuVD2WJImgy8L77gdcHjXBPZK/jAgKU9Y1Tovu4+ycz7Fff/ZAxrnPCrnYkR37et
+         N35o/AKiMNSFMDdFBqHa79cfHjd0tHqDnKSIJajqoJEkwcgOiU9DbhOARZqvJYg+m/4/
+         vi/yMrK0e5i3OubETIKPpThdOjjBHIBPMGc1Skk0HFHzZYMjrOgdlNO4IsSmWjA9zp9z
+         I5Eg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1678280429;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=ff6ZYtge2XSaRFAxXPbBZN5DiMrvN5/dtH5AyaKgyL8=;
+        b=MopqYl7JY9GNyP3pnsf+ekve8UvR/M1jtdmk0b+KXI2r9J+nKPcHQNF09z2lESHOe9
+         ZNfQ6/S1fP50cwwPw3/y7F2Fi0X9+mHMEj5UIOA+SQzlDJ0Td4wIyUFH1Jx8V87VS6Uy
+         oz4jUMhsU3Af7NTtbsDymNqOHKIKS3CzOGPG9bH9Y7KMUONcWQpnOM8tdgeBsoHpvEw3
+         nR2xA4CytdD9u26QDZpjh6BAsm7jCJSoPT2taeRDzwkY4InmSkKCFbV3CnotvrA8NgKa
+         C8W0+H7wQJpPI0+xolqlsR18ryqPiFDB55SazF5z2jhmRuKc7PSePfIMVetpANDj3rac
+         22FA==
+X-Gm-Message-State: AO0yUKX3rF6IasA5utM6XNlBRspuqjVIJjq23XZJkezrfxzK/ctB5edC
+        p0zpTPoAXm+R/FwJU0MdyG4/zg==
+X-Google-Smtp-Source: AK7set8ncW9Caj0o7EnqUzZQ3dpNtV2DGIwI/JnF+q/w4c5/fCdS1O4brp1e4xfOszekwmHMTnVpQg==
+X-Received: by 2002:a17:906:348b:b0:8ef:3e41:e719 with SMTP id g11-20020a170906348b00b008ef3e41e719mr18057235ejb.63.1678280428709;
+        Wed, 08 Mar 2023 05:00:28 -0800 (PST)
+Received: from ?IPV6:2a02:810d:15c0:828:ff33:9b14:bdd2:a3da? ([2a02:810d:15c0:828:ff33:9b14:bdd2:a3da])
+        by smtp.gmail.com with ESMTPSA id i18-20020a50d752000000b004accf3a63cbsm8092336edj.68.2023.03.08.05.00.27
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 08 Mar 2023 05:00:28 -0800 (PST)
+Message-ID: <07e64710-6b91-9da6-f483-03706b7ea95a@linaro.org>
+Date:   Wed, 8 Mar 2023 14:00:27 +0100
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.8.0
+Subject: Re: [PATCH v1 17/25] arm64: dts: colibri-imx8x: eval: Add spi-to-can
+Content-Language: en-US
+To:     Philippe Schenker <dev@pschenker.ch>, devicetree@vger.kernel.org,
+        Shawn Guo <shawnguo@kernel.org>,
         Sascha Hauer <s.hauer@pengutronix.de>
 Cc:     NXP Linux Team <linux-imx@nxp.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
@@ -38,50 +68,84 @@ Cc:     NXP Linux Team <linux-imx@nxp.com>,
         Fabio Estevam <festevam@gmail.com>,
         Philippe Schenker <philippe.schenker@toradex.com>,
         linux-kernel@vger.kernel.org
-Subject: [PATCH v1 18/25] arm64: dts: colibri-imx8x: Add no-1-8-v to sd-card
-Date:   Wed,  8 Mar 2023 13:52:52 +0100
-Message-Id: <20230308125300.58244-19-dev@pschenker.ch>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20230308125300.58244-1-dev@pschenker.ch>
 References: <20230308125300.58244-1-dev@pschenker.ch>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Infomaniak-Routing: alpha
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+ <20230308125300.58244-18-dev@pschenker.ch>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230308125300.58244-18-dev@pschenker.ch>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Philippe Schenker <philippe.schenker@toradex.com>
+On 08/03/2023 13:52, Philippe Schenker wrote:
+> From: Philippe Schenker <philippe.schenker@toradex.com>
+> 
+> Add mcp2515 spi-to-can to &lpspi2.
+> 
+> Signed-off-by: Philippe Schenker <philippe.schenker@toradex.com>
+> ---
+> 
+>  .../dts/freescale/imx8x-colibri-eval-v3.dtsi  | 19 +++++++++++++++++++
+>  1 file changed, 19 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/freescale/imx8x-colibri-eval-v3.dtsi b/arch/arm64/boot/dts/freescale/imx8x-colibri-eval-v3.dtsi
+> index 625d2caaf5d1..e7e3cf462408 100644
+> --- a/arch/arm64/boot/dts/freescale/imx8x-colibri-eval-v3.dtsi
+> +++ b/arch/arm64/boot/dts/freescale/imx8x-colibri-eval-v3.dtsi
 
-Many Colibri carrier boards are using 3.3V pull-up resistors on the
-SD-Card connector. Letting it switch to 1.8V is an invalid state.
+There is no such file.
 
-Do prevent this from happening by keeping the signaling voltage at 3.3V.
+> @@ -11,6 +11,13 @@ aliases {
+>  		rtc1 = &rtc;
+>  	};
+>  
+> +	/* fixed crystal dedicated to mcp25xx */
+> +	clk16m: clock-16mhz-fixed {
 
-Signed-off-by: Philippe Schenker <philippe.schenker@toradex.com>
----
+Drop "fixed".
 
- arch/arm64/boot/dts/freescale/imx8x-colibri.dtsi | 1 +
- 1 file changed, 1 insertion(+)
+> +		compatible = "fixed-clock";
+> +		#clock-cells = <0>;
+> +		clock-frequency = <16000000>;
+> +	};
+> +
+>  	gpio-keys {
+>  		compatible = "gpio-keys";
+>  		pinctrl-names = "default";
+> @@ -44,6 +51,18 @@ rtc_i2c: rtc@68 {
+>  /* Colibri SPI */
+>  &lpspi2 {
+>  	status = "okay";
+> +
+> +	mcp2515: can@0 {
+> +		compatible = "microchip,mcp2515";
+> +		reg = <0>;
+> +		interrupt-parent = <&lsio_gpio3>;
+> +		interrupts = <13 IRQ_TYPE_EDGE_FALLING>;
+> +		pinctrl-0 = <&pinctrl_can_int>;
+> +		pinctrl-names = "default";
+> +		clocks = <&clk16m>;
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8x-colibri.dtsi b/arch/arm64/boot/dts/freescale/imx8x-colibri.dtsi
-index 180a1d940b8d..f09a6aad6275 100644
---- a/arch/arm64/boot/dts/freescale/imx8x-colibri.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8x-colibri.dtsi
-@@ -303,6 +303,7 @@ &usdhc2 {
- 	bus-width = <4>;
- 	cd-gpios = <&lsio_gpio3 9 GPIO_ACTIVE_LOW>;
- 	disable-wp;
-+	no-1-8-v;
- 	vmmc-supply = <&reg_module_3v3>;
- };
- 
--- 
-2.39.2
+You just sorted all nodes in previous patches and add something
+unsorted? What is then the style of order? Random name?
+
+> +		spi-max-frequency = <10000000>;
+> +		status = "okay";
+
+Why do you need it?
+
+> +	};
+>  };
+>  
+>  /* Colibri UART_B */
+
+Best regards,
+Krzysztof
 
