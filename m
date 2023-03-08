@@ -2,61 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DC0976B045D
-	for <lists+devicetree@lfdr.de>; Wed,  8 Mar 2023 11:31:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 215376B046A
+	for <lists+devicetree@lfdr.de>; Wed,  8 Mar 2023 11:33:16 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231200AbjCHKbV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Mar 2023 05:31:21 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35308 "EHLO
+        id S231218AbjCHKdN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Mar 2023 05:33:13 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37744 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231204AbjCHKbA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Mar 2023 05:31:00 -0500
-Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com [IPv6:2a00:1450:4864:20::52a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0E0AC4DE1C
-        for <devicetree@vger.kernel.org>; Wed,  8 Mar 2023 02:30:30 -0800 (PST)
-Received: by mail-ed1-x52a.google.com with SMTP id k10so39804899edk.13
-        for <devicetree@vger.kernel.org>; Wed, 08 Mar 2023 02:30:29 -0800 (PST)
+        with ESMTP id S230461AbjCHKcs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Mar 2023 05:32:48 -0500
+Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C9A22BAD28
+        for <devicetree@vger.kernel.org>; Wed,  8 Mar 2023 02:31:56 -0800 (PST)
+Received: by mail-ed1-x533.google.com with SMTP id cy23so63584455edb.12
+        for <devicetree@vger.kernel.org>; Wed, 08 Mar 2023 02:31:56 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1678271427;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+        d=linaro.org; s=google; t=1678271515;
+        h=content-transfer-encoding:in-reply-to:references:cc:to:from
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=HkSL1BKs8qQuXssQmsoT72r/3xC/fwXVehYN3PusxSU=;
-        b=evWB+d0e1Uquo8dr4r1VC6OHOejb7gAMsxkMIxPvgiJPtCZT5Gxmr2GExahMWkdOyx
-         4ZZIOntnqQ19JU7niWQbOtTTV2rXyV/uin4GHBcSD7HdbiHT1jgzk2g3yXllsRbZ2PMe
-         d7njlA4+DBtaN+Vtz4VeXb/fg9BA51+j2UhSFTK3rNKawVvkrYAxIP3a4v0Jf+1VE0uT
-         +mh5L+6CGTwEIMtSrxGe1X9Fc/jZ9r8GjxGzVs4/O6vH28wjU+xxU+84H4FDT83P2bQ8
-         RuSv15+h8llbX9Xscl0vCD/xInzDWptKuzcY/c2BzuuPMoXG36L5f5ydGxoETsygekxK
-         DSfA==
+        bh=5fGIZnLIFi80hX7HHpoCzBcvuUsXk3QpRs3UM2gL+lo=;
+        b=gaQALzwpvcbL7KPjaDCk/STd4S5aL7hRPMVMHnoSgsnqWzXFVM8O2mTRBeM87QN8d6
+         3RwBwl5RZ2MBa9OEXFWpjKDF+zDVQffKtQ6PfH57Vet14nyHXuigr6dcLcAKvp1yJjc1
+         wCI/EZ8n9413H3OBa+1dgCXU7yKmY2+Lmu9ymbGXr+TD690DwPjGa59/zWr1WP9n1O9U
+         7CpbJKPhs0YNMeuRt17ycKlbvX07jNubQabi33ykwGWV0XlibhYTmCGf2mJeT5V8DvGg
+         tzaN7OEUUfhdPShfmhdoFsQPChx8m7hxGojLvgGstBPHGj9wVnYtdZGs7y2VOAoAemQH
+         6HwA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678271427;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+        d=1e100.net; s=20210112; t=1678271515;
+        h=content-transfer-encoding:in-reply-to:references:cc:to:from
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=HkSL1BKs8qQuXssQmsoT72r/3xC/fwXVehYN3PusxSU=;
-        b=Z0pfL/OqkLMkWtxx0DGq+FtzIx8DvovHjKeXWmH3B/rWD8rtVV2ZFw2de7bZkHURzP
-         /sfkSvjJmh1GHW/4Z96vQUNfJv4oVigpPGwxmWjoNULoc9o49VvIF+GP2N1E0qz0jKL7
-         R3OLHwcRzFy0P4z2U37usygLIJO5mjI9pJZ1L9opECsdVPxRx5EnyZE9EAjOxDi1xSF2
-         6NQ0ldELlx/hymkgT9zgIMdkdocFXU2n3W/+MGo5JAEdYggGBzv6oMQGMVtVE8zCLQGl
-         Z5PE6Rp71wQMxDS2ccUnFpG0KKRQbKzSdKgCFbflClMAwFDG82pHGv5X3OwB0fnIhNcH
-         HLug==
-X-Gm-Message-State: AO0yUKU7VCB2HcqtgmvDtRsmN3hAyE0CYmQJ74d73FeCnoKqzXNTF04W
-        lU8k7xkloVDL2hCqQUXtLT7TDQ==
-X-Google-Smtp-Source: AK7set/koDWIG8PwDaLODojT1e2g5Y13QtDF0LLxtW/sFTuh+svu9dDc9LTmiiyY6ii+2GE5BgIEpw==
-X-Received: by 2002:a17:907:a054:b0:884:ab29:bd0b with SMTP id gz20-20020a170907a05400b00884ab29bd0bmr15871656ejc.69.1678271427688;
-        Wed, 08 Mar 2023 02:30:27 -0800 (PST)
+        bh=5fGIZnLIFi80hX7HHpoCzBcvuUsXk3QpRs3UM2gL+lo=;
+        b=S36ghlcbD/sBowVK95foF2jO/6a5eKKOvYjazf6fFoYwC7MFdibkSCaeTiaCMXRXJe
+         JuBVJUAoa5StTZrCueye8TJTBmwVpxlN8x0hwuatsQ1zNOVQRYvENCSpIWFR0M6FBwvo
+         3QM60txo40pzMnOL+VZi6rTw4H/JIzbzqBvpZ99BsKHNlQtX8dnjxBAzxsnbZ9FDWzhJ
+         lGnu8rwqLFoTg/PI+jCA7dqAl68kJ3ruxI7IwkNovY2aojTbl/AXpYS1hJ0LVxrFtcF4
+         W5hTdIKetA1G5FtfHW19IJ4Hz6Vq+0uaFi+KlC3iWaBoKu2QjDmyOmxtnteStU9dS7yb
+         EjNA==
+X-Gm-Message-State: AO0yUKUnXq/A0/63JzY94aIEwmWPKrKNUQvBXyVAFiLfTjxyTzTrazec
+        pd8hGG0d+I0R2tYiD7gdT3LHcg==
+X-Google-Smtp-Source: AK7set/CYrEyIuSLyDDUXZR3jqT/vTu4yPfKXeDaChxuxkK9rk3kb6SHstIlWaN87B5ITGrT/52o2g==
+X-Received: by 2002:a17:906:8a64:b0:88d:d76d:8527 with SMTP id hy4-20020a1709068a6400b0088dd76d8527mr15589278ejc.47.1678271515159;
+        Wed, 08 Mar 2023 02:31:55 -0800 (PST)
 Received: from ?IPV6:2a02:810d:15c0:828:ff33:9b14:bdd2:a3da? ([2a02:810d:15c0:828:ff33:9b14:bdd2:a3da])
-        by smtp.gmail.com with ESMTPSA id qw15-20020a170906fcaf00b008d57e796dcbsm7259615ejb.25.2023.03.08.02.30.26
+        by smtp.gmail.com with ESMTPSA id h10-20020a170906718a00b008c33ebac259sm7284857ejk.127.2023.03.08.02.31.54
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 08 Mar 2023 02:30:27 -0800 (PST)
-Message-ID: <4dba4db2-60da-02fe-6237-c5893fdf2e14@linaro.org>
-Date:   Wed, 8 Mar 2023 11:30:26 +0100
+        Wed, 08 Mar 2023 02:31:54 -0800 (PST)
+Message-ID: <dcf2b583-4b42-85b7-4de4-fb0b5011af5e@linaro.org>
+Date:   Wed, 8 Mar 2023 11:31:53 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.8.0
 Subject: Re: [PATCH 2/6] dt-bindings: memory-controllers: mediatek,smi-larb:
  add mt8365
 Content-Language: en-US
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 To:     Alexandre Mergnat <amergnat@baylibre.com>,
         Rob Herring <robh+dt@kernel.org>,
         Matthias Brugger <matthias.bgg@gmail.com>,
@@ -68,8 +69,8 @@ Cc:     linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org,
         linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
 References: <20230207-iommu-support-v1-0-4f0c81fd52c1@baylibre.com>
  <20230207-iommu-support-v1-2-4f0c81fd52c1@baylibre.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230207-iommu-support-v1-2-4f0c81fd52c1@baylibre.com>
+ <4dba4db2-60da-02fe-6237-c5893fdf2e14@linaro.org>
+In-Reply-To: <4dba4db2-60da-02fe-6237-c5893fdf2e14@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -82,28 +83,31 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 07/03/2023 14:46, Alexandre Mergnat wrote:
-> Add binding description for mediatek,mt8365-smi-larb
+On 08/03/2023 11:30, Krzysztof Kozlowski wrote:
+> On 07/03/2023 14:46, Alexandre Mergnat wrote:
+>> Add binding description for mediatek,mt8365-smi-larb
+>>
+>> Signed-off-by: Alexandre Mergnat <amergnat@baylibre.com>
+>> ---
+>>  .../devicetree/bindings/memory-controllers/mediatek,smi-larb.yaml     | 4 ++++
+>>  1 file changed, 4 insertions(+)
+>>
+>> diff --git a/Documentation/devicetree/bindings/memory-controllers/mediatek,smi-larb.yaml b/Documentation/devicetree/bindings/memory-controllers/mediatek,smi-larb.yaml
+>> index 5f4ac3609887..aee7f6cf1300 100644
+>> --- a/Documentation/devicetree/bindings/memory-controllers/mediatek,smi-larb.yaml
+>> +++ b/Documentation/devicetree/bindings/memory-controllers/mediatek,smi-larb.yaml
+>> @@ -34,6 +34,10 @@ properties:
+>>            - const: mediatek,mt7623-smi-larb
+>>            - const: mediatek,mt2701-smi-larb
+>>  
+>> +      - items:
+>> +          - const: mediatek,mt8365-smi-larb
+>> +          - const: mediatek,mt8186-smi-larb
 > 
-> Signed-off-by: Alexandre Mergnat <amergnat@baylibre.com>
-> ---
->  .../devicetree/bindings/memory-controllers/mediatek,smi-larb.yaml     | 4 ++++
->  1 file changed, 4 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/memory-controllers/mediatek,smi-larb.yaml b/Documentation/devicetree/bindings/memory-controllers/mediatek,smi-larb.yaml
-> index 5f4ac3609887..aee7f6cf1300 100644
-> --- a/Documentation/devicetree/bindings/memory-controllers/mediatek,smi-larb.yaml
-> +++ b/Documentation/devicetree/bindings/memory-controllers/mediatek,smi-larb.yaml
-> @@ -34,6 +34,10 @@ properties:
->            - const: mediatek,mt7623-smi-larb
->            - const: mediatek,mt2701-smi-larb
->  
-> +      - items:
-> +          - const: mediatek,mt8365-smi-larb
-> +          - const: mediatek,mt8186-smi-larb
+> You need to fix the allOf:if. It expects single item, so you need to add
+> contains like for mt2701.
 
-You need to fix the allOf:if. It expects single item, so you need to add
-contains like for mt2701.
+Wait, this was about common. LARB looks ok, but double check.
 
 Best regards,
 Krzysztof
