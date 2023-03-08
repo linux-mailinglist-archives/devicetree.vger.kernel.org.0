@@ -2,113 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 215376B046A
-	for <lists+devicetree@lfdr.de>; Wed,  8 Mar 2023 11:33:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BCC926B0472
+	for <lists+devicetree@lfdr.de>; Wed,  8 Mar 2023 11:33:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231218AbjCHKdN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Mar 2023 05:33:13 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37744 "EHLO
+        id S231260AbjCHKdp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Mar 2023 05:33:45 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38150 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230461AbjCHKcs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Mar 2023 05:32:48 -0500
-Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C9A22BAD28
-        for <devicetree@vger.kernel.org>; Wed,  8 Mar 2023 02:31:56 -0800 (PST)
-Received: by mail-ed1-x533.google.com with SMTP id cy23so63584455edb.12
-        for <devicetree@vger.kernel.org>; Wed, 08 Mar 2023 02:31:56 -0800 (PST)
+        with ESMTP id S231265AbjCHKdR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Mar 2023 05:33:17 -0500
+Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com [IPv6:2a00:1450:4864:20::532])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5D24685A6B;
+        Wed,  8 Mar 2023 02:32:48 -0800 (PST)
+Received: by mail-ed1-x532.google.com with SMTP id ec29so32899807edb.6;
+        Wed, 08 Mar 2023 02:32:48 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1678271515;
-        h=content-transfer-encoding:in-reply-to:references:cc:to:from
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=5fGIZnLIFi80hX7HHpoCzBcvuUsXk3QpRs3UM2gL+lo=;
-        b=gaQALzwpvcbL7KPjaDCk/STd4S5aL7hRPMVMHnoSgsnqWzXFVM8O2mTRBeM87QN8d6
-         3RwBwl5RZ2MBa9OEXFWpjKDF+zDVQffKtQ6PfH57Vet14nyHXuigr6dcLcAKvp1yJjc1
-         wCI/EZ8n9413H3OBa+1dgCXU7yKmY2+Lmu9ymbGXr+TD690DwPjGa59/zWr1WP9n1O9U
-         7CpbJKPhs0YNMeuRt17ycKlbvX07jNubQabi33ykwGWV0XlibhYTmCGf2mJeT5V8DvGg
-         tzaN7OEUUfhdPShfmhdoFsQPChx8m7hxGojLvgGstBPHGj9wVnYtdZGs7y2VOAoAemQH
-         6HwA==
+        d=gmail.com; s=20210112; t=1678271568;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=zyG27hmmdGEC33zsFYNJRUpKDEX1YUKuCFWkh6OnkCM=;
+        b=jYiTqkgLG9l2iKrOZlApJHAOgaGXFW2IOGJ1E5OWdxwy42Ev4hgQGlItUgB3XfXUX/
+         9pmXSFvhL3SLwKr3tUVgTjUrBA0ygtpEB+Ait/mRz96/mwNMzUm45Z3oOmCP/y2Vn15j
+         3tLg1M7jWFNFpMqdO6lK3xqXDAUjLwCHMjZ6fxz/2QLgBLY89eUidMPx40lCsw7LvQp4
+         qZJxzGaHoCqOcq1wXVWo6gmugASBCoIGPnASr6IVywEKNc+FTb6q0rD05scnLBUe0Gi8
+         XvxgBvZhJOZza/kjiWOWtlr6NVtu2aHi4qYYOsOny4ZeCF0V8UoDL04b3scvqxdFwidR
+         ASQQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678271515;
-        h=content-transfer-encoding:in-reply-to:references:cc:to:from
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=5fGIZnLIFi80hX7HHpoCzBcvuUsXk3QpRs3UM2gL+lo=;
-        b=S36ghlcbD/sBowVK95foF2jO/6a5eKKOvYjazf6fFoYwC7MFdibkSCaeTiaCMXRXJe
-         JuBVJUAoa5StTZrCueye8TJTBmwVpxlN8x0hwuatsQ1zNOVQRYvENCSpIWFR0M6FBwvo
-         3QM60txo40pzMnOL+VZi6rTw4H/JIzbzqBvpZ99BsKHNlQtX8dnjxBAzxsnbZ9FDWzhJ
-         lGnu8rwqLFoTg/PI+jCA7dqAl68kJ3ruxI7IwkNovY2aojTbl/AXpYS1hJ0LVxrFtcF4
-         W5hTdIKetA1G5FtfHW19IJ4Hz6Vq+0uaFi+KlC3iWaBoKu2QjDmyOmxtnteStU9dS7yb
-         EjNA==
-X-Gm-Message-State: AO0yUKUnXq/A0/63JzY94aIEwmWPKrKNUQvBXyVAFiLfTjxyTzTrazec
-        pd8hGG0d+I0R2tYiD7gdT3LHcg==
-X-Google-Smtp-Source: AK7set/CYrEyIuSLyDDUXZR3jqT/vTu4yPfKXeDaChxuxkK9rk3kb6SHstIlWaN87B5ITGrT/52o2g==
-X-Received: by 2002:a17:906:8a64:b0:88d:d76d:8527 with SMTP id hy4-20020a1709068a6400b0088dd76d8527mr15589278ejc.47.1678271515159;
-        Wed, 08 Mar 2023 02:31:55 -0800 (PST)
-Received: from ?IPV6:2a02:810d:15c0:828:ff33:9b14:bdd2:a3da? ([2a02:810d:15c0:828:ff33:9b14:bdd2:a3da])
-        by smtp.gmail.com with ESMTPSA id h10-20020a170906718a00b008c33ebac259sm7284857ejk.127.2023.03.08.02.31.54
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 08 Mar 2023 02:31:54 -0800 (PST)
-Message-ID: <dcf2b583-4b42-85b7-4de4-fb0b5011af5e@linaro.org>
-Date:   Wed, 8 Mar 2023 11:31:53 +0100
+        d=1e100.net; s=20210112; t=1678271568;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=zyG27hmmdGEC33zsFYNJRUpKDEX1YUKuCFWkh6OnkCM=;
+        b=ks1l1wv7bk5Di2oMtyvrQQ0R1mB7BSB21b7MpArnXEmIKZwwGpmn8fM38ZP7DdQ0gI
+         KPvNtP0Uin7YIHpAJLxHHkw7YvIqA+aBprnHX7mch6lgPGdNRWWKGxMUUus86X7YYZK4
+         Hj056MdZAc59ueZM6tN/EAwvR2UM4UU67Xw5yOwxAKNTDO7ThBeGl7nEVc1FgVVm1nzh
+         uLA79qDTiCwoQc0iU+674Rk/mS3eiEltsYbt/VADxlAJVDTdpzt/s2YaeYOcgTDjZE4r
+         DNxrpTGBo5lJ3U1rLJueIZVoXveUULskp9VXCrPE9yf7xc9JMTsy1MsHUKQ2IPsutxNy
+         452w==
+X-Gm-Message-State: AO0yUKXMzzZUFJmZzZ+d7aMJcFKNKRyZUKaEAuD5qTleBa1MBi4BJvOd
+        QYZqOceRxgfRRUMP9KTPW9aJ94WOgoYuhjw1zYQ=
+X-Google-Smtp-Source: AK7set+RRz4fH6efg5NYY/uQFtVNE1ICc63H0bjAHi/ooc2bm0E2YBL3Zy1OUrA9TLU+lmzz/Nml00+UWMnVKY+aDkk=
+X-Received: by 2002:a50:baa7:0:b0:4ac:b832:856c with SMTP id
+ x36-20020a50baa7000000b004acb832856cmr9758665ede.1.1678271567782; Wed, 08 Mar
+ 2023 02:32:47 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-Subject: Re: [PATCH 2/6] dt-bindings: memory-controllers: mediatek,smi-larb:
- add mt8365
-Content-Language: en-US
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Alexandre Mergnat <amergnat@baylibre.com>,
+References: <20230308094024.14115-1-clamor95@gmail.com> <20230308094024.14115-2-clamor95@gmail.com>
+ <559c2588-e586-b4fb-97f8-5fe25bb79607@linaro.org>
+In-Reply-To: <559c2588-e586-b4fb-97f8-5fe25bb79607@linaro.org>
+From:   Svyatoslav Ryhel <clamor95@gmail.com>
+Date:   Wed, 8 Mar 2023 12:32:36 +0200
+Message-ID: <CAPVz0n38LtyAqBP4GfC003xzaW78FaZ91zjdTNe46ormL5RY=Q@mail.gmail.com>
+Subject: Re: [PATCH v1 1/2] dt-bindings: hwmon: ina2xx: add supply property
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Guenter Roeck <linux@roeck-us.net>,
+        Jean Delvare <jdelvare@suse.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Yong Wu <yong.wu@mediatek.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-Cc:     linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
-References: <20230207-iommu-support-v1-0-4f0c81fd52c1@baylibre.com>
- <20230207-iommu-support-v1-2-4f0c81fd52c1@baylibre.com>
- <4dba4db2-60da-02fe-6237-c5893fdf2e14@linaro.org>
-In-Reply-To: <4dba4db2-60da-02fe-6237-c5893fdf2e14@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>, linux-hwmon@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 08/03/2023 11:30, Krzysztof Kozlowski wrote:
-> On 07/03/2023 14:46, Alexandre Mergnat wrote:
->> Add binding description for mediatek,mt8365-smi-larb
->>
->> Signed-off-by: Alexandre Mergnat <amergnat@baylibre.com>
->> ---
->>  .../devicetree/bindings/memory-controllers/mediatek,smi-larb.yaml     | 4 ++++
->>  1 file changed, 4 insertions(+)
->>
->> diff --git a/Documentation/devicetree/bindings/memory-controllers/mediatek,smi-larb.yaml b/Documentation/devicetree/bindings/memory-controllers/mediatek,smi-larb.yaml
->> index 5f4ac3609887..aee7f6cf1300 100644
->> --- a/Documentation/devicetree/bindings/memory-controllers/mediatek,smi-larb.yaml
->> +++ b/Documentation/devicetree/bindings/memory-controllers/mediatek,smi-larb.yaml
->> @@ -34,6 +34,10 @@ properties:
->>            - const: mediatek,mt7623-smi-larb
->>            - const: mediatek,mt2701-smi-larb
->>  
->> +      - items:
->> +          - const: mediatek,mt8365-smi-larb
->> +          - const: mediatek,mt8186-smi-larb
-> 
-> You need to fix the allOf:if. It expects single item, so you need to add
-> contains like for mt2701.
+=D1=81=D1=80, 8 =D0=B1=D0=B5=D1=80. 2023=E2=80=AF=D1=80. =D0=BE 12:27 Krzys=
+ztof Kozlowski
+<krzysztof.kozlowski@linaro.org> =D0=BF=D0=B8=D1=88=D0=B5:
+>
+> On 08/03/2023 10:40, Svyatoslav Ryhel wrote:
+> > Add supply property.
+>
+> You have entire commit msg to explain and give background, but instead
+> there is just sentence duplicating subject. And since you did not
+> explain anything, we have questions... like: INA238 does not have VDD,
+> so this does not look correct.
+>
 
-Wait, this was about common. LARB looks ok, but double check.
+This is why a regulator is not mandatory. If ina238 does not have vdd
+then one who needs ina238 may omit this prop. How about looking from
+this perspective?
+
+>
+> Best regards,
+> Krzysztof
+>
 
 Best regards,
-Krzysztof
-
+Svyatoslav R.
