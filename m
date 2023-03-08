@@ -2,133 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 532266B15A8
-	for <lists+devicetree@lfdr.de>; Wed,  8 Mar 2023 23:54:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 086376B1601
+	for <lists+devicetree@lfdr.de>; Thu,  9 Mar 2023 00:00:29 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229702AbjCHWye (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Mar 2023 17:54:34 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58930 "EHLO
+        id S230134AbjCHXA0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Mar 2023 18:00:26 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37090 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229645AbjCHWyd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Mar 2023 17:54:33 -0500
-Received: from mail-ed1-x536.google.com (mail-ed1-x536.google.com [IPv6:2a00:1450:4864:20::536])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7047EB4F63;
-        Wed,  8 Mar 2023 14:54:31 -0800 (PST)
-Received: by mail-ed1-x536.google.com with SMTP id o12so71934743edb.9;
-        Wed, 08 Mar 2023 14:54:31 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112; t=1678316070;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=+J0b8VSa/m7CpwvWD16+VUtDl7LeR0FAxAMR+W7ckJc=;
-        b=nTJ0zv0CYJkHIUxwc6QFze1Z7fTuDKOX3WhFNdJUvFRbnnu4P0YoFvcJNyh+8qKg+a
-         9SQaYQvHAnIMo7hu9JLWrhblRyozZNPe/6qMHmI39gSez0wZdOk8iWb8OvYruLhydk4h
-         RqRmCxMImh3W5wm9xrJQLX7acssLQDXDkBpOG35fWSOKD3AZriAvXM5NGyE/ShKZ2y3E
-         uD42gkqrpIULtfb0oRfCrJewfMSrtEjWsHlIzA9i5BXVMbK3gyfV5ZoRF7aTnKvuFQyY
-         p5+n42JUCJGP8up/SRgYZco4ZLZ4lmkTGs8NYb5LHbuP0F7EkuJzCWIEEfeHOtYNk+O6
-         Q47Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678316070;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=+J0b8VSa/m7CpwvWD16+VUtDl7LeR0FAxAMR+W7ckJc=;
-        b=8Ark+Ck0I4HqqhyX9n9jor+p7+muxq3eHHAFfXUAq0dSuxFQ+fTXjaUdhQUqyvRyKw
-         gaoG3alFF4MBUV2d6cFT//j5KfdC3/js0eEvlLYuLCaQ+6WbtXd4g4dCuAHxGddwnFYq
-         ei3f+o0cRCw1HS+l2FeaS0bRHLJfT0jV3nqeHWxHZnp44rDXuIyXCrTyQw8/XWPNw59+
-         2CN/Xtno0drMHVvSR7sBpXm1xeeHV+Am/MBld12tz75P0SUOcg3lVcpZub4jiZjy1GUw
-         k+t+qX9PBo68oqR/4oeyIXadhA0G/yISJQacRqA+nSdZdMKcG47uWQfK16XEAqvpQx1e
-         bX1Q==
-X-Gm-Message-State: AO0yUKXvRjTtH13jHxzqv8RRQVvDA2ezezyfKKGd7ZEeXARIxlvMBjuC
-        ZqtMU/Sro/f7F9nfefMIOGSjl1XSriQQeg==
-X-Google-Smtp-Source: AK7set/J2a/dCSAr+3ZD7kva5xaOieFb8KurXmVhg0eTSxMT844CdYCsJxox9jvOqm3Y1muk4FXh8Q==
-X-Received: by 2002:a17:907:cf48:b0:8e0:4baf:59bb with SMTP id uv8-20020a170907cf4800b008e04baf59bbmr21320047ejc.22.1678316069809;
-        Wed, 08 Mar 2023 14:54:29 -0800 (PST)
-Received: from skbuf ([188.27.184.189])
-        by smtp.gmail.com with ESMTPSA id lo2-20020a170906fa0200b008e09deb6610sm7995732ejb.200.2023.03.08.14.54.27
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 08 Mar 2023 14:54:29 -0800 (PST)
-Date:   Thu, 9 Mar 2023 00:54:25 +0200
-From:   Vladimir Oltean <olteanv@gmail.com>
-To:     =?utf-8?B?S8O2cnk=?= Maincent <kory.maincent@bootlin.com>
-Cc:     Andrew Lunn <andrew@lunn.ch>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Heiner Kallweit <hkallweit1@gmail.com>, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-doc@vger.kernel.org, linux-omap@vger.kernel.org,
-        Michael Walle <michael@walle.cc>,
-        Maxime Chevallier <maxime.chevallier@bootlin.com>,
-        Richard Cochran <richardcochran@gmail.com>,
-        thomas.petazzoni@bootlin.com, Russell King <linux@armlinux.org.uk>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
+        with ESMTP id S230052AbjCHXAL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Mar 2023 18:00:11 -0500
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 79564D291D;
+        Wed,  8 Mar 2023 14:59:59 -0800 (PST)
+Received: from pendragon.ideasonboard.com (117.145-247-81.adsl-dyn.isp.belgacom.be [81.247.145.117])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 52E7E10C;
+        Wed,  8 Mar 2023 23:59:57 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1678316397;
+        bh=vHyaUtCFeU2/4Ta/PI4vbeoNl6AwG3fH2hx/mVRgAcY=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=eR68+2dRUfUErtnqDz2pdrBlnsy7eEVZNgNAm1GBFAKFfOj+PASNdZk2DUzt28SWm
+         G2b+ouNSUp/4idldoNR+MbEBEig1rQGxCQnuz6bWYH8iwAg2RVm73t+1vk15YAtT+z
+         zCCThd9wn9VB/tFM8kBVjg71dYnk1vqPgJDWwyrU=
+Date:   Thu, 9 Mar 2023 01:00:01 +0200
+From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To:     Geert Uytterhoeven <geert@linux-m68k.org>
+Cc:     Prabhakar <prabhakar.csengg@gmail.com>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Niklas =?utf-8?Q?S=C3=B6derlund?= 
+        <niklas.soderlund+renesas@ragnatech.se>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jonathan Corbet <corbet@lwn.net>,
-        Jay Vosburgh <j.vosburgh@gmail.com>,
-        Veaceslav Falico <vfalico@gmail.com>,
-        Andy Gospodarek <andy@greyhouse.net>,
-        Joakim Zhang <qiangqing.zhang@nxp.com>,
-        Vladimir Oltean <vladimir.oltean@nxp.com>,
-        Claudiu Manoil <claudiu.manoil@nxp.com>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        UNGLinuxDriver@microchip.com,
-        Grygorii Strashko <grygorii.strashko@ti.com>,
-        Minghao Chi <chi.minghao@zte.com.cn>,
-        Guangbin Huang <huangguangbin2@huawei.com>,
-        Jie Wang <wangjie125@huawei.com>,
-        Oleksij Rempel <linux@rempel-privat.de>,
-        Alexandru Tachici <alexandru.tachici@analog.com>,
-        "Gustavo A. R. Silva" <gustavoars@kernel.org>,
-        Sean Anderson <sean.anderson@seco.com>,
-        Wolfram Sang <wsa+renesas@sang-engineering.com>,
-        Alexander Lobakin <alexandr.lobakin@intel.com>,
-        Maxim Korotkov <korotkov.maxim.s@gmail.com>,
-        Marco Bonelli <marco@mebeim.net>
-Subject: Re: [PATCH v3 2/5] net: Expose available time stamping layers to
- user space.
-Message-ID: <20230308225425.v6q3dglfz7me44ht@skbuf>
-References: <20230308135936.761794-1-kory.maincent@bootlin.com>
- <20230308135936.761794-1-kory.maincent@bootlin.com>
- <20230308135936.761794-3-kory.maincent@bootlin.com>
- <20230308135936.761794-3-kory.maincent@bootlin.com>
+        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Biju Das <biju.das.jz@bp.renesas.com>,
+        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: Re: [PATCH 2/3] arm64: dts: renesas: rzg2l-smarc: Add OV5645 node
+Message-ID: <20230308230001.GF31765@pendragon.ideasonboard.com>
+References: <20230216175347.99778-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20230216175347.99778-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <CAMuHMdXNrBCdLvMKK6kPbMLhSmuxXtd5A+Lt4J0ddVorODqCvw@mail.gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20230308135936.761794-3-kory.maincent@bootlin.com>
- <20230308135936.761794-3-kory.maincent@bootlin.com>
+In-Reply-To: <CAMuHMdXNrBCdLvMKK6kPbMLhSmuxXtd5A+Lt4J0ddVorODqCvw@mail.gmail.com>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Köry,
+On Mon, Mar 06, 2023 at 08:27:19PM +0100, Geert Uytterhoeven wrote:
+> Hi Prabhakar,
+> 
+> On Thu, Feb 16, 2023 at 6:57â€¯PM Prabhakar <prabhakar.csengg@gmail.com> wrote:
+> > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> >
+> > OV5645 sensor can be connected to the CN1 connector on the
+> > carrier board. This patch adds the ov5645 node under i2c0 node.
+> >
+> > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> 
+> Thanks for your patch!
+> 
+> > --- a/arch/arm64/boot/dts/renesas/r9a07g044l2-smarc.dts
+> > +++ b/arch/arm64/boot/dts/renesas/r9a07g044l2-smarc.dts
+> > @@ -6,6 +6,10 @@
+> >   */
+> >
+> >  /dts-v1/;
+> > +
+> > +/* comment the #define statement if OV5645 is not connected to CN1  */
+> > +#define CAM_INTERFACE_OV5645   1
+> 
+> I believe the camera is optional ("can be connector" above).
+> So shouldn't this be commented out by default?
 
-On Wed, Mar 08, 2023 at 02:59:26PM +0100, Köry Maincent wrote:
-> From: Kory Maincent <kory.maincent@bootlin.com>
-> 
-> Time stamping on network packets may happen either in the MAC or in
-> the PHY, but not both.  In preparation for making the choice
-> selectable, expose both the current and available layers via ethtool.
-> 
-> In accordance with the kernel implementation as it stands, the current
-> layer will always read as "phy" when a PHY time stamping device is
-> present.  Future patches will allow changing the current layer
-> administratively.
-> 
-> Signed-off-by: Richard Cochran <richardcochran@gmail.com>
-> Signed-off-by: Kory Maincent <kory.maincent@bootlin.com>
-> ---
+Even better, could you turn this into a DT overlay ?
 
-I'm pretty sure that all new ethtool commands must be implemented
-through the genetlink socket interface. The ioctl interface stopped
-being extended and is in maintenance mode only.
+> The rest LGTM, so with the above sorted out:
+> Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+
+-- 
+Regards,
+
+Laurent Pinchart
