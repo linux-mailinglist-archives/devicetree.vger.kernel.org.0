@@ -2,142 +2,123 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DAE1A6B0756
-	for <lists+devicetree@lfdr.de>; Wed,  8 Mar 2023 13:42:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 668B66B0764
+	for <lists+devicetree@lfdr.de>; Wed,  8 Mar 2023 13:45:49 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231371AbjCHMl6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Mar 2023 07:41:58 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44836 "EHLO
+        id S229691AbjCHMpr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Mar 2023 07:45:47 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49918 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231328AbjCHMl4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Mar 2023 07:41:56 -0500
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C73FE92F0A;
-        Wed,  8 Mar 2023 04:41:55 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1678279315; x=1709815315;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:content-transfer-encoding:in-reply-to;
-  bh=jXrDc9gNsWI8KLn79ljHwNkDe73LmLA89EgUGtpcKp4=;
-  b=S5KncCHbcCNwbBuMK9ZPBYjy/VbBlvYOjhu53W2yML+9ZTwEY1KELKs2
-   LVUmXhVyPWhPfXuj9CyDwydznwIj6E6V8TlheZMkmaR7LiuRm86qKfgev
-   knlZHgnRefQDCvertKWmpmkpAxEXajJq4U0Itue0Rbub3AQ1w1mvLEJPY
-   x7GSuYt3KGUX76u8SdSsHYwHTeLrXmE0fqLmqZOkiRG7OOmHO0kp4iiYM
-   i45180AAZJ2GoxHxyUNML1Uoc719ldNoxQK11Ye5Gg5VkZjST9llriCw8
-   vDsjNrOUcJWJphwXIe+ZmwqDrIjpPLkxqcrSo2NstrkHF130xNVJJSCwl
+        with ESMTP id S229608AbjCHMpq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Mar 2023 07:45:46 -0500
+Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6218D252A8
+        for <devicetree@vger.kernel.org>; Wed,  8 Mar 2023 04:45:45 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1678279545; x=1709815545;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=g97Y/x5r8BfLbogty+vcP8Aczi2GNnPl+kyOC6nl01w=;
+  b=e3BulK5cd1hZsnblMNcQrTQfAPO0858wKpqmqsi/rGtmrfmGrqydB/ZL
+   tlBKc6bYPkF6wrUWFoT+kM7z3XpHM8WqzEewKrtYZa+2zcxWeG7PiGqov
+   DnIie0RtQCC2G1jIno3SRKmnkGY4qBzweuauuw7rgfn4WoPoqP3aIpTth
+   ZIG+f0BTnu1Wmwq74Epkap1fAFLGP6PDx8XPgGbVJ4jdILnAxfuT0kWE5
+   LmbXZeKeQTSBlUG8FAhIU0zQkRQKGfkuuypnJKTq9us+9aYjQDQpzpGbs
+   deDRofE6KyqWc14nKjIszJyJkMtXLJQsDhVnlMVhKkBGIuQGhYgbg5ECg
    A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10642"; a="337659731"
-X-IronPort-AV: E=Sophos;i="5.98,243,1673942400"; 
-   d="scan'208";a="337659731"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
-  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 08 Mar 2023 04:41:55 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10642"; a="765980675"
-X-IronPort-AV: E=Sophos;i="5.98,243,1673942400"; 
-   d="scan'208";a="765980675"
-Received: from smile.fi.intel.com ([10.237.72.54])
-  by FMSMGA003.fm.intel.com with ESMTP; 08 Mar 2023 04:41:50 -0800
-Received: from andy by smile.fi.intel.com with local (Exim 4.96)
-        (envelope-from <andriy.shevchenko@linux.intel.com>)
-        id 1pZt76-00HQQT-22;
-        Wed, 08 Mar 2023 14:41:48 +0200
-Date:   Wed, 8 Mar 2023 14:41:48 +0200
-From:   Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To:     Daniel Kaehn <kaehndan@gmail.com>
-Cc:     Benjamin Tissoires <benjamin.tissoires@redhat.com>,
-        Hans de Goede <hdegoede@redhat.com>, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, jikos@kernel.org,
-        bartosz.golaszewski@linaro.org, dmitry.torokhov@gmail.com,
-        devicetree@vger.kernel.org, linux-input@vger.kernel.org,
-        ethan.twardy@plexus.com
-Subject: Re: [PATCH v8 3/3] HID: cp2112: Fwnode Support
-Message-ID: <ZAiCjBWhEE/dENOJ@smile.fi.intel.com>
-References: <ZAXFNRuALYpXgL6F@smile.fi.intel.com>
- <b8423b0b-4f63-d598-6c8b-7c7e73549032@redhat.com>
- <ZAXlh9ZVjGJh0l7n@smile.fi.intel.com>
- <1cab1439-77f3-6739-d4cd-5862ce8512d8@redhat.com>
- <ZAYca0ADk0Uk1sK1@smile.fi.intel.com>
- <CAP+ZCCfsKdOyy5vzPh5OjpZjNQrYWDRzrqa_QxvG+kZDPYa+3A@mail.gmail.com>
- <ZAZOvEvqNDq6jZNB@smile.fi.intel.com>
- <20230307131706.olnb4qzo4ynu7gce@mail.corp.redhat.com>
- <ZAd+/fHeQ3zuvoTN@smile.fi.intel.com>
- <CAP+ZCCe6mdtNmg0QEtQKFCKMyhM9xRffFoMHtxHEGnjNOEAedg@mail.gmail.com>
+X-IronPort-AV: E=Sophos;i="5.98,243,1673910000"; 
+   d="scan'208";a="29547335"
+Received: from unknown (HELO tq-pgp-pr1.tq-net.de) ([192.168.6.15])
+  by mx1-pgp.tq-group.com with ESMTP; 08 Mar 2023 13:45:43 +0100
+Received: from mx1.tq-group.com ([192.168.6.7])
+  by tq-pgp-pr1.tq-net.de (PGP Universal service);
+  Wed, 08 Mar 2023 13:45:43 +0100
+X-PGP-Universal: processed;
+        by tq-pgp-pr1.tq-net.de on Wed, 08 Mar 2023 13:45:43 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1678279543; x=1709815543;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=g97Y/x5r8BfLbogty+vcP8Aczi2GNnPl+kyOC6nl01w=;
+  b=S0lySv/FRK0dMYTV3MxjDoHJo3nEcWIKVzY0/ehZtjKuvA6rhuFz64gW
+   bqFSod4hM7d5P9JVFMoxwIw0rMyaR1RujNKksioNBgmaB2kvijNn5K7rS
+   7ZIJEAcvuABdnEsOIRylXpY/+y/9HWaF9/zpBZRg3MXdHNYKpAEVPZs6z
+   0RJn+zXBcbCHMedwcsCKJxOQsWZEZkEFcTzQK7SOHWBWO1UqjKwQLAoGl
+   Eu6bptI+ApBlQNy7j6Uakf70fgQghAOC69mIzwNm76TGw65cE2fK7SkUt
+   p+zzja4DkbdwsWapFybOId2LrAYu4IkwDz0QSyzJr1rcv7+tE5VtwOVJz
+   w==;
+X-IronPort-AV: E=Sophos;i="5.98,243,1673910000"; 
+   d="scan'208";a="29547334"
+Received: from vtuxmail01.tq-net.de ([10.115.0.20])
+  by mx1.tq-group.com with ESMTP; 08 Mar 2023 13:45:43 +0100
+Received: from steina-w.localnet (unknown [10.123.53.21])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+        (No client certificate requested)
+        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id 3F60F280056;
+        Wed,  8 Mar 2023 13:45:43 +0100 (CET)
+From:   Alexander Stein <alexander.stein@ew.tq-group.com>
+To:     Fabio Estevam <festevam@gmail.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Markus Niebel <Markus.Niebel@ew.tq-group.com>
+Subject: Re: [PATCH 1/1] arm64: dts: imx93: add missing tpm pwm instances
+Date:   Wed, 08 Mar 2023 13:45:42 +0100
+Message-ID: <4699883.LvFx2qVVIh@steina-w>
+Organization: TQ-Systems GmbH
+In-Reply-To: <CAOMZO5Ao8-AW_LXdVbrxcHO1Yn9YP8UPyNy7U3ecy+G+9ZD7Eg@mail.gmail.com>
+References: <20230227093846.151474-1-alexander.stein@ew.tq-group.com> <CAOMZO5Ao8-AW_LXdVbrxcHO1Yn9YP8UPyNy7U3ecy+G+9ZD7Eg@mail.gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAP+ZCCe6mdtNmg0QEtQKFCKMyhM9xRffFoMHtxHEGnjNOEAedg@mail.gmail.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Mar 07, 2023 at 01:57:27PM -0600, Daniel Kaehn wrote:
-> On Tue, Mar 7, 2023 at 12:14 PM Andy Shevchenko
-> <andriy.shevchenko@linux.intel.com> wrote:
-> > On Tue, Mar 07, 2023 at 02:17:06PM +0100, Benjamin Tissoires wrote:
-> > > On Mar 06 2023, Andy Shevchenko wrote:
+Hi Fabio,
 
-...
+Am Mittwoch, 8. M=C3=A4rz 2023, 13:34:44 CET schrieb Fabio Estevam:
+> Hi Alexander,
+>=20
+> On Mon, Feb 27, 2023 at 6:38=E2=80=AFAM Alexander Stein
+>=20
+> <alexander.stein@ew.tq-group.com> wrote:
+> > TPM1/TPM3 are missing, add them.
+> >=20
+> > Signed-off-by: Markus Niebel <Markus.Niebel@ew.tq-group.com>
+> > Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+>=20
+> Who is the original author? If it is Markus, then his name should
+> appear in the From: line.
 
-> > > It is commonly accepted in the ACPI world that the names do not carry
-> > > meaning AFAICT, and so I think I agree with Andy's initial comment
-> > > regarding using indexes, not names to also fetch the I2C and GPIO nodes.
-> > > You can probably have a fallback mechanism for when "i2c" is not
-> > > present, or simply check if you are in DT or not and use the names only
-> > > if we are in DT.
-> >
-> > The solution is to provide in the main node the list of cell names, that way
-> > you will always know the indices:
-> >
-> >   Device (DEV) {
-> >           _DSD
-> >                   "cell-names" { "i2c", "gpio" } // index of the name is the
-> >                                                  // index of the cell
-> >
-> >         Device (I2C0) {
-> >         }
-> >
-> >         Device (GPI0) {
-> >         }
-> >   }
-> >
-> > Problem solved.
-> 
-> Just to make sure I'm understanding you correctly:
-> 
-> Are you proposing that specifically this driver directly reads "cell-names"
-> from the ACPI DSD to implement this indexing? Or are you proposing a
-> kernel-wide mechanism of "overriding" a fwnode name with ACPI?
-> (assuming this doesn't exist already, and I'm not just missing it in
-> the kernel source)
-> 
-> Or are you proposing something else entirely?
-> (apologies if this should be obvious -- throwing up the ACPI newbie
-> card again here :) )
+Yes, it's Markus. I don't know why authorship got changed, I'll send v2 wit=
+h=20
+that fixed.
 
-Out of the three listed above I'm proposing the first one.
-(Maybe it can be called 'reg-names', but it depends on the hardware)
+> Apart from that:
+>=20
+> Reviewed-by: Fabio Estevam <festevam@gmail.com>
 
-Also look into hierarchical _DSD (it is similar to the children
-of the device node without being separate devices).
+Thanks
+Alexander
 
-> In any case, would this be something I should post to the email chain
-> with DT and ACPI
-> folks for opinions before I start to implement it?
-
-May be, the -names approach is already used widely for clock, interrupt, reset,
-phy and nvmem. So it's something we know about.
-
--- 
-With Best Regards,
-Andy Shevchenko
+=2D-=20
+TQ-Systems GmbH | M=C3=BChlstra=C3=9Fe 2, Gut Delling | 82229 Seefeld, Germ=
+any
+Amtsgericht M=C3=BCnchen, HRB 105018
+Gesch=C3=A4ftsf=C3=BChrer: Detlef Schneider, R=C3=BCdiger Stahl, Stefan Sch=
+neider
+http://www.tq-group.com/
 
 
