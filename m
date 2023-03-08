@@ -2,353 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 14CFB6B0FB5
-	for <lists+devicetree@lfdr.de>; Wed,  8 Mar 2023 18:05:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 71D066B1043
+	for <lists+devicetree@lfdr.de>; Wed,  8 Mar 2023 18:38:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229774AbjCHRFQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Mar 2023 12:05:16 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43684 "EHLO
+        id S229536AbjCHRiU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Mar 2023 12:38:20 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36266 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229522AbjCHRFJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Mar 2023 12:05:09 -0500
-Received: from EUR05-AM6-obe.outbound.protection.outlook.com (mail-am6eur05on2071.outbound.protection.outlook.com [40.107.22.71])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E8432B1;
-        Wed,  8 Mar 2023 09:05:06 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=hK80AtDmR3YZ8dQ+fNJcXNJUwm21ohfzj+hDF0jzPgQmfOiabSaE90M0FqcfiAIwE1aESEMYmG2uu7BbJeAa1goRKaOkOyTpgKlrjMmSRlakD06gCjhWemGP7PJ/WNQ2M9l5csPRztN/cBvLlSvrnnvgdPaiQaDskir2scmreloMIXuqis8cszAjdDpwZ9E03mURpcvnsn9dHUaPe7d8pH7IGk0e/wE1/iS9Sv3XmQGmi3m+5HWVi55RtAObLfW6vCTL9cYcSiNnh/GRpmjynPqT/UYWdsVa125hUKH9J9RM9L5E5pZ0tmZAt44AHAR9vU4+AWm9s54+2JDzOTvbBw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=GtjttpMPDUMC7Zfu/UD1mMg2X4M52/+RCxzvjzMgrBE=;
- b=j+StVwG+ifhHMMG4kNz1svORfZB0iPG7wsU0g8qHz7fdpKayZplT3kP0PQ20ejSzsj0zh7fOqvKO3lYiYi94TEss+vbn88vALQ2jB4Ir0+MvWY6XPokZAk/SK8OTzbXhGoj5l6gLcyNVdh/zXgd7Xxq7a1nnNE0Jq9EmCs0aTmqr8vwpn0UxXksa9xZMd3ag1wkEseBA4K0jiUZnkzoETh9qdaIyo8UWjmA3kBCOq8Om5V69NmYJE/AHUhRwd+V0CIo0IC8jCOQUU/cgHBQ+GSSbpFqtTZIPHmnWERdmujhUw35vA4jJ7aZ74zzDxF/FG1XvYY/3KSipzlstFRzCGA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=suse.com; dmarc=pass action=none header.from=suse.com;
- dkim=pass header.d=suse.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=GtjttpMPDUMC7Zfu/UD1mMg2X4M52/+RCxzvjzMgrBE=;
- b=fe0cXlLWsTa2Gg9ZkN5A3hyAQu6NXC2aaQTRgsXVsz25cLWkCNLY02xv6AlbNx9ZlA8FIZsGbcudS05W2L3Y9q0VlUKcj+E9ePwKI/VuZoHuvDXlqkY/ivRw9tietXy0reGf6fO5HF44nsMv76uxFgMISDTgVzWLMFMarVpqwi3Ns382Mu0irMamo3sc8LNhEVq4mXHU9DgC+eLAODOYZ8BM1KEEpKpam2XhEHSevZgbADP6CkaE9TTWgS8AHyEjLN+U+zsIfzO0A/5p+H2XUnMLOEp7aNZrZxeS0KnwrE3nvoF+oGs+nvf3gwvlBmtMuHot0c6+BYdvXoab1Iquxg==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=suse.com;
-Received: from VI1PR0402MB3439.eurprd04.prod.outlook.com (2603:10a6:803:4::13)
- by VI1PR04MB6957.eurprd04.prod.outlook.com (2603:10a6:803:135::24) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6156.29; Wed, 8 Mar
- 2023 17:05:03 +0000
-Received: from VI1PR0402MB3439.eurprd04.prod.outlook.com
- ([fe80::6802:b2c3:5f12:8f9f]) by VI1PR0402MB3439.eurprd04.prod.outlook.com
- ([fe80::6802:b2c3:5f12:8f9f%2]) with mapi id 15.20.6156.029; Wed, 8 Mar 2023
- 17:05:03 +0000
-Date:   Thu, 9 Mar 2023 01:04:55 +0800
-From:   Chester Lin <clin@suse.com>
-To:     Andy Shevchenko <andy.shevchenko@gmail.com>
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
-        Andreas =?iso-8859-1?Q?F=E4rber?= <afaerber@suse.de>,
-        s32@nxp.com, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        Larisa Grigore <larisa.grigore@nxp.com>,
-        Ghennadi Procopciuc <Ghennadi.Procopciuc@oss.nxp.com>,
-        Andrei Stefanescu <andrei.stefanescu@nxp.com>,
-        Radu Pirea <radu-nicolae.pirea@nxp.com>,
-        Matthias Brugger <mbrugger@suse.com>,
-        Matthew Nunez <matthew.nunez@nxp.com>,
-        Phu Luu An <phu.luuan@nxp.com>,
-        Stefan-Gabriel Mirea <stefan-gabriel.mirea@nxp.com>
-Subject: Re: [PATCH v5 2/3] pinctrl: add NXP S32 SoC family support
-Message-ID: <ZAjAN4mO8U1Dh86P@linux-8mug>
-References: <20230220023320.3499-1-clin@suse.com>
- <20230220023320.3499-3-clin@suse.com>
- <ZAZ3CeYiZxR5zlRu@surfacebook>
- <ZAgXCi/BzyEQul9B@linux-8mug>
- <CAHp75VfxffTvAPSB4D2Oc3-vbiYM4DVpZf5=jRYGsCdFgAyxJA@mail.gmail.com>
- <ZAi7CPXX0z80mKfQ@linux-8mug>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <ZAi7CPXX0z80mKfQ@linux-8mug>
-X-ClientProxiedBy: FR3P281CA0103.DEUP281.PROD.OUTLOOK.COM
- (2603:10a6:d10:a1::19) To VI1PR0402MB3439.eurprd04.prod.outlook.com
- (2603:10a6:803:4::13)
+        with ESMTP id S229546AbjCHRiS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Mar 2023 12:38:18 -0500
+Received: from mail-ed1-x52f.google.com (mail-ed1-x52f.google.com [IPv6:2a00:1450:4864:20::52f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2EAB421A22
+        for <devicetree@vger.kernel.org>; Wed,  8 Mar 2023 09:38:17 -0800 (PST)
+Received: by mail-ed1-x52f.google.com with SMTP id cw28so68874316edb.5
+        for <devicetree@vger.kernel.org>; Wed, 08 Mar 2023 09:38:17 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1678297095;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=tgxVVauKSX/U0bXbgIYmNNiutoT4dF4ii6OJzRsRR5g=;
+        b=LKOGfmcDc/Oi00y16H3E0LAnFCWwTtOkvxW58X5/dBkLhVKi1AfNpqzdgB0qZOKFxb
+         zi43G5bvUy1MtJSWaK4d9n5rLBmEUyFLavRN2yZLp3f/yyHdHvtofvih2+k5CRbSYaVw
+         LBr9iL5yJUBalFXCnsofumNgH7mhSQHMecZpBvggWG40GkK8pW/Qv4Q1IG1duQeiCvQd
+         En0EXMllspN69GqJaOIrrcGXOcZvRvUbqDfkMSDy+GBeWYZYQPn5DYNe7+1rfhX9A7Cp
+         DKsXM7v8Or3wUyGNBpCifYtWJsDMXShQ7w0oUEkn68ZcSE20rFgjIOotwSCxMY5ndzxS
+         /eVw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1678297095;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=tgxVVauKSX/U0bXbgIYmNNiutoT4dF4ii6OJzRsRR5g=;
+        b=uIpqjQ/DBbFTsKk+16PXZMARjl8qkFj5AcoDuU/aMuUqkaidVxDKggv7MvnvrfRt0B
+         DmqyYz19nb/0Svs5pU2psHszVK/mjkv5yz7UmVLuy2UELgwZ2ycy2Xd3i8+GIvyQYS9k
+         oHBBx+fGFJjSyq5rLFJy2THbNXDr6+Ds0DGqejA0KmhOr7oUiOhsF2xOHC3wHJjIAgHZ
+         G8dwFaBx8YYqom3pyIAK6NJOl30fkM4se2DHmGuq3lATdBAsHShGDDLe05RYgEFSEl3u
+         P4g9zmrW7hSnHl+bODxyOecAPaSKKREaqgVK/4Ehv3Yx1mh2oHdWqMMXehoCtcTa6A+x
+         ImEQ==
+X-Gm-Message-State: AO0yUKUSAB7t4JgH03DOgD2zE9aPRzy/41KtrcTJQ0selRNvFXl2AwiW
+        GCNiFv0ImfRzGtxf0mx/y5/sJA==
+X-Google-Smtp-Source: AK7set+MSguNLw31jMo/5DJC83u4ZFA9ITKY02ZD9u91ZIUPerVI8NeHyxpVSZtjEOGeLeSIdbh8JQ==
+X-Received: by 2002:a17:907:a581:b0:913:f170:c0e with SMTP id vs1-20020a170907a58100b00913f1700c0emr9688379ejc.20.1678297095561;
+        Wed, 08 Mar 2023 09:38:15 -0800 (PST)
+Received: from ?IPV6:2a02:810d:15c0:828:ff33:9b14:bdd2:a3da? ([2a02:810d:15c0:828:ff33:9b14:bdd2:a3da])
+        by smtp.gmail.com with ESMTPSA id bt5-20020a170906b14500b008cca31606a8sm7810251ejb.51.2023.03.08.09.38.14
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 08 Mar 2023 09:38:15 -0800 (PST)
+Message-ID: <976f0b41-c302-f2f2-eb6c-959c62ba3b72@linaro.org>
+Date:   Wed, 8 Mar 2023 18:38:13 +0100
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: VI1PR0402MB3439:EE_|VI1PR04MB6957:EE_
-X-MS-Office365-Filtering-Correlation-Id: 7fec5356-3d13-4528-99a8-08db1ff741fd
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: /OYVhG4BNSaEVQgSAfRhOT1v/EaRZpd86f9TdGBl85DLgrs7p3XDFIqrjj435aubng/RYAf/ybYoBeDXOFp+hM6k76gkYkEmj+vIHI9hVqmN68/0vB88GALF8KWUsM8IK74TW4ZebYRch5LryVzkIoCU7H2CexYm2WvvsxC1aoRpJv7MXLSjWOUg8eJJW1L4tCW9hKRKx753NFmwf/yYnPnPpnSQc06f/dwui2qAKxFKbZIOrAseUSs+FIU5DwfYBqlwhbJtp6KWHX7pkjiI/NVxpTcHZrgJaNA8LYxVMCGopFeShBiqizb3bxeF3p/YNegDpOfmlQq0RsclA65sMKQgZxb03drW9HXydDPtVmyBMRMqY1bGeAWi0OesdXl1b1rOKwIadxLyTGPr7BgjKmiYH5fvo/tnwYS0H1TTepGWlfRdLXByvHfKThLK9FD6m+qOvPtutjVwNKLCVH5ea5EaXSN0WekX9nKsq+mGi7FAJWrYJ6O8wQs2wyBlKFsgha79et0RET2sHhaBaaZOVe2oypOpQBh3mQpFqexv7PUAXMOlMamHo6Q+Q9trh2MGGaGbzjnvmww6jPUwkn1PnFksEhi3ofj76TKNasta2TcrpG3inx7mbxegy1T8d3GU8AbhYqAed+jS0DKqsWXr5A==
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VI1PR0402MB3439.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230025)(7916004)(376002)(346002)(366004)(396003)(39860400002)(136003)(451199018)(2906002)(5660300002)(8936002)(7416002)(41300700001)(66946007)(4326008)(83380400001)(6916009)(66556008)(8676002)(66476007)(54906003)(6666004)(186003)(6512007)(316002)(6486002)(478600001)(6506007)(53546011)(38100700002)(33716001)(9686003)(86362001)(26005);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?621rQjmZDx2TrhILwwE/8652ZsR8m/Ub5PKbIy47hEToG/xN9+pn18ddBk+g?=
- =?us-ascii?Q?gXbCpwdtEfKY9hiyl4tdicqwGPVqkM2h5C/bMZ2H+BU0Z2VBwzbIGpvVEm+4?=
- =?us-ascii?Q?DMOPeYN3oYeRUhm+cxNWqbu53eNMjhSl9rLsYFkhotAp0+6K4t6/hGyd7wUl?=
- =?us-ascii?Q?RXjFwJBNlbNGNU2wRJc7OdyDiFdcYe1a3ZPPQ6XTBigwkBgQdR/B02G3h0CU?=
- =?us-ascii?Q?GFavPhK9wdbWcW+Vc8aHyOObujoCn9zoLGpbvgcFn2rCGiRDehObQQE3CSu7?=
- =?us-ascii?Q?gaZGGtoYsim0U5XOPAn3GSEJv8PiuQ4sFM+tGJWgmFZ8VbES3Ju9JenADnsg?=
- =?us-ascii?Q?lOzSlLNO+UsEEWbPTOacTzXG9Mu8L+UX/Jg4P6T4kwWf73EYvoC40DGPAb95?=
- =?us-ascii?Q?K3ewoN+v2S0rfOzGlZ4jJ6JZ07LadtJEY8AgqAf7nJjfvhdlyLFxBujfM1Rr?=
- =?us-ascii?Q?gxdlnOdvx8qAcDWu2KMs/Yp+gbo2NbLRxqgQY/AUB7YoovBMNO63r+2sQiKk?=
- =?us-ascii?Q?q/7HzvokrhSuteatbwJIsrXD+xhN8PU/BPYK27cK6zYJiS/pn1AZvhYsRW5k?=
- =?us-ascii?Q?CHWRb5fHuRnBYdRKuKXuRqcZ19bNDOy9/K90/BC0oLnvH4KMIAEz9vNnVRyQ?=
- =?us-ascii?Q?x2OPMLPl5rfB2VRwyR73pboMoKQ3AKDjfbK0ao6Mf7dD8PvD+admFPjFhf6F?=
- =?us-ascii?Q?rRegZeq/TmYd467nqJRVmXgr8vpbVI3hmVZ7OuvjzFH4URNqHe29JdEDu8f2?=
- =?us-ascii?Q?t5S6WKKPrfqoxsEAQ3lE/rozp1Dz2QaLS5nGa3rH0B1I+2oLzkOJP27gDldB?=
- =?us-ascii?Q?q8seQUrf+jLdYmJng4eCzE6q5tWodIlbBbg9J3gyFNzYyko+hQMTOyufLNNs?=
- =?us-ascii?Q?otHETG5W4HdLjmstd6cmuO1LZVVgdAVsTu/IY+V7IlnUV0y4DIGnYj7aghNH?=
- =?us-ascii?Q?jtMjl3ggwIEBQcU5G3fxOvAeUX50YsWCcVDE/MSbVLxwh4H3Vf0G8lltqfWg?=
- =?us-ascii?Q?nH/Z3V5utt2IsZpgRPI7ncgCGzDx6qcQ+gCrWzT7ezImIB/l7omgoJGZUiax?=
- =?us-ascii?Q?MQCXqUOvTI4f/6PbxE1nEudnSlhdBD7nc9yp8P+QPsj/nv0jfLKSB7LdNhDd?=
- =?us-ascii?Q?N6FqZIKB+jJdGSVJxXgqCUMLCGeCkLFPOTHXALSHn6otSxYq7znmy+bgBhMJ?=
- =?us-ascii?Q?/gCcaiskse8KraCAzIFf3Io0FkjqfZw2mJiomsI4m0xhLScA49kuXRWE9Y7p?=
- =?us-ascii?Q?tCNXf2418zolko7RYSIV3HvcWYZaBURrg/D56thfZYzu/Jsz9jhROHX+Tqox?=
- =?us-ascii?Q?L+GcP7/dPobKkqQlFZ0kKc2HM3yuHAoHiq9nIllKN/SdvsvMhKZkh0of0wdE?=
- =?us-ascii?Q?0mrdGqGSvRdCx6+fbtlf940Yc0taE3E5baSrTxwQr9nEHr0K4QoXIHBT4MHd?=
- =?us-ascii?Q?WIXBEUCHlToUXsj07NIuQF9lecm3AiODKR3/4JiPs4kj9VyrZc7RzpaNhvxE?=
- =?us-ascii?Q?gipc1DXB/3gdCwFzzxQS2V9PTbS3AHGcNWeNPWKITDdd2JpwoZPJmKWN/xnV?=
- =?us-ascii?Q?jGFDQL4RSl1NH2OGy6k=3D?=
-X-OriginatorOrg: suse.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 7fec5356-3d13-4528-99a8-08db1ff741fd
-X-MS-Exchange-CrossTenant-AuthSource: VI1PR0402MB3439.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Mar 2023 17:05:03.5391
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: f7a17af6-1c5c-4a36-aa8b-f5be247aa4ba
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: kasYTVOw3wEltumMsUQcACOUSH4FuClPXEyRRRlXGZkjlEisK7AaUpZYWorrcxYT
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR04MB6957
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.8.0
+Subject: Re: [PATCH 1/2] dt-bindings: Add doc for FriendlyARM NanoPi R5S
+Content-Language: en-US
+To:     Vasily Khoruzhick <anarsoul@gmail.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Jagan Teki <jagan@amarulasolutions.com>,
+        Peter Geis <pgwipeout@gmail.com>, Andy Yan <andyshrk@163.com>,
+        Chris Morgan <macromorgan@hotmail.com>,
+        Nicolas Frattaroli <frattaroli.nicolas@gmail.com>,
+        Brian Norris <briannorris@chromium.org>,
+        Sebastian Reichel <sebastian.reichel@collabora.com>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Michael Riesch <michael.riesch@wolfvision.net>,
+        Maya Matuszczyk <maccraft123mc@gmail.com>,
+        Chukun Pan <amadeus@jmu.edu.cn>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org,
+        Tianling Shen <cnsztl@gmail.com>
+References: <20230308063240.107178-1-anarsoul@gmail.com>
+ <4204317f-6715-cdeb-343d-611aea0d554a@linaro.org>
+ <CA+E=qVepknVmYjC8+uxp+TUF=uqvm3t4rLk8yjs+h5zYm6HiSw@mail.gmail.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <CA+E=qVepknVmYjC8+uxp+TUF=uqvm3t4rLk8yjs+h5zYm6HiSw@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,URIBL_BLOCKED autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Mar 09, 2023 at 12:43:35AM +0800, Chester Lin wrote:
-> Hi Andy,
+On 08/03/2023 17:09, Vasily Khoruzhick wrote:
+> On Wed, Mar 8, 2023 at 3:31 AM Krzysztof Kozlowski
+> <krzysztof.kozlowski@linaro.org> wrote:
+>>> diff --git a/Documentation/devicetree/bindings/arm/rockchip.yaml b/Documentation/devicetree/bindings/arm/rockchip.yaml
+>>> index 35f74eda30ae..0813ad22dc76 100644
+>>> --- a/Documentation/devicetree/bindings/arm/rockchip.yaml
+>>> +++ b/Documentation/devicetree/bindings/arm/rockchip.yaml
+>>> @@ -201,6 +201,11 @@ properties:
+>>>                - friendlyarm,nanopi-r4s-enterprise
+>>>            - const: rockchip,rk3399
+>>>
+>>> +      - description: FriendlyElec NanoPi R5S board
+>>> +
+>>
+>> Does not look like ordered alphabetically. Are you sure this is correct
+>> place for it?
 > 
-> On Wed, Mar 08, 2023 at 03:21:00PM +0200, Andy Shevchenko wrote:
-> > On Wed, Mar 8, 2023 at 7:03 AM Chester Lin <clin@suse.com> wrote:
-> > > On Tue, Mar 07, 2023 at 01:28:09AM +0200, andy.shevchenko@gmail.com wrote:
-> > > > Mon, Feb 20, 2023 at 10:33:19AM +0800, Chester Lin kirjoitti:
-> > 
-> > ...
-> > 
-> > > but the driver patch
-> > > has been merged into the maintainer's for-next so I would not change this part
-> > > unless the driver patch needs to be reverted and re-submitted in the end.
-> > 
-> > As I said you have to keep it in mind for all your future
-> > contributions to the Linux kernel independently on the destiny of this
-> > one.
-> > 
-> > ...
-> > 
-> > > > > +   depends on ARCH_S32 && OF
-> > > >
-> > > > Is OF necessary? Can it be
-> > >
-> > > I think it's required since the driver file refers to of_* APIs.
-> > 
-> > And? Is it functional or compilation dependency? If the latter is the
-> > case, what API exactly isn't providing a stub?
+> Hmm, strictly speaking, "FriendlyElec NanoPi R5S board" should go in
+> between of "FriendlyElec NanoPi R2S" and "FriendlyElec NanoPi4 series
+> boards" if we want it in alphabetical order, not after "FriendlyElec
+> NanoPi4 series boards" like in this patch. But it doesn't look nice
+> (because R5S will go before R4S).
 > 
-> I was wrong. Looks like the ARM64 arch Kconfig always select OF so it's not
-> really necessary to have OF here.
+> There is already similar ordering (alphabetical/chronological for
+> model) for Radxa Rock Pi - "Radxa ROCK Pi S", "Radxa Rock2 Square",
+> "Radxa ROCK3 Model A", "Radxa ROCK 5 Model A".
 > 
-> > 
-> > > >       depends OF || COMPILE_TEST
-> > > >
-> > > > ?
-> > 
-> > So?
-> > 
-> 
-> Since the OF dependency is not really necessary here, to fulfill the compile test
-> purpose, the possible dependency might be (ARCH_S32 || COMPILE_TEST), but it
-> could meet a compiling failure on the reference of pinconf_generic_parse_dt_config()
-> for those architectures which do not select OF by default since there's no stub
-> for this function. [pinconf_generic_parse_dt_config() is called in pinctrl-s32cc.c]
-> 
-> > ...
-> > 
-> > > > > +   depends on ARCH_S32 && OF
-> > 
-> > Ditto.
-> > 
-> 
-> Based on the previous assumption [OF is not needed and PINCTRL_S32CC doesn't
-> depend on COMPILE_TEST], selecting PINCTRL_S32G2 wouldn't work if it simply
-> depends on (ARCH_S32 || COMPILE_TEST), for example:
-> 
->   WARNING: unmet direct dependencies detected for PINCTRL_S32CC
->     Depends on [n]: PINCTRL [=y] && ARCH_S32
->       Selected by [y]:
->         - PINCTRL_S32G2 [=y] && PINCTRL [=y] && (ARCH_S32 || COMPILE_TEST [=y])
-> 
-> So the better solutions is to still have OF in PINCTRL_S32CC, such as:
-> 
-> config PINCTRL_S32CC
-> 	bool
-> 	depends on ARCH_S32 || (OF && COMPILE_TEST)
-> 	.....
-> 
-> config PINCTRL_S32G2
-> 	depends on ARCH_S32 || COMPILE_TEST
+> However if you want me to sort it strictly alphabetically, I can send a v2.
 
-Fix the dependency here, it should be:
+No, it's fine, I also got a bit mislead by R2S (I thought it is RS2).
 
-config PINCTRL_S32G2
-	depends on ARCH_S32 || (OF && COMPILE_TEST)
-        .....
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-Just in case if OF is not set but COMPILE_TEST is set.
+Best regards,
+Krzysztof
 
-> 	.....
-> 
-> Regards,
-> Chester
-> 
-> > > > > +/**
-> > > > > + * struct s32_pin_group - describes an S32 pin group
-> > > > > + * @name: the name of this specific pin group
-> > > > > + * @npins: the number of pins in this group array, i.e. the number of
-> > > > > + *         elements in pin_ids and pin_sss so we can iterate over that array
-> > > > > + * @pin_ids: an array of pin IDs in this group
-> > > > > + * @pin_sss: an array of source signal select configs paired with pin_ids
-> > > > > + */
-> > > > > +struct s32_pin_group {
-> > > > > +   const char *name;
-> > > > > +   unsigned int npins;
-> > > > > +   unsigned int *pin_ids;
-> > > > > +   unsigned int *pin_sss;
-> > > >
-> > > > Why didn't you embed struct pingroup?
-> > >
-> > > I did think about that but there's an additional 'pin_sss' which could make code
-> > > a bit messy. For example:
-> > >
-> > >         s32_regmap_update(pctldev, grp->grp.pins[i],
-> > >                           S32_MSCR_SSS_MASK, grp->pin_sss[i]);
-> > 
-> > We specifically provide those data types to separate generic things
-> > with custom ones. I don't think about the code getting longer, the
-> > access to the proper data seems reasonable to me. Look into other
-> > drivers that utilise these data types.
-> > 
-> 
-> Will change it, thanks for your suggestions.
-> 
-> > > > > +};
-> > > > > +
-> > > > > +/**
-> > > > > + * struct s32_pmx_func - describes S32 pinmux functions
-> > > > > + * @name: the name of this specific function
-> > > > > + * @groups: corresponding pin groups
-> > > > > + * @num_groups: the number of groups
-> > > > > + */
-> > > > > +struct s32_pmx_func {
-> > > > > +   const char *name;
-> > > > > +   const char **groups;
-> > > > > +   unsigned int num_groups;
-> > > > > +};
-> > > >
-> > > > struct pinfunction.
-> > >
-> > > Thanks for your information. I was not aware of this new struct since it just got
-> > > merged recently.
-> > 
-> > That's why the rule is to keep an eye on the subsystem development by
-> > regular rebasing on top of its tip (pinctrl tree, devel branch in this
-> > case).
-> > 
-> > ...
-> > 
-> > > > > +#ifdef CONFIG_PM_SLEEP
-> > > > > +int __maybe_unused s32_pinctrl_resume(struct device *dev);
-> > > > > +int __maybe_unused s32_pinctrl_suspend(struct device *dev);
-> > > > > +#endif
-> > > >
-> > > > Please, consider using new PM macros, like pm_ptr().
-> > >
-> > > Maybe pm_sleep_ptr() is more accurate?
-> > 
-> > You are the author, choose what you think fits the best!
-> > 
-> > ...
-> > 
-> > 
-> > > > > +   case PIN_CONFIG_BIAS_PULL_UP:
-> > > > > +           if (arg)
-> > > > > +                   *config |= S32_MSCR_PUS;
-> > > > > +           else
-> > > > > +                   *config &= ~S32_MSCR_PUS;
-> > > >
-> > > > > +           fallthrough;
-> > > >
-> > > > It's quite easy to miss this and tell us about how is it supposed to work with PU + PD?
-> > > >
-> > > I admit that it's ambiguous and should be improved in order to have better readability.
-> > >
-> > > In a S32G2 MSCR register, there are two register bits related to pull up/down functions:
-> > >
-> > > PUE (Pull Enable, MSCR[13]): 0'b: Disabled,  1'b: Enabled
-> > > PUS (Pull Select, MSCR[12]): 0'b: Pull Down, 1'b: Pull Up
-> > >
-> > > The dt properties could be like these:
-> > >
-> > > 1) 'bias-pull-up' or 'bias-pull-up: true'  --> arg = 1
-> > >    In this case both PUE and PUS are set.
-> > >
-> > > 2) 'bias-pull-up: false'  --> arg = 0
-> > >    In this case both PUE and PUS are cleared since the pull-up function must be disabled.
-> > 
-> > So, split it to a separate function where you do the enabling only once.
-> > I can point to drivers/pinctrl/intel/pinctrl-intel.c for the idea to take from.
-> > 
-> 
-> Will do.
-> 
-> > > > > +   case PIN_CONFIG_BIAS_PULL_DOWN:
-> > > > > +           if (arg)
-> > > > > +                   *config |= S32_MSCR_PUE;
-> > > > > +           else
-> > > > > +                   *config &= ~S32_MSCR_PUE;
-> > > > > +           *mask |= S32_MSCR_PUE | S32_MSCR_PUS;
-> > > > > +           break;
-> > > > > +   case PIN_CONFIG_BIAS_HIGH_IMPEDANCE:
-> > > > > +           *config &= ~(S32_MSCR_ODE | S32_MSCR_OBE | S32_MSCR_IBE);
-> > > > > +           *mask |= S32_MSCR_ODE | S32_MSCR_OBE | S32_MSCR_IBE;
-> > > > > +           fallthrough;
-> > > >
-> > > > Ditto.
-> > > >
-> > >
-> > > It's similar to the case 'PIN_CONFIG_BIAS_PULL_UP' although the PUS bit is assumed
-> > > as 0 via the config variable so only the PUE bit needs to be configured, for example:
-> > >
-> > > 1) 'bias-pull-down' or 'bias-pull-down: true'  --> arg = 1
-> > >    PUE is set and PUS is cleared.
-> > >
-> > > 2) 'bias-pull-down: false'  --> arg = 0
-> > >    In this case both PUE and PUS are cleared since the pull-down function must be disabled.
-> > >
-> > > > > +   case PIN_CONFIG_BIAS_DISABLE:
-> > > > > +           *config &= ~(S32_MSCR_PUS | S32_MSCR_PUE);
-> > > > > +           *mask |= S32_MSCR_PUS | S32_MSCR_PUE;
-> > > > > +           break;
-> > 
-> > Ditto.
-> > 
-> > ...
-> > 
-> > I assume that non-commented is equal to silent agreement and will be
-> > addressed accordingly. If it's not the case, reply again with your
-> > objections.
-> > 
-> > -- 
-> > With Best Regards,
-> > Andy Shevchenko
