@@ -2,86 +2,143 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 566A56B11BE
-	for <lists+devicetree@lfdr.de>; Wed,  8 Mar 2023 20:07:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4E87F6B11CA
+	for <lists+devicetree@lfdr.de>; Wed,  8 Mar 2023 20:10:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230226AbjCHTHB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Mar 2023 14:07:01 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46324 "EHLO
+        id S229558AbjCHTKQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Mar 2023 14:10:16 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54344 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230098AbjCHTGS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Mar 2023 14:06:18 -0500
-Received: from mail-oo1-f49.google.com (mail-oo1-f49.google.com [209.85.161.49])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E58E6D6EB2;
-        Wed,  8 Mar 2023 11:05:42 -0800 (PST)
-Received: by mail-oo1-f49.google.com with SMTP id p6-20020a4ab386000000b005252182b0e0so2696730ooo.6;
-        Wed, 08 Mar 2023 11:05:42 -0800 (PST)
+        with ESMTP id S230321AbjCHTJ4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Mar 2023 14:09:56 -0500
+Received: from mail-ed1-x52d.google.com (mail-ed1-x52d.google.com [IPv6:2a00:1450:4864:20::52d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1FEE4AF294
+        for <devicetree@vger.kernel.org>; Wed,  8 Mar 2023 11:09:37 -0800 (PST)
+Received: by mail-ed1-x52d.google.com with SMTP id a25so70084322edb.0
+        for <devicetree@vger.kernel.org>; Wed, 08 Mar 2023 11:09:37 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1678302576;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=KkeMJhDrlZR0CW+jwOzfg7rjixWcjZ+Lh7Jc51LTf60=;
+        b=B96dkgosvOFrjaliQ2bHaZnATfVIl/u0wBOla4aMLgLW9v7xGKNsAkGfFhgplw/1qx
+         9PRA7zHf3N1TVpwuke4D1gGgHY1638Z9T+V2C3Kw2LDrlUZzrs0ABAehuNtoBHXHBE4E
+         HeyUOgofgRQSJJyBL0AmFHfa8ywTIePc5ncbH6l2Q+drnSOaj08jk30dpNleG5AHJMI+
+         NfjbwhpbKbNVO4zrVwktv+RSP1Rbx3nSSh1N+TsBtdGqi8VWcJZQe6x/n+b/wk4rXXBg
+         NnF2fG7Un4CHiSilqpPlb82PHWhwybO6LviZEcqwmZXSwJ9b3Ms8elEBgzVUuYJqx4nO
+         Ev2A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678302323;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
+        d=1e100.net; s=20210112; t=1678302576;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=NordxQdldE7XmbCvmG0YEn0Zd0AFIRjo3oCJVh/XdZ8=;
-        b=IxA+Tx7znS5aTSXPeYTTmE7rD8Dbh/KdeEk7XxPSLGLWlPhoF+cvLQD9r/+RP/1gbp
-         Hcu06hJii09ZV/ZdXyqmDNWJ5QHgqIpGhNWa/e3bQYpiCFiZA8how+875YLcABEakezB
-         M8wJsBDxZo/7SHDYA8v0n0D8aQqIgICA29SVy4YHBXgViH6dkGFGnqYpbXZXVpTlAQD6
-         +k1kWlXsvqKeqnjj4VESRHAnNRnFblVMfXNjxxToj+l9560Eoa7J/WeqJ2Er/vcxldpE
-         6V7hCI2zdRHEYIOwEB07TC787jFfXR8bL/isHlexkdrATTcGD1oH4J4/7jFKyya5YrPQ
-         cK+w==
-X-Gm-Message-State: AO0yUKXxojXxi2/D4amuemnPMvSjRS4EJl3UtG1gNXyija3R5zd1vrE0
-        rmaGlBLPt22uUvRobA0J0A==
-X-Google-Smtp-Source: AK7set+Gao+jPPAsPOQnMfcd9chRmvzfSEYvOGdZLRscxWI5Q71DpwiJgOdNY61QW8hZMQmLiCEi+g==
-X-Received: by 2002:a4a:d014:0:b0:525:48a9:9ba with SMTP id h20-20020a4ad014000000b0052548a909bamr7229438oor.0.1678302323463;
-        Wed, 08 Mar 2023 11:05:23 -0800 (PST)
-Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id ee6-20020a056870c80600b0016dbf59175bsm6399696oab.47.2023.03.08.11.05.22
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 08 Mar 2023 11:05:23 -0800 (PST)
-Received: (nullmailer pid 3608251 invoked by uid 1000);
-        Wed, 08 Mar 2023 19:05:22 -0000
-Date:   Wed, 8 Mar 2023 13:05:22 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org,
-        =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        linux-usb@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: usb: allow evaluated properties in OHCI
- controllers
-Message-ID: <167830232197.3608175.18443271589392840573.robh@kernel.org>
-References: <20230228152105.25358-1-zajec5@gmail.com>
+        bh=KkeMJhDrlZR0CW+jwOzfg7rjixWcjZ+Lh7Jc51LTf60=;
+        b=i/igM7duU87nlI0htGs/UpeztEpE10I9Z3dA/9JGfboGOlAFUD5VqK1EUYEEaYEIEl
+         smFIN7rKaGVjC89wGSzjoRkKZ+gB0cf+cRJDrzbB5PZDz6uuWEyexEZ0qLydtPndyxW+
+         C+VjaRmWZlnBthqF+XeJ0yaw6zvvDPtj4bSnUTQBa0Oi3wl3KvXNISp72xsOi4rS9zrQ
+         z8a8q3wD6Qgt3puPz1DSRkMrRG4U2UjEBiVutj49GP4Ayxoe40ikoPFQVs09jzgKx8dq
+         kc7lReiz0qDTsPRjV+Md/o0VkuwFc8wImt18PoVuuOtLbSjhO2RLA2w22uJtlVaQPsYG
+         XdoA==
+X-Gm-Message-State: AO0yUKWs6NoGW+9ZLRoMBbF+D0hHgShBVcGW/3S55sxTNd9X5OPLO5AL
+        MCpapq3GOQGdxU/HZD6O5BgQPg==
+X-Google-Smtp-Source: AK7set+R6sbw18cgLNiAvl5saG3Boseyg7OJmQeoP4FW1+FdDJOmHm71GRSBxtg+nuJlzIzOZwY6oA==
+X-Received: by 2002:a17:906:da82:b0:88f:9f5e:f40 with SMTP id xh2-20020a170906da8200b0088f9f5e0f40mr27784941ejb.68.1678302576476;
+        Wed, 08 Mar 2023 11:09:36 -0800 (PST)
+Received: from ?IPV6:2a02:810d:15c0:828:ff33:9b14:bdd2:a3da? ([2a02:810d:15c0:828:ff33:9b14:bdd2:a3da])
+        by smtp.gmail.com with ESMTPSA id g10-20020a50d0ca000000b004bc9d44478fsm8601884edf.51.2023.03.08.11.09.35
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 08 Mar 2023 11:09:36 -0800 (PST)
+Message-ID: <36169a8a-d418-6d7e-b64c-a7c346b9a218@linaro.org>
+Date:   Wed, 8 Mar 2023 20:09:34 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20230228152105.25358-1-zajec5@gmail.com>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.8.0
+Subject: Re: [net-next PATCH 09/11] dt-bindings: net: dsa: qca8k: add LEDs
+ definition example
+Content-Language: en-US
+To:     Christian Marangi <ansuelsmth@gmail.com>
+Cc:     Andrew Lunn <andrew@lunn.ch>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Vladimir Oltean <olteanv@gmail.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Russell King <linux@armlinux.org.uk>,
+        Gregory Clement <gregory.clement@bootlin.com>,
+        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+        John Crispin <john@phrozen.org>, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, Lee Jones <lee@kernel.org>,
+        linux-leds@vger.kernel.org
+References: <20230307170046.28917-1-ansuelsmth@gmail.com>
+ <20230307170046.28917-10-ansuelsmth@gmail.com>
+ <ad43a809-b9fd-bd24-ee1a-9e509939023b@linaro.org>
+ <df6264de-36c5-41f2-a2a0-08b61d692c75@lunn.ch>
+ <5992cb0a-50a0-a19c-3ad1-03dd347a630b@linaro.org>
+ <6408dbbb.1c0a0220.a28ce.1b32@mx.google.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <6408dbbb.1c0a0220.a28ce.1b32@mx.google.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 08/03/2023 20:02, Christian Marangi wrote:
+> On Wed, Mar 08, 2023 at 07:49:26PM +0100, Krzysztof Kozlowski wrote:
+>> On 08/03/2023 14:57, Andrew Lunn wrote:
+>>> On Wed, Mar 08, 2023 at 11:58:33AM +0100, Krzysztof Kozlowski wrote:
+>>>> On 07/03/2023 18:00, Christian Marangi wrote:
+>>>>> Add LEDs definition example for qca8k Switch Family to describe how they
+>>>>> should be defined for a correct usage.
+>>>>>
+>>>>> Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
+>>>>
+>>>> Where is the changelog? This was v8 already! What happened with all
+>>>> review, changes?
+>>>
+>>> Did you read patch 0?
+>>>
+>>> We have decided to start again, starting small and working up. This
+>>> patchset just adds plain, boring LEDs. No acceleration, on hardware
+>>> offload. Just on/off, and fixed blink.
+>>
+>> Sure, but the patch is carried over. So what happened with all its
+>> feedback? Was there or was not? How can we know?
+>>
+> 
+> The history of the old series is a bit sad, not enough review, another
+> dev asking for a different implementation and me doing an hybrid to
+> reach a common point (and then disappear intro oblivion)...
+> 
+> Short story is that this current series have nothing related to the HW
+> offload feature and only in v7 it was asked to put the LED nodes in
+> ethernet-phy.yaml
+> 
+> I can put in the cover letter of v2 of this series the changelog of the
+> previous series but they would only be related to other part that are
+> not related to this.
+> 
+> Just to give you some context and explain why the changelog was dropped.
 
-On Tue, 28 Feb 2023 16:21:05 +0100, Rafał Miłecki wrote:
-> From: Rafał Miłecki <rafal@milecki.pl>
-> 
-> This binding uses usb-hcd.yaml so replace additionalProperties with
-> unevaluatedProperties to allow generic USB HCD properties. It's how EHCI
-> and XHCI bindings work too.
-> 
-> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
-> ---
->  Documentation/devicetree/bindings/usb/generic-ohci.yaml | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
+I am less interested in the changelog of entire patchset but of the
+patches which are for me to review. Sending vX as v1 suggests that all
+previous review work on this patch could be in some limbo state. Maybe
+nothing happened in all previous version, but it's now my task to dig it?
 
-Acked-by: Rob Herring <robh@kernel.org>
+This is why you have "---" for the patch changelog.
+
+Best regards,
+Krzysztof
 
