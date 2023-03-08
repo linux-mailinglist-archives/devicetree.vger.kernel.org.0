@@ -2,121 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F35686B1492
-	for <lists+devicetree@lfdr.de>; Wed,  8 Mar 2023 22:55:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C468E6B149B
+	for <lists+devicetree@lfdr.de>; Wed,  8 Mar 2023 22:57:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230240AbjCHVzY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Mar 2023 16:55:24 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58312 "EHLO
+        id S230133AbjCHV5T (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Mar 2023 16:57:19 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60530 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230155AbjCHVzV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Mar 2023 16:55:21 -0500
-Received: from mail-wr1-x42e.google.com (mail-wr1-x42e.google.com [IPv6:2a00:1450:4864:20::42e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DB399D49F9
-        for <devicetree@vger.kernel.org>; Wed,  8 Mar 2023 13:55:04 -0800 (PST)
-Received: by mail-wr1-x42e.google.com with SMTP id g3so37974wri.6
-        for <devicetree@vger.kernel.org>; Wed, 08 Mar 2023 13:55:04 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1678312503;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=PNobrJtyVxKais+5xCBZIp/sku4QQfBasurHEecIWAE=;
-        b=Xx0Z7goD6qsCry/gPmvS47RqLg7qVg1rsqP0/ivv6dVLBUn5MS10EP/EdHwYpbDGEU
-         amc1TtUHaLR9QISTSc4s13jqYliAxZotYqA5v7ma1xa+nruXOjRgMn4SyBj9LF172nlI
-         3fEfyk1sCkU4sqemUmyXLsZGL+g8BQpqebMUMA8JFX9RDGsUbWTlFLEzacTlewE643L2
-         wpcwC/tuVbqFrGu44C0xcZkIvml71vXIU76g5z+CreInh1uzWrMmwRrdhqNJLnuAf9gP
-         rXTuvAevUDQi1yyT0CRPjN2A+odDaicPcBsSP3ZUKufVU118R2TdNE2okzHMM37ZLwaL
-         wnXg==
+        with ESMTP id S230063AbjCHV5P (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Mar 2023 16:57:15 -0500
+Received: from mail-oi1-f177.google.com (mail-oi1-f177.google.com [209.85.167.177])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 66536D4612;
+        Wed,  8 Mar 2023 13:57:12 -0800 (PST)
+Received: by mail-oi1-f177.google.com with SMTP id bi17so206562oib.3;
+        Wed, 08 Mar 2023 13:57:12 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678312503;
+        d=1e100.net; s=20210112; t=1678312631;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=PNobrJtyVxKais+5xCBZIp/sku4QQfBasurHEecIWAE=;
-        b=JA2RMYMRoc0CsdG4QFfJQGC+yjyypaYt+XrLnfjzCEaeWHGMNT1unQrkBU8jlYxTBO
-         lBMQV+7vM4UVxDga3oFhQFvwlm5sZBX0TYynv4+jEQb38rWHkTYL0sQ1+hs6uXMipqFn
-         LC/TuPgFBcyk7e38BNuZ5j77BBjEtlPOL+zmgmluzTDpHTNneYDBXIRDWias6P602IfP
-         TawruYFh7vBkqKQpC3EfmM83wAVw77dZV8CZ5eBXi5hTIZMjYq+P+PpXyxHoauO2CH6j
-         775hOgfILh9EQ9D8o5Sxa3mmp3X/yV7++xc+ddt0jCwV8RNHFBete5PB+v5c7HVbD46c
-         HYdw==
-X-Gm-Message-State: AO0yUKWqTGrp7RVBiyQRpCDte9fY4CJfEO5I/0r2b96R3fYjHcr4KQ3I
-        kulyucSmET9cMNDWZUjJ15Bz0w==
-X-Google-Smtp-Source: AK7set8/BDV1TRoYFJRl+Ho21B1yvco18zhN9eA6Vxb9VJyRxA2mql6ty9uvzWGEDOdDdPzgRii47w==
-X-Received: by 2002:adf:f44a:0:b0:2c9:ee50:b295 with SMTP id f10-20020adff44a000000b002c9ee50b295mr13070782wrp.28.1678312503333;
-        Wed, 08 Mar 2023 13:55:03 -0800 (PST)
-Received: from linaro.org ([94.52.112.99])
-        by smtp.gmail.com with ESMTPSA id w2-20020a5d6802000000b002c7163660a9sm16132508wru.105.2023.03.08.13.55.01
+        bh=YAS1xYRXj3cdPKcvjDZ+t7RtqFJmt8ftiUP9NIi5BhI=;
+        b=P1HTNeHRUBXI1ZVgptGhOCNrE5ICnLbKPDvi9SrOPBXkgMgbofmmOWvVwW2wWJtwq/
+         XPw770xZ//6IFtwwZgUAiF2aaS6+iJP0P7nErzZny4bjZIKDWaiLF/7paJusUnySX+i3
+         GBBN6GupsC2h4KqxEtqtU970YqvMX3H3cikZyuTtWjQEn/pQk+LismnDHH7o0rgj7JT/
+         1nsJU24Pr3NfCYo5nAALE0c5SNYEJjBSfyDis8qVCzhnbZRmDsdQD+ogqR9+XM41IptB
+         kVR6psewl7yJiGxcb41Dk063dTYtVmBTDCehI7MojL9jdyO2rKQwMKDVYHtgbmdQ+iIg
+         Ldpw==
+X-Gm-Message-State: AO0yUKVuPxLZm4uOJpTEwmrwOd08URfc9B5X2+lC6z4QayUBsvqgx85w
+        zL9B6vY1d+jBWLPry9Uvzg==
+X-Google-Smtp-Source: AK7set/wO6Hud4S7hIzFW35ljRId+eCmpPInzcvs2Ch8cPaIh2UOWciajGcHOgTRjHsb09N5i4I6pQ==
+X-Received: by 2002:aca:1c03:0:b0:378:3a54:4418 with SMTP id c3-20020aca1c03000000b003783a544418mr7812947oic.49.1678312631513;
+        Wed, 08 Mar 2023 13:57:11 -0800 (PST)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id y64-20020aca3243000000b00383eaea5e88sm6820737oiy.38.2023.03.08.13.57.10
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 08 Mar 2023 13:55:02 -0800 (PST)
-Date:   Wed, 8 Mar 2023 23:55:01 +0200
-From:   Abel Vesa <abel.vesa@linaro.org>
-To:     Eric Biggers <ebiggers@kernel.org>
-Cc:     Ulf Hansson <ulf.hansson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        Wed, 08 Mar 2023 13:57:10 -0800 (PST)
+Received: (nullmailer pid 3911485 invoked by uid 1000);
+        Wed, 08 Mar 2023 21:57:09 -0000
+Date:   Wed, 8 Mar 2023 15:57:09 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Samin Guo <samin.guo@starfivetech.com>
+Cc:     linux-riscv@lists.infradead.org, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        "David S . Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Manivannan Sadhasivam <mani@kernel.org>,
-        Alim Akhtar <alim.akhtar@samsung.com>,
-        Avri Altman <avri.altman@wdc.com>,
-        Bart Van Assche <bvanassche@acm.org>,
-        Adrian Hunter <adrian.hunter@intel.com>,
-        "James E . J . Bottomley" <jejb@linux.ibm.com>,
-        "Martin K . Petersen" <martin.petersen@oracle.com>,
-        linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-arm-msm@vger.kernel.org, linux-scsi@vger.kernel.org
-Subject: Re: [RFC PATCH v2 0/7] Add dedicated Qcom ICE driver
-Message-ID: <ZAkENY2DWTqIr86m@linaro.org>
-References: <20230308155838.1094920-1-abel.vesa@linaro.org>
- <ZAjqBemusfSKEWgF@sol.localdomain>
+        Emil Renner Berthing <kernel@esmil.dk>,
+        Richard Cochran <richardcochran@gmail.com>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Peter Geis <pgwipeout@gmail.com>,
+        Yanhong Wang <yanhong.wang@starfivetech.com>
+Subject: Re: [PATCH v5 03/12] dt-bindings: net: snps,dwmac: Add an optional
+ resets single 'ahb'
+Message-ID: <20230308215709.GA3904341-robh@kernel.org>
+References: <20230303085928.4535-1-samin.guo@starfivetech.com>
+ <20230303085928.4535-4-samin.guo@starfivetech.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <ZAjqBemusfSKEWgF@sol.localdomain>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
-        autolearn_force=no version=3.4.6
+In-Reply-To: <20230303085928.4535-4-samin.guo@starfivetech.com>
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 23-03-08 12:03:17, Eric Biggers wrote:
-> Hi Abel,
-> 
-> On Wed, Mar 08, 2023 at 05:58:31PM +0200, Abel Vesa wrote:
-> > As both SDCC and UFS drivers use the ICE with duplicated implementation,
-> > while none of the currently supported platforms make use concomitantly
-> > of the same ICE IP block instance, the new SM8550 allows both UFS and
-> > SDCC to do so. In order to support such scenario, there is a need for
-> > a unified implementation and a devicetree node to be shared between
-> > both types of storage devices. So lets drop the duplicate implementation
-> > of the ICE from both SDCC and UFS and make it a dedicated (soc) driver.
-> > Also, switch all UFS and SDCC devicetree nodes to use the new ICE
-> > approach.
-> > 
-> > See each individual patch for changelogs.
-> > 
-> > The v1 is here:
-> > https://lore.kernel.org/all/20230214120253.1098426-1-abel.vesa@linaro.org/
-> > 
-> > Abel Vesa (7):
-> >   dt-bindings: soc: qcom: Add schema for Inline Crypto Engine
-> >   dt-bindings: ufs: qcom: Add ICE phandle and drop core clock
-> >   dt-bindings: mmc: sdhci-msm: Add ICE phandle and drop core clock
-> >   soc: qcom: Make the Qualcomm UFS/SDCC ICE a dedicated driver
-> >   scsi: ufs: ufs-qcom: Switch to the new ICE API
-> >   mmc: sdhci-msm: Switch to the new ICE API
-> >   arm64: dts: qcom: Add the Inline Crypto Engine nodes
-> 
-> Does this address all the comments on v1?  I had also asked some questions on
-> v1.  It would be helpful if you would respond.
+On Fri, Mar 03, 2023 at 04:59:19PM +0800, Samin Guo wrote:
+> According to:
+> stmmac_platform.c: stmmac_probe_config_dt
+> stmmac_main.c: stmmac_dvr_probe
 
-Sorry about not doing that earlier. Did that now.
+That's not really a reason on its own. Maybe the driver is wrong. Do we 
+know what hardware needs this?
 
+> dwmac controller may require one (stmmaceth) or two (stmmaceth+ahb)
+> reset signals, and the maxItems of resets/reset-names is going to be 2.
 > 
-> - Eric
+> Signed-off-by: Samin Guo <samin.guo@starfivetech.com>
+> ---
+>  .../devicetree/bindings/net/snps,dwmac.yaml        | 14 ++++++++++----
+>  1 file changed, 10 insertions(+), 4 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/net/snps,dwmac.yaml b/Documentation/devicetree/bindings/net/snps,dwmac.yaml
+> index b4135d5297b4..89099a888f0b 100644
+> --- a/Documentation/devicetree/bindings/net/snps,dwmac.yaml
+> +++ b/Documentation/devicetree/bindings/net/snps,dwmac.yaml
+> @@ -133,12 +133,18 @@ properties:
+>          - ptp_ref
+>  
+>    resets:
+> -    maxItems: 1
+> -    description:
+> -      MAC Reset signal.
+> +    minItems: 1
+> +    items:
+> +      - description: GMAC stmmaceth reset
+> +      - description: AHB reset
+>  
+>    reset-names:
+> -    const: stmmaceth
+> +    minItems: 1
+> +    maxItems: 2
+> +    contains:
+
+This means 'reset-names = "foo", "ahb";' is valid. You want 'items' 
+instead. However, that still allows the below string in any order. Do we 
+really need that? If not, then you want:
+
+items:
+  - const: stmmaceth
+  - const: ahb
+
+> +      enum:
+> +        - stmmaceth
+> +        - ahb
+>  
+>    power-domains:
+>      maxItems: 1
+> -- 
+> 2.17.1
+> 
