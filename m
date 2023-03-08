@@ -2,119 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5431B6B0A62
-	for <lists+devicetree@lfdr.de>; Wed,  8 Mar 2023 15:03:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BD2876B0A6E
+	for <lists+devicetree@lfdr.de>; Wed,  8 Mar 2023 15:04:44 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232029AbjCHODD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Mar 2023 09:03:03 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37970 "EHLO
+        id S232107AbjCHOEm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Mar 2023 09:04:42 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48666 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231927AbjCHOCO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Mar 2023 09:02:14 -0500
-Received: from relay5-d.mail.gandi.net (relay5-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::225])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 751132917A;
-        Wed,  8 Mar 2023 06:00:50 -0800 (PST)
-Received: (Authenticated sender: kory.maincent@bootlin.com)
-        by mail.gandi.net (Postfix) with ESMTPSA id 800A21C0004;
-        Wed,  8 Mar 2023 14:00:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1678284048;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=FucVkdzUMOd65SVJGkH7EDy0k/VJGGY+7Sjp+ByagLo=;
-        b=l2Hy8sxwSbOagOh4qXqiDmXElZB7HrqKG7ChK5wn2lLJc18LegiOwOKou6GV21eLMkr8Ol
-        Vez+EdMLarTZmVFVBsohRf5uzi9gpQMKulobXbOUPiHJGoHvPTe83KqpQiMOOF/plHiG9T
-        0LdUM1uckTop2CP/6tYlBCzJU2p/9QK4RimTYOMp6TrVBWIr5e8igbC+3mqQLw9fTkT9RA
-        fDmVz3+HLFvCYm/AP4W+jTNggr3yf23PmJZ/s3EXu25+MxLT1eg1pTgwEB8VMlw6tiDEf6
-        DSo/GrQhraOTQOcJrN6OmPTZB/JEd7Id9uv/i+xDcwHZSTQbbC3+HD0yWw50IQ==
-From:   =?UTF-8?q?K=C3=B6ry=20Maincent?= <kory.maincent@bootlin.com>
-To:     Andrew Lunn <andrew@lunn.ch>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Heiner Kallweit <hkallweit1@gmail.com>, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-doc@vger.kernel.org, linux-omap@vger.kernel.org
-Cc:     Michael Walle <michael@walle.cc>,
-        Maxime Chevallier <maxime.chevallier@bootlin.com>,
-        Kory Maincent <kory.maincent@bootlin.com>,
-        thomas.petazzoni@bootlin.com, Russell King <linux@armlinux.org.uk>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
+        with ESMTP id S231887AbjCHOEZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Mar 2023 09:04:25 -0500
+Received: from mail-ed1-x52f.google.com (mail-ed1-x52f.google.com [IPv6:2a00:1450:4864:20::52f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 535BBCDA19;
+        Wed,  8 Mar 2023 06:01:47 -0800 (PST)
+Received: by mail-ed1-x52f.google.com with SMTP id cw28so66145317edb.5;
+        Wed, 08 Mar 2023 06:01:47 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112; t=1678284106;
+        h=content-transfer-encoding:mime-version:message-id:references
+         :in-reply-to:user-agent:subject:cc:to:from:date:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=B1bXJOyXjPOrWGNoY1T7rRsDOWzuuEM286YNL5pDWXg=;
+        b=fdp+qaegXNOzS3XIjm6hn5VGF+bbxueEXNFjOjuKS+e/gbhGC9Gx8DTcBp22wgrnsy
+         HCS9msReZl9IkVwKoGyavMbRrxcISGNfI1IEcsY4Jtj/JNMzKjwpk/5m7UyUhHcUHqsq
+         vu0C0NjjGnPE6GZrpJ0MCy7uAT/zgd6WRbUbbm+hDy645jKQUzqcqzhQO0dIwFZmHFpd
+         IXKDJeyE9jb/VU0iTLJZPJv7Ly5GyMBMDXi4m11Ma6C77jSTCPkwqDH4m6mGdLGfU67W
+         ZZrFFEZYT7hab0QnfZZKDEIBsc9JujpSejpNpjiIYJzc47OKWjnVoDMBmn3OB7NYaUQV
+         hFdg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1678284106;
+        h=content-transfer-encoding:mime-version:message-id:references
+         :in-reply-to:user-agent:subject:cc:to:from:date:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=B1bXJOyXjPOrWGNoY1T7rRsDOWzuuEM286YNL5pDWXg=;
+        b=KjhI44iyeOKXqPmBUsFkOiqnoh5lWQ0FlbYXF8IbT/6/yTJHW5D5agNYCZHhty6Wi/
+         Rwz1Ac5b9mhmztDpmy5gJ5oDsQeHwbYIuwD74sAWEcdaWfism/m2vvv6/yUmZI4ptnDl
+         viXFbcT9FiMYv5/tSiD9X+UTfiGCTtFU3J3yP0VTTeyz1gkXL1mwyY7Ye3iPw581TpJ9
+         McIgqvxff3pnyfYY8LT8CRgpeNaP/7NPqUfQEyKUslbSgp+11lBK7lwJ5E98qkY+boFV
+         5AWx61nW4myjPfsf/2ILdiHFwkll2OBbIR9MPmCkLqgPh89saQTxVLp3NMqmpHJLXuNq
+         qpdw==
+X-Gm-Message-State: AO0yUKU0CLuGEKPv+EyFFcyDIugIFTY5KvEMJJYBRWyv5/ELCxLoEGKW
+        +DjxiITx8louQLE1Sc9oIOTJrjr0EIdF+g==
+X-Google-Smtp-Source: AK7set8posVtu3K86DBJkt0PWWC/HrybdhiW+IG2rlMrXHozpU/5tccCOX3TilQFS5W2y2fuI51tNg==
+X-Received: by 2002:a17:907:7f13:b0:884:3174:119d with SMTP id qf19-20020a1709077f1300b008843174119dmr24705007ejc.14.1678284106452;
+        Wed, 08 Mar 2023 06:01:46 -0800 (PST)
+Received: from [127.0.0.1] ([46.211.69.230])
+        by smtp.gmail.com with ESMTPSA id y7-20020a170906470700b008ef13127b5fsm7529758ejq.29.2023.03.08.06.01.45
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 08 Mar 2023 06:01:46 -0800 (PST)
+Date:   Wed, 08 Mar 2023 16:01:44 +0200
+From:   Svyatoslav Ryhel <clamor95@gmail.com>
+To:     Mark Brown <broonie@kernel.org>
+CC:     Guenter Roeck <linux@roeck-us.net>,
+        Jean Delvare <jdelvare@suse.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jonathan Corbet <corbet@lwn.net>,
-        Jay Vosburgh <j.vosburgh@gmail.com>,
-        Veaceslav Falico <vfalico@gmail.com>,
-        Andy Gospodarek <andy@greyhouse.net>,
-        Joakim Zhang <qiangqing.zhang@nxp.com>,
-        Vladimir Oltean <vladimir.oltean@nxp.com>,
-        Claudiu Manoil <claudiu.manoil@nxp.com>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        UNGLinuxDriver@microchip.com,
-        Grygorii Strashko <grygorii.strashko@ti.com>,
-        Richard Cochran <richardcochran@gmail.com>,
-        Minghao Chi <chi.minghao@zte.com.cn>,
-        Guangbin Huang <huangguangbin2@huawei.com>,
-        Jie Wang <wangjie125@huawei.com>,
-        Oleksij Rempel <linux@rempel-privat.de>,
-        Alexandru Tachici <alexandru.tachici@analog.com>,
-        Sean Anderson <sean.anderson@seco.com>,
-        "Gustavo A. R. Silva" <gustavoars@kernel.org>,
-        Wolfram Sang <wsa+renesas@sang-engineering.com>,
-        Maxim Korotkov <korotkov.maxim.s@gmail.com>,
-        Marco Bonelli <marco@mebeim.net>
-Subject: [PATCH v3 5/5] dt-bindings: net: phy: add timestamp preferred choice property
-Date:   Wed,  8 Mar 2023 14:59:29 +0100
-Message-Id: <20230308135936.761794-6-kory.maincent@bootlin.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20230308135936.761794-1-kory.maincent@bootlin.com>
-References: <20230308135936.761794-1-kory.maincent@bootlin.com>
+        Liam Girdwood <lgirdwood@gmail.com>,
+        linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v1 1/2] dt-bindings: hwmon: ina2xx: add supply property
+User-Agent: K-9 Mail for Android
+In-Reply-To: <5cd6764c-9b04-42ea-932d-9f14aa465605@sirena.org.uk>
+References: <20230308094024.14115-1-clamor95@gmail.com> <20230308094024.14115-2-clamor95@gmail.com> <31ca0ede-012c-4849-bf25-d0492b116681@sirena.org.uk> <6DBD0F5A-4625-4FCD-8D64-23293D734A82@gmail.com> <5cd6764c-9b04-42ea-932d-9f14aa465605@sirena.org.uk>
+Message-ID: <135993BF-B4AC-42C1-AD36-94F66EE1620D@gmail.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain;
+ charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Kory Maincent <kory.maincent@bootlin.com>
 
-Add property to select the preferred hardware timestamp layer.
-The choice of using devicetree binding has been made as the PTP precision
-and quality depends of external things, like adjustable clock, or the lack
-of a temperature compensated crystal or specific features. Even if the
-preferred timestamp is a configuration it is hardly related to the design
-of the board.
 
-Signed-off-by: Kory Maincent <kory.maincent@bootlin.com>
----
- Documentation/devicetree/bindings/net/ethernet-phy.yaml | 7 +++++++
- 1 file changed, 7 insertions(+)
+8 =D0=B1=D0=B5=D1=80=D0=B5=D0=B7=D0=BD=D1=8F 2023 =D1=80=2E 15:46:52 GMT+0=
+2:00, Mark Brown <broonie@kernel=2Eorg> =D0=BD=D0=B0=D0=BF=D0=B8=D1=81=D0=
+=B0=D0=B2(-=D0=BB=D0=B0):
+>On Wed, Mar 08, 2023 at 02:58:20PM +0200, Svyatoslav Ryhel wrote:
+>> 8 =D0=B1=D0=B5=D1=80=D0=B5=D0=B7=D0=BD=D1=8F 2023 =D1=80=2E 14:54:34 GM=
+T+02:00, Mark Brown <broonie@kernel=2Eorg> =D0=BD=D0=B0=D0=BF=D0=B8=D1=81=
+=D0=B0=D0=B2(-=D0=BB=D0=B0):
+>> >On Wed, Mar 08, 2023 at 11:40:23AM +0200, Svyatoslav Ryhel wrote:
+>> >> Add supply property=2E
+>
+>> >> +  vdd-supply: true
+>> >> +
+>> >>  required:
+>> >>    - compatible
+>> >>    - reg
+>
+>> >Unless the device can work without power the supply should be required=
+=2E
+>
+>> Device can work without supply defined on most devices, but in my case =
+power is gated with gpio and devices will not work without fixed regulator=
+=2E
+>
+>If there are devices that work without any source of power at all that
+>would be very surprising=2E  It doesn't matter if a particular system has
+>a non-controllable regulator, the binding should still make it mandatory
+>to describe that=2E
 
-diff --git a/Documentation/devicetree/bindings/net/ethernet-phy.yaml b/Documentation/devicetree/bindings/net/ethernet-phy.yaml
-index ad808e9ce5b9..3ea6d2a59ff7 100644
---- a/Documentation/devicetree/bindings/net/ethernet-phy.yaml
-+++ b/Documentation/devicetree/bindings/net/ethernet-phy.yaml
-@@ -144,6 +144,13 @@ properties:
-       Mark the corresponding energy efficient ethernet mode as
-       broken and request the ethernet to stop advertising it.
- 
-+  preferred-timestamp:
-+    enum:
-+      - phy
-+      - mac
-+    description:
-+      Specifies the preferred hardware timestamp layer.
-+
-   pses:
-     $ref: /schemas/types.yaml#/definitions/phandle-array
-     maxItems: 1
--- 
-2.25.1
-
+Then question is WHY and WHO passed driver without power supply system imp=
+lemented? Why it pops only now?
