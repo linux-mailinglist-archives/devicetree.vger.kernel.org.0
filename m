@@ -2,90 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E96A16B09FB
-	for <lists+devicetree@lfdr.de>; Wed,  8 Mar 2023 14:53:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 851546B0A2D
+	for <lists+devicetree@lfdr.de>; Wed,  8 Mar 2023 14:57:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231710AbjCHNxl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Mar 2023 08:53:41 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54832 "EHLO
+        id S231960AbjCHN5J (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Mar 2023 08:57:09 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55118 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231704AbjCHNxK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Mar 2023 08:53:10 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 945914C6F3;
-        Wed,  8 Mar 2023 05:53:07 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 17E26B81CE5;
-        Wed,  8 Mar 2023 13:53:06 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 42A86C4339B;
-        Wed,  8 Mar 2023 13:53:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1678283584;
-        bh=z6Fl1IZWcy0KRIvlPtXRkINhMxXIEpmPhQork/dwI7o=;
-        h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-        b=KrSLM8/PvZvSU1n/mv6jFpQS9K/SJmnvHaHdNiunwWuFgzyJcTLms0X013zKKsdBu
-         kxJPfvAmEPgXos1p4UTT4kru4dVakOD49+2RgYEySYdSfMm0pKNITskxwBEw6OeIdq
-         IYCZpNfaVsFwbpGgEavFc8QVCTvcvW8bLbIvzLm2eYdX68jh724CBLL3DsbtE2Bi48
-         lL3FCfXOfyg9+ebMP7B/lzKTqbxmeMzYFF8TQJG8y3RxhHaoJCtwAYgkQu8VMA6fWI
-         W3rWg4oIDf29JHEayMw9yHYZienmAUDP6CkdlXbAzqDHWhYhMlC95xu3pC9EsoZ1wG
-         /QaZNJpTXXsvQ==
-From:   Mark Brown <broonie@kernel.org>
-To:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        cy_huang@richtek.com
-Cc:     lgirdwood@gmail.com, u0084500@gmail.com,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-In-Reply-To: <1678063358-18128-1-git-send-email-cy_huang@richtek.com>
-References: <1678063358-18128-1-git-send-email-cy_huang@richtek.com>
-Subject: Re: [PATCH v3 1/2] dt-bindings: regulator: Add Richtek RT5739
-Message-Id: <167828358298.32113.17014444602601238459.b4-ty@kernel.org>
-Date:   Wed, 08 Mar 2023 13:53:02 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.13-dev-bd1bf
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        with ESMTP id S231897AbjCHN4n (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Mar 2023 08:56:43 -0500
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0577ED90F0;
+        Wed,  8 Mar 2023 05:55:33 -0800 (PST)
+Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 328Cp7dm029875;
+        Wed, 8 Mar 2023 13:54:55 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
+ subject : date : message-id; s=qcppdkim1;
+ bh=CcrsohLDRpbrter+vKyPvH5Z7xlgXzEN2lBYKNnJskg=;
+ b=ZXObca4jXOuzkvqAOPMY9ZvXla1vdnC2I+NXS1ZIOtTgw5p2UJ5OD+yZgaGKdXsj0oAM
+ mvflZBg799+DYZJUukOIJd8illmiUtr6AtSdSdaZCZCYPV59xIQJZ54piekpmKwLgHfo
+ VpSkVkqzdep38C0yJ5TtTergYXCU6a/7BvtrlrfqwhK5fn/uG8LUjsV3NY2RM+Bwp1fq
+ wOORfZkG8K7wHt4cC7Pc6m94e4nCdvgLzUO7r0qsAmnOTQsJ6ie8Yam04w/O78nKEYDv
+ ESEpUiYyxJSBqJ0zroRVhBCQToW1TTsV8GimQGdxRVrBUkujBO0xtNe5/CXgqi2KVUua sQ== 
+Received: from apblrppmta02.qualcomm.com (blr-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.18.19])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3p6fmm1syc-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Wed, 08 Mar 2023 13:54:55 +0000
+Received: from pps.filterd (APBLRPPMTA02.qualcomm.com [127.0.0.1])
+        by APBLRPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTP id 328DspKK004217;
+        Wed, 8 Mar 2023 13:54:51 GMT
+Received: from pps.reinject (localhost [127.0.0.1])
+        by APBLRPPMTA02.qualcomm.com (PPS) with ESMTPS id 3p4fftc0fw-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NO);
+        Wed, 08 Mar 2023 13:54:51 +0000
+Received: from APBLRPPMTA02.qualcomm.com (APBLRPPMTA02.qualcomm.com [127.0.0.1])
+        by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 328DsoLn004202;
+        Wed, 8 Mar 2023 13:54:51 GMT
+Received: from hu-sgudaval-hyd.qualcomm.com (hu-rohiagar-hyd.qualcomm.com [10.213.106.138])
+        by APBLRPPMTA02.qualcomm.com (PPS) with ESMTP id 328Dso28004200;
+        Wed, 08 Mar 2023 13:54:50 +0000
+Received: by hu-sgudaval-hyd.qualcomm.com (Postfix, from userid 3970568)
+        id 0D8E14FB2; Wed,  8 Mar 2023 19:24:50 +0530 (+0530)
+From:   Rohit Agarwal <quic_rohiagar@quicinc.com>
+To:     agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
+        vkoul@kernel.org, kishon@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, manivannan.sadhasivam@linaro.org
+Cc:     linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Rohit Agarwal <quic_rohiagar@quicinc.com>
+Subject: [PATCH v2 0/2] Add support for PCIe PHY in SDX65
+Date:   Wed,  8 Mar 2023 19:24:46 +0530
+Message-Id: <1678283688-4020-1-git-send-email-quic_rohiagar@quicinc.com>
+X-Mailer: git-send-email 2.7.4
+X-QCInternal: smtphost
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: T9jW8JeEJSGqsPbrwUYFqQc-WK2-MAMX
+X-Proofpoint-ORIG-GUID: T9jW8JeEJSGqsPbrwUYFqQc-WK2-MAMX
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.254,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
+ definitions=2023-03-08_08,2023-03-08_03,2023-02-09_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
+ spamscore=0 malwarescore=0 phishscore=0 clxscore=1015 adultscore=0
+ mlxscore=0 lowpriorityscore=0 impostorscore=0 suspectscore=0
+ mlxlogscore=948 bulkscore=0 classifier=spam adjust=0 reason=mlx
+ scancount=1 engine=8.12.0-2212070000 definitions=main-2303080118
+X-Spam-Status: No, score=-1.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,SPF_HELO_NONE,
+        SPF_NONE,URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 06 Mar 2023 08:42:37 +0800, cy_huang@richtek.com wrote:
-> Add the binding document for Richtek RT5739.
-> 
-> 
+Hi,
 
-Applied to
+Changes in v2:
+ - Addressing Dmitry's comments and adjusting according to new bindings.
+ - Rebased on top of 6.3-rc1.
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/regulator.git for-next
-
-Thanks!
-
-[1/2] dt-bindings: regulator: Add Richtek RT5739
-      commit: 2e238605a9d631fc8b9b130ba79cd54f2a22df10
-[2/2] regulator: Add support for Richtek RT5739 voltage regulator
-      commit: 4536f3b93a3373cac21911103cbaa8c4c2932c38
-
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
-
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
+This series adds support for PCIe PHY found in Qualcomm SDX65 platform.
+The PHY version is v5.20 which has different register offsets compared with
+previous v5.0x and v4.0x versions. So separate defines are introducted to
+handle the differences.
 
 Thanks,
-Mark
+Rohit.
+
+Rohit Agarwal (2):
+  dt-bindings: phy: qcom,qmp: Add SDX65 QMP PHY binding
+  phy: qcom-qmp: Add support for SDX65 QMP PCIe PHY
+
+ .../bindings/phy/qcom,sc8280xp-qmp-pcie-phy.yaml   |   1 +
+ drivers/phy/qualcomm/phy-qcom-qmp-pcie.c           | 165 +++++++++++++++++++++
+ drivers/phy/qualcomm/phy-qcom-qmp-pcs-pcie-v5_20.h |   3 +
+ drivers/phy/qualcomm/phy-qcom-qmp-pcs-v5_20.h      |   1 +
+ .../phy/qualcomm/phy-qcom-qmp-qserdes-txrx-v5_20.h |  24 +++
+ 5 files changed, 194 insertions(+)
+
+-- 
+2.7.4
 
