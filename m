@@ -2,81 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 069566B13C8
-	for <lists+devicetree@lfdr.de>; Wed,  8 Mar 2023 22:25:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0E4346B13DE
+	for <lists+devicetree@lfdr.de>; Wed,  8 Mar 2023 22:31:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229572AbjCHVZM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Mar 2023 16:25:12 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40578 "EHLO
+        id S229878AbjCHVbT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Mar 2023 16:31:19 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46870 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229484AbjCHVZL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Mar 2023 16:25:11 -0500
-Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com [IPv6:2a00:1450:4864:20::534])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6E00F25E12;
-        Wed,  8 Mar 2023 13:25:10 -0800 (PST)
-Received: by mail-ed1-x534.google.com with SMTP id ay14so67517211edb.11;
-        Wed, 08 Mar 2023 13:25:10 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=googlemail.com; s=20210112; t=1678310709;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=bEQQ5y1rU+jovQ+RQSf9fz570XBj+oRwE2jbrv64UoU=;
-        b=fABAaGcHA/JuPb3YorxwiN0BG3dM5Jrc4WdT1Gn7VVAIfLK3U7vLy2EJ2Xp4Sm17ht
-         29Ifww1kkszG+k5IqQjNXr/Mh5ersO6r3HKPR8x/3nSdp5b7MEn1Oh9LxJdNgSgUt7Fl
-         00uwgKmEnn6RZ8oNQrbBdUzNMagOg5I6IRSSCvMEIjN4ZKVAthF8L086oMxrZSu8o/6R
-         tWkU4thGaBUQh3WI3aioiNUlcoSyrAnqsfM7+jKYyfdDBBnjG8Q5NklbJTXNuRjZ3wZP
-         gf4+bqoKx3Q67FM331Ro0JSoBkcv0c8KBOp69zIl1rcqAYGGsyyVaDC6OWz4sHljtaM8
-         Zeqg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678310709;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=bEQQ5y1rU+jovQ+RQSf9fz570XBj+oRwE2jbrv64UoU=;
-        b=xLhSHS8oi36SoxzrZEbmZ0UQwvaITGminH3ZGgVLP/nvtytj4xx9ghuz30PwHj3c6B
-         1Y1+TKlbvoSJsZrvbiJRUFG3kU0F/3eCNlEK2U1kbcuOklapa4Fn0SAHZqMEAZTt4YrQ
-         WB8i9+sDIiPUsDOobPBFV0SlcwtJRO+R2UWUiWR5iKeV0B4+r673MljbQUrk0z06vqN7
-         vVJ5SYMxKwTaxT4AMthJqqGHEofmGgspu91AehrFAytVt5bUbcoyv6jfqUKNXWM0C/W/
-         t2RZczG1RCIZPbrrD+IUjJbFQ15tg8vkKJ0rC4xPf8UF1ZZatkXYaajsJVtuGp6DUdQk
-         37Rw==
-X-Gm-Message-State: AO0yUKWS+LWRC1J6fmM3kT5t31/y2zN6XQCmI92K2HYQV+rdhvFaykUW
-        YgjDWGJZDDuwB7PUwAgA7Md80i3cFu5YzNt5ZOU=
-X-Google-Smtp-Source: AK7set9EbJ+kG0WoXhSVXEi4hP8885ePLJPbBRoToqjisvKkiPtNHvmh0Nsh0/o4zHrybOasiIZDvzc3QK81g6iwFc8=
-X-Received: by 2002:a17:906:ce38:b0:8b1:30da:b585 with SMTP id
- sd24-20020a170906ce3800b008b130dab585mr10042710ejb.6.1678310708691; Wed, 08
- Mar 2023 13:25:08 -0800 (PST)
+        with ESMTP id S229803AbjCHVbS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Mar 2023 16:31:18 -0500
+Received: from sender4-op-o10.zoho.com (sender4-op-o10.zoho.com [136.143.188.10])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DE3CDB854D;
+        Wed,  8 Mar 2023 13:31:14 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1678311053; cv=none; 
+        d=zohomail.com; s=zohoarc; 
+        b=KjmsOf7ehx4jTfl0riJMXnxP8FB+uRfC7t7inEZq8N4/RkJrqCT6fmm7BnQs+zHQ2vvwR3qcZ0iORKk7ykik2rmogrwU9nkEEese/foHmoA8UjEt4WRDd/5CR35C1EAVu3oq5snlbws7V1pFjSyVREaYwvRhMn0Q/n2n2jVhKxw=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+        t=1678311053; h=Content-Type:Content-Transfer-Encoding:Cc:Date:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:To; 
+        bh=/MSYDbYWejPMXjOcwjxkiS5EHblGlIiGqrapEhAoCso=; 
+        b=kaH75wBKImbQlnsYiASJ2kubDY8c9UEzwFcmMy9CJQ9GIhGCEg7YpKgC+IrDmFXR2tMyh0NE2QxgxkMyN05fmQ8B6Y/5qJm8qCdpHC4Raq+mwbKj76ov7ETq6tidzLUptpPOLsKz0gVCFG5hJGiLdNf8s9GgLawSwTsSjjN4/CY=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+        dkim=pass  header.i=arinc9.com;
+        spf=pass  smtp.mailfrom=arinc.unal@arinc9.com;
+        dmarc=pass header.from=<arinc.unal@arinc9.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1678311053;
+        s=zmail; d=arinc9.com; i=arinc.unal@arinc9.com;
+        h=Message-ID:Date:Date:MIME-Version:Subject:Subject:To:To:Cc:Cc:References:From:From:In-Reply-To:Content-Type:Content-Transfer-Encoding:Message-Id:Reply-To;
+        bh=/MSYDbYWejPMXjOcwjxkiS5EHblGlIiGqrapEhAoCso=;
+        b=iqcpeSZS/8ACGqcTYiZlf7fR4wnhrFjcsfmVJkqUT4r94IIjrgutIKc37/Dzvo92
+        mc6bYk1a5bZ9DBNxtqBT/IPAYMyE5STLkqTBLixEHIRAlABt+Voqrnp9vOLC/EK56Dk
+        r+sxiPiZGGli2Fn12pb3HMD/2hYwMIienABDW9rM=
+Received: from [10.10.10.3] (212.68.60.226 [212.68.60.226]) by mx.zohomail.com
+        with SMTPS id 1678311052439170.96243035381804; Wed, 8 Mar 2023 13:30:52 -0800 (PST)
+Message-ID: <4e3919ff-0488-c89e-2ab4-0fc5c5d47f95@arinc9.com>
+Date:   Thu, 9 Mar 2023 00:30:46 +0300
 MIME-Version: 1.0
-References: <20221117-b4-amlogic-bindings-convert-v4-0-34e623dbf789@linaro.org>
- <20221117-b4-amlogic-bindings-convert-v4-2-34e623dbf789@linaro.org>
-In-Reply-To: <20221117-b4-amlogic-bindings-convert-v4-2-34e623dbf789@linaro.org>
-From:   Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date:   Wed, 8 Mar 2023 22:24:57 +0100
-Message-ID: <CAFBinCAiS_1nJyPb1+disehZSJTe=ES72pDTeKxazUdpzX+VAw@mail.gmail.com>
-Subject: Re: [PATCH v4 2/5] dt-bindings: nvmem: convert amlogic-meson-mx-efuse.txt
- to dt-schema
-To:     Neil Armstrong <neil.armstrong@linaro.org>
-Cc:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.1
+Subject: Re: [PATCH 15/20] dt-bindings: pinctrl: {mediatek,ralink}: fix
+ formatting
+Content-Language: en-US
+To:     Rob Herring <robh@kernel.org>
+Cc:     Linus Walleij <linus.walleij@linaro.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>,
-        Rob Herring <robh@kernel.org>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-media@vger.kernel.org, linux-pci@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+        linux-mediatek@lists.infradead.org, linux-mips@vger.kernel.org,
+        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Sergio Paracuellos <sergio.paracuellos@gmail.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Sean Wang <sean.wang@kernel.org>,
+        William Dean <williamsukatube@gmail.com>,
+        Daniel Golle <daniel@makrotopia.org>,
+        Daniel Santos <daniel.santos@pobox.com>,
+        Luiz Angelo Daros de Luca <luizluca@gmail.com>,
+        Frank Wunderlich <frank-w@public-files.de>,
+        Landen Chao <Landen.Chao@mediatek.com>,
+        DENG Qingfang <dqfext@gmail.com>,
+        Sean Wang <sean.wang@mediatek.com>, erkin.bozoglu@xeront.com
+References: <20230303002850.51858-1-arinc.unal@arinc9.com>
+ <20230303002850.51858-16-arinc.unal@arinc9.com>
+ <20230308211131.GA3803811-robh@kernel.org>
+From:   =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>
+In-Reply-To: <20230308211131.GA3803811-robh@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ZohoMailClient: External
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -84,11 +77,22 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Mar 8, 2023 at 2:27=E2=80=AFPM Neil Armstrong <neil.armstrong@linar=
-o.org> wrote:
->
-> Convert the Amlogic Meson6 eFuse bindings to dt-schema.
->
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
-Reviewed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+On 9.03.2023 00:11, Rob Herring wrote:
+> On Fri, Mar 03, 2023 at 03:28:44AM +0300, arinc9.unal@gmail.com wrote:
+>> From: Arınç ÜNAL <arinc.unal@arinc9.com>
+>>
+>> Change the style of description properties to plain style where there's no
+>> need to preserve the line endings, and vice versa.
+>>
+>> Fit the schemas to 80 columns for each line.
+> 
+> I would just leave the enum cases alone and make this patch just about
+> reformatting 'description' entries. Either way:
+> 
+> Reviewed-by: Rob Herring <robh@kernel.org>
+
+I guess I've got a bit of OCD so it would really annoy me knowing that 
+I've kept some lines exceeding 80 columns. It seems OK with you either 
+way so I'm going to keep it. ;)
+
+Arınç
