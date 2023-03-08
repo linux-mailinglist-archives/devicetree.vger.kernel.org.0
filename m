@@ -2,110 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 95C376B04AC
-	for <lists+devicetree@lfdr.de>; Wed,  8 Mar 2023 11:38:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 403496B04B4
+	for <lists+devicetree@lfdr.de>; Wed,  8 Mar 2023 11:40:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230131AbjCHKig (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Mar 2023 05:38:36 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54326 "EHLO
+        id S230155AbjCHKkT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Mar 2023 05:40:19 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57700 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231203AbjCHKia (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Mar 2023 05:38:30 -0500
-Received: from mail-ed1-x530.google.com (mail-ed1-x530.google.com [IPv6:2a00:1450:4864:20::530])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4E54B90794
-        for <devicetree@vger.kernel.org>; Wed,  8 Mar 2023 02:38:19 -0800 (PST)
-Received: by mail-ed1-x530.google.com with SMTP id a25so64031602edb.0
-        for <devicetree@vger.kernel.org>; Wed, 08 Mar 2023 02:38:19 -0800 (PST)
+        with ESMTP id S229887AbjCHKkQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Mar 2023 05:40:16 -0500
+Received: from mail-wm1-x336.google.com (mail-wm1-x336.google.com [IPv6:2a00:1450:4864:20::336])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8C8629CBF6
+        for <devicetree@vger.kernel.org>; Wed,  8 Mar 2023 02:40:15 -0800 (PST)
+Received: by mail-wm1-x336.google.com with SMTP id az36so9514730wmb.1
+        for <devicetree@vger.kernel.org>; Wed, 08 Mar 2023 02:40:15 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1678271898;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=WuML39FEMcZtLr2iCHmq6W7C/WxS3Q4N5Og9ZOvpQ9w=;
-        b=QTLDyVGR2tUx94St/HYDQZsBAsy5pBfrWfAkT3+8zgOdgpicyAq7pM4lTdjQZZUDJt
-         MKlRPnESLk/2iDuvyej3N34QsPoN6PePmFi6lJeoi4jlg5dtVntmLt3LcBdeRyDm7Hvz
-         75fMBvhf8v4rUMdomm1jAfGZpokvALm7RZGfadJd6sUa/+UXfZpYY/Ro7JIo+rMIpT1+
-         CTo7WATtSOGmX7iiqaRPDHtJVulvEkp/spDMUIsPyjSSJ/C8ACdt23X/3OzgwLcTdFwT
-         qY6lrsKnUasZmlwI6rZYsVofwKmQExorRiVnWgdjHUk8vdYjuJ9bZjHjaAHiYKYTwSh0
-         7srQ==
+        d=bgdev-pl.20210112.gappssmtp.com; s=20210112; t=1678272014;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=kRt6WpwvIBdAlT9GjoYenrjmoiuuxf6pyvSRjhj1Zk8=;
+        b=P22IwubSswfi5Y1ZOPXW0kJgYGFtJKeYzWgoDnpdOOvHv2DtgD34zPQITW0TFucU55
+         1yHrwLoimyc90xed+aRwK+OujXY4zKkuX9uTH9tOeNmDzcBz0J09RIqej3RPHC80ELdU
+         KWCM8cn5NrrJlziMXepiPu0Ah/oZFNYWdbmnb8vBtBnCutNpYIrh4Lg6i7OASn2uVJ98
+         ck2caaQARl6tAJnttJN1BIdQ3pGWn77oHrU8FZS9hNxJeB0Ztbr3F3YvjcmIdOTytaci
+         /1lqWG7ytz3D16u4cLi5CChi//MQCw3EVHbZBqSl7Hw7WXQtAeI27bPkmxepKd/GGmks
+         2TIw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678271898;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=WuML39FEMcZtLr2iCHmq6W7C/WxS3Q4N5Og9ZOvpQ9w=;
-        b=gLCABryZC0oPBGVeFqRdKnvsc5gqa9p4rXGi/qN4LURP9TGxbYJtl2VJLcCButdf0T
-         a1iCHNYxJCjvjvrS7Nf1rd6aZKH+sbOaxKF+wgTFyyyZFJM/f6EbZUB3OHhByFbPdpyn
-         kEzc8gx5XDjpDrcIpoKCSvIwaspduEds8PQZWlfSMUcfqUy1hTsn+xPl7bbv9+EZUjNW
-         n+S6wDEwfBdh2/oH0TWoj8w5qF/F/0C+Jozvr4fl1Nr/meVhWnY1ViZrlk3+uIOZkbec
-         vGexjh8+z1CqcKuTN+Mhzt6uyl5qkF/dDDoHRFDDzlYfR71TdTilTUMPS3AxtJp62wlF
-         D50Q==
-X-Gm-Message-State: AO0yUKXRuIbDlvEgDo0rN5qwJ+9u0DDm1PEmHc7KBiFhaVZOg3NOq7PC
-        GAR3euw/sCKYMziLocsjsuVcRQ==
-X-Google-Smtp-Source: AK7set+6cIAV/Nnrqmu6ojlpiwai/PK6n04qpXW+CQbF5M+XmL9sTbzfdTPWQ7s/ZL+/Hyut/TkGPw==
-X-Received: by 2002:aa7:d9c2:0:b0:4aa:aaf6:e6be with SMTP id v2-20020aa7d9c2000000b004aaaaf6e6bemr15118755eds.7.1678271897806;
-        Wed, 08 Mar 2023 02:38:17 -0800 (PST)
-Received: from ?IPV6:2a02:810d:15c0:828:ff33:9b14:bdd2:a3da? ([2a02:810d:15c0:828:ff33:9b14:bdd2:a3da])
-        by smtp.gmail.com with ESMTPSA id 24-20020a170906301800b008f883765c9asm7303815ejz.136.2023.03.08.02.38.16
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 08 Mar 2023 02:38:17 -0800 (PST)
-Message-ID: <b2f9cd15-b303-882a-d4e0-36d1f6d155a8@linaro.org>
-Date:   Wed, 8 Mar 2023 11:38:16 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-Subject: Re: [PATCH v13 1/2] dt-bindings: clock: add loongson-2 boot clock
- index
-Content-Language: en-US
-To:     zhuyinbo <zhuyinbo@loongson.cn>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
+        d=1e100.net; s=20210112; t=1678272014;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=kRt6WpwvIBdAlT9GjoYenrjmoiuuxf6pyvSRjhj1Zk8=;
+        b=kCbktxR6n/0hoBsfc88KCziUWpIrgwO6NE9hnDroUTYwmWvbTlsGkO9poqTUbls96R
+         OEa6/3jkT1CLkUnx0IiQYo5sbVhFqf6hm7AzCaS79g5Wv3zS2WAGvHmNKwWqwS7/DCL/
+         wtPuLF52dm94+M1q+cnOr/1ySpG8MeRSi7XHwgRf0Jw6x0q/WrkrRzLByuhhopDC03Xo
+         /hAYhL7I/E7ygTcqGgy5eH8nyiND0abcZjiswwfasuWhoqk4/Y9j0sVPhto7+HtK9gRp
+         c7UcCzN3riSU9bmLAuoKXJD/Lo0rPyxwsDfEH0Hf7JIC/YT4tn8eNEah/RqoGFRcroRV
+         FxBA==
+X-Gm-Message-State: AO0yUKVL+L0mkUhUs6N+Y+IJRVeromo3I+yJTVUCFsHE+Vhw1FD9KkKl
+        5CH1QoVO8kahYQgeYnZ5hbdC4iScZQqLLQ3lDJ4=
+X-Google-Smtp-Source: AK7set9dVGEfZHhUM3HA8qAwJI7yFv02IvknxgLGZkwoV/7kENikLbazTYXO4xLFyFJjDDZJUac+vQ==
+X-Received: by 2002:a05:600c:4fc2:b0:3eb:37ce:4c3e with SMTP id o2-20020a05600c4fc200b003eb37ce4c3emr16327392wmq.16.1678272014061;
+        Wed, 08 Mar 2023 02:40:14 -0800 (PST)
+Received: from brgl-uxlite.home ([2a01:cb1d:334:ac00:2326:fd4c:82e3:7e07])
+        by smtp.gmail.com with ESMTPSA id v7-20020a05600c444700b003eb0d6f48f3sm20664135wmn.27.2023.03.08.02.40.13
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 08 Mar 2023 02:40:13 -0800 (PST)
+From:   Bartosz Golaszewski <brgl@bgdev.pl>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org
-Cc:     Jianmin Lv <lvjianmin@loongson.cn>,
-        Liu Peibao <liupeibao@loongson.cn>, wanghongliang@loongson.cn,
-        loongson-kernel@lists.loongnix.cn
-References: <20230307115022.12846-1-zhuyinbo@loongson.cn>
- <692a62da-a9a1-fa23-6e24-723d73c3a423@linaro.org>
- <5e9b3bd5-d885-6237-5e14-2becb3c956cc@loongson.cn>
- <31e2a67a-c046-9501-80de-e754ed450195@linaro.org>
- <ace5159b-ebbd-7805-518c-ed3d39e4793e@loongson.cn>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <ace5159b-ebbd-7805-518c-ed3d39e4793e@loongson.cn>
-Content-Type: text/plain; charset=UTF-8
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+Subject: [PATCH v4 0/9] arm64: dts: qcom: sa8775p-ride: enable relevant QUPv3 IPs
+Date:   Wed,  8 Mar 2023 11:40:00 +0100
+Message-Id: <20230308104009.260451-1-brgl@bgdev.pl>
+X-Mailer: git-send-email 2.37.2
+MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 08/03/2023 10:24, zhuyinbo wrote:
->>>> That's an ABI break and commit msg does not explain it.
->>> you meaning is that need add a explanation in commit msg that why
->> You need good explanation to break the ABI. I don't understand the
->> commit msg, but anyway I could not find there justification for ABI
->> break. If you do not have good justification, don't break the ABI,
-> 
-> The commit msg is the patch commit  log,  and I maybe not got it about 
-> break the ABI.  You said about "break the ABI"
-> 
-> is whether is location issue about "LOONGSON2_BOOT_CLK"?   if yes,   the 
-> LOONGSON2_BOOT_CLK was placed
-> 
-> after LOONGSON2_PIX1_PLL that is due to their clock parent is same.     
-> and I whether need add this explanation
-> 
-> in patch commit log description?
+From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
 
-Unfortunately I do not understand single thing from this.
+This enables the QUPv3 interfaces that are exposed on the sa8775p-ride
+board: I2C, SPI and the Bluetooth and GNSS UART ports.
 
-Best regards,
-Krzysztof
+v3 -> v4:
+- use interconnect constants instead of magic numbers where applicable
+- pad addresses in reg to 8 digits
+- group pins under state nodes for UART
+
+v2 -> v3:
+- fix the interrupt number for uart12
+- replace underscores with hyphens in DT node names (although make dtbs_check
+  does not raise warnings about this)
+- rearrange the commits so that they're more fine-grained with separate
+  patches for adding nodes to dtsi and enabling them for the board
+
+v1 -> v2:
+- uart17 is the Bluetooth port, not GNSS
+- add uart12 for GNSS too in that case
+
+Bartosz Golaszewski (9):
+  arm64: dts: qcom: sa8775p: add the QUPv3 #2 node
+  arm64: dts: qcom: sa8775p-ride: enable QUPv3 #2
+  arm64: dts: qcom: sa8775p: add the i2c18 node
+  arm64: dts: qcom: sa8775p-ride: enable i2c18
+  arm64: dts: qcom: sa8775p: add the spi16 node
+  arm64: dts: qcom: sa8775p-ride: enable the SPI node
+  arm64: dts: qcom: sa8775p: add high-speed UART nodes
+  arm64: dts: qcom: sa8775p-ride: enable the GNSS UART port
+  arm64: dts: qcom: sa8775p-ride: enable the BT UART port
+
+ arch/arm64/boot/dts/qcom/sa8775p-ride.dts | 99 +++++++++++++++++++++++
+ arch/arm64/boot/dts/qcom/sa8775p.dtsi     | 87 ++++++++++++++++++++
+ 2 files changed, 186 insertions(+)
+
+-- 
+2.37.2
 
