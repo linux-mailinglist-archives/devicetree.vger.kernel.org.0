@@ -2,138 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 102C76B018D
-	for <lists+devicetree@lfdr.de>; Wed,  8 Mar 2023 09:34:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1E2EA6B0197
+	for <lists+devicetree@lfdr.de>; Wed,  8 Mar 2023 09:34:37 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230409AbjCHId7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Mar 2023 03:33:59 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57056 "EHLO
+        id S230309AbjCHIee (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Mar 2023 03:34:34 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56656 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230274AbjCHIdf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Mar 2023 03:33:35 -0500
-Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com [IPv6:2a00:1450:4864:20::434])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D85E124C80
-        for <devicetree@vger.kernel.org>; Wed,  8 Mar 2023 00:33:02 -0800 (PST)
-Received: by mail-wr1-x434.google.com with SMTP id h11so14534344wrm.5
-        for <devicetree@vger.kernel.org>; Wed, 08 Mar 2023 00:33:02 -0800 (PST)
+        with ESMTP id S230314AbjCHIdw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Mar 2023 03:33:52 -0500
+Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com [IPv6:2a00:1450:4864:20::52b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C1B2650F8A
+        for <devicetree@vger.kernel.org>; Wed,  8 Mar 2023 00:33:15 -0800 (PST)
+Received: by mail-ed1-x52b.google.com with SMTP id cw28so62524284edb.5
+        for <devicetree@vger.kernel.org>; Wed, 08 Mar 2023 00:33:15 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1678264381;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=mrjzbycvahC2qWo4+g2dlQgsce4F08+8FUswfvS3fdc=;
-        b=vjIMj4YrRtXCIYL0GYTNI06bij3LwCKaY/BhO+GRH0cClgMCxoi7HlBCHXRrt4OwPw
-         NchY00cYcr3fQSMs79jfFoUrv8UxI4e8t4ZpnN/76yjxRwLCaDlogZlO79vHQN6Mbwej
-         JOCsW0fInPM5mkVLahhl+NA2obrELsJxm6qFrox29jsXXgPVogFDmu5sLqYKhhqwlVkM
-         CQQt3Eurjj3Hb1KE1MxDdkuxHWhRVi40iwDoIMdNXFbuWJdzPzDZo2wSXRnzYGNac4Qa
-         LCunR9fg2Z4U9iXsJO97RC6mcg8YBtZXmg/zKQ9lk9Q8nKaO50PviyrA63yxBqiEiEbm
-         ksAQ==
+        d=linaro.org; s=google; t=1678264392;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=7ue0NqDmKrjgpyNEx5D7GNBoWR2ZdRspc55ofKNDbaw=;
+        b=C8SNgoJ/P6E60Py0cw5PYuEs80mFIR9Wf8aoG4b95aZpDnbLg69MXom/fSLfaGO2GJ
+         z6KDDfgc3PRo/Zd8r/pqWQR7cpQu7b/lZiScEgULeBDUn//+7nlC3bER3y+wP9aSKoS6
+         qrLQtBuJQaqk+VbSb8FCnCOTESErvHfQPpPJ/L6xC5rKjfauETnj0cywgb44mK1rCTru
+         kQoJLdqP2jPYPjUtNv80uO8iv/978zHV2n0qQc+klDnO3dGW0w8GKEhUOyqGL+vvcd/7
+         nWgSxeVBVtBQ2I8d4Jb6IEkFG0M88Rg1RaRqxvTV8+YixtmOgWVu70F2Sgle64iKl5gq
+         D58Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678264381;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=mrjzbycvahC2qWo4+g2dlQgsce4F08+8FUswfvS3fdc=;
-        b=LjsihHHmG4ePeNV6fBLxE1nHB/F2jrjIcrhyxpWhwiVDaJcrHRfd2rTA1uIwce5vKC
-         gxgOppig3HUz1lBCwOquPoelZIB4qzmK3sLzxiHTdQx815gMNOKpSezLYVIVvmqGJA9e
-         q7GskEtxH22hTZB1Y2NDWzGkMbJsJqwHLimQn2jhicBNMYOvO/rTa4ICxtYr041n5sTH
-         U/fHaYipuqAfsXjlF3BlBU7epqlYff+QyA9cf8vvXsU/c3F9fcPLRmGBOrSCjjkY0B94
-         /dcYjP6bho3N2ObuP4LxJMVC3BNYGxuxP08VWSWUGrdoeA6kGsaJKwzZAIbocyfyhAKq
-         oskA==
-X-Gm-Message-State: AO0yUKWpyQsdHUiB6RnlcjiHgt23KVws+5S+pkEGUA0wrvTPg3jK2OZ8
-        Au7OXc8SJUsgyEjPKYI5fsX1gQ==
-X-Google-Smtp-Source: AK7set8oS+rGpxMJbjUjyrLII6bqdfrz7UWEgw0XQcKOu8pVfIoTB543vno3mUILoTr+ZTk2IziWEg==
-X-Received: by 2002:adf:f18a:0:b0:2c7:1d20:7743 with SMTP id h10-20020adff18a000000b002c71d207743mr11907012wro.21.1678264380980;
-        Wed, 08 Mar 2023 00:33:00 -0800 (PST)
-Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:52eb:f6ff:feb3:451a])
-        by smtp.gmail.com with ESMTPSA id n1-20020adffe01000000b002c4084d3472sm14797907wrr.58.2023.03.08.00.32.58
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 08 Mar 2023 00:32:59 -0800 (PST)
-From:   Neil Armstrong <neil.armstrong@linaro.org>
-Date:   Wed, 08 Mar 2023 09:32:54 +0100
-Subject: [PATCH 3/3] arm64: dts: qcom: sm8550: misc style fixes
+        d=1e100.net; s=20210112; t=1678264392;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=7ue0NqDmKrjgpyNEx5D7GNBoWR2ZdRspc55ofKNDbaw=;
+        b=wX6IMgZ0vJJIKnkVthBZAohIP56ToQbGa8lxdevkk5egI32q+KoscRMh4o4kvCXsBV
+         ZLWNF1x+y2W76mgHiQvOFhRxAozNUHjuObWMKJGSUnG3bsBpnsa0wn5gqCiaUazSI7iA
+         IXoJ7WfdAxGKkk43uhij9e8LmuPwNmLwcEp+qrAvvTOmR9f+Ew4BZq4Ga3LwcPXgt5R0
+         Ua4BgedpEVVVpt54BQp0GeiTDZu0zubmNbXCXjU1nrcf8ILr9LQL6e1oWVA/beE6+bh4
+         n8zVhHBB7WiafKzOr6umxg6lYcz8TfhbhuqyTjyX0nBnMcI7NlSnYhzWBKfDgZ2d+V9L
+         t2oQ==
+X-Gm-Message-State: AO0yUKUxjaYscXiS2DToFa2Fg+aSpNQAYsor7in5azUmOpkockBcjVT2
+        tVZmyzXYTNogXEqlM3pEUD9QdQ==
+X-Google-Smtp-Source: AK7set9nTlKFw37WTDFhuyvxUVC/TCbnN4R/TKLSbNeBQ/9zLgDXA9as1YOus3xU65mYSxvowAm8iQ==
+X-Received: by 2002:a05:6402:687:b0:4ac:d90e:92b with SMTP id f7-20020a056402068700b004acd90e092bmr22535880edy.10.1678264391957;
+        Wed, 08 Mar 2023 00:33:11 -0800 (PST)
+Received: from ?IPV6:2a02:810d:15c0:828:bba:fbfa:8aec:a133? ([2a02:810d:15c0:828:bba:fbfa:8aec:a133])
+        by smtp.gmail.com with ESMTPSA id k26-20020a508ada000000b004af6b93f00asm7761947edk.23.2023.03.08.00.33.11
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 08 Mar 2023 00:33:11 -0800 (PST)
+Message-ID: <0c1ad8a7-a0a7-9a92-369c-3ede2ef82e58@linaro.org>
+Date:   Wed, 8 Mar 2023 09:33:10 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.8.0
+Subject: Re: [PATCH 16/19] arm64: dts: qcom: sdm845: Add "mhi" region to the
+ PCIe nodes
+To:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Cc:     andersson@kernel.org, lpieralisi@kernel.org, kw@linux.com,
+        krzysztof.kozlowski+dt@linaro.org, robh@kernel.org,
+        konrad.dybcio@linaro.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-pci@vger.kernel.org,
+        linux-kernel@vger.kernel.org, quic_srichara@quicinc.com
+References: <20230306153222.157667-1-manivannan.sadhasivam@linaro.org>
+ <20230306153222.157667-17-manivannan.sadhasivam@linaro.org>
+ <1587de60-244a-d97f-dea0-36fe8a5be2c2@linaro.org>
+ <20230308083152.GD134293@thinkpad>
+Content-Language: en-US
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230308083152.GD134293@thinkpad>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-Message-Id: <20230308-topic-sm8550-upstream-dt-fixups-v1-3-595b02067672@linaro.org>
-References: <20230308-topic-sm8550-upstream-dt-fixups-v1-0-595b02067672@linaro.org>
-In-Reply-To: <20230308-topic-sm8550-upstream-dt-fixups-v1-0-595b02067672@linaro.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Abel Vesa <abel.vesa@linaro.org>,
-        Sai Prakash Ranjan <quic_saipraka@quicinc.com>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Neil Armstrong <neil.armstrong@linaro.org>
-X-Mailer: b4 0.12.1
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Miscellaneous DT fixes to remove spurious blank line and enhance readability.
+On 08/03/2023 09:31, Manivannan Sadhasivam wrote:
+> On Tue, Mar 07, 2023 at 09:20:23AM +0100, Krzysztof Kozlowski wrote:
+>> On 06/03/2023 16:32, Manivannan Sadhasivam wrote:
+>>> The "mhi" region contains the debug registers that could be used to monitor
+>>> the PCIe link transitions.
+>>>
+>>> Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+>>> ---
+>>>  arch/arm64/boot/dts/qcom/sdm845.dtsi | 6 ++++--
+>>>  1 file changed, 4 insertions(+), 2 deletions(-)
+>>>
+>>> diff --git a/arch/arm64/boot/dts/qcom/sdm845.dtsi b/arch/arm64/boot/dts/qcom/sdm845.dtsi
+>>> index 479859bd8ab3..0104e77dd8d5 100644
+>>> --- a/arch/arm64/boot/dts/qcom/sdm845.dtsi
+>>> +++ b/arch/arm64/boot/dts/qcom/sdm845.dtsi
+>>> @@ -2280,10 +2280,11 @@ opp-4 {
+>>>  		pcie0: pci@1c00000 {
+>>>  			compatible = "qcom,pcie-sdm845";
+>>>  			reg = <0 0x01c00000 0 0x2000>,
+>>> +			      <0 0x01c07000 0 0x1000>,
+>>>  			      <0 0x60000000 0 0xf1d>,
+>>>  			      <0 0x60000f20 0 0xa8>,
+>>>  			      <0 0x60100000 0 0x100000>;
+>>> -			reg-names = "parf", "dbi", "elbi", "config";
+>>> +			reg-names = "parf", "mhi", "dbi", "elbi", "config";
+>>
+>> Indexes are fixed, thus this breaks other users of DTS.
+>>
+> 
+> Are you suggesting to move the "mhi" to the end and do not care about sorting?
 
-Fixes: ffc50b2d3828 ("arm64: dts: qcom: Add base SM8550 dtsi")
-Fixes: d7da51db5b81 ("arm64: dts: qcom: sm8550: add display hardware devices")
-Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
----
- arch/arm64/boot/dts/qcom/sm8550.dtsi | 12 +++++++-----
- 1 file changed, 7 insertions(+), 5 deletions(-)
+Yes, any new entry must be added at the end. What sorting do you mean?
+Entries are not sorted.
 
-diff --git a/arch/arm64/boot/dts/qcom/sm8550.dtsi b/arch/arm64/boot/dts/qcom/sm8550.dtsi
-index c25c68257412..6208a6196090 100644
---- a/arch/arm64/boot/dts/qcom/sm8550.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm8550.dtsi
-@@ -412,7 +412,6 @@ xbl_sc_mem: xbl-sc-region@d8100000 {
- 			no-map;
- 		};
- 
--
- 		hyp_tags_reserved_mem: hyp-tags-reserved-region@811d0000 {
- 			reg = <0 0x811d0000 0 0x30000>;
- 			no-map;
-@@ -2210,7 +2209,8 @@ mdss_dsi0: dsi@ae94000 {
- 
- 				assigned-clocks = <&dispcc DISP_CC_MDSS_BYTE0_CLK_SRC>,
- 						  <&dispcc DISP_CC_MDSS_PCLK0_CLK_SRC>;
--				assigned-clock-parents = <&mdss_dsi0_phy 0>, <&mdss_dsi0_phy 1>;
-+				assigned-clock-parents = <&mdss_dsi0_phy 0>,
-+							 <&mdss_dsi0_phy 1>;
- 
- 				operating-points-v2 = <&mdss_dsi_opp_table>;
- 
-@@ -2302,8 +2302,10 @@ mdss_dsi1: dsi@ae96000 {
- 
- 				power-domains = <&rpmhpd SM8550_MMCX>;
- 
--				assigned-clocks = <&dispcc DISP_CC_MDSS_BYTE1_CLK_SRC>, <&dispcc DISP_CC_MDSS_PCLK1_CLK_SRC>;
--				assigned-clock-parents = <&mdss_dsi1_phy 0>, <&mdss_dsi1_phy 1>;
-+				assigned-clocks = <&dispcc DISP_CC_MDSS_BYTE1_CLK_SRC>,
-+						  <&dispcc DISP_CC_MDSS_PCLK1_CLK_SRC>;
-+				assigned-clock-parents = <&mdss_dsi1_phy 0>,
-+							 <&mdss_dsi1_phy 1>;
- 
- 				operating-points-v2 = <&mdss_dsi_opp_table>;
- 
-@@ -3171,7 +3173,7 @@ apps_smmu: iommu@15000000 {
- 
- 		intc: interrupt-controller@17100000 {
- 			compatible = "arm,gic-v3";
--			reg = <0 0x17100000 0 0x10000>,	/* GICD */
-+			reg = <0 0x17100000 0 0x10000>,		/* GICD */
- 			      <0 0x17180000 0 0x200000>;	/* GICR * 8 */
- 			ranges;
- 			#interrupt-cells = <3>;
 
--- 
-2.34.1
+Best regards,
+Krzysztof
 
