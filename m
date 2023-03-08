@@ -2,107 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2930D6B138A
-	for <lists+devicetree@lfdr.de>; Wed,  8 Mar 2023 22:07:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 56CD06B1395
+	for <lists+devicetree@lfdr.de>; Wed,  8 Mar 2023 22:11:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229875AbjCHVHX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Mar 2023 16:07:23 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45334 "EHLO
+        id S229513AbjCHVLh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Mar 2023 16:11:37 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50806 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229475AbjCHVHW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Mar 2023 16:07:22 -0500
-Received: from mail.z3ntu.xyz (mail.z3ntu.xyz [128.199.32.197])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6590CC78C7;
-        Wed,  8 Mar 2023 13:07:21 -0800 (PST)
-Received: from [192.168.178.23] (unknown [62.108.10.64])
-        by mail.z3ntu.xyz (Postfix) with ESMTPSA id 269E9C3FE3;
-        Wed,  8 Mar 2023 21:06:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=z3ntu.xyz; s=z3ntu;
-        t=1678309609; bh=PMrX5xa0wF8TVVqsH1Pb5phtfnFDeFZawPyCqxh4toA=;
-        h=From:Date:Subject:To:Cc;
-        b=fAk8YoCYgnE/Ev2v3jup6D8PiSI11iWUDBVrmUek0/hylb+wOeMbFVXITu6Se61jg
-         7+1FxQXeUIXKUroC+b727uPoXux7umrx0/+3S4WfFFjkwCYd9TNp7839PA3Ot/v1vX
-         Q6sQ5n55kVbckFqft+C21K3OyIzuWhviR0632Ym8=
-From:   Luca Weiss <luca@z3ntu.xyz>
-Date:   Wed, 08 Mar 2023 22:06:03 +0100
-Subject: [PATCH] ARM: dts: qcom: apq8026-lg-lenok: add missing reserved
- memory
+        with ESMTP id S229492AbjCHVLg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Mar 2023 16:11:36 -0500
+Received: from mail-oa1-f41.google.com (mail-oa1-f41.google.com [209.85.160.41])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EBF0BBBB0E;
+        Wed,  8 Mar 2023 13:11:33 -0800 (PST)
+Received: by mail-oa1-f41.google.com with SMTP id 586e51a60fabf-1763e201bb4so177410fac.1;
+        Wed, 08 Mar 2023 13:11:33 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1678309893;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=b4YSoa9uV0XKozIzNBn1e5mCInOvBfhbVHfU7vWcTBs=;
+        b=5Z/qiKYwn5mIKWrIqQ95vKAxZFwGkPb//beYpM2QFSxc9hGhWpHREIzfwrq+8e/lFX
+         HE4yVMlopyji2z7K0B/cjZiC3pn47sAJ1nmTwQcxe5C/9H7OOEb+8FKmSEDmIWpJcHvT
+         2GwqVgIk4ppAPwDOWnlI0Hrq0pCJEkRCZF8RjbxtJkVa9iR8RqFRzFhAzOgiBjHvpsJ0
+         nHWXo/suWX5pPQXVyWCgPJqOHM+oMTacV3Oyvmk6IAdxDLdJ9GKUR+N9NgHdttlU3d9f
+         cQujtgsAzneFGFmYh+9/RvTWqZhHwbddHB5CtJuMIglBeoTr1EvfEdMBJESLOeVeWrfj
+         GB9g==
+X-Gm-Message-State: AO0yUKV92T/O/eEdI/2k5lHmaarK2xI/hM1dFe8WYfjJTtgI2ZJZeaJ6
+        6zSFMOSU/jULKZqJIiX/1g==
+X-Google-Smtp-Source: AK7set8BSBwdSSGBijkEh6MDrbv/vYZa5o4GV9y9Xt6AyzB5YrpY8yUqtauZKcJm+fhWhiavcjZDyQ==
+X-Received: by 2002:a05:6870:e886:b0:172:4748:32d9 with SMTP id q6-20020a056870e88600b00172474832d9mr12216316oan.3.1678309893181;
+        Wed, 08 Mar 2023 13:11:33 -0800 (PST)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id yy31-20020a056871259f00b00172426ebe58sm6597443oab.27.2023.03.08.13.11.32
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 08 Mar 2023 13:11:32 -0800 (PST)
+Received: (nullmailer pid 3850403 invoked by uid 1000);
+        Wed, 08 Mar 2023 21:11:31 -0000
+Date:   Wed, 8 Mar 2023 15:11:31 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     arinc9.unal@gmail.com
+Cc:     Linus Walleij <linus.walleij@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        =?utf-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>,
+        linux-mediatek@lists.infradead.org, linux-mips@vger.kernel.org,
+        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Sergio Paracuellos <sergio.paracuellos@gmail.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Sean Wang <sean.wang@kernel.org>,
+        William Dean <williamsukatube@gmail.com>,
+        Daniel Golle <daniel@makrotopia.org>,
+        Daniel Santos <daniel.santos@pobox.com>,
+        Luiz Angelo Daros de Luca <luizluca@gmail.com>,
+        Frank Wunderlich <frank-w@public-files.de>,
+        Landen Chao <Landen.Chao@mediatek.com>,
+        DENG Qingfang <dqfext@gmail.com>,
+        Sean Wang <sean.wang@mediatek.com>, erkin.bozoglu@xeront.com
+Subject: Re: [PATCH 15/20] dt-bindings: pinctrl: {mediatek,ralink}: fix
+ formatting
+Message-ID: <20230308211131.GA3803811-robh@kernel.org>
+References: <20230303002850.51858-1-arinc.unal@arinc9.com>
+ <20230303002850.51858-16-arinc.unal@arinc9.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20230308-lenok-reserved-memory-v1-1-b8bf6ff01207@z3ntu.xyz>
-X-B4-Tracking: v=1; b=H4sIALr4CGQC/x3NQQrCMBCF4auUWTslTqAmXkVcJOnUBk2iEyiW0
- rubuvzhfbwNKkvkCtduA+El1lhyi/OpgzC7/GCMY2sgRVppZfDFuTxRuLmFR0yciqzorb7oyQZ
- jrYZmvauMXlwO86E/oSRMNRmiAYee+vUYvYWn+P2f3+77/gMAbL/ujAAAAA==
-To:     ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Luca Weiss <luca@z3ntu.xyz>
-X-Mailer: b4 0.12.1
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1037; i=luca@z3ntu.xyz;
- h=from:subject:message-id; bh=PMrX5xa0wF8TVVqsH1Pb5phtfnFDeFZawPyCqxh4toA=;
- b=owEBbQKS/ZANAwAIAXLYQ7idTddWAcsmYgBkCPjd/i4LQcuKqckTs5eRrV8+OxildEvCxJBdz
- DKzdIcdlUqJAjMEAAEIAB0WIQQ5utIvCCzakboVj/py2EO4nU3XVgUCZAj43QAKCRBy2EO4nU3X
- Vq2lD/9+1I6fYor0IucI89r7Vz4yq8Wgi2Uvr2pp06CZiyMGAbu0KxAoIr6lhIN9ZhU8vj7m0DE
- 1qWGEKe3UsFBYmwA1cCjChkCSUd+Qzqau7r6fK/LuP0eZNs6STXsxdUPKwYIv6qQnUq4cYPF3Yp
- nCQN4vbjlQtLGIy5bWj3sDwX9mYGKInMI6egWwtDBlnHaPfgVrYAfmxPkNOybwknip1l31QAzqF
- Cue8ZOI6zoDweIm7V4wzW+3FQT/cx4UPeD4gzVqtKfh3hSLjlsskKgddXVKAnzExzrnLNWS257t
- eZG7//f14T7lizdVxQV5BKSIwpuzGjyNgRN2MR2Sw+TYAx3K50y+sVid5qnMLFF96V6av8cMNJK
- Tr3gziyoKvQhugVCpDGxz4IeP8obiWMb0vEfqvx7zOkQkYge9Y3vTaYGWYJGu4EIEZ+wbuao7++
- 1bu2fWmheKzcR8Cx6sqgh3kWDaXu4MVgyUrXSQ8HP3JKQs5mld7s8O36NO9TFjqSCXCwGb2LkrO
- CNuZlTvmTik3rLWqH4PUzZHt60ABqWbjgoHV1iaH2nek09Y7N30Gup/VXnc3btGHM5F1a4XtbT/
- TM2xuezwhaJP1IOMracMGWEurn0HpaDONUu0GiRrJ40pM9W5N+LJYcVeXDzlDHm8LRBbKUQyinp
- NTjeY6NhvzNEtzA==
-X-Developer-Key: i=luca@z3ntu.xyz; a=openpgp;
- fpr=BD04DA24C971B8D587B2B8D7FAF69CF6CD2D02CD
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20230303002850.51858-16-arinc.unal@arinc9.com>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Turns out these two memory regions also need to be avoided, otherwise
-weird things will happen when Linux tries to use this memory.
+On Fri, Mar 03, 2023 at 03:28:44AM +0300, arinc9.unal@gmail.com wrote:
+> From: Arınç ÜNAL <arinc.unal@arinc9.com>
+> 
+> Change the style of description properties to plain style where there's no
+> need to preserve the line endings, and vice versa.
+> 
+> Fit the schemas to 80 columns for each line.
 
-Signed-off-by: Luca Weiss <luca@z3ntu.xyz>
----
- arch/arm/boot/dts/qcom-apq8026-lg-lenok.dts | 10 ++++++++++
- 1 file changed, 10 insertions(+)
+I would just leave the enum cases alone and make this patch just about 
+reformatting 'description' entries. Either way:
 
-diff --git a/arch/arm/boot/dts/qcom-apq8026-lg-lenok.dts b/arch/arm/boot/dts/qcom-apq8026-lg-lenok.dts
-index de2fb1c01b6e3..b82381229adf6 100644
---- a/arch/arm/boot/dts/qcom-apq8026-lg-lenok.dts
-+++ b/arch/arm/boot/dts/qcom-apq8026-lg-lenok.dts
-@@ -27,6 +27,16 @@ chosen {
- 	};
- 
- 	reserved-memory {
-+		sbl_region: sbl@2f00000 {
-+			reg = <0x02f00000 0x100000>;
-+			no-map;
-+		};
-+
-+		external_image_region: external-image@3100000 {
-+			reg = <0x03100000 0x200000>;
-+			no-map;
-+		};
-+
- 		adsp_region: adsp@3300000 {
- 			reg = <0x03300000 0x1400000>;
- 			no-map;
+Reviewed-by: Rob Herring <robh@kernel.org>
 
----
-base-commit: fe15c26ee26efa11741a7b632e9f23b01aca4cc6
-change-id: 20230308-lenok-reserved-memory-b9373f9c8993
-
-Best regards,
--- 
-Luca Weiss <luca@z3ntu.xyz>
-
+> 
+> Signed-off-by: Arınç ÜNAL <arinc.unal@arinc9.com>
+> ---
+>  .../pinctrl/mediatek,mt65xx-pinctrl.yaml      | 20 ++---
+>  .../pinctrl/mediatek,mt6779-pinctrl.yaml      | 31 ++++----
+>  .../pinctrl/mediatek,mt6795-pinctrl.yaml      | 29 ++++----
+>  .../pinctrl/mediatek,mt7620-pinctrl.yaml      |  2 +-
+>  .../pinctrl/mediatek,mt7621-pinctrl.yaml      |  2 +-
+>  .../pinctrl/mediatek,mt7622-pinctrl.yaml      | 24 +++---
+>  .../pinctrl/mediatek,mt7981-pinctrl.yaml      | 33 +++++----
+>  .../pinctrl/mediatek,mt7986-pinctrl.yaml      | 60 +++++++--------
+>  .../pinctrl/mediatek,mt8183-pinctrl.yaml      | 24 +++---
+>  .../pinctrl/mediatek,mt8186-pinctrl.yaml      | 43 ++++++-----
+>  .../pinctrl/mediatek,mt8188-pinctrl.yaml      | 74 ++++++++++---------
+>  .../pinctrl/mediatek,mt8192-pinctrl.yaml      | 43 +++++------
+>  .../pinctrl/mediatek,mt8195-pinctrl.yaml      | 34 ++++-----
+>  .../pinctrl/mediatek,mt8365-pinctrl.yaml      | 26 ++++---
+>  .../pinctrl/ralink,rt2880-pinctrl.yaml        |  2 +-
+>  .../pinctrl/ralink,rt305x-pinctrl.yaml        |  2 +-
+>  .../pinctrl/ralink,rt3883-pinctrl.yaml        |  2 +-
+>  17 files changed, 236 insertions(+), 215 deletions(-)
