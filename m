@@ -2,53 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EE6DA6B078A
-	for <lists+devicetree@lfdr.de>; Wed,  8 Mar 2023 13:59:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 293536B078F
+	for <lists+devicetree@lfdr.de>; Wed,  8 Mar 2023 13:59:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230455AbjCHM7Q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Mar 2023 07:59:16 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37258 "EHLO
+        id S229729AbjCHM7S (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Mar 2023 07:59:18 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37294 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230289AbjCHM7O (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Mar 2023 07:59:14 -0500
-Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com [IPv6:2a00:1450:4864:20::52b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 25DE782343
-        for <devicetree@vger.kernel.org>; Wed,  8 Mar 2023 04:59:13 -0800 (PST)
-Received: by mail-ed1-x52b.google.com with SMTP id j11so45826172edq.4
-        for <devicetree@vger.kernel.org>; Wed, 08 Mar 2023 04:59:13 -0800 (PST)
+        with ESMTP id S230388AbjCHM7Q (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Mar 2023 07:59:16 -0500
+Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com [IPv6:2a00:1450:4864:20::534])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5DB588483A
+        for <devicetree@vger.kernel.org>; Wed,  8 Mar 2023 04:59:14 -0800 (PST)
+Received: by mail-ed1-x534.google.com with SMTP id a25so65582127edb.0
+        for <devicetree@vger.kernel.org>; Wed, 08 Mar 2023 04:59:14 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1678280351;
+        d=linaro.org; s=google; t=1678280353;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=pQcknXFcRCyyIMimEyV0fIdNecRF6Egmqx4z+RuFoug=;
-        b=EhnTm0CSX3uC2byqj0VjUVzrcPbI+QRMZptVi/TfviQfnxGKWZV16S3RY/dTiqnNpl
-         TZrAIWssJKi0+DM3CsWF72vKUCG60GbfYqhnWQaq4ZejigtZiD400VXD6ckQnepZvfrW
-         DHLR+XsoFm9KFeSrVgVpBX+ZD1FE4UgV2y93+E9HMyTmUIO2rZDwEO5NXOV/Iij+DoVf
-         Htxdda0medsyEhHsVLJYqK472Rw4U/DqOOuHqwmZ1AsIvATf1pSno9lawQB8QRcwyKpM
-         q6nxlo+1a9O4xO4lxP3pBrnYulCMWO7fwLLYqC/DI0pJybmm7wbF/w3ClxQz1u5o0e4W
-         UeCw==
+        bh=N8kMsbIG/XKTFlKgeGb5WDX3CusbAYjjN7Fik1ZtUDA=;
+        b=zrdy7iH6gnpbgt6dSC3hvg6j49jdz6D0fn+Skgu/Aum8loR4EvbLsiugiuGpSxgpqF
+         9dQaaTuRzqyK2hZtE/AwOCpKGF5AfHta9WZE7iAD/z7/MLEW4JCMV+8PnWV3DzBn8AbJ
+         bBQoSL9xzloHvYqhwdzZY653o71bwLtbwFK/bbBEVBO6GRE78ifBdixkQrjN06k2OULX
+         jfqCik6BKgnlHMBjakaW0yKzYKrTYYNCM8VtIxG8p5XeR/p1g8hJyZkZmJkaiweU74n1
+         GIqzZsuKTLYOEOXhEPtnRTTGMxuNfMDRdinlo9/K1/mnycGqs30E/NfCHBaJ79JGG4lW
+         U9ig==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678280351;
+        d=1e100.net; s=20210112; t=1678280353;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=pQcknXFcRCyyIMimEyV0fIdNecRF6Egmqx4z+RuFoug=;
-        b=qOaR+edj626+KQMhAvRwYrv5BS92CNlpdoYBK6ZALErkCNzG7/VQqZE7LgNTJGkWF9
-         fsrMZgxmKsovrPpFaDQtl9/rXF5E5pgyQtGV/TrQqPCor6+hkt0d2STocT/5lO272nR7
-         aZOGFybH0B/ghol7MITRvE8O2yYKs8rjrtkoy6KTy7DWXgd3Q3rr+qrvSRePmO6e6Zw+
-         SAUYJyHO8MB6j1pZYTX9Qi442pv8/yl/DId8IrC3ewxy92uqRSNRTa3bMskLQstwb6Jh
-         bhApj9byoSvbwYtM1VaAXJzg6I2yMjLznj2xTO3YzQmIASjnseERPSI0BTSHbEr9f8PI
-         yBFQ==
-X-Gm-Message-State: AO0yUKVLJuiEfGaT1BimL1FqaeeceRA7g6fx66j00n4QV5aK951JpNMc
-        2Ro5vyVgl3+FArP9aMdz/Q1mgw==
-X-Google-Smtp-Source: AK7set9nQxf0acN+blB1QAyc8FF1oMW7l8NydeeXs1Sn8jgxGq2P+MJ52ol1twE9Rr0epQp7WkVhvg==
-X-Received: by 2002:aa7:ccd3:0:b0:4af:51dc:addb with SMTP id y19-20020aa7ccd3000000b004af51dcaddbmr16251265edt.19.1678280351704;
-        Wed, 08 Mar 2023 04:59:11 -0800 (PST)
+        bh=N8kMsbIG/XKTFlKgeGb5WDX3CusbAYjjN7Fik1ZtUDA=;
+        b=x3n04ysLLvjztsxRYTkBN7d/x5eVm+IoXOPmyhW74xtDV8jJMpH6DoJ9uzFOBu8j0P
+         kOsYfS9jtQceDeVrUFH60x0nOKFD2F2VYhOoXblIgyNfVnoEi8wXXsioQOivytB+uTNI
+         Z4iqvSDJwx/gWJz5ukPGELCDb/VpR9Cg68u0ucrFyiGR6kcaqHi4E88xd4K/lXORS2de
+         VJA/s1I40YmXHs0dfA7z5FGqTxBdEs3k3AhR9GB5kpLU3b9f5Jw88if85/HVxScZL2Ee
+         ynEBIaCLRa5/zv9aCGsfWvd9OnH6KAUUcJY63s/DJnFt5S+cyx86Pa8DOQhdLGtPv2zU
+         fCgA==
+X-Gm-Message-State: AO0yUKXX6UOKdzi8Jt0+f9q8ZATxCd+j+U/cDPxj+W3JdepcmFlNUL07
+        cg4vMbEbhtFK9jn84L8Vp7Y+oA==
+X-Google-Smtp-Source: AK7set+cUuW3z0oQUmlyy7+awsz2o8PWzXcFT7f4tzgBIp/xX22JmiZIeFIVD92IANl5aE/wPHwL2g==
+X-Received: by 2002:a17:906:da89:b0:8b1:7de6:e292 with SMTP id xh9-20020a170906da8900b008b17de6e292mr23958736ejb.9.1678280352804;
+        Wed, 08 Mar 2023 04:59:12 -0800 (PST)
 Received: from krzk-bin.. ([2a02:810d:15c0:828:ff33:9b14:bdd2:a3da])
-        by smtp.gmail.com with ESMTPSA id h25-20020a1709063b5900b008d0dbf15b8bsm7464141ejf.212.2023.03.08.04.59.10
+        by smtp.gmail.com with ESMTPSA id h25-20020a1709063b5900b008d0dbf15b8bsm7464141ejf.212.2023.03.08.04.59.12
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 08 Mar 2023 04:59:11 -0800 (PST)
+        Wed, 08 Mar 2023 04:59:12 -0800 (PST)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 To:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
@@ -61,9 +61,9 @@ To:     Andy Gross <agross@kernel.org>,
         linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
 Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH v2 03/11] arm64: dts: qcom: qdu1000: drop incorrect serial properties
-Date:   Wed,  8 Mar 2023 13:58:58 +0100
-Message-Id: <20230308125906.236885-3-krzysztof.kozlowski@linaro.org>
+Subject: [PATCH v2 04/11] arm64: dts: qcom: sdm845-db845c: drop SPI label
+Date:   Wed,  8 Mar 2023 13:58:59 +0100
+Message-Id: <20230308125906.236885-4-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20230308125906.236885-1-krzysztof.kozlowski@linaro.org>
 References: <20230308125906.236885-1-krzysztof.kozlowski@linaro.org>
@@ -79,11 +79,10 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The serial node does not use/allow address/size cells:
+The SPI controller nodes do not use/allow label property:
 
-  qdu1000-idp.dtb: geniqup@9c0000: serial@99c000: Unevaluated properties are not allowed ('#address-cells', '#size-cells' were unexpected)
+  sdm845-db845c.dtb: spi@888000: Unevaluated properties are not allowed ('label' was unexpected)
 
-Fixes: 6bd20c54b589 ("arm64: dts: qcom: Add base QDU1000/QRU1000 DTSIs")
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 
@@ -92,31 +91,21 @@ Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 Changes since v1:
 1. None
 ---
- arch/arm64/boot/dts/qcom/qdu1000.dtsi | 4 ----
- 1 file changed, 4 deletions(-)
+ arch/arm64/boot/dts/qcom/sdm845-db845c.dts | 1 -
+ 1 file changed, 1 deletion(-)
 
-diff --git a/arch/arm64/boot/dts/qcom/qdu1000.dtsi b/arch/arm64/boot/dts/qcom/qdu1000.dtsi
-index f234159d2060..c72a51c32a30 100644
---- a/arch/arm64/boot/dts/qcom/qdu1000.dtsi
-+++ b/arch/arm64/boot/dts/qcom/qdu1000.dtsi
-@@ -412,8 +412,6 @@ uart0: serial@980000 {
- 				pinctrl-0 = <&qup_uart0_default>;
- 				pinctrl-names = "default";
- 				interrupts = <GIC_SPI 601 IRQ_TYPE_LEVEL_HIGH>;
--				#address-cells = <1>;
--				#size-cells = <0>;
- 				status = "disabled";
- 			};
+diff --git a/arch/arm64/boot/dts/qcom/sdm845-db845c.dts b/arch/arm64/boot/dts/qcom/sdm845-db845c.dts
+index 1dc7076964ff..e14fe9bbb386 100644
+--- a/arch/arm64/boot/dts/qcom/sdm845-db845c.dts
++++ b/arch/arm64/boot/dts/qcom/sdm845-db845c.dts
+@@ -819,7 +819,6 @@ can@0 {
  
-@@ -581,8 +579,6 @@ uart7: serial@99c000 {
- 				pinctrl-0 = <&qup_uart7_tx>, <&qup_uart7_rx>;
- 				pinctrl-names = "default";
- 				interrupts = <GIC_SPI 608 IRQ_TYPE_LEVEL_HIGH>;
--				#address-cells = <1>;
--				#size-cells = <0>;
- 				status = "disabled";
- 			};
- 		};
+ &spi2 {
+ 	/* On Low speed expansion */
+-	label = "LS-SPI0";
+ 	status = "okay";
+ };
+ 
 -- 
 2.34.1
 
