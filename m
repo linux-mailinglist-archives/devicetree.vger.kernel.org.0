@@ -2,394 +2,643 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BA14E6AFE07
-	for <lists+devicetree@lfdr.de>; Wed,  8 Mar 2023 06:00:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0FFAB6AFE11
+	for <lists+devicetree@lfdr.de>; Wed,  8 Mar 2023 06:03:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229475AbjCHFAk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Mar 2023 00:00:40 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39990 "EHLO
+        id S229577AbjCHFD3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Mar 2023 00:03:29 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41778 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229456AbjCHFAj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Mar 2023 00:00:39 -0500
-Received: from EUR05-VI1-obe.outbound.protection.outlook.com (mail-vi1eur05on2100.outbound.protection.outlook.com [40.107.21.100])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C46B79DE06
-        for <devicetree@vger.kernel.org>; Tue,  7 Mar 2023 21:00:36 -0800 (PST)
+        with ESMTP id S229456AbjCHFD2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Mar 2023 00:03:28 -0500
+Received: from EUR04-HE1-obe.outbound.protection.outlook.com (mail-he1eur04on2042.outbound.protection.outlook.com [40.107.7.42])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 963D839CC9;
+        Tue,  7 Mar 2023 21:03:24 -0800 (PST)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=FJHYf5TVwYQHqNRgEcJbUjGmF368ccMQTMGuTRL/liopC7olZ/DiCVejTRKjcMVdkJI4KWvnRJBrj2iwcVcvzoC1psFhjGxa6tNieGLLa61/l8o0zQv02I34sGjiJPgSfSnzGtC6EFJMU3YD0NW4nwg4xjmpu3j25KQF1U9YCtbocV0TCmQMkjY6gtgK1N4Z2J3nacKZEWYM1QpBkb3kJohn98E1CzDtsBRg8dwX/l5vM3B1qgJjpBTM6ixMwa1TZAQLhP23PhPGjqsn1ApcpvIocAOeIYnWD4yN9WDUdZmtwgslI6Si06CTUSE7Q1pgPpiluihfvG6ySSvOB1W1zg==
+ b=WEPg2s3mDSpwg5TUh1NvII75CrvptG8dwr20K6xmYfS6k2Prgq0OGo49nwLQjsKUvbWVRZPMGYfQeKbo7t5EISI5gT76l/RKIxijwcuAOk+Gc9YaHqKum94/0YCMz7UI2ncj/iLdCb0ui3m1Qy5lbBCMneg+jWadI5kEPQS2QP+Se0VBDKzKtOWJTt23lE67LeRCtgE1lGPqNfNTQjGvvsVrjcTGItZH4M4OHssavyDKnJyfaNqIH0gVnv19qpyWX8oCBZdykcDoHjv8JbSkvN9/iAkG0nmmg5hSva5kYnwr5vkOtJi+O7Lvt9AfQSRMtE0hY8A3mZLfbotU4jET2g==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=c7HCQTgLHNvuD0VnJQlGGRQBsWjG2Om9ZdSQQog4MQw=;
- b=eDovA4F8ejeNS8E60qtrPI+xXBBjZolSnrPfOj21z0dZgPkINW/Y6j/+l87U2e1tv6t/skTeISjWpOTIH2egJk6pgMY+aA81VYXMu3HLZrE2apAU/xcKXcy5XLgI7kVUbUZQ0Y/nrCM9rte9a/fNU7bajtS8rgpk0Jts/Ki4kbO7rLx2v/DolHFqMnB9ZbWEiCPge9JUgMHEX9whSv85+6IVfnCT+Bljz39kFDRnAUQrWlJXbo80ORSJCy1MLCCcMMfcVn517zBe6sZJL0unVRqLPE41so8eMEc39lYHBX8hDABDfZqSfYfj+pnzpqWt4qJbJ0w4yJvOjQNEMrqTIw==
+ bh=jYe9oPopXR+sgg8T9GY4tthGLnnzd9U/5BLmg/yT380=;
+ b=PX2b5MXhIRnZjBnC7NK5A/jxd5WxvjPfxhXO/1eMTHcYd2/VoRrQ9Y+zjAmeoQ4mNbEB4ZocaC3Got0BXE+leO5m0ErhOPwN4Xq0alOpMKGjcYY1pKVuvZz6c00OiTRx4CsYL1C8MQUYXx6k8I0IvrjspiJbv/y0ztyhXPuyOrxCLf4ol3M6Kpx3tqDtL/DUcrabI6LrrYTx8/cktNjFPyPTgpidICmCYrlBQh2oq1fD9hXiss/IZfH4CQqP9d3L/lFb931z9R6lNhbYUWRvymwl4UFGbGsElr4QaKw17ieQFyIl86XoBu2gND4M40puJRVl+tmvFFw6TBNp4bhhTQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=leica-geosystems.com; dmarc=pass action=none
- header.from=leica-geosystems.com; dkim=pass header.d=leica-geosystems.com;
- arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=leica-geosystems.com;
- s=selector1;
+ smtp.mailfrom=suse.com; dmarc=pass action=none header.from=suse.com;
+ dkim=pass header.d=suse.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.com; s=selector1;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=c7HCQTgLHNvuD0VnJQlGGRQBsWjG2Om9ZdSQQog4MQw=;
- b=CTcV0V7lwDAD4FCCfkihooqCCo3U3FfPUCwrye7J/w5Hf4CULyfOec8qWbGeVsVLkEQ8otFMLWHbeAzks3vEgyYrmwXF2vB2k+c0+2p6wv5mQ4Ygt2ziprKreOvERLCzn+hPSHvwkedJI4rbcQkaHdzs2sH0+q9ZdhTTuk3z3eo=
-Received: from DB6PR06MB4008.eurprd06.prod.outlook.com (2603:10a6:6:54::31) by
- DB8PR06MB6572.eurprd06.prod.outlook.com (2603:10a6:10:fd::13) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.6156.29; Wed, 8 Mar 2023 05:00:33 +0000
-Received: from DB6PR06MB4008.eurprd06.prod.outlook.com
- ([fe80::51e:b90a:74b1:aa3]) by DB6PR06MB4008.eurprd06.prod.outlook.com
- ([fe80::51e:b90a:74b1:aa3%5]) with mapi id 15.20.6178.017; Wed, 8 Mar 2023
- 05:00:33 +0000
-From:   SCHNEIDER Johannes <johannes.schneider@leica-geosystems.com>
-To:     Marco Felsch <m.felsch@pengutronix.de>,
-        Shawn Guo <shawnguo@kernel.org>,
-        "haibo.chen@nxp.com" <haibo.chen@nxp.com>,
-        "ping.bai@nxp.com" <ping.bai@nxp.com>,
-        "peter.chen@nxp.com" <peter.chen@nxp.com>,
-        "yibin.gong@nxp.com" <yibin.gong@nxp.com>,
-        "Anson.Huang@nxp.com" <Anson.Huang@nxp.com>
-CC:     "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        Richard Zhu <hongxing.zhu@nxp.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Li Yang <leoyang.li@nxp.com>, Rob Herring <robh+dt@kernel.org>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Fabio Estevam <festevam@gmail.com>,
-        Shengjiu Wang <shengjiu.wang@nxp.com>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>
-Subject: Re: [PATCH v11 1/2] arm64: dts: imx8mm-evkb: add support for
- i.MX8MM-EVKB
-Thread-Topic: [PATCH v11 1/2] arm64: dts: imx8mm-evkb: add support for
- i.MX8MM-EVKB
-Thread-Index: AQHZNM/sOkW/hfw/KEeFX7O8iK5emq7u3DgAgABf7oCAAUwGXQ==
-Date:   Wed, 8 Mar 2023 05:00:33 +0000
-Message-ID: <DB6PR06MB400849C90A2C7868E4FF8796BCB49@DB6PR06MB4008.eurprd06.prod.outlook.com>
-References: <20230130172553.2738182-1-johannes.schneider@leica-geosystems.com>
- <20230130172553.2738182-2-johannes.schneider@leica-geosystems.com>
- <20230307031426.GI143566@dragon>
- <20230307085747.mrqeoi4mkggby73o@pengutronix.de>
-In-Reply-To: <20230307085747.mrqeoi4mkggby73o@pengutronix.de>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-msip_labels: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=leica-geosystems.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: DB6PR06MB4008:EE_|DB8PR06MB6572:EE_
-x-ms-office365-filtering-correlation-id: 30af08bc-123a-4888-1936-08db1f920c10
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: ioGyU7RGvrMRUAnSGkykK4G4DywdkRjLBzRFcr/Wtf6/zFOZB91V+4ohTE8r9uYzs8bnSmSn0U4eBcpEYheymMrjcIdQv7UCXbbhyVoPmdy5gDwMxgoAGNUgVTtOHIW3GuqKFsLHmEFtfQGxsMc5TXyz7ePUMiMkJGDvW8raOt3jWxlcfMpYhGq5veHlnBhnelnJCs3ZmoYJ14FaY6g0r2tyY/uHgRnSakM2ZRkJwYK37V6a0X5ilZppUylOve567MC8ThAvUNyhTZjIIs0ooQIjWDeHfLNggEFxIh1DqeYoUhos5eTvlp0bkJbm6x0yEhxYwoYxyrjhvqy0XN2Jqrr1e0h2m0D17Yzf6yTbFI5T2Rl6pTD9hPaEBmhL7Pwr1NaV3GGA1mbzMBj2XLFSP3idxT5N+PoHnruLKiJphCvTzUUSaAuOEGkCfA2hOA7gGOBYjgdSR3cEGD/bl63ImdKVrrJSGuVzwfO5JehdkdqxxSY7980VV7hAEMXRff3HKhK/SDa3ai/kx0tIVaholVSZTEVqz+TeQENMo7F5ZaSHrJjCGYXiDvmBuSqeFaHnXJngy0Fqo1GI1SAvUmKSH/Xqu1eW4fjDdNwmGsmLSN6flM5JKyZeVhpxdsZRQTaDPwg+0rtwl+2Zk/IzXzz/9KB8D7TFM1KqveMqPPvhwCmJXG/V5VZDUOkPZqAWKEO52dnldjUrIuoJAD7UtnDubg==
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB6PR06MB4008.eurprd06.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230025)(4636009)(136003)(396003)(366004)(39860400002)(376002)(346002)(451199018)(83380400001)(55016003)(122000001)(7416002)(8936002)(38100700002)(33656002)(52536014)(86362001)(478600001)(5660300002)(71200400001)(38070700005)(2906002)(9686003)(186003)(6506007)(66556008)(91956017)(26005)(966005)(66476007)(66446008)(8676002)(66946007)(7696005)(4326008)(45080400002)(76116006)(64756008)(110136005)(316002)(54906003)(41300700001)(32563001);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?iso-8859-1?Q?HPQhBs0XsqyrDg+4wJxxJ8HpgIu/XpCieypMk48wLB8qN1q3ar2SyciOyq?=
- =?iso-8859-1?Q?th7BnBhHe71Wts6HjWV/99/9VSG8aBYd7BXXEI1OToPMhLA8HVDE3YgdGR?=
- =?iso-8859-1?Q?Bm0Z7hnZ31/zUu36WfqsjOOcCZKtLSuaGor2ZneiuomZ3m0H0YrmzG/v8F?=
- =?iso-8859-1?Q?2RKB8ur7Yy7qJy48xPCHHcLHMBG3gKnna/8YXBUoZTN1BPl/TMkS+l9pZB?=
- =?iso-8859-1?Q?y7aD9F2w18YupouhFdbEl7y6SXBN5ijsVgrcT4rfNsz6yhrbFu5uaqtqhW?=
- =?iso-8859-1?Q?ld5aeZMyKArrz4qH2wLQT+ZtOKiYyE8CFIy2zN8jNKbdWm2v/V4ctWy2qT?=
- =?iso-8859-1?Q?Bed6IJSTwtNqGsC0gck+jboWlCvf+CS6cYWA4sPp4y4K6adRhr26J/GTTJ?=
- =?iso-8859-1?Q?YqAlzqVR+vPuMS/kCumLSbUgB6+Un4gdICjZI54llqA/cgO4MyOaEqT/Gt?=
- =?iso-8859-1?Q?br8ZArcb+/fiqk+CQO1BJgWtsxs8tYj7UtGxAVto1a651VlobPFwwkCztc?=
- =?iso-8859-1?Q?8mZ88i1yUU1q5swps/sEFVnNuv9SvDW8laaaEbnAI1Sy16wyIR73diMnBc?=
- =?iso-8859-1?Q?sTmyn6vy6AgNprd121zIiIwaaiIv/nqM9g16RA/+gEwNfuLMSatKMqx8N4?=
- =?iso-8859-1?Q?MoepFROzwfu+HQxoMb7uytUoQc9Rh+I0Zk1YzoIGe+WghNf2uFXa9CZqwL?=
- =?iso-8859-1?Q?Qze/r+bEt8yHogsIPhubMnXbupgI3y3GCNF4/9sBjCQj8o9Y9V7AEXyXyW?=
- =?iso-8859-1?Q?BkDmuZyC2FWaoAVodN6WVdtwRhSpdpPDjpDyrK2rKSOi8CaDo86XaSG7zf?=
- =?iso-8859-1?Q?U29k15a3qKGC2m+ziU2OS1FL+8STaO9BE0kOHmCzRSusQTeGGCvFQ/zP1t?=
- =?iso-8859-1?Q?WMCGA92NNJ6oZ3Hk0T4xe/xivaG9UzrL9WFgBaK8Tv4QzUdxgZcWIe7bnc?=
- =?iso-8859-1?Q?d0fUuHBHXwEL+RWtYTVV4zkPeYwFDg0aaKeOU4+kfSDs3I7IAlvdsgaXKP?=
- =?iso-8859-1?Q?RPrHF4JjQiDFSIu531TUXW/WthGUq8REyfB4SLXjMFw7jF3BTHARYikdbu?=
- =?iso-8859-1?Q?kU+0qxXcqoM0e7G9eVzKRmvlwUeax7mOsyEANU0sr04oE2HAO40Ome2XIs?=
- =?iso-8859-1?Q?vF2Z2vERQzUY39xXNCY3ApxK5Fjyu9VBlwzbUAMFijvNKe2/RZvkpmok2k?=
- =?iso-8859-1?Q?0zyMdPc/tt6IUhbdvGohaHUMAcKQLYFuwugIrLGxe5HS+OiEOlLvY8wNyu?=
- =?iso-8859-1?Q?01FRfb1vDWEAH8H0+SHpoyh/VwK/0zBa9aXdnc6NTJbJV2Wv/NchrX5L/w?=
- =?iso-8859-1?Q?jwYN9FK1DeHzcxL9Cso+9cs4hiT2DhsEWuTHw2q6vVj5fWKugesVzA06qx?=
- =?iso-8859-1?Q?4TKjum/3NkleuHKz4mzoLI/r3XxR6tTsf8vfIxG/oPU3JnJYFrvLTVglje?=
- =?iso-8859-1?Q?3uLX9KHPx8B3G9fYIT1q0zIduS+CXvgvlhWDCKWN0zSS1/V8btWwRoGa6K?=
- =?iso-8859-1?Q?y8GRSKua5xlxYqsyZ53n4+AmUSXZMubJdaC78vL8fxZp/6f9mfsZYcdT6Q?=
- =?iso-8859-1?Q?xITSaeiTPa99v0Xfo8V0QmeiF1uOHBQQWqNnfk/BxN1uTh3xaz/JidqTHF?=
- =?iso-8859-1?Q?8ksKNBhgpcCLAdx3tr6R0IhIw1JpnsFEHfwjkc0++z6sRcfXtQizNlII96?=
- =?iso-8859-1?Q?w2KfOzTvgFpsSn1HavQ=3D?=
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+ bh=jYe9oPopXR+sgg8T9GY4tthGLnnzd9U/5BLmg/yT380=;
+ b=r2YObsMyJPjJ1/cubBKuzB5IpRtcd0KBw8naFiwmMW+dGh3sUn+9h7yddHzCQ9R9k62aQexjF/9eTnqWA36GDJU+wzT7nc+7E9U0kPRvwOrACEekhiZgJo+IIpacoE0pX1bapadnBDlRFf2p9tm50RuMusmSBCZGG5ipEn8mxcUE/roD1JawZFtUmoNuUY/PaWWLjDkK1qHOl0otXBcorLACZGoviL+HxZZdjrGSNm5WlUtjrsOHkUQ/PVsI2WwKU6b4iPUr/EeqllMj2vHGtSK4DIeV8DszU4glZjjau1yclP9lu2jrHpu2q7kfRil5j9iQz1W1CILBgdh/j0DEPg==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=suse.com;
+Received: from VI1PR0402MB3439.eurprd04.prod.outlook.com (2603:10a6:803:4::13)
+ by DBBPR04MB7722.eurprd04.prod.outlook.com (2603:10a6:10:207::24) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6178.16; Wed, 8 Mar
+ 2023 05:03:20 +0000
+Received: from VI1PR0402MB3439.eurprd04.prod.outlook.com
+ ([fe80::6802:b2c3:5f12:8f9f]) by VI1PR0402MB3439.eurprd04.prod.outlook.com
+ ([fe80::6802:b2c3:5f12:8f9f%2]) with mapi id 15.20.6156.029; Wed, 8 Mar 2023
+ 05:03:20 +0000
+Date:   Wed, 8 Mar 2023 13:03:06 +0800
+From:   Chester Lin <clin@suse.com>
+To:     andy.shevchenko@gmail.com
+Cc:     Linus Walleij <linus.walleij@linaro.org>,
+        Andreas =?iso-8859-1?Q?F=E4rber?= <afaerber@suse.de>,
+        s32@nxp.com, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        Larisa Grigore <larisa.grigore@nxp.com>,
+        Ghennadi Procopciuc <Ghennadi.Procopciuc@oss.nxp.com>,
+        Andrei Stefanescu <andrei.stefanescu@nxp.com>,
+        Radu Pirea <radu-nicolae.pirea@nxp.com>,
+        Matthias Brugger <mbrugger@suse.com>,
+        Matthew Nunez <matthew.nunez@nxp.com>,
+        Phu Luu An <phu.luuan@nxp.com>,
+        Stefan-Gabriel Mirea <stefan-gabriel.mirea@nxp.com>
+Subject: Re: [PATCH v5 2/3] pinctrl: add NXP S32 SoC family support
+Message-ID: <ZAgXCi/BzyEQul9B@linux-8mug>
+References: <20230220023320.3499-1-clin@suse.com>
+ <20230220023320.3499-3-clin@suse.com>
+ <ZAZ3CeYiZxR5zlRu@surfacebook>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <ZAZ3CeYiZxR5zlRu@surfacebook>
+X-ClientProxiedBy: FR0P281CA0015.DEUP281.PROD.OUTLOOK.COM
+ (2603:10a6:d10:15::20) To VI1PR0402MB3439.eurprd04.prod.outlook.com
+ (2603:10a6:803:4::13)
 MIME-Version: 1.0
-X-OriginatorOrg: leica-geosystems.com
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: VI1PR0402MB3439:EE_|DBBPR04MB7722:EE_
+X-MS-Office365-Filtering-Correlation-Id: 7043e220-79f2-4486-b494-08db1f926f28
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: dJyLM1wig5XjeY6ZQXZuj66d6YX8YgqHkLhNEE4FB1iYFngPe9Us9Y6GT+0eku8L0LVmbLyc4V10pYOejKv83LfZUPq08zvqOMvylp9MLyO7A4U9yjx6+szu37spnuZMjASA6h7wH10abgCR7NzQOgculK7nctaEXYmpvvDvudxxw1+yvpJ5ldb89XwB0LqbeWiQ5hrX9grvTyWNUjlRzsCd5Hxh5F9FRU2njGWbQvP9bLaeqPcX1YK8o4B60AT6vmvjRjZ1y/ghN07a88Ct7Wfnpm2Bdf4K7wH3E3g5pOx92ZKj85KQSm3YBXnH9Y7qE5jVy+S8Xb5Nc8OCEGlCDNhpOpgqFm2Y296/XBQOEb1ttTwGnPdBapwICoMZghIioasRaQyhJeLqdXT4Y1d0gMkAUUIuQrTMuAtUoXAZ5AZdTP7zChAHi6YTZG7tq1f6uo5iBa/6W/BpSKihSKgkBGaOVPMZsgpDLukNpkyW2SZ2bAOdLyNc8fyDLC+loiTTWGvxEMj8oDToVYJuNC9sazuj72z+pJp3huY3WwcyhH9UDlh4WMSwOeY1G9AzAXpihIleUAxfnpceM6KDH3GlhkwXy1n5ABxu9Lq8yaetHZvid4qcRo67Xwmvxzqqe60+
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VI1PR0402MB3439.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230025)(7916004)(39860400002)(376002)(396003)(346002)(366004)(136003)(451199018)(6916009)(4326008)(8936002)(66476007)(41300700001)(66946007)(66556008)(8676002)(30864003)(2906002)(5660300002)(7416002)(86362001)(38100700002)(966005)(6512007)(6506007)(6486002)(6666004)(26005)(316002)(478600001)(54906003)(33716001)(83380400001)(186003)(9686003);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?uYZANWn4PxBGEi+tmZ8+MGe3LgugBrfCbZbFES6qZWoZDGqaRi+QSXe84zXR?=
+ =?us-ascii?Q?MedrBjJidXiNngRmoQRjM84UnVUdrg+1pWG/tpa7+VnHBj/3fckOODdbQQbR?=
+ =?us-ascii?Q?b3DTH4BUZnB0M+yGRn9DyWvSvPGZpZhTsBgNFNxabeDnN55ZpoQE+WbGgOz+?=
+ =?us-ascii?Q?747Za8PUaKLCW3Ov6VSTXvqdO6mgK5ocYN2OGKDftVexez/SCifGK59cXSj4?=
+ =?us-ascii?Q?BdnHODY2tA+LpMdeS/1WGblBQ+XrhcVNtfelLAY/ff7wY2xsj9/C9CeSorOJ?=
+ =?us-ascii?Q?vaSQgJ0spITbHGIg7X/R0vCRqjMbAa2AKyKml/qRuoN1BXutJW2Wgtr0UY1K?=
+ =?us-ascii?Q?8CLv7zD7vHtjsgaI7I+8Gu0D6y9WUKamUnPC6cANV9iDPpA3xwFxSu32okOj?=
+ =?us-ascii?Q?uixzEuoEHM5O9mhRZcUmlkL9JLIZ4ZND3A9fj+CZRJTsmGNnA4+VqZ7JIFiK?=
+ =?us-ascii?Q?60K0jwEziGq7FW6/lTe9+uYvVpnxmDVLk9klFKqBfXyGvxmx7Bbdvz1uF2kL?=
+ =?us-ascii?Q?gkHR1xgNmo1wjf/uPiJBJSz0Gi2B8bIejLdn23mFgaEQqaj3BHkjo/nA6KCe?=
+ =?us-ascii?Q?6UccIET8TclMddZ7FhmrdvV9fJpJQC1pn+AHniXzisBDSRhYYzhFrtfmXqQs?=
+ =?us-ascii?Q?lgwH1kbzi6ac6YdPO48+viqgyxQI6Tci1gj2mSoVM89f+jkTMtiA5ZVKtARS?=
+ =?us-ascii?Q?kQMQXh5no6IbWO0dlfc+rr4ipN/FSLFwWMdEYCwgwsNmpDdfxBblL6nBD1s+?=
+ =?us-ascii?Q?XKgRKJqK9QTnythiKMvhvCxKWg6wfb/ZsNSACtLL5LQwtztwgl54+E6IXJAC?=
+ =?us-ascii?Q?E6fw/Fb7JUZUZ5FFHPDVzqIKvslGZSIgpcR8IXbmZ2HyGwbo/JGN5RVBSXOo?=
+ =?us-ascii?Q?ed5quct5sdoxASB70MJLr8T3CKGiz3LWO1vkfUYEA1sXTxsu61PqCkmwsZav?=
+ =?us-ascii?Q?wSId3uCaneGQvxzQNkcbkLIopkgpqVnhiSGmPPJoFacj5I7QkNUY9wP1O6qN?=
+ =?us-ascii?Q?642pdTwtKyLjw//3rnibUHBYTXjaD50hG8U1VMiO5hVRiuKuKeEL9NCR0leI?=
+ =?us-ascii?Q?P+Eo4FljHgGP/vh9XKAkexH9b5Bg6+L7IMPMmdSnwvWzgq5J9IrOA1bDqToX?=
+ =?us-ascii?Q?0XPwnwHqBYhF0yaiSK43KV17ujwrWo2oVaKACot+1bYpz+hFveZnPDrfLDxA?=
+ =?us-ascii?Q?dok/WKP9x/N5uSTg00EEO12LA6tPBWO3v7vGXPX3z/aym1xOXihZRCYu+CeS?=
+ =?us-ascii?Q?8PwLQqRKkULbS3hEH1/xKrbBkcAbK1FR3vAINA6QuknM2IJD4e1GSXkOpi34?=
+ =?us-ascii?Q?tocc/aO4zXrhSRHW2vfl4wnIQ+w8mI7KGcEZJT9m+xnJ1uncnsH6AlGZgnpm?=
+ =?us-ascii?Q?mh2rotEgb1/4RLxsw2Fs6qlgUmS6G2X7pV0JKtjXDPi/5+5goZ+1O/NctNcu?=
+ =?us-ascii?Q?ObQdVeo4JqGA9yNLPERWF7hWhu8R98NTb5Fi0n3Pm5hoNepLlQTIP0cp/aGw?=
+ =?us-ascii?Q?OrVzWigBEL4+5hJNh7lg2hXPfPvtJ60wWyYNa1lVRXuaWXEbOsfkGE5+PmHe?=
+ =?us-ascii?Q?tweadxXag5SBj7I5DoE=3D?=
+X-OriginatorOrg: suse.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 7043e220-79f2-4486-b494-08db1f926f28
+X-MS-Exchange-CrossTenant-AuthSource: VI1PR0402MB3439.eurprd04.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DB6PR06MB4008.eurprd06.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 30af08bc-123a-4888-1936-08db1f920c10
-X-MS-Exchange-CrossTenant-originalarrivaltime: 08 Mar 2023 05:00:33.0968
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Mar 2023 05:03:20.3368
  (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 1b16ab3e-b8f6-4fe3-9f3e-2db7fe549f6a
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: CoWvmTbLNDnuVKe2SXFJxWTVUZ1TL/jhHyikq3CZR6RYw2IMFl7sOCvV7GSaWt35w5VNPxvkrMQUWDtcsYmC3r3jb6p6/KoY58gLR6P6NxIOYDNCxLD8liEq3d+kr4Tk
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB8PR06MB6572
-X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,PDS_BTC_ID,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_NONE,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: f7a17af6-1c5c-4a36-aa8b-f5be247aa4ba
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: Box0ZKbM5bC346a4Lv8lCdezS1aKDmvr+9mzW1EZz2D2aTMmy70KZ6RFhRtyF/uQ
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DBBPR04MB7722
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,URIBL_BLOCKED autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi @nxp=0A=
-=0A=
-> On 23-03-07, Shawn Guo wrote:=0A=
-> > On Mon, Jan 30, 2023 at 06:25:52PM +0100, Johannes Schneider wrote:=0A=
-> > > Add devicetree for the EVKB, which comes with LPDDR4 and a different=
-=0A=
-> > > PMIC.=0A=
-> > >=0A=
-> > > The regulator min/max values are taken from the evk's schematic:=0A=
-> > > 8MMINILPD4-CPU  SPF-31399_C2.pdf=0A=
-> > >=0A=
-> > > Signed-off-by: Johannes Schneider <johannes.schneider@leica-geosystem=
-s.com>=0A=
-> >=0A=
-> > The patch doesn't compile at all (see below), so I took a closer look=
-=0A=
-> > and decided to drop the series.=0A=
-> >=0A=
-> > > ---=0A=
-> > >  arch/arm64/boot/dts/freescale/Makefile        |   1 +=0A=
-> > >  arch/arm64/boot/dts/freescale/imx8mm-evkb.dts | 134 ++++++++++++++++=
-++=0A=
-> > >  2 files changed, 135 insertions(+)=0A=
-> > >  create mode 100644 arch/arm64/boot/dts/freescale/imx8mm-evkb.dts=0A=
-> > >=0A=
-> > > diff --git a/arch/arm64/boot/dts/freescale/Makefile b/arch/arm64/boot=
-/dts/freescale/Makefile=0A=
-> > > index 3ea9edc87909..3bccc4d10928 100644=0A=
-> > > --- a/arch/arm64/boot/dts/freescale/Makefile=0A=
-> > > +++ b/arch/arm64/boot/dts/freescale/Makefile=0A=
-> > > @@ -55,6 +55,7 @@ dtb-$(CONFIG_ARCH_MXC) +=3D imx8mm-data-modul-edm-s=
-bc.dtb=0A=
-> > >  dtb-$(CONFIG_ARCH_MXC) +=3D imx8mm-ddr4-evk.dtb=0A=
-> > >  dtb-$(CONFIG_ARCH_MXC) +=3D imx8mm-emcon-avari.dtb=0A=
-> > >  dtb-$(CONFIG_ARCH_MXC) +=3D imx8mm-evk.dtb=0A=
-> > > +dtb-$(CONFIG_ARCH_MXC) +=3D imx8mm-evkb.dtb=0A=
-> >=0A=
-> > I prefer to name it imx8mm-evk-revb.dtb or imx8mm-evk-b.dtb.=0A=
-> =0A=
-> Unfortunately it's not revision B, it is evkb. The 'first' evk has=0A=
-> plenty revisions. I think the most recent for the imx8mm-evk is C5. For=
-=0A=
-> the imx8mm-evkb the most recent revision is A4. Even this is not 100=0A=
-> percent correct since the EVK consist of a SoM and a baseboard. The=0A=
-> baseboard isn't changed for the EVKB but the SoM. The new SoM schematics=
-=0A=
-> name the new SoM 8MMINILPD4-CPU2. But in the end you can't buy it=0A=
-> separately:=0A=
-> - https://eur02.safelinks.protection.outlook.com/?url=3Dhttps://www.nxp.c=
-om/design/development-boards/i-mx-evaluation-and-development-boards/evaluat=
-ion-kit-for-the-i-mx-8m-mini-applications-processor:8MMINILPD4-EVK&data=3D0=
-5|01||6a71dc88704d425a3a5708db1ef34ef5|1b16ab3eb8f64fe39f3e2db7fe549f6a|0|0=
-|638137802577253621|Unknown|TWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzI=
-iLCJBTiI6Ik1haWwiLCJXVCI6Mn0=3D|3000|||&sdata=3DSmuEFl4RTEshtHKz/ZMhPF8kfdj=
-qobRuJB/X66OYgNQ=3D&reserved=3D0=0A=
-=0A=
-=0A=
-looking at authors in the git-log of arch/arm64/boot/dts/freescale/imx8mm-e=
-vk.dts -> +=3Demail.to=0A=
-@NXP: how are you telling the different EVK versions apart internally?=0A=
-=0A=
-by a year/timestamp, revision, name, features, ...?=0A=
-=0A=
-maybe we could apply that "naming convention" for the devictree files and c=
-ompatible strings here as well?=0A=
-=0A=
-since we only know of the obvious change: the different pmic compared to th=
-e previous version=0A=
-this difference is/was the sole motivation for this new devicetree, since b=
-ootloaders (like barebox) depend on the correct one beeing used during boar=
-d initialization=0A=
-=0A=
-> > >  dtb-$(CONFIG_ARCH_MXC) +=3D imx8mm-icore-mx8mm-ctouch2.dtb=0A=
-> > >  dtb-$(CONFIG_ARCH_MXC) +=3D imx8mm-icore-mx8mm-edimm2.2.dtb=0A=
-> > >  dtb-$(CONFIG_ARCH_MXC) +=3D imx8mm-kontron-bl.dtb=0A=
-> > > diff --git a/arch/arm64/boot/dts/freescale/imx8mm-evkb.dts b/arch/arm=
-64/boot/dts/freescale/imx8mm-evkb.dts=0A=
-> > > new file mode 100644=0A=
-> > > index 000000000000..2c3947d68982=0A=
-> > > --- /dev/null=0A=
-> > > +++ b/arch/arm64/boot/dts/freescale/imx8mm-evkb.dts=0A=
-> > > @@ -0,0 +1,134 @@=0A=
-> > > +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)=0A=
-> > > +/*=0A=
-> > > + * Copyright 2019-2022 NXP=0A=
-> > > + */=0A=
-> > > +=0A=
-> > > +/dts-v1/;=0A=
-> > > +=0A=
-> > > +#include "imx8mm-evk.dtsi"=0A=
-> > > +=0A=
-> > > +/ {=0A=
-> > > +   model =3D "FSL i.MX8MM EVKB"; // with LPDDR4 and PCA9450 PMIC=0A=
-> >=0A=
-> > "FSL i.MX8MM EVK Revision B"=0A=
-> =0A=
-> Please see my above explanation, it's not revision b.=0A=
-> >=0A=
-> > imx8mm-evk board has LPDDR4 too, so LPDDR4 is not a difference.  It=0A=
-> > seems PMIC is the only difference between imx8mm-evk and imx8mm-evk-b.=
-=0A=
-> > In that case, we may want to include "imx8mm-evk.dts" rather than=0A=
-> > "imx8mm-evk.dtsi".  Otherwise, things like flexspi and usdhc3 get lost.=
-=0A=
-> =0A=
-> Your're right.=0A=
-> =0A=
-> Regards,=0A=
->   Marco=0A=
-> =0A=
-> > Also /* ... */ style of comment is recommended.=0A=
-> >=0A=
-> > > +   compatible =3D "fsl,imx8mm-evkb", "fsl,imx8mm";=0A=
-> >=0A=
-> > "fsl,imx8mm-evk-revb" or "fsl,imx8mm-evk-b"=0A=
-> >=0A=
-> > > +};=0A=
-> > > +=0A=
-> > > +&i2c1 {=0A=
-> > > +   /*=0A=
-> > > +    * replace "rohm,bd71847" pmic found on previous evks=0A=
-> > > +    * with "nxp,pca9450a"=0A=
-> > > +    */=0A=
-> > > +   /delete-node/ pmic@4b=0A=
-> >=0A=
-> > Missing semicolon causes DTC error.=0A=
-> >=0A=
-> >       /delete-node/ pmic@4b;=0A=
-> >=0A=
-> > Shawn=0A=
-> >=0A=
-> > > +=0A=
-> > > +   pmic: pmic@25 {=0A=
-> > > +           compatible =3D "nxp,pca9450a";=0A=
-> > > +           reg =3D <0x25>;=0A=
-> > > +           pinctrl-0 =3D <&pinctrl_pmic>;=0A=
-> > > +           pinctrl-names =3D "default";=0A=
-> > > +           interrupt-parent =3D <&gpio1>;=0A=
-> > > +           interrupts =3D <3 IRQ_TYPE_LEVEL_LOW>;=0A=
-> > > +=0A=
-> > > +           regulators {=0A=
-> > > +                   // VDD_SOC_0V8=0A=
-> > > +                   buck1_reg: BUCK1 {=0A=
-> > > +                           regulator-name =3D "BUCK1";=0A=
-> > > +                           regulator-min-microvolt =3D <780000>;=0A=
-> > > +                           regulator-max-microvolt =3D <900000>;=0A=
-> > > +                           regulator-boot-on;=0A=
-> > > +                           regulator-always-on;=0A=
-> > > +                           regulator-ramp-delay =3D <1250>;=0A=
-> > > +                   };=0A=
-> > > +=0A=
-> > > +                   // VDD_ARM_0V9=0A=
-> > > +                   buck2_reg: BUCK2 {=0A=
-> > > +                           regulator-name =3D "BUCK2";=0A=
-> > > +                           regulator-min-microvolt =3D <805000>;=0A=
-> > > +                           regulator-max-microvolt =3D <1050000>;=0A=
-> > > +                           regulator-boot-on;=0A=
-> > > +                           regulator-always-on;=0A=
-> > > +                           regulator-ramp-delay =3D <1250>;=0A=
-> > > +                           nxp,dvs-standby-voltage =3D <850000>;=0A=
-> > > +                   };=0A=
-> > > +=0A=
-> > > +                   // VDD_DRAM&PU_0V9 (BUCK5 in datasheet)=0A=
-> > > +                   buck3_reg: BUCK3 {=0A=
-> > > +                           regulator-name =3D "BUCK3";=0A=
-> > > +                           regulator-min-microvolt =3D <805000>;=0A=
-> > > +                           regulator-max-microvolt =3D <1000000>;=0A=
-> > > +                           regulator-boot-on;=0A=
-> > > +                           regulator-always-on;=0A=
-> > > +                   };=0A=
-> > > +=0A=
-> > > +                   // VDD_3V3/NVCC_3V3 (BUCK6 in datasheet)=0A=
-> > > +                   buck4_reg: BUCK4 {=0A=
-> > > +                           regulator-name =3D "BUCK4";=0A=
-> > > +                           regulator-min-microvolt =3D <3000000>;=0A=
-> > > +                           regulator-max-microvolt =3D <3600000>;=0A=
-> > > +                           regulator-boot-on;=0A=
-> > > +                           regulator-always-on;=0A=
-> > > +                   };=0A=
-> > > +=0A=
-> > > +                   // VDD_1V8/NVCC_1V8 (BUCK7 in datasheet)=0A=
-> > > +                   buck5_reg: BUCK5 {=0A=
-> > > +                           regulator-name =3D "BUCK5";=0A=
-> > > +                           regulator-min-microvolt =3D <1650000>;=0A=
-> > > +                           regulator-max-microvolt =3D <1950000>;=0A=
-> > > +                           regulator-boot-on;=0A=
-> > > +                           regulator-always-on;=0A=
-> > > +                   };=0A=
-> > > +=0A=
-> > > +                   // NVCC_DRAM_1V1 (BUCK8 in datasheet)=0A=
-> > > +                   buck6_reg: BUCK6 {=0A=
-> > > +                           regulator-name =3D "BUCK6";=0A=
-> > > +                           regulator-min-microvolt =3D <1060000>;=0A=
-> > > +                           regulator-max-microvolt =3D <1140000>;=0A=
-> > > +                           regulator-boot-on;=0A=
-> > > +                           regulator-always-on;=0A=
-> > > +                   };=0A=
-> > > +=0A=
-> > > +                   // NVCC_SNVS_1V8=0A=
-> > > +                   ldo1_reg: LDO1 {=0A=
-> > > +                           regulator-name =3D "LDO1";=0A=
-> > > +                           regulator-min-microvolt =3D <1620000>;=0A=
-> > > +                           regulator-max-microvolt =3D <19800000>;=
-=0A=
-> > > +                           regulator-boot-on;=0A=
-> > > +                           regulator-always-on;=0A=
-> > > +                   };=0A=
-> > > +=0A=
-> > > +                   // VDD_SNVS_0V8=0A=
-> > > +                   ldo2_reg: LDO2 {=0A=
-> > > +                           regulator-name =3D "LDO2";=0A=
-> > > +                           regulator-min-microvolt =3D <760000>;=0A=
-> > > +                           regulator-max-microvolt =3D <900000>;=0A=
-> > > +                           regulator-boot-on;=0A=
-> > > +                           regulator-always-on;=0A=
-> > > +                   };=0A=
-> > > +=0A=
-> > > +                   // VDDA_1V8=0A=
-> > > +                   ldo3_reg: LDO3 {=0A=
-> > > +                           regulator-name =3D "LDO3";=0A=
-> > > +                           regulator-min-microvolt =3D <1710000>;=0A=
-> > > +                           regulator-max-microvolt =3D <1890000>;=0A=
-> > > +                           regulator-boot-on;=0A=
-> > > +                           regulator-always-on;=0A=
-> > > +                   };=0A=
-> > > +=0A=
-> > > +                   // VDD_PHY_0V9=0A=
-> > > +                   ldo4_reg: LDO4 {=0A=
-> > > +                           regulator-name =3D "LDO4";=0A=
-> > > +                           regulator-min-microvolt =3D <855000>;=0A=
-> > > +                           regulator-max-microvolt =3D <1000000>;=0A=
-> > > +                           regulator-boot-on;=0A=
-> > > +                           regulator-always-on;=0A=
-> > > +                   };=0A=
-> > > +=0A=
-> > > +                   // VDD_PHY_1V2 (LDO6 in datasheet)=0A=
-> > > +                   ldo5_reg: LDO5 {=0A=
-> > > +                           regulator-name =3D "LDO5";=0A=
-> > > +                           regulator-min-microvolt =3D <1140000>;=0A=
-> > > +                           regulator-max-microvolt =3D <1260000>;=0A=
-> > > +                           regulator-boot-on;=0A=
-> > > +                           regulator-always-on;=0A=
-> > > +                   };=0A=
-> > > +           };=0A=
-> > > +   };=0A=
-> > > +};=0A=
-> > > --=0A=
-> > > 2.25.1=0A=
-> > >=0A=
-> >=0A=
-> >=0A=
-> =0A=
-=0A=
-gru=DF=0A=
-Johannes=
+Hi Andy,
+
+Thanks for reviewing this patch!
+
+On Tue, Mar 07, 2023 at 01:28:09AM +0200, andy.shevchenko@gmail.com wrote:
+> Mon, Feb 20, 2023 at 10:33:19AM +0800, Chester Lin kirjoitti:
+> > Add the pinctrl driver for NXP S32 SoC family. This driver is mainly based
+> > on NXP's downstream implementation on nxp-auto-linux repo[1].
+> 
+> Seems Linus already applied this, but still some comments for the future, some
+> for the followups. However, personally I prefer this to be dropped and redone
+> because too many things here and there.
+> 
+> > [1] https://github.com/nxp-auto-linux/linux/tree/bsp35.0-5.15.73-rt/drivers/pinctrl/freescale
+> 
+> This can be transformed to Link: tag.
+> 
+> > Signed-off-by: Matthew Nunez <matthew.nunez@nxp.com>
+> > Signed-off-by: Phu Luu An <phu.luuan@nxp.com>
+> > Signed-off-by: Stefan-Gabriel Mirea <stefan-gabriel.mirea@nxp.com>
+> > Signed-off-by: Larisa Grigore <larisa.grigore@nxp.com>
+> > Signed-off-by: Ghennadi Procopciuc <Ghennadi.Procopciuc@oss.nxp.com>
+> > Signed-off-by: Andrei Stefanescu <andrei.stefanescu@nxp.com>
+> > Signed-off-by: Radu Pirea <radu-nicolae.pirea@nxp.com>
+> > Signed-off-by: Chester Lin <clin@suse.com>
+> 
+> Is it for real?!
+> Quite a long chain and none of Co-developed-by.
+> 
+
+They are developers who contribute codes and have Signed-off-bys in NXP's downstream
+version. Since their implementations can still be seen in this upstream one, I
+prefer to list them all. Indeed a part of them who also actively work with me on
+upstreaming this driver can be listed as Co-developed-by, but the driver patch
+has been merged into the maintainer's for-next so I would not change this part
+unless the driver patch needs to be reverted and re-submitted in the end.
+
+Sorry for the patch header that I mess up anyway.
+
+> ...
+> 
+> > +	depends on ARCH_S32 && OF
+> 
+> Is OF necessary? Can it be
+
+I think it's required since the driver file refers to of_* APIs.
+
+> 
+> 	depends OF || COMPILE_TEST
+> 
+> ?
+> 
+> ...
+> 
+> > +	depends on ARCH_S32 && OF
+> 
+> Ditto.
+> 
+> ...
+> 
+> > +/**
+> > + * struct s32_pin_group - describes an S32 pin group
+> > + * @name: the name of this specific pin group
+> > + * @npins: the number of pins in this group array, i.e. the number of
+> > + *         elements in pin_ids and pin_sss so we can iterate over that array
+> > + * @pin_ids: an array of pin IDs in this group
+> > + * @pin_sss: an array of source signal select configs paired with pin_ids
+> > + */
+> > +struct s32_pin_group {
+> > +	const char *name;
+> > +	unsigned int npins;
+> > +	unsigned int *pin_ids;
+> > +	unsigned int *pin_sss;
+> 
+> Why didn't you embed struct pingroup?
+> 
+
+I did think about that but there's an additional 'pin_sss' which could make code
+a bit messy. For example:
+
+	s32_regmap_update(pctldev, grp->grp.pins[i],
+			  S32_MSCR_SSS_MASK, grp->pin_sss[i]);
+
+> > +};
+> > +
+> > +/**
+> > + * struct s32_pmx_func - describes S32 pinmux functions
+> > + * @name: the name of this specific function
+> > + * @groups: corresponding pin groups
+> > + * @num_groups: the number of groups
+> > + */
+> > +struct s32_pmx_func {
+> > +	const char *name;
+> > +	const char **groups;
+> > +	unsigned int num_groups;
+> > +};
+> 
+> struct pinfunction.
+> 
+
+Thanks for your information. I was not aware of this new struct since it just got
+merged recently.
+
+> ...
+> 
+> > +#ifdef CONFIG_PM_SLEEP
+> > +int __maybe_unused s32_pinctrl_resume(struct device *dev);
+> > +int __maybe_unused s32_pinctrl_suspend(struct device *dev);
+> > +#endif
+> 
+> Please, consider using new PM macros, like pm_ptr().
+> 
+
+Maybe pm_sleep_ptr() is more accurate?
+
+> ...
+> 
+> > +static u32 get_pin_no(u32 pinmux)
+> > +{
+> > +	return (pinmux & S32_PIN_ID_MASK) >> __ffs(S32_PIN_ID_MASK);
+> 
+> Oh, don't you have MASK to be 2^x - 1? Why to drag this with __ffs()?
+> Just define a complement _SHIFT.
+> 
+
+Will fix it.
+
+> > +}
+> 
+> ...
+> 
+> > +	n_pins = of_property_count_elems_of_size(np, "pinmux", sizeof(u32));
+> > +	if (n_pins < 0) {
+> > +		dev_warn(dev, "Unable to find 'pinmux' property in node %s.\n",
+> > +			np->name);
+> 
+> Use %pOFn instead of %s.
+> 
+
+Will change it.
+
+> > +	} else if (!n_pins) {
+> > +		return -EINVAL;
+> > +	}
+> 
+> ...
+> 
+> > +	for (i = 0; i < grp->npins; ++i) {
+> 
+> Why pre-increment?
+
+Will change that to keep code style consistency.
+
+> 
+> > +		if (s32_check_pin(pctldev, grp->pin_ids[i]) != 0) {
+> > +			dev_err(info->dev, "invalid pin: %d in group: %d\n",
+> > +				grp->pin_ids[i], group);
+> > +			return -EINVAL;
+> > +		}
+> > +	}
+> > +
+> > +	for (i = 0, ret = 0; i < grp->npins && !ret; ++i) {
+> 
+> Ditto.
+> 
+> > +		ret = s32_regmap_update(pctldev, grp->pin_ids[i],
+> > +					S32_MSCR_SSS_MASK, grp->pin_sss[i]);
+> 
+> Traditional pattern is
+> 
+> 		if (ret)
+> 			return ret;
+> 
+> This avoids first assignment of the ret.
+> 
+> > +	}
+> > +
+> > +	return ret;
+> 
+> 	return 0;
+> 
+> > +}
+> 
+> ...
+> 
+> > +	ret = s32_regmap_read(pctldev, offset, &config);
+> > +	if (ret != 0)
+> > +		return -EINVAL;
+> 
+> Why not
+> 
+> 	if (ret)
+> 		return ret;
+> 
+
+Will fix this and the following error code shadowings, return handlings and blanks.
+
+Thanks for your reminder.
+
+> ...
+> 
+> > +	list_add(&(gpio_pin->list), &(ipctl->gpio_configs));
+> 
+> Too many parentheses.
+> 
+> ...
+> 
+> > +	list_for_each_safe(pos, tmp, &ipctl->gpio_configs) {
+> > +		gpio_pin = list_entry(pos, struct gpio_pin_config, list);
+> 
+> Why not list_for_each_entry_safe() ?
+
+Will change it.
+
+> 
+> 
+> > +		if (gpio_pin->pin_id == offset) {
+> > +			ret = s32_regmap_write(pctldev, gpio_pin->pin_id,
+> > +						 gpio_pin->config);
+> > +			if (ret != 0)
+> > +				goto unlock;
+> > +
+> > +			list_del(pos);
+> > +			kfree(gpio_pin);
+> > +			break;
+> > +		}
+> > +	}
+> 
+> ...
+> 
+> > +static int s32_get_slew_regval(int arg)
+> > +{
+> > +	int i;
+> 
+> 	unsigned int i;
+> 
+> + Blank line.
+> 
+> > +	/* Translate a real slew rate (MHz) to a register value */
+> > +	for (i = 0; i < ARRAY_SIZE(support_slew); i++) {
+> > +		if (arg == support_slew[i])
+> > +			return i;
+> > +	}
+> > +
+> > +	return -EINVAL;
+> > +}
+> 
+> ...
+> 
+> > +	case PIN_CONFIG_BIAS_PULL_UP:
+> > +		if (arg)
+> > +			*config |= S32_MSCR_PUS;
+> > +		else
+> > +			*config &= ~S32_MSCR_PUS;
+> 
+> > +		fallthrough;
+> 
+> It's quite easy to miss this and tell us about how is it supposed to work with PU + PD?
+> 
+I admit that it's ambiguous and should be improved in order to have better readability.
+
+In a S32G2 MSCR register, there are two register bits related to pull up/down functions:
+
+PUE (Pull Enable, MSCR[13]): 0'b: Disabled,  1'b: Enabled
+PUS (Pull Select, MSCR[12]): 0'b: Pull Down, 1'b: Pull Up
+
+The dt properties could be like these:
+
+1) 'bias-pull-up' or 'bias-pull-up: true'  --> arg = 1
+   In this case both PUE and PUS are set.
+
+2) 'bias-pull-up: false'  --> arg = 0
+   In this case both PUE and PUS are cleared since the pull-up function must be disabled.
+
+> > +	case PIN_CONFIG_BIAS_PULL_DOWN:
+> > +		if (arg)
+> > +			*config |= S32_MSCR_PUE;
+> > +		else
+> > +			*config &= ~S32_MSCR_PUE;
+> > +		*mask |= S32_MSCR_PUE | S32_MSCR_PUS;
+> > +		break;
+> > +	case PIN_CONFIG_BIAS_HIGH_IMPEDANCE:
+> > +		*config &= ~(S32_MSCR_ODE | S32_MSCR_OBE | S32_MSCR_IBE);
+> > +		*mask |= S32_MSCR_ODE | S32_MSCR_OBE | S32_MSCR_IBE;
+> > +		fallthrough;
+> 
+> Ditto.
+> 
+
+It's similar to the case 'PIN_CONFIG_BIAS_PULL_UP' although the PUS bit is assumed
+as 0 via the config variable so only the PUE bit needs to be configured, for example:
+
+1) 'bias-pull-down' or 'bias-pull-down: true'  --> arg = 1
+   PUE is set and PUS is cleared.
+
+2) 'bias-pull-down: false'  --> arg = 0
+   In this case both PUE and PUS are cleared since the pull-down function must be disabled.
+
+> > +	case PIN_CONFIG_BIAS_DISABLE:
+> > +		*config &= ~(S32_MSCR_PUS | S32_MSCR_PUE);
+> > +		*mask |= S32_MSCR_PUS | S32_MSCR_PUE;
+> > +		break;
+> 
+> ...
+> 
+> > +	if (s32_check_pin(pctldev, pin_id) != 0)
+> 
+> Shadowing an error?
+> 
+> > +		return -EINVAL;
+> 
+> ...
+> 
+> > +	ret = s32_regmap_update(pctldev, pin_id, mask, config);
+> > +
+> > +	dev_dbg(ipctl->dev, "update: pin %d cfg 0x%x\n", pin_id, config);
+> > +
+> > +	return ret;
+> 
+> You are not using ret in between, hence
+> 
+> 	return _regmap_update(...);
+> 
+> ...
+> 
+> > +static void s32_pinconf_dbg_show(struct pinctrl_dev *pctldev,
+> > +				 struct seq_file *s, unsigned int pin_id)
+> > +{
+> > +	unsigned int config;
+> > +	int ret = s32_regmap_read(pctldev, pin_id, &config);
+> > +
+> > +	if (!ret)
+> > +		seq_printf(s, "0x%x", config);
+> 
+> 
+> 	int ret;
+> 
+> 	ret = s32_regmap_read(pctldev, pin_id, &config);
+> 	if (ret)
+> 		return;
+> 
+> 	seq_printf(s, "0x%x", config);
+> 
+> > +}
+> 
+> ...
+> 
+> > +	npins = of_property_count_elems_of_size(np, "pinmux", sizeof(u32));
+> 
+> > +
+> 
+> Unneccessary blank line.
+> 
+> > +	if (npins < 0) {
+> > +		dev_err(dev, "Failed to read 'pinmux' property in node %s.\n",
+> > +			np->name);
+> > +		return;
+> > +	}
+> > +	if (!npins) {
+> > +		dev_err(dev, "The group %s has no pins.\n", np->name);
+> > +		return;
+> > +	}
+> 
+> ...
+> 
+> > +	grp->pin_ids = devm_kcalloc(info->dev, grp->npins,
+> > +				    sizeof(unsigned int), GFP_KERNEL);
+> > +	grp->pin_sss = devm_kcalloc(info->dev, grp->npins,
+> > +				    sizeof(unsigned int), GFP_KERNEL);
+> 
+> > +
+> 
+> Ditto.
+> 
+> > +	if (!grp->pin_ids || !grp->pin_sss) {
+> 
+> > +		dev_err(dev, "Failed to allocate memory for the group %s.\n",
+> > +			np->name);
+> 
+> We do not print ENOMEM error messages.
+> 
+
+Will drop it.
+
+> > +		return;
+> > +	}
+> 
+> ...
+> 
+> > +	func->groups = devm_kzalloc(info->dev,
+> > +			func->num_groups * sizeof(char *), GFP_KERNEL);
+> 
+> First of all, this is devm_kcalloc().
+> Second, where is the error check?
+> 
+
+Will fix it.
+
+> > +	for_each_child_of_node(np, child) {
+> > +		func->groups[i] = child->name;
+> > +		grp = &info->groups[info->grp_index++];
+> > +		s32_pinctrl_parse_groups(child, grp, info);
+> > +		i++;
+> > +	}
+> 
+> ...
+> 
+> > +	ipctl->regions = devm_kzalloc(&pdev->dev,
+> > +				      mem_regions * sizeof(*(ipctl->regions)),
+> > +				      GFP_KERNEL);
+> 
+> devm_kcalloc()
+> 
+> > +	if (!ipctl->regions)
+> > +		return -ENOMEM;
+> 
+> ...
+> 
+> > +	info->functions = devm_kzalloc(&pdev->dev,
+> > +				       nfuncs * sizeof(struct s32_pmx_func),
+> > +				       GFP_KERNEL);
+> 
+> Ditto.
+> 
+> > +	if (!info->functions)
+> > +		return -ENOMEM;
+> 
+> ...
+> 
+> > +	info->groups = devm_kzalloc(&pdev->dev,
+> > +				    info->ngroups * sizeof(struct s32_pin_group),
+> > +				    GFP_KERNEL);
+> 
+> Ditto.
+> 
+> > +	if (!info->groups)
+> > +		return -ENOMEM;
+> 
+> ...
+> 
+> > +	ipctl->pctl = devm_pinctrl_register(&pdev->dev, s32_pinctrl_desc,
+> > +					    ipctl);
+> 
+> > +
+> 
+> Unneeded blank line.
+> 
+> > +	if (IS_ERR(ipctl->pctl)) {
+> 
+> > +		dev_err(&pdev->dev, "could not register s32 pinctrl driver\n");
+> > +		return PTR_ERR(ipctl->pctl);
+> 
+> 	return dev_err_probe(...);
+> 
+
+Will change it, thanks!
+
+> > +	}
+> 
+> ...
+> 
+> > diff --git a/drivers/pinctrl/nxp/pinctrl-s32g2.c b/drivers/pinctrl/nxp/pinctrl-s32g2.c
+> 
+> Similar issues has to be addressed, if any.
+> 
+> ...
+> 
+> > +	return s32_pinctrl_probe
+> > +			(pdev, (struct s32_pinctrl_soc_info *) of_id->data);
+> 
+> Broken indentation.
+> 
+> ...
+> 
+
+The checkpatch.pl seems not to warn this but I will definitely improve it.
+
+> > +static const struct dev_pm_ops s32g_pinctrl_pm_ops = {
+> > +	SET_LATE_SYSTEM_SLEEP_PM_OPS(s32_pinctrl_suspend,
+> > +				     s32_pinctrl_resume)
+> > +};
+> 
+> Consider using DEFINE_* PM macros.
+> 
+
+You probably mean DEFINE_SIMPLE_DEV_PM_OPS. Will change it.
+
+> ...
+> 
+> > +static struct platform_driver s32g_pinctrl_driver = {
+> > +	.driver = {
+> > +		.name = "s32g-siul2-pinctrl",
+> 
+> > +		.owner = THIS_MODULE,
+> 
+> Duplicate assignment.
+
+Will drop it.
+
+> 
+> > +		.of_match_table = s32_pinctrl_of_match,
+> > +		.pm = &s32g_pinctrl_pm_ops,
+> > +		.suppress_bind_attrs = true,
+> > +	},
+> > +	.probe = s32g_pinctrl_probe,
+> > +};
+> 
+> > +
+> 
+> Unnecessary blank line.
+> 
+> > +builtin_platform_driver(s32g_pinctrl_driver);
+> 
+> -- 
+> With Best Regards,
+> Andy Shevchenko
+> 
+> 
