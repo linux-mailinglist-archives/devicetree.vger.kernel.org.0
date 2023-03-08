@@ -2,142 +2,140 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2D5AE6B01A6
-	for <lists+devicetree@lfdr.de>; Wed,  8 Mar 2023 09:38:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B21806B01AD
+	for <lists+devicetree@lfdr.de>; Wed,  8 Mar 2023 09:38:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230143AbjCHIi2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Mar 2023 03:38:28 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41842 "EHLO
+        id S230163AbjCHIip (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Mar 2023 03:38:45 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38436 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230352AbjCHIiJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Mar 2023 03:38:09 -0500
-Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A399A59D5
-        for <devicetree@vger.kernel.org>; Wed,  8 Mar 2023 00:37:43 -0800 (PST)
-Received: by mail-ed1-x535.google.com with SMTP id g3so62667707eda.1
-        for <devicetree@vger.kernel.org>; Wed, 08 Mar 2023 00:37:43 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1678264662;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=E/WzsZEhRWqesaA/VgihYCVlcuAuHDDmWjDn5s627q8=;
-        b=hkLM635i6PbEzvxaklVMhvnoyMxzoamNwWrBl9HRjPD1ixywfwQssDR/Fq0d56W/J5
-         ysP6gO+qTrOiwQltIacANsamOhN3sRFf3w8GIODKbgkNCQl/Aeok84B2diwhk00a+7bN
-         4vMszuLBYpz/SHYSsU9Ej3PLkKVv/nBZ2eBO15DxYaqo85ExNyFLZ9gpq3si3LieIXNt
-         7u2EeAKi52aDAte2DNGjPxVVSfWl4pj110+AbjWI9LDbgpi3mqKDeNDU2FK5778CaOIq
-         eCSRiw+F+hUfqJ06K8iSV9YyZHnkuQoGpmpPe5+sqJWuKyf0Fe3uXb2Dv7yCKud7duQL
-         bdFw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678264662;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=E/WzsZEhRWqesaA/VgihYCVlcuAuHDDmWjDn5s627q8=;
-        b=vslw/o8qoVaMbX6wW1jj7KPZN+cIqae/DzsosnRbHtmIUydSUOZ5ij+Gxf7bpj9Jn1
-         1p0Et+mcL3pNOlxix+tsmhP08HeFG+CJ6HwXHUihSHZAwstQDsx++6IeXN9MbC1fchFb
-         7xDJsIEr4Tpb8VUC7q8Ufl5R4/XxELfSnvqBudpewZipHHRKl02gbujypo/hJBwhCrDC
-         Bq6K47chKIh51pZcDphvyTdcFW119WwlCJ/s+mXST+XFKOWM8f+FdEgZBFgMlomwt4xw
-         BigBOxh13rnYNgAj+bpl6Es2VmdrvwqaoAaIcllOQsOQzSYO5UNrTzwfUs63q10bA5x6
-         Ceig==
-X-Gm-Message-State: AO0yUKVoKePPwTgUL5QEt7tgFb2Yf1wFbInyB8XQdWBtCQQPs78z8hFP
-        gQ4adrH6ghSBkrN3kFSSfCjW0pbP5wYkaM1CNIs=
-X-Google-Smtp-Source: AK7set8FU50SUCDPOEAD3jF8EdZXMqpxg583cG8nktaaEmYKPV8Cb4xBm2pZXn2RjynHCuDiBRcqiQ==
-X-Received: by 2002:aa7:cfc2:0:b0:4bf:f9f4:9b1e with SMTP id r2-20020aa7cfc2000000b004bff9f49b1emr15578064edy.4.1678264662068;
-        Wed, 08 Mar 2023 00:37:42 -0800 (PST)
-Received: from ?IPV6:2a02:810d:15c0:828:bba:fbfa:8aec:a133? ([2a02:810d:15c0:828:bba:fbfa:8aec:a133])
-        by smtp.gmail.com with ESMTPSA id 20-20020a508e54000000b004d8d2735251sm5795219edx.43.2023.03.08.00.37.41
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 08 Mar 2023 00:37:41 -0800 (PST)
-Message-ID: <31e2a67a-c046-9501-80de-e754ed450195@linaro.org>
-Date:   Wed, 8 Mar 2023 09:37:40 +0100
+        with ESMTP id S230085AbjCHIiZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Mar 2023 03:38:25 -0500
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1CF1A302B8;
+        Wed,  8 Mar 2023 00:38:23 -0800 (PST)
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 3288c7v9112012;
+        Wed, 8 Mar 2023 02:38:07 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1678264687;
+        bh=l+8lRDZMHWoBBZW7onnv/nboUX3OxsUJ2sMGHq3jYhE=;
+        h=Date:CC:Subject:To:References:From:In-Reply-To;
+        b=t3M1JhRNo+8ls7f7pmqPVpQuVKHt3sYMf6e9/a0QiBcxBRjxG4WFiiPFyIqghPwcR
+         yT8SJXT5+65VebM/tFHWyV4QhAQD7FZwYDIpHX62X43KMbhbW5ibpNLLgqKHttsAYy
+         Ddbq1Uf2GHCOc9XX7+ozbZwdzA84nerpSCNIA1CM=
+Received: from DLEE109.ent.ti.com (dlee109.ent.ti.com [157.170.170.41])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 3288c7P3089868
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Wed, 8 Mar 2023 02:38:07 -0600
+Received: from DLEE103.ent.ti.com (157.170.170.33) by DLEE109.ent.ti.com
+ (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Wed, 8
+ Mar 2023 02:38:06 -0600
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE103.ent.ti.com
+ (157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
+ Frontend Transport; Wed, 8 Mar 2023 02:38:07 -0600
+Received: from [172.24.145.61] (ileaxei01-snat.itg.ti.com [10.180.69.5])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 3288c2Ep003307;
+        Wed, 8 Mar 2023 02:38:02 -0600
+Message-ID: <7b6e8131-8e5b-88bc-69f7-b737c0c35bb6@ti.com>
+Date:   Wed, 8 Mar 2023 14:08:01 +0530
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-Subject: Re: [PATCH v13 1/2] dt-bindings: clock: add loongson-2 boot clock
- index
+ Thunderbird/102.7.1
+CC:     <davem@davemloft.net>, <edumazet@google.com>, <kuba@kernel.org>,
+        <linux@armlinux.org.uk>, <pabeni@redhat.com>, <robh+dt@kernel.org>,
+        <nsekhar@ti.com>, <rogerq@kernel.org>, <netdev@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <srk@ti.com>,
+        <s-vadapalli@ti.com>
+Subject: Re: [PATCH net-next v2] dt-bindings: net: ti: k3-am654-cpsw-nuss:
+ Document Serdes PHY
 Content-Language: en-US
-To:     zhuyinbo <zhuyinbo@loongson.cn>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org
-Cc:     Jianmin Lv <lvjianmin@loongson.cn>,
-        Liu Peibao <liupeibao@loongson.cn>, wanghongliang@loongson.cn,
-        loongson-kernel@lists.loongnix.cn
-References: <20230307115022.12846-1-zhuyinbo@loongson.cn>
- <692a62da-a9a1-fa23-6e24-723d73c3a423@linaro.org>
- <5e9b3bd5-d885-6237-5e14-2becb3c956cc@loongson.cn>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <5e9b3bd5-d885-6237-5e14-2becb3c956cc@loongson.cn>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        <krzysztof.kozlowski+dt@linaro.org>
+References: <20230308051835.276552-1-s-vadapalli@ti.com>
+ <1ffed720-322c-fa73-1160-5fd73ce3c7c2@linaro.org>
+From:   Siddharth Vadapalli <s-vadapalli@ti.com>
+In-Reply-To: <1ffed720-322c-fa73-1160-5fd73ce3c7c2@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_PASS,SPF_PASS,URIBL_BLOCKED autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 08/03/2023 02:35, zhuyinbo wrote:
-> 
-> 在 2023/3/7 下午8:47, Krzysztof Kozlowski 写道:
->> On 07/03/2023 12:50, Yinbo Zhu wrote:
->>> The Loongson-2 boot clock was used to spi and lio peripheral and
->>> this patch was to add boot clock index number.
->>>
->>> Signed-off-by: Yinbo Zhu <zhuyinbo@loongson.cn>
->>> ---
->> This is v13? Where is the changelog then?
-> 
-> in fact, this is a new patch(v1),   but another clock driver patch in 
-> this series had send as v13 and need depend on
-> 
-> this patch so set current patch as v13.
+Hello Krzysztof,
 
-This should be explained in changelog.
-
-> 
+On 08/03/23 14:04, Krzysztof Kozlowski wrote:
+> On 08/03/2023 06:18, Siddharth Vadapalli wrote:
+>> Update bindings to include Serdes PHY as an optional PHY, in addition to
+>> the existing CPSW MAC's PHY. The CPSW MAC's PHY is required while the
+>> Serdes PHY is optional. The Serdes PHY handle has to be provided only
+>> when the Serdes is being configured in a Single-Link protocol. Using the
+>> name "serdes-phy" to represent the Serdes PHY handle, the am65-cpsw-nuss
+>> driver can obtain the Serdes PHY and request the Serdes to be
+>> configured.
 >>
+>> Signed-off-by: Siddharth Vadapalli <s-vadapalli@ti.com>
+>> ---
 >>
->>>   include/dt-bindings/clock/loongson,ls2k-clk.h | 25 ++++++++++---------
->>>   1 file changed, 13 insertions(+), 12 deletions(-)
->>>
->>> diff --git a/include/dt-bindings/clock/loongson,ls2k-clk.h b/include/dt-bindings/clock/loongson,ls2k-clk.h
->>> index db1e27e792ff1..e86804365e506 100644
->>> --- a/include/dt-bindings/clock/loongson,ls2k-clk.h
->>> +++ b/include/dt-bindings/clock/loongson,ls2k-clk.h
->>> @@ -13,17 +13,18 @@
->>>   #define LOONGSON2_DC_PLL				3
->>>   #define LOONGSON2_PIX0_PLL				4
->>>   #define LOONGSON2_PIX1_PLL				5
->>> -#define LOONGSON2_NODE_CLK				6
->>> -#define LOONGSON2_HDA_CLK				7
->>> -#define LOONGSON2_GPU_CLK				8
->>> -#define LOONGSON2_DDR_CLK				9
->>> -#define LOONGSON2_GMAC_CLK				10
->>> -#define LOONGSON2_DC_CLK				11
->>> -#define LOONGSON2_APB_CLK				12
->>> -#define LOONGSON2_USB_CLK				13
->>> -#define LOONGSON2_SATA_CLK				14
->>> -#define LOONGSON2_PIX0_CLK				15
->>> -#define LOONGSON2_PIX1_CLK				16
->>> -#define LOONGSON2_CLK_END				17
->>> +#define LOONGSON2_BOOT_CLK				6
->> That's an ABI break and commit msg does not explain it.
-> you meaning is that need add a explanation in commit msg that why
+>> Hello,
+>>
+>> This patch corresponds to the Serdes PHY bindings that were missed out in
+>> the series at:
+>> https://lore.kernel.org/r/20230104103432.1126403-1-s-vadapalli@ti.com/
+>> This was pointed out at:
+>> https://lore.kernel.org/r/CAMuHMdW5atq-FuLEL3htuE3t2uO86anLL3zeY7n1RqqMP_rH1g@mail.gmail.com/
+>>
+>> Changes from v1:
+>> 1. Describe phys property with minItems, items and description.
+>> 2. Use minItems and items in phy-names.
+>> 3. Remove the description in phy-names.
+>>
+>> v1:
+>> https://lore.kernel.org/r/20230306094750.159657-1-s-vadapalli@ti.com/
+>>
+>>  .../bindings/net/ti,k3-am654-cpsw-nuss.yaml        | 14 ++++++++++++--
+>>  1 file changed, 12 insertions(+), 2 deletions(-)
+>>
+>> diff --git a/Documentation/devicetree/bindings/net/ti,k3-am654-cpsw-nuss.yaml b/Documentation/devicetree/bindings/net/ti,k3-am654-cpsw-nuss.yaml
+>> index 900063411a20..0fb48bb6a041 100644
+>> --- a/Documentation/devicetree/bindings/net/ti,k3-am654-cpsw-nuss.yaml
+>> +++ b/Documentation/devicetree/bindings/net/ti,k3-am654-cpsw-nuss.yaml
+>> @@ -126,8 +126,18 @@ properties:
+>>              description: CPSW port number
+>>  
+>>            phys:
+>> -            maxItems: 1
+>> -            description: phandle on phy-gmii-sel PHY
+>> +            minItems: 1
+>> +            items:
+>> +              - description: CPSW MAC's PHY.
+>> +              - description: Serdes PHY. Serdes PHY is required only if
+>> +                             the Serdes has to be configured in the
+>> +                             Single-Link configuration.
+>> +
+>> +          phy-names:
+>> +            minItems: 1
+>> +            items:
+>> +              - const: mac-phy
+>> +              - const: serdes-phy
+> 
+> Drop "phy" suffixes.
 
-You need good explanation to break the ABI. I don't understand the
-commit msg, but anyway I could not find there justification for ABI
-break. If you do not have good justification, don't break the ABI,
+The am65-cpsw driver fetches the Serdes PHY by looking for the string
+"serdes-phy". Therefore, modifying the string will require changing the driver's
+code as well. Please let me know if it is absolutely necessary to drop the phy
+suffix. If so, I will post a new series with the changes involving dt-bindings
+changes and the driver changes.
 
-
-
-Best regards,
-Krzysztof
-
+Regards,
+Siddharth.
