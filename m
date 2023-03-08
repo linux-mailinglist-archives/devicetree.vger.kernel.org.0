@@ -2,61 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 722366B008F
-	for <lists+devicetree@lfdr.de>; Wed,  8 Mar 2023 09:11:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 10F166B0092
+	for <lists+devicetree@lfdr.de>; Wed,  8 Mar 2023 09:11:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229914AbjCHILg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Mar 2023 03:11:36 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51392 "EHLO
+        id S230023AbjCHILt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Mar 2023 03:11:49 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51420 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229743AbjCHILb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Mar 2023 03:11:31 -0500
-Received: from mail-wr1-x429.google.com (mail-wr1-x429.google.com [IPv6:2a00:1450:4864:20::429])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7863EA02BE
-        for <devicetree@vger.kernel.org>; Wed,  8 Mar 2023 00:11:24 -0800 (PST)
-Received: by mail-wr1-x429.google.com with SMTP id g3so14483309wri.6
-        for <devicetree@vger.kernel.org>; Wed, 08 Mar 2023 00:11:24 -0800 (PST)
+        with ESMTP id S229709AbjCHILg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Mar 2023 03:11:36 -0500
+Received: from mail-wr1-x42d.google.com (mail-wr1-x42d.google.com [IPv6:2a00:1450:4864:20::42d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 76CBFA21A7
+        for <devicetree@vger.kernel.org>; Wed,  8 Mar 2023 00:11:30 -0800 (PST)
+Received: by mail-wr1-x42d.google.com with SMTP id h11so14486595wrm.5
+        for <devicetree@vger.kernel.org>; Wed, 08 Mar 2023 00:11:30 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1678263083;
+        d=linaro.org; s=google; t=1678263089;
         h=content-transfer-encoding:in-reply-to:organization:from:references
          :cc:to:content-language:subject:reply-to:user-agent:mime-version
          :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=VlnN+uyyBGjXgcSX1OwQEmyLh/aARTh0nLRX8h0H9DI=;
-        b=iCVP29MH52Ij9ST6I2cO1/ctOGzzb5Q3roiXpD77vTdJ+s/u+VquFut2hphoBaQ/KT
-         SwatY9nQjCpsh6gKyM68nlkhUQqbQQtGK2vxtSC0U2F0PMQV4s4EMrEtAF2pkBKvzUBy
-         m958H1uvXJDlMa0pDHEi09QRolX2E64A8pBMUoXYhbFsMKPT7GX+mkn33OFOTo7L47F2
-         budqKyHCLXlV36u/gAK4X7sCr6ENekPMzULCcOVD33eojiVuCAIFxvKS0JRvc7+UQoHH
-         XdgbxISMD70ygrXm16Q4RXTEmh4UZKGcbXhUaevhTf46000ITxDnIC4s5ZPk44Kd+fZJ
-         331Q==
+        bh=A/GnPDgS88xNTx2XNIhiP45O7mjmL1plMVX41sUe2+8=;
+        b=MalOJjNVMtNPYOeLbH/dwcS/HBxF6IipOuqs9Y2h48HtACORCb0EXD1aV/S/vDLjSr
+         XynJgLAjTVpw2qdJVbhi5ex59lvkpOAbIe/NbeOjLF9Ffner30JqIS5Hnv7/3XvFT9uY
+         TtnpCTgyWXs/2MHKMIn3yNnTfvQNczEepDPE7d6DL4eFRZXEdXHHdqux/2ISe4nakMDZ
+         g4yu/G6sLLZ1IM4nG0SGvMl6maT6ZehhR580JizG3v9VVsdfBDQ6iNxY29S6ANGc9fNL
+         qTSnYqW99OPrCZH3d9fcJvQlswiujJg5iWFcNK1UYpS/EEikx9X7OEF2X7o156+dlGS/
+         xzfg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678263083;
+        d=1e100.net; s=20210112; t=1678263089;
         h=content-transfer-encoding:in-reply-to:organization:from:references
          :cc:to:content-language:subject:reply-to:user-agent:mime-version
          :date:message-id:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=VlnN+uyyBGjXgcSX1OwQEmyLh/aARTh0nLRX8h0H9DI=;
-        b=TYFoxsZ5aN13aMYfIeWi/C2BHl2siJ99JGgauQOuPzYVMDw6HJdocuKk6VCcg98OH5
-         I7L13WqSE7HsR1Xchl62Im6xRT3ZKFbTpO2DGfU9NmyaGSR5+4s6yn7iw86d9Kq/S2cp
-         qLbgXIDIESe9xEaNzRmaTAaT5lwLx6wpwb9C9iZPvPeQFB2yE/l4rIOs+zw0DKAElQar
-         GJxsXa5TcI7N+sN0cReJyaKk3y+9RuDlDYAuqymeLb54eFmI4Qv6pFO87hzYloIb5c7N
-         wGdBxoG5jX5+CIOKktBhHGB8xL7IdouizAHxRRlrNdC1ItVbkUqwVyTwyIGox65VTgQP
-         Zhtg==
-X-Gm-Message-State: AO0yUKUfsD/Nj5QrXAs6OA+rYXNEIWVGjp4s7TdCtiQyXWTxPViQfMsy
-        xXksZC8Bu2Lyh08VUY82uan8VA==
-X-Google-Smtp-Source: AK7set8iz9fCMHPB6joGH9m2YGCEknigSWvSYtDKL+G4p8rV3lbq+sTyYRKPrbxU+asg4Y/yx0IbMQ==
-X-Received: by 2002:a5d:4006:0:b0:2c7:1c36:3c67 with SMTP id n6-20020a5d4006000000b002c71c363c67mr10639996wrp.23.1678263082985;
-        Wed, 08 Mar 2023 00:11:22 -0800 (PST)
+        bh=A/GnPDgS88xNTx2XNIhiP45O7mjmL1plMVX41sUe2+8=;
+        b=G7fjQQPQSIAnmAUnVCuVPlLTgvZeGrRDTLY8cl5cjT5/dPV9l3UxD4fQ93yAFy2HSg
+         r8x/jGk8lBs6QpDhy5YoinQqwk8sx6uFELPHcyFA5yOp+t32Wn3cyUkEbNgaDGz20HJh
+         /BJ1d8J8auE7mf6iwYCrTdzyof61vsYQ/4UQXLp1iYDPCtOrOyMsV84Vg7uItBf2gbOp
+         VzHdDVqqBszXPCDADwLC9q4lSPGCMJpPyEsPtLGg6QJbl0yeGSVRt//DKPB0T7txXlQA
+         fCdsRTOcwquk8lQIkNcA4R/VFxn1kDyjfD2WmjGbyenAaAYLSS2+c0xXpZSb0CmsgWhJ
+         PyYQ==
+X-Gm-Message-State: AO0yUKXw4UFQCjBkcWIPFEkuUKkbmVriPfvGNp222LV/Bnwi72sEZnfL
+        Ks+UUxN7+Uaad8aGWoMVKZ7oAw==
+X-Google-Smtp-Source: AK7set+e7flPaKlH3cg4u7NLx8NHyCMBeTiS2fqGvGrkYw3YFUr/ZyGizxHyQIupOhmU1WlGo87ZPw==
+X-Received: by 2002:adf:ee4c:0:b0:2cd:8237:345b with SMTP id w12-20020adfee4c000000b002cd8237345bmr12745021wro.9.1678263088907;
+        Wed, 08 Mar 2023 00:11:28 -0800 (PST)
 Received: from ?IPV6:2a01:e0a:982:cbb0:b029:83b9:1fb8:7c34? ([2a01:e0a:982:cbb0:b029:83b9:1fb8:7c34])
-        by smtp.gmail.com with ESMTPSA id x5-20020a5d4445000000b002c70a0e2cd0sm14403687wrr.101.2023.03.08.00.11.21
+        by smtp.gmail.com with ESMTPSA id g15-20020a5d554f000000b002c5526234d2sm14730053wrw.8.2023.03.08.00.11.27
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 08 Mar 2023 00:11:21 -0800 (PST)
-Message-ID: <1529493a-67f6-4a0b-5ba2-595371cb690a@linaro.org>
-Date:   Wed, 8 Mar 2023 09:11:20 +0100
+        Wed, 08 Mar 2023 00:11:27 -0800 (PST)
+Message-ID: <b2a8a0ca-02b1-f792-a6ee-51f98ea615b0@linaro.org>
+Date:   Wed, 8 Mar 2023 09:11:26 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.7.2
 Reply-To: neil.armstrong@linaro.org
-Subject: Re: [PATCH 1/2] arm64: dts: qcom: sm8350: Mark UFS controller as
+Subject: Re: [PATCH 2/2] arm64: dts: qcom: sm8450: Mark UFS controller as
  cache coherent
 Content-Language: en-US
 To:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
@@ -65,9 +65,10 @@ To:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
 Cc:     konrad.dybcio@linaro.org, linux-arm-msm@vger.kernel.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
 References: <20230307153201.180626-1-manivannan.sadhasivam@linaro.org>
+ <20230307153201.180626-2-manivannan.sadhasivam@linaro.org>
 From:   Neil Armstrong <neil.armstrong@linaro.org>
 Organization: Linaro Developer Services
-In-Reply-To: <20230307153201.180626-1-manivannan.sadhasivam@linaro.org>
+In-Reply-To: <20230307153201.180626-2-manivannan.sadhasivam@linaro.org>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -81,26 +82,26 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 07/03/2023 16:32, Manivannan Sadhasivam wrote:
-> The UFS controller on SM8350 supports cache coherency, hence add the
+> The UFS controller on SM8450 supports cache coherency, hence add the
 > "dma-coherent" property to mark it as such.
 > 
-> Fixes: 59c7cf814783 ("arm64: dts: qcom: sm8350: Add UFS nodes")
+> Fixes: 07fa917a335e ("arm64: dts: qcom: sm8450: add ufs nodes")
 > Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
 > ---
->   arch/arm64/boot/dts/qcom/sm8350.dtsi | 1 +
+>   arch/arm64/boot/dts/qcom/sm8450.dtsi | 1 +
 >   1 file changed, 1 insertion(+)
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/sm8350.dtsi b/arch/arm64/boot/dts/qcom/sm8350.dtsi
-> index 1c97e28da6ad..1a5a612d4234 100644
-> --- a/arch/arm64/boot/dts/qcom/sm8350.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sm8350.dtsi
-> @@ -1664,6 +1664,7 @@ ufs_mem_hc: ufshc@1d84000 {
+> diff --git a/arch/arm64/boot/dts/qcom/sm8450.dtsi b/arch/arm64/boot/dts/qcom/sm8450.dtsi
+> index 1a744a33bcf4..3ef47b4e9af7 100644
+> --- a/arch/arm64/boot/dts/qcom/sm8450.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sm8450.dtsi
+> @@ -4003,6 +4003,7 @@ ufs_mem_hc: ufshc@1d84000 {
 >   			power-domains = <&gcc UFS_PHY_GDSC>;
 >   
 >   			iommus = <&apps_smmu 0xe0 0x0>;
 > +			dma-coherent;
 >   
->   			clock-names =
->   				"core_clk",
+>   			interconnects = <&aggre1_noc MASTER_UFS_MEM 0 &mc_virt SLAVE_EBI1 0>,
+>   					<&gem_noc MASTER_APPSS_PROC 0 &config_noc SLAVE_UFS_MEM_CFG 0>;
 
 Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
