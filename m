@@ -2,151 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 121736AFB6E
-	for <lists+devicetree@lfdr.de>; Wed,  8 Mar 2023 01:45:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C9D936AFB86
+	for <lists+devicetree@lfdr.de>; Wed,  8 Mar 2023 01:50:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229628AbjCHAps (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Mar 2023 19:45:48 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46018 "EHLO
+        id S229874AbjCHAuT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Mar 2023 19:50:19 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53212 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229477AbjCHApq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Mar 2023 19:45:46 -0500
-Received: from mail-pg1-x52c.google.com (mail-pg1-x52c.google.com [IPv6:2607:f8b0:4864:20::52c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8EBDDA8EB7;
-        Tue,  7 Mar 2023 16:45:45 -0800 (PST)
-Received: by mail-pg1-x52c.google.com with SMTP id d10so8700443pgt.12;
-        Tue, 07 Mar 2023 16:45:45 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112; t=1678236345;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=D0ax2sgEUzQvZjIaGlw0Pyd5UALWxKyMm5VBST2yrms=;
-        b=S6zpXba3J9uT8dvc2HWZijtfHcp2L7rJl2Ast5TkGZ8YVO/H6ll3ykNJjFHJsXnqux
-         ei6hh093Jk8HfmQwlRBUr7zzRDjo7T56wfbTsVrbwEpu55KtMBquJw7KWq8ZyLnNk2IN
-         /Hz0Uh9ce7j7kIf9FpHj4n2rpx7xJ9fYs75zCggSHD9pORo5XLVatbqSYvLThpz9i33j
-         +C2p5tIT3PGUOu7YHiNjtX6R0x8BCYDjSWowJvKqk8BP6Fd82fTSP69ESk2W8p3UNCpK
-         5wJCySoPBNXgQpKgvLVxMGxPKBfNTgBgrNVJjC40b7MS43p/nbppitfdNEdFglU6i6K+
-         +4SQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678236345;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=D0ax2sgEUzQvZjIaGlw0Pyd5UALWxKyMm5VBST2yrms=;
-        b=dh34AVw+fsZNPd2gXyi/i5spO3F9/9N8GxWk2Dy+mDUVhW1/U9PgAP24oxz9XOZH7m
-         16rGNb/baphHqlesVXGWD+tyQ7ncyEdNTCL0fidyRu/fVgPZ9Vt816BshHCpX53uJNXD
-         OkFS+xgXeiEXqD6wetJB4Z92+pb8qX3v5zEV8Vs3GcXTjY2BU2pI18mIFGxrdcvxhxvy
-         eUlwdLxIUr2iQXxVn6kIP+SmKQ28BrbcB2gM67SouS83/rK7/hy0CM2JEOlHRiwARWl2
-         P4rkCCt8VTqJANf2L/j8msPyu/mauPGMAnDwYKkR6+r9Cz4501jCp7hDYV+yjiQwqT4v
-         t/gw==
-X-Gm-Message-State: AO0yUKV5bbpdMja4Z/qcA5r5d9Bvp496XjOXQqAp84ZxVTu9qVc7vQ/I
-        RX5lW1m8Dlf6uf4PEWvhec4D178pb2yceg==
-X-Google-Smtp-Source: AK7set/rVZxSWwprvQ/WvKDRZWKKzRf3KDO7wMLtXsnaYD8WLoki0emzW55feMtlyajY9GwzZAtmPQ==
-X-Received: by 2002:a62:1741:0:b0:5b9:49a5:5ddc with SMTP id 62-20020a621741000000b005b949a55ddcmr14301856pfx.3.1678236345021;
-        Tue, 07 Mar 2023 16:45:45 -0800 (PST)
-Received: from Gentoo (n220246252084.netvigator.com. [220.246.252.84])
-        by smtp.gmail.com with ESMTPSA id 25-20020aa79259000000b005d866d184b5sm8345765pfp.46.2023.03.07.16.45.40
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 07 Mar 2023 16:45:44 -0800 (PST)
-Date:   Wed, 8 Mar 2023 08:45:37 +0800
-From:   Jianhua Lu <lujianhua000@gmail.com>
-To:     Linus Walleij <linus.walleij@linaro.org>
-Cc:     Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
+        with ESMTP id S229574AbjCHAuR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Mar 2023 19:50:17 -0500
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 60B3259E6F;
+        Tue,  7 Mar 2023 16:50:11 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+        bh=Q/T5ljm8LN7eH6ch+WyNNJmPboB5wqEu8gteW0WXaZ8=; b=hrq9G/3aEx0wPH6foCxe+34nsf
+        0CL6VymPt/TYQLT+ama4FVUlSwYYEblBtgvVDh5hT/BvuRdseiVYyfQkYMErGR5gRUZPI/w/qWulO
+        z0KVzZduP48fNSviq0EOp1aiCBfrCoJjMSYZxGHgeYndYu7mjGMZVx7YaSCRPiLRvsZI=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+        (envelope-from <andrew@lunn.ch>)
+        id 1pZi0B-006iqV-JE; Wed, 08 Mar 2023 01:49:55 +0100
+Date:   Wed, 8 Mar 2023 01:49:55 +0100
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Christian Marangi <ansuelsmth@gmail.com>
+Cc:     Florian Fainelli <f.fainelli@gmail.com>,
+        Vladimir Oltean <olteanv@gmail.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Russell King <linux@armlinux.org.uk>,
+        Gregory Clement <gregory.clement@bootlin.com>,
+        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+        John Crispin <john@phrozen.org>, netdev@vger.kernel.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        dri-devel@lists.freedesktop.org,
-        ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org
-Subject: Re: [PATCH v2 2/2] drm/panel: Add driver for Novatek NT36523
-Message-ID: <ZAfasb9aKTgyjbFc@Gentoo>
-References: <20230220121258.10727-1-lujianhua000@gmail.com>
- <20230220121258.10727-2-lujianhua000@gmail.com>
- <CACRpkdbZCZiMM_qeqMd9=txVvPVHEzM4szOnPR-gCYdiXW_9eA@mail.gmail.com>
+        linux-arm-kernel@lists.infradead.org, Lee Jones <lee@kernel.org>,
+        linux-leds@vger.kernel.org
+Subject: Re: [net-next PATCH 01/11] net: dsa: qca8k: add LEDs basic support
+Message-ID: <d1226e21-8150-4959-95b0-e9df2c460b81@lunn.ch>
+References: <20230307170046.28917-1-ansuelsmth@gmail.com>
+ <20230307170046.28917-2-ansuelsmth@gmail.com>
+ <b03334df-4389-44b5-ac85-8b0878c64512@lunn.ch>
+ <6407c6ea.050a0220.7c931.824f@mx.google.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CACRpkdbZCZiMM_qeqMd9=txVvPVHEzM4szOnPR-gCYdiXW_9eA@mail.gmail.com>
-X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+In-Reply-To: <6407c6ea.050a0220.7c931.824f@mx.google.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Mar 07, 2023 at 11:34:55PM +0100, Linus Walleij wrote:
-> Hi Jianhua,
+On Tue, Mar 07, 2023 at 06:57:10PM +0100, Christian Marangi wrote:
+> On Wed, Mar 08, 2023 at 12:16:13AM +0100, Andrew Lunn wrote:
+> > > +qca8k_setup_led_ctrl(struct qca8k_priv *priv)
+> > > +{
+> > > +	struct fwnode_handle *ports, *port;
+> > > +	int port_num;
+> > > +	int ret;
+> > > +
+> > > +	ports = device_get_named_child_node(priv->dev, "ports");
+> > > +	if (!ports) {
+> > > +		dev_info(priv->dev, "No ports node specified in device tree!\n");
+> > > +		return 0;
+> > > +	}
+> > > +
+> > > +	fwnode_for_each_child_node(ports, port) {
+> > > +		struct fwnode_handle *phy_node, *reg_port_node = port;
+> > > +
+> > > +		phy_node = fwnode_find_reference(port, "phy-handle", 0);
+> > > +		if (!IS_ERR(phy_node))
+> > > +			reg_port_node = phy_node;
+> > 
+> > I don't understand this bit. Why are you looking at the phy-handle?
+> > 
+> > > +
+> > > +		if (fwnode_property_read_u32(reg_port_node, "reg", &port_num))
+> > > +			continue;
+> > 
+> > I would of expect port, not reg_port_node. I'm missing something
+> > here....
+> > 
 > 
-> thanks for your patch!
+> It's really not to implement ugly things like "reg - 1"
 > 
-> It appears Konrad is working on a very similar driver, so I suggest merging
-> them into one Novatek NT36523 driver.
+> On qca8k the port index goes from 0 to 6.
+> 0 is cpu port 1
+> 1 is port0 at mdio reg 0
+> 2 is port1 at mdio reg 1
+> ...
+> 6 is cpu port 2
 > 
-> Possibly we can fix this up first and then add Konrads Lenovo-panel with
-> a patch on top.
+> Each port have a phy-handle that refer to a phy node with the correct
+> reg and that reflect the correct port index.
 > 
-> On Mon, Feb 20, 2023 at 1:13 PM Jianhua Lu <lujianhua000@gmail.com> wrote:
-> 
-> > Add a driver for panels using the Novatek NT36523 display driver IC.
-> >
-> > Signed-off-by: Jianhua Lu <lujianhua000@gmail.com>
-> 
-> (...)
-> 
-> I like how you abstract the panel with init commands in the panel info.
-> 
-> > +enum dsi_cmd_type {
-> > +       INIT_DCS_CMD,
-> > +       DELAY_CMD,
-> > +};
-> > +
-> > +struct panel_init_cmd {
-> > +       enum dsi_cmd_type type;
-> > +       size_t len;
-> > +       const char *data;
-> > +};
-> > +
-> > +#define _INIT_DCS_CMD(...) { \
-> > +       .type = INIT_DCS_CMD, \
-> > +       .len = sizeof((char[]){__VA_ARGS__}), \
-> > +       .data = (char[]){__VA_ARGS__} }
-> > +
-> > +#define _INIT_DELAY_CMD(...) { \
-> > +       .type = DELAY_CMD,\
-> > +       .len = sizeof((char[]){__VA_ARGS__}), \
-> > +       .data = (char[]){__VA_ARGS__} }
-> 
-> I have seen this type of reinvented wheels a few times now. Don't do this.
-> 
-> Look into other recently merged drivers and look how they do it, for example
-> drivers/gpu/drm/panel/panel-himax-hx8394.c
-> 
-> For example:
-> 
-> - Use mipi_dsi_dcs_write_seq()
-> 
-> - If the delay is just used at one point in the sequence, do not invent
->   a command language like above for it, open code the delay instead
-> 
-> - Try to decode as much magic as possible, if you look in Konrads
->   driver you clearly see some standard MIPI commands, I bet you have
->   some too.
-> 
-> - Maybe use callbacks to send sequences instead of tables, like in
->   the himax driver?
-Maybe I should create a wrapper of mipi_dsi_dcs_write_seq() for sync dual dsi mode.
-> 
-> Other than that it seems like something that could also handle the Lenovo
-> display, or the other way around, I don't know which driver is the best
-> starting point, but this one has the right Novatek name at least.
-> 
-> Yours,
-> Linus Walleij
+> Tell me if this looks wrong, for qca8k we have qca8k_port_to_phy() and
+> at times we introduced the mdio thing to describe the port - 1 directly
+> in DT. If needed I can drop the additional fwnode and use this function
+> but I would love to use what is defined in DT thatn a simple - 1.
+
+This comes back to the off list discussion earlier today. What you
+actually have here are MAC LEDs, not PHY LEDs. They are implemented in
+the MAC, not the PHY. To the end user, it should not matter, they
+blink when you would expect.
+
+So your addressing should be based around the MAC port number, not the
+PHY.
+
+Also, at the moment, all we are adding are a bunch of LEDs. There is
+no link to a netdev at this point. At least, i don't see one. Be once
+we start using ledtrig-netdev we will need that link to a netdev. Take
+a look in my git tree at the last four patch. They add an additional
+call to get the device an LED is attached to.
+
+     Andrew
