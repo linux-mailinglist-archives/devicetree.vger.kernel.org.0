@@ -2,31 +2,30 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4CD966B07D7
-	for <lists+devicetree@lfdr.de>; Wed,  8 Mar 2023 14:02:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7298B6B07B8
+	for <lists+devicetree@lfdr.de>; Wed,  8 Mar 2023 14:01:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230346AbjCHNCt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Mar 2023 08:02:49 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38942 "EHLO
+        id S231551AbjCHNBQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Mar 2023 08:01:16 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39122 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229874AbjCHNCP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Mar 2023 08:02:15 -0500
-X-Greylist: delayed 430 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Wed, 08 Mar 2023 05:00:25 PST
-Received: from smtp-42ac.mail.infomaniak.ch (smtp-42ac.mail.infomaniak.ch [84.16.66.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 111E0867FF
-        for <devicetree@vger.kernel.org>; Wed,  8 Mar 2023 05:00:24 -0800 (PST)
+        with ESMTP id S231465AbjCHNAh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Mar 2023 08:00:37 -0500
+Received: from smtp-8faa.mail.infomaniak.ch (smtp-8faa.mail.infomaniak.ch [IPv6:2001:1600:4:17::8faa])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 051B8C488B
+        for <devicetree@vger.kernel.org>; Wed,  8 Mar 2023 04:59:57 -0800 (PST)
 Received: from smtp-2-0000.mail.infomaniak.ch (unknown [10.5.36.107])
-        by smtp-3-3000.mail.infomaniak.ch (Postfix) with ESMTPS id 4PWsgM3BnJzMrQkn;
+        by smtp-3-3000.mail.infomaniak.ch (Postfix) with ESMTPS id 4PWsgN1RCfzMrV3y;
+        Wed,  8 Mar 2023 13:53:20 +0100 (CET)
+Received: from unknown by smtp-2-0000.mail.infomaniak.ch (Postfix) with ESMTPA id 4PWsgM3xh0zMsl1F;
         Wed,  8 Mar 2023 13:53:19 +0100 (CET)
-Received: from unknown by smtp-2-0000.mail.infomaniak.ch (Postfix) with ESMTPA id 4PWsgL5r3MzMsl1Z;
-        Wed,  8 Mar 2023 13:53:18 +0100 (CET)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=pschenker.ch;
-        s=20220412; t=1678279999;
-        bh=ws9lUnpRTqnTj/i1ccaVLSwptFwo0tpcYo9l93lctbo=;
+        s=20220412; t=1678280000;
+        bh=HEmQDKDhNqtEuwFVObT7pXJ0pYVsgepFXgdiW53G8sU=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=SqMMTMWsfwGiKCeZTDBiw2lYF+xKu6SyiqqUsnmRCOB0JCrmh1hNGOShARuMoVO5y
-         oItqtvyWMhwf3dIg9S68mvbXziH7YMad7MMlcbn8HSQZVz+ILWfkSOpp3pW/55iUub
-         rqORvCdLWZA7Q24Yjy9dAUSM2hPhUz3goM1k31Gg=
+        b=SjLIvm1rlMjDln9zH9rxWBgE1wjLi728LPP2G8hpA0z1FTd5p7V5F/GAnfO4u0i0u
+         BC9WLTesJtJbfaGKcwi5wcHUPtTN9rSInqVl/UZFuODKV3sH9J7LHpwDmRcjKp/9ou
+         eNKA85pXLqrXzLXpc2+oqfTfcsdngPoWuVELraRM=
 From:   Philippe Schenker <dev@pschenker.ch>
 To:     devicetree@vger.kernel.org, Shawn Guo <shawnguo@kernel.org>,
         Sascha Hauer <s.hauer@pengutronix.de>
@@ -38,20 +37,28 @@ Cc:     NXP Linux Team <linux-imx@nxp.com>,
         linux-arm-kernel@lists.infradead.org,
         Fabio Estevam <festevam@gmail.com>,
         Philippe Schenker <philippe.schenker@toradex.com>,
+        Denys Drozdov <denys.drozdov@toradex.com>,
+        Fabio Estevam <festevam@denx.de>,
+        Frieder Schrempf <frieder.schrempf@kontron.de>,
+        Li Yang <leoyang.li@nxp.com>,
+        Marcel Ziswiler <marcel.ziswiler@toradex.com>,
+        Marek Vasut <marex@denx.de>,
+        Matthias Schiffer <matthias.schiffer@tq-group.com>,
+        Max Krummenacher <max.krummenacher@toradex.com>,
+        Stefan Wahren <stefan.wahren@i2se.com>,
         linux-kernel@vger.kernel.org
-Subject: [PATCH v1 21/25] arm64: dts: colibri-imx8x: Add todo comments
-Date:   Wed,  8 Mar 2023 13:52:55 +0100
-Message-Id: <20230308125300.58244-22-dev@pschenker.ch>
+Subject: [PATCH v1 22/25] dt-bindings: arm: fsl: Add colibri-imx8x carrier boards
+Date:   Wed,  8 Mar 2023 13:52:56 +0100
+Message-Id: <20230308125300.58244-23-dev@pschenker.ch>
 X-Mailer: git-send-email 2.39.2
 In-Reply-To: <20230308125300.58244-1-dev@pschenker.ch>
 References: <20230308125300.58244-1-dev@pschenker.ch>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Infomaniak-Routing: alpha
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS,URIBL_BLOCKED autolearn=unavailable autolearn_force=no
-        version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -60,88 +67,36 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 From: Philippe Schenker <philippe.schenker@toradex.com>
 
-Highlight what is still missing.
+Prepare the dt-bindings for the new colibri-imx8x carrier-boards Aster
+and Iris.
+
+The Toradex SoM standard is called Colibri, fix the typo.
 
 Signed-off-by: Philippe Schenker <philippe.schenker@toradex.com>
 ---
 
- .../boot/dts/freescale/imx8x-colibri.dtsi     | 28 +++++++++++++++++++
- 1 file changed, 28 insertions(+)
+ Documentation/devicetree/bindings/arm/fsl.yaml | 5 ++++-
+ 1 file changed, 4 insertions(+), 1 deletion(-)
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8x-colibri.dtsi b/arch/arm64/boot/dts/freescale/imx8x-colibri.dtsi
-index e93e22c4053b..f70ab4db92ed 100644
---- a/arch/arm64/boot/dts/freescale/imx8x-colibri.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8x-colibri.dtsi
-@@ -31,6 +31,10 @@ reg_module_3v3: regulator-module-3v3 {
- 	};
- };
+diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml b/Documentation/devicetree/bindings/arm/fsl.yaml
+index 442ce8f4d675..6cb78c4ac614 100644
+--- a/Documentation/devicetree/bindings/arm/fsl.yaml
++++ b/Documentation/devicetree/bindings/arm/fsl.yaml
+@@ -1135,10 +1135,13 @@ properties:
+               - fsl,imx8dxl-evk           # i.MX8DXL EVK Board
+           - const: fsl,imx8dxl
  
-+/* TODO Analogue Inputs */
-+
-+/* TODO Cooling maps for DX */
-+
- &cpu_alert0 {
- 	hysteresis = <2000>;
- 	temperature = <90000>;
-@@ -64,6 +68,10 @@ ethphy0: ethernet-phy@2 {
- 	};
- };
+-      - description: i.MX8QXP Boards with Toradex Coilbri iMX8X Modules
++      - description: i.MX8QXP Boards with Toradex Colibri iMX8X Modules
+         items:
+           - enum:
++              - toradex,colibri-imx8x-aster   # Colibri iMX8X Module on Aster Board
+               - toradex,colibri-imx8x-eval-v3 # Colibri iMX8X Module on Colibri Evaluation Board V3
++              - toradex,colibri-imx8x-iris    # Colibri iMX8X Module on Iris Board
++              - toradex,colibri-imx8x-iris-v2 # Colibri iMX8X Module on Iris Board V2
+           - const: toradex,colibri-imx8x
+           - const: fsl,imx8qxp
  
-+/* TODO flexcan1 - 3 */
-+
-+/* TODO GPU */
-+
- /* On-module I2C */
- &i2c0 {
- 	#address-cells = <1>;
-@@ -92,6 +100,10 @@ touchscreen@2c {
- 	};
- };
- 
-+/* TODO i2c lvds0 accessible on FFC (X2) */
-+
-+/* TODO i2c lvds1 accessible on FFC (X3) */
-+
- /* Colibri I2C */
- &i2c1 {
- 	#address-cells = <1>;
-@@ -109,6 +121,8 @@ &jpegenc {
- 	status = "okay";
- };
- 
-+/* TODO Parallel RRB */
-+
- /* Colibri UART_B */
- &lpuart0 {
- 	pinctrl-names = "default";
-@@ -307,6 +321,14 @@ &lsio_pwm2 {
- 	pinctrl-names = "default";
- };
- 
-+/* TODO MIPI CSI */
-+
-+/* TODO MIPI DSI with DSI-to-HDMI bridge lt8912 */
-+
-+/* TODO on-module PCIe for Wi-Fi */
-+
-+/* TODO On-module i2s / Audio */
-+
- /* On-module eMMC */
- &usdhc1 {
- 	pinctrl-names = "default", "state_100mhz", "state_200mhz";
-@@ -334,6 +356,12 @@ &usdhc2 {
- 	vmmc-supply = <&reg_module_3v3>;
- };
- 
-+/* TODO USB Client/Host */
-+
-+/* TODO USB Host */
-+
-+/* TODO VPU Encoder/Decoder */
-+
- &iomuxc {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&pinctrl_ext_io0>, <&pinctrl_hog0>, <&pinctrl_hog1>,
 -- 
 2.39.2
 
