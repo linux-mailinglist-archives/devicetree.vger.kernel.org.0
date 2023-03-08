@@ -2,94 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 216346B041A
-	for <lists+devicetree@lfdr.de>; Wed,  8 Mar 2023 11:25:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8FA326B0421
+	for <lists+devicetree@lfdr.de>; Wed,  8 Mar 2023 11:26:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229717AbjCHKZV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Mar 2023 05:25:21 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59250 "EHLO
+        id S230433AbjCHK0H (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Mar 2023 05:26:07 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60178 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230323AbjCHKZS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Mar 2023 05:25:18 -0500
-Received: from mail-io1-xd30.google.com (mail-io1-xd30.google.com [IPv6:2607:f8b0:4864:20::d30])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 20BA8B6939
-        for <devicetree@vger.kernel.org>; Wed,  8 Mar 2023 02:25:12 -0800 (PST)
-Received: by mail-io1-xd30.google.com with SMTP id m22so6591967ioy.4
-        for <devicetree@vger.kernel.org>; Wed, 08 Mar 2023 02:25:12 -0800 (PST)
+        with ESMTP id S230422AbjCHKZn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Mar 2023 05:25:43 -0500
+Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com [IPv6:2a00:1450:4864:20::534])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C2E64B78B5
+        for <devicetree@vger.kernel.org>; Wed,  8 Mar 2023 02:25:37 -0800 (PST)
+Received: by mail-ed1-x534.google.com with SMTP id x3so63561552edb.10
+        for <devicetree@vger.kernel.org>; Wed, 08 Mar 2023 02:25:37 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1678271111;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=vk4eRG0LrzbHDKK00dsD4iBuyY/4ZAQyp3TpAqYJX3Q=;
-        b=EftcY01/oCV/raNvODG0Gy7CAtfgmEemBydzNyAQ/5Z8JDAjqoXLq8pFoIQpGEcWYn
-         nu75sxupN/sQVT1eTmTNkYDC4NGXFqPitKQCL4odiDhzr0iZEhGrzCytxWkP57LBugz1
-         ovgS6RvevaA0mF6dPaeC7GeF5zW7+oi9/DjqY=
+        d=linaro.org; s=google; t=1678271136;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=naE0AMEKJ5IdS0Ovxmj4rx2/QwnramEvAuCqlBIumMM=;
+        b=dVDL5zUG4JGyuWAHDz+UPheNWi5fB+AUPJUeNsSYz8UBQyU+UPr07Oy87rHoM57KqG
+         SiYm09nouXAOu1xy20isJg9rflIeHpgQLcyzVEuBtph/mbXyyYxktRtMSVvFvrRcmg80
+         0j7T1UlWHyAxXmVb2lFSAP5bCYAtwzIIKt88+f+6e0Ji/APZh3H+nUVvF4tLW49zF2xS
+         dZijPFAn2TARv1H6RyZ9mW+mTXtx8+3GxekBQYq2nVNcNBs7DN8qJANRSUDkvV1RZ11C
+         Q2PE4bGIT749q4HTRjLbQSo9+D7XAqV+syPq9tHOyNnIP/8Ns6mju78vrp3LwbyAxGth
+         oaMA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678271111;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=vk4eRG0LrzbHDKK00dsD4iBuyY/4ZAQyp3TpAqYJX3Q=;
-        b=VP7suTDjXxu0grs5Ssp7+RwYhgcTW1iIEbwBLYI+0+uxYoM7e47iIv58SlBdKzQh5+
-         YTMB7in2v/Eys5PL0mBQQLraG/BHU6YmiYm1wWxjKliu0KZACVry3GVeVTR+AIEIeC12
-         07/HeD+5gxHeNMeyqimsUrzmNVwr1fT5igXs04uUn6GHI9Q5NKox8zwD2uGUi5l5pvZ9
-         6ZFi1iC4ri5ileXVKvFGUsheiJoWF8tFhrRoMwWqJi3Qcbh9m+AMW2c1fwJV5Q0DUdXi
-         EYQpCDtUV5MnIDoz+t4TLBJzFmuxDj/FE2i0Y+qAca0JUSPfEet3p+BE4kgVuKlnGkm/
-         +sxA==
-X-Gm-Message-State: AO0yUKWrYPMopVlLUcTTVLUWSFpCbbbmew6HrWLIfMtoA70gRKlDMOf0
-        V5DsP49rDdWWsd8/BkPCx8w/KxfHwJ4dYlog81ahnQ==
-X-Google-Smtp-Source: AK7set+QhdrKShMQqdGse4Hq6359ifcnSCbtiqiWfe6LuBFF3HsmSOEUtWdcF89t709UweFPbwi9ZG1akiBqjkVk2co=
-X-Received: by 2002:a05:6602:154:b0:74c:8243:9290 with SMTP id
- v20-20020a056602015400b0074c82439290mr8204213iot.4.1678271111488; Wed, 08 Mar
- 2023 02:25:11 -0800 (PST)
+        d=1e100.net; s=20210112; t=1678271136;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=naE0AMEKJ5IdS0Ovxmj4rx2/QwnramEvAuCqlBIumMM=;
+        b=zFPBoWVkVGw852wf6DepidnbpqCUSjHhpPiJKsHnMFI0hBw/ZpwPv0pIcGGH6IetcN
+         usJPiA7foSKOqukpaODP7D88Wthg11BfNwlPKji8ctoF/FSTRT3pVTQDzoCxoG5sniLQ
+         tLSvs4JhgCiiFpObcc8jsl5TbxKwsEIsy2ncnV10xrojZbPP3J2iZNiIGyjAVk8796vQ
+         qKVqPxKP5+JklTAXcPMJM4hykUHzCk7Sa7VwBWCMkjRrNMx/xdwrvHq7rq+riR3yhS3E
+         CbAtHStPPHZFqSsn2zEwncOuW/GeUWzuANoBvK9BBsxZWcTRrTFcDkzXN6VEFBfSLHJD
+         yLig==
+X-Gm-Message-State: AO0yUKUCYVc93wHFeQeWFC0SHSsoBI+gAWAahLNGTolyfweFkLdM1XlC
+        ZAc6/P+62uvBXG4Djq24JckHNw==
+X-Google-Smtp-Source: AK7set8Fyw8TIFE80cIdQQaNSL2L+M3bCLUt7FEH9FghDHD/wj4KnH/NSk2TBZENzRYuKxK5d6OVnA==
+X-Received: by 2002:a17:907:94c6:b0:8b1:2c37:ae97 with SMTP id dn6-20020a17090794c600b008b12c37ae97mr20440340ejc.43.1678271136253;
+        Wed, 08 Mar 2023 02:25:36 -0800 (PST)
+Received: from ?IPV6:2a02:810d:15c0:828:ff33:9b14:bdd2:a3da? ([2a02:810d:15c0:828:ff33:9b14:bdd2:a3da])
+        by smtp.gmail.com with ESMTPSA id v9-20020a17090651c900b008b2e4f88ed7sm7335405ejk.111.2023.03.08.02.25.35
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 08 Mar 2023 02:25:35 -0800 (PST)
+Message-ID: <378db0d7-4d5a-a445-3e1a-ee6d8da5a9e2@linaro.org>
+Date:   Wed, 8 Mar 2023 11:25:34 +0100
 MIME-Version: 1.0
-References: <20230303143350.815623-1-treapking@chromium.org>
- <20230303143350.815623-6-treapking@chromium.org> <ZAXT0JFjERb8Q36f@smile.fi.intel.com>
-In-Reply-To: <ZAXT0JFjERb8Q36f@smile.fi.intel.com>
-From:   Pin-yen Lin <treapking@chromium.org>
-Date:   Wed, 8 Mar 2023 18:25:00 +0800
-Message-ID: <CAEXTbpecGhEDrffDobb4NgLw8+vMK2_yVmJw8JGUDruTALm4-w@mail.gmail.com>
-Subject: Re: [PATCH v13 05/10] drm/bridge: anx7625: Check for Type-C during
- panel registration
-To:     Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Cc:     Andrzej Hajda <andrzej.hajda@intel.com>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Robert Foss <rfoss@kernel.org>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Jonas Karlman <jonas@kwiboo.se>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.8.0
+Subject: Re: [PATCH v1 2/2] hwmon: ina2xx: add optional regulator support
+Content-Language: en-US
+To:     Svyatoslav Ryhel <clamor95@gmail.com>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Jean Delvare <jdelvare@suse.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Daniel Scally <djrscally@gmail.com>,
-        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        "Rafael J . Wysocki" <rafael@kernel.org>,
-        Prashant Malani <pmalani@chromium.org>,
-        Benson Leung <bleung@chromium.org>,
-        Guenter Roeck <groeck@chromium.org>,
-        Xin Ji <xji@analogixsemi.com>,
-        Javier Martinez Canillas <javierm@redhat.com>,
-        Lyude Paul <lyude@redhat.com>, linux-kernel@vger.kernel.org,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        chrome-platform@lists.linux.dev,
-        =?UTF-8?B?TsOtY29sYXMgRiAuIFIgLiBBIC4gUHJhZG8=?= 
-        <nfraprado@collabora.com>, Marek Vasut <marex@denx.de>,
-        Hsin-Yi Wang <hsinyi@chromium.org>, devicetree@vger.kernel.org,
-        Allen Chen <allen.chen@ite.com.tw>,
-        dri-devel@lists.freedesktop.org,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        Stephen Boyd <swboyd@chromium.org>, linux-acpi@vger.kernel.org,
-        =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= 
-        <u.kleine-koenig@pengutronix.de>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>
+Cc:     linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20230308094024.14115-1-clamor95@gmail.com>
+ <20230308094024.14115-3-clamor95@gmail.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230308094024.14115-3-clamor95@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -98,41 +81,43 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-HI Andy,
+On 08/03/2023 10:40, Svyatoslav Ryhel wrote:
+> Some devices may need a specific supply provided
+> for this sensor to work properly, like p895 does.
+> 
+> Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
+> ---
+>  drivers/hwmon/ina2xx.c | 12 ++++++++++++
+>  1 file changed, 12 insertions(+)
+> 
+> diff --git a/drivers/hwmon/ina2xx.c b/drivers/hwmon/ina2xx.c
+> index 00fc70305a89..4a3e2b1bbe8b 100644
+> --- a/drivers/hwmon/ina2xx.c
+> +++ b/drivers/hwmon/ina2xx.c
+> @@ -119,6 +119,7 @@ struct ina2xx_data {
+>  	long power_lsb_uW;
+>  	struct mutex config_lock;
+>  	struct regmap *regmap;
+> +	struct regulator *vdd_supply;
+>  
+>  	const struct attribute_group *groups[INA2XX_MAX_ATTRIBUTE_GROUPS];
+>  };
+> @@ -656,6 +657,17 @@ static int ina2xx_probe(struct i2c_client *client)
+>  		return PTR_ERR(data->regmap);
+>  	}
+>  
+> +	data->vdd_supply = devm_regulator_get_optional(dev, "vdd");
+> +	if (IS_ERR(data->vdd_supply))
+> +		return dev_err_probe(dev, PTR_ERR(data->vdd_supply),
+> +				     "failed to get vdd regulator\n");
+> +
+> +	ret = regulator_enable(data->vdd_supply);
+> +	if (ret < 0) {
+> +		dev_err(dev, "failed to enable vdd power supply\n");
+> +		return ret;
 
-On Mon, Mar 6, 2023 at 7:52=E2=80=AFPM Andy Shevchenko
-<andriy.shevchenko@linux.intel.com> wrote:
->
-> On Fri, Mar 03, 2023 at 10:33:45PM +0800, Pin-yen Lin wrote:
-> > The output port endpoints can be connected to USB-C connectors.
-> > Running drm_of_find_panel_or_bridge() with such endpoints leads to
-> > a continuous return value of -EPROBE_DEFER, even though there is
-> > no panel present.
-> >
-> > To avoid this, check for the existence of a "mode-switch" property in
-> > the port endpoint, and skip panel registration completely if so.
->
-> ...
->
-> > +     port_node =3D of_graph_get_port_by_id(np, 1);
-> > +     count =3D typec_mode_switch_node_count(&port_node->fwnode);
->
-> Do you need to drop reference count here?
-> (I don't know myself, so, please check this)
->
-> If no, patch LGTM.
+And where is disable? On each error path, removal etc.
 
-The helper completes the for-loop of fwnode_for_each_child_node, which
-drops the reference count whenever the next node is get. So we don't
-need drop the reference count here.
->
-> > +     if (count)
-> > +             return 0;
->
-> --
-> With Best Regards,
-> Andy Shevchenko
->
->
 Best regards,
-Pin-yen
+Krzysztof
+
