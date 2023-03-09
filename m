@@ -2,268 +2,684 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B624B6B1FA6
-	for <lists+devicetree@lfdr.de>; Thu,  9 Mar 2023 10:15:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 932256B1FAD
+	for <lists+devicetree@lfdr.de>; Thu,  9 Mar 2023 10:16:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230016AbjCIJP3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Mar 2023 04:15:29 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41628 "EHLO
+        id S231229AbjCIJQL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Mar 2023 04:16:11 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42760 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229994AbjCIJPY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Mar 2023 04:15:24 -0500
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 72E9F769DF;
-        Thu,  9 Mar 2023 01:15:18 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1678353318; x=1709889318;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=2T70OKG7KgIEMwaSO0d7AReWE5H9q7hJM3GfzyRu8mY=;
-  b=icJ7HdNRZE1wAF+mvOFyRI0ykgz8ikJHn0uc5BedtLwmI82UW/PdTo1E
-   cuc3hx9eyFqNookEgiJP6esbu4q270jjAo668NnlGz0e2CyQpYPovlawl
-   iu7disYXb0cyU72B8+RIJha6HQlAg5b/RbrwejnIRYCNDrobU4AjJu/F2
-   YtGpomjwVOfnYEfpFNM12KxWkqkbjaRM6UU6anMpjc178O2nzWSoCPMmw
-   FHamj0BUYKKv6WKS3NReqwvCIy2gEsKIImFQJS1RJPLZq4CzYLf8aT0Uf
-   FnpXFIGDMBs5XapAvWu8OyT5hpbsIMQm+eqzXsdVjzXpTjTlCUJcffQHO
-   Q==;
-X-IronPort-AV: E=Sophos;i="5.98,245,1673938800"; 
-   d="asc'?scan'208";a="203992667"
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa3.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 09 Mar 2023 02:15:17 -0700
-Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
- chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.16; Thu, 9 Mar 2023 02:15:17 -0700
-Received: from wendy (10.10.115.15) by chn-vm-ex03.mchp-main.com
- (10.10.85.151) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.16 via Frontend
- Transport; Thu, 9 Mar 2023 02:15:15 -0700
-Date:   Thu, 9 Mar 2023 09:14:46 +0000
-From:   Conor Dooley <conor.dooley@microchip.com>
-To:     Mike Rapoport <rppt@kernel.org>
-CC:     Conor Dooley <conor@kernel.org>, <palmer@dabbelt.com>,
-        <linux-riscv@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <frowand.list@gmail.com>,
-        <robh+dt@kernel.org>, <mick@ics.forth.gr>,
-        <paul.walmsley@sifive.com>, <aou@eecs.berkeley.edu>,
-        <Valentina.FernandezAlanis@microchip.com>,
-        <Daire.McNamara@microchip.com>
-Subject: Re: RISC-V reserved memory problems
-Message-ID: <3ffac9cc-ffb2-4e16-ad18-ff1ed4b6289f@spud>
-References: <8e10bf15-9fa9-fe90-1656-35bf3e87e7f8@microchip.com>
- <f8e67f82-103d-156c-deb0-d6d6e2756f5e@microchip.com>
- <Y9wytv5KSt1ca+td@spud>
- <ZAchb/DfbIh+qaE4@kernel.org>
+        with ESMTP id S230494AbjCIJP7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Mar 2023 04:15:59 -0500
+Received: from mx.kernkonzept.com (serv1.kernkonzept.com [IPv6:2a01:4f8:1c1c:b490::2])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 997C78C83D;
+        Thu,  9 Mar 2023 01:15:35 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=kernkonzept.com; s=mx1; h=Content-Transfer-Encoding:MIME-Version:Message-Id
+        :Date:Subject:Cc:To:From:References:In-Reply-To:Sender:Reply-To:Content-Type:
+        Content-ID:Content-Description;
+        bh=/Iruk07udClqOidKd3XLs37bnerqa53fIBHH8Cf4z+g=; b=dkM1Xf0o5eKJJaLbRbWqo1KatB
+        KXSPh431NzObsm1Oop/VaEt2rNeMk6CaGfUSS5Bo0TlnRhVpz2Dx/fl0C94th5T9iNkI5zPlrX4Zf
+        CFCo4JDRRafFQHV9XTZ5zWBW/AYAzh3IEe4fm2jISmt92auIOJ+TXUpHbVIBiAncyxY9c2ngz3npC
+        sSPezLzTrjqFEzJg5UI72N1Rr9uY0ZXv9GhEDmAgB1f0ODKrpFHgvWzybBv07LbC/yKweidlgINtY
+        b1fagPsnBYMNZ4d+7SKVJM9QzKwq+wKkI2hDvvjlZSQbzS0kbeKgKoBMowiKmxbUWFfCEb2cmY0fB
+        HSMUA/JA==;
+Received: from [10.22.3.24] (helo=kernkonzept.com)
+        by mx.kernkonzept.com with esmtpsa (TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim 4.94.2)
+        id 1paCMw-00FObN-8o; Thu, 09 Mar 2023 10:15:26 +0100
+From:   Stephan Gerhold <stephan.gerhold@kernkonzept.com>
+To:     Bjorn Andersson <andersson@kernel.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+        Nikita Travkin <nikita@trvn.ru>, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, Stephan Gerhold <stephan@gerhold.net>,
+        Stephan Gerhold <stephan.gerhold@kernkonzept.com>
+Subject: [PATCH] arm64: dts: qcom: msm8916: Move WCN compatible to boards
+Date:   Thu,  9 Mar 2023 10:14:52 +0100
+Message-Id: <20230309091452.1011776-1-stephan.gerhold@kernkonzept.com>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="McODTL91jRNtt7ou"
-Content-Disposition: inline
-In-Reply-To: <ZAchb/DfbIh+qaE4@kernel.org>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
---McODTL91jRNtt7ou
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On MSM8916 the wireless connectivity functionality (WiFi/Bluetooth) is
+split into the digital part inside the SoC and the analog RF part inside
+a supplementary WCN36xx chip. For MSM8916, three different options
+exist:
 
-On Tue, Mar 07, 2023 at 01:35:11PM +0200, Mike Rapoport wrote:
-> Hi Conor,
->=20
-> Sorry for the delay, somehow this slipped between the cracks.
+  - WCN3620  (WLAN 802.11 b/g/n 2.4 GHz + Bluetooth)
+  - WCN3660B (WLAN 802.11 a/b/g/n 2.4/5 GHz + Bluetooth)
+  - WCN3680B (WLAN 802.11ac 2.4/5 GHz + Bluetooth)
 
-No worries.
+Choosing one of these is up to the board vendor. This means that the
+compatible belongs into the board-specific DT part so people porting
+new boards pay attention to set the correct compatible.
 
-> On Thu, Feb 02, 2023 at 10:01:26PM +0000, Conor Dooley wrote:
-> > Hullo Palmer, Mike & whoever else may read this,
-> >=20
-> > Just reviving this thread from a little while ago as I have been in the
-> > area again recently...
->=20
-> TBH, I didn't really dig deep into the issues,
+Right now msm8916.dtsi sets "qcom,wcn3620" as default compatible,
+which does not work at all for boards that have WCN3660B or WCN3680B.
 
-I only preserved most of the context here to point out that it wasn't an
-isolated issue, the top-down/bottom-up bit is the main part that I was
-interested in. The others are fixed, or workaround-able without
-"harming" anyone else.
+Remove the default compatible from msm8196.dtsi and move it to the board
+DT as follows:
 
-> but the thought I had was
-> what if DT was mapped via fixmap until the setup_vm_final() and then it
-> would be possible to call DT methods early.
+  - Boards with only &pronto { status = "okay"; } used the default
+    "qcom,wcn3620" so far. They now set this explicitly for &wcnss_iris.
+  - Boards with &pronto { ... iris { compatible = "qcom,wcn3660b"; }};
+    already had an override that just moves to &wcnss_iris now.
+  - For msm8916-samsung-a2015-common.dtsi the WCN compatible differs for
+    boards making use of it (a3u: wcn3620, a5u: wcn3660b, e2015: wcn3620)
+    so the definitions move to the board-specific DT part.
 
-=46rom my memory, this would be more along the lines of what arm64 does.
-I'll give it a shot and see how it goes. I figure it'll take me some
-time!
+Since this requires touching all the board DTs, use this as a chance to
+name the WCNSS-related labels consistently, so everything is grouped
+properly when sorted alphabetically.
 
-> Could be I'm shooting in the dark :)
+No functional change, just clean-up for more clarity & easier porting.
+Aside from ordering the generated DTBs are identical.
 
-A pointer on where to start is helpful, even if it is "rewrite a bunch
-of stuff".
+Signed-off-by: Stephan Gerhold <stephan.gerhold@kernkonzept.com>
+---
+ arch/arm64/boot/dts/qcom/apq8016-sbc.dts      | 15 ++++++++-----
+ .../boot/dts/qcom/msm8916-acer-a1-724.dts     | 12 ++++++----
+ .../boot/dts/qcom/msm8916-alcatel-idol347.dts | 12 ++++++----
+ .../arm64/boot/dts/qcom/msm8916-asus-z00l.dts | 12 ++++++----
+ .../boot/dts/qcom/msm8916-gplus-fl8005a.dts   | 12 ++++++----
+ .../arm64/boot/dts/qcom/msm8916-huawei-g7.dts | 12 ++++++----
+ .../boot/dts/qcom/msm8916-longcheer-l8150.dts | 12 ++++++----
+ .../boot/dts/qcom/msm8916-longcheer-l8910.dts | 12 ++++++----
+ arch/arm64/boot/dts/qcom/msm8916-pm8916.dtsi  | 22 +++++++++----------
+ .../qcom/msm8916-samsung-a2015-common.dtsi    |  4 ----
+ .../boot/dts/qcom/msm8916-samsung-a3u-eur.dts |  8 +++++++
+ .../boot/dts/qcom/msm8916-samsung-a5u-eur.dts | 14 +++++++-----
+ .../qcom/msm8916-samsung-e2015-common.dtsi    |  8 +++++++
+ .../dts/qcom/msm8916-samsung-gt5-common.dtsi  | 16 +++++++-------
+ .../dts/qcom/msm8916-samsung-j5-common.dtsi   | 12 ++++++----
+ .../dts/qcom/msm8916-samsung-serranove.dts    | 16 +++++++-------
+ arch/arm64/boot/dts/qcom/msm8916-ufi.dtsi     | 12 ++++++----
+ .../dts/qcom/msm8916-wingtech-wt88047.dts     | 12 ++++++----
+ arch/arm64/boot/dts/qcom/msm8916.dtsi         | 13 +++++------
+ 19 files changed, 146 insertions(+), 90 deletions(-)
 
-Cheers,
-Conor.
+diff --git a/arch/arm64/boot/dts/qcom/apq8016-sbc.dts b/arch/arm64/boot/dts/qcom/apq8016-sbc.dts
+index c52d79a55d80..27ceaa94c8bd 100644
+--- a/arch/arm64/boot/dts/qcom/apq8016-sbc.dts
++++ b/arch/arm64/boot/dts/qcom/apq8016-sbc.dts
+@@ -325,12 +325,6 @@ &pm8916_resin {
+ 	linux,code = <KEY_VOLUMEDOWN>;
+ };
+ 
+-&pronto {
+-	status = "okay";
+-
+-	firmware-name = "qcom/apq8016/wcnss.mbn";
+-};
+-
+ &sdhc_1 {
+ 	status = "okay";
+ 
+@@ -411,10 +405,19 @@ &wcd_codec {
+ 	qcom,mbhc-vthreshold-high = <75 150 237 450 500>;
+ };
+ 
++&wcnss {
++	status = "okay";
++	firmware-name = "qcom/apq8016/wcnss.mbn";
++};
++
+ &wcnss_ctrl {
+ 	firmware-name = "qcom/apq8016/WCNSS_qcom_wlan_nv_sbc.bin";
+ };
+ 
++&wcnss_iris {
++	compatible = "qcom,wcn3620";
++};
++
+ /* Enable CoreSight */
+ &cti0 { status = "okay"; };
+ &cti1 { status = "okay"; };
+diff --git a/arch/arm64/boot/dts/qcom/msm8916-acer-a1-724.dts b/arch/arm64/boot/dts/qcom/msm8916-acer-a1-724.dts
+index ed3fa7b3575b..13cd9ad167df 100644
+--- a/arch/arm64/boot/dts/qcom/msm8916-acer-a1-724.dts
++++ b/arch/arm64/boot/dts/qcom/msm8916-acer-a1-724.dts
+@@ -118,10 +118,6 @@ &pm8916_vib {
+ 	status = "okay";
+ };
+ 
+-&pronto {
+-	status = "okay";
+-};
+-
+ &sdhc_1 {
+ 	pinctrl-names = "default", "sleep";
+ 	pinctrl-0 = <&sdc1_clk_on &sdc1_cmd_on &sdc1_data_on>;
+@@ -149,6 +145,14 @@ &usb_hs_phy {
+ 	extcon = <&usb_id>;
+ };
+ 
++&wcnss {
++	status = "okay";
++};
++
++&wcnss_iris {
++	compatible = "qcom,wcn3620";
++};
++
+ &smd_rpm_regulators {
+ 	vdd_l1_l2_l3-supply = <&pm8916_s3>;
+ 	vdd_l4_l5_l6-supply = <&pm8916_s4>;
+diff --git a/arch/arm64/boot/dts/qcom/msm8916-alcatel-idol347.dts b/arch/arm64/boot/dts/qcom/msm8916-alcatel-idol347.dts
+index 701a5585d77e..fecb69944cfa 100644
+--- a/arch/arm64/boot/dts/qcom/msm8916-alcatel-idol347.dts
++++ b/arch/arm64/boot/dts/qcom/msm8916-alcatel-idol347.dts
+@@ -160,10 +160,6 @@ &pm8916_vib {
+ 	status = "okay";
+ };
+ 
+-&pronto {
+-	status = "okay";
+-};
+-
+ &sdhc_1 {
+ 	status = "okay";
+ 
+@@ -191,6 +187,14 @@ &usb_hs_phy {
+ 	extcon = <&usb_id>;
+ };
+ 
++&wcnss {
++	status = "okay";
++};
++
++&wcnss_iris {
++	compatible = "qcom,wcn3620";
++};
++
+ &smd_rpm_regulators {
+ 	vdd_l1_l2_l3-supply = <&pm8916_s3>;
+ 	vdd_l4_l5_l6-supply = <&pm8916_s4>;
+diff --git a/arch/arm64/boot/dts/qcom/msm8916-asus-z00l.dts b/arch/arm64/boot/dts/qcom/msm8916-asus-z00l.dts
+index 3618704a5330..91284a1d0966 100644
+--- a/arch/arm64/boot/dts/qcom/msm8916-asus-z00l.dts
++++ b/arch/arm64/boot/dts/qcom/msm8916-asus-z00l.dts
+@@ -128,10 +128,6 @@ &blsp1_uart2 {
+ 	status = "okay";
+ };
+ 
+-&pronto {
+-	status = "okay";
+-};
+-
+ &sdhc_1 {
+ 	status = "okay";
+ 
+@@ -159,6 +155,14 @@ &usb_hs_phy {
+ 	extcon = <&usb_id>;
+ };
+ 
++&wcnss {
++	status = "okay";
++};
++
++&wcnss_iris {
++	compatible = "qcom,wcn3620";
++};
++
+ &smd_rpm_regulators {
+ 	vdd_l1_l2_l3-supply = <&pm8916_s3>;
+ 	vdd_l4_l5_l6-supply = <&pm8916_s4>;
+diff --git a/arch/arm64/boot/dts/qcom/msm8916-gplus-fl8005a.dts b/arch/arm64/boot/dts/qcom/msm8916-gplus-fl8005a.dts
+index a0e520edde02..525ec76efeeb 100644
+--- a/arch/arm64/boot/dts/qcom/msm8916-gplus-fl8005a.dts
++++ b/arch/arm64/boot/dts/qcom/msm8916-gplus-fl8005a.dts
+@@ -118,10 +118,6 @@ &pm8916_vib {
+ 	status = "okay";
+ };
+ 
+-&pronto {
+-	status = "okay";
+-};
+-
+ &sdhc_1 {
+ 	pinctrl-0 = <&sdc1_clk_on &sdc1_cmd_on &sdc1_data_on>;
+ 	pinctrl-1 = <&sdc1_clk_off &sdc1_cmd_off &sdc1_data_off>;
+@@ -149,6 +145,14 @@ &usb_hs_phy {
+ 	extcon = <&usb_id>;
+ };
+ 
++&wcnss {
++	status = "okay";
++};
++
++&wcnss_iris {
++	compatible = "qcom,wcn3620";
++};
++
+ &smd_rpm_regulators {
+ 	vdd_l1_l2_l3-supply = <&pm8916_s3>;
+ 	vdd_l4_l5_l6-supply = <&pm8916_s4>;
+diff --git a/arch/arm64/boot/dts/qcom/msm8916-huawei-g7.dts b/arch/arm64/boot/dts/qcom/msm8916-huawei-g7.dts
+index 8c07eca900d3..5b1bac8f5122 100644
+--- a/arch/arm64/boot/dts/qcom/msm8916-huawei-g7.dts
++++ b/arch/arm64/boot/dts/qcom/msm8916-huawei-g7.dts
+@@ -227,10 +227,6 @@ &pm8916_vib {
+ 	status = "okay";
+ };
+ 
+-&pronto {
+-	status = "okay";
+-};
+-
+ &sdhc_1 {
+ 	status = "okay";
+ 
+@@ -312,6 +308,14 @@ &wcd_codec {
+ 	qcom,hphl-jack-type-normally-open;
+ };
+ 
++&wcnss {
++	status = "okay";
++};
++
++&wcnss_iris {
++	compatible = "qcom,wcn3620";
++};
++
+ &smd_rpm_regulators {
+ 	vdd_l1_l2_l3-supply = <&pm8916_s3>;
+ 	vdd_l4_l5_l6-supply = <&pm8916_s4>;
+diff --git a/arch/arm64/boot/dts/qcom/msm8916-longcheer-l8150.dts b/arch/arm64/boot/dts/qcom/msm8916-longcheer-l8150.dts
+index d1e8cf2f50c0..f1dd625e1822 100644
+--- a/arch/arm64/boot/dts/qcom/msm8916-longcheer-l8150.dts
++++ b/arch/arm64/boot/dts/qcom/msm8916-longcheer-l8150.dts
+@@ -231,10 +231,6 @@ &pm8916_vib {
+ 	status = "okay";
+ };
+ 
+-&pronto {
+-	status = "okay";
+-};
+-
+ &sdhc_1 {
+ 	status = "okay";
+ 
+@@ -263,6 +259,14 @@ &usb_hs_phy {
+ 	extcon = <&pm8916_usbin>;
+ };
+ 
++&wcnss {
++	status = "okay";
++};
++
++&wcnss_iris {
++	compatible = "qcom,wcn3620";
++};
++
+ &smd_rpm_regulators {
+ 	vdd_l1_l2_l3-supply = <&pm8916_s3>;
+ 	vdd_l4_l5_l6-supply = <&pm8916_s4>;
+diff --git a/arch/arm64/boot/dts/qcom/msm8916-longcheer-l8910.dts b/arch/arm64/boot/dts/qcom/msm8916-longcheer-l8910.dts
+index 3899e11b9843..b79e80913af9 100644
+--- a/arch/arm64/boot/dts/qcom/msm8916-longcheer-l8910.dts
++++ b/arch/arm64/boot/dts/qcom/msm8916-longcheer-l8910.dts
+@@ -99,10 +99,6 @@ &pm8916_vib {
+ 	status = "okay";
+ };
+ 
+-&pronto {
+-	status = "okay";
+-};
+-
+ &sdhc_1 {
+ 	status = "okay";
+ 
+@@ -130,6 +126,14 @@ &usb_hs_phy {
+ 	extcon = <&usb_id>;
+ };
+ 
++&wcnss {
++	status = "okay";
++};
++
++&wcnss_iris {
++	compatible = "qcom,wcn3620";
++};
++
+ &smd_rpm_regulators {
+ 	vdd_l1_l2_l3-supply = <&pm8916_s3>;
+ 	vdd_l4_l5_l6-supply = <&pm8916_s4>;
+diff --git a/arch/arm64/boot/dts/qcom/msm8916-pm8916.dtsi b/arch/arm64/boot/dts/qcom/msm8916-pm8916.dtsi
+index 8cac23b5240c..6eb5e0a39510 100644
+--- a/arch/arm64/boot/dts/qcom/msm8916-pm8916.dtsi
++++ b/arch/arm64/boot/dts/qcom/msm8916-pm8916.dtsi
+@@ -20,17 +20,6 @@ &mpss {
+ 	pll-supply = <&pm8916_l7>;
+ };
+ 
+-&pronto {
+-	vddpx-supply = <&pm8916_l7>;
+-
+-	iris {
+-		vddxo-supply = <&pm8916_l7>;
+-		vddrfa-supply = <&pm8916_s3>;
+-		vddpa-supply = <&pm8916_l9>;
+-		vdddig-supply = <&pm8916_l5>;
+-	};
+-};
+-
+ &sdhc_1 {
+ 	vmmc-supply = <&pm8916_l8>;
+ 	vqmmc-supply = <&pm8916_l5>;
+@@ -46,6 +35,17 @@ &usb_hs_phy {
+ 	v3p3-supply = <&pm8916_l13>;
+ };
+ 
++&wcnss {
++	vddpx-supply = <&pm8916_l7>;
++};
++
++&wcnss_iris {
++	vddxo-supply = <&pm8916_l7>;
++	vddrfa-supply = <&pm8916_s3>;
++	vddpa-supply = <&pm8916_l9>;
++	vdddig-supply = <&pm8916_l5>;
++};
++
+ &rpm_requests {
+ 	smd_rpm_regulators: regulators {
+ 		compatible = "qcom,rpm-pm8916-regulators";
+diff --git a/arch/arm64/boot/dts/qcom/msm8916-samsung-a2015-common.dtsi b/arch/arm64/boot/dts/qcom/msm8916-samsung-a2015-common.dtsi
+index a2ed7bdbf528..16d67749960e 100644
+--- a/arch/arm64/boot/dts/qcom/msm8916-samsung-a2015-common.dtsi
++++ b/arch/arm64/boot/dts/qcom/msm8916-samsung-a2015-common.dtsi
+@@ -252,10 +252,6 @@ &pm8916_resin {
+ 	linux,code = <KEY_VOLUMEDOWN>;
+ };
+ 
+-&pronto {
+-	status = "okay";
+-};
+-
+ &sdhc_1 {
+ 	status = "okay";
+ 
+diff --git a/arch/arm64/boot/dts/qcom/msm8916-samsung-a3u-eur.dts b/arch/arm64/boot/dts/qcom/msm8916-samsung-a3u-eur.dts
+index c691cca2eb45..a1ca4d883420 100644
+--- a/arch/arm64/boot/dts/qcom/msm8916-samsung-a3u-eur.dts
++++ b/arch/arm64/boot/dts/qcom/msm8916-samsung-a3u-eur.dts
+@@ -112,6 +112,14 @@ &vibrator {
+ 	status = "okay";
+ };
+ 
++&wcnss {
++	status = "okay";
++};
++
++&wcnss_iris {
++	compatible = "qcom,wcn3620";
++};
++
+ &msmgpio {
+ 	panel_vdd3_default: panel-vdd3-default-state {
+ 		pins = "gpio9";
+diff --git a/arch/arm64/boot/dts/qcom/msm8916-samsung-a5u-eur.dts b/arch/arm64/boot/dts/qcom/msm8916-samsung-a5u-eur.dts
+index 3dd819458785..4e10b8a5e9f9 100644
+--- a/arch/arm64/boot/dts/qcom/msm8916-samsung-a5u-eur.dts
++++ b/arch/arm64/boot/dts/qcom/msm8916-samsung-a5u-eur.dts
+@@ -54,12 +54,6 @@ &clk_pwm {
+ 	status = "okay";
+ };
+ 
+-&pronto {
+-	iris {
+-		compatible = "qcom,wcn3660b";
+-	};
+-};
+-
+ &touchkey {
+ 	vcc-supply = <&reg_touch_key>;
+ 	vdd-supply = <&reg_touch_key>;
+@@ -69,6 +63,14 @@ &vibrator {
+ 	status = "okay";
+ };
+ 
++&wcnss {
++	status = "okay";
++};
++
++&wcnss_iris {
++	compatible = "qcom,wcn3660b";
++};
++
+ &msmgpio {
+ 	tkey_en_default: tkey-en-default-state {
+ 		pins = "gpio97";
+diff --git a/arch/arm64/boot/dts/qcom/msm8916-samsung-e2015-common.dtsi b/arch/arm64/boot/dts/qcom/msm8916-samsung-e2015-common.dtsi
+index c95f0b4bc61f..f6c4a011fdfd 100644
+--- a/arch/arm64/boot/dts/qcom/msm8916-samsung-e2015-common.dtsi
++++ b/arch/arm64/boot/dts/qcom/msm8916-samsung-e2015-common.dtsi
+@@ -58,6 +58,14 @@ &touchkey {
+ 	vdd-supply = <&reg_touch_key>;
+ };
+ 
++&wcnss {
++	status = "okay";
++};
++
++&wcnss_iris {
++	compatible = "qcom,wcn3620";
++};
++
+ &msmgpio {
+ 	tkey_en_default: tkey-en-default-state {
+ 		pins = "gpio97";
+diff --git a/arch/arm64/boot/dts/qcom/msm8916-samsung-gt5-common.dtsi b/arch/arm64/boot/dts/qcom/msm8916-samsung-gt5-common.dtsi
+index d920b7247d82..74ffd04db8d8 100644
+--- a/arch/arm64/boot/dts/qcom/msm8916-samsung-gt5-common.dtsi
++++ b/arch/arm64/boot/dts/qcom/msm8916-samsung-gt5-common.dtsi
+@@ -125,14 +125,6 @@ &pm8916_usbin {
+ 	status = "okay";
+ };
+ 
+-&pronto {
+-	status = "okay";
+-
+-	iris {
+-		compatible = "qcom,wcn3660b";
+-	};
+-};
+-
+ &sdhc_1 {
+ 	pinctrl-0 = <&sdc1_clk_on &sdc1_cmd_on &sdc1_data_on>;
+ 	pinctrl-1 = <&sdc1_clk_off &sdc1_cmd_off &sdc1_data_off>;
+@@ -162,6 +154,14 @@ &usb_hs_phy {
+ 	extcon = <&pm8916_usbin>;
+ };
+ 
++&wcnss {
++	status = "okay";
++};
++
++&wcnss_iris {
++	compatible = "qcom,wcn3660b";
++};
++
+ &smd_rpm_regulators {
+ 	vdd_l1_l2_l3-supply = <&pm8916_s3>;
+ 	vdd_l4_l5_l6-supply = <&pm8916_s4>;
+diff --git a/arch/arm64/boot/dts/qcom/msm8916-samsung-j5-common.dtsi b/arch/arm64/boot/dts/qcom/msm8916-samsung-j5-common.dtsi
+index f3b81b6f0a2f..adeee0830e76 100644
+--- a/arch/arm64/boot/dts/qcom/msm8916-samsung-j5-common.dtsi
++++ b/arch/arm64/boot/dts/qcom/msm8916-samsung-j5-common.dtsi
+@@ -93,10 +93,6 @@ &pm8916_resin {
+ 	linux,code = <KEY_VOLUMEDOWN>;
+ };
+ 
+-&pronto {
+-	status = "okay";
+-};
+-
+ &sdhc_1 {
+ 	status = "okay";
+ 
+@@ -124,6 +120,14 @@ &usb_hs_phy {
+ 	extcon = <&muic>;
+ };
+ 
++&wcnss {
++	status = "okay";
++};
++
++&wcnss_iris {
++	compatible = "qcom,wcn3620";
++};
++
+ &smd_rpm_regulators {
+ 	vdd_l1_l2_l3-supply = <&pm8916_s3>;
+ 	vdd_l4_l5_l6-supply = <&pm8916_s4>;
+diff --git a/arch/arm64/boot/dts/qcom/msm8916-samsung-serranove.dts b/arch/arm64/boot/dts/qcom/msm8916-samsung-serranove.dts
+index d4984b3af802..1a41a4db874d 100644
+--- a/arch/arm64/boot/dts/qcom/msm8916-samsung-serranove.dts
++++ b/arch/arm64/boot/dts/qcom/msm8916-samsung-serranove.dts
+@@ -272,14 +272,6 @@ &pm8916_vib {
+ 	status = "okay";
+ };
+ 
+-&pronto {
+-	status = "okay";
+-
+-	iris {
+-		compatible = "qcom,wcn3660b";
+-	};
+-};
+-
+ &sdhc_1 {
+ 	status = "okay";
+ 
+@@ -320,6 +312,14 @@ &usb_hs_phy {
+ 	extcon = <&muic>;
+ };
+ 
++&wcnss {
++	status = "okay";
++};
++
++&wcnss_iris {
++	compatible = "qcom,wcn3660b";
++};
++
+ &smd_rpm_regulators {
+ 	vdd_l1_l2_l3-supply = <&pm8916_s3>;
+ 	vdd_l4_l5_l6-supply = <&pm8916_s4>;
+diff --git a/arch/arm64/boot/dts/qcom/msm8916-ufi.dtsi b/arch/arm64/boot/dts/qcom/msm8916-ufi.dtsi
+index cdf34b74fa8f..50bae6f214f1 100644
+--- a/arch/arm64/boot/dts/qcom/msm8916-ufi.dtsi
++++ b/arch/arm64/boot/dts/qcom/msm8916-ufi.dtsi
+@@ -99,10 +99,6 @@ &pm8916_usbin {
+ 	status = "okay";
+ };
+ 
+-&pronto {
+-	status = "okay";
+-};
+-
+ &sdhc_1 {
+ 	pinctrl-0 = <&sdc1_clk_on &sdc1_cmd_on &sdc1_data_on>;
+ 	pinctrl-1 = <&sdc1_clk_off &sdc1_cmd_off &sdc1_data_off>;
+@@ -122,6 +118,14 @@ &usb_hs_phy {
+ 	extcon = <&pm8916_usbin>;
+ };
+ 
++&wcnss {
++	status = "okay";
++};
++
++&wcnss_iris {
++	compatible = "qcom,wcn3620";
++};
++
+ &smd_rpm_regulators {
+ 	vdd_l1_l2_l3-supply = <&pm8916_s3>;
+ 	vdd_l4_l5_l6-supply = <&pm8916_s4>;
+diff --git a/arch/arm64/boot/dts/qcom/msm8916-wingtech-wt88047.dts b/arch/arm64/boot/dts/qcom/msm8916-wingtech-wt88047.dts
+index a87be1d95b14..ac56c7595f78 100644
+--- a/arch/arm64/boot/dts/qcom/msm8916-wingtech-wt88047.dts
++++ b/arch/arm64/boot/dts/qcom/msm8916-wingtech-wt88047.dts
+@@ -153,10 +153,6 @@ &pm8916_vib {
+ 	status = "okay";
+ };
+ 
+-&pronto {
+-	status = "okay";
+-};
+-
+ &sdhc_1 {
+ 	status = "okay";
+ 
+@@ -184,6 +180,14 @@ &usb_hs_phy {
+ 	extcon = <&usb_id>;
+ };
+ 
++&wcnss {
++	status = "okay";
++};
++
++&wcnss_iris {
++	compatible = "qcom,wcn3620";
++};
++
+ &smd_rpm_regulators {
+ 	vdd_l1_l2_l3-supply = <&pm8916_s3>;
+ 	vdd_l4_l5_l6-supply = <&pm8916_s4>;
+diff --git a/arch/arm64/boot/dts/qcom/msm8916.dtsi b/arch/arm64/boot/dts/qcom/msm8916.dtsi
+index 0733c2f4f379..4973e8f5b5e9 100644
+--- a/arch/arm64/boot/dts/qcom/msm8916.dtsi
++++ b/arch/arm64/boot/dts/qcom/msm8916.dtsi
+@@ -1870,7 +1870,7 @@ usb_hs_phy: phy {
+ 			};
+ 		};
+ 
+-		pronto: remoteproc@a21b000 {
++		wcnss: remoteproc@a21b000 {
+ 			compatible = "qcom,pronto-v2-pil", "qcom,pronto";
+ 			reg = <0x0a204000 0x2000>, <0x0a202000 0x1000>, <0x0a21b000 0x3000>;
+ 			reg-names = "ccu", "dxe", "pmu";
+@@ -1896,9 +1896,8 @@ pronto: remoteproc@a21b000 {
+ 
+ 			status = "disabled";
+ 
+-			iris {
+-				compatible = "qcom,wcn3620";
+-
++			wcnss_iris: iris {
++				/* Separate chip, compatible is board-specific */
+ 				clocks = <&rpmcc RPM_SMD_RF_CLK2>;
+ 				clock-names = "xo";
+ 			};
+@@ -1916,13 +1915,13 @@ wcnss_ctrl: wcnss {
+ 					compatible = "qcom,wcnss";
+ 					qcom,smd-channels = "WCNSS_CTRL";
+ 
+-					qcom,mmio = <&pronto>;
++					qcom,mmio = <&wcnss>;
+ 
+-					bluetooth {
++					wcnss_bt: bluetooth {
+ 						compatible = "qcom,wcnss-bt";
+ 					};
+ 
+-					wifi {
++					wcnss_wifi: wifi {
+ 						compatible = "qcom,wcnss-wlan";
+ 
+ 						interrupts = <GIC_SPI 145 IRQ_TYPE_LEVEL_HIGH>,
+-- 
+2.30.2
 
-> > On Tue, Aug 16, 2022 at 08:41:05PM +0000, Conor.Dooley@microchip.com wr=
-ote:
-> > > Hey all,
-> > > We've run into a bit of a problem with reserved memory on PolarFire, =
-or
-> > > more accurately a pair of problems that seem to have opposite fixes.
-> > >=20
-> > > The first of these problems is triggered when trying to implement a
-> > > remoteproc driver. To get the reserved memory buffer, remoteproc
-> > > does an of_reserved_mem_lookup(), something like:
-> > >=20
-> > > 	np =3D of_parse_phandle(pdev->of_node, "memory-region", 0);
-> > > 	if (!np)
-> > > 		return -EINVAL;
-> > >=20
-> > > 	rmem =3D of_reserved_mem_lookup(np);
-> > > 	if (!rmem)
-> > > 		return -EINVAL;
-> > >=20
-> > > of_reserved_mem_lookup() then uses reserved_mem[i].name to try and fi=
-nd
-> > > a match - but this was triggering kernel panics for us. We did some
-> > > debugging and found that the name string's pointer was pointing to an
-> > > address in the 0x4000_0000 range. The minimum reproduction for this
-> > > crash is attached - it hacks in some print_reserved_mem()s into
-> > > setup_vm_final() around a tlb flush so you can see the before/after.
-> > > (You'll need a reserved memory node in your dts to replicate)
-> > >=20
-> > > The output is like so, with the same crash as in the remoteproc drive=
-r:
-> > >=20
-> > > [    0.000000] Linux version 6.0.0-rc1-00001-g0d9d6953d834 (conor@wen=
-dy) (riscv64-unknown-linux-gnu-gcc (g5964b5cd727) 11.1.0, GNU ld (GNU Binut=
-ils) 2.37) #1 SMP Tue Aug 16 13:42:09 IST 2022
-> >=20
-> > [...]
-> >=20
-> > > [    0.000000] ---[ end Kernel panic - not syncing: Attempted to kill=
- the idle task! ]---
-> > >=20
-> > > We traced this back to early_init_fdt_scan_reserved_mem() in
-> > > setup_bootmem() - moving it later back up the boot sequence to
-> > > after the dt has been remapped etc has fixed the problem for us.
-> > >=20
-> > > The least movement to get it working is attached, and also pushed
-> > > here: git.kernel.org/conor/c/1735589baefc
-> >=20
-> > This one is fixed now, as of commit 50e63dd8ed92 ("riscv: fix reserved
-> > memory setup").
-> >=20
-> > > The second problem is a bit more complicated to explain - but we
-> > > found the solution conflicted with the remoteproc fix as we had
-> > > to move early_init_fdt_scan_reserved_mem() _earlier_ in the boot
-> > > process to solve this one.
-> > >=20
-> > > We want to have a node in our devicetree that contains some memory
-> > > that is non-cached & marked as reserved-memory. Maybe we have just
-> > > missed something, but from what we've seen:
-> > > - the really early setup looks at the dtb, picks the highest bit
-> > >    of memory and puts the dtb etc there so it can start using it
-> > > - early_init_fdt_scan_reserved_mem() is then called, which figures
-> > >    out if memory is reserved or not.
-> > >=20
-> > > Unfortunately, the highest bit of memory is the non-cached bit so
-> > > everything falls over, but we can avoid this by moving the call to
-> > > early_init_fdt_scan_reserved_mem() above the dtb memblock alloc that
-> > > takes place right before it in setup_bootmem().
-> > >=20
-> > > Obviously, both of these changes are moving the function call in
-> > > opposite directions and we can only really do one of them. We are not
-> > > sure if what we are doing with the non-cached reserved-memory section
-> > > is just not permitted & cannot work - or if this is something that
-> > > was overlooked for RISC-V specifically and works for other archs.
-> >=20
-> > We ended up working around this one by making sure that U-Boot loaded
-> > the dtb to somewhere that would be inside the kernel's memory map, thus
-> > avoiding the remapping in the first place.
-> >=20
-> > We did run into another problem recently though, and 50e63dd8ed92 is
-> > kinda at fault for it.
-> > This particular issue was encountered with a devicetree where the
-> > top-most memory region was entirely reserved & was not observed prior
-> > to my fix for the first issue.
-> >=20
-> > On RISC-V, the boot sequence is something like:
-> > 	setup_bootmem();
-> > 	setup_vm_final();
-> > 	unflatten_device_tree();
-> > 	early_init_fdt_scan_reserved_mem();
-> >=20
-> > Whereas, before my patch it used to be (give-or-take):
-> > 	setup_bootmem();
-> > 	early_init_fdt_scan_reserved_mem();
-> > 	setup_vm_final();
-> > 	unflatten_device_tree();
-> >=20
-> > The difference being that we used to have scanned the reserved memory
-> > regions before calling setup_vm_final() & therefore know which regions
-> > we cannot use. As a reminder, calling early_init_fdt_scan_reserved_mem()
-> > before we've got the dt in a proper virtual memory address will cause
-> > the kernel to panic if it tries to read a reserved memory node's label.
-> >=20
-> > As we are now calling setup_vm_final() *before* we know what the
-> > reserved memory regions are & as RISC-V allocates memblocks from the top
-> > down, the allocations in setup_vm_final() will be done in the highest
-> > memory region.
-> > When early_init_fdt_scan_reserved_mem() then tries to reserve the
-> > entirety of that top-most memory region, the reservation fails as part
-> > of this region has already been allocated.
-> > In the scenario where I found this bug, that top-most region is non-
-> > cached memory & the kernel ends up panicking.
-> > The memblock debug code made this pretty easy to spot, otherwise I'd
-> > probably have spent more than just a few hours trying to figure out why
-> > it was panicking!
-> >=20
-> > My "this needs to be fixed today" solution for this problem was calling
-> > memblock_set_bottom_up(true) in setup_bootmem() & that's what we are
-> > going to carry downstream for now.
-> >=20
-> > I haven't tested it (yet) but I suspect that it would also fix our
-> > problem of the dtb being remapped into a non-cached region of memory
-> > that we would later go on to reserve too. Non-cached being an issue
-> > mainly due to the panicking, but failing to reserve (and using!) memory
-> > regions that are meant to be reserved is very far from ideal even when
-> > they are memory that the kernel can actually use.
-> >=20
-> > I have no idea if that is an acceptable solution for upstream though, so
-> > I guess this is me putting out feelers as to whether this is something I
-> > should send a patch to do *OR* if this is another sign of the issues
-> > that you (Mike, Palmer) mentioned in the past.
-> > If it isn't an acceptable solution, I'm not really too sure how to
-> > proceed!
-> >=20
-> > Cheers,
-> > Conor.
-> >=20
->=20
->=20
->=20
-> --=20
-> Sincerely yours,
-> Mike.
->=20
-
---McODTL91jRNtt7ou
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZAmjfAAKCRB4tDGHoIJi
-0tFdAQDHopmrSHySTTwn2q2HqhgTs5Nkor5VHzHgmHIgT+UsqAEA9GT6SanTju8R
-HcLHCyzJA2EVc9QwCQU6dC9CLwSYJQw=
-=F8lV
------END PGP SIGNATURE-----
-
---McODTL91jRNtt7ou--
