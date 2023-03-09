@@ -2,234 +2,168 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F2DD36B2336
-	for <lists+devicetree@lfdr.de>; Thu,  9 Mar 2023 12:39:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 497296B2348
+	for <lists+devicetree@lfdr.de>; Thu,  9 Mar 2023 12:43:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231217AbjCILjz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Mar 2023 06:39:55 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33322 "EHLO
+        id S231582AbjCILnO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Mar 2023 06:43:14 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36592 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229876AbjCILjs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Mar 2023 06:39:48 -0500
-Received: from mail-lj1-x231.google.com (mail-lj1-x231.google.com [IPv6:2a00:1450:4864:20::231])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4E705DC0BE;
-        Thu,  9 Mar 2023 03:39:47 -0800 (PST)
-Received: by mail-lj1-x231.google.com with SMTP id b10so1528991ljr.0;
-        Thu, 09 Mar 2023 03:39:47 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112; t=1678361985;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=5/fm4EqRCQX8P0V8IgQoUdGEPJ3+a5JFn9mYMwtSO3Q=;
-        b=jz8hJhESfDuPQgyoO4TMijhXSSWQRZKlV81/ZaLE1L19/bVehhsCxPiTATZqsogeuP
-         Lm3C+nd6zUQfQOtHYmgIQ1N7emCuJszYTIwguedZttJi05Z23HC5g6HjeBQYH++q++Il
-         kx4dChfSsKnGmc96ExgaWdu9F5O7qyzK+/hlfh76osrzvCofmzlRyELaeXYoNrKQcRfV
-         YSHnkWH5QtT7Nmnqh7UaEPHV1ijH7qgq2tOg2L/I4jclKK5JTrt6X7SGLWwx9QomW999
-         7S8JEJRdCvnraQz2ErxcFWSQXHaWifE0WrDLK2yErSOFGy/V0nmLbef6e9xIJx3ORAwk
-         K+Hg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678361985;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=5/fm4EqRCQX8P0V8IgQoUdGEPJ3+a5JFn9mYMwtSO3Q=;
-        b=wGFk4PoB14gY6K/p9TXXHKkkTjalNG2OUar0xhriunz5c9MgQN+KtfHdA9VkfRbTCR
-         DvtxpH6NueyIZ9qUULtH06gtI+9JvCINd4XBw9DcQF4+iblBJmYydYgJieQmSJ0mlXJ3
-         CqkeXJFpXNNlC3DQYA4+s26OlZXCL6P9HzCICumxIePueeSb8h8GegWp8h8t3j8bCciW
-         I38qiRyhLYyjE0kQczojZ2B0mvC4Vqgfa3esEZpeIrRnb1rvDAHFCG748DCZmQTObXMd
-         Wvbjj/gwiMsk6li7MWWF+hKlKkx2xn/RC0ZOQqTYNMkQKnv/kJC95HpgGi4WUbij8Na6
-         BKFQ==
-X-Gm-Message-State: AO0yUKWA/5kN7hE+PyKLFCt96mUQ56TbTsUkp3GSoq3moTZ+Bnp96bAb
-        3xG4zztDxZ0el9d4296yxYI=
-X-Google-Smtp-Source: AK7set9QKUcxRVrUyzBPzAU0cb0zeeb5y7pCe8dkUsIrv4s0TRIbWUItLm1utqdEMYdS/g7S64hEyg==
-X-Received: by 2002:a2e:8812:0:b0:298:7061:1172 with SMTP id x18-20020a2e8812000000b0029870611172mr1434269ljh.42.1678361985413;
-        Thu, 09 Mar 2023 03:39:45 -0800 (PST)
-Received: from localhost.lan (ip-194-187-74-233.konfederacka.maverick.com.pl. [194.187.74.233])
-        by smtp.gmail.com with ESMTPSA id y13-20020a2e9d4d000000b00295965f7495sm2922373ljj.0.2023.03.09.03.39.44
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 09 Mar 2023 03:39:44 -0800 (PST)
-From:   =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Michael Walle <michael@walle.cc>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>
-Subject: [PATCH V2] dt-bindings: nvmem: layouts: add fixed-layout
-Date:   Thu,  9 Mar 2023 12:39:36 +0100
-Message-Id: <20230309113936.20162-1-zajec5@gmail.com>
-X-Mailer: git-send-email 2.34.1
+        with ESMTP id S230410AbjCILnL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Mar 2023 06:43:11 -0500
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4A51E6EA5;
+        Thu,  9 Mar 2023 03:43:08 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1678362189; x=1709898189;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:content-transfer-encoding:in-reply-to;
+  bh=b/oBEpfZ9XKj+QCOecEu0y65XAl4jjpYX5Arz4zunf0=;
+  b=DxgIU3yNMCjXccg4LBkVWjkjMgLVamH8wNL/QDJhzSa/UBJ30NmAIMsO
+   fKe4F/f4ej1RHpDXZe1WIyhzVlOsWzClZtA910phyWfId67jubk613PRK
+   S7ysoo+ovk7PEqkqICoJVEWTuDenc6uRm3aJeT6nxtFMIFw1cT9XFsk0e
+   gRXMtgbIeaXlTYH5vOG6iWwVtHBIn9IWsSJWXtPkTbtbwRL5IQskp+YkR
+   y2l8ZldItQzvlYl4Dh8YcTj9mcesgrqlpX6+MYj1XYwYXj+Q4ZdhPAjFB
+   U9FS24WvCc8sJxVDlSP0obabmXxMMNBLhPzwHtoirkJst11pi5IbKFzCS
+   w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10643"; a="335126778"
+X-IronPort-AV: E=Sophos;i="5.98,246,1673942400"; 
+   d="scan'208";a="335126778"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+  by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 09 Mar 2023 03:43:08 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6500,9779,10643"; a="654722466"
+X-IronPort-AV: E=Sophos;i="5.98,246,1673942400"; 
+   d="scan'208";a="654722466"
+Received: from smile.fi.intel.com ([10.237.72.54])
+  by orsmga006.jf.intel.com with ESMTP; 09 Mar 2023 03:43:04 -0800
+Received: from andy by smile.fi.intel.com with local (Exim 4.96)
+        (envelope-from <andriy.shevchenko@linux.intel.com>)
+        id 1paEfm-000IOe-2u;
+        Thu, 09 Mar 2023 13:43:02 +0200
+Date:   Thu, 9 Mar 2023 13:43:02 +0200
+From:   Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To:     Daniel Kaehn <kaehndan@gmail.com>
+Cc:     Benjamin Tissoires <benjamin.tissoires@redhat.com>,
+        Hans de Goede <hdegoede@redhat.com>, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, jikos@kernel.org,
+        bartosz.golaszewski@linaro.org, dmitry.torokhov@gmail.com,
+        devicetree@vger.kernel.org, linux-input@vger.kernel.org,
+        ethan.twardy@plexus.com
+Subject: Re: [PATCH v8 3/3] HID: cp2112: Fwnode Support
+Message-ID: <ZAnGRtIhLZTrpDy7@smile.fi.intel.com>
+References: <20230307131706.olnb4qzo4ynu7gce@mail.corp.redhat.com>
+ <CAP+ZCCcbXqPOY5Xzq9v8JNSzH9+xOqgfkTezJdLQY=vwQco4vQ@mail.gmail.com>
+ <20230307144852.ueyaotkeeqfjlgk7@mail.corp.redhat.com>
+ <ZAeADcJWmJR+1ycJ@smile.fi.intel.com>
+ <20230308152611.tae2pnmflakrcyhh@mail.corp.redhat.com>
+ <CAP+ZCCcntCn4yaVKtTxDuDRvPgLXfP1kC7mYe2qKuhSGzVZMog@mail.gmail.com>
+ <20230308155527.jnrsowubvnk22ica@mail.corp.redhat.com>
+ <ZAi4NjqXTbLpVhPo@smile.fi.intel.com>
+ <ZAi5esmc158Bd2oL@smile.fi.intel.com>
+ <CAP+ZCCdziub809WKJ8-tAhYvg+axsiuXrvrZczj_x2K0bGzd7w@mail.gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+In-Reply-To: <CAP+ZCCdziub809WKJ8-tAhYvg+axsiuXrvrZczj_x2K0bGzd7w@mail.gmail.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Rafał Miłecki <rafal@milecki.pl>
+On Wed, Mar 08, 2023 at 12:32:07PM -0600, Daniel Kaehn wrote:
+> On Wed, Mar 8, 2023 at 10:36 AM Andy Shevchenko
+> <andriy.shevchenko@linux.intel.com> wrote:
+> > On Wed, Mar 08, 2023 at 06:30:46PM +0200, Andy Shevchenko wrote:
+> > > On Wed, Mar 08, 2023 at 04:55:27PM +0100, Benjamin Tissoires wrote:
+> > > > On Mar 08 2023, Daniel Kaehn wrote:
+> > > > > On Wed, Mar 8, 2023 at 9:26 AM Benjamin Tissoires
+> > > > > <benjamin.tissoires@redhat.com> wrote:
 
-With the introduction of NVMEM layouts we should prefer and support
-describing all NVMEM devices content in the "nvmem-layout" node. That
-inludes using it for fixed NVMEM cells (those with hardcoded offset &
-size).
+...
 
-This seems to be cleaner design and more explicit.
+> > > >                     ToUUID("daffd814-6eba-4d8c-8a91-bc9bbf4aa301"),
+> > > >                     Package () {
+> > > >                             Package () { "cell-names", Package () { "i2c", "gpio" }
+> > > >                     }
+> > >
+> > > Yeah, looking at this, I think it still fragile. First of all, either this is
+> > > missing, or simply wrong. We would need to access indices. ACPI _ADR is in the
+> > > specification. As much as with PCI it may be considered reliable.
+> > >
+> > > So, that said, forget about it, and simply use _ADR as indicator of the node.
+> > > See how MFD (in the Linux kernel) cares about this. Ex. Diolan DLN-2 driver.
+> >
+> > And that said, maybe CP2112 should simply re-use what MFD _already_ provides?
+> 
+> Great point -- it definitely seems like this driver belongs in the mfd
+> directory to begin with.
 
-Introduce a binding allowing fixed NVMEM cells as a type of layout. To
-avoid code duplication put shared part in the fixed-cell.yaml.
+It can be iteratively converted later on.
 
-Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
----
-V2: Use fixed-cell.yaml
----
- .../bindings/nvmem/layouts/fixed-cell.yaml    | 30 ++++++++++++
- .../bindings/nvmem/layouts/fixed-layout.yaml  | 49 +++++++++++++++++++
- .../bindings/nvmem/layouts/nvmem-layout.yaml  |  1 +
- .../devicetree/bindings/nvmem/nvmem.yaml      | 18 +------
- 4 files changed, 81 insertions(+), 17 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/nvmem/layouts/fixed-cell.yaml
- create mode 100644 Documentation/devicetree/bindings/nvmem/layouts/fixed-layout.yaml
+> It seems like aside from rewriting the CP2112 driver into an mfd
+> driver and two platform drivers,
+> my route forward for now would be to just do something like this (not
+> yet tested):
+> 
+> + struct acpi_device *adev = ACPI_COMPANION(&hdev->dev);
+> + if (adev)
+> +    ACPI_COMPANION_SET(&dev->adap.dev, acpi_find_child_device(adev,
+> 0x0, false));
 
-diff --git a/Documentation/devicetree/bindings/nvmem/layouts/fixed-cell.yaml b/Documentation/devicetree/bindings/nvmem/layouts/fixed-cell.yaml
-new file mode 100644
-index 000000000000..2c77d02052d9
---- /dev/null
-+++ b/Documentation/devicetree/bindings/nvmem/layouts/fixed-cell.yaml
-@@ -0,0 +1,30 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/nvmem/layouts/fixed-cell.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Fixed offset & size NVMEM cell
-+
-+maintainers:
-+  - Rafał Miłecki <rafal@milecki.pl>
-+
-+properties:
-+  reg:
-+    maxItems: 1
-+
-+  bits:
-+    $ref: /schemas/types.yaml#/definitions/uint32-array
-+    items:
-+      - minimum: 0
-+        maximum: 7
-+        description:
-+          Offset in bit within the address range specified by reg.
-+      - minimum: 1
-+        description:
-+          Size in bit within the address range specified by reg.
-+
-+required:
-+  - reg
-+
-+additionalProperties: false
-diff --git a/Documentation/devicetree/bindings/nvmem/layouts/fixed-layout.yaml b/Documentation/devicetree/bindings/nvmem/layouts/fixed-layout.yaml
-new file mode 100644
-index 000000000000..4c4a968bb302
---- /dev/null
-+++ b/Documentation/devicetree/bindings/nvmem/layouts/fixed-layout.yaml
-@@ -0,0 +1,49 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/nvmem/layouts/fixed-layout.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: NVMEM layout for fixed NVMEM cells
-+
-+description:
-+  Many NVMEM devices have hardcoded cells layout (offset and size of specific
-+  NVMEM content doesn't change).
-+
-+  This binding allows defining such cells using NVMEM layout. It can be used on
-+  top of any NVMEM device.
-+
-+maintainers:
-+  - Rafał Miłecki <rafal@milecki.pl>
-+
-+properties:
-+  compatible:
-+    const: fixed-layout
-+
-+  "#address-cells":
-+    const: 1
-+
-+  "#size-cells":
-+    const: 1
-+
-+patternProperties:
-+  "@[a-f0-9]+$":
-+    type: object
-+    $ref: fixed-cell.yaml
-+
-+required:
-+  - compatible
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    nvmem-layout {
-+        compatible = "fixed-layout";
-+        #address-cells = <1>;
-+        #size-cells = <1>;
-+
-+        calibration@4000 {
-+            reg = <0x4000 0x100>;
-+        };
-+    };
-diff --git a/Documentation/devicetree/bindings/nvmem/layouts/nvmem-layout.yaml b/Documentation/devicetree/bindings/nvmem/layouts/nvmem-layout.yaml
-index 8512ee538c4c..03da7848c713 100644
---- a/Documentation/devicetree/bindings/nvmem/layouts/nvmem-layout.yaml
-+++ b/Documentation/devicetree/bindings/nvmem/layouts/nvmem-layout.yaml
-@@ -18,6 +18,7 @@ description: |
-   perform their parsing. The nvmem-layout container is here to describe these.
- 
- oneOf:
-+  - $ref: fixed-layout.yaml
-   - $ref: kontron,sl28-vpd.yaml
-   - $ref: onie,tlv-layout.yaml
- 
-diff --git a/Documentation/devicetree/bindings/nvmem/nvmem.yaml b/Documentation/devicetree/bindings/nvmem/nvmem.yaml
-index 75bb93dda9df..732162e9d13e 100644
---- a/Documentation/devicetree/bindings/nvmem/nvmem.yaml
-+++ b/Documentation/devicetree/bindings/nvmem/nvmem.yaml
-@@ -49,23 +49,7 @@ properties:
- patternProperties:
-   "@[0-9a-f]+(,[0-7])?$":
-     type: object
--
--    properties:
--      reg:
--        maxItems: 1
--        description:
--          Offset and size in bytes within the storage device.
--
--      bits:
--        $ref: /schemas/types.yaml#/definitions/uint32-array
--        items:
--          - minimum: 0
--            maximum: 7
--            description:
--              Offset in bit within the address range specified by reg.
--          - minimum: 1
--            description:
--              Size in bit within the address range specified by reg.
-+    $ref: layouts/fixed-cell.yaml
- 
- additionalProperties: true
- 
+ACPI_COMPANION_SET() is something different to simple device_set_node().
+I would expect that in this driver we simply use the child fwnode as is.
+But since you are not using so called secondary fwnode, I believe it's
+fine for now.
+
+> + else
+> +     device_set_node(&dev->adap.dev,
+> device_get_named_child_node(&hdev->dev, "i2c"));
+> 
+> (and the same for the gpiochip)
+> 
+> The follow-up question -- does there exist something analogous to DT
+> bindings for ACPI devices,
+> other than the ACPI spec itself, where this should be documented? Or
+> will consumers truly have to
+> read the driver code to determine that _ADR 0 is I2C and _ADR 1 is
+> GPIO? (I haven't seen anything
+> in my search so far -- but knowing that it truly doesn't exist would
+> make me respect people developing
+> embedded ACPI-based systems all the more!)
+
+See how the acpi_get_local_address() is used in the 3 users of it.
+
+Ideally we need a new callback in the fwnode ops to return either
+(least) 32-bit of _ADR or "reg" property.
+
+Dunno, if "reg" is actually what suits here.
+
+That said, I would do something like (pseudo-code)
+
+device_for_each_child_node() {
+	if (name == $NAME)
+		$NAME->fwnode = child;
+	else if (_ADR = $INDEX)
+		$NAME->fwnode = child;
+}
+
+
+> Thanks for your patience in working through all of this, especially
+> considering how long of an email
+> chain this has become!
+
+You're welcome!
+
 -- 
-2.34.1
+With Best Regards,
+Andy Shevchenko
+
 
