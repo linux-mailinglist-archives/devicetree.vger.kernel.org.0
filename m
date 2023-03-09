@@ -2,170 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 82AE16B1A5C
-	for <lists+devicetree@lfdr.de>; Thu,  9 Mar 2023 05:19:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 397E96B1A6A
+	for <lists+devicetree@lfdr.de>; Thu,  9 Mar 2023 05:27:16 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229758AbjCIETN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Mar 2023 23:19:13 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48386 "EHLO
+        id S229621AbjCIE1P (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Mar 2023 23:27:15 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55792 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229525AbjCIETL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Mar 2023 23:19:11 -0500
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A8C6872B3E;
-        Wed,  8 Mar 2023 20:19:10 -0800 (PST)
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 3294IkXM035148;
-        Wed, 8 Mar 2023 22:18:46 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1678335526;
-        bh=0IbbDvAZb1mX7MDZ2lTVXUBvwZAqpL5G1lf4vpzvPlE=;
-        h=Date:CC:Subject:To:References:From:In-Reply-To;
-        b=fo69kfaTxMdYkJIVJ3V4ea3AoDAvB07xxEELqE9iNxZ0KyimcbntD2jwUhzM6p/7G
-         ZOnhgq4PDE7mPd0nX0orY8N6U+LtIBCr2dejgplB0A5azEc4wjazkcCuaMATKdTrzB
-         0vAl8LU2JvjwYRYu04sdyVkNn+SXLTxeEZoOzHHc=
-Received: from DLEE113.ent.ti.com (dlee113.ent.ti.com [157.170.170.24])
-        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 3294IjqN011723
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Wed, 8 Mar 2023 22:18:46 -0600
-Received: from DLEE101.ent.ti.com (157.170.170.31) by DLEE113.ent.ti.com
- (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Wed, 8
- Mar 2023 22:18:46 -0600
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE101.ent.ti.com
- (157.170.170.31) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
- Frontend Transport; Wed, 8 Mar 2023 22:18:45 -0600
-Received: from [172.24.145.61] (ileaxei01-snat2.itg.ti.com [10.180.69.6])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 3294IeNo089859;
-        Wed, 8 Mar 2023 22:18:41 -0600
-Message-ID: <882cdb42-3f80-048a-88a5-836c479a421f@ti.com>
-Date:   Thu, 9 Mar 2023 09:48:40 +0530
+        with ESMTP id S229823AbjCIE1M (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Mar 2023 23:27:12 -0500
+Received: from mail-ua1-x92a.google.com (mail-ua1-x92a.google.com [IPv6:2607:f8b0:4864:20::92a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A7AAC90B50
+        for <devicetree@vger.kernel.org>; Wed,  8 Mar 2023 20:27:10 -0800 (PST)
+Received: by mail-ua1-x92a.google.com with SMTP id p2so334742uap.1
+        for <devicetree@vger.kernel.org>; Wed, 08 Mar 2023 20:27:10 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google; t=1678336029;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=ieOsjAqyzpAajCGC1a5mZjRKapEj1/IVvZ5C1bjX/7o=;
+        b=SmHOlIfvlICUpOY6DbOtEod/qcZ4atqdL5fcjKjl7+LbbYwTZjl5ZED7Dq4SEk59ap
+         ankUrwYHpFYkcIDvrBYd6LSIYXprJmtmR1CmFWk+oK01IPAe5jvSAteb1V3ZThU85Udw
+         qmtUiHOlBORl27jOCtUK6kvLCmwL1IRiHgksc=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1678336029;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=ieOsjAqyzpAajCGC1a5mZjRKapEj1/IVvZ5C1bjX/7o=;
+        b=qb4+7R/MdNGlGYAvVLC6gCX8kAcM4dhs6pcYEMpviBxEf9J0bY3/pos/Wwp4J04LKM
+         GjtPkn0dD4G7Ot+30T0g1auCSTSCxqekVyWKnYaJTAqJvzIqm5m6T7yR5spKI9Ya22Lb
+         YGsfVowNWCEXLfwuPvD1WQpl6j6SH0bHwekltHurkT2JX3x4Sw83LdzQqYkPFANVj/d5
+         y/NszuXi2C/nllJQLG7xfoMUp9YkHU3TWhUsDbXHP+IAXBcuHv10mR7hx2FMbD4+MVzf
+         VzkDkQ6ftr4q6jmyeEbJzxsLSdVJ+KGyde1p83iASuBUUysXHJgjp+4y7epJT1zB2kEt
+         CpFA==
+X-Gm-Message-State: AO0yUKXk5uh38W/NkTPJ1d9YovFkFrELZ1Vb1b105boEjp1GqSkjQtNv
+        TncuO0nPOHutUkSfhjhGCklsmy4DL/QcIV/cBJz4YA==
+X-Google-Smtp-Source: AK7set/gee51c9AlWy0aEk/2rrxCvuyAgRAg2qGcJMrG0xU2avrdZyZgYSTGxy1emfR/hwcrDnyE7ZFHD9JuLjx4uVg=
+X-Received: by 2002:ab0:470b:0:b0:688:c23f:c22f with SMTP id
+ h11-20020ab0470b000000b00688c23fc22fmr7754413uac.1.1678336029680; Wed, 08 Mar
+ 2023 20:27:09 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.1
-CC:     <davem@davemloft.net>, <edumazet@google.com>, <kuba@kernel.org>,
-        <linux@armlinux.org.uk>, <pabeni@redhat.com>, <robh+dt@kernel.org>,
-        <nsekhar@ti.com>, <rogerq@kernel.org>, <netdev@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <srk@ti.com>,
-        <s-vadapalli@ti.com>
-Subject: Re: [PATCH net-next v2] dt-bindings: net: ti: k3-am654-cpsw-nuss:
- Document Serdes PHY
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        <krzysztof.kozlowski+dt@linaro.org>
-References: <20230308051835.276552-1-s-vadapalli@ti.com>
- <1ffed720-322c-fa73-1160-5fd73ce3c7c2@linaro.org>
- <7b6e8131-8e5b-88bc-69f7-b737c0c35bb6@ti.com>
- <dbbe3cd2-3329-d267-338b-8e513209ddcd@linaro.org>
-Content-Language: en-US
-From:   Siddharth Vadapalli <s-vadapalli@ti.com>
-In-Reply-To: <dbbe3cd2-3329-d267-338b-8e513209ddcd@linaro.org>
+References: <20230206100105.861720-1-angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20230206100105.861720-1-angelogioacchino.delregno@collabora.com>
+From:   Chen-Yu Tsai <wenst@chromium.org>
+Date:   Thu, 9 Mar 2023 12:26:58 +0800
+Message-ID: <CAGXv+5H6jdWc0zKnW8LjsPYACoG1vRJHtTJUMHzY_8VYdX7g6g@mail.gmail.com>
+Subject: Re: [PATCH v3 0/7] MediaTek Frequency Hopping: MT6795/8173/92/95
+To:     AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+Cc:     sboyd@kernel.org, mturquette@baylibre.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, matthias.bgg@gmail.com,
+        edward-jw.yang@mediatek.com, johnson.wang@mediatek.com,
+        miles.chen@mediatek.com, chun-jie.chen@mediatek.com,
+        rex-bc.chen@mediatek.com, jose.exposito89@gmail.com,
+        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+        kernel@collabora.com
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_PASS,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello Krzysztof,
+On Mon, Feb 6, 2023 at 6:01=E2=80=AFPM AngeloGioacchino Del Regno
+<angelogioacchino.delregno@collabora.com> wrote:
+>
+> Changes in v3:
+>  - Added commit to export register/unregister/parse FHCTL functions
+>    to allow building clock drivers using FHCTL as modules
+>
+> Changes in v2:
+>  - Rebased over v4 of my clock drivers cleanups series [1]
+>
+> This series adds support for Frequency Hopping (FHCTL) on more MediaTek
+> SoCs, specifically, MT6795, MT8173, MT8192 and MT8195.
+>
+> In order to support older platforms like MT6795 and MT8173 it was
+> necessary to add a new register layout that is ever-so-slightly
+> different from the one that was previously introduced for MT8186.
+>
+> Since the new layout refers to older SoCs, the one valid for MT8186
+> and newer SoCs was renamed to be a "v2" layout, while the new one
+> for older chips gets the "v1" name.
+>
+> Note: These commits won't change any behavior unless FHCTL gets
+>       explicitly enabled and configured in devicetrees.
+>
+> [1]: https://patchwork.kernel.org/project/linux-mediatek/list/?series=3D7=
+14059
+> AngeloGioacchino Del Regno (7):
+>   clk: mediatek: fhctl: Add support for older fhctl register layout
+>   clk: mediatek: clk-pllfh: Export register/unregister/parse functions
+>   dt-bindings: clock: mediatek,mt8186-fhctl: Support MT6795,
+>     MT8173/92/95
+>   clk: mediatek: mt6795: Add support for frequency hopping through FHCTL
+>   clk: mediatek: mt8173: Add support for frequency hopping through FHCTL
+>   clk: mediatek: mt8192: Add support for frequency hopping through FHCTL
+>   clk: mediatek: mt8195: Add support for frequency hopping through FHCTL
 
-On 08/03/23 18:04, Krzysztof Kozlowski wrote:
-> On 08/03/2023 09:38, Siddharth Vadapalli wrote:
->> Hello Krzysztof,
->>
->> On 08/03/23 14:04, Krzysztof Kozlowski wrote:
->>> On 08/03/2023 06:18, Siddharth Vadapalli wrote:
->>>> Update bindings to include Serdes PHY as an optional PHY, in addition to
->>>> the existing CPSW MAC's PHY. The CPSW MAC's PHY is required while the
->>>> Serdes PHY is optional. The Serdes PHY handle has to be provided only
->>>> when the Serdes is being configured in a Single-Link protocol. Using the
->>>> name "serdes-phy" to represent the Serdes PHY handle, the am65-cpsw-nuss
->>>> driver can obtain the Serdes PHY and request the Serdes to be
->>>> configured.
->>>>
->>>> Signed-off-by: Siddharth Vadapalli <s-vadapalli@ti.com>
->>>> ---
->>>>
->>>> Hello,
->>>>
->>>> This patch corresponds to the Serdes PHY bindings that were missed out in
->>>> the series at:
->>>> https://lore.kernel.org/r/20230104103432.1126403-1-s-vadapalli@ti.com/
->>>> This was pointed out at:
->>>> https://lore.kernel.org/r/CAMuHMdW5atq-FuLEL3htuE3t2uO86anLL3zeY7n1RqqMP_rH1g@mail.gmail.com/
->>>>
->>>> Changes from v1:
->>>> 1. Describe phys property with minItems, items and description.
->>>> 2. Use minItems and items in phy-names.
->>>> 3. Remove the description in phy-names.
->>>>
->>>> v1:
->>>> https://lore.kernel.org/r/20230306094750.159657-1-s-vadapalli@ti.com/
->>>>
->>>>  .../bindings/net/ti,k3-am654-cpsw-nuss.yaml        | 14 ++++++++++++--
->>>>  1 file changed, 12 insertions(+), 2 deletions(-)
->>>>
->>>> diff --git a/Documentation/devicetree/bindings/net/ti,k3-am654-cpsw-nuss.yaml b/Documentation/devicetree/bindings/net/ti,k3-am654-cpsw-nuss.yaml
->>>> index 900063411a20..0fb48bb6a041 100644
->>>> --- a/Documentation/devicetree/bindings/net/ti,k3-am654-cpsw-nuss.yaml
->>>> +++ b/Documentation/devicetree/bindings/net/ti,k3-am654-cpsw-nuss.yaml
->>>> @@ -126,8 +126,18 @@ properties:
->>>>              description: CPSW port number
->>>>  
->>>>            phys:
->>>> -            maxItems: 1
->>>> -            description: phandle on phy-gmii-sel PHY
->>>> +            minItems: 1
->>>> +            items:
->>>> +              - description: CPSW MAC's PHY.
->>>> +              - description: Serdes PHY. Serdes PHY is required only if
->>>> +                             the Serdes has to be configured in the
->>>> +                             Single-Link configuration.
->>>> +
->>>> +          phy-names:
->>>> +            minItems: 1
->>>> +            items:
->>>> +              - const: mac-phy
->>>> +              - const: serdes-phy
->>>
->>> Drop "phy" suffixes.
->>
->> The am65-cpsw driver fetches the Serdes PHY by looking for the string
->> "serdes-phy". Therefore, modifying the string will require changing the driver's
->> code as well. Please let me know if it is absolutely necessary to drop the phy
->> suffix. If so, I will post a new series with the changes involving dt-bindings
->> changes and the driver changes.
-> 
-> Why the driver uses some properties before adding them to the binding?
+The changes look good to me overall. I've asked MediaTek to take a look
+at the various parameters used is this series, as I don't have the register
+definitions for the old version, and from what I've been told, the slope
+and other parameters depend on the chip design as well as manufacturing
+process used.
 
-I missed adding the bindings for the Serdes PHY as a part of the series
-mentioned in the section below the tearline of the patch. With this patch, I am
-attempting to fix it.
+So, code wise this series is
 
-> 
-> And is it correct method of adding ABI? You add incorrect properties
-> without documentation and then use this as an argument "driver already
-> does it"?
-
-I apologize if my earlier comment appeared to justify the usage of "serdes-phy"
-based on the driver already using it. I did not mean it in that sense. I simply
-meant to ask if dropping "phy" suffixes was a suggestion or a rule. In that
-context, I felt that if it was a suggestion, I would prefer retaining the names
-with the "phy" suffixes, since the driver is already using it. Additionally, I
-also mentioned in my earlier comment that if it is necessary to drop the "phy"
-suffix, then I will do so and add another patch to change the string the driver
-looks for as well.
-
-I shall take it that dropping "phy" suffixes is a rule/necessity. With this, I
-will post the v3 series making this change, along with the patch to update the
-string the driver looks for.
-
-Regards,
-Siddharth.
+Reviewed-by: Chen-Yu Tsai <wenst@chromium.org>
