@@ -2,136 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 65D8B6B1FA2
-	for <lists+devicetree@lfdr.de>; Thu,  9 Mar 2023 10:15:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7F33B6B1FB4
+	for <lists+devicetree@lfdr.de>; Thu,  9 Mar 2023 10:17:03 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231166AbjCIJP1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Mar 2023 04:15:27 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41604 "EHLO
+        id S230446AbjCIJRB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Mar 2023 04:17:01 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42772 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231287AbjCIJPV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Mar 2023 04:15:21 -0500
-Received: from mail-ed1-x52d.google.com (mail-ed1-x52d.google.com [IPv6:2a00:1450:4864:20::52d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E54206BC2D
-        for <devicetree@vger.kernel.org>; Thu,  9 Mar 2023 01:15:17 -0800 (PST)
-Received: by mail-ed1-x52d.google.com with SMTP id u9so4315495edd.2
-        for <devicetree@vger.kernel.org>; Thu, 09 Mar 2023 01:15:17 -0800 (PST)
+        with ESMTP id S230259AbjCIJQq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Mar 2023 04:16:46 -0500
+Received: from mail-yw1-x1131.google.com (mail-yw1-x1131.google.com [IPv6:2607:f8b0:4864:20::1131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B4568DFB49
+        for <devicetree@vger.kernel.org>; Thu,  9 Mar 2023 01:16:28 -0800 (PST)
+Received: by mail-yw1-x1131.google.com with SMTP id 00721157ae682-536bf92b55cso22945867b3.12
+        for <devicetree@vger.kernel.org>; Thu, 09 Mar 2023 01:16:28 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1678353316;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=s5q8KQOzCQWOJTqdyqK3y1vIAkUs5tdLsy8yXKdX+F0=;
-        b=eC7LBTnawutc5RwLnhfn1YG+rYbLKnbNiN6fETTvSSKIKTS/O5JKglmmvBAgljM08A
-         VyGMlZ1xNFFZJBjOxZ+G0gCB317iz7438XRa6b5UmZ9+8q8DMb9bJTGL/UJbi7/HUhM/
-         eBRCR3YjBJwmtUoqt/xNlgTFd3JiaKB/3z1Icqlzio0HpxNlEabmVXYTiuPci+saCbpG
-         ri5ZXW+fh8WSJpt/TZsUwg59NnAf64hG+CPZ381dy1cBVTeyaTLaSKont+6nkNspJhUm
-         RLal67hr1/wYty1IZ5mNocVAR/zoyKocQqvBX8WXdfl8MSmEWxkO2s+VO/3dEXme81hC
-         JCwQ==
+        d=linaro.org; s=google; t=1678353388;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=O4oOjO1iZqHHqppZpeEVZpEKQdPcmPUQRfadcX5/5t0=;
+        b=l62t2ivlUxilMsIapwCQyovxHKcjFK0D4LIQAKwW2mD7FsZY4aDwDtSxJ7m/K8NmKU
+         AJdQyIoT9ZWXji9+bD5ZurYVNpOiHzkB+kyAceWN/C+vqyHBsqWxFBIz0gIcXEU26XYP
+         bGq+xR7SNxzStcFc98oMENNMTFUqLRv00f4ca3YRP9hrFQ5iiAGTyWbVDmTPcBjDcaLh
+         IlfoxCyIw1UDxoTylhClVL/Kg3AcCk5cE9JmnflkYohAdEeI3uKYp9tbvftu+zZg/O4l
+         GFOJ7buxjOQ4QXp7E5LpS0pj8Nl26YP6QkXVQFvGPTiT3bw4KmkTs3rpR4wxRJBlc8UZ
+         KlQA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678353316;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=s5q8KQOzCQWOJTqdyqK3y1vIAkUs5tdLsy8yXKdX+F0=;
-        b=BSBW0rQvhR5eY3JZlwFI3nPGZUDQIP7rZzLCy8cNccey63FMuxDSOSh4ZqoVs1537o
-         7xR5AYDDTU72KWS4GKTepntMzTcLA5SGFQZzKov2H7NDNtxkkd9fCTmx5VDDl4PW91kT
-         trb+ElQqF7BNyVNudJV3cQiyK5VWhMcKJKH9rAbVrjf40eIXvsc4XE2kaF9j5Zhj8IVu
-         f2j6eSdYeQiGwrZwAh1WDZSZ7oE87iosedG+VnIY7nlLxCA2fo/qHS2SNvaulJ0XS89L
-         RdiSp9QS8E8RMoFit45BhqU1HjFd2z441HuH7zqncP8DdUvc8tlHTm/BfuULuWQsYpnj
-         FXRw==
-X-Gm-Message-State: AO0yUKVrX6CzLm2KKrumurFYbIccSivPqx32fDmckcC3LZCxTBVnN6WQ
-        8eOLNl6b8jc9MkJpxxOIE4lGqw==
-X-Google-Smtp-Source: AK7set8xwtxCT7nFJQpgOv90l8MyYk/13E3cgWr+yoj7OFzq7eSsX4qzkbHVVhC0/n/vMJqEyTKK7A==
-X-Received: by 2002:a17:906:304a:b0:8b1:4051:6d2c with SMTP id d10-20020a170906304a00b008b140516d2cmr19889796ejd.19.1678353316452;
-        Thu, 09 Mar 2023 01:15:16 -0800 (PST)
-Received: from ?IPV6:2a02:810d:15c0:828:7ee2:e73e:802e:45c1? ([2a02:810d:15c0:828:7ee2:e73e:802e:45c1])
-        by smtp.gmail.com with ESMTPSA id uo17-20020a170907cc1100b008b17ed98d05sm8531971ejc.120.2023.03.09.01.15.15
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 09 Mar 2023 01:15:15 -0800 (PST)
-Message-ID: <1b8bce82-a59d-f655-1277-3cc1110b818f@linaro.org>
-Date:   Thu, 9 Mar 2023 10:15:14 +0100
+        d=1e100.net; s=20210112; t=1678353388;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=O4oOjO1iZqHHqppZpeEVZpEKQdPcmPUQRfadcX5/5t0=;
+        b=iMqDDyUdVledZwqS60TMiuhVtzgj7bt21k3kcenM+M7H1PDMZ+vFEqMTXf9kPyjQxU
+         xhSDlKwYY5TbumvYKHzz3OPM7XaUTdxXw7cIaWbINb1XhOSoepQUxflq/TtPRa/MX6AL
+         y6X8vzYw6ssD7TJaQIbuKZu2rQAYhiyzA6M9E5ttHBomCK41HkGURk7KFV5UawLqN4gg
+         ktaNSh0JKuwAmO3OTDXY6Dkj5z317koEE5IrbR+mvCbAYRs45TTpmty2j2xtztjrCU64
+         EoimOUKaBNSZEvBlc9/12H73apnw9GkxIEHAJl14qUv3+lWpHiG5lA88bZTfe+L/k+lb
+         E5Wg==
+X-Gm-Message-State: AO0yUKUTZWKTWmCK34z/1QAe9Z3qE2Bk/z7dU7BvLZPDlroLsKtIJNfG
+        DB1h1/8zQ7luCbgifJPzWzxyRXEoDjSuK6HZ/xxLbw==
+X-Google-Smtp-Source: AK7set/xO9yLZW6FEwts8sv8BrRfJLxSKPDPCskVFgtuZJ0c4xCwq7UwoYUvM1OKfG5y166F1nne9p8uWnZAcO2Kp/8=
+X-Received: by 2002:a81:4312:0:b0:52e:b718:24d5 with SMTP id
+ q18-20020a814312000000b0052eb71824d5mr13578418ywa.9.1678353387956; Thu, 09
+ Mar 2023 01:16:27 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-Subject: Re: [PATCH 1/6] dt-bindings: power: pd-samsung: Add Exynos850 support
-Content-Language: en-US
-To:     Sam Protsenko <semen.protsenko@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     Alim Akhtar <alim.akhtar@samsung.com>,
-        Marek Szyprowski <m.szyprowski@samsung.com>,
-        Chanwoo Choi <cw00.choi@samsung.com>,
-        Chanho Park <chanho61.park@samsung.com>,
-        David Virag <virag.david003@gmail.com>,
+References: <20230306191535.1917656-1-sean.anderson@seco.com>
+ <20230306191535.1917656-4-sean.anderson@seco.com> <4c039e53-e3ca-29d7-e5ea-f24e385d28b0@linaro.org>
+ <42ccbac0-53e2-f599-fb3d-064b896bde4a@seco.com>
+In-Reply-To: <42ccbac0-53e2-f599-fb3d-064b896bde4a@seco.com>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Thu, 9 Mar 2023 10:16:16 +0100
+Message-ID: <CACRpkdaj-0dyqWdSbQbjyUed+khDLi-awgan1BnuDvuY2JBzFQ@mail.gmail.com>
+Subject: Re: [PATCH v10 03/13] dt-bindings: Convert gpio-mmio to yaml
+To:     Sean Anderson <sean.anderson@seco.com>,
+        Niall Leonard <nl250060@ncr.com>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Vinod Koul <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@kernel.org>,
+        linux-phy@lists.infradead.org,
+        Madalin Bucur <madalin.bucur@nxp.com>,
+        linuxppc-dev@lists.ozlabs.org, devicetree@vger.kernel.org,
+        Ioana Ciornei <ioana.ciornei@nxp.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Camelia Alexandra Groza <camelia.groza@nxp.com>,
         linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20230308230931.27261-1-semen.protsenko@linaro.org>
- <20230308230931.27261-2-semen.protsenko@linaro.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230308230931.27261-2-semen.protsenko@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+        Bagas Sanjaya <bagasdotme@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Bartosz Golaszewski <brgl@bgdev.pl>,
+        =?UTF-8?Q?Fern=C3=A1ndez_Rojas?= <noltari@gmail.com>,
+        Jonas Gorski <jonas.gorski@gmail.com>,
+        linux-gpio@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 09/03/2023 00:09, Sam Protsenko wrote:
-> Document the compatible string for Exynos850 power domains controller.
-> Also add power domain indices which can be used in "samsung,pd-index"
+On Tue, Mar 7, 2023 at 4:35=E2=80=AFPM Sean Anderson <sean.anderson@seco.co=
+m> wrote:
+> On 3/7/23 03:42, Krzysztof Kozlowski wrote:
 
-There is no such property...
+> > https://lore.kernel.org/all/20230126-gpio-mmio-fix-v2-1-38397aace340@nc=
+r.com/
+>
+> Thanks for linking to that.
+>
+> I believe this patch should be applied instead of that one because
+>
+> - It documents all the registers, which were previously only documented
+>   in the driver
+> - It handles the endianness properties.
+> - It consolidates the various descriptions of this binding into one
+>   schema.
 
-> property to specify a particular power domain in the device tree.
-> 
-> Signed-off-by: Sam Protsenko <semen.protsenko@linaro.org>
-> ---
->  .../devicetree/bindings/power/pd-samsung.yaml   |  1 +
->  MAINTAINERS                                     |  1 +
->  .../dt-bindings/power/samsung,exynos850-power.h | 17 +++++++++++++++++
->  3 files changed, 19 insertions(+)
->  create mode 100644 include/dt-bindings/power/samsung,exynos850-power.h
-> 
-> diff --git a/Documentation/devicetree/bindings/power/pd-samsung.yaml b/Documentation/devicetree/bindings/power/pd-samsung.yaml
-> index 9c2c51133457..a353a705292c 100644
-> --- a/Documentation/devicetree/bindings/power/pd-samsung.yaml
-> +++ b/Documentation/devicetree/bindings/power/pd-samsung.yaml
-> @@ -21,6 +21,7 @@ properties:
->      enum:
->        - samsung,exynos4210-pd
->        - samsung,exynos5433-pd
-> +      - samsung,exynos850-pd
->  
->    reg:
->      maxItems: 1
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index 8d5bc223f305..53e11e48639c 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -2720,6 +2720,7 @@ F:	drivers/pwm/pwm-samsung.c
->  F:	drivers/soc/samsung/
->  F:	drivers/tty/serial/samsung*
->  F:	include/clocksource/samsung_pwm.h
-> +F:	include/dt-bindings/power/samsung,*
->  F:	include/linux/platform_data/*s3c*
->  F:	include/linux/serial_s3c.h
->  F:	include/linux/soc/samsung/
-> diff --git a/include/dt-bindings/power/samsung,exynos850-power.h b/include/dt-bindings/power/samsung,exynos850-power.h
-> new file mode 100644
-> index 000000000000..a8d877b5515a
-> --- /dev/null
-> +++ b/include/dt-bindings/power/samsung,exynos850-power.h
+Niall are you sending a v3 of this patch soon?
+Include Sean on the reviewer list!
 
-Filename matching compatible, so samsung,exynos850-pd.h... but I
-actually wonder why do we need it. How power domains are organized in
-Exynos850?
-
-Best regards,
-Krzysztof
-
+Yours,
+Linus Walleij
