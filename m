@@ -2,132 +2,294 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B1C046B22DD
-	for <lists+devicetree@lfdr.de>; Thu,  9 Mar 2023 12:26:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EA4ED6B22E7
+	for <lists+devicetree@lfdr.de>; Thu,  9 Mar 2023 12:27:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231478AbjCIL0q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Mar 2023 06:26:46 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35820 "EHLO
+        id S231487AbjCIL1S (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Mar 2023 06:27:18 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39260 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231452AbjCIL0a (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Mar 2023 06:26:30 -0500
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 90B66E38A6;
-        Thu,  9 Mar 2023 03:24:27 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1678361067; x=1709897067;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=w7OI7hQEHg8ClJhsFM0nUYms3kQOe6dSXnURui+ubBs=;
-  b=F1hBIi0d/eDUHoY0pRq5LW1ABlzEuWNolCJouuc8Qg7VuJCuYIg2RUDk
-   y5tZh0PbZunV/kHpOW0mSx5i6AQSP5OV2aa5cU5NsDYr8weBxwfi2rPRo
-   Plcp1iOMcufSy7vdZt8Ge4VVpHIR+8pbXCKOOj4ORMGE1awThCEGy6ZS+
-   u8llRHcJ6+2nZj9TgeVB0Z4q0ekr88JUNQ4Leh41MCmH5Clin6Mmi+htW
-   zAYoLXsW6B9prJ1H7kswHp/9FpKnfZhptYp02Wkti8ThnbhUhwpPPpbuj
-   84MSb2H9fnDaPtByhOl5EedltG+zh0jt2DWL2BImENis6v2JC/nz9G2Gw
-   Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10643"; a="320249019"
-X-IronPort-AV: E=Sophos;i="5.98,246,1673942400"; 
-   d="scan'208";a="320249019"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-  by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 09 Mar 2023 03:24:27 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10643"; a="820569396"
-X-IronPort-AV: E=Sophos;i="5.98,246,1673942400"; 
-   d="scan'208";a="820569396"
-Received: from lkp-server01.sh.intel.com (HELO b613635ddfff) ([10.239.97.150])
-  by fmsmga001.fm.intel.com with ESMTP; 09 Mar 2023 03:24:23 -0800
-Received: from kbuild by b613635ddfff with local (Exim 4.96)
-        (envelope-from <lkp@intel.com>)
-        id 1paENi-0002uZ-0p;
-        Thu, 09 Mar 2023 11:24:22 +0000
-Date:   Thu, 9 Mar 2023 19:24:18 +0800
-From:   kernel test robot <lkp@intel.com>
-To:     Stephan Gerhold <stephan.gerhold@kernkonzept.com>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        "Rafael J. Wysocki" <rafael@kernel.org>
-Cc:     llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
-        Amit Kucheria <amitk@kernel.org>,
-        Thara Gopinath <thara.gopinath@gmail.com>,
-        Zhang Rui <rui.zhang@intel.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, Stephan Gerhold <stephan@gerhold.net>
-Subject: Re: [PATCH v2 2/6] thermal: qcom: tsens-v0_1: Fix mdm9607 slope
- values
-Message-ID: <202303091900.XYo6NJrL-lkp@intel.com>
-References: <20230308131041.124482-3-stephan.gerhold@kernkonzept.com>
+        with ESMTP id S231546AbjCIL05 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Mar 2023 06:26:57 -0500
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5DC72E682F;
+        Thu,  9 Mar 2023 03:25:52 -0800 (PST)
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits))
+        (No client certificate requested)
+        (Authenticated sender: kholk11)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 5E2F16602087;
+        Thu,  9 Mar 2023 11:25:50 +0000 (GMT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1678361151;
+        bh=CWOTZLVevNTcpblZto23WaaBgmbFJEVjGPIDL9aATaM=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=BR+nP7a944PQHBS/RASL/C9JyJjbKXMJ6wQxoz7XLYL50lWelxCrLfNUGo8LLzs7I
+         JIZrDPEHo0XecO8HgHp1JWMAuw3ogyl6oi9JIOWADfaSLQQWf8e8aAZv0Cw9EIS3IN
+         YFBA1qvsted+HxWazj/90CdmMrZ17V2ebi2hzxaqNE1vgor0kv/2j/SfOmIoDDa9CN
+         FlFvitJYnchgVrYVPJw3A5TvtKorCVi0NdldTJJdBhrHI+2+NPy/lZAbO8CIN9IsEQ
+         bkln1lbYpfBNZAZhSxFObbHMua1pw0IYkAYWYKska6yBAkHcGiv1g/6ZIAHiRD5WzP
+         llp9EsDcdJcgw==
+Message-ID: <ccfa1d23-e4a3-89d4-b09f-b9d79c0e6e32@collabora.com>
+Date:   Thu, 9 Mar 2023 12:25:48 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230308131041.124482-3-stephan.gerhold@kernkonzept.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,
-        SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.8.0
+Subject: Re: [PATCH v5 12/19] clk: mediatek: Add MT8188 vdosys0 clock support
+Content-Language: en-US
+To:     =?UTF-8?B?R2FybWluIENoYW5nICjlvLXlrrbpipgp?= 
+        <Garmin.Chang@mediatek.com>,
+        "wenst@chromium.org" <wenst@chromium.org>
+Cc:     "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "mturquette@baylibre.com" <mturquette@baylibre.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "sboyd@kernel.org" <sboyd@kernel.org>,
+        "linux-mediatek@lists.infradead.org" 
+        <linux-mediatek@lists.infradead.org>,
+        Project_Global_Chrome_Upstream_Group 
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
+        "richardcochran@gmail.com" <richardcochran@gmail.com>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
+        "linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>,
+        "netdev@vger.kernel.org" <netdev@vger.kernel.org>
+References: <20230119124848.26364-1-Garmin.Chang@mediatek.com>
+ <20230119124848.26364-13-Garmin.Chang@mediatek.com>
+ <CAGXv+5Fysy4iCvHEXWtf5oXCHkaKezPqcrGd8QzhnaTrYdyecA@mail.gmail.com>
+ <76f33f1f-53ab-65a9-f6e8-23db4ca0e0b5@collabora.com>
+ <329042ba313a93a389df5c69b1750f88cc26b9d4.camel@mediatek.com>
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <329042ba313a93a389df5c69b1750f88cc26b9d4.camel@mediatek.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Stephan,
+Il 09/03/23 06:49, Garmin Chang (張家銘) ha scritto:
+> On Fri, 2023-02-03 at 11:49 +0100, AngeloGioacchino Del Regno wrote:
+>> Il 03/02/23 08:19, Chen-Yu Tsai ha scritto:
+>>> On Thu, Jan 19, 2023 at 8:54 PM Garmin.Chang <
+>>> Garmin.Chang@mediatek.com> wrote:
+>>>>
+>>>> Add MT8188 vdosys0 clock controller which provides clock gate
+>>>> control in video system. This is integrated with mtk-mmsys
+>>>> driver which will populate device by
+>>>> platform_device_register_data
+>>>> to start vdosys clock driver.
+>>>>
+>>>> Signed-off-by: Garmin.Chang <Garmin.Chang@mediatek.com>
+>>>> ---
+>>>>    drivers/clk/mediatek/Makefile          |   3 +-
+>>>>    drivers/clk/mediatek/clk-mt8188-vdo0.c | 134
+>>>> +++++++++++++++++++++++++
+>>>>    2 files changed, 136 insertions(+), 1 deletion(-)
+>>>>    create mode 100644 drivers/clk/mediatek/clk-mt8188-vdo0.c
+>>>>
+>>>> diff --git a/drivers/clk/mediatek/Makefile
+>>>> b/drivers/clk/mediatek/Makefile
+>>>> index 7d09e9fc6538..df78c0777fef 100644
+>>>> --- a/drivers/clk/mediatek/Makefile
+>>>> +++ b/drivers/clk/mediatek/Makefile
+>>>> @@ -86,7 +86,8 @@ obj-$(CONFIG_COMMON_CLK_MT8186) += clk-mt8186-
+>>>> mcu.o clk-mt8186-topckgen.o clk-mt
+>>>>    obj-$(CONFIG_COMMON_CLK_MT8188) += clk-mt8188-apmixedsys.o clk-
+>>>> mt8188-topckgen.o \
+>>>>                                      clk-mt8188-peri_ao.o clk-
+>>>> mt8188-infra_ao.o \
+>>>>                                      clk-mt8188-cam.o clk-mt8188-
+>>>> ccu.o clk-mt8188-img.o \
+>>>> -                                  clk-mt8188-ipe.o clk-mt8188-
+>>>> mfg.o clk-mt8188-vdec.o
+>>>> +                                  clk-mt8188-ipe.o clk-mt8188-
+>>>> mfg.o clk-mt8188-vdec.o \
+>>>> +                                  clk-mt8188-vdo0.o
+>>>>    obj-$(CONFIG_COMMON_CLK_MT8192) += clk-mt8192.o
+>>>>    obj-$(CONFIG_COMMON_CLK_MT8192_AUDSYS) += clk-mt8192-aud.o
+>>>>    obj-$(CONFIG_COMMON_CLK_MT8192_CAMSYS) += clk-mt8192-cam.o
+>>>> diff --git a/drivers/clk/mediatek/clk-mt8188-vdo0.c
+>>>> b/drivers/clk/mediatek/clk-mt8188-vdo0.c
+>>>> new file mode 100644
+>>>> index 000000000000..30dd64374ace
+>>>> --- /dev/null
+>>>> +++ b/drivers/clk/mediatek/clk-mt8188-vdo0.c
+>>>> @@ -0,0 +1,134 @@
+>>>> +// SPDX-License-Identifier: GPL-2.0-only
+>>>> +//
+>>>> +// Copyright (c) 2022 MediaTek Inc.
+>>>> +// Author: Garmin Chang <garmin.chang@mediatek.com>
+>>>> +
+>>>> +#include <linux/clk-provider.h>
+>>>> +#include <linux/platform_device.h>
+>>>> +#include <dt-bindings/clock/mediatek,mt8188-clk.h>
+>>>> +
+>>>> +#include "clk-gate.h"
+>>>> +#include "clk-mtk.h"
+>>>> +
+>>>> +static const struct mtk_gate_regs vdo0_0_cg_regs = {
+>>>> +       .set_ofs = 0x104,
+>>>> +       .clr_ofs = 0x108,
+>>>> +       .sta_ofs = 0x100,
+>>>> +};
+>>>> +
+>>>> +static const struct mtk_gate_regs vdo0_1_cg_regs = {
+>>>> +       .set_ofs = 0x114,
+>>>> +       .clr_ofs = 0x118,
+>>>> +       .sta_ofs = 0x110,
+>>>> +};
+>>>> +
+>>>> +static const struct mtk_gate_regs vdo0_2_cg_regs = {
+>>>> +       .set_ofs = 0x124,
+>>>> +       .clr_ofs = 0x128,
+>>>> +       .sta_ofs = 0x120,
+>>>> +};
+>>>> +
+>>>> +#define GATE_VDO0_0(_id, _name, _parent,
+>>>> _shift)                       \
+>>>> +       GATE_MTK(_id, _name, _parent, &vdo0_0_cg_regs, _shift,
+>>>> &mtk_clk_gate_ops_setclr)
+>>>> +
+>>>> +#define GATE_VDO0_1(_id, _name, _parent,
+>>>> _shift)                       \
+>>>> +       GATE_MTK(_id, _name, _parent, &vdo0_1_cg_regs, _shift,
+>>>> &mtk_clk_gate_ops_setclr)
+>>>> +
+>>>> +#define GATE_VDO0_2(_id, _name, _parent,
+>>>> _shift)                       \
+>>>> +       GATE_MTK(_id, _name, _parent, &vdo0_2_cg_regs, _shift,
+>>>> &mtk_clk_gate_ops_setclr)
+>>>> +
+>>>> +#define GATE_VDO0_2_FLAGS(_id, _name, _parent, _shift,
+>>>> _flags)         \
+>>>> +       GATE_MTK_FLAGS(_id, _name, _parent, &vdo0_2_cg_regs,
+>>>> _shift,    \
+>>>> +       &mtk_clk_gate_ops_setclr, _flags)
+>>>> +
+>>>> +static const struct mtk_gate vdo0_clks[] = {
+>>>> +       /* VDO0_0 */
+>>>> +       GATE_VDO0_0(CLK_VDO0_DISP_OVL0, "vdo0_disp_ovl0",
+>>>> "top_vpp", 0),
+>>>> +       GATE_VDO0_0(CLK_VDO0_FAKE_ENG0, "vdo0_fake_eng0",
+>>>> "top_vpp", 2),
+>>>> +       GATE_VDO0_0(CLK_VDO0_DISP_CCORR0, "vdo0_disp_ccorr0",
+>>>> "top_vpp", 4),
+>>>> +       GATE_VDO0_0(CLK_VDO0_DISP_MUTEX0, "vdo0_disp_mutex0",
+>>>> "top_vpp", 6),
+>>>> +       GATE_VDO0_0(CLK_VDO0_DISP_GAMMA0, "vdo0_disp_gamma0",
+>>>> "top_vpp", 8),
+>>>> +       GATE_VDO0_0(CLK_VDO0_DISP_DITHER0, "vdo0_disp_dither0",
+>>>> "top_vpp", 10),
+>>>> +       GATE_VDO0_0(CLK_VDO0_DISP_WDMA0, "vdo0_disp_wdma0",
+>>>> "top_vpp", 17),
+>>>> +       GATE_VDO0_0(CLK_VDO0_DISP_RDMA0, "vdo0_disp_rdma0",
+>>>> "top_vpp", 19),
+>>>> +       GATE_VDO0_0(CLK_VDO0_DSI0, "vdo0_dsi0", "top_vpp", 21),
+>>>> +       GATE_VDO0_0(CLK_VDO0_DSI1, "vdo0_dsi1", "top_vpp", 22),
+>>>> +       GATE_VDO0_0(CLK_VDO0_DSC_WRAP0, "vdo0_dsc_wrap0",
+>>>> "top_vpp", 23),
+>>>> +       GATE_VDO0_0(CLK_VDO0_VPP_MERGE0, "vdo0_vpp_merge0",
+>>>> "top_vpp", 24),
+>>>> +       GATE_VDO0_0(CLK_VDO0_DP_INTF0, "vdo0_dp_intf0",
+>>>> "top_vpp", 25),
+>>>> +       GATE_VDO0_0(CLK_VDO0_DISP_AAL0, "vdo0_disp_aal0",
+>>>> "top_vpp", 26),
+>>>> +       GATE_VDO0_0(CLK_VDO0_INLINEROT0, "vdo0_inlinerot0",
+>>>> "top_vpp", 27),
+>>>> +       GATE_VDO0_0(CLK_VDO0_APB_BUS, "vdo0_apb_bus", "top_vpp",
+>>>> 28),
+>>>> +       GATE_VDO0_0(CLK_VDO0_DISP_COLOR0, "vdo0_disp_color0",
+>>>> "top_vpp", 29),
+>>>> +       GATE_VDO0_0(CLK_VDO0_MDP_WROT0, "vdo0_mdp_wrot0",
+>>>> "top_vpp", 30),
+>>>> +       GATE_VDO0_0(CLK_VDO0_DISP_RSZ0, "vdo0_disp_rsz0",
+>>>> "top_vpp", 31),
+>>>> +       /* VDO0_1 */
+>>>> +       GATE_VDO0_1(CLK_VDO0_DISP_POSTMASK0,
+>>>> "vdo0_disp_postmask0", "top_vpp", 0),
+>>>> +       GATE_VDO0_1(CLK_VDO0_FAKE_ENG1, "vdo0_fake_eng1",
+>>>> "top_vpp", 1),
+>>>> +       GATE_VDO0_1(CLK_VDO0_DL_ASYNC2, "vdo0_dl_async2",
+>>>> "top_vpp", 5),
+>>>> +       GATE_VDO0_1(CLK_VDO0_DL_RELAY3, "vdo0_dl_relay3",
+>>>> "top_vpp", 6),
+>>>> +       GATE_VDO0_1(CLK_VDO0_DL_RELAY4, "vdo0_dl_relay4",
+>>>> "top_vpp", 7),
+>>>> +       GATE_VDO0_1(CLK_VDO0_SMI_GALS, "vdo0_smi_gals",
+>>>> "top_vpp", 10),
+>>>> +       GATE_VDO0_1(CLK_VDO0_SMI_COMMON, "vdo0_smi_common",
+>>>> "top_vpp", 11),
+>>>> +       GATE_VDO0_1(CLK_VDO0_SMI_EMI, "vdo0_smi_emi", "top_vpp",
+>>>> 12),
+>>>> +       GATE_VDO0_1(CLK_VDO0_SMI_IOMMU, "vdo0_smi_iommu",
+>>>> "top_vpp", 13),
+>>>> +       GATE_VDO0_1(CLK_VDO0_SMI_LARB, "vdo0_smi_larb",
+>>>> "top_vpp", 14),
+>>>> +       GATE_VDO0_1(CLK_VDO0_SMI_RSI, "vdo0_smi_rsi", "top_vpp",
+>>>> 15),
+>>>> +       /* VDO0_2 */
+>>>> +       GATE_VDO0_2(CLK_VDO0_DSI0_DSI, "vdo0_dsi0_dsi",
+>>>> "top_dsi_occ", 0),
+>>>> +       GATE_VDO0_2(CLK_VDO0_DSI1_DSI, "vdo0_dsi1_dsi",
+>>>> "top_dsi_occ", 8),
+>>>> +       GATE_VDO0_2_FLAGS(CLK_VDO0_DP_INTF0_DP_INTF,
+>>>> "vdo0_dp_intf0_dp_intf",
+>>>> +               "top_edp", 16, CLK_SET_RATE_PARENT),
+>>>> +};
+>>>> +
+>>>> +static int clk_mt8188_vdo0_probe(struct platform_device *pdev)
+>>>> +{
+>>>> +       struct device *dev = &pdev->dev;
+>>>> +       struct device_node *node = dev->parent->of_node;
+>>>> +       struct clk_hw_onecell_data *clk_data;
+>>>> +       int r;
+>>>> +
+>>>> +       clk_data = mtk_alloc_clk_data(CLK_VDO0_NR_CLK);
+>>>> +       if (!clk_data)
+>>>> +               return -ENOMEM;
+>>>> +
+>>>> +       r = mtk_clk_register_gates(node, vdo0_clks,
+>>>> ARRAY_SIZE(vdo0_clks), clk_data);
+>>>
+>>> This API was changed. Please rebase onto the latest -next and
+>>> update.
+>>>
+>>> Angelo (CC-ed) also mentioned a new simple probe variant for non-DT
+>>> clock drivers is being developed. He didn't mention a timeline
+>>> though.
+>>
+>> I've already tested the new simple probe variant for non-DT clock
+>> drivers and
+>> it works fine on MT8173, MT8192 and MT8195.
+>>
+>> Timeline - I should be able to push the part 2 series next week,
+>> which will include
+>> more conversion to simple probe and almost all clock drivers changed
+>> to allow
+>> building as modules.
+>>
+>> Cheers,
+>> Angelo
+>>
+> Thank you for your suggestions.
+> When the new simple probe variant and building as modules are ready, I
+> will rebase latest-next and update it.
 
-I love your patch! Perhaps something to improve:
+It's *finally* ready as it's fully tested and reviewed.
 
-[auto build test WARNING on rafael-pm/thermal]
-[also build test WARNING on linus/master v6.3-rc1 next-20230309]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+You can go on with a rebase on top of it:
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Stephan-Gerhold/thermal-qcom-tsens-Drop-unused-legacy-structs/20230308-214702
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/rafael/linux-pm.git thermal
-patch link:    https://lore.kernel.org/r/20230308131041.124482-3-stephan.gerhold%40kernkonzept.com
-patch subject: [PATCH v2 2/6] thermal: qcom: tsens-v0_1: Fix mdm9607 slope values
-config: arm-defconfig (https://download.01.org/0day-ci/archive/20230309/202303091900.XYo6NJrL-lkp@intel.com/config)
-compiler: clang version 17.0.0 (https://github.com/llvm/llvm-project 67409911353323ca5edf2049ef0df54132fa1ca7)
-reproduce (this is a W=1 build):
-        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
-        chmod +x ~/bin/make.cross
-        # install arm cross compiling tool for clang build
-        # apt-get install binutils-arm-linux-gnueabi
-        # https://github.com/intel-lab-lkp/linux/commit/3794cf582a2a9b64fabba0c34ec4a1f87571247a
-        git remote add linux-review https://github.com/intel-lab-lkp/linux
-        git fetch --no-tags linux-review Stephan-Gerhold/thermal-qcom-tsens-Drop-unused-legacy-structs/20230308-214702
-        git checkout 3794cf582a2a9b64fabba0c34ec4a1f87571247a
-        # save the config file
-        mkdir build_dir && cp config build_dir/.config
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross W=1 O=build_dir ARCH=arm olddefconfig
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross W=1 O=build_dir ARCH=arm SHELL=/bin/bash drivers/thermal/qcom/
+https://patchwork.kernel.org/project/linux-mediatek/list/?series=726914
 
-If you fix the issue, kindly add following tag where applicable
-| Reported-by: kernel test robot <lkp@intel.com>
-| Link: https://lore.kernel.org/oe-kbuild-all/202303091900.XYo6NJrL-lkp@intel.com/
-
-All warnings (new ones prefixed by >>):
-
->> drivers/thermal/qcom/tsens-v0_1.c:284:31: warning: unused variable 'ops_v0_1' [-Wunused-const-variable]
-   static const struct tsens_ops ops_v0_1 = {
-                                 ^
-   1 warning generated.
-
-
-vim +/ops_v0_1 +284 drivers/thermal/qcom/tsens-v0_1.c
-
-c19970548edc35 Amit Kucheria    2019-03-20  283  
-51d78b8b1beba2 Dmitry Baryshkov 2023-01-01 @284  static const struct tsens_ops ops_v0_1 = {
-51d78b8b1beba2 Dmitry Baryshkov 2023-01-01  285  	.init		= init_common,
-51d78b8b1beba2 Dmitry Baryshkov 2023-01-01  286  	.calibrate	= tsens_calibrate_common,
-51d78b8b1beba2 Dmitry Baryshkov 2023-01-01  287  	.get_temp	= get_temp_common,
-51d78b8b1beba2 Dmitry Baryshkov 2023-01-01  288  };
-51d78b8b1beba2 Dmitry Baryshkov 2023-01-01  289  
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests
+Regards,
+Angelo
