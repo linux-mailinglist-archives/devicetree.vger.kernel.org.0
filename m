@@ -2,110 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6BAB26B1E5A
-	for <lists+devicetree@lfdr.de>; Thu,  9 Mar 2023 09:38:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AB6A36B1E7F
+	for <lists+devicetree@lfdr.de>; Thu,  9 Mar 2023 09:45:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229686AbjCIIiE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Mar 2023 03:38:04 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53530 "EHLO
+        id S229963AbjCIIpA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Mar 2023 03:45:00 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41102 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229951AbjCIIhf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Mar 2023 03:37:35 -0500
-Received: from mail-ed1-x52e.google.com (mail-ed1-x52e.google.com [IPv6:2a00:1450:4864:20::52e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DBA6CC5ACE
-        for <devicetree@vger.kernel.org>; Thu,  9 Mar 2023 00:36:21 -0800 (PST)
-Received: by mail-ed1-x52e.google.com with SMTP id g3so3967407eda.1
-        for <devicetree@vger.kernel.org>; Thu, 09 Mar 2023 00:36:21 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1678350980;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=/SEpOpIkakui+KeMg3zz9ImxN2mZh/kxITlQnQLk08k=;
-        b=cEEibjqkZl2hRaglcfe5+Mgr3v5dISNz87JPz0LxDpvCQv6l6Q1y1GWoaUa/Cmyun5
-         iHJg9CCVjymvau/N6/QDGethK3WrtsIyRan//DtThOBj6kqxhXFo+9sr++Pv6cfliCPj
-         Citgky1mUJFI9Wi3gQocYyyiFs4Vg+yxFAxbhrLWMIYtjMrvLNIqokSa9do64rVEPbEu
-         vEmFuHrAvu1UWMeXQo0yFQbgwSTg92MZdrQh0D1rf+3IKaCUNpzH2lGbRdKs9vZPj/Jc
-         xchqOfryqWSKTMKnKzBMs2Uxb2+AFsztEdiF8osr4seORuWc/jKG8g5RyB1pkO6K7lRE
-         zL5Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678350980;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=/SEpOpIkakui+KeMg3zz9ImxN2mZh/kxITlQnQLk08k=;
-        b=jEFNsWKYaX3nrTLtA1B3hd1gxzHXkBAWXe7vBFcLWg2aifzCY52wRBsI6DRyLscq6Q
-         6xkPi/2eVcsIHYS/ijKqAPXPDizm483fEsKhDQhsLhm1puKmUrdfWUpZa6yrfNZeNZge
-         XT7e9yPCGTJbm5FM3EZ3BCBiSXwAVYU7+oRbYcmoWbOXWZUh1TlDKTlHv5+oq2fKj+dt
-         /rYgVtENXMzZLgFqQvRtn8UXQ9NjMtmo9Zb7Uz8CgWjEPvVPBZVY0s/5jHhn9T7hIUf1
-         hZey3s4pRUnpU5eECmEo1k5Dm0oBm8kenHmrHyNT8NeJ4HR5pt2zBQI7990S7ZaJTDGH
-         yQkg==
-X-Gm-Message-State: AO0yUKUqrBBffrikkrejkuZfKXuCYPWi/2jYIsfwapu2axW/mBmQfveH
-        /FpsiNWIWJsaiN9r5aS+ZwV2TQ==
-X-Google-Smtp-Source: AK7set/H5Curkw44DShH7kUbF2c0b2yHw5SAle0NeduHbjUmzuXXVRvS05xJJ8IDoy/r/n8yxOqF3g==
-X-Received: by 2002:a17:907:7f9f:b0:889:1eb1:7517 with SMTP id qk31-20020a1709077f9f00b008891eb17517mr26477271ejc.30.1678350979928;
-        Thu, 09 Mar 2023 00:36:19 -0800 (PST)
-Received: from krzk-bin.. ([2a02:810d:15c0:828:7ee2:e73e:802e:45c1])
-        by smtp.gmail.com with ESMTPSA id e5-20020a17090681c500b008d269233bd4sm8506217ejx.204.2023.03.09.00.36.18
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 09 Mar 2023 00:36:19 -0800 (PST)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Manivannan Sadhasivam <mani@kernel.org>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        linux-arm-msm@vger.kernel.org, linux-remoteproc@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH v2] dt-bindings: remoteproc: qcom,adsp: bring back firmware-name
-Date:   Thu,  9 Mar 2023 09:35:48 +0100
-Message-Id: <20230309083548.47205-1-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.34.1
+        with ESMTP id S230123AbjCIIoc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Mar 2023 03:44:32 -0500
+Received: from fd01.gateway.ufhost.com (fd01.gateway.ufhost.com [61.152.239.71])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 32A0225B86;
+        Thu,  9 Mar 2023 00:44:30 -0800 (PST)
+Received: from EXMBX165.cuchost.com (unknown [175.102.18.54])
+        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+        (Client CN "EXMBX165", Issuer "EXMBX165" (not verified))
+        by fd01.gateway.ufhost.com (Postfix) with ESMTP id 7D5CB24E2D9;
+        Thu,  9 Mar 2023 16:44:23 +0800 (CST)
+Received: from EXMBX061.cuchost.com (172.16.6.61) by EXMBX165.cuchost.com
+ (172.16.6.75) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Thu, 9 Mar
+ 2023 16:44:23 +0800
+Received: from [192.168.125.128] (183.27.96.115) by EXMBX061.cuchost.com
+ (172.16.6.61) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Thu, 9 Mar
+ 2023 16:44:22 +0800
+Message-ID: <abfbd29b-e0dd-2756-d65a-4bdc6be096a0@starfivetech.com>
+Date:   Thu, 9 Mar 2023 16:44:25 +0800
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.8.0
+Subject: Re: [PATCH v4 1/3] dt-bindings: watchdog: Add watchdog for StarFive
+ JH7100 and JH7110
+Content-Language: en-US
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+CC:     <linux-riscv@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-watchdog@vger.kernel.org>,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Samin Guo <samin.guo@starfivetech.com>,
+        <linux-kernel@vger.kernel.org>, Guenter Roeck <linux@roeck-us.net>,
+        Emil Renner Berthing <kernel@esmil.dk>,
+        Conor Dooley <conor@kernel.org>
+References: <20230308034036.99213-1-xingyu.wu@starfivetech.com>
+ <20230308034036.99213-2-xingyu.wu@starfivetech.com>
+ <94ba1427-21ea-86ee-d60d-7817f8e673fa@linaro.org>
+ <783fe50c-1649-b1c4-06cd-ac81bcad5117@starfivetech.com>
+ <812bbccf-010f-1138-f104-7db7d47ebc9a@linaro.org>
+From:   Xingyu Wu <xingyu.wu@starfivetech.com>
+In-Reply-To: <812bbccf-010f-1138-f104-7db7d47ebc9a@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [183.27.96.115]
+X-ClientProxiedBy: EXCAS066.cuchost.com (172.16.6.26) To EXMBX061.cuchost.com
+ (172.16.6.61)
+X-YovoleRuleAgent: yovoleflag
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The firmware-name property was moved from common qcom,pas-common.yaml
-binding to each device-specific schema, but the qcom,adsp.yaml was not
-updated.
+On 2023/3/9 16:35, Krzysztof Kozlowski wrote:
+> On 09/03/2023 09:13, Xingyu Wu wrote:
+>> On 2023/3/9 15:30, Krzysztof Kozlowski wrote:
+>>> On 08/03/2023 04:40, Xingyu Wu wrote:
+>>>> Add bindings to describe the watchdog for the StarFive JH7100/JH7110 SoC.
+>>>> And Use JH7100 as first StarFive SoC with watchdog.
+>>>>
+>>>> Signed-off-by: Xingyu Wu <xingyu.wu@starfivetech.com>
+>>>> ---
+>>>
+>>> What happened here? You wrote in changelog "Modified" but what exactly?
+>>> How am I supposed to find it?
+>>>
+>>> Provide detailed description, since you decided to remove my tag.
+>>> Otherwise, standard response:
+>>>
+>>> This is a friendly reminder during the review process.
+>>>
+>>> It looks like you received a tag and forgot to add it.
+>>>
+>>> If you do not know the process, here is a short explanation:
+>>> Please add Acked-by/Reviewed-by/Tested-by tags when posting new
+>>> versions. However, there's no need to repost patches *only* to add the
+>>> tags. The upstream maintainer will do that for acks received on the
+>>> version they apply.
+>>>
+>>> https://elixir.bootlin.com/linux/v5.17/source/Documentation/process/submitting-patches.rst#L540
+>>>
+>>> If a tag was not added on purpose, please state why and what changed.
+>>>
+>> 
+>> I am sorry I did not elaborate it. The dt-bindings was only supported JH7110 watchdog in v3 patchset
+>> and you had sent Reviewed-by tags. But at the same time tried to add JH7100 watchdog after discussion
+>> and used JH7100 as the dt-binding's name because JH7100 is the first StarFive SoCs about watchdog.
+>> The compatible also add 'starfive,jh7100-wdt' in the dt-binding. It is different from the v3 patch and
+>> I did not add the Reviewed-by tag.
+> 
+> So what is the difference? Filename and new compatible?
+> 
 
-Fixes: cee616c68846 ("dt-bindings: remoteproc: qcom: adsp: move memory-region and firmware-name out of pas-common")
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Yes. So are these acceptable and can still add the tag?
 
----
-
-Changes since v1:
-1. Use maxItems:1 (Rob)
----
- Documentation/devicetree/bindings/remoteproc/qcom,adsp.yaml | 4 ++++
- 1 file changed, 4 insertions(+)
-
-diff --git a/Documentation/devicetree/bindings/remoteproc/qcom,adsp.yaml b/Documentation/devicetree/bindings/remoteproc/qcom,adsp.yaml
-index b571efe6d550..2edadba91dfc 100644
---- a/Documentation/devicetree/bindings/remoteproc/qcom,adsp.yaml
-+++ b/Documentation/devicetree/bindings/remoteproc/qcom,adsp.yaml
-@@ -44,6 +44,10 @@ properties:
-     maxItems: 1
-     description: Reference to the reserved-memory for the Hexagon core
- 
-+  firmware-name:
-+    maxItems: 1
-+    description: Firmware name for the Hexagon core
-+
- required:
-   - compatible
-   - memory-region
--- 
-2.34.1
-
+Best regards,
+Xingyu Wu
