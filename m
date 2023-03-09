@@ -2,119 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D558D6B289A
-	for <lists+devicetree@lfdr.de>; Thu,  9 Mar 2023 16:21:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E68156B28BD
+	for <lists+devicetree@lfdr.de>; Thu,  9 Mar 2023 16:23:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229852AbjCIPVh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Mar 2023 10:21:37 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41012 "EHLO
+        id S231682AbjCIPXn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Mar 2023 10:23:43 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45502 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229751AbjCIPVg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Mar 2023 10:21:36 -0500
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1D318213C;
-        Thu,  9 Mar 2023 07:21:34 -0800 (PST)
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: kholk11)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id BB598660304C;
-        Thu,  9 Mar 2023 15:21:32 +0000 (GMT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1678375293;
-        bh=9nQJQnCKbrb4KyGEURRImR/OMn2QuOxR8XFtRl35qr8=;
-        h=Date:Subject:To:References:From:In-Reply-To:From;
-        b=eCxYuAvDoUj6hHpZC5PYkYWMWUiG7uhp9zBZFfhSggOZvJ2PI3d/ct+eiTMkLCG7I
-         rO989CP+wpq9ukZjjY6x7wRayNpanPHLt/3Ew6A0uRhmbr65Vane5p0BlKVGi0z4bK
-         Y/hN8zryvtqjjIEplsuf+Jvd1oO6Jer9IJzh4OmM8ctWLHvqK8gHxB4JtFyjTk+uWg
-         CaWIUMivoOqf0or3Uk8V1p6Pk0Xk58W8mA3dkiB1RYe0czYTYlNLWnBF/ecTzDigpu
-         076PhgAa9jRPoOrZq7isygKz62/clJFhaTqazvkNlbUIcLa+VzFwpY3ST2365Gqr2j
-         Lg6CSOT1bZtpg==
-Message-ID: <42e0c0fe-3ee5-91df-302a-20193ec64bd3@collabora.com>
-Date:   Thu, 9 Mar 2023 16:21:29 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-Subject: Re: [PATCH v10 3/3] arm64: dts: mediatek: Initial mt8365-evk support
-Content-Language: en-US
-To:     =?UTF-8?Q?Bernhard_Rosenkr=c3=a4nzer?= <bero@baylibre.com>,
-        linux-mediatek@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, linux-serial@vger.kernel.org,
+        with ESMTP id S231580AbjCIPX1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Mar 2023 10:23:27 -0500
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3489EF16AB;
+        Thu,  9 Mar 2023 07:22:48 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+        bh=TZtnq4ErD6+p46J1xiQAutyT1OfQ3UHS3Utv9OsbD3k=; b=4u643A2Y3jE+yVdrqGMaYCOOLt
+        pUoE/QBgVG8HivDUgvuxodEqXCK/29gfplEGQEf/qEFBYL8Ii/Tir4i9ovOxmF8wVWYwl0TW0weqA
+        ygUG5e8884d5Ik+oAh26XdFyioQdTjOlFbjCA44mXbPUSidZwDRvcnL5pPeD8JZqv7OQ=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+        (envelope-from <andrew@lunn.ch>)
+        id 1paI63-006t3h-Ua; Thu, 09 Mar 2023 16:22:23 +0100
+Date:   Thu, 9 Mar 2023 16:22:23 +0100
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Linus Walleij <linus.walleij@linaro.org>
+Cc:     Christian Marangi <ansuelsmth@gmail.com>,
+        Hans de Goede <hdegoede@redhat.com>,
+        Pavel Machek <pavel@ucw.cz>, Lee Jones <lee@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Vladimir Oltean <olteanv@gmail.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Russell King <linux@armlinux.org.uk>,
+        Jonathan Corbet <corbet@lwn.net>,
+        "Russell King (Oracle)" <rmk+kernel@armlinux.org.uk>,
+        Jacek Anaszewski <jacek.anaszewski@gmail.com>,
+        John Crispin <john@phrozen.org>, linux-leds@vger.kernel.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        matthias.bgg@gmail.com, gregkh@linuxfoundation.org,
-        krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
-        maz@kernel.org, tglx@linutronix.de
-References: <20230309143459.401783-1-bero@baylibre.com>
- <20230309143459.401783-4-bero@baylibre.com>
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20230309143459.401783-4-bero@baylibre.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+        netdev@vger.kernel.org, linux-doc@vger.kernel.org,
+        Tim Harvey <tharvey@gateworks.com>,
+        Alexander Stein <alexander.stein@ew.tq-group.com>,
+        Rasmus Villemoes <rasmus.villemoes@prevas.dk>,
+        Bagas Sanjaya <bagasdotme@gmail.com>,
+        Arun.Ramadoss@microchip.com
+Subject: Re: [PATCH v8 00/13] Adds support for PHY LEDs with offload triggers
+Message-ID: <8226f000-dd9c-4774-b972-a7f1113f0986@lunn.ch>
+References: <20230216013230.22978-1-ansuelsmth@gmail.com>
+ <CACRpkda30Ky5oYPn_nGWGOzT5ntZYdE3gafrs7D27ZHxgGuO8A@mail.gmail.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CACRpkda30Ky5oYPn_nGWGOzT5ntZYdE3gafrs7D27ZHxgGuO8A@mail.gmail.com>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 09/03/23 15:34, Bernhard Rosenkränzer ha scritto:
-> From: Fabien Parent <fparent@baylibre.com>
+> I am a bit reluctant on the ambition to rely on configuration from sysfs
+> for the triggers, and I am also puzzled to how a certain trigger on a
+> certain LED is going to associate itself with, say, a certain port.
+
+Hi Linus
+
+There will need to be a device tree binding for the default
+trigger. That is what nearly all the rejected hacks so far have been
+about, write registers in the PHYs LEDs registers to put it into a
+specific mode. I don't see that part of the overall problem too
+problematic, apart from the old issue, is it describing configuration,
+not hardware.
+
+As to 'how a certain trigger on a certain LED is going to associate
+itself with, say, a certain port' is clearly a property of the
+hardware, when offloading is supported. I've not seen a switch you can
+arbitrarily assign LEDs to ports. The Marvell switches have the LED
+registers within the port registers, for example, two LEDs per port.
+
 > 
-> This adds minimal support for the Mediatek 8365 SOC and the EVK reference
-> board, allowing the board to boot to initramfs with serial port I/O.
+> I want to draw your attention to this recently merged patch series
+> from Hans de Goede:
+> https://lore.kernel.org/linux-leds/20230120114524.408368-1-hdegoede@redhat.com/
 > 
-> Signed-off-by: Fabien Parent <fparent@baylibre.com>
-> [bero@baylibre.com: Removed parts depending on drivers that aren't upstream yet, cleanups, add CPU cache layout, add systimer, fix GIC]
-> Signed-off-by: Bernhard Rosenkränzer <bero@baylibre.com>
-> [aouledameur@baylibre.com: Fix systimer properties]
-> Signed-off-by: Amjad Ouled-Ameur <aouledameur@baylibre.com>
-> Signed-off-by: Alexandre Mergnat <amergnat@baylibre.com>
-> Tested-by: Kevin Hilman <khilman@baylibre.com>
-> Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-> ---
->   arch/arm64/boot/dts/mediatek/Makefile       |   1 +
->   arch/arm64/boot/dts/mediatek/mt8365-evk.dts | 168 +++++++++
->   arch/arm64/boot/dts/mediatek/mt8365.dtsi    | 377 ++++++++++++++++++++
->   3 files changed, 546 insertions(+)
->   create mode 100644 arch/arm64/boot/dts/mediatek/mt8365-evk.dts
->   create mode 100644 arch/arm64/boot/dts/mediatek/mt8365.dtsi
-> 
+> This adds the devm_led_get() API which works similar to getting
+> regulators, clocks, GPIOs or any other resources.
 
-..snip..
+Interesting. Thanks for pointing this out. But i don't think it is of
+interest in our use case, which is hardware offload. For a purely
+software controlled LED, where the LED could be anywhere,
+devm_led_get() makes sense. But in our case, the LED is in a well
+defined place, either the MAC or the PHY, where it has access to the
+RX and TX packets, link status etc. So we don't have the problem of
+finding it in an arbitrary location.
 
-> diff --git a/arch/arm64/boot/dts/mediatek/mt8365.dtsi b/arch/arm64/boot/dts/mediatek/mt8365.dtsi
-> new file mode 100644
-> index 0000000000000..5d6763ebcf869
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/mediatek/mt8365.dtsi
-> @@ -0,0 +1,377 @@
-> +// SPDX-License-Identifier: (GPL-2.0 OR MIT)
-> +/*
-> + * (C) 2018 MediaTek Inc.
-> + * Copyright (C) 2022 BayLibre SAS
-> + * Fabien Parent <fparent@baylibre.com>
-> + * Bernhard Rosenkränzer <bero@baylibre.com>
-> + */
+There is also one additional problem we have, both for MAC and PHY
+LEDs. The trigger is ledtrig-netdev. All trigger state revolves around
+a netdev. A DSA port is not a netdev. A PHY is not a netdev. Each of
+these three things have there own life cycle. Often, a PHY does not
+know what netdev it is associated to until the interface is opened,
+ie. ip link set eth0 up. But once it is associated, phylib knows this
+information, so can return it, without any additional configuration
+data in DT. A DSA switch port can be created before the netdev
+associated to it is created. But again, the DSA core does know the
+mapping between a netdev and a port. Using devm_led_get() does not
+gain us anything.
 
-..snip..
-
-> +
-> +	systimer: timer@10017000 {
-> +		compatible = "mediatek,mt8365-systimer", "mediatek,mt6795-timer";
-
-You mean "mediatek,67 -> 6 <- 5-timer", right? :-P
-
-Cheers,
-Angelo
-
-> +		reg = <0 0x10017000 0 0x100>;
-> +		interrupts = <GIC_SPI 138 IRQ_TYPE_LEVEL_HIGH>;
-> +		clocks = <&system_clk>;
-> +		clock-names = "clk13m";
-> +	};
-> +};
-
+	Andrew
