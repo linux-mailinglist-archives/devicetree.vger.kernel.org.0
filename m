@@ -2,139 +2,133 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 75C7C6B1B1E
-	for <lists+devicetree@lfdr.de>; Thu,  9 Mar 2023 07:09:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 402AD6B1B31
+	for <lists+devicetree@lfdr.de>; Thu,  9 Mar 2023 07:14:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229644AbjCIGJ4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Mar 2023 01:09:56 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54104 "EHLO
+        id S229850AbjCIGOX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Mar 2023 01:14:23 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33144 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229900AbjCIGJx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Mar 2023 01:09:53 -0500
-Received: from sin.source.kernel.org (sin.source.kernel.org [IPv6:2604:1380:40e1:4800::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A29A28B32A;
-        Wed,  8 Mar 2023 22:09:47 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by sin.source.kernel.org (Postfix) with ESMTPS id C5060CE21A4;
-        Thu,  9 Mar 2023 06:09:45 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4996BC433D2;
-        Thu,  9 Mar 2023 06:09:41 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1678342184;
-        bh=5xaZPSrXO3U+lnq1ejULQspngVs5//pV+SuM6vGjaFE=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=LrcBPL3Mk6HmCfgRzPaHNq2HQ6p3Bz5ey0FyJo+jpb9KviuL08qJcagTF4AtdQ5Wo
-         y+cCqUOrozOYIA/jPNLNsYDmDltlUFFHkH0qEasfY/A4kBN+83ry3hRnnbpd5sRGZr
-         88jguB2E8ndyl9UqtDuyRSD4WaAOOkgzRqU/1YIWNrzvwCxSKK1CWu30awQhjTjzqP
-         T3JEqwL4znnPzb41rBdFFm3p27lE9uu9mkFLUY1ZtbjoBlouq2uZye7s8z/e5zA6eT
-         L5I0ZJGarkn2RrPe1CFwH5QOlfl1lXDVRr3H5S/IYvQ2BYmCtshKx5+vM9DSo1Tm+5
-         9f/72Vd1Ag+Ng==
-Message-ID: <6180156d-109c-2f41-69ee-0a854dc3772e@kernel.org>
-Date:   Thu, 9 Mar 2023 07:09:38 +0100
+        with ESMTP id S229692AbjCIGOW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Mar 2023 01:14:22 -0500
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 072EDC9A4E;
+        Wed,  8 Mar 2023 22:14:20 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1678342461; x=1709878461;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:content-transfer-encoding:in-reply-to;
+  bh=2K62SrZiHQjF6e8srmIrQVlR1O8haqnD1lsxLpt8L60=;
+  b=DX47vwfWGB4haEFQDZgFaJ00tCIvBQOzvuMJj0mZIjmtmCCb62bMDTix
+   1BUVCBVCM6jzW2Di63L1ayL3sVMRMxGDVTKhP5oK1HzIBUhcJr7+3PR3H
+   I7i3W9F2EgIXeq20LGMXpVfjPQJcm0MtLj4xHXMX8UIXV8PK+13QHyLad
+   MSRkBl5k1wN6QpMmMcU3RGkbzOvVhgWq78IxhVOHJM9bNXf7A9L6rl3Lx
+   cow0QSP+/ImRSlLqCdij+De+/Iba33PmbxWBNmP9JlcRL9GulurmEx0WJ
+   MBJURfD9HNspbXNd2MQ6/c880Fl+8sjhWH0WeBQVEKZx23PZItG3fDdJ7
+   A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10643"; a="337889162"
+X-IronPort-AV: E=Sophos;i="5.98,245,1673942400"; 
+   d="scan'208";a="337889162"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 08 Mar 2023 22:14:20 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6500,9779,10643"; a="709720991"
+X-IronPort-AV: E=Sophos;i="5.98,245,1673942400"; 
+   d="scan'208";a="709720991"
+Received: from lkp-server01.sh.intel.com (HELO b613635ddfff) ([10.239.97.150])
+  by orsmga001.jf.intel.com with ESMTP; 08 Mar 2023 22:14:12 -0800
+Received: from kbuild by b613635ddfff with local (Exim 4.96)
+        (envelope-from <lkp@intel.com>)
+        id 1pa9XY-0002hh-08;
+        Thu, 09 Mar 2023 06:14:12 +0000
+Date:   Thu, 9 Mar 2023 14:13:16 +0800
+From:   kernel test robot <lkp@intel.com>
+To:     =?iso-8859-1?Q?K=F6ry?= Maincent <kory.maincent@bootlin.com>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Heiner Kallweit <hkallweit1@gmail.com>, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-doc@vger.kernel.org, linux-omap@vger.kernel.org
+Cc:     oe-kbuild-all@lists.linux.dev, Michael Walle <michael@walle.cc>,
+        Maxime Chevallier <maxime.chevallier@bootlin.com>,
+        Richard Cochran <richardcochran@gmail.com>,
+        Kory Maincent <kory.maincent@bootlin.com>,
+        thomas.petazzoni@bootlin.com, Russell King <linux@armlinux.org.uk>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Jonathan Corbet <corbet@lwn.net>,
+        Jay Vosburgh <j.vosburgh@gmail.com>,
+        Veaceslav Falico <vfalico@gmail.com>,
+        Andy Gospodarek <andy@greyhouse.net>,
+        Joakim Zhang <qiangqing.zhang@nxp.com>,
+        Vladimir Oltean <vladimir.oltean@nxp.com>,
+        Claudiu Manoil <claudiu.manoil@nxp.com>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        UNGLinuxDriver@microchip.com,
+        Grygorii Strashko <grygorii.strashko@ti.com>,
+        Minghao Chi <chi.minghao@zte.com.cn>
+Subject: Re: [PATCH v3 3/5] net: Let the active time stamping layer be
+ selectable.
+Message-ID: <202303091304.yj8NySNz-lkp@intel.com>
+References: <20230308135936.761794-4-kory.maincent@bootlin.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-Subject: Re: [PATCH v13 2/2] clk: clk-loongson2: add clock controller driver
- support
-Content-Language: en-US
-To:     zhuyinbo <zhuyinbo@loongson.cn>, kernel test robot <lkp@intel.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org,
-        linux-clk@vger.kernel.org, devicetree@vger.kernel.org
-Cc:     oe-kbuild-all@lists.linux.dev, Jianmin Lv <lvjianmin@loongson.cn>,
-        Liu Peibao <liupeibao@loongson.cn>, wanghongliang@loongson.cn,
-        loongson-kernel@lists.loongnix.cn
-References: <20230307115022.12846-2-zhuyinbo@loongson.cn>
- <202303082037.QPfBP64A-lkp@intel.com>
- <b94ee1d2-b224-f9d5-3f3c-0096634f4c93@loongson.cn>
- <a16ac33d-e313-2eeb-007d-20f61d670308@loongson.cn>
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-In-Reply-To: <a16ac33d-e313-2eeb-007d-20f61d670308@loongson.cn>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <20230308135936.761794-4-kory.maincent@bootlin.com>
 X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 09/03/2023 04:18, zhuyinbo wrote:
-> 
-> 在 2023/3/9 上午10:58, zhuyinbo 写道:
->>
->> 在 2023/3/8 下午8:16, kernel test robot 写道:
->>> Hi Yinbo,
->>>
->>> I love your patch! Yet something to improve:
->>>
->>> [auto build test ERROR on clk/clk-next]
->>> [also build test ERROR on robh/for-next linus/master v6.3-rc1 
->>> next-20230308]
->>> [If your patch is applied to the wrong git tree, kindly drop us a note.
->>> And when submitting patch, we suggest to use '--base' as documented in
->>> https://git-scm.com/docs/git-format-patch#_base_tree_information]
->>>
->>> url: 
->>> https://github.com/intel-lab-lkp/linux/commits/Yinbo-Zhu/clk-clk-loongson2-add-clock-controller-driver-support/20230307-195252
->>> base: https://git.kernel.org/pub/scm/linux/kernel/git/clk/linux.git 
->>> clk-next
->>> patch link: 
->>> https://lore.kernel.org/r/20230307115022.12846-2-zhuyinbo%40loongson.cn
->>> patch subject: [PATCH v13 2/2] clk: clk-loongson2: add clock 
->>> controller driver support
->>> config: mips-allyesconfig 
->>> (https://download.01.org/0day-ci/archive/20230308/202303082037.QPfBP64A-lkp@intel.com/config)
->>> compiler: mips-linux-gcc (GCC) 12.1.0
->>> reproduce (this is a W=1 build):
->>>          wget 
->>> https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross 
->>> -O ~/bin/make.cross
->>>          chmod +x ~/bin/make.cross
->>>          # 
->>> https://github.com/intel-lab-lkp/linux/commit/391d6fc63ac65f5456e4755c9dd85232a6296285
->>>          git remote add linux-review 
->>> https://github.com/intel-lab-lkp/linux
->>>          git fetch --no-tags linux-review 
->>> Yinbo-Zhu/clk-clk-loongson2-add-clock-controller-driver-support/20230307-195252
->>>          git checkout 391d6fc63ac65f5456e4755c9dd85232a6296285
->>>          # save the config file
->>>          mkdir build_dir && cp config build_dir/.config
->>>          COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.1.0 
->>> make.cross W=1 O=build_dir ARCH=mips olddefconfig
->>>          COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.1.0 
->>> make.cross W=1 O=build_dir ARCH=mips SHELL=/bin/bash drivers/
->>>
->>> If you fix the issue, kindly add following tag where applicable
->>> | Reported-by: kernel test robot <lkp@intel.com>
->>> | Link: 
->>> https://lore.kernel.org/oe-kbuild-all/202303082037.QPfBP64A-lkp@intel.com/
->>>
->>> All errors (new ones prefixed by >>):
->>>
->>>     drivers/clk/clk-loongson2.c: In function 'loongson2_calc_pll_rate':
->>>>> drivers/clk/clk-loongson2.c:79:15: error: implicit declaration of 
->>>>> function 'readq'; did you mean 'readl'? 
->>>>> [-Werror=implicit-function-declaration]
->>>        79 |         val = readq(loongson2_pll_base + offset);
->>>           |               ^~~~~
->>>           |               readl
->>>     cc1: some warnings being treated as errors
->>
->> The CONFIG_64BIT not enabled in your config file, I will add a depend 
->> on "CONFIG_64BIT" in my clock driver to fix this compile error.
-> My clock is for LoongArch platform, The LOONGARCH had select 
-> "CONFIG_64BIT", I will add a depend on "LOONGARCH" in my clock driver to 
-> fix this compile error.
+Hi K�ry,
 
-No. Fix your code instead.
+I love your patch! Yet something to improve:
 
-Best regards,
-Krzysztof
+[auto build test ERROR on v6.2]
+[cannot apply to robh/for-next horms-ipvs/master net/master net-next/master linus/master v6.3-rc1 next-20230309]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
+url:    https://github.com/intel-lab-lkp/linux/commits/K-ry-Maincent/net-ethtool-Refactor-identical-get_ts_info-implementations/20230308-220453
+patch link:    https://lore.kernel.org/r/20230308135936.761794-4-kory.maincent%40bootlin.com
+patch subject: [PATCH v3 3/5] net: Let the active time stamping layer be selectable.
+config: um-i386_defconfig (https://download.01.org/0day-ci/archive/20230309/202303091304.yj8NySNz-lkp@intel.com/config)
+compiler: gcc-11 (Debian 11.3.0-8) 11.3.0
+reproduce (this is a W=1 build):
+        # https://github.com/intel-lab-lkp/linux/commit/d81a36f239360e7e3b9ca2633e52b3cb12205590
+        git remote add linux-review https://github.com/intel-lab-lkp/linux
+        git fetch --no-tags linux-review K-ry-Maincent/net-ethtool-Refactor-identical-get_ts_info-implementations/20230308-220453
+        git checkout d81a36f239360e7e3b9ca2633e52b3cb12205590
+        # save the config file
+        mkdir build_dir && cp config build_dir/.config
+        make W=1 O=build_dir ARCH=um SUBARCH=i386 olddefconfig
+        make W=1 O=build_dir ARCH=um SUBARCH=i386 SHELL=/bin/bash
+
+If you fix the issue, kindly add following tag where applicable
+| Reported-by: kernel test robot <lkp@intel.com>
+| Link: https://lore.kernel.org/oe-kbuild-all/202303091304.yj8NySNz-lkp@intel.com/
+
+All errors (new ones prefixed by >>):
+
+   /usr/bin/ld: warning: arch/x86/um/checksum_32.o: missing .note.GNU-stack section implies executable stack
+   /usr/bin/ld: NOTE: This behaviour is deprecated and will be removed in a future version of the linker
+   /usr/bin/ld: warning: .tmp_vmlinux.kallsyms1 has a LOAD segment with RWX permissions
+   /usr/bin/ld: net/core/dev_ioctl.o: in function `dev_hwtstamp_ioctl':
+   net/core/dev_ioctl.c:280: undefined reference to `phy_do_ioctl'
+>> /usr/bin/ld: net/core/dev_ioctl.c:290: undefined reference to `phy_mii_ioctl'
+   collect2: error: ld returned 1 exit status
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests
