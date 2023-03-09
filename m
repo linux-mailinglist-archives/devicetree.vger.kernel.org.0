@@ -2,143 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8CD746B18C9
-	for <lists+devicetree@lfdr.de>; Thu,  9 Mar 2023 02:33:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 238636B18D9
+	for <lists+devicetree@lfdr.de>; Thu,  9 Mar 2023 02:43:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229776AbjCIBdM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Mar 2023 20:33:12 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43332 "EHLO
+        id S229577AbjCIBnQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Mar 2023 20:43:16 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54878 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229947AbjCIBdJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Mar 2023 20:33:09 -0500
-Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F148DEC71
-        for <devicetree@vger.kernel.org>; Wed,  8 Mar 2023 17:33:03 -0800 (PST)
-Received: by mail-lf1-x130.google.com with SMTP id j11so333009lfg.13
-        for <devicetree@vger.kernel.org>; Wed, 08 Mar 2023 17:33:03 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1678325582;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=6T7a+GoKNa0Y7d8xLGi142ICSO8XflBf9jWK/0+KgpY=;
-        b=usoICJVkduIvA2JiFTDjVhRsWR8wu3RepR96fqFKWGnSRi7BDF9X/oXlV98uwqWnlC
-         BiN1xiQ0xxGXzyizKuI086gA0Bz+5+hGot5zNSbTlL79UhRjNCg+A6JGQVGjg9FlpsRx
-         4sqB0DLnPOBlyLD83ypyqwvmKe/WxLWrmhZMqEfpA8NioOQ8UDXyWU5Nxnj064KPvqiw
-         JJqRFZ27g9s8d4SDjldLoQEhAsrw04Id2UOoWxwIkm8D5f2vEvVdBeFA5OnDC017U9Jv
-         R68gQZJw+eipKhiL2h+4V14y1e+oUL/t6FB3fqTZzXDNPpv64tNts3eLds169Vy2qu7O
-         o6xg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678325582;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=6T7a+GoKNa0Y7d8xLGi142ICSO8XflBf9jWK/0+KgpY=;
-        b=Bd6isvulqiRqhSSRfHpH9YjnYnelGVPiTLBOxjQIWQkLvuBuD/GX/tAt03t3Yr8QjV
-         dAVcokhAjlH7Px9GtUKn06VPouvuej+YikktkxJPyFKHh08FjhzXHkEUSt1RpRoB2rb2
-         Du//Z1UQiFxg0fS5hiolcbAi3+LhMjGJzgHjyq2dNEKNdnNpm+mahaDXdUpk7oSGM6/y
-         8z6I4Ym97ETkh8oiLjD67ixd/zJKg7LLfY/kpuQABA3PCSTM3l5mts2A9E88dTBY5bZj
-         h9YN9UJHV4j50FV22ZuMgOHZoR87WZMUWvtVvNxxCWX9xGnP4ar6spxuEXq4yXJGUxAy
-         zCBg==
-X-Gm-Message-State: AO0yUKUAlK/D9sbSgf1SYdRjhUex7LmsIPj4EUDro3Ixkn+J6BXWsqC0
-        n1LrUL6vvX5/v6Y2+BrNXx4UKQ==
-X-Google-Smtp-Source: AK7set8za/4SoEAXr6FrFPjG87XJm1SvKzTphQD0DOfViMEWfMMzZWa6i+jfnsrslszvdiEIa7ZBuQ==
-X-Received: by 2002:ac2:5dd6:0:b0:4dd:ad4c:74b6 with SMTP id x22-20020ac25dd6000000b004ddad4c74b6mr5999377lfq.1.1678325582201;
-        Wed, 08 Mar 2023 17:33:02 -0800 (PST)
-Received: from ?IPV6:2001:14ba:a085:4d00::8a5? (dzccz6yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a085:4d00::8a5])
-        by smtp.gmail.com with ESMTPSA id x5-20020ac24885000000b004db50b52c08sm2483080lfc.102.2023.03.08.17.33.01
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 08 Mar 2023 17:33:01 -0800 (PST)
-Message-ID: <c92a44fe-7057-2d81-41fc-2e84ae60f881@linaro.org>
-Date:   Thu, 9 Mar 2023 03:33:00 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-Subject: Re: [PATCH v3 3/4] dt-bindings: firmware: Add Qualcomm QSEECOM
- interface
-Content-Language: en-GB
-To:     Maximilian Luz <luzmaximilian@gmail.com>,
-        Rob Herring <robh@kernel.org>
-Cc:     Bjorn Andersson <andersson@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Ard Biesheuvel <ardb@kernel.org>,
+        with ESMTP id S229513AbjCIBnO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Mar 2023 20:43:14 -0500
+Received: from loongson.cn (mail.loongson.cn [114.242.206.163])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 034381F4A2;
+        Wed,  8 Mar 2023 17:43:09 -0800 (PST)
+Received: from loongson.cn (unknown [10.20.42.35])
+        by gateway (Coremail) with SMTP id _____8CxxtisOQlkIiwKAA--.13589S3;
+        Thu, 09 Mar 2023 09:43:08 +0800 (CST)
+Received: from [10.20.42.35] (unknown [10.20.42.35])
+        by localhost.localdomain (Coremail) with SMTP id AQAAf8CxG76pOQlkAgtQAA--.7026S3;
+        Thu, 09 Mar 2023 09:43:07 +0800 (CST)
+Subject: Re: [PATCH v13 1/2] dt-bindings: clock: add loongson-2 boot clock
+ index
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Johan Hovold <johan@kernel.org>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        Ilias Apalodimas <ilias.apalodimas@linaro.org>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Sumit Garg <sumit.garg@linaro.org>,
-        Steev Klimaszewski <steev@kali.org>,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
         devicetree@vger.kernel.org
-References: <20230305022119.1331495-1-luzmaximilian@gmail.com>
- <20230305022119.1331495-4-luzmaximilian@gmail.com>
- <20230308221657.GA3935330-robh@kernel.org>
- <93657561-d545-7ead-7f6c-dd2c62aab319@gmail.com>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-In-Reply-To: <93657561-d545-7ead-7f6c-dd2c62aab319@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Cc:     Jianmin Lv <lvjianmin@loongson.cn>,
+        Liu Peibao <liupeibao@loongson.cn>, wanghongliang@loongson.cn,
+        loongson-kernel@lists.loongnix.cn, zhuyinbo@loongson.cn
+References: <20230307115022.12846-1-zhuyinbo@loongson.cn>
+ <692a62da-a9a1-fa23-6e24-723d73c3a423@linaro.org>
+ <5e9b3bd5-d885-6237-5e14-2becb3c956cc@loongson.cn>
+ <31e2a67a-c046-9501-80de-e754ed450195@linaro.org>
+ <ace5159b-ebbd-7805-518c-ed3d39e4793e@loongson.cn>
+ <b2f9cd15-b303-882a-d4e0-36d1f6d155a8@linaro.org>
+From:   zhuyinbo <zhuyinbo@loongson.cn>
+Message-ID: <eca81d44-2513-8002-980d-755af32f36c4@loongson.cn>
+Date:   Thu, 9 Mar 2023 09:43:04 +0800
+User-Agent: Mozilla/5.0 (X11; Linux loongarch64; rv:68.0) Gecko/20100101
+ Thunderbird/68.7.0
+MIME-Version: 1.0
+In-Reply-To: <b2f9cd15-b303-882a-d4e0-36d1f6d155a8@linaro.org>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
+Content-Language: en-US
+X-CM-TRANSID: AQAAf8CxG76pOQlkAgtQAA--.7026S3
+X-CM-SenderInfo: 52kx5xhqerqz5rrqw2lrqou0/
+X-Coremail-Antispam: 1Uk129KBjvJXoW7tw17Aw13tF1kJFy7uFyxAFb_yoW8XFy7pw
+        4xt3WqgFWDJr4xZw1xt3Z5Wr95C3s7Gr15JFn5Gw4kXr1qv3WxKFs7tF4fCF98Aw4xC3ZF
+        gFWUua4kCa1Y9w7anT9S1TB71UUUUUJqnTZGkaVYY2UrUUUUj1kv1TuYvTs0mT0YCTnIWj
+        qI5I8CrVACY4xI64kE6c02F40Ex7xfYxn0WfASr-VFAUDa7-sFnT9fnUUIcSsGvfJTRUUU
+        bf8Fc2x0x2IEx4CE42xK8VAvwI8IcIk0rVWrJVCq3wAFIxvE14AKwVWUXVWUAwA2ocxC64
+        kIII0Yj41l84x0c7CEw4AK67xGY2AK021l84ACjcxK6xIIjxv20xvE14v26ryj6F1UM28E
+        F7xvwVC0I7IYx2IY6xkF7I0E14v26r4j6F4UM28EF7xvwVC2z280aVAFwI0_Gr1j6F4UJw
+        A2z4x0Y4vEx4A2jsIEc7CjxVAFwI0_Gr1j6F4UJwAaw2AFwI0_Jrv_JF1le2I262IYc4CY
+        6c8Ij28IcVAaY2xG8wAqjxCEc2xF0cIa020Ex4CE44I27wAqx4xG64xvF2IEw4CE5I8CrV
+        C2j2WlYx0E2Ix0cI8IcVAFwI0_Jrv_JF1lYx0Ex4A2jsIE14v26r1j6r4UMcvjeVCFs4IE
+        7xkEbVWUJVW8JwACjcxG0xvEwIxGrwCYjI0SjxkI62AI1cAE67vIY487MxAIw28IcxkI7V
+        AKI48JMxAIw28IcVCjz48v1sIEY20_WwCFx2IqxVCFs4IE7xkEbVWUJVW8JwCFI7km07C2
+        67AKxVWUXVWUAwC20s026c02F40E14v26r1j6r18MI8I3I0E7480Y4vE14v26r106r1rMI
+        8E67AF67kF1VAFwI0_Jw0_GFylIxkGc2Ij64vIr41lIxAIcVC0I7IYx2IY67AKxVWUJVWU
+        CwCI42IY6xIIjxv20xvEc7CjxVAFwI0_Jr0_Gr1lIxAIcVCF04k26cxKx2IYs7xG6r1j6r
+        1xMIIF0xvEx4A2jsIE14v26r1j6r4UMIIF0xvEx4A2jsIEc7CjxVAFwI0_Jr0_GrUvcSsG
+        vfC2KfnxnUUI43ZEXa7IU8rnY7UUUUU==
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 09/03/2023 00:44, Maximilian Luz wrote:
-> On 3/8/23 23:16, Rob Herring wrote:
->> On Sun, Mar 05, 2023 at 03:21:18AM +0100, Maximilian Luz wrote:
->>> Add bindings for the Qualcomm Secure Execution Environment interface
->>> (QSEECOM).
+
+在 2023/3/8 下午6:38, Krzysztof Kozlowski 写道:
+> On 08/03/2023 10:24, zhuyinbo wrote:
+>>>>> That's an ABI break and commit msg does not explain it.
+>>>> you meaning is that need add a explanation in commit msg that why
+>>> You need good explanation to break the ABI. I don't understand the
+>>> commit msg, but anyway I could not find there justification for ABI
+>>> break. If you do not have good justification, don't break the ABI,
+>> The commit msg is the patch commit  log,  and I maybe not got it about
+>> break the ABI.  You said about "break the ABI"
 >>
->> Pretty sure I already asked, but no answer in the commit message. Why do
->> we need this? You've already declared the platform supports SCM calls
->> with "qcom,scm". Why can't you probe whether you have QSEECOM or not? DT
->> is for non-discoverable h/w we are stuck with.
-> 
-> Yes, you've asked this before but I can only repeat what I've written in
-> my last response to your question: I am not aware of any way to properly
-> discover the interface at runtime from software.
-> 
-> If it makes you happy, I can put this in the commit message as well...
-> 
->> Why is software made non-discoverable too?
-> 
-> Please direct that question at the Qualcomm guys who actually designed
-> that interface. I can't give you an answer to that, and I'm not all that
-> happy about this either.
-> 
-> To reiterate: I've reverse engineered this based on the Windows driver.
-> The Windows driver loads on an ACPI HID and it doesn't use any function
-> to check/verify whether the interface is actually present. Adding a DT
-> entry is the straight-forward adaption to having a HID in ACPI.
-> 
->> Nodes with only a compatible string are usually just an abuse of DT to
->> instantiate some driver.
-> 
-> If you or anyone here has any idea on how to discover the presence of
-> this, please feel free to let me know and I'd be happy to implement
-> that. Until then, I unfortunately don't see any other way of dealing
-> with this.
+>> is whether is location issue about "LOONGSON2_BOOT_CLK"?   if yes,   the
+>> LOONGSON2_BOOT_CLK was placed
+>>
+>> after LOONGSON2_PIX1_PLL that is due to their clock parent is same.
+>> and I whether need add this explanation
+>>
+>> in patch commit log description?
+> Unfortunately I do not understand single thing from this.
+>
+> Best regards,
+> Krzysztof
 
-You can probably try requesting QSEECOM version. According to msm-3.18:
-
-         uint32_t feature = 10;
-
-         rc = qseecom_scm_call(6, 3, &feature, sizeof(feature),
-                 &resp, sizeof(resp));
-         pr_info("qseecom.qsee_version = 0x%x\n", resp.result);
-         if (rc) {
-                 pr_err("Failed to get QSEE version info %d\n", rc);
-                 goto exit_del_cdev;
-         }
+The patch commit log description is patch desription.  as follows:
 
 
--- 
-With best wishes
-Dmitry
+commit 592bc2b4106d787ea166ba16bfde6b3101ab1a8a
+Author: Yinbo Zhu <zhuyinbo@loongson.cn>
+Date:   Tue Mar 7 17:18:32 2023 +0800
+
+     dt-bindings: clock: add loongson-2 boot clock index
+
+     The Loongson-2 boot clock was used to spi and lio peripheral and
+     this patch was to add boot clock index number.
+
+
+and your advice is "That's an ABI break and commit msg does not explain it."
+
+I got it  from your advice that was to add a explanation about 
+LOONGSON2_BOOT_CLK's
+
+location issue in patch description, right?
 
