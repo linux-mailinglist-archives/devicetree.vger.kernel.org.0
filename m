@@ -2,81 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CAB686B20BD
-	for <lists+devicetree@lfdr.de>; Thu,  9 Mar 2023 10:56:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E80DA6B20C0
+	for <lists+devicetree@lfdr.de>; Thu,  9 Mar 2023 10:57:08 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229983AbjCIJ4T (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Mar 2023 04:56:19 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55672 "EHLO
+        id S230328AbjCIJ5H (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Mar 2023 04:57:07 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56500 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229599AbjCIJ4S (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Mar 2023 04:56:18 -0500
-Received: from mail-wm1-x332.google.com (mail-wm1-x332.google.com [IPv6:2a00:1450:4864:20::332])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ACC245FE9C
-        for <devicetree@vger.kernel.org>; Thu,  9 Mar 2023 01:56:16 -0800 (PST)
-Received: by mail-wm1-x332.google.com with SMTP id az36so736583wmb.1
-        for <devicetree@vger.kernel.org>; Thu, 09 Mar 2023 01:56:16 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1678355775;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=qAAhw7lB1rrZvuMVfbBzujapn+/zsUej9eNIY9bSZoU=;
-        b=yZjRzzdCXQLmFpt9E+bMwjZRnJQPVa5Fk3G2FgvPi2iwm1j8+mFjXrOOcHKW1G1J66
-         lOl9przlR+A0LWj9hzkaC5wXbugy9h3g7+n86a8ktCU2jYovW1IiGKFZ2l2rhN0VQhSh
-         XpW8RkXba7qEvRxI4QHi7FU+iYobJUFN0ibmMpjRhc5EAqs6wqRm42vpXvueF+t6S0zn
-         esAT9tINPVEvwzdEyzTeYAbl9wsqy+wks2G9EZhmBa3Pc6aCWyEfjdbJ2XsWC9j7R5cZ
-         355EbVkEyy1z0QPmblIqIkV2LzFUIN+dVVadaKjNXV0XCLBKGdMDi4M4sc6TfFpO3WmH
-         +v/g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678355775;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=qAAhw7lB1rrZvuMVfbBzujapn+/zsUej9eNIY9bSZoU=;
-        b=SePa+QBy6bWC/QEm4jdv0YIswyEsR32eKrlkS/9Rl5euE0E1d4hoq/W49nko5Dwc8q
-         YVt8yuf4G1CUDeoBsnQSWx4lYRXBPUchFBXF0VmuRXHESfn6Z2ACnScQo1a4KTqQphsX
-         H9Uw8qKpFlzlnwAFQ6TigXOltXGGe2Y9JI09uvU/1vtdT3JWc1yJeBXooVTL93cXIJrT
-         5P6vmvPsg4s5mPgSk2Wgyh4kCM2/jY7BI1pDt3u9fLI5MbKEfjMA7+VzJEiq5cd9B9oB
-         /pR+9uKBgrMQh3V7Lg/m6jw01oLLuRQMSe1vb+M0ZhdXENzCCupoEsfZGKYYHfvl472C
-         qYHw==
-X-Gm-Message-State: AO0yUKVrR5anAGf8CoUvjesHCSNuWL8p16oo+JbOkvNqp03l6EL8Tagl
-        fs6l5yTHKHAygM7oakb7y6OY9uylhxfBaTBVXGI=
-X-Google-Smtp-Source: AK7set9Lvl/llfXYHp3tq/QCtj3IQX+/nJeOjg3aANAt466Rv6k3E6M4mLBeqwJwkAPViMGxcGk+nw==
-X-Received: by 2002:a05:600c:444a:b0:3eb:4162:7344 with SMTP id v10-20020a05600c444a00b003eb41627344mr19698192wmn.22.1678355775156;
-        Thu, 09 Mar 2023 01:56:15 -0800 (PST)
-Received: from [192.168.1.195] ([5.133.47.210])
-        by smtp.googlemail.com with ESMTPSA id p7-20020a1c7407000000b003eaee9e0d22sm2015189wmc.33.2023.03.09.01.56.13
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 09 Mar 2023 01:56:14 -0800 (PST)
-Message-ID: <1a6b79fa-cf80-7ee9-fbdc-3543111ec191@linaro.org>
-Date:   Thu, 9 Mar 2023 09:56:13 +0000
+        with ESMTP id S229914AbjCIJ5G (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Mar 2023 04:57:06 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CB4A866D22;
+        Thu,  9 Mar 2023 01:57:05 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 64FB061AD8;
+        Thu,  9 Mar 2023 09:57:05 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 459B4C433EF;
+        Thu,  9 Mar 2023 09:57:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1678355824;
+        bh=ODnKzBpDfhjHRjZi6xnYZfhimajSnaKsAA3E99ICe5s=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=t9+cGRIw+5d4GxF7DDN32S7cRMxKOpZs/+z82FSELi1BBrFKV3tZc9iPUPLmLnkQk
+         OFsRZxjDXK96kLHiUbHDmP/u7J8+btKoYb6XvVoOoAJT1tv9yRFNINHztE6o97Np+A
+         pkdN8/iDS1F272hVyLSf6mkOL87DBmquHG2OOABseYdprRbPV3FBXe/PmMqSCHjYdG
+         WZJ2FLQ7fRRyH150sNV2Ml4dffdDFImxWD4kll5erDhcIrxTHEtU0OgMxTtshT+B8R
+         Rc92XdJtvu4RepF6ioctCorilboycYO9ZJdyTUBhmyVZrahfFp9WnOmwaMRxjCXENf
+         fb9gfqQPeYdNA==
+Date:   Thu, 9 Mar 2023 10:57:00 +0100
+From:   Lorenzo Bianconi <lorenzo@kernel.org>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     jic23@kernel.org, linux-iio@vger.kernel.org,
+        lorenzo.bianconi@redhat.com, devicetree@vger.kernel.org,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org
+Subject: Re: [PATCH 2/2] dt-bindings: iio: imu: st_lsm6dsx: add asm330lhb
+Message-ID: <ZAmtbGfUJiH5gSIY@lore-desk>
+References: <cover.1678100533.git.lorenzo@kernel.org>
+ <fecf1f20cc8e99fb8654cc733f14bd449ca7f87a.1678100533.git.lorenzo@kernel.org>
+ <f2bbda1a-b6e3-ccbb-d77a-8bdb42aca0ee@linaro.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.1
-Subject: Re: [PATCH V4 2/2] nvmem: add generic driver for devices with MMIO
- access
-Content-Language: en-US
-To:     =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Matthias Brugger <matthias.bgg@gmail.com>,
-        Kunihiko Hayashi <hayashi.kunihiko@socionext.com>,
-        Masami Hiramatsu <mhiramat@kernel.org>,
-        linux-mediatek@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
-References: <20230228072936.1108-1-zajec5@gmail.com>
- <20230228072936.1108-3-zajec5@gmail.com>
- <7853ff04-02cf-9430-d84a-c8fe8b1d6725@linaro.org>
- <83c3e403-7e4c-a29a-95de-f30d74863769@gmail.com>
-From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-In-Reply-To: <83c3e403-7e4c-a29a-95de-f30d74863769@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="jkV1bburN89PBeLT"
+Content-Disposition: inline
+In-Reply-To: <f2bbda1a-b6e3-ccbb-d77a-8bdb42aca0ee@linaro.org>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -85,108 +57,62 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
+--jkV1bburN89PBeLT
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-On 08/03/2023 15:42, Rafał Miłecki wrote:
-> On 8.03.2023 14:31, Srinivas Kandagatla wrote:
->> Thanks for doing this,
-> 
-> Thank you for reviewing. Sadly it seems it still isn't clear if we can
-> have this generic driver.
+On Mar 07, Krzysztof Kozlowski wrote:
+> On 06/03/2023 12:08, Lorenzo Bianconi wrote:
+> > Add device bindings for asm330lhb IMU sensor.
+> > Use asm330lhh as fallback device for asm330lhb since it implements all
+> > the features currently supported by asm330lhb.
+> >=20
+> > Signed-off-by: Lorenzo Bianconi <lorenzo@kernel.org>
+> > ---
+> >  Documentation/devicetree/bindings/iio/imu/st,lsm6dsx.yaml | 3 +++
+> >  1 file changed, 3 insertions(+)
+> >=20
+> > diff --git a/Documentation/devicetree/bindings/iio/imu/st,lsm6dsx.yaml =
+b/Documentation/devicetree/bindings/iio/imu/st,lsm6dsx.yaml
+> > index decf022335d8..b39f5217d8ff 100644
+> > --- a/Documentation/devicetree/bindings/iio/imu/st,lsm6dsx.yaml
+> > +++ b/Documentation/devicetree/bindings/iio/imu/st,lsm6dsx.yaml
+> > @@ -46,6 +46,9 @@ properties:
+> >        - items:
+> >            - const: st,ism330is
+> >            - const: st,lsm6dso16is
+> > +      - items:
+> > +          - const: st,asm330lhb
+> > +          - const: st,asm330lhh
+>=20
+> You added it to the end of the list, but aren't there any ordering
+> already? If so, it should be put rather in correct place.
 
-I don't mean to be rude, but TBH, I don't see any value for this ATM, it 
-is going to add something that we need to keep updating for every user.
+Hi Krzysztof,
 
-Unless anyone thinks otherwise.
+I do not think there is any ordering issue there.
 
-> 
-> I guess I missed some important questions or comments. In previous
-> series we were discussing implementation details so I thought it's OK to
-> have this driver after all. Not sure if I didn't waste time working on
-> V4. I'll see if I can I address your concerns (see below).
-Lets not waste your time for now, we can revist this once we have more 
-users.
+Regards,
+Lorenzo
 
-thanks,
-srini
-> 
-> 
->> On 28/02/2023 07:29, Rafał Miłecki wrote:
->>> From: Rafał Miłecki <rafal@milecki.pl>
->>>
->>> Some NVMEM devices can be accessed by simply mapping memory and reading
->>> from / writing to it. This driver adds support for a generic
->>> "mmio-nvmem" DT binding used by such devices.
->>>
->>> One of such devices is Broadcom's NVRAM. It's already supported (see
->>> NVMEM_BRCM_NVRAM) but existing driver covers both:
->>
->> What will happen to the old "brcm,nvram" compatible and the dt 
->> firmware that already have this node?
-> 
-> I treat backward compatibility with previouly used bindings very
-> seriously. I'm going to keep it. I may make an attempt to drop it in
-> few years if it's very unlikely to break any setups.
-> 
-> 
->> If there is only one user for this then one would object that why do 
->> we need this DT level of abstraction to start with?
->> If this is not the case please consider adding those patches to this 
->> series.
-> 
-> Existing Linux drivers prove that there is more hardware with MMIO based
-> read access: brcm_nvram, mtk-efuse, uniphier-efuse. Migration of other
-> drivers (mtk, unipher) is on hold as apparently there may be support for
-> writing support soon. In any case this MMIO solution isn't completely
-> unique to Broadcom.
-> I don't have other patches to add to it right now.
-> 
-> 
->>> 1. NVMEM device access
->>> 2. NVMEM content parsing
->>>
->>> Once we get support for NVMEM layouts then existing NVRAM driver will
->>> get converted into a layout and generic driver will take over
->>> responsibility for data access.
->>>
->>
->> Even though this series is simple, but it is really confusing for two 
->> reasons.
->>
->> 1> Generic mmio nvmem bindings are incomplete and potentially 
->> change/evolve on every new user. Ex clks, regulators, endianess ... So 
->> it looks really fragile and incomplete to me as a generic bindings.
->> Is this want you are expecting?
-> 
-> All 3 existing hardware support MMIO reads without extra clocks or
-> regulators. I'm not sure if endianess belongs to this layer. Isn't that
-> NVMEM content thing?
-> 
-> I'm not claiming this driver is in its final and perfect state. For
-> simple hardware that needs minor fixups we can add those later to this
-> generic driver. Adding clocks should be possible, fine and easy.
-> 
-> I'm sure there will be more complex hardware that we will not be able
-> to support with this driver. It's require another driver and I'm fine
-> with that.
-> 
-> 
->> 2> As you mentioned that this will replace broadcom NVMRAM, but this 
->> patch does nothing in relation to updating that driver, so the code is 
->> dead as it is. If you are considering to use it for Broadcom NVMRAM, 
->> please add those patches to this series so that we could see the real 
->> user for this code.
-> 
-> Of course it does nothing because there are no layouts yet. I could
-> migrate brcm_nvram into layout once there is layouts support.
-> 
-> I don't agree this code is dead. It support new binding. It works.
-> Every new binding and its driver are "dead" until you add first DT
-> users.
-> 
-> Here is real use:
-> 
-> nvmem@1eff0000 {
->      compatible = "mmio-nvmem";
->      reg = <0x1eff0000 0x10000>;
-> };
-> 
+>=20
+> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>=20
+>=20
+> Best regards,
+> Krzysztof
+>=20
+
+--jkV1bburN89PBeLT
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQTquNwa3Txd3rGGn7Y6cBh0uS2trAUCZAmtbAAKCRA6cBh0uS2t
+rDeWAP9XsT0VORBjVCWmnkZS31d5vRGUosz6Lj9+UWXyJ65eWwD/QBfgXftmET36
+Kgbpyao9C6x65UVORFm0P5/HqiaAWAQ=
+=0OIE
+-----END PGP SIGNATURE-----
+
+--jkV1bburN89PBeLT--
