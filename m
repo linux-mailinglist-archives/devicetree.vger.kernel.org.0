@@ -2,107 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1BFBF6B173B
-	for <lists+devicetree@lfdr.de>; Thu,  9 Mar 2023 00:59:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AB2D16B17D0
+	for <lists+devicetree@lfdr.de>; Thu,  9 Mar 2023 01:25:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230280AbjCHX67 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Mar 2023 18:58:59 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35836 "EHLO
+        id S229735AbjCIAZZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Mar 2023 19:25:25 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46342 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229925AbjCHX6d (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Mar 2023 18:58:33 -0500
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 583AA98875;
-        Wed,  8 Mar 2023 15:58:31 -0800 (PST)
-Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 328I8TW9006870;
-        Wed, 8 Mar 2023 23:58:14 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
- subject : date : message-id : in-reply-to : references : mime-version :
- content-type; s=qcppdkim1;
- bh=BRvk2kLNgan6ojfZTR0CbwIj105zOZeVc8bjIrsnSxQ=;
- b=ESxYmXjIimY90mMz1b9cKqB9G3pG2APNSiDvNC60LSC9OOxNEdcGiiFo4xAQMLnWf8pp
- 8dWymqhCSPFscBy64WpECRKSnWv2MQr4aCyaFqljjsmslZNKh18hLXOHoM2MDdP8z0VV
- NDnCJ4ynMn09lmmOEEoDchUWC+jSJ/phvmTzsPzKagiW9O3kJJ0oQHNkHIlPPo57CK04
- PcPk6KOkUNAjt1nvocZ4d60yuBGXnIUpZF0BXzgb3RiSmS5u2YTSGR3aMTGND6fxqK45
- k7TM9B/2jo0KKdMZCMRl39KxZEPOSqA0K7sExKC1G+LzTVklsqIlNV9VvdAoUB0D8/2W QQ== 
-Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3p6ycb8rc9-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 08 Mar 2023 23:58:14 +0000
-Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
-        by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 328NwD26011995
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 8 Mar 2023 23:58:13 GMT
-Received: from hu-wcheng-lv.qualcomm.com (10.49.16.6) by
- nalasex01b.na.qualcomm.com (10.47.209.197) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.41; Wed, 8 Mar 2023 15:58:13 -0800
-From:   Wesley Cheng <quic_wcheng@quicinc.com>
-To:     <srinivas.kandagatla@linaro.org>, <mathias.nyman@intel.com>,
-        <perex@perex.cz>, <broonie@kernel.org>, <lgirdwood@gmail.com>,
-        <krzysztof.kozlowski+dt@linaro.org>, <agross@kernel.org>,
-        <Thinh.Nguyen@synopsys.com>, <bgoswami@quicinc.com>,
-        <andersson@kernel.org>, <robh+dt@kernel.org>,
-        <gregkh@linuxfoundation.org>, <tiwai@suse.com>
-CC:     <linux-kernel@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <alsa-devel@alsa-project.org>, <devicetree@vger.kernel.org>,
-        <linux-usb@vger.kernel.org>, <quic_jackp@quicinc.com>,
-        <quic_plai@quicinc.com>, Wesley Cheng <quic_wcheng@quicinc.com>
-Subject: [PATCH v3 28/28] sound: soc: soc-usb: Rediscover USB SND devices on USB port add
-Date:   Wed, 8 Mar 2023 15:57:51 -0800
-Message-ID: <20230308235751.495-29-quic_wcheng@quicinc.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20230308235751.495-1-quic_wcheng@quicinc.com>
-References: <20230308235751.495-1-quic_wcheng@quicinc.com>
+        with ESMTP id S229708AbjCIAZN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Mar 2023 19:25:13 -0500
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 44B9064B38;
+        Wed,  8 Mar 2023 16:25:12 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1678321512; x=1709857512;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=9dM7kn4pp6sfTQF2DTxl3EoqHV4XCsiAN4jcbawygdc=;
+  b=VJwS7n5wt1cc0WO0/UMJSWyLihv3TNoJpFySAQxNM5JxvJ9G15yIFCzr
+   YxdH4vZAZ7AhnkApQNC27Cm0EY1yr8yXnnaCZsTr2An8OHjXaEMQjR45D
+   +Y7+RD6Abmw6pHuqhdDL+IhPTSDH9DuPA8iSc4oQS1moDa+wv5eoXhwBB
+   OGXOeuWAJ3znElF9+3cu4mlWZ7gpmgMheX+Q+QmmCZAq4DBSp+JFtI3wG
+   i0m1QhxcssMX7UIws/DiW0INEGWl5wVX0gt7rWnuDD7WYon0adYx6DKsn
+   CZr4zQRMSmIjR4Pvjqgzz5/P7HBLC9HAaREisidmZW2xf2CgQV2Qqv8Lx
+   w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10643"; a="422585947"
+X-IronPort-AV: E=Sophos;i="5.98,244,1673942400"; 
+   d="scan'208";a="422585947"
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+  by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 08 Mar 2023 16:25:11 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6500,9779,10643"; a="923005680"
+X-IronPort-AV: E=Sophos;i="5.98,244,1673942400"; 
+   d="scan'208";a="923005680"
+Received: from lkp-server01.sh.intel.com (HELO b613635ddfff) ([10.239.97.150])
+  by fmsmga006.fm.intel.com with ESMTP; 08 Mar 2023 16:25:09 -0800
+Received: from kbuild by b613635ddfff with local (Exim 4.96)
+        (envelope-from <lkp@intel.com>)
+        id 1pa45f-0002Vz-2J;
+        Thu, 09 Mar 2023 00:25:03 +0000
+Date:   Thu, 9 Mar 2023 08:24:43 +0800
+From:   kernel test robot <lkp@intel.com>
+To:     Svyatoslav Ryhel <clamor95@gmail.com>,
+        Iskren Chernev <me@iskren.info>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Marek Szyprowski <m.szyprowski@samsung.com>,
+        Matheus Castello <matheus@castello.eng.br>,
+        Sebastian Reichel <sre@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     oe-kbuild-all@lists.linux.dev, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v1 4/4] power: max17040: get thermal data from adc if
+ available
+Message-ID: <202303090802.G5XRtUbY-lkp@intel.com>
+References: <20230308084419.11934-5-clamor95@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [10.49.16.6]
-X-ClientProxiedBy: nalasex01a.na.qualcomm.com (10.47.209.196) To
- nalasex01b.na.qualcomm.com (10.47.209.197)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: 6Xt0oWLi-UDbroR0pSOAm-5xvDT8uKZU
-X-Proofpoint-ORIG-GUID: 6Xt0oWLi-UDbroR0pSOAm-5xvDT8uKZU
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
- definitions=2023-03-08_15,2023-03-08_03,2023-02-09_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
- bulkscore=0 suspectscore=0 malwarescore=0 mlxlogscore=999 spamscore=0
- clxscore=1015 mlxscore=0 adultscore=0 phishscore=0 lowpriorityscore=0
- impostorscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2212070000 definitions=main-2303080200
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230308084419.11934-5-clamor95@gmail.com>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-In case the USB backend device has not been initialized/probed, USB SND
-device connections can still occur.  When the USB backend is eventually
-made available, previous USB SND device connections are not communicated to
-the USB backend.  Call snd_usb_rediscover_devices() to generate the connect
-callbacks for all USB SND devices connected.  This will allow for the USB
-backend to be updated with the current set of devices available.
+Hi Svyatoslav,
 
-Signed-off-by: Wesley Cheng <quic_wcheng@quicinc.com>
----
- sound/soc/soc-usb.c | 2 ++
- 1 file changed, 2 insertions(+)
+Thank you for the patch! Yet something to improve:
 
-diff --git a/sound/soc/soc-usb.c b/sound/soc/soc-usb.c
-index 84dc6d0b2eab..a9413e3d18df 100644
---- a/sound/soc/soc-usb.c
-+++ b/sound/soc/soc-usb.c
-@@ -111,6 +111,8 @@ struct snd_soc_usb *snd_soc_usb_add_port(struct device *dev, void *priv,
- 	list_add_tail(&usb->list, &usb_ctx_list);
- 	mutex_unlock(&ctx_mutex);
- 
-+	snd_usb_rediscover_devices();
-+
- 	return usb;
- }
- EXPORT_SYMBOL_GPL(snd_soc_usb_add_port);
+[auto build test ERROR on sre-power-supply/for-next]
+[also build test ERROR on krzk-dt/for-next linus/master v6.3-rc1 next-20230308]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Svyatoslav-Ryhel/dt-bindings-power-supply-maxim-max17040-update-properties/20230308-164538
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/sre/linux-power-supply.git for-next
+patch link:    https://lore.kernel.org/r/20230308084419.11934-5-clamor95%40gmail.com
+patch subject: [PATCH v1 4/4] power: max17040: get thermal data from adc if available
+config: xtensa-randconfig-r002-20230308 (https://download.01.org/0day-ci/archive/20230309/202303090802.G5XRtUbY-lkp@intel.com/config)
+compiler: xtensa-linux-gcc (GCC) 12.1.0
+reproduce (this is a W=1 build):
+        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+        chmod +x ~/bin/make.cross
+        # https://github.com/intel-lab-lkp/linux/commit/7b9bbf6f2b910ef4ffab18022223573e9094f007
+        git remote add linux-review https://github.com/intel-lab-lkp/linux
+        git fetch --no-tags linux-review Svyatoslav-Ryhel/dt-bindings-power-supply-maxim-max17040-update-properties/20230308-164538
+        git checkout 7b9bbf6f2b910ef4ffab18022223573e9094f007
+        # save the config file
+        mkdir build_dir && cp config build_dir/.config
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.1.0 make.cross W=1 O=build_dir ARCH=xtensa olddefconfig
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.1.0 make.cross W=1 O=build_dir ARCH=xtensa SHELL=/bin/bash
+
+If you fix the issue, kindly add following tag where applicable
+| Reported-by: kernel test robot <lkp@intel.com>
+| Link: https://lore.kernel.org/oe-kbuild-all/202303090802.G5XRtUbY-lkp@intel.com/
+
+All errors (new ones prefixed by >>):
+
+   arch/xtensa/kernel/entry.o: in function `fast_syscall_spill_registers':
+   arch/xtensa/kernel/entry.S:1424:(.exception.text+0x1e3): dangerous relocation: windowed longcall crosses 1GB boundary; return may fail: make_task_dead
+   xtensa-linux-ld: drivers/power/supply/max17040_battery.o: in function `max17040_stop_work':
+>> max17040_battery.c:(.text+0x60): undefined reference to `iio_read_channel_raw'
+   xtensa-linux-ld: drivers/power/supply/max17040_battery.o: in function `max17040_get_property':
+   max17040_battery.c:(.text+0x11e): undefined reference to `iio_read_channel_raw'
+>> xtensa-linux-ld: max17040_battery.c:(.text+0x170): undefined reference to `iio_channel_release'
+   xtensa-linux-ld: drivers/power/supply/max17040_battery.o: in function `max17040_remove':
+>> max17040_battery.c:(.text+0x188): undefined reference to `iio_channel_release'
+>> xtensa-linux-ld: max17040_battery.c:(.text+0x260): undefined reference to `iio_channel_get'
+   xtensa-linux-ld: drivers/power/supply/max17040_battery.o: in function `max17040_probe':
+>> max17040_battery.c:(.text+0x542): undefined reference to `iio_channel_get'
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests
