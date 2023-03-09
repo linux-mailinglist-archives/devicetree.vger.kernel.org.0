@@ -2,83 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 007B16B1D9C
-	for <lists+devicetree@lfdr.de>; Thu,  9 Mar 2023 09:14:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 48CED6B1DA3
+	for <lists+devicetree@lfdr.de>; Thu,  9 Mar 2023 09:16:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230304AbjCIIOY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Mar 2023 03:14:24 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57488 "EHLO
+        id S229965AbjCIIQn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Mar 2023 03:16:43 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41270 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229935AbjCIINp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Mar 2023 03:13:45 -0500
-Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1F4D320A34
-        for <devicetree@vger.kernel.org>; Thu,  9 Mar 2023 00:11:15 -0800 (PST)
-Received: by mail-ed1-x531.google.com with SMTP id x3so3607602edb.10
-        for <devicetree@vger.kernel.org>; Thu, 09 Mar 2023 00:11:15 -0800 (PST)
+        with ESMTP id S229910AbjCIIQM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Mar 2023 03:16:12 -0500
+Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com [IPv6:2a00:1450:4864:20::52b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 19303E825D
+        for <devicetree@vger.kernel.org>; Thu,  9 Mar 2023 00:12:39 -0800 (PST)
+Received: by mail-ed1-x52b.google.com with SMTP id x3so3621699edb.10
+        for <devicetree@vger.kernel.org>; Thu, 09 Mar 2023 00:12:38 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1678349458;
+        d=linaro.org; s=google; t=1678349556;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=qWwFcvr8CYS9x7eu+AX7lV27dybm+PN7rmq0Um54zgc=;
-        b=fNt1HMX9e7Tr2Wufz5QMXuS0SWHUiHY/ICwZUu0ABlVjvm6sK/ZCl/DErkKEeGhpH7
-         opdJZx1kXf72EY4AwvURa5O4Ph1uD6DfCgkOrJlRtzuDhVTtbsM+HhAK4l5fAe7DzlN/
-         p0p216RgCzwm5Sxj7NmJvOThOLUPmRxLbNLnVg48GOsnwbxA1rvHUlC8WrXcyesG0sSo
-         gysl53CDBSCNdzs/fpqBE3WCTa59z5gimYTJPe+pzuIukaeJ0oyl4DqF4Y3aTVgQZLoK
-         I7rn3/WErlervfGweF1qIRNcknPaBngNm4qoByvtRpzJ6HtZ1YU8QP77OAX/psm4AS/i
-         ca7g==
+        bh=uYm9P1JkEDejWKuqMqpfHHenbNm4YviIcvuWWtmhvow=;
+        b=QC3/LYCdp476HZFI7aLNfH0My/Uv9YwaEcU+Za6KrBg86nPd0Qt6ihaE9n/CupJqg/
+         cYhnoYFCjZMmMXZ5+j0usBXjqvBuPT7MuFTPpkJFHpela5HxsriY3gTip/VFT9A4hmfZ
+         5VZZMqarRzAdxhO7zZHTBCVck01k4ABsRfPjBkOfOqY1I6HsW1VI2QXWyKEe3vIZ9pWT
+         p0kcktw/fQXr0C/R2tdFWi6dP+Tc5lVCjS6wvKlZOuIhOyQsERCZbtbp8bFO6kmzqKlk
+         KR3Pup0BeWX7jQCV828/5EcbUEXG86J6KhmkX7jY7GHl0OCso3WLBpNHaasckvhcALZ3
+         WUfQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678349458;
+        d=1e100.net; s=20210112; t=1678349556;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=qWwFcvr8CYS9x7eu+AX7lV27dybm+PN7rmq0Um54zgc=;
-        b=52Vqbh2PvifqZFR3sGAGeaZXgQ+nbxQX/8R/wXZvN9Dwwq5rvTzWWG7P+NRqhBq7sL
-         5naH9SMF2Pk857q6f/pLuac/BVE04cjRCabSBBGtJAHh7rFSNJMG4uc3dr491SHm1o4N
-         YlQQgWQdWTFjOOXdP4HLhxehpGakN75thSMvuhNpe10Gq16/U9d+tihgUVfVRQEeBRJ0
-         VFZMUMRL0TUDN4mi+jL5BGsWQDVo6Ow8rxU+Mcn3GT0BWpde33GGjJ6Yf5OJ20Rhq5ee
-         CcnEB81hXtbkf0pvBzmKx5rSH43dcybPd+b+f1EAdAsj+nWQMsPFWSzsPL2Qv0EsaEwW
-         5aog==
-X-Gm-Message-State: AO0yUKWstAazpg6IAmNvDMiEH7s94Nt6V1XzCxSKelE7WeiBzzhy9ZGY
-        avnCvWwa7/tlrQHWPO4w61oVZQ==
-X-Google-Smtp-Source: AK7set997XHuAz2ObJtEeg4cEWUbuHa9zooJbdrvbLmmA4XuCSdBEeouSX504F0gyymqyY4hfHMsjA==
-X-Received: by 2002:a17:906:2da2:b0:8ae:f1cd:9551 with SMTP id g2-20020a1709062da200b008aef1cd9551mr21108905eji.76.1678349458561;
-        Thu, 09 Mar 2023 00:10:58 -0800 (PST)
+        bh=uYm9P1JkEDejWKuqMqpfHHenbNm4YviIcvuWWtmhvow=;
+        b=WnKHF3vVknc8+zfVEz/4Y4hARTXmH0L3v75qGWV1Xa0L9MaKD0GvP6tTm9TQM/FKu4
+         p3lgr4KLL3RzZGEt+wUfL/SRRkyqQkfcudn/VjtudBdDMnbUR+SP2AaUW9UNnS7V/M+q
+         QzOjH8saaXS5kKU939eefD6P48T8sfuOeppQWq+jHE02C8BqwyNufrenuC4lo0g6XFCR
+         ZKVrUf5RbGtIYPq2NANAwccvz5M6XNUqfMwOlU4Cl587XqZuOimDADftfcdAhEWtuT1g
+         bIlm6vEAaayY6VrMQR5tobsP89PrAIsbuGYoIt4DrqonDNzvyi+8BHeMWtb5tf9wljVF
+         5X4g==
+X-Gm-Message-State: AO0yUKWNvbcTq6bx4fKFSuNYwi18cpQ4rp9gG3ed+8tTQpKcQGS4/YMm
+        9RDeCDzBTucMvYVDS6E4jwTjJg==
+X-Google-Smtp-Source: AK7set/qe5GBqABr4mK0/ODbegQ7W2jBFy0I8L1wJDsX7DeCizSHPxON59pp/33fyjgaTU4kp90Bfg==
+X-Received: by 2002:a17:907:7e9a:b0:88a:a27c:c282 with SMTP id qb26-20020a1709077e9a00b0088aa27cc282mr27844083ejc.47.1678349556084;
+        Thu, 09 Mar 2023 00:12:36 -0800 (PST)
 Received: from ?IPV6:2a02:810d:15c0:828:7ee2:e73e:802e:45c1? ([2a02:810d:15c0:828:7ee2:e73e:802e:45c1])
-        by smtp.gmail.com with ESMTPSA id u2-20020a170906c40200b008e2dfc6382asm8487895ejz.125.2023.03.09.00.10.57
+        by smtp.gmail.com with ESMTPSA id i9-20020a1709063c4900b008d427df3245sm8554756ejg.58.2023.03.09.00.12.34
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 09 Mar 2023 00:10:58 -0800 (PST)
-Message-ID: <81e78cf6-b8b3-0cab-d190-aa22abbc5c2d@linaro.org>
-Date:   Thu, 9 Mar 2023 09:10:56 +0100
+        Thu, 09 Mar 2023 00:12:35 -0800 (PST)
+Message-ID: <b60455eb-ec43-2e94-24b1-31fa94b2f7f2@linaro.org>
+Date:   Thu, 9 Mar 2023 09:12:34 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.8.0
-Subject: Re: [Patch v6] dt-bindings: media: s5p-mfc: convert bindings to
- json-schema
+Subject: Re: [PATCH v2 2/7] dt-bindings: soc: qcom: aoss: Document
+ QDU1000/QRU1000 compatible
 Content-Language: en-US
-To:     Aakarsh Jain <aakarsh.jain@samsung.com>,
-        linux-arm-kernel@lists.infradead.org, linux-media@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Cc:     m.szyprowski@samsung.com, andrzej.hajda@intel.com,
-        mchehab@kernel.org, hverkuil-cisco@xs4all.nl,
-        ezequiel@vanguardiasur.com.ar, jernej.skrabec@gmail.com,
-        benjamin.gaignard@collabora.com, krzysztof.kozlowski+dt@linaro.org,
-        stanimir.varbanov@linaro.org, dillon.minfei@gmail.com,
-        david.plowman@raspberrypi.com, mark.rutland@arm.com,
-        robh+dt@kernel.org, krzk+dt@kernel.org, andi@etezian.org,
-        alim.akhtar@samsung.com, aswani.reddy@samsung.com,
-        pankaj.dubey@samsung.com
-References: <CGME20230301035153epcas5p40f576188a9a69835c1050135219a3720@epcas5p4.samsung.com>
- <20230301035144.8645-1-aakarsh.jain@samsung.com>
- <8b5bea40-6f7b-1d00-ac23-83a28c7dacbc@linaro.org>
- <046b01d94d1a$418146a0$c483d3e0$@samsung.com>
- <9b93849d-d4a4-67ba-e8a0-ee6c7209bd65@linaro.org>
- <000701d95257$e97ebd50$bc7c37f0$@samsung.com>
+To:     Melody Olvera <quic_molvera@quicinc.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Jassi Brar <jassisinghbrar@gmail.com>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        Robert Marko <robimarko@gmail.com>,
+        Guru Das Srinagesh <quic_gurus@quicinc.com>
+Cc:     Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Manivannan Sadhasivam <mani@kernel.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-remoteproc@vger.kernel.org
+References: <20230306231202.12223-1-quic_molvera@quicinc.com>
+ <20230306231202.12223-3-quic_molvera@quicinc.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <000701d95257$e97ebd50$bc7c37f0$@samsung.com>
+In-Reply-To: <20230306231202.12223-3-quic_molvera@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
@@ -89,72 +86,15 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 09/03/2023 08:22, Aakarsh Jain wrote:
+On 07/03/2023 00:11, Melody Olvera wrote:
+> Add compatible for QDU1000 and QRU1000 aoss devices.
 > 
-> 
->> -----Original Message-----
->> From: Krzysztof Kozlowski [mailto:krzysztof.kozlowski@linaro.org]
->> Sent: 09 March 2023 12:15
->> To: Aakarsh Jain <aakarsh.jain@samsung.com>; linux-arm-
->> kernel@lists.infradead.org; linux-media@vger.kernel.org; linux-
->> kernel@vger.kernel.org; devicetree@vger.kernel.org
->> Cc: m.szyprowski@samsung.com; andrzej.hajda@intel.com;
->> mchehab@kernel.org; hverkuil-cisco@xs4all.nl;
->> ezequiel@vanguardiasur.com.ar; jernej.skrabec@gmail.com;
->> benjamin.gaignard@collabora.com; krzysztof.kozlowski+dt@linaro.org;
->> stanimir.varbanov@linaro.org; dillon.minfei@gmail.com;
->> david.plowman@raspberrypi.com; mark.rutland@arm.com;
->> robh+dt@kernel.org; krzk+dt@kernel.org; andi@etezian.org;
->> alim.akhtar@samsung.com; aswani.reddy@samsung.com;
->> pankaj.dubey@samsung.com
->> Subject: Re: [Patch v6] dt-bindings: media: s5p-mfc: convert bindings to json-
->> schema
->>
->> On 02/03/2023 16:18, Aakarsh Jain wrote:
->>>>
->>>> iommus:
->>>>   maxItems: 1
->>>> iommu-names: false
->>>>
->>> I am getting compilation errors with above property set and its breaking the
->> bindings.
->>> If we see these two nodes in dtsi files.
->>>                mfc: codec@13400000 {
->>>                         compatible = "samsung,mfc-v5"; ..
->>>                         iommus = <&sysmmu_mfc_l>, <&sysmmu_mfc_r>;
->>>                         iommu-names = "left", "right"; } And
->>>               mfc: codec@13400000 {
->>>                         compatible = "samsung,exynos3250-mfc", "samsung,mfc-v7";
->>>                         reg = <0x13400000 0x10000>; ...
->>>                         iommus = <&sysmmu_mfc>;
->>>                 };
->>> There is no iommu-names property for compatible "samsung,exynos3250-
->> mfc, samsung,mfc-v7", that’s why I kept
->>>         iommus:
->>>           minItems: 1
->>>           maxItems: 2
->>> I would even go with below if you agree?
->>>         iommus:
->>>           minItems: 1
->>>           maxItems: 2
->>>         iommus-names: false
->>
->> No, I don't agree. Why do you need two IOMMUs for Exynos3250?
->>>
-> Here IOMMUs minItems:1 is meant for Exynos3250 while IOMMUs maxItems:2 meant for samsung,mfc-v5(Exynos 4).
-> As you suggested 
-> iommus:
->   maxItems: 1
-> iommu-names: false
-> 
-> won't fit here.
-> Since IOMMUs maxItems is 2 here for Exynos4. Giving maxItems:2 alone will also break the bindings. Thanks why suggested
->          iommus:
->            minItems: 1
->            maxItems: 2
+> Signed-off-by: Melody Olvera <quic_molvera@quicinc.com>
+> ---
+>  Documentation/devicetree/bindings/soc/qcom/qcom,aoss-qmp.yaml | 1 +
 
-Are you sure you are putting this in correct place? This is if:then for
-Exynos3250, isn't it?
+
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
