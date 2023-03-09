@@ -2,130 +2,187 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 084046B1B40
-	for <lists+devicetree@lfdr.de>; Thu,  9 Mar 2023 07:17:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0593C6B1B56
+	for <lists+devicetree@lfdr.de>; Thu,  9 Mar 2023 07:22:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229652AbjCIGQ6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Mar 2023 01:16:58 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35930 "EHLO
+        id S229970AbjCIGV7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Mar 2023 01:21:59 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43388 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229751AbjCIGQ5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Mar 2023 01:16:57 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CE992DBB5F;
-        Wed,  8 Mar 2023 22:16:53 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 690A8619A9;
-        Thu,  9 Mar 2023 06:16:53 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5E589C433D2;
-        Thu,  9 Mar 2023 06:16:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1678342612;
-        bh=BtthgR0zbwmyvaFDelFkF+Pa981UtRRUf5qDW/VObEI=;
-        h=Date:Subject:To:References:From:In-Reply-To:From;
-        b=N9DWIXFLEWQU7zpt7PMFfgOh9+s008I4WsuaTbdcLwGtw1dAcwh1KI6FRxxqRPihR
-         w2lgJS3F2FZtXLChCFLoduHaMIglZG7pqEyaKSR8KyGiHeNCKI1AnAPrCf95aaVbKX
-         K8y9DVVCFp7OEfwyLaeEYCnl0IYDcwcGJqFRMVVJSncGDu9cKYpwchUa/ZsOmgUQaw
-         KjeTCdYRDv2rd/tRqg5O1Rj86jrgb8leRoWzS5VhOV+sPUdaDU4htL7No7UnDpEiko
-         t/ATUSKPQcVZqUwT1nWjVG47mqk2WaPRWJmJd6VVgAtwsYdLBYm86O3CZlB3jPhukf
-         neZ8wK1iuQHsg==
-Message-ID: <ab9f7730-d399-0786-67e5-aad57716809e@kernel.org>
-Date:   Thu, 9 Mar 2023 07:16:47 +0100
+        with ESMTP id S229956AbjCIGV5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Mar 2023 01:21:57 -0500
+Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com [IPv6:2a00:1450:4864:20::532])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 48030D7C1B
+        for <devicetree@vger.kernel.org>; Wed,  8 Mar 2023 22:21:54 -0800 (PST)
+Received: by mail-ed1-x532.google.com with SMTP id da10so2872024edb.3
+        for <devicetree@vger.kernel.org>; Wed, 08 Mar 2023 22:21:54 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1678342913;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=629HUKu9ysTE8LoxfEMeOnsoL7Im0RfsyDKZUedE5Xk=;
+        b=GFx+5RxlDimXAhFVzROdjGt+iQwtj5yTq9kv1DBv6rSlkZtxT7zJvhAkoR9onnCFxp
+         OTQaGQKSFr4LJAX6ox9p28QjgVzdheHdXbZg51uB4pMcNdR3PKcjVXC3AnMndiFyLIOa
+         nxveWZ7EUIjwyN/9OipFP+wXaqLVRmF15zaWxoDWOqTlNXPoy2/Qux5xNHbIxWZOz5q5
+         RJXlI0ti+/SMVw/A7BAxrSHKeQ5wD7hNvZ+zPNVtU/q6RTC1NElCwRNhSs2aPwdCBxJU
+         vEGNEKpxGUUBCCrvfp3tjUs0gglE02qedQ9XmcLLomYSvgMIVBgjSpv+3zpC/uc1kLIl
+         Hfxg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1678342913;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=629HUKu9ysTE8LoxfEMeOnsoL7Im0RfsyDKZUedE5Xk=;
+        b=M3tyS4pG/sfyVMGmxXz/lyE84xCXXuMCq6hWeM4i7suPEeOLZCi8RoKHrnRvySSQOn
+         bKDNCOorzXuiItOQwCk+oO0Cc/n0PXAGFVPUvya7heIA1NuY37wp40AGqMC2VerkE7Yd
+         7jcWS2oUEErCnomW0HULWXSP7S+mqU/GdLKsO5VRwpUufP+ouMa+FIBqedOrgSX7AHN5
+         efIBNo66JW+jwzAJpbHnssxFSEGMuTJy9eGWJMDkt0jViYaEfUtLRxz98tCp/dPw4sbu
+         D78ePCrTjDy9W4cXHXULcer9HnNyo52FUBwpCmijPeOddQEzJ6U8ERMpIHxxTukOYlmI
+         Rh8A==
+X-Gm-Message-State: AO0yUKVETC6utSDc6ZtdkV0ZrfvEw/LmQ6y0TDzvG4PmnWe6ORi3wYGF
+        0tKzmjLMZxqkYKdtpgdU9cWesQ==
+X-Google-Smtp-Source: AK7set/QLffEPle8Wh9gk5/86+LCNm7TyOrefjJkwRpgWvOBGuPd7HNwGDbfMIPT23raSrKfVuIJ8g==
+X-Received: by 2002:a17:906:7948:b0:8b2:37b5:cc4 with SMTP id l8-20020a170906794800b008b237b50cc4mr30024197ejo.7.1678342912726;
+        Wed, 08 Mar 2023 22:21:52 -0800 (PST)
+Received: from ?IPV6:2a02:810d:15c0:828:7ee2:e73e:802e:45c1? ([2a02:810d:15c0:828:7ee2:e73e:802e:45c1])
+        by smtp.gmail.com with ESMTPSA id d17-20020a50f691000000b004c0cc79f4aesm9080730edn.92.2023.03.08.22.21.51
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 08 Mar 2023 22:21:52 -0800 (PST)
+Message-ID: <624f5dc8-0807-e799-d66e-213aadabfc84@linaro.org>
+Date:   Thu, 9 Mar 2023 07:21:50 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.8.0
-Subject: Re: [PATCH V2 4/6] dt-bindings: timestamp: Add Tegra234 support
-To:     Dipen Patel <dipenp@nvidia.com>, thierry.reding@gmail.com,
-        jonathanh@nvidia.com, linux-kernel@vger.kernel.org,
-        linux-tegra@vger.kernel.org, linux-gpio@vger.kernel.org,
-        linus.walleij@linaro.org, devicetree@vger.kernel.org,
-        linux-doc@vger.kernel.org, robh+dt@kernel.org,
-        timestamp@lists.linux.dev
-References: <20230214115553.10416-1-dipenp@nvidia.com>
- <20230214115553.10416-5-dipenp@nvidia.com>
- <3c0ad963-ce69-bd5b-20cd-888e5fbdecaf@kernel.org>
- <7a8027c9-dc73-3684-c5f2-3071f315b3cd@nvidia.com>
- <a5e897e5-4cb9-d50f-47a8-ffb8bd8774cb@kernel.org>
- <18f9a6ca-a61b-4cbb-b729-1fdb6d48651a@nvidia.com>
+Subject: Re: [PATCH net-next v2] dt-bindings: net: ti: k3-am654-cpsw-nuss:
+ Document Serdes PHY
 Content-Language: en-US
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-In-Reply-To: <18f9a6ca-a61b-4cbb-b729-1fdb6d48651a@nvidia.com>
+To:     Siddharth Vadapalli <s-vadapalli@ti.com>,
+        krzysztof.kozlowski+dt@linaro.org
+Cc:     davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
+        linux@armlinux.org.uk, pabeni@redhat.com, robh+dt@kernel.org,
+        nsekhar@ti.com, rogerq@kernel.org, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, srk@ti.com
+References: <20230308051835.276552-1-s-vadapalli@ti.com>
+ <1ffed720-322c-fa73-1160-5fd73ce3c7c2@linaro.org>
+ <7b6e8131-8e5b-88bc-69f7-b737c0c35bb6@ti.com>
+ <dbbe3cd2-3329-d267-338b-8e513209ddcd@linaro.org>
+ <882cdb42-3f80-048a-88a5-836c479a421f@ti.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <882cdb42-3f80-048a-88a5-836c479a421f@ti.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 08/03/2023 21:09, Dipen Patel wrote:
-> On 3/8/23 11:05 AM, Krzysztof Kozlowski wrote:
->> On 08/03/2023 19:45, Dipen Patel wrote:
->>> On 2/16/23 6:17 AM, Krzysztof Kozlowski wrote:
->>>> On 14/02/2023 12:55, Dipen Patel wrote:
->>>>> Added timestamp provider support for the Tegra234 in devicetree
->>>>> bindings.
->>>>
->>>> 1. Your commit does much more. You need to explain it why you drop some
->>>> property.
->>> ACK, will address it next patch
->>>>
->>>> 2. Bindings go before its usage (in the patchset).
->>> Ack...
->>>>
->>>> 3. Please use scripts/get_maintainers.pl to get a list of necessary
->>>> people and lists to CC.  It might happen, that command when run on an
->>>> older kernel, gives you outdated entries.  Therefore please be sure you
->>>> base your patches on recent Linux kernel.
->>> It is based on recent linux at the time patch series was sent...
->>
->> That's good but then why you do not use scripts/get_maintainers.pl? The
->> hint about recent kernel was just a hint... Just do not invent addresses
->> by yourself and use the tool to get them right.
->>
-> I will take a note for the next patch series to add any missing people. The current
-> list of people/group is what historically helped review this new timestamp/hte subsystem.
+On 09/03/2023 05:18, Siddharth Vadapalli wrote:
+> Hello Krzysztof,
 > 
->> (...)
->>
->>>>> +  properties:
->>>>> +    compatible:
->>>>> +      contains:
->>>>> +        enum:
->>>>> +          - nvidia,tegra194-gte-aon
+> On 08/03/23 18:04, Krzysztof Kozlowski wrote:
+>> On 08/03/2023 09:38, Siddharth Vadapalli wrote:
+>>> Hello Krzysztof,
+>>>
+>>> On 08/03/23 14:04, Krzysztof Kozlowski wrote:
+>>>> On 08/03/2023 06:18, Siddharth Vadapalli wrote:
+>>>>> Update bindings to include Serdes PHY as an optional PHY, in addition to
+>>>>> the existing CPSW MAC's PHY. The CPSW MAC's PHY is required while the
+>>>>> Serdes PHY is optional. The Serdes PHY handle has to be provided only
+>>>>> when the Serdes is being configured in a Single-Link protocol. Using the
+>>>>> name "serdes-phy" to represent the Serdes PHY handle, the am65-cpsw-nuss
+>>>>> driver can obtain the Serdes PHY and request the Serdes to be
+>>>>> configured.
+>>>>>
+>>>>> Signed-off-by: Siddharth Vadapalli <s-vadapalli@ti.com>
+>>>>> ---
+>>>>>
+>>>>> Hello,
+>>>>>
+>>>>> This patch corresponds to the Serdes PHY bindings that were missed out in
+>>>>> the series at:
+>>>>> https://lore.kernel.org/r/20230104103432.1126403-1-s-vadapalli@ti.com/
+>>>>> This was pointed out at:
+>>>>> https://lore.kernel.org/r/CAMuHMdW5atq-FuLEL3htuE3t2uO86anLL3zeY7n1RqqMP_rH1g@mail.gmail.com/
+>>>>>
+>>>>> Changes from v1:
+>>>>> 1. Describe phys property with minItems, items and description.
+>>>>> 2. Use minItems and items in phy-names.
+>>>>> 3. Remove the description in phy-names.
+>>>>>
+>>>>> v1:
+>>>>> https://lore.kernel.org/r/20230306094750.159657-1-s-vadapalli@ti.com/
+>>>>>
+>>>>>  .../bindings/net/ti,k3-am654-cpsw-nuss.yaml        | 14 ++++++++++++--
+>>>>>  1 file changed, 12 insertions(+), 2 deletions(-)
+>>>>>
+>>>>> diff --git a/Documentation/devicetree/bindings/net/ti,k3-am654-cpsw-nuss.yaml b/Documentation/devicetree/bindings/net/ti,k3-am654-cpsw-nuss.yaml
+>>>>> index 900063411a20..0fb48bb6a041 100644
+>>>>> --- a/Documentation/devicetree/bindings/net/ti,k3-am654-cpsw-nuss.yaml
+>>>>> +++ b/Documentation/devicetree/bindings/net/ti,k3-am654-cpsw-nuss.yaml
+>>>>> @@ -126,8 +126,18 @@ properties:
+>>>>>              description: CPSW port number
+>>>>>  
+>>>>>            phys:
+>>>>> -            maxItems: 1
+>>>>> -            description: phandle on phy-gmii-sel PHY
+>>>>> +            minItems: 1
+>>>>> +            items:
+>>>>> +              - description: CPSW MAC's PHY.
+>>>>> +              - description: Serdes PHY. Serdes PHY is required only if
+>>>>> +                             the Serdes has to be configured in the
+>>>>> +                             Single-Link configuration.
+>>>>> +
+>>>>> +          phy-names:
+>>>>> +            minItems: 1
+>>>>> +            items:
+>>>>> +              - const: mac-phy
+>>>>> +              - const: serdes-phy
 >>>>
->>>> This is an ABI break. Does your driver handle it?
->>> yes, handling patch is part of this patch series.
+>>>> Drop "phy" suffixes.
+>>>
+>>> The am65-cpsw driver fetches the Serdes PHY by looking for the string
+>>> "serdes-phy". Therefore, modifying the string will require changing the driver's
+>>> code as well. Please let me know if it is absolutely necessary to drop the phy
+>>> suffix. If so, I will post a new series with the changes involving dt-bindings
+>>> changes and the driver changes.
 >>
->> Can you point me to the code which does it? I see "return -ENODEV;", so
->> I think you do not handle ABI break. I could miss something but since
->> you disagree with me, please at least bring some arguments...
-> Refer to patch https://patchwork.kernel.org/project/timestamp/patch/20230214115553.10416-3-dipenp@nvidia.com/
-> which has compatible properties added and also code changes to reflect addition/deletion of some
-> properties.
-
-I referred to the code which breaks the ABI.
-
+>> Why the driver uses some properties before adding them to the binding?
 > 
-> I am not sure I have understood about ABI break comment. How else one should handle if
-> there is no related gpio controller property found?
+> I missed adding the bindings for the Serdes PHY as a part of the series
+> mentioned in the section below the tearline of the patch. With this patch, I am
+> attempting to fix it.
+> 
+>>
+>> And is it correct method of adding ABI? You add incorrect properties
+>> without documentation and then use this as an argument "driver already
+>> does it"?
+> 
+> I apologize if my earlier comment appeared to justify the usage of "serdes-phy"
+> based on the driver already using it. I did not mean it in that sense. I simply
+> meant to ask if dropping "phy" suffixes was a suggestion or a rule. In that
+> context, I felt that if it was a suggestion, I would prefer retaining the names
+> with the "phy" suffixes, since the driver is already using it. Additionally, I
+> also mentioned in my earlier comment that if it is necessary to drop the "phy"
+> suffix, then I will do so and add another patch to change the string the driver
+> looks for as well.
+> 
+> I shall take it that dropping "phy" suffixes is a rule/necessity. With this, I
+> will post the v3 series making this change, along with the patch to update the
+> string the driver looks for.
 
-In a way it does not break existing users? There are many ways to handle
-it, but I don't know your code to point you.
+Drop the "phy" suffix.
 
-> I am assuming you are referring to the
-> below code from the patch 2 (link above) when you said "return -ENODEV".
-
-
-Your bindings patch points to ABI break without any
-explanation/justification. Then your code #2 patch actually breaks it,
-also without any justification.
+It's a new binding. "phy" as suffix for "phy" is useless and for new
+bindings it should be dropped. If you submitted driver changes without
+bindings, which document the ABI, it's not good, but also not a reason
+for me for exceptions.
 
 Best regards,
 Krzysztof
