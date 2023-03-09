@@ -2,108 +2,132 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 14D306B22CF
-	for <lists+devicetree@lfdr.de>; Thu,  9 Mar 2023 12:26:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B1C046B22DD
+	for <lists+devicetree@lfdr.de>; Thu,  9 Mar 2023 12:26:53 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231571AbjCIL0E (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Mar 2023 06:26:04 -0500
+        id S231478AbjCIL0q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Mar 2023 06:26:46 -0500
 Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35820 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231931AbjCILZm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Mar 2023 06:25:42 -0500
-Received: from relay11.mail.gandi.net (relay11.mail.gandi.net [217.70.178.231])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BDBDB5CC03;
-        Thu,  9 Mar 2023 03:23:28 -0800 (PST)
-Received: (Authenticated sender: miquel.raynal@bootlin.com)
-        by mail.gandi.net (Postfix) with ESMTPSA id 4641D10000E;
-        Thu,  9 Mar 2023 11:23:25 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1678361007;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=nFB/XzUgcCAZanhIP6AKbNu6CZh3ZVa2Xw1P9FE3XKU=;
-        b=i74aRkvD0oj/7IcNRKWPBzJhbEnD9BxREtMgeu2+Ic1ouSWkVmpx89UD2aEE+Ch2cUWsUV
-        yShn53mLBgk/zBu6/96vEQd51E/9hV4ukYDp3M99J8B+LUb1vtVxlyCnuW13tJoG+R39SG
-        Vl9S7zfHu4yoGfCur9XqUEzWYv42Mm2/CM+N6bWu+J0Wi4e8M9JxC5lO6vI3ex2fYf4tCk
-        YNieGatb2k1UY5KBFLvhwSd9JLfUExt27K8zwVG2IOeDFnWL622H9SQpR4OUO6XXSSwyho
-        omft0YbNKbPbqZbVxFE3WBn7hqpU2YzDhXYOHKZ0GNL9FOhrOQYXgz/vTIgVxg==
-Date:   Thu, 9 Mar 2023 12:23:24 +0100
-From:   Miquel Raynal <miquel.raynal@bootlin.com>
-To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Cc:     =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
+        with ESMTP id S231452AbjCIL0a (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Mar 2023 06:26:30 -0500
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 90B66E38A6;
+        Thu,  9 Mar 2023 03:24:27 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1678361067; x=1709897067;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=w7OI7hQEHg8ClJhsFM0nUYms3kQOe6dSXnURui+ubBs=;
+  b=F1hBIi0d/eDUHoY0pRq5LW1ABlzEuWNolCJouuc8Qg7VuJCuYIg2RUDk
+   y5tZh0PbZunV/kHpOW0mSx5i6AQSP5OV2aa5cU5NsDYr8weBxwfi2rPRo
+   Plcp1iOMcufSy7vdZt8Ge4VVpHIR+8pbXCKOOj4ORMGE1awThCEGy6ZS+
+   u8llRHcJ6+2nZj9TgeVB0Z4q0ekr88JUNQ4Leh41MCmH5Clin6Mmi+htW
+   zAYoLXsW6B9prJ1H7kswHp/9FpKnfZhptYp02Wkti8ThnbhUhwpPPpbuj
+   84MSb2H9fnDaPtByhOl5EedltG+zh0jt2DWL2BImENis6v2JC/nz9G2Gw
+   Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10643"; a="320249019"
+X-IronPort-AV: E=Sophos;i="5.98,246,1673942400"; 
+   d="scan'208";a="320249019"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+  by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 09 Mar 2023 03:24:27 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6500,9779,10643"; a="820569396"
+X-IronPort-AV: E=Sophos;i="5.98,246,1673942400"; 
+   d="scan'208";a="820569396"
+Received: from lkp-server01.sh.intel.com (HELO b613635ddfff) ([10.239.97.150])
+  by fmsmga001.fm.intel.com with ESMTP; 09 Mar 2023 03:24:23 -0800
+Received: from kbuild by b613635ddfff with local (Exim 4.96)
+        (envelope-from <lkp@intel.com>)
+        id 1paENi-0002uZ-0p;
+        Thu, 09 Mar 2023 11:24:22 +0000
+Date:   Thu, 9 Mar 2023 19:24:18 +0800
+From:   kernel test robot <lkp@intel.com>
+To:     Stephan Gerhold <stephan.gerhold@kernkonzept.com>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        "Rafael J. Wysocki" <rafael@kernel.org>
+Cc:     llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
+        Amit Kucheria <amitk@kernel.org>,
+        Thara Gopinath <thara.gopinath@gmail.com>,
+        Zhang Rui <rui.zhang@intel.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Michael Walle <michael@walle.cc>, gregkh@linuxfoundation.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, u-boot@lists.denx.de,
-        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
-Subject: Re: [PATCH 2/4] nvmem: core: allow nvmem_cell_post_process_t
- callbacks to adjust buffer
-Message-ID: <20230309122324.4b012a58@xps-13>
-In-Reply-To: <2dc096f5-f5ce-f99b-42ac-0fb24682239a@linaro.org>
-References: <20230222172245.6313-1-zajec5@gmail.com>
-        <20230222172245.6313-3-zajec5@gmail.com>
-        <37f821b8-f681-08e4-d4f1-d37be191ff7f@linaro.org>
-        <20230309113211.6321ce3d@xps-13>
-        <2dc096f5-f5ce-f99b-42ac-0fb24682239a@linaro.org>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, Stephan Gerhold <stephan@gerhold.net>
+Subject: Re: [PATCH v2 2/6] thermal: qcom: tsens-v0_1: Fix mdm9607 slope
+ values
+Message-ID: <202303091900.XYo6NJrL-lkp@intel.com>
+References: <20230308131041.124482-3-stephan.gerhold@kernkonzept.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230308131041.124482-3-stephan.gerhold@kernkonzept.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,
+        SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Srinivas,
+Hi Stephan,
 
-srinivas.kandagatla@linaro.org wrote on Thu, 9 Mar 2023 10:53:07 +0000:
+I love your patch! Perhaps something to improve:
 
-> On 09/03/2023 10:32, Miquel Raynal wrote:
-> > Hi Srinivas,
-> >=20
-> > srinivas.kandagatla@linaro.org wrote on Thu, 9 Mar 2023 10:12:24 +0000:
-> >  =20
-> >> On 22/02/2023 17:22, Rafa=C5=82 Mi=C5=82ecki wrote: =20
-> >>> @@ -1791,11 +1792,15 @@ ssize_t nvmem_device_cell_read(struct nvmem_d=
-evice *nvmem,
-> >>>    	if (!nvmem)
-> >>>    		return -EINVAL; =20
-> >>>    > +	/* Cells with read_post_process hook may realloc buffer we can=
-'t allow here */ =20
-> >>> +	if (info->read_post_process)
-> >>> +		return -EINVAL; =20
-> >> This should probably go in 1/4 patch. Other than that series looks goo=
-d to me. =20
-> >=20
-> > FYI patch 1/4 is also carried by the nvmem-layouts series, so it's
-> > probably best to keep these 2 patches separated to simplify the merging=
-. =20
-> that is intermediate thing, but Ideally this change belongs to 1/4 patch,=
- so once I apply these patches then we can always rebase layout series on t=
-op of nvmem-next
+[auto build test WARNING on rafael-pm/thermal]
+[also build test WARNING on linus/master v6.3-rc1 next-20230309]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-Well, I still don't see the need for this patch because we have no use
-for it *after* the introduction of layouts. Yes in some cases changing
-the size of a cell might maybe be needed, but right now the use case is
-to provide a MAC address, we know beforehand the size of the cell, so
-there is no need, currently, for this hack.
+url:    https://github.com/intel-lab-lkp/linux/commits/Stephan-Gerhold/thermal-qcom-tsens-Drop-unused-legacy-structs/20230308-214702
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/rafael/linux-pm.git thermal
+patch link:    https://lore.kernel.org/r/20230308131041.124482-3-stephan.gerhold%40kernkonzept.com
+patch subject: [PATCH v2 2/6] thermal: qcom: tsens-v0_1: Fix mdm9607 slope values
+config: arm-defconfig (https://download.01.org/0day-ci/archive/20230309/202303091900.XYo6NJrL-lkp@intel.com/config)
+compiler: clang version 17.0.0 (https://github.com/llvm/llvm-project 67409911353323ca5edf2049ef0df54132fa1ca7)
+reproduce (this is a W=1 build):
+        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+        chmod +x ~/bin/make.cross
+        # install arm cross compiling tool for clang build
+        # apt-get install binutils-arm-linux-gnueabi
+        # https://github.com/intel-lab-lkp/linux/commit/3794cf582a2a9b64fabba0c34ec4a1f87571247a
+        git remote add linux-review https://github.com/intel-lab-lkp/linux
+        git fetch --no-tags linux-review Stephan-Gerhold/thermal-qcom-tsens-Drop-unused-legacy-structs/20230308-214702
+        git checkout 3794cf582a2a9b64fabba0c34ec4a1f87571247a
+        # save the config file
+        mkdir build_dir && cp config build_dir/.config
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross W=1 O=build_dir ARCH=arm olddefconfig
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross W=1 O=build_dir ARCH=arm SHELL=/bin/bash drivers/thermal/qcom/
 
-Whatever. If you want it, just merge it. But *please*, I would like
-to see these layouts in, so what's the plan?
+If you fix the issue, kindly add following tag where applicable
+| Reported-by: kernel test robot <lkp@intel.com>
+| Link: https://lore.kernel.org/oe-kbuild-all/202303091900.XYo6NJrL-lkp@intel.com/
 
-Thanks,
-Miqu=C3=A8l
+All warnings (new ones prefixed by >>):
+
+>> drivers/thermal/qcom/tsens-v0_1.c:284:31: warning: unused variable 'ops_v0_1' [-Wunused-const-variable]
+   static const struct tsens_ops ops_v0_1 = {
+                                 ^
+   1 warning generated.
+
+
+vim +/ops_v0_1 +284 drivers/thermal/qcom/tsens-v0_1.c
+
+c19970548edc35 Amit Kucheria    2019-03-20  283  
+51d78b8b1beba2 Dmitry Baryshkov 2023-01-01 @284  static const struct tsens_ops ops_v0_1 = {
+51d78b8b1beba2 Dmitry Baryshkov 2023-01-01  285  	.init		= init_common,
+51d78b8b1beba2 Dmitry Baryshkov 2023-01-01  286  	.calibrate	= tsens_calibrate_common,
+51d78b8b1beba2 Dmitry Baryshkov 2023-01-01  287  	.get_temp	= get_temp_common,
+51d78b8b1beba2 Dmitry Baryshkov 2023-01-01  288  };
+51d78b8b1beba2 Dmitry Baryshkov 2023-01-01  289  
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests
