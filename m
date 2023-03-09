@@ -2,52 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2466D6B2702
-	for <lists+devicetree@lfdr.de>; Thu,  9 Mar 2023 15:36:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 580F16B2705
+	for <lists+devicetree@lfdr.de>; Thu,  9 Mar 2023 15:36:29 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231836AbjCIOgZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Mar 2023 09:36:25 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35742 "EHLO
+        id S231361AbjCIOg1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Mar 2023 09:36:27 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35788 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231845AbjCIOgP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Mar 2023 09:36:15 -0500
-Received: from mail-wr1-x42b.google.com (mail-wr1-x42b.google.com [IPv6:2a00:1450:4864:20::42b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2019FE7EC2
-        for <devicetree@vger.kernel.org>; Thu,  9 Mar 2023 06:35:56 -0800 (PST)
-Received: by mail-wr1-x42b.google.com with SMTP id v16so2137095wrn.0
-        for <devicetree@vger.kernel.org>; Thu, 09 Mar 2023 06:35:56 -0800 (PST)
+        with ESMTP id S231857AbjCIOgQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Mar 2023 09:36:16 -0500
+Received: from mail-wr1-x436.google.com (mail-wr1-x436.google.com [IPv6:2a00:1450:4864:20::436])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2FB32E8250
+        for <devicetree@vger.kernel.org>; Thu,  9 Mar 2023 06:35:57 -0800 (PST)
+Received: by mail-wr1-x436.google.com with SMTP id r18so2097153wrx.1
+        for <devicetree@vger.kernel.org>; Thu, 09 Mar 2023 06:35:57 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bgdev-pl.20210112.gappssmtp.com; s=20210112; t=1678372554;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=1dOA5NAW0Uw4MR5cd/LmYCKh7WIP5B2Eohn9tRKWQlI=;
-        b=TrHSPIC1hKqvSTqGwgfV4kMYpfzoClytRetHFJU/NCIcJ/GVHP3nHuQsYxau5kt7Xq
-         Vop2v6AXBNEqJqTkt5QRWq9h1MLQ+WxW+xIYdGCOnWXITPSBnx5vq3t83yFpxjx6ppwI
-         5ZLHJEObDfqPp7Id/Q6raFuS8101qNRXKLVVH0trnODeHGX/bWCKODQBB5KRt/ZfVThI
-         Oxe226F1xlInj7g33nVK9BmhY5/35nNpZrUEo9m7kisL0DcEvwcPhEoByQPlVnPhI3n1
-         zIiOx4VaES6y1odbb27KZ1SBHQ24Kss3RPeSzqODhzB0uAR9qlhJDibDAjoxjC2388IU
-         jjVQ==
+        d=bgdev-pl.20210112.gappssmtp.com; s=20210112; t=1678372555;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=q+4iTbADfgePV9IaoTlALLpKBSR+3BkgWEf0N/93c3w=;
+        b=7CM+sRIZEZzZHkrIxKc366M1h5Bp0A5IcJ0WU99BayzAY5UWdoY1cTvthO6gNblPTc
+         3NwF22dW44TtSbHoOLIypIbOoVH911IwyHyzI3347fwMejquUSr+1euYiSaAz95Ilytt
+         2KrmeRD256vcOMb048vLEmUmmrukCGPTFfoIADSGe97tFQcz3Z6cO952FaUsZHCt5Qql
+         MJS7MiVePN2Bi7Pgkt+L/TF9vhBnKszVquySGZ39RFu00+Zko8Vb3y8G3Qro03ase4vO
+         fXm2OZ7pJPaXty9uoLrudlSkxXkJ510/E6Ns/dNjR2/wpTJKG1/HoRsa7eOZd0p5C1zy
+         fwvg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678372554;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=1dOA5NAW0Uw4MR5cd/LmYCKh7WIP5B2Eohn9tRKWQlI=;
-        b=NsSd/XHIFTjocBvswdfmXjVBaOW0AiBNmYQrRkdDBEMK1uZm0xa5Z8uVKvODod8uOV
-         WOcq3+WUgxtTn8T7mQ7lzULEnP97F6s31HhyZK/i46o8iUR9zjyKHKsipcf+2PRfh3lA
-         /tns5LIF0l2IHXstQEtNhCRtRZGwgmoMWQM/ozvxyV0qvv+zkoPJJqKQndb8CBPeAQjl
-         LYt4+TWMmYW/y0AojaTTNFulugt3jzEmDymEY0zgRFwcsgF1aPHEG9ypoEZ2lwh4t4+f
-         nQoSuMzll6CSeN9czOypxZEgxz3BqDIzmeUF0dZAKr8yzAqFfX/p31SN1l3I+ODgAR5P
-         EnUQ==
-X-Gm-Message-State: AO0yUKU66qEa5dfDIQaPGJD2NA3Nd0cDyqOwxV05EVochLSPvP7LZUVH
-        jm2piMmqQr/1fVTgskS1BU3qCQ==
-X-Google-Smtp-Source: AK7set+YXwTBK/pZbxWNAXm4c5iFD+KU6hyN2NRJHWUBD67+t3K9Xl8gm3MHYAbjRo+IspauRD/e9A==
-X-Received: by 2002:a5d:5689:0:b0:2c7:1b3e:362c with SMTP id f9-20020a5d5689000000b002c71b3e362cmr13544095wrv.42.1678372554626;
-        Thu, 09 Mar 2023 06:35:54 -0800 (PST)
+        d=1e100.net; s=20210112; t=1678372555;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=q+4iTbADfgePV9IaoTlALLpKBSR+3BkgWEf0N/93c3w=;
+        b=0pXAwpQo7O1d8uzq3ZSbv/B1gpPz4Hg0IJos72Y8WzjZDlLQReINJ7WDd/+HkcctkN
+         ffNFpGN3g8yWSAwRPDbGXtkVDChjojXkpieehoY0tS9apB5eaUfw8YWOO1CIA+MiYbFN
+         /kmfQpLV8ejg2XHADV9s5jLFFEAgEFMKuyQfA8BDk64XBBgnR6iH45TD5zk/R9zylEGl
+         GfA0pD5spiqQ3Gzf1Uo/MBnazgMegrqMHaHLIjrW+cDcgSzv6G/04Ljd2PK+uY7kgmMq
+         UdAisPwZkVNU6B26tK3WS8kBbDs+tXrkqdM7jUSbmFmkdWCWoJou415PQQjpPVYRjXwL
+         qHPg==
+X-Gm-Message-State: AO0yUKW2iDLXugOj72/Gz4jSihKiEEm2RUQ3JjIXWvIA1AxGx1jNgp04
+        uQJ+IOlpIHZqf9RwC1g/w2dJuA==
+X-Google-Smtp-Source: AK7set8TD20B/UbZ1W660L4jklnRY/yYpKoZpPIWINJlUCWfunBhlSJmLKW5EsblItl2FKnNYAjojg==
+X-Received: by 2002:adf:f982:0:b0:2cb:76d4:42ea with SMTP id f2-20020adff982000000b002cb76d442eamr13819987wrr.36.1678372555665;
+        Thu, 09 Mar 2023 06:35:55 -0800 (PST)
 Received: from brgl-uxlite.home ([2a01:cb1d:334:ac00:f14c:2275:50fc:c056])
-        by smtp.gmail.com with ESMTPSA id z4-20020adfd0c4000000b002c5493a17efsm17871405wrh.25.2023.03.09.06.35.53
+        by smtp.gmail.com with ESMTPSA id z4-20020adfd0c4000000b002c5493a17efsm17871405wrh.25.2023.03.09.06.35.54
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 09 Mar 2023 06:35:54 -0800 (PST)
+        Thu, 09 Mar 2023 06:35:55 -0800 (PST)
 From:   Bartosz Golaszewski <brgl@bgdev.pl>
 To:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
@@ -57,10 +58,12 @@ To:     Andy Gross <agross@kernel.org>,
 Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org,
         Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-Subject: [PATCH 0/2] arm64: qcom: sa8155-adp: enable the high-speed UART for GNSS
-Date:   Thu,  9 Mar 2023 15:35:49 +0100
-Message-Id: <20230309143551.200694-1-brgl@bgdev.pl>
+Subject: [PATCH 1/2] arm64: dts: sm8150: add the QUPv3 high-speed UART node
+Date:   Thu,  9 Mar 2023 15:35:50 +0100
+Message-Id: <20230309143551.200694-2-brgl@bgdev.pl>
 X-Mailer: git-send-email 2.37.2
+In-Reply-To: <20230309143551.200694-1-brgl@bgdev.pl>
+References: <20230309143551.200694-1-brgl@bgdev.pl>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -74,17 +77,52 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
 
-Add the relevant QUPv3 node to SoC dtsi and enable it in the board dts for
-sa8155p-adp.
+Add the high-speed UART node to the dtsi for sm8150.
 
-Bartosz Golaszewski (2):
-  arm64: dts: sm8150: add the QUPv3 high-speed UART node
-  arm64: dts: qcom: sa8155p-adp: enable the GNSS high-speed UART
+Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+---
+ arch/arm64/boot/dts/qcom/sm8150.dtsi | 21 +++++++++++++++++++++
+ 1 file changed, 21 insertions(+)
 
- arch/arm64/boot/dts/qcom/sa8155p-adp.dts |  5 +++++
- arch/arm64/boot/dts/qcom/sm8150.dtsi     | 21 +++++++++++++++++++++
- 2 files changed, 26 insertions(+)
-
+diff --git a/arch/arm64/boot/dts/qcom/sm8150.dtsi b/arch/arm64/boot/dts/qcom/sm8150.dtsi
+index 13e0ce828606..cd0351a33516 100644
+--- a/arch/arm64/boot/dts/qcom/sm8150.dtsi
++++ b/arch/arm64/boot/dts/qcom/sm8150.dtsi
+@@ -1334,6 +1334,20 @@ spi9: spi@a84000 {
+ 				status = "disabled";
+ 			};
+ 
++			uart9: serial@a8c000 {
++				compatible = "qcom,geni-uart";
++				reg = <0x0 0x00a84000 0x0 0x4000>;
++				reg-names = "se";
++				clocks = <&gcc GCC_QUPV3_WRAP1_S1_CLK>;
++				clock-names = "se";
++				pinctrl-0 = <&qup_uart9_default>;
++				pinctrl-names = "default";
++				interrupts = <GIC_SPI 354 IRQ_TYPE_LEVEL_HIGH>;
++				#address-cells = <1>;
++				#size-cells = <0>;
++				status = "disabled";
++			};
++
+ 			i2c10: i2c@a88000 {
+ 				compatible = "qcom,geni-i2c";
+ 				reg = <0 0x00a88000 0 0x4000>;
+@@ -2425,6 +2439,13 @@ qup_spi9_default: qup-spi9-default-state {
+ 				bias-disable;
+ 			};
+ 
++			qup_uart9_default: qup-uart9-default-state {
++				pins = "gpio41", "gpio42";
++				function = "qup9";
++				drive-strength = <2>;
++				bias-disable;
++			};
++
+ 			qup_i2c10_default: qup-i2c10-default-state {
+ 				pins = "gpio9", "gpio10";
+ 				function = "qup10";
 -- 
 2.37.2
 
