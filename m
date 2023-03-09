@@ -2,151 +2,124 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7A4B26B264C
-	for <lists+devicetree@lfdr.de>; Thu,  9 Mar 2023 15:08:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 917F96B266D
+	for <lists+devicetree@lfdr.de>; Thu,  9 Mar 2023 15:12:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230039AbjCIOID (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Mar 2023 09:08:03 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38924 "EHLO
+        id S231704AbjCIOMq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Mar 2023 09:12:46 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48268 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231648AbjCIOHj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Mar 2023 09:07:39 -0500
-Received: from smtp-relay-internal-1.canonical.com (smtp-relay-internal-1.canonical.com [185.125.188.123])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0CAF295E0F
-        for <devicetree@vger.kernel.org>; Thu,  9 Mar 2023 06:06:33 -0800 (PST)
-Received: from mail-qk1-f197.google.com (mail-qk1-f197.google.com [209.85.222.197])
+        with ESMTP id S231458AbjCIOMU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Mar 2023 09:12:20 -0500
+Received: from smtp-out2.suse.de (smtp-out2.suse.de [IPv6:2001:67c:2178:6::1d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1C626F63A9;
+        Thu,  9 Mar 2023 06:10:54 -0800 (PST)
+Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+         key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
         (No client certificate requested)
-        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 25AB541B6B
-        for <devicetree@vger.kernel.org>; Thu,  9 Mar 2023 14:06:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1678370791;
-        bh=TgMelgrb/VLkpH6kwv9lPEQ4dt1XAT9+KiTGTm5i5/c=;
-        h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-         To:Cc:Content-Type;
-        b=oQhP4d/aTVjemMxUqdUrZOJZaRjhSaQnjzPDlMeQLa4AvSW4p+aJUw0UGLR6gZXag
-         DomxUjSGcdITRYb6bch48hcl8fa7mUrrV38NxI1n6Y1zCMsNRBRSFIbmcxeaeiBRQ0
-         D9XboMbizS9EudQFJ3w8/KwlsLayKFOuk0pVBmhdmFqr9VQhOsyv7ogV8KXH8uLXFN
-         ihlIhlqWqEZFpeijNoBG0yben8VjJ7A1dW09Mchf/RheZTdnbSkQucBbLLl/m1N1xM
-         /g9xOhnzKYhgAmHi2m2jbawIpQwobtJYU/F7EN//kOqs483pzgANWUjZF1mbprA6WJ
-         spvlFmHliqiAQ==
-Received: by mail-qk1-f197.google.com with SMTP id z23-20020a376517000000b00731b7a45b7fso1266419qkb.2
-        for <devicetree@vger.kernel.org>; Thu, 09 Mar 2023 06:06:31 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678370789;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=TgMelgrb/VLkpH6kwv9lPEQ4dt1XAT9+KiTGTm5i5/c=;
-        b=qb5fE31F7wGa96ZP9s6EAIIGtV+KMVe42F8oBKsZyxszWRrdvX0rEfnLcreeXX+zxu
-         WW1h6SiJ5mStzBXXq0iqXDYxq7yXNzOciORxDVHQBrNkMH+3JirqF7RfzHM3jvRciUMj
-         c2ZxvA+kIyiDLDTJ+KnM1k929SL1mD5BMT+lEVfhwDmGyP5t7IYs9X4tsDv9UZhZZ8/D
-         RH6k+ERka6ua7xNmuu7LRFycP+uj0sggbgq9vDd08mzn7xaGM0H8WdP+Pfw4J5MJAkDl
-         CYxXydMKoEfTfVYts9e9jSynGll2/viBt/45aftxr1iDt+HkMgIJ1KfNnJn13l0z2KyE
-         0+vw==
-X-Gm-Message-State: AO0yUKVtoLA+xUbpDd7PSRj0janzEHWYXlHUht5ASz9kcIDxXkrk5Byh
-        5z5VCpWyGJV6/u2aPZ+UH6EqJjYoWzvsVRqg6dd4dmFVcjnXNIALjabv3/zdTVwgqRq52BsAiuK
-        UD//+dvboLXFVYxBIQkZNQXpttJ388xiXpDsEICb9xbLagIYN/ZRVeQE=
-X-Received: by 2002:a05:620a:d4d:b0:742:83ee:f569 with SMTP id o13-20020a05620a0d4d00b0074283eef569mr4858481qkl.13.1678370789722;
-        Thu, 09 Mar 2023 06:06:29 -0800 (PST)
-X-Google-Smtp-Source: AK7set+ABJAfbsKbyBYTfNj8osraItDCdyOTOpNmYDJbKIB/zNyDVGBmaDT/KnGUKXMOamd6DWcbCpCildmbTpuYCcw=
-X-Received: by 2002:a05:620a:d4d:b0:742:83ee:f569 with SMTP id
- o13-20020a05620a0d4d00b0074283eef569mr4858475qkl.13.1678370789479; Thu, 09
- Mar 2023 06:06:29 -0800 (PST)
-MIME-Version: 1.0
-References: <20230221024645.127922-1-hal.feng@starfivetech.com>
- <20230221024645.127922-13-hal.feng@starfivetech.com> <CAJM55Z8H4qmy_BiD0SHW-w5ifzhzokdO-QxpUUz9aeUd+htrZg@mail.gmail.com>
- <8c30220a-abef-7518-cb44-abcea91408e2@starfivetech.com> <49ab1072-98ba-f364-9b66-68658566e732@starfivetech.com>
-In-Reply-To: <49ab1072-98ba-f364-9b66-68658566e732@starfivetech.com>
-From:   Emil Renner Berthing <emil.renner.berthing@canonical.com>
-Date:   Thu, 9 Mar 2023 15:06:13 +0100
-Message-ID: <CAJM55Z9YGjD+1haWcXEZNkHnWNRZckdBmTTykTt7QZV_LUohgQ@mail.gmail.com>
-Subject: Re: [PATCH v4 12/19] clk: starfive: Add StarFive JH7110 always-on
- clock driver
-To:     Hal Feng <hal.feng@starfivetech.com>
-Cc:     linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-riscv@lists.infradead.org, Stephen Boyd <sboyd@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor@kernel.org>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Ben Dooks <ben.dooks@sifive.com>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        by smtp-out2.suse.de (Postfix) with ESMTPS id B0D11200FF;
+        Thu,  9 Mar 2023 14:10:52 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+        t=1678371052; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+         mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=dZu5yaZ5mJZQqJA4nKclTyIWmm8PdKTNVvbEDEeVGT0=;
+        b=FWF8Ci3XEzSZihVeE3Z2GsWUNVr0BiNeI+Z25ci1Og5smj48XhbfdpN1wrKbQL2uxsFogX
+        /dHx52MJNF0d5UwsA95bJ7XpgSV06H6rgRzlqo0yXBJvI4Wf/98MXsE2J7IXK1y9XHYDLR
+        VDXeFqLaKr711VDUO/nwdlErSi5P+BU=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+        s=susede2_ed25519; t=1678371052;
+        h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+         mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=dZu5yaZ5mJZQqJA4nKclTyIWmm8PdKTNVvbEDEeVGT0=;
+        b=3oXZAtoM2KjAq7gkFLoZqPany+K5vsoQpLYADa4vO/1eVZoutbCq9eGoZ3M6pvIVFVewD0
+        gHfZ6owjjeNeIMAQ==
+Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
+        (No client certificate requested)
+        by imap2.suse-dmz.suse.de (Postfix) with ESMTPS id 566981391B;
+        Thu,  9 Mar 2023 14:10:52 +0000 (UTC)
+Received: from dovecot-director2.suse.de ([192.168.254.65])
+        by imap2.suse-dmz.suse.de with ESMTPSA
+        id oYtDFOzoCWSGLgAAMHmgww
+        (envelope-from <tiwai@suse.de>); Thu, 09 Mar 2023 14:10:52 +0000
+Date:   Thu, 09 Mar 2023 15:10:51 +0100
+Message-ID: <87r0tyf21g.wl-tiwai@suse.de>
+From:   Takashi Iwai <tiwai@suse.de>
+To:     Greg KH <gregkh@linuxfoundation.org>
+Cc:     Wesley Cheng <quic_wcheng@quicinc.com>,
+        srinivas.kandagatla@linaro.org, mathias.nyman@intel.com,
+        perex@perex.cz, broonie@kernel.org, lgirdwood@gmail.com,
+        krzysztof.kozlowski+dt@linaro.org, agross@kernel.org,
+        Thinh.Nguyen@synopsys.com, bgoswami@quicinc.com,
+        andersson@kernel.org, robh+dt@kernel.org, tiwai@suse.com,
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        linux-usb@vger.kernel.org, quic_jackp@quicinc.com,
+        quic_plai@quicinc.com
+Subject: Re: [PATCH v3 09/28] sound: usb: card: Introduce USB SND platform op callbacks
+In-Reply-To: <ZAmAPX6Q1m0HU/Qo@kroah.com>
+References: <20230308235751.495-1-quic_wcheng@quicinc.com>
+        <20230308235751.495-10-quic_wcheng@quicinc.com>
+        <ZAmAPX6Q1m0HU/Qo@kroah.com>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) Emacs/27.2 Mule/6.0
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=US-ASCII
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
- On Thu, 9 Mar 2023 at 10:44, Hal Feng <hal.feng@starfivetech.com> wrote:
-> On Tue, 28 Feb 2023 10:42:35 +0800, Hal Feng wrote:
-> > On Sun, 26 Feb 2023 18:34:52 +0100, Emil Renner Berthing wrote:
-> >> On Tue, 21 Feb 2023 at 03:47, Hal Feng <hal.feng@starfivetech.com> wrote:
-> >>> From: Emil Renner Berthing <kernel@esmil.dk>
-> >>>
-> >>> Add driver for the StarFive JH7110 always-on clock controller
-> >>> and register an auxiliary device for always-on reset controller
-> >>> which is named as "reset-aon".
-> >>>
-> >>> Reported-by: kernel test robot <lkp@intel.com>
-> >>> Signed-off-by: Emil Renner Berthing <kernel@esmil.dk>
-> >>> Co-developed-by: Hal Feng <hal.feng@starfivetech.com>
-> >>> Signed-off-by: Hal Feng <hal.feng@starfivetech.com>
-> >>> ---
-> >>>  drivers/clk/starfive/Kconfig                  |  11 ++
-> >>>  drivers/clk/starfive/Makefile                 |   1 +
-> >>>  .../clk/starfive/clk-starfive-jh7110-aon.c    | 156 ++++++++++++++++++
-> >>>  3 files changed, 168 insertions(+)
-> >>>  create mode 100644 drivers/clk/starfive/clk-starfive-jh7110-aon.c
-> >>>
-> >>> diff --git a/drivers/clk/starfive/Kconfig b/drivers/clk/starfive/Kconfig
-> >>> index 4640d0665d1c..2aa664f2cdee 100644
-> >>> --- a/drivers/clk/starfive/Kconfig
-> >>> +++ b/drivers/clk/starfive/Kconfig
-> >>> @@ -31,3 +31,14 @@ config CLK_STARFIVE_JH7110_SYS
-> >>>         help
-> >>>           Say yes here to support the system clock controller on the
-> >>>           StarFive JH7110 SoC.
-> >>> +
-> >>> +config CLK_STARFIVE_JH7110_AON
-> >>> +       tristate "StarFive JH7110 always-on clock support"
-> >>> +       depends on CLK_STARFIVE_JH7110_SYS
-> >>> +       select AUXILIARY_BUS
-> >>> +       select CLK_STARFIVE_JH71X0
-> >>> +       select RESET_STARFIVE_JH7110
-> >>> +       default CLK_STARFIVE_JH7110_SYS
-> >>
-> >> As far as I can tell the JH7110 boots fine without this driver and it
-> >> already depends on the _SYS driver above, so please do
-> >>
-> >> default m if SOC_STARFIVE
-> >
-> > OK. Will fix it.
->
-> Hi, Emil,
->
-> The AON clock driver provides clocks for gmac0 which is used frequently.
-> So I think it would be more convenient if we set "default y" here.
+On Thu, 09 Mar 2023 07:44:13 +0100,
+Greg KH wrote:
+> 
+> On Wed, Mar 08, 2023 at 03:57:32PM -0800, Wesley Cheng wrote:
+> > Allow for different platforms to be notified on USB SND connect/disconnect
+> > seqeunces.  This allows for platform USB SND modules to properly initialize
+> > and populate internal structures with references to the USB SND chip
+> > device.
+> > 
+> > Signed-off-by: Wesley Cheng <quic_wcheng@quicinc.com>
+> > ---
+> >  sound/usb/card.c | 36 ++++++++++++++++++++++++++++++++++++
+> >  sound/usb/card.h | 20 ++++++++++++++++++++
+> >  2 files changed, 56 insertions(+)
+> > 
+> > diff --git a/sound/usb/card.c b/sound/usb/card.c
+> > index 26268ffb8274..9bcbaa0c0a55 100644
+> > --- a/sound/usb/card.c
+> > +++ b/sound/usb/card.c
+> > @@ -117,6 +117,30 @@ MODULE_PARM_DESC(skip_validation, "Skip unit descriptor validation (default: no)
+> >  static DEFINE_MUTEX(register_mutex);
+> >  static struct snd_usb_audio *usb_chip[SNDRV_CARDS];
+> >  static struct usb_driver usb_audio_driver;
+> > +static struct snd_usb_platform_ops *platform_ops;
+> 
+> As I've said before, you can not just have one of these.  They need to
+> be per-bus structure.  Or per-device, something dynamic, not static like
+> this.
 
-You're right that if we default y for the ethernet driver then the aon
-clock/reset should also default y. Personally I don't think we should
-default y for every ethernet driver that might be used on some
-supported risc-v platform, but I see now that
-arch/riscv/config/defconfig already contains CONFIG_MACB=y,
-CONFIG_E1000E=y, CONFIG_R8169=y and CONFIG_MICROSEMI_PHY=y, so maybe
-I'm wrong or just too late.
+Basically the change for USB-audio driver is a kind of add-on/plugin;
+that is, it allows the platform_ops to override some operations of the
+standard USB-audio driver for supporting the offload operations.
 
-> Best regards,
-> Hal
+So, in that sense, this add-on itself is neither per-bus nor
+per-device, and it's fine as a single pointer for now, IMO, since this
+is the only known use case and it'd simplify the code.  If we'll have
+more similar requirements in future, we may extend the implementation
+and the API to allow the registration of multiple addons, too.
+
+Though, there are a few obvious coding issues in the current patches,
+and they have to be addressed, sure :)
+
+
+thanks,
+
+Takashi
