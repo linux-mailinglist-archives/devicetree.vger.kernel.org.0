@@ -2,170 +2,208 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 398FC6B2C1B
-	for <lists+devicetree@lfdr.de>; Thu,  9 Mar 2023 18:33:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2A3E26B2C60
+	for <lists+devicetree@lfdr.de>; Thu,  9 Mar 2023 18:53:05 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230294AbjCIRdq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Mar 2023 12:33:46 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59844 "EHLO
+        id S229943AbjCIRxD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Mar 2023 12:53:03 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60816 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230110AbjCIRdo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Mar 2023 12:33:44 -0500
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9446F1FE1;
-        Thu,  9 Mar 2023 09:33:43 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1678383223; x=1709919223;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:content-transfer-encoding:in-reply-to;
-  bh=kBuk/qbo+wS0XQ/dFeyx8JguJDt+9dG8zDXc8OBOCnk=;
-  b=Q6WZDTBGq8VnVY4zJsvKQiOJY539J9omDyD+BiKBKc5ZB+pZQQEOc7/X
-   ZQ4rlzkj83cIv5CvkL+1+O3vINGU/WZ9jsVkTp3mcuBguPtctOr9EpAjB
-   gSIqiVQuUxMpTQoqNscBqgSd2+oYZRh1qsE34kk3LMBVNaaQEOBy8ylBf
-   8h74ozU3DIgDumUTMxV/5ZaSH1yKUNLyVpur9pZOp2PqLF1UmdtMuvgHL
-   7yEs2T+BVMpRAgpoR4g/ub2nflgdFNylfvJGvIMqtFfjhFs0hf5IAPWa2
-   P0GUvpzBauC4pAxSGRMZdCi4vzpSu8MNeqIt+L/s0OJyaYxHd7+YGkebj
-   Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10644"; a="364156732"
-X-IronPort-AV: E=Sophos;i="5.98,247,1673942400"; 
-   d="scan'208";a="364156732"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
-  by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 09 Mar 2023 09:33:42 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10644"; a="707697340"
-X-IronPort-AV: E=Sophos;i="5.98,247,1673942400"; 
-   d="scan'208";a="707697340"
-Received: from lkp-server01.sh.intel.com (HELO b613635ddfff) ([10.239.97.150])
-  by orsmga008.jf.intel.com with ESMTP; 09 Mar 2023 09:33:36 -0800
-Received: from kbuild by b613635ddfff with local (Exim 4.96)
-        (envelope-from <lkp@intel.com>)
-        id 1paK91-00037N-0T;
-        Thu, 09 Mar 2023 17:33:35 +0000
-Date:   Fri, 10 Mar 2023 01:33:29 +0800
-From:   kernel test robot <lkp@intel.com>
-To:     =?iso-8859-1?Q?K=F6ry?= Maincent <kory.maincent@bootlin.com>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Heiner Kallweit <hkallweit1@gmail.com>, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-doc@vger.kernel.org, linux-omap@vger.kernel.org
-Cc:     llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
-        Michael Walle <michael@walle.cc>,
-        Maxime Chevallier <maxime.chevallier@bootlin.com>,
-        Richard Cochran <richardcochran@gmail.com>,
-        Kory Maincent <kory.maincent@bootlin.com>,
-        thomas.petazzoni@bootlin.com, Russell King <linux@armlinux.org.uk>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
+        with ESMTP id S229697AbjCIRxC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Mar 2023 12:53:02 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B9E6712863;
+        Thu,  9 Mar 2023 09:52:58 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 6A992B8203F;
+        Thu,  9 Mar 2023 17:52:57 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4134DC433EF;
+        Thu,  9 Mar 2023 17:52:52 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1678384376;
+        bh=tSnYD5TKu07sh4hOMBDMyiXJ+PlHpoDk7TYI6ItZI/E=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=Pgc/USXonPVwpeSHvHbZrCSzEHEHzSjEmTPK+QJzU72d4gZ3kvE3xWy8OYAcyUhGD
+         NH0RFUtapIvISHlJFlZ4fqKQMzFSLfWdjGBcJKvIzQUkSFN7lrvKFhJTWVIMvZOUCi
+         KvrcSHIJh8Oy1qtXlQguNImHdOLU9edcPyDhb5cpRCUJgdJ4Bwtt+r5zJAStXkzG8E
+         DgOrXzhutO7M1Y/D5JYAquB2crngTr9x+fy21vMDuguJYPLeJnUrpAU0KDePWgaVhn
+         ZGbHTWUoa0gAh6HDGlOuMuQx9lOI2Vd3aywnK6yq4LDoGjWrL6RCi6Ri8tCjr8/3Oj
+         KwjhPFPMTqlYA==
+Date:   Thu, 9 Mar 2023 17:52:49 +0000
+From:   Conor Dooley <conor@kernel.org>
+To:     Tommaso Merciai <tomm.merciai@gmail.com>
+Cc:     Hal Feng <hal.feng@starfivetech.com>,
+        Conor Dooley <conor.dooley@microchip.com>,
+        linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-clk@vger.kernel.org, Stephen Boyd <sboyd@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Jonathan Corbet <corbet@lwn.net>,
-        Jay Vosburgh <j.vosburgh@gmail.com>,
-        Veaceslav Falico <vfalico@gmail.com>,
-        Andy Gospodarek <andy@greyhouse.net>,
-        Joakim Zhang <qiangqing.zhang@nxp.com>,
-        Vladimir Oltean <vladimir.oltean@nxp.com>,
-        Claudiu Manoil <claudiu.manoil@nxp.com>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        UNGLinuxDriver@microchip.com,
-        Grygorii Strashko <grygorii.strashko@ti.com>,
-        Minghao Chi <chi.minghao@zte.com.cn>
-Subject: Re: [PATCH v3 3/5] net: Let the active time stamping layer be
- selectable.
-Message-ID: <202303100154.iqj4R4fL-lkp@intel.com>
-References: <20230308135936.761794-4-kory.maincent@bootlin.com>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Ben Dooks <ben.dooks@sifive.com>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>,
+        Emil Renner Berthing <emil.renner.berthing@canonical.com>,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v4 00/19] Basic clock, reset & device tree support for
+ StarFive JH7110 RISC-V SoC
+Message-ID: <09630acb-f1ae-4dbd-9c9c-9adb1743bfe4@spud>
+References: <20230221024645.127922-1-hal.feng@starfivetech.com>
+ <3a605bc8-104e-0935-4fd8-2da16ab9053b@starfivetech.com>
+ <ZAb7JVghuiwZF1Q5@wendy>
+ <2f03dfb2-5cf8-e954-913c-f0c27db6bcf5@starfivetech.com>
+ <ZAh/UeSlUeGoKxki@tom-HP-ZBook-Fury-15-G7-Mobile-Workstation>
+ <4c071642-e3c8-4716-a580-5b42e25efb1c@spud>
+ <ZAoOLIERMYI8UVlA@tom-HP-ZBook-Fury-15-G7-Mobile-Workstation>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="ftganqtRBXwbLJs2"
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20230308135936.761794-4-kory.maincent@bootlin.com>
+In-Reply-To: <ZAoOLIERMYI8UVlA@tom-HP-ZBook-Fury-15-G7-Mobile-Workstation>
 X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE
-        autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Köry,
 
-I love your patch! Perhaps something to improve:
+--ftganqtRBXwbLJs2
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-[auto build test WARNING on v6.2]
-[cannot apply to robh/for-next horms-ipvs/master net/master net-next/master linus/master v6.3-rc1 next-20230309]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+On Thu, Mar 09, 2023 at 05:49:48PM +0100, Tommaso Merciai wrote:
+> On Wed, Mar 08, 2023 at 01:36:41PM +0000, Conor Dooley wrote:
+> > On Wed, Mar 08, 2023 at 01:28:01PM +0100, Tommaso Merciai wrote:
+> > > On Tue, Mar 07, 2023 at 06:08:53PM +0800, Hal Feng wrote:
+> >=20
+> > > > The above two methods can fix the problem. Here are my test results.
+> > > > The VisionFive board can boot up successfully if and only if all ab=
+ove
+> > > > two applied.
+> > > > The VisionFive 2 board can boot up successfully if I merge Linus's =
+new
+> > > > changes.
+> > >=20
+> > > Tested also on my side. Hope this can be helpfull.
+> > >=20
+> > > > Hope your fix will be merged in rc2. Thank you for your reply.
+> > >=20
+> > > Fully agree.
+> >=20
+> > If you only have a VisionFive 2, it shouldn't matter to you, as you
+> > don't need to fix up any SiFive errata (at the moment at least).
+> > Linus' fix is already in his tree, so should be in -rc2!
+> > The fix for the VisionFive was applied to Palmer's RISC-V fixes tree
+> > last night:
+> > https://git.kernel.org/pub/scm/linux/kernel/git/riscv/linux.git/commit/=
+?h=3Dfixes&id=3Dbf89b7ee52af5a5944fa3539e86089f72475055b
+> >=20
+> > Thanks,
+> > Conor.
+>=20
+>=20
+> Hi Conor,
+> Thanks for the info.
+> Playing with this series I got the following error:
+>=20
+> [    6.278182] BUG: spinlock bad magic on CPU#0, udevd/136
+> [    6.283414]  lock: 0xffffffd84135e6c0, .magic: ffffffff, .owner: <none=
+>/-1, .owner_cpu: -1
+> [    6.291677] CPU: 0 PID: 136 Comm: udevd Not tainted 6.3.0-rc1-g9256990=
+1a7f9-dirty #14
+> [    6.299502] Hardware name: StarFive VisionFive 2 v1.3B (DT)
+> [    6.305069] Call Trace:
+> [    6.307517] [<ffffffff80005530>] dump_backtrace+0x1c/0x24
+> [    6.312921] [<ffffffff80844b4e>] show_stack+0x2c/0x38
+> [    6.317976] [<ffffffff8085032c>] dump_stack_lvl+0x3c/0x54
+> [    6.323377] [<ffffffff80850358>] dump_stack+0x14/0x1c
+> [    6.328429] [<ffffffff80845668>] spin_dump+0x64/0x70
+> [    6.333394] [<ffffffff80058f26>] do_raw_spin_lock+0xb4/0xf2
+> [    6.338970] [<ffffffff80857d04>] _raw_spin_lock+0x1a/0x22
+> [    6.344370] [<ffffffff8008153c>] add_timer_on+0x8a/0x132
+> [    6.349684] [<ffffffff8084b9fa>] try_to_generate_entropy+0x216/0x278
+> [    6.356037] [<ffffffff804ebfdc>] urandom_read_iter+0x40/0xb8
+> [    6.361697] [<ffffffff801a1216>] vfs_read+0x17e/0x1f8
+> [    6.366752] [<ffffffff801a1986>] ksys_read+0x5e/0xc8
+> [    6.371710] [<ffffffff801a19fe>] sys_read+0xe/0x16
+> [    6.376503] [<ffffffff8000357a>] ret_from_syscall+0x0/0x2
+> [    6.381905] Unable to handle kernel NULL pointer dereference at virtua=
+l address 0000000000000007
+> [    6.390683] Oops [#1]
+> [    6.392956] Modules linked in:
+> [    6.396011] CPU: 0 PID: 136 Comm: udevd Not tainted 6.3.0-rc1-g9256990=
+1a7f9-dirty #14
+> [    6.403835] Hardware name: StarFive VisionFive 2 v1.3B (DT)
+> [    6.409401] epc : enqueue_timer+0x1a/0x90
+> [    6.413414]  ra : add_timer_on+0xe2/0x132
+> [    6.417425] epc : ffffffff80080c60 ra : ffffffff80081594 sp : ffffffc8=
+044dbc60
+> [    6.424640]  gp : ffffffff814ffe50 tp : ffffffd8c171ad00 t0 : 66666666=
+66663c5b
+> [    6.431855]  t1 : 000000000000005b t2 : 666666666666663c s0 : ffffffc8=
+044dbcc0
+> [    6.439070]  s1 : ffffffc8044dbd08 a0 : ffffffd84135e6c0 a1 : ffffffc8=
+044dbd08
+> [    6.446284]  a2 : ffffffffffffffff a3 : 000000003e000000 a4 : 00000000=
+0000023e
+> [    6.453498]  a5 : 000000000000023e a6 : ffffffd84135f930 a7 : 00000000=
+00000038
+> [    6.460712]  s2 : ffffffd84135e6c0 s3 : 0000000000000040 s4 : ffffffff=
+81501080
+> [    6.467926]  s5 : ffffffd84135e6c0 s6 : ffffffff815011b8 s7 : ffffffff=
+ffffffff
+> [    6.475141]  s8 : ffffffff81502820 s9 : 0000000000000040 s10: 0000002a=
+b0a49320
+> [    6.482355]  s11: 0000000000000001 t3 : ffffffff81512e97 t4 : ffffffff=
+81512e97
+> [    6.489569]  t5 : ffffffff81512e98 t6 : ffffffc8044db948
+> [    6.494875] status: 0000000200000100 badaddr: 0000000000000007 cause: =
+000000000000000f
+> [    6.502783] [<ffffffff80080c60>] enqueue_timer+0x1a/0x90
+> [    6.508095] [<ffffffff8084b9fa>] try_to_generate_entropy+0x216/0x278
+> [    6.514448] [<ffffffff804ebfdc>] urandom_read_iter+0x40/0xb8
+> [    6.520107] [<ffffffff801a1216>] vfs_read+0x17e/0x1f8
+> [    6.525160] [<ffffffff801a1986>] ksys_read+0x5e/0xc8
+> [    6.530126] [<ffffffff801a19fe>] sys_read+0xe/0x16
+> [    6.534918] [<ffffffff8000357a>] ret_from_syscall+0x0/0x2
+> [    6.540322] Code: 87b2 0813 0805 1613 0037 9832 3603 0008 e190 c211 (e=
+60c) 5613
+> [    6.547711] ---[ end trace 0000000000000000 ]---
+> [    6.552325] note: udevd[136] exited with irqs disabled
+> [    6.557531] note: udevd[136] exited with preempt_count 2
+>=20
+>=20
+> I'm working on top of Linux version 6.3.0-rc1-g92569901a7f.
 
-url:    https://github.com/intel-lab-lkp/linux/commits/K-ry-Maincent/net-ethtool-Refactor-identical-get_ts_info-implementations/20230308-220453
-patch link:    https://lore.kernel.org/r/20230308135936.761794-4-kory.maincent%40bootlin.com
-patch subject: [PATCH v3 3/5] net: Let the active time stamping layer be selectable.
-config: x86_64-randconfig-a003 (https://download.01.org/0day-ci/archive/20230310/202303100154.iqj4R4fL-lkp@intel.com/config)
-compiler: clang version 14.0.6 (https://github.com/llvm/llvm-project f28c006a5895fc0e329fe15fead81e37457cb1d1)
-reproduce (this is a W=1 build):
-        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
-        chmod +x ~/bin/make.cross
-        # https://github.com/intel-lab-lkp/linux/commit/d81a36f239360e7e3b9ca2633e52b3cb12205590
-        git remote add linux-review https://github.com/intel-lab-lkp/linux
-        git fetch --no-tags linux-review K-ry-Maincent/net-ethtool-Refactor-identical-get_ts_info-implementations/20230308-220453
-        git checkout d81a36f239360e7e3b9ca2633e52b3cb12205590
-        # save the config file
-        mkdir build_dir && cp config build_dir/.config
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross W=1 O=build_dir ARCH=x86_64 olddefconfig
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross W=1 O=build_dir ARCH=x86_64 SHELL=/bin/bash drivers/net/phy/
+Unfortunately, this g<sha> bit doesn't mean anything outside of your
+repo so it's hard to infer anything from that.
+This looks exactly like a bug is in v6.3-rc1, but Linus fixed in like
+the second commit *after* -rc1.
 
-If you fix the issue, kindly add following tag where applicable
-| Reported-by: kernel test robot <lkp@intel.com>
-| Link: https://lore.kernel.org/oe-kbuild-all/202303100154.iqj4R4fL-lkp@intel.com/
+What branch/commit/tag did you apply the series on top of?
 
-All warnings (new ones prefixed by >>):
+Cheers,
+Conor.
 
->> drivers/net/phy/phy_device.c:1384:6: warning: no previous prototype for function 'of_set_timestamp' [-Wmissing-prototypes]
-   void of_set_timestamp(struct net_device *netdev, struct phy_device *phydev)
-        ^
-   drivers/net/phy/phy_device.c:1384:1: note: declare 'static' if the function is not intended to be used outside of this translation unit
-   void of_set_timestamp(struct net_device *netdev, struct phy_device *phydev)
-   ^
-   static 
-   1 warning generated.
+--ftganqtRBXwbLJs2
+Content-Type: application/pgp-signature; name="signature.asc"
 
+-----BEGIN PGP SIGNATURE-----
 
-vim +/of_set_timestamp +1384 drivers/net/phy/phy_device.c
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZAoc7gAKCRB4tDGHoIJi
+0hqoAP9Q/Y807Ff1Ehl18kMUcI74l4ooj6GxDNovwBXX6FhNDgD/XAKgS/j7V8GF
+IRtvWI8/M3LWtKucwI2uVqt1YzTxwws=
+=YnEf
+-----END PGP SIGNATURE-----
 
-  1383	
-> 1384	void of_set_timestamp(struct net_device *netdev, struct phy_device *phydev)
-  1385	{
-  1386		struct device_node *node = phydev->mdio.dev.of_node;
-  1387		const struct ethtool_ops *ops = netdev->ethtool_ops;
-  1388		const char *s;
-  1389		enum timestamping_layer ts_layer = 0;
-  1390	
-  1391		if (phy_has_hwtstamp(phydev))
-  1392			ts_layer = PHY_TIMESTAMPING;
-  1393		else if (ops->get_ts_info)
-  1394			ts_layer = MAC_TIMESTAMPING;
-  1395	
-  1396		if (of_property_read_string(node, "preferred-timestamp", &s))
-  1397			goto out;
-  1398	
-  1399		if (!s)
-  1400			goto out;
-  1401	
-  1402		if (phy_has_hwtstamp(phydev) && !strcmp(s, "phy"))
-  1403			ts_layer = PHY_TIMESTAMPING;
-  1404	
-  1405		if (ops->get_ts_info && !strcmp(s, "mac"))
-  1406			ts_layer = MAC_TIMESTAMPING;
-  1407	
-  1408	out:
-  1409		netdev->selected_timestamping_layer = ts_layer;
-  1410	}
-  1411	
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests
+--ftganqtRBXwbLJs2--
