@@ -2,75 +2,45 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1EFC46B2470
-	for <lists+devicetree@lfdr.de>; Thu,  9 Mar 2023 13:44:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 982CB6B2475
+	for <lists+devicetree@lfdr.de>; Thu,  9 Mar 2023 13:45:22 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229927AbjCIMoL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Mar 2023 07:44:11 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42578 "EHLO
+        id S230076AbjCIMpU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Mar 2023 07:45:20 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44062 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229770AbjCIMoK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Mar 2023 07:44:10 -0500
-Received: from loongson.cn (mail.loongson.cn [114.242.206.163])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 102035DCAF;
-        Thu,  9 Mar 2023 04:44:07 -0800 (PST)
-Received: from loongson.cn (unknown [10.20.42.35])
-        by gateway (Coremail) with SMTP id _____8BxfdqV1AlkQmsKAA--.2354S3;
-        Thu, 09 Mar 2023 20:44:05 +0800 (CST)
-Received: from [10.20.42.35] (unknown [10.20.42.35])
-        by localhost.localdomain (Coremail) with SMTP id AQAAf8Ax+72S1Alk5J1QAA--.8149S3;
-        Thu, 09 Mar 2023 20:44:04 +0800 (CST)
-Subject: Re: [PATCH v13 1/2] dt-bindings: clock: add loongson-2 boot clock
- index
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org
-Cc:     Jianmin Lv <lvjianmin@loongson.cn>,
-        Liu Peibao <liupeibao@loongson.cn>, wanghongliang@loongson.cn,
-        loongson-kernel@lists.loongnix.cn, zhuyinbo@loongson.cn
-References: <20230307115022.12846-1-zhuyinbo@loongson.cn>
- <692a62da-a9a1-fa23-6e24-723d73c3a423@linaro.org>
- <5e9b3bd5-d885-6237-5e14-2becb3c956cc@loongson.cn>
- <31e2a67a-c046-9501-80de-e754ed450195@linaro.org>
- <ace5159b-ebbd-7805-518c-ed3d39e4793e@loongson.cn>
- <b2f9cd15-b303-882a-d4e0-36d1f6d155a8@linaro.org>
- <eca81d44-2513-8002-980d-755af32f36c4@loongson.cn>
- <882bd054-9c3e-1b26-72a5-89ad92e21a79@linaro.org>
-From:   zhuyinbo <zhuyinbo@loongson.cn>
-Message-ID: <817a65e9-b605-4bc0-2ff5-fc7f5db8585c@loongson.cn>
-Date:   Thu, 9 Mar 2023 20:44:01 +0800
-User-Agent: Mozilla/5.0 (X11; Linux loongarch64; rv:68.0) Gecko/20100101
- Thunderbird/68.7.0
+        with ESMTP id S230148AbjCIMpS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Mar 2023 07:45:18 -0500
+Received: from relay10.mail.gandi.net (relay10.mail.gandi.net [IPv6:2001:4b98:dc4:8::230])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2A4965DCA2;
+        Thu,  9 Mar 2023 04:45:12 -0800 (PST)
+Received: (Authenticated sender: alex@ghiti.fr)
+        by mail.gandi.net (Postfix) with ESMTPSA id 8AF89240006;
+        Thu,  9 Mar 2023 12:45:06 +0000 (UTC)
+Message-ID: <8abfb680-e1dd-8d1f-dd10-0a8bf086f5c3@ghiti.fr>
+Date:   Thu, 9 Mar 2023 13:45:05 +0100
 MIME-Version: 1.0
-In-Reply-To: <882bd054-9c3e-1b26-72a5-89ad92e21a79@linaro.org>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.1
+Subject: Re: RISC-V reserved memory problems
 Content-Language: en-US
-X-CM-TRANSID: AQAAf8Ax+72S1Alk5J1QAA--.8149S3
-X-CM-SenderInfo: 52kx5xhqerqz5rrqw2lrqou0/
-X-Coremail-Antispam: 1Uk129KBjvJXoWxCFWDCw18try3Xw4xZw15CFg_yoWrKFWkpr
-        18JF1UJryUJr4xJr1jqr1UGryjkr1UJw1UJr1UGF1UJr1UJr10qr47Xr1FgryUJr48J3W7
-        Ar1DAr1UZF1UXwUanT9S1TB71UUUUUJqnTZGkaVYY2UrUUUUj1kv1TuYvTs0mT0YCTnIWj
-        qI5I8CrVACY4xI64kE6c02F40Ex7xfYxn0WfASr-VFAUDa7-sFnT9fnUUIcSsGvfJTRUUU
-        bTAFc2x0x2IEx4CE42xK8VAvwI8IcIk0rVWrJVCq3wAFIxvE14AKwVWUXVWUAwA2ocxC64
-        kIII0Yj41l84x0c7CEw4AK67xGY2AK021l84ACjcxK6xIIjxv20xvE14v26ryj6F1UM28E
-        F7xvwVC0I7IYx2IY6xkF7I0E14v26r4j6F4UM28EF7xvwVC2z280aVAFwI0_Cr1j6rxdM2
-        8EF7xvwVC2z280aVCY1x0267AKxVWxJr0_GcWln4kS14v26r1Y6r17M2AIxVAIcxkEcVAq
-        07x20xvEncxIr21l57IF6xkI12xvs2x26I8E6xACxx1l5I8CrVACY4xI64kE6c02F40Ex7
-        xfMcIj6xIIjxv20xvE14v26r1Y6r17McIj6I8E87Iv67AKxVW8JVWxJwAm72CE4IkC6x0Y
-        z7v_Jr0_Gr1lF7xvr2IY64vIr41lc7I2V7IY0VAS07AlzVAYIcxG8wCF04k20xvY0x0EwI
-        xGrwCF04k20xvE74AGY7Cv6cx26rWl4I8I3I0E4IkC6x0Yz7v_Jr0_Gr1l4IxYO2xFxVAF
-        wI0_Jrv_JF1lx2IqxVAqx4xG67AKxVWUJVWUGwC20s026x8GjcxK67AKxVWUGVWUWwC2zV
-        AF1VAY17CE14v26r1q6r43MIIYrxkI7VAKI48JMIIF0xvE2Ix0cI8IcVAFwI0_Jr0_JF4l
-        IxAIcVC0I7IYx2IY6xkF7I0E14v26r1j6r4UMIIF0xvE42xK8VAvwI8IcIk0rVWUJVWUCw
-        CI42IY6I8E87Iv67AKxVW8JVWxJwCI42IY6I8E87Iv6xkF7I0E14v26r4j6r4UJbIYCTnI
-        WIevJa73UjIFyTuYvjxUcOJ5UUUUU
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+To:     Mike Rapoport <rppt@kernel.org>, Conor Dooley <conor@kernel.org>
+Cc:     Conor.Dooley@microchip.com, palmer@dabbelt.com,
+        linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, frowand.list@gmail.com,
+        robh+dt@kernel.org, mick@ics.forth.gr, paul.walmsley@sifive.com,
+        aou@eecs.berkeley.edu, Valentina.FernandezAlanis@microchip.com,
+        Daire.McNamara@microchip.com
+References: <8e10bf15-9fa9-fe90-1656-35bf3e87e7f8@microchip.com>
+ <f8e67f82-103d-156c-deb0-d6d6e2756f5e@microchip.com> <Y9wytv5KSt1ca+td@spud>
+ <ZAchb/DfbIh+qaE4@kernel.org>
+From:   Alexandre Ghiti <alex@ghiti.fr>
+In-Reply-To: <ZAchb/DfbIh+qaE4@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_NONE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -78,109 +48,175 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
-在 2023/3/9 下午2:25, Krzysztof Kozlowski 写道:
-> On 09/03/2023 02:43, zhuyinbo wrote:
->> 在 2023/3/8 下午6:38, Krzysztof Kozlowski 写道:
->>> On 08/03/2023 10:24, zhuyinbo wrote:
->>>>>>> That's an ABI break and commit msg does not explain it.
->>>>>> you meaning is that need add a explanation in commit msg that why
->>>>> You need good explanation to break the ABI. I don't understand the
->>>>> commit msg, but anyway I could not find there justification for ABI
->>>>> break. If you do not have good justification, don't break the ABI,
->>>> The commit msg is the patch commit  log,  and I maybe not got it about
->>>> break the ABI.  You said about "break the ABI"
->>>>
->>>> is whether is location issue about "LOONGSON2_BOOT_CLK"?   if yes,   the
->>>> LOONGSON2_BOOT_CLK was placed
->>>>
->>>> after LOONGSON2_PIX1_PLL that is due to their clock parent is same.
->>>> and I whether need add this explanation
->>>>
->>>> in patch commit log description?
->>> Unfortunately I do not understand single thing from this.
+On 3/7/23 12:35, Mike Rapoport wrote:
+> Hi Conor,
+>
+> Sorry for the delay, somehow this slipped between the cracks.
+>
+> On Thu, Feb 02, 2023 at 10:01:26PM +0000, Conor Dooley wrote:
+>> Hullo Palmer, Mike & whoever else may read this,
+>>
+>> Just reviving this thread from a little while ago as I have been in the
+>> area again recently...
+> TBH, I didn't really dig deep into the issues, but the thought I had was
+> what if DT was mapped via fixmap until the setup_vm_final() and then it
+> would be possible to call DT methods early.
+>
+> Could be I'm shooting in the dark :)
+
+
+I think I understand the issue now, it's because In riscv, we establish 
+2 different virtual mappings and we map the device tree at 2 different 
+virtual addresses, which is the problem.
+
+So to me, the solution is:
+
+- to revert your previous fix, that is calling 
+early_init_fdt_scan_reserved_mem() before any call to memblock_alloc() 
+(which could result in an allocation in the area you want to reserve)
+
+- to map the device tree at the same virtual address, because 
+early_init_fdt_scan_reserved_mem() initializes reserved_mem with the dtb 
+mapping established in setup_vm() and uses reserved_mem with the new 
+mapping from setup_vm_final (which is what Mike proposes, we should use 
+the fixmap region to have the same virtual addresses)
+
+Hope that makes sense: I'll come up with something this afternoon for 
+you to test!
+
+Sorry for the first completely wrong email,
+
+Thanks,
+
+Alex
+
+
+>   
+>> On Tue, Aug 16, 2022 at 08:41:05PM +0000, Conor.Dooley@microchip.com wrote:
+>>> Hey all,
+>>> We've run into a bit of a problem with reserved memory on PolarFire, or
+>>> more accurately a pair of problems that seem to have opposite fixes.
 >>>
->>> Best regards,
->>> Krzysztof
->> The patch commit log description is patch desription.  as follows:
+>>> The first of these problems is triggered when trying to implement a
+>>> remoteproc driver. To get the reserved memory buffer, remoteproc
+>>> does an of_reserved_mem_lookup(), something like:
+>>>
+>>> 	np = of_parse_phandle(pdev->of_node, "memory-region", 0);
+>>> 	if (!np)
+>>> 		return -EINVAL;
+>>>
+>>> 	rmem = of_reserved_mem_lookup(np);
+>>> 	if (!rmem)
+>>> 		return -EINVAL;
+>>>
+>>> of_reserved_mem_lookup() then uses reserved_mem[i].name to try and find
+>>> a match - but this was triggering kernel panics for us. We did some
+>>> debugging and found that the name string's pointer was pointing to an
+>>> address in the 0x4000_0000 range. The minimum reproduction for this
+>>> crash is attached - it hacks in some print_reserved_mem()s into
+>>> setup_vm_final() around a tlb flush so you can see the before/after.
+>>> (You'll need a reserved memory node in your dts to replicate)
+>>>
+>>> The output is like so, with the same crash as in the remoteproc driver:
+>>>
+>>> [    0.000000] Linux version 6.0.0-rc1-00001-g0d9d6953d834 (conor@wendy) (riscv64-unknown-linux-gnu-gcc (g5964b5cd727) 11.1.0, GNU ld (GNU Binutils) 2.37) #1 SMP Tue Aug 16 13:42:09 IST 2022
+>> [...]
 >>
+>>> [    0.000000] ---[ end Kernel panic - not syncing: Attempted to kill the idle task! ]---
+>>>
+>>> We traced this back to early_init_fdt_scan_reserved_mem() in
+>>> setup_bootmem() - moving it later back up the boot sequence to
+>>> after the dt has been remapped etc has fixed the problem for us.
+>>>
+>>> The least movement to get it working is attached, and also pushed
+>>> here: git.kernel.org/conor/c/1735589baefc
+>> This one is fixed now, as of commit 50e63dd8ed92 ("riscv: fix reserved
+>> memory setup").
 >>
->> commit 592bc2b4106d787ea166ba16bfde6b3101ab1a8a
->> Author: Yinbo Zhu <zhuyinbo@loongson.cn>
->> Date:   Tue Mar 7 17:18:32 2023 +0800
+>>> The second problem is a bit more complicated to explain - but we
+>>> found the solution conflicted with the remoteproc fix as we had
+>>> to move early_init_fdt_scan_reserved_mem() _earlier_ in the boot
+>>> process to solve this one.
+>>>
+>>> We want to have a node in our devicetree that contains some memory
+>>> that is non-cached & marked as reserved-memory. Maybe we have just
+>>> missed something, but from what we've seen:
+>>> - the really early setup looks at the dtb, picks the highest bit
+>>>     of memory and puts the dtb etc there so it can start using it
+>>> - early_init_fdt_scan_reserved_mem() is then called, which figures
+>>>     out if memory is reserved or not.
+>>>
+>>> Unfortunately, the highest bit of memory is the non-cached bit so
+>>> everything falls over, but we can avoid this by moving the call to
+>>> early_init_fdt_scan_reserved_mem() above the dtb memblock alloc that
+>>> takes place right before it in setup_bootmem().
+>>>
+>>> Obviously, both of these changes are moving the function call in
+>>> opposite directions and we can only really do one of them. We are not
+>>> sure if what we are doing with the non-cached reserved-memory section
+>>> is just not permitted & cannot work - or if this is something that
+>>> was overlooked for RISC-V specifically and works for other archs.
+>> We ended up working around this one by making sure that U-Boot loaded
+>> the dtb to somewhere that would be inside the kernel's memory map, thus
+>> avoiding the remapping in the first place.
 >>
->>       dt-bindings: clock: add loongson-2 boot clock index
+>> We did run into another problem recently though, and 50e63dd8ed92 is
+>> kinda at fault for it.
+>> This particular issue was encountered with a devicetree where the
+>> top-most memory region was entirely reserved & was not observed prior
+>> to my fix for the first issue.
 >>
->>       The Loongson-2 boot clock was used to spi and lio peripheral and
->>       this patch was to add boot clock index number.
-> I cannot understand this either.
-I will rework commit msg .
+>> On RISC-V, the boot sequence is something like:
+>> 	setup_bootmem();
+>> 	setup_vm_final();
+>> 	unflatten_device_tree();
+>> 	early_init_fdt_scan_reserved_mem();
+>>
+>> Whereas, before my patch it used to be (give-or-take):
+>> 	setup_bootmem();
+>> 	early_init_fdt_scan_reserved_mem();
+>> 	setup_vm_final();
+>> 	unflatten_device_tree();
+>>
+>> The difference being that we used to have scanned the reserved memory
+>> regions before calling setup_vm_final() & therefore know which regions
+>> we cannot use. As a reminder, calling early_init_fdt_scan_reserved_mem()
+>> before we've got the dt in a proper virtual memory address will cause
+>> the kernel to panic if it tries to read a reserved memory node's label.
+>>
+>> As we are now calling setup_vm_final() *before* we know what the
+>> reserved memory regions are & as RISC-V allocates memblocks from the top
+>> down, the allocations in setup_vm_final() will be done in the highest
+>> memory region.
+>> When early_init_fdt_scan_reserved_mem() then tries to reserve the
+>> entirety of that top-most memory region, the reservation fails as part
+>> of this region has already been allocated.
+>> In the scenario where I found this bug, that top-most region is non-
+>> cached memory & the kernel ends up panicking.
+>> The memblock debug code made this pretty easy to spot, otherwise I'd
+>> probably have spent more than just a few hours trying to figure out why
+>> it was panicking!
+>>
+>> My "this needs to be fixed today" solution for this problem was calling
+>> memblock_set_bottom_up(true) in setup_bootmem() & that's what we are
+>> going to carry downstream for now.
+>>
+>> I haven't tested it (yet) but I suspect that it would also fix our
+>> problem of the dtb being remapped into a non-cached region of memory
+>> that we would later go on to reserve too. Non-cached being an issue
+>> mainly due to the panicking, but failing to reserve (and using!) memory
+>> regions that are meant to be reserved is very far from ideal even when
+>> they are memory that the kernel can actually use.
+>>
+>> I have no idea if that is an acceptable solution for upstream though, so
+>> I guess this is me putting out feelers as to whether this is something I
+>> should send a patch to do *OR* if this is another sign of the issues
+>> that you (Mike, Palmer) mentioned in the past.
+>> If it isn't an acceptable solution, I'm not really too sure how to
+>> proceed!
+>>
+>> Cheers,
+>> Conor.
+>>
 >
->>
->> and your advice is "That's an ABI break and commit msg does not explain it."
->>
->> I got it  from your advice that was to add a explanation about
->> LOONGSON2_BOOT_CLK's
->>
->> location issue in patch description, right?
-> ABI break needs justification, why do you think it is fine or who
-> is/isn't affected etc. Your commit msg does not explain why ABI break is
-> okay. It doesn't even explain to me why you need it.
-  #define LOONGSON2_DC_PLL                               3
-  #define LOONGSON2_PIX0_PLL                             4
-  #define LOONGSON2_PIX1_PLL                             5
--#define LOONGSON2_NODE_CLK                             6
--#define LOONGSON2_HDA_CLK                              7
--#define LOONGSON2_GPU_CLK                              8
--#define LOONGSON2_DDR_CLK                              9
--#define LOONGSON2_GMAC_CLK                             10
--#define LOONGSON2_DC_CLK                               11
--#define LOONGSON2_APB_CLK                              12
--#define LOONGSON2_USB_CLK                              13
--#define LOONGSON2_SATA_CLK                             14
--#define LOONGSON2_PIX0_CLK                             15
--#define LOONGSON2_PIX1_CLK                             16
--#define LOONGSON2_CLK_END                              17
-+#define LOONGSON2_BOOT_CLK                             6
-+#define LOONGSON2_NODE_CLK                             7
-
-after add my patch, if dts still use above macro and not cause any 
-issue. but
-
-if dts not use macro rather than use original clk number index that will 
-cause a uncorrect clk,
-
-eg.
-
--#define LOONGSON2_NODE_CLK                             6
-
-+#define LOONGSON2_NODE_CLK                             7
-
-  this issue is that what you said about  "ABI break",  isn't it ?
-
-
-About your advice and question and I will use following description as 
-patch  commit msg,  what do you think?
-
-
-dt-bindings: clock: add loongson-2 boot clock index
-
-The spi need to use boot clock and this patch is to add a boot clock 
-index about  LOONGSON2_BOOT_CLK
-
-and the LOONGSON2_BOOT_CLK was placed in after LOONGSON2_PIX1_PLL that 
-due to
-
-LOONGSON2_PIX1_PLL,  LOONGSON2_PIX0_PLL , LOONGSON2_DC_PLL and 
-LOONGSON2_BOOT_CLK
-
-has same parent clock.  In addition, the Loongson  code of the community 
-is still in the development stage,
-
-so this patch modification will  not cause uncorrect clk quote issue at 
-present.
-
 >
->
-> Best regards,
-> Krzysztof
-
