@@ -2,78 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5B8746B2483
-	for <lists+devicetree@lfdr.de>; Thu,  9 Mar 2023 13:51:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 228906B2488
+	for <lists+devicetree@lfdr.de>; Thu,  9 Mar 2023 13:52:42 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230118AbjCIMvh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Mar 2023 07:51:37 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50342 "EHLO
+        id S230186AbjCIMwg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Mar 2023 07:52:36 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51368 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229476AbjCIMvd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Mar 2023 07:51:33 -0500
-Received: from mail-qv1-xf2e.google.com (mail-qv1-xf2e.google.com [IPv6:2607:f8b0:4864:20::f2e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9A970DCF44;
-        Thu,  9 Mar 2023 04:51:32 -0800 (PST)
-Received: by mail-qv1-xf2e.google.com with SMTP id ff4so1306763qvb.2;
-        Thu, 09 Mar 2023 04:51:32 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112; t=1678366291;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=QekU0YNn3mbD6AYvI5YHqh8x/DBqYjtkxe4katytWw8=;
-        b=Ttrq5gJ0pglRqY95IS+HHss9Ze7FHYvXM57hNMlu6iX/Ma0QE/UCTWrTlGJbpjavVq
-         CUPKZ+B6OliOV4e0RO8rt/vUWOTFAM7DM3XGw+5LAApMzFE4uB0B3E0h0C3dY4FVKs/v
-         rW6cqobsUoeaXd24s178j4NQWzcxsA7RbHwvV1sPcNYrjlLRe+3Pm6DUjv8Od2O1NAYg
-         hvDW7r44hLfnZojCXYtOn9nPzWfNpd1k3eXd2nYnalG0Zi/U4flK8VG1rePXqXzhK5a6
-         DumaWz/77q+b/hIt6sxVzqveIWDh2v6oMICSUx1YXra4G7sDdlOZygmlTq+BqudQPLnC
-         GHzw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678366291;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=QekU0YNn3mbD6AYvI5YHqh8x/DBqYjtkxe4katytWw8=;
-        b=oLx8hNJB2xYvoLt2XtznliKE8+BILdhQk7dzuK4YZ2n6iLmISQtNxNyUWYzwqHPCsO
-         AtqL2t13VaDAgYXmhFXQvO5HtVp9OYerZJih9MA58BotZYg//Jr8pbFDB3z6G7Ec9CU3
-         BfYBcHmBIEkO3W7y0O5MsANhl8k6BflAZ5LBVo8rUHP3X04b/T+hNb3HAUEc/AfTzBrL
-         EMCGI34o9yL3dRO63alW2raxtfCtk+TENP1K0ZFU7X/X89VL2Z9S52UhhiJVPZC/Ani5
-         gs8KTgB2M6QK29rxKuUt7bdIi2I0othFIhtEMbPcs/JQSFh5vgmc5JbH1qiDLpzUmlvG
-         8lNA==
-X-Gm-Message-State: AO0yUKXY3OlSbl1RAgzQ5IERxYEJSUXEFMqxsgqYvw961ELCyxYxVQnt
-        y07dN3fPkg8kvAOrapvx2LYtzQ4Q5/1IZ5Oz1kE=
-X-Google-Smtp-Source: AK7set8lIME8MtjxCRJAM3zkPXe0oqBE18AAL1pXcYmVbWrVZreeDsgmvR7uvvlOaOCbtyyqUcsCjT9zjyVlVcy1wqA=
-X-Received: by 2002:ad4:5585:0:b0:570:f9b6:dac6 with SMTP id
- f5-20020ad45585000000b00570f9b6dac6mr5569553qvx.1.1678366291641; Thu, 09 Mar
- 2023 04:51:31 -0800 (PST)
+        with ESMTP id S230195AbjCIMwe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Mar 2023 07:52:34 -0500
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A35B1EDB75;
+        Thu,  9 Mar 2023 04:52:31 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1678366351; x=1709902351;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=BNQWFcbNiSx0YgFF7RrawPwzS3TsDDcIUIvyv/UuNkQ=;
+  b=zab2grTjejgAds4m28QsgDfWkbxZzBzbSFj2ucF63GoNRo68CX7AZiDt
+   2u5Fj4qyleMdSL4YiiJXnBfIBJ1gmy1/Oo33NREof4r9tzJRB5QqTa0r0
+   F3OGOz/r0X28+I+HiYYCxrmSx43Jj3fuQYTtQu9uIK8jLoois/imVHEeo
+   DoP6Pg7zUUwzpeAIDQ8oWyw2b8SPHoCzUUCQQ4zoNFT7zNYtKl8n/xnrD
+   mhllaQuz256rt0PYHZ1TPMsEJa4Q/BTYwey9kquEU6fTkO7XK366M2mhd
+   LlJ8u81GbpAyZ5vJftOSZoG9JeEC7JHGhNmzKYtzJFYJusJ2x4DAqj85L
+   A==;
+X-IronPort-AV: E=Sophos;i="5.98,246,1673938800"; 
+   d="asc'?scan'208";a="204527753"
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa2.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 09 Mar 2023 05:52:30 -0700
+Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
+ chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.16; Thu, 9 Mar 2023 05:52:30 -0700
+Received: from wendy (10.10.115.15) by chn-vm-ex04.mchp-main.com
+ (10.10.85.152) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.16 via Frontend
+ Transport; Thu, 9 Mar 2023 05:52:28 -0700
+Date:   Thu, 9 Mar 2023 12:51:59 +0000
+From:   Conor Dooley <conor.dooley@microchip.com>
+To:     Alexandre Ghiti <alex@ghiti.fr>
+CC:     Mike Rapoport <rppt@kernel.org>, Conor Dooley <conor@kernel.org>,
+        <palmer@dabbelt.com>, <linux-riscv@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <frowand.list@gmail.com>, <robh+dt@kernel.org>,
+        <mick@ics.forth.gr>, <paul.walmsley@sifive.com>,
+        <aou@eecs.berkeley.edu>, <Valentina.FernandezAlanis@microchip.com>,
+        <Daire.McNamara@microchip.com>
+Subject: Re: RISC-V reserved memory problems
+Message-ID: <b797bd15-ef3d-4d28-9aad-ffe0a32aa0b0@spud>
+References: <8e10bf15-9fa9-fe90-1656-35bf3e87e7f8@microchip.com>
+ <f8e67f82-103d-156c-deb0-d6d6e2756f5e@microchip.com>
+ <Y9wytv5KSt1ca+td@spud>
+ <ZAchb/DfbIh+qaE4@kernel.org>
+ <8abfb680-e1dd-8d1f-dd10-0a8bf086f5c3@ghiti.fr>
 MIME-Version: 1.0
-References: <20230220023320.3499-1-clin@suse.com> <20230220023320.3499-3-clin@suse.com>
- <ZAZ3CeYiZxR5zlRu@surfacebook> <ZAgXCi/BzyEQul9B@linux-8mug>
- <CAHp75VfxffTvAPSB4D2Oc3-vbiYM4DVpZf5=jRYGsCdFgAyxJA@mail.gmail.com>
- <ZAi7CPXX0z80mKfQ@linux-8mug> <ZAjAN4mO8U1Dh86P@linux-8mug>
-In-Reply-To: <ZAjAN4mO8U1Dh86P@linux-8mug>
-From:   Andy Shevchenko <andy.shevchenko@gmail.com>
-Date:   Thu, 9 Mar 2023 14:50:55 +0200
-Message-ID: <CAHp75VeFcCyso4_qaDFccZEfG=3NtyfmFtvZKRR--LdqLryRtw@mail.gmail.com>
-Subject: Re: [PATCH v5 2/3] pinctrl: add NXP S32 SoC family support
-To:     Chester Lin <clin@suse.com>
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
-        =?UTF-8?Q?Andreas_F=C3=A4rber?= <afaerber@suse.de>, s32@nxp.com,
-        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Larisa Grigore <larisa.grigore@nxp.com>,
-        Ghennadi Procopciuc <Ghennadi.Procopciuc@oss.nxp.com>,
-        Andrei Stefanescu <andrei.stefanescu@nxp.com>,
-        Radu Pirea <radu-nicolae.pirea@nxp.com>,
-        Matthias Brugger <mbrugger@suse.com>,
-        Matthew Nunez <matthew.nunez@nxp.com>,
-        Phu Luu An <phu.luuan@nxp.com>,
-        Stefan-Gabriel Mirea <stefan-gabriel.mirea@nxp.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="mUvIqHBQ7/8R2dhI"
+Content-Disposition: inline
+In-Reply-To: <8abfb680-e1dd-8d1f-dd10-0a8bf086f5c3@ghiti.fr>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -81,89 +71,70 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Mar 8, 2023 at 7:05=E2=80=AFPM Chester Lin <clin@suse.com> wrote:
-> On Thu, Mar 09, 2023 at 12:43:35AM +0800, Chester Lin wrote:
-> > On Wed, Mar 08, 2023 at 03:21:00PM +0200, Andy Shevchenko wrote:
-> > > On Wed, Mar 8, 2023 at 7:03 AM Chester Lin <clin@suse.com> wrote:
-> > > > On Tue, Mar 07, 2023 at 01:28:09AM +0200, andy.shevchenko@gmail.com=
- wrote:
-> > > > > Mon, Feb 20, 2023 at 10:33:19AM +0800, Chester Lin kirjoitti:
+--mUvIqHBQ7/8R2dhI
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-...
+On Thu, Mar 09, 2023 at 01:45:05PM +0100, Alexandre Ghiti wrote:
+>=20
+> On 3/7/23 12:35, Mike Rapoport wrote:
+> > Hi Conor,
+> >=20
+> > Sorry for the delay, somehow this slipped between the cracks.
+> >=20
+> > On Thu, Feb 02, 2023 at 10:01:26PM +0000, Conor Dooley wrote:
+> > > Hullo Palmer, Mike & whoever else may read this,
+> > >=20
+> > > Just reviving this thread from a little while ago as I have been in t=
+he
+> > > area again recently...
+> > TBH, I didn't really dig deep into the issues, but the thought I had was
+> > what if DT was mapped via fixmap until the setup_vm_final() and then it
+> > would be possible to call DT methods early.
+> >=20
+> > Could be I'm shooting in the dark :)
+>=20
+>=20
+> I think I understand the issue now, it's because In riscv, we establish 2
+> different virtual mappings and we map the device tree at 2 different virt=
+ual
+> addresses, which is the problem.
+>=20
+> So to me, the solution is:
+>=20
+> - to revert your previous fix, that is calling
+> early_init_fdt_scan_reserved_mem() before any call to memblock_alloc()
+> (which could result in an allocation in the area you want to reserve)
+>=20
+> - to map the device tree at the same virtual address, because
+> early_init_fdt_scan_reserved_mem() initializes reserved_mem with the dtb
+> mapping established in setup_vm() and uses reserved_mem with the new mapp=
+ing
+> from setup_vm_final (which is what Mike proposes, we should use the fixmap
+> region to have the same virtual addresses)
+>=20
+> Hope that makes sense: I'll come up with something this afternoon for you=
+ to
+> test!
 
-> > > > > > +   depends on ARCH_S32 && OF
-> > > > >
-> > > > > Is OF necessary? Can it be
-> > > >
-> > > > I think it's required since the driver file refers to of_* APIs.
-> > >
-> > > And? Is it functional or compilation dependency? If the latter is the
-> > > case, what API exactly isn't providing a stub?
-> >
-> > I was wrong. Looks like the ARM64 arch Kconfig always select OF so it's=
- not
-> > really necessary to have OF here.
-> >
-> > > > >       depends OF || COMPILE_TEST
-> > > > >
-> > > > > ?
-> > >
-> > > So?
-> >
-> > Since the OF dependency is not really necessary here, to fulfill the co=
-mpile test
-> > purpose, the possible dependency might be (ARCH_S32 || COMPILE_TEST), b=
-ut it
-> > could meet a compiling failure on the reference of pinconf_generic_pars=
-e_dt_config()
-> > for those architectures which do not select OF by default since there's=
- no stub
-> > for this function. [pinconf_generic_parse_dt_config() is called in pinc=
-trl-s32cc.c]
+Sounds good. Please give me some ELI5 commit messages if you can,
+explanations for this stuff (which I found took a lot of archaeology to
+understand) would be very welcome next time we need to go back looking
+at this stuff.
 
-So. your driver needs to select the proper module and since there is
-no stub it probably needs to be added.
+Thanks Alex!
+Conor.
 
-Linus, why do we have no stubs in the first place?
+--mUvIqHBQ7/8R2dhI
+Content-Type: application/pgp-signature; name="signature.asc"
 
-...
+-----BEGIN PGP SIGNATURE-----
 
-> > > > > > +   depends on ARCH_S32 && OF
-> > >
-> > > Ditto.
-> >
-> > Based on the previous assumption [OF is not needed and PINCTRL_S32CC do=
-esn't
-> > depend on COMPILE_TEST], selecting PINCTRL_S32G2 wouldn't work if it si=
-mply
-> > depends on (ARCH_S32 || COMPILE_TEST), for example:
-> >
-> >   WARNING: unmet direct dependencies detected for PINCTRL_S32CC
-> >     Depends on [n]: PINCTRL [=3Dy] && ARCH_S32
-> >       Selected by [y]:
-> >         - PINCTRL_S32G2 [=3Dy] && PINCTRL [=3Dy] && (ARCH_S32 || COMPIL=
-E_TEST [=3Dy])
-> >
-> > So the better solutions is to still have OF in PINCTRL_S32CC, such as:
-> >
-> > config PINCTRL_S32CC
-> >       bool
-> >       depends on ARCH_S32 || (OF && COMPILE_TEST)
-> >       .....
-> >
-> > config PINCTRL_S32G2
-> >       depends on ARCH_S32 || COMPILE_TEST
->
-> Fix the dependency here, it should be:
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZAnWbwAKCRB4tDGHoIJi
+0lV+AP9XtW6MNhLD0bRLapXZEAgZkQBrftMGSKL9GmKJ4sPmyAD/SQYlZ6j9k1xD
++QKAkqJQ6hBfnbtegzICGOBWOil3ngk=
+=dF4f
+-----END PGP SIGNATURE-----
 
-Nope, this is definitely wrong.
-
-> config PINCTRL_S32G2
->         depends on ARCH_S32 || (OF && COMPILE_TEST)
->         .....
->
-> Just in case if OF is not set but COMPILE_TEST is set.
-
---=20
-With Best Regards,
-Andy Shevchenko
+--mUvIqHBQ7/8R2dhI--
