@@ -2,118 +2,266 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E68156B28BD
-	for <lists+devicetree@lfdr.de>; Thu,  9 Mar 2023 16:23:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 527106B2A90
+	for <lists+devicetree@lfdr.de>; Thu,  9 Mar 2023 17:11:53 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231682AbjCIPXn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Mar 2023 10:23:43 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45502 "EHLO
+        id S230163AbjCIQLb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Mar 2023 11:11:31 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37478 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231580AbjCIPX1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Mar 2023 10:23:27 -0500
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3489EF16AB;
-        Thu,  9 Mar 2023 07:22:48 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-        bh=TZtnq4ErD6+p46J1xiQAutyT1OfQ3UHS3Utv9OsbD3k=; b=4u643A2Y3jE+yVdrqGMaYCOOLt
-        pUoE/QBgVG8HivDUgvuxodEqXCK/29gfplEGQEf/qEFBYL8Ii/Tir4i9ovOxmF8wVWYwl0TW0weqA
-        ygUG5e8884d5Ik+oAh26XdFyioQdTjOlFbjCA44mXbPUSidZwDRvcnL5pPeD8JZqv7OQ=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-        (envelope-from <andrew@lunn.ch>)
-        id 1paI63-006t3h-Ua; Thu, 09 Mar 2023 16:22:23 +0100
-Date:   Thu, 9 Mar 2023 16:22:23 +0100
-From:   Andrew Lunn <andrew@lunn.ch>
-To:     Linus Walleij <linus.walleij@linaro.org>
-Cc:     Christian Marangi <ansuelsmth@gmail.com>,
-        Hans de Goede <hdegoede@redhat.com>,
-        Pavel Machek <pavel@ucw.cz>, Lee Jones <lee@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Vladimir Oltean <olteanv@gmail.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Russell King <linux@armlinux.org.uk>,
-        Jonathan Corbet <corbet@lwn.net>,
-        "Russell King (Oracle)" <rmk+kernel@armlinux.org.uk>,
-        Jacek Anaszewski <jacek.anaszewski@gmail.com>,
-        John Crispin <john@phrozen.org>, linux-leds@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        netdev@vger.kernel.org, linux-doc@vger.kernel.org,
-        Tim Harvey <tharvey@gateworks.com>,
-        Alexander Stein <alexander.stein@ew.tq-group.com>,
-        Rasmus Villemoes <rasmus.villemoes@prevas.dk>,
+        with ESMTP id S232417AbjCIQKK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Mar 2023 11:10:10 -0500
+Received: from EUR05-AM6-obe.outbound.protection.outlook.com (mail-am6eur05on2083.outbound.protection.outlook.com [40.107.22.83])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C6656FCBEE;
+        Thu,  9 Mar 2023 08:04:33 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=ALCbnx/smOEUD8fsEGhFxz5JxREqNJG20b3cNxCGL7L8tc0ytZEbIpN7r3RWwJ4L9l2akqeB3oUCjgOIF25M6bbe/Y3owLCzMwis0yZXgBXWxtmfgVDOP2NKjCTnxpexGcR4ggUEhUHI0OAB4xu4pmvrBJcsyMLW+yY0KCudZqOVYaUPl6slzvJGP3CZRIeVeJhbSYoqOkXf9yJnxFbWA3bvueOO6NTx8MSHb83kER8DRLfy6gubNeEoEfIDSip7t4wPW/OZJYo3RRKeN0udEKM+PyzQdYunIZ/JLt9zLZK6Oj8CclQaaAtUGx4GPJ/CqL4wd++Vx+jJsbXFOZ1Wrg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=MBzFW3D4ZBMThKsdB4MrbTfftRdYBzghjEmDWMVN+1E=;
+ b=fC3R4OTBvaA05yd2hn/QBhIOI1oPhA+kNo3Qk0KVJmcOmjCHlEv5/0RAf1aZ8060LHQeEK+jYdge5OFG3uxn9qnnxCODTy6jLokFXFM4XzKtQgfF/7RxNGo3/CCf8QanrVuixDH6sylwB1G8VWriLZ8yjOmOYt/DqdEIzM+o6iD1LxXRQyFirGm7Z5tLsyzmQVmJBGTmRPZ5WqFovBvQUFzz6OswioGrBiDcP1dgOWfVsYsQOQzwWSkFU+GylCoFz2YRNmdrN9QhNSUBzxIlh92TBTq+oDsyxnIIWYMn7zrq+KwRathk2cfs5jxsOuiDSTQJtj17T9yhCyQT7kd45g==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=seco.com; dmarc=pass action=none header.from=seco.com;
+ dkim=pass header.d=seco.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=seco.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=MBzFW3D4ZBMThKsdB4MrbTfftRdYBzghjEmDWMVN+1E=;
+ b=EFI1fAnk8itR0y22u5ancy4ptW6WRGnz1IPSAwk22Cekpc0mvKWArqSQO54zaFJB8HScXQgSWlRWcOXBY/lr3L//ja0TZ6b6aSWeKz7bAp9uBSExY/tACedNZ+vawluBIN7fhtdxQkPV18ZAsRqKBLCNJ1ar9bpA4p/i0VHavPeuMTm8HlSOpcmd+u1evAHN9RIWX9J1+51/9O2njxHF3hirruK5t80WyBWUozoEfWU3lH5WT+vlk9ZrEUDQmwaTNBoPemRlB6e7tC2A04bkryyBRiL7V35B2jnTfHhpFnQSEQ5kzLY3gLjHYtlE16QZEnl97B6bRs5k+LgXv8YMPg==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=seco.com;
+Received: from DB9PR03MB8847.eurprd03.prod.outlook.com (2603:10a6:10:3dd::13)
+ by PAVPR03MB9211.eurprd03.prod.outlook.com (2603:10a6:102:325::16) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6156.28; Thu, 9 Mar
+ 2023 16:03:44 +0000
+Received: from DB9PR03MB8847.eurprd03.prod.outlook.com
+ ([fe80::dbcf:1089:3242:614e]) by DB9PR03MB8847.eurprd03.prod.outlook.com
+ ([fe80::dbcf:1089:3242:614e%5]) with mapi id 15.20.6156.027; Thu, 9 Mar 2023
+ 16:03:44 +0000
+Message-ID: <4fbd84ff-8a0c-669c-2f27-d542640ded24@seco.com>
+Date:   Thu, 9 Mar 2023 11:03:38 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.0
+Subject: Re: [PATCH v10 03/13] dt-bindings: Convert gpio-mmio to yaml
+Content-Language: en-US
+To:     Rob Herring <robh@kernel.org>
+Cc:     Vinod Koul <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@kernel.org>,
+        linux-phy@lists.infradead.org,
+        Madalin Bucur <madalin.bucur@nxp.com>,
+        linuxppc-dev@lists.ozlabs.org, devicetree@vger.kernel.org,
+        Ioana Ciornei <ioana.ciornei@nxp.com>,
+        Camelia Alexandra Groza <camelia.groza@nxp.com>,
+        linux-arm-kernel@lists.infradead.org,
         Bagas Sanjaya <bagasdotme@gmail.com>,
-        Arun.Ramadoss@microchip.com
-Subject: Re: [PATCH v8 00/13] Adds support for PHY LEDs with offload triggers
-Message-ID: <8226f000-dd9c-4774-b972-a7f1113f0986@lunn.ch>
-References: <20230216013230.22978-1-ansuelsmth@gmail.com>
- <CACRpkda30Ky5oYPn_nGWGOzT5ntZYdE3gafrs7D27ZHxgGuO8A@mail.gmail.com>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Bartosz Golaszewski <brgl@bgdev.pl>,
+        =?UTF-8?Q?Fern=c3=a1ndez_Rojas?= <noltari@gmail.com>,
+        Jonas Gorski <jonas.gorski@gmail.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        linux-gpio@vger.kernel.org
+References: <20230306191535.1917656-1-sean.anderson@seco.com>
+ <20230306191535.1917656-4-sean.anderson@seco.com>
+ <20230308231018.GA4039466-robh@kernel.org>
+From:   Sean Anderson <sean.anderson@seco.com>
+In-Reply-To: <20230308231018.GA4039466-robh@kernel.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: BL1PR13CA0386.namprd13.prod.outlook.com
+ (2603:10b6:208:2c0::31) To DB9PR03MB8847.eurprd03.prod.outlook.com
+ (2603:10a6:10:3dd::13)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CACRpkda30Ky5oYPn_nGWGOzT5ntZYdE3gafrs7D27ZHxgGuO8A@mail.gmail.com>
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DB9PR03MB8847:EE_|PAVPR03MB9211:EE_
+X-MS-Office365-Filtering-Correlation-Id: 50de237c-7647-434c-bec5-08db20b7dbc9
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 83O6ltIldWTsDkxp0qFDA5Yk/RwWUyCZOdXTssY1ubVcX9nUB2x/NX7oOpcMxQw02uwugujGPafK/68MxGy/Dzo6VfVYByWjFQDU3PMvXSHvPaZvt0G6zkpRdTMH+P6f3cVUUAoogA1gZDPaXnatd/YeyynyCvUR2RCEN81RpZIqI1cP2KkXHtFDrqQcgtQt9JGqzQdmo70TXjRJP1UyWdP7JBHvvIQ7IHGa5T1R+6vrFsoFumcbhUtwETFj8tz+LDV+fIdd4nwpRubC3l2VhSorUuq6LCWxR+QXOXyDzEeIMN93LNUWhAXhLltfWHlcuc9QJToy4jbIVOI5WRQvBXlG8BtneQ7P9rGK1Gl7OAS1lL7hHVX/PKlyKGDC+/IInCRrkOIzDHt0O/yhVc2ijqNbxM3gacXrtzv2IseGmAGMTQUqYOP2+YzWpcdu/HEJ8RbzpxslAyg5HnMMwGevhcZZ/sYGmdegivdtDn7a02rh9/5h8qo13ggImnsVcMIO51wCqraSj5f0IQU4UOlc63FJ2YIyb+RK4t8U6TOxHIt46MPVo68BOoklL+Marl76iDLfsf/0OJMDfKEG9yM1W/Cp/+RiEsxKXFCovn3Ng9TdU/JukEWZbWYld25uCcSz5DyZrowHsQIEAdZ9wEp7s+PmaP3XuIotZotkF+4hoegJzK4lNRWxb5WrSTArwdCU7TIr7pl8XWiJyeJCvbvbsMg5/PMbIf/PTfoTgGzkjrc8OCUM4iNObv8E8F4fisUk
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB9PR03MB8847.eurprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230025)(366004)(39850400004)(346002)(376002)(396003)(136003)(451199018)(6506007)(54906003)(316002)(2616005)(83380400001)(31696002)(66574015)(36756003)(38100700002)(478600001)(6666004)(6512007)(966005)(52116002)(86362001)(38350700002)(53546011)(6486002)(186003)(5660300002)(41300700001)(44832011)(26005)(8936002)(31686004)(2906002)(66946007)(8676002)(7416002)(66476007)(6916009)(4326008)(66556008)(45980500001)(43740500002);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?UE1MMGRyZmZMZk03SW8zN3lWQzVLa2thNDE0bmhqV2RzcXY3Qjg1OGFMaFRK?=
+ =?utf-8?B?OW1HTkl6Ri9NMjFkcWxXbFMxd3NQd3BMOU5sdlZpRHdJbGNFQXdkV09CMTRI?=
+ =?utf-8?B?RGs0bWswWFF6anVMTnpWWVk3OG41QXVUOUVoSDYvTVRUdkJKcENkcFlUeUk3?=
+ =?utf-8?B?ckRwS1lXbzhOcDR1Z0RPeHEyZDhrZG54dG1FRm1LKzRySVJGRVY0emRuWEVF?=
+ =?utf-8?B?QTZIYnlqcGhZNmxmM01SWU1MalVWZkFBekxtenRMa2lxSXJvVEIwaCt4WDhq?=
+ =?utf-8?B?c1pqd0JvOXdLTGVGd1p0U25mZFlaVWd5WWJobEtNWTdPWmFVSTVlRi9SQkdI?=
+ =?utf-8?B?c3FYeWV3ZWZBYnUwS25DNjhCSEhhMkpKNWJoRk04bVJkeGRuL3J3UkZ0TTNi?=
+ =?utf-8?B?QUFKQUxFdnJ4Vno2NnBVQ2JqNCtBUTNKUERGU0R6RmRESVFXSWlOVkVjSUVC?=
+ =?utf-8?B?OE5KYzlPd29aZ2crWkdweExhU3lkSGpDMHQyY3RIUHBET0VwNnlzZi9iQjhj?=
+ =?utf-8?B?OVc3QVVhaEYyNy9pSG9ZMmVKVXRxa2VvbnJ1bGcrQ0JIWmQ5NEUzdGhuQVlz?=
+ =?utf-8?B?VlRXT1pYZUxKdGhSdE1PN2tLekV6Vm42dndzRFJXdEtQdCszQlc1VUN2RXdC?=
+ =?utf-8?B?NjVBS2lKK09QcDBBVjVYdnloa09rYzBoZSt2dXpBR1dHb2VxKy80b08xNkxr?=
+ =?utf-8?B?N0ZHK0NQR0s2ZTVaK0JwL3pXbXRtMUVwN0M4czF6dUpzd2E3b3ZqTHZTY05n?=
+ =?utf-8?B?K0RXS3E4Zmoxd3p0ZjJIMlBqejlDUWlac2pUTlEwWkNFc2tMSGluTUNEU3R0?=
+ =?utf-8?B?ZHEwaXowemU2K0VOT2VkUUhFNWptd3dlZDloRjI1MDd4VTR1UnY5RDJxNndJ?=
+ =?utf-8?B?cVJzMjBqVnU4b1p2T1N2SkhlOHI1R1crOFI4Z3Q5T3ZsTVZGbU9rSXdvUWYv?=
+ =?utf-8?B?RjNXWmZEdkRBVHdnSVc1YmptazExTDJyRWJ0OElZd2FBOFB4UE9PdW1LY3Rp?=
+ =?utf-8?B?S3RRUmhjanN1ZWdLT1llNmtyQTl1QndZM21FVHozWi90VjBUWUE4aU5naHJm?=
+ =?utf-8?B?cVM0WU0wd2RKdnJtamt5VlJTQmtSbXJqTStnaGZpL2ZDeW1rMjhkS3JFOEJq?=
+ =?utf-8?B?QzE5RXRvR0VJUys1Z1J0VExYRHQvZENlQkhxRXVnc2xUZ1VINDNUN214d055?=
+ =?utf-8?B?RS94NEJBRFo5M2FOZ0RDQlB0ZDhsU2FTaFcxcWhnbzdDdkZ2Wk5lbmowKzVK?=
+ =?utf-8?B?aEprbll4Y2M3ZG9lUnhyWlppMnNjUGVna01OU25aMWNKeDJEaEQ0cTZpcitz?=
+ =?utf-8?B?UmgvZEd5U0lkLzlkU2VwV0QrY21wL1dUWmlMOGFCSEhQUU8xSmFsR3hoWEpU?=
+ =?utf-8?B?MUpJMVUvcUprSmFNaVYvdHNSNlNBU01FUTJsZHVtUDlqQzZSd1RjZ1pZa1d1?=
+ =?utf-8?B?a2tBS1JxVmJpc0pZdk9MVjRubzB0QzVraXZOUnU4RGE1c0JqMFFwWEI1a2pB?=
+ =?utf-8?B?eUMxRU5CYnc0T1V4VWtEbFRja0lJT3lkdTk4OUYybjVNVDRHQmJmNnFaYW5T?=
+ =?utf-8?B?ajYxQUlndzJORlFQUGNVSnphNStGNjljY1d0eXdSSkZISEIzOXNFa0hrb3p3?=
+ =?utf-8?B?MHUyL1RsRGh3ZDBOSUlMQUQxcjJrNDBEOW5NR20yMEtGTlM5OXhMcWgwb3Jh?=
+ =?utf-8?B?c29xR2JoeHA4UkFRdVppWXU2K1ViUEdaZE9mQURTM0hRb3Z4VVlmWEtyNGFj?=
+ =?utf-8?B?SlRmZjJJcE5mTXFnb2EvQmZEdXBOK05sdHZhWkhNUnRPTm9uQWYvRkJPWUcw?=
+ =?utf-8?B?emlCTXRuMW1KckU1RldyQjJ0YXZVZlEwZ29wM1gycmRWb1JNd0tjMmFZSzhT?=
+ =?utf-8?B?ZmtwZG1ZTUdqTkZRZFRVVkJ1VnExcDVNdG5ENk1zOXlUSTVMN2M1bUVmK0VG?=
+ =?utf-8?B?NnoyY2pNamprMzZSSGtLamJTbkFGanl1VFZLVDZXSUxyUjdCdDU3cGZLU3ph?=
+ =?utf-8?B?TDZydThxOFBXQUlRUXpSeG5jTE1HNVRKM0tZaUJKTk1ickpIQ2xBNFp6Nmlw?=
+ =?utf-8?B?TDkxbkhRaVRYYlpZME1MN0NjM3FtNjErSG9HTmdDUlFWT3o2cy9NSGl4RERv?=
+ =?utf-8?B?dWhjOWxNaEtIUk13aC94MHJ4a0J2eDdOcjRHejdMcFMzeGh4SmJxMmluNzdi?=
+ =?utf-8?B?b3c9PQ==?=
+X-OriginatorOrg: seco.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 50de237c-7647-434c-bec5-08db20b7dbc9
+X-MS-Exchange-CrossTenant-AuthSource: DB9PR03MB8847.eurprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Mar 2023 16:03:44.3623
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: bebe97c3-6438-442e-ade3-ff17aa50e733
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: vpxjVuQMjpDNELPdFubUJlKWrhUb5iij9K0988IUjUjlWodH4e5+qrNK1L3wz90SnvkjX7kMhHTZRlXZUmasrg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PAVPR03MB9211
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> I am a bit reluctant on the ambition to rely on configuration from sysfs
-> for the triggers, and I am also puzzled to how a certain trigger on a
-> certain LED is going to associate itself with, say, a certain port.
-
-Hi Linus
-
-There will need to be a device tree binding for the default
-trigger. That is what nearly all the rejected hacks so far have been
-about, write registers in the PHYs LEDs registers to put it into a
-specific mode. I don't see that part of the overall problem too
-problematic, apart from the old issue, is it describing configuration,
-not hardware.
-
-As to 'how a certain trigger on a certain LED is going to associate
-itself with, say, a certain port' is clearly a property of the
-hardware, when offloading is supported. I've not seen a switch you can
-arbitrarily assign LEDs to ports. The Marvell switches have the LED
-registers within the port registers, for example, two LEDs per port.
-
+On 3/8/23 18:10, Rob Herring wrote:
+> On Mon, Mar 06, 2023 at 02:15:25PM -0500, Sean Anderson wrote:
+>> This is a generic binding for simple MMIO GPIO controllers. Although we
+>> have a single driver for these controllers, they were previously spread
+>> over several files. Consolidate them. The register descriptions are
+>> adapted from the comments in the source. There is no set order for the
+>> registers, so I have not specified one.
+>> 
+>> Signed-off-by: Sean Anderson <sean.anderson@seco.com>
+>> ---
+>> 
+>> Changes in v10:
+>> - New
+>> 
+>>  .../bindings/gpio/brcm,bcm6345-gpio.yaml      |  16 +--
+>>  .../devicetree/bindings/gpio/gpio-mmio.yaml   | 136 ++++++++++++++++++
+>>  .../bindings/gpio/ni,169445-nand-gpio.txt     |  38 -----
+>>  .../devicetree/bindings/gpio/wd,mbl-gpio.txt  |  38 -----
+>>  4 files changed, 137 insertions(+), 91 deletions(-)
+>>  create mode 100644 Documentation/devicetree/bindings/gpio/gpio-mmio.yaml
+>>  delete mode 100644 Documentation/devicetree/bindings/gpio/ni,169445-nand-gpio.txt
+>>  delete mode 100644 Documentation/devicetree/bindings/gpio/wd,mbl-gpio.txt
+>> 
+>> diff --git a/Documentation/devicetree/bindings/gpio/brcm,bcm6345-gpio.yaml b/Documentation/devicetree/bindings/gpio/brcm,bcm6345-gpio.yaml
+>> index 4d69f79df859..e11f4af49c52 100644
+>> --- a/Documentation/devicetree/bindings/gpio/brcm,bcm6345-gpio.yaml
+>> +++ b/Documentation/devicetree/bindings/gpio/brcm,bcm6345-gpio.yaml
+>> @@ -4,7 +4,7 @@
+>>  $id: http://devicetree.org/schemas/gpio/brcm,bcm6345-gpio.yaml#
+>>  $schema: http://devicetree.org/meta-schemas/core.yaml#
+>>  
+>> -title: Broadcom BCM6345 GPIO controller
+>> +title: Broadcom BCM63xx GPIO controller
+>>  
+>>  maintainers:
+>>    - Álvaro Fernández Rojas <noltari@gmail.com>
+>> @@ -18,8 +18,6 @@ description: |+
+>>  
+>>    BCM6338 have 8-bit data and dirout registers, where GPIO state can be read
+>>    and/or written, and the direction changed from input to output.
+>> -  BCM6345 have 16-bit data and dirout registers, where GPIO state can be read
+>> -  and/or written, and the direction changed from input to output.
+>>    BCM6318, BCM6328, BCM6358, BCM6362, BCM6368 and BCM63268 have 32-bit data
+>>    and dirout registers, where GPIO state can be read and/or written, and the
+>>    direction changed from input to output.
+>> @@ -29,7 +27,6 @@ properties:
+>>      enum:
+>>        - brcm,bcm6318-gpio
+>>        - brcm,bcm6328-gpio
+>> -      - brcm,bcm6345-gpio
+>>        - brcm,bcm6358-gpio
+>>        - brcm,bcm6362-gpio
+>>        - brcm,bcm6368-gpio
+>> @@ -63,17 +60,6 @@ required:
+>>  additionalProperties: false
+>>  
+>>  examples:
+>> -  - |
+>> -    gpio@fffe0406 {
+>> -      compatible = "brcm,bcm6345-gpio";
+>> -      reg-names = "dirout", "dat";
+>> -      reg = <0xfffe0406 2>, <0xfffe040a 2>;
+>> -      native-endian;
+>> -
+>> -      gpio-controller;
+>> -      #gpio-cells = <2>;
+>> -    };
+>> -
+>>    - |
+>>      gpio@0 {
+>>        compatible = "brcm,bcm63268-gpio";
+>> diff --git a/Documentation/devicetree/bindings/gpio/gpio-mmio.yaml b/Documentation/devicetree/bindings/gpio/gpio-mmio.yaml
+>> new file mode 100644
+>> index 000000000000..fd5c7055d542
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/gpio/gpio-mmio.yaml
+>> @@ -0,0 +1,136 @@
+>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/gpio/gpio-mmio.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: Generic MMIO GPIO
+>> +
+>> +maintainers:
+>> +  - Linus Walleij <linus.walleij@linaro.org>
+>> +  - Bartosz Golaszewski <brgl@bgdev.pl>
+>> +
+>> +description: |
 > 
-> I want to draw your attention to this recently merged patch series
-> from Hans de Goede:
-> https://lore.kernel.org/linux-leds/20230120114524.408368-1-hdegoede@redhat.com/
+> Don't need '|' unless you want line endings preserved. Elsewhere too.
+
+OK
+
+>> +  Some simple GPIO controllers may consist of a single data register or a pair
+>> +  of set/clear-bit registers. Such controllers are common for glue logic in
+>> +  FPGAs or ASICs. Commonly, these controllers are accessed over memory-mapped
+>> +  NAND-style parallel busses.
+>> +
+>> +properties:
+>> +  big-endian:
+>> +    true
 > 
-> This adds the devm_led_get() API which works similar to getting
-> regulators, clocks, GPIOs or any other resources.
+> big-endian: true
 
-Interesting. Thanks for pointing this out. But i don't think it is of
-interest in our use case, which is hardware offload. For a purely
-software controlled LED, where the LED could be anywhere,
-devm_led_get() makes sense. But in our case, the LED is in a well
-defined place, either the MAC or the PHY, where it has access to the
-RX and TX packets, link status etc. So we don't have the problem of
-finding it in an arbitrary location.
+OK
 
-There is also one additional problem we have, both for MAC and PHY
-LEDs. The trigger is ledtrig-netdev. All trigger state revolves around
-a netdev. A DSA port is not a netdev. A PHY is not a netdev. Each of
-these three things have there own life cycle. Often, a PHY does not
-know what netdev it is associated to until the interface is opened,
-ie. ip link set eth0 up. But once it is associated, phylib knows this
-information, so can return it, without any additional configuration
-data in DT. A DSA switch port can be created before the netdev
-associated to it is created. But again, the DSA core does know the
-mapping between a netdev and a port. Using devm_led_get() does not
-gain us anything.
+>> +
+>> +  compatible:
+>> +    enum:
+>> +      - brcm,bcm6345-gpio # Broadcom BCM6345 GPIO controller
+>> +      - wd,mbl-gpio # Western Digital MyBook Live memory-mapped GPIO controller
+>> +      - ni,169445-nand-gpio # National Instruments 169445 GPIO NAND controller
+>> +
+>> +  '#gpio-cells':
+>> +    const: 2
+>> +
+>> +  gpio-controller:
+>> +    true
+> 
+> ditto.
 
-	Andrew
+OK
+
+--Sean
