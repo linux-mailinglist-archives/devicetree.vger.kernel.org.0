@@ -2,99 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8EC2B6B2AB7
-	for <lists+devicetree@lfdr.de>; Thu,  9 Mar 2023 17:28:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BBEBF6B2B46
+	for <lists+devicetree@lfdr.de>; Thu,  9 Mar 2023 17:56:31 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230288AbjCIQ2d (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Mar 2023 11:28:33 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43640 "EHLO
+        id S230344AbjCIQ42 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Mar 2023 11:56:28 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49668 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229894AbjCIQ2M (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Mar 2023 11:28:12 -0500
-Received: from mail-ed1-f52.google.com (mail-ed1-f52.google.com [209.85.208.52])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 85D90F6012
-        for <devicetree@vger.kernel.org>; Thu,  9 Mar 2023 08:19:34 -0800 (PST)
-Received: by mail-ed1-f52.google.com with SMTP id j11so9192441edq.4
-        for <devicetree@vger.kernel.org>; Thu, 09 Mar 2023 08:19:34 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1678378639;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=Nfkr47uMkCiXVxXdwdLHVRDx52SBPipOfF4MJ+yNxeQ=;
-        b=f2GNQOaSEYn2K875iDD1m+O+ehA0xtEb0yn0Y3GjyxfPFIVnmb4tThLnnJKqnSaMj8
-         zDHzpMR77KKioLJkBdpLg/PaYCp7Ws33K4MsmI2FEGrvDP3tsZokVnZk5WApoMrNXE7M
-         yPggHYe+D7cqElZgjppZi2/tpChF2SOt7Jd4bMjQ/D5m9zbVC464kiwTsblIXJjsBn6X
-         WPqhPaKdcPtxHoUGn0o+fDAIB+RZwBKO0dphMGn7MybHHohoqL06AXkS9nNmBDGgD+MU
-         QV0pEAaMKMlvDL1d7aLYKg4eHzthZ+X21YrEGjI353q3yfZuOanAv+wYH/TBDb871Zf2
-         Z0Ow==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678378639;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Nfkr47uMkCiXVxXdwdLHVRDx52SBPipOfF4MJ+yNxeQ=;
-        b=2t0oeO8RMDfsv5sKLljFdCexYCEgQPubrl7p/KY94PyMjJumlAPRX2IdlK9zg87bs+
-         MH3EaJYjfpRDxeEap/Vj9ce5vJc3MkegATcnwmjcgwyC2U9wokcxsaIzrUJZ9AJ4NM1D
-         rVP3CBUnAgHYA8F537SJRkk8U6+skiUyYxmyHGlsBNQjH+5atZ6uOQbi0g7V27hFqWIa
-         WI2MxK6YmwNiHADq4r6OQAOAjccJ+LdpP9TG3ANNUVpmKO1bpekG6txvMH+BM/CnVi07
-         5lJScQcmapx+iZFqFSvwjiVgtq4pki14Vee1PutyRNdUhpsTK5cAyYYsL5r4Xgz4AxkS
-         NhsA==
-X-Gm-Message-State: AO0yUKU2YJkqKCSDyS372xztT3+RwaGydzmBngntUrwSnDEaQSWHEtk4
-        nc3bQdVJlTNQhVWqephHORb2nQ==
-X-Google-Smtp-Source: AK7set9tLG7OqxL36Iw+EQSmEvEdnsYuLYCe5O2o6Pafsa9Ob3uXQyp15aFbfmwbSFuiC7AoVMAwgA==
-X-Received: by 2002:a17:907:1c1f:b0:884:930:b014 with SMTP id nc31-20020a1709071c1f00b008840930b014mr28489263ejc.6.1678378638898;
-        Thu, 09 Mar 2023 08:17:18 -0800 (PST)
-Received: from ?IPV6:2a02:810d:15c0:828:7ee2:e73e:802e:45c1? ([2a02:810d:15c0:828:7ee2:e73e:802e:45c1])
-        by smtp.gmail.com with ESMTPSA id dc23-20020a170906c7d700b008b17e55e8f7sm8977100ejb.186.2023.03.09.08.17.17
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 09 Mar 2023 08:17:18 -0800 (PST)
-Message-ID: <1d7f051b-761b-df8d-4407-9c6c3d95cf51@linaro.org>
-Date:   Thu, 9 Mar 2023 17:17:16 +0100
+        with ESMTP id S230409AbjCIQ4H (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Mar 2023 11:56:07 -0500
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 23F583B3D4;
+        Thu,  9 Mar 2023 08:48:12 -0800 (PST)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 329Gm1Up087571;
+        Thu, 9 Mar 2023 10:48:01 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1678380481;
+        bh=gnC04kQptEQ9Ia4i3/2ZlkOrBmNCWxoroUhRnOhhwFY=;
+        h=Date:From:To:CC:Subject:References:In-Reply-To;
+        b=uNuznbS5pJtFbTyyxJOZKbX8vu8gZhFNfSUrLtskR0rbMOcH5waZ995AWRLImLix9
+         6gYHyvYNMNo8Rsbf47m3n4bdyaOY4VhJQwbZ/mI2IktV2NFQhNDP7KuMiqimh0F0n2
+         TkzvYxWqoHtNOCIfHcvGnT/oJM9FjLM/HC5EaxWM=
+Received: from DFLE110.ent.ti.com (dfle110.ent.ti.com [10.64.6.31])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 329Gm1k3009012
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Thu, 9 Mar 2023 10:48:01 -0600
+Received: from DFLE107.ent.ti.com (10.64.6.28) by DFLE110.ent.ti.com
+ (10.64.6.31) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Thu, 9
+ Mar 2023 10:48:01 -0600
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE107.ent.ti.com
+ (10.64.6.28) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
+ Frontend Transport; Thu, 9 Mar 2023 10:48:01 -0600
+Received: from localhost (ileaxei01-snat.itg.ti.com [10.180.69.5])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 329Gm0IN096282;
+        Thu, 9 Mar 2023 10:48:00 -0600
+Date:   Thu, 9 Mar 2023 10:48:00 -0600
+From:   Bryan Brattlof <bb@ti.com>
+To:     Nitin Yadav <n-yadav@ti.com>
+CC:     Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
+        Tero Kristo <kristo@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH] arm64: dts: ti: k3-am62-main: Fix GPIO numbers in DT
+Message-ID: <20230309164800.uhhdol76t3agople@bryanbrattlof.com>
+X-PGP-Fingerprint: D3D1 77E4 0A38 DF4D 1853 FEEF 41B9 0D5D 71D5 6CE0
+References: <20230202085917.3044567-1-n-yadav@ti.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-Subject: Re: [PATCH 1/4] dt-bindings: thermal: mediatek: Add LVTS thermal
- controller definition for mt8192
-Content-Language: en-US
-To:     bchihi@baylibre.com, daniel.lezcano@linaro.org,
-        angelogioacchino.delregno@collabora.com, rafael@kernel.org,
-        amitk@kernel.org, rui.zhang@intel.com, matthias.bgg@gmail.com,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        rdunlap@infradead.org, ye.xingchen@zte.com.cn,
-        p.zabel@pengutronix.de
-Cc:     linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
-        khilman@baylibre.com, james.lo@mediatek.com,
-        rex-bc.chen@mediatek.com
-References: <20230307163413.143334-1-bchihi@baylibre.com>
- <20230307163413.143334-2-bchihi@baylibre.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230307163413.143334-2-bchihi@baylibre.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset="utf-8"
+Content-Disposition: inline
+In-Reply-To: <20230202085917.3044567-1-n-yadav@ti.com>
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 07/03/2023 17:34, bchihi@baylibre.com wrote:
-> From: Balsam CHIHI <bchihi@baylibre.com>
+Hi Nitin!
+
+On February  2, 2023 thus sayeth Nitin Yadav:
+> Fix number of gpio pins in main_gpio0 & main_gpio1
+> DT nodes according to AM62x SK datasheet. The Link
+> of datasheet is in the following line:
+> https://www.ti.com/lit/ds/symlink/am625.pdf?ts=1673852494660
 > 
-> Add LVTS thermal controller definition for MT8192.
-> 
-> Signed-off-by: Balsam CHIHI <bchihi@baylibre.com>
+> Section: 6.3.10 GPIO (Page No. 63-67)
+>
+
+Thanks for getting this fixed. Should we add a fixes tag to help get 
+this back ported?
+
+Fixes: f1d17330a5bedc ("arm64: dts: ti: Introduce base support for AM62x SoC")
+
+> Signed-off-by: Nitin Yadav <n-yadav@ti.com>
 > ---
+>  arch/arm64/boot/dts/ti/k3-am62-main.dtsi | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
+> 
 
+Reviewed-by: Bryan Brattlof <bb@ti.com>
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
-Best regards,
-Krzysztof
-
+~Bryan
