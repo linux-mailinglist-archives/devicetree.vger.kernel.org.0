@@ -2,121 +2,354 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C0C326B2687
-	for <lists+devicetree@lfdr.de>; Thu,  9 Mar 2023 15:16:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 78FAC6B26AB
+	for <lists+devicetree@lfdr.de>; Thu,  9 Mar 2023 15:22:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229798AbjCIOQn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Mar 2023 09:16:43 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48532 "EHLO
+        id S231716AbjCIOWI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Mar 2023 09:22:08 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40232 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231263AbjCIOOW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Mar 2023 09:14:22 -0500
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 859B993C4;
-        Thu,  9 Mar 2023 06:13:13 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1678371193; x=1709907193;
-  h=message-id:date:mime-version:subject:to:cc:references:
-   from:in-reply-to:content-transfer-encoding;
-  bh=3A65IKB9d2IfLyHPo1ILLZ4ADkCpExI8AS30ua1GCVc=;
-  b=LFnIFa2oy9cRbTo4OzS9IWHzz+tM4YrnopE/dyvvJ7RfwB6nCdwSnwvg
-   Ph8ZbjETf1/WwJ6XxFSRvegTaJfdUwoNQmGL90M5h2RKidbiJyHcba9f8
-   a1oNsOflRNVCUJ/ZQIrkq7MjUd87+adaaPuD6DDzyK6zhpP+lH1b+zXpy
-   nXxXCuKN0gt+Kh5yH4UWbGn1JhDzd99VD2v8oLcO+MK0rLbSasprnYeRE
-   O4i7wJU0/8lMSaGAuX45N+qjNDq5lwQm5dzsYnQnDy22lr+u50oVBOxFT
-   8JGUNr/22YVOO1SJw5RXLeUehwUe9WsN5+szWFKKr0RVVXxSOCDnoWGW8
-   w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10643"; a="364093939"
-X-IronPort-AV: E=Sophos;i="5.98,246,1673942400"; 
-   d="scan'208";a="364093939"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-  by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 09 Mar 2023 06:13:07 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10643"; a="787575064"
-X-IronPort-AV: E=Sophos;i="5.98,246,1673942400"; 
-   d="scan'208";a="787575064"
-Received: from ahunter6-mobl1.ger.corp.intel.com (HELO [10.0.2.15]) ([10.251.219.30])
-  by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 09 Mar 2023 06:13:01 -0800
-Message-ID: <ef2f8faf-76cc-d221-8281-cc7b8cb68485@intel.com>
-Date:   Thu, 9 Mar 2023 16:12:55 +0200
+        with ESMTP id S229629AbjCIOV6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Mar 2023 09:21:58 -0500
+Received: from mail-wr1-x42a.google.com (mail-wr1-x42a.google.com [IPv6:2a00:1450:4864:20::42a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 27452B56C8
+        for <devicetree@vger.kernel.org>; Thu,  9 Mar 2023 06:21:56 -0800 (PST)
+Received: by mail-wr1-x42a.google.com with SMTP id j2so2022820wrh.9
+        for <devicetree@vger.kernel.org>; Thu, 09 Mar 2023 06:21:56 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112; t=1678371714;
+        h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
+         :user-agent:references:from:to:cc:subject:date:message-id:reply-to;
+        bh=AEHlRMi5Q2I80CZialyymAKTB782rTM8WKCpwZlq1o8=;
+        b=hcpQN/n+icfLdi79023NpowiwPnkzd6YL1WrFNyLc8oYHIQsBuUDpGUAahbYaLviym
+         ln31tKbSw7bs2TH8gTWfF1gchQ4Xd6Jk6XX4AkPt5Qtldrzu5ngCjwdnz1HI9/nhUFrF
+         67kNkh2+wKxd0c/WVsYRqYZWXjDbGgGOlfm1EIDEXrFEf75Z+4Nlq6OzXfWBe29nHii4
+         5wwvA/f7IdBAF5QrXAHxRd/RfXxHfoJ4YG5574mF/x5zFNF/FUVwDrm/kRksBTqTQN2G
+         GSMYCeKWDn5o0fQDC3uZZ0qej9VhA58dHOmWsnc79kGWxYZtoyyWXI++jbR/gv6zO2Ln
+         PWtA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1678371714;
+        h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
+         :user-agent:references:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=AEHlRMi5Q2I80CZialyymAKTB782rTM8WKCpwZlq1o8=;
+        b=M7RoErPQRrDVz1lbzYqyzmQuRREuaSt9imjl+WMEvtZuzikXpAhdVpVd4X57eCjLBr
+         pZ7OAch7obKIi4e59oIJAtq76FAyjNzTOoWEXosNgLFmEcOMsS8KQk6HI0Ttu1tyFd0I
+         PSBGfHBB8vjgbzveuQeXOS1UF17b+84Amv7fCQG47BZE9ddn9YDzDsK2u37B0CVkAR06
+         sFmy5ySL+h4Issy4N5acG13IzCMTJ5m5Sw/6ru5CxUtgJsbCrPYHjxjfOvbVIsdfvQbr
+         4zPqjby5uEXXzhrQmR/E/Uck46636wZtNegHCxnG9L+CmZ2LqG278blBfiIi6SLoA+lG
+         lU2g==
+X-Gm-Message-State: AO0yUKUUz1gbBTep94tvMc+q/bMjaZBEEDzDOSu9BxswwLg5I74EeAR3
+        0MtpoZH+A2c+JgVRD1wUanupkg==
+X-Google-Smtp-Source: AK7set+d7SR228BMsoIxKvezFbp4g82LTL4J61pq06eA7vMpP8G1ojBrn/NaLY8jkXnQlPBxLF+OoQ==
+X-Received: by 2002:adf:dd49:0:b0:2c7:1aaa:750 with SMTP id u9-20020adfdd49000000b002c71aaa0750mr14090260wrm.66.1678371714560;
+        Thu, 09 Mar 2023 06:21:54 -0800 (PST)
+Received: from localhost (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
+        by smtp.gmail.com with ESMTPSA id a13-20020a5d508d000000b002c54536c662sm18204361wrt.34.2023.03.09.06.21.53
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 09 Mar 2023 06:21:53 -0800 (PST)
+References: <20230301183759.16163-1-ddrokosov@sberdevices.ru>
+ <20230301183759.16163-3-ddrokosov@sberdevices.ru>
+ <1jr0u2azfi.fsf@starbuckisacylon.baylibre.com>
+ <20230306200549.7iuedbl27ejfhf6b@CAB-WSD-L081021>
+User-agent: mu4e 1.8.13; emacs 28.2
+From:   Jerome Brunet <jbrunet@baylibre.com>
+To:     Dmitry Rokosov <ddrokosov@sberdevices.ru>
+Cc:     neil.armstrong@linaro.org, mturquette@baylibre.com,
+        sboyd@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, khilman@baylibre.com,
+        martin.blumenstingl@googlemail.com, jian.hu@amlogic.com,
+        kernel@sberdevices.ru, rockosov@gmail.com,
+        linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v9 2/5] clk: meson: a1: add Amlogic A1 PLL clock
+ controller driver
+Date:   Thu, 09 Mar 2023 15:20:23 +0100
+In-reply-to: <20230306200549.7iuedbl27ejfhf6b@CAB-WSD-L081021>
+Message-ID: <1jlek60zun.fsf@starbuckisacylon.baylibre.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Firefox/102.0 Thunderbird/102.8.0
-Subject: Re: [PATCH v1 2/4] Revert "dt-bindings: mmc: Add bindings for Intel
- Thunder Bay SoC"
-Content-Language: en-US
-To:     Krzysztof Kozlowski <krzk@kernel.org>, rashmi.a@intel.com,
-        ulf.hansson@linaro.org, michal.simek@xilinx.com,
-        linux-mmc@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        robh+dt@kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, kishon@ti.com, vkoul@kernel.org,
-        andriy.shevchenko@linux.intel.com, linux-phy@lists.infradead.org,
-        mgross@linux.intel.com
-Cc:     kris.pan@linux.intel.com, mahesh.r.vaidya@intel.com,
-        nandhini.srikandan@intel.com, vasavi.v.itha@intel.com,
-        kenchappa.demakkanavar@intel.com, furong.zhou@intel.com,
-        mallikarjunappa.sangannavar@intel.com
-References: <20230124054427.28808-1-rashmi.a@intel.com>
- <20230124054427.28808-2-rashmi.a@intel.com>
- <c850df25-57b8-3172-8e5c-c466dc8556cd@kernel.org>
-From:   Adrian Hunter <adrian.hunter@intel.com>
-Organization: Intel Finland Oy, Registered Address: PL 281, 00181 Helsinki,
- Business Identity Code: 0357606 - 4, Domiciled in Helsinki
-In-Reply-To: <c850df25-57b8-3172-8e5c-c466dc8556cd@kernel.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,
-        SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 24/01/23 13:31, Krzysztof Kozlowski wrote:
-> On 24/01/2023 06:44, rashmi.a@intel.com wrote:
->> From: "A, Rashmi" <rashmi.a@intel.com>
->>
->> This reverts commit ab991c05c42853f0b6110022db9bf30fcc6323dd.
-> 
-> Please use scripts/get_maintainers.pl to get a list of necessary people
-> and lists to CC.  It might happen, that command when run on an older
-> kernel, gives you outdated entries.  Therefore please be sure you base
-> your patches on recent Linux kernel.
-> 
->>
->> Revert Thunder Bay specific code as the product got cancelled
->> and there are no end customers.
->>
->> Signed-off-by: A, Rashmi <rashmi.a@intel.com>
->> Reviewed-by: Hunter, Adrian <adrian.hunter@intel.com>wq
-> 
-> Stray characters.
-> 
->> ---
->>  .../devicetree/bindings/mmc/arasan,sdhci.yaml | 25 -------------------
->>  1 file changed, 25 deletions(-)
->>
->> diff --git a/Documentation/devicetree/bindings/mmc/arasan,sdhci.yaml b/Documentation/devicetree/bindings/mmc/arasan,sdhci.yaml
->> index 4053de758db6..0d5d21dd30bb 100644
->> --- a/Documentation/devicetree/bindings/mmc/arasan,sdhci.yaml
->> +++ b/Documentation/devicetree/bindings/mmc/arasan,sdhci.yaml
->> @@ -88,12 +88,6 @@ properties:
->>          description:
->>            For this device it is strongly suggested to include
->>            arasan,soc-ctl-syscon.
->> -      - items:
->> -          - const: intel,thunderbay-sdhci-5.1   # Intel Thunder Bay eMMC PHY
->> -          - const: arasan,sdhci-5.1
-> 
-> Instead should be made rather deprecated, unless you are sure there is
-> no single person in the world using the bindings (e.g. with BSD or
-> bootloader)?
 
-I am sorry but this is not clear to me.  As I understand it,
-the hardware was never released, so the binding serves no
-purpose.  Should it be removed or "deprecated"?
+On Mon 06 Mar 2023 at 23:05, Dmitry Rokosov <ddrokosov@sberdevices.ru> wrote:
+
+> On Mon, Mar 06, 2023 at 12:17:23PM +0100, Jerome Brunet wrote:
+>> 
+>> On Wed 01 Mar 2023 at 21:37, Dmitry Rokosov <ddrokosov@sberdevices.ru> wrote:
+>> 
+>> > Introduce PLL clock controller for Amlogic A1 SoC family.
+>> >
+>> > Signed-off-by: Jian Hu <jian.hu@amlogic.com>
+>> > Signed-off-by: Dmitry Rokosov <ddrokosov@sberdevices.ru>
+>> > ---
+>> >  drivers/clk/meson/Kconfig  |  10 +
+>> >  drivers/clk/meson/Makefile |   1 +
+>> >  drivers/clk/meson/a1-pll.c | 365 +++++++++++++++++++++++++++++++++++++
+>> >  drivers/clk/meson/a1-pll.h |  47 +++++
+>> >  4 files changed, 423 insertions(+)
+>> >  create mode 100644 drivers/clk/meson/a1-pll.c
+>> >  create mode 100644 drivers/clk/meson/a1-pll.h
+>> >
+>
+> [...]
+>
+>> > diff --git a/drivers/clk/meson/a1-pll.c b/drivers/clk/meson/a1-pll.c
+>> > new file mode 100644
+>> > index 000000000000..c565f9b2a8dd
+>> > --- /dev/null
+>> > +++ b/drivers/clk/meson/a1-pll.c
+>> > @@ -0,0 +1,365 @@
+>> > +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+>> > +/*
+>> > + * Copyright (c) 2019 Amlogic, Inc. All rights reserved.
+>> > + * Author: Jian Hu <jian.hu@amlogic.com>
+>> > + *
+>> > + * Copyright (c) 2023, SberDevices. All Rights Reserved.
+>> > + * Author: Dmitry Rokosov <ddrokosov@sberdevices.ru>
+>> > + */
+>> > +
+>> > +#include <linux/clk-provider.h>
+>> > +#include <linux/of_device.h>
+>> > +#include <linux/platform_device.h>
+>> > +#include "meson-a1-clkc.h"
+>> 
+>> As pointed out by the kernel robot, there is a problem here
+>> 
+>
+> My fault. Really sorry for that.
+>
+> [...]
+>
+>> > +static struct clk_regmap fixed_pll = {
+>> > +	.data = &(struct clk_regmap_gate_data){
+>> > +		.offset = ANACTRL_FIXPLL_CTRL0,
+>> > +		.bit_idx = 20,
+>> > +	},
+>> > +	.hw.init = &(struct clk_init_data) {
+>> > +		.name = "fixed_pll",
+>> > +		.ops = &clk_regmap_gate_ops,
+>> > +		.parent_hws = (const struct clk_hw *[]) {
+>> > +			&fixed_pll_dco.hw
+>> > +		},
+>> > +		.num_parents = 1,
+>> > +		/*
+>> > +		 * It is enough that the fdiv leaf has critical flag,
+>> > +		 * No critical or unused flag here.
+>> > +		 */
+>> 
+>> The comment is not useful
+>> 
+>
+> OK
+>
+>> > +	},
+>> > +};
+>> > +
+>> > +static const struct pll_mult_range hifi_pll_mult_range = {
+>> > +	.min = 32,
+>> > +	.max = 64,
+>> > +};
+>> > +
+>> > +static const struct reg_sequence hifi_init_regs[] = {
+>> > +	{ .reg = ANACTRL_HIFIPLL_CTRL1, .def = 0x01800000 },
+>> > +	{ .reg = ANACTRL_HIFIPLL_CTRL2, .def = 0x00001100 },
+>> > +	{ .reg = ANACTRL_HIFIPLL_CTRL3, .def = 0x100a1100 },
+>> > +	{ .reg = ANACTRL_HIFIPLL_CTRL4, .def = 0x00302000 },
+>> > +	{ .reg = ANACTRL_HIFIPLL_CTRL0, .def = 0x01f18440 },
+>> 
+>> This last poke should not bits otherwise handled by parms.
+>> This is a rate init in disguise.
+>> 
+>
+> I believe, you are talking about hifi_pll clk_regmap conflicts with
+> hifi_init_regs. The above init sequence shouldn't affect pll regmap setup,
+> it doesn't touch them (we assume that default bit values are all zero):
+>
+>     .en = {
+>         .reg_off = ANACTRL_HIFIPLL_CTRL0,
+>         .shift   = 28,
+>         .width   = 1,
+>     },
+>     // init_value = 0x01f18440
+>     // en_mask    = 0x10000000
+>
+>     .m = {
+>         .reg_off = ANACTRL_HIFIPLL_CTRL0,
+>         .shift   = 0,
+>         .width   = 8,
+>     },
+>     // init_value = 0x01f18440
+>     // m_mask     = 0x0000000f
+
+mask is 0xff with width 8
+
+>
+>     .n = {
+>         .reg_off = ANACTRL_HIFIPLL_CTRL0,
+>         .shift   = 10,
+>         .width   = 5,
+>     },
+>     // init_value = 0x01f18440
+>     // n_mask     = 0x00007c00
+>                            ^
+>                     oops, one overlap
+>                     but why we can't set init value for pre_sel?
+>
+>     .frac = {
+>         .reg_off = ANACTRL_HIFIPLL_CTRL1,
+>         .shift   = 0,
+>         .width   = 19,
+>     },
+>     // init_value = 0x01800000
+>     // frac_mask  = 0x0007ffff
+>
+>     .current_en = {
+>         .reg_off = ANACTRL_HIFIPLL_CTRL0,
+>         .shift   = 26,
+>         .width   = 1,
+>     },
+>     // init_value      = 0x01f18440
+>     // current_en_mask = 0x04000000
+>
+>     .l_detect = {
+>         .reg_off = ANACTRL_HIFIPLL_CTRL2,
+>         .shift   = 6,
+>         .width   = 1,
+>     },
+>     // init_value    = 0x00001100
+>     // l_detect_mask = 0x00000040
+>
+>> > +};
+>> > +
+>> > +static struct clk_regmap hifi_pll = {
+>> > +	.data = &(struct meson_clk_pll_data){
+>> > +		.en = {
+>> > +			.reg_off = ANACTRL_HIFIPLL_CTRL0,
+>> > +			.shift   = 28,
+>> > +			.width   = 1,
+>> > +		},
+>> > +		.m = {
+>> > +			.reg_off = ANACTRL_HIFIPLL_CTRL0,
+>> > +			.shift   = 0,
+>> > +			.width   = 8,
+>> > +		},
+>> > +		.n = {
+>> > +			.reg_off = ANACTRL_HIFIPLL_CTRL0,
+>> > +			.shift   = 10,
+>> > +			.width   = 5,
+>> > +		},
+>> > +		.frac = {
+>> > +			.reg_off = ANACTRL_HIFIPLL_CTRL1,
+>> > +			.shift   = 0,
+>> > +			.width   = 19,
+>> > +		},
+>> > +		.l = {
+>> > +			.reg_off = ANACTRL_HIFIPLL_STS,
+>> > +			.shift   = 31,
+>> > +			.width   = 1,
+>> > +		},
+>> > +		.current_en = {
+>> > +			.reg_off = ANACTRL_HIFIPLL_CTRL0,
+>> > +			.shift   = 26,
+>> > +			.width   = 1,
+>> > +		},
+>> > +		.l_detect = {
+>> 
+>> What is this ?
+>> 
+>
+> Lock detection module.
+>
+> This is IP module included to new PLL power-on sequence. From clk-pll.c
+> patchset:
+>
+> /*
+>  * Compared with the previous SoCs, self-adaption current module
+>  * is newly added for A1, keep the new power-on sequence to enable the
+>  * PLL. The sequence is:
+>  * 1. enable the pll, delay for 10us
+>  * 2. enable the pll self-adaption current module, delay for 40us
+>  * 3. enable the lock detect module
+>  */
+
+Ok. I missed this is the PLL driver
+
+>
+> [...]
+>
+>> > +static struct clk_regmap fclk_div3 = {
+>> > +	.data = &(struct clk_regmap_gate_data){
+>> > +		.offset = ANACTRL_FIXPLL_CTRL0,
+>> > +		.bit_idx = 22,
+>> > +	},
+>> > +	.hw.init = &(struct clk_init_data){
+>> > +		.name = "fclk_div3",
+>> > +		.ops = &clk_regmap_gate_ops,
+>> > +		.parent_hws = (const struct clk_hw *[]) {
+>> > +			&fclk_div3_div.hw
+>> > +		},
+>> > +		.num_parents = 1,
+>> > +		/*
+>> > +		 * This clock is used by APB bus which is set in boot ROM code
+>> > +		 * and is required by the platform to operate correctly.
+>> > +		 * About critical, refer to fclk_div2.
+>> 
+>> This last line is not useful. Same for other occurences
+>> 
+>
+> Good point. Copy-paste detected :-)
+>
+> [...]
+>
+>> > +static int meson_a1_pll_probe(struct platform_device *pdev)
+>> > +{
+>> > +	struct device *dev = &pdev->dev;
+>> > +	struct clk_hw *hw;
+>> > +	void __iomem *base;
+>> > +	struct regmap *map;
+>> > +	int clkid, i, err;
+>> > +
+>> > +	base = devm_platform_ioremap_resource(pdev, 0);
+>> > +	if (IS_ERR(base))
+>> > +		return dev_err_probe(dev, PTR_ERR(base),
+>> > +				     "can't ioremap resource\n");
+>> > +
+>> > +	map = devm_regmap_init_mmio(dev, base, &a1_pll_regmap_cfg);
+>> > +	if (IS_ERR(map))
+>> > +		return dev_err_probe(dev, PTR_ERR(map),
+>> > +				     "can't init regmap mmio region\n");
+>> > +
+>> > +	/* Populate regmap for the regmap backed clocks */
+>> > +	for (i = 0; i < ARRAY_SIZE(a1_pll_regmaps); i++)
+>> > +		a1_pll_regmaps[i]->map = map;
+>> > +
+>> > +	for (clkid = 0; clkid < a1_pll_hw_onecell_data.num; clkid++) {
+>> > +		hw = a1_pll_hw_onecell_data.hws[clkid];
+>> > +		err = devm_clk_hw_register(dev, hw);
+>> > +		if (err)
+>> > +			return dev_err_probe(dev, err,
+>> > +					     "clock registration failed\n");
+>> > +	}
+>> > +
+>> > +	return devm_of_clk_add_hw_provider(dev, of_clk_hw_onecell_get,
+>> > +					   &a1_pll_hw_onecell_data);
+>> > +}
+>> > +
+>> > +#ifdef CONFIG_OF
+>> 
+>> This config is selected by ARM64 which this driver depends on
+>> 
+>
+> Make sense, thanks a lot!
+>
+> [...]
 
