@@ -2,74 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 661D16B1F59
-	for <lists+devicetree@lfdr.de>; Thu,  9 Mar 2023 10:07:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B22CE6B1F7A
+	for <lists+devicetree@lfdr.de>; Thu,  9 Mar 2023 10:09:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230268AbjCIJHT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Mar 2023 04:07:19 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45404 "EHLO
+        id S230434AbjCIJJs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Mar 2023 04:09:48 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56158 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230394AbjCIJGz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Mar 2023 04:06:55 -0500
-Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BB3F3410B5
-        for <devicetree@vger.kernel.org>; Thu,  9 Mar 2023 01:06:31 -0800 (PST)
-Received: by mail-ed1-x535.google.com with SMTP id da10so4217024edb.3
-        for <devicetree@vger.kernel.org>; Thu, 09 Mar 2023 01:06:31 -0800 (PST)
+        with ESMTP id S230494AbjCIJJe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Mar 2023 04:09:34 -0500
+Received: from mail-yb1-xb36.google.com (mail-yb1-xb36.google.com [IPv6:2607:f8b0:4864:20::b36])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2838E113F9
+        for <devicetree@vger.kernel.org>; Thu,  9 Mar 2023 01:09:30 -0800 (PST)
+Received: by mail-yb1-xb36.google.com with SMTP id e82so1169831ybh.9
+        for <devicetree@vger.kernel.org>; Thu, 09 Mar 2023 01:09:30 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1678352790;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=tkirvH36bz1SSzRvgM3xusCeXYm/Qa8xDADaoiNcHak=;
-        b=zdCL6wDW2/4hUtJh2Vp7MC3nXNOwXxGobiz/ByMY6Hv9XZ3buLtxaZTZAzo5R2cgIl
-         PTaoJBwgGcVkgoiXek4Ay72sRZGUFjxrsGoMP6pcB5P/pgY7rpXRA1VkLI81IxWefqP1
-         JJApiHk+0Seevvpi6VCVQZTzXBb0EDIZpRWLsAthSvcskX6yfpofxcoEYAf66tjwofcd
-         dO0xaFAOb7ZSGcmtlMTfbQZ0Cgo/Euup+mskNSExkzMUYCFzsyFkLUQ2+cFHay93Sl1G
-         8pg8yLWc5BsfHpv+ffkJinZ4BjPNm7lfiiAO1+VJhoNazjeYL0BDT7iWrE1DljWF9Ljt
-         ACAw==
+        d=linaro.org; s=google; t=1678352969;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=As7r+GPHEmvAUFDtsvfEp735NwW2WEg6DbTgAlj58R0=;
+        b=d5zPXnIdCSL8PFYhyYOeGqp/z4KLzRwZUDS5MQscn602dDdMFOICNvctZM6XgOSs/s
+         Md7TYhkP3I4c8GUXNxi6ka8Hry0M3d8uw/UHhPRafzoTu+2lLo2QrAr4pyjwRTYQ4+CI
+         07WNh/oBiql5KgaJDO8K1gDaGWu+DAsLRq2nU9Y9wj39MtMFMILC9ahu+4xt7cmhGPYd
+         X90VtbPi3OMstH+/UqpSOwHHI+EYQ7LarXzbLBCDuMKzdMMFQ/UxUKKqVA7sa5cL0Uez
+         IZChwC6FoLVRu2JgNXLPAG+SxViuz8t/Op2vZmpSB0iiljJXiJOhtcT6NmEsfqrkeFEw
+         o0Qg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678352790;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=tkirvH36bz1SSzRvgM3xusCeXYm/Qa8xDADaoiNcHak=;
-        b=aNfyjPT1uo1fWkJJqVys3ZHnedrY1d6O0FAXi/fquJVrH/W63cZ4/6mKzQVoS54zaw
-         XaRHOQByZcddddwjdIDdgTjTf7iAuJplNxMwBkyWPGwwVrdYp+39QXGyCdyyOZPkwkt6
-         LPM4ytGoubsherrv0i+fa1HPxWKs5OuoN5d3nffF6XSA0ZEav9/C8VdxIRtHzhYhA/NS
-         ombtt3LYoMvAC+ZlkQ+IHiNXqLiCy3lhmpjO5tUOGJNvL0TgT6cr43qB31tTYnV4ugIN
-         WUYPavkRV+eGY5tcdpX2c8uNXrCACz2RsS9UZe26g2LQM52i66W1L0G1wz4SEmTCYsCh
-         gv2w==
-X-Gm-Message-State: AO0yUKVn/PEhVDFy+d6gV+W6WXwJ+hc6of1kYh9SjjuspQ1K3kyNQ4rk
-        MTOjw4lYTRakDQwibbAYfN2PoA==
-X-Google-Smtp-Source: AK7set+rKqiVM6Gdw8qujKTDrc/Heeyue0Z8qfKwFF4hVJQshh8PWjeUgQSn+8D8eIG+0iJ1+YG+CQ==
-X-Received: by 2002:a17:907:6d08:b0:88f:9445:f8df with SMTP id sa8-20020a1709076d0800b0088f9445f8dfmr24041835ejc.21.1678352789970;
-        Thu, 09 Mar 2023 01:06:29 -0800 (PST)
-Received: from ?IPV6:2a02:810d:15c0:828:7ee2:e73e:802e:45c1? ([2a02:810d:15c0:828:7ee2:e73e:802e:45c1])
-        by smtp.gmail.com with ESMTPSA id n21-20020a17090625d500b00905a1abecbfsm8523339ejb.47.2023.03.09.01.06.29
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 09 Mar 2023 01:06:29 -0800 (PST)
-Message-ID: <c8dc876e-eb9b-292c-213d-b8c3348cf63a@linaro.org>
-Date:   Thu, 9 Mar 2023 10:06:28 +0100
+        d=1e100.net; s=20210112; t=1678352969;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=As7r+GPHEmvAUFDtsvfEp735NwW2WEg6DbTgAlj58R0=;
+        b=yf2SN/Jo2Kk1MgDajiN0T4gkpX+ZmRhmkzalVBCrqJqUEEZSOygFRurmS5KkvTIhxn
+         11gDlkqBvm6uXwfjlIrk53YK41YtEcu1EJaB4VFWxcGQZtZ7pgjoBYY/wf2Wcq5pVUg0
+         XkBB+UtSht1BOdBzzyw8u2nfXhRlnj3S8pDDiqi1kAzF3ArqZOh05IBbv6xHAXJKSWVU
+         7CMv1nlnVVO3HCKIY91ZUbFNJSrJ4U0iP90cPNqmFrsSNkUcDWPwdpBSRKlnQ0ln3iqi
+         ireIGft/HpcXISg1xyWexwyteCofDJeveUpFuvH/iUi43TIBuOrXpkLvg0GC/9Ic1RVz
+         wlrw==
+X-Gm-Message-State: AO0yUKUqJPj7MWhSg4qH0jdcT++7eH2vNs8VUydsBsYVG0tANVo8opQm
+        Q8ddFq/y0nibUkBfP98NGcTEz4u4CY/1NwV2qHeCgA==
+X-Google-Smtp-Source: AK7set9SxHJdstKtORUta6fNpFj7c3NC6Y9ep4Dfm8p9BxYEaHWCbrFjAqLaiUObiP3YlHYpudlhcELLtQQQOTOX9Yw=
+X-Received: by 2002:a25:8c84:0:b0:b23:4649:7ef3 with SMTP id
+ m4-20020a258c84000000b00b2346497ef3mr240804ybl.4.1678352969333; Thu, 09 Mar
+ 2023 01:09:29 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-Subject: Re: [PATCH 2/2] leds: Add support for rohm,bd65b60 led driver
-Content-Language: en-US
-To:     Bogdan Ionescu <bogdan.ionescu.work@gmail.com>,
-        Pavel Machek <pavel@ucw.cz>, Lee Jones <lee@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-leds@vger.kernel.or, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20230308201451.11629-1-bogdan.ionescu.work@gmail.com>
- <20230308201451.11629-2-bogdan.ionescu.work@gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230308201451.11629-2-bogdan.ionescu.work@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+References: <20230216013230.22978-1-ansuelsmth@gmail.com>
+In-Reply-To: <20230216013230.22978-1-ansuelsmth@gmail.com>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Thu, 9 Mar 2023 10:09:18 +0100
+Message-ID: <CACRpkda30Ky5oYPn_nGWGOzT5ntZYdE3gafrs7D27ZHxgGuO8A@mail.gmail.com>
+Subject: Re: [PATCH v8 00/13] Adds support for PHY LEDs with offload triggers
+To:     Christian Marangi <ansuelsmth@gmail.com>,
+        Hans de Goede <hdegoede@redhat.com>
+Cc:     Pavel Machek <pavel@ucw.cz>, Lee Jones <lee@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Vladimir Oltean <olteanv@gmail.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Russell King <linux@armlinux.org.uk>,
+        Jonathan Corbet <corbet@lwn.net>,
+        "Russell King (Oracle)" <rmk+kernel@armlinux.org.uk>,
+        Jacek Anaszewski <jacek.anaszewski@gmail.com>,
+        John Crispin <john@phrozen.org>, linux-leds@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        netdev@vger.kernel.org, linux-doc@vger.kernel.org,
+        Tim Harvey <tharvey@gateworks.com>,
+        Alexander Stein <alexander.stein@ew.tq-group.com>,
+        Rasmus Villemoes <rasmus.villemoes@prevas.dk>,
+        Bagas Sanjaya <bagasdotme@gmail.com>,
+        Arun.Ramadoss@microchip.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -78,177 +90,115 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 08/03/2023 21:14, Bogdan Ionescu wrote:
-> This commit adds support for ROHM BD65B60 led driver.
+Hi Christian,
 
-Do not use "This commit/patch".
-https://elixir.bootlin.com/linux/v5.17.1/source/Documentation/process/submitting-patches.rst#L95
+thanks for your patch!
 
-> The chip supports 2 outpus sharing the same current setting
-> and is controlled over I2C.
-> 
-> Signed-off-by: Bogdan Ionescu <bogdan.ionescu.work@gmail.com>
-> ---
+On Thu, Feb 16, 2023 at 2:36=E2=80=AFAM Christian Marangi <ansuelsmth@gmail=
+.com> wrote:
 
-Thank you for your patch. There is something to discuss/improve.
+> The current idea is:
+> - LED driver implement 3 API (hw_control_status/start/stop).
+>   They are used to put the LED in hardware mode and to configure the
+>   various trigger.
+> - We have hardware triggers that are used to expose to userspace the
+>   supported hardware mode and set the hardware mode on trigger
+>   activation.
+> - We can also have triggers that both support hardware and software mode.
+> - The LED driver will declare each supported hardware blink mode and
+>   communicate with the trigger all the supported blink modes that will
+>   be available by sysfs.
+> - A trigger will use blink_set to configure the blink mode to active
+>   in hardware mode.
+> - On hardware trigger activation, only the hardware mode is enabled but
+>   the blink modes are not configured. The LED driver should reset any
+>   link mode active by default.
 
-> +
-> +	/* Check required properties */
-> +	if (!fwnode_property_present(child, "rohm,enable-outputs")) {
-> +		dev_err(dev, "No rohm,enable-outputs property found");
-> +		return -ENOENT;
+The series looks good as a start.
+There are some drivers and HW definitions etc for switch-controlled
+LEDs, which is great.
 
-The property is not required by your binding, so you cannot bail here.
+I am a bit reluctant on the ambition to rely on configuration from sysfs
+for the triggers, and I am also puzzled to how a certain trigger on a
+certain LED is going to associate itself with, say, a certain port.
 
-> +	}
-> +
-> +	ret = fwnode_property_read_u32(child, "rohm,enable-outputs", &led->enable);
-> +	if (ret || (led->enable & LEDSEL_MASK) != led->enable) {
-> +		dev_err(dev, "Failed to read rohm,enable-outputs property");
+I want to draw your attention to this recently merged patch series
+from Hans de Goede:
+https://lore.kernel.org/linux-leds/20230120114524.408368-1-hdegoede@redhat.=
+com/
 
-No need to check for properties twice...
+This adds the devm_led_get() API which works similar to getting
+regulators, clocks, GPIOs or any other resources.
 
-> +		return ret;
-> +	}
-> +
-> +	/* Check optional properties */
-> +	led->state = BD65B60_OFF;
-> +	if (!fwnode_property_present(child, "default-state")) {
-> +		ret = fwnode_property_read_string(child, "default-state",
-> +						(const char **)&default_state);
-> +		if (ret) {
-> +			dev_err(dev, "Failed to read default-state property");
-> +			return ret;
-> +		}
-> +
-> +		if (strcmp(default_state, "keep") == 0) {
-> +			led->state = BD65B60_KEEP;
-> +		} else if (strcmp(default_state, "on") == 0) {
-> +			led->state = BD65B60_ON;
-> +		} else if (strcmp(default_state, "off") == 0) {
-> +			led->state = BD65B60_OFF;
-> +		} else {
-> +			dev_err(dev, "Invalid default-state property");
-> +			return -EINVAL;
-> +		}
-> +	}
-> +
-> +	led->ovp = BD65B60_DEFAULT_OVP_VAL;
-> +	if (fwnode_property_present(child, "rohm,ovp")) {
-> +		ret = fwnode_property_read_u32(child, "rohm,ovp", &led->ovp);
-> +
-> +		if (ret || (led->ovp & OVP_MASK) != led->ovp) {
-> +			dev_err(dev, "Failed to read rohm,ovp property");
-> +			return ret;
-> +		}
-> +	}
-> +
-> +	*fwnode = child;
-> +
-> +	return 0;
-> +}
-> +
-> +static int bd65b60_probe(struct i2c_client *client)
-> +{
-> +	struct bd65b60_led *led;
-> +	struct led_init_data init_data = {};
-> +	struct fwnode_handle *fwnode = NULL;
-> +	int ret;
-> +
-> +	led = devm_kzalloc(&client->dev, sizeof(*led), GFP_KERNEL);
-> +	if (!led)
-> +		return -ENOMEM;
-> +
-> +	led->client = client;
-> +	i2c_set_clientdata(client, led);
-> +
-> +	ret = bd65b60_parse_dt(led, &fwnode);
-> +	if (ret)
-> +		return ret;
-> +
-> +	led->cdev.name = BD65B60_DEFAULT_NAME;
-> +	led->cdev.brightness_set = bd65b60_brightness_set;
-> +	led->cdev.brightness = BD65B60_DEFAULT_BRIGHTNESS;
-> +	led->cdev.max_brightness = BD65B60_MAX_BRIGHTNESS;
-> +	led->cdev.default_trigger = BD65B60_DEFAULT_TRIGGER;
-> +	led->client = client;
-> +
-> +	led->regmap = devm_regmap_init_i2c(client, &bd65b60_regmap_config);
-> +	if (IS_ERR(led->regmap)) {
-> +		ret = PTR_ERR(led->regmap);
-> +		dev_err(&client->dev, "Failed to allocate register map: %d",
-> +			ret);
+It is not yet (I think) hooked into the device tree framework, but it
+supports software nodes so adding DT handling should be sort of
+trivial.
 
-return dev_err_probe
+I think the ambition should be something like this (conjured example)
+for a DSA switch:
 
-> +		return ret;
-> +	}
-> +
-> +	mutex_init(&led->lock);
-> +
-> +	ret = bd65b60_init(led);
-> +	if (ret) {
-> +		dev_err(&client->dev, "Failed to initialize led: %d", ret);
+    platform {
+            switch {
+                    compatible =3D "foo";
 
-return dev_err_probe
+                    leds {
+                            #address-cells =3D <1>;
+                            #size-cells =3D <0>;
+                            led0: led@0 {
+                                    reg =3D <0>;
+                                    color =3D...
+                                    function =3D ...
+                                    function-enumerator =3D ...
+                                    default-state =3D ...
+                            };
+                            led1: led@1 {
+                                    reg =3D <1>;
+                                    color =3D...
+                                    function =3D ...
+                                    function-enumerator =3D ...
+                                    default-state =3D ...
+                            };
+                    };
 
-> +		mutex_destroy(&led->lock);
+                    ports {
+                            #address-cells =3D <1>;
+                            #size-cells =3D <0>;
+                            port@0 {
+                                    reg =3D <0>;
+                                    label =3D "lan0";
+                                    phy-handle =3D <&phy0>;
+                                    leds =3D <&led0>;
+                            };
+                            port@1 {
+                                    reg =3D <1>;
+                                    label =3D "lan1";
+                                    phy-handle =3D <&phy1>;
+                                    leds =3D <&led0>;
+                            };
+                    };
 
-or ret = dev_err_probe and goto to common cleanup part
+                    mdio {
+                            compatible =3D "foo-mdio";
+                            #address-cells =3D <1>;
+                            #size-cells =3D <0>;
 
-> +		return ret;
-> +	}
-> +
-> +	init_data.fwnode = fwnode;
-> +	init_data.devicename = led->client->name;
-> +	init_data.default_label = ":";
-> +	ret = devm_led_classdev_register_ext(&client->dev, &led->cdev,
-> +					     &init_data);
-> +	if (ret) {
-> +		dev_err(&client->dev, "Failed to register led: %d", ret);
+                            phy0: ethernet-phy@0 {
+                                    reg =3D <0>;
+                            };
+                            phy1: ethernet-phy@1 {
+                                    reg =3D <1>;
+                            };
+                    };
+            };
+    };
 
-return dev_err_probe
+I am not the man to tell whether the leds =3D <&led0>; phandle should be on
+the port or actually on the phy, it may even vary. You guys know the answer
+to this.
 
-> +		mutex_destroy(&led->lock);
-> +		return ret;
-> +	}
-> +
-> +	return 0;
-> +}
-> +
-> +static void bd65b60_remove(struct i2c_client *client)
-> +{
-> +	int ret;
-> +	struct bd65b60_led *led = i2c_get_clientdata(client);
-> +
-> +	ret = regmap_write(led->regmap, REG_PON, BD65B60_OFF);
-> +	if (ret)
-> +		dev_err(&client->dev, "Failed to turn off led: %d", ret);
-> +
-> +	mutex_destroy(&led->lock);
-> +}
-> +
-> +static const struct i2c_device_id bd65b60_id[] = {
-> +	{ "bd65b60", 0 },
-> +	{},
-> +};
-> +MODULE_DEVICE_TABLE(i2c, bd65b60_id);
-> +
-> +static const struct of_device_id of_bd65b60_leds_match[] = {
-> +	{ .compatible = "rohm,bd65b60" },
-> +	{},
-> +};
-> +MODULE_DEVICE_TABLE(of, of_bd65b60_leds_match);
-> +
-> +static struct i2c_driver bd65b60_i2c_driver = {
-> +	.driver = {
-> +		.name = "bd65b60",
-> +		.owner = THIS_MODULE,
-> +		.of_match_table = of_match_ptr(of_bd65b60_leds_match),
+But certainly something like this resource phandle will be necessary to
+assign the right LED to the right port or phy, I hope you were not going
+to rely on strings and naming conventions?
 
-Drop of_match_ptr. It requires maybe_unused which you do not have, so
-this will cause warnings.
-
-Best regards,
-Krzysztof
-
+Yours,
+Linus Walleij
