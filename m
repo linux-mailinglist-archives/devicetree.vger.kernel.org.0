@@ -2,134 +2,262 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C0B3C6B1E31
-	for <lists+devicetree@lfdr.de>; Thu,  9 Mar 2023 09:32:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2DF546B1E46
+	for <lists+devicetree@lfdr.de>; Thu,  9 Mar 2023 09:35:47 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229933AbjCIIcZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Mar 2023 03:32:25 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42830 "EHLO
+        id S230036AbjCIIfp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Mar 2023 03:35:45 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43092 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229910AbjCIIcF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Mar 2023 03:32:05 -0500
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 616AB1421F;
-        Thu,  9 Mar 2023 00:30:55 -0800 (PST)
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 3298UGii088836;
-        Thu, 9 Mar 2023 02:30:16 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1678350616;
-        bh=I3lq2iT8KGZnNcSfvrJ8/WAlAe3Iqt8pkOvMQpKrax0=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=Y+QMZE7kiISvWWmNd9pSjq4qAywUJwjoEGC5VZ+aM4ILGkO63GKsHVr17BcP5d5rb
-         dfw+jofBxPzgZBYhkH+7xDDHy3Nze77TAAW3Hm3nXSLN6amlnNnNk7zJaVTIuUAw2Z
-         Ffqh7YX4TDNJerua+AoGTrU70u/23uAt8i7zPV8I=
-Received: from DLEE106.ent.ti.com (dlee106.ent.ti.com [157.170.170.36])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 3298UGfC042805
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Thu, 9 Mar 2023 02:30:16 -0600
-Received: from DLEE100.ent.ti.com (157.170.170.30) by DLEE106.ent.ti.com
- (157.170.170.36) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Thu, 9
- Mar 2023 02:30:15 -0600
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE100.ent.ti.com
- (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
- Frontend Transport; Thu, 9 Mar 2023 02:30:15 -0600
-Received: from uda0500640.dal.design.ti.com (ileaxei01-snat.itg.ti.com [10.180.69.5])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 3298Tf5H063317;
-        Thu, 9 Mar 2023 02:30:12 -0600
-From:   Ravi Gunasekaran <r-gunasekaran@ti.com>
-To:     <nm@ti.com>, <afd@ti.com>, <vigneshr@ti.com>, <kristo@kernel.org>,
-        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <s-vadapalli@ti.com>, <vaishnav.a@ti.com>, <r-gunasekaran@ti.com>
-CC:     <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: [PATCH v13 8/8] arm64: dts: ti: k3-j721s2-common-proc-board: Enable PCIe
-Date:   Thu, 9 Mar 2023 13:59:40 +0530
-Message-ID: <20230309082940.31535-9-r-gunasekaran@ti.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20230309082940.31535-1-r-gunasekaran@ti.com>
-References: <20230309082940.31535-1-r-gunasekaran@ti.com>
+        with ESMTP id S230060AbjCIIfW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Mar 2023 03:35:22 -0500
+Received: from mail-ed1-x52d.google.com (mail-ed1-x52d.google.com [IPv6:2a00:1450:4864:20::52d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 23AAD64B14
+        for <devicetree@vger.kernel.org>; Thu,  9 Mar 2023 00:33:35 -0800 (PST)
+Received: by mail-ed1-x52d.google.com with SMTP id cw28so3876029edb.5
+        for <devicetree@vger.kernel.org>; Thu, 09 Mar 2023 00:33:34 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1678350813;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=/tLHBgVsDTPb9wu0tIc2f2P44AK0lbnBC0FyxkTVNDc=;
+        b=bwBj4q+LjBVk+tENjBVu5m5qB4YgfN+WFaWqB83FffU77Z08jWF0F8ay3pdEjI/Wie
+         GpQOqaddCjhkqnSpjSnc4PIH+VavwC2PO99lNT0qbk7qMeHT8RoeV3JJFSesU1wz1OEn
+         ox1xcbAx0Fui55oMxbYVeVDWbP11lfqWVfYDvbTqbUomfzKqf+0kLFpEOfPVAwTcQ0u7
+         2P1EvP+x03oKC5qEv5R+/CmxWfukfBQzdMehHgb66gUPDCELBTsyYuVhRm93mpmU8Np8
+         Na4azAEQV5NgSleORhbG2FhpajW9umowLiDCa8evYwCjnBVNnBNKnzy25Qwh39APgZqw
+         BzAA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1678350813;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=/tLHBgVsDTPb9wu0tIc2f2P44AK0lbnBC0FyxkTVNDc=;
+        b=0RXaOgzyeh+yJydYiyeVjCQSDrzQQxamdwLVKEdhSpGACHmrO7SzqmRLcG+Dt/gksn
+         aBaA6Os1hl5HcsBOq4IrxJS7XR1EqIGl5PKNywh8aeDq23xb2rIXt/un2lwWx71LyCMl
+         LHNVkVtQfIGeFp7xlCmue1IkAYJUb9+W7P1NZTaBNTGjzVISTx4OGeYP5WTrczqMrWZ9
+         pyxDPT9b5GWJduAYiqKLjDHTP88Dk/hDV/GKDIBdcIjpFlD4vLWwcm8SgYfR4GdbMQsQ
+         D1e7N87rsz4B/Pe3iCpt6WxdYxcoUKqjt+CLoa+GKJRLFYceJMhLG2VCCiT5U07CfeIM
+         m9vg==
+X-Gm-Message-State: AO0yUKX77naQWOJDQyQX2MwjF78ONPDqu4d3rY7BLJi39KYwiM2O7EB2
+        gkX82pBDkxZslnjhEDSbCZl50A==
+X-Google-Smtp-Source: AK7set86MFCaUzuDTjr1QJ2arv7zXxACNqdbrqdAKvBaY8TJ0qzW9KiIoEm5Et2Gz8bfJGZnSoBpZQ==
+X-Received: by 2002:a17:906:ee9:b0:8af:2bb3:80d7 with SMTP id x9-20020a1709060ee900b008af2bb380d7mr25149145eji.31.1678350813458;
+        Thu, 09 Mar 2023 00:33:33 -0800 (PST)
+Received: from ?IPV6:2a02:810d:15c0:828:7ee2:e73e:802e:45c1? ([2a02:810d:15c0:828:7ee2:e73e:802e:45c1])
+        by smtp.gmail.com with ESMTPSA id a8-20020a17090680c800b008cd1f773754sm8441331ejx.5.2023.03.09.00.33.32
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 09 Mar 2023 00:33:32 -0800 (PST)
+Message-ID: <ea1c0579-1b37-77de-3c47-e5b9772cff70@linaro.org>
+Date:   Thu, 9 Mar 2023 09:33:31 +0100
 MIME-Version: 1.0
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.8.0
+Subject: Re: [PATCH v2 3/7] dt-bindings: remoteproc: mpss: Document
+ QDU1000/QRU1000 mpss devices
+Content-Language: en-US
+To:     Melody Olvera <quic_molvera@quicinc.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Jassi Brar <jassisinghbrar@gmail.com>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        Robert Marko <robimarko@gmail.com>,
+        Guru Das Srinagesh <quic_gurus@quicinc.com>
+Cc:     Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Manivannan Sadhasivam <mani@kernel.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-remoteproc@vger.kernel.org
+References: <20230306231202.12223-1-quic_molvera@quicinc.com>
+ <20230306231202.12223-4-quic_molvera@quicinc.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230306231202.12223-4-quic_molvera@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Aswath Govindraju <a-govindraju@ti.com>
+On 07/03/2023 00:11, Melody Olvera wrote:
+> This documents the compatible for the component used to boot the
 
-x1 lane PCIe slot in the common processor board is enabled and connected to
-J721S2 SOM. Add PCIe DT node in common processor board to reflect the
-same.
+Do not use "This commit/patch".
+https://elixir.bootlin.com/linux/v5.17.1/source/Documentation/process/submitting-patches.rst#L95
 
-Reviewed-by: Siddharth Vadapalli <s-vadapalli@ti.com>
-Signed-off-by: Aswath Govindraju <a-govindraju@ti.com>
-Signed-off-by: Vignesh Raghavendra <vigneshr@ti.com>
-Signed-off-by: Matt Ranostay <mranostay@ti.com>
-Signed-off-by: Ravi Gunasekaran <r-gunasekaran@ti.com>
----
-Changes from v12:
-* No change
+> MPSS on the QDU1000 and QRU1000 SoCs.
+> 
+> The QDU1000 and QRU1000 mpss boot process now requires the specification
+> of an RMB register space to complete the handshake needed to start or
+> attach the mpss.
+> 
+> Signed-off-by: Melody Olvera <quic_molvera@quicinc.com>
+> ---
+>  .../remoteproc/qcom,qdu1000-mpss-pas.yaml     | 130 ++++++++++++++++++
+>  1 file changed, 130 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/remoteproc/qcom,qdu1000-mpss-pas.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/remoteproc/qcom,qdu1000-mpss-pas.yaml b/Documentation/devicetree/bindings/remoteproc/qcom,qdu1000-mpss-pas.yaml
+> new file mode 100644
+> index 000000000000..9cb4296c1fa6
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/remoteproc/qcom,qdu1000-mpss-pas.yaml
+> @@ -0,0 +1,130 @@
+> +# SPDX-License-Identifier: GPL-2.0 OR BSD-2-Clause
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/remoteproc/qcom,qdu1000-mpss-pas.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Qualcomm QDU1000 Modem Peripheral Authentication Service
+> +
+> +maintainers:
+> +  - Melody Olvera <quic_molvera@quicinc.com>
+> +
+> +description:
+> +  Qualcomm QDU1000 SoC Peripheral Authentication Service loads and boots firmware
+> +  on the Qualcomm DSP Hexagon core.
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - qcom,qdu1000-mpss-pas
+> +
+> +  reg:
+> +    maxItems: 2
 
-Changes from v11:
-* No change
+You need to list the items instead (just like for clocks).
 
-Changes from v10:
-* Removed Link tag from commit message
+> +
+> +  clocks:
+> +    items:
+> +      - description: XO clock
+> +
+> +  clock-names:
+> +    items:
+> +      - const: xo
+> +
+> +  qcom,qmp:
+> +    $ref: /schemas/types.yaml#/definitions/phandle
+> +    description: Reference to the AOSS side-channel message RAM.
+> +
+> +  smd-edge: false
+> +
+> +  firmware-name:
+> +    $ref: /schemas/types.yaml#/definitions/string-array
 
-Changes from v9:
-* No change
+You can now drop the $ref.
 
-Changes from v8:
-* No change
+> +    items:
+> +      - description: Firmware name of the Hexagon core
+> +      - description: Firmware name of the Hexagon Devicetree
+> +
+> +  memory-region:
+> +    items:
+> +      - description: Memory region for main Firmware authentication
+> +      - description: Memory region for Devicetree Firmware authentication
+> +      - description: DSM Memory region
+> +
+> +  interrupts:
+> +    minItems: 6
+> +
+> +  interrupt-names:
+> +    minItems: 6
+> +
+> +  interconnects:
+> +    minItems: 1
 
-Changes from v7:
-* No change
+maxItems instead
 
-Changes from v6:
-* Removed pcie_ep node update
+> +
+> +  power-domains:
+> +    items:
+> +      - description: CX power domain
+> +      - description: MSS power domain
+> +
+> +  power-domain-names:
+> +    items:
+> +      - const: cx
+> +      - const: mss
+> +
+> +required:
+> +  - compatible
+> +  - reg
 
-Changes from v5:
-* No change
+memory-region
 
-Changes from v4:
-* No change
+(I fixed other bindings)
 
-Changes from v3:
-* No change
+> +
+> +allOf:
+> +  - $ref: /schemas/remoteproc/qcom,pas-common.yaml#
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/clock/qcom,rpmh.h>
+> +    #include <dt-bindings/interconnect/qcom,qdu1000-rpmh.h>
+> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +    #include <dt-bindings/mailbox/qcom-ipcc.h>
+> +    #include <dt-bindings/power/qcom-rpmpd.h>
+> +
+> +    remoteproc@4080000 {
+> +        compatible = "qcom,qdu1000-mpss-pas";
+> +        reg = <0x4080000 0x4040>,
+> +              <0x4180000 0x1000>;
+> +
+> +        clocks = <&rpmhcc RPMH_CXO_CLK>;
+> +        clock-names = "xo";
+> +
+> +        interrupts-extended = <&intc GIC_SPI 264 IRQ_TYPE_EDGE_RISING>,
+> +                              <&smp2p_modem_in 0 IRQ_TYPE_EDGE_RISING>,
+> +                              <&smp2p_modem_in 1 IRQ_TYPE_EDGE_RISING>,
+> +                              <&smp2p_modem_in 2 IRQ_TYPE_EDGE_RISING>,
+> +                              <&smp2p_modem_in 3 IRQ_TYPE_EDGE_RISING>,
+> +                              <&smp2p_modem_in 7 IRQ_TYPE_EDGE_RISING>;
+> +        interrupt-names = "wdog", "fatal", "ready", "handover",
+> +                          "stop-ack", "shutdown-ack";
+> +
+> +        memory-region = <&mpss_mem>, <&dtb_mpss_mem>, <&mpss_dsm_mem>;
+> +
+> +        firmware-name = "qcom/qdu1000/modem.mbn",
+> +                        "qcom/qdu1000/modem_dtb.mbn";
+> +
+> +        power-domains = <&rpmhpd QDU1000_CX>,
+> +                        <&rpmhpd QDU1000_MSS>;
+> +        power-domain-names = "cx", "mss";
+> +
+> +        interconnects = <&mc_virt MASTER_LLCC &mc_virt SLAVE_EBI1>;
+> +
+> +        qcom,qmp = <&aoss_qmp>;
+> +
+> +        qcom,smem-states = <&smp2p_adsp_out 0>;
+> +        qcom,smem-state-names = "stop";
+> +
+> +        glink-edge {
+> +            interrupts-extended = <&ipcc IPCC_CLIENT_MPSS
+> +                                         IPCC_MPROC_SIGNAL_GLINK_QMP
+> +                                         IRQ_TYPE_EDGE_RISING>;
+> +            mboxes = <&ipcc IPCC_CLIENT_MPSS IPCC_MPROC_SIGNAL_GLINK_QMP>;
+> +
+> +            label = "modem";
+> +            qcom,remote-pid = <2>;
+> +
 
-Changes from v2:
-* Patch newly added to the series
+Drop stray blank line
 
- arch/arm64/boot/dts/ti/k3-j721s2-common-proc-board.dts | 8 ++++++++
- 1 file changed, 8 insertions(+)
+> +        };
+> +    };
 
-diff --git a/arch/arm64/boot/dts/ti/k3-j721s2-common-proc-board.dts b/arch/arm64/boot/dts/ti/k3-j721s2-common-proc-board.dts
-index ede8857db7c9..cd3013354493 100644
---- a/arch/arm64/boot/dts/ti/k3-j721s2-common-proc-board.dts
-+++ b/arch/arm64/boot/dts/ti/k3-j721s2-common-proc-board.dts
-@@ -375,6 +375,14 @@
- 	};
- };
- 
-+&pcie1_rc {
-+	status = "okay";
-+	reset-gpios = <&exp1 2 GPIO_ACTIVE_HIGH>;
-+	phys = <&serdes0_pcie_link>;
-+	phy-names = "pcie-phy";
-+	num-lanes = <1>;
-+};
-+
- &mcu_mcan0 {
- 	status = "okay";
- 	pinctrl-names = "default";
--- 
-2.17.1
+Best regards,
+Krzysztof
 
