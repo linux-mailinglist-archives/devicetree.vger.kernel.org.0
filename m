@@ -2,156 +2,204 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F0F9B6B2104
-	for <lists+devicetree@lfdr.de>; Thu,  9 Mar 2023 11:14:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3FB376B2114
+	for <lists+devicetree@lfdr.de>; Thu,  9 Mar 2023 11:17:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231319AbjCIKOH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Mar 2023 05:14:07 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50334 "EHLO
+        id S229806AbjCIKRQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Mar 2023 05:17:16 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55944 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230041AbjCIKNu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Mar 2023 05:13:50 -0500
-Received: from mailout2.w1.samsung.com (mailout2.w1.samsung.com [210.118.77.12])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1F90816AFF
-        for <devicetree@vger.kernel.org>; Thu,  9 Mar 2023 02:13:16 -0800 (PST)
-Received: from eucas1p1.samsung.com (unknown [182.198.249.206])
-        by mailout2.w1.samsung.com (KnoxPortal) with ESMTP id 20230309101301euoutp02f32c5f8a96966973ae9dcff0cdf05c80~KuJm8xva_1006610066euoutp02M
-        for <devicetree@vger.kernel.org>; Thu,  9 Mar 2023 10:13:01 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.w1.samsung.com 20230309101301euoutp02f32c5f8a96966973ae9dcff0cdf05c80~KuJm8xva_1006610066euoutp02M
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-        s=mail20170921; t=1678356781;
-        bh=QJxMvptBr9R9zrBbrseJ94rw8nv0FTvkVZRlgeEl6xc=;
-        h=Date:Subject:To:Cc:From:In-Reply-To:References:From;
-        b=U6tPEuXiOL4DAsLfFQ6h8sLg8GHbo1LHFtdvAG+YkgeDPtcNb4Am/ooyPtX05Q0Ms
-         P3wTbtsnid/cm0Qatvf3mJ0dMaZhv7dxwinH3rP0e/XlOOdmIiJiaQOl0V0d7gvDpH
-         CiiK3culUGvgwTF7f0UfBCtUyKEK7bRxQ3QERZ3g=
-Received: from eusmges3new.samsung.com (unknown [203.254.199.245]) by
-        eucas1p1.samsung.com (KnoxPortal) with ESMTP id
-        20230309101301eucas1p1b4830baa61bf2729e144dcee95eac0b0~KuJmd29OY0145501455eucas1p1U;
-        Thu,  9 Mar 2023 10:13:01 +0000 (GMT)
-Received: from eucas1p1.samsung.com ( [182.198.249.206]) by
-        eusmges3new.samsung.com (EUCPMTA) with SMTP id B9.90.10014.C21B9046; Thu,  9
-        Mar 2023 10:13:00 +0000 (GMT)
-Received: from eusmtrp2.samsung.com (unknown [182.198.249.139]) by
-        eucas1p2.samsung.com (KnoxPortal) with ESMTPA id
-        20230309101300eucas1p2db2eff24d7b1f4073c8a43f49b086d9d~KuJl4luec1056510565eucas1p2T;
-        Thu,  9 Mar 2023 10:13:00 +0000 (GMT)
-Received: from eusmgms2.samsung.com (unknown [182.198.249.180]) by
-        eusmtrp2.samsung.com (KnoxPortal) with ESMTP id
-        20230309101300eusmtrp23ff57ebe6759770f2fbcb6d388253bca~KuJl389C63045430454eusmtrp2F;
-        Thu,  9 Mar 2023 10:13:00 +0000 (GMT)
-X-AuditID: cbfec7f5-ba1ff7000000271e-34-6409b12ca55a
-Received: from eusmtip1.samsung.com ( [203.254.199.221]) by
-        eusmgms2.samsung.com (EUCPMTA) with SMTP id A5.8C.09583.C21B9046; Thu,  9
-        Mar 2023 10:13:00 +0000 (GMT)
-Received: from [106.210.134.192] (unknown [106.210.134.192]) by
-        eusmtip1.samsung.com (KnoxPortal) with ESMTPA id
-        20230309101259eusmtip1e8505a458710796f05c2baf58f51d7c5~KuJlSa7811427714277eusmtip1N;
-        Thu,  9 Mar 2023 10:12:59 +0000 (GMT)
-Message-ID: <d1175c3e-301d-1cbc-607c-e94051780806@samsung.com>
-Date:   Thu, 9 Mar 2023 11:12:59 +0100
+        with ESMTP id S230074AbjCIKQ6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Mar 2023 05:16:58 -0500
+Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 474D7EA030
+        for <devicetree@vger.kernel.org>; Thu,  9 Mar 2023 02:16:01 -0800 (PST)
+Received: by mail-ed1-x535.google.com with SMTP id k10so4750490edk.13
+        for <devicetree@vger.kernel.org>; Thu, 09 Mar 2023 02:16:01 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1678356959;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=3iHNnARtiWlelPTEYSklEydU8JYZzWIK8P85AN1yl9I=;
+        b=TAtsYU7aL90UK5FAOp1+XUdcU5Rlpm7Id9ve927T/336vQHMBY62g2/iNT6o2J2HIn
+         b+WlDBLHkfES74CCLCb//9/bR6GKyEOj5wUpKKfmqVlBxEGnaO9g2WQBbrR9e3nCSouL
+         GnBVP4KiV5cGzEKACty3JotTWlQp6nA4jJM0YevVpvlXnd19TApPEnT7DwY6/aHqpAZn
+         A8535P1gH9GD0WAIP47ffdUUUkr+2fCI2yY0NtBCai3MVTGhlNq0GHMueNkhLaZzRmmN
+         wt/vUl/eLYzGG+uwJXmxr+VuXxeoN2rzJbBOh+sDeDjy+DDUPJToe2vG7ADD8Y6O5H3N
+         Ibiw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1678356959;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=3iHNnARtiWlelPTEYSklEydU8JYZzWIK8P85AN1yl9I=;
+        b=YtE6nwdkP0ehUJqt3v3GhdMt/0cmh79xYnX1KpwGSrtesZDt2hKfq3tJezKNTtF4yO
+         MIVnBTFws+S+ZSMZwrIfafc4pGI4x9HoD/ZHuWHYzFD9ZOqhAPOQ1HWRjZLvyTD9lHzC
+         ag1/Og2uRVEQK8eYgwKrPmsnuA4ZTwEPXcFPp/NUUoZib1w97TKv7OQaNikc1QWwBqpU
+         h/PYqNBGg6Ztg+PPnrMuIo/4hLcHLRzgEenDUgYmRgLtKwNHms47QKo9nsxkvgWgM4UX
+         /YK0i1Az3BEzfmMzpnLeC+bOZdTGvHW0W84guUZ6x4CkR1WuGDTeDyqZGicBPUamP0dr
+         uNeA==
+X-Gm-Message-State: AO0yUKWvXh6aFqtW5RNQNYeBdxH7egMwuMBL74+9fu8gGPYt88lqhjsW
+        3lrcs/+pPhsKHYdLxQc2/3VqHA==
+X-Google-Smtp-Source: AK7set/gymu6PNDxSblX+jHSQQwL7efPZKgV/MKyrwZe++DVIzMiHrNxQ5kYnjxQ1WHIAMJd2RXMpw==
+X-Received: by 2002:a17:907:3e8f:b0:8b1:779c:a8b1 with SMTP id hs15-20020a1709073e8f00b008b1779ca8b1mr27320141ejc.5.1678356959585;
+        Thu, 09 Mar 2023 02:15:59 -0800 (PST)
+Received: from ?IPV6:2a02:810d:15c0:828:7ee2:e73e:802e:45c1? ([2a02:810d:15c0:828:7ee2:e73e:802e:45c1])
+        by smtp.gmail.com with ESMTPSA id lc9-20020a170906f90900b008e34bcd7940sm8570335ejb.132.2023.03.09.02.15.58
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 09 Mar 2023 02:15:59 -0800 (PST)
+Message-ID: <bd181837-2ebe-99a2-800a-30bad080dc4e@linaro.org>
+Date:   Thu, 9 Mar 2023 11:15:57 +0100
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0)
-        Gecko/20100101 Thunderbird/102.8.0
-Subject: Re: [PATCH 0/6] soc: samsung: pm_domains: Add Exynos850 support
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.8.0
+Subject: Re: [PATCH RFC 1/3] dt-bindings: clock: Add Renesas versa3 clock
+ generator bindings
 Content-Language: en-US
-To:     Sam Protsenko <semen.protsenko@linaro.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     Alim Akhtar <alim.akhtar@samsung.com>,
-        Chanwoo Choi <cw00.choi@samsung.com>,
-        Chanho Park <chanho61.park@samsung.com>,
-        David Virag <virag.david003@gmail.com>,
-        linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-From:   Marek Szyprowski <m.szyprowski@samsung.com>
-In-Reply-To: <20230308230931.27261-1-semen.protsenko@linaro.org>
+To:     Biju Das <biju.das.jz@bp.renesas.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Geert Uytterhoeven <geert+renesas@glider.be>,
+        "linux-renesas-soc@vger.kernel.org" 
+        <linux-renesas-soc@vger.kernel.org>,
+        "linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        Fabrizio Castro <fabrizio.castro.jz@renesas.com>
+References: <20230220131307.269100-1-biju.das.jz@bp.renesas.com>
+ <20230220131307.269100-2-biju.das.jz@bp.renesas.com>
+ <e9e63c87-b491-b4d5-b226-0539ef0de2d0@linaro.org>
+ <OS0PR01MB59221C8C937EF20347149E4886B49@OS0PR01MB5922.jpnprd01.prod.outlook.com>
+ <36e06397-2189-4f1b-99cc-d39e720ebc71@linaro.org>
+ <OS0PR01MB5922BDA0632ACCCC0100EEBD86B49@OS0PR01MB5922.jpnprd01.prod.outlook.com>
+ <6cbe6c71-2d2d-0f79-1270-7f8ed2ddc1d6@linaro.org>
+ <TYCPR01MB5933650D5BAB7A3F4BE03BAF86B59@TYCPR01MB5933.jpnprd01.prod.outlook.com>
+ <984f1689-459e-bd26-b96c-6c759417b3d1@linaro.org>
+ <TYCPR01MB59335607AE6A2F4FBBA46ACC86B59@TYCPR01MB5933.jpnprd01.prod.outlook.com>
+ <bc9e8ccd-9f98-6fae-9491-dc2bd96c2e4f@linaro.org>
+ <OS0PR01MB59222B5A8747EC2B682AEE3486B59@OS0PR01MB5922.jpnprd01.prod.outlook.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <OS0PR01MB59222B5A8747EC2B682AEE3486B59@OS0PR01MB5922.jpnprd01.prod.outlook.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFtrBKsWRmVeSWpSXmKPExsWy7djPc7o6GzlTDJbttrJ4MG8bm8Xl/doW
-        1788Z7WYf+Qcq8Xe11vZLTY9vsZqcXnXHDaLGef3MVm07j3CbvG8D8g6/v4xowO3x85Zd9k9
-        Nq3qZPO4c20Pm8fmJfUefVtWMXp83iQXwBbFZZOSmpNZllqkb5fAlbHyXTtrwWuuium/NzM1
-        MG7j6GLk5JAQMJE4vWcxUxcjF4eQwApGie9nTrNDOF8YJd7u/MYC4XxmlPjd+5gZpuXBum1Q
-        VcsZJXY0zYVyPjJKLHkxjxWkilfATuLZ1HfsIDaLgIrEm6e/GCHighInZz5hAbFFBVIkdpzf
-        DVYjLOAhcf73LzCbWUBc4taT+WBHiQh0MErs3vKQFcRhFljNJLFl0zqwbjYBQ4mut11sIDan
-        gINE68YFzBDd8hLb385hBmmQEGjmlNg/6RQLxOEuEpcO/WGFsIUlXh3fwg5hy0j83wmxTkKg
-        nVFiwe/7UM4ERomG57cYIaqsJe6c+wW0jgNohabE+l36EGFHiUuHH7ODhCUE+CRuvBWEOIJP
-        YtK26cwQYV6JjjYhiGo1iVnH18GtPXjhEvMERqVZSAEzCykAZiF5ZxbC3gWMLKsYxVNLi3PT
-        U4uN81LL9YoTc4tL89L1kvNzNzECE9fpf8e/7mBc8eqj3iFGJg7GQ4wSHMxKIrzfpThShHhT
-        EiurUovy44tKc1KLDzFKc7AoifNq255MFhJITyxJzU5NLUgtgskycXBKNTBx99wwz//QKafj
-        Yh4wIVxbIrxi8f/HBzfozzk3UdnGfFPW6vu2LpyyLgUqm04t/PalPisjTvicWmyfwZSYKq26
-        rg/J74L3XF71WNi+deakism/Js8/f/bABbW/dkH5Sw7e//TgC8uFVvFQ4Qv8FzZnXtc5sMr6
-        6xeH5nMnv8vX5x5d9p53bVdzfvDWyXeaWY7+jl86e6/zvoqVBdtuljU+MuZ50Z78RCdh1tSO
-        E79MOd7evcrJ0rFSNn7SNYtTGu8Oba29NX19y6nJkhp3pkw4blKU+OHVZNn1pdOSzvGdnrxw
-        grgwk+I1/wSRdTPfSeeufXp2xdlfs5x+rZv32vPNpokL5Y22NbA/+iv9i0ffMV+JpTgj0VCL
-        uag4EQANyXkdywMAAA==
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFjrJIsWRmVeSWpSXmKPExsVy+t/xu7o6GzlTDK7cEbF4MG8bm8Xl/doW
-        1788Z7WYf+Qcq8Xe11vZLTY9vsZqcXnXHDaLGef3MVm07j3CbvG8D8g6/v4xowO3x85Zd9k9
-        Nq3qZPO4c20Pm8fmJfUefVtWMXp83iQXwBalZ1OUX1qSqpCRX1xiqxRtaGGkZ2hpoWdkYqln
-        aGwea2VkqqRvZ5OSmpNZllqkb5egl7HyXTtrwWuuium/NzM1MG7j6GLk5JAQMJF4sG4bexcj
-        F4eQwFJGiQn/29ghEjISJ6c1sELYwhJ/rnWxQRS9Z5Q4dOMGWIJXwE7i2dR3YA0sAioSb57+
-        YoSIC0qcnPmEpYuRg0NUIEVidpcOSFhYwEPi/O9fYOXMAuISt57MZwKZKSLQxSgx+04jC4jD
-        LLCaCWjbA6iTJjNKNLy4zgzSwiZgKNH1FuQMTg5OAQeJ1o0LmCFGmUl0be1ihLDlJba/ncM8
-        gVFoFpJDZiHZOAtJyywkLQsYWVYxiqSWFuem5xYb6RUn5haX5qXrJefnbmIExum2Yz+37GBc
-        +eqj3iFGJg7GQ4wSHMxKIrzfpThShHhTEiurUovy44tKc1KLDzGaAkNjIrOUaHI+MFHklcQb
-        mhmYGpqYWRqYWpoZK4nzehZ0JAoJpCeWpGanphakFsH0MXFwSjUwbTytXWHewFRX8uXAXNej
-        SZpfGUJNv3DqyWZ8eF+wpLxALSZxW471Y5dMtkbHXtbgdTWHZ2uazOzQ/N14PfP7pS/OZXU9
-        h0qtXO5YcW78ceNpbFzPxvm7Na5GqRx/78z80N+x85VCbPGhzLBFjcv4lY6nxXk1N+2Zxemx
-        ++oTt55net6XJnUcuj77htJemSc31z8TUeiPVyn6mSYwKfjrAckWtVZRyckzNv/p7ojWTzx7
-        /OHET1+5/RY6SZ66pO958cGK7N++V7+dPTWpmC0t717xQg0XfeVtTJ5ZF27OlPv0J+ZlxZ/m
-        qOueGpaBtkK7Uvp3nexLS2F5xDPd50eFh96tj+IX3nF6RrLJLpypxFKckWioxVxUnAgAOT5Y
-        EVwDAAA=
-X-CMS-MailID: 20230309101300eucas1p2db2eff24d7b1f4073c8a43f49b086d9d
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-RootMTR: 20230308230935eucas1p1e919f4d4b020e3386ce0eac8b4c8d299
-X-EPHeader: CA
-CMS-TYPE: 201P
-X-CMS-RootMailID: 20230308230935eucas1p1e919f4d4b020e3386ce0eac8b4c8d299
-References: <CGME20230308230935eucas1p1e919f4d4b020e3386ce0eac8b4c8d299@eucas1p1.samsung.com>
-        <20230308230931.27261-1-semen.protsenko@linaro.org>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_HI,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Sam,
+On 09/03/2023 10:53, Biju Das wrote:
+> 
+> 
+>> -----Original Message-----
+>> From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>> Sent: Thursday, March 9, 2023 9:44 AM
+>> To: Biju Das <biju.das.jz@bp.renesas.com>; Michael Turquette
+>> <mturquette@baylibre.com>; Stephen Boyd <sboyd@kernel.org>; Rob Herring
+>> <robh+dt@kernel.org>; Krzysztof Kozlowski
+>> <krzysztof.kozlowski+dt@linaro.org>
+>> Cc: Geert Uytterhoeven <geert+renesas@glider.be>; linux-renesas-
+>> soc@vger.kernel.org; linux-clk@vger.kernel.org; devicetree@vger.kernel.org;
+>> Fabrizio Castro <fabrizio.castro.jz@renesas.com>
+>> Subject: Re: [PATCH RFC 1/3] dt-bindings: clock: Add Renesas versa3 clock
+>> generator bindings
+>>
+>> On 09/03/2023 10:18, Biju Das wrote:
+>>>
+>>>
+>>>> -----Original Message-----
+>>>> From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>>>> Sent: Thursday, March 9, 2023 9:14 AM
+>>>> To: Biju Das <biju.das.jz@bp.renesas.com>; Michael Turquette
+>>>> <mturquette@baylibre.com>; Stephen Boyd <sboyd@kernel.org>; Rob
+>>>> Herring <robh+dt@kernel.org>; Krzysztof Kozlowski
+>>>> <krzysztof.kozlowski+dt@linaro.org>
+>>>> Cc: Geert Uytterhoeven <geert+renesas@glider.be>; linux-renesas-
+>>>> soc@vger.kernel.org; linux-clk@vger.kernel.org;
+>>>> devicetree@vger.kernel.org; Fabrizio Castro
+>>>> <fabrizio.castro.jz@renesas.com>
+>>>> Subject: Re: [PATCH RFC 1/3] dt-bindings: clock: Add Renesas versa3
+>>>> clock generator bindings
+>>>>
+>>>> On 09/03/2023 08:57, Biju Das wrote:
+>>>>>>> It is clk generator HW specific. Clk generator is vital component
+>>>>>>> which provides clocks to the system.
+>>>>>>
+>>>>>> Every clock controller is vital...
+>>>>>>
+>>>>>>> We are providing some hardware feature which is exposed as dt
+>>>>>>> properties.
+>>>>>>>
+>>>>>>> Like clock output is fixed rate clock or dynamic rate clock/
+>>>>>>
+>>>>>> OK, I wait then for proper description which will explain and
+>>>>>> justify
+>>>> this.
+>>>>>
+>>>>> Here it is, Please let me know is it ok?
+>>>>>
+>>>>> renesas,output-clock-fixed-rate-mode:
+>>>>>     type: boolean
+>>>>>     description:
+>>>>>       In output clock fixed rate mode, the output clock frequency is
+>>>> always
+>>>>>       fixed and the hardware will use the values from the OTP or
+>>>>> full
+>>>> register
+>>>>> 	map initialized during boot.
+>>>>>       If not given, the output clock rate is not fixed.
+>>>>>     maxItems: 6
+>>>>
+>>>> boolean is scalar, not array, so no maxItems. If the frequency is
+>>>> taken from OTP or register map, why they cannot also provide
+>>>> information the clock is fixed?
+>>>
+>>> OK, I will make an array property instead. From HW perspective each
+>>> clock output from the Clock generator is controllable ie, fixed rate or
+>> dynamic rate.
+>>>
+>>> If all the output clocks are fixed rate one, then frequency is taken
+>>> from OTP or register map. But if any one clock output generates
+>>> dynamic rate, then it uses dynamic settings.
+>>
+>> Second try, same question, let me know if it is not clear:
+>>
+>> "why they cannot also provide information the clock is fixed?"
+> 
+> This information we are providing through dt.
 
-On 09.03.2023 00:09, Sam Protsenko wrote:
-> Power Domains in Exynos850 are not really different from other Exynos
-> platforms. Enabling Exynos850 support in the PD driver is really just a
-> matter of adding:
->
->      static const struct exynos_pm_domain_config exynos850_cfg = {
->          .local_pwr_cfg = 0x1,
->      };
->
-> to the driver. But in the face of recent developments, e.g. this patch:
->
->      arm64: dts: exynos: move MIPI phy to PMU node in Exynos5433
->
-> it looked logical to rework the PD driver a bit to support its nesting
-> under the PMU node, while adding Exynos850 support to it. Initially I
-> only wanted to add syscon regmap support via some dedicated property,
-> but pulling PD nodes under the PMU syscon looks like more correct way.
+No, you are not. We just discuss it. If we do not agree, you are not
+going to provide information through DT.
 
-Frankly speaking if you are changing this, you can go even further. 
-Simply make PMU node a PM domain provider and specify the power domain 
-as a phandle parameter. This is how it should have been done from the 
-beginning, but for some unknown reasons wasn't. There is really no need 
-to have a separate node for each power domain. This will also move 
-implementation details to the PMU / power domain drivers and it will 
-make it much easier to extend/modify it in the future. IMHO same applies 
-for PHY nodes.
+> 
+> It is a complex clock generator which provides 6 HW clock outputs.
+> The 6 HW clock outputs can be individually controllable to generate
+> Either fixed frequency or dynamic frequency.
 
+Ah, indeed. 6 clock outputs prohibits configuring this from OTP. If only
+there were 5 outputs then it would be possible...
 
-Best regards
--- 
-Marek Szyprowski, PhD
-Samsung R&D Institute Poland
+> 
+>  Output clk1 "diff2",
+>  Output clk2 "diff1",
+>  Output clk3 "se3",
+>  Output clk4 "se2",
+>  Output clk5 "se1",
+>  Output clk6 "ref"
+> 
+> I want to make "Output clk4" from clock generator as dynamic frequency one
+> And make other clock frequency from clock generator as fixed one.
+> 
+> How do you describe this in dt? Please share your thoughts.
+
+Read from OTP or registers.
+
+Best regards,
+Krzysztof
 
