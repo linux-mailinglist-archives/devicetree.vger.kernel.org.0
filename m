@@ -2,136 +2,133 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 502236B234A
-	for <lists+devicetree@lfdr.de>; Thu,  9 Mar 2023 12:44:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1179A6B234F
+	for <lists+devicetree@lfdr.de>; Thu,  9 Mar 2023 12:45:23 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231594AbjCILoS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Mar 2023 06:44:18 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40044 "EHLO
+        id S231128AbjCILpU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Mar 2023 06:45:20 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40674 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231518AbjCILoR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Mar 2023 06:44:17 -0500
-Received: from mail-wm1-x336.google.com (mail-wm1-x336.google.com [IPv6:2a00:1450:4864:20::336])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E99056A044
-        for <devicetree@vger.kernel.org>; Thu,  9 Mar 2023 03:44:15 -0800 (PST)
-Received: by mail-wm1-x336.google.com with SMTP id t25-20020a1c7719000000b003eb052cc5ccso3362093wmi.4
-        for <devicetree@vger.kernel.org>; Thu, 09 Mar 2023 03:44:15 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1678362254;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=8cB9x4ZljJMjizQbiracn+TG6QtgEI/5W2g7XyKO1No=;
-        b=VHotFGHdkdCyfKGH2Ph5IP6gbmV+M84RQQgtVA0fgpSqci2ku1YxobhBlPanByZ1uv
-         ZZfqaFOK0uqLqwP2tGMwG69Cvv7s73cHJkTT9CWiWuOYj47pFoNL+odWRPuxzRzKTkBn
-         OtQrXgPTvV0rDc8dBX/z4ZkYFhLM/o8lQXhkcw88yS1RPqIoq6KrhDFQCJIftKhY/o3E
-         m/v9mrQAjVOQ3izdrVocyB8LHhmsNsI4v1K84LkR7oXx8JCivvVNy1xCJmYgKdtXrjcf
-         bZM/5FiTjrn6IbWWuZ5Ek64SxRBSYomg4XNVT8lvoBHgjwN5tlmGI7KnyU/rd4WspuT9
-         vlHA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678362254;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=8cB9x4ZljJMjizQbiracn+TG6QtgEI/5W2g7XyKO1No=;
-        b=M0HpY/IRCmMAVjYcg0Q3pqtyMHPzv1jfCDYfdDFRIwNCIIPlbz33ztojNcSnLraBh8
-         tI1fZ6lP3EIe26Zp9yhxWbK4NU3xsCY6meovWr3kgRzjca1JR4fmoKwPvfCQIRM1vKjk
-         F53TSAP4OqAlKFup8kiGr4vNZdByZBiSyztPgQm1Epu/ile/fHETskC9d13KZu3eujQ+
-         DoEbyGMeBkSSZD5VkcG5tGuSNqjd4foFwVGOTNPYIybTdg5eJIiyUrQW+m34J07NTvAH
-         qxm7d17bkFgb1Y7zQooiWoDCkci9zNRHDv0esQPPaUpjS1K0Poc9+lAtqjsMtPZDgd6B
-         mvcw==
-X-Gm-Message-State: AO0yUKWOFV99jffzIeM9aLp9Ki0ltq7pHO4owT624/DcRjdMuhfx4Hqn
-        QOzhamJuSoq/zX21MJSXDh5+Rw==
-X-Google-Smtp-Source: AK7set8pbUjmh2HDihqNwWBHGvWjbLhc97YyUsAX8/OodjtKkjrmc6aZaZWKSsvaHznNhHhi3VhD0w==
-X-Received: by 2002:a05:600c:3b97:b0:3dc:557f:6129 with SMTP id n23-20020a05600c3b9700b003dc557f6129mr19178271wms.2.1678362254451;
-        Thu, 09 Mar 2023 03:44:14 -0800 (PST)
-Received: from [192.168.1.195] ([5.133.47.210])
-        by smtp.googlemail.com with ESMTPSA id m5-20020a5d56c5000000b002be505ab59asm17517012wrw.97.2023.03.09.03.44.13
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 09 Mar 2023 03:44:13 -0800 (PST)
-Message-ID: <fb6d7c76-d3d3-b8a0-46f9-dc2eb76ae91a@linaro.org>
-Date:   Thu, 9 Mar 2023 11:44:10 +0000
+        with ESMTP id S231698AbjCILpK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Mar 2023 06:45:10 -0500
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 522799FE57;
+        Thu,  9 Mar 2023 03:45:09 -0800 (PST)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 329BilmV067182;
+        Thu, 9 Mar 2023 05:44:47 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1678362288;
+        bh=/q/r+VqIDQV+nyf/HFdFt7S4d1PgKsozHa8XIbxD8aY=;
+        h=Date:Subject:To:CC:References:From:In-Reply-To;
+        b=nAnAGXYW/BIh78fUHAF8Qk8hBwnEkuy5WmwDM9NDgykbzDS94TzunNiSbEHM08EZf
+         SIWLabHhn09QBlt8dfoAKNl6ODNLNseANMBusUJ7MwbOnfTuRmU91N+5Vx38gcKRZl
+         U/BcI1f82iMoQ6L9rvjidTWmPcFBFyVr70O/u3WA=
+Received: from DFLE111.ent.ti.com (dfle111.ent.ti.com [10.64.6.32])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 329BiliX027723
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Thu, 9 Mar 2023 05:44:47 -0600
+Received: from DFLE112.ent.ti.com (10.64.6.33) by DFLE111.ent.ti.com
+ (10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Thu, 9
+ Mar 2023 05:44:47 -0600
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE112.ent.ti.com
+ (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
+ Frontend Transport; Thu, 9 Mar 2023 05:44:47 -0600
+Received: from [10.24.69.114] (ileaxei01-snat2.itg.ti.com [10.180.69.6])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 329BifPD012701;
+        Thu, 9 Mar 2023 05:44:42 -0600
+Message-ID: <d7f18805-7b26-e2c9-a40e-262165ec8f9b@ti.com>
+Date:   Thu, 9 Mar 2023 17:14:41 +0530
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.7.1
-Subject: Re: [PATCH 2/4] nvmem: core: allow nvmem_cell_post_process_t
- callbacks to adjust buffer
+Subject: Re: [EXTERNAL] Re: [PATCH v5 1/2] dt-bindings: net: Add ICSSG
+ Ethernet
 Content-Language: en-US
-To:     Miquel Raynal <miquel.raynal@bootlin.com>
-Cc:     =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Rob Herring <robh@kernel.org>,
+        MD Danish Anwar <danishanwar@ti.com>
+CC:     "Andrew F. Davis" <afd@ti.com>, Suman Anna <s-anna@ti.com>,
+        Roger Quadros <rogerq@kernel.org>,
+        YueHaibing <yuehaibing@huawei.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Michael Walle <michael@walle.cc>, gregkh@linuxfoundation.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, u-boot@lists.denx.de,
-        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
-References: <20230222172245.6313-1-zajec5@gmail.com>
- <20230222172245.6313-3-zajec5@gmail.com>
- <37f821b8-f681-08e4-d4f1-d37be191ff7f@linaro.org>
- <20230309113211.6321ce3d@xps-13>
- <2dc096f5-f5ce-f99b-42ac-0fb24682239a@linaro.org>
- <20230309122324.4b012a58@xps-13>
-From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-In-Reply-To: <20230309122324.4b012a58@xps-13>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        Paolo Abeni <pabeni@redhat.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Eric Dumazet <edumazet@google.com>,
+        "David S. Miller" <davem@davemloft.net>, <andrew@lunn.ch>,
+        <nm@ti.com>, <ssantosh@kernel.org>, <srk@ti.com>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <netdev@vger.kernel.org>, <linux-omap@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>
+References: <20230210114957.2667963-1-danishanwar@ti.com>
+ <20230210114957.2667963-2-danishanwar@ti.com>
+ <20230210192001.GB2923614-robh@kernel.org>
+ <43df3c2c-d0d0-f2b8-cf8b-8a2453ca43b4@ti.com>
+ <63dbbda7-a444-8dac-6399-45e305652155@linaro.org>
+From:   Md Danish Anwar <a0501179@ti.com>
+Organization: Texas Instruments
+In-Reply-To: <63dbbda7-a444-8dac-6399-45e305652155@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_PASS,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Krzysztof,
 
-
-On 09/03/2023 11:23, Miquel Raynal wrote:
-> Hi Srinivas,
-> 
-> srinivas.kandagatla@linaro.org wrote on Thu, 9 Mar 2023 10:53:07 +0000:
-> 
->> On 09/03/2023 10:32, Miquel Raynal wrote:
->>> Hi Srinivas,
+On 07/03/23 14:28, Krzysztof Kozlowski wrote:
+> On 07/03/2023 05:57, Md Danish Anwar wrote:
+>>>> +allOf:
+>>>> +  - $ref: /schemas/remoteproc/ti,pru-consumer.yaml#
+>>>> +
+>>>> +properties:
+>>>> +  compatible:
+>>>> +    enum:
+>>>> +      - ti,am654-icssg-prueth  # for AM65x SoC family
+>>>> +
+>>>> +  ti,sram:
+>>>> +    $ref: /schemas/types.yaml#/definitions/phandle
+>>>> +    description:
+>>>> +      phandle to MSMC SRAM node
 >>>
->>> srinivas.kandagatla@linaro.org wrote on Thu, 9 Mar 2023 10:12:24 +0000:
->>>    
->>>> On 22/02/2023 17:22, Rafał Miłecki wrote:
->>>>> @@ -1791,11 +1792,15 @@ ssize_t nvmem_device_cell_read(struct nvmem_device *nvmem,
->>>>>     	if (!nvmem)
->>>>>     		return -EINVAL;
->>>>>     > +	/* Cells with read_post_process hook may realloc buffer we can't allow here */
->>>>> +	if (info->read_post_process)
->>>>> +		return -EINVAL;
->>>> This should probably go in 1/4 patch. Other than that series looks good to me.
+>>> I believe we have a standard 'sram' property to point to SRAM nodes 
+>>> assuming this is just mmio-sram or similar.
 >>>
->>> FYI patch 1/4 is also carried by the nvmem-layouts series, so it's
->>> probably best to keep these 2 patches separated to simplify the merging.
->> that is intermediate thing, but Ideally this change belongs to 1/4 patch, so once I apply these patches then we can always rebase layout series on top of nvmem-next
+>>
+>> Yes, we have standard 'sram' property but Krzysztof had asked me to make the
+>> sram property vendor specific in last revision of this series.
 > 
-> Well, I still don't see the need for this patch because we have no use
-> for it *after* the introduction of layouts. Yes in some cases changing
-> the size of a cell might maybe be needed, but right now the use case is
-> to provide a MAC address, we know beforehand the size of the cell, so
-> there is no need, currently, for this hack.
+> Sorry about that. I missed that we already have a 'sram'. The question
+> remains whether this is a phandle to MMIO SRAM or similar (sram.yaml).
 > 
-Am confused, should I ignore this series ?
-
-> Whatever. If you want it, just merge it. But *please*, I would like
-
-:-)
-
-> to see these layouts in, so what's the plan?
-
-Am on it, you sent v3 just 24hrs ago :-)
-
-
---srini
+> Best regards,
+> Krzysztof
 > 
-> Thanks,
-> Miquèl
+
+The SRAM that we are using here is phandle to MMIO-SRAM only. In the example
+section you can see, sram node points to msmc_ram (ti,sram = <&msmc_ram>;) And
+msmc_ram has compatible as "mmio-sram" in k3-am65-main.dtsi [1].
+
+	msmc_ram: sram@70000000 {
+		compatible = "mmio-sram";
+		reg = <0x0 0x70000000 0x0 0x200000>;
+
+So I can use 'sram' property as there is no need to make this as ti specific.
+Let me know if it seems good to you.
+
+[1]
+https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/arch/arm64/boot/dts/ti/k3-am65-main.dtsi?h=v6.3-rc1#n11
+
+-- 
+Thanks and Regards,
+Danish.
