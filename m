@@ -2,233 +2,151 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 60BD06B1E74
-	for <lists+devicetree@lfdr.de>; Thu,  9 Mar 2023 09:43:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4AF4F6B1E8D
+	for <lists+devicetree@lfdr.de>; Thu,  9 Mar 2023 09:47:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229798AbjCIInI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Mar 2023 03:43:08 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35892 "EHLO
+        id S229929AbjCIIrH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Mar 2023 03:47:07 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44168 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230416AbjCIImc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Mar 2023 03:42:32 -0500
-Received: from relay2-d.mail.gandi.net (relay2-d.mail.gandi.net [217.70.183.194])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D782F5A6EB;
-        Thu,  9 Mar 2023 00:42:28 -0800 (PST)
-Received: (Authenticated sender: clement.leger@bootlin.com)
-        by mail.gandi.net (Postfix) with ESMTPSA id 1141540002;
-        Thu,  9 Mar 2023 08:42:24 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1678351346;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=lOMLsxz0wbG36jgtfIBiMyWVZzrLsmwJtyvij7rHbfQ=;
-        b=jn9W8Zy2xQsX2X+qLuYbzfxLR/Ea+nvrpMsxqrdO4qigembgIxCmalVWx9uRcAmh/5st2n
-        FGlbAO/SWg/789NUvzk/g/rL4hBATR1xNjvogTXBEk7utrtLUnxA6Bn0sEFSmSuUo0Eaq5
-        5aEKdFzdjwEHhkefobsHBhwJ4o75Hun3OUZ9OA8TXEjnPZqvPw50xjZK+cFGm+/UzpY3fE
-        t2jRTIui/0Dtvt5lWuNZf29l2UlF257q4ytHIBzbZNY4aZBZhgX3fXeWGoZiW7/N2aMfgZ
-        LFg4zgNS6k7/wayTkLe2r2DC7GcznO0+CZuxPj657vormEljoMA4pz6kczRqIw==
-Date:   Thu, 9 Mar 2023 09:45:07 +0100
-From:   =?UTF-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <clement.leger@bootlin.com>
-To:     Frank Rowand <frowand.list@gmail.com>
-Cc:     Rob Herring <robh@kernel.org>, Lizhi Hou <lizhi.hou@amd.com>,
-        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, helgaas@kernel.org, max.zhen@amd.com,
-        sonal.santan@amd.com, larry.liu@amd.com, brian.xu@amd.com,
-        stefano.stabellini@xilinx.com, trix@redhat.com,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        "Steen.Hegelund@microchip.com" <Steen.Hegelund@microchip.com>,
-        "Horatiu.Vultur@microchip.com" <Horatiu.Vultur@microchip.com>,
-        "Allan.Nielsen@microchip.com" <Allan.Nielsen@microchip.com>,
-        Vincent Whitchurch <vincent.whitchurch@axis.com>
-Subject: Re: [PATCH V7 0/3] Generate device tree node for pci devices
-Message-ID: <20230309094507.62d7c35e@fixe.home>
-In-Reply-To: <9b4bb45a-f6e4-c95c-d27c-21c7fecb5505@gmail.com>
-References: <1674183732-5157-1-git-send-email-lizhi.hou@amd.com>
-        <af2a6686-ea35-e5fc-7541-27e5d6ca9311@gmail.com>
-        <20230227113150.398dcfa7@fixe.home>
-        <52b8f136-c73f-a97d-2bb6-48aff3755f98@gmail.com>
-        <f927790dc9839cd93902c0d2e5afe5e8@bootlin.com>
-        <1886b888-a0e8-b1ee-c48a-ddbc8b5b0c63@gmail.com>
-        <CAL_JsqL_ER32ys-yW_7-QKLjEmKK8StOeM5yvH2ChuvX++fe5Q@mail.gmail.com>
-        <9b4bb45a-f6e4-c95c-d27c-21c7fecb5505@gmail.com>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.1.1 (GTK 3.24.36; x86_64-pc-linux-gnu)
+        with ESMTP id S229804AbjCIIrG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Mar 2023 03:47:06 -0500
+Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com [IPv6:2a00:1450:4864:20::532])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E45AD2BF05
+        for <devicetree@vger.kernel.org>; Thu,  9 Mar 2023 00:47:03 -0800 (PST)
+Received: by mail-ed1-x532.google.com with SMTP id s11so3960630edy.8
+        for <devicetree@vger.kernel.org>; Thu, 09 Mar 2023 00:47:03 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1678351622;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=cGqSi8rJkPEYNb50K8BZLZGOLTylgAMP+xBcfwszraY=;
+        b=uWrOPunOG/IX7IXgMC9nNzBAL3RVSJDMIQAhPRLPF7D7yJ63ZEUf6n4B9kZXT8EJra
+         5+lMkJFQGjwuxI/vKqAjH7GCS7/mokXszHTPnV4wsXEkyAViezjc+qd0H9KpnnQXibsk
+         cexqB/EpVgwEZTQVDS1OjOmQtO5/c7FKZHQdDC+TJb2EGxdpf/ulhTWLcngwpatM0bqU
+         xKMAnSRae3omimeoZUwNa0/Zu6XM4MK1h1k+wy2uTIii0U4oLtklUv/mrZXkWWz1KHg3
+         yXLIz1kjPyFqXSHnvpKygQSNhB+OrnXxWB4gRxWbTafxbX/LvQUFLue7GldjnhLB5oAv
+         Frow==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1678351622;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=cGqSi8rJkPEYNb50K8BZLZGOLTylgAMP+xBcfwszraY=;
+        b=N5hJ0+7QRukdCu2f13auNsLD3TZDpfh8Eh1c9KMUZRktP5FLUkthhM/oZPfbWmEXpt
+         ARPGgarNOHVSx1l9zk9x04S09acabtwD/snUvNpF09Xc9osE+MnQLkwa1GZnmX+M1Ktl
+         lJq1Hu78DMTP6vWkQbh2JOs6DDz3GhW2qQpAj0mB4myRKAiV5IrUatZb2tsIDjNLXXWG
+         WZ+HemZvMrIZHSloFKujmHntmNbM4SAToEadUxi5QuqKfILqjNa81adFbhdObcu694M0
+         7D6TFNMEWE+vGzVv9PwZ9Xfdd9uvlEWvK8OWAM73lXT0AyiDklJMJdJkUifRd7VUyCAB
+         b8NA==
+X-Gm-Message-State: AO0yUKUQ8h9vvuDWboLoE+QVS8X0aUI26LUFRsbb5c6h3sFyLN0DNjAh
+        IbDoLVWoVwfjKSWxfJXbDKGOUQ==
+X-Google-Smtp-Source: AK7set8c8UmjoKmMwhvKXt6i586YTl/YQ9n2bzrcv3YZRo7O7HO0PDCg9C2uNGptPLP5DV9WQJiM/Q==
+X-Received: by 2002:a05:6402:2028:b0:4af:70a5:55ee with SMTP id ay8-20020a056402202800b004af70a555eemr18130112edb.3.1678351622391;
+        Thu, 09 Mar 2023 00:47:02 -0800 (PST)
+Received: from ?IPV6:2a02:810d:15c0:828:7ee2:e73e:802e:45c1? ([2a02:810d:15c0:828:7ee2:e73e:802e:45c1])
+        by smtp.gmail.com with ESMTPSA id a25-20020a509b59000000b004c0eac41829sm9183008edj.63.2023.03.09.00.47.00
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 09 Mar 2023 00:47:01 -0800 (PST)
+Message-ID: <2691debf-0596-c265-468f-bb66d19f6db0@linaro.org>
+Date:   Thu, 9 Mar 2023 09:46:59 +0100
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.8.0
+Subject: Re: [PATCH v10 05/15] dt-bindings: soc: amd: amd,pensando-elbasr: Add
+ AMD Pensando SoC System Controller
+Content-Language: en-US
+To:     Brad Larson <blarson@amd.com>
+Cc:     adrian.hunter@intel.com, alcooperx@gmail.com,
+        andy.shevchenko@gmail.com, arnd@arndb.de,
+        brendan.higgins@linux.dev, briannorris@chromium.org,
+        brijeshkumar.singh@amd.com, broonie@kernel.org,
+        catalin.marinas@arm.com, davidgow@google.com,
+        devicetree@vger.kernel.org, fancer.lancer@gmail.com,
+        gerg@linux-m68k.org, gsomlo@gmail.com, krzk@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, lee.jones@linaro.org,
+        lee@kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-mmc@vger.kernel.org,
+        linux-spi@vger.kernel.org, p.yadav@ti.com, p.zabel@pengutronix.de,
+        piotrs@cadence.com, rdunlap@infradead.org, robh+dt@kernel.org,
+        samuel@sholland.org, skhan@linuxfoundation.org,
+        suravee.suthikulpanit@amd.com, thomas.lendacky@amd.com,
+        tonyhuang.sunplus@gmail.com, ulf.hansson@linaro.org,
+        vaishnav.a@ti.com, will@kernel.org, yamada.masahiro@socionext.com
+References: <e82ca6f6-0870-f9b0-172f-bc6d54a9749b@linaro.org>
+ <20230307021822.71245-1-blarson@amd.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230307021822.71245-1-blarson@amd.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Le Wed, 8 Mar 2023 01:31:52 -0600,
-Frank Rowand <frowand.list@gmail.com> a =C3=A9crit :
+On 07/03/2023 03:18, Brad Larson wrote:
+> On 06/03/2023 09:35, Krzysztof Kozlowski wrote:
+>>> On 06/03/2023 05:07, Brad Larson wrote:
+>>>> Support the AMD Pensando SoC Controller which is a SPI connected device
+>>>> providing a miscellaneous set of essential board control/status registers.
+>>>> This device is present in all Pensando SoC based designs.
+>>>>
+>>>> Signed-off-by: Brad Larson <blarson@amd.com>
+>>>> ---
+>>>>
+>>>> v10 changes:
+>>>> - Property renamed to amd,pensando-ctrl
+>>>> - Driver is renamed and moved to soc/drivers/amd affecting binding
+>>>> - Delete cs property, driver handles device node creation from parent num-cs
+>>>>   fixing schema reg error in a different way
+>>>>
+>>>> v9 changes:
+>>>> - Instead of four nodes, one per chip-select, a single
+>>>>   node is used with reset-cells in the parent.
+>>>> - No MFD API is used anymore in the driver so it made
+>>>>   sense to move this to drivers/spi.
+>>>> - This driver is common for all Pensando SoC based designs
+>>>>   so changed the name to pensando-sr.c to not make it Elba
+>>>>   SoC specific.
+>>>> - Added property cs for the chip-select number which is used
+>>>>   by the driver to create /dev/pensr0.<cs>
+>>>>
+>>>> ---
+>>>>  .../bindings/soc/amd/amd,pensando-ctrl.yaml   | 60 +++++++++++++++++++
+>>>>  1 file changed, 60 insertions(+)
+>>>>  create mode 100644 Documentation/devicetree/bindings/soc/amd/amd,pensando-ctrl.yaml
+>>>>
+>>>> diff --git a/Documentation/devicetree/bindings/soc/amd/amd,pensando-ctrl.yaml b/Documentation/devicetree/bindings/soc/amd/amd,pensando-ctrl.yaml
+>>>> new file mode 100644
+>>>> index 000000000000..36694077b2e6
+>>>> --- /dev/null
+>>>> +++ b/Documentation/devicetree/bindings/soc/amd/amd,pensando-ctrl.yaml
+>>>
+>>> Your subject suggests this is pensando-elbasr but you write everywhere
+>>> pensando-ctrl. Confusing. Pick one.
+>>
+>> Actually pensando-ctrl is for sure not correct, because it misses the
+>> name of the SoC (you call it everywhere "elba").
+> 
+> The reason I dropped elba as part of the name is this driver and its associated 
+> SPI attached device (cpld or fpga depending on the board design) will be used
+> across a series of SoCs starting with Elba.  Implying its Elba specific is misleading.
 
-> On 3/6/23 18:52, Rob Herring wrote:
-> > On Mon, Mar 6, 2023 at 3:24=E2=80=AFPM Frank Rowand <frowand.list@gmail=
-.com> wrote: =20
-> >> =20
->=20
-> < snip >
->=20
-> Hi Rob,
->=20
-> I am in no position to comment intelligently on your comments until I
-> understand the SoC on PCI card model I am asking to be described in
-> this subthread.
+Compatibles must be specific.
+https://elixir.bootlin.com/linux/v6.1-rc1/source/Documentation/devicetree/bindings/writing-bindings.rst#L42
+If this is SoC part it must match SoC. What is misleading in this? Why
+Pensando is different than all other SoCs (I am really getting tired
+everytime asking why people think their solution is special)?
 
-Hi Frank,
+If this is not part of the SoC, then your commit msg is misleading.
+Maybe bindings as well, so rework it.
 
-Rather than answering all of the assumptions that were made in the upper
-thread (that are probably doing a bit too much of inference), I will
-re-explain that from scratch.
+Best regards,
+Krzysztof
 
-Our usecase involves the lan966x SoCs. These SoCs are mainly targeting
-networking application and offers multiple SFP and RGMII interfaces.
-This Soc can be used in two exclusive modes (at least for the intended
-usage):
-
-SoC mode:
-   The device runs Linux by itself, on ARM64 cores included in the
-   SoC. This use-case of the lan966x is currently almost upstreamed,
-   using a traditional Device Tree representation of the lan996x HW
-   blocks [1] A number of drivers for the different IPs of the SoC have
-   already been merged in upstream Linux (see
-   arch/arm/boot/dts/lan966x.dtsi)
-
-PCI mode:
-  The lan966x SoC is configured as a PCIe endpoint (PCI card),
-  connected to a separate platform that acts as the PCIe root complex.
-  In this case, all the IO memories that are exposed by the devices
-  embedded on this SoC are exposed through PCI BARs 0 & 1 and the ARM64
-  cores of the SoC are not used. Since this is a PCIe card, it can be
-  plugged on any platform, of any architecture supporting PCIe.
-
-This work only focus on the *PCI mode* usage. In this mode, we have the
-following prerequisites:
-- Should work on all architectures (x86, ARM64, etc)
-- Should be self-contained in the driver
-- Should be able to reuse all existing platform drivers
-
-In PCI mode, the card runs a firmware (not that it matters at all by
-the way) which configure the card in PCI mode at boot time. In this
-mode, it exposes a single PCI physical function associated with
-vendor/product 0x1055/0x9660. This is not a multi-function PCI device !
-This means that all the IO memories (peripheral memories, device
-memories, registers, whatever you call them) are accessible using
-standard readl()/writel() on the BARs that have been remapped. For
-instance (not accurate), in the BAR 0, we will have this kind of memory
-map:
-
-           BAR0
-   0x0 =E2=94=8C=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=
-=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=90
-       =E2=94=82           =E2=94=82
-       =E2=94=9C=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=
-=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=A4
-       =E2=94=82   Clock   =E2=94=82
-       =E2=94=82 controller=E2=94=82
-       =E2=94=9C=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=
-=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=A4
-       =E2=94=82           =E2=94=82
-       =E2=94=9C=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=
-=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=A4
-       =E2=94=82   I2C     =E2=94=82
-       =E2=94=82 controller=E2=94=82
-       =E2=94=9C=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=
-=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=A4
-       =E2=94=82           =E2=94=82
-       =E2=94=9C=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=
-=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=A4
-       =E2=94=82   MDIO    =E2=94=82
-       =E2=94=82 Controller=E2=94=82
-       =E2=94=9C=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=
-=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=A4
-       =E2=94=82           =E2=94=82
-       =E2=94=9C=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=
-=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=A4
-       =E2=94=82  Switch   =E2=94=82
-       =E2=94=82 Controller=E2=94=82
-       =E2=94=9C=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=
-=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=A4
-       =E2=94=82           =E2=94=82
-       =E2=94=82   ...     =E2=94=82
-         =20
-
-It also exposes either a single interrupt via the legacy interrupt
-(which can then be demuxed by reading the SoC internal interrupt
-controller registers), or multiple interrupts using MSI interrupts.
-
-As stated before, all these peripherals are already supported in SoC
-mode and thus, there are aleready existing platform drivers for each of
-them. For more information about the devices that are exposed please
-see link [1] which is the device-tree overlay used to describe the
-lan9662 card.
-
-In order to use the ethernet switch, we must configure everything that
-lies around this ethernet controller, here are a few amongst all of
-them:
-- MDIO bus
-- I2C controller for SFP modules access
-- Clock controller
-- Ethernet controller
-- Syscon
-
-Since all the platform drivers already exist for these devices, we
-want to reuse them. Multiple solutions were thought of (fwnode, mfd,
-ACPI, device-tree) and eventually ruled out for some of them and efforts
-were made to try to tackle that (using fwnode [2], device-tree [3])
-
-One way to do so is to use a device-tree overlay description that is
-loaded dynamically on the PCI device OF node. This can be done using the
-various device-tree series series that have been proposed (included
-this one). On systems that do not provide a device-tree of_root, create
-an empty of_root node (see [4]). Then during PCI enumeration, create
-device-tree node matching the PCI tree that was enumerated (See [5]).
-This is needed since the PCI card can be plugged on whatever port the
-user wants and thus it can not be statically described using a fixed
-"target-path" property in the overlay.
-
-Finally, to glue everything together, we add a PCI driver for the
-VID/PID of the PCI card (See [6]). This driver is responsible of adding
-the "ranges" property in the device-tree PCI node to remap the child
-nodes "reg" property to the PCI memory map. This is needed because the
-PCI memory addresses differ between platform, enumeration order and so
-on.Finally, the driver will load the device-tree overlay (See [1]) to
-the PCI device-tree node. Eventually, a call to
-of_platform_default_populate() will probe the nodes and platform
-drivers.
-
-I hope this will help you understanding what is going on here. In the
-meantime, I'm also trying to obtain public documentation about the
-lan966x SoC.
-
-[1]
-https://github.com/clementleger/linux/blob/bf9b4ef803d86c4ae59a4ca195a4152b=
-0d5c3cea/drivers/mfd/lan966x_pci.dts
-[2]
-https://lore.kernel.org/netdev/YhPSkz8+BIcdb72R@smile.fi.intel.com/T/
-[3]
-https://lore.kernel.org/lkml/20220427094502.456111-1-clement.leger@bootlin.=
-com/
-[4]
-https://lore.kernel.org/lkml/20230223213418.891942-1-frowand.list@gmail.com/
-[5]
-https://lore.kernel.org/lkml/1674183732-5157-1-git-send-email-lizhi.hou@amd=
-.com/
-[6]
-https://github.com/clementleger/linux/blob/bf9b4ef803d86c4ae59a4ca195a4152b=
-0d5c3cea/drivers/mfd/lan966x_pci_of.c
-
---=20
-Cl=C3=A9ment L=C3=A9ger,
-Embedded Linux and Kernel engineer at Bootlin
-https://bootlin.com
