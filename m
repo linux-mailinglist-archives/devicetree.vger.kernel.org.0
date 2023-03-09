@@ -2,124 +2,176 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DBC2C6B2DBD
-	for <lists+devicetree@lfdr.de>; Thu,  9 Mar 2023 20:33:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7798F6B2DD2
+	for <lists+devicetree@lfdr.de>; Thu,  9 Mar 2023 20:38:56 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230511AbjCITdc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Mar 2023 14:33:32 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57232 "EHLO
+        id S229599AbjCITiw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Mar 2023 14:38:52 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45030 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231194AbjCITcy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Mar 2023 14:32:54 -0500
-Received: from mail-pl1-x629.google.com (mail-pl1-x629.google.com [IPv6:2607:f8b0:4864:20::629])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 982007A923
-        for <devicetree@vger.kernel.org>; Thu,  9 Mar 2023 11:32:03 -0800 (PST)
-Received: by mail-pl1-x629.google.com with SMTP id u5so3111327plq.7
-        for <devicetree@vger.kernel.org>; Thu, 09 Mar 2023 11:32:03 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=dabbelt-com.20210112.gappssmtp.com; s=20210112; t=1678390323;
-        h=content-transfer-encoding:mime-version:message-id:to:from:cc
-         :in-reply-to:subject:date:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=MlMbJ8RFUjqrNZ3nyQ3UxH3pIRl6kRtnRIdmgkJcEJU=;
-        b=dGwrQCXfmXHVpty9DfuY6vuVeC+fUW29D5SVOs5Qn2qZmiOZHtiqt2IbTfDZVgp8cR
-         24eVwxbOfjDMI36IcW+DwNypZChUZGOZwamdEAkqAzlYdz205bzwIUMTAegLK5N3SDF3
-         QNe42QKdIiByZvS9cEJEZgk/R2tVtnewn7Mk80K6ncmAdOE2xIlNqOD/Gti/187aYatH
-         XEYPd4dUDwdgl3ywvWf/gZv+9SAAT8iE5EYDzuubz+wjJwSdImHQPFj9LL87CxuMRiNg
-         s+1re28ikCD7xxABQRkjCBfILRXbFyIOxfH1ycRfatrkQtS1WXEcQ1dJcfGh7E6wpUMw
-         B9OQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678390323;
-        h=content-transfer-encoding:mime-version:message-id:to:from:cc
-         :in-reply-to:subject:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=MlMbJ8RFUjqrNZ3nyQ3UxH3pIRl6kRtnRIdmgkJcEJU=;
-        b=xPnw0YYABEkyJppSeMlkciqCyMFpvJSFo4G/y111D8FzDt82degCuydEFcQMN8xm6h
-         +r0B90mU5emhkyQiwV1eNn9ZVb5vw4a7Qbo/+vSPLBn9FSeEX/6nhob2uzWSaESZ8yvF
-         4wpQ8IEoFmamkGDqJGb1Z7S7YDgD1GqLysEfmWcUGl9JNwPLjg+zzC7PXGMdj6G24IjT
-         pfEiKtBAj9blaVaHG+Vim7jMsGXoE2c12v2PLfT6lGzH1jC9Kb/c3fhn5K7gedU/0eGC
-         uGnpoyb6gdDrcb1U+m9jiRPbU76oO85IEjn+bi7u2MQgdYYeBTNuB8oCKdOU5mCjuOHN
-         LOcg==
-X-Gm-Message-State: AO0yUKXKDQMTndijkJDHr0HQ2F5M50qiyqHs3KYU0OcAymutAKE1Mwlg
-        G82Us+2UTjgttrWSNEiP4qBGtg==
-X-Google-Smtp-Source: AK7set/Bw35pT/jjTQF3n73tY439qRrS10p0cjFW8L2W8KJUM41sEW/vQaXrR9/mwQZZvNmKbGEQFQ==
-X-Received: by 2002:a17:902:e752:b0:19e:748c:d419 with SMTP id p18-20020a170902e75200b0019e748cd419mr27236838plf.46.1678390322967;
-        Thu, 09 Mar 2023 11:32:02 -0800 (PST)
-Received: from localhost ([50.221.140.188])
-        by smtp.gmail.com with ESMTPSA id lh6-20020a170903290600b0019b0b6a1d5bsm17185plb.273.2023.03.09.11.32.02
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 09 Mar 2023 11:32:02 -0800 (PST)
-Date:   Thu, 09 Mar 2023 11:32:02 -0800 (PST)
-X-Google-Original-Date: Thu, 09 Mar 2023 11:31:13 PST (-0800)
-Subject:     Re: [PATCH v4 12/19] clk: starfive: Add StarFive JH7110 always-on clock driver
-In-Reply-To: <CAJM55Z_HGt3iu=trv0v_VzyO3NkVo+aiEaT9vxRURz-MvrbCOg@mail.gmail.com>
-CC:     Conor Dooley <conor@kernel.org>, hal.feng@starfivetech.com,
-        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-riscv@lists.infradead.org, sboyd@kernel.org,
-        mturquette@baylibre.com, p.zabel@pengutronix.de,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        aou@eecs.berkeley.edu, ben.dooks@sifive.com,
-        daniel.lezcano@linaro.org, tglx@linutronix.de,
-        Marc Zyngier <maz@kernel.org>, linux-kernel@vger.kernel.org
-From:   Palmer Dabbelt <palmer@dabbelt.com>
-To:     emil.renner.berthing@canonical.com
-Message-ID: <mhng-2dfa0262-dc88-4256-bce9-d7d9bfbd2ba9@palmer-ri-x1c9a>
-Mime-Version: 1.0 (MHng)
-Content-Type: text/plain; charset=utf-8; format=flowed
+        with ESMTP id S229473AbjCITiu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Mar 2023 14:38:50 -0500
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 822D3E41C5;
+        Thu,  9 Mar 2023 11:38:48 -0800 (PST)
+Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 329IXaK7024558;
+        Thu, 9 Mar 2023 19:38:26 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=xZAR6XDVFBaevTms7M/7sO5L2ikvAoL5CGDXYC2WcS4=;
+ b=h424Jg6Vd1QQDwTbCWXPZSonHJQ9KtCq60HUUheoTSJkqpt2n4U65gVi+n2VAsIPR5tX
+ Ug3gfX2i+qCZN18uQaDUgkb4zYciAXI2t57id7XK2C2kPkn7XEKvHf6SJi9C6TCS1iRp
+ sgL0dVkEbYsmA0pA8tMwDKUkEvqhc/Q+PHdd8G8WwSBOjwsOxv2SKW776UaLN+jtwIkY
+ /R9KJm6AQoIrbm7pK080Vm5cuZo6mLTyxRDnUwyDMM/HrYxRYcULekXgOXLMwZhNZTRw
+ QjxiZxH+JJmLI3un9SgpIxG1uvZzKjJ0FgOgS2y1g1D6TfQOlCNbub9vs/1JoHFBYCz8 VQ== 
+Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3p7egyhddm-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Thu, 09 Mar 2023 19:38:26 +0000
+Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
+        by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 329JcPOc022664
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Thu, 9 Mar 2023 19:38:25 GMT
+Received: from [10.110.90.116] (10.80.80.8) by nalasex01b.na.qualcomm.com
+ (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.41; Thu, 9 Mar 2023
+ 11:38:24 -0800
+Message-ID: <64fc529a-3250-e655-e06e-952f25b1ac2b@quicinc.com>
+Date:   Thu, 9 Mar 2023 11:38:19 -0800
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.9.1
+Subject: Re: [PATCH v3 08/28] ASoC: qcom: Add USB backend ASoC driver for Q6
+Content-Language: en-US
+To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        <mathias.nyman@intel.com>, <perex@perex.cz>, <broonie@kernel.org>,
+        <lgirdwood@gmail.com>, <krzysztof.kozlowski+dt@linaro.org>,
+        <agross@kernel.org>, <Thinh.Nguyen@synopsys.com>,
+        <bgoswami@quicinc.com>, <andersson@kernel.org>,
+        <robh+dt@kernel.org>, <gregkh@linuxfoundation.org>,
+        <tiwai@suse.com>
+CC:     <linux-kernel@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <alsa-devel@alsa-project.org>, <devicetree@vger.kernel.org>,
+        <linux-usb@vger.kernel.org>, <quic_jackp@quicinc.com>,
+        <quic_plai@quicinc.com>
+References: <20230308235751.495-1-quic_wcheng@quicinc.com>
+ <20230308235751.495-9-quic_wcheng@quicinc.com>
+ <ad7dd26d-0ee6-675f-72a5-a93bb0240121@linaro.org>
+From:   Wesley Cheng <quic_wcheng@quicinc.com>
+In-Reply-To: <ad7dd26d-0ee6-675f-72a5-a93bb0240121@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01b.na.qualcomm.com (10.47.209.197)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: HQ89nE5xkL_DFxNKHIhV1GYEh3P3ZEpI
+X-Proofpoint-ORIG-GUID: HQ89nE5xkL_DFxNKHIhV1GYEh3P3ZEpI
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.254,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
+ definitions=2023-03-09_10,2023-03-09_01,2023-02-09_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
+ adultscore=0 spamscore=0 phishscore=0 impostorscore=0 suspectscore=0
+ priorityscore=1501 malwarescore=0 mlxscore=0 clxscore=1015 mlxlogscore=589
+ bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2212070000 definitions=main-2303090157
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 09 Mar 2023 10:19:06 PST (-0800), emil.renner.berthing@canonical.com wrote:
-> On Thu, 9 Mar 2023 at 19:11, Conor Dooley <conor@kernel.org> wrote:
->>
->> On Thu, Mar 09, 2023 at 03:06:13PM +0100, Emil Renner Berthing wrote:
->> >  On Thu, 9 Mar 2023 at 10:44, Hal Feng <hal.feng@starfivetech.com> wrote:
->>
->> > > The AON clock driver provides clocks for gmac0 which is used frequently.
->> > > So I think it would be more convenient if we set "default y" here.
->>
->> > You're right that if we default y for the ethernet driver then the aon
->> > clock/reset should also default y. Personally I don't think we should
->> > default y for every ethernet driver that might be used on some
->> > supported risc-v platform, but I see now that
->> > arch/riscv/config/defconfig already contains CONFIG_MACB=y,
->> > CONFIG_E1000E=y, CONFIG_R8169=y and CONFIG_MICROSEMI_PHY=y, so maybe
->> > I'm wrong or just too late.
->>
->> The defconfig really needs a good bit of cleanup (one of the many things
->> that I am telling myself I will do as part of kconfig.socs cleanup).
->>
->> w.r.t defconfig Palmer said it pretty well earlier on IRC: "defconfig
->> should be useful for kernel devs, which means it should boot on the
->> common dev boards".
->>
->> IMO, that means enough to boot an initramfs and poke the thing to see
->> that it is alive, so: ethernet & serial, and the clocks/resets/pinctrl
->> stuff required to get those going can all be set to y in defconfig.
->>
->> In the driver Kconfig entries, to me, it's more or less the same.
->> I guess, answer the question "Will your customer's board get to the
->> point where it can load a module ithout building this into the kernel?".
->> If the answer to that question is yes, then don't make it default y.
->>
->> That's my €0.02!
->
-> Cool. Defaulting to m in the Kconfig for anything that can be loaded
-> later is exactly what I was trying to say, except I mixed in the
-> defconfig for no good reason. That means both the aon clocks and
-> dwmac-starfive should default to m in Kconfig. The JH7110 (VisionFive
-> 2) boots just fine like that and brings up aon clocks and ethernet
-> after loading the modules.
+Hi Srinivas,
 
-That seems pretty reasonable to me.  It's not like defconfig or Kconfig 
-defaults or whatever are the only things we're going to test, but it's 
-way easier for folks trying poke around with these dev boards if they 
-boot defconfig.
+On 3/9/2023 1:01 AM, Srinivas Kandagatla wrote:
+> 
+> 
+> On 08/03/2023 23:57, Wesley Cheng wrote:
+>> Create a USB BE component that will register a new USB port to the 
+>> ASoC USB
+>> framework.  This will handle determination on if the requested audio
+>> profile is supported by the USB device currently selected.
+>>
+>> Signed-off-by: Wesley Cheng <quic_wcheng@quicinc.com>
+> 
+> Thanks Wesley for the patch, I have few minor comments.
+> 
+
+Thanks for the review!
+
+>> ---
+>>   include/sound/q6usboffload.h  |  20 ++++
+>>   sound/soc/qcom/Kconfig        |   4 +
+>>   sound/soc/qcom/qdsp6/Makefile |   1 +
+>>   sound/soc/qcom/qdsp6/q6usb.c  | 208 ++++++++++++++++++++++++++++++++++
+>>   4 files changed, 233 insertions(+)
+>>   create mode 100644 include/sound/q6usboffload.h
+>>   create mode 100644 sound/soc/qcom/qdsp6/q6usb.c
+>>
+>> diff --git a/include/sound/q6usboffload.h b/include/sound/q6usboffload.h
+>> new file mode 100644
+>> index 000000000000..4fb1912d9f55
+>> --- /dev/null
+>> +++ b/include/sound/q6usboffload.h
+>> @@ -0,0 +1,20 @@
+>> +/* SPDX-License-Identifier: GPL-2.0
+>> + *
+>> + * linux/sound/q6usboffload.h -- QDSP6 USB offload
+>> + *
+>> + * Copyright (c) 2022-2023 Qualcomm Innovation Center, Inc. All 
+>> rights reserved.
+>> + */
+>> +
+>> +/**
+>> + * struct q6usb_offload
+>> + * @dev - dev handle to usb be
+>> + * @sid - streamID for iommu
+>> + * @intr_num - usb interrupter number
+>> + * @domain - allocated iommu domain
+>> + **/
+>> +struct q6usb_offload {
+>> +    struct device *dev;
+>> +    long long sid;
+>> +    u32 intr_num;
+>> +    struct iommu_domain *domain;
+> Why do we need to store this domain, You can remove this along with the 
+> one line that gets domain in probe function.
+> 
+
+We'll need a reference to the iommu domain, because the QC USB offload 
+driver will be the one that is going to map the XHCI interrupter and 
+transfer ring regions for the audio DSP.  This happens when a USB QMI 
+enable stream request is received in the USB offload driver.  Please 
+refer to:
+
+static int prepare_qmi_response(struct snd_usb_substream *subs,
+		struct qmi_uaudio_stream_req_msg_v01 *req_msg,
+		struct qmi_uaudio_stream_resp_msg_v01 *resp, int info_idx)
+{
+...
+	xhci_pa = xhci_get_ir_resource(subs->dev, ir);
+	if (!xhci_pa) {
+		dev_err(uaudio_qdev->dev,
+			"failed to get sec event ring address\n");
+		ret = -ENODEV;
+		goto free_sec_ring;
+	}
+...
+	va = uaudio_iommu_map(MEM_EVENT_RING, dma_coherent, xhci_pa, PAGE_SIZE,
+			NULL);
+	if (!va) {
+		ret = -ENOMEM;
+		goto free_sec_ring;
+	}
+
+This is just an example for mapping the XHCI secondary interrupter.  We 
+will also do the same for the transfer ring.
+
+Thanks
+Wesley Cheng
