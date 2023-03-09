@@ -2,268 +2,173 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 975F06B1F47
-	for <lists+devicetree@lfdr.de>; Thu,  9 Mar 2023 10:05:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AB8FB6B1F55
+	for <lists+devicetree@lfdr.de>; Thu,  9 Mar 2023 10:07:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229546AbjCIJFL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Mar 2023 04:05:11 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46856 "EHLO
+        id S230314AbjCIJHP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Mar 2023 04:07:15 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44670 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230006AbjCIJEX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Mar 2023 04:04:23 -0500
-Received: from mail-ed1-x52f.google.com (mail-ed1-x52f.google.com [IPv6:2a00:1450:4864:20::52f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BDB3F5F22D
-        for <devicetree@vger.kernel.org>; Thu,  9 Mar 2023 01:03:30 -0800 (PST)
-Received: by mail-ed1-x52f.google.com with SMTP id a25so4317952edb.0
-        for <devicetree@vger.kernel.org>; Thu, 09 Mar 2023 01:03:30 -0800 (PST)
+        with ESMTP id S230043AbjCIJGv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Mar 2023 04:06:51 -0500
+Received: from mail-wr1-x433.google.com (mail-wr1-x433.google.com [IPv6:2a00:1450:4864:20::433])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CC59F234D0
+        for <devicetree@vger.kernel.org>; Thu,  9 Mar 2023 01:06:11 -0800 (PST)
+Received: by mail-wr1-x433.google.com with SMTP id q16so1133241wrw.2
+        for <devicetree@vger.kernel.org>; Thu, 09 Mar 2023 01:06:11 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1678352609;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=J13gHYDlv4WDpdSt2jqL/HFsRwgMCyNGuFbdGGUpBc8=;
-        b=hyZU0D0mPXAuQMeiHccn7a96QYFyaNF9exQeTmpkqYY7OMEbEniJa0ffiXaPTAua25
-         A7tYoMnBFrsaFDYlguDNmLVhoL74poM1/QI5SxLzTa9n1YiUPKjinVli4u/5WfK5cqre
-         N/vmvbJeU+NVDQsWKVYO9blVyS+Xai4xhPpBFYkxO1+VJRKIa10tz018ixjM1AGSHtrd
-         1OfuIHYc7NaJCh/p9En9bSBCBQKEUait8HHMZAG8ldGQ67v9tkuA1Hwqh38dCg8vAPCQ
-         2Zo/4gpEFMOWbyY3VlxBC7n6ida1dhchu/Z/JY9crHdU1V1GpWIved+yiAn2AuGf0zks
-         F4Ww==
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112; t=1678352770;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=DWLXsrQU8r8iBGzoibkZ5OVm/pVG4g0LW7vlYuupzQ0=;
+        b=c9DY57l6BH328f1T/IuGy3UGlMX08fdyv0xGGK71ceYc8K6OxMVs5U7DH6Ds/NteNr
+         HLJt9zi9wkF+pZk9PY6jZB846V1M997sQ2np8mNY1siIPAIubeIKXImVEqZWq3yx2Jdz
+         39U8oyTxDnBv6ZhHzgjpoIRHWlrXF0uV1TzTmuOR1gOsf2ib5T56EcRv6P24KrIqOy77
+         XnImIlM+NT0QPv9dWHDT3XmNt8OhptXL20KveMaomIM8oBoR9LJjRggljwjSdfVJRg5t
+         L4ZUGpofa5Gn444pQgTEmLW2bwoOJqStNUYHbW5DSPcqZ0mVZ0X61r3gvNxIDikUcLtI
+         vEfg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678352609;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=J13gHYDlv4WDpdSt2jqL/HFsRwgMCyNGuFbdGGUpBc8=;
-        b=yRqDuFR7J1GdZdAyuH7KdvcZRugj77w1Z0yq2ZOQ0dZrCmmuBfQTswGuikqd8aWEHQ
-         9ltFQtkcZn3Vj1MgS1R8FfvMWmaUGnbFsE5IfKgX0Tb/YwsYMp+TY1xz4aJ0TDFCPJ9Q
-         AB+1gsWt6n+veJWtdVlFczANzeCi885yPqiMAXdeM5gaqXwo40ekRPBjyc7zdoZBDVB1
-         5Oi7XwhqSpXrc73elQMxkRz0WW95r2upnzcfbvml0YcYAWxDaB4u7B8j5gMW3CVI5NQl
-         ga6Fjcaj5jB1AlsNZP3usjR5VqQx4O0adTStjIj4koJWonbTW8QyiOCUsgTCam4sJ7Mu
-         21XA==
-X-Gm-Message-State: AO0yUKUlWmFYVeVfLxj73ncytrV3uiDP/f0yEihetNpqGbMfxFyB1A49
-        kzWKnPu2N0WZy5WdeEVvVlnOLg==
-X-Google-Smtp-Source: AK7set+kWzmQGaH/zQoMoebD1FaMml7XgdXOf46OEdW8iOoWVqfpX99gvKoTw9CnwHwy9YugrEvoWg==
-X-Received: by 2002:a50:ee8c:0:b0:4ac:b32d:3dab with SMTP id f12-20020a50ee8c000000b004acb32d3dabmr19282464edr.29.1678352608924;
-        Thu, 09 Mar 2023 01:03:28 -0800 (PST)
-Received: from ?IPV6:2a02:810d:15c0:828:7ee2:e73e:802e:45c1? ([2a02:810d:15c0:828:7ee2:e73e:802e:45c1])
-        by smtp.gmail.com with ESMTPSA id k22-20020a50ce56000000b004c07b11deb8sm9255484edj.64.2023.03.09.01.03.28
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 09 Mar 2023 01:03:28 -0800 (PST)
-Message-ID: <c0ec5137-ed86-d695-7335-d1564d814862@linaro.org>
-Date:   Thu, 9 Mar 2023 10:03:27 +0100
+        d=1e100.net; s=20210112; t=1678352770;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=DWLXsrQU8r8iBGzoibkZ5OVm/pVG4g0LW7vlYuupzQ0=;
+        b=SVvy/Jg83Qg98ED7V9TOIylg501uLMMr+b3UhJ9/E6ZujElhexa0H2cjTwyTbS+Tg2
+         UMCCjMdZVnNmsGoZmwwrb3B4xuK5tuxWoY/c4tPjJHAWTn9SLrJR9gpbmIebG9Qptu6i
+         z98gATxfnpgcFj6d8ZzDWjHA4Cz48izeTftuUthMtT4b8FZlnSBjztF/zMaeovJm9FQL
+         NCXrGH+MnGHdepRRoXoUcouzp/OI3U1H9TkFQAcZ59sCvPobrJUZm3rlbDBakKxRucr8
+         QLTWjilbF5ymKHszUCNycKMnezu/zrF+Srm16TTqPDW7Elmqz8LfDqICSl4nD1P3Oqm6
+         Bfiw==
+X-Gm-Message-State: AO0yUKVWchwqhFd9hOrH9ANTITKW6zRNCp4vPqlrCcaymGvBXmxyeJ8j
+        AF5gZEEWH+8GMxauboOgnhBSVg==
+X-Google-Smtp-Source: AK7set/xWcQ3e6C8V9K1no/lYj82bJP03UJ98Zjsnfj7tf47EfzLA58Hl0ucNV55U1teahWwBS6hEA==
+X-Received: by 2002:a5d:6148:0:b0:2c5:5335:73f3 with SMTP id y8-20020a5d6148000000b002c5533573f3mr18826708wrt.34.1678352769884;
+        Thu, 09 Mar 2023 01:06:09 -0800 (PST)
+Received: from [127.0.1.1] (158.22.5.93.rev.sfr.net. [93.5.22.158])
+        by smtp.googlemail.com with ESMTPSA id g11-20020a05600c310b00b003eb68bb61c8sm2073243wmo.3.2023.03.09.01.06.08
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 09 Mar 2023 01:06:09 -0800 (PST)
+From:   Alexandre Mergnat <amergnat@baylibre.com>
+Date:   Thu, 09 Mar 2023 10:06:02 +0100
+Subject: [PATCH v5] dt-bindings: display: mediatek: clean unnecessary item
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-Subject: Re: [PATCH 1/2] dt-bindings: leds: Document rohm,bd65b60 bindings
-Content-Language: en-US
-To:     Bogdan Ionescu <bogdan.ionescu.work@gmail.com>,
-        Pavel Machek <pavel@ucw.cz>, Lee Jones <lee@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-leds@vger.kernel.or, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20230308201451.11629-1-bogdan.ionescu.work@gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230308201451.11629-1-bogdan.ionescu.work@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+Message-Id: <20230306-ccorr-binding-fix-v5-0-6c56aaecc3b1@baylibre.com>
+To:     Philipp Zabel <p.zabel@pengutronix.de>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Allen-KH Cheng <allen-kh.cheng@mediatek.com>,
+        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+        David Airlie <airlied@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        linux-arm-kernel@lists.infradead.org,
+        Alexandre Mergnat <amergnat@baylibre.com>,
+        linux-kernel@vger.kernel.org,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Rob Herring <robh@kernel.org>,
+        linux-mediatek@lists.infradead.org
+X-Mailer: b4 0.10.1
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2889; i=amergnat@baylibre.com;
+ h=from:subject:message-id; bh=ane73DE2EH6XTssrtokRfjsFxb/F2uv7GT+5uVVvMaA=;
+ b=owEBbQKS/ZANAwAKAStGSZ1+MdRFAcsmYgBkCaGACge7X0KLwuoqnZ4fw3r3jhLJMOt67yG9WGat
+ LuOxaJuJAjMEAAEKAB0WIQQjG17X8+qqcA5g/osrRkmdfjHURQUCZAmhgAAKCRArRkmdfjHURVd7EA
+ Czp7QiKLjtd5p68htZwWE4nDjor7AOsvtp3IS4KjRWv/VRtZrXJsy+RgqgCKe5cf0sGQSlHXgZvm2A
+ Xg9ZwbC4WqVxgaDSQi8Ghgzcjg/nba7zSYTdMH6aChuWSUkPqDm/9MRkoNs+doS7ZAs7kwR6M+l9dz
+ wnJsH686DmFkjzIRXxVbpTFSqlt0lCj4jzoO2WAsnz7CTslFXqLqSzmFtHaOLps1D5dWTdPHH/rcHZ
+ UaNzDgSg7p3mKBJ8VJoMxLT9/FUDvursRQJ8Zox+wFSq8CL6ueKnsqjT18/SK7tyvLNIZ7zRngd0n9
+ JMovt8IlYUhN2zmrAkXKH6skGQcKbteBFsKgUssRv7zflF+Hvonghl40mY7mbOs20b2g+ujmwQAOXB
+ oYU7ybbe2IJewTR1XEXaEgHmABOyXh5ohHOMypvBe7jh3ZMsl5xacZe0MbZSsrTq+TTfi5Usv41Axa
+ MKIfhfXUS6SChFwYNp+jTWY5rCwYFalQaLdh/0FOA3QT1VASQnEYV13WK+3qbF7wBo3bMtGzmSuh9x
+ HJqU8GPrnfzkOXDaA2shnlVpNTfgOnbbVYqgc+dmExtZZkM/tWyUJx4IZU81fQ61BpuSyY/nAwsEor
+ ap7GzUHFvcovcqTA1vSeUrkn46guO3pjI25vYVNDF27Nm7EsCZVflwUxcqBA==
+X-Developer-Key: i=amergnat@baylibre.com; a=openpgp;
+ fpr=231B5ED7F3EAAA700E60FE8B2B46499D7E31D445
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 08/03/2023 21:14, Bogdan Ionescu wrote:
-> Hi all,
-> 
-> This is my first patch to the kernel, so I expect to have made
-> some mistakes. I did my best to follow the documentation and
-> submitting patches guidelines, but if I missed something, please
-> let me know.
-> 
-> I wasn't sure if I had to add myself to the MAINTAINERS file for such a
-> small patch, so I didn't.
-> 
-> Patch begins here:
+The item which have the mediatek,mt8192-disp-ccorr as const compatible
+already exist above. Merge all compatibles which have the same fallback
+under the same item.
 
-This all goes to cover letter. Patch begins with first line. `git am`
-this patch so you will see the issues.
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Reviewed-by: Rob Herring <robh@kernel.org>
+Signed-off-by: Alexandre Mergnat <amergnat@baylibre.com>
+---
+Fix MTK color correction binding
 
-> 
-> Added devicetree bindings documentation for the rohm,bd65b60
-> led driver.
-> 
-> Signed-off-by: Bogdan Ionescu <bogdan.ionescu.work@gmail.com>
+The fallback compatible has been duplicated in the 137272ef1b0f commit.
 
-Subject: drop second/last, redundant "bindings". The "dt-bindings"
-prefix is already stating that these are bindings.
+To: Chun-Kuang Hu <chunkuang.hu@kernel.org>
+To: Philipp Zabel <p.zabel@pengutronix.de>
+To: David Airlie <airlied@gmail.com>
+To: Daniel Vetter <daniel@ffwll.ch>
+To: Rob Herring <robh+dt@kernel.org>
+To: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+To: Matthias Brugger <matthias.bgg@gmail.com>
+To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+To: Allen-KH Cheng <allen-kh.cheng@mediatek.com>
+Cc: Rob Herring <robh@kernel.org>
+Cc: dri-devel@lists.freedesktop.org
+Cc: linux-mediatek@lists.infradead.org
+Cc: devicetree@vger.kernel.org
+Cc: linux-kernel@vger.kernel.org
+Cc: linux-arm-kernel@lists.infradead.org
+---
+Changes in v5:
+- Add trailers.
+- Link to v4: https://lore.kernel.org/r/20230306-ccorr-binding-fix-v4-0-117daea88efb@baylibre.com
 
-> ---
->  .../bindings/leds/rohm,bd65b60-leds.yaml      | 77 +++++++++++++++++++
->  include/dt-bindings/leds/leds-bd65b60.h       | 20 +++++
->  2 files changed, 97 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/leds/rohm,bd65b60-leds.yaml
->  create mode 100644 include/dt-bindings/leds/leds-bd65b60.h
-> 
-> diff --git a/Documentation/devicetree/bindings/leds/rohm,bd65b60-leds.yaml b/Documentation/devicetree/bindings/leds/rohm,bd65b60-leds.yaml
-> new file mode 100644
-> index 000000000000..f69d7acd39c8
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/leds/rohm,bd65b60-leds.yaml
+Changes in v4:
+- Reword commit title and message.
+- Link to v3: https://lore.kernel.org/r/20230306-ccorr-binding-fix-v3-0-7877613a35cb@baylibre.com
 
-Drop "-leds". This should match compatible.
+Changes in v3:
+- Re-order compatible.
+- Link to v2: https://lore.kernel.org/r/20230306-ccorr-binding-fix-v2-0-4822939a837d@baylibre.com
 
-> @@ -0,0 +1,77 @@
-> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/leds/rohm,bd65b60-leds.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: ROHM BD65B60 device tree bindings
+Changes in v2:
+- Fix commit title.
+- Link to v1: https://lore.kernel.org/r/20230306-ccorr-binding-fix-v1-0-177d81d60c69@baylibre.com
+---
+ .../devicetree/bindings/display/mediatek/mediatek,ccorr.yaml         | 5 +----
+ 1 file changed, 1 insertion(+), 4 deletions(-)
 
-Drop "device tree bindings"
+diff --git a/Documentation/devicetree/bindings/display/mediatek/mediatek,ccorr.yaml b/Documentation/devicetree/bindings/display/mediatek/mediatek,ccorr.yaml
+index b04820c95b22..bda86e6857f5 100644
+--- a/Documentation/devicetree/bindings/display/mediatek/mediatek,ccorr.yaml
++++ b/Documentation/devicetree/bindings/display/mediatek/mediatek,ccorr.yaml
+@@ -27,13 +27,10 @@ properties:
+           - const: mediatek,mt8192-disp-ccorr
+       - items:
+           - enum:
++              - mediatek,mt8186-disp-ccorr
+               - mediatek,mt8188-disp-ccorr
+               - mediatek,mt8195-disp-ccorr
+           - const: mediatek,mt8192-disp-ccorr
+-      - items:
+-          - enum:
+-              - mediatek,mt8186-disp-ccorr
+-          - const: mediatek,mt8192-disp-ccorr
+ 
+   reg:
+     maxItems: 1
 
-> +
-> +maintainers:
-> +  - Bogdan Ionescu <bogdan.ionescu.work+kernel@gmail.com>
-> +
-> +description: |
-> +  BD65B60 is a white LED driver IC that integrates PWM
-> +  step-up DC/DC converter with boost-capability of up to
-> +  maximum 28.5V and current driver with drive capability of up
-> +  to 25mA(Typ.) maximum setting. Precise brightness can be
-> +  controlled at wide ranges through the external PWM pulse
-> +  input.
-> +
-> +properties:
-> +  compatible:
-> +    const: rohm,bd65b60
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  led:
-
-Drop led object. There is no real need for it, is it?
-
-> +    type: object
-> +    $ref: common.yaml#
-> +    unevaluatedProperties: false
-> +
-> +    properties:
-> +      rohm,enable-outputs:
-> +        description:
-> +          Select which leds are being controlled.
-> +          Values defined in <dt-bindings/leds/leds-bd65b60.h>
-
-I don't understand why do you need this property. You should use
-generic/existing properties, if possible.
-
-> +        $ref: "/schemas/types.yaml#/definitions/uint32"
-
-Drop quotes
-
-> +        enum: [ 0, 1, 4, 5 ]
-> +
-> +      rohm,ovp:
-> +        description:
-> +          Select Over-Voltage-Portection level.
-> +          Values defined in <dt-bindings/leds/leds-bd65b60.h>
-> +        $ref: "/schemas/types.yaml#/definitions/uint32"
-
-Drop quotes
-
-> +        enum: [ 0, 8, 16 ]
-> +        default: 16
-
-What are the units? percent? Volts? Then use unit suffix in property
-name. Your other file suggests volts so make it microvolts.
-
-https://github.com/devicetree-org/dt-schema/blob/main/dtschema/schemas/property-units.yaml
-
-
-> +
-> +    required:
-> +      - rohm,enable-outputs
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/leds/common.h>
-> +    #include <dt-bindings/leds/leds-bd65b60.h>
-> +
-> +    i2c {
-> +
-
-Drop blank line
-
-Does not look like you tested the bindings. Please run `make
-dt_binding_check` (see
-Documentation/devicetree/bindings/writing-schema.rst for instructions).
-
-> +        led_controler@64 {
-
-No underscores in node names
-
-> +            compatible = "rohm,bd65b60";
-> +            reg = <0x64>;
-> +
-> +            backlight_led: led {
-> +                function = LED_FUNCTION_BACKLIGHT;
-> +                color = <LED_COLOR_ID_WHITE>;
-> +                rohm,enable-outputs = <BD65B60_ENABLE_LED1>;
-> +                default-state = "keep";
-> +                linux,default-trigger = "backlight";
-> +            };
-> +        };
-> +    };
-> +
-> +...
-> diff --git a/include/dt-bindings/leds/leds-bd65b60.h b/include/dt-bindings/leds/leds-bd65b60.h
-> new file mode 100644
-> index 000000000000..8634faae58f4
-> --- /dev/null
-> +++ b/include/dt-bindings/leds/leds-bd65b60.h
-
-Filename matching binding, but I think entire file will be gone.
-
-> @@ -0,0 +1,20 @@
-> +/* SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) */
-> +/*
-> + * This header provides macros for the ROHM BD65B60 device tree bindings.
-> + *
-> + * Copyright (C) 2023 Bogdan Ionescu <bogdan.ionescu.work+kernel@gmail.com>
-> + */
-> +
-> +#ifndef _DT_BINDINGS_LEDS_BD65B60_H
-> +#define _DT_BINDINGS_LEDS_BD65B60_H
-> +
-> +#define BD65B60_ENABLE_NONE 0
-> +#define BD65B60_ENABLE_LED1 1
-> +#define BD65B60_ENABLE_LED2 4
-> +#define BD65B60_ENABLE_BOTH (BD65B60_ENABLE_LED1 | BD65B60_ENABLE_LED2)
-
-I don't understand this.
-
-> +
-> +#define BD65B60_OVP_25V 0
-> +#define BD65B60_OVP_30V 0x08
-> +#define BD65B60_OVP_35V 0x10
-
-Drop, register values are not bindings.
-
-> +
-> +#endif /* _DT_BINDINGS_LEDS_BD65B60_H */
+---
+base-commit: add072536971d7ce891fde3cdbf68c55e7cfa95a
+change-id: 20230306-ccorr-binding-fix-718c6d725088
 
 Best regards,
-Krzysztof
-
+-- 
+Alexandre Mergnat <amergnat@baylibre.com>
