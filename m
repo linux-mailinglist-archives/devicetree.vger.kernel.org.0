@@ -2,38 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6C0796B2CAF
-	for <lists+devicetree@lfdr.de>; Thu,  9 Mar 2023 19:11:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F03D86B2CCE
+	for <lists+devicetree@lfdr.de>; Thu,  9 Mar 2023 19:19:37 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230143AbjCISLu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Mar 2023 13:11:50 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58502 "EHLO
+        id S230032AbjCISTg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Mar 2023 13:19:36 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42756 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229511AbjCISLs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Mar 2023 13:11:48 -0500
-Received: from sin.source.kernel.org (sin.source.kernel.org [IPv6:2604:1380:40e1:4800::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 56EF3E8CF8;
-        Thu,  9 Mar 2023 10:11:46 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        with ESMTP id S230288AbjCISTd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Mar 2023 13:19:33 -0500
+Received: from smtp-relay-internal-1.canonical.com (smtp-relay-internal-1.canonical.com [185.125.188.123])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 37AEBCC322
+        for <devicetree@vger.kernel.org>; Thu,  9 Mar 2023 10:19:29 -0800 (PST)
+Received: from mail-qv1-f70.google.com (mail-qv1-f70.google.com [209.85.219.70])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
         (No client certificate requested)
-        by sin.source.kernel.org (Postfix) with ESMTPS id 3EF7FCE235E;
-        Thu,  9 Mar 2023 18:11:45 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 184F5C433D2;
-        Thu,  9 Mar 2023 18:11:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1678385503;
-        bh=N6Wj3AQY5fxCb5ci7bzQ52zTXB3Nk+OsjegljZXqjpk=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=PRS4L/VR71sl4K8yevfuM0ECGp9XVDoFrcir8SSeH5FHo0z+6WWcTlBJiw9a/Tljh
-         TEj8Lou6Bi9L1VRLZK6MVxEVno1MV1rR0vcNHrMvBJeeHJMNZuf3Q4Va5gVTTC6fUa
-         hQgD61WU2VjKA726UIjFqRRisnwPM/Bf8eKhL6Gcc1jLACbQp4RWFVXj30902L34FX
-         trN+WOR5hMBvdbYgWFZj31extQgavPplIP0zaf7dNEUMWDbbxG3wmhgsZ8wRIUVHIK
-         9BfWG4TUPrcHEMhqS+fDg6csHSpZe2xtkHJBtKlEOeOg34c45ap7kcNNNmr5hIoPox
-         bDv7I6E0L1icw==
-Date:   Thu, 9 Mar 2023 18:11:37 +0000
-From:   Conor Dooley <conor@kernel.org>
-To:     Emil Renner Berthing <emil.renner.berthing@canonical.com>
+        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 3F93E41B71
+        for <devicetree@vger.kernel.org>; Thu,  9 Mar 2023 18:19:24 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+        s=20210705; t=1678385964;
+        bh=SxKX8lAWQsQ9FTwiM9BPGc+zhxP/zhLFmNPZpha4eWo=;
+        h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+         To:Cc:Content-Type;
+        b=ecyeGCqldqraTAGFgFoseL6HI4/9PAZL1FPHimV2PbCsORDAxyChOAFUPzJo22RgI
+         XlG6HgWIVvRk3in0k3ii3i21D1keLbdPxghEl4Ur9xbQ8vgtdS08gEColuj+u+BDB2
+         Q8fesuzEPn1cMJcPsQrDDEl2TcASVeSsQlzzQxSZgbsUWd/Z9w+wmc/66x8WY6REcl
+         nFVGh8KZofYUvxrekoaIrq+AkT+91GUGdJvGxi4ahJHD5rkoq/UEvusEynaOmjMalT
+         sGHyHctbNX0po8Jyu1IU2ToZDvkD/Qg8OMw1BfKGP7DPRgzI5l58JLUTX6wurMBVBL
+         hZtL+TuuTp8CQ==
+Received: by mail-qv1-f70.google.com with SMTP id pv11-20020ad4548b000000b0056e96f4fd64so1632744qvb.15
+        for <devicetree@vger.kernel.org>; Thu, 09 Mar 2023 10:19:24 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1678385963;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=SxKX8lAWQsQ9FTwiM9BPGc+zhxP/zhLFmNPZpha4eWo=;
+        b=pfrLC6Bs2TGbDecD5t9rfzfKAhlYLSZr3mjiSrm4INQgSEmcyKMzNtmyAxmyj4RNr9
+         81vOorV7T0AEM8Dp1Z/8vtyYHmN+UPDdat1mKGVG0O44kB8ZxIGWyGXNIqK04EOCXD/s
+         ELRc9r09qbHwC18tpHBEAt+gR00D6aMEb9j2L+VyXjyswOwe+XXAEXfbc4e7JF3tVz3v
+         lJeUFA8O5fx2/pdi+McRTkESciYPf+Xf6Bxyjq1y2bac3GepP0CYAYn645M1fNxYr8pL
+         C9yEkC3Xzaqi9G/KPESx/dIJkl55SOlfQSE6AWVamKlL6r/nKshKYYiQCGbrvDuuoWtD
+         ho4Q==
+X-Gm-Message-State: AO0yUKXemcD1rx2VgTutX4Gn9eW2xpn8U7vzlI+hp8IRiVM8xkYGSyEe
+        RTG9p+t8ggzsuw9qPEMWigPAJfS1Z7eSWJnFoo/YtGdFcqnuUVtRai6HksvLoJRKUAOh+eaCuYm
+        22+dXrcgeZtiEw3pwDuG23YDsLcPPGflUBlCIW3FLNUwac/sQHufvHt0=
+X-Received: by 2002:ac8:429a:0:b0:3bf:bba8:69b0 with SMTP id o26-20020ac8429a000000b003bfbba869b0mr6074845qtl.5.1678385963013;
+        Thu, 09 Mar 2023 10:19:23 -0800 (PST)
+X-Google-Smtp-Source: AK7set9OHYCSEuIKRx9FxuLcExe2yb6O6D1LT6790n4D4PIp0zTs0FgzUhcs4O8DexM+HqsfP/U+EGkFQOY6RIH4J0w=
+X-Received: by 2002:ac8:429a:0:b0:3bf:bba8:69b0 with SMTP id
+ o26-20020ac8429a000000b003bfbba869b0mr6074830qtl.5.1678385962760; Thu, 09 Mar
+ 2023 10:19:22 -0800 (PST)
+MIME-Version: 1.0
+References: <20230221024645.127922-1-hal.feng@starfivetech.com>
+ <20230221024645.127922-13-hal.feng@starfivetech.com> <CAJM55Z8H4qmy_BiD0SHW-w5ifzhzokdO-QxpUUz9aeUd+htrZg@mail.gmail.com>
+ <8c30220a-abef-7518-cb44-abcea91408e2@starfivetech.com> <49ab1072-98ba-f364-9b66-68658566e732@starfivetech.com>
+ <CAJM55Z9YGjD+1haWcXEZNkHnWNRZckdBmTTykTt7QZV_LUohgQ@mail.gmail.com> <032f9254-482a-4b97-8e7e-4afb1f78eb21@spud>
+In-Reply-To: <032f9254-482a-4b97-8e7e-4afb1f78eb21@spud>
+From:   Emil Renner Berthing <emil.renner.berthing@canonical.com>
+Date:   Thu, 9 Mar 2023 19:19:06 +0100
+Message-ID: <CAJM55Z_HGt3iu=trv0v_VzyO3NkVo+aiEaT9vxRURz-MvrbCOg@mail.gmail.com>
+Subject: Re: [PATCH v4 12/19] clk: starfive: Add StarFive JH7110 always-on
+ clock driver
+To:     Conor Dooley <conor@kernel.org>
 Cc:     Hal Feng <hal.feng@starfivetech.com>, linux-clk@vger.kernel.org,
         devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
         Stephen Boyd <sboyd@kernel.org>,
@@ -48,20 +80,8 @@ Cc:     Hal Feng <hal.feng@starfivetech.com>, linux-clk@vger.kernel.org,
         Daniel Lezcano <daniel.lezcano@linaro.org>,
         Thomas Gleixner <tglx@linutronix.de>,
         Marc Zyngier <maz@kernel.org>, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v4 12/19] clk: starfive: Add StarFive JH7110 always-on
- clock driver
-Message-ID: <032f9254-482a-4b97-8e7e-4afb1f78eb21@spud>
-References: <20230221024645.127922-1-hal.feng@starfivetech.com>
- <20230221024645.127922-13-hal.feng@starfivetech.com>
- <CAJM55Z8H4qmy_BiD0SHW-w5ifzhzokdO-QxpUUz9aeUd+htrZg@mail.gmail.com>
- <8c30220a-abef-7518-cb44-abcea91408e2@starfivetech.com>
- <49ab1072-98ba-f364-9b66-68658566e732@starfivetech.com>
- <CAJM55Z9YGjD+1haWcXEZNkHnWNRZckdBmTTykTt7QZV_LUohgQ@mail.gmail.com>
-MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="BsPusMLI7B8oDAmr"
-Content-Disposition: inline
-In-Reply-To: <CAJM55Z9YGjD+1haWcXEZNkHnWNRZckdBmTTykTt7QZV_LUohgQ@mail.gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
@@ -71,53 +91,48 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Thu, 9 Mar 2023 at 19:11, Conor Dooley <conor@kernel.org> wrote:
+>
+> On Thu, Mar 09, 2023 at 03:06:13PM +0100, Emil Renner Berthing wrote:
+> >  On Thu, 9 Mar 2023 at 10:44, Hal Feng <hal.feng@starfivetech.com> wrot=
+e:
+>
+> > > The AON clock driver provides clocks for gmac0 which is used frequent=
+ly.
+> > > So I think it would be more convenient if we set "default y" here.
+>
+> > You're right that if we default y for the ethernet driver then the aon
+> > clock/reset should also default y. Personally I don't think we should
+> > default y for every ethernet driver that might be used on some
+> > supported risc-v platform, but I see now that
+> > arch/riscv/config/defconfig already contains CONFIG_MACB=3Dy,
+> > CONFIG_E1000E=3Dy, CONFIG_R8169=3Dy and CONFIG_MICROSEMI_PHY=3Dy, so ma=
+ybe
+> > I'm wrong or just too late.
+>
+> The defconfig really needs a good bit of cleanup (one of the many things
+> that I am telling myself I will do as part of kconfig.socs cleanup).
+>
+> w.r.t defconfig Palmer said it pretty well earlier on IRC: "defconfig
+> should be useful for kernel devs, which means it should boot on the
+> common dev boards".
+>
+> IMO, that means enough to boot an initramfs and poke the thing to see
+> that it is alive, so: ethernet & serial, and the clocks/resets/pinctrl
+> stuff required to get those going can all be set to y in defconfig.
+>
+> In the driver Kconfig entries, to me, it's more or less the same.
+> I guess, answer the question "Will your customer's board get to the
+> point where it can load a module ithout building this into the kernel?".
+> If the answer to that question is yes, then don't make it default y.
+>
+> That's my =E2=82=AC0.02!
 
---BsPusMLI7B8oDAmr
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Cool. Defaulting to m in the Kconfig for anything that can be loaded
+later is exactly what I was trying to say, except I mixed in the
+defconfig for no good reason. That means both the aon clocks and
+dwmac-starfive should default to m in Kconfig. The JH7110 (VisionFive
+2) boots just fine like that and brings up aon clocks and ethernet
+after loading the modules.
 
-On Thu, Mar 09, 2023 at 03:06:13PM +0100, Emil Renner Berthing wrote:
->  On Thu, 9 Mar 2023 at 10:44, Hal Feng <hal.feng@starfivetech.com> wrote:
-
-> > The AON clock driver provides clocks for gmac0 which is used frequently.
-> > So I think it would be more convenient if we set "default y" here.
-
-> You're right that if we default y for the ethernet driver then the aon
-> clock/reset should also default y. Personally I don't think we should
-> default y for every ethernet driver that might be used on some
-> supported risc-v platform, but I see now that
-> arch/riscv/config/defconfig already contains CONFIG_MACB=3Dy,
-> CONFIG_E1000E=3Dy, CONFIG_R8169=3Dy and CONFIG_MICROSEMI_PHY=3Dy, so maybe
-> I'm wrong or just too late.
-
-The defconfig really needs a good bit of cleanup (one of the many things
-that I am telling myself I will do as part of kconfig.socs cleanup).
-
-w.r.t defconfig Palmer said it pretty well earlier on IRC: "defconfig
-should be useful for kernel devs, which means it should boot on the
-common dev boards".
-
-IMO, that means enough to boot an initramfs and poke the thing to see
-that it is alive, so: ethernet & serial, and the clocks/resets/pinctrl
-stuff required to get those going can all be set to y in defconfig.
-
-In the driver Kconfig entries, to me, it's more or less the same.
-I guess, answer the question "Will your customer's board get to the
-point where it can load a module ithout building this into the kernel?".
-If the answer to that question is yes, then don't make it default y.
-
-That's my =E2=82=AC0.02!
-
---BsPusMLI7B8oDAmr
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZAohWQAKCRB4tDGHoIJi
-0v/JAP94ulofNy+GppyQaKtW1Xy2+zpJyXSF00negiy+E6OD1AEA5XbUBFuifxqA
-NFwySuVpSd4k8Gw3ygG1xTBXYFvBsAg=
-=EJc4
------END PGP SIGNATURE-----
-
---BsPusMLI7B8oDAmr--
+/Emil
