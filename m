@@ -2,79 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B5BBF6B1E4F
-	for <lists+devicetree@lfdr.de>; Thu,  9 Mar 2023 09:36:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E9E7E6B1E55
+	for <lists+devicetree@lfdr.de>; Thu,  9 Mar 2023 09:37:35 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230283AbjCIIgl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Mar 2023 03:36:41 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43156 "EHLO
+        id S230294AbjCIIhe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Mar 2023 03:37:34 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53466 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230027AbjCIIgY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Mar 2023 03:36:24 -0500
-Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com [IPv6:2a00:1450:4864:20::532])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0FFE9E1FFB
-        for <devicetree@vger.kernel.org>; Thu,  9 Mar 2023 00:34:33 -0800 (PST)
-Received: by mail-ed1-x532.google.com with SMTP id ec29so3870511edb.6
-        for <devicetree@vger.kernel.org>; Thu, 09 Mar 2023 00:34:33 -0800 (PST)
+        with ESMTP id S229599AbjCIIhQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Mar 2023 03:37:16 -0500
+Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6563E2CFF9
+        for <devicetree@vger.kernel.org>; Thu,  9 Mar 2023 00:35:32 -0800 (PST)
+Received: by mail-ed1-x535.google.com with SMTP id a25so4057259edb.0
+        for <devicetree@vger.kernel.org>; Thu, 09 Mar 2023 00:35:32 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1678350871;
-        h=content-transfer-encoding:in-reply-to:references:cc:to:from
+        d=linaro.org; s=google; t=1678350931;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=bf5h9B4GjXB46KIfBV4Jul3CUEr4UPwk87maz3zdFaU=;
-        b=KYtpme7mZtwMcP/RYUD2GRhVzrQ79etsVr3hsmX/w3XpWtZTQ0Og7rqFqZ5FqcN1m7
-         6V13ODVLWHU/YzoZAe9aDmdScCZclp1d7DdPvgEkM5UzZoQnFHL0MpaAbUkrzdCuuJW1
-         83sCF1nebd4RTPpEjTtPlGRoDGVkqMoEbj0gWAPA4TJX7i6MnyLVyUfzrOGMgFMFMVkI
-         QfrqlErzZ+s9Q/gG8qJ+XGP0yNZKp5+XbolfzSKvlS31Hb0zfj+3S60u1JQeRCIdn2Ez
-         IYFwJxbVWte3S0rY2nOOITy8Rj43L9QwOt2g8sX1X1HLaYHzY+Fcr++/TSaHMRy51OYT
-         y56Q==
+        bh=+NyMJX4FZ3z6nATgV0EdUV/35bcDn63ExD7FXocSHwQ=;
+        b=beZxlMjCfAyByrqCP1yZUFN3nwrIP2o3p4mKeKmm/2jtSRKfQ7vXwtbBZnUkU0oT1o
+         G3kvpfp3/muQrnx8BzSSfSCz/VVIjIPMh/pzZ+UEruH11fmEBtOf/9lkHn3aws0fgjzQ
+         NiI9ysN6s+7pSI3mUEpf8v8t44TktAhR5xtgLKqu9a3cbP8gBs8UGdvFbgFf+uQ3rHzI
+         LhZRLEgRP2vJZQ0FEm7r4BhFV2frPqljwxZ0ZBVfWNJp10pdvgpqb4ZIGs3btMsNghwJ
+         fn+/PaOtfufWVFMVTp974ly8++sI/AaZHKZp6+3gpECRAW1rsWdwmMUypbFLijUAbDwe
+         B9CQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678350871;
-        h=content-transfer-encoding:in-reply-to:references:cc:to:from
+        d=1e100.net; s=20210112; t=1678350931;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=bf5h9B4GjXB46KIfBV4Jul3CUEr4UPwk87maz3zdFaU=;
-        b=vz9cvghGd2sAP4rnRtTraZam/BQBEEHoKT2Ja8VwBYDTKx6cP2261HDaCsDJsvIV+B
-         ge/0XRJw6TeJeg6ttRIGsEjZyOaNQsOnCR/JxbHILG9S1DznnvvKW9Sl8RMNAYoxci4j
-         63gqlKfDcd0Xna6Ee7RyN7+ndEKip2M+5p6bCzaJfinX8tg97zY0OMlnNQXwgEIB+iUf
-         2igk3ZYOm/MMONwrGKdWc+kmsXNCr7Rc1BptFM1fxUHaTVPTFVUmYeyij/16Jj+f5My3
-         VKmd7lT28AgoNAFGGTZKUvzqP4H0cRqe5dQmZd7j0ctu6eOcSq7nv9cF+udnv3+nZxBa
-         aspg==
-X-Gm-Message-State: AO0yUKVmsu0XUZTWUM+hgHhLNUurtnkHBUbxreUZCYLJzJm5pnUuKnzQ
-        l/VJAMwFfQWILGhkVxkjaT4wUA==
-X-Google-Smtp-Source: AK7set8CoMNWnVZzsifH057MaEVwmYB5sNqItMfusNWAvB1Iskv+7NVWFMrkezq1IqQcuXrPSGzXZA==
-X-Received: by 2002:a05:6402:150b:b0:4c1:bfa5:adfa with SMTP id f11-20020a056402150b00b004c1bfa5adfamr17173963edw.33.1678350870940;
-        Thu, 09 Mar 2023 00:34:30 -0800 (PST)
+        bh=+NyMJX4FZ3z6nATgV0EdUV/35bcDn63ExD7FXocSHwQ=;
+        b=aJRZy5vKApYLkBVeetTw35r+D+9ztSZs0p5fCScLbcWQJpQHRL1ms0K+yeh23ErqZN
+         9IXVkrZbVmWp9mpUNuizp8QqLTYV4YL84gW8jKaeZrg9Ul7EPmk6PKlcAeXm1TY6axuI
+         JQ07YMLrYVhoGV2wMXF7eHRxsCcK9KDnE217hEQZG5mIPZPQsec4vAfSVRgDY47Zj1CU
+         tsPK0E2XgkDMNdsIZgHtQxtpqwHXC/h/RQuMcpx9WU4NqMGaHxJQgl4J19lcYdDCOKTt
+         n3XUBIAeQJUUza9WMKv2SPaiVwy8isiO/XfdTBSRZTF5xuAEiaco6+AoewZ9fEYHi1Co
+         nvLw==
+X-Gm-Message-State: AO0yUKVAAhUD5RJ+Aincjl4kUnRbu3xrSZpvwQxoZzZHFfgt+jKC7CMc
+        pjGViPZiYowxLlujxwBh+LAQ8Q==
+X-Google-Smtp-Source: AK7set87YYU0STxYSpXAizBhk6fkMFPOfS6B+k0H3u4azZuDE6eaLE5lDdU6zPtcpVzcXX/x3T+URg==
+X-Received: by 2002:a17:907:8a06:b0:889:ed81:dff7 with SMTP id sc6-20020a1709078a0600b00889ed81dff7mr26422496ejc.9.1678350930905;
+        Thu, 09 Mar 2023 00:35:30 -0800 (PST)
 Received: from ?IPV6:2a02:810d:15c0:828:7ee2:e73e:802e:45c1? ([2a02:810d:15c0:828:7ee2:e73e:802e:45c1])
-        by smtp.gmail.com with ESMTPSA id p24-20020a50cd98000000b004af6163f845sm9169133edi.28.2023.03.09.00.34.29
+        by smtp.gmail.com with ESMTPSA id d25-20020a1709064c5900b008b17de96f00sm8543850ejw.151.2023.03.09.00.35.29
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 09 Mar 2023 00:34:30 -0800 (PST)
-Message-ID: <67b84336-4632-0b71-1c93-8fc975cea69b@linaro.org>
-Date:   Thu, 9 Mar 2023 09:34:29 +0100
+        Thu, 09 Mar 2023 00:35:30 -0800 (PST)
+Message-ID: <812bbccf-010f-1138-f104-7db7d47ebc9a@linaro.org>
+Date:   Thu, 9 Mar 2023 09:35:28 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.8.0
-Subject: Re: [PATCH v2 3/7] dt-bindings: remoteproc: mpss: Document
- QDU1000/QRU1000 mpss devices
+Subject: Re: [PATCH v4 1/3] dt-bindings: watchdog: Add watchdog for StarFive
+ JH7100 and JH7110
 Content-Language: en-US
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Melody Olvera <quic_molvera@quicinc.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
+To:     Xingyu Wu <xingyu.wu@starfivetech.com>,
+        linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-watchdog@vger.kernel.org,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Guenter Roeck <linux@roeck-us.net>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jassi Brar <jassisinghbrar@gmail.com>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Robert Marko <robimarko@gmail.com>,
-        Guru Das Srinagesh <quic_gurus@quicinc.com>
-Cc:     Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Manivannan Sadhasivam <mani@kernel.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-remoteproc@vger.kernel.org
-References: <20230306231202.12223-1-quic_molvera@quicinc.com>
- <20230306231202.12223-4-quic_molvera@quicinc.com>
- <ea1c0579-1b37-77de-3c47-e5b9772cff70@linaro.org>
-In-Reply-To: <ea1c0579-1b37-77de-3c47-e5b9772cff70@linaro.org>
+        Emil Renner Berthing <kernel@esmil.dk>,
+        Conor Dooley <conor@kernel.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Samin Guo <samin.guo@starfivetech.com>,
+        linux-kernel@vger.kernel.org
+References: <20230308034036.99213-1-xingyu.wu@starfivetech.com>
+ <20230308034036.99213-2-xingyu.wu@starfivetech.com>
+ <94ba1427-21ea-86ee-d60d-7817f8e673fa@linaro.org>
+ <783fe50c-1649-b1c4-06cd-ac81bcad5117@starfivetech.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <783fe50c-1649-b1c4-06cd-ac81bcad5117@starfivetech.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -87,108 +90,43 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 09/03/2023 09:33, Krzysztof Kozlowski wrote:
-> On 07/03/2023 00:11, Melody Olvera wrote:
->> This documents the compatible for the component used to boot the
-> 
-> Do not use "This commit/patch".
-> https://elixir.bootlin.com/linux/v5.17.1/source/Documentation/process/submitting-patches.rst#L95
-> 
->> MPSS on the QDU1000 and QRU1000 SoCs.
+On 09/03/2023 09:13, Xingyu Wu wrote:
+> On 2023/3/9 15:30, Krzysztof Kozlowski wrote:
+>> On 08/03/2023 04:40, Xingyu Wu wrote:
+>>> Add bindings to describe the watchdog for the StarFive JH7100/JH7110 SoC.
+>>> And Use JH7100 as first StarFive SoC with watchdog.
+>>>
+>>> Signed-off-by: Xingyu Wu <xingyu.wu@starfivetech.com>
+>>> ---
 >>
->> The QDU1000 and QRU1000 mpss boot process now requires the specification
->> of an RMB register space to complete the handshake needed to start or
->> attach the mpss.
+>> What happened here? You wrote in changelog "Modified" but what exactly?
+>> How am I supposed to find it?
 >>
->> Signed-off-by: Melody Olvera <quic_molvera@quicinc.com>
->> ---
->>  .../remoteproc/qcom,qdu1000-mpss-pas.yaml     | 130 ++++++++++++++++++
->>  1 file changed, 130 insertions(+)
->>  create mode 100644 Documentation/devicetree/bindings/remoteproc/qcom,qdu1000-mpss-pas.yaml
+>> Provide detailed description, since you decided to remove my tag.
+>> Otherwise, standard response:
 >>
->> diff --git a/Documentation/devicetree/bindings/remoteproc/qcom,qdu1000-mpss-pas.yaml b/Documentation/devicetree/bindings/remoteproc/qcom,qdu1000-mpss-pas.yaml
->> new file mode 100644
->> index 000000000000..9cb4296c1fa6
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/remoteproc/qcom,qdu1000-mpss-pas.yaml
->> @@ -0,0 +1,130 @@
->> +# SPDX-License-Identifier: GPL-2.0 OR BSD-2-Clause
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/remoteproc/qcom,qdu1000-mpss-pas.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: Qualcomm QDU1000 Modem Peripheral Authentication Service
->> +
->> +maintainers:
->> +  - Melody Olvera <quic_molvera@quicinc.com>
->> +
->> +description:
->> +  Qualcomm QDU1000 SoC Peripheral Authentication Service loads and boots firmware
->> +  on the Qualcomm DSP Hexagon core.
->> +
->> +properties:
->> +  compatible:
->> +    enum:
->> +      - qcom,qdu1000-mpss-pas
->> +
->> +  reg:
->> +    maxItems: 2
+>> This is a friendly reminder during the review process.
+>>
+>> It looks like you received a tag and forgot to add it.
+>>
+>> If you do not know the process, here is a short explanation:
+>> Please add Acked-by/Reviewed-by/Tested-by tags when posting new
+>> versions. However, there's no need to repost patches *only* to add the
+>> tags. The upstream maintainer will do that for acks received on the
+>> version they apply.
+>>
+>> https://elixir.bootlin.com/linux/v5.17/source/Documentation/process/submitting-patches.rst#L540
+>>
+>> If a tag was not added on purpose, please state why and what changed.
+>>
 > 
-> You need to list the items instead (just like for clocks).
-> 
->> +
->> +  clocks:
->> +    items:
->> +      - description: XO clock
->> +
->> +  clock-names:
->> +    items:
->> +      - const: xo
->> +
->> +  qcom,qmp:
->> +    $ref: /schemas/types.yaml#/definitions/phandle
->> +    description: Reference to the AOSS side-channel message RAM.
->> +
->> +  smd-edge: false
->> +
->> +  firmware-name:
->> +    $ref: /schemas/types.yaml#/definitions/string-array
-> 
-> You can now drop the $ref.
-> 
->> +    items:
->> +      - description: Firmware name of the Hexagon core
->> +      - description: Firmware name of the Hexagon Devicetree
->> +
->> +  memory-region:
->> +    items:
->> +      - description: Memory region for main Firmware authentication
->> +      - description: Memory region for Devicetree Firmware authentication
->> +      - description: DSM Memory region
->> +
->> +  interrupts:
->> +    minItems: 6
->> +
->> +  interrupt-names:
->> +    minItems: 6
->> +
->> +  interconnects:
->> +    minItems: 1
-> 
-> maxItems instead
+> I am sorry I did not elaborate it. The dt-bindings was only supported JH7110 watchdog in v3 patchset
+> and you had sent Reviewed-by tags. But at the same time tried to add JH7100 watchdog after discussion
+> and used JH7100 as the dt-binding's name because JH7100 is the first StarFive SoCs about watchdog.
+> The compatible also add 'starfive,jh7100-wdt' in the dt-binding. It is different from the v3 patch and
+> I did not add the Reviewed-by tag.
 
-Wait, I already commented on this... Some other comments also ignored.
-
-This is a friendly reminder during the review process.
-
-It seems my previous comments were not fully addressed. Maybe my
-feedback got lost between the quotes, maybe you just forgot to apply it.
-Please go back to the previous discussion and either implement all
-requested changes or keep discussing them.
-
-Thank you.
-
+So what is the difference? Filename and new compatible?
 
 Best regards,
 Krzysztof
