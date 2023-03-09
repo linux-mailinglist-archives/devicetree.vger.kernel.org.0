@@ -2,201 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D51106B21D2
-	for <lists+devicetree@lfdr.de>; Thu,  9 Mar 2023 11:48:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A16A56B21D7
+	for <lists+devicetree@lfdr.de>; Thu,  9 Mar 2023 11:51:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229940AbjCIKs2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Mar 2023 05:48:28 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53124 "EHLO
+        id S229928AbjCIKvY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Mar 2023 05:51:24 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57310 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229746AbjCIKsY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Mar 2023 05:48:24 -0500
-Received: from mail-ed1-x530.google.com (mail-ed1-x530.google.com [IPv6:2a00:1450:4864:20::530])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DF1904C6F7
-        for <devicetree@vger.kernel.org>; Thu,  9 Mar 2023 02:48:20 -0800 (PST)
-Received: by mail-ed1-x530.google.com with SMTP id s11so5147810edy.8
-        for <devicetree@vger.kernel.org>; Thu, 09 Mar 2023 02:48:20 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112; t=1678358899;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=RXTLVKonq145fe0ytXdOtgCPf7KTsG27A4IaoSc+Vu0=;
-        b=RhuYXi/vwq0tgS5GhFnoNC8LMoV5+GTnZzhggDxNiDUfvUTEwHjXH1QFdCwwWjE+G1
-         e0/S+kYLzRP6l1fYv2oTVChyZ92RZ9jv3ZjVCC5abcHsLGtNPVh5F+wjvYAlFL2eFG3p
-         Hf6be/kM1yWovX+Gxbt5XypEX0RGI51I9b/zn/41TNhfusLsWJ173XcR2JmECfLbnJKg
-         Ph+KR9/Xt5aa86kOYksjU75n5VXBllhrOrOX3JpZ59U+D60EIS0T2trte2YoUV5XtW85
-         U25kVOxsfFpHo0lQa0dpIUezA/Jl2MXlIAnxlnVOps2JcsYm2FxHgyZEDW95eHKdTei/
-         b8FA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678358899;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=RXTLVKonq145fe0ytXdOtgCPf7KTsG27A4IaoSc+Vu0=;
-        b=VvJHLdqaBsDXnYM1sz4635hrvLiQURvPYuzFbTjztdlhdEnogFKEOFQQfEZ5QmkE63
-         iYoQSZK4F499jw9eTb0SnGXuFu/zV68sj4LoFgLAU+ZWWdPpv8NKUEPwZRJXbK/3Sjko
-         BjPVsqTMCfrvehfKua5+1wjOqE7zy24svgmZxtWXajxGhrXQs06AKTf209WixFKEfOfF
-         BDKlyUAgnBEpMOCnQbIS8IpnYd2/5Gp1O+YDNPJdbcpy4WdyQtw8ARzR/GvSyOWZlV5D
-         Nxdi2uz1ySLxJbBEDsS0Bcbs8PI6THE8aqAvbKqcP0wQBRqmGlnQ8hl+zNsmp6OXv2gc
-         nFiw==
-X-Gm-Message-State: AO0yUKW46F2VVNQl0DYKdDhL25DO7pVdZuCsD6oDDsdA+2PJZI8eZD0U
-        ShY2sdzHlds++9vuP8h0iCKfQ6Npxh7qRpUhxIumcg==
-X-Google-Smtp-Source: AK7set8OJIO98YFS8R5gs+1Y4ruIuk2NfbZOxptFzB7tMyH1e5MDNlprG5ONb0fZqQq4CxO53p4GZ4Hhr1rIMNPEkRo=
-X-Received: by 2002:a17:906:338b:b0:879:e5b2:e12d with SMTP id
- v11-20020a170906338b00b00879e5b2e12dmr9882276eja.13.1678358899375; Thu, 09
- Mar 2023 02:48:19 -0800 (PST)
-MIME-Version: 1.0
-References: <20230307163413.143334-1-bchihi@baylibre.com> <CAGXv+5E0wUJYUVD3wx3-=uES612ARQmUE0rxgAruFHxpZCBjzA@mail.gmail.com>
-In-Reply-To: <CAGXv+5E0wUJYUVD3wx3-=uES612ARQmUE0rxgAruFHxpZCBjzA@mail.gmail.com>
-From:   Balsam CHIHI <bchihi@baylibre.com>
-Date:   Thu, 9 Mar 2023 11:47:43 +0100
-Message-ID: <CAGuA+ooi7Kx05gagLzXAN3upDiSqDUNOM_djYdGftw6ogVx5gw@mail.gmail.com>
-Subject: Re: [PATCH 0/4] Add LVTS support for mt8192
-To:     Chen-Yu Tsai <wenst@chromium.org>
-Cc:     daniel.lezcano@linaro.org, angelogioacchino.delregno@collabora.com,
-        rafael@kernel.org, amitk@kernel.org, rui.zhang@intel.com,
-        matthias.bgg@gmail.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, rdunlap@infradead.org,
-        ye.xingchen@zte.com.cn, p.zabel@pengutronix.de,
-        linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
-        khilman@baylibre.com, james.lo@mediatek.com,
-        rex-bc.chen@mediatek.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        with ESMTP id S229994AbjCIKvW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Mar 2023 05:51:22 -0500
+Received: from smtp-out2.suse.de (smtp-out2.suse.de [IPv6:2001:67c:2178:6::1d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7701BE1C8D;
+        Thu,  9 Mar 2023 02:51:20 -0800 (PST)
+Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
+        (No client certificate requested)
+        by smtp-out2.suse.de (Postfix) with ESMTPS id F030320039;
+        Thu,  9 Mar 2023 10:51:18 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+        t=1678359079; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+         mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=5z2z1TJRrdW4HC7J8YkWQ4B4sI+z+nwQyG06Gl2UpNU=;
+        b=s6TuZFD4hUUzMvLOY0n/a3FbGguBQZrA9xzMLNkZYyabhbTdgD1fHao1uVahkZ2m3AEaxa
+        e28LW86HNtiQooegxTnT/GnfyBNlJaGuG7WE5DghorZP68g1lCBU+8iWIgJhYMbOGju+fA
+        DivY3jFcnlwgEBSQkVpPASiEmsiNDoQ=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+        s=susede2_ed25519; t=1678359079;
+        h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+         mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=5z2z1TJRrdW4HC7J8YkWQ4B4sI+z+nwQyG06Gl2UpNU=;
+        b=OROPJXhr44+iv79vzrIuVXGiS4nuc4IpTbFyPLtrCFNleZh2uKWD8Qqu71+tucY98rhZL9
+        f/S1VATGqy0pkIBw==
+Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
+        (No client certificate requested)
+        by imap2.suse-dmz.suse.de (Postfix) with ESMTPS id 930E313A10;
+        Thu,  9 Mar 2023 10:51:18 +0000 (UTC)
+Received: from dovecot-director2.suse.de ([192.168.254.65])
+        by imap2.suse-dmz.suse.de with ESMTPSA
+        id dhekIia6CWR9OwAAMHmgww
+        (envelope-from <tiwai@suse.de>); Thu, 09 Mar 2023 10:51:18 +0000
+Date:   Thu, 09 Mar 2023 11:51:18 +0100
+Message-ID: <87356egpuh.wl-tiwai@suse.de>
+From:   Takashi Iwai <tiwai@suse.de>
+To:     Wesley Cheng <quic_wcheng@quicinc.com>
+Cc:     <srinivas.kandagatla@linaro.org>, <mathias.nyman@intel.com>,
+        <perex@perex.cz>, <broonie@kernel.org>, <lgirdwood@gmail.com>,
+        <krzysztof.kozlowski+dt@linaro.org>, <agross@kernel.org>,
+        <Thinh.Nguyen@synopsys.com>, <bgoswami@quicinc.com>,
+        <andersson@kernel.org>, <robh+dt@kernel.org>,
+        <gregkh@linuxfoundation.org>, <tiwai@suse.com>,
+        <linux-kernel@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <alsa-devel@alsa-project.org>, <devicetree@vger.kernel.org>,
+        <linux-usb@vger.kernel.org>, <quic_jackp@quicinc.com>,
+        <quic_plai@quicinc.com>,
+        Mathias Nyman <mathias.nyman@linux.intel.com>
+Subject: Re: [PATCH v3 01/28] xhci: Add support to allocate several interrupters
+In-Reply-To: <20230308235751.495-2-quic_wcheng@quicinc.com>
+References: <20230308235751.495-1-quic_wcheng@quicinc.com>
+        <20230308235751.495-2-quic_wcheng@quicinc.com>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) Emacs/27.2 Mule/6.0
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=US-ASCII
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Chen-Yu,
+On Thu, 09 Mar 2023 00:57:24 +0100,
+Wesley Cheng wrote:
+> +struct xhci_interrupter *
+> +xhci_create_secondary_interrupter(struct usb_hcd *hcd, int intr_num)
+> +{
+> +	struct xhci_hcd *xhci = hcd_to_xhci(hcd);
+> +	struct xhci_interrupter *ir;
+> +	unsigned int i;
+> +	unsigned int idx = 0;
+> +	unsigned long flags;
+> +
+> +	if (!xhci->interrupters || intr_num > xhci->max_interrupters)
+> +		return NULL;
+> +
+> +	spin_lock_irqsave(&xhci->lock, flags);
+....
+> +	if (idx > 0) {
+> +		ir = xhci_alloc_interrupter(xhci, idx, GFP_KERNEL);
+> +		if (!ir) {
+> +			spin_unlock_irqrestore(&xhci->lock, flags);
+> +			return NULL;
+> +		}
+> +		ir->intr_num = idx;
+> +		xhci->interrupters[idx] = ir;
+> +		spin_unlock_irqrestore(&xhci->lock, flags);
 
-On Thu, Mar 9, 2023 at 6:04=E2=80=AFAM Chen-Yu Tsai <wenst@chromium.org> wr=
-ote:
->
-> On Wed, Mar 8, 2023 at 12:34=E2=80=AFAM <bchihi@baylibre.com> wrote:
-> >
-> > From: Balsam CHIHI <bchihi@baylibre.com>
-> >
-> > Add full LVTS support (MCU thermal domain + AP thermal domain) to Media=
-Tek MT8192 SoC.
-> >
-> > This series is a continuation of the previous series "Add LVTS Thermal =
-Architecture" v14 :
-> >     https://patchwork.kernel.org/project/linux-pm/cover/20230209105628.=
-50294-1-bchihi@baylibre.com/
-> > and "Add LVTS's AP thermal domain support for mt8195" :
-> >     https://patchwork.kernel.org/project/linux-pm/cover/20230307154524.=
-118541-1-bchihi@baylibre.com/
-> >
-> > Based on top of thermal/linux-next :
-> >     base-commit: 6828e402d06f7c574430b61c05db784cd847b19f
-> >
-> > Depends on these patches as they are not yet applyied to thermal/linux-=
-next branch :
-> >     [1/4] dt-bindings: thermal: mediatek: Add AP domain to LVTS thermal=
- controllers for mt8195
-> >     https://patchwork.kernel.org/project/linux-pm/patch/20230307154524.=
-118541-2-bchihi@baylibre.com/
-> >     [2/4] thermal/drivers/mediatek/lvts_thermal: Add AP domain for mt81=
-95
-> >     https://patchwork.kernel.org/project/linux-pm/patch/20230307154524.=
-118541-3-bchihi@baylibre.com/
-> >
-> > Balsam CHIHI (4):
-> >   dt-bindings: thermal: mediatek: Add LVTS thermal controller definitio=
-n
-> >     for mt8192
-> >   thermal/drivers/mediatek/lvts_thermal: Add mt8192 support
-> >   arm64: dts: mediatek: mt8192: Add thermal zones and thermal nodes
-> >   arm64: dts: mediatek: mt8192: Add temperature mitigation threshold
->
-> I tried this on my Hayato. As soon as lvts_ap probes and its thermal zone=
-s
-> are registered, a "critical temperature reached" warning is immediately
-> triggered for all the zones, a reboot is forced. A NULL pointer dereferen=
-ce
-> is also triggered somewhere. I filtered out all the interspersed "critica=
-l
-> temperature" messages:
->
+You can't use GFP_KERNEL allocation inside the spinlock.
 
-Thank you very much for testing!
-It seems like interrupts on mt8192 and mt8195 do not behave the same way.
-I am investigating the issues.
 
-> [    2.943847] Unable to handle kernel NULL pointer dereference at
-> virtual address 0000000000000600
-> [    2.958818] Mem abort info:
-> [    2.965996]   ESR =3D 0x0000000096000005
-> [    2.973765] SMCCC: SOC_ID: ID =3D jep106:0426:8192 Revision =3D 0x0000=
-0000
-> [    2.975442]   EC =3D 0x25: DABT (current EL), IL =3D 32 bits
-> [    2.987305]   SET =3D 0, FnV =3D 0
-> [    2.995521]   EA =3D 0, S1PTW =3D 0
-> [    3.004265]   FSC =3D 0x05: level 1 translation fault
-> [    3.014365] Data abort info:
-> [    3.017344]   ISV =3D 0, ISS =3D 0x00000005
-> [    3.021279]   CM =3D 0, WnR =3D 0
-> [    3.022124] GACT probability NOT on
-> [    3.024277] [0000000000000600] user address but active_mm is swapper
-> [    3.034190] Internal error: Oops: 0000000096000005 [#1] PREEMPT SMP
-> [    3.044738] Modules linked in:
-> [    3.044745] CPU: 0 PID: 97 Comm: irq/273-1100b00 Not tainted
-> 6.3.0-rc1-next-20230308-01996-g3c0b9a61a3e5-dirty #575
-> c7b94096b594a95f18217c2ad4a2bd6d2c431108
-> [    3.044751] Hardware name: Google Hayato rev1 (DT)
-> [    3.044755] pstate: 60000009 (nZCv daif -PAN -UAO -TCO -DIT -SSBS BTYP=
-E=3D--)
-> [    3.052055] pc : __mutex_lock+0x60/0x438
-> [    3.052066] lr : __mutex_lock+0x54/0x438
-> [    3.052070] sp : ffffffc008883c60
-> [    3.070822] x29: ffffffc008883c60 x28: ffffff80c281a880 x27: 000881f00=
-009001f
-> [    3.070830] x26: 1fc0000000247c00 x25: ffffff80c281a900 x24: 000000000=
-0000000
-> [    3.070837] x23: 0000000000000000 x22: ffffffe5ae5d45f4 x21: 000000000=
-0000002
-> [    3.086211] x20: 0000000000000000 x19: 00000000000005a0 x18: fffffffff=
-fffffff
-> [    3.086218] x17: 6568636165722065 x16: 727574617265706d x15: 000000000=
-0000028
-> [    3.097773] x14: 0000000000000000 x13: 0000000000003395 x12: ffffffe5a=
-f7f6ff0
-> [    3.097780] x11: 65706d655428206e x10: 0000000000000000 x9 : ffffffe5a=
-dcf4b08
-> [    3.097787] x8 : ffffffe5afe03230 x7 : 00000000000261b0 x6 : ffffff80c=
-2b86600
-> [    3.105609] x5 : 0000000000000000 x4 : ffffff80c2b86600 x3 : 000000000=
-0000000
-> [    3.112565] x2 : ffffff9b505f6000 x1 : 0000000000000000 x0 : 000000000=
-0000000
-> [    3.127593] Call trace:
-> [    3.127595]  __mutex_lock+0x60/0x438
-> [    3.127600]  mutex_lock_nested+0x34/0x48
-> [    3.141844]  thermal_zone_device_update+0x34/0x80
-> [    3.152879]  lvts_irq_handler+0xbc/0x158
-> [    3.152886]  irq_thread_fn+0x34/0xb8
-> [    3.161489]  irq_thread+0x19c/0x298
-> [    3.161494]  kthread+0x11c/0x128
-> [    3.175152]  ret_from_fork+0x10/0x20
-> [    3.175163] Code: 97ccbb7c 9000bea0 b9411400 35000080 (f9403260)
-> [    3.189402] ---[ end trace 0000000000000000 ]---
-> [    3.193417] Kernel panic - not syncing: Oops: Fatal exception
-> [    3.201255] Kernel Offset: 0x25a5c00000 from 0xffffffc008000000
-> [    3.201257] PHYS_OFFSET: 0x40000000
-> [    3.201259] CPU features: 0x600000,01700506,3200720b
-> [    3.201263] Memory Limit: none
-> [    3.376838] Rebooting in 30 seconds..
->
->
-[...]
-
-Best regards,
-Balsam
+Takashi
