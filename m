@@ -2,60 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0A84D6B18B5
-	for <lists+devicetree@lfdr.de>; Thu,  9 Mar 2023 02:25:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F17AC6B18B8
+	for <lists+devicetree@lfdr.de>; Thu,  9 Mar 2023 02:25:35 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229886AbjCIBZX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Mar 2023 20:25:23 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34746 "EHLO
+        id S229967AbjCIBZd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Mar 2023 20:25:33 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35242 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229903AbjCIBZV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Mar 2023 20:25:21 -0500
-Received: from mail-lj1-x22d.google.com (mail-lj1-x22d.google.com [IPv6:2a00:1450:4864:20::22d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B96BA9AFCB
-        for <devicetree@vger.kernel.org>; Wed,  8 Mar 2023 17:25:18 -0800 (PST)
-Received: by mail-lj1-x22d.google.com with SMTP id a32so304766ljq.1
-        for <devicetree@vger.kernel.org>; Wed, 08 Mar 2023 17:25:18 -0800 (PST)
+        with ESMTP id S229529AbjCIBZb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Mar 2023 20:25:31 -0500
+Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3A87ACC30C
+        for <devicetree@vger.kernel.org>; Wed,  8 Mar 2023 17:25:27 -0800 (PST)
+Received: by mail-lf1-x136.google.com with SMTP id bi9so374597lfb.2
+        for <devicetree@vger.kernel.org>; Wed, 08 Mar 2023 17:25:27 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1678325117;
+        d=linaro.org; s=google; t=1678325125;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=3ZhlZWmAHl1qfY8mNDUqjYUamtFyfeOdIQW1lE6rtEQ=;
-        b=RZ/BkHwPquD/5IgwGhMmoSQx0P7hnWPErLDKLwMWtotrbxLt1tQTjflY5PjpIE+0Ck
-         QbHZeSUYWqGf5CEFUgLn1OP3q1PGP4NUOPC24o9qncPhdmET4r1MLALswykbEOHKiHhg
-         cXLbLXQGlVc+xFMGjD3AgSXZDxha23ZGN7SnjGh7R6SBRlebx5rOmfsFz8PGX7FFeeJs
-         kn1Rt/1pbY91xNwRjQp+kGkneGGvyvtqi64OJCfKdo4V6DlOCr1W7URz816nCWOa/XRy
-         mf14gMf1c1i+vKU73rEnf9KcIQGGJu/740+IShSKu0arGJ2y5IfyHFgLGQegLBHB+249
-         5ljQ==
+        bh=yqq4VEw4gc/dtr1bOgTdIY1FDWwPC01i6JuhT66K9Gs=;
+        b=WAsVz6H63rIudTmBhP8WrhBoyhPjw/4TCp6wfRCWAdEQ8gFpdr5ex4Y9/CIq0nG/kz
+         9fHkU9KsFJluewVg0Z32oudvSsBcxMcycJYyRfnwsWL3g6NtOolTl4+hG1Wnf65OwyIc
+         vY3+RD8LuJkCpCTT/dqWRGbZ72TyvXZFGaksH034CqU3CyfeMQsDgYn6HLbPxliIwIdq
+         ij6RYhnFWeq0uZ38VbRpNOYvq7N8Xt+qGQkYWECrFW3Ao/OA5vn7krtOKJ6aVWx6OL2T
+         6osopRW55lUYM59Y5TmbST5DMNkBcsBZXOcu8z3CsoOIujpfOaTwx6u169Y+aoqeqb1s
+         wKwg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678325117;
+        d=1e100.net; s=20210112; t=1678325125;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=3ZhlZWmAHl1qfY8mNDUqjYUamtFyfeOdIQW1lE6rtEQ=;
-        b=NswrZEnf823cdKdvm4qQyl3/+gxImcS0U9YazN8qNyrqzRkUbJy9OThdMfAhNya0zE
-         aJ0bOORfU9ZPMGLsoSp1QWiWVyis1sJkN8z0HmocH/U030/KlDLbSnUgVoMfB+K01weh
-         GvN0RRXFhmlWeqiEhiaE2LYQ6opLIc+GZrw6fsfWbLqiwEn32rh94p0tUvwTDlk/p8F3
-         qFrAxrG6mvCRWfbiOsn1/pQiqpxak3rXycAsjJtzI68shNnAo4h0ZIFXSIps9apKDC6A
-         W72kc8uIuzncxrXCENEziggtvJiWO4/UM6OZF9toXrdaG0hKnx6ahTmbATFy+zwgO4bx
-         Uh6A==
-X-Gm-Message-State: AO0yUKVQ/3R028sD3JnzsHsD2KAT1l7wKKBjTOOfLc3voHNK6A9NdfzW
-        lXU2O7pLnQkSvHzjP1W6DXMjqA==
-X-Google-Smtp-Source: AK7set9IePti5k+U2DtXXzXaoS3HeOQezGIJ7bUForYzvPj99M98/fsUa3COHIwJxXgJT9AhNy2l/w==
-X-Received: by 2002:a05:651c:331:b0:295:94c2:bc56 with SMTP id b17-20020a05651c033100b0029594c2bc56mr5461490ljp.37.1678325116823;
-        Wed, 08 Mar 2023 17:25:16 -0800 (PST)
+        bh=yqq4VEw4gc/dtr1bOgTdIY1FDWwPC01i6JuhT66K9Gs=;
+        b=X8KmTevXneP8++hcLzzlnh/jA1jp2o49K1mLHVb6un8z46Ch4TypmBvIbIjtBGYRuT
+         NtjmtVd1i7QlU/IRWjwLFxz3o5qUL/yzRrCOvZBcWyVKy2sV2e4JubBfgOiZaf8ndSaf
+         eVFYy8UzAS4s+om1j0PIDOAV0ykxiuruE6T7UqeCIGBfiAZnFpeOJ7/vXc6vWwc8Imw1
+         MAPxfSwf50Hr/aq2msL96lkrz41nsxRU36NSnUFTanZoGE6mQ86S1pCyjDfm5RFwMs3L
+         9gt0Js+KFYfe+PsPwGmZhG8k6nazz81nx4q2Yy/0K0LxB9oyz2MrL3V7/wp+8IJJm3yH
+         zEXg==
+X-Gm-Message-State: AO0yUKWs+lRirC4Q0Ww422Z0saKBWWFGNTdjBy5727ZhFFTSWSm8p3Ml
+        htA8g9+ApvfSly+o53IxFVvCnyO8eC0t0DxwAsM=
+X-Google-Smtp-Source: AK7set8IXnMjaPGHtH44O0AdjtLFWMJyDdhixh/ZWQXBS3NB2lcGP2OxccgWsKunXUZhKrMh8b+MJQ==
+X-Received: by 2002:a19:ae13:0:b0:4e1:13fa:bf07 with SMTP id f19-20020a19ae13000000b004e113fabf07mr6084681lfc.43.1678325125441;
+        Wed, 08 Mar 2023 17:25:25 -0800 (PST)
 Received: from ?IPV6:2001:14ba:a085:4d00::8a5? (dzccz6yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a085:4d00::8a5])
-        by smtp.gmail.com with ESMTPSA id c13-20020a05651c014d00b002945b851ea5sm2753747ljd.21.2023.03.08.17.25.16
+        by smtp.gmail.com with ESMTPSA id a28-20020a05651c031c00b002934b5657f2sm2754672ljp.29.2023.03.08.17.25.24
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 08 Mar 2023 17:25:16 -0800 (PST)
-Message-ID: <c03027b7-6f21-824b-ab7e-069094044a0d@linaro.org>
-Date:   Thu, 9 Mar 2023 03:25:15 +0200
+        Wed, 08 Mar 2023 17:25:24 -0800 (PST)
+Message-ID: <6bccbd03-68c8-e9e0-1a12-595391246ae8@linaro.org>
+Date:   Thu, 9 Mar 2023 03:25:24 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.8.0
-Subject: Re: [PATCH RFT v2 11/14] clk: qcom: smd-rpm: Hook up PCNoC_0
- keep_alive
+Subject: Re: [PATCH RFT v2 12/14] clk: qcom: smd-rpm: Hook up CNoC_1 and
+ SNoC_2 keep_alive
 Content-Language: en-GB
 To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
         Andy Gross <agross@kernel.org>,
@@ -69,9 +69,9 @@ Cc:     linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
         Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
         devicetree@vger.kernel.org
 References: <20230303-topic-rpmcc_sleep-v2-0-ae80a325fe94@linaro.org>
- <20230303-topic-rpmcc_sleep-v2-11-ae80a325fe94@linaro.org>
+ <20230303-topic-rpmcc_sleep-v2-12-ae80a325fe94@linaro.org>
 From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-In-Reply-To: <20230303-topic-rpmcc_sleep-v2-11-ae80a325fe94@linaro.org>
+In-Reply-To: <20230303-topic-rpmcc_sleep-v2-12-ae80a325fe94@linaro.org>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -84,15 +84,14 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 08/03/2023 23:35, Konrad Dybcio wrote:
-> 14 [1] of our 18 supported platforms need an active keepalive vote on
-> PCNoC_0 so as not to cause havoc on the entire SoC. Guarantee that.
-> 
-> [1] there are 13 changes to driver data, but 8226 reuses 8974.
+> 4 of our 18 supported platforms need an active keepalive vote on
+> CNoC_1 and SNoC_2 so as not to cause havoc on the entire SoC.
+> Guarantee that.
 > 
 > Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 > ---
->   drivers/clk/qcom/clk-smd-rpm.c | 27 ++++++++++++++-------------
->   1 file changed, 14 insertions(+), 13 deletions(-)
+>   drivers/clk/qcom/clk-smd-rpm.c | 18 ++++++++++--------
+>   1 file changed, 10 insertions(+), 8 deletions(-)
 
 Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 
