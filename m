@@ -2,107 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A62D36B3226
-	for <lists+devicetree@lfdr.de>; Fri, 10 Mar 2023 00:44:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A14946B3234
+	for <lists+devicetree@lfdr.de>; Fri, 10 Mar 2023 00:47:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230056AbjCIXoE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Mar 2023 18:44:04 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46170 "EHLO
+        id S230351AbjCIXrz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Mar 2023 18:47:55 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51484 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229601AbjCIXoD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Mar 2023 18:44:03 -0500
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 37B656547E
-        for <devicetree@vger.kernel.org>; Thu,  9 Mar 2023 15:43:22 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-        s=mimecast20190719; t=1678405401;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding;
-        bh=suVYwY+GLAgBE8RKgc91wO3frwS02s2uzBYIie8ENpk=;
-        b=QjF5S0M4GrUm6JfmyQY+PiJxmhmPoyyAv3YGzeQ8uIrbEUHrSUcdh7Z1pOF+TvDdODy89F
-        Cmll2CW7Agw91lIFzErkm3vABZxbSqbmMh7vEWMvM6UBTHEfeOAoAJR1UR4q4I8SGeok4E
-        2mrlqh5atCT5i/3JYgPIZR6vOK3IXsA=
-Received: from mail-qv1-f69.google.com (mail-qv1-f69.google.com
- [209.85.219.69]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-34-nZ0R0Rr5Ov6f3cvcyJoU9w-1; Thu, 09 Mar 2023 18:43:19 -0500
-X-MC-Unique: nZ0R0Rr5Ov6f3cvcyJoU9w-1
-Received: by mail-qv1-f69.google.com with SMTP id l13-20020ad44d0d000000b004c74bbb0affso2068595qvl.21
-        for <devicetree@vger.kernel.org>; Thu, 09 Mar 2023 15:43:19 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678405399;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=suVYwY+GLAgBE8RKgc91wO3frwS02s2uzBYIie8ENpk=;
-        b=cDDI1uZcC1wkB5SYDTlckVowsNCve0ll1I1wA0M69lJ9ZCF0pg02sQyXME7mW3u0jI
-         S2lIy3CG2xgMY9Npno840mYCFYRSTrQR3/1frv9bo16rNTsDrV2W63vxxd6Ho/WvZtEM
-         gthOmKGk5asP1wzcXa8IlYs8g1f6RlhlMvmJmneD45AkgFISOdLtDhmVnXbhvPGSyYts
-         Hva1STZvQq+Ad8gNKUNMbilh3BqaRiC87nJSRaS84FdErvL5wXeBUDV2uXiVxGELpT+N
-         MTmyRtI4lDf6MaUEl6gd6q+iaoeyzOE3kRwkKH5GRSw3fGosQmlkoIdzLSU1r9mJ3aET
-         UMdA==
-X-Gm-Message-State: AO0yUKVd0u+iExC+cDS/X+cwf9srnGb3A4k/RRVnxT+ZaBKa7jpBIXKW
-        LX9T4brSSoJpV8puTXkx1mOSDNki2Vobcma2h2VyV+7qpuUrQb959lb+/nLewo/Y95f50egPt2X
-        rpxmpxDiXxhPFQTzUzSN8dA==
-X-Received: by 2002:a05:622a:154:b0:3bd:1728:8886 with SMTP id v20-20020a05622a015400b003bd17288886mr748742qtw.9.1678405399455;
-        Thu, 09 Mar 2023 15:43:19 -0800 (PST)
-X-Google-Smtp-Source: AK7set/uu7J7MQWeYdrYBK1fDWserIzrfXuEWu5uLRWyUvVyFCL7N4gUzEjM3Np1nsOGAGcxkSmh/w==
-X-Received: by 2002:a05:622a:154:b0:3bd:1728:8886 with SMTP id v20-20020a05622a015400b003bd17288886mr748722qtw.9.1678405399228;
-        Thu, 09 Mar 2023 15:43:19 -0800 (PST)
-Received: from localhost (pool-71-184-142-128.bstnma.fios.verizon.net. [71.184.142.128])
-        by smtp.gmail.com with ESMTPSA id c15-20020ac8008f000000b003ba19e53e43sm299396qtg.25.2023.03.09.15.43.18
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 09 Mar 2023 15:43:18 -0800 (PST)
-From:   Eric Chanudet <echanude@redhat.com>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Eric Chanudet <echanude@redhat.com>
-Subject: [PATCH] arm64: dts: qcom: sa8775p: add symbols to dtb
-Date:   Thu,  9 Mar 2023 18:39:48 -0500
-Message-Id: <20230309233945.1199358-1-echanude@redhat.com>
-X-Mailer: git-send-email 2.39.1
+        with ESMTP id S231299AbjCIXry (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Mar 2023 18:47:54 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 24B2B10B1CF;
+        Thu,  9 Mar 2023 15:47:53 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id E374BB820C6;
+        Thu,  9 Mar 2023 23:47:51 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 90A80C433D2;
+        Thu,  9 Mar 2023 23:47:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1678405670;
+        bh=NQ0z0vWRZKFSOsNta5bZXQwrrn+JWpr6q/3op/tZXNg=;
+        h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
+        b=KW0qaj+KdPT2EaWE5uLTvMsecdNBQIGz46H7UdCdVjDFKIb/RC/8X/LvZsIJTkbVP
+         +imQ8wEZlv7TgHnR2B8J0eH9OLup1A91rJAE7An5kjloxS15rX23HoHQEluuNQAqN7
+         pWzaMkSCxk7vRCl2nmTAT/EJ2C+4dMEjM1H76mCfQv15kmsQNAND6135yZseXe6ynt
+         3RyPKTbfdhjIKG8PfYPB4Cii18HOmTHGSOO9Snd/cwNcGvjVB1E+KS9PpwDtTJmU3w
+         TCw6BUC8Y7UJQdo1/uXNxjjTxyEc6InZGRWBe68H212c3pRU6f6i9LNpkVbI0eb/Hy
+         1Cf+KucTYznSA==
+Message-ID: <ec1fb4d134181a1b1859bcb884dcd494.sboyd@kernel.org>
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-type: text/plain
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_NONE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <b94ee1d2-b224-f9d5-3f3c-0096634f4c93@loongson.cn>
+References: <20230307115022.12846-2-zhuyinbo@loongson.cn> <202303082037.QPfBP64A-lkp@intel.com> <b94ee1d2-b224-f9d5-3f3c-0096634f4c93@loongson.cn>
+Subject: Re: [PATCH v13 2/2] clk: clk-loongson2: add clock controller driver support
+From:   Stephen Boyd <sboyd@kernel.org>
+Cc:     oe-kbuild-all@lists.linux.dev, Jianmin Lv <lvjianmin@loongson.cn>,
+        Liu Peibao <liupeibao@loongson.cn>, wanghongliang@loongson.cn,
+        loongson-kernel@lists.loongnix.cn
+To:     Krzysztof Kozlowski <krzk@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        kernel test robot <lkp@intel.com>, linux-clk@vger.kernel.org,
+        linux-kernel@vger.kernel.org, zhuyinbo <zhuyinbo@loongson.cn>
+Date:   Thu, 09 Mar 2023 15:47:46 -0800
+User-Agent: alot/0.10
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-ABL uses the __symbols__ section to process the DTB before passing it
-forward. Without it, the bootstrap is interrupted.
+Quoting zhuyinbo (2023-03-08 18:58:02)
+>=20
+> =E5=9C=A8 2023/3/8 =E4=B8=8B=E5=8D=888:16, kernel test robot =E5=86=99=E9=
+=81=93:
+> > Hi Yinbo,
+> >
+[...]
+> >
+> >     drivers/clk/clk-loongson2.c: In function 'loongson2_calc_pll_rate':
+> >>> drivers/clk/clk-loongson2.c:79:15: error: implicit declaration of fun=
+ction 'readq'; did you mean 'readl'? [-Werror=3Dimplicit-function-declarati=
+on]
+> >        79 |         val =3D readq(loongson2_pll_base + offset);
+> >           |               ^~~~~
+> >           |               readl
+> >     cc1: some warnings being treated as errors
+>=20
+> The CONFIG_64BIT not enabled in your config file, I will add a depend on =
 
-Signed-off-by: Eric Chanudet <echanude@redhat.com>
----
-Depends on initial sa8775p-ride.dts:
-https://lore.kernel.org/all/20230214092713.211054-3-brgl@bgdev.pl/
+> "CONFIG_64BIT" in my clock driver to fix this compile error.
 
- arch/arm64/boot/dts/qcom/Makefile | 4 ++++
- 1 file changed, 4 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
-index b63cd1861e68..72e85ab31d74 100644
---- a/arch/arm64/boot/dts/qcom/Makefile
-+++ b/arch/arm64/boot/dts/qcom/Makefile
-@@ -1,4 +1,8 @@
- # SPDX-License-Identifier: GPL-2.0
-+
-+# Enable support for device-tree overlays required on sa8775p-ride.
-+DTC_FLAGS_sa8775p-ride := -@
-+
- dtb-$(CONFIG_ARCH_QCOM)	+= apq8016-sbc.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= apq8094-sony-xperia-kitakami-karin_windy.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= apq8096-db820c.dtb
--- 
-2.39.1
-
+Do you need to use readq() here? Can you read two 32-bit registers with
+readl() and put them together for a 64-bit number?
