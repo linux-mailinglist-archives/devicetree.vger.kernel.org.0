@@ -2,96 +2,160 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 02D4E6B2FDB
-	for <lists+devicetree@lfdr.de>; Thu,  9 Mar 2023 22:52:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F17C46B30D9
+	for <lists+devicetree@lfdr.de>; Thu,  9 Mar 2023 23:38:03 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230074AbjCIVw0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Mar 2023 16:52:26 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44068 "EHLO
+        id S230511AbjCIWiB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Mar 2023 17:38:01 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57276 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230004AbjCIVwZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Mar 2023 16:52:25 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 093C2FAFBF;
-        Thu,  9 Mar 2023 13:52:25 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id A124D61D0B;
-        Thu,  9 Mar 2023 21:52:24 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4A9D3C433EF;
-        Thu,  9 Mar 2023 21:52:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1678398744;
-        bh=s627jAj2kVljutcqH7pExotsSn1sgfGVSZniU6lArww=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=Rm3leIH4JH5N5Fa1BTwtxFY4sqjOVKGMsQI4ok8wJxLqTCVvYRgBEmDkS20Ui2K8O
-         7ZXsqZT4YhrsVESCvlaJtzwSe++0GOKE3U/OUwB715wsw3rBnxuZcNPjWWtGjIES92
-         oMj/FyBNOOw72EHFdeNii1E+HSLXXPiAaA8HSCHfiD6wDHKNEcrkmmU4WELPSry8S7
-         xzGoUXEWeZ5V7BFYgQdInAWxXDyopcIGZcXI+F2V0EZD6L5I06MUHS6ckLYBJpjS5W
-         sYI79JOj07RYW5DOs2YFkckO+t/XTKTueMWkZgRxNYo2NFdJZejiRNsEoySXEfxAMe
-         iSntFtpop5X0Q==
-Date:   Thu, 9 Mar 2023 13:55:53 -0800
-From:   Bjorn Andersson <andersson@kernel.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Brian Masney <bmasney@redhat.com>
-Cc:     quic_shazhuss@quicinc.com, agross@kernel.org,
-        konrad.dybcio@linaro.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] arm64: dts: qcom: sa8540p-ride: correct name of
- remoteproc_nsp0 firmware
-Message-ID: <20230309215553.pe523cmw6nc4pmnw@ripper>
-References: <20230307232340.2370476-1-bmasney@redhat.com>
- <1a915c33-ef32-852c-a856-10c8d35be151@linaro.org>
- <ZAh6O9TbX/pnOnxp@x1>
- <8f7bddf8-84de-27b5-26a3-d80b2e2f0097@linaro.org>
+        with ESMTP id S229956AbjCIWiA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Mar 2023 17:38:00 -0500
+Received: from mail-wm1-x332.google.com (mail-wm1-x332.google.com [IPv6:2a00:1450:4864:20::332])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7F49CEFA5;
+        Thu,  9 Mar 2023 14:37:58 -0800 (PST)
+Received: by mail-wm1-x332.google.com with SMTP id r19-20020a05600c459300b003eb3e2a5e7bso2295603wmo.0;
+        Thu, 09 Mar 2023 14:37:58 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112; t=1678401477;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:to
+         :from:from:to:cc:subject:date:message-id:reply-to;
+        bh=+YkCkrjJHa9Smmj/wJYS+f+10gt8i1v3+K2/QxqxGnI=;
+        b=eJfOsBUED3fscQrc9JaP5TBDOF3Y46ECD0kikqu0swWAEZDbr/7Q1xoNQQMrD9lNx9
+         W+PeULXJXFWvpKlIHkG8G1N4+dq2abOGvUilkFgqkJOkbqJQgihsrWMgxhWD1h+lv7nY
+         6dyS/Dy9jmBtxRcRRPGb/kpgImyrlsqpUj9okXYvbTl7hh401KTNC4ttUfg+dmHGUvdY
+         UWhybAzDCdqeU7gQNTHDu2ECQe685H3mSGscYauLFebmU0XgvwRQvKXCM5iOZG95pFWE
+         2PWBrASaBvLFoXO4HQK8q934x5quNX3HR7E41wTrSvpekIAt7WqBt5nr3Z1/lyPGG+9N
+         +dcg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1678401477;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:to
+         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=+YkCkrjJHa9Smmj/wJYS+f+10gt8i1v3+K2/QxqxGnI=;
+        b=EccjTut2iYLcXA2ng8HW/cpBX8JrkOiPm6j3wpGMq6k0Oqlw+t05IhedOljE1Ol93t
+         vmxd+Q6wuh0iP5K5aQ6JT/601RGiMM4cfqmKtGfo0q1VbaXWbfo8/57uWySJ5EIXhpEk
+         cNQ14SYyhaA5P4AmszNAFioOmzjGDTA+3XHUZJCvv9p3WsoxIYRgnTDE2KAgA6A2CtnW
+         g+Nx6jPoOzVEgQS+1tc8F9L/NZUOWZPE1UsdPzbaq85+rgcYVaT8iRwzBtiq4uXegz1A
+         Iy6Nj1AW6xmDHL5PMFrW5wTcTwk17NyH+WbBTcOH7prBuegYCCpX9sjggDeDeiVnGRPK
+         ex+w==
+X-Gm-Message-State: AO0yUKXQh0yS85w340zxrw94hEvlIvEXoo14vVYqMSaSuvl+E9GPHhf3
+        OVZGQ/4qnEe8lPO0KWE9B8M=
+X-Google-Smtp-Source: AK7set8NHhpkF76F1n+vl6zWoM3i7+IYLzBdgq5tR6J3qDrVLnoQ2La7K2evFiIWcHcaTNKePGLOxQ==
+X-Received: by 2002:a05:600c:1e1f:b0:3eb:fc6:79cf with SMTP id ay31-20020a05600c1e1f00b003eb0fc679cfmr780797wmb.6.1678401476689;
+        Thu, 09 Mar 2023 14:37:56 -0800 (PST)
+Received: from localhost.localdomain (93-34-89-197.ip49.fastwebnet.it. [93.34.89.197])
+        by smtp.googlemail.com with ESMTPSA id g12-20020a05600c310c00b003e209b45f6bsm1183981wmo.29.2023.03.09.14.37.55
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 09 Mar 2023 14:37:56 -0800 (PST)
+From:   Christian Marangi <ansuelsmth@gmail.com>
+To:     Andrew Lunn <andrew@lunn.ch>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Vladimir Oltean <olteanv@gmail.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Russell King <linux@armlinux.org.uk>,
+        Gregory Clement <gregory.clement@bootlin.com>,
+        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Christian Marangi <ansuelsmth@gmail.com>,
+        John Crispin <john@phrozen.org>, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-arm-msm@vger.kernel.org, Lee Jones <lee@kernel.org>,
+        linux-leds@vger.kernel.org
+Subject: [net-next PATCH v2 00/14] net: Add basic LED support for switch/phy
+Date:   Thu,  9 Mar 2023 23:35:10 +0100
+Message-Id: <20230309223524.23364-1-ansuelsmth@gmail.com>
+X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <8f7bddf8-84de-27b5-26a3-d80b2e2f0097@linaro.org>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Mar 08, 2023 at 01:36:52PM +0100, Krzysztof Kozlowski wrote:
-> On 08/03/2023 13:06, Brian Masney wrote:
-> > On Wed, Mar 08, 2023 at 12:02:04PM +0100, Krzysztof Kozlowski wrote:
-> >> On 08/03/2023 00:23, Brian Masney wrote:
-> >>> The cdsp.mbn firmware that's referenced in sa8540p-ride.dts is actually
-> >>> named cdsp0.mbn in the deliverables from Qualcomm. Let's go ahead and
-> >>> correct the name to match what's in Qualcomm's deliverable.
-> >>
-> >> I don't think vendor deliverables matter. linux-firmware is here more
-> >> important. The file will be cdsp.mbn in the firmware, won't it?
-> > 
-> > cdsp0.mbn and cdsp1.mbn for the sa8540p are not in linux-firmware and I
-> > far as I know there's no plan for someone to submit those since QC would
-> > need to approve that. I can ask though since the DTS for these two bits
-> > has been submitted upstream.
-> 
-> If they are never going to be submitted, vendor is allowed to rename
-> them all the time in their "deliverables". Are you going to rename the
-> file every time Qualcomm decides to rename them? There is no single
-> guarantee the names would be fixed, because vendor is allowed to do
-> absolutely anything.
-> 
+This is a continue of [1]. It was decided to take a more gradual
+approach to implement LEDs support for switch and phy starting with
+basic support and then implementing the hw control part when we have all
+the prereq done.
 
-cdsp0.mbn and cdsp1.mbn are better names, so let's use this patch to
-define that if/when they are pushed to linux-firmware it should follow
-this scheme.
+This series implements only the brightness_set() and blink_set() ops.
+An example of switch implementation is done with qca8k.
 
-> Sorry, but any argument in upstream DTS that "someone downstream does
-> something" is deemed to fail in many cases.
-> 
+For PHY a more generic approach is used with implementing the LED
+support in PHY core and with the user (in this case marvell) adding all
+the required functions.
 
-That is indeed an insufficient argument, in many cases.
+Currently we set the default-state as "keep" to not change the default
+configuration of the declared LEDs since almost every switch have a
+default configuration.
 
-Regards,
-Bjorn
+[1] https://lore.kernel.org/lkml/20230216013230.22978-1-ansuelsmth@gmail.com/
+
+Changes in new series v2:
+- Add LEDs node for rb3011
+- Fix rb3011 switch node unevaluated properties while running 
+  make dtbs_check
+- Fix a copypaste error in qca8k-leds.c for port 4 required shift
+- Drop phy-handle usage for qca8k and use qca8k_port_to_phy()
+- Add review tag from Andrew
+- Add Christian Marangi SOB in each Andrew patch
+- Add extra description for dsa-port stressing that PHY have no access
+  and LED are controlled by the related MAC
+- Add missing additionalProperties for dsa-port.yaml and ethernet-phy.yaml
+
+Changes from the old v8 series:
+- Drop linux,default-trigger set to netdev.
+- Dropped every hw control related patch and implement only
+  blink_set and brightness_set
+- Add default-state to "keep" for each LED node example
+
+Andrew Lunn (6):
+  net: phy: Add a binding for PHY LEDs
+  net: phy: phy_device: Call into the PHY driver to set LED brightness.
+  net: phy: marvell: Add software control of the LEDs
+  net: phy: phy_device: Call into the PHY driver to set LED blinking.
+  net: phy: marvell: Implement led_blink_set()
+  arm: mvebu: dt: Add PHY LED support for 370-rd WAN port
+
+Christian Marangi (8):
+  net: dsa: qca8k: move qca8k_port_to_phy() to header
+  net: dsa: qca8k: add LEDs basic support
+  net: dsa: qca8k: add LEDs blink_set() support
+  dt-bindings: net: dsa: dsa-port: Document support for LEDs node
+  dt-bindings: net: dsa: qca8k: add LEDs definition example
+  arm: qcom: dt: Drop unevaluated properties in switch nodes for rb3011
+  arm: qcom: dt: Add Switch LED for each port for rb3011
+  dt-bindings: net: phy: Document support for LEDs node
+
+ .../devicetree/bindings/net/dsa/dsa-port.yaml |  21 ++
+ .../devicetree/bindings/net/dsa/qca8k.yaml    |  24 ++
+ .../devicetree/bindings/net/ethernet-phy.yaml |  31 +++
+ arch/arm/boot/dts/armada-370-rd.dts           |  14 ++
+ arch/arm/boot/dts/qcom-ipq8064-rb3011.dts     | 124 ++++++++-
+ drivers/net/dsa/qca/Kconfig                   |   7 +
+ drivers/net/dsa/qca/Makefile                  |   1 +
+ drivers/net/dsa/qca/qca8k-8xxx.c              |  19 +-
+ drivers/net/dsa/qca/qca8k-leds.c              | 236 ++++++++++++++++++
+ drivers/net/dsa/qca/qca8k.h                   |  83 ++++++
+ drivers/net/phy/marvell.c                     |  81 +++++-
+ drivers/net/phy/phy_device.c                  | 115 +++++++++
+ include/linux/phy.h                           |  33 +++
+ 13 files changed, 765 insertions(+), 24 deletions(-)
+ create mode 100644 drivers/net/dsa/qca/qca8k-leds.c
+
+-- 
+2.39.2
 
