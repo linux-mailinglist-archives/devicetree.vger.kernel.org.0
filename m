@@ -2,141 +2,182 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CEE4D6B2572
-	for <lists+devicetree@lfdr.de>; Thu,  9 Mar 2023 14:31:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B73AA6B26DD
+	for <lists+devicetree@lfdr.de>; Thu,  9 Mar 2023 15:26:49 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230142AbjCINbL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Mar 2023 08:31:11 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55724 "EHLO
+        id S230464AbjCIO0s (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Mar 2023 09:26:48 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48666 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230135AbjCINaw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Mar 2023 08:30:52 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 587BDF1693;
-        Thu,  9 Mar 2023 05:30:09 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 384D1B81EE0;
-        Thu,  9 Mar 2023 13:29:13 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EBBCAC433A8;
-        Thu,  9 Mar 2023 13:29:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1678368552;
-        bh=7V354Spv5IUkBJIg8jXo9ixLOnbIWtGCEOzt13+mHNY=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=ZgAs1LHavVbpt/2FRRvMTB/isX7s1oq2Mm6axPkOQ/aw0tKiJDq79Ondp3TmP41r0
-         3n21y80t5sxyiKTEZMcMJAM+5CRE6Rg5f3AbL1Bph7we57LZNHbQyzDrmEpnucPB0j
-         xwv2BgFbTFd0WEqL6nvXp4p70U2ezTFxAIuqqN2x8IV02TuRue60dI6esijQSLgfty
-         OVRFEKNPNRCLETk1b0JxhKEINeQh+6t8IT3Yo/FrBnmba1K2lvGb/7UUBaVomO9zOE
-         jf4TsdLZbmhrTqTq9K87/qugmwE2fGfCX3AqT2ieHZ9lgl6w5WH0jTB3oVtJ7lC9lo
-         IgtgKZTGCEWvw==
-Received: by mail-ua1-f52.google.com with SMTP id v48so1117233uad.6;
-        Thu, 09 Mar 2023 05:29:11 -0800 (PST)
-X-Gm-Message-State: AO0yUKWh0cWxozuYLcA4H/T3ICiftC/CZtEjRxdfczVT+VyZOrtWMzPy
-        bN5HbQw45VNpCucILjvUNCemSuf53iIJouNqDQ==
-X-Google-Smtp-Source: AK7set/UtlhkNYhNExNPyFO1gM3SmkCcbPOZsx+tIDLnmUllfa/2k5vXtp1lR3nqmqn8GAzcbB+evRXlrjrOrrh5PSQ=
-X-Received: by 2002:ab0:4a1a:0:b0:68b:8665:a73b with SMTP id
- q26-20020ab04a1a000000b0068b8665a73bmr13895606uae.1.1678368550753; Thu, 09
- Mar 2023 05:29:10 -0800 (PST)
+        with ESMTP id S230018AbjCIO0p (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Mar 2023 09:26:45 -0500
+X-Greylist: delayed 1784 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Thu, 09 Mar 2023 06:26:44 PST
+Received: from 20.mo561.mail-out.ovh.net (20.mo561.mail-out.ovh.net [178.33.47.94])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 131D6D533
+        for <devicetree@vger.kernel.org>; Thu,  9 Mar 2023 06:26:43 -0800 (PST)
+Received: from director9.ghost.mail-out.ovh.net (unknown [10.108.1.219])
+        by mo561.mail-out.ovh.net (Postfix) with ESMTP id 8C9D121DCE
+        for <devicetree@vger.kernel.org>; Thu,  9 Mar 2023 13:31:23 +0000 (UTC)
+Received: from ghost-submission-6684bf9d7b-74llp (unknown [10.110.208.116])
+        by director9.ghost.mail-out.ovh.net (Postfix) with ESMTPS id 8CDCA1FE67;
+        Thu,  9 Mar 2023 13:31:21 +0000 (UTC)
+Received: from RCM-web10.webmail.mail.ovh.net ([151.80.29.18])
+        by ghost-submission-6684bf9d7b-74llp with ESMTPSA
+        id 3hbMIKnfCWTjaAUA/ww3gA
+        (envelope-from <rafal@milecki.pl>); Thu, 09 Mar 2023 13:31:21 +0000
 MIME-Version: 1.0
-References: <20230307165359.225361-1-miquel.raynal@bootlin.com>
- <20230307165359.225361-4-miquel.raynal@bootlin.com> <20230308001903.GA513330-robh@kernel.org>
- <fca549f7-a79a-4d8f-b609-efef830becd2@mercury.local>
-In-Reply-To: <fca549f7-a79a-4d8f-b609-efef830becd2@mercury.local>
-From:   Rob Herring <robh@kernel.org>
-Date:   Thu, 9 Mar 2023 07:28:59 -0600
-X-Gmail-Original-Message-ID: <CAL_Jsq+bs1mxdTTeazhzD39fV0EBjCKZ_HKKjLpWgSezTLJ-4A@mail.gmail.com>
-Message-ID: <CAL_Jsq+bs1mxdTTeazhzD39fV0EBjCKZ_HKKjLpWgSezTLJ-4A@mail.gmail.com>
-Subject: Re: [PATCH v2 03/21] of: Rename of_modalias_node()
-To:     Sebastian Reichel <sebastian.reichel@collabora.com>
-Cc:     Miquel Raynal <miquel.raynal@bootlin.com>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        linux-kernel@vger.kernel.org,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Michael Walle <michael@walle.cc>,
-        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>,
-        Robert Marko <robert.marko@sartura.hr>,
-        Luka Perkov <luka.perkov@sartura.hr>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Frank Rowand <frowand.list@gmail.com>,
-        devicetree@vger.kernel.org,
-        "Rafael J . Wysocki" <rafael@kernel.org>,
-        Len Brown <lenb@kernel.org>,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        Wolfram Sang <wsa@kernel.org>, Mark Brown <broonie@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Date:   Thu, 09 Mar 2023 14:31:19 +0100
+From:   =?UTF-8?Q?Rafa=C5=82_Mi=C5=82ecki?= <rafal@milecki.pl>
+To:     Miquel Raynal <miquel.raynal@bootlin.com>
+Cc:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        =?UTF-8?Q?Rafa?= =?UTF-8?Q?=C5=82_Mi=C5=82ecki?= 
+        <zajec5@gmail.com>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Michael Walle <michael@walle.cc>, gregkh@linuxfoundation.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, u-boot@lists.denx.de
+Subject: Re: [PATCH 2/4] nvmem: core: allow nvmem_cell_post_process_t
+ callbacks to adjust buffer
+In-Reply-To: <20230309141038.4399af1f@xps-13>
+References: <20230222172245.6313-1-zajec5@gmail.com>
+ <20230222172245.6313-3-zajec5@gmail.com>
+ <37f821b8-f681-08e4-d4f1-d37be191ff7f@linaro.org>
+ <20230309113211.6321ce3d@xps-13>
+ <2dc096f5-f5ce-f99b-42ac-0fb24682239a@linaro.org>
+ <20230309122324.4b012a58@xps-13>
+ <fb6d7c76-d3d3-b8a0-46f9-dc2eb76ae91a@linaro.org>
+ <fde09080fc420cca64e810a3c2ad9677@milecki.pl>
+ <20230309141038.4399af1f@xps-13>
+User-Agent: Roundcube Webmail/1.4.13
+Message-ID: <649e1c9196cf78232816dcf29ece4c52@milecki.pl>
+X-Sender: rafal@milecki.pl
+X-Originating-IP: 194.187.74.233
+X-Webmail-UserID: rafal@milecki.pl
+Content-Type: text/plain; charset=UTF-8;
+ format=flowed
+Content-Transfer-Encoding: 8bit
+X-Ovh-Tracer-Id: 16116975693792521129
+X-VR-SPAMSTATE: OK
+X-VR-SPAMSCORE: -100
+X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrgedvhedrvdduiedgheduucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuqfggjfdpvefjgfevmfevgfenuceurghilhhouhhtmecuhedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujfgurhepggffhffvvefujghffgfkgihitgfgsehtkehjtddtreejnecuhfhrohhmpeftrghfrghlucfoihhlvggtkhhiuceorhgrfhgrlhesmhhilhgvtghkihdrphhlqeenucggtffrrghtthgvrhhnpeejvdelgfeutdfhfeelheegfedtleduleeuvdfgfeefvefhvedtheetjeetfeehgeenucfkphepuddvjedrtddrtddruddpudelgedrudekjedrjeegrddvfeefpdduhedurdektddrvdelrddukeenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepihhnvghtpeduvdejrddtrddtrddupdhmrghilhhfrhhomhepoehrrghfrghlsehmihhlvggtkhhirdhplheqpdhnsggprhgtphhtthhopedupdhrtghpthhtohepuggvvhhitggvthhrvggvsehvghgvrhdrkhgvrhhnvghlrdhorhhgpdfovfetjfhoshhtpehmohehiedupdhmohguvgepshhmthhpohhuth
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Mar 8, 2023 at 4:06=E2=80=AFPM Sebastian Reichel
-<sebastian.reichel@collabora.com> wrote:
->
-> Hi,
->
-> On Tue, Mar 07, 2023 at 06:19:03PM -0600, Rob Herring wrote:
-> > On Tue, Mar 07, 2023 at 05:53:41PM +0100, Miquel Raynal wrote:
-> > > This helper does not produce a real modalias, but tries to get the
-> > > "product" compatible part of the "vendor,product" compatibles only. I=
-t
-> > > is far from creating a purely useful modalias string and does not see=
-m
-> > > to be used like that directly anyway, so let's try to give this helpe=
-r a
-> > > more meaningful name before moving there a real modalias helper (alre=
-ady
-> > > existing under of/device.c).
-> > >
-> > > Also update the various documentations to refer to the strings as
-> > > "aliases" rather than "modaliases" which has a real meaning in the Li=
-nux
-> > > kernel.
-> > >
-> > > There is no functional change.
-> > >
-> > > Cc: Rafael J. Wysocki <rafael@kernel.org>
-> > > Cc: Len Brown <lenb@kernel.org>
-> > > Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-> > > Cc: Maxime Ripard <mripard@kernel.org>
-> > > Cc: Thomas Zimmermann <tzimmermann@suse.de>
-> > > Cc: Sebastian Reichel <sre@kernel.org>
-> > > Cc: Wolfram Sang <wsa@kernel.org>
-> > > Cc: Mark Brown <broonie@kernel.org>
-> > > Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
-> > > ---
-> > >  drivers/acpi/bus.c                |  7 ++++---
-> > >  drivers/gpu/drm/drm_mipi_dsi.c    |  2 +-
-> > >  drivers/hsi/hsi_core.c            |  2 +-
-> >
-> > These should not have been using this function. The matching on just th=
-e
-> > product was a relic from I2C and SPI which we don't want to propogate.
-> > No clue why ACPI needed it...
-> >
-> > If you respin or want to fixup while applying, can you add a kerneldoc
-> > comment to not add new users of the function. Not that anyone will
-> > follow that... :(
-> >
-> > Reviewed-by: Rob Herring <robh@kernel.org>
->
-> I just checked and HSI is not using the data for matching. Instead
-> it uses the returned data to set the device name. Matching happens
-> using the full compatible.
->
-> FWIW the MIPI HSI standard never became a big thing, so we have only
-> one HSI DT driver upstream and that is the Nokia N900 modem driver.
+On 2023-03-09 14:10, Miquel Raynal wrote:
+> Hello,
+> 
+> rafal@milecki.pl wrote on Thu, 09 Mar 2023 12:52:37 +0100:
+> 
+>> On 2023-03-09 12:44, Srinivas Kandagatla wrote:
+>> > On 09/03/2023 11:23, Miquel Raynal wrote:
+>> >> Hi Srinivas,
+>> >> >> srinivas.kandagatla@linaro.org wrote on Thu, 9 Mar 2023 10:53:07 >> +0000:
+>> >> >>> On 09/03/2023 10:32, Miquel Raynal wrote:
+>> >>>> Hi Srinivas,
+>> >>>> >>>> srinivas.kandagatla@linaro.org wrote on Thu, 9 Mar 2023 10:12:24 >>>> +0000:
+>> >>>> >>>>> On 22/02/2023 17:22, Rafał Miłecki wrote:
+>> >>>>>> @@ -1791,11 +1792,15 @@ ssize_t nvmem_device_cell_read(struct >>>>>> nvmem_device *nvmem,
+>> >>>>>>     	if (!nvmem)
+>> >>>>>>     		return -EINVAL;
+>> >>>>>>     > +	/* Cells with read_post_process hook may realloc buffer we >>>>>> can't allow here */
+>> >>>>>> +	if (info->read_post_process)
+>> >>>>>> +		return -EINVAL;
+>> >>>>> This should probably go in 1/4 patch. Other than that series looks >>>>> good to me.
+>> >>>> >>>> FYI patch 1/4 is also carried by the nvmem-layouts series, so it's
+>> >>>> probably best to keep these 2 patches separated to simplify the >>>> merging.
+>> >>> that is intermediate thing, but Ideally this change belongs to 1/4 >>> patch, so once I apply these patches then we can always rebase layout >>> series on top of nvmem-next
+>> >> >> Well, I still don't see the need for this patch because we have no use
+>> >> for it *after* the introduction of layouts. Yes in some cases changing
+>> >> the size of a cell might maybe be needed, but right now the use case >> is
+>> >> to provide a MAC address, we know beforehand the size of the cell, so
+>> >> there is no need, currently, for this hack.
+>> >> > Am confused, should I ignore this series ?
+> 
+> I think this series makes sense and addresses a need. But this issue
+> can also be solved with the layouts. Rafał does not want (I still
+> don't get the reason) to use that solution. Whatever. But if you apply
+> this series, it requires to modify the layouts series, thus postponing
+> it even more. I would prefer to merge that big series first and then
+> merge an update of this patch (which changes in the two layout drivers
+> the cell size argument type).
 
-Can we add a patch in removing the call then.
+I'm going to argue those are two independent things.
 
-I'm pretty sure MIPI stands for Must Invent Peripheral Interfaces.
+I can add .read_post_process() without making this driver a layout.
+I can make it layout without adding .read_post_process().
 
-Rob
+I said multiple time that I AM GOING to convert this driver into a 
+layout.
+
+
+>> I'm confused no less.
+>> 
+>> I think we have 3 different opinions and no agreement on how to 
+>> proceed.
+>> 
+>> 
+>> Rafał (me):
+>> NVMEM cells should be registered as they are in the raw format. No 
+>> size
+>> adjustments should happen while registering them. If NVMEM cell 
+>> requires
+>> some read post-processing then its size should be adjusted *while*
+>> reading.
+> 
+> This implementation only works if you reduce the size of the cell.
+
+Which is enough for MAC. And I was asked to use simple solution.
+I also was asked to support reallocationg which was the reason for
+my rework.
+
+
+> While writing this, I am realizing that we would actually expect
+> a check on the nvmem side if the size was enlarged because this would
+> be a bug.
+> 
+>> Michael:
+>> .read_post_process() should be realloc the buffer
+> 
+> This would be more robust. But if we start with 1, we can improve it
+> later, I don't mind as long as an error is returned in case of misuse.
+> 
+>> Miquel:
+>> While registering NVMEM cell its size should be already adjusted to
+>> match what .read_post_process() is about to return.
+> 
+> Sounds like the simplest solution to me and covers all the uses we
+> have to day, but honestly, I won't fight for it.
+> 
+>> I'm really sorry if I got anyone's view wrong.
+> 
+> LGTM.
+> 
+>> > Whatever. If you want it, just merge it. But *please*, I would like
+>> 
+>> :-)
+>> 
+>> > to see these layouts in, so what's the plan?
+>> 
+>> Am on it, you sent v3 just 24hrs ago :-)
+> 
+> Yes, sorry for being pushy. I just wanted to highlight that the two
+> series conflict together, but my answer was clumsy. Take the time you
+> need, that's how it's supposed to work anyway.
+
+AFAIR there is a minor conflict caused by the API change that allows
+reallocations. I decided to rebase my patchwork because Michael claimed
+it's going to take at least few more weeks to rework layouts patchset.
+
+Now we have layouts patchset ready anyway and I'll have to rebase
+again. Well, few more wasted hours, shouldn't make much difference.
