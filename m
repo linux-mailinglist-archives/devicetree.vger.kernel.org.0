@@ -2,126 +2,268 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9DCF56B1F9A
-	for <lists+devicetree@lfdr.de>; Thu,  9 Mar 2023 10:14:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B624B6B1FA6
+	for <lists+devicetree@lfdr.de>; Thu,  9 Mar 2023 10:15:33 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229685AbjCIJN6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Mar 2023 04:13:58 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40496 "EHLO
+        id S230016AbjCIJP3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Mar 2023 04:15:29 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41628 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230015AbjCIJN5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Mar 2023 04:13:57 -0500
-Received: from mail-ed1-x52d.google.com (mail-ed1-x52d.google.com [IPv6:2a00:1450:4864:20::52d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E56975F516
-        for <devicetree@vger.kernel.org>; Thu,  9 Mar 2023 01:13:53 -0800 (PST)
-Received: by mail-ed1-x52d.google.com with SMTP id u9so4302191edd.2
-        for <devicetree@vger.kernel.org>; Thu, 09 Mar 2023 01:13:53 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1678353232;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=9CEu2+xzDEP1ysZ2Jodpi5h8X2MlwOBxqMwTYxrM9tE=;
-        b=hgV1BzwmBLq1MLu70vByaZViKECvofPPWellrIF9OkLBuk4rfT816uqlpygy1swxrV
-         Xamz3U8zY3xv7QXjOruuz3L83l0vgePE3o4vHdrpDGnCo56GXcHTh2iuN8a1HbLhHeUJ
-         ry/xlrbQ2mQOoC9sMLUjQtw0leOHkNWS1WURrHWmt7sr0LRiqcwQuXHAU/8fEyAQAn++
-         MmO/RpKPjyb4kx32deQyGHlOQ4970vubR6Qd1ubEp9H4ysM7mGyUVFcuSrRTb3wa1XOL
-         +i86wsgPTuiuFcwxVS4mc8tPpSqIp0n7mifSjolD3ExreBXW9qJ9tQh0XPEYH7pGp45G
-         g+Bw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678353232;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=9CEu2+xzDEP1ysZ2Jodpi5h8X2MlwOBxqMwTYxrM9tE=;
-        b=JzuI/VryuBVDrNxr2xBx78zpw+QL0hw3lcaAyc1o8wrlloXh2vxsYpK6mXllq7ej1l
-         koWbAUwOkVjHTMrvEOgPmbTiLYufSBkPq1+/ZcM+5bwNnFVdRQmkoq8c7e1LmAsXg1Y0
-         3hcNHqJu8ImOMFDQkhrU2zMv40CQ8aqrMtV03SyC8AhRPuKhmPxY+C0yf1s4B+vF4nt3
-         ECi5o5SWfVAxgATJob/eRMwdQ7VaGQCLcwp7d8q6AnG9/U0j7A7Ar8E1aNUeRaHIIW27
-         vARJwwiITmu1ZC9ciw6K+36xrjFe3Ym8dgMjn2wpwZG6o30dHVNDdYeKR70yPgIFKvd/
-         BTFg==
-X-Gm-Message-State: AO0yUKUAM3UxLu11wJ7xdOtWqPDg3ntgboZaqiv2+W5odYrG3+c2irEV
-        wzQypRDjPpl5/V8OpQ/sVj6oLg==
-X-Google-Smtp-Source: AK7set/jZEusWLawgfMr+VFVWu7w/eeDzg1P4nP6rbjE5J81n0UA4EyVpXJtA596Z2KHx1Ks+fTLpg==
-X-Received: by 2002:a17:907:9703:b0:8af:514f:1078 with SMTP id jg3-20020a170907970300b008af514f1078mr25280900ejc.31.1678353232434;
-        Thu, 09 Mar 2023 01:13:52 -0800 (PST)
-Received: from ?IPV6:2a02:810d:15c0:828:7ee2:e73e:802e:45c1? ([2a02:810d:15c0:828:7ee2:e73e:802e:45c1])
-        by smtp.gmail.com with ESMTPSA id mb3-20020a170906eb0300b008e772c97db6sm8520392ejb.128.2023.03.09.01.13.51
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 09 Mar 2023 01:13:52 -0800 (PST)
-Message-ID: <984f1689-459e-bd26-b96c-6c759417b3d1@linaro.org>
-Date:   Thu, 9 Mar 2023 10:13:51 +0100
+        with ESMTP id S229994AbjCIJPY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Mar 2023 04:15:24 -0500
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 72E9F769DF;
+        Thu,  9 Mar 2023 01:15:18 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1678353318; x=1709889318;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=2T70OKG7KgIEMwaSO0d7AReWE5H9q7hJM3GfzyRu8mY=;
+  b=icJ7HdNRZE1wAF+mvOFyRI0ykgz8ikJHn0uc5BedtLwmI82UW/PdTo1E
+   cuc3hx9eyFqNookEgiJP6esbu4q270jjAo668NnlGz0e2CyQpYPovlawl
+   iu7disYXb0cyU72B8+RIJha6HQlAg5b/RbrwejnIRYCNDrobU4AjJu/F2
+   YtGpomjwVOfnYEfpFNM12KxWkqkbjaRM6UU6anMpjc178O2nzWSoCPMmw
+   FHamj0BUYKKv6WKS3NReqwvCIy2gEsKIImFQJS1RJPLZq4CzYLf8aT0Uf
+   FnpXFIGDMBs5XapAvWu8OyT5hpbsIMQm+eqzXsdVjzXpTjTlCUJcffQHO
+   Q==;
+X-IronPort-AV: E=Sophos;i="5.98,245,1673938800"; 
+   d="asc'?scan'208";a="203992667"
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa3.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 09 Mar 2023 02:15:17 -0700
+Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
+ chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.16; Thu, 9 Mar 2023 02:15:17 -0700
+Received: from wendy (10.10.115.15) by chn-vm-ex03.mchp-main.com
+ (10.10.85.151) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.16 via Frontend
+ Transport; Thu, 9 Mar 2023 02:15:15 -0700
+Date:   Thu, 9 Mar 2023 09:14:46 +0000
+From:   Conor Dooley <conor.dooley@microchip.com>
+To:     Mike Rapoport <rppt@kernel.org>
+CC:     Conor Dooley <conor@kernel.org>, <palmer@dabbelt.com>,
+        <linux-riscv@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <frowand.list@gmail.com>,
+        <robh+dt@kernel.org>, <mick@ics.forth.gr>,
+        <paul.walmsley@sifive.com>, <aou@eecs.berkeley.edu>,
+        <Valentina.FernandezAlanis@microchip.com>,
+        <Daire.McNamara@microchip.com>
+Subject: Re: RISC-V reserved memory problems
+Message-ID: <3ffac9cc-ffb2-4e16-ad18-ff1ed4b6289f@spud>
+References: <8e10bf15-9fa9-fe90-1656-35bf3e87e7f8@microchip.com>
+ <f8e67f82-103d-156c-deb0-d6d6e2756f5e@microchip.com>
+ <Y9wytv5KSt1ca+td@spud>
+ <ZAchb/DfbIh+qaE4@kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-Subject: Re: [PATCH RFC 1/3] dt-bindings: clock: Add Renesas versa3 clock
- generator bindings
-Content-Language: en-US
-To:     Biju Das <biju.das.jz@bp.renesas.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Geert Uytterhoeven <geert+renesas@glider.be>,
-        "linux-renesas-soc@vger.kernel.org" 
-        <linux-renesas-soc@vger.kernel.org>,
-        "linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        Fabrizio Castro <fabrizio.castro.jz@renesas.com>
-References: <20230220131307.269100-1-biju.das.jz@bp.renesas.com>
- <20230220131307.269100-2-biju.das.jz@bp.renesas.com>
- <e9e63c87-b491-b4d5-b226-0539ef0de2d0@linaro.org>
- <OS0PR01MB59221C8C937EF20347149E4886B49@OS0PR01MB5922.jpnprd01.prod.outlook.com>
- <36e06397-2189-4f1b-99cc-d39e720ebc71@linaro.org>
- <OS0PR01MB5922BDA0632ACCCC0100EEBD86B49@OS0PR01MB5922.jpnprd01.prod.outlook.com>
- <6cbe6c71-2d2d-0f79-1270-7f8ed2ddc1d6@linaro.org>
- <TYCPR01MB5933650D5BAB7A3F4BE03BAF86B59@TYCPR01MB5933.jpnprd01.prod.outlook.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <TYCPR01MB5933650D5BAB7A3F4BE03BAF86B59@TYCPR01MB5933.jpnprd01.prod.outlook.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="McODTL91jRNtt7ou"
+Content-Disposition: inline
+In-Reply-To: <ZAchb/DfbIh+qaE4@kernel.org>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 09/03/2023 08:57, Biju Das wrote:
->>> It is clk generator HW specific. Clk generator is vital component
->>> which provides clocks to the system.
->>
->> Every clock controller is vital...
->>
->>> We are providing some hardware feature which is exposed as dt
->>> properties.
->>>
->>> Like clock output is fixed rate clock or dynamic rate clock/
->>
->> OK, I wait then for proper description which will explain and justify this.
-> 
-> Here it is, Please let me know is it ok?
-> 
-> renesas,output-clock-fixed-rate-mode:
->     type: boolean
->     description:
->       In output clock fixed rate mode, the output clock frequency is always
->       fixed and the hardware will use the values from the OTP or full register
-> 	map initialized during boot.
->       If not given, the output clock rate is not fixed.
->     maxItems: 6
+--McODTL91jRNtt7ou
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-boolean is scalar, not array, so no maxItems. If the frequency is taken
-from OTP or register map, why they cannot also provide information the
-clock is fixed?
+On Tue, Mar 07, 2023 at 01:35:11PM +0200, Mike Rapoport wrote:
+> Hi Conor,
+>=20
+> Sorry for the delay, somehow this slipped between the cracks.
 
-> 
-> Cheers,
-> Biju
+No worries.
 
-Best regards,
-Krzysztof
+> On Thu, Feb 02, 2023 at 10:01:26PM +0000, Conor Dooley wrote:
+> > Hullo Palmer, Mike & whoever else may read this,
+> >=20
+> > Just reviving this thread from a little while ago as I have been in the
+> > area again recently...
+>=20
+> TBH, I didn't really dig deep into the issues,
 
+I only preserved most of the context here to point out that it wasn't an
+isolated issue, the top-down/bottom-up bit is the main part that I was
+interested in. The others are fixed, or workaround-able without
+"harming" anyone else.
+
+> but the thought I had was
+> what if DT was mapped via fixmap until the setup_vm_final() and then it
+> would be possible to call DT methods early.
+
+=46rom my memory, this would be more along the lines of what arm64 does.
+I'll give it a shot and see how it goes. I figure it'll take me some
+time!
+
+> Could be I'm shooting in the dark :)
+
+A pointer on where to start is helpful, even if it is "rewrite a bunch
+of stuff".
+
+Cheers,
+Conor.
+
+> > On Tue, Aug 16, 2022 at 08:41:05PM +0000, Conor.Dooley@microchip.com wr=
+ote:
+> > > Hey all,
+> > > We've run into a bit of a problem with reserved memory on PolarFire, =
+or
+> > > more accurately a pair of problems that seem to have opposite fixes.
+> > >=20
+> > > The first of these problems is triggered when trying to implement a
+> > > remoteproc driver. To get the reserved memory buffer, remoteproc
+> > > does an of_reserved_mem_lookup(), something like:
+> > >=20
+> > > 	np =3D of_parse_phandle(pdev->of_node, "memory-region", 0);
+> > > 	if (!np)
+> > > 		return -EINVAL;
+> > >=20
+> > > 	rmem =3D of_reserved_mem_lookup(np);
+> > > 	if (!rmem)
+> > > 		return -EINVAL;
+> > >=20
+> > > of_reserved_mem_lookup() then uses reserved_mem[i].name to try and fi=
+nd
+> > > a match - but this was triggering kernel panics for us. We did some
+> > > debugging and found that the name string's pointer was pointing to an
+> > > address in the 0x4000_0000 range. The minimum reproduction for this
+> > > crash is attached - it hacks in some print_reserved_mem()s into
+> > > setup_vm_final() around a tlb flush so you can see the before/after.
+> > > (You'll need a reserved memory node in your dts to replicate)
+> > >=20
+> > > The output is like so, with the same crash as in the remoteproc drive=
+r:
+> > >=20
+> > > [    0.000000] Linux version 6.0.0-rc1-00001-g0d9d6953d834 (conor@wen=
+dy) (riscv64-unknown-linux-gnu-gcc (g5964b5cd727) 11.1.0, GNU ld (GNU Binut=
+ils) 2.37) #1 SMP Tue Aug 16 13:42:09 IST 2022
+> >=20
+> > [...]
+> >=20
+> > > [    0.000000] ---[ end Kernel panic - not syncing: Attempted to kill=
+ the idle task! ]---
+> > >=20
+> > > We traced this back to early_init_fdt_scan_reserved_mem() in
+> > > setup_bootmem() - moving it later back up the boot sequence to
+> > > after the dt has been remapped etc has fixed the problem for us.
+> > >=20
+> > > The least movement to get it working is attached, and also pushed
+> > > here: git.kernel.org/conor/c/1735589baefc
+> >=20
+> > This one is fixed now, as of commit 50e63dd8ed92 ("riscv: fix reserved
+> > memory setup").
+> >=20
+> > > The second problem is a bit more complicated to explain - but we
+> > > found the solution conflicted with the remoteproc fix as we had
+> > > to move early_init_fdt_scan_reserved_mem() _earlier_ in the boot
+> > > process to solve this one.
+> > >=20
+> > > We want to have a node in our devicetree that contains some memory
+> > > that is non-cached & marked as reserved-memory. Maybe we have just
+> > > missed something, but from what we've seen:
+> > > - the really early setup looks at the dtb, picks the highest bit
+> > >    of memory and puts the dtb etc there so it can start using it
+> > > - early_init_fdt_scan_reserved_mem() is then called, which figures
+> > >    out if memory is reserved or not.
+> > >=20
+> > > Unfortunately, the highest bit of memory is the non-cached bit so
+> > > everything falls over, but we can avoid this by moving the call to
+> > > early_init_fdt_scan_reserved_mem() above the dtb memblock alloc that
+> > > takes place right before it in setup_bootmem().
+> > >=20
+> > > Obviously, both of these changes are moving the function call in
+> > > opposite directions and we can only really do one of them. We are not
+> > > sure if what we are doing with the non-cached reserved-memory section
+> > > is just not permitted & cannot work - or if this is something that
+> > > was overlooked for RISC-V specifically and works for other archs.
+> >=20
+> > We ended up working around this one by making sure that U-Boot loaded
+> > the dtb to somewhere that would be inside the kernel's memory map, thus
+> > avoiding the remapping in the first place.
+> >=20
+> > We did run into another problem recently though, and 50e63dd8ed92 is
+> > kinda at fault for it.
+> > This particular issue was encountered with a devicetree where the
+> > top-most memory region was entirely reserved & was not observed prior
+> > to my fix for the first issue.
+> >=20
+> > On RISC-V, the boot sequence is something like:
+> > 	setup_bootmem();
+> > 	setup_vm_final();
+> > 	unflatten_device_tree();
+> > 	early_init_fdt_scan_reserved_mem();
+> >=20
+> > Whereas, before my patch it used to be (give-or-take):
+> > 	setup_bootmem();
+> > 	early_init_fdt_scan_reserved_mem();
+> > 	setup_vm_final();
+> > 	unflatten_device_tree();
+> >=20
+> > The difference being that we used to have scanned the reserved memory
+> > regions before calling setup_vm_final() & therefore know which regions
+> > we cannot use. As a reminder, calling early_init_fdt_scan_reserved_mem()
+> > before we've got the dt in a proper virtual memory address will cause
+> > the kernel to panic if it tries to read a reserved memory node's label.
+> >=20
+> > As we are now calling setup_vm_final() *before* we know what the
+> > reserved memory regions are & as RISC-V allocates memblocks from the top
+> > down, the allocations in setup_vm_final() will be done in the highest
+> > memory region.
+> > When early_init_fdt_scan_reserved_mem() then tries to reserve the
+> > entirety of that top-most memory region, the reservation fails as part
+> > of this region has already been allocated.
+> > In the scenario where I found this bug, that top-most region is non-
+> > cached memory & the kernel ends up panicking.
+> > The memblock debug code made this pretty easy to spot, otherwise I'd
+> > probably have spent more than just a few hours trying to figure out why
+> > it was panicking!
+> >=20
+> > My "this needs to be fixed today" solution for this problem was calling
+> > memblock_set_bottom_up(true) in setup_bootmem() & that's what we are
+> > going to carry downstream for now.
+> >=20
+> > I haven't tested it (yet) but I suspect that it would also fix our
+> > problem of the dtb being remapped into a non-cached region of memory
+> > that we would later go on to reserve too. Non-cached being an issue
+> > mainly due to the panicking, but failing to reserve (and using!) memory
+> > regions that are meant to be reserved is very far from ideal even when
+> > they are memory that the kernel can actually use.
+> >=20
+> > I have no idea if that is an acceptable solution for upstream though, so
+> > I guess this is me putting out feelers as to whether this is something I
+> > should send a patch to do *OR* if this is another sign of the issues
+> > that you (Mike, Palmer) mentioned in the past.
+> > If it isn't an acceptable solution, I'm not really too sure how to
+> > proceed!
+> >=20
+> > Cheers,
+> > Conor.
+> >=20
+>=20
+>=20
+>=20
+> --=20
+> Sincerely yours,
+> Mike.
+>=20
+
+--McODTL91jRNtt7ou
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZAmjfAAKCRB4tDGHoIJi
+0tFdAQDHopmrSHySTTwn2q2HqhgTs5Nkor5VHzHgmHIgT+UsqAEA9GT6SanTju8R
+HcLHCyzJA2EVc9QwCQU6dC9CLwSYJQw=
+=F8lV
+-----END PGP SIGNATURE-----
+
+--McODTL91jRNtt7ou--
