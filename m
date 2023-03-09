@@ -2,234 +2,215 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A9B0A6B216B
-	for <lists+devicetree@lfdr.de>; Thu,  9 Mar 2023 11:30:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B8D546B216E
+	for <lists+devicetree@lfdr.de>; Thu,  9 Mar 2023 11:30:29 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230163AbjCIKaS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Mar 2023 05:30:18 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53264 "EHLO
+        id S231191AbjCIKa1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Mar 2023 05:30:27 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53504 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229680AbjCIKaR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Mar 2023 05:30:17 -0500
-Received: from relay3-d.mail.gandi.net (relay3-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::223])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 28F99193E8;
-        Thu,  9 Mar 2023 02:30:14 -0800 (PST)
-Received: (Authenticated sender: alex@ghiti.fr)
-        by mail.gandi.net (Postfix) with ESMTPSA id 9DECC60009;
-        Thu,  9 Mar 2023 10:30:07 +0000 (UTC)
-Message-ID: <fadac048-c648-6493-3f1c-1877692180c8@ghiti.fr>
-Date:   Thu, 9 Mar 2023 11:30:07 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.1
-Subject: Re: RISC-V reserved memory problems
+        with ESMTP id S230465AbjCIKaZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Mar 2023 05:30:25 -0500
+Received: from JPN01-OS0-obe.outbound.protection.outlook.com (mail-os0jpn01on2110.outbound.protection.outlook.com [40.107.113.110])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CEEC3E2767;
+        Thu,  9 Mar 2023 02:30:23 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=oPCVZNgDMV5ay7Kqzd4PN+ZAbHzvsvlPbtHEkHsDpTf3Q5+PDBkEPvKlmcMX6OCu8PA7XiVpSd6ET6CysJR6rI/eTyPD/Jn/B9fBon+TAANtRDOUi2impuT5oC/6lOW99INJSghSmc8A8AE6VFRsNRq0uRp/3h9seQi7Fx3U25Haa100tU2JVb7/V4OaPQ9CDLeKX46+cqXcX9yBedYkIgFUUroQs/7XwYco+vBGh/+hrc5hI7PNc1cEOleWpgaovWAb4l1f3qW4q+1D+MXLudjeTwrSiqCzRkfH0TKo374LLWntsQv9ZB5IJM5mFmMLOxZZHSgCE1jH0gLkhq2JTQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=5eMmkiK2H2uagdaXnrxWEcTWQInx5vyiltC6TBi7Z1w=;
+ b=iN0T9YAOGsKEqUaPinYd4ZNYfeMCZHGC8eNuyC0ifWPznoHyvQ5Nyu3W7DcW+qh4hwKl+PL9otkXvsEgpxBNEZAfu/2Gc1zmakq22pJXOg6XknrnNDzUkfSQMRpa/qhCxi9ZO4U1Pap07J/6gGJ5HMVVL4DtiKIJaDXrwoyOaTLtPz9XT+N0QZ6uGIil2AlAKk48PDoRQlre+BLOb5Dl59Kc7/dDKgGSbhyOsyt3f1MgKUEM3mVjKDorETlP8GKTkXYGRTsTJvmKXQa5EIDSj7dGXJ4gnHhMe78d0b/3H/MPcH/rc2KBOMBX4y3GkLWxdDDdQdhzNVnmiRrNJ4cWIg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=bp.renesas.com; dmarc=pass action=none
+ header.from=bp.renesas.com; dkim=pass header.d=bp.renesas.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bp.renesas.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=5eMmkiK2H2uagdaXnrxWEcTWQInx5vyiltC6TBi7Z1w=;
+ b=ezsqcxRtUHrXeqBx15q4PAQ/HTMhH0/LPUM+rEK4kPF7b+iwXqdu5uJcxqhJzAepnl28/tHr2yNWyZWevUmsH/g3JdlHnJxCwxlLANiBhzF5VBtA7XXaXfwMprmTb73OBqSKqmsGRZHIj1GjqY4aBzNKF3WQsLBRnY12SYC2XmA=
+Received: from OS0PR01MB5922.jpnprd01.prod.outlook.com (2603:1096:604:bb::5)
+ by TYCPR01MB6208.jpnprd01.prod.outlook.com (2603:1096:400:7b::14) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6178.18; Thu, 9 Mar
+ 2023 10:30:20 +0000
+Received: from OS0PR01MB5922.jpnprd01.prod.outlook.com
+ ([fe80::f54c:4b2:9c7d:f207]) by OS0PR01MB5922.jpnprd01.prod.outlook.com
+ ([fe80::f54c:4b2:9c7d:f207%7]) with mapi id 15.20.6178.019; Thu, 9 Mar 2023
+ 10:30:20 +0000
+From:   Biju Das <biju.das.jz@bp.renesas.com>
+To:     Geert Uytterhoeven <geert@linux-m68k.org>
+CC:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        "linux-renesas-soc@vger.kernel.org" 
+        <linux-renesas-soc@vger.kernel.org>,
+        "linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        Fabrizio Castro <fabrizio.castro.jz@renesas.com>
+Subject: RE: [PATCH RFC 1/3] dt-bindings: clock: Add Renesas versa3 clock
+ generator bindings
+Thread-Topic: [PATCH RFC 1/3] dt-bindings: clock: Add Renesas versa3 clock
+ generator bindings
+Thread-Index: AQHZRS0aT95BTvtLwUKgslaMkC+eWK7at0aAgBZQ9vCAAEpeAIAAAIEwgAAHzgCAANKNMIAAFx2AgAAAUHCAAAgsgIAAA/sAgAAA3ZA=
+Date:   Thu, 9 Mar 2023 10:30:20 +0000
+Message-ID: <OS0PR01MB59221F006F53E2ACC7690F2A86B59@OS0PR01MB5922.jpnprd01.prod.outlook.com>
+References: <20230220131307.269100-1-biju.das.jz@bp.renesas.com>
+ <20230220131307.269100-2-biju.das.jz@bp.renesas.com>
+ <e9e63c87-b491-b4d5-b226-0539ef0de2d0@linaro.org>
+ <OS0PR01MB59221C8C937EF20347149E4886B49@OS0PR01MB5922.jpnprd01.prod.outlook.com>
+ <36e06397-2189-4f1b-99cc-d39e720ebc71@linaro.org>
+ <OS0PR01MB5922BDA0632ACCCC0100EEBD86B49@OS0PR01MB5922.jpnprd01.prod.outlook.com>
+ <6cbe6c71-2d2d-0f79-1270-7f8ed2ddc1d6@linaro.org>
+ <TYCPR01MB5933650D5BAB7A3F4BE03BAF86B59@TYCPR01MB5933.jpnprd01.prod.outlook.com>
+ <984f1689-459e-bd26-b96c-6c759417b3d1@linaro.org>
+ <TYCPR01MB59335607AE6A2F4FBBA46ACC86B59@TYCPR01MB5933.jpnprd01.prod.outlook.com>
+ <bc9e8ccd-9f98-6fae-9491-dc2bd96c2e4f@linaro.org>
+ <CAMuHMdVNCvu6La_=f=6i4Kj3UXeFU6McnNSkXb0PVjVyzdNR4Q@mail.gmail.com>
+In-Reply-To: <CAMuHMdVNCvu6La_=f=6i4Kj3UXeFU6McnNSkXb0PVjVyzdNR4Q@mail.gmail.com>
+Accept-Language: en-GB, en-US
 Content-Language: en-US
-To:     Conor.Dooley@microchip.com, linux-riscv@lists.infradead.org
-Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        frowand.list@gmail.com, robh+dt@kernel.org, mick@ics.forth.gr,
-        paul.walmsley@sifive.com, palmer@dabbelt.com,
-        aou@eecs.berkeley.edu, Valentina.FernandezAlanis@microchip.com,
-        Daire.McNamara@microchip.com
-References: <8e10bf15-9fa9-fe90-1656-35bf3e87e7f8@microchip.com>
- <f8e67f82-103d-156c-deb0-d6d6e2756f5e@microchip.com>
-From:   Alexandre Ghiti <alex@ghiti.fr>
-In-Reply-To: <f8e67f82-103d-156c-deb0-d6d6e2756f5e@microchip.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_NONE autolearn=ham
-        autolearn_force=no version=3.4.6
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=bp.renesas.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: OS0PR01MB5922:EE_|TYCPR01MB6208:EE_
+x-ms-office365-filtering-correlation-id: 054bb8b4-2fd3-4e87-8c6f-08db208948d4
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: oTEt2HEPLsVwcMYvFo4RKVEUr49MV51qNWscAjAHyof6wEH5bB/Wv4NOqgPd6tazfQAXb/zpE0tWf6cIjcET2WxsHeqYXPkIUpkieObH2QyrZGnerQSRkSxEO3/mXWLzgneX4Tajm99rA/EwVGQY3GXpQeHR8pcbCFyQkL+1uY/CjmkmvX0Mnc49B0o5VqEeSCkzpIQSGzBBN3DeVJH5HVXvgbrvnklAV1sJGslFZTikp2x6NSqFE+ZfZPOnjhi5kDZBAveCvlIY6WYIRDP/v13HNLKE5LrfTGEipZW75FYYuCTvS7eAkU7Sn8ncbjCOTdlwkjYrDSMpNg3UhP6QQvG3ptbPODt0Y+aWAItSM8ilX9yjhSod0ORYA/6lltVqroZZZp9raCNEVRI1QrOuE1X9xwom0hngLlwzdkFEiGdS7ykoHwcgN6Z6YyPjU3DK7yvf0x3XLAU7NsQtl/pFJ3NIiig3BAWfs5L5mxLvSTS2LRYAuPhDQmzHheKQQwWTLwUldn1RarBErBmfmTgVycfRMG4YCJ+PUEAz/2jygbKzGZ8jU/nWY4Eg3nnmnD+OQTYzZeLONaLqekLkpxc4B6OJU2PjsZDVwc+mIvZHFP6G4PGKQPVJ+2SC7AfITzyO5YG1ty/QYaXyzk+/URE8Lxm2oLSl3UCqueTIRnHviZIhEb5YoMLz9R7hz2t+CJVE0tjzcGLk8eplou2OdoMx5A==
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:OS0PR01MB5922.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230025)(4636009)(136003)(346002)(376002)(366004)(39860400002)(396003)(451199018)(66899018)(38070700005)(33656002)(2906002)(7416002)(5660300002)(26005)(8936002)(8676002)(52536014)(66476007)(66946007)(41300700001)(66556008)(64756008)(4326008)(76116006)(66446008)(6916009)(55016003)(86362001)(54906003)(316002)(7696005)(71200400001)(478600001)(122000001)(107886003)(38100700002)(53546011)(9686003)(6506007)(186003)(83380400001);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?utf-8?B?VUt6QU9ya0pQcE13cm9aT2x3cThPaWZBcFFtdENvSkpGTkxlWUpwYzRZcFNB?=
+ =?utf-8?B?TzlvaEQ0UlNVOXZEckVKRWJ3eHVTL0VpL0lueUNTT0pRRFl0ZE8wZGNEUmdq?=
+ =?utf-8?B?cU5ZWmdEcUpOTnhNS2VtcWlta1k0RFl0RHhicUZQUElicXVYVk8zcXFTOU0x?=
+ =?utf-8?B?ZDFzWTVoN0xvbE1IRnplUUhIZDRrQ0h5ZTR5Tks0TUlFRngyNzU0cVZ2b2NR?=
+ =?utf-8?B?UXZQL2xBL2tUNWZRODNobUxBbGt6c3J0ZTE5eDFQdk5sY00zbDBvaTU3UThk?=
+ =?utf-8?B?NVFFYjB6TXNjaWZRYWV2N0ROS2ZOdDRRdDZqNmFpbCtuOXFXTUhCUmV4Kzl1?=
+ =?utf-8?B?TlRXM09oUEsxbGJ5R204NWpkKzRkOERYdWVjc0pHaGRQNVlWTFpHd2RJbXR4?=
+ =?utf-8?B?QmwrMTNFeHhpN1dvVG1nL0F6bnRoVnRzb2NGMWRpcGRrL0ZxOWZnZjJXcGhE?=
+ =?utf-8?B?T1FydE96UFJXUW5wQmRkVUtDTmVpZTZWZmVGdG9yeUh4NWl2Vm1oQkd1Q3VG?=
+ =?utf-8?B?cktIT0pxK245OGRrVkN1Mm1yckZjbUpaR2FFVFliUG5PMStYV0wwNXEwUzND?=
+ =?utf-8?B?eEViblduUU9mNTZBcjdPRFlEeG5Od1JDak5mZVpQZmEvSzE2UFhZN0Y2YTN2?=
+ =?utf-8?B?UXZ4YkdrdC9pR3lCY1pLNVdwVXM0VkR4V2RWUERJZzRkeTFzcjc4T3ZjMHhK?=
+ =?utf-8?B?YVRuZFRNeFhTcUlTNUJEaUVJTGFBOFFMMTlaQWVWL3NKSTZ1cGdUMkMvM2E2?=
+ =?utf-8?B?RWxsOUFRSUc1bSs4QlZVbE16d0doaGhDRis0bHB0WmtmMk5heDFENm1oWXR3?=
+ =?utf-8?B?ZndBS1d1MmZjQ3ltMWRDd2pQYVJSeUpJcUkybVBWY2JmcXJ6aEpNelZRaVR2?=
+ =?utf-8?B?b0FsZFZHRnQ2NHhoaTA0eWd5bU9DM3o0RnJpeURNa1hPRjVLYUlZZU12VFJH?=
+ =?utf-8?B?a01HMDBIaUlJMmhzNWFGR3E4RWJ5VjBUczErNG9JampoWVFYMFJLNEEzT0t2?=
+ =?utf-8?B?VThjUUVET3l1cHc1RDhuM08xcUE3aUk2TWhRUStLV2hiUkNxYUgwTEY4Qzl0?=
+ =?utf-8?B?SVJQS1lDWjkvUjgvcEd3akR4TEhsajRJR2hRQVNjWGVMcDAyOEh2cDgySnVm?=
+ =?utf-8?B?QjlWbjM4ZU4zVlpnclBBa25JSWowYmxUWFNoeTFadUN0VEs4MHBaK2JEWGJQ?=
+ =?utf-8?B?RVYrTml4R2xFc2l4Q095Nm9USmIrREU0aTFDanlBdTJkdDZqN2ZqM3VhUGI3?=
+ =?utf-8?B?Y3c1Tnc4dE1YR010ZkhiU0lOT0loZ1A0YXBPczVjTk02elZNY25Gbm9XTTRY?=
+ =?utf-8?B?alRuK1ZDRVdZeElqZjRZVDM1Vmc0bE9LRUxaN2x5TENyVHVJY3NEQ1ZDMWgw?=
+ =?utf-8?B?WWttdmNvZ3F2TjczVlZEY3FoMHQzb0UrOUJJckxFRE95aFJySFBDOTNtSEJS?=
+ =?utf-8?B?WWF1Q0tFOUVlQ1hzeGhaWENqQXBnbFIrSUxjSjRNVmpWZW12TDZjdHRtdHJM?=
+ =?utf-8?B?QVZmQmM3cGJEOGRHaDd4Rk1aZ3duNXQ2MFVXM0hEaDhnNDQ3bE4rZkxWTDlU?=
+ =?utf-8?B?cXpPRThBREF2SnhMbS9tOERNVmdBY1A4dHBVL0JmTE1pUUQzbDMxdnFEQjhq?=
+ =?utf-8?B?OUdVMEhmQysvV0w4U0k2V09RTjBWMkIzTUZwNmV0MnZPQVdPcGlraEpZTVpU?=
+ =?utf-8?B?WHRuZU95czFocjFROUNYQk5ObHh0TzB5eGlaN2pwZXRqNmdlekRXU25Gb1Jp?=
+ =?utf-8?B?T1FxQ05sRjdtb21sRDIzd3hvaHpOQjBDWFhuSjYzbzFXNXIzQXB0ek5wTWdy?=
+ =?utf-8?B?dnNZc3UwdDBDQW9yRUpEek50OStCOU1sQk1MZ2piVFJwNzFpVGVVci9ZT2RY?=
+ =?utf-8?B?SE5LRGlYWndSWURhd0xpKzhuUFMxTUlHWVczZUtMTm9FWFlueGZLRUt4STlK?=
+ =?utf-8?B?TzlxbUoxNnJRaHN4U1I0OFRSV3BEWFBSV0Rzd1hRZTI0a2lGa0xqNkFkcXQ4?=
+ =?utf-8?B?ZW45MlNQQkxGY2cyS1A2aGNET0h1YUJyRkpJME5naWQyRTI4UjhVNGVBL21q?=
+ =?utf-8?B?M2VCc2d1WTZaN2ZMUjlUMG80cDdCQkZGSjlVM2xid2lmSkwxSmplMGdmcUdC?=
+ =?utf-8?Q?a8eupm20kiXkENWUCxO9y+qjl?=
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+MIME-Version: 1.0
+X-OriginatorOrg: bp.renesas.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: OS0PR01MB5922.jpnprd01.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 054bb8b4-2fd3-4e87-8c6f-08db208948d4
+X-MS-Exchange-CrossTenant-originalarrivaltime: 09 Mar 2023 10:30:20.7398
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: JJbcpoGubfrkpZXoO8oXC8nVbeeAzgKj6yB9sHcneSkYU5NDRLRJT1p9EniklKi5QlyxjN8N08Ndw6itEQwhVzjCG4MvkGnrPIV/FtvCCdI=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYCPR01MB6208
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Conor,
-
-On 8/16/22 22:41, Conor.Dooley@microchip.com wrote:
-> Hey all,
-> We've run into a bit of a problem with reserved memory on PolarFire, or
-> more accurately a pair of problems that seem to have opposite fixes.
->
-> The first of these problems is triggered when trying to implement a
-> remoteproc driver. To get the reserved memory buffer, remoteproc
-> does an of_reserved_mem_lookup(), something like:
->
-> 	np = of_parse_phandle(pdev->of_node, "memory-region", 0);
-> 	if (!np)
-> 		return -EINVAL;
->
-> 	rmem = of_reserved_mem_lookup(np);
-> 	if (!rmem)
-> 		return -EINVAL;
->
-> of_reserved_mem_lookup() then uses reserved_mem[i].name to try and find
-> a match - but this was triggering kernel panics for us. We did some
-> debugging and found that the name string's pointer was pointing to an
-> address in the 0x4000_0000 range. The minimum reproduction for this
-
-
-0x4000_0000 corresponds to DTB_EARLY_BASE_VA: this is the address that 
-is used to map the dtb before we can access it using the linear mapping.
-
-
-> crash is attached - it hacks in some print_reserved_mem()s into
-> setup_vm_final() around a tlb flush so you can see the before/after.
-> (You'll need a reserved memory node in your dts to replicate)
->
-> The output is like so, with the same crash as in the remoteproc driver:
->
-> [    0.000000] Linux version 6.0.0-rc1-00001-g0d9d6953d834 (conor@wendy) (riscv64-unknown-linux-gnu-gcc (g5964b5cd727) 11.1.0, GNU ld (GNU Binutils) 2.37) #1 SMP Tue Aug 16 13:42:09 IST 2022
-> [    0.000000] OF: fdt: Ignoring memory range 0x80000000 - 0x80200000
-> [    0.000000] Machine model: Microchip PolarFire-SoC Icicle Kit
-> [    0.000000] earlycon: ns16550a0 at MMIO32 0x0000000020100000 (options '115200n8')
-> [    0.000000] printk: bootconsole [ns16550a0] enabled
-> [    0.000000] printk: debug: skip boot console de-registration.
-> [    0.000000] efi: UEFI not found.
-> [    0.000000] before flush
-> [    0.000000] OF: reserved mem: debug name is fabricbuf@ae000000
-> [    0.000000] after flush
-> [    0.000000] Unable to handle kernel paging request at virtual address 00000000401c31ac
-
-
-You take the trap here because the mapping for the dtb does not exist in 
-swapper_pg_dir, but you don't need this mapping anymore as you can 
-access the device tree through the linear mapping now.
-
-I would say that: you build your kernel with CONFIG_BUILTIN_DTB and then 
-you don't call early_init_dt_verify which resets initial_boot_params to 
-the linear mapping address (it was initially set to 0x4000_0000 in 
-parse_dtb). If that's the case, does the following fix your issue?
-
-
-diff --git a/arch/riscv/kernel/setup.c b/arch/riscv/kernel/setup.c
-index 376d2827e736..2b09f0bd8432 100644
---- a/arch/riscv/kernel/setup.c
-+++ b/arch/riscv/kernel/setup.c
-@@ -276,6 +276,7 @@ void __init setup_arch(char **cmdline_p)
-         efi_init();
-         paging_init();
-  #if IS_ENABLED(CONFIG_BUILTIN_DTB)
-+       initial_boot_params = __va(XIP_FIXUP(dtb_early_pa));
-         unflatten_and_copy_device_tree();
-  #else
-         if (early_init_dt_verify(__va(XIP_FIXUP(dtb_early_pa))))
-
-
-> [    0.000000] Oops [#1]
-> [    0.000000] Modules linked in:
-> [    0.000000] CPU: 0 PID: 0 Comm: swapper Not tainted 6.0.0-rc1-00001-g0d9d6953d834 #1
-> [    0.000000] Hardware name: Microchip PolarFire-SoC Icicle Kit (DT)
-> [    0.000000] epc : string+0x4a/0xea
-> [    0.000000]  ra : vsnprintf+0x1e4/0x336
-> [    0.000000] epc : ffffffff80335ea0 ra : ffffffff80338936 sp : ffffffff81203be0
-> [    0.000000]  gp : ffffffff812e0a98 tp : ffffffff8120de40 t0 : 0000000000000000
-> [    0.000000]  t1 : ffffffff81203e28 t2 : 7265736572203a46 s0 : ffffffff81203c20
-> [    0.000000]  s1 : ffffffff81203e28 a0 : ffffffff81203d22 a1 : 0000000000000000
-> [    0.000000]  a2 : ffffffff81203d08 a3 : 0000000081203d21 a4 : ffffffffffffffff
-> [    0.000000]  a5 : 00000000401c31ac a6 : ffff0a00ffffff04 a7 : ffffffffffffffff
-> [    0.000000]  s2 : ffffffff81203d08 s3 : ffffffff81203d00 s4 : 0000000000000008
-> [    0.000000]  s5 : ffffffff000000ff s6 : 0000000000ffffff s7 : 00000000ffffff00
-> [    0.000000]  s8 : ffffffff80d9821a s9 : ffffffff81203d22 s10: 0000000000000002
-> [    0.000000]  s11: ffffffff80d9821c t3 : ffffffff812f3617 t4 : ffffffff812f3617
-> [    0.000000]  t5 : ffffffff812f3618 t6 : ffffffff81203d08
-> [    0.000000] status: 0000000200000100 badaddr: 00000000401c31ac cause: 000000000000000d
-> [    0.000000] [<ffffffff80338936>] vsnprintf+0x1e4/0x336
-> [    0.000000] [<ffffffff80055ae2>] vprintk_store+0xf6/0x344
-> [    0.000000] [<ffffffff80055d86>] vprintk_emit+0x56/0x192
-> [    0.000000] [<ffffffff80055ed8>] vprintk_default+0x16/0x1e
-> [    0.000000] [<ffffffff800563d2>] vprintk+0x72/0x80
-> [    0.000000] [<ffffffff806813b2>] _printk+0x36/0x50
-> [    0.000000] [<ffffffff8068af48>] print_reserved_mem+0x1c/0x24
-> [    0.000000] [<ffffffff808057ec>] paging_init+0x528/0x5bc
-> [    0.000000] [<ffffffff808031ae>] setup_arch+0xd0/0x592
-> [    0.000000] [<ffffffff8080070e>] start_kernel+0x82/0x73c
-> [    0.000000] ---[ end trace 0000000000000000 ]---
-> [    0.000000] Kernel panic - not syncing: Attempted to kill the idle task!
-> [    0.000000] ---[ end Kernel panic - not syncing: Attempted to kill the idle task! ]---
->
-> We traced this back to early_init_fdt_scan_reserved_mem() in
-> setup_bootmem() - moving it later back up the boot sequence to
-> after the dt has been remapped etc has fixed the problem for us.
->
-> The least movement to get it working is attached, and also pushed
-> here: git.kernel.org/conor/c/1735589baefc
->
-> The second problem is a bit more complicated to explain - but we
-> found the solution conflicted with the remoteproc fix as we had
-> to move early_init_fdt_scan_reserved_mem() _earlier_ in the boot
-> process to solve this one.
->
-> We want to have a node in our devicetree that contains some memory
-> that is non-cached & marked as reserved-memory. Maybe we have just
-> missed something, but from what we've seen:
-> - the really early setup looks at the dtb, picks the highest bit
->     of memory and puts the dtb etc there so it can start using it
-> - early_init_fdt_scan_reserved_mem() is then called, which figures
->     out if memory is reserved or not.
->
-> Unfortunately, the highest bit of memory is the non-cached bit so
-> everything falls over, but we can avoid this by moving the call to
-> early_init_fdt_scan_reserved_mem() above the dtb memblock alloc that
-> takes place right before it in setup_bootmem().
-
-
-And then I suppose the allocations you are mentioning happen in 
-unflatten_XXX, so parsing the device tree for reserved memory nodes 
-before this should do the trick. Does the following fix your second issue?
-
-diff --git a/arch/riscv/kernel/setup.c b/arch/riscv/kernel/setup.c
-index 2b09f0bd8432..94b3d049fe9d 100644
---- a/arch/riscv/kernel/setup.c
-+++ b/arch/riscv/kernel/setup.c
-@@ -277,14 +277,15 @@ void __init setup_arch(char **cmdline_p)
-         paging_init();
-  #if IS_ENABLED(CONFIG_BUILTIN_DTB)
-         initial_boot_params = __va(XIP_FIXUP(dtb_early_pa));
-+       early_init_fdt_scan_reserved_mem();
-         unflatten_and_copy_device_tree();
-  #else
--       if (early_init_dt_verify(__va(XIP_FIXUP(dtb_early_pa))))
-+       if (early_init_dt_verify(__va(XIP_FIXUP(dtb_early_pa)))) {
-+               early_init_fdt_scan_reserved_mem();
-                 unflatten_device_tree();
--       else
-+       } else
-                 pr_err("No DTB found in kernel mappings\n");
-  #endif
--       early_init_fdt_scan_reserved_mem();
-         misc_mem_init();
-
-         init_resources();
-
-
-
->
-> Obviously, both of these changes are moving the function call in
-> opposite directions and we can only really do one of them. We are not
-> sure if what we are doing with the non-cached reserved-memory section
-> is just not permitted & cannot work - or if this is something that
-> was overlooked for RISC-V specifically and works for other archs.
->
-> It does seem like the first issue is a real bug, and I am happy to
-> submit the patch for that whenever - but having two problems with
-> opposite fixes seemed as if there was something else lurking that we
-> just don't have enough understanding to detect.
->
-> Any help would be great!
->
-> Thanks,
-> Conor.
->
-
-Even if that does not fix your issue, the first patch is necessary as it 
-fixes initial_boot_params.
-
-
->
->
-> _______________________________________________
-> linux-riscv mailing list
-> linux-riscv@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-riscv
+SGkgR2VlcnQgVXl0dGVyaG9ldmVuLA0KDQpUaGFua3MgZm9yIHRoZSBmZWVkYmFjay4NCg0KPiBT
+dWJqZWN0OiBSZTogW1BBVENIIFJGQyAxLzNdIGR0LWJpbmRpbmdzOiBjbG9jazogQWRkIFJlbmVz
+YXMgdmVyc2EzIGNsb2NrDQo+IGdlbmVyYXRvciBiaW5kaW5ncw0KPiANCj4gSGkgQmlqdSwNCj4g
+DQo+IE9uIFRodSwgTWFyIDksIDIwMjMgYXQgMTA6NDTigK9BTSBLcnp5c3p0b2YgS296bG93c2tp
+DQo+IDxrcnp5c3p0b2Yua296bG93c2tpQGxpbmFyby5vcmc+IHdyb3RlOg0KPiA+IE9uIDA5LzAz
+LzIwMjMgMTA6MTgsIEJpanUgRGFzIHdyb3RlOg0KPiA+ID4+IC0tLS0tT3JpZ2luYWwgTWVzc2Fn
+ZS0tLS0tDQo+ID4gPj4gRnJvbTogS3J6eXN6dG9mIEtvemxvd3NraSA8a3J6eXN6dG9mLmtvemxv
+d3NraUBsaW5hcm8ub3JnPiBPbg0KPiA+ID4+IDA5LzAzLzIwMjMgMDg6NTcsIEJpanUgRGFzIHdy
+b3RlOg0KPiA+ID4+Pj4+IEl0IGlzIGNsayBnZW5lcmF0b3IgSFcgc3BlY2lmaWMuIENsayBnZW5l
+cmF0b3IgaXMgdml0YWwNCj4gPiA+Pj4+PiBjb21wb25lbnQgd2hpY2ggcHJvdmlkZXMgY2xvY2tz
+IHRvIHRoZSBzeXN0ZW0uDQo+ID4gPj4+Pg0KPiA+ID4+Pj4gRXZlcnkgY2xvY2sgY29udHJvbGxl
+ciBpcyB2aXRhbC4uLg0KPiA+ID4+Pj4NCj4gPiA+Pj4+PiBXZSBhcmUgcHJvdmlkaW5nIHNvbWUg
+aGFyZHdhcmUgZmVhdHVyZSB3aGljaCBpcyBleHBvc2VkIGFzIGR0DQo+ID4gPj4+Pj4gcHJvcGVy
+dGllcy4NCj4gPiA+Pj4+Pg0KPiA+ID4+Pj4+IExpa2UgY2xvY2sgb3V0cHV0IGlzIGZpeGVkIHJh
+dGUgY2xvY2sgb3IgZHluYW1pYyByYXRlIGNsb2NrLw0KPiA+ID4+Pj4NCj4gPiA+Pj4+IE9LLCBJ
+IHdhaXQgdGhlbiBmb3IgcHJvcGVyIGRlc2NyaXB0aW9uIHdoaWNoIHdpbGwgZXhwbGFpbiBhbmQN
+Cj4gPiA+Pj4+IGp1c3RpZnkNCj4gPiA+PiB0aGlzLg0KPiA+ID4+Pg0KPiA+ID4+PiBIZXJlIGl0
+IGlzLCBQbGVhc2UgbGV0IG1lIGtub3cgaXMgaXQgb2s/DQo+ID4gPj4+DQo+ID4gPj4+IHJlbmVz
+YXMsb3V0cHV0LWNsb2NrLWZpeGVkLXJhdGUtbW9kZToNCj4gPiA+Pj4gICAgIHR5cGU6IGJvb2xl
+YW4NCj4gPiA+Pj4gICAgIGRlc2NyaXB0aW9uOg0KPiA+ID4+PiAgICAgICBJbiBvdXRwdXQgY2xv
+Y2sgZml4ZWQgcmF0ZSBtb2RlLCB0aGUgb3V0cHV0IGNsb2NrIGZyZXF1ZW5jeQ0KPiA+ID4+PiBp
+cw0KPiA+ID4+IGFsd2F5cw0KPiA+ID4+PiAgICAgICBmaXhlZCBhbmQgdGhlIGhhcmR3YXJlIHdp
+bGwgdXNlIHRoZSB2YWx1ZXMgZnJvbSB0aGUgT1RQIG9yDQo+ID4gPj4+IGZ1bGwNCj4gPiA+PiBy
+ZWdpc3Rlcg0KPiA+ID4+PiAgICAgbWFwIGluaXRpYWxpemVkIGR1cmluZyBib290Lg0KPiA+ID4+
+PiAgICAgICBJZiBub3QgZ2l2ZW4sIHRoZSBvdXRwdXQgY2xvY2sgcmF0ZSBpcyBub3QgZml4ZWQu
+DQo+ID4gPj4+ICAgICBtYXhJdGVtczogNg0KPiA+ID4+DQo+ID4gPj4gYm9vbGVhbiBpcyBzY2Fs
+YXIsIG5vdCBhcnJheSwgc28gbm8gbWF4SXRlbXMuIElmIHRoZSBmcmVxdWVuY3kgaXMNCj4gPiA+
+PiB0YWtlbiBmcm9tIE9UUCBvciByZWdpc3RlciBtYXAsIHdoeSB0aGV5IGNhbm5vdCBhbHNvIHBy
+b3ZpZGUNCj4gPiA+PiBpbmZvcm1hdGlvbiB0aGUgY2xvY2sgaXMgZml4ZWQ/DQo+ID4gPg0KPiA+
+ID4gT0ssIEkgd2lsbCBtYWtlIGFuIGFycmF5IHByb3BlcnR5IGluc3RlYWQuIEZyb20gSFcgcGVy
+c3BlY3RpdmUgZWFjaA0KPiA+ID4gY2xvY2sgb3V0cHV0IGZyb20gdGhlIENsb2NrIGdlbmVyYXRv
+ciBpcyBjb250cm9sbGFibGUgaWUsIGZpeGVkIHJhdGUgb3INCj4gZHluYW1pYyByYXRlLg0KPiA+
+ID4NCj4gPiA+IElmIGFsbCB0aGUgb3V0cHV0IGNsb2NrcyBhcmUgZml4ZWQgcmF0ZSBvbmUsIHRo
+ZW4gZnJlcXVlbmN5IGlzIHRha2VuDQo+ID4gPiBmcm9tIE9UUCBvciByZWdpc3RlciBtYXAuIEJ1
+dCBpZiBhbnkgb25lIGNsb2NrIG91dHB1dCBnZW5lcmF0ZXMNCj4gPiA+IGR5bmFtaWMgcmF0ZSwg
+dGhlbiBpdCB1c2VzIGR5bmFtaWMgc2V0dGluZ3MuDQo+ID4NCj4gPiBTZWNvbmQgdHJ5LCBzYW1l
+IHF1ZXN0aW9uLCBsZXQgbWUga25vdyBpZiBpdCBpcyBub3QgY2xlYXI6DQo+ID4NCj4gPiAid2h5
+IHRoZXkgY2Fubm90IGFsc28gcHJvdmlkZSBpbmZvcm1hdGlvbiB0aGUgY2xvY2sgaXMgZml4ZWQ/
+Ig0KPiANCj4gV2hhdCBpcyB0aGUgYWN0dWFsIHVzZSBjYXNlPw0KPiBNeSB1bmRlcnN0YW5kaW5n
+IGlzOg0KPiAgIDEuIElmIHRoZSBPVFAgaXMgcHJvZ3JhbW1lZCwgdGhlIGNsb2NrIGdlbmVyYXRv
+ciB3aWxsIGJlIGNvbmZpZ3VyZWQNCj4gICAgICBmcm9tIHRoZSBPVFAgb24gcG93ZXItb24sDQoN
+CkNvcnJlY3QuDQoNCj4gICAyLiBUaGUgY2xvY2sgZ2VuZXJhdG9yIGNhbiBiZSAocmUpY29uZmln
+dXJlZCBmcm9tIHNvZnR3YXJlLg0KPiAgICAgIGEuIElmIHRoZSBPVFAgaXMgcHJvZ3JhbW1lZCwg
+dGhpcyBpcyBub3QgbmVlZGVkLA0KDQoNClllcywgQnV0IHdlIG1pc3Mgc29tZSBIVyBmdW5jdGlv
+bmFsaXR5Lg0KDQpFZzoNCk9uIFJaL0cyTCBTTUFSQyBFVkssIEJ5IGRlZmF1bHQgYXVkaW8gbWNs
+ayBpcyBjb25uZWN0ZWQgdG8NCjExLjI4OTYgTUh6IGNsayAoc2UyIG91dHB1dCBmcm9tIGNsb2Nr
+IGdlbmVyYXRvcikgIHdoaWNoIGlzIG11bHRpcGxlIG9mIDQ0LjFLSHouDQphbmQgdGhpcyBjbG9j
+ayBpcyBhIG5vbi1jcml0aWNhbCBjbG9jay4NCg0KNDhLaHogcGxheWJhY2svcmVjb3JkIGlzIG5v
+dCBwb3NzaWJsZSB3aXRoIEF1ZGlvIGNvZGVjLCBpZiB3ZSBqdXN0IHVzZSB0aGUNCnZhbHVlIGZy
+b20gT1RQLg0KDQpCdXQgYnkgY2hhbmdpbmcgcGFyZW50IG9mICJzZTIgY2xvY2siLCBpdCBpcyBw
+b3NzaWJsZSB0byBhY2hpZXZlDQo0OCBLSHogcGxheWJhY2suDQoNCj4gICAgICBiLiBGb3IgY3Jp
+dGljYWwgY2xvY2tzLCB5b3UgbWF5IHdhbnQgdG8gcHJldmVudCB0aGlzLg0KDQpGb3IgY2FzZWIs
+IENyaXRpY2FsIGNsb2NrcyB3ZSB3b24ndCBjaGFuZ2UgaXRzIHJlZ2lzdGVycy4NClRoZSByZWNv
+bmZpZ3VyYXRpb24gaXMgb25seSBmb3Igbm9uLWNyaXRpY2FsIGNsb2Nrcy4NCg0KPiBBbHNvLCBB
+RkFJVUksICJmaXhlZCBmcmVxdWVuY3kiIG9yICJkeW5hbWljIGZyZXF1ZW5jeSIgaXMgYSBwb2xp
+Y3ksIGFuZA0KPiBwdXJlbHkgc29mdHdhcmU/IE9yIGFyZSB0aGVyZSBPVFAgYml0cyB0byBlbmZv
+cmNlIHRoaXM/DQoNCk5vdGhpbmcgT1RQIGJpdHMgcmVsYXRlZC4gDQoNCj4gDQo+IFBlcmhhcHMg
+eW91IG5lZWQgYSBwZXItb3V0cHV0ICJkby1ub3QtY2hhbmdlLWZyZXF1ZW5jeSIgZmxhZywgcHJv
+YmFibHkgd2l0aA0KPiBhIGdlbmVyaWMgbmFtZSwgaW4gdGhlIHNwaXJpdCBvZiAicmVndWxhdG9y
+LWFsd2F5cy1vbiINCj4gZm9yIHJlZ3VsYXRvcnM/DQoNClllcyAiZG8tbm90LWNoYW5nZS1mcmVx
+dWVuY3kiIGZsYWcgZm9yIHBlci1vdXRwdXQgaXMgc2Vuc2libGUgb25lLg0KDQo+IE5vdywgaWYg
+YWxsIHRoZSBvdXRwdXQgY2xvY2tzIGFyZSBmaXhlZCByYXRlLCB5b3UgbWlnaHQgd2FudCB0byBk
+ZXNjcmliZQ0KPiB0aGlzIGluIERUUyB1c2luZyBhIHNldCBvZiBmaXhlZHssLWZhY3Rvci19LWNs
+b2Nrcz8NCg0KT24gSWRlYWwgY2FzZSwgYWxsIHRoZSBvdXRwdXQgY2xvY2tzIGFyZSBmaXhlZCBy
+YXRlIGFuZCB1c2UgdGhlIHZhbHVlIGZyb20gT1RQLg0KDQpCdXQgY2FzZXMgbGlrZSwgbm9uIGNy
+aXRpY2FsIGNsb2NrcyB3ZSBzaG91bGQgYmUgYWJsZSB0bw0KY2hhbmdlIGZyZXF1ZW5jeSBvZiB0
+aGF0IHBhcnRpY3VsYXIgY2xvY2sgb3V0cHV0Lg0KDQpJbiBhdWRpbyBwbGF5YmFjayBjYXNlLCBp
+dCBpcyBqdXN0IDEgYml0IGZvciBjaGFuZ2luZyB0aGUgcGFyZW50LA0KQWZ0ZXIgdGhlIGluaXRp
+YWwgcmVjb25maWd1cmF0aW9uLg0KDQpDaGVlcnMsDQpCaWp1DQoNCg==
