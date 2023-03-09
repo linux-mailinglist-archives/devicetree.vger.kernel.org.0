@@ -2,203 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B22CE6B1F7A
-	for <lists+devicetree@lfdr.de>; Thu,  9 Mar 2023 10:09:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DBDF06B1F86
+	for <lists+devicetree@lfdr.de>; Thu,  9 Mar 2023 10:11:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230434AbjCIJJs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Mar 2023 04:09:48 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56158 "EHLO
+        id S229827AbjCIJLk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Mar 2023 04:11:40 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33294 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230494AbjCIJJe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Mar 2023 04:09:34 -0500
-Received: from mail-yb1-xb36.google.com (mail-yb1-xb36.google.com [IPv6:2607:f8b0:4864:20::b36])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2838E113F9
-        for <devicetree@vger.kernel.org>; Thu,  9 Mar 2023 01:09:30 -0800 (PST)
-Received: by mail-yb1-xb36.google.com with SMTP id e82so1169831ybh.9
-        for <devicetree@vger.kernel.org>; Thu, 09 Mar 2023 01:09:30 -0800 (PST)
+        with ESMTP id S231253AbjCIJLX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Mar 2023 04:11:23 -0500
+Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2C907DDF33
+        for <devicetree@vger.kernel.org>; Thu,  9 Mar 2023 01:10:59 -0800 (PST)
+Received: by mail-ed1-x535.google.com with SMTP id cy23so4121916edb.12
+        for <devicetree@vger.kernel.org>; Thu, 09 Mar 2023 01:10:59 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1678352969;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=As7r+GPHEmvAUFDtsvfEp735NwW2WEg6DbTgAlj58R0=;
-        b=d5zPXnIdCSL8PFYhyYOeGqp/z4KLzRwZUDS5MQscn602dDdMFOICNvctZM6XgOSs/s
-         Md7TYhkP3I4c8GUXNxi6ka8Hry0M3d8uw/UHhPRafzoTu+2lLo2QrAr4pyjwRTYQ4+CI
-         07WNh/oBiql5KgaJDO8K1gDaGWu+DAsLRq2nU9Y9wj39MtMFMILC9ahu+4xt7cmhGPYd
-         X90VtbPi3OMstH+/UqpSOwHHI+EYQ7LarXzbLBCDuMKzdMMFQ/UxUKKqVA7sa5cL0Uez
-         IZChwC6FoLVRu2JgNXLPAG+SxViuz8t/Op2vZmpSB0iiljJXiJOhtcT6NmEsfqrkeFEw
-         o0Qg==
+        d=linaro.org; s=google; t=1678353057;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=amegkbQi6JbORUMHlxE9zNZBJkMQDtF4RPiYLujv5uY=;
+        b=xVwLLAobtAxiubuKG5NIsMw2SO3OJ/ed8XVLZCX512NFEn+vQP+uiTLfT6PhGp8XF1
+         6Aqka0W/Ymig7E+xXQfGba4X0e9hMEqTInrFmSyyt0/UDW3nLWzEoEr2EfJ63JzqpzqC
+         UDdW2LhZgLCKsH7/bIPbQN9uLSTMs41extG8Sd+CarF4ZbVhfCkdcdiuihJuTXvO6nWr
+         cOtwRcJUIJn/EyAt/hY4KLnY74fcXhmnRschZkYV4i1YHsWcJf7hVr+8zCthtSEcmhA0
+         /0xvoT38DXxwY0U420sXy20X9i7enwiefgiqD0un5AR6byEPtSAVb1552JD4ZEu335td
+         hUmA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678352969;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=As7r+GPHEmvAUFDtsvfEp735NwW2WEg6DbTgAlj58R0=;
-        b=yf2SN/Jo2Kk1MgDajiN0T4gkpX+ZmRhmkzalVBCrqJqUEEZSOygFRurmS5KkvTIhxn
-         11gDlkqBvm6uXwfjlIrk53YK41YtEcu1EJaB4VFWxcGQZtZ7pgjoBYY/wf2Wcq5pVUg0
-         XkBB+UtSht1BOdBzzyw8u2nfXhRlnj3S8pDDiqi1kAzF3ArqZOh05IBbv6xHAXJKSWVU
-         7CMv1nlnVVO3HCKIY91ZUbFNJSrJ4U0iP90cPNqmFrsSNkUcDWPwdpBSRKlnQ0ln3iqi
-         ireIGft/HpcXISg1xyWexwyteCofDJeveUpFuvH/iUi43TIBuOrXpkLvg0GC/9Ic1RVz
-         wlrw==
-X-Gm-Message-State: AO0yUKUqJPj7MWhSg4qH0jdcT++7eH2vNs8VUydsBsYVG0tANVo8opQm
-        Q8ddFq/y0nibUkBfP98NGcTEz4u4CY/1NwV2qHeCgA==
-X-Google-Smtp-Source: AK7set9SxHJdstKtORUta6fNpFj7c3NC6Y9ep4Dfm8p9BxYEaHWCbrFjAqLaiUObiP3YlHYpudlhcELLtQQQOTOX9Yw=
-X-Received: by 2002:a25:8c84:0:b0:b23:4649:7ef3 with SMTP id
- m4-20020a258c84000000b00b2346497ef3mr240804ybl.4.1678352969333; Thu, 09 Mar
- 2023 01:09:29 -0800 (PST)
+        d=1e100.net; s=20210112; t=1678353057;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=amegkbQi6JbORUMHlxE9zNZBJkMQDtF4RPiYLujv5uY=;
+        b=wETFl53xU0W4Weth8o9N8yU27dJcR43YG4c72DXQAopy0rWlaGUBniJ9/rJKjdI5/N
+         30HYIJIn0dRhmZPMQjKPcRz/jCF52ADQqRAo/and5Z8orU0PRtYl9O1sTfHdsl1rK+rJ
+         cRAhwrVo/nc1XFW/sUwpMLhv0rSRq+UAyL8sLq6gtWAKNcNmEqgv47dtFRRpxBUV4iKE
+         9HYJImlzd8E8zD2kL1BftnovXG4dPk8YfhMLV9YCUnYC+gsJGWtQfkjn07U/yTPBzmNm
+         rH8rXWhsPih0kCUt/yVgZHZwGFjgpz0dWyYUfthmqFzVpPkf5EWvfmMADD20zqCUnwsz
+         1gXQ==
+X-Gm-Message-State: AO0yUKUXBnVhxLHmCbfW/KUHMtdjOX4HEXc2MKtV5tyHz7/wnifM0c78
+        FfjnkjW9eUe9Dh4HZSf1Ov0NiA==
+X-Google-Smtp-Source: AK7set/kRD7oQCwcNdIk/dQW0Y0UAwn7jdfOe/zN3rg5WTMsuKCSrLL0FW6VZ6v4r8CSBfkp3iGL3A==
+X-Received: by 2002:a17:906:398a:b0:88d:d700:fe15 with SMTP id h10-20020a170906398a00b0088dd700fe15mr21445776eje.0.1678353057637;
+        Thu, 09 Mar 2023 01:10:57 -0800 (PST)
+Received: from ?IPV6:2a02:810d:15c0:828:7ee2:e73e:802e:45c1? ([2a02:810d:15c0:828:7ee2:e73e:802e:45c1])
+        by smtp.gmail.com with ESMTPSA id ga2-20020a170906b84200b00882f9130eafsm8506459ejb.26.2023.03.09.01.10.56
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 09 Mar 2023 01:10:57 -0800 (PST)
+Message-ID: <b40c5cb0-0689-db1b-a1b9-e9b5d8ed838c@linaro.org>
+Date:   Thu, 9 Mar 2023 10:10:55 +0100
 MIME-Version: 1.0
-References: <20230216013230.22978-1-ansuelsmth@gmail.com>
-In-Reply-To: <20230216013230.22978-1-ansuelsmth@gmail.com>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Thu, 9 Mar 2023 10:09:18 +0100
-Message-ID: <CACRpkda30Ky5oYPn_nGWGOzT5ntZYdE3gafrs7D27ZHxgGuO8A@mail.gmail.com>
-Subject: Re: [PATCH v8 00/13] Adds support for PHY LEDs with offload triggers
-To:     Christian Marangi <ansuelsmth@gmail.com>,
-        Hans de Goede <hdegoede@redhat.com>
-Cc:     Pavel Machek <pavel@ucw.cz>, Lee Jones <lee@kernel.org>,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.8.0
+Subject: Re: [PATCH v2 4/6] dt-bindings: thermal: qcom-tsens: Drop redundant
+ compatibles
+Content-Language: en-US
+To:     Stephan Gerhold <stephan.gerhold@kernkonzept.com>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        "Rafael J. Wysocki" <rafael@kernel.org>
+Cc:     Amit Kucheria <amitk@kernel.org>,
+        Thara Gopinath <thara.gopinath@gmail.com>,
+        Zhang Rui <rui.zhang@intel.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Vladimir Oltean <olteanv@gmail.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Russell King <linux@armlinux.org.uk>,
-        Jonathan Corbet <corbet@lwn.net>,
-        "Russell King (Oracle)" <rmk+kernel@armlinux.org.uk>,
-        Jacek Anaszewski <jacek.anaszewski@gmail.com>,
-        John Crispin <john@phrozen.org>, linux-leds@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        netdev@vger.kernel.org, linux-doc@vger.kernel.org,
-        Tim Harvey <tharvey@gateworks.com>,
-        Alexander Stein <alexander.stein@ew.tq-group.com>,
-        Rasmus Villemoes <rasmus.villemoes@prevas.dk>,
-        Bagas Sanjaya <bagasdotme@gmail.com>,
-        Arun.Ramadoss@microchip.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+        Bjorn Andersson <andersson@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, Stephan Gerhold <stephan@gerhold.net>
+References: <20230308131041.124482-1-stephan.gerhold@kernkonzept.com>
+ <20230308131041.124482-5-stephan.gerhold@kernkonzept.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230308131041.124482-5-stephan.gerhold@kernkonzept.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Christian,
+On 08/03/2023 14:10, Stephan Gerhold wrote:
+> Since the SoC compatibles must be followed by the IP version compatible
+> (e.g. compatible = "qcom,msm8916-tsens", "qcom,tsens-v0_1";) it is
+> redundant to list all the SoC compatibles again in the if statement.
+> It will already match the IP-version compatible.
+> 
+> The list has already become inconsistent since for example
+> "qcom,msm8939-tsens" is covered by the if statement but is not listed
+> there explicitly like the other SoCs.
+> 
+> Simplify this by dropping the redundant SoC compatibles. ipq8064 and
+> msm8960 are still needed because they do not have an IP-version
+> compatible.
+> 
+> Signed-off-by: Stephan Gerhold <stephan.gerhold@kernkonzept.com>
+> ---
+> Changes in v2:
+>   - Drop new redundant qcom,tsens-v2 compatibles as well (see discussion
+>     in https://lore.kernel.org/linux-arm-msm/Y3ZFDRI6ypg18S27@gerhold.net/)
 
-thanks for your patch!
 
-On Thu, Feb 16, 2023 at 2:36=E2=80=AFAM Christian Marangi <ansuelsmth@gmail=
-.com> wrote:
 
-> The current idea is:
-> - LED driver implement 3 API (hw_control_status/start/stop).
->   They are used to put the LED in hardware mode and to configure the
->   various trigger.
-> - We have hardware triggers that are used to expose to userspace the
->   supported hardware mode and set the hardware mode on trigger
->   activation.
-> - We can also have triggers that both support hardware and software mode.
-> - The LED driver will declare each supported hardware blink mode and
->   communicate with the trigger all the supported blink modes that will
->   be available by sysfs.
-> - A trigger will use blink_set to configure the blink mode to active
->   in hardware mode.
-> - On hardware trigger activation, only the hardware mode is enabled but
->   the blink modes are not configured. The LED driver should reset any
->   link mode active by default.
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-The series looks good as a start.
-There are some drivers and HW definitions etc for switch-controlled
-LEDs, which is great.
+Best regards,
+Krzysztof
 
-I am a bit reluctant on the ambition to rely on configuration from sysfs
-for the triggers, and I am also puzzled to how a certain trigger on a
-certain LED is going to associate itself with, say, a certain port.
-
-I want to draw your attention to this recently merged patch series
-from Hans de Goede:
-https://lore.kernel.org/linux-leds/20230120114524.408368-1-hdegoede@redhat.=
-com/
-
-This adds the devm_led_get() API which works similar to getting
-regulators, clocks, GPIOs or any other resources.
-
-It is not yet (I think) hooked into the device tree framework, but it
-supports software nodes so adding DT handling should be sort of
-trivial.
-
-I think the ambition should be something like this (conjured example)
-for a DSA switch:
-
-    platform {
-            switch {
-                    compatible =3D "foo";
-
-                    leds {
-                            #address-cells =3D <1>;
-                            #size-cells =3D <0>;
-                            led0: led@0 {
-                                    reg =3D <0>;
-                                    color =3D...
-                                    function =3D ...
-                                    function-enumerator =3D ...
-                                    default-state =3D ...
-                            };
-                            led1: led@1 {
-                                    reg =3D <1>;
-                                    color =3D...
-                                    function =3D ...
-                                    function-enumerator =3D ...
-                                    default-state =3D ...
-                            };
-                    };
-
-                    ports {
-                            #address-cells =3D <1>;
-                            #size-cells =3D <0>;
-                            port@0 {
-                                    reg =3D <0>;
-                                    label =3D "lan0";
-                                    phy-handle =3D <&phy0>;
-                                    leds =3D <&led0>;
-                            };
-                            port@1 {
-                                    reg =3D <1>;
-                                    label =3D "lan1";
-                                    phy-handle =3D <&phy1>;
-                                    leds =3D <&led0>;
-                            };
-                    };
-
-                    mdio {
-                            compatible =3D "foo-mdio";
-                            #address-cells =3D <1>;
-                            #size-cells =3D <0>;
-
-                            phy0: ethernet-phy@0 {
-                                    reg =3D <0>;
-                            };
-                            phy1: ethernet-phy@1 {
-                                    reg =3D <1>;
-                            };
-                    };
-            };
-    };
-
-I am not the man to tell whether the leds =3D <&led0>; phandle should be on
-the port or actually on the phy, it may even vary. You guys know the answer
-to this.
-
-But certainly something like this resource phandle will be necessary to
-assign the right LED to the right port or phy, I hope you were not going
-to rely on strings and naming conventions?
-
-Yours,
-Linus Walleij
