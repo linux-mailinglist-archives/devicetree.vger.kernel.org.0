@@ -2,62 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 718AC6B18BC
-	for <lists+devicetree@lfdr.de>; Thu,  9 Mar 2023 02:27:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8CD746B18C9
+	for <lists+devicetree@lfdr.de>; Thu,  9 Mar 2023 02:33:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229580AbjCIB1G convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Wed, 8 Mar 2023 20:27:06 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36338 "EHLO
+        id S229776AbjCIBdM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Mar 2023 20:33:12 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43332 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229529AbjCIB1F (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Mar 2023 20:27:05 -0500
-Received: from ex01.ufhost.com (ex01.ufhost.com [61.152.239.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 12E9983178;
-        Wed,  8 Mar 2023 17:27:03 -0800 (PST)
-Received: from EXMBX166.cuchost.com (unknown [175.102.18.54])
-        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-        (Client CN "EXMBX166", Issuer "EXMBX166" (not verified))
-        by ex01.ufhost.com (Postfix) with ESMTP id 3FC4224E057;
-        Thu,  9 Mar 2023 09:26:55 +0800 (CST)
-Received: from EXMBX162.cuchost.com (172.16.6.72) by EXMBX166.cuchost.com
- (172.16.6.76) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Thu, 9 Mar
- 2023 09:26:55 +0800
-Received: from [192.168.120.42] (171.223.208.138) by EXMBX162.cuchost.com
- (172.16.6.72) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Thu, 9 Mar
- 2023 09:26:54 +0800
-Message-ID: <08d3d24b-f568-0592-6e77-07113cde86be@starfivetech.com>
-Date:   Thu, 9 Mar 2023 09:26:52 +0800
+        with ESMTP id S229947AbjCIBdJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Mar 2023 20:33:09 -0500
+Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F148DEC71
+        for <devicetree@vger.kernel.org>; Wed,  8 Mar 2023 17:33:03 -0800 (PST)
+Received: by mail-lf1-x130.google.com with SMTP id j11so333009lfg.13
+        for <devicetree@vger.kernel.org>; Wed, 08 Mar 2023 17:33:03 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1678325582;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=6T7a+GoKNa0Y7d8xLGi142ICSO8XflBf9jWK/0+KgpY=;
+        b=usoICJVkduIvA2JiFTDjVhRsWR8wu3RepR96fqFKWGnSRi7BDF9X/oXlV98uwqWnlC
+         BiN1xiQ0xxGXzyizKuI086gA0Bz+5+hGot5zNSbTlL79UhRjNCg+A6JGQVGjg9FlpsRx
+         4sqB0DLnPOBlyLD83ypyqwvmKe/WxLWrmhZMqEfpA8NioOQ8UDXyWU5Nxnj064KPvqiw
+         JJqRFZ27g9s8d4SDjldLoQEhAsrw04Id2UOoWxwIkm8D5f2vEvVdBeFA5OnDC017U9Jv
+         R68gQZJw+eipKhiL2h+4V14y1e+oUL/t6FB3fqTZzXDNPpv64tNts3eLds169Vy2qu7O
+         o6xg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1678325582;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=6T7a+GoKNa0Y7d8xLGi142ICSO8XflBf9jWK/0+KgpY=;
+        b=Bd6isvulqiRqhSSRfHpH9YjnYnelGVPiTLBOxjQIWQkLvuBuD/GX/tAt03t3Yr8QjV
+         dAVcokhAjlH7Px9GtUKn06VPouvuej+YikktkxJPyFKHh08FjhzXHkEUSt1RpRoB2rb2
+         Du//Z1UQiFxg0fS5hiolcbAi3+LhMjGJzgHjyq2dNEKNdnNpm+mahaDXdUpk7oSGM6/y
+         8z6I4Ym97ETkh8oiLjD67ixd/zJKg7LLfY/kpuQABA3PCSTM3l5mts2A9E88dTBY5bZj
+         h9YN9UJHV4j50FV22ZuMgOHZoR87WZMUWvtVvNxxCWX9xGnP4ar6spxuEXq4yXJGUxAy
+         zCBg==
+X-Gm-Message-State: AO0yUKUAlK/D9sbSgf1SYdRjhUex7LmsIPj4EUDro3Ixkn+J6BXWsqC0
+        n1LrUL6vvX5/v6Y2+BrNXx4UKQ==
+X-Google-Smtp-Source: AK7set8za/4SoEAXr6FrFPjG87XJm1SvKzTphQD0DOfViMEWfMMzZWa6i+jfnsrslszvdiEIa7ZBuQ==
+X-Received: by 2002:ac2:5dd6:0:b0:4dd:ad4c:74b6 with SMTP id x22-20020ac25dd6000000b004ddad4c74b6mr5999377lfq.1.1678325582201;
+        Wed, 08 Mar 2023 17:33:02 -0800 (PST)
+Received: from ?IPV6:2001:14ba:a085:4d00::8a5? (dzccz6yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a085:4d00::8a5])
+        by smtp.gmail.com with ESMTPSA id x5-20020ac24885000000b004db50b52c08sm2483080lfc.102.2023.03.08.17.33.01
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 08 Mar 2023 17:33:01 -0800 (PST)
+Message-ID: <c92a44fe-7057-2d81-41fc-2e84ae60f881@linaro.org>
+Date:   Thu, 9 Mar 2023 03:33:00 +0200
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.1
-Subject: Re: [PATCH v5 04/12] dt-bindings: net: Add support StarFive dwmac
-Content-Language: en-US
-To:     Rob Herring <robh@kernel.org>
-CC:     <linux-riscv@lists.infradead.org>, <netdev@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        "David S . Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        "Jakub Kicinski" <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
-        Emil Renner Berthing <kernel@esmil.dk>,
-        Richard Cochran <richardcochran@gmail.com>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Peter Geis <pgwipeout@gmail.com>,
-        Yanhong Wang <yanhong.wang@starfivetech.com>
-References: <20230303085928.4535-1-samin.guo@starfivetech.com>
- <20230303085928.4535-5-samin.guo@starfivetech.com>
- <20230308215915.GA3911690-robh@kernel.org>
-From:   Guo Samin <samin.guo@starfivetech.com>
-In-Reply-To: <20230308215915.GA3911690-robh@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Originating-IP: [171.223.208.138]
-X-ClientProxiedBy: EXCAS066.cuchost.com (172.16.6.26) To EXMBX162.cuchost.com
- (172.16.6.72)
-X-YovoleRuleAgent: yovoleflag
-Content-Transfer-Encoding: 8BIT
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.8.0
+Subject: Re: [PATCH v3 3/4] dt-bindings: firmware: Add Qualcomm QSEECOM
+ interface
+Content-Language: en-GB
+To:     Maximilian Luz <luzmaximilian@gmail.com>,
+        Rob Herring <robh@kernel.org>
+Cc:     Bjorn Andersson <andersson@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Ard Biesheuvel <ardb@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Johan Hovold <johan@kernel.org>,
+        Sudeep Holla <sudeep.holla@arm.com>,
+        Ilias Apalodimas <ilias.apalodimas@linaro.org>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Sumit Garg <sumit.garg@linaro.org>,
+        Steev Klimaszewski <steev@kali.org>,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+References: <20230305022119.1331495-1-luzmaximilian@gmail.com>
+ <20230305022119.1331495-4-luzmaximilian@gmail.com>
+ <20230308221657.GA3935330-robh@kernel.org>
+ <93657561-d545-7ead-7f6c-dd2c62aab319@gmail.com>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+In-Reply-To: <93657561-d545-7ead-7f6c-dd2c62aab319@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -65,187 +89,56 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
--------- 原始信息 --------
-Re: [PATCH v5 04/12] dt-bindings: net: Add support StarFive dwmac
-From: Rob Herring <robh@kernel.org>
-
-
-> On Fri, Mar 03, 2023 at 04:59:20PM +0800, Samin Guo wrote:
->> From: Yanhong Wang <yanhong.wang@starfivetech.com>
+On 09/03/2023 00:44, Maximilian Luz wrote:
+> On 3/8/23 23:16, Rob Herring wrote:
+>> On Sun, Mar 05, 2023 at 03:21:18AM +0100, Maximilian Luz wrote:
+>>> Add bindings for the Qualcomm Secure Execution Environment interface
+>>> (QSEECOM).
 >>
->> Add documentation to describe StarFive dwmac driver(GMAC).
->>
->> Signed-off-by: Yanhong Wang <yanhong.wang@starfivetech.com>
->> Signed-off-by: Samin Guo <samin.guo@starfivetech.com>
->> ---
->>  .../devicetree/bindings/net/snps,dwmac.yaml   |   1 +
->>  .../bindings/net/starfive,jh7110-dwmac.yaml   | 117 ++++++++++++++++++
->>  MAINTAINERS                                   |   6 +
->>  3 files changed, 124 insertions(+)
->>  create mode 100644 Documentation/devicetree/bindings/net/starfive,jh7110-dwmac.yaml
->>
->> diff --git a/Documentation/devicetree/bindings/net/snps,dwmac.yaml b/Documentation/devicetree/bindings/net/snps,dwmac.yaml
->> index 89099a888f0b..395f081161ce 100644
->> --- a/Documentation/devicetree/bindings/net/snps,dwmac.yaml
->> +++ b/Documentation/devicetree/bindings/net/snps,dwmac.yaml
->> @@ -91,6 +91,7 @@ properties:
->>          - snps,dwmac-5.20
->>          - snps,dwxgmac
->>          - snps,dwxgmac-2.10
->> +        - starfive,jh7110-dwmac
->>  
->>    reg:
->>      minItems: 1
->> diff --git a/Documentation/devicetree/bindings/net/starfive,jh7110-dwmac.yaml b/Documentation/devicetree/bindings/net/starfive,jh7110-dwmac.yaml
->> new file mode 100644
->> index 000000000000..ca49f08d50dd
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/net/starfive,jh7110-dwmac.yaml
->> @@ -0,0 +1,117 @@
->> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->> +# Copyright (C) 2022 StarFive Technology Co., Ltd.
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/net/starfive,jh7110-dwmac.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: StarFive JH7110 DWMAC glue layer
->> +
->> +maintainers:
->> +  - Emil Renner Berthing <kernel@esmil.dk>
->> +  - Samin Guo <samin.guo@starfivetech.com>
->> +
->> +select:
->> +  properties:
->> +    compatible:
->> +      contains:
->> +        enum:
->> +          - starfive,jh7110-dwmac
->> +  required:
->> +    - compatible
->> +
->> +properties:
->> +  compatible:
->> +    items:
->> +      - enum:
->> +          - starfive,jh7110-dwmac
->> +      - const: snps,dwmac-5.20
->> +
->> +  clocks:
->> +    items:
->> +      - description: GMAC main clock
->> +      - description: GMAC AHB clock
->> +      - description: PTP clock
->> +      - description: TX clock
->> +      - description: GTX clock
->> +
->> +  clock-names:
->> +    items:
->> +      - const: stmmaceth
->> +      - const: pclk
->> +      - const: ptp_ref
->> +      - const: tx
->> +      - const: gtx
->> +
->> +  resets:
->> +    items:
->> +      - description: MAC Reset signal.
->> +      - description: AHB Reset signal.
->> +
->> +  reset-names:
->> +    items:
->> +      - const: stmmaceth
->> +      - const: ahb
->> +
->> +  starfive,tx-use-rgmii-clk:
->> +    description:
->> +      Tx clock is provided by external rgmii clock.
->> +    type: boolean
->> +
->> +allOf:
->> +  - $ref: snps,dwmac.yaml#
->> +
->> +unevaluatedProperties: true
+>> Pretty sure I already asked, but no answer in the commit message. Why do
+>> we need this? You've already declared the platform supports SCM calls
+>> with "qcom,scm". Why can't you probe whether you have QSEECOM or not? DT
+>> is for non-discoverable h/w we are stuck with.
 > 
-> This must be false.
+> Yes, you've asked this before but I can only repeat what I've written in
+> my last response to your question: I am not aware of any way to properly
+> discover the interface at runtime from software.
 > 
-Thanks, will fix net version.
->> +
->> +required:
->> +  - compatible
->> +  - clocks
->> +  - clock-names
->> +  - resets
->> +  - reset-names
->> +
->> +examples:
->> +  - |
->> +    ethernet@16030000 {
->> +        compatible = "starfive,jh7110-dwmac", "snps,dwmac-5.20";
->> +        reg = <0x16030000 0x10000>;
->> +        clocks = <&clk 3>, <&clk 2>, <&clk 109>,
->> +                 <&clk 6>, <&clk 111>;
->> +        clock-names = "stmmaceth", "pclk", "ptp_ref",
->> +                      "tx", "gtx";
->> +        resets = <&rst 1>, <&rst 2>;
->> +        reset-names = "stmmaceth", "ahb";
->> +        interrupts = <7>, <6>, <5>;
->> +        interrupt-names = "macirq", "eth_wake_irq", "eth_lpi";
->> +        phy-mode = "rgmii-id";
->> +        snps,multicast-filter-bins = <64>;
->> +        snps,perfect-filter-entries = <8>;
->> +        rx-fifo-depth = <2048>;
->> +        tx-fifo-depth = <2048>;
->> +        snps,fixed-burst;
->> +        snps,no-pbl-x8;
->> +        snps,tso;
->> +        snps,force_thresh_dma_mode;
->> +        snps,axi-config = <&stmmac_axi_setup>;
->> +        snps,en-tx-lpi-clockgating;
->> +        snps,txpbl = <16>;
->> +        snps,rxpbl = <16>;
->> +        phy-handle = <&phy0>;
->> +
->> +        mdio {
->> +            #address-cells = <1>;
->> +            #size-cells = <0>;
->> +            compatible = "snps,dwmac-mdio";
->> +
->> +            phy0: ethernet-phy@0 {
->> +                reg = <0>;
->> +            };
->> +        };
->> +
->> +        stmmac_axi_setup: stmmac-axi-config {
->> +            snps,lpi_en;
->> +            snps,wr_osr_lmt = <4>;
->> +            snps,rd_osr_lmt = <4>;
->> +            snps,blen = <256 128 64 32 0 0 0>;
->> +        };
->> +    };
->> diff --git a/MAINTAINERS b/MAINTAINERS
->> index 5c67c75a940f..4e236b7c7fd2 100644
->> --- a/MAINTAINERS
->> +++ b/MAINTAINERS
->> @@ -19912,6 +19912,12 @@ M:	Emil Renner Berthing <kernel@esmil.dk>
->>  S:	Maintained
->>  F:	arch/riscv/boot/dts/starfive/
->>  
->> +STARFIVE DWMAC GLUE LAYER
->> +M:	Emil Renner Berthing <kernel@esmil.dk>
->> +M:	Samin Guo <samin.guo@starfivetech.com>
->> +S:	Maintained
->> +F:	Documentation/devicetree/bindings/net/starfive,jh7110-dwmac.yaml
->> +
->>  STARFIVE JH71X0 CLOCK DRIVERS
->>  M:	Emil Renner Berthing <kernel@esmil.dk>
->>  M:	Hal Feng <hal.feng@starfivetech.com>
->> -- 
->> 2.17.1
->>
+> If it makes you happy, I can put this in the commit message as well...
+> 
+>> Why is software made non-discoverable too?
+> 
+> Please direct that question at the Qualcomm guys who actually designed
+> that interface. I can't give you an answer to that, and I'm not all that
+> happy about this either.
+> 
+> To reiterate: I've reverse engineered this based on the Windows driver.
+> The Windows driver loads on an ACPI HID and it doesn't use any function
+> to check/verify whether the interface is actually present. Adding a DT
+> entry is the straight-forward adaption to having a HID in ACPI.
+> 
+>> Nodes with only a compatible string are usually just an abuse of DT to
+>> instantiate some driver.
+> 
+> If you or anyone here has any idea on how to discover the presence of
+> this, please feel free to let me know and I'd be happy to implement
+> that. Until then, I unfortunately don't see any other way of dealing
+> with this.
+
+You can probably try requesting QSEECOM version. According to msm-3.18:
+
+         uint32_t feature = 10;
+
+         rc = qseecom_scm_call(6, 3, &feature, sizeof(feature),
+                 &resp, sizeof(resp));
+         pr_info("qseecom.qsee_version = 0x%x\n", resp.result);
+         if (rc) {
+                 pr_err("Failed to get QSEE version info %d\n", rc);
+                 goto exit_del_cdev;
+         }
+
 
 -- 
-Best regards,
-Samin
+With best wishes
+Dmitry
+
