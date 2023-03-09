@@ -2,102 +2,141 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DFB956B26BE
-	for <lists+devicetree@lfdr.de>; Thu,  9 Mar 2023 15:23:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 073D56B26F3
+	for <lists+devicetree@lfdr.de>; Thu,  9 Mar 2023 15:35:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231795AbjCIOXV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Mar 2023 09:23:21 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41164 "EHLO
+        id S231769AbjCIOfM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Mar 2023 09:35:12 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33868 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231799AbjCIOXJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Mar 2023 09:23:09 -0500
-Received: from andre.telenet-ops.be (andre.telenet-ops.be [IPv6:2a02:1800:120:4::f00:15])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4FC9137F0F
-        for <devicetree@vger.kernel.org>; Thu,  9 Mar 2023 06:23:06 -0800 (PST)
-Received: from ramsan.of.borg ([IPv6:2a02:1810:ac12:ed50:3a77:63e:b168:ae06])
-        by andre.telenet-ops.be with bizsmtp
-        id WENu2900l54Hw2A01ENuF8; Thu, 09 Mar 2023 15:23:05 +0100
-Received: from geert (helo=localhost)
-        by ramsan.of.borg with local-esmtp (Exim 4.95)
-        (envelope-from <geert@linux-m68k.org>)
-        id 1paHAU-00BKv0-Lk;
-        Thu, 09 Mar 2023 15:22:54 +0100
-Date:   Thu, 9 Mar 2023 15:22:54 +0100 (CET)
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-To:     Hal Feng <hal.feng@starfivetech.com>,
-        Emil Renner Berthing <emil.renner.berthing@canonical.com>
-cc:     linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-riscv@lists.infradead.org, Stephen Boyd <sboyd@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor@kernel.org>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Ben Dooks <ben.dooks@sifive.com>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v4 10/19] dt-bindings: clock: Add StarFive JH7110 always-on
- clock and reset generator
-In-Reply-To: <20230221024645.127922-11-hal.feng@starfivetech.com>
-Message-ID: <dc88e0df-4e2f-d2b8-4ecb-514862d01c3c@linux-m68k.org>
-References: <20230221024645.127922-1-hal.feng@starfivetech.com> <20230221024645.127922-11-hal.feng@starfivetech.com>
+        with ESMTP id S231716AbjCIOfK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Mar 2023 09:35:10 -0500
+Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C7038E7743
+        for <devicetree@vger.kernel.org>; Thu,  9 Mar 2023 06:35:08 -0800 (PST)
+Received: by mail-ed1-x535.google.com with SMTP id s11so7783455edy.8
+        for <devicetree@vger.kernel.org>; Thu, 09 Mar 2023 06:35:08 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112; t=1678372507;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:to
+         :from:from:to:cc:subject:date:message-id:reply-to;
+        bh=LcEhx6gwR6RWgOvUTF3rgHelWTStZx88DS9IMOMzcYU=;
+        b=FIJWNNaofZWm8AxmxcUFTGhqI9nJpkQC4bcmzdHza+fFFH95WrysDBUjPdBXqCHsrg
+         R9yc/R7d2RsgDVpk4ddqOvVWwvyU8BO2PDocQ5/anqLEM1PkNz9anPio13HqtNSLW6yP
+         QfF/OvhCbWx8Eh/3Via82aOWBwZDP02NyTE0FSNnrtgG9UzwwDa9ybYH/XAE43m4TCcf
+         OawvE/0LGFHtu95cS26raTOVlABECe9uZyBZSsxB1h84Dc9vpym/sPJUxHneChRAr/bb
+         /94MvFGKBgi/2ceDLnLtmcdyQx1Zaeh3mXQRV6JIsUTovvLYI1TkbtCQ834VKXUfKsF4
+         Ufmw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1678372507;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:to
+         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=LcEhx6gwR6RWgOvUTF3rgHelWTStZx88DS9IMOMzcYU=;
+        b=GgE7WI15Yw7FOSwGomi8p0XY/RXZ3qgYU8PHxfCEz2j0JUzRYLtF/2ipkqXBiiGYqs
+         YZL8ipGmmcsF8UYg++fzgxw1i8GOmTQfK5Ro5fMjEgZGFuz4NB2Y9kDDh5HGn/vn5W0s
+         IkbVQY0LiohckDtgMpmL+O8tT/duOHDVgESFna6KgR1lIrx3H1QPeRk25vmF3q5k+XuJ
+         CMn7/PJ1yD1PxnppfdrFfqKa0rVKDmxrTtTNpJLUxRKW5c5gGvbWpwbxQhp6GxoBnpWO
+         xmlWNbDyCsgFIiReMhyyEGKY/fsLwa+39gIl2ykgrGgFNLM4NLOWo3tmCiIePFw1ckLf
+         +1sw==
+X-Gm-Message-State: AO0yUKWxDJt1UvDL8kWhG1eIOZmWeGRWJCK2p3y69Yufo1pwDV6TyXxS
+        I6iV4IHx3786aCU7jz3Hh8+Hfg==
+X-Google-Smtp-Source: AK7set+eI67TsJNA/66GefmT4qzKOSQRbouWIWJn6ZDtGfr+R3ZEuDDFMKPnSJG7bOq8diBflcU+rg==
+X-Received: by 2002:a17:906:1604:b0:8af:7b80:82ba with SMTP id m4-20020a170906160400b008af7b8082bamr20836675ejd.20.1678372507320;
+        Thu, 09 Mar 2023 06:35:07 -0800 (PST)
+Received: from ryzen9.fritz.box ([81.221.122.240])
+        by smtp.gmail.com with ESMTPSA id w4-20020a170906184400b008cb7473e488sm9046239eje.12.2023.03.09.06.35.06
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 09 Mar 2023 06:35:06 -0800 (PST)
+From:   =?UTF-8?q?Bernhard=20Rosenkr=C3=A4nzer?= <bero@baylibre.com>
+To:     linux-mediatek@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, linux-serial@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        angelogioacchino.delregno@collabora.com, matthias.bgg@gmail.com,
+        gregkh@linuxfoundation.org, krzysztof.kozlowski+dt@linaro.org,
+        robh+dt@kernel.org, maz@kernel.org, tglx@linutronix.de
+Subject: [PATCH v10 0/3] Add minimal MT8365 and MT8365-EVK support
+Date:   Thu,  9 Mar 2023 15:34:56 +0100
+Message-Id: <20230309143459.401783-1-bero@baylibre.com>
+X-Mailer: git-send-email 2.40.0.rc2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII; format=flowed
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW,
-        SPF_HELO_NONE,SPF_NONE autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
- 	Hi Hal, Esmil,
+v10:
+  - Fix systimer properties (Thanks Amjad)
+  - Drop components of the patchset that have already been merged
 
-On Tue, 21 Feb 2023, Hal Feng wrote:
-> From: Emil Renner Berthing <kernel@esmil.dk>
->
-> Add bindings for the always-on clock and reset generator (AONCRG) on the
-> JH7110 RISC-V SoC by StarFive Ltd.
->
-> Reviewed-by: Rob Herring <robh@kernel.org>
-> Signed-off-by: Emil Renner Berthing <kernel@esmil.dk>
-> Signed-off-by: Hal Feng <hal.feng@starfivetech.com>
+v9:
+  - Fix a regression in v8 that broke the USB port
+  - Remove superfluous include in mt8365.dtsi
+  - Fix some naming issues pointed out by dtbs_check
 
-Thanks for your patch!
+v8:
+  - Add binding descriptions for mediatek,mt8365-systimer and
+    mediatek,mt8365-uart
+  - Specify ranges with parameters for u3phy
 
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/clock/starfive,jh7110-aoncrg.yaml
-> @@ -0,0 +1,76 @@
-> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/clock/starfive,jh7110-aoncrg.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: StarFive JH7110 Always-On Clock and Reset Generator
-> +
-> +maintainers:
-> +  - Emil Renner Berthing <kernel@esmil.dk>
-> +
+Tested-by: Kevin Hilman <khilman@baylibre.com>
 
-This lacks a top-level "description" section, to anwer the question:
-What is an "Always-On Clock and Reset Generator"?
+v7:
+  - Update GIC information in mt8365.dtsi (thanks to Marc Zyngier for
+    pointing out the problem)
+  - Adjust the timer to match the updated GIC information
 
-To me, "always-on" sounds like it's critical, and thus the driver
-must always be built-in?
+v6:
+  - Add systimer in mt8365.dtsi
+  - Add I/D caches and L2 cache details in mt8365.dtsi
+  - Move bl31_secmon_reserved from mt8365.dtsi to mt8365-evk.dts
+  - Fix inconsistent indentation in mt8365-pinctrl example
+  - Further mt8365.dtsi cleanups
+  - Submit to additional maintainers spotted by get_maintainer.pl
 
-Gr{oetje,eeting}s,
+v5:
+  - Reorder top-level entries in mediatek,mt8365-pinctrl.yaml to match
+    example-schema
+  - Use consistent quotes
 
- 						Geert
+v4:
+  - Remove pins-are-numbered references that have been holding things up
+    now that the patches removing it from dt-bindings have landed in linux-next
 
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+v3:
+  - Remove a number of components that are not yet supported (they will
+    come back alongside the corresponding drivers)
+  - Address issues found by dt_binding_check (mostly fixing pinctrl
+    bindings)
+  - Address issues pointed out in comments
+  - Reorder patches
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
- 							    -- Linus Torvalds
+v2:
+  - Add missing dt-bindings documentation
+  - Small cleanups addressing issues in v1 pointed out by Krzysztof Kozlowski
+
+
+Bernhard Rosenkränzer (2):
+  dt-bindings: irq: mtk, sysirq: add support for mt8365
+  dt-bindings: serial: mediatek,uart: add MT8365
+
+Fabien Parent (1):
+  arm64: dts: mediatek: Initial mt8365-evk support
+
+ .../interrupt-controller/mediatek,sysirq.txt  |   1 +
+ .../bindings/serial/mediatek,uart.yaml        |   1 +
+ arch/arm64/boot/dts/mediatek/Makefile         |   1 +
+ arch/arm64/boot/dts/mediatek/mt8365-evk.dts   | 168 ++++++++
+ arch/arm64/boot/dts/mediatek/mt8365.dtsi      | 377 ++++++++++++++++++
+ 5 files changed, 548 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/mediatek/mt8365-evk.dts
+ create mode 100644 arch/arm64/boot/dts/mediatek/mt8365.dtsi
+
+-- 
+2.40.0.rc2
+
