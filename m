@@ -2,101 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DBB886B2214
-	for <lists+devicetree@lfdr.de>; Thu,  9 Mar 2023 12:01:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0BE4C6B2240
+	for <lists+devicetree@lfdr.de>; Thu,  9 Mar 2023 12:06:23 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230113AbjCILA4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Mar 2023 06:00:56 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36874 "EHLO
+        id S230015AbjCILGP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Mar 2023 06:06:15 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47406 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231411AbjCILAG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Mar 2023 06:00:06 -0500
-Received: from fudo.makrotopia.org (fudo.makrotopia.org [IPv6:2a07:2ec0:3002::71])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 28E0015C82;
-        Thu,  9 Mar 2023 02:57:57 -0800 (PST)
-Received: from local
-        by fudo.makrotopia.org with esmtpsa (TLS1.3:TLS_AES_256_GCM_SHA384:256)
-         (Exim 4.96)
-        (envelope-from <daniel@makrotopia.org>)
-        id 1paDxk-0003aK-0N;
-        Thu, 09 Mar 2023 11:57:32 +0100
-Date:   Thu, 9 Mar 2023 10:55:54 +0000
-From:   Daniel Golle <daniel@makrotopia.org>
-To:     devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        netdev@vger.kernel.org, linux-mediatek@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Russell King <linux@armlinux.org.uk>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Lorenzo Bianconi <lorenzo@kernel.org>,
-        Mark Lee <Mark-MC.Lee@mediatek.com>,
-        John Crispin <john@phrozen.org>, Felix Fietkau <nbd@nbd.name>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        DENG Qingfang <dqfext@gmail.com>,
-        Landen Chao <Landen.Chao@mediatek.com>,
-        Sean Wang <sean.wang@mediatek.com>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Eric Dumazet <edumazet@google.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Vladimir Oltean <olteanv@gmail.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Vladimir Oltean <vladimir.oltean@nxp.com>
-Cc:     =?iso-8859-1?Q?Bj=F8rn?= Mork <bjorn@mork.no>,
-        Frank Wunderlich <frank-w@public-files.de>,
-        Alexander Couzens <lynxis@fe80.eu>
-Subject: [PATCH net-next v13 04/16] dt-bindings: arm: mediatek: sgmiisys: add
- MT7981 SoC
-Message-ID: <defb7b63540a5e56482dace9a30658aa651d6127.1678357225.git.daniel@makrotopia.org>
-References: <cover.1678357225.git.daniel@makrotopia.org>
+        with ESMTP id S231175AbjCILFA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Mar 2023 06:05:00 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 738B5EBDB9;
+        Thu,  9 Mar 2023 03:00:21 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id A9D1061AF9;
+        Thu,  9 Mar 2023 11:00:20 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 82C6CC4339B;
+        Thu,  9 Mar 2023 11:00:19 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+        s=korg; t=1678359620;
+        bh=04U3AJP9vp1UtDPX2lLc42jFVHnP70gnbwI48rebeNo=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=an3FyH9Y36iLn5XxzO0uxeM/Db1L8txd5+ZntT0hpIDFnZdoKn2n7eof69mrls0rU
+         N9LaxmyNYsUExw6yHvGzPGl6qkA6TgCh/j+YhKCDcqrb1du3eJ6ZP2Q2deplEQYWfO
+         GsPokmki+LbjApEZlvoL7cPrHLBiBBFNmGKRd2jo=
+Date:   Thu, 9 Mar 2023 12:00:09 +0100
+From:   Greg KH <gregkh@linuxfoundation.org>
+To:     neil.armstrong@linaro.org
+Cc:     Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        jirislaby@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        robh+dt@kernel.org, Christian Hewitt <christianshewitt@gmail.com>
+Subject: Re: [PATCH v3 3/3] arm64: dts: meson-g12-common: Use the G12A UART
+ compatible string
+Message-ID: <ZAm8OfpNWYKL1HwV@kroah.com>
+References: <20230307222651.2106615-1-martin.blumenstingl@googlemail.com>
+ <20230307222651.2106615-4-martin.blumenstingl@googlemail.com>
+ <5325f790-50d8-56eb-b8ac-99840d5b3ad2@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <cover.1678357225.git.daniel@makrotopia.org>
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <5325f790-50d8-56eb-b8ac-99840d5b3ad2@linaro.org>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add mediatek,pnswap boolean property needed on many boards using the
-MediaTek MT7981 SoC.
+On Wed, Mar 08, 2023 at 01:21:21PM +0100, neil.armstrong@linaro.org wrote:
+> On 07/03/2023 23:26, Martin Blumenstingl wrote:
+> > Switch meson-12-common.dtsi to use the Meson G12A specific UART
+> > compatible string. This enables the "divide XTAL by 2" divider which
+> > improves support for UART attached Bluetooth modules (for example
+> > RTL8822CS) running at a baud rate of 1500000. Without dividing XTAL
+> > (24MHz) by 2 a baud rate of 1500000 cannot be generated cleanly and the
+> > resulting jitter breaks communication with the module.
+> > 
+> > Tested-by: Christian Hewitt <christianshewitt@gmail.com>
+> > Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+> > ---
+> > Greg, please don't take this through your tree. I included this patch
+> > to show the overall goal of this series. If Neil won't take this as
+> > part of another series then I'll send it separately.
+> 
+> Actually I'm ok if Greg takes the whole patchset, including this one, via
+> the tty tree.
 
-Reviewed-by: Rob Herring <robh@kernel.org>
-Signed-off-by: Daniel Golle <daniel@makrotopia.org>
----
- .../devicetree/bindings/net/pcs/mediatek,sgmiisys.yaml      | 6 ++++++
- 1 file changed, 6 insertions(+)
+Ok, I'll take them all, thanks.
 
-diff --git a/Documentation/devicetree/bindings/net/pcs/mediatek,sgmiisys.yaml b/Documentation/devicetree/bindings/net/pcs/mediatek,sgmiisys.yaml
-index 7ce597011a32..66a95191bd77 100644
---- a/Documentation/devicetree/bindings/net/pcs/mediatek,sgmiisys.yaml
-+++ b/Documentation/devicetree/bindings/net/pcs/mediatek,sgmiisys.yaml
-@@ -19,6 +19,8 @@ properties:
-       - enum:
-           - mediatek,mt7622-sgmiisys
-           - mediatek,mt7629-sgmiisys
-+          - mediatek,mt7981-sgmiisys_0
-+          - mediatek,mt7981-sgmiisys_1
-           - mediatek,mt7986-sgmiisys_0
-           - mediatek,mt7986-sgmiisys_1
-       - const: syscon
-@@ -29,6 +31,10 @@ properties:
-   '#clock-cells':
-     const: 1
- 
-+  mediatek,pnswap:
-+    description: Invert polarity of the SGMII data lanes
-+    type: boolean
-+
- required:
-   - compatible
-   - reg
--- 
-2.39.2
-
+greg k-h
