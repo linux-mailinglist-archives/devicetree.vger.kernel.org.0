@@ -2,124 +2,234 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F2D496B2165
-	for <lists+devicetree@lfdr.de>; Thu,  9 Mar 2023 11:28:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A9B0A6B216B
+	for <lists+devicetree@lfdr.de>; Thu,  9 Mar 2023 11:30:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231418AbjCIK2Y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Mar 2023 05:28:24 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46882 "EHLO
+        id S230163AbjCIKaS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Mar 2023 05:30:18 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53264 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231443AbjCIK17 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Mar 2023 05:27:59 -0500
-Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5FA0DEDB4F
-        for <devicetree@vger.kernel.org>; Thu,  9 Mar 2023 02:27:33 -0800 (PST)
-Received: by mail-ed1-x531.google.com with SMTP id da10so5020876edb.3
-        for <devicetree@vger.kernel.org>; Thu, 09 Mar 2023 02:27:33 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1678357652;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=9Ue1zOWQijm9xPkRtJ+/7K/ZGdSe/BpRmw+d4pMpBfY=;
-        b=n4+1uH7MfEukiOD7pfOpj1R5Uu+tPOfpKvc/BTPCePaEXdNexYRS/l8iAYqaS84hrh
-         5MqdanC79f7VLI4CvvxQjOyQwKXW0Paov9rsSxcd36sXWNUFdui5DxsR1Kls89hwFJZi
-         nXn+WNQMM3iAZPnQMMemLXP19A9Rnhm6jlGKRQGfi7XP0TvwYPb1UszQpRxY5WVgDkMy
-         XJB+8RnClaVSVAckiNapewDKJjaZo0PP/z3TZUedmXnZ3DJFRYPDyf6EFCCswtxCQosJ
-         V5LhvHm4hCI+9Nbnmf3KayCQBCAphksGgQgYF2h9HMKI29D+ADb3wvDUdz5JD/Xc4cq0
-         BuVg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678357652;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=9Ue1zOWQijm9xPkRtJ+/7K/ZGdSe/BpRmw+d4pMpBfY=;
-        b=x+loum+QtRZclpBVZICHllr/8Wrw/qWz0WBkyqfNmFLjM6y5bt7RoqVSMk+JyfCf7A
-         QyaFfy+1RnVVwtwxCw4Z4leHKc6HImT34sxTVryibZIAa9eSFliMFvAdPRzrCx9lsCIL
-         sebhps5YcWbvKa9YuHygTcrAvNJCr41gaK97o3neDc/Su89JSGiedZZFms9A1I+iAfi/
-         R+/jT0znTLoIQktrepfnWz5RWgfKz0sEWl9WDot6veamKUzU8gXDmOqTkmoVBpDyANEQ
-         SyChxQmmqzC4XaRkVgIRJc8eHmvZY9gBIDDQfBgzWCHcLotZxQcKp0BGQ9bIX0gkvvRc
-         Zr/w==
-X-Gm-Message-State: AO0yUKVJQhJzy5jwayYPj8+Vzzf6GNx/cQc/Z0xyiOgrExenOwyKyEkw
-        HGhh78ZMfhPovhM86igWGQSFjA==
-X-Google-Smtp-Source: AK7set8tW7PnzMeJ+C+RgT1Em5SLgV5Ou1OI1A7f6SIF5krFYdVjXLIAY2SG06B5EK6r15YdHPO98w==
-X-Received: by 2002:a17:906:eb4c:b0:8aa:bea6:ce8b with SMTP id mc12-20020a170906eb4c00b008aabea6ce8bmr19801761ejb.53.1678357652007;
-        Thu, 09 Mar 2023 02:27:32 -0800 (PST)
-Received: from ?IPV6:2a02:810d:15c0:828:7ee2:e73e:802e:45c1? ([2a02:810d:15c0:828:7ee2:e73e:802e:45c1])
-        by smtp.gmail.com with ESMTPSA id u7-20020a50d507000000b004acc6cbc451sm9409885edi.36.2023.03.09.02.27.30
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 09 Mar 2023 02:27:31 -0800 (PST)
-Message-ID: <c8eea30f-5ea2-cfc9-273a-3c6e99a316b9@linaro.org>
-Date:   Thu, 9 Mar 2023 11:27:29 +0100
+        with ESMTP id S229680AbjCIKaR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Mar 2023 05:30:17 -0500
+Received: from relay3-d.mail.gandi.net (relay3-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::223])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 28F99193E8;
+        Thu,  9 Mar 2023 02:30:14 -0800 (PST)
+Received: (Authenticated sender: alex@ghiti.fr)
+        by mail.gandi.net (Postfix) with ESMTPSA id 9DECC60009;
+        Thu,  9 Mar 2023 10:30:07 +0000 (UTC)
+Message-ID: <fadac048-c648-6493-3f1c-1877692180c8@ghiti.fr>
+Date:   Thu, 9 Mar 2023 11:30:07 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-Subject: Re: [RFC PATCH v2 3/7] dt-bindings: mmc: sdhci-msm: Add ICE phandle
- and drop core clock
+ Thunderbird/102.7.1
+Subject: Re: RISC-V reserved memory problems
 Content-Language: en-US
-To:     Abel Vesa <abel.vesa@linaro.org>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Manivannan Sadhasivam <mani@kernel.org>,
-        Alim Akhtar <alim.akhtar@samsung.com>,
-        Avri Altman <avri.altman@wdc.com>,
-        Bart Van Assche <bvanassche@acm.org>,
-        Adrian Hunter <adrian.hunter@intel.com>,
-        "James E . J . Bottomley" <jejb@linux.ibm.com>,
-        "Martin K . Petersen" <martin.petersen@oracle.com>
-Cc:     linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-arm-msm@vger.kernel.org, linux-scsi@vger.kernel.org
-References: <20230308155838.1094920-1-abel.vesa@linaro.org>
- <20230308155838.1094920-4-abel.vesa@linaro.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230308155838.1094920-4-abel.vesa@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+To:     Conor.Dooley@microchip.com, linux-riscv@lists.infradead.org
+Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        frowand.list@gmail.com, robh+dt@kernel.org, mick@ics.forth.gr,
+        paul.walmsley@sifive.com, palmer@dabbelt.com,
+        aou@eecs.berkeley.edu, Valentina.FernandezAlanis@microchip.com,
+        Daire.McNamara@microchip.com
+References: <8e10bf15-9fa9-fe90-1656-35bf3e87e7f8@microchip.com>
+ <f8e67f82-103d-156c-deb0-d6d6e2756f5e@microchip.com>
+From:   Alexandre Ghiti <alex@ghiti.fr>
+In-Reply-To: <f8e67f82-103d-156c-deb0-d6d6e2756f5e@microchip.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_NONE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 08/03/2023 16:58, Abel Vesa wrote:
-> The ICE will have its own devicetree node, so drop the ICE core clock
-> and add the qcom,ice property instead.
-> 
-> Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
-> ---
-> 
-> This patch was not part of the v1.
-> 
->  Documentation/devicetree/bindings/mmc/sdhci-msm.yaml | 9 ++++-----
->  1 file changed, 4 insertions(+), 5 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/mmc/sdhci-msm.yaml b/Documentation/devicetree/bindings/mmc/sdhci-msm.yaml
-> index 64df6919abaf..92f6316c423f 100644
-> --- a/Documentation/devicetree/bindings/mmc/sdhci-msm.yaml
-> +++ b/Documentation/devicetree/bindings/mmc/sdhci-msm.yaml
-> @@ -80,7 +80,6 @@ properties:
->        - const: iface
->        - const: core
->        - const: xo
-> -      - const: ice
+Hi Conor,
 
-Same as for UFS - order is fixed, you cannot drop entries from the middle.
-
->        - const: bus
->        - const: cal
->        - const: sleep
-> @@ -120,6 +119,10 @@ properties:
+On 8/16/22 22:41, Conor.Dooley@microchip.com wrote:
+> Hey all,
+> We've run into a bit of a problem with reserved memory on PolarFire, or
+> more accurately a pair of problems that seem to have opposite fixes.
+>
+> The first of these problems is triggered when trying to implement a
+> remoteproc driver. To get the reserved memory buffer, remoteproc
+> does an of_reserved_mem_lookup(), something like:
+>
+> 	np = of_parse_phandle(pdev->of_node, "memory-region", 0);
+> 	if (!np)
+> 		return -EINVAL;
+>
+> 	rmem = of_reserved_mem_lookup(np);
+> 	if (!rmem)
+> 		return -EINVAL;
+>
+> of_reserved_mem_lookup() then uses reserved_mem[i].name to try and find
+> a match - but this was triggering kernel panics for us. We did some
+> debugging and found that the name string's pointer was pointing to an
+> address in the 0x4000_0000 range. The minimum reproduction for this
 
 
-Best regards,
-Krzysztof
+0x4000_0000 corresponds to DTB_EARLY_BASE_VA: this is the address that 
+is used to map the dtb before we can access it using the linear mapping.
 
+
+> crash is attached - it hacks in some print_reserved_mem()s into
+> setup_vm_final() around a tlb flush so you can see the before/after.
+> (You'll need a reserved memory node in your dts to replicate)
+>
+> The output is like so, with the same crash as in the remoteproc driver:
+>
+> [    0.000000] Linux version 6.0.0-rc1-00001-g0d9d6953d834 (conor@wendy) (riscv64-unknown-linux-gnu-gcc (g5964b5cd727) 11.1.0, GNU ld (GNU Binutils) 2.37) #1 SMP Tue Aug 16 13:42:09 IST 2022
+> [    0.000000] OF: fdt: Ignoring memory range 0x80000000 - 0x80200000
+> [    0.000000] Machine model: Microchip PolarFire-SoC Icicle Kit
+> [    0.000000] earlycon: ns16550a0 at MMIO32 0x0000000020100000 (options '115200n8')
+> [    0.000000] printk: bootconsole [ns16550a0] enabled
+> [    0.000000] printk: debug: skip boot console de-registration.
+> [    0.000000] efi: UEFI not found.
+> [    0.000000] before flush
+> [    0.000000] OF: reserved mem: debug name is fabricbuf@ae000000
+> [    0.000000] after flush
+> [    0.000000] Unable to handle kernel paging request at virtual address 00000000401c31ac
+
+
+You take the trap here because the mapping for the dtb does not exist in 
+swapper_pg_dir, but you don't need this mapping anymore as you can 
+access the device tree through the linear mapping now.
+
+I would say that: you build your kernel with CONFIG_BUILTIN_DTB and then 
+you don't call early_init_dt_verify which resets initial_boot_params to 
+the linear mapping address (it was initially set to 0x4000_0000 in 
+parse_dtb). If that's the case, does the following fix your issue?
+
+
+diff --git a/arch/riscv/kernel/setup.c b/arch/riscv/kernel/setup.c
+index 376d2827e736..2b09f0bd8432 100644
+--- a/arch/riscv/kernel/setup.c
++++ b/arch/riscv/kernel/setup.c
+@@ -276,6 +276,7 @@ void __init setup_arch(char **cmdline_p)
+         efi_init();
+         paging_init();
+  #if IS_ENABLED(CONFIG_BUILTIN_DTB)
++       initial_boot_params = __va(XIP_FIXUP(dtb_early_pa));
+         unflatten_and_copy_device_tree();
+  #else
+         if (early_init_dt_verify(__va(XIP_FIXUP(dtb_early_pa))))
+
+
+> [    0.000000] Oops [#1]
+> [    0.000000] Modules linked in:
+> [    0.000000] CPU: 0 PID: 0 Comm: swapper Not tainted 6.0.0-rc1-00001-g0d9d6953d834 #1
+> [    0.000000] Hardware name: Microchip PolarFire-SoC Icicle Kit (DT)
+> [    0.000000] epc : string+0x4a/0xea
+> [    0.000000]  ra : vsnprintf+0x1e4/0x336
+> [    0.000000] epc : ffffffff80335ea0 ra : ffffffff80338936 sp : ffffffff81203be0
+> [    0.000000]  gp : ffffffff812e0a98 tp : ffffffff8120de40 t0 : 0000000000000000
+> [    0.000000]  t1 : ffffffff81203e28 t2 : 7265736572203a46 s0 : ffffffff81203c20
+> [    0.000000]  s1 : ffffffff81203e28 a0 : ffffffff81203d22 a1 : 0000000000000000
+> [    0.000000]  a2 : ffffffff81203d08 a3 : 0000000081203d21 a4 : ffffffffffffffff
+> [    0.000000]  a5 : 00000000401c31ac a6 : ffff0a00ffffff04 a7 : ffffffffffffffff
+> [    0.000000]  s2 : ffffffff81203d08 s3 : ffffffff81203d00 s4 : 0000000000000008
+> [    0.000000]  s5 : ffffffff000000ff s6 : 0000000000ffffff s7 : 00000000ffffff00
+> [    0.000000]  s8 : ffffffff80d9821a s9 : ffffffff81203d22 s10: 0000000000000002
+> [    0.000000]  s11: ffffffff80d9821c t3 : ffffffff812f3617 t4 : ffffffff812f3617
+> [    0.000000]  t5 : ffffffff812f3618 t6 : ffffffff81203d08
+> [    0.000000] status: 0000000200000100 badaddr: 00000000401c31ac cause: 000000000000000d
+> [    0.000000] [<ffffffff80338936>] vsnprintf+0x1e4/0x336
+> [    0.000000] [<ffffffff80055ae2>] vprintk_store+0xf6/0x344
+> [    0.000000] [<ffffffff80055d86>] vprintk_emit+0x56/0x192
+> [    0.000000] [<ffffffff80055ed8>] vprintk_default+0x16/0x1e
+> [    0.000000] [<ffffffff800563d2>] vprintk+0x72/0x80
+> [    0.000000] [<ffffffff806813b2>] _printk+0x36/0x50
+> [    0.000000] [<ffffffff8068af48>] print_reserved_mem+0x1c/0x24
+> [    0.000000] [<ffffffff808057ec>] paging_init+0x528/0x5bc
+> [    0.000000] [<ffffffff808031ae>] setup_arch+0xd0/0x592
+> [    0.000000] [<ffffffff8080070e>] start_kernel+0x82/0x73c
+> [    0.000000] ---[ end trace 0000000000000000 ]---
+> [    0.000000] Kernel panic - not syncing: Attempted to kill the idle task!
+> [    0.000000] ---[ end Kernel panic - not syncing: Attempted to kill the idle task! ]---
+>
+> We traced this back to early_init_fdt_scan_reserved_mem() in
+> setup_bootmem() - moving it later back up the boot sequence to
+> after the dt has been remapped etc has fixed the problem for us.
+>
+> The least movement to get it working is attached, and also pushed
+> here: git.kernel.org/conor/c/1735589baefc
+>
+> The second problem is a bit more complicated to explain - but we
+> found the solution conflicted with the remoteproc fix as we had
+> to move early_init_fdt_scan_reserved_mem() _earlier_ in the boot
+> process to solve this one.
+>
+> We want to have a node in our devicetree that contains some memory
+> that is non-cached & marked as reserved-memory. Maybe we have just
+> missed something, but from what we've seen:
+> - the really early setup looks at the dtb, picks the highest bit
+>     of memory and puts the dtb etc there so it can start using it
+> - early_init_fdt_scan_reserved_mem() is then called, which figures
+>     out if memory is reserved or not.
+>
+> Unfortunately, the highest bit of memory is the non-cached bit so
+> everything falls over, but we can avoid this by moving the call to
+> early_init_fdt_scan_reserved_mem() above the dtb memblock alloc that
+> takes place right before it in setup_bootmem().
+
+
+And then I suppose the allocations you are mentioning happen in 
+unflatten_XXX, so parsing the device tree for reserved memory nodes 
+before this should do the trick. Does the following fix your second issue?
+
+diff --git a/arch/riscv/kernel/setup.c b/arch/riscv/kernel/setup.c
+index 2b09f0bd8432..94b3d049fe9d 100644
+--- a/arch/riscv/kernel/setup.c
++++ b/arch/riscv/kernel/setup.c
+@@ -277,14 +277,15 @@ void __init setup_arch(char **cmdline_p)
+         paging_init();
+  #if IS_ENABLED(CONFIG_BUILTIN_DTB)
+         initial_boot_params = __va(XIP_FIXUP(dtb_early_pa));
++       early_init_fdt_scan_reserved_mem();
+         unflatten_and_copy_device_tree();
+  #else
+-       if (early_init_dt_verify(__va(XIP_FIXUP(dtb_early_pa))))
++       if (early_init_dt_verify(__va(XIP_FIXUP(dtb_early_pa)))) {
++               early_init_fdt_scan_reserved_mem();
+                 unflatten_device_tree();
+-       else
++       } else
+                 pr_err("No DTB found in kernel mappings\n");
+  #endif
+-       early_init_fdt_scan_reserved_mem();
+         misc_mem_init();
+
+         init_resources();
+
+
+
+>
+> Obviously, both of these changes are moving the function call in
+> opposite directions and we can only really do one of them. We are not
+> sure if what we are doing with the non-cached reserved-memory section
+> is just not permitted & cannot work - or if this is something that
+> was overlooked for RISC-V specifically and works for other archs.
+>
+> It does seem like the first issue is a real bug, and I am happy to
+> submit the patch for that whenever - but having two problems with
+> opposite fixes seemed as if there was something else lurking that we
+> just don't have enough understanding to detect.
+>
+> Any help would be great!
+>
+> Thanks,
+> Conor.
+>
+
+Even if that does not fix your issue, the first patch is necessary as it 
+fixes initial_boot_params.
+
+
+>
+>
+> _______________________________________________
+> linux-riscv mailing list
+> linux-riscv@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-riscv
