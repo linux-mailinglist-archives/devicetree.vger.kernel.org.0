@@ -2,85 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 027286B1F29
-	for <lists+devicetree@lfdr.de>; Thu,  9 Mar 2023 10:02:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EC0916B1F2F
+	for <lists+devicetree@lfdr.de>; Thu,  9 Mar 2023 10:03:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230444AbjCIJCg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Mar 2023 04:02:36 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36994 "EHLO
+        id S230513AbjCIJD0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Mar 2023 04:03:26 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38160 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230496AbjCIJCR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Mar 2023 04:02:17 -0500
-Received: from ex01.ufhost.com (ex01.ufhost.com [61.152.239.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 01E86DFB5E;
-        Thu,  9 Mar 2023 00:59:49 -0800 (PST)
-Received: from EXMBX166.cuchost.com (unknown [175.102.18.54])
-        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-        (Client CN "EXMBX166", Issuer "EXMBX166" (not verified))
-        by ex01.ufhost.com (Postfix) with ESMTP id 07BFC24E195;
-        Thu,  9 Mar 2023 16:59:33 +0800 (CST)
-Received: from EXMBX061.cuchost.com (172.16.6.61) by EXMBX166.cuchost.com
- (172.16.6.76) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Thu, 9 Mar
- 2023 16:59:32 +0800
-Received: from [192.168.125.128] (183.27.96.115) by EXMBX061.cuchost.com
- (172.16.6.61) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Thu, 9 Mar
- 2023 16:59:32 +0800
-Message-ID: <d9125b8d-7483-2dd1-754a-3750b582686e@starfivetech.com>
-Date:   Thu, 9 Mar 2023 16:59:34 +0800
+        with ESMTP id S229994AbjCIJDD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Mar 2023 04:03:03 -0500
+Received: from mail-wm1-x335.google.com (mail-wm1-x335.google.com [IPv6:2a00:1450:4864:20::335])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 64BB016AFF
+        for <devicetree@vger.kernel.org>; Thu,  9 Mar 2023 01:00:58 -0800 (PST)
+Received: by mail-wm1-x335.google.com with SMTP id ay29-20020a05600c1e1d00b003e9f4c2b623so3033991wmb.3
+        for <devicetree@vger.kernel.org>; Thu, 09 Mar 2023 01:00:58 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1678352457;
+        h=content-transfer-encoding:in-reply-to:content-language:references
+         :cc:to:subject:from:user-agent:mime-version:date:message-id:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=ahQvvXgpAC4sImhVbYw58xhhuuWXnXUtY4vE77nNUsU=;
+        b=DAJ0wh1lZGDn+vomPLVfpSlOyFbTrd5Wlpt0nO9fRINX6sd9KSKydH3US/nr2bfQct
+         5y31vlBveHuehveBeAJgy2NJkl8KpBq8ZBP2hGfA+ZE8RI7gOlMUAST87NVMxkiaxrpQ
+         wFMQg5grA8BvMczuP9wa8kRztYq0XepRae8v+BakFuc1joPLr0wka5AGyWjCEaR9Tq3I
+         sh0olYH/OoNZcQ7iMpP+C5evP0Ob6rkUAzxSzV36vqJrMMQ+287TOrJReRi+qNRZdfal
+         r73ArPt/fqnWG78h9x3U+dBhvZQBm1u4ldiKQjxkoJGfLqW5ZCW7jd1MNu7BoVMLIjCF
+         bnSg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1678352457;
+        h=content-transfer-encoding:in-reply-to:content-language:references
+         :cc:to:subject:from:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=ahQvvXgpAC4sImhVbYw58xhhuuWXnXUtY4vE77nNUsU=;
+        b=lYmp1xUXAZApwEiTuIP+Esks6ZlL6pPjsjqVTilNRb7kfyK9TAHxHux2ZP0G9yY0lh
+         VcWiRamXFK8cwBsSJ+mXbHuurFVmX+EiKqxuPHwM/kgWuMWdR3QVviwMRauEvTP9mKwW
+         zTn/irwkQHfZwVeLYK4TTgBAVgidNx0oLVJ8I5PyjQdCu99NPzG+baTkmLOJ34rwaL6r
+         a+2G/WQKdVa5TcfxzWImnqTPchWsCuFIeQYq+V9Ibh/CU6Z7/Wv77Lhvl/IxmdUhnn81
+         yhzvhYlq2CSkOogfZDdvbnvCaPRR+G4AanQDHFf6Qre3ZHYGBiRzh24gce40K82nmz+2
+         Pq1Q==
+X-Gm-Message-State: AO0yUKWDegwhXg85+j2LvVy3Q1s37809wikUVQ0bG6gf7sVszfVJ3/Ii
+        fugbsMa+MQS5uLAiPB8r5KP2wA==
+X-Google-Smtp-Source: AK7set++QhcnMV+CVFS+bcpFv3gMgCZjfUlt/K24s/n+K9yXjdLVCJScvyhpqvbKUYy4QHqVvjxCYw==
+X-Received: by 2002:a05:600c:5107:b0:3eb:2de9:8af3 with SMTP id o7-20020a05600c510700b003eb2de98af3mr18113595wms.23.1678352456810;
+        Thu, 09 Mar 2023 01:00:56 -0800 (PST)
+Received: from [192.168.1.195] ([5.133.47.210])
+        by smtp.googlemail.com with ESMTPSA id bg42-20020a05600c3caa00b003e6efc0f91csm1972470wmb.42.2023.03.09.01.00.54
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 09 Mar 2023 01:00:55 -0800 (PST)
+Message-ID: <1d0f3570-ac71-70aa-f9e4-b6d12f3a17c5@linaro.org>
+Date:   Thu, 9 Mar 2023 09:00:53 +0000
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-Subject: Re: [PATCH v4 1/3] dt-bindings: watchdog: Add watchdog for StarFive
- JH7100 and JH7110
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.1
+From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+Subject: Re: [PATCH v3 05/28] ASoC: dt-bindings: qcom,q6dsp-lpass-ports: Add
+ USB_RX port
+To:     Wesley Cheng <quic_wcheng@quicinc.com>, mathias.nyman@intel.com,
+        perex@perex.cz, broonie@kernel.org, lgirdwood@gmail.com,
+        krzysztof.kozlowski+dt@linaro.org, agross@kernel.org,
+        Thinh.Nguyen@synopsys.com, bgoswami@quicinc.com,
+        andersson@kernel.org, robh+dt@kernel.org,
+        gregkh@linuxfoundation.org, tiwai@suse.com
+Cc:     linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        linux-usb@vger.kernel.org, quic_jackp@quicinc.com,
+        quic_plai@quicinc.com
+References: <20230308235751.495-1-quic_wcheng@quicinc.com>
+ <20230308235751.495-6-quic_wcheng@quicinc.com>
 Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        <linux-riscv@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-watchdog@vger.kernel.org>,
-        Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Emil Renner Berthing <kernel@esmil.dk>,
-        Conor Dooley <conor@kernel.org>
-CC:     Rob Herring <robh+dt@kernel.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Samin Guo <samin.guo@starfivetech.com>,
-        <linux-kernel@vger.kernel.org>
-References: <20230308034036.99213-1-xingyu.wu@starfivetech.com>
- <20230308034036.99213-2-xingyu.wu@starfivetech.com>
- <94b3f478-4806-f2aa-eba4-58f4b5bbb00c@linaro.org>
-From:   Xingyu Wu <xingyu.wu@starfivetech.com>
-In-Reply-To: <94b3f478-4806-f2aa-eba4-58f4b5bbb00c@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <20230308235751.495-6-quic_wcheng@quicinc.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Originating-IP: [183.27.96.115]
-X-ClientProxiedBy: EXCAS064.cuchost.com (172.16.6.24) To EXMBX061.cuchost.com
- (172.16.6.61)
-X-YovoleRuleAgent: yovoleflag
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2023/3/9 16:56, Krzysztof Kozlowski wrote:
-> On 08/03/2023 04:40, Xingyu Wu wrote:
->> Add bindings to describe the watchdog for the StarFive JH7100/JH7110 SoC.
->> And Use JH7100 as first StarFive SoC with watchdog.
->> 
->> Signed-off-by: Xingyu Wu <xingyu.wu@starfivetech.com>
->> ---
-> 
-> 
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> 
 
-Thank you for your understanding
 
-Best regards,
-Xingyu Wu
+On 08/03/2023 23:57, Wesley Cheng wrote:
+> Q6DSP supports handling of USB playback audio data if USB audio offloading
+> is enabled.  Add a new definition for the USB_RX AFE port, which is
+> referenced when the AFE port is started.
+> 
+> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Signed-off-by: Wesley Cheng <quic_wcheng@quicinc.com>
 
+
+Reviewed-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+> ---
+>   include/dt-bindings/sound/qcom,q6dsp-lpass-ports.h | 1 +
+>   1 file changed, 1 insertion(+)
+> 
+> diff --git a/include/dt-bindings/sound/qcom,q6dsp-lpass-ports.h b/include/dt-bindings/sound/qcom,q6dsp-lpass-ports.h
+> index 9f7c5103bc82..746bc462bb2e 100644
+> --- a/include/dt-bindings/sound/qcom,q6dsp-lpass-ports.h
+> +++ b/include/dt-bindings/sound/qcom,q6dsp-lpass-ports.h
+> @@ -131,6 +131,7 @@
+>   #define RX_CODEC_DMA_RX_7	126
+>   #define QUINARY_MI2S_RX		127
+>   #define QUINARY_MI2S_TX		128
+> +#define USB_RX				129
+>   
+>   #define LPASS_CLK_ID_PRI_MI2S_IBIT	1
+>   #define LPASS_CLK_ID_PRI_MI2S_EBIT	2
