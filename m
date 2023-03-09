@@ -2,59 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1EA7C6B181C
-	for <lists+devicetree@lfdr.de>; Thu,  9 Mar 2023 01:48:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 800F26B181F
+	for <lists+devicetree@lfdr.de>; Thu,  9 Mar 2023 01:49:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229733AbjCIAsk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Mar 2023 19:48:40 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45770 "EHLO
+        id S229668AbjCIAtK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Mar 2023 19:49:10 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46626 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229626AbjCIAsj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Mar 2023 19:48:39 -0500
-Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D1D735F51C
-        for <devicetree@vger.kernel.org>; Wed,  8 Mar 2023 16:48:36 -0800 (PST)
-Received: by mail-lf1-x130.google.com with SMTP id t11so298070lfr.1
-        for <devicetree@vger.kernel.org>; Wed, 08 Mar 2023 16:48:36 -0800 (PST)
+        with ESMTP id S230032AbjCIAtE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Mar 2023 19:49:04 -0500
+Received: from mail-lj1-x236.google.com (mail-lj1-x236.google.com [IPv6:2a00:1450:4864:20::236])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E7FDA5F6CA
+        for <devicetree@vger.kernel.org>; Wed,  8 Mar 2023 16:49:01 -0800 (PST)
+Received: by mail-lj1-x236.google.com with SMTP id y14so222992ljq.4
+        for <devicetree@vger.kernel.org>; Wed, 08 Mar 2023 16:49:01 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1678322915;
+        d=linaro.org; s=google; t=1678322940;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=2a30P1PX6QOf+PchF0vzQzUBOZcpznkObjqEwkUH+Tg=;
-        b=Z2BTVDSLBXdlgfzUjVXJ9GWHe69ZXR/qHA3CEJRl3Ddv5xkwsn0Fke8wKFM5TET3ui
-         PbKC0xuHmbAoOdUBo1SZl08Q83Da2XCGJiaxLwb1eqhdUwbv2xBnPoo8XnSpsjBDLprC
-         XqLS5kOMGfOoUvYR4Bl8h/HJddp1LlZGKAs7igWtdA12MaUp0+N21J12AvT+W5wIs3RI
-         u7w69r29KZlg9G7PmomTdzgezfegc9tdD75niO4N7CFL5foTHdrRd7o2IrvI+EvQr/ts
-         K8d4U0e+KqlX5lD5kEWEUDMsfBQNG11rkA28p9Og3ixvDkdRG0HLBTCL9zdd/LyBJzbi
-         4n2Q==
+        bh=igEVtCv0Yun6uztxoSl+D0xNhXh8MI5zoU21SDQbQG0=;
+        b=V/QU1+McEoNI0Pfi33CLU2ga7Ft38nhwIKGP0vuHVpxEXmUobSZGkp0nL7H+/bOxCL
+         RsfoBTOM0PTItOhX6e3QL3EfMieWXTzEar5cFEoNG4UopGTquWZPFJq0hiQEMBlBoLQu
+         xsDZucXDdxCUp7De4FNyH6MUuMO2cTu4O2VPzyY0ptxNk4HpecPlcE0Mu/QwmIra9jN1
+         FpIXeo3SDZbOBSk/jw27ij28YiYw6TEyEALCpZw1azJQOuiLRE9ef1PARPaH5mqcvgr6
+         MoQGOYmGKq/4Cxh+Kb7VNlgU7p/QqgKL24YlLi4tpR0Zr9kSLfYRnvZ2mnL7d+MhRQf0
+         48Kw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678322915;
+        d=1e100.net; s=20210112; t=1678322940;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=2a30P1PX6QOf+PchF0vzQzUBOZcpznkObjqEwkUH+Tg=;
-        b=qC356iUP6H1lWp7Q/YjfTJF84ikx7pDBIhrlRcZAG8Lky88kNEQiFZ6TncM/ZmGaSW
-         3Heu4Xke5zXxpKne/WqHFG01fToF7wud+wqRPmYjvz6yunWLVJpu0T7VuAhHZHksKIWc
-         EJWbYyNpaFXSFgbbeHjuNL3uh/W2eYJonD5Zi604gjpWe4ki3YSlqsGqiHRSktK7OnV7
-         kQXTQPjU9THAQ2dJGwgf5FyHoAXIwEZpnqlQoFvsd973XRocpOCfNTOgpbc/UagUjfVY
-         AcwJnJHu/U1rz07u05IAXDWWkQowUUEgM69xjxaTh66Myicj3REPZIb577aa/TinpC1N
-         8OQw==
-X-Gm-Message-State: AO0yUKUbEw7eLIzOmMz5G7o/VTCpsKRO3C9OVJI7GhFQjQUeXUVX5w7w
-        7PQsacnoWDzmkS6csUe+fkQAbQ==
-X-Google-Smtp-Source: AK7set/YMMFE8EPJ6+fLX12pNe/yV/KCTANJ/Pe9Q6gRWKjPlKGmgcH8k6wanfzNA/5Oqk0XxsKrDQ==
-X-Received: by 2002:a19:c214:0:b0:4ca:98ec:7d9a with SMTP id l20-20020a19c214000000b004ca98ec7d9amr5333013lfc.15.1678322915093;
-        Wed, 08 Mar 2023 16:48:35 -0800 (PST)
+        bh=igEVtCv0Yun6uztxoSl+D0xNhXh8MI5zoU21SDQbQG0=;
+        b=MPlgsE4nqXJKDLrPqAbRo2Pa0LiehZNklQgAZCTvb6UWOjg/ovYfNEsM4ue3vjn0uF
+         upsh7TKSF2jYi6+WEtQ7S2GkYDTs+WLgpOs2j7alJvMqdgAFk8JlPUjcyhCal6n5wHSI
+         VLCF/+avIZJs6IlEKQiNsNaJfQLpD/adRtVANlCgZUnW+ely73paehWDCVdBPjjehO5h
+         NnAOYod0D25qC0on08J7UTNbZt8JacA2DBZweSZzGQ7ZW5LpVrTHtRVBrpmOXEnpllTe
+         g7sOw+eXz2ceGPylNadD+vXM5lXPg9SwTNrqif86FaVhQFYoS21j7XH/ZrhAqo7mk4a7
+         sFGw==
+X-Gm-Message-State: AO0yUKV9kLtRP4np5iMhGNXsRwZh9DzP/GTy4fzS4DDcwyMSdx0NYAZb
+        J/cyvDIONcFiD4UKDm414M/Z/A==
+X-Google-Smtp-Source: AK7set+s4E9sI6MCIb1Plra3PVeHE9gylCv4Co5ejVzav4C7e1S1vavpawpRj+KHafIdqyx3ZUhqZQ==
+X-Received: by 2002:a2e:9243:0:b0:295:a313:1365 with SMTP id v3-20020a2e9243000000b00295a3131365mr5810541ljg.3.1678322940206;
+        Wed, 08 Mar 2023 16:49:00 -0800 (PST)
 Received: from ?IPV6:2001:14ba:a085:4d00::8a5? (dzccz6yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a085:4d00::8a5])
-        by smtp.gmail.com with ESMTPSA id m15-20020a056512014f00b004d34238ca44sm2473354lfo.214.2023.03.08.16.48.34
+        by smtp.gmail.com with ESMTPSA id d16-20020a2e3310000000b00295b1afd27bsm2674916ljc.66.2023.03.08.16.48.59
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 08 Mar 2023 16:48:34 -0800 (PST)
-Message-ID: <3d4a0cb2-e9b6-68a9-f844-4bea89f8a9b0@linaro.org>
-Date:   Thu, 9 Mar 2023 02:48:33 +0200
+        Wed, 08 Mar 2023 16:48:59 -0800 (PST)
+Message-ID: <557f5eba-8062-fba0-11c3-9abef9c7325d@linaro.org>
+Date:   Thu, 9 Mar 2023 02:48:59 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.8.0
-Subject: Re: [PATCH RFT v2 03/14] clk: qcom: smd-rpm: Add .is_prepared hook
+Subject: Re: [PATCH RFT v2 04/14] clk: qcom: smd-rpm_ Make
+ __DEFINE_CLK_SMD_RPM_BRANCH_PREFIX accept flags
 Content-Language: en-GB
 To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
         Andy Gross <agross@kernel.org>,
@@ -66,11 +67,11 @@ To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
 Cc:     linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
         linux-kernel@vger.kernel.org,
         Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        devicetree@vger.kernel.org, Shawn Guo <shawn.guo@linaro.org>
+        devicetree@vger.kernel.org
 References: <20230303-topic-rpmcc_sleep-v2-0-ae80a325fe94@linaro.org>
- <20230303-topic-rpmcc_sleep-v2-3-ae80a325fe94@linaro.org>
+ <20230303-topic-rpmcc_sleep-v2-4-ae80a325fe94@linaro.org>
 From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-In-Reply-To: <20230303-topic-rpmcc_sleep-v2-3-ae80a325fe94@linaro.org>
+In-Reply-To: <20230303-topic-rpmcc_sleep-v2-4-ae80a325fe94@linaro.org>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -84,48 +85,17 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 08/03/2023 23:35, Konrad Dybcio wrote:
-> From: Shawn Guo <shawn.guo@linaro.org>
+> In preparation for supporting keepalive clocks which can never be shut off
+> (as the platform would fall apart otherwise), make the
+> __DEFINE_CLK_SMD_RPM_BRANCH_PREFIX macro accept clock flags for the
+> active-only clock.
 > 
-> The RPM clocks are enabled/disabled through clk framework prepare/unprepare
-> hooks.  Without .is_prepared hook, those unused RPM clocks will not be
-> disabled by core function clk_unprepare_unused_subtree(), because
-> clk_core_is_prepared() always returns 0.
-> 
-> Add .is_prepared hook to clk_ops and return the clock prepare (enable)
-> state, so that those unused RPM clocks can be disabled by clk framework.
-> 
-> Signed-off-by: Shawn Guo <shawn.guo@linaro.org>
-> [Konrad: rebase, don't duplicate the enable func]
 > Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 > ---
->   drivers/clk/qcom/clk-smd-rpm.c | 2 ++
->   1 file changed, 2 insertions(+)
-> 
-> diff --git a/drivers/clk/qcom/clk-smd-rpm.c b/drivers/clk/qcom/clk-smd-rpm.c
-> index ecacfbc4a16c..cce7daa97c1e 100644
-> --- a/drivers/clk/qcom/clk-smd-rpm.c
-> +++ b/drivers/clk/qcom/clk-smd-rpm.c
-> @@ -438,6 +438,7 @@ static const struct clk_ops clk_smd_rpm_ops = {
->   	.round_rate	= clk_smd_rpm_round_rate,
->   	.recalc_rate	= clk_smd_rpm_recalc_rate,
->   	.is_enabled	= clk_smd_rpm_is_enabled,
-> +	.is_prepared	= clk_smd_rpm_is_enabled,
+>   drivers/clk/qcom/clk-smd-rpm.c | 11 ++++++-----
+>   1 file changed, 6 insertions(+), 5 deletions(-)
 
-I still suppose that prepared and enabled statuses should be handled 
-separately. Otherwise CCF might get confused about prepared-but-enabled 
-clocks. With this patch in place, it will treat them as being not prepared.
-
->   };
->   
->   static const struct clk_ops clk_smd_rpm_branch_ops = {
-> @@ -445,6 +446,7 @@ static const struct clk_ops clk_smd_rpm_branch_ops = {
->   	.unprepare	= clk_smd_rpm_unprepare,
->   	.recalc_rate	= clk_smd_rpm_recalc_rate,
->   	.is_enabled	= clk_smd_rpm_is_enabled,
-> +	.is_prepared	= clk_smd_rpm_is_enabled,
->   };
->   
->   DEFINE_CLK_SMD_RPM_BRANCH_A(bi_tcxo, QCOM_SMD_RPM_MISC_CLK, 0, 19200000);
+Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 
 -- 
 With best wishes
