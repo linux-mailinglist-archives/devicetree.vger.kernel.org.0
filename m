@@ -2,113 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DBDF06B1F86
-	for <lists+devicetree@lfdr.de>; Thu,  9 Mar 2023 10:11:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9DCF56B1F9A
+	for <lists+devicetree@lfdr.de>; Thu,  9 Mar 2023 10:14:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229827AbjCIJLk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Mar 2023 04:11:40 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33294 "EHLO
+        id S229685AbjCIJN6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Mar 2023 04:13:58 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40496 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231253AbjCIJLX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Mar 2023 04:11:23 -0500
-Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2C907DDF33
-        for <devicetree@vger.kernel.org>; Thu,  9 Mar 2023 01:10:59 -0800 (PST)
-Received: by mail-ed1-x535.google.com with SMTP id cy23so4121916edb.12
-        for <devicetree@vger.kernel.org>; Thu, 09 Mar 2023 01:10:59 -0800 (PST)
+        with ESMTP id S230015AbjCIJN5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Mar 2023 04:13:57 -0500
+Received: from mail-ed1-x52d.google.com (mail-ed1-x52d.google.com [IPv6:2a00:1450:4864:20::52d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E56975F516
+        for <devicetree@vger.kernel.org>; Thu,  9 Mar 2023 01:13:53 -0800 (PST)
+Received: by mail-ed1-x52d.google.com with SMTP id u9so4302191edd.2
+        for <devicetree@vger.kernel.org>; Thu, 09 Mar 2023 01:13:53 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1678353057;
+        d=linaro.org; s=google; t=1678353232;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=amegkbQi6JbORUMHlxE9zNZBJkMQDtF4RPiYLujv5uY=;
-        b=xVwLLAobtAxiubuKG5NIsMw2SO3OJ/ed8XVLZCX512NFEn+vQP+uiTLfT6PhGp8XF1
-         6Aqka0W/Ymig7E+xXQfGba4X0e9hMEqTInrFmSyyt0/UDW3nLWzEoEr2EfJ63JzqpzqC
-         UDdW2LhZgLCKsH7/bIPbQN9uLSTMs41extG8Sd+CarF4ZbVhfCkdcdiuihJuTXvO6nWr
-         cOtwRcJUIJn/EyAt/hY4KLnY74fcXhmnRschZkYV4i1YHsWcJf7hVr+8zCthtSEcmhA0
-         /0xvoT38DXxwY0U420sXy20X9i7enwiefgiqD0un5AR6byEPtSAVb1552JD4ZEu335td
-         hUmA==
+        bh=9CEu2+xzDEP1ysZ2Jodpi5h8X2MlwOBxqMwTYxrM9tE=;
+        b=hgV1BzwmBLq1MLu70vByaZViKECvofPPWellrIF9OkLBuk4rfT816uqlpygy1swxrV
+         Xamz3U8zY3xv7QXjOruuz3L83l0vgePE3o4vHdrpDGnCo56GXcHTh2iuN8a1HbLhHeUJ
+         ry/xlrbQ2mQOoC9sMLUjQtw0leOHkNWS1WURrHWmt7sr0LRiqcwQuXHAU/8fEyAQAn++
+         MmO/RpKPjyb4kx32deQyGHlOQ4970vubR6Qd1ubEp9H4ysM7mGyUVFcuSrRTb3wa1XOL
+         +i86wsgPTuiuFcwxVS4mc8tPpSqIp0n7mifSjolD3ExreBXW9qJ9tQh0XPEYH7pGp45G
+         g+Bw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678353057;
+        d=1e100.net; s=20210112; t=1678353232;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=amegkbQi6JbORUMHlxE9zNZBJkMQDtF4RPiYLujv5uY=;
-        b=wETFl53xU0W4Weth8o9N8yU27dJcR43YG4c72DXQAopy0rWlaGUBniJ9/rJKjdI5/N
-         30HYIJIn0dRhmZPMQjKPcRz/jCF52ADQqRAo/and5Z8orU0PRtYl9O1sTfHdsl1rK+rJ
-         cRAhwrVo/nc1XFW/sUwpMLhv0rSRq+UAyL8sLq6gtWAKNcNmEqgv47dtFRRpxBUV4iKE
-         9HYJImlzd8E8zD2kL1BftnovXG4dPk8YfhMLV9YCUnYC+gsJGWtQfkjn07U/yTPBzmNm
-         rH8rXWhsPih0kCUt/yVgZHZwGFjgpz0dWyYUfthmqFzVpPkf5EWvfmMADD20zqCUnwsz
-         1gXQ==
-X-Gm-Message-State: AO0yUKUXBnVhxLHmCbfW/KUHMtdjOX4HEXc2MKtV5tyHz7/wnifM0c78
-        FfjnkjW9eUe9Dh4HZSf1Ov0NiA==
-X-Google-Smtp-Source: AK7set/kRD7oQCwcNdIk/dQW0Y0UAwn7jdfOe/zN3rg5WTMsuKCSrLL0FW6VZ6v4r8CSBfkp3iGL3A==
-X-Received: by 2002:a17:906:398a:b0:88d:d700:fe15 with SMTP id h10-20020a170906398a00b0088dd700fe15mr21445776eje.0.1678353057637;
-        Thu, 09 Mar 2023 01:10:57 -0800 (PST)
+        bh=9CEu2+xzDEP1ysZ2Jodpi5h8X2MlwOBxqMwTYxrM9tE=;
+        b=JzuI/VryuBVDrNxr2xBx78zpw+QL0hw3lcaAyc1o8wrlloXh2vxsYpK6mXllq7ej1l
+         koWbAUwOkVjHTMrvEOgPmbTiLYufSBkPq1+/ZcM+5bwNnFVdRQmkoq8c7e1LmAsXg1Y0
+         3hcNHqJu8ImOMFDQkhrU2zMv40CQ8aqrMtV03SyC8AhRPuKhmPxY+C0yf1s4B+vF4nt3
+         ECi5o5SWfVAxgATJob/eRMwdQ7VaGQCLcwp7d8q6AnG9/U0j7A7Ar8E1aNUeRaHIIW27
+         vARJwwiITmu1ZC9ciw6K+36xrjFe3Ym8dgMjn2wpwZG6o30dHVNDdYeKR70yPgIFKvd/
+         BTFg==
+X-Gm-Message-State: AO0yUKUAM3UxLu11wJ7xdOtWqPDg3ntgboZaqiv2+W5odYrG3+c2irEV
+        wzQypRDjPpl5/V8OpQ/sVj6oLg==
+X-Google-Smtp-Source: AK7set/jZEusWLawgfMr+VFVWu7w/eeDzg1P4nP6rbjE5J81n0UA4EyVpXJtA596Z2KHx1Ks+fTLpg==
+X-Received: by 2002:a17:907:9703:b0:8af:514f:1078 with SMTP id jg3-20020a170907970300b008af514f1078mr25280900ejc.31.1678353232434;
+        Thu, 09 Mar 2023 01:13:52 -0800 (PST)
 Received: from ?IPV6:2a02:810d:15c0:828:7ee2:e73e:802e:45c1? ([2a02:810d:15c0:828:7ee2:e73e:802e:45c1])
-        by smtp.gmail.com with ESMTPSA id ga2-20020a170906b84200b00882f9130eafsm8506459ejb.26.2023.03.09.01.10.56
+        by smtp.gmail.com with ESMTPSA id mb3-20020a170906eb0300b008e772c97db6sm8520392ejb.128.2023.03.09.01.13.51
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 09 Mar 2023 01:10:57 -0800 (PST)
-Message-ID: <b40c5cb0-0689-db1b-a1b9-e9b5d8ed838c@linaro.org>
-Date:   Thu, 9 Mar 2023 10:10:55 +0100
+        Thu, 09 Mar 2023 01:13:52 -0800 (PST)
+Message-ID: <984f1689-459e-bd26-b96c-6c759417b3d1@linaro.org>
+Date:   Thu, 9 Mar 2023 10:13:51 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.8.0
-Subject: Re: [PATCH v2 4/6] dt-bindings: thermal: qcom-tsens: Drop redundant
- compatibles
+Subject: Re: [PATCH RFC 1/3] dt-bindings: clock: Add Renesas versa3 clock
+ generator bindings
 Content-Language: en-US
-To:     Stephan Gerhold <stephan.gerhold@kernkonzept.com>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        "Rafael J. Wysocki" <rafael@kernel.org>
-Cc:     Amit Kucheria <amitk@kernel.org>,
-        Thara Gopinath <thara.gopinath@gmail.com>,
-        Zhang Rui <rui.zhang@intel.com>,
+To:     Biju Das <biju.das.jz@bp.renesas.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, Stephan Gerhold <stephan@gerhold.net>
-References: <20230308131041.124482-1-stephan.gerhold@kernkonzept.com>
- <20230308131041.124482-5-stephan.gerhold@kernkonzept.com>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Geert Uytterhoeven <geert+renesas@glider.be>,
+        "linux-renesas-soc@vger.kernel.org" 
+        <linux-renesas-soc@vger.kernel.org>,
+        "linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        Fabrizio Castro <fabrizio.castro.jz@renesas.com>
+References: <20230220131307.269100-1-biju.das.jz@bp.renesas.com>
+ <20230220131307.269100-2-biju.das.jz@bp.renesas.com>
+ <e9e63c87-b491-b4d5-b226-0539ef0de2d0@linaro.org>
+ <OS0PR01MB59221C8C937EF20347149E4886B49@OS0PR01MB5922.jpnprd01.prod.outlook.com>
+ <36e06397-2189-4f1b-99cc-d39e720ebc71@linaro.org>
+ <OS0PR01MB5922BDA0632ACCCC0100EEBD86B49@OS0PR01MB5922.jpnprd01.prod.outlook.com>
+ <6cbe6c71-2d2d-0f79-1270-7f8ed2ddc1d6@linaro.org>
+ <TYCPR01MB5933650D5BAB7A3F4BE03BAF86B59@TYCPR01MB5933.jpnprd01.prod.outlook.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230308131041.124482-5-stephan.gerhold@kernkonzept.com>
+In-Reply-To: <TYCPR01MB5933650D5BAB7A3F4BE03BAF86B59@TYCPR01MB5933.jpnprd01.prod.outlook.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 08/03/2023 14:10, Stephan Gerhold wrote:
-> Since the SoC compatibles must be followed by the IP version compatible
-> (e.g. compatible = "qcom,msm8916-tsens", "qcom,tsens-v0_1";) it is
-> redundant to list all the SoC compatibles again in the if statement.
-> It will already match the IP-version compatible.
+On 09/03/2023 08:57, Biju Das wrote:
+>>> It is clk generator HW specific. Clk generator is vital component
+>>> which provides clocks to the system.
+>>
+>> Every clock controller is vital...
+>>
+>>> We are providing some hardware feature which is exposed as dt
+>>> properties.
+>>>
+>>> Like clock output is fixed rate clock or dynamic rate clock/
+>>
+>> OK, I wait then for proper description which will explain and justify this.
 > 
-> The list has already become inconsistent since for example
-> "qcom,msm8939-tsens" is covered by the if statement but is not listed
-> there explicitly like the other SoCs.
+> Here it is, Please let me know is it ok?
 > 
-> Simplify this by dropping the redundant SoC compatibles. ipq8064 and
-> msm8960 are still needed because they do not have an IP-version
-> compatible.
+> renesas,output-clock-fixed-rate-mode:
+>     type: boolean
+>     description:
+>       In output clock fixed rate mode, the output clock frequency is always
+>       fixed and the hardware will use the values from the OTP or full register
+> 	map initialized during boot.
+>       If not given, the output clock rate is not fixed.
+>     maxItems: 6
+
+boolean is scalar, not array, so no maxItems. If the frequency is taken
+from OTP or register map, why they cannot also provide information the
+clock is fixed?
+
 > 
-> Signed-off-by: Stephan Gerhold <stephan.gerhold@kernkonzept.com>
-> ---
-> Changes in v2:
->   - Drop new redundant qcom,tsens-v2 compatibles as well (see discussion
->     in https://lore.kernel.org/linux-arm-msm/Y3ZFDRI6ypg18S27@gerhold.net/)
-
-
-
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Cheers,
+> Biju
 
 Best regards,
 Krzysztof
