@@ -2,120 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 67C6E6B280D
-	for <lists+devicetree@lfdr.de>; Thu,  9 Mar 2023 16:01:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7F5406B282D
+	for <lists+devicetree@lfdr.de>; Thu,  9 Mar 2023 16:05:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232077AbjCIPB2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Mar 2023 10:01:28 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58162 "EHLO
+        id S231985AbjCIPFZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Mar 2023 10:05:25 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58126 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232112AbjCIPBE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Mar 2023 10:01:04 -0500
-Received: from sin.source.kernel.org (sin.source.kernel.org [IPv6:2604:1380:40e1:4800::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7CEBC62DB2;
-        Thu,  9 Mar 2023 06:57:46 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by sin.source.kernel.org (Postfix) with ESMTPS id 8FDCDCE2441;
-        Thu,  9 Mar 2023 14:57:44 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AE7DEC433EF;
-        Thu,  9 Mar 2023 14:57:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1678373862;
-        bh=lrCJhGy31REAFHmpoQYpEnNmpg1BxinPjcIzS4zLQwc=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=dwRK5TvFHEOjFA1gJxyzNNpaoZTlAyUA24jtVNCJCjO9bjjEnNS6Hzvbcwkj5rQ7U
-         x6Aj/t6wb89PkNSrXXWha6lDESk8LQoGk/CTDCYQLZwj8b3CvyX9QknJmnWxAvCOEC
-         dxB5eqLSRu9mRE0aKKL2AIrXGlKd7GIjoXdt9/Ou3bFB+NHs9VsMnOedyDU6C8Ub4V
-         Z6MCKmDWKg0KGlhceC4CSE5Rlyy5SG+LNT4ZMFQHR2yeMUeOlBzJR8OmFEfFRxLrVl
-         Wbn3CWxeMXstVI9B3TDgUR+0fwHdclevSCbytb0fwuwmsO3z2p72+4iB/kJ1UFhCVT
-         qOAS9y0fJKdhg==
-Message-ID: <50c2b5de-4aed-ebd5-86e9-55813e740869@kernel.org>
-Date:   Thu, 9 Mar 2023 15:57:36 +0100
+        with ESMTP id S232160AbjCIPEq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Mar 2023 10:04:46 -0500
+Received: from mail-pf1-x431.google.com (mail-pf1-x431.google.com [IPv6:2607:f8b0:4864:20::431])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 53E50ED6BA
+        for <devicetree@vger.kernel.org>; Thu,  9 Mar 2023 07:02:52 -0800 (PST)
+Received: by mail-pf1-x431.google.com with SMTP id cp12so1679183pfb.5
+        for <devicetree@vger.kernel.org>; Thu, 09 Mar 2023 07:02:52 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1678374172;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=mpG+8TjRKU1Xq1b7ChN1vz1PZS008U/FxhApKNmqYlY=;
+        b=ELYbTvyRDRvOH8dgBQ/Fwx17+m9R3aqgz5pT7V7fAkZJsA+oV5WiXFMZLcOenBBcbo
+         Iomz7JdnKuw/g52XHENDsg9hzunSk4MHravqG2QuI/iiHrQirjr8y73m7ZbBXY/o7vLg
+         qvwNTEDQsWU9Of4q0G3fEWJe30V6onvW2a3+JTt/V7Y4xmemTnj3zMSH2yh0yqy6v2Cj
+         a/57s24pd09PXcbhcLZVSXqhgklg7hVV+a1VfUTBgAPlfhwUzkjH5KHMImC7zUxFSqTO
+         FQHaGZXufx854DG2kV0GcvrLGNTYFThFRHLCUDrtkIwO46cukE2cBALux/qu3ME/ggcP
+         lUFg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1678374172;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=mpG+8TjRKU1Xq1b7ChN1vz1PZS008U/FxhApKNmqYlY=;
+        b=q431Ft/72WTzQ+QgORuTP583SxsvGJmRD37Evtp6ZG7h3ZyLDSSOLPfQNj+Br2dBDn
+         omp0rDwqk2vlHSrMwfghgl1V73pB3aHsOG+itVX8my1OMNG4Ys14xL41DeSz4tBZMBPJ
+         qD+Shf+P4ys+uj9/PzTXUt6B1jl482rod2+hVQN44YC2BQ9Ws6H/gcCAPXzPLAYpwc3W
+         qcczCp7npntpHkEv7GvMgppxIo6tqJn9hgRLdgOMSS9Orea8hovLAwkiBR9d8VFdPm0c
+         jKL/HlawarCpIRx40bB3NyZd2bBNQB7qs+C3U0hI9TCLsUYrmjx8ak82nHdLoAQ/DtDH
+         WT4Q==
+X-Gm-Message-State: AO0yUKWXEAyNJVYINxd9AS5QszukEXh9rMR2NkabqvMbVYjDsO4tz+uF
+        LwSzTUYIFisDzyVXwNUT6mKLepz3Yn/6bxvRhJihiA==
+X-Google-Smtp-Source: AK7set/Pu4XGzKcyUzu0ET/xIBNGm/Mc7zvqzaKEVvMGZxTLOsJ3vWQd5u10L1Z/1FJ77TF3nXXUVY+1mwvJkbrIn10=
+X-Received: by 2002:a63:bc02:0:b0:4fb:d6b9:abea with SMTP id
+ q2-20020a63bc02000000b004fbd6b9abeamr7692841pge.5.1678374171737; Thu, 09 Mar
+ 2023 07:02:51 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-Subject: Re: [PATCH v1 2/4] Revert "dt-bindings: mmc: Add bindings for Intel
- Thunder Bay SoC"
-Content-Language: en-US
-To:     Adrian Hunter <adrian.hunter@intel.com>, rashmi.a@intel.com,
-        ulf.hansson@linaro.org, michal.simek@xilinx.com,
-        linux-mmc@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        robh+dt@kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, kishon@ti.com, vkoul@kernel.org,
-        andriy.shevchenko@linux.intel.com, linux-phy@lists.infradead.org,
-        mgross@linux.intel.com
-Cc:     kris.pan@linux.intel.com, mahesh.r.vaidya@intel.com,
-        nandhini.srikandan@intel.com, vasavi.v.itha@intel.com,
-        kenchappa.demakkanavar@intel.com, furong.zhou@intel.com,
-        mallikarjunappa.sangannavar@intel.com
-References: <20230124054427.28808-1-rashmi.a@intel.com>
- <20230124054427.28808-2-rashmi.a@intel.com>
- <c850df25-57b8-3172-8e5c-c466dc8556cd@kernel.org>
- <ef2f8faf-76cc-d221-8281-cc7b8cb68485@intel.com>
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-In-Reply-To: <ef2f8faf-76cc-d221-8281-cc7b8cb68485@intel.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+References: <20230307024646.10216-1-william.qiu@starfivetech.com> <20230307024646.10216-3-william.qiu@starfivetech.com>
+In-Reply-To: <20230307024646.10216-3-william.qiu@starfivetech.com>
+From:   Ulf Hansson <ulf.hansson@linaro.org>
+Date:   Thu, 9 Mar 2023 16:02:15 +0100
+Message-ID: <CAPDyKFp204LOmo9rD7DS5hE=s2jHuFfgsaj05MRzdTKNrscWWQ@mail.gmail.com>
+Subject: Re: [PATCH v5 2/2] mmc: starfive: Add initialization of prev_err
+To:     William Qiu <william.qiu@starfivetech.com>
+Cc:     devicetree@vger.kernel.org, linux-mmc@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Jaehoon Chung <jh80.chung@samsung.com>,
+        Conor Dooley <conor.dooley@microchip.com>,
+        linux-riscv@lists.infradead.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 09/03/2023 15:12, Adrian Hunter wrote:
-> On 24/01/23 13:31, Krzysztof Kozlowski wrote:
->> On 24/01/2023 06:44, rashmi.a@intel.com wrote:
->>> From: "A, Rashmi" <rashmi.a@intel.com>
->>>
->>> This reverts commit ab991c05c42853f0b6110022db9bf30fcc6323dd.
->>
->> Please use scripts/get_maintainers.pl to get a list of necessary people
->> and lists to CC.  It might happen, that command when run on an older
->> kernel, gives you outdated entries.  Therefore please be sure you base
->> your patches on recent Linux kernel.
->>
->>>
->>> Revert Thunder Bay specific code as the product got cancelled
->>> and there are no end customers.
->>>
->>> Signed-off-by: A, Rashmi <rashmi.a@intel.com>
->>> Reviewed-by: Hunter, Adrian <adrian.hunter@intel.com>wq
->>
->> Stray characters.
->>
->>> ---
->>>  .../devicetree/bindings/mmc/arasan,sdhci.yaml | 25 -------------------
->>>  1 file changed, 25 deletions(-)
->>>
->>> diff --git a/Documentation/devicetree/bindings/mmc/arasan,sdhci.yaml b/Documentation/devicetree/bindings/mmc/arasan,sdhci.yaml
->>> index 4053de758db6..0d5d21dd30bb 100644
->>> --- a/Documentation/devicetree/bindings/mmc/arasan,sdhci.yaml
->>> +++ b/Documentation/devicetree/bindings/mmc/arasan,sdhci.yaml
->>> @@ -88,12 +88,6 @@ properties:
->>>          description:
->>>            For this device it is strongly suggested to include
->>>            arasan,soc-ctl-syscon.
->>> -      - items:
->>> -          - const: intel,thunderbay-sdhci-5.1   # Intel Thunder Bay eMMC PHY
->>> -          - const: arasan,sdhci-5.1
->>
->> Instead should be made rather deprecated, unless you are sure there is
->> no single person in the world using the bindings (e.g. with BSD or
->> bootloader)?
-> 
-> I am sorry but this is not clear to me.  As I understand it,
-> the hardware was never released, so the binding serves no
-> purpose.  Should it be removed or "deprecated"?
+On Tue, 7 Mar 2023 at 03:46, William Qiu <william.qiu@starfivetech.com> wrote:
+>
+> Add a incremental updates to fix a bug that prev_err is uninitialized.
+>
+> Signed-off-by: William Qiu <william.qiu@starfivetech.com>
+> Reported-by: Dan Carpenter <error27@gmail.com>
 
-Hm, commit msg said cancelled and I understood that it was released and
-then got cancelled. But indeed maybe just remove it.
+I took the liberty of updating the commit message a bit, to try to
+further clarify things. Moreover, future wise, let's use the prefix,
+"mmc: dw_mmc-starfive" for the commit message header, to be consistent
+with the other dw_mmc drivers.
 
-Best regards,
-Krzysztof
+So, applied for fixes and by adding a fixes tag, thanks!
 
+Kind regards
+Uffe
+
+
+> ---
+>  drivers/mmc/host/dw_mmc-starfive.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+>
+> diff --git a/drivers/mmc/host/dw_mmc-starfive.c b/drivers/mmc/host/dw_mmc-starfive.c
+> index 40f5969b07a6..dab1508bf83c 100644
+> --- a/drivers/mmc/host/dw_mmc-starfive.c
+> +++ b/drivers/mmc/host/dw_mmc-starfive.c
+> @@ -51,7 +51,7 @@ static int dw_mci_starfive_execute_tuning(struct dw_mci_slot *slot,
+>         struct dw_mci *host = slot->host;
+>         struct starfive_priv *priv = host->priv;
+>         int rise_point = -1, fall_point = -1;
+> -       int err, prev_err;
+> +       int err, prev_err = 0;
+>         int i;
+>         bool found = 0;
+>         u32 regval;
+> --
+> 2.34.1
+>
