@@ -2,106 +2,164 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 90C606B1DB5
-	for <lists+devicetree@lfdr.de>; Thu,  9 Mar 2023 09:19:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D1ACA6B1DBC
+	for <lists+devicetree@lfdr.de>; Thu,  9 Mar 2023 09:21:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230271AbjCIIS7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Mar 2023 03:18:59 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42042 "EHLO
+        id S229893AbjCIIVM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Mar 2023 03:21:12 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50148 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230363AbjCIISN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Mar 2023 03:18:13 -0500
-Received: from ex01.ufhost.com (ex01.ufhost.com [61.152.239.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E51DAE2C7C;
-        Thu,  9 Mar 2023 00:14:54 -0800 (PST)
-Received: from EXMBX165.cuchost.com (unknown [175.102.18.54])
-        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-        (Client CN "EXMBX165", Issuer "EXMBX165" (not verified))
-        by ex01.ufhost.com (Postfix) with ESMTP id 2138B24E1D3;
-        Thu,  9 Mar 2023 16:13:47 +0800 (CST)
-Received: from EXMBX061.cuchost.com (172.16.6.61) by EXMBX165.cuchost.com
- (172.16.6.75) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Thu, 9 Mar
- 2023 16:13:47 +0800
-Received: from [192.168.125.128] (183.27.96.115) by EXMBX061.cuchost.com
- (172.16.6.61) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Thu, 9 Mar
- 2023 16:13:45 +0800
-Message-ID: <783fe50c-1649-b1c4-06cd-ac81bcad5117@starfivetech.com>
-Date:   Thu, 9 Mar 2023 16:13:46 +0800
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-Subject: Re: [PATCH v4 1/3] dt-bindings: watchdog: Add watchdog for StarFive
- JH7100 and JH7110
-Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        <linux-riscv@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-watchdog@vger.kernel.org>,
-        Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Guenter Roeck <linux@roeck-us.net>,
+        with ESMTP id S229914AbjCIIUb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Mar 2023 03:20:31 -0500
+Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 003D5E842B;
+        Thu,  9 Mar 2023 00:16:52 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1678349813; x=1709885813;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=o2rhiM4rdYbnFdFUIMb47/y94qMgtRImYwSoikHwQEM=;
+  b=iw3Fh7WECtk+u3EP72qD0EMrblSC75k2Z0iAuBgLL/nVKFHhja6n6aoE
+   eMB1aW2KgEIsAwF/oIF59jr8cSsfeH3bON5wKBWZrrNs8QEIOzMCb8V3O
+   pCpOpZdZK6plvZ5l5knslGbg7WsNbwh2xCfe3/GGPCL+aaS23UhM/3ED6
+   89mYZ9Irt1v9++NYuy5NdhOk+GGexX4v5P7MZME1KfFq0qFkoaFgfjSFN
+   FyRlQRq/ofxAlSosjLP2K/ClU7GIV4pLeE2t9ps50GiF7s1RUIPFidS/M
+   L2Ar0ie5jS4XXQoD98hTDZcm9p/VnXn5IuI/UkP2UUT1E2cv7xTQdQ6mk
+   g==;
+X-IronPort-AV: E=Sophos;i="5.98,245,1673910000"; 
+   d="scan'208";a="29567374"
+Received: from unknown (HELO tq-pgp-pr1.tq-net.de) ([192.168.6.15])
+  by mx1-pgp.tq-group.com with ESMTP; 09 Mar 2023 09:16:51 +0100
+Received: from mx1.tq-group.com ([192.168.6.7])
+  by tq-pgp-pr1.tq-net.de (PGP Universal service);
+  Thu, 09 Mar 2023 09:16:51 +0100
+X-PGP-Universal: processed;
+        by tq-pgp-pr1.tq-net.de on Thu, 09 Mar 2023 09:16:51 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1678349811; x=1709885811;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=o2rhiM4rdYbnFdFUIMb47/y94qMgtRImYwSoikHwQEM=;
+  b=EW7xECHu4etDpVRaw4Xd+jevfMbu306WiV282aRIzAsHwY8rPzS8pMxP
+   qll9+OOV1F9FV5spZ113Mf47PpqVMH6s/ZiCOLznZzVVRPCMzaV94Sy+P
+   GqePI91tPmKD9+rrKxL0p+uQkePndpHBng3RiKtxxJaCH+3yv6X5ySive
+   y7LgYcfBpmTEnAik5tRhGlj11HIeOi8kguwLh1F8MddNqmJvDLvCVW5A2
+   A6TtmR5vVypqv5dbiHJTpS2bUprpj4y/VvBfmhVkTq3mV2PNuDh0VoV8F
+   3wxV3rsHyBYL7ulRWgidwBmZhX1S9LeOHFABKV2zQiae8162UyNmqza6s
+   Q==;
+X-IronPort-AV: E=Sophos;i="5.98,245,1673910000"; 
+   d="scan'208";a="29567372"
+Received: from vtuxmail01.tq-net.de ([10.115.0.20])
+  by mx1.tq-group.com with ESMTP; 09 Mar 2023 09:16:51 +0100
+Received: from steina-w.localnet (unknown [10.123.53.21])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+        (No client certificate requested)
+        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id BF2FB280056;
+        Thu,  9 Mar 2023 09:16:50 +0100 (CET)
+From:   Alexander Stein <alexander.stein@ew.tq-group.com>
+To:     linux-media@vger.kernel.org,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc:     Dave Stevenson <dave.stevenson@raspberrypi.com>,
+        Manivannan Sadhasivam <mani@kernel.org>,
+        Sakari Ailus <sakari.ailus@iki.fi>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Emil Renner Berthing <kernel@esmil.dk>,
-        Conor Dooley <conor@kernel.org>
-CC:     Rob Herring <robh+dt@kernel.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Samin Guo <samin.guo@starfivetech.com>,
-        <linux-kernel@vger.kernel.org>
-References: <20230308034036.99213-1-xingyu.wu@starfivetech.com>
- <20230308034036.99213-2-xingyu.wu@starfivetech.com>
- <94ba1427-21ea-86ee-d60d-7817f8e673fa@linaro.org>
-From:   Xingyu Wu <xingyu.wu@starfivetech.com>
-In-Reply-To: <94ba1427-21ea-86ee-d60d-7817f8e673fa@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [183.27.96.115]
-X-ClientProxiedBy: EXCAS064.cuchost.com (172.16.6.24) To EXMBX061.cuchost.com
- (172.16.6.61)
-X-YovoleRuleAgent: yovoleflag
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH v3 00/15] media: i2c: imx290: Mono support, minor fixes, alternate INCK, and more controls
+Date:   Thu, 09 Mar 2023 09:16:47 +0100
+Message-ID: <5017997.GXAFRqVoOG@steina-w>
+Organization: TQ-Systems GmbH
+In-Reply-To: <20230215223003.30170-1-laurent.pinchart@ideasonboard.com>
+References: <20230215223003.30170-1-laurent.pinchart@ideasonboard.com>
+MIME-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="iso-8859-1"
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2023/3/9 15:30, Krzysztof Kozlowski wrote:
-> On 08/03/2023 04:40, Xingyu Wu wrote:
->> Add bindings to describe the watchdog for the StarFive JH7100/JH7110 SoC.
->> And Use JH7100 as first StarFive SoC with watchdog.
->> 
->> Signed-off-by: Xingyu Wu <xingyu.wu@starfivetech.com>
->> ---
-> 
-> What happened here? You wrote in changelog "Modified" but what exactly?
-> How am I supposed to find it?
-> 
-> Provide detailed description, since you decided to remove my tag.
-> Otherwise, standard response:
-> 
-> This is a friendly reminder during the review process.
-> 
-> It looks like you received a tag and forgot to add it.
-> 
-> If you do not know the process, here is a short explanation:
-> Please add Acked-by/Reviewed-by/Tested-by tags when posting new
-> versions. However, there's no need to repost patches *only* to add the
-> tags. The upstream maintainer will do that for acks received on the
-> version they apply.
-> 
-> https://elixir.bootlin.com/linux/v5.17/source/Documentation/process/submitting-patches.rst#L540
-> 
-> If a tag was not added on purpose, please state why and what changed.
-> 
+Hi everyone,
 
-I am sorry I did not elaborate it. The dt-bindings was only supported JH7110 watchdog in v3 patchset
-and you had sent Reviewed-by tags. But at the same time tried to add JH7100 watchdog after discussion
-and used JH7100 as the dt-binding's name because JH7100 is the first StarFive SoCs about watchdog.
-The compatible also add 'starfive,jh7100-wdt' in the dt-binding. It is different from the v3 patch and
-I did not add the Reviewed-by tag.
+Am Mittwoch, 15. Februar 2023, 23:29:48 CET schrieb Laurent Pinchart:
+> Hello,
+>=20
+> This patch series combines the "[PATCH v2 0/2] Add support for mono
+> version of Sony IMX290 sensor" ([1]) and "[PATCH v2 00/13] imx290: Minor
+> fixes, support for alternate INCK, and more ctrls" ([2]) previously
+> submitted by Dave into a single series.
+>=20
+> As promised in my review of v2 of both series, I have tested the changes
+> with my IMX327 camera sensor, connected to the i.MX8MP ISP, with
+> libcamera. I haven't noticed any regression (but, full disclaimer, I
+> haven't tested all the newly features). I think we're thus good to go.
+
+What is the status of this series? Will it be picked up?
 
 Best regards,
-Xingyu Wu
+Alexander
+
+>=20
+> This version handles all review comments from v2, resulting in the
+> following changes:
+>=20
+> - Deprecate the sony,imx290 compatible
+> - Update the DT example to use the new sony,imx290lqr compatible
+> - Drop unneeded pointer cast
+> - Don't move imx290_of_match table
+> - Fix typos
+>=20
+> The code has also been rebased on top of the latest media master branch,
+> with rebase conflicts and rebase-induced compilation breakages fixed.
+>=20
+> The patches are available from
+>=20
+> git://git.kernel.org/pub/scm/linux/kernel/git/pinchartl/linux.git
+> next/media/sensors/imx290
+>=20
+> [1]
+> https://lore.kernel.org/linux-media/20230203191644.947643-1-dave.stevenso=
+n@
+> raspberrypi.com [2]
+> https://lore.kernel.org/linux-media/20230203191811.947697-1-dave.stevenso=
+n@
+> raspberrypi.com
+>=20
+> Dave Stevenson (15):
+>   media: dt-bindings: media: i2c: Add mono version to IMX290 bindings
+>   media: i2c: imx290: Add support for the mono sensor variant
+>   media: i2c: imx290: Match kernel coding style on whitespace
+>   media: i2c: imx290: Set the colorspace fields in the format
+>   media: i2c: imx290: Add V4L2_SUBDEV_FL_HAS_EVENTS and subscribe hooks
+>   media: i2c: imx290: Fix the pixel rate at 148.5Mpix/s
+>   media: i2c: imx290: Support 60fps in 2 lane operation
+>   media: i2c: imx290: Use CSI timings as per datasheet
+>   media: i2c: imx290: Convert V4L2_CID_HBLANK to read/write
+>   media: i2c: imx290: Convert V4L2_CID_VBLANK to read/write
+>   media: i2c: imx290: VMAX is mode dependent
+>   media: i2c: imx290: Remove duplicated write to IMX290_CTRL_07
+>   media: i2c: imx290: Add support for 74.25MHz external clock
+>   media: i2c: imx290: Add support for H & V Flips
+>   media: i2c: imx290: Add the error code to logs in start_streaming
+>=20
+>  .../bindings/media/i2c/sony,imx290.yaml       |  24 +-
+>  drivers/media/i2c/imx290.c                    | 537 ++++++++++++++----
+>  2 files changed, 442 insertions(+), 119 deletions(-)
+>=20
+>=20
+> base-commit: 83e0f265aa8d0e37cc8e15d318b64da0ec03ff41
+
+
+=2D-=20
+TQ-Systems GmbH | M=FChlstra=DFe 2, Gut Delling | 82229 Seefeld, Germany
+Amtsgericht M=FCnchen, HRB 105018
+Gesch=E4ftsf=FChrer: Detlef Schneider, R=FCdiger Stahl, Stefan Schneider
+http://www.tq-group.com/
+
 
