@@ -2,81 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1A8926B1944
-	for <lists+devicetree@lfdr.de>; Thu,  9 Mar 2023 03:40:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8CE5C6B1997
+	for <lists+devicetree@lfdr.de>; Thu,  9 Mar 2023 03:52:22 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229747AbjCICkO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Mar 2023 21:40:14 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40536 "EHLO
+        id S229603AbjCICwU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Mar 2023 21:52:20 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57340 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229623AbjCICkL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Mar 2023 21:40:11 -0500
-Received: from smtp1.axis.com (smtp1.axis.com [195.60.68.17])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8FBA06189A;
-        Wed,  8 Mar 2023 18:40:09 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=axis.com; q=dns/txt; s=axis-central1; t=1678329610;
-  x=1709865610;
-  h=from:to:cc:subject:date:message-id:mime-version:
-   content-transfer-encoding;
-  bh=/pduviUxdUwppzlaYefZ3H3U2LUt8NqAXlb8XAKtnSM=;
-  b=oIs1gv6tv/vOeJlJmcP1h2lxfWfKv22DuHi+KgvJqGgYp+DoR9eqNMXM
-   AhqQQUKNFPsrIJMmGnk4yguur1J4DjkfWo3lFLlBRDwFqCekmQhtJ7r+K
-   orrmFM9aBZgk62uBuI9hD65bM78BNXEwZF9widY2iiiUKzonDGLpm5Wx9
-   uT6EgVY1uN+R5q8YlSkeN5LDWmSxf07rBvawxQTnNokOT+dXhgzPwyWhi
-   6OZY/qTletCiFuIjt7RNN48ekjYlggIR3qNsbTnhyFHDftgBAXst6OiqR
-   bfhXNnxDuQpStkf16K+hvXSA0Z2tdbgg3duJw4VFNoOyeBk/HqqOhQ+Kw
-   g==;
-From:   Hermes Zhang <chenhuiz@axis.com>
-To:     Sebastian Reichel <sre@kernel.org>,
+        with ESMTP id S229523AbjCICwT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Mar 2023 21:52:19 -0500
+Received: from fd01.gateway.ufhost.com (fd01.gateway.ufhost.com [61.152.239.71])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C210753D88;
+        Wed,  8 Mar 2023 18:52:16 -0800 (PST)
+Received: from EXMBX166.cuchost.com (unknown [175.102.18.54])
+        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+        (Client CN "EXMBX166", Issuer "EXMBX166" (not verified))
+        by fd01.gateway.ufhost.com (Postfix) with ESMTP id 8309B24DCBE;
+        Thu,  9 Mar 2023 10:52:15 +0800 (CST)
+Received: from EXMBX073.cuchost.com (172.16.6.83) by EXMBX166.cuchost.com
+ (172.16.6.76) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Thu, 9 Mar
+ 2023 10:52:15 +0800
+Received: from [192.168.1.218] (180.164.60.184) by EXMBX073.cuchost.com
+ (172.16.6.83) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Thu, 9 Mar
+ 2023 10:52:15 +0800
+Message-ID: <868f03bd-7318-a5e8-f338-c234030a9882@starfivetech.com>
+Date:   Thu, 9 Mar 2023 10:52:14 +0800
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.8.0
+Subject: Re: [PATCH v1 04/11] MAINTAINERS: add Starfive Camera subsystem
+ driver
+Content-Language: en-US
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        "Mauro Carvalho Chehab" <mchehab@kernel.org>,
+        Robert Foss <rfoss@kernel.org>,
+        Todor Tomov <todor.too@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andrew Davis <afd@ti.com>
-CC:     <kernel@axis.com>, Hermes Zhang <chenhuiz@axis.com>,
-        <linux-pm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-Subject: [PATCH] dt-bindings: power: supply: bq256xx: Add ts-ignore property
-Date:   Thu, 9 Mar 2023 10:39:26 +0800
-Message-ID: <20230309023926.38682-1-chenhuiz@axis.com>
-X-Mailer: git-send-email 2.30.2
-MIME-Version: 1.0
+        Maxime Ripard <mripard@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>
+CC:     <linux-media@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <changhuang.liang@starfivetech.com>
+References: <20230302091921.43309-1-jack.zhu@starfivetech.com>
+ <20230302091921.43309-5-jack.zhu@starfivetech.com>
+ <c39f8ecf-26e7-3187-2488-d9fb0f64d2fa@linaro.org>
+From:   Jack Zhu <jack.zhu@starfivetech.com>
+In-Reply-To: <c39f8ecf-26e7-3187-2488-d9fb0f64d2fa@linaro.org>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_PASS,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [180.164.60.184]
+X-ClientProxiedBy: EXCAS061.cuchost.com (172.16.6.21) To EXMBX073.cuchost.com
+ (172.16.6.83)
+X-YovoleRuleAgent: yovoleflag
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add a new property: ts-ignore to allow user to enable the TS_IGNORE flag
-in chip. Ignore TS pin will allow user to control the charging
-parameters instead of the default JEITA profile in chip.
 
-Signed-off-by: Hermes Zhang <chenhuiz@axis.com>
----
- Documentation/devicetree/bindings/power/supply/bq256xx.yaml | 6 ++++++
- 1 file changed, 6 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/power/supply/bq256xx.yaml b/Documentation/devicetree/bindings/power/supply/bq256xx.yaml
-index 82f382a7ffb3..74fd48f4bec5 100644
---- a/Documentation/devicetree/bindings/power/supply/bq256xx.yaml
-+++ b/Documentation/devicetree/bindings/power/supply/bq256xx.yaml
-@@ -68,6 +68,12 @@ properties:
-       Interrupt sends an active low, 256 μs pulse to host to report the charger
-       device status and faults.
- 
-+  ts-ignore:
-+    type: boolean
-+    description: |
-+      If this property is set, the TS_IGNORE flag will be set to 1 which means
-+      will not apply JEITA profile during the charging.
-+
- required:
-   - compatible
-   - reg
--- 
-2.30.2
+On 2023/3/3 16:42, Krzysztof Kozlowski wrote:
+> On 02/03/2023 10:19, jack.zhu wrote:
+>> Add an entry for Starfive Camera subsystem driver.
+>> 
+>> Signed-off-by: jack.zhu <jack.zhu@starfivetech.com>
+>> ---
+>>  MAINTAINERS | 9 +++++++++
+>>  1 file changed, 9 insertions(+)
+>> 
+>> diff --git a/MAINTAINERS b/MAINTAINERS
+>> index 8ddef8669efb..a202deb4cb1a 100644
+>> --- a/MAINTAINERS
+>> +++ b/MAINTAINERS
+>> @@ -19906,6 +19906,15 @@ M:	Ion Badulescu <ionut@badula.org>
+>>  S:	Odd Fixes
+>>  F:	drivers/net/ethernet/adaptec/starfire*
+>>  
+>> +STARFIVE CAMERA SUBSYSTEM DRIVER
+>> +M:	Jack Zhu <jack.zhu@starfivetech.com>
+>> +M:	Changhuang Liang <changhuang.liang@starfivetech.com>
+>> +L:	linux-media@vger.kernel.org
+>> +S:	Maintained
+>> +F:	Documentation/admin-guide/media/starfive_camss.rst
+>> +F:	Documentation/devicetree/bindings/media/starfive,jh7110-camss.yaml
+> 
+> Why only one binding, not all of them?
 
+As we communicated in the previous emails, The file starfive,jh7110-mipi-csi2.yaml
+will no longer be used. I will convert cdns,csi2rx.txt to cdns,csi2rx.yaml and add some
+new properties. The "cdns,csi2rx.yaml" will be added in "CADENCE MIPI-CSI2 BRIDGES".
+
+> 
+> Best regards,
+> Krzysztof
+> 
