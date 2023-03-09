@@ -2,131 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3C2186B2FDE
-	for <lists+devicetree@lfdr.de>; Thu,  9 Mar 2023 22:52:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 02D4E6B2FDB
+	for <lists+devicetree@lfdr.de>; Thu,  9 Mar 2023 22:52:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230171AbjCIVwt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Mar 2023 16:52:49 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44506 "EHLO
+        id S230074AbjCIVw0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Mar 2023 16:52:26 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44068 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230028AbjCIVws (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Mar 2023 16:52:48 -0500
-Received: from mail-pg1-x52c.google.com (mail-pg1-x52c.google.com [IPv6:2607:f8b0:4864:20::52c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6082B10287A
-        for <devicetree@vger.kernel.org>; Thu,  9 Mar 2023 13:52:43 -0800 (PST)
-Received: by mail-pg1-x52c.google.com with SMTP id 16so1927273pge.11
-        for <devicetree@vger.kernel.org>; Thu, 09 Mar 2023 13:52:43 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112; t=1678398763;
-        h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
-         :from:from:to:cc:subject:date:message-id:reply-to;
-        bh=7nNOXbc+WHd5NABSbnw3+9ZkEtpuzcZoSp/LFLBByFA=;
-        b=kfiM9MxY8vR15n0P+Q9WMzoNqzsyX/K61E9+p64hTU3fdlTpBiuHXT+QL4MCiMCwsZ
-         /E0QrLsMb4Nut3KwGFTkPx82xRKD0Q6tg521BAsaxSjjgi0jp10LyKT4VcO3Ym5Nfp8j
-         K99lBPkT863bgMXn81mWM52Y3HAXsnbgQXC/cQhkIUADsx8eC8BCkaezk1jyf3KnMbxe
-         5cey5kg6qiEDTnH7o5tkCNFGPtIcoIWnQj/s/71D62MPVHbi+/Yi6G5hwJTKjNnOycuD
-         8thUDBETxoMKd3r5r6WznnZXgw5w/5YPtXbhqUPh2vkm0LV7k6n6vMb+6MRMEVomuEWI
-         oINw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678398763;
-        h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
-         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=7nNOXbc+WHd5NABSbnw3+9ZkEtpuzcZoSp/LFLBByFA=;
-        b=fkJtZ0YHiRDW8LsNml1Ce/ErHhWxx5Gr3t0Rxdt0iwwOSH+EKtxkslpcxapCXRW6WU
-         mahqL7YYcEO9vImp/WpOSGBAivuiDZk5ZOoPUOhlbSWn6O6IiVP9kYaATjJjQG4JKIaa
-         TWYEViVc9KOWMVf0Qrc6mmHIPUA50Ps5Uh/jmFrXBfOjWOvlOAGGTYL8aquRRE0/FxMD
-         LCgEResLKfa9DglhF1z+woaLfaOX/1swgkj27pR2Vtkz6/hE8s0Y+LKAdsS5z2yu4X5m
-         T+zfprg566SmBn2dgGjjtM4hslAdQTGi/i7V4IKrD5ZDbzJhO+L503L3il2EG3oyGkIH
-         bBYA==
-X-Gm-Message-State: AO0yUKUd4QCBuDkzRYXqEAIHPz+cpfOWOCARk52FYMd0afL9OzmR00Bo
-        +78kdmbgCJV2qa6kdICaN4InBA==
-X-Google-Smtp-Source: AK7set8Rgzrxi+ZGmbJxKNg4wUXFIFO8nTaU1MxHwhO6m2S5MjEM74yH44rUOwLH5ZFNysgyUIXqOg==
-X-Received: by 2002:aa7:980c:0:b0:5dc:2064:f7c4 with SMTP id e12-20020aa7980c000000b005dc2064f7c4mr22346879pfl.10.1678398762740;
-        Thu, 09 Mar 2023 13:52:42 -0800 (PST)
-Received: from localhost (63-228-113-140.tukw.qwest.net. [63.228.113.140])
-        by smtp.gmail.com with ESMTPSA id 2-20020aa79142000000b00592543d7363sm69953pfi.1.2023.03.09.13.52.42
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 09 Mar 2023 13:52:42 -0800 (PST)
-From:   Kevin Hilman <khilman@baylibre.com>
-To:     Dmitry Rokosov <ddrokosov@sberdevices.ru>,
-        Arnd Bergmann <arnd@arndb.de>
-Cc:     Neil Armstrong <neil.armstrong@linaro.org>,
-        Alexey Romanov <avromanov@sberdevices.ru>,
-        Rob Herring <robh+dt@kernel.org>,
-        krzysztof.kozlowski+dt@linaro.org, jbrunet@baylibre.com,
-        martin.blumenstingl@googlemail.com,
-        Linus Walleij <linus.walleij@linaro.org>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
-        kernel@sberdevices.ru
-Subject: Re: [PATCH v1 0/3] Meson A1 32-bit support
-In-Reply-To: <20230228084952.mgx3d3nw65yo5ebu@CAB-WSD-L081021>
-References: <20230222115020.55867-1-avromanov@sberdevices.ru>
- <8e5f9bfa-d612-cd43-d722-d04c40938c62@linaro.org>
- <20230227142809.kujmrraf3pcdhqyn@CAB-WSD-L081021>
- <f3e42012-609c-4085-b4f4-bd32bfc34aff@app.fastmail.com>
- <20230227155100.hhl4yvkyfqfyoa6h@CAB-WSD-L081021>
- <a5fa8b23-4ec8-475f-be5e-538b53d6f82d@app.fastmail.com>
- <33b58877-5167-c453-e686-1d10cdca66c0@linaro.org>
- <20230227165049.4y7jx5nnnlibe6kg@CAB-WSD-L081021>
- <7d29f3fd-b8c8-4687-b6a0-b8956dd39f0b@app.fastmail.com>
- <20230228084952.mgx3d3nw65yo5ebu@CAB-WSD-L081021>
-Date:   Thu, 09 Mar 2023 13:52:41 -0800
-Message-ID: <7hedpxwq1i.fsf@baylibre.com>
+        with ESMTP id S230004AbjCIVwZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Mar 2023 16:52:25 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 093C2FAFBF;
+        Thu,  9 Mar 2023 13:52:25 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id A124D61D0B;
+        Thu,  9 Mar 2023 21:52:24 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4A9D3C433EF;
+        Thu,  9 Mar 2023 21:52:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1678398744;
+        bh=s627jAj2kVljutcqH7pExotsSn1sgfGVSZniU6lArww=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=Rm3leIH4JH5N5Fa1BTwtxFY4sqjOVKGMsQI4ok8wJxLqTCVvYRgBEmDkS20Ui2K8O
+         7ZXsqZT4YhrsVESCvlaJtzwSe++0GOKE3U/OUwB715wsw3rBnxuZcNPjWWtGjIES92
+         oMj/FyBNOOw72EHFdeNii1E+HSLXXPiAaA8HSCHfiD6wDHKNEcrkmmU4WELPSry8S7
+         xzGoUXEWeZ5V7BFYgQdInAWxXDyopcIGZcXI+F2V0EZD6L5I06MUHS6ckLYBJpjS5W
+         sYI79JOj07RYW5DOs2YFkckO+t/XTKTueMWkZgRxNYo2NFdJZejiRNsEoySXEfxAMe
+         iSntFtpop5X0Q==
+Date:   Thu, 9 Mar 2023 13:55:53 -0800
+From:   Bjorn Andersson <andersson@kernel.org>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Brian Masney <bmasney@redhat.com>
+Cc:     quic_shazhuss@quicinc.com, agross@kernel.org,
+        konrad.dybcio@linaro.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] arm64: dts: qcom: sa8540p-ride: correct name of
+ remoteproc_nsp0 firmware
+Message-ID: <20230309215553.pe523cmw6nc4pmnw@ripper>
+References: <20230307232340.2370476-1-bmasney@redhat.com>
+ <1a915c33-ef32-852c-a856-10c8d35be151@linaro.org>
+ <ZAh6O9TbX/pnOnxp@x1>
+ <8f7bddf8-84de-27b5-26a3-d80b2e2f0097@linaro.org>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <8f7bddf8-84de-27b5-26a3-d80b2e2f0097@linaro.org>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Dmitry Rokosov <ddrokosov@sberdevices.ru> writes:
+On Wed, Mar 08, 2023 at 01:36:52PM +0100, Krzysztof Kozlowski wrote:
+> On 08/03/2023 13:06, Brian Masney wrote:
+> > On Wed, Mar 08, 2023 at 12:02:04PM +0100, Krzysztof Kozlowski wrote:
+> >> On 08/03/2023 00:23, Brian Masney wrote:
+> >>> The cdsp.mbn firmware that's referenced in sa8540p-ride.dts is actually
+> >>> named cdsp0.mbn in the deliverables from Qualcomm. Let's go ahead and
+> >>> correct the name to match what's in Qualcomm's deliverable.
+> >>
+> >> I don't think vendor deliverables matter. linux-firmware is here more
+> >> important. The file will be cdsp.mbn in the firmware, won't it?
+> > 
+> > cdsp0.mbn and cdsp1.mbn for the sa8540p are not in linux-firmware and I
+> > far as I know there's no plan for someone to submit those since QC would
+> > need to approve that. I can ask though since the DTS for these two bits
+> > has been submitted upstream.
+> 
+> If they are never going to be submitted, vendor is allowed to rename
+> them all the time in their "deliverables". Are you going to rename the
+> file every time Qualcomm decides to rename them? There is no single
+> guarantee the names would be fixed, because vendor is allowed to do
+> absolutely anything.
+> 
 
-> On Mon, Feb 27, 2023 at 07:19:38PM +0100, Arnd Bergmann wrote:
->> On Mon, Feb 27, 2023, at 17:50, Dmitry Rokosov wrote:
->> > On Mon, Feb 27, 2023 at 05:38:49PM +0100, Neil Armstrong wrote:
->> >> On 27/02/2023 17:15, Arnd Bergmann wrote:
->> >> > On Mon, Feb 27, 2023, at 16:51, Dmitry Rokosov wrote:
->> >> > 
->> >> > Most of these don't apply in userspace, so the incentive to
->> >> > run smaller 32-bit userland on systems with less than 1GB of
->> >> > RAM usually outweighs the benefits of 64-bit userspace.
->> >> 
->> >> Thanks for the details!
->> >
->> > Looks like Thomas has already prepared a basic patch series for buildroot,
->> > but maintainers declined it.
->> >
->> > https://lore.kernel.org/all/20220730194331.GA2515056@scaer/
->> 
->> I see. I know very little about buildroot, but it sounds like
->> there are other ways of doing the same thing here. In general,
->> this is pretty much an Arm specific problem. While you clearly
->> want compat mode for small userland on any architecture but don't
->> want 32-bit kernels, arm is the only one that has a different
->> kernel "ARCH=" value and needs a separate gcc toolchain.
->> 
->> If the problem is only the toolchain, an easy way out may
->> be to use clang instead of gcc as your compiler, as a single
->> clang binary can target both 32-bit userland and 64-bit kernel
->> on all supported architectures.
->
-> Agreed with you. We will try different local approaches to support
-> compat build configurations. For now, prebuilt toolchain (buildroot make
-> sdk goal) is best way from my point of view. Anyway, we will try to
-> solve this problem in the our sandbox and stay on the 64-bit kernel.
-> Thank you for all the helpful details you shared, appreciate it!
+cdsp0.mbn and cdsp1.mbn are better names, so let's use this patch to
+define that if/when they are pushed to linux-firmware it should follow
+this scheme.
 
-Just to clarify one thing...
+> Sorry, but any argument in upstream DTS that "someone downstream does
+> something" is deemed to fail in many cases.
+> 
 
-More specifically, this is a buildroot *build system* problem.  If you
-build the kernel separately from the rootfs, it works fine. 
+That is indeed an insufficient argument, in many cases.
 
-I use 32-bit buildroot (and debian) rootfs images all the time on
-Amlogic SoCs with 64-bit kernels and it works fine.  
+Regards,
+Bjorn
 
-Kevin
