@@ -2,168 +2,136 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 497296B2348
-	for <lists+devicetree@lfdr.de>; Thu,  9 Mar 2023 12:43:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 502236B234A
+	for <lists+devicetree@lfdr.de>; Thu,  9 Mar 2023 12:44:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231582AbjCILnO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Mar 2023 06:43:14 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36592 "EHLO
+        id S231594AbjCILoS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Mar 2023 06:44:18 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40044 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230410AbjCILnL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Mar 2023 06:43:11 -0500
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4A51E6EA5;
-        Thu,  9 Mar 2023 03:43:08 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1678362189; x=1709898189;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:content-transfer-encoding:in-reply-to;
-  bh=b/oBEpfZ9XKj+QCOecEu0y65XAl4jjpYX5Arz4zunf0=;
-  b=DxgIU3yNMCjXccg4LBkVWjkjMgLVamH8wNL/QDJhzSa/UBJ30NmAIMsO
-   fKe4F/f4ej1RHpDXZe1WIyhzVlOsWzClZtA910phyWfId67jubk613PRK
-   S7ysoo+ovk7PEqkqICoJVEWTuDenc6uRm3aJeT6nxtFMIFw1cT9XFsk0e
-   gRXMtgbIeaXlTYH5vOG6iWwVtHBIn9IWsSJWXtPkTbtbwRL5IQskp+YkR
-   y2l8ZldItQzvlYl4Dh8YcTj9mcesgrqlpX6+MYj1XYwYXj+Q4ZdhPAjFB
-   U9FS24WvCc8sJxVDlSP0obabmXxMMNBLhPzwHtoirkJst11pi5IbKFzCS
-   w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10643"; a="335126778"
-X-IronPort-AV: E=Sophos;i="5.98,246,1673942400"; 
-   d="scan'208";a="335126778"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
-  by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 09 Mar 2023 03:43:08 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10643"; a="654722466"
-X-IronPort-AV: E=Sophos;i="5.98,246,1673942400"; 
-   d="scan'208";a="654722466"
-Received: from smile.fi.intel.com ([10.237.72.54])
-  by orsmga006.jf.intel.com with ESMTP; 09 Mar 2023 03:43:04 -0800
-Received: from andy by smile.fi.intel.com with local (Exim 4.96)
-        (envelope-from <andriy.shevchenko@linux.intel.com>)
-        id 1paEfm-000IOe-2u;
-        Thu, 09 Mar 2023 13:43:02 +0200
-Date:   Thu, 9 Mar 2023 13:43:02 +0200
-From:   Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To:     Daniel Kaehn <kaehndan@gmail.com>
-Cc:     Benjamin Tissoires <benjamin.tissoires@redhat.com>,
-        Hans de Goede <hdegoede@redhat.com>, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, jikos@kernel.org,
-        bartosz.golaszewski@linaro.org, dmitry.torokhov@gmail.com,
-        devicetree@vger.kernel.org, linux-input@vger.kernel.org,
-        ethan.twardy@plexus.com
-Subject: Re: [PATCH v8 3/3] HID: cp2112: Fwnode Support
-Message-ID: <ZAnGRtIhLZTrpDy7@smile.fi.intel.com>
-References: <20230307131706.olnb4qzo4ynu7gce@mail.corp.redhat.com>
- <CAP+ZCCcbXqPOY5Xzq9v8JNSzH9+xOqgfkTezJdLQY=vwQco4vQ@mail.gmail.com>
- <20230307144852.ueyaotkeeqfjlgk7@mail.corp.redhat.com>
- <ZAeADcJWmJR+1ycJ@smile.fi.intel.com>
- <20230308152611.tae2pnmflakrcyhh@mail.corp.redhat.com>
- <CAP+ZCCcntCn4yaVKtTxDuDRvPgLXfP1kC7mYe2qKuhSGzVZMog@mail.gmail.com>
- <20230308155527.jnrsowubvnk22ica@mail.corp.redhat.com>
- <ZAi4NjqXTbLpVhPo@smile.fi.intel.com>
- <ZAi5esmc158Bd2oL@smile.fi.intel.com>
- <CAP+ZCCdziub809WKJ8-tAhYvg+axsiuXrvrZczj_x2K0bGzd7w@mail.gmail.com>
+        with ESMTP id S231518AbjCILoR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Mar 2023 06:44:17 -0500
+Received: from mail-wm1-x336.google.com (mail-wm1-x336.google.com [IPv6:2a00:1450:4864:20::336])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E99056A044
+        for <devicetree@vger.kernel.org>; Thu,  9 Mar 2023 03:44:15 -0800 (PST)
+Received: by mail-wm1-x336.google.com with SMTP id t25-20020a1c7719000000b003eb052cc5ccso3362093wmi.4
+        for <devicetree@vger.kernel.org>; Thu, 09 Mar 2023 03:44:15 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1678362254;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=8cB9x4ZljJMjizQbiracn+TG6QtgEI/5W2g7XyKO1No=;
+        b=VHotFGHdkdCyfKGH2Ph5IP6gbmV+M84RQQgtVA0fgpSqci2ku1YxobhBlPanByZ1uv
+         ZZfqaFOK0uqLqwP2tGMwG69Cvv7s73cHJkTT9CWiWuOYj47pFoNL+odWRPuxzRzKTkBn
+         OtQrXgPTvV0rDc8dBX/z4ZkYFhLM/o8lQXhkcw88yS1RPqIoq6KrhDFQCJIftKhY/o3E
+         m/v9mrQAjVOQ3izdrVocyB8LHhmsNsI4v1K84LkR7oXx8JCivvVNy1xCJmYgKdtXrjcf
+         bZM/5FiTjrn6IbWWuZ5Ek64SxRBSYomg4XNVT8lvoBHgjwN5tlmGI7KnyU/rd4WspuT9
+         vlHA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1678362254;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=8cB9x4ZljJMjizQbiracn+TG6QtgEI/5W2g7XyKO1No=;
+        b=M0HpY/IRCmMAVjYcg0Q3pqtyMHPzv1jfCDYfdDFRIwNCIIPlbz33ztojNcSnLraBh8
+         tI1fZ6lP3EIe26Zp9yhxWbK4NU3xsCY6meovWr3kgRzjca1JR4fmoKwPvfCQIRM1vKjk
+         F53TSAP4OqAlKFup8kiGr4vNZdByZBiSyztPgQm1Epu/ile/fHETskC9d13KZu3eujQ+
+         DoEbyGMeBkSSZD5VkcG5tGuSNqjd4foFwVGOTNPYIybTdg5eJIiyUrQW+m34J07NTvAH
+         qxm7d17bkFgb1Y7zQooiWoDCkci9zNRHDv0esQPPaUpjS1K0Poc9+lAtqjsMtPZDgd6B
+         mvcw==
+X-Gm-Message-State: AO0yUKWOFV99jffzIeM9aLp9Ki0ltq7pHO4owT624/DcRjdMuhfx4Hqn
+        QOzhamJuSoq/zX21MJSXDh5+Rw==
+X-Google-Smtp-Source: AK7set8pbUjmh2HDihqNwWBHGvWjbLhc97YyUsAX8/OodjtKkjrmc6aZaZWKSsvaHznNhHhi3VhD0w==
+X-Received: by 2002:a05:600c:3b97:b0:3dc:557f:6129 with SMTP id n23-20020a05600c3b9700b003dc557f6129mr19178271wms.2.1678362254451;
+        Thu, 09 Mar 2023 03:44:14 -0800 (PST)
+Received: from [192.168.1.195] ([5.133.47.210])
+        by smtp.googlemail.com with ESMTPSA id m5-20020a5d56c5000000b002be505ab59asm17517012wrw.97.2023.03.09.03.44.13
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 09 Mar 2023 03:44:13 -0800 (PST)
+Message-ID: <fb6d7c76-d3d3-b8a0-46f9-dc2eb76ae91a@linaro.org>
+Date:   Thu, 9 Mar 2023 11:44:10 +0000
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.1
+Subject: Re: [PATCH 2/4] nvmem: core: allow nvmem_cell_post_process_t
+ callbacks to adjust buffer
+Content-Language: en-US
+To:     Miquel Raynal <miquel.raynal@bootlin.com>
+Cc:     =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Michael Walle <michael@walle.cc>, gregkh@linuxfoundation.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, u-boot@lists.denx.de,
+        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
+References: <20230222172245.6313-1-zajec5@gmail.com>
+ <20230222172245.6313-3-zajec5@gmail.com>
+ <37f821b8-f681-08e4-d4f1-d37be191ff7f@linaro.org>
+ <20230309113211.6321ce3d@xps-13>
+ <2dc096f5-f5ce-f99b-42ac-0fb24682239a@linaro.org>
+ <20230309122324.4b012a58@xps-13>
+From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+In-Reply-To: <20230309122324.4b012a58@xps-13>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAP+ZCCdziub809WKJ8-tAhYvg+axsiuXrvrZczj_x2K0bGzd7w@mail.gmail.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Mar 08, 2023 at 12:32:07PM -0600, Daniel Kaehn wrote:
-> On Wed, Mar 8, 2023 at 10:36 AM Andy Shevchenko
-> <andriy.shevchenko@linux.intel.com> wrote:
-> > On Wed, Mar 08, 2023 at 06:30:46PM +0200, Andy Shevchenko wrote:
-> > > On Wed, Mar 08, 2023 at 04:55:27PM +0100, Benjamin Tissoires wrote:
-> > > > On Mar 08 2023, Daniel Kaehn wrote:
-> > > > > On Wed, Mar 8, 2023 at 9:26 AM Benjamin Tissoires
-> > > > > <benjamin.tissoires@redhat.com> wrote:
 
-...
 
-> > > >                     ToUUID("daffd814-6eba-4d8c-8a91-bc9bbf4aa301"),
-> > > >                     Package () {
-> > > >                             Package () { "cell-names", Package () { "i2c", "gpio" }
-> > > >                     }
-> > >
-> > > Yeah, looking at this, I think it still fragile. First of all, either this is
-> > > missing, or simply wrong. We would need to access indices. ACPI _ADR is in the
-> > > specification. As much as with PCI it may be considered reliable.
-> > >
-> > > So, that said, forget about it, and simply use _ADR as indicator of the node.
-> > > See how MFD (in the Linux kernel) cares about this. Ex. Diolan DLN-2 driver.
-> >
-> > And that said, maybe CP2112 should simply re-use what MFD _already_ provides?
+On 09/03/2023 11:23, Miquel Raynal wrote:
+> Hi Srinivas,
 > 
-> Great point -- it definitely seems like this driver belongs in the mfd
-> directory to begin with.
-
-It can be iteratively converted later on.
-
-> It seems like aside from rewriting the CP2112 driver into an mfd
-> driver and two platform drivers,
-> my route forward for now would be to just do something like this (not
-> yet tested):
+> srinivas.kandagatla@linaro.org wrote on Thu, 9 Mar 2023 10:53:07 +0000:
 > 
-> + struct acpi_device *adev = ACPI_COMPANION(&hdev->dev);
-> + if (adev)
-> +    ACPI_COMPANION_SET(&dev->adap.dev, acpi_find_child_device(adev,
-> 0x0, false));
-
-ACPI_COMPANION_SET() is something different to simple device_set_node().
-I would expect that in this driver we simply use the child fwnode as is.
-But since you are not using so called secondary fwnode, I believe it's
-fine for now.
-
-> + else
-> +     device_set_node(&dev->adap.dev,
-> device_get_named_child_node(&hdev->dev, "i2c"));
+>> On 09/03/2023 10:32, Miquel Raynal wrote:
+>>> Hi Srinivas,
+>>>
+>>> srinivas.kandagatla@linaro.org wrote on Thu, 9 Mar 2023 10:12:24 +0000:
+>>>    
+>>>> On 22/02/2023 17:22, Rafał Miłecki wrote:
+>>>>> @@ -1791,11 +1792,15 @@ ssize_t nvmem_device_cell_read(struct nvmem_device *nvmem,
+>>>>>     	if (!nvmem)
+>>>>>     		return -EINVAL;
+>>>>>     > +	/* Cells with read_post_process hook may realloc buffer we can't allow here */
+>>>>> +	if (info->read_post_process)
+>>>>> +		return -EINVAL;
+>>>> This should probably go in 1/4 patch. Other than that series looks good to me.
+>>>
+>>> FYI patch 1/4 is also carried by the nvmem-layouts series, so it's
+>>> probably best to keep these 2 patches separated to simplify the merging.
+>> that is intermediate thing, but Ideally this change belongs to 1/4 patch, so once I apply these patches then we can always rebase layout series on top of nvmem-next
 > 
-> (and the same for the gpiochip)
+> Well, I still don't see the need for this patch because we have no use
+> for it *after* the introduction of layouts. Yes in some cases changing
+> the size of a cell might maybe be needed, but right now the use case is
+> to provide a MAC address, we know beforehand the size of the cell, so
+> there is no need, currently, for this hack.
 > 
-> The follow-up question -- does there exist something analogous to DT
-> bindings for ACPI devices,
-> other than the ACPI spec itself, where this should be documented? Or
-> will consumers truly have to
-> read the driver code to determine that _ADR 0 is I2C and _ADR 1 is
-> GPIO? (I haven't seen anything
-> in my search so far -- but knowing that it truly doesn't exist would
-> make me respect people developing
-> embedded ACPI-based systems all the more!)
+Am confused, should I ignore this series ?
 
-See how the acpi_get_local_address() is used in the 3 users of it.
+> Whatever. If you want it, just merge it. But *please*, I would like
 
-Ideally we need a new callback in the fwnode ops to return either
-(least) 32-bit of _ADR or "reg" property.
+:-)
 
-Dunno, if "reg" is actually what suits here.
+> to see these layouts in, so what's the plan?
 
-That said, I would do something like (pseudo-code)
-
-device_for_each_child_node() {
-	if (name == $NAME)
-		$NAME->fwnode = child;
-	else if (_ADR = $INDEX)
-		$NAME->fwnode = child;
-}
+Am on it, you sent v3 just 24hrs ago :-)
 
 
-> Thanks for your patience in working through all of this, especially
-> considering how long of an email
-> chain this has become!
-
-You're welcome!
-
--- 
-With Best Regards,
-Andy Shevchenko
-
-
+--srini
+> 
+> Thanks,
+> Miquèl
