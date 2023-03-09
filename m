@@ -2,154 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0163C6B2081
-	for <lists+devicetree@lfdr.de>; Thu,  9 Mar 2023 10:45:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C8D3E6B208E
+	for <lists+devicetree@lfdr.de>; Thu,  9 Mar 2023 10:48:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230309AbjCIJp1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Mar 2023 04:45:27 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33884 "EHLO
+        id S230096AbjCIJsE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Mar 2023 04:48:04 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35114 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231395AbjCIJop (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Mar 2023 04:44:45 -0500
-Received: from mail-ed1-x52f.google.com (mail-ed1-x52f.google.com [IPv6:2a00:1450:4864:20::52f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7A39EE4DB7
-        for <devicetree@vger.kernel.org>; Thu,  9 Mar 2023 01:44:16 -0800 (PST)
-Received: by mail-ed1-x52f.google.com with SMTP id o12so4494046edb.9
-        for <devicetree@vger.kernel.org>; Thu, 09 Mar 2023 01:44:16 -0800 (PST)
+        with ESMTP id S229874AbjCIJrr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Mar 2023 04:47:47 -0500
+Received: from mail-lj1-x22a.google.com (mail-lj1-x22a.google.com [IPv6:2a00:1450:4864:20::22a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1C4B1D1AC0;
+        Thu,  9 Mar 2023 01:47:38 -0800 (PST)
+Received: by mail-lj1-x22a.google.com with SMTP id z5so1190028ljc.8;
+        Thu, 09 Mar 2023 01:47:38 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1678355055;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=90Jk3Si6uTonOJsmd1LEY+OgSQcggQy5RH+0SOt5I8s=;
-        b=dOhfUTM41wZZ96IVAsxvpXoIm+09crL9OwtPpXO2/9C3WgCiOgQZoWbhveayDi1l8i
-         wEe52WGnCGz1MKwEyybqdKHQZ2+B8EM9x9RjxxQmRrtYN8Wh+HWlx9h9JKXMlsrwXs5u
-         FA1npzSSv0YVzkcPFsrp2dtjCguP3lL0J9MFBsvksphVWFybyzIdT7rGGX5yR9D+eVyT
-         dg+tJ9iTLBkhSDYByY37IZ6P8q0+N7SJTiR1y37UgeeUgIbY0nDqbpe+hQP3FB3Jg5Ug
-         vMJTxWeEqi/6ggbuBkha2QJDmG7a4qTy4ZExIR6cQAnQ73CH9voEHo1rAnJmBEZ7leeQ
-         kLAg==
+        d=gmail.com; s=20210112; t=1678355256;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to:subject
+         :user-agent:mime-version:date:message-id:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=iKaZUBNgAYa02ZxPlAJw3n9xoYyo5mcp71gYUX2tL0I=;
+        b=gzrSRgnhVUONxeY3cPePi09cWVIXNe51hrIgFNdXzODMmdFegfkdkE6TCjqEd4eiRg
+         UnbqyeTZenJkJONC4PwLLWSdAEqKOCsPHcC+8joYWwy22Vm01Wqf6kFWrXWv9VHuhM1A
+         iAay2wXvgfglraJFM2YgaBJNo5zLP8oUOUOSAQNlbm9EFVsx2ooMk0n5aNwULnTa7snn
+         UH+1QJ7hrHvITKr9irqfooeUVP6QmpC1hlYKNodBqB7TONeieQrdKXlm8sCrrt+EchvH
+         GTW1IKUw+Al7pIA2HpCa/CPuL1mZ6OEjx5qQzvdwVvPvqbG0VpFDBERIsYbvgILkeBb8
+         mQZA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678355055;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=90Jk3Si6uTonOJsmd1LEY+OgSQcggQy5RH+0SOt5I8s=;
-        b=J0E601wBkBLCCRQ7f5LVPg0NTnCYAOeUk5+s9qF5FVc2aetMGCp8Fds8BTxsLZxYTS
-         FhdpbjUS55wjJ4sLWrz/rkHJTk4xOTgehtmnvTbQhbNFGI+gfwst8vZerBrQNMhQ8rZW
-         7eMoMAK4Gi6dRqOmcbrgcruYTKO3EzFotEDlRwD9dtqMaJ3CwJF7i4JCuYvoIyErzGsw
-         j0ctTnHcJAiIq1NPVxRcnrk/btotTCqrP2l53wNZubdNrBaw/PTod5rS7oSi09iCInce
-         wYwP2HS3GUy24MyiCoFhPJAoAWoPJkhQSZtFKJpbUeN9n+I4t3yKRRlWciLnP270sG0r
-         hbwQ==
-X-Gm-Message-State: AO0yUKUeS2M7yqLZpE39jmv5lY3xgs/pYaMHhHmtPHdiNdDkhLeQ+MPQ
-        VGNxuldTwnPxtfNjPco8X/AYiQ==
-X-Google-Smtp-Source: AK7set/09lealAERy2wlmKs4hx+r/IyEPo7WcB5f+6WlfwAJt2Ph/Ds4GDlHx/FkRyfe1i9oY+Q35w==
-X-Received: by 2002:a17:907:c0c:b0:8af:2cf7:dd2b with SMTP id ga12-20020a1709070c0c00b008af2cf7dd2bmr26863543ejc.13.1678355054869;
-        Thu, 09 Mar 2023 01:44:14 -0800 (PST)
-Received: from ?IPV6:2a02:810d:15c0:828:7ee2:e73e:802e:45c1? ([2a02:810d:15c0:828:7ee2:e73e:802e:45c1])
-        by smtp.gmail.com with ESMTPSA id fw20-20020a170907501400b00914fec9f40esm4206511ejc.71.2023.03.09.01.44.13
+        d=1e100.net; s=20210112; t=1678355256;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to:subject
+         :user-agent:mime-version:date:message-id:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=iKaZUBNgAYa02ZxPlAJw3n9xoYyo5mcp71gYUX2tL0I=;
+        b=1EEt0VT8Iapq+JFIsuWQx3/e1Mgc1ZFEs5IVkEwglIqfna+yHy8mxCUusaUTILwSlD
+         ugdes2yt2vYdArjEskw5VqsSbk0Q2nR7WsWpRP+Oa6Yg/hfHn5WyPEfuhVKckbQjH43U
+         UOhMF3Ek7XrB1I9qr6ZBpWw8L815/AU+YtpvxeCJs0Ol9NveyhaWGOwU6LeMIcInKrDE
+         klBOp2boT0KjMvu6WINLYqcFBxv82Psu4dStKGHBNaUwiAeLLErdrDOJ0FDVeawoPTpL
+         C6e8BeXFu/Q18jRtdfsN1+6roAC8QOQZI8fddzayiKICpKqIl22fL6zBFAILlZSa1oZI
+         ykqA==
+X-Gm-Message-State: AO0yUKV7PYYRj249vysgf1UUN6is5BwhZl/uv3dftQttZsJnqdCxY2Cu
+        3K8+2Rgaky1rz+SWHLUNCtk=
+X-Google-Smtp-Source: AK7set9AS3WC1/pYkzMQbaWKTU2nZk/cwX2/PWrwElKyrnoF2PYhJkw0p3nQ7JAYwiJ5/BUsIPbXsw==
+X-Received: by 2002:a2e:a58b:0:b0:294:7360:7966 with SMTP id m11-20020a2ea58b000000b0029473607966mr9763703ljp.30.1678355256274;
+        Thu, 09 Mar 2023 01:47:36 -0800 (PST)
+Received: from [192.168.26.149] (ip-194-187-74-233.konfederacka.maverick.com.pl. [194.187.74.233])
+        by smtp.googlemail.com with ESMTPSA id w11-20020a05651c102b00b00293526a0c87sm2895414ljm.41.2023.03.09.01.47.35
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 09 Mar 2023 01:44:14 -0800 (PST)
-Message-ID: <bc9e8ccd-9f98-6fae-9491-dc2bd96c2e4f@linaro.org>
-Date:   Thu, 9 Mar 2023 10:44:13 +0100
+        Thu, 09 Mar 2023 01:47:35 -0800 (PST)
+Message-ID: <12dd20c6-da12-b3fb-7723-fefe7bbe5bbc@gmail.com>
+Date:   Thu, 9 Mar 2023 10:47:34 +0100
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-Subject: Re: [PATCH RFC 1/3] dt-bindings: clock: Add Renesas versa3 clock
- generator bindings
-To:     Biju Das <biju.das.jz@bp.renesas.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:96.0) Gecko/20100101
+ Thunderbird/96.0
+Subject: Re: [PATCH] dt-bindings: nvmem: layouts: add fixed-layout
+To:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Geert Uytterhoeven <geert+renesas@glider.be>,
-        "linux-renesas-soc@vger.kernel.org" 
-        <linux-renesas-soc@vger.kernel.org>,
-        "linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        Fabrizio Castro <fabrizio.castro.jz@renesas.com>
-References: <20230220131307.269100-1-biju.das.jz@bp.renesas.com>
- <20230220131307.269100-2-biju.das.jz@bp.renesas.com>
- <e9e63c87-b491-b4d5-b226-0539ef0de2d0@linaro.org>
- <OS0PR01MB59221C8C937EF20347149E4886B49@OS0PR01MB5922.jpnprd01.prod.outlook.com>
- <36e06397-2189-4f1b-99cc-d39e720ebc71@linaro.org>
- <OS0PR01MB5922BDA0632ACCCC0100EEBD86B49@OS0PR01MB5922.jpnprd01.prod.outlook.com>
- <6cbe6c71-2d2d-0f79-1270-7f8ed2ddc1d6@linaro.org>
- <TYCPR01MB5933650D5BAB7A3F4BE03BAF86B59@TYCPR01MB5933.jpnprd01.prod.outlook.com>
- <984f1689-459e-bd26-b96c-6c759417b3d1@linaro.org>
- <TYCPR01MB59335607AE6A2F4FBBA46ACC86B59@TYCPR01MB5933.jpnprd01.prod.outlook.com>
-Content-Language: en-US
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <TYCPR01MB59335607AE6A2F4FBBA46ACC86B59@TYCPR01MB5933.jpnprd01.prod.outlook.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Cc:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Michael Walle <michael@walle.cc>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
+References: <20230309093410.15214-1-zajec5@gmail.com>
+From:   =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
+In-Reply-To: <20230309093410.15214-1-zajec5@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 09/03/2023 10:18, Biju Das wrote:
+On 9.03.2023 10:34, Rafał Miłecki wrote:
+> With the introduction of NVMEM layouts I believe we should prefer and
+> support describing all NVMEM devices content in the "nvmem-layout" node.
+> Inluding fixed NVMEM cells (those with hardcoded offset & size).
 > 
+> This seems to be cleaner design and more explicit.
 > 
->> -----Original Message-----
->> From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->> Sent: Thursday, March 9, 2023 9:14 AM
->> To: Biju Das <biju.das.jz@bp.renesas.com>; Michael Turquette
->> <mturquette@baylibre.com>; Stephen Boyd <sboyd@kernel.org>; Rob Herring
->> <robh+dt@kernel.org>; Krzysztof Kozlowski
->> <krzysztof.kozlowski+dt@linaro.org>
->> Cc: Geert Uytterhoeven <geert+renesas@glider.be>; linux-renesas-
->> soc@vger.kernel.org; linux-clk@vger.kernel.org; devicetree@vger.kernel.org;
->> Fabrizio Castro <fabrizio.castro.jz@renesas.com>
->> Subject: Re: [PATCH RFC 1/3] dt-bindings: clock: Add Renesas versa3 clock
->> generator bindings
->>
->> On 09/03/2023 08:57, Biju Das wrote:
->>>>> It is clk generator HW specific. Clk generator is vital component
->>>>> which provides clocks to the system.
->>>>
->>>> Every clock controller is vital...
->>>>
->>>>> We are providing some hardware feature which is exposed as dt
->>>>> properties.
->>>>>
->>>>> Like clock output is fixed rate clock or dynamic rate clock/
->>>>
->>>> OK, I wait then for proper description which will explain and justify
->> this.
->>>
->>> Here it is, Please let me know is it ok?
->>>
->>> renesas,output-clock-fixed-rate-mode:
->>>     type: boolean
->>>     description:
->>>       In output clock fixed rate mode, the output clock frequency is
->> always
->>>       fixed and the hardware will use the values from the OTP or full
->> register
->>> 	map initialized during boot.
->>>       If not given, the output clock rate is not fixed.
->>>     maxItems: 6
->>
->> boolean is scalar, not array, so no maxItems. If the frequency is taken from
->> OTP or register map, why they cannot also provide information the clock is
->> fixed?
-> 
-> OK, I will make an array property instead. From HW perspective each clock output from the
-> Clock generator is controllable ie, fixed rate or dynamic rate.
-> 
-> If all the output clocks are fixed rate one, then frequency is taken from OTP or
-> register map. But if any one clock output generates dynamic rate, then it uses
-> dynamic settings.
+> Introduce a binding allowing fixed NVMEM cells as a type of layout.
 
-Second try, same question, let me know if it is not clear:
+While this is obvious to me I should make it clear anyway:
 
-"why they cannot also provide information the clock is fixed?"
-
-Best regards,
-Krzysztof
-
+We must not break backward compatibility. Old binding should remain
+supported. We may want to deprecate old binding but we have to support
+existing DT files.
