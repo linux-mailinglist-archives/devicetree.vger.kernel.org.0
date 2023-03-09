@@ -2,74 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E95026B1B5F
-	for <lists+devicetree@lfdr.de>; Thu,  9 Mar 2023 07:24:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 571316B1B68
+	for <lists+devicetree@lfdr.de>; Thu,  9 Mar 2023 07:25:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229592AbjCIGYI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Mar 2023 01:24:08 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47992 "EHLO
+        id S230076AbjCIGZo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Mar 2023 01:25:44 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49388 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230028AbjCIGXv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Mar 2023 01:23:51 -0500
-Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BA1BC61AA1
-        for <devicetree@vger.kernel.org>; Wed,  8 Mar 2023 22:23:30 -0800 (PST)
-Received: by mail-ed1-x531.google.com with SMTP id u9so2900633edd.2
-        for <devicetree@vger.kernel.org>; Wed, 08 Mar 2023 22:23:30 -0800 (PST)
+        with ESMTP id S230142AbjCIGZ0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Mar 2023 01:25:26 -0500
+Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com [IPv6:2a00:1450:4864:20::52b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0797BDC0A7
+        for <devicetree@vger.kernel.org>; Wed,  8 Mar 2023 22:25:12 -0800 (PST)
+Received: by mail-ed1-x52b.google.com with SMTP id o12so2801193edb.9
+        for <devicetree@vger.kernel.org>; Wed, 08 Mar 2023 22:25:11 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1678343008;
+        d=linaro.org; s=google; t=1678343110;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=w/cB2X4DKaCs0XHvpzyjGZGOto29HE+FyDV3PNPULEA=;
-        b=ftnvBkb3co+JGb7NOfKIAR5dBBS2MMedePUfXNzIc1qTDIigSLeT0+lFySMbBA5+/x
-         mmiHx7WHkA7S4fOYKnihmsi3gFGKm9CtU756NpXwsxvNqAiaOhCLc6ctOqJrkacPgQzS
-         jsCDPOn+nv3xKSUILQNeXm4zS81S4sk4IQN1MvIeW6vhNOUibO9ch/cDrzPNcinWjT3O
-         GFsbE5CopVq7smC/pGr6znmoFQTbMrNBq5o1ZYUZmD4VwUotmXfwwGKIypgtZ90ML68a
-         3n6MAU0AeLmcUA6XNVYUJrF4oVwXjqLG94Vg4q+jBoiwVfVuyU5UM32G/RJm2wSoHKXD
-         RYlw==
+        bh=obHvwV5aXqjiNUz9hYoyhrDzm/kScduQjw98xG7/KEs=;
+        b=jjyhv8k5K3ArwZK0nZZ/WsA/r/ggANnLRKe4kZsSNCrO3cFJan2faUjfdbjWNVwVYw
+         DO8tgjWkggxbGPjYKnJWoTxo9OTiNe5q3RIiHp/YyF9y0ECatGhOr3Fjfo4fTPGRquLN
+         mxVfdrENdtyJmcS0fl2ocCjw5u4btbxhAqhF4Gs6/nSpZPlnDZe6PzBa1bCCkQNF6qU2
+         Xun7gbAOeo1P2Ci2cZmPvfe/h5txObZT++E4wcyZfxDgFQ1oqIlyUGyNkWS+5i/IJAjR
+         d2Tpfi+2jRln1ACjO/lHp9s2celVf88pL9q3HptOyMC0hvlEyffh2a+3e52C1NuX59Q/
+         gZdw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678343008;
+        d=1e100.net; s=20210112; t=1678343110;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=w/cB2X4DKaCs0XHvpzyjGZGOto29HE+FyDV3PNPULEA=;
-        b=Jfilk/zJ+g6kPb0gJKszePT1ero3HF5kR4u7E9GzoeelXOUEZlEGBFoEBTsO1po/WN
-         dFCfeFhSxlPFw1ERMoOcO8929c1RgEpYr5atAlbBvFTH4vAFOpw0tRAsClmLNxaccXRV
-         zD0cpLzqLCtuPA+sX7r8DQSm7ptcYJVB06aFANSZWkWo/zlSyovlmA+AKaoPbEXHpOc9
-         tjTilJ3kiPo1Ih/ARCpT+x4m/b5WBaHx2WK3O93duP0ARDazXy2gdTSYDIHr3G2DqrjN
-         fr4H/WCH/mT0yU/zHfWOYBmOBz3ZCxiho5BbfHPKwsQJ0Q678+b5NIQmcWILCwP2bw+k
-         fPpg==
-X-Gm-Message-State: AO0yUKVY4AnSeOkm6Zev7xVvIjbhLNtXJoT7iAC0FwH/RR1pJqXx38OL
-        BXcCad94HiKspXjHl83dK2c8nJxzGOpGfwk7u5A=
-X-Google-Smtp-Source: AK7set+yA/GXBROzW3g/KbTovsWEgzYdsLr7SRE0c6LLnfsKkJK0Z/2d8qTyxEU2z47Z/nEir1RoNA==
-X-Received: by 2002:aa7:c693:0:b0:4be:7311:113a with SMTP id n19-20020aa7c693000000b004be7311113amr18463752edq.17.1678343008567;
-        Wed, 08 Mar 2023 22:23:28 -0800 (PST)
+        bh=obHvwV5aXqjiNUz9hYoyhrDzm/kScduQjw98xG7/KEs=;
+        b=CYKuQml+CfOTkQShjXdCjVi3jTQ9gy1KGmUCTQuoo1RRGPatqhoEZyYDqYbh9cudIz
+         +Ao4Orfo/e2eWZkVsdhDL6csA5KWR72oS3glQ+7WXgLDLl7bgheFdcvn4PCDh3E+Ac0g
+         C/gXgdySgfmiwXcY/TUja7y2AHrk3cCD6O9WTewNm5Tar9P3n77sPJNU99ivooET1cN4
+         MXIEDYIXyfFaB8Jstdv9goCQALtvLmZtJIsG5KmZ12C3TNk3hTw3UFIgE9y9P/uIiSRZ
+         5Nl+uS8J1D4aMbVIjDfSdqkPXwJIx3g2I/Nw/bDkvqihl0eXnY9C9H2G64imtWxyx+Tb
+         IQeg==
+X-Gm-Message-State: AO0yUKVnmosZAzrq3biymgzwK6xviKpcpRiiZ9RyuvNQv13tSrESd5mR
+        uZF/0MaRZZuvkyQNSa9EzO3/dg==
+X-Google-Smtp-Source: AK7set9zze89UeNZ2W90utNcsj+V/x1hzYimqzrNLO8URVxOR7jJOwBWfKNoQZyq2b4hy0kN7c27dw==
+X-Received: by 2002:a17:906:9f21:b0:884:3707:bd83 with SMTP id fy33-20020a1709069f2100b008843707bd83mr18666390ejc.69.1678343110512;
+        Wed, 08 Mar 2023 22:25:10 -0800 (PST)
 Received: from ?IPV6:2a02:810d:15c0:828:7ee2:e73e:802e:45c1? ([2a02:810d:15c0:828:7ee2:e73e:802e:45c1])
-        by smtp.gmail.com with ESMTPSA id gw5-20020a170906f14500b008c1f68ba0e2sm8306827ejb.85.2023.03.08.22.23.27
+        by smtp.gmail.com with ESMTPSA id x6-20020a1709064a8600b008be5b97ca49sm8377544eju.150.2023.03.08.22.25.09
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 08 Mar 2023 22:23:28 -0800 (PST)
-Message-ID: <ecd867a1-207d-774f-882b-22f0973286ae@linaro.org>
-Date:   Thu, 9 Mar 2023 07:23:27 +0100
+        Wed, 08 Mar 2023 22:25:10 -0800 (PST)
+Message-ID: <882bd054-9c3e-1b26-72a5-89ad92e21a79@linaro.org>
+Date:   Thu, 9 Mar 2023 07:25:08 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.8.0
-Subject: Re: [PATCH v1 1/2] dt-bindings: spi: add loongson spi
+Subject: Re: [PATCH v13 1/2] dt-bindings: clock: add loongson-2 boot clock
+ index
 Content-Language: en-US
-To:     zhuyinbo <zhuyinbo@loongson.cn>, Mark Brown <broonie@kernel.org>,
+To:     zhuyinbo <zhuyinbo@loongson.cn>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     Jianmin Lv <lvjianmin@loongson.cn>, wanghongliang@loongson.cn,
-        Liu Peibao <liupeibao@loongson.cn>,
+        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org
+Cc:     Jianmin Lv <lvjianmin@loongson.cn>,
+        Liu Peibao <liupeibao@loongson.cn>, wanghongliang@loongson.cn,
         loongson-kernel@lists.loongnix.cn
-References: <20230308025908.21491-1-zhuyinbo@loongson.cn>
- <20230308025908.21491-2-zhuyinbo@loongson.cn>
- <8d20dcfb-480b-3f1a-02b0-294a05a566f7@linaro.org>
- <dd2e6c68-7460-caa1-0d54-53aeb5619a18@loongson.cn>
+References: <20230307115022.12846-1-zhuyinbo@loongson.cn>
+ <692a62da-a9a1-fa23-6e24-723d73c3a423@linaro.org>
+ <5e9b3bd5-d885-6237-5e14-2becb3c956cc@loongson.cn>
+ <31e2a67a-c046-9501-80de-e754ed450195@linaro.org>
+ <ace5159b-ebbd-7805-518c-ed3d39e4793e@loongson.cn>
+ <b2f9cd15-b303-882a-d4e0-36d1f6d155a8@linaro.org>
+ <eca81d44-2513-8002-980d-755af32f36c4@loongson.cn>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <dd2e6c68-7460-caa1-0d54-53aeb5619a18@loongson.cn>
+In-Reply-To: <eca81d44-2513-8002-980d-755af32f36c4@loongson.cn>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -82,63 +88,56 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 09/03/2023 03:08, zhuyinbo wrote:
+On 09/03/2023 02:43, zhuyinbo wrote:
 > 
-> 在 2023/3/8 下午7:30, Krzysztof Kozlowski 写道:
->> On 08/03/2023 03:59, Yinbo Zhu wrote:
->>> Add the Loongson platform spi binding with DT schema format using
->>> json-schema.
+> 在 2023/3/8 下午6:38, Krzysztof Kozlowski 写道:
+>> On 08/03/2023 10:24, zhuyinbo wrote:
+>>>>>> That's an ABI break and commit msg does not explain it.
+>>>>> you meaning is that need add a explanation in commit msg that why
+>>>> You need good explanation to break the ABI. I don't understand the
+>>>> commit msg, but anyway I could not find there justification for ABI
+>>>> break. If you do not have good justification, don't break the ABI,
+>>> The commit msg is the patch commit  log,  and I maybe not got it about
+>>> break the ABI.  You said about "break the ABI"
 >>>
->>> Signed-off-by: Yinbo Zhu <zhuyinbo@loongson.cn>
->>> ---
->>>   .../bindings/spi/loongson,ls-spi.yaml         | 47 +++++++++++++++++++
->>>   MAINTAINERS                                   |  6 +++
->>>   2 files changed, 53 insertions(+)
->>>   create mode 100644 Documentation/devicetree/bindings/spi/loongson,ls-spi.yaml
->> Filename matching the compatible.
-> 
-> loongson,ls-spi.yaml is for ls2k-spi and ls7a-spi, I will add following 
-> desription:
-> 
-> 
-> properties:
->    compatible:
->      enum:
->        - loongson,ls2k-spi
->        - loongson,ls7a-spi
-
-OK then.
-
+>>> is whether is location issue about "LOONGSON2_BOOT_CLK"?   if yes,   the
+>>> LOONGSON2_BOOT_CLK was placed
+>>>
+>>> after LOONGSON2_PIX1_PLL that is due to their clock parent is same.
+>>> and I whether need add this explanation
+>>>
+>>> in patch commit log description?
+>> Unfortunately I do not understand single thing from this.
 >>
->>> diff --git a/Documentation/devicetree/bindings/spi/loongson,ls-spi.yaml b/Documentation/devicetree/bindings/spi/loongson,ls-spi.yaml
->>> new file mode 100644
->>> index 000000000000..8a13a96b3818
->>> --- /dev/null
->>> +++ b/Documentation/devicetree/bindings/spi/loongson,ls-spi.yaml
->>> @@ -0,0 +1,47 @@
->>> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
->>> +
->>> +%YAML 1.2
->>> +---
->>> +$id: "http://devicetree.org/schemas/spi/loongson,ls-spi.yaml#"
->>> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
->> Drop the quotes. What was the base of your code here?
+>> Best regards,
+>> Krzysztof
 > 
-> okay, I will drop the quotes.    and I don't got it  about the code base 
-> that you said.
+> The patch commit log description is patch desription.  as follows:
 > 
-> you meaning is advice me add a line  as follows ?
-
-I meant, from which other file did you copy it?
-
->>> +
->>> +  clock-names:
->>> +    const: boot
->> Drop clock-names, not needed for single entry.
 > 
-> if drop the clock-names entry, the yaml file will compile fail.
+> commit 592bc2b4106d787ea166ba16bfde6b3101ab1a8a
+> Author: Yinbo Zhu <zhuyinbo@loongson.cn>
+> Date:   Tue Mar 7 17:18:32 2023 +0800
+> 
+>      dt-bindings: clock: add loongson-2 boot clock index
+> 
+>      The Loongson-2 boot clock was used to spi and lio peripheral and
+>      this patch was to add boot clock index number.
 
-Obviously you have to also drop it from DTS and driver...
+I cannot understand this either.
+
+> 
+> 
+> and your advice is "That's an ABI break and commit msg does not explain it."
+> 
+> I got it  from your advice that was to add a explanation about 
+> LOONGSON2_BOOT_CLK's
+> 
+> location issue in patch description, right?
+
+ABI break needs justification, why do you think it is fine or who
+is/isn't affected etc. Your commit msg does not explain why ABI break is
+okay. It doesn't even explain to me why you need it.
 
 
 Best regards,
