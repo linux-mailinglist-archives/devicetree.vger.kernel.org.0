@@ -2,88 +2,151 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9CBFF6B263C
-	for <lists+devicetree@lfdr.de>; Thu,  9 Mar 2023 15:06:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7A4B26B264C
+	for <lists+devicetree@lfdr.de>; Thu,  9 Mar 2023 15:08:05 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231214AbjCIOG2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Mar 2023 09:06:28 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38756 "EHLO
+        id S230039AbjCIOID (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Mar 2023 09:08:03 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38924 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231600AbjCIOGF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Mar 2023 09:06:05 -0500
-Received: from mail-yb1-xb2f.google.com (mail-yb1-xb2f.google.com [IPv6:2607:f8b0:4864:20::b2f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 584AA9CBF6
-        for <devicetree@vger.kernel.org>; Thu,  9 Mar 2023 06:03:46 -0800 (PST)
-Received: by mail-yb1-xb2f.google.com with SMTP id i6so1983931ybu.8
-        for <devicetree@vger.kernel.org>; Thu, 09 Mar 2023 06:03:46 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1678370625;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=rfLw2hJ09K7juhM7ToFdGQXgPnTRU+N2reGUNJs1fMk=;
-        b=te5CmTZZaAREe6I9IbC5fP+cua4HnFYEfZjzKQLmEgXgfZVYTDH4bb328fgwm8hJdZ
-         ASiGe0w+uRx9ZgsYg7fklWrSM2QC+cEPqkokwrRPDzH8CD+54vu1vE/BxGH64Vred9Nr
-         Fvuky2dufM0aJY16tRiaVtupHqsK2ALSzEUOcecjwHCtjxKNTQ+6GMCxEIdpz/jV+iwz
-         XEQsfxoWv/URUbKerklvhBjOWH35qUazvHwD2dqHQHY0GZmIoqBgNuDdvcoWBgY4d30U
-         KHBq50GVm54ah6w0eLg0PCz14auugvv9pJzszHof3kyE8tjlCIRcr0xSfM6Lz7tw/kHq
-         xVPg==
+        with ESMTP id S231648AbjCIOHj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Mar 2023 09:07:39 -0500
+Received: from smtp-relay-internal-1.canonical.com (smtp-relay-internal-1.canonical.com [185.125.188.123])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0CAF295E0F
+        for <devicetree@vger.kernel.org>; Thu,  9 Mar 2023 06:06:33 -0800 (PST)
+Received: from mail-qk1-f197.google.com (mail-qk1-f197.google.com [209.85.222.197])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 25AB541B6B
+        for <devicetree@vger.kernel.org>; Thu,  9 Mar 2023 14:06:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+        s=20210705; t=1678370791;
+        bh=TgMelgrb/VLkpH6kwv9lPEQ4dt1XAT9+KiTGTm5i5/c=;
+        h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+         To:Cc:Content-Type;
+        b=oQhP4d/aTVjemMxUqdUrZOJZaRjhSaQnjzPDlMeQLa4AvSW4p+aJUw0UGLR6gZXag
+         DomxUjSGcdITRYb6bch48hcl8fa7mUrrV38NxI1n6Y1zCMsNRBRSFIbmcxeaeiBRQ0
+         D9XboMbizS9EudQFJ3w8/KwlsLayKFOuk0pVBmhdmFqr9VQhOsyv7ogV8KXH8uLXFN
+         ihlIhlqWqEZFpeijNoBG0yben8VjJ7A1dW09Mchf/RheZTdnbSkQucBbLLl/m1N1xM
+         /g9xOhnzKYhgAmHi2m2jbawIpQwobtJYU/F7EN//kOqs483pzgANWUjZF1mbprA6WJ
+         spvlFmHliqiAQ==
+Received: by mail-qk1-f197.google.com with SMTP id z23-20020a376517000000b00731b7a45b7fso1266419qkb.2
+        for <devicetree@vger.kernel.org>; Thu, 09 Mar 2023 06:06:31 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678370625;
+        d=1e100.net; s=20210112; t=1678370789;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=rfLw2hJ09K7juhM7ToFdGQXgPnTRU+N2reGUNJs1fMk=;
-        b=36rluIhr5rXjjhusHfqwAkuRyLeewg3q4S/KuMGMZyBASCTWa9B1ymeF6EsypTAi+u
-         kfhcj5ldeweLkx/rkmf847xaKCgKcpuaqFF+YLDwjRH7JWNUQiipWwidPmnSqWluJ89J
-         HZ4v9Qw/CnPi0mp6g6tLQWevNvgRqrIOaWBOs2M8/hUraF21PNwNOqAlblt1gb/JY75K
-         bQmk1evGDUTMbN5HLanLUPGJs7RkZwKqqR+zsYuS/2pUBh6ja2RMSm9XYyI65ElSyOjg
-         j8hPyC3Gy5PPF6YTVG2//SfM9AsMuVJl/LGYdPeNTAn6ofJoxgdZakIgWdkvbaxiOLg0
-         gNPQ==
-X-Gm-Message-State: AO0yUKUE0VEEs0YKGPxtvx36xFJ4uhvQhLhx/ackRunt0cLccdu4DSiK
-        veHvvhEHHWK+PKptedoQvg/xILDdtu8/N8KSVF4QcQ==
-X-Google-Smtp-Source: AK7set/V9g47LXb/8bVVYX4aEcUjsLMStk6C108ueaS9M+e5hKMWh6BL/B8P3j74SyJtKGeS1gB7pU0gGTbjZfKvQFQ=
-X-Received: by 2002:a25:8c84:0:b0:b23:4649:7ef3 with SMTP id
- m4-20020a258c84000000b00b2346497ef3mr707871ybl.4.1678370624827; Thu, 09 Mar
- 2023 06:03:44 -0800 (PST)
+        bh=TgMelgrb/VLkpH6kwv9lPEQ4dt1XAT9+KiTGTm5i5/c=;
+        b=qb5fE31F7wGa96ZP9s6EAIIGtV+KMVe42F8oBKsZyxszWRrdvX0rEfnLcreeXX+zxu
+         WW1h6SiJ5mStzBXXq0iqXDYxq7yXNzOciORxDVHQBrNkMH+3JirqF7RfzHM3jvRciUMj
+         c2ZxvA+kIyiDLDTJ+KnM1k929SL1mD5BMT+lEVfhwDmGyP5t7IYs9X4tsDv9UZhZZ8/D
+         RH6k+ERka6ua7xNmuu7LRFycP+uj0sggbgq9vDd08mzn7xaGM0H8WdP+Pfw4J5MJAkDl
+         CYxXydMKoEfTfVYts9e9jSynGll2/viBt/45aftxr1iDt+HkMgIJ1KfNnJn13l0z2KyE
+         0+vw==
+X-Gm-Message-State: AO0yUKVtoLA+xUbpDd7PSRj0janzEHWYXlHUht5ASz9kcIDxXkrk5Byh
+        5z5VCpWyGJV6/u2aPZ+UH6EqJjYoWzvsVRqg6dd4dmFVcjnXNIALjabv3/zdTVwgqRq52BsAiuK
+        UD//+dvboLXFVYxBIQkZNQXpttJ388xiXpDsEICb9xbLagIYN/ZRVeQE=
+X-Received: by 2002:a05:620a:d4d:b0:742:83ee:f569 with SMTP id o13-20020a05620a0d4d00b0074283eef569mr4858481qkl.13.1678370789722;
+        Thu, 09 Mar 2023 06:06:29 -0800 (PST)
+X-Google-Smtp-Source: AK7set+ABJAfbsKbyBYTfNj8osraItDCdyOTOpNmYDJbKIB/zNyDVGBmaDT/KnGUKXMOamd6DWcbCpCildmbTpuYCcw=
+X-Received: by 2002:a05:620a:d4d:b0:742:83ee:f569 with SMTP id
+ o13-20020a05620a0d4d00b0074283eef569mr4858475qkl.13.1678370789479; Thu, 09
+ Mar 2023 06:06:29 -0800 (PST)
 MIME-Version: 1.0
-References: <20230308084309.396192-1-nm@ti.com>
-In-Reply-To: <20230308084309.396192-1-nm@ti.com>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Thu, 9 Mar 2023 15:03:33 +0100
-Message-ID: <CACRpkdbBWeFupRin=JuMCGDWkzbsR18N+4ZEbQOPJq=p3w0yLw@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: pinctrl: k3: Introduce debounce select mux macros
-To:     Nishanth Menon <nm@ti.com>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-gpio@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        Tero Kristo <kristo@kernel.org>,
-        Vignesh Raghavendra <vigneshr@ti.com>
+References: <20230221024645.127922-1-hal.feng@starfivetech.com>
+ <20230221024645.127922-13-hal.feng@starfivetech.com> <CAJM55Z8H4qmy_BiD0SHW-w5ifzhzokdO-QxpUUz9aeUd+htrZg@mail.gmail.com>
+ <8c30220a-abef-7518-cb44-abcea91408e2@starfivetech.com> <49ab1072-98ba-f364-9b66-68658566e732@starfivetech.com>
+In-Reply-To: <49ab1072-98ba-f364-9b66-68658566e732@starfivetech.com>
+From:   Emil Renner Berthing <emil.renner.berthing@canonical.com>
+Date:   Thu, 9 Mar 2023 15:06:13 +0100
+Message-ID: <CAJM55Z9YGjD+1haWcXEZNkHnWNRZckdBmTTykTt7QZV_LUohgQ@mail.gmail.com>
+Subject: Re: [PATCH v4 12/19] clk: starfive: Add StarFive JH7110 always-on
+ clock driver
+To:     Hal Feng <hal.feng@starfivetech.com>
+Cc:     linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-riscv@lists.infradead.org, Stephen Boyd <sboyd@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor@kernel.org>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Ben Dooks <ben.dooks@sifive.com>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>, linux-kernel@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Mar 8, 2023 at 9:43 AM Nishanth Menon <nm@ti.com> wrote:
-
-> Introduce the debounce select mux macros to allow folks to setup
-> debounce configuration for pins. Each configuration selected maps
-> to a specific timing register as documented in appropriate Technical
-> Reference Manual (example:[1]).
+ On Thu, 9 Mar 2023 at 10:44, Hal Feng <hal.feng@starfivetech.com> wrote:
+> On Tue, 28 Feb 2023 10:42:35 +0800, Hal Feng wrote:
+> > On Sun, 26 Feb 2023 18:34:52 +0100, Emil Renner Berthing wrote:
+> >> On Tue, 21 Feb 2023 at 03:47, Hal Feng <hal.feng@starfivetech.com> wrote:
+> >>> From: Emil Renner Berthing <kernel@esmil.dk>
+> >>>
+> >>> Add driver for the StarFive JH7110 always-on clock controller
+> >>> and register an auxiliary device for always-on reset controller
+> >>> which is named as "reset-aon".
+> >>>
+> >>> Reported-by: kernel test robot <lkp@intel.com>
+> >>> Signed-off-by: Emil Renner Berthing <kernel@esmil.dk>
+> >>> Co-developed-by: Hal Feng <hal.feng@starfivetech.com>
+> >>> Signed-off-by: Hal Feng <hal.feng@starfivetech.com>
+> >>> ---
+> >>>  drivers/clk/starfive/Kconfig                  |  11 ++
+> >>>  drivers/clk/starfive/Makefile                 |   1 +
+> >>>  .../clk/starfive/clk-starfive-jh7110-aon.c    | 156 ++++++++++++++++++
+> >>>  3 files changed, 168 insertions(+)
+> >>>  create mode 100644 drivers/clk/starfive/clk-starfive-jh7110-aon.c
+> >>>
+> >>> diff --git a/drivers/clk/starfive/Kconfig b/drivers/clk/starfive/Kconfig
+> >>> index 4640d0665d1c..2aa664f2cdee 100644
+> >>> --- a/drivers/clk/starfive/Kconfig
+> >>> +++ b/drivers/clk/starfive/Kconfig
+> >>> @@ -31,3 +31,14 @@ config CLK_STARFIVE_JH7110_SYS
+> >>>         help
+> >>>           Say yes here to support the system clock controller on the
+> >>>           StarFive JH7110 SoC.
+> >>> +
+> >>> +config CLK_STARFIVE_JH7110_AON
+> >>> +       tristate "StarFive JH7110 always-on clock support"
+> >>> +       depends on CLK_STARFIVE_JH7110_SYS
+> >>> +       select AUXILIARY_BUS
+> >>> +       select CLK_STARFIVE_JH71X0
+> >>> +       select RESET_STARFIVE_JH7110
+> >>> +       default CLK_STARFIVE_JH7110_SYS
+> >>
+> >> As far as I can tell the JH7110 boots fine without this driver and it
+> >> already depends on the _SYS driver above, so please do
+> >>
+> >> default m if SOC_STARFIVE
+> >
+> > OK. Will fix it.
 >
-> [1] AM625x TRM (section 6.1.2.2): https://www.ti.com/lit/pdf/spruiv7
-> Signed-off-by: Nishanth Menon <nm@ti.com>
+> Hi, Emil,
+>
+> The AON clock driver provides clocks for gmac0 which is used frequently.
+> So I think it would be more convenient if we set "default y" here.
 
-Patch applied.
+You're right that if we default y for the ethernet driver then the aon
+clock/reset should also default y. Personally I don't think we should
+default y for every ethernet driver that might be used on some
+supported risc-v platform, but I see now that
+arch/riscv/config/defconfig already contains CONFIG_MACB=y,
+CONFIG_E1000E=y, CONFIG_R8169=y and CONFIG_MICROSEMI_PHY=y, so maybe
+I'm wrong or just too late.
 
-Consider doing what Krzysztof recommends: move thes <dt-bindings/*.h>
-down to the arch where you're using it and have them as .dtsi files instead
-or something.
-
-Yours,
-Linus Walleij
+> Best regards,
+> Hal
