@@ -2,133 +2,228 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1179A6B234F
-	for <lists+devicetree@lfdr.de>; Thu,  9 Mar 2023 12:45:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4117E6B2371
+	for <lists+devicetree@lfdr.de>; Thu,  9 Mar 2023 12:52:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231128AbjCILpU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Mar 2023 06:45:20 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40674 "EHLO
+        id S230420AbjCILv4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Mar 2023 06:51:56 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50164 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231698AbjCILpK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Mar 2023 06:45:10 -0500
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 522799FE57;
-        Thu,  9 Mar 2023 03:45:09 -0800 (PST)
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 329BilmV067182;
-        Thu, 9 Mar 2023 05:44:47 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1678362288;
-        bh=/q/r+VqIDQV+nyf/HFdFt7S4d1PgKsozHa8XIbxD8aY=;
-        h=Date:Subject:To:CC:References:From:In-Reply-To;
-        b=nAnAGXYW/BIh78fUHAF8Qk8hBwnEkuy5WmwDM9NDgykbzDS94TzunNiSbEHM08EZf
-         SIWLabHhn09QBlt8dfoAKNl6ODNLNseANMBusUJ7MwbOnfTuRmU91N+5Vx38gcKRZl
-         U/BcI1f82iMoQ6L9rvjidTWmPcFBFyVr70O/u3WA=
-Received: from DFLE111.ent.ti.com (dfle111.ent.ti.com [10.64.6.32])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 329BiliX027723
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Thu, 9 Mar 2023 05:44:47 -0600
-Received: from DFLE112.ent.ti.com (10.64.6.33) by DFLE111.ent.ti.com
- (10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Thu, 9
- Mar 2023 05:44:47 -0600
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE112.ent.ti.com
- (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
- Frontend Transport; Thu, 9 Mar 2023 05:44:47 -0600
-Received: from [10.24.69.114] (ileaxei01-snat2.itg.ti.com [10.180.69.6])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 329BifPD012701;
-        Thu, 9 Mar 2023 05:44:42 -0600
-Message-ID: <d7f18805-7b26-e2c9-a40e-262165ec8f9b@ti.com>
-Date:   Thu, 9 Mar 2023 17:14:41 +0530
+        with ESMTP id S231649AbjCILvx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Mar 2023 06:51:53 -0500
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 86BD0E6835;
+        Thu,  9 Mar 2023 03:51:51 -0800 (PST)
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3298QivW009122;
+        Thu, 9 Mar 2023 11:51:46 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=DNOlz2EYTj6weFcohqxG0NnpJE4xB0UXowa/63Q892w=;
+ b=BWLzr8NZdvaEdimvictYzpPUd7ujpjmZBI3GgiDwXkZ6PhARNXOwN2t9iFHHcIcQIW5p
+ DU6tkAarZ970FAtXfn3dDi6Bc/LIyl2vwusneKbeblFgCoEWKmGbjnUQ3T0gxx+o1ABf
+ QYKx+33uALemidDt5054wxL9g2PrkVXzexnkZUTJV+UGrRfGYV3eoaWeIoZhpZ1YTWPE
+ 7Fdky2qICPpO3DjxEmkXnJIlynienapTsp37qjwvR+aPf7AvYibAsz6z8qY9PXTzkrMU
+ P4Vlt1afSETdnr+hfyqle+oHocZ0rSWe0he6Wb/4Lu1SkG5OVrB3TPYwYS1rKTYX3JgQ RA== 
+Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3p74drhkxe-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Thu, 09 Mar 2023 11:51:46 +0000
+Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
+        by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 329BpjFS014867
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Thu, 9 Mar 2023 11:51:45 GMT
+Received: from [10.201.3.182] (10.80.80.8) by nalasex01c.na.qualcomm.com
+ (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.41; Thu, 9 Mar 2023
+ 03:51:41 -0800
+Message-ID: <73269ad0-5662-519c-f6c0-e5e2f918cd4e@quicinc.com>
+Date:   Thu, 9 Mar 2023 17:21:38 +0530
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.1
-Subject: Re: [EXTERNAL] Re: [PATCH v5 1/2] dt-bindings: net: Add ICSSG
- Ethernet
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.8.0
+Subject: Re: [PATCH v2 17/17] PCI: qcom: Expose link transition counts via
+ debugfs
 Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Rob Herring <robh@kernel.org>,
-        MD Danish Anwar <danishanwar@ti.com>
-CC:     "Andrew F. Davis" <afd@ti.com>, Suman Anna <s-anna@ti.com>,
-        Roger Quadros <rogerq@kernel.org>,
-        YueHaibing <yuehaibing@huawei.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Eric Dumazet <edumazet@google.com>,
-        "David S. Miller" <davem@davemloft.net>, <andrew@lunn.ch>,
-        <nm@ti.com>, <ssantosh@kernel.org>, <srk@ti.com>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <netdev@vger.kernel.org>, <linux-omap@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>
-References: <20230210114957.2667963-1-danishanwar@ti.com>
- <20230210114957.2667963-2-danishanwar@ti.com>
- <20230210192001.GB2923614-robh@kernel.org>
- <43df3c2c-d0d0-f2b8-cf8b-8a2453ca43b4@ti.com>
- <63dbbda7-a444-8dac-6399-45e305652155@linaro.org>
-From:   Md Danish Anwar <a0501179@ti.com>
-Organization: Texas Instruments
-In-Reply-To: <63dbbda7-a444-8dac-6399-45e305652155@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
+To:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        <andersson@kernel.org>, <lpieralisi@kernel.org>, <kw@linux.com>,
+        <krzysztof.kozlowski+dt@linaro.org>, <robh@kernel.org>
+CC:     <konrad.dybcio@linaro.org>, <linux-arm-msm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-pci@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+References: <20230309085102.120977-1-manivannan.sadhasivam@linaro.org>
+ <20230309085102.120977-18-manivannan.sadhasivam@linaro.org>
+From:   Sricharan Ramabadhran <quic_srichara@quicinc.com>
+In-Reply-To: <20230309085102.120977-18-manivannan.sadhasivam@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_PASS,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01c.na.qualcomm.com (10.47.97.35)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: VrZ95vLubBXKCvrVPVzCJ29OTewhHoUI
+X-Proofpoint-ORIG-GUID: VrZ95vLubBXKCvrVPVzCJ29OTewhHoUI
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.254,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
+ definitions=2023-03-09_06,2023-03-08_03,2023-02-09_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0
+ lowpriorityscore=0 priorityscore=1501 mlxscore=0 suspectscore=0
+ clxscore=1011 adultscore=0 phishscore=0 spamscore=0 mlxlogscore=999
+ bulkscore=0 malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2212070000 definitions=main-2303090095
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Krzysztof,
 
-On 07/03/23 14:28, Krzysztof Kozlowski wrote:
-> On 07/03/2023 05:57, Md Danish Anwar wrote:
->>>> +allOf:
->>>> +  - $ref: /schemas/remoteproc/ti,pru-consumer.yaml#
->>>> +
->>>> +properties:
->>>> +  compatible:
->>>> +    enum:
->>>> +      - ti,am654-icssg-prueth  # for AM65x SoC family
->>>> +
->>>> +  ti,sram:
->>>> +    $ref: /schemas/types.yaml#/definitions/phandle
->>>> +    description:
->>>> +      phandle to MSMC SRAM node
->>>
->>> I believe we have a standard 'sram' property to point to SRAM nodes 
->>> assuming this is just mmio-sram or similar.
->>>
->>
->> Yes, we have standard 'sram' property but Krzysztof had asked me to make the
->> sram property vendor specific in last revision of this series.
+
+On 3/9/2023 2:21 PM, Manivannan Sadhasivam wrote:
+> Qualcomm PCIe controllers have debug registers in the MHI region that
+> count PCIe link transitions. Expose them over debugfs to userspace to
+> help debug the low power issues.
 > 
-> Sorry about that. I missed that we already have a 'sram'. The question
-> remains whether this is a phandle to MMIO SRAM or similar (sram.yaml).
+> Note that even though the registers are prefixed as PARF_, they don't
+> live under the "parf" register region. The register naming is following
+> the Qualcomm's internal documentation as like other registers.
 > 
-> Best regards,
-> Krzysztof
+> Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+> ---
+>   drivers/pci/controller/dwc/pcie-qcom.c | 59 ++++++++++++++++++++++++++
+>   1 file changed, 59 insertions(+)
 > 
+> diff --git a/drivers/pci/controller/dwc/pcie-qcom.c b/drivers/pci/controller/dwc/pcie-qcom.c
+> index e1180c84f0fa..6d9bde64c9e9 100644
+> --- a/drivers/pci/controller/dwc/pcie-qcom.c
+> +++ b/drivers/pci/controller/dwc/pcie-qcom.c
+> @@ -10,6 +10,7 @@
+>   
+>   #include <linux/clk.h>
+>   #include <linux/crc8.h>
+> +#include <linux/debugfs.h>
+>   #include <linux/delay.h>
+>   #include <linux/gpio/consumer.h>
+>   #include <linux/interconnect.h>
+> @@ -62,6 +63,13 @@
+>   #define AXI_MSTR_RESP_COMP_CTRL1		0x81c
+>   #define MISC_CONTROL_1_REG			0x8bc
+>   
+> +/* MHI registers */
+> +#define PARF_DEBUG_CNT_PM_LINKST_IN_L2		0xc04
+> +#define PARF_DEBUG_CNT_PM_LINKST_IN_L1		0xc0c
+> +#define PARF_DEBUG_CNT_PM_LINKST_IN_L0S		0xc10
+> +#define PARF_DEBUG_CNT_AUX_CLK_IN_L1SUB_L1	0xc84
+> +#define PARF_DEBUG_CNT_AUX_CLK_IN_L1SUB_L2	0xc88
+> +
+>   /* PARF_SYS_CTRL register fields */
+>   #define MAC_PHY_POWERDOWN_IN_P2_D_MUX_EN	BIT(29)
+>   #define MST_WAKEUP_EN				BIT(13)
+> @@ -229,11 +237,13 @@ struct qcom_pcie {
+>   	struct dw_pcie *pci;
+>   	void __iomem *parf;			/* DT parf */
+>   	void __iomem *elbi;			/* DT elbi */
+> +	void __iomem *mhi;
+>   	union qcom_pcie_resources res;
+>   	struct phy *phy;
+>   	struct gpio_desc *reset;
+>   	struct icc_path *icc_mem;
+>   	const struct qcom_pcie_cfg *cfg;
+> +	struct dentry *debugfs;
+>   };
+>   
+>   #define to_qcom_pcie(x)		dev_get_drvdata((x)->dev)
+> @@ -1385,6 +1395,37 @@ static void qcom_pcie_icc_update(struct qcom_pcie *pcie)
+>   	}
+>   }
+>   
+> +static int qcom_pcie_link_transition_count(struct seq_file *s, void *data)
+> +{
+> +	struct qcom_pcie *pcie = (struct qcom_pcie *)
+> +				     dev_get_drvdata(s->private);
+> +
+> +	seq_printf(s, "L0s transition count: %u\n",
+> +		   readl_relaxed(pcie->mhi + PARF_DEBUG_CNT_PM_LINKST_IN_L0S));
+> +
+> +	seq_printf(s, "L1 transition count: %u\n",
+> +		   readl_relaxed(pcie->mhi + PARF_DEBUG_CNT_PM_LINKST_IN_L1));
+> +
+> +	seq_printf(s, "L1.1 transition count: %u\n",
+> +		   readl_relaxed(pcie->mhi + PARF_DEBUG_CNT_AUX_CLK_IN_L1SUB_L1));
+> +
+> +	seq_printf(s, "L1.2 transition count: %u\n",
+> +		   readl_relaxed(pcie->mhi + PARF_DEBUG_CNT_AUX_CLK_IN_L1SUB_L2));
+> +
+> +	seq_printf(s, "L2 transition count: %u\n",
+> +		   readl_relaxed(pcie->mhi + PARF_DEBUG_CNT_PM_LINKST_IN_L2));
+> +
+> +	return 0;
+> +}
+> +
+> +static void qcom_pcie_init_debugfs(struct qcom_pcie *pcie)
+> +{
+> +	struct dw_pcie *pci = pcie->pci;
+> +
+> +	debugfs_create_devm_seqfile(pci->dev, "link_transition_count", pcie->debugfs,
+> +				    qcom_pcie_link_transition_count);
+> +}
+> +
+>   static int qcom_pcie_probe(struct platform_device *pdev)
+>   {
+>   	struct device *dev = &pdev->dev;
+> @@ -1392,6 +1433,7 @@ static int qcom_pcie_probe(struct platform_device *pdev)
+>   	struct dw_pcie *pci;
+>   	struct qcom_pcie *pcie;
+>   	const struct qcom_pcie_cfg *pcie_cfg;
+> +	char *name;
+>   	int ret;
+>   
+>   	pcie_cfg = of_device_get_match_data(dev);
+> @@ -1439,6 +1481,12 @@ static int qcom_pcie_probe(struct platform_device *pdev)
+>   		goto err_pm_runtime_put;
+>   	}
+>   
+> +	pcie->mhi = devm_platform_ioremap_resource_byname(pdev, "mhi");
+> +	if (IS_ERR(pcie->mhi)) {
+> +		ret = PTR_ERR(pcie->mhi);
+> +		goto err_pm_runtime_put;
+> +	}
+> +
 
-The SRAM that we are using here is phandle to MMIO-SRAM only. In the example
-section you can see, sram node points to msmc_ram (ti,sram = <&msmc_ram>;) And
-msmc_ram has compatible as "mmio-sram" in k3-am65-main.dtsi [1].
+  Tested this series on ipq4019-ap.dk07.1-c1 board and the above hunk
+  breaks enumeration because there is no 'mhi' region. All the debug bits
+  used in the transition_count function is inside the PARF_STTS register
+  at offset 0x24 inside the PARF region.
 
-	msmc_ram: sram@70000000 {
-		compatible = "mmio-sram";
-		reg = <0x0 0x70000000 0x0 0x200000>;
+  Register: PCIE_0_PCIE20_PARF_PM_STTS | 0x80024
+  Offset:    0x24    Reset State:    0x00040000
 
-So I can use 'sram' property as there is no need to make this as ti specific.
-Let me know if it seems good to you.
+Bits    Field Name
+31    LINK_REQ_RST_NOT
+30    XMLH_LINK_UP
+29    PM_DSTATE_0
+0x0: D0
+0x1: D3
+28    PHYSTATUS
+27:16    PM_DSTATE
+15:12    PM_PME_EN
+11    PHYCLK_REQ_N
+10    L1SS_CLKREQN_OE
+9    L1SS_CLKREQN_IN
+8    PM_LINKST_IN_L1SUB
+7    PM_LINKST_IN_L0S
+6    PM_LINKST_L2_EXIT
+5    PM_LINKST_IN_L2
+4    PM_LINKST_IN_L1
+3:0    PM_STATUS
 
-[1]
-https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/arch/arm64/boot/dts/ti/k3-am65-main.dtsi?h=v6.3-rc1#n11
+Otherwise, with rest of the patches enumeration was fine.
+Tested with a pcie ethernet adapter.
 
--- 
-Thanks and Regards,
-Danish.
+Regards,
+  Sricharan
