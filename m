@@ -2,117 +2,159 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E80DA6B20C0
-	for <lists+devicetree@lfdr.de>; Thu,  9 Mar 2023 10:57:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B66166B20C8
+	for <lists+devicetree@lfdr.de>; Thu,  9 Mar 2023 10:58:47 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230328AbjCIJ5H (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Mar 2023 04:57:07 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56500 "EHLO
+        id S230041AbjCIJ6q convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Thu, 9 Mar 2023 04:58:46 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59506 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229914AbjCIJ5G (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Mar 2023 04:57:06 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CB4A866D22;
-        Thu,  9 Mar 2023 01:57:05 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 64FB061AD8;
-        Thu,  9 Mar 2023 09:57:05 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 459B4C433EF;
-        Thu,  9 Mar 2023 09:57:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1678355824;
-        bh=ODnKzBpDfhjHRjZi6xnYZfhimajSnaKsAA3E99ICe5s=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=t9+cGRIw+5d4GxF7DDN32S7cRMxKOpZs/+z82FSELi1BBrFKV3tZc9iPUPLmLnkQk
-         OFsRZxjDXK96kLHiUbHDmP/u7J8+btKoYb6XvVoOoAJT1tv9yRFNINHztE6o97Np+A
-         pkdN8/iDS1F272hVyLSf6mkOL87DBmquHG2OOABseYdprRbPV3FBXe/PmMqSCHjYdG
-         WZJ2FLQ7fRRyH150sNV2Ml4dffdDFImxWD4kll5erDhcIrxTHEtU0OgMxTtshT+B8R
-         Rc92XdJtvu4RepF6ioctCorilboycYO9ZJdyTUBhmyVZrahfFp9WnOmwaMRxjCXENf
-         fb9gfqQPeYdNA==
-Date:   Thu, 9 Mar 2023 10:57:00 +0100
-From:   Lorenzo Bianconi <lorenzo@kernel.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     jic23@kernel.org, linux-iio@vger.kernel.org,
-        lorenzo.bianconi@redhat.com, devicetree@vger.kernel.org,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org
-Subject: Re: [PATCH 2/2] dt-bindings: iio: imu: st_lsm6dsx: add asm330lhb
-Message-ID: <ZAmtbGfUJiH5gSIY@lore-desk>
-References: <cover.1678100533.git.lorenzo@kernel.org>
- <fecf1f20cc8e99fb8654cc733f14bd449ca7f87a.1678100533.git.lorenzo@kernel.org>
- <f2bbda1a-b6e3-ccbb-d77a-8bdb42aca0ee@linaro.org>
+        with ESMTP id S229767AbjCIJ6p (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Mar 2023 04:58:45 -0500
+Received: from mail-qt1-f179.google.com (mail-qt1-f179.google.com [209.85.160.179])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ADA9A62DB1;
+        Thu,  9 Mar 2023 01:58:43 -0800 (PST)
+Received: by mail-qt1-f179.google.com with SMTP id s12so1306617qtq.11;
+        Thu, 09 Mar 2023 01:58:43 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1678355922;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=eKyxJSQ87EhDfakuNsT60G1Elf7FPlsptekWrc8OiBc=;
+        b=5DwFbqB5Q8jIiMI77DWkW6VKXhtIO/g8owIXKlyxYCz99wSPBs8KVvKU2zsN7MbOUi
+         pPYPaFVSkfOD6PSqqRKToUyT8o9BBjKnl3aA+ADWp8iLn2VsfGWhzTjVQcBN6h5P6Wu+
+         ZYaHzkM17NQnJjZPMiQkoO+ikdXsCjRqEHMIapo0NTajTECU2m3YbFUjy2RD2it+PjsJ
+         2NsL+RGrOycsBxlv9zmFZQ9ENxegVMEgHAhjrPa5WG+ekjHL7XAhacyCg8Oief47jV+j
+         2sLVeBl0ERuNorFpY1Z1S2I0mJOYNggjNPaqowY4gZgIp2ZhQe/7kdQFuPldT77K+pKe
+         Ybiw==
+X-Gm-Message-State: AO0yUKVY7+eTLxSvjekF7870vMJTWVQ0zoe0i0uqYcDR2vkzRpoZueuB
+        u+lp6IrG3vI7boFHC4qxSQrMLmrTVDDWPA==
+X-Google-Smtp-Source: AK7set8NBOGQ/ih0FdKD58vOf8TIfjP5m8S5sjZZkaxfHvpkCS4CDah4fC7AGlgjUIm2mvWm58rBsA==
+X-Received: by 2002:ac8:4e4a:0:b0:3b9:ec33:eabb with SMTP id e10-20020ac84e4a000000b003b9ec33eabbmr36618378qtw.19.1678355922557;
+        Thu, 09 Mar 2023 01:58:42 -0800 (PST)
+Received: from mail-yw1-f174.google.com (mail-yw1-f174.google.com. [209.85.128.174])
+        by smtp.gmail.com with ESMTPSA id 17-20020ac85651000000b003b62bc6cd1csm13201000qtt.82.2023.03.09.01.58.40
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 09 Mar 2023 01:58:41 -0800 (PST)
+Received: by mail-yw1-f174.google.com with SMTP id 00721157ae682-536bbef1c5eso24927797b3.9;
+        Thu, 09 Mar 2023 01:58:40 -0800 (PST)
+X-Received: by 2002:a81:f105:0:b0:538:49a4:b1e0 with SMTP id
+ h5-20020a81f105000000b0053849a4b1e0mr15703469ywm.2.1678355920494; Thu, 09 Mar
+ 2023 01:58:40 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="jkV1bburN89PBeLT"
-Content-Disposition: inline
-In-Reply-To: <f2bbda1a-b6e3-ccbb-d77a-8bdb42aca0ee@linaro.org>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+References: <20230220131307.269100-1-biju.das.jz@bp.renesas.com>
+ <20230220131307.269100-2-biju.das.jz@bp.renesas.com> <e9e63c87-b491-b4d5-b226-0539ef0de2d0@linaro.org>
+ <OS0PR01MB59221C8C937EF20347149E4886B49@OS0PR01MB5922.jpnprd01.prod.outlook.com>
+ <36e06397-2189-4f1b-99cc-d39e720ebc71@linaro.org> <OS0PR01MB5922BDA0632ACCCC0100EEBD86B49@OS0PR01MB5922.jpnprd01.prod.outlook.com>
+ <6cbe6c71-2d2d-0f79-1270-7f8ed2ddc1d6@linaro.org> <TYCPR01MB5933650D5BAB7A3F4BE03BAF86B59@TYCPR01MB5933.jpnprd01.prod.outlook.com>
+ <984f1689-459e-bd26-b96c-6c759417b3d1@linaro.org> <TYCPR01MB59335607AE6A2F4FBBA46ACC86B59@TYCPR01MB5933.jpnprd01.prod.outlook.com>
+ <bc9e8ccd-9f98-6fae-9491-dc2bd96c2e4f@linaro.org>
+In-Reply-To: <bc9e8ccd-9f98-6fae-9491-dc2bd96c2e4f@linaro.org>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Thu, 9 Mar 2023 10:58:28 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdVNCvu6La_=f=6i4Kj3UXeFU6McnNSkXb0PVjVyzdNR4Q@mail.gmail.com>
+Message-ID: <CAMuHMdVNCvu6La_=f=6i4Kj3UXeFU6McnNSkXb0PVjVyzdNR4Q@mail.gmail.com>
+Subject: Re: [PATCH RFC 1/3] dt-bindings: clock: Add Renesas versa3 clock
+ generator bindings
+To:     Biju Das <biju.das.jz@bp.renesas.com>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        "linux-renesas-soc@vger.kernel.org" 
+        <linux-renesas-soc@vger.kernel.org>,
+        "linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        Fabrizio Castro <fabrizio.castro.jz@renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8BIT
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,
+        SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Biju,
 
---jkV1bburN89PBeLT
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On Thu, Mar 9, 2023 at 10:44 AM Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
+> On 09/03/2023 10:18, Biju Das wrote:
+> >> -----Original Message-----
+> >> From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> >> On 09/03/2023 08:57, Biju Das wrote:
+> >>>>> It is clk generator HW specific. Clk generator is vital component
+> >>>>> which provides clocks to the system.
+> >>>>
+> >>>> Every clock controller is vital...
+> >>>>
+> >>>>> We are providing some hardware feature which is exposed as dt
+> >>>>> properties.
+> >>>>>
+> >>>>> Like clock output is fixed rate clock or dynamic rate clock/
+> >>>>
+> >>>> OK, I wait then for proper description which will explain and justify
+> >> this.
+> >>>
+> >>> Here it is, Please let me know is it ok?
+> >>>
+> >>> renesas,output-clock-fixed-rate-mode:
+> >>>     type: boolean
+> >>>     description:
+> >>>       In output clock fixed rate mode, the output clock frequency is
+> >> always
+> >>>       fixed and the hardware will use the values from the OTP or full
+> >> register
+> >>>     map initialized during boot.
+> >>>       If not given, the output clock rate is not fixed.
+> >>>     maxItems: 6
+> >>
+> >> boolean is scalar, not array, so no maxItems. If the frequency is taken from
+> >> OTP or register map, why they cannot also provide information the clock is
+> >> fixed?
+> >
+> > OK, I will make an array property instead. From HW perspective each clock output from the
+> > Clock generator is controllable ie, fixed rate or dynamic rate.
+> >
+> > If all the output clocks are fixed rate one, then frequency is taken from OTP or
+> > register map. But if any one clock output generates dynamic rate, then it uses
+> > dynamic settings.
+>
+> Second try, same question, let me know if it is not clear:
+>
+> "why they cannot also provide information the clock is fixed?"
 
-On Mar 07, Krzysztof Kozlowski wrote:
-> On 06/03/2023 12:08, Lorenzo Bianconi wrote:
-> > Add device bindings for asm330lhb IMU sensor.
-> > Use asm330lhh as fallback device for asm330lhb since it implements all
-> > the features currently supported by asm330lhb.
-> >=20
-> > Signed-off-by: Lorenzo Bianconi <lorenzo@kernel.org>
-> > ---
-> >  Documentation/devicetree/bindings/iio/imu/st,lsm6dsx.yaml | 3 +++
-> >  1 file changed, 3 insertions(+)
-> >=20
-> > diff --git a/Documentation/devicetree/bindings/iio/imu/st,lsm6dsx.yaml =
-b/Documentation/devicetree/bindings/iio/imu/st,lsm6dsx.yaml
-> > index decf022335d8..b39f5217d8ff 100644
-> > --- a/Documentation/devicetree/bindings/iio/imu/st,lsm6dsx.yaml
-> > +++ b/Documentation/devicetree/bindings/iio/imu/st,lsm6dsx.yaml
-> > @@ -46,6 +46,9 @@ properties:
-> >        - items:
-> >            - const: st,ism330is
-> >            - const: st,lsm6dso16is
-> > +      - items:
-> > +          - const: st,asm330lhb
-> > +          - const: st,asm330lhh
->=20
-> You added it to the end of the list, but aren't there any ordering
-> already? If so, it should be put rather in correct place.
+What is the actual use case?
+My understanding is:
+  1. If the OTP is programmed, the clock generator will be configured
+     from the OTP on power-on,
+  2. The clock generator can be (re)configured from software.
+     a. If the OTP is programmed, this is not needed,
+     b. For critical clocks, you may want to prevent this.
 
-Hi Krzysztof,
+Also, AFAIUI, "fixed frequency" or "dynamic frequency" is a policy,
+and purely software? Or are there OTP bits to enforce this?
 
-I do not think there is any ordering issue there.
+Perhaps you need a per-output "do-not-change-frequency" flag,
+probably with a generic name, in the spirit of "regulator-always-on"
+for regulators?
 
-Regards,
-Lorenzo
+Now, if all the output clocks are fixed rate, you might want to describe
+this in DTS using a set of fixed{,-factor-}-clocks?
 
->=20
-> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->=20
->=20
-> Best regards,
-> Krzysztof
->=20
+Gr{oetje,eeting}s,
 
---jkV1bburN89PBeLT
-Content-Type: application/pgp-signature; name="signature.asc"
+                        Geert
 
------BEGIN PGP SIGNATURE-----
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
-iHUEABYKAB0WIQTquNwa3Txd3rGGn7Y6cBh0uS2trAUCZAmtbAAKCRA6cBh0uS2t
-rDeWAP9XsT0VORBjVCWmnkZS31d5vRGUosz6Lj9+UWXyJ65eWwD/QBfgXftmET36
-Kgbpyao9C6x65UVORFm0P5/HqiaAWAQ=
-=0OIE
------END PGP SIGNATURE-----
-
---jkV1bburN89PBeLT--
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
