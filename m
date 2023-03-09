@@ -2,151 +2,133 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4AF4F6B1E8D
-	for <lists+devicetree@lfdr.de>; Thu,  9 Mar 2023 09:47:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 68CF36B1E9D
+	for <lists+devicetree@lfdr.de>; Thu,  9 Mar 2023 09:51:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229929AbjCIIrH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Mar 2023 03:47:07 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44168 "EHLO
+        id S230156AbjCIIvP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Mar 2023 03:51:15 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50338 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229804AbjCIIrG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Mar 2023 03:47:06 -0500
-Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com [IPv6:2a00:1450:4864:20::532])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E45AD2BF05
-        for <devicetree@vger.kernel.org>; Thu,  9 Mar 2023 00:47:03 -0800 (PST)
-Received: by mail-ed1-x532.google.com with SMTP id s11so3960630edy.8
-        for <devicetree@vger.kernel.org>; Thu, 09 Mar 2023 00:47:03 -0800 (PST)
+        with ESMTP id S229893AbjCIIvO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Mar 2023 03:51:14 -0500
+Received: from mail-pj1-x102c.google.com (mail-pj1-x102c.google.com [IPv6:2607:f8b0:4864:20::102c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 03AAAD515F
+        for <devicetree@vger.kernel.org>; Thu,  9 Mar 2023 00:51:13 -0800 (PST)
+Received: by mail-pj1-x102c.google.com with SMTP id qa18-20020a17090b4fd200b0023750b675f5so5322437pjb.3
+        for <devicetree@vger.kernel.org>; Thu, 09 Mar 2023 00:51:12 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1678351622;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=cGqSi8rJkPEYNb50K8BZLZGOLTylgAMP+xBcfwszraY=;
-        b=uWrOPunOG/IX7IXgMC9nNzBAL3RVSJDMIQAhPRLPF7D7yJ63ZEUf6n4B9kZXT8EJra
-         5+lMkJFQGjwuxI/vKqAjH7GCS7/mokXszHTPnV4wsXEkyAViezjc+qd0H9KpnnQXibsk
-         cexqB/EpVgwEZTQVDS1OjOmQtO5/c7FKZHQdDC+TJb2EGxdpf/ulhTWLcngwpatM0bqU
-         xKMAnSRae3omimeoZUwNa0/Zu6XM4MK1h1k+wy2uTIii0U4oLtklUv/mrZXkWWz1KHg3
-         yXLIz1kjPyFqXSHnvpKygQSNhB+OrnXxWB4gRxWbTafxbX/LvQUFLue7GldjnhLB5oAv
-         Frow==
+        d=linaro.org; s=google; t=1678351872;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=5nbaEHflVZL5dlWTuN5W+WJeZFrR+YCDbALQzvFDeUI=;
+        b=xZl4xrCphaclVvOHH9SHYkNDGZzHVT5svIUNpTkKZKGy+C36y3iykpnD+CqmukAkBb
+         HYocbnskA6QMYwSxXxMxvlB47uZAToJBYKORSZ4aE58Nfppj8Jt/01RzxloIb2UZ/YnT
+         diYgOF0+rWcBZ48l76pssyY6AVWLXhZIQjtCkSLumZa8C0u9xWxj0/qbVimG03DLmVqf
+         +m6z+FXW4zhrOgcOpQ4fCqRgczFGI3g7baoxOWF86auzC+f52joxbfdquosOaIs3ja1Y
+         2Y++MImluC+VTPKnxSjt4OSr6dZ4CiB4l1oeJtR2/9gdk9OLImpOnexDGrPu9yZSTGaH
+         h2wQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678351622;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=cGqSi8rJkPEYNb50K8BZLZGOLTylgAMP+xBcfwszraY=;
-        b=N5hJ0+7QRukdCu2f13auNsLD3TZDpfh8Eh1c9KMUZRktP5FLUkthhM/oZPfbWmEXpt
-         ARPGgarNOHVSx1l9zk9x04S09acabtwD/snUvNpF09Xc9osE+MnQLkwa1GZnmX+M1Ktl
-         lJq1Hu78DMTP6vWkQbh2JOs6DDz3GhW2qQpAj0mB4myRKAiV5IrUatZb2tsIDjNLXXWG
-         WZ+HemZvMrIZHSloFKujmHntmNbM4SAToEadUxi5QuqKfILqjNa81adFbhdObcu694M0
-         7D6TFNMEWE+vGzVv9PwZ9Xfdd9uvlEWvK8OWAM73lXT0AyiDklJMJdJkUifRd7VUyCAB
-         b8NA==
-X-Gm-Message-State: AO0yUKUQ8h9vvuDWboLoE+QVS8X0aUI26LUFRsbb5c6h3sFyLN0DNjAh
-        IbDoLVWoVwfjKSWxfJXbDKGOUQ==
-X-Google-Smtp-Source: AK7set8c8UmjoKmMwhvKXt6i586YTl/YQ9n2bzrcv3YZRo7O7HO0PDCg9C2uNGptPLP5DV9WQJiM/Q==
-X-Received: by 2002:a05:6402:2028:b0:4af:70a5:55ee with SMTP id ay8-20020a056402202800b004af70a555eemr18130112edb.3.1678351622391;
-        Thu, 09 Mar 2023 00:47:02 -0800 (PST)
-Received: from ?IPV6:2a02:810d:15c0:828:7ee2:e73e:802e:45c1? ([2a02:810d:15c0:828:7ee2:e73e:802e:45c1])
-        by smtp.gmail.com with ESMTPSA id a25-20020a509b59000000b004c0eac41829sm9183008edj.63.2023.03.09.00.47.00
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 09 Mar 2023 00:47:01 -0800 (PST)
-Message-ID: <2691debf-0596-c265-468f-bb66d19f6db0@linaro.org>
-Date:   Thu, 9 Mar 2023 09:46:59 +0100
+        d=1e100.net; s=20210112; t=1678351872;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=5nbaEHflVZL5dlWTuN5W+WJeZFrR+YCDbALQzvFDeUI=;
+        b=mVzZ0EprESm3fvbk2V0F1U2AvHBqWywNHLHRBenKyrN9S5+le0fFJZ6kvMgAcs0POg
+         RBqFkN0fs+oPobxtU5BfKuZeBEizMNDfTN2of6memT9pGiz7+qUNQqokJ7frOQwZg4NM
+         nI4n7uz+0ftlNhSo8JfH4tNJK1+JfMSR3yEoRU0j8Jbj9nvfQqAPJcEpk1IJxk7/hE2a
+         uHgmUM6wZpWjXefh4o1weStSkxoa441N2DBBbd7sQb2nyIeh1yne0I79EUvQpEoY2OQG
+         u46872VaHLeNRYTJ5+Z93hNoRxxcGs4/rYtiNlru+4Rw8TDqN6mbB4m5Lt1xlrBpN+aU
+         cgqw==
+X-Gm-Message-State: AO0yUKWmZBTroSDOasvn4kVvHAF7/xWBubgzyqXQDhsayC4bakIhv+xg
+        qFoQYFjrCuSEvt/A+PnOOwlM
+X-Google-Smtp-Source: AK7set82hGbpx0oe2f74RDSZH8c4Rcay0qoYAsa2LxwmhOCetZDxXPeGGrEUQM/rFYibcyCO27DzPA==
+X-Received: by 2002:a05:6a20:6a03:b0:cc:f9f2:3034 with SMTP id p3-20020a056a206a0300b000ccf9f23034mr22471322pzk.40.1678351872382;
+        Thu, 09 Mar 2023 00:51:12 -0800 (PST)
+Received: from localhost.localdomain ([220.158.158.11])
+        by smtp.gmail.com with ESMTPSA id u4-20020aa78484000000b005809d382016sm10638604pfn.74.2023.03.09.00.51.07
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 09 Mar 2023 00:51:11 -0800 (PST)
+From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+To:     andersson@kernel.org, lpieralisi@kernel.org, kw@linux.com,
+        krzysztof.kozlowski+dt@linaro.org, robh@kernel.org
+Cc:     konrad.dybcio@linaro.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-pci@vger.kernel.org,
+        linux-kernel@vger.kernel.org, quic_srichara@quicinc.com,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Subject: [PATCH v2 00/17] Qcom PCIe cleanups and improvements
+Date:   Thu,  9 Mar 2023 14:20:45 +0530
+Message-Id: <20230309085102.120977-1-manivannan.sadhasivam@linaro.org>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-Subject: Re: [PATCH v10 05/15] dt-bindings: soc: amd: amd,pensando-elbasr: Add
- AMD Pensando SoC System Controller
-Content-Language: en-US
-To:     Brad Larson <blarson@amd.com>
-Cc:     adrian.hunter@intel.com, alcooperx@gmail.com,
-        andy.shevchenko@gmail.com, arnd@arndb.de,
-        brendan.higgins@linux.dev, briannorris@chromium.org,
-        brijeshkumar.singh@amd.com, broonie@kernel.org,
-        catalin.marinas@arm.com, davidgow@google.com,
-        devicetree@vger.kernel.org, fancer.lancer@gmail.com,
-        gerg@linux-m68k.org, gsomlo@gmail.com, krzk@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, lee.jones@linaro.org,
-        lee@kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-mmc@vger.kernel.org,
-        linux-spi@vger.kernel.org, p.yadav@ti.com, p.zabel@pengutronix.de,
-        piotrs@cadence.com, rdunlap@infradead.org, robh+dt@kernel.org,
-        samuel@sholland.org, skhan@linuxfoundation.org,
-        suravee.suthikulpanit@amd.com, thomas.lendacky@amd.com,
-        tonyhuang.sunplus@gmail.com, ulf.hansson@linaro.org,
-        vaishnav.a@ti.com, will@kernel.org, yamada.masahiro@socionext.com
-References: <e82ca6f6-0870-f9b0-172f-bc6d54a9749b@linaro.org>
- <20230307021822.71245-1-blarson@amd.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230307021822.71245-1-blarson@amd.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 07/03/2023 03:18, Brad Larson wrote:
-> On 06/03/2023 09:35, Krzysztof Kozlowski wrote:
->>> On 06/03/2023 05:07, Brad Larson wrote:
->>>> Support the AMD Pensando SoC Controller which is a SPI connected device
->>>> providing a miscellaneous set of essential board control/status registers.
->>>> This device is present in all Pensando SoC based designs.
->>>>
->>>> Signed-off-by: Brad Larson <blarson@amd.com>
->>>> ---
->>>>
->>>> v10 changes:
->>>> - Property renamed to amd,pensando-ctrl
->>>> - Driver is renamed and moved to soc/drivers/amd affecting binding
->>>> - Delete cs property, driver handles device node creation from parent num-cs
->>>>   fixing schema reg error in a different way
->>>>
->>>> v9 changes:
->>>> - Instead of four nodes, one per chip-select, a single
->>>>   node is used with reset-cells in the parent.
->>>> - No MFD API is used anymore in the driver so it made
->>>>   sense to move this to drivers/spi.
->>>> - This driver is common for all Pensando SoC based designs
->>>>   so changed the name to pensando-sr.c to not make it Elba
->>>>   SoC specific.
->>>> - Added property cs for the chip-select number which is used
->>>>   by the driver to create /dev/pensr0.<cs>
->>>>
->>>> ---
->>>>  .../bindings/soc/amd/amd,pensando-ctrl.yaml   | 60 +++++++++++++++++++
->>>>  1 file changed, 60 insertions(+)
->>>>  create mode 100644 Documentation/devicetree/bindings/soc/amd/amd,pensando-ctrl.yaml
->>>>
->>>> diff --git a/Documentation/devicetree/bindings/soc/amd/amd,pensando-ctrl.yaml b/Documentation/devicetree/bindings/soc/amd/amd,pensando-ctrl.yaml
->>>> new file mode 100644
->>>> index 000000000000..36694077b2e6
->>>> --- /dev/null
->>>> +++ b/Documentation/devicetree/bindings/soc/amd/amd,pensando-ctrl.yaml
->>>
->>> Your subject suggests this is pensando-elbasr but you write everywhere
->>> pensando-ctrl. Confusing. Pick one.
->>
->> Actually pensando-ctrl is for sure not correct, because it misses the
->> name of the SoC (you call it everywhere "elba").
-> 
-> The reason I dropped elba as part of the name is this driver and its associated 
-> SPI attached device (cpld or fpga depending on the board design) will be used
-> across a series of SoCs starting with Elba.  Implying its Elba specific is misleading.
+Hi,
 
-Compatibles must be specific.
-https://elixir.bootlin.com/linux/v6.1-rc1/source/Documentation/devicetree/bindings/writing-bindings.rst#L42
-If this is SoC part it must match SoC. What is misleading in this? Why
-Pensando is different than all other SoCs (I am really getting tired
-everytime asking why people think their solution is special)?
+This series brings in several code cleanups and improvements to the
+Qualcomm PCIe controller drivers (RC and EP). The cleanup part mostly
+cleans up the bitfield definitions and transitions to bulk APIs for clocks,
+and resets. The improvement part adds the debugfs entry to track link
+transition counts in RC driver.
 
-If this is not part of the SoC, then your commit msg is misleading.
-Maybe bindings as well, so rework it.
+Testing
+-------
 
-Best regards,
-Krzysztof
+I have tested this series on SDM845, SM8250 and SC8280XP based platforms.
+However, I'm counting on Qualcomm folks CCed to do testing on older IPQ/APQ
+platforms.
+
+Merging Strategy
+----------------
+
+Binding and driver patches through PCI tree and DTS patches through Qcom
+tree.
+
+NOTE: For the sake of maintaining dependency, I've clubbed both cleanup and
+improvement patches in the same series. If any of the maintainers prefer to
+have them splitted, please let me know.
+
+Thanks,
+Mani
+
+Changes in v2:
+
+* Moved the "mhi" region to last in the binding and dtsi's
+* Dropped the patches renaming the "mmio" region
+
+Manivannan Sadhasivam (17):
+  PCI: qcom: Remove PCIE20_ prefix from register definitions
+  PCI: qcom: Sort and group registers and bitfield definitions
+  PCI: qcom: Use bitfield definitions for register fields
+  PCI: qcom: Add missing macros for register fields
+  PCI: qcom: Use lower case for hex
+  PCI: qcom: Use bulk reset APIs for handling resets for IP rev 2.1.0
+  PCI: qcom: Use bulk clock APIs for handling clocks for IP rev 1.0.0
+  PCI: qcom: Use bulk clock APIs for handling clocks for IP rev 2.3.2
+  PCI: qcom: Use bulk clock APIs for handling clocks for IP rev 2.3.3
+  PCI: qcom: Use bulk reset APIs for handling resets for IP rev 2.3.3
+  PCI: qcom: Use bulk reset APIs for handling resets for IP rev 2.4.0
+  PCI: qcom: Use macros for defining total no. of clocks & supplies
+  dt-bindings: PCI: qcom: Add "mhi" register region to supported SoCs
+  arm64: dts: qcom: sdm845: Add "mhi" region to the PCIe nodes
+  arm64: dts: qcom: sm8250: Add "mhi" region to the PCIe nodes
+  arm64: dts: qcom: sc8280xp: Add "mhi" region to the PCIe nodes
+  PCI: qcom: Expose link transition counts via debugfs
+
+ .../devicetree/bindings/pci/qcom,pcie.yaml    |   12 +-
+ arch/arm64/boot/dts/qcom/sc8280xp.dtsi        |   25 +-
+ arch/arm64/boot/dts/qcom/sdm845.dtsi          |   10 +-
+ arch/arm64/boot/dts/qcom/sm8250.dtsi          |   15 +-
+ drivers/pci/controller/dwc/pcie-qcom.c        | 1009 ++++++-----------
+ 5 files changed, 402 insertions(+), 669 deletions(-)
+
+-- 
+2.25.1
 
