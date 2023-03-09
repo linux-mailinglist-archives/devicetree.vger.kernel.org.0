@@ -2,234 +2,139 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0360D6B2CE1
-	for <lists+devicetree@lfdr.de>; Thu,  9 Mar 2023 19:29:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 23BB36B2CE9
+	for <lists+devicetree@lfdr.de>; Thu,  9 Mar 2023 19:31:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230236AbjCIS3F (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Mar 2023 13:29:05 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57594 "EHLO
+        id S230407AbjCISbI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Mar 2023 13:31:08 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59924 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230028AbjCIS3E (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Mar 2023 13:29:04 -0500
-Received: from mx.sberdevices.ru (mx.sberdevices.ru [45.89.227.171])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A7DECE9CEB;
-        Thu,  9 Mar 2023 10:29:01 -0800 (PST)
-Received: from s-lin-edge02.sberdevices.ru (localhost [127.0.0.1])
-        by mx.sberdevices.ru (Postfix) with ESMTP id D09415FD16;
-        Thu,  9 Mar 2023 21:28:58 +0300 (MSK)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sberdevices.ru;
-        s=mail; t=1678386538;
-        bh=CIRQg7hC6CEd/e41iLtiXwUhJirx9xJ3FGxic7KJOuI=;
-        h=Date:From:To:Subject:Message-ID:MIME-Version:Content-Type;
-        b=OX97kEXlp0GYFIRkei7PlgtCLDhBwyCVlnu71ydo/9UiG6hr4ZV4VrB2EE8nHBOoz
-         4ntpOMH8pIH1WXwvNd1rhQAyI3o6u3j9YPnKPXHN9mjavEFdmgdNKHJcHfwRSskRha
-         0sTqau4cjSHEm83bL/EaSXv6cgjP0QgiiI6+NFqX2IAVZ8t/sp3uCsVRQdY4220crt
-         9zKka4KfdYWo2AjXe08FWiS+bfI5igJVLFWZlF2XCO1iWtwi2lcEwwTPNCyJKM3zDR
-         rAoS5pI+v1bVkBoXSFnOd2/a676aKlHt6ClQCar/5ywF+5qjy7i/tqIkDrVq2lpdgC
-         wtysz3BymV8mA==
-Received: from S-MS-EXCH01.sberdevices.ru (S-MS-EXCH01.sberdevices.ru [172.16.1.4])
-        by mx.sberdevices.ru (Postfix) with ESMTP;
-        Thu,  9 Mar 2023 21:28:58 +0300 (MSK)
-Date:   Thu, 9 Mar 2023 21:28:57 +0300
-From:   Dmitry Rokosov <ddrokosov@sberdevices.ru>
-To:     Jerome Brunet <jbrunet@baylibre.com>
-CC:     <neil.armstrong@linaro.org>, <mturquette@baylibre.com>,
-        <sboyd@kernel.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <khilman@baylibre.com>,
-        <martin.blumenstingl@googlemail.com>, <jian.hu@amlogic.com>,
-        <kernel@sberdevices.ru>, <rockosov@gmail.com>,
-        <linux-amlogic@lists.infradead.org>, <linux-clk@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>
-Subject: Re: [PATCH v9 2/5] clk: meson: a1: add Amlogic A1 PLL clock
- controller driver
-Message-ID: <20230309182857.a2fzotcejueio23w@CAB-WSD-L081021>
-References: <20230301183759.16163-1-ddrokosov@sberdevices.ru>
- <20230301183759.16163-3-ddrokosov@sberdevices.ru>
- <1jr0u2azfi.fsf@starbuckisacylon.baylibre.com>
- <20230306200549.7iuedbl27ejfhf6b@CAB-WSD-L081021>
- <1jlek60zun.fsf@starbuckisacylon.baylibre.com>
+        with ESMTP id S229977AbjCISbH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Mar 2023 13:31:07 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B34B7F693F;
+        Thu,  9 Mar 2023 10:31:05 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 4EBCA61CBB;
+        Thu,  9 Mar 2023 18:31:05 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 10531C433EF;
+        Thu,  9 Mar 2023 18:31:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1678386664;
+        bh=OxAVh16i6IS88ISIABoRkC+frhPtYq64zT19SQCyKuE=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=O/CTkObKg7x/D/u0C5N5X1Oe97RxLUH9xaQb+tvbS0VyIbeXR3gZfQgQJoq2Y+eU6
+         ApNVEfFzmVjpK122Zj0KuSSGs3ZWk8ult+K7iQtgck7Q6XiZ1UiDGKYuldXFyw7ec9
+         0wskKSCc7dXvIAfKo3uXFG6i1uWX5W2t9bf7DDi6ez4IVixa8IRd6EhST86ZvFfwUE
+         4jmRAsUFcgDB2OZGUAcCcH0YZb+IDOxPvphulo5tOTsJzIqpzqMmgLgm9Pyd7uQyz8
+         wMIKFTyeHowrCRL8A1MyTBRwk8Y0EC7JDQn3qBSbuYctpA9Co1DzkcmKhajDFNTW7j
+         C3J/3pCbY7AOA==
+Date:   Thu, 9 Mar 2023 10:31:02 -0800
+From:   Eric Biggers <ebiggers@kernel.org>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Abel Vesa <abel.vesa@linaro.org>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Manivannan Sadhasivam <mani@kernel.org>,
+        Alim Akhtar <alim.akhtar@samsung.com>,
+        Avri Altman <avri.altman@wdc.com>,
+        Bart Van Assche <bvanassche@acm.org>,
+        Adrian Hunter <adrian.hunter@intel.com>,
+        "James E . J . Bottomley" <jejb@linux.ibm.com>,
+        "Martin K . Petersen" <martin.petersen@oracle.com>,
+        linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        linux-arm-msm@vger.kernel.org, linux-scsi@vger.kernel.org
+Subject: Re: [RFC PATCH v2 7/7] arm64: dts: qcom: Add the Inline Crypto
+ Engine nodes
+Message-ID: <ZAol5o5a6HZYgRaG@sol.localdomain>
+References: <20230308155838.1094920-1-abel.vesa@linaro.org>
+ <20230308155838.1094920-8-abel.vesa@linaro.org>
+ <4eab53fc-2d26-dc93-3ae6-c0b2546ad3e0@linaro.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <1jlek60zun.fsf@starbuckisacylon.baylibre.com>
-User-Agent: NeoMutt/20220415
-X-Originating-IP: [172.16.1.6]
-X-ClientProxiedBy: S-MS-EXCH01.sberdevices.ru (172.16.1.4) To
- S-MS-EXCH01.sberdevices.ru (172.16.1.4)
-X-KSMG-Rule-ID: 4
-X-KSMG-Message-Action: clean
-X-KSMG-AntiSpam-Status: not scanned, disabled by settings
-X-KSMG-AntiSpam-Interceptor-Info: not scanned
-X-KSMG-AntiPhishing: not scanned, disabled by settings
-X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 1.1.2.30, bases: 2023/03/09 14:25:00 #20928723
-X-KSMG-AntiVirus-Status: Clean, skipped
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <4eab53fc-2d26-dc93-3ae6-c0b2546ad3e0@linaro.org>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Mar 09, 2023 at 03:20:23PM +0100, Jerome Brunet wrote:
+On Thu, Mar 09, 2023 at 11:31:46AM +0100, Krzysztof Kozlowski wrote:
+> On 08/03/2023 16:58, Abel Vesa wrote:
+> > Drop all properties related to ICE from every UFS and SDCC node,
+> > for all platforms, and add dedicated ICE nodes for each platform.
+> > On most platforms, there is only one ICE instance, used by either
+> > UFS or SDCC, but there are some platforms that have two separate
+> > instances and, therefore, two separate nodes are added.
+> > 
+> > Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
+> > ---
+> > 
+> > Changes since v1:
+> >  * Made changes for all platforms that use ICE, as a single patch since
+> >    most changes look really similar.
+> > 
+> >  arch/arm64/boot/dts/qcom/sdm630.dtsi | 18 +++++++++-----
+> >  arch/arm64/boot/dts/qcom/sdm670.dtsi | 15 +++++++----
+> >  arch/arm64/boot/dts/qcom/sdm845.dtsi | 21 +++++++++-------
+> >  arch/arm64/boot/dts/qcom/sm6115.dtsi | 37 +++++++++++++++++-----------
+> >  arch/arm64/boot/dts/qcom/sm6350.dtsi | 31 ++++++++++++++---------
+> >  arch/arm64/boot/dts/qcom/sm8150.dtsi | 21 +++++++++-------
+> >  arch/arm64/boot/dts/qcom/sm8450.dtsi | 22 ++++++++++-------
+> >  7 files changed, 102 insertions(+), 63 deletions(-)
+> > 
+> > diff --git a/arch/arm64/boot/dts/qcom/sdm630.dtsi b/arch/arm64/boot/dts/qcom/sdm630.dtsi
+> > index 5827cda270a0..2aed49104d9d 100644
+> > --- a/arch/arm64/boot/dts/qcom/sdm630.dtsi
+> > +++ b/arch/arm64/boot/dts/qcom/sdm630.dtsi
+> > @@ -1330,9 +1330,8 @@ opp-200000000 {
+> >  		sdhc_1: mmc@c0c4000 {
+> >  			compatible = "qcom,sdm630-sdhci", "qcom,sdhci-msm-v5";
+> >  			reg = <0x0c0c4000 0x1000>,
+> > -			      <0x0c0c5000 0x1000>,
+> > -			      <0x0c0c8000 0x8000>;
+> > -			reg-names = "hc", "cqhci", "ice";
+> > +			      <0x0c0c5000 0x1000>;
+> > +			reg-names = "hc", "cqhci";
 > 
-> On Mon 06 Mar 2023 at 23:05, Dmitry Rokosov <ddrokosov@sberdevices.ru> wrote:
+> I believe this will break the ICE on these platforms without valid
+> reason. The commit msg does not explain why you do it or why this is
+> necessary.
 > 
-> > On Mon, Mar 06, 2023 at 12:17:23PM +0100, Jerome Brunet wrote:
-> >> 
-> >> On Wed 01 Mar 2023 at 21:37, Dmitry Rokosov <ddrokosov@sberdevices.ru> wrote:
-> >> 
-> >> > Introduce PLL clock controller for Amlogic A1 SoC family.
-> >> >
-> >> > Signed-off-by: Jian Hu <jian.hu@amlogic.com>
-> >> > Signed-off-by: Dmitry Rokosov <ddrokosov@sberdevices.ru>
-
-[...]
-
-> >> > +	},
-> >> > +};
-> >> > +
-> >> > +static const struct pll_mult_range hifi_pll_mult_range = {
-> >> > +	.min = 32,
-> >> > +	.max = 64,
-> >> > +};
-> >> > +
-> >> > +static const struct reg_sequence hifi_init_regs[] = {
-> >> > +	{ .reg = ANACTRL_HIFIPLL_CTRL1, .def = 0x01800000 },
-> >> > +	{ .reg = ANACTRL_HIFIPLL_CTRL2, .def = 0x00001100 },
-> >> > +	{ .reg = ANACTRL_HIFIPLL_CTRL3, .def = 0x100a1100 },
-> >> > +	{ .reg = ANACTRL_HIFIPLL_CTRL4, .def = 0x00302000 },
-> >> > +	{ .reg = ANACTRL_HIFIPLL_CTRL0, .def = 0x01f18440 },
-> >> 
-> >> This last poke should not bits otherwise handled by parms.
-> >> This is a rate init in disguise.
-> >> 
-> >
-> > I believe, you are talking about hifi_pll clk_regmap conflicts with
-> > hifi_init_regs. The above init sequence shouldn't affect pll regmap setup,
-> > it doesn't touch them (we assume that default bit values are all zero):
-> >
-> >     .en = {
-> >         .reg_off = ANACTRL_HIFIPLL_CTRL0,
-> >         .shift   = 28,
-> >         .width   = 1,
-> >     },
-> >     // init_value = 0x01f18440
-> >     // en_mask    = 0x10000000
-> >
-> >     .m = {
-> >         .reg_off = ANACTRL_HIFIPLL_CTRL0,
-> >         .shift   = 0,
-> >         .width   = 8,
-> >     },
-> >     // init_value = 0x01f18440
-> >     // m_mask     = 0x0000000f
+> We already we received comment that we keep breaking Qualcomm platforms
+> all the time and need to keep them in some shape.
 > 
-> mask is 0xff with width 8
+> Also, patchset is non-applicable in current set (breaks users) and
+> neither commit nor cover letter mentions it.
 > 
 
-Ah, you're right. Anyway, I think this is just init value and it's okay
-to set it during initialization and rewrite after in parameter
-propagation stage.
+FWIW, I tested this patchset on SDA845, and ICE continues to work fine.
 
-> >
-> >     .n = {
-> >         .reg_off = ANACTRL_HIFIPLL_CTRL0,
-> >         .shift   = 10,
-> >         .width   = 5,
-> >     },
-> >     // init_value = 0x01f18440
-> >     // n_mask     = 0x00007c00
-> >                            ^
-> >                     oops, one overlap
-> >                     but why we can't set init value for pre_sel?
-> >
-> >     .frac = {
-> >         .reg_off = ANACTRL_HIFIPLL_CTRL1,
-> >         .shift   = 0,
-> >         .width   = 19,
-> >     },
-> >     // init_value = 0x01800000
-> >     // frac_mask  = 0x0007ffff
-> >
-> >     .current_en = {
-> >         .reg_off = ANACTRL_HIFIPLL_CTRL0,
-> >         .shift   = 26,
-> >         .width   = 1,
-> >     },
-> >     // init_value      = 0x01f18440
-> >     // current_en_mask = 0x04000000
-> >
-> >     .l_detect = {
-> >         .reg_off = ANACTRL_HIFIPLL_CTRL2,
-> >         .shift   = 6,
-> >         .width   = 1,
-> >     },
-> >     // init_value    = 0x00001100
-> >     // l_detect_mask = 0x00000040
-> >
-> >> > +};
-> >> > +
-> >> > +static struct clk_regmap hifi_pll = {
-> >> > +	.data = &(struct meson_clk_pll_data){
-> >> > +		.en = {
-> >> > +			.reg_off = ANACTRL_HIFIPLL_CTRL0,
-> >> > +			.shift   = 28,
-> >> > +			.width   = 1,
-> >> > +		},
-> >> > +		.m = {
-> >> > +			.reg_off = ANACTRL_HIFIPLL_CTRL0,
-> >> > +			.shift   = 0,
-> >> > +			.width   = 8,
-> >> > +		},
-> >> > +		.n = {
-> >> > +			.reg_off = ANACTRL_HIFIPLL_CTRL0,
-> >> > +			.shift   = 10,
-> >> > +			.width   = 5,
-> >> > +		},
-> >> > +		.frac = {
-> >> > +			.reg_off = ANACTRL_HIFIPLL_CTRL1,
-> >> > +			.shift   = 0,
-> >> > +			.width   = 19,
-> >> > +		},
-> >> > +		.l = {
-> >> > +			.reg_off = ANACTRL_HIFIPLL_STS,
-> >> > +			.shift   = 31,
-> >> > +			.width   = 1,
-> >> > +		},
-> >> > +		.current_en = {
-> >> > +			.reg_off = ANACTRL_HIFIPLL_CTRL0,
-> >> > +			.shift   = 26,
-> >> > +			.width   = 1,
-> >> > +		},
-> >> > +		.l_detect = {
-> >> 
-> >> What is this ?
-> >> 
-> >
-> > Lock detection module.
-> >
-> > This is IP module included to new PLL power-on sequence. From clk-pll.c
-> > patchset:
-> >
-> > /*
-> >  * Compared with the previous SoCs, self-adaption current module
-> >  * is newly added for A1, keep the new power-on sequence to enable the
-> >  * PLL. The sequence is:
-> >  * 1. enable the pll, delay for 10us
-> >  * 2. enable the pll self-adaption current module, delay for 40us
-> >  * 3. enable the lock detect module
-> >  */
-> 
-> Ok. I missed this is the PLL driver
-> 
+(Though if I understand the patchset correctly, the ICE clock is no longer
+turned off when the UFS host controller is suspended.  That isn't ideal as it
+wastes power.  I would like that to be fixed.)
 
-No problem.
+Anyway, when you say "break the ICE", do you really mean "make an incompatible
+change to the device-tree bindings"?
 
-[...]
+I'd think there would be no problem with that as long as everything is updated
+at once, which this patchset does.
 
--- 
-Thank you,
-Dmitry
+I've heard before that some people consider the device-tree bindings to be a
+stable UAPI.  That doesn't make sense to me.  Actually, my original ICE patches
+ran into this issue too, and the resolution was simply that the Qualcomm
+platforms maintainer (Bjorn) decided to take the patches anyway.  I never heard
+any complaints afterwards.  Maybe the same is fine here too?
+
+- Eric
