@@ -2,93 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C8D3E6B208E
-	for <lists+devicetree@lfdr.de>; Thu,  9 Mar 2023 10:48:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 866066B2098
+	for <lists+devicetree@lfdr.de>; Thu,  9 Mar 2023 10:49:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230096AbjCIJsE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Mar 2023 04:48:04 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35114 "EHLO
+        id S229994AbjCIJtO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Mar 2023 04:49:14 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44892 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229874AbjCIJrr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Mar 2023 04:47:47 -0500
-Received: from mail-lj1-x22a.google.com (mail-lj1-x22a.google.com [IPv6:2a00:1450:4864:20::22a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1C4B1D1AC0;
-        Thu,  9 Mar 2023 01:47:38 -0800 (PST)
-Received: by mail-lj1-x22a.google.com with SMTP id z5so1190028ljc.8;
-        Thu, 09 Mar 2023 01:47:38 -0800 (PST)
+        with ESMTP id S231297AbjCIJsz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Mar 2023 04:48:55 -0500
+Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com [IPv6:2a00:1450:4864:20::534])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C60EAC5628
+        for <devicetree@vger.kernel.org>; Thu,  9 Mar 2023 01:48:52 -0800 (PST)
+Received: by mail-ed1-x534.google.com with SMTP id i34so4563264eda.7
+        for <devicetree@vger.kernel.org>; Thu, 09 Mar 2023 01:48:52 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112; t=1678355256;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to:subject
-         :user-agent:mime-version:date:message-id:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=iKaZUBNgAYa02ZxPlAJw3n9xoYyo5mcp71gYUX2tL0I=;
-        b=gzrSRgnhVUONxeY3cPePi09cWVIXNe51hrIgFNdXzODMmdFegfkdkE6TCjqEd4eiRg
-         UnbqyeTZenJkJONC4PwLLWSdAEqKOCsPHcC+8joYWwy22Vm01Wqf6kFWrXWv9VHuhM1A
-         iAay2wXvgfglraJFM2YgaBJNo5zLP8oUOUOSAQNlbm9EFVsx2ooMk0n5aNwULnTa7snn
-         UH+1QJ7hrHvITKr9irqfooeUVP6QmpC1hlYKNodBqB7TONeieQrdKXlm8sCrrt+EchvH
-         GTW1IKUw+Al7pIA2HpCa/CPuL1mZ6OEjx5qQzvdwVvPvqbG0VpFDBERIsYbvgILkeBb8
-         mQZA==
+        d=linaro.org; s=google; t=1678355331;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=KqM9tPbk85fkSamrIGtF+aGGKkrU9G+V8TUF+yeEv8A=;
+        b=SOGx0RpyMsiXOR6INiKJFbpBvSFe9w7i05zm2lXlR/T2TKa8QylkB7e9C+MQuPWhO/
+         Ku/H+APnyg5V/why7CWDcRyCYN1EUTaAy7gUz8MgMug30Oroj1hx2lt4hjJXzJ4L+smS
+         Gl9GOre6r+id+4BvTzvCBZiFzsiuWufrylwoWWv1JKjLeRh2ebzdoMrEgZEa/ISGRQCK
+         suwRxZsk4QME0pgnBm3ErfIfs5rWuFyHeKyNi+8KHgjZ3KVHYTidsMbkOrKNcU13+CyF
+         8dpMQhVRryLJFV3L/NNAJH3yHfPOzd5bizHY4ltfMiJelw/cK3gSw7K/UOYRp0bg2qnj
+         +iIw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678355256;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to:subject
-         :user-agent:mime-version:date:message-id:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=iKaZUBNgAYa02ZxPlAJw3n9xoYyo5mcp71gYUX2tL0I=;
-        b=1EEt0VT8Iapq+JFIsuWQx3/e1Mgc1ZFEs5IVkEwglIqfna+yHy8mxCUusaUTILwSlD
-         ugdes2yt2vYdArjEskw5VqsSbk0Q2nR7WsWpRP+Oa6Yg/hfHn5WyPEfuhVKckbQjH43U
-         UOhMF3Ek7XrB1I9qr6ZBpWw8L815/AU+YtpvxeCJs0Ol9NveyhaWGOwU6LeMIcInKrDE
-         klBOp2boT0KjMvu6WINLYqcFBxv82Psu4dStKGHBNaUwiAeLLErdrDOJ0FDVeawoPTpL
-         C6e8BeXFu/Q18jRtdfsN1+6roAC8QOQZI8fddzayiKICpKqIl22fL6zBFAILlZSa1oZI
-         ykqA==
-X-Gm-Message-State: AO0yUKV7PYYRj249vysgf1UUN6is5BwhZl/uv3dftQttZsJnqdCxY2Cu
-        3K8+2Rgaky1rz+SWHLUNCtk=
-X-Google-Smtp-Source: AK7set9AS3WC1/pYkzMQbaWKTU2nZk/cwX2/PWrwElKyrnoF2PYhJkw0p3nQ7JAYwiJ5/BUsIPbXsw==
-X-Received: by 2002:a2e:a58b:0:b0:294:7360:7966 with SMTP id m11-20020a2ea58b000000b0029473607966mr9763703ljp.30.1678355256274;
-        Thu, 09 Mar 2023 01:47:36 -0800 (PST)
-Received: from [192.168.26.149] (ip-194-187-74-233.konfederacka.maverick.com.pl. [194.187.74.233])
-        by smtp.googlemail.com with ESMTPSA id w11-20020a05651c102b00b00293526a0c87sm2895414ljm.41.2023.03.09.01.47.35
+        d=1e100.net; s=20210112; t=1678355331;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=KqM9tPbk85fkSamrIGtF+aGGKkrU9G+V8TUF+yeEv8A=;
+        b=R1bfgOjdF0XOgdhf6N9k07ZeiMptRnylnx6SYP61+86jI0F2ONjqO/WJ2MdCev8Fnz
+         Nz0taKsWABgc2yRLbBeXTzioabutuLM+DEPzSfnGQHJRv/HXdTjbIREF+KKxMcgTVV6U
+         qeAHT4eeFGQQoX+ihMVPFMeMHv5m8Q+CR14xDc6150kkQsWQdteZimPXU9gV+Qb4FTIw
+         MjHnqY4Mzww6BcMfGDbBNdiJyZhZG7hkzOBPV86+YlDl6IMMrHwpDDjGMVO6to4CTcaE
+         l8brAen1Lu5OdydpHR6qcCvs7m2pUlBHqU5fqEtWGRaKeuxt1pkYAjZ05L+nVUnIoLkE
+         EbiQ==
+X-Gm-Message-State: AO0yUKUhBcE5ZP42xxe9LSyXbOH/kdbWi2/tVQygQ7zpqe1fLLt0hV9K
+        35VZQZ31F4zwvSt6nnrwLeFIhg==
+X-Google-Smtp-Source: AK7set+LdAcJf2k76HO3Ko/pAiaiYsVO6swO8CiLqUtf9WOiHED+3AcF+H/mT/wOUS2xwh46rEkt0Q==
+X-Received: by 2002:a17:906:da82:b0:88f:9f5e:f40 with SMTP id xh2-20020a170906da8200b0088f9f5e0f40mr30594330ejb.68.1678355330988;
+        Thu, 09 Mar 2023 01:48:50 -0800 (PST)
+Received: from ?IPV6:2a02:810d:15c0:828:7ee2:e73e:802e:45c1? ([2a02:810d:15c0:828:7ee2:e73e:802e:45c1])
+        by smtp.gmail.com with ESMTPSA id 23-20020a170906005700b008e3e2b6a9adsm8646897ejg.94.2023.03.09.01.48.49
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 09 Mar 2023 01:47:35 -0800 (PST)
-Message-ID: <12dd20c6-da12-b3fb-7723-fefe7bbe5bbc@gmail.com>
-Date:   Thu, 9 Mar 2023 10:47:34 +0100
+        Thu, 09 Mar 2023 01:48:50 -0800 (PST)
+Message-ID: <38eaed94-647d-a25b-f1ed-8e2d1b6e8852@linaro.org>
+Date:   Thu, 9 Mar 2023 10:48:48 +0100
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:96.0) Gecko/20100101
- Thunderbird/96.0
-Subject: Re: [PATCH] dt-bindings: nvmem: layouts: add fixed-layout
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Michael Walle <michael@walle.cc>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
-References: <20230309093410.15214-1-zajec5@gmail.com>
-From:   =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
-In-Reply-To: <20230309093410.15214-1-zajec5@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.8.0
+Subject: Re: [PATCH 08/20] dt-bindings: pinctrl: ralink: add new compatible
+ strings
+Content-Language: en-US
+To:     =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>,
+        Rob Herring <robh@kernel.org>
+Cc:     Linus Walleij <linus.walleij@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-mediatek@lists.infradead.org, linux-mips@vger.kernel.org,
+        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Sergio Paracuellos <sergio.paracuellos@gmail.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Sean Wang <sean.wang@kernel.org>,
+        William Dean <williamsukatube@gmail.com>,
+        Daniel Golle <daniel@makrotopia.org>,
+        Daniel Santos <daniel.santos@pobox.com>,
+        Luiz Angelo Daros de Luca <luizluca@gmail.com>,
+        Frank Wunderlich <frank-w@public-files.de>,
+        Landen Chao <Landen.Chao@mediatek.com>,
+        DENG Qingfang <dqfext@gmail.com>,
+        Sean Wang <sean.wang@mediatek.com>, erkin.bozoglu@xeront.com
+References: <20230303002850.51858-1-arinc.unal@arinc9.com>
+ <20230303002850.51858-9-arinc.unal@arinc9.com>
+ <20230308210017.GA3744272-robh@kernel.org>
+ <1c704ea4-2241-ef21-dc6c-d2d243d3bbad@arinc9.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <1c704ea4-2241-ef21-dc6c-d2d243d3bbad@arinc9.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 9.03.2023 10:34, Rafał Miłecki wrote:
-> With the introduction of NVMEM layouts I believe we should prefer and
-> support describing all NVMEM devices content in the "nvmem-layout" node.
-> Inluding fixed NVMEM cells (those with hardcoded offset & size).
+On 08/03/2023 22:19, Arınç ÜNAL wrote:
 > 
-> This seems to be cleaner design and more explicit.
+>>
+>> If you want to break the ABI (do you??, because the commit message
+>> still doesn't say), then you don't need "ralink,mt7620-pinctrl".
 > 
-> Introduce a binding allowing fixed NVMEM cells as a type of layout.
+> I don't want to break the ABI. But I deprecate ralink,mt7620-pinctrl on 
+> later patches.
 
-While this is obvious to me I should make it clear anyway:
+Deprecation should happen here. Otherwise you have now two valid
+compatibles which contradicts previous Rob's comments.
 
-We must not break backward compatibility. Old binding should remain
-supported. We may want to deprecate old binding but we have to support
-existing DT files.
+
+> The driver still has it though, so old DTs will keep 
+> working. That keeps the ABI intact regardless of deprecating strings on 
+> the dt-binding schema, right?
+
+Yes, but deprecation is missing.
+
+
+Best regards,
+Krzysztof
+
