@@ -2,174 +2,159 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 13A406B2F6B
-	for <lists+devicetree@lfdr.de>; Thu,  9 Mar 2023 22:16:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2339B6B2F9E
+	for <lists+devicetree@lfdr.de>; Thu,  9 Mar 2023 22:32:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231276AbjCIVQf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Mar 2023 16:16:35 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49562 "EHLO
+        id S230449AbjCIVcH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Mar 2023 16:32:07 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43254 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231266AbjCIVQe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Mar 2023 16:16:34 -0500
-Received: from mail-wr1-f48.google.com (mail-wr1-f48.google.com [209.85.221.48])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 08CC6F9D04;
-        Thu,  9 Mar 2023 13:16:33 -0800 (PST)
-Received: by mail-wr1-f48.google.com with SMTP id h11so3248510wrm.5;
-        Thu, 09 Mar 2023 13:16:32 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678396591;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=spuAz/D/2gjibtqyeZd9Pa/cQy0mMO2RnLxbt9UDOmc=;
-        b=QP8eVrKAR038W7bR45jQNpursR6M5YHWxc1seVJa3tJk+OLLUHeAOKqN/0J+Azb268
-         kPcEet+G2VtxE2B0iZ/VDUvWPghYUZW4IpuzJf5oVdcJLp+3g+KnOQ3wXSnuvnTSOCzh
-         0NKE/YeAnPWLr4J+ewgb+zdUHR9Atflmlor26eZ5UzUsV1FrkqULZWVMEmHGiNvUENBw
-         foRRNhQEG2lhdUwrq5/jTEJRWyA1awnHdPh6rSEaRpaOL7Nj19CCFFlDUBY8pI0TdUsM
-         Zqs2xQo17QwWbqTENPlCSUn4w1BDCp0ITgYHf4rMMDsJog5mQ9SU/7Na04UZrTbXpv0N
-         SxaA==
-X-Gm-Message-State: AO0yUKUbUfsYUkqAnHdZ/uRsUWuLVPKY14Lxf9DBu1+iXdaSizS4VSq2
-        npgZhgKwoYd9jJ5t6qnBvho=
-X-Google-Smtp-Source: AK7set9pxUBrjqufXVK26H2B7tEkbEgAZjbqWdPzgFFFDJIC74mNBMCvti0sl2eKWp72fUbhk67FQA==
-X-Received: by 2002:a5d:6108:0:b0:2c5:4c9f:cf3b with SMTP id v8-20020a5d6108000000b002c54c9fcf3bmr61188wrt.7.1678396591357;
-        Thu, 09 Mar 2023 13:16:31 -0800 (PST)
-Received: from liuwe-devbox-debian-v2 ([51.145.34.42])
-        by smtp.gmail.com with ESMTPSA id e11-20020a5d65cb000000b002c71d206329sm369584wrw.55.2023.03.09.13.16.30
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 09 Mar 2023 13:16:30 -0800 (PST)
-Date:   Thu, 9 Mar 2023 21:16:25 +0000
-From:   Wei Liu <wei.liu@kernel.org>
-To:     Saurabh Sengar <ssengar@linux.microsoft.com>
-Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        kys@microsoft.com, haiyangz@microsoft.com, wei.liu@kernel.org,
-        decui@microsoft.com, daniel.lezcano@linaro.org, tglx@linutronix.de,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-hyperv@vger.kernel.org, mikelley@microsoft.com,
-        lenb@kernel.org, rafael@kernel.org, linux-acpi@vger.kernel.org
-Subject: Re: [PATCH v7 5/5] Driver: VMBus: Add Devicetree support
-Message-ID: <ZApMqWPWgWXIju/g@liuwe-devbox-debian-v2>
-References: <1677151745-16521-1-git-send-email-ssengar@linux.microsoft.com>
- <1677151745-16521-6-git-send-email-ssengar@linux.microsoft.com>
+        with ESMTP id S231423AbjCIVcD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Mar 2023 16:32:03 -0500
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2930AF8F35;
+        Thu,  9 Mar 2023 13:31:49 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1678397509; x=1709933509;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=fuhD00gZ/JN8iEBEai4g97h2vmgpf08x/wSh/QlgdRg=;
+  b=YM+PLLEj6OevRjxDIHwZSrdq1+fac0wQfAjoidaM9xDOU7r7nAMErknS
+   NQPAE78X87EbeHVe19sUd6piAAqUHMUJazyHSo4Rsha79wcvAizSZSXnH
+   71gbLhPPn7i1h8hhOjYpKjJ4M8aUzuqfvnnDIK51bWKF+jrX8zMfnPVkZ
+   HBH+X+c3/5UPfHp6fUuPKAQjJdmRMVsQQUMnWhxxeL5yRpSkr1QIQjIpV
+   BchI3/AHBBfoA0UP6k7K4wYIFEHGueHaBIJPnvuk0Fzmj2Fr0HwQJN+CZ
+   puSuVCMY6DZtA2VEas6Bm9RtYjra7GpiiZHtk/wydAJP0O5C6C5l/+QTn
+   A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10644"; a="324924273"
+X-IronPort-AV: E=Sophos;i="5.98,247,1673942400"; 
+   d="scan'208";a="324924273"
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+  by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 09 Mar 2023 13:31:44 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6500,9779,10644"; a="746474002"
+X-IronPort-AV: E=Sophos;i="5.98,247,1673942400"; 
+   d="scan'208";a="746474002"
+Received: from lkp-server01.sh.intel.com (HELO b613635ddfff) ([10.239.97.150])
+  by fmsmga004.fm.intel.com with ESMTP; 09 Mar 2023 13:31:41 -0800
+Received: from kbuild by b613635ddfff with local (Exim 4.96)
+        (envelope-from <lkp@intel.com>)
+        id 1paNrQ-0003EP-08;
+        Thu, 09 Mar 2023 21:31:40 +0000
+Date:   Fri, 10 Mar 2023 05:31:05 +0800
+From:   kernel test robot <lkp@intel.com>
+To:     Danila Tikhonov <danila@jiaxyga.com>, agross@kernel.org,
+        andersson@kernel.org, konrad.dybcio@linaro.org, vkoul@kernel.org,
+        kishon@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org
+Cc:     oe-kbuild-all@lists.linux.dev, linux-arm-msm@vger.kernel.org,
+        linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, davidwronek@gmail.com,
+        Danila Tikhonov <danila@jiaxyga.com>
+Subject: Re: [PATCH 2/2] phy: qcom-qmp-ufs: Add SM7150 support
+Message-ID: <202303100518.rMD2XKLn-lkp@intel.com>
+References: <20230309185049.170878-3-danila@jiaxyga.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <1677151745-16521-6-git-send-email-ssengar@linux.microsoft.com>
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
-        autolearn=no autolearn_force=no version=3.4.6
+In-Reply-To: <20230309185049.170878-3-danila@jiaxyga.com>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Feb 23, 2023 at 03:29:05AM -0800, Saurabh Sengar wrote:
-[...]
-> +#ifdef CONFIG_ACPI
->  static int vmbus_acpi_add(struct platform_device *pdev)
->  {
->  	acpi_status result;
-> @@ -2494,10 +2497,47 @@ static int vmbus_acpi_add(struct platform_device *pdev)
->  		vmbus_mmio_remove();
->  	return ret_val;
->  }
-> +#endif
-> +
-> +static int vmbus_device_add(struct platform_device *pdev)
-> +{
-> +	struct resource **cur_res = &hyperv_mmio;
-> +	struct of_range range;
-> +	struct of_range_parser parser;
-> +	struct device_node *np = pdev->dev.of_node;
-> +	int ret;
-> +
-> +	hv_dev = &pdev->dev;
-> +
-> +	ret = of_range_parser_init(&parser, np);
-> +	if (ret)
-> +		return ret;
-> +
-> +	for_each_of_range(&parser, &range) {
-> +		struct resource *res;
-> +
-> +		res = kzalloc(sizeof(*res), GFP_ATOMIC);
+Hi Danila,
 
-Why GFP_ATOMIC here? I don't think this function will be called in
-atomic context, right?
+Thank you for the patch! Yet something to improve:
 
-> +		if (!res)
-> +			return -ENOMEM;
-> +
-> +		res->name = "hyperv mmio";
-> +		res->flags = IORESOURCE_MEM | IORESOURCE_MEM_64;
+[auto build test ERROR on robh/for-next]
+[also build test ERROR on linus/master v6.3-rc1 next-20230309]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-Are you sure IORESOURCE_MEM_64 is correct or required? The ACPI method
-does not set this flag.
+url:    https://github.com/intel-lab-lkp/linux/commits/Danila-Tikhonov/dt-bindings-phy-Add-QMP-UFS-PHY-comptible-for-SM7150/20230310-025222
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
+patch link:    https://lore.kernel.org/r/20230309185049.170878-3-danila%40jiaxyga.com
+patch subject: [PATCH 2/2] phy: qcom-qmp-ufs: Add SM7150 support
+config: arc-randconfig-r043-20230308 (https://download.01.org/0day-ci/archive/20230310/202303100518.rMD2XKLn-lkp@intel.com/config)
+compiler: arc-elf-gcc (GCC) 12.1.0
+reproduce (this is a W=1 build):
+        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+        chmod +x ~/bin/make.cross
+        # https://github.com/intel-lab-lkp/linux/commit/95e826acacaf3b5ba79c06b481199a17abed44ba
+        git remote add linux-review https://github.com/intel-lab-lkp/linux
+        git fetch --no-tags linux-review Danila-Tikhonov/dt-bindings-phy-Add-QMP-UFS-PHY-comptible-for-SM7150/20230310-025222
+        git checkout 95e826acacaf3b5ba79c06b481199a17abed44ba
+        # save the config file
+        mkdir build_dir && cp config build_dir/.config
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.1.0 make.cross W=1 O=build_dir ARCH=arc olddefconfig
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.1.0 make.cross W=1 O=build_dir ARCH=arc SHELL=/bin/bash drivers/phy/qualcomm/
 
-> +		res->start = range.cpu_addr;
-> +		res->end = range.cpu_addr + range.size;
-> +
-> +		*cur_res = res;
-> +		cur_res = &res->sibling;
-> +	}
-> +
-> +	return ret;
-> +}
->  
->  static int vmbus_platform_driver_probe(struct platform_device *pdev)
->  {
-> +#ifdef CONFIG_ACPI
->  	return vmbus_acpi_add(pdev);
-> +#endif
+If you fix the issue, kindly add following tag where applicable
+| Reported-by: kernel test robot <lkp@intel.com>
+| Link: https://lore.kernel.org/oe-kbuild-all/202303100518.rMD2XKLn-lkp@intel.com/
 
-Please use #else here.
+All errors (new ones prefixed by >>):
 
-> +	return vmbus_device_add(pdev);
+>> drivers/phy/qualcomm/phy-qcom-qmp-ufs.c:380:3: error: expected identifier or '(' before ')' token
+     380 | };)
+         |   ^
+>> drivers/phy/qualcomm/phy-qcom-qmp-ufs.c:972:35: error: 'sm8150_ufsphy_serdes' undeclared here (not in a function); did you mean 'sm8550_ufsphy_serdes'?
+     972 |                 .serdes         = sm8150_ufsphy_serdes,
+         |                                   ^~~~~~~~~~~~~~~~~~~~
+         |                                   sm8550_ufsphy_serdes
+   In file included from include/linux/container_of.h:5,
+                    from include/linux/kernel.h:21,
+                    from include/linux/clk.h:13,
+                    from drivers/phy/qualcomm/phy-qcom-qmp-ufs.c:6:
+   include/linux/build_bug.h:16:51: error: bit-field '<anonymous>' width not an integer constant
+      16 | #define BUILD_BUG_ON_ZERO(e) ((int)(sizeof(struct { int:(-!!(e)); })))
+         |                                                   ^
+   include/linux/compiler.h:232:33: note: in expansion of macro 'BUILD_BUG_ON_ZERO'
+     232 | #define __must_be_array(a)      BUILD_BUG_ON_ZERO(__same_type((a), &(a)[0]))
+         |                                 ^~~~~~~~~~~~~~~~~
+   include/linux/kernel.h:55:59: note: in expansion of macro '__must_be_array'
+      55 | #define ARRAY_SIZE(arr) (sizeof(arr) / sizeof((arr)[0]) + __must_be_array(arr))
+         |                                                           ^~~~~~~~~~~~~~~
+   drivers/phy/qualcomm/phy-qcom-qmp-ufs.c:973:35: note: in expansion of macro 'ARRAY_SIZE'
+     973 |                 .serdes_num     = ARRAY_SIZE(sm8150_ufsphy_serdes),
+         |                                   ^~~~~~~~~~
+   include/linux/build_bug.h:16:51: error: bit-field '<anonymous>' width not an integer constant
+      16 | #define BUILD_BUG_ON_ZERO(e) ((int)(sizeof(struct { int:(-!!(e)); })))
+         |                                                   ^
+   include/linux/compiler.h:232:33: note: in expansion of macro 'BUILD_BUG_ON_ZERO'
+     232 | #define __must_be_array(a)      BUILD_BUG_ON_ZERO(__same_type((a), &(a)[0]))
+         |                                 ^~~~~~~~~~~~~~~~~
+   include/linux/kernel.h:55:59: note: in expansion of macro '__must_be_array'
+      55 | #define ARRAY_SIZE(arr) (sizeof(arr) / sizeof((arr)[0]) + __must_be_array(arr))
+         |                                                           ^~~~~~~~~~~~~~~
+   drivers/phy/qualcomm/phy-qcom-qmp-ufs.c:1005:35: note: in expansion of macro 'ARRAY_SIZE'
+    1005 |                 .serdes_num     = ARRAY_SIZE(sm8150_ufsphy_serdes),
+         |                                   ^~~~~~~~~~
 
-Is there going to be a configuration that ACPI and OF are available at
-the same time? I don't see they are marked as mutually exclusive in the
-proposed KConfig.
 
-Thanks,
-Wei.
+vim +380 drivers/phy/qualcomm/phy-qcom-qmp-ufs.c
 
->  }
->  
->  static int vmbus_platform_driver_remove(struct platform_device *pdev)
-> @@ -2643,12 +2683,24 @@ static int vmbus_bus_resume(struct device *dev)
->  #define vmbus_bus_resume NULL
->  #endif /* CONFIG_PM_SLEEP */
->  
-> +static const __maybe_unused struct of_device_id vmbus_of_match[] = {
-> +	{
-> +		.compatible = "microsoft,vmbus",
-> +	},
-> +	{
-> +		/* sentinel */
-> +	},
-> +};
-> +MODULE_DEVICE_TABLE(of, vmbus_of_match);
-> +
-> +#ifdef CONFIG_ACPI
->  static const struct acpi_device_id vmbus_acpi_device_ids[] = {
->  	{"VMBUS", 0},
->  	{"VMBus", 0},
->  	{"", 0},
->  };
->  MODULE_DEVICE_TABLE(acpi, vmbus_acpi_device_ids);
-> +#endif
->  
->  /*
->   * Note: we must use the "no_irq" ops, otherwise hibernation can not work with
-> @@ -2677,6 +2729,7 @@ static struct platform_driver vmbus_platform_driver = {
->  	.driver = {
->  		.name = "vmbus",
->  		.acpi_match_table = ACPI_PTR(vmbus_acpi_device_ids),
-> +		.of_match_table = of_match_ptr(vmbus_of_match),
->  		.pm = &vmbus_bus_pm,
->  		.probe_type = PROBE_FORCE_SYNCHRONOUS,
->  	}
-> -- 
-> 2.34.1
-> 
+   370	
+   371	static const struct qmp_phy_init_tbl sm7150_ufsphy_pcs[] = {
+   372		QMP_PHY_INIT_CFG(QPHY_V3_PCS_UFS_RX_SIGDET_CTRL2, 0x6f),
+   373		QMP_PHY_INIT_CFG(QPHY_V3_PCS_UFS_TX_LARGE_AMP_DRV_LVL, 0x0f),
+   374		QMP_PHY_INIT_CFG(QPHY_V3_PCS_UFS_TX_SMALL_AMP_DRV_LVL, 0x02),
+   375		QMP_PHY_INIT_CFG(QPHY_V3_PCS_UFS_RX_SYM_RESYNC_CTRL, 0x03),
+   376		QMP_PHY_INIT_CFG(QPHY_V3_PCS_UFS_TX_MID_TERM_CTRL1, 0x43),
+   377		QMP_PHY_INIT_CFG(QPHY_V3_PCS_UFS_RX_SIGDET_CTRL1, 0x0f),
+   378		QMP_PHY_INIT_CFG(QPHY_V3_PCS_UFS_RX_MIN_HIBERN8_TIME, 0xFF),
+   379		QMP_PHY_INIT_CFG(QPHY_V3_PCS_UFS_MULTI_LANE_CTRL1, 0x02),
+ > 380	};)
+   381	
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests
