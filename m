@@ -2,53 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AD42F6B26F7
-	for <lists+devicetree@lfdr.de>; Thu,  9 Mar 2023 15:35:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0FC886B26F8
+	for <lists+devicetree@lfdr.de>; Thu,  9 Mar 2023 15:35:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231774AbjCIOfN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Mar 2023 09:35:13 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33902 "EHLO
+        id S231725AbjCIOfQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Mar 2023 09:35:16 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33912 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231725AbjCIOfL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Mar 2023 09:35:11 -0500
-Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com [IPv6:2a00:1450:4864:20::534])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C99D9E7CAC
-        for <devicetree@vger.kernel.org>; Thu,  9 Mar 2023 06:35:09 -0800 (PST)
-Received: by mail-ed1-x534.google.com with SMTP id g3so7888906eda.1
-        for <devicetree@vger.kernel.org>; Thu, 09 Mar 2023 06:35:09 -0800 (PST)
+        with ESMTP id S231761AbjCIOfM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Mar 2023 09:35:12 -0500
+Received: from mail-ed1-x530.google.com (mail-ed1-x530.google.com [IPv6:2a00:1450:4864:20::530])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A7CB8E7CB0
+        for <devicetree@vger.kernel.org>; Thu,  9 Mar 2023 06:35:10 -0800 (PST)
+Received: by mail-ed1-x530.google.com with SMTP id cw28so7821136edb.5
+        for <devicetree@vger.kernel.org>; Thu, 09 Mar 2023 06:35:10 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112; t=1678372508;
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112; t=1678372509;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:to:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=uvjNBXeeYphBWgNkcT8wLT8gdWY2M0B9Tjp0nJ/il2U=;
-        b=4KYfaUs16ATIQmgfHGIiO1XlwvR2SggVkcJBEfiVouxApDCubSiGgFbPnSShsETRYy
-         osLsCoGwTaEk3ybDE64pvRN0q1CuG2E65nOYWfbGZ+C5SPT8YhTZCuNcLUQw2WY4XPP1
-         NBz4RVlVi04CxccL1W3fnHHIIL09pwbpWKy9XAXSymeDX+btDdLk7yRgpY8uCZKrM0Nt
-         W1Kx9TIHNdGQWDaXihZegh+OE3MrbWbii/J5URuEDCG9wjr5ziAtXL4E48LjIZNozQSu
-         Ukh7NzPBPnVSHj+qW6Z63i8H/D9UBpDwqKXvQuiAetFI56QFgXbv2l57bJj0p/huvmdl
-         NOqw==
+        bh=/XGnTW8d5154ClkyTBOCffDzRAqbcCupwBDkGcyCWzM=;
+        b=VWPDh6dtM1UkmUdD7p5LKK8/I9+WNmFbF+ajDTXODZ3BAiuXnUEvgLz40BtjcvPYRZ
+         T/FpT9sG2LUdjcjm3BXeWIPvnqgqWZyrJCESFGxPJ/xizYSGzfwomH7IkORp0woQr4LV
+         7EC6cWtPzN8QhwV9duy3AoX7PpW+T62soDi4eE1WhnElgDoIfmfONRcS6uw1NwhjYUo+
+         J1QHsW611tFkrVCbFwA535WwMR8D8XWr/zaBP+l7NuVEzlrA50Z9CR0xzO4Hx0Ia1O6g
+         a2AsWYRc9LvX0z9kSz0/n3T2dBk4IANbIxcNxbdgmP2N0sPCziJx7HE0+JOhe1IXKdET
+         +Taw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678372508;
+        d=1e100.net; s=20210112; t=1678372509;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=uvjNBXeeYphBWgNkcT8wLT8gdWY2M0B9Tjp0nJ/il2U=;
-        b=X9vZOrbXOYVX40BNIlCj00zSefZLDQMwoBwh9MgEx74VGCVw7EKIQTFiq0ot4Sr3lk
-         2rXoEqfFYqzFnFW01l0QEfYBC3yWeNG1aO3NXZNg1s2V46z7K4aYuWkIMmFS3LE8kQMj
-         Hm68SihxmwsXtk5ZroVwPJAlutGB1SJVQ6Ko6Ti1bZzMra66XopMwivlHK7NPD0HHW7Q
-         YaKxblsau6qDKGNLNWvstoHs8t1l9MuaDwZKW+SL9QIdsC7mPtYjPJbNhOrZbUnDUiwT
-         lNN7Dhcfsh8d6lWKgQtFHASa3OHBUaySp3jwheNNYKOAt6pgcxose4OIK/4OT1gy+r7h
-         Ji0g==
-X-Gm-Message-State: AO0yUKVmIEl4Qwh7bMm4WEZu62AAHET+KG9vKvC2HiQZVhQ7f5w/DKVJ
-        29TGzu6qeGGKeqr8dFXdQOEGhNCwjSb7aCN3R1k=
-X-Google-Smtp-Source: AK7set8Qe8U6tp7US8u9NFqeRC9Aiio3kqtK7ujJVoqRZi/jAyoPIflQmwQykEFZpkPXbalGWg36QA==
-X-Received: by 2002:a17:907:7da6:b0:888:b764:54e5 with SMTP id oz38-20020a1709077da600b00888b76454e5mr26631536ejc.71.1678372508260;
-        Thu, 09 Mar 2023 06:35:08 -0800 (PST)
+        bh=/XGnTW8d5154ClkyTBOCffDzRAqbcCupwBDkGcyCWzM=;
+        b=YReAEYDVDkZxw9k8Wp0yCwtWAiQK1iJ5Y7yZ8z2dA/HTZtP6shREgXNd+3iYLTkSZW
+         /+lzxZ3JU26QhseehSBq/Sf0i04cLfBcnSv+uqQDJqh0mVykxQawT/jSv1vrTSIeUc23
+         bhY4MY9HrRGTxwgbYstksuS8786ZsZEIdrtNBV4myPZ4pEYJaH+H1/1v+zUF7XXK/I2R
+         I+Pf6zTqIVJE1XQ1BldW/hyZaEb8lICUy6GU3kdHHmqdnj6gTV1m6qozshXgzcNa7su/
+         hJh6BUhe60/rqEd0pIZvVMMZ5245ywR3geOOhVxll9XWzJUcISlMKF4O4kCkmT2ZsJ5g
+         yJVw==
+X-Gm-Message-State: AO0yUKW5Ym+6GodWaxQWJG+oYYNcZCr6caCWV/9vbw5i81xCLRv/fJ3l
+        Y3MRelJWENxp+72VN16oafiSCg==
+X-Google-Smtp-Source: AK7set9O4rl8P3uzhwE/hnhV/DPn1W87oDD35gpX7Y95gY0+bM2ivwGXgJy3SWXHzNLsycSnau36pw==
+X-Received: by 2002:a17:907:72c9:b0:889:b38b:4bb2 with SMTP id du9-20020a17090772c900b00889b38b4bb2mr25849740ejc.49.1678372509238;
+        Thu, 09 Mar 2023 06:35:09 -0800 (PST)
 Received: from ryzen9.fritz.box ([81.221.122.240])
-        by smtp.gmail.com with ESMTPSA id w4-20020a170906184400b008cb7473e488sm9046239eje.12.2023.03.09.06.35.07
+        by smtp.gmail.com with ESMTPSA id w4-20020a170906184400b008cb7473e488sm9046239eje.12.2023.03.09.06.35.08
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 09 Mar 2023 06:35:07 -0800 (PST)
+        Thu, 09 Mar 2023 06:35:08 -0800 (PST)
 From:   =?UTF-8?q?Bernhard=20Rosenkr=C3=A4nzer?= <bero@baylibre.com>
 To:     linux-mediatek@lists.infradead.org,
         linux-arm-kernel@lists.infradead.org, linux-serial@vger.kernel.org,
@@ -56,9 +56,9 @@ To:     linux-mediatek@lists.infradead.org,
         angelogioacchino.delregno@collabora.com, matthias.bgg@gmail.com,
         gregkh@linuxfoundation.org, krzysztof.kozlowski+dt@linaro.org,
         robh+dt@kernel.org, maz@kernel.org, tglx@linutronix.de
-Subject: [PATCH v10 1/3] dt-bindings: irq: mtk, sysirq: add support for mt8365
-Date:   Thu,  9 Mar 2023 15:34:57 +0100
-Message-Id: <20230309143459.401783-2-bero@baylibre.com>
+Subject: [PATCH v10 2/3] dt-bindings: serial: mediatek,uart: add MT8365
+Date:   Thu,  9 Mar 2023 15:34:58 +0100
+Message-Id: <20230309143459.401783-3-bero@baylibre.com>
 X-Mailer: git-send-email 2.40.0.rc2
 In-Reply-To: <20230309143459.401783-1-bero@baylibre.com>
 References: <20230309143459.401783-1-bero@baylibre.com>
@@ -74,28 +74,27 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add binding documentation of mediatek,sysirq for mt8365 SoC.
+Add binding description for mediatek,mt8365-uart
 
 Signed-off-by: Bernhard Rosenkränzer <bero@baylibre.com>
 Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Reviewed-by: Matthias Brugger <matthias.bgg@gmail.com>
 ---
- .../devicetree/bindings/interrupt-controller/mediatek,sysirq.txt | 1 +
+ Documentation/devicetree/bindings/serial/mediatek,uart.yaml | 1 +
  1 file changed, 1 insertion(+)
 
-diff --git a/Documentation/devicetree/bindings/interrupt-controller/mediatek,sysirq.txt b/Documentation/devicetree/bindings/interrupt-controller/mediatek,sysirq.txt
-index 84ced3f4179b9..3ffc60184e445 100644
---- a/Documentation/devicetree/bindings/interrupt-controller/mediatek,sysirq.txt
-+++ b/Documentation/devicetree/bindings/interrupt-controller/mediatek,sysirq.txt
-@@ -25,6 +25,7 @@ Required properties:
- 	"mediatek,mt6577-sysirq": for MT6577
- 	"mediatek,mt2712-sysirq", "mediatek,mt6577-sysirq": for MT2712
- 	"mediatek,mt2701-sysirq", "mediatek,mt6577-sysirq": for MT2701
-+	"mediatek,mt8365-sysirq", "mediatek,mt6577-sysirq": for MT8365
- - interrupt-controller : Identifies the node as an interrupt controller
- - #interrupt-cells : Use the same format as specified by GIC in arm,gic.txt.
- - reg: Physical base address of the intpol registers and length of memory
+diff --git a/Documentation/devicetree/bindings/serial/mediatek,uart.yaml b/Documentation/devicetree/bindings/serial/mediatek,uart.yaml
+index fe098d98af6ee..303d02ca4e1ba 100644
+--- a/Documentation/devicetree/bindings/serial/mediatek,uart.yaml
++++ b/Documentation/devicetree/bindings/serial/mediatek,uart.yaml
+@@ -45,6 +45,7 @@ properties:
+               - mediatek,mt8188-uart
+               - mediatek,mt8192-uart
+               - mediatek,mt8195-uart
++              - mediatek,mt8365-uart
+               - mediatek,mt8516-uart
+           - const: mediatek,mt6577-uart
+ 
 -- 
 2.40.0.rc2
 
