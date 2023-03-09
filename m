@@ -2,177 +2,231 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7888C6B2379
-	for <lists+devicetree@lfdr.de>; Thu,  9 Mar 2023 12:56:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 101DF6B23C6
+	for <lists+devicetree@lfdr.de>; Thu,  9 Mar 2023 13:14:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230280AbjCIL4Z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Mar 2023 06:56:25 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56048 "EHLO
+        id S229722AbjCIMOY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Mar 2023 07:14:24 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53556 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229998AbjCIL4Y (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Mar 2023 06:56:24 -0500
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2242FC8881;
-        Thu,  9 Mar 2023 03:56:23 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1678362983; x=1709898983;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:content-transfer-encoding:in-reply-to;
-  bh=sYQew8e9CNh9fAOdyVwD7vsy2GbvJyrAcyt1S1nt70U=;
-  b=I63MGyWBPc1P2hG6BTPIzF86toH2z82uOXAzifkOsw8fiYf+XudHM9N3
-   pnQgyNPPF/xHk2B0W+Y7eNgK9TPPenpBb5y6EzMuqqWyPSDNSYxlIPHYk
-   KNOUBysOLeGca4OZh2Cf1bDtGZ/7SRNd7e/ArVSN+vJ+Rl3YfFdGoGY5f
-   WrwaWwLjdLP4Eu0TPUVrLZOs7UrkTeJ2tf7Mr0caFggBWnrOAcBjtMk/E
-   6Qn1dehojCsz3EZKWqxHdWkYT5koyCtcn+Q/rvKCm8q/eI/tcMqTfbfas
-   KVh4OAjUd2lj0dj3f8aveJ6i77E0s2vaTKBxLh/bYk+p4Vvjav74+RdX6
-   Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10643"; a="316083794"
-X-IronPort-AV: E=Sophos;i="5.98,246,1673942400"; 
-   d="scan'208";a="316083794"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
-  by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 09 Mar 2023 03:56:22 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10643"; a="707584975"
-X-IronPort-AV: E=Sophos;i="5.98,246,1673942400"; 
-   d="scan'208";a="707584975"
-Received: from smile.fi.intel.com ([10.237.72.54])
-  by orsmga008.jf.intel.com with ESMTP; 09 Mar 2023 03:56:19 -0800
-Received: from andy by smile.fi.intel.com with local (Exim 4.96)
-        (envelope-from <andriy.shevchenko@linux.intel.com>)
-        id 1paEsc-000IfD-0B;
-        Thu, 09 Mar 2023 13:56:18 +0200
-Date:   Thu, 9 Mar 2023 13:56:17 +0200
-From:   Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To:     Daniel Kaehn <kaehndan@gmail.com>
-Cc:     Benjamin Tissoires <benjamin.tissoires@redhat.com>,
-        Hans de Goede <hdegoede@redhat.com>, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, jikos@kernel.org,
-        bartosz.golaszewski@linaro.org, dmitry.torokhov@gmail.com,
-        devicetree@vger.kernel.org, linux-input@vger.kernel.org,
-        ethan.twardy@plexus.com
-Subject: Re: [PATCH v8 3/3] HID: cp2112: Fwnode Support
-Message-ID: <ZAnJYRDcQhCWNplG@smile.fi.intel.com>
-References: <CAP+ZCCcbXqPOY5Xzq9v8JNSzH9+xOqgfkTezJdLQY=vwQco4vQ@mail.gmail.com>
- <20230307144852.ueyaotkeeqfjlgk7@mail.corp.redhat.com>
- <ZAeADcJWmJR+1ycJ@smile.fi.intel.com>
- <20230308152611.tae2pnmflakrcyhh@mail.corp.redhat.com>
- <CAP+ZCCcntCn4yaVKtTxDuDRvPgLXfP1kC7mYe2qKuhSGzVZMog@mail.gmail.com>
- <20230308155527.jnrsowubvnk22ica@mail.corp.redhat.com>
- <ZAi4NjqXTbLpVhPo@smile.fi.intel.com>
- <ZAi5esmc158Bd2oL@smile.fi.intel.com>
- <CAP+ZCCdziub809WKJ8-tAhYvg+axsiuXrvrZczj_x2K0bGzd7w@mail.gmail.com>
- <ZAnGRtIhLZTrpDy7@smile.fi.intel.com>
+        with ESMTP id S229459AbjCIMOV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Mar 2023 07:14:21 -0500
+Received: from mail-lj1-x22f.google.com (mail-lj1-x22f.google.com [IPv6:2a00:1450:4864:20::22f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 40693E9CEB;
+        Thu,  9 Mar 2023 04:14:19 -0800 (PST)
+Received: by mail-lj1-x22f.google.com with SMTP id i20so1572484lja.11;
+        Thu, 09 Mar 2023 04:14:19 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112; t=1678364057;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=TRXggi04xWYcHaVC0FAY4i7eTSbEWaqGbUlV8GQrxI4=;
+        b=bxBUebwN1xXJ09HJTDv0z93xzMLucpoMFhXNI+YUQIVAP2r7PEpV1Xf5xzZLwmKQgB
+         d0XUPU7ok6Kokt5OEFLypMLwC0/aU7RIYfZ+Gux/weU9N9swKdkkUeC6IQgIXeGBsaSQ
+         vlt+QYyWhSPDp4E4O6odvBZ3BZ4AooMhCVA5LUn89zi3LhISB50/wQKHD95VVcn1C3vi
+         zriqcDD7xWeXQpb/UYVkj1RvsfGW/GFO9e3izMihHvE5m8u7Sze31uNwUqKb31xCxu2l
+         B6If0L18dmMroxcDmaANwfYijq9e8OgwTodXbsZ6THXf4ub8K3mL16pOqI50WdSxSmTV
+         0ahQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1678364057;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=TRXggi04xWYcHaVC0FAY4i7eTSbEWaqGbUlV8GQrxI4=;
+        b=MUrLH+EuI/LEWhY2xqB+3tZVVPTzBlfvO2I3PH1PcEbXEQJVYl+tq6FqhUtB/9+xxN
+         xF4Da8iTCej1tv8t8bfCzHDmv3X/E0z2ayGo4pKt/ju0eoT0mLooSIp6EMtbNk01Si2K
+         CZNb9/09O+NvG0nONjSnVea5zQfbFlbVSNWRQDiTfAty56MtJmDQBmgya8G5Xw9dyXWx
+         lbGPJIHF6uBTjl7Ov/j0Gju0ttyfNRdqEzFX5OGo18XceFLQUkvFKHmcMMxepBr8xPBB
+         zo0RtB8Lb1n3uwdIqBNFv9aCNc2e1XsBnsAvDn+TK76ULEdV4E8IMf2GzOUFkILDGIZP
+         DGFg==
+X-Gm-Message-State: AO0yUKWiBtflbNNE/s5zdlY8VYJnRK04ccYSQK+4yg6BUviCgxKf6wBg
+        uzwwf0Vmh+KiEBMPo236+6c=
+X-Google-Smtp-Source: AK7set+Wn2YaPYZxCfuLq20impmYZwOoNM9/3S/XAhSmjPQfeIyuFw/PnT2wNQerWfyd7hGv/3meMw==
+X-Received: by 2002:a05:651c:105c:b0:295:a3a0:ea95 with SMTP id x28-20020a05651c105c00b00295a3a0ea95mr5812836ljm.42.1678364057335;
+        Thu, 09 Mar 2023 04:14:17 -0800 (PST)
+Received: from mobilestation ([95.79.133.202])
+        by smtp.gmail.com with ESMTPSA id z4-20020a2eb524000000b002934e1407desm2940222ljm.43.2023.03.09.04.14.15
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 09 Mar 2023 04:14:16 -0800 (PST)
+Date:   Thu, 9 Mar 2023 15:14:14 +0300
+From:   Serge Semin <fancer.lancer@gmail.com>
+To:     Brad Larson <blarson@amd.com>
+Cc:     adrian.hunter@intel.com, alcooperx@gmail.com,
+        andy.shevchenko@gmail.com, arnd@arndb.de,
+        brendan.higgins@linux.dev, briannorris@chromium.org,
+        brijeshkumar.singh@amd.com, broonie@kernel.org,
+        catalin.marinas@arm.com, davidgow@google.com,
+        devicetree@vger.kernel.org, gerg@linux-m68k.org, gsomlo@gmail.com,
+        krzk@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        lee.jones@linaro.org, lee@kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-mmc@vger.kernel.org, linux-spi@vger.kernel.org,
+        p.yadav@ti.com, p.zabel@pengutronix.de, piotrs@cadence.com,
+        rdunlap@infradead.org, robh+dt@kernel.org, samuel@sholland.org,
+        skhan@linuxfoundation.org, suravee.suthikulpanit@amd.com,
+        thomas.lendacky@amd.com, tonyhuang.sunplus@gmail.com,
+        ulf.hansson@linaro.org, vaishnav.a@ti.com, will@kernel.org,
+        yamada.masahiro@socionext.com
+Subject: Re: [PATCH v10 10/15] spi: dw: Add support for AMD Pensando Elba SoC
+Message-ID: <20230309121414.6ay47dn57f2p26nh@mobilestation>
+References: <20230306160017.ptd3ogundxvus5zm@mobilestation>
+ <20230307022002.28874-1-blarson@amd.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <ZAnGRtIhLZTrpDy7@smile.fi.intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_PASS,
-        SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <20230307022002.28874-1-blarson@amd.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Mar 09, 2023 at 01:43:02PM +0200, Andy Shevchenko wrote:
-> On Wed, Mar 08, 2023 at 12:32:07PM -0600, Daniel Kaehn wrote:
-> > On Wed, Mar 8, 2023 at 10:36 AM Andy Shevchenko
-> > <andriy.shevchenko@linux.intel.com> wrote:
-> > > On Wed, Mar 08, 2023 at 06:30:46PM +0200, Andy Shevchenko wrote:
-> > > > On Wed, Mar 08, 2023 at 04:55:27PM +0100, Benjamin Tissoires wrote:
-> > > > > On Mar 08 2023, Daniel Kaehn wrote:
-> > > > > > On Wed, Mar 8, 2023 at 9:26 AM Benjamin Tissoires
-> > > > > > <benjamin.tissoires@redhat.com> wrote:
+On Mon, Mar 06, 2023 at 06:20:02PM -0800, Brad Larson wrote:
+> On Mon, Mar 06, 2023 at 16:00, Serge Semin wrote:
+> > On Sun, Mar 05, 2023 at 08:07:34PM -0800, Brad Larson wrote:
+> >> The AMD Pensando Elba SoC includes a DW apb_ssi v4 controller
+> >> with device specific chip-select control.  The Elba SoC
+> >> provides four chip-selects where the native DW IP supports
+> >> two chip-selects.  The Elba DW_SPI instance has two native
+> >> CS signals that are always overridden.
+> >> 
+> >> Signed-off-by: Brad Larson <blarson@amd.com>
+> >> ---
+> >> 
+> >> v10 changes:
+> >> - Delete struct dw_spi_elba, use regmap directly in priv
+> >> 
+> >> v9 changes:
+> >> - Add use of macros GENMASK() and BIT()
+> >> - Change ELBA_SPICS_SHIFT() to ELBA_SPICS_OFFSET()
+> >> 
+> >> ---
+> >>  drivers/spi/spi-dw-mmio.c | 65 +++++++++++++++++++++++++++++++++++++++
+> >>  1 file changed, 65 insertions(+)
+> >> 
+> >> diff --git a/drivers/spi/spi-dw-mmio.c b/drivers/spi/spi-dw-mmio.c
+> >> index 26c40ea6dd12..2076cb83a11b 100644
+> >> --- a/drivers/spi/spi-dw-mmio.c
+> >> +++ b/drivers/spi/spi-dw-mmio.c
+> >> @@ -53,6 +53,20 @@ struct dw_spi_mscc {
+> >>  	void __iomem        *spi_mst; /* Not sparx5 */
+> >>  };
+> >>  
+> >> +/*
+> >> + * Elba SoC does not use ssi, pin override is used for cs 0,1 and
+> >> + * gpios for cs 2,3 as defined in the device tree.
+> >> + *
+> >> + * cs:  |       1               0
+> >> + * bit: |---3-------2-------1-------0
+> >> + *      |  cs1   cs1_ovr   cs0   cs0_ovr
+> >> + */
+> >> +#define ELBA_SPICS_REG			0x2468
+> >> +#define ELBA_SPICS_OFFSET(cs)		((cs) << 1)
+> >> +#define ELBA_SPICS_MASK(cs)		(GENMASK(1, 0) << ELBA_SPICS_OFFSET(cs))
+> >> +#define ELBA_SPICS_SET(cs, val)		\
+> >> +		((((val) << 1) | BIT(0)) << ELBA_SPICS_OFFSET(cs))
+> >> +
+> >>  /*
+> >>   * The Designware SPI controller (referred to as master in the documentation)
+> >>   * automatically deasserts chip select when the tx fifo is empty. The chip
+> >> @@ -237,6 +251,56 @@ static int dw_spi_canaan_k210_init(struct platform_device *pdev,
+> >>  	return 0;
+> >>  }
+> >>  
+> >> +static void dw_spi_elba_override_cs(struct regmap *syscon, int cs, int enable)
+> >> +{
+> >> +	regmap_update_bits(syscon, ELBA_SPICS_REG, ELBA_SPICS_MASK(cs),
+> >> +			   ELBA_SPICS_SET(cs, enable));
+> >> +}
+> >> +
+> >> +static void dw_spi_elba_set_cs(struct spi_device *spi, bool enable)
+> >> +{
+> >> +	struct dw_spi *dws = spi_master_get_devdata(spi->master);
+> >> +	struct dw_spi_mmio *dwsmmio = container_of(dws, struct dw_spi_mmio, dws);
+> >> +	struct regmap *syscon = dwsmmio->priv;
+> >> +	u8 cs;
+> >> +
+> >> +	cs = spi->chip_select;
+> >> +	if (cs < 2)
+> >> +		dw_spi_elba_override_cs(syscon, spi->chip_select, enable);
+> >> +
+> >> +	/*
+> >> +	 * The DW SPI controller needs a native CS bit selected to start
+> >> +	 * the serial engine.
+> >> +	 */
+> >> +	spi->chip_select = 0;
+> >> +	dw_spi_set_cs(spi, enable);
+> >> +	spi->chip_select = cs;
+> >> +}
+> >> +
+> >> +static int dw_spi_elba_init(struct platform_device *pdev,
+> >> +			    struct dw_spi_mmio *dwsmmio)
+> >> +{
+> >> +	const char *syscon_name = "amd,pensando-elba-syscon";
+> >
+> >> +	struct device_node *np = pdev->dev.of_node;
+> >
+> > Drop this since it's used only once below. 
+> >
+> 
+> Removed
+> 
+> >> +	struct device_node *node;                                         
+> 
+> Renamed *node to *np
+> 
+> >> +	struct regmap *syscon;                                            
+> >> +                                                                       
+> >> -	node = of_parse_phandle(np, syscon_name, 0);                      
+> >
+> >	node = of_parse_phandle(dev_of_node(pdev->dev), syscon_name, 0);
+> >
+> > +	if (!node)
+> >
+> >> +		return dev_err_probe(&pdev->dev, -ENODEV, "failed to find %s\n",
+> >> +				     syscon_name);
+> >
+> > Hm, using dev_err_probe() with known error value seems overkill.
+> 
+> Changed to: return -ENODEV
+> 
+> >> +
+> >
+> >> +	syscon = syscon_node_to_regmap(node);
+> >> +	if (IS_ERR(syscon))
+> >> +		return dev_err_probe(&pdev->dev, PTR_ERR(syscon),
+> >> +				     "syscon regmap lookup failed\n");
+> >
+> > of_node_put() is missing in the error and success paths.
+> 
+> Result of the above changes are:
+> 
+> +       const char *syscon_name = "amd,pensando-elba-syscon";
+> +       struct device_node *np;
+> +       struct regmap *syscon;
+> +
 
-...
+> +       np = of_parse_phandle(pdev->dev.of_node, syscon_name, 0);
+> +       if (!np)
+> +               return -ENODEV;
+> +
+> +       syscon = syscon_node_to_regmap(np);
+> +       of_node_put(np);
+> +       if (IS_ERR(syscon))
+> +               return dev_err_probe(&pdev->dev, PTR_ERR(syscon),
+> +                                    "syscon regmap lookup failed\n");
 
-> > > > >                     ToUUID("daffd814-6eba-4d8c-8a91-bc9bbf4aa301"),
-> > > > >                     Package () {
-> > > > >                             Package () { "cell-names", Package () { "i2c", "gpio" }
-> > > > >                     }
-> > > >
-> > > > Yeah, looking at this, I think it still fragile. First of all, either this is
-> > > > missing, or simply wrong. We would need to access indices. ACPI _ADR is in the
-> > > > specification. As much as with PCI it may be considered reliable.
-> > > >
-> > > > So, that said, forget about it, and simply use _ADR as indicator of the node.
-> > > > See how MFD (in the Linux kernel) cares about this. Ex. Diolan DLN-2 driver.
-> > >
-> > > And that said, maybe CP2112 should simply re-use what MFD _already_ provides?
-> > 
-> > Great point -- it definitely seems like this driver belongs in the mfd
-> > directory to begin with.
-> 
-> It can be iteratively converted later on.
-> 
-> > It seems like aside from rewriting the CP2112 driver into an mfd
-> > driver and two platform drivers,
-> > my route forward for now would be to just do something like this (not
-> > yet tested):
-> > 
-> > + struct acpi_device *adev = ACPI_COMPANION(&hdev->dev);
-> > + if (adev)
-> > +    ACPI_COMPANION_SET(&dev->adap.dev, acpi_find_child_device(adev,
-> > 0x0, false));
-> 
-> ACPI_COMPANION_SET() is something different to simple device_set_node().
-> I would expect that in this driver we simply use the child fwnode as is.
-> But since you are not using so called secondary fwnode, I believe it's
-> fine for now.
-> 
-> > + else
-> > +     device_set_node(&dev->adap.dev,
-> > device_get_named_child_node(&hdev->dev, "i2c"));
-> > 
-> > (and the same for the gpiochip)
+As Andy correctly noted this can be fully converted to just a single call:
+syscon_regmap_lookup_by_phandle().
 
-> > The follow-up question -- does there exist something analogous to DT
-> > bindings for ACPI devices,
-> > other than the ACPI spec itself, where this should be documented? Or
-> > will consumers truly have to
-> > read the driver code to determine that _ADR 0 is I2C and _ADR 1 is
-> > GPIO? (I haven't seen anything
-> > in my search so far -- but knowing that it truly doesn't exist would
-> > make me respect people developing
-> > embedded ACPI-based systems all the more!)
+and replace pdev->dev.of_node with dev_of_node(pdev->dev).
 
-The below misplaced, so here is the answer to the followup.
-The _DSD heavily relies on the DT schemas and other standards such as MIPI.
-For many cases there are no standards or any developed approaches.
+-Serge(y)
 
-Feel free to add a piece of documentation for the devices that are utilising
-_ADR in ACPI (we have at least I²C/GPIO controller on Intel Quark —
-drivers/mfd/intel_quark_i2c_gpio.c, and mentioned earlier the Diolan DLN-2 —
-drivers/mfd/dln2.c).
-
-> See how the acpi_get_local_address() is used in the 3 users of it.
 > 
-> Ideally we need a new callback in the fwnode ops to return either
-> (least) 32-bit of _ADR or "reg" property.
-> 
-> Dunno, if "reg" is actually what suits here.
-> 
-> That said, I would do something like (pseudo-code)
-> 
-> device_for_each_child_node() {
-> 	if (name == $NAME)
-> 		$NAME->fwnode = child;
-> 	else if (_ADR = $INDEX)
-> 		$NAME->fwnode = child;
-> }
-> 
-> > Thanks for your patience in working through all of this, especially
-> > considering how long of an email
-> > chain this has become!
-> 
-> You're welcome!
-
--- 
-With Best Regards,
-Andy Shevchenko
-
-
+> Regards,
+> Brad
