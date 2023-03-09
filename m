@@ -2,74 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 915236B2ED3
-	for <lists+devicetree@lfdr.de>; Thu,  9 Mar 2023 21:43:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1C43F6B2ED9
+	for <lists+devicetree@lfdr.de>; Thu,  9 Mar 2023 21:44:54 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230417AbjCIUnb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Mar 2023 15:43:31 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51936 "EHLO
+        id S229685AbjCIUow (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Mar 2023 15:44:52 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54812 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229786AbjCIUn2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Mar 2023 15:43:28 -0500
-Received: from mail-yb1-xb30.google.com (mail-yb1-xb30.google.com [IPv6:2607:f8b0:4864:20::b30])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7F0DFE4D88
-        for <devicetree@vger.kernel.org>; Thu,  9 Mar 2023 12:43:25 -0800 (PST)
-Received: by mail-yb1-xb30.google.com with SMTP id t4so3282079ybg.11
-        for <devicetree@vger.kernel.org>; Thu, 09 Mar 2023 12:43:25 -0800 (PST)
+        with ESMTP id S230494AbjCIUou (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Mar 2023 15:44:50 -0500
+Received: from mail-yw1-x112c.google.com (mail-yw1-x112c.google.com [IPv6:2607:f8b0:4864:20::112c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 754D4FB26A
+        for <devicetree@vger.kernel.org>; Thu,  9 Mar 2023 12:44:47 -0800 (PST)
+Received: by mail-yw1-x112c.google.com with SMTP id 00721157ae682-536b7ffdd34so57945897b3.6
+        for <devicetree@vger.kernel.org>; Thu, 09 Mar 2023 12:44:47 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1678394604;
+        d=linaro.org; s=google; t=1678394686;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=bP8wODvsz8UVWLAsOZkZWS96n1xXUQs0dqZ1Fl/VY5E=;
-        b=eebPd19VjhvYW6McY9UTUB3k12eACqwf0uEQx/fCw3FKJPLiB0QHTT8t7KwC+v5xMV
-         DXMVnviGUILzkwBN31wOzBkyuo8INwC5n+J6msO8gpt2dBsoXlzKALPOSgnEnI2wJgjk
-         LSlejdd2PzwBBBywm1gDl/TCZ2NJg9/hskNPzRdBGDhgj47EdMApXEF47yWGVySjXDbd
-         9u25ry9W5BciHXNGy/2dP087TDfFUug9jZAj1Kml8ghwcaGi2DrqxNvFZrpITgQWqHI8
-         /FMxWCUSCbrCenW5k65d5+6+jzv2ImVWvPYzdBOwOIvMntZygD6eO5h/dLqDnDy8+Ksu
-         4IGQ==
+        bh=zsg12oEDEiCGQizPiB6v1VIIN7ssVMwVI7Jn0aroOOo=;
+        b=ZCLScd7RtY51SvqL7NHWLqy4Glcw6iBOxfIAay6Bv5sSfTGNVrMhIwU8/UGS+AxbUc
+         41OyUUhJb8BcpdDcxFLsHJl7NhO8VYM8821xQXifPwRfcAS1bSr6sIUKxOJDB/qmONT7
+         RrwOOknXTK6hxA5T9x5K/64JBOeM4YlTIg4qQNljLRVEn4j3voI+y/niVOmvi2QRkpfc
+         Y5HM6y0UerdnWMhoXM3IiDiRcx8a/3HwaRR+ThZfWJz4RYD+wD+yTAFDcrPgMBDOgPCK
+         ZAaL+IMiuRdipHgvzv3b5MvojXm+YiY3kOMNqKo9kwyYhp+iRQPhKDhDSFjPfzbvtNlA
+         V2MQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678394604;
+        d=1e100.net; s=20210112; t=1678394686;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=bP8wODvsz8UVWLAsOZkZWS96n1xXUQs0dqZ1Fl/VY5E=;
-        b=Tv19N6paB98selFVgYezr3wDWuoTcUrx8g6zNr8uRf8Ma5jlpxB/KMYE01bG/W7YIW
-         9ODsmbrunqM6TKAorVxcj52MXJweIGDW9oMTC7eqWQbBAv5gxiEJ9iWpRjnuXf0rSzRD
-         euJxZB51zeXYIrMfuq8M18sqCBYtin4MMgCmcRnx44O1XkLiuRqBuuM4l+KOZTnArtaV
-         /u2dQXgtrisvrSoUDyANt0p4ic2tqfgQ6tsMKjaUiwlV0Fj/PSVP4DzOOxQwKKeE1meZ
-         psYZSA72ng9lyjuNDD+yaINW+yCkfF4rjxF/yDYSoS9WTpckXSm7kVvAh/yVEG1V2yiG
-         DnVQ==
-X-Gm-Message-State: AO0yUKXSERv8N7Ytr6nidZFwxcQ8Q3Z7ch0GWq0fEVQzLf810ILd50tl
-        JUvj1mJ2PmyT17rfnqvKoawugVVHcMx/DD2T4HdCGPCy7tmrL1Az
-X-Google-Smtp-Source: AK7set/2msoQtYxMSGDYRhJyyhkKjL53yW5wd65tEHvzSFdXT3B+24kaYeZOAQgW1qQzd4IwNUDN0yqipb4xqVJJMNI=
-X-Received: by 2002:a25:9888:0:b0:a88:ba7:59b with SMTP id l8-20020a259888000000b00a880ba7059bmr14234797ybo.9.1678394604682;
- Thu, 09 Mar 2023 12:43:24 -0800 (PST)
+        bh=zsg12oEDEiCGQizPiB6v1VIIN7ssVMwVI7Jn0aroOOo=;
+        b=2XWrkcgOZK8T7i8gXdraNnHkR5LyKHJ3gVvH2G0t6MelF6Sc+GGVliStqG4b1po7yE
+         8d6Jo7aG4wyqCoVeysjW7J+bKOpZqn1KrGdZZtB1O54cjRNNK4db9XnjAHEYRbVvFYAz
+         eDs/bAqq/hpkmMoGGcl07VtSqzOoMvxrcqZ/1BvMnOgpq6rXx2vRGPnI2xBynV34noeo
+         9QrRZSGgmvq8hUAwIY5SHj4RYim/BKvwL1za5xBA9XGDonn5CWLu85C55bV1/1pDAs3V
+         tsomKqMxcu7J+FyCgMDr5FH7DbJrluXnTDmx7dSP2n/PYCAJqUnRcAm0LUIjZWP+LE2c
+         RV+A==
+X-Gm-Message-State: AO0yUKUfPSD5jUOCyV9ABgTyMhZdAl85oPB+Gk4Hcf454o7ZS05ibq+9
+        mP0uzi4P6DrN2wtsP0UxmZV3vn3lSKOjOV/2nR+T3g==
+X-Google-Smtp-Source: AK7set8N216joVB3r3L/ek5sz4l8MebjRQuwEsbDMvXnhoeYi2e66BnSt5ysXC+4If5k5wgiHNaCZIFLJZo+xq9gy1U=
+X-Received: by 2002:a81:b285:0:b0:533:99bb:c296 with SMTP id
+ q127-20020a81b285000000b0053399bbc296mr14224207ywh.5.1678394686599; Thu, 09
+ Mar 2023 12:44:46 -0800 (PST)
 MIME-Version: 1.0
-References: <20230305022119.1331495-1-luzmaximilian@gmail.com>
- <20230305022119.1331495-4-luzmaximilian@gmail.com> <20230308221657.GA3935330-robh@kernel.org>
- <93657561-d545-7ead-7f6c-dd2c62aab319@gmail.com> <c92a44fe-7057-2d81-41fc-2e84ae60f881@linaro.org>
- <951c717b-d094-4190-a04b-3ce9007d1554@gmail.com> <57b436d2-79f9-a7c1-ab97-0b555beb6468@linaro.org>
- <e20e489b-c033-7a38-9750-24b9abb22a0c@gmail.com>
-In-Reply-To: <e20e489b-c033-7a38-9750-24b9abb22a0c@gmail.com>
+References: <20230309185049.170878-1-danila@jiaxyga.com> <20230309185049.170878-2-danila@jiaxyga.com>
+In-Reply-To: <20230309185049.170878-2-danila@jiaxyga.com>
 From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date:   Thu, 9 Mar 2023 22:43:13 +0200
-Message-ID: <CAA8EJpr_xqTUE-MmQOC51uqC=_i=SO6qSX1rQEN_tk4LJBh91g@mail.gmail.com>
-Subject: Re: [PATCH v3 3/4] dt-bindings: firmware: Add Qualcomm QSEECOM interface
-To:     Maximilian Luz <luzmaximilian@gmail.com>
-Cc:     Rob Herring <robh@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Ard Biesheuvel <ardb@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Johan Hovold <johan@kernel.org>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        Ilias Apalodimas <ilias.apalodimas@linaro.org>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Sumit Garg <sumit.garg@linaro.org>,
-        Steev Klimaszewski <steev@kali.org>,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
+Date:   Thu, 9 Mar 2023 22:44:35 +0200
+Message-ID: <CAA8EJpr866ejThuXkqEABST_awZkbuk+vtPAW_WAn3CoyYhfRA@mail.gmail.com>
+Subject: Re: [PATCH 1/2] dt-bindings: phy: Add QMP UFS PHY comptible for SM7150
+To:     Danila Tikhonov <danila@jiaxyga.com>
+Cc:     agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
+        vkoul@kernel.org, kishon@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, linux-arm-msm@vger.kernel.org,
+        linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, davidwronek@gmail.com
 Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
@@ -80,93 +68,53 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 9 Mar 2023 at 22:34, Maximilian Luz <luzmaximilian@gmail.com> wrote:
+On Thu, 9 Mar 2023 at 20:51, Danila Tikhonov <danila@jiaxyga.com> wrote:
 >
-> On 3/9/23 09:19, Dmitry Baryshkov wrote:
-> > On 09/03/2023 04:27, Maximilian Luz wrote:
-> >> On 3/9/23 02:33, Dmitry Baryshkov wrote:
-> >>> On 09/03/2023 00:44, Maximilian Luz wrote:
-> >>>> On 3/8/23 23:16, Rob Herring wrote:
-> >>>>> On Sun, Mar 05, 2023 at 03:21:18AM +0100, Maximilian Luz wrote:
-> >>>>>> Add bindings for the Qualcomm Secure Execution Environment interface
-> >>>>>> (QSEECOM).
-> >>>>>
-> >>>>> Pretty sure I already asked, but no answer in the commit message. Why do
-> >>>>> we need this? You've already declared the platform supports SCM calls
-> >>>>> with "qcom,scm". Why can't you probe whether you have QSEECOM or not? DT
-> >>>>> is for non-discoverable h/w we are stuck with.
-> >>>>
-> >>>> Yes, you've asked this before but I can only repeat what I've written in
-> >>>> my last response to your question: I am not aware of any way to properly
-> >>>> discover the interface at runtime from software.
-> >>>>
-> >>>> If it makes you happy, I can put this in the commit message as well...
-> >>>>
-> >>>>> Why is software made non-discoverable too?
-> >>>>
-> >>>> Please direct that question at the Qualcomm guys who actually designed
-> >>>> that interface. I can't give you an answer to that, and I'm not all that
-> >>>> happy about this either.
-> >>>>
-> >>>> To reiterate: I've reverse engineered this based on the Windows driver.
-> >>>> The Windows driver loads on an ACPI HID and it doesn't use any function
-> >>>> to check/verify whether the interface is actually present. Adding a DT
-> >>>> entry is the straight-forward adaption to having a HID in ACPI.
-> >>>>
-> >>>>> Nodes with only a compatible string are usually just an abuse of DT to
-> >>>>> instantiate some driver.
-> >>>>
-> >>>> If you or anyone here has any idea on how to discover the presence of
-> >>>> this, please feel free to let me know and I'd be happy to implement
-> >>>> that. Until then, I unfortunately don't see any other way of dealing
-> >>>> with this.
-> >>>
-> >>> You can probably try requesting QSEECOM version. According to msm-3.18:
-> >>>
-> >>>          uint32_t feature = 10;
-> >>>
-> >>>          rc = qseecom_scm_call(6, 3, &feature, sizeof(feature),
-> >>>                  &resp, sizeof(resp));
-> >>>          pr_info("qseecom.qsee_version = 0x%x\n", resp.result);
-> >>>          if (rc) {
-> >>>                  pr_err("Failed to get QSEE version info %d\n", rc);
-> >>>                  goto exit_del_cdev;
-> >>>          }
-> >>>
-> >>
-> >> Thanks! I'll give that a try.
-> >>
-> >> As I can't test this on a device that doesn't have qseecom, it would
-> >> probably be a good idea if someone could test this on a device that has
-> >> qcom_scm but no qseecom (if those even exist) to make sure this doesn't
-> >> misbehave.
-> >
-> > I could not find a vendor dts which doesn't have the qseecom device (checked the source trees from 3.4 to the latest revisions).
-> >
+> From: David Wronek <davidwronek@gmail.com>
 >
-> Thanks for checking!
->
-> So that only leaves one potential issue: The re-entrant/blocking calls
-> not being handled at the moment. If we detect qseecom based on the
-> version and then try to query the app ID, we could get some devices that
-> use those.
->
-> I'm not sure what the consequences there are, i.e. if we're potentially
-> blocking something else if one of those calls blocks on such devices. Is
-> there any way we can detect this beforehand?
+> Document the QMP UFS PHY compatible for SM7150.
 
-Unfortunately I don't know.
+Please switch to using new bindings (see
+Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-ufs-phy.yaml).
 
 >
-> The current proposal isn't very good at handling that either as it
-> assumes that this depends on the SoC generation (which it probably
-> doesn't). So I guess one possibility is to make the list of app-names to
-> be checked SoC specific as well. That at least limits the scope
-> somewhat. Maybe you have some other ideas?
-
-As long as it doesn't concern the external interfaces, it sounds fine
-with me. Let's get the first implementation in, then we can expand and
-extend the details/implementation.
+> Signed-off-by: David Wronek <davidwronek@gmail.com>
+> Signed-off-by: Danila Tikhonov <danila@jiaxyga.com>
+> ---
+>  .../devicetree/bindings/phy/qcom,msm8996-qmp-ufs-phy.yaml      | 3 +++
+>  1 file changed, 3 insertions(+)
+>
+> diff --git a/Documentation/devicetree/bindings/phy/qcom,msm8996-qmp-ufs-phy.yaml b/Documentation/devicetree/bindings/phy/qcom,msm8996-qmp-ufs-phy.yaml
+> index 80a5348dbfde..da223abaa3a2 100644
+> --- a/Documentation/devicetree/bindings/phy/qcom,msm8996-qmp-ufs-phy.yaml
+> +++ b/Documentation/devicetree/bindings/phy/qcom,msm8996-qmp-ufs-phy.yaml
+> @@ -25,6 +25,7 @@ properties:
+>        - qcom,sdm845-qmp-ufs-phy
+>        - qcom,sm6115-qmp-ufs-phy
+>        - qcom,sm6350-qmp-ufs-phy
+> +      - qcom,sm7150-qmp-ufs-phy
+>        - qcom,sm8150-qmp-ufs-phy
+>        - qcom,sm8250-qmp-ufs-phy
+>        - qcom,sm8350-qmp-ufs-phy
+> @@ -127,6 +128,7 @@ allOf:
+>                - qcom,sdm845-qmp-ufs-phy
+>                - qcom,sm6115-qmp-ufs-phy
+>                - qcom,sm6350-qmp-ufs-phy
+> +              - qcom,sm7150-qmp-ufs-phy
+>                - qcom,sm8150-qmp-ufs-phy
+>                - qcom,sm8250-qmp-ufs-phy
+>      then:
+> @@ -162,6 +164,7 @@ allOf:
+>                - qcom,msm8998-qmp-ufs-phy
+>                - qcom,sdm845-qmp-ufs-phy
+>                - qcom,sm6350-qmp-ufs-phy
+> +              - qcom,sm7150-qmp-ufs-phy
+>                - qcom,sm8150-qmp-ufs-phy
+>                - qcom,sm8250-qmp-ufs-phy
+>                - qcom,sm8350-qmp-ufs-phy
+> --
+> 2.39.2
+>
 
 
 -- 
