@@ -2,71 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 85A086B2031
-	for <lists+devicetree@lfdr.de>; Thu,  9 Mar 2023 10:35:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9DA196B2044
+	for <lists+devicetree@lfdr.de>; Thu,  9 Mar 2023 10:39:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229954AbjCIJfM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Mar 2023 04:35:12 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46780 "EHLO
+        id S229959AbjCIJjJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Mar 2023 04:39:09 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53492 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231335AbjCIJef (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Mar 2023 04:34:35 -0500
-Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5E7599438A;
-        Thu,  9 Mar 2023 01:34:22 -0800 (PST)
-Received: by mail-lf1-x12e.google.com with SMTP id s20so1439670lfb.11;
-        Thu, 09 Mar 2023 01:34:22 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112; t=1678354460;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=xvRq5Jv0mE0gBOFKvZj3ILwliwYZSlL8lUsvNU1SHTw=;
-        b=N6P4qY+ylVk38GewMnGLjzS479rkCWyNCexALrNfM/t83h+q3Ga+7rowXUvguSg5xK
-         MpptfQ1TlQI+CXK0lihd4kUSz45+1aQXn5uq6lxXGHAcvKs4BDCteE2s77gNKylS667O
-         zs8tnPLVe3rM+hHCoJev27WWVAiTc/+tzH3bSvm1aXtgNvgDIeicz2kME1Lfbmvv8GSo
-         f95uQDBmMACPXZdLVITYnlaApTERsHCtA6Et4oEFLcrP8H6bcZ1ufsHVBs2MmrQQ015e
-         rQV67M76fE06cWG+HL72ASXv0FtJ5KStWHteViPn+NaHZdJ/idVqTU9iGAV0tuuS7D9c
-         3q6g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678354460;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=xvRq5Jv0mE0gBOFKvZj3ILwliwYZSlL8lUsvNU1SHTw=;
-        b=y68aGq5+aLNzEmZ7p8LDnaeZrAFGdyC0zoQy2wlhEKvQI2qq3aAyI+VqmxnRXr5xwh
-         Y1whia8JrvK8gHWM4I0GMUXSH3FBYjfjiQE3NuljqFgugXj+pdDbqfK1wtVnOL9pfh0X
-         vUoG1wX5XPWrLrBa75FzgMP/gxRZwGa4TgOVaLZZgpDeo+Kmygg0zuCi6z2Wgium3xwJ
-         woMFY2p/KWpLDcYqnq5D2MuIdd4KBUXIoO2XLouC2Ri6FQ0M0EOpIJiabfH5Y2TbUSeL
-         2g3qYCh33hKdhdm2aE3s3mPf3Bfn4VNBFE0MgE9UoSAYun7Jue+LvV96OBmTsHdIzvlj
-         nKog==
-X-Gm-Message-State: AO0yUKWZCPNODoYJ5444trCBTmGn409gsOOLo2Sf4oJHsI2B4yITWX8x
-        Ejn7rPlmylSav3lOn+OU6Ao=
-X-Google-Smtp-Source: AK7set/WKNhApt4nM8wOG5pTfVTWwLPjWUXOfR3RP4xKZx1nR6gL5xyZWTrm4pa3U2OsTNXTyJ8uTA==
-X-Received: by 2002:a05:6512:398e:b0:4db:1e7d:5d49 with SMTP id j14-20020a056512398e00b004db1e7d5d49mr7141933lfu.21.1678354460474;
-        Thu, 09 Mar 2023 01:34:20 -0800 (PST)
-Received: from localhost.lan (ip-194-187-74-233.konfederacka.maverick.com.pl. [194.187.74.233])
-        by smtp.gmail.com with ESMTPSA id y9-20020ac24e69000000b004db1a7e6decsm2583034lfs.205.2023.03.09.01.34.19
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 09 Mar 2023 01:34:19 -0800 (PST)
-From:   =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Michael Walle <michael@walle.cc>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>
-Subject: [PATCH] dt-bindings: nvmem: layouts: add fixed-layout
-Date:   Thu,  9 Mar 2023 10:34:10 +0100
-Message-Id: <20230309093410.15214-1-zajec5@gmail.com>
-X-Mailer: git-send-email 2.34.1
+        with ESMTP id S231229AbjCIJjG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Mar 2023 04:39:06 -0500
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E3E0248E2B
+        for <devicetree@vger.kernel.org>; Thu,  9 Mar 2023 01:38:19 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+        s=mimecast20190719; t=1678354699;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=HQWSofhy13XEmR+/PLxzyYhCDlmn9gHeLy19khs2lGs=;
+        b=hu4iPjrl1vOfBU4e2WL3Hkhr8liZyPk7vKibSqVDhWTil2WxoXz7mTwbf8YZKFg8zceQyR
+        pVZNjRi7/K91/ZAesn6WkBgJ6jvrHmYdREzLCpA+T2K5O2NlWPm2gs5xTFYj/OAC2BPiF5
+        opGTMMzMOUr2w5XUlszO5kcdAyZZQYI=
+Received: from mimecast-mx02.redhat.com (mx3-rdu2.redhat.com
+ [66.187.233.73]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ us-mta-653-S5Th3ze6NL2sVhvhr5qlCQ-1; Thu, 09 Mar 2023 04:38:15 -0500
+X-MC-Unique: S5Th3ze6NL2sVhvhr5qlCQ-1
+Received: from smtp.corp.redhat.com (int-mx10.intmail.prod.int.rdu2.redhat.com [10.11.54.10])
+        (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
+        (No client certificate requested)
+        by mimecast-mx02.redhat.com (Postfix) with ESMTPS id 16A5928043C2;
+        Thu,  9 Mar 2023 09:38:15 +0000 (UTC)
+Received: from mail.corp.redhat.com (unknown [10.22.8.23])
+        by smtp.corp.redhat.com (Postfix) with ESMTPS id A62DD492C3E;
+        Thu,  9 Mar 2023 09:38:13 +0000 (UTC)
+Date:   Thu, 9 Mar 2023 10:38:11 +0100
+From:   Benjamin Tissoires <benjamin.tissoires@redhat.com>
+To:     Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+Cc:     Daniel Kaehn <kaehndan@gmail.com>,
+        Hans de Goede <hdegoede@redhat.com>, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, jikos@kernel.org,
+        bartosz.golaszewski@linaro.org, dmitry.torokhov@gmail.com,
+        devicetree@vger.kernel.org, linux-input@vger.kernel.org,
+        ethan.twardy@plexus.com
+Subject: Re: [PATCH v8 3/3] HID: cp2112: Fwnode Support
+Message-ID: <20230309093811.se7exh6eocdgx5jv@mail.corp.redhat.com>
+References: <CAP+ZCCfsKdOyy5vzPh5OjpZjNQrYWDRzrqa_QxvG+kZDPYa+3A@mail.gmail.com>
+ <ZAZOvEvqNDq6jZNB@smile.fi.intel.com>
+ <20230307131706.olnb4qzo4ynu7gce@mail.corp.redhat.com>
+ <CAP+ZCCcbXqPOY5Xzq9v8JNSzH9+xOqgfkTezJdLQY=vwQco4vQ@mail.gmail.com>
+ <20230307144852.ueyaotkeeqfjlgk7@mail.corp.redhat.com>
+ <ZAeADcJWmJR+1ycJ@smile.fi.intel.com>
+ <20230308152611.tae2pnmflakrcyhh@mail.corp.redhat.com>
+ <CAP+ZCCcntCn4yaVKtTxDuDRvPgLXfP1kC7mYe2qKuhSGzVZMog@mail.gmail.com>
+ <20230308155527.jnrsowubvnk22ica@mail.corp.redhat.com>
+ <ZAi4NjqXTbLpVhPo@smile.fi.intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+In-Reply-To: <ZAi4NjqXTbLpVhPo@smile.fi.intel.com>
+X-Scanned-By: MIMEDefang 3.1 on 10.11.54.10
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_NONE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -74,93 +74,84 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Rafał Miłecki <rafal@milecki.pl>
+On Mar 08 2023, Andy Shevchenko wrote:
+> On Wed, Mar 08, 2023 at 04:55:27PM +0100, Benjamin Tissoires wrote:
+> > On Mar 08 2023, Daniel Kaehn wrote:
+> > > On Wed, Mar 8, 2023 at 9:26 AM Benjamin Tissoires
+> > > <benjamin.tissoires@redhat.com> wrote:
+> > > > But if I refer "\\_SB_.PCI0.USB0.RHUB.CP21.GPIO", the IRQ is never assigned.
+> > > > With the parent (CP21), it works.
+> > > >
+> > > > So I wonder if the cp2112 driver is correctly assigning the gc->parent
+> > > > field.
+> 
+> > > Did you make a change to the CP2112 driver patch to look for uppercase
+> > > "I2C" and "GPIO"?
+> > 
+> > yes, sorry I should have mentioned it. This is the only modification I
+> > have compared to the upstream kernel plus your patch series.
+> > 
+> > > Otherwise, it won't assign those child nodes appropriately, and the
+> > > gpiochip code will use
+> > > the parent node by default if the gpiochip's fwnode isn't assigned (I believe).
+> > 
+> > I don't think it's a fwnode issue, but a problem with the assignment of
+> > the parent of the gc:
+> > ---
+> > dev->gc.parent = &hdev->dev;
+> > ---
+> 
+> I don't think so. The parent should point to the _physical_ device, which is
+> CP2112, which is correct in my opinion.
+> 
 
-With the introduction of NVMEM layouts I believe we should prefer and
-support describing all NVMEM devices content in the "nvmem-layout" node.
-Inluding fixed NVMEM cells (those with hardcoded offset & size).
+Right. I tend to agree, and then the problem seems to be relying in
+gpiolib-acpi.c
 
-This seems to be cleaner design and more explicit.
+> > Because the function acpi_gpiochip_find() in drivers/gpio/gpiolib-acpi.c
+> > compares the acpi handle returned by fetching the ACPI path
+> > ("\\_SB_.PCI0.USB0.RHUB.CP21.GPIO") and the one of gc->parent, which in
+> > the hid-cp2112 case is the HID device itself.
+> 
+> We have specifically gc->fwnode for cases like this.
 
-Introduce a binding allowing fixed NVMEM cells as a type of layout.
+Looks like gpiolib-acpi.c doesn't care about fwnode at all.
 
-Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
+if I do the following:
+
 ---
- .../bindings/nvmem/layouts/fixed-layout.yaml  | 52 +++++++++++++++++++
- .../bindings/nvmem/layouts/nvmem-layout.yaml  |  1 +
- 2 files changed, 53 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/nvmem/layouts/fixed-layout.yaml
+diff --git a/drivers/gpio/gpiolib-acpi.c b/drivers/gpio/gpiolib-acpi.c
+index d8a421ce26a8..5aebc266426b 100644
+--- a/drivers/gpio/gpiolib-acpi.c
++++ b/drivers/gpio/gpiolib-acpi.c
+@@ -126,7 +126,7 @@ static bool acpi_gpio_deferred_req_irqs_done;
+ 
+ static int acpi_gpiochip_find(struct gpio_chip *gc, void *data)
+ {
+-       return gc->parent && device_match_acpi_handle(gc->parent, data);
++       return ACPI_HANDLE_FWNODE(gc->fwnode) == data;
+ }
+ 
+ /**
+---
 
-diff --git a/Documentation/devicetree/bindings/nvmem/layouts/fixed-layout.yaml b/Documentation/devicetree/bindings/nvmem/layouts/fixed-layout.yaml
-new file mode 100644
-index 000000000000..7eb86c999a5e
---- /dev/null
-+++ b/Documentation/devicetree/bindings/nvmem/layouts/fixed-layout.yaml
-@@ -0,0 +1,52 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/nvmem/layouts/fixed-layout.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: NVMEM layout for fixed NVMEM cells
-+
-+description:
-+  Many NVMEM devices have hardcoded cells layout (offset and size of specific
-+  NVMEM content doesn't change).
-+
-+  This binding allows defining such cells using NVMEM layout. It can be used on
-+  top of any NVMEM device.
-+
-+maintainers:
-+  - Rafał Miłecki <rafal@milecki.pl>
-+
-+properties:
-+  compatible:
-+    const: fixed-layout
-+
-+  "#address-cells":
-+    const: 1
-+
-+  "#size-cells":
-+    const: 1
-+
-+patternProperties:
-+  "@[a-f0-9]+$":
-+    type: object
-+    description: NVMEM cell
-+    properties:
-+      reg:
-+        maxItems: 1
-+
-+required:
-+  - compatible
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    nvmem-layout {
-+        compatible = "fixed-layout";
-+        #address-cells = <1>;
-+        #size-cells = <1>;
-+
-+        calibration@4000 {
-+            reg = <0x4000 0x100>;
-+        };
-+    };
-diff --git a/Documentation/devicetree/bindings/nvmem/layouts/nvmem-layout.yaml b/Documentation/devicetree/bindings/nvmem/layouts/nvmem-layout.yaml
-index 8512ee538c4c..03da7848c713 100644
---- a/Documentation/devicetree/bindings/nvmem/layouts/nvmem-layout.yaml
-+++ b/Documentation/devicetree/bindings/nvmem/layouts/nvmem-layout.yaml
-@@ -18,6 +18,7 @@ description: |
-   perform their parsing. The nvmem-layout container is here to describe these.
- 
- oneOf:
-+  - $ref: fixed-layout.yaml
-   - $ref: kontron,sl28-vpd.yaml
-   - $ref: onie,tlv-layout.yaml
- 
--- 
-2.34.1
+I can now directly reference the GPIO ACPI node in my GpioInt()
+declaration. And AFAICT this should be safe to do because gpiolib ensure
+that gc->fwnode is set, using the one from the parent if it is not set
+previously.
+
+I need to check if this works with my icelake laptop, and if so I'll
+send it to the list.
+
+The reason the intel gpios are working (the only one I checked) is
+because the \\SB.GPI0 node refers to the pinctrl controller (driver
+pinctrl-icelake.c in my case, which then creates a subdevice for
+handling the gpio).
+
+> 
+> ...
+> 
+
+Cheers,
+Benjamin
 
