@@ -2,111 +2,145 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4BDFD6B30D5
-	for <lists+devicetree@lfdr.de>; Thu,  9 Mar 2023 23:37:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 339336B3138
+	for <lists+devicetree@lfdr.de>; Thu,  9 Mar 2023 23:44:44 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230052AbjCIWhY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Mar 2023 17:37:24 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56624 "EHLO
+        id S231532AbjCIWo1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Mar 2023 17:44:27 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33830 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229716AbjCIWhX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Mar 2023 17:37:23 -0500
-Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 45F52103BF7
-        for <devicetree@vger.kernel.org>; Thu,  9 Mar 2023 14:37:22 -0800 (PST)
-Received: by mail-lf1-x134.google.com with SMTP id s20so4249327lfb.11
-        for <devicetree@vger.kernel.org>; Thu, 09 Mar 2023 14:37:22 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1678401440;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=vFWvVfxVAn0JYy2RvVNotdBgoXVzu6+UA0ROvn+lkig=;
-        b=gPKCt6kGrGzWI6Z5cmQ5vHx43shhCsJljJrTbLgeXdksKonaADCLSAKdrC4gArTmQx
-         IA6JqX5Y9IIJOtFcV9Th5ilQfOR6I7QPGxvbO43xgKVVrte/3fvf5gP4QaXLz9QJlt0g
-         9Yk0q6DzxvPFAjlIWnujD4SLdF4FGEKThIdvn9/zaQVv4Ceb0PTXwZt73TVCIxfPjFwg
-         2cVz99dHc93rjymJr9jCtdOGLeZKIeMqGqLa4pTZK73SyuztsFW9Uua3KCihyF2/70Sg
-         qE6ALe6EPjavtaUOYPzbYgy9aqXw1+Ec1Mwb+xf+MhmxrxNCxch7HW6WnAyw+G8s7j3d
-         hkHA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678401440;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=vFWvVfxVAn0JYy2RvVNotdBgoXVzu6+UA0ROvn+lkig=;
-        b=DeEtTTqT4O+0CqnFZ+ZxkzFfSEsq/qb9dmfUbir3HJKRcaC9M3bmY4amG3bM08UPhP
-         wetKDet4FtrNYArSQjMPmjX40Oyfth7VIQPx1rlRvOdxxkBOBg1TpHpZ1vUpBxYVvcbX
-         lA0xfJwcFPjNL+7uGfYaIKmHYeeQuufPGcnZR758+GFY6zsJrn5PD5uT8mPgWq8wEmYx
-         5b+5kBu/vG8WnVzSHEL4l+3EDO93JqQawhb7XMlj2O3v+5p+0YxPRXl4T9hPnotigZO7
-         LYlsa8+rAYGXrqkOTUpN71byAZcJuyx0r9pW/NPs0Ovidxpe885DvcLMHYwivRG2g94r
-         Hwcg==
-X-Gm-Message-State: AO0yUKUMDvc//LTC3vIoU+YJ29yYQV32p8F+UlebTcXR8dTXFID0jIWe
-        ctTJVQILcCJ6oHFbpgOHWb2n0w==
-X-Google-Smtp-Source: AK7set9NFAA7v78zu5aKYNTQcuPQtA5qn6A3AwSO27Qt8087MIkK12e2UayAT0g7EVrmj6Jhuti/2w==
-X-Received: by 2002:ac2:4c09:0:b0:4b4:6490:cbf1 with SMTP id t9-20020ac24c09000000b004b46490cbf1mr7060611lfq.15.1678401440025;
-        Thu, 09 Mar 2023 14:37:20 -0800 (PST)
-Received: from [192.168.1.101] (abyj16.neoplus.adsl.tpnet.pl. [83.9.29.16])
-        by smtp.gmail.com with ESMTPSA id a8-20020a2e9808000000b002934a7c04efsm42146ljj.98.2023.03.09.14.37.17
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 09 Mar 2023 14:37:19 -0800 (PST)
-Message-ID: <aac6ba9c-4230-aff7-c93d-23eaf6895464@linaro.org>
-Date:   Thu, 9 Mar 2023 23:37:17 +0100
+        with ESMTP id S231534AbjCIWoI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Mar 2023 17:44:08 -0500
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4A87365C56;
+        Thu,  9 Mar 2023 14:43:49 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1678401830; x=1709937830;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=fBE1n3VDHKOa0my/fpWQs/hh4OEzhEHXYLpvjY/5Y0Q=;
+  b=dPbm4nXmq99X2ep99J4vzLJ6u1gjzlzgjL0SNI9L55ZHTIy3HkySEhb3
+   WX4gr59wlATQowjxz+91nxZA2kWsXHUiJD5cJUuf8vQFT+2RAZzZL7rAT
+   Cp+DzHCkEmng1aafKzUQsQGpdV1rbQncRFnyvGbUZZpWVoPpf+ozZsjge
+   7P8jkyDNjpXcg3CWyCSgiv+KWPFzf612tFWFXOxYER7q2GgE1t2sTHxa2
+   bm8eCtHMaW2sOp1sN9Zdw+gWW6M/T5QUXKoR+esx8qWYu4DbKwIFXSUFD
+   P4o0UCOUa0EA1SVlShCoPnt+rSM26u1VmUWMcf5IlvDDy57XxCCXlE9KS
+   Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10644"; a="335289373"
+X-IronPort-AV: E=Sophos;i="5.98,247,1673942400"; 
+   d="scan'208";a="335289373"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+  by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 09 Mar 2023 14:42:49 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6500,9779,10644"; a="654953046"
+X-IronPort-AV: E=Sophos;i="5.98,247,1673942400"; 
+   d="scan'208";a="654953046"
+Received: from lkp-server01.sh.intel.com (HELO b613635ddfff) ([10.239.97.150])
+  by orsmga006.jf.intel.com with ESMTP; 09 Mar 2023 14:42:42 -0800
+Received: from kbuild by b613635ddfff with local (Exim 4.96)
+        (envelope-from <lkp@intel.com>)
+        id 1paOy9-0003H1-2U;
+        Thu, 09 Mar 2023 22:42:41 +0000
+Date:   Fri, 10 Mar 2023 06:42:35 +0800
+From:   kernel test robot <lkp@intel.com>
+To:     Danila Tikhonov <danila@jiaxyga.com>, agross@kernel.org,
+        andersson@kernel.org, konrad.dybcio@linaro.org, vkoul@kernel.org,
+        kishon@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org
+Cc:     llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
+        linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        davidwronek@gmail.com, Danila Tikhonov <danila@jiaxyga.com>
+Subject: Re: [PATCH 2/2] phy: qcom-qmp-ufs: Add SM7150 support
+Message-ID: <202303100615.2vRPxq4R-lkp@intel.com>
+References: <20230309185049.170878-3-danila@jiaxyga.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-Subject: Re: [PATCH v3 2/2] drm/panel: Add driver for Novatek NT36523
-Content-Language: en-US
-To:     Jianhua Lu <lujianhua000@gmail.com>
-Cc:     Thierry Reding <thierry.reding@gmail.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org
-References: <20230308043706.16318-1-lujianhua000@gmail.com>
- <20230308043706.16318-2-lujianhua000@gmail.com>
- <66d293a8-f850-cb80-0c83-2ebf7e29d0c2@linaro.org> <ZAh3MSpQ30YyPAVe@Gentoo>
- <1cbe9e29-13a4-574e-6d8c-b2506e7a36b3@linaro.org> <ZAiPTat/kmLyaJmA@Gentoo>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <ZAiPTat/kmLyaJmA@Gentoo>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-0.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_SORBS_HTTP,RCVD_IN_SORBS_SOCKS,SPF_HELO_NONE,SPF_PASS
-        autolearn=no autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230309185049.170878-3-danila@jiaxyga.com>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Danila,
 
-[...]
-= of_graph_get_remote_node(dsi->dev.of_node, 1, -1);
->>>>> +		if (!dsi1) {
->>>>> +			dev_err(dev, "cannot get secondary DSI node.\n");
->>>>> +			return -ENODEV;
->>>>> +		}
->>>>> +
->>>>> +		dsi1_host = of_find_mipi_dsi_host_by_node(dsi1);
->>>>> +		of_node_put(dsi1);
->>>> Shouldn't you put the reference only if it's found?
->>> thanks for spot it.
-Apparently not.. please don't change this
+Thank you for the patch! Yet something to improve:
 
-Konrad
->>>>
->>>>> +		if (!dsi1_host) {
->>>>> +			dev_err(dev, "cannot get secondary DSI host\n");
->>>>> +			return -EPROBE_DEFER;
->>>> dev_err_probe, here and in neighbouring exit return paths?
->>> Acked.
->>>>
->>>>
->>>> Konrad
+[auto build test ERROR on robh/for-next]
+[also build test ERROR on linus/master v6.3-rc1 next-20230309]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Danila-Tikhonov/dt-bindings-phy-Add-QMP-UFS-PHY-comptible-for-SM7150/20230310-025222
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
+patch link:    https://lore.kernel.org/r/20230309185049.170878-3-danila%40jiaxyga.com
+patch subject: [PATCH 2/2] phy: qcom-qmp-ufs: Add SM7150 support
+config: arm64-randconfig-r023-20230308 (https://download.01.org/0day-ci/archive/20230310/202303100615.2vRPxq4R-lkp@intel.com/config)
+compiler: clang version 17.0.0 (https://github.com/llvm/llvm-project 67409911353323ca5edf2049ef0df54132fa1ca7)
+reproduce (this is a W=1 build):
+        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+        chmod +x ~/bin/make.cross
+        # install arm64 cross compiling tool for clang build
+        # apt-get install binutils-aarch64-linux-gnu
+        # https://github.com/intel-lab-lkp/linux/commit/95e826acacaf3b5ba79c06b481199a17abed44ba
+        git remote add linux-review https://github.com/intel-lab-lkp/linux
+        git fetch --no-tags linux-review Danila-Tikhonov/dt-bindings-phy-Add-QMP-UFS-PHY-comptible-for-SM7150/20230310-025222
+        git checkout 95e826acacaf3b5ba79c06b481199a17abed44ba
+        # save the config file
+        mkdir build_dir && cp config build_dir/.config
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross W=1 O=build_dir ARCH=arm64 olddefconfig
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross W=1 O=build_dir ARCH=arm64 SHELL=/bin/bash drivers/phy/qualcomm/
+
+If you fix the issue, kindly add following tag where applicable
+| Reported-by: kernel test robot <lkp@intel.com>
+| Link: https://lore.kernel.org/oe-kbuild-all/202303100615.2vRPxq4R-lkp@intel.com/
+
+All errors (new ones prefixed by >>):
+
+>> drivers/phy/qualcomm/phy-qcom-qmp-ufs.c:380:3: error: expected identifier or '('
+   };)
+     ^
+>> drivers/phy/qualcomm/phy-qcom-qmp-ufs.c:972:14: error: use of undeclared identifier 'sm8150_ufsphy_serdes'
+                   .serdes         = sm8150_ufsphy_serdes,
+                                     ^
+   drivers/phy/qualcomm/phy-qcom-qmp-ufs.c:973:28: error: use of undeclared identifier 'sm8150_ufsphy_serdes'
+                   .serdes_num     = ARRAY_SIZE(sm8150_ufsphy_serdes),
+                                                ^
+   drivers/phy/qualcomm/phy-qcom-qmp-ufs.c:973:28: error: use of undeclared identifier 'sm8150_ufsphy_serdes'
+   drivers/phy/qualcomm/phy-qcom-qmp-ufs.c:973:28: error: use of undeclared identifier 'sm8150_ufsphy_serdes'
+   drivers/phy/qualcomm/phy-qcom-qmp-ufs.c:1004:14: error: use of undeclared identifier 'sm8150_ufsphy_serdes'
+                   .serdes         = sm8150_ufsphy_serdes,
+                                     ^
+   drivers/phy/qualcomm/phy-qcom-qmp-ufs.c:1005:28: error: use of undeclared identifier 'sm8150_ufsphy_serdes'
+                   .serdes_num     = ARRAY_SIZE(sm8150_ufsphy_serdes),
+                                                ^
+   drivers/phy/qualcomm/phy-qcom-qmp-ufs.c:1005:28: error: use of undeclared identifier 'sm8150_ufsphy_serdes'
+   drivers/phy/qualcomm/phy-qcom-qmp-ufs.c:1005:28: error: use of undeclared identifier 'sm8150_ufsphy_serdes'
+   9 errors generated.
+
+
+vim +380 drivers/phy/qualcomm/phy-qcom-qmp-ufs.c
+
+   370	
+   371	static const struct qmp_phy_init_tbl sm7150_ufsphy_pcs[] = {
+   372		QMP_PHY_INIT_CFG(QPHY_V3_PCS_UFS_RX_SIGDET_CTRL2, 0x6f),
+   373		QMP_PHY_INIT_CFG(QPHY_V3_PCS_UFS_TX_LARGE_AMP_DRV_LVL, 0x0f),
+   374		QMP_PHY_INIT_CFG(QPHY_V3_PCS_UFS_TX_SMALL_AMP_DRV_LVL, 0x02),
+   375		QMP_PHY_INIT_CFG(QPHY_V3_PCS_UFS_RX_SYM_RESYNC_CTRL, 0x03),
+   376		QMP_PHY_INIT_CFG(QPHY_V3_PCS_UFS_TX_MID_TERM_CTRL1, 0x43),
+   377		QMP_PHY_INIT_CFG(QPHY_V3_PCS_UFS_RX_SIGDET_CTRL1, 0x0f),
+   378		QMP_PHY_INIT_CFG(QPHY_V3_PCS_UFS_RX_MIN_HIBERN8_TIME, 0xFF),
+   379		QMP_PHY_INIT_CFG(QPHY_V3_PCS_UFS_MULTI_LANE_CTRL1, 0x02),
+ > 380	};)
+   381	
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests
