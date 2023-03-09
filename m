@@ -2,112 +2,185 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A88BC6B2449
-	for <lists+devicetree@lfdr.de>; Thu,  9 Mar 2023 13:37:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1EFC46B2470
+	for <lists+devicetree@lfdr.de>; Thu,  9 Mar 2023 13:44:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229846AbjCIMhx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Mar 2023 07:37:53 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59274 "EHLO
+        id S229927AbjCIMoL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Mar 2023 07:44:11 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42578 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229523AbjCIMhw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Mar 2023 07:37:52 -0500
-Received: from mail-wm1-x335.google.com (mail-wm1-x335.google.com [IPv6:2a00:1450:4864:20::335])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3C99C1F93B;
-        Thu,  9 Mar 2023 04:37:51 -0800 (PST)
-Received: by mail-wm1-x335.google.com with SMTP id j19-20020a05600c191300b003eb3e1eb0caso3486766wmq.1;
-        Thu, 09 Mar 2023 04:37:51 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112; t=1678365470;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=8Brecf3gTYVIGkh6Vg/ZrSy4fTcyL7LGy5CNuUxEbMY=;
-        b=WFH43aWuAcfWvR7AbnsKHlunddYyHWanGNqukKJo3kCwmXlSpGw5huJoVS4aQMMBSK
-         O1TJFj3ppdJL4xU0vncuCPluO4qFqKrfpqgoYiQzOKiZwPbxS4twYJO6TtWsu6BkexfD
-         axhtX3UU+LjyopE6v7IjZN5HygXJxsXn1t6VDHaPrTwT55y7TXSQH8CCOV+R9898awTS
-         uRro90lHSyg9r0zYjVSVgTSZQTRTAkzIaB3uTj93y8jhtjgei+d/SgMBK1Mov885YsPu
-         3f/IZCZEz1eYxGg1ykFmuQ6EKnIkkGjWuNg8Psd9faoA+3QeRlz5b/l/DOfes6gWGjgY
-         8nLA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678365470;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=8Brecf3gTYVIGkh6Vg/ZrSy4fTcyL7LGy5CNuUxEbMY=;
-        b=IAXfZPYE1F+J0i6PZVC7eEk+7bUew6uG7RjPKDup+RFaP7muBVlB6NppxYvTmEfehi
-         Y3zkFSZhRuNi7vcwMHGoXS197L7sJs8rxQ4qTHSSEJG03ruwCQ1dOlc0e4NS53D9XFLA
-         y1WKLw7C6GnL8y4bxBhsdQMpqz6Sy0y3lOuCXMQeKm3jNhqfPU0f9mDorepQTl4oi/fj
-         s1SxH9QJxlL1uj9aXiVeQYwDh789J7i75WStwGOftFr3uQCv7pxcpFulUDTMKJc7SKwF
-         EpbudfwNU9AhLyfZI1QYDr66qfmV+W1cjYp9evPUgKN7zPT/LPdDpPQQQaEpaiRB2wh4
-         PRQw==
-X-Gm-Message-State: AO0yUKVxoqewfCi6rO4UmX7oxDeqHd/Z/wLMUSLKPNYjzntBchE2TOOO
-        L8jiqix9FvbtkD/o4fwpZuEr+pVcsyiGTNA2nVU=
-X-Google-Smtp-Source: AK7set8NuLLf3gUjtL31iDhK+a+vkBokvjRYPtxUk4Gb8Fzx6wRvPgpR8tkyNxjgL9KSx+TamE6Crw==
-X-Received: by 2002:a05:600c:444a:b0:3e0:6c4:6a38 with SMTP id v10-20020a05600c444a00b003e006c46a38mr11247542wmn.33.1678365469515;
-        Thu, 09 Mar 2023 04:37:49 -0800 (PST)
-Received: from localhost ([102.36.222.112])
-        by smtp.gmail.com with ESMTPSA id u16-20020a5d5150000000b002c559843748sm17909147wrt.10.2023.03.09.04.37.47
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 09 Mar 2023 04:37:48 -0800 (PST)
-Date:   Thu, 9 Mar 2023 15:37:44 +0300
-From:   Dan Carpenter <error27@gmail.com>
-To:     AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-Cc:     bchihi@baylibre.com, daniel.lezcano@linaro.org, rafael@kernel.org,
-        amitk@kernel.org, rui.zhang@intel.com, matthias.bgg@gmail.com,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        rdunlap@infradead.org, ye.xingchen@zte.com.cn,
-        p.zabel@pengutronix.de, linux-pm@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
-        khilman@baylibre.com, james.lo@mediatek.com,
-        rex-bc.chen@mediatek.com
-Subject: Re: [PATCH] thermal/drivers/mediatek/lvts_thermal: fix memcpy's
- number of bytes in lvts_calibration_init()
-Message-ID: <58a1a694-8a9a-438b-a5cf-9299e7914973@kili.mountain>
-References: <20230126161048.94089-1-bchihi@baylibre.com>
- <20230307134245.83599-1-bchihi@baylibre.com>
- <1af76fd0-ea27-da60-cd22-8a65a8ef369e@collabora.com>
+        with ESMTP id S229770AbjCIMoK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Mar 2023 07:44:10 -0500
+Received: from loongson.cn (mail.loongson.cn [114.242.206.163])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 102035DCAF;
+        Thu,  9 Mar 2023 04:44:07 -0800 (PST)
+Received: from loongson.cn (unknown [10.20.42.35])
+        by gateway (Coremail) with SMTP id _____8BxfdqV1AlkQmsKAA--.2354S3;
+        Thu, 09 Mar 2023 20:44:05 +0800 (CST)
+Received: from [10.20.42.35] (unknown [10.20.42.35])
+        by localhost.localdomain (Coremail) with SMTP id AQAAf8Ax+72S1Alk5J1QAA--.8149S3;
+        Thu, 09 Mar 2023 20:44:04 +0800 (CST)
+Subject: Re: [PATCH v13 1/2] dt-bindings: clock: add loongson-2 boot clock
+ index
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org
+Cc:     Jianmin Lv <lvjianmin@loongson.cn>,
+        Liu Peibao <liupeibao@loongson.cn>, wanghongliang@loongson.cn,
+        loongson-kernel@lists.loongnix.cn, zhuyinbo@loongson.cn
+References: <20230307115022.12846-1-zhuyinbo@loongson.cn>
+ <692a62da-a9a1-fa23-6e24-723d73c3a423@linaro.org>
+ <5e9b3bd5-d885-6237-5e14-2becb3c956cc@loongson.cn>
+ <31e2a67a-c046-9501-80de-e754ed450195@linaro.org>
+ <ace5159b-ebbd-7805-518c-ed3d39e4793e@loongson.cn>
+ <b2f9cd15-b303-882a-d4e0-36d1f6d155a8@linaro.org>
+ <eca81d44-2513-8002-980d-755af32f36c4@loongson.cn>
+ <882bd054-9c3e-1b26-72a5-89ad92e21a79@linaro.org>
+From:   zhuyinbo <zhuyinbo@loongson.cn>
+Message-ID: <817a65e9-b605-4bc0-2ff5-fc7f5db8585c@loongson.cn>
+Date:   Thu, 9 Mar 2023 20:44:01 +0800
+User-Agent: Mozilla/5.0 (X11; Linux loongarch64; rv:68.0) Gecko/20100101
+ Thunderbird/68.7.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1af76fd0-ea27-da60-cd22-8a65a8ef369e@collabora.com>
-X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+In-Reply-To: <882bd054-9c3e-1b26-72a5-89ad92e21a79@linaro.org>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
+Content-Language: en-US
+X-CM-TRANSID: AQAAf8Ax+72S1Alk5J1QAA--.8149S3
+X-CM-SenderInfo: 52kx5xhqerqz5rrqw2lrqou0/
+X-Coremail-Antispam: 1Uk129KBjvJXoWxCFWDCw18try3Xw4xZw15CFg_yoWrKFWkpr
+        18JF1UJryUJr4xJr1jqr1UGryjkr1UJw1UJr1UGF1UJr1UJr10qr47Xr1FgryUJr48J3W7
+        Ar1DAr1UZF1UXwUanT9S1TB71UUUUUJqnTZGkaVYY2UrUUUUj1kv1TuYvTs0mT0YCTnIWj
+        qI5I8CrVACY4xI64kE6c02F40Ex7xfYxn0WfASr-VFAUDa7-sFnT9fnUUIcSsGvfJTRUUU
+        bTAFc2x0x2IEx4CE42xK8VAvwI8IcIk0rVWrJVCq3wAFIxvE14AKwVWUXVWUAwA2ocxC64
+        kIII0Yj41l84x0c7CEw4AK67xGY2AK021l84ACjcxK6xIIjxv20xvE14v26ryj6F1UM28E
+        F7xvwVC0I7IYx2IY6xkF7I0E14v26r4j6F4UM28EF7xvwVC2z280aVAFwI0_Cr1j6rxdM2
+        8EF7xvwVC2z280aVCY1x0267AKxVWxJr0_GcWln4kS14v26r1Y6r17M2AIxVAIcxkEcVAq
+        07x20xvEncxIr21l57IF6xkI12xvs2x26I8E6xACxx1l5I8CrVACY4xI64kE6c02F40Ex7
+        xfMcIj6xIIjxv20xvE14v26r1Y6r17McIj6I8E87Iv67AKxVW8JVWxJwAm72CE4IkC6x0Y
+        z7v_Jr0_Gr1lF7xvr2IY64vIr41lc7I2V7IY0VAS07AlzVAYIcxG8wCF04k20xvY0x0EwI
+        xGrwCF04k20xvE74AGY7Cv6cx26rWl4I8I3I0E4IkC6x0Yz7v_Jr0_Gr1l4IxYO2xFxVAF
+        wI0_Jrv_JF1lx2IqxVAqx4xG67AKxVWUJVWUGwC20s026x8GjcxK67AKxVWUGVWUWwC2zV
+        AF1VAY17CE14v26r1q6r43MIIYrxkI7VAKI48JMIIF0xvE2Ix0cI8IcVAFwI0_Jr0_JF4l
+        IxAIcVC0I7IYx2IY6xkF7I0E14v26r1j6r4UMIIF0xvE42xK8VAvwI8IcIk0rVWUJVWUCw
+        CI42IY6I8E87Iv67AKxVW8JVWxJwCI42IY6I8E87Iv6xkF7I0E14v26r4j6r4UJbIYCTnI
+        WIevJa73UjIFyTuYvjxUcOJ5UUUUU
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Mar 08, 2023 at 10:10:34AM +0100, AngeloGioacchino Del Regno wrote:
-> Il 07/03/23 14:42, bchihi@baylibre.com ha scritto:
-> > From: Balsam CHIHI <bchihi@baylibre.com>
-> > 
-> > Replace memcpy 2 bytes by sizeof(int) bytes of LVTS calibration data.
-> 
-> sizeof(int) is architecture dependant...
-> 
 
-On Linux sizeof(int) is always 4.
+在 2023/3/9 下午2:25, Krzysztof Kozlowski 写道:
+> On 09/03/2023 02:43, zhuyinbo wrote:
+>> 在 2023/3/8 下午6:38, Krzysztof Kozlowski 写道:
+>>> On 08/03/2023 10:24, zhuyinbo wrote:
+>>>>>>> That's an ABI break and commit msg does not explain it.
+>>>>>> you meaning is that need add a explanation in commit msg that why
+>>>>> You need good explanation to break the ABI. I don't understand the
+>>>>> commit msg, but anyway I could not find there justification for ABI
+>>>>> break. If you do not have good justification, don't break the ABI,
+>>>> The commit msg is the patch commit  log,  and I maybe not got it about
+>>>> break the ABI.  You said about "break the ABI"
+>>>>
+>>>> is whether is location issue about "LOONGSON2_BOOT_CLK"?   if yes,   the
+>>>> LOONGSON2_BOOT_CLK was placed
+>>>>
+>>>> after LOONGSON2_PIX1_PLL that is due to their clock parent is same.
+>>>> and I whether need add this explanation
+>>>>
+>>>> in patch commit log description?
+>>> Unfortunately I do not understand single thing from this.
+>>>
+>>> Best regards,
+>>> Krzysztof
+>> The patch commit log description is patch desription.  as follows:
+>>
+>>
+>> commit 592bc2b4106d787ea166ba16bfde6b3101ab1a8a
+>> Author: Yinbo Zhu <zhuyinbo@loongson.cn>
+>> Date:   Tue Mar 7 17:18:32 2023 +0800
+>>
+>>       dt-bindings: clock: add loongson-2 boot clock index
+>>
+>>       The Loongson-2 boot clock was used to spi and lio peripheral and
+>>       this patch was to add boot clock index number.
+> I cannot understand this either.
+I will rework commit msg .
+>
+>>
+>> and your advice is "That's an ABI break and commit msg does not explain it."
+>>
+>> I got it  from your advice that was to add a explanation about
+>> LOONGSON2_BOOT_CLK's
+>>
+>> location issue in patch description, right?
+> ABI break needs justification, why do you think it is fine or who
+> is/isn't affected etc. Your commit msg does not explain why ABI break is
+> okay. It doesn't even explain to me why you need it.
+  #define LOONGSON2_DC_PLL                               3
+  #define LOONGSON2_PIX0_PLL                             4
+  #define LOONGSON2_PIX1_PLL                             5
+-#define LOONGSON2_NODE_CLK                             6
+-#define LOONGSON2_HDA_CLK                              7
+-#define LOONGSON2_GPU_CLK                              8
+-#define LOONGSON2_DDR_CLK                              9
+-#define LOONGSON2_GMAC_CLK                             10
+-#define LOONGSON2_DC_CLK                               11
+-#define LOONGSON2_APB_CLK                              12
+-#define LOONGSON2_USB_CLK                              13
+-#define LOONGSON2_SATA_CLK                             14
+-#define LOONGSON2_PIX0_CLK                             15
+-#define LOONGSON2_PIX1_CLK                             16
+-#define LOONGSON2_CLK_END                              17
++#define LOONGSON2_BOOT_CLK                             6
++#define LOONGSON2_NODE_CLK                             7
 
-I'm just so confused what you are talking about.  Are you thinking about
-sizeof(long)?  Are you thinking about CPUs from the 1970s?  Linux wasn't
-invented until the 90s so the old CPUs were already in museums at that
-point.
+after add my patch, if dts still use above macro and not cause any 
+issue. but
 
-> please use a fixed size type instead.
+if dts not use macro rather than use original clk number index that will 
+cause a uncorrect clk,
 
-This is an unusual style opinion that I have not heard before.
-Hopefully, you just got ints and longs confused so we can move on
-without discussing it too much.  We're copying an int so sizeof(int) is
-obviously correct.  It's hard to know how to respond.
+eg.
 
-> Also, shouldn't this be u16?!
+-#define LOONGSON2_NODE_CLK                             6
 
-What? Why would you think that?
++#define LOONGSON2_NODE_CLK                             7
 
-regards,
-dan carpenter
+  this issue is that what you said about  "ABI break",  isn't it ?
+
+
+About your advice and question and I will use following description as 
+patch  commit msg,  what do you think?
+
+
+dt-bindings: clock: add loongson-2 boot clock index
+
+The spi need to use boot clock and this patch is to add a boot clock 
+index about  LOONGSON2_BOOT_CLK
+
+and the LOONGSON2_BOOT_CLK was placed in after LOONGSON2_PIX1_PLL that 
+due to
+
+LOONGSON2_PIX1_PLL,  LOONGSON2_PIX0_PLL , LOONGSON2_DC_PLL and 
+LOONGSON2_BOOT_CLK
+
+has same parent clock.  In addition, the Loongson  code of the community 
+is still in the development stage,
+
+so this patch modification will  not cause uncorrect clk quote issue at 
+present.
+
+>
+>
+> Best regards,
+> Krzysztof
 
