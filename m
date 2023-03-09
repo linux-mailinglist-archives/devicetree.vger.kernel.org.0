@@ -2,53 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D37F56B1EDE
-	for <lists+devicetree@lfdr.de>; Thu,  9 Mar 2023 09:52:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 475186B1EE1
+	for <lists+devicetree@lfdr.de>; Thu,  9 Mar 2023 09:52:56 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230463AbjCIIww (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Mar 2023 03:52:52 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53096 "EHLO
+        id S231143AbjCIIwy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Mar 2023 03:52:54 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53114 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230472AbjCIIwg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Mar 2023 03:52:36 -0500
-Received: from mail-pl1-x62e.google.com (mail-pl1-x62e.google.com [IPv6:2607:f8b0:4864:20::62e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 56F5BDD34B
+        with ESMTP id S230420AbjCIIwh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Mar 2023 03:52:37 -0500
+Received: from mail-pl1-x636.google.com (mail-pl1-x636.google.com [IPv6:2607:f8b0:4864:20::636])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B226FDDB1C
         for <devicetree@vger.kernel.org>; Thu,  9 Mar 2023 00:52:11 -0800 (PST)
-Received: by mail-pl1-x62e.google.com with SMTP id h8so1237242plf.10
+Received: by mail-pl1-x636.google.com with SMTP id x11so1231089pln.12
         for <devicetree@vger.kernel.org>; Thu, 09 Mar 2023 00:52:11 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1678351923;
+        d=linaro.org; s=google; t=1678351927;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=gtO470wsQrdefT/eZbqt8rDglQCA1uZJNkLG9oF8ql8=;
-        b=QlHM9WzaNYPlNEkXYyyFnr+5ZcQhqyh7YDcg0zxTlaCrZSuTkzyKt7zpeLB0nhaRRS
-         vY2PX+HAo7SErnKbnenM9dQsPPP4kAPAHODJpOcnMS0AExPgXvL5pN3lo3BEAXA5RF8f
-         hmvX/gmwNlsYnRYFLDKtudy5zZ+ysQy+BvG2NZYy+edI51Ru0dclTnTwf9WUR/XHDFgI
-         g7Hwgm/ZxSS26D7huci1fkGX6bdo4GVJcRcF6drQh6707Qp1E5byZmuwf6xarNh19m4z
-         wLrJpOWfbbhge0/FN/KZJOFmJcrCCWr4c99gCkhMczaBxeKz9BMdFcnU8KxsLwl1JF5F
-         opxw==
+        bh=5EYpDut5qXdF8PJg7sJ4kHxpp0TN8JiS9nsevzfwY0E=;
+        b=x3F7JgMlovl1XU8nVdsqn4mHmNqXlJEYHWmoDdnGdy7axcb9V0kWlcut+/j7ms2vY3
+         bdzQLe2YnarCw7FURfEMM3g8FA7CdN9aBD/LlS/VzBA5rCHqfah3JNXuN3wJb+AjIdVC
+         qstSluYMGygbTqFib7W/MX/7SabK1G8d95h2T5H1KVzB602YhSlED3pZeenHYseiA7Jy
+         0HB66BP2HT+y7AKnW8cZkVszSn+9FgTzFeMKZrk0HXGLtngE6/MGvko0qAnx4RqwYzRx
+         mQHJ2x/w1xDgBhoRH77WtggGLIZso7kRRs/jcbv9fzAJBiLSqb3ADV/hYomBlMWSftjt
+         eSjw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678351923;
+        d=1e100.net; s=20210112; t=1678351927;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=gtO470wsQrdefT/eZbqt8rDglQCA1uZJNkLG9oF8ql8=;
-        b=QcGGJZRYfMUn5QAwyDvvNrZ5DcxPwuzA3gcM2aGAQ+PWwcDCXNgV/edLMKs230CfXX
-         R9tCjMHMIDYwmAR6L3U7Eqw5Di7apMeRFjoIE0EH57Btg37jtlNaoKWI0ev8nY5/gq0H
-         /wr+IiTnhZgNMiGMqdF6KrQ1hjDTyM6nxPFEd0ecpqhQm+iPS05kXHvcp3sKxD+w/9zC
-         rUuvCe+ac6SEZ8KwD5nT5YbcrpFrLMba3cI/FbroZPjdSiFKhWv1ZJ2Mrdow8wBPXFk3
-         PUnw1R8kxPsEQWnqb/9JL7rkdU/Yd9ktWmknMQpa7oB5oaP+tCTNDDw0T6CQXSOOQkuW
-         x3cw==
-X-Gm-Message-State: AO0yUKULkcvuwvoRclev1TURJLMvz1xaLp2bUuj/RvexIUY8LfkUenmh
-        DyFtY6FV9cU/PFcFZG6isRFb
-X-Google-Smtp-Source: AK7set+Hs+f5ctQNyheWzJTuxjgHF/4URTVNW3lyukxYE2fI0jhqjvjHYtYrKgTjMtzA87GEnoacWg==
-X-Received: by 2002:a05:6a20:a025:b0:cd:9db3:a7c1 with SMTP id p37-20020a056a20a02500b000cd9db3a7c1mr20729333pzj.44.1678351923338;
-        Thu, 09 Mar 2023 00:52:03 -0800 (PST)
+        bh=5EYpDut5qXdF8PJg7sJ4kHxpp0TN8JiS9nsevzfwY0E=;
+        b=1EyU9zmxJac8EkZ6ill1jhIRPO4W4hisa+JqYFW9bMtZE/9L8BnizpjGQjsDvpkDRz
+         uyh8Wio/EY0ttdlIIY1sed5qHqZutngAykDgAMBkCkWCOkArBgvObb1cC7D235DZi/hI
+         d7RIG1iZUZaBlCeGPdVkwrEUrbA/Zcb3NHQ3h4UlasCwSUAhgO5GkJ5Ep8f7RwB9XciZ
+         EDNXe59jwh1I/ZN/1+imXSJYscRjR23nPlQ4ocTXQ8sp3Waxphz+nOGetVRFeND/uUpr
+         dtWMM4E6+mQ900nI4qP3u3p+5Q7lQz5aPAwkCMnuR8s0Fh9aCLW4I93HCaFgHutKKpqG
+         fopg==
+X-Gm-Message-State: AO0yUKVwZ9ZSYVCxgwhksnXScrwkCjA+WO9bGImzQRiKigKsMIueWbfQ
+        byWz5gB17tLWLMe4UfB+CiAq
+X-Google-Smtp-Source: AK7set9VfPte/UHFCsEVGLAhICyvRPSNWw85/k9dEYb3tXq7cBVz1ZeoCAkQRcBPyn2ealkza5VhOw==
+X-Received: by 2002:a05:6a20:9389:b0:cd:2952:7b69 with SMTP id x9-20020a056a20938900b000cd29527b69mr24464708pzh.52.1678351927414;
+        Thu, 09 Mar 2023 00:52:07 -0800 (PST)
 Received: from localhost.localdomain ([220.158.158.11])
-        by smtp.gmail.com with ESMTPSA id u4-20020aa78484000000b005809d382016sm10638604pfn.74.2023.03.09.00.51.59
+        by smtp.gmail.com with ESMTPSA id u4-20020aa78484000000b005809d382016sm10638604pfn.74.2023.03.09.00.52.03
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 09 Mar 2023 00:52:03 -0800 (PST)
+        Thu, 09 Mar 2023 00:52:07 -0800 (PST)
 From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
 To:     andersson@kernel.org, lpieralisi@kernel.org, kw@linux.com,
         krzysztof.kozlowski+dt@linaro.org, robh@kernel.org
@@ -56,9 +56,9 @@ Cc:     konrad.dybcio@linaro.org, linux-arm-msm@vger.kernel.org,
         devicetree@vger.kernel.org, linux-pci@vger.kernel.org,
         linux-kernel@vger.kernel.org, quic_srichara@quicinc.com,
         Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Subject: [PATCH v2 12/17] PCI: qcom: Use macros for defining total no. of clocks & supplies
-Date:   Thu,  9 Mar 2023 14:20:57 +0530
-Message-Id: <20230309085102.120977-13-manivannan.sadhasivam@linaro.org>
+Subject: [PATCH v2 13/17] dt-bindings: PCI: qcom: Add "mhi" register region to supported SoCs
+Date:   Thu,  9 Mar 2023 14:20:58 +0530
+Message-Id: <20230309085102.120977-14-manivannan.sadhasivam@linaro.org>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20230309085102.120977-1-manivannan.sadhasivam@linaro.org>
 References: <20230309085102.120977-1-manivannan.sadhasivam@linaro.org>
@@ -66,49 +66,75 @@ MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-To keep uniformity, let's use macros to define the total number of clocks
-and supplies in qcom_pcie_resources_{2_7_0/2_9_0} structs.
+"mhi" register region contains the MHI registers that could be used by
+the PCIe controller drivers to get debug information like PCIe link
+transition counts on newer SoCs.
 
 Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
 ---
- drivers/pci/controller/dwc/pcie-qcom.c | 10 ++++++----
- 1 file changed, 6 insertions(+), 4 deletions(-)
+ Documentation/devicetree/bindings/pci/qcom,pcie.yaml | 12 ++++++++----
+ 1 file changed, 8 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/pci/controller/dwc/pcie-qcom.c b/drivers/pci/controller/dwc/pcie-qcom.c
-index ed43e03b972f..e1180c84f0fa 100644
---- a/drivers/pci/controller/dwc/pcie-qcom.c
-+++ b/drivers/pci/controller/dwc/pcie-qcom.c
-@@ -185,16 +185,18 @@ struct qcom_pcie_resources_2_4_0 {
- 	int num_resets;
- };
+diff --git a/Documentation/devicetree/bindings/pci/qcom,pcie.yaml b/Documentation/devicetree/bindings/pci/qcom,pcie.yaml
+index fb32c43dd12d..ecbb0f9efa21 100644
+--- a/Documentation/devicetree/bindings/pci/qcom,pcie.yaml
++++ b/Documentation/devicetree/bindings/pci/qcom,pcie.yaml
+@@ -44,11 +44,11 @@ properties:
  
--/* 6 clocks typically, 7 for sm8250 */
-+#define QCOM_PCIE_2_7_0_MAX_CLOCKS		12
-+#define QCOM_PCIE_2_7_0_MAX_SUPPLIES		2
- struct qcom_pcie_resources_2_7_0 {
--	struct clk_bulk_data clks[12];
-+	struct clk_bulk_data clks[QCOM_PCIE_2_7_0_MAX_CLOCKS];
- 	int num_clks;
--	struct regulator_bulk_data supplies[2];
-+	struct regulator_bulk_data supplies[QCOM_PCIE_2_7_0_MAX_SUPPLIES];
- 	struct reset_control *pci_reset;
- };
+   reg:
+     minItems: 4
+-    maxItems: 5
++    maxItems: 6
  
-+#define QCOM_PCIE_2_9_0_MAX_CLOCKS		5
- struct qcom_pcie_resources_2_9_0 {
--	struct clk_bulk_data clks[5];
-+	struct clk_bulk_data clks[QCOM_PCIE_2_9_0_MAX_CLOCKS];
- 	struct reset_control *rst;
- };
+   reg-names:
+     minItems: 4
+-    maxItems: 5
++    maxItems: 6
  
+   interrupts:
+     minItems: 1
+@@ -185,13 +185,15 @@ allOf:
+       properties:
+         reg:
+           minItems: 4
+-          maxItems: 4
++          maxItems: 5
+         reg-names:
++          minItems: 4
+           items:
+             - const: parf # Qualcomm specific registers
+             - const: dbi # DesignWare PCIe registers
+             - const: elbi # External local bus interface registers
+             - const: config # PCIe configuration space
++            - const: mhi # MHI registers
+ 
+   - if:
+       properties:
+@@ -209,14 +211,16 @@ allOf:
+       properties:
+         reg:
+           minItems: 5
+-          maxItems: 5
++          maxItems: 6
+         reg-names:
++          minItems: 5
+           items:
+             - const: parf # Qualcomm specific registers
+             - const: dbi # DesignWare PCIe registers
+             - const: elbi # External local bus interface registers
+             - const: atu # ATU address space
+             - const: config # PCIe configuration space
++            - const: mhi # MHI registers
+ 
+   - if:
+       properties:
 -- 
 2.25.1
 
