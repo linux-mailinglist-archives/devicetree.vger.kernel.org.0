@@ -2,81 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AD6986B24B6
-	for <lists+devicetree@lfdr.de>; Thu,  9 Mar 2023 13:58:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3DB826B24D6
+	for <lists+devicetree@lfdr.de>; Thu,  9 Mar 2023 14:02:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231273AbjCIM63 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Mar 2023 07:58:29 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59996 "EHLO
+        id S230430AbjCINCY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Mar 2023 08:02:24 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42002 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231214AbjCIM5s (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Mar 2023 07:57:48 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0AC70F20B5;
-        Thu,  9 Mar 2023 04:57:12 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 5B88661B36;
-        Thu,  9 Mar 2023 12:57:06 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4162DC4339B;
-        Thu,  9 Mar 2023 12:57:05 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-        s=korg; t=1678366625;
-        bh=i/LtRm/+xPkilVIoFGYctjNW3aIYZcWrBFVjrm/3Rys=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=2KaFLNAU22iAs42w6sbVTsr7raogabjjVshv7oTwh1s6J1pCAgQC3dsq6SXOIFlA6
-         C4Cerr1HM4mdsVRz/ywG8WGRQweuPDuGDkVLoGARFMcsfDPR3s5CrQB0BEfcSCxv2U
-         8bmG3LynVpgcCVuhLLExkXqoCblYabkNuiNXR3SU=
-Date:   Thu, 9 Mar 2023 13:57:02 +0100
-From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-To:     Svyatoslav Ryhel <clamor95@gmail.com>
-Cc:     Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Derek Kiernan <derek.kiernan@xilinx.com>,
-        Dragan Cvetic <dragan.cvetic@xilinx.com>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Dmitry Osipenko <dmitry.osipenko@collabora.com>,
-        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v1 0/4] Update APDS990x ALS to support IIO
-Message-ID: <ZAnXnndzfb4puX3H@kroah.com>
-References: <20230308090219.12710-1-clamor95@gmail.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230308090219.12710-1-clamor95@gmail.com>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        with ESMTP id S231315AbjCINCF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Mar 2023 08:02:05 -0500
+Received: from mail-lj1-x22e.google.com (mail-lj1-x22e.google.com [IPv6:2a00:1450:4864:20::22e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 46A8AF221F
+        for <devicetree@vger.kernel.org>; Thu,  9 Mar 2023 05:01:04 -0800 (PST)
+Received: by mail-lj1-x22e.google.com with SMTP id by8so1728976ljb.7
+        for <devicetree@vger.kernel.org>; Thu, 09 Mar 2023 05:01:04 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112; t=1678366859;
+        h=to:references:message-id:content-transfer-encoding:cc:date
+         :in-reply-to:from:subject:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=dP+ewDGSKCxM2jcx4aWMWmyBv/FKyYjqa67/rDQKfl0=;
+        b=ekd5CAS4KQ753h3434roSc0HkvfwGJolCWZjVytyL5kiVKrbVpVWNCsQPhUNxfv4Vi
+         a+76S58yyL5aa0z/Vpb5i/SxppPV++0df9coVfITgXKFhO5CM6KK+Lp4BbeJeaD+tX2f
+         UV9Am0YDYCxhtM88R1l9ef098J3KdDEaIP67f8fW0zI6Lts5kMBHpyNNO9DXyrQIFmSJ
+         HEg0SP6WpowXpeDNgHRSa+ry154WJvZbp4qwCCCwhwo2WRWVXlv4McwoABUW7v9z0vxl
+         CFOtzy6MgKHPv1hbceV/iym1KHbVs6FG+AplI+u9EymUHkeAhjwPq/kzCebPCLNasZti
+         9MNA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1678366859;
+        h=to:references:message-id:content-transfer-encoding:cc:date
+         :in-reply-to:from:subject:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=dP+ewDGSKCxM2jcx4aWMWmyBv/FKyYjqa67/rDQKfl0=;
+        b=jth7AlXRWkVUw8YfKr5wcWG77u5hurc3QGRQLLzwLb6mhRye2+P7OL0rKf7sQRJu4/
+         L+3B9tCiUmZB+72CTZcuHgLudZnO7QdtxTR5DxaAwHQB5WfCct5EvlAp6jaLKduf/Nal
+         hSW3E9Dg+loNnzBHCblPPZxHq753hVq/R/ZguBzlydlZsohRZZg2Cpu1x8OrewIn1tNA
+         zKLSqzUJalH2zERbfq86pRev2RK2P7iA1FLDcPeWbFN0sQXHBZLtYkewtU/pHO0bqU27
+         8hD/gF8JCKZYl6jibpM1APltfyYUms6k3eoPWSPIRNEckvyKTLl5HnJfxiQuFNkhFAdJ
+         54rw==
+X-Gm-Message-State: AO0yUKXF2sV98WyooPJ2/4CrMD/7gLJ/ZvcZoSqU88KQr9hxNjH0OP6i
+        PEkOjJRmVLf8ParxNaclqYo=
+X-Google-Smtp-Source: AK7set/RCdb8KPr3V3KAfiBQ+tLjvfioeznm4pMx9HBP9njhWt9JG0HJYASiCgT6w79py4S/REYoFQ==
+X-Received: by 2002:a2e:9b16:0:b0:295:a542:8b47 with SMTP id u22-20020a2e9b16000000b00295a5428b47mr6014299lji.8.1678366859466;
+        Thu, 09 Mar 2023 05:00:59 -0800 (PST)
+Received: from smtpclient.apple (84-10-103-47.static.chello.pl. [84.10.103.47])
+        by smtp.gmail.com with ESMTPSA id j15-20020a19f50f000000b004e7fa99f2b5sm2153733lfb.186.2023.03.09.05.00.58
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Thu, 09 Mar 2023 05:00:59 -0800 (PST)
+Content-Type: text/plain;
+        charset=utf-8
+Mime-Version: 1.0 (Mac OS X Mail 14.0 \(3654.120.0.1.14\))
+Subject: Re: [PATCH RFC 0/5] arm64: rockchip: enable PCIE3 controller and its
+ phy for Rock5B boards
+From:   Piotr Oniszczuk <piotr.oniszczuk@gmail.com>
+In-Reply-To: <dff133d1-6a8b-a838-4c85-a8bb16c7a742@suse.com>
+Date:   Thu, 9 Mar 2023 14:00:57 +0100
+Cc:     Sebastian Reichel <sebastian.reichel@collabora.com>,
+        Peter Geis <pgwipeout@gmail.com>,
+        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        =?utf-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>,
+        lucas.tanure@collabora.com
+Content-Transfer-Encoding: quoted-printable
+Message-Id: <6024BC59-B1ED-441C-97F8-73688022F899@gmail.com>
+References: <cover.1675498628.git.wqu@suse.com>
+ <583D2908-ECED-4226-A6CD-683F0D5BEA71@gmail.com>
+ <4b28da3e-9126-8409-dd9c-3899762e28bb@suse.com>
+ <7A70CB52-1892-4455-B419-AD00298DE7B5@gmail.com>
+ <CAMdYzYovDsiw5zwMvPbLaVcfpryX6K7r2zuVUVkAtYxiwzKGUQ@mail.gmail.com>
+ <20230221214517.5rjtwpftcj5dugdl@mercury.elektranox.org>
+ <CAMdYzYoWAjRQPCy_cuYH5VpMfnVR2_H+1-MNSKv0w6j-NpbORw@mail.gmail.com>
+ <A539A994-7E2C-4B51-8BAB-32AE475607DD@gmail.com>
+ <dff133d1-6a8b-a838-4c85-a8bb16c7a742@suse.com>
+To:     Qu Wenruo <wqu@suse.com>
+X-Mailer: Apple Mail (2.3654.120.0.1.14)
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Mar 08, 2023 at 11:02:15AM +0200, Svyatoslav Ryhel wrote:
-> Add apds990x binding scheme, convert it to get basic data from
-> dts and use common IIO API. Since it works with IIO now, move from
-> /misc to /iio.
-> 
-> Svyatoslav Ryhel (4):
->   dt-bindings: iio: light: add apds990x binding
->   misc: adps990x: convert to OF
->   misc: apds990x: convert to IIO
->   iio: light: move apds990x into proper place
-> 
->  .../bindings/iio/light/avago,apds990x.yaml    |  76 ++
->  drivers/iio/light/Kconfig                     |  10 +
->  drivers/iio/light/Makefile                    |   1 +
->  drivers/{misc => iio/light}/apds990x.c        | 802 +++++++++---------
->  drivers/misc/Kconfig                          |  10 -
->  drivers/misc/Makefile                         |   1 -
->  6 files changed, 509 insertions(+), 391 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/iio/light/avago,apds990x.yaml
->  rename drivers/{misc => iio/light}/apds990x.c (67%)
-> 
 
-Acked-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+
+> Wiadomo=C5=9B=C4=87 napisana przez Qu Wenruo <wqu@suse.com> w dniu =
+09.03.2023, o godz. 13:17:
+>=20
+>=20
+>=20
+> Awesome! I can finally get rid of the stupid out-of-tree r8125 driver.
+>=20
+> Would definitely have a good look into the patches and provide some =
+feedbacks, just mind to share a git tree for easier reviewing?
+>=20
+>=20
+
+Ah - git tree... my distro builder uses model with: mainline src + =
+patches - so effectively i don=E2=80=99t have git tree for this code=E2=80=
+=A6
+
+ =20=
