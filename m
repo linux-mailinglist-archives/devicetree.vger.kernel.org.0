@@ -2,120 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 624F66B1918
-	for <lists+devicetree@lfdr.de>; Thu,  9 Mar 2023 03:13:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7F1066B1926
+	for <lists+devicetree@lfdr.de>; Thu,  9 Mar 2023 03:22:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229870AbjCICN1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Mar 2023 21:13:27 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36710 "EHLO
+        id S229747AbjCICWE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Mar 2023 21:22:04 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46546 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229623AbjCICN1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Mar 2023 21:13:27 -0500
-Received: from ex01.ufhost.com (ex01.ufhost.com [61.152.239.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0EFFD5D46A;
-        Wed,  8 Mar 2023 18:13:25 -0800 (PST)
-Received: from EXMBX165.cuchost.com (unknown [175.102.18.54])
-        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-        (Client CN "EXMBX165", Issuer "EXMBX165" (not verified))
-        by ex01.ufhost.com (Postfix) with ESMTP id AEA9C24E18D;
-        Thu,  9 Mar 2023 10:13:18 +0800 (CST)
-Received: from EXMBX073.cuchost.com (172.16.6.83) by EXMBX165.cuchost.com
- (172.16.6.75) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Thu, 9 Mar
- 2023 10:13:18 +0800
-Received: from [192.168.60.132] (180.164.60.184) by EXMBX073.cuchost.com
- (172.16.6.83) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Thu, 9 Mar
- 2023 10:13:18 +0800
-Message-ID: <057ec81c-9b47-08b5-d572-a82ee1911ef8@starfivetech.com>
-Date:   Thu, 9 Mar 2023 10:13:17 +0800
+        with ESMTP id S229513AbjCICWD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Mar 2023 21:22:03 -0500
+Received: from mail-oa1-f51.google.com (mail-oa1-f51.google.com [209.85.160.51])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1D0CEC70BB;
+        Wed,  8 Mar 2023 18:22:02 -0800 (PST)
+Received: by mail-oa1-f51.google.com with SMTP id 586e51a60fabf-17638494edbso874875fac.10;
+        Wed, 08 Mar 2023 18:22:02 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1678328521;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=sq9scOTrmtXuKVvVKQXEq5jBdB9obSnJgHrqb9SS0/0=;
+        b=642AsthpG45O7zmsBmMU+cimhdPUcXKACdDK3yeBSHdQrRPnoYVbrtoM6xxo+G8Ut8
+         uDf0efVeyVIwMP0QHi27JaievjhuzDXYkTzm+rMO7aihr4SZQW8XO+WmSlomaRdFpOvJ
+         GrnTCdHOkIqbNfgP3ocCzwInHdJkqsS4HCnkTQIeONmsHn5TlMpgtnAVpyOuHqiyHgKT
+         /ETwrPlf6H2T4kDOqNTT7jftd/AnkkAiQCVCysGhoenJK9oDk9IjsjA+Rrrmd6Z+Gbgk
+         UMZsVNFqLQSyGbfeMQisXtk4ilV2LZgGMvAUTvMjzrltJ18Ncw2vWkn+a0pFb9mglE/B
+         Pdew==
+X-Gm-Message-State: AO0yUKUFO4mlkvJU9pSLlD65jvmdWAY3BHOyklLn5wdNq1etMdEuG6+5
+        AMEZAjxLnR6NrAnfyJwY6w==
+X-Google-Smtp-Source: AK7set9dCQKcTwwBqDU9M+LgC8dK+M+MpCK4LfyF59mfETL4i8dpAsIyUdPCD61IZHvSUXMg+ZBFgQ==
+X-Received: by 2002:a05:6870:1602:b0:172:90cc:7756 with SMTP id b2-20020a056870160200b0017290cc7756mr12152479oae.25.1678328521314;
+        Wed, 08 Mar 2023 18:22:01 -0800 (PST)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id v43-20020a4a976e000000b00517fc5fdf5bsm6823674ooi.17.2023.03.08.18.22.00
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 08 Mar 2023 18:22:00 -0800 (PST)
+Received: (nullmailer pid 235368 invoked by uid 1000);
+        Thu, 09 Mar 2023 02:22:00 -0000
+Date:   Wed, 8 Mar 2023 20:22:00 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Miquel Raynal <miquel.raynal@bootlin.com>
+Cc:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        linux-kernel@vger.kernel.org,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Michael Walle <michael@walle.cc>,
+        =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>,
+        Robert Marko <robert.marko@sartura.hr>,
+        Luka Perkov <luka.perkov@sartura.hr>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Frank Rowand <frowand.list@gmail.com>,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH v3 04/20] of: Move of_modalias() to module.c
+Message-ID: <20230309022200.GA198379-robh@kernel.org>
+References: <20230308153200.682248-1-miquel.raynal@bootlin.com>
+ <20230308153200.682248-5-miquel.raynal@bootlin.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-Subject: Re: [PATCH v1 11/11] media: starfive: enable building
-Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        "Mauro Carvalho Chehab" <mchehab@kernel.org>,
-        Robert Foss <rfoss@kernel.org>,
-        Todor Tomov <todor.too@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Maxime Ripard <mripard@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>
-CC:     <linux-media@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <changhuang.liang@starfivetech.com>
-References: <20230302091921.43309-1-jack.zhu@starfivetech.com>
- <20230302091921.43309-12-jack.zhu@starfivetech.com>
- <bd6c9135-e12c-a6ac-db46-416403850751@linaro.org>
- <15b29a5b-29a1-8440-2b46-0c201c20defd@starfivetech.com>
- <edf4febc-1629-45c6-ea48-ece8df12a4a5@linaro.org>
- <05465184-5976-6cee-9925-e3712a1ea650@starfivetech.com>
- <efddfbf3-8003-c5e5-5054-3d30287c4b23@linaro.org>
-From:   Jack Zhu <jack.zhu@starfivetech.com>
-In-Reply-To: <efddfbf3-8003-c5e5-5054-3d30287c4b23@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [180.164.60.184]
-X-ClientProxiedBy: EXCAS066.cuchost.com (172.16.6.26) To EXMBX073.cuchost.com
- (172.16.6.83)
-X-YovoleRuleAgent: yovoleflag
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230308153200.682248-5-miquel.raynal@bootlin.com>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 2023/3/8 19:07, Krzysztof Kozlowski wrote:
-> On 08/03/2023 12:03, Jack Zhu wrote:
->> 
->> 
->> On 2023/3/8 18:33, Krzysztof Kozlowski wrote:
->>> On 07/03/2023 10:46, Jack Zhu wrote:
->>>>
->>>>
->>>> On 2023/3/3 16:43, Krzysztof Kozlowski wrote:
->>>>> On 02/03/2023 10:19, jack.zhu wrote:
->>>>>> Add Kconfig and Makefie, update platform/Kconfig and platform/Makefile
->>>>>> to enable building of the Starfive Camera subsystem driver.
->>>>>>
->>>>>> Signed-off-by: jack.zhu <jack.zhu@starfivetech.com>
->>>>>> ---
->>>>>>  drivers/media/platform/Kconfig           |  1 +
->>>>>>  drivers/media/platform/Makefile          |  1 +
->>>>>>  drivers/media/platform/starfive/Kconfig  | 18 ++++++++++++++++++
->>>>>>  drivers/media/platform/starfive/Makefile | 14 ++++++++++++++
->>>>>
->>>>> This is not a separate commit. If it were, it would mean you just added
->>>>> dead code in previous commits, so why adding dead code in first place?
->>>>>
->>>>
->>>> The previous patches are made according to the module function.I think
->>>> it is helpful to explain the composition of the code file. 
->>>>
->>>> stf_camss[patch 9] as a platform device manages all resources including
->>>> ISP and VIN. ISP/VIN [patch 7/8]as a sub-device needs to access other
->>>> resources managed by stf_camss.There is mutual reference between them.
->>>> Therefore, this patch is used for the overall compilation of the starfive
->>>> directory.
->>>
->>> So previous code is dead? Again, what is the reason for adding dead
->>> code? Mutual reference is not the answer.
->>>
->> 
->> Maybe I need to merge the previous patches[6-11] into one patch to submit?
+On Wed, Mar 08, 2023 at 04:31:44PM +0100, Miquel Raynal wrote:
+> Create a specific .c file for OF related module handling.
+> Move of_modalias() inside as a first step.
 > 
-> I gave you the recommendation in my first reply. What's wrong with it?
+> The helper is exposed through of.h even though it is only used by core
+> files because the users from device.c will soon be split into an OF-only
+> helper in module.c as well as a device-oriented inline helper in
+> of_device.h. Putting this helper in of_private.h would require to
+> include of_private.h from of_device.h, which is not acceptable.
 > 
+> Suggested-by: Rob Herring <robh+dt@kernel.org>
+> Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
+> ---
+>  drivers/of/Makefile |  2 +-
+>  drivers/of/device.c | 37 -------------------------------------
+>  drivers/of/module.c | 44 ++++++++++++++++++++++++++++++++++++++++++++
+>  include/linux/of.h  |  9 +++++++++
+>  4 files changed, 54 insertions(+), 38 deletions(-)
+>  create mode 100644 drivers/of/module.c
 
-Thank you for your suggestion and the recommended action which I just confirmed
-it in detail in our previous messages.I agree with you that this is
-not a separate commit.I will merge them in the next version to be a single commit.
-
-This is my first time to submit code to the community.There are many things to learn.
-I sincerely thank you for your patient help and advice.
-
-> Best regards,
-> Krzysztof
-> 
+Reviewed-by: Rob Herring <robh@kernel.org>
