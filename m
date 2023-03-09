@@ -2,159 +2,244 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B66166B20C8
-	for <lists+devicetree@lfdr.de>; Thu,  9 Mar 2023 10:58:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C1BF56B20EA
+	for <lists+devicetree@lfdr.de>; Thu,  9 Mar 2023 11:07:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230041AbjCIJ6q convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Thu, 9 Mar 2023 04:58:46 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59506 "EHLO
+        id S230150AbjCIKHK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Mar 2023 05:07:10 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42670 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229767AbjCIJ6p (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Mar 2023 04:58:45 -0500
-Received: from mail-qt1-f179.google.com (mail-qt1-f179.google.com [209.85.160.179])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ADA9A62DB1;
-        Thu,  9 Mar 2023 01:58:43 -0800 (PST)
-Received: by mail-qt1-f179.google.com with SMTP id s12so1306617qtq.11;
-        Thu, 09 Mar 2023 01:58:43 -0800 (PST)
+        with ESMTP id S229717AbjCIKHI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Mar 2023 05:07:08 -0500
+Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com [IPv6:2a00:1450:4864:20::534])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BC0FDE4C72
+        for <devicetree@vger.kernel.org>; Thu,  9 Mar 2023 02:07:06 -0800 (PST)
+Received: by mail-ed1-x534.google.com with SMTP id ay14so4695851edb.11
+        for <devicetree@vger.kernel.org>; Thu, 09 Mar 2023 02:07:06 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1678356425;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=O1rKZQWrvQdsaiUknj2gLx58N9hXAh/NcUMYH+8P2Io=;
+        b=NiDoNuNKomZlAKL/pzyIYZUo/9we1SdUtGyI3dm+QSAUoxdzMY/2nMis/n7ozTn75i
+         HSwbe8wbQkXHxOAs30NTUKURdBt9sThyysncB6m1Yo6aDJ2QzR6S4UBYIDhbPFiTBSC/
+         NihP53M2ZqKtlgm4yaGtqyG3HVJNt/CwqGCdK1ZKu/Hg0yf6pnT5gnzUTlaBP4rpoRES
+         uhG/BDxi+XD/M4qr0/qq3y04uC4Gr1kA6DxGhWxgYgjE/nmgwwsrRWf7mTcU58Thgez8
+         GM9JgCHjwZxLJG1YapfL1jM3GriBjqgbZ0qxTMbX+mbpUzM/5+857XK4DKHmVZdcU+ej
+         c9eg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678355922;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=eKyxJSQ87EhDfakuNsT60G1Elf7FPlsptekWrc8OiBc=;
-        b=5DwFbqB5Q8jIiMI77DWkW6VKXhtIO/g8owIXKlyxYCz99wSPBs8KVvKU2zsN7MbOUi
-         pPYPaFVSkfOD6PSqqRKToUyT8o9BBjKnl3aA+ADWp8iLn2VsfGWhzTjVQcBN6h5P6Wu+
-         ZYaHzkM17NQnJjZPMiQkoO+ikdXsCjRqEHMIapo0NTajTECU2m3YbFUjy2RD2it+PjsJ
-         2NsL+RGrOycsBxlv9zmFZQ9ENxegVMEgHAhjrPa5WG+ekjHL7XAhacyCg8Oief47jV+j
-         2sLVeBl0ERuNorFpY1Z1S2I0mJOYNggjNPaqowY4gZgIp2ZhQe/7kdQFuPldT77K+pKe
-         Ybiw==
-X-Gm-Message-State: AO0yUKVY7+eTLxSvjekF7870vMJTWVQ0zoe0i0uqYcDR2vkzRpoZueuB
-        u+lp6IrG3vI7boFHC4qxSQrMLmrTVDDWPA==
-X-Google-Smtp-Source: AK7set8NBOGQ/ih0FdKD58vOf8TIfjP5m8S5sjZZkaxfHvpkCS4CDah4fC7AGlgjUIm2mvWm58rBsA==
-X-Received: by 2002:ac8:4e4a:0:b0:3b9:ec33:eabb with SMTP id e10-20020ac84e4a000000b003b9ec33eabbmr36618378qtw.19.1678355922557;
-        Thu, 09 Mar 2023 01:58:42 -0800 (PST)
-Received: from mail-yw1-f174.google.com (mail-yw1-f174.google.com. [209.85.128.174])
-        by smtp.gmail.com with ESMTPSA id 17-20020ac85651000000b003b62bc6cd1csm13201000qtt.82.2023.03.09.01.58.40
+        d=1e100.net; s=20210112; t=1678356425;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=O1rKZQWrvQdsaiUknj2gLx58N9hXAh/NcUMYH+8P2Io=;
+        b=fCtRT9vZGndh4ZmW9FlNg4+6luJvg5qkYdadf1JYWUmyVu8+APAZnY8dpnwSdgav7u
+         qy/WhvLp8Sx5h6VwBF8uHgWHwon6TT9nWJ9m8kt9S2XXIYPMt2xX8rUxL8M0OMUjdT6l
+         JXVB/VOWRnBwvaLCW5KabGTCTFS2yarIbJGdjMyNUR8P4SidF+WoKbFK/nUksDP8M7rM
+         6fiRO9TD0fiBG+OA97mMzm0XutlyieFYDNjuFctXLg0fltfhd3iyn9pOyr74a8y9o8fQ
+         1uyR5iOXB6o4fQTjXHEdalAgwNVhJkfpFJHTG1a81t2rrOIy/eubCLyqR4Xx6Huvaog2
+         LaBw==
+X-Gm-Message-State: AO0yUKVzAySzWwOGjaqymlquDpuIDCjBg4pX3dW4DNN7lzZyuDfM2Ku2
+        qi1J8eMb5gGwPGNNU+IKYPZknnwNRe8XYStatPE=
+X-Google-Smtp-Source: AK7set9dG7e71ZUsBA8QSEtjZmcxScdoi257cMlVacjcfvEL5jfaX1PVjAAYQWu+1xVUYACTvB0xpA==
+X-Received: by 2002:a17:907:8b16:b0:8b1:2e7c:df49 with SMTP id sz22-20020a1709078b1600b008b12e7cdf49mr23571182ejc.7.1678356425261;
+        Thu, 09 Mar 2023 02:07:05 -0800 (PST)
+Received: from ?IPV6:2a02:810d:15c0:828:7ee2:e73e:802e:45c1? ([2a02:810d:15c0:828:7ee2:e73e:802e:45c1])
+        by smtp.gmail.com with ESMTPSA id t25-20020a50c259000000b004efd65452a5sm3335676edf.70.2023.03.09.02.07.03
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 09 Mar 2023 01:58:41 -0800 (PST)
-Received: by mail-yw1-f174.google.com with SMTP id 00721157ae682-536bbef1c5eso24927797b3.9;
-        Thu, 09 Mar 2023 01:58:40 -0800 (PST)
-X-Received: by 2002:a81:f105:0:b0:538:49a4:b1e0 with SMTP id
- h5-20020a81f105000000b0053849a4b1e0mr15703469ywm.2.1678355920494; Thu, 09 Mar
- 2023 01:58:40 -0800 (PST)
+        Thu, 09 Mar 2023 02:07:04 -0800 (PST)
+Message-ID: <8124eed7-b9ab-046d-4eb2-9b853ce2bcdd@linaro.org>
+Date:   Thu, 9 Mar 2023 11:07:02 +0100
 MIME-Version: 1.0
-References: <20230220131307.269100-1-biju.das.jz@bp.renesas.com>
- <20230220131307.269100-2-biju.das.jz@bp.renesas.com> <e9e63c87-b491-b4d5-b226-0539ef0de2d0@linaro.org>
- <OS0PR01MB59221C8C937EF20347149E4886B49@OS0PR01MB5922.jpnprd01.prod.outlook.com>
- <36e06397-2189-4f1b-99cc-d39e720ebc71@linaro.org> <OS0PR01MB5922BDA0632ACCCC0100EEBD86B49@OS0PR01MB5922.jpnprd01.prod.outlook.com>
- <6cbe6c71-2d2d-0f79-1270-7f8ed2ddc1d6@linaro.org> <TYCPR01MB5933650D5BAB7A3F4BE03BAF86B59@TYCPR01MB5933.jpnprd01.prod.outlook.com>
- <984f1689-459e-bd26-b96c-6c759417b3d1@linaro.org> <TYCPR01MB59335607AE6A2F4FBBA46ACC86B59@TYCPR01MB5933.jpnprd01.prod.outlook.com>
- <bc9e8ccd-9f98-6fae-9491-dc2bd96c2e4f@linaro.org>
-In-Reply-To: <bc9e8ccd-9f98-6fae-9491-dc2bd96c2e4f@linaro.org>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Thu, 9 Mar 2023 10:58:28 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdVNCvu6La_=f=6i4Kj3UXeFU6McnNSkXb0PVjVyzdNR4Q@mail.gmail.com>
-Message-ID: <CAMuHMdVNCvu6La_=f=6i4Kj3UXeFU6McnNSkXb0PVjVyzdNR4Q@mail.gmail.com>
-Subject: Re: [PATCH RFC 1/3] dt-bindings: clock: Add Renesas versa3 clock
- generator bindings
-To:     Biju Das <biju.das.jz@bp.renesas.com>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.8.0
+Subject: Re: [PATCH v2 1/3] dt-bindings: phy: Add StarFive JH7110 USB
+ dt-binding
+Content-Language: en-US
+To:     Minda Chen <minda.chen@starfivetech.com>,
+        Emil Renner Berthing <emil.renner.berthing@canonical.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        "linux-renesas-soc@vger.kernel.org" 
-        <linux-renesas-soc@vger.kernel.org>,
-        "linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        Fabrizio Castro <fabrizio.castro.jz@renesas.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8BIT
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,
-        SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+        Pawel Laszczak <pawell@cadence.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Peter Chen <peter.chen@kernel.org>,
+        Roger Quadros <rogerq@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Conor Dooley <conor@kernel.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-phy@lists.infradead.org, linux-usb@vger.kernel.org,
+        linux-riscv@lists.infradead.org
+References: <20230308082800.3008-1-minda.chen@starfivetech.com>
+ <20230308082800.3008-2-minda.chen@starfivetech.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230308082800.3008-2-minda.chen@starfivetech.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Biju,
+On 08/03/2023 09:27, Minda Chen wrote:
+> Add StarFive JH7110 SoC USB 3.0 phy dt-binding.
+> USB controller is cadence USB 3.0 IP.
 
-On Thu, Mar 9, 2023 at 10:44 AM Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
-> On 09/03/2023 10:18, Biju Das wrote:
-> >> -----Original Message-----
-> >> From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> >> On 09/03/2023 08:57, Biju Das wrote:
-> >>>>> It is clk generator HW specific. Clk generator is vital component
-> >>>>> which provides clocks to the system.
-> >>>>
-> >>>> Every clock controller is vital...
-> >>>>
-> >>>>> We are providing some hardware feature which is exposed as dt
-> >>>>> properties.
-> >>>>>
-> >>>>> Like clock output is fixed rate clock or dynamic rate clock/
-> >>>>
-> >>>> OK, I wait then for proper description which will explain and justify
-> >> this.
-> >>>
-> >>> Here it is, Please let me know is it ok?
-> >>>
-> >>> renesas,output-clock-fixed-rate-mode:
-> >>>     type: boolean
-> >>>     description:
-> >>>       In output clock fixed rate mode, the output clock frequency is
-> >> always
-> >>>       fixed and the hardware will use the values from the OTP or full
-> >> register
-> >>>     map initialized during boot.
-> >>>       If not given, the output clock rate is not fixed.
-> >>>     maxItems: 6
-> >>
-> >> boolean is scalar, not array, so no maxItems. If the frequency is taken from
-> >> OTP or register map, why they cannot also provide information the clock is
-> >> fixed?
-> >
-> > OK, I will make an array property instead. From HW perspective each clock output from the
-> > Clock generator is controllable ie, fixed rate or dynamic rate.
-> >
-> > If all the output clocks are fixed rate one, then frequency is taken from OTP or
-> > register map. But if any one clock output generates dynamic rate, then it uses
-> > dynamic settings.
->
-> Second try, same question, let me know if it is not clear:
->
-> "why they cannot also provide information the clock is fixed?"
+Subject: drop second/last, redundant "binding". The "dt-bindings" prefix
+is already stating that these are bindings.
 
-What is the actual use case?
-My understanding is:
-  1. If the OTP is programmed, the clock generator will be configured
-     from the OTP on power-on,
-  2. The clock generator can be (re)configured from software.
-     a. If the OTP is programmed, this is not needed,
-     b. For critical clocks, you may want to prevent this.
+> 
+> Signed-off-by: Minda Chen <minda.chen@starfivetech.com>
+> ---
+>  .../bindings/phy/starfive,jh7110-usb-phy.yaml | 158 ++++++++++++++++++
+>  1 file changed, 158 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/phy/starfive,jh7110-usb-phy.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/phy/starfive,jh7110-usb-phy.yaml b/Documentation/devicetree/bindings/phy/starfive,jh7110-usb-phy.yaml
+> new file mode 100644
+> index 000000000000..daa88d065deb
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/phy/starfive,jh7110-usb-phy.yaml
+> @@ -0,0 +1,158 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/phy/starfive,jh7110-usb-phy.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: StarFive USB 2.0 and 3.0 PHY
+> +
+> +maintainers:
+> +  - Minda Chen<minda.chen@starfivetech.com>
 
-Also, AFAIUI, "fixed frequency" or "dynamic frequency" is a policy,
-and purely software? Or are there OTP bits to enforce this?
+Missing space
 
-Perhaps you need a per-output "do-not-change-frequency" flag,
-probably with a generic name, in the spirit of "regulator-always-on"
-for regulators?
+> +
+> +properties:
+> +  compatible:
+> +    items:
 
-Now, if all the output clocks are fixed rate, you might want to describe
-this in DTS using a set of fixed{,-factor-}-clocks?
+Drop items, it's just one item.
 
-Gr{oetje,eeting}s,
 
-                        Geert
+> +      - const: starfive,jh7110-usb
+> +
+> +  reg:
+> +    maxItems: 2
+> +
+> +  reg-names:
+> +    items:
+> +      - const: usb3
+> +      - const: usb2
+> +
+> +  clocks:
+> +    items:
+> +      - description: usb 125m clock
+> +      - description: app 125m clock
+> +      - description: lpm clock
+> +      - description: stb clock
+> +      - description: apb clock
+> +      - description: axi clock
+> +      - description: utmi apb clock
+> +
+> +  clock-names:
+> +    items:
+> +      - const: usb_125m
+> +      - const: usb0_app_125
+> +      - const: usb0_lpm
+> +      - const: usb0_stb
+> +      - const: usb0_apb
+> +      - const: usb0_axi
+> +      - const: usb0_utmi_apb
+> +
+> +  resets:
+> +    items:
+> +      - description: USB0_PWRUP reset
+> +      - description: USB0_APB reset
+> +      - description: USB0_AXI reset
+> +      - description: USB0_UTMI_APB reset
+> +
+> +  starfive,sys-syscon:
+> +    $ref: /schemas/types.yaml#/definitions/phandle-array
+> +    items:
+> +      items:
+> +        - description: phandle to System Register Controller sys_syscon node.
+> +        - description: offset of SYS_SYSCONSAIF__SYSCFG register for USB.
+> +    description:
+> +      The phandle to System Register Controller syscon node and the offset
+> +      of SYS_SYSCONSAIF__SYSCFG register for USB.
+> +
+> +  starfive,stg-syscon:
+> +    $ref: /schemas/types.yaml#/definitions/phandle-array
+> +    items:
+> +      items:
+> +        - description: phandle to System Register Controller stg_syscon node.
+> +        - description: register0 offset of STG_SYSCONSAIF__SYSCFG register for USB.
+> +        - description: register1 offset of STG_SYSCONSAIF__SYSCFG register for USB.
+> +        - description: register2 offset of STG_SYSCONSAIF__SYSCFG register for USB.
+> +        - description: register3 offset of STG_SYSCONSAIF__SYSCFG register for USB.
+> +    description:
+> +      The phandle to System Register Controller syscon node and the offset
+> +      of STG_SYSCONSAIF__SYSCFG register for USB. Total 4 regsisters offset
+> +      for USB.
+> +
+> +  dr_mode:
+> +    description: PHY mode.
+> +    enum:
+> +      - host
+> +      - peripheral
+> +      - otg
+> +
+> +  "#address-cells":
+> +    maximum: 2
+> +
+> +  "#size-cells":
+> +    maximum: 2
+> +
+> +  ranges: true
+> +
+> +  starfive,usb2-only:
+> +    type: boolean
+> +    description: Set USB using usb 2.0 phy. Supprt USB 2.0 only
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - reg-names
+> +  - clocks
+> +  - clock-names
+> +  - resets
+> +  - starfive,sys-syscon
+> +  - starfive,stg-syscon
+> +  - dr_mode
+> +  - "#address-cells"
+> +  - "#size-cells"
+> +  - ranges
+> +
+> +patternProperties:
 
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+This goes before required block
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+> +  "^usb@[0-9a-f]+$":
+> +    type: object
+> +    description: |
+> +      usbphy node should have '1' usb controller subnode.
+> +      It could be Cadence USB3 DRD controller.
+> +      Cadence USB3 should follow the bindings specified in
+> +      Documentation/devicetree/bindings/usb/cdns,usb3.yaml
+
+$ref instead of free form text
+
+
+Best regards,
+Krzysztof
+
