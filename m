@@ -2,59 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 368096B47F8
-	for <lists+devicetree@lfdr.de>; Fri, 10 Mar 2023 15:56:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6AE0C6B4792
+	for <lists+devicetree@lfdr.de>; Fri, 10 Mar 2023 15:51:49 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233517AbjCJO4c (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 10 Mar 2023 09:56:32 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59060 "EHLO
+        id S233399AbjCJOvr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 10 Mar 2023 09:51:47 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43176 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233940AbjCJOzs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Mar 2023 09:55:48 -0500
-Received: from mail-ot1-x32b.google.com (mail-ot1-x32b.google.com [IPv6:2607:f8b0:4864:20::32b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3B00C10423;
-        Fri, 10 Mar 2023 06:51:10 -0800 (PST)
-Received: by mail-ot1-x32b.google.com with SMTP id m25-20020a05683026d900b006941a2838caso3034682otu.7;
-        Fri, 10 Mar 2023 06:51:10 -0800 (PST)
+        with ESMTP id S233425AbjCJOvM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Mar 2023 09:51:12 -0500
+Received: from mail-oa1-f45.google.com (mail-oa1-f45.google.com [209.85.160.45])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CABF85A90B;
+        Fri, 10 Mar 2023 06:48:20 -0800 (PST)
+Received: by mail-oa1-f45.google.com with SMTP id 586e51a60fabf-176e43eb199so6065225fac.7;
+        Fri, 10 Mar 2023 06:48:20 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678459717;
+        d=1e100.net; s=20210112; t=1678459677;
         h=content-transfer-encoding:mime-version:message-id:date:subject:cc
          :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=Ps/svGZ6xWHVJQ0dMU8++7OD08k18rg46UI9xmEWbIc=;
-        b=SNOXjbDEuAAwDLrA7muF5z7WVZYKlwNXGLcOybgyHdpQu6/Mgyag4wd7EAN21mxPOs
-         +p0/D6L3s8ghpq8ixHlYfSFkobdTSCpGBz1qSetf2vjbUuF7030/6tMcnvrQPU2PNbfK
-         a4K/3wzfkE5bFru9dPK6+UwYszYT1e37g9vbeo0Wjai1PYkAYognTgw/Yv8eOkGTxeC9
-         qi8dpcmwLR5KRm7aYHn0J5QOdOkDfz9Z1/qx9IWA8tc8DnisG5jpWeCyJbX5mbbyPYCb
-         gouo2IoRg/ukG8Id5CAo+KaF8RtmJBQUikAqxbC/lJifL8zWmvyx3XJNcnZ2ch/hhyiO
-         Fu2A==
-X-Gm-Message-State: AO0yUKWdRygX88qmIbCEpiVJsnRAQxxaqnNLPP6LTkqmkW/GGgMsvw9U
-        pGZV2ZRuwEA4t19pAlpkSg==
-X-Google-Smtp-Source: AK7set9IVJnTY/EvHnm9u8/rDXJ25KPAa+oF7Itt6s3eH5A96+jOhMraQGJ1753yivMUYDLltPrUBA==
-X-Received: by 2002:a05:6830:3687:b0:693:d927:645e with SMTP id bk7-20020a056830368700b00693d927645emr13293296otb.6.1678459717375;
-        Fri, 10 Mar 2023 06:48:37 -0800 (PST)
+        bh=8lNbDhvtNNABoeoJ1EEfrQ6VIu2kxnEGjaB82Wf/W24=;
+        b=Pe1BDNpd01txhXt6eGukgr1wHj3cSErzzunF3Mazt8LNdzb8w9yPMNlRULX3K0Y5oh
+         kqfpApNidKjTOw10hz+nACZ9NRddvA8Hk8HcwscRR8yseqweWKakXVvfCEA3B54oztPk
+         hF3764FyAj6lPC9nW3UlKFjVnyV1rGehVDLcpLBzS8Oog296OsVYQ1rCPZexqYm8o2HB
+         KHmM5LE/g4gvBzv96V6TWhGW74/QDzVk1rUdjHUn2A1sSPTa94eenspjuse5HuIkEgJM
+         K4DXex0MiTq/f7vclDSCu7e0vNVFsVLArwwo7RVC9vNWNGXA13bXyQY1CDxdnJ69R2eO
+         mtJg==
+X-Gm-Message-State: AO0yUKXmg+Jm/CDj0lWmSQi7f+C5rg0CvylFV/8WFBSD+Na9tHp9u41j
+        5I3395g0jKPNGkBkwpMUHQ==
+X-Google-Smtp-Source: AK7set9I+4VRoGtOVjvZEWPeH4QUf03Pg5OM+6KwBoqWhi2Fyc9oRdnGlhttZ2bQMXTrEhf9nUK3ig==
+X-Received: by 2002:a05:6870:73c6:b0:163:535d:4a86 with SMTP id a6-20020a05687073c600b00163535d4a86mr15295757oan.22.1678459676973;
+        Fri, 10 Mar 2023 06:47:56 -0800 (PST)
 Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id 63-20020a9d0845000000b00690f6d9a737sm135685oty.8.2023.03.10.06.48.36
+        by smtp.gmail.com with ESMTPSA id m3-20020a056870a40300b00172289de1besm115189oal.18.2023.03.10.06.47.54
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 10 Mar 2023 06:48:36 -0800 (PST)
-Received: (nullmailer pid 1546057 invoked by uid 1000);
-        Fri, 10 Mar 2023 14:47:30 -0000
+        Fri, 10 Mar 2023 06:47:56 -0800 (PST)
+Received: (nullmailer pid 1546370 invoked by uid 1000);
+        Fri, 10 Mar 2023 14:47:32 -0000
 From:   Rob Herring <robh@kernel.org>
-To:     Helge Deller <deller@gmx.de>,
-        Michal Simek <michal.simek@xilinx.com>
-Cc:     devicetree@vger.kernel.org, linux-fbdev@vger.kernel.org,
-        dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: [PATCH] fbdev: Use of_property_read_bool() for boolean properties
-Date:   Fri, 10 Mar 2023 08:47:30 -0600
-Message-Id: <20230310144730.1546031-1-robh@kernel.org>
+To:     Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>, Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Sylwester Nawrocki <s.nawrocki@samsung.com>,
+        Olivier Moysan <olivier.moysan@foss.st.com>,
+        Arnaud Pouliquen <arnaud.pouliquen@foss.st.com>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>
+Cc:     devicetree@vger.kernel.org, alsa-devel@alsa-project.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        linux-tegra@vger.kernel.org
+Subject: [PATCH] ASoC: Use of_property_present() for testing DT property presence
+Date:   Fri, 10 Mar 2023 08:47:31 -0600
+Message-Id: <20230310144732.1546328-1-robh@kernel.org>
 X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,
-        SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -63,79 +79,150 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 It is preferred to use typed property access functions (i.e.
 of_property_read_<type> functions) rather than low-level
-of_get_property/of_find_property functions for reading properties.
-Convert reading boolean properties to to of_property_read_bool().
+of_get_property/of_find_property functions for reading properties. As
+part of this, convert of_get_property/of_find_property calls to the
+recently added of_property_present() helper when we just want to test
+for presence of a property and nothing more.
 
 Signed-off-by: Rob Herring <robh@kernel.org>
 ---
- drivers/video/fbdev/offb.c     | 4 ++--
- drivers/video/fbdev/sm501fb.c  | 4 ++--
- drivers/video/fbdev/tcx.c      | 3 +--
- drivers/video/fbdev/xilinxfb.c | 3 +--
- 4 files changed, 6 insertions(+), 8 deletions(-)
+ sound/soc/codecs/lpass-macro-common.c | 2 +-
+ sound/soc/generic/audio-graph-card.c  | 2 +-
+ sound/soc/generic/audio-graph-card2.c | 2 +-
+ sound/soc/mxs/mxs-sgtl5000.c          | 2 +-
+ sound/soc/samsung/i2s.c               | 2 +-
+ sound/soc/sh/fsi.c                    | 2 +-
+ sound/soc/stm/stm32_i2s.c             | 2 +-
+ sound/soc/stm/stm32_sai_sub.c         | 4 ++--
+ sound/soc/tegra/tegra_asoc_machine.c  | 2 +-
+ 9 files changed, 10 insertions(+), 10 deletions(-)
 
-diff --git a/drivers/video/fbdev/offb.c b/drivers/video/fbdev/offb.c
-index f7ad6bc9d02d..b97d251d894b 100644
---- a/drivers/video/fbdev/offb.c
-+++ b/drivers/video/fbdev/offb.c
-@@ -549,10 +549,10 @@ static void offb_init_nodriver(struct platform_device *parent, struct device_nod
- 	int foreign_endian = 0;
+diff --git a/sound/soc/codecs/lpass-macro-common.c b/sound/soc/codecs/lpass-macro-common.c
+index 1b9082d237c1..f54baaad54d4 100644
+--- a/sound/soc/codecs/lpass-macro-common.c
++++ b/sound/soc/codecs/lpass-macro-common.c
+@@ -16,7 +16,7 @@ struct lpass_macro *lpass_macro_pds_init(struct device *dev)
+ 	struct lpass_macro *l_pds;
+ 	int ret;
  
- #ifdef __BIG_ENDIAN
--	if (of_get_property(dp, "little-endian", NULL))
-+	if (of_property_read_bool(dp, "little-endian"))
- 		foreign_endian = FBINFO_FOREIGN_ENDIAN;
- #else
--	if (of_get_property(dp, "big-endian", NULL))
-+	if (of_property_read_bool(dp, "big-endian"))
- 		foreign_endian = FBINFO_FOREIGN_ENDIAN;
- #endif
+-	if (!of_find_property(dev->of_node, "power-domains", NULL))
++	if (!of_property_present(dev->of_node, "power-domains"))
+ 		return NULL;
  
-diff --git a/drivers/video/fbdev/sm501fb.c b/drivers/video/fbdev/sm501fb.c
-index f743bfbde2a6..1f3cbe723def 100644
---- a/drivers/video/fbdev/sm501fb.c
-+++ b/drivers/video/fbdev/sm501fb.c
-@@ -1737,10 +1737,10 @@ static int sm501fb_init_fb(struct fb_info *fb, enum sm501_controller head,
+ 	l_pds = devm_kzalloc(dev, sizeof(*l_pds), GFP_KERNEL);
+diff --git a/sound/soc/generic/audio-graph-card.c b/sound/soc/generic/audio-graph-card.c
+index 5daa824a4ffc..d788f5f23a8a 100644
+--- a/sound/soc/generic/audio-graph-card.c
++++ b/sound/soc/generic/audio-graph-card.c
+@@ -78,7 +78,7 @@ static int graph_get_dai_id(struct device_node *ep)
+ 		 * only of_graph_parse_endpoint().
+ 		 * We need to check "reg" property
+ 		 */
+-		if (of_get_property(ep,   "reg", NULL))
++		if (of_property_present(ep,   "reg"))
+ 			return info.id;
  
- #if defined(CONFIG_OF)
- #ifdef __BIG_ENDIAN
--	if (of_get_property(info->dev->parent->of_node, "little-endian", NULL))
-+	if (of_property_read_bool(info->dev->parent->of_node, "little-endian"))
- 		fb->flags |= FBINFO_FOREIGN_ENDIAN;
- #else
--	if (of_get_property(info->dev->parent->of_node, "big-endian", NULL))
-+	if (of_property_read_bool(info->dev->parent->of_node, "big-endian"))
- 		fb->flags |= FBINFO_FOREIGN_ENDIAN;
- #endif
- #endif
-diff --git a/drivers/video/fbdev/tcx.c b/drivers/video/fbdev/tcx.c
-index 01d87f53324d..f2eaf6e7fff6 100644
---- a/drivers/video/fbdev/tcx.c
-+++ b/drivers/video/fbdev/tcx.c
-@@ -379,8 +379,7 @@ static int tcx_probe(struct platform_device *op)
+ 		node = of_get_parent(ep);
+diff --git a/sound/soc/generic/audio-graph-card2.c b/sound/soc/generic/audio-graph-card2.c
+index 06609a526b78..259544f64df9 100644
+--- a/sound/soc/generic/audio-graph-card2.c
++++ b/sound/soc/generic/audio-graph-card2.c
+@@ -376,7 +376,7 @@ static int graph_get_dai_id(struct device_node *ep)
+ 		 * only of_graph_parse_endpoint().
+ 		 * We need to check "reg" property
+ 		 */
+-		if (of_get_property(ep,   "reg", NULL))
++		if (of_property_present(ep,   "reg"))
+ 			return info.id;
  
- 	spin_lock_init(&par->lock);
+ 		node = of_get_parent(ep);
+diff --git a/sound/soc/mxs/mxs-sgtl5000.c b/sound/soc/mxs/mxs-sgtl5000.c
+index 746f40938675..a55e7256a4c3 100644
+--- a/sound/soc/mxs/mxs-sgtl5000.c
++++ b/sound/soc/mxs/mxs-sgtl5000.c
+@@ -150,7 +150,7 @@ static int mxs_sgtl5000_probe(struct platform_device *pdev)
  
--	par->lowdepth =
--		(of_find_property(dp, "tcx-8-bit", NULL) != NULL);
-+	par->lowdepth = of_property_read_bool(dp, "tcx-8-bit");
+ 	card->dev = &pdev->dev;
  
- 	sbusfb_fill_var(&info->var, dp, 8);
- 	info->var.red.length = 8;
-diff --git a/drivers/video/fbdev/xilinxfb.c b/drivers/video/fbdev/xilinxfb.c
-index 1ac83900a21c..c17cfffd9a84 100644
---- a/drivers/video/fbdev/xilinxfb.c
-+++ b/drivers/video/fbdev/xilinxfb.c
-@@ -469,8 +469,7 @@ static int xilinxfb_of_probe(struct platform_device *pdev)
- 		pdata.yvirt = prop[1];
+-	if (of_find_property(np, "audio-routing", NULL)) {
++	if (of_property_present(np, "audio-routing")) {
+ 		card->dapm_widgets = mxs_sgtl5000_dapm_widgets;
+ 		card->num_dapm_widgets = ARRAY_SIZE(mxs_sgtl5000_dapm_widgets);
+ 
+diff --git a/sound/soc/samsung/i2s.c b/sound/soc/samsung/i2s.c
+index 6f96032090de..083e278aa021 100644
+--- a/sound/soc/samsung/i2s.c
++++ b/sound/soc/samsung/i2s.c
+@@ -1289,7 +1289,7 @@ static int i2s_register_clock_provider(struct samsung_i2s_priv *priv)
+ 	int ret, i;
+ 
+ 	/* Register the clock provider only if it's expected in the DTB */
+-	if (!of_find_property(dev->of_node, "#clock-cells", NULL))
++	if (!of_property_present(dev->of_node, "#clock-cells"))
+ 		return 0;
+ 
+ 	/* Get the RCLKSRC mux clock parent clock names */
+diff --git a/sound/soc/sh/fsi.c b/sound/soc/sh/fsi.c
+index f3edc2e3d9d7..9f3f1af6349f 100644
+--- a/sound/soc/sh/fsi.c
++++ b/sound/soc/sh/fsi.c
+@@ -1855,7 +1855,7 @@ static void fsi_of_parse(char *name,
+ 
+ 	for (i = 0; i < ARRAY_SIZE(of_parse_property); i++) {
+ 		sprintf(prop, "%s,%s", name, of_parse_property[i].name);
+-		if (of_get_property(np, prop, NULL))
++		if (of_property_present(np, prop))
+ 			flags |= of_parse_property[i].val;
  	}
+ 	info->flags = flags;
+diff --git a/sound/soc/stm/stm32_i2s.c b/sound/soc/stm/stm32_i2s.c
+index f3dd9f8e621c..9dad85ecb93f 100644
+--- a/sound/soc/stm/stm32_i2s.c
++++ b/sound/soc/stm/stm32_i2s.c
+@@ -1066,7 +1066,7 @@ static int stm32_i2s_parse_dt(struct platform_device *pdev,
+ 				     "Could not get x11k parent clock\n");
  
--	if (of_find_property(pdev->dev.of_node, "rotate-display", NULL))
--		pdata.rotate_screen = 1;
-+	pdata.rotate_screen = of_property_read_bool(pdev->dev.of_node, "rotate-display");
+ 	/* Register mclk provider if requested */
+-	if (of_find_property(np, "#clock-cells", NULL)) {
++	if (of_property_present(np, "#clock-cells")) {
+ 		ret = stm32_i2s_add_mclk_provider(i2s);
+ 		if (ret < 0)
+ 			return ret;
+diff --git a/sound/soc/stm/stm32_sai_sub.c b/sound/soc/stm/stm32_sai_sub.c
+index eb31b49e6597..8ba4206f751d 100644
+--- a/sound/soc/stm/stm32_sai_sub.c
++++ b/sound/soc/stm/stm32_sai_sub.c
+@@ -1394,7 +1394,7 @@ static int stm32_sai_sub_parse_of(struct platform_device *pdev,
  
- 	platform_set_drvdata(pdev, drvdata);
- 	return xilinxfb_assign(pdev, drvdata, &pdata);
+ 	/* Get spdif iec60958 property */
+ 	sai->spdif = false;
+-	if (of_get_property(np, "st,iec60958", NULL)) {
++	if (of_property_present(np, "st,iec60958")) {
+ 		if (!STM_SAI_HAS_SPDIF(sai) ||
+ 		    sai->dir == SNDRV_PCM_STREAM_CAPTURE) {
+ 			dev_err(&pdev->dev, "S/PDIF IEC60958 not supported\n");
+@@ -1480,7 +1480,7 @@ static int stm32_sai_sub_parse_of(struct platform_device *pdev,
+ 		return 0;
+ 
+ 	/* Register mclk provider if requested */
+-	if (of_find_property(np, "#clock-cells", NULL)) {
++	if (of_property_present(np, "#clock-cells")) {
+ 		ret = stm32_sai_add_mclk_provider(sai);
+ 		if (ret < 0)
+ 			return ret;
+diff --git a/sound/soc/tegra/tegra_asoc_machine.c b/sound/soc/tegra/tegra_asoc_machine.c
+index 78faa8bcae27..2dc1f44c5a8b 100644
+--- a/sound/soc/tegra/tegra_asoc_machine.c
++++ b/sound/soc/tegra/tegra_asoc_machine.c
+@@ -502,7 +502,7 @@ int tegra_asoc_machine_probe(struct platform_device *pdev)
+ 	 * If clock parents are not set in DT, configure here to use clk_out_1
+ 	 * as mclk and extern1 as parent for Tegra30 and higher.
+ 	 */
+-	if (!of_find_property(dev->of_node, "assigned-clock-parents", NULL) &&
++	if (!of_property_present(dev->of_node, "assigned-clock-parents") &&
+ 	    !of_machine_is_compatible("nvidia,tegra20")) {
+ 		struct clk *clk_out_1, *clk_extern1;
+ 
 -- 
 2.39.2
 
