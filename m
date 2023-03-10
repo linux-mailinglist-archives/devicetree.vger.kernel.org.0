@@ -2,60 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6D9D16B4B63
-	for <lists+devicetree@lfdr.de>; Fri, 10 Mar 2023 16:43:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 17D8A6B4B68
+	for <lists+devicetree@lfdr.de>; Fri, 10 Mar 2023 16:44:30 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233978AbjCJPnZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 10 Mar 2023 10:43:25 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59072 "EHLO
+        id S230408AbjCJPo1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 10 Mar 2023 10:44:27 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40480 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234013AbjCJPmz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Mar 2023 10:42:55 -0500
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 685AB1EFE4
-        for <devicetree@vger.kernel.org>; Fri, 10 Mar 2023 07:29:53 -0800 (PST)
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1paege-0005hj-UM; Fri, 10 Mar 2023 16:29:40 +0100
-Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
-        by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.94.2)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1paegc-003Cqr-Km; Fri, 10 Mar 2023 16:29:38 +0100
-Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.94.2)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1paegb-003pM3-UU; Fri, 10 Mar 2023 16:29:37 +0100
-Date:   Fri, 10 Mar 2023 16:29:36 +0100
-From:   Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
+        with ESMTP id S231346AbjCJPoF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Mar 2023 10:44:05 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 519A9137895;
+        Fri, 10 Mar 2023 07:31:55 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id E1E54B822DD;
+        Fri, 10 Mar 2023 15:31:53 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0A2C7C433EF;
+        Fri, 10 Mar 2023 15:31:52 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1678462312;
+        bh=nUzOTuEgT91ilSzmzilIEFK3iqUy+T792nACm/ObXo8=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=gVDFRff32CUeg4VYZc0KxwyW7FRibHcCgOsXmEDulirUJ1Y3IyxHc+k5rgu+krn+f
+         LBLRHqN5iB4qujARfr6I9K6XSy+CpZYXKc9iBpNeqJgEQjktyxklC051kSVeXuXp86
+         JVJvV5eicKe6jDyHOv2homy93sYvRn15szXjW3Tj1/dYeFN8Wt6oinxlLREFqNWcDj
+         OiaZHKqvOX2i3j13+TXuGVlappDzZhw+hPOVsmKsc7A50KTP6aUO8ZEAsiAIbyz1QU
+         Bmga1n6munzOp/7VgWSY+hRQ5BxxIuDpQJbVN4cUcijREMpgWaikEsXTllWMHmJTis
+         IaWc+rpQsCniw==
+Date:   Fri, 10 Mar 2023 15:31:49 +0000
+From:   Mark Brown <broonie@kernel.org>
 To:     Rob Herring <robh@kernel.org>
-Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Jiri Slaby <jirislaby@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
+Cc:     Amadeusz =?utf-8?B?U8WCYXdpxYRza2k=?= 
+        <amadeuszx.slawinski@linux.intel.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>, Shawn Guo <shawnguo@kernel.org>,
         Sascha Hauer <s.hauer@pengutronix.de>,
         Pengutronix Kernel Team <kernel@pengutronix.de>,
         Fabio Estevam <festevam@gmail.com>,
         NXP Linux Team <linux-imx@nxp.com>,
-        Timur Tabi <timur@kernel.org>, devicetree@vger.kernel.org,
-        linuxppc-dev@lists.ozlabs.org,
-        linux-arm-kernel@lists.infradead.org, linux-serial@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] serial: Use of_property_read_bool() for boolean
- properties
-Message-ID: <20230310152936.2tnlkvxku5scmzas@pengutronix.de>
-References: <20230310144727.1545699-1-robh@kernel.org>
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Sylwester Nawrocki <s.nawrocki@samsung.com>,
+        Olivier Moysan <olivier.moysan@foss.st.com>,
+        Arnaud Pouliquen <arnaud.pouliquen@foss.st.com>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        devicetree@vger.kernel.org, alsa-devel@alsa-project.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        linux-tegra@vger.kernel.org
+Subject: Re: [PATCH] ASoC: Use of_property_present() for testing DT property
+ presence
+Message-ID: <ZAtNZUifDt/Yl2qp@sirena.org.uk>
+References: <20230310144732.1546328-1-robh@kernel.org>
+ <a23852d7-c70c-a03c-99fb-b453bdc750a1@linux.intel.com>
+ <CAL_Jsq+XBzEMWrz=quxq4TkrejMMFRRvo0UinghmBphtmr=XXw@mail.gmail.com>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="moa2k34gvhpherg2"
+        protocol="application/pgp-signature"; boundary="YQTqPomgC6kqCvBH"
 Content-Disposition: inline
-In-Reply-To: <20230310144727.1545699-1-robh@kernel.org>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: ukl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+In-Reply-To: <CAL_Jsq+XBzEMWrz=quxq4TkrejMMFRRvo0UinghmBphtmr=XXw@mail.gmail.com>
+X-Cookie: Single tasking: Just Say No.
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -63,41 +77,39 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---moa2k34gvhpherg2
-Content-Type: text/plain; charset=iso-8859-1
+--YQTqPomgC6kqCvBH
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Fri, Mar 10, 2023 at 08:47:27AM -0600, Rob Herring wrote:
-> It is preferred to use typed property access functions (i.e.
-> of_property_read_<type> functions) rather than low-level
-> of_get_property/of_find_property functions for reading properties.
-> Convert reading boolean properties to to of_property_read_bool().
->=20
-> Signed-off-by: Rob Herring <robh@kernel.org>
+On Fri, Mar 10, 2023 at 09:14:08AM -0600, Rob Herring wrote:
+> On Fri, Mar 10, 2023 at 9:01=E2=80=AFAM Amadeusz S=C5=82awi=C5=84ski
+> > On 3/10/2023 3:47 PM, Rob Herring wrote:
 
-Acked-by: Uwe Kleine-K=F6nig <u.kleine-koenig@pengutronix.de>
+> > > -             if (of_get_property(ep,   "reg", NULL))
+> > > +             if (of_property_present(ep,   "reg"))
 
-Thanks
-Uwe
+> > Bit of nit picking, but any reason, why there are multiple spaces,
+> > before "reg" here?
 
---=20
-Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
-Industrial Linux Solutions                 | https://www.pengutronix.de/ |
+> Only because there was before and it was a scripted change.
 
---moa2k34gvhpherg2
+Yeah, I don't think there's any reason for that - perhaps at some
+point it caused the code to line up?
+
+--YQTqPomgC6kqCvBH
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iQEzBAABCgAdFiEEfnIqFpAYrP8+dKQLwfwUeK3K7AkFAmQLTN0ACgkQwfwUeK3K
-7AlMWQf/Zm20f4rcaPFvA8qfhp+Yp2jpASyGHUgc6kgHLie5qVh5Bf2how/DE/mE
-kkGN1bDZkJQApqOKDpjmaJE+HXDsfxzV5I8xaNQ3pFrC4tnwnLHnVREyB+iQrXJD
-g5+ZX3bGoz691c4y0Kbb7q6mjcjefR9+GWZyOVuHnUxeR23Vi5Jt1imJcmdPpD0i
-oCDFScZatYUSuApeVuviFQ96RLQ7BkPnsue+AjAkyrWlBPM74lDzbNbiLyzjRNre
-mcYBlOQEdGL5QMFi0z61cRJsHEWbgRJyXAxMRxvDkyIZqM2PIiAhwoHUWwF0IMZN
-aA0NykBHEIRpeAiznrNCeElFHp61mA==
-=hz+L
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmQLTWQACgkQJNaLcl1U
+h9Ap4gf9HaaXZcTMkFjkbHzWE/oyzg7IX24irsYTqkShQjQs79+TcFLpH/R2wAJP
+D5Op6bvPzyNokg0rlIA1bPuTtJxvAOgboa9LobpsLRNso9ezIW/7c+IXmDfa1ZAB
+eWXBs3HN4IXKkDybSV2eyC5e9wckRJQfOAx2OTMeT7AmNs1nWTw4Ls6sIbAKxh4o
+osLdFick4HeMgxdZtNeTFr9dvlGqjkh6zR78oavbu132XUlvfqctErcIQ9qh4w7Y
+8yGUubnPOeOfr54Z5iT1MgcgLXXiyuziWdWaRGupAV8WqKmf8O0HySGKr1w3IVYP
+vyuuWuc++z0Kg8zh15H/vsdrTSVlUg==
+=7fFJ
 -----END PGP SIGNATURE-----
 
---moa2k34gvhpherg2--
+--YQTqPomgC6kqCvBH--
