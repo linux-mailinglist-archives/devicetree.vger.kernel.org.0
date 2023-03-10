@@ -2,60 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 365266B38FC
-	for <lists+devicetree@lfdr.de>; Fri, 10 Mar 2023 09:41:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 372176B3901
+	for <lists+devicetree@lfdr.de>; Fri, 10 Mar 2023 09:41:33 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230290AbjCJIl1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 10 Mar 2023 03:41:27 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51302 "EHLO
+        id S231293AbjCJIlb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 10 Mar 2023 03:41:31 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51394 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231286AbjCJIkr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Mar 2023 03:40:47 -0500
-Received: from mail-ed1-x52c.google.com (mail-ed1-x52c.google.com [IPv6:2a00:1450:4864:20::52c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 696AFE63E4
-        for <devicetree@vger.kernel.org>; Fri, 10 Mar 2023 00:38:33 -0800 (PST)
-Received: by mail-ed1-x52c.google.com with SMTP id k10so17297757edk.13
-        for <devicetree@vger.kernel.org>; Fri, 10 Mar 2023 00:38:33 -0800 (PST)
+        with ESMTP id S231322AbjCJIku (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Mar 2023 03:40:50 -0500
+Received: from mail-ed1-x52e.google.com (mail-ed1-x52e.google.com [IPv6:2a00:1450:4864:20::52e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C310FE41F2
+        for <devicetree@vger.kernel.org>; Fri, 10 Mar 2023 00:38:39 -0800 (PST)
+Received: by mail-ed1-x52e.google.com with SMTP id da10so17465168edb.3
+        for <devicetree@vger.kernel.org>; Fri, 10 Mar 2023 00:38:39 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1678437513;
+        d=linaro.org; s=google; t=1678437518;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=5jX9C5jsC1gif4BoDiLkwtHT3RghH5PN+LBKh8t0wrg=;
-        b=H4fQ7akqxIUQoaNTb9Z4JkcxVGx/bU51xZWjMh9utqF6N1ScpXGX/Y7B4b2C4y3B8b
-         1uJPBbYC2c2YUS2GiJLOioYm6G6CPJI1ITJLrSU9I29w+1L/GUpNh2SRzhsj7NG+uFRk
-         GvuIo/nk+w2M+2qg8loXiWlOUIiWhi6B4fv2uzaDSSj1XlmSeQCg6QVszBPLWvlvwvjr
-         P+N+MDsGYbMW4r0//DEhFvj48XikhdRigGPvnBjVnpglazhH8bmz2GSr5ZS6B36iN+6e
-         wfxBsQWkUG1D2ttnZe5O5xtk89yHTtINLvAp5MbYt46wDZhcYuZvd8L88YFLjcKkiKJi
-         gUvg==
+        bh=6tqTbN90TBZ0zefNDHJFQj8Y2oFNn+f8xqJtYKWO66M=;
+        b=pRIzZ6UCXmZB2NcXkc7WBVCJ4vwl1sCOTvFMG/JG9/E2ijwpL3As5mJDTmX7etHMht
+         WgTM2o0G/yHgu/7xR9eB3kGZC2f8kCyXdIQsjwN+HrGuFgrETv1P/8rPa2tNxxD6oi33
+         frhXLk1Q5GFvR31T3l5/4FaRTdGwSo2HqtWQ0S/JQwyKkQ129k9Lc7NuWkgOffv1ilOc
+         Y8iojBlVToX4Y1Y5KoZblpTphuQ3iuoO2WVQnRa0RqGEf4lispXd7kWN1algg0L5uuIm
+         7U3mDuJzcm2kI6nqr+lRIlKgXojvbqImqJH7n8l7sa8Z3ODbpiOhFJk5Oxsc3czcombI
+         7r8A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678437513;
+        d=1e100.net; s=20210112; t=1678437518;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=5jX9C5jsC1gif4BoDiLkwtHT3RghH5PN+LBKh8t0wrg=;
-        b=LcIPu2OV6mq8/kCJyNpHO28pXY/nUY2Bu4lQZNf/NRZA2gRdpjZmsBq+1mwXPPBExa
-         06sf38sIBWmlq/JNfpIWX+l/tvV7FC6Bxw7mokmDtNGJ2TR1rBuzjatSXFh1q9lizOlC
-         HIDELK01lAV8F8zMYTW6rx1F0gAJm6sVYSUhlqCjWLRqbTGRF8jJKA81C1nfKgZeN6G3
-         ASn3QAI4JZzAXoFEF2IlUxm1KiZ9Iq6OysHl27CVSkyKbKAfCQG1gUiJ4cF/0dXEt8DS
-         60toCgvJLrrivf8Oj/QRo6VRXzRQ0/+fpYnvv8ZVyco7ryM4LpTwiId2HUJVthWSw2/G
-         UFXA==
-X-Gm-Message-State: AO0yUKXxnTduZd7N561bYAMmkBrpVrV8tTQNBp+ubfWU9sgzMHE2pGeE
-        +/QoMMqg9XwBigOLp2G3/7oJzA==
-X-Google-Smtp-Source: AK7set+gioboWv9qQuHDDci4UGzpTiLbVncpzdW857S5/NDplZRpEN/ZSe4nXeBw8pldZ2o3ycauOQ==
-X-Received: by 2002:a17:907:5ce:b0:8ae:6b88:e52d with SMTP id wg14-20020a17090705ce00b008ae6b88e52dmr904091ejb.7.1678437512905;
-        Fri, 10 Mar 2023 00:38:32 -0800 (PST)
+        bh=6tqTbN90TBZ0zefNDHJFQj8Y2oFNn+f8xqJtYKWO66M=;
+        b=YPYB3HJ+GI3yc89ooQmZk2Wp3E1Sxnc/nOyGf0zCQNnpiCweQz5DVoKIosKYHporXJ
+         n2xk38/z8tXgZ6SFe1kJxNdGuFGw0/yMTjI958LRj7ppcuIBKOoBJbOUWya9wds+8B7/
+         hLYp+reUNUAQJ2F5JwakzGHICMfvcDtRFermpA2Pkjf099LQe10ORZnqtYKIYwrxWwqw
+         +VHOL3kHvTRiGCVZRrY5UErMX/jQh599YTosaN4d9Q7TSr2sBJDpPdVVhLMlroYz9k+W
+         6qJ7oY7sB2RiJDYqb0DJiUygXTKoMIXG+/TjCAg0/Kxsa1IGxps2ZoQbUqGPE8Tu272t
+         Qp1w==
+X-Gm-Message-State: AO0yUKXl0Whhwvkf4gEbpHK8caUjOFCXtMKTJraLmLpVWDIFHGbpiEVU
+        eQCy36xulohxrqJAwGtXT2y5wA==
+X-Google-Smtp-Source: AK7set/h5FxPvnnKJlG+TPaefKxMrangV7NrqmrrnV6erBcJRruBPLyZhbPSj9qylkGQ7tlnCFxtog==
+X-Received: by 2002:a17:906:40b:b0:8b2:7150:dcff with SMTP id d11-20020a170906040b00b008b27150dcffmr23818587eja.23.1678437518421;
+        Fri, 10 Mar 2023 00:38:38 -0800 (PST)
 Received: from ?IPV6:2a02:810d:15c0:828:2a59:841a:ebc:7974? ([2a02:810d:15c0:828:2a59:841a:ebc:7974])
-        by smtp.gmail.com with ESMTPSA id n18-20020a170906b31200b00914001c91fcsm673989ejz.86.2023.03.10.00.38.31
+        by smtp.gmail.com with ESMTPSA id a15-20020a170906274f00b008d0dbf15b8bsm669297ejd.212.2023.03.10.00.38.37
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 10 Mar 2023 00:38:32 -0800 (PST)
-Message-ID: <7b8d8c5d-493c-0785-832d-954af502fced@linaro.org>
-Date:   Fri, 10 Mar 2023 09:38:31 +0100
+        Fri, 10 Mar 2023 00:38:38 -0800 (PST)
+Message-ID: <24ba6ba6-7554-46e8-6ccd-191a385ab2bd@linaro.org>
+Date:   Fri, 10 Mar 2023 09:38:36 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.8.0
-Subject: Re: [PATCH 10/21] dt-bindings: display: mediatek: rdma: add binding
- for MT8365 SoC
+Subject: Re: [PATCH 13/21] dt-bindings: pwm: add binding for mt8365 SoC
 Content-Language: en-US
 To:     Alexandre Mergnat <amergnat@baylibre.com>,
         Daniel Vetter <daniel@ffwll.ch>, CK Hu <ck.hu@mediatek.com>,
@@ -79,27 +78,25 @@ Cc:     Guillaume La Roque <glaroque@baylibre.com>,
         linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
 References: <20230220-display-v1-0-45cbc68e188b@baylibre.com>
- <20230220-display-v1-10-45cbc68e188b@baylibre.com>
+ <20230220-display-v1-13-45cbc68e188b@baylibre.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230220-display-v1-10-45cbc68e188b@baylibre.com>
+In-Reply-To: <20230220-display-v1-13-45cbc68e188b@baylibre.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 09/03/2023 15:22, Alexandre Mergnat wrote:
-> Display Data Path Read DMA for MT8365 is compatible with another SoC.
-> Then, add MT8365 binding along with MT8183 SoC.
+On 09/03/2023 15:23, Alexandre Mergnat wrote:
+> Display PWM for MT8365 is compatible with MT8183. Then, add MT8365 binding
+> along with MT8183 SoC.
 > 
-> Signed-off-by: Alexandre Mergnat <amergnat@baylibre.com>
-
 
 Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
