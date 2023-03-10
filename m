@@ -2,103 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4E9646B4CF6
-	for <lists+devicetree@lfdr.de>; Fri, 10 Mar 2023 17:29:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DF7FE6B4CF9
+	for <lists+devicetree@lfdr.de>; Fri, 10 Mar 2023 17:29:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231617AbjCJQ3d (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 10 Mar 2023 11:29:33 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45246 "EHLO
+        id S231799AbjCJQ3g (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 10 Mar 2023 11:29:36 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47966 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230107AbjCJQ3N (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Mar 2023 11:29:13 -0500
-Received: from mail-wm1-x32c.google.com (mail-wm1-x32c.google.com [IPv6:2a00:1450:4864:20::32c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1463612C829
-        for <devicetree@vger.kernel.org>; Fri, 10 Mar 2023 08:25:48 -0800 (PST)
-Received: by mail-wm1-x32c.google.com with SMTP id j19-20020a05600c191300b003eb3e1eb0caso6451316wmq.1
-        for <devicetree@vger.kernel.org>; Fri, 10 Mar 2023 08:25:48 -0800 (PST)
+        with ESMTP id S229636AbjCJQ3S (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Mar 2023 11:29:18 -0500
+Received: from mail-oa1-x2f.google.com (mail-oa1-x2f.google.com [IPv6:2001:4860:4864:20::2f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7852A12C0D5;
+        Fri, 10 Mar 2023 08:25:53 -0800 (PST)
+Received: by mail-oa1-x2f.google.com with SMTP id 586e51a60fabf-1755e639b65so6417133fac.3;
+        Fri, 10 Mar 2023 08:25:53 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1678465546;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=uTjUs+xSTpJmpUXPUZmeFM9CvRhlnvmm+hubfgWSgEg=;
-        b=g5Nt/cxAmxf+NZwUWDMIdt5tWqPfaOO6REhuI1HwCOHDbEAfiRzqmh+lDYJsSg+8Ak
-         5aYZCzsx65lYjHpnSlSW+OHHzE9zzNCHRDddObmupVAJYaVR6ceqbz9did/iEl9ixr/X
-         VThVU12E5C4GdrsDexkcjzJind3/UqD2vI7l8mvmfza630TbsQXMhDPPzv9qQejdo3I9
-         S1yBpVNNU1pfUK3VMjDPEUSNPYqy9CGQFQonhVtUAFiz6PZ36oatbpxvuk60TqrJtSzU
-         x3+o9Qi0sNeohOIyY9kmELThNVMy2SXA13ZqPbYT4rZ6Si8wifo9+gV6QKZCbBakcE/c
-         GU8g==
+        d=gmail.com; s=20210112; t=1678465552;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=J2PgjZ/8V+cl158bxCaGpHbEL4XOy790DRH6Lk1TPsw=;
+        b=Xxw16YGU5lxrcjb5M6HshOp/QA5ymHzLVHjdQZtkgIjUGbYt2QchROnfQhAo7Lm6uI
+         leE6pxcrAaHKTwovkDDHUzAz8WGRrZ+6EjucH2MxbLxgrALXjPsiiVe2kQTM4s6MM7k7
+         vYdi5XVp4bVXirH0sDVistEAYELS062s4havTYcEPZhGNItohNt6+x5x4gVNKQ4x9/4r
+         vQHyjqYwRCZTuRU4LZeCerajPNsHpOMtB4td29wJjeMMbCLGleTmYuuw974i5rGWXGz3
+         gpCQ/ihsXu/XHFwL9W7N/4O5RXnWUBn7L1r188DmAFjYMkm3a3X6nyoJUbBcVdm21uyT
+         lyNg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678465546;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=uTjUs+xSTpJmpUXPUZmeFM9CvRhlnvmm+hubfgWSgEg=;
-        b=HwY5STc+hKlq6GRGUxlpATasMAToegpb4hKRzMu2RpCNDs8wW5VSh+wz5Bn1MfLLzZ
-         zfvHxzDAG+vLQHeYT5XosNwrcO9MKPuDycRO2VexacudzONHtyjQc1//8bHrY6L5J6X4
-         qJ3MhTDPuFLJVm1xHfjCc0zMmvm+NZ5BrXM1kC+V3rFV+/YwSRA9p/Hl11s9wdJ+AgZ7
-         Oaxp8neXSxNDuBHGcesShG+ODMtDiHZIOv/u8Yt75zcEq50efSTP5RLK/Mm49z+TyUY6
-         ymf6sW+OEovydADznKXQjyZlv/KF7Xy0tNDEijCoNeINdHxWGsP51/gMxJ69Pd4bD+sD
-         +s6A==
-X-Gm-Message-State: AO0yUKWGOjAbFZAnzy66VSeKFy+nhGQVZanfIqt5Tycv+8cUBj+C8jFX
-        wy8XjNTToaiHS0pb1dsylCxd8e+1WpjOeU7Hva02YQ==
-X-Google-Smtp-Source: AK7set9avmv8bq+VCtnDKgolFocuzy2nMv7JqFhNCPPGukBzD7lZ5vgsQ6zn8OH7H/p639xaoGkovQc+GN6Do+3AuSA=
-X-Received: by 2002:a05:600c:a39a:b0:3e1:eddc:e3ae with SMTP id
- hn26-20020a05600ca39a00b003e1eddce3aemr1005713wmb.0.1678465546572; Fri, 10
- Mar 2023 08:25:46 -0800 (PST)
+        d=1e100.net; s=20210112; t=1678465552;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=J2PgjZ/8V+cl158bxCaGpHbEL4XOy790DRH6Lk1TPsw=;
+        b=gxe4c2KBvf/Hfj81xBb8RLYuzAjTU0hLev16ejp63U4G/3V1U00j12v0GhHECvry8/
+         Rs26XRjSBtA6UpQRAvnqpOgks5V7UVltIAMJaQpoZ+KY0hoswxGeEh3XV8Zb7KgE/FqC
+         MlMEQ6znBwMwYl38spgLuNKQIXV6xibLWZcHzORGWDqoLnmVKCv13ePe6jbEcESqOgMv
+         SM7h0gdqbVojUPR142trZq/dpw7j/q+XpuWQ5PqdUHR296gD4ZY/2rX1/slHngTe4TW9
+         h+YSHJnUbXEm69eRYqHzAaprjICjNNHwwx11N0p7V2e8D/mH1fI66kd/b2DdU5y5Wwz1
+         fANw==
+X-Gm-Message-State: AO0yUKXS5DQHV9beMSRXM9FkemYc8A6URnDMZRs1w2NW9XbzTMrvbeVV
+        bjCjw3zl3WxNNJa4JB+jOlbh8rVuOm9/W7J8gU/1/OjKDS0=
+X-Google-Smtp-Source: AK7set8oNerOfLCLDaZ3iQ7XsqoUVqgWXVGvLlrdF8Cd7tCykN6/WBCkpJzhIUKJp6K6SkElX7hOPSaujWIfJvliH58=
+X-Received: by 2002:a05:6870:8c28:b0:16d:fb8e:3ba with SMTP id
+ ec40-20020a0568708c2800b0016dfb8e03bamr8932410oab.0.1678465552612; Fri, 10
+ Mar 2023 08:25:52 -0800 (PST)
 MIME-Version: 1.0
-References: <20230310144736.1546972-1-robh@kernel.org>
-In-Reply-To: <20230310144736.1546972-1-robh@kernel.org>
-From:   Mathieu Poirier <mathieu.poirier@linaro.org>
-Date:   Fri, 10 Mar 2023 09:25:35 -0700
-Message-ID: <CANLsYkwmeZaYdpKyszh2QAs_MvMekP5W9wteX+Kbi7fsjFAPsg@mail.gmail.com>
-Subject: Re: [PATCH] remoteproc: st: Use of_property_present() for testing DT
- property presence
-To:     Rob Herring <robh@kernel.org>
-Cc:     Patrice Chotard <patrice.chotard@foss.st.com>,
-        Bjorn Andersson <andersson@kernel.org>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-remoteproc@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20230228152205.133582-1-macroalpha82@gmail.com> <20230228152205.133582-3-macroalpha82@gmail.com>
+In-Reply-To: <20230228152205.133582-3-macroalpha82@gmail.com>
+From:   Chris Morgan <macroalpha82@gmail.com>
+Date:   Fri, 10 Mar 2023 10:25:41 -0600
+Message-ID: <CADcbR4+Onb6RM7grPrqRL8Rth0mbFXykRmPq8R1QxYRGaHQHtA@mail.gmail.com>
+Subject: Re: [PATCH 2/3 V4] Bluetooth: hci_h5: btrtl: Add support for RTL8821CS
+To:     linux-bluetooth@vger.kernel.org
+Cc:     linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+        alistair@alistair23.me, anarsoul@gmail.com, luiz.dentz@gmail.com,
+        johan.hedberg@gmail.com, marcel@holtmann.org, heiko@sntech.de,
+        krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
+        Chris Morgan <macromorgan@hotmail.com>
 Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 10 Mar 2023 at 07:51, Rob Herring <robh@kernel.org> wrote:
+I shudder to bring this up now, but I'm encountering a new bug and
+might have to withdraw this.
+
+I'm receiving errors in dmesg of the following, and I can't seem to
+figure out the root cause:
+Bluetooth: hci0: Out-of-order packet arrived
+
+Any thoughts on what might cause it?
+Thank you.
+
+On Tue, Feb 28, 2023 at 9:22=E2=80=AFAM Chris Morgan <macroalpha82@gmail.co=
+m> wrote:
 >
-> It is preferred to use typed property access functions (i.e.
-> of_property_read_<type> functions) rather than low-level
-> of_get_property/of_find_property functions for reading properties. As
-> part of this, convert of_get_property/of_find_property calls to the
-> recently added of_property_present() helper when we just want to test
-> for presence of a property and nothing more.
+> From: Chris Morgan <macromorgan@hotmail.com>
 >
-> Signed-off-by: Rob Herring <robh@kernel.org>
+> RTL8821CS is a WiFi + Bluetooth combo chip from Realtek that provides
+> WiFi A/B/G/N/AC over an SDIO interface and Bluetooth 4.2 over a UART
+> interface.
+>
+> Note that the firmware this was tested with was firmware version
+> 0x75b8f098.
+>
+> Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
 > ---
->  drivers/remoteproc/st_remoteproc.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
+>  drivers/bluetooth/btrtl.c | 8 ++++++++
+>  1 file changed, 8 insertions(+)
 >
-> diff --git a/drivers/remoteproc/st_remoteproc.c b/drivers/remoteproc/st_remoteproc.c
-> index a3268d95a50e..50ef40671652 100644
-> --- a/drivers/remoteproc/st_remoteproc.c
-> +++ b/drivers/remoteproc/st_remoteproc.c
-> @@ -379,7 +379,7 @@ static int st_rproc_probe(struct platform_device *pdev)
->                 clk_set_rate(ddata->clk, ddata->clk_rate);
->         }
+> diff --git a/drivers/bluetooth/btrtl.c b/drivers/bluetooth/btrtl.c
+> index 69c3fe649ca7..72947d319fa6 100644
+> --- a/drivers/bluetooth/btrtl.c
+> +++ b/drivers/bluetooth/btrtl.c
+> @@ -128,6 +128,14 @@ static const struct id_table ic_id_table[] =3D {
+>           .fw_name  =3D "rtl_bt/rtl8821c_fw.bin",
+>           .cfg_name =3D "rtl_bt/rtl8821c_config" },
 >
-> -       if (of_get_property(np, "mbox-names", NULL)) {
-> +       if (of_property_present(np, "mbox-names")) {
->                 ddata->mbox_client_vq0.dev              = dev;
->                 ddata->mbox_client_vq0.tx_done          = NULL;
->                 ddata->mbox_client_vq0.tx_block = false;
-
-Reviewed-by: Mathieu Poirier <mathieu.poirier@linaro.org>
-
+> +       /* 8821CS */
+> +       { IC_INFO(RTL_ROM_LMP_8821A, 0xc, 0x8, HCI_UART),
+> +         .config_needed =3D true,
+> +         .has_rom_version =3D true,
+> +         .has_msft_ext =3D true,
+> +         .fw_name  =3D "rtl_bt/rtl8821cs_fw.bin",
+> +         .cfg_name =3D "rtl_bt/rtl8821cs_config" },
+> +
+>         /* 8761A */
+>         { IC_INFO(RTL_ROM_LMP_8761A, 0xa, 0x6, HCI_USB),
+>           .config_needed =3D false,
 > --
-> 2.39.2
+> 2.34.1
 >
