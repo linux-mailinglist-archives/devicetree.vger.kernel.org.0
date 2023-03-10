@@ -2,84 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 52DDE6B4680
-	for <lists+devicetree@lfdr.de>; Fri, 10 Mar 2023 15:43:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 499FA6B46DA
+	for <lists+devicetree@lfdr.de>; Fri, 10 Mar 2023 15:47:35 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232878AbjCJOnt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 10 Mar 2023 09:43:49 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59944 "EHLO
+        id S233007AbjCJOrd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 10 Mar 2023 09:47:33 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42824 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232880AbjCJOnc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Mar 2023 09:43:32 -0500
-Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 296B05BD9B
-        for <devicetree@vger.kernel.org>; Fri, 10 Mar 2023 06:43:23 -0800 (PST)
-Received: by mail-ed1-x531.google.com with SMTP id j11so21370601edq.4
-        for <devicetree@vger.kernel.org>; Fri, 10 Mar 2023 06:43:23 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1678459402;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=JYMEdjeleSWWpXin+nV8OWvud5LsPZ8G/6AgyZ+yAwQ=;
-        b=dyVAJ7eu/3a4Va5UtYhwVcbyFbDZz+mUrkWue+/ZeULTxrL+HQcyDqTd5cix+XtfxF
-         SzBBDrIXZoFe/dqF/muPu05TUeNINPBMDlb1C7U/oQO2fB4cvy39qIkiYaiwMKiVxtlX
-         KFzS5UmjoQ0zAnBXuHyv083PXHcK3mno2vK9ZXLB1ekJuB90bnrXP1XYfbCRD3cB3aEG
-         eYSZqopzPKNIol8R4lp2C6fVDVjQloFSowH+Y+vum1zXMTECctTspaEABEl/fxcXYf/u
-         4OhR61yzeBveMA6G30JseUSfNyQubIrtmsUdHfG0XbC90zhJf9z+fWZ3tcSGrHzrfdYU
-         wxeg==
+        with ESMTP id S233006AbjCJOrU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Mar 2023 09:47:20 -0500
+Received: from mail-ot1-f53.google.com (mail-ot1-f53.google.com [209.85.210.53])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D1C0212209C;
+        Fri, 10 Mar 2023 06:47:01 -0800 (PST)
+Received: by mail-ot1-f53.google.com with SMTP id o4-20020a9d6d04000000b00694127788f4so3035308otp.6;
+        Fri, 10 Mar 2023 06:47:01 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678459402;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=JYMEdjeleSWWpXin+nV8OWvud5LsPZ8G/6AgyZ+yAwQ=;
-        b=1eVHBWL8eSrdhaU3pBXG0JmVYMy4wU/00Oan1PwhtJaaUzZ8DnX7mg+Z9P9eprs6iP
-         EKoNgS7ZjnJrnNjikfBy6h2DZXTrjr4upBp0ce8oZhXqNBFqERf8zEd9pBWmSkxRNtyC
-         RgxEO5inYvPBoARVAjbDkbJgEK4/GKLw5B3HpgXiC0VMltG7B5oV1a2C2IIihFExD7nB
-         fopojBTjWgThBXNt/ydfyD+psrSNGyfXtLZ8i+2O0OMnwpWD3kX87x5Nia5I19Kqj6T/
-         6JFuK2Ff+HVB5c2ry5hC60FTYnS05ZHYHG4V1fRRuMorMI0lFwSZ/EQzu31HKz77+c01
-         4xKg==
-X-Gm-Message-State: AO0yUKVdhd5GFNFNSnJvJA5GW6nfyCGOY97KH46NEes63yjrtmjmxBuM
-        v3gBukJPL/Q4UWN8gW/yatTJbOHUflcOKhapwAQ=
-X-Google-Smtp-Source: AK7set845QJSc/SjAXM6QM3dwBDS1eo1cerd3I4zY5AKmphjSWiUT+Tw3zhF0l6YLSy+ywhLwM2bfQ==
-X-Received: by 2002:aa7:d952:0:b0:4c6:f2cd:9d72 with SMTP id l18-20020aa7d952000000b004c6f2cd9d72mr24748846eds.5.1678459402436;
-        Fri, 10 Mar 2023 06:43:22 -0800 (PST)
-Received: from ?IPV6:2a02:810d:15c0:828:45c4:46be:ec71:4a51? ([2a02:810d:15c0:828:45c4:46be:ec71:4a51])
-        by smtp.gmail.com with ESMTPSA id 23-20020a170906319700b008c06de45e75sm1034415ejy.107.2023.03.10.06.43.21
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 10 Mar 2023 06:43:22 -0800 (PST)
-Message-ID: <8caa7218-41c2-04b4-e7b3-ee0fb43079a3@linaro.org>
-Date:   Fri, 10 Mar 2023 15:43:20 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-Subject: Re: [PATCH 1/7] dt-bindings: clock: exynos850: Add power-domains
- property
-Content-Language: en-US
-To:     Sam Protsenko <semen.protsenko@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sylwester Nawrocki <s.nawrocki@samsung.com>
-Cc:     Marek Szyprowski <m.szyprowski@samsung.com>,
-        Tomasz Figa <tomasz.figa@gmail.com>,
-        Chanwoo Choi <cw00.choi@samsung.com>,
-        Chanho Park <chanho61.park@samsung.com>,
-        David Virag <virag.david003@gmail.com>,
-        Alim Akhtar <alim.akhtar@samsung.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        linux-samsung-soc@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        d=1e100.net; s=20210112; t=1678459616;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=N/C+fNk0w1+varw1acVN8y8bRrPEeVF6o0QOP6xK1xI=;
+        b=NIm5rz1654l7tq0u8e0tXblLDdEDycuV5A8+eGAn5g0NdVJtn1LTpx7B4igeiAcFf9
+         UD9+Tz30AB0HHPN0vxgu5UjKnoPiNe73vPxypvbbuxrCYECno+WxSLzqGydG9h6bidac
+         fuchPzBYWq+jmkz6FjnpyYTlSF6DN9Id2oeaYuLbEr5CdWlgkHD5prjCP1NWHc1vfUL4
+         qC+grmQD2CRysQ0XGGYbKEHZ8JIDvGCNz/LnnLgjDExu8rgdENHy6HGfBptuoKKNhxkH
+         OeLwbUsA2R5kKD4eWX6mRc9/MIG1fWrhaTTeN2k2MuUyHWvSbQTwOnff/H/QAQVu6A54
+         RLtw==
+X-Gm-Message-State: AO0yUKVYm4AaIhHL/4KH5H9YNhMFiqESCTBkTgqxXMcXkCOoWdBGCs8h
+        x6pLjPkDlqwXYLCgwJxxhg==
+X-Google-Smtp-Source: AK7set+iPlqLxAvKsse9T3A1If3SSfJcDQ+1VRuqO8QNi+liEvMsbJZYegEvu161cbJrX1iKvRa4XA==
+X-Received: by 2002:a05:6830:4423:b0:690:ef1f:6191 with SMTP id q35-20020a056830442300b00690ef1f6191mr14947003otv.32.1678459615767;
+        Fri, 10 Mar 2023 06:46:55 -0800 (PST)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id z12-20020a9d468c000000b0069436b64bb1sm90153ote.79.2023.03.10.06.46.55
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 10 Mar 2023 06:46:55 -0800 (PST)
+Received: (nullmailer pid 1540587 invoked by uid 1000);
+        Fri, 10 Mar 2023 14:46:54 -0000
+From:   Rob Herring <robh@kernel.org>
+To:     Russell King <linux@armlinux.org.uk>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
         linux-kernel@vger.kernel.org
-References: <20230308233822.31180-1-semen.protsenko@linaro.org>
- <20230308233822.31180-2-semen.protsenko@linaro.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230308233822.31180-2-semen.protsenko@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
+Subject: [PATCH] ARM: mxs: Use of_property_present() for testing DT property presence
+Date:   Fri, 10 Mar 2023 08:46:54 -0600
+Message-Id: <20230310144654.1540561-1-robh@kernel.org>
+X-Mailer: git-send-email 2.39.2
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -87,34 +65,31 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 09/03/2023 00:38, Sam Protsenko wrote:
-> Document power-domains property in Exynos850 clock controller.
+It is preferred to use typed property access functions (i.e.
+of_property_read_<type> functions) rather than low-level
+of_get_property/of_find_property functions for reading properties. As
+part of this, convert of_get_property/of_find_property calls to the
+recently added of_property_present() helper when we just want to test
+for presence of a property and nothing more.
 
-This we see from the diff. You need to say why, e.g. "several clock
-controllers are part of their power domain and require domain to be on
-for operation."
+Signed-off-by: Rob Herring <robh@kernel.org>
+---
+ arch/arm/mach-mxs/mach-mxs.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-> 
-> Signed-off-by: Sam Protsenko <semen.protsenko@linaro.org>
-> ---
->  .../devicetree/bindings/clock/samsung,exynos850-clock.yaml     | 3 +++
->  1 file changed, 3 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/clock/samsung,exynos850-clock.yaml b/Documentation/devicetree/bindings/clock/samsung,exynos850-clock.yaml
-> index 8aa87b8c1b33..cc1e9173b272 100644
-> --- a/Documentation/devicetree/bindings/clock/samsung,exynos850-clock.yaml
-> +++ b/Documentation/devicetree/bindings/clock/samsung,exynos850-clock.yaml
-> @@ -54,6 +54,9 @@ properties:
->    "#clock-cells":
->      const: 1
->  
-> +  power-domains:
-> +    maxItems: 1
-> +
->    reg:
->      maxItems: 1
->  
-
-Best regards,
-Krzysztof
+diff --git a/arch/arm/mach-mxs/mach-mxs.c b/arch/arm/mach-mxs/mach-mxs.c
+index 0129b7c514d7..51e47053c816 100644
+--- a/arch/arm/mach-mxs/mach-mxs.c
++++ b/arch/arm/mach-mxs/mach-mxs.c
+@@ -174,7 +174,7 @@ static void __init update_fec_mac_prop(enum mac_oui oui)
+ 
+ 		from = np;
+ 
+-		if (of_get_property(np, "local-mac-address", NULL))
++		if (of_property_present(np, "local-mac-address"))
+ 			continue;
+ 
+ 		newmac = kzalloc(sizeof(*newmac) + 6, GFP_KERNEL);
+-- 
+2.39.2
 
