@@ -2,120 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 080CD6B52C9
-	for <lists+devicetree@lfdr.de>; Fri, 10 Mar 2023 22:26:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0F5696B5370
+	for <lists+devicetree@lfdr.de>; Fri, 10 Mar 2023 22:52:37 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231767AbjCJV0D (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 10 Mar 2023 16:26:03 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57980 "EHLO
+        id S231977AbjCJVwf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 10 Mar 2023 16:52:35 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44144 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231608AbjCJVZz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Mar 2023 16:25:55 -0500
-Received: from mail-il1-x129.google.com (mail-il1-x129.google.com [IPv6:2607:f8b0:4864:20::129])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 28F8430C7
-        for <devicetree@vger.kernel.org>; Fri, 10 Mar 2023 13:25:41 -0800 (PST)
-Received: by mail-il1-x129.google.com with SMTP id w4so3768698ilv.0
-        for <devicetree@vger.kernel.org>; Fri, 10 Mar 2023 13:25:41 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1678483540;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=lysTcPW0XVZ+IeRM4GcO6JyKJb8asSqs6h2ziKdVdMA=;
-        b=Ib5+WiokdF4Wg6nmSNkoKrFmIfTRRN52sgdHf/J9pf53SOVZo6k9AEpxF0l9pEwlzP
-         mOUdvT1brKB2+WtDE1wOcW0SKlXKaNVXg0j5NE6PbcwuS+e4QhwgsQHG6zh4bgz+hdTd
-         OYACwE/cJdGrwhvpfeO6FVZC+CLuJ6i0RC2ojlyBUvFtY4vDkcGDJooZd3Omf/l3oNvK
-         GrT3Sl0G8oNfKtd7B0ZC1MaLKTRyVeUkIoUdqCwiyX0A0rMdR9via28equAC5F1hLGug
-         6Uu91Y9USxQfeRaocWpttTe+C+kPe0LPL0XcaYoN3STUJIrOdYVJOza93SWOC4+eiV1N
-         0S8g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678483540;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=lysTcPW0XVZ+IeRM4GcO6JyKJb8asSqs6h2ziKdVdMA=;
-        b=VyB9JsKDLliU+04XRk2BU6ednhCGN10VfhVAftif5SRN6vGy+uuXOqOunvW0XyDmmc
-         fqKHg0bIVcmlL2Y+RZCIBvF+n402+UGxGKrKV6pS0FpojpfV/Y8yP2A5esSLxIii+oAK
-         SUmTrdREFNrelR2dmi58VzPo4n51tpDUuRf6f5bigwzf4C4KsuUPAffb6IM6OjV0b+5b
-         ppMpSjphqBThPSsm20CPcX1Du+9SlHwygKUoOfKyw4+vZJHyi97MuOkwRkvOmISHm+uz
-         hA7IiRW0mr2xfbR/fyf99MdxtyAxNQFi02+BL8pONLPbE4ZoQjicMXFfhZjnEUCWppfs
-         jMeA==
-X-Gm-Message-State: AO0yUKVZ5VqPMhbYB+xzCi6AEeHuGBC6l2ldC2Y0Fl9s0B6BpPHuCx5S
-        0QNw2/6OgGzz4VTRocldO5UAfQ==
-X-Google-Smtp-Source: AK7set+A2RqEnUDfe1tmfLOzGw/NX61oogxnL4AQW62P5+sZCs92EtU9+B6paRANwZs9OJtgTM6IOg==
-X-Received: by 2002:a05:6e02:1010:b0:316:fcbe:628f with SMTP id n16-20020a056e02101000b00316fcbe628fmr17209813ilj.26.1678483540237;
-        Fri, 10 Mar 2023 13:25:40 -0800 (PST)
-Received: from [172.22.22.4] ([98.61.227.136])
-        by smtp.googlemail.com with ESMTPSA id z1-20020a92d6c1000000b003155ebba955sm287643ilp.68.2023.03.10.13.25.39
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 10 Mar 2023 13:25:39 -0800 (PST)
-Message-ID: <4e9a29b1-bcaa-8f14-3f2e-9ed40fd8e3ef@linaro.org>
-Date:   Fri, 10 Mar 2023 15:25:38 -0600
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.1
-Subject: Re: [RFC PATCH] arm64: dts: qcom: sm8350-hdk: enable IPA
-Content-Language: en-US
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        with ESMTP id S231952AbjCJVwL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Mar 2023 16:52:11 -0500
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 09CCA116B93
+        for <devicetree@vger.kernel.org>; Fri, 10 Mar 2023 13:48:52 -0800 (PST)
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1paka5-00043Y-LX; Fri, 10 Mar 2023 22:47:17 +0100
+Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
+        by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.94.2)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1paka1-003GHn-RB; Fri, 10 Mar 2023 22:47:13 +0100
+Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.94.2)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1paka1-003tZx-3f; Fri, 10 Mar 2023 22:47:13 +0100
+Date:   Fri, 10 Mar 2023 22:46:58 +0100
+From:   Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
+To:     fnkl.kernel@gmail.com
+Cc:     Thierry Reding <thierry.reding@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
-References: <20230310203438.1585701-1-dmitry.baryshkov@linaro.org>
-From:   Alex Elder <elder@linaro.org>
-In-Reply-To: <20230310203438.1585701-1-dmitry.baryshkov@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
-        autolearn_force=no version=3.4.6
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        - <asahi@lists.linux.dev>, Hector Martin <marcan@marcan.st>,
+        Sven Peter <sven@svenpeter.dev>,
+        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+        linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v8 2/5] pwm: Add Apple PWM controller
+Message-ID: <20230310214658.424vui3frynit437@pengutronix.de>
+References: <20230214-fpwm-v8-0-65518a0d4944@gmail.com>
+ <20230214-fpwm-v8-2-65518a0d4944@gmail.com>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="wbrnvcvhbc5cviao"
+Content-Disposition: inline
+In-Reply-To: <20230214-fpwm-v8-2-65518a0d4944@gmail.com>
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: ukl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 3/10/23 2:34 PM, Dmitry Baryshkov wrote:
-> Although the HDK has no radio, the IPA part is still perfectly usable
-> (altough it doesn't register any real networking devices). Enable it to
-> make it possible to test IPA on this platform.
-> 
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 
-I like that you've captured this, but I'm not sure I
-like the idea of enabling this if the modem is never
-expected to function as, you know, a modem.
+--wbrnvcvhbc5cviao
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-At a minimum I'd want to be sure we could exercise
-IPA in loopback mode before considering this seriously.
-I could work with you to experiment with doing that
-next week if you want.
+Hello Sascha,
 
-This isn't an outright "no" though; let's see if anyone
-else feels strongly one way or the other.
-
-					-Alex
-
-> ---
->   arch/arm64/boot/dts/qcom/sm8350-hdk.dts | 7 +++++++
->   1 file changed, 7 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sm8350-hdk.dts b/arch/arm64/boot/dts/qcom/sm8350-hdk.dts
-> index 09baf6959c71..60fbb2f49720 100644
-> --- a/arch/arm64/boot/dts/qcom/sm8350-hdk.dts
-> +++ b/arch/arm64/boot/dts/qcom/sm8350-hdk.dts
-> @@ -746,3 +746,10 @@ irq-pins {
->   		};
->   	};
->   };
+On Fri, Mar 10, 2023 at 07:44:08PM +0100, Sasha Finkelstein via B4 Relay wr=
+ote:
+> +static int apple_pwm_apply(struct pwm_chip *chip, struct pwm_device *pwm,
+> +			   const struct pwm_state *state)
+> +{
+> +	struct apple_pwm *fpwm;
 > +
-> +&ipa {
-> +	qcom,gsi-loader = "self";
-> +	memory-region = <&pil_ipa_fw_mem>;
-> +	status = "okay";
-> +	firmware-name = "qcom/sm8350/ipa_fws.mbn";
-> +};
+> +	if (state->polarity =3D=3D PWM_POLARITY_INVERSED)
+> +		return -EINVAL;
+> +
+> +	fpwm =3D to_apple_pwm(chip);
+> +	if (state->enabled) {
+> +		u64 on_cycles, off_cycles;
+> +
+> +		on_cycles =3D mul_u64_u64_div_u64(fpwm->clkrate,
+> +						state->duty_cycle, NSEC_PER_SEC);
+> +		if (on_cycles > 0xFFFFFFFF)
+> +			on_cycles =3D 0xFFFFFFFF;
+> +
+> +		off_cycles =3D mul_u64_u64_div_u64(fpwm->clkrate,
+> +						 state->period, NSEC_PER_SEC) - on_cycles;
+> +		if (off_cycles > 0xFFFFFFFF)
+> +			return -ERANGE;
 
+This is still wrong and needs clamping, too.
+
+Best regards
+Uwe
+
+--=20
+Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
+Industrial Linux Solutions                 | https://www.pengutronix.de/ |
+
+--wbrnvcvhbc5cviao
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEfnIqFpAYrP8+dKQLwfwUeK3K7AkFAmQLpU8ACgkQwfwUeK3K
+7Al6iAf/brzDkPdu7qhixSZXlHEcf+6cCEGjYdch6SwKLkspprLcOrBvHsvEa8ay
+TYG02baQpF4eNbZdPBbBv2b4VOqDOJ92H8Bx7IvfhCQy+fdZkSCiSeXHPteY91Hc
+A56UkrBNesv68qEdfX6e4vtVYZbexHFqgaeTZMPfr8dsqt0ms0RyyMMuT/DhrpPs
+sBTZd7V0IybwXTCEomXUMbxOA1mzWfU05rEz4bPUOS14N9TL8i1Mom8VsZrMD5UH
+bO6F9Y13HCXq8xUgLKZnoxqEEm1E2r6ZunUTSb/RenSaxGE2xx9NlHlTNeyKJR2V
+FYA1FefcQgl8RIZvCowtSH9Y+Lkcvg==
+=MgXN
+-----END PGP SIGNATURE-----
+
+--wbrnvcvhbc5cviao--
