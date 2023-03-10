@@ -2,251 +2,181 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7A1C16B3A7A
-	for <lists+devicetree@lfdr.de>; Fri, 10 Mar 2023 10:31:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 62CBE6B3A84
+	for <lists+devicetree@lfdr.de>; Fri, 10 Mar 2023 10:32:16 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231279AbjCJJbg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 10 Mar 2023 04:31:36 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37440 "EHLO
+        id S229994AbjCJJcO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 10 Mar 2023 04:32:14 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38746 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230372AbjCJJbP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Mar 2023 04:31:15 -0500
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 87ABF5F519;
-        Fri, 10 Mar 2023 01:28:37 -0800 (PST)
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 32A9SFVu042714;
-        Fri, 10 Mar 2023 03:28:15 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1678440495;
-        bh=9mGwYUc0gIJIQm5CB34LSX5n3OOTqwceEq2LAFUAH1Y=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=AYI/O8v7Ze5oXkmeHzuFPUeRV7tAW08JMpal3oLVWv5xP9+XgkOG0NTNqcYNKQgud
-         Uex6A2hz8YHy2mGeWAJTTHIxRkmetv6mKbJ6UkN8/w7UDWehtlywPWOKNnqGXhCsMe
-         c0oMJz7jkv9hPikmItRYxilQIJnAghY3oXr84XT8=
-Received: from DLEE101.ent.ti.com (dlee101.ent.ti.com [157.170.170.31])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 32A9SFw8026728
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Fri, 10 Mar 2023 03:28:15 -0600
-Received: from DLEE102.ent.ti.com (157.170.170.32) by DLEE101.ent.ti.com
- (157.170.170.31) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Fri, 10
- Mar 2023 03:28:14 -0600
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE102.ent.ti.com
- (157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
- Frontend Transport; Fri, 10 Mar 2023 03:28:15 -0600
-Received: from uda0492258.dhcp.ti.com (ileaxei01-snat2.itg.ti.com [10.180.69.6])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 32A9S4LI022476;
-        Fri, 10 Mar 2023 03:28:12 -0600
-From:   Siddharth Vadapalli <s-vadapalli@ti.com>
-To:     <nm@ti.com>, <vigneshr@ti.com>, <kristo@kernel.org>,
-        <robh+dt@kernel.org>, <krzysztof.kozlowski@linaro.org>,
-        <krzysztof.kozlowski+dt@linaro.org>
-CC:     <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <srk@ti.com>,
-        <s-vadapalli@ti.com>
-Subject: [PATCH 2/2] arm64: dts: ti: k3-j721e: Add overlay to enable CPSW9G ports in QSGMII mode
-Date:   Fri, 10 Mar 2023 14:58:04 +0530
-Message-ID: <20230310092804.692303-3-s-vadapalli@ti.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20230310092804.692303-1-s-vadapalli@ti.com>
-References: <20230310092804.692303-1-s-vadapalli@ti.com>
+        with ESMTP id S230052AbjCJJbe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Mar 2023 04:31:34 -0500
+Received: from mail-lj1-x229.google.com (mail-lj1-x229.google.com [IPv6:2a00:1450:4864:20::229])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E9887F7ECC;
+        Fri, 10 Mar 2023 01:29:04 -0800 (PST)
+Received: by mail-lj1-x229.google.com with SMTP id f16so4629503ljq.10;
+        Fri, 10 Mar 2023 01:29:04 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112; t=1678440543;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to:subject
+         :user-agent:mime-version:date:message-id:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=6mSwf0rGQ8x0u1j0oGWyGKKWuU21FbO9JFQh9IL0RB4=;
+        b=hfhJgCsTeZMYnVjSLltrtOYM1zjhXQ/1SB/kxMOXgXprh3CSejpE/PXYN2s2sLpNhF
+         4I388iujFO2UEEsr2RH3gESoAny3oj5Dfq7nCysmori96vVrvTwcX09lWKqT88OGNzIS
+         /y2KgrJonfNQbTV7KhzJZ8SN2vXb1BVou92KbXQJLLP7f2uF9gXa14W8B9H9P87Lynam
+         Cz85pakD/rhsd7Xqk5DuvjCEB1yTCQtRvmohgNd8HDVvi2mGfa6KJAPznysrWhiCtRUW
+         wO/+HyCfQCWMXcHYLr0vicRRmdOs1C250Yl78Gs7Vizw6v6V6sHYj2ktfjaet6aNa4Jg
+         1CcA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1678440543;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to:subject
+         :user-agent:mime-version:date:message-id:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=6mSwf0rGQ8x0u1j0oGWyGKKWuU21FbO9JFQh9IL0RB4=;
+        b=Hak6fdO9cBKJICnuypbUquFsbAnCFl3nRgFRh14NSh6xlICD5YR6p5RKV9K/AxK/fs
+         gIQmbfusZw+MDlPUOv8+MVQJTlbMmLxMgNSatjCFSAfUwEjRafFP5eejV2svY6JJfrwX
+         +ORTsJ4V/d6Ux8etkXhzeNvf0UCLiB+lHBlc2yUn27jxe+mPcIFJnkiOAWdANcZXhANF
+         w76thRMVJllLzYWqH5dZpLq24NRk/1/NNvk+u2f8lJKdvChrMvEY5ymG27wZmOJ5pn3z
+         /tZWOXfQNVBjpwC9DBBeJLCM0TEeAnmyPpdNtmHSbsIfRNJYZHRK9O/8K/iBGBNdnnHv
+         Fp0A==
+X-Gm-Message-State: AO0yUKUAnSJbaLyXB+m0p34UjLeuuDkMu6NY3Rs+tsYZAw22D3t6xDjD
+        A0FCXI4T8zHGOd/QnL0pCzA=
+X-Google-Smtp-Source: AK7set8CAkp0aHOPveS0Dj8kKzbOESje0Rd2eijoXBTfbyNUA4abtdm2Pkfy0va5/evbEgevCgHwSg==
+X-Received: by 2002:a2e:be06:0:b0:295:9c2e:7324 with SMTP id z6-20020a2ebe06000000b002959c2e7324mr9871637ljq.4.1678440542850;
+        Fri, 10 Mar 2023 01:29:02 -0800 (PST)
+Received: from [192.168.26.149] (ip-194-187-74-233.konfederacka.maverick.com.pl. [194.187.74.233])
+        by smtp.googlemail.com with ESMTPSA id e7-20020a2e9847000000b002946fb5b50asm171446ljj.139.2023.03.10.01.29.01
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 10 Mar 2023 01:29:02 -0800 (PST)
+Message-ID: <bce301fa-745b-8aee-d981-a9e4662c5c94@gmail.com>
+Date:   Fri, 10 Mar 2023 10:29:00 +0100
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:96.0) Gecko/20100101
+ Thunderbird/96.0
+Subject: Re: [PATCH V3] dt-bindings: nvmem: convert base example to use
+ "nvmem-layout" node
+To:     Miquel Raynal <miquel.raynal@bootlin.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Michael Walle <michael@walle.cc>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
+References: <20230310075145.3996-1-zajec5@gmail.com>
+ <20230310075145.3996-2-zajec5@gmail.com> <20230310095902.33b1d314@xps-13>
+From:   =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
+In-Reply-To: <20230310095902.33b1d314@xps-13>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_PASS,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The J7 Quad Port Add-On Ethernet Card for J721E Common-Proc-Board supports
-QSGMII mode. Use the overlay to configure CPSW9G ports in QSGMII mode.
+On 10.03.2023 09:59, Miquel Raynal wrote:
+> Hi Rafał,
+> 
+> zajec5@gmail.com wrote on Fri, 10 Mar 2023 08:51:45 +0100:
+> 
+>> From: Rafał Miłecki <rafal@milecki.pl>
+>>
+>> With support for "fixed-layout" binding we can use now "nvmem-layout"
+>> even for fixed NVMEM cells. Use that in the base example as it should be
+>> preferred over placing cells directly in the device node.
+>>
+>> New and other bindings should follow as old binding will get deprecated
+>> at some point.
+>>
+>> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
+>> ---
+>>   .../devicetree/bindings/nvmem/nvmem.yaml      | 42 +++++++++++--------
+>>   1 file changed, 24 insertions(+), 18 deletions(-)
+>>
+>> diff --git a/Documentation/devicetree/bindings/nvmem/nvmem.yaml b/Documentation/devicetree/bindings/nvmem/nvmem.yaml
+>> index 732162e9d13e..c77be1c20e47 100644
+>> --- a/Documentation/devicetree/bindings/nvmem/nvmem.yaml
+>> +++ b/Documentation/devicetree/bindings/nvmem/nvmem.yaml
+>> @@ -67,24 +67,30 @@ examples:
+>>   
+>>             /* ... */
+>>   
+>> -          /* Data cells */
+>> -          tsens_calibration: calib@404 {
+>> -              reg = <0x404 0x10>;
+>> -          };
+>> -
+>> -          tsens_calibration_bckp: calib_bckp@504 {
+>> -              reg = <0x504 0x11>;
+>> -              bits = <6 128>;
+>> -          };
+>> -
+>> -          pvs_version: pvs-version@6 {
+>> -              reg = <0x6 0x2>;
+>> -              bits = <7 2>;
+>> -          };
+>> -
+>> -          speed_bin: speed-bin@c{
+>> -              reg = <0xc 0x1>;
+>> -              bits = <2 3>;
+>> +          nvmem-layout {
+> 
+> I believe we should not introduce "intermediate state" bindings when
+> this is not strictly required, in order to avoid confusion with what is
+> backward and what is transitory. So I would expect this to only apply
+> after the switch to:
+> 
+> 	nvmem-layout@xxx {
+> 		reg = <xxx>;
+> 
+> I don't care who will take care of it, but I think it would be better
+> to have everything in one series.
+> 
+> Other than the "order" problematic which I think is important here, I
+> agree with this series.
 
-Add support to reset the PHY from kernel by using gpio-hog and gpio-reset.
+I fail to see how / why:
+1. Adding new NVMEM layout
+2. Supporting mutliple NVMEM layouts
+would depend on each other.
 
-Add aliases for CPSW9G ports to enable kernel to fetch MAC addresses
-directly from U-Boot.
+We already have 2 NVMEM layouts bindings. I'm just adding a new (third)
+one.
 
-Signed-off-by: Siddharth Vadapalli <s-vadapalli@ti.com>
----
- arch/arm64/boot/dts/ti/Makefile               |   4 +
- .../dts/ti/k3-j721e-quad-port-eth-exp.dtso    | 148 ++++++++++++++++++
- 2 files changed, 152 insertions(+)
- create mode 100644 arch/arm64/boot/dts/ti/k3-j721e-quad-port-eth-exp.dtso
+If having NVMEM layouts bindings puts us in any kind of intermediate
+state then we're already there. I don't think my new NVMEM layout
+changes this situation.
 
-diff --git a/arch/arm64/boot/dts/ti/Makefile b/arch/arm64/boot/dts/ti/Makefile
-index 6acd12409d59..167bcd9b09b7 100644
---- a/arch/arm64/boot/dts/ti/Makefile
-+++ b/arch/arm64/boot/dts/ti/Makefile
-@@ -45,3 +45,7 @@ dtb-$(CONFIG_ARCH_K3) += k3-j784s4-evm.dtb
- 
- # Enable support for device-tree overlays
- DTC_FLAGS_k3-am6548-iot2050-advanced-m2 += -@
-+DTC_FLAGS_k3-j721e-common-proc-board += -@
-+
-+# Device-tree overlays
-+dtb-$(CONFIG_ARCH_K3) += k3-j721e-quad-port-eth-exp.dtbo
-diff --git a/arch/arm64/boot/dts/ti/k3-j721e-quad-port-eth-exp.dtso b/arch/arm64/boot/dts/ti/k3-j721e-quad-port-eth-exp.dtso
-new file mode 100644
-index 000000000000..c63e1454614e
---- /dev/null
-+++ b/arch/arm64/boot/dts/ti/k3-j721e-quad-port-eth-exp.dtso
-@@ -0,0 +1,148 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/**
-+ * DT Overlay for CPSW9G in QSGMII mode using J7 Quad Port ETH EXP Add-On Ethernet Card with
-+ * J721E board.
-+ *
-+ * Copyright (C) 2023 Texas Instruments Incorporated - https://www.ti.com/
-+ */
-+
-+/dts-v1/;
-+/plugin/;
-+
-+#include <dt-bindings/gpio/gpio.h>
-+#include <dt-bindings/mux/ti-serdes.h>
-+#include <dt-bindings/pinctrl/k3.h>
-+#include <dt-bindings/phy/phy.h>
-+#include <dt-bindings/phy/phy-cadence.h>
-+
-+/ {
-+	fragment@102 {
-+		target-path = "/";
-+		__overlay__ {
-+			aliases {
-+				ethernet1 = "/bus@100000/ethernet@c000000/ethernet-ports/port@1";
-+				ethernet2 = "/bus@100000/ethernet@c000000/ethernet-ports/port@2";
-+				ethernet3 = "/bus@100000/ethernet@c000000/ethernet-ports/port@3";
-+				ethernet4 = "/bus@100000/ethernet@c000000/ethernet-ports/port@4";
-+			};
-+		};
-+	};
-+};
-+
-+&cpsw0 {
-+	status = "okay";
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&mdio_pins_default>;
-+};
-+
-+&cpsw0_port1 {
-+	phy-handle = <&cpsw9g_phy0>;
-+	phy-mode = "qsgmii";
-+	mac-address = [00 00 00 00 00 00];
-+	phys = <&cpsw0_phy_gmii_sel 1>;
-+};
-+
-+&cpsw0_port2 {
-+	phy-handle = <&cpsw9g_phy1>;
-+	phy-mode = "qsgmii";
-+	mac-address = [00 00 00 00 00 00];
-+	phys = <&cpsw0_phy_gmii_sel 2>;
-+};
-+
-+&cpsw0_port3 {
-+	phy-handle = <&cpsw9g_phy2>;
-+	phy-mode = "qsgmii";
-+	mac-address = [00 00 00 00 00 00];
-+	phys = <&cpsw0_phy_gmii_sel 3>;
-+};
-+
-+&cpsw0_port4 {
-+	phy-handle = <&cpsw9g_phy3>;
-+	phy-mode = "qsgmii";
-+	mac-address = [00 00 00 00 00 00];
-+	phys = <&cpsw0_phy_gmii_sel 4>;
-+};
-+
-+&cpsw0_port5 {
-+	status = "disabled";
-+};
-+
-+&cpsw0_port6 {
-+	status = "disabled";
-+};
-+
-+&cpsw0_port7 {
-+	status = "disabled";
-+};
-+
-+&cpsw0_port8 {
-+	status = "disabled";
-+};
-+
-+&cpsw9g_mdio {
-+	reset-gpios = <&exp2 17 GPIO_ACTIVE_LOW>;
-+	reset-post-delay-us = <120000>;
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+
-+	cpsw9g_phy0: ethernet-phy@17 {
-+		reg = <17>;
-+	};
-+	cpsw9g_phy1: ethernet-phy@16 {
-+		reg = <16>;
-+	};
-+	cpsw9g_phy2: ethernet-phy@18 {
-+		reg = <18>;
-+	};
-+	cpsw9g_phy3: ethernet-phy@19 {
-+		reg = <19>;
-+	};
-+};
-+
-+&exp2 {
-+	qsgmii-line-hog {
-+		gpio-hog;
-+		gpios = <16 GPIO_ACTIVE_HIGH>;
-+		output-low;
-+		line-name = "qsgmii-pwrdn-line";
-+	};
-+};
-+
-+&main_pmx0 {
-+	mdio_pins_default: mdio_pins_default {
-+		pinctrl-single,pins = <
-+			J721E_IOPAD(0x1bc, PIN_OUTPUT, 0) /* (V24) MDIO0_MDC */
-+			J721E_IOPAD(0x1b8, PIN_INPUT, 0) /* (V26) MDIO0_MDIO */
-+		>;
-+	};
-+};
-+
-+&serdes_ln_ctrl {
-+	idle-states = <J721E_SERDES0_LANE0_PCIE0_LANE0>, <J721E_SERDES0_LANE1_QSGMII_LANE2>,
-+		      <J721E_SERDES1_LANE0_PCIE1_LANE0>, <J721E_SERDES1_LANE1_PCIE1_LANE1>,
-+		      <J721E_SERDES2_LANE0_PCIE2_LANE0>, <J721E_SERDES2_LANE1_PCIE2_LANE1>,
-+		      <J721E_SERDES3_LANE0_USB3_0_SWAP>, <J721E_SERDES3_LANE1_USB3_0>,
-+		      <J721E_SERDES4_LANE0_EDP_LANE0>, <J721E_SERDES4_LANE1_EDP_LANE1>,
-+		      <J721E_SERDES4_LANE2_EDP_LANE2>, <J721E_SERDES4_LANE3_EDP_LANE3>;
-+};
-+
-+&serdes_wiz0 {
-+	status = "okay";
-+};
-+
-+&serdes0 {
-+	status = "okay";
-+
-+	assigned-clocks = <&serdes0 CDNS_SIERRA_PLL_CMNLC>, <&serdes0 CDNS_SIERRA_PLL_CMNLC1>;
-+	assigned-clock-parents = <&wiz0_pll1_refclk>, <&wiz0_pll1_refclk>;
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+
-+	serdes0_qsgmii_link: phy@1 {
-+		reg = <1>;
-+		cdns,num-lanes = <1>;
-+		#phy-cells = <0>;
-+		cdns,phy-type = <PHY_TYPE_QSGMII>;
-+		resets = <&serdes_wiz0 2>;
-+	};
-+};
--- 
-2.25.1
+
+>> +              compatible = "fixed-layout";
+>> +              #address-cells = <1>;
+>> +              #size-cells = <1>;
+>> +
+>> +              /* Data cells */
+>> +              tsens_calibration: calib@404 {
+>> +                  reg = <0x404 0x10>;
+>> +              };
+>> +
+>> +              tsens_calibration_bckp: calib_bckp@504 {
+>> +                  reg = <0x504 0x11>;
+>> +                  bits = <6 128>;
+>> +              };
+>> +
+>> +              pvs_version: pvs-version@6 {
+>> +                  reg = <0x6 0x2>;
+>> +                  bits = <7 2>;
+>> +              };
+>> +
+>> +              speed_bin: speed-bin@c{
+>> +                  reg = <0xc 0x1>;
+>> +                  bits = <2 3>;
+>> +              };
+>>             };
+>>         };
 
