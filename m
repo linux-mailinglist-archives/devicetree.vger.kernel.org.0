@@ -2,151 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 697AA6B3C1A
-	for <lists+devicetree@lfdr.de>; Fri, 10 Mar 2023 11:30:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 619046B3C1E
+	for <lists+devicetree@lfdr.de>; Fri, 10 Mar 2023 11:30:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230405AbjCJKaX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 10 Mar 2023 05:30:23 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56820 "EHLO
+        id S230036AbjCJKau (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 10 Mar 2023 05:30:50 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57484 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230224AbjCJKaT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Mar 2023 05:30:19 -0500
-Received: from mail-wm1-x32d.google.com (mail-wm1-x32d.google.com [IPv6:2a00:1450:4864:20::32d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 81E0610C739
-        for <devicetree@vger.kernel.org>; Fri, 10 Mar 2023 02:30:17 -0800 (PST)
-Received: by mail-wm1-x32d.google.com with SMTP id fm20-20020a05600c0c1400b003ead37e6588so5635504wmb.5
-        for <devicetree@vger.kernel.org>; Fri, 10 Mar 2023 02:30:17 -0800 (PST)
+        with ESMTP id S231235AbjCJKal (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Mar 2023 05:30:41 -0500
+Received: from mail-wr1-x42f.google.com (mail-wr1-x42f.google.com [IPv6:2a00:1450:4864:20::42f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C1BD81111F3
+        for <devicetree@vger.kernel.org>; Fri, 10 Mar 2023 02:30:31 -0800 (PST)
+Received: by mail-wr1-x42f.google.com with SMTP id j2so4559518wrh.9
+        for <devicetree@vger.kernel.org>; Fri, 10 Mar 2023 02:30:31 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1678444216;
+        d=linaro.org; s=google; t=1678444230;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=7Br/tDw2GlFjkNZdTES8uGn3IRc1zfPXazZDzXirshY=;
-        b=S/253spPED/sv/JwraglQ+ux7jT198YShDNQb+u4lq6Y51vXcuZ5/uaJTD3zQQQwBH
-         4sGCz4+kZCTiwyUqIu1ilE7qhM1gyV5XNnjqTG1/G57BJeF8AF8EIopuNagH8u0IhRHV
-         NwjMYwLtJWK8HB/T6Q1mNt4/v8vOXOzQ6HkJozRytH+teAXuxPZgBNXDbM6zXm8lAwHb
-         R5FyZh1lKjVA2flTa6ZdnQBs9hPyHbr4oYJcMLwmJMEWN4DIyUH2LKst2iSg+CNLhMvl
-         Zhj0P9dhr60HZkuq691ZYWtOkD6MTAJTStmKP8oxx8LNsuMleFy7k9BcG/7HGWLkUHHx
-         E2Gg==
+        bh=pxv6k2m01S32PDt4BN/C36/MZsZ/J+NM4VfP3nQvMg4=;
+        b=SlTWL4L0m5jOOnZ4iFyCezkGL2cAR14NfQCNlmyaLc1uHXrskzsL6M9bb9Rge8KoHj
+         kArZ6JiN6jj7L4jMS1Gob05b3m/2AXp4bDdgZrs2xgbiVPMg3JqCoX59RMGTehpokn/R
+         xl353Tar+L7RVR6N5knSp8G0fR7neIH1v6LUMAL09Y9RaAhvOlv/SzLINTsC9dUnafKP
+         j3Kysmgy5eCueKKGI2gWpmMJ7Wlwzf6sOGzWNY9UiEtf4hjJYrctwjJUYGscDnXSSMR0
+         FrXBWPaZ+geBZrbO/guQW88ThmU1sewjWKmbSFm5QCtFXjTlgDrJKYhn2BNYRXW+hqgk
+         Kc3Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678444216;
+        d=1e100.net; s=20210112; t=1678444230;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=7Br/tDw2GlFjkNZdTES8uGn3IRc1zfPXazZDzXirshY=;
-        b=5zrpQkmOZT7DSxzwUnllqyXZVmEQsL1FOhjLSQkHAqY/yDygc0S9FwWPQLbrmxkx+v
-         UItp8wWe0whoJihH2QlM1+PZCCQlFKMMkLPouk9dd1oj6U8ChorbmmOkY25f50WV9iYD
-         GrRWPTRgR9i3o5YSxmHzaz1B4pdCrOXFO5gZDNhGAk8CZIBB/lquB+7mTAHBmmTUx9Ps
-         NMHxYywLqapclnNK8zMeA+mkzC4MkzHxk9134J9zKwXxvHTD7U+/+ucDP2984MQDQMGu
-         fq06yubEtAlOhMVNNMwbYhXcQ0EBo+onb1FOp76uwRfyEPJo+Gsy7j2oROrec6GB8htN
-         /y5w==
-X-Gm-Message-State: AO0yUKV7fZ6JT5Lz637eqapEbbSdQq3/nXpAIzK5IlLqvnwRnJMpq5ZG
-        HkoJuh29MZ05ViF4cEn7jmfvoONj9+XYxwWI7jJLVw==
-X-Google-Smtp-Source: AK7set8vnKP6T8A6zSfP/x6TAQj8Tms/Jlj4cEN/U+hzkD8dNGbFoBmLeq13PsGPe4T0edqArJnOgQ==
-X-Received: by 2002:a05:600c:4587:b0:3df:e468:17dc with SMTP id r7-20020a05600c458700b003dfe46817dcmr1957531wmo.40.1678444215986;
-        Fri, 10 Mar 2023 02:30:15 -0800 (PST)
-Received: from [192.168.1.195] ([5.133.47.210])
-        by smtp.googlemail.com with ESMTPSA id 14-20020a05600c24ce00b003eb5a531232sm1641909wmu.38.2023.03.10.02.30.14
+        bh=pxv6k2m01S32PDt4BN/C36/MZsZ/J+NM4VfP3nQvMg4=;
+        b=eNmlgbiuAauI5xOtlR3iojORrL8A1OvRlAY+UyTAAjyoyp7dpbhbftZYTgZV6iGyhv
+         GCqpg3w5LdIVy0NkDksdbpnhONRLjPDpXvZ8ojt7LmYgG73PFGaEP5tzeXR6lhHphd65
+         M9hmywPqohAVMf94cls3Ig3+Jvxp9Z4FqHYD9+l/XJeQ2mGEgNc7SOpubjgisMKPOhDr
+         LmUqgpnFAdTvaAucrOs/TVodnqHdS0fm92JPrCm7LFd+PqtxCS8cSaSVohiJ0r+RJgaz
+         9cRNPvg/RyrKdOZusFwnVkwdTnPW2FoYpl9Ql6m25ahjZ+/jgJ9BeY2Q5KBgb0VnEg9f
+         2HRw==
+X-Gm-Message-State: AO0yUKX7O2skndGLrRIO9S7Vn0wartvhkZPtAqWjlc0cI8D6Cw/acIUd
+        9ZLlvfKtc6115tttqcjrbY3qcg==
+X-Google-Smtp-Source: AK7set/owklYqi8JaLfBaL4oU2puy9p5Cxw1Btjq94yL6Is5jHVg4Bma7PZKabrCWc4N5sRSwKwq9Q==
+X-Received: by 2002:a5d:44c7:0:b0:2c7:1b41:2ed4 with SMTP id z7-20020a5d44c7000000b002c71b412ed4mr17473299wrr.46.1678444229964;
+        Fri, 10 Mar 2023 02:30:29 -0800 (PST)
+Received: from [192.168.0.162] (188-141-3-169.dynamic.upc.ie. [188.141.3.169])
+        by smtp.gmail.com with ESMTPSA id z10-20020adfd0ca000000b002be099f78c0sm1765644wrh.69.2023.03.10.02.30.28
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 10 Mar 2023 02:30:15 -0800 (PST)
-Message-ID: <c37d2d5d-4a25-27de-3f80-033984232ed9@linaro.org>
-Date:   Fri, 10 Mar 2023 10:30:14 +0000
+        Fri, 10 Mar 2023 02:30:29 -0800 (PST)
+Message-ID: <ff784dd5-179a-28a9-b25f-9b09e0791b5f@linaro.org>
+Date:   Fri, 10 Mar 2023 10:30:28 +0000
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.1
-Subject: Re: [PATCH v2 11/21] nvmem: core: handle the absence of expected
- layouts
+ Thunderbird/102.8.0
+Subject: Re: [PATCH] arm64: dts: qcom: msm8916: Move WCN compatible to boards
 Content-Language: en-US
-To:     Miquel Raynal <miquel.raynal@bootlin.com>,
-        linux-kernel@vger.kernel.org
-Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Michael Walle <michael@walle.cc>,
-        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>,
-        Robert Marko <robert.marko@sartura.hr>,
-        Luka Perkov <luka.perkov@sartura.hr>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        devicetree@vger.kernel.org
-References: <20230307165359.225361-1-miquel.raynal@bootlin.com>
- <20230307165359.225361-12-miquel.raynal@bootlin.com>
-From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-In-Reply-To: <20230307165359.225361-12-miquel.raynal@bootlin.com>
+To:     Stephan Gerhold <stephan.gerhold@kernkonzept.com>,
+        Bjorn Andersson <andersson@kernel.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Nikita Travkin <nikita@trvn.ru>, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, Stephan Gerhold <stephan@gerhold.net>
+References: <20230309091452.1011776-1-stephan.gerhold@kernkonzept.com>
+From:   Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+In-Reply-To: <20230309091452.1011776-1-stephan.gerhold@kernkonzept.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 07/03/2023 16:53, Miquel Raynal wrote:
-> Make nvmem_layout_get() return -EPROBE_DEFER while the expected layout
-> is not available. This condition cannot be triggered today as nvmem
-> layout drivers are initialed as part of an early init call, but soon
-> these drivers will be converted into modules and be initialized with a
-> standard priority, so the unavailability of the drivers might become a
-> reality that must be taken care of.
+On 09/03/2023 09:14, Stephan Gerhold wrote:
+> On MSM8916 the wireless connectivity functionality (WiFi/Bluetooth) is
+> split into the digital part inside the SoC and the analog RF part inside
+> a supplementary WCN36xx chip. For MSM8916, three different options
+> exist:
 > 
-> Let's anticipate this by telling the caller the layout might not yet be
-> available. A probe deferral is requested in this case.
+>    - WCN3620  (WLAN 802.11 b/g/n 2.4 GHz + Bluetooth)
+>    - WCN3660B (WLAN 802.11 a/b/g/n 2.4/5 GHz + Bluetooth)
+>    - WCN3680B (WLAN 802.11ac 2.4/5 GHz + Bluetooth)
 > 
-> Please note this does not affect any nvmem device not using layouts,
-> because an early check against the "nvmem-layout" container presence
-> will return NULL in this case.
+> Choosing one of these is up to the board vendor. This means that the
+> compatible belongs into the board-specific DT part so people porting
+> new boards pay attention to set the correct compatible.
 > 
-> Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
-> Tested-by: Michael Walle <michael@walle.cc>
-> ---
->   drivers/nvmem/core.c | 10 +++++++++-
->   1 file changed, 9 insertions(+), 1 deletion(-)
+> Right now msm8916.dtsi sets "qcom,wcn3620" as default compatible,
+> which does not work at all for boards that have WCN3660B or WCN3680B.
 > 
-> diff --git a/drivers/nvmem/core.c b/drivers/nvmem/core.c
-> index b9be1faeb7be..51fd792b8d70 100644
-> --- a/drivers/nvmem/core.c
-> +++ b/drivers/nvmem/core.c
-> @@ -755,7 +755,7 @@ EXPORT_SYMBOL_GPL(nvmem_layout_unregister);
->   static struct nvmem_layout *nvmem_layout_get(struct nvmem_device *nvmem)
->   {
+> Remove the default compatible from msm8196.dtsi and move it to the board
+> DT as follows:
+> 
+>    - Boards with only &pronto { status = "okay"; } used the default
+>      "qcom,wcn3620" so far. They now set this explicitly for &wcnss_iris.
+>    - Boards with &pronto { ... iris { compatible = "qcom,wcn3660b"; }};
+>      already had an override that just moves to &wcnss_iris now.
+>    - For msm8916-samsung-a2015-common.dtsi the WCN compatible differs for
+>      boards making use of it (a3u: wcn3620, a5u: wcn3660b, e2015: wcn3620)
+>      so the definitions move to the board-specific DT part.
+> 
+> Since this requires touching all the board DTs, use this as a chance to
+> name the WCNSS-related labels consistently, so everything is grouped
+> properly when sorted alphabetically.
+> 
+> No functional change, just clean-up for more clarity & easier porting.
+> Aside from ordering the generated DTBs are identical.
+> 
+> Signed-off-by: Stephan Gerhold <stephan.gerhold@kernkonzept.com>
 
-Any reason why this is not part of 10/21?
+Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
 
-kernel doc for nvmem_layout_get needs updating with this behavior.
-
-
---srini
-
->   	struct device_node *layout_np, *np = nvmem->dev.of_node;
-> -	struct nvmem_layout *l, *layout = NULL;
-> +	struct nvmem_layout *l, *layout = ERR_PTR(-EPROBE_DEFER);
->   
->   	layout_np = of_get_child_by_name(np, "nvmem-layout");
->   	if (!layout_np)
-> @@ -938,6 +938,13 @@ struct nvmem_device *nvmem_register(const struct nvmem_config *config)
->   	 * pointer will be NULL and nvmem_layout_put() will be a noop.
->   	 */
->   	nvmem->layout = config->layout ?: nvmem_layout_get(nvmem);
-> +	if (IS_ERR(nvmem->layout)) {
-> +		rval = PTR_ERR(nvmem->layout);
-> +		nvmem->layout = NULL;
-> +
-> +		if (rval == -EPROBE_DEFER)
-> +			goto err_teardown_compat;
-> +	}
->   
->   	if (config->cells) {
->   		rval = nvmem_add_cells(nvmem, config->cells, config->ncells);
-> @@ -970,6 +977,7 @@ struct nvmem_device *nvmem_register(const struct nvmem_config *config)
->   err_remove_cells:
->   	nvmem_device_remove_all_cells(nvmem);
->   	nvmem_layout_put(nvmem->layout);
-> +err_teardown_compat:
->   	if (config->compat)
->   		nvmem_sysfs_remove_compat(nvmem, config);
->   err_put_device:
