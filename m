@@ -2,96 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 51BC06B4963
-	for <lists+devicetree@lfdr.de>; Fri, 10 Mar 2023 16:12:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 33B816B490D
+	for <lists+devicetree@lfdr.de>; Fri, 10 Mar 2023 16:08:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234013AbjCJPMC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 10 Mar 2023 10:12:02 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41142 "EHLO
+        id S233833AbjCJPIz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 10 Mar 2023 10:08:55 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44646 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234014AbjCJPLe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Mar 2023 10:11:34 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1BAD35ADD1;
-        Fri, 10 Mar 2023 07:03:34 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 046BF61A36;
-        Fri, 10 Mar 2023 14:55:54 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id ABE97C433EF;
-        Fri, 10 Mar 2023 14:55:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1678460153;
-        bh=YFc8z7PQrEiEAVk+eNCyyUkbwe5xhAM4AB5u7PX894E=;
+        with ESMTP id S233929AbjCJPIf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Mar 2023 10:08:35 -0500
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E24B41223A4;
+        Fri, 10 Mar 2023 07:01:11 -0800 (PST)
+Received: from pendragon.ideasonboard.com (117.145-247-81.adsl-dyn.isp.belgacom.be [81.247.145.117])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id F0DE92E5;
+        Fri, 10 Mar 2023 15:59:30 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1678460371;
+        bh=Chwv7HFTcUaY/JET0sX7VEDo3HbGbnOEAmqSg2EzMbM=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=NmODi+ZUV7ygP8CclaAu/JvmuFtnqy4ppZtZvHyO2pbWumGoWLAzS0DLfBj73OaBd
-         kkHfuKQggU+1uo4jdOcCcM14ZaV0PQbYnwjJUG6TX/4hIATz/1mCtTr1QaVJefnV8k
-         FFG1et/AKbZVioaDy3+dL6lRhiZkefvWcoGcRuLQr3In3AWiLiF2F57hutJG1fRAFp
-         gSPM7Z5Ju+cvWZjwQGEAXMOZJ8/Gf1F4EkHiToANd/VRGUM9P6nIIXQ+ooaU6RQSS6
-         rBwEpnNsYK8aNOA/xLotDtPerGuS2n97WnbNHc/BAW4XYX04PU/qN3/Vbr9KAgFwcd
-         nirmLwZyB8wNw==
-Date:   Fri, 10 Mar 2023 20:25:45 +0530
-From:   Manivannan Sadhasivam <mani@kernel.org>
+        b=Ob9KojRlAz9DuOGHlgGEvMtOc+uHUeZdj/WmXCOwIiQaE+E6TVQIjry+0ODhV5NDm
+         sZWrRRWmi63Y0pejiCDV9XcL9g/v66a2k9o6100n/mK1tzl4GIN66xQFe5xjjXUFUK
+         A7Ph1q+xazouYwW0DwJjdJfy8lvW3XM7wvHAesIA=
+Date:   Fri, 10 Mar 2023 16:59:35 +0200
+From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
 To:     Rob Herring <robh@kernel.org>
-Cc:     Miquel Raynal <miquel.raynal@bootlin.com>,
-        Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        devicetree@vger.kernel.org, linux-mtd@lists.infradead.org,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] mtd: nand: qcom: Use of_property_present() for testing
- DT property presence
-Message-ID: <20230310145545.GE6838@thinkpad>
-References: <20230310144715.1543926-1-robh@kernel.org>
+Cc:     Andrzej Hajda <andrzej.hajda@intel.com>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Robert Foss <rfoss@kernel.org>,
+        Jonas Karlman <jonas@kwiboo.se>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        Javier Martinez Canillas <javierm@redhat.com>,
+        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] drm: Use of_property_read_bool() for boolean properties
+Message-ID: <20230310145935.GI5342@pendragon.ideasonboard.com>
+References: <20230310144706.1542295-1-robh@kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20230310144715.1543926-1-robh@kernel.org>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <20230310144706.1542295-1-robh@kernel.org>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Mar 10, 2023 at 08:47:15AM -0600, Rob Herring wrote:
+Hi Rob,
+
+Thank you for the patch.
+
+On Fri, Mar 10, 2023 at 08:47:05AM -0600, Rob Herring wrote:
 > It is preferred to use typed property access functions (i.e.
 > of_property_read_<type> functions) rather than low-level
-> of_get_property/of_find_property functions for reading properties. As
-> part of this, convert of_get_property/of_find_property calls to the
-> recently added of_property_present() helper when we just want to test
-> for presence of a property and nothing more.
-> 
+> of_get_property/of_find_property functions for reading properties.
+> Convert reading boolean properties to to of_property_read_bool().
+
+s/to to/to/ (or maybe "to use" ?)
+
+With this,
+
+Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+
 > Signed-off-by: Rob Herring <robh@kernel.org>
-
-Reviewed-by: Manivannan Sadhasivam <mani@kernel.org>
-
-Thanks,
-Mani
-
 > ---
->  drivers/mtd/nand/raw/qcom_nandc.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
+>  drivers/gpu/drm/bridge/parade-ps8622.c | 2 +-
+>  drivers/gpu/drm/tiny/ofdrm.c           | 8 ++------
+>  2 files changed, 3 insertions(+), 7 deletions(-)
 > 
-> diff --git a/drivers/mtd/nand/raw/qcom_nandc.c b/drivers/mtd/nand/raw/qcom_nandc.c
-> index 198a44794d2d..6b52ed8c6178 100644
-> --- a/drivers/mtd/nand/raw/qcom_nandc.c
-> +++ b/drivers/mtd/nand/raw/qcom_nandc.c
-> @@ -3054,7 +3054,7 @@ static int qcom_nand_host_parse_boot_partitions(struct qcom_nand_controller *nan
->  	struct device *dev = nandc->dev;
->  	int partitions_count, i, j, ret;
+> diff --git a/drivers/gpu/drm/bridge/parade-ps8622.c b/drivers/gpu/drm/bridge/parade-ps8622.c
+> index 530ee6a19e7e..efa80e309b98 100644
+> --- a/drivers/gpu/drm/bridge/parade-ps8622.c
+> +++ b/drivers/gpu/drm/bridge/parade-ps8622.c
+> @@ -496,7 +496,7 @@ static int ps8622_probe(struct i2c_client *client)
+>  		ps8622->lane_count = ps8622->max_lane_count;
+>  	}
 >  
-> -	if (!of_find_property(dn, "qcom,boot-partitions", NULL))
-> +	if (!of_property_present(dn, "qcom,boot-partitions"))
->  		return 0;
+> -	if (!of_find_property(dev->of_node, "use-external-pwm", NULL)) {
+> +	if (!of_property_read_bool(dev->of_node, "use-external-pwm")) {
+>  		ps8622->bl = backlight_device_register("ps8622-backlight",
+>  				dev, ps8622, &ps8622_backlight_ops,
+>  				NULL);
+> diff --git a/drivers/gpu/drm/tiny/ofdrm.c b/drivers/gpu/drm/tiny/ofdrm.c
+> index 6e349ca42485..76cd7f515bab 100644
+> --- a/drivers/gpu/drm/tiny/ofdrm.c
+> +++ b/drivers/gpu/drm/tiny/ofdrm.c
+> @@ -162,13 +162,9 @@ static bool display_get_big_endian_of(struct drm_device *dev, struct device_node
+>  	bool big_endian;
 >  
->  	partitions_count = of_property_count_u32_elems(dn, "qcom,boot-partitions");
-> -- 
-> 2.39.2
-> 
+>  #ifdef __BIG_ENDIAN
+> -	big_endian = true;
+> -	if (of_get_property(of_node, "little-endian", NULL))
+> -		big_endian = false;
+> +	big_endian = !of_property_read_bool(of_node, "little-endian");
+>  #else
+> -	big_endian = false;
+> -	if (of_get_property(of_node, "big-endian", NULL))
+> -		big_endian = true;
+> +	big_endian = of_property_read_bool(of_node, "big-endian");
+>  #endif
+>  
+>  	return big_endian;
 
 -- 
-மணிவண்ணன் சதாசிவம்
+Regards,
+
+Laurent Pinchart
