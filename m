@@ -2,57 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 054E36B4769
-	for <lists+devicetree@lfdr.de>; Fri, 10 Mar 2023 15:50:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 564BA6B4744
+	for <lists+devicetree@lfdr.de>; Fri, 10 Mar 2023 15:49:42 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232973AbjCJOuI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 10 Mar 2023 09:50:08 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43672 "EHLO
+        id S233287AbjCJOti (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 10 Mar 2023 09:49:38 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41638 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233187AbjCJOsj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Mar 2023 09:48:39 -0500
-Received: from mail-oa1-f50.google.com (mail-oa1-f50.google.com [209.85.160.50])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4D1BD11CBC9;
-        Fri, 10 Mar 2023 06:47:37 -0800 (PST)
-Received: by mail-oa1-f50.google.com with SMTP id 586e51a60fabf-176261d7f45so6035211fac.11;
-        Fri, 10 Mar 2023 06:47:37 -0800 (PST)
+        with ESMTP id S233162AbjCJOsU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Mar 2023 09:48:20 -0500
+Received: from mail-oi1-f170.google.com (mail-oi1-f170.google.com [209.85.167.170])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1BFC3121153;
+        Fri, 10 Mar 2023 06:47:35 -0800 (PST)
+Received: by mail-oi1-f170.google.com with SMTP id bh20so4393519oib.9;
+        Fri, 10 Mar 2023 06:47:35 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678459656;
+        d=1e100.net; s=20210112; t=1678459654;
         h=content-transfer-encoding:mime-version:message-id:date:subject:cc
          :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=sFM9cFx4I6hD+gj1NVqX4d9hN+nz0rkv2y+gyZLkCvI=;
-        b=2Q/ndR0GQm840Esuesq/tw09WxIgoIwO0lzAqRFTZI22Yh8+EFJ1DxOAz6T96wvdbP
-         yw7g6Q1WprdBWEAMXQ8d/uEtgEcmHkMU/bhs2CPKTK1kng6RDWs1R1BgeurxGoB4mw5r
-         Yzgj6M7qgBRDC7mJozUfTOHB+I5tZ4Zgk8hWia3qYFIs1hFvGUoWVbCfutCtNWkjb24f
-         kTKigS4cx+hX4N9bph2Pu0w7vEtE5e93F80fcWpYKoPbnkkeQSuHyD4p0MAKQchlX/Du
-         9OuICpMIqyGgqmRH7xC6e0mG2WwB8o8m9q+wceAXNBbpFf1qcAVXKqMEGTcdg0UrxU78
-         JBqg==
-X-Gm-Message-State: AO0yUKXhHq3QgDz1W0Nx6GZsMkYNTXGIijtOmfWIFeZWJXChYJH5NYmx
-        TUDNDeoP2vSffGq7/RfqJrN10iLUwg==
-X-Google-Smtp-Source: AK7set/2FSvj4FPCfH+6aDY+mlr2dudvIcv7JOTdVH9knG2sD05y2JX0UW87aup/8BnR7YzAa+Iu+Q==
-X-Received: by 2002:a05:6870:c0d5:b0:172:8999:27fb with SMTP id e21-20020a056870c0d500b00172899927fbmr5812691oad.10.1678459656528;
-        Fri, 10 Mar 2023 06:47:36 -0800 (PST)
+        bh=EIz7uldrpE/4a3Yn78TCMTOPk2yNsXBeiewFP++iTtI=;
+        b=piCRoVSjF4CJdI61gdGtwXSF21OkABigbQ0znd37VdclwKZuXIZoqcA0QMHAo/JcKD
+         Clix07FBd5kIMr2c04xiFDMqtQe5RPoCSPdIAaHeLGPYLMePdbL/nH2XRGKu+gq4Z9gn
+         ZwkQnHiKeW0NkpUqQP+6qIF0t7u+A8eaWPv8uXPTLptv01pXP1V8dRWVyGRWKXCgwZ/F
+         eSWv/+6IIdOpA97TKGtztv/Lg5xJ4i27lWI0Gq4jZvHiXCIPE1MbXS5E9el6ThSfqOHJ
+         Gwv6hxNACUx0cvzUwsE+/FiX2jRDRcNho9qtP+MAIH+WHg3MCosrVvwI847igqqLn1UK
+         5F+g==
+X-Gm-Message-State: AO0yUKX9DZcPcQgFMvSo8njwuDNkGIdMuBxyUfxhA0a6sxofKozB/Xb/
+        YqJZXfGdUBBQ0/x8o/oq4A==
+X-Google-Smtp-Source: AK7set/GOJZQNFQdvex7AhT10x8uYUWw1aDar530wB//wxV61PlLIWKRODfn7mKYRTKkWueDppQvnA==
+X-Received: by 2002:a05:6808:1d2:b0:384:167d:736b with SMTP id x18-20020a05680801d200b00384167d736bmr10994562oic.15.1678459654281;
+        Fri, 10 Mar 2023 06:47:34 -0800 (PST)
 Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id t33-20020a4a96e4000000b00525ccc4caadsm11366ooi.4.2023.03.10.06.47.35
+        by smtp.gmail.com with ESMTPSA id q12-20020a4ad54c000000b005252e5b6604sm834079oos.36.2023.03.10.06.47.33
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 10 Mar 2023 06:47:35 -0800 (PST)
-Received: (nullmailer pid 1543182 invoked by uid 1000);
-        Fri, 10 Mar 2023 14:47:10 -0000
+        Fri, 10 Mar 2023 06:47:33 -0800 (PST)
+Received: (nullmailer pid 1543252 invoked by uid 1000);
+        Fri, 10 Mar 2023 14:47:11 -0000
 From:   Rob Herring <robh@kernel.org>
-To:     Jassi Brar <jassisinghbrar@gmail.com>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH] mailbox: Use of_property_read_bool() for boolean properties
-Date:   Fri, 10 Mar 2023 08:47:10 -0600
-Message-Id: <20230310144710.1543139-1-robh@kernel.org>
+To:     Bin Liu <bin.liu@mediatek.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Tiffany Lin <tiffany.lin@mediatek.com>,
+        Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
+        Yunfei Dong <yunfei.dong@mediatek.com>,
+        Hyun Kwon <hyun.kwon@xilinx.com>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Michal Simek <michal.simek@xilinx.com>
+Cc:     devicetree@vger.kernel.org, linux-media@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org
+Subject: [PATCH] media: Use of_property_present() for testing DT property presence
+Date:   Fri, 10 Mar 2023 08:47:11 -0600
+Message-Id: <20230310144711.1543225-1-robh@kernel.org>
 X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
-        autolearn_force=no version=3.4.6
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -61,45 +72,71 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 It is preferred to use typed property access functions (i.e.
 of_property_read_<type> functions) rather than low-level
-of_get_property/of_find_property functions for reading properties.
-Convert reading boolean properties to to of_property_read_bool().
+of_get_property/of_find_property functions for reading properties. As
+part of this, convert of_get_property/of_find_property calls to the
+recently added of_property_present() helper when we just want to test
+for presence of a property and nothing more.
 
 Signed-off-by: Rob Herring <robh@kernel.org>
 ---
- drivers/mailbox/hi6220-mailbox.c | 5 +----
- drivers/mailbox/omap-mailbox.c   | 3 +--
- 2 files changed, 2 insertions(+), 6 deletions(-)
+ drivers/media/platform/mediatek/jpeg/mtk_jpeg_core.c        | 2 +-
+ drivers/media/platform/mediatek/vcodec/mtk_vcodec_dec_drv.c | 2 +-
+ drivers/media/platform/mediatek/vcodec/mtk_vcodec_enc_drv.c | 2 +-
+ drivers/media/platform/xilinx/xilinx-vtc.c                  | 2 +-
+ 4 files changed, 4 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/mailbox/hi6220-mailbox.c b/drivers/mailbox/hi6220-mailbox.c
-index fca61f5312d9..1c73c63598f5 100644
---- a/drivers/mailbox/hi6220-mailbox.c
-+++ b/drivers/mailbox/hi6220-mailbox.c
-@@ -325,10 +325,7 @@ static int hi6220_mbox_probe(struct platform_device *pdev)
- 	writel(~0x0, ACK_INT_CLR_REG(mbox->ipc));
+diff --git a/drivers/media/platform/mediatek/jpeg/mtk_jpeg_core.c b/drivers/media/platform/mediatek/jpeg/mtk_jpeg_core.c
+index 969516a940ba..1a2b3214b6f8 100644
+--- a/drivers/media/platform/mediatek/jpeg/mtk_jpeg_core.c
++++ b/drivers/media/platform/mediatek/jpeg/mtk_jpeg_core.c
+@@ -1757,7 +1757,7 @@ static int mtk_jpeg_probe(struct platform_device *pdev)
+ 	jpeg->vdev->device_caps = V4L2_CAP_STREAMING |
+ 				  V4L2_CAP_VIDEO_M2M_MPLANE;
  
- 	/* use interrupt for tx's ack */
--	if (of_find_property(node, "hi6220,mbox-tx-noirq", NULL))
--		mbox->tx_irq_mode = false;
--	else
--		mbox->tx_irq_mode = true;
-+	mbox->tx_irq_mode = !of_property_read_bool(node, "hi6220,mbox-tx-noirq");
+-	if (of_get_property(pdev->dev.of_node, "dma-ranges", NULL))
++	if (of_property_present(pdev->dev.of_node, "dma-ranges"))
+ 		dma_set_mask_and_coherent(&pdev->dev, DMA_BIT_MASK(34));
  
- 	if (mbox->tx_irq_mode)
- 		mbox->controller.txdone_irq = true;
-diff --git a/drivers/mailbox/omap-mailbox.c b/drivers/mailbox/omap-mailbox.c
-index 098c82d87137..fd28ac2120df 100644
---- a/drivers/mailbox/omap-mailbox.c
-+++ b/drivers/mailbox/omap-mailbox.c
-@@ -763,8 +763,7 @@ static int omap_mbox_probe(struct platform_device *pdev)
+ 	ret = video_register_device(jpeg->vdev, VFL_TYPE_VIDEO, -1);
+diff --git a/drivers/media/platform/mediatek/vcodec/mtk_vcodec_dec_drv.c b/drivers/media/platform/mediatek/vcodec/mtk_vcodec_dec_drv.c
+index 174a6eec2f54..d2db8ccaa4c0 100644
+--- a/drivers/media/platform/mediatek/vcodec/mtk_vcodec_dec_drv.c
++++ b/drivers/media/platform/mediatek/vcodec/mtk_vcodec_dec_drv.c
+@@ -321,7 +321,7 @@ static int mtk_vcodec_probe(struct platform_device *pdev)
+ 		}
+ 	}
  
- 		finfo->name = child->name;
+-	if (of_get_property(pdev->dev.of_node, "dma-ranges", NULL)) {
++	if (of_property_present(pdev->dev.of_node, "dma-ranges")) {
+ 		ret = dma_set_mask_and_coherent(&pdev->dev, DMA_BIT_MASK(34));
+ 		if (ret) {
+ 			mtk_v4l2_err("Failed to set mask");
+diff --git a/drivers/media/platform/mediatek/vcodec/mtk_vcodec_enc_drv.c b/drivers/media/platform/mediatek/vcodec/mtk_vcodec_enc_drv.c
+index 9095186d5495..199042034a3c 100644
+--- a/drivers/media/platform/mediatek/vcodec/mtk_vcodec_enc_drv.c
++++ b/drivers/media/platform/mediatek/vcodec/mtk_vcodec_enc_drv.c
+@@ -344,7 +344,7 @@ static int mtk_vcodec_probe(struct platform_device *pdev)
+ 		goto err_event_workq;
+ 	}
  
--		if (of_find_property(child, "ti,mbox-send-noirq", NULL))
--			finfo->send_no_irq = true;
-+		finfo->send_no_irq = of_property_read_bool(child, "ti,mbox-send-noirq");
+-	if (of_get_property(pdev->dev.of_node, "dma-ranges", NULL))
++	if (of_property_present(pdev->dev.of_node, "dma-ranges"))
+ 		dma_set_mask_and_coherent(&pdev->dev, DMA_BIT_MASK(34));
  
- 		if (finfo->tx_id >= num_fifos || finfo->rx_id >= num_fifos ||
- 		    finfo->tx_usr >= num_users || finfo->rx_usr >= num_users)
+ 	ret = video_register_device(vfd_enc, VFL_TYPE_VIDEO, -1);
+diff --git a/drivers/media/platform/xilinx/xilinx-vtc.c b/drivers/media/platform/xilinx/xilinx-vtc.c
+index 0ae0208d7529..cb4b421a348d 100644
+--- a/drivers/media/platform/xilinx/xilinx-vtc.c
++++ b/drivers/media/platform/xilinx/xilinx-vtc.c
+@@ -254,7 +254,7 @@ struct xvtc_device *xvtc_of_get(struct device_node *np)
+ 	struct xvtc_device *found = NULL;
+ 	struct xvtc_device *xvtc;
+ 
+-	if (!of_find_property(np, "xlnx,vtc", NULL))
++	if (!of_property_present(np, "xlnx,vtc"))
+ 		return NULL;
+ 
+ 	xvtc_node = of_parse_phandle(np, "xlnx,vtc", 0);
 -- 
 2.39.2
 
