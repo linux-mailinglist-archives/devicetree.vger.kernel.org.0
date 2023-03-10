@@ -2,59 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 68F626B4764
-	for <lists+devicetree@lfdr.de>; Fri, 10 Mar 2023 15:50:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 982D86B47F3
+	for <lists+devicetree@lfdr.de>; Fri, 10 Mar 2023 15:56:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233196AbjCJOuM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 10 Mar 2023 09:50:12 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47986 "EHLO
+        id S233507AbjCJO4b (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 10 Mar 2023 09:56:31 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32980 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233193AbjCJOsj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Mar 2023 09:48:39 -0500
-Received: from mail-ot1-f49.google.com (mail-ot1-f49.google.com [209.85.210.49])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5B3DE1223A3;
-        Fri, 10 Mar 2023 06:47:40 -0800 (PST)
-Received: by mail-ot1-f49.google.com with SMTP id r23-20020a05683001d700b00690eb18529fso3053402ota.1;
-        Fri, 10 Mar 2023 06:47:40 -0800 (PST)
+        with ESMTP id S233619AbjCJOyt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Mar 2023 09:54:49 -0500
+Received: from mail-oa1-x2c.google.com (mail-oa1-x2c.google.com [IPv6:2001:4860:4864:20::2c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B545F12C73C;
+        Fri, 10 Mar 2023 06:50:20 -0800 (PST)
+Received: by mail-oa1-x2c.google.com with SMTP id 586e51a60fabf-176d93cd0daso6080626fac.4;
+        Fri, 10 Mar 2023 06:50:20 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678459659;
+        d=1e100.net; s=20210112; t=1678459692;
         h=content-transfer-encoding:mime-version:message-id:date:subject:cc
          :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=v0H5Wu4JK6lQArjMSAowLoAG+26f+c1LrnbxEzmAS4U=;
-        b=svkfSYyk/0FO4ObyJ5l2snPPQbxiDwyqbb4kN0P/EN97mWcvqAZl3y+Wxind441S46
-         P8dv+o2kcvWPUK9RU/6fe1svX6JICaqzHJ4Ats4k8Ft1cj2URC7jDfqxxaDZdfL6ToZw
-         wCNrO+xK8FVBVJ+1s2G/1x6qlIJ0PBMuYup0m6dUcSAnFjrA/C8CzA9lGapJkLxwPMqo
-         43cC5lDWe0SYIDRHibwdIOGNC8CE/1ayzOjPvRs9qKynzAgd+1clWPfodIK21c9zhjNI
-         R5I6NtEEBX3SCcb0rmSgiyckOcM3d2Ah+rZ7WzbhkMyORsQqKEIb5wcviGAU0KpF+S1k
-         BMvg==
-X-Gm-Message-State: AO0yUKWdE5yTevJVY/YjkBtwf9KxDD3aLDS/+oUbA7taMzGF5eraR4bF
-        drAJFE+XlP8JMBf0hZZsVw==
-X-Google-Smtp-Source: AK7set+1v0Oy317O/GgYXBQ/6eEBO/u3ew/d9R+Nk1dh3yQXWhHfEHApW3jqyFaoPyN4Vuj/ZB6org==
-X-Received: by 2002:a05:6830:807:b0:694:39e5:fdc8 with SMTP id r7-20020a056830080700b0069439e5fdc8mr12074773ots.32.1678459659397;
-        Fri, 10 Mar 2023 06:47:39 -0800 (PST)
+        bh=LmtctEeDb3ppifp5NomE6kdEpcIqenZR0+DZDZHuGYY=;
+        b=Odw92fzub4dal7uybV59Gu9KnIbYM7APnc1imcmYOEmkOcd/P0SARJa8ezrhdn0qBM
+         JRR2gpxQNvJu0ockf7H6SQWoVJ22s9eRg5K2Lakn3oGyq2Mao5Z6cApGhWJd8FIsuyyH
+         jc07D4OhBCdEK19F1ciSRX8Bimajxob/rLEFOLOY9f0VWpr+l1c0hbXo4i2qKdfSs0jY
+         Yv4tVr8WjrK2WN1R7n3fMB06/EZgItjxGhdQ+GhR5LBXeeZdBvMs9W7cslo2J8TFAuF8
+         5ozstHrzBE/WU32GPoa3Rtxb2JHVvUaVrPu6qBOWt+DdR13cAMxOSRxYaS2WC/f84gjw
+         JJBw==
+X-Gm-Message-State: AO0yUKVjYNkCY18hI3xw3C407V5tnqZORDaQlGnRO5/o4thj/IFqX9j6
+        du1KTXyKL+MaeExZwrcB+3ih8iyWxg==
+X-Google-Smtp-Source: AK7set9Xe8s2Zk7Un7yKSStpf7vMjAfknMbxWORFUi9dXdv+Wk4SenfGgVZi0dZN6CjGkL85QOnRxQ==
+X-Received: by 2002:a05:6871:546:b0:16e:49fb:f78a with SMTP id t6-20020a056871054600b0016e49fbf78amr15408436oal.39.1678459692624;
+        Fri, 10 Mar 2023 06:48:12 -0800 (PST)
 Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id a26-20020a9d725a000000b00684c5211c58sm107392otk.60.2023.03.10.06.47.38
+        by smtp.gmail.com with ESMTPSA id ds26-20020a0568705b1a00b0017243edbe5bsm68629oab.58.2023.03.10.06.48.04
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 10 Mar 2023 06:47:38 -0800 (PST)
-Received: (nullmailer pid 1542936 invoked by uid 1000);
-        Fri, 10 Mar 2023 14:47:09 -0000
+        Fri, 10 Mar 2023 06:48:04 -0800 (PST)
+Received: (nullmailer pid 1543096 invoked by uid 1000);
+        Fri, 10 Mar 2023 14:47:10 -0000
 From:   Rob Herring <robh@kernel.org>
-To:     Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>,
-        Joerg Roedel <joro@8bytes.org>
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        iommu@lists.linux.dev, linux-kernel@vger.kernel.org
-Subject: [PATCH] iommu: Use of_property_present() for testing DT property presence
-Date:   Fri, 10 Mar 2023 08:47:09 -0600
-Message-Id: <20230310144709.1542910-1-robh@kernel.org>
+To:     Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>, Guo Ren <guoren@kernel.org>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-csky@vger.kernel.org
+Subject: [PATCH] irqchip: Use of_property_read_bool() for boolean properties
+Date:   Fri, 10 Mar 2023 08:47:10 -0600
+Message-Id: <20230310144710.1543070-1-robh@kernel.org>
 X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
-        autolearn_force=no version=3.4.6
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,
+        SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -63,43 +62,41 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 It is preferred to use typed property access functions (i.e.
 of_property_read_<type> functions) rather than low-level
-of_get_property/of_find_property functions for reading properties. As
-part of this, convert of_get_property/of_find_property calls to the
-recently added of_property_present() helper when we just want to test
-for presence of a property and nothing more.
+of_get_property/of_find_property functions for reading properties.
+Convert reading boolean properties to to of_property_read_bool().
 
 Signed-off-by: Rob Herring <robh@kernel.org>
 ---
- drivers/iommu/arm/arm-smmu/arm-smmu.c | 2 +-
- drivers/iommu/ipmmu-vmsa.c            | 2 +-
+ drivers/irqchip/irq-csky-apb-intc.c | 2 +-
+ drivers/irqchip/irq-gic-v2m.c       | 2 +-
  2 files changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/iommu/arm/arm-smmu/arm-smmu.c b/drivers/iommu/arm/arm-smmu/arm-smmu.c
-index 2ff7a72cf377..d0843caf8760 100644
---- a/drivers/iommu/arm/arm-smmu/arm-smmu.c
-+++ b/drivers/iommu/arm/arm-smmu/arm-smmu.c
-@@ -139,7 +139,7 @@ static int arm_smmu_register_legacy_master(struct device *dev,
- 	int err;
+diff --git a/drivers/irqchip/irq-csky-apb-intc.c b/drivers/irqchip/irq-csky-apb-intc.c
+index 42d8a2438ebc..6710691e4c25 100644
+--- a/drivers/irqchip/irq-csky-apb-intc.c
++++ b/drivers/irqchip/irq-csky-apb-intc.c
+@@ -68,7 +68,7 @@ static void __init ck_set_gc(struct device_node *node, void __iomem *reg_base,
+ 	gc->chip_types[0].chip.irq_mask = irq_gc_mask_clr_bit;
+ 	gc->chip_types[0].chip.irq_unmask = irq_gc_mask_set_bit;
  
- 	np = dev_get_dev_node(dev);
--	if (!np || !of_find_property(np, "#stream-id-cells", NULL)) {
-+	if (!np || !of_property_present(np, "#stream-id-cells")) {
- 		of_node_put(np);
- 		return -ENODEV;
- 	}
-diff --git a/drivers/iommu/ipmmu-vmsa.c b/drivers/iommu/ipmmu-vmsa.c
-index bdf1a4e5eae0..f4470303d906 100644
---- a/drivers/iommu/ipmmu-vmsa.c
-+++ b/drivers/iommu/ipmmu-vmsa.c
-@@ -1014,7 +1014,7 @@ static int ipmmu_probe(struct platform_device *pdev)
- 	 * the lack of has_cache_leaf_nodes flag or renesas,ipmmu-main property.
- 	 */
- 	if (!mmu->features->has_cache_leaf_nodes ||
--	    !of_find_property(pdev->dev.of_node, "renesas,ipmmu-main", NULL))
-+	    !of_property_present(pdev->dev.of_node, "renesas,ipmmu-main"))
- 		mmu->root = mmu;
- 	else
- 		mmu->root = ipmmu_find_root();
+-	if (of_find_property(node, "csky,support-pulse-signal", NULL))
++	if (of_property_read_bool(node, "csky,support-pulse-signal"))
+ 		gc->chip_types[0].chip.irq_unmask = irq_ck_mask_set_bit;
+ }
+ 
+diff --git a/drivers/irqchip/irq-gic-v2m.c b/drivers/irqchip/irq-gic-v2m.c
+index f1e75b35a52a..f2ff4387870d 100644
+--- a/drivers/irqchip/irq-gic-v2m.c
++++ b/drivers/irqchip/irq-gic-v2m.c
+@@ -421,7 +421,7 @@ static int __init gicv2m_of_init(struct fwnode_handle *parent_handle,
+ 		u32 spi_start = 0, nr_spis = 0;
+ 		struct resource res;
+ 
+-		if (!of_find_property(child, "msi-controller", NULL))
++		if (!of_property_read_bool(child, "msi-controller"))
+ 			continue;
+ 
+ 		ret = of_address_to_resource(child, 0, &res);
 -- 
 2.39.2
 
