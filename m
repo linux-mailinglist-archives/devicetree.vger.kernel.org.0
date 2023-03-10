@@ -2,68 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C7C866B389C
-	for <lists+devicetree@lfdr.de>; Fri, 10 Mar 2023 09:30:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 696FC6B38A5
+	for <lists+devicetree@lfdr.de>; Fri, 10 Mar 2023 09:30:31 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230416AbjCJIaP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 10 Mar 2023 03:30:15 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38474 "EHLO
+        id S230465AbjCJIa1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 10 Mar 2023 03:30:27 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38618 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230089AbjCJIaP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Mar 2023 03:30:15 -0500
-Received: from mail-yw1-x1134.google.com (mail-yw1-x1134.google.com [IPv6:2607:f8b0:4864:20::1134])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7323AE9817
-        for <devicetree@vger.kernel.org>; Fri, 10 Mar 2023 00:29:56 -0800 (PST)
-Received: by mail-yw1-x1134.google.com with SMTP id 00721157ae682-536c2a1cc07so84300987b3.5
-        for <devicetree@vger.kernel.org>; Fri, 10 Mar 2023 00:29:56 -0800 (PST)
+        with ESMTP id S230444AbjCJIa0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Mar 2023 03:30:26 -0500
+Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0F829E91B6
+        for <devicetree@vger.kernel.org>; Fri, 10 Mar 2023 00:30:18 -0800 (PST)
+Received: by mail-ed1-x531.google.com with SMTP id ay14so17224948edb.11
+        for <devicetree@vger.kernel.org>; Fri, 10 Mar 2023 00:30:17 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1678436995;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=ICV7h+pf/rdMI7ysm0+yuoMHuqjwB0UAi1mmGinxoQw=;
-        b=wwsKVggsgfCB8PI3WpaD0vy37rNiiEQaarXZf46/WQiCJVqegR/ZzRlbLrcqcjPDFr
-         JMmWGlWxoVWXzEOZOGISruOE8Uv0LkzkOmjlR5Ai6ShLF3d8soKbNlLjvwaLPUmrv9xA
-         vvYUBmiDOeVZdsrJEgCVxA7NlnuBE2XtcEqatypOOeKl31gz+ZKZk1QLFzpviWhRGBGG
-         /sUaJI6k6BBSR2XXCyD451HnhhIjmQdrCfCMTchE/RlXjBOXh/yF+KhSO342gn1xe0Sb
-         D+kWJwIGM7KZ7s6fjUWvosAJFeAjcH+ZFdxQLHSC4KYZdFaUrkIZ57m5wJvDNPfacZNS
-         z+EQ==
+        d=linaro.org; s=google; t=1678437016;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=pgYx2UGfTwFbl4TCcYTYMnoS1bTy+izVwo0DNp29p7Y=;
+        b=TpPrFuhkRg6/JR1Q/Y/rDRt4vA2o3fQpjMNEWM5DXTB01lKEXzCMaA+8ZrgVRLh2Ho
+         3uno5hha299c99A5JU/E578aNcGPZxfHTzqNlonTB24JKh/ywl60IEd0UNHN/gry1ahV
+         YV0GV7P+7EZs7q8EWpXYNeZ0qpA+bfiRs2KOYOKZ2IX7NlqEN77jRaDRyz8cvVkZIiG0
+         n+Oo+9lVq1yAhVEQx7Lly2BsHet0I7xPBgIp1BTm0h0nipYqXMb0qj0lcY/xki+hycCy
+         I5573tGgDw36aCo3RAb3jBjfja67SdE4hq3mBJzptM79GvBQdXWYfrRqC6dtdolRNSfh
+         /sIw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678436995;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=ICV7h+pf/rdMI7ysm0+yuoMHuqjwB0UAi1mmGinxoQw=;
-        b=4fEEBiWOrAausah7t1vi8mXIPm5GnP+/CQa97b1oXByikmgGRqXDb344CAkQe3OZpt
-         AU+nZiRKk5O6mRqYk9LkDKy5OLaT5PXIzNSO5x1A4K/vzxDY7XoEkyPml62BMaOvoI0w
-         Oq4S6zW75Qg5lUBRTLMaHDfMoaQuR7cIy3r+07uYjEB1Q+EYQykQKbFHjLSOi8ifBdkV
-         qDW3jGeuOXEJHrV8bw28CqefonuDpQS1C/CYXT4J4hGp7/oXKjQAvqNPWShO8Qxv2HBC
-         WakSzKHe1ipjd5vggVZDjrr2YB3mwuoJwyESfMYk1DER3ZPwOa7DoZRM2zac+zh+LInZ
-         RPFw==
-X-Gm-Message-State: AO0yUKUsgJYv2ihGJoWVVGovo8FGWZyUlpc2lvCJMJarN61VHj7v3Uw6
-        FTDMPQS/+7+FwA7lCiwpJEw94wS4wW8KQW3Gyu5OMw==
-X-Google-Smtp-Source: AK7set/4BTgYluz28No6CAZL3nYPwWvQ+rrktL8qCi6XHRkSqmyDjnFzWioP1GfzMfc4UN9JxUKLnfoVJjBU3uSSYI4=
-X-Received: by 2002:a81:4317:0:b0:52e:dddf:82b9 with SMTP id
- q23-20020a814317000000b0052edddf82b9mr16336442ywa.10.1678436995632; Fri, 10
- Mar 2023 00:29:55 -0800 (PST)
+        d=1e100.net; s=20210112; t=1678437016;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=pgYx2UGfTwFbl4TCcYTYMnoS1bTy+izVwo0DNp29p7Y=;
+        b=T0CRt5apFHM2NZ8mWrxdXfQcQWGM40Ibev4Ko+WKeEYavogs8F8wFLw3/AivEBlLu5
+         trC0oDfC+UHkoN8lW21gqGaLKJdNHuyKlKhlT3nQyIguDJsrYjZAk9JWxZ4l3EsSMMHf
+         DlEIpoKoze8ggjuZRoZdCexVJI6VjWab4Fj5gRlh6sgbTtrKFEEoF2T7vWaLd3oM5/5C
+         tc+PT4otwCHmtmjy478qmbOfQjN0mG2AXjSH8Nal4S2KQJahYaIFoP15O+2SocmAtMNy
+         WOoss8Boh7oELspQ5cGF8bP/zY+NHw65rbeG2r+l+w80+b/VYnG774jsaOiDmUVgFXmj
+         MsJg==
+X-Gm-Message-State: AO0yUKU9jgyQ0olDkJD5muWHDsiXbXmJCGA4LJvi/VfkkbVUzVp4csnF
+        guaP/UekYGow0rK/5S/EGLqz8Q==
+X-Google-Smtp-Source: AK7set8NOZrDKPAzmWgYGJhsw3eZjf+xuOWPeEVf+UIyE+dOuruW3yvUgVjy69Ef6oDeGn0Dx/0UAQ==
+X-Received: by 2002:a17:907:1b1e:b0:8b2:8876:2a11 with SMTP id mp30-20020a1709071b1e00b008b288762a11mr1066346ejc.28.1678437016554;
+        Fri, 10 Mar 2023 00:30:16 -0800 (PST)
+Received: from ?IPV6:2a02:810d:15c0:828:2a59:841a:ebc:7974? ([2a02:810d:15c0:828:2a59:841a:ebc:7974])
+        by smtp.gmail.com with ESMTPSA id k7-20020a1709062a4700b008e385438c76sm676728eje.55.2023.03.10.00.30.15
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 10 Mar 2023 00:30:16 -0800 (PST)
+Message-ID: <86e0ee78-bc39-3dea-ca8a-7270362a71c2@linaro.org>
+Date:   Fri, 10 Mar 2023 09:30:14 +0100
 MIME-Version: 1.0
-References: <20230309225041.477440-1-sre@kernel.org> <20230309225041.477440-8-sre@kernel.org>
-In-Reply-To: <20230309225041.477440-8-sre@kernel.org>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Fri, 10 Mar 2023 09:29:44 +0100
-Message-ID: <CACRpkdZc_=C09tVSMFEfhCp4tgbYsDvtKe4w9QCyXz4Z4936ug@mail.gmail.com>
-Subject: Re: [PATCHv1 07/11] power: supply: generic-adc-battery: drop memory
- alloc error message
-To:     Sebastian Reichel <sre@kernel.org>
-Cc:     Matti Vaittinen <mazziesaccount@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.8.0
+Subject: Re: [PATCH v2 01/18] dt-bindings: watchdog: mediatek,mtk-wdt: add
+ mt8365
+Content-Language: en-US
+To:     Alexandre Mergnat <amergnat@baylibre.com>,
+        Zhiyong Tao <zhiyong.tao@mediatek.com>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        =?UTF-8?Q?Bernhard_Rosenkr=c3=a4nzer?= <bero@baylibre.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+        Chaotian Jing <chaotian.jing@mediatek.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Wenbin Mei <wenbin.mei@mediatek.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>
+Cc:     linux-mmc@vger.kernel.org, Alexandre Bailon <abailon@baylibre.com>,
+        devicetree@vger.kernel.org,
+        Amjad Ouled-Ameur <aouledameur@baylibre.com>,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-gpio@vger.kernel.org, linux-watchdog@vger.kernel.org,
+        linux-mediatek@lists.infradead.org,
+        Fabien Parent <fparent@baylibre.com>
+References: <20230203-evk-board-support-v2-0-6ec7cdb10ccf@baylibre.com>
+ <20230203-evk-board-support-v2-1-6ec7cdb10ccf@baylibre.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230203-evk-board-support-v2-1-6ec7cdb10ccf@baylibre.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -72,14 +94,13 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Mar 9, 2023 at 11:50=E2=80=AFPM Sebastian Reichel <sre@kernel.org> =
-wrote:
+On 07/03/2023 14:17, Alexandre Mergnat wrote:
+> Add binding description for mediatek,mt8365-wdt
+> 
+> Signed-off-by: Alexandre Mergnat <amergnat@baylibre.com>
 
-> Error printing happens automatically for memory allocation problems.
->
-> Signed-off-by: Sebastian Reichel <sre@kernel.org>
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
+Best regards,
+Krzysztof
 
-Yours,
-Linus Walleij
