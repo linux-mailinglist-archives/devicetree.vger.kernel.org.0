@@ -2,125 +2,144 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C41126B3EA5
-	for <lists+devicetree@lfdr.de>; Fri, 10 Mar 2023 13:05:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E16886B3EAC
+	for <lists+devicetree@lfdr.de>; Fri, 10 Mar 2023 13:06:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229721AbjCJMFn convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Fri, 10 Mar 2023 07:05:43 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53062 "EHLO
+        id S230184AbjCJMGJ convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Fri, 10 Mar 2023 07:06:09 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53632 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230098AbjCJMF2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Mar 2023 07:05:28 -0500
-Received: from mail-qt1-f172.google.com (mail-qt1-f172.google.com [209.85.160.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1F9DEF34CD;
-        Fri, 10 Mar 2023 04:05:26 -0800 (PST)
-Received: by mail-qt1-f172.google.com with SMTP id r16so5315216qtx.9;
-        Fri, 10 Mar 2023 04:05:26 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678449925;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=M8UNkrLW/HQojg28MfnnyGYVjttNpcn/zGjRX4vMdGU=;
-        b=eX7M9cdLl2JTraSX1senV5BGQ640IJDgBvnidCWcvt5YmGdBU7W/WZaJx9oTCGEU83
-         S6YM7Mdf6zjpNCACSfEXQeS9MsYyhizwfqj8tnCmhCifjOzuDoeAWdiiQn9asBHkNGOZ
-         xf7Qn68YKuJNRnjw0ONXfEDOUuK6ZmiokiWDD/2p66YnruXMmZ/JtGdgOec1lxV6tR2E
-         7bhhc2m5kR74CK3YKVT1y+IOz3fUzF9oxJx55NsybXi6GXAuY2jqw56JYMZQwyKPEB+M
-         zJLynCCC9+u6tVpCzDdQEtoGe0JxTKZEZYD4a6wWTtHTWqrAxpdpxWrezWYFjgM9wIZR
-         oKPw==
-X-Gm-Message-State: AO0yUKXWRBwFA6qgtlG+r3DctEIYDKJb/qJPNRPwu6BQ44sT+WkPUPzn
-        ilaeW6pFjuGVjPAdzxCOBTzbXrvevLmxSg==
-X-Google-Smtp-Source: AK7set+CqID7+IJqbGGixhQF4yvpRZA6GBZSshSdlfY83BI0NSeZiSrHNFvbT9TUhZBUdGkrfZFiiw==
-X-Received: by 2002:a05:622a:170b:b0:3b6:3e4f:f876 with SMTP id h11-20020a05622a170b00b003b63e4ff876mr8371317qtk.18.1678449924831;
-        Fri, 10 Mar 2023 04:05:24 -0800 (PST)
-Received: from mail-yb1-f182.google.com (mail-yb1-f182.google.com. [209.85.219.182])
-        by smtp.gmail.com with ESMTPSA id c1-20020ac853c1000000b003b323387c1asm1296154qtq.18.2023.03.10.04.05.24
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 10 Mar 2023 04:05:24 -0800 (PST)
-Received: by mail-yb1-f182.google.com with SMTP id t4so4986171ybg.11;
-        Fri, 10 Mar 2023 04:05:24 -0800 (PST)
-X-Received: by 2002:a5b:18e:0:b0:967:f8b2:7a42 with SMTP id
- r14-20020a5b018e000000b00967f8b27a42mr12326443ybl.7.1678449923837; Fri, 10
- Mar 2023 04:05:23 -0800 (PST)
-MIME-Version: 1.0
-References: <20230217185225.43310-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <20230217185225.43310-4-prabhakar.mahadev-lad.rj@bp.renesas.com>
-In-Reply-To: <20230217185225.43310-4-prabhakar.mahadev-lad.rj@bp.renesas.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Fri, 10 Mar 2023 13:05:11 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdU=mCAWQNFCkkCxBkDyYTLM87QdrYMYE9hpOv1fuS=bWw@mail.gmail.com>
-Message-ID: <CAMuHMdU=mCAWQNFCkkCxBkDyYTLM87QdrYMYE9hpOv1fuS=bWw@mail.gmail.com>
-Subject: Re: [PATCH 3/4] arm64: dts: renesas: r9a07g044: Update IRQ numbers
- for SSI channels
-To:     Prabhakar <prabhakar.csengg@gmail.com>
-Cc:     Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
+        with ESMTP id S230145AbjCJMGC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Mar 2023 07:06:02 -0500
+Received: from fd01.gateway.ufhost.com (fd01.gateway.ufhost.com [61.152.239.71])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EAA25F34D6;
+        Fri, 10 Mar 2023 04:05:56 -0800 (PST)
+Received: from EXMBX166.cuchost.com (unknown [175.102.18.54])
+        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+        (Client CN "EXMBX166", Issuer "EXMBX166" (not verified))
+        by fd01.gateway.ufhost.com (Postfix) with ESMTP id 6827D24E2B9;
+        Fri, 10 Mar 2023 20:05:55 +0800 (CST)
+Received: from EXMBX073.cuchost.com (172.16.6.83) by EXMBX166.cuchost.com
+ (172.16.6.76) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Fri, 10 Mar
+ 2023 20:05:55 +0800
+Received: from xiaofei.localdomain (180.164.60.184) by EXMBX073.cuchost.com
+ (172.16.6.83) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Fri, 10 Mar
+ 2023 20:05:54 +0800
+From:   Jack Zhu <jack.zhu@starfivetech.com>
+To:     Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Maxime Ripard <mripard@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>, alsa-devel@alsa-project.org,
-        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Biju Das <biju.das.jz@bp.renesas.com>,
-        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+        Robert Foss <rfoss@kernel.org>,
+        "Todor Tomov" <todor.too@gmail.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        "Laurent Pinchart" <laurent.pinchart@ideasonboard.com>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Andrzej Pietrasiewicz <andrzejtp2010@gmail.com>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Eugen Hristev <eugen.hristev@collabora.com>
+CC:     <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <jack.zhu@starfivetech.com>,
+        <changhuang.liang@starfivetech.com>
+Subject: [PATCH v2 0/6] Add Starfive Camera Subsystem driver
+Date:   Fri, 10 Mar 2023 20:05:47 +0800
+Message-ID: <20230310120553.60586-1-jack.zhu@starfivetech.com>
+X-Mailer: git-send-email 2.34.1
+MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
+X-Originating-IP: [180.164.60.184]
+X-ClientProxiedBy: EXCAS066.cuchost.com (172.16.6.26) To EXMBX073.cuchost.com
+ (172.16.6.83)
+X-YovoleRuleAgent: yovoleflag
 Content-Transfer-Encoding: 8BIT
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
-        autolearn=no autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Prabhakar,
+Hi,
 
-On Fri, Feb 17, 2023 at 7:53 PM Prabhakar <prabhakar.csengg@gmail.com> wrote:
-> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
->
-> From R01UH0914EJ0120 Rev.1.20 HW manual the interrupt numbers for SSI
-> channels have been updated,
->
-> SPI 329 - SSIF0 is now marked as reserved
-> SPI 333 - SSIF1 is now marked as reserved
-> SPI 335 - SSIF2 is now marked as reserved
-> SPI 336 - SSIF2 is now marked as reserved
-> SPI 341 - SSIF3 is now marked as reserved
->
-> This patch drops the above IRQs from SoC DTSI.
->
-> Fixes: 92a341315afc9 ("arm64: dts: renesas: r9a07g044: Add SSI support")
-> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> Reviewed-by: Biju Das <biju.das.jz@bp.renesas.com>
+This patch series adds support for the Starfive Camera Subsystem
+found on Starfive JH7110 SoC.
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-i.e. will queue in renesas-devel for v6.4.
+The driver implements V4L2, Media controller and V4L2 subdev interfaces.
+Camera sensor using V4L2 subdev interface in the kernel is supported.
 
-> As this is is a fixes patch and we are still waiting for [0] to be merged
-> shall do the same for V2L SoC?
->
-> [0] https://patchwork.kernel.org/project/linux-renesas-soc/cover/20230131223529.11905-1-prabhakar.mahadev-lad.rj@bp.renesas.com/
+The driver is tested on VisionFive V2 board with IMX219 camera sensor.
+GStreamer 1.18.5 with v4l2src plugin is supported.
 
-No need to send, I cloned the above with
-    s/G2L/V2L/
-    s/g044/g054/
-    s/G044/G054/
-    s/R01UH0914EJ0120/R01UH0936EJ0120/
+Changes since v1:
+- Deleted starfive,jh7110-mipi-csi2.yaml.
+- Converted cdns,csi2rx.txt to cdns,csi2rx.yaml and added ‘resets’
+  properties.
+- Added ‘cdns,csi2rx.yaml’ in ‘CADENCE MIPI-CSI2 BRIDGES’ entry.
+- The following contents were modified in starfive,jh7110-camss.yaml:
+  dropped quotes from ’id’ and ‘schema’; dropped ‘|’ for ‘description’;
+  corrected the wrong or redundant words: ‘a ISP’, ‘PD ISP’;
+  dropped ‘minItems’ for ‘reg’, ‘clocks’, ‘resets’ and ‘interrupts’;
+  dropped the '_clk' and 'rst_' prefix about the 'clock-names' and
+  'reset-names';
+  changed ‘endpoint@1’ to ‘endpoint’; updated examples;
+- Updated Subject for some patches.
+- Merged patch 6, 7, 8, 9, 10, 11 into one patch.
 
-and
-Fixes: cd0339ec25895c0b ("arm64: dts: renesas: r9a07g054: Add
-SSI{1,2,3} nodes and fillup the SSI0 stub node")
+Jack Zhu (6):
+  media: dt-bindings: Add bindings for JH7110 Camera Subsystem
+  media: dt-bindings: cadence-csi2rx: Convert to DT schema
+  media: admin-guide: Add starfive_camss.rst for Starfive Camera
+    Subsystem
+  media: cadence: Add support for external dphy and JH7110 SoC
+  MAINTAINERS: Add Starfive Camera Subsystem driver
+  media: starfive: Add Starfive Camera Subsystem driver
 
-Gr{oetje,eeting}s,
-
-                        Geert
+ .../admin-guide/media/starfive_camss.rst      |   68 +
+ .../media/starfive_camss_graph.dot            |   28 +
+ .../admin-guide/media/v4l-drivers.rst         |    1 +
+ .../devicetree/bindings/media/cdns,csi2rx.txt |  100 --
+ .../bindings/media/cdns,csi2rx.yaml           |  163 ++
+ .../bindings/media/starfive,jh7110-camss.yaml |  144 ++
+ MAINTAINERS                                   |   10 +
+ drivers/media/platform/Kconfig                |    1 +
+ drivers/media/platform/Makefile               |    1 +
+ drivers/media/platform/cadence/cdns-csi2rx.c  |  273 +++-
+ drivers/media/platform/starfive/Kconfig       |   18 +
+ drivers/media/platform/starfive/Makefile      |   14 +
+ drivers/media/platform/starfive/stf_camss.c   |  728 +++++++++
+ drivers/media/platform/starfive/stf_camss.h   |  104 ++
+ drivers/media/platform/starfive/stf_common.h  |  149 ++
+ drivers/media/platform/starfive/stf_isp.c     | 1079 ++++++++++++++
+ drivers/media/platform/starfive/stf_isp.h     |  183 +++
+ .../media/platform/starfive/stf_isp_hw_ops.c  | 1286 ++++++++++++++++
+ drivers/media/platform/starfive/stf_video.c   | 1286 ++++++++++++++++
+ drivers/media/platform/starfive/stf_video.h   |   89 ++
+ drivers/media/platform/starfive/stf_vin.c     | 1314 +++++++++++++++++
+ drivers/media/platform/starfive/stf_vin.h     |  194 +++
+ .../media/platform/starfive/stf_vin_hw_ops.c  |  357 +++++
+ include/uapi/linux/stf_isp_ioctl.h            |  127 ++
+ 24 files changed, 7607 insertions(+), 110 deletions(-)
+ create mode 100644 Documentation/admin-guide/media/starfive_camss.rst
+ create mode 100644 Documentation/admin-guide/media/starfive_camss_graph.dot
+ delete mode 100644 Documentation/devicetree/bindings/media/cdns,csi2rx.txt
+ create mode 100644 Documentation/devicetree/bindings/media/cdns,csi2rx.yaml
+ create mode 100644 Documentation/devicetree/bindings/media/starfive,jh7110-camss.yaml
+ create mode 100644 drivers/media/platform/starfive/Kconfig
+ create mode 100644 drivers/media/platform/starfive/Makefile
+ create mode 100644 drivers/media/platform/starfive/stf_camss.c
+ create mode 100644 drivers/media/platform/starfive/stf_camss.h
+ create mode 100644 drivers/media/platform/starfive/stf_common.h
+ create mode 100644 drivers/media/platform/starfive/stf_isp.c
+ create mode 100644 drivers/media/platform/starfive/stf_isp.h
+ create mode 100644 drivers/media/platform/starfive/stf_isp_hw_ops.c
+ create mode 100644 drivers/media/platform/starfive/stf_video.c
+ create mode 100644 drivers/media/platform/starfive/stf_video.h
+ create mode 100644 drivers/media/platform/starfive/stf_vin.c
+ create mode 100644 drivers/media/platform/starfive/stf_vin.h
+ create mode 100644 drivers/media/platform/starfive/stf_vin_hw_ops.c
+ create mode 100644 include/uapi/linux/stf_isp_ioctl.h
 
 -- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+2.34.1
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
