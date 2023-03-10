@@ -2,117 +2,138 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C8AE56B4B5F
-	for <lists+devicetree@lfdr.de>; Fri, 10 Mar 2023 16:43:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 040066B4A9F
+	for <lists+devicetree@lfdr.de>; Fri, 10 Mar 2023 16:25:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234431AbjCJPnP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 10 Mar 2023 10:43:15 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36668 "EHLO
+        id S232954AbjCJPZD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 10 Mar 2023 10:25:03 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53524 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233009AbjCJPms (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Mar 2023 10:42:48 -0500
-Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DDE067431D;
-        Fri, 10 Mar 2023 07:29:32 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1678462172; x=1709998172;
-  h=message-id:date:mime-version:to:cc:references:from:
-   subject:in-reply-to:content-transfer-encoding;
-  bh=uRO3ncPTAeH91sp2hvb+p3FEDisPorSl78+BYWZMFcs=;
-  b=f1a072YVVWTiY6veYABibib8mEgIWTPohQCguoeqRq07xTt39mNLzQtu
-   cSytQZtdfgpGLzoT/LKBd4sfUFDlF+eaUCoa48sgRb+NNsP5CToccQAW6
-   10xMQftSQkIZA93b/FemIijKq8/VP/Ss64Tkgma5rOXYq2ynJHSnpUxma
-   wAlJ+4kFIWXSPvWLutQXqT7xx0dIyXV35ZoLetLq1E98ZCsOonh0RUBbf
-   e+i/8NtqL9sepWm446o2DqZYZ7dl3/mFqhV1/LpQoFTZCqW24srSiuJt0
-   hFkmR8o3AeO+27glcjgDxwJIaekWFXt/OJ5lwMED40xtKUZo/Im+nyDIZ
-   Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10645"; a="399342959"
-X-IronPort-AV: E=Sophos;i="5.98,250,1673942400"; 
-   d="scan'208";a="399342959"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
-  by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 Mar 2023 07:06:24 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10645"; a="655216793"
-X-IronPort-AV: E=Sophos;i="5.98,250,1673942400"; 
-   d="scan'208";a="655216793"
-Received: from mattu-haswell.fi.intel.com (HELO [10.237.72.199]) ([10.237.72.199])
-  by orsmga006.jf.intel.com with ESMTP; 10 Mar 2023 07:06:19 -0800
-Message-ID: <a45ff335-0563-85c7-3b31-d6ca23a54a3f@linux.intel.com>
-Date:   Fri, 10 Mar 2023 17:07:35 +0200
+        with ESMTP id S234265AbjCJPYm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Mar 2023 10:24:42 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 03D3E113FC;
+        Fri, 10 Mar 2023 07:14:22 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 7074B61964;
+        Fri, 10 Mar 2023 15:14:22 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D5BA0C433B0;
+        Fri, 10 Mar 2023 15:14:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1678461261;
+        bh=sgc8sIikzUKf8oaUnbtaXcTY2+rUOaKm8L45dmJWIxw=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=XsSdofoMEl9DiYAK/5ZfZwS39YNneCyCkE2OMaRWREuFbfAKyFkSbPfX7MGZcG4M7
+         JAeBtbixw/gZHCVfI2L/DClYn6pJa7qjBMGz08lE6JrnCEkh0hSOMt43r5/aUqmZSz
+         OH855hrU5l1onGHH6KfbzuDFtdHssh/uoofSzr19FlyR2g9v+q5I70AUu22M+BmnRO
+         b8+zztOPCyBsxmSt4a6CqbzxeWH73JK8u/OCwRnI6XUMFF6eeqPuu0PTriEqEY1Asx
+         1WnD7DVAkpnF8vMtJpiy6LsQrLt/e0y4uqrj2F4+wPGAlLSnraGi8gEAXKDxdBpMdK
+         ELb1vvyozXFrw==
+Received: by mail-yw1-f181.google.com with SMTP id 00721157ae682-536bf92b55cso102911827b3.12;
+        Fri, 10 Mar 2023 07:14:21 -0800 (PST)
+X-Gm-Message-State: AO0yUKX1fWfvAwutADE33I/PEt9NFbuErN+w28Nfen0mmpxXyUKIH4YX
+        DWQWFnaL5fmy6y3+K7DrQ5WzG7l4Ce0XPMkbxg==
+X-Google-Smtp-Source: AK7set9VS13tgdT+DzbUPAyK1hhAFX+2x0Vswnb9c7OreYxCI/2ydgI/cIMuWNP/8hWsvzFznbnbU6n4F1bUdn7w/qM=
+X-Received: by 2002:a81:ad5a:0:b0:536:4d58:54b2 with SMTP id
+ l26-20020a81ad5a000000b005364d5854b2mr17238450ywk.4.1678461260807; Fri, 10
+ Mar 2023 07:14:20 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Firefox/102.0 Thunderbird/102.7.1
-To:     Wesley Cheng <quic_wcheng@quicinc.com>,
-        srinivas.kandagatla@linaro.org, mathias.nyman@intel.com,
-        perex@perex.cz, broonie@kernel.org, lgirdwood@gmail.com,
-        krzysztof.kozlowski+dt@linaro.org, agross@kernel.org,
-        Thinh.Nguyen@synopsys.com, bgoswami@quicinc.com,
-        andersson@kernel.org, robh+dt@kernel.org,
-        gregkh@linuxfoundation.org, tiwai@suse.com
-Cc:     linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        linux-usb@vger.kernel.org, quic_jackp@quicinc.com,
-        quic_plai@quicinc.com
-References: <20230308235751.495-1-quic_wcheng@quicinc.com>
- <20230308235751.495-2-quic_wcheng@quicinc.com>
-Content-Language: en-US
-From:   Mathias Nyman <mathias.nyman@linux.intel.com>
-Subject: Re: [PATCH v3 01/28] xhci: Add support to allocate several
- interrupters
-In-Reply-To: <20230308235751.495-2-quic_wcheng@quicinc.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_NONE,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+References: <20230310144732.1546328-1-robh@kernel.org> <a23852d7-c70c-a03c-99fb-b453bdc750a1@linux.intel.com>
+In-Reply-To: <a23852d7-c70c-a03c-99fb-b453bdc750a1@linux.intel.com>
+From:   Rob Herring <robh@kernel.org>
+Date:   Fri, 10 Mar 2023 09:14:08 -0600
+X-Gmail-Original-Message-ID: <CAL_Jsq+XBzEMWrz=quxq4TkrejMMFRRvo0UinghmBphtmr=XXw@mail.gmail.com>
+Message-ID: <CAL_Jsq+XBzEMWrz=quxq4TkrejMMFRRvo0UinghmBphtmr=XXw@mail.gmail.com>
+Subject: Re: [PATCH] ASoC: Use of_property_present() for testing DT property presence
+To:     =?UTF-8?B?QW1hZGV1c3ogU8WCYXdpxYRza2k=?= 
+        <amadeuszx.slawinski@linux.intel.com>
+Cc:     Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>, Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Sylwester Nawrocki <s.nawrocki@samsung.com>,
+        Olivier Moysan <olivier.moysan@foss.st.com>,
+        Arnaud Pouliquen <arnaud.pouliquen@foss.st.com>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        devicetree@vger.kernel.org, alsa-devel@alsa-project.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        linux-tegra@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 9.3.2023 1.57, Wesley Cheng wrote:
-> From: Mathias Nyman <mathias.nyman@linux.intel.com>
-> 
-> Introduce xHCI APIs to allow for clients to allocate and free
-> interrupters.  This allocates an array of interrupters, which is based on
-> the max_interrupters parameter.  The primary interrupter is set as the
-> first entry in the array, and secondary interrupters following after.
-> 
+On Fri, Mar 10, 2023 at 9:01=E2=80=AFAM Amadeusz S=C5=82awi=C5=84ski
+<amadeuszx.slawinski@linux.intel.com> wrote:
+>
+> On 3/10/2023 3:47 PM, Rob Herring wrote:
+> > It is preferred to use typed property access functions (i.e.
+> > of_property_read_<type> functions) rather than low-level
+> > of_get_property/of_find_property functions for reading properties. As
+> > part of this, convert of_get_property/of_find_property calls to the
+> > recently added of_property_present() helper when we just want to test
+> > for presence of a property and nothing more.
+> >
+> > Signed-off-by: Rob Herring <robh@kernel.org>
+> > ---
+> >   sound/soc/codecs/lpass-macro-common.c | 2 +-
+> >   sound/soc/generic/audio-graph-card.c  | 2 +-
+> >   sound/soc/generic/audio-graph-card2.c | 2 +-
+> >   sound/soc/mxs/mxs-sgtl5000.c          | 2 +-
+> >   sound/soc/samsung/i2s.c               | 2 +-
+> >   sound/soc/sh/fsi.c                    | 2 +-
+> >   sound/soc/stm/stm32_i2s.c             | 2 +-
+> >   sound/soc/stm/stm32_sai_sub.c         | 4 ++--
+> >   sound/soc/tegra/tegra_asoc_machine.c  | 2 +-
+> >   9 files changed, 10 insertions(+), 10 deletions(-)
+> >
+> > diff --git a/sound/soc/codecs/lpass-macro-common.c b/sound/soc/codecs/l=
+pass-macro-common.c
+> > index 1b9082d237c1..f54baaad54d4 100644
+> > --- a/sound/soc/codecs/lpass-macro-common.c
+> > +++ b/sound/soc/codecs/lpass-macro-common.c
+> > @@ -16,7 +16,7 @@ struct lpass_macro *lpass_macro_pds_init(struct devic=
+e *dev)
+> >       struct lpass_macro *l_pds;
+> >       int ret;
+> >
+> > -     if (!of_find_property(dev->of_node, "power-domains", NULL))
+> > +     if (!of_property_present(dev->of_node, "power-domains"))
+> >               return NULL;
+> >
+> >       l_pds =3D devm_kzalloc(dev, sizeof(*l_pds), GFP_KERNEL);
+> > diff --git a/sound/soc/generic/audio-graph-card.c b/sound/soc/generic/a=
+udio-graph-card.c
+> > index 5daa824a4ffc..d788f5f23a8a 100644
+> > --- a/sound/soc/generic/audio-graph-card.c
+> > +++ b/sound/soc/generic/audio-graph-card.c
+> > @@ -78,7 +78,7 @@ static int graph_get_dai_id(struct device_node *ep)
+> >                * only of_graph_parse_endpoint().
+> >                * We need to check "reg" property
+> >                */
+> > -             if (of_get_property(ep,   "reg", NULL))
+> > +             if (of_property_present(ep,   "reg"))
+>
+> Bit of nit picking, but any reason, why there are multiple spaces,
+> before "reg" here?
 
-I'm thinking about changing this offloading xHCI API
-xhci should be aware and keep track of which devices and endpoints that
-are offloaded to avoid device getting offloaded twice, avoid xhci driver
-from queuing anything itself for these, and act properly if the offloaded
-device or entire host is removed.
+Only because there was before and it was a scripted change.
 
-So first thing audio side would need to do do is register/create an
-offload entry for the device using the API:
-
-struct xhci_sideband *xhci_sideband_register(struct usb_device *udev)
-
-(xHCI specs calls offload sideband)
-Then endpoints and interrupters can be added and removed from this
-offload entry
-
-I have some early thoughts written as non-compiling code in:
-
-git://git.kernel.org/pub/scm/linux/kernel/git/mnyman/xhci.git feature_interrupters
-https://git.kernel.org/pub/scm/linux/kernel/git/mnyman/xhci.git/log/?h=feature_interrupters
-
-Let me know what you think about this.
-
-> Signed-off-by: Mathias Nyman <mathias.nyman@linux.intel.com>
-> Signed-off-by: Wesley Cheng <quic_wcheng@quicinc.com>
-
-My Signed-off-by tag is being misused here.
-
-I wrote a chunk of the code in this patch as PoC that I shared in a separate topic branch.
-It was incomplete and not intended for upstream yet. (lacked locking, several fixme parts, etc..)
-The rest of the code in this patch is completely new to me.
-
-Thanks
--Mathias
-
+Rob
