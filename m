@@ -2,251 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CA1476B3C6B
-	for <lists+devicetree@lfdr.de>; Fri, 10 Mar 2023 11:37:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E00976B3C86
+	for <lists+devicetree@lfdr.de>; Fri, 10 Mar 2023 11:42:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229453AbjCJKgv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 10 Mar 2023 05:36:51 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60300 "EHLO
+        id S229634AbjCJKmZ convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Fri, 10 Mar 2023 05:42:25 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51582 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229830AbjCJKg2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Mar 2023 05:36:28 -0500
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E439A136C9;
-        Fri, 10 Mar 2023 02:36:05 -0800 (PST)
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 32AAZFpm112581;
-        Fri, 10 Mar 2023 04:35:15 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1678444515;
-        bh=WDLkRkxOcFFaOzBns4RrP760VSzLVYgeflIFy/3r/bI=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=vxOKWh0y8l0j6LMAtTkIlWu8dYo6xowiD1Vfdg7L2A1iM6xbbUEYqtmE96DaHALOg
-         Dt2jrw+hdek5wxseUBl/cbzoUGNdE4HvM9uuUluln96HB7KEJhbFqh8LobWQyVP+0w
-         OjM1VQlVQh+RwtVtjjZ+M4amNY80Few8ZOc5a+p8=
-Received: from DLEE103.ent.ti.com (dlee103.ent.ti.com [157.170.170.33])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 32AAZFHL068665
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Fri, 10 Mar 2023 04:35:15 -0600
-Received: from DLEE114.ent.ti.com (157.170.170.25) by DLEE103.ent.ti.com
- (157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Fri, 10
- Mar 2023 04:35:14 -0600
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE114.ent.ti.com
- (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
- Frontend Transport; Fri, 10 Mar 2023 04:35:15 -0600
-Received: from uda0492258.dhcp.ti.com (ileaxei01-snat.itg.ti.com [10.180.69.5])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 32AAZ4Ph088652;
-        Fri, 10 Mar 2023 04:35:12 -0600
-From:   Siddharth Vadapalli <s-vadapalli@ti.com>
-To:     <nm@ti.com>, <vigneshr@ti.com>, <kristo@kernel.org>,
-        <robh+dt@kernel.org>, <krzysztof.kozlowski@linaro.org>,
-        <krzysztof.kozlowski+dt@linaro.org>
-CC:     <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <srk@ti.com>,
-        <s-vadapalli@ti.com>
-Subject: [PATCH v2 2/2] arm64: dts: ti: k3-j721e: Add overlay to enable CPSW9G ports in QSGMII mode
-Date:   Fri, 10 Mar 2023 16:05:04 +0530
-Message-ID: <20230310103504.731845-3-s-vadapalli@ti.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20230310103504.731845-1-s-vadapalli@ti.com>
-References: <20230310103504.731845-1-s-vadapalli@ti.com>
+        with ESMTP id S229628AbjCJKmY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Mar 2023 05:42:24 -0500
+Received: from mail-qv1-f47.google.com (mail-qv1-f47.google.com [209.85.219.47])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 61A1F5FCC;
+        Fri, 10 Mar 2023 02:41:57 -0800 (PST)
+Received: by mail-qv1-f47.google.com with SMTP id m4so3342962qvq.3;
+        Fri, 10 Mar 2023 02:41:57 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1678444914;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=ArWKK4kIoJ2P09oAJ7o5KooW+KJp4qT/SfAsM2P6J9E=;
+        b=oIt+4vccCh1tetH/tjaal6J6dKblGjj1BkZJeb4yZaPKNFapvShTzfRY7v0sN/ffMt
+         rstzw3TuA1SA7IU8SleGFeBIYF45kRGpKVMzT3M6P1qtXbDmGs57G+z3TpLUNoK0eh8Z
+         P8/3A7EAWKEsrbdsE0VnLPy0sW+C79iWjVB66+3FPA1jcjPshv0xfSr9IiLDlVrcJYsR
+         l5CPMDvTWbDBl4GMBrJQFrDmnntzS1QAi3kamfr9OpC2vt8BYgStOjx+RKZsdSlwfUYY
+         q+IYqvxQHd7Bjy3O2UfKUEmDs34/y4BtOVNP2CX+S0Knv2+19USlfEWis1bcRr1plZek
+         BNGg==
+X-Gm-Message-State: AO0yUKXAHoTYVF5IEBi5Zg9AHpchQ1f+MfnJdCmKLKFXmPUnvXiaaQbQ
+        MX1NhghNNNKgwBSwZvRE04pKHdmi4YzCtA==
+X-Google-Smtp-Source: AK7set/GtL7xqKMU2ZaFLyKTUQ6Pk2VxIKiSgfMEYQt1fO3qQSqzrn91eYXDYz8rpiyNq7GHv15aBA==
+X-Received: by 2002:a05:6214:250e:b0:56e:bdfb:f4c5 with SMTP id gf14-20020a056214250e00b0056ebdfbf4c5mr17094238qvb.36.1678444914398;
+        Fri, 10 Mar 2023 02:41:54 -0800 (PST)
+Received: from mail-yb1-f169.google.com (mail-yb1-f169.google.com. [209.85.219.169])
+        by smtp.gmail.com with ESMTPSA id 11-20020a05620a048b00b007339c5114a9sm1056949qkr.103.2023.03.10.02.41.53
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 10 Mar 2023 02:41:53 -0800 (PST)
+Received: by mail-yb1-f169.google.com with SMTP id e194so4823076ybf.1;
+        Fri, 10 Mar 2023 02:41:53 -0800 (PST)
+X-Received: by 2002:a05:6902:208:b0:a98:bd27:91de with SMTP id
+ j8-20020a056902020800b00a98bd2791demr15376283ybs.7.1678444913472; Fri, 10 Mar
+ 2023 02:41:53 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_PASS,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+References: <20230131223529.11905-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <CAMuHMdX3OHuq15m=g56faaU6EySYeKmRvbmJdty1xZ6JOu-yzg@mail.gmail.com>
+In-Reply-To: <CAMuHMdX3OHuq15m=g56faaU6EySYeKmRvbmJdty1xZ6JOu-yzg@mail.gmail.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Fri, 10 Mar 2023 11:41:40 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdVB13VX32Qi3Y5pTWA1j6yODFohrNArhRvdVUQX085sWw@mail.gmail.com>
+Message-ID: <CAMuHMdVB13VX32Qi3Y5pTWA1j6yODFohrNArhRvdVUQX085sWw@mail.gmail.com>
+Subject: Re: [PATCH v2 0/2] Share RZ/G2L SoC DTSI with RZ/V2L SoC
+To:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Cc:     Magnus Damm <magnus.damm@gmail.com>,
+        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Biju Das <biju.das.jz@bp.renesas.com>,
+        Prabhakar <prabhakar.csengg@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8BIT
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The J7 Quad Port Add-On Ethernet Card for J721E Common-Proc-Board supports
-QSGMII mode. Use the overlay to configure CPSW9G ports in QSGMII mode.
+Hi Prabhakar,
 
-Add support to reset the PHY from kernel by using gpio-hog and gpio-reset.
+On Mon, Feb 13, 2023 at 3:16 PM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
+> On Tue, Jan 31, 2023 at 11:42 PM Prabhakar <prabhakar.csengg@gmail.com> wrote:
+> > This series aims to reuse RZ/G2L SoC DTSI with RZ/V2L as both the SoCs are
+> > almost identical.
+> >
+> > v1 -> v2
+> > * Patch 1/2 unchanged, for patch 2/2 sorted the nodes based on the names.
+> >
+> > v1: https://patchwork.kernel.org/project/linux-renesas-soc/cover/20230127133909.144774-1-prabhakar.mahadev-lad.rj@bp.renesas.com/
+> >
+> > Cheers,
+> > Prabhakar
+> >
+> > Lad Prabhakar (2):
+> >   arm64: dts: renesas: r9a07g044: Use SoC specific macro for CPG and
+> >     RESET
+> >   arm64: dts: renesas: r9a07g054: Reuse RZ/G2L SoC DTSI
+> >
+> >  arch/arm64/boot/dts/renesas/r9a07g044.dtsi |  254 ++---
+> >  arch/arm64/boot/dts/renesas/r9a07g054.dtsi | 1149 +++-----------------
+> >  2 files changed, 256 insertions(+), 1147 deletions(-)
+>
+> Do you have an opinion on this series?
+> Is this acceptable for you?
+> The final generated DTBs are identical to before.
 
-Add aliases for CPSW9G ports to enable kernel to fetch MAC addresses
-directly from U-Boot.
+Given the feedback from Krzysztof and Rob on patch 1, and on IRC,
+I'm rejecting this series.
 
-Signed-off-by: Siddharth Vadapalli <s-vadapalli@ti.com>
----
- arch/arm64/boot/dts/ti/Makefile               |   4 +
- .../dts/ti/k3-j721e-quad-port-eth-exp.dtso    | 148 ++++++++++++++++++
- 2 files changed, 152 insertions(+)
- create mode 100644 arch/arm64/boot/dts/ti/k3-j721e-quad-port-eth-exp.dtso
+Gr{oetje,eeting}s,
 
-diff --git a/arch/arm64/boot/dts/ti/Makefile b/arch/arm64/boot/dts/ti/Makefile
-index 6acd12409d59..167bcd9b09b7 100644
---- a/arch/arm64/boot/dts/ti/Makefile
-+++ b/arch/arm64/boot/dts/ti/Makefile
-@@ -45,3 +45,7 @@ dtb-$(CONFIG_ARCH_K3) += k3-j784s4-evm.dtb
- 
- # Enable support for device-tree overlays
- DTC_FLAGS_k3-am6548-iot2050-advanced-m2 += -@
-+DTC_FLAGS_k3-j721e-common-proc-board += -@
-+
-+# Device-tree overlays
-+dtb-$(CONFIG_ARCH_K3) += k3-j721e-quad-port-eth-exp.dtbo
-diff --git a/arch/arm64/boot/dts/ti/k3-j721e-quad-port-eth-exp.dtso b/arch/arm64/boot/dts/ti/k3-j721e-quad-port-eth-exp.dtso
-new file mode 100644
-index 000000000000..d7977d16c921
---- /dev/null
-+++ b/arch/arm64/boot/dts/ti/k3-j721e-quad-port-eth-exp.dtso
-@@ -0,0 +1,148 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/**
-+ * DT Overlay for CPSW9G in QSGMII mode using J7 Quad Port ETH EXP Add-On Ethernet Card with
-+ * J721E board.
-+ *
-+ * Copyright (C) 2023 Texas Instruments Incorporated - https://www.ti.com/
-+ */
-+
-+/dts-v1/;
-+/plugin/;
-+
-+#include <dt-bindings/gpio/gpio.h>
-+#include <dt-bindings/mux/ti-serdes.h>
-+#include <dt-bindings/pinctrl/k3.h>
-+#include <dt-bindings/phy/phy.h>
-+#include <dt-bindings/phy/phy-cadence.h>
-+
-+/ {
-+	fragment@102 {
-+		target-path = "/";
-+		__overlay__ {
-+			aliases {
-+				ethernet1 = "/bus@100000/ethernet@c000000/ethernet-ports/port@1";
-+				ethernet2 = "/bus@100000/ethernet@c000000/ethernet-ports/port@2";
-+				ethernet3 = "/bus@100000/ethernet@c000000/ethernet-ports/port@3";
-+				ethernet4 = "/bus@100000/ethernet@c000000/ethernet-ports/port@4";
-+			};
-+		};
-+	};
-+};
-+
-+&cpsw0 {
-+	status = "okay";
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&mdio0_pins_default>;
-+};
-+
-+&cpsw0_port1 {
-+	phy-handle = <&cpsw9g_phy0>;
-+	phy-mode = "qsgmii";
-+	mac-address = [00 00 00 00 00 00];
-+	phys = <&cpsw0_phy_gmii_sel 1>;
-+};
-+
-+&cpsw0_port2 {
-+	phy-handle = <&cpsw9g_phy1>;
-+	phy-mode = "qsgmii";
-+	mac-address = [00 00 00 00 00 00];
-+	phys = <&cpsw0_phy_gmii_sel 2>;
-+};
-+
-+&cpsw0_port3 {
-+	phy-handle = <&cpsw9g_phy2>;
-+	phy-mode = "qsgmii";
-+	mac-address = [00 00 00 00 00 00];
-+	phys = <&cpsw0_phy_gmii_sel 3>;
-+};
-+
-+&cpsw0_port4 {
-+	phy-handle = <&cpsw9g_phy3>;
-+	phy-mode = "qsgmii";
-+	mac-address = [00 00 00 00 00 00];
-+	phys = <&cpsw0_phy_gmii_sel 4>;
-+};
-+
-+&cpsw0_port5 {
-+	status = "disabled";
-+};
-+
-+&cpsw0_port6 {
-+	status = "disabled";
-+};
-+
-+&cpsw0_port7 {
-+	status = "disabled";
-+};
-+
-+&cpsw0_port8 {
-+	status = "disabled";
-+};
-+
-+&cpsw9g_mdio {
-+	reset-gpios = <&exp2 17 GPIO_ACTIVE_LOW>;
-+	reset-post-delay-us = <120000>;
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+
-+	cpsw9g_phy0: ethernet-phy@17 {
-+		reg = <17>;
-+	};
-+	cpsw9g_phy1: ethernet-phy@16 {
-+		reg = <16>;
-+	};
-+	cpsw9g_phy2: ethernet-phy@18 {
-+		reg = <18>;
-+	};
-+	cpsw9g_phy3: ethernet-phy@19 {
-+		reg = <19>;
-+	};
-+};
-+
-+&exp2 {
-+	qsgmii-line-hog {
-+		gpio-hog;
-+		gpios = <16 GPIO_ACTIVE_HIGH>;
-+		output-low;
-+		line-name = "qsgmii-pwrdn-line";
-+	};
-+};
-+
-+&main_pmx0 {
-+	mdio0_pins_default: mdio0-pins-default {
-+		pinctrl-single,pins = <
-+			J721E_IOPAD(0x1bc, PIN_OUTPUT, 0) /* (V24) MDIO0_MDC */
-+			J721E_IOPAD(0x1b8, PIN_INPUT, 0) /* (V26) MDIO0_MDIO */
-+		>;
-+	};
-+};
-+
-+&serdes_ln_ctrl {
-+	idle-states = <J721E_SERDES0_LANE0_PCIE0_LANE0>, <J721E_SERDES0_LANE1_QSGMII_LANE2>,
-+		      <J721E_SERDES1_LANE0_PCIE1_LANE0>, <J721E_SERDES1_LANE1_PCIE1_LANE1>,
-+		      <J721E_SERDES2_LANE0_PCIE2_LANE0>, <J721E_SERDES2_LANE1_PCIE2_LANE1>,
-+		      <J721E_SERDES3_LANE0_USB3_0_SWAP>, <J721E_SERDES3_LANE1_USB3_0>,
-+		      <J721E_SERDES4_LANE0_EDP_LANE0>, <J721E_SERDES4_LANE1_EDP_LANE1>,
-+		      <J721E_SERDES4_LANE2_EDP_LANE2>, <J721E_SERDES4_LANE3_EDP_LANE3>;
-+};
-+
-+&serdes_wiz0 {
-+	status = "okay";
-+};
-+
-+&serdes0 {
-+	status = "okay";
-+
-+	assigned-clocks = <&serdes0 CDNS_SIERRA_PLL_CMNLC>, <&serdes0 CDNS_SIERRA_PLL_CMNLC1>;
-+	assigned-clock-parents = <&wiz0_pll1_refclk>, <&wiz0_pll1_refclk>;
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+
-+	serdes0_qsgmii_link: phy@1 {
-+		reg = <1>;
-+		cdns,num-lanes = <1>;
-+		#phy-cells = <0>;
-+		cdns,phy-type = <PHY_TYPE_QSGMII>;
-+		resets = <&serdes_wiz0 2>;
-+	};
-+};
+                        Geert
+
 -- 
-2.25.1
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
