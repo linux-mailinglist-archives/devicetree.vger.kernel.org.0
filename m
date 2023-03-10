@@ -2,57 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8FE3D6B4B3A
-	for <lists+devicetree@lfdr.de>; Fri, 10 Mar 2023 16:35:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4CEAD6B496E
+	for <lists+devicetree@lfdr.de>; Fri, 10 Mar 2023 16:12:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234418AbjCJPf5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 10 Mar 2023 10:35:57 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55204 "EHLO
+        id S233978AbjCJPMh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 10 Mar 2023 10:12:37 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47244 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233884AbjCJPfV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Mar 2023 10:35:21 -0500
-Received: from mail-ot1-f44.google.com (mail-ot1-f44.google.com [209.85.210.44])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 54E07111B38;
-        Fri, 10 Mar 2023 07:22:43 -0800 (PST)
-Received: by mail-ot1-f44.google.com with SMTP id o4-20020a9d6d04000000b00694127788f4so3103348otp.6;
-        Fri, 10 Mar 2023 07:22:43 -0800 (PST)
+        with ESMTP id S234035AbjCJPMO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Mar 2023 10:12:14 -0500
+Received: from mail-wr1-x42f.google.com (mail-wr1-x42f.google.com [IPv6:2a00:1450:4864:20::42f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F08A2112DFF
+        for <devicetree@vger.kernel.org>; Fri, 10 Mar 2023 07:03:53 -0800 (PST)
+Received: by mail-wr1-x42f.google.com with SMTP id f11so5304299wrv.8
+        for <devicetree@vger.kernel.org>; Fri, 10 Mar 2023 07:03:53 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1678460578;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=BdcQY2YGeyPPQy3gaq0qhGRWAP9H29xtuBXq8C1jl6M=;
+        b=eNKmLYTtMTchqecmpk2PLbPKTjm2C4NsNRFPDBDe48ZyxStisfhnOwBdPQ8w4TlomB
+         /NlM9KACXVUuiPutXq6FYw7lL1xiCsqM98t2RwIPZ+4C2NnIDSydE25HT78sHfr1Hk/P
+         JkRyYfGMnZGySFYZqd6CKGz86+R37lFkzmg8quqCaxGIxC28qjG5gpxoLANH0NZCFimG
+         yJ3B1lcQbcKF2uHwtELjJUtuMwoiAa1TEQJQ+18grKBSg6T3+YMeWu3/xA+Vmu+sa9f6
+         FUbv5jBGUc8cF0iIWGlngRM7Py3R9K/+4NxjFZBW5R3O/+2tqdCD5zR3LYSkxLL1YRLS
+         6cGQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678461762;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=IB8iTw6lo+GT2tL0twgsKIavP9xhmvwdcsuEsK0YWR8=;
-        b=LHBFIK34ofA803yfkvza6EYuf+VW9ewgpyGeyw6Wxk37rC/+SZULE8MAd1sazBLFH3
-         bofFAte3EV0rB4P5om/p92oSWTisQLrr57YlF10AUFoD53jbcKaizsNzLH4sXhnD83LU
-         La0sZoPMJdBFg/hV55KkaYcKXFmpk1zBVfCf9ndAG8XNGBMqPbhUldDx5128pXbDrKEh
-         AIjb0uPNdbrIEI8xznri2dQucYmR7qsSVRsIcWtuE4NPTugrNAZpw0aFlyyJsS8nDicU
-         Xkp2uEgw4Qz3m3e9+mmhMWiL/Oztw8nujciK6/4+2Y7MLbCPAfk1nCDfEtzS9kGtcw3J
-         yEYw==
-X-Gm-Message-State: AO0yUKWBKoWLvJu4c7QheUht4OtI/qffH3KEGpA8j/fG+b+VdG8EijpG
-        Q8qa3yEqS4Q7W7rQ5akqXTft7+dqNw==
-X-Google-Smtp-Source: AK7set/jkKv59Toh5FHgl/WazfV3a0smzI5TaosdN1WA9XSptDPl1VvfF1sItgSI8nw35SGmNKjtJQ==
-X-Received: by 2002:aca:1207:0:b0:383:fb18:aa7d with SMTP id 7-20020aca1207000000b00383fb18aa7dmr10733343ois.35.1678459699360;
-        Fri, 10 Mar 2023 06:48:19 -0800 (PST)
-Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id i131-20020acaea89000000b00383e0c1f6cdsm966509oih.27.2023.03.10.06.48.18
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 10 Mar 2023 06:48:18 -0800 (PST)
-Received: (nullmailer pid 1547137 invoked by uid 1000);
-        Fri, 10 Mar 2023 14:47:36 -0000
-From:   Rob Herring <robh@kernel.org>
-To:     Mark Brown <broonie@kernel.org>
-Cc:     devicetree@vger.kernel.org, linux-spi@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH] spi: omap2-mcspi: Use of_property_read_bool() for boolean properties
-Date:   Fri, 10 Mar 2023 08:47:36 -0600
-Message-Id: <20230310144736.1547110-1-robh@kernel.org>
-X-Mailer: git-send-email 2.39.2
+        d=1e100.net; s=20210112; t=1678460578;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=BdcQY2YGeyPPQy3gaq0qhGRWAP9H29xtuBXq8C1jl6M=;
+        b=IsNoA4aTZSkq9L6NV17abfDyFAJb91iXUCmoWGL5OApWYbfZfXKDllAWRpZ2Rpov3I
+         lwXLDMrpceo9hBuSMU1JZaI3+40LHERY89jqCfud7amzPChonzro/QNhajmNwWAnQZeQ
+         bwuIKIdGQipKK76dwAdxORDgi10OBuyBRLvLcpauN4RoVJ6T+4uXAkXrTgpwrKbYx7bg
+         9VkAQMnZFgE6zT6mUWSsb0xA5OUWvVUg9c0vGynN0onPUanGYFOzqgxaFOvpcK6zuOZ3
+         XC8cPQs3GAmO53Ej+BGo/exmfiYuUn705T3M999sL3n0o0fpKRaiXuW5v/XdZZq/+h37
+         8iew==
+X-Gm-Message-State: AO0yUKVIbVSLQBJtmh4muebJ8b7Vhl7R6p6WAD1ZxmEKfCIFO9de9DNi
+        ELVyMzFFeQ+XK/RH7GXJotxyZJPTz0QdSox20CE=
+X-Google-Smtp-Source: AK7set9N3trIQyBm2KMQV9Jy+uSYSg+mAaFAV8EfXjLeyi5NBrpk5ACECqHayrpTCwDFHZu1AoPRFw==
+X-Received: by 2002:aa7:dcd7:0:b0:4ab:49eb:a8ec with SMTP id w23-20020aa7dcd7000000b004ab49eba8ecmr22958818edu.26.1678459882763;
+        Fri, 10 Mar 2023 06:51:22 -0800 (PST)
+Received: from ?IPV6:2a02:810d:15c0:828:45c4:46be:ec71:4a51? ([2a02:810d:15c0:828:45c4:46be:ec71:4a51])
+        by smtp.gmail.com with ESMTPSA id y59-20020a50bb41000000b004f0de6d52fcsm102483ede.74.2023.03.10.06.51.21
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 10 Mar 2023 06:51:22 -0800 (PST)
+Message-ID: <6b6b5dc2-43ab-5672-099f-505ab4543438@linaro.org>
+Date:   Fri, 10 Mar 2023 15:51:21 +0100
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.8.0
+Subject: Re: [PATCH 2/7] dt-bindings: clock: exynos850: Add tzpc property
+Content-Language: en-US
+To:     Sam Protsenko <semen.protsenko@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sylwester Nawrocki <s.nawrocki@samsung.com>
+Cc:     Marek Szyprowski <m.szyprowski@samsung.com>,
+        Tomasz Figa <tomasz.figa@gmail.com>,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        Chanho Park <chanho61.park@samsung.com>,
+        David Virag <virag.david003@gmail.com>,
+        Alim Akhtar <alim.akhtar@samsung.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        linux-samsung-soc@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+References: <20230308233822.31180-1-semen.protsenko@linaro.org>
+ <20230308233822.31180-3-semen.protsenko@linaro.org>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230308233822.31180-3-semen.protsenko@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -60,29 +86,46 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-It is preferred to use typed property access functions (i.e.
-of_property_read_<type> functions) rather than low-level
-of_get_property/of_find_property functions for reading properties.
-Convert reading boolean properties to to of_property_read_bool().
+On 09/03/2023 00:38, Sam Protsenko wrote:
+> Exynos850 requires extra TZPC handling to keep CMU registers non-secure
+> (accessible from the kernel) after PM resume. It's done using a specific
+> SMC call to the EL3 monitor.
+> 
+> Describe "samsung,tzpc" property for Exynos850 clock controller which
+> allows one to specify the SMC call address for PD capable CMUs.
+> 
+> Signed-off-by: Sam Protsenko <semen.protsenko@linaro.org>
+> ---
+>  .../bindings/clock/samsung,exynos850-clock.yaml        | 10 ++++++++++
+>  1 file changed, 10 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/clock/samsung,exynos850-clock.yaml b/Documentation/devicetree/bindings/clock/samsung,exynos850-clock.yaml
+> index cc1e9173b272..5098dce5caf6 100644
+> --- a/Documentation/devicetree/bindings/clock/samsung,exynos850-clock.yaml
+> +++ b/Documentation/devicetree/bindings/clock/samsung,exynos850-clock.yaml
+> @@ -60,6 +60,16 @@ properties:
+>    reg:
+>      maxItems: 1
+>  
+> +  samsung,tzpc:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    description:
+> +      The register address in corresponding Trust Zone Protection Control block
+> +      for setting the CMU registers access to non-secure. If provided, it'll be
+> +      used for issuing SMC calls to EL3 monitor during CMU's PM suspend and
+> +      resume operations, ensuring CMU registers are unprotected after waking up.
 
-Signed-off-by: Rob Herring <robh@kernel.org>
----
- drivers/spi/spi-omap2-mcspi.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Do not store register addresses of MMIO in some fields. If this is part
+of clock MMIO, then it could be address space in reg. If it is not, you
+cannot store someone's else address space here. If this is someone's
+else address space, then you either need syscon or phandle to dedicated
+device (something like qcom,scm or other secure monitor channel).
 
-diff --git a/drivers/spi/spi-omap2-mcspi.c b/drivers/spi/spi-omap2-mcspi.c
-index 6ba9b0d7710b..57ca49e6d9ee 100644
---- a/drivers/spi/spi-omap2-mcspi.c
-+++ b/drivers/spi/spi-omap2-mcspi.c
-@@ -1464,7 +1464,7 @@ static int omap2_mcspi_probe(struct platform_device *pdev)
- 
- 		of_property_read_u32(node, "ti,spi-num-cs", &num_cs);
- 		master->num_chipselect = num_cs;
--		if (of_get_property(node, "ti,pindir-d0-out-d1-in", NULL))
-+		if (of_property_read_bool(node, "ti,pindir-d0-out-d1-in"))
- 			mcspi->pin_dir = MCSPI_PINDIR_D0_OUT_D1_IN;
- 	} else {
- 		pdata = dev_get_platdata(&pdev->dev);
--- 
-2.39.2
+> +
+> +      This property is optional.
+
+Drop, It's already optional if not required.
+
+Best regards,
+Krzysztof
 
