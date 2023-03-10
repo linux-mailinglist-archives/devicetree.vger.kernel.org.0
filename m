@@ -2,68 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 024016B384F
-	for <lists+devicetree@lfdr.de>; Fri, 10 Mar 2023 09:15:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C862E6B3861
+	for <lists+devicetree@lfdr.de>; Fri, 10 Mar 2023 09:19:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229885AbjCJIPL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 10 Mar 2023 03:15:11 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40472 "EHLO
+        id S230129AbjCJITZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 10 Mar 2023 03:19:25 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47510 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230496AbjCJIO4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Mar 2023 03:14:56 -0500
-Received: from mail-yw1-x1134.google.com (mail-yw1-x1134.google.com [IPv6:2607:f8b0:4864:20::1134])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6F5FC4E5F1
-        for <devicetree@vger.kernel.org>; Fri, 10 Mar 2023 00:14:51 -0800 (PST)
-Received: by mail-yw1-x1134.google.com with SMTP id 00721157ae682-536bbef1c5eso83414957b3.9
-        for <devicetree@vger.kernel.org>; Fri, 10 Mar 2023 00:14:51 -0800 (PST)
+        with ESMTP id S230139AbjCJITY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Mar 2023 03:19:24 -0500
+Received: from mail-wm1-x332.google.com (mail-wm1-x332.google.com [IPv6:2a00:1450:4864:20::332])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CC33B9079F
+        for <devicetree@vger.kernel.org>; Fri, 10 Mar 2023 00:19:21 -0800 (PST)
+Received: by mail-wm1-x332.google.com with SMTP id j3so2825787wms.2
+        for <devicetree@vger.kernel.org>; Fri, 10 Mar 2023 00:19:21 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1678436090;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=quyZEe5f9jO8KHwGwidAcKdKAq7OwgEj9SHFvyGmlZM=;
-        b=Xz0I6e3/LJ+Lvtl+mKQOAS8yqInF8ZVaGOXpCLhNKcTzLKSlpWsOv0VEUV904Fu2Na
-         +9A9pGlvxI7QVFYtmKKzM6zJvyU/OvN4b4AgPCCXGFTKagrmgS5ZX9VtQAHafqBxGC6m
-         Eq+llrzRCUIwZLjEDh0TDX+4GFXgVT0pFUHmGANZJZ4RWQImFVpWbTBQIxQnCxbduSEp
-         DOThgSu4tTiGbqDTZTrSz73IR46mvjGnqF8u8lCX2TyneUEkARXtWV0c4hQwYhagD2T6
-         s1pARgBUkdpxocdhAEHK1Lt7iH0sQ+LLaf/zWu8DCwBqOqVIgx7QnMe532eqyhHcCUGD
-         RZCg==
+        d=google.com; s=20210112; t=1678436360;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=e3+IejGerSkWVmYYthQksOk85z2qGIusABFoD8foBbU=;
+        b=WIyaXheqnXnNzAG3ZpDrMShk0xBME1mI7nZjH2KgOK59dTBG1gaB04q55SdmETCjvP
+         zMbKix1GeHqTX1SoM3+vrKysTljd2ZHbbNwZz0v1vCtTAgVPxsgQjQH1HDwzgEznIvTn
+         vOqZbsq/rEQlWkYl4tEZVoYrawpl+8Q7+4MvRV08RPemY6CFxk9a010PtG3zauuOJZUm
+         E0yLy45n6feN5/Q67wcYWHLvIYsvNVSDlwWHYiqJl4WHFpKX/zyAmqaZLppWbSAtuod/
+         LJdjpfux/3MjVbjaEtaDC09SvVu4W/NQJBXPborM5cL88zTu0Z0PqoIFmw0szevnBJAO
+         UXCQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678436090;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=quyZEe5f9jO8KHwGwidAcKdKAq7OwgEj9SHFvyGmlZM=;
-        b=a/q9M6GNwKrWdSbbqhK9XMIXIMhTWrjpy8BYsig2msvmbzf6oZgGdkcxUCc0MM445P
-         ve1kxIMA1y64DgBPDyzC22wsKneu5nJYwQ9S/NHrkCLlJ1qUy6pYQ4f9HX5APcNrIASM
-         zCfVWxQJBLpKhr7VqCAEBnd0uk/WNY5sHZoTMrsWDGoHZspwRqTJ62UPjh4eR9hDUgyI
-         oHPl5O6w3NIl6A/UvSkmDjJzcH5L3Qoguzf2+Mvf2+Eq3DHcYib8MuHT5ijJPdaV+zpL
-         wG3OWWyNu2PlbY7MqzAVBktSyC4PPZfVlg6ARZ3VNoXLfQx93CzBwrxiREfdQSxY+Kc9
-         wVfg==
-X-Gm-Message-State: AO0yUKWYdCFL4BtzqOxPTEehXnGkCer0A0GEmO3oUEwSHA2b/GLV+E1z
-        1XjEELVeCD6emFlPDDyt3uncSuVJVaeTwXVOiSLM5KfA7AJqPE9c
-X-Google-Smtp-Source: AK7set//fuO9ytX567HKWcNCadQ41YDeuUs8D1KGFn4aNeWpTp2CgUPag3nEjA34y+PObgUwSM88FqO9+8UaF4aug+g=
-X-Received: by 2002:a81:b61a:0:b0:52e:cea7:f6e3 with SMTP id
- u26-20020a81b61a000000b0052ecea7f6e3mr15413943ywh.10.1678436090623; Fri, 10
- Mar 2023 00:14:50 -0800 (PST)
+        d=1e100.net; s=20210112; t=1678436360;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=e3+IejGerSkWVmYYthQksOk85z2qGIusABFoD8foBbU=;
+        b=yzBl/o3yrZuWXBYeFftVVpTncfxm5B45LE2QYgQ7ydXvHHIIeQLGrDDU+fICsiJS5U
+         2sfvFl3t6Sj4N7HYtdZOfBN1cv5zVCWX5MyIWJ6vO4YjcXYDBxdA5fBUCCx2kbNCbV9u
+         hRaHfPAJmJrHku4Qi+fIH207f/z11pfFrMLcXBsA9LofIb84IYIjZJK4hcBIlnTI+nf3
+         yMQW6/BqLmkLSFtyK778QzdIrvMTuILrEaDrICga06tLtS7YLdb4yCR0lT1L5Q0PBjRy
+         fZaKEzNOvSYw/uR3t+rZZolOcNlhMtwvj+ustGHwskxDKvHgIqWnFeH8dks+YSGnJWiX
+         GXvg==
+X-Gm-Message-State: AO0yUKUid3mr/vxE22IGzAV0WmsaqXYCZAiZSWlnEUirtjhmb4Ke0gcR
+        muOo3lgHvZigjTkRUG5hR3E24sisWo2osmuY/Y1bQw==
+X-Google-Smtp-Source: AK7set9rSovQkv6G8/2uFWd8dZCJdhTjKOFXRnj4/glBjRHWFtuXEHSglc64lK3dRxU/gLKgbKiUpRiWGZkosiiA86U=
+X-Received: by 2002:a7b:c2a9:0:b0:3df:97b0:ba02 with SMTP id
+ c9-20020a7bc2a9000000b003df97b0ba02mr578544wmk.3.1678436360078; Fri, 10 Mar
+ 2023 00:19:20 -0800 (PST)
 MIME-Version: 1.0
-References: <20230309225041.477440-1-sre@kernel.org> <20230309225041.477440-2-sre@kernel.org>
-In-Reply-To: <20230309225041.477440-2-sre@kernel.org>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Fri, 10 Mar 2023 09:14:39 +0100
-Message-ID: <CACRpkdYWP7Fc3yho5nDB3qU6rt5o4p2Zcz_RxOvOfsAwjXgqXw@mail.gmail.com>
-Subject: Re: [PATCHv1 01/11] dt-bindings: power: supply: adc-battery: add binding
-To:     Sebastian Reichel <sre@kernel.org>
-Cc:     Matti Vaittinen <mazziesaccount@gmail.com>,
+References: <20230302013822.1808711-1-sboyd@kernel.org> <20230302013822.1808711-4-sboyd@kernel.org>
+ <CABVgOSmR0_u8Tw0E8C1mRFxSiGKwdKG5ka_+X_36Hj4VNLdg2g@mail.gmail.com> <b0d4d450a7ad9b39336771b74b48f086.sboyd@kernel.org>
+In-Reply-To: <b0d4d450a7ad9b39336771b74b48f086.sboyd@kernel.org>
+From:   David Gow <davidgow@google.com>
+Date:   Fri, 10 Mar 2023 16:19:08 +0800
+Message-ID: <CABVgOSmVJyG2X6aPzWGe9G-hUy8C7nWAqUnNoh-a5DFou6rkQA@mail.gmail.com>
+Subject: Re: [PATCH 3/8] kunit: Add test managed platform_device/driver APIs
+To:     Stephen Boyd <sboyd@kernel.org>
+Cc:     Michael Turquette <mturquette@baylibre.com>,
+        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
+        patches@lists.linux.dev,
+        Brendan Higgins <brendan.higgins@linux.dev>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        "Rafael J . Wysocki" <rafael@kernel.org>,
+        Richard Weinberger <richard@nod.at>,
+        Anton Ivanov <anton.ivanov@cambridgegreys.com>,
+        Johannes Berg <johannes@sipsolutions.net>,
+        Vincent Whitchurch <vincent.whitchurch@axis.com>,
         Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Christian Marangi <ansuelsmth@gmail.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org
+        devicetree@vger.kernel.org, linux-um@lists.infradead.org,
+        linux-kselftest@vger.kernel.org, kunit-dev@googlegroups.com
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
+X-Spam-Status: No, score=-17.6 required=5.0 tests=BAYES_00,DKIMWL_WL_MED,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        ENV_AND_HDR_SPF_MATCH,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        USER_IN_DEF_DKIM_WL,USER_IN_DEF_SPF_WL autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -71,52 +82,128 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Sebastian,
-
-thanks for your patches!
-
-On Thu, Mar 9, 2023 at 11:50=E2=80=AFPM Sebastian Reichel <sre@kernel.org> =
-wrote:
-
-> Add binding for a battery that is only monitored via ADC
-> channels and simple status GPIOs.
+On Fri, 10 Mar 2023 at 07:25, Stephen Boyd <sboyd@kernel.org> wrote:
 >
-> Signed-off-by: Sebastian Reichel <sre@kernel.org>
+> Quoting David Gow (2023-03-02 23:15:31)
+> > On Thu, 2 Mar 2023 at 09:38, Stephen Boyd <sboyd@kernel.org> wrote:
+> > >
+> > > Introduce KUnit resource wrappers around platform_driver_register(),
+> > > platform_device_alloc(), and platform_device_add() so that test authors
+> > > can register platform drivers/devices from their tests and have the
+> > > drivers/devices automatically be unregistered when the test is done.
+> > >
+> > > This makes test setup code simpler when a platform driver or platform
+> > > device is needed. Add a few test cases at the same time to make sure the
+> > > APIs work as intended.
+> > >
+> > > Cc: Brendan Higgins <brendan.higgins@linux.dev>
+> > > Cc: David Gow <davidgow@google.com>
+> > > Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+> > > Cc: "Rafael J. Wysocki" <rafael@kernel.org>
+> > > Signed-off-by: Stephen Boyd <sboyd@kernel.org>
+> > > ---
+> > >
+> > > Should this be moved to drivers/base/ and called platform_kunit.c?
+> > > The include/kunit/platform_driver.h could also be
+> > > kunit/platform_device.h to match linux/platform_device.h if that is more
+> > > familiar.
+> >
+> > DRM has a similar thing already (albeit with a root_device, which is
+> > more common with KUnit tests generally):
+> > https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/include/drm/drm_kunit_helpers.h
+> >
+> > But that's reasonably drm-specific, so it makes sense that it lives
+> > with DRM stuff. platform_device is a bit more generic.
+> >
+> > I'd probably personally err on the side of having these in
+> > drivers/base/, as I think we'll ultimately need similar things for a
+> > lot of different devices, and I'd rather not end up with things like
+> > USB device helpers living in the lib/kunit directory alongside the
+> > "core" KUnit code. But I could be persuaded otherwise.
+>
+> Ok no problem. I'll move it.
+>
+> >
+> > >
+> > > And I'm not super certain about allocating a driver structure and
+> > > embedding it in a wrapper struct. Maybe the code should just use
+> > > kunit_get_current_test() instead?
+> >
+> > I think there are enough cases througout the kernel where
+> > device/driver structs are needed that having this makes sense.
+> > Combined with the fact that, while kunit_get_current_test() can be
+> > used even when KUnit is not loaded, actually doing anything with the
+> > resulting struct kunit pointer will probably require (at least for the
+> > moment) KUnit functions to be reachable, so would break if
+> > CONFIG_KUNIT=m.
+>
+> Wouldn't it still work in that case? The unit tests would be modular as
+> well because they depend on CONFIG_KUNIT.
+>
 
-This does look very useful.
+Yeah, the only case where this starts to get hairy is if the tests end
+up in the same module as the thing being tested (which sometimes
+happens to avoid having to export a bunch of symbols: see, e.g.
+thunderbolt and amdgpu), and then someone wants to build production
+kernels with CONFIG_KUNIT=m (alas, Red Hat and Android).
 
-> +title: ADC battery
-> +
-> +maintainers:
-> +  - Sebastian Reichel <sre@kernel.org>
-> +
-> +description: |
-> +  Basic Battery, which only reports (in circuit) voltage and optionally
-> +  current via an ADC channel.
+So that's the only real place where you might need to avoid the
+non-'hook' KUnit functions, but those drivers are pretty few and far
+between, and most of the really useful functionality should be moving
+to 'hooks' which will be patched out cleanly at runtime.
 
-I would over-specify: "voltage over the terminals" and
-"current out of the battery" so this cannot be misunderstood.
+> >
+> > So, unless you actually find kunit_get_current_test() and friends to
+> > be easier to work with, I'd probably stick with this.
+> >
+>
+> Alright thanks.
+>
+> > > diff --git a/lib/kunit/platform_driver.c b/lib/kunit/platform_driver.c
+> > > new file mode 100644
+> > > index 000000000000..11d155114936
+> > > --- /dev/null
+> > > +++ b/lib/kunit/platform_driver.c
+> > > @@ -0,0 +1,207 @@
+> > > +// SPDX-License-Identifier: GPL-2.0
+> > > +/*
+> > > + * Test managed platform driver
+> > > + */
+> > > +
+> > > +#include <linux/device/driver.h>
+> > > +#include <linux/platform_device.h>
+> > > +
+> > > +#include <kunit/resource.h>
+> > > +
+> > > +struct kunit_platform_device_alloc_params {
+> > > +       const char *name;
+> > > +       int id;
+> > > +};
+> >
+> > FYI: It's my plan to eventually get rid of (or at least de-emphasize)
+> > the whole 'init' function aspect of KUnit resources so we don't need
+> > all of these extra structs and the like. It probably won't make it in
+> > for 6.4, but we'll see...
+>
+> Will we be able to get the error values out of the init function? It's
+> annoying that the error values can't be returned as error pointers to
+> kunit_alloc_resource(). I end up skipping init, and doing it directly
+> before or after calling the kunit_alloc_resource() function. I'll try to
+> avoid init functions in the allocations.
 
-+ this text:
+Yeah, that's largely why the plan is to get rid of them: it just made
+passing things around an enormous pain.
+Just doing your own initialisation before adding it as a resource is
+usually the right thing to do.
 
-It can also optionally indicate that the battery is full by pulling a GPIO
-line.
+There's also going to be a simpler kunit_defer() wrapper around it,
+which would just allow you to schedule a cleanup function to be called
+(without the need to keep kunit_resource pointers around, etc), for
+the cases where you don't need to look up resources elsewhere.
 
-> +  charged-gpios:
-> +    description:
-> +      GPIO which signals that the battery is fully charged.
+But just doing your own thing and calling kunit_alloc_resource() is
+probably best for now, and should map well onto whatever this ends up
+evolving into.
 
-It doesn't say how, I guess either this is an analog circuit (!) or
-a charger IC? If it doesn't matter, no big deal, but if something is
-implicit here, then spell it out please.
-
-> +    fuel-gauge {
-
-This techno-lingo/slang term is a bit unfortunate, but if there are
-precedents then stick with it.
-
-The correct term could be something like battery-capacity-meter
-I suppose.
-
-Yours,
-Linus Walleij
+Cheers,
+-- David
