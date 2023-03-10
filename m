@@ -2,131 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A396E6B549D
-	for <lists+devicetree@lfdr.de>; Fri, 10 Mar 2023 23:40:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 74F136B54AA
+	for <lists+devicetree@lfdr.de>; Fri, 10 Mar 2023 23:41:54 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231512AbjCJWkT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 10 Mar 2023 17:40:19 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38758 "EHLO
+        id S231845AbjCJWlw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 10 Mar 2023 17:41:52 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40750 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231513AbjCJWkR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Mar 2023 17:40:17 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C266012DDDA;
-        Fri, 10 Mar 2023 14:40:12 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 728D7B8233B;
-        Fri, 10 Mar 2023 22:40:11 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E33C2C433A0;
-        Fri, 10 Mar 2023 22:40:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1678488009;
-        bh=X6JJ8hKaOwjK+z85rFeVDIA0F8rbcMZOIeRWogzIjB4=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=IreQiwUg2l90VWXx0SVc5MK/HfOvai9Jj8sV99x78eYPhaBLRrkuMLL9kB5NT2jyc
-         PaNY43x+Graq29L3aW5W4bLyTHdK5+BhB+8uJxaIaHQfSo96Ni1goURjs6n9FiJEig
-         AFtaZujpbUTKD5c79ywYJdDGDheeyBwzk0KOcFAr/yQlwuTQGFoDRtR1Y5z/05F39Q
-         6XgD0HNJHw1IprlERxsQVQaM+BfVDeD1zlrd6lHIRaSbjp7JFnnI5TcK9yrk3j7XVZ
-         NoRF75mneLE52uNYiOMqdpDmLse9ayIBXy6H/BZaillBzjcXaDoL/CV9PYHubdqgzo
-         lsUlg6FIFBL/A==
-Received: by mail-ua1-f46.google.com with SMTP id p2so4581350uap.1;
-        Fri, 10 Mar 2023 14:40:09 -0800 (PST)
-X-Gm-Message-State: AO0yUKWyU2QZxOjlSSryWyyhYRIDPh3dmpB6Sepz5XpPq67sbcyS8y74
-        YSqVQCFEPvOtiHI7CB9UzJYMv5SQwBhoCzDCmg==
-X-Google-Smtp-Source: AK7set+Z52Frd//pueEciK1V0k1o5hAldF9l+GJeEdz88kQqINdcsNfemJBGP8kHwDNSRn+msUGBFNIbcvN4gs3UIZI=
-X-Received: by 2002:ab0:4714:0:b0:68e:2ed3:92eb with SMTP id
- h20-20020ab04714000000b0068e2ed392ebmr12478359uac.1.1678488008830; Fri, 10
- Mar 2023 14:40:08 -0800 (PST)
+        with ESMTP id S231904AbjCJWlc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Mar 2023 17:41:32 -0500
+Received: from mail-yw1-x1131.google.com (mail-yw1-x1131.google.com [IPv6:2607:f8b0:4864:20::1131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4B7E0144154
+        for <devicetree@vger.kernel.org>; Fri, 10 Mar 2023 14:41:10 -0800 (PST)
+Received: by mail-yw1-x1131.google.com with SMTP id 00721157ae682-536c02eea4dso125827977b3.4
+        for <devicetree@vger.kernel.org>; Fri, 10 Mar 2023 14:41:10 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1678488067;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=1aftclsUhWmphLkfemzrh1K/OBXmzihg5eefzEYPw+k=;
+        b=nbEnUvGAptC6Dvb8Z8VClAt0zGS48Qvn9jEBtm/48U8E11t9E6aJpwUIZvuLrT+VwW
+         gM+JzEwhyYU8X6KwlHEhTzR01cHLo/hfprbrafbZqkFR3RwmfBk13Wbn+HsTdqd8kwr3
+         xifIkd+7YrKW+LV6tnpkJI8juZhDd5SkdVdJQASDST7VCsr0mx9ABNjo+gZYPhITHc10
+         33LlHJwwhFhSI33tL1T1HKDDlohbJMj9yQebT0QJKGDWKEZzg59kNUk23lq2qtIHmNH9
+         C/lbeS+L+U8jR/2aN8mGJyj6DA1S6QGNJVRuvbI6UM2nyNoPOg7WCAZdfo7faOnUvQZ+
+         zctg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1678488067;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=1aftclsUhWmphLkfemzrh1K/OBXmzihg5eefzEYPw+k=;
+        b=I9LtTKj5yuNjs9dtA93znECnb1jBdbpzYg5Sb42D8om1ke9rseLkLca+i4pQ7ekr5u
+         dw6LUSWbhwRtrWo68nugLot5qtkqt4DTin3++EZhC7d6cqXTLHSzgiJO2aXZ4GUTbvMZ
+         qbbAP20WTyLiUrM/xBpi+O7ZbDLkURX+X3Zagqgwe+HMRJnNDt5hvOPANWU3ZxYzlqwt
+         N73NK/4oDTtIy9Uvb5FUUuMEJKwAnXd7ezzCeBQzll1VG+7Siz1wNcn3sPZX6mNiuT6m
+         frTiKiId52H+OKd8/yj8Eviv5ED5jOVUsVts0PQK9Ll1BAU3yzUzOR6dlw4yWCuNh/LM
+         ZcOA==
+X-Gm-Message-State: AO0yUKXHdJcbymcHf9a5wX75o5N+jUq348AFThPnQJ31L+5t++w5t+z4
+        2h8oAFEfdsqCZk4mpLuFZTyuIE3vB6PWnzQBoRYjsw==
+X-Google-Smtp-Source: AK7set940+9rhyqyXAiFfMWF6c7q0XNwbN2iIqYffWuuus/jSXrk0DiORFRDnJH7oZLCeCmXStNJELQRSLJsmev5iBk=
+X-Received: by 2002:a81:a9c6:0:b0:52e:f77c:315d with SMTP id
+ g189-20020a81a9c6000000b0052ef77c315dmr2745611ywh.3.1678488067270; Fri, 10
+ Mar 2023 14:41:07 -0800 (PST)
 MIME-Version: 1.0
-References: <197ea188-c59d-6c53-77fd-3a0551ef8e70@linaro.org>
-In-Reply-To: <197ea188-c59d-6c53-77fd-3a0551ef8e70@linaro.org>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Fri, 10 Mar 2023 16:39:57 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqLYdyqe+=zb_sDOcffbbb3AUhxsCbUp_1GHk1fKu2xiJw@mail.gmail.com>
-Message-ID: <CAL_JsqLYdyqe+=zb_sDOcffbbb3AUhxsCbUp_1GHk1fKu2xiJw@mail.gmail.com>
-Subject: Re: Qualcomm Kryo core compatibles
-To:     Konrad Dybcio <konrad.dybcio@linaro.org>
-Cc:     lkml <linux-kernel@vger.kernel.org>,
-        dt <devicetree@vger.kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+References: <20230310144704.1542114-1-robh@kernel.org>
+In-Reply-To: <20230310144704.1542114-1-robh@kernel.org>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Fri, 10 Mar 2023 23:40:56 +0100
+Message-ID: <CACRpkda+aEUD7A2e-TfY3=yJG4L+P+Zh8G9U1K0xHHA-DxnJiA@mail.gmail.com>
+Subject: Re: [PATCH] gpio: Use of_property_read_bool() for boolean properties
+To:     Rob Herring <robh@kernel.org>
+Cc:     Bartosz Golaszewski <brgl@bgdev.pl>, devicetree@vger.kernel.org,
+        linux-gpio@vger.kernel.org, linux-kernel@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Mar 8, 2023 at 4:44=E2=80=AFAM Konrad Dybcio <konrad.dybcio@linaro.=
-org> wrote:
->
-> Hi!
->
-> I was recently debating what to do about Qualcomm Kryo compatibles.
->
-> There are basically 3 cases:
->
-> 1. Falkor/"real Kryo" - the (never shipped?) server platform & MSM8996
->
-> This one's easy, it's actually Kryo so it should stay Kryo.
->
->
-> 2. Fake Kryo ("customized" Arm Cortex cores) (MSM8998-SM8x50)
->
-> This one's tough.. Qualcomm marketing material seems to sometimes say
-> Cortex, sometimes Kryo, sometimes "customized Cortex".. They do use
-> their own arm IMPLEMENTER_ID in the MIDR_EL1 register and their
-> PART_NUM values are not Arm-stock, but these cores don't seem to be
-> any special.. Maybe some irq lines are routed differently? Not sure.
->
-> My proposition here is to do:
->
-> "qcom,kryoXXX", "arm,cortex-ABC"
->
-> or
->
-> "qcom,kryoXXX-PQR", "arm,cortex-ABC"
+On Fri, Mar 10, 2023 at 3:47=E2=80=AFPM Rob Herring <robh@kernel.org> wrote=
+:
 
-I don't see much value in the fallback here. We don't do much with the
-values anyways as everything uses ID registers anyways. Do you know
-the level of modification?
+> It is preferred to use typed property access functions (i.e.
+> of_property_read_<type> functions) rather than low-level
+> of_get_property/of_find_property functions for reading properties.
+> Convert reading boolean properties to to of_property_read_bool().
+>
+> Signed-off-by: Rob Herring <robh@kernel.org>
 
-> where PQR is one of:
-> - silver (LITTLE cores)
-> - gold (big cores)
-> - gold_plus (prime core(s))
->
->
-> 3. Arm cores modified within Arm implementation-defined allowance (SC8280=
-XP+)
->
-> These cores report Arm IMPLEMENTER_IDs and actual Arm PART_NUMs, which wo=
-uld
-> suggest they're bone stock Arm Cortex cores, with some Qualcomm-iness com=
-ing
-> as part of implementation details which are.. expected since Cortex allow=
-s for
-> some IMPLEMENTATION DEFINED things. The only non-obvious part here is tha=
-t
-> the REVISION field they report does not always seem covered by the Arm TR=
-Ms.
->
-> In this case I think going with
->
-> "arm,cortex-ABC"
->
-> is fine.. I already did this for 8550 and 8280xp and Rob seems to have li=
-ked it.
->
-> So, I suppose the real question is what to do about 2., should they stay =
-as
-> they are, or maybe my proposition seems attractive?
+You are using of_property_present() rather than of_property_read_bool()
+but I'm not picky about commit message details.
+Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
 
-What about the generic 'qcom,kryo' strings?
-
-Rob
+Yours,
+Linus Walleij
