@@ -2,112 +2,149 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 290B56B3CA2
-	for <lists+devicetree@lfdr.de>; Fri, 10 Mar 2023 11:45:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DED446B3CB0
+	for <lists+devicetree@lfdr.de>; Fri, 10 Mar 2023 11:46:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229601AbjCJKp0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 10 Mar 2023 05:45:26 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59302 "EHLO
+        id S229925AbjCJKq4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 10 Mar 2023 05:46:56 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33290 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229845AbjCJKpZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Mar 2023 05:45:25 -0500
-Received: from relay10.mail.gandi.net (relay10.mail.gandi.net [IPv6:2001:4b98:dc4:8::230])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7DCEF5DCB5;
-        Fri, 10 Mar 2023 02:45:15 -0800 (PST)
-Received: (Authenticated sender: miquel.raynal@bootlin.com)
-        by mail.gandi.net (Postfix) with ESMTPSA id D7D56240013;
-        Fri, 10 Mar 2023 10:45:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1678445113;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=CWY3HesGLrysSju0oFUekcV3H8bb2gpbjs5u2RCuvBk=;
-        b=kDWZuTvk2gh2uCI8CNSyJlU9qVOQ2AyCdvYSKsg6uksN1Ec263sZlhQjbqKUllvKxZWO0s
-        VW1H+pm0zRwRpoVmYbWlGp52ntKEYk1SgykFON/INLhxeEYknpKgpGtAC7t2NKlBmF9u5J
-        iWCMIOwn520B4fDbsaN51I0e/jgrZ3aiRj3uWs1DqVrm2lsmKpb2V+vBktd41zwOPU1DIp
-        hTTqos39Wsa25Lzt/qS68EdTF+EyvR0FS2PV6+397RPU7muWelP9OIp6Wwh7i1o1g5rFRF
-        vM/x6Hkc96zsP4rFb7VY3ysLKcSzF84l+hxRQnmHkpIK5Ubhd8Q/9+zkWAHhMQ==
-Date:   Fri, 10 Mar 2023 11:45:10 +0100
-From:   Miquel Raynal <miquel.raynal@bootlin.com>
-To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Cc:     linux-kernel@vger.kernel.org,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Michael Walle <michael@walle.cc>,
-        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>,
-        Robert Marko <robert.marko@sartura.hr>,
-        Luka Perkov <luka.perkov@sartura.hr>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 11/21] nvmem: core: handle the absence of expected
- layouts
-Message-ID: <20230310114510.0867e0bd@xps-13>
-In-Reply-To: <c37d2d5d-4a25-27de-3f80-033984232ed9@linaro.org>
-References: <20230307165359.225361-1-miquel.raynal@bootlin.com>
-        <20230307165359.225361-12-miquel.raynal@bootlin.com>
-        <c37d2d5d-4a25-27de-3f80-033984232ed9@linaro.org>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
+        with ESMTP id S229845AbjCJKqz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Mar 2023 05:46:55 -0500
+Received: from mail-ed1-x52f.google.com (mail-ed1-x52f.google.com [IPv6:2a00:1450:4864:20::52f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B7C8DF4DAD
+        for <devicetree@vger.kernel.org>; Fri, 10 Mar 2023 02:46:48 -0800 (PST)
+Received: by mail-ed1-x52f.google.com with SMTP id s11so18705374edy.8
+        for <devicetree@vger.kernel.org>; Fri, 10 Mar 2023 02:46:48 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1678445207;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=KQkIKHTqSRFxycgFJncBZ6qruloLEWGLx4Mzr1FPwK0=;
+        b=YWeVjmN27CXtE27JtCd+rfW6I6wbiQ86OTH9owamL/1fTkN8J6ROvEMPH4Gv3PG94r
+         XpeYP+Ld0iolsjgDCQZ//bHrSC67FlDCTewAypQb9HiivrdoASTiPBbF4Qgg4IkaGM+l
+         cDBy3ZQoDFGXpAaJVg4G5AcanRxOjzDv47xe31DW0snxDleOsvufHpIVkzC1V06Osz0C
+         yq+tBY3xfVML+VgDgJbaL4FPmp9GKdHP8tYwogOvB/7eTY3YFL6pmtc0P5O1Q3oYL9rQ
+         A1ZamJhpjtiFp80mQgFOCY2UY5DOQQ7xzP1tV3DgLR/cjsUy1OlydZ84bWPNvPsb3l8z
+         YHBg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1678445207;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=KQkIKHTqSRFxycgFJncBZ6qruloLEWGLx4Mzr1FPwK0=;
+        b=h5YGTxFrpMuN4cVNrC2mioqCqGdYp1KBXMiv5w3ile2GYDbzpCivH/rGO627DUc/rh
+         mKpS5+OzZMIZUqCripoA2dGWWFIC1MRz11xB03Ea84V1tourq9x4vEhPSx/XyVVPsivM
+         l6j8O1t23noDImhEHuy5BP9aSULiXIhXXRZMjcTLewmQRn9OQ+I6EZA4HmMmtjj3s6Bd
+         l54RpWYZ8hX00jBZIKWgzqKEAoE5r3SnyGYR+DOXVkARxnjNxHRtzCqDJvgKOmShXk57
+         NDMTczntq7TRIMEpoM3xgrd2ai4zZPGTuj8jEk5t1+K09V58GyP1p/+qxpfX2gwqp036
+         DncA==
+X-Gm-Message-State: AO0yUKUnLjiHMP9eF/5L4dkEMCkHmaDox5duiWHTTOAhsXGgWIhwWiCb
+        3nTipTNo9dPg0HDy2RqMb70TCQ==
+X-Google-Smtp-Source: AK7set/JBfPGNe1lUH3w56wy9WPO/I94QYC3k3KIoV1A+ZXOpZ+UJYaPgCXK1zDRpsXttpBn+GE71w==
+X-Received: by 2002:a17:906:2201:b0:8b1:347c:85c8 with SMTP id s1-20020a170906220100b008b1347c85c8mr25143448ejs.17.1678445207261;
+        Fri, 10 Mar 2023 02:46:47 -0800 (PST)
+Received: from ?IPV6:2a02:810d:15c0:828:2a59:841a:ebc:7974? ([2a02:810d:15c0:828:2a59:841a:ebc:7974])
+        by smtp.gmail.com with ESMTPSA id mf5-20020a170906cb8500b008de50990fa7sm806352ejb.21.2023.03.10.02.46.45
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 10 Mar 2023 02:46:46 -0800 (PST)
+Message-ID: <16bf991e-6b8a-2657-dedc-222ca6a7fd87@linaro.org>
+Date:   Fri, 10 Mar 2023 11:46:45 +0100
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.8.0
+Subject: Re: [PATCH 6/8] dt-bindings: ARM: fsl: Add chargebyte Tarragon
+Content-Language: en-US
+To:     Stefan Wahren <stefan.wahren@i2se.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
+        Evgeniy Polyakov <zbr@ioremap.net>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>
+Cc:     linux-imx@nxp.com, Li Yang <leoyang.li@nxp.com>,
+        Denis Ciocca <denis.ciocca@st.com>, soc@kernel.org,
+        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        Stefan Wahren <stefan.wahren@chargebyte.com>
+References: <20230306172249.74003-1-stefan.wahren@i2se.com>
+ <20230306172249.74003-7-stefan.wahren@i2se.com>
+ <a38cb5d4-91d3-0d9a-41d3-44fed9d39512@linaro.org>
+ <3c5992f3-269f-8af5-0062-7653c53feffb@i2se.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <3c5992f3-269f-8af5-0062-7653c53feffb@i2se.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Srinivas,
+On 10/03/2023 11:08, Stefan Wahren wrote:
+> Hi Krzysztof,
+> 
+> Am 07.03.23 um 09:24 schrieb Krzysztof Kozlowski:
+>> On 06/03/2023 18:22, Stefan Wahren wrote:
+>>> From: Stefan Wahren <stefan.wahren@chargebyte.com>
+>>>
+>>> This adds the compatibles for the chargebyte Tarragon boards.
+>>>
+>>> Signed-off-by: Stefan Wahren <stefan.wahren@chargebyte.com>
+>>> Signed-off-by: Stefan Wahren <stefan.wahren@i2se.com>
+>>> ---
+>>>   Documentation/devicetree/bindings/arm/fsl.yaml | 9 +++++++++
+>>>   1 file changed, 9 insertions(+)
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml b/Documentation/devicetree/bindings/arm/fsl.yaml
+>>> index dece3e9ba7fd..2b430e20a7a6 100644
+>>> --- a/Documentation/devicetree/bindings/arm/fsl.yaml
+>>> +++ b/Documentation/devicetree/bindings/arm/fsl.yaml
+>>> @@ -781,6 +781,15 @@ properties:
+>>>             - const: tq,imx6ull-tqma6ull2l      # MCIMX6Y2, LGA SoM variant
+>>>             - const: fsl,imx6ull
+>>>   
+>>> +      - description: chargebyte Tarragon Boards
+>>> +        items:
+>>> +          - enum:
+>>> +              - chargebyte,imx6ull-tarragon-master
+>>> +              - chargebyte,imx6ull-tarragon-micro
+>>> +              - chargebyte,imx6ull-tarragon-slave
+>>> +              - chargebyte,imx6ull-tarragon-slavext
+>>> +          - const: fsl,imx6ull
+>> I don't think you put it in correct place. Didn't you just stuff it at
+>> the end?
+> 
+> Yes, i just put it at the end. But to be honest, i'm not sure about the 
+> order:
+> 
+> armadeus,imx6ull-opos6uldev
+> ..
+> dh,imx6ull-dhcom-drc02
+> ..
+> phytec,imx6ull-pbacd10-emmc
+> ..
+> toradex,colibri-imx6ull-aster
+> ..
+> kontron,bl-imx6ull
+> ..
+> tq,imx6ull-tqma6ull2-mba6ulx
+> 
+> Does the order depend on the compatibles and vendor is relevant?
+> 
+> So your expectation was between armadeus and dh?
 
-srinivas.kandagatla@linaro.org wrote on Fri, 10 Mar 2023 10:30:14 +0000:
+This I don't know :). I think order was by description (name of board)
+but maybe by compatibles.
 
-> On 07/03/2023 16:53, Miquel Raynal wrote:
-> > Make nvmem_layout_get() return -EPROBE_DEFER while the expected layout
-> > is not available. This condition cannot be triggered today as nvmem
-> > layout drivers are initialed as part of an early init call, but soon
-> > these drivers will be converted into modules and be initialized with a
-> > standard priority, so the unavailability of the drivers might become a
-> > reality that must be taken care of.
-> >=20
-> > Let's anticipate this by telling the caller the layout might not yet be
-> > available. A probe deferral is requested in this case.
-> >=20
-> > Please note this does not affect any nvmem device not using layouts,
-> > because an early check against the "nvmem-layout" container presence
-> > will return NULL in this case.
-> >=20
-> > Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
-> > Tested-by: Michael Walle <michael@walle.cc>
-> > ---
-> >   drivers/nvmem/core.c | 10 +++++++++-
-> >   1 file changed, 9 insertions(+), 1 deletion(-)
-> >=20
-> > diff --git a/drivers/nvmem/core.c b/drivers/nvmem/core.c
-> > index b9be1faeb7be..51fd792b8d70 100644
-> > --- a/drivers/nvmem/core.c
-> > +++ b/drivers/nvmem/core.c
-> > @@ -755,7 +755,7 @@ EXPORT_SYMBOL_GPL(nvmem_layout_unregister);
-> >   static struct nvmem_layout *nvmem_layout_get(struct nvmem_device *nvm=
-em)
-> >   { =20
->=20
-> Any reason why this is not part of 10/21?
+Best regards,
+Krzysztof
 
-Yes, I would like to credit everybody for his work, so Michael for the
-base implementation and myself for the module sitaution handling,
-arguing this is two different features. May we keep these separated?
-
-> kernel doc for nvmem_layout_get needs updating with this behavior.
-
-There is no kdoc for nvmem_layout_get, do you want one ? I thought the
-comment where this function is called would be more descriptive (and
-read by interested people).
-
-Thanks,
-Miqu=C3=A8l
