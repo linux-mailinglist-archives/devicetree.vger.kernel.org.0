@@ -2,154 +2,162 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BA12D6B391E
-	for <lists+devicetree@lfdr.de>; Fri, 10 Mar 2023 09:47:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6087A6B392C
+	for <lists+devicetree@lfdr.de>; Fri, 10 Mar 2023 09:49:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231383AbjCJIr5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 10 Mar 2023 03:47:57 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42588 "EHLO
+        id S231382AbjCJIti (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 10 Mar 2023 03:49:38 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42310 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231132AbjCJIrY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Mar 2023 03:47:24 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4DD1710A293;
-        Fri, 10 Mar 2023 00:45:30 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id C752B61133;
-        Fri, 10 Mar 2023 08:45:29 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A4862C433EF;
-        Fri, 10 Mar 2023 08:45:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1678437929;
-        bh=DqpiA8k7wNjjdxkzp733A1Yn67FxOT0U4u3LTJ/xLzc=;
-        h=Date:Subject:To:References:From:In-Reply-To:From;
-        b=Pl/xPLTjTj6iFkuaY6eJcMaKVOIDojBNzS/hfaWNcgngAxhO5Ugm2YvCUHNSrCFIj
-         NAqKnIB4FpFCo6/b8zScUzWfMWJTWxzr6LgSM7WArfsX2C1gGXigdBR1Rs2Uy1jKbq
-         jFhwulKlv1duy1R5bQFdlDJXNd2caHEnqGQf1Z4n8JhLDrb5gvPSB9m1aMeGjcuBZr
-         VwIwSQ3aXF0uWldICH3uVmOZHLscZI7Q/ivrgLR8p+PHSySugFAit1Wpzgbc7BYBhG
-         vvV2H4mDfkZEBbAf66uiXnLKWzkiVlbodp67bsMuiYpRbvZagYvtmGvbCMnelduIjM
-         8EmONrzJxXs0A==
-Message-ID: <f661f27f-f367-2948-1435-5b5fa43a3b46@kernel.org>
-Date:   Fri, 10 Mar 2023 09:45:24 +0100
+        with ESMTP id S231398AbjCJIsl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Mar 2023 03:48:41 -0500
+Received: from mail-ed1-x52e.google.com (mail-ed1-x52e.google.com [IPv6:2a00:1450:4864:20::52e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 76EBD102B47
+        for <devicetree@vger.kernel.org>; Fri, 10 Mar 2023 00:48:01 -0800 (PST)
+Received: by mail-ed1-x52e.google.com with SMTP id u9so17555216edd.2
+        for <devicetree@vger.kernel.org>; Fri, 10 Mar 2023 00:48:01 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1678438080;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=FUJl7k1M979We1qgGMmgB9bIcQ2E6pfPssKN7N8NYdg=;
+        b=jvo8S2iAybLRtQxJoV/xHW5xfdSBUOC7NMfOsQDvVrBfkQ1ROfJE6XCj+7W6jBwghT
+         lSKT+L7pGfPTuQcT9WogOnDjx0cLyV6SsATK3r+qXiIbUZqQ3YF3RgnjL6fYcbOPye98
+         MnU9hheNzmuO0oZp8c/tzKtxQuI4wgGRiKYSlIzQYSHI74CK2l9PGZuOajITsovgbV6y
+         mFdVaIPpo1e7Ckrqfl/Jia+AsB1662BYXz28IDERGzr9MC8mcBy2FIkvDZasMPDHyfbh
+         bnqfQLFuB8RWwNTYu1ZW7Z29nBV0B9SqOpHHF4t5R9irOD9NgFW6tAFzSb4qo34LthKs
+         FM9A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1678438080;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=FUJl7k1M979We1qgGMmgB9bIcQ2E6pfPssKN7N8NYdg=;
+        b=YgUvq/Upqfy2GaAY3tPCh6ukA9Pp5nvoc/9QOpOM137FBsNUA4zPoGXZR+LUhFxG5T
+         GEuO7hSKadWJBvVGcI/nrFd5uCf7Dfv4ltm/OMKdo6U1TD1P4DHwwJM3uidxiwOuxLur
+         QBC3FNIO6Z/NJY/kanCcjqH0beMwadQzTIX8vEXpC8GtXuq41jwjcgMicaHMm1QVIosJ
+         NUPiP/tsHRnS9zVzJL4KKt8JvDiSQ1qvDkXZZv1Nf1Wqu5bO9k9sLwdCCvGoJuDarJBv
+         atMro1jNzh0fFlhJLwB6GSp3xDBzT9qg05eE2sKBeBhY9tjy5qJ2XyKnv5Fr/ZYABuqm
+         wn1w==
+X-Gm-Message-State: AO0yUKX5QR7skR0qQeieRJjNbkgZUKTD6moCE6LMN9Uy/5eMX6MbqA38
+        QqbnK+J3DJhocELF3Xk366UjqQ==
+X-Google-Smtp-Source: AK7set8RF9fKGu1CUeXXJqLZSC5d0kPUQNf8eO0ETxanIPP+bDutAsSa8xkbgdMQw8OLUOFUEnhfEQ==
+X-Received: by 2002:a17:906:4ecb:b0:8ea:a647:a5aa with SMTP id i11-20020a1709064ecb00b008eaa647a5aamr741103ejv.38.1678438079916;
+        Fri, 10 Mar 2023 00:47:59 -0800 (PST)
+Received: from ?IPV6:2a02:810d:15c0:828:2a59:841a:ebc:7974? ([2a02:810d:15c0:828:2a59:841a:ebc:7974])
+        by smtp.gmail.com with ESMTPSA id g18-20020a50d0d2000000b004e7ffb7db11sm542949edf.76.2023.03.10.00.47.59
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 10 Mar 2023 00:47:59 -0800 (PST)
+Message-ID: <5547887b-c39f-3595-2442-7477080e716f@linaro.org>
+Date:   Fri, 10 Mar 2023 09:47:58 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.8.0
-Subject: Re: [PATCH V2 4/6] dt-bindings: timestamp: Add Tegra234 support
+Subject: Re: [PATCH v2 1/3] dt-bindings: clock: Add Renesas versa3 clock
+ generator bindings
 Content-Language: en-US
-To:     Dipen Patel <dipenp@nvidia.com>, thierry.reding@gmail.com,
-        jonathanh@nvidia.com, linux-kernel@vger.kernel.org,
-        linux-tegra@vger.kernel.org, linux-gpio@vger.kernel.org,
-        linus.walleij@linaro.org, devicetree@vger.kernel.org,
-        linux-doc@vger.kernel.org, robh+dt@kernel.org,
-        timestamp@lists.linux.dev
-References: <20230214115553.10416-1-dipenp@nvidia.com>
- <20230214115553.10416-5-dipenp@nvidia.com>
- <3c0ad963-ce69-bd5b-20cd-888e5fbdecaf@kernel.org>
- <7a8027c9-dc73-3684-c5f2-3071f315b3cd@nvidia.com>
- <a5e897e5-4cb9-d50f-47a8-ffb8bd8774cb@kernel.org>
- <18f9a6ca-a61b-4cbb-b729-1fdb6d48651a@nvidia.com>
- <ab9f7730-d399-0786-67e5-aad57716809e@kernel.org>
- <c1a78a59-c8ae-81e5-b641-a7cb75062ab3@nvidia.com>
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-In-Reply-To: <c1a78a59-c8ae-81e5-b641-a7cb75062ab3@nvidia.com>
+To:     Biju Das <biju.das.jz@bp.renesas.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Geert Uytterhoeven <geert+renesas@glider.be>,
+        linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
+References: <20230309165529.223052-1-biju.das.jz@bp.renesas.com>
+ <20230309165529.223052-2-biju.das.jz@bp.renesas.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230309165529.223052-2-biju.das.jz@bp.renesas.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 09/03/2023 19:49, Dipen Patel wrote:
-> On 3/8/23 10:16 PM, Krzysztof Kozlowski wrote:
->> On 08/03/2023 21:09, Dipen Patel wrote:
->>> On 3/8/23 11:05 AM, Krzysztof Kozlowski wrote:
->>>> On 08/03/2023 19:45, Dipen Patel wrote:
->>>>> On 2/16/23 6:17 AM, Krzysztof Kozlowski wrote:
->>>>>> On 14/02/2023 12:55, Dipen Patel wrote:
->>>>>>> Added timestamp provider support for the Tegra234 in devicetree
->>>>>>> bindings.
->>>>>>
->>>>>> 1. Your commit does much more. You need to explain it why you drop some
->>>>>> property.
->>>>> ACK, will address it next patch
->>>>>>
->>>>>> 2. Bindings go before its usage (in the patchset).
->>>>> Ack...
->>>>>>
->>>>>> 3. Please use scripts/get_maintainers.pl to get a list of necessary
->>>>>> people and lists to CC.  It might happen, that command when run on an
->>>>>> older kernel, gives you outdated entries.  Therefore please be sure you
->>>>>> base your patches on recent Linux kernel.
->>>>> It is based on recent linux at the time patch series was sent...
->>>>
->>>> That's good but then why you do not use scripts/get_maintainers.pl? The
->>>> hint about recent kernel was just a hint... Just do not invent addresses
->>>> by yourself and use the tool to get them right.
->>>>
->>> I will take a note for the next patch series to add any missing people. The current
->>> list of people/group is what historically helped review this new timestamp/hte subsystem.
->>>
->>>> (...)
->>>>
->>>>>>> +  properties:
->>>>>>> +    compatible:
->>>>>>> +      contains:
->>>>>>> +        enum:
->>>>>>> +          - nvidia,tegra194-gte-aon
->>>>>>
->>>>>> This is an ABI break. Does your driver handle it?
->>>>> yes, handling patch is part of this patch series.
->>>>
->>>> Can you point me to the code which does it? I see "return -ENODEV;", so
->>>> I think you do not handle ABI break. I could miss something but since
->>>> you disagree with me, please at least bring some arguments...
->>> Refer to patch https://patchwork.kernel.org/project/timestamp/patch/20230214115553.10416-3-dipenp@nvidia.com/
->>> which has compatible properties added and also code changes to reflect addition/deletion of some
->>> properties.
->>
->> I referred to the code which breaks the ABI.
->>
->>>
->>> I am not sure I have understood about ABI break comment. How else one should handle if
->>> there is no related gpio controller property found?
->>
->> In a way it does not break existing users? There are many ways to handle
->> it, but I don't know your code to point you.
+On 09/03/2023 17:55, Biju Das wrote:
+> Document Renesas versa3 clock generator(5P35023) bindings.
 > 
-> It is new subsystem and has only one driver which uses it so far. 
-
-We do not talk about subsystem, but Tegra SoC, which is not new. Unless
-you meant this is new SoC/DTS?
-
-> This was a decision taken
-> after review comments (By Thierry, also in the mailing list) to add this property (nvidia,gpio-controller)
-> and necessary changes have been made to existing user. From now on, it has to follow this change.
-
-What is "it" which has to follow? There are rules for stable ABI and
-commit msg does not explain why they should not be followed.
-
+> The 5P35023 is a VersaClock programmable clock generator and
+> is designed for low-power, consumer, and high-performance PCI
+> Express applications. The 5P35023 device is a three PLL
+> architecture design, and each PLL is individually programmable
+> and allowing for up to 6 unique frequency outputs.
 > 
->>
->>> I am assuming you are referring to the
->>> below code from the patch 2 (link above) when you said "return -ENODEV".
->>
->>
->> Your bindings patch points to ABI break without any
->> explanation/justification. Then your code #2 patch actually breaks it,
->> also without any justification.
-> I am going to add explanation/justification in the commit message in the next patch series. But to give
-> you context, discussion happened here https://patchwork.ozlabs.org/project/linux-gpio/patch/20221103174523.29592-3-dipenp@nvidia.com/
 
-Either too many messages (and I missed something) or I could not find
-why ABI break is accepted and justified.
+Thank you for your patch. There is something to discuss/improve.
 
+> +description: |
+> +  The 5P35023 is a VersaClock programmable clock generator and
+> +  is designed for low-power, consumer, and high-performance PCI
+> +  express applications. The 5P35023 device is a three PLL
+> +  architecture design, and each PLL is individually programmable
+> +  and allowing for up to 6 unique frequency outputs.
+> +
+> +  An internal OTP memory allows the user to store the configuration
+> +  in the device. After power up, the user can change the device register
+> +  settings through the I2C interface when I2C mode is selected.
+> +
+> +  The driver can read a full register map from the DT, and will use that
+> +  register map to initialize the attached part (via I2C) when the system
+> +  boots. Any configuration not supported by the common clock framework
+> +  must be done via the full register map, including optimized settings.
+> +
+> +  Link to datasheet: |
+
+| is not correct here
+
+> +  https://www.renesas.com/us/en/products/clocks-timing/clock-generation/programmable-clocks/5p35023-versaclock-3s-programmable-clock-generator
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - renesas,5p35023
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  '#clock-cells':
+> +    const: 1
+> +
+> +  clocks:
+> +    maxItems: 1
+> +
+> +  renesas,settings:
+> +    description: Optional, complete register map of the device.
+> +      Optimized settings for the device must be provided in full
+> +      and are written during initialization.
+> +    $ref: /schemas/types.yaml#/definitions/uint8-array
+> +    maxItems: 37
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - '#clock-cells'
+> +  - clocks
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +
+
+Stray blank line, drop.
+
+> +    i2c {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+
+With both above:
+
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
