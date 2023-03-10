@@ -2,58 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1EABC6B38B1
-	for <lists+devicetree@lfdr.de>; Fri, 10 Mar 2023 09:31:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 60C476B38B6
+	for <lists+devicetree@lfdr.de>; Fri, 10 Mar 2023 09:32:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231146AbjCJIb3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 10 Mar 2023 03:31:29 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38738 "EHLO
+        id S230130AbjCJIcM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 10 Mar 2023 03:32:12 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40352 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230377AbjCJIbS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Mar 2023 03:31:18 -0500
-Received: from mail-yw1-x112c.google.com (mail-yw1-x112c.google.com [IPv6:2607:f8b0:4864:20::112c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 57D23E8CFB
-        for <devicetree@vger.kernel.org>; Fri, 10 Mar 2023 00:31:01 -0800 (PST)
-Received: by mail-yw1-x112c.google.com with SMTP id 00721157ae682-536bf92b55cso83798407b3.12
-        for <devicetree@vger.kernel.org>; Fri, 10 Mar 2023 00:31:01 -0800 (PST)
+        with ESMTP id S230502AbjCJIcH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Mar 2023 03:32:07 -0500
+Received: from mail-yw1-x1129.google.com (mail-yw1-x1129.google.com [IPv6:2607:f8b0:4864:20::1129])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CDDCFE8CE4
+        for <devicetree@vger.kernel.org>; Fri, 10 Mar 2023 00:31:58 -0800 (PST)
+Received: by mail-yw1-x1129.google.com with SMTP id 00721157ae682-536af432ee5so85167137b3.0
+        for <devicetree@vger.kernel.org>; Fri, 10 Mar 2023 00:31:58 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1678437060;
+        d=linaro.org; s=google; t=1678437118;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=csGLQ+HJvr4LxzgGWY6CNMVw5Or5HiSrrGSUyV9nTeY=;
-        b=qqVZrbljiVaxCDq7PK4DMNod9UIjiHSEeWRPRsWMxPQdZvr+AyT0Ppd6CVYruMFA1r
-         YzNlMxj2hjWNrrQC4KKqG1H0E3eXgPUU1LBCZ3ASMOkKBzxAc4cI/4O5VVrX1OIRW60T
-         mymVrUmxpMTGde0v61S810KiHJcAfGrlqyZ7VE7yMfnvANX3cyIwI5SR0OElMY7mvfs4
-         2ATkAKGpEITCiGh5b4o5+ZFIA+OYQBkz4OZtiA3bIN2+lVAEmrMrz5mMnnFLxN/VdOIc
-         ziXnla55HBB4GW+525DbP+vSdZziZDTQWHE8PHIfqJuK67egL2z8umDmc/sPN85RBzr/
-         y2aw==
+        bh=yEnDDQC7GhZEI1kmJpTuNmo6i9voSvFWeItpPldUIYU=;
+        b=cD7vD9Z1570thbPMT0MfQRnKjBSUb9CqZPM0xYCHqCuvP1TriRXZTLOaJQg3e0j0xv
+         vF4UXxoWFEUhYG+S6iyTO/cS8Zk14IaLq7ewYCEX1hASo2mZFUmguU9VaPAQCB875cwn
+         CyB9mXKtHUvw5UtoA0m/qoUAJpmelkAV865sn4UcYuqFYQEvX1W69b48IhZurvoINQ+7
+         Jl1Tgz4+nJyiGVY32DVZ8n4lWyvH/+trpIXJ8pPS+2Fi4tNU+Y7zJsEV8Tbb2f860jte
+         YaMWuNzBgBxa9SlIjIAxc3jCX29lk9eJsoS3YfRLlMzHClXKezdNcy6Nmw0MoKukiirW
+         /w3A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678437060;
+        d=1e100.net; s=20210112; t=1678437118;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=csGLQ+HJvr4LxzgGWY6CNMVw5Or5HiSrrGSUyV9nTeY=;
-        b=HVJBvGeHtKXKY2Awqm3pDcV3lTXQ3vyUAZpZjjMIyTuy98VefkCegtnwrAaQNrSz1R
-         6jZjegNmT/OmsdPmMjWb+Eb81ROSgK39o373pxlElXAn6Zgfgi+4pZW8NmkRgx38Z+1Y
-         dTkO1OUT+4ukHbBGXlANibFS6BNHSx5XIbIB7fK4mQ40tm0WBGDX1OqqfVk5zqoF2uas
-         E9QeW/W4J0g3xwcOk7If6YV+rLyErs5vUs56B+UMW7djQQdxyLqyd2pOWfozhtj46Y/n
-         IdP52lmQf4w9myZ5Es4wZaNzGciHbyWc3Ty59+nV5rMqh0QcAZGxPNxGpytYHDt4H12b
-         0odA==
-X-Gm-Message-State: AO0yUKU/sn9McPqf/so93kow+zxgCEVbKQgf/r7N9ys/DIzJPjxZdNex
-        ZKAzD/lw1ugmOGvqsj37ZdSdMvIK/qp74ocPITtIbMhmCHM1UVqn
-X-Google-Smtp-Source: AK7set/prggt4Pz8CJxuZSir5+zLD32kXIut3Cm9wOY9Y9/ajINMubM9mi6k/4gvyZeaMxR3Z3lPoktZBE3cRrALz7E=
-X-Received: by 2002:a81:a9c6:0:b0:52e:f77c:315d with SMTP id
- g189-20020a81a9c6000000b0052ef77c315dmr1128456ywh.3.1678437060520; Fri, 10
- Mar 2023 00:31:00 -0800 (PST)
+        bh=yEnDDQC7GhZEI1kmJpTuNmo6i9voSvFWeItpPldUIYU=;
+        b=1Pzcmcf+dm5ptZ0GbTWbUc88luxpVqpSCtquGwrus0JqkcMIA3crInTX//9PMqSCtL
+         M6poM0M201LWQE+bgV0GLTsK1dtM0OnF4EM0oA/1/qYHx0WVpEevAznM/GOl7M8K8y9h
+         oGU6ThRCeHS2e6/2AKg26heTVPfM6tGFB5E8BySQ26QOtYtozN/7IW6EaY42LEGKCg/p
+         RzmsntXvtb4DbVFVxo11WiazeUNEN6vF+4kY8BgkMCxjhk+naqPHfl0lmFLYOel49xGc
+         DqzcTvsQ/wHsbcynREs8gierc4rHShU+Xl74zGCIn/rX9HBtGUIHkaAIkUKeEA+lyhR9
+         o2mQ==
+X-Gm-Message-State: AO0yUKUixmFXvedZ7jvjkc2qzVirMUhPwQHyG/TVg1w+gZvUPEQnG/yb
+        j0lnzx04k2WuVfZJ7/Gx6zi/uesg+fhIe13Jv9VXCDF5zb3v+juV
+X-Google-Smtp-Source: AK7set/dzMiqf5mSy0pANYi5bUztGCql2W6gCMXtz6HB1aFjDIVxaXeUN9JRSGvg7YJ9h8wxNHPwjjTrVbv03zrk03Y=
+X-Received: by 2002:a81:b705:0:b0:535:fe26:acc with SMTP id
+ v5-20020a81b705000000b00535fe260accmr16173406ywh.10.1678437118046; Fri, 10
+ Mar 2023 00:31:58 -0800 (PST)
 MIME-Version: 1.0
-References: <20230309225041.477440-1-sre@kernel.org> <20230309225041.477440-9-sre@kernel.org>
-In-Reply-To: <20230309225041.477440-9-sre@kernel.org>
+References: <20230309225041.477440-1-sre@kernel.org> <20230309225041.477440-10-sre@kernel.org>
+In-Reply-To: <20230309225041.477440-10-sre@kernel.org>
 From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Fri, 10 Mar 2023 09:30:49 +0100
-Message-ID: <CACRpkdbsBzmTmEus=CnDw41WKS799kXmpekD8NY8OWkeR6HwBA@mail.gmail.com>
-Subject: Re: [PATCHv1 08/11] power: supply: generic-adc-battery: use
- simple-battery API
+Date:   Fri, 10 Mar 2023 09:31:46 +0100
+Message-ID: <CACRpkdY5kzCm5fQgoXQBV_mAGYQP2rvjgc9cdLQwfFhO7LKdYw@mail.gmail.com>
+Subject: Re: [PATCHv1 09/11] power: supply: generic-adc-battery: simplify
+ read_channel logic
 To:     Sebastian Reichel <sre@kernel.org>
 Cc:     Matti Vaittinen <mazziesaccount@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
@@ -75,13 +75,12 @@ X-Mailing-List: devicetree@vger.kernel.org
 On Thu, Mar 9, 2023 at 11:50=E2=80=AFPM Sebastian Reichel <sre@kernel.org> =
 wrote:
 
-> Use standard simple-battery API for constant battery
-> information like min and max voltage. This simplifies
-> the driver a lot and brings automatic support for DT.
+> Drop mostly useless gab_prop_to_chan() function by directly
+> supplying the correct enum value to read_channel().
 >
 > Signed-off-by: Sebastian Reichel <sre@kernel.org>
 
-That's neat.
+Looks correct.
 Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
 
 Yours,
