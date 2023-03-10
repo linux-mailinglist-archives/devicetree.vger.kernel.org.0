@@ -2,77 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 002966B4FC4
-	for <lists+devicetree@lfdr.de>; Fri, 10 Mar 2023 19:07:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 008866B4FCD
+	for <lists+devicetree@lfdr.de>; Fri, 10 Mar 2023 19:08:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229758AbjCJSHX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 10 Mar 2023 13:07:23 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50046 "EHLO
+        id S231510AbjCJSIN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 10 Mar 2023 13:08:13 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51524 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229659AbjCJSHW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Mar 2023 13:07:22 -0500
-Received: from mail-pj1-x1035.google.com (mail-pj1-x1035.google.com [IPv6:2607:f8b0:4864:20::1035])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E88221314C7;
-        Fri, 10 Mar 2023 10:07:21 -0800 (PST)
-Received: by mail-pj1-x1035.google.com with SMTP id me6-20020a17090b17c600b0023816b0c7ceso10713900pjb.2;
-        Fri, 10 Mar 2023 10:07:21 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112; t=1678471641;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=+5jGJYm0wL4TU+GInA55FTV+ma7xO70le58dL4DX4ys=;
-        b=MZvRpi166r8cPLxmI4Wj2nTjboTVgIlUSNoTZ0GEKuD172rYOKmAnVQb5/nQYacoWT
-         TovuiPpr7y2PnF1VP2kZ97vtg8bSK8YZ5yMoTO3ZTmP+LC5nxfLhYxpr+8YWDljyQFfL
-         RjZ890CYGCRocpbCh9ZVKMs1L/UYwiX/CWVse4HJiH4QPkbXtNCKqXJrGbZfojm/F7ca
-         A6N/nkZOj0E4UOwL3L7xhVmh6f0Yjk6iHCr2diO27gnOWhQZvbAZ+a4x//nxwoljrlGP
-         qBCms2xT0VDOFEs1YxgjFlhxSirsnvnkpg87zsMHfutd11qmxoYxyOf4ff8s1ugbZnm7
-         ycVQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678471641;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=+5jGJYm0wL4TU+GInA55FTV+ma7xO70le58dL4DX4ys=;
-        b=Fr44AdkZ1RJsXDIA0x4BnNW9HhtqmvKeIuzFo7Ah0u96wqR80Oy4uqBFjcDIm9W3YW
-         mVWRFQ4zkHgximwuBlebKMKFfkeXjESJroaTxvwuv5bBB71ZLvn2vMZwxGe7kmesypW+
-         MrMj8PQFv/sR83zb6D7Q9PFcp5vzmqSAeSR6TWgOcEpO1NVfExtvQmWhuXb+MIzRgzLk
-         IfZLnboJaXswJmyWQieaoVr22Iq/i+35wf7aV5dDatqPLe0vqPAW8PVcof0mWAQvNGky
-         oPEv6CeNCt5m9SRPPonMqG8ZbuxmGZFk2XITzZLPP69YQPbCvrjA3Mp5VFRf1gsBeW5U
-         j+HA==
-X-Gm-Message-State: AO0yUKUzGoUXdFYztDno0cp6g4hNEfO0auQrGVZ15kWidsuz9KGpLRu9
-        nEkJiv+DMo6GACZBHq7CGjQzRlmEqt4=
-X-Google-Smtp-Source: AK7set/6HkbBFXtz3z8XyA+x6G75td2z6mPUHNDgY11R3c9ADc80r5wuC4UgzbgQZmk2Zktp4juJyw==
-X-Received: by 2002:a17:90a:18e:b0:232:fa13:4453 with SMTP id 14-20020a17090a018e00b00232fa134453mr26741085pjc.13.1678471641394;
-        Fri, 10 Mar 2023 10:07:21 -0800 (PST)
-Received: from Gentoo (n220246252084.netvigator.com. [220.246.252.84])
-        by smtp.gmail.com with ESMTPSA id jx18-20020a17090b46d200b00233e860f69esm201403pjb.56.2023.03.10.10.07.17
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 10 Mar 2023 10:07:20 -0800 (PST)
-Date:   Sat, 11 Mar 2023 02:07:13 +0800
-From:   Jianhua Lu <lujianhua000@gmail.com>
-To:     Thierry Reding <thierry.reding@gmail.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Neil Armstrong <neil.armstrong@linaro.org>
-Cc:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org
-Subject: Re: [PATCH v4 2/2] drm/panel: Add driver for Novatek NT36523
-Message-ID: <ZAtx0c4U70DtMuyV@Gentoo>
-References: <20230310132144.2241-1-lujianhua000@gmail.com>
- <20230310132144.2241-2-lujianhua000@gmail.com>
+        with ESMTP id S230161AbjCJSIL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Mar 2023 13:08:11 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E98EF1B318;
+        Fri, 10 Mar 2023 10:08:06 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 14EF061BB2;
+        Fri, 10 Mar 2023 18:08:06 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E92FFC433EF;
+        Fri, 10 Mar 2023 18:08:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1678471685;
+        bh=1Z0qzAWjdgjpl9cppEGMQkzvMHIUxky2AMt6JDpGnN4=;
+        h=Date:Subject:To:References:From:In-Reply-To:From;
+        b=dRKOZR4q0d/gZV1FcaOoD2TkSsBp9tJ4pMk6uHCG63pE7rD44jrwd3yDEJpLuJEqO
+         lJOhyy1MGFgQsUa9Gvzv8CEJm0mtnWngZKfPR6hZ5ZqkjHjW5Q4xGXI9IU1gXYDwSn
+         Lww/AAS7YhRd2h54aQHyr3an+NDRKO0dO+elLmjUUt2id6pyTHOhP9hJ+sLRcHPig2
+         f9E4lMl3dhLIvkCpzAczBixCwMzpo6P7sh54erF2w+tA8KYfu/WsuGHIhDS/plSnax
+         2n8mqX7AkBjtTXQ+oeqrW9gYPftC5rn7j0uSj20O/nlYk6/OpaJbkcXgL+riX3s9kD
+         5upRoX6NQy3MA==
+Message-ID: <d80001de-3cf7-59e9-5ae7-d8dfe0a1c21e@kernel.org>
+Date:   Fri, 10 Mar 2023 19:08:00 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230310132144.2241-2-lujianhua000@gmail.com>
-X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.8.0
+Subject: Re: [PATCH V2 4/6] dt-bindings: timestamp: Add Tegra234 support
+To:     Dipen Patel <dipenp@nvidia.com>, thierry.reding@gmail.com,
+        jonathanh@nvidia.com, linux-kernel@vger.kernel.org,
+        linux-tegra@vger.kernel.org, linux-gpio@vger.kernel.org,
+        linus.walleij@linaro.org, devicetree@vger.kernel.org,
+        linux-doc@vger.kernel.org, robh+dt@kernel.org,
+        timestamp@lists.linux.dev
+References: <20230214115553.10416-1-dipenp@nvidia.com>
+ <20230214115553.10416-5-dipenp@nvidia.com>
+ <3c0ad963-ce69-bd5b-20cd-888e5fbdecaf@kernel.org>
+ <7a8027c9-dc73-3684-c5f2-3071f315b3cd@nvidia.com>
+ <a5e897e5-4cb9-d50f-47a8-ffb8bd8774cb@kernel.org>
+ <18f9a6ca-a61b-4cbb-b729-1fdb6d48651a@nvidia.com>
+ <ab9f7730-d399-0786-67e5-aad57716809e@kernel.org>
+ <c1a78a59-c8ae-81e5-b641-a7cb75062ab3@nvidia.com>
+ <f661f27f-f367-2948-1435-5b5fa43a3b46@kernel.org>
+ <6733c921-3cca-cd7b-3846-0ab6ce172c14@nvidia.com>
+Content-Language: en-US
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+In-Reply-To: <6733c921-3cca-cd7b-3846-0ab6ce172c14@nvidia.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -80,36 +68,104 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Mar 10, 2023 at 09:21:44PM +0800, Jianhua Lu wrote:
-> Add a driver for panels using the Novatek NT36523 display driver IC.
-...
-> +
-> +static int nt36523_get_modes(struct drm_panel *panel,
-> +			       struct drm_connector *connector)
-> +{
-> +	struct panel_info *pinfo = to_panel_info(panel);
-> +	int i;
-> +
-> +	for (i =0; i < pinfo->desc->num_modes; i++) {
-s/i =0/i = 0/, I forget to run checkpatch, sorry. I will fix it in v5 
-> +		const struct drm_display_mode *m = &pinfo->desc->modes[i];
-> +		struct drm_display_mode *mode;
-> +		mode = drm_mode_duplicate(connector->dev, m);
-> +		if (!mode) {
-> +			dev_err(panel->dev, "failed to add mode %ux%u@%u\n",
-> +				m->hdisplay, m->vdisplay, drm_mode_vrefresh(m));
-> +			return -ENOMEM;
-> +		}
-> +		mode->type = DRM_MODE_TYPE_DRIVER | DRM_MODE_TYPE_PREFERRED;
-> +		drm_mode_set_name(mode);
-> +		drm_mode_probed_add(connector, mode);
-> +	}
-> +
-> +	connector->display_info.width_mm = pinfo->desc->width_mm;
-> +	connector->display_info.height_mm = pinfo->desc->height_mm;
-> +	connector->display_info.bpc = pinfo->desc->bpc;
-> +
-> +	return pinfo->desc->num_modes;
-> +}
+On 10/03/2023 18:19, Dipen Patel wrote:
+> On 3/10/23 12:45 AM, Krzysztof Kozlowski wrote:
+>> On 09/03/2023 19:49, Dipen Patel wrote:
+>>> On 3/8/23 10:16 PM, Krzysztof Kozlowski wrote:
+>>>> On 08/03/2023 21:09, Dipen Patel wrote:
+>>>>> On 3/8/23 11:05 AM, Krzysztof Kozlowski wrote:
+>>>>>> On 08/03/2023 19:45, Dipen Patel wrote:
+>>>>>>> On 2/16/23 6:17 AM, Krzysztof Kozlowski wrote:
+>>>>>>>> On 14/02/2023 12:55, Dipen Patel wrote:
+>>>>>>>>> Added timestamp provider support for the Tegra234 in devicetree
+>>>>>>>>> bindings.
+>>>>>>>>
+>>>>>>>> 1. Your commit does much more. You need to explain it why you drop some
+>>>>>>>> property.
+>>>>>>> ACK, will address it next patch
+>>>>>>>>
+>>>>>>>> 2. Bindings go before its usage (in the patchset).
+>>>>>>> Ack...
+>>>>>>>>
+>>>>>>>> 3. Please use scripts/get_maintainers.pl to get a list of necessary
+>>>>>>>> people and lists to CC.  It might happen, that command when run on an
+>>>>>>>> older kernel, gives you outdated entries.  Therefore please be sure you
+>>>>>>>> base your patches on recent Linux kernel.
+>>>>>>> It is based on recent linux at the time patch series was sent...
+>>>>>>
+>>>>>> That's good but then why you do not use scripts/get_maintainers.pl? The
+>>>>>> hint about recent kernel was just a hint... Just do not invent addresses
+>>>>>> by yourself and use the tool to get them right.
+>>>>>>
+>>>>> I will take a note for the next patch series to add any missing people. The current
+>>>>> list of people/group is what historically helped review this new timestamp/hte subsystem.
+>>>>>
+>>>>>> (...)
+>>>>>>
+>>>>>>>>> +  properties:
+>>>>>>>>> +    compatible:
+>>>>>>>>> +      contains:
+>>>>>>>>> +        enum:
+>>>>>>>>> +          - nvidia,tegra194-gte-aon
+>>>>>>>>
+>>>>>>>> This is an ABI break. Does your driver handle it?
+>>>>>>> yes, handling patch is part of this patch series.
+>>>>>>
+>>>>>> Can you point me to the code which does it? I see "return -ENODEV;", so
+>>>>>> I think you do not handle ABI break. I could miss something but since
+>>>>>> you disagree with me, please at least bring some arguments...
+>>>>> Refer to patch https://patchwork.kernel.org/project/timestamp/patch/20230214115553.10416-3-dipenp@nvidia.com/
+>>>>> which has compatible properties added and also code changes to reflect addition/deletion of some
+>>>>> properties.
+>>>>
+>>>> I referred to the code which breaks the ABI.
+>>>>
+>>>>>
+>>>>> I am not sure I have understood about ABI break comment. How else one should handle if
+>>>>> there is no related gpio controller property found?
+>>>>
+>>>> In a way it does not break existing users? There are many ways to handle
+>>>> it, but I don't know your code to point you.
+>>>
+>>> It is new subsystem and has only one driver which uses it so far. 
+>>
+>> We do not talk about subsystem, but Tegra SoC, which is not new. Unless
+>> you meant this is new SoC/DTS?
+>>
+>>> This was a decision taken
+>>> after review comments (By Thierry, also in the mailing list) to add this property (nvidia,gpio-controller)
+>>> and necessary changes have been made to existing user. From now on, it has to follow this change.
+>>
+>> What is "it" which has to follow? There are rules for stable ABI and
+>> commit msg does not explain why they should not be followed.
 > 
+> "It" here means hte-tegra194.c HTE provider which is the only one and not being used by any entity
+> yet.
 > 
+>>
+>>>
+>>>>
+>>>>> I am assuming you are referring to the
+>>>>> below code from the patch 2 (link above) when you said "return -ENODEV".
+>>>>
+>>>>
+>>>> Your bindings patch points to ABI break without any
+>>>> explanation/justification. Then your code #2 patch actually breaks it,
+>>>> also without any justification.
+>>> I am going to add explanation/justification in the commit message in the next patch series. But to give
+>>> you context, discussion happened here https://patchwork.ozlabs.org/project/linux-gpio/patch/20221103174523.29592-3-dipenp@nvidia.com/
+>>
+>> Either too many messages (and I missed something) or I could not find
+>> why ABI break is accepted and justified.
+> 
+> https://patchwork.ozlabs.org/project/linux-gpio/patch/20221103174523.29592-5-dipenp@nvidia.com/#3000908 and
+> affected code/comment at https://patchwork.ozlabs.org/project/linux-gpio/patch/20221103174523.29592-5-dipenp@nvidia.com/#3000908.
+> 
+> Will it help if I send new patch series with detailed commit message?
+
+Yes. If the binding is not used, it's a perfectly valid reason and
+should be mentioned in commit msg.
+
+Best regards,
+Krzysztof
+
