@@ -2,79 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BA0906B536D
-	for <lists+devicetree@lfdr.de>; Fri, 10 Mar 2023 22:52:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A396E6B549D
+	for <lists+devicetree@lfdr.de>; Fri, 10 Mar 2023 23:40:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232105AbjCJVwS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 10 Mar 2023 16:52:18 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45372 "EHLO
+        id S231512AbjCJWkT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 10 Mar 2023 17:40:19 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38758 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232106AbjCJVv7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Mar 2023 16:51:59 -0500
-Received: from mail-lf1-x143.google.com (mail-lf1-x143.google.com [IPv6:2a00:1450:4864:20::143])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D7608FAD4C
-        for <devicetree@vger.kernel.org>; Fri, 10 Mar 2023 13:48:37 -0800 (PST)
-Received: by mail-lf1-x143.google.com with SMTP id j11so8416872lfg.13
-        for <devicetree@vger.kernel.org>; Fri, 10 Mar 2023 13:48:37 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=fortunewebnetworks-com.20210112.gappssmtp.com; s=20210112; t=1678484853;
-        h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=vu/hIGIFa5lHxMmIWQefka7phZ4BQsyUQ7lfzUv1x3s=;
-        b=RsO0ulJ/pUDx3MzTkDqzMbd4KD6Pd9oT7slilB+Lnf+x4+0wLMJ2P/aEW0JAYWbQBw
-         qMQVblKYh9rYESyijXGzoK6h0jWm5+VQ3eGkxC+/l67L71ZCI63YRYODgwI3JDtNGzTI
-         7N3xVfGQkt+2F1Hiuj/RyvhJZVO4PUdPMA/3uKyS9iM7RLcnUGLnOqpVNwJ6Z4O3emHr
-         iHr3SSVD7tId0ox+pk2nHI2fa2xSKtMes8hSJsB7KcimMURkCeHijazsjytc1RiC6Mfe
-         Y3g052M27ZtJO2wRJbDGP8FV6kNoq/4xOABXWmy4+jOgTBqXf3ZT+kQ4/a9LimtDNYKj
-         fdhg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678484853;
-        h=to:subject:message-id:date:from:mime-version:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=vu/hIGIFa5lHxMmIWQefka7phZ4BQsyUQ7lfzUv1x3s=;
-        b=XGCmT6P2ms8suBq0nZWh4nyAI+MlSi6eY+rDo9gT25HY6bPNQ1XZ3Gs0eCEfXYbNVX
-         fNVpGbHwVZomdOcv+IwMwUPwTMQ4MJLDVFllAV5ua11rKr4tyU8pSWnXcZ0STzoPQ9PS
-         7qvZEyyQZ8sSUcvqQkPWhqP7Zb/BgRUkxbQaHFYhL3WUhZgKrtKlm/FpOTpCPK7JFPzy
-         6xSK8xwmnnAndMAEu+10UhxLftxC3FyGQVCmlRVVWdDCJvzwz0E4m9iiWpBUMQRZuwDc
-         q0JLWlXcdZY6V5tf+w4fzs9Jhz3062mD2OKai7a2vEt3kEAkjUL2nSj7LFtcGtO5SFSM
-         mZ2A==
-X-Gm-Message-State: AO0yUKWkdLiiiosOwjrYIcMlo257sezq1qZJS435KiMOIc+Xl0E/EV4d
-        JyGryI+REcw6+Ch21we+zcSS30LOE5anm5KDQcbTeg==
-X-Google-Smtp-Source: AK7set80ng/ihx6fLZLuyKYLzHgMbS+wt3RCh4iAVg9BBSmsqrVSQ1FgqyPl4yDcy5HgUnHOa5J/v/YuGwF7kW5pD2c=
-X-Received: by 2002:ac2:4911:0:b0:4d5:ca32:6ae0 with SMTP id
- n17-20020ac24911000000b004d5ca326ae0mr8086450lfi.0.1678484853659; Fri, 10 Mar
- 2023 13:47:33 -0800 (PST)
+        with ESMTP id S231513AbjCJWkR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Mar 2023 17:40:17 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C266012DDDA;
+        Fri, 10 Mar 2023 14:40:12 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 728D7B8233B;
+        Fri, 10 Mar 2023 22:40:11 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E33C2C433A0;
+        Fri, 10 Mar 2023 22:40:09 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1678488009;
+        bh=X6JJ8hKaOwjK+z85rFeVDIA0F8rbcMZOIeRWogzIjB4=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=IreQiwUg2l90VWXx0SVc5MK/HfOvai9Jj8sV99x78eYPhaBLRrkuMLL9kB5NT2jyc
+         PaNY43x+Graq29L3aW5W4bLyTHdK5+BhB+8uJxaIaHQfSo96Ni1goURjs6n9FiJEig
+         AFtaZujpbUTKD5c79ywYJdDGDheeyBwzk0KOcFAr/yQlwuTQGFoDRtR1Y5z/05F39Q
+         6XgD0HNJHw1IprlERxsQVQaM+BfVDeD1zlrd6lHIRaSbjp7JFnnI5TcK9yrk3j7XVZ
+         NoRF75mneLE52uNYiOMqdpDmLse9ayIBXy6H/BZaillBzjcXaDoL/CV9PYHubdqgzo
+         lsUlg6FIFBL/A==
+Received: by mail-ua1-f46.google.com with SMTP id p2so4581350uap.1;
+        Fri, 10 Mar 2023 14:40:09 -0800 (PST)
+X-Gm-Message-State: AO0yUKWyU2QZxOjlSSryWyyhYRIDPh3dmpB6Sepz5XpPq67sbcyS8y74
+        YSqVQCFEPvOtiHI7CB9UzJYMv5SQwBhoCzDCmg==
+X-Google-Smtp-Source: AK7set+Z52Frd//pueEciK1V0k1o5hAldF9l+GJeEdz88kQqINdcsNfemJBGP8kHwDNSRn+msUGBFNIbcvN4gs3UIZI=
+X-Received: by 2002:ab0:4714:0:b0:68e:2ed3:92eb with SMTP id
+ h20-20020ab04714000000b0068e2ed392ebmr12478359uac.1.1678488008830; Fri, 10
+ Mar 2023 14:40:08 -0800 (PST)
 MIME-Version: 1.0
-From:   Jack Lee <jack@fortunewebnetworks.com>
-Date:   Fri, 10 Mar 2023 15:47:21 -0600
-Message-ID: <CABNDBtB0zATR7JioLHJyQzusKrrKjQ1XbLLECwiFLUVa52YMTA@mail.gmail.com>
-Subject: RE: HIMSS Attendees Email List-2023
-To:     Jack Lee <jack@fortunewebnetworks.com>
+References: <197ea188-c59d-6c53-77fd-3a0551ef8e70@linaro.org>
+In-Reply-To: <197ea188-c59d-6c53-77fd-3a0551ef8e70@linaro.org>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Fri, 10 Mar 2023 16:39:57 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqLYdyqe+=zb_sDOcffbbb3AUhxsCbUp_1GHk1fKu2xiJw@mail.gmail.com>
+Message-ID: <CAL_JsqLYdyqe+=zb_sDOcffbbb3AUhxsCbUp_1GHk1fKu2xiJw@mail.gmail.com>
+Subject: Re: Qualcomm Kryo core compatibles
+To:     Konrad Dybcio <konrad.dybcio@linaro.org>
+Cc:     lkml <linux-kernel@vger.kernel.org>,
+        dt <devicetree@vger.kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
 Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=0.8 required=5.0 tests=BAYES_50,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_FILL_THIS_FORM_SHORT autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+On Wed, Mar 8, 2023 at 4:44=E2=80=AFAM Konrad Dybcio <konrad.dybcio@linaro.=
+org> wrote:
+>
+> Hi!
+>
+> I was recently debating what to do about Qualcomm Kryo compatibles.
+>
+> There are basically 3 cases:
+>
+> 1. Falkor/"real Kryo" - the (never shipped?) server platform & MSM8996
+>
+> This one's easy, it's actually Kryo so it should stay Kryo.
+>
+>
+> 2. Fake Kryo ("customized" Arm Cortex cores) (MSM8998-SM8x50)
+>
+> This one's tough.. Qualcomm marketing material seems to sometimes say
+> Cortex, sometimes Kryo, sometimes "customized Cortex".. They do use
+> their own arm IMPLEMENTER_ID in the MIDR_EL1 register and their
+> PART_NUM values are not Arm-stock, but these cores don't seem to be
+> any special.. Maybe some irq lines are routed differently? Not sure.
+>
+> My proposition here is to do:
+>
+> "qcom,kryoXXX", "arm,cortex-ABC"
+>
+> or
+>
+> "qcom,kryoXXX-PQR", "arm,cortex-ABC"
 
-Would you be interested in acquiring The Healthcare Information and
-Management Systems Society Attendees Data List 2023?
+I don't see much value in the fallback here. We don't do much with the
+values anyways as everything uses ID registers anyways. Do you know
+the level of modification?
 
-You'll get access to 43,386 opt-in contacts, including their
-organization name, first and last name, contact job title, verified
-email address, website URL, mailing address, phone number, fax number,
-industry, and much more.
+> where PQR is one of:
+> - silver (LITTLE cores)
+> - gold (big cores)
+> - gold_plus (prime core(s))
+>
+>
+> 3. Arm cores modified within Arm implementation-defined allowance (SC8280=
+XP+)
+>
+> These cores report Arm IMPLEMENTER_IDs and actual Arm PART_NUMs, which wo=
+uld
+> suggest they're bone stock Arm Cortex cores, with some Qualcomm-iness com=
+ing
+> as part of implementation details which are.. expected since Cortex allow=
+s for
+> some IMPLEMENTATION DEFINED things. The only non-obvious part here is tha=
+t
+> the REVISION field they report does not always seem covered by the Arm TR=
+Ms.
+>
+> In this case I think going with
+>
+> "arm,cortex-ABC"
+>
+> is fine.. I already did this for 8550 and 8280xp and Rob seems to have li=
+ked it.
+>
+> So, I suppose the real question is what to do about 2., should they stay =
+as
+> they are, or maybe my proposition seems attractive?
 
-No of Contacts:- 43,523
-Cost: $2,289
+What about the generic 'qcom,kryo' strings?
 
-Contact us today to purchase The Healthcare Information and Management
-Systems Society Attendees Data List or for more information.
-
-Best regards,
-Jack Lee
+Rob
