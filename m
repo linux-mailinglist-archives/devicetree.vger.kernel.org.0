@@ -2,50 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B89E36B47B0
-	for <lists+devicetree@lfdr.de>; Fri, 10 Mar 2023 15:53:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EE1836B4784
+	for <lists+devicetree@lfdr.de>; Fri, 10 Mar 2023 15:51:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233493AbjCJOxh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 10 Mar 2023 09:53:37 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56616 "EHLO
+        id S233443AbjCJOvY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 10 Mar 2023 09:51:24 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43586 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233501AbjCJOxC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Mar 2023 09:53:02 -0500
-Received: from mail-ot1-f41.google.com (mail-ot1-f41.google.com [209.85.210.41])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 74A9310F45D;
-        Fri, 10 Mar 2023 06:49:12 -0800 (PST)
-Received: by mail-ot1-f41.google.com with SMTP id p13-20020a9d744d000000b0069438f0db7eso3048542otk.3;
-        Fri, 10 Mar 2023 06:49:12 -0800 (PST)
+        with ESMTP id S233236AbjCJOuU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Mar 2023 09:50:20 -0500
+Received: from mail-ot1-f42.google.com (mail-ot1-f42.google.com [209.85.210.42])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 50F1F24BD4;
+        Fri, 10 Mar 2023 06:48:08 -0800 (PST)
+Received: by mail-ot1-f42.google.com with SMTP id e26-20020a9d6e1a000000b00694274b5d3aso3046490otr.5;
+        Fri, 10 Mar 2023 06:48:08 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678459701;
+        d=1e100.net; s=20210112; t=1678459673;
         h=content-transfer-encoding:mime-version:message-id:date:subject:cc
          :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=sMPAIKuNlYfwl+YKIIWa1ctChtks/5gg2kAnqibcaTE=;
-        b=dC+RoomwETgHhJMFNRa0bfe4pgnMMPIcl3CoKYV70kV/taidJH/PLQPirF2YJaV5as
-         EwZh0w+RCsnGSPVP20p94QfVx52C1FLZkyEflEf3RJ+XVL3TZfvp++pdDW7NDN/skMGX
-         OXdO797MQpACVKgvlW+rIuoHRflM3hXEuiNoo6l6z26uEF12hRQtJ8/CSuzU9y6CMeKP
-         GYw5CUil/raohu2xjcpCZBWl59M5HbNJtC6YV1eutkrmNuOrA2Mj2NW06sAYcUXK2C7R
-         xLfvI00Snw9yEiHv40pG8JPC4xliUNfXWI6KUKS+ooAWnalnxQZRmEwBBVD4k8veqTW7
-         FaAA==
-X-Gm-Message-State: AO0yUKUoEVUwIUnY+B2U18MR7AMY3DxzHyBTJygBdYBt1Cpc5enYffxa
-        DOb2pjuE7WkGCqGpWlBOlw==
-X-Google-Smtp-Source: AK7set8OnAxQN6y3ccR26yajoFEGuzwZcaUQ5w2owL8ZDy3o89b64aD5KMomn/MPxmUbe/vy4DRJXA==
-X-Received: by 2002:a05:6830:574:b0:684:b6d7:c804 with SMTP id f20-20020a056830057400b00684b6d7c804mr12890493otc.18.1678459701729;
-        Fri, 10 Mar 2023 06:48:21 -0800 (PST)
+        bh=GXCHY+LeASHjqbWZkrXOiJ6Ihxp14Y6fs7ARyvepk6w=;
+        b=lbADqtoDjG1vUgrydqXvmgbkX2j2Exd74H7qPjrbSCNJA6jfupSoC7oIXQv32iFiPz
+         EXXgcClRCp0YeOGgZ1bEU5nu9bWYinun7RwRsV7/X1Ych44r37vi09Po083aK1txVBIn
+         fSOjwqyVmx/S1uR3+juJ20bHtD3c0J8BDVn4Ke0j97RzN7bPEP1KA+RQSqJJOiiFHpwO
+         ZUIMVGQtcsDFORMq9RZwyRbp+Or/eXWuIoJ7k1pQYSE6r8RysKn56Iymqd2tveDipx2r
+         lWAJQjSBvBa8hxAGibvJmi/IHqkn8Q9LYM/lefoNuu01iD9VBotJsUMiSiRTYuAF2uFX
+         hHtg==
+X-Gm-Message-State: AO0yUKWOCJcrptpxNSOzg9E9JSaHauwgwWQ5YYRHdoUnpavLkPN0jF6+
+        L3oblloSweQT2ez5+mj87g==
+X-Google-Smtp-Source: AK7set/X9oDJj8zIPyN/fV9iVrP8EOyGBouWKOZ8OH+87CK5qFHWqvBAWbWCp0iheSUuh+c/+gundA==
+X-Received: by 2002:a05:6830:1d91:b0:693:d999:431a with SMTP id y17-20020a0568301d9100b00693d999431amr1039223oti.13.1678459672835;
+        Fri, 10 Mar 2023 06:47:52 -0800 (PST)
 Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id p16-20020a056830131000b0068bc8968753sm128553otq.17.2023.03.10.06.48.21
+        by smtp.gmail.com with ESMTPSA id j16-20020a9d7690000000b006863ccbf067sm96181otl.74.2023.03.10.06.47.51
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 10 Mar 2023 06:48:21 -0800 (PST)
-Received: (nullmailer pid 1546544 invoked by uid 1000);
-        Fri, 10 Mar 2023 14:47:33 -0000
+        Fri, 10 Mar 2023 06:47:52 -0800 (PST)
+Received: (nullmailer pid 1546774 invoked by uid 1000);
+        Fri, 10 Mar 2023 14:47:34 -0000
 From:   Rob Herring <robh@kernel.org>
-To:     Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>
-Cc:     devicetree@vger.kernel.org, alsa-devel@alsa-project.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH] ALSA: ppc/tumbler: Use of_property_present() for testing DT property presence
-Date:   Fri, 10 Mar 2023 08:47:33 -0600
-Message-Id: <20230310144733.1546500-1-robh@kernel.org>
+To:     Chanwoo Choi <cw00.choi@samsung.com>,
+        MyungJoo Ham <myungjoo.ham@samsung.com>,
+        Kyungmin Park <kyungmin.park@samsung.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Alim Akhtar <alim.akhtar@samsung.com>
+Cc:     devicetree@vger.kernel.org, linux-pm@vger.kernel.org,
+        linux-samsung-soc@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: [PATCH] PM / devfreq: exynos: Use of_property_present() for testing DT property presence
+Date:   Fri, 10 Mar 2023 08:47:34 -0600
+Message-Id: <20230310144734.1546726-1-robh@kernel.org>
 X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
@@ -69,22 +74,22 @@ for presence of a property and nothing more.
 
 Signed-off-by: Rob Herring <robh@kernel.org>
 ---
- sound/ppc/tumbler.c | 2 +-
+ drivers/devfreq/exynos-bus.c | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/sound/ppc/tumbler.c b/sound/ppc/tumbler.c
-index f3f8ad7c3df8..6c882873b344 100644
---- a/sound/ppc/tumbler.c
-+++ b/sound/ppc/tumbler.c
-@@ -1363,7 +1363,7 @@ int snd_pmac_tumbler_init(struct snd_pmac *chip)
- 		if (of_node_name_eq(np, "sound")) {
- 			if (of_get_property(np, "has-anded-reset", NULL))
- 				mix->anded_reset = 1;
--			if (of_get_property(np, "layout-id", NULL))
-+			if (of_property_present(np, "layout-id"))
- 				mix->reset_on_sleep = 0;
- 			of_node_put(np);
- 			break;
+diff --git a/drivers/devfreq/exynos-bus.c b/drivers/devfreq/exynos-bus.c
+index 027e8f336acc..d341876e7b62 100644
+--- a/drivers/devfreq/exynos-bus.c
++++ b/drivers/devfreq/exynos-bus.c
+@@ -432,7 +432,7 @@ static int exynos_bus_probe(struct platform_device *pdev)
+ 		goto err;
+ 
+ 	/* Create child platform device for the interconnect provider */
+-	if (of_get_property(dev->of_node, "#interconnect-cells", NULL)) {
++	if (of_property_present(dev->of_node, "#interconnect-cells")) {
+ 		bus->icc_pdev = platform_device_register_data(
+ 						dev, "exynos-generic-icc",
+ 						PLATFORM_DEVID_AUTO, NULL, 0);
 -- 
 2.39.2
 
