@@ -2,52 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6C1096B4EF2
-	for <lists+devicetree@lfdr.de>; Fri, 10 Mar 2023 18:38:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 67B296B4F60
+	for <lists+devicetree@lfdr.de>; Fri, 10 Mar 2023 18:48:24 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231476AbjCJRix (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 10 Mar 2023 12:38:53 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53544 "EHLO
+        id S231220AbjCJRsW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 10 Mar 2023 12:48:22 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43088 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230448AbjCJRiv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Mar 2023 12:38:51 -0500
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 350C120A30
-        for <devicetree@vger.kernel.org>; Fri, 10 Mar 2023 09:38:08 -0800 (PST)
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1paggY-0007mJ-EG; Fri, 10 Mar 2023 18:37:42 +0100
-Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
-        by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.94.2)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1paggU-003E1P-Ot; Fri, 10 Mar 2023 18:37:38 +0100
-Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.94.2)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1paggT-003r2a-68; Fri, 10 Mar 2023 18:37:37 +0100
-Date:   Fri, 10 Mar 2023 18:37:35 +0100
-From:   Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
-To:     Sasha Finkelstein <fnkl.kernel@gmail.com>
-Cc:     thierry.reding@gmail.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, marcan@marcan.st,
-        sven@svenpeter.dev, alyssa@rosenzweig.io, asahi@lists.linux.dev,
-        linux-arm-kernel@lists.infradead.org, linux-pwm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v7 2/5] pwm: Add Apple PWM controller
-Message-ID: <20230310173735.2v4smudck2qgt27y@pengutronix.de>
-References: <20230114132508.96600-1-fnkl.kernel@gmail.com>
- <20230114132508.96600-3-fnkl.kernel@gmail.com>
+        with ESMTP id S231284AbjCJRsT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Mar 2023 12:48:19 -0500
+Received: from mail-pl1-x62b.google.com (mail-pl1-x62b.google.com [IPv6:2607:f8b0:4864:20::62b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4DA5712C835
+        for <devicetree@vger.kernel.org>; Fri, 10 Mar 2023 09:47:44 -0800 (PST)
+Received: by mail-pl1-x62b.google.com with SMTP id i10so6397228plr.9
+        for <devicetree@vger.kernel.org>; Fri, 10 Mar 2023 09:47:44 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1678470457;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=cxGEPKOwr+tmbFiOp83p4hK/QKt7HqPKsBOKDzMhBlo=;
+        b=H8XP1MoNcr9KjteVGhX7zomURyl8s+0CZ8OFezv1JoRblg1566OYEafcR01mg4DhWw
+         36uFcnFShxOwidS6iMe0fCiWfQegp8tsjuegktg2Q7jSVKuJmQ6S3PfNecL3zUmaUUaU
+         V2bj7a00LdpAgDfhvKB28e4PvPKY28lcG1+bnG4KShTw6fhx9t8dL9DKOLzELjHL/b0u
+         bY3MV78r5K5zGnHB7DFYPn5rsmyMz5SdahEiQFPAluhXDrjz+YySUyEmsqckqImvHejX
+         0mK20SbzE9qKWWtoUa7cMhFkDmyMvEQyIhrEEUkrnFDeYMK9ILOuPscqxi7lbtyPfUD9
+         Q/Vg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1678470457;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=cxGEPKOwr+tmbFiOp83p4hK/QKt7HqPKsBOKDzMhBlo=;
+        b=sg24Vl5oDst+maqMnJ792qRP9Bk9MdfhWF7vEI+7Y8zcenD5L4wOelo3289lMTxDYZ
+         B5BIxFtfDv6xiFzdyt14AjKBWfVI2375OP7v0YZid23kBWEoOborwvUfSQK7GHV96waM
+         OybNjwmgKOd9i/rc8V+mY+h1rP5vh61pm3BC4L3YlLgLrgFgMpUPqWd8jA7NERzMjxOT
+         iWUK5Hm8ay+tf3P4ctwK/0zl97ccsBJ6PmbyofHN4fLFVhvyA2Ze9w/X1u5wZgMBxwZf
+         eANsLDSyiVoDb1WxC+bDPiSqGqGz5Y7U6W7+YfniFfJwRMNGvJbdn43/M+BW2jY5KDpB
+         UwhA==
+X-Gm-Message-State: AO0yUKXOq/GLv/LEx3TlWGDNr4BYsJGzgQDXdAipQUBbkBnSu3m8jZJA
+        dj6lexSwyedhIw6+vwmUsYXOSx5dOvydUEk9Auyh9Q==
+X-Google-Smtp-Source: AK7set9qlzyfJQkPmeS1QvtKn+DzHcVEf//e44mpadhloRlsZ0QlMRrI+kEDfbQXl075/XuicaWTao1yhsQc5P/VAV8=
+X-Received: by 2002:a17:902:edc2:b0:19a:9834:bb2c with SMTP id
+ q2-20020a170902edc200b0019a9834bb2cmr10491816plk.11.1678470456953; Fri, 10
+ Mar 2023 09:47:36 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="27yatcxzmvpgc6bc"
-Content-Disposition: inline
-In-Reply-To: <20230114132508.96600-3-fnkl.kernel@gmail.com>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: ukl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+References: <20230310144703.1541888-1-robh@kernel.org>
+In-Reply-To: <20230310144703.1541888-1-robh@kernel.org>
+From:   Ulf Hansson <ulf.hansson@linaro.org>
+Date:   Fri, 10 Mar 2023 18:46:59 +0100
+Message-ID: <CAPDyKFoVUQEmseNT+dZFJDfwh7ijTwUs5_NckpZLhRQ=VuFpFQ@mail.gmail.com>
+Subject: Re: [PATCH] cpuidle: Use of_property_present() for testing DT
+ property presence
+To:     Rob Herring <robh@kernel.org>,
+        "Rafael J. Wysocki" <rafael@kernel.org>
+Cc:     Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Anup Patel <anup@brainfault.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>, devicetree@vger.kernel.org,
+        linux-pm@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -56,59 +73,66 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Fri, 10 Mar 2023 at 15:47, Rob Herring <robh@kernel.org> wrote:
+>
+> It is preferred to use typed property access functions (i.e.
+> of_property_read_<type> functions) rather than low-level
+> of_get_property/of_find_property functions for reading properties. As
+> part of this, convert of_get_property/of_find_property calls to the
+> recently added of_property_present() helper when we just want to test
+> for presence of a property and nothing more.
+>
+> Signed-off-by: Rob Herring <robh@kernel.org>
 
---27yatcxzmvpgc6bc
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Acked-by: Ulf Hansson <ulf.hansson@linaro.org>
 
-Hello,
+Rafael, can you please pick this via your tree.
 
-On Sat, Jan 14, 2023 at 04:25:05PM +0300, Sasha Finkelstein wrote:
-> +static int apple_pwm_apply(struct pwm_chip *chip, struct pwm_device *pwm,
-> +			   const struct pwm_state *state)
-> +{
-> +	struct apple_pwm *fpwm;
-> +
-> +	if (state->polarity =3D=3D PWM_POLARITY_INVERSED)
-> +		return -EINVAL;
-> +
-> +	fpwm =3D to_apple_pwm(chip);
-> +	if (state->enabled) {
-> +		u64 on_cycles, off_cycles;
-> +
-> +		on_cycles =3D mul_u64_u64_div_u64(fpwm->clkrate,
-> +						state->duty_cycle, NSEC_PER_SEC);
-> +		if (on_cycles > 0xFFFFFFFF)
-> +			return -ERANGE;
+Kind regards
+Uffe
 
-The idea is to configure the biggest duty_cycle that is not bigger than
-the requested duty_cycle. So don't return an error here, but use
-0xffffffff instead.
-
-I should have catched that in my v4 and my v6 review, sorry, I missed
-that.
-
-Best regards
-Uwe
-
---=20
-Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
-Industrial Linux Solutions                 | https://www.pengutronix.de/ |
-
---27yatcxzmvpgc6bc
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEfnIqFpAYrP8+dKQLwfwUeK3K7AkFAmQLat0ACgkQwfwUeK3K
-7Am66wf/U1bdPVcUR8xgM53HsTx0FsGZBiGJwys2OEYRIJmjFcLdwiPAIoqbbHFQ
-t9qU/L0cdxeaaP5Kc9YDoYf2pPWk1/XSEGjyPdAN8VY13mQH118KnrEPX7hU/SkV
-wGGXuRX2CkIbar4DUklIQNLU9xzKgZN0RVToA64TKzTLGztVhp5jePyfFFSNdQvd
-t/ZcBlhbmP2nUM2n0lMvjr2PwmGDLmIx3y0TXVLuxR68SjhPXfK7StpP4tTN+XQe
-V0KFiBzqTeyExVGuBMCcjT6fMkK7rHLq5jPwJd7mhVID91qP//Pnmd7TCY9i4BRS
-G24WJ07T3WSdiRpK6sG76SKhQms8iQ==
-=h9Aj
------END PGP SIGNATURE-----
-
---27yatcxzmvpgc6bc--
+> ---
+>  drivers/cpuidle/cpuidle-psci-domain.c | 2 +-
+>  drivers/cpuidle/cpuidle-riscv-sbi.c   | 6 +++---
+>  2 files changed, 4 insertions(+), 4 deletions(-)
+>
+> diff --git a/drivers/cpuidle/cpuidle-psci-domain.c b/drivers/cpuidle/cpuidle-psci-domain.c
+> index 6ad2954948a5..e875ddadc51b 100644
+> --- a/drivers/cpuidle/cpuidle-psci-domain.c
+> +++ b/drivers/cpuidle/cpuidle-psci-domain.c
+> @@ -165,7 +165,7 @@ static int psci_cpuidle_domain_probe(struct platform_device *pdev)
+>          * initialize a genpd/genpd-of-provider pair when it's found.
+>          */
+>         for_each_child_of_node(np, node) {
+> -               if (!of_find_property(node, "#power-domain-cells", NULL))
+> +               if (!of_property_present(node, "#power-domain-cells"))
+>                         continue;
+>
+>                 ret = psci_pd_init(node, use_osi);
+> diff --git a/drivers/cpuidle/cpuidle-riscv-sbi.c b/drivers/cpuidle/cpuidle-riscv-sbi.c
+> index be383f4b6855..1fab1abc6eb6 100644
+> --- a/drivers/cpuidle/cpuidle-riscv-sbi.c
+> +++ b/drivers/cpuidle/cpuidle-riscv-sbi.c
+> @@ -497,7 +497,7 @@ static int sbi_genpd_probe(struct device_node *np)
+>          * initialize a genpd/genpd-of-provider pair when it's found.
+>          */
+>         for_each_child_of_node(np, node) {
+> -               if (!of_find_property(node, "#power-domain-cells", NULL))
+> +               if (!of_property_present(node, "#power-domain-cells"))
+>                         continue;
+>
+>                 ret = sbi_pd_init(node);
+> @@ -548,8 +548,8 @@ static int sbi_cpuidle_probe(struct platform_device *pdev)
+>         for_each_possible_cpu(cpu) {
+>                 np = of_cpu_device_node_get(cpu);
+>                 if (np &&
+> -                   of_find_property(np, "power-domains", NULL) &&
+> -                   of_find_property(np, "power-domain-names", NULL)) {
+> +                   of_property_present(np, "power-domains") &&
+> +                   of_property_present(np, "power-domain-names")) {
+>                         continue;
+>                 } else {
+>                         sbi_cpuidle_use_osi = false;
+> --
+> 2.39.2
+>
