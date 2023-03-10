@@ -2,75 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 619046B3C1E
-	for <lists+devicetree@lfdr.de>; Fri, 10 Mar 2023 11:30:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3E91D6B3C62
+	for <lists+devicetree@lfdr.de>; Fri, 10 Mar 2023 11:36:05 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230036AbjCJKau (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 10 Mar 2023 05:30:50 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57484 "EHLO
+        id S231319AbjCJKgD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 10 Mar 2023 05:36:03 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59880 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231235AbjCJKal (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Mar 2023 05:30:41 -0500
-Received: from mail-wr1-x42f.google.com (mail-wr1-x42f.google.com [IPv6:2a00:1450:4864:20::42f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C1BD81111F3
-        for <devicetree@vger.kernel.org>; Fri, 10 Mar 2023 02:30:31 -0800 (PST)
-Received: by mail-wr1-x42f.google.com with SMTP id j2so4559518wrh.9
-        for <devicetree@vger.kernel.org>; Fri, 10 Mar 2023 02:30:31 -0800 (PST)
+        with ESMTP id S230197AbjCJKfl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Mar 2023 05:35:41 -0500
+Received: from mail-pg1-x530.google.com (mail-pg1-x530.google.com [IPv6:2607:f8b0:4864:20::530])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 067E9136C9;
+        Fri, 10 Mar 2023 02:35:01 -0800 (PST)
+Received: by mail-pg1-x530.google.com with SMTP id p6so2803851pga.0;
+        Fri, 10 Mar 2023 02:35:00 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1678444230;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=pxv6k2m01S32PDt4BN/C36/MZsZ/J+NM4VfP3nQvMg4=;
-        b=SlTWL4L0m5jOOnZ4iFyCezkGL2cAR14NfQCNlmyaLc1uHXrskzsL6M9bb9Rge8KoHj
-         kArZ6JiN6jj7L4jMS1Gob05b3m/2AXp4bDdgZrs2xgbiVPMg3JqCoX59RMGTehpokn/R
-         xl353Tar+L7RVR6N5knSp8G0fR7neIH1v6LUMAL09Y9RaAhvOlv/SzLINTsC9dUnafKP
-         j3Kysmgy5eCueKKGI2gWpmMJ7Wlwzf6sOGzWNY9UiEtf4hjJYrctwjJUYGscDnXSSMR0
-         FrXBWPaZ+geBZrbO/guQW88ThmU1sewjWKmbSFm5QCtFXjTlgDrJKYhn2BNYRXW+hqgk
-         Kc3Q==
+        d=gmail.com; s=20210112; t=1678444420;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=YrNzsS4yDEQMUDPv9ek+bekWTDdRMD0SzIqqeBsqXfs=;
+        b=j7yDOF4vjuMwEC50NwSCaNecKzZ2/3xLGtDe67+v5aE7gFEJV+8w+NQx8s0kvgTst5
+         +naqkoEiK0kI7PmpwOb5Z39aKZNATOodTn+e4rIODobgKz7qibnXmEGO/zSzsEwxaEJJ
+         Nya/2AXZC+NK7iLeBBktVHDwyoQAIODH98bn6kKcHWhTGloTdt3wjzwXQoip9pUe+SAx
+         S1gDd/X+962d6qPwwzxeYCGWzsx5BicoCCYEy0jICNUfQuZ41zQly40a/C1JQkQ+f45C
+         AAtJkeim9GRcRkFMG0hHD0Dvbfnm8eHHdMcarpnh5n/nKRsDyvu3YQLBU9/HVR3/9ruY
+         ZBQA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678444230;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=pxv6k2m01S32PDt4BN/C36/MZsZ/J+NM4VfP3nQvMg4=;
-        b=eNmlgbiuAauI5xOtlR3iojORrL8A1OvRlAY+UyTAAjyoyp7dpbhbftZYTgZV6iGyhv
-         GCqpg3w5LdIVy0NkDksdbpnhONRLjPDpXvZ8ojt7LmYgG73PFGaEP5tzeXR6lhHphd65
-         M9hmywPqohAVMf94cls3Ig3+Jvxp9Z4FqHYD9+l/XJeQ2mGEgNc7SOpubjgisMKPOhDr
-         LmUqgpnFAdTvaAucrOs/TVodnqHdS0fm92JPrCm7LFd+PqtxCS8cSaSVohiJ0r+RJgaz
-         9cRNPvg/RyrKdOZusFwnVkwdTnPW2FoYpl9Ql6m25ahjZ+/jgJ9BeY2Q5KBgb0VnEg9f
-         2HRw==
-X-Gm-Message-State: AO0yUKX7O2skndGLrRIO9S7Vn0wartvhkZPtAqWjlc0cI8D6Cw/acIUd
-        9ZLlvfKtc6115tttqcjrbY3qcg==
-X-Google-Smtp-Source: AK7set/owklYqi8JaLfBaL4oU2puy9p5Cxw1Btjq94yL6Is5jHVg4Bma7PZKabrCWc4N5sRSwKwq9Q==
-X-Received: by 2002:a5d:44c7:0:b0:2c7:1b41:2ed4 with SMTP id z7-20020a5d44c7000000b002c71b412ed4mr17473299wrr.46.1678444229964;
-        Fri, 10 Mar 2023 02:30:29 -0800 (PST)
-Received: from [192.168.0.162] (188-141-3-169.dynamic.upc.ie. [188.141.3.169])
-        by smtp.gmail.com with ESMTPSA id z10-20020adfd0ca000000b002be099f78c0sm1765644wrh.69.2023.03.10.02.30.28
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 10 Mar 2023 02:30:29 -0800 (PST)
-Message-ID: <ff784dd5-179a-28a9-b25f-9b09e0791b5f@linaro.org>
-Date:   Fri, 10 Mar 2023 10:30:28 +0000
+        d=1e100.net; s=20210112; t=1678444420;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=YrNzsS4yDEQMUDPv9ek+bekWTDdRMD0SzIqqeBsqXfs=;
+        b=FILFd50cMvM3VCkDxVdxW/T4kpuRWZLP0eYXg2YBSsskBhHn6n8P+YSY+noLnXP1xi
+         rivo28g5wJ09MottbJ2nU/myd6OtlMiYf2JXfjQbG6pvQ8prr7Xxx/5jTM+OCUcz/y1u
+         k3qhajMLuZ2v8gJ9kWlHpiRF5557yb4i3phfxacl5d5UFCpYnd/N3IChToivqojCgR78
+         xOAqRN2mxrktbvrBSToKzUD63MTiG7Fxqf1MEpbVqJzW9phurbRAr61t6UfXFw8uTpe6
+         p/9e00R2AOh77I1Z6pqyUZRgBxofSZmhATBPoArrGfIfvObKJMzUCWziwCfKNspDjo2f
+         VktA==
+X-Gm-Message-State: AO0yUKU/piPmC1FhfGXXE2FRtEaCFE8+NXvSYfz8Qsa0ubeqGu+u1y3G
+        n2eEhWuHyc6ZgfFx1DTt+8hNgVwt2SK6hI1yjYg=
+X-Google-Smtp-Source: AK7set8WnxbFY5oTrVIKnhdrvft3bVtLVrqnp8sLn5OeESTjitANPmUjpUeCrnOQfk59jWma/T/rN7BdO7v9GpO4T8o=
+X-Received: by 2002:a62:828e:0:b0:593:da6f:fb1c with SMTP id
+ w136-20020a62828e000000b00593da6ffb1cmr10533664pfd.4.1678444419668; Fri, 10
+ Mar 2023 02:33:39 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-Subject: Re: [PATCH] arm64: dts: qcom: msm8916: Move WCN compatible to boards
-Content-Language: en-US
-To:     Stephan Gerhold <stephan.gerhold@kernkonzept.com>,
-        Bjorn Andersson <andersson@kernel.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Nikita Travkin <nikita@trvn.ru>, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, Stephan Gerhold <stephan@gerhold.net>
-References: <20230309091452.1011776-1-stephan.gerhold@kernkonzept.com>
-From:   Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-In-Reply-To: <20230309091452.1011776-1-stephan.gerhold@kernkonzept.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+References: <20230306191535.1917656-1-sean.anderson@seco.com>
+ <20230306191535.1917656-4-sean.anderson@seco.com> <CAOiHx=mcANqHTk9=b0TGHa2rk9nppnKa2EB1v05uHb5jhzoawA@mail.gmail.com>
+ <49b24502-1b21-f05b-ef4a-18d5aa375f8d@seco.com>
+In-Reply-To: <49b24502-1b21-f05b-ef4a-18d5aa375f8d@seco.com>
+From:   Jonas Gorski <jonas.gorski@gmail.com>
+Date:   Fri, 10 Mar 2023 11:33:28 +0100
+Message-ID: <CAOiHx=k8f6irVChBOtSoUJZiW6VS3sdg_KWhTo+C+ZWoGmmfdQ@mail.gmail.com>
+Subject: Re: [PATCH v10 03/13] dt-bindings: Convert gpio-mmio to yaml
+To:     Sean Anderson <sean.anderson@seco.com>
+Cc:     Vinod Koul <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@kernel.org>,
+        linux-phy@lists.infradead.org,
+        Madalin Bucur <madalin.bucur@nxp.com>,
+        linuxppc-dev@lists.ozlabs.org, devicetree@vger.kernel.org,
+        Ioana Ciornei <ioana.ciornei@nxp.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Camelia Alexandra Groza <camelia.groza@nxp.com>,
+        linux-arm-kernel@lists.infradead.org,
+        Bagas Sanjaya <bagasdotme@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Bartosz Golaszewski <brgl@bgdev.pl>,
+        =?UTF-8?Q?Fern=C3=A1ndez_Rojas?= <noltari@gmail.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        linux-gpio@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -78,42 +81,47 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 09/03/2023 09:14, Stephan Gerhold wrote:
-> On MSM8916 the wireless connectivity functionality (WiFi/Bluetooth) is
-> split into the digital part inside the SoC and the analog RF part inside
-> a supplementary WCN36xx chip. For MSM8916, three different options
-> exist:
-> 
->    - WCN3620  (WLAN 802.11 b/g/n 2.4 GHz + Bluetooth)
->    - WCN3660B (WLAN 802.11 a/b/g/n 2.4/5 GHz + Bluetooth)
->    - WCN3680B (WLAN 802.11ac 2.4/5 GHz + Bluetooth)
-> 
-> Choosing one of these is up to the board vendor. This means that the
-> compatible belongs into the board-specific DT part so people porting
-> new boards pay attention to set the correct compatible.
-> 
-> Right now msm8916.dtsi sets "qcom,wcn3620" as default compatible,
-> which does not work at all for boards that have WCN3660B or WCN3680B.
-> 
-> Remove the default compatible from msm8196.dtsi and move it to the board
-> DT as follows:
-> 
->    - Boards with only &pronto { status = "okay"; } used the default
->      "qcom,wcn3620" so far. They now set this explicitly for &wcnss_iris.
->    - Boards with &pronto { ... iris { compatible = "qcom,wcn3660b"; }};
->      already had an override that just moves to &wcnss_iris now.
->    - For msm8916-samsung-a2015-common.dtsi the WCN compatible differs for
->      boards making use of it (a3u: wcn3620, a5u: wcn3660b, e2015: wcn3620)
->      so the definitions move to the board-specific DT part.
-> 
-> Since this requires touching all the board DTs, use this as a chance to
-> name the WCNSS-related labels consistently, so everything is grouped
-> properly when sorted alphabetically.
-> 
-> No functional change, just clean-up for more clarity & easier porting.
-> Aside from ordering the generated DTBs are identical.
-> 
-> Signed-off-by: Stephan Gerhold <stephan.gerhold@kernkonzept.com>
+On Mon, 6 Mar 2023 at 22:27, Sean Anderson <sean.anderson@seco.com> wrote:
+>
+> On 3/6/23 15:51, Jonas Gorski wrote:
+> > Hi,
+> >
+> > On Mon, 6 Mar 2023 at 20:16, Sean Anderson <sean.anderson@seco.com> wrote:
+> >>
+> >> This is a generic binding for simple MMIO GPIO controllers. Although we
+> >> have a single driver for these controllers, they were previously spread
+> >> over several files. Consolidate them. The register descriptions are
+> >> adapted from the comments in the source. There is no set order for the
+> >> registers, so I have not specified one.
+> >>
+> >> Signed-off-by: Sean Anderson <sean.anderson@seco.com>
+> >> ---
+> >>
+> >> Changes in v10:
+> >> - New
+> >>
+> >>  .../bindings/gpio/brcm,bcm6345-gpio.yaml      |  16 +--
+> >>  .../devicetree/bindings/gpio/gpio-mmio.yaml   | 136 ++++++++++++++++++
+> >>  .../bindings/gpio/ni,169445-nand-gpio.txt     |  38 -----
+> >>  .../devicetree/bindings/gpio/wd,mbl-gpio.txt  |  38 -----
+> >>  4 files changed, 137 insertions(+), 91 deletions(-)
+> >>  create mode 100644 Documentation/devicetree/bindings/gpio/gpio-mmio.yaml
+> >>  delete mode 100644 Documentation/devicetree/bindings/gpio/ni,169445-nand-gpio.txt
+> >>  delete mode 100644 Documentation/devicetree/bindings/gpio/wd,mbl-gpio.txt
+> >>
+> >> diff --git a/Documentation/devicetree/bindings/gpio/brcm,bcm6345-gpio.yaml b/Documentation/devicetree/bindings/gpio/brcm,bcm6345-gpio.yaml
+> >> index 4d69f79df859..e11f4af49c52 100644
+> >> --- a/Documentation/devicetree/bindings/gpio/brcm,bcm6345-gpio.yaml
+> >> +++ b/Documentation/devicetree/bindings/gpio/brcm,bcm6345-gpio.yaml
+> >
+> > You are (re-)moving the compatible this file is named after, you might
+> > want to rename the file as well then. Going by age bcm6358 would be
+> > the next oldest one (bcm6318 would be the newest, despite the lowest
+> > number).
+>
+> I can do that. Would it be fine to rename to e.g. brcm,bcm63xx-gpio.yaml?
 
-Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+I'm not up to date with current naming policies (if there are any at
+all), but looking at what's currently there this should be fine.
 
+Jonas
