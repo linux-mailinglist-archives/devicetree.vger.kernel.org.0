@@ -2,78 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5ADEB6B3E35
-	for <lists+devicetree@lfdr.de>; Fri, 10 Mar 2023 12:42:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7B9536B3E3E
+	for <lists+devicetree@lfdr.de>; Fri, 10 Mar 2023 12:43:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229597AbjCJLmS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 10 Mar 2023 06:42:18 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41944 "EHLO
+        id S229817AbjCJLnl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 10 Mar 2023 06:43:41 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45822 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231228AbjCJLmB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Mar 2023 06:42:01 -0500
-Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com [IPv6:2a00:1450:4864:20::52a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5943B2470A;
-        Fri, 10 Mar 2023 03:42:00 -0800 (PST)
-Received: by mail-ed1-x52a.google.com with SMTP id j11so19288087edq.4;
-        Fri, 10 Mar 2023 03:42:00 -0800 (PST)
+        with ESMTP id S229767AbjCJLnk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Mar 2023 06:43:40 -0500
+Received: from mail-ed1-x530.google.com (mail-ed1-x530.google.com [IPv6:2a00:1450:4864:20::530])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 90FEB22005
+        for <devicetree@vger.kernel.org>; Fri, 10 Mar 2023 03:43:38 -0800 (PST)
+Received: by mail-ed1-x530.google.com with SMTP id i34so19254253eda.7
+        for <devicetree@vger.kernel.org>; Fri, 10 Mar 2023 03:43:38 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112; t=1678448519;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=DOPcC/2QksUl/n+7no9y2cjpF4ZKKO4ov/Ft85Eli70=;
-        b=KK3MTstlBvwQJp3hkC+WWq7Q8LsLEA86B9IO7jTrSArp1MMzXDu+jUwwEQc7hd+Jqi
-         MxXm1s0mWYmLo0SfTccmPzkspQHxBEW6V36oPTIm5vuAdV6BqOSXsPvdsV5eVNlz3EQ3
-         ZPs+4YjHWB2O5155xrbCsYJCEDjQOdcaJGWexLVsaQe8HhivXObhMxJZHINQ9jpwdjQW
-         w41A0XAje2m17Dg6yG6f9t7Khevv6eeaAMaN4h2tJGfCWF0gG3WsQjAz/gnxD6X6wWma
-         gYrBUvhcR8oWbD3OGHchHzhCOvQgMP3XA4Zi0NpGn0MFnuQTiSt7dQTXvePQEYwXTlbm
-         vXbA==
+        d=linaro.org; s=google; t=1678448617;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=XXII15CH7MYFfh54srfbDSk76SUFLnbMAlJIzw3D41s=;
+        b=qDC8NqCLoCXp/8Sv71am8rVaa4PwHul/TUaHJcQCFCOqiCUxePjC82wzRPo3RqIBiJ
+         fUtTp5sSk/EB4EDFEV//7E/0UdM3idkwpgzlURXApyG0uwCaBu+NOFg6BuC/Lyk2NcxI
+         NT2taYogQ0RGOb+ve3RnAiKffhe7zcPPAG1dsFgOB9v8w/ZAFSyFsZDP/jUcdDkQy+JK
+         C1K3QiHjpD4z4KxU/ehaGG8t7WVRnsyhIAjiQ/wW8gop1t1L4lkkTLFLA97RDd5Y7rsc
+         fyxhRiXW25Uf+2L5k1iyKa0fWnCfTP0/VhC7bZ0hdinkY9Koxcr+GOotImVhYnOjPmAo
+         nrsg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678448519;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=DOPcC/2QksUl/n+7no9y2cjpF4ZKKO4ov/Ft85Eli70=;
-        b=3ojab1XC2bPGgoiW+il5FDAXevBsfPq7Xomi4wYr38tao5JFLUfURDeANEyaD6OFv5
-         Garz9ZQYhdJQJYwDS8IzEQJisLxPjTwBcQFBFbpvoS/visbZ0v2B5r1BQyi+xHkwpuHI
-         ko/z25AqZ5iqMV1OdRACBwxB3WKidmtmXWQ0qZRQifsXTuzKE6FgiAc4Q/ZcUKpSujGV
-         rktC3qOIdHPaNZS5hZyRRjPyJ+vwHgDzHBloaZUvNy3b2LU1ytfHAZJ3f/tYxgAoO/U/
-         F7FaNzeN5u3li+zyiwaZ0ev4A+4Rjl3HB37ZA4j5gyIqRpqH4xVb9QMxxrmQC4C7ATpM
-         vEKg==
-X-Gm-Message-State: AO0yUKUnAzNTRiM/VVMivHaPFdGU0VBw1iMCGg5k1FKXQ6GoNbsDFHCt
-        guo4nXr6pZUjWGoFct2PcKWyNb+otZiD2LZAMuk=
-X-Google-Smtp-Source: AK7set/XQR6yt41xZ570LX5BYhbDlEkXTOEyVF2u4VCGa7EDXGSRMJeaZ7RnJuZBW0EOTgORjUsm7+YhLxfOkIg/vWo=
-X-Received: by 2002:a50:bae1:0:b0:4ad:7439:cec7 with SMTP id
- x88-20020a50bae1000000b004ad7439cec7mr13785284ede.7.1678448518643; Fri, 10
- Mar 2023 03:41:58 -0800 (PST)
+        d=1e100.net; s=20210112; t=1678448617;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=XXII15CH7MYFfh54srfbDSk76SUFLnbMAlJIzw3D41s=;
+        b=NWG1YdPrbAIHhXRzjwTxYROqIVzBgc5aI9wZIxNk9AYYxJRbMDvqOlZGWNH2lCqjc0
+         KGeFVDZZr38sY4/qY8SYL+45/HyHrgIFWmYnJPqKSLiKRXMKZ7x2+KDjaw3e9fYqFJIM
+         ajd0PBCc4GVeZY9BHz+lwYBNMMA3WjuD4WHT1hoTvaH7ek6qFxt3wtXk776ItaDe1RX+
+         FhuCqvryZfVr3q9rq/Lm11pkC8weaAeb3aw1nXMFmSmsojWY5LzHk1ePLgbhoVu5uEUj
+         jiwnseIMJL87YdnH6cs9VqXXU08VPu006ipleNghpQqLD4YzCqoWqKUsIwx+Gq09T7N7
+         /ANA==
+X-Gm-Message-State: AO0yUKW0EZ4q9HfoW3nJf96rZLR+XT5v0HkWm0hWFzA1NDPeEutnDtzL
+        doRO9Zfava6TnHBHsGcvw/Zgpg==
+X-Google-Smtp-Source: AK7set9XX2Tk842WNqeTCOB9kbdJvINY4C8MlsDz/uhUcEYQogE27njaMOiJjwwiz/hcNzXtSucCtA==
+X-Received: by 2002:a50:fc03:0:b0:4bf:4b5c:1d58 with SMTP id i3-20020a50fc03000000b004bf4b5c1d58mr24499966edr.11.1678448617049;
+        Fri, 10 Mar 2023 03:43:37 -0800 (PST)
+Received: from [192.168.1.195] ([5.133.47.210])
+        by smtp.googlemail.com with ESMTPSA id rs24-20020a170907037800b00905a1abecbfsm859403ejb.47.2023.03.10.03.43.35
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 10 Mar 2023 03:43:36 -0800 (PST)
+Message-ID: <7fc2206d-ddb0-5817-ac6a-51d41803f691@linaro.org>
+Date:   Fri, 10 Mar 2023 11:43:34 +0000
 MIME-Version: 1.0
-References: <20230310080518.78054-1-lucas.tanure@collabora.com> <20230310080518.78054-2-lucas.tanure@collabora.com>
-In-Reply-To: <20230310080518.78054-2-lucas.tanure@collabora.com>
-From:   Peter Geis <pgwipeout@gmail.com>
-Date:   Fri, 10 Mar 2023 06:41:46 -0500
-Message-ID: <CAMdYzYpL7V6udw=T7ZChTFi0xOj1tb-5CVHb84u1pL4kj3eDZA@mail.gmail.com>
-Subject: Re: [PATCH 1/7] irqchip/gic-v3: Add a DMA Non-Coherent flag
-To:     Lucas Tanure <lucas.tanure@collabora.com>
-Cc:     Vinod Koul <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.1
+Subject: Re: [PATCH v3 17/20] nvmem: layouts: sl28vpd: Add new layout driver
+Content-Language: en-US
+To:     Miquel Raynal <miquel.raynal@bootlin.com>
+Cc:     linux-kernel@vger.kernel.org,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Michael Walle <michael@walle.cc>,
+        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>,
+        Robert Marko <robert.marko@sartura.hr>,
+        Luka Perkov <luka.perkov@sartura.hr>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>,
-        Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        Krzysztof Wilczynski <kw@linux.com>,
-        Bjorn Helgaas <bhelgaas@google.com>, Qu Wenruo <wqu@suse.com>,
-        Piotr Oniszczuk <piotr.oniszczuk@gmail.com>,
-        Kever Yang <kever.yang@rock-chips.com>,
-        linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-pci@vger.kernel.org, kernel@collabora.com,
-        Robin Murphy <robin.murphy@arm.com>
-Content-Type: text/plain; charset="UTF-8"
+        Frank Rowand <frowand.list@gmail.com>,
+        devicetree@vger.kernel.org
+References: <20230308153200.682248-1-miquel.raynal@bootlin.com>
+ <20230308153200.682248-18-miquel.raynal@bootlin.com>
+ <54e7ee75-6035-c2e9-fb8b-fe96adbb571a@linaro.org>
+ <20230310121602.109c58e7@xps-13>
+From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+In-Reply-To: <20230310121602.109c58e7@xps-13>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -81,116 +85,37 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Mar 10, 2023 at 3:05 AM Lucas Tanure <lucas.tanure@collabora.com> wrote:
->
-> The GIC600 integration in RK356x, used in rk3588, doesn't support
-> any of the shareability or cacheability attributes, and requires
-> both values to be set to 0b00 for all the ITS and Redistributor
-> tables.
->
-> This is loosely based on prior work from XiaoDong Huang and
-> Peter Geis fixing this issue specifically for Rockchip 356x.
 
-Good Morning,
 
-Since the gic is using dma, would it be reasonable to have all memory
-allocations be requested with the GFP_DMA flag? Otherwise this doesn't
-fully solve the problem for rk356x, where only the lower 4GB range is
-DMA capable, but this tends to get allocated in the upper 4GB on 8GB
-boards.
+On 10/03/2023 11:16, Miquel Raynal wrote:
+> Hi Srinivas,
+> 
+> srinivas.kandagatla@linaro.org wrote on Fri, 10 Mar 2023 11:03:45 +0000:
+> 
+>> On 08/03/2023 15:31, Miquel Raynal wrote:
+>>> +
+>>> +static int __init sl28vpd_init(void)
+>>> +{
+>>> +	return nvmem_layout_register(&sl28vpd_layout);
+>>> +}
+>>> +
+>>> +static void __exit sl28vpd_exit(void)
+>>> +{
+>>> +	nvmem_layout_unregister(&sl28vpd_layout);
+>>> +}
+>>> +
+>>> +module_init(sl28vpd_init);
+>>> +module_exit(sl28vpd_exit);
+>> Looking at this pattern in two drivers, we could come up with some helper macro like.
+>>
+>> #define module_nvmem_layout_driver(__layout_driver) \
+>>           module_driver(__layout_driver, nvmem_layout_register, \
+>>                           nvmem_layout_unregister)
+> 
+> Nice idea! I will make a patch; is it okay do it on top?
+sounds good
 
-Very Respectfully,
-Peter Geis
-
->
-> Suggested-by: Robin Murphy <robin.murphy@arm.com>
-> Signed-off-by: Lucas Tanure <lucas.tanure@collabora.com>
-> ---
->  drivers/irqchip/irq-gic-v3-its.c | 22 ++++++++++++++++++++++
->  1 file changed, 22 insertions(+)
->
-> diff --git a/drivers/irqchip/irq-gic-v3-its.c b/drivers/irqchip/irq-gic-v3-its.c
-> index 973ede0197e3..1c334dfeb647 100644
-> --- a/drivers/irqchip/irq-gic-v3-its.c
-> +++ b/drivers/irqchip/irq-gic-v3-its.c
-> @@ -42,6 +42,7 @@
->  #define ITS_FLAGS_CMDQ_NEEDS_FLUSHING          (1ULL << 0)
->  #define ITS_FLAGS_WORKAROUND_CAVIUM_22375      (1ULL << 1)
->  #define ITS_FLAGS_WORKAROUND_CAVIUM_23144      (1ULL << 2)
-> +#define ITS_FLAGS_DMA_NON_COHERENT             (1ULL << 3)
->
->  #define RDIST_FLAGS_PROPBASE_NEEDS_FLUSHING    (1 << 0)
->  #define RDIST_FLAGS_RD_TABLES_PREALLOCATED     (1 << 1)
-> @@ -2359,6 +2360,13 @@ static int its_setup_baser(struct its_node *its, struct its_baser *baser,
->         its_write_baser(its, baser, val);
->         tmp = baser->val;
->
-> +       if (its->flags & ITS_FLAGS_DMA_NON_COHERENT) {
-> +               if (tmp & GITS_BASER_SHAREABILITY_MASK)
-> +                       tmp &= ~GITS_BASER_SHAREABILITY_MASK;
-> +               else
-> +                       gic_flush_dcache_to_poc(base, PAGE_ORDER_TO_SIZE(order));
-> +       }
-> +
->         if ((val ^ tmp) & GITS_BASER_SHAREABILITY_MASK) {
->                 /*
->                  * Shareability didn't stick. Just use
-> @@ -3055,6 +3063,7 @@ static u64 its_clear_vpend_valid(void __iomem *vlpi_base, u64 clr, u64 set)
->
->  static void its_cpu_init_lpis(void)
->  {
-> +       struct its_node *its = list_first_entry(&its_nodes, struct its_node, entry);
->         void __iomem *rbase = gic_data_rdist_rd_base();
->         struct page *pend_page;
->         phys_addr_t paddr;
-> @@ -3096,6 +3105,9 @@ static void its_cpu_init_lpis(void)
->         gicr_write_propbaser(val, rbase + GICR_PROPBASER);
->         tmp = gicr_read_propbaser(rbase + GICR_PROPBASER);
->
-> +       if (its->flags & ITS_FLAGS_DMA_NON_COHERENT)
-> +               tmp &= ~GICR_PROPBASER_SHAREABILITY_MASK;
-> +
->         if ((tmp ^ val) & GICR_PROPBASER_SHAREABILITY_MASK) {
->                 if (!(tmp & GICR_PROPBASER_SHAREABILITY_MASK)) {
->                         /*
-> @@ -3120,6 +3132,9 @@ static void its_cpu_init_lpis(void)
->         gicr_write_pendbaser(val, rbase + GICR_PENDBASER);
->         tmp = gicr_read_pendbaser(rbase + GICR_PENDBASER);
->
-> +       if (its->flags & ITS_FLAGS_DMA_NON_COHERENT)
-> +               tmp &= ~GICR_PENDBASER_SHAREABILITY_MASK;
-> +
->         if (!(tmp & GICR_PENDBASER_SHAREABILITY_MASK)) {
->                 /*
->                  * The HW reports non-shareable, we must remove the
-> @@ -5005,6 +5020,7 @@ static int __init its_compute_its_list_map(struct resource *res,
->  static int __init its_probe_one(struct resource *res,
->                                 struct fwnode_handle *handle, int numa_node)
->  {
-> +       struct device_node *np = to_of_node(handle);
->         struct its_node *its;
->         void __iomem *its_base;
->         u64 baser, tmp, typer;
-> @@ -5076,6 +5092,9 @@ static int __init its_probe_one(struct resource *res,
->         its->get_msi_base = its_irq_get_msi_base;
->         its->msi_domain_flags = IRQ_DOMAIN_FLAG_MSI_REMAP;
->
-> +       if (np && !of_dma_is_coherent(np))
-> +               its->flags |= ITS_FLAGS_DMA_NON_COHERENT;
-> +
->         its_enable_quirks(its);
->
->         err = its_alloc_tables(its);
-> @@ -5095,6 +5114,9 @@ static int __init its_probe_one(struct resource *res,
->         gits_write_cbaser(baser, its->base + GITS_CBASER);
->         tmp = gits_read_cbaser(its->base + GITS_CBASER);
->
-> +       if (its->flags & ITS_FLAGS_DMA_NON_COHERENT)
-> +               tmp &= ~GITS_CBASER_SHAREABILITY_MASK;
-> +
->         if ((tmp ^ baser) & GITS_CBASER_SHAREABILITY_MASK) {
->                 if (!(tmp & GITS_CBASER_SHAREABILITY_MASK)) {
->                         /*
-> --
-> 2.39.2
->
+--srini
+> 
+> Thanks,
+> Miquèl
