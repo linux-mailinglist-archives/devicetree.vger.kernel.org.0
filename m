@@ -2,50 +2,52 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 089B66B4779
-	for <lists+devicetree@lfdr.de>; Fri, 10 Mar 2023 15:51:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F37F56B478E
+	for <lists+devicetree@lfdr.de>; Fri, 10 Mar 2023 15:51:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233353AbjCJOvD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 10 Mar 2023 09:51:03 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44248 "EHLO
+        id S233460AbjCJOvo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 10 Mar 2023 09:51:44 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43126 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233348AbjCJOt4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Mar 2023 09:49:56 -0500
-Received: from mail-ot1-f41.google.com (mail-ot1-f41.google.com [209.85.210.41])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C59C2728E;
-        Fri, 10 Mar 2023 06:47:57 -0800 (PST)
-Received: by mail-ot1-f41.google.com with SMTP id l15-20020a9d7a8f000000b0069447f0db6fso3046757otn.4;
-        Fri, 10 Mar 2023 06:47:57 -0800 (PST)
+        with ESMTP id S233362AbjCJOvG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Mar 2023 09:51:06 -0500
+Received: from mail-oa1-f52.google.com (mail-oa1-f52.google.com [209.85.160.52])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6753E3A85C;
+        Fri, 10 Mar 2023 06:48:18 -0800 (PST)
+Received: by mail-oa1-f52.google.com with SMTP id 586e51a60fabf-17638494edbso6035572fac.10;
+        Fri, 10 Mar 2023 06:48:18 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678459669;
+        d=1e100.net; s=20210112; t=1678459698;
         h=content-transfer-encoding:mime-version:message-id:date:subject:cc
          :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=9ufsybUkbmkBZT7Reugv4yMUeSADY5agPgq6hpQcf+Q=;
-        b=fXOqHEq27q7Nfg5k80wlWgFRkVkHn/HVK/Va/Az8Z5RlwNmSV4A4hwV+4C7fBejmcR
-         uUrnulJhFhPL2P0GD4N7/oZGV/A6sahdG4k7MXxbwPJLnpHyNTbZ4cr4XQ0LZBUSKUvu
-         ZS2Xo0ZvkwRwUf6qNNQAAbchKRjcZIvo+luBS3iliOqnuVLP36RplzyN/Nn0i7cq6Gyw
-         gkqsD4bEjsd9qHbBSWDFD3W7HzZEDTQKRab1+mHaLLNWUyIb9NGcs1kPmeklgLPlo1ff
-         j4ZRs9iz8ZlbCSLgA1HSUIiha/IFMc1OAmRs5gtKuWkOUwPh38MfxutQoQ2sJnWRvHzv
-         ejcg==
-X-Gm-Message-State: AO0yUKWGhDomcyPhxosZulg3+/zC7ytvnnHNWC1WuecbHt0VVGbwcNfZ
-        cSlfHNdLpHads/h8tOA5TA==
-X-Google-Smtp-Source: AK7set+11VqaTWYpd4ZPjYWm+8tkVPkSW2LDYoZdkK73WN5bvy/yIyRpxroutIcq90hTe1q+HMYn5w==
-X-Received: by 2002:a05:6830:449e:b0:690:dbb5:df32 with SMTP id r30-20020a056830449e00b00690dbb5df32mr15274511otv.25.1678459669215;
-        Fri, 10 Mar 2023 06:47:49 -0800 (PST)
+        bh=Jcxqo0ngoDPG8sfx3l2EfDlYPoRMEx1f3UACnu8WIP0=;
+        b=0lqaUpwXPDQ/UH/1ch27rldKG9EYMJuIBC7iQqdQDKCxMD33ngW/nSQLnfg491bMEj
+         dPbZSbw2HJ9+1WlD6fsvp/FCOCYgcqejWu9aZtIMInBpKAztGN7dy7ayewwApNMMzQB0
+         XDQ7JYbSEbP3iub8/JrhBU+pHx5mKW6SWoIJorQ4MpUkEJFF7Al/MtlQWL2sWRqw/rXf
+         VuqziBveaBbxyQEArefABMTCMi1Ap6NzD7OhTG6epjaRhvHIrNAIV/XTLEVmWJ8mDn6H
+         5hrUV2NSPqowIPnhncYxhF382XnhCf0pPY9CNDAytdAeEqUZ156z2WdD0B/jF4X40k+u
+         U8fw==
+X-Gm-Message-State: AO0yUKUSfGCigVrzN9Y8kWh2Rotuyni+aoBr7JRjQ4D2ae38yrLT6x0K
+        ZoFEi+aJqEv39+2ENfZPHtUBlBlSxg==
+X-Google-Smtp-Source: AK7set+/NJfKhDjq/US9Zgnj2vnj5ULRkdXtv1anFiXdX/PaEZpHr9aZmeUXkDHFpmVGgwO/W+nGBw==
+X-Received: by 2002:a05:6870:20e:b0:172:3a2f:c5ec with SMTP id j14-20020a056870020e00b001723a2fc5ecmr15852389oad.2.1678459698281;
+        Fri, 10 Mar 2023 06:48:18 -0800 (PST)
 Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id e12-20020a9d730c000000b0068bb7bd2668sm97181otk.73.2023.03.10.06.47.48
+        by smtp.gmail.com with ESMTPSA id zq48-20020a0568718eb000b00172473f9fe0sm118665oab.13.2023.03.10.06.48.17
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 10 Mar 2023 06:47:48 -0800 (PST)
-Received: (nullmailer pid 1545341 invoked by uid 1000);
-        Fri, 10 Mar 2023 14:47:25 -0000
+        Fri, 10 Mar 2023 06:48:17 -0800 (PST)
+Received: (nullmailer pid 1545259 invoked by uid 1000);
+        Fri, 10 Mar 2023 14:47:24 -0000
 From:   Rob Herring <robh@kernel.org>
-To:     Michal Simek <michal.simek@xilinx.com>
+To:     Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Samuel Holland <samuel@sholland.org>
 Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH] soc: xilinx: Use of_property_present() for testing DT property presence
+        linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org
+Subject: [PATCH] soc: sunxi: Use of_property_present() for testing DT property presence
 Date:   Fri, 10 Mar 2023 08:47:24 -0600
-Message-Id: <20230310144725.1545315-1-robh@kernel.org>
+Message-Id: <20230310144724.1545223-1-robh@kernel.org>
 X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
@@ -69,31 +71,22 @@ for presence of a property and nothing more.
 
 Signed-off-by: Rob Herring <robh@kernel.org>
 ---
- drivers/soc/xilinx/zynqmp_power.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ drivers/soc/sunxi/sunxi_mbus.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/soc/xilinx/zynqmp_power.c b/drivers/soc/xilinx/zynqmp_power.c
-index 78a8a7545d1e..641dcc958911 100644
---- a/drivers/soc/xilinx/zynqmp_power.c
-+++ b/drivers/soc/xilinx/zynqmp_power.c
-@@ -218,7 +218,7 @@ static int zynqmp_pm_probe(struct platform_device *pdev)
- 	} else if (ret != -EACCES && ret != -ENODEV) {
- 		dev_err(&pdev->dev, "Failed to Register with Xilinx Event manager %d\n", ret);
- 		return ret;
--	} else if (of_find_property(pdev->dev.of_node, "mboxes", NULL)) {
-+	} else if (of_property_present(pdev->dev.of_node, "mboxes")) {
- 		zynqmp_pm_init_suspend_work =
- 			devm_kzalloc(&pdev->dev,
- 				     sizeof(struct zynqmp_pm_work_struct),
-@@ -240,7 +240,7 @@ static int zynqmp_pm_probe(struct platform_device *pdev)
- 			dev_err(&pdev->dev, "Failed to request rx channel\n");
- 			return PTR_ERR(rx_chan);
- 		}
--	} else if (of_find_property(pdev->dev.of_node, "interrupts", NULL)) {
-+	} else if (of_property_present(pdev->dev.of_node, "interrupts")) {
- 		irq = platform_get_irq(pdev, 0);
- 		if (irq <= 0)
- 			return -ENXIO;
+diff --git a/drivers/soc/sunxi/sunxi_mbus.c b/drivers/soc/sunxi/sunxi_mbus.c
+index d90e4a264b6f..1734da357ca2 100644
+--- a/drivers/soc/sunxi/sunxi_mbus.c
++++ b/drivers/soc/sunxi/sunxi_mbus.c
+@@ -82,7 +82,7 @@ static int sunxi_mbus_notifier(struct notifier_block *nb,
+ 	 * Older DTs or SoCs who are not clearly understood need to set
+ 	 * that DMA offset though.
+ 	 */
+-	if (of_find_property(dev->of_node, "interconnects", NULL))
++	if (of_property_present(dev->of_node, "interconnects"))
+ 		return NOTIFY_DONE;
+ 
+ 	ret = dma_direct_set_offset(dev, PHYS_OFFSET, 0, SZ_4G);
 -- 
 2.39.2
 
