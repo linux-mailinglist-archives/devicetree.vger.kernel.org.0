@@ -2,154 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EB6476B3CD1
-	for <lists+devicetree@lfdr.de>; Fri, 10 Mar 2023 11:53:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C88256B3CD7
+	for <lists+devicetree@lfdr.de>; Fri, 10 Mar 2023 11:54:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230075AbjCJKxk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 10 Mar 2023 05:53:40 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45176 "EHLO
+        id S230044AbjCJKx7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 10 Mar 2023 05:53:59 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46482 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230050AbjCJKxj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Mar 2023 05:53:39 -0500
-Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7A8E364B31;
-        Fri, 10 Mar 2023 02:53:37 -0800 (PST)
-Received: by mail-lf1-x12b.google.com with SMTP id i28so6119261lfv.0;
-        Fri, 10 Mar 2023 02:53:37 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112; t=1678445615;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=BAQLdEeSrfZYQHVCxX67ELAHVT8Gl44hvbILMrM52aY=;
-        b=ICetKMmwCbwiDaE3yxZqjn1i8MDyjkxLfzPryIFYluhAX4cs+hkaiU7gRkMyRf1Pz3
-         KJZ1Kuqp6KFJctWPSUefng+c9ORzp0dsPVLkm1eE6R7s0A1Nb/gnZvl9bik8p2fpe6Ng
-         6AuNYO08jRgLr1ICaUBJaP4Zg6/syX8m/5QwjbY4XAIprHZyKCRl7iBrsKCdUSQwipYh
-         gdNbDKIqgQsPeK/CYyC8nBrlWfiIUZ+ILKPupulpnIf0/fkaenb9bCmGT2lDVCWM0yx6
-         ZzMynhGA1lmX9cHFtwT1YJwUkI5yMebzfM0sUDCNZjrScq7Q56KYo83m9o8yHGgufQ4J
-         z/fg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678445615;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=BAQLdEeSrfZYQHVCxX67ELAHVT8Gl44hvbILMrM52aY=;
-        b=eG8omrp2g/nY+DmtBopbzkUm8l+gdv7DBqJvwGNZzrjzT2rR8OMGOnmsZNwjUHtPYl
-         Z23vdsOnK4Z3k8OTCUFAOvHau8liVSfx+1xX5p3F6JTgmTQkCR9OMd7tLCWTOxgBpRZk
-         H93hPJZGQEEZRE2r6590Lqmr/wSEIg5W4AAYfYI9WcIZELSlsqhMEryKetuMfIPOTiK6
-         QbtqaFDrVMMyV8/MONPzVZ8cI+luJDAIXcAMU8suOHlFP28lFmec8FoZegzYmJOlDV9i
-         bou/cHZ8LSXcKxbFC6MmIBXNVG4i7I1l335b8cVcyEw3I14Cpa9DG8PR+jJrfzU8owcr
-         IwFA==
-X-Gm-Message-State: AO0yUKV0Yu69NfNx5bFxNBfOX6z7gyjcAK4AhL9NT+RH+H1Z1Du4pocs
-        eyuAVpD0EmPFlmP3CYqQGrM=
-X-Google-Smtp-Source: AK7set9Pu1hCa4aONY/APd64XeHEzqooYZVnWsx7KB+q0u6a5dWjYGHYDwgMHXNkRCFxPDkErwii4Q==
-X-Received: by 2002:ac2:4432:0:b0:4d8:7f17:d0e9 with SMTP id w18-20020ac24432000000b004d87f17d0e9mr5963165lfl.14.1678445615544;
-        Fri, 10 Mar 2023 02:53:35 -0800 (PST)
-Received: from localhost.lan (ip-194-187-74-233.konfederacka.maverick.com.pl. [194.187.74.233])
-        by smtp.gmail.com with ESMTPSA id q5-20020a2eb4a5000000b0029335c12997sm194532ljm.58.2023.03.10.02.53.34
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 10 Mar 2023 02:53:34 -0800 (PST)
-From:   =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Michael Walle <michael@walle.cc>, devicetree@vger.kernel.org,
-        linux-mtd@lists.infradead.org, linux-kernel@vger.kernel.org,
-        =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>
-Subject: [PATCH] dt-bindings: nvmem: allow MTD to be explicitly an NVMEM provider
-Date:   Fri, 10 Mar 2023 11:53:30 +0100
-Message-Id: <20230310105330.14181-1-zajec5@gmail.com>
-X-Mailer: git-send-email 2.34.1
+        with ESMTP id S229758AbjCJKx4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Mar 2023 05:53:56 -0500
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A0935F8E79;
+        Fri, 10 Mar 2023 02:53:47 -0800 (PST)
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 32AArfvJ115600;
+        Fri, 10 Mar 2023 04:53:41 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1678445621;
+        bh=41Zx3qFHWjyM5PIkEb3swc2qxePmA2Y3iWGeDIR/8QM=;
+        h=Date:CC:Subject:To:References:From:In-Reply-To;
+        b=f7SCpOhU8BE1x5DxNfcZC4ECm8htRbIbRN3JBSDwKTijaefEORIMu6Q7ri6Quyfqi
+         EIqnoT8XnSO1QiIAfNfvuYWo1aKxS5dP9tRUM9wdH1QX/Qq9ndzhGCdzgdgDdPJPhY
+         3NNoLIww6qVX9w+kddXpCgRvtcPUVMx7WgkTvxro=
+Received: from DFLE111.ent.ti.com (dfle111.ent.ti.com [10.64.6.32])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 32AArfK8085794
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Fri, 10 Mar 2023 04:53:41 -0600
+Received: from DFLE109.ent.ti.com (10.64.6.30) by DFLE111.ent.ti.com
+ (10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Fri, 10
+ Mar 2023 04:53:41 -0600
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE109.ent.ti.com
+ (10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
+ Frontend Transport; Fri, 10 Mar 2023 04:53:41 -0600
+Received: from [172.24.145.61] (ileaxei01-snat.itg.ti.com [10.180.69.5])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 32AArbn0028520;
+        Fri, 10 Mar 2023 04:53:38 -0600
+Message-ID: <a0136dee-7ee3-6681-81f1-fb646136b5e7@ti.com>
+Date:   Fri, 10 Mar 2023 16:23:37 +0530
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.1
+CC:     <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <srk@ti.com>,
+        <s-vadapalli@ti.com>
+Subject: Re: [PATCH 0/2] Add device-tree support for CPSW5G on J7200 SoC
+Content-Language: en-US
+To:     <nm@ti.com>, <vigneshr@ti.com>, <kristo@kernel.org>,
+        <robh+dt@kernel.org>, <krzysztof.kozlowski@linaro.org>,
+        <krzysztof.kozlowski+dt@linaro.org>
+References: <20230310101407.722334-1-s-vadapalli@ti.com>
+From:   Siddharth Vadapalli <s-vadapalli@ti.com>
+In-Reply-To: <20230310101407.722334-1-s-vadapalli@ti.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_PASS,SPF_PASS,URIBL_BLOCKED autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Rafał Miłecki <rafal@milecki.pl>
+Hello,
 
-There are a lot of devices with NVMEM content stored in MTD devices in
-relevant partitions. Add a DT binding for marking such partitions.
+This series depends on the series at:
+https://lore.kernel.org/r/20230310103504.731845-1-s-vadapalli@ti.com
+and will cause merge conflict if merged before it.
 
-Note: Linux already treats every MTD partition as NVMEM provider so in
-general it doesn't need to care about this binding. It's meant just to
-make DT clearer in describing hardware.
+Regards,
+Siddharth.
 
-Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
----
-As explained in commit body this isn't really needed for Linux. I
-thought it'd be a small nice addition for writing clear DTS files.
----
- .../devicetree/bindings/nvmem/mtd.yaml        | 52 +++++++++++++++++++
- 1 file changed, 52 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/nvmem/mtd.yaml
-
-diff --git a/Documentation/devicetree/bindings/nvmem/mtd.yaml b/Documentation/devicetree/bindings/nvmem/mtd.yaml
-new file mode 100644
-index 000000000000..7435b2803cf9
---- /dev/null
-+++ b/Documentation/devicetree/bindings/nvmem/mtd.yaml
-@@ -0,0 +1,52 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/nvmem/mtd.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: MTD access based NVMEM
-+
-+description: |
-+  MTD partitions can be NVMEM providers. This binding allows explicitly marking
-+  such partitions.
-+
-+  The exact way of handling MTD partition content (NVMEM cells) should be
-+  described using a proper NVMEM layout.
-+
-+maintainers:
-+  - Rafał Miłecki <rafal@milecki.pl>
-+
-+allOf:
-+  - $ref: nvmem.yaml#
-+  - $ref: /schemas/mtd/partitions/partition.yaml#
-+
-+properties:
-+  compatible:
-+    const: mtd-nvmem
-+
-+  reg:
-+    maxItems: 1
-+
-+required:
-+  - reg
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    partitions {
-+        compatible = "fixed-partitions";
-+        #address-cells = <1>;
-+        #size-cells = <1>;
-+
-+        partition@0 {
-+            compatible = "mtd-nvmem";
-+            reg = <0x0 0x40000>;
-+            label = "device-data";
-+
-+            nvmem-layout {
-+                /* Just a dummy example: Kontron can be found on OTP actually */
-+                compatible = "kontron,sl28-vpd";
-+            };
-+        };
-+    };
--- 
-2.34.1
-
+On 10/03/23 15:44, Siddharth Vadapalli wrote:
+> Hello,
+> 
+> This series adds the device-tree nodes for CPSW5G instance of CPSW
+> Ethernet Switch on TI's J7200 SoC. Additionally, an overlay file is also
+> added to enable CPSW5G nodes in QSGMII mode with the Add-On J7 QUAD Port
+> Ethernet expansion QSGMII daughtercard.
+> 
+> Siddharth Vadapalli (2):
+>   arm64: dts: ti: j7200-main: Add CPSW5G nodes
+>   arm64: dts: ti: k3-j7200: Add overlay to enable CPSW5G ports in QSGMII
+>     mode
+> 
+>  arch/arm64/boot/dts/ti/Makefile               |   2 +
+>  arch/arm64/boot/dts/ti/k3-j7200-main.dtsi     |  83 +++++++++++++++
+>  .../dts/ti/k3-j7200-quad-port-eth-exp.dtso    | 100 ++++++++++++++++++
+>  3 files changed, 185 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/ti/k3-j7200-quad-port-eth-exp.dtso
+> 
