@@ -2,53 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3CEF36B4039
-	for <lists+devicetree@lfdr.de>; Fri, 10 Mar 2023 14:22:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8EDD16B4037
+	for <lists+devicetree@lfdr.de>; Fri, 10 Mar 2023 14:22:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230161AbjCJNWg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 10 Mar 2023 08:22:36 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60602 "EHLO
+        id S230200AbjCJNWf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 10 Mar 2023 08:22:35 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60616 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230124AbjCJNWa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Mar 2023 08:22:30 -0500
-Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C51D5FD296
-        for <devicetree@vger.kernel.org>; Fri, 10 Mar 2023 05:22:07 -0800 (PST)
-Received: by mail-ed1-x533.google.com with SMTP id x3so20273874edb.10
-        for <devicetree@vger.kernel.org>; Fri, 10 Mar 2023 05:22:07 -0800 (PST)
+        with ESMTP id S230247AbjCJNWb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Mar 2023 08:22:31 -0500
+Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com [IPv6:2a00:1450:4864:20::52a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E1142FEF36
+        for <devicetree@vger.kernel.org>; Fri, 10 Mar 2023 05:22:08 -0800 (PST)
+Received: by mail-ed1-x52a.google.com with SMTP id ay14so20251272edb.11
+        for <devicetree@vger.kernel.org>; Fri, 10 Mar 2023 05:22:08 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1678454526;
+        d=linaro.org; s=google; t=1678454527;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=AcXL6MCdOOilzj/9V8Bxhr6PgZvPsGUvEZbtUrf8CA0=;
-        b=QWRaO46r5Vlo+LFpfEj41+oWL74m9vY9Ye1RziJsp7mkHfJg357wAQjE6BSqZxl1OP
-         WBeQSKR+I0Vz4KemBZidBqo0sdYi30BB7QngnRQtPNPX9izS42xhL4QrpBlEpSMyS1La
-         aCMC7sHmtJ9rov8CDTNGUPFBvGl0guj6xQ64aQOx50BOrKAOoADxn6xhQY0nsw40jBnO
-         7/yQ5OD8flLzXTkCHyfpRE4L200L6IxelwR7ynIAw5dVdpqoomUVZbyUMDvUKwVFskTc
-         UdMTONwoarGEBF554WPMXmeWNd5fnI/gHGkGRiBPJGilCR9hYZj4bgMgX9KTmc2fBJGZ
-         gm5w==
+        bh=Rto2D5OftYK1ID57dBSGS4QnEMib23DRCG76xg1zNII=;
+        b=EckjYIrE4DJhMp6xe6dqYs9joBiyI1ngPyS/0OY9GgOP2nTQbi+9ZebR+rNljPuG36
+         F/SyIj/rGDkrmCfzmx3Wg9DE/aVxU/s9cDsnSlyRpYEGL+KbGPIpmitQLhPyZNnryIyU
+         6zwGgeGjcbTfKLAiqbdnwJzQvJN82nFfO6MY+2NjScneBbpLX1sRNJBvP1OIkffYoVxa
+         XAVB8JDDrtlaz8FpxsLLA/2mjiJOJ2uHc62ToAcxhEIOQuT4VTRx55ZRE5DFxEqCQt1h
+         ripnr9yzUtuZMAWmvBV/6gNz9XDXf/k01ARRcA+So1FaTcFAVzNrxd6FNTXiJQlbKTBo
+         3aKA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678454526;
+        d=1e100.net; s=20210112; t=1678454527;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=AcXL6MCdOOilzj/9V8Bxhr6PgZvPsGUvEZbtUrf8CA0=;
-        b=KlfMKlP2YSpMNjB2kxU+xd9vGz5QIsVdoNr2OxpXXaJYa0bTvt1CaaLv5UoluHgXsv
-         2D0svYsHvpiNu34KBWrsHNYqN4TP3OWkKUeI0ABuc0QNaMT6cyVeHhOa+Vd06p/a9Vkq
-         4jHwYGEaVawaMcrslcJPDzpLcVlKWl+KPYg3OaCYSL/YIJOzdc5erx5vMxo3SYySE9yE
-         solkAih4HKau7KAXpNGfd1F8GCwIH5GrYMUYrRm7k4IYXRv0RQ22e/DDwr4bmn72l4tH
-         /CRCpvNQyFNRwRSnes6dEV26U6ALewXq6V/Res3rqBuK7VH2+Jj6yw/8SQ26Uw3j5Ose
-         h5iA==
-X-Gm-Message-State: AO0yUKV5/zIYgDiyLgQhTwA7CyMM0jEqLHqk80VxkfjalNUcilPf2MS5
-        VjcmGPRZvVcatstVGf9pjBB/rQ==
-X-Google-Smtp-Source: AK7set86DEihjYozkYNfs2JVNMeu/cjpWbEQPkrPICoAQV9Zd2V3aoH5znXQFvekHR3LgD1deH2NWA==
-X-Received: by 2002:a17:906:32d9:b0:8aa:bf4e:7b2c with SMTP id k25-20020a17090632d900b008aabf4e7b2cmr26777378ejk.21.1678454526446;
-        Fri, 10 Mar 2023 05:22:06 -0800 (PST)
+        bh=Rto2D5OftYK1ID57dBSGS4QnEMib23DRCG76xg1zNII=;
+        b=6VRSToAgMVbrzBV49IvP3IjZiUuoyhJRqsUuJbn/7eOgLy7FND9iDUQgBG4irxRomF
+         ugIcX+Q/8JljlDWeZcUOLdyLxeZ0/1DFohm/c5dpujwir4RAABhm2vo+qYrraqudxbM7
+         0xR8L4U+acXo5ivITUX4SeIiXECadQxq+hUfSIjR7voAk0So57ndKXWgm08pq5CteUSh
+         2meeIX4PDGaZz8+emcx+micEiM1LuYDIDbhreqM3jtnzYUtu0nU7qF43QK/BKn3Suz5a
+         7Fgs8cVUyWo8H9AKRgnvekY6aiYzhKXqLMHgffTY/aa426xw+zDo87k9sop3qNTxisiE
+         T12Q==
+X-Gm-Message-State: AO0yUKVtLbAmcGtJb+i2z1BLUKzCx6vbjpYkRwxsDLaWap/MrT9ORxHI
+        jo+Yv7P3sXQrAXk4JGnuKuEtog==
+X-Google-Smtp-Source: AK7set+O3ImPHzDIFLhFK5/g1q7pHfzB69yohRjQEKyKjOzXBvIq6vsr/mv67mV4NXtNeqiTtWIRJw==
+X-Received: by 2002:a17:906:2bc2:b0:8b1:7de3:cfb4 with SMTP id n2-20020a1709062bc200b008b17de3cfb4mr24517931ejg.4.1678454527437;
+        Fri, 10 Mar 2023 05:22:07 -0800 (PST)
 Received: from krzk-bin.. ([2a02:810d:15c0:828:45c4:46be:ec71:4a51])
-        by smtp.gmail.com with ESMTPSA id zc4-20020a170906988400b008b17879ec95sm959124ejb.22.2023.03.10.05.22.05
+        by smtp.gmail.com with ESMTPSA id zc4-20020a170906988400b008b17879ec95sm959124ejb.22.2023.03.10.05.22.06
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 10 Mar 2023 05:22:06 -0800 (PST)
+        Fri, 10 Mar 2023 05:22:07 -0800 (PST)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 To:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
@@ -64,9 +64,9 @@ To:     Andy Gross <agross@kernel.org>,
         alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
 Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH 2/9] ASoC: dt-bindings: qcom,lpass-rx-macro: Add SM8550 RX macro
-Date:   Fri, 10 Mar 2023 14:21:54 +0100
-Message-Id: <20230310132201.322148-3-krzysztof.kozlowski@linaro.org>
+Subject: [PATCH 3/9] ASoC: codecs: lpass-rx-macro: add support for SM8550
+Date:   Fri, 10 Mar 2023 14:21:55 +0100
+Message-Id: <20230310132201.322148-4-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20230310132201.322148-1-krzysztof.kozlowski@linaro.org>
 References: <20230310132201.322148-1-krzysztof.kozlowski@linaro.org>
@@ -74,58 +74,104 @@ MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the RX macro codec on Qualcomm SM8550, which comes without NPL clock
-exposed.
+Add support for the RX macro codec on Qualcomm SM8550.  SM8550 does not
+use NPL clock, thus add flags allowing to skip it.
 
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
- .../bindings/sound/qcom,lpass-rx-macro.yaml    | 18 ++++++++++++++++++
- 1 file changed, 18 insertions(+)
+ sound/soc/codecs/lpass-rx-macro.c | 39 ++++++++++++++++++++++++-------
+ 1 file changed, 31 insertions(+), 8 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/sound/qcom,lpass-rx-macro.yaml b/Documentation/devicetree/bindings/sound/qcom,lpass-rx-macro.yaml
-index 8b3d617a9578..0ae3c81abdf8 100644
---- a/Documentation/devicetree/bindings/sound/qcom,lpass-rx-macro.yaml
-+++ b/Documentation/devicetree/bindings/sound/qcom,lpass-rx-macro.yaml
-@@ -15,6 +15,7 @@ properties:
-       - qcom,sc7280-lpass-rx-macro
-       - qcom,sm8250-lpass-rx-macro
-       - qcom,sm8450-lpass-rx-macro
-+      - qcom,sm8550-lpass-rx-macro
-       - qcom,sc8280xp-lpass-rx-macro
+diff --git a/sound/soc/codecs/lpass-rx-macro.c b/sound/soc/codecs/lpass-rx-macro.c
+index a73a7d7a1c0a..e322d918db36 100644
+--- a/sound/soc/codecs/lpass-rx-macro.c
++++ b/sound/soc/codecs/lpass-rx-macro.c
+@@ -395,6 +395,9 @@
+ #define COMP_MAX_COEFF 25
+ #define RX_NUM_CLKS_MAX	5
  
-   reg:
-@@ -92,6 +93,23 @@ allOf:
-             - const: dcodec
-             - const: fsgen
- 
-+  - if:
-+      properties:
-+        compatible:
-+          enum:
-+            - qcom,sm8550-lpass-rx-macro
-+    then:
-+      properties:
-+        clocks:
-+          minItems: 4
-+          maxItems: 4
-+        clock-names:
-+          items:
-+            - const: mclk
-+            - const: macro
-+            - const: dcodec
-+            - const: fsgen
++/* NPL clock is expected */
++#define RX_MACRO_FLAG_HAS_NPL_CLOCK		BIT(0)
 +
- unevaluatedProperties: false
+ struct comp_coeff_val {
+ 	u8 lsb;
+ 	u8 msb;
+@@ -3491,7 +3494,10 @@ static int rx_macro_register_mclk_output(struct rx_macro *rx)
+ 	struct clk_init_data init;
+ 	int ret;
  
- examples:
+-	parent_clk_name = __clk_get_name(rx->npl);
++	if (rx->npl)
++		parent_clk_name = __clk_get_name(rx->npl);
++	else
++		parent_clk_name = __clk_get_name(rx->mclk);
+ 
+ 	init.name = clk_name;
+ 	init.ops = &swclk_gate_ops;
+@@ -3521,10 +3527,13 @@ static const struct snd_soc_component_driver rx_macro_component_drv = {
+ static int rx_macro_probe(struct platform_device *pdev)
+ {
+ 	struct device *dev = &pdev->dev;
++	kernel_ulong_t flags;
+ 	struct rx_macro *rx;
+ 	void __iomem *base;
+ 	int ret;
+ 
++	flags = (kernel_ulong_t)device_get_match_data(dev);
++
+ 	rx = devm_kzalloc(dev, sizeof(*rx), GFP_KERNEL);
+ 	if (!rx)
+ 		return -ENOMEM;
+@@ -3541,9 +3550,11 @@ static int rx_macro_probe(struct platform_device *pdev)
+ 	if (IS_ERR(rx->mclk))
+ 		return PTR_ERR(rx->mclk);
+ 
+-	rx->npl = devm_clk_get(dev, "npl");
+-	if (IS_ERR(rx->npl))
+-		return PTR_ERR(rx->npl);
++	if (flags & RX_MACRO_FLAG_HAS_NPL_CLOCK) {
++		rx->npl = devm_clk_get(dev, "npl");
++		if (IS_ERR(rx->npl))
++			return PTR_ERR(rx->npl);
++	}
+ 
+ 	rx->fsgen = devm_clk_get(dev, "fsgen");
+ 	if (IS_ERR(rx->fsgen))
+@@ -3655,10 +3666,22 @@ static int rx_macro_remove(struct platform_device *pdev)
+ }
+ 
+ static const struct of_device_id rx_macro_dt_match[] = {
+-	{ .compatible = "qcom,sc7280-lpass-rx-macro" },
+-	{ .compatible = "qcom,sm8250-lpass-rx-macro" },
+-	{ .compatible = "qcom,sm8450-lpass-rx-macro" },
+-	{ .compatible = "qcom,sc8280xp-lpass-rx-macro" },
++	{
++		.compatible = "qcom,sc7280-lpass-rx-macro",
++		.data = (void *)RX_MACRO_FLAG_HAS_NPL_CLOCK,
++
++	}, {
++		.compatible = "qcom,sm8250-lpass-rx-macro",
++		.data = (void *)RX_MACRO_FLAG_HAS_NPL_CLOCK,
++	}, {
++		.compatible = "qcom,sm8450-lpass-rx-macro",
++		.data = (void *)RX_MACRO_FLAG_HAS_NPL_CLOCK,
++	}, {
++		.compatible = "qcom,sm8550-lpass-rx-macro",
++	}, {
++		.compatible = "qcom,sc8280xp-lpass-rx-macro",
++		.data = (void *)RX_MACRO_FLAG_HAS_NPL_CLOCK,
++	},
+ 	{ }
+ };
+ MODULE_DEVICE_TABLE(of, rx_macro_dt_match);
 -- 
 2.34.1
 
