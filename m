@@ -2,122 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9CBF56B4332
-	for <lists+devicetree@lfdr.de>; Fri, 10 Mar 2023 15:11:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C37636B4640
+	for <lists+devicetree@lfdr.de>; Fri, 10 Mar 2023 15:41:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231948AbjCJOLU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 10 Mar 2023 09:11:20 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34204 "EHLO
+        id S232784AbjCJOld (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 10 Mar 2023 09:41:33 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58084 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231831AbjCJOKv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Mar 2023 09:10:51 -0500
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 280EAD1AC0;
-        Fri, 10 Mar 2023 06:10:37 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1678457437; x=1709993437;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=MQKZIOF/wMb0UoRLhTSf5HRmzAguZQNRAQCPCfA7mto=;
-  b=R2wg4yp/7emgIT+eqB7x91TIEIy7jbDMchUqqdUjF3n+uonCxWyoMB4D
-   QFOBtziAZtb5WLuxU+ppoYhFEvnYIYCPGkwqMqT/kuZLSHuxxjib0rEf4
-   6rv1WtJjyg/yRddalZ08/BtjVa6g3vVL++4k7bEMx4tP0t6QvVrJG2Vfq
-   iR+GA0P0KkOV0XJqCl33C3vYz9atks9x/bF14CN23tvPaSHiuCYdS27BO
-   GPypEdSeZZeybbJm2mxsFGi7WMBPoFBxt1IbjCWh1N8gsszO0rC68prVL
-   CHDi6MjZqEq6RJgAn6Aa8m5lG4cHkgEbMLGw9qbC5M4PCEM0fxDwJlaLk
-   w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10645"; a="336753280"
-X-IronPort-AV: E=Sophos;i="5.98,249,1673942400"; 
-   d="scan'208";a="336753280"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
-  by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 Mar 2023 06:10:35 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10645"; a="741990954"
-X-IronPort-AV: E=Sophos;i="5.98,249,1673942400"; 
-   d="scan'208";a="741990954"
-Received: from lkp-server01.sh.intel.com (HELO b613635ddfff) ([10.239.97.150])
-  by fmsmga008.fm.intel.com with ESMTP; 10 Mar 2023 06:10:20 -0800
-Received: from kbuild by b613635ddfff with local (Exim 4.96)
-        (envelope-from <lkp@intel.com>)
-        id 1padRs-0003u7-0G;
-        Fri, 10 Mar 2023 14:10:20 +0000
-Date:   Fri, 10 Mar 2023 22:09:51 +0800
-From:   kernel test robot <lkp@intel.com>
-To:     Jack Zhu <jack.zhu@starfivetech.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Maxime Ripard <mripard@kernel.org>,
+        with ESMTP id S232777AbjCJOlc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Mar 2023 09:41:32 -0500
+Received: from out203-205-221-239.mail.qq.com (out203-205-221-239.mail.qq.com [203.205.221.239])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B4EC011F611;
+        Fri, 10 Mar 2023 06:41:25 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foxmail.com;
+        s=s201512; t=1678459283;
+        bh=soCWwAGQ9Hj6gEjz8DtblP8KJXV25YB7LOn17SHTfY0=;
+        h=From:To:Cc:Subject:Date;
+        b=w5fAD03aToUBdQ+mSx7HC7cdpkDJZ/DQg+VfDyLLt0mw7dHB5UyosCwZf+AA0Kqep
+         lDb5rtg/I2RYndKUscO/QG+yEsbBHE7Fbc1syctNF0xxxDpFqKRh5WjVVuixLnyohN
+         X9O9IOPvV9QF626t3MG78HApZay+oqK7NQRJXPhQ=
+Received: from DESKTOP-ZMX.localdomain ([115.156.143.0])
+        by newxmesmtplogicsvrsza10-0.qq.com (NewEsmtp) with SMTP
+        id 8A61225E; Fri, 10 Mar 2023 22:34:38 +0800
+X-QQ-mid: xmsmtpt1678458878ti79xj3r5
+Message-ID: <tencent_BCFFDEDC763443B8582D3BBA01F0867B1406@qq.com>
+X-QQ-XMAILINFO: MmpliBmRb3iCHKrUiuMBKXhk8DIR+AcjF3g4Y/USHl5yuSV7N5X4j0N+Pyg6Bc
+         OBX2tZHYc/PKuF2AU1OlwvLZzmQBofQT8As3Yo8Y7f+SOrIZqqwAFv8KZGM+1aFAleOq40/rl88l
+         BXKzUvflwm6nfPhwaNmMPGilwBdE/2LArJPdCWAORvfHPNslbYmkUWUPQAWmM6vhXreodK0iMG4o
+         jAl7JvEnWvl6Rl028XIYIXBsM4FOAEhH6ffhkYCxygtaGOMXIyonpVL5NGpml9K67BtkD8i1+S0t
+         V9unwNrVXd/YA9RuHX0sJs7CL8itSXPWKDPfDJ0YMncmzPgpNcvN2PtoOIHyAxwavAwOnMYT+zMf
+         eCGi/OE21F7HLqaLQM3pthTieqgXg1yAxOVdK4HRTbr+YYaBI2es/OZ4MMuKdfiRvY8F+7NUvOaH
+         VD71zX71+CtvztXWNeU4SBbW4Vdh326lTvxgekgqbZSIpQlAZTHPXSUHIBIljATjMWzIZTsYwt2z
+         A7Riv2nuqlA8kyypdAIZA8naC8iD/zSh4Gy4uaL4+BDqG0hG9ZwU152i1phIEu3wnPRbfZrmxPra
+         yyzJTeAuGrxcNveY2p6z43HdAjMsS3H4iblBl34ZcHMMH98JuenfkdT5pb1HkOcDl7pAMLCZOEjM
+         tdZtTeif97kAphOQXS4UqE7Fnf9QbUSCnHcCFfh9yJGaKuiN5P7mkRpCfp4yzjPVCC6fBc1NnTWC
+         o3lMw1b2g94umhUxqeY5UbyOPBbnBRlWPA3iilw290jplb3kknVKRGQVILAQbZ6dnfdCMqnKTqPa
+         f4zOpyt7bCPyA+Cskd9/jA9bredfS1Tm0JTb/Pp8+i9aKu+VLezRBICL+LaWBZ3z+geN01CBETG8
+         2pdBkxxPnbTjNvfRhW9/leK2yGm7Mn3N+AZcfW0Wr984qbgOJk8uWEH4jB2/mdsncNNFw7jQL3hO
+         HZ12JJ8D957WwhdKGe+ESUiPe7jKlgZ6WfZtmqWILhA/fKpzujWw==
+From:   Yang Xiwen <forbidden405@foxmail.com>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Robert Foss <rfoss@kernel.org>,
-        Todor Tomov <todor.too@gmail.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Andrzej Pietrasiewicz <andrzejtp2010@gmail.com>,
-        Hans Verkuil <hverkuil@xs4all.nl>,
-        Eugen Hristev <eugen.hristev@collabora.com>
-Cc:     oe-kbuild-all@lists.linux.dev, linux-media@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        jack.zhu@starfivetech.com, changhuang.liang@starfivetech.com
-Subject: Re: [PATCH v2 6/6] media: starfive: Add Starfive Camera Subsystem
- driver
-Message-ID: <202303102141.A9LHC4MD-lkp@intel.com>
-References: <20230310120553.60586-7-jack.zhu@starfivetech.com>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Nikita Travkin <nikita@trvn.ru>,
+        Yang Xiwen <forbidden405@foxmail.com>
+Subject: [PATCH 0/3] arm64: dts: qcom: Add device tree for LTE dongle UZ801 v3.0
+Date:   Fri, 10 Mar 2023 22:33:27 +0800
+X-OQ-MSGID: <20230310143330.9485-1-forbidden405@foxmail.com>
+X-Mailer: git-send-email 2.39.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230310120553.60586-7-jack.zhu@starfivetech.com>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_NONE,URIBL_BLOCKED autolearn=ham autolearn_force=no
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=1.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,HELO_DYNAMIC_IPADDR,RCVD_IN_DNSWL_NONE,RDNS_DYNAMIC,
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=no autolearn_force=no
         version=3.4.6
+X-Spam-Level: *
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Jack,
+This is another model of msm8916-based LTE dongles made by Henan Yiming
+Technology Co., Ltd..
 
-I love your patch! Yet something to improve:
+Yang Xiwen (3):
+  dt-bindings: vendor-prefixes: Add Henan Yiming Technology Co., Ltd.
+  dt-bindings: arm: qcom: Add Yiming LTE dongle uz801-v3.0
+    (yiming-uz801v3)
+  arm64: dts: qcom: msm8916-yiming-uz801v3: Add initial device tree
 
-[auto build test ERROR on media-tree/master]
-[also build test ERROR on robh/for-next linus/master v6.3-rc1 next-20230310]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
-
-url:    https://github.com/intel-lab-lkp/linux/commits/Jack-Zhu/media-dt-bindings-Add-bindings-for-JH7110-Camera-Subsystem/20230310-200747
-base:   git://linuxtv.org/media_tree.git master
-patch link:    https://lore.kernel.org/r/20230310120553.60586-7-jack.zhu%40starfivetech.com
-patch subject: [PATCH v2 6/6] media: starfive: Add Starfive Camera Subsystem driver
-config: i386-randconfig-c021 (https://download.01.org/0day-ci/archive/20230310/202303102141.A9LHC4MD-lkp@intel.com/config)
-compiler: gcc-11 (Debian 11.3.0-8) 11.3.0
-reproduce (this is a W=1 build):
-        # https://github.com/intel-lab-lkp/linux/commit/99a31fd3820a2d95b0d0f381491c473975e0b068
-        git remote add linux-review https://github.com/intel-lab-lkp/linux
-        git fetch --no-tags linux-review Jack-Zhu/media-dt-bindings-Add-bindings-for-JH7110-Camera-Subsystem/20230310-200747
-        git checkout 99a31fd3820a2d95b0d0f381491c473975e0b068
-        # save the config file
-        mkdir build_dir && cp config build_dir/.config
-        make W=1 O=build_dir ARCH=i386 olddefconfig
-        make W=1 O=build_dir ARCH=i386 prepare
-
-If you fix the issue, kindly add following tag where applicable
-| Reported-by: kernel test robot <lkp@intel.com>
-| Link: https://lore.kernel.org/oe-kbuild-all/202303102141.A9LHC4MD-lkp@intel.com/
-
-All errors (new ones prefixed by >>):
-
->> error: include/uapi/linux/stf_isp_ioctl.h: missing "WITH Linux-syscall-note" for SPDX-License-Identifier
-   make[2]: *** [scripts/Makefile.headersinst:63: usr/include/linux/stf_isp_ioctl.h] Error 1
-   make[2]: Target '__headers' not remade because of errors.
-   make[1]: *** [Makefile:1394: headers] Error 2
-   make[1]: Target 'prepare' not remade because of errors.
-   make: *** [Makefile:242: __sub-make] Error 2
-   make: Target 'prepare' not remade because of errors.
+ .../devicetree/bindings/arm/qcom.yaml         |  1 +
+ .../devicetree/bindings/vendor-prefixes.yaml  |  2 ++
+ arch/arm64/boot/dts/qcom/Makefile             |  1 +
+ .../boot/dts/qcom/msm8916-yiming-uz801v3.dts  | 35 +++++++++++++++++++
+ 4 files changed, 39 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/qcom/msm8916-yiming-uz801v3.dts
 
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests
+2.39.1
+
