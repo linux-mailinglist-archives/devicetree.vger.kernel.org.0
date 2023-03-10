@@ -2,117 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 433426B3FC7
-	for <lists+devicetree@lfdr.de>; Fri, 10 Mar 2023 13:56:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 373386B3FD7
+	for <lists+devicetree@lfdr.de>; Fri, 10 Mar 2023 14:00:55 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229846AbjCJM43 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 10 Mar 2023 07:56:29 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50220 "EHLO
+        id S230071AbjCJNAx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 10 Mar 2023 08:00:53 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57118 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230281AbjCJM4O (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Mar 2023 07:56:14 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 08AB77DD16;
-        Fri, 10 Mar 2023 04:56:09 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 78FAA60C81;
-        Fri, 10 Mar 2023 12:56:08 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7080EC4339B;
-        Fri, 10 Mar 2023 12:56:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1678452967;
-        bh=jPMaeC9AwdVfx8liXNLn9Ay2rJrAk5t8HQx3UJJMzzg=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=tZLnRnoAj+SbTetcE+2ApW375KsjVBqhO5X7BR6EpS4NdkIlWOEwKfl69xtzLxrG3
-         i/7JsD0jCHdaLJVAUru6EwDuiP1p25hgd2nPeooph0Wia9XOecqXMf+qLq9zttXXBC
-         w9DaCo8Cb9Xjx89js+v0Kk+qJNRCYUaJqGqREv8NYBs5umopFb8HnnP+w0leC1KXxc
-         BRpvSw4duE8T0HLLKB/pn8h8rP2T2cbzK5joxdWjDGGcs20d4V4SsNaYyVFEtNfU5x
-         /1N4z5YToyPV31zbHpUGjv0yBh9AWeQqFRJU57GbibrRtP3fRRvAZF40dniidKvD3/
-         NiU8K6yx7fTzQ==
-Date:   Fri, 10 Mar 2023 12:56:11 +0000
-From:   Mark Brown <broonie@kernel.org>
-To:     zhuyinbo <zhuyinbo@loongson.cn>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Jianmin Lv <lvjianmin@loongson.cn>,
-        wanghongliang@loongson.cn, Liu Peibao <liupeibao@loongson.cn>,
-        loongson-kernel@lists.loongnix.cn
-Subject: Re: [PATCH v1 2/2] spi: loongson: add bus driver for the loongson
- spi controller
-Message-ID: <ZAso695fdT3ngjqf@sirena.org.uk>
-References: <20230308025908.21491-1-zhuyinbo@loongson.cn>
- <20230308025908.21491-3-zhuyinbo@loongson.cn>
- <1f0c2592-4433-47cb-9b73-d345e157dbf2@sirena.org.uk>
- <fb502e11-a12f-58ca-4171-edec55b71fa5@loongson.cn>
+        with ESMTP id S230063AbjCJNAw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Mar 2023 08:00:52 -0500
+Received: from mail11.truemail.it (mail11.truemail.it [IPv6:2001:4b7e:0:8::81])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 32D50CB676;
+        Fri, 10 Mar 2023 05:00:47 -0800 (PST)
+Received: from francesco-nb.int.toradex.com (93-49-2-63.ip317.fastwebnet.it [93.49.2.63])
+        by mail11.truemail.it (Postfix) with ESMTPA id 294B820BBD;
+        Fri, 10 Mar 2023 14:00:41 +0100 (CET)
+Date:   Fri, 10 Mar 2023 14:00:37 +0100
+From:   Francesco Dolcini <francesco@dolcini.it>
+To:     Neeraj sanjay kale <neeraj.sanjaykale@nxp.com>
+Cc:     Francesco Dolcini <francesco@dolcini.it>,
+        "davem@davemloft.net" <davem@davemloft.net>,
+        "edumazet@google.com" <edumazet@google.com>,
+        "kuba@kernel.org" <kuba@kernel.org>,
+        "pabeni@redhat.com" <pabeni@redhat.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "marcel@holtmann.org" <marcel@holtmann.org>,
+        "johan.hedberg@gmail.com" <johan.hedberg@gmail.com>,
+        "luiz.dentz@gmail.com" <luiz.dentz@gmail.com>,
+        "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>,
+        "jirislaby@kernel.org" <jirislaby@kernel.org>,
+        "alok.a.tiwari@oracle.com" <alok.a.tiwari@oracle.com>,
+        "hdanton@sina.com" <hdanton@sina.com>,
+        "ilpo.jarvinen@linux.intel.com" <ilpo.jarvinen@linux.intel.com>,
+        "leon@kernel.org" <leon@kernel.org>,
+        "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-bluetooth@vger.kernel.org" <linux-bluetooth@vger.kernel.org>,
+        "linux-serial@vger.kernel.org" <linux-serial@vger.kernel.org>,
+        Amitkumar Karwar <amitkumar.karwar@nxp.com>,
+        Rohit Fule <rohit.fule@nxp.com>,
+        Sherry Sun <sherry.sun@nxp.com>
+Subject: Re: [EXT] Re: [PATCH v6 3/3] Bluetooth: NXP: Add protocol support
+ for NXP Bluetooth chipsets
+Message-ID: <ZAsp9fm779DR0Vuz@francesco-nb.int.toradex.com>
+References: <20230301154514.3292154-1-neeraj.sanjaykale@nxp.com>
+ <20230301154514.3292154-4-neeraj.sanjaykale@nxp.com>
+ <ZAX/HHyy2yL76N0K@francesco-nb.int.toradex.com>
+ <AM9PR04MB860372E06283EA79BD341998E7BA9@AM9PR04MB8603.eurprd04.prod.outlook.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="Y6RAIHyXin5w4R1a"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <fb502e11-a12f-58ca-4171-edec55b71fa5@loongson.cn>
-X-Cookie: Single tasking: Just Say No.
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <AM9PR04MB860372E06283EA79BD341998E7BA9@AM9PR04MB8603.eurprd04.prod.outlook.com>
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_PASS,
+        SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Fri, Mar 10, 2023 at 12:09:09PM +0000, Neeraj sanjay kale wrote:
+> > > +#define FIRMWARE_W8987       "nxp/uartuart8987_bt.bin"
+> > > +#define FIRMWARE_W8997       "nxp/uartuart8997_bt_v4.bin"
+> > > +#define FIRMWARE_W9098       "nxp/uartuart9098_bt_v1.bin"
+> > > +#define FIRMWARE_IW416       "nxp/uartiw416_bt_v0.bin"
+> > > +#define FIRMWARE_IW612       "nxp/uartspi_n61x_v1.bin.se"
+> > 
+> > Where are this files coming from? Where can I download those?
+> > Is loading a combo firmware from the mwifiex driver supported?
+> We are working on submitting these files to linux-firmware. They will
+> be available under nxp/ directory once merged.
 
---Y6RAIHyXin5w4R1a
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+What about the combo firmware that would be downloaded by mwifiex
+driver? How is this supposed to interact with it?
 
-On Fri, Mar 10, 2023 at 06:01:23PM +0800, zhuyinbo wrote:
-> =E5=9C=A8 2023/3/8 =E4=B8=8B=E5=8D=8811:03, Mark Brown =E5=86=99=E9=81=93:
-> > On Wed, Mar 08, 2023 at 10:59:08AM +0800, Yinbo Zhu wrote:
+> > > +#define HCI_NXP_PRI_BAUDRATE 115200
+> > > +#define HCI_NXP_SEC_BAUDRATE 3000000
+> > What if the UART device does not support 3000000 baudrate (think at
+> > limitation on the clock source/divider of the UART)? Shouldn't this be
+> > configurable?
+> We have noted this requirement and decided to design and implement on
+> this in upcoming patches along with other new features.  We have a
+> number of customers out there who have been using these chips as well
+> as the legacy Marvell chips, which need FW download at 3000000
+> baudrate, and so far there were no issues reported.  Using a lower
+> standard baudrate affects the time it takes to download the FW, which
+> we are trying to keep strictly under 5 seconds.
 
-> > > +	hz  =3D t ? t->speed_hz : spi->max_speed_hz;
+ok, just for you to know our hardware, using NXP SoC, will not work with
+this baudrate (no way to have it given the clock tree we have).
 
-> > Please write normal conditional statements so that things are legible,
-> > though in this case the core will ensure that there's a speed_hz in
-> > every transfer so there's no need for any of the logic around ensuring
-> > it's set.
+> Hope this helps!
+Yes, thanks!
 
-> Do you mean to achieve the following ?=C2=A0 and drop spi->max_speed_hz.
+Francesco
 
-> if (t)
->=20
-> =C2=A0=C2=A0=C2=A0 =C2=A0 hz =3D t->speed_hz;
-
-Yes.
-
-> > > +	loongson_spi_update_state(loongson_spi, spi, NULL);
-> > > +	loongson_spi_set_cs(loongson_spi, spi, 1);
-
-> > Note that setup() needs to be able to run for one device while there are
-> > transfers for other devices on the same controller active.
-
-> okay, I will add a spin_lock for it.
-
-We also need to take care not to change the hardware
-configuration for the currently running transfer (can't
-remember if that's an issue here or not, but it's a common
-one).
-
---Y6RAIHyXin5w4R1a
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmQLKOcACgkQJNaLcl1U
-h9CLKAf/Q9FDdX8dTJxMWq/G1/CWXeHieDV6WDHZDv+dTLGszVLvim+aM8FPnH+/
-a/70yPXsVd6Yhz/E68Xr4CUIk8Z/1TinpwByHROAeTVHtFy/YDsQTukTdOERhHW5
-8PwUdCc5+vWjzVc6Bt3TBfqrDMre3vJyilAoksCMc4ztD7n0Sf5OrymHoHBzzDXn
-9kNu9nEBTm+hvGIFnbXOmZ+vHpRqUBZhQA1sXLpP//igfU1dKFO0ZnJWbTRA60Fy
-XN/RtGaApwdjybtfQTYWoTRwODyF9Godt0XMIoKeiWQ+g3O94SHNzT9Z88rGLPB6
-nws9Qb5xO9EHlRdHWGc+r+0/Iql2KA==
-=8uAc
------END PGP SIGNATURE-----
-
---Y6RAIHyXin5w4R1a--
