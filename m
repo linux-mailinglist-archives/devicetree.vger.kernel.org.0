@@ -2,128 +2,153 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 26B576B4D14
-	for <lists+devicetree@lfdr.de>; Fri, 10 Mar 2023 17:34:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 211956B4D28
+	for <lists+devicetree@lfdr.de>; Fri, 10 Mar 2023 17:37:31 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231347AbjCJQec (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 10 Mar 2023 11:34:32 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58558 "EHLO
+        id S231417AbjCJQh2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 10 Mar 2023 11:37:28 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38774 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231373AbjCJQeD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Mar 2023 11:34:03 -0500
-Received: from mail-oa1-x2a.google.com (mail-oa1-x2a.google.com [IPv6:2001:4860:4864:20::2a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 53AFA132BC4;
-        Fri, 10 Mar 2023 08:31:26 -0800 (PST)
-Received: by mail-oa1-x2a.google.com with SMTP id 586e51a60fabf-17638494edbso6388863fac.10;
-        Fri, 10 Mar 2023 08:31:26 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112; t=1678465861;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:sender:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=QypCNI2xqCoN0xaoFVsXgji/AUwaoG1YEw85Z1r0/mI=;
-        b=IlfuaYSXwkAWxEL7j8TvdE+63Sskt8XoCMhqfUsEGHsn6v5qRj2PEPKd0B1uqqIBCb
-         AIMv/3XMqkjYq5HXn8s8SmCcm8m8ZQxVLh/lvQuUcP7U6HEwnR7aXXyOUyzZHenrT/EV
-         4+vgQlIjyLcxAn2qGXL57spa7DIxlwiOWh2NdfpdnfaoeoX5rzbRq5hPEu5IitBUfedW
-         dvWxRFBdPNKJ1jOC0aOtyNddHgLXbVN42kHSuigMfCRbA9h6jpd6TN46GhKwu/DthtWp
-         +vUKUdPYRQN6uG9YknRpyYwKSzIQn5razXcOHOV8DCz0yOebb00i/KHEPLrKtR/6Kctt
-         srsg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678465861;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:sender:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=QypCNI2xqCoN0xaoFVsXgji/AUwaoG1YEw85Z1r0/mI=;
-        b=or7B0UseSiuHKZDQDOVXSI2TxIm74vfkPmprf7E5YYQvTwSOXHBtDpQ4D+Sxr3Oiti
-         pMw74tHlO4EsjxIb4WNhZeVYID1IKKsnmzSGOhLxa5YS+4vN0sZOkMcF82hAaMNPWQz/
-         DRgtOvRJgOugFUvVIzf49Lj5AN24TAIUOCyUrvLE33fSmTFMOe3LJxQOlwVOxuzeNeL8
-         LFE+Fn9+P5H1Cxu+TDQWv3ojBxGx6dQdvG8EBF4EehcDCXbL7r7UEskkAzTuCQy68inS
-         ULdH10rBkgydkPavQZRP55+HvWSGyhSl3pplaS1+qtHjTxLRDn93sNEHIFRfYmKf9xXa
-         PfLw==
-X-Gm-Message-State: AO0yUKVcmGw0lgMvicaKah3NcoR/vFngt94YQd5eK79PMDbV9Btb5qYv
-        gHjPeRBEtqFBH7UjY1Jk7q8=
-X-Google-Smtp-Source: AK7set/UqV3JOpSMORrqKUDvtpLbjybiIH6IyJL8CUv3QLXGBh/2WpKYvMJ/nXO5UbAEZwsOg/qdYQ==
-X-Received: by 2002:a05:6870:3907:b0:172:3d66:c428 with SMTP id b7-20020a056870390700b001723d66c428mr16574711oap.25.1678465861445;
-        Fri, 10 Mar 2023 08:31:01 -0800 (PST)
-Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id c7-20020a4a4f07000000b0051763d6497fsm69564oob.38.2023.03.10.08.31.00
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 10 Mar 2023 08:31:01 -0800 (PST)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Date:   Fri, 10 Mar 2023 08:30:59 -0800
-From:   Guenter Roeck <linux@roeck-us.net>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Jean Delvare <jdelvare@suse.com>,
-        Michael Ellerman <mpe@ellerman.id.au>,
-        Nicholas Piggin <npiggin@gmail.com>,
-        Christophe Leroy <christophe.leroy@csgroup.eu>,
-        devicetree@vger.kernel.org, linux-hwmon@vger.kernel.org,
-        linuxppc-dev@lists.ozlabs.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] hwmon: Use of_property_present() for testing DT property
- presence
-Message-ID: <3fd0857e-8198-4412-9f82-c768207338d2@roeck-us.net>
-References: <20230310144706.1542434-1-robh@kernel.org>
+        with ESMTP id S231697AbjCJQhD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Mar 2023 11:37:03 -0500
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 279491717B;
+        Fri, 10 Mar 2023 08:34:56 -0800 (PST)
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 32ADvGtE007100;
+        Fri, 10 Mar 2023 16:34:37 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-transfer-encoding :
+ content-type; s=qcppdkim1;
+ bh=uOn43gIsWl62UJjej198pBalt9A+O9beKIfPPNQpx5I=;
+ b=GXMrBW8xz77UpAvNjlMGDf57badQYp9wLqxGM/wfmXBKsMhl89v49/xUM47Soe2VwcT2
+ eCWmnKOYUpqBxTPPgHBikNw4DWMhjdo19OOJaipyrrAWF7BUgzOcltmITuIFSSxNzR38
+ GbfkvZ2Zu7TmZWh4M04PtPMIFaLakG6fVLNBbeR70avehwZFy8cEorY43O56r7/cAFy4
+ 3sIgKbJBBsTBWKY8bG/M/WG4M10gxzQ6rOEH9RvdpUCHWwDZAqnwrzYuMCgZGG180Flv
+ fkM3D90LodUgtdMi1mO1gtVIu/4psi/P9ZVLn+/0PimhRObSHqOxxCFbA/KL4xF5KA18 oQ== 
+Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3p7pm12g1k-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Fri, 10 Mar 2023 16:34:37 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+        by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 32AGYapx032506
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Fri, 10 Mar 2023 16:34:36 GMT
+Received: from hu-kriskura-hyd.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.41; Fri, 10 Mar 2023 08:34:30 -0800
+From:   Krishna Kurapati <quic_kriskura@quicinc.com>
+To:     Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        "Andy Gross" <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        "Konrad Dybcio" <konrad.dybcio@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Felipe Balbi <balbi@kernel.org>
+CC:     <linux-usb@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <quic_pkondeti@quicinc.com>, <quic_ppratap@quicinc.com>,
+        <quic_wcheng@quicinc.com>, <quic_jackp@quicinc.com>,
+        <quic_harshq@quicinc.com>, <ahalaney@redhat.com>,
+        <quic_shazhuss@quicinc.com>,
+        Krishna Kurapati <quic_kriskura@quicinc.com>
+Subject: [PATCH 0/8] Add multiport support for DWC3 controllers
+Date:   Fri, 10 Mar 2023 22:04:12 +0530
+Message-ID: <20230310163420.7582-1-quic_kriskura@quicinc.com>
+X-Mailer: git-send-email 2.39.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230310144706.1542434-1-robh@kernel.org>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=no
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: HGRe_uMATpJ7ommhisvDHhM44GsAjm-U
+X-Proofpoint-ORIG-GUID: HGRe_uMATpJ7ommhisvDHhM44GsAjm-U
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.254,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
+ definitions=2023-03-10_07,2023-03-10_01,2023-02-09_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0
+ lowpriorityscore=0 adultscore=0 suspectscore=0 clxscore=1011 bulkscore=0
+ mlxlogscore=676 priorityscore=1501 mlxscore=0 spamscore=0 phishscore=0
+ malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2212070000 definitions=main-2303100130
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Mar 10, 2023 at 08:47:06AM -0600, Rob Herring wrote:
-> It is preferred to use typed property access functions (i.e.
-> of_property_read_<type> functions) rather than low-level
-> of_get_property/of_find_property functions for reading properties. As
-> part of this, convert of_get_property/of_find_property calls to the
-> recently added of_property_present() helper when we just want to test
-> for presence of a property and nothing more.
-> 
-> Signed-off-by: Rob Herring <robh@kernel.org>
+Currently the DWC3 driver supports only single port controller which
+requires at most two PHYs ie HS and SS PHYs. There are SoCs that has
+DWC3 controller with multiple ports that can operate in host mode.
+Some of the port supports both SS+HS and other port supports only HS
+mode.
 
-Applied.
+This change primarily refactors the Phy logic in core driver to allow
+multiport support with Generic Phy's.
 
-Thanks,
-Guenter
+Chananges have been tested on  QCOM SoC SA8295P which has 4 ports (2
+are HS+SS capable and 2 are HS only capable).
 
-> ---
->  drivers/hwmon/ibmpowernv.c | 4 ++--
->  drivers/hwmon/pwm-fan.c    | 2 +-
->  2 files changed, 3 insertions(+), 3 deletions(-)
-> 
-> diff --git a/drivers/hwmon/ibmpowernv.c b/drivers/hwmon/ibmpowernv.c
-> index 8e3724728cce..594254d6a72d 100644
-> --- a/drivers/hwmon/ibmpowernv.c
-> +++ b/drivers/hwmon/ibmpowernv.c
-> @@ -456,9 +456,9 @@ static int populate_attr_groups(struct platform_device *pdev)
->  		 */
->  		if (!of_property_read_string(np, "label", &label))
->  			sensor_groups[type].attr_count++;
-> -		if (of_find_property(np, "sensor-data-min", NULL))
-> +		if (of_property_present(np, "sensor-data-min"))
->  			sensor_groups[type].attr_count++;
-> -		if (of_find_property(np, "sensor-data-max", NULL))
-> +		if (of_property_present(np, "sensor-data-max"))
->  			sensor_groups[type].attr_count++;
->  	}
->  
-> diff --git a/drivers/hwmon/pwm-fan.c b/drivers/hwmon/pwm-fan.c
-> index 83a347ca35da..57928d270015 100644
-> --- a/drivers/hwmon/pwm-fan.c
-> +++ b/drivers/hwmon/pwm-fan.c
-> @@ -427,7 +427,7 @@ static int pwm_fan_of_get_cooling_data(struct device *dev,
->  	struct device_node *np = dev->of_node;
->  	int num, i, ret;
->  
-> -	if (!of_find_property(np, "cooling-levels", NULL))
-> +	if (!of_property_present(np, "cooling-levels"))
->  		return 0;
->  
->  	ret = of_property_count_u32_elems(np, "cooling-levels");
+Changes in current version:
+Added DT support for first port of Teritiary USB controller on SA8540-Ride
+Added support for reading port info from XHCI Extended Params registers.
+
+Changes in RFC v4:
+Added DT support for SA8295p.
+
+Changes in RFC v3:
+Incase any PHY init fails, then clear/exit the PHYs that
+are already initialized.
+
+Changes in RFC v2:
+Changed dwc3_count_phys to return the number of PHY Phandles in the node.
+This will be used now in dwc3_extract_num_phys to increment num_usb2_phy 
+and num_usb3_phy.
+
+Added new parameter "ss_idx" in dwc3_core_get_phy_ny_node and changed its
+structure such that the first half is for HS-PHY and second half is for
+SS-PHY.
+
+In dwc3_core_get_phy, for multiport controller, only if SS-PHY phandle is
+present, pass proper SS_IDX else pass -1.
+
+Link to RFC v4: https://lore.kernel.org/all/20230115114146.12628-1-quic_kriskura@quicinc.com/
+Link to RFC v3: https://lore.kernel.org/all/1654709787-23686-1-git-send-email-quic_harshq@quicinc.com/#r
+Link to RFC v2: https://lore.kernel.org/all/1653560029-6937-1-git-send-email-quic_harshq@quicinc.com/#r
+
+Krishna Kurapati (8):
+  dt-bindings: usb: Add bindings for multiport properties on DWC3
+    controller
+  usb: dwc3: core: Access XHCI address space temporarily to read port
+    info
+  usb: dwc3: core: Skip setting event buffers for host only controllers
+  usb: dwc3: core: Refactor PHY logic to support Multiport Controller
+  usb: dwc3: qcom: Add multiport controller support for qcom wrapper
+  arm64: dts: qcom: sc8280xp: Add multiport controller node for SC8280
+  arm64: dts: qcom: sa8295p: Enable teritiary controller and its 4 USB
+    ports
+  arm64: dts: qcom: sa8540-ride: Enable first port of teritiary usb
+    controller
+
+ .../devicetree/bindings/usb/snps,dwc3.yaml    |  13 +-
+ arch/arm64/boot/dts/qcom/sa8295p-adp.dts      |  47 +++
+ arch/arm64/boot/dts/qcom/sa8540p-ride.dts     |  22 ++
+ arch/arm64/boot/dts/qcom/sc8280xp.dtsi        |  58 +++
+ drivers/usb/dwc3/core.c                       | 374 ++++++++++++++----
+ drivers/usb/dwc3/core.h                       |  20 +-
+ drivers/usb/dwc3/drd.c                        |  13 +-
+ drivers/usb/dwc3/dwc3-qcom.c                  |  28 +-
+ 8 files changed, 473 insertions(+), 102 deletions(-)
+
+-- 
+2.39.0
+
