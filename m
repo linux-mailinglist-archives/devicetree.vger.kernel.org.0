@@ -2,164 +2,192 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B99366B3838
-	for <lists+devicetree@lfdr.de>; Fri, 10 Mar 2023 09:11:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7F29F6B3845
+	for <lists+devicetree@lfdr.de>; Fri, 10 Mar 2023 09:14:08 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230477AbjCJILO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 10 Mar 2023 03:11:14 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56900 "EHLO
+        id S230200AbjCJIOF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 10 Mar 2023 03:14:05 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59516 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230314AbjCJIKi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Mar 2023 03:10:38 -0500
-Received: from mail-wr1-x435.google.com (mail-wr1-x435.google.com [IPv6:2a00:1450:4864:20::435])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EA837193E3
-        for <devicetree@vger.kernel.org>; Fri, 10 Mar 2023 00:10:03 -0800 (PST)
-Received: by mail-wr1-x435.google.com with SMTP id t15so4214758wrz.7
-        for <devicetree@vger.kernel.org>; Fri, 10 Mar 2023 00:10:03 -0800 (PST)
+        with ESMTP id S230197AbjCJINe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Mar 2023 03:13:34 -0500
+Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7D0D7527B
+        for <devicetree@vger.kernel.org>; Fri, 10 Mar 2023 00:13:32 -0800 (PST)
+Received: by mail-ed1-x533.google.com with SMTP id s11so17151601edy.8
+        for <devicetree@vger.kernel.org>; Fri, 10 Mar 2023 00:13:32 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20210112; t=1678435800;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=wJVAKKHINtuSuDJu3EqDjp+q9iC1svWYPRp9peikZs8=;
-        b=rrydp6AieROjsxXxzjQcjhFOtXm2HtCj7wFPfwDH6X6Dwr9hmufph/O5n5yoqpDtcX
-         Q9rxhQtJ6Xoteqian3hzAPvqjJ5zI+GPGeG6QnPxBNEhHdIYiXCKmbTjphowwoPGs/BE
-         h+y7vUuFtFmUbpLOcKbFXH0nZndQ4Vt+q4arQ2In0Dc0KcscRW2fEsPpNqXd/DZ0FwUo
-         HCbr//Z1f5/BreIjLdVfHfHBjgC7TmXAcjbpSm0o+IgN1weY7pg1MxTLwcK44mf5Mg3W
-         DaGM5DhCE9n4t1PSfowfsvUh9dgyfDKpSNFH5dRnkb02Urmc7Zf/ywCDIWdEAAMG9dq4
-         mUwg==
+        d=linaro.org; s=google; t=1678436011;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=CEPOx6Kwho4WulB2OeUMcq60ngC+gDTko4FaO6LvQts=;
+        b=fZO54m22EllMgQT3ljYOGeNEoUes1cH0hDHzecRdbywedL6XngZKkw1h0xFv5H2mXA
+         0DmmTjVjV1k2ehBU0S7hULfTJSgfWiC+Qp04O5rGgtLWrVRypNIQLaHsSDSzhpJsy+6i
+         eguZ/PtTKqp5Fu+Q6JCmNdU89nnvScLgXI3PX4QC5mysGM4nNQYX5f2oosbNNgwT9K+E
+         b4x6HJqkIrRjTBnnQd2OBSwOGeehXml3thjck3Ty6gVMcOoVfFw0lKSJf/Dx6AjWRKfH
+         Pvi146UrueYcO2IlPyuaTpspwHX4zKV256ZNAyoyKe+7xi4UEeTUsENpz0WkT6U6l6NV
+         fjzA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678435800;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=wJVAKKHINtuSuDJu3EqDjp+q9iC1svWYPRp9peikZs8=;
-        b=qXjVXCtoivp9JWtmDAhf+uFKwKu7o85fdFABC6vSt5PRL1Ed4xpO9Ni0Lhi5HqYBDs
-         vMahQtrvT9TdZbc9Mb7tMpBul2/Sy7lo/mMVbaEBfQrN7Y+VVic0jlsemPGkFWZG9WTr
-         VxUQzze8oBXFbZdGUbNWQfysiTbDCC/hS0Guz8bV2YF5I7QVe94V0HjfjichbDJpuebS
-         IJf4uOejAwgXR11wf8s08+yTTXJRnr7p8x9m7Xd/RSzf/f8036bAhe1DTs4Stv3xtdQ2
-         z2xhj/4yIQI5AF/NLOqEAQKH2wkChvsIzjUZ7bUeRr70p0L8nrT98wK0zfbt7u+RSXFW
-         GrqQ==
-X-Gm-Message-State: AO0yUKXoRfd7s98j30TE87Q8oEBMO3pvVQlM7yUuJVNcv7jEAZgAxZoQ
-        YW/AsxBfS1dIqbQlJTCAYjRxlGyEPGT2pm9RYjjhhg==
-X-Google-Smtp-Source: AK7set/oX+Ou8MHsmEa5YUMjHQpxJqSO/uHVuTi9gb3Gx6kcmU5e2McI3sFT9YkqQ1MIxlwwDDsmoLE8DYvex/r7MOE=
-X-Received: by 2002:a5d:4403:0:b0:2c6:ed0b:614e with SMTP id
- z3-20020a5d4403000000b002c6ed0b614emr5436803wrq.2.1678435800053; Fri, 10 Mar
- 2023 00:10:00 -0800 (PST)
+        d=1e100.net; s=20210112; t=1678436011;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=CEPOx6Kwho4WulB2OeUMcq60ngC+gDTko4FaO6LvQts=;
+        b=KO9XHt2X37sLFe9ivYfaWETV5gOVPVEo/5Foubv7V0VTJaaP1zclWAXd5F2lmWk09z
+         uF/fkdgX/bC9GehH+OABbH2HQDrOTRiCfkeo4Y4aLbJlOv3tqp4k5I54dzXyoZIGcPfV
+         +iAz2gFOvtKMM50WnD5gtVE0r0xi4xbXi2sdUA/7Fz8GZkjQDLfssawyTPS/KoXgi4qS
+         Zxsb9re4LWPnmh0T3PYz0I1VhF3ZQlz/p4B2JyNioERMRb+j/+GsqXcnRVV2StQaMBbp
+         TuxW4wJpVjqe54g6L2FdRuDJkfjLqPcjZ6A6C0Nyx4PH4pr9KfjFRou04biM1cNjgq95
+         JBPQ==
+X-Gm-Message-State: AO0yUKWFbKL9OBxS4saj12xLF/Jy5zf+XGpCLJOSqcFtfRW9MUi8ll3D
+        +rfwgexSx6cosdB+oihc4MCzbw==
+X-Google-Smtp-Source: AK7set8hHmBQYQjiev7icT060MuM2aDe1d5sXieWR847rpHIWIaqa2m9i4Cs+I/TgT7t42q1surT2g==
+X-Received: by 2002:a05:6402:7ce:b0:4c0:57b:47a9 with SMTP id u14-20020a05640207ce00b004c0057b47a9mr21919985edy.35.1678436010973;
+        Fri, 10 Mar 2023 00:13:30 -0800 (PST)
+Received: from ?IPV6:2a02:810d:15c0:828:2a59:841a:ebc:7974? ([2a02:810d:15c0:828:2a59:841a:ebc:7974])
+        by smtp.gmail.com with ESMTPSA id c22-20020a50d656000000b004c09527d62dsm525188edj.30.2023.03.10.00.13.29
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 10 Mar 2023 00:13:30 -0800 (PST)
+Message-ID: <b5c9aa6e-69d1-165a-4ff9-b5a9f33688e6@linaro.org>
+Date:   Fri, 10 Mar 2023 09:13:29 +0100
 MIME-Version: 1.0
-References: <20230302013822.1808711-1-sboyd@kernel.org> <20230302013822.1808711-3-sboyd@kernel.org>
- <CABVgOSkomwwgKZ9N0_0YMDL--QaZiTV7ONgSRABU2Ph1Z0CG-g@mail.gmail.com> <a97c9bb3a5addfb34af8ccabaa513026.sboyd@kernel.org>
-In-Reply-To: <a97c9bb3a5addfb34af8ccabaa513026.sboyd@kernel.org>
-From:   David Gow <davidgow@google.com>
-Date:   Fri, 10 Mar 2023 16:09:48 +0800
-Message-ID: <CABVgOSkJ4mw_DtFzn5EwcsuYixWY_j13YotxEYqWhO+ZCL1KPg@mail.gmail.com>
-Subject: Re: [PATCH 2/8] of: Enable DTB loading on UML for KUnit tests
-To:     Stephen Boyd <sboyd@kernel.org>
-Cc:     Michael Turquette <mturquette@baylibre.com>,
-        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
-        patches@lists.linux.dev,
-        Brendan Higgins <brendan.higgins@linux.dev>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        "Rafael J . Wysocki" <rafael@kernel.org>,
-        Richard Weinberger <richard@nod.at>,
-        Anton Ivanov <anton.ivanov@cambridgegreys.com>,
-        Johannes Berg <johannes@sipsolutions.net>,
-        Vincent Whitchurch <vincent.whitchurch@axis.com>,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.8.0
+Subject: Re: [RFC PATCH v2 7/7] arm64: dts: qcom: Add the Inline Crypto Engine
+ nodes
+Content-Language: en-US
+To:     Eric Biggers <ebiggers@kernel.org>
+Cc:     Abel Vesa <abel.vesa@linaro.org>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Christian Marangi <ansuelsmth@gmail.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org, linux-um@lists.infradead.org,
-        linux-kselftest@vger.kernel.org, kunit-dev@googlegroups.com
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-17.6 required=5.0 tests=BAYES_00,DKIMWL_WL_MED,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-        ENV_AND_HDR_SPF_MATCH,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        URIBL_BLOCKED,USER_IN_DEF_DKIM_WL,USER_IN_DEF_SPF_WL
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Manivannan Sadhasivam <mani@kernel.org>,
+        Alim Akhtar <alim.akhtar@samsung.com>,
+        Avri Altman <avri.altman@wdc.com>,
+        Bart Van Assche <bvanassche@acm.org>,
+        Adrian Hunter <adrian.hunter@intel.com>,
+        "James E . J . Bottomley" <jejb@linux.ibm.com>,
+        "Martin K . Petersen" <martin.petersen@oracle.com>,
+        linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        linux-arm-msm@vger.kernel.org, linux-scsi@vger.kernel.org
+References: <20230308155838.1094920-1-abel.vesa@linaro.org>
+ <20230308155838.1094920-8-abel.vesa@linaro.org>
+ <4eab53fc-2d26-dc93-3ae6-c0b2546ad3e0@linaro.org>
+ <ZAol5o5a6HZYgRaG@sol.localdomain>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <ZAol5o5a6HZYgRaG@sol.localdomain>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 10 Mar 2023 at 07:19, Stephen Boyd <sboyd@kernel.org> wrote:
->
-> Quoting David Gow (2023-03-02 23:15:04)
-> > On Thu, 2 Mar 2023 at 09:38, Stephen Boyd <sboyd@kernel.org> wrote:
-> > >
-> > > To fully exercise common clk framework code in KUnit we need to
-> > > associate 'struct device' pointers with 'struct device_node' pointers so
-> > > that things like clk_get() can parse DT nodes for 'clocks' and so that
-> > > clk providers can use DT to provide clks; the most common mode of
-> > > operation for clk providers.
-> > >
-> > > Adding support to KUnit so that it loads a DTB is fairly simple after
-> > > commit b31297f04e86 ("um: Add devicetree support"). We can simply pass a
-> > > pre-compiled deviectree blob (DTB) on the kunit.py commandline and UML
-> > > will load it. The problem is that tests won't know that the commandline
-> > > has been modified, nor that a DTB has been loaded. Take a different
-> > > approach so that tests can skip if a DTB hasn't been loaded.
-> > >
-> > > Reuse the Makefile logic from the OF unittests to build a DTB into the
-> > > kernel. This DTB will be for the mythical machine "linux,kunit", i.e.
-> > > the devicetree for the KUnit "board". In practice, it is a dtsi file
-> > > that will gather includes for kunit tests that rely in part on a
-> > > devicetree being loaded. The devicetree should only be loaded if
-> > > CONFIG_OF_KUNIT=y. Make that a choice config parallel to the existing
-> > > CONFIG_OF_UNITTEST so that only one devicetree can be loaded in the
-> > > system at a time. Similarly, the kernel commandline option to load a
-> > > DTB is ignored if CONFIG_OF_KUNIT is enabled so that only one DTB is
-> > > loaded at a time.
-> >
-> > This feels a little bit like it's just papering over the real problem,
-> > which is that there's no way tests can skip themselves if no DTB is
-> > loaded.
->
-> Hmm. I think you're suggesting that the unit test data be loaded
-> whenever CONFIG_OF=y and CONFIG_KUNIT=y. Then tests can check for
-> CONFIG_OF and skip if it isn't enabled?
->
+On 09/03/2023 19:31, Eric Biggers wrote:
+> On Thu, Mar 09, 2023 at 11:31:46AM +0100, Krzysztof Kozlowski wrote:
+>> On 08/03/2023 16:58, Abel Vesa wrote:
+>>> Drop all properties related to ICE from every UFS and SDCC node,
+>>> for all platforms, and add dedicated ICE nodes for each platform.
+>>> On most platforms, there is only one ICE instance, used by either
+>>> UFS or SDCC, but there are some platforms that have two separate
+>>> instances and, therefore, two separate nodes are added.
+>>>
+>>> Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
+>>> ---
+>>>
+>>> Changes since v1:
+>>>  * Made changes for all platforms that use ICE, as a single patch since
+>>>    most changes look really similar.
+>>>
+>>>  arch/arm64/boot/dts/qcom/sdm630.dtsi | 18 +++++++++-----
+>>>  arch/arm64/boot/dts/qcom/sdm670.dtsi | 15 +++++++----
+>>>  arch/arm64/boot/dts/qcom/sdm845.dtsi | 21 +++++++++-------
+>>>  arch/arm64/boot/dts/qcom/sm6115.dtsi | 37 +++++++++++++++++-----------
+>>>  arch/arm64/boot/dts/qcom/sm6350.dtsi | 31 ++++++++++++++---------
+>>>  arch/arm64/boot/dts/qcom/sm8150.dtsi | 21 +++++++++-------
+>>>  arch/arm64/boot/dts/qcom/sm8450.dtsi | 22 ++++++++++-------
+>>>  7 files changed, 102 insertions(+), 63 deletions(-)
+>>>
+>>> diff --git a/arch/arm64/boot/dts/qcom/sdm630.dtsi b/arch/arm64/boot/dts/qcom/sdm630.dtsi
+>>> index 5827cda270a0..2aed49104d9d 100644
+>>> --- a/arch/arm64/boot/dts/qcom/sdm630.dtsi
+>>> +++ b/arch/arm64/boot/dts/qcom/sdm630.dtsi
+>>> @@ -1330,9 +1330,8 @@ opp-200000000 {
+>>>  		sdhc_1: mmc@c0c4000 {
+>>>  			compatible = "qcom,sdm630-sdhci", "qcom,sdhci-msm-v5";
+>>>  			reg = <0x0c0c4000 0x1000>,
+>>> -			      <0x0c0c5000 0x1000>,
+>>> -			      <0x0c0c8000 0x8000>;
+>>> -			reg-names = "hc", "cqhci", "ice";
+>>> +			      <0x0c0c5000 0x1000>;
+>>> +			reg-names = "hc", "cqhci";
+>>
+>> I believe this will break the ICE on these platforms without valid
+>> reason. The commit msg does not explain why you do it or why this is
+>> necessary.
+>>
+>> We already we received comment that we keep breaking Qualcomm platforms
+>> all the time and need to keep them in some shape.
+>>
+>> Also, patchset is non-applicable in current set (breaks users) and
+>> neither commit nor cover letter mentions it.
+>>
+> 
+> FWIW, I tested this patchset on SDA845, and ICE continues to work fine.
 
-More of the opposite: that we should have some way of supporting tests
-which might want to use a DTB other than the built-in one. Mostly for
-non-UML situations where an actual devicetree is needed to even boot
-far enough to get test output (so we wouldn't be able to override it
-with a compiled-in test one).
+Really? I clearly see of_find_device_by_node -> "return NULL" and all
+old code gone, so ABI is broken. Are you sure you applied patch 1-6 and
+ICE was working?
 
-I think moving to overlays probably will render this idea obsolete:
-but the thought was to give test code a way to check for the required
-devicetree nodes at runtime, and skip the test if they weren't found.
-That way, the failure mode for trying to boot this on something which
-required another device tree for, e.g., serial, would be "these tests
-are skipped because the wrong device tree is loaded", not "I get no
-output because serial isn't working".
+> 
+> (Though if I understand the patchset correctly, the ICE clock is no longer
+> turned off when the UFS host controller is suspended.  That isn't ideal as it
+> wastes power.  I would like that to be fixed.)
+> 
+> Anyway, when you say "break the ICE", do you really mean "make an incompatible
+> change to the device-tree bindings"?
 
-Again, though, it's only really needed for non-UML, and just loading
-overlays as needed should be much more sensible anyway.
+It breaks existing users of DTS and kernel.
 
-> >
-> > That being said, I do think that there's probably some sense in
-> > supporting the compiled-in DTB as well (it's definitely simpler than
-> > patching kunit.py to always pass the extra command-line option in, for
-> > example).
-> > But maybe it'd be nice to have the command-line option override the
-> > built-in one if present.
->
-> Got it. I need to test loading another DTB on the commandline still, but
-> I think this won't be a problem. We'll load the unittest-data DTB even
-> with KUnit on UML, so assuming that works on UML right now it should be
-> unchanged by this series once I resend.
+> 
+> I'd think there would be no problem with that as long as everything is updated
+> at once, which this patchset does.
 
-Again, moving to overlays should render this mostly obsolete, no? Or
-am I misunderstanding how the overlay stuff will work?
+Which is obviously not possible. DTS always goes separate branch,
+always. It cannot be combined with code into the same branch! So how do
+you even imagine this?
 
-One possible future advantage of being able to test with custom DTs at
-boot time would be for fuzzing (provide random DT properties, see what
-happens in the test). We've got some vague plans to support a way of
-passing custom data to tests to support this kind of case (though, if
-we're using overlays, maybe the test could just patch those if we
-wanted to do that).
+> 
+> I've heard before that some people consider the device-tree bindings to be a
+> stable UAPI.  That doesn't make sense to me. 
+
+It is stable ABI. Bindings and DTS are used by other firmwares,
+bootloaders and systems. The kernel *must* work with old and out of tree
+DTS.
+
+Even if this does not make sense to you, these are the realities,
+practice and current rules.
 
 
-Cheers,
--- David
+> Actually, my original ICE patches
+> ran into this issue too, and the resolution was simply that the Qualcomm
+> platforms maintainer (Bjorn) decided to take the patches anyway.  I never heard
+> any complaints afterwards.  Maybe the same is fine here too?
+
+
+No, it is not fine. The patchset breaks ABI, breaks existing kernel with
+old DTS and breaks other projects using DTS and bindings.
+
+Best regards,
+Krzysztof
+
