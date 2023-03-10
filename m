@@ -2,205 +2,219 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 40E3A6B3DBF
-	for <lists+devicetree@lfdr.de>; Fri, 10 Mar 2023 12:29:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 31EA46B3DF4
+	for <lists+devicetree@lfdr.de>; Fri, 10 Mar 2023 12:35:51 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231204AbjCJL3U (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 10 Mar 2023 06:29:20 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46088 "EHLO
+        id S230488AbjCJLfs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 10 Mar 2023 06:35:48 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60758 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230050AbjCJL2t (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Mar 2023 06:28:49 -0500
-Received: from 167-179-156-38.a7b39c.syd.nbn.aussiebb.net (167-179-156-38.a7b39c.syd.nbn.aussiebb.net [167.179.156.38])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 44837149A2;
-        Fri, 10 Mar 2023 03:28:47 -0800 (PST)
-Received: from loth.rohan.me.apana.org.au ([192.168.167.2])
-        by formenos.hmeau.com with smtp (Exim 4.94.2 #2 (Debian))
-        id 1paavL-002Xzn-96; Fri, 10 Mar 2023 19:28:36 +0800
-Received: by loth.rohan.me.apana.org.au (sSMTP sendmail emulation); Fri, 10 Mar 2023 19:28:35 +0800
-Date:   Fri, 10 Mar 2023 19:28:35 +0800
-From:   Herbert Xu <herbert@gondor.apana.org.au>
-To:     Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Thara Gopinath <thara.gopinath@gmail.com>,
-        Bhupesh Sharma <bhupesh.sharma@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Andy Gross <agross@kernel.org>,
+        with ESMTP id S230477AbjCJLfp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Mar 2023 06:35:45 -0500
+Received: from EUR01-VE1-obe.outbound.protection.outlook.com (mail-ve1eur01on2072.outbound.protection.outlook.com [40.107.14.72])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7735C12CED;
+        Fri, 10 Mar 2023 03:35:43 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=YzpWjwL+Z7rFnu28G4KzkhXpWIFu1JaNWFjeOZiKQxIOK/J8QtxWmAKo6qjIjxYrVLy+l1r/+sLSjgj3ro0NcoYUUvBfvz34oULG8nMevVHWmVotXKJYOMAhT1zw1+LWQS8WdWDi357WpUySqVXTZU1lqpAXqXV6T8ELczI+kR+jkuRzaTE2UpAKVl2zboA2BJS9ry8Msz2k2MPEgdcqQpQNSgBhsAdyr1nTCc861FjrSd9FM6jCDnFBuvrzeIfEA4k19h5Bv0+FRFknzizI3JDdOm8cXhZjUDMhBRNg4mDFth6siyHW+OyHNq0Z4U4W3O7lrnR/c+9ZRxi03xpXaQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=2gXr3YckMp+M5F1IEEQYLeHYc7nAzsU367XhVD3Cxso=;
+ b=HM6omhrjpzTKmtK20yp7ZjwOS43dVtZEEoKUgldm2Vn8NbtfF5jNWszqhFjgkXyWz06AE8cWv0BFXkt3DryO7zatb1wLt3oHpIeqpYuGUEcl0wxiAGCBARwAJeFnTkrYTtWlTb2U3zwpXZKiRsrIIPwaaWMYheJiYMVyMhfMlsuvB1F9YIDhQDd81QA+dvhycEy8IWRbtehq0DTpBqrVZ2AXcdjdgpqYUAfUfgANSsjJF7lXfaUJ9qOZ2GygUn6KsF2aCWEVNTDF3+1bfPavpYXn1Icy/V5z9TD7iDAqfpvYF9F2kis/Vz4CTATPJu2PUWZtkdv2V9TBqnnSeDFTdA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=2gXr3YckMp+M5F1IEEQYLeHYc7nAzsU367XhVD3Cxso=;
+ b=RgsJvtXn/7AaZ1g6xgPFrgFuFUxfHNK9Gi48Zlerf2s02to+drSZIJ9QSJX3xOtbT3a5w0nztyI4lm7KgV0rhBtISnYAJqKd+QU7qUZg7OTzKMEdnOnblEXnYEM7rbf9GZZpKcU3+KEvsOPrDBZ+QQRLYjH6tOSugKg7Bq45f9o=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from AM0PR04MB6452.eurprd04.prod.outlook.com (2603:10a6:208:16d::21)
+ by VI1PR04MB9836.eurprd04.prod.outlook.com (2603:10a6:800:1d9::9) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6178.18; Fri, 10 Mar
+ 2023 11:35:38 +0000
+Received: from AM0PR04MB6452.eurprd04.prod.outlook.com
+ ([fe80::29a3:120c:7d42:3ca8]) by AM0PR04MB6452.eurprd04.prod.outlook.com
+ ([fe80::29a3:120c:7d42:3ca8%7]) with mapi id 15.20.6178.019; Fri, 10 Mar 2023
+ 11:35:38 +0000
+Date:   Fri, 10 Mar 2023 13:35:33 +0200
+From:   Vladimir Oltean <vladimir.oltean@nxp.com>
+To:     =?utf-8?B?S8O2cnk=?= Maincent <kory.maincent@bootlin.com>
+Cc:     Andrew Lunn <andrew@lunn.ch>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Heiner Kallweit <hkallweit1@gmail.com>, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-doc@vger.kernel.org, linux-omap@vger.kernel.org,
+        Michael Walle <michael@walle.cc>,
+        Maxime Chevallier <maxime.chevallier@bootlin.com>,
+        Richard Cochran <richardcochran@gmail.com>,
+        thomas.petazzoni@bootlin.com, Russell King <linux@armlinux.org.uk>,
         "David S. Miller" <davem@davemloft.net>,
-        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-crypto@vger.kernel.org
-Subject: Re: [PATCH v11 00/10] crypto: qcom-qce: Add YAML bindings and
- support for newer SoCs
-Message-ID: <ZAsUY8m+TvlXciXb@gondor.apana.org.au>
-References: <20230222172240.3235972-1-vladimir.zapolskiy@linaro.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Jonathan Corbet <corbet@lwn.net>,
+        Jay Vosburgh <j.vosburgh@gmail.com>,
+        Veaceslav Falico <vfalico@gmail.com>,
+        Andy Gospodarek <andy@greyhouse.net>,
+        Claudiu Manoil <claudiu.manoil@nxp.com>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        UNGLinuxDriver@microchip.com, Minghao Chi <chi.minghao@zte.com.cn>,
+        Jie Wang <wangjie125@huawei.com>,
+        Oleksij Rempel <linux@rempel-privat.de>,
+        Sean Anderson <sean.anderson@seco.com>,
+        "Gustavo A. R. Silva" <gustavoars@kernel.org>,
+        Wolfram Sang <wsa+renesas@sang-engineering.com>,
+        Alexander Lobakin <alexandr.lobakin@intel.com>,
+        Marco Bonelli <marco@mebeim.net>
+Subject: Re: [PATCH v3 3/5] net: Let the active time stamping layer be
+ selectable.
+Message-ID: <20230310113533.l7flaoli7y3bmlnr@skbuf>
+References: <20230308135936.761794-1-kory.maincent@bootlin.com>
+ <20230308135936.761794-1-kory.maincent@bootlin.com>
+ <20230308135936.761794-4-kory.maincent@bootlin.com>
+ <20230308135936.761794-4-kory.maincent@bootlin.com>
+ <20230308230321.liw3v255okrhxg6s@skbuf>
+ <20230310114852.3cef643d@kmaincent-XPS-13-7390>
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <20230222172240.3235972-1-vladimir.zapolskiy@linaro.org>
-X-Spam-Status: No, score=2.7 required=5.0 tests=BAYES_00,HELO_DYNAMIC_IPADDR2,
-        PDS_RDNS_DYNAMIC_FP,RDNS_DYNAMIC,SPF_HELO_NONE,SPF_PASS,TVD_RCVD_IP,
-        URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.6
-X-Spam-Level: **
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20230310114852.3cef643d@kmaincent-XPS-13-7390>
+X-ClientProxiedBy: FR3P281CA0154.DEUP281.PROD.OUTLOOK.COM
+ (2603:10a6:d10:a2::7) To AM0PR04MB6452.eurprd04.prod.outlook.com
+ (2603:10a6:208:16d::21)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: AM0PR04MB6452:EE_|VI1PR04MB9836:EE_
+X-MS-Office365-Filtering-Correlation-Id: ab58a907-2c95-4034-d975-08db215b9231
+X-LD-Processed: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635,ExtAddr
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: bXZbHg4p3boiRG9jz9bOQTS2H3qvF58s7gZA6l0pedoOqO5sZ8XXTZKQIlZHESAgcXLBa+jpJwvkMPd89sJW1oTeRiaFOAR6el6/6o0+K5zTMI2sjFsdG90+g5VD5dqqd5DDWkHuDeMHYCG7HjPeycgXFKA8wUyz7cYXLZF74orBaSypDuZGfD7EpUeuWiqGZgeuPzbLZmfU3iT5Jy1hWJstt2bXIv8u5mQXRrpkuHSAQaVTTIUqIY8p12UEvK/US/evGNnCD9JeKOtgWieMfO4ce4Z5kJplWeZpV00bRMWPjpmYj77ERf+dfDEx8IwIi0BhuYhcdQQtYIlCU3HIdG8pNhJLbI5L2/mM9TCfKYRiRoeZjSolUiGLrAi1WCFyFnydwtbQN3Px6eQ6d/oUzyDoYxkgAIZ3Nbr4IDcVVp+cydciQ83Bk/ffxp26sMaxENq2IY4EVC4jYvSkoZU9yvwZKQ+ns6L2nqHchz9ExNzGhw6flD66m5jsB7RhhMHJ4Tn6x0eNM3WEjEOCTD8Dud30mIxgA0RE541H/Xde1ZzYZKLBVnYH6FMsjsyKYfsgVKnGskdkEBu2xsEl+GRiS+eEldQP4wGBa6GHXfGgsfLFwg4pVN3ZtiD6WJ53i0R0
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM0PR04MB6452.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230025)(4636009)(7916004)(346002)(136003)(366004)(396003)(376002)(39860400002)(451199018)(2906002)(83380400001)(7416002)(8936002)(5660300002)(7406005)(44832011)(41300700001)(8676002)(478600001)(38100700002)(66946007)(4326008)(6916009)(54906003)(86362001)(316002)(66556008)(186003)(9686003)(6512007)(66574015)(66476007)(33716001)(6666004)(1076003)(6506007)(26005)(6486002)(966005);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?7QKKIVyZIhrjNLlTciGVWvpcLdAe5Bz1cOSBs168KBTuhP6eKlFW0B44Gk?=
+ =?iso-8859-1?Q?okuUuJqtjw2czP10UB8AXSuPs6i3zu5PlF6ok+0AiLBkTE6SZ2FXLyRBQT?=
+ =?iso-8859-1?Q?3rdcXBy/guQPEU7cI6vsMjWDrSSUG8ydi3C5GmI6UU4BwCE1ciXzQ9pEC0?=
+ =?iso-8859-1?Q?n162knWHlQ5i4CAXXsZFrn1ucHluvGF6cA4ji6Mw0pKtNhuDVRcODfQHx6?=
+ =?iso-8859-1?Q?qg+Jb3FYwA4TxAoTNS/IvTr1tCzMD3spy8jiuaGY0gEcFQkuXNj4k3FkV5?=
+ =?iso-8859-1?Q?5RZup6V9PRk6GQMdOntWG7UDEACoiPVV43lPI/8IWAdwIwRacbQXk29nKE?=
+ =?iso-8859-1?Q?pWUMEAlRyOD5HCfxQucZASzmtCw/4JpTp5+ncmlaMa2mVeBq2FFPgGUv2+?=
+ =?iso-8859-1?Q?Um3JwrWjCyT2+3OgFDaOwk31I8pRl1WSubkzmIYZqBYHJmj6ATJ9yoKqwh?=
+ =?iso-8859-1?Q?cFwMe69u43LEQHqeii9N3q66Z6ab+5qQto716QVTgJeHneXNXXQ12feDkr?=
+ =?iso-8859-1?Q?2B79+EGhw3GlK6qbbuRmLIg7mow5FIbSxHBS66TRbZgsHreYNmXm0y7qUF?=
+ =?iso-8859-1?Q?7K/lRDVlS94TYYKZwD5wpmLog8z51raZVucc0x+aegcXjsDQzowiasfs3B?=
+ =?iso-8859-1?Q?qVeWHfPrtCfQqE6sIrBHELNI1hBYHouZ6O2eUMxdfHWcUVBnw6io08FXjt?=
+ =?iso-8859-1?Q?vHzlLGyFEcIThSRgPOIbz+/sIMgJPomGY9tr/58q5uOj1jQz/VpqKPafBK?=
+ =?iso-8859-1?Q?QRDdqoENr/tsAf6CUHjmdN8R5ZETHSTZuPTdCO5vjgPHva/BFHH/dS4XFd?=
+ =?iso-8859-1?Q?obc+stqr6N5SyQJ8kZogqT33lA03rtf8Lal/SjPJA88JEZvzvy9PPtxQEz?=
+ =?iso-8859-1?Q?Ch1fszL9ftofDGDvbuMWz1rS2juHBFaOm3WtOgalU5FwbWCtyBd9KQivTO?=
+ =?iso-8859-1?Q?2pnPCyc51GSNqyQ2VUwSEirGALzRN0i3VN7xwOc9vHuCtvEE8F8MuN8byb?=
+ =?iso-8859-1?Q?UMZa4WNQ80W8sTavf/JU9VbWNdgQxL4D8DytsX3VRdcWPBar4hgYrBG2+h?=
+ =?iso-8859-1?Q?Hw1+txg79k4QuAofxQRSCFzfQ9zUq0V5g26E0k0EUDbfANDimRcfKKC4rS?=
+ =?iso-8859-1?Q?HrRU+gtZpYT0NkSp1FNN/XcJa9hbxEUxm+dn5X+gT+UhZT6u5IKuucNALL?=
+ =?iso-8859-1?Q?YUcf7LIelag3yvX3tsZEub+nluF6iIQtMpRqmOsss/1UebeIrWDjhiDuX+?=
+ =?iso-8859-1?Q?kb1BtZ/MHYp4tn+0f4oydim3W43iTdVtFwROR1RxBXcU0+768BxLNogGX7?=
+ =?iso-8859-1?Q?HsmzEQa0k2J+yNeFRPlZpMcDShrO3/HPhRRMHQBBLIZsS+VdRgb4/LyjcE?=
+ =?iso-8859-1?Q?14qzGj8k2JNMFrxsQOp72O+JojqH3pVytS/vTgDMxp5ZsD7cXOrfw7AhOc?=
+ =?iso-8859-1?Q?tVNEzd76dQAYlu31afntMt7PkLQJbJK4xmp8M5ccYF4FwBQTGNuu8t0ZQF?=
+ =?iso-8859-1?Q?oqam6M4REkLE5y3Rs0EzzwYOLS26zQsBxEQmDPgGecJ14XY3bo5yOAXysp?=
+ =?iso-8859-1?Q?RR9HQekJp/xK52peOACY5chPEAxDYrwHDuamsdgmSuI7bSHVLLKz9TaXlL?=
+ =?iso-8859-1?Q?Ygg75lxRKw1vIjmsOrL0meh36hCZp6SU0OBGduGp25IHLeW9VBDqPiMg?=
+ =?iso-8859-1?Q?=3D=3D?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: ab58a907-2c95-4034-d975-08db215b9231
+X-MS-Exchange-CrossTenant-AuthSource: AM0PR04MB6452.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Mar 2023 11:35:38.3413
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: j8E/oNjPTqCzh68x/4wa4GffZTu1oz2eGhnBpZYgmhAGaOU3g3ebB+5ccYQGOEyivPvpVH6xIjmvmxz66HKl2g==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR04MB9836
+X-Spam-Status: No, score=-1.7 required=5.0 tests=BAYES_00,DKIM_INVALID,
+        DKIM_SIGNED,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,
+        SPF_PASS,URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Feb 22, 2023 at 07:22:30PM +0200, Vladimir Zapolskiy wrote:
-> The series contains Qualcomm Crypto Engine DT bindings documentation and
-> driver changes, which modify a set of accepted compatible property values,
-> which is needed to provide a unified and fine-grained support of the driver
-> on old and new platforms. In addition due to QCE IP changes on new Qualcomm
-> platforms, it is reflected in updates to valid device tree properties,
-> namely added iommu, interconnects and optional clocks.
+On Fri, Mar 10, 2023 at 11:48:52AM +0100, Köry Maincent wrote:
+> > From previous discussions, I believe that a device tree property was
+> > added in order to prevent perceived performance regressions when
+> > timestamping support is added to a PHY driver, correct?
 > 
-> Qualcomm crypto engine (QCE) is available on several Snapdragon SoCs.
-> The QCE block supports hardware accelerated algorithms for encryption
-> and authentication. It also provides support for aes, des, 3des
-> encryption algorithms and sha1, sha256, hmac(sha1), hmac(sha256)
-> authentication algorithms.
-> 
-> Changes since v10:
-> =================
-> - v10 can be found here: https://lore.kernel.org/all/20230216131430.3107308-1-vladimir.zapolskiy@linaro.org/
-> - Fixed 05/10 commit message per request from Krzysztof and added his
->   reviewed-by tag.
-> - Rebased the series on top of the linux-next.
-> 
-> Changes since v9:
-> =================
-> - v9 can be found here: https://lore.kernel.org/linux-crypto/20230208183755.2907771-1-vladimir.zapolskiy@linaro.org/
-> - Added a new generic 'qcom,qce' compatible name, since IP is runtime
->   discoverable, however two new SoC name based compatibles are left
->   due to necessity to differentiate various lists of required properties.
-> - Updated documentation according to review comments by Krzysztof.
-> - Removed platform specific changes in dtsi files, only one bisectable
->   change in sm8550.dtsi is left in the series.
-> - Added some commit tags, however a few given tags by Krzysztof are not
->   added, since the previous tagged changes were noticeably reworked.
-> 
-> Changes since v8:
-> =================
-> - v8 can be found here: https://lore.kernel.org/all/20230202135036.2635376-1-vladimir.zapolskiy@linaro.org/
-> - Rebased the series on top of linux-next, sm8550 qce support is already
->   found in the tree.
-> - Reduced the list of QCE IP compatibles in the driver, added one more
->   compatible for backward DTB ABI compatibility.
-> - Replaced a documentation change from Neil Armstrong by a more advanced
->   version of it per review comments from Krzysztof Kozlowski about clock
->   and clock-names properties.
-> - Added changes to all relevant Qualcomm platform dtsi files according to
->   the changes in the scheme file.
-> - Added QCE support on SM8250 platform.
-> 
-> Changes since v7:
-> =================
-> - v7 can be found here: https://lore.kernel.org/linux-arm-msm/20220920114051.1116441-1-bhupesh.sharma@linaro.org
-> - Added a change by Neil Armstrong to document clocks and clock-names
->   properties as optional,
->   - At the moment do not add Bhupesh as a new QCE driver maintainer,
->   - Minor updates to device tree binding documentation and qce driver,
->     in particular added more compatibles and fixed lesser issues.
-> 
-> Changes since v6:
-> =================
-> - v6 can be seen here: https://lore.kernel.org/linux-arm-msm/30756e6f-952f-ccf2-b493-e515ba4f0a64@linaro.org/
-> - As per Krzysztof's suggestion on v6, clubbed the crypto driver and
->   dt-bindings changes together. Now the overall v5 patchset into 3
->   separate patchsets, one each for the following areas to allow easier
->   review and handling from the maintainer: arm-msm, crypto and dma
-> 
-> Changes since v5:
-> =================
-> - v5 can be seen here: https://lore.kernel.org/lkml/20211110105922.217895-1-bhupesh.sharma@linaro.org/
-> - As per Bjorn's suggestion on irc, broke down the patchset into 4
->   separate patchsets, one each for the following areas to allow easier
->   review and handling from the maintainer: arm-msm, crypto, dma and devicetree
-> - Addressed Rob's, Vladimir's and Bjorn's review comments received on v5.
-> - Added Tested-by from Jordan received on the v5.
-> 
-> Changes since v4:
-> =================
-> - v4 for sm8250 can be seen here: https://lore.kernel.org/linux-arm-msm/20211013105541.68045-1-bhupesh.sharma@linaro.org/
-> - v1 for sm8150 qce enablement can be seen here: https://lore.kernel.org/linux-arm-msm/20211013165823.88123-1-bhupesh.sharma@linaro.org/
-> - Merged the sm8150 and sm8250 enablement patches in the same patchset,
->   as per suggestions from Bjorn.
-> - Dropped a couple of patches from v4, as these have been picked by
->   Bjorn already via his tree.
-> - Addressed review comments from Vladimir, Thara and Rob.
-> - Collect Reviewed-by from Rob and Thara on some of the patches from the
->   v4 patchset.
-> 
-> Changes since v3:
-> =================
-> - v3 can be seen here: https://lore.kernel.org/linux-arm-msm/20210519143700.27392-1-bhupesh.sharma@linaro.org/
-> - Dropped a couple of patches from v3, on basis of the review comments:
->   ~ [PATCH 13/17] crypto: qce: core: Make clocks optional
->     ~ [PATCH 15/17] crypto: qce: Convert the device found dev_dbg() to dev_info()
-> - Addressed review comments from Thara, Rob and Stephan Gerhold.
-> - Collect Reviewed-by from Rob and Thara on some of the patches from the
->   v3 patchset.
-> 
-> Changes since v2:
-> =================
-> - v2 can be seen here: https://lore.kernel.org/dmaengine/20210505213731.538612-1-bhupesh.sharma@linaro.org/
-> - Drop a couple of patches from v1, which tried to address the defered
->   probing of qce driver in case bam dma driver is not yet probed.
->   Replace it instead with a single (simpler) patch [PATCH 16/17].
-> - Convert bam dma and qce crypto dt-bindings to YAML.
-> - Addressed review comments from Thara, Bjorn, Vinod and Rob.
-> 
-> Changes since v1:
-> =================
-> - v1 can be seen here: https://lore.kernel.org/linux-arm-msm/20210310052503.3618486-1-bhupesh.sharma@linaro.org/
-> - v1 did not work well as reported earlier by Dmitry, so v2 contains the following
->   changes/fixes:
->   ~ Enable the interconnect path b/w BAM DMA and main memory first
->     before trying to access the BAM DMA registers.
->   ~ Enable the interconnect path b/w qce crytpo and main memory first
->     before trying to access the qce crypto registers.
->   ~ Make sure to document the required and optional properties for both
->     BAM DMA and qce crypto drivers.
->   ~ Add a few debug related print messages in case the qce crypto driver
->     passes or fails to probe.
->   ~ Convert the qce crypto driver probe to a defered one in case the BAM DMA
->     or the interconnect driver(s) (needed on specific Qualcomm parts) are not
->     yet probed.
-> 
-> Bhupesh Sharma (4):
->   dt-bindings: qcom-qce: Convert bindings to yaml
->   MAINTAINERS: Add qcom-qce dt-binding file to QUALCOMM CRYPTO DRIVERS section
->   dt-bindings: qcom-qce: Add 'interconnects' and 'interconnect-names'
->   dt-bindings: qcom-qce: Add 'iommus' to optional properties
-> 
-> Thara Gopinath (2):
->   crypto: qce: core: Add support to initialize interconnect path
->   crypto: qce: core: Make clocks optional
-> 
-> Vladimir Zapolskiy (4):
->   dt-bindings: qcom-qce: Add new SoC compatible strings for Qualcomm QCE IP
->   dt-bindings: qcom-qce: document optional clocks and clock-names properties
->   arm64: dts: qcom: sm8550: add QCE IP family compatible values
->   crypto: qce: core: Add a QCE IP family compatible 'qcom,qce'
-> 
->  .../devicetree/bindings/crypto/qcom-qce.txt   |  25 ----
->  .../devicetree/bindings/crypto/qcom-qce.yaml  | 123 ++++++++++++++++++
->  MAINTAINERS                                   |   1 +
->  arch/arm64/boot/dts/qcom/sm8550.dtsi          |   2 +-
->  drivers/crypto/qce/core.c                     |  23 +++-
->  drivers/crypto/qce/core.h                     |   1 +
->  6 files changed, 145 insertions(+), 30 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/crypto/qcom-qce.txt
->  create mode 100644 Documentation/devicetree/bindings/crypto/qcom-qce.yaml
-> 
-> -- 
-> 2.33.0
+> Yes, i.e. to select the default and better timestamp on a board.
 
-All applied.  Thanks.
--- 
-Email: Herbert Xu <herbert@gondor.apana.org.au>
-Home Page: http://gondor.apana.org.au/~herbert/
-PGP Key: http://gondor.apana.org.au/~herbert/pubkey.txt
+Is there a way to unambiguously determine the "better" timestamping on a board?
+
+Is it plausible that over time, when PTP timestamping matures and,
+for example, MDIO devices get support for PTP_SYS_OFFSET_EXTENDED
+(an attempt was here: https://lkml.org/lkml/2019/8/16/638), the
+relationship between PTP clock qualities changes, and so does the
+preference change?
+
+> > I have a dumb question: if updating the device trees is needed in order
+> > to prevent these behavior changes, then how is the regression problem
+> > addressed for those device trees which don't contain this new property
+> > (all device trees)?
+> 
+> On that case there is not really solution,
+
+If it's not really a solution, then doesn't this fail at its primary
+purpose of preventing regressions?
+
+> but be aware that CONFIG_PHY_TIMESTAMPING need to be activated to
+> allow timestamping on the PHY. Currently in mainline only few (3)
+> defconfig have it enabled so it is really not spread,
+
+Do distribution kernels use the defconfigs from the kernel, or do they
+just enable as many options that sound good as possible?
+
+> maybe I could add more documentation to prevent further regression
+> issue when adding support of timestamp to a PHY driver.
+
+My opinion is that either the problem was not correctly identified,
+or the proposed solution does not address that problem.
+
+What I believe is the problem is that adding support for PHY timestamping
+to a PHY driver will cause a behavior change for existing systems which
+are deployed with that PHY.
+
+If I had a multi-port NIC where all ports share the same PHC, I would
+want to create a boundary clock with it. I can do that just fine when
+using MAC timestamping. But assume someone adds support for PHY
+timestamping and the kernel switches to using PHY timestamps by default.
+Now I need to keep in sync the PHCs of the PHYs, something which was
+implicit before (all ports shared the same PHC). I have done nothing
+incorrectly, yet my deployment doesn't work anymore. This is just an
+example. It doesn't sound like a good idea in general for new features
+to cause a behavior change by default.
+
+Having identified that as the problem, I guess the solution should be
+to stop doing that (and even though a PHY driver supports timestamping,
+keep using the MAC timestamping by default).
+
+There is a slight inconvenience caused by the fact that there are
+already PHY drivers using PHY timestamping, and those may have been
+introduced into deployments with PHY timestamping. We cannot change the
+default behavior for those either. There are 5 such PHY drivers today
+(I've grepped for mii_timestamper in drivers/net/phy).
+
+I would suggest that the kernel implements a short whitelist of 5
+entries containing PHY driver names, which are compared against
+netdev->phydev->drv->name (with the appropriate NULL pointer checks).
+Matches will default to PHY timestamping. Otherwise, the new default
+will be to keep the behavior as if PHY timestamping doesn't exist
+(MAC still provides the timestamps), and the user needs to select the
+PHY as the timestamping source explicitly.
+
+Thoughts?
