@@ -2,58 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A8F1E6B48D0
-	for <lists+devicetree@lfdr.de>; Fri, 10 Mar 2023 16:07:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8FE3D6B4B3A
+	for <lists+devicetree@lfdr.de>; Fri, 10 Mar 2023 16:35:58 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233711AbjCJPHB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 10 Mar 2023 10:07:01 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57150 "EHLO
+        id S234418AbjCJPf5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 10 Mar 2023 10:35:57 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55204 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233709AbjCJPGf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Mar 2023 10:06:35 -0500
-Received: from mail-yw1-x1130.google.com (mail-yw1-x1130.google.com [IPv6:2607:f8b0:4864:20::1130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2FA8599D4E;
-        Fri, 10 Mar 2023 06:59:39 -0800 (PST)
-Received: by mail-yw1-x1130.google.com with SMTP id 00721157ae682-536c02eea4dso102496147b3.4;
-        Fri, 10 Mar 2023 06:59:39 -0800 (PST)
+        with ESMTP id S233884AbjCJPfV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Mar 2023 10:35:21 -0500
+Received: from mail-ot1-f44.google.com (mail-ot1-f44.google.com [209.85.210.44])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 54E07111B38;
+        Fri, 10 Mar 2023 07:22:43 -0800 (PST)
+Received: by mail-ot1-f44.google.com with SMTP id o4-20020a9d6d04000000b00694127788f4so3103348otp.6;
+        Fri, 10 Mar 2023 07:22:43 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678460254;
+        d=1e100.net; s=20210112; t=1678461762;
         h=content-transfer-encoding:mime-version:message-id:date:subject:cc
          :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=ZSlcrAdOk2ZHbJaFPGHkD2mhUxcO2+0jdOc1ehU4BF0=;
-        b=Q4SZI/q1Q7vDg9eqmTg3II4xYhX1r4nHDn2Kfg8LMyHEDd0WBtT7MQt09BYWC4VPJJ
-         MS2+PZIV04UWYBh88L+eSEpy8eamCgQWmsdx741usuRfbRWLsuubqjAmbCjUbkI1LB8W
-         IaD5b13agylttOhXgGSb5LaAQicPo87I3DtAJjShED/dbJuKIT22znp8O8/hJxE9MonD
-         guYkPHh98xWLydU7IAoyNlMqv0PQ4jh8zW7wDCUipKmiRmSfVUC+amVFYZWcZePhKE7a
-         PvQJyMCclbWV5dVdapgV0Ir9DdkMabklw5W9MSHb84ELJDQWWLFrxv3SLk6dCVX0uxDK
-         rhkA==
-X-Gm-Message-State: AO0yUKXsCxu9cHBdTLmawPGZY17/RxzIoS5DwKYGSJB6McpDfF/FdWM4
-        7+yKO8otFENOsoBqbDC7bMIZsmkGwA==
-X-Google-Smtp-Source: AK7set81+R7SptvFiU1mElhgKcbUszs0JCXieCGbcvg5GrDnQizYVUU/z1OANIDVszl1Z9u1lrX8nw==
-X-Received: by 2002:aca:2210:0:b0:384:ea9:237d with SMTP id b16-20020aca2210000000b003840ea9237dmr11076654oic.36.1678459724416;
-        Fri, 10 Mar 2023 06:48:44 -0800 (PST)
+        bh=IB8iTw6lo+GT2tL0twgsKIavP9xhmvwdcsuEsK0YWR8=;
+        b=LHBFIK34ofA803yfkvza6EYuf+VW9ewgpyGeyw6Wxk37rC/+SZULE8MAd1sazBLFH3
+         bofFAte3EV0rB4P5om/p92oSWTisQLrr57YlF10AUFoD53jbcKaizsNzLH4sXhnD83LU
+         La0sZoPMJdBFg/hV55KkaYcKXFmpk1zBVfCf9ndAG8XNGBMqPbhUldDx5128pXbDrKEh
+         AIjb0uPNdbrIEI8xznri2dQucYmR7qsSVRsIcWtuE4NPTugrNAZpw0aFlyyJsS8nDicU
+         Xkp2uEgw4Qz3m3e9+mmhMWiL/Oztw8nujciK6/4+2Y7MLbCPAfk1nCDfEtzS9kGtcw3J
+         yEYw==
+X-Gm-Message-State: AO0yUKWBKoWLvJu4c7QheUht4OtI/qffH3KEGpA8j/fG+b+VdG8EijpG
+        Q8qa3yEqS4Q7W7rQ5akqXTft7+dqNw==
+X-Google-Smtp-Source: AK7set/jkKv59Toh5FHgl/WazfV3a0smzI5TaosdN1WA9XSptDPl1VvfF1sItgSI8nw35SGmNKjtJQ==
+X-Received: by 2002:aca:1207:0:b0:383:fb18:aa7d with SMTP id 7-20020aca1207000000b00383fb18aa7dmr10733343ois.35.1678459699360;
+        Fri, 10 Mar 2023 06:48:19 -0800 (PST)
 Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id y129-20020acae187000000b0038476262f65sm967368oig.33.2023.03.10.06.48.43
+        by smtp.gmail.com with ESMTPSA id i131-20020acaea89000000b00383e0c1f6cdsm966509oih.27.2023.03.10.06.48.18
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 10 Mar 2023 06:48:43 -0800 (PST)
-Received: (nullmailer pid 1546844 invoked by uid 1000);
-        Fri, 10 Mar 2023 14:47:35 -0000
+        Fri, 10 Mar 2023 06:48:18 -0800 (PST)
+Received: (nullmailer pid 1547137 invoked by uid 1000);
+        Fri, 10 Mar 2023 14:47:36 -0000
 From:   Rob Herring <robh@kernel.org>
-To:     Benjamin Herrenschmidt <benh@kernel.crashing.org>,
-        Colin Leroy <colin@colino.net>
-Cc:     devicetree@vger.kernel.org, linuxppc-dev@lists.ozlabs.org,
+To:     Mark Brown <broonie@kernel.org>
+Cc:     devicetree@vger.kernel.org, linux-spi@vger.kernel.org,
         linux-kernel@vger.kernel.org
-Subject: [PATCH] macintosh: Use of_property_present() for testing DT property presence
-Date:   Fri, 10 Mar 2023 08:47:35 -0600
-Message-Id: <20230310144735.1546817-1-robh@kernel.org>
+Subject: [PATCH] spi: omap2-mcspi: Use of_property_read_bool() for boolean properties
+Date:   Fri, 10 Mar 2023 08:47:36 -0600
+Message-Id: <20230310144736.1547110-1-robh@kernel.org>
 X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,
-        SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -62,43 +62,27 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 It is preferred to use typed property access functions (i.e.
 of_property_read_<type> functions) rather than low-level
-of_get_property/of_find_property functions for reading properties. As
-part of this, convert of_get_property/of_find_property calls to the
-recently added of_property_present() helper when we just want to test
-for presence of a property and nothing more.
+of_get_property/of_find_property functions for reading properties.
+Convert reading boolean properties to to of_property_read_bool().
 
 Signed-off-by: Rob Herring <robh@kernel.org>
 ---
- drivers/macintosh/rack-meter.c    | 2 +-
- drivers/macintosh/therm_adt746x.c | 2 +-
- 2 files changed, 2 insertions(+), 2 deletions(-)
+ drivers/spi/spi-omap2-mcspi.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/macintosh/rack-meter.c b/drivers/macintosh/rack-meter.c
-index c28893e41a8b..40240bce77b0 100644
---- a/drivers/macintosh/rack-meter.c
-+++ b/drivers/macintosh/rack-meter.c
-@@ -387,7 +387,7 @@ static int rackmeter_probe(struct macio_dev* mdev,
- 	       if (of_node_name_eq(np, "lightshow"))
- 		       break;
- 	       if (of_node_name_eq(np, "sound") &&
--		   of_get_property(np, "virtual", NULL) != NULL)
-+		   of_property_present(np, "virtual"))
- 		       break;
- 	}
- 	if (np == NULL) {
-diff --git a/drivers/macintosh/therm_adt746x.c b/drivers/macintosh/therm_adt746x.c
-index 8f5db9093c9a..384b87d661e1 100644
---- a/drivers/macintosh/therm_adt746x.c
-+++ b/drivers/macintosh/therm_adt746x.c
-@@ -483,7 +483,7 @@ static int probe_thermostat(struct i2c_client *client)
- 	if (vers != 1)
- 		return -ENXIO;
+diff --git a/drivers/spi/spi-omap2-mcspi.c b/drivers/spi/spi-omap2-mcspi.c
+index 6ba9b0d7710b..57ca49e6d9ee 100644
+--- a/drivers/spi/spi-omap2-mcspi.c
++++ b/drivers/spi/spi-omap2-mcspi.c
+@@ -1464,7 +1464,7 @@ static int omap2_mcspi_probe(struct platform_device *pdev)
  
--	if (of_get_property(np, "hwsensor-location", NULL)) {
-+	if (of_property_present(np, "hwsensor-location")) {
- 		for (i = 0; i < 3; i++) {
- 			sensor_location[i] = of_get_property(np,
- 					"hwsensor-location", NULL) + offset;
+ 		of_property_read_u32(node, "ti,spi-num-cs", &num_cs);
+ 		master->num_chipselect = num_cs;
+-		if (of_get_property(node, "ti,pindir-d0-out-d1-in", NULL))
++		if (of_property_read_bool(node, "ti,pindir-d0-out-d1-in"))
+ 			mcspi->pin_dir = MCSPI_PINDIR_D0_OUT_D1_IN;
+ 	} else {
+ 		pdata = dev_get_platdata(&pdev->dev);
 -- 
 2.39.2
 
