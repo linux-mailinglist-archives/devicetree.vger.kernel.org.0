@@ -2,127 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7CF5B6B3BCE
-	for <lists+devicetree@lfdr.de>; Fri, 10 Mar 2023 11:15:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D64616B3BBD
+	for <lists+devicetree@lfdr.de>; Fri, 10 Mar 2023 11:10:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229936AbjCJKPU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 10 Mar 2023 05:15:20 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34420 "EHLO
+        id S229845AbjCJKKL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 10 Mar 2023 05:10:11 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56658 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231544AbjCJKPC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Mar 2023 05:15:02 -0500
-Received: from mout.kundenserver.de (mout.kundenserver.de [212.227.17.24])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D3F3210DE6B;
-        Fri, 10 Mar 2023 02:14:46 -0800 (PST)
-Received: from [192.168.1.141] ([37.4.248.41]) by mrelayeu.kundenserver.de
- (mreue106 [212.227.15.183]) with ESMTPSA (Nemesis) id
- 1M3UEW-1pa1iL1EO2-000brJ; Fri, 10 Mar 2023 11:08:51 +0100
-Message-ID: <3c5992f3-269f-8af5-0062-7653c53feffb@i2se.com>
-Date:   Fri, 10 Mar 2023 11:08:49 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.1
-Subject: Re: [PATCH 6/8] dt-bindings: ARM: fsl: Add chargebyte Tarragon
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        with ESMTP id S229601AbjCJKKK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Mar 2023 05:10:10 -0500
+Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 48C6F93E0D
+        for <devicetree@vger.kernel.org>; Fri, 10 Mar 2023 02:10:09 -0800 (PST)
+Received: by mail-ed1-x535.google.com with SMTP id ec29so18337546edb.6
+        for <devicetree@vger.kernel.org>; Fri, 10 Mar 2023 02:10:09 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1678443008;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=VES88RDu68rL5NDUHr3sXnSGJ9TXEfu2GH9TAuqlmkU=;
+        b=Ozr1iPXoEGvcAHwAy9H9S8GCoun0lCmweQbD8YnbUqziy2u/98BqZPBfzPbRnLPABx
+         nUWc5FrRdihvGHgCfjrqZPsD6V9xwGYOtcCbmoB+6DVL280iKMrB1gIdz0YBcOUR3OIN
+         HSME51Il8c5yPqHjdS1detBGS/ZTEl9SWOkFovseOvMYGbvXGa7aiXgUEXWJujXap3Es
+         70eqsFq6rsMnYTAy8/+vBxTFHEe/eDuueJgjnT3atKSChkJnq/t/GNZQK8W5z5sUNkgx
+         82jtG7DdKnmVYLKXQGGxRUaQVEgKS+tkvwpLP7lCJ+ytuj+m8sbcvWc39sJJXMhASmKR
+         svdg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1678443008;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=VES88RDu68rL5NDUHr3sXnSGJ9TXEfu2GH9TAuqlmkU=;
+        b=0negqgwhB0+IUXGtM/Bn1xRIRIGlg6LK+A1NXpSYEZLlME0GHbEeXCHfFywllmrkL7
+         PL2n7ZJVzROox3U9VNbpml6hZOlnsSlcfp86E6nL62gKgR+k1tsMYesD/men0qKOT9l9
+         TC1ZS2PS7dJgxvKhXKd66HazcRqUCpJrOGrlMCdGF7ZIa72LBW+OTeb62e05uShk141w
+         MpF0vDJyvn3VSiCpnDhdEktHhzNk0gm0fdql314xnYeAqu0yZFEzh4Nr4BdhjAbXMYed
+         Qd8CRRAjSMbLlk9iVzRJAubj1v9FJEIvZffXY387QEspsTQMAxe6HcsaZDw+F1fsX41x
+         gupQ==
+X-Gm-Message-State: AO0yUKVSYGWxb0MdAHopOoBmPMVlnCVWsOECee6W5QWNZ0plNEqxFOPL
+        Ik+HdGw7LXUw91ocq5B1QTcNsw==
+X-Google-Smtp-Source: AK7set/S605bhmLAtsmVPrUq/mepr0q5FJC+/eV4WvNFS5d4216qWzvQbfEOofPJqPaTziJ7CzL1Bg==
+X-Received: by 2002:a17:907:1b1e:b0:8b2:8876:2a11 with SMTP id mp30-20020a1709071b1e00b008b288762a11mr1368992ejc.28.1678443007804;
+        Fri, 10 Mar 2023 02:10:07 -0800 (PST)
+Received: from krzk-bin.. ([2a02:810d:15c0:828:2a59:841a:ebc:7974])
+        by smtp.gmail.com with ESMTPSA id a20-20020a17090680d400b008c979c74732sm761350ejx.156.2023.03.10.02.10.06
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 10 Mar 2023 02:10:07 -0800 (PST)
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Banajit Goswami <bgoswami@quicinc.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
-        Evgeniy Polyakov <zbr@ioremap.net>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>
-Cc:     linux-imx@nxp.com, Li Yang <leoyang.li@nxp.com>,
-        Denis Ciocca <denis.ciocca@st.com>, soc@kernel.org,
-        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        Stefan Wahren <stefan.wahren@chargebyte.com>
-References: <20230306172249.74003-1-stefan.wahren@i2se.com>
- <20230306172249.74003-7-stefan.wahren@i2se.com>
- <a38cb5d4-91d3-0d9a-41d3-44fed9d39512@linaro.org>
-Content-Language: en-US
-From:   Stefan Wahren <stefan.wahren@i2se.com>
-In-Reply-To: <a38cb5d4-91d3-0d9a-41d3-44fed9d39512@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Provags-ID: V03:K1:Yab78HLcW38z97dZXDiHJYvgDjmQKxZOV7txq5k0FzHEPtlAm2X
- 94lggD0+R3CkrZRs4t5PeeIgmB1+1zKAccV732G8LShJ0PvgxU37GFJeD3PMxWSKLMZybzh
- B2XpKMGuxqWfcjKRYao5A6rLQbNgC/EgraYZg6xBZX6OqYjzCYEA+eH9CtZKOU+V0gWoCRu
- wSB40w2QBfE4MeRYSjRAw==
-UI-OutboundReport: notjunk:1;M01:P0:SWcLCySneCw=;W8h4oD+D8eYiskSf5UZ6zqYKNjr
- 51kdxFAksai4A3fNbOPEneUE8r8TSjDSURYnV9PjtaDEyxJSMZop0ocIS95HX/NcUZzbjR0ed
- U/ZS8Hkpq46lWKE84Ujv2qh+67erUDnXvgFdDfCWSUQ5KlbUpEviZhPMdFAs/3aZhHrhpiaXB
- 1hfWXVbNeDJl9xPKNPv+hZBpdU1SfWkAOX2lVXdFb6t6Q8QuWYLxf2hH//LLYDfsNtIpNj/9x
- ZjlW6uHiiaWgubfd3XzaZc5a8qOoRpeTrSuzXH2sFgSwfoX3DmObJg+7pouw5B2ADkFmCEe2N
- XtnUqvkG/G/LX+tHFaxQYVTndL5xlGThPJdxOd7+8oc+dI1DtVhUUClrko8GRy4+tWEeMi/ZC
- UDQOcpM8DP+iHTlgGGTmYcdpf2+0ZT/R0EZnxC/3ny01ak9D5V9Xctb1kcRYU94AYE9TEZRJC
- BVzXtblJ6pI8OlSmJlOnV9JIZerBtq04C3x3Qt3En+whwcKJ0rDkCP9I9AEAb8WD3ZRnuVIiT
- dZKfFem0A7mVxCQJspjgiIPriJ6KGYpSBVhDMZ7O0tt+B4OqNjdKpFn1M6eioNdoFUgg0aXpb
- W5vJVCZeU4oo60crnA1JDiY4UpQxXfUOrxKVPf1szze2dJ7e8jFMmwS38+y6NUFNIkgTC+rLG
- 43QprqC9ZuenI+beCoPmQI18cTlq2Mng2auj3CPpow==
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+        Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>,
+        Venkata Prasad Potturu <quic_potturu@quicinc.com>,
+        linux-arm-msm@vger.kernel.org, alsa-devel@alsa-project.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        stable@vger.kernel.org
+Subject: [PATCH] ASoC: dt-bindings: qcom,lpass-rx-macro: correct minItems for clocks
+Date:   Fri, 10 Mar 2023 11:09:37 +0100
+Message-Id: <20230310100937.32485-1-krzysztof.kozlowski@linaro.org>
+X-Mailer: git-send-email 2.34.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Krzysztof,
+The RX macro codec comes on some platforms in two variants - ADSP
+and ADSP bypassed - thus the clock-names varies from 3 to 5.  The clocks
+must vary as well:
 
-Am 07.03.23 um 09:24 schrieb Krzysztof Kozlowski:
-> On 06/03/2023 18:22, Stefan Wahren wrote:
->> From: Stefan Wahren <stefan.wahren@chargebyte.com>
->>
->> This adds the compatibles for the chargebyte Tarragon boards.
->>
->> Signed-off-by: Stefan Wahren <stefan.wahren@chargebyte.com>
->> Signed-off-by: Stefan Wahren <stefan.wahren@i2se.com>
->> ---
->>   Documentation/devicetree/bindings/arm/fsl.yaml | 9 +++++++++
->>   1 file changed, 9 insertions(+)
->>
->> diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml b/Documentation/devicetree/bindings/arm/fsl.yaml
->> index dece3e9ba7fd..2b430e20a7a6 100644
->> --- a/Documentation/devicetree/bindings/arm/fsl.yaml
->> +++ b/Documentation/devicetree/bindings/arm/fsl.yaml
->> @@ -781,6 +781,15 @@ properties:
->>             - const: tq,imx6ull-tqma6ull2l      # MCIMX6Y2, LGA SoM variant
->>             - const: fsl,imx6ull
->>   
->> +      - description: chargebyte Tarragon Boards
->> +        items:
->> +          - enum:
->> +              - chargebyte,imx6ull-tarragon-master
->> +              - chargebyte,imx6ull-tarragon-micro
->> +              - chargebyte,imx6ull-tarragon-slave
->> +              - chargebyte,imx6ull-tarragon-slavext
->> +          - const: fsl,imx6ull
-> I don't think you put it in correct place. Didn't you just stuff it at
-> the end?
+  sc7280-idp.dtb: codec@3200000: clocks: [[202, 8], [202, 7], [203]] is too short
 
-Yes, i just put it at the end. But to be honest, i'm not sure about the 
-order:
+Fixes: 852fda58d99a ("ASoC: qcom: dt-bindings: Update bindings for clocks in lpass digital codes")
+Cc: <stable@vger.kernel.org>
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+---
+ Documentation/devicetree/bindings/sound/qcom,lpass-rx-macro.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
-armadeus,imx6ull-opos6uldev
-..
-dh,imx6ull-dhcom-drc02
-..
-phytec,imx6ull-pbacd10-emmc
-..
-toradex,colibri-imx6ull-aster
-..
-kontron,bl-imx6ull
-..
-tq,imx6ull-tqma6ull2-mba6ulx
+diff --git a/Documentation/devicetree/bindings/sound/qcom,lpass-rx-macro.yaml b/Documentation/devicetree/bindings/sound/qcom,lpass-rx-macro.yaml
+index 79c6f8da1319..b0b95689d78b 100644
+--- a/Documentation/devicetree/bindings/sound/qcom,lpass-rx-macro.yaml
++++ b/Documentation/devicetree/bindings/sound/qcom,lpass-rx-macro.yaml
+@@ -30,6 +30,7 @@ properties:
+     const: 0
+ 
+   clocks:
++    minItems: 3
+     maxItems: 5
+ 
+   clock-names:
+-- 
+2.34.1
 
-Does the order depend on the compatibles and vendor is relevant?
-
-So your expectation was between armadeus and dh?
-
->
-> Best regards,
-> Krzysztof
->
