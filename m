@@ -2,117 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0F5696B5370
-	for <lists+devicetree@lfdr.de>; Fri, 10 Mar 2023 22:52:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BA0906B536D
+	for <lists+devicetree@lfdr.de>; Fri, 10 Mar 2023 22:52:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231977AbjCJVwf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 10 Mar 2023 16:52:35 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44144 "EHLO
+        id S232105AbjCJVwS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 10 Mar 2023 16:52:18 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45372 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231952AbjCJVwL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Mar 2023 16:52:11 -0500
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 09CCA116B93
-        for <devicetree@vger.kernel.org>; Fri, 10 Mar 2023 13:48:52 -0800 (PST)
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1paka5-00043Y-LX; Fri, 10 Mar 2023 22:47:17 +0100
-Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
-        by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.94.2)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1paka1-003GHn-RB; Fri, 10 Mar 2023 22:47:13 +0100
-Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.94.2)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1paka1-003tZx-3f; Fri, 10 Mar 2023 22:47:13 +0100
-Date:   Fri, 10 Mar 2023 22:46:58 +0100
-From:   Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
-To:     fnkl.kernel@gmail.com
-Cc:     Thierry Reding <thierry.reding@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        - <asahi@lists.linux.dev>, Hector Martin <marcan@marcan.st>,
-        Sven Peter <sven@svenpeter.dev>,
-        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
-        linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v8 2/5] pwm: Add Apple PWM controller
-Message-ID: <20230310214658.424vui3frynit437@pengutronix.de>
-References: <20230214-fpwm-v8-0-65518a0d4944@gmail.com>
- <20230214-fpwm-v8-2-65518a0d4944@gmail.com>
+        with ESMTP id S232106AbjCJVv7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Mar 2023 16:51:59 -0500
+Received: from mail-lf1-x143.google.com (mail-lf1-x143.google.com [IPv6:2a00:1450:4864:20::143])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D7608FAD4C
+        for <devicetree@vger.kernel.org>; Fri, 10 Mar 2023 13:48:37 -0800 (PST)
+Received: by mail-lf1-x143.google.com with SMTP id j11so8416872lfg.13
+        for <devicetree@vger.kernel.org>; Fri, 10 Mar 2023 13:48:37 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=fortunewebnetworks-com.20210112.gappssmtp.com; s=20210112; t=1678484853;
+        h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=vu/hIGIFa5lHxMmIWQefka7phZ4BQsyUQ7lfzUv1x3s=;
+        b=RsO0ulJ/pUDx3MzTkDqzMbd4KD6Pd9oT7slilB+Lnf+x4+0wLMJ2P/aEW0JAYWbQBw
+         qMQVblKYh9rYESyijXGzoK6h0jWm5+VQ3eGkxC+/l67L71ZCI63YRYODgwI3JDtNGzTI
+         7N3xVfGQkt+2F1Hiuj/RyvhJZVO4PUdPMA/3uKyS9iM7RLcnUGLnOqpVNwJ6Z4O3emHr
+         iHr3SSVD7tId0ox+pk2nHI2fa2xSKtMes8hSJsB7KcimMURkCeHijazsjytc1RiC6Mfe
+         Y3g052M27ZtJO2wRJbDGP8FV6kNoq/4xOABXWmy4+jOgTBqXf3ZT+kQ4/a9LimtDNYKj
+         fdhg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1678484853;
+        h=to:subject:message-id:date:from:mime-version:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=vu/hIGIFa5lHxMmIWQefka7phZ4BQsyUQ7lfzUv1x3s=;
+        b=XGCmT6P2ms8suBq0nZWh4nyAI+MlSi6eY+rDo9gT25HY6bPNQ1XZ3Gs0eCEfXYbNVX
+         fNVpGbHwVZomdOcv+IwMwUPwTMQ4MJLDVFllAV5ua11rKr4tyU8pSWnXcZ0STzoPQ9PS
+         7qvZEyyQZ8sSUcvqQkPWhqP7Zb/BgRUkxbQaHFYhL3WUhZgKrtKlm/FpOTpCPK7JFPzy
+         6xSK8xwmnnAndMAEu+10UhxLftxC3FyGQVCmlRVVWdDCJvzwz0E4m9iiWpBUMQRZuwDc
+         q0JLWlXcdZY6V5tf+w4fzs9Jhz3062mD2OKai7a2vEt3kEAkjUL2nSj7LFtcGtO5SFSM
+         mZ2A==
+X-Gm-Message-State: AO0yUKWkdLiiiosOwjrYIcMlo257sezq1qZJS435KiMOIc+Xl0E/EV4d
+        JyGryI+REcw6+Ch21we+zcSS30LOE5anm5KDQcbTeg==
+X-Google-Smtp-Source: AK7set80ng/ihx6fLZLuyKYLzHgMbS+wt3RCh4iAVg9BBSmsqrVSQ1FgqyPl4yDcy5HgUnHOa5J/v/YuGwF7kW5pD2c=
+X-Received: by 2002:ac2:4911:0:b0:4d5:ca32:6ae0 with SMTP id
+ n17-20020ac24911000000b004d5ca326ae0mr8086450lfi.0.1678484853659; Fri, 10 Mar
+ 2023 13:47:33 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="wbrnvcvhbc5cviao"
-Content-Disposition: inline
-In-Reply-To: <20230214-fpwm-v8-2-65518a0d4944@gmail.com>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: ukl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+From:   Jack Lee <jack@fortunewebnetworks.com>
+Date:   Fri, 10 Mar 2023 15:47:21 -0600
+Message-ID: <CABNDBtB0zATR7JioLHJyQzusKrrKjQ1XbLLECwiFLUVa52YMTA@mail.gmail.com>
+Subject: RE: HIMSS Attendees Email List-2023
+To:     Jack Lee <jack@fortunewebnetworks.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=0.8 required=5.0 tests=BAYES_50,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_FILL_THIS_FORM_SHORT autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi,
 
---wbrnvcvhbc5cviao
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Would you be interested in acquiring The Healthcare Information and
+Management Systems Society Attendees Data List 2023?
 
-Hello Sascha,
+You'll get access to 43,386 opt-in contacts, including their
+organization name, first and last name, contact job title, verified
+email address, website URL, mailing address, phone number, fax number,
+industry, and much more.
 
-On Fri, Mar 10, 2023 at 07:44:08PM +0100, Sasha Finkelstein via B4 Relay wr=
-ote:
-> +static int apple_pwm_apply(struct pwm_chip *chip, struct pwm_device *pwm,
-> +			   const struct pwm_state *state)
-> +{
-> +	struct apple_pwm *fpwm;
-> +
-> +	if (state->polarity =3D=3D PWM_POLARITY_INVERSED)
-> +		return -EINVAL;
-> +
-> +	fpwm =3D to_apple_pwm(chip);
-> +	if (state->enabled) {
-> +		u64 on_cycles, off_cycles;
-> +
-> +		on_cycles =3D mul_u64_u64_div_u64(fpwm->clkrate,
-> +						state->duty_cycle, NSEC_PER_SEC);
-> +		if (on_cycles > 0xFFFFFFFF)
-> +			on_cycles =3D 0xFFFFFFFF;
-> +
-> +		off_cycles =3D mul_u64_u64_div_u64(fpwm->clkrate,
-> +						 state->period, NSEC_PER_SEC) - on_cycles;
-> +		if (off_cycles > 0xFFFFFFFF)
-> +			return -ERANGE;
+No of Contacts:- 43,523
+Cost: $2,289
 
-This is still wrong and needs clamping, too.
+Contact us today to purchase The Healthcare Information and Management
+Systems Society Attendees Data List or for more information.
 
-Best regards
-Uwe
-
---=20
-Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
-Industrial Linux Solutions                 | https://www.pengutronix.de/ |
-
---wbrnvcvhbc5cviao
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEfnIqFpAYrP8+dKQLwfwUeK3K7AkFAmQLpU8ACgkQwfwUeK3K
-7Al6iAf/brzDkPdu7qhixSZXlHEcf+6cCEGjYdch6SwKLkspprLcOrBvHsvEa8ay
-TYG02baQpF4eNbZdPBbBv2b4VOqDOJ92H8Bx7IvfhCQy+fdZkSCiSeXHPteY91Hc
-A56UkrBNesv68qEdfX6e4vtVYZbexHFqgaeTZMPfr8dsqt0ms0RyyMMuT/DhrpPs
-sBTZd7V0IybwXTCEomXUMbxOA1mzWfU05rEz4bPUOS14N9TL8i1Mom8VsZrMD5UH
-bO6F9Y13HCXq8xUgLKZnoxqEEm1E2r6ZunUTSb/RenSaxGE2xx9NlHlTNeyKJR2V
-FYA1FefcQgl8RIZvCowtSH9Y+Lkcvg==
-=MgXN
------END PGP SIGNATURE-----
-
---wbrnvcvhbc5cviao--
+Best regards,
+Jack Lee
