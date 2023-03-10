@@ -2,243 +2,191 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A1FBB6B3957
-	for <lists+devicetree@lfdr.de>; Fri, 10 Mar 2023 10:00:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 419A16B3711
+	for <lists+devicetree@lfdr.de>; Fri, 10 Mar 2023 08:05:55 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231171AbjCJJAM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 10 Mar 2023 04:00:12 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58196 "EHLO
+        id S229601AbjCJHFv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 10 Mar 2023 02:05:51 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39866 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231249AbjCJI7Q (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Mar 2023 03:59:16 -0500
-Received: from mailout1.samsung.com (mailout1.samsung.com [203.254.224.24])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E591410D752
-        for <devicetree@vger.kernel.org>; Fri, 10 Mar 2023 00:52:53 -0800 (PST)
-Received: from epcas5p3.samsung.com (unknown [182.195.41.41])
-        by mailout1.samsung.com (KnoxPortal) with ESMTP id 20230310085251epoutp016d27d0586a3c53923c15e7d6788e7bc2~LAs5uKwhY0747907479epoutp01k
-        for <devicetree@vger.kernel.org>; Fri, 10 Mar 2023 08:52:51 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.samsung.com 20230310085251epoutp016d27d0586a3c53923c15e7d6788e7bc2~LAs5uKwhY0747907479epoutp01k
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-        s=mail20170921; t=1678438371;
-        bh=mbTVRARZa00Wt/5CaAguT27mR1eA5Av02KT8R3nPBik=;
-        h=From:To:Cc:In-Reply-To:Subject:Date:References:From;
-        b=X5v4ImQh9eXPvpsQWKDGg1dPyVjoYR2PPw86qkaRXGY+HRZBvhpgUQap4s2W8B6b1
-         nWELVP2bZnZYdbMgP6ncVbhfAA7i5aLP2JlO3b4p1lyfYHdOfFW/aZFRtLndKu4Ofw
-         0M2dqW3dmRkGpmIP/E2c1TNC9KbWzWasKP9Bpimc=
-Received: from epsnrtp3.localdomain (unknown [182.195.42.164]) by
-        epcas5p3.samsung.com (KnoxPortal) with ESMTP id
-        20230310085251epcas5p3d9549dfb79fde065675ca9164922d34b~LAs5CMCwI2685626856epcas5p3B;
-        Fri, 10 Mar 2023 08:52:51 +0000 (GMT)
-Received: from epsmges5p2new.samsung.com (unknown [182.195.38.178]) by
-        epsnrtp3.localdomain (Postfix) with ESMTP id 4PY0Dx21RVz4x9Q7; Fri, 10 Mar
-        2023 08:52:49 +0000 (GMT)
-Received: from epcas5p1.samsung.com ( [182.195.41.39]) by
-        epsmges5p2new.samsung.com (Symantec Messaging Gateway) with SMTP id
-        56.E4.55678.0EFEA046; Fri, 10 Mar 2023 17:52:48 +0900 (KST)
-Received: from epsmtrp1.samsung.com (unknown [182.195.40.13]) by
-        epcas5p4.samsung.com (KnoxPortal) with ESMTPA id
-        20230309084828epcas5p414b1687d51abf484520820d9d6fe7582~Ks-yEME0L3190631906epcas5p48;
-        Thu,  9 Mar 2023 08:48:28 +0000 (GMT)
-Received: from epsmgms1p1new.samsung.com (unknown [182.195.42.41]) by
-        epsmtrp1.samsung.com (KnoxPortal) with ESMTP id
-        20230309084828epsmtrp17eb7966e64f8b8d175cfaa027eaf651f~Ks-yDNo6E1369313693epsmtrp1c;
-        Thu,  9 Mar 2023 08:48:28 +0000 (GMT)
-X-AuditID: b6c32a4a-6a3ff7000000d97e-3a-640aefe08848
-Received: from epsmtip1.samsung.com ( [182.195.34.30]) by
-        epsmgms1p1new.samsung.com (Symantec Messaging Gateway) with SMTP id
-        75.73.18071.C5D99046; Thu,  9 Mar 2023 17:48:28 +0900 (KST)
-Received: from FDSFTE308 (unknown [107.122.81.79]) by epsmtip1.samsung.com
-        (KnoxPortal) with ESMTPA id
-        20230309084825epsmtip18cbce813f46e6abc911beaebbba9431b~Ks-vB-hZa1043310433epsmtip1T;
-        Thu,  9 Mar 2023 08:48:24 +0000 (GMT)
-From:   "Aakarsh Jain" <aakarsh.jain@samsung.com>
-To:     "'Krzysztof Kozlowski'" <krzysztof.kozlowski@linaro.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-media@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>
-Cc:     <m.szyprowski@samsung.com>, <andrzej.hajda@intel.com>,
-        <mchehab@kernel.org>, <hverkuil-cisco@xs4all.nl>,
-        <ezequiel@vanguardiasur.com.ar>, <jernej.skrabec@gmail.com>,
-        <benjamin.gaignard@collabora.com>,
-        <krzysztof.kozlowski+dt@linaro.org>,
-        <stanimir.varbanov@linaro.org>, <dillon.minfei@gmail.com>,
-        <david.plowman@raspberrypi.com>, <mark.rutland@arm.com>,
-        <robh+dt@kernel.org>, <krzk+dt@kernel.org>, <andi@etezian.org>,
-        <alim.akhtar@samsung.com>, <aswani.reddy@samsung.com>,
-        <pankaj.dubey@samsung.com>
-In-Reply-To: <81e78cf6-b8b3-0cab-d190-aa22abbc5c2d@linaro.org>
-Subject: RE: [Patch v6] dt-bindings: media: s5p-mfc: convert bindings to
- json-schema
-Date:   Thu, 9 Mar 2023 14:18:23 +0530
-Message-ID: <001901d95263$eac4b460$c04e1d20$@samsung.com>
+        with ESMTP id S229916AbjCJHFs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Mar 2023 02:05:48 -0500
+Received: from mail-oi1-x231.google.com (mail-oi1-x231.google.com [IPv6:2607:f8b0:4864:20::231])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 29488FAD4F;
+        Thu,  9 Mar 2023 23:05:45 -0800 (PST)
+Received: by mail-oi1-x231.google.com with SMTP id bj30so3547116oib.6;
+        Thu, 09 Mar 2023 23:05:45 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112; t=1678431944;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=/Apt9Dk2CoziEfGeeXSNDKcm/bw3e59igOKBoc9kqRQ=;
+        b=cODHW23nSAnCvbakw46m/53/O/w9otESK75OxxEupLEIYQIdR5uoOiqe+IUMmsIrfa
+         sLA8+U1GZJFly3Kc+O8qM5/LBChLX50Z3lCRKw0rgG0A4ZAOAtgo6+isHaMY4gw3yT2G
+         dDqTa2VDHWzd8jb1rs0+Lh85Il5qBhBx4RrX1dkfIDyR8HDzCuK0a3qkVknpWSAwauHN
+         +i/kRmInCOlH6JsXxKSn1ODbPiLwZmeaDpDTsvQOXWh0UMDhFvjHw3AjszKczXdEFXCB
+         rPaGakwJyuvhSQ7lfiHdBmdDZzALeQSFF9SQEyZIPeDGODuUhiXCh8Djelf2BVmzqwZY
+         eiaQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1678431944;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=/Apt9Dk2CoziEfGeeXSNDKcm/bw3e59igOKBoc9kqRQ=;
+        b=OmSsLZLKsK3gowmKk6ztZ2nAZ+3Za3FadiI+HSveeNhrdHMv9tazmzk2VdWnY7Jgn/
+         n45o6QlydmaL2dCmRUaXfCtkjJvSX4byDOzoXL5T+dCDPXr1WY1N+SAAxUsr7Lbikgtp
+         eyV/6rrFJJ8lpThriGxyGCe3bPQ2Quse7Zl8lbmN2384Lr4reikoF2AGFigFVf4oxiA+
+         XAkkRIjDC2vGBvyPepcCVkfjviTTGiLtCybFl6oTcma8uACd/LfqVejHpQP5fO08y3Dy
+         Qj+8p5MxnAeck3r0ai0Fgf4U9Ck+nYIQTV5fNtPyXuUpvjNPl0zwu5nD8Cy4cZPkqBAu
+         JpqA==
+X-Gm-Message-State: AO0yUKV/LRg1073xAmjSdXq+flY9t5SU1oTX8a4W9HbEn20PELwQ8qt0
+        o8v6uRtbuQ7/DkGOf3ZLqhBT8W4i0UFqI/gVoUA=
+X-Google-Smtp-Source: AK7set+Dm/R3lBw0fzhFuTzV5Lb+E9hla4HLfDXtL8iri21EzQdxnwTyxFKAsn39JI7FHQUQeGMGpEFMqrEAbnm3Bcg=
+X-Received: by 2002:a05:6808:aa1:b0:384:2022:f9b1 with SMTP id
+ r1-20020a0568080aa100b003842022f9b1mr8254384oij.2.1678431944516; Thu, 09 Mar
+ 2023 23:05:44 -0800 (PST)
 MIME-Version: 1.0
+References: <20230303002850.51858-1-arinc.unal@arinc9.com> <20230303002850.51858-10-arinc.unal@arinc9.com>
+ <20230308210514.GA3767521-robh@kernel.org> <12be053e-b70a-faca-71c8-d8eef69a3b73@arinc9.com>
+ <ccdfd262-eaf3-dbbe-7a3c-a911a5ec0fc4@arinc9.com> <9663817e-7f6f-c3b1-8bf9-321f9b067e96@linaro.org>
+ <deca532a-bdf5-c49e-1422-ce6124b61882@arinc9.com> <CAMhs-H8M3ir+DshHF60W=QMn9WG3Jgbo8GgXZnDKCLhs=+WBoQ@mail.gmail.com>
+ <81cf9e50-d626-cbb3-ebb1-56d080eca66d@arinc9.com>
+In-Reply-To: <81cf9e50-d626-cbb3-ebb1-56d080eca66d@arinc9.com>
+From:   Sergio Paracuellos <sergio.paracuellos@gmail.com>
+Date:   Fri, 10 Mar 2023 08:05:31 +0100
+Message-ID: <CAMhs-H_YkdacZXE2xqn=_JQtitLvqRFB20s7rjS63dFabAL4qw@mail.gmail.com>
+Subject: Re: [PATCH 09/20] dt-bindings: pinctrl: ralink: {mt7620,mt7621}:
+ rename to mediatek
+To:     =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Rob Herring <robh@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-mediatek@lists.infradead.org, linux-mips@vger.kernel.org,
+        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Sean Wang <sean.wang@kernel.org>,
+        William Dean <williamsukatube@gmail.com>,
+        Daniel Golle <daniel@makrotopia.org>,
+        Daniel Santos <daniel.santos@pobox.com>,
+        Luiz Angelo Daros de Luca <luizluca@gmail.com>,
+        Frank Wunderlich <frank-w@public-files.de>,
+        Landen Chao <Landen.Chao@mediatek.com>,
+        DENG Qingfang <dqfext@gmail.com>,
+        Sean Wang <sean.wang@mediatek.com>, erkin.bozoglu@xeront.com
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-X-Mailer: Microsoft Outlook 16.0
-Thread-Index: AQHxIgKtygHqPU4mHAhqu15r4A65nwLsA7LZAklDK9wB4osi/QJmoqxPAoFahrkB+xU0e65SqsaA
-Content-Language: en-in
-X-Brightmail-Tracker: H4sIAAAAAAAAA02Te0xTVxzHPb1tb0tSvSKGs2Yz5brIQ4HWtXhYQPdQd6OyNVumU6d4pTcF
-        6SttcZMlo2Q8HGM4CMRQETeLLIMC41EBKRtWGIMlCmJkbnQ8JxYUpiiPTXGlLRv/fc7vfL/n
-        +/udk8PD/AtxIS9JY2T0GlpFcv3Yl6+FBocPT/spxPUPABoqvcxFlvlxFhq0zLCRo96Go4Zb
-        5zD0bWcbB11ov85BjVdH2Kj2nnu3t9jJRuMXqgFymf/gorx7wxhqnXQ76kZvc1DflRIuyv3e
-        xkFV7U4cXervZaHyuqcsdNH2GEeZre04yshqZ70WSFlLrYBqcpYBqr/sEUY1m504ZbG7WFRd
-        xedcauC2nUvVl6VRmR1/s6m8hgpA5bT3c6mZug1U95MZXC44lByTyNAKRi9iNAlaRZJGGUvu
-        fS/+zXhZlFgSLolG20iRhlYzseTOffLw3Ukq9/Sk6CStSnGX5LTBQEZuj9FrU4yMKFFrMMaS
-        jE6h0kl1EQZabUjRKCM0jPFViVi8VeYWHktObF5w4DrXlo9tdzeZwGxwDuDzICGFppEcLAf4
-        8fyJFgArK38G3sUjABcnnnK8i1kA+3Jd7GVL9mfP2N6NVgAL27p8/nEA52vH8SUVl4iEg925
-        HnsA0QHgUMOwR4UR2WyYf9MEllR8YjucbKnElngdsR8O157mLjGbeBlOX7d78gRENLTZM3Av
-        r4VdxWOeOkZshuXfTGLenkRw4c9yzhIHEIfcXdTiXk0g7FjI9QRDooUPa3se+gw7YWN9DcvL
-        6+BEZwPuZSF0ncnycQIcvejy6VWwxl7ou4AdsO1WiZt57oBQWHMl0lt+CRZ1V7O8uavhl/+M
-        +Y4XwKbSZd4ESwbmOV5+EV6rvAS+AqR5xWjmFaOZV4xg/j/ta8CuAC8wOoNayRhkuq0a5qP/
-        njxBq64Dnu8RtqcJDA/9FeEALB5wAMjDyADBnJCn8Bco6FOpjF4br09RMQYHkLnvOx8Trk/Q
-        uv+XxhgvkUaLpVFRUdLoV6IkZKAgOLYrwZ9Q0kYmmWF0jH7Zx+LxhSYWSZPzG7ekE0cirKsG
-        d237Nf3wnCwv7s75L0KOWvvibhhn3+WbY0zyzvGDan5WD5+4oQxMD3peJM+dypZZ0uTPOoKO
-        EG2TjaEBkScejx7+ceNqrmzDqt2LGXs/uR80GXfGuWDtOW0+Czb3lsnFjY0FUwMPkOROVcEB
-        vvTEd82yXXLmw59MofGxO/KOP9ljEQcxpgmcWZO2q+H9t0bWFjk1uP6dkxGLrtTjNy0j3WZh
-        x9nFxMVi6y+FFZ9WP/RPxQSjd48Zz73xW8XUvum8EKnug4OnbCPrq3CRWRq45u0DweoSV1rz
-        /qtHQ7od93//IbNA2ZX/nJ7LMNnLx4pfTzlfpQ4j2YZEWhKG6Q30v0CdL3KnBAAA
-X-Brightmail-Tracker: H4sIAAAAAAAAA02SfUzMcRzHfX/Pd9vpp4u+l5bcZGGV87SvsVgzfksM81BpON3Peahz7vJQ
-        SHSKStrabF1Ej3IiXV2h8nBOVkKJcuYi6cFCJqaaxN2N9d/783m93+/P948vg7v+IjyYXaoY
-        XqOSR0kpIVH5QOrlF3FBoJidVyBA73IqKZQ/2IOht/kDBDKXm2hU8SIbR5cf3SPRRctTElXd
-        f0+gst6/tDnLRqCei9cB+qhvp1B6bweOavv+JoydrSRquX2eQmk3TCS6ZrHRqLCtGUNFxl8Y
-        yjN9p9HJWguNdEkWbKk7V5JTAribtgLAtRV8w7lbehvN5dd8xDij4TTFvWmtobjygmPcyYfD
-        BJdeYQBciqWN4gaMXlzDjwF6jShcuFjBR+06wGsCArcJd74+FakulB6ymQvxBPBSkgIEDGTn
-        weTEESIFCBlXthrA8iuppBN4wtGkOtqpxfDK7x7aaeoC8Pm3OswOKDYAvm1II+3Aja0H8Gyj
-        zjHgbBYBX2bYXfZIAg5PVz8j7BEBGwj7qq/idi1m18PhBJPjHsFOg/1PaxweEbsQmmp0tFNP
-        gPVZHxx7nJ0Fu6xd/3VRbh/ufJ83HOoqcvS4seFwsKyMdnrc4cOhNDwDiPVjqvRjqvRjqvRj
-        IpcAYQASXq2NVkZrZWqZij/or5VHa/erlP6Re6ONwPFBZs64CaoMX/3NAGOAGUAGl7qJfnow
-        CleRQh4bx2v2btXsj+K1ZjCZIaTuoqaU+q2urFIew+/heTWv+UcxRuCRgDXuK5J4Zi/NFv2c
-        YY3zzU1uWdkYFOi9LxQLok3xWOmrZdawE73BG12aLmyeikQNTYnpc0KO8CW5On5tbJWqrnO4
-        7hn5RNYZkTixuzg1hwpSSr0VzZPCzKpSl1Vwoa/P5KTKWC8id9GmRs66FrGLhBuCDk/383ZZ
-        ccq2I3TT9k/k/bhyMnx2cF6o0uNMyyOfvpz5Eq2A2nK8+0imYon7lLh4okFDDrXfXfIhtbZf
-        6mP9PNh9dE9P5teQu4+bWHXH8t0tU873rx4BrbKO6evEu8XyvJhaXcYDn6N+XxZMMGSOTy49
-        Z7oa2TkyGt8/97mECy8e9/rWtDC956hgW3tA8B0pod0pl83ENVr5HzlpS16PAwAA
-X-CMS-MailID: 20230309084828epcas5p414b1687d51abf484520820d9d6fe7582
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-Sendblock-Type: REQ_APPROVE
-CMS-TYPE: 105P
-DLP-Filter: Pass
-X-CFilter-Loop: Reflected
-X-CMS-RootMailID: 20230301035153epcas5p40f576188a9a69835c1050135219a3720
-References: <CGME20230301035153epcas5p40f576188a9a69835c1050135219a3720@epcas5p4.samsung.com>
-        <20230301035144.8645-1-aakarsh.jain@samsung.com>
-        <8b5bea40-6f7b-1d00-ac23-83a28c7dacbc@linaro.org>
-        <046b01d94d1a$418146a0$c483d3e0$@samsung.com>
-        <9b93849d-d4a4-67ba-e8a0-ee6c7209bd65@linaro.org>
-        <000701d95257$e97ebd50$bc7c37f0$@samsung.com>
-        <81e78cf6-b8b3-0cab-d190-aa22abbc5c2d@linaro.org>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-> -----Original Message-----
-> From: Krzysztof Kozlowski =5Bmailto:krzysztof.kozlowski=40linaro.org=5D
-> Sent: 09 March 2023 13:41
-> To: Aakarsh Jain <aakarsh.jain=40samsung.com>; linux-arm-
-> kernel=40lists.infradead.org; linux-media=40vger.kernel.org; linux-
-> kernel=40vger.kernel.org; devicetree=40vger.kernel.org
-> Cc: m.szyprowski=40samsung.com; andrzej.hajda=40intel.com;
-> mchehab=40kernel.org; hverkuil-cisco=40xs4all.nl;
-> ezequiel=40vanguardiasur.com.ar; jernej.skrabec=40gmail.com;
-> benjamin.gaignard=40collabora.com; krzysztof.kozlowski+dt=40linaro.org;
-> stanimir.varbanov=40linaro.org; dillon.minfei=40gmail.com;
-> david.plowman=40raspberrypi.com; mark.rutland=40arm.com;
-> robh+dt=40kernel.org; krzk+dt=40kernel.org; andi=40etezian.org;
-> alim.akhtar=40samsung.com; aswani.reddy=40samsung.com;
-> pankaj.dubey=40samsung.com
-> Subject: Re: =5BPatch v6=5D dt-bindings: media: s5p-mfc: convert bindings=
- to json-
-> schema
->=20
-> On 09/03/2023 08:22, Aakarsh Jain wrote:
-> >
-> >
-> >> -----Original Message-----
-> >> From: Krzysztof Kozlowski =5Bmailto:krzysztof.kozlowski=40linaro.org=
-=5D
-> >> Sent: 09 March 2023 12:15
-> >> To: Aakarsh Jain <aakarsh.jain=40samsung.com>; linux-arm-
-> >> kernel=40lists.infradead.org; linux-media=40vger.kernel.org; linux-
-> >> kernel=40vger.kernel.org; devicetree=40vger.kernel.org
-> >> Cc: m.szyprowski=40samsung.com; andrzej.hajda=40intel.com;
-> >> mchehab=40kernel.org; hverkuil-cisco=40xs4all.nl;
-> >> ezequiel=40vanguardiasur.com.ar; jernej.skrabec=40gmail.com;
-> >> benjamin.gaignard=40collabora.com; krzysztof.kozlowski+dt=40linaro.org=
-;
-> >> stanimir.varbanov=40linaro.org; dillon.minfei=40gmail.com;
-> >> david.plowman=40raspberrypi.com; mark.rutland=40arm.com;
-> >> robh+dt=40kernel.org; krzk+dt=40kernel.org; andi=40etezian.org;
-> >> alim.akhtar=40samsung.com; aswani.reddy=40samsung.com;
-> >> pankaj.dubey=40samsung.com
-> >> Subject: Re: =5BPatch v6=5D dt-bindings: media: s5p-mfc: convert bindi=
-ngs
-> >> to json- schema
+On Thu, Mar 9, 2023 at 10:09 PM Ar=C4=B1n=C3=A7 =C3=9CNAL <arinc.unal@arinc=
+9.com> wrote:
+>
+> On 9.03.2023 14:33, Sergio Paracuellos wrote:
+> > On Thu, Mar 9, 2023 at 11:34 AM Ar=C4=B1n=C3=A7 =C3=9CNAL <arinc.unal@a=
+rinc9.com> wrote:
 > >>
-> >> On 02/03/2023 16:18, Aakarsh Jain wrote:
+> >> On 9.03.2023 12:52, Krzysztof Kozlowski wrote:
+> >>> On 09/03/2023 08:53, Ar=C4=B1n=C3=A7 =C3=9CNAL wrote:
+> >>>> On 9.03.2023 00:19, Ar=C4=B1n=C3=A7 =C3=9CNAL wrote:
+> >>>>> On 9.03.2023 00:05, Rob Herring wrote:
+> >>>>>> On Fri, Mar 03, 2023 at 03:28:38AM +0300, arinc9.unal@gmail.com wr=
+ote:
+> >>>>>>> From: Ar=C4=B1n=C3=A7 =C3=9CNAL <arinc.unal@arinc9.com>
+> >>>>>>>
+> >>>>>>> This platform from Ralink was acquired by MediaTek in 2011. Then,
+> >>>>>>> MediaTek
+> >>>>>>> introduced these SoCs which utilise this platform. Rename the sch=
+emas to
+> >>>>>>> mediatek to address the incorrect naming.
+> >>>>>>
+> >>>>>> I said we don't do renames due to acquistions, you said that wasn'=
+t the
+> >>>>>> reason, but then that's your reasoning here.
+> >>>>>
+> >>>>> It's not a marketing/acquistion rename as the name of these SoCs we=
+re
+> >>>>> wrong from the get go. The information on the first sentence is to =
+give
+> >>>>> the idea of why these SoCs were wrongfully named as the base platfo=
+rm
+> >>>>> that these new MediaTek SoCs share code with was called Ralink.
+> >>>>>
+> >>>>>>
+> >>>>>> To give you another example, *new* i.MX things are still called
+> >>>>>> 'fsl,imx...' and it has been how many years since merging with NXP=
+?
+> >>>>>
+> >>>>> Ok this is a point I see now. Though, I fail to see how this is cal=
+led
+> >>>>> renaming when there's only new SoCs (from NXP in this case) to be a=
+dded.
 > >>>>
-> >>>> iommus:
-> >>>>   maxItems: 1
-> >>>> iommu-names: false
+> >>>> If I understand correctly, i.MX is a family from Freescale so the na=
+me
+> >>>
+> >>> It's the same "family" as your platform, because as you said:
+> >>> "introduced these SoCs which utilise this platform"
+> >>>
+> >>>> was kept the same on new SoC releases from NXP. I believe it's diffe=
+rent
+> >>>> in this case here. There's no family name. The closest thing on the =
+name
+> >>>> of the SoC model is, it's RT for Ralink, MT for MediaTek.
+> >>>
+> >>> It's not about the name. NXP took Freescale platform and since many
+> >>> years makes entirely new products, currently far, far away from origi=
+nal
+> >>> platform.
+> >>>
+> >>> That's the same case you have here - Mediatek took existing platform =
+and
+> >>> started making new products with it.
+> >>>
 > >>>>
-> >>> I am getting compilation errors with above property set and its
-> >>> breaking the
-> >> bindings.
-> >>> If we see these two nodes in dtsi files.
-> >>>                mfc: codec=4013400000 =7B
-> >>>                         compatible =3D =22samsung,mfc-v5=22; ..
-> >>>                         iommus =3D <&sysmmu_mfc_l>, <&sysmmu_mfc_r>;
-> >>>                         iommu-names =3D =22left=22, =22right=22; =7D =
-And
-> >>>               mfc: codec=4013400000 =7B
-> >>>                         compatible =3D =22samsung,exynos3250-mfc=22, =
-=22samsung,mfc-
-> v7=22;
-> >>>                         reg =3D <0x13400000 0x10000>; ...
-> >>>                         iommus =3D <&sysmmu_mfc>;
-> >>>                 =7D;
-> >>> There is no iommu-names property for compatible
-> =22samsung,exynos3250-
-> >> mfc, samsung,mfc-v7=22, that=E2=80=99s=20why=20I=20kept=0D=0A>=20>>>=
-=20=20=20=20=20=20=20=20=20iommus:=0D=0A>=20>>>=20=20=20=20=20=20=20=20=20=
-=20=20minItems:=201=0D=0A>=20>>>=20=20=20=20=20=20=20=20=20=20=20maxItems:=
-=202=0D=0A>=20>>>=20I=20would=20even=20go=20with=20below=20if=20you=20agree=
-?=0D=0A>=20>>>=20=20=20=20=20=20=20=20=20iommus:=0D=0A>=20>>>=20=20=20=20=
-=20=20=20=20=20=20=20minItems:=201=0D=0A>=20>>>=20=20=20=20=20=20=20=20=20=
-=20=20maxItems:=202=0D=0A>=20>>>=20=20=20=20=20=20=20=20=20iommus-names:=20=
-false=0D=0A>=20>>=0D=0A>=20>>=20No,=20I=20don't=20agree.=20Why=20do=20you=
-=20need=20two=20IOMMUs=20for=20Exynos3250?=0D=0A>=20>>>=0D=0A>=20>=20Here=
-=20IOMMUs=20minItems:1=20is=20meant=20for=20Exynos3250=20while=20IOMMUs=0D=
-=0A>=20maxItems:2=20meant=20for=20samsung,mfc-v5(Exynos=204).=0D=0A>=20>=20=
-As=20you=20suggested=0D=0A>=20>=20iommus:=0D=0A>=20>=20=20=20maxItems:=201=
-=0D=0A>=20>=20iommu-names:=20false=0D=0A>=20>=0D=0A>=20>=20won't=20fit=20he=
-re.=0D=0A>=20>=20Since=20IOMMUs=20maxItems=20is=202=20here=20for=20Exynos4.=
-=20Giving=20maxItems:2=20alone=0D=0A>=20will=20also=20break=20the=20binding=
-s.=20Thanks=20why=20suggested=0D=0A>=20>=20=20=20=20=20=20=20=20=20=20iommu=
-s:=0D=0A>=20>=20=20=20=20=20=20=20=20=20=20=20=20minItems:=201=0D=0A>=20>=
-=20=20=20=20=20=20=20=20=20=20=20=20maxItems:=202=0D=0A>=20=0D=0A>=20Are=20=
-you=20sure=20you=20are=20putting=20this=20in=20correct=20place?=20This=20is=
-=20if:then=20for=0D=0A>=20Exynos3250,=20isn't=20it?=0D=0A>=20=0D=0AIts=20no=
-t=20only=20for=20Exynos3250,=20its=20along=20with=20Exynos4=20since=20their=
-=20clock=20properties=20are=20same=0D=0AallOf:=0D=0A=20=20-=20if:=0D=0A=20=
-=20=20=20=20=20properties:=0D=0A=20=20=20=20=20=20=20=20compatible:=0D=0A=
-=20=20=20=20=20=20=20=20=20=20contains:=0D=0A=20=20=20=20=20=20=20=20=20=20=
-=20=20enum:=0D=0A=20=20=20=20=20=20=20=20=20=20=20=20=20=20-=20samsung,mfc-=
-v5=20=20=20=20=20=20=20=20=23Exynos4=0D=0A=20=20=20=20=20=20=20=20=20=20=20=
-=20=20=20-=20samsung,exynos3250-mfc=0D=0A=20=20=20=20then:=0D=0A=20=20=20=
-=20=20=20properties:=0D=0A=20=20=20=20=20=20=20=20clocks:=0D=0A=20=20=20=20=
-=20=20=20=20=20=20maxItems:=202=0D=0A=20=20=20=20=20=20=20=20clock-names:=
-=0D=0A=20=20=20=20=20=20=20=20=20=20items:=0D=0A=20=20=20=20=20=20=20=20=20=
-=20=20=20-=20const:=20mfc=0D=0A=20=20=20=20=20=20=20=20=20=20=20=20-=20cons=
-t:=20sclk_mfc=0D=0A=20=20=20=20=20=20=20=20iommus:=0D=0A=20=20=20=20=20=20=
-=20=20=20=20minItems:=201=0D=0A=20=20=20=20=20=20=20=20=20=20maxItems:=202=
-=0D=0A=0D=0Aor=20do=20I=20keep=20different=20if:then=20condition=20for=20bo=
-th=20Exynos3250=20and=20Exynos4=20for=20IOMMUs=20property=20?=0D=0A=0D=0A>=
-=20Best=20regards,=0D=0A>=20Krzysztof=0D=0A=0D=0A=0D=0A
+> >>>> On top of that, mediatek strings already exist for MT SoCs already, =
+at
+> >>>> least for MT7621.
+> >>>>
+> >>>> https://git.kernel.org/pub/scm/linux/kernel/git/netdev/net-next.git/=
+tree/Documentation/devicetree/bindings/mips/ralink.yaml?id=3Ddd3cb467ebb565=
+9d6552999d6f16a616653f9933#n83
+> >>>
+> >>> NXP also has compatibles with nxp, thus still not that good reason.
+> >>
+> >> Ok, makes sense. Am I free to call the SoCs MediaTek, change the schem=
+a
+> >> name from ralink,mtXXXX-pinctrl.yaml to mediatek,mtXXXX-pinctrl.yaml
+> >> whilst keeping the compatible string ralink?
+> >>
+> >> I plan to do some cleanup on ralink.yaml as well. From what I
+> >> understand, I should change the mediatek,mt7621-soc compatible string =
+to
+> >> ralink,mt7621-soc?
+> >
+> > You have to take care of these SoC strings since they are used in the
+> > very beginning of the ralink startup platforms for any single ralink
+> > SoC. See for example [0] and [1] (but they are in all soc init code).
+> > I think it is better to maintain the ralink.yaml file as it is.
+>
+> I'd really rather address this inconsistency everywhere possible. The
+> code you pointed out looks different than what I did on the pinctrl
+> driver but, surely it's possible on the code to introduce ralink and
+> keep the mediatek string for the sake of old DTs, no?
+
+In any case, the changes you might have in mind for this should be a
+different patch series.
+
+Best regards,
+     Sergio Paracuellos
+>
+> Ar=C4=B1n=C3=A7
