@@ -2,68 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D67E46B4B8F
-	for <lists+devicetree@lfdr.de>; Fri, 10 Mar 2023 16:47:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4078C6B4B2C
+	for <lists+devicetree@lfdr.de>; Fri, 10 Mar 2023 16:33:30 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231360AbjCJPre (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 10 Mar 2023 10:47:34 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40996 "EHLO
+        id S234386AbjCJPd2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 10 Mar 2023 10:33:28 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41022 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234367AbjCJPrB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Mar 2023 10:47:01 -0500
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 999C2F6022;
-        Fri, 10 Mar 2023 07:37:11 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-        bh=ubonWFxei1BSJBCpzuPCTlOng9woXvk00b8UzkkOn8s=; b=L8Pz1A9cZZFsBjeAtMHtcCUw3r
-        vQSaSGju5MJBB8U5AYCpSun9Kdtwd84Gh2ehNPewetlMpwneK/2C8mATI1ANXczFA1lcIAE36Z4qg
-        d2RfzdLQoqC3TWrLbzacEUZhr8nvS0BNMOXtv88yN2U11r/JpcgE4SVUYTsTvzTb4qDM=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-        (envelope-from <andrew@lunn.ch>)
-        id 1paeSU-006zGA-G5; Fri, 10 Mar 2023 16:15:02 +0100
-Date:   Fri, 10 Mar 2023 16:15:02 +0100
-From:   Andrew Lunn <andrew@lunn.ch>
-To:     Linus Walleij <linus.walleij@linaro.org>
-Cc:     Christian Marangi <ansuelsmth@gmail.com>,
-        Hans de Goede <hdegoede@redhat.com>,
-        Pavel Machek <pavel@ucw.cz>, Lee Jones <lee@kernel.org>,
+        with ESMTP id S234350AbjCJPdE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Mar 2023 10:33:04 -0500
+Received: from mx.sberdevices.ru (mx.sberdevices.ru [45.89.227.171])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BDD5B13F6A5;
+        Fri, 10 Mar 2023 07:20:59 -0800 (PST)
+Received: from s-lin-edge02.sberdevices.ru (localhost [127.0.0.1])
+        by mx.sberdevices.ru (Postfix) with ESMTP id 4ED515FD0F;
+        Fri, 10 Mar 2023 18:20:53 +0300 (MSK)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sberdevices.ru;
+        s=mail; t=1678461653;
+        bh=X09i05T2/kREhahqRt82WIF4sPikD7edgXSMZW3ujkg=;
+        h=Date:From:To:Subject:Message-ID:MIME-Version:Content-Type;
+        b=ly6ySuexcYRvYaYs5/b/UXEjD6pRxvtWloqYINgYHG+3LnbgLnmY6qVp79LE03lre
+         VYy7lPYitk8ieGvcYo2l1+RlKUZfWIfIprrq76Cr+CTfs9oqddr6IQ4V1SOpgipxcz
+         xcwn93APf436xQ+0JScsrdkVEumpuOruFudx+rUPbRi5DOwL/Dni3Zo1OEO0+7z+Fs
+         9d3vhQhiL+rYlFr5D+5qBfmRRK8Y19Ik4n22u4gfJspXe3ZTsC3lK/eMGbEVoasPZU
+         2q7y5sDpOk0jN6bKNru1IyRra6/Q28cSBUU9HU7GF8OO4vgXpnjk5O7bNEOIL7CAMG
+         77bby9kDm00Qg==
+Received: from S-MS-EXCH01.sberdevices.ru (S-MS-EXCH01.sberdevices.ru [172.16.1.4])
+        by mx.sberdevices.ru (Postfix) with ESMTP;
+        Fri, 10 Mar 2023 18:20:52 +0300 (MSK)
+Date:   Fri, 10 Mar 2023 18:20:51 +0300
+From:   Dmitry Rokosov <ddrokosov@sberdevices.ru>
+To:     Kevin Hilman <khilman@baylibre.com>
+CC:     Arnd Bergmann <arnd@arndb.de>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Alexey Romanov <avromanov@sberdevices.ru>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Vladimir Oltean <olteanv@gmail.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Russell King <linux@armlinux.org.uk>,
-        Jonathan Corbet <corbet@lwn.net>,
-        "Russell King (Oracle)" <rmk+kernel@armlinux.org.uk>,
-        Jacek Anaszewski <jacek.anaszewski@gmail.com>,
-        John Crispin <john@phrozen.org>, linux-leds@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        netdev@vger.kernel.org, linux-doc@vger.kernel.org,
-        Tim Harvey <tharvey@gateworks.com>,
-        Alexander Stein <alexander.stein@ew.tq-group.com>,
-        Rasmus Villemoes <rasmus.villemoes@prevas.dk>,
-        Bagas Sanjaya <bagasdotme@gmail.com>,
-        Arun.Ramadoss@microchip.com
-Subject: Re: [PATCH v8 00/13] Adds support for PHY LEDs with offload triggers
-Message-ID: <576d57cb-481c-46ba-9e3b-d3b7e3a4ec69@lunn.ch>
-References: <20230216013230.22978-1-ansuelsmth@gmail.com>
- <CACRpkda30Ky5oYPn_nGWGOzT5ntZYdE3gafrs7D27ZHxgGuO8A@mail.gmail.com>
- <8226f000-dd9c-4774-b972-a7f1113f0986@lunn.ch>
- <CACRpkdapuk39vcdNhmsMN0tbTPTSYUgY9r+EBJ-O+v2dsB=wNA@mail.gmail.com>
+        <krzysztof.kozlowski+dt@linaro.org>, <jbrunet@baylibre.com>,
+        <martin.blumenstingl@googlemail.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-amlogic@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <kernel@sberdevices.ru>
+Subject: Re: [PATCH v1 0/3] Meson A1 32-bit support
+Message-ID: <20230310152051.ilz4qsgp3rplt4ad@CAB-WSD-L081021>
+References: <8e5f9bfa-d612-cd43-d722-d04c40938c62@linaro.org>
+ <20230227142809.kujmrraf3pcdhqyn@CAB-WSD-L081021>
+ <f3e42012-609c-4085-b4f4-bd32bfc34aff@app.fastmail.com>
+ <20230227155100.hhl4yvkyfqfyoa6h@CAB-WSD-L081021>
+ <a5fa8b23-4ec8-475f-be5e-538b53d6f82d@app.fastmail.com>
+ <33b58877-5167-c453-e686-1d10cdca66c0@linaro.org>
+ <20230227165049.4y7jx5nnnlibe6kg@CAB-WSD-L081021>
+ <7d29f3fd-b8c8-4687-b6a0-b8956dd39f0b@app.fastmail.com>
+ <20230228084952.mgx3d3nw65yo5ebu@CAB-WSD-L081021>
+ <7hedpxwq1i.fsf@baylibre.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <CACRpkdapuk39vcdNhmsMN0tbTPTSYUgY9r+EBJ-O+v2dsB=wNA@mail.gmail.com>
+In-Reply-To: <7hedpxwq1i.fsf@baylibre.com>
+User-Agent: NeoMutt/20220415
+X-Originating-IP: [172.16.1.6]
+X-ClientProxiedBy: S-MS-EXCH02.sberdevices.ru (172.16.1.5) To
+ S-MS-EXCH01.sberdevices.ru (172.16.1.4)
+X-KSMG-Rule-ID: 4
+X-KSMG-Message-Action: clean
+X-KSMG-AntiSpam-Status: not scanned, disabled by settings
+X-KSMG-AntiSpam-Interceptor-Info: not scanned
+X-KSMG-AntiPhishing: not scanned, disabled by settings
+X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 1.1.2.30, bases: 2023/03/10 13:19:00 #20932143
+X-KSMG-AntiVirus-Status: Clean, skipped
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
         URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -71,37 +80,60 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Mar 10, 2023 at 10:37:25AM +0100, Linus Walleij wrote:
-> On Thu, Mar 9, 2023 at 4:22 PM Andrew Lunn <andrew@lunn.ch> wrote:
+Hello Kevin,
+
+On Thu, Mar 09, 2023 at 01:52:41PM -0800, Kevin Hilman wrote:
+> Dmitry Rokosov <ddrokosov@sberdevices.ru> writes:
 > 
-> > As to 'how a certain trigger on a certain LED is going to associate
-> > itself with, say, a certain port' is clearly a property of the
-> > hardware, when offloading is supported. I've not seen a switch you can
-> > arbitrarily assign LEDs to ports. The Marvell switches have the LED
-> > registers within the port registers, for example, two LEDs per port.
+> > On Mon, Feb 27, 2023 at 07:19:38PM +0100, Arnd Bergmann wrote:
+> >> On Mon, Feb 27, 2023, at 17:50, Dmitry Rokosov wrote:
+> >> > On Mon, Feb 27, 2023 at 05:38:49PM +0100, Neil Armstrong wrote:
+> >> >> On 27/02/2023 17:15, Arnd Bergmann wrote:
+> >> >> > On Mon, Feb 27, 2023, at 16:51, Dmitry Rokosov wrote:
+> >> >> > 
+> >> >> > Most of these don't apply in userspace, so the incentive to
+> >> >> > run smaller 32-bit userland on systems with less than 1GB of
+> >> >> > RAM usually outweighs the benefits of 64-bit userspace.
+> >> >> 
+> >> >> Thanks for the details!
+> >> >
+> >> > Looks like Thomas has already prepared a basic patch series for buildroot,
+> >> > but maintainers declined it.
+> >> >
+> >> > https://lore.kernel.org/all/20220730194331.GA2515056@scaer/
+> >> 
+> >> I see. I know very little about buildroot, but it sounds like
+> >> there are other ways of doing the same thing here. In general,
+> >> this is pretty much an Arm specific problem. While you clearly
+> >> want compat mode for small userland on any architecture but don't
+> >> want 32-bit kernels, arm is the only one that has a different
+> >> kernel "ARCH=" value and needs a separate gcc toolchain.
+> >> 
+> >> If the problem is only the toolchain, an easy way out may
+> >> be to use clang instead of gcc as your compiler, as a single
+> >> clang binary can target both 32-bit userland and 64-bit kernel
+> >> on all supported architectures.
+> >
+> > Agreed with you. We will try different local approaches to support
+> > compat build configurations. For now, prebuilt toolchain (buildroot make
+> > sdk goal) is best way from my point of view. Anyway, we will try to
+> > solve this problem in the our sandbox and stay on the 64-bit kernel.
+> > Thank you for all the helpful details you shared, appreciate it!
 > 
-> Aha so there is an implicit HW dependency between the port and the
-> LED, that we just cannot see in the device tree. Okay, it makes sense.
+> Just to clarify one thing...
+> 
+> More specifically, this is a buildroot *build system* problem.  If you
+> build the kernel separately from the rootfs, it works fine. 
+> 
+> I use 32-bit buildroot (and debian) rootfs images all the time on
+> Amlogic SoCs with 64-bit kernels and it works fine.  
 
-Well, i would say the dependency is in the device tree, in that the
-LEDs are described in the ports, not as a block of their own at a
-higher level within the switch. And in some switches, they might
-actually be a block of registers in there own space, rather than in
-the port registers. But i still expect there is a fixed mapping
-between LED and port.
+You are totally right. It's one of the possible ways. But in the our
+internal project we build kernel + roofs + uboot together in the one
+buildroot project ('repo' based). So we will try to stay in the such
+paradigm, but will use multi-arch toolchain, maybe.
+Anyway, thanks a lot for sharing your experience.
 
-> I think there will be a day when a switch without LED controller appears,
-> but the system has a few LEDs for the ports connected to an
-> arbitrary GPIO controller, and then we will need this. But we have
-> not seen that yet :)
-
-The microchip sparx5 might be going in that direction. It has what
-looks like a reasonably generic sgpio controller:
-drivers/pinctrl/pinctrl-microchip-sgpio.c
-
-But this not just about switches. It is also plain NICs. And using
-ledtrig-netdev, you could make your keyboard LED blink based on
-network traffic etc. So yes, using a phandle to an LED could very well
-be useful in the future.
-
-   Andrew
+-- 
+Thank you,
+Dmitry
