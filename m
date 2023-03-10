@@ -2,62 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B94B66B35BA
-	for <lists+devicetree@lfdr.de>; Fri, 10 Mar 2023 05:50:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 908AB6B35FD
+	for <lists+devicetree@lfdr.de>; Fri, 10 Mar 2023 06:12:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229549AbjCJEuN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Mar 2023 23:50:13 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59574 "EHLO
+        id S229900AbjCJFMI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 10 Mar 2023 00:12:08 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33702 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229501AbjCJEuM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Mar 2023 23:50:12 -0500
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 576B410556C;
-        Thu,  9 Mar 2023 20:50:10 -0800 (PST)
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 32A4ntFS033877;
-        Thu, 9 Mar 2023 22:49:55 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1678423795;
-        bh=GOVmsz54fCWASHTucGhNsomu+seIgh7aKu1gqDguiKg=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=SSzYOKa6jR3hKWqT3nU6XJet3btLYaexmkS0ClXHRjV8GIbuAqw0NRlP9YFz8YZjP
-         YogR5Ci/m+GsHHzddCqQDNrsGHgi8I5OpsURSqiF67nW7k/QnjLyg8fx5reemQv2Ru
-         T+pN3iRoUjoka9AO+z2jEIqMp+FXR/Czel5MtTQE=
-Received: from DLEE113.ent.ti.com (dlee113.ent.ti.com [157.170.170.24])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 32A4nts2130447
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Thu, 9 Mar 2023 22:49:55 -0600
-Received: from DLEE100.ent.ti.com (157.170.170.30) by DLEE113.ent.ti.com
- (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Thu, 9
- Mar 2023 22:49:55 -0600
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE100.ent.ti.com
- (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
- Frontend Transport; Thu, 9 Mar 2023 22:49:55 -0600
-Received: from localhost (ileaxei01-snat.itg.ti.com [10.180.69.5])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 32A4ntMu049174;
-        Thu, 9 Mar 2023 22:49:55 -0600
-From:   Nishanth Menon <nm@ti.com>
-To:     <krzysztof.kozlowski+dt@linaro.org>, <n-yadav@ti.com>,
-        <vigneshr@ti.com>, <kristo@kernel.org>, <robh+dt@kernel.org>
-CC:     Nishanth Menon <nm@ti.com>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>
-Subject: Re: [PATCH] arm64: dts: ti: k3-am62-main: Fix GPIO numbers in DT
-Date:   Thu, 9 Mar 2023 22:49:45 -0600
-Message-ID: <167842374569.9333.16089645209561935651.b4-ty@ti.com>
-X-Mailer: git-send-email 2.37.2
-In-Reply-To: <20230202085917.3044567-1-n-yadav@ti.com>
-References: <20230202085917.3044567-1-n-yadav@ti.com>
+        with ESMTP id S229521AbjCJFMB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Mar 2023 00:12:01 -0500
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A1ABF272E;
+        Thu,  9 Mar 2023 21:11:57 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1678425117; x=1709961117;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=noDPSzkrbIVRmf73+0OTg5GszDAlUz5733GqCCRBmYM=;
+  b=BX/nz0s0HcWJGBwjMNw67fPBYeSo1Fui2XOLxHzKDzSjGrF11owW0mfQ
+   NDYPPjc/oEDts4XLYcqIF14Uzhnj6o/ppKABpY00Q2woYFtARTAvRrBLJ
+   0wODFiChyyaKn1iTrzPXjBjtcC46jn9ilqaOEq0lcd/CSwudEowFSeRjD
+   gcXI3nyyuLfv9Nwx0ocp8q7sGOEsl8cwwfIMCeedj7Is2x2L/kvn0mhjP
+   6bHEN3CDWbKs3RnYL9yEKEYvEZg+MIzEEJAhKFg/umhz/8KziidyfEPag
+   W36Ufkt5rS6pAoVWFwstKFI0T+PdvHCBp49vMWuzRpn228Ejna8fci3E+
+   A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10644"; a="336667024"
+X-IronPort-AV: E=Sophos;i="5.98,248,1673942400"; 
+   d="scan'208";a="336667024"
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+  by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 09 Mar 2023 21:11:57 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6500,9779,10644"; a="680091881"
+X-IronPort-AV: E=Sophos;i="5.98,248,1673942400"; 
+   d="scan'208";a="680091881"
+Received: from lkp-server01.sh.intel.com (HELO b613635ddfff) ([10.239.97.150])
+  by fmsmga007.fm.intel.com with ESMTP; 09 Mar 2023 21:11:55 -0800
+Received: from kbuild by b613635ddfff with local (Exim 4.96)
+        (envelope-from <lkp@intel.com>)
+        id 1paV2o-0003Wd-00;
+        Fri, 10 Mar 2023 05:11:54 +0000
+Date:   Fri, 10 Mar 2023 13:10:55 +0800
+From:   kernel test robot <lkp@intel.com>
+To:     Sebastian Reichel <sre@kernel.org>
+Cc:     oe-kbuild-all@lists.linux.dev,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
+        Matti Vaittinen <mazziesaccount@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCHv1 02/11] power: supply: core: auto-exposure of
+ simple-battery data
+Message-ID: <202303101236.fqHwh3Tt-lkp@intel.com>
+References: <20230309225041.477440-3-sre@kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230309225041.477440-3-sre@kernel.org>
 X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_PASS,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        SPF_HELO_NONE,SPF_NONE,URIBL_BLOCKED autolearn=ham autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -65,40 +71,42 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Nitin Yadav,
+Hi Sebastian,
 
-On Thu, 2 Feb 2023 14:29:17 +0530, Nitin Yadav wrote:
-> Fix number of gpio pins in main_gpio0 & main_gpio1
-> DT nodes according to AM62x SK datasheet. The Link
-> of datasheet is in the following line:
-> https://www.ti.com/lit/ds/symlink/am625.pdf?ts=1673852494660
-> 
-> Section: 6.3.10 GPIO (Page No. 63-67)
-> 
-> [...]
+I love your patch! Yet something to improve:
 
-I have applied the following to branch ti-dts-next on [1].
-Thank you!
+[auto build test ERROR on sre-power-supply/for-next]
+[also build test ERROR on robh/for-next linus/master v6.3-rc1 next-20230310]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-[1/1] arm64: dts: ti: k3-am62-main: Fix GPIO numbers in DT
-      commit: 21609ca1f13fc1feca7b4b4aa63d21d95b2e69e2
+url:    https://github.com/intel-lab-lkp/linux/commits/Sebastian-Reichel/dt-bindings-power-supply-adc-battery-add-binding/20230310-065229
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/sre/linux-power-supply.git for-next
+patch link:    https://lore.kernel.org/r/20230309225041.477440-3-sre%40kernel.org
+patch subject: [PATCHv1 02/11] power: supply: core: auto-exposure of simple-battery data
+config: x86_64-randconfig-a002 (https://download.01.org/0day-ci/archive/20230310/202303101236.fqHwh3Tt-lkp@intel.com/config)
+compiler: gcc-11 (Debian 11.3.0-8) 11.3.0
+reproduce (this is a W=1 build):
+        # https://github.com/intel-lab-lkp/linux/commit/83ec4c841d68a66bc95f5e534a805e765785f934
+        git remote add linux-review https://github.com/intel-lab-lkp/linux
+        git fetch --no-tags linux-review Sebastian-Reichel/dt-bindings-power-supply-adc-battery-add-binding/20230310-065229
+        git checkout 83ec4c841d68a66bc95f5e534a805e765785f934
+        # save the config file
+        mkdir build_dir && cp config build_dir/.config
+        make W=1 O=build_dir ARCH=x86_64 olddefconfig
+        make W=1 O=build_dir ARCH=x86_64 SHELL=/bin/bash
 
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent up the chain during
-the next merge window (or sooner if it is a relevant bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
+If you fix the issue, kindly add following tag where applicable
+| Reported-by: kernel test robot <lkp@intel.com>
+| Link: https://lore.kernel.org/oe-kbuild-all/202303101236.fqHwh3Tt-lkp@intel.com/
 
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
+All errors (new ones prefixed by >>, old ones prefixed by <<):
 
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
+>> ERROR: modpost: "power_supply_get_property" [drivers/phy/ti/phy-tusb1210.ko] undefined!
+>> ERROR: modpost: "power_supply_get_property" [drivers/power/supply/88pm860x_charger.ko] undefined!
+>> ERROR: modpost: "power_supply_get_property" [drivers/power/supply/charger-manager.ko] undefined!
 
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-[1] git://git.kernel.org/pub/scm/linux/kernel/git/ti/linux.git
 -- 
-Nishanth Menon <nm@ti.com>
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests
