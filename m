@@ -2,82 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AB3C06B5B34
-	for <lists+devicetree@lfdr.de>; Sat, 11 Mar 2023 12:31:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CD0EA6B5B3C
+	for <lists+devicetree@lfdr.de>; Sat, 11 Mar 2023 12:36:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231208AbjCKLbC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 11 Mar 2023 06:31:02 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52788 "EHLO
+        id S229783AbjCKLg0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 11 Mar 2023 06:36:26 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34774 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230437AbjCKLak (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 11 Mar 2023 06:30:40 -0500
-Received: from mail-wr1-x432.google.com (mail-wr1-x432.google.com [IPv6:2a00:1450:4864:20::432])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 190E51F5F0
-        for <devicetree@vger.kernel.org>; Sat, 11 Mar 2023 03:28:24 -0800 (PST)
-Received: by mail-wr1-x432.google.com with SMTP id p4so1132899wre.11
-        for <devicetree@vger.kernel.org>; Sat, 11 Mar 2023 03:28:24 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1678534102;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=XDMAzPVGWaW2YqhCLxx5Xr14Zn9rwUVyczdQ2OeXd7I=;
-        b=y6fhnsSrEgQsstfpWqjDwJogogEcQNx8m4O3ID0vcK44x859+0PjMTdKh7GhBrg8Rv
-         oRQmEEetEaW2ijNqSK64ioCBSw4WijTWGxsn8e2gdm5aJcrCMJuHmCwBA0gZ36/4CoID
-         vKtVp41kS4+Oj8M1Xuhsnbds1ZFv8noivoMeGD0AdFEUJYJ5ZhA0e8Lpp4PViWvNbKem
-         TnlJGCg1e70AxFxViWiG4bHFLWzQdfCHdjLmTj3wjf7Kf8I784AUhkarQ/05BoGqs7If
-         nd8HYMeT+eLsnk1gK01/EfSQ3Yvk3NVp7X/nSJ7CmC/Ho4G//iq8lT/NXC2ylOxWZrPL
-         Fnug==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678534102;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=XDMAzPVGWaW2YqhCLxx5Xr14Zn9rwUVyczdQ2OeXd7I=;
-        b=al3FuavbUGGCTBJHGkmnrB0swCCO6krbU6De1keLkkopKxEyhSHmhQ5+6zm3jX8bFp
-         bFjy81RBk5AUOpBcXNnT11TdaS0XbFPBmkhKSk5K0t6d7H1EtD7yLK1brQVGdus0SmGk
-         2WCdertXKHac1hibEiJUwiqtX5h7q7TBtPTXDAhFutxZCIdudJq7PJ7IbXBX4WJp8TS8
-         flJNGW9iGXlerDcW23xKuGCX8QtO1/6+WpsXKZaxMCckhguch4k99FNYXJJCYqwSTzjQ
-         69mAX3Y+82NWGp1+oM2+sEDId/uxenDqYMG7SDeKXWZ1q91uyFdZyA+PGcDYMLwkWr+c
-         elDg==
-X-Gm-Message-State: AO0yUKX8npZoEUK1kxFIwBXZHt9jXwLDCAWdyCfco6cRHaGUlwshiNNA
-        S9SGvby6E7og2/Zbza34mWlKHQ==
-X-Google-Smtp-Source: AK7set+ILtHB+iI50WOHx6Ly0RIbpaYq3bu/QFN6T1Ki2GT7UvOs3HlFmGpSOYj9IWfqP+TZyP5aog==
-X-Received: by 2002:adf:e452:0:b0:2ce:a8a2:37d7 with SMTP id t18-20020adfe452000000b002cea8a237d7mr87809wrm.27.1678534102573;
-        Sat, 11 Mar 2023 03:28:22 -0800 (PST)
-Received: from [192.168.1.195] ([5.133.47.210])
-        by smtp.googlemail.com with ESMTPSA id h16-20020adffd50000000b002c56af32e8csm2214201wrs.35.2023.03.11.03.28.21
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 11 Mar 2023 03:28:21 -0800 (PST)
-Message-ID: <e99b2c89-c9c4-8d79-d14e-221ff106798f@linaro.org>
-Date:   Sat, 11 Mar 2023 11:28:20 +0000
+        with ESMTP id S229774AbjCKLgZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 11 Mar 2023 06:36:25 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C538C1A95C;
+        Sat, 11 Mar 2023 03:36:22 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 60D65B824B7;
+        Sat, 11 Mar 2023 11:36:21 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 084A4C433D2;
+        Sat, 11 Mar 2023 11:36:18 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1678534580;
+        bh=D3r1JElUFgDIVt/JVBUG1TZDHO48CNlp5S9PVtIeIPE=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=r78hw3lml7L8GaTdbHYOCwAEiYqJfLH4uVbU5QEEy8N8ZqID+a8o9Q6XMJAuzcfwZ
+         qaRghKCJUd4i32ZzJLydCOyjO2HDnor3aZ/sdbYsY/ihcnUthXTdILHgYWpoLF+5M3
+         CWw2XfnXEpGbeqS8XuNJPIFJ5IssdqT05PDeRPApFSFYJCsXKsZCfvHVR7B9ZjOFjv
+         73TxznS6nAoT8+3yO7TcXlcuoW2fns8443UBVVrhVw8L2bjfotZm+2ZtfcO0oOkus+
+         TIS9gp6BHmTHGh97k0tkP0LvTzVnzGrjkUM+eNusPTuZOIi7QoXKEL4fuyvTPgP1br
+         vgjHF2zv28Epw==
+Message-ID: <843bb433-e8ae-41f2-7b5f-cc5ee289dbfd@kernel.org>
+Date:   Sat, 11 Mar 2023 12:36:16 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.1
-Subject: Re: [PATCH 9/9] ASoC: codecs: lpass-wsa-macro: add support for SM8550
+ Thunderbird/102.8.0
+Subject: Re: [PATCH v2 2/2] Input: hideep - Optionally reset controller work
+ mode to native HiDeep protocol
 Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Banajit Goswami <bgoswami@quicinc.com>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>, linux-arm-msm@vger.kernel.org,
-        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20230310132201.322148-1-krzysztof.kozlowski@linaro.org>
- <20230310132201.322148-10-krzysztof.kozlowski@linaro.org>
-From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-In-Reply-To: <20230310132201.322148-10-krzysztof.kozlowski@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+To:     Hans de Goede <hdegoede@redhat.com>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>
+Cc:     devicetree@vger.kernel.org, linux-input@vger.kernel.org
+References: <20230303222113.285546-1-hdegoede@redhat.com>
+ <20230303222113.285546-3-hdegoede@redhat.com>
+ <42ac04f2-e7dc-a5a8-750e-243aa82c35db@kernel.org>
+ <857e6fc3-65f6-5b71-073f-b518ab3c814e@redhat.com>
+ <ZAwIIypDOjkNLRLk@google.com>
+ <4a273927-fa03-8503-e1c8-94b0223e80d1@redhat.com>
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+In-Reply-To: <4a273927-fa03-8503-e1c8-94b0223e80d1@redhat.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -85,104 +62,28 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 10/03/2023 13:22, Krzysztof Kozlowski wrote:
-> Add support for the WSA macro codec on Qualcomm SM8550.  SM8550 does not
-> use NPL clock, thus add flags allowing to skip it.
+On 11/03/2023 12:16, Hans de Goede wrote:
 > 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> ---
->   sound/soc/codecs/lpass-wsa-macro.c | 38 +++++++++++++++++++++++-------
->   1 file changed, 30 insertions(+), 8 deletions(-)
+> "hideep,force-native-protocol" is a good suggestion I'll prepare a new
+> version with that.
 > 
-> diff --git a/sound/soc/codecs/lpass-wsa-macro.c b/sound/soc/codecs/lpass-wsa-macro.c
-> index ba7480f3831e..5155362de111 100644
-> --- a/sound/soc/codecs/lpass-wsa-macro.c
-> +++ b/sound/soc/codecs/lpass-wsa-macro.c
-> @@ -246,6 +246,9 @@
->   #define WSA_MACRO_EC_MIX_TX1_MASK 0x18
->   #define WSA_MACRO_MAX_DMA_CH_PER_PORT 0x2
->   
-> +/* NPL clock is expected */
-> +#define WSA_MACRO_FLAG_HAS_NPL_CLOCK		BIT(0)
-> +
+>>> Anyways I just realized I should have not included this at all,
+>>> since atm this new property is only used on X86/ACPI platforms
+>>> (through platform code setting a device-property), so it is not
+>>> used on devicetree platforms at all.
+>>
+>> Even if such properties are not documented I do not see how it will
+>> prevent people from using them... I guess if they validate DT they will
+>> be caught, but I am not sure that we can rely on this happening.
+> 
+> Right, but I have beene explicitly told multiple times (1) to not document
+> device-properties when they are only used between x86 platform code and
+> drivers consuming them (and thus not actually used in any DT files
+> at that point in time).
 
+Comment in the code that this is not a DT property, is the most we can
+do now (so people won't use it later as argument to add to the binding)...
 
-Same nit as 3/9
+Best regards,
+Krzysztof
 
-Once done,
-
-Reviewed-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-
---srini
-
->   enum {
->   	WSA_MACRO_GAIN_OFFSET_M1P5_DB,
->   	WSA_MACRO_GAIN_OFFSET_0_DB,
-> @@ -2346,7 +2349,10 @@ static int wsa_macro_register_mclk_output(struct wsa_macro *wsa)
->   	struct clk_init_data init;
->   	int ret;
->   
-> -	parent_clk_name = __clk_get_name(wsa->npl);
-> +	if (wsa->npl)
-> +		parent_clk_name = __clk_get_name(wsa->npl);
-> +	else
-> +		parent_clk_name = __clk_get_name(wsa->mclk);
->   
->   	init.name = "mclk";
->   	of_property_read_string(dev_of_node(dev), "clock-output-names",
-> @@ -2379,9 +2385,12 @@ static int wsa_macro_probe(struct platform_device *pdev)
->   {
->   	struct device *dev = &pdev->dev;
->   	struct wsa_macro *wsa;
-> +	kernel_ulong_t flags;
->   	void __iomem *base;
->   	int ret;
->   
-> +	flags = (kernel_ulong_t)device_get_match_data(dev);
-> +
->   	wsa = devm_kzalloc(dev, sizeof(*wsa), GFP_KERNEL);
->   	if (!wsa)
->   		return -ENOMEM;
-> @@ -2398,9 +2407,11 @@ static int wsa_macro_probe(struct platform_device *pdev)
->   	if (IS_ERR(wsa->mclk))
->   		return PTR_ERR(wsa->mclk);
->   
-> -	wsa->npl = devm_clk_get(dev, "npl");
-> -	if (IS_ERR(wsa->npl))
-> -		return PTR_ERR(wsa->npl);
-> +	if (flags & WSA_MACRO_FLAG_HAS_NPL_CLOCK) {
-> +		wsa->npl = devm_clk_get(dev, "npl");
-> +		if (IS_ERR(wsa->npl))
-> +			return PTR_ERR(wsa->npl);
-> +	}
->   
->   	wsa->fsgen = devm_clk_get(dev, "fsgen");
->   	if (IS_ERR(wsa->fsgen))
-> @@ -2553,10 +2564,21 @@ static const struct dev_pm_ops wsa_macro_pm_ops = {
->   };
->   
->   static const struct of_device_id wsa_macro_dt_match[] = {
-> -	{.compatible = "qcom,sc7280-lpass-wsa-macro"},
-> -	{.compatible = "qcom,sm8250-lpass-wsa-macro"},
-> -	{.compatible = "qcom,sm8450-lpass-wsa-macro"},
-> -	{.compatible = "qcom,sc8280xp-lpass-wsa-macro" },
-> +	{
-> +		.compatible = "qcom,sc7280-lpass-wsa-macro",
-> +		.data = (void *)WSA_MACRO_FLAG_HAS_NPL_CLOCK,
-> +	}, {
-> +		.compatible = "qcom,sm8250-lpass-wsa-macro",
-> +		.data = (void *)WSA_MACRO_FLAG_HAS_NPL_CLOCK,
-> +	}, {
-> +		.compatible = "qcom,sm8450-lpass-wsa-macro",
-> +		.data = (void *)WSA_MACRO_FLAG_HAS_NPL_CLOCK,
-> +	}, {
-> +		.compatible = "qcom,sm8550-lpass-wsa-macro",
-> +	}, {
-> +		.compatible = "qcom,sc8280xp-lpass-wsa-macro",
-> +		.data = (void *)WSA_MACRO_FLAG_HAS_NPL_CLOCK,
-> +	},
->   	{}
->   };
->   MODULE_DEVICE_TABLE(of, wsa_macro_dt_match);
