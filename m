@@ -2,148 +2,184 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 75E186B5AC0
-	for <lists+devicetree@lfdr.de>; Sat, 11 Mar 2023 12:10:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2A81C6B5B1A
+	for <lists+devicetree@lfdr.de>; Sat, 11 Mar 2023 12:21:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229515AbjCKLKk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 11 Mar 2023 06:10:40 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39992 "EHLO
+        id S231182AbjCKLVh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 11 Mar 2023 06:21:37 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60894 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229510AbjCKLKh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 11 Mar 2023 06:10:37 -0500
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 623FC1378A3;
-        Sat, 11 Mar 2023 03:10:36 -0800 (PST)
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 32BBAN8m049374;
-        Sat, 11 Mar 2023 05:10:23 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1678533023;
-        bh=GCap63SmwNQD5B9G3c0BIIEkXdQFTueOnPTvaze1C9E=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=hDuZL5jrIwlL3eOSLRhPydSEQ8IekxLp9+Gz4g/TNmvYaRJpDFWZUKzf2VsAI0sDq
-         GauhuCFR/BmxyUlKHUoubAG9BB3aqBwlxft5PkpJPRhi5cmjFzPARxaurFUNcPe697
-         +u4lDt1memKzndXVFssTfgWHB929X9cSqdraNpvA=
-Received: from DFLE100.ent.ti.com (dfle100.ent.ti.com [10.64.6.21])
-        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 32BBANt1109108
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Sat, 11 Mar 2023 05:10:23 -0600
-Received: from DFLE100.ent.ti.com (10.64.6.21) by DFLE100.ent.ti.com
- (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Sat, 11
- Mar 2023 05:10:23 -0600
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE100.ent.ti.com
- (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
- Frontend Transport; Sat, 11 Mar 2023 05:10:23 -0600
-Received: from localhost (ileaxei01-snat2.itg.ti.com [10.180.69.6])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 32BBAN6a049571;
-        Sat, 11 Mar 2023 05:10:23 -0600
-From:   Nishanth Menon <nm@ti.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, Arnd Bergmann <arnd@arndb.de>
-CC:     <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        Tero Kristo <kristo@kernel.org>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Nishanth Menon <nm@ti.com>, Julien Panis <jpanis@baylibre.com>,
-        Bryan Brattlof <bb@ti.com>, Jason Kridner <jkridner@gmail.com>,
-        Robert Nelson <robertcnelson@gmail.com>
-Subject: [PATCH 3/3] arm64: defconfig: Enable drivers for BeaglePlay
-Date:   Sat, 11 Mar 2023 05:10:22 -0600
-Message-ID: <20230311111022.23717-4-nm@ti.com>
-X-Mailer: git-send-email 2.37.2
-In-Reply-To: <20230311111022.23717-1-nm@ti.com>
-References: <20230311111022.23717-1-nm@ti.com>
+        with ESMTP id S230221AbjCKLUy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 11 Mar 2023 06:20:54 -0500
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8A3D913F1BC
+        for <devicetree@vger.kernel.org>; Sat, 11 Mar 2023 03:17:22 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+        s=mimecast20190719; t=1678533397;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=8HtTZHNiIUPp0Ayn4qV3goPGQiFJ+yAjnlk3bginDtc=;
+        b=PB4Jh0UBmC7x0z7IY/VeE3YQTRgRjHj3rO94UBCKv1Kpayvk8gvxt4khN7JWMUUCy2+mLP
+        Zg7NwhCSIs/y9kQqMK9+hmly5qqgKYDqiqgUrbiXM1TETIppkeGbVEJFJOu2g4/HobDh6f
+        KRfJYdFB8Be+tvJznIhzPNd7+UaF1Uw=
+Received: from mail-ed1-f71.google.com (mail-ed1-f71.google.com
+ [209.85.208.71]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-536-U3UvmdhiNY20zVJWVDDeyg-1; Sat, 11 Mar 2023 06:16:35 -0500
+X-MC-Unique: U3UvmdhiNY20zVJWVDDeyg-1
+Received: by mail-ed1-f71.google.com with SMTP id b1-20020aa7dc01000000b004ad062fee5eso10856016edu.17
+        for <devicetree@vger.kernel.org>; Sat, 11 Mar 2023 03:16:35 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1678533394;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=8HtTZHNiIUPp0Ayn4qV3goPGQiFJ+yAjnlk3bginDtc=;
+        b=3ttJL1bC2r84gmA2dMl5jXOcSZti8Qlb4B74WsUKmHby2GQpF5z80Ix2MIShOdggpM
+         ZkewdkHFHWHBNneZAiV+yxmxAQVbByv1rgpGEuAo7zGwdCz9oBtF3HPThDRVYt6O4D4R
+         J+joXqdw+Dw78O5oBF1snvspICRU6XKeDYgofiYDrSdrcYLc6ty3NQpurMXXt+EQ8S8D
+         1watbRMJ7QW4/edaoH3Qb/OLB5gnvqffOJAFMChZJdfRRrmJcf3DJ8jhGJ1aGid1AbNd
+         anNX0uBB8f1XC8tYEdPU6mzG83gEW0ymCuP4yP3vRJWw8/MuwERchgaDs0rCPwcm95yR
+         ZZeA==
+X-Gm-Message-State: AO0yUKUaeO/vRCf14c/K0LrPIssXTSIHKfN67leYwba+j2ARVm8Yb5Jm
+        CsBO2X9VZ5XKaYPKVc0BBCjPfiEyf05s4Jv1qWcaVzU1St5KFmuSVNL+qYhWv7YO5eslAfHDIdV
+        7vWoxiUXdrarb0d7b5lADFjh9epIxjQ==
+X-Received: by 2002:a17:906:2843:b0:8b1:15ab:f4cd with SMTP id s3-20020a170906284300b008b115abf4cdmr25458855ejc.53.1678533394003;
+        Sat, 11 Mar 2023 03:16:34 -0800 (PST)
+X-Google-Smtp-Source: AK7set/DgMDrtZ3a31jMzz1d2WO9NqheioXGi0XTx4aVefbWEmAwioRqA07Vb0G7te0m+Ce48644pQ==
+X-Received: by 2002:a17:906:2843:b0:8b1:15ab:f4cd with SMTP id s3-20020a170906284300b008b115abf4cdmr25458840ejc.53.1678533393676;
+        Sat, 11 Mar 2023 03:16:33 -0800 (PST)
+Received: from ?IPV6:2001:1c00:c32:7800:5bfa:a036:83f0:f9ec? (2001-1c00-0c32-7800-5bfa-a036-83f0-f9ec.cable.dynamic.v6.ziggo.nl. [2001:1c00:c32:7800:5bfa:a036:83f0:f9ec])
+        by smtp.gmail.com with ESMTPSA id y25-20020a170906519900b008eb5b085075sm987274ejk.122.2023.03.11.03.16.32
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 11 Mar 2023 03:16:33 -0800 (PST)
+Message-ID: <4a273927-fa03-8503-e1c8-94b0223e80d1@redhat.com>
+Date:   Sat, 11 Mar 2023 12:16:32 +0100
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_PASS,SPF_PASS,UPPERCASE_50_75,URIBL_BLOCKED autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.1
+Subject: Re: [PATCH v2 2/2] Input: hideep - Optionally reset controller work
+ mode to native HiDeep protocol
+Content-Language: en-US, nl
+To:     Dmitry Torokhov <dmitry.torokhov@gmail.com>
+Cc:     Krzysztof Kozlowski <krzk@kernel.org>, devicetree@vger.kernel.org,
+        linux-input@vger.kernel.org
+References: <20230303222113.285546-1-hdegoede@redhat.com>
+ <20230303222113.285546-3-hdegoede@redhat.com>
+ <42ac04f2-e7dc-a5a8-750e-243aa82c35db@kernel.org>
+ <857e6fc3-65f6-5b71-073f-b518ab3c814e@redhat.com>
+ <ZAwIIypDOjkNLRLk@google.com>
+From:   Hans de Goede <hdegoede@redhat.com>
+In-Reply-To: <ZAwIIypDOjkNLRLk@google.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_NONE
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Enable drivers used on BeaglePlay[1]:
-* MDIO_GPIO driver to workaround erratum i2329, DP83TD510 SPE phy
-  (enabled in-kernel to ease usage)
-* TPS65219 PMIC, regulator and power button as modules
-* BQ32K battery backedup RTC and the K3 RTC drivers as modules
+Hi,
 
-bloat-o-meter reports after this change:
-add/remove: 19/2 grow/shrink: 2/0 up/down: 3036/-16 (3020)
-[...]
-Total: Before=18094456, After=18097476, chg +0.02%
+On 3/11/23 05:48, Dmitry Torokhov wrote:
+> On Sun, Mar 05, 2023 at 04:04:30PM +0100, Hans de Goede wrote:
+>> Hi,
+>>
+>> On 3/5/23 14:34, Krzysztof Kozlowski wrote:
+>>> On 03/03/2023 23:21, Hans de Goede wrote:
+>>>> The HiDeep IST940E touchscreen controller used on the Lenovo Yoga Book X90F
+>>>> convertible comes up in HID mode by default.
+>>>>
+>>>> This works well on the X91F Windows model where the touchscreen is
+>>>> correctly described in ACPI and ACPI takes care of controlling
+>>>> the reset GPIO and regulators.
+>>>>
+>>>> But the X90F ships with Android and the ACPI tables on this model don't
+>>>> describe the touchscreen. Instead this is hardcoded in the vendor kernel.
+>>>>
+>>>> The vendor kernel uses the touchscreen in native HiDeep 20 (2.0?) protocol
+>>>> mode and switches the controller to this mode by writing 0 to reg 0x081e.
+>>>>
+>>>> Adjusting the i2c-hid code to deal with the reset-gpio and regulators on
+>>>> this non devicetree (but rather broken ACPI) convertible is somewhat tricky
+>>>> and the native protocol reports ABS_MT_PRESSURE and ABS_MT_TOUCH_MAJOR
+>>>> which are not reported in HID mode, so it is preferable to use the native
+>>>> mode.
+>>>>
+>>>> Add support to the hideep driver to reset the work-mode to the native
+>>>> HiDeep protocol to allow using it on the Lenovo Yoga Book X90F.
+>>>> This is guarded behind a new "hideep,reset-work-mode" boolean property,
+>>>> to avoid changing behavior on other devices.
+>>>>
+>>>> For the record: I did test using the i2c-hid driver with some quick hacks
+>>>> and it does work. The I2C-HID descriptor is available from address 0x0020,
+>>>> just like on the X91F Windows model.
+>>>>
+>>>> Signed-off-by: Hans de Goede <hdegoede@redhat.com>
+>>>
+>>> Please use scripts/get_maintainers.pl to get a list of necessary people
+>>> and lists to CC.  It might happen, that command when run on an older
+>>> kernel, gives you outdated entries.  Therefore please be sure you base
+>>> your patches on recent Linux kernel.
+>>>
+>>>> ---
+>>>>  .../bindings/input/touchscreen/hideep.txt        |  1 +
+>>>>  drivers/input/touchscreen/hideep.c               | 16 ++++++++++++++++
+>>>>  2 files changed, 17 insertions(+)
+>>>>
+>>>> diff --git a/Documentation/devicetree/bindings/input/touchscreen/hideep.txt b/Documentation/devicetree/bindings/input/touchscreen/hideep.txt
+>>>> index a47c36190b01..68bb9f8dcc30 100644
+>>>> --- a/Documentation/devicetree/bindings/input/touchscreen/hideep.txt
+>>>> +++ b/Documentation/devicetree/bindings/input/touchscreen/hideep.txt
+>>>> @@ -17,6 +17,7 @@ Optional properties:
+>>>>  - linux,keycodes	: Specifies an array of numeric keycode values to
+>>>>  			be used for reporting button presses. The array can
+>>>>  			contain up to 3 entries.
+>>>> +- hideep,reset-work-mode: bool, reset touch report format to the native HiDeep protocol
+>>>
+>>> Bindings must be a separate patch.
+>>>
+>>> Also, would be nice to convert first the TXT to DT schema (YAML).
+>>>
+>>> "-mode" suggests it's some enum, not bool. Otherwise what exactly it is
+>>> choosing (which mode)?
+>>
+>> As it says it is resetting the mode to the native HiDeep protocol,
+>> we have no docs on the controller, so I have no idea what other
+>> values may be written to 0x081e other then 0 and what modes those
+>> values will enable.
+> 
+> We could either have property specify desired register value, or call
+> the property something like "hideep,force-native-protocol" if we want to
+> keep it a bool.
 
-[1] https://beagleplay.org
-Signed-off-by: Nishanth Menon <nm@ti.com>
----
- arch/arm64/configs/defconfig | 7 +++++++
- 1 file changed, 7 insertions(+)
+"hideep,force-native-protocol" is a good suggestion I'll prepare a new
+version with that.
 
-diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
-index 7790ee42c68a..d1d5cb3047da 100644
---- a/arch/arm64/configs/defconfig
-+++ b/arch/arm64/configs/defconfig
-@@ -367,11 +367,13 @@ CONFIG_AT803X_PHY=y
- CONFIG_REALTEK_PHY=y
- CONFIG_ROCKCHIP_PHY=y
- CONFIG_DP83867_PHY=y
-+CONFIG_DP83TD510_PHY=y
- CONFIG_VITESSE_PHY=y
- CONFIG_CAN_FLEXCAN=m
- CONFIG_CAN_RCAR=m
- CONFIG_CAN_RCAR_CANFD=m
- CONFIG_CAN_MCP251XFD=m
-+CONFIG_MDIO_GPIO=y
- CONFIG_MDIO_BUS_MUX_MULTIPLEXER=y
- CONFIG_MDIO_BUS_MUX_MMIOREG=y
- CONFIG_USB_PEGASUS=m
-@@ -418,6 +420,7 @@ CONFIG_TOUCHSCREEN_EDT_FT5X06=m
- CONFIG_INPUT_MISC=y
- CONFIG_INPUT_PM8941_PWRKEY=y
- CONFIG_INPUT_PM8XXX_VIBRATOR=m
-+CONFIG_INPUT_TPS65219_PWRBUTTON=m
- CONFIG_INPUT_PWM_BEEPER=m
- CONFIG_INPUT_PWM_VIBRA=m
- CONFIG_INPUT_HISI_POWERKEY=y
-@@ -670,6 +673,7 @@ CONFIG_MFD_SPMI_PMIC=y
- CONFIG_MFD_RK808=y
- CONFIG_MFD_SEC_CORE=y
- CONFIG_MFD_SL28CPLD=y
-+CONFIG_MFD_TPS65219=m
- CONFIG_MFD_ROHM_BD718XX=y
- CONFIG_MFD_WCD934X=m
- CONFIG_REGULATOR_FIXED_VOLTAGE=y
-@@ -699,6 +703,7 @@ CONFIG_REGULATOR_QCOM_SPMI=y
- CONFIG_REGULATOR_RK808=y
- CONFIG_REGULATOR_S2MPS11=y
- CONFIG_REGULATOR_TPS65132=m
-+CONFIG_REGULATOR_TPS65219=m
- CONFIG_REGULATOR_VCTRL=m
- CONFIG_RC_CORE=m
- CONFIG_RC_DECODERS=y
-@@ -1026,6 +1031,7 @@ CONFIG_RTC_DRV_RK808=m
- CONFIG_RTC_DRV_PCF85063=m
- CONFIG_RTC_DRV_PCF85363=m
- CONFIG_RTC_DRV_M41T80=m
-+CONFIG_RTC_DRV_BQ32K=m
- CONFIG_RTC_DRV_RX8581=m
- CONFIG_RTC_DRV_RV3028=m
- CONFIG_RTC_DRV_RV8803=m
-@@ -1045,6 +1051,7 @@ CONFIG_RTC_DRV_SNVS=m
- CONFIG_RTC_DRV_IMX_SC=m
- CONFIG_RTC_DRV_MT6397=m
- CONFIG_RTC_DRV_XGENE=y
-+CONFIG_RTC_DRV_TI_K3=m
- CONFIG_DMADEVICES=y
- CONFIG_DMA_BCM2835=y
- CONFIG_DMA_SUN6I=m
--- 
-2.37.2
+>> Anyways I just realized I should have not included this at all,
+>> since atm this new property is only used on X86/ACPI platforms
+>> (through platform code setting a device-property), so it is not
+>> used on devicetree platforms at all.
+> 
+> Even if such properties are not documented I do not see how it will
+> prevent people from using them... I guess if they validate DT they will
+> be caught, but I am not sure that we can rely on this happening.
+
+Right, but I have beene explicitly told multiple times (1) to not document
+device-properties when they are only used between x86 platform code and
+drivers consuming them (and thus not actually used in any DT files
+at that point in time).
+
+Regards,
+
+Hans
+
+
+1) By the DT bindings maintainers
 
