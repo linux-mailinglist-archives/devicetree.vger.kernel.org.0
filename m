@@ -2,289 +2,196 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E3EA96B5B71
-	for <lists+devicetree@lfdr.de>; Sat, 11 Mar 2023 13:07:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4DA2F6B5BC0
+	for <lists+devicetree@lfdr.de>; Sat, 11 Mar 2023 13:33:02 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229450AbjCKMHF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 11 Mar 2023 07:07:05 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51126 "EHLO
+        id S230379AbjCKMc7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 11 Mar 2023 07:32:59 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39600 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229958AbjCKMHD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 11 Mar 2023 07:07:03 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 751A411F631;
-        Sat, 11 Mar 2023 04:06:58 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 45C45B8253D;
-        Sat, 11 Mar 2023 12:06:56 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 69BDEC433D2;
-        Sat, 11 Mar 2023 12:06:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1678536414;
-        bh=2M+sg4TU2SXNAZOw21xnHl7W71SdvtY6IWxfePY4G4c=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=mWnRud+y6Xx+7VXOUE0VSvOWleJ52YqCdyFoNPMnlEbzKPyWh3ZNebH0uIQvhIClQ
-         NNPl7o1KAy4FPoNeuQuyio5eEP2MEnwT3xZIgoYxvGx2a/6hwOT89zdBvjcHyyzs64
-         qv6sYz42vaPkmT/9UKACcgkfQ5f4JgtJmvkvJ5koSHZTy5ZPN+S39Qmojjx1dDO/fG
-         fCEIbjExIGjh41wbXHolYQUUqCLxOpDhJ6f+pr8+VV2PXFmr3fhWKsifVfT06AAWG7
-         jN5XsRr5rjF/kNp6KdGpnxs1UHwtRgD+SHhualNesP8ObIw/tUCRuSu2uyaiUzxD67
-         J1mMRwEvBwrNQ==
-Message-ID: <ba703ed6-e91d-5128-f1a4-1667125c531e@kernel.org>
-Date:   Sat, 11 Mar 2023 14:06:48 +0200
+        with ESMTP id S230373AbjCKMc5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 11 Mar 2023 07:32:57 -0500
+Received: from mail-pl1-x62e.google.com (mail-pl1-x62e.google.com [IPv6:2607:f8b0:4864:20::62e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B765212FD05;
+        Sat, 11 Mar 2023 04:32:44 -0800 (PST)
+Received: by mail-pl1-x62e.google.com with SMTP id ix20so1788550plb.3;
+        Sat, 11 Mar 2023 04:32:44 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112; t=1678537964;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=zeBGEGBy3GzypDRtMJAMW7+H/dC0tKTZg1B8rKisPPg=;
+        b=ozYBtX+oLCLwTDq0vgGPi/UV5U3VCNOx0hgd8raVBdxqET0UET+vr6lFr+Sj5DulQv
+         yy6p1/GTWJD+/1j5mD9CPQHQs0dTjysHRI5EGelYq+hUSr39ExzUZ2iBdtdCjvPqGGM/
+         I0lB7mJzQCzIVpGLR6jbcxIAxpDavqedDI3ITFMQQXstOo/1fmcCQVwxTUPidbkTyyBw
+         i2RTCskqTCZO6LccgnhQ66HUzUgKyxZUbuBBUo5hsPEMAwSfxvlHsp3g6KtkCKfYUQc8
+         mom00/wjigb4i1JOD0fo3Y1j1TUZ8W+wtnvnmXXAimdhsINpzeeHPndz7Jed8pAu+163
+         PdtA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1678537964;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=zeBGEGBy3GzypDRtMJAMW7+H/dC0tKTZg1B8rKisPPg=;
+        b=xd7J27TnBdpFWvWe+KVrL+Ky29jY88eLLVBVXOSZJjvZVdPhCasAarEj1UgnnGQdpz
+         5ZrQ9WEeZC+HVJenN+eKujpRX2oztNtcNNzx5ag60T6wesmLRoUvmZYOQD2oCs7ST/IJ
+         3pM8loQyR6GmbuhohRk2xwUa6Tgb/CbGb3lDoIGYqPH5n6T6wl/qMe5N0/4SFqGWpsUN
+         JJXA55PGjWbxDHmZpaLMtuuXEkd0r3uzQtMllozyOpe9Hj910WbJxA33g+6a7YoKatSt
+         Y+uXegjOQboCd6zXjcmcKJl3HrY6+IhKwHi9umP9hHgMokD61zZ62rCQmIOfltRFrrnC
+         t+Vw==
+X-Gm-Message-State: AO0yUKXtHzAGrV0FCN0fye18S4CqsRNezqScUe+Mg6luUUYzxO9uQ/w8
+        XGs9X7PZe0afWl+BsCrc8H0=
+X-Google-Smtp-Source: AK7set9M6K7Ck2qJ+kyt/yPQ4Vwm1QYaDduE/QAC7LceldmLdWyR9N7INxoglPg3eg/bykJOjTe6Pw==
+X-Received: by 2002:a05:6a20:440c:b0:ce:5c14:2838 with SMTP id ce12-20020a056a20440c00b000ce5c142838mr39315872pzb.54.1678537964189;
+        Sat, 11 Mar 2023 04:32:44 -0800 (PST)
+Received: from localhost.localdomain (n220246252084.netvigator.com. [220.246.252.84])
+        by smtp.gmail.com with ESMTPSA id g4-20020a62e304000000b005a8173829d5sm1406754pfh.66.2023.03.11.04.32.36
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 11 Mar 2023 04:32:43 -0800 (PST)
+From:   Jianhua Lu <lujianhua000@gmail.com>
+To:     Thierry Reding <thierry.reding@gmail.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Neil Armstrong <neil.armstrong@linaro.org>
+Cc:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
+        Jianhua Lu <lujianhua000@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH v5 1/2] dt-bindings: display: panel: Add Novatek NT36523 bindings
+Date:   Sat, 11 Mar 2023 20:32:30 +0800
+Message-Id: <20230311123231.20771-1-lujianhua000@gmail.com>
+X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.1
-Subject: Re: [EXTERNAL] Re: [EXTERNAL] Re: [EXTERNAL] Re: [PATCH v3 3/6] soc:
- ti: pruss: Add pruss_cfg_read()/update() API
-Content-Language: en-US
-To:     Md Danish Anwar <a0501179@ti.com>,
-        MD Danish Anwar <danishanwar@ti.com>,
-        "Andrew F. Davis" <afd@ti.com>, Suman Anna <s-anna@ti.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Santosh Shilimkar <ssantosh@kernel.org>,
-        Nishanth Menon <nm@ti.com>
-Cc:     linux-remoteproc@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-omap@vger.kernel.org, srk@ti.com, devicetree@vger.kernel.org,
-        netdev@vger.kernel.org
-References: <20230306110934.2736465-1-danishanwar@ti.com>
- <20230306110934.2736465-4-danishanwar@ti.com>
- <7076208d-7dca-6980-5399-498e55648740@kernel.org>
- <afd6cd8a-8ba7-24b2-d7fc-c25a9c5f3c42@ti.com>
- <a74e5079-d89d-2420-b6af-d630c4f04380@kernel.org>
- <a4395259-9b83-1101-7c4c-d8a36c3600eb@ti.com>
- <367f6b50-e4cc-c3eb-e8e9-dabd4e044530@ti.com>
- <46415d8e-3c92-d489-3f44-01a586160082@kernel.org>
- <1c1e67fd-1eaa-30f5-8b2a-41a7e3ff664a@ti.com>
-From:   Roger Quadros <rogerq@kernel.org>
-In-Reply-To: <1c1e67fd-1eaa-30f5-8b2a-41a7e3ff664a@ti.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_HI,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Danish,
+Novatek NT36523 is a display driver IC used to drive DSI panels.
 
-On 10/03/2023 17:36, Md Danish Anwar wrote:
-> Hi Roger,
-> 
-> On 10/03/23 18:53, Roger Quadros wrote:
->> Hi Danish,
->>
->> On 10/03/2023 13:53, Md Danish Anwar wrote:
->>> Hi Roger,
->>>
->>> On 09/03/23 17:00, Md Danish Anwar wrote:
->>>> Hi Roger,
->>>>
->>>> On 08/03/23 17:12, Roger Quadros wrote:
->>>>>
->>>>>
->>>>> On 08/03/2023 13:36, Md Danish Anwar wrote:
->>>>>> Hi Roger,
->>>>>>
->>>>>> On 08/03/23 13:57, Roger Quadros wrote:
->>>>>>> Hi,
->>>>>>>
->>>>>>> On 06/03/2023 13:09, MD Danish Anwar wrote:
->>>>>>>> From: Suman Anna <s-anna@ti.com>
->>>>>>>>
->>>>>>>> Add two new generic API pruss_cfg_read() and pruss_cfg_update() to
->>>>>>>> the PRUSS platform driver to allow other drivers to read and program
->>>>>>>> respectively a register within the PRUSS CFG sub-module represented
->>>>>>>> by a syscon driver. This interface provides a simple way for client
->>>>>>>
->>>>>>> Do you really need these 2 functions to be public?
->>>>>>> I see that later patches (4-6) add APIs for doing specific things
->>>>>>> and that should be sufficient than exposing entire CFG space via
->>>>>>> pruss_cfg_read/update().
->>>>>>>
->>>>>>>
->>>>>>
->>>>>> I think the intention here is to keep this APIs pruss_cfg_read() and
->>>>>> pruss_cfg_update() public so that other drivers can read / modify PRUSS config
->>>>>> when needed.
->>>>>
->>>>> Where are these other drivers? If they don't exist then let's not make provision
->>>>> for it now.
->>>>> We can provide necessary API helpers when needed instead of letting client drivers
->>>>> do what they want as they can be misused and hard to debug.
->>>>>
->>>>
->>>> The ICSSG Ethernet driver uses pruss_cfg_update() API. It is posted upstream in
->>>> the series [1]. The ethernet driver series is dependent on this series. In
->>>> series [1] we are using pruss_cfg_update() in icssg_config.c file,
->>>> icssg_config() API.
->>
->> You can instead add a new API on what exactly you want it to do rather than exposing
->> entire CFG space.
->>
-> 
-> Sure.
-> 
-> In icssg_config.c, a call to pruss_cfg_update() is made to enable XFR shift for
-> PRU and RTU,
-> 
-> 	/* enable XFR shift for PRU and RTU */
-> 	mask = PRUSS_SPP_XFER_SHIFT_EN | PRUSS_SPP_RTU_XFR_SHIFT_EN;
-> 	pruss_cfg_update(prueth->pruss, PRUSS_CFG_SPP, mask, mask);
-> 
-> I will add the below API as part of Patch 4 of the series. We'll call this API
-> and entire CFG space will not be exposed.
-> 
-> /**
->  * pruss_cfg_xfr_pru_rtu_enable() - Enable/disable XFR shift for PRU and RTU
->  * @pruss: the pruss instance
->  * @enable: enable/disable
->  *
->  * Return: 0 on success, or an error code otherwise
->  */
-> static inline int pruss_cfg_xfr_pru_rtu_enable(struct pruss *pruss, bool enable)
-> {
-> 	u32 mask = PRUSS_SPP_XFER_SHIFT_EN | PRUSS_SPP_RTU_XFR_SHIFT_EN;
-> 	u32 set = enable ? mask : 0;
-> 
-> 	return pruss_cfg_update(pruss, PRUSS_CFG_SPP, mask, set);
-> }
+Signed-off-by: Jianhua Lu <lujianhua000@gmail.com>
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+---
+No changes in v5
 
-I would suggest to make separate APIs for PRU XFR vs RTU XFR.
+No changes in v4
 
-> 
-> To make pruss_cfg_update() and pruss_cfg_read() API internal to pruss.c, I will
-> add the below change to pruss.h file and pruss.c file. Let me know if this
-> change looks okay to you.
-> 
-> diff --git a/drivers/soc/ti/pruss.c b/drivers/soc/ti/pruss.c
-> 
-> index 537a3910ffd8..9f01c8809deb 100644
-> 
-> --- a/drivers/soc/ti/pruss.c
-> 
-> +++ b/drivers/soc/ti/pruss.c
-> 
-> @@ -182,7 +182,6 @@ int pruss_cfg_read(struct pruss *pruss, unsigned int reg,
-> unsigned int *val)
+Changes in v3:
+  - pick up Krzysztof's R-b
+  - remove vddpos and vddneg supply
 
-Need to declare this as 'static'.
+Changes in v2:
+  - Drop unnecessary description
+  - dsi0 -> dsi
+  - Correct indentation
 
-> 
-> 
-> 
->         return regmap_read(pruss->cfg_regmap, reg, val);
-> 
->  }
-> 
-> -EXPORT_SYMBOL_GPL(pruss_cfg_read);
-> 
-> 
-> 
->  /**
-> 
->   * pruss_cfg_update() - configure a PRUSS CFG sub-module register
-> 
-> @@ -203,7 +202,6 @@ int pruss_cfg_update(struct pruss *pruss, unsigned int reg,
+ .../display/panel/novatek,nt36523.yaml        | 85 +++++++++++++++++++
+ 1 file changed, 85 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/display/panel/novatek,nt36523.yaml
 
-this as well.
+diff --git a/Documentation/devicetree/bindings/display/panel/novatek,nt36523.yaml b/Documentation/devicetree/bindings/display/panel/novatek,nt36523.yaml
+new file mode 100644
+index 000000000000..0039561ef04c
+--- /dev/null
++++ b/Documentation/devicetree/bindings/display/panel/novatek,nt36523.yaml
+@@ -0,0 +1,85 @@
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/display/panel/novatek,nt36523.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Novatek NT36523 based DSI display Panels
++
++maintainers:
++  - Jianhua Lu <lujianhua000@gmail.com>
++
++description: |
++  The Novatek NT36523 is a generic DSI Panel IC used to drive dsi
++  panels. Support video mode panels from China Star Optoelectronics
++  Technology (CSOT) and BOE Technology.
++
++allOf:
++  - $ref: panel-common.yaml#
++
++properties:
++  compatible:
++    items:
++      - enum:
++          - xiaomi,elish-boe-nt36523
++          - xiaomi,elish-csot-nt36523
++      - const: novatek,nt36523
++
++  reset-gpios:
++    maxItems: 1
++    description: phandle of gpio for reset line - This should be 8mA
++
++  vddio-supply:
++    description: regulator that supplies the I/O voltage
++
++  reg: true
++  ports: true
++  backlight: true
++
++required:
++  - compatible
++  - reg
++  - vddio-supply
++  - reset-gpios
++  - ports
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/gpio/gpio.h>
++
++    dsi {
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        panel@0 {
++            compatible = "xiaomi,elish-csot-nt36523", "novatek,nt36523";
++            reg = <0>;
++
++            vddio-supply = <&vreg_l14a_1p88>;
++            reset-gpios = <&tlmm 75 GPIO_ACTIVE_LOW>;
++            backlight = <&backlight>;
++
++            ports {
++                #address-cells = <1>;
++                #size-cells = <0>;
++
++                port@0 {
++                    reg = <0>;
++                    panel_in_0: endpoint {
++                        remote-endpoint = <&dsi0_out>;
++                    };
++                };
++
++                port@1{
++                    reg = <1>;
++                    panel_in_1: endpoint {
++                        remote-endpoint = <&dsi1_out>;
++                    };
++                };
++            };
++        };
++    };
++
++...
+-- 
+2.39.2
 
-> 
-> 
-> 
->         return regmap_update_bits(pruss->cfg_regmap, reg, mask, val);
-> 
->  }
-> 
-> -EXPORT_SYMBOL_GPL(pruss_cfg_update);
-> 
-> 
-> 
->  static void pruss_of_free_clk_provider(void *data)
-> 
->  {
-> 
-> diff --git a/include/linux/remoteproc/pruss.h b/include/linux/remoteproc/pruss.h
-> 
-> index d41bec448f06..12ef10b9fe9a 100644
-> 
-> --- a/include/linux/remoteproc/pruss.h
-> 
-> +++ b/include/linux/remoteproc/pruss.h
-> 
-> @@ -165,9 +165,6 @@ int pruss_request_mem_region(struct pruss *pruss, enum
-> pruss_mem mem_id,
-> 
->                              struct pruss_mem_region *region);
-> 
->  int pruss_release_mem_region(struct pruss *pruss,
-> 
->                              struct pruss_mem_region *region);
-> 
-> -int pruss_cfg_read(struct pruss *pruss, unsigned int reg, unsigned int *val);
-> 
-> -int pruss_cfg_update(struct pruss *pruss, unsigned int reg,
-> 
-> -                    unsigned int mask, unsigned int val);
-> 
-> 
-> 
->  #else
-> 
-> 
-> 
-> @@ -191,18 +188,6 @@ static inline int pruss_release_mem_region(struct pruss
-> *pruss,
-> 
->         return -EOPNOTSUPP;
-> 
->  }
-> 
-> 
-> 
-> -static inline int pruss_cfg_read(struct pruss *pruss, unsigned int reg,
-> 
-> -                                unsigned int *val)
-> 
-> -{
-> 
-> -       return -EOPNOTSUPP;
-> 
-> -}
-> 
-> -
-> 
-> -static inline int pruss_cfg_update(struct pruss *pruss, unsigned int reg,
-> 
-> -                                  unsigned int mask, unsigned int val)
-> 
-> -{
-> 
-> -       return -EOPNOTSUPP;
-> 
-> -}
-> 
-> -
-> 
->  #endif /* CONFIG_TI_PRUSS */
-> 
-> 
-> 
->  #if IS_ENABLED(CONFIG_PRU_REMOTEPROC)
-> 
-> 
-> Please have a look and let me know if above API and code changes looks OK to you.
-> 
-
-Rest looks OK.
-
-cheers,
--roger
