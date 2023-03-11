@@ -2,162 +2,234 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B63EE6B5BC4
-	for <lists+devicetree@lfdr.de>; Sat, 11 Mar 2023 13:34:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DFCB96B5BDE
+	for <lists+devicetree@lfdr.de>; Sat, 11 Mar 2023 13:39:02 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230388AbjCKMeX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 11 Mar 2023 07:34:23 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44024 "EHLO
+        id S230435AbjCKMjB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 11 Mar 2023 07:39:01 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53110 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230400AbjCKMeR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 11 Mar 2023 07:34:17 -0500
-Received: from NAM11-DM6-obe.outbound.protection.outlook.com (mail-dm6nam11on20729.outbound.protection.outlook.com [IPv6:2a01:111:f400:7eaa::729])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 485FE118810;
-        Sat, 11 Mar 2023 04:33:52 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=YDhs4wCHE0Tx+yJ1gcEEy2E2Oy9Ppb1xe/odNACPvm6hVI7xSSUsswuq4KOsuadwHWT60kR5kChYZ2L1CGkt3GAqBOFvpLM3yy/4KiXLXK91lckOrkS4SE9294XU+sMhOL3jl1KIupVPPRgWZkc+TOghQptD9GgMDS7Oill9uD/Lcln+z7KNrB2drpQIwjuQf/twz+FuOClUwIITvgsj/xXgsIz9J2RGAatwf5ez4bdHwNNLK5KnEuyPiDbLWjoffRYx+ifg+q5mv91BaRFRAnNA4x8C/620zs0S6dAixYUmiUVGEVCikzgU70BdIyJpYndKm+0hzxKekRLTOGOFhA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=243o76Sa2ZSJysL8qAgKomHSEQI3g8nsUtlHT8xXwF4=;
- b=h+jmZWRLnW06IVhDWK6Kwv3VJWGMyGDOc+qeivG5WSs3eUewcPXus1q0o8izE/sA+cBJdUWgXWz6xqfyzNe+yIQP8CjkHpSfik0dtyFdz5lFmHusMqZF0F76MbkJzBsznazFgop6pvL4SVYeZYrSJzGNDlEHluP08qzDKa99FVN+fhtOemS7q9PUujRk4wXw61R1DdHtXWFS+EtAgd5UHXAFVnBPpxsV3vwR25Jpwj54yt8HJD0/xE1WcXINoQdnPd6QPM/wN/FTsZ9PS6PBNO33hSMjFtbQ8PV3dZ/q30h1Z/7Kad5yeDZ3DQkP0RJ4CwOUSwrNbjT+lcuFTushiQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=corigine.com; dmarc=pass action=none header.from=corigine.com;
- dkim=pass header.d=corigine.com; arc=none
+        with ESMTP id S230382AbjCKMi7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 11 Mar 2023 07:38:59 -0500
+Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 48157E7CA7
+        for <devicetree@vger.kernel.org>; Sat, 11 Mar 2023 04:38:56 -0800 (PST)
+Received: by mail-lf1-x12c.google.com with SMTP id r27so10063959lfe.10
+        for <devicetree@vger.kernel.org>; Sat, 11 Mar 2023 04:38:56 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=corigine.onmicrosoft.com; s=selector2-corigine-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=243o76Sa2ZSJysL8qAgKomHSEQI3g8nsUtlHT8xXwF4=;
- b=OJqfhFqNiYdYLjCAhucQMAv4KKFx94sunWnCK7kb2M//6W4cb5xOpZKhvMoeIYvXE/i/lbb/9Hx/gLyi7KZwnrF2okt5fY4kd6VvRUwjyn8nIBQX4vhWNS4pKHsM0dOCu2x5+GhTbykgPpK3qOxlRnyyoJBo8XnjVY28wCVSYOw=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=corigine.com;
-Received: from PH0PR13MB4842.namprd13.prod.outlook.com (2603:10b6:510:78::6)
- by DS7PR13MB4766.namprd13.prod.outlook.com (2603:10b6:5:38c::18) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6178.22; Sat, 11 Mar
- 2023 12:33:49 +0000
-Received: from PH0PR13MB4842.namprd13.prod.outlook.com
- ([fe80::85f5:bdb:fb9e:294c]) by PH0PR13MB4842.namprd13.prod.outlook.com
- ([fe80::85f5:bdb:fb9e:294c%2]) with mapi id 15.20.6178.020; Sat, 11 Mar 2023
- 12:33:49 +0000
-Date:   Sat, 11 Mar 2023 13:33:40 +0100
-From:   Simon Horman <simon.horman@corigine.com>
-To:     Neeraj Sanjay Kale <neeraj.sanjaykale@nxp.com>
-Cc:     davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
-        pabeni@redhat.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, marcel@holtmann.org,
-        johan.hedberg@gmail.com, luiz.dentz@gmail.com,
-        gregkh@linuxfoundation.org, jirislaby@kernel.org,
-        alok.a.tiwari@oracle.com, hdanton@sina.com,
-        ilpo.jarvinen@linux.intel.com, leon@kernel.org,
-        netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-bluetooth@vger.kernel.org,
-        linux-serial@vger.kernel.org, amitkumar.karwar@nxp.com,
-        rohit.fule@nxp.com, sherry.sun@nxp.com
-Subject: Re: [PATCH v8 1/3] serdev: Add method to assert break signal over
- tty UART port
-Message-ID: <ZAx1JOvjgOOYCNY9@corigine.com>
-References: <20230310181921.1437890-1-neeraj.sanjaykale@nxp.com>
- <20230310181921.1437890-2-neeraj.sanjaykale@nxp.com>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230310181921.1437890-2-neeraj.sanjaykale@nxp.com>
-X-ClientProxiedBy: AM3PR03CA0053.eurprd03.prod.outlook.com
- (2603:10a6:207:5::11) To PH0PR13MB4842.namprd13.prod.outlook.com
- (2603:10b6:510:78::6)
+        d=linaro.org; s=google; t=1678538334;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=U6GNVCYsVkEJkheLQcF7W0xxKL/2eVGz8WLI2GDDBzY=;
+        b=EshV7VMlzrErX/XcoNWWXJbtghs7rdoa3iwo7hVWcBZo1UF+J7wnzK2r3ZmYX5t2am
+         BLDCFraBHKAM1lAYuCkhviOugCdsWN5r8crwSLTvJAw+QQPxG7IFkH/gDmnGmPtTKfca
+         HTL9O262PicGz+SVbhwbQn20gFugsQv3z1CH9GA1UOQuz3IhuHO0eXTrGeF8fXiuWPzb
+         vNUax4axIGRS/xVzayB5ZW2Uh7FjVuE4GwrZvFDyiFDglk08aMMgVFt21W/e4YMgtqFi
+         OGkLoPpzKOkUnXjLkePj9hK588XlRXr9z2Xi1B8vTJ7CkhpUQRoE86Ih687zGnUqdqrl
+         Ivbw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1678538334;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=U6GNVCYsVkEJkheLQcF7W0xxKL/2eVGz8WLI2GDDBzY=;
+        b=SUdzR448dxhxvlYvUedcH0+RHSIINhVGjcuB0c0hzO+PY5LQtyo+9h4lgqNQYBfyf/
+         a2H4a8GfYALrFieHPV6JDpzdysGjBp76F/8FHqT+hguWQg66wEtiQzHFfeGuHtT5bbT3
+         4FCwjFTvjZ6ohksY2utPbVZcEHM3PSAh7FrY8JaKM89vp0BuKHgKlcYyeZqrzKka8eeH
+         ISnzzHh0rFY2rv9DKML2U5Sf5eAL87RH0dkFCQlIVtQTc14fxaJdmv37QBGsAvSU+ssa
+         9o1YC8wlFDSmgKPzYUZD8Ukt0xpvzmUpAPBopxfzxQ5G1Q13hDIQLvk4nWRpZtWcat8a
+         LksA==
+X-Gm-Message-State: AO0yUKUGvXJgPCDsg27FBfG/i7kYZOyXT8qKYqOuvUbG2AcQp7M43Jrb
+        BTW1uf+hFOYtZMo0Rg+unRmfRA==
+X-Google-Smtp-Source: AK7set/Vf28xh6snK9V6Ywov49da2lm6HlGDCAblKmeWGvXee8O9ykMJfpxafGPhNgiqy9YtjzMgsw==
+X-Received: by 2002:ac2:5637:0:b0:4b6:e405:1027 with SMTP id b23-20020ac25637000000b004b6e4051027mr1605897lff.14.1678538334505;
+        Sat, 11 Mar 2023 04:38:54 -0800 (PST)
+Received: from [192.168.1.101] (abyj16.neoplus.adsl.tpnet.pl. [83.9.29.16])
+        by smtp.gmail.com with ESMTPSA id r7-20020a19ac47000000b0048a982ad0a8sm308626lfc.23.2023.03.11.04.38.53
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 11 Mar 2023 04:38:54 -0800 (PST)
+Message-ID: <904bc493-7160-32fd-9709-1dcb978ddbab@linaro.org>
+Date:   Sat, 11 Mar 2023 13:38:52 +0100
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH0PR13MB4842:EE_|DS7PR13MB4766:EE_
-X-MS-Office365-Filtering-Correlation-Id: c3e35043-6505-405b-f741-08db222cdd6e
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: rAkfuQ346nGdjw9pVPVyTjaejWgkbR5wjRCUeUBbMLA170BRM86d++4NZ5Gt0HGs8YIMBN9lEmeS6ZSKFciARXFAkvsgXtkOjtRIcVxSy5dudV7YDQlD8K5/oiRuRJEp5dpUeMTFczaPZ7p2g7oi/iaprxuAjqUuLfKZ4phl/61ccZrUEs8I3gYOIztEGdxNuHtXKWgtABanG7nav1PKK1DFc664gEwfgQoLmCmOut7598dwNQc0xw1ZpSuv8wJGOffVvIF6HHYdBiwVitDKrZ1JDz7Fb31zzbVOzkLajTqexKTMaLPbk6YR4a5h1Fow06ri4DEl3E/nInh3xdZ4nQQu6VgOsh9mA4da7IwliMIRZwzsN1yziMT/RCkrimUK4P3AlaxwaJcK/6L2dNP+lWctSbSzAoSXAMUaHTgA/S1TjDSsCFLHw4uuguIlpeiicfrfbziDwY7MsPdVsTTxdp9UsgrFbeYurzJJUxDt/UbNJIf3wK2QZcMXc+K+a2BO4ivXt8cpz27yeOVl3CQojGn00suH7tKEjMyUPQo+gJ9iozYTBgH6X/q0WzemcjKls0DUfDRwJUuEe9Vvmd1zhS+NoBwNhJ8WlQt+bV5SHViMGwhr4nhP2eSdhFEvdp6jORWBbaWqN2ck6upYqPG+9TaokmvRX67dwCR5yUfOrpXU+HTySAvm/I8worlfC0Gj
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PH0PR13MB4842.namprd13.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230025)(4636009)(376002)(366004)(346002)(396003)(39830400003)(136003)(451199018)(8936002)(7416002)(41300700001)(5660300002)(2906002)(44832011)(86362001)(36756003)(38100700002)(478600001)(4326008)(8676002)(6916009)(66946007)(6486002)(66476007)(66556008)(2616005)(6666004)(316002)(186003)(6512007)(6506007)(83380400001);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?NY1TizAzkW9O+hugywvI/0VyG+LHP7amy5VBHLroVuumqgeyWrMl/PaHGn50?=
- =?us-ascii?Q?hiqVanscinR2uNY1qdL/33kGOzuK+OVjKo4XL7HodDDRBtYky4fdkwUjM024?=
- =?us-ascii?Q?JkIQDlc7Bv8AdsDns5z2vRsgnT6KWOcNngfcqaC9uXcx2YTRtHJdxEz7N8Kv?=
- =?us-ascii?Q?XJ98iC8R3h7hVZCtcdXgd0WQsr5dy44Ea8Ox1yYqUK1n3iOCWdN6TsBiyyVe?=
- =?us-ascii?Q?8hd5ifAFl2ljX6LyEEEmUcOc01+5/EX1bIbgM25XNf7U13JEE6Nzao8TR15y?=
- =?us-ascii?Q?vIjNjP3SqHx97nXeTOx4E0U0flypIqYjE7VYzhYmEMMNEVOzp0w3vnUQxcpd?=
- =?us-ascii?Q?Wl+AkxeZ7xtnce6sttiNHULcAWwbGP3aLvdW6yDe+SCQAZUqVC69et8MULjX?=
- =?us-ascii?Q?kDYBYDDnVdxzsPcssb3BKYH0b6KoU3JCYUPgKAT32DzwQsxq1nthPKiF4EY4?=
- =?us-ascii?Q?OQxJjH1UfqF6K1LjGLx/3TVArIib9VuUV92ysSF7ZsL3S432UgZLjELw9gmD?=
- =?us-ascii?Q?/3IMpt2Ka7TMw/rJWuXoQCi1WrYSF+MqOXuijTd0kk6RUUHd8PVbm/KDqRri?=
- =?us-ascii?Q?Oxvmxp6TukgSTniDB/Qt0K4o55//HnWi4lQA52chzhPXW1FI+IBjbeqsIMOM?=
- =?us-ascii?Q?GdFNCk0qrYW6AjW3AGzLb/AkIFeCELOFe5pRKjaQsmwGiVVU3lHgN03L0j4I?=
- =?us-ascii?Q?sDHfDfph+rxrqaB0OPXHtKcZu7gpy3YFhpW8Dbwj9dSry/xoYZxAxD313Jhu?=
- =?us-ascii?Q?cAFXcWXbS1xih1JWawYSH/sjc6c+leKIuv1VXwnFoW1TIhBr43Ce2rJhkxWc?=
- =?us-ascii?Q?KMZbr4ZhTiMi7Tbujbg60OBZ2yhXwopUwLjyYMPb6D9XOsui8JaHXGso4enn?=
- =?us-ascii?Q?bfscplVuYkgoRuTTM4QUCLXccrcwNbbE3shNnnFtcsByPRBQJCcA7PJbUVgZ?=
- =?us-ascii?Q?CGa/RFQPQyhjMoNTtDnSfRlCZhuQu8xOvXuH6S/8PiKjxigiY8fL5vd+dDrv?=
- =?us-ascii?Q?iAfXaji6NZsi9qmx3PH+yWBRmC23E2O2vc7Am+s6Ppr9kO6PAF10xG4Rb8nS?=
- =?us-ascii?Q?GcsJItOxPyTYc6wDY/8/uU1AATfQvUMOm7tM+E2MrVcAHtXVkCL3LzZVvT1s?=
- =?us-ascii?Q?mBv1ZQjW7Gf3U1lQxrAKVgtw0GXfFoXe+bGQuHf/j3eQ7Xo9xkZ4NDP25Q5u?=
- =?us-ascii?Q?/x1i2jRTs4ufEmzQXmcYVsyoIpAK3lLSorxgW6CX9L1UZflRfS03ECvbD+RL?=
- =?us-ascii?Q?8yhdUDizipV+Gmd6cYBd4i6LLVn+Xst1KhyUSrJrTjfLAdTrAK4JjehxZeKZ?=
- =?us-ascii?Q?jkD10M8l3RvYZ0yF7A7KgKQke1QNKwG4QVKHwwm0nw7E+8NJ9WXYR0T45/7w?=
- =?us-ascii?Q?OQJiiS33XLXUHb5FxlhzzP7nvKk7/EbVLoRhb9rIde6LatwrdGdHjn354iYa?=
- =?us-ascii?Q?16WiLw+GITshQU4ioFRKACoYiUXh1JktG40fDs+5Qk7BPrwp6WOz9eS/g+jh?=
- =?us-ascii?Q?jsqAYdb6MjnmbGVski/uOMZA2CPi0t9KLZkaU3otx+VYCcWyIfsquVcWV0F/?=
- =?us-ascii?Q?LHuVPgew38/9XGOa2m2s56g24xMU4hORII5NMtb/VC9N34a5hGGunVLzPhGh?=
- =?us-ascii?Q?FboV4WOJlWKjeXPVSvFQrUlMWjZJVfDptDIzp9BHqdheBjlqFT1TQC6ZUIxY?=
- =?us-ascii?Q?AiiP0w=3D=3D?=
-X-OriginatorOrg: corigine.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: c3e35043-6505-405b-f741-08db222cdd6e
-X-MS-Exchange-CrossTenant-AuthSource: PH0PR13MB4842.namprd13.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Mar 2023 12:33:49.5905
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: fe128f2c-073b-4c20-818e-7246a585940c
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: ynIZBydM4dnQMZS/lZxilEt8oIX/MVMXUfFP4pOeN6i7wl7nHc/A/3AwgMYEV2oAoZLByvm/2QpM0YtyX7heWFmJtRdaBUU5qw6yaRwjf8M=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS7PR13MB4766
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no
-        version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.8.0
+Subject: Re: [PATCH v5 2/2] drm/panel: Add driver for Novatek NT36523
+Content-Language: en-US
+To:     Jianhua Lu <lujianhua000@gmail.com>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Neil Armstrong <neil.armstrong@linaro.org>
+Cc:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org
+References: <20230311123231.20771-1-lujianhua000@gmail.com>
+ <20230311123231.20771-2-lujianhua000@gmail.com>
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <20230311123231.20771-2-lujianhua000@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-0.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_SORBS_HTTP,RCVD_IN_SORBS_SOCKS,SPF_HELO_NONE,SPF_PASS,
+        URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Mar 10, 2023 at 11:49:19PM +0530, Neeraj Sanjay Kale wrote:
-> Adds serdev_device_break_ctl() and an implementation for ttyport.
-> This function simply calls the break_ctl in tty layer, which can
-> assert a break signal over UART-TX line, if the tty and the
-> underlying platform and UART peripheral supports this operation.
+
+
+On 11.03.2023 13:32, Jianhua Lu wrote:
+> Add a driver for panels using the Novatek NT36523 display driver IC.
 > 
-> Signed-off-by: Neeraj Sanjay Kale <neeraj.sanjaykale@nxp.com>
+> Signed-off-by: Jianhua Lu <lujianhua000@gmail.com>
 > ---
-> v3: Add details to the commit message. (Greg KH)
+[...]
 
-...
-
-> diff --git a/include/linux/serdev.h b/include/linux/serdev.h
-> index 66f624fc618c..c065ef1c82f1 100644
-> --- a/include/linux/serdev.h
-> +++ b/include/linux/serdev.h
-
-...
-
-> @@ -255,6 +257,10 @@ static inline int serdev_device_set_tiocm(struct serdev_device *serdev, int set,
->  {
->  	return -ENOTSUPP;
->  }
-> +static inline int serdev_device_break_ctl(struct serdev_device *serdev, int break_state)
+> +
+> +static int nt36523_get_modes(struct drm_panel *panel,
+> +			       struct drm_connector *connector)
 > +{
-> +	return -EOPNOTSUPP;
+> +	struct panel_info *pinfo = to_panel_info(panel);
+> +	int i;
+> +
+> +	for (i = 0; i < pinfo->desc->num_modes; i++) {
+> +		const struct drm_display_mode *m = &pinfo->desc->modes[i];
+> +		struct drm_display_mode *mode;
+> +
+> +		mode = drm_mode_duplicate(connector->dev, m);
+> +		if (!mode) {
+> +			dev_err(panel->dev, "failed to add mode %ux%u@%u\n",
+> +				m->hdisplay, m->vdisplay, drm_mode_vrefresh(m));
+> +			return -ENOMEM;
+> +		}
+> +
+> +		mode->type = DRM_MODE_TYPE_DRIVER;
+> +		if (pinfo->desc->num_modes == 1)
+> +			mode->type |= DRM_MODE_TYPE_PREFERRED;
+That's not quite correct, as that means "if you have more than one
+defined panel mode (say 60Hz and 120 Hz), there will be no preferred one".
 
-Is the use of -EOPNOTSUPP intentional here?
-I see -ENOTSUPP is used elsewhere in this file.
-
+Konrad
+> +
+> +		drm_mode_set_name(mode);
+> +		drm_mode_probed_add(connector, mode);
+> +	}
+> +
+> +	connector->display_info.width_mm = pinfo->desc->width_mm;
+> +	connector->display_info.height_mm = pinfo->desc->height_mm;
+> +	connector->display_info.bpc = pinfo->desc->bpc;
+> +
+> +	return pinfo->desc->num_modes;
 > +}
->  static inline int serdev_device_write(struct serdev_device *sdev, const unsigned char *buf,
->  				      size_t count, unsigned long timeout)
->  {
-> -- 
-> 2.34.1
-> 
+> +
+> +static const struct drm_panel_funcs nt36523_panel_funcs = {
+> +	.disable = nt36523_disable,
+> +	.prepare = nt36523_prepare,
+> +	.unprepare = nt36523_unprepare,
+> +	.get_modes = nt36523_get_modes,
+> +};
+> +
+> +static int nt36523_probe(struct mipi_dsi_device *dsi)
+> +{
+> +	struct device *dev = &dsi->dev;
+> +	struct device_node *dsi1;
+> +	struct mipi_dsi_host *dsi1_host;
+> +	struct panel_info *pinfo;
+> +	const struct mipi_dsi_device_info *info;
+> +	int i, ret;
+> +
+> +	pinfo = devm_kzalloc(dev, sizeof(*pinfo), GFP_KERNEL);
+> +	if (!pinfo)
+> +		return -ENOMEM;
+> +
+> +	pinfo->vddio = devm_regulator_get(dev, "vddio");
+> +	if (IS_ERR(pinfo->vddio))
+> +		return dev_err_probe(dev, PTR_ERR(pinfo->vddio), "failed to get vddio regulator\n");
+> +
+> +	pinfo->reset_gpio = devm_gpiod_get(dev, "reset", GPIOD_OUT_HIGH);
+> +	if (IS_ERR(pinfo->reset_gpio))
+> +		return dev_err_probe(dev, PTR_ERR(pinfo->reset_gpio), "failed to get reset gpio\n");
+> +
+> +	pinfo->desc = of_device_get_match_data(dev);
+> +	if (!pinfo->desc)
+> +		return -ENODEV;
+> +
+> +	/* If the panel is dual dsi, register DSI1 */
+> +	if (pinfo->desc->is_dual_dsi) {
+> +		info = &pinfo->desc->dsi_info;
+> +
+> +		dsi1 = of_graph_get_remote_node(dsi->dev.of_node, 1, -1);
+> +		if (!dsi1) {
+> +			dev_err(dev, "cannot get secondary DSI node.\n");
+> +			return -ENODEV;
+> +		}
+> +
+> +		dsi1_host = of_find_mipi_dsi_host_by_node(dsi1);
+> +		of_node_put(dsi1);
+> +		if (!dsi1_host)
+> +			return dev_err_probe(dev, -EPROBE_DEFER, "cannot get secondary DSI host\n");
+> +
+> +		pinfo->dsi[1] = mipi_dsi_device_register_full(dsi1_host, info);
+> +		if (!pinfo->dsi[1]) {
+> +			dev_err(dev, "cannot get secondary DSI device\n");
+> +			return -ENODEV;
+> +		}
+> +	}
+> +
+> +	pinfo->dsi[0] = dsi;
+> +	mipi_dsi_set_drvdata(dsi, pinfo);
+> +	drm_panel_init(&pinfo->panel, dev, &nt36523_panel_funcs, DRM_MODE_CONNECTOR_DSI);
+> +
+> +	ret = drm_panel_of_backlight(&pinfo->panel);
+> +	if (ret)
+> +		return dev_err_probe(dev, ret, "failed to get backlight\n");
+> +
+> +	drm_panel_add(&pinfo->panel);
+> +
+> +	for (i = 0; i < DSI_NUM_MIN + pinfo->desc->is_dual_dsi; i++) {
+> +		pinfo->dsi[i]->lanes = pinfo->desc->lanes;
+> +		pinfo->dsi[i]->format = pinfo->desc->format;
+> +		pinfo->dsi[i]->mode_flags = pinfo->desc->mode_flags;
+> +
+> +		ret = mipi_dsi_attach(pinfo->dsi[i]);
+> +		if (ret < 0)
+> +			return dev_err_probe(dev, ret, "cannot attach to DSI%d host.\n", i);
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static const struct of_device_id nt36523_of_match[] = {
+> +	{
+> +		.compatible = "xiaomi,elish-boe-nt36523",
+> +		.data = &elish_boe_desc,
+> +	},
+> +	{
+> +		.compatible = "xiaomi,elish-csot-nt36523",
+> +		.data = &elish_csot_desc,
+> +	},
+> +	{},
+> +};
+> +MODULE_DEVICE_TABLE(of, nt36523_of_match);
+> +
+> +static struct mipi_dsi_driver nt36523_driver = {
+> +	.probe = nt36523_probe,
+> +	.remove = nt36523_remove,
+> +	.driver = {
+> +		.name = "panel-novatek-nt36523",
+> +		.of_match_table = nt36523_of_match,
+> +	},
+> +};
+> +module_mipi_dsi_driver(nt36523_driver);
+> +
+> +MODULE_AUTHOR("Jianhua Lu <lujianhua000@gmail.com>");
+> +MODULE_DESCRIPTION("DRM driver for Novatek NT36523 based MIPI DSI panels");
+> +MODULE_LICENSE("GPL");
