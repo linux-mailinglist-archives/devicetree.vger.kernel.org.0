@@ -2,170 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 38B856B59F4
-	for <lists+devicetree@lfdr.de>; Sat, 11 Mar 2023 10:15:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B09966B5A43
+	for <lists+devicetree@lfdr.de>; Sat, 11 Mar 2023 11:02:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230002AbjCKJPr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 11 Mar 2023 04:15:47 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38948 "EHLO
+        id S229562AbjCKKCL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 11 Mar 2023 05:02:11 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58242 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231282AbjCKJO4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 11 Mar 2023 04:14:56 -0500
-Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com [IPv6:2a00:1450:4864:20::532])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 21944145B3C
-        for <devicetree@vger.kernel.org>; Sat, 11 Mar 2023 01:12:11 -0800 (PST)
-Received: by mail-ed1-x532.google.com with SMTP id y4so553490edo.2
-        for <devicetree@vger.kernel.org>; Sat, 11 Mar 2023 01:12:11 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1678525822;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=uw4cAGGgibSwDMH3Jhp+ycifcaLWuwvJWXMBQMAHLL8=;
-        b=yW3q7BzZhpeN5LeV7HBwj8NAaPqj5zY+6rB6/sImmy6Sfg/aUtdFuYv7q8cESDAdmD
-         9xcQ3rD7yegEDdOw0Z4iCVavF/SUJsgVBwOzHhMWFWTlNXctVQl1xKXYZJAl5kam/oTf
-         hJLJXKgHO6ykDxhdWS1UF+JWwy+KKiHYL/SyIS32Ytuf6I58aTNIn/XlfIEQ5U1ld/7K
-         0SoDSmy3M1LTtXwQ1jhH+olfaO6h5qpv/cg72waU5NCC/z/hizvXLNNmGqe/6e7gYfC5
-         utgJN5nNul3VQ4K7JcX0NZnZmwP4SgLxm72rNovOasusLu6JPngv1wXUKtRQkMSNCkiP
-         8uPg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678525822;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=uw4cAGGgibSwDMH3Jhp+ycifcaLWuwvJWXMBQMAHLL8=;
-        b=LOMHw6brGQfGuYIR+7qxgkK5u05aDIsA9K+FOqkbGoK3mn0+eMsRncvcDpjvEQg5O0
-         wx1ppjR6IdcnYdKt3nvdtSNA3vvrNu9sSxCUYXbsAVuavfzJakScFScHiA6j1Ua0GvAl
-         rcm5ddewCnGbgzqlaBBVLgWLtTqLkRTiy2zf6vVlmKnhvJ93ckrt9B/d8whotVjMvV99
-         C37QTG3kUYsHX1UAuA1utrsJWmPkXvaFzt0+Tf3wD91HBO2X/nV9TbEOEw4OQ0ZSrfx/
-         EYZ4RLoZyQKmO6mRBaYxylbRXUrYhVHt/sPp9PF+0MAFK5CM+tFKtHbkI2DgsAmBsO2V
-         ZyQA==
-X-Gm-Message-State: AO0yUKXKQkdMGHsTXJPwzcYRNyy2oWGhjq/P/nDWN9tTsR4NWmffGLtu
-        7H8CwrNwwMuo5dXs/o44S4ltfw==
-X-Google-Smtp-Source: AK7set8/V8muly8GrRqJlvD9mRt0320JEfLtLQwThdTKCMA0OrS8U3c/dwGkGS2n8AdHC2f24grKTw==
-X-Received: by 2002:a17:906:8a64:b0:8b1:bafe:6135 with SMTP id hy4-20020a1709068a6400b008b1bafe6135mr25360315ejc.60.1678525822075;
-        Sat, 11 Mar 2023 01:10:22 -0800 (PST)
-Received: from ?IPV6:2a02:810d:15c0:828:fa97:2d7c:bdd7:e1b? ([2a02:810d:15c0:828:fa97:2d7c:bdd7:e1b])
-        by smtp.gmail.com with ESMTPSA id ae12-20020a17090725cc00b00922547486f9sm200836ejc.146.2023.03.11.01.10.20
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 11 Mar 2023 01:10:21 -0800 (PST)
-Message-ID: <de5d336e-43c4-9016-134c-bf5a0aa18280@linaro.org>
-Date:   Sat, 11 Mar 2023 10:10:20 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-Subject: Re: [PATCH V2 2/2] ASoC: dt-bindings: max98363: add soundwire
- amplifier
-Content-Language: en-US
-To:     =?UTF-8?B?4oCcUnlhbg==?= <ryan.lee.analog@gmail.com>,
-        lgirdwood@gmail.com, broonie@kernel.org, perex@perex.cz,
-        tiwai@suse.com, rf@opensource.cirrus.com,
-        ckeepax@opensource.cirrus.com,
-        pierre-louis.bossart@linux.intel.com, herve.codina@bootlin.com,
-        wangweidong.a@awinic.com, james.schulman@cirrus.com,
-        ajye_huang@compal.corp-partner.google.com, shumingf@realtek.com,
-        povik+lin@cutebit.org, flatmax@flatmax.com,
-        linux-kernel@vger.kernel.org, alsa-devel@alsa-project.org,
-        robh+dt@kernel.org, devicetree@vger.kernel.org,
-        ryans.lee@analog.com
-References: <20230311011409.210014-1-ryan.lee.analog@gmail.com>
- <20230311011409.210014-2-ryan.lee.analog@gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230311011409.210014-2-ryan.lee.analog@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+        with ESMTP id S229450AbjCKKCL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 11 Mar 2023 05:02:11 -0500
+Received: from wout5-smtp.messagingengine.com (wout5-smtp.messagingengine.com [64.147.123.21])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C91101F5EF;
+        Sat, 11 Mar 2023 02:02:09 -0800 (PST)
+Received: from compute6.internal (compute6.nyi.internal [10.202.2.47])
+        by mailout.west.internal (Postfix) with ESMTP id 59AA13200035;
+        Sat, 11 Mar 2023 05:02:06 -0500 (EST)
+Received: from imap51 ([10.202.2.101])
+  by compute6.internal (MEProxy); Sat, 11 Mar 2023 05:02:06 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arndb.de; h=cc
+        :cc:content-type:content-type:date:date:from:from:in-reply-to
+        :in-reply-to:message-id:mime-version:references:reply-to:sender
+        :subject:subject:to:to; s=fm1; t=1678528925; x=1678615325; bh=Vq
+        ji9kNwgOAY0G705adR/Zk+/mY3GWNulE6EVZ2CAoc=; b=fAfnGDPrx+xyPwoV/n
+        sb18NsgqLLtUkhF+OpMG6/y/zUi5H7lu5X+axeL3eGVERfPjOx+xxSmxq0Wx9lwn
+        uU9yQOEaD/i2QnuuPmLia+hCsS9HsHCseSWpuxnA6BirfePDLsVoJum3Y9tUHdeI
+        kwIEYU9sPTZ+J0XkKq48Qt8ReiDKPUDH4CYFah24foHpPaY2EhOUU1v5d0ghCVCc
+        xmgbMlpB2vFUmK+NyFPGx0XwhXJzl1la3xPCF3H2QqFn6gik5ingl1FjGmV55rcP
+        t5M9PWCqug5iz1PDUS5/+lXhxQdj9dQQ0vT09XCf1+bKx5FxPrTRluiTsr2kCieB
+        pS/Q==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:cc:content-type:content-type:date:date
+        :feedback-id:feedback-id:from:from:in-reply-to:in-reply-to
+        :message-id:mime-version:references:reply-to:sender:subject
+        :subject:to:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
+        :x-sasl-enc; s=fm2; t=1678528925; x=1678615325; bh=Vqji9kNwgOAY0
+        G705adR/Zk+/mY3GWNulE6EVZ2CAoc=; b=K5OG5lWvbvLAxKd1g0jbX1DfxFSJm
+        RIjT4JVfdmXT+lOTvZNxrJWf45CAcgknk5s81LJo5yVYexNWAtmfnO207tcYnUJ3
+        +P+uJ5HJdnc06ofDQEdhNpV7x7MLjZxd4A61SBFgAbq4XM5npp+yGk9PGCiGoS6Q
+        fkMkUuZyoAO1owtJBMVrdTymIWkgugWKW5fAOYxiJ94B4M6M4r1PHAoH1MB6zmAK
+        ze2lDkYgwngA6cN+dqsF2FNxDJBT8gqncnBj5n76AfRkvKLVJF2Yd+nePf1W7YYa
+        GSdYpCfUUMDuxp9mLERIi3lvKUMJeHw41RxnBZbTDybK3cOfSjLL3/zgg==
+X-ME-Sender: <xms:nVEMZG1upFtZIvcSZYPhR7t4hQwpnsajIZW7M_ifwgdD7qscnyjmoA>
+    <xme:nVEMZJEOq1q9ANO2qtJ5YkXljCxuWPrSu4bzQjrOG4T_WIXAacXBuPMptzpYlEt1O
+    K2mR6rcUFO2Ip6z_xk>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvhedrvdduledgudefiecutefuodetggdotefrod
+    ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfgh
+    necuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmd
+    enucfjughrpefofgggkfgjfhffhffvvefutgesthdtredtreertdenucfhrhhomhepfdet
+    rhhnugcuuegvrhhgmhgrnhhnfdcuoegrrhhnugesrghrnhgusgdruggvqeenucggtffrrg
+    htthgvrhhnpeffheeugeetiefhgeethfejgfdtuefggeejleehjeeutefhfeeggefhkedt
+    keetffenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpe
+    grrhhnugesrghrnhgusgdruggv
+X-ME-Proxy: <xmx:nVEMZO7R92ybIAS9hfXFf3MYYkleTayKsS-pgEKGI4zil-diBCpB2A>
+    <xmx:nVEMZH2iazwGwxfsjfxUTWghYxWF82OlElU4SOukE3946GSwhS3SbA>
+    <xmx:nVEMZJFBUNtB7yzaX01wxMIDFhGVj6oEWpe6EdY7PUZjhrKXc0qP3A>
+    <xmx:nVEMZOSP0WMMLYky6GB_d3dQGx7o-nd54c1FuE7Xht9LJeQHs2WIlA>
+Feedback-ID: i56a14606:Fastmail
+Received: by mailuser.nyi.internal (Postfix, from userid 501)
+        id 9BB0CB60089; Sat, 11 Mar 2023 05:02:05 -0500 (EST)
+X-Mailer: MessagingEngine.com Webmail Interface
+User-Agent: Cyrus-JMAP/3.9.0-alpha0-206-g57c8fdedf8-fm-20230227.001-g57c8fded
+Mime-Version: 1.0
+Message-Id: <30cce69b-f0a1-4cce-a77f-5f5ee2fc9890@app.fastmail.com>
+In-Reply-To: <20230310144713.1543683-1-robh@kernel.org>
+References: <20230310144713.1543683-1-robh@kernel.org>
+Date:   Sat, 11 Mar 2023 11:01:45 +0100
+From:   "Arnd Bergmann" <arnd@arndb.de>
+To:     "Rob Herring" <robh@kernel.org>,
+        "Eric Piel" <eric.piel@tremplin-utc.net>,
+        "Greg Kroah-Hartman" <gregkh@linuxfoundation.org>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] misc: lis3lv02d: Use of_property_read_bool() for boolean
+ properties
+Content-Type: text/plain
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_PASS,
+        SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 11/03/2023 02:14, “Ryan wrote:
-> From: Ryan Lee <ryans.lee@analog.com>
-> 
-> This patch adds dt-bindings information for Analog Devices MAX98363
-> SoundWire Amplifier.
-> 
-> Signed-off-by: Ryan Lee <ryans.lee@analog.com>
-> ---
-> Changes from v1:
->   Fixed a syntax error for the 'dt_binding_check' build.
->   Removed unnecessary properties.
->   Added description about SoundWire device ID of MAX98363
-> 
->  .../bindings/sound/adi,max98363.yaml          | 42 +++++++++++++++++++
->  1 file changed, 42 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/sound/adi,max98363.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/sound/adi,max98363.yaml b/Documentation/devicetree/bindings/sound/adi,max98363.yaml
-> new file mode 100644
-> index 000000000000..0e71b6c84007
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/sound/adi,max98363.yaml
-> @@ -0,0 +1,42 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/sound/adi,max98363.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Analog Devices MAX98363 SoundWire Amplifier
-> +
-> +maintainers:
-> +  - Ryan Lee <ryans.lee@analog.com>
-> +
-> +description:
-> +  The MAX98363 is a SoundWire input Class D mono amplifier that
-> +  supports MIPI SoundWire v1.2-compatible digital interface for
-> +  audio and control data.
-> +  SoundWire peripheral device ID of MAX98363 is 0x3X019F836300
-> +  where X is the peripheral device unique ID decoded from pin.
-> +  It supports up to 10 peripheral devices(0x0 to 0x9).
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - adi,max98363
+On Fri, Mar 10, 2023, at 15:47, Rob Herring wrote:
+> It is preferred to use typed property access functions (i.e.
+> of_property_read_<type> functions) rather than low-level
+> of_get_property/of_find_property functions for reading properties.
+> Convert reading boolean properties to to of_property_read_bool().
+>
+> Signed-off-by: Rob Herring <robh@kernel.org>
 
-Aren't soundwire devices supposed to use device ID as compatible?
-
-Missing blank line
-
-> +  reg:
-> +    maxItems: 1
-> +    description: Peripheral-device unique ID decoded from pin.
-> +
-
-It's not a DAI?
-
-> +required:
-> +  - compatible
-> +  - reg
-
-Missing blank line
-
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    soundwire {
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +        amplifier@3 {
-> +            compatible = "adi,max98363";
-> +            reg = <0x3>;
-
-That looks a bit different than regular SoundWire bus. I would argue
-that it's not SoundWire at all...
-
-
-> +        };
-> +    };
-
-Best regards,
-Krzysztof
-
+Reviewed-by: Arnd Bergmann <arnd@arndb.de>
