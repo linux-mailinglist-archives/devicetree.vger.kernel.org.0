@@ -2,166 +2,289 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C08236B5B6C
-	for <lists+devicetree@lfdr.de>; Sat, 11 Mar 2023 13:02:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E3EA96B5B71
+	for <lists+devicetree@lfdr.de>; Sat, 11 Mar 2023 13:07:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229577AbjCKMCZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 11 Mar 2023 07:02:25 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44102 "EHLO
+        id S229450AbjCKMHF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 11 Mar 2023 07:07:05 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51126 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229450AbjCKMCY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 11 Mar 2023 07:02:24 -0500
-Received: from mout.gmx.net (mout.gmx.net [212.227.17.20])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8F6F2119956;
-        Sat, 11 Mar 2023 04:02:22 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.de; s=s31663417;
-        t=1678536128; i=deller@gmx.de;
-        bh=XHzjB+riYZupE9URm53jbBdbmmPt9aIVp+oDZubbiSk=;
-        h=X-UI-Sender-Class:Date:Subject:To:Cc:References:From:In-Reply-To;
-        b=XwvIerXlT2mounaGkH4bPd70VnPtb06B4Et9Zm1GSzNjQeF46OxOv+XOJx/POi+nW
-         yz0uHVg5mJlA0+7JWQk+QAXNMYLwalZTf2qCuWevYvxJL4guI3hAe3FJzhjTbkuq8z
-         EF5HN9UrL52LU7TZC98ooKdJsfGRdokX8rgN+tKb84/wt0FwupvA40oBBjY7bHubdu
-         HyEWUdcSLsJ89F1G3nwjsVdy2iCxKUupQDluv8M/gCGgF0Edx8QvVyjwk8xaj0mYA7
-         Z47W77i9b1EdrxzJCvJa02pu+X04ClF82Au2qdjO11st1A00mUGkh7NL5j+zktY+gy
-         JbjBP0kKSElDw==
-X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
-Received: from [192.168.20.60] ([94.134.154.207]) by mail.gmx.net (mrgmx105
- [212.227.17.168]) with ESMTPSA (Nemesis) id 1MDhhX-1pjS7T004l-00AoJM; Sat, 11
- Mar 2023 13:02:08 +0100
-Message-ID: <3a1432d1-e31b-55bd-c7cc-fe8645f4a188@gmx.de>
-Date:   Sat, 11 Mar 2023 13:02:06 +0100
+        with ESMTP id S229958AbjCKMHD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 11 Mar 2023 07:07:03 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 751A411F631;
+        Sat, 11 Mar 2023 04:06:58 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 45C45B8253D;
+        Sat, 11 Mar 2023 12:06:56 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 69BDEC433D2;
+        Sat, 11 Mar 2023 12:06:51 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1678536414;
+        bh=2M+sg4TU2SXNAZOw21xnHl7W71SdvtY6IWxfePY4G4c=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=mWnRud+y6Xx+7VXOUE0VSvOWleJ52YqCdyFoNPMnlEbzKPyWh3ZNebH0uIQvhIClQ
+         NNPl7o1KAy4FPoNeuQuyio5eEP2MEnwT3xZIgoYxvGx2a/6hwOT89zdBvjcHyyzs64
+         qv6sYz42vaPkmT/9UKACcgkfQ5f4JgtJmvkvJ5koSHZTy5ZPN+S39Qmojjx1dDO/fG
+         fCEIbjExIGjh41wbXHolYQUUqCLxOpDhJ6f+pr8+VV2PXFmr3fhWKsifVfT06AAWG7
+         jN5XsRr5rjF/kNp6KdGpnxs1UHwtRgD+SHhualNesP8ObIw/tUCRuSu2uyaiUzxD67
+         J1mMRwEvBwrNQ==
+Message-ID: <ba703ed6-e91d-5128-f1a4-1667125c531e@kernel.org>
+Date:   Sat, 11 Mar 2023 14:06:48 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-Subject: Re: [PATCH] fbdev: Use of_property_read_bool() for boolean properties
+ Thunderbird/102.7.1
+Subject: Re: [EXTERNAL] Re: [EXTERNAL] Re: [EXTERNAL] Re: [PATCH v3 3/6] soc:
+ ti: pruss: Add pruss_cfg_read()/update() API
 Content-Language: en-US
-To:     Rob Herring <robh@kernel.org>,
-        Michal Simek <michal.simek@xilinx.com>
-Cc:     devicetree@vger.kernel.org, linux-fbdev@vger.kernel.org,
-        dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-References: <20230310144730.1546031-1-robh@kernel.org>
-From:   Helge Deller <deller@gmx.de>
-In-Reply-To: <20230310144730.1546031-1-robh@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: quoted-printable
-X-Provags-ID: V03:K1:X0J2z7aRj6j/qMuUHRdtmzCsXbISKEB333XHampK4aM+SECg9EJ
- D4HuvbyC4huv/cXgI86KQIVrhug1XQsYgjd1EVW9w65X4W8Bp2ycALX90Ti/0cuUwNBP+Tk
- 3Tj6dBLbEcRi3uT8LkDNIO0s9yA0EbcWK77Sqv5dfr4IBzLJDmVgRxKwLr3rKssEoc9Hhlt
- I6MUOx4SpmcDEQg0e/lTQ==
-UI-OutboundReport: notjunk:1;M01:P0:7d9rmOsCyLE=;E3XyDPaK+7R9zNu0Md/kvsEoh29
- ZWAkr4g1glgIG0NCK/kYaWz1WQrIqBk2krw0EjFZXe5ZSBYaFLKFrtvtuFLD1G646h0s4ooYl
- jenU9WTYplIATATZnLSex+YIHX+C8J7j2OQWQlsOGu8t6ZmrSSqhkPoXBQmrlIWBZEoUAtMss
- UvXv6/KhEtskttYG+eGfcJunaBIWDgHjhJM1Qam5UaqIwl1ZP6MLu0ooucYCISYfbQdNLYO46
- EHQHDCwwLOSRkpDh1/xBT/fRFk+dNjdO5iOLBbkkZfNpf27+zi6i7imbnAe1Phq7xU+Dp8M7G
- lta/mtJ9mvsEk1e5UsYYivWZRwk5zcJwFWgsHKZ8JxRioJIGVd9tQTPCZcrHiTkZn/f+qyCBW
- 23BBgEZZMtglMNhzrou+xhpWq0k4+dkczeLTSYzIxI/0NK0DUmAO1K7y274X4ZkD64krqiipF
- /nY2K22rSI6thrReKuyyVYsPKLArxGACcBDdLzrXw2lMGqtVGHsZpqoqk9asnnM/NqePsyGxD
- ko1oT5fikdFn4o/stOUWc2Su2Kg9VfNfXPGQo0aHWUw35bS+/z6ta6gzKNs0djv7zxRdZkPqN
- 91CeUzPhACCAMIwgwyfn/eAYMfDDMxnn4MGWwDSLOswq3AFqsSjmmyyeSkPugbc28IviFU/b/
- ISOtw8bJPAlBBbogNS7Owv+HnJbRTeI9L00rQFWfWhv/xdss01CPsehYIvnd7490kZgBbURyw
- mLHjWyYCFH+ckHG2XmRdkpUbIbIOlzrrPoqCUQgko+/G1/YxEHiX8pKxWRVlXgsNqFodjZTwo
- mInnIqEU1M4hC1fD1jxElVR87zhNLrOe4kGef4KvfqSpUSI9ny6rCseauC246zy2CJ0K25eKE
- VOZssyWK5JWos1b9FsCYLhpvWtJJLwVLsPGPUxyptRLvaoh3nesnPTwb1Y9oez7ZlDoAeacE8
- EEBdug==
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
-        RCVD_IN_DNSWL_LOW,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+To:     Md Danish Anwar <a0501179@ti.com>,
+        MD Danish Anwar <danishanwar@ti.com>,
+        "Andrew F. Davis" <afd@ti.com>, Suman Anna <s-anna@ti.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Santosh Shilimkar <ssantosh@kernel.org>,
+        Nishanth Menon <nm@ti.com>
+Cc:     linux-remoteproc@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-omap@vger.kernel.org, srk@ti.com, devicetree@vger.kernel.org,
+        netdev@vger.kernel.org
+References: <20230306110934.2736465-1-danishanwar@ti.com>
+ <20230306110934.2736465-4-danishanwar@ti.com>
+ <7076208d-7dca-6980-5399-498e55648740@kernel.org>
+ <afd6cd8a-8ba7-24b2-d7fc-c25a9c5f3c42@ti.com>
+ <a74e5079-d89d-2420-b6af-d630c4f04380@kernel.org>
+ <a4395259-9b83-1101-7c4c-d8a36c3600eb@ti.com>
+ <367f6b50-e4cc-c3eb-e8e9-dabd4e044530@ti.com>
+ <46415d8e-3c92-d489-3f44-01a586160082@kernel.org>
+ <1c1e67fd-1eaa-30f5-8b2a-41a7e3ff664a@ti.com>
+From:   Roger Quadros <rogerq@kernel.org>
+In-Reply-To: <1c1e67fd-1eaa-30f5-8b2a-41a7e3ff664a@ti.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_HI,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 3/10/23 15:47, Rob Herring wrote:
-> It is preferred to use typed property access functions (i.e.
-> of_property_read_<type> functions) rather than low-level
-> of_get_property/of_find_property functions for reading properties.
-> Convert reading boolean properties to to of_property_read_bool().
->
-> Signed-off-by: Rob Herring <robh@kernel.org>
+Hi Danish,
 
-applied.
+On 10/03/2023 17:36, Md Danish Anwar wrote:
+> Hi Roger,
+> 
+> On 10/03/23 18:53, Roger Quadros wrote:
+>> Hi Danish,
+>>
+>> On 10/03/2023 13:53, Md Danish Anwar wrote:
+>>> Hi Roger,
+>>>
+>>> On 09/03/23 17:00, Md Danish Anwar wrote:
+>>>> Hi Roger,
+>>>>
+>>>> On 08/03/23 17:12, Roger Quadros wrote:
+>>>>>
+>>>>>
+>>>>> On 08/03/2023 13:36, Md Danish Anwar wrote:
+>>>>>> Hi Roger,
+>>>>>>
+>>>>>> On 08/03/23 13:57, Roger Quadros wrote:
+>>>>>>> Hi,
+>>>>>>>
+>>>>>>> On 06/03/2023 13:09, MD Danish Anwar wrote:
+>>>>>>>> From: Suman Anna <s-anna@ti.com>
+>>>>>>>>
+>>>>>>>> Add two new generic API pruss_cfg_read() and pruss_cfg_update() to
+>>>>>>>> the PRUSS platform driver to allow other drivers to read and program
+>>>>>>>> respectively a register within the PRUSS CFG sub-module represented
+>>>>>>>> by a syscon driver. This interface provides a simple way for client
+>>>>>>>
+>>>>>>> Do you really need these 2 functions to be public?
+>>>>>>> I see that later patches (4-6) add APIs for doing specific things
+>>>>>>> and that should be sufficient than exposing entire CFG space via
+>>>>>>> pruss_cfg_read/update().
+>>>>>>>
+>>>>>>>
+>>>>>>
+>>>>>> I think the intention here is to keep this APIs pruss_cfg_read() and
+>>>>>> pruss_cfg_update() public so that other drivers can read / modify PRUSS config
+>>>>>> when needed.
+>>>>>
+>>>>> Where are these other drivers? If they don't exist then let's not make provision
+>>>>> for it now.
+>>>>> We can provide necessary API helpers when needed instead of letting client drivers
+>>>>> do what they want as they can be misused and hard to debug.
+>>>>>
+>>>>
+>>>> The ICSSG Ethernet driver uses pruss_cfg_update() API. It is posted upstream in
+>>>> the series [1]. The ethernet driver series is dependent on this series. In
+>>>> series [1] we are using pruss_cfg_update() in icssg_config.c file,
+>>>> icssg_config() API.
+>>
+>> You can instead add a new API on what exactly you want it to do rather than exposing
+>> entire CFG space.
+>>
+> 
+> Sure.
+> 
+> In icssg_config.c, a call to pruss_cfg_update() is made to enable XFR shift for
+> PRU and RTU,
+> 
+> 	/* enable XFR shift for PRU and RTU */
+> 	mask = PRUSS_SPP_XFER_SHIFT_EN | PRUSS_SPP_RTU_XFR_SHIFT_EN;
+> 	pruss_cfg_update(prueth->pruss, PRUSS_CFG_SPP, mask, mask);
+> 
+> I will add the below API as part of Patch 4 of the series. We'll call this API
+> and entire CFG space will not be exposed.
+> 
+> /**
+>  * pruss_cfg_xfr_pru_rtu_enable() - Enable/disable XFR shift for PRU and RTU
+>  * @pruss: the pruss instance
+>  * @enable: enable/disable
+>  *
+>  * Return: 0 on success, or an error code otherwise
+>  */
+> static inline int pruss_cfg_xfr_pru_rtu_enable(struct pruss *pruss, bool enable)
+> {
+> 	u32 mask = PRUSS_SPP_XFER_SHIFT_EN | PRUSS_SPP_RTU_XFR_SHIFT_EN;
+> 	u32 set = enable ? mask : 0;
+> 
+> 	return pruss_cfg_update(pruss, PRUSS_CFG_SPP, mask, set);
+> }
 
-Thanks,
-Helge
+I would suggest to make separate APIs for PRU XFR vs RTU XFR.
 
-> ---
->   drivers/video/fbdev/offb.c     | 4 ++--
->   drivers/video/fbdev/sm501fb.c  | 4 ++--
->   drivers/video/fbdev/tcx.c      | 3 +--
->   drivers/video/fbdev/xilinxfb.c | 3 +--
->   4 files changed, 6 insertions(+), 8 deletions(-)
->
-> diff --git a/drivers/video/fbdev/offb.c b/drivers/video/fbdev/offb.c
-> index f7ad6bc9d02d..b97d251d894b 100644
-> --- a/drivers/video/fbdev/offb.c
-> +++ b/drivers/video/fbdev/offb.c
-> @@ -549,10 +549,10 @@ static void offb_init_nodriver(struct platform_dev=
-ice *parent, struct device_nod
->   	int foreign_endian =3D 0;
->
->   #ifdef __BIG_ENDIAN
-> -	if (of_get_property(dp, "little-endian", NULL))
-> +	if (of_property_read_bool(dp, "little-endian"))
->   		foreign_endian =3D FBINFO_FOREIGN_ENDIAN;
->   #else
-> -	if (of_get_property(dp, "big-endian", NULL))
-> +	if (of_property_read_bool(dp, "big-endian"))
->   		foreign_endian =3D FBINFO_FOREIGN_ENDIAN;
->   #endif
->
-> diff --git a/drivers/video/fbdev/sm501fb.c b/drivers/video/fbdev/sm501fb=
-.c
-> index f743bfbde2a6..1f3cbe723def 100644
-> --- a/drivers/video/fbdev/sm501fb.c
-> +++ b/drivers/video/fbdev/sm501fb.c
-> @@ -1737,10 +1737,10 @@ static int sm501fb_init_fb(struct fb_info *fb, e=
-num sm501_controller head,
->
->   #if defined(CONFIG_OF)
->   #ifdef __BIG_ENDIAN
-> -	if (of_get_property(info->dev->parent->of_node, "little-endian", NULL)=
-)
-> +	if (of_property_read_bool(info->dev->parent->of_node, "little-endian")=
-)
->   		fb->flags |=3D FBINFO_FOREIGN_ENDIAN;
->   #else
-> -	if (of_get_property(info->dev->parent->of_node, "big-endian", NULL))
-> +	if (of_property_read_bool(info->dev->parent->of_node, "big-endian"))
->   		fb->flags |=3D FBINFO_FOREIGN_ENDIAN;
->   #endif
->   #endif
-> diff --git a/drivers/video/fbdev/tcx.c b/drivers/video/fbdev/tcx.c
-> index 01d87f53324d..f2eaf6e7fff6 100644
-> --- a/drivers/video/fbdev/tcx.c
-> +++ b/drivers/video/fbdev/tcx.c
-> @@ -379,8 +379,7 @@ static int tcx_probe(struct platform_device *op)
->
->   	spin_lock_init(&par->lock);
->
-> -	par->lowdepth =3D
-> -		(of_find_property(dp, "tcx-8-bit", NULL) !=3D NULL);
-> +	par->lowdepth =3D of_property_read_bool(dp, "tcx-8-bit");
->
->   	sbusfb_fill_var(&info->var, dp, 8);
->   	info->var.red.length =3D 8;
-> diff --git a/drivers/video/fbdev/xilinxfb.c b/drivers/video/fbdev/xilinx=
-fb.c
-> index 1ac83900a21c..c17cfffd9a84 100644
-> --- a/drivers/video/fbdev/xilinxfb.c
-> +++ b/drivers/video/fbdev/xilinxfb.c
-> @@ -469,8 +469,7 @@ static int xilinxfb_of_probe(struct platform_device =
-*pdev)
->   		pdata.yvirt =3D prop[1];
->   	}
->
-> -	if (of_find_property(pdev->dev.of_node, "rotate-display", NULL))
-> -		pdata.rotate_screen =3D 1;
-> +	pdata.rotate_screen =3D of_property_read_bool(pdev->dev.of_node, "rota=
-te-display");
->
->   	platform_set_drvdata(pdev, drvdata);
->   	return xilinxfb_assign(pdev, drvdata, &pdata);
+> 
+> To make pruss_cfg_update() and pruss_cfg_read() API internal to pruss.c, I will
+> add the below change to pruss.h file and pruss.c file. Let me know if this
+> change looks okay to you.
+> 
+> diff --git a/drivers/soc/ti/pruss.c b/drivers/soc/ti/pruss.c
+> 
+> index 537a3910ffd8..9f01c8809deb 100644
+> 
+> --- a/drivers/soc/ti/pruss.c
+> 
+> +++ b/drivers/soc/ti/pruss.c
+> 
+> @@ -182,7 +182,6 @@ int pruss_cfg_read(struct pruss *pruss, unsigned int reg,
+> unsigned int *val)
 
+Need to declare this as 'static'.
+
+> 
+> 
+> 
+>         return regmap_read(pruss->cfg_regmap, reg, val);
+> 
+>  }
+> 
+> -EXPORT_SYMBOL_GPL(pruss_cfg_read);
+> 
+> 
+> 
+>  /**
+> 
+>   * pruss_cfg_update() - configure a PRUSS CFG sub-module register
+> 
+> @@ -203,7 +202,6 @@ int pruss_cfg_update(struct pruss *pruss, unsigned int reg,
+
+this as well.
+
+> 
+> 
+> 
+>         return regmap_update_bits(pruss->cfg_regmap, reg, mask, val);
+> 
+>  }
+> 
+> -EXPORT_SYMBOL_GPL(pruss_cfg_update);
+> 
+> 
+> 
+>  static void pruss_of_free_clk_provider(void *data)
+> 
+>  {
+> 
+> diff --git a/include/linux/remoteproc/pruss.h b/include/linux/remoteproc/pruss.h
+> 
+> index d41bec448f06..12ef10b9fe9a 100644
+> 
+> --- a/include/linux/remoteproc/pruss.h
+> 
+> +++ b/include/linux/remoteproc/pruss.h
+> 
+> @@ -165,9 +165,6 @@ int pruss_request_mem_region(struct pruss *pruss, enum
+> pruss_mem mem_id,
+> 
+>                              struct pruss_mem_region *region);
+> 
+>  int pruss_release_mem_region(struct pruss *pruss,
+> 
+>                              struct pruss_mem_region *region);
+> 
+> -int pruss_cfg_read(struct pruss *pruss, unsigned int reg, unsigned int *val);
+> 
+> -int pruss_cfg_update(struct pruss *pruss, unsigned int reg,
+> 
+> -                    unsigned int mask, unsigned int val);
+> 
+> 
+> 
+>  #else
+> 
+> 
+> 
+> @@ -191,18 +188,6 @@ static inline int pruss_release_mem_region(struct pruss
+> *pruss,
+> 
+>         return -EOPNOTSUPP;
+> 
+>  }
+> 
+> 
+> 
+> -static inline int pruss_cfg_read(struct pruss *pruss, unsigned int reg,
+> 
+> -                                unsigned int *val)
+> 
+> -{
+> 
+> -       return -EOPNOTSUPP;
+> 
+> -}
+> 
+> -
+> 
+> -static inline int pruss_cfg_update(struct pruss *pruss, unsigned int reg,
+> 
+> -                                  unsigned int mask, unsigned int val)
+> 
+> -{
+> 
+> -       return -EOPNOTSUPP;
+> 
+> -}
+> 
+> -
+> 
+>  #endif /* CONFIG_TI_PRUSS */
+> 
+> 
+> 
+>  #if IS_ENABLED(CONFIG_PRU_REMOTEPROC)
+> 
+> 
+> Please have a look and let me know if above API and code changes looks OK to you.
+> 
+
+Rest looks OK.
+
+cheers,
+-roger
