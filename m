@@ -2,149 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A53B06B5C59
-	for <lists+devicetree@lfdr.de>; Sat, 11 Mar 2023 14:43:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8C92F6B5C5E
+	for <lists+devicetree@lfdr.de>; Sat, 11 Mar 2023 14:44:55 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229478AbjCKNm6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 11 Mar 2023 08:42:58 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36418 "EHLO
+        id S230111AbjCKNox (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 11 Mar 2023 08:44:53 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41768 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229473AbjCKNm5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 11 Mar 2023 08:42:57 -0500
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8206A5FFC;
-        Sat, 11 Mar 2023 05:42:55 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1678542175; x=1710078175;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=x+ZRr0pj7ADlwQU5k8M99g/tAgS3JVQU+0XabB88Cew=;
-  b=ifixLZ3iyI3mSRH1UqDpTh08bhiEFl8bpf7aov3H36sAz8C2A8wV2AeK
-   aNB6XOoT94hdLnPaiiBeyWvG1OuhmG2v36XdlOh4E6azYa+7m9vjtARY7
-   gkTk6w39pCVr6ylWgPXuJdZY5d/XA3Y6mnh8ufxFmB2upLTi/vwRiBhPq
-   0Em/1jYttHh9QHDN3n31tlIFK+LkrZwd+zrJdAPwgdpOaY2v0BdEOzQqy
-   jfC7D5TNZwunjvfXvYMtXSIuyybK6p+dhjm60yURMkU0pekCfRRWvrQ2B
-   BHeWqK5h4rUMnVeST/Zp2g+2VREl5VyQ1AA4BCgdsnvvOGKguC+CB9CI7
-   Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10646"; a="325260775"
-X-IronPort-AV: E=Sophos;i="5.98,252,1673942400"; 
-   d="scan'208";a="325260775"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-  by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 11 Mar 2023 05:42:55 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10646"; a="678156174"
-X-IronPort-AV: E=Sophos;i="5.98,252,1673942400"; 
-   d="scan'208";a="678156174"
-Received: from lkp-server01.sh.intel.com (HELO b613635ddfff) ([10.239.97.150])
-  by orsmga002.jf.intel.com with ESMTP; 11 Mar 2023 05:42:52 -0800
-Received: from kbuild by b613635ddfff with local (Exim 4.96)
-        (envelope-from <lkp@intel.com>)
-        id 1pazUq-0004bR-0O;
-        Sat, 11 Mar 2023 13:42:52 +0000
-Date:   Sat, 11 Mar 2023 21:42:48 +0800
-From:   kernel test robot <lkp@intel.com>
-To:     Rob Herring <robh@kernel.org>,
-        Russell King <linux@armlinux.org.uk>,
-        Helge Deller <deller@gmx.de>
-Cc:     oe-kbuild-all@lists.linux.dev, devicetree@vger.kernel.org,
-        linux-fbdev@vger.kernel.org, linux-omap@vger.kernel.org,
-        linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org
-Subject: Re: [PATCH] fbdev: Use of_property_present() for testing DT property
- presence
-Message-ID: <202303112153.uPbFjEUI-lkp@intel.com>
-References: <20230310144729.1545943-1-robh@kernel.org>
+        with ESMTP id S230037AbjCKNop (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 11 Mar 2023 08:44:45 -0500
+Received: from mail-oa1-f43.google.com (mail-oa1-f43.google.com [209.85.160.43])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C33431241FD;
+        Sat, 11 Mar 2023 05:44:43 -0800 (PST)
+Received: by mail-oa1-f43.google.com with SMTP id 586e51a60fabf-176b90e14a9so9017402fac.9;
+        Sat, 11 Mar 2023 05:44:43 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1678542283;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=j0hyUN2C7BZ8jVZKqrrryijZX/Ej18OXHW5ztfQohzY=;
+        b=6lj/G15qfcviqe0MRynAm+h55PrAZLhnmqKRoTJzQd3NC4oWvcEn1xooc3pt9fGfZW
+         g9j4zQfChPrmgqdoaBrtf18xJxEehnnTTZwNhnAQ401k01I359xBqhXow1nOvXGyDbjX
+         pnJObwV777VAol8uDxuGzcnNR8M8euv5eZ9Fg+2y5ckjuO6k/GiIiNlRVroA1YsAWNOu
+         bGY/wu2IXmaXDVlkpb34HmAbD5yYk2nFAaawSlqmwzHGj9i0idUj03hqm7yPppdYxU2o
+         TXaEArREQW/HlwJzLRw86xu6OUEQZwGCRC8J07gxwJ/0orEKZ4BEpk6/IrsDLGBSgAQy
+         em5Q==
+X-Gm-Message-State: AO0yUKWkpdQ2f+IZTNx2GFRkm8dpjmQizpgFKNxZi7NSwJjE2/jhtJYK
+        GjhG1vnC5lRsrTtHwLpY8g==
+X-Google-Smtp-Source: AK7set/rLkaFClc4znKPpav+nzsqeHO94LkJ+fiEk32awaq55tpq51tK/F2CMuYjeMLhY0UjRz2QOQ==
+X-Received: by 2002:a05:6870:460b:b0:177:81bb:1b30 with SMTP id z11-20020a056870460b00b0017781bb1b30mr1388328oao.31.1678542283119;
+        Sat, 11 Mar 2023 05:44:43 -0800 (PST)
+Received: from robh_at_kernel.org ([2605:ef80:80f8:ec2:d840:96d4:1bbf:55f])
+        by smtp.gmail.com with ESMTPSA id bd3-20020a056871b30300b001718e65a5d0sm1109969oac.57.2023.03.11.05.44.41
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 11 Mar 2023 05:44:42 -0800 (PST)
+Received: (nullmailer pid 30642 invoked by uid 1000);
+        Sat, 11 Mar 2023 13:44:40 -0000
+Date:   Sat, 11 Mar 2023 07:44:40 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Bernhard =?iso-8859-1?Q?Rosenkr=E4nzer?= <bero@baylibre.com>
+Cc:     linux-mediatek@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, linux-serial@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        angelogioacchino.delregno@collabora.com, matthias.bgg@gmail.com,
+        gregkh@linuxfoundation.org, krzysztof.kozlowski+dt@linaro.org,
+        maz@kernel.org, tglx@linutronix.de
+Subject: Re: [PATCH v11 1/3] dt-bindings: irq: mtk, sysirq: add support for
+ mt8365
+Message-ID: <20230311134440.GA28029-robh@kernel.org>
+References: <20230309213501.794764-1-bero@baylibre.com>
+ <20230309213501.794764-2-bero@baylibre.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <20230310144729.1545943-1-robh@kernel.org>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20230309213501.794764-2-bero@baylibre.com>
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
+On Thu, Mar 09, 2023 at 10:34:59PM +0100, Bernhard Rosenkränzer wrote:
+> Add binding documentation of mediatek,sysirq for mt8365 SoC.
+> 
+> Signed-off-by: Bernhard Rosenkränzer <bero@baylibre.com>
+> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+> Reviewed-by: Matthias Brugger <matthias.bgg@gmail.com>
+> ---
+>  .../devicetree/bindings/interrupt-controller/mediatek,sysirq.txt | 1 +
+>  1 file changed, 1 insertion(+)
 
-I love your patch! Yet something to improve:
-
-[auto build test ERROR on drm-misc/drm-misc-next]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
-
-url:    https://github.com/intel-lab-lkp/linux/commits/Rob-Herring/fbdev-Use-of_property_present-for-testing-DT-property-presence/20230310-225754
-base:   git://anongit.freedesktop.org/drm/drm-misc drm-misc-next
-patch link:    https://lore.kernel.org/r/20230310144729.1545943-1-robh%40kernel.org
-patch subject: [PATCH] fbdev: Use of_property_present() for testing DT property presence
-config: arm-allyesconfig (https://download.01.org/0day-ci/archive/20230311/202303112153.uPbFjEUI-lkp@intel.com/config)
-compiler: arm-linux-gnueabi-gcc (GCC) 12.1.0
-reproduce (this is a W=1 build):
-        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
-        chmod +x ~/bin/make.cross
-        # https://github.com/intel-lab-lkp/linux/commit/c013f4111f36b0b4327e7fbf46c0dd93399e9209
-        git remote add linux-review https://github.com/intel-lab-lkp/linux
-        git fetch --no-tags linux-review Rob-Herring/fbdev-Use-of_property_present-for-testing-DT-property-presence/20230310-225754
-        git checkout c013f4111f36b0b4327e7fbf46c0dd93399e9209
-        # save the config file
-        mkdir build_dir && cp config build_dir/.config
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.1.0 make.cross W=1 O=build_dir ARCH=arm olddefconfig
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.1.0 make.cross W=1 O=build_dir ARCH=arm SHELL=/bin/bash
-
-If you fix the issue, kindly add following tag where applicable
-| Reported-by: kernel test robot <lkp@intel.com>
-| Link: https://lore.kernel.org/oe-kbuild-all/202303112153.uPbFjEUI-lkp@intel.com/
-
-All errors (new ones prefixed by >>):
-
-   drivers/video/fbdev/amba-clcd.c: In function 'clcdfb_of_get_board':
->> drivers/video/fbdev/amba-clcd.c:857:13: error: implicit declaration of function 'of_property_present'; did you mean 'fwnode_property_present'? [-Werror=implicit-function-declaration]
-     857 |         if (of_property_present(node, "memory-region")) {
-         |             ^~~~~~~~~~~~~~~~~~~
-         |             fwnode_property_present
-   cc1: some warnings being treated as errors
-
-
-vim +857 drivers/video/fbdev/amba-clcd.c
-
-   843	
-   844	static struct clcd_board *clcdfb_of_get_board(struct amba_device *dev)
-   845	{
-   846		struct clcd_board *board = devm_kzalloc(&dev->dev, sizeof(*board),
-   847				GFP_KERNEL);
-   848		struct device_node *node = dev->dev.of_node;
-   849	
-   850		if (!board)
-   851			return NULL;
-   852	
-   853		board->name = of_node_full_name(node);
-   854		board->caps = CLCD_CAP_ALL;
-   855		board->check = clcdfb_check;
-   856		board->decode = clcdfb_decode;
- > 857		if (of_property_present(node, "memory-region")) {
-   858			board->setup = clcdfb_of_vram_setup;
-   859			board->mmap = clcdfb_of_vram_mmap;
-   860			board->remove = clcdfb_of_vram_remove;
-   861		} else {
-   862			board->setup = clcdfb_of_dma_setup;
-   863			board->mmap = clcdfb_of_dma_mmap;
-   864			board->remove = clcdfb_of_dma_remove;
-   865		}
-   866	
-   867		return board;
-   868	}
-   869	#else
-   870	static struct clcd_board *clcdfb_of_get_board(struct amba_device *dev)
-   871	{
-   872		return NULL;
-   873	}
-   874	#endif
-   875	
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests
+Applied, thanks.
