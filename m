@@ -2,58 +2,56 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 143C76B5D5C
-	for <lists+devicetree@lfdr.de>; Sat, 11 Mar 2023 16:27:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 084F26B5D56
+	for <lists+devicetree@lfdr.de>; Sat, 11 Mar 2023 16:27:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230202AbjCKP1y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 11 Mar 2023 10:27:54 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35244 "EHLO
+        id S229469AbjCKP1C (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 11 Mar 2023 10:27:02 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34072 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230447AbjCKP1w (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 11 Mar 2023 10:27:52 -0500
-Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 76BE7F1691
-        for <devicetree@vger.kernel.org>; Sat, 11 Mar 2023 07:27:46 -0800 (PST)
-Received: by mail-lf1-x133.google.com with SMTP id bp27so130111lfb.6
-        for <devicetree@vger.kernel.org>; Sat, 11 Mar 2023 07:27:46 -0800 (PST)
+        with ESMTP id S229928AbjCKP1B (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 11 Mar 2023 10:27:01 -0500
+Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EC866E6FC6
+        for <devicetree@vger.kernel.org>; Sat, 11 Mar 2023 07:27:00 -0800 (PST)
+Received: by mail-lf1-x12c.google.com with SMTP id n2so10387352lfb.12
+        for <devicetree@vger.kernel.org>; Sat, 11 Mar 2023 07:27:00 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112; t=1678548464;
-        h=cc:to:subject:date:from:in-reply-to:message-id:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=F7N4XcDM0EGKh1CMHgzJCQlyNXmM/HdEL/4Dosq+GKE=;
-        b=ez9gYYXI6gToJHcyZW1OrR7Mq5yq1+Lhi8p9hjYFugF0jPGZvsB7pVYjale5e0jtwR
-         bdQH1u6WGHgQJaM6lK+35Exp14GQeBgQbYiCVbMRFCar04gLDsI6LROaD61uTjJBexoE
-         2ziI6bvYasooptqcFbLCIqKvMA6cbw8Ycg0LlhhigE0F0mJBcm4YVDQgQ5lRIMWI1x+E
-         nP7f29YTZNEoQeChxOVjgOuxM3jzWHvT1uvGxsCtZcV219XHO3BIAj/XPoxno/qMzlLN
-         droDM+Zrxj7hyB3S/rgIUF+2DSoCwL/FCAHzm7TtihQCItuMo1mx2g79gtQZfGBENCOT
-         Migg==
+        d=gmail.com; s=20210112; t=1678548419;
+        h=cc:to:subject:date:from:message-id:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=mwysB/HxtkhvD1Lkzv8uYufq7BInyVs0XV9o2nsB4rY=;
+        b=BN+kXtBVyUXcWeex7cVEyxJDt6LuI1tWWPhaQGVzFbdC6HrWn6n6c4Xz/8IzbFMM1E
+         2SXjccHI1mHNhXF+bLmBs5OtOkJwQSsRNWsP5wktQncIdDyv2HLAKN3AQDA3eRGKaFCI
+         buEmCBXmJeWiFpROTyBJBoaxUhtXJQIeGCuQ+HTXNVVzNqeBdv8kNAphGQ1c72YvPbZd
+         BEt8YjvvVnvfKijfpiScnsaCS0xz25SOaX59aF/EDgaEtqUilrrhXeo0YyppqlnmGRue
+         X24g+XveLKjQYI5UCv1CWZmurjPH34U7UljghQXJ1k4PoAMLX/T/DMCBHQ+NtirF7v+Z
+         DQGQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678548464;
-        h=cc:to:subject:date:from:in-reply-to:message-id:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=F7N4XcDM0EGKh1CMHgzJCQlyNXmM/HdEL/4Dosq+GKE=;
-        b=Zz5B2LXNtb6NgJrbKxhD9XENK9CkPpnlkeNN2kszTnV26zYfftMgoJAu5SGp7ZPqtg
-         iPYQFk+KDfvtn/BiIA8eLPlnmaSEUN+2qAsZLP8zBcn9Zg+uq03eagvDXzxEGhP4oCaJ
-         gigIAWsO2t4dyK9YJ//9h/40SV7VfF54x+fZjY9QCBb/GThE5eMa2CouS7Vx5tYpm3Ct
-         xFCVCfvV0fqwGmENdSTrdCNz8UxUmw6H6XnaPvEPBm5NZ22uXZfeG8OHyvf/rXokzzVx
-         Eh5NmBzyD6SclFWOkZjcTNjrH8KzzWVq/3OyaldCPhrHGq9Cacp0u5EqCPkxSYVjDNCa
-         3VPw==
-X-Gm-Message-State: AO0yUKVXtwTzcZNi96PyLouTmzC+hE8TBv7ztFvdFDNaYBvqD//BExYY
-        dDsV4PiiOvwbZi5aTYG+RwgAMVf979g88JWcEKw=
-X-Google-Smtp-Source: AK7set8otAVxfJmuNwAzpTtlKdnbK3Hnr7bNFsK47azWp83kAI2pm3HaJK7EjJ9to1ECiPBRkOC3BA==
-X-Received: by 2002:ac2:59dc:0:b0:4d8:537a:753f with SMTP id x28-20020ac259dc000000b004d8537a753fmr9304004lfn.6.1678548464471;
-        Sat, 11 Mar 2023 07:27:44 -0800 (PST)
-Received: from 0002-dw_mmc-add-an-option-to-force-32-bit-accesses-to-64-.patch (46-138-144-249.dynamic.spd-mgts.ru. [46.138.144.249])
-        by smtp.gmail.com with ESMTPSA id t19-20020ac25493000000b004dc4bba8fa6sm347790lfk.164.2023.03.11.07.27.44
+        d=1e100.net; s=20210112; t=1678548419;
+        h=cc:to:subject:date:from:message-id:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=mwysB/HxtkhvD1Lkzv8uYufq7BInyVs0XV9o2nsB4rY=;
+        b=e4hE4pgXRCJBQKccejWbue91mOSFNxyHjAmNpDA3tNBZc8vu4f67E+ZcK4dHk3OUFK
+         iMlrF6QdQsXK4KY18+pQ8JbC96SNGMEiPMFeQvmL7VSutQXz4v/dXMpRM5X7ni6U5RE/
+         ngJJdKBc3h2K0q8szlee8FNUb2+mQbGSPSO0de36KObkDJb3AhdR1mQruxaSFXTWboYk
+         tE/HoXgKxcbxcHavdkzefya6I71nBcta+kHw8R8Ny376G+wO0rT7h8UUrkCBOtxTiJdX
+         Vj5w3nxmy2LnuOcltyWZRfQAzNv9MBoqkl0RxG44MpYHPl5UcAnowfId2lTcyovBrFS2
+         4/Cg==
+X-Gm-Message-State: AO0yUKW4tHBdXCkMzzgCttVRv+d+fLisoi3fJWT8muA7IXE1/ZbNbUul
+        H29JklvnHljfL9odTTf2KhKy2SK8f4j6xCMOBqQ=
+X-Google-Smtp-Source: AK7set8ui0xZNByofJWFVB8OnWDRY2MOGR9RQYkrSH9ncEMsF7UnGpmXBW+AAixL0Q4/q25FcbYLwQ==
+X-Received: by 2002:ac2:4905:0:b0:4e7:dd1e:e521 with SMTP id n5-20020ac24905000000b004e7dd1ee521mr8082033lfi.9.1678548418940;
+        Sat, 11 Mar 2023 07:26:58 -0800 (PST)
+Received: from 0000-cover-letter.patch (46-138-144-249.dynamic.spd-mgts.ru. [46.138.144.249])
+        by smtp.gmail.com with ESMTPSA id q2-20020ac25102000000b004d342e1332csm346541lfb.25.2023.03.11.07.26.58
         for <devicetree@vger.kernel.org>
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 11 Mar 2023 07:27:44 -0800 (PST)
-Message-Id: <1678548256.0817535-2-sleirsgoevy@gmail.com>
-In-Reply-To: <1678548256.0817535-0-sleirsgoevy@gmail.com>
+        Sat, 11 Mar 2023 07:26:58 -0800 (PST)
+Message-Id: <1678548256.0817535-0-sleirsgoevy@gmail.com>
 From:   Sergey Lisov <sleirsgoevy@gmail.com>
-Date:   Sat, 11 Mar 2023 18:22:52 +0300
-Subject: [PATCH 2/2] dw_mmc: add an option to force 32-bit accesses to 64-bit
- device registers
+Date:   Sat, 11 Mar 2023 18:23:00 +0300
+Subject: [PATCH 0/2] dw_mmc: fix DW MMC cores with 32-bit bus on 64-bit Linux systems
 To:     Ulf Hansson <ulf.hansson@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
@@ -70,174 +68,29 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
----
- drivers/mmc/host/dw_mmc.c | 125 +++++++++++++++++++++++++++++++++++++-
- drivers/mmc/host/dw_mmc.h |   2 +
- 2 files changed, 125 insertions(+), 2 deletions(-)
+DesignWare MMC cores have a configurable data bus width of either 16, 32, or 64
+bytes. It is possible, and some vendors actually do it, to ship a DW MMC core
+configured for 32-bit data bus within a 64-bit SoC. In this case the kernel
+will attempt 64-bit (readq) accesses to certain 64-bit MMIO registers, while
+the core will expect pairs of 32-bit accesses.
 
-diff --git a/drivers/mmc/host/dw_mmc.c b/drivers/mmc/host/dw_mmc.c
-index 581614196..eee430620 100644
---- a/drivers/mmc/host/dw_mmc.c
-+++ b/drivers/mmc/host/dw_mmc.c
-@@ -2575,6 +2575,119 @@ static void dw_mci_pull_data64(struct dw_mci *host, void *buf, int cnt)
- 	}
- }
- 
-+/*
-+  Some dw_mmc devices have 64-bit FIFOs, but expect them to be
-+  accessed using two 32-bit accesses. If such controller is used
-+  with a 64-bit kernel, this has to be done explicitly.
-+
-+  XXX: Is this issue specific to Exynos7?
-+*/
-+
-+static inline uint64_t mci_fifo_readq_32(void __iomem *addr)
-+{
-+	uint64_t ans;
-+	uint32_t proxy[2];
-+
-+	proxy[0] = mci_fifo_readl(addr);
-+	proxy[1] = mci_fifo_readl(addr+4);
-+	memcpy(&ans, proxy, 8);
-+	return ans;
-+}
-+
-+static inline void mci_fifo_writeq_32(void __iomem *addr, uint64_t value)
-+{
-+	uint32_t proxy[2];
-+
-+	memcpy(proxy, &value, 8);
-+	mci_fifo_writel(addr, proxy[0]);
-+	mci_fifo_writel(addr+4, proxy[1]);
-+}
-+
-+static void dw_mci_push_data64_32(struct dw_mci *host, void *buf, int cnt)
-+{
-+	struct mmc_data *data = host->data;
-+	int init_cnt = cnt;
-+
-+	/* try and push anything in the part_buf */
-+	if (unlikely(host->part_buf_count)) {
-+		int len = dw_mci_push_part_bytes(host, buf, cnt);
-+
-+		buf += len;
-+		cnt -= len;
-+
-+		if (host->part_buf_count == 8) {
-+			mci_fifo_writeq_32(host->fifo_reg, host->part_buf);
-+			host->part_buf_count = 0;
-+		}
-+	}
-+#ifndef CONFIG_HAVE_EFFICIENT_UNALIGNED_ACCESS
-+	if (unlikely((unsigned long)buf & 0x7)) {
-+		while (cnt >= 8) {
-+			u64 aligned_buf[16];
-+			int len = min(cnt & -8, (int)sizeof(aligned_buf));
-+			int items = len >> 3;
-+			int i;
-+			/* memcpy from input buffer into aligned buffer */
-+			memcpy(aligned_buf, buf, len);
-+			buf += len;
-+			cnt -= len;
-+			/* push data from aligned buffer into fifo */
-+			for (i = 0; i < items; ++i)
-+				mci_fifo_writeq_32(host->fifo_reg, aligned_buf[i]);
-+		}
-+	} else
-+#endif
-+	{
-+		u64 *pdata = buf;
-+
-+		for (; cnt >= 8; cnt -= 8)
-+			mci_fifo_writeq_32(host->fifo_reg, *pdata++);
-+		buf = pdata;
-+	}
-+	/* put anything remaining in the part_buf */
-+	if (cnt) {
-+		dw_mci_set_part_bytes(host, buf, cnt);
-+		/* Push data if we have reached the expected data length */
-+		if ((data->bytes_xfered + init_cnt) ==
-+		    (data->blksz * data->blocks))
-+			mci_fifo_writeq_32(host->fifo_reg, host->part_buf);
-+	}
-+}
-+
-+static void dw_mci_pull_data64_32(struct dw_mci *host, void *buf, int cnt)
-+{
-+#ifndef CONFIG_HAVE_EFFICIENT_UNALIGNED_ACCESS
-+	if (unlikely((unsigned long)buf & 0x7)) {
-+		while (cnt >= 8) {
-+			/* pull data from fifo into aligned buffer */
-+			u64 aligned_buf[16];
-+			int len = min(cnt & -8, (int)sizeof(aligned_buf));
-+			int items = len >> 3;
-+			int i;
-+
-+			for (i = 0; i < items; ++i)
-+				aligned_buf[i] = mci_fifo_readq_32(host->fifo_reg);
-+
-+			/* memcpy from aligned buffer into output buffer */
-+			memcpy(buf, aligned_buf, len);
-+			buf += len;
-+			cnt -= len;
-+		}
-+	} else
-+#endif
-+	{
-+		u64 *pdata = buf;
-+
-+		for (; cnt >= 8; cnt -= 8)
-+			*pdata++ = mci_fifo_readq_32(host->fifo_reg);
-+		buf = pdata;
-+	}
-+	if (cnt) {
-+		host->part_buf = mci_fifo_readq_32(host->fifo_reg);
-+		dw_mci_pull_final_bytes(host, buf, cnt);
-+	}
-+}
-+
- static void dw_mci_pull_data(struct dw_mci *host, void *buf, int cnt)
- {
- 	int len;
-@@ -3239,6 +3352,9 @@ static struct dw_mci_board *dw_mci_parse_dt(struct dw_mci *host)
- 	if (device_property_present(dev, "fifo-watermark-aligned"))
- 		host->wm_aligned = true;
- 
-+	if (device_property_present(dev, "fifo-access-32bit"))
-+		host->quirks |= DW_MMC_QUIRK_FIFO64_32;
-+
- 	if (!device_property_read_u32(dev, "clock-frequency", &clock_frequency))
- 		pdata->bus_hz = clock_frequency;
- 
-@@ -3367,8 +3483,13 @@ int dw_mci_probe(struct dw_mci *host)
- 		width = 16;
- 		host->data_shift = 1;
- 	} else if (i == 2) {
--		host->push_data = dw_mci_push_data64;
--		host->pull_data = dw_mci_pull_data64;
-+		if ((host->quirks & DW_MMC_QUIRK_FIFO64_32)) {
-+			host->push_data = dw_mci_push_data64_32;
-+			host->pull_data = dw_mci_pull_data64_32;
-+		} else {
-+			host->push_data = dw_mci_push_data64;
-+			host->pull_data = dw_mci_pull_data64;
-+		}
- 		width = 64;
- 		host->data_shift = 3;
- 	} else {
-diff --git a/drivers/mmc/host/dw_mmc.h b/drivers/mmc/host/dw_mmc.h
-index 4ed81f94f..edd642b92 100644
---- a/drivers/mmc/host/dw_mmc.h
-+++ b/drivers/mmc/host/dw_mmc.h
-@@ -280,6 +280,8 @@ struct dw_mci_board {
- 
- /* Support for longer data read timeout */
- #define DW_MMC_QUIRK_EXTENDED_TMOUT            BIT(0)
-+/* Force 32-bit access to the FIFO */
-+#define DW_MMC_QUIRK_FIFO64_32                 BIT(1)
- 
- #define DW_MMC_240A		0x240a
- #define DW_MMC_280A		0x280a
+It seems that currently the only register for which the kernel performs 64-bit
+accesses is the FIFO. The symptom is that the DW MMC core never receives a read
+on the second half of the register, does not register the datum as being read,
+and thus not advancing its internal FIFO pointer, breaking further reads. It
+also seems that this FIFO is only used for small (less than 16 bytes)
+transfers, which probably means that only some SDIO cards are affected.
+
+Sergey Lisov (2):
+  devicetree: synopsys-dw-mshc-common: add "fifo-access-32bit" property
+  dw_mmc: add an option to force 32-bit accesses to 64-bit device
+    registers
+
+ .../bindings/mmc/synopsys-dw-mshc-common.yaml |   6 +
+ drivers/mmc/host/dw_mmc.c                     | 125 +++++++++++++++++-
+ drivers/mmc/host/dw_mmc.h                     |   2 +
+ 3 files changed, 131 insertions(+), 2 deletions(-)
+
 -- 
 2.38.3
 
