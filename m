@@ -2,97 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2FDD46B5D30
-	for <lists+devicetree@lfdr.de>; Sat, 11 Mar 2023 16:09:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B48356B5D3F
+	for <lists+devicetree@lfdr.de>; Sat, 11 Mar 2023 16:15:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229469AbjCKPJH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 11 Mar 2023 10:09:07 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37208 "EHLO
+        id S230251AbjCKPPQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 11 Mar 2023 10:15:16 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46108 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230135AbjCKPJF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 11 Mar 2023 10:09:05 -0500
-Received: from mail-yb1-xb30.google.com (mail-yb1-xb30.google.com [IPv6:2607:f8b0:4864:20::b30])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5C6AA5F53E
-        for <devicetree@vger.kernel.org>; Sat, 11 Mar 2023 07:09:04 -0800 (PST)
-Received: by mail-yb1-xb30.google.com with SMTP id d84so460395ybb.4
-        for <devicetree@vger.kernel.org>; Sat, 11 Mar 2023 07:09:04 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112; t=1678547343;
-        h=to:subject:message-id:date:from:reply-to:mime-version:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Qj8nrG0sL8loOIOhZdmt6f4M2skgayD9pumOqV207G8=;
-        b=EDUvtVfiFn3UQfZI4StFyLdiNBN2v77Gt9N9eLcpJQGT/sPhRA1XlAXRTOAu9t5w9k
-         w3NRj8SEzMHHxHRDqi69d0AGT5lwwsTmS7GP3h1peyXmCD5IZaIh4ZSctQKmDsDotEb1
-         6eQWAnfJD5qhndc8q/n1rzvL/RyDBbvd18Rlz4/DKb8I5u5qn7ljnjfB+8b44ZcFy4EE
-         +0XtD3ahomlhK9smXEnaMqYB5OUOq4Opu2zx8nfwXxbO10U8F2rt5XNEFjbphLDsl7p2
-         2TGjk5fm+OeBBfo1siyQop59mJOdD6VRtvdS9pciFXBg7QmKROLqAz+ypDRhMd3C6Wqf
-         V20A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678547343;
-        h=to:subject:message-id:date:from:reply-to:mime-version
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Qj8nrG0sL8loOIOhZdmt6f4M2skgayD9pumOqV207G8=;
-        b=yJ4KdbAanaem0E+3LuIP5VsxhGbAVvQLaPStDL58UhYtAofr3qhy9NuiWijSFsKXq1
-         wh4PdBMQoECdMK9diIKc/WOyLTBsTBrp5G+N/SATfjjENpAxKawZUbjV1Tc7J3DZIUm2
-         bmcjQlsuCUzCFD/a/3XAIivJDBOof6WMQnRfiyNvbyGWAQtuVQfTnJ7LIG/BcK3lCBvo
-         oamCGrPhIXtzwe/7GFCXygZZvtYnsupk1QVOjAqOGdKGp/XLiXdgbKWTSDhbHOA0KjKv
-         fyS14HpgM//Iu2Q3pIzaSoDxWmAIAY5EttrYmOuJMQmDGTn0e9Y3Yx35A3cMFEswugpC
-         bNQw==
-X-Gm-Message-State: AO0yUKVGJUoFmQ2PGvNmvYVzUVHMRmjPiXhfuMXlOK5/VshlzJn20Pqe
-        XVgbULFejGzZqOZVhq4qpO12DzDItpuZlQBAHvk=
-X-Google-Smtp-Source: AK7set+p+o1t5rRmgvzKbAZ148gFU4AMJRgg+xG6pTDWQ26moK/v3ppxdVHtRCz1m7sfsLUkVa76Ie+YEtJLN45jIFI=
-X-Received: by 2002:a05:6902:d2:b0:a8f:a6cc:9657 with SMTP id
- i18-20020a05690200d200b00a8fa6cc9657mr14303163ybs.7.1678547343397; Sat, 11
- Mar 2023 07:09:03 -0800 (PST)
+        with ESMTP id S229601AbjCKPPQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 11 Mar 2023 10:15:16 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0ADBA29411;
+        Sat, 11 Mar 2023 07:15:15 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id A3DE360C7C;
+        Sat, 11 Mar 2023 15:15:14 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 11B67C4339C;
+        Sat, 11 Mar 2023 15:15:14 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1678547714;
+        bh=WRaPMgPwoMyVfWOrMK/gri/pJ94fL6M3Kw9x+oiTxO0=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=gZhJB2F9iy6FmxvX8SyqZbZ4M5nomLJ55sweLYLeFmKNlVXuX4g39QyJWygTVktxi
+         9OxR1w1ydSBoi5qTew5drMKsPV6cT2lCPDxk5msXp29XkKDKx8cBQxkMzOoXoR+zeo
+         PPK7LDTAizFwRw/rTsNttnxVIEHxkpEQhNO7v+8QT7s8zDtOdPf96ixtiMBhUvILP0
+         r63pglxm6Y7OBB+OX7bDX8oFg22wJ2/hI3kJYkb6p39hlC3FvVkYAoyG2+rgouCL73
+         nc7DqlBnuPv36ND4fYSQLCCVuqiyg/7L2dYz/BiczwCi+pyY0hScAXtq+IOhhFQTdi
+         9yYijtH2oeWbg==
+Received: by mail-ua1-f52.google.com with SMTP id d12so5480102uak.10;
+        Sat, 11 Mar 2023 07:15:14 -0800 (PST)
+X-Gm-Message-State: AO0yUKWO48Qey0ZNQgrmGYp3ybuv4/Ds8WTbH09a9isFdmKvKqOOnjK6
+        00FILDrfA8pYqsuwlYj1Eiq4cxYW4XO6gr+NAw==
+X-Google-Smtp-Source: AK7set8bzSrdqy8+6YvY1DEekvcd7XPtfCqoKUDgoIQxF8sLBXDP8W8tOeQonNhJP3Pia6+DI8c59rOwGnTGo0UkVGw=
+X-Received: by 2002:a1f:6d42:0:b0:401:b9fd:7053 with SMTP id
+ i63-20020a1f6d42000000b00401b9fd7053mr18828740vkc.2.1678547713018; Sat, 11
+ Mar 2023 07:15:13 -0800 (PST)
 MIME-Version: 1.0
-Received: by 2002:a05:7010:170e:b0:33a:3cd3:1151 with HTTP; Sat, 11 Mar 2023
- 07:09:02 -0800 (PST)
-Reply-To: wormer.amos@aol.com
-From:   Wormer Amos <fatimamuhammad5689@gmail.com>
-Date:   Sat, 11 Mar 2023 16:09:02 +0100
-Message-ID: <CA+QAR6W93S0MxEDGKFZkUE3=+=-iVDqY_M7FMiGcSmdCeZ5kOg@mail.gmail.com>
-Subject: VERY IMPORTANT PLEASE
-To:     undisclosed-recipients:;
+References: <20230310144729.1545943-1-robh@kernel.org> <202303111229.3Uuc8JQV-lkp@intel.com>
+In-Reply-To: <202303111229.3Uuc8JQV-lkp@intel.com>
+From:   Rob Herring <robh@kernel.org>
+Date:   Sat, 11 Mar 2023 09:15:01 -0600
+X-Gmail-Original-Message-ID: <CAL_Jsq+kE3v+=WptWet=JHp2-FCOFah_YzWHFbbfSH-Wh_0o5A@mail.gmail.com>
+Message-ID: <CAL_Jsq+kE3v+=WptWet=JHp2-FCOFah_YzWHFbbfSH-Wh_0o5A@mail.gmail.com>
+Subject: Re: [PATCH] fbdev: Use of_property_present() for testing DT property presence
+To:     kernel test robot <lkp@intel.com>
+Cc:     Russell King <linux@armlinux.org.uk>, Helge Deller <deller@gmx.de>,
+        llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
+        devicetree@vger.kernel.org, linux-fbdev@vger.kernel.org,
+        linux-omap@vger.kernel.org, linux-kernel@vger.kernel.org,
+        dri-devel@lists.freedesktop.org
 Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: Yes, score=5.2 required=5.0 tests=BAYES_50,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,FREEMAIL_REPLYTO,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,
-        SPF_PASS,SUBJ_ALL_CAPS,UNDISC_FREEM autolearn=no autolearn_force=no
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
         version=3.4.6
-X-Spam-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-        *      https://www.dnswl.org/, no trust
-        *      [2607:f8b0:4864:20:0:0:0:b30 listed in]
-        [list.dnswl.org]
-        *  0.8 BAYES_50 BODY: Bayes spam probability is 40 to 60%
-        *      [score: 0.5361]
-        * -0.0 SPF_PASS SPF: sender matches SPF record
-        *  0.2 FREEMAIL_ENVFROM_END_DIGIT Envelope-from freemail username ends
-        *       in digit
-        *      [fatimamuhammad5689[at]gmail.com]
-        *  0.0 SPF_HELO_NONE SPF: HELO does not publish an SPF Record
-        *  0.5 SUBJ_ALL_CAPS Subject is all capitals
-        *  0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-        *      provider
-        *      [fatimamuhammad5689[at]gmail.com]
-        *  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-        *       valid
-        * -0.1 DKIM_VALID_EF Message has a valid DKIM or DK signature from
-        *      envelope-from domain
-        * -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-        *      author's domain
-        * -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-        *  2.9 UNDISC_FREEM Undisclosed recipients + freemail reply-to
-        *  1.0 FREEMAIL_REPLYTO Reply-To/From or Reply-To/body contain
-        *      different freemails
-X-Spam-Level: *****
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Please are you capable for investment in your country. i
-need serious investment project with good background, kindly connect
-me to discuss details immediately. i will appreciate you to contact me
-on this email address Thanks and awaiting your quick response yours
-Amos
+On Fri, Mar 10, 2023 at 10:41=E2=80=AFPM kernel test robot <lkp@intel.com> =
+wrote:
+>
+> Hi Rob,
+>
+> I love your patch! Yet something to improve:
+>
+> [auto build test ERROR on drm-misc/drm-misc-next]
+> [If your patch is applied to the wrong git tree, kindly drop us a note.
+> And when submitting patch, we suggest to use '--base' as documented in
+> https://git-scm.com/docs/git-format-patch#_base_tree_information]
+>
+> url:    https://github.com/intel-lab-lkp/linux/commits/Rob-Herring/fbdev-=
+Use-of_property_present-for-testing-DT-property-presence/20230310-225754
+> base:   git://anongit.freedesktop.org/drm/drm-misc drm-misc-next
+> patch link:    https://lore.kernel.org/r/20230310144729.1545943-1-robh%40=
+kernel.org
+> patch subject: [PATCH] fbdev: Use of_property_present() for testing DT pr=
+operty presence
+> config: arm64-randconfig-r032-20230310 (https://download.01.org/0day-ci/a=
+rchive/20230311/202303111229.3Uuc8JQV-lkp@intel.com/config)
+> compiler: clang version 17.0.0 (https://github.com/llvm/llvm-project 6740=
+9911353323ca5edf2049ef0df54132fa1ca7)
+> reproduce (this is a W=3D1 build):
+>         wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbi=
+n/make.cross -O ~/bin/make.cross
+>         chmod +x ~/bin/make.cross
+>         # install arm64 cross compiling tool for clang build
+>         # apt-get install binutils-aarch64-linux-gnu
+>         # https://github.com/intel-lab-lkp/linux/commit/c013f4111f36b0b43=
+27e7fbf46c0dd93399e9209
+>         git remote add linux-review https://github.com/intel-lab-lkp/linu=
+x
+>         git fetch --no-tags linux-review Rob-Herring/fbdev-Use-of_propert=
+y_present-for-testing-DT-property-presence/20230310-225754
+>         git checkout c013f4111f36b0b4327e7fbf46c0dd93399e9209
+
+Looks like this patch was applied to drm-next which was/is based on
+v6.2-rc6. This patch is dependent on a change in v6.3-rc1.
+
+Rob
