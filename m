@@ -2,59 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9CF986B5F71
-	for <lists+devicetree@lfdr.de>; Sat, 11 Mar 2023 18:57:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 239A26B5F8E
+	for <lists+devicetree@lfdr.de>; Sat, 11 Mar 2023 19:08:44 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229846AbjCKR5Y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 11 Mar 2023 12:57:24 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49982 "EHLO
+        id S230344AbjCKSIl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 11 Mar 2023 13:08:41 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43056 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229819AbjCKR5X (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 11 Mar 2023 12:57:23 -0500
-Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com [IPv6:2a00:1450:4864:20::534])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D77D38568F
-        for <devicetree@vger.kernel.org>; Sat, 11 Mar 2023 09:57:20 -0800 (PST)
-Received: by mail-ed1-x534.google.com with SMTP id r15so5976575edq.11
-        for <devicetree@vger.kernel.org>; Sat, 11 Mar 2023 09:57:20 -0800 (PST)
+        with ESMTP id S229550AbjCKSIj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 11 Mar 2023 13:08:39 -0500
+Received: from mail-ed1-x530.google.com (mail-ed1-x530.google.com [IPv6:2a00:1450:4864:20::530])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4FEDB2DE53
+        for <devicetree@vger.kernel.org>; Sat, 11 Mar 2023 10:08:38 -0800 (PST)
+Received: by mail-ed1-x530.google.com with SMTP id ek18so2101059edb.6
+        for <devicetree@vger.kernel.org>; Sat, 11 Mar 2023 10:08:38 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1678557439;
+        d=linaro.org; s=google; t=1678558117;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=6ZzQFADWQjYXc6+XH0LPEMabA+seTwz6QtTtf51Ujcc=;
-        b=VIcpHFImgRhlLPDoAAMSYk1JItJrJb2/5qlI512iy4Ll+JGtg0KN3SokgrHV+HHxH1
-         cIgv29IiPHvP1U8Lya7ABerW7uoYjqoqWKU8ddgDPt4KFcOH9+xmnPn97Uq+IjHt5OqD
-         r5X8FEvzzXmS2QOwIJ4i84D+kftk75y+C7w5F/MxD2qoV3sTLXS+TsulF6mBgM8IbTFk
-         78zgOBEuoFmrPrmwZa3cF47If6Kl4NBC3Zoy7O8W/fYf2G5a6LIKEzQJHz46l5HJb/1M
-         x0xl9O6R6qiYTDQpycOY08QrL11HgQBM6Qe8qoT4mkSKNIO4mS4Qg7UiJs+jaElbBj2s
-         c0Nw==
+        bh=px7FGPYfIZ94nlU1UqelVqsR2o/IJ1tQkvyb1RAfYos=;
+        b=JATAngTG2WAcY9tmjNNxLSb/WOmJ0TMUJtpLjWrgt9RK8LedCE5gxHAYo47KJq0yYp
+         Fxcn9cXJC0RUENvptu3z+Z1QSYyNWGUJq9rXYv8PBRliua2yS7yEc6B9dyYP/22gAYAX
+         86JWAzGxHM+VMCLqTULniJr6O15i0lnXc3qMz/mieTz3QEENmpvdArCPrCKCPHUDzEfY
+         DihVpUBQt/eTCe4BGrs79dtAT6HhK+tYhya4TQLzFcS3m42hi5zPKOWC88rRtQo+hRwL
+         3KiIV13GuJfuOhg9oFR8MtguMOzldRYL5lZ8TwMoU2+otOU/+XuE1JtA3gvQn9Wtx8GM
+         ACZg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678557439;
+        d=1e100.net; s=20210112; t=1678558117;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=6ZzQFADWQjYXc6+XH0LPEMabA+seTwz6QtTtf51Ujcc=;
-        b=IKb1hyeI7wa6UGw2HcUZeaQcOUCut/fyWx5dsfBvHLMjyIBx0zqOnwNMz9omBiUyP9
-         0nOgS7i1JO2LadZR3Y1Y4jytS+QTRU/Bde+Kq9VtVN5Wy9oNAs8nG5uhGo8X26jRkkG3
-         OiaMn5Mc1k0b8E0OuwhRLLIVO/YLPOPW84FrnORVM32coQxAMUMynt5lVRe+Lcorvbqd
-         +TXOa5lceYQ+P/z3y9RmyXEqARM789lM+VTUhdlnkrSWkQOg0A12Un25QawZRRFCN+P+
-         00N89khPI0+iCMFMR2fzPiwBSuw71mZzK9zy5KsG/SL6zO6Sj6e9JP+ElqN9B5BCfPKx
-         YH3A==
-X-Gm-Message-State: AO0yUKVLdNRtJMKpGZxgbVooTuQnSTvghbVdR43vIAxw5Sjp3KP5SRBI
-        A3E2jv7J1zLjPwhi1ge4056hSQ==
-X-Google-Smtp-Source: AK7set+aVOQ4IW3YvNK0hGqeruski1GhpuLa88OUPQx0N+Cxu+PYrmbclVVWvTknUtwz4HOeXe+RIg==
-X-Received: by 2002:a17:906:66cd:b0:8e8:602f:847a with SMTP id k13-20020a17090666cd00b008e8602f847amr27819882ejp.24.1678557439406;
-        Sat, 11 Mar 2023 09:57:19 -0800 (PST)
+        bh=px7FGPYfIZ94nlU1UqelVqsR2o/IJ1tQkvyb1RAfYos=;
+        b=yiXYr6ETC6umFB9dq4eXnfPDk1sct8TraxNz3dKDyx8Q/8d7cHIa2A9xp4knPHHni0
+         zrvUowMgOMI8Em/RkAkE1EVBt7bXiKvjidPlj2hVOaAQ6WjXxQAlXO1t2SQnyMChlB+a
+         DpGZr6hVemDUIEhjFnVY123oqWrR6FnLCvi9d5p1VjD91kkKlanXceJYFSIqx4o0U6fR
+         aSS8RM2Sz6ConN4EZTewAEMoVcT5wRpesXsfZPcVSs/nPbonq426Jy7GvV57i4DMO6X0
+         32KNsoozHsbwZP9AXs6/eLfla1h7nP/+gTfqZMGgsIR1evd5bdIo+QbTCSdWTkSX+09B
+         bobg==
+X-Gm-Message-State: AO0yUKWzq+b+NKXX4vDbJEHqTE2F/YszObV/XSaLlbtWQ6hl3FUXAnXU
+        /juWP1Peg4Y8ZnBYHwX7CqnU5w==
+X-Google-Smtp-Source: AK7set9OXOzqJIG07Dth/sljXDOnOfsuxMi1VLwWpjHdi47/1I5/6sZWv2qa3oiqUaRnZrduNtl/Dw==
+X-Received: by 2002:a17:906:d9c8:b0:8e1:cc38:6ab0 with SMTP id qk8-20020a170906d9c800b008e1cc386ab0mr25990433ejb.16.1678558116822;
+        Sat, 11 Mar 2023 10:08:36 -0800 (PST)
 Received: from ?IPV6:2a02:810d:15c0:828:6927:e94d:fc63:9d6e? ([2a02:810d:15c0:828:6927:e94d:fc63:9d6e])
-        by smtp.gmail.com with ESMTPSA id ji16-20020a170907981000b008dea022f5e6sm1317076ejc.24.2023.03.11.09.57.18
+        by smtp.gmail.com with ESMTPSA id s13-20020a170906354d00b008caaae1f1e1sm1312972eja.110.2023.03.11.10.08.36
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 11 Mar 2023 09:57:19 -0800 (PST)
-Message-ID: <4de11c0b-8e09-c3ef-4180-585662386859@linaro.org>
-Date:   Sat, 11 Mar 2023 18:57:18 +0100
+        Sat, 11 Mar 2023 10:08:36 -0800 (PST)
+Message-ID: <f14e1e9d-5265-355f-943b-3b0ed96dca46@linaro.org>
+Date:   Sat, 11 Mar 2023 19:08:35 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.8.0
-Subject: Re: broken subject?
+Subject: Re: [PATCH 1/2] devicetree: synopsys-dw-mshc-common: add
+ "fifo-access-32bit" property
 Content-Language: en-US
 To:     Sergey Lisov <sleirsgoevy@gmail.com>,
         Ulf Hansson <ulf.hansson@linaro.org>,
@@ -63,64 +64,39 @@ To:     Sergey Lisov <sleirsgoevy@gmail.com>,
         Jaehoon Chung <jh80.chung@samsung.com>
 Cc:     linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
-References: <c13993bc-9d12-f20e-de27-fa0b8a58ed33-1-sleirsgoevy@gmail.com>
+References: <640cc323.050a0220.8e83b.0e60@mx.google.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <c13993bc-9d12-f20e-de27-fa0b8a58ed33-1-sleirsgoevy@gmail.com>
+In-Reply-To: <640cc323.050a0220.8e83b.0e60@mx.google.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
-        autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 11/03/2023 18:40, Sergey Lisov wrote:
->>> ---
->>>  .../devicetree/bindings/mmc/synopsys-dw-mshc-common.yaml    | 6 ++++++
->>>  1 file changed, 6 insertions(+)
->>>
-
-Why did you remove the subject? Please keep the mailing process matching
-mailing lists. It messes with mailboxes, filters and reading process.
-
->>> diff --git a/Documentation/devicetree/bindings/mmc/synopsys-dw-mshc-common.yaml b/Documentation/devicetree/bindings/mmc/synopsys-dw-mshc-common.yaml
->>> index 8dfad89c7..2bc5ac528 100644
->>> --- a/Documentation/devicetree/bindings/mmc/synopsys-dw-mshc-common.yaml
->>> +++ b/Documentation/devicetree/bindings/mmc/synopsys-dw-mshc-common.yaml
->>> @@ -57,6 +57,12 @@ properties:
->>>        force fifo watermark setting accordingly.
->>>      $ref: /schemas/types.yaml#/definitions/flag
->>>  
->>> +  fifo-access-32bit:
->>
->> Missing type boolean.
+On 11/03/2023 18:57, Sergey Lisov wrote:
+>> Why did you remove the subject? Please keep the mailing process matching
+>> mailing lists. It messes with mailboxes, filters and reading process.
 > 
-> Thanks, will add the same $ref as for the entry above.
+> Sorry about this, I just wanted to get rid of those X-Something headers and
+> accidentially deleted this one.
 > 
->>> +    description:
->>> +      Specifies that this device requires accesses to its 64-bit registers
->>> +      to be done as pairs of 32-bit accesses, even on architectures where
->>> +      readq is available.
+>> Yeah, Rob acked it so I will let him to judge this. To me it looks like
+>> unnecessary fragmentation - this looks like compatible specific, not
+>> board. Anyway you need to resend to fix all the mailing mess.
 >>
->> And why the device would require this? If it has 64-bit registers in the
->> first place, they can be accessed in 64-bit. Otherwise these are not
->> 64-bit registers, but just lower/upper 32-bit, right?
->>
->> Also, why this cannot be implied from compatible? Why different boards
->> with same SoC should have different FIFO access?
+>> Best regards,
+>> Krzysztof
 > 
-> It probably can be implied, but I am not exactly sure on which boards it
-> affects, so I decided to go for a new devicetree option. Anyway, the same
-> argument applies to the "data-addr" property, which is already in the
-> spec, so I supposed that adding such knobs is fine.
+> Should I resend the whole patchset from scratch, as if nothing happened?
 
-Yeah, Rob acked it so I will let him to judge this. To me it looks like
-unnecessary fragmentation - this looks like compatible specific, not
-board. Anyway you need to resend to fix all the mailing mess.
+No, sorry, I was not specific. You need anyway v2 with all the fixes I
+pointed already. Lack of commit msg is a no-go.
 
 Best regards,
 Krzysztof
