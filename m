@@ -2,181 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 370C86B5C6D
-	for <lists+devicetree@lfdr.de>; Sat, 11 Mar 2023 14:51:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8A2056B5C74
+	for <lists+devicetree@lfdr.de>; Sat, 11 Mar 2023 14:52:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229806AbjCKNvL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 11 Mar 2023 08:51:11 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50736 "EHLO
+        id S229809AbjCKNwj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 11 Mar 2023 08:52:39 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52446 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229810AbjCKNvJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 11 Mar 2023 08:51:09 -0500
-Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 95037119403
-        for <devicetree@vger.kernel.org>; Sat, 11 Mar 2023 05:51:07 -0800 (PST)
-Received: by mail-lf1-x134.google.com with SMTP id r27so10201585lfe.10
-        for <devicetree@vger.kernel.org>; Sat, 11 Mar 2023 05:51:07 -0800 (PST)
+        with ESMTP id S229956AbjCKNwj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 11 Mar 2023 08:52:39 -0500
+Received: from ewsoutbound.kpnmail.nl (ewsoutbound.kpnmail.nl [195.121.94.184])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A1EE8121430
+        for <devicetree@vger.kernel.org>; Sat, 11 Mar 2023 05:52:36 -0800 (PST)
+X-KPN-MessageId: 07fbba2c-c014-11ed-91cc-005056994fde
+Received: from smtp.kpnmail.nl (unknown [10.31.155.8])
+        by ewsoutbound.so.kpn.org (Halon) with ESMTPS
+        id 07fbba2c-c014-11ed-91cc-005056994fde;
+        Sat, 11 Mar 2023 14:52:58 +0100 (CET)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1678542666;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=GIwch7Miap3ZpzUTENBikKrtQkwLURN+uydaKxcQtAE=;
-        b=Ck/A/9TXTOrkq4anf9TQfZ2MhVvXOHvmRcfq6QhsRwKmeiE4QqJhb9hjlPaBDUPjKr
-         1LqIQkeLRR36GbkjoMF8PomEA3sji7r8dRTfLt6XH7F0w9DsSM+UwOo6VxaThq5wqgpt
-         3Ala6jXdvRIC6sHkpYJ6lWXhOJhwQoxzLW1Z1yr/AQfiTbpudj69C5sTrEB5Lqjnc3ao
-         87jBxS4vHU8SrjnTmh/SfsnKBMbIwOWNwLFe/clhKlFb4xUzkyF73ra/LKMM1mS50TaP
-         9YB2uBd3wK7OZQZb3kvku8vVHjytgMV0Leq1nAPip2ZpsAxebvLDHpe105B4qCDm38Z7
-         AgMQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678542666;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=GIwch7Miap3ZpzUTENBikKrtQkwLURN+uydaKxcQtAE=;
-        b=aXop6EJ5plmlIPtNCr2enq1Xni7z5Z3nG730dVVhaKSBJxHdHlbGKFF3aeRkO8zTw1
-         MVgJhwKmOqcgPPE34pXRrXNEH7wPnh+xQe9QYwxNnBy1puSuHnCBoxdOYPYftd97YpxM
-         h90+AridZdYrgVIBqHMt7Vnv6/7qu1BfGpYCOy8iJ5oM9diGgU52klV++Cpwt/mNsYZw
-         ujD+EAu+tycXiBLCL2qaujO180dTL0zG5tEGetL5h9F+42ur8QNaUUNRDGGYNbVRqPqm
-         /dMvPtBqFjXZuDd+qMEjIHPZK0UBQy0dWHFh5FKhMEKaEE28Mlob8rBMMWsOAekZJYyC
-         kUEw==
-X-Gm-Message-State: AO0yUKWahtQ2JAEVvs6FF7KRk7aY58d0FdZlZ6cXYMqoolB5KU2RegAk
-        9id4pjD2VnlFclpwntcxjkH/Gg==
-X-Google-Smtp-Source: AK7set9gHSZZob01NbbxcHnRnuK4XtOwbzm9Re1k9uemBs2OIo+U4lCb8DW/iVl2p87cnISK9jDTqQ==
-X-Received: by 2002:a19:a403:0:b0:4dd:98bd:411a with SMTP id q3-20020a19a403000000b004dd98bd411amr8197662lfc.51.1678542665803;
-        Sat, 11 Mar 2023 05:51:05 -0800 (PST)
-Received: from ?IPV6:2001:14ba:a085:4d00::8a5? (dzccz6yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a085:4d00::8a5])
-        by smtp.gmail.com with ESMTPSA id b24-20020ac24118000000b004db250355a2sm326241lfi.103.2023.03.11.05.51.05
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 11 Mar 2023 05:51:05 -0800 (PST)
-Message-ID: <0992b315-2e52-46f4-01c4-b8e458cfe7f6@linaro.org>
-Date:   Sat, 11 Mar 2023 15:51:04 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-Subject: Re: [PATCH v2 4/6] ARM: dts: qcom: sdx65: Add support for PCIe EP
-Content-Language: en-GB
-To:     Rohit Agarwal <quic_rohiagar@quicinc.com>, agross@kernel.org,
-        andersson@kernel.org, konrad.dybcio@linaro.org, lee@kernel.org,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        mani@kernel.org, lpieralisi@kernel.org, kw@linux.com,
-        bhelgaas@google.com, manivannan.sadhasivam@linaro.org
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org
-References: <1678277993-18836-1-git-send-email-quic_rohiagar@quicinc.com>
- <1678277993-18836-5-git-send-email-quic_rohiagar@quicinc.com>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-In-Reply-To: <1678277993-18836-5-git-send-email-quic_rohiagar@quicinc.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
-        autolearn_force=no version=3.4.6
+        d=xs4all.nl; s=xs4all01;
+        h=subject:to:from:message-id:date;
+        bh=ALu8+PmipZgEw89/BHca117Pe0D8mE1E2egBqYsyknM=;
+        b=sjrN4u6wyciZj9Su2klp6z3W5MCqUI4mPWTKfBbjNphlQpEhkPS4wh3rIecb3c9eaUJOuWTNt1hov
+         H6aOeQnqLPd+q4DWPnyS3wPBhj9sLhJheCwDHM7/i8vxVeFWNVE6xEa+cl0YinRNOHZiH6oUOAqsP1
+         Hg0l7NZdPp8ea5f/8s9lBOa4tk4+DEbmNvAtT4uVOZskqqgXIfdUmNDYgoA9Z0efxAVR1/Zqzgogsz
+         g9ahkxaNZmgg/59ZUTxRRG5crdRNv4pztZGVwXqjc4HZ2TljAjTu7HWhWrmZJOv349Lhf/8DRBElL1
+         QyC0R1je529u6l/iY0dII4zJt815itg==
+X-KPN-MID: 33|VMtRr8A7spxYaBX6YlEci9XrlWDUmmIYGebVH5TkcyTisB5tkpzSAZc1l3g947k
+ GmoE2OYFIfwA6A5NxaH5tNnosy8GNrgIb+RWPh4xV4/U=
+X-KPN-VerifiedSender: Yes
+X-CMASSUN: 33|kZZ8dqbp5Z6By5V/8lQMaupPovkbLuGHIJzRTJ7QFsjhtZ3+Snv1SYpmNLmvJAg
+ kXcXwGJ6a9eCqgA7x4IvYVw==
+X-Originating-IP: 80.61.163.207
+Received: from bloch.sibelius.xs4all.nl (80-61-163-207.fixed.kpn.net [80.61.163.207])
+        by smtp.xs4all.nl (Halon) with ESMTPSA
+        id f8a10bc9-c013-11ed-9d31-00505699d6e5;
+        Sat, 11 Mar 2023 14:52:33 +0100 (CET)
+Date:   Sat, 11 Mar 2023 14:52:32 +0100
+Message-Id: <874jqrcs4f.fsf@bloch.sibelius.xs4all.nl>
+From:   Mark Kettenis <mark.kettenis@xs4all.nl>
+To:     Sven Peter <sven@svenpeter.dev>
+Cc:     marcan@marcan.st, sven@svenpeter.dev, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, alyssa@rosenzweig.io,
+        joro@8bytes.org, will@kernel.org, robin.murphy@arm.com,
+        linux-arm-kernel@lists.infradead.org, asahi@lists.linux.dev,
+        iommu@lists.linux.dev, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, robh@kernel.org
+In-Reply-To: <20230311133856.63840-2-sven@svenpeter.dev> (message from Sven
+        Peter on Sat, 11 Mar 2023 14:38:54 +0100)
+Subject: Re: [PATCH v3 1/3] dt-bindings: iommu: dart: Add t8103-usb4-dart compatible
+References: <20230311133856.63840-1-sven@svenpeter.dev> <20230311133856.63840-2-sven@svenpeter.dev>
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 08/03/2023 14:19, Rohit Agarwal wrote:
-> Add support for PCIe Endpoint controller on the
-> Qualcomm SDX65 platform.
+> From: Sven Peter <sven@svenpeter.dev>
+> Date: Sat, 11 Mar 2023 14:38:54 +0100
 > 
-> Signed-off-by: Rohit Agarwal <quic_rohiagar@quicinc.com>
+> This DART variant is found in the t8103 (M1) SoCs and used for the
+> USB4/Thunderbolt PCIe ports. Unlike the regular t8103 DART these support
+> up to 64 SIDs and require a slightly different MMIO layout.
+> 
+> Acked-by: Hector Martin <marcan@marcan.st>
+> Acked-by: Rob Herring <robh@kernel.org>
+> Signed-off-by: Sven Peter <sven@svenpeter.dev>
+
+Reviewed-by: Mark Kettenis <kettenis@openbsd.org>
+
 > ---
->   arch/arm/boot/dts/qcom-sdx65.dtsi | 59 +++++++++++++++++++++++++++++++++++++++
->   1 file changed, 59 insertions(+)
+>  Documentation/devicetree/bindings/iommu/apple,dart.yaml | 1 +
+>  1 file changed, 1 insertion(+)
 > 
-> diff --git a/arch/arm/boot/dts/qcom-sdx65.dtsi b/arch/arm/boot/dts/qcom-sdx65.dtsi
-> index df9d428..5ea6a5a 100644
-> --- a/arch/arm/boot/dts/qcom-sdx65.dtsi
-> +++ b/arch/arm/boot/dts/qcom-sdx65.dtsi
-> @@ -11,6 +11,7 @@
->   #include <dt-bindings/interrupt-controller/arm-gic.h>
->   #include <dt-bindings/power/qcom-rpmpd.h>
->   #include <dt-bindings/soc/qcom,rpmh-rsc.h>
-> +#include <dt-bindings/gpio/gpio.h>
->   
->   / {
->   	#address-cells = <1>;
-> @@ -293,6 +294,59 @@
->   			status = "disabled";
->   		};
->   
-> +		pcie_ep: pcie-ep@1c00000 {
-> +			compatible = "qcom,sdx65-pcie-ep", "qcom,sdx55-pcie-ep";
-> +			reg = <0x01c00000 0x3000>,
-> +			      <0x40000000 0xf1d>,
-> +			      <0x40000f20 0xa8>,
-> +			      <0x40001000 0x1000>,
-> +			      <0x40200000 0x100000>,
-> +			      <0x01c03000 0x3000>;
-> +			reg-names = "parf",
-> +				    "dbi",
-> +				    "elbi",
-> +				    "atu",
-> +				    "addr_space",
-> +				    "mmio";
-> +
-> +			qcom,perst-regs = <&tcsr 0xb258 0xb270>;
-> +
-> +			clocks = <&gcc GCC_PCIE_AUX_CLK>,
-> +				 <&gcc GCC_PCIE_CFG_AHB_CLK>,
-> +				 <&gcc GCC_PCIE_MSTR_AXI_CLK>,
-> +				 <&gcc GCC_PCIE_SLV_AXI_CLK>,
-> +				 <&gcc GCC_PCIE_SLV_Q2A_AXI_CLK>,
-> +				 <&gcc GCC_PCIE_SLEEP_CLK>,
-> +				 <&gcc GCC_PCIE_0_CLKREF_EN>;
-> +			clock-names = "aux",
-> +				      "cfg",
-> +				      "bus_master",
-> +				      "bus_slave",
-> +				      "slave_q2a",
-> +				      "sleep",
-> +				      "ref";
-> +
-> +			interrupts = <GIC_SPI 140 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 145 IRQ_TYPE_LEVEL_HIGH>;
-> +			interrupt-names = "global", "doorbell";
-> +
-> +			reset-gpios = <&tlmm 57 GPIO_ACTIVE_LOW>;
-> +			wake-gpios = <&tlmm 53 GPIO_ACTIVE_LOW>;
-
--gpios should go to the board file too.
-
-> +
-> +			resets = <&gcc GCC_PCIE_BCR>;
-> +			reset-names = "core";
-> +
-> +			power-domains = <&gcc PCIE_GDSC>;
-> +
-> +			phys = <&pcie_phy>;
-> +			phy-names = "pcie-phy";
-> +
-> +			max-link-speed = <3>;
-> +			num-lanes = <2>;
-> +
-> +			status = "disabled";
-> +		};
-> +
->   		pcie_phy: phy@1c06000 {
->   			compatible = "qcom,sdx65-qmp-gen4x2-pcie-phy";
->   			reg = <0x01c06000 0x2000>;
-> @@ -332,6 +386,11 @@
->   			#hwlock-cells = <1>;
->   		};
->   
-> +		tcsr: syscon@1fcb000 {
-> +			compatible = "qcom,sdx65-tcsr", "syscon";
-> +			reg = <0x01fc0000 0x1000>;
-> +		};
-> +
->   		remoteproc_mpss: remoteproc@4080000 {
->   			compatible = "qcom,sdx55-mpss-pas";
->   			reg = <0x04080000 0x4040>;
-
--- 
-With best wishes
-Dmitry
-
+> diff --git a/Documentation/devicetree/bindings/iommu/apple,dart.yaml b/Documentation/devicetree/bindings/iommu/apple,dart.yaml
+> index 903edf85d72e..7adb1de455a5 100644
+> --- a/Documentation/devicetree/bindings/iommu/apple,dart.yaml
+> +++ b/Documentation/devicetree/bindings/iommu/apple,dart.yaml
+> @@ -24,6 +24,7 @@ properties:
+>    compatible:
+>      enum:
+>        - apple,t8103-dart
+> +      - apple,t8103-usb4-dart
+>        - apple,t8110-dart
+>        - apple,t6000-dart
+>  
+> -- 
+> 2.25.1
+> 
+> 
+> 
