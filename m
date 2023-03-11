@@ -2,184 +2,190 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2A81C6B5B1A
-	for <lists+devicetree@lfdr.de>; Sat, 11 Mar 2023 12:21:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DA8CF6B5B24
+	for <lists+devicetree@lfdr.de>; Sat, 11 Mar 2023 12:29:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231182AbjCKLVh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 11 Mar 2023 06:21:37 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60894 "EHLO
+        id S230488AbjCKL3J (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 11 Mar 2023 06:29:09 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44514 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230221AbjCKLUy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 11 Mar 2023 06:20:54 -0500
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8A3D913F1BC
-        for <devicetree@vger.kernel.org>; Sat, 11 Mar 2023 03:17:22 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-        s=mimecast20190719; t=1678533397;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=8HtTZHNiIUPp0Ayn4qV3goPGQiFJ+yAjnlk3bginDtc=;
-        b=PB4Jh0UBmC7x0z7IY/VeE3YQTRgRjHj3rO94UBCKv1Kpayvk8gvxt4khN7JWMUUCy2+mLP
-        Zg7NwhCSIs/y9kQqMK9+hmly5qqgKYDqiqgUrbiXM1TETIppkeGbVEJFJOu2g4/HobDh6f
-        KRfJYdFB8Be+tvJznIhzPNd7+UaF1Uw=
-Received: from mail-ed1-f71.google.com (mail-ed1-f71.google.com
- [209.85.208.71]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-536-U3UvmdhiNY20zVJWVDDeyg-1; Sat, 11 Mar 2023 06:16:35 -0500
-X-MC-Unique: U3UvmdhiNY20zVJWVDDeyg-1
-Received: by mail-ed1-f71.google.com with SMTP id b1-20020aa7dc01000000b004ad062fee5eso10856016edu.17
-        for <devicetree@vger.kernel.org>; Sat, 11 Mar 2023 03:16:35 -0800 (PST)
+        with ESMTP id S230484AbjCKL2w (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 11 Mar 2023 06:28:52 -0500
+Received: from mail-wm1-x32f.google.com (mail-wm1-x32f.google.com [IPv6:2a00:1450:4864:20::32f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0BECFA5F2
+        for <devicetree@vger.kernel.org>; Sat, 11 Mar 2023 03:24:55 -0800 (PST)
+Received: by mail-wm1-x32f.google.com with SMTP id bg16-20020a05600c3c9000b003eb34e21bdfso7852786wmb.0
+        for <devicetree@vger.kernel.org>; Sat, 11 Mar 2023 03:24:54 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1678533840;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=fUXxaux9yqlz38AdAUEuSrAiUAVJudPf4uFgO7xhgN0=;
+        b=VFxOCDUEPsVhcKbejxB5Hdccmi9J9mAKwHdCrlRmSr4pN7APScxcgSSzvuopJG4PmF
+         b+7Zs1XixjMPewVrcBNzMF06CswwzU07ZE+uw7/LRMmwYoxPqSsHtqm13mks+zDSQ0CS
+         1MKsrewqPYFQwl5PQQfOb6a+INSMEduaVLYT/1R0JBHTvYsfmlFL29tOVgvZxFXiP+e7
+         ld1/YSuFYTop3PppJm0JKUMvTppyqtsxxI7bu7PTVL9Gd+GfHDpXQgkION4S7VxGBDT3
+         jdj7pwgtOxMybyAsafUx5od7EsPfT6+KLhmPsdNiopdCXY1nK/fjvlB1NtZXQ9bx95c/
+         Q9/w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678533394;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+        d=1e100.net; s=20210112; t=1678533840;
+        h=content-transfer-encoding:in-reply-to:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=8HtTZHNiIUPp0Ayn4qV3goPGQiFJ+yAjnlk3bginDtc=;
-        b=3ttJL1bC2r84gmA2dMl5jXOcSZti8Qlb4B74WsUKmHby2GQpF5z80Ix2MIShOdggpM
-         ZkewdkHFHWHBNneZAiV+yxmxAQVbByv1rgpGEuAo7zGwdCz9oBtF3HPThDRVYt6O4D4R
-         J+joXqdw+Dw78O5oBF1snvspICRU6XKeDYgofiYDrSdrcYLc6ty3NQpurMXXt+EQ8S8D
-         1watbRMJ7QW4/edaoH3Qb/OLB5gnvqffOJAFMChZJdfRRrmJcf3DJ8jhGJ1aGid1AbNd
-         anNX0uBB8f1XC8tYEdPU6mzG83gEW0ymCuP4yP3vRJWw8/MuwERchgaDs0rCPwcm95yR
-         ZZeA==
-X-Gm-Message-State: AO0yUKUaeO/vRCf14c/K0LrPIssXTSIHKfN67leYwba+j2ARVm8Yb5Jm
-        CsBO2X9VZ5XKaYPKVc0BBCjPfiEyf05s4Jv1qWcaVzU1St5KFmuSVNL+qYhWv7YO5eslAfHDIdV
-        7vWoxiUXdrarb0d7b5lADFjh9epIxjQ==
-X-Received: by 2002:a17:906:2843:b0:8b1:15ab:f4cd with SMTP id s3-20020a170906284300b008b115abf4cdmr25458855ejc.53.1678533394003;
-        Sat, 11 Mar 2023 03:16:34 -0800 (PST)
-X-Google-Smtp-Source: AK7set/DgMDrtZ3a31jMzz1d2WO9NqheioXGi0XTx4aVefbWEmAwioRqA07Vb0G7te0m+Ce48644pQ==
-X-Received: by 2002:a17:906:2843:b0:8b1:15ab:f4cd with SMTP id s3-20020a170906284300b008b115abf4cdmr25458840ejc.53.1678533393676;
-        Sat, 11 Mar 2023 03:16:33 -0800 (PST)
-Received: from ?IPV6:2001:1c00:c32:7800:5bfa:a036:83f0:f9ec? (2001-1c00-0c32-7800-5bfa-a036-83f0-f9ec.cable.dynamic.v6.ziggo.nl. [2001:1c00:c32:7800:5bfa:a036:83f0:f9ec])
-        by smtp.gmail.com with ESMTPSA id y25-20020a170906519900b008eb5b085075sm987274ejk.122.2023.03.11.03.16.32
+        bh=fUXxaux9yqlz38AdAUEuSrAiUAVJudPf4uFgO7xhgN0=;
+        b=VbAeK8tTg1O/UQCiySdqnm3ep4Fkhrpo5oUtRYYky1O4AUSk3Xhr+9p9HXpeNsiYoQ
+         uqs6ahGOkbaNKHh3V4bQkXeLlwntaFmXcejf+piTdvWq0uj01lEl68ipl7X1is/E4CD+
+         d5hH9fpZxh0FpUJWW+bkeW8CtuwALFhfTKAkCdOgbxgzFoDCvmRy3PBBEAvZ0zFsVdOc
+         hD2BcgO6xKToZ53vXYziC89EVt418l4+BkbW9gjQZQc1zWVF08o7WsiwB+20yMxw5brB
+         yRNV8I4E9+poknFjX8kWOKGHBOkbrXFP8xsb9AWTAXMES5zCi7KSVqh2bbyu0EnbldHt
+         Hy8g==
+X-Gm-Message-State: AO0yUKWf9iai7j+l/lfYcZqE7xH4R4ByaLNOrQboFRyDR41VPAM3DaZ4
+        gQlN49iCFvikcFVCapHsu7f9UQ==
+X-Google-Smtp-Source: AK7set/EmTYd9x054L4GupMVTe7ZI985v29V9FseD061Au4O+zVdI+5BoXKCRxE7slErtgIXb0uiwg==
+X-Received: by 2002:a05:600c:1c28:b0:3de:1d31:1042 with SMTP id j40-20020a05600c1c2800b003de1d311042mr5353193wms.23.1678533840247;
+        Sat, 11 Mar 2023 03:24:00 -0800 (PST)
+Received: from [192.168.1.195] ([5.133.47.210])
+        by smtp.googlemail.com with ESMTPSA id 10-20020a05600c22ca00b003eb3933ef10sm2453856wmg.46.2023.03.11.03.23.57
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 11 Mar 2023 03:16:33 -0800 (PST)
-Message-ID: <4a273927-fa03-8503-e1c8-94b0223e80d1@redhat.com>
-Date:   Sat, 11 Mar 2023 12:16:32 +0100
+        Sat, 11 Mar 2023 03:23:58 -0800 (PST)
+Message-ID: <5b923d49-c151-0ed7-3db1-a7caf85109f3@linaro.org>
+Date:   Sat, 11 Mar 2023 11:23:57 +0000
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.7.1
-Subject: Re: [PATCH v2 2/2] Input: hideep - Optionally reset controller work
- mode to native HiDeep protocol
-Content-Language: en-US, nl
-To:     Dmitry Torokhov <dmitry.torokhov@gmail.com>
-Cc:     Krzysztof Kozlowski <krzk@kernel.org>, devicetree@vger.kernel.org,
-        linux-input@vger.kernel.org
-References: <20230303222113.285546-1-hdegoede@redhat.com>
- <20230303222113.285546-3-hdegoede@redhat.com>
- <42ac04f2-e7dc-a5a8-750e-243aa82c35db@kernel.org>
- <857e6fc3-65f6-5b71-073f-b518ab3c814e@redhat.com>
- <ZAwIIypDOjkNLRLk@google.com>
-From:   Hans de Goede <hdegoede@redhat.com>
-In-Reply-To: <ZAwIIypDOjkNLRLk@google.com>
-Content-Type: text/plain; charset=UTF-8
+Subject: Re: [PATCH 3/9] ASoC: codecs: lpass-rx-macro: add support for SM8550
+Content-Language: en-US
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Banajit Goswami <bgoswami@quicinc.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>, linux-arm-msm@vger.kernel.org,
+        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20230310132201.322148-1-krzysztof.kozlowski@linaro.org>
+ <20230310132201.322148-4-krzysztof.kozlowski@linaro.org>
+From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+In-Reply-To: <20230310132201.322148-4-krzysztof.kozlowski@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_NONE
-        autolearn=unavailable autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+Thanks Krzysztof for adding this support.
+Few minor nits,
 
-On 3/11/23 05:48, Dmitry Torokhov wrote:
-> On Sun, Mar 05, 2023 at 04:04:30PM +0100, Hans de Goede wrote:
->> Hi,
->>
->> On 3/5/23 14:34, Krzysztof Kozlowski wrote:
->>> On 03/03/2023 23:21, Hans de Goede wrote:
->>>> The HiDeep IST940E touchscreen controller used on the Lenovo Yoga Book X90F
->>>> convertible comes up in HID mode by default.
->>>>
->>>> This works well on the X91F Windows model where the touchscreen is
->>>> correctly described in ACPI and ACPI takes care of controlling
->>>> the reset GPIO and regulators.
->>>>
->>>> But the X90F ships with Android and the ACPI tables on this model don't
->>>> describe the touchscreen. Instead this is hardcoded in the vendor kernel.
->>>>
->>>> The vendor kernel uses the touchscreen in native HiDeep 20 (2.0?) protocol
->>>> mode and switches the controller to this mode by writing 0 to reg 0x081e.
->>>>
->>>> Adjusting the i2c-hid code to deal with the reset-gpio and regulators on
->>>> this non devicetree (but rather broken ACPI) convertible is somewhat tricky
->>>> and the native protocol reports ABS_MT_PRESSURE and ABS_MT_TOUCH_MAJOR
->>>> which are not reported in HID mode, so it is preferable to use the native
->>>> mode.
->>>>
->>>> Add support to the hideep driver to reset the work-mode to the native
->>>> HiDeep protocol to allow using it on the Lenovo Yoga Book X90F.
->>>> This is guarded behind a new "hideep,reset-work-mode" boolean property,
->>>> to avoid changing behavior on other devices.
->>>>
->>>> For the record: I did test using the i2c-hid driver with some quick hacks
->>>> and it does work. The I2C-HID descriptor is available from address 0x0020,
->>>> just like on the X91F Windows model.
->>>>
->>>> Signed-off-by: Hans de Goede <hdegoede@redhat.com>
->>>
->>> Please use scripts/get_maintainers.pl to get a list of necessary people
->>> and lists to CC.  It might happen, that command when run on an older
->>> kernel, gives you outdated entries.  Therefore please be sure you base
->>> your patches on recent Linux kernel.
->>>
->>>> ---
->>>>  .../bindings/input/touchscreen/hideep.txt        |  1 +
->>>>  drivers/input/touchscreen/hideep.c               | 16 ++++++++++++++++
->>>>  2 files changed, 17 insertions(+)
->>>>
->>>> diff --git a/Documentation/devicetree/bindings/input/touchscreen/hideep.txt b/Documentation/devicetree/bindings/input/touchscreen/hideep.txt
->>>> index a47c36190b01..68bb9f8dcc30 100644
->>>> --- a/Documentation/devicetree/bindings/input/touchscreen/hideep.txt
->>>> +++ b/Documentation/devicetree/bindings/input/touchscreen/hideep.txt
->>>> @@ -17,6 +17,7 @@ Optional properties:
->>>>  - linux,keycodes	: Specifies an array of numeric keycode values to
->>>>  			be used for reporting button presses. The array can
->>>>  			contain up to 3 entries.
->>>> +- hideep,reset-work-mode: bool, reset touch report format to the native HiDeep protocol
->>>
->>> Bindings must be a separate patch.
->>>
->>> Also, would be nice to convert first the TXT to DT schema (YAML).
->>>
->>> "-mode" suggests it's some enum, not bool. Otherwise what exactly it is
->>> choosing (which mode)?
->>
->> As it says it is resetting the mode to the native HiDeep protocol,
->> we have no docs on the controller, so I have no idea what other
->> values may be written to 0x081e other then 0 and what modes those
->> values will enable.
+On 10/03/2023 13:21, Krzysztof Kozlowski wrote:
+> Add support for the RX macro codec on Qualcomm SM8550.  SM8550 does not
+> use NPL clock, thus add flags allowing to skip it.
 > 
-> We could either have property specify desired register value, or call
-> the property something like "hideep,force-native-protocol" if we want to
-> keep it a bool.
-
-"hideep,force-native-protocol" is a good suggestion I'll prepare a new
-version with that.
-
->> Anyways I just realized I should have not included this at all,
->> since atm this new property is only used on X86/ACPI platforms
->> (through platform code setting a device-property), so it is not
->> used on devicetree platforms at all.
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> ---
+>   sound/soc/codecs/lpass-rx-macro.c | 39 ++++++++++++++++++++++++-------
+>   1 file changed, 31 insertions(+), 8 deletions(-)
 > 
-> Even if such properties are not documented I do not see how it will
-> prevent people from using them... I guess if they validate DT they will
-> be caught, but I am not sure that we can rely on this happening.
+> diff --git a/sound/soc/codecs/lpass-rx-macro.c b/sound/soc/codecs/lpass-rx-macro.c
+> index a73a7d7a1c0a..e322d918db36 100644
+> --- a/sound/soc/codecs/lpass-rx-macro.c
+> +++ b/sound/soc/codecs/lpass-rx-macro.c
+> @@ -395,6 +395,9 @@
+>   #define COMP_MAX_COEFF 25
+>   #define RX_NUM_CLKS_MAX	5
+>   
+> +/* NPL clock is expected */
+> +#define RX_MACRO_FLAG_HAS_NPL_CLOCK		BIT(0)
 
-Right, but I have beene explicitly told multiple times (1) to not document
-device-properties when they are only used between x86 platform code and
-drivers consuming them (and thus not actually used in any DT files
-at that point in time).
-
-Regards,
-
-Hans
+We could probably rename it and move it to 
+sound/soc/codecs/lpass-macro-common.h as this equally applies to all the 
+codec macros.
 
 
-1) By the DT bindings maintainers
+Once done,
 
+Reviewed-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+
+> +
+>   struct comp_coeff_val {
+>   	u8 lsb;
+>   	u8 msb;
+> @@ -3491,7 +3494,10 @@ static int rx_macro_register_mclk_output(struct rx_macro *rx)
+>   	struct clk_init_data init;
+>   	int ret;
+>   
+> -	parent_clk_name = __clk_get_name(rx->npl);
+> +	if (rx->npl)
+> +		parent_clk_name = __clk_get_name(rx->npl);
+> +	else
+> +		parent_clk_name = __clk_get_name(rx->mclk);
+>   
+>   	init.name = clk_name;
+>   	init.ops = &swclk_gate_ops;
+> @@ -3521,10 +3527,13 @@ static const struct snd_soc_component_driver rx_macro_component_drv = {
+>   static int rx_macro_probe(struct platform_device *pdev)
+>   {
+>   	struct device *dev = &pdev->dev;
+> +	kernel_ulong_t flags;
+>   	struct rx_macro *rx;
+>   	void __iomem *base;
+>   	int ret;
+>   
+> +	flags = (kernel_ulong_t)device_get_match_data(dev);
+> +
+>   	rx = devm_kzalloc(dev, sizeof(*rx), GFP_KERNEL);
+>   	if (!rx)
+>   		return -ENOMEM;
+> @@ -3541,9 +3550,11 @@ static int rx_macro_probe(struct platform_device *pdev)
+>   	if (IS_ERR(rx->mclk))
+>   		return PTR_ERR(rx->mclk);
+>   
+> -	rx->npl = devm_clk_get(dev, "npl");
+> -	if (IS_ERR(rx->npl))
+> -		return PTR_ERR(rx->npl);
+> +	if (flags & RX_MACRO_FLAG_HAS_NPL_CLOCK) {
+> +		rx->npl = devm_clk_get(dev, "npl");
+> +		if (IS_ERR(rx->npl))
+> +			return PTR_ERR(rx->npl);
+> +	}
+>   
+>   	rx->fsgen = devm_clk_get(dev, "fsgen");
+>   	if (IS_ERR(rx->fsgen))
+> @@ -3655,10 +3666,22 @@ static int rx_macro_remove(struct platform_device *pdev)
+>   }
+>   
+>   static const struct of_device_id rx_macro_dt_match[] = {
+> -	{ .compatible = "qcom,sc7280-lpass-rx-macro" },
+> -	{ .compatible = "qcom,sm8250-lpass-rx-macro" },
+> -	{ .compatible = "qcom,sm8450-lpass-rx-macro" },
+> -	{ .compatible = "qcom,sc8280xp-lpass-rx-macro" },
+> +	{
+> +		.compatible = "qcom,sc7280-lpass-rx-macro",
+> +		.data = (void *)RX_MACRO_FLAG_HAS_NPL_CLOCK,
+> +
+> +	}, {
+> +		.compatible = "qcom,sm8250-lpass-rx-macro",
+> +		.data = (void *)RX_MACRO_FLAG_HAS_NPL_CLOCK,
+> +	}, {
+> +		.compatible = "qcom,sm8450-lpass-rx-macro",
+> +		.data = (void *)RX_MACRO_FLAG_HAS_NPL_CLOCK,
+> +	}, {
+> +		.compatible = "qcom,sm8550-lpass-rx-macro",
+> +	}, {
+> +		.compatible = "qcom,sc8280xp-lpass-rx-macro",
+> +		.data = (void *)RX_MACRO_FLAG_HAS_NPL_CLOCK,
+> +	},
+>   	{ }
+>   };
+>   MODULE_DEVICE_TABLE(of, rx_macro_dt_match);
