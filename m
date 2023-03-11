@@ -2,91 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 45AA86B5EA2
-	for <lists+devicetree@lfdr.de>; Sat, 11 Mar 2023 18:19:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A90FF6B5F45
+	for <lists+devicetree@lfdr.de>; Sat, 11 Mar 2023 18:41:53 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230043AbjCKRTn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 11 Mar 2023 12:19:43 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35238 "EHLO
+        id S229965AbjCKRlv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 11 Mar 2023 12:41:51 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50130 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230002AbjCKRTj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 11 Mar 2023 12:19:39 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C4DF9D5153;
-        Sat, 11 Mar 2023 09:19:32 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 538F260D29;
-        Sat, 11 Mar 2023 17:19:32 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B75E7C433A1;
-        Sat, 11 Mar 2023 17:19:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1678555171;
-        bh=468t4HrwRu7/rsBqVcjX19Z80GSYIgoLlm0Iv/qhlhw=;
-        h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-        b=KuYf8cREzwlia2X2zMlDCukw/175q6tFMwMuRfK0+N/JX18BMRBBbBm1ONbC6hFmC
-         SWlwIT9c+tP+2LN1REX0ALpWwJnTCEXjVpgzdrlWuJAFpgEe3V5J97DcCD8Fv0ZxAS
-         RYGE5gvjxK6toT2feqq23On4EuTWpqx4Z/0tuDg1r+gM/O/kW8kU9YC27UQ4xomJ+9
-         XOP1CTSa/s+0bOS4rCq8NCq2JYkBfYuaaG26Ra8fzXaWPNBL5k+AG7JRNRx4sfWiWF
-         s25whORoUHcAEQnkhDSWPGnJ8L0hrO/ih1qyI/2jgGkT2sm+RubLDMj/WhoxtRRK9U
-         JoO/QtAnIlEOw==
-From:   Mark Brown <broonie@kernel.org>
-To:     Rob Herring <robh@kernel.org>
-Cc:     devicetree@vger.kernel.org, linux-spi@vger.kernel.org,
+        with ESMTP id S229642AbjCKRlv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 11 Mar 2023 12:41:51 -0500
+Received: from mail-lj1-x22a.google.com (mail-lj1-x22a.google.com [IPv6:2a00:1450:4864:20::22a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2105A38668
+        for <devicetree@vger.kernel.org>; Sat, 11 Mar 2023 09:41:27 -0800 (PST)
+Received: by mail-lj1-x22a.google.com with SMTP id by8so8575919ljb.7
+        for <devicetree@vger.kernel.org>; Sat, 11 Mar 2023 09:41:27 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112; t=1678556437;
+        h=from:cc:to:in-reply-to:message-id:date:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=gucexyEn/MXQiixU059a1/bhO0FmHxte+9JfrT4eP5U=;
+        b=G2a/LBEhROuK31RwWtLoTNnZJubfhKAq7vIcoZCEaG5ll/8RmG6+Z5ebrqoQOlXZxW
+         SpVuEP0mM19Cs/4m9I9FAyyb9R/SHj+QfHLgtTkTwN8uKEIkJUcDP+ltJ1eI4Vmo5McQ
+         FwM5CrjT2LmWLDGk08+WSl2pA4D9O4g3/yOLMSzqXL/KTl2NWoZrOGbYafc6kEu8G/Tw
+         aEw6NOS3ay0o71cklSAntmRtPtcbDn2OM64NdMqCjtxX+FjKvwRdZ9NMvckPzRn+vTfV
+         cI6czaMMZpDrsH+sE+uVGzybwjqOWisM4pT/aA5r/U04nBBKf7ejpwWiFZW/+TP7lvcO
+         K1VQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1678556437;
+        h=from:cc:to:in-reply-to:message-id:date:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=gucexyEn/MXQiixU059a1/bhO0FmHxte+9JfrT4eP5U=;
+        b=xLVmzx+WTyczpNXaII/ZLtppzw5HdoSaPehxEubON1Vrde6/KmD8NW/tBLWkLO3tf4
+         H6tVFThCdGjHev8j/lLFdEVXSUbnfxQbeMpwNuPr3+8Ah1olK4g+1jX9CpeNmyHZbYg0
+         jI5v7aKYHuNMLP41ycImHjuzcV09SjUmm6VNr21kT4ksWKjl0lC4q276qBXbNf5GuN0q
+         wq0CCYLldM8C8HihQ76vLXIOAU6KZkSF+kpvn2J2ObkwK7pnnzaeD1i7FJtSVkrM3XqZ
+         B9PPBOyMTyjjHredmEnqGhcQFfL9ia61xbxI0vOnRS/nGw900Bj0j70To4hHK1wWW/yr
+         NejQ==
+X-Gm-Message-State: AO0yUKWClo4lmNZFoE3H8Ttjrh7MtcKV6m8nL83h+KY5K0Q9dngPQCv2
+        dmsO5T0k4CRPCeRt93aaD7LE9VFQvjZh0/0cE64=
+X-Google-Smtp-Source: AK7set9pd9oFM9im2I3WSoe1jS0f4hjJo3MePBEfg2FD2WaG4QlSPxuVgN1VnkCQQ6BlI9naWq9EZw==
+X-Received: by 2002:a05:651c:88:b0:293:3dd6:89a4 with SMTP id 8-20020a05651c008800b002933dd689a4mr9010457ljq.34.1678556436909;
+        Sat, 11 Mar 2023 09:40:36 -0800 (PST)
+Received: from letter.txt (46-138-144-249.dynamic.spd-mgts.ru. [46.138.144.249])
+        by smtp.gmail.com with ESMTPSA id y14-20020a2e9d4e000000b00295a32db4e1sm397806ljj.91.2023.03.11.09.40.36
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 11 Mar 2023 09:40:36 -0800 (PST)
+Date:   Sat, 11 Mar 2023 09:40:36 -0800 (PST)
+Message-ID: <c13993bc-9d12-f20e-de27-fa0b8a58ed33-1-sleirsgoevy@gmail.com>
+In-Reply-To: <c13993bc-9d12-f20e-de27-fa0b8a58ed33@linaro.org>
+To:     Ulf Hansson <ulf.hansson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Jaehoon Chung <jh80.chung@samsung.com>
+Cc:     linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
-In-Reply-To: <20230310144736.1547110-1-robh@kernel.org>
-References: <20230310144736.1547110-1-robh@kernel.org>
-Subject: Re: [PATCH] spi: omap2-mcspi: Use of_property_read_bool() for
- boolean properties
-Message-Id: <167855516965.950686.4250661181877486648.b4-ty@kernel.org>
-Date:   Sat, 11 Mar 2023 17:19:29 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.13-dev-2eb1a
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+From:   Sergey Lisov <sleirsgoevy@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+X-Spam-Status: No, score=-0.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,MISSING_SUBJECT,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 10 Mar 2023 08:47:36 -0600, Rob Herring wrote:
-> It is preferred to use typed property access functions (i.e.
-> of_property_read_<type> functions) rather than low-level
-> of_get_property/of_find_property functions for reading properties.
-> Convert reading boolean properties to to of_property_read_bool().
+> > ---
+> >  .../devicetree/bindings/mmc/synopsys-dw-mshc-common.yaml    | 6 ++++++
+> >  1 file changed, 6 insertions(+)
+> > 
+> > diff --git a/Documentation/devicetree/bindings/mmc/synopsys-dw-mshc-common.yaml b/Documentation/devicetree/bindings/mmc/synopsys-dw-mshc-common.yaml
+> > index 8dfad89c7..2bc5ac528 100644
+> > --- a/Documentation/devicetree/bindings/mmc/synopsys-dw-mshc-common.yaml
+> > +++ b/Documentation/devicetree/bindings/mmc/synopsys-dw-mshc-common.yaml
+> > @@ -57,6 +57,12 @@ properties:
+> >        force fifo watermark setting accordingly.
+> >      $ref: /schemas/types.yaml#/definitions/flag
+> >  
+> > +  fifo-access-32bit:
 > 
+> Missing type boolean.
+
+Thanks, will add the same $ref as for the entry above.
+
+> > +    description:
+> > +      Specifies that this device requires accesses to its 64-bit registers
+> > +      to be done as pairs of 32-bit accesses, even on architectures where
+> > +      readq is available.
 > 
+> And why the device would require this? If it has 64-bit registers in the
+> first place, they can be accessed in 64-bit. Otherwise these are not
+> 64-bit registers, but just lower/upper 32-bit, right?
+> 
+> Also, why this cannot be implied from compatible? Why different boards
+> with same SoC should have different FIFO access?
 
-Applied to
-
-   broonie/spi.git for-next
-
-Thanks!
-
-[1/1] spi: omap2-mcspi: Use of_property_read_bool() for boolean properties
-      commit: 03adaa404a2c8f9ae0528eb963e86a962a3a2f39
-
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
-
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-Thanks,
-Mark
-
+It probably can be implied, but I am not exactly sure on which boards it
+affects, so I decided to go for a new devicetree option. Anyway, the same
+argument applies to the "data-addr" property, which is already in the
+spec, so I supposed that adding such knobs is fine.
