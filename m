@@ -2,89 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3EE646B5D97
-	for <lists+devicetree@lfdr.de>; Sat, 11 Mar 2023 16:58:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1B4816B5D9A
+	for <lists+devicetree@lfdr.de>; Sat, 11 Mar 2023 17:00:31 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230250AbjCKP6Z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 11 Mar 2023 10:58:25 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53254 "EHLO
+        id S229958AbjCKQA1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 11 Mar 2023 11:00:27 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57358 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229745AbjCKP6Y (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 11 Mar 2023 10:58:24 -0500
-Received: from mail-ed1-x530.google.com (mail-ed1-x530.google.com [IPv6:2a00:1450:4864:20::530])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2E0861E9FB
-        for <devicetree@vger.kernel.org>; Sat, 11 Mar 2023 07:58:23 -0800 (PST)
-Received: by mail-ed1-x530.google.com with SMTP id g10so3589322eda.1
-        for <devicetree@vger.kernel.org>; Sat, 11 Mar 2023 07:58:23 -0800 (PST)
+        with ESMTP id S230202AbjCKQA0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 11 Mar 2023 11:00:26 -0500
+Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com [IPv6:2a00:1450:4864:20::532])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3E0EDF20A7
+        for <devicetree@vger.kernel.org>; Sat, 11 Mar 2023 08:00:25 -0800 (PST)
+Received: by mail-ed1-x532.google.com with SMTP id ek18so1343914edb.6
+        for <devicetree@vger.kernel.org>; Sat, 11 Mar 2023 08:00:25 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1678550301;
+        d=linaro.org; s=google; t=1678550424;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=GEY3ZLSWUW7XsIa9CCPgTwpcYQffLbl3wrMRUOgD69k=;
-        b=U7zIRT3w4Gv+arQEt90+L156snTB3qQ7nhF7QSJ2KRFlNYZ/PAOH8MeUnXLU924LKc
-         ZTASA0Ws0xccVJqD2659J6Tnnk7/lPGpxlotNfnAZSSn/peKEVWUPwYa7za8DIXpygYB
-         ew6sBga2mr/bVVHDlTGvInBQSSwSQFDDPKwpgh63nhs4v8MIi8LZl3lqnoxUVL12NB/E
-         jrac9V5e90uLJ5OXdVcFStCb3G9ovMYUYN4gNGnkRJ7+8rN/Kk9rWgw/s/z2YLBFowHO
-         CYT+GaBxCxWVC1QIRxAP1BqeJiDrsWuj1EHb8mXnVFfSdVDAflWNH9jRAOg2+VQF5Cdr
-         Zemw==
+        bh=NBMbxaDpVx3TfaO783vsAGs5TveZ/8Yt54IKh+0DiEk=;
+        b=VitN/wrBrIOmh8Tl+EmJKf9TJJd1nc08BOudi2mQF2PPqNHBg3gqxzfM4tDQQp6XWa
+         xdRUgdNEuAwIPvOCvowBoCFU3KAZcxJ2LOwDRai/80whe47/JJRqXuRyZGiaEo4odIi3
+         bqz1ANYW+Nt2MOfhlnwhwZl6ZydHEyxnIRncmJ2RpHzGWGD2nESk7x8ZTbjCOThaWMyn
+         XVG9BMabHipHGB+W5SNbIwK267HZy/tyiTrDaLbjX5ZXGh4emdaHX9mT/3c/Axrmh5J5
+         Eo6PA/EvrN9Ynpiq8LmKIV0F9VNlIZX0cv1fl0CYC3nv9xtaPWqSDDRXqZZln8d3mRXk
+         adjw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678550301;
+        d=1e100.net; s=20210112; t=1678550424;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=GEY3ZLSWUW7XsIa9CCPgTwpcYQffLbl3wrMRUOgD69k=;
-        b=5YjX/ll7xft4WTd4+Y3Kts6+SC5ORsyykjccWvyRb2BVK9gw0QDt15SrpxiHD0Q1DR
-         xUDCB4rwr04MYUk8ajuIQow5cAfJONOaBipF+nNZp/p4BXkYhcBskOUZbxHTqwObAUHW
-         +Z6oY5hkqFh1640BLpRftJy2GEfMbzZx0FiJQYP7o9wKCnEaEizCZJ6jria6g0eTzxN9
-         EwAINVYvAiiP+mrTAQUqhJgqawlm9o8oiXhkHZeZKS3V0xtUtegNoPUnB5eTS0I1IzL0
-         1BsSyuUvLQrHh7MtSFl7ozsXMRiVmKJmwJwFrEkc4M8B/H3cLA2HfYfJhDovn094nV4G
-         7FtQ==
-X-Gm-Message-State: AO0yUKUzH+yNQ3iBz7JuzpAug46KmLF/gGNHwrwcRNXb3S6+c/s06JSJ
-        Dc6ulDQeOXtFE+UysGRyYQxZzg==
-X-Google-Smtp-Source: AK7set/rTX6aOjV6jOMdTk7oGqNeQp6gP4Q+ddlQbe8TtUA4b1Cv3eKDysAuVFJnI87ZZwYWwojCAg==
-X-Received: by 2002:aa7:ce05:0:b0:4ac:bab1:feee with SMTP id d5-20020aa7ce05000000b004acbab1feeemr23294992edv.24.1678550301639;
-        Sat, 11 Mar 2023 07:58:21 -0800 (PST)
+        bh=NBMbxaDpVx3TfaO783vsAGs5TveZ/8Yt54IKh+0DiEk=;
+        b=sZu+HLl+KKQpfltvq03IJ2qn7gsbhB/aF5aZEOsjVZCDRicrOQQ67TBywIxCMBKuK6
+         EnxanY3IYMfJ2oDwlYNLRGWGAR/nw7PRRP5gwzVsKPfeK769YApSQ2/OGuC9Pp8wksAq
+         XThYQJn34q/oX2H29J/sh9ywTjtU/Pfoz60669Dkjj6cQele+XHJZ9sTX7wMETfUqCTm
+         YG5uncgLrQ7uGhir040ingcSBrrBYhy6hffh4/UKEHExtb7CT5Gli0W+ywbCX87TQbeA
+         b5I7xG8zJzkM/6ub7smgm9dTWk+xCQORDtAxGwLNsm5wYVwJtEBYRlSEHv8dvvxIsqBk
+         pT8A==
+X-Gm-Message-State: AO0yUKVGB9lm1O9oyFz5hS6JbjfONWCgbVsuDN+X82k4hN5bJMl5vEW9
+        I4ytbYUp8RFFKOo0+v9CO4Weew==
+X-Google-Smtp-Source: AK7set9G4KtMXYdRcjs6ZsXcBJ0uVk/Tbs6J8XeC+KP3T872bugZUO6tYjkiZ4Puz3c7+tcY+FxwwA==
+X-Received: by 2002:a17:906:49b:b0:8b2:e93:3f59 with SMTP id f27-20020a170906049b00b008b20e933f59mr5117554eja.31.1678550423717;
+        Sat, 11 Mar 2023 08:00:23 -0800 (PST)
 Received: from ?IPV6:2a02:810d:15c0:828:6927:e94d:fc63:9d6e? ([2a02:810d:15c0:828:6927:e94d:fc63:9d6e])
-        by smtp.gmail.com with ESMTPSA id h14-20020a50c38e000000b004fa610895b5sm865948edf.7.2023.03.11.07.58.20
+        by smtp.gmail.com with ESMTPSA id n18-20020a170906841200b009222a7192b4sm573232ejx.30.2023.03.11.08.00.22
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 11 Mar 2023 07:58:21 -0800 (PST)
-Message-ID: <4b6b7aee-bd20-208f-1743-ff76388feffd@linaro.org>
-Date:   Sat, 11 Mar 2023 16:58:20 +0100
+        Sat, 11 Mar 2023 08:00:23 -0800 (PST)
+Message-ID: <9b6fbb54-705d-3e3a-b7e7-ec62297929cb@linaro.org>
+Date:   Sat, 11 Mar 2023 17:00:22 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.8.0
-Subject: Re: [PATCH 1/2] devicetree: synopsys-dw-mshc-common: add
- "fifo-access-32bit" property
+Subject: Re: [PATCH 1/3] dt-bindings: arm: ti: Add bindings for BeaglePlay
 Content-Language: en-US
-To:     Sergey Lisov <sleirsgoevy@gmail.com>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
+To:     Nishanth Menon <nm@ti.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jaehoon Chung <jh80.chung@samsung.com>
-Cc:     linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <640c80ff.050a0220.2983.0b8d@mx.google.com>
+        Rob Herring <robh+dt@kernel.org>, Arnd Bergmann <arnd@arndb.de>
+Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        Tero Kristo <kristo@kernel.org>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Julien Panis <jpanis@baylibre.com>, Bryan Brattlof <bb@ti.com>,
+        Jason Kridner <jkridner@gmail.com>,
+        Robert Nelson <robertcnelson@gmail.com>
+References: <20230311111022.23717-1-nm@ti.com>
+ <20230311111022.23717-2-nm@ti.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <640c80ff.050a0220.2983.0b8d@mx.google.com>
+In-Reply-To: <20230311111022.23717-2-nm@ti.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 11/03/2023 13:54, Sergey Lisov wrote:
-> ---
->  .../devicetree/bindings/mmc/synopsys-dw-mshc-common.yaml    | 6 ++++++
+On 11/03/2023 12:10, Nishanth Menon wrote:
+> From: Robert Nelson <robertcnelson@gmail.com>
+> 
+> This board is based on ti,am625
 
-I received your patches twice, so I already responded to one thread. The
-comments apply also here.
+Subject: drop second/last, redundant "bindings for". The "dt-bindings"
+prefix is already stating that these are bindings.
+
+> 
+> https://beagleplay.org/
+> https://git.beagleboard.org/beagleplay/beagleplay
+> 
+> Co-developed-by: Nishanth Menon <nm@ti.com>
+> Signed-off-by: Nishanth Menon <nm@ti.com>
+> Signed-off-by: Robert Nelson <robertcnelson@gmail.com>
+
+Your chain order is not correct. If Robert is the author, his SoB is first.
+
+> ---
+>  Documentation/devicetree/bindings/arm/ti/k3.yaml | 1 +
+>  1 file changed, 1 insertion(+)
 
 Best regards,
 Krzysztof
