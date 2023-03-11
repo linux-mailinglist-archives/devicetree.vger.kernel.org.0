@@ -2,76 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0FE156B5D6D
-	for <lists+devicetree@lfdr.de>; Sat, 11 Mar 2023 16:47:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8D9A96B5D8A
+	for <lists+devicetree@lfdr.de>; Sat, 11 Mar 2023 16:53:47 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230085AbjCKPq5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 11 Mar 2023 10:46:57 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33786 "EHLO
+        id S230493AbjCKPxo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 11 Mar 2023 10:53:44 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41042 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230027AbjCKPq4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 11 Mar 2023 10:46:56 -0500
-Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com [IPv6:2a00:1450:4864:20::534])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5FE4AC80A9
-        for <devicetree@vger.kernel.org>; Sat, 11 Mar 2023 07:46:55 -0800 (PST)
-Received: by mail-ed1-x534.google.com with SMTP id er25so4247137edb.5
-        for <devicetree@vger.kernel.org>; Sat, 11 Mar 2023 07:46:55 -0800 (PST)
+        with ESMTP id S230407AbjCKPxP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 11 Mar 2023 10:53:15 -0500
+Received: from mail-ed1-x536.google.com (mail-ed1-x536.google.com [IPv6:2a00:1450:4864:20::536])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ED3B11116A9
+        for <devicetree@vger.kernel.org>; Sat, 11 Mar 2023 07:51:01 -0800 (PST)
+Received: by mail-ed1-x536.google.com with SMTP id r15so5224880edq.11
+        for <devicetree@vger.kernel.org>; Sat, 11 Mar 2023 07:51:01 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1678549614;
+        d=linaro.org; s=google; t=1678549860;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=4dVATx5c6hr9pOV2Vp8/XmqV67vmEqF0l4KPE/5Ob10=;
-        b=QGGSkY6z5rMmcEhoqYQjhiYLqmOfGmeHv+u/dyEAay2rvEM6YppXPFcxX1r0ENrjda
-         asrvTU37m3LS+XLxQwLX4Jqid0KARnrHGbahPWTd0mepDfbAcaq4D0BU2VeGS3m/E2BS
-         1xM5v6lK2Zy+5sJo9lb6e9tvQCxAk1BHCDr6O5lzuzp4hIXtfVg2/kJlozXsCaYoGvnJ
-         Jho+wtHt5iTLwlEWZEpLmc5SFY95ZPfQKqVriyUUYjmBtRyULJsuxTokGWxSeCHtBUbA
-         aAucXqsTbi5zmTfCOOJaSwrxQm92FMCSKHMUBpOgqteqt3yBClunNvEtFCACvT9fJurT
-         wVXw==
+        bh=FOPcjhDYKPCO/Zmz2tGgC7qcp0wJ1W217UIkJ4Y9I8g=;
+        b=exLH0pXHR2Hk2k1GxkMT8NMsFHRUn8Gh4Hi84g2CApUpajQKPndJt5y+CGjzcwO4DV
+         NjVjIYSvcYVSJYBuEH5VwTgcBhO6CTHG9zqBf3Qh/eZpM7k2AmEcbmLed4hsDVHqXKzX
+         zhpg09XUjiwP8IbNlQRuoUPUbo1DO685I0vPic9/1QSfnOzrpPtNPjYrnNsNW2nyAaSW
+         YM1pbQYnxdtaSiUjt0jH+qrgS6V5+618+VCfDMm/QFx9ldVDG970XSC5e0Vm21WzjDkC
+         zvX+tOA9MVp/TiOHI60XMFU5DX17sePwJf2kjUvi0xAy9pKzY9ERSkn6ycS/h0djU9ZC
+         zTgw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678549614;
+        d=1e100.net; s=20210112; t=1678549860;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=4dVATx5c6hr9pOV2Vp8/XmqV67vmEqF0l4KPE/5Ob10=;
-        b=n2xP9k9FJtyxbR7ukS+0C/LIbhY6tro8+Q83XRhJa891DCG2Boqn6LMxrn74z+Dd8n
-         OLtTGujGN1aGAsiitD7w4+Kbeh8AA6aXaSXgHcn03lufKGS6yAa3tTwzax/F68jr56si
-         w/ujUIujTWH7uWO0Ubg9K8UIwpued6hvirKth8kim2CAls7RkffFXXcllCcMF+K/fzLs
-         hFV7nUZc6C+dcqxgOLJmx3MafBVffGAlDOSTJD51tc1WxLydUsCjS3rGhes8RoPGGbqq
-         ABJ91wxWQSXD0H1+Ds2HMDSWZkx7httPO0cQK+0j3kxh3O6w/xHoJJWWWXeazbhSWoLT
-         w5Rw==
-X-Gm-Message-State: AO0yUKUmx4AsAOLWLm7vf1iC4fpT6vapJOSsdgcUgu29V5YuxP5vRfnd
-        RiLOCVeSYmNg6IWWLnN/4VTXnQ==
-X-Google-Smtp-Source: AK7set8MNJoq43tQWh5HLqQTE5+KCYEEaH0KtBtq3eP0g+QDew0cU9sHyxx5V05LiXYaUdXaN5O6ng==
-X-Received: by 2002:a17:907:2ce1:b0:8b1:32dd:3af with SMTP id hz1-20020a1709072ce100b008b132dd03afmr39043153ejc.28.1678549613855;
-        Sat, 11 Mar 2023 07:46:53 -0800 (PST)
+        bh=FOPcjhDYKPCO/Zmz2tGgC7qcp0wJ1W217UIkJ4Y9I8g=;
+        b=QBVxCcKCDGUahRmyqKvZsQiKcFkbHlJ0gkOuH3/uTBjUBP13aEnGhEIbVlyBu7kwBG
+         CVoU8McE1laW4T5NP/Wjq5mGE/edmsBfgmqJzHq7x3f+WQVqO5U6iSm0AXiSUTE2vh+K
+         V+/dl2mqtRcoKA+YxUqorjtCwN8zI73V1Uay5vt4g84aSpgwcyhgaCjffM062XKbcgiy
+         G/IJvp+DfZCrYohLKXFMlRTq2cQfaEGx+i0GgXLWWcBqpGvEzU4Uq8Xmg6QGAiK0A2dk
+         rDC3hxzQvE8mxoN5TsEV1gzngN9Z3tSrACkM00pdB11eNzc06jxHevMk1dSrdnf/tShQ
+         +7ew==
+X-Gm-Message-State: AO0yUKWeEn6jRIUW6hOEMDGcTqhRYf6k/G3fm0pQ1neKsP3H73cdS/hn
+        3IGwXYHj6Cnwc7ToKiwLTRffPg==
+X-Google-Smtp-Source: AK7set/jKFNKU2NfkbcpoS9MGUQVvnrWP9c19CwbXw4TjLsty5YWBFzICJsaDHdJ1KheJ00mIggWjg==
+X-Received: by 2002:a17:906:2843:b0:8b1:15ab:f4cd with SMTP id s3-20020a170906284300b008b115abf4cdmr26060805ejc.53.1678549860208;
+        Sat, 11 Mar 2023 07:51:00 -0800 (PST)
 Received: from ?IPV6:2a02:810d:15c0:828:6927:e94d:fc63:9d6e? ([2a02:810d:15c0:828:6927:e94d:fc63:9d6e])
-        by smtp.gmail.com with ESMTPSA id q16-20020a50aa90000000b004bd6e3ed196sm1310704edc.86.2023.03.11.07.46.52
+        by smtp.gmail.com with ESMTPSA id n7-20020a17090695c700b008e493b7bb61sm1214587ejy.153.2023.03.11.07.50.59
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 11 Mar 2023 07:46:53 -0800 (PST)
-Message-ID: <71c7feff-4189-f12f-7353-bce41a61119d@linaro.org>
-Date:   Sat, 11 Mar 2023 16:46:52 +0100
+        Sat, 11 Mar 2023 07:50:59 -0800 (PST)
+Message-ID: <c13993bc-9d12-f20e-de27-fa0b8a58ed33@linaro.org>
+Date:   Sat, 11 Mar 2023 16:50:58 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.8.0
-Subject: Re: [PATCH 2/2] dt-bindings: pinctrl: Move k3.h to arch
+Subject: Re: [PATCH 1/2] devicetree: synopsys-dw-mshc-common: add
+ "fifo-access-32bit" property
 Content-Language: en-US
-To:     Nishanth Menon <nm@ti.com>, Sekhar Nori <nsekhar@ti.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+To:     Sergey Lisov <sleirsgoevy@gmail.com>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Eric Dumazet <edumazet@google.com>,
-        "David S. Miller" <davem@davemloft.net>
-Cc:     linux-gpio@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        netdev@vger.kernel.org, Tero Kristo <kristo@kernel.org>,
-        Vignesh Raghavendra <vigneshr@ti.com>
-References: <20230311131325.9750-1-nm@ti.com>
- <20230311131325.9750-3-nm@ti.com>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Jaehoon Chung <jh80.chung@samsung.com>
+Cc:     linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <1678548256.0817535-1-sleirsgoevy@gmail.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230311131325.9750-3-nm@ti.com>
+In-Reply-To: <1678548256.0817535-1-sleirsgoevy@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -84,55 +79,44 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 11/03/2023 14:13, Nishanth Menon wrote:
-> Move the k3 pinctrl definition to arch dts folder.
-> 
-> While at this, fixup MAINTAINERS and header guard macro to better
-> reflect the changes.
-> 
-> Suggested-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> Suggested-by: Linus Walleij <linus.walleij@linaro.org>
-> Link: https://lore.kernel.org/all/c4d53e9c-dac0-8ccc-dc86-faada324beba@linaro.org/
-> Signed-off-by: Nishanth Menon <nm@ti.com>
+On 11/03/2023 16:22, Sergey Lisov wrote:
+
+Use subject prefixes matching the subsystem (which you can get for
+example with `git log --oneline -- DIRECTORY_OR_FILE` on the directory
+your patch is touching).
+
+Missing commit msg, which should answer why you are doing this and give
+more background.
+
 > ---
+>  .../devicetree/bindings/mmc/synopsys-dw-mshc-common.yaml    | 6 ++++++
+>  1 file changed, 6 insertions(+)
 > 
-> There is no specific case I can think of at the moment to create a
-> pinctrl.dtsi for the SoCs.. So, unlike other SoCs, I had not done that
-> in the series, if folks have a better opinion about this, please let us
-> discuss.
-> 
->  MAINTAINERS                                                 | 1 -
->  arch/arm64/boot/dts/ti/k3-am62.dtsi                         | 3 ++-
->  arch/arm64/boot/dts/ti/k3-am62a.dtsi                        | 3 ++-
->  arch/arm64/boot/dts/ti/k3-am64.dtsi                         | 3 ++-
->  arch/arm64/boot/dts/ti/k3-am65.dtsi                         | 3 ++-
->  arch/arm64/boot/dts/ti/k3-j7200.dtsi                        | 3 ++-
->  arch/arm64/boot/dts/ti/k3-j721e.dtsi                        | 3 ++-
->  arch/arm64/boot/dts/ti/k3-j721s2.dtsi                       | 3 ++-
->  arch/arm64/boot/dts/ti/k3-j784s4.dtsi                       | 3 ++-
->  .../pinctrl/k3.h => arch/arm64/boot/dts/ti/k3-pinctrl.h     | 6 +++---
+> diff --git a/Documentation/devicetree/bindings/mmc/synopsys-dw-mshc-common.yaml b/Documentation/devicetree/bindings/mmc/synopsys-dw-mshc-common.yaml
+> index 8dfad89c7..2bc5ac528 100644
+> --- a/Documentation/devicetree/bindings/mmc/synopsys-dw-mshc-common.yaml
+> +++ b/Documentation/devicetree/bindings/mmc/synopsys-dw-mshc-common.yaml
+> @@ -57,6 +57,12 @@ properties:
+>        force fifo watermark setting accordingly.
+>      $ref: /schemas/types.yaml#/definitions/flag
+>  
+> +  fifo-access-32bit:
 
-Bindings are separate from other changes (also DTS). Split the patches.
+Missing type boolean.
 
-(...)
+> +    description:
+> +      Specifies that this device requires accesses to its 64-bit registers
+> +      to be done as pairs of 32-bit accesses, even on architectures where
+> +      readq is available.
 
->  / {
->  	model = "Texas Instruments K3 J784S4 SoC";
->  	compatible = "ti,j784s4";
-> diff --git a/include/dt-bindings/pinctrl/k3.h b/arch/arm64/boot/dts/ti/k3-pinctrl.h
-> similarity index 94%
-> rename from include/dt-bindings/pinctrl/k3.h
-> rename to arch/arm64/boot/dts/ti/k3-pinctrl.h
-> index 469bd29651db..6004e0967ec5 100644
-> --- a/include/dt-bindings/pinctrl/k3.h
-> +++ b/arch/arm64/boot/dts/ti/k3-pinctrl.h
+And why the device would require this? If it has 64-bit registers in the
+first place, they can be accessed in 64-bit. Otherwise these are not
+64-bit registers, but just lower/upper 32-bit, right?
 
-Dropping this file is going to break existing code and I would say is
-also a break of the ABI. You need to keep the header for at least one
-cycle, you can add there a warning for coming deprecation.
+Also, why this cannot be implied from compatible? Why different boards
+with same SoC should have different FIFO access?
 
-See for example:
-https://lore.kernel.org/all/20220605160508.134075-5-krzysztof.kozlowski@linaro.org/
+
 
 Best regards,
 Krzysztof
