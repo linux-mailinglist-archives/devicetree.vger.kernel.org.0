@@ -2,146 +2,143 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6C6456B5749
-	for <lists+devicetree@lfdr.de>; Sat, 11 Mar 2023 02:14:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7E2E76B5753
+	for <lists+devicetree@lfdr.de>; Sat, 11 Mar 2023 02:21:49 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229954AbjCKBO1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 10 Mar 2023 20:14:27 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58900 "EHLO
+        id S230201AbjCKBVr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 10 Mar 2023 20:21:47 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40002 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229770AbjCKBO0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Mar 2023 20:14:26 -0500
-Received: from mail-pl1-x635.google.com (mail-pl1-x635.google.com [IPv6:2607:f8b0:4864:20::635])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3E45612DC27;
-        Fri, 10 Mar 2023 17:14:25 -0800 (PST)
-Received: by mail-pl1-x635.google.com with SMTP id y11so7468179plg.1;
-        Fri, 10 Mar 2023 17:14:25 -0800 (PST)
+        with ESMTP id S229906AbjCKBVq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Mar 2023 20:21:46 -0500
+Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D35B112EAE7
+        for <devicetree@vger.kernel.org>; Fri, 10 Mar 2023 17:21:43 -0800 (PST)
+Received: by mail-lf1-x129.google.com with SMTP id t11so8958622lfr.1
+        for <devicetree@vger.kernel.org>; Fri, 10 Mar 2023 17:21:43 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112; t=1678497265;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:to:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=rh7oDZ2wH8OxNXYeRmxDps+pFhJvkYtrO5SAgqEl724=;
-        b=iLXJ+8i7ZJHN+1fIKRoEzbeDSCB6SFWr0rbtzFMRW63cEG8sjqOjReUSSOTyVbkrrh
-         s/feFZkpMwQGwF/e3T1CxKOKtMwxKd/gdqPBO16gDrdGNMspugRV4e+InoZ+cypr2REg
-         DATA+01g+kPwenAiWdZbb49TuDRopFh+AIIWqiHaOzrTsZniZ87xgh+LH7Bl031qCTSd
-         7IjTvMq5d2Es9NGmjPp40ZAIy2bfJgMkX4JSXfajPhlTNEqPQyX4CPDhipaM0gzi/RDA
-         Zd81epkX7Kg23H2MsYEJNVpAzYL67iJBOS/HiSpo82/CDp4BmpqBxuO0VLLymwyFuy3L
-         IgOw==
+        d=linaro.org; s=google; t=1678497702;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=ztXjjbd60BFQ9adlzKKMOkVzBvcLHCXoH/i70TyV+Ec=;
+        b=q3WAVHm/AWREWNKGKDVHoh5g6T69Rh1ARhMh1X5XnJw8mfKwtmKHouNbpSaPtQvaIl
+         1NRejU3M+iSFtroCCO2SZX0QpOIiDjGYtTmvYn6TCn1o0gMFidOTFavEw/49Mh4jgORD
+         euBD4QbyU/i22X6YuTcYm0oYVjhjid6epJMyKBnPqcZ9kaNZSJd+pXL9x0iKbeFYR+7I
+         AlsYoMxWEFRRO0S4twgVVT4KeoljXxKbx8REPOcFl5VqYl0lhk5BHEZR1P18Mh5rL+2G
+         iImnNjNVylZwx2rqA0X2U7+FB5ZwV5VlbL+5zi2gA7/YxKaVvmbr16aM2UOuSveN1tQq
+         jlvQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678497265;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=rh7oDZ2wH8OxNXYeRmxDps+pFhJvkYtrO5SAgqEl724=;
-        b=f0GmcImSVmdgMQvMQiP7JW2INJLIaIceNrBbDgR+6Pn+sR28GBAhVqUG/SEJvnxEC2
-         rPtnbYYi/gbxElrZtT17VlpVoUApcu/A0dMHOK+0bs4lbdF57SyI9Yibezj0lDpSD3At
-         fe09s0uRZI0W5CTizK3xwxTqwcsqeIP03UOIp52nivTil8LTx3Kprnfb35OVwLzUgT9O
-         epNG7tCjJiVwNTLsHlrKXCErcQcXn7gOwjJ0CGzdxR6MBjkiv2UcsspNWcg62zmCZon7
-         wDHPYxhrKNPcoOO5ImaX3PGpadx7mF/qH0v+1WZUNW+TPhNokNdhzcNV8dxtQpnXtoEc
-         1YBA==
-X-Gm-Message-State: AO0yUKUwFcH1XaT+zcd6AzCZIZpE6HLMDzWqtCLP2NgB6kY91UI0yB5C
-        SMWfJZeekir75LxepHIjWjg=
-X-Google-Smtp-Source: AK7set+9UTvGbB9wlgUIPHEmDL2PHFkebYxlGCjJD3HnunYUU257fn+NuaCmmdq9Dzvnt4hGugeLkg==
-X-Received: by 2002:a17:90a:ae83:b0:237:ae98:a484 with SMTP id u3-20020a17090aae8300b00237ae98a484mr4150329pjq.7.1678497264677;
-        Fri, 10 Mar 2023 17:14:24 -0800 (PST)
-Received: from ryan-ThinkPad-T470.. (c-24-6-63-212.hsd1.ca.comcast.net. [24.6.63.212])
-        by smtp.gmail.com with ESMTPSA id r20-20020a17090b051400b002376d85844dsm475323pjz.51.2023.03.10.17.14.22
+        d=1e100.net; s=20210112; t=1678497702;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=ztXjjbd60BFQ9adlzKKMOkVzBvcLHCXoH/i70TyV+Ec=;
+        b=3nSQShcShimbNT1XhKM1YUSGZ8kFYSW3ZFT/DKXFzb7seGm5Hmj1jA2db1SPQvGpsQ
+         dJV//6ehbPX7TZjQIZyrawMMai5w36mA+QvbErgGrV+FRWTL6gS4DMLNKXMksq6r0FI9
+         yamUrUC+p4jrAV/6sKQFa1CeF/Oj2gg8hT/+wcrM6JbkdCY/NBPFRefqU2HtXMm5Hra+
+         hnkmsNLIPQ97s50k8ATZDDlSn7opgLeIRAedgTA1TjqH6pRjidH83Zli7jJDAcUbVUXI
+         FmEgcA5Nkn8NrmXlwRpiqQWqkP+xs0wDtPrfdAjHVKD3KEXSvCs6bT19IGLSFkBD+za5
+         wGNA==
+X-Gm-Message-State: AO0yUKWwgIghVq0216yX5N+RrCbWbEOghFOcVQ9oXrl0Re9ItV7eq3Zw
+        q41RPHK7xw9YmsBz1fhRFztFhA==
+X-Google-Smtp-Source: AK7set+kjIujOB59hkOZ2XREZRD/YuX0C6q2jBdyoCGaw+W/5jFjPUh95DisAyV0tPeSFB7BFxP9Yg==
+X-Received: by 2002:ac2:5332:0:b0:4dd:a7ab:b148 with SMTP id f18-20020ac25332000000b004dda7abb148mr7933914lfh.49.1678497702108;
+        Fri, 10 Mar 2023 17:21:42 -0800 (PST)
+Received: from [192.168.1.101] (abyj16.neoplus.adsl.tpnet.pl. [83.9.29.16])
+        by smtp.gmail.com with ESMTPSA id y26-20020ac2447a000000b004db25f2c103sm142318lfl.86.2023.03.10.17.21.40
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 10 Mar 2023 17:14:24 -0800 (PST)
-From:   =?UTF-8?q?=E2=80=9CRyan?= <ryan.lee.analog@gmail.com>
-To:     lgirdwood@gmail.com, broonie@kernel.org, perex@perex.cz,
-        tiwai@suse.com, krzysztof.kozlowski@linaro.org,
-        rf@opensource.cirrus.com, ckeepax@opensource.cirrus.com,
-        pierre-louis.bossart@linux.intel.com, herve.codina@bootlin.com,
-        wangweidong.a@awinic.com, james.schulman@cirrus.com,
-        ajye_huang@compal.corp-partner.google.com, shumingf@realtek.com,
-        povik+lin@cutebit.org, flatmax@flatmax.com,
-        linux-kernel@vger.kernel.org, alsa-devel@alsa-project.org,
-        robh+dt@kernel.org, devicetree@vger.kernel.org,
-        ryans.lee@analog.com
-Subject: [PATCH V2 2/2] ASoC: dt-bindings: max98363: add soundwire amplifier
-Date:   Fri, 10 Mar 2023 17:14:09 -0800
-Message-Id: <20230311011409.210014-2-ryan.lee.analog@gmail.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230311011409.210014-1-ryan.lee.analog@gmail.com>
-References: <20230311011409.210014-1-ryan.lee.analog@gmail.com>
+        Fri, 10 Mar 2023 17:21:41 -0800 (PST)
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+Subject: [PATCH RFC 00/15] Convert Qualcomm RPM message RAM to a simple-mfd
+Date:   Sat, 11 Mar 2023 02:21:30 +0100
+Message-Id: <20230311-topic-msg_ram-v1-0-e9c2094daf09@linaro.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAJrXC2QC/x2NQQrCQAwAv1JyNtDdBSleBR/gVYpkY2wD7bZkV
+ YTSvxs8zsAwG1QxlQqnZgOTj1ZdikM4NMAjlUFQH84Q25jaFAK+llUZ5zrcjWY85i4xdSGyMHi
+ TqQpmo8KjV+U9TS5Xk6d+/5MbXC9n6Pf9B75+E8J5AAAA
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Lee Jones <lee@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Rob Herring <robh@kernel.org>, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Konrad Dybcio <konrad.dybcio@linaro.org>
+X-Mailer: b4 0.12.1
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1678497700; l=3004;
+ i=konrad.dybcio@linaro.org; s=20230215; h=from:subject:message-id;
+ bh=Uq6nFpabusoC58q8pSGW5x4YCbTHeNtUHKsbt6Eq17E=;
+ b=BvVDj6jzdTLhxkxpn2Qw6SXaLcpuQC36eScnwOAh1u/tAjXrFl2KZPXQ+iUkD72ChfuTPos9+b6P
+ LTjZRDtLD4JnnS0Imb5BKWm3nPB8UKtT0PYysBlSs1GY/RcWLVcP
+X-Developer-Key: i=konrad.dybcio@linaro.org; a=ed25519;
+ pk=iclgkYvtl2w05SSXO5EjjSYlhFKsJ+5OSZBjOkQuEms=
+X-Spam-Status: No, score=-0.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_SORBS_HTTP,RCVD_IN_SORBS_SOCKS,SPF_HELO_NONE,SPF_PASS,
+        URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Ryan Lee <ryans.lee@analog.com>
+The Qualcomm RPM message RAM is a part of the RPM low-power processor's
+actual RAM that's exposed to the Application Processors as a MMIO-mapped
+region. It contains a couple of things, most notably the RPM master stats,
+detailing per-master (read: per-subsystem) sleep/wake statistics and an
+interrupt controller that's crucial to achieving full SoC clock and/or
+power collapse states (the MPM). This series tries to prepare the MSG
+RAM node to be a host for such devices.
 
-This patch adds dt-bindings information for Analog Devices MAX98363
-SoundWire Amplifier.
+Depends on https://lore.kernel.org/linux-arm-msm/20230308011705.291337-1-konrad.dybcio@linaro.org/
 
-Signed-off-by: Ryan Lee <ryans.lee@analog.com>
+to solve a warning in the example.
+
+The DTS commits don't add -cells or -ranges, as without children they're
+not of very much use. They'll be introduced along with subnodes.
+
+Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 ---
-Changes from v1:
-  Fixed a syntax error for the 'dt_binding_check' build.
-  Removed unnecessary properties.
-  Added description about SoundWire device ID of MAX98363
+Konrad Dybcio (15):
+      dt-bindings: mfd: Split out Qcom RPM MSG RAM
+      arm64: dts: qcom: msm8916: Add simple-mfd to rpm_msg_ram
+      arm64: dts: qcom: msm8953: Add simple-mfd to rpm_msg_ram
+      arm64: dts: qcom: msm8976: Add simple-mfd to rpm_msg_ram
+      arm64: dts: qcom: msm8994: Add simple-mfd to rpm_msg_ram
+      arm64: dts: qcom: msm8996: Add simple-mfd to rpm_msg_ram
+      arm64: dts: qcom: msm8998: Add simple-mfd to rpm_msg_ram
+      arm64: dts: qcom: qcs404: Add simple-mfd to rpm_msg_ram
+      arm64: dts: qcom: sdm630: Add simple-mfd to rpm_msg_ram
+      arm64: dts: qcom: sm6115: Add simple-mfd to rpm_msg_ram
+      arm64: dts: qcom: sm6125: Add simple-mfd to rpm_msg_ram
+      arm64: dts: qcom: sm6375: Add simple-mfd to rpm_msg_ram
+      ARM: dts: qcom-apq8084: Add simple-mfd to rpm_msg_ram
+      ARM: dts: qcom-msm8226: Add simple-mfd to rpm_msg_ram
+      ARM: dts: qcom-msm8974: Add simple-mfd to rpm_msg_ram
 
- .../bindings/sound/adi,max98363.yaml          | 42 +++++++++++++++++++
- 1 file changed, 42 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/sound/adi,max98363.yaml
+ .../devicetree/bindings/mfd/qcom,rpm-msg-ram.yaml  | 82 ++++++++++++++++++++++
+ Documentation/devicetree/bindings/sram/sram.yaml   |  2 -
+ arch/arm/boot/dts/qcom-apq8084.dtsi                |  2 +-
+ arch/arm/boot/dts/qcom-msm8226.dtsi                |  2 +-
+ arch/arm/boot/dts/qcom-msm8974.dtsi                |  2 +-
+ arch/arm64/boot/dts/qcom/msm8916.dtsi              |  2 +-
+ arch/arm64/boot/dts/qcom/msm8953.dtsi              |  2 +-
+ arch/arm64/boot/dts/qcom/msm8976.dtsi              |  2 +-
+ arch/arm64/boot/dts/qcom/msm8994.dtsi              |  2 +-
+ arch/arm64/boot/dts/qcom/msm8996.dtsi              |  2 +-
+ arch/arm64/boot/dts/qcom/msm8998.dtsi              |  2 +-
+ arch/arm64/boot/dts/qcom/qcs404.dtsi               |  2 +-
+ arch/arm64/boot/dts/qcom/sdm630.dtsi               |  2 +-
+ arch/arm64/boot/dts/qcom/sm6115.dtsi               |  2 +-
+ arch/arm64/boot/dts/qcom/sm6125.dtsi               |  2 +-
+ arch/arm64/boot/dts/qcom/sm6375.dtsi               |  2 +-
+ 16 files changed, 96 insertions(+), 16 deletions(-)
+---
+base-commit: 24469a0e5052ba01a35a15f104717a82b7a4798b
+change-id: 20230311-topic-msg_ram-6b83ca812cec
 
-diff --git a/Documentation/devicetree/bindings/sound/adi,max98363.yaml b/Documentation/devicetree/bindings/sound/adi,max98363.yaml
-new file mode 100644
-index 000000000000..0e71b6c84007
---- /dev/null
-+++ b/Documentation/devicetree/bindings/sound/adi,max98363.yaml
-@@ -0,0 +1,42 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/sound/adi,max98363.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Analog Devices MAX98363 SoundWire Amplifier
-+
-+maintainers:
-+  - Ryan Lee <ryans.lee@analog.com>
-+
-+description:
-+  The MAX98363 is a SoundWire input Class D mono amplifier that
-+  supports MIPI SoundWire v1.2-compatible digital interface for
-+  audio and control data.
-+  SoundWire peripheral device ID of MAX98363 is 0x3X019F836300
-+  where X is the peripheral device unique ID decoded from pin.
-+  It supports up to 10 peripheral devices(0x0 to 0x9).
-+
-+properties:
-+  compatible:
-+    enum:
-+      - adi,max98363
-+  reg:
-+    maxItems: 1
-+    description: Peripheral-device unique ID decoded from pin.
-+
-+required:
-+  - compatible
-+  - reg
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    soundwire {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+        amplifier@3 {
-+            compatible = "adi,max98363";
-+            reg = <0x3>;
-+        };
-+    };
+Best regards,
 -- 
-2.34.1
+Konrad Dybcio <konrad.dybcio@linaro.org>
 
