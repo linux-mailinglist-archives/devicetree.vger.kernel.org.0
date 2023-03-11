@@ -2,83 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E82026B5C63
-	for <lists+devicetree@lfdr.de>; Sat, 11 Mar 2023 14:45:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 59ACD6B5C67
+	for <lists+devicetree@lfdr.de>; Sat, 11 Mar 2023 14:47:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230063AbjCKNpc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 11 Mar 2023 08:45:32 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42834 "EHLO
+        id S229641AbjCKNrQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 11 Mar 2023 08:47:16 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44366 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229641AbjCKNpb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 11 Mar 2023 08:45:31 -0500
-Received: from mail-oi1-f172.google.com (mail-oi1-f172.google.com [209.85.167.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0BD1E12A159;
-        Sat, 11 Mar 2023 05:45:17 -0800 (PST)
-Received: by mail-oi1-f172.google.com with SMTP id e21so6414805oie.1;
-        Sat, 11 Mar 2023 05:45:16 -0800 (PST)
+        with ESMTP id S229478AbjCKNrP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 11 Mar 2023 08:47:15 -0500
+Received: from mail-wm1-x332.google.com (mail-wm1-x332.google.com [IPv6:2a00:1450:4864:20::332])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1753C12B3E8
+        for <devicetree@vger.kernel.org>; Sat, 11 Mar 2023 05:47:14 -0800 (PST)
+Received: by mail-wm1-x332.google.com with SMTP id l7-20020a05600c1d0700b003eb5e6d906bso5118882wms.5
+        for <devicetree@vger.kernel.org>; Sat, 11 Mar 2023 05:47:14 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112; t=1678542432;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=ZBO3idTa/21IoF+rqyI12JvXLCjDtYZ0mkiJnbS1QaQ=;
+        b=l/ED1hksk6p1/Q3Me1RbvDkV0gyMZu30OHUixejio+q11rs8TDi6JMGItWmnxfb6fx
+         9pDN5isrItay4UAWqy1+t28LQ9nXLH1Zu6TB6+76aRv0EziUcRAuAwNsgPb03rpjx/Jq
+         vafWTHi/bvye3IdNl4boW3lHsHV8G6RYLmuQT1dJnQs7HJKV2QSaLymb5w1uaWaT/6OL
+         qEmgdhI/CSTsiAka6v1XI8+SguV4WFvhb/yTlZNbXH2WVcwvA8IA7dD4ix9JQQdYlBQl
+         Qv51UhIPFrC26Jiv2lUK73kFpsrHJF23dZy8NWh8zQR63aLBmIB1mEKXnvMgs+Tlz8GU
+         sduw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678542316;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=M/yxGBjJWYHSDKTiHFSEDygkdbxssA9wfkJfJYmMlGw=;
-        b=f3Ia6fSh3iUXXz9mzcmteVYI0LDwDEH2hWimdh6Z9Eb1Mf2rDxYgxQ1UuJdcyKYLkz
-         urZollDXBZkRo71ybwgDr4XpHj2dJTdF77wu/7dpuvjL7GafrrkkRFjcuPlv76PT/i0b
-         +indmC/R/QHCAlVJEStrmt/IAOr6c2Tdx94zLrumnGLGgP+jTrZlaDoWKBq/JIC8H4Hr
-         m1lwbXrOY7DuR9APACOmNhc7ar4PMg9VIyyjFzd5u22BZiLlFsbUdb2jF0f1FWjABx7g
-         WKnhRnlrsYzHmpwfkctoapN+ZjSGnJJ/SrvfsATrl/K9nZvCVE/hRnE1Xfc/kI8xIkN3
-         uSxQ==
-X-Gm-Message-State: AO0yUKXnpeweCMHVE7Lfd/CRPsuZEmFxOoFIynZZdYM0ayffWdztJQdG
-        gcI4l5cnfyh4KEOJD9E1eA==
-X-Google-Smtp-Source: AK7set832JJbSMM00eLNYQW7qdwTXKNOJD+8e5BwJxEJiJKYv+ZhJ1MVeE7vGwHtwXoHgfdJlO/7vA==
-X-Received: by 2002:a05:6808:b12:b0:384:18f4:1536 with SMTP id s18-20020a0568080b1200b0038418f41536mr13462686oij.32.1678542316277;
-        Sat, 11 Mar 2023 05:45:16 -0800 (PST)
-Received: from robh_at_kernel.org ([2605:ef80:80f8:ec2:d840:96d4:1bbf:55f])
-        by smtp.gmail.com with ESMTPSA id s188-20020acadbc5000000b003847ca255fasm1054934oig.30.2023.03.11.05.45.14
+        d=1e100.net; s=20210112; t=1678542432;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=ZBO3idTa/21IoF+rqyI12JvXLCjDtYZ0mkiJnbS1QaQ=;
+        b=x5xAnTJqhcJx8W6vSDoP/NLr5Sv+D8Bw604W3s01Jg1R523IouXg5ryV1ziDvMH9g4
+         x1Bcwb/FzKjDznW/8+qXdj2uYZQyL6MJgvrWylbbOrd6e5QtVm878lEC5TP7tK1dk4a9
+         +Vf9McglqNWyEayhi6AX+zqJefsYbWcEBR0b37ohFU1oY3oOmO0MzaXfJIwuY2HyCQYR
+         bm2NDdIrPxAgMeW23mUS/Nd82SOf0XSV5rZhCpVtEbXpY3JHY9Eug/X3Hr1RGksEzu9O
+         cmAQNmb6kz9m3L9gu0jQeBSX4efYBPZZidgZrdAxFmBsCIAHznDx77UeF7Vhnf5RHEVV
+         D8PA==
+X-Gm-Message-State: AO0yUKWAXkqKqEMQ8YYCtXR3HlwSzVRXuVdCQn65Uxc8KCP1F9VAquy5
+        nyEP+yDy0AlkdwPBjbBB5JCeP06BTnvevX9F9jo=
+X-Google-Smtp-Source: AK7set/BfIdaf1Svp6WGE/8OCJBf2lTBk6zGjmBU0bzzIm/QXkFnDW2NL79iXTCHDsCdUJi9QpW4PA==
+X-Received: by 2002:a05:600c:190c:b0:3e1:fc61:e0e5 with SMTP id j12-20020a05600c190c00b003e1fc61e0e5mr5638819wmq.33.1678542432561;
+        Sat, 11 Mar 2023 05:47:12 -0800 (PST)
+Received: from localhost.localdomain ([146.70.189.177])
+        by smtp.gmail.com with ESMTPSA id n19-20020a1c7213000000b003eb39e60ec9sm2816915wmc.36.2023.03.11.05.47.11
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 11 Mar 2023 05:45:15 -0800 (PST)
-Received: (nullmailer pid 31469 invoked by uid 1000);
-        Sat, 11 Mar 2023 13:45:13 -0000
-Date:   Sat, 11 Mar 2023 07:45:13 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Bernhard =?iso-8859-1?Q?Rosenkr=E4nzer?= <bero@baylibre.com>
-Cc:     linux-serial@vger.kernel.org, gregkh@linuxfoundation.org,
-        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
-        maz@kernel.org, tglx@linutronix.de,
-        linux-arm-kernel@lists.infradead.org, matthias.bgg@gmail.com,
-        robh+dt@kernel.org, linux-kernel@vger.kernel.org,
-        angelogioacchino.delregno@collabora.com,
-        krzysztof.kozlowski+dt@linaro.org
-Subject: Re: [PATCH v11 2/3] dt-bindings: serial: mediatek,uart: add MT8365
-Message-ID: <167854230361.31217.14194578578496265497.robh@kernel.org>
-References: <20230309213501.794764-1-bero@baylibre.com>
- <20230309213501.794764-3-bero@baylibre.com>
+        Sat, 11 Mar 2023 05:47:11 -0800 (PST)
+From:   Jan Jasper de Kroon <jajadekroon@gmail.com>
+To:     devicetree@vger.kernel.org
+Cc:     Jan Jasper de Kroon <jajadekroon@gmail.com>
+Subject: [PATCH] feat: Add 'hold-in-reset-in-suspend' property to goodix touchscreen binding
+Date:   Sat, 11 Mar 2023 14:46:55 +0100
+Message-Id: <20230311134655.486973-1-jajadekroon@gmail.com>
+X-Mailer: git-send-email 2.34.3
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20230309213501.794764-3-bero@baylibre.com>
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+This patch adds a new property, 'hold-in-reset-in-suspend', to the Goodix touchscreen
+device tree binding. When set to true, the touchscreen controller will be held in
+reset mode during system suspend, reducing power consumption. The property is optional
+and defaults to false if not present.
 
-On Thu, 09 Mar 2023 22:35:00 +0100, Bernhard Rosenkränzer wrote:
-> Add binding description for mediatek,mt8365-uart
-> 
-> Signed-off-by: Bernhard Rosenkränzer <bero@baylibre.com>
-> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-> ---
->  Documentation/devicetree/bindings/serial/mediatek,uart.yaml | 1 +
->  1 file changed, 1 insertion(+)
-> 
+I am submitting this patch to the Device Tree mailing list to add a new property to
+the Goodix touchscreen device tree binding. This patch supplements a related patch
+sent to the linux-input mailing list, which updates the Goodix touchscreen driver to
+use this new property.
+The linux-input patch can be found at:
+https://lore.kernel.org/all/20230311131534.484700-1-jajadekroon@gmail.com/
 
-Applied, thanks!
+Signed-off-by: Jan Jasper de Kroon <jajadekroon@gmail.com>
+---
+ .../devicetree/bindings/input/touchscreen/goodix.yaml    | 9 +++++++++
+ 1 file changed, 9 insertions(+)
+
+diff --git a/Documentation/devicetree/bindings/input/touchscreen/goodix.yaml b/Documentation/devicetree/bindings/input/touchscreen/goodix.yaml
+index 3d016b87c8df..a7c3d6b5156a 100644
+--- a/Documentation/devicetree/bindings/input/touchscreen/goodix.yaml
++++ b/Documentation/devicetree/bindings/input/touchscreen/goodix.yaml
+@@ -56,6 +56,14 @@ properties:
+   touchscreen-size-y: true
+   touchscreen-swapped-x-y: true
+ 
++  hold-in-reset-in-suspend:
++    type: boolean
++    description: |
++      When set to true, the touchscreen controller will be held in reset mode
++      during system suspend. This can help reduce power consumption, but may
++      cause the touchscreen to take longer to resume when the system is woken
++      up from suspend. Defaults to false if not present.
++
+ additionalProperties: false
+ 
+ required:
+@@ -75,6 +83,7 @@ examples:
+         interrupts = <0 0>;
+         irq-gpios = <&gpio1 0 0>;
+         reset-gpios = <&gpio1 1 0>;
++        hold-in-reset-in-suspend = <true>;
+       };
+     };
+ 
+-- 
+2.34.3
 
