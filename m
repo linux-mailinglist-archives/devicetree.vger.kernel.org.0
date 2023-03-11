@@ -2,96 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8A2056B5C74
-	for <lists+devicetree@lfdr.de>; Sat, 11 Mar 2023 14:52:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CB9C26B5CAB
+	for <lists+devicetree@lfdr.de>; Sat, 11 Mar 2023 15:17:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229809AbjCKNwj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 11 Mar 2023 08:52:39 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52446 "EHLO
+        id S229636AbjCKORJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 11 Mar 2023 09:17:09 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35146 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229956AbjCKNwj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 11 Mar 2023 08:52:39 -0500
-Received: from ewsoutbound.kpnmail.nl (ewsoutbound.kpnmail.nl [195.121.94.184])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A1EE8121430
-        for <devicetree@vger.kernel.org>; Sat, 11 Mar 2023 05:52:36 -0800 (PST)
-X-KPN-MessageId: 07fbba2c-c014-11ed-91cc-005056994fde
-Received: from smtp.kpnmail.nl (unknown [10.31.155.8])
-        by ewsoutbound.so.kpn.org (Halon) with ESMTPS
-        id 07fbba2c-c014-11ed-91cc-005056994fde;
-        Sat, 11 Mar 2023 14:52:58 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=xs4all.nl; s=xs4all01;
-        h=subject:to:from:message-id:date;
-        bh=ALu8+PmipZgEw89/BHca117Pe0D8mE1E2egBqYsyknM=;
-        b=sjrN4u6wyciZj9Su2klp6z3W5MCqUI4mPWTKfBbjNphlQpEhkPS4wh3rIecb3c9eaUJOuWTNt1hov
-         H6aOeQnqLPd+q4DWPnyS3wPBhj9sLhJheCwDHM7/i8vxVeFWNVE6xEa+cl0YinRNOHZiH6oUOAqsP1
-         Hg0l7NZdPp8ea5f/8s9lBOa4tk4+DEbmNvAtT4uVOZskqqgXIfdUmNDYgoA9Z0efxAVR1/Zqzgogsz
-         g9ahkxaNZmgg/59ZUTxRRG5crdRNv4pztZGVwXqjc4HZ2TljAjTu7HWhWrmZJOv349Lhf/8DRBElL1
-         QyC0R1je529u6l/iY0dII4zJt815itg==
-X-KPN-MID: 33|VMtRr8A7spxYaBX6YlEci9XrlWDUmmIYGebVH5TkcyTisB5tkpzSAZc1l3g947k
- GmoE2OYFIfwA6A5NxaH5tNnosy8GNrgIb+RWPh4xV4/U=
-X-KPN-VerifiedSender: Yes
-X-CMASSUN: 33|kZZ8dqbp5Z6By5V/8lQMaupPovkbLuGHIJzRTJ7QFsjhtZ3+Snv1SYpmNLmvJAg
- kXcXwGJ6a9eCqgA7x4IvYVw==
-X-Originating-IP: 80.61.163.207
-Received: from bloch.sibelius.xs4all.nl (80-61-163-207.fixed.kpn.net [80.61.163.207])
-        by smtp.xs4all.nl (Halon) with ESMTPSA
-        id f8a10bc9-c013-11ed-9d31-00505699d6e5;
-        Sat, 11 Mar 2023 14:52:33 +0100 (CET)
-Date:   Sat, 11 Mar 2023 14:52:32 +0100
-Message-Id: <874jqrcs4f.fsf@bloch.sibelius.xs4all.nl>
-From:   Mark Kettenis <mark.kettenis@xs4all.nl>
-To:     Sven Peter <sven@svenpeter.dev>
-Cc:     marcan@marcan.st, sven@svenpeter.dev, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, alyssa@rosenzweig.io,
-        joro@8bytes.org, will@kernel.org, robin.murphy@arm.com,
-        linux-arm-kernel@lists.infradead.org, asahi@lists.linux.dev,
-        iommu@lists.linux.dev, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, robh@kernel.org
-In-Reply-To: <20230311133856.63840-2-sven@svenpeter.dev> (message from Sven
-        Peter on Sat, 11 Mar 2023 14:38:54 +0100)
-Subject: Re: [PATCH v3 1/3] dt-bindings: iommu: dart: Add t8103-usb4-dart compatible
-References: <20230311133856.63840-1-sven@svenpeter.dev> <20230311133856.63840-2-sven@svenpeter.dev>
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+        with ESMTP id S229821AbjCKORJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 11 Mar 2023 09:17:09 -0500
+Received: from mail-oo1-f43.google.com (mail-oo1-f43.google.com [209.85.161.43])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 30331F6930;
+        Sat, 11 Mar 2023 06:17:07 -0800 (PST)
+Received: by mail-oo1-f43.google.com with SMTP id t5-20020a4ac885000000b005251f70a740so1215051ooq.8;
+        Sat, 11 Mar 2023 06:17:07 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1678544226;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=WayWIOIzl168cFhbQy0mqxc8fj9xrbSB83RnDiz8R3k=;
+        b=FRE0qmpp7X+oKIlLW/puCl+smWwNkG2s+tNNTjVk+TLGRg1j2AjjUeOEtwlCDRGCR+
+         JtKGZiDzS4fRehDZ7PTG6TM19PTmCRd6UBw8UDxZeDe3+toMlDZigGBrWAEk36OYKixu
+         6w87nWnwQub8C3GkydvGR7iL2pbk+I/4kugEtvbnyGQYs+HTM9cRYrxyCg68A6K4hoIh
+         LqZj982CCn2N4zSHwtY0AXWN6mfgtNAmP2wCxMQut9RKJHn2ngzl2W5a3NMhWqZAw+XC
+         opmiKmpY8PP5aO9GvDNUE3CzDUkTVs6p8TcOZ4guMsd3xpGYRQqKgw+FHN6+8sBkeHqL
+         s0hg==
+X-Gm-Message-State: AO0yUKXIyWMduxepm3oCIh0GoK80lR+T+j1AKnBoDKzkMxFUpZipgox9
+        YfYDg2A/LFkidPGssImQOJSd2wZ9QQ==
+X-Google-Smtp-Source: AK7set8LV5pVOhq7euQWBiixs6oYxgiJUM68yu7tkDFISj8ddHnNo6RWeJD/0CThLBLiaIEVnWXbDw==
+X-Received: by 2002:a4a:d637:0:b0:525:4058:2fcd with SMTP id n23-20020a4ad637000000b0052540582fcdmr3201545oon.1.1678544226475;
+        Sat, 11 Mar 2023 06:17:06 -0800 (PST)
+Received: from robh_at_kernel.org ([2605:ef80:80f1:6fdb:8060:4df8:4037:6d6f])
+        by smtp.gmail.com with ESMTPSA id a7-20020a4ab787000000b0051ffe0fe11bsm1090992oop.6.2023.03.11.06.17.02
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 11 Mar 2023 06:17:05 -0800 (PST)
+Received: (nullmailer pid 140902 invoked by uid 1000);
+        Sat, 11 Mar 2023 14:17:00 -0000
+Date:   Sat, 11 Mar 2023 08:17:00 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Hal Feng <hal.feng@starfivetech.com>
+Cc:     Marc Zyngier <maz@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Ben Dooks <ben.dooks@sifive.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Stephen Boyd <sboyd@kernel.org>,
+        linux-riscv@lists.infradead.org, Conor Dooley <conor@kernel.org>,
+        Emil Renner Berthing <emil.renner.berthing@canonical.com>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        linux-clk@vger.kernel.org,
+        Michael Turquette <mturquette@baylibre.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>
+Subject: Re: [PATCH v5 11/21] dt-bindings: clock: Add StarFive JH7110 system
+ clock and reset generator
+Message-ID: <167854282659.42837.5915012938593380363.robh@kernel.org>
+References: <20230311090733.56918-1-hal.feng@starfivetech.com>
+ <20230311090733.56918-12-hal.feng@starfivetech.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230311090733.56918-12-hal.feng@starfivetech.com>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> From: Sven Peter <sven@svenpeter.dev>
-> Date: Sat, 11 Mar 2023 14:38:54 +0100
-> 
-> This DART variant is found in the t8103 (M1) SoCs and used for the
-> USB4/Thunderbolt PCIe ports. Unlike the regular t8103 DART these support
-> up to 64 SIDs and require a slightly different MMIO layout.
-> 
-> Acked-by: Hector Martin <marcan@marcan.st>
-> Acked-by: Rob Herring <robh@kernel.org>
-> Signed-off-by: Sven Peter <sven@svenpeter.dev>
 
-Reviewed-by: Mark Kettenis <kettenis@openbsd.org>
-
+On Sat, 11 Mar 2023 17:07:23 +0800, Hal Feng wrote:
+> From: Emil Renner Berthing <kernel@esmil.dk>
+> 
+> Add bindings for the system clock and reset generator (SYSCRG) on the
+> JH7110 RISC-V SoC by StarFive Ltd.
+> 
+> Signed-off-by: Emil Renner Berthing <kernel@esmil.dk>
+> Signed-off-by: Hal Feng <hal.feng@starfivetech.com>
 > ---
->  Documentation/devicetree/bindings/iommu/apple,dart.yaml | 1 +
->  1 file changed, 1 insertion(+)
+>  .../clock/starfive,jh7110-syscrg.yaml         | 104 +++++++++
+>  MAINTAINERS                                   |   8 +-
+>  .../dt-bindings/clock/starfive,jh7110-crg.h   | 203 ++++++++++++++++++
+>  .../dt-bindings/reset/starfive,jh7110-crg.h   | 142 ++++++++++++
+>  4 files changed, 454 insertions(+), 3 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/clock/starfive,jh7110-syscrg.yaml
+>  create mode 100644 include/dt-bindings/clock/starfive,jh7110-crg.h
+>  create mode 100644 include/dt-bindings/reset/starfive,jh7110-crg.h
 > 
-> diff --git a/Documentation/devicetree/bindings/iommu/apple,dart.yaml b/Documentation/devicetree/bindings/iommu/apple,dart.yaml
-> index 903edf85d72e..7adb1de455a5 100644
-> --- a/Documentation/devicetree/bindings/iommu/apple,dart.yaml
-> +++ b/Documentation/devicetree/bindings/iommu/apple,dart.yaml
-> @@ -24,6 +24,7 @@ properties:
->    compatible:
->      enum:
->        - apple,t8103-dart
-> +      - apple,t8103-usb4-dart
->        - apple,t8110-dart
->        - apple,t6000-dart
->  
-> -- 
-> 2.25.1
-> 
-> 
-> 
+
+
+Please add Acked-by/Reviewed-by tags when posting new versions. However,
+there's no need to repost patches *only* to add the tags. The upstream
+maintainer will do that for acks received on the version they apply.
+
+If a tag was not added on purpose, please state why and what changed.
+
+Missing tags:
+
+Reviewed-by: Rob Herring <robh@kernel.org>
+
+
+
