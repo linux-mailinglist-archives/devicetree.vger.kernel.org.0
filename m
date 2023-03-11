@@ -2,113 +2,155 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AF34E6B5985
-	for <lists+devicetree@lfdr.de>; Sat, 11 Mar 2023 09:41:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6F4C36B599C
+	for <lists+devicetree@lfdr.de>; Sat, 11 Mar 2023 10:06:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229901AbjCKIlV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 11 Mar 2023 03:41:21 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43402 "EHLO
+        id S230002AbjCKJGk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 11 Mar 2023 04:06:40 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50152 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229621AbjCKIlU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 11 Mar 2023 03:41:20 -0500
-Received: from mail-vs1-xe29.google.com (mail-vs1-xe29.google.com [IPv6:2607:f8b0:4864:20::e29])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AE3D912DC30
-        for <devicetree@vger.kernel.org>; Sat, 11 Mar 2023 00:41:17 -0800 (PST)
-Received: by mail-vs1-xe29.google.com with SMTP id a3so6831487vsi.0
-        for <devicetree@vger.kernel.org>; Sat, 11 Mar 2023 00:41:17 -0800 (PST)
+        with ESMTP id S229948AbjCKJGj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 11 Mar 2023 04:06:39 -0500
+Received: from mail-ed1-x529.google.com (mail-ed1-x529.google.com [IPv6:2a00:1450:4864:20::529])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 891F011CBCB
+        for <devicetree@vger.kernel.org>; Sat, 11 Mar 2023 01:06:37 -0800 (PST)
+Received: by mail-ed1-x529.google.com with SMTP id s11so29988092edy.8
+        for <devicetree@vger.kernel.org>; Sat, 11 Mar 2023 01:06:37 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112; t=1678524077;
-        h=to:subject:message-id:date:from:reply-to:mime-version:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=8+CEZRZEOJVmAfb07UohKPHalX/8xKQCW3mCwVUhKXY=;
-        b=nAg3aRYpKJ/hSn+VSxABMDRWPWo6y0rzV3xB6/sc+X4rRL05pskCAJzzNJ208lTKk7
-         SQIZ3i8CgA3o7Qg/+Q1TRJcJ/L2IxaWGfx2SLPKmH13wfPWzKaVm2ZgXwBZWk0Mi6nbI
-         MBKodwEgtI03EmYwCcR1n4sXPPYVSOYls/ihTA7pFpvwy6ZSDtMWtG6vmJxR6qvjcgNX
-         IEeL++7g3f7WsQZmDoMyo3WjcIJxoELZTbUlgaRDkzHtUF08eREiTiZQe+AF3vmOCnhD
-         oZGsbMgBqyHz79V9m/NM2xR/JdspjC+HIm8z3iLnWWGO2r8l9zomtTjPDgzOlZYHwm6/
-         /V8Q==
+        d=linaro.org; s=google; t=1678525596;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=zowTuWNW9XK1G8KnVImseow9x8MhvPdzG9vsjjSpvmU=;
+        b=VuoACss0qcQNCyF7nKEwruQXM8LGr3AqsvT4nSr8D5RdN+4ssu+HI7SL0B3By5pQd6
+         F4zhfdIXayE8QpQ5cY2SXeTYKso96M908nwQDfxwsdU6Y2NiAxyEQnYzNV8J0zb2oyER
+         nH3X0tf7QVb0WlVslyUxp0zo+sY2YYSeV1xwDfZVK325oBMg73ofOWT8d3ht1cLbS+K6
+         Thv1yXYZ+KxkYIYWG0Yd21prkxHDPrML+CioU2ey2Ghbg88oaHvY8A8aSxNMavgq3Nb2
+         nPa+RMnThUmP52V5CCxSzbo43E/bPgvqy84VFN+OF4Cb8Vfu7qhmvRh0c+yop1wNTX+u
+         Q7/g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678524077;
-        h=to:subject:message-id:date:from:reply-to:mime-version
+        d=1e100.net; s=20210112; t=1678525596;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=8+CEZRZEOJVmAfb07UohKPHalX/8xKQCW3mCwVUhKXY=;
-        b=1v7wsOaiJAPvECM/RximfvRjptyk/9h3D4aXw4p0Tpzrz1pniG/7TKoTxrNGUlbrQS
-         q9GP7EOkQS4Mv72mShhIjZbdKg3IBtljg1qbp3NkSL/EhwrgUhu3/taZuv9Tf5FFqwDv
-         QbCyRcYvrO7KuzOAsJ+jw3JGFN5Kghn6rfdt8s7GhNV7x2QncUzovQ8gqts3QwMPwEc5
-         YYOnzD4fimWqvan3757PI+/Y3O2m1VO+i613jL+YZAdeCnVaplDtLdt25VmIq5RMAvBY
-         PDEaUERKWO2gAdtrJTe42hBP5ROQHWBllkoZ5KalXYTdOdJu851/39/zJg+3qp9bbAQO
-         cWRw==
-X-Gm-Message-State: AO0yUKXUgjkmGuP0t+c2A5FNwc/72ckO1VghBh29M5HcETPZmSdcU7IO
-        pvZgoU2Ovmi0OwzNSTFW4D8hA772skSupTqXhqQ=
-X-Google-Smtp-Source: AK7set/qyTDdlZmmHNBS8kaPfxi8HjbCGQztkWTWoK3AziyJ63Rg+SkSjIjEAJRb7PtIstZtpdoQImtqXTcugcpKEC0=
-X-Received: by 2002:a67:e902:0:b0:416:2ad3:35ba with SMTP id
- c2-20020a67e902000000b004162ad335bamr18502895vso.1.1678524076711; Sat, 11 Mar
- 2023 00:41:16 -0800 (PST)
+        bh=zowTuWNW9XK1G8KnVImseow9x8MhvPdzG9vsjjSpvmU=;
+        b=m5lJf/g2qup53ApZE6o8AYpvjLa4RX1J0qN4eIixH93AnlTASo1D3HBiVmDTXRRkle
+         xdwpA7Ui1LZaN4upZW302rFRBUTj9n6iML9iUUXLFqXr5KkmtNMCrgBvBlNnihIUO06P
+         N+kn2wI+noBuANXqstZqTIAuhU8Ee0JUOhBC44Lct5Fu93aI9+dAH3gICWAI4+cHCiAC
+         yRXVobG1Hmw1itXdLPkT5Fjktuc0nN6EjJq4eq4rL1/zI2E3/Vb+rp6X0CJbr+29JLff
+         2Bfu39AE86etG0wfwn4bgqIINYECqdL8oIr0nOAE3k1b0CfOnjkv1G2tExFV6BvgrBqg
+         /b6A==
+X-Gm-Message-State: AO0yUKUqQV3J+cFEwaQi7nXalOFUbfDL6QxayJHS2GC43Q5BRiCzTaB3
+        pcc35udX4cAxbRJN/WlNdnNFmA==
+X-Google-Smtp-Source: AK7set90tSUkimrYFxcnFBlQ+OiRBGzIs1ZDtM8PuhvEals3K2QMWWdBOGGWH+ZiYB3eTWkRek251Q==
+X-Received: by 2002:a17:906:ce39:b0:8aa:f2f2:7543 with SMTP id sd25-20020a170906ce3900b008aaf2f27543mr27382374ejb.29.1678525596014;
+        Sat, 11 Mar 2023 01:06:36 -0800 (PST)
+Received: from ?IPV6:2a02:810d:15c0:828:fa97:2d7c:bdd7:e1b? ([2a02:810d:15c0:828:fa97:2d7c:bdd7:e1b])
+        by smtp.gmail.com with ESMTPSA id mj16-20020a170906af9000b008c33ebac259sm878569ejb.127.2023.03.11.01.06.34
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 11 Mar 2023 01:06:35 -0800 (PST)
+Message-ID: <d993fc28-1bb5-0a05-c7d2-4891038328e6@linaro.org>
+Date:   Sat, 11 Mar 2023 10:06:34 +0100
 MIME-Version: 1.0
-Received: by 2002:a59:c90f:0:b0:3af:2d22:adb1 with HTTP; Sat, 11 Mar 2023
- 00:41:16 -0800 (PST)
-Reply-To: godwinrichard700@gmail.com
-From:   Richard Godwin <wr9236251@gmail.com>
-Date:   Sat, 11 Mar 2023 00:41:16 -0800
-Message-ID: <CABx9BKDCK1aN0AZmuJbadU5BVQN7ynat=eTEBDbqvGiFVBuUzA@mail.gmail.com>
-Subject: URGENT
-To:     undisclosed-recipients:;
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: Yes, score=5.0 required=5.0 tests=BAYES_50,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,FREEMAIL_REPLYTO,FREEMAIL_REPLYTO_END_DIGIT,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,UNDISC_FREEM,URIBL_BLOCKED
-        autolearn=no autolearn_force=no version=3.4.6
-X-Spam-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-        *      https://www.dnswl.org/, no trust
-        *      [2607:f8b0:4864:20:0:0:0:e29 listed in]
-        [list.dnswl.org]
-        *  0.8 BAYES_50 BODY: Bayes spam probability is 40 to 60%
-        *      [score: 0.5041]
-        *  0.0 URIBL_BLOCKED ADMINISTRATOR NOTICE: The query to URIBL was
-        *      blocked.  See
-        *      http://wiki.apache.org/spamassassin/DnsBlocklists#dnsbl-block
-        *      for more information.
-        *      [URIs: ear.so]
-        * -0.0 SPF_PASS SPF: sender matches SPF record
-        *  0.2 FREEMAIL_ENVFROM_END_DIGIT Envelope-from freemail username ends
-        *       in digit
-        *      [wr9236251[at]gmail.com]
-        *  0.0 SPF_HELO_NONE SPF: HELO does not publish an SPF Record
-        *  0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-        *      provider
-        *      [wr9236251[at]gmail.com]
-        *  0.2 FREEMAIL_REPLYTO_END_DIGIT Reply-To freemail username ends in
-        *      digit
-        *      [godwinrichard700[at]gmail.com]
-        *  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-        *       valid
-        * -0.1 DKIM_VALID_EF Message has a valid DKIM or DK signature from
-        *      envelope-from domain
-        * -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-        *      author's domain
-        * -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-        *  2.9 UNDISC_FREEM Undisclosed recipients + freemail reply-to
-        *  1.0 FREEMAIL_REPLYTO Reply-To/From or Reply-To/body contain
-        *      different freemails
-X-Spam-Level: *****
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.8.0
+Subject: Re: [PATCH 1/2] dt-bindings: leds: Document rohm,bd65b60 bindings
+To:     Bogdan Ionescu <bogdan.ionescu.work@gmail.com>
+Cc:     Pavel Machek <pavel@ucw.cz>, Lee Jones <lee@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-leds@vger.kernel.or, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20230308201451.11629-1-bogdan.ionescu.work@gmail.com>
+ <c0ec5137-ed86-d695-7335-d1564d814862@linaro.org>
+ <CALfPHoVT007ifyTepr_p-saDQtv5Sk7iYXM4qSMXyaCLL3iE2A@mail.gmail.com>
+Content-Language: en-US
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <CALfPHoVT007ifyTepr_p-saDQtv5Sk7iYXM4qSMXyaCLL3iE2A@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
--- 
-Hello Dear Good Day,
+On 10/03/2023 11:41, Bogdan Ionescu wrote:
+> Thanks for the feedback, I am working on addressing the issues you have
+> raised. If I haven't mentioned something, please assume I am implementing
+> your suggestion.
+> 
+>>> +    properties:
+>>> +      rohm,enable-outputs:
+>>
+>> I don't understand why do you need this property. You should use
+>> generic/existing properties, if possible.
+> 
+>> Drop led object. There is no real need for it, is it?
+> 
+> Would this structure be more appropriate:
+> 
+> + led-controler@64 {
+> +     compatible = "rohm,bd65b60";
+> +     reg = <0x64>;
+> +     default-state = "keep";
+> +     linux,default-trigger = "backlight";
+> +
+> +     led@1 {
+> +         reg = <1>;
+> +         function = LED_FUNCTION_BACKLIGHT;
+> +         color = <LED_COLOR_ID_WHITE>;
+> +     };
+> +
+> +     led@2 {
+> +         reg = <2>;
+> +         function = LED_FUNCTION_BACKLIGHT;
+> +         color = <LED_COLOR_ID_WHITE>;
+> +     };
+> + };
+> 
+> Can I have 2 led nodes if they share the same brightness?
 
-I hope you are doing great,
+I think yes, but what about LED on/off? Is it also shared or separate?
+Because if it is shared, then basically it is just one LED...
 
-I have something important to discuss with you
+> 
+>>> +        enum: [ 0, 8, 16 ]
+>>> +        default: 16
+>>
+>> What are the units? percent? Volts? Then use unit suffix in property
+>> name. Your other file suggests volts so make it microvolts.
+> 
+> The chip has 3 possible values 25V, 30V and 35V. How should the driver
+>  handle a value that is not exactly that?
+> Should it round down for safety or return an error?
 
-if you give me a listening ear.so that I can
+Then use -microvolt and real units
+https://github.com/devicetree-org/dt-schema/blob/main/dtschema/schemas/property-units.yaml
 
-write you in details thank you as i wait for
 
-your reply.
+> 
+> This was the reason for creating the bindings header file.
+> Is it possible to reference defines from the bindings header file?
+> 
+> + enum:
+> +   - BD65B60_OVP_25V
+> +   - BD65B60_OVP_30V
+> +   - BD65B60_OVP_35V
+> + default: BD65B60_OVP_35V
+> 
+> I would prefer it if I didn't have to expose the weird bitmasks that ROHM
+> have decided to use and instead use the actual values.
+> 
+> Apologies for the long email, but I wanted to make sure I was clear.
 
-Mr Richard Godwin
+
+
+
+Best regards,
+Krzysztof
+
