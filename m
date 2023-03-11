@@ -2,107 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B48356B5D3F
-	for <lists+devicetree@lfdr.de>; Sat, 11 Mar 2023 16:15:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8815B6B5D59
+	for <lists+devicetree@lfdr.de>; Sat, 11 Mar 2023 16:27:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230251AbjCKPPQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 11 Mar 2023 10:15:16 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46108 "EHLO
+        id S230347AbjCKP10 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 11 Mar 2023 10:27:26 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34478 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229601AbjCKPPQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 11 Mar 2023 10:15:16 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0ADBA29411;
-        Sat, 11 Mar 2023 07:15:15 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id A3DE360C7C;
-        Sat, 11 Mar 2023 15:15:14 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 11B67C4339C;
-        Sat, 11 Mar 2023 15:15:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1678547714;
-        bh=WRaPMgPwoMyVfWOrMK/gri/pJ94fL6M3Kw9x+oiTxO0=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=gZhJB2F9iy6FmxvX8SyqZbZ4M5nomLJ55sweLYLeFmKNlVXuX4g39QyJWygTVktxi
-         9OxR1w1ydSBoi5qTew5drMKsPV6cT2lCPDxk5msXp29XkKDKx8cBQxkMzOoXoR+zeo
-         PPK7LDTAizFwRw/rTsNttnxVIEHxkpEQhNO7v+8QT7s8zDtOdPf96ixtiMBhUvILP0
-         r63pglxm6Y7OBB+OX7bDX8oFg22wJ2/hI3kJYkb6p39hlC3FvVkYAoyG2+rgouCL73
-         nc7DqlBnuPv36ND4fYSQLCCVuqiyg/7L2dYz/BiczwCi+pyY0hScAXtq+IOhhFQTdi
-         9yYijtH2oeWbg==
-Received: by mail-ua1-f52.google.com with SMTP id d12so5480102uak.10;
-        Sat, 11 Mar 2023 07:15:14 -0800 (PST)
-X-Gm-Message-State: AO0yUKWO48Qey0ZNQgrmGYp3ybuv4/Ds8WTbH09a9isFdmKvKqOOnjK6
-        00FILDrfA8pYqsuwlYj1Eiq4cxYW4XO6gr+NAw==
-X-Google-Smtp-Source: AK7set8bzSrdqy8+6YvY1DEekvcd7XPtfCqoKUDgoIQxF8sLBXDP8W8tOeQonNhJP3Pia6+DI8c59rOwGnTGo0UkVGw=
-X-Received: by 2002:a1f:6d42:0:b0:401:b9fd:7053 with SMTP id
- i63-20020a1f6d42000000b00401b9fd7053mr18828740vkc.2.1678547713018; Sat, 11
- Mar 2023 07:15:13 -0800 (PST)
-MIME-Version: 1.0
-References: <20230310144729.1545943-1-robh@kernel.org> <202303111229.3Uuc8JQV-lkp@intel.com>
-In-Reply-To: <202303111229.3Uuc8JQV-lkp@intel.com>
-From:   Rob Herring <robh@kernel.org>
-Date:   Sat, 11 Mar 2023 09:15:01 -0600
-X-Gmail-Original-Message-ID: <CAL_Jsq+kE3v+=WptWet=JHp2-FCOFah_YzWHFbbfSH-Wh_0o5A@mail.gmail.com>
-Message-ID: <CAL_Jsq+kE3v+=WptWet=JHp2-FCOFah_YzWHFbbfSH-Wh_0o5A@mail.gmail.com>
-Subject: Re: [PATCH] fbdev: Use of_property_present() for testing DT property presence
-To:     kernel test robot <lkp@intel.com>
-Cc:     Russell King <linux@armlinux.org.uk>, Helge Deller <deller@gmx.de>,
-        llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
-        devicetree@vger.kernel.org, linux-fbdev@vger.kernel.org,
-        linux-omap@vger.kernel.org, linux-kernel@vger.kernel.org,
-        dri-devel@lists.freedesktop.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+        with ESMTP id S230326AbjCKP1Z (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 11 Mar 2023 10:27:25 -0500
+Received: from mail-lj1-x232.google.com (mail-lj1-x232.google.com [IPv6:2a00:1450:4864:20::232])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3C90EE682F
+        for <devicetree@vger.kernel.org>; Sat, 11 Mar 2023 07:27:24 -0800 (PST)
+Received: by mail-lj1-x232.google.com with SMTP id f16so8356197ljq.10
+        for <devicetree@vger.kernel.org>; Sat, 11 Mar 2023 07:27:24 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112; t=1678548442;
+        h=cc:to:subject:date:from:in-reply-to:message-id:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=8s9gnIYUH4a7DISj2GFil2OdRXxeDO2P0HDbRjCc19c=;
+        b=ArB2WdMz4baXM60uNkD2daK/cN1LRajMA1c1GRkEC34RqZHjGS0/hO9eJfyZqh9mlK
+         wek+lvKL1ouGjUPns2DhmoYpdwRUyeoYJIv/gE30n8mHqslg95+6OBA69kQ7h83k18mZ
+         DDa3WZq5f2qEPxoEnkOIelgyUnSTElYmw8N0SUk2My9OMykjxE16ksvzXjT80JRuuraL
+         KCYMDXG9Zt/tclXtOp843TqcyTZaOlu8BmFlCQdaWfGD6JJxiWD5bxrxD949tNV2tlIW
+         H1bhFwo8vjhfiEct+oHKw/r7x4s9KPmri7zDu6BWB+tus+VBHtJpBCQqZYxa0sNeOe0l
+         l1/A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1678548442;
+        h=cc:to:subject:date:from:in-reply-to:message-id:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=8s9gnIYUH4a7DISj2GFil2OdRXxeDO2P0HDbRjCc19c=;
+        b=Ami5bNKa320anxHoMlLp+p3ixZQLe812WE7tm8kyPbSS5+DohlJoa7x5o8du9D6muD
+         x8aKeTSgUxjlwXVtNJwa3GztnDEDthLWnSnxt2x4eQQRQoNRi9KCTqAHG0PqMX0WEZdr
+         WCeJNJ6nJboXu2xff43HYdkezOKLH3Flbe82Tt7Im0bEGEtDyImD8AT+FV75d1n3gnZx
+         NLnCDcqvcI2ENZEyvh3epSEP+5UxfvDkuft4If4WFzkM8d+XynXpL2v3+YRcQFmZ1wHH
+         vGVs/9xaJRLkdp6Bb4amSoJmZ3fDiQ/iSICm7QlJFeVStCq5hiHBGhWSPClSABpbawwz
+         NIFg==
+X-Gm-Message-State: AO0yUKViHJ37mPQnodY39fAfo0Zo5uaTBWZj4VgJnNszGMlc8JHhDkhT
+        989C/3LONqRjBxzKWsev0MIv2sAfsii5OIipXFE=
+X-Google-Smtp-Source: AK7set8UfwMxW5dMMe3kJphY9/1brSedJBAYPJt5H8Q/n+eBcX9sC7oNPzVb7dpx7jyAUdjYIbtqig==
+X-Received: by 2002:a2e:b8cb:0:b0:298:592e:113a with SMTP id s11-20020a2eb8cb000000b00298592e113amr7628315ljp.6.1678548442260;
+        Sat, 11 Mar 2023 07:27:22 -0800 (PST)
+Received: from 0001-devicetree-synopsys-dw-mshc-common-add-fifo-access-3.patch (46-138-144-249.dynamic.spd-mgts.ru. [46.138.144.249])
+        by smtp.gmail.com with ESMTPSA id m27-20020ac24adb000000b004b581ab4c77sm341610lfp.78.2023.03.11.07.27.21
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 11 Mar 2023 07:27:22 -0800 (PST)
+Message-Id: <1678548256.0817535-1-sleirsgoevy@gmail.com>
+In-Reply-To: <1678548256.0817535-0-sleirsgoevy@gmail.com>
+From:   Sergey Lisov <sleirsgoevy@gmail.com>
+Date:   Sat, 11 Mar 2023 18:22:41 +0300
+Subject: [PATCH 1/2] devicetree: synopsys-dw-mshc-common: add
+ "fifo-access-32bit" property
+To:     Ulf Hansson <ulf.hansson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Jaehoon Chung <jh80.chung@samsung.com>
+Cc:     linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Mar 10, 2023 at 10:41=E2=80=AFPM kernel test robot <lkp@intel.com> =
-wrote:
->
-> Hi Rob,
->
-> I love your patch! Yet something to improve:
->
-> [auto build test ERROR on drm-misc/drm-misc-next]
-> [If your patch is applied to the wrong git tree, kindly drop us a note.
-> And when submitting patch, we suggest to use '--base' as documented in
-> https://git-scm.com/docs/git-format-patch#_base_tree_information]
->
-> url:    https://github.com/intel-lab-lkp/linux/commits/Rob-Herring/fbdev-=
-Use-of_property_present-for-testing-DT-property-presence/20230310-225754
-> base:   git://anongit.freedesktop.org/drm/drm-misc drm-misc-next
-> patch link:    https://lore.kernel.org/r/20230310144729.1545943-1-robh%40=
-kernel.org
-> patch subject: [PATCH] fbdev: Use of_property_present() for testing DT pr=
-operty presence
-> config: arm64-randconfig-r032-20230310 (https://download.01.org/0day-ci/a=
-rchive/20230311/202303111229.3Uuc8JQV-lkp@intel.com/config)
-> compiler: clang version 17.0.0 (https://github.com/llvm/llvm-project 6740=
-9911353323ca5edf2049ef0df54132fa1ca7)
-> reproduce (this is a W=3D1 build):
->         wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbi=
-n/make.cross -O ~/bin/make.cross
->         chmod +x ~/bin/make.cross
->         # install arm64 cross compiling tool for clang build
->         # apt-get install binutils-aarch64-linux-gnu
->         # https://github.com/intel-lab-lkp/linux/commit/c013f4111f36b0b43=
-27e7fbf46c0dd93399e9209
->         git remote add linux-review https://github.com/intel-lab-lkp/linu=
-x
->         git fetch --no-tags linux-review Rob-Herring/fbdev-Use-of_propert=
-y_present-for-testing-DT-property-presence/20230310-225754
->         git checkout c013f4111f36b0b4327e7fbf46c0dd93399e9209
+---
+ .../devicetree/bindings/mmc/synopsys-dw-mshc-common.yaml    | 6 ++++++
+ 1 file changed, 6 insertions(+)
 
-Looks like this patch was applied to drm-next which was/is based on
-v6.2-rc6. This patch is dependent on a change in v6.3-rc1.
+diff --git a/Documentation/devicetree/bindings/mmc/synopsys-dw-mshc-common.yaml b/Documentation/devicetree/bindings/mmc/synopsys-dw-mshc-common.yaml
+index 8dfad89c7..2bc5ac528 100644
+--- a/Documentation/devicetree/bindings/mmc/synopsys-dw-mshc-common.yaml
++++ b/Documentation/devicetree/bindings/mmc/synopsys-dw-mshc-common.yaml
+@@ -57,6 +57,12 @@ properties:
+       force fifo watermark setting accordingly.
+     $ref: /schemas/types.yaml#/definitions/flag
+ 
++  fifo-access-32bit:
++    description:
++      Specifies that this device requires accesses to its 64-bit registers
++      to be done as pairs of 32-bit accesses, even on architectures where
++      readq is available.
++
+   dmas:
+     maxItems: 1
+ 
+-- 
+2.38.3
 
-Rob
+
