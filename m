@@ -2,77 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B12A86B688E
-	for <lists+devicetree@lfdr.de>; Sun, 12 Mar 2023 18:03:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4D5306B6897
+	for <lists+devicetree@lfdr.de>; Sun, 12 Mar 2023 18:05:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229777AbjCLRDn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 12 Mar 2023 13:03:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49834 "EHLO
+        id S229740AbjCLRFu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 12 Mar 2023 13:05:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55006 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230165AbjCLRDi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 12 Mar 2023 13:03:38 -0400
+        with ESMTP id S229633AbjCLRFs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 12 Mar 2023 13:05:48 -0400
 Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 357352365D
-        for <devicetree@vger.kernel.org>; Sun, 12 Mar 2023 10:03:31 -0700 (PDT)
-Received: by mail-ed1-x535.google.com with SMTP id x3so39679102edb.10
-        for <devicetree@vger.kernel.org>; Sun, 12 Mar 2023 10:03:31 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 52E0834C14
+        for <devicetree@vger.kernel.org>; Sun, 12 Mar 2023 10:05:46 -0700 (PDT)
+Received: by mail-ed1-x535.google.com with SMTP id y4so10301292edo.2
+        for <devicetree@vger.kernel.org>; Sun, 12 Mar 2023 10:05:46 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1678640609;
-        h=content-transfer-encoding:in-reply-to:from:cc:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=Sb23CZmLMpQIKautcfOtvCOr/nEk73NUljHh8CGjn+8=;
-        b=vojrjS4nvWtK4Bwi52nMdMjmrkLHtZzOnVt5bQ8mjdaCgdTbH/54VnLn1/031Uxj9f
-         lBtKmykmp0ZF1DG2YuNi/RSdi1CO+W7RWWYNcoECvBo0mMLGlkbvwQv+nXUQ6TIuFqdw
-         +9ES/hlmMdauDGNP/sjHBPL3IktSZM4/X177HWYxI5IQ0SPky78q+RTQmN+QlDMrqq8v
-         7Y04/ZxoSa7iDUJA7qmo8t4S8jyjzZOxmxgI4zW2Ph4kmc3t8mmxQ1XMPw23jYl/oJHH
-         FQIAtxxzNmVvsYnt8kZfI1zcBbGRJbuALegL31VBFe6Mm4AMmySuprASR0Y1iimCuMAb
-         Sztw==
+        d=linaro.org; s=google; t=1678640745;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:to:from:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=XNEEELiUGVXCtZf/DK15uOebu5AkzYw95Ilb/T48KEA=;
+        b=V3iLf4wKBYDrAocnfV2OJZQyylsftUP8yg72Rq/o8yjbdM9A0270OtsbtUznGjdr3b
+         31N6hBUNNKrFubS6Ey8cNjq7ulWxDzgXJMR+44I5a0NyoqYMCzm8HMYcFlNyTgheSlAN
+         aqplVv8r34oBzl56MD6bTROUVWl60jV9J10nUGbYqqt9i28vzVAK49mk7dvoEKP+725E
+         /ezB8yjFJ4/XvcCd9smmz/ykQ/m+Hw2weVCHtuNio9gRT6v28b7nh0OBN6GpUmsWaaHr
+         Py6s+a3uGyHVYL+rDM2Lg7+z8t5pC884LkDvjlNFxyd4oiboObbEFbY4Dsa/Kg7NaLl1
+         X+ng==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678640609;
-        h=content-transfer-encoding:in-reply-to:from:cc:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Sb23CZmLMpQIKautcfOtvCOr/nEk73NUljHh8CGjn+8=;
-        b=6C0nMtK63W8hSsE+8XETAV6P1N3WVEO/wXLAfq5FgP0mP4jxwQZzslSUij02ADTqm7
-         yJ65autzX39WFEyCMCy499N04H1++iDyA3abGCrql/mVO8b6t+f/BZ+DsvzFbEZ6qMyk
-         yqA/UXeGpwdCFR3d5tT/jX8b/GuCcI0vbayybORFB/j7s1vweyzVPghJRCu9xfXQhPCB
-         k37IgZ48eED13mjmBoGyQOF4tvnLtKsvP8JEuEaZIyZcdoa6MVxvAPXKT3oxpY13LlqW
-         H8RzbXpm7kWDeWkAsscNdQf0ULbsgKpxnpnhQL285Ec/Qlu8nbVMUO+w6kAlEv4S3qG0
-         E3pQ==
-X-Gm-Message-State: AO0yUKUnElJNDmukau8iRSf3+PG2aJEaYMXq9AaFilS5xR9roGnomrB4
-        LNJDvqOhxDiY8LFBqgfZcJqGsw==
-X-Google-Smtp-Source: AK7set/+EAadHkg/X++PpHf3W9hnABrYPPySwyx5evVFobSq+Tn7ulCFd434kt/CZ6saMByfp7Dp1Q==
-X-Received: by 2002:a17:907:320b:b0:91d:9745:407a with SMTP id xg11-20020a170907320b00b0091d9745407amr8604167ejb.14.1678640609455;
-        Sun, 12 Mar 2023 10:03:29 -0700 (PDT)
-Received: from ?IPV6:2a02:810d:15c0:828:d9f6:3e61:beeb:295a? ([2a02:810d:15c0:828:d9f6:3e61:beeb:295a])
-        by smtp.gmail.com with ESMTPSA id t16-20020a1709063e5000b0092435626c0asm1308055eji.29.2023.03.12.10.03.28
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 12 Mar 2023 10:03:29 -0700 (PDT)
-Message-ID: <77e484df-711e-abe7-cb4f-b6db6f3c228a@linaro.org>
-Date:   Sun, 12 Mar 2023 18:03:28 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-Subject: Re: [PATCH v3 0/7] media: dt-bindings: Convert Samsung SoC Camera to
- DT schema
-Content-Language: en-US
-To:     Mauro Carvalho Chehab <mchehab@kernel.org>
-References: <20230216142204.48394-1-krzysztof.kozlowski@linaro.org>
-Cc:     Andrzej Hajda <andrzej.hajda@intel.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sylwester Nawrocki <s.nawrocki@samsung.com>,
-        Alim Akhtar <alim.akhtar@samsung.com>,
-        linux-samsung-soc@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-media@vger.kernel.org, linux-kernel@vger.kernel.org
+        d=1e100.net; s=20210112; t=1678640745;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=XNEEELiUGVXCtZf/DK15uOebu5AkzYw95Ilb/T48KEA=;
+        b=aYjpec9CsaZiTUpC77tp5zpRfx/BB8gFlhjhwJC0sedXDw0rSTIR4Qm2dR8XzAewJ3
+         FFSl1HIkVvFLYHNm0BgvHIjdmkZo0LUZQF32MxzcWjNxgfv62rTtiqa++sL0cwFc06s7
+         YngRPdNuGJ5GzkVgaejAjRHc8yh1b+rqw4NssINvi+vOZRqYcLv01kx6QBoXNTsWx1mD
+         74lhpObawkuJykPy/1p7V85fyRbO1jb0rX5F7LT7xWMUdmvzFDU1MsAeoVZm8dSNF/Y7
+         hCYf/OagkboVELnAFMzt3A2DbeHITE3MzL1wOw9a/yiauyql7IY0mWLIs+a8HXl/p2Qt
+         CI+Q==
+X-Gm-Message-State: AO0yUKVqDqBmcuAePk4jlA4TDSRkFm9vc8eDylWsXUNPcUhMgSZGQS6d
+        V07XOstfjCTZz53bHICqv+Lbpg==
+X-Google-Smtp-Source: AK7set/4mT0S9Oq5iFZaA86I9OqeBX2TkNu5AjGY4fEYAz/M2rEj2Zsq0wVpv34z4ck8YsXdy3LA9w==
+X-Received: by 2002:aa7:c245:0:b0:4ac:c44e:a493 with SMTP id y5-20020aa7c245000000b004acc44ea493mr30108186edo.2.1678640744845;
+        Sun, 12 Mar 2023 10:05:44 -0700 (PDT)
+Received: from krzk-bin.. ([2a02:810d:15c0:828:d9f6:3e61:beeb:295a])
+        by smtp.gmail.com with ESMTPSA id t7-20020a50ab47000000b004cbe45d2db5sm2363168edc.37.2023.03.12.10.05.43
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 12 Mar 2023 10:05:44 -0700 (PDT)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230216142204.48394-1-krzysztof.kozlowski@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+To:     Rob Herring <robh+dt@kernel.org>,
+        Alim Akhtar <alim.akhtar@samsung.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-kernel@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH] ARM: dts: exynos: fix MCT compatible in Universal C210
+Date:   Sun, 12 Mar 2023 18:05:42 +0100
+Message-Id: <167864073995.386929.11078269562382987456.b4-ty@linaro.org>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20230221161653.56574-1-krzysztof.kozlowski@linaro.org>
+References: <20230221161653.56574-1-krzysztof.kozlowski@linaro.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -81,21 +76,19 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 16/02/2023 15:21, Krzysztof Kozlowski wrote:
-> Hi,
+On Tue, 21 Feb 2023 17:16:53 +0100, Krzysztof Kozlowski wrote:
+> When desired, nodes should be disabled instead of changing their
+> compatible to a fake one:
 > 
-> The patchset depends on:
-> https://lore.kernel.org/all/20230207205834.673163-1-krzysztof.kozlowski@linaro.org/
+>   exynos4210-universal_c210.dtb: /soc/timer@10050000: failed to match any schema with compatible: ['none']
 > 
-> Changes since v2
-> ================
-> 1. Move size-cells next to address-cells.
-> 2. Drop dead/debug code.
-> 3. Add Rb tags.
+> 
 
-Mauro,
-Any comments here? Can you pick the set up?
+Applied, thanks!
+
+[1/1] ARM: dts: exynos: fix MCT compatible in Universal C210
+      https://git.kernel.org/krzk/linux/c/0e84f3493a37d50f2f629dbea670135b8a8ee391
 
 Best regards,
-Krzysztof
-
+-- 
+Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
