@@ -2,193 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 653FB6B6877
-	for <lists+devicetree@lfdr.de>; Sun, 12 Mar 2023 17:58:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 269756B687F
+	for <lists+devicetree@lfdr.de>; Sun, 12 Mar 2023 18:02:22 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231197AbjCLQ6D (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 12 Mar 2023 12:58:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43420 "EHLO
+        id S229493AbjCLRCU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 12 Mar 2023 13:02:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48696 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229932AbjCLQ6B (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 12 Mar 2023 12:58:01 -0400
-Received: from mail-ed1-x52d.google.com (mail-ed1-x52d.google.com [IPv6:2a00:1450:4864:20::52d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7F4857ECB
-        for <devicetree@vger.kernel.org>; Sun, 12 Mar 2023 09:57:59 -0700 (PDT)
-Received: by mail-ed1-x52d.google.com with SMTP id er25so11580996edb.5
-        for <devicetree@vger.kernel.org>; Sun, 12 Mar 2023 09:57:59 -0700 (PDT)
+        with ESMTP id S229543AbjCLRCR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 12 Mar 2023 13:02:17 -0400
+Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 29AA5392A5
+        for <devicetree@vger.kernel.org>; Sun, 12 Mar 2023 10:02:16 -0700 (PDT)
+Received: by mail-lf1-x12b.google.com with SMTP id t11so12870923lfr.1
+        for <devicetree@vger.kernel.org>; Sun, 12 Mar 2023 10:02:16 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1678640278;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=k5AnnZE28vmaXIXEQrL8eUKQzsCZWn8PosDZ4WwlUFo=;
-        b=hqnw8EeVwBJsA089DgVENUSeXwPRY8vRG+4mYsZdo5MqWl4YqMFgYX4ZIlpQsLZL7t
-         B+/PrW6elq07xthNR+WznP7eKbqzUai058p/OvhqjTmaALmeTJrG4A/cIJ4Oqc4AaS9m
-         j205GKaHsfgO789k2tiqQe1rwMIsHbtzM1fszaX3BUBcWrgXCpK9Q2xX8P+c6uf5OQJO
-         iMdi2uoRvx6qA7WDxA9MzSw3+SuHwIcB0qAO2G4/avnPJiZ6Qmd8iJXzj6eY8l85B1Te
-         XlQAfU5s+PfAScew4zajsI4Tf3daQ6sw0h6QThXMAjOliQlCF24I4JAQ3VYUaMp3jIwV
-         /Pmw==
+        d=gmail.com; s=20210112; t=1678640534;
+        h=cc:to:subject:date:from:message-id:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=6UV8fqbjOdVKsnwcy5S2/ICsUmjKXmCtfZ/sJfhZkPI=;
+        b=KNXzPsdBGdUvS2gqn8VnvAc3Emlvk6qxkhGzj5NrxEV57k9DYuDArKki/BkMZKtc3m
+         q2VW9x5bjT2MFI7hDx7NDopqkcNFeVEUhrjKEFhIhH4R2ZZyugF9j1h8m1cWxXbrws+U
+         FEi/w1+H9iy0PHguSRfGI0RBSkx7PiQ06U7k0uQPdf1IZp63dNOaUBKTknN16/h2+9Z9
+         898Ep/NT4MhWH2MXThzBUK/EiLsd1cH+LpT9uVUH1jtdQ+yqrZBnySatoiAnvtOwqiPv
+         FL82cx/9hFGzrRp4vKeGSfow6MhiPIqCHsmUhLdkjj8EST5HLO5zCCbrKWXsC7eTbaZr
+         qytw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678640278;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=k5AnnZE28vmaXIXEQrL8eUKQzsCZWn8PosDZ4WwlUFo=;
-        b=bREmya9PUuPico5rDR+fGmxh8vbZ01YikatziVqqGkLXG0JonxGbh1d6Mb68RwOHAl
-         HHvVYqVsuXouMiq6o2EwCadvIMMUuxC5QF6Ik0Z2S+rWlChehmi1lt3MZPH8kCiIuL6f
-         AB3ZwdkHkmyvWEEIFQr5nQuvDUTUV8pFpcmsdhDRvnRvhb5Zhd0PF1aUWo+vhUYLAev3
-         dFoKPolQycYiy1XX/ggCC8Xsdl8kJbV2T++/e1TiIVYiYTPi32Ek+GneNHxyaaicHF7H
-         nHX7klUNfHqubT9n1Yqi4L8oSLidtgzUBDNA4Z5DwRDJrg4qAwnJzZNCyi5A2rDIQC0b
-         WHUA==
-X-Gm-Message-State: AO0yUKWWnVlQUTEmVhpK/nPGkjjLLnCgDaGRba3hVyqpoSYgP+lk1Ok1
-        gCfICiWZkF6MA9jaTCcDgbL3IQ==
-X-Google-Smtp-Source: AK7set8AQ3hvSDIO61F7nvE8/aXECdaLSX+D3AHg5tWE60d7IQm/2kKe3eVV1PvcTUwu0PpTgqlFMQ==
-X-Received: by 2002:a17:906:175b:b0:8b1:3483:e3d5 with SMTP id d27-20020a170906175b00b008b13483e3d5mr27161002eje.48.1678640278013;
-        Sun, 12 Mar 2023 09:57:58 -0700 (PDT)
-Received: from krzk-bin.. ([2a02:810d:15c0:828:d9f6:3e61:beeb:295a])
-        by smtp.gmail.com with ESMTPSA id t17-20020a170906179100b008e724dfc44bsm2405483eje.78.2023.03.12.09.57.57
+        d=1e100.net; s=20210112; t=1678640534;
+        h=cc:to:subject:date:from:message-id:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=6UV8fqbjOdVKsnwcy5S2/ICsUmjKXmCtfZ/sJfhZkPI=;
+        b=USccXsFLhUbCq16dZkOW6BDqZS+bLMqFdaFiSK7NnTKBGVuSAK8hjIUpdalBh1k/nG
+         fhy/UAwVXUU/3xr2DUTir28Tc3ZS1o1aqVqUuNwq977r5hOEF/z98+ZtwUWXId3HJlSZ
+         QJQdRSrxMQ3/irj0UEQaNDfrnLnlgiu98gvc3K0x4ww0n1hmmq4Ogpv8g1lESMITwo1Y
+         pv9knJXNhTuQp3rwRVpiloK0tGLY9MA4kRcsqhx0Q2d3ZiKEvvhz+nE7r5ggV3BZKIy/
+         KL6J7/Pk7jx9rws7nFtf4sSnL9O4LsO8EzIPl4CWjqgqvz2b/10AT7WAUMflSPEDDiQX
+         zRKA==
+X-Gm-Message-State: AO0yUKV12e502TXR11ru4UmjenKhXw8zcoCnunIa/K2RDcEvT3JR6J1R
+        qeDXpEh3Ue8FOiyzPLd7iN6yTcIfOQ1I8SNb
+X-Google-Smtp-Source: AK7set/CO8mvar3mtNk9dLLjCnMuQ2RDgt8C5yaoY2P1ehOA5bt+dtYXg/lamnaWnEY3zC+hVxSUZg==
+X-Received: by 2002:ac2:5606:0:b0:4e0:ee54:fa2a with SMTP id v6-20020ac25606000000b004e0ee54fa2amr8569351lfd.6.1678640534289;
+        Sun, 12 Mar 2023 10:02:14 -0700 (PDT)
+Received: from 0000-cover-letter.patch (46-138-144-249.dynamic.spd-mgts.ru. [46.138.144.249])
+        by smtp.gmail.com with ESMTPSA id y1-20020a2e9d41000000b002945b04e1ebsm704909ljj.94.2023.03.12.10.02.13
+        for <devicetree@vger.kernel.org>
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 12 Mar 2023 09:57:57 -0700 (PDT)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Sun, 12 Mar 2023 10:02:14 -0700 (PDT)
+Message-Id: <1678640497.9030156-0-sleirsgoevy@gmail.com>
+From:   Sergey Lisov <sleirsgoevy@gmail.com>
+Date:   Sun, 12 Mar 2023 19:59:30 +0300
+Subject: [PATCH v4 0/3] mmc: dw_mmc: fix DW MMC cores with 32-bit bus on 64-bit Linux systems 
+To:     Ulf Hansson <ulf.hansson@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Hans Verkuil <hverkuil@xs4all.nl>,
-        =?UTF-8?q?=82=20Chmiel?= <pawel.mikolaj.chmiel@gmail.com>,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Rob Herring <robh@kernel.org>
-Subject: [RESEND PATCH] media: dt-bindings: silabs,si470x: Convert to DT schema
-Date:   Sun, 12 Mar 2023 17:57:55 +0100
-Message-Id: <20230312165755.385593-1-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.34.1
-MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+        Alim Akhtar <alim.akhtar@samsung.com>,
+        Jaehoon Chung <jh80.chung@samsung.com>
+Cc:     linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert the Silicon Labs Si470x FM Radio Receiver bindings to DT schema.
+DesignWare MMC cores have a configurable data bus width of either 16, 32, or 64
+bytes. It is possible, and some vendors actually do it, to ship a DW MMC core
+configured for 32-bit data bus within a 64-bit SoC. In this case the kernel
+will attempt 64-bit (readq) accesses to certain 64-bit MMIO registers, while
+the core will expect pairs of 32-bit accesses.
 
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Reviewed-by: Rob Herring <robh@kernel.org>
+It seems that currently the only register for which the kernel performs 64-bit
+accesses is the FIFO. The symptom is that the DW MMC core never receives a read
+on the second half of the register, does not register the datum as being read,
+and thus not advancing its internal FIFO pointer, breaking further reads. It
+also seems that this FIFO is only used for small (less than 16 bytes)
+transfers, which probably means that only some SDIO cards are affected.
 
----
+Changelog:
 
-Resending because this patch is waiting for three months:
-https://patchwork.kernel.org/project/linux-media/patch/20221209175926.335227-1-krzysztof.kozlowski@linaro.org/
----
- .../devicetree/bindings/media/si470x.txt      | 26 ----------
- .../bindings/media/silabs,si470x.yaml         | 48 +++++++++++++++++++
- MAINTAINERS                                   |  1 +
- 3 files changed, 49 insertions(+), 26 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/media/si470x.txt
- create mode 100644 Documentation/devicetree/bindings/media/silabs,si470x.yaml
+v4:
+- split dt-bindings and dts update into separate commits
+- add an explanation why it'ss necessary to change the compatible string
 
-diff --git a/Documentation/devicetree/bindings/media/si470x.txt b/Documentation/devicetree/bindings/media/si470x.txt
-deleted file mode 100644
-index a9403558362e..000000000000
---- a/Documentation/devicetree/bindings/media/si470x.txt
-+++ /dev/null
-@@ -1,26 +0,0 @@
--* Silicon Labs FM Radio receiver
--
--The Silicon Labs Si470x is family of FM radio receivers with receive power scan
--supporting 76-108 MHz, programmable through an I2C interface.
--Some of them includes an RDS encoder.
--
--Required Properties:
--- compatible: Should contain "silabs,si470x"
--- reg: the I2C address of the device
--
--Optional Properties:
--- interrupts : The interrupt number
--- reset-gpios: GPIO specifier for the chips reset line
--
--Example:
--
--&i2c2 {
--        si470x@63 {
--                compatible = "silabs,si470x";
--                reg = <0x63>;
--
--                interrupt-parent = <&gpj2>;
--                interrupts = <4 IRQ_TYPE_EDGE_FALLING>;
--                reset-gpios = <&gpj2 5 GPIO_ACTIVE_HIGH>;
--        };
--};
-diff --git a/Documentation/devicetree/bindings/media/silabs,si470x.yaml b/Documentation/devicetree/bindings/media/silabs,si470x.yaml
-new file mode 100644
-index 000000000000..a3d19c562ca3
---- /dev/null
-+++ b/Documentation/devicetree/bindings/media/silabs,si470x.yaml
-@@ -0,0 +1,48 @@
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/media/silabs,si470x.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Silicon Labs Si470x FM Radio Receiver
-+
-+maintainers:
-+  - Hans Verkuil <hverkuil@xs4all.nl>
-+  - Paweł Chmiel <pawel.mikolaj.chmiel@gmail.com>
-+
-+properties:
-+  compatible:
-+    const: silabs,si470x
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  reset-gpios:
-+    maxItems: 1
-+
-+required:
-+  - compatible
-+  - reg
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/gpio/gpio.h>
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+
-+    i2c {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        fmradio@10 {
-+            compatible = "silabs,si470x";
-+            reg = <0x10>;
-+            interrupt-parent = <&gpj2>;
-+            interrupts = <4 IRQ_TYPE_EDGE_FALLING>;
-+            reset-gpios = <&gpj2 5 GPIO_ACTIVE_HIGH>;
-+        };
-+    };
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 2892858cb040..a068df885006 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -19034,6 +19034,7 @@ L:	linux-media@vger.kernel.org
- S:	Odd Fixes
- W:	https://linuxtv.org
- T:	git git://linuxtv.org/media_tree.git
-+F:	Documentation/devicetree/bindings/media/silabs,si470x.yaml
- F:	drivers/media/radio/si470x/radio-si470x-i2c.c
- 
- SI470X FM RADIO RECEIVER USB DRIVER
+v3:
+- removed "fifo-access-32bit" devicetree property
+- added "samsung,exynos78xx-dw-mshc" compatible string
+- added "samsung,exynos78xx-dw-mshc-smu" compatible string
+
+v2:
+- added commit messages
+
+v1:
+- added "fifo-access-32bit" devicetree property
+- added DW_MMC_QUIRK_FIFO64_32
+- added new dw_mci_{pull,push}_data* variants (...-data64_32)
+
+Sergey Lisov (3):
+  dt-bindings: exynos-dw-mshc-common: add exynos78xx variants
+  arm64: dts: exynos: fix wrong mmc compatible in exynos7885.dtsi
+  mmc: dw_mmc: add an option to force 32-bit access to 64-bit FIFO
+
+ .../bindings/mmc/samsung,exynos-dw-mshc.yaml  |   2 +
+ arch/arm64/boot/dts/exynos/exynos7885.dtsi    |   2 +-
+ drivers/mmc/host/dw_mmc-exynos.c              |  41 +++++-
+ drivers/mmc/host/dw_mmc.c                     | 122 +++++++++++++++++-
+ drivers/mmc/host/dw_mmc.h                     |   2 +
+ 5 files changed, 165 insertions(+), 4 deletions(-)
+
 -- 
-2.34.1
+2.38.3
+
 
