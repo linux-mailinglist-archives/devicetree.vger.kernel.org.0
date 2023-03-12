@@ -2,137 +2,141 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F35436B66C0
-	for <lists+devicetree@lfdr.de>; Sun, 12 Mar 2023 14:35:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 50D7F6B66D1
+	for <lists+devicetree@lfdr.de>; Sun, 12 Mar 2023 14:43:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230128AbjCLNfI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 12 Mar 2023 09:35:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33336 "EHLO
+        id S229888AbjCLNnX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 12 Mar 2023 09:43:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44862 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231159AbjCLNfH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 12 Mar 2023 09:35:07 -0400
-Received: from mail-ed1-x52e.google.com (mail-ed1-x52e.google.com [IPv6:2a00:1450:4864:20::52e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4D0E838E89
-        for <devicetree@vger.kernel.org>; Sun, 12 Mar 2023 06:35:04 -0700 (PDT)
-Received: by mail-ed1-x52e.google.com with SMTP id er25so10494192edb.5
-        for <devicetree@vger.kernel.org>; Sun, 12 Mar 2023 06:35:04 -0700 (PDT)
+        with ESMTP id S230458AbjCLNnV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 12 Mar 2023 09:43:21 -0400
+Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B9CEF166EF
+        for <devicetree@vger.kernel.org>; Sun, 12 Mar 2023 06:43:14 -0700 (PDT)
+Received: by mail-ed1-x535.google.com with SMTP id o12so38665803edb.9
+        for <devicetree@vger.kernel.org>; Sun, 12 Mar 2023 06:43:14 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1678628103;
+        d=linaro.org; s=google; t=1678628593;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=DEy15IgizVlf+Q9dGMMXqxj6sA+dHE7lG7Ni6ZtT2Pc=;
-        b=bDN6UFd5fT779GvI34v6sFk1xxdXz7Ymq4Z9/UOvQkPtG70Nju0M9LsSjp5qI+7Mmp
-         HheEbCkZvDLcgiqkBlHbjEXc8OXxeC4FtldN2FqqrhmBVDO5OQ6dcD1UK18Vj5Z4Z23V
-         0gSp4900kovZVtObjg2WjSl/flE8LGhDS/WZlYi6lVb/yq3nHh0WARy5257ykkLLWUJS
-         VJkrqagUn46UhcUmQoi920jMsyZMHowP1vRvbGRn3Jv7seDJbcLkYbVhewGZyIHmj0Ap
-         wi/kht0sFjfqytBI7a9FbdppaXch6bv8D38PzpN9dFZQ1XFiQ0/wOY1FwLpi7lVypO7g
-         283Q==
+        bh=H3iUN11DrzuzPMfFFj12OwdJMcoiZbJZcwKV+23ak0c=;
+        b=JplCRdbIE7Xoood5Q2DTakN65IsZzSGDiJFtWX9EiaZQI/K861tTqvnbDOHCo4cnSq
+         MDblVdeHDsqCLRPeo1dnLn94hPqi9n4zBJOcHeOouaSkXHKvN2qEqOwzPX2pcQywmYpm
+         KvPJxvOsb89FiiRb45WmDgw+gMzMZ6S2bxyh8GjXu2oDte00todUPSBfdVCG8DGnLaor
+         7gASl2eiCi7tFEvVPfbVPZ0ynYqOIhyBu1sLLipE8nL0WMPBQ921KD1xG/rEsCW80ZyE
+         ffe/GesRPTj2fB6krB0Vtdb7jaHRQeH451A6Ezl6DWNosBsbzMY2HYI8nxzrNQ8jUg6/
+         ZluA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678628103;
+        d=1e100.net; s=20210112; t=1678628593;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=DEy15IgizVlf+Q9dGMMXqxj6sA+dHE7lG7Ni6ZtT2Pc=;
-        b=hzYgmcF1DmHXM/DaRGgWsPoi6ABpTCtQ186tOIloTugWG+/SurtLVx13Z7pUdnfHGd
-         GeK7b9POBXMWuS+LyoJheO2x0S4+5YZjXYBdcYFa6PKBZnGsDnfNEOTv0N21G/g6oD/l
-         lMDPNTBn9BbQEs7XusTgb69NvTU/LvbBZ/gPF1HKHTsvjA/f2MQ7D3CYDbhqs/s692sx
-         fVqowb9zqGQ+75zMBa48k3TWGO44xgLFVucCJFr0d7LyOFD7J3oxRvFrU1BxN0UZE4UY
-         4kloZudKKVHIwQ8BcjifdfQDr6B41cXJ7Gr7Hu9740gjO8F2Bnt6L8sdyXfqO8LalnVS
-         Pj4Q==
-X-Gm-Message-State: AO0yUKV4M7/KwwAVFxfJtSjCwRLkFS4nwNG5oC77uW0YnSDhv/nHwXlg
-        wNVXp3UjV1yj2yIOYl7MJU6chNPH6XZy5v9ze1c=
-X-Google-Smtp-Source: AK7set94c7O8E3yeBV2VwX+Bv8RrZog7eK5S2Y+9NomVsxXX/RZr2+U9wHBQ7yZGizKO6TlRl9dM3Q==
-X-Received: by 2002:a05:6402:334:b0:4b0:f559:ed48 with SMTP id q20-20020a056402033400b004b0f559ed48mr30780565edw.22.1678628102791;
-        Sun, 12 Mar 2023 06:35:02 -0700 (PDT)
+        bh=H3iUN11DrzuzPMfFFj12OwdJMcoiZbJZcwKV+23ak0c=;
+        b=VrYTeFOFzI4IqkQcw7ZAAC4bPVqyKBNUdgaGdOHD1MVVwNE/mbJwoWkisWyNGwtnsc
+         kceMN5XXvbryEq7uSAM7urT1LNLwI0j+kEPqsCVFC3Bf+hK/hAeGI3ECjeKNx2HVqLue
+         JqJySGfnwvgaOkts7HJaopfrMFAFm9qWwa1aiSEqf4GSbcaFKrcywLV5eBeXb4CHPUVs
+         Sy1QfBwc36dpDgvNrxHJIn5a5qd/vWr05Wv5kksr6egP9P2J2H0kF2tM6ANIaPKqKUox
+         q0eifmXgilMC+9OZVmr6Ltof2CgBAmVpkaGtqOT3TFjSESu04pAqetoKW/k1kyPL1MRp
+         yijA==
+X-Gm-Message-State: AO0yUKVAD3VblhQCKy+R+sqYBHmze5oDa85RrYfSWneWBeGfQst5ByPT
+        PJ3+5lZT+PWAHsbSUrPvhpARQw==
+X-Google-Smtp-Source: AK7set/kRBOjIV/XpKuBn39h8Vum09AMeyOVi2viOLHD6UWQc0sLpA/l9hklBDEpzLhZktLH1ooF/g==
+X-Received: by 2002:aa7:c1c4:0:b0:4c5:bc48:d422 with SMTP id d4-20020aa7c1c4000000b004c5bc48d422mr25727842edp.7.1678628593250;
+        Sun, 12 Mar 2023 06:43:13 -0700 (PDT)
 Received: from ?IPV6:2a02:810d:15c0:828:d9f6:3e61:beeb:295a? ([2a02:810d:15c0:828:d9f6:3e61:beeb:295a])
-        by smtp.gmail.com with ESMTPSA id v21-20020a50d595000000b004f9ca99cf5csm2055373edi.92.2023.03.12.06.35.02
+        by smtp.gmail.com with ESMTPSA id t7-20020a50ab47000000b004cbe45d2db5sm2200108edc.37.2023.03.12.06.43.12
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 12 Mar 2023 06:35:02 -0700 (PDT)
-Message-ID: <c9f8d89e-7420-a049-907c-60e3fa551548@linaro.org>
-Date:   Sun, 12 Mar 2023 14:35:01 +0100
+        Sun, 12 Mar 2023 06:43:12 -0700 (PDT)
+Message-ID: <c3e3019c-eb93-110c-33bd-73bcc8ce53a5@linaro.org>
+Date:   Sun, 12 Mar 2023 14:43:11 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.8.0
-Subject: Re: [PATCH v3 1/2] dt-bindings: exynos-dw-mshc-common: add exynos78xx
- variants
+Subject: Re: [PATCH 1/2] dt-bindings: i2c: Add the clock stretching property
 Content-Language: en-US
-To:     Sergey Lisov <sleirsgoevy@gmail.com>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
+To:     Andi Shyti <andi.shyti@kernel.org>, linux-i2c@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc:     Wolfram Sang <wsa@kernel.org>, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Alim Akhtar <alim.akhtar@samsung.com>,
-        Jaehoon Chung <jh80.chung@samsung.com>
-Cc:     linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <1678626510.1783316-1-sleirsgoevy@gmail.com>
+        Chris Packham <chris.packham@alliedtelesis.co.nz>,
+        Ryan Chen <ryan_chen@aspeedtech.com>
+References: <20230312131933.248715-1-andi.shyti@kernel.org>
+ <20230312131933.248715-2-andi.shyti@kernel.org>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <1678626510.1783316-1-sleirsgoevy@gmail.com>
+In-Reply-To: <20230312131933.248715-2-andi.shyti@kernel.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12/03/2023 14:03, Sergey Lisov wrote:
-> Some Samsung Exynos boards using the arm64 architecture have DW MMC
-> controllers configured for a 32-bit data bus but a 64-bit FIFO. On these
-> systems the 64-bit FIFO registers must be accessed in two 32-bit halves.
+On 12/03/2023 14:19, Andi Shyti wrote:
+> The I2C specification allows for the clock line to be held low
+> for a specified timeout to force the slave device into a 'wait'
+> mode. This feature is known as 'Clock stretching' and is
+> optional.
 > 
-> Add two new compatible strings, "samsung,exynos78xx-dw-mshc" and
-> "samsung,exynos78xx-dw-mshc-smu" respectively, to denote exynos78xx
-> boards that need this quirk. But it's very possible that all
-> "samsung,exynos7-dw-mshc" boards are actually affected.
+> In the NXP I2C specification, clock stretching is described as
+> the process of pausing a transaction by holding the SCL line LOW.
+> The transaction can only continue when the line is released HIGH
+> again.[*] However, most target devices do not include an SCL
+> driver and are therefore unable to stretch the clock.
+> 
+> Add the following properties:
+> 
+>  - i2c-scl-clk-low-timeout-ms: This property specifies the
+>    duration, in milliseconds, for which the clock is kept low and
+>    a client needs to detect a forced waiting state.
+> 
+>  - i2c-scl-has-clk-low-timeout: This property specifies whether
+>     the I2C controller implements the clock stretching property.
+> 
+> It's important to note that this feature should not be confused
+> with the SMBUS clock timeout, which serves a similar function but
+> specifies a timeout of 25-35ms. The I2C specification does not
+> recommend any specific timeout.
+> 
+> [*] NXP, UM10204 - I2C-bus specification and user manual
+>     Rev. 7.0, 1 October 2021, chapter 3.1.9.
+> 
+> Signed-off-by: Andi Shyti <andi.shyti@kernel.org>
 > ---
->  .../devicetree/bindings/mmc/samsung,exynos-dw-mshc.yaml         | 2 ++
->  arch/arm64/boot/dts/exynos/exynos7885.dtsi                      | 2 +-
-
-Bindings and DTS (and driver) are always separate.
-
->  2 files changed, 3 insertions(+), 1 deletion(-)
+>  Documentation/devicetree/bindings/i2c/i2c.txt | 9 +++++++++
+>  1 file changed, 9 insertions(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/mmc/samsung,exynos-dw-mshc.yaml b/Documentation/devicetree/bindings/mmc/samsung,exynos-dw-mshc.yaml
-> index fdaa18481..a72a67792 100644
-> --- a/Documentation/devicetree/bindings/mmc/samsung,exynos-dw-mshc.yaml
-> +++ b/Documentation/devicetree/bindings/mmc/samsung,exynos-dw-mshc.yaml
-> @@ -22,6 +22,8 @@ properties:
->        - samsung,exynos5420-dw-mshc-smu
->        - samsung,exynos7-dw-mshc
->        - samsung,exynos7-dw-mshc-smu
-> +      - samsung,exynos78xx-dw-mshc
-> +      - samsung,exynos78xx-dw-mshc-smu
+> diff --git a/Documentation/devicetree/bindings/i2c/i2c.txt b/Documentation/devicetree/bindings/i2c/i2c.txt
+> index fc3dd7ec0445..12c311f0e831 100644
+> --- a/Documentation/devicetree/bindings/i2c/i2c.txt
+> +++ b/Documentation/devicetree/bindings/i2c/i2c.txt
 
-Compatibles must be specific.
+Although the properties are still sometimes added here, but the bindings
+are now in dtschema, so rather this should be updated:
 
-There is also no fallback, but I assume that's intentional - you say
-these are not compatible?
+https://github.com/devicetree-org/dt-schema/blob/main/dtschema/schemas/i2c/i2c-controller.yaml
 
->        - axis,artpec8-dw-mshc
+> @@ -45,6 +45,15 @@ wants to support one of the below features, it should adapt these bindings.
+>  	Number of nanoseconds the SCL signal takes to rise; t(r) in the I2C
+>  	specification.
 >  
->    reg:
-> diff --git a/arch/arm64/boot/dts/exynos/exynos7885.dtsi b/arch/arm64/boot/dts/exynos/exynos7885.dtsi
-> index 23c2e0bb0..4b94ac9da 100644
-> --- a/arch/arm64/boot/dts/exynos/exynos7885.dtsi
-> +++ b/arch/arm64/boot/dts/exynos/exynos7885.dtsi
-> @@ -294,7 +294,7 @@ pmu_system_controller: system-controller@11c80000 {
->  		};
->  
->  		mmc_0: mmc@13500000 {
-> -			compatible = "samsung,exynos7-dw-mshc-smu";
-> +			compatible = "samsung,exynos78xx-dw-mshc-smu";
-
-That's non-bisectable change (also breaking other users of DTS), so you
-need to explain in commit msg rationale - devices were never compatible
-and using exynos7 does not work in certain cases.
-
-
+> +- i2c-scl-clk-low-timeout-ms
+> +	Number of miliseconds the clock line needs to be pulled down in order
+> +	to force a waiting state.
+> +
+> +- i2c-scl-has-clk-low-timeout
+> +	Boolean value that indicates whether the controller implements the
+> +	feature of wait induction through SCL low, with the timeout being
+> +	implemented internally by the controller.
+> +
+>  - i2c-sda-falling-time-ns
+>  	Number of nanoseconds the SDA signal takes to fall; t(f) in the I2C
+>  	specification.
 
 Best regards,
 Krzysztof
