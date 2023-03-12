@@ -2,151 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 94CA46B6761
-	for <lists+devicetree@lfdr.de>; Sun, 12 Mar 2023 15:57:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3037C6B679F
+	for <lists+devicetree@lfdr.de>; Sun, 12 Mar 2023 16:47:37 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229642AbjCLO5u (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 12 Mar 2023 10:57:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34498 "EHLO
+        id S229550AbjCLPrf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 12 Mar 2023 11:47:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59902 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229723AbjCLO5s (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 12 Mar 2023 10:57:48 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 563F94DBF7;
-        Sun, 12 Mar 2023 07:57:44 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 953DE60F08;
-        Sun, 12 Mar 2023 14:57:43 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 729A3C433EF;
-        Sun, 12 Mar 2023 14:57:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1678633063;
-        bh=hmVluJ74k9bGf2V4XsDxkL3lSx2FrFjREzIKR1behe4=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=C2uMZjFY9Qo9l03SuD3KNdLQAnlh5SDgGjOfoyOmeWoVI+EcBooXbuYxFl0bVZNbz
-         1Rzas8k2/l/uRJHC1AqD3iRaJLYdJFwe5GDTr+mxG8u1gt4n519SC9G0kPRNwxWpmP
-         KcJG3GkYmaEt68iep8TfWD16mT8W9UUZDpDDl2IUx5P18bpkT3NcEFTIDIyXhzz5zu
-         /cvkf4ue8TwzgtS2AfUWwQl/NFjeMgyMK8IOyB8FiV7N3rQ5pQmlX1wm8trqGXb+QH
-         /duw+awxONvqQKd904mqWyKx+l5sCZjnYsiczCgLvpC5tYvtZi0bUCqLwbQLEATJHv
-         qzi4dB2BqSoOw==
-Date:   Sun, 12 Mar 2023 14:57:47 +0000
-From:   Jonathan Cameron <jic23@kernel.org>
-To:     Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Cc:     Mike Looijmans <mike.looijmans@topic.nl>,
-        devicetree@vger.kernel.org, linux-iio@vger.kernel.org,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Caleb Connolly <caleb.connolly@linaro.org>,
-        ChiYuan Huang <cy_huang@richtek.com>,
-        ChiaEn Wu <chiaen_wu@richtek.com>,
-        Cosmin Tanislav <demonsingur@gmail.com>,
-        Ibrahim Tilki <Ibrahim.Tilki@analog.com>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Marcus Folkesson <marcus.folkesson@gmail.com>,
-        Ramona Bolboaca <ramona.bolboaca@analog.com>,
-        William Breathitt Gray <william.gray@linaro.org>,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v5 2/2] iio: adc: Add TI ADS1100 and ADS1000
-Message-ID: <20230312145747.268ae10a@jic23-huawei>
-In-Reply-To: <ZActDOEsT+tNMfZ1@smile.fi.intel.com>
-References: <20230307065535.7927-1-mike.looijmans@topic.nl>
-        <1b153bce-a66a-45ee-a5c6-963ea6fb1c82.949ef384-8293-46b8-903f-40a477c056ae.812861c4-ffbd-402e-bb22-77232c1fbafb@emailsignatures365.codetwo.com>
-        <20230307065535.7927-2-mike.looijmans@topic.nl>
-        <ZActDOEsT+tNMfZ1@smile.fi.intel.com>
-X-Mailer: Claws Mail 4.1.1 (GTK 3.24.37; x86_64-pc-linux-gnu)
+        with ESMTP id S229884AbjCLPre (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 12 Mar 2023 11:47:34 -0400
+Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com [IPv6:2a00:1450:4864:20::52a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0AEE532533
+        for <devicetree@vger.kernel.org>; Sun, 12 Mar 2023 08:47:32 -0700 (PDT)
+Received: by mail-ed1-x52a.google.com with SMTP id ek18so8200990edb.6
+        for <devicetree@vger.kernel.org>; Sun, 12 Mar 2023 08:47:31 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1678636050;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=v06rTjtysizk3dYCZcIUf1KvlS398ZKl4+/CAT/kS9s=;
+        b=iRISoVV8Bpkzo5XBe3YglS/r/o2V3CnHOgvfpYeVIqu47OH+39HRNimnWye5ZYxzGg
+         m2AesnWsr6oosg0kI7V/09MDBkT2vXH5t6mTK7wilMk4XTRpsEm7a2gHawrQny7GqmFi
+         Jd3cvvG5C01lsUtB/WMKusrwVdANlqthSUKmTBSFrGFeB7bI044lRfjFKZx4jHdTfTCl
+         0e6+UOVnI52EnESnl1iuLVj7r5jdxnxn9rSBViisqVgR/8jZyySWBkJbWPyB9Y8CEd2y
+         EqWifTcAxsoqnZONaO0sCov/Cw28N5Ox0HZCHz98W+e4V5WiWLscJjVdYlEoa8ddkKwq
+         IfTg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1678636050;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=v06rTjtysizk3dYCZcIUf1KvlS398ZKl4+/CAT/kS9s=;
+        b=P3l7Bo0vJXh71+dg8Q4XoUdGOwQKDtP1yBy+VrQxhAhO4gUaHAIkEvJu3iehhC3oJC
+         8Dm2fRLqMYEhLpttCWHUxAUfDRmZm/e/jFUPzBzcNOkOpp6l7YgA8OWCGm4BlDD9ewR/
+         y3+ipI0osGVuKk2qUENw4XiQ//9Xdh5mfYamNTmAyTsOlY/FZuHJRzTOs0BJxwruxHSC
+         2EC7r03y/w3x251gr2r/MaHBhxyjVmWDgMC1UdtENW3BqJbnU+/CFGoNuw1Gq9R/mdou
+         2rgx3LIvnNDUTHfSPSCFPDbcgCOFEaHV3G4HU6m9nwYZVmkm5y//HxVhJM5Q/rC8yAOV
+         xSow==
+X-Gm-Message-State: AO0yUKXmgeiTjJiCECIjFMzH4bAvh5jIb7ACXoNug5bwwsF1w1G5QJfE
+        5BZAWVjGW9SwCM4b//SGqwrHRw==
+X-Google-Smtp-Source: AK7set/8mnKxkBnVmeDGbrLKovb7mhQG1E1trFhSe8qzJNLReFB/XjWSIhrw/2G+mxb+U/KIS4YVkQ==
+X-Received: by 2002:a17:907:a686:b0:902:874:9c31 with SMTP id vv6-20020a170907a68600b0090208749c31mr7146528ejc.35.1678636050540;
+        Sun, 12 Mar 2023 08:47:30 -0700 (PDT)
+Received: from ?IPV6:2a02:810d:15c0:828:d9f6:3e61:beeb:295a? ([2a02:810d:15c0:828:d9f6:3e61:beeb:295a])
+        by smtp.gmail.com with ESMTPSA id t7-20020a50ab47000000b004cbe45d2db5sm2302101edc.37.2023.03.12.08.47.29
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 12 Mar 2023 08:47:30 -0700 (PDT)
+Message-ID: <f6d9c84a-1c75-d9b4-59ed-39d6c5b310a9@linaro.org>
+Date:   Sun, 12 Mar 2023 16:47:29 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.8.0
+Subject: Re: [PATCH V3 2/6] dt-bindings: timestamp: Add Tegra234 support
+Content-Language: en-US
+To:     Dipen Patel <dipenp@nvidia.com>, thierry.reding@gmail.com,
+        jonathanh@nvidia.com, linux-kernel@vger.kernel.org,
+        linux-tegra@vger.kernel.org, linux-gpio@vger.kernel.org,
+        linus.walleij@linaro.org, devicetree@vger.kernel.org,
+        linux-doc@vger.kernel.org, robh+dt@kernel.org,
+        timestamp@lists.linux.dev, krzysztof.kozlowski+dt@linaro.org,
+        brgl@bgdev.pl, corbet@lwn.net, gregkh@linuxfoundation.org
+References: <20230310190634.5053-1-dipenp@nvidia.com>
+ <20230310190634.5053-3-dipenp@nvidia.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230310190634.5053-3-dipenp@nvidia.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 7 Mar 2023 14:24:44 +0200
-Andy Shevchenko <andriy.shevchenko@linux.intel.com> wrote:
-
-> On Tue, Mar 07, 2023 at 07:55:34AM +0100, Mike Looijmans wrote:
-> > The ADS1100 is a 16-bit ADC (at 8 samples per second).
-> > The ADS1000 is similar, but has a fixed data rate.  
+On 10/03/2023 20:06, Dipen Patel wrote:
+> Added timestamp provider support for the Tegra234 in devicetree
+> bindings. In addition, it addresses review comments from the
+> previous review round as follows:
+> - Removes nvidia,slices property. This was not necessary as it
+> is a constant value and can be hardcoded inside the driver code.
+> - Adds nvidia,gpio-controller property. This simplifies how GTE driver
+> retrieves GPIO controller instance, see below explanation.
 > 
-> Reviewed-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+> Without this property code would look like:
+> if (of_device_is_compatible(dev->of_node, "nvidia,tegra194-gte-aon"))
+> 	hte_dev->c = gpiochip_find("tegra194-gpio-aon",
+> 				   tegra_get_gpiochip_from_name);
+> else if (of_device_is_compatible(dev->of_node, "nvidia,tegra234-gte-aon"))
+> 	hte_dev->c = gpiochip_find("tegra234-gpio-aon",
+> 				   tegra_get_gpiochip_from_name);
+> else
+> 	return -ENODEV;
 > 
-> But see below.
-
-I tidied that up and made a few other trivial whitespace tweaks whilst
-applying.
-
-Applied to the togreg branch of iio.git and pushed out as testing for 0-day
-to see if it can find anything we missed.
-
-Thanks,
-
-Jonathan
-
+> This means for every future addition of the compatible string, if else
+> condition statements have to be expanded.
 > 
-> > Signed-off-by: Mike Looijmans <mike.looijmans@topic.nl>
-
-> > +
-> > +static int ads1100_set_scale(struct ads1100_data *data, int val, int val2)
-> > +{
-> > +	int microvolts;
-> > +	int gain;
-> > +
-> > +	/* With Vdd between 2.7 and 5V, the scale is always below 1 */
-> > +	if (val)
-> > +		return -EINVAL;
-> > +
-> > +	if (!val2)
-> > +		return -EINVAL;
-> > +
-> > +	microvolts = regulator_get_voltage(data->reg_vdd);
-> > +	/*
-> > +	 * val2 is in 'micro' units, n = val2 / 1000000
-> > +	 * result must be millivolts, d = microvolts / 1000
-> > +	 * the full-scale value is d/n, corresponds to 2^15,
-> > +	 * hence the gain = (d / n) >> 15, factoring out the 1000 and moving the
-> > +	 * bitshift so everything fits in 32-bits yields this formula.
-> > +	 */
-> > +	gain = DIV_ROUND_CLOSEST(microvolts, BIT(15)) * MILLI / val2;
-> > +	if (gain < BIT(0) || gain > BIT(3))
-> > +		return -EINVAL;
-> > +
-> > +	ads1100_set_config_bits(data, ADS1100_PGA_MASK, ffs(gain) - 1);
-
-I added a blank line here and in one other place for consistency + I like
-them before simple return statements.
-
-> > +	return 0;
-> > +}
-> > +
-> > +static int ads1100_set_data_rate(struct ads1100_data *data, int chan, int rate)
-> > +{
-> > +	unsigned int i;
-> > +	unsigned int size;
-> > +
-> > +	size = data->supports_data_rate ? ARRAY_SIZE(ads1100_data_rate) : 1;
-> > +	for (i = 0; i < size; i++) {
-> > +		if (ads1100_data_rate[i] == rate)
-> > +			return ads1100_set_config_bits(data, ADS1100_DR_MASK,  
+> With the property:
+> gpio_ctrl = of_parse_phandle(dev->of_node, "nvidia,gpio-controller", 0);
+> ....
+> hte_dev->c = gpiochip_find(gpio_ctrl, tegra_get_gpiochip_from_of_node);
 > 
-> > +						       FIELD_PREP
-> > +						       (ADS1100_DR_MASK, i));  
-> 
-> This is better on a single line.
+> We haven't technically started making use of these bindings, so
+> backwards-compatibility shouldn't be an issue yet.
 
-Fixed up whilst applying.
+Unfortunately, I don't understand this statement. The
+nvidia,tegra194-gte-aon with removed property is in a released kernel
+v6.2. What does it mean "technically"? It's a released kernel thus it is
+a released ABI.
+
+And since DTS always go to separate branch, your patch #4 breaks
+existing DTS (return -ENODEV;) - it is not bisectable.
 
 > 
-> > +	}
-> > +
-> > +	return -EINVAL;
-> > +}
-> > +
+> Signed-off-by: Dipen Patel <dipenp@nvidia.com>
+> ---
 
+
+Best regards,
+Krzysztof
 
