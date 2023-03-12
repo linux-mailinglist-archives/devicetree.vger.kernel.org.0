@@ -2,53 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D410E6B6A42
-	for <lists+devicetree@lfdr.de>; Sun, 12 Mar 2023 19:39:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9567A6B6A3E
+	for <lists+devicetree@lfdr.de>; Sun, 12 Mar 2023 19:38:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230339AbjCLSiG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 12 Mar 2023 14:38:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60648 "EHLO
+        id S231196AbjCLSiI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 12 Mar 2023 14:38:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60574 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231124AbjCLSiE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 12 Mar 2023 14:38:04 -0400
-Received: from mail-ed1-x530.google.com (mail-ed1-x530.google.com [IPv6:2a00:1450:4864:20::530])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3C63E65AB
-        for <devicetree@vger.kernel.org>; Sun, 12 Mar 2023 11:37:25 -0700 (PDT)
-Received: by mail-ed1-x530.google.com with SMTP id j11so40269223edq.4
-        for <devicetree@vger.kernel.org>; Sun, 12 Mar 2023 11:37:25 -0700 (PDT)
+        with ESMTP id S231176AbjCLSiF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 12 Mar 2023 14:38:05 -0400
+Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com [IPv6:2a00:1450:4864:20::52a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2DB598A6D
+        for <devicetree@vger.kernel.org>; Sun, 12 Mar 2023 11:37:30 -0700 (PDT)
+Received: by mail-ed1-x52a.google.com with SMTP id k10so40157036edk.13
+        for <devicetree@vger.kernel.org>; Sun, 12 Mar 2023 11:37:30 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1678646189;
+        d=linaro.org; s=google; t=1678646190;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=rTqyBeC+GZ8uw4WwDSFI+iV/rvPQQcy5WBfVxYcXc7E=;
-        b=OpTC8Q5T09t1iGZiX0pMkyqfrXQaWE+X15nT2Z5rDXDFuTPpn9s6hbUDrLrm4Ux6xT
-         cwiqHHTjZnbGZnQtFB4DD6OB2OAfnwclqbHzMWjyTSSrV4HCo0S1p47FXJN7IgZkIoU3
-         jydT/DBSTxtYUGW8RDvxtGP7jghIDEaH7k7SvRas6C7Wz1jiMJ7QP1B8RwzxxCJfNrhX
-         tv7HftJpEtyVkLvXZliWHYBgrSZbG+QxFg3kdeK3lFDzXSLhpMY3P2GKawmarkQjVEy7
-         8IDaQKWu0hX6OAettMkDpa1xPj9mkEafZxZNRiOjVopNdFnJVFqKn2esfugtwk0rEjDx
-         J7Zg==
+        bh=TH9VNI6fNpG+atm+JmGgMQR/C/NF96qhJ4vOv3Oyay0=;
+        b=fZ1W+DKo9MUQ2Jrc8sjp61K1a4s6HNfRKDpBDPodjwFFpHk+xpwEO0vd6ZqjoJ2106
+         oaPghzFvkHQwLanGgBJZlQuGCFz7H6Utgizn6jOYABxM8iRHK92bobJ93oIYT1x+d9pv
+         h+oPGX1Fgm8xRsVPzufNzimOUfzfXN6xUlkeCoDeeF2BQ2bIbPuIe59u3HbLaxeYQpOs
+         TkoskaBQH40YoDm1kOa1975ReGAj0QKqo4lSG2iI0S53zICyUPQgVttsb2L/KDDnyGaY
+         aHF7jaTWD/0Pu77qa0RhwKrlFv/H5j8okv1vC4K0iZn9mJrajMi517sqZoCiVLGDiwod
+         +t3w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678646189;
+        d=1e100.net; s=20210112; t=1678646190;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=rTqyBeC+GZ8uw4WwDSFI+iV/rvPQQcy5WBfVxYcXc7E=;
-        b=c6M93zddsWvQk+wkHnJ//qeftU6O/L5mHn0QcMITLLvladl1rPrnXFYEnN0a57nywF
-         RDhKpufCQaiIzoAzOG5y3E+imz5I4ilVqtEyxOeTl9/j+851STCo7HTdK4+ZuGIEyKnX
-         oM9g/8MVimqacQgR82tG7jfC4JpHShNSDcJeIHsJkjjGSGN5PM4RfPoSz6TqmmY6rFA9
-         D4y1vzLjYgWcFHkiITGFcjONEBL//GBCIedJNT9/QWFotWRsR5C9/nmQtPGOiwMeQR1q
-         jpA8pnrAwoA9Ktfgfi/VJxsZQbXrDJ7zpNrt2pj7Tib+Giolw1zGiOrtokXPH5J2Upxt
-         3A9w==
-X-Gm-Message-State: AO0yUKVAo6p6/JZztlYcqgWeJRkYzAweZvZ3coPrZODhOAJF2R3ZnFAK
-        uv4FkkY3lYObwZQ/E2m5PpZgJA==
-X-Google-Smtp-Source: AK7set+3B0F1QNQ9KpgMtEOHtW9jO9YxKCqDv1YhcX7/BUWwA3kiKqDOSKyZ/nh20FGFcYHXbLh5yA==
-X-Received: by 2002:a17:906:3e52:b0:91e:fcea:f25f with SMTP id t18-20020a1709063e5200b0091efceaf25fmr6891687eji.32.1678646188958;
-        Sun, 12 Mar 2023 11:36:28 -0700 (PDT)
+        bh=TH9VNI6fNpG+atm+JmGgMQR/C/NF96qhJ4vOv3Oyay0=;
+        b=Kb+ryd2dzT1lkEUF5nC951XJaoYM7saToly/a1mzAFjBvH5zKYuBMI7BA2ZNEGTG+a
+         kTyuFryuAb2WpvxXOZsUpx56Kw0OeTclz42iIFYEYbyBDGGKDIe2+tSwJiSgMVyMI/HE
+         HgGUi/CdfwdxqEPlUE588VYVWNX7IB3nrE7HYhr+JKjcdbG0F7r9uIlx+I/jp3DXn1IX
+         bMvhQoICJwQwWNN5+gVrneeX0AjdHD1TaRaNcnsYe3gFpP/lRbN4XpYOf3biSyDpcKKf
+         V+ZTegdOrRgEQFugydXxIjCq8++PBSmWK+rBS6DH5Iay+Ab5RzporhJGvv4zOLewVXOm
+         XXeg==
+X-Gm-Message-State: AO0yUKX5QuQ7FVypk2hRcjjqoxcJaIAzk1leSXrAW991D43pUV8cvPa2
+        /5x/cf8YRb5uZsSL8IFGntHWxQ==
+X-Google-Smtp-Source: AK7set8J0qSzibgHFlSK5MY5+M1gFKCXgckA2oI9gOKm83QxnlYA+ZBHOMApvtKG/3HZR405DgdD8g==
+X-Received: by 2002:a17:906:bc58:b0:928:a2:904e with SMTP id s24-20020a170906bc5800b0092800a2904emr1915750ejv.54.1678646190073;
+        Sun, 12 Mar 2023 11:36:30 -0700 (PDT)
 Received: from krzk-bin.. ([2a02:810d:15c0:828:d9f6:3e61:beeb:295a])
-        by smtp.gmail.com with ESMTPSA id p14-20020a1709060dce00b0092669fb4ba1sm893806eji.130.2023.03.12.11.36.28
+        by smtp.gmail.com with ESMTPSA id p14-20020a1709060dce00b0092669fb4ba1sm893806eji.130.2023.03.12.11.36.29
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 12 Mar 2023 11:36:28 -0700 (PDT)
+        Sun, 12 Mar 2023 11:36:29 -0700 (PDT)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 To:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
@@ -65,9 +65,9 @@ To:     Andy Gross <agross@kernel.org>,
         linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
 Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH 3/8] arm64: dts: qcom: sc7180-trogdor-lazor: correct trackpad supply
-Date:   Sun, 12 Mar 2023 19:36:17 +0100
-Message-Id: <20230312183622.460488-3-krzysztof.kozlowski@linaro.org>
+Subject: [PATCH 4/8] arm64: dts: qcom: sc7180-trogdor-pazquel: correct trackpad supply
+Date:   Sun, 12 Mar 2023 19:36:18 +0100
+Message-Id: <20230312183622.460488-4-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20230312183622.460488-1-krzysztof.kozlowski@linaro.org>
 References: <20230312183622.460488-1-krzysztof.kozlowski@linaro.org>
@@ -86,27 +86,27 @@ X-Mailing-List: devicetree@vger.kernel.org
 The hid-over-i2c takes VDD, not VCC supply.  Fix copy-pasta from other
 boards which use elan,ekth3000 with valid VCC:
 
-  sc7180-trogdor-lazor-limozeen-nots-r4.dtb: trackpad@2c: 'vcc-supply' does not match any of the regexes: 'pinctrl-[0-9]+'
+  sc7180-trogdor-pazquel360-lte.dtb: trackpad@15: 'vcc-supply' does not match any of the regexes: 'pinctrl-[0-9]+'
 
-Fixes: 2c26adb8dbab ("arm64: dts: qcom: Add sc7180-lazor-limozeen skus")
+Fixes: fb69f6adaf88 ("arm64: dts: qcom: sc7180: Add pazquel dts files")
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
- .../boot/dts/qcom/sc7180-trogdor-lazor-limozeen-nots-r4.dts     | 2 +-
+ arch/arm64/boot/dts/qcom/sc7180-trogdor-pazquel.dtsi | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-limozeen-nots-r4.dts b/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-limozeen-nots-r4.dts
-index 850776c5323d..70d5a7aa8873 100644
---- a/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-limozeen-nots-r4.dts
-+++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-limozeen-nots-r4.dts
-@@ -26,7 +26,7 @@ trackpad: trackpad@2c {
+diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-pazquel.dtsi b/arch/arm64/boot/dts/qcom/sc7180-trogdor-pazquel.dtsi
+index d06cc4ea3375..8823edbb4d6e 100644
+--- a/arch/arm64/boot/dts/qcom/sc7180-trogdor-pazquel.dtsi
++++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-pazquel.dtsi
+@@ -39,7 +39,7 @@ trackpad: trackpad@15 {
  		interrupt-parent = <&tlmm>;
- 		interrupts = <58 IRQ_TYPE_EDGE_FALLING>;
+ 		interrupts = <0 IRQ_TYPE_EDGE_FALLING>;
  
 -		vcc-supply = <&pp3300_fp_tp>;
 +		vdd-supply = <&pp3300_fp_tp>;
- 		hid-descr-addr = <0x20>;
+ 		post-power-on-delay-ms = <100>;
+ 		hid-descr-addr = <0x0001>;
  
- 		wakeup-source;
 -- 
 2.34.1
 
