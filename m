@@ -2,110 +2,193 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C16A76B6872
-	for <lists+devicetree@lfdr.de>; Sun, 12 Mar 2023 17:56:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 653FB6B6877
+	for <lists+devicetree@lfdr.de>; Sun, 12 Mar 2023 17:58:05 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231163AbjCLQ4u (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 12 Mar 2023 12:56:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42530 "EHLO
+        id S231197AbjCLQ6D (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 12 Mar 2023 12:58:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43420 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229550AbjCLQ4t (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 12 Mar 2023 12:56:49 -0400
-Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com [IPv6:2a00:1450:4864:20::52a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 48F37301A1
-        for <devicetree@vger.kernel.org>; Sun, 12 Mar 2023 09:56:48 -0700 (PDT)
-Received: by mail-ed1-x52a.google.com with SMTP id fd5so5825118edb.7
-        for <devicetree@vger.kernel.org>; Sun, 12 Mar 2023 09:56:48 -0700 (PDT)
+        with ESMTP id S229932AbjCLQ6B (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 12 Mar 2023 12:58:01 -0400
+Received: from mail-ed1-x52d.google.com (mail-ed1-x52d.google.com [IPv6:2a00:1450:4864:20::52d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7F4857ECB
+        for <devicetree@vger.kernel.org>; Sun, 12 Mar 2023 09:57:59 -0700 (PDT)
+Received: by mail-ed1-x52d.google.com with SMTP id er25so11580996edb.5
+        for <devicetree@vger.kernel.org>; Sun, 12 Mar 2023 09:57:59 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1678640207;
-        h=content-transfer-encoding:in-reply-to:from:cc:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=7g0DCnGDTj3XIsCUVqLsYdNl/AsohI4IyO7cVpS0dfg=;
-        b=ZdCevFxSiD7eKJA+zroJkHOLGMt+MreCkHpi2nCRQD80k2/Uo4AtuhTfUpJSb44qFx
-         GwgT4NgyOdVVvK+8JJXmNl1T66ZFnKd9874+K14MjghGd+tXV92pxodb2eNiWdVsjzGu
-         51ifKYNWhQ5TrPSj19y/6UJj5qbbgktpB4xDccRJ8oudLfrxNRkxB/61vLORgY/rWYdn
-         vL1VIFIviSMjJiejKvt6ah/W4WVgpR/WYoTDqcHg6pmo5F8yTjLkMklGWFJiLdjzfo6B
-         FihIwLbvxlSI9wqGXH35sFCQVFnfxtn6GDUmeZMFAHj796fVYLnA2DEyqbEoQ/vAGbqZ
-         f/pA==
+        d=linaro.org; s=google; t=1678640278;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=k5AnnZE28vmaXIXEQrL8eUKQzsCZWn8PosDZ4WwlUFo=;
+        b=hqnw8EeVwBJsA089DgVENUSeXwPRY8vRG+4mYsZdo5MqWl4YqMFgYX4ZIlpQsLZL7t
+         B+/PrW6elq07xthNR+WznP7eKbqzUai058p/OvhqjTmaALmeTJrG4A/cIJ4Oqc4AaS9m
+         j205GKaHsfgO789k2tiqQe1rwMIsHbtzM1fszaX3BUBcWrgXCpK9Q2xX8P+c6uf5OQJO
+         iMdi2uoRvx6qA7WDxA9MzSw3+SuHwIcB0qAO2G4/avnPJiZ6Qmd8iJXzj6eY8l85B1Te
+         XlQAfU5s+PfAScew4zajsI4Tf3daQ6sw0h6QThXMAjOliQlCF24I4JAQ3VYUaMp3jIwV
+         /Pmw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678640207;
-        h=content-transfer-encoding:in-reply-to:from:cc:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=7g0DCnGDTj3XIsCUVqLsYdNl/AsohI4IyO7cVpS0dfg=;
-        b=HkPzygNJT2wKjbMIY453cggUptlSdbLFMKKtR3yk8XV19l6lnCgS8blX1PpQL5UQUT
-         sZ3lLIrddl3z2ms4FL8G7PQ7lVHXH1dTsK8PJl8V7LupuP9FYLOuzgcEriIJgF/Uvjsh
-         1CHUrgLnQCTnp7AQ2pqiJs03H7vtxETXMg3VDwat1+iwlm1TrpCBecO53bEuXvb44oD2
-         pGz7XDNmC1tk9vp3e1NpRLR5/8vLHS1JVU7adj17455fLADZchJ3Bfh4xe9muKYCM8e2
-         owTfpJeqHKQ6FlR+RQe0LiqXV1ExJOecMZbx5r//ULpbuabramNuGNUNQUOF1Ic4Oce6
-         3MuA==
-X-Gm-Message-State: AO0yUKX5Rj+RNPcKFVvHIZppS3c40xCMjRr6yL0+xc8nre228D2g8x55
-        cif2Y3iYgTdsgYvDcJ1xBqmwwA==
-X-Google-Smtp-Source: AK7set9YP8zzueSRIXoGFwVW7UyjerTWJeAwPyW6pmXb9g06Ogcg0OC4ZXoZ3B1cPpsLgUYgixszcw==
-X-Received: by 2002:a17:907:7e8a:b0:908:7fed:f0f with SMTP id qb10-20020a1709077e8a00b009087fed0f0fmr38272622ejc.42.1678640206801;
-        Sun, 12 Mar 2023 09:56:46 -0700 (PDT)
-Received: from ?IPV6:2a02:810d:15c0:828:d9f6:3e61:beeb:295a? ([2a02:810d:15c0:828:d9f6:3e61:beeb:295a])
-        by smtp.gmail.com with ESMTPSA id ds2-20020a170907724200b0091f5e98abd5sm2270972ejc.133.2023.03.12.09.56.45
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 12 Mar 2023 09:56:46 -0700 (PDT)
-Message-ID: <d4b466f2-2d36-2aee-39a7-107976495508@linaro.org>
-Date:   Sun, 12 Mar 2023 17:56:45 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-Subject: Re: [PATCH 1/8] media: dt-bindings: qcom,venus: cleanup
-Content-Language: en-US
-To:     Mauro Carvalho Chehab <mchehab@kernel.org>
-References: <20221227144102.79391-1-krzysztof.kozlowski@linaro.org>
-Cc:     Stanimir Varbanov <stanimir.k.varbanov@gmail.com>,
-        Del Regno <angelogioacchino.delregno@collabora.com>,
-        Andy Gross <agross@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Vikash Garodia <quic_vgarodia@quicinc.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-media@vger.kernel.org
+        d=1e100.net; s=20210112; t=1678640278;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=k5AnnZE28vmaXIXEQrL8eUKQzsCZWn8PosDZ4WwlUFo=;
+        b=bREmya9PUuPico5rDR+fGmxh8vbZ01YikatziVqqGkLXG0JonxGbh1d6Mb68RwOHAl
+         HHvVYqVsuXouMiq6o2EwCadvIMMUuxC5QF6Ik0Z2S+rWlChehmi1lt3MZPH8kCiIuL6f
+         AB3ZwdkHkmyvWEEIFQr5nQuvDUTUV8pFpcmsdhDRvnRvhb5Zhd0PF1aUWo+vhUYLAev3
+         dFoKPolQycYiy1XX/ggCC8Xsdl8kJbV2T++/e1TiIVYiYTPi32Ek+GneNHxyaaicHF7H
+         nHX7klUNfHqubT9n1Yqi4L8oSLidtgzUBDNA4Z5DwRDJrg4qAwnJzZNCyi5A2rDIQC0b
+         WHUA==
+X-Gm-Message-State: AO0yUKWWnVlQUTEmVhpK/nPGkjjLLnCgDaGRba3hVyqpoSYgP+lk1Ok1
+        gCfICiWZkF6MA9jaTCcDgbL3IQ==
+X-Google-Smtp-Source: AK7set8AQ3hvSDIO61F7nvE8/aXECdaLSX+D3AHg5tWE60d7IQm/2kKe3eVV1PvcTUwu0PpTgqlFMQ==
+X-Received: by 2002:a17:906:175b:b0:8b1:3483:e3d5 with SMTP id d27-20020a170906175b00b008b13483e3d5mr27161002eje.48.1678640278013;
+        Sun, 12 Mar 2023 09:57:58 -0700 (PDT)
+Received: from krzk-bin.. ([2a02:810d:15c0:828:d9f6:3e61:beeb:295a])
+        by smtp.gmail.com with ESMTPSA id t17-20020a170906179100b008e724dfc44bsm2405483eje.78.2023.03.12.09.57.57
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 12 Mar 2023 09:57:57 -0700 (PDT)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221227144102.79391-1-krzysztof.kozlowski@linaro.org>
+To:     Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Hans Verkuil <hverkuil@xs4all.nl>,
+        =?UTF-8?q?=82=20Chmiel?= <pawel.mikolaj.chmiel@gmail.com>,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Rob Herring <robh@kernel.org>
+Subject: [RESEND PATCH] media: dt-bindings: silabs,si470x: Convert to DT schema
+Date:   Sun, 12 Mar 2023 17:57:55 +0100
+Message-Id: <20230312165755.385593-1-krzysztof.kozlowski@linaro.org>
+X-Mailer: git-send-email 2.34.1
+MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 27/12/2022 15:40, Krzysztof Kozlowski wrote:
-> Cleanup the Qualcomm SoC Venus bindings:
->  - Drop unneeded blank lines and quotes,
->  - Fix indentation in example to 4-space (to match DT schema bindings
->    style),
->  - Add SoC name in each title.
-> 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> ---
->  .../bindings/media/qcom,msm8916-venus.yaml    |  51 ++++----
->  .../bindings/media/qcom,msm8996-venus.yaml    | 103 ++++++++---------
->  .../bindings/media/qcom,sc7180-venus.yaml     |  61 +++++-----
->  .../bindings/media/qcom,sc7280-venus.yaml     |  93 ++++++++-------
->  .../bindings/media/qcom,sdm660-venus.yaml     | 109 +++++++++---------
->  .../bindings/media/qcom,sdm845-venus-v2.yaml  |  71 ++++++------
->  .../bindings/media/qcom,sdm845-venus.yaml     |  69 ++++++-----
->  .../bindings/media/qcom,sm8250-venus.yaml     |  83 +++++++------
->  8 files changed, 316 insertions(+), 324 deletions(-)
+Convert the Silicon Labs Si470x FM Radio Receiver bindings to DT schema.
 
-Mauro,
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Reviewed-by: Rob Herring <robh@kernel.org>
 
-Any comments on these? Do you plan to take them? It has been a while...
+---
 
+Resending because this patch is waiting for three months:
+https://patchwork.kernel.org/project/linux-media/patch/20221209175926.335227-1-krzysztof.kozlowski@linaro.org/
+---
+ .../devicetree/bindings/media/si470x.txt      | 26 ----------
+ .../bindings/media/silabs,si470x.yaml         | 48 +++++++++++++++++++
+ MAINTAINERS                                   |  1 +
+ 3 files changed, 49 insertions(+), 26 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/media/si470x.txt
+ create mode 100644 Documentation/devicetree/bindings/media/silabs,si470x.yaml
 
-Best regards,
-Krzysztof
+diff --git a/Documentation/devicetree/bindings/media/si470x.txt b/Documentation/devicetree/bindings/media/si470x.txt
+deleted file mode 100644
+index a9403558362e..000000000000
+--- a/Documentation/devicetree/bindings/media/si470x.txt
++++ /dev/null
+@@ -1,26 +0,0 @@
+-* Silicon Labs FM Radio receiver
+-
+-The Silicon Labs Si470x is family of FM radio receivers with receive power scan
+-supporting 76-108 MHz, programmable through an I2C interface.
+-Some of them includes an RDS encoder.
+-
+-Required Properties:
+-- compatible: Should contain "silabs,si470x"
+-- reg: the I2C address of the device
+-
+-Optional Properties:
+-- interrupts : The interrupt number
+-- reset-gpios: GPIO specifier for the chips reset line
+-
+-Example:
+-
+-&i2c2 {
+-        si470x@63 {
+-                compatible = "silabs,si470x";
+-                reg = <0x63>;
+-
+-                interrupt-parent = <&gpj2>;
+-                interrupts = <4 IRQ_TYPE_EDGE_FALLING>;
+-                reset-gpios = <&gpj2 5 GPIO_ACTIVE_HIGH>;
+-        };
+-};
+diff --git a/Documentation/devicetree/bindings/media/silabs,si470x.yaml b/Documentation/devicetree/bindings/media/silabs,si470x.yaml
+new file mode 100644
+index 000000000000..a3d19c562ca3
+--- /dev/null
++++ b/Documentation/devicetree/bindings/media/silabs,si470x.yaml
+@@ -0,0 +1,48 @@
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/media/silabs,si470x.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Silicon Labs Si470x FM Radio Receiver
++
++maintainers:
++  - Hans Verkuil <hverkuil@xs4all.nl>
++  - Paweł Chmiel <pawel.mikolaj.chmiel@gmail.com>
++
++properties:
++  compatible:
++    const: silabs,si470x
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    maxItems: 1
++
++  reset-gpios:
++    maxItems: 1
++
++required:
++  - compatible
++  - reg
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/gpio/gpio.h>
++    #include <dt-bindings/interrupt-controller/irq.h>
++
++    i2c {
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        fmradio@10 {
++            compatible = "silabs,si470x";
++            reg = <0x10>;
++            interrupt-parent = <&gpj2>;
++            interrupts = <4 IRQ_TYPE_EDGE_FALLING>;
++            reset-gpios = <&gpj2 5 GPIO_ACTIVE_HIGH>;
++        };
++    };
+diff --git a/MAINTAINERS b/MAINTAINERS
+index 2892858cb040..a068df885006 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -19034,6 +19034,7 @@ L:	linux-media@vger.kernel.org
+ S:	Odd Fixes
+ W:	https://linuxtv.org
+ T:	git git://linuxtv.org/media_tree.git
++F:	Documentation/devicetree/bindings/media/silabs,si470x.yaml
+ F:	drivers/media/radio/si470x/radio-si470x-i2c.c
+ 
+ SI470X FM RADIO RECEIVER USB DRIVER
+-- 
+2.34.1
 
