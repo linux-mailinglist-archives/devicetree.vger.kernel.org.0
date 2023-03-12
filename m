@@ -2,149 +2,227 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 168486B6B8A
-	for <lists+devicetree@lfdr.de>; Sun, 12 Mar 2023 21:55:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8A6096B6B6C
+	for <lists+devicetree@lfdr.de>; Sun, 12 Mar 2023 21:47:56 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231397AbjCLUz0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 12 Mar 2023 16:55:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44912 "EHLO
+        id S231300AbjCLUry (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 12 Mar 2023 16:47:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60654 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229731AbjCLUzZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 12 Mar 2023 16:55:25 -0400
-X-Greylist: delayed 501 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Sun, 12 Mar 2023 13:55:23 PDT
-Received: from vps.xff.cz (vps.xff.cz [195.181.215.36])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3D89426CE4;
-        Sun, 12 Mar 2023 13:55:23 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=xff.cz; s=mail;
-        t=1678654018; bh=4pAmK4fjzhlvGfLZZeoG0S8kt9yvbPZjFMDbTBvuG5c=;
-        h=Date:From:To:Cc:Subject:X-My-GPG-KeyId:References:From;
-        b=hz7WEffQeoM0FZrUA3yvItW06R8I5igc8EssiUE1F6jhHOu60ao66v/+fzWBsbrWa
-         17ty6RaNGsyeTedg4Pekjj9NLeZpwrOWNLfgRuCuKw1SYH5YuFI/bPpRZ3d9ISs8od
-         ws8cP160dVEJR3rfp+g8A+wlHA+i0OM1darR1GYI=
-Date:   Sun, 12 Mar 2023 21:46:58 +0100
-From:   =?utf-8?Q?Ond=C5=99ej?= Jirman <megi@xff.cz>
-To:     Mark Kettenis <mark.kettenis@xs4all.nl>
-Cc:     Robin Murphy <robin.murphy@arm.com>, pgwipeout@gmail.com,
-        heiko@sntech.de, linux-rockchip@lists.infradead.org,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        michael.riesch@wolfvision.net, frattaroli.nicolas@gmail.com,
-        s.hauer@pengutronix.de, frank-w@public-files.de,
-        ezequiel@vanguardiasur.com.ar, yifeng.zhao@rock-chips.com,
-        jbx6244@gmail.com, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2] arm64: dts: rockchip: rk356x: Fix PCIe register map
- and ranges
-Message-ID: <20230312204658.qibiabohxwv2mn5i@core>
-Mail-Followup-To: =?utf-8?Q?Ond=C5=99ej?= Jirman <megi@xff.cz>,
-        Mark Kettenis <mark.kettenis@xs4all.nl>,
-        Robin Murphy <robin.murphy@arm.com>, pgwipeout@gmail.com,
-        heiko@sntech.de, linux-rockchip@lists.infradead.org,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        michael.riesch@wolfvision.net, frattaroli.nicolas@gmail.com,
-        s.hauer@pengutronix.de, frank-w@public-files.de,
-        ezequiel@vanguardiasur.com.ar, yifeng.zhao@rock-chips.com,
-        jbx6244@gmail.com, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-X-My-GPG-KeyId: EBFBDDE11FB918D44D1F56C1F9F0A873BE9777ED
- <https://xff.cz/key.txt>
-References: <20221021153913.l5ry6v4mcnzcmj2v@core>
- <CAMdYzYpYC6ME_ZYE65UWq__i+rit6_os-+do+JLmEL7y-jKr9g@mail.gmail.com>
- <20221021193248.2he6amnj7knk4biu@core>
- <87edv0sxup.fsf@bloch.sibelius.xs4all.nl>
- <CAMdYzYp6ShLqKxdiAjaRFiRF5i+wzfKiQvwPMzyQLAutWZbApg@mail.gmail.com>
- <875ygbsrf3.fsf@bloch.sibelius.xs4all.nl>
- <5a8f9934-1959-7962-d575-e3c2f5bc6ade@arm.com>
- <CAMdYzYrXp1kgdRpBmnfiFrXcdkk6_oWozpywgCYbNo_MU+8+=A@mail.gmail.com>
- <34c3daf3-88f8-0dc2-026b-95ca075195b4@arm.com>
- <87y1o1buef.fsf@bloch.sibelius.xs4all.nl>
+        with ESMTP id S230184AbjCLUrw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 12 Mar 2023 16:47:52 -0400
+Received: from mail-ed1-x52e.google.com (mail-ed1-x52e.google.com [IPv6:2a00:1450:4864:20::52e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 978B81E9C3
+        for <devicetree@vger.kernel.org>; Sun, 12 Mar 2023 13:47:50 -0700 (PDT)
+Received: by mail-ed1-x52e.google.com with SMTP id ek18so9871113edb.6
+        for <devicetree@vger.kernel.org>; Sun, 12 Mar 2023 13:47:50 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1678654069;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=u22alB8uF/MS8UPXdbSnd7ZPrfnLaMOLZCtjFbg2V6Y=;
+        b=HssqLwEOKEbMThaJsnLwmZ38Xjw3cPvbBlEXDnao9b3AHt2O9/5VhkKSX694LtP4NQ
+         fccQek58uhkR5UEc+Wr60VUOKhiFH+kRwm0lN1aOC6BzfGTLi86KAaUbdza97j68fdMu
+         MRderlNFhI8KHoWnEiknCoIbuk4DBKW5/cKEcTU0U9wbOCRQfuHOpoFPTGnO6MPgakcJ
+         bkdglZqZ+crTRuq81O+XgufzkJ8SXLB4D1lGSpyo0j2Wc7Mdw3ptcDiTIidM0E3vJJgP
+         vFrvtVAIB5JT0WD5YX9DHYPKtiqD2uaUayOgVRwDQcy/IjmZjr7XlU18SshqkOaazdyW
+         2mCQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1678654069;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=u22alB8uF/MS8UPXdbSnd7ZPrfnLaMOLZCtjFbg2V6Y=;
+        b=M2N7yy4qUrnYCi0tdabwJlXy+5np+e235ImWgXefg3tOfAalmdCAUvuLMY0hWMH7e5
+         94gvql/XFN7AN9AcWeKAUL3eZvILHrDCdUQHbk3lgRoYscAnOQpsFyRorNE/F+XrKXE0
+         VH+js73oggyWiZTN4lTqx5tml3RUtL+B7PTxU51ZGYNFqT5tGUDA+tjKohoYXy27oKIy
+         6XH7GS8Ekd9Br6Nwc5XYbIhvHFI/NbiFx/uPDQ3FgZgY2ngmFSvFPz+3EEJfOWOn9snf
+         AVFMOnuVaF6Ys6Cudw2RJxiJoIh77ZShLmmMKZSEZbafp3HfPUL2mBirVdMh8Hb22aHL
+         pj6A==
+X-Gm-Message-State: AO0yUKXQZ7WUSooPOZEB1pGTZvRe6tD9/DuxgjVTlbJgNCIAJkh18Ywp
+        6mYlNZnEFUlDhT1iaUHo5ArHOw==
+X-Google-Smtp-Source: AK7set8j1GEtvMUfsPHK5nbXb7L5QDMpQx68DJ00oQ5FfD5O29my4p27eLzJWkD4zete2mFObe6uSg==
+X-Received: by 2002:a17:906:5284:b0:915:fbba:2e0b with SMTP id c4-20020a170906528400b00915fbba2e0bmr19770139ejm.58.1678654068729;
+        Sun, 12 Mar 2023 13:47:48 -0700 (PDT)
+Received: from ?IPV6:2a02:810d:15c0:828:d9f6:3e61:beeb:295a? ([2a02:810d:15c0:828:d9f6:3e61:beeb:295a])
+        by smtp.gmail.com with ESMTPSA id g8-20020a1709065d0800b008def483cf79sm2548293ejt.168.2023.03.12.13.47.47
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 12 Mar 2023 13:47:48 -0700 (PDT)
+Message-ID: <c9db83e8-f87d-b94d-0c23-8114adb312e1@linaro.org>
+Date:   Sun, 12 Mar 2023 21:47:47 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <87y1o1buef.fsf@bloch.sibelius.xs4all.nl>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.8.0
+Subject: Re: [PATCH 1/5] dt-bindings: input: touchscreen: add bindings for
+ focaltech,fts
+Content-Language: en-US
+To:     Joel Selvaraj <joelselvaraj.oss@gmail.com>,
+        Caleb Connolly <caleb@connolly.tech>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Henrik Rydberg <rydberg@bitmath.org>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Robert Jarzmik <robert.jarzmik@free.fr>,
+        Jeff LaBundy <jeff@labundy.com>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Markuss Broks <markuss.broks@gmail.com>,
+        Jean Delvare <jdelvare@suse.de>,
+        Max Krummenacher <max.krummenacher@toradex.com>,
+        Job Noorman <job@noorman.info>,
+        Alistair Francis <alistair@alistair23.me>,
+        Chris Morgan <macromorgan@hotmail.com>
+Cc:     linux-input@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org
+References: <20230312093249.1846993-1-joelselvaraj.oss@gmail.com>
+ <20230312093249.1846993-2-joelselvaraj.oss@gmail.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230312093249.1846993-2-joelselvaraj.oss@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
-
-On Sun, Mar 12, 2023 at 09:13:12PM +0100, Mark Kettenis wrote:
-> [...]
->
-> It seems translation isn't actually broken.  At least I got it to work
-> with a slight twist.  What seems to be happening is that reads (and
-> writes?) to the first 64 MB of the PCIe memory address space
-> (0x00000000-0x03ffffff) don't make it out to the PCIe device.  I
-> suspect they are somehow claimed by the RC, maybe because the BAR for
-> the root complex isn't properly disabled.
+On 12/03/2023 10:32, Joel Selvaraj wrote:
+> Add devicetree bindings for the Focaltech FTS touchscreen drivers.
 > 
-> If I change the PCIe bus addess of the mmio window from 0x00000000 to
-> 0x40000000 like so:
+> Signed-off-by: Joel Selvaraj <joelselvaraj.oss@gmail.com>
+> Signed-off-by: Caleb Connolly <caleb@connolly.tech>
+> ---
+>  .../input/touchscreen/focaltech,fts.yaml      | 81 +++++++++++++++++++
+>  1 file changed, 81 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/input/touchscreen/focaltech,fts.yaml
 > 
->     ranges = <0x01000000 0x0 0x3ef00000 0x3 0x3ef00000 0x0 0x00100000
->               0x02000000 0x0 0x40000000 0x3 0x00000000 0x0 0x3ef00000>;
-> 
-> my NVMe drive seems to work just fine.  I picked 0x40000000 here
-> because it is nicely aligned on a 1GB boundary, which matches the size
-> of the region.  Diff against a recent linux-next at the end of this
-> mail.
-> 
-> So what I think is happening is that Linux is allocating resources
-> from the top of the region.  So only if you have a more complicated
-> PCIe hierarchy it ends up allocating from the low 64 MB and runs into
-> the issue.  OpenBSD on the other hand allocates from the bottom, which
-> pretty much guarantees that I hit the issue.
-> 
-> Now this could be a driver bug.  As far as I can tell BAR0/1 is
-> properly disabled, but maybe there is some additional bit that we need
-> to set.  But I don't think there are any downsides of my workaround.
-> We can still provide a ~1GB mmio range; it just starts at 0x40000000
-> instead of 0x00000000.
-> 
-> Maybe somebody can test this on Linux?
+> diff --git a/Documentation/devicetree/bindings/input/touchscreen/focaltech,fts.yaml b/Documentation/devicetree/bindings/input/touchscreen/focaltech,fts.yaml
+> new file mode 100644
+> index 000000000000..07fe595cc9ed
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/input/touchscreen/focaltech,fts.yaml
 
-There were other discussions and patches posted, and further testing happened
-since this discussion (just by looking at the dates...).
+I have doubts you will cover here all possible FTS controllers, so
+filename should be more specific, e.g. choose the oldest device compatible.
 
-The result was: 
-https://lore.kernel.org/lkml/20221112114125.1637543-1-aholmes@omnom.net/
-https://lore.kernel.org/lkml/20221112114125.1637543-2-aholmes@omnom.net/
+> @@ -0,0 +1,81 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/input/touchscreen/focaltech,fts.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Focaltech FTS I2C Touchscreen Controller
+> +
+> +maintainers:
+> +  - Joel Selvaraj <joelselvaraj.oss@gmail.com>
+> +  - Caleb Connolly <caleb@connolly.tech>
+> +
+> +allOf:
+> +  - $ref: touchscreen.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - focaltech,fts5452
+> +      - focaltech,fts8719
 
-The changes for pcie2x1 in that patch make PCIe work on Linux under many
-different device combinations, incl. with various combinations of devices
-behind PCIe switch, etc.
+Missing blank line
 
-That patch includes your change, too.
+> +  reg:
+> +    const: 0x38
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  reset-gpios:
+> +    maxItems: 1
+> +
+> +  avdd-supply:
+> +    description: a phandle for the regulator supplying analog power (2.6V to 3.3V).
 
-(The patch is not correct for pcie3, see discussion.)
+Drop "a phandle for the"
 
-kind regards,
-	o.
+> +
+> +  vddio-supply:
+> +    description: a phandle for the regulator supplying IO power (1.8V).
 
-> > > b. We do in fact require IO and Config to be 32 bit addressable to be
-> > > fully compatible.
-> > > 
-> > > These issues are compounded in rk3588 where we have much smaller
-> > > regions in the 32bit space for PCIe, so a definite answer on the true
-> > > requirements and limitations would be quite helpful.
-> > > 
-> > > As always, thank you for your time,
-> > > Peter
-> 
-> diff --git a/arch/arm64/boot/dts/rockchip/rk356x.dtsi b/arch/arm64/boot/dts/rockchip/rk356x.dtsi
-> index eed0059a68b8..218e51f41852 100644
-> --- a/arch/arm64/boot/dts/rockchip/rk356x.dtsi
-> +++ b/arch/arm64/boot/dts/rockchip/rk356x.dtsi
-> @@ -983,7 +983,7 @@ pcie2x1: pcie@fe260000 {
->  		phy-names = "pcie-phy";
->  		power-domains = <&power RK3568_PD_PIPE>;
->  		ranges = <0x01000000 0x0 0x3ef00000 0x3 0x3ef00000 0x0 0x00100000
-> -			  0x02000000 0x0 0x00000000 0x3 0x00000000 0x0 0x3ef00000>;
-> +			  0x02000000 0x0 0x40000000 0x3 0x00000000 0x0 0x3ef00000>;
->  		resets = <&cru SRST_PCIE20_POWERUP>;
->  		reset-names = "pipe";
->  		#address-cells = <3>;
+Ditto
+
+> +
+> +  focaltech,max-touch-number:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    description: max number of fingers supported
+
+Why this is not implied from compatible? IOW, why this differs between
+boards?
+
+If this property stays, then anyway "focaltech,max-touch", not number.
+There is no such unit suffix as number.
+
+> +    minimum: 2
+> +    maximum: 10
+> +
+> +  touchscreen-size-x: true
+> +  touchscreen-size-y: true
+
+Drop these two
+
+> +
+> +additionalProperties: false
+
+and then use unevaluatedProperties: false
+so all properties from common schema apply. Unless these are not really
+valid for the *device*?
+
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - reset-gpios
+> +  - focaltech,max-touch-number
+> +  - touchscreen-size-x
+> +  - touchscreen-size-y
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +    #include <dt-bindings/gpio/gpio.h>
+> +    &i2c5 {
+
+i2c
+
+> +      status="okay";
+
+Drop status
+
+Anyway this should pop warnings... Please run `make dt_binding_check`
+(see Documentation/devicetree/bindings/writing-schema.rst for instructions).
+
+> +
+> +      touchscreen: focaltech@38 {
+
+Node names should be generic.
+https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
+
+Also, drop label touchscreen.
+
+> +        compatible = "focaltech,fts8719";
+> +        reg = <0x38>;
+> +        interrupt-parent = <&tlmm>;
+> +        interrupts = <31 IRQ_TYPE_EDGE_RISING>;
+> +
+
+
+Best regards,
+Krzysztof
+
