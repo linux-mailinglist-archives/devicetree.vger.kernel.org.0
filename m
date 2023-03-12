@@ -2,148 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5EDC16B689D
-	for <lists+devicetree@lfdr.de>; Sun, 12 Mar 2023 18:07:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 50D876B68A3
+	for <lists+devicetree@lfdr.de>; Sun, 12 Mar 2023 18:09:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229752AbjCLRHu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 12 Mar 2023 13:07:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56850 "EHLO
+        id S230336AbjCLRJQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 12 Mar 2023 13:09:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60646 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229516AbjCLRHt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 12 Mar 2023 13:07:49 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 06F052330B;
-        Sun, 12 Mar 2023 10:07:47 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 81FE660F64;
-        Sun, 12 Mar 2023 17:07:47 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BAFCFC433D2;
-        Sun, 12 Mar 2023 17:07:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1678640866;
-        bh=D+mLpwz4VKHHeNXrNwruBX6RwwU/I9bGtXKO/ptBcO4=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=aZYDUfULOZNPPa/uIob9DJM3A0HKjbdA37qLGXlsgB2VC0ID6o3TNiIjdAcmLQBtX
-         sgET5c9Sckix6JiuqKkQoBFVYhDUmOlvu7GgUd3f04/5OAUcUvhOOXzP3kFgeON2zU
-         J+nfOqVTtRBYEqbtTQmp1GYE/7drLBKzxqR4p7oKGxLgUt3E0ba10UiZIlKPmunGIB
-         wMinw8AYbeAlY3Vac5hKZON9e0IMZqqOApEa2My3kxDDqhS/IAeG8zmQyvU4EeoRSn
-         AaMgm1m+gTr8bDuBpH3XnMO5itiLKNp2KIDgDwQQPgkBBgcFmo2wQGagbeyaj/1ij0
-         +fvrGs5ygbjMQ==
-Received: by mercury (Postfix, from userid 1000)
-        id 014751060FD4; Sun, 12 Mar 2023 18:07:42 +0100 (CET)
-Date:   Sun, 12 Mar 2023 18:07:42 +0100
-From:   Sebastian Reichel <sre@kernel.org>
-To:     Linus Walleij <linus.walleij@linaro.org>
-Cc:     Matti Vaittinen <mazziesaccount@gmail.com>,
+        with ESMTP id S230242AbjCLRJP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 12 Mar 2023 13:09:15 -0400
+Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EE0F52004E
+        for <devicetree@vger.kernel.org>; Sun, 12 Mar 2023 10:09:12 -0700 (PDT)
+Received: by mail-ed1-x531.google.com with SMTP id cy23so39675534edb.12
+        for <devicetree@vger.kernel.org>; Sun, 12 Mar 2023 10:09:12 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1678640951;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=ur0YRak4azgO8ER8v9X1Sisyj3A0UjrzNilpdcu+HRk=;
+        b=IIumIHOspITOgjriMp5ESfe4mr+ULnDvPBgJipm3w8unQT74U3jSJ0ZYxyJ3yA7l1w
+         wzQzBmdo48JSDwrmGI5NNHrj6qB4LwBjNcm+y4kD7txoNzXnlv6W3m54HK8X+qOL5YA0
+         IY6cyOAQZmZuL9WqiPPaoGuXb3wqfwCMSmzUPXNTQBiq1ErNXeA5UtcMRXcnh0xzlDK6
+         87eT+bj19kVx2bzZiI8RHt/APiSIdokGzw/U5ZgKxoJrWKwXnQFPWFgHdszEeIHUE9RR
+         w+1cESbv7K+k5D0KDdqDm0NdHJzG8kigScImY2DdcrNQeGzwaQwMCyLrse+TD39Ykv78
+         /P2A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1678640951;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=ur0YRak4azgO8ER8v9X1Sisyj3A0UjrzNilpdcu+HRk=;
+        b=qi07H54HPYeDGQRYQcGTYsa4x1sOgVzKkN+9ew1kEPJiSIJqe8ooR4jvL/WjfZEJC7
+         WaEP2T5ER3zBijQr/yCNmsdSJ32l9n6aOthaMVhlDI9H1TctDk58oQ3e/f5XahzOT39N
+         Is/1hAh8PvbSWayHfrMCrDNS8pbRB9iF0kthNCrTXd8R9pOOLWqJAHLDVMB/8vCdfFED
+         Y8w2jjPrJXAtA8H6iQuNeifOCehATUG05q8iNZvcw8i8CEFQfBdsSC9AAOnHnbslJn9Z
+         3UwK3D+riaqmVJxz+7XlAgVaWDVTNFTLV1lb3Mn0MKSH/5KbWK41lnF5Rs+Qwc9Rh6ev
+         vuVQ==
+X-Gm-Message-State: AO0yUKVcydUu4YwhYXo+aGWjlX/vQOkkEMtkWJtgukwJssGX86NelWd0
+        6dp7ysaGdtgsL5ArOSdBa/T+MA==
+X-Google-Smtp-Source: AK7set+9rjs/pkVy7AWNiNv0a34Mg1Vn463+p/9TwJdBU4BL6GlFQorb6rS66Q1i0nTHMIp1JktUoQ==
+X-Received: by 2002:a17:906:3b48:b0:921:da99:f39c with SMTP id h8-20020a1709063b4800b00921da99f39cmr5463449ejf.12.1678640951442;
+        Sun, 12 Mar 2023 10:09:11 -0700 (PDT)
+Received: from ?IPV6:2a02:810d:15c0:828:d9f6:3e61:beeb:295a? ([2a02:810d:15c0:828:d9f6:3e61:beeb:295a])
+        by smtp.gmail.com with ESMTPSA id i5-20020a170906850500b0091e1878bc59sm2425726ejx.68.2023.03.12.10.09.10
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 12 Mar 2023 10:09:11 -0700 (PDT)
+Message-ID: <f34ba6e5-4a8d-0812-c334-ea47de7b1d21@linaro.org>
+Date:   Sun, 12 Mar 2023 18:09:10 +0100
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.8.0
+Subject: Re: [PATCH v3 1/2] dt-bindings: exynos-dw-mshc-common: add exynos78xx
+ variants
+Content-Language: en-US
+To:     Sergey Lisov <sleirsgoevy@gmail.com>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCHv1 02/11] power: supply: core: auto-exposure of
- simple-battery data
-Message-ID: <1fdf00a0-4830-465a-801c-147472fdcd22@mercury.local>
-References: <20230309225041.477440-1-sre@kernel.org>
- <20230309225041.477440-3-sre@kernel.org>
- <CACRpkdZofL-cuYcyNAwMAshoQAr3z7-boJoHftVnjt80YQmAOQ@mail.gmail.com>
-MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="q46upqfjfsur6qqf"
-Content-Disposition: inline
-In-Reply-To: <CACRpkdZofL-cuYcyNAwMAshoQAr3z7-boJoHftVnjt80YQmAOQ@mail.gmail.com>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        Alim Akhtar <alim.akhtar@samsung.com>,
+        Jaehoon Chung <jh80.chung@samsung.com>
+Cc:     linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <640e0136.c20a0220.2d5bf.1959@mx.google.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <640e0136.c20a0220.2d5bf.1959@mx.google.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 12/03/2023 17:43, Sergey Lisov wrote:
+>> Bindings and DTS (and driver) are always separate.
+> 
+> Okay, will split the patch.
+> 
+>> Compatibles must be specific.
+> 
+> No, this way you'd have tons of identical compatibles that only differ in
+> the exynosXXXX digits, and are functionally equivalent.
 
---q46upqfjfsur6qqf
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Thanks for letting me know.
 
-Hi,
+https://elixir.bootlin.com/linux/v6.1-rc1/source/Documentation/devicetree/bindings/writing-bindings.rst#L42
 
-On Fri, Mar 10, 2023 at 09:20:09AM +0100, Linus Walleij wrote:
-> On Thu, Mar 9, 2023 at 11:50=E2=80=AFPM Sebastian Reichel <sre@kernel.org=
-> wrote:
->=20
-> > +       /*
-> > +        * Set if constant battery information from firmware should be
-> > +        * exposed automatically. No driver specific code is required
-> > +        * in that case. If the driver also handles a property provided
-> > +        * by constant firmware data, the driver's handler is preferred.
-> > +        */
-> > +       bool expose_battery_info;
->=20
-> Playing it safe with opt-in I see! But I would probably invert it and
-> add a hide_battery_info for those that don't wanna expose it. It seems
-> pretty useful to just expose this in general.
+>> That's non-bisectable change (also breaking other users of DTS), so you
+>> need to explain in commit msg rationale - devices were never compatible
+>> and using exynos7 does not work in certain cases.
 
-I just did not yet spend the time to understand if there are any
-issues. I guess I can do it now and then remove the opt-in part.
+BTW, this rationale was only example - you need to come with something real.
 
-> However I have no insight in what happens on laptops etc for this
-> so I guess you have your reasons, either way:
+Best regards,
+Krzysztof
 
-ACPI based systems should be fine, since battery info does not
-yet support ACPI and thus nothing changes for them.
-
-> Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
->=20
-> > +extern bool power_supply_battery_info_has_prop(struct power_supply_bat=
-tery_info *info,
-> > +                                              enum power_supply_proper=
-ty psp);
-> > +extern int power_supply_battery_info_get_prop(struct power_supply_batt=
-ery_info *info,
-> > +                                             enum power_supply_propert=
-y psp,
-> > +                                             union power_supply_propva=
-l *val);
->=20
-> I think the build robots complain because you need to add some stubs
-> for the not enabled case.
-
-I don't think so. They are only used from code needing POWER_SUPPLY
-being enabled.
-
-One reported error is about the array of battery_info properties not
-being used when POWER_SUPPLY is disabled. I will move that array to a
-better place.
-
-The other error is about power_supply_get_property(), because I
-accidently removed the EXPORT_SYMBOL_GPL(power_supply_get_property).
-I did not notice myself, because I compiled a monolithic kernel for
-the thermal camera for easy deployment.
-
-Thanks for the review, much appreciated!
-
--- Sebastian
-
---q46upqfjfsur6qqf
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAmQOBtgACgkQ2O7X88g7
-+pqBWQ/9FFIeo0ooLJOsidujg3C8gFt9suZlyAeFA1fcubvUY4C7WdXHJDxSy/t9
-cfXlwdScebDwapJ2arOY3nJHfHTtwx1Fk3Ubjgt6xPBV6KZQlZXE6O+WsIitlJKt
-PrtlT+cdcYITxbrYvZsJGWGDIEACn3ewB9w4WUZiBHYBHWswtrP5KLoSyp1mZQLD
-l6VlUB/1awtKqjoh/+AES/67Zvv9BYbYrLdh/HBW+E/mdw0hKYu3jBCvyxOLpWFR
-YUuRIdBWmt7I0F0fjarWw5j3Ze/TtS6hieAkXtdIOREqYQABFFMQQc6nZliUOjC3
-B2SHJPtJNQ7fNlar5zFbpFFsVWAm7VBcGRDGGoGsMu2pTCnAHjx7p74qS2ny4I4V
-+GF/oH2VpLnUfraw3yrZ4B4dia50unYBrBYZTc4gVC2CMGjPDzmS29DpWbcbyYHY
-RMnPb6xB3OmfHB7VfY3NubbxBEwkXX8Omb7pjvJHH0PDc2QhvMEpkJoJa92UWbpn
-Du2J5dnkwGWWr5aQgjGBuF28L0fj1/AKpXTzONYoTDaavBFKXNNQKpWQicWnCvdy
-hxG6piP3iA/kNpOGPGQxiNngSPoOnZp4RI/XwPzs/hoGHuv8aDxPSNiDpIg1Q65V
-ZbuPDI2a+bQfp6ZkiXQz19aWlyvveW6x2YxREbQ5/z6s6e78b88=
-=kmXQ
------END PGP SIGNATURE-----
-
---q46upqfjfsur6qqf--
