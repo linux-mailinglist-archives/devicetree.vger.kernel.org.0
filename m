@@ -2,181 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F3D6C6B68D7
-	for <lists+devicetree@lfdr.de>; Sun, 12 Mar 2023 18:39:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 65BD06B6A0C
+	for <lists+devicetree@lfdr.de>; Sun, 12 Mar 2023 19:25:55 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229909AbjCLRjh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 12 Mar 2023 13:39:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39922 "EHLO
+        id S229962AbjCLSZB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 12 Mar 2023 14:25:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58200 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229550AbjCLRjh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 12 Mar 2023 13:39:37 -0400
-Received: from linux.microsoft.com (linux.microsoft.com [13.77.154.182])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id D565D3A98;
-        Sun, 12 Mar 2023 10:39:35 -0700 (PDT)
-Received: by linux.microsoft.com (Postfix, from userid 1127)
-        id EB31D20C56BB; Sun, 12 Mar 2023 10:39:34 -0700 (PDT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com EB31D20C56BB
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.microsoft.com;
-        s=default; t=1678642774;
-        bh=Tgiw+sidUqBaEVObKi6x2FEJj/MiSGaWlJc+aPcKHhY=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=C2t6SkW9varvhF8aHA0IDcgMe9SNSJsGevu+rssAyDtVxTvBbQlLVSSqb7ZuuVlI8
-         9E7BbvnvZXsC3E21ngMkovLUaSVqjrow12S7DvrcVF0BdJ+rNxKipqMGMSOnLrhtNI
-         FC7fswKNpPfWa29Osx5fbk7uMVOGIxtgxX2xPkc8=
-Date:   Sun, 12 Mar 2023 10:39:34 -0700
-From:   Saurabh Singh Sengar <ssengar@linux.microsoft.com>
-To:     "Michael Kelley (LINUX)" <mikelley@microsoft.com>
-Cc:     Wei Liu <wei.liu@kernel.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        KY Srinivasan <kys@microsoft.com>,
-        Haiyang Zhang <haiyangz@microsoft.com>,
-        Dexuan Cui <decui@microsoft.com>,
-        "daniel.lezcano@linaro.org" <daniel.lezcano@linaro.org>,
-        "tglx@linutronix.de" <tglx@linutronix.de>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-hyperv@vger.kernel.org" <linux-hyperv@vger.kernel.org>,
-        "lenb@kernel.org" <lenb@kernel.org>,
-        "rafael@kernel.org" <rafael@kernel.org>,
-        "linux-acpi@vger.kernel.org" <linux-acpi@vger.kernel.org>
-Subject: Re: [PATCH v7 5/5] Driver: VMBus: Add Devicetree support
-Message-ID: <20230312173934.GA32212@linuxonhyperv3.guj3yctzbm1etfxqx2vob5hsef.xx.internal.cloudapp.net>
-References: <1677151745-16521-1-git-send-email-ssengar@linux.microsoft.com>
- <1677151745-16521-6-git-send-email-ssengar@linux.microsoft.com>
- <ZApMqWPWgWXIju/g@liuwe-devbox-debian-v2>
- <20230310053451.GA9705@linuxonhyperv3.guj3yctzbm1etfxqx2vob5hsef.xx.internal.cloudapp.net>
- <BYAPR21MB1688FD8EA30E876F22560645D7B89@BYAPR21MB1688.namprd21.prod.outlook.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <BYAPR21MB1688FD8EA30E876F22560645D7B89@BYAPR21MB1688.namprd21.prod.outlook.com>
-User-Agent: Mutt/1.5.21 (2010-09-15)
-X-Spam-Status: No, score=-19.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,ENV_AND_HDR_SPF_MATCH,RCVD_IN_DNSWL_MED,
-        SPF_HELO_PASS,SPF_PASS,USER_IN_DEF_DKIM_WL,USER_IN_DEF_SPF_WL
-        autolearn=ham autolearn_force=no version=3.4.6
+        with ESMTP id S231169AbjCLSYp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 12 Mar 2023 14:24:45 -0400
+Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A30BF67024
+        for <devicetree@vger.kernel.org>; Sun, 12 Mar 2023 11:17:44 -0700 (PDT)
+Received: by mail-ed1-x535.google.com with SMTP id cn21so9973587edb.0
+        for <devicetree@vger.kernel.org>; Sun, 12 Mar 2023 11:17:44 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112; t=1678645002;
+        h=cc:to:subject:date:from:message-id:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=rC/o1AQDcGAyPZ0tU6+VZIwVNayEqqDcPKH36IGj0wI=;
+        b=Mfn1f0uWfZ1Qslj66IEPL8GxCYTJxHLg1CjlUjfDJMJvydoIFrHB5rR/i4LmLpqfWx
+         8yjvBpGp0cab1w8CE0vcwOVuq7siCMOIvO21PkQmBi89zoy8U0fJFTJzQHMVXRAakukK
+         bfZs2/tVFuJxOAri12C2Ixxy+58EoLpsjnz5bs6wdFOcdh9WCnldtpmszJQ04DcoW/OS
+         RLO/nxyw5JFAH52GT5Y3yc6AhqjfygBj8fRMoHI6BLy7yNWoArEFEe0qHeRHFukBkJ6Z
+         p7RfjzfUJ2oaw/ZowxE9DIFJ9Z4D12GalNhAm9u/epdc5rMQfOkj8/fpFckTJ/Mljruy
+         fsaQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1678645002;
+        h=cc:to:subject:date:from:message-id:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=rC/o1AQDcGAyPZ0tU6+VZIwVNayEqqDcPKH36IGj0wI=;
+        b=p8o34U3TPrfVSjQ686mOeswEaDBWaTYRln39BnQReGrgBO+Oyf1xqTe1MrLeIxlDhI
+         UidA+emT8lnUJbYFOasG2S5jdrU/S7yeDozGWL3tKIlH7ndDg4+vfAnp30FHjsw9HZsP
+         G7uKpXTd1kp1585rfmDXznkJk6G5C87zLDS4ogw+JyJPTF9RfCAj/ac9wy5ab7q2SQOI
+         GRtI2wN81l5Vvjhi3HbXMi0l2C6n7sdmQQEsDonU/1AOgSFS9BkZS/tYKXNAAirbS597
+         WlwUFODZn4EYIx8K+2lXp4ETyvqV4cNkLmHcDjSoPzA7fvYYBMZylfHnYsCd+2iUmbrT
+         Bl0w==
+X-Gm-Message-State: AO0yUKVzv8IZ6xEbtsH16luvE3M2AwidhvFvVeTXPmGbwg5uehERjVew
+        uLkR+pyuwcQcgObAbsnEo5jy6fIOdnENWU8M
+X-Google-Smtp-Source: AK7set9o5crSdBuiWhEyplqAJYgwID9XS1lMePX0NPQhek9f3I/RVsa4f4sQBJAJlTGxwCnSrLhvlA==
+X-Received: by 2002:ac2:4a8c:0:b0:4d5:95c9:4eb9 with SMTP id l12-20020ac24a8c000000b004d595c94eb9mr9419374lfp.44.1678644313289;
+        Sun, 12 Mar 2023 11:05:13 -0700 (PDT)
+Received: from 0003-arm64-dts-exynos-fix-wrong-mmc-compatible-in-exynos7.patch (46-138-144-249.dynamic.spd-mgts.ru. [46.138.144.249])
+        by smtp.gmail.com with ESMTPSA id o5-20020a056512050500b004d0b1327b75sm715268lfb.61.2023.03.12.11.05.12
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 12 Mar 2023 11:05:12 -0700 (PDT)
+Message-ID: <640e1458.050a0220.beca.19ba@mx.google.com>
+From:   Sergey Lisov <sleirsgoevy@gmail.com>
+Date:   Sun, 12 Mar 2023 20:58:50 +0300
+Subject: [PATCH v5 3/3] arm64: dts: exynos: fix wrong mmc compatible in
+ exynos7885.dtsi
+To:     Ulf Hansson <ulf.hansson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Alim Akhtar <alim.akhtar@samsung.com>,
+        Jaehoon Chung <jh80.chung@samsung.com>
+Cc:     linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Mar 12, 2023 at 01:08:02PM +0000, Michael Kelley (LINUX) wrote:
-> From: Saurabh Singh Sengar <ssengar@linux.microsoft.com> Sent: Thursday, March 9, 2023 9:35 PM
-> > 
-> > On Thu, Mar 09, 2023 at 09:16:25PM +0000, Wei Liu wrote:
-> > > On Thu, Feb 23, 2023 at 03:29:05AM -0800, Saurabh Sengar wrote:
-> 
-> [snip]
-> 
-> > > >
-> > > >  static int vmbus_platform_driver_probe(struct platform_device *pdev)
-> > > >  {
-> > > > +#ifdef CONFIG_ACPI
-> > > >  	return vmbus_acpi_add(pdev);
-> > > > +#endif
-> > >
-> > > Please use #else here.
-> > >
-> > > > +	return vmbus_device_add(pdev);
-> > >
-> > > Is there going to be a configuration that ACPI and OF are available at
-> > > the same time? I don't see they are marked as mutually exclusive in the
-> > > proposed KConfig.
-> > 
-> > Initially, the device tree functions was included in "#else" section after
-> > the "#ifdef CONFIG_ACPI" section. However, it was subsequently removed to
-> > increase the coverage for CI builds.
-> > 
-> > Ref: https://lkml.org/lkml/2023/2/7/910
-> > 
-> 
-> I think the point here is that it is possible (and even likely on ARM64?) to
-> build a kernel where CONFIG_ACPI and CONFIG_OF are both "Y".   So the
-> code for ACPI and OF is compiled and present in the kernel image.  However,
-> for a particular Linux boot on a particular hardware or virtual platform,
-> only one of the two will be enabled.   I specifically mention a particular Linux
-> kernel boot because there's a kernel boot line option that can force disabling
-> ACPI.  Ideally, the VMBus code should work if both CONFIG_ACPI and
-> CONFIG_OF are enabled in the kernel image, and it would determine at
-> runtime which to use. This approach meets the goals Rob spells out.
-> 
-> There's an exported global variable "acpi_disabled" that is set correctly
-> depending on CONFIG_ACPI and the kernel boot line option (and perhaps if
-> ACPI is not detected at runtime during boot -- I didn't check all the details).
-> So the above could be written as:
-> 
-> 	if (!acpi_disabled)
-> 		return vmbus_acpi_add(pdev); 
-> 	else
-> 		return vmbus_device_add(pdev);
-> 
-> This avoids the weird "two return statements in a row" while preferring
-> ACPI over OF if ACPI is enabled for a particular boot of Linux.
-> 
-> I'm not sure if you'll need a stub for vmbus_acpi_add() when CONFIG_ACPI=n.
-> In that case, acpi_disabled is #defined to be 1, so the compiler should just
-> drop the call to vmbus_acpi_add() entirely and no stub will be needed.  But
-> you'll need to confirm.
+This DW-MMC variant is not actually compatible with
+"samsung,exynos7-dw-mshc-smu", and requires an additional quirk to handle
+very short data transfers, typically used by SDIO cards. Update the
+compatible string to "samsung,exynos7885-dw-mshc-smu" to reflect this fact.
+---
+ arch/arm64/boot/dts/exynos/exynos7885.dtsi | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-Thanks for suggesting acpi_disabled, definitely this looks better. However,
-we need a dummy stub for vmbus_acpi_add in case of CONFIG_ACPI=n, as compiler
-doesn't take out vmbus_acpi_add reference completely for CONFIG_ACPI=n.
+diff --git a/arch/arm64/boot/dts/exynos/exynos7885.dtsi b/arch/arm64/boot/dts/exynos/exynos7885.dtsi
+index 23c2e0bb0..b0addb0b3 100644
+--- a/arch/arm64/boot/dts/exynos/exynos7885.dtsi
++++ b/arch/arm64/boot/dts/exynos/exynos7885.dtsi
+@@ -294,7 +294,7 @@ pmu_system_controller: system-controller@11c80000 {
+ 		};
+ 
+ 		mmc_0: mmc@13500000 {
+-			compatible = "samsung,exynos7-dw-mshc-smu";
++			compatible = "samsung,exynos7885-dw-mshc-smu";
+ 			reg = <0x13500000 0x2000>;
+ 			interrupts = <GIC_SPI 146 IRQ_TYPE_LEVEL_HIGH>;
+ 			#address-cells = <1>;
+-- 
+2.38.3
 
-> 
-> Also just confirming, it looks like vmbus_device_add() compiles correctly if
-> CONFIG_OF=n.  There are enough stubs in places so that you don't need an
-> #ifdef CONFIG_OF around vmbus_device_add() like is needed for
-> vmbus_acpi_add().
 
-Yes, I tested this scenario.
-
-> 
-> > > >
-> > > > +static const __maybe_unused struct of_device_id vmbus_of_match[] = {
-> > > > +	{
-> > > > +		.compatible = "microsoft,vmbus",
-> > > > +	},
-> > > > +	{
-> > > > +		/* sentinel */
-> > > > +	},
-> > > > +};
-> > > > +MODULE_DEVICE_TABLE(of, vmbus_of_match);
-> > > > +
-> > > > +#ifdef CONFIG_ACPI
-> > > >  static const struct acpi_device_id vmbus_acpi_device_ids[] = {
-> > > >  	{"VMBUS", 0},
-> > > >  	{"VMBus", 0},
-> > > >  	{"", 0},
-> > > >  };
-> > > >  MODULE_DEVICE_TABLE(acpi, vmbus_acpi_device_ids);
-> > > > +#endif
-> 
-> Couldn't the bracketing #ifdef be dropped and add __maybe_unused, just
-> as you've done with vmbus_of_match?   ACPI_PTR() is defined to return NULL
-> if CONFIG_ACPI=n, just like with of_match_ptr() and CONFIG_OF.
-
-I kept #ifdef so that all the acpi code is treated equally. However, I am
-fine to use __maybe_unused, will fix this in next version.
-
-Regards,
-Saurabh
-
-> 
-> > > >
-> > > >  /*
-> > > >   * Note: we must use the "no_irq" ops, otherwise hibernation can not work with
-> > > > @@ -2677,6 +2729,7 @@ static struct platform_driver vmbus_platform_driver = {
-> > > >  	.driver = {
-> > > >  		.name = "vmbus",
-> > > >  		.acpi_match_table = ACPI_PTR(vmbus_acpi_device_ids),
-> > > > +		.of_match_table = of_match_ptr(vmbus_of_match),
-> > > >  		.pm = &vmbus_bus_pm,
-> > > >  		.probe_type = PROBE_FORCE_SYNCHRONOUS,
-> > > >  	}
-> > > > --
-> > > > 2.34.1
-> > > >
