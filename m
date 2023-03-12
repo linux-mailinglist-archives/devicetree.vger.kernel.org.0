@@ -2,53 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id ACD576B69FB
-	for <lists+devicetree@lfdr.de>; Sun, 12 Mar 2023 19:19:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 322796B6A13
+	for <lists+devicetree@lfdr.de>; Sun, 12 Mar 2023 19:28:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232159AbjCLSTX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 12 Mar 2023 14:19:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47044 "EHLO
+        id S232198AbjCLS1g (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 12 Mar 2023 14:27:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39584 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231818AbjCLSTF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 12 Mar 2023 14:19:05 -0400
-Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 842075AB6B
-        for <devicetree@vger.kernel.org>; Sun, 12 Mar 2023 11:12:03 -0700 (PDT)
-Received: by mail-lf1-x132.google.com with SMTP id r27so12950848lfe.10
-        for <devicetree@vger.kernel.org>; Sun, 12 Mar 2023 11:12:03 -0700 (PDT)
+        with ESMTP id S231411AbjCLS1T (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 12 Mar 2023 14:27:19 -0400
+Received: from mail-ed1-f51.google.com (mail-ed1-f51.google.com [209.85.208.51])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2A605584A6
+        for <devicetree@vger.kernel.org>; Sun, 12 Mar 2023 11:22:08 -0700 (PDT)
+Received: by mail-ed1-f51.google.com with SMTP id ek18so9021170edb.6
+        for <devicetree@vger.kernel.org>; Sun, 12 Mar 2023 11:22:08 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112; t=1678644624;
+        d=gmail.com; s=20210112; t=1678644947;
         h=cc:to:subject:date:from:message-id:from:to:cc:subject:date
          :message-id:reply-to;
         bh=bdTNsWpg9ZM8ehZQeKtTu+6KMOIWutkVZQ0G5s6b6sY=;
-        b=GdQe6hF1zdRarAcuRIwMc/VyJigVgskBLDuiGdu5anUdpZmmjCgpcH3nTuWbmiFTnj
-         3U+ejg0OZHkgCrHfzH9qZyCzimhudoBxEgYmy+ZE8nj4Fb1yqixYPfUM1CagEhjY5ntf
-         hXY9bbobSK4bA4AWoxU6k+aGitjTNQvXAXJHsRY14iWWUq7LUXGHAih0C9bxfV+a47Pg
-         TlQSI7qBxXH6Vly7mIMSyKg9JKVMLp35Umd5G1liXThvFiIITHFQhsxkOevxA0es1G2X
-         Y95avd1GHkYgBJE5cBvox16fl626VLZC+Dg80fyCWygT1EDV61/aQ1tip3/9s8e2wvnF
-         P1pg==
+        b=alVgkxxg0LNEkVuCBluHNYNVoEr0ZCuSDVwmpA3/OHq4p+qs27uwrXJl07WgzJMaqX
+         fIHpaFxKgIS8VW+Mu2hoif62SuBi2LZ04sWyfoxtQFNCFtJQDbB4VyBVQHuqDRdXvvf9
+         UsXnfg1wYSHG6tbxOYI9G/nUuzApPyiIhbho7G257bQnTg4fbSbPHz4mG6iIRB7uBYkt
+         LQuvZ6emwW4jVn4zIsTZtXGYduKRcLGqFtPlAGS3o9XJTLn2i8AGfLVDABzK7ndQLEGp
+         YnVu3rXdm+lmgEfUGFcSUWLXKui0Crc0K7FqyAYe27ualpQzo2ufH1UGJH4SyV8zkog+
+         3MPA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678644624;
+        d=1e100.net; s=20210112; t=1678644947;
         h=cc:to:subject:date:from:message-id:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
         bh=bdTNsWpg9ZM8ehZQeKtTu+6KMOIWutkVZQ0G5s6b6sY=;
-        b=JBcXyjiWTcRa6byM6fHs779dH75VWjlWFv2KeBRpXRHXhQ42/8nY11i1dVRIEJEYlR
-         Q6if9ovBzlne5SiUJMzu9x/p6gpOLqkOLI1ZbeQmLRgplh5A+xXsn+0aq1Gwfpq4U/WX
-         enJ0P7N5RaiCWMPPsRpuuXdZyF/5lmiYPXT/GKkWZw2p2hZm2fnhAMdqpUZOowiJwWpg
-         vngskFZ40dTLSduR6QnkGbAuz/+dY+8Rfd2ycGTUFTZXlq5f2ZB+bC5UMOwN1NOYEvOA
-         jGCKg4BPyZE48UAk84pp1V1u9Ri9U8Rh5AMznhURhBGAuDhW6iBKwlrix85S+Lwxd5Jm
-         UBBQ==
-X-Gm-Message-State: AO0yUKX7ACxQp3DDN40xYOwIw459ZQDiowsonIB7mYp2cT/yg5irNJWr
-        CysDJswN++VU1/hAMOdtwl3gEHFOwdT3fzQw
-X-Google-Smtp-Source: AK7set+RJTEbrjklFl8es66BzOhT595l76iJiBESeVO2mjrsLCuok6on4x8FFG7svfg6fsznqymg5Q==
-X-Received: by 2002:ac2:533c:0:b0:4dd:9aec:e468 with SMTP id f28-20020ac2533c000000b004dd9aece468mr9142958lfh.58.1678644624335;
-        Sun, 12 Mar 2023 11:10:24 -0700 (PDT)
+        b=VmJRWNGWd3il/r4GRAHjybd/8mAMgQF4hpo4H72T+x7xavuZA+oAx8JZpK609iIsKY
+         ZZ1zTIPUbEkntmKbnlMKXobAldoZUJ/CavnVSrjm2sKZNIMzpDRTwdr3qHw4vRNkt4dW
+         1w6BMBEJUopz7PxVBCBKQIcGvqK10W3xEt0JlqzjQXh3YUMhsgp7AN2Bc0wE8jtERXPp
+         LABV6I9rAbmjPsSEzowGpdFFc4wyTSUtBt/BRErdxAFQXTa1ARNYi09ChXvNPZR6+EFp
+         D2t31SKRFoLdp8NKUt/21EkhIJy+WpPxml4yaa/BxxPxKjWaL7H6gAbklkn0la1qreBb
+         33zg==
+X-Gm-Message-State: AO0yUKUjdFeNT+hnSizzARJM/B8ELA1dFzigkgHB9ZmGQ4f1UJVNuztd
+        SJiataNOTBwqcuz47RHVvWC4IN9/O0CKm7Br
+X-Google-Smtp-Source: AK7set8KT/fSjq4VWRIYmtyBYLgYYFfKeRA2PaFqXExEvvbUpTMXuNbkgzpOzF1erzbQBGnybzXZgg==
+X-Received: by 2002:ac2:59ce:0:b0:4e8:11e1:f90d with SMTP id x14-20020ac259ce000000b004e811e1f90dmr6117004lfn.51.1678644270359;
+        Sun, 12 Mar 2023 11:04:30 -0700 (PDT)
 Received: from 0000-cover-letter.patch (46-138-144-249.dynamic.spd-mgts.ru. [46.138.144.249])
-        by smtp.gmail.com with ESMTPSA id h19-20020ac25973000000b004db4936c866sm715593lfp.38.2023.03.12.11.10.23
+        by smtp.gmail.com with ESMTPSA id w17-20020a056512099100b004dc4bb914c7sm721459lft.201.2023.03.12.11.04.29
         for <devicetree@vger.kernel.org>
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 12 Mar 2023 11:10:24 -0700 (PDT)
-Message-Id: <1678644516.665314-0-sleirsgoevy@gmail.com>
+        Sun, 12 Mar 2023 11:04:29 -0700 (PDT)
+Message-ID: <640e142d.050a0220.c9bd.1ac3@mx.google.com>
 From:   Sergey Lisov <sleirsgoevy@gmail.com>
 Date:   Sun, 12 Mar 2023 20:58:50 +0300
 Subject: [PATCH v5 0/3] mmc: dw_mmc: fix DW MMC cores with 32-bit bus on 64-bit Linux systems
@@ -62,8 +62,8 @@ Cc:     linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
         linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
