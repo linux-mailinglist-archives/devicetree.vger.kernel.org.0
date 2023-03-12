@@ -2,163 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DA4C86B67D9
-	for <lists+devicetree@lfdr.de>; Sun, 12 Mar 2023 17:14:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3190C6B67DB
+	for <lists+devicetree@lfdr.de>; Sun, 12 Mar 2023 17:14:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229782AbjCLQOb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 12 Mar 2023 12:14:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37502 "EHLO
+        id S229561AbjCLQOi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 12 Mar 2023 12:14:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37676 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229561AbjCLQOa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 12 Mar 2023 12:14:30 -0400
-Received: from relay5-d.mail.gandi.net (relay5-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::225])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AF225868A;
-        Sun, 12 Mar 2023 09:14:27 -0700 (PDT)
-Received: (Authenticated sender: alex@ghiti.fr)
-        by mail.gandi.net (Postfix) with ESMTPSA id EC8CA1C0002;
-        Sun, 12 Mar 2023 16:14:20 +0000 (UTC)
-Message-ID: <8b338d50-d790-a2e9-9ba9-fde444309bfc@ghiti.fr>
-Date:   Sun, 12 Mar 2023 17:14:20 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.1
-Subject: Re: [PATCH v7 2/4] mm: Introduce memblock_isolate_memory
-Content-Language: en-US
-To:     Mike Rapoport <rppt@kernel.org>,
-        Alexandre Ghiti <alexghiti@rivosinc.com>
-Cc:     Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
+        with ESMTP id S230047AbjCLQOg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 12 Mar 2023 12:14:36 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0B4D6303C5;
+        Sun, 12 Mar 2023 09:14:34 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id AE368B802C8;
+        Sun, 12 Mar 2023 16:14:33 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4B130C4339B;
+        Sun, 12 Mar 2023 16:14:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1678637672;
+        bh=FCE5jgJ2s5ctABSahBVurGFndelAzrW/BC8pKEtLs3A=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=PdO56aZ+xG7lauSvU0MhObVjWi3DDMad7b5C2DkslTdIZh8THQ+4a9QBBQY6gTw81
+         fOYPKyRamJ6+hps0OdlVL9o4Oug9f5f75vwGvccIUfoitKLnvBqVZBMDVJMC4do3n5
+         pRXfpqhvW45vucC1kRHwkwJn1QQqAPUA6tvLXGzM1u+zSjwSe1SpV9RbunmL5ETTx9
+         hVdObFuTiFN2lrHtBO3/ZjMMfpQNiIQ3/fy/IXLXOibNtS99tUJKBYkM1hUOLEsDt1
+         I1xRwTDPsh05ROKE3K1xLy58sCrYGAllUa0SH5/bWbvHJYHszweJYPwUKSksVTdgJV
+         jmPPzi53xiAHg==
+Date:   Sun, 12 Mar 2023 16:14:38 +0000
+From:   Jonathan Cameron <jic23@kernel.org>
+To:     Andrew Hepp <andrew.hepp@ahepp.dev>
+Cc:     devicetree@vger.kernel.org, linux-iio@vger.kernel.org,
         Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Andrew Morton <akpm@linux-foundation.org>,
-        Anup Patel <anup@brainfault.org>,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-mm@kvack.org
-References: <20230310094539.764357-1-alexghiti@rivosinc.com>
- <20230310094539.764357-3-alexghiti@rivosinc.com>
- <ZA2c4X+acRLHKV38@kernel.org>
-From:   Alexandre Ghiti <alex@ghiti.fr>
-In-Reply-To: <ZA2c4X+acRLHKV38@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Subject: Re: [PATCH v5 2/2] iio: temperature: Add MCP9600 thermocouple EMF
+ converter
+Message-ID: <20230312161438.304f5004@jic23-huawei>
+In-Reply-To: <20230305213604.4747-3-andrew.hepp@ahepp.dev>
+References: <20230305213604.4747-1-andrew.hepp@ahepp.dev>
+        <20230305213604.4747-3-andrew.hepp@ahepp.dev>
+X-Mailer: Claws Mail 4.1.1 (GTK 3.24.37; x86_64-pc-linux-gnu)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_NONE autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Sun,  5 Mar 2023 13:36:04 -0800
+Andrew Hepp <andrew.hepp@ahepp.dev> wrote:
 
-On 3/12/23 10:35, Mike Rapoport wrote:
-> Hi Alexandre,
->
-> On Fri, Mar 10, 2023 at 10:45:37AM +0100, Alexandre Ghiti wrote:
->> This function allows to split a region in memblock.memory and will be
->> useful when setting up the linear mapping with STRICT_KERNEL_RWX: it
->> allows to isolate the kernel text/rodata and then avoid to map those
->> regions with a PUD/P4D/PGD.
->>
->> Signed-off-by: Alexandre Ghiti <alexghiti@rivosinc.com>
->> ---
->>   include/linux/memblock.h |  1 +
->>   mm/memblock.c            | 22 +++++++++++++++++++++-
->>   2 files changed, 22 insertions(+), 1 deletion(-)
->>
->> diff --git a/include/linux/memblock.h b/include/linux/memblock.h
->> index 50ad19662a32..2f7ef97c0da7 100644
->> --- a/include/linux/memblock.h
->> +++ b/include/linux/memblock.h
->> @@ -125,6 +125,7 @@ int memblock_clear_hotplug(phys_addr_t base, phys_addr_t size);
->>   int memblock_mark_mirror(phys_addr_t base, phys_addr_t size);
->>   int memblock_mark_nomap(phys_addr_t base, phys_addr_t size);
->>   int memblock_clear_nomap(phys_addr_t base, phys_addr_t size);
->> +int memblock_isolate_memory(phys_addr_t base, phys_addr_t size);
->>   
->>   void memblock_free_all(void);
->>   void memblock_free(void *ptr, size_t size);
->> diff --git a/mm/memblock.c b/mm/memblock.c
->> index 25fd0626a9e7..d8cf1c9eccf0 100644
->> --- a/mm/memblock.c
->> +++ b/mm/memblock.c
->> @@ -753,7 +753,8 @@ static int __init_memblock memblock_isolate_range(struct memblock_type *type,
->>   	int idx;
->>   	struct memblock_region *rgn;
->>   
->> -	*start_rgn = *end_rgn = 0;
->> +	if (start_rgn && end_rgn)
->> +		*start_rgn = *end_rgn = 0;
-> Generally, it's possible that either start_rgn or end_rgn will be a valid
-> pointer and this should be handled here and below.
->
-> My preference, though would be to leave memblock_isolate_range() as is and
-> have unused start_rgn and end_rgn in memblock_isolate_memory().
+> Add support for the MCP9600 thermocouple EMF converter.
+> 
+> Datasheet: https://ww1.microchip.com/downloads/en/DeviceDoc/MCP960X-Data-Sheet-20005426.pdf
+> Signed-off-by: Andrew Hepp <andrew.hepp@ahepp.dev>
 
+Hi Andrew,
 
-Sure, I'll do that then.
+One minor improvement suggested inline.
 
+If you can test with 
+i2c_smbus_read_word_swapped() as suggested (I'm never sure when we need
+the swapped form) that would be great.
 
->
->>   
->>   	if (!size)
->>   		return 0;
->> @@ -795,6 +796,9 @@ static int __init_memblock memblock_isolate_range(struct memblock_type *type,
->>   					       memblock_get_region_node(rgn),
->>   					       rgn->flags);
->>   		} else {
->> +			if (!end_rgn || !start_rgn)
->> +				continue;
->> +
->>   			/* @rgn is fully contained, record it */
->>   			if (!*end_rgn)
->>   				*start_rgn = idx;
->> @@ -805,6 +809,22 @@ static int __init_memblock memblock_isolate_range(struct memblock_type *type,
->>   	return 0;
->>   }
->>   
->> +/**
->> + * memblock_isolate_memory - isolate given range from memblock.memory
-> I think it'd better to use "... range in memblock.memory"
+If we had been later in the cycle I'd have taken this anyway and suggested
+that change as a follow up patch, but we have lots of time, so no rush.
+
+Thanks,
+
+Jonathan
+
+> +static int mcp9600_read(struct mcp9600_data *data,
+> +			struct iio_chan_spec const *chan, int *val)
+> +{
+> +	__be16 buf;
+> +	int ret;
+> +
+> +	mutex_lock(&data->read_lock);
+> +	ret = i2c_smbus_read_i2c_block_data(data->client, chan->address, 2,
+> +					    (u8 *)&buf);
+
+Rare to see this call, so I went looking in the datasheet
+https://www.kernel.org/doc/html/v5.5/i2c/smbus-protocol.html gives the structure
+of this command as
+S Addr Wr [A] Comm [A]
+           S Addr Rd [A] [Data] A [Data] A ... A [Data] NA P
+
+which matches the datasheet. However for two bytes it's also the same as...
+
+S Addr Wr [A] Comm [A] S Addr Rd [A] [DataLow] A [DataHigh] NA P
+which is the more common
+
+i2c_smbus_read_word_data() which has a defined endian type and which
+I think is the wrong one here.
+
+Given that's a common situation we also have
+i2c_smbus_read_word_swapped() which is same thing but for data the opposite
+way around and will avoid the need for an explicit endian swap.
+
+Jonathan
 
 
-Ok
 
-
->
->> + * @base: base of range to isolate
->> + * @size: size of range to isolate
->> + *
->> + * Call memblock_isolate_range on memblock.memory to isolate the given range.
-> Please elaborate that isolate means that the range does not share regions
-> with other ranges.
-
-
-Sure, thanks, I'll come up with a v8 tomorrow along with other fixes 
-(rv32 and arm64 comments that I forgot to remove).
-
-Thanks again,
-
-Alex
-
-
->> + *
->> + * Return:
->> + * 0 on success, -errno on failure.
->> + */
->> +
->> +int __init_memblock memblock_isolate_memory(phys_addr_t base, phys_addr_t size)
->> +{
->> +	return memblock_isolate_range(&memblock.memory, base, size, NULL, NULL);
->> +}
->> +
->>   static int __init_memblock memblock_remove_range(struct memblock_type *type,
->>   					  phys_addr_t base, phys_addr_t size)
->>   {
->> -- 
->> 2.37.2
->>
+> +	mutex_unlock(&data->read_lock);
+> +
+> +	if (ret < 0)
+> +		return ret;
+> +	*val = be16_to_cpu(buf);
+> +
+> +	return 0;
+> +}
+> +
