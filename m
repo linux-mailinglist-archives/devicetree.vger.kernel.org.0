@@ -2,118 +2,123 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B0AC16B6605
-	for <lists+devicetree@lfdr.de>; Sun, 12 Mar 2023 13:42:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 379E56B660C
+	for <lists+devicetree@lfdr.de>; Sun, 12 Mar 2023 13:56:42 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229493AbjCLMm2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 12 Mar 2023 08:42:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57406 "EHLO
+        id S229710AbjCLM4k (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 12 Mar 2023 08:56:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46718 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229906AbjCLMm1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 12 Mar 2023 08:42:27 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0A0CA4FF3C;
-        Sun, 12 Mar 2023 05:42:24 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 9AC0B60F07;
-        Sun, 12 Mar 2023 12:42:23 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 01D9DC433EF;
-        Sun, 12 Mar 2023 12:42:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1678624943;
-        bh=OFQdNglFI1NSHGUTJ5ckoAxc4WHC7HuhP+EF7KanK/4=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=PltZMWCMOypqC6ZHwTFD8bjEUjYQ8jO+tPUrIY4apSGPHU16hGsCnsduNrEaHFSdK
-         6fNuhnN9xv0FtG3RAJ0Ofm57ut/e2Y9D+tPzRbKEyDBykY85Gjm8+xuLdccA9UA3jZ
-         aO74F7PYbhGz+n65b+qKFYRxX+93p1kTPqzp2HbRZfRmAPhnlSxuYrZaNSkCQ7hSCG
-         t8i6xnf/OLCSQN1ex0u+BUBDq2skGYoHAGC5gMy8/gnMabXuhOnOZwxnIpZR9IgJuS
-         jMPZnoWS45BYJ62wrNsjKZfdX0PyaktgQfM6vFvtPYu8G42ErriXAXLyHKw2qIejl8
-         5BoANJnlS9MPg==
-Received: by mail-ed1-f44.google.com with SMTP id s11so38316840edy.8;
-        Sun, 12 Mar 2023 05:42:22 -0700 (PDT)
-X-Gm-Message-State: AO0yUKUgfcP47dQJ1ZdvMqHs30LIbx6W2H0ghKBf/FgifrdKdIRRtNOn
-        V3TS4Q5e1t3Ik7GScTuJhQE8S2Y7UitRAM5KJz8=
-X-Google-Smtp-Source: AK7set/J9ue8nEOQxcHGaZaDmH8jLtekYukBmKnmWZUTmBHd3+lZTFydgcK5tTNK9QRO/X7dLQsyxkALKEkk+gnWzMw=
-X-Received: by 2002:a50:bb49:0:b0:4fb:adb4:d9b9 with SMTP id
- y67-20020a50bb49000000b004fbadb4d9b9mr665337ede.7.1678624941236; Sun, 12 Mar
- 2023 05:42:21 -0700 (PDT)
+        with ESMTP id S229621AbjCLM4j (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 12 Mar 2023 08:56:39 -0400
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A834E3755E;
+        Sun, 12 Mar 2023 05:56:38 -0700 (PDT)
+Received: from pendragon.ideasonboard.com (85-76-145-228-nat.elisa-mobile.fi [85.76.145.228])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id A8010814;
+        Sun, 12 Mar 2023 13:56:32 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1678625797;
+        bh=yUhIv5mIXW7d12smi/RLzcPOkN/96N0e+Yq9dq5pACI=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=rum6P4XeakH5fXyACiWq+eZHLVUqazINR9ukOqbzXYVXscwJusfRDh1hxtj+rG760
+         1Z+fL1czdT+wkL629AnPu28+RRXn8/P183gqqyDJY88RhFwHfFhSq9tRtDnzG/Gf6X
+         FDcO7GiIFGkWXNsoAuDqd2UYqTvufHUvqOB7evaw=
+Date:   Sun, 12 Mar 2023 14:56:32 +0200
+From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To:     Alexander Stein <alexander.stein@ew.tq-group.com>
+Cc:     linux-media@vger.kernel.org,
+        Dave Stevenson <dave.stevenson@raspberrypi.com>,
+        Manivannan Sadhasivam <mani@kernel.org>,
+        Sakari Ailus <sakari.ailus@iki.fi>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH v3 00/15] media: i2c: imx290: Mono support, minor fixes,
+ alternate INCK, and more controls
+Message-ID: <20230312125632.GE2545@pendragon.ideasonboard.com>
+References: <20230215223003.30170-1-laurent.pinchart@ideasonboard.com>
+ <5017997.GXAFRqVoOG@steina-w>
 MIME-Version: 1.0
-References: <20230310144710.1543070-1-robh@kernel.org>
-In-Reply-To: <20230310144710.1543070-1-robh@kernel.org>
-From:   Guo Ren <guoren@kernel.org>
-Date:   Sun, 12 Mar 2023 20:42:09 +0800
-X-Gmail-Original-Message-ID: <CAJF2gTRmf6C0fZs6L4VoRtNivu9dm_6Nibej-oOhZ=69FzLhrA@mail.gmail.com>
-Message-ID: <CAJF2gTRmf6C0fZs6L4VoRtNivu9dm_6Nibej-oOhZ=69FzLhrA@mail.gmail.com>
-Subject: Re: [PATCH] irqchip: Use of_property_read_bool() for boolean properties
-To:     Rob Herring <robh@kernel.org>
-Cc:     Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-csky@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <5017997.GXAFRqVoOG@steina-w>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Acked-by: Guo Ren <guoren@kernel.org> (csky)
+Hi Alexander,
 
-On Fri, Mar 10, 2023 at 10:48=E2=80=AFPM Rob Herring <robh@kernel.org> wrot=
-e:
->
-> It is preferred to use typed property access functions (i.e.
-> of_property_read_<type> functions) rather than low-level
-> of_get_property/of_find_property functions for reading properties.
-> Convert reading boolean properties to to of_property_read_bool().
->
-> Signed-off-by: Rob Herring <robh@kernel.org>
-> ---
->  drivers/irqchip/irq-csky-apb-intc.c | 2 +-
->  drivers/irqchip/irq-gic-v2m.c       | 2 +-
->  2 files changed, 2 insertions(+), 2 deletions(-)
->
-> diff --git a/drivers/irqchip/irq-csky-apb-intc.c b/drivers/irqchip/irq-cs=
-ky-apb-intc.c
-> index 42d8a2438ebc..6710691e4c25 100644
-> --- a/drivers/irqchip/irq-csky-apb-intc.c
-> +++ b/drivers/irqchip/irq-csky-apb-intc.c
-> @@ -68,7 +68,7 @@ static void __init ck_set_gc(struct device_node *node, =
-void __iomem *reg_base,
->         gc->chip_types[0].chip.irq_mask =3D irq_gc_mask_clr_bit;
->         gc->chip_types[0].chip.irq_unmask =3D irq_gc_mask_set_bit;
->
-> -       if (of_find_property(node, "csky,support-pulse-signal", NULL))
-> +       if (of_property_read_bool(node, "csky,support-pulse-signal"))
->                 gc->chip_types[0].chip.irq_unmask =3D irq_ck_mask_set_bit=
-;
->  }
->
-> diff --git a/drivers/irqchip/irq-gic-v2m.c b/drivers/irqchip/irq-gic-v2m.=
-c
-> index f1e75b35a52a..f2ff4387870d 100644
-> --- a/drivers/irqchip/irq-gic-v2m.c
-> +++ b/drivers/irqchip/irq-gic-v2m.c
-> @@ -421,7 +421,7 @@ static int __init gicv2m_of_init(struct fwnode_handle=
- *parent_handle,
->                 u32 spi_start =3D 0, nr_spis =3D 0;
->                 struct resource res;
->
-> -               if (!of_find_property(child, "msi-controller", NULL))
-> +               if (!of_property_read_bool(child, "msi-controller"))
->                         continue;
->
->                 ret =3D of_address_to_resource(child, 0, &res);
-> --
-> 2.39.2
->
+On Thu, Mar 09, 2023 at 09:16:47AM +0100, Alexander Stein wrote:
+> Am Mittwoch, 15. Februar 2023, 23:29:48 CET schrieb Laurent Pinchart:
+> > Hello,
+> > 
+> > This patch series combines the "[PATCH v2 0/2] Add support for mono
+> > version of Sony IMX290 sensor" ([1]) and "[PATCH v2 00/13] imx290: Minor
+> > fixes, support for alternate INCK, and more ctrls" ([2]) previously
+> > submitted by Dave into a single series.
+> > 
+> > As promised in my review of v2 of both series, I have tested the changes
+> > with my IMX327 camera sensor, connected to the i.MX8MP ISP, with
+> > libcamera. I haven't noticed any regression (but, full disclaimer, I
+> > haven't tested all the newly features). I think we're thus good to go.
+> 
+> What is the status of this series? Will it be picked up?
 
+I expect Sakari to pick it up for v6.4. I have pushed the whole series
+with acks to the next/media/sensors/imx290 branch on
+git://git.kernel.org/pub/scm/linux/kernel/git/pinchartl/linux.git.
 
---=20
-Best Regards
- Guo Ren
+> > This version handles all review comments from v2, resulting in the
+> > following changes:
+> > 
+> > - Deprecate the sony,imx290 compatible
+> > - Update the DT example to use the new sony,imx290lqr compatible
+> > - Drop unneeded pointer cast
+> > - Don't move imx290_of_match table
+> > - Fix typos
+> > 
+> > The code has also been rebased on top of the latest media master branch,
+> > with rebase conflicts and rebase-induced compilation breakages fixed.
+> > 
+> > The patches are available from
+> > 
+> > git://git.kernel.org/pub/scm/linux/kernel/git/pinchartl/linux.git
+> > next/media/sensors/imx290
+> > 
+> > [1] https://lore.kernel.org/linux-media/20230203191644.947643-1-dave.stevenson@raspberrypi.com
+> > [2] https://lore.kernel.org/linux-media/20230203191811.947697-1-dave.stevenson@raspberrypi.com
+> > 
+> > Dave Stevenson (15):
+> >   media: dt-bindings: media: i2c: Add mono version to IMX290 bindings
+> >   media: i2c: imx290: Add support for the mono sensor variant
+> >   media: i2c: imx290: Match kernel coding style on whitespace
+> >   media: i2c: imx290: Set the colorspace fields in the format
+> >   media: i2c: imx290: Add V4L2_SUBDEV_FL_HAS_EVENTS and subscribe hooks
+> >   media: i2c: imx290: Fix the pixel rate at 148.5Mpix/s
+> >   media: i2c: imx290: Support 60fps in 2 lane operation
+> >   media: i2c: imx290: Use CSI timings as per datasheet
+> >   media: i2c: imx290: Convert V4L2_CID_HBLANK to read/write
+> >   media: i2c: imx290: Convert V4L2_CID_VBLANK to read/write
+> >   media: i2c: imx290: VMAX is mode dependent
+> >   media: i2c: imx290: Remove duplicated write to IMX290_CTRL_07
+> >   media: i2c: imx290: Add support for 74.25MHz external clock
+> >   media: i2c: imx290: Add support for H & V Flips
+> >   media: i2c: imx290: Add the error code to logs in start_streaming
+> > 
+> >  .../bindings/media/i2c/sony,imx290.yaml       |  24 +-
+> >  drivers/media/i2c/imx290.c                    | 537 ++++++++++++++----
+> >  2 files changed, 442 insertions(+), 119 deletions(-)
+> > 
+> > 
+> > base-commit: 83e0f265aa8d0e37cc8e15d318b64da0ec03ff41
+
+-- 
+Regards,
+
+Laurent Pinchart
