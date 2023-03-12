@@ -2,53 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 42A236B6A34
-	for <lists+devicetree@lfdr.de>; Sun, 12 Mar 2023 19:38:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 66AF06B6A2B
+	for <lists+devicetree@lfdr.de>; Sun, 12 Mar 2023 19:38:53 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231290AbjCLSiM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 12 Mar 2023 14:38:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60924 "EHLO
+        id S231809AbjCLSie (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 12 Mar 2023 14:38:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32800 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230497AbjCLSiI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 12 Mar 2023 14:38:08 -0400
-Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com [IPv6:2a00:1450:4864:20::534])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 798F02117
-        for <devicetree@vger.kernel.org>; Sun, 12 Mar 2023 11:37:33 -0700 (PDT)
-Received: by mail-ed1-x534.google.com with SMTP id y4so10796937edo.2
-        for <devicetree@vger.kernel.org>; Sun, 12 Mar 2023 11:37:33 -0700 (PDT)
+        with ESMTP id S231582AbjCLSiZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 12 Mar 2023 14:38:25 -0400
+Received: from mail-ed1-x536.google.com (mail-ed1-x536.google.com [IPv6:2a00:1450:4864:20::536])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 09BA0E04B
+        for <devicetree@vger.kernel.org>; Sun, 12 Mar 2023 11:37:45 -0700 (PDT)
+Received: by mail-ed1-x536.google.com with SMTP id fd5so6380282edb.7
+        for <devicetree@vger.kernel.org>; Sun, 12 Mar 2023 11:37:44 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1678646192;
+        d=linaro.org; s=google; t=1678646193;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=94ec/3Lck7xux4vrbUrW03zCIaDqbzydjt56XL/nSks=;
-        b=lf0gwxeU6DY+IZY4GVK57xUVeE7XF73dJkJqqO78Pv8iAbHs9ZfLZggElH7CZu2s7r
-         h9FqxkacVflCkgmxcBjX9xz2hCYbiVk7I1brPZYiXAK5Gc+ZPPiXHnFBQqxu5/Ch9P3M
-         wSNcl8KKuGTszZgv6oNIfwm2yVBLoXAj13olpU2RwMli6fLDYWoRQlmw1nPGN0T6JIsB
-         9PrmpQJfDN9TDYzcvtNHLFn2C2/PDry8OapiPf41EaT1PCaADkX4tPJeKNSvHqkM7GZJ
-         bWTsZzUrBpJGcH1Wde8MhGawMvciopWwYbMTa+YOwR5SNuoLBvhRShJOQ9gWXhPYzypX
-         JeOQ==
+        bh=qyROabzfNXFjzGfPmuA55zwQiucJjRNtPZvLnEFOd0M=;
+        b=DoDElB/241YOsIJ7gmlQ1ixYxcb8JqUlSbhklKuqcSyg5vXI/z6NfKciWgTX8DLxJX
+         lDzBRnPm7YetM84hdSEg6ZkbJB5SKpZ6LfERV/HYFr7FD5lsNM1BAtw8ZWSqggQtwrke
+         ygLKoJ8I3GrajL4MX+c6eUQeKzoQeXHG32EqEZcfsc1jEUWL1f2CmyOsFEjJmwpgYsyH
+         UPsf8y8ZvYAL1bJfkcQHsAXLVmYfipKFvkFDH0CANKXpBl3MM0pM8NBQLn7AePGM1KqZ
+         +hYqYt+hxIxIujP+4Lg3s8qXsLcC5pMf3MLDALtedUINOYEM5dBLg5MS/rIWbu7DpDSl
+         afIw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678646192;
+        d=1e100.net; s=20210112; t=1678646193;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=94ec/3Lck7xux4vrbUrW03zCIaDqbzydjt56XL/nSks=;
-        b=6szOb9xYz7XfObq3dmWah8OS+ghv+aH0DEjNGrQsdcvYaDanapXU9gu0AB8YVhrEyE
-         EVq9lnItm4oaWVp8bkQXBevVfeJbmKA9v4GDgjuB2dWAyp6cle+Us/Kz2yBe+duaBSzb
-         w8622Ely+Gr5m+aX6Y4+YKfNm70VDewY9t1e8gthpJ5v3VE+pey5Nj6ts5hrcezDN/ow
-         CkV0upq85G3igBlZ1VbHqLs8ZG+4l0ontoU2gxpWUUxD9HSSr9kn6bcK9MrWlde94XO3
-         4VkL8U8zbz7NVXq/ENzarAR+vnWjyqTI10BT0WTJ+hD3A+OFxWcD7sL3AlTwnSuC0eQG
-         iw9g==
-X-Gm-Message-State: AO0yUKWks5Ti+d31kTWI+4C2SWtvwl003yd3WJSO6o7Ma94sN1yOp3JN
-        eeCk7VpSKbMzDg0ffkv6KGOCNQ==
-X-Google-Smtp-Source: AK7set8rjzGhg/wmOHsAOLvNcuIFzbRYRuf+zxKpPVlz2pE+Pbd3q8VJefCPwGmYY12b1zIouuJA+g==
-X-Received: by 2002:a17:907:2122:b0:926:2363:a276 with SMTP id qo2-20020a170907212200b009262363a276mr2346930ejb.39.1678646192238;
-        Sun, 12 Mar 2023 11:36:32 -0700 (PDT)
+        bh=qyROabzfNXFjzGfPmuA55zwQiucJjRNtPZvLnEFOd0M=;
+        b=WeaAD46oTKy0BtY6dlyrxbpg0KnaHbQG1IzTxrdv/rwe+FQjK1yS9BQd8mg3oAdKIa
+         46vDXPZam09oIllChQbabgmKW1bIsrxaPG5FgdPMjqzP+hnArxFz9mGr6W9YOOUf2NUT
+         EdgYJ+d2GssJyUn63EVJ81asH4kx3qKsQznUu7/gZIMX+E4JgdyaIa2B7og8Fb9Yo7dA
+         ybs7uJmx1CwfYk27JqYFkeWytjWAdi+T8aCKpwxDWUaEZwZw8S4U+3TGAnVZgKJR3vVX
+         00r9GuEsWIYdnC3CZooDf/K3kJQcZk8MmPeCGIQJWXjsl/UzdTdx3hwrEEfIbhZ80OPW
+         WLzg==
+X-Gm-Message-State: AO0yUKX4O1KAVqylNJKkLnFFM5uln14jSaoGNiuTAMpmMVrCF9Y1i5SB
+        c3vvmJC8O223fstPDxB3BKfiyQ==
+X-Google-Smtp-Source: AK7set84tJrxNq9eHj1GVH3942S8sEuNvOmwiWzGuX3JQjCsrSE/9vcrPaMD4RytD0vFAPzLVFasFg==
+X-Received: by 2002:a17:906:8d86:b0:8f9:ed75:f962 with SMTP id ry6-20020a1709068d8600b008f9ed75f962mr34512494ejc.18.1678646193304;
+        Sun, 12 Mar 2023 11:36:33 -0700 (PDT)
 Received: from krzk-bin.. ([2a02:810d:15c0:828:d9f6:3e61:beeb:295a])
-        by smtp.gmail.com with ESMTPSA id p14-20020a1709060dce00b0092669fb4ba1sm893806eji.130.2023.03.12.11.36.31
+        by smtp.gmail.com with ESMTPSA id p14-20020a1709060dce00b0092669fb4ba1sm893806eji.130.2023.03.12.11.36.32
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 12 Mar 2023 11:36:31 -0700 (PDT)
+        Sun, 12 Mar 2023 11:36:33 -0700 (PDT)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 To:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
@@ -65,9 +65,9 @@ To:     Andy Gross <agross@kernel.org>,
         linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
 Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH 6/8] arm64: dts: qcom: msm8994-kitakami: drop unit address from PMI8994 regulator
-Date:   Sun, 12 Mar 2023 19:36:20 +0100
-Message-Id: <20230312183622.460488-6-krzysztof.kozlowski@linaro.org>
+Subject: [PATCH 7/8] arm64: dts: qcom: msm8994-msft-lumia-octagon: drop unit address from PMI8994 regulator
+Date:   Sun, 12 Mar 2023 19:36:21 +0100
+Message-Id: <20230312183622.460488-7-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20230312183622.460488-1-krzysztof.kozlowski@linaro.org>
 References: <20230312183622.460488-1-krzysztof.kozlowski@linaro.org>
@@ -85,26 +85,26 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 The PMIC regulators are not supposed to have unit addresses.
 
-Fixes: e9783584c9b7 ("arm64: dts: qcom: msm8994-kitakami: Add VDD_GFX regulator")
+Fixes: 60b214effb80 ("arm64: dts: qcom: msm8994-octagon: Configure regulators")
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
- arch/arm64/boot/dts/qcom/msm8994-sony-xperia-kitakami.dtsi | 3 +--
+ arch/arm64/boot/dts/qcom/msm8994-msft-lumia-octagon.dtsi | 3 +--
  1 file changed, 1 insertion(+), 2 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/qcom/msm8994-sony-xperia-kitakami.dtsi b/arch/arm64/boot/dts/qcom/msm8994-sony-xperia-kitakami.dtsi
-index 3ceb86b06209..26059f861250 100644
---- a/arch/arm64/boot/dts/qcom/msm8994-sony-xperia-kitakami.dtsi
-+++ b/arch/arm64/boot/dts/qcom/msm8994-sony-xperia-kitakami.dtsi
-@@ -173,8 +173,7 @@ &pmi8994_spmi_regulators {
- 	 * power domain.. which still isn't enough and forces us to bind
- 	 * OXILI_CX and OXILI_GX together!
- 	 */
+diff --git a/arch/arm64/boot/dts/qcom/msm8994-msft-lumia-octagon.dtsi b/arch/arm64/boot/dts/qcom/msm8994-msft-lumia-octagon.dtsi
+index 4520a7e86d5b..0c112b7b57ea 100644
+--- a/arch/arm64/boot/dts/qcom/msm8994-msft-lumia-octagon.dtsi
++++ b/arch/arm64/boot/dts/qcom/msm8994-msft-lumia-octagon.dtsi
+@@ -542,8 +542,7 @@ hd3ss460_en: en-high-state {
+ };
+ 
+ &pmi8994_spmi_regulators {
 -	vdd_gfx: s2@1700 {
 -		reg = <0x1700 0x100>;
 +	vdd_gfx: s2 {
- 		regulator-name = "VDD_GFX";
  		regulator-min-microvolt = <980000>;
  		regulator-max-microvolt = <980000>;
+ 	};
 -- 
 2.34.1
 
