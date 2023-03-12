@@ -2,81 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 978D76B64F0
-	for <lists+devicetree@lfdr.de>; Sun, 12 Mar 2023 11:34:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0B97F6B6501
+	for <lists+devicetree@lfdr.de>; Sun, 12 Mar 2023 11:42:51 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229783AbjCLKe5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 12 Mar 2023 06:34:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47862 "EHLO
+        id S230013AbjCLKmt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 12 Mar 2023 06:42:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57276 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229578AbjCLKe4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 12 Mar 2023 06:34:56 -0400
-Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2F57938039
-        for <devicetree@vger.kernel.org>; Sun, 12 Mar 2023 03:34:55 -0700 (PDT)
-Received: by mail-lf1-x12e.google.com with SMTP id r27so12149876lfe.10
-        for <devicetree@vger.kernel.org>; Sun, 12 Mar 2023 03:34:55 -0700 (PDT)
+        with ESMTP id S229502AbjCLKms (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 12 Mar 2023 06:42:48 -0400
+Received: from mail-ed1-x536.google.com (mail-ed1-x536.google.com [IPv6:2a00:1450:4864:20::536])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9411547414
+        for <devicetree@vger.kernel.org>; Sun, 12 Mar 2023 03:42:46 -0700 (PDT)
+Received: by mail-ed1-x536.google.com with SMTP id g10so8872791eda.1
+        for <devicetree@vger.kernel.org>; Sun, 12 Mar 2023 03:42:46 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=wirenboard.com; s=google; t=1678617293;
-        h=content-transfer-encoding:in-reply-to:organization:from:references
-         :cc:to:content-language:subject:user-agent:mime-version:date
-         :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=+5NjeFdwlyNeSLCFXY+XpjZWno9lnlrc/1OmtKHyQfQ=;
-        b=b+IxIOrtxlSRaT2Tdxzvl7iucWQz+o+YdTNpv7ySD284AzTsfoOYfuy/M58yHAhSHN
-         vjueTRrSEW4PxamcGl+xKeGP8knABaG7m2la4FkNn8mIL9b9uzi8zDe2fdwY53xPDHJu
-         XBZhdfx6ZgMu7rphPT2SSFmvxDh2VeJTzhqx7WCZNDhAbwqKtOMYxdhpf8WF20SMBZzS
-         NITOhOsb7eh0PJ4KHiKxTNU/Ub0wMqEjJdw1fyAmr3PkAr016+UvQhOMjX4oFVCDDRGw
-         SXtoYo5ABjZzOtZ+ug3TrjiFo5H8/4uuYBnVDDQe/+Yq1RFS9Ab7l9/wlfWw+WBfLEq+
-         S1FA==
+        d=linaro.org; s=google; t=1678617765;
+        h=content-transfer-encoding:in-reply-to:references:cc:to:from
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=TfveJSvxtF5CnplYNA0fTkHPZzTAq5ne7Bok/0BiFNE=;
+        b=t6bjoPKyiiz3d0pvJdWobd6snOKUJNTrA08WBkRylhxxJqxTW2G7Gh0tsxLZW/QhCA
+         pR8BQQiKfAJOgDdTaIK1614xCoVmPgs3OsrRPYVLx2wyx5KbLccL/ohgW7k4B1NJ4+iP
+         jPg9RJcRsofqF42KKp4P8tuqa/uDsWlU7JFTMhKaDr3O7sUkcPvZbGufe5QU/XD8nSSA
+         l1lRTZuDg+aSPTLSfpSnj7UCR4G46TApxNNaZ8JSKMAHgDaJHID5rHzjDHOojKOHiBfx
+         BLlUNCPvzFwsyPxxUHaoV+TbH3DjX8A1pE/A+zWO4kO49jmgxXHhYb2W7FiHJhPKFZs8
+         useQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678617293;
-        h=content-transfer-encoding:in-reply-to:organization:from:references
-         :cc:to:content-language:subject:user-agent:mime-version:date
-         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=+5NjeFdwlyNeSLCFXY+XpjZWno9lnlrc/1OmtKHyQfQ=;
-        b=j3ssK0JrCDGjv8d4bsfabng8ia8+vrFtxjIedwNkn+C8Jrt2j3Dz4zfslh4qPHgYPE
-         XRyV4UlhZMN1qv9B/ERcn14ihPLbObEusx6UuT8VPI3TeaqkBgpHFHaZEFmRIqa6A9Wr
-         CXSR+WDrbAaF1Q+OAoDz/+xViZ03NqfCtA6u0FYxIxc0XfNjWfDkwDsczN3gMGmslXtJ
-         uGhjFOx1mwLwBNoti6qkc9Q5UZ9CfTb+T3NickGnAiRAYc1b6PNB9lpJNcq83Jv84hNX
-         ue7SzuKA6eO7JABertWVIxzRkm8JiSjcdXexFYGhfFtlJSVpQiSHv51QV9EVFRnAZzi1
-         c0Hw==
-X-Gm-Message-State: AO0yUKXa/MVW+GMRzIq+PXSEWSkGyUdNPX9E16VSWxAi85SUkQziSAEx
-        89ds4ErvzWdjD/49u4vBNl53+Q==
-X-Google-Smtp-Source: AK7set+bWpKE1JVSk+k/Kfxq9TW5LJUYzgbfVe3UJsr8ox7SC3pzNIE44qA/3RKXbFNx3X80mp8ySg==
-X-Received: by 2002:a05:6512:118d:b0:4dc:75c3:9a90 with SMTP id g13-20020a056512118d00b004dc75c39a90mr2099908lfr.11.1678617293367;
-        Sun, 12 Mar 2023 03:34:53 -0700 (PDT)
-Received: from [192.168.1.9] ([78.109.72.44])
-        by smtp.googlemail.com with ESMTPSA id w6-20020a05651203c600b004cc7acfbd2bsm606884lfp.287.2023.03.12.03.34.50
+        d=1e100.net; s=20210112; t=1678617765;
+        h=content-transfer-encoding:in-reply-to:references:cc:to:from
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=TfveJSvxtF5CnplYNA0fTkHPZzTAq5ne7Bok/0BiFNE=;
+        b=hJIkwpJkun3l3wgsR36SxaFdLNxYWMpyO6XrK6/vASBBNYKS8d/f05JMPNQVRWHSJt
+         IWoilAqyNlfS2mNCRo6df2Pu+ERsOdiDWX/R6id6nCEJYbVf3TbFSuRLoLB74zsoj1k4
+         gUw80069vdLNI4V5F1USqSvfrtdz2kTk9gichlIrwNCCNsHBlidPi3qoxzlXGFVerhUB
+         ACpmxTuR6aJdBqfWi2IImxq3SmsPZm/En3Jedo6cctFYXgz+IZ7firwY6r/EbP6/oF8D
+         eh+pLgrtgwFIFZQ9rIbc5RBcUpg6Nxsbta3NfW/JfIDT3GEvbDQ1glTS2Zj7uI0/kWjA
+         1fVQ==
+X-Gm-Message-State: AO0yUKXyRnNrK7D5+g/D0V8z0RtPPP1s92VSH+a/QASdgj/OX86aY9aw
+        WE7AdN64C9IAn5oWE5D71OV6Bg==
+X-Google-Smtp-Source: AK7set+qeZ4bULgnLA+0O/+hrgXfk//CriH/OguEIP5t6ccRDm09zzk4vwsKMJRnB1etv+ucRt7t3Q==
+X-Received: by 2002:a17:906:fd8c:b0:8f7:d5c0:c71d with SMTP id xa12-20020a170906fd8c00b008f7d5c0c71dmr39669625ejb.60.1678617765062;
+        Sun, 12 Mar 2023 03:42:45 -0700 (PDT)
+Received: from ?IPV6:2a02:810d:15c0:828:d9f6:3e61:beeb:295a? ([2a02:810d:15c0:828:d9f6:3e61:beeb:295a])
+        by smtp.gmail.com with ESMTPSA id ox29-20020a170907101d00b008e53874f8d8sm2072527ejb.180.2023.03.12.03.42.44
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 12 Mar 2023 03:34:52 -0700 (PDT)
-Message-ID: <4821b498-ceff-ca61-db94-29839cf5e0be@wirenboard.com>
-Date:   Sun, 12 Mar 2023 13:34:50 +0300
+        Sun, 12 Mar 2023 03:42:44 -0700 (PDT)
+Message-ID: <aa142690-d534-a7aa-208a-84a3e324573a@linaro.org>
+Date:   Sun, 12 Mar 2023 11:42:43 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.1
-Subject: Re: [PATCHv3 3/4] dt-bindings: wiegand: add GPIO bitbanged Wiegand
- controller
-Content-Language: en-GB
-To:     =?UTF-8?Q?Martin_Za=c5=a5ovi=c4=8d?= <m.zatovic1@gmail.com>,
+ Thunderbird/102.8.0
+Subject: Re: [PATCH v2 1/2] dt-bindings: synopsys-dw-mshc-common: add
+ "fifo-access-32bit" property
+Content-Language: en-US
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To:     Sergey Lisov <sleirsgoevy@gmail.com>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Jaehoon Chung <jh80.chung@samsung.com>
+Cc:     linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
-Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        gregkh@linuxfoundation.org, airlied@redhat.com, dipenp@nvidia.com,
-        treding@nvidia.com, mwen@igalia.com, fmdefrancesco@gmail.com,
-        arnd@arndb.de, bvanassche@acm.org, ogabbay@kernel.org,
-        axboe@kernel.dk, mathieu.poirier@linaro.org, linux@zary.sk,
-        masahiroy@kernel.org, yangyicong@hisilicon.com,
-        dan.j.williams@intel.com, jacek.lawrynowicz@linux.intel.com,
-        benjamin.tissoires@redhat.com, devicetree@vger.kernel.org,
-        furong.zhou@linux.intel.com, andriy.shevchenko@intel.com,
-        linus.walleij@linaro.org
-References: <20230301142835.19614-1-m.zatovic1@gmail.com>
- <20230301142835.19614-4-m.zatovic1@gmail.com>
-From:   Evgeny Boger <boger@wirenboard.com>
-Organization: Wiren Board
-In-Reply-To: <20230301142835.19614-4-m.zatovic1@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+References: <1678558770.495747-1-sleirsgoevy@gmail.com>
+ <2edea81f-9ea1-5ede-8539-6aac88621670@linaro.org>
+In-Reply-To: <2edea81f-9ea1-5ede-8539-6aac88621670@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
@@ -87,97 +80,21 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 3/1/23 17:28, Martin Zaťovič wrote:
-> GPIO bitbanged Wiegand controller requires definitions of GPIO
-> lines to be used on top of the common Wiegand properties. Wiegand
-> utilizes two such lines - D0(low data line) and D1(high data line).
->
-> Acked-by: Linus Walleij <linus.walleij@linaro.org>
-> Signed-off-by: Martin Zaťovič <m.zatovic1@gmail.com>
-> ---
->   .../bindings/wiegand/wiegand-gpio.yaml        | 51 +++++++++++++++++++
->   MAINTAINERS                                   |  5 ++
->   2 files changed, 56 insertions(+)
->   create mode 100644 Documentation/devicetree/bindings/wiegand/wiegand-gpio.yaml
->
-> diff --git a/Documentation/devicetree/bindings/wiegand/wiegand-gpio.yaml b/Documentation/devicetree/bindings/wiegand/wiegand-gpio.yaml
-> new file mode 100644
-> index 000000000000..df28929f6dae
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/wiegand/wiegand-gpio.yaml
-> @@ -0,0 +1,51 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/wiegand/wiegand-gpio.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: GPIO bitbanged Wiegand interface devicetree bindings
-> +
-> +maintainers:
-> +  - Martin Zaťovič <m.zatovic1@gmail.com>
-> +
-> +description:
-> +  This represents the GPIO lines used for bit-banged Wiegand on dedicated GPIO
-> +  lines.
-> +
-> +allOf:
-> +  - $ref: /schemas/wiegand/wiegand-controller.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    const: wiegand-gpio
-> +
-> +  data-hi-gpios:
-> +    description: GPIO used as Wiegands data-hi line.
-> +    maxItems: 1
-> +
-> +  data-lo-gpios:
-> +    description: GPIO used as Wiegands data-lo line.
-> +    maxItems: 1
-> +
-> +required:
-> +  - compatible
-> +  - data-hi-gpios
-> +  - data-lo-gpios
-In my experience, the data lines are usually labeled D0/D1, sometimes 
-DATA0/DATA1. Data high/data low marking is very rare.
-> +
-> +unevaluatedProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/gpio/gpio.h>
-> +
-> +    wiegand@f00 {
-> +        compatible = "wiegand-gpio";
-> +        pulse-len-us = <50>;
-> +        interval-len-us = <2000>;
-> +        frame-gap-us = <2000>;
-> +        data-lo-gpios = <&gpio2 6 (GPIO_ACTIVE_HIGH|GPIO_OPEN_DRAIN)>;
-> +        data-hi-gpios = <&gpio2 7 (GPIO_ACTIVE_HIGH|GPIO_OPEN_DRAIN)>;
-> +
-> +        /* devices */
-> +    };
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index 23a67b32f095..91e573466d6b 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -22519,6 +22519,11 @@ F:	Documentation/devicetree/bindings/wiegand/wiegand-controller.yaml
->   F:	drivers/wiegand/wiegand.c
->   F:	include/linux/wiegand.h
->   
-> +WIEGAND GPIO BITBANG DRIVER
-> +M:	Martin Zaťovič <m.zatovic1@gmail.com>
-> +S:	Maintained
-> +F:	Documentation/devicetree/bindings/wiegand/wiegand-gpio.yaml
-> +
->   WIIMOTE HID DRIVER
->   M:	David Rheinsberg <david.rheinsberg@gmail.com>
->   L:	linux-input@vger.kernel.org
+On 12/03/2023 11:18, Krzysztof Kozlowski wrote:
+> On 11/03/2023 19:15, Sergey Lisov wrote:
+>> Some Samsung Exynos boards using the arm64 architecture have DW MMC
+>> controllers configured for a 32-bit data bus but a 64-bit FIFO. On these
+>> systems the 64-bit FIFO registers must be accessed in two 32-bit halves.
+>> ---
+>>  .../devicetree/bindings/mmc/synopsys-dw-mshc-common.yaml   | 7 +++++++
+>>  1 file changed, 7 insertions(+)
+> 
+> Missing changelog (I did not get cover letter, so no changelog there
+> either).
 
--- 
-Kind regards,
-Evgeny Boger
-CTO @ Wiren Board
+Correction: I see the cover letter, but anyway without changelog :)
+
+
+Best regards,
+Krzysztof
 
