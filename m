@@ -2,90 +2,424 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3A0086B652C
-	for <lists+devicetree@lfdr.de>; Sun, 12 Mar 2023 12:01:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0CEBC6B6538
+	for <lists+devicetree@lfdr.de>; Sun, 12 Mar 2023 12:09:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229742AbjCLLBD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 12 Mar 2023 07:01:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56088 "EHLO
+        id S230141AbjCLLJo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 12 Mar 2023 07:09:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39554 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229756AbjCLLBC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 12 Mar 2023 07:01:02 -0400
-Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 358E92FCC2
-        for <devicetree@vger.kernel.org>; Sun, 12 Mar 2023 04:01:01 -0700 (PDT)
-Received: by mail-lf1-x136.google.com with SMTP id g17so12229968lfv.4
-        for <devicetree@vger.kernel.org>; Sun, 12 Mar 2023 04:01:01 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112; t=1678618859;
-        h=subject:in-reply-to:cc:to:from:date:message-id:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=jYZfawWjXMVBxW1629eKjPSTUkMUocoPnX/odlKuSj4=;
-        b=KT5VVKI6R9TM/wHUi6542Q9jRw5G1xxYx//ZYNitdryHUMjb+SLHMpX1oivrfmsOJL
-         wWGdl0shd2zAxKFQJ9BLltAoJDkomtS/YA4vz8CAvXanb3WMkrSorZSC6JlY4xJYilzl
-         AqfDG8xqodILjbOx+FTWhBxtqSe6ickO9nT/6mHBYniJekA66h3By2G6ofFAB/JEYGc+
-         lvtSn2BVHlCNG5xePniNWNGGVcNKNusaFtCvXEUtFv6Zp9uKFkjcqbsjRbbgSigfSM/U
-         TjealIooFwmNrZ4qskcWODTo9DBcbsXSXydSVnIX5w/4K1Kf2z9J135DbrODhubdP9iy
-         YzFg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678618859;
-        h=subject:in-reply-to:cc:to:from:date:message-id:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=jYZfawWjXMVBxW1629eKjPSTUkMUocoPnX/odlKuSj4=;
-        b=dHPpA4sHebVB0HLPkejPMBEkiSRRJ/IZq78jQc8A6A31AecfNAs7Z2/mfBAmIQB8II
-         aqVzGDi0wWpmvC7BTw1Ae4LmbJOTIndNDWzFRa1h3vYjGbZJ2nSnkecPJjnLt4goBcqm
-         nsq1PJazQaetsF8vpPzO/P+L5/QSX0wWxsGTbolNtg31VF8q+eRWq+iBfGLwSe6TzCd9
-         qATtS2i5ZP8/tULBomhSoziJqWsXUJDRe6mvZ67nOA2PWkMjujHm6oCdVz6jLbUa72oX
-         YbZM9dGrX0Bdw9JDAAnI1ozNkiReY64oBzkQf5bdzUDAE3/r9Nrg2B2pbRgIpKgJ+JDg
-         NgHg==
-X-Gm-Message-State: AO0yUKVuZ6B8yQ3yKLRwVrShmA738LIeAtinv8qCT654irx1mta1lU/5
-        MaCc3pQm8hkTm1o3vdhYAL5hPb5ro0q2egHc
-X-Google-Smtp-Source: AK7set8B9SaYspZr4MG2KctAZr0VkMjXB6uZNgvvxtM8dkt6KpSPgdEAGzoxudcvMCG8eIpucShHjQ==
-X-Received: by 2002:ac2:4831:0:b0:4dd:b479:1ca1 with SMTP id 17-20020ac24831000000b004ddb4791ca1mr8659064lft.3.1678618859232;
-        Sun, 12 Mar 2023 04:00:59 -0700 (PDT)
-Received: from letter4.txt (46-138-144-249.dynamic.spd-mgts.ru. [46.138.144.249])
-        by smtp.gmail.com with ESMTPSA id f2-20020ac25322000000b004ccff7c56a8sm615079lfh.27.2023.03.12.04.00.58
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 12 Mar 2023 04:00:58 -0700 (PDT)
-Message-ID: <640db0ea.c20a0220.aab4a.159e@mx.google.com>
-Date:   Sun, 12 Mar 2023 04:00:58 -0700 (PDT)
-From:   Sergey Lisov <sleirsgoevy@gmail.com>
-To:     Ulf Hansson <ulf.hansson@linaro.org>,
+        with ESMTP id S229925AbjCLLJn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 12 Mar 2023 07:09:43 -0400
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AD4884FA81;
+        Sun, 12 Mar 2023 04:09:40 -0700 (PDT)
+Received: from pendragon.ideasonboard.com (85-76-69-167-nat.elisa-mobile.fi [85.76.69.167])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id B77AA814;
+        Sun, 12 Mar 2023 12:09:37 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1678619378;
+        bh=zYHH0Y9q1DBa806tLDb25eU4/3jht7eXfaqqNYyFeRs=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=L2yIi9fZNGmd+SKzybgEwT7XSGA4BoNVNdWYwkUm7Chuqa/5McGdKlC3eB0uwt3+d
+         9u4lPZZLFuXPzqiAM5peG2IfQj67xni1WGGy4rIC7q8Ur9sVNGQf+SjNXC728AxlBL
+         M45TSF9Jw7ogfNA1/SaukDPY3LBE6DoKtV1gT8dA=
+Date:   Sun, 12 Mar 2023 13:09:38 +0200
+From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To:     Jack Zhu <jack.zhu@starfivetech.com>
+Cc:     Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Maxime Ripard <mripard@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jaehoon Chung <jh80.chung@samsung.com>
-Cc:     linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-In-Reply-To: <b65d54e3-b78b-654b-4932-03afefa2e950@linaro.org>
-Subject: Re: [PATCH v2 1/2] dt-bindings: synopsys-dw-mshc-common: add
- "fifo-access-32bit" property
+        Robert Foss <rfoss@kernel.org>,
+        Todor Tomov <todor.too@gmail.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Andrzej Pietrasiewicz <andrzejtp2010@gmail.com>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Eugen Hristev <eugen.hristev@collabora.com>,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, changhuang.liang@starfivetech.com
+Subject: Re: [PATCH v2 2/6] media: dt-bindings: cadence-csi2rx: Convert to DT
+ schema
+Message-ID: <20230312100057.GE707@pendragon.ideasonboard.com>
+References: <20230310120553.60586-1-jack.zhu@starfivetech.com>
+ <20230310120553.60586-3-jack.zhu@starfivetech.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20230310120553.60586-3-jack.zhu@starfivetech.com>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> On 12/03/2023 11:49, Sergey Lisov wrote:
->>>
->>> Anyway, I said last time this looks compatible-specific, so I don't
->>> think we need another property.
->>>
->>> Best regards,
->>> Krzysztof
->> 
->> I agree, but I'm afraid of introducing regressions by enabling this
->> workaround on systems that don't actually need it.
+Hi Jack,
+
+Thank you for the patch.
+
+On Fri, Mar 10, 2023 at 08:05:49PM +0800, Jack Zhu wrote:
+> Convert DT bindings document for Cadence MIPI-CSI2 RX controller
+> to DT schema format and add new properties.
+
+This would have been easier to review if the patch had been split in
+two, with conversion to YAML first, and then addition of new properties.
+Generally speaking, one patch should contain a single logical change.
+
+> Signed-off-by: Jack Zhu <jack.zhu@starfivetech.com>
+> ---
+>  .../devicetree/bindings/media/cdns,csi2rx.txt | 100 -----------
+>  .../bindings/media/cdns,csi2rx.yaml           | 163 ++++++++++++++++++
+>  MAINTAINERS                                   |   1 +
+>  3 files changed, 164 insertions(+), 100 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/media/cdns,csi2rx.txt
+>  create mode 100644 Documentation/devicetree/bindings/media/cdns,csi2rx.yaml
 > 
-> I don't understand why would you enable it for systems which do not need it?
+> diff --git a/Documentation/devicetree/bindings/media/cdns,csi2rx.txt b/Documentation/devicetree/bindings/media/cdns,csi2rx.txt
+> deleted file mode 100644
+> index 6b02a0657ad9..000000000000
+> --- a/Documentation/devicetree/bindings/media/cdns,csi2rx.txt
+> +++ /dev/null
+> @@ -1,100 +0,0 @@
+> -Cadence MIPI-CSI2 RX controller
+> -===============================
+> -
+> -The Cadence MIPI-CSI2 RX controller is a CSI-2 bridge supporting up to 4 CSI
+> -lanes in input, and 4 different pixel streams in output.
+> -
+> -Required properties:
+> -  - compatible: must be set to "cdns,csi2rx" and an SoC-specific compatible
+> -  - reg: base address and size of the memory mapped region
+> -  - clocks: phandles to the clocks driving the controller
+> -  - clock-names: must contain:
+> -    * sys_clk: main clock
+> -    * p_clk: register bank clock
+> -    * pixel_if[0-3]_clk: pixel stream output clock, one for each stream
+> -                         implemented in hardware, between 0 and 3
+> -
+> -Optional properties:
+> -  - phys: phandle to the external D-PHY, phy-names must be provided
+> -  - phy-names: must contain "dphy", if the implementation uses an
+> -               external D-PHY
+> -
+> -Required subnodes:
+> -  - ports: A ports node with one port child node per device input and output
+> -           port, in accordance with the video interface bindings defined in
+> -           Documentation/devicetree/bindings/media/video-interfaces.txt. The
+> -           port nodes are numbered as follows:
+> -
+> -           Port Description
+> -           -----------------------------
+> -           0    CSI-2 input
+> -           1    Stream 0 output
+> -           2    Stream 1 output
+> -           3    Stream 2 output
+> -           4    Stream 3 output
+> -
+> -           The stream output port nodes are optional if they are not
+> -           connected to anything at the hardware level or implemented
+> -           in the design.Since there is only one endpoint per port,
+> -           the endpoints are not numbered.
+> -
+> -
+> -Example:
+> -
+> -csi2rx: csi-bridge@0d060000 {
+> -	compatible = "cdns,csi2rx";
+> -	reg = <0x0d060000 0x1000>;
+> -	clocks = <&byteclock>, <&byteclock>
+> -		 <&coreclock>, <&coreclock>,
+> -		 <&coreclock>, <&coreclock>;
+> -	clock-names = "sys_clk", "p_clk",
+> -		      "pixel_if0_clk", "pixel_if1_clk",
+> -		      "pixel_if2_clk", "pixel_if3_clk";
+> -
+> -	ports {
+> -		#address-cells = <1>;
+> -		#size-cells = <0>;
+> -
+> -		port@0 {
+> -			reg = <0>;
+> -
+> -			csi2rx_in_sensor: endpoint {
+> -				remote-endpoint = <&sensor_out_csi2rx>;
+> -				clock-lanes = <0>;
+> -				data-lanes = <1 2>;
+> -			};
+> -		};
+> -
+> -		port@1 {
+> -			reg = <1>;
+> -
+> -			csi2rx_out_grabber0: endpoint {
+> -				remote-endpoint = <&grabber0_in_csi2rx>;
+> -			};
+> -		};
+> -
+> -		port@2 {
+> -			reg = <2>;
+> -
+> -			csi2rx_out_grabber1: endpoint {
+> -				remote-endpoint = <&grabber1_in_csi2rx>;
+> -			};
+> -		};
+> -
+> -		port@3 {
+> -			reg = <3>;
+> -
+> -			csi2rx_out_grabber2: endpoint {
+> -				remote-endpoint = <&grabber2_in_csi2rx>;
+> -			};
+> -		};
+> -
+> -		port@4 {
+> -			reg = <4>;
+> -
+> -			csi2rx_out_grabber3: endpoint {
+> -				remote-endpoint = <&grabber3_in_csi2rx>;
+> -			};
+> -		};
+> -	};
+> -};
+> diff --git a/Documentation/devicetree/bindings/media/cdns,csi2rx.yaml b/Documentation/devicetree/bindings/media/cdns,csi2rx.yaml
+> new file mode 100644
+> index 000000000000..ed573a67f93e
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/media/cdns,csi2rx.yaml
+> @@ -0,0 +1,163 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/media/cdns,csi2rx.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Cadence MIPI-CSI2 RX controller
+> +
+> +maintainers:
+> +  - Maxime Ripard <mripard@kernel.org>
+> +
+> +description:
+> +  The Cadence MIPI-CSI2 RX controller is a CSI-2 bridge supporting up to 4 CSI
+> +  lanes in input, and 4 different pixel streams in output.
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - cdns,csi2rx
 
-OK, then how do I find out which boards have the bug? My only idea is
-"search for samsung,exynos7-dw-mshc through all devicetrees, find vendor
-kernels for each of those boards, and check if they have the workaround".
-Is it really that better than enabling it selectively only for
-known-affected boards?
+The existing bindings state
 
+  - compatible: must be set to "cdns,csi2rx" and an SoC-specific compatible
+
+This should thus be
+
+  compatible:
+    items:
+      - enum:
+          - vendor1,device1
+	  - ...
+      - const: cdns,csi2rx
+
+The trouble is that the existing bindings are not used in mainline and
+don't specify any SoC-specific compatible string, so I don't know what
+to indicate for vendor1,device1. One option would be to add the StarFive
+compatible string already:
+
+  compatible:
+    items:
+      - enum:
+          - starfive,jh7110-csi2rx
+      - const: cdns,csi2rx
+
+The example below should be updated accordingly.
+
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    items:
+> +      - description: CSI2Rx system clock
+> +      - description: Gated Register bank clock for APB interface
+> +      - description: pixel Clock for Stream interface 0
+> +      - description: pixel Clock for Stream interface 1
+> +      - description: pixel Clock for Stream interface 2
+> +      - description: pixel Clock for Stream interface 3
+> +
+> +  clock-names:
+> +    items:
+> +      - const: sys
+> +      - const: reg_bank
+> +      - const: pixel_if0
+> +      - const: pixel_if1
+> +      - const: pixel_if2
+> +      - const: pixel_if3
+
+This changes the clock names and breaks compatibility with the driver.
+The existing names must be preserved.
+
+> +
+> +  resets:
+> +    items:
+> +      - description: CSI2Rx system reset
+> +      - description: Gated Register bank reset for APB interface
+> +      - description: pixel reset for Stream interface 0
+> +      - description: pixel reset for Stream interface 1
+> +      - description: pixel reset for Stream interface 2
+> +      - description: pixel reset for Stream interface 3
+> +
+> +  reset-names:
+> +    items:
+> +      - const: sys
+> +      - const: reg_bank
+> +      - const: pixel_if0
+> +      - const: pixel_if1
+> +      - const: pixel_if2
+> +      - const: pixel_if3
+
+Let's move the addition of the resets and reset-names properties to a
+patch separate from the YAML conversion to make it easier to review them
+independently.
+
+> +
+> +  phys:
+> +    maxItems: 1
+> +    description: MIPI D-PHY
+> +
+> +  phy-names:
+> +    items:
+> +      - const: dphy
+> +
+> +  ports:
+> +    $ref: /schemas/graph.yaml#/properties/ports
+> +
+> +    properties:
+> +      port@0:
+> +        $ref: /schemas/graph.yaml#/$defs/port-base
+> +        unevaluatedProperties: false
+> +        description:
+> +          Input port node, single endpoint describing the CSI-2 transmitter.
+> +
+> +        properties:
+> +          endpoint:
+> +            $ref: video-interfaces.yaml#
+> +            unevaluatedProperties: false
+> +
+> +            properties:
+> +              bus-type:
+> +                enum:
+> +                  - 4
+
+You can simplify this to
+
+              bus-type:
+	        const: 4
+
+> +
+> +              clock-lanes:
+> +                maximum: 4
+> +
+> +              data-lanes:
+> +                minItems: 1
+> +                maxItems: 4
+> +                items:
+> +                  maximum: 4
+
+Does the IP core support clock and data lanes remapping ?
+
+> +
+> +            required:
+> +              - clock-lanes
+> +              - data-lanes
+> +
+> +      port@1:
+> +        $ref: /schemas/graph.yaml#/properties/port
+> +        description:
+> +          Output port node
+
+This is also a change compared to the existing bindings, and it will
+break backward compatibility. You should have four output ports.
+
+> +
+> +    required:
+> +      - port@0
+> +      - port@1
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - clocks
+> +  - clock-names
+> +  - ports
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    csi2rx: csi@0d060000 {
+
+The csi2rx label is never referenced, you can drop it.
+
+> +        compatible = "cdns,csi2rx";
+> +        reg = <0x0d060000 0x1000>;
+> +        clocks = <&byteclock 7>, <&byteclock 6>,
+> +                 <&coreclock 8>, <&coreclock 9>,
+> +                 <&coreclock 10>, <&coreclock 11>;
+> +        clock-names = "sys", "reg_bank",
+> +                      "pixel_if0", "pixel_if1",
+> +                      "pixel_if2", "pixel_if3";
+> +        resets = <&bytereset 9>, <&bytereset 4>,
+> +                 <&corereset 5>, <&corereset 6>,
+> +                 <&corereset 7>, <&corereset 8>;
+> +        reset-names = "sys", "reg_bank",
+> +                      "pixel_if0", "pixel_if1",
+> +                      "pixel_if2", "pixel_if3";
+> +        phys = <&csi_phy>;
+> +        phy-names = "dphy";
+> +
+> +        ports {
+> +                #address-cells = <1>;
+> +                #size-cells = <0>;
+> +
+> +                port@0 {
+> +                    reg = <0>;
+> +
+> +                    csi2rx_in_sensor: endpoint {
+> +                        remote-endpoint = <&sensor_out_csi2rx>;
+> +                        clock-lanes = <0>;
+> +                        data-lanes = <1 2>;
+> +                    };
+> +                };
+> +
+> +                port@1 {
+> +                    reg = <1>;
+> +
+> +                    csi2rx_out_grabber0: endpoint {
+> +                        remote-endpoint = <&grabber0_in_csi2rx>;
+> +                    };
+> +                };
+> +        };
+> +    };
+> +
+> +...
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index 8ddef8669efb..b2e7ca5603c3 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -4632,6 +4632,7 @@ M:	Maxime Ripard <mripard@kernel.org>
+>  L:	linux-media@vger.kernel.org
+>  S:	Maintained
+>  F:	Documentation/devicetree/bindings/media/cdns,*.txt
+> +F:	Documentation/devicetree/bindings/media/cdns,csi2rx.yaml
+>  F:	drivers/media/platform/cadence/cdns-csi2*
+>  
+>  CADENCE NAND DRIVER
+
+-- 
+Regards,
+
+Laurent Pinchart
