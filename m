@@ -2,123 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 379E56B660C
-	for <lists+devicetree@lfdr.de>; Sun, 12 Mar 2023 13:56:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0EC866B6625
+	for <lists+devicetree@lfdr.de>; Sun, 12 Mar 2023 14:10:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229710AbjCLM4k (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 12 Mar 2023 08:56:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46718 "EHLO
+        id S229673AbjCLNKt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 12 Mar 2023 09:10:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37942 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229621AbjCLM4j (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 12 Mar 2023 08:56:39 -0400
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A834E3755E;
-        Sun, 12 Mar 2023 05:56:38 -0700 (PDT)
-Received: from pendragon.ideasonboard.com (85-76-145-228-nat.elisa-mobile.fi [85.76.145.228])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id A8010814;
-        Sun, 12 Mar 2023 13:56:32 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1678625797;
-        bh=yUhIv5mIXW7d12smi/RLzcPOkN/96N0e+Yq9dq5pACI=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=rum6P4XeakH5fXyACiWq+eZHLVUqazINR9ukOqbzXYVXscwJusfRDh1hxtj+rG760
-         1Z+fL1czdT+wkL629AnPu28+RRXn8/P183gqqyDJY88RhFwHfFhSq9tRtDnzG/Gf6X
-         FDcO7GiIFGkWXNsoAuDqd2UYqTvufHUvqOB7evaw=
-Date:   Sun, 12 Mar 2023 14:56:32 +0200
-From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     Alexander Stein <alexander.stein@ew.tq-group.com>
-Cc:     linux-media@vger.kernel.org,
-        Dave Stevenson <dave.stevenson@raspberrypi.com>,
-        Manivannan Sadhasivam <mani@kernel.org>,
-        Sakari Ailus <sakari.ailus@iki.fi>,
+        with ESMTP id S229713AbjCLNKs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 12 Mar 2023 09:10:48 -0400
+Received: from mail-lj1-x236.google.com (mail-lj1-x236.google.com [IPv6:2a00:1450:4864:20::236])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 374A546143
+        for <devicetree@vger.kernel.org>; Sun, 12 Mar 2023 06:10:47 -0700 (PDT)
+Received: by mail-lj1-x236.google.com with SMTP id i20so9958400lja.11
+        for <devicetree@vger.kernel.org>; Sun, 12 Mar 2023 06:10:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112; t=1678626646;
+        h=cc:to:subject:date:from:in-reply-to:message-id:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=tDIef+aPGuB5wQknGJ7abVMxEUnE+NE/6MUxxwCrbfI=;
+        b=PmWJGuWvHvoaBUm5nK5j4U9cgV4JgIFaTQh8n1umXnsJs46oN3uhwPSpDhOXC95T9b
+         FqILI26G+ZflTvFvV67dYQubm218NYns9aaQ6/mu1j0X/XXjjRvdheAQ/kskYBqQsK5v
+         knmIyhwgLE778EuGejxJkUOmfV3eimemthw14Wv4CLyt29+CSwIGXELC2Hl82Wmq0teY
+         c0JsAafOKit85nQ6vIVgmtAh3mkQwlLzjItUaiY77rEfjKhoqoavDKnV6mfYNXjLFGql
+         vh7TTO7C8NMsJcpFzAmXPDziLcdnEfvQ0VNsD+rAy9dIbkBA0kVi5qB1Ro9X1943U53X
+         5Z4Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1678626646;
+        h=cc:to:subject:date:from:in-reply-to:message-id:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=tDIef+aPGuB5wQknGJ7abVMxEUnE+NE/6MUxxwCrbfI=;
+        b=UWJ9Ieb4tAewE43EhyLDF7IU8bSnj1YM+5qYf3UXAaSio+m8PLUsEypES8Ts7o7FbZ
+         g1YMKB6ZnIi9K7//VhT5YPUVkUJ+wwE/jL1SbuqQgTDN/EGKJDHiG84Iv/aa+IO2rtt1
+         pWv7dt+uU/ayu+cpqHcLg7vPiB+FyKiT4fu1L19VRn0PmDG1H1Sf8nf0qzEJ0LKuwnbO
+         AqPAW+JPicYYmno8ForpwUe6q/8gJpwPHHSPDItzMCQaTliwtP3GBZ5M5XqJe0gCewwj
+         58gueq8YO9txUrAi96c7sNyxGuMI/HKM9RaRsZKh/Gjv4bb2KJPh3gBR64+V/b3VAONa
+         QYnQ==
+X-Gm-Message-State: AO0yUKXYIt7bqYlFj20NJTkQ2g8MqDJQkHOtZ7qi5Y4gWFH39OCPXHCp
+        EpKxkVdGZetjk5CyH8qUlMiSyWGmOD6nQ3Cp
+X-Google-Smtp-Source: AK7set+JUx6sEfOTZvp059pBqkqqSj1j7sDTVoDa6C2K13nZPchr8v93LTssW08AQiwMhomT75lfNg==
+X-Received: by 2002:a2e:96d2:0:b0:294:6cfd:8a88 with SMTP id d18-20020a2e96d2000000b002946cfd8a88mr9462616ljj.9.1678626646532;
+        Sun, 12 Mar 2023 06:10:46 -0700 (PDT)
+Received: from 0001-dt-bindings-exynos-dw-mshc-common-add-exynos78xx-var.patch (46-138-144-249.dynamic.spd-mgts.ru. [46.138.144.249])
+        by smtp.gmail.com with ESMTPSA id y26-20020a2e979a000000b002947028ae7csm647919lji.72.2023.03.12.06.10.45
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 12 Mar 2023 06:10:46 -0700 (PDT)
+Message-Id: <1678626510.1783316-1-sleirsgoevy@gmail.com>
+In-Reply-To: <1678626510.1783316-0-sleirsgoevy@gmail.com>
+From:   Sergey Lisov <sleirsgoevy@gmail.com>
+Date:   Sun, 12 Mar 2023 16:03:15 +0300
+Subject: [PATCH v3 1/2] dt-bindings: exynos-dw-mshc-common: add exynos78xx
+ variants
+To:     Ulf Hansson <ulf.hansson@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v3 00/15] media: i2c: imx290: Mono support, minor fixes,
- alternate INCK, and more controls
-Message-ID: <20230312125632.GE2545@pendragon.ideasonboard.com>
-References: <20230215223003.30170-1-laurent.pinchart@ideasonboard.com>
- <5017997.GXAFRqVoOG@steina-w>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <5017997.GXAFRqVoOG@steina-w>
+        Alim Akhtar <alim.akhtar@samsung.com>,
+        Jaehoon Chung <jh80.chung@samsung.com>
+Cc:     linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Alexander,
+Some Samsung Exynos boards using the arm64 architecture have DW MMC
+controllers configured for a 32-bit data bus but a 64-bit FIFO. On these
+systems the 64-bit FIFO registers must be accessed in two 32-bit halves.
 
-On Thu, Mar 09, 2023 at 09:16:47AM +0100, Alexander Stein wrote:
-> Am Mittwoch, 15. Februar 2023, 23:29:48 CET schrieb Laurent Pinchart:
-> > Hello,
-> > 
-> > This patch series combines the "[PATCH v2 0/2] Add support for mono
-> > version of Sony IMX290 sensor" ([1]) and "[PATCH v2 00/13] imx290: Minor
-> > fixes, support for alternate INCK, and more ctrls" ([2]) previously
-> > submitted by Dave into a single series.
-> > 
-> > As promised in my review of v2 of both series, I have tested the changes
-> > with my IMX327 camera sensor, connected to the i.MX8MP ISP, with
-> > libcamera. I haven't noticed any regression (but, full disclaimer, I
-> > haven't tested all the newly features). I think we're thus good to go.
-> 
-> What is the status of this series? Will it be picked up?
+Add two new compatible strings, "samsung,exynos78xx-dw-mshc" and
+"samsung,exynos78xx-dw-mshc-smu" respectively, to denote exynos78xx
+boards that need this quirk. But it's very possible that all
+"samsung,exynos7-dw-mshc" boards are actually affected.
+---
+ .../devicetree/bindings/mmc/samsung,exynos-dw-mshc.yaml         | 2 ++
+ arch/arm64/boot/dts/exynos/exynos7885.dtsi                      | 2 +-
+ 2 files changed, 3 insertions(+), 1 deletion(-)
 
-I expect Sakari to pick it up for v6.4. I have pushed the whole series
-with acks to the next/media/sensors/imx290 branch on
-git://git.kernel.org/pub/scm/linux/kernel/git/pinchartl/linux.git.
-
-> > This version handles all review comments from v2, resulting in the
-> > following changes:
-> > 
-> > - Deprecate the sony,imx290 compatible
-> > - Update the DT example to use the new sony,imx290lqr compatible
-> > - Drop unneeded pointer cast
-> > - Don't move imx290_of_match table
-> > - Fix typos
-> > 
-> > The code has also been rebased on top of the latest media master branch,
-> > with rebase conflicts and rebase-induced compilation breakages fixed.
-> > 
-> > The patches are available from
-> > 
-> > git://git.kernel.org/pub/scm/linux/kernel/git/pinchartl/linux.git
-> > next/media/sensors/imx290
-> > 
-> > [1] https://lore.kernel.org/linux-media/20230203191644.947643-1-dave.stevenson@raspberrypi.com
-> > [2] https://lore.kernel.org/linux-media/20230203191811.947697-1-dave.stevenson@raspberrypi.com
-> > 
-> > Dave Stevenson (15):
-> >   media: dt-bindings: media: i2c: Add mono version to IMX290 bindings
-> >   media: i2c: imx290: Add support for the mono sensor variant
-> >   media: i2c: imx290: Match kernel coding style on whitespace
-> >   media: i2c: imx290: Set the colorspace fields in the format
-> >   media: i2c: imx290: Add V4L2_SUBDEV_FL_HAS_EVENTS and subscribe hooks
-> >   media: i2c: imx290: Fix the pixel rate at 148.5Mpix/s
-> >   media: i2c: imx290: Support 60fps in 2 lane operation
-> >   media: i2c: imx290: Use CSI timings as per datasheet
-> >   media: i2c: imx290: Convert V4L2_CID_HBLANK to read/write
-> >   media: i2c: imx290: Convert V4L2_CID_VBLANK to read/write
-> >   media: i2c: imx290: VMAX is mode dependent
-> >   media: i2c: imx290: Remove duplicated write to IMX290_CTRL_07
-> >   media: i2c: imx290: Add support for 74.25MHz external clock
-> >   media: i2c: imx290: Add support for H & V Flips
-> >   media: i2c: imx290: Add the error code to logs in start_streaming
-> > 
-> >  .../bindings/media/i2c/sony,imx290.yaml       |  24 +-
-> >  drivers/media/i2c/imx290.c                    | 537 ++++++++++++++----
-> >  2 files changed, 442 insertions(+), 119 deletions(-)
-> > 
-> > 
-> > base-commit: 83e0f265aa8d0e37cc8e15d318b64da0ec03ff41
-
+diff --git a/Documentation/devicetree/bindings/mmc/samsung,exynos-dw-mshc.yaml b/Documentation/devicetree/bindings/mmc/samsung,exynos-dw-mshc.yaml
+index fdaa18481..a72a67792 100644
+--- a/Documentation/devicetree/bindings/mmc/samsung,exynos-dw-mshc.yaml
++++ b/Documentation/devicetree/bindings/mmc/samsung,exynos-dw-mshc.yaml
+@@ -22,6 +22,8 @@ properties:
+       - samsung,exynos5420-dw-mshc-smu
+       - samsung,exynos7-dw-mshc
+       - samsung,exynos7-dw-mshc-smu
++      - samsung,exynos78xx-dw-mshc
++      - samsung,exynos78xx-dw-mshc-smu
+       - axis,artpec8-dw-mshc
+ 
+   reg:
+diff --git a/arch/arm64/boot/dts/exynos/exynos7885.dtsi b/arch/arm64/boot/dts/exynos/exynos7885.dtsi
+index 23c2e0bb0..4b94ac9da 100644
+--- a/arch/arm64/boot/dts/exynos/exynos7885.dtsi
++++ b/arch/arm64/boot/dts/exynos/exynos7885.dtsi
+@@ -294,7 +294,7 @@ pmu_system_controller: system-controller@11c80000 {
+ 		};
+ 
+ 		mmc_0: mmc@13500000 {
+-			compatible = "samsung,exynos7-dw-mshc-smu";
++			compatible = "samsung,exynos78xx-dw-mshc-smu";
+ 			reg = <0x13500000 0x2000>;
+ 			interrupts = <GIC_SPI 146 IRQ_TYPE_LEVEL_HIGH>;
+ 			#address-cells = <1>;
 -- 
-Regards,
+2.38.3
 
-Laurent Pinchart
+
