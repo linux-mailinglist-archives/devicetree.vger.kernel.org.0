@@ -2,104 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 030D76B6589
-	for <lists+devicetree@lfdr.de>; Sun, 12 Mar 2023 12:35:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1E6136B6598
+	for <lists+devicetree@lfdr.de>; Sun, 12 Mar 2023 12:42:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230140AbjCLLfW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 12 Mar 2023 07:35:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53914 "EHLO
+        id S229509AbjCLLmK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 12 Mar 2023 07:42:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35346 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230309AbjCLLfT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 12 Mar 2023 07:35:19 -0400
-Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 00D4165A6
-        for <devicetree@vger.kernel.org>; Sun, 12 Mar 2023 04:34:38 -0700 (PDT)
-Received: by mail-ed1-x533.google.com with SMTP id k10so37895503edk.13
-        for <devicetree@vger.kernel.org>; Sun, 12 Mar 2023 04:34:38 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1678620867;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=lGAGgYNdE6Pd2X6RBk1rI1o424GOh4uqi1Rdj97RA5U=;
-        b=WGzbJVbbiux67OAymm0FAyqyIpewzK50jKPRHmsc2oj7+Rd+/3sGFhkM5PTqSHAf3V
-         HV57exi/IoVOZzXbQzMCF1xWL2uFSn07S6uoRAvfnpOQUC2u2RO8kngM0nyNFs4ZjcJG
-         2/aW8XBhH91umkIG1GrwsZeIKxi13K6pfuCdXQlkoQaxW0TlXz0oLEBdrFN+poqsiy5H
-         FddT8EMgCbdjVTWAaW7JdlSmxGC2iBlTqfO1IE/UgFbz63Vw4u/Y4B48cv7InaQdMSuv
-         7gXGhJFLf5eJNHEKYSZk6BwzJs5Qvky0Q63Rpuv+TY7AU29/JxajT7qR6wgNLW/pErrF
-         gQmg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678620867;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=lGAGgYNdE6Pd2X6RBk1rI1o424GOh4uqi1Rdj97RA5U=;
-        b=e3XDq74R5ZFkwEh/AARlr9LeGi9EqsT0KjurhErhGEIYoM0iE9y1ghAbtnonRw2Acu
-         SCSMJFqQnri1rXXyQq7AkU7RbFkg9d68CgZZDjiU3qrAX89D4hC2OIDVWVR5guxvkGvp
-         OJlAi0pGOlHVStlbjaVjSFsDeLRlmwc9b2L3AGWUny/X7+R/cH78pLSiWFU6BOppTUXk
-         0gZotqE5t7gFsks2TfkGOZOhfbMuOyR05mAp8p/kntt1mYabTkhLs2zASbWbqW3dV2VM
-         wOE9XW13anrfquGZ2xrsT2cUJ6Q2PnnCyisShui4APDSy9BEcqto5To7OCh3ejU51dxW
-         3otw==
-X-Gm-Message-State: AO0yUKW9MEJEIGWPfcfBd3MYoYKF1MvMzOkii5pm8QK59CdbfVdzk07d
-        Vt0BzYb6IdoXboZTwkpmb0hKxw==
-X-Google-Smtp-Source: AK7set+rQR/TdHRnzgr3x3hfLsnoGtW+bJ0oFdDa1SCVGt2GQP//drZfE7QpY4BGi1h/ByHibY/Vjw==
-X-Received: by 2002:a05:6402:1a52:b0:4fb:3ab9:fe81 with SMTP id bf18-20020a0564021a5200b004fb3ab9fe81mr2552339edb.30.1678620867559;
-        Sun, 12 Mar 2023 04:34:27 -0700 (PDT)
-Received: from ?IPV6:2a02:810d:15c0:828:d9f6:3e61:beeb:295a? ([2a02:810d:15c0:828:d9f6:3e61:beeb:295a])
-        by smtp.gmail.com with ESMTPSA id u18-20020a50c052000000b004fa794ac0d0sm1575303edd.54.2023.03.12.04.34.26
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 12 Mar 2023 04:34:27 -0700 (PDT)
-Message-ID: <951dec3a-1a3e-6d17-20fb-9e5915606c40@linaro.org>
-Date:   Sun, 12 Mar 2023 12:34:26 +0100
+        with ESMTP id S229437AbjCLLmK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 12 Mar 2023 07:42:10 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4025339CFA
+        for <devicetree@vger.kernel.org>; Sun, 12 Mar 2023 04:42:09 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id CC09860E8C
+        for <devicetree@vger.kernel.org>; Sun, 12 Mar 2023 11:42:08 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A1E8CC433D2;
+        Sun, 12 Mar 2023 11:42:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1678621328;
+        bh=QkE9yoCqeaQWiNtMjsJTfuvD8REpunsr9YKxO9tm13w=;
+        h=Date:Subject:To:References:From:In-Reply-To:From;
+        b=eCa5OP1aPQP7th8+Hq6qsBbnLlB8y/PI0BLMtxBN6XbpryJe5w1FSIYqBrxH/qEvF
+         ey/fXMJjD+2v3h2FseGQUvdXbhU5CoQwet7NfU4xzlhu/p2XXisdk9NnPbP5CyCGGF
+         ShIRvSuQiH/bc4dyoUtgFBi9Kc3jBWSFr1HAU85X8zpyf1WB02foH87tp9Cz2M7SRA
+         Y6TAG6GfSlhDgSCX8MJs+VMkJg9QLFQSmqFC2FHSLW/D5dazjYvU5v+VlrHxuRUsZU
+         QdIAD6qVH21qCt3zHe75spbD/W/XAFu56jhkwXq0Qw0m4szvJ3PYvyUUbGA4qbBEOd
+         rLJyr6D+QSrZg==
+Message-ID: <68e84c30-4109-7167-94f2-66179e1c6b01@kernel.org>
+Date:   Sun, 12 Mar 2023 12:42:04 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.8.0
-Subject: Re: [PATCH v2 1/2] dt-bindings: synopsys-dw-mshc-common: add
- "fifo-access-32bit" property
+Subject: Re: [PATCH] feat: Add 'hold-in-reset-in-suspend' property to goodix
+ touchscreen binding
+To:     Jan Jasper de Kroon <jajadekroon@gmail.com>,
+        devicetree@vger.kernel.org
+References: <20230311134655.486973-1-jajadekroon@gmail.com>
 Content-Language: en-US
-To:     Sergey Lisov <sleirsgoevy@gmail.com>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jaehoon Chung <jh80.chung@samsung.com>
-Cc:     linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <640db6ef.2e0a0220.9d4ba.1500@mx.google.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <640db6ef.2e0a0220.9d4ba.1500@mx.google.com>
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+In-Reply-To: <20230311134655.486973-1-jajadekroon@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_HI,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12/03/2023 12:26, Sergey Lisov wrote:
->> There is no way this is board specific. This is SoC specific. I
->> mentioned it last time.
+On 11/03/2023 14:46, Jan Jasper de Kroon wrote:
+
+Use subject prefixes matching the subsystem (which you can get for
+example with `git log --oneline -- DIRECTORY_OR_FILE` on the directory
+your patch is touching).
+
+Please use scripts/get_maintainers.pl to get a list of necessary people
+and lists to CC.  It might happen, that command when run on an older
+kernel, gives you outdated entries.  Therefore please be sure you base
+your patches on recent Linux kernel.
+
+
+> This patch adds a new property, 'hold-in-reset-in-suspend', to the Goodix touchscreen
+> device tree binding. When set to true, the touchscreen controller will be held in
+> reset mode during system suspend, reducing power consumption. The property is optional
+> and defaults to false if not present.
 > 
-> The same compatible string ("samsung,exynos7-dw-mshc{,-smu}") is used by
-> several devices on different Exynos SoCs.
+> I am submitting this patch to the Device Tree mailing list to add a new property to
+> the Goodix touchscreen device tree binding. This patch supplements a related patch
+> sent to the linux-input mailing list, which updates the Goodix touchscreen driver to
 
-... and should not be. It should come with a specific compatible
-followed by this fallback. The specific compatible then will define
-32-bit access.
+Please wrap commit message according to Linux coding style / submission
+process (neither too early nor over the limit):
+https://elixir.bootlin.com/linux/v5.18-rc4/source/Documentation/process/submitting-patches.rst#L586
 
-> And I was only able to find
-> a vendor kernel fork for one of them (exynos7885-jackpotlte, it has the
-> workaround, but it depends on a configuration option and I don't have the
-> config file for that device).
+> use this new property.
+> The linux-input patch can be found at:
+> https://lore.kernel.org/all/20230311131534.484700-1-jajadekroon@gmail.com/
+> 
+> Signed-off-by: Jan Jasper de Kroon <jajadekroon@gmail.com>
+> ---
+>  .../devicetree/bindings/input/touchscreen/goodix.yaml    | 9 +++++++++
+>  1 file changed, 9 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/input/touchscreen/goodix.yaml b/Documentation/devicetree/bindings/input/touchscreen/goodix.yaml
+> index 3d016b87c8df..a7c3d6b5156a 100644
+> --- a/Documentation/devicetree/bindings/input/touchscreen/goodix.yaml
+> +++ b/Documentation/devicetree/bindings/input/touchscreen/goodix.yaml
+> @@ -56,6 +56,14 @@ properties:
+>    touchscreen-size-y: true
+>    touchscreen-swapped-x-y: true
+>  
+> +  hold-in-reset-in-suspend:
+> +    type: boolean
+> +    description: |
+> +      When set to true, the touchscreen controller will be held in reset mode
+> +      during system suspend. This can help reduce power consumption, but may
+> +      cause the touchscreen to take longer to resume when the system is woken
+> +      up from suspend. Defaults to false if not present.
+> +
+>  additionalProperties: false
+>  
+>  required:
+> @@ -75,6 +83,7 @@ examples:
+>          interrupts = <0 0>;
+>          irq-gpios = <&gpio1 0 0>;
+>          reset-gpios = <&gpio1 1 0>;
+> +        hold-in-reset-in-suspend = <true>;
 
-Vendor kernel have configs, I think that's requirement of GPL.
-
-See jackpotlte_00_defconfig in my
-samsung/galaxy-a8-2018-jackpotlte-sm-a530f-exynos7885-dump branch of
-vendor-backup repo.
+Does not look like you tested the bindings. Please run `make
+dt_binding_check` (see
+Documentation/devicetree/bindings/writing-schema.rst for instructions).
 
 Best regards,
 Krzysztof
