@@ -2,65 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CCF7A6B670E
-	for <lists+devicetree@lfdr.de>; Sun, 12 Mar 2023 15:00:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F31286B671F
+	for <lists+devicetree@lfdr.de>; Sun, 12 Mar 2023 15:22:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229710AbjCLOAe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 12 Mar 2023 10:00:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45990 "EHLO
+        id S229774AbjCLOWQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 12 Mar 2023 10:22:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44208 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229957AbjCLOAd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 12 Mar 2023 10:00:33 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 255C137F09;
-        Sun, 12 Mar 2023 07:00:32 -0700 (PDT)
+        with ESMTP id S229473AbjCLOWP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 12 Mar 2023 10:22:15 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2F2873D0A3;
+        Sun, 12 Mar 2023 07:22:14 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id AF02DB80B74;
-        Sun, 12 Mar 2023 14:00:30 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F0531C433D2;
-        Sun, 12 Mar 2023 14:00:25 +0000 (UTC)
+        by ams.source.kernel.org (Postfix) with ESMTPS id D3DB5B80B4F;
+        Sun, 12 Mar 2023 14:22:12 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BCB15C433D2;
+        Sun, 12 Mar 2023 14:22:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1678629629;
-        bh=wFICklcUPI9u10LmkC+Q32v0zLcHQBj1RUk9RVPheC4=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=FNSZvUlBwhDTbciaIRdrh2VcNDuAQhU39vfJX9Ds7rbIQaFekNjLpxEg8zoYYTv9V
-         J7MDgE6GkXe4hJk7yBJ3vqJvpg8A/4y+xj++a4cacYWb/p2hG1XLt9wA8h+BotdIbQ
-         XNx44pIH7SbR/3KnkheH/OvxtbYra9MtZhCsSDm9e2e8ebEIgCi2NKvldBXCP7hBs6
-         16BEm1V9gAYIocE0J6VG6NfVCLTJvNY0TlZlKYVY/h5qK5gPmuD9ubLaJL39HMEZL1
-         8cfNxAknrbH4TrFL3SjuDeR7vKWiVXBJG1LqVEIioM/DFY3OwhjTgY4zrULJfuY49u
-         TupX2N/e8u/JQ==
-Date:   Sun, 12 Mar 2023 14:00:23 +0000
-From:   Conor Dooley <conor@kernel.org>
-To:     Hal Feng <hal.feng@starfivetech.com>
-Cc:     linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-riscv@lists.infradead.org, Stephen Boyd <sboyd@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
+        s=k20201202; t=1678630931;
+        bh=lxsoEfDwQTGwfTXIMqI8LaENNncVMNMnOPZu+T+NMWA=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=LlVcfbFmhlrLQVlL/Dw5YfDdx/C0QVxNr+IMMZF+M3QHYuTkxWd434Rm1pEVl3C4X
+         kRFM94pdYaMBy8WG1w5kN4UWNbSHqb88t4S8eEkOYCzOoXUGBQWlFQ3U71Xz15dw41
+         Ac7DoZmS1zq+OoG+aKdIWTFMpBIrqjFQM4A84lnEIGkKmhSW6NrB1Zxnz83JLUcicP
+         xFuXVxWOZQeIf3DU9DCDEvogLqY6Z9Jpzdqcfmgwy7yhZJJWrZiC1AT15spnXLL07U
+         rRpzJtZTaZYo3+JXGwKB98E9wkX1+2owKjGE3YUAmdr10WFbGMmyc1sYYFExbBOO+l
+         fxpaXk6Nph7KA==
+Date:   Sun, 12 Mar 2023 14:22:15 +0000
+From:   Jonathan Cameron <jic23@kernel.org>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Svyatoslav Ryhel <clamor95@gmail.com>,
+        Lars-Peter Clausen <lars@metafoo.de>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Ben Dooks <ben.dooks@sifive.com>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>,
-        Emil Renner Berthing <emil.renner.berthing@canonical.com>,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v5 03/21] clk: starfive: Rename clk-starfive-jh7100.h to
- clk-starfive-jh71x0.h
-Message-ID: <c7e5a23a-16f9-4e30-adc7-a422abeb50ef@spud>
-References: <20230311090733.56918-1-hal.feng@starfivetech.com>
- <20230311090733.56918-4-hal.feng@starfivetech.com>
+        Derek Kiernan <derek.kiernan@xilinx.com>,
+        Dragan Cvetic <dragan.cvetic@xilinx.com>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Dmitry Osipenko <dmitry.osipenko@collabora.com>,
+        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Mark Brown <broonie@kernel.org>
+Subject: Re: [PATCH v1 1/4] dt-bindings: iio: light: add apds990x binding
+Message-ID: <20230312142215.13ff34a2@jic23-huawei>
+In-Reply-To: <e6cb5a4f-30ac-3918-c188-cd14ef31f780@linaro.org>
+References: <20230308090219.12710-1-clamor95@gmail.com>
+        <20230308090219.12710-2-clamor95@gmail.com>
+        <20230311193426.5b1b7e53@jic23-huawei>
+        <e6cb5a4f-30ac-3918-c188-cd14ef31f780@linaro.org>
+X-Mailer: Claws Mail 4.1.1 (GTK 3.24.37; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="5IeCIlJW+LRtrZaq"
-Content-Disposition: inline
-In-Reply-To: <20230311090733.56918-4-hal.feng@starfivetech.com>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -68,44 +65,49 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Sun, 12 Mar 2023 11:47:19 +0100
+Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
 
---5IeCIlJW+LRtrZaq
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+> On 11/03/2023 20:34, Jonathan Cameron wrote:
+> 
+> >> +
+> >> +additionalProperties: false
+> >> +
+> >> +required:
+> >> +  - compatible
+> >> +  - reg
+> >> +  - interrupt  
+> > It would nice to relax the need for an interrupt if the device is still useable
+> > with timeouts etc.  Board folk have a habit of deciding they don't need to wire
+> > up interrupts.  We can relax that a later date though if you prefer not to do
+> > it now.  
+> >> +  - vdd-supply
+> >> +  - vled-supply  
+> > 
+> > Whilst true that the supplies need to be connected, that doesn't
+> > mean they need to provided in the device tree binding.  If they are
+> > always powered up I think we can fallback to stub regulators.  
+> 
+> We can, but others might not. The binding should still require them if
+> they are required for device to work. Mark also made it clear recently:
+> 
+> https://lore.kernel.org/all/31ca0ede-012c-4849-bf25-d0492b116681@sirena.org.uk/
+> https://lore.kernel.org/all/5cd6764c-9b04-42ea-932d-9f14aa465605@sirena.org.uk/
+> https://lore.kernel.org/all/f6f02138-8ef9-4a33-9b51-0b7cd371230f@sirena.org.uk/
 
-On Sat, Mar 11, 2023 at 05:07:15PM +0800, Hal Feng wrote:
-> From: Emil Renner Berthing <kernel@esmil.dk>
->=20
-> Rename clk-starfive-jh7100.h to clk-starfive-jh71x0.h for making
-> the code to be common.
->=20
-> Tested-by: Tommaso Merciai <tomm.merciai@gmail.com>
-> Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
-> Signed-off-by: Emil Renner Berthing <kernel@esmil.dk>
-> Signed-off-by: Hal Feng <hal.feng@starfivetech.com>
-> ---
->  .../clk/starfive/{clk-starfive-jh7100.h =3D> clk-starfive-jh71x0.h} | 0
 
-So this patch has broken the build :(
-https://patchwork.kernel.org/project/linux-riscv/patch/20230311090733.56918=
--4-hal.feng@starfivetech.com/
+OK. Then there are a lot of bindings to fix. Seems odd to me but meh it's
+not something I care about.
 
-I would imagine it is because you can't rename the header without also
-changing the users of the header.
+Note this means that we can't have trivial-device.yaml for instance.
 
-Cheers,
-Conor.
+Ah well, I guess views change or crystallise over time or just differed
+in the first place.
 
---5IeCIlJW+LRtrZaq
-Content-Type: application/pgp-signature; name="signature.asc"
+Jonathan
 
------BEGIN PGP SIGNATURE-----
+> 
+> Best regards,
+> Krzysztof
+> 
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZA3a9wAKCRB4tDGHoIJi
-0gBGAQCqn9Dop3s+ZM1ku4OZOOw18V5mmdfyZ6fqN4sUWFtnVQD8D7anScl1VOZH
-DBmBF/QCBa4RJq2bZCOK4qh28+oj/wQ=
-=VFFQ
------END PGP SIGNATURE-----
-
---5IeCIlJW+LRtrZaq--
