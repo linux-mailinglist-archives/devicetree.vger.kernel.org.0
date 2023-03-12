@@ -2,53 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9567A6B6A3E
-	for <lists+devicetree@lfdr.de>; Sun, 12 Mar 2023 19:38:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 353C16B6A3A
+	for <lists+devicetree@lfdr.de>; Sun, 12 Mar 2023 19:38:58 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231196AbjCLSiI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 12 Mar 2023 14:38:08 -0400
+        id S231667AbjCLSia (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 12 Mar 2023 14:38:30 -0400
 Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60574 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231176AbjCLSiF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 12 Mar 2023 14:38:05 -0400
-Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com [IPv6:2a00:1450:4864:20::52a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2DB598A6D
-        for <devicetree@vger.kernel.org>; Sun, 12 Mar 2023 11:37:30 -0700 (PDT)
-Received: by mail-ed1-x52a.google.com with SMTP id k10so40157036edk.13
-        for <devicetree@vger.kernel.org>; Sun, 12 Mar 2023 11:37:30 -0700 (PDT)
+        with ESMTP id S231312AbjCLSiM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 12 Mar 2023 14:38:12 -0400
+Received: from mail-ed1-x52d.google.com (mail-ed1-x52d.google.com [IPv6:2a00:1450:4864:20::52d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 29AACB747
+        for <devicetree@vger.kernel.org>; Sun, 12 Mar 2023 11:37:40 -0700 (PDT)
+Received: by mail-ed1-x52d.google.com with SMTP id r15so13069110edq.11
+        for <devicetree@vger.kernel.org>; Sun, 12 Mar 2023 11:37:40 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1678646190;
+        d=linaro.org; s=google; t=1678646191;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=TH9VNI6fNpG+atm+JmGgMQR/C/NF96qhJ4vOv3Oyay0=;
-        b=fZ1W+DKo9MUQ2Jrc8sjp61K1a4s6HNfRKDpBDPodjwFFpHk+xpwEO0vd6ZqjoJ2106
-         oaPghzFvkHQwLanGgBJZlQuGCFz7H6Utgizn6jOYABxM8iRHK92bobJ93oIYT1x+d9pv
-         h+oPGX1Fgm8xRsVPzufNzimOUfzfXN6xUlkeCoDeeF2BQ2bIbPuIe59u3HbLaxeYQpOs
-         TkoskaBQH40YoDm1kOa1975ReGAj0QKqo4lSG2iI0S53zICyUPQgVttsb2L/KDDnyGaY
-         aHF7jaTWD/0Pu77qa0RhwKrlFv/H5j8okv1vC4K0iZn9mJrajMi517sqZoCiVLGDiwod
-         +t3w==
+        bh=SuPzeXIkkvxZlmBGwuF8BA+hbLGZlSob+2JT6Oo/EEM=;
+        b=HOy1+bQPa4p0NPb0+dDp2X9KViwR9fYIHAhZ8QfG2PdTYYULkJ2tKcmssHjeYG2oyt
+         LUaj124iD2LEeKvnx94x7Bo8QxUudW87q5xc0RXZzrnFtJv/RLrWLE6jQrKS7pWdv/O7
+         EDxDbSTpKpWbGgUq6/yjuBJ4IfKBX/qJBYbtIXaXfT9v1MECLnPD14jLLNZBLlbuJOfq
+         jUOE+M6I51ch40pJOZLBF/wGTOludsewVAQbDzYEN7Bjae8fFj3Ytd5TuJ+eyh532e4+
+         0ewj4a7+zqTD6J9TUeQqrKEsdLiPWLaUbjIXkNfve2GOptPcoQ1oNfvp7T/6AkPC6C53
+         0/rw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678646190;
+        d=1e100.net; s=20210112; t=1678646191;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=TH9VNI6fNpG+atm+JmGgMQR/C/NF96qhJ4vOv3Oyay0=;
-        b=Kb+ryd2dzT1lkEUF5nC951XJaoYM7saToly/a1mzAFjBvH5zKYuBMI7BA2ZNEGTG+a
-         kTyuFryuAb2WpvxXOZsUpx56Kw0OeTclz42iIFYEYbyBDGGKDIe2+tSwJiSgMVyMI/HE
-         HgGUi/CdfwdxqEPlUE588VYVWNX7IB3nrE7HYhr+JKjcdbG0F7r9uIlx+I/jp3DXn1IX
-         bMvhQoICJwQwWNN5+gVrneeX0AjdHD1TaRaNcnsYe3gFpP/lRbN4XpYOf3biSyDpcKKf
-         V+ZTegdOrRgEQFugydXxIjCq8++PBSmWK+rBS6DH5Iay+Ab5RzporhJGvv4zOLewVXOm
-         XXeg==
-X-Gm-Message-State: AO0yUKX5QuQ7FVypk2hRcjjqoxcJaIAzk1leSXrAW991D43pUV8cvPa2
-        /5x/cf8YRb5uZsSL8IFGntHWxQ==
-X-Google-Smtp-Source: AK7set8J0qSzibgHFlSK5MY5+M1gFKCXgckA2oI9gOKm83QxnlYA+ZBHOMApvtKG/3HZR405DgdD8g==
-X-Received: by 2002:a17:906:bc58:b0:928:a2:904e with SMTP id s24-20020a170906bc5800b0092800a2904emr1915750ejv.54.1678646190073;
-        Sun, 12 Mar 2023 11:36:30 -0700 (PDT)
+        bh=SuPzeXIkkvxZlmBGwuF8BA+hbLGZlSob+2JT6Oo/EEM=;
+        b=GZgYwkDLonnQ58AtTDGrY8el9U13miX2gc7m13nZknqW2euHHAp0i2JRG6cfy90+WE
+         ot1Zai+svbVADHca2mjW0Ngm3zKUfwWOkW2Ikm+DPNR8XBPmBuHI7nwU3KWGHUOAlxbW
+         f2wzrDU4YaZf7AXU/s1/DXwesUnDU3V6H31i3kW5uSW0WP5AULcRViER4/gV+qWP+FkA
+         1w0JYHKdGOChiZNwEbflacFxynudkhrttOBXy94hUMvIouIfwxL50u44kwzGlbqDFw/p
+         oIcar0+fsy0LyM6n3xC/2PzE1kIx045WGQaojp2mEZEe0DW7pl9+33qew9VWknjFwt1Y
+         of5g==
+X-Gm-Message-State: AO0yUKXiHKZMqYYfzVac7WzYEoOgnKu6yWXQL+Wp126OCNpaPmfGKMpN
+        FJVBX5a3PKgEQb/Nv85fV9FQSA==
+X-Google-Smtp-Source: AK7set9HLozRBqMdyTjPD5NrdfwGCNQCb5xIU53D6EMe2N5ul7aBJKW0Au2hRZrT9E/qZjW6ys77HQ==
+X-Received: by 2002:a17:907:7f0b:b0:907:9470:b7ab with SMTP id qf11-20020a1709077f0b00b009079470b7abmr35591538ejc.71.1678646191153;
+        Sun, 12 Mar 2023 11:36:31 -0700 (PDT)
 Received: from krzk-bin.. ([2a02:810d:15c0:828:d9f6:3e61:beeb:295a])
-        by smtp.gmail.com with ESMTPSA id p14-20020a1709060dce00b0092669fb4ba1sm893806eji.130.2023.03.12.11.36.29
+        by smtp.gmail.com with ESMTPSA id p14-20020a1709060dce00b0092669fb4ba1sm893806eji.130.2023.03.12.11.36.30
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 12 Mar 2023 11:36:29 -0700 (PDT)
+        Sun, 12 Mar 2023 11:36:30 -0700 (PDT)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 To:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
@@ -65,9 +65,9 @@ To:     Andy Gross <agross@kernel.org>,
         linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
 Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH 4/8] arm64: dts: qcom: sc7180-trogdor-pazquel: correct trackpad supply
-Date:   Sun, 12 Mar 2023 19:36:18 +0100
-Message-Id: <20230312183622.460488-4-krzysztof.kozlowski@linaro.org>
+Subject: [PATCH 5/8] arm64: dts: qcom: msm8998-oneplus-cheeseburger: revert "fix backlight pin function"
+Date:   Sun, 12 Mar 2023 19:36:19 +0100
+Message-Id: <20230312183622.460488-5-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20230312183622.460488-1-krzysztof.kozlowski@linaro.org>
 References: <20230312183622.460488-1-krzysztof.kozlowski@linaro.org>
@@ -83,30 +83,38 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The hid-over-i2c takes VDD, not VCC supply.  Fix copy-pasta from other
-boards which use elan,ekth3000 with valid VCC:
+This reverts commit 46546f28825cf3a5ef6873b9cf947cd85c8a7258 because it
+mistakenly took PMIC pinctrl/GPIO as TLMM.  The TLMM pinctrl uses "gpio"
+function, but PMIC uses "normal", so original code was correct:
 
-  sc7180-trogdor-pazquel360-lte.dtb: trackpad@15: 'vcc-supply' does not match any of the regexes: 'pinctrl-[0-9]+'
+  msm8998-oneplus-cheeseburger.dtb: pmic@2: gpio@c000:button-backlight-state: 'oneOf' conditional failed, one must be fixed:
+    'gpio' is not one of ['normal', 'paired', 'func1', 'func2', 'dtest1', 'dtest2', 'dtest3', 'dtest4', 'func3', 'func4']
 
-Fixes: fb69f6adaf88 ("arm64: dts: qcom: sc7180: Add pazquel dts files")
+Fixes: 46546f28825c ("arm64: dts: qcom: msm8998-oneplus-cheeseburger: fix backlight pin function")
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
 ---
- arch/arm64/boot/dts/qcom/sc7180-trogdor-pazquel.dtsi | 2 +-
+
+Eh, embarrassing. I would say to myself - use dtbs_check on patches, but
+I think that time there were too many errors coming from Qualcomm
+pinctrl bindings.
+---
+ arch/arm64/boot/dts/qcom/msm8998-oneplus-cheeseburger.dts | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-pazquel.dtsi b/arch/arm64/boot/dts/qcom/sc7180-trogdor-pazquel.dtsi
-index d06cc4ea3375..8823edbb4d6e 100644
---- a/arch/arm64/boot/dts/qcom/sc7180-trogdor-pazquel.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-pazquel.dtsi
-@@ -39,7 +39,7 @@ trackpad: trackpad@15 {
- 		interrupt-parent = <&tlmm>;
- 		interrupts = <0 IRQ_TYPE_EDGE_FALLING>;
- 
--		vcc-supply = <&pp3300_fp_tp>;
-+		vdd-supply = <&pp3300_fp_tp>;
- 		post-power-on-delay-ms = <100>;
- 		hid-descr-addr = <0x0001>;
- 
+diff --git a/arch/arm64/boot/dts/qcom/msm8998-oneplus-cheeseburger.dts b/arch/arm64/boot/dts/qcom/msm8998-oneplus-cheeseburger.dts
+index d36b36af49d0..fac8b3510cd3 100644
+--- a/arch/arm64/boot/dts/qcom/msm8998-oneplus-cheeseburger.dts
++++ b/arch/arm64/boot/dts/qcom/msm8998-oneplus-cheeseburger.dts
+@@ -34,7 +34,7 @@ led-keypad-backlight {
+ &pmi8998_gpios {
+ 	button_backlight_default: button-backlight-state {
+ 		pins = "gpio5";
+-		function = "gpio";
++		function = "normal";
+ 		bias-pull-down;
+ 		qcom,drive-strength = <PMIC_GPIO_STRENGTH_NO>;
+ 	};
 -- 
 2.34.1
 
