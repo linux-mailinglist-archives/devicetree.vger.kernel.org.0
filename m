@@ -2,59 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 50D876B68A3
-	for <lists+devicetree@lfdr.de>; Sun, 12 Mar 2023 18:09:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8F9A86B68A6
+	for <lists+devicetree@lfdr.de>; Sun, 12 Mar 2023 18:10:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230336AbjCLRJQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 12 Mar 2023 13:09:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60646 "EHLO
+        id S229516AbjCLRJ7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 12 Mar 2023 13:09:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33224 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230242AbjCLRJP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 12 Mar 2023 13:09:15 -0400
-Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EE0F52004E
-        for <devicetree@vger.kernel.org>; Sun, 12 Mar 2023 10:09:12 -0700 (PDT)
-Received: by mail-ed1-x531.google.com with SMTP id cy23so39675534edb.12
-        for <devicetree@vger.kernel.org>; Sun, 12 Mar 2023 10:09:12 -0700 (PDT)
+        with ESMTP id S231267AbjCLRJ5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 12 Mar 2023 13:09:57 -0400
+Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 75D222195E
+        for <devicetree@vger.kernel.org>; Sun, 12 Mar 2023 10:09:55 -0700 (PDT)
+Received: by mail-ed1-x535.google.com with SMTP id fd5so5900580edb.7
+        for <devicetree@vger.kernel.org>; Sun, 12 Mar 2023 10:09:55 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1678640951;
+        d=linaro.org; s=google; t=1678640994;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=ur0YRak4azgO8ER8v9X1Sisyj3A0UjrzNilpdcu+HRk=;
-        b=IIumIHOspITOgjriMp5ESfe4mr+ULnDvPBgJipm3w8unQT74U3jSJ0ZYxyJ3yA7l1w
-         wzQzBmdo48JSDwrmGI5NNHrj6qB4LwBjNcm+y4kD7txoNzXnlv6W3m54HK8X+qOL5YA0
-         IY6cyOAQZmZuL9WqiPPaoGuXb3wqfwCMSmzUPXNTQBiq1ErNXeA5UtcMRXcnh0xzlDK6
-         87eT+bj19kVx2bzZiI8RHt/APiSIdokGzw/U5ZgKxoJrWKwXnQFPWFgHdszEeIHUE9RR
-         w+1cESbv7K+k5D0KDdqDm0NdHJzG8kigScImY2DdcrNQeGzwaQwMCyLrse+TD39Ykv78
-         /P2A==
+        bh=SNL1F8ClNeNyXGoW6Ur+YWS8mHz6siwFKtbWI0zMS8M=;
+        b=kNFAVNfKxzjh2/UNTnPWkrIfJxflcnKLQPEaW5eY6Dv6gdfekUpOoey3KH6n1V5spY
+         6Vtxu/fTdxZAgVhAU+E5n4sxIdFRZPOyZ7rqUrOp/F0Le0Ur6bp4Svpe13eBe3mko0tW
+         5SmXqA3dRzMGTef9j4p1622Pk81B55KmJgRuqt4or4M7lsp/vNtNMoXUXWrOtcFbQbPE
+         yHuFQiAmwR3vKUPYKAj1P5qEIQKwdxCKXbWZdkgZCwgHj9AbCI6ijQEYgXAMIrVfYG4I
+         yVUG6aTVUwUP086Q2sFHIaeJbP3X0a4t43l692/jmOtXsNN3Orw2a8S4FsZGJ94W4Q7Q
+         wFNg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678640951;
+        d=1e100.net; s=20210112; t=1678640994;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=ur0YRak4azgO8ER8v9X1Sisyj3A0UjrzNilpdcu+HRk=;
-        b=qi07H54HPYeDGQRYQcGTYsa4x1sOgVzKkN+9ew1kEPJiSIJqe8ooR4jvL/WjfZEJC7
-         WaEP2T5ER3zBijQr/yCNmsdSJ32l9n6aOthaMVhlDI9H1TctDk58oQ3e/f5XahzOT39N
-         Is/1hAh8PvbSWayHfrMCrDNS8pbRB9iF0kthNCrTXd8R9pOOLWqJAHLDVMB/8vCdfFED
-         Y8w2jjPrJXAtA8H6iQuNeifOCehATUG05q8iNZvcw8i8CEFQfBdsSC9AAOnHnbslJn9Z
-         3UwK3D+riaqmVJxz+7XlAgVaWDVTNFTLV1lb3Mn0MKSH/5KbWK41lnF5Rs+Qwc9Rh6ev
-         vuVQ==
-X-Gm-Message-State: AO0yUKVcydUu4YwhYXo+aGWjlX/vQOkkEMtkWJtgukwJssGX86NelWd0
-        6dp7ysaGdtgsL5ArOSdBa/T+MA==
-X-Google-Smtp-Source: AK7set+9rjs/pkVy7AWNiNv0a34Mg1Vn463+p/9TwJdBU4BL6GlFQorb6rS66Q1i0nTHMIp1JktUoQ==
-X-Received: by 2002:a17:906:3b48:b0:921:da99:f39c with SMTP id h8-20020a1709063b4800b00921da99f39cmr5463449ejf.12.1678640951442;
-        Sun, 12 Mar 2023 10:09:11 -0700 (PDT)
+        bh=SNL1F8ClNeNyXGoW6Ur+YWS8mHz6siwFKtbWI0zMS8M=;
+        b=PzNv8pPwOdUN04wjZn0GAbMQPljWb5WUuRIy0IaCSjYsleQNrw5hmQXGcD/PLPz2xA
+         cou8J8Z8/2ySF7nokMBiEVQYypPbheBIoJROLkSW6PuwFK4LfXINLu4JIy2HnpHfVrEH
+         zEDP9dXTCzfny2QbQDISlGOK1uVq5jre2OyqR3xswu8DE1Zpx4gP/mvWOxtLBYmVttGc
+         SsvxVUVasgDm33Pq1zOGIsDU5rW54NAXIiEJJk2+GYxQkVDt22Rug6UFtfPa5pNs4kiZ
+         Kbgk4Yh6/PrufxiMr735GpH3AUnNaOt5mwiFVqfB5/5pbRxFf+Vu2tw5eTZGKfQLSXYa
+         xISQ==
+X-Gm-Message-State: AO0yUKWNyWOupUSyi7yqycn1XnS2S2V1v8Gh8Qo3w0F6+34HcMPujzZl
+        LP+l46QcKstkDRElmUbT4WtKCA==
+X-Google-Smtp-Source: AK7set//9cjL/RgrIm+IgF6wOVZTldVT9LbovBB9ac5/KnBJiTkwztVRWCOsh0sH8XBiM7A+4LODAg==
+X-Received: by 2002:aa7:c69a:0:b0:4fb:4354:ab2e with SMTP id n26-20020aa7c69a000000b004fb4354ab2emr3373518edq.28.1678640994003;
+        Sun, 12 Mar 2023 10:09:54 -0700 (PDT)
 Received: from ?IPV6:2a02:810d:15c0:828:d9f6:3e61:beeb:295a? ([2a02:810d:15c0:828:d9f6:3e61:beeb:295a])
-        by smtp.gmail.com with ESMTPSA id i5-20020a170906850500b0091e1878bc59sm2425726ejx.68.2023.03.12.10.09.10
+        by smtp.gmail.com with ESMTPSA id z2-20020a5096c2000000b004af7191fe35sm2329540eda.22.2023.03.12.10.09.53
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 12 Mar 2023 10:09:11 -0700 (PDT)
-Message-ID: <f34ba6e5-4a8d-0812-c334-ea47de7b1d21@linaro.org>
-Date:   Sun, 12 Mar 2023 18:09:10 +0100
+        Sun, 12 Mar 2023 10:09:53 -0700 (PDT)
+Message-ID: <fd555393-0f9b-fbc3-ad9b-dcceb04080b3@linaro.org>
+Date:   Sun, 12 Mar 2023 18:09:52 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.8.0
-Subject: Re: [PATCH v3 1/2] dt-bindings: exynos-dw-mshc-common: add exynos78xx
+Subject: Re: [PATCH v4 1/3] dt-bindings: exynos-dw-mshc-common: add exynos78xx
  variants
 Content-Language: en-US
 To:     Sergey Lisov <sleirsgoevy@gmail.com>,
@@ -66,9 +66,9 @@ To:     Sergey Lisov <sleirsgoevy@gmail.com>,
 Cc:     linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org,
         linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <640e0136.c20a0220.2d5bf.1959@mx.google.com>
+References: <1678640497.9030156-1-sleirsgoevy@gmail.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <640e0136.c20a0220.2d5bf.1959@mx.google.com>
+In-Reply-To: <1678640497.9030156-1-sleirsgoevy@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -81,25 +81,37 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12/03/2023 17:43, Sergey Lisov wrote:
->> Bindings and DTS (and driver) are always separate.
+On 12/03/2023 17:59, Sergey Lisov wrote:
+> Some Samsung Exynos boards using the arm64 architecture have DW MMC
+> controllers configured for a 32-bit data bus but a 64-bit FIFO. On these
+> systems the 64-bit FIFO registers must be accessed in two 32-bit halves.
 > 
-> Okay, will split the patch.
+> Add two new compatible strings, "samsung,exynos78xx-dw-mshc" and
+> "samsung,exynos78xx-dw-mshc-smu" respectively, to denote exynos78xx
+> boards that need this quirk. But it's very possible that all
+> "samsung,exynos7-dw-mshc" boards are actually affected.
+> ---
+>  .../devicetree/bindings/mmc/samsung,exynos-dw-mshc.yaml         | 2 ++
+>  1 file changed, 2 insertions(+)
 > 
->> Compatibles must be specific.
-> 
-> No, this way you'd have tons of identical compatibles that only differ in
-> the exynosXXXX digits, and are functionally equivalent.
+> diff --git a/Documentation/devicetree/bindings/mmc/samsung,exynos-dw-mshc.yaml b/Documentation/devicetree/bindings/mmc/samsung,exynos-dw-mshc.yaml
+> index fdaa18481..a72a67792 100644
+> --- a/Documentation/devicetree/bindings/mmc/samsung,exynos-dw-mshc.yaml
+> +++ b/Documentation/devicetree/bindings/mmc/samsung,exynos-dw-mshc.yaml
+> @@ -22,6 +22,8 @@ properties:
+>        - samsung,exynos5420-dw-mshc-smu
+>        - samsung,exynos7-dw-mshc
+>        - samsung,exynos7-dw-mshc-smu
+> +      - samsung,exynos78xx-dw-mshc
 
-Thanks for letting me know.
+This is a friendly reminder during the review process.
 
-https://elixir.bootlin.com/linux/v6.1-rc1/source/Documentation/devicetree/bindings/writing-bindings.rst#L42
+It seems my previous comments were not fully addressed. Maybe my
+feedback got lost between the quotes, maybe you just forgot to apply it.
+Please go back to the previous discussion and either implement all
+requested changes or keep discussing them.
 
->> That's non-bisectable change (also breaking other users of DTS), so you
->> need to explain in commit msg rationale - devices were never compatible
->> and using exynos7 does not work in certain cases.
-
-BTW, this rationale was only example - you need to come with something real.
+Thank you.
 
 Best regards,
 Krzysztof
