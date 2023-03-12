@@ -2,195 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 639BE6B6394
-	for <lists+devicetree@lfdr.de>; Sun, 12 Mar 2023 08:01:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id ACCCD6B641B
+	for <lists+devicetree@lfdr.de>; Sun, 12 Mar 2023 10:32:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229585AbjCLHBZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 12 Mar 2023 03:01:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45616 "EHLO
+        id S229561AbjCLJcJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 12 Mar 2023 05:32:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57678 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229437AbjCLHBY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 12 Mar 2023 03:01:24 -0400
-Received: from EUR01-DB5-obe.outbound.protection.outlook.com (mail-db5eur01on2084.outbound.protection.outlook.com [40.107.15.84])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 992E459414;
-        Sat, 11 Mar 2023 23:01:22 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Z1C7h/7B8C6cAprnwTkovhF8/hqlnnIfxCfoYBsvHj6YkKdmBmFYWq24yUY0AfkXmFihJX/qNP5gLq3FyRDv1xoFj6PIrlrSst0v8YF05R28r1Zwwlh1JFcU1c6WDejD5J4R2ixoxxBCErR4TWs40aDRJoE8ZP6NV16d8KQS34A3JAV9ymjQPt6bHrPIMeq9XkHJrpBMkSrCdagQwh34Q12wifdD+qmk1vyDXicpRyOReyAU30WyO+NbJvOWjR4Tw4rYKzAZ1m+MYGhkPbooEkqYFUEMMD2PnpjXgyDkln3ypoWiL4hpXKkaLDj9GKL4/AbkyT3m8FEkqC5+cDHB7g==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=uC8MgtKCeNNcd3KrRDVoylxM2ZqEB4CpsWqvJmgmvRQ=;
- b=hYO0gZCDPMK+/0eSnX5ZIbAPNxiu7pskJPxKc2r5vNKYZTR1xJ/0HwgRq4LZG5VPJ4Xk3dxQ/HQEB7ddc3CTdi8ADPxQlZKWYSEPR9KVrbAbnSIw04xYdflsbm9x4wJ1sNlIx3yio2sOV3tydZqHlgU2MdVmwFik5LfuqnR4lI84MvJ9he45a75cU5woT9HU7lmcaZyjYk6O381iTaf3A9z6gZBteRXIa6P/8J3lQgZ/RPPN8x2bi1hkoAiLDG6NP3vTvkLTfDilU2syviLmzUd1TFJ5o51wMlnqiEDpteIB3BnInNoQqwdayAJM8FMw0cOGooGawPV19KR7ASieBw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=uC8MgtKCeNNcd3KrRDVoylxM2ZqEB4CpsWqvJmgmvRQ=;
- b=HI0W/nAVPy8rdLwjxts3g5qZamO7xG8uA/cqK9Msy6vV4ocDiNxPBIRMHCLudAnT8OeNmN06grXPbxyNIq523qomAKiAiFWHAqgHUuHqEVJuEHBpNvmfulvpp0ONiYnwqt1kSMQn1XUhZeE3OkMD1jpq3pA0kvc3OY8hOoowiYI=
-Received: from AM9PR04MB8603.eurprd04.prod.outlook.com (2603:10a6:20b:43a::10)
- by GVXPR04MB9901.eurprd04.prod.outlook.com (2603:10a6:150:113::6) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6178.24; Sun, 12 Mar
- 2023 07:01:18 +0000
-Received: from AM9PR04MB8603.eurprd04.prod.outlook.com
- ([fe80::45d2:ce51:a1c4:8762]) by AM9PR04MB8603.eurprd04.prod.outlook.com
- ([fe80::45d2:ce51:a1c4:8762%5]) with mapi id 15.20.6178.024; Sun, 12 Mar 2023
- 07:01:17 +0000
-From:   Neeraj sanjay kale <neeraj.sanjaykale@nxp.com>
-To:     Simon Horman <simon.horman@corigine.com>
-CC:     "davem@davemloft.net" <davem@davemloft.net>,
-        "edumazet@google.com" <edumazet@google.com>,
-        "kuba@kernel.org" <kuba@kernel.org>,
-        "pabeni@redhat.com" <pabeni@redhat.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "marcel@holtmann.org" <marcel@holtmann.org>,
-        "johan.hedberg@gmail.com" <johan.hedberg@gmail.com>,
-        "luiz.dentz@gmail.com" <luiz.dentz@gmail.com>,
-        "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>,
-        "jirislaby@kernel.org" <jirislaby@kernel.org>,
-        "alok.a.tiwari@oracle.com" <alok.a.tiwari@oracle.com>,
-        "hdanton@sina.com" <hdanton@sina.com>,
-        "ilpo.jarvinen@linux.intel.com" <ilpo.jarvinen@linux.intel.com>,
-        "leon@kernel.org" <leon@kernel.org>,
-        "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-bluetooth@vger.kernel.org" <linux-bluetooth@vger.kernel.org>,
-        "linux-serial@vger.kernel.org" <linux-serial@vger.kernel.org>,
-        Amitkumar Karwar <amitkumar.karwar@nxp.com>,
-        Rohit Fule <rohit.fule@nxp.com>,
-        Sherry Sun <sherry.sun@nxp.com>
-Subject: Re: [PATCH v8 1/3] serdev: Add method to assert break signal over tty
- UART port
-Thread-Topic: [PATCH v8 1/3] serdev: Add method to assert break signal over
- tty UART port
-Thread-Index: AQHZVLBx4j9x7ZOdd0mla+luXOKNmA==
-Date:   Sun, 12 Mar 2023 07:01:17 +0000
-Message-ID: <AM9PR04MB8603EDB41582B5B816993B12E7B89@AM9PR04MB8603.eurprd04.prod.outlook.com>
-References: <20230310181921.1437890-1-neeraj.sanjaykale@nxp.com>
- <20230310181921.1437890-2-neeraj.sanjaykale@nxp.com>
- <ZAx1JOvjgOOYCNY9@corigine.com>
-In-Reply-To: <ZAx1JOvjgOOYCNY9@corigine.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: AM9PR04MB8603:EE_|GVXPR04MB9901:EE_
-x-ms-office365-filtering-correlation-id: eb0b2647-03f9-4d9b-b9c2-08db22c793f0
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: 0/Oqc+v2gQJG0IEIozEtuYY/ITbFkREBZPkN6OGiabAnfly27whAFDnD+h4OzYxB3FZ6fnZMqD0YPaCr3Gkm8iswpSXM1oy4Zi/0cY2NZ8XH/4upXdNLgkA1oOs3TDZaxpyL6LdPSO0Z+HZKriW/ppFF4ytzUMFB2nZ6yq6p8VmNYuypiGeFSY/PM/4a25ZabC0uDIz56Nu0O+4KYw1EMp1v9TkOcCRwuztxUbRtO86jsZrT8QlkjdiS1veoEkwae3SyDrrkDL0KiQeFQJvqxaugE80LvEe8a9EJsifhSozNNO9Tk5NcEtiu5axnXrkeZ9pXiPuTOIQiuYNwsYKD3w0iCsr+4H5HvQNEifzNYKHuU+77rd+4/Yvr385gf7nT8fmOWbru9K7GBZ0C/W1wpxIY/jmW7BL2aT6sDIAhuAk2UJqEPo40x3/+xWK1PCMXpKpCcbRVz6YLiUGcjvRkOFIi9Qbdm4gxKFlG9M5xik/ntsd+4uGsYsbSeLrgkgrsbUX/xyaA53RZz+B/nHvVPC20g+EsAXcmPUx6GxOcrXNv9nak/NocqFmG7gs+edwdqgwzdUpyZX0ryghhW8Eat/Bd96GTVYyifH/Zk1U0y03s6sw9i5+1NlXeVHJrlj0R5QPYdbMlWCNhxDd5d+z+73HdHtalRPgQDT03tBeZJiunNX8phB+JjgA2506td/wnyjiuRi/Y48M1UjByGra1wK05oj9/wSlKAivI2Amrba0=
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM9PR04MB8603.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230025)(4636009)(376002)(366004)(346002)(39860400002)(136003)(396003)(451199018)(478600001)(83380400001)(71200400001)(7696005)(122000001)(2906002)(86362001)(38100700002)(5660300002)(52536014)(8936002)(33656002)(7416002)(38070700005)(76116006)(66946007)(66556008)(66476007)(66446008)(64756008)(8676002)(6916009)(4326008)(41300700001)(55016003)(54906003)(316002)(26005)(186003)(55236004)(6506007)(9686003)(966005);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?Paz+K5YIoglQWO9Pcoz+y0wrxuXB6NQS+toRaT+FXn1zySOnR1Xp1Wc/iVto?=
- =?us-ascii?Q?yqb9/LZnGEBdz+Gpt8v2d2hphLSpiFYJkSQQI2ywNLfl8CzMTtwkFN1J4BIA?=
- =?us-ascii?Q?LUN4h/vLNb0/XHFDpNGG21EtiJ3TCJh5wZI18kMDgmIDBKn6JCsIHXgAeN3C?=
- =?us-ascii?Q?QD8UKQsmap6wAP1UHVr2EU14N5fo0DHSvdDv56eV83vvFLZFB08zwdp7Qntc?=
- =?us-ascii?Q?sSM8EI+xT+IkugVqaNzQkKKrbu7LE5ZNPUed9oUqUXSdENoXUJlXHRftuZNv?=
- =?us-ascii?Q?EStnGiJWtaDPUw/JONmQDSDTepdLOw/yvIev3yqbGCtKzlijJ4DWaGo5/6AZ?=
- =?us-ascii?Q?MkiKGSk5Avla9F+R2KwK6/uMTTvap9t58t+pp6rhN/8XeAYFuVCC+Hd3Mi+t?=
- =?us-ascii?Q?LHRpw2j4JHRCyYNOCOznj61oMFlF0+ET8stF+SDquu23Mfg72N7zw0kSW6NM?=
- =?us-ascii?Q?LxHHgNzgmTc5ta729fz6a/5JAbD4MJc0UUWyJMH4on3mfv3putAH/eaOMNel?=
- =?us-ascii?Q?hEfrYTFhsLpstDzSqd8J6CmIkNr0YeerkpeGMVMsvTqZ1r/vGs6yc1tRxI1Z?=
- =?us-ascii?Q?aD0Tix52rLKljX84M9N2qt8qj7v3zuSFdkL5lAgMC+tfNtuS2Rc5UJf3Najq?=
- =?us-ascii?Q?9XZkVP/wal9ieLPPzN32DSG6xmmhFPmBHqq240yg+qMMbuiIMxLmfAsD3KWZ?=
- =?us-ascii?Q?A7E5MEJNbiF8+3VNFyA1kFRZczAeQzaJMxKeR/S/pBaUwyBUfJcx0cseXVry?=
- =?us-ascii?Q?XzT91zzJzypElPcd+vDQR1dXkpfeQI3HpwhQHDW8SYLOCgNBzwJsePWzlbGy?=
- =?us-ascii?Q?EhGv3Oq/jGdnXpu6rbBmu52AW93NaBLYYmcGcRxR/o15Yq7SHHJKIci3Nkce?=
- =?us-ascii?Q?P8DIOrKjzNJi+U1zL5MWDyn+wWIC0aonaY2h6yoLb5C2MU/xXezIabw8MOkV?=
- =?us-ascii?Q?iDl0MWkXRGnna7cCbAa9q+HU2UOT3jH5nRr/nQDG6BlN089HT6s0LX7Asu20?=
- =?us-ascii?Q?IAE6rQ5PoTxjBie1T2eGUydvPJxgHxfZut+D/pQFQwNUaXrKYRV/phJ7N4WY?=
- =?us-ascii?Q?fAfqpLUUiP55dX9WyEkJ4teyCuzAzIcd0bQtR2uOnOtM+piQG46avFrD97dQ?=
- =?us-ascii?Q?NPM/C0WaSRj64ejA/RnvZhr9dcYOhKfCQUYsMvRockdta15ck/WcvpJV51/v?=
- =?us-ascii?Q?XyfxERCByPbCBOptm4D55UfC9xF4jGnXJsEVcMvZheBRU4XT/Qmqg9N9g86k?=
- =?us-ascii?Q?nErUi63ZH6UA10m6TV2nle8MuxZCyxsDIt79HXBRJ9OiJJKI1cAKion8o+2R?=
- =?us-ascii?Q?+b8w4M15YFAegaDbGpO5APgvbl+Qh1QsJOVKCFjiYqMBzn9lbHKPFeFesKYc?=
- =?us-ascii?Q?IL9ho6+rXGa2zF+Fz2qZw4vBucZD6kVMbCPze4rYezSbsAqZzCC0f67vvU+j?=
- =?us-ascii?Q?r1EgPlxp/aeQnWYX/UFQQwh9PIhDyRA1lWKLWKIxxhKTZ0GgMdCtrK7KPxVR?=
- =?us-ascii?Q?MtFdnfOxEcnxvl8KhwqTc4w2koBbGQWd/rOLtRr+GzKuhkQ72QDFXqXKmH5y?=
- =?us-ascii?Q?Du1FvG+9L2na7GgOZkd4vAukutdHq5rFT+arTttvO+YM9iJ/jqHBadE8jAX9?=
- =?us-ascii?Q?0g=3D=3D?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+        with ESMTP id S229473AbjCLJcI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 12 Mar 2023 05:32:08 -0400
+Received: from mx01.omp.ru (mx01.omp.ru [90.154.21.10])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4425636FC0;
+        Sun, 12 Mar 2023 01:32:05 -0800 (PST)
+Received: from [192.168.1.103] (178.176.72.227) by msexch01.omp.ru
+ (10.188.4.12) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.2.986.14; Sun, 12 Mar
+ 2023 12:31:54 +0300
+Subject: Re: [PATCH 7/8] arm64: dts: qcom: sa8295p: Enable teritiary
+ controller and its 4 USB ports
+To:     Krishna Kurapati <quic_kriskura@quicinc.com>,
+        Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Felipe Balbi <balbi@kernel.org>
+CC:     <linux-usb@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <quic_pkondeti@quicinc.com>, <quic_ppratap@quicinc.com>,
+        <quic_wcheng@quicinc.com>, <quic_jackp@quicinc.com>,
+        <quic_harshq@quicinc.com>, <ahalaney@redhat.com>,
+        <quic_shazhuss@quicinc.com>
+References: <20230310163420.7582-1-quic_kriskura@quicinc.com>
+ <20230310163420.7582-8-quic_kriskura@quicinc.com>
+From:   Sergey Shtylyov <s.shtylyov@omp.ru>
+Organization: Open Mobile Platform
+Message-ID: <0cf9c721-6933-3c9c-0f81-f3fc6ad93edc@omp.ru>
+Date:   Sun, 12 Mar 2023 12:31:54 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.10.1
 MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: AM9PR04MB8603.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: eb0b2647-03f9-4d9b-b9c2-08db22c793f0
-X-MS-Exchange-CrossTenant-originalarrivaltime: 12 Mar 2023 07:01:17.8451
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: TYgDVAeu+2gvYr8f9YwLYbHDjXEjSfnO4rCjKMdQnVfBnnaZ/sKipg8iL+tDl4CckvO3F3v946FVjYj/hHoteG84N4lfNZpi682tTgTwPPA=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: GVXPR04MB9901
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+In-Reply-To: <20230310163420.7582-8-quic_kriskura@quicinc.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [178.176.72.227]
+X-ClientProxiedBy: msexch01.omp.ru (10.188.4.12) To msexch01.omp.ru
+ (10.188.4.12)
+X-KSE-ServerInfo: msexch01.omp.ru, 9
+X-KSE-AntiSpam-Interceptor-Info: scan successful
+X-KSE-AntiSpam-Version: 5.9.59, Database issued on: 03/12/2023 09:13:06
+X-KSE-AntiSpam-Status: KAS_STATUS_NOT_DETECTED
+X-KSE-AntiSpam-Method: none
+X-KSE-AntiSpam-Rate: 59
+X-KSE-AntiSpam-Info: Lua profiles 176024 [Mar 12 2023]
+X-KSE-AntiSpam-Info: Version: 5.9.59.0
+X-KSE-AntiSpam-Info: Envelope from: s.shtylyov@omp.ru
+X-KSE-AntiSpam-Info: LuaCore: 507 507 08d345461d9bcca7095738422a5279ab257bb65a
+X-KSE-AntiSpam-Info: {rep_avail}
+X-KSE-AntiSpam-Info: {Tracking_from_domain_doesnt_match_to}
+X-KSE-AntiSpam-Info: {relay has no DNS name}
+X-KSE-AntiSpam-Info: {SMTP from is not routable}
+X-KSE-AntiSpam-Info: {Found in DNSBL: 178.176.72.227 in (user)
+ b.barracudacentral.org}
+X-KSE-AntiSpam-Info: {Found in DNSBL: 178.176.72.227 in (user)
+ dbl.spamhaus.org}
+X-KSE-AntiSpam-Info: 127.0.0.199:7.1.2;omp.ru:7.1.1;178.176.72.227:7.1.2,7.7.1;d41d8cd98f00b204e9800998ecf8427e.com:7.1.1
+X-KSE-AntiSpam-Info: ApMailHostAddress: 178.176.72.227
+X-KSE-AntiSpam-Info: {DNS response errors}
+X-KSE-AntiSpam-Info: Rate: 59
+X-KSE-AntiSpam-Info: Status: not_detected
+X-KSE-AntiSpam-Info: Method: none
+X-KSE-AntiSpam-Info: Auth:dmarc=temperror header.from=omp.ru;spf=temperror
+ smtp.mailfrom=omp.ru;dkim=none
+X-KSE-Antiphishing-Info: Clean
+X-KSE-Antiphishing-ScanningType: Heuristic
+X-KSE-Antiphishing-Method: None
+X-KSE-Antiphishing-Bases: 03/12/2023 09:15:00
+X-KSE-AttachmentFiltering-Interceptor-Info: protection disabled
+X-KSE-Antivirus-Interceptor-Info: scan successful
+X-KSE-Antivirus-Info: Clean, bases: 3/12/2023 3:39:00 AM
+X-KSE-BulkMessagesFiltering-Scan-Result: InTheLimit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Simon
+Hello!
 
->=20
-> On Fri, Mar 10, 2023 at 11:49:19PM +0530, Neeraj Sanjay Kale wrote:
-> > Adds serdev_device_break_ctl() and an implementation for ttyport.
-> > This function simply calls the break_ctl in tty layer, which can
-> > assert a break signal over UART-TX line, if the tty and the underlying
-> > platform and UART peripheral supports this operation.
-> >
-> > Signed-off-by: Neeraj Sanjay Kale <neeraj.sanjaykale@nxp.com>
-> > ---
-> > v3: Add details to the commit message. (Greg KH)
->=20
-> ...
->=20
-> > diff --git a/include/linux/serdev.h b/include/linux/serdev.h index
-> > 66f624fc618c..c065ef1c82f1 100644
-> > --- a/include/linux/serdev.h
-> > +++ b/include/linux/serdev.h
->=20
-> ...
->=20
-> > @@ -255,6 +257,10 @@ static inline int serdev_device_set_tiocm(struct
-> > serdev_device *serdev, int set,  {
-> >       return -ENOTSUPP;
-> >  }
-> > +static inline int serdev_device_break_ctl(struct serdev_device
-> > +*serdev, int break_state) {
-> > +     return -EOPNOTSUPP;
->=20
-> Is the use of -EOPNOTSUPP intentional here?
-> I see -ENOTSUPP is used elsewhere in this file.
-I was suggested to use - EOPNOTSUPP instead of - ENOTSUPP by the check patc=
-h scripts and by Leon Romanovsky.
-https://patchwork.kernel.org/project/bluetooth/patch/20230130180504.2029440=
--2-neeraj.sanjaykale@nxp.com/
+On 3/10/23 7:34 PM, Krishna Kurapati wrote:
 
-ENOTSUPP is not a standard error code and should be avoided in new patches.
-See: https://lore.kernel.org/netdev/20200510182252.GA411829@lunn.ch/
+> Enable teritiary controller for SA8295P (based on SC8280XP).
 
->=20
-> > +}
-> >  static inline int serdev_device_write(struct serdev_device *sdev, cons=
-t
-> unsigned char *buf,
-> >                                     size_t count, unsigned long
-> > timeout)  {
-> > --
-> > 2.34.1
-> >
+   Tertiary?
 
-Thanks,
-Neeraj
+> Add pinctrl support for usb ports to provide VBUS to connected peripherals.
+> 
+> Signed-off-by: Krishna Kurapati <quic_kriskura@quicinc.com>
+[...]
+
+MBR, Sergey
