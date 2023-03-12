@@ -2,117 +2,163 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 16D676B67BA
-	for <lists+devicetree@lfdr.de>; Sun, 12 Mar 2023 16:57:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DA4C86B67D9
+	for <lists+devicetree@lfdr.de>; Sun, 12 Mar 2023 17:14:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230000AbjCLP5O (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 12 Mar 2023 11:57:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45106 "EHLO
+        id S229782AbjCLQOb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 12 Mar 2023 12:14:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37502 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229550AbjCLP5N (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 12 Mar 2023 11:57:13 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B40DC460B1;
-        Sun, 12 Mar 2023 08:57:11 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 185A5B80B50;
-        Sun, 12 Mar 2023 15:57:10 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 633C0C433D2;
-        Sun, 12 Mar 2023 15:57:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1678636628;
-        bh=fyh667Lxz9Ni4noa2bDDew99E/LzPY5F3qTsCwlXaW8=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=oy8OYD8svYoJG5WyetYk5zSR7M2nLak/Euu/fJ029YHjDteT2Gr+7FwmO9LMBfEFa
-         rHd8MUUVWil5F709y5bt/d5umC/Mk0YAq2lWgTdK//+d3Pwyp+ff9n7o9XUb5AhVQv
-         auYShgXGUgBuY37JzeN40TpH+IY0HFWYdHikTgUarSVKeKLwJClhc0hNPZuk0n9EIy
-         q/e7Fcl4/b7Xw7bFDs0b3WurbLVQULmFQ14MrKsgTJSder/qJFnsNH8PPswb8L6uvD
-         KFJDbYTBe7BiEOMld6qASKvbGhejwQT8MA0KYBPLdGmuuqFE7v+SartUudtgVXfKuD
-         jx3EaNCyNA3CQ==
-Date:   Sun, 12 Mar 2023 15:57:14 +0000
-From:   Jonathan Cameron <jic23@kernel.org>
-To:     Lorenzo Bianconi <lorenzo@kernel.org>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        linux-iio@vger.kernel.org, lorenzo.bianconi@redhat.com,
-        devicetree@vger.kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org
-Subject: Re: [PATCH 2/2] dt-bindings: iio: imu: st_lsm6dsx: add asm330lhb
-Message-ID: <20230312155714.7ef33aaf@jic23-huawei>
-In-Reply-To: <ZAmtbGfUJiH5gSIY@lore-desk>
-References: <cover.1678100533.git.lorenzo@kernel.org>
-        <fecf1f20cc8e99fb8654cc733f14bd449ca7f87a.1678100533.git.lorenzo@kernel.org>
-        <f2bbda1a-b6e3-ccbb-d77a-8bdb42aca0ee@linaro.org>
-        <ZAmtbGfUJiH5gSIY@lore-desk>
-X-Mailer: Claws Mail 4.1.1 (GTK 3.24.37; x86_64-pc-linux-gnu)
+        with ESMTP id S229561AbjCLQOa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 12 Mar 2023 12:14:30 -0400
+Received: from relay5-d.mail.gandi.net (relay5-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::225])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AF225868A;
+        Sun, 12 Mar 2023 09:14:27 -0700 (PDT)
+Received: (Authenticated sender: alex@ghiti.fr)
+        by mail.gandi.net (Postfix) with ESMTPSA id EC8CA1C0002;
+        Sun, 12 Mar 2023 16:14:20 +0000 (UTC)
+Message-ID: <8b338d50-d790-a2e9-9ba9-fde444309bfc@ghiti.fr>
+Date:   Sun, 12 Mar 2023 17:14:20 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.1
+Subject: Re: [PATCH v7 2/4] mm: Introduce memblock_isolate_memory
+Content-Language: en-US
+To:     Mike Rapoport <rppt@kernel.org>,
+        Alexandre Ghiti <alexghiti@rivosinc.com>
+Cc:     Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Andrew Morton <akpm@linux-foundation.org>,
+        Anup Patel <anup@brainfault.org>,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-mm@kvack.org
+References: <20230310094539.764357-1-alexghiti@rivosinc.com>
+ <20230310094539.764357-3-alexghiti@rivosinc.com>
+ <ZA2c4X+acRLHKV38@kernel.org>
+From:   Alexandre Ghiti <alex@ghiti.fr>
+In-Reply-To: <ZA2c4X+acRLHKV38@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_NONE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 9 Mar 2023 10:57:00 +0100
-Lorenzo Bianconi <lorenzo@kernel.org> wrote:
 
-> On Mar 07, Krzysztof Kozlowski wrote:
-> > On 06/03/2023 12:08, Lorenzo Bianconi wrote:  
-> > > Add device bindings for asm330lhb IMU sensor.
-> > > Use asm330lhh as fallback device for asm330lhb since it implements all
-> > > the features currently supported by asm330lhb.
-> > > 
-> > > Signed-off-by: Lorenzo Bianconi <lorenzo@kernel.org>
-> > > ---
-> > >  Documentation/devicetree/bindings/iio/imu/st,lsm6dsx.yaml | 3 +++
-> > >  1 file changed, 3 insertions(+)
-> > > 
-> > > diff --git a/Documentation/devicetree/bindings/iio/imu/st,lsm6dsx.yaml b/Documentation/devicetree/bindings/iio/imu/st,lsm6dsx.yaml
-> > > index decf022335d8..b39f5217d8ff 100644
-> > > --- a/Documentation/devicetree/bindings/iio/imu/st,lsm6dsx.yaml
-> > > +++ b/Documentation/devicetree/bindings/iio/imu/st,lsm6dsx.yaml
-> > > @@ -46,6 +46,9 @@ properties:
-> > >        - items:
-> > >            - const: st,ism330is
-> > >            - const: st,lsm6dso16is
-> > > +      - items:
-> > > +          - const: st,asm330lhb
-> > > +          - const: st,asm330lhh  
-> > 
-> > You added it to the end of the list, but aren't there any ordering
-> > already? If so, it should be put rather in correct place.  
-> 
-> Hi Krzysztof,
-> 
-> I do not think there is any ordering issue there.
-As of today, they aren't in any particular order that I can see.
-However, it might be nice to go for some sort of order as a follow up patch
-(very low priority though!).
+On 3/12/23 10:35, Mike Rapoport wrote:
+> Hi Alexandre,
+>
+> On Fri, Mar 10, 2023 at 10:45:37AM +0100, Alexandre Ghiti wrote:
+>> This function allows to split a region in memblock.memory and will be
+>> useful when setting up the linear mapping with STRICT_KERNEL_RWX: it
+>> allows to isolate the kernel text/rodata and then avoid to map those
+>> regions with a PUD/P4D/PGD.
+>>
+>> Signed-off-by: Alexandre Ghiti <alexghiti@rivosinc.com>
+>> ---
+>>   include/linux/memblock.h |  1 +
+>>   mm/memblock.c            | 22 +++++++++++++++++++++-
+>>   2 files changed, 22 insertions(+), 1 deletion(-)
+>>
+>> diff --git a/include/linux/memblock.h b/include/linux/memblock.h
+>> index 50ad19662a32..2f7ef97c0da7 100644
+>> --- a/include/linux/memblock.h
+>> +++ b/include/linux/memblock.h
+>> @@ -125,6 +125,7 @@ int memblock_clear_hotplug(phys_addr_t base, phys_addr_t size);
+>>   int memblock_mark_mirror(phys_addr_t base, phys_addr_t size);
+>>   int memblock_mark_nomap(phys_addr_t base, phys_addr_t size);
+>>   int memblock_clear_nomap(phys_addr_t base, phys_addr_t size);
+>> +int memblock_isolate_memory(phys_addr_t base, phys_addr_t size);
+>>   
+>>   void memblock_free_all(void);
+>>   void memblock_free(void *ptr, size_t size);
+>> diff --git a/mm/memblock.c b/mm/memblock.c
+>> index 25fd0626a9e7..d8cf1c9eccf0 100644
+>> --- a/mm/memblock.c
+>> +++ b/mm/memblock.c
+>> @@ -753,7 +753,8 @@ static int __init_memblock memblock_isolate_range(struct memblock_type *type,
+>>   	int idx;
+>>   	struct memblock_region *rgn;
+>>   
+>> -	*start_rgn = *end_rgn = 0;
+>> +	if (start_rgn && end_rgn)
+>> +		*start_rgn = *end_rgn = 0;
+> Generally, it's possible that either start_rgn or end_rgn will be a valid
+> pointer and this should be handled here and below.
+>
+> My preference, though would be to leave memblock_isolate_range() as is and
+> have unused start_rgn and end_rgn in memblock_isolate_memory().
 
-The same applies in the driver, where some of the entries could be organized
-by name or maybe wai value.  Perhaps it's just not worth bothering and this
-series doesn't make things worse, so I've applied the series to the togreg
-branch of iio.git and pushed out initially as testing to let 0-day
-see what it can find.
 
-Thanks,
+Sure, I'll do that then.
 
-Jonathan
 
-> 
-> Regards,
-> Lorenzo
-> 
-> > 
-> > Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> > 
-> > 
-> > Best regards,
-> > Krzysztof
-> >   
+>
+>>   
+>>   	if (!size)
+>>   		return 0;
+>> @@ -795,6 +796,9 @@ static int __init_memblock memblock_isolate_range(struct memblock_type *type,
+>>   					       memblock_get_region_node(rgn),
+>>   					       rgn->flags);
+>>   		} else {
+>> +			if (!end_rgn || !start_rgn)
+>> +				continue;
+>> +
+>>   			/* @rgn is fully contained, record it */
+>>   			if (!*end_rgn)
+>>   				*start_rgn = idx;
+>> @@ -805,6 +809,22 @@ static int __init_memblock memblock_isolate_range(struct memblock_type *type,
+>>   	return 0;
+>>   }
+>>   
+>> +/**
+>> + * memblock_isolate_memory - isolate given range from memblock.memory
+> I think it'd better to use "... range in memblock.memory"
 
+
+Ok
+
+
+>
+>> + * @base: base of range to isolate
+>> + * @size: size of range to isolate
+>> + *
+>> + * Call memblock_isolate_range on memblock.memory to isolate the given range.
+> Please elaborate that isolate means that the range does not share regions
+> with other ranges.
+
+
+Sure, thanks, I'll come up with a v8 tomorrow along with other fixes 
+(rv32 and arm64 comments that I forgot to remove).
+
+Thanks again,
+
+Alex
+
+
+>> + *
+>> + * Return:
+>> + * 0 on success, -errno on failure.
+>> + */
+>> +
+>> +int __init_memblock memblock_isolate_memory(phys_addr_t base, phys_addr_t size)
+>> +{
+>> +	return memblock_isolate_range(&memblock.memory, base, size, NULL, NULL);
+>> +}
+>> +
+>>   static int __init_memblock memblock_remove_range(struct memblock_type *type,
+>>   					  phys_addr_t base, phys_addr_t size)
+>>   {
+>> -- 
+>> 2.37.2
+>>
