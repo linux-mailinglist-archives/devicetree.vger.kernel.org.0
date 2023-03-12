@@ -2,277 +2,202 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DB2A96B6BA4
-	for <lists+devicetree@lfdr.de>; Sun, 12 Mar 2023 22:02:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 472076B6BBA
+	for <lists+devicetree@lfdr.de>; Sun, 12 Mar 2023 22:16:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230415AbjCLVCa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 12 Mar 2023 17:02:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53194 "EHLO
+        id S231249AbjCLVQi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 12 Mar 2023 17:16:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40518 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230311AbjCLVCa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 12 Mar 2023 17:02:30 -0400
-Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com [IPv6:2a00:1450:4864:20::534])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B795A3B640
-        for <devicetree@vger.kernel.org>; Sun, 12 Mar 2023 14:02:27 -0700 (PDT)
-Received: by mail-ed1-x534.google.com with SMTP id g10so12196334eda.1
-        for <devicetree@vger.kernel.org>; Sun, 12 Mar 2023 14:02:27 -0700 (PDT)
+        with ESMTP id S231400AbjCLVQf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 12 Mar 2023 17:16:35 -0400
+Received: from mail-lj1-x231.google.com (mail-lj1-x231.google.com [IPv6:2a00:1450:4864:20::231])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A71F72A158;
+        Sun, 12 Mar 2023 14:16:31 -0700 (PDT)
+Received: by mail-lj1-x231.google.com with SMTP id b10so10724009ljr.0;
+        Sun, 12 Mar 2023 14:16:31 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1678654946;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=Qj1cXXqLyWgdPfJI5vrHGJXiCzlKmBf4u+Esl1s34b8=;
-        b=T1OZkXIBCs09tAfYSkatz+1Mz2Ikbdu8dhgkALbsDPtxy0ZsMa2o2phIJvAuCHG0tS
-         KAxemf+GOfyP97Ws1Zjsp6elR476GQFXhXzfQyONzRsdEQ4KuB+NTMFUhCGLpGDE93iH
-         l7heYL65QyTwYW36ZZl6ca17hUtwkCckPEIsmbg92gals1GvlTUrEoJfk8ZPkhLg+r4a
-         EyKy4JBJesuzbGBHYJGYOH1LJSRwRfntFtwRL7k6BdF2pSnjsp/xpnWVGaQZgReVLf6y
-         TPtUeQBm1M8H49k77eODeQap+iIWJNul9SynRQG9yFBiZdnCjdRPLTtQwHMgzbI2YLcB
-         RUMw==
+        d=gmail.com; s=20210112; t=1678655790;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=WvfL5LA+JxDsCD8VVb6BVbqdfgMrfiE/5AuTtyrJsUg=;
+        b=XOe05FDdER8j6fWyWmjhrccSgTXO2w6gqsqtvL6yZk5yIsbqPHFOU+dfDMo0p41Qrd
+         z2hD7v5+OdaUrKzomdbcUtrpc4SLialkEywWzGHRwTn/7otDB1Qs9Es56A3ARDIAaAZx
+         +Z7lVpi2WR2hfR4w3tHC6lVvLhOoFlt1Mqt0kAHjn247/8OdkMNNosQqYmkGEcpzha80
+         QeejozUnbl9BDDqZJ9zKrYVbyGATQL2ahyeyjwb4TCYAI0sIQC/lfT2pzW+DMlyac1BB
+         fygT9BTgEfmWkzOn69H/Gi1LGO7h8ZHu3SZHD4vv7bmUvxUpaQP9yPuMV1hLYnLxzuE+
+         JzqA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678654946;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Qj1cXXqLyWgdPfJI5vrHGJXiCzlKmBf4u+Esl1s34b8=;
-        b=uaqYBX5fI1MR56JoovdpB9qJ839v8AAqMKEPzw+wld38ICpGe7+3dr7CO2yzh27zJQ
-         IpHIadFsE/gNaqmC6voOqW03ujQLh9EWY0EWuwHUihqYungofzw+hqDcT40cqY+xm4yh
-         EUejC8hh3wfbJ5nm1QkNrXfWWqbtdAT+cHR9sMec2yG/mUiAASor3UEGWW/lwT4vfugK
-         jlQ76KCRMnAlTWRADJjTltAlEZ2i1Rfujozn+sd0GbhCxjRleNBR+mOOwW2H5oPOlf6f
-         NCT0ToZdy8zVoWSx2Hp8yFPqklcM9lFRSU3d1/8EigWPjnGCJwS/uFAYaOv0HI/PidBN
-         BOtA==
-X-Gm-Message-State: AO0yUKWH3/PhIw/99unGOepsWSvXQZtpIV/gaoIN/3JCZ1D2cltgUql9
-        PdnOl3lnpzXbK6KcKdeQ2XJF1g==
-X-Google-Smtp-Source: AK7set96PFCqqF1MKJuHdirnlZrt7ztdx50WnXYftY1biggqu8CPFxeJo84vWtfKtF9PWzj6YOCVBQ==
-X-Received: by 2002:a17:907:6289:b0:91d:9745:407e with SMTP id nd9-20020a170907628900b0091d9745407emr9747007ejc.18.1678654946126;
-        Sun, 12 Mar 2023 14:02:26 -0700 (PDT)
-Received: from ?IPV6:2a02:810d:15c0:828:d9f6:3e61:beeb:295a? ([2a02:810d:15c0:828:d9f6:3e61:beeb:295a])
-        by smtp.gmail.com with ESMTPSA id sg42-20020a170907a42a00b009202ce3c8adsm2322785ejc.27.2023.03.12.14.02.25
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 12 Mar 2023 14:02:25 -0700 (PDT)
-Message-ID: <1346ce4e-f1fd-1a77-f38e-cd87efc59082@linaro.org>
-Date:   Sun, 12 Mar 2023 22:02:24 +0100
+        d=1e100.net; s=20210112; t=1678655790;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=WvfL5LA+JxDsCD8VVb6BVbqdfgMrfiE/5AuTtyrJsUg=;
+        b=u8lp5q7D/yzl6C7IXDBws2W9YtbtS5nJxWmxkqh6DiyO1Ts5+SgsAXn8SO4LrqIT9L
+         MCw0SPDeGSRRCg/ppLfNncc1sl8Yu5dxmFuqzMhES5YWxljY+568FYu3h/5s2NbibKfx
+         T6H6m4l3DPS40rHal+AH0hYpe5ivTpQxblL2F79rmo8FXpNNO2uZ2ZNsV3BhU3ZZfFue
+         BsLER24vXL6IdYtaTTW8TS59KrXrZNEdaXBM5y2AImEHO1ml5aWWPMX39Rbc7vw6C/qa
+         CEHt2vodDC5FlpVv+KhLCR/BMnLXjZ8xMxXLw+EKK8zDfDb5x3W/7W6jSQBG+PxFM6Yd
+         HOXg==
+X-Gm-Message-State: AO0yUKXO2qauofqVxzIdUxP6Jj7oraJv2LaCRm52oirvnENewtVOR1Q3
+        DhNfsAD9ZTRl/pZGTsm0QMU=
+X-Google-Smtp-Source: AK7set8AZ5yW15J55R3C8ci16efEg+FH7c7955xy/u7fX2ifb9NPdfEbIxmxsmL4MbVMXpB0gNZpFw==
+X-Received: by 2002:a2e:a984:0:b0:295:a5a6:ee4d with SMTP id x4-20020a2ea984000000b00295a5a6ee4dmr14600642ljq.8.1678655789714;
+        Sun, 12 Mar 2023 14:16:29 -0700 (PDT)
+Received: from mobilestation ([95.79.133.202])
+        by smtp.gmail.com with ESMTPSA id a20-20020a05651c031400b00295a96a0f6csm746936ljp.102.2023.03.12.14.16.27
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 12 Mar 2023 14:16:28 -0700 (PDT)
+Date:   Mon, 13 Mar 2023 00:16:26 +0300
+From:   Serge Semin <fancer.lancer@gmail.com>
+To:     Brad Larson <blarson@amd.com>
+Cc:     linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-mmc@vger.kernel.org, linux-spi@vger.kernel.org,
+        adrian.hunter@intel.com, alcooperx@gmail.com,
+        andy.shevchenko@gmail.com, arnd@arndb.de,
+        brendan.higgins@linux.dev, briannorris@chromium.org,
+        brijeshkumar.singh@amd.com, catalin.marinas@arm.com,
+        davidgow@google.com, gsomlo@gmail.com, gerg@linux-m68k.org,
+        krzk@kernel.org, krzysztof.kozlowski+dt@linaro.org, lee@kernel.org,
+        lee.jones@linaro.org, broonie@kernel.org,
+        yamada.masahiro@socionext.com, p.zabel@pengutronix.de,
+        piotrs@cadence.com, p.yadav@ti.com, rdunlap@infradead.org,
+        robh+dt@kernel.org, samuel@sholland.org, skhan@linuxfoundation.org,
+        suravee.suthikulpanit@amd.com, thomas.lendacky@amd.com,
+        tonyhuang.sunplus@gmail.com, ulf.hansson@linaro.org,
+        vaishnav.a@ti.com, will@kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v11 10/15] spi: dw: Add support for AMD Pensando Elba SoC
+Message-ID: <20230312211626.pxhkypodrdwnbozr@mobilestation>
+References: <20230312004445.15913-1-blarson@amd.com>
+ <20230312004445.15913-11-blarson@amd.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-Subject: Re: [PATCH 2/2] ARM: dts: imx: Add devicetree for Tolino Vison
-Content-Language: en-US
-To:     Andreas Kemnade <andreas@kemnade.info>, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, arnd@arndb.de, olof@lixom.net,
-        soc@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de,
-        kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com,
-        marex@denx.de, max.krummenacher@toradex.com, leoyang.li@nxp.com,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-References: <20230312205236.2281466-1-andreas@kemnade.info>
- <20230312205236.2281466-3-andreas@kemnade.info>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230312205236.2281466-3-andreas@kemnade.info>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230312004445.15913-11-blarson@amd.com>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12/03/2023 21:52, Andreas Kemnade wrote:
-> This adds a devicetree for the Kobo Aura 2 Ebook reader. It is based
-> on boards marked with "37NB-E60Q30+4A3". It is equipped with an i.MX6SL
-> SoC.
+On Sat, Mar 11, 2023 at 04:44:40PM -0800, Brad Larson wrote:
+> The AMD Pensando Elba SoC includes a DW apb_ssi v4 controller
+> with device specific chip-select control.  The Elba SoC
+> provides four chip-selects where the native DW IP supports
+> two chip-selects.  The Elba DW_SPI instance has two native
+> CS signals that are always overridden.
 > 
-
-Thank you for your patch. There is something to discuss/improve.
-
-> +	wifi_pwrseq: wifi_pwrseq {
-> +		compatible = "mmc-pwrseq-simple";
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&pinctrl_wifi_reset>;
-> +		post-power-on-delay-ms = <20>;
-> +		reset-gpios = <&gpio5 0 GPIO_ACTIVE_LOW>;
-> +	};
-> +};
+> Signed-off-by: Brad Larson <blarson@amd.com>
+> ---
+> 
+> v11 changes:
+> - Simplify dw_spi_elb_init by using syscon_regmap_lookup_by_phandle()
+> 
+> v10 changes:
+> - Delete struct dw_spi_elba, use regmap directly in priv
+> 
+> v9 changes:
+> - Add use of macros GENMASK() and BIT()
+> - Change ELBA_SPICS_SHIFT() to ELBA_SPICS_OFFSET()
+> 
+> ---
+>  drivers/spi/spi-dw-mmio.c | 57 +++++++++++++++++++++++++++++++++++++++
+>  1 file changed, 57 insertions(+)
+> 
+> diff --git a/drivers/spi/spi-dw-mmio.c b/drivers/spi/spi-dw-mmio.c
+> index 26c40ea6dd12..5851ecc6e1e9 100644
+> --- a/drivers/spi/spi-dw-mmio.c
+> +++ b/drivers/spi/spi-dw-mmio.c
+> @@ -53,6 +53,20 @@ struct dw_spi_mscc {
+>  	void __iomem        *spi_mst; /* Not sparx5 */
+>  };
+>  
+> +/*
+> + * Elba SoC does not use ssi, pin override is used for cs 0,1 and
+> + * gpios for cs 2,3 as defined in the device tree.
+> + *
+> + * cs:  |       1               0
+> + * bit: |---3-------2-------1-------0
+> + *      |  cs1   cs1_ovr   cs0   cs0_ovr
+> + */
+> +#define ELBA_SPICS_REG			0x2468
+> +#define ELBA_SPICS_OFFSET(cs)		((cs) << 1)
+> +#define ELBA_SPICS_MASK(cs)		(GENMASK(1, 0) << ELBA_SPICS_OFFSET(cs))
+> +#define ELBA_SPICS_SET(cs, val)		\
+> +		((((val) << 1) | BIT(0)) << ELBA_SPICS_OFFSET(cs))
 > +
-> +&i2c1 {
-> +	pinctrl-names = "default","sleep";
-> +	pinctrl-0 = <&pinctrl_i2c1>;
-> +	pinctrl-1 = <&pinctrl_i2c1_sleep>;
-> +	status = "okay";
+>  /*
+>   * The Designware SPI controller (referred to as master in the documentation)
+>   * automatically deasserts chip select when the tx fifo is empty. The chip
+> @@ -237,6 +251,48 @@ static int dw_spi_canaan_k210_init(struct platform_device *pdev,
+>  	return 0;
+>  }
+>  
+> +static void dw_spi_elba_override_cs(struct regmap *syscon, int cs, int enable)
+> +{
+> +	regmap_update_bits(syscon, ELBA_SPICS_REG, ELBA_SPICS_MASK(cs),
+> +			   ELBA_SPICS_SET(cs, enable));
+> +}
 > +
-> +	touchscreen@15 {
-> +		reg = <0x15>;
-> +		compatible = "elan,ektf2132";
-
-compatible first, then reg.
-
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&pinctrl_ts>;
-> +		power-gpios = <&gpio5 13 GPIO_ACTIVE_HIGH>;
-> +		interrupts-extended = <&gpio5 6 IRQ_TYPE_EDGE_FALLING>;
-> +	};
+> +static void dw_spi_elba_set_cs(struct spi_device *spi, bool enable)
+> +{
+> +	struct dw_spi *dws = spi_master_get_devdata(spi->master);
+> +	struct dw_spi_mmio *dwsmmio = container_of(dws, struct dw_spi_mmio, dws);
+> +	struct regmap *syscon = dwsmmio->priv;
+> +	u8 cs;
 > +
-> +	accelerometer@1d {
-> +		reg = <0x1d>;
-> +		compatible = "fsl,mma8652";
-> +	};
-> +};
+> +	cs = spi->chip_select;
+> +	if (cs < 2)
+> +		dw_spi_elba_override_cs(syscon, spi->chip_select, enable);
 > +
-> +&i2c2 {
-> +	pinctrl-names = "default","sleep";
-> +	pinctrl-0 = <&pinctrl_i2c2>;
-> +	pinctrl-1 = <&pinctrl_i2c2_sleep>;
-> +	clock-frequency = <100000>;
-> +	status = "okay";
-> +};
-> +
-> +&i2c3 {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_i2c3>;
-> +	clock-frequency = <100000>;
-> +	status = "okay";
-> +
-> +	ec: embedded-controller@43 {
-> +		compatible = "netronix,ntxec";
-> +		reg = <0x43>;
-> +		#pwm-cells = <2>;
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&pinctrl_ec>;
-> +		interrupts-extended = <&gpio5 11 IRQ_TYPE_EDGE_FALLING>;
-> +		system-power-controller;
-> +	};
-> +};
-> +
-> +&snvs_rtc {
 > +	/*
-> +	 * We are using the RTC in the PMIC, but this one is not disabled
-> +	 * in imx6sl.dtsi.
+> +	 * The DW SPI controller needs a native CS bit selected to start
+> +	 * the serial engine.
 > +	 */
-> +	status = "disabled";
-> +};
+> +	spi->chip_select = 0;
+> +	dw_spi_set_cs(spi, enable);
+> +	spi->chip_select = cs;
+> +}
 > +
-> +&uart1 {
-> +	/* J4 */
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_uart1>;
-> +	status = "okay";
-> +};
+> +static int dw_spi_elba_init(struct platform_device *pdev,
+> +			    struct dw_spi_mmio *dwsmmio)
+> +{
+> +	struct regmap *syscon;
 > +
-> +&uart4 {
-> +	/* J9 */
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_uart4>;
-> +	status = "okay";
-> +};
-> +
-> +&usdhc2 {
-> +	pinctrl-names = "default", "state_100mhz", "state_200mhz", "sleep";
-> +	pinctrl-0 = <&pinctrl_usdhc2>;
-> +	pinctrl-1 = <&pinctrl_usdhc2_100mhz>;
-> +	pinctrl-2 = <&pinctrl_usdhc2_200mhz>;
-> +	pinctrl-3 = <&pinctrl_usdhc2_sleep>;
-> +	cd-gpios = <&gpio5 2 GPIO_ACTIVE_LOW>;
-> +	status = "okay";
-> +
-> +	/* removable uSD card */
-> +};
-> +
-> +&usdhc3 {
-> +	pinctrl-names = "default", "state_100mhz", "state_200mhz", "sleep";
-> +	pinctrl-0 = <&pinctrl_usdhc3>;
-> +	pinctrl-1 = <&pinctrl_usdhc3_100mhz>;
-> +	pinctrl-2 = <&pinctrl_usdhc3_200mhz>;
-> +	pinctrl-3 = <&pinctrl_usdhc3_sleep>;
-> +	vmmc-supply = <&reg_wifi>;
-> +	mmc-pwrseq = <&wifi_pwrseq>;
-> +	cap-power-off-card;
-> +	non-removable;
-> +	status = "okay";
-> +
-> +	/* CyberTan WC121 (BCM43362) SDIO WiFi */
-> +};
-> +
-> +&usdhc4 {
-> +	pinctrl-names = "default", "state_100mhz", "state_200mhz", "sleep";
-> +	pinctrl-0 = <&pinctrl_usdhc4>;
-> +	pinctrl-1 = <&pinctrl_usdhc4_100mhz>;
-> +	pinctrl-2 = <&pinctrl_usdhc4_200mhz>;
-> +	pinctrl-3 = <&pinctrl_usdhc4_sleep>;
-> +	bus-width = <8>;
-> +	no-1-8-v;
-> +	non-removable;
-> +	status = "okay";
-> +
-> +	/* internal eMMC */
-> +};
-> +
-> +&usbotg1 {
-> +	pinctrl-names = "default";
-> +	disable-over-current;
-> +	srp-disable;
-> +	hnp-disable;
-> +	adp-disable;
-> +	status = "okay";
-> +};
-> +
-> +&iomuxc {
-> +	pinctrl_backlight_power: backlight-powergrp {
-> +		fsl,pins = <
-> +			MX6SL_PAD_EPDC_PWRCTRL3__GPIO2_IO10 0x10059
-> +		>;
-> +	};
-> +
-> +	pinctrl_ec: ecgrp {
-> +		fsl,pins = <
-> +			MX6SL_PAD_SD1_DAT0__GPIO5_IO11  0x17000
-> +		>;
-> +	};
-> +
-> +	pinctrl_gpio_keys: gpio-keysgrp {
-> +		fsl,pins = <
-> +			MX6SL_PAD_SD1_DAT1__GPIO5_IO08  0x110B0
-> +			MX6SL_PAD_SD1_DAT4__GPIO5_IO12  0x110B0
-> +			MX6SL_PAD_KEY_COL1__GPIO3_IO26  0x11030
-> +		>;
-> +	};
-> +
-> +	pinctrl_i2c1: i2c1grp {
-> +		fsl,pins = <
-> +			MX6SL_PAD_I2C1_SCL__I2C1_SCL	 0x4001f8b1
-> +			MX6SL_PAD_I2C1_SDA__I2C1_SDA	 0x4001f8b1
-> +		>;
-> +	};
-> +
-> +	pinctrl_i2c1_sleep: i2c1grp-sleep {
-> +		fsl,pins = <
-> +			MX6SL_PAD_I2C1_SCL__I2C1_SCL	 0x400108b1
-> +			MX6SL_PAD_I2C1_SDA__I2C1_SDA	 0x400108b1
-> +		>;
-> +	};
-> +
-> +	pinctrl_i2c2: i2c2grp {
-> +		fsl,pins = <
-> +			MX6SL_PAD_I2C2_SCL__I2C2_SCL	 0x4001f8b1
-> +			MX6SL_PAD_I2C2_SDA__I2C2_SDA	 0x4001f8b1
-> +		>;
-> +	};
-> +
-> +	pinctrl_i2c2_sleep: i2c2grp-sleep {
+> +	syscon = syscon_regmap_lookup_by_phandle(dev_of_node(&pdev->dev),
+> +						 "amd,pensando-elba-syscon");
+> +	if (IS_ERR(syscon))
+> +		return dev_err_probe(&pdev->dev, PTR_ERR(syscon),
+> +				     "syscon regmap lookup failed\n");
+                                              <----+
+> +	dwsmmio->priv = syscon;                    |
+> +	dwsmmio->dws.set_cs = dw_spi_elba_set_cs;  |
+             +-------------------------------------+
+             |
+Newline here + would be nice. Other than that looks good.
+Reviewed-by: Serge Semin <fancer.lancer@gmail.com>
 
-Shouldn't all groups end with 'grp' suffix? Are you sure this passes
-dtbs_check?
-
-...
+-Serge(y)
 
 > +
-> +	pinctrl_usdhc2_100mhz: usdhc2grp-100mhz {
-
-Name looks wrong. Same in other places further.
-
-
-
-Best regards,
-Krzysztof
-
+> +	return 0;
+> +}
+> +
+>  static int dw_spi_mmio_probe(struct platform_device *pdev)
+>  {
+>  	int (*init_func)(struct platform_device *pdev,
+> @@ -352,6 +408,7 @@ static const struct of_device_id dw_spi_mmio_of_match[] = {
+>  	{ .compatible = "intel,thunderbay-ssi", .data = dw_spi_intel_init},
+>  	{ .compatible = "microchip,sparx5-spi", dw_spi_mscc_sparx5_init},
+>  	{ .compatible = "canaan,k210-spi", dw_spi_canaan_k210_init},
+> +	{ .compatible = "amd,pensando-elba-spi", .data = dw_spi_elba_init},
+>  	{ /* end of table */}
+>  };
+>  MODULE_DEVICE_TABLE(of, dw_spi_mmio_of_match);
+> -- 
+> 2.17.1
+> 
