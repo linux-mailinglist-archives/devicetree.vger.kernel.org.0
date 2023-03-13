@@ -2,141 +2,156 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id ACA7F6B6F6F
-	for <lists+devicetree@lfdr.de>; Mon, 13 Mar 2023 07:16:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 438066B6F8B
+	for <lists+devicetree@lfdr.de>; Mon, 13 Mar 2023 07:42:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229777AbjCMGQO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Mar 2023 02:16:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38528 "EHLO
+        id S229593AbjCMGmT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Mar 2023 02:42:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38848 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229776AbjCMGQM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Mar 2023 02:16:12 -0400
-Received: from linux.microsoft.com (linux.microsoft.com [13.77.154.182])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id E4D1348E36;
-        Sun, 12 Mar 2023 23:16:03 -0700 (PDT)
-Received: by linux.microsoft.com (Postfix, from userid 1127)
-        id 580FF204B51E; Sun, 12 Mar 2023 23:16:03 -0700 (PDT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com 580FF204B51E
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.microsoft.com;
-        s=default; t=1678688163;
-        bh=bBzVq6Vu2i/wsIWWu3PzRRzKof7G7yA2dj2lTYoClD0=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=bfpi3IoaJCC0q7dHUpJvJauZ6PK5P3bQ0z+z8iYgXKwbfIdQ4BVTvBQddd8jFW/JJ
-         cMZgyG0kTQYTeDsrTuXdDd7YalwkJOn33wyBQHK5C2hRr9GAOE8RKrcDpSnt8R2Ocv
-         BvHP+kmDmcWcw7JRfg+fOTQgiLgt7nU/kFUstV9k=
-Date:   Sun, 12 Mar 2023 23:16:03 -0700
-From:   Saurabh Singh Sengar <ssengar@linux.microsoft.com>
-To:     "Michael Kelley (LINUX)" <mikelley@microsoft.com>
-Cc:     "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        KY Srinivasan <kys@microsoft.com>,
-        Haiyang Zhang <haiyangz@microsoft.com>,
-        "wei.liu@kernel.org" <wei.liu@kernel.org>,
-        Dexuan Cui <decui@microsoft.com>,
-        "daniel.lezcano@linaro.org" <daniel.lezcano@linaro.org>,
-        "tglx@linutronix.de" <tglx@linutronix.de>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-hyperv@vger.kernel.org" <linux-hyperv@vger.kernel.org>,
-        "lenb@kernel.org" <lenb@kernel.org>,
-        "rafael@kernel.org" <rafael@kernel.org>,
-        "linux-acpi@vger.kernel.org" <linux-acpi@vger.kernel.org>
-Subject: Re: [PATCH v7 5/5] Driver: VMBus: Add Devicetree support
-Message-ID: <20230313061603.GA8934@linuxonhyperv3.guj3yctzbm1etfxqx2vob5hsef.xx.internal.cloudapp.net>
-References: <1677151745-16521-1-git-send-email-ssengar@linux.microsoft.com>
- <1677151745-16521-6-git-send-email-ssengar@linux.microsoft.com>
- <BYAPR21MB1688B84E25DD2173B6023737D7B99@BYAPR21MB1688.namprd21.prod.outlook.com>
+        with ESMTP id S229494AbjCMGmS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Mar 2023 02:42:18 -0400
+Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ED99D41088
+        for <devicetree@vger.kernel.org>; Sun, 12 Mar 2023 23:42:16 -0700 (PDT)
+Received: by mail-ed1-x533.google.com with SMTP id cy23so44219469edb.12
+        for <devicetree@vger.kernel.org>; Sun, 12 Mar 2023 23:42:16 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1678689735;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=tJFT9u3bvtPcninrG0NN6UOEEY9m29foYTk2CZyPssw=;
+        b=WhzTMI0eGE+Dt5eR5cjCn9l/z3FNa2B6ZQOjAWOty0R9C+2gtJfzq6ciHytYxotCPd
+         mDT2dJ1QQ5TClYTpHl8Pg3KQkM3i7/SngpRY1jJOVjSZL/E+iN3NYPn0MDmRs6oF7nxX
+         8EMOU2N6FcnJrawqWmzR6SqBuqKP6jtAVZXeRNP+L8Ie3hRyQmhRUEkG43Lw0MxTXFl0
+         Nd4Jwb1VOhmYQB0seo0ActQhYEYfnR4j9W7ckPA7j/k1HxExEwcEcU8ajAySfob7WAQg
+         3sxu4+lst0ny0zEgEEzoggX+JzRPG1gSZ2TkeieZsd/1u75ZAKq//ZX4lFwiD7okyp3M
+         hVfg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1678689735;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=tJFT9u3bvtPcninrG0NN6UOEEY9m29foYTk2CZyPssw=;
+        b=huv9SZgbkOewUiYPH5CtS1pJUQjcx6uhJbufmA8Du1j6L1WO5bKMTffS+PGy0WCBPr
+         p8agBSSq0cjlLpOsrsPaQQnQUbfoYtDPbsDJWa6QIMTbFVh2j4DrgfrQr9NweJiJ8oZ3
+         I68Ksq2qzpZj8ldh/jyWs8OMWr7Z9z2GRwZ2w+TnDYlN6IyFQS8zXNgQP1rTRsHwldXB
+         2w8xq/xNsvVkcVYKHXpO46iYZ84j7rebtgW547IgOBVvWj3sARCRmoUzOfsl6qt1t6ZH
+         ceLMo+31IskzgwbOwN5wlobXVBxiDUW5EzkO6tX81gJQD67mScuGE6OcA39LRNibdS4k
+         o8Bw==
+X-Gm-Message-State: AO0yUKVkD8zpBEIkYTlWUoMp6gcnzTcBYpPctwG3a2fQ0gUx3rv8uuTR
+        A3s7PSii3oW3F+OaU3YbgDY5tw==
+X-Google-Smtp-Source: AK7set/IjyqRt2Nd4PWCNZARNzfUSLymHTNlZR0SbMg/gHWa0lryDIhV0nnxoWpPHiy1+vw0YF1vsA==
+X-Received: by 2002:a17:906:ce46:b0:8b1:ce91:a40c with SMTP id se6-20020a170906ce4600b008b1ce91a40cmr29808199ejb.53.1678689735378;
+        Sun, 12 Mar 2023 23:42:15 -0700 (PDT)
+Received: from ?IPV6:2a02:810d:15c0:828:f052:f15:3f90:fcb3? ([2a02:810d:15c0:828:f052:f15:3f90:fcb3])
+        by smtp.gmail.com with ESMTPSA id m18-20020a1709062b9200b008ca8b62cda6sm3080553ejg.177.2023.03.12.23.42.13
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 12 Mar 2023 23:42:14 -0700 (PDT)
+Message-ID: <4f864115-ef66-6940-c1c3-6b296de4cab5@linaro.org>
+Date:   Mon, 13 Mar 2023 07:42:13 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <BYAPR21MB1688B84E25DD2173B6023737D7B99@BYAPR21MB1688.namprd21.prod.outlook.com>
-User-Agent: Mutt/1.5.21 (2010-09-15)
-X-Spam-Status: No, score=-19.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,ENV_AND_HDR_SPF_MATCH,RCVD_IN_DNSWL_MED,
-        SPF_HELO_PASS,SPF_PASS,USER_IN_DEF_DKIM_WL,USER_IN_DEF_SPF_WL
-        autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.8.0
+Subject: Re: [PATCH 1/5] dt-bindings: input: touchscreen: add bindings for
+ focaltech,fts
+To:     Joel Selvaraj <joelselvaraj.oss@gmail.com>,
+        Caleb Connolly <caleb@connolly.tech>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Henrik Rydberg <rydberg@bitmath.org>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Robert Jarzmik <robert.jarzmik@free.fr>,
+        Jeff LaBundy <jeff@labundy.com>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Markuss Broks <markuss.broks@gmail.com>,
+        Jean Delvare <jdelvare@suse.de>,
+        Max Krummenacher <max.krummenacher@toradex.com>,
+        Job Noorman <job@noorman.info>,
+        Alistair Francis <alistair@alistair23.me>,
+        Chris Morgan <macromorgan@hotmail.com>
+Cc:     linux-input@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org
+References: <20230312093249.1846993-1-joelselvaraj.oss@gmail.com>
+ <20230312093249.1846993-2-joelselvaraj.oss@gmail.com>
+ <c9db83e8-f87d-b94d-0c23-8114adb312e1@linaro.org>
+ <02012975-8b4c-58ba-b002-d2983c0e1500@gmail.com>
+Content-Language: en-US
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <02012975-8b4c-58ba-b002-d2983c0e1500@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Mar 13, 2023 at 02:33:53AM +0000, Michael Kelley (LINUX) wrote:
-> From: Saurabh Sengar <ssengar@linux.microsoft.com> Sent: Thursday, February 23, 2023 3:29 AM
-> > 
-> > Update the driver to support Devicetree boot as well along with ACPI.
-> > At present the Devicetree parsing only provides the mmio region info
-> > and is not the exact copy of ACPI parsing. This is sufficient to cater
-> > all the current Devicetree usecases for VMBus.
-> > 
-> > Currently Devicetree is supported only for x86 systems.
-> > 
-> > Signed-off-by: Saurabh Sengar <ssengar@linux.microsoft.com>
-> > ---
-> > [V7]
-> > - Use cpu_addr instead of bus_addr
-> > 
-> >  drivers/hv/Kconfig     |  6 +++--
-> >  drivers/hv/vmbus_drv.c | 57 ++++++++++++++++++++++++++++++++++++++++--
-> >  2 files changed, 59 insertions(+), 4 deletions(-)
-> > 
-> > diff --git a/drivers/hv/Kconfig b/drivers/hv/Kconfig
-> > index 0747a8f1fcee..1a55bf32d195 100644
-> > --- a/drivers/hv/Kconfig
-> > +++ b/drivers/hv/Kconfig
-> > @@ -4,11 +4,13 @@ menu "Microsoft Hyper-V guest support"
-> > 
-> >  config HYPERV
-> >  	tristate "Microsoft Hyper-V client drivers"
-> > -	depends on ACPI && ((X86 && X86_LOCAL_APIC && HYPERVISOR_GUEST) \
-> > -		|| (ARM64 && !CPU_BIG_ENDIAN))
-> > +	depends on (X86 && X86_LOCAL_APIC && HYPERVISOR_GUEST) \
-> > +		|| (ACPI && ARM64 && !CPU_BIG_ENDIAN)
-> >  	select PARAVIRT
-> >  	select X86_HV_CALLBACK_VECTOR if X86
-> >  	select VMAP_PFN
-> > +	select OF if !ACPI
-> > +	select OF_EARLY_FLATTREE if !ACPI
-> >  	help
-> >  	  Select this option to run Linux as a Hyper-V client operating
-> >  	  system.
+On 13/03/2023 01:21, Joel Selvaraj wrote:
+> Hi Krzysztof,
 > 
-> One further thing occurred to me.  OF_EARLY_FLATTREE really depends
-> on OF instead of ACPI.   The ACPI dependency is indirect through OF.  So
-> I'd suggest doing
+> Thanks for the review! I agree with most of your comments and will
+> fix them in v2. I have a few doubts as discussed below.
 > 
-> 	select OF_EARLY_FLATTRE if OF
+> On 12/03/23 15:47, Krzysztof Kozlowski wrote:
+>> I have doubts you will cover here all possible FTS controllers, so
+>> filename should be more specific, e.g. choose the oldest device compatible.
 > 
-> to express the direct dependency.
-
-As you pointed out OF_EARLY_FLATTRE is anyway dependent on OF, and thus I
-feel this check is redundant. I see all the Kconfig options which enables
-both of these flags don't explicitly mention this dependency.
-
+> The driver is kind of widely used and can actually support 49 touch
+> panel variants as per the downstream code [1]. With some slight
+> modifications, the other touch panels can be supported too. However, in
+> real world, we have only tested the driver against the two panel we have
+> access to (FT8719 - Poco F1 Phone and FT5452 - Shiftmq6 Phone).
 > 
-> Separately, I wonder if the "select OF if !ACPI" is even needed.  It doesn't
-> hurt anything to leave it, but it seems like any config that doesn't
-> independently select either ACPI or OF is broken for reasons unrelated
-> to Hyper-V.  I'm OK with leaving the select of OF if you want, so I'm
-> more just wondering than asserting it should be removed.   I didn't
-> see "select OF if !ACPI" anywhere else in the Kconfig files, and it
-> seems like Hyper-V would not be the only environment where this
-> is the expectation.
-
-Ok I can remove the !ACPI dependency. Hope kernel size increase due to both
-the code compiled in shouldn't be problem for ACPI systems.
-And here if config doesn't select ACPI or OF it will assume OF, which is
-better then selecting none of them.
-
-
-To address both of your comments I feel below will be sufficient:
-select OF
-select OF_EARLY_FLATTRE
-
-
-Regards,
-Saurabh
-
+> Although its very generic and widely used, I agree we don't know that
+> will be the case forever. So I am ok with changing it to more specific
+> one. But I don't think the panel chip number denote which is older and
+> which newer. Shall I just go with focaltech,fts5452, as that's the
+> lowest number panel that we have tested so far and is supported?
 > 
-> Michael
+> Or do I just keep it generic as it can potentially support a lot of
+> variants?
+> 
+>>> +  focaltech,max-touch-number:
+>>> +    $ref: /schemas/types.yaml#/definitions/uint32
+>>> +    description: max number of fingers supported
+>>
+>> Why this is not implied from compatible? IOW, why this differs between
+>> boards?
+> 
+> Without proper datasheet it is kind of hard to say if this is the
+> maximum supported touch points by hardware or just a vendor specified
+> one. Because, downstream has it as devicetree property and we only know
+> what's set in that from each vendor tree. The FT8719 used in Poco F1
+> specifies 10 touch points in downstrean devicetree. But, if I specify it
+> as 2, it will still work fine. The FT5452 used in shiftmq6 specifies 5
+> touch points in downstream devicetree, but we won't know if that is the
+> maximum possible, unless we try to increase it upto 10 and confirm.
+> 
+> So, yeah without the datasheet, we will be just kind of assuming that is
+> is the maximum possible number of touch points by the hardware. I am not
+> sure if we wanna hard code that in the driver. Is it okay if we let this
+> configurable? Boards/Phones can use the max touch number their vendor
+> driver points too or if they have a datasheet, they can specify maximum
+> supported one too.
+
+Downstream DTS is never a guideline on design of upstream bindings. They
+violate DT binding rules so many times so much, that I don't treat it as
+argument.
+
+The property does not look board but device specific, so you should
+infer it from compatible.
+
+
+Best regards,
+Krzysztof
+
