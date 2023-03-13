@@ -2,141 +2,282 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E85776B80DA
-	for <lists+devicetree@lfdr.de>; Mon, 13 Mar 2023 19:39:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 327696B80F8
+	for <lists+devicetree@lfdr.de>; Mon, 13 Mar 2023 19:44:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231392AbjCMSjB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Mar 2023 14:39:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46092 "EHLO
+        id S229528AbjCMSoZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Mar 2023 14:44:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35176 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231396AbjCMSig (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Mar 2023 14:38:36 -0400
-Received: from mail-wr1-x433.google.com (mail-wr1-x433.google.com [IPv6:2a00:1450:4864:20::433])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 80C9086DEB;
-        Mon, 13 Mar 2023 11:37:44 -0700 (PDT)
-Received: by mail-wr1-x433.google.com with SMTP id t15so12226369wrz.7;
-        Mon, 13 Mar 2023 11:37:44 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112; t=1678732609;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=0On3lk8dvxcR+1Ki8IT4nZKbfo+xTeDYisoJbo8GSvQ=;
-        b=QDGq684iFqzHTyROS4kkduB7wenwlNsZLog+SAWAk45PtfTGajIhTWbpg0bpjYsFmO
-         QB22KQfD8+JkZKa9p3z/JH/GpcUUVIp7loT/vGy97FiinJZgkWd7IGe/WEu29xB2wBxi
-         sGvTH6WjcyPoZysIRsV03sEyRF/TeRAYfLC3AK0hzVzIZk5i1frEkgtXrkXKU/9f9kES
-         Z2m9ERBf4f9ntoX061l9HuB8BeVC6M0ip8+LopVFBlvL/5946I5ayzdlHJK+ZIwOwflR
-         gtFxARx99WaiBNyhxk2wzw2lBEE8LapSOxDN2XCh9VT6fse/dgM5iVsst+DfzzTCXL4W
-         VJZA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678732609;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=0On3lk8dvxcR+1Ki8IT4nZKbfo+xTeDYisoJbo8GSvQ=;
-        b=0wsfU7h4lUO+Svuf7PW1au3RW8qxJRn3pbAk3S02+rp9APGOtKzYcyJP+cQbasbH/s
-         VwP4I8btjG6aqTWxZwTXOWO/4AnPjWL4L62sVw4KTabCQmtImBLRFxdZs/w3SLPUdjSI
-         DHxUMfArXhJaVkR5cDYgC3Us+MDKL0aWajiHNZpmBzOeZheeouJBNn0f+gA0f/cdUc+K
-         /gNzfcWgFwg7P7s2U0dZG8wlWka5GomhrR1smwqMT16ZTaHNtm1vfdUw1bkv98f7Lr89
-         ojEB/bQnxcQ4ALH6/iRjvLm07ACHj19lr/QBWKmai3LN4ikzRZtEw7afw2aBnUbnUBIl
-         J1XA==
-X-Gm-Message-State: AO0yUKVc5qMj3EBue6epmA9QBT5RiWt9tLTG81AVrO89jwoMRHweMoNt
-        lMEGnX2PqrxZUbTQ9yYsCL3NXLVCL4JdVfwpKZA=
-X-Google-Smtp-Source: AK7set8B0dNsqRcONkpmAQzYZpFmKmuWzseRMwzUiu+G+KUHnd9RjQ6h37IsNYiDXaiabSg/eqoZDg7ImeZQGTYO1BM=
-X-Received: by 2002:a5d:4347:0:b0:2c7:1320:7781 with SMTP id
- u7-20020a5d4347000000b002c713207781mr7187605wrr.13.1678732608854; Mon, 13 Mar
- 2023 11:36:48 -0700 (PDT)
+        with ESMTP id S230365AbjCMSoS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Mar 2023 14:44:18 -0400
+Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 580302748D;
+        Mon, 13 Mar 2023 11:43:44 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1678733024; x=1710269024;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=JHNQMG+SmEvryqcuY67cCs5r39GOh8n5At5NploTfC4=;
+  b=AmfHoZdVdT7pzyajBdFz8QUB0yTY1CZCGhK7BWiJSwsXlE+ON0bgK6Vq
+   aG959gO4j1ROmh0U1yyNfsYieu6fNd6n5YXkG2ibW+iatjhmsxk1/kXxD
+   45UUSPNXWKpDidbkZvlplYgvo2h4qPV8hoArqOjYNLNESLWYymJsxzJQG
+   lEDnXWpdiHIu68LebLjYD7B8knaWurFbxFKvPrhQHqmgzaGmOnCc+KQTF
+   ymztnUvmprxG1k4y+ZG1t2Xr3cYrtBh9hbv3qW+BZZtaSGDNWsTcUrzJH
+   JQbQ7sK6s83D6JdTHP1+MaWtQrvdXFEicWHLiuAw1qviJC5QgmDdsccK2
+   w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10648"; a="399821603"
+X-IronPort-AV: E=Sophos;i="5.98,257,1673942400"; 
+   d="scan'208";a="399821603"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+  by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 13 Mar 2023 11:40:41 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6500,9779,10648"; a="708978883"
+X-IronPort-AV: E=Sophos;i="5.98,257,1673942400"; 
+   d="scan'208";a="708978883"
+Received: from lkp-server01.sh.intel.com (HELO b613635ddfff) ([10.239.97.150])
+  by orsmga008.jf.intel.com with ESMTP; 13 Mar 2023 11:40:38 -0700
+Received: from kbuild by b613635ddfff with local (Exim 4.96)
+        (envelope-from <lkp@intel.com>)
+        id 1pbn65-00060Q-27;
+        Mon, 13 Mar 2023 18:40:37 +0000
+Date:   Tue, 14 Mar 2023 02:40:00 +0800
+From:   kernel test robot <lkp@intel.com>
+To:     Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
+        devicetree@vger.kernel.org, linux-gpio@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>
+Subject: Re: [rft, PATCH v1 1/1] gpio: Drop unused inclusions from of_gpio.h
+Message-ID: <202303140220.FQmu9huZ-lkp@intel.com>
+References: <20230313144557.35856-1-andriy.shevchenko@linux.intel.com>
 MIME-Version: 1.0
-References: <20230228152205.133582-1-macroalpha82@gmail.com>
- <20230228152205.133582-3-macroalpha82@gmail.com> <CADcbR4+Onb6RM7grPrqRL8Rth0mbFXykRmPq8R1QxYRGaHQHtA@mail.gmail.com>
- <CADcbR4L6b9D1FJx9u1jFvZ6jhixNs3_Ky+Mu0rHwtXZ6ATO-Eg@mail.gmail.com>
-In-Reply-To: <CADcbR4L6b9D1FJx9u1jFvZ6jhixNs3_Ky+Mu0rHwtXZ6ATO-Eg@mail.gmail.com>
-From:   Vasily Khoruzhick <anarsoul@gmail.com>
-Date:   Mon, 13 Mar 2023 11:36:21 -0700
-Message-ID: <CA+E=qVdjvYn2qPCP+9EaS=90DT_uEVSk0z04tU3DL0X8NumUAQ@mail.gmail.com>
-Subject: Re: [PATCH 2/3 V4] Bluetooth: hci_h5: btrtl: Add support for RTL8821CS
-To:     Chris Morgan <macroalpha82@gmail.com>
-Cc:     linux-bluetooth@vger.kernel.org,
-        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
-        alistair@alistair23.me, luiz.dentz@gmail.com,
-        johan.hedberg@gmail.com, marcel@holtmann.org, heiko@sntech.de,
-        krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
-        Chris Morgan <macromorgan@hotmail.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230313144557.35856-1-andriy.shevchenko@linux.intel.com>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Mar 13, 2023 at 11:12=E2=80=AFAM Chris Morgan <macroalpha82@gmail.c=
-om> wrote:
->
-> I found the fix, simply put changing the compatible from
-> realtek,rtl8822cs-bt to realtek,rtl8732bs-bt fixes it (because it sets
-> the "H5_INFO_WAKEUP_DISABLE" flag). Is it too late for a V5, or should
-> I submit this as a fix to the devicetree and devicetree documentation?
+Hi Andy,
 
-But is it actually compatible with rtl8723bs-bt though? I think you
-may need to add an entry for 8821cs to rtl_bluetooth_of_match in
-hci_h5.c
+I love your patch! Yet something to improve:
 
-> Thank you.
->
-> On Fri, Mar 10, 2023 at 10:25=E2=80=AFAM Chris Morgan <macroalpha82@gmail=
-.com> wrote:
-> >
-> > I shudder to bring this up now, but I'm encountering a new bug and
-> > might have to withdraw this.
-> >
-> > I'm receiving errors in dmesg of the following, and I can't seem to
-> > figure out the root cause:
-> > Bluetooth: hci0: Out-of-order packet arrived
-> >
-> > Any thoughts on what might cause it?
-> > Thank you.
-> >
-> > On Tue, Feb 28, 2023 at 9:22=E2=80=AFAM Chris Morgan <macroalpha82@gmai=
-l.com> wrote:
-> > >
-> > > From: Chris Morgan <macromorgan@hotmail.com>
-> > >
-> > > RTL8821CS is a WiFi + Bluetooth combo chip from Realtek that provides
-> > > WiFi A/B/G/N/AC over an SDIO interface and Bluetooth 4.2 over a UART
-> > > interface.
-> > >
-> > > Note that the firmware this was tested with was firmware version
-> > > 0x75b8f098.
-> > >
-> > > Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
-> > > ---
-> > >  drivers/bluetooth/btrtl.c | 8 ++++++++
-> > >  1 file changed, 8 insertions(+)
-> > >
-> > > diff --git a/drivers/bluetooth/btrtl.c b/drivers/bluetooth/btrtl.c
-> > > index 69c3fe649ca7..72947d319fa6 100644
-> > > --- a/drivers/bluetooth/btrtl.c
-> > > +++ b/drivers/bluetooth/btrtl.c
-> > > @@ -128,6 +128,14 @@ static const struct id_table ic_id_table[] =3D {
-> > >           .fw_name  =3D "rtl_bt/rtl8821c_fw.bin",
-> > >           .cfg_name =3D "rtl_bt/rtl8821c_config" },
-> > >
-> > > +       /* 8821CS */
-> > > +       { IC_INFO(RTL_ROM_LMP_8821A, 0xc, 0x8, HCI_UART),
-> > > +         .config_needed =3D true,
-> > > +         .has_rom_version =3D true,
-> > > +         .has_msft_ext =3D true,
-> > > +         .fw_name  =3D "rtl_bt/rtl8821cs_fw.bin",
-> > > +         .cfg_name =3D "rtl_bt/rtl8821cs_config" },
-> > > +
-> > >         /* 8761A */
-> > >         { IC_INFO(RTL_ROM_LMP_8761A, 0xa, 0x6, HCI_USB),
-> > >           .config_needed =3D false,
-> > > --
-> > > 2.34.1
-> > >
+[auto build test ERROR on brgl/gpio/for-next]
+[also build test ERROR on linus/master v6.3-rc2 next-20230310]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Andy-Shevchenko/gpio-Drop-unused-inclusions-from-of_gpio-h/20230313-224656
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/brgl/linux.git gpio/for-next
+patch link:    https://lore.kernel.org/r/20230313144557.35856-1-andriy.shevchenko%40linux.intel.com
+patch subject: [rft, PATCH v1 1/1] gpio: Drop unused inclusions from of_gpio.h
+config: arm-randconfig-r046-20230312 (https://download.01.org/0day-ci/archive/20230314/202303140220.FQmu9huZ-lkp@intel.com/config)
+compiler: clang version 17.0.0 (https://github.com/llvm/llvm-project 67409911353323ca5edf2049ef0df54132fa1ca7)
+reproduce (this is a W=1 build):
+        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+        chmod +x ~/bin/make.cross
+        # install arm cross compiling tool for clang build
+        # apt-get install binutils-arm-linux-gnueabi
+        # https://github.com/intel-lab-lkp/linux/commit/b108d11788b6db9e37a6c4b3110c09cecf30a46c
+        git remote add linux-review https://github.com/intel-lab-lkp/linux
+        git fetch --no-tags linux-review Andy-Shevchenko/gpio-Drop-unused-inclusions-from-of_gpio-h/20230313-224656
+        git checkout b108d11788b6db9e37a6c4b3110c09cecf30a46c
+        # save the config file
+        mkdir build_dir && cp config build_dir/.config
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross W=1 O=build_dir ARCH=arm olddefconfig
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross W=1 O=build_dir ARCH=arm SHELL=/bin/bash drivers/video/backlight/
+
+If you fix the issue, kindly add following tag where applicable
+| Reported-by: kernel test robot <lkp@intel.com>
+| Link: https://lore.kernel.org/oe-kbuild-all/202303140220.FQmu9huZ-lkp@intel.com/
+
+All errors (new ones prefixed by >>):
+
+>> drivers/video/backlight/hx8357.c:324:2: error: call to undeclared function 'gpio_set_value'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
+           gpio_set_value(lcd->reset, 1);
+           ^
+   drivers/video/backlight/hx8357.c:324:2: note: did you mean 'gpiod_set_value'?
+   include/linux/gpio/consumer.h:122:6: note: 'gpiod_set_value' declared here
+   void gpiod_set_value(struct gpio_desc *desc, int value);
+        ^
+>> drivers/video/backlight/hx8357.c:344:3: error: call to undeclared function 'gpio_set_value_cansleep'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
+                   gpio_set_value_cansleep(lcd->im_pins[0], 1);
+                   ^
+   drivers/video/backlight/hx8357.c:344:3: note: did you mean 'gpiod_set_value_cansleep'?
+   include/linux/gpio/consumer.h:144:6: note: 'gpiod_set_value_cansleep' declared here
+   void gpiod_set_value_cansleep(struct gpio_desc *desc, int value);
+        ^
+>> drivers/video/backlight/hx8357.c:605:7: error: call to undeclared function 'gpio_is_valid'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
+           if (!gpio_is_valid(lcd->reset)) {
+                ^
+   drivers/video/backlight/hx8357.c:605:7: note: did you mean 'uuid_is_valid'?
+   include/linux/uuid.h:102:19: note: 'uuid_is_valid' declared here
+   bool __must_check uuid_is_valid(const char *uuid);
+                     ^
+>> drivers/video/backlight/hx8357.c:610:8: error: call to undeclared function 'devm_gpio_request_one'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
+           ret = devm_gpio_request_one(&spi->dev, lcd->reset,
+                 ^
+>> drivers/video/backlight/hx8357.c:611:9: error: use of undeclared identifier 'GPIOF_OUT_INIT_HIGH'; did you mean 'GPIOD_OUT_HIGH'?
+                                       GPIOF_OUT_INIT_HIGH,
+                                       ^~~~~~~~~~~~~~~~~~~
+                                       GPIOD_OUT_HIGH
+   include/linux/gpio/consumer.h:51:2: note: 'GPIOD_OUT_HIGH' declared here
+           GPIOD_OUT_HIGH  = GPIOD_FLAGS_BIT_DIR_SET | GPIOD_FLAGS_BIT_DIR_OUT |
+           ^
+>> drivers/video/backlight/hx8357.c:636:11: error: use of undeclared identifier 'GPIOF_OUT_INIT_LOW'; did you mean 'GPIOD_OUT_LOW'?
+                                                       GPIOF_OUT_INIT_LOW,
+                                                       ^~~~~~~~~~~~~~~~~~
+                                                       GPIOD_OUT_LOW
+   include/linux/gpio/consumer.h:50:2: note: 'GPIOD_OUT_LOW' declared here
+           GPIOD_OUT_LOW   = GPIOD_FLAGS_BIT_DIR_SET | GPIOD_FLAGS_BIT_DIR_OUT,
+           ^
+   6 errors generated.
+
+
+vim +/gpio_set_value +324 drivers/video/backlight/hx8357.c
+
+8a6c1dd55168b5 Maxime Ripard     2013-02-21  318  
+fb52566873ca8c Alexandre Belloni 2013-08-01  319  static void hx8357_lcd_reset(struct lcd_device *lcdev)
+fb52566873ca8c Alexandre Belloni 2013-08-01  320  {
+fb52566873ca8c Alexandre Belloni 2013-08-01  321  	struct hx8357_data *lcd = lcd_get_data(lcdev);
+fb52566873ca8c Alexandre Belloni 2013-08-01  322  
+fb52566873ca8c Alexandre Belloni 2013-08-01  323  	/* Reset the screen */
+fb52566873ca8c Alexandre Belloni 2013-08-01 @324  	gpio_set_value(lcd->reset, 1);
+fb52566873ca8c Alexandre Belloni 2013-08-01  325  	usleep_range(10000, 12000);
+fb52566873ca8c Alexandre Belloni 2013-08-01  326  	gpio_set_value(lcd->reset, 0);
+fb52566873ca8c Alexandre Belloni 2013-08-01  327  	usleep_range(10000, 12000);
+fb52566873ca8c Alexandre Belloni 2013-08-01  328  	gpio_set_value(lcd->reset, 1);
+fb52566873ca8c Alexandre Belloni 2013-08-01  329  
+fb52566873ca8c Alexandre Belloni 2013-08-01  330  	/* The controller needs 120ms to recover from reset */
+fb52566873ca8c Alexandre Belloni 2013-08-01  331  	msleep(120);
+fb52566873ca8c Alexandre Belloni 2013-08-01  332  }
+fb52566873ca8c Alexandre Belloni 2013-08-01  333  
+8a6c1dd55168b5 Maxime Ripard     2013-02-21  334  static int hx8357_lcd_init(struct lcd_device *lcdev)
+8a6c1dd55168b5 Maxime Ripard     2013-02-21  335  {
+8a6c1dd55168b5 Maxime Ripard     2013-02-21  336  	struct hx8357_data *lcd = lcd_get_data(lcdev);
+8a6c1dd55168b5 Maxime Ripard     2013-02-21  337  	int ret;
+8a6c1dd55168b5 Maxime Ripard     2013-02-21  338  
+8a6c1dd55168b5 Maxime Ripard     2013-02-21  339  	/*
+8a6c1dd55168b5 Maxime Ripard     2013-02-21  340  	 * Set the interface selection pins to SPI mode, with three
+8a6c1dd55168b5 Maxime Ripard     2013-02-21  341  	 * wires
+8a6c1dd55168b5 Maxime Ripard     2013-02-21  342  	 */
+ccf9901ffec4b4 Maxime Ripard     2013-08-01  343  	if (lcd->use_im_pins) {
+8a6c1dd55168b5 Maxime Ripard     2013-02-21 @344  		gpio_set_value_cansleep(lcd->im_pins[0], 1);
+8a6c1dd55168b5 Maxime Ripard     2013-02-21  345  		gpio_set_value_cansleep(lcd->im_pins[1], 0);
+8a6c1dd55168b5 Maxime Ripard     2013-02-21  346  		gpio_set_value_cansleep(lcd->im_pins[2], 1);
+ccf9901ffec4b4 Maxime Ripard     2013-08-01  347  	}
+8a6c1dd55168b5 Maxime Ripard     2013-02-21  348  
+8a6c1dd55168b5 Maxime Ripard     2013-02-21  349  	ret = hx8357_spi_write_array(lcdev, hx8357_seq_power,
+8a6c1dd55168b5 Maxime Ripard     2013-02-21  350  				ARRAY_SIZE(hx8357_seq_power));
+8a6c1dd55168b5 Maxime Ripard     2013-02-21  351  	if (ret < 0)
+8a6c1dd55168b5 Maxime Ripard     2013-02-21  352  		return ret;
+8a6c1dd55168b5 Maxime Ripard     2013-02-21  353  
+8a6c1dd55168b5 Maxime Ripard     2013-02-21  354  	ret = hx8357_spi_write_array(lcdev, hx8357_seq_vcom,
+8a6c1dd55168b5 Maxime Ripard     2013-02-21  355  				ARRAY_SIZE(hx8357_seq_vcom));
+8a6c1dd55168b5 Maxime Ripard     2013-02-21  356  	if (ret < 0)
+8a6c1dd55168b5 Maxime Ripard     2013-02-21  357  		return ret;
+8a6c1dd55168b5 Maxime Ripard     2013-02-21  358  
+8a6c1dd55168b5 Maxime Ripard     2013-02-21  359  	ret = hx8357_spi_write_array(lcdev, hx8357_seq_power_normal,
+8a6c1dd55168b5 Maxime Ripard     2013-02-21  360  				ARRAY_SIZE(hx8357_seq_power_normal));
+8a6c1dd55168b5 Maxime Ripard     2013-02-21  361  	if (ret < 0)
+8a6c1dd55168b5 Maxime Ripard     2013-02-21  362  		return ret;
+8a6c1dd55168b5 Maxime Ripard     2013-02-21  363  
+8a6c1dd55168b5 Maxime Ripard     2013-02-21  364  	ret = hx8357_spi_write_array(lcdev, hx8357_seq_panel_driving,
+8a6c1dd55168b5 Maxime Ripard     2013-02-21  365  				ARRAY_SIZE(hx8357_seq_panel_driving));
+8a6c1dd55168b5 Maxime Ripard     2013-02-21  366  	if (ret < 0)
+8a6c1dd55168b5 Maxime Ripard     2013-02-21  367  		return ret;
+8a6c1dd55168b5 Maxime Ripard     2013-02-21  368  
+8a6c1dd55168b5 Maxime Ripard     2013-02-21  369  	ret = hx8357_spi_write_array(lcdev, hx8357_seq_display_frame,
+8a6c1dd55168b5 Maxime Ripard     2013-02-21  370  				ARRAY_SIZE(hx8357_seq_display_frame));
+8a6c1dd55168b5 Maxime Ripard     2013-02-21  371  	if (ret < 0)
+8a6c1dd55168b5 Maxime Ripard     2013-02-21  372  		return ret;
+8a6c1dd55168b5 Maxime Ripard     2013-02-21  373  
+8a6c1dd55168b5 Maxime Ripard     2013-02-21  374  	ret = hx8357_spi_write_array(lcdev, hx8357_seq_panel_related,
+8a6c1dd55168b5 Maxime Ripard     2013-02-21  375  				ARRAY_SIZE(hx8357_seq_panel_related));
+8a6c1dd55168b5 Maxime Ripard     2013-02-21  376  	if (ret < 0)
+8a6c1dd55168b5 Maxime Ripard     2013-02-21  377  		return ret;
+8a6c1dd55168b5 Maxime Ripard     2013-02-21  378  
+8a6c1dd55168b5 Maxime Ripard     2013-02-21  379  	ret = hx8357_spi_write_array(lcdev, hx8357_seq_undefined1,
+8a6c1dd55168b5 Maxime Ripard     2013-02-21  380  				ARRAY_SIZE(hx8357_seq_undefined1));
+8a6c1dd55168b5 Maxime Ripard     2013-02-21  381  	if (ret < 0)
+8a6c1dd55168b5 Maxime Ripard     2013-02-21  382  		return ret;
+8a6c1dd55168b5 Maxime Ripard     2013-02-21  383  
+8a6c1dd55168b5 Maxime Ripard     2013-02-21  384  	ret = hx8357_spi_write_array(lcdev, hx8357_seq_undefined2,
+8a6c1dd55168b5 Maxime Ripard     2013-02-21  385  				ARRAY_SIZE(hx8357_seq_undefined2));
+8a6c1dd55168b5 Maxime Ripard     2013-02-21  386  	if (ret < 0)
+8a6c1dd55168b5 Maxime Ripard     2013-02-21  387  		return ret;
+8a6c1dd55168b5 Maxime Ripard     2013-02-21  388  
+8a6c1dd55168b5 Maxime Ripard     2013-02-21  389  	ret = hx8357_spi_write_array(lcdev, hx8357_seq_gamma,
+8a6c1dd55168b5 Maxime Ripard     2013-02-21  390  				ARRAY_SIZE(hx8357_seq_gamma));
+8a6c1dd55168b5 Maxime Ripard     2013-02-21  391  	if (ret < 0)
+8a6c1dd55168b5 Maxime Ripard     2013-02-21  392  		return ret;
+8a6c1dd55168b5 Maxime Ripard     2013-02-21  393  
+8a6c1dd55168b5 Maxime Ripard     2013-02-21  394  	ret = hx8357_spi_write_array(lcdev, hx8357_seq_address_mode,
+8a6c1dd55168b5 Maxime Ripard     2013-02-21  395  				ARRAY_SIZE(hx8357_seq_address_mode));
+8a6c1dd55168b5 Maxime Ripard     2013-02-21  396  	if (ret < 0)
+8a6c1dd55168b5 Maxime Ripard     2013-02-21  397  		return ret;
+8a6c1dd55168b5 Maxime Ripard     2013-02-21  398  
+8a6c1dd55168b5 Maxime Ripard     2013-02-21  399  	ret = hx8357_spi_write_array(lcdev, hx8357_seq_pixel_format,
+8a6c1dd55168b5 Maxime Ripard     2013-02-21  400  				ARRAY_SIZE(hx8357_seq_pixel_format));
+8a6c1dd55168b5 Maxime Ripard     2013-02-21  401  	if (ret < 0)
+8a6c1dd55168b5 Maxime Ripard     2013-02-21  402  		return ret;
+8a6c1dd55168b5 Maxime Ripard     2013-02-21  403  
+8a6c1dd55168b5 Maxime Ripard     2013-02-21  404  	ret = hx8357_spi_write_array(lcdev, hx8357_seq_column_address,
+8a6c1dd55168b5 Maxime Ripard     2013-02-21  405  				ARRAY_SIZE(hx8357_seq_column_address));
+8a6c1dd55168b5 Maxime Ripard     2013-02-21  406  	if (ret < 0)
+8a6c1dd55168b5 Maxime Ripard     2013-02-21  407  		return ret;
+8a6c1dd55168b5 Maxime Ripard     2013-02-21  408  
+8a6c1dd55168b5 Maxime Ripard     2013-02-21  409  	ret = hx8357_spi_write_array(lcdev, hx8357_seq_page_address,
+8a6c1dd55168b5 Maxime Ripard     2013-02-21  410  				ARRAY_SIZE(hx8357_seq_page_address));
+8a6c1dd55168b5 Maxime Ripard     2013-02-21  411  	if (ret < 0)
+8a6c1dd55168b5 Maxime Ripard     2013-02-21  412  		return ret;
+8a6c1dd55168b5 Maxime Ripard     2013-02-21  413  
+8a6c1dd55168b5 Maxime Ripard     2013-02-21  414  	ret = hx8357_spi_write_array(lcdev, hx8357_seq_rgb,
+8a6c1dd55168b5 Maxime Ripard     2013-02-21  415  				ARRAY_SIZE(hx8357_seq_rgb));
+8a6c1dd55168b5 Maxime Ripard     2013-02-21  416  	if (ret < 0)
+8a6c1dd55168b5 Maxime Ripard     2013-02-21  417  		return ret;
+8a6c1dd55168b5 Maxime Ripard     2013-02-21  418  
+8a6c1dd55168b5 Maxime Ripard     2013-02-21  419  	ret = hx8357_spi_write_array(lcdev, hx8357_seq_display_mode,
+8a6c1dd55168b5 Maxime Ripard     2013-02-21  420  				ARRAY_SIZE(hx8357_seq_display_mode));
+8a6c1dd55168b5 Maxime Ripard     2013-02-21  421  	if (ret < 0)
+8a6c1dd55168b5 Maxime Ripard     2013-02-21  422  		return ret;
+8a6c1dd55168b5 Maxime Ripard     2013-02-21  423  
+8a6c1dd55168b5 Maxime Ripard     2013-02-21  424  	ret = hx8357_spi_write_byte(lcdev, HX8357_EXIT_SLEEP_MODE);
+8a6c1dd55168b5 Maxime Ripard     2013-02-21  425  	if (ret < 0)
+8a6c1dd55168b5 Maxime Ripard     2013-02-21  426  		return ret;
+8a6c1dd55168b5 Maxime Ripard     2013-02-21  427  
+fb52566873ca8c Alexandre Belloni 2013-08-01  428  	/*
+fb52566873ca8c Alexandre Belloni 2013-08-01  429  	 * The controller needs 120ms to fully recover from exiting sleep mode
+fb52566873ca8c Alexandre Belloni 2013-08-01  430  	 */
+8a6c1dd55168b5 Maxime Ripard     2013-02-21  431  	msleep(120);
+8a6c1dd55168b5 Maxime Ripard     2013-02-21  432  
+8a6c1dd55168b5 Maxime Ripard     2013-02-21  433  	ret = hx8357_spi_write_byte(lcdev, HX8357_SET_DISPLAY_ON);
+8a6c1dd55168b5 Maxime Ripard     2013-02-21  434  	if (ret < 0)
+8a6c1dd55168b5 Maxime Ripard     2013-02-21  435  		return ret;
+8a6c1dd55168b5 Maxime Ripard     2013-02-21  436  
+8a6c1dd55168b5 Maxime Ripard     2013-02-21  437  	usleep_range(5000, 7000);
+8a6c1dd55168b5 Maxime Ripard     2013-02-21  438  
+8a6c1dd55168b5 Maxime Ripard     2013-02-21  439  	ret = hx8357_spi_write_byte(lcdev, HX8357_WRITE_MEMORY_START);
+8a6c1dd55168b5 Maxime Ripard     2013-02-21  440  	if (ret < 0)
+8a6c1dd55168b5 Maxime Ripard     2013-02-21  441  		return ret;
+8a6c1dd55168b5 Maxime Ripard     2013-02-21  442  
+8a6c1dd55168b5 Maxime Ripard     2013-02-21  443  	return 0;
+8a6c1dd55168b5 Maxime Ripard     2013-02-21  444  }
+8a6c1dd55168b5 Maxime Ripard     2013-02-21  445  
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests
