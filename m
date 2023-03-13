@@ -2,116 +2,176 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1C08F6B706F
-	for <lists+devicetree@lfdr.de>; Mon, 13 Mar 2023 08:53:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E543B6B7091
+	for <lists+devicetree@lfdr.de>; Mon, 13 Mar 2023 08:57:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230254AbjCMHxb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Mar 2023 03:53:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50328 "EHLO
+        id S230215AbjCMH5T (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Mar 2023 03:57:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50186 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230156AbjCMHwv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Mar 2023 03:52:51 -0400
-Received: from mail-lj1-x232.google.com (mail-lj1-x232.google.com [IPv6:2a00:1450:4864:20::232])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AE94451F8F;
-        Mon, 13 Mar 2023 00:52:19 -0700 (PDT)
-Received: by mail-lj1-x232.google.com with SMTP id t14so11634168ljd.5;
-        Mon, 13 Mar 2023 00:52:19 -0700 (PDT)
+        with ESMTP id S230045AbjCMH4e (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Mar 2023 03:56:34 -0400
+Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com [IPv6:2a00:1450:4864:20::52b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AE6A712BDA
+        for <devicetree@vger.kernel.org>; Mon, 13 Mar 2023 00:54:55 -0700 (PDT)
+Received: by mail-ed1-x52b.google.com with SMTP id h8so1148738ede.8
+        for <devicetree@vger.kernel.org>; Mon, 13 Mar 2023 00:54:55 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112; t=1678693930;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=DP22K4i2hvSQUMj03mmf1nrlTT4nDZqslXzw3b5STVg=;
-        b=mq4CVXLbEPFpKdmBnLa+DaPZzaB+5PUIR1eMjh/S3fQORQr+7borK30x1Sezcwvn3h
-         GURCYNkzr8nsUL31CT/9nX7UJ2u4sA8psHIJrab55dBjZPCFypFurmSJrIPqiUwafkLy
-         nXiFnALJjYOqNPU7FDabiJDarRrua8EmKrWRNxfQW0/fUC7XRZasBI2sBxy5KXjs3WYs
-         9A5BAyxpxFw4SzRZI7Wm3Exmv5L20yk1Zr7GmrR4Y8aG5l4BnQOiYOAt+rNw6COZSI0a
-         e5dkLHtYSuFhxNBxcFuu3+mEQNiv1ECxluOgUyxUTx2Cfr8EuDNd70C0MyzOlD3ZwZ1I
-         v8fw==
+        d=linaro.org; s=google; t=1678694091;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=BbnW+HQXXMov2YCkKGIA3Ip1jgaMjvv36rVivoZ/sxY=;
+        b=PZJTlA13gQWFQFIrQIYA9l4hTDVIPGJzn7hnQUc6ArNl6Jh85UndmLYxMGd06xQnKC
+         Dl/vQKHIjeTJc9i3UAV661s6QUgZ2dtyH0KjxxxOEpAbKaK0vlpJpfmxqCFxFUjaO0cl
+         tKZoSkW4jcECGIRosDo9sc5bjUqXy4/Ou/vcYd7dRbLOrrf+ljTR42qxbPTWxOrVs3Nx
+         +AWqyiWKadxq1taPKevOKDueaps4JoYjLCg46IWa9ZQxN455HqIKgp5eqlOrFunrGA/B
+         UuFnS1/jBxO9hzW+uPmxt2d5spffpWoWCLM2wFt7taAdDsT4VzdXeGzriQZLM0malsm9
+         566w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678693930;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=DP22K4i2hvSQUMj03mmf1nrlTT4nDZqslXzw3b5STVg=;
-        b=Ux67mV44g0E8te8tXR1aJsgnrRGWgAMYcH8umwDl/j5S/rcWiQkSo4iF75uVTgqUAu
-         Q3GkMA8LxHDNBkjlSII+FliKwRedARGCUsA1mDf80n5x1DPrZx7AfrJdgCPPAmF4ok11
-         AWyLQQhIaEDTfCmFbXZByV12DRnNxGamUE/h26+MNa/PiMsAX3qc8qp42DyDeXLH8op0
-         dvRdbTy8xRMVXno+toYCOD6XhrEQywKCD7hdS+EI+RaZ/toS1Jg8OWhHxtULUUz3GR7J
-         eSorgHGx87BUgkeOtoyVjnLC6PtkUNc9QmYgciCr0tO23ALlGCa1fMiKR+frYSq6JrOq
-         GNWA==
-X-Gm-Message-State: AO0yUKU04eH0GSUSzTYr1zYSTO4zbgXYPOKhwnurMGEzRAcF3ShMXd7l
-        zcFCsUWFsw3qkVrdwB4/shs=
-X-Google-Smtp-Source: AK7set+fCZnioNoLHXd86gA5fdj9retwzd09OegGlbQGd8saON8iHEbmrTCRWzvBpZhUxZqO/WFw2w==
-X-Received: by 2002:a2e:99c4:0:b0:293:4d57:7148 with SMTP id l4-20020a2e99c4000000b002934d577148mr10265826ljj.11.1678693930688;
-        Mon, 13 Mar 2023 00:52:10 -0700 (PDT)
-Received: from ?IPV6:2001:14ba:16f3:4a00::6? (dc75zzyyyyyyyyyyyyydy-3.rev.dnainternet.fi. [2001:14ba:16f3:4a00::6])
-        by smtp.gmail.com with ESMTPSA id v10-20020a2ea44a000000b002986d9bdecesm912257ljn.129.2023.03.13.00.52.09
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 13 Mar 2023 00:52:10 -0700 (PDT)
-Message-ID: <e07c2fbf-6432-0065-3e68-aeac2ee51799@gmail.com>
-Date:   Mon, 13 Mar 2023 09:52:09 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-Subject: Re: [PATCHv1 04/11] power: supply: generic-adc-battery: fix unit
- scaling
-Content-Language: en-US, en-GB
-To:     Sebastian Reichel <sre@kernel.org>
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
+        d=1e100.net; s=20210112; t=1678694091;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=BbnW+HQXXMov2YCkKGIA3Ip1jgaMjvv36rVivoZ/sxY=;
+        b=Ti6DWfMRd+RcRhPuULHo9I+1GTIZqruBbjkUhVFyuUAjbRfsN4UXTmJ2d0LB+5dMma
+         Wjef4zAMPtF9MH3h/TskGQh5mVfrZPjwyHPlnLI3Cq7W62F+8OSuJPaZWLFclK5RIZ/n
+         vADee0FvJupNL0P7D+3XoOg1uLE0RaoIP9mKsE3MECZfvZpk8M+kpSztMH3vESZ3nD7P
+         yo0jEUld1eEB8AJk+rKC1rablfRxmm1lM1SX5hAcK7FIT/GKYpXV5Ns6/a4m4OPSO+lp
+         YVr/dD57/rrGKLqJW4Oq7jpLO5sUM4wRY5mvADZDkwpXshk+ATSvXGJL2htK6EcB/MyO
+         43MQ==
+X-Gm-Message-State: AO0yUKUd58jrIcUkDYWZ3f5b1ib86mdEsFgmEmj/Fz/0+/5UWuyVRgVE
+        M53Q72j8YF0p+/O51r3PoCxY8A==
+X-Google-Smtp-Source: AK7set+XOjPCtML5HmxF40axQsuv+8HUsC4sRrOwjJpKSU+H/Ylhp1qLJyift7RrPLPstpEjzVTcUg==
+X-Received: by 2002:a17:907:1c1f:b0:884:930:b014 with SMTP id nc31-20020a1709071c1f00b008840930b014mr42208755ejc.6.1678694091073;
+        Mon, 13 Mar 2023 00:54:51 -0700 (PDT)
+Received: from krzk-bin.. ([2a02:810d:15c0:828:f052:f15:3f90:fcb3])
+        by smtp.gmail.com with ESMTPSA id g7-20020a1709061c8700b008b980c3e013sm3146943ejh.179.2023.03.13.00.54.50
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 13 Mar 2023 00:54:50 -0700 (PDT)
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Banajit Goswami <bgoswami@quicinc.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org
-References: <20230309225041.477440-1-sre@kernel.org>
- <20230309225041.477440-5-sre@kernel.org>
-From:   Matti Vaittinen <mazziesaccount@gmail.com>
-In-Reply-To: <20230309225041.477440-5-sre@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+        Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>, alsa-devel@alsa-project.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH v2 1/9] ASoC: dt-bindings: qcom,lpass-rx-macro: narrow clocks per variants
+Date:   Mon, 13 Mar 2023 08:54:37 +0100
+Message-Id: <20230313075445.17160-1-krzysztof.kozlowski@linaro.org>
+X-Mailer: git-send-email 2.34.1
+MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 3/10/23 00:50, Sebastian Reichel wrote:
-> power-supply properties are reported in µV, µA and µW.
-> The IIO API provides mV, mA, mW, so the values need to
-> be multiplied by 1000.
-> 
-> Signed-off-by: Sebastian Reichel <sre@kernel.org>
+Currently the Qualcomm RX macro codec binding allows two different clock
+setups - with (for ADSP) and without macro/dcodec entries (for ADSP
+bypassed).  With more devices coming soon, this will keep growing, thus
+rework the clocks/clock-names to be specific for each binding.
 
-As Linus wrote, Fixes-tag would be good. With that remark:
-Reviewed-by: Matti Vaittinen <mazziesaccount@gmail.com>
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+---
+ .../bindings/sound/qcom,lpass-rx-macro.yaml   | 58 ++++++++++++++-----
+ 1 file changed, 44 insertions(+), 14 deletions(-)
 
-> ---
->   drivers/power/supply/generic-adc-battery.c | 3 +++
->   1 file changed, 3 insertions(+)
-> 
-> diff --git a/drivers/power/supply/generic-adc-battery.c b/drivers/power/supply/generic-adc-battery.c
-> index 917bd2a6cc52..535972a332b3 100644
-> --- a/drivers/power/supply/generic-adc-battery.c
-> +++ b/drivers/power/supply/generic-adc-battery.c
-> @@ -136,6 +136,9 @@ static int read_channel(struct gab *adc_bat, enum power_supply_property psp,
->   			result);
->   	if (ret < 0)
->   		pr_err("read channel error\n");
-> +	else
-> +		*result *= 1000;
-> +
->   	return ret;
->   }
->   
-
+diff --git a/Documentation/devicetree/bindings/sound/qcom,lpass-rx-macro.yaml b/Documentation/devicetree/bindings/sound/qcom,lpass-rx-macro.yaml
+index b0b95689d78b..8b3d617a9578 100644
+--- a/Documentation/devicetree/bindings/sound/qcom,lpass-rx-macro.yaml
++++ b/Documentation/devicetree/bindings/sound/qcom,lpass-rx-macro.yaml
+@@ -9,9 +9,6 @@ title: LPASS(Low Power Audio Subsystem) RX Macro audio codec
+ maintainers:
+   - Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+ 
+-allOf:
+-  - $ref: dai-common.yaml#
+-
+ properties:
+   compatible:
+     enum:
+@@ -34,17 +31,8 @@ properties:
+     maxItems: 5
+ 
+   clock-names:
+-    oneOf:
+-      - items:   #for ADSP based platforms
+-          - const: mclk
+-          - const: npl
+-          - const: macro
+-          - const: dcodec
+-          - const: fsgen
+-      - items:   #for ADSP bypass based platforms
+-          - const: mclk
+-          - const: npl
+-          - const: fsgen
++    minItems: 3
++    maxItems: 5
+ 
+   clock-output-names:
+     maxItems: 1
+@@ -62,6 +50,48 @@ required:
+   - reg
+   - "#sound-dai-cells"
+ 
++allOf:
++  - $ref: dai-common.yaml#
++  - if:
++      properties:
++        compatible:
++          enum:
++            - qcom,sc7280-lpass-rx-macro
++    then:
++      properties:
++        clock-names:
++          oneOf:
++            - items:   #for ADSP based platforms
++                - const: mclk
++                - const: npl
++                - const: macro
++                - const: dcodec
++                - const: fsgen
++            - items:   #for ADSP bypass based platforms
++                - const: mclk
++                - const: npl
++                - const: fsgen
++
++  - if:
++      properties:
++        compatible:
++          enum:
++            - qcom,sc8280xp-lpass-rx-macro
++            - qcom,sm8250-lpass-rx-macro
++            - qcom,sm8450-lpass-rx-macro
++    then:
++      properties:
++        clocks:
++          minItems: 5
++          maxItems: 5
++        clock-names:
++          items:
++            - const: mclk
++            - const: npl
++            - const: macro
++            - const: dcodec
++            - const: fsgen
++
+ unevaluatedProperties: false
+ 
+ examples:
 -- 
-Matti Vaittinen
-Linux kernel developer at ROHM Semiconductors
-Oulu Finland
-
-~~ When things go utterly wrong vim users can always type :help! ~~
+2.34.1
 
