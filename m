@@ -2,282 +2,249 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 327696B80F8
-	for <lists+devicetree@lfdr.de>; Mon, 13 Mar 2023 19:44:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CEAA76B8102
+	for <lists+devicetree@lfdr.de>; Mon, 13 Mar 2023 19:46:08 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229528AbjCMSoZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Mar 2023 14:44:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35176 "EHLO
+        id S231340AbjCMSqF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Mar 2023 14:46:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40504 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230365AbjCMSoS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Mar 2023 14:44:18 -0400
-Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 580302748D;
-        Mon, 13 Mar 2023 11:43:44 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1678733024; x=1710269024;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=JHNQMG+SmEvryqcuY67cCs5r39GOh8n5At5NploTfC4=;
-  b=AmfHoZdVdT7pzyajBdFz8QUB0yTY1CZCGhK7BWiJSwsXlE+ON0bgK6Vq
-   aG959gO4j1ROmh0U1yyNfsYieu6fNd6n5YXkG2ibW+iatjhmsxk1/kXxD
-   45UUSPNXWKpDidbkZvlplYgvo2h4qPV8hoArqOjYNLNESLWYymJsxzJQG
-   lEDnXWpdiHIu68LebLjYD7B8knaWurFbxFKvPrhQHqmgzaGmOnCc+KQTF
-   ymztnUvmprxG1k4y+ZG1t2Xr3cYrtBh9hbv3qW+BZZtaSGDNWsTcUrzJH
-   JQbQ7sK6s83D6JdTHP1+MaWtQrvdXFEicWHLiuAw1qviJC5QgmDdsccK2
-   w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10648"; a="399821603"
-X-IronPort-AV: E=Sophos;i="5.98,257,1673942400"; 
-   d="scan'208";a="399821603"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
-  by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 13 Mar 2023 11:40:41 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10648"; a="708978883"
-X-IronPort-AV: E=Sophos;i="5.98,257,1673942400"; 
-   d="scan'208";a="708978883"
-Received: from lkp-server01.sh.intel.com (HELO b613635ddfff) ([10.239.97.150])
-  by orsmga008.jf.intel.com with ESMTP; 13 Mar 2023 11:40:38 -0700
-Received: from kbuild by b613635ddfff with local (Exim 4.96)
-        (envelope-from <lkp@intel.com>)
-        id 1pbn65-00060Q-27;
-        Mon, 13 Mar 2023 18:40:37 +0000
-Date:   Tue, 14 Mar 2023 02:40:00 +0800
-From:   kernel test robot <lkp@intel.com>
-To:     Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
-        devicetree@vger.kernel.org, linux-gpio@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
-        Linus Walleij <linus.walleij@linaro.org>,
+        with ESMTP id S231147AbjCMSqA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Mar 2023 14:46:00 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 68C6128D34;
+        Mon, 13 Mar 2023 11:45:24 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id E81E061477;
+        Mon, 13 Mar 2023 18:44:40 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9B84FC433D2;
+        Mon, 13 Mar 2023 18:44:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1678733080;
+        bh=dSwjc6VrZyuKRs3FcaS0zc1QaXTsOptD0AFwcVyG0TE=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=QUAVNamWky1dVxT9NHY5JfDqMATEh4vR38zN2/zYgXqZq16+e1apMBeGMi6OasDKA
+         Tl3R5o90cdFuLE7UsxczfCVUYGRXK/zoJ6G5MJAqKXffWY/4U0dpOAPvIEmh8aw87A
+         LJnaOExIMOgSdLbZzHxEe1ztgvZ1Vlsiyr0rB2br2S5KBQhheIPI5/ZpF39XENlwwq
+         6DkIzAXK1WW5i7BiWi+y3bPwK1AQRxZPjWjdW2PvuiKmMJF3FelN7yntJ+ac9QRwra
+         TDFstxdo3jwFyx9A2V/9jO5xDBmFpxvn7DH00kBnukVhJhavQ2rGWf16fbh2dy9E2U
+         6iepRZj96D/lg==
+Date:   Mon, 13 Mar 2023 11:44:37 -0700
+From:   Eric Biggers <ebiggers@kernel.org>
+To:     Abel Vesa <abel.vesa@linaro.org>
+Cc:     Ulf Hansson <ulf.hansson@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>
-Subject: Re: [rft, PATCH v1 1/1] gpio: Drop unused inclusions from of_gpio.h
-Message-ID: <202303140220.FQmu9huZ-lkp@intel.com>
-References: <20230313144557.35856-1-andriy.shevchenko@linux.intel.com>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Manivannan Sadhasivam <mani@kernel.org>,
+        Alim Akhtar <alim.akhtar@samsung.com>,
+        Avri Altman <avri.altman@wdc.com>,
+        Bart Van Assche <bvanassche@acm.org>,
+        Adrian Hunter <adrian.hunter@intel.com>,
+        "James E . J . Bottomley" <jejb@linux.ibm.com>,
+        "Martin K . Petersen" <martin.petersen@oracle.com>,
+        Herbert Xu <herbert@gondor.apana.org.au>,
+        "David S . Miller" <davem@davemloft.net>,
+        linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        linux-arm-msm@vger.kernel.org, linux-crypto@vger.kernel.org,
+        linux-scsi@vger.kernel.org
+Subject: Re: [RFC PATCH v3 4/7] soc: qcom: Make the Qualcomm UFS/SDCC ICE a
+ dedicated driver
+Message-ID: <ZA9vFcjLMoifqcsE@sol.localdomain>
+References: <20230313115202.3960700-1-abel.vesa@linaro.org>
+ <20230313115202.3960700-5-abel.vesa@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230313144557.35856-1-andriy.shevchenko@linux.intel.com>
+In-Reply-To: <20230313115202.3960700-5-abel.vesa@linaro.org>
 X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Andy,
+On Mon, Mar 13, 2023 at 01:51:59PM +0200, Abel Vesa wrote:
+> diff --git a/drivers/soc/qcom/ice.c b/drivers/soc/qcom/ice.c
+> new file mode 100644
+> index 000000000000..d664dd598791
+> --- /dev/null
+> +++ b/drivers/soc/qcom/ice.c
+> @@ -0,0 +1,347 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * Qualcomm ICE (Inline Crypto Engine) support.
+> + *
+> + * Copyright (c) 2013-2019, The Linux Foundation. All rights reserved.
+> + * Copyright (c) 2019, Google LLC
+> + * Copyright (c) 2023, Linaro Limited
+> + */
+> +
+> +#include <linux/bitfield.h>
+> +#include <linux/clk.h>
+> +#include <linux/delay.h>
+> +#include <linux/iopoll.h>
+> +#include <linux/of_platform.h>
+> +
+> +#include <linux/firmware/qcom/qcom_scm.h>
+> +
+> +#include <soc/qcom/ice.h>
+> +
+> +#define AES_256_XTS_KEY_SIZE			64
+> +
+> +/* QCOM ICE registers */
+> +#define QCOM_ICE_REG_VERSION			0x0008
+> +#define QCOM_ICE_REG_FUSE_SETTING		0x0010
+> +
+> +/* QCOM ICE v2.X only */
+> +
+> +#define QCOM_ICE_REG_BIST_STATUS		0x0070
+> +#define QCOM_ICE_REG_ADVANCED_CONTROL		0x1000
 
-I love your patch! Yet something to improve:
+The "/* QCOM ICE v2.X only */" comment should be removed, as it's misleading.
+This driver only supports v3.  I think this comment also originally described
+registers that have now been removed from the file.
 
-[auto build test ERROR on brgl/gpio/for-next]
-[also build test ERROR on linus/master v6.3-rc2 next-20230310]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+> +/* BIST ("built-in self-test"?) status flags */
+> +#define QCOM_ICE_BIST_STATUS_MASK		GENMASK(31, 28)
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Andy-Shevchenko/gpio-Drop-unused-inclusions-from-of_gpio-h/20230313-224656
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/brgl/linux.git gpio/for-next
-patch link:    https://lore.kernel.org/r/20230313144557.35856-1-andriy.shevchenko%40linux.intel.com
-patch subject: [rft, PATCH v1 1/1] gpio: Drop unused inclusions from of_gpio.h
-config: arm-randconfig-r046-20230312 (https://download.01.org/0day-ci/archive/20230314/202303140220.FQmu9huZ-lkp@intel.com/config)
-compiler: clang version 17.0.0 (https://github.com/llvm/llvm-project 67409911353323ca5edf2049ef0df54132fa1ca7)
-reproduce (this is a W=1 build):
-        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
-        chmod +x ~/bin/make.cross
-        # install arm cross compiling tool for clang build
-        # apt-get install binutils-arm-linux-gnueabi
-        # https://github.com/intel-lab-lkp/linux/commit/b108d11788b6db9e37a6c4b3110c09cecf30a46c
-        git remote add linux-review https://github.com/intel-lab-lkp/linux
-        git fetch --no-tags linux-review Andy-Shevchenko/gpio-Drop-unused-inclusions-from-of_gpio-h/20230313-224656
-        git checkout b108d11788b6db9e37a6c4b3110c09cecf30a46c
-        # save the config file
-        mkdir build_dir && cp config build_dir/.config
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross W=1 O=build_dir ARCH=arm olddefconfig
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross W=1 O=build_dir ARCH=arm SHELL=/bin/bash drivers/video/backlight/
+I think we're confident enough in what "BIST" stands for now that the question
+mark can be removed.
 
-If you fix the issue, kindly add following tag where applicable
-| Reported-by: kernel test robot <lkp@intel.com>
-| Link: https://lore.kernel.org/oe-kbuild-all/202303140220.FQmu9huZ-lkp@intel.com/
+> +/* Only one ICE instance is currently supported by HW */
+> +static bool qcom_ice_check_supported(struct qcom_ice *ice)
 
-All errors (new ones prefixed by >>):
+I don't see how the comment relates to the function it documents.
 
->> drivers/video/backlight/hx8357.c:324:2: error: call to undeclared function 'gpio_set_value'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-           gpio_set_value(lcd->reset, 1);
-           ^
-   drivers/video/backlight/hx8357.c:324:2: note: did you mean 'gpiod_set_value'?
-   include/linux/gpio/consumer.h:122:6: note: 'gpiod_set_value' declared here
-   void gpiod_set_value(struct gpio_desc *desc, int value);
-        ^
->> drivers/video/backlight/hx8357.c:344:3: error: call to undeclared function 'gpio_set_value_cansleep'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-                   gpio_set_value_cansleep(lcd->im_pins[0], 1);
-                   ^
-   drivers/video/backlight/hx8357.c:344:3: note: did you mean 'gpiod_set_value_cansleep'?
-   include/linux/gpio/consumer.h:144:6: note: 'gpiod_set_value_cansleep' declared here
-   void gpiod_set_value_cansleep(struct gpio_desc *desc, int value);
-        ^
->> drivers/video/backlight/hx8357.c:605:7: error: call to undeclared function 'gpio_is_valid'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-           if (!gpio_is_valid(lcd->reset)) {
-                ^
-   drivers/video/backlight/hx8357.c:605:7: note: did you mean 'uuid_is_valid'?
-   include/linux/uuid.h:102:19: note: 'uuid_is_valid' declared here
-   bool __must_check uuid_is_valid(const char *uuid);
-                     ^
->> drivers/video/backlight/hx8357.c:610:8: error: call to undeclared function 'devm_gpio_request_one'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-           ret = devm_gpio_request_one(&spi->dev, lcd->reset,
-                 ^
->> drivers/video/backlight/hx8357.c:611:9: error: use of undeclared identifier 'GPIOF_OUT_INIT_HIGH'; did you mean 'GPIOD_OUT_HIGH'?
-                                       GPIOF_OUT_INIT_HIGH,
-                                       ^~~~~~~~~~~~~~~~~~~
-                                       GPIOD_OUT_HIGH
-   include/linux/gpio/consumer.h:51:2: note: 'GPIOD_OUT_HIGH' declared here
-           GPIOD_OUT_HIGH  = GPIOD_FLAGS_BIT_DIR_SET | GPIOD_FLAGS_BIT_DIR_OUT |
-           ^
->> drivers/video/backlight/hx8357.c:636:11: error: use of undeclared identifier 'GPIOF_OUT_INIT_LOW'; did you mean 'GPIOD_OUT_LOW'?
-                                                       GPIOF_OUT_INIT_LOW,
-                                                       ^~~~~~~~~~~~~~~~~~
-                                                       GPIOD_OUT_LOW
-   include/linux/gpio/consumer.h:50:2: note: 'GPIOD_OUT_LOW' declared here
-           GPIOD_OUT_LOW   = GPIOD_FLAGS_BIT_DIR_SET | GPIOD_FLAGS_BIT_DIR_OUT,
-           ^
-   6 errors generated.
+> +static int __qcom_ice_enable(struct qcom_ice *ice, bool enable)
+> +{
+> +	struct device *dev = ice->dev;
+> +	int err;
+> +
+> +	err = clk_prepare_enable(ice->core_clk);
+> +	if (err) {
+> +		dev_err(dev, "failed to enable core clock (%d)\n",
+> +			err);
+> +		return err;
+> +	}
+> +
+> +	if (enable) {
+> +		qcom_ice_low_power_mode_enable(ice);
+> +		qcom_ice_optimization_enable(ice);
+> +	}
+> +
+> +	err = qcom_ice_wait_bist_status(ice);
+> +	if (err) {
+> +		dev_err(dev, "BIST status error (%d)\n", err);
+> +		return err;
+> +	}
+> +
+> +	return 0;
+> +}
 
+The 'enable' parameter is confusing.  Maybe call it 'enable_optimizations'?
 
-vim +/gpio_set_value +324 drivers/video/backlight/hx8357.c
+> +
+> +int qcom_ice_program_key(struct qcom_ice *ice, u8 crypto_cap_idx,
+> +			 u8 algorithm_id, u8 key_size,
+> +			 const u8 crypto_key[], u8 data_unit_size,
+> +			 int slot)
+> +{
+> +	struct device *dev;
+> +	union {
+> +		u8 bytes[AES_256_XTS_KEY_SIZE];
+> +		u32 words[AES_256_XTS_KEY_SIZE / sizeof(u32)];
+> +	} key;
+> +	int i;
+> +	int err;
+> +
+> +	dev = ice->dev;
 
-8a6c1dd55168b5 Maxime Ripard     2013-02-21  318  
-fb52566873ca8c Alexandre Belloni 2013-08-01  319  static void hx8357_lcd_reset(struct lcd_device *lcdev)
-fb52566873ca8c Alexandre Belloni 2013-08-01  320  {
-fb52566873ca8c Alexandre Belloni 2013-08-01  321  	struct hx8357_data *lcd = lcd_get_data(lcdev);
-fb52566873ca8c Alexandre Belloni 2013-08-01  322  
-fb52566873ca8c Alexandre Belloni 2013-08-01  323  	/* Reset the screen */
-fb52566873ca8c Alexandre Belloni 2013-08-01 @324  	gpio_set_value(lcd->reset, 1);
-fb52566873ca8c Alexandre Belloni 2013-08-01  325  	usleep_range(10000, 12000);
-fb52566873ca8c Alexandre Belloni 2013-08-01  326  	gpio_set_value(lcd->reset, 0);
-fb52566873ca8c Alexandre Belloni 2013-08-01  327  	usleep_range(10000, 12000);
-fb52566873ca8c Alexandre Belloni 2013-08-01  328  	gpio_set_value(lcd->reset, 1);
-fb52566873ca8c Alexandre Belloni 2013-08-01  329  
-fb52566873ca8c Alexandre Belloni 2013-08-01  330  	/* The controller needs 120ms to recover from reset */
-fb52566873ca8c Alexandre Belloni 2013-08-01  331  	msleep(120);
-fb52566873ca8c Alexandre Belloni 2013-08-01  332  }
-fb52566873ca8c Alexandre Belloni 2013-08-01  333  
-8a6c1dd55168b5 Maxime Ripard     2013-02-21  334  static int hx8357_lcd_init(struct lcd_device *lcdev)
-8a6c1dd55168b5 Maxime Ripard     2013-02-21  335  {
-8a6c1dd55168b5 Maxime Ripard     2013-02-21  336  	struct hx8357_data *lcd = lcd_get_data(lcdev);
-8a6c1dd55168b5 Maxime Ripard     2013-02-21  337  	int ret;
-8a6c1dd55168b5 Maxime Ripard     2013-02-21  338  
-8a6c1dd55168b5 Maxime Ripard     2013-02-21  339  	/*
-8a6c1dd55168b5 Maxime Ripard     2013-02-21  340  	 * Set the interface selection pins to SPI mode, with three
-8a6c1dd55168b5 Maxime Ripard     2013-02-21  341  	 * wires
-8a6c1dd55168b5 Maxime Ripard     2013-02-21  342  	 */
-ccf9901ffec4b4 Maxime Ripard     2013-08-01  343  	if (lcd->use_im_pins) {
-8a6c1dd55168b5 Maxime Ripard     2013-02-21 @344  		gpio_set_value_cansleep(lcd->im_pins[0], 1);
-8a6c1dd55168b5 Maxime Ripard     2013-02-21  345  		gpio_set_value_cansleep(lcd->im_pins[1], 0);
-8a6c1dd55168b5 Maxime Ripard     2013-02-21  346  		gpio_set_value_cansleep(lcd->im_pins[2], 1);
-ccf9901ffec4b4 Maxime Ripard     2013-08-01  347  	}
-8a6c1dd55168b5 Maxime Ripard     2013-02-21  348  
-8a6c1dd55168b5 Maxime Ripard     2013-02-21  349  	ret = hx8357_spi_write_array(lcdev, hx8357_seq_power,
-8a6c1dd55168b5 Maxime Ripard     2013-02-21  350  				ARRAY_SIZE(hx8357_seq_power));
-8a6c1dd55168b5 Maxime Ripard     2013-02-21  351  	if (ret < 0)
-8a6c1dd55168b5 Maxime Ripard     2013-02-21  352  		return ret;
-8a6c1dd55168b5 Maxime Ripard     2013-02-21  353  
-8a6c1dd55168b5 Maxime Ripard     2013-02-21  354  	ret = hx8357_spi_write_array(lcdev, hx8357_seq_vcom,
-8a6c1dd55168b5 Maxime Ripard     2013-02-21  355  				ARRAY_SIZE(hx8357_seq_vcom));
-8a6c1dd55168b5 Maxime Ripard     2013-02-21  356  	if (ret < 0)
-8a6c1dd55168b5 Maxime Ripard     2013-02-21  357  		return ret;
-8a6c1dd55168b5 Maxime Ripard     2013-02-21  358  
-8a6c1dd55168b5 Maxime Ripard     2013-02-21  359  	ret = hx8357_spi_write_array(lcdev, hx8357_seq_power_normal,
-8a6c1dd55168b5 Maxime Ripard     2013-02-21  360  				ARRAY_SIZE(hx8357_seq_power_normal));
-8a6c1dd55168b5 Maxime Ripard     2013-02-21  361  	if (ret < 0)
-8a6c1dd55168b5 Maxime Ripard     2013-02-21  362  		return ret;
-8a6c1dd55168b5 Maxime Ripard     2013-02-21  363  
-8a6c1dd55168b5 Maxime Ripard     2013-02-21  364  	ret = hx8357_spi_write_array(lcdev, hx8357_seq_panel_driving,
-8a6c1dd55168b5 Maxime Ripard     2013-02-21  365  				ARRAY_SIZE(hx8357_seq_panel_driving));
-8a6c1dd55168b5 Maxime Ripard     2013-02-21  366  	if (ret < 0)
-8a6c1dd55168b5 Maxime Ripard     2013-02-21  367  		return ret;
-8a6c1dd55168b5 Maxime Ripard     2013-02-21  368  
-8a6c1dd55168b5 Maxime Ripard     2013-02-21  369  	ret = hx8357_spi_write_array(lcdev, hx8357_seq_display_frame,
-8a6c1dd55168b5 Maxime Ripard     2013-02-21  370  				ARRAY_SIZE(hx8357_seq_display_frame));
-8a6c1dd55168b5 Maxime Ripard     2013-02-21  371  	if (ret < 0)
-8a6c1dd55168b5 Maxime Ripard     2013-02-21  372  		return ret;
-8a6c1dd55168b5 Maxime Ripard     2013-02-21  373  
-8a6c1dd55168b5 Maxime Ripard     2013-02-21  374  	ret = hx8357_spi_write_array(lcdev, hx8357_seq_panel_related,
-8a6c1dd55168b5 Maxime Ripard     2013-02-21  375  				ARRAY_SIZE(hx8357_seq_panel_related));
-8a6c1dd55168b5 Maxime Ripard     2013-02-21  376  	if (ret < 0)
-8a6c1dd55168b5 Maxime Ripard     2013-02-21  377  		return ret;
-8a6c1dd55168b5 Maxime Ripard     2013-02-21  378  
-8a6c1dd55168b5 Maxime Ripard     2013-02-21  379  	ret = hx8357_spi_write_array(lcdev, hx8357_seq_undefined1,
-8a6c1dd55168b5 Maxime Ripard     2013-02-21  380  				ARRAY_SIZE(hx8357_seq_undefined1));
-8a6c1dd55168b5 Maxime Ripard     2013-02-21  381  	if (ret < 0)
-8a6c1dd55168b5 Maxime Ripard     2013-02-21  382  		return ret;
-8a6c1dd55168b5 Maxime Ripard     2013-02-21  383  
-8a6c1dd55168b5 Maxime Ripard     2013-02-21  384  	ret = hx8357_spi_write_array(lcdev, hx8357_seq_undefined2,
-8a6c1dd55168b5 Maxime Ripard     2013-02-21  385  				ARRAY_SIZE(hx8357_seq_undefined2));
-8a6c1dd55168b5 Maxime Ripard     2013-02-21  386  	if (ret < 0)
-8a6c1dd55168b5 Maxime Ripard     2013-02-21  387  		return ret;
-8a6c1dd55168b5 Maxime Ripard     2013-02-21  388  
-8a6c1dd55168b5 Maxime Ripard     2013-02-21  389  	ret = hx8357_spi_write_array(lcdev, hx8357_seq_gamma,
-8a6c1dd55168b5 Maxime Ripard     2013-02-21  390  				ARRAY_SIZE(hx8357_seq_gamma));
-8a6c1dd55168b5 Maxime Ripard     2013-02-21  391  	if (ret < 0)
-8a6c1dd55168b5 Maxime Ripard     2013-02-21  392  		return ret;
-8a6c1dd55168b5 Maxime Ripard     2013-02-21  393  
-8a6c1dd55168b5 Maxime Ripard     2013-02-21  394  	ret = hx8357_spi_write_array(lcdev, hx8357_seq_address_mode,
-8a6c1dd55168b5 Maxime Ripard     2013-02-21  395  				ARRAY_SIZE(hx8357_seq_address_mode));
-8a6c1dd55168b5 Maxime Ripard     2013-02-21  396  	if (ret < 0)
-8a6c1dd55168b5 Maxime Ripard     2013-02-21  397  		return ret;
-8a6c1dd55168b5 Maxime Ripard     2013-02-21  398  
-8a6c1dd55168b5 Maxime Ripard     2013-02-21  399  	ret = hx8357_spi_write_array(lcdev, hx8357_seq_pixel_format,
-8a6c1dd55168b5 Maxime Ripard     2013-02-21  400  				ARRAY_SIZE(hx8357_seq_pixel_format));
-8a6c1dd55168b5 Maxime Ripard     2013-02-21  401  	if (ret < 0)
-8a6c1dd55168b5 Maxime Ripard     2013-02-21  402  		return ret;
-8a6c1dd55168b5 Maxime Ripard     2013-02-21  403  
-8a6c1dd55168b5 Maxime Ripard     2013-02-21  404  	ret = hx8357_spi_write_array(lcdev, hx8357_seq_column_address,
-8a6c1dd55168b5 Maxime Ripard     2013-02-21  405  				ARRAY_SIZE(hx8357_seq_column_address));
-8a6c1dd55168b5 Maxime Ripard     2013-02-21  406  	if (ret < 0)
-8a6c1dd55168b5 Maxime Ripard     2013-02-21  407  		return ret;
-8a6c1dd55168b5 Maxime Ripard     2013-02-21  408  
-8a6c1dd55168b5 Maxime Ripard     2013-02-21  409  	ret = hx8357_spi_write_array(lcdev, hx8357_seq_page_address,
-8a6c1dd55168b5 Maxime Ripard     2013-02-21  410  				ARRAY_SIZE(hx8357_seq_page_address));
-8a6c1dd55168b5 Maxime Ripard     2013-02-21  411  	if (ret < 0)
-8a6c1dd55168b5 Maxime Ripard     2013-02-21  412  		return ret;
-8a6c1dd55168b5 Maxime Ripard     2013-02-21  413  
-8a6c1dd55168b5 Maxime Ripard     2013-02-21  414  	ret = hx8357_spi_write_array(lcdev, hx8357_seq_rgb,
-8a6c1dd55168b5 Maxime Ripard     2013-02-21  415  				ARRAY_SIZE(hx8357_seq_rgb));
-8a6c1dd55168b5 Maxime Ripard     2013-02-21  416  	if (ret < 0)
-8a6c1dd55168b5 Maxime Ripard     2013-02-21  417  		return ret;
-8a6c1dd55168b5 Maxime Ripard     2013-02-21  418  
-8a6c1dd55168b5 Maxime Ripard     2013-02-21  419  	ret = hx8357_spi_write_array(lcdev, hx8357_seq_display_mode,
-8a6c1dd55168b5 Maxime Ripard     2013-02-21  420  				ARRAY_SIZE(hx8357_seq_display_mode));
-8a6c1dd55168b5 Maxime Ripard     2013-02-21  421  	if (ret < 0)
-8a6c1dd55168b5 Maxime Ripard     2013-02-21  422  		return ret;
-8a6c1dd55168b5 Maxime Ripard     2013-02-21  423  
-8a6c1dd55168b5 Maxime Ripard     2013-02-21  424  	ret = hx8357_spi_write_byte(lcdev, HX8357_EXIT_SLEEP_MODE);
-8a6c1dd55168b5 Maxime Ripard     2013-02-21  425  	if (ret < 0)
-8a6c1dd55168b5 Maxime Ripard     2013-02-21  426  		return ret;
-8a6c1dd55168b5 Maxime Ripard     2013-02-21  427  
-fb52566873ca8c Alexandre Belloni 2013-08-01  428  	/*
-fb52566873ca8c Alexandre Belloni 2013-08-01  429  	 * The controller needs 120ms to fully recover from exiting sleep mode
-fb52566873ca8c Alexandre Belloni 2013-08-01  430  	 */
-8a6c1dd55168b5 Maxime Ripard     2013-02-21  431  	msleep(120);
-8a6c1dd55168b5 Maxime Ripard     2013-02-21  432  
-8a6c1dd55168b5 Maxime Ripard     2013-02-21  433  	ret = hx8357_spi_write_byte(lcdev, HX8357_SET_DISPLAY_ON);
-8a6c1dd55168b5 Maxime Ripard     2013-02-21  434  	if (ret < 0)
-8a6c1dd55168b5 Maxime Ripard     2013-02-21  435  		return ret;
-8a6c1dd55168b5 Maxime Ripard     2013-02-21  436  
-8a6c1dd55168b5 Maxime Ripard     2013-02-21  437  	usleep_range(5000, 7000);
-8a6c1dd55168b5 Maxime Ripard     2013-02-21  438  
-8a6c1dd55168b5 Maxime Ripard     2013-02-21  439  	ret = hx8357_spi_write_byte(lcdev, HX8357_WRITE_MEMORY_START);
-8a6c1dd55168b5 Maxime Ripard     2013-02-21  440  	if (ret < 0)
-8a6c1dd55168b5 Maxime Ripard     2013-02-21  441  		return ret;
-8a6c1dd55168b5 Maxime Ripard     2013-02-21  442  
-8a6c1dd55168b5 Maxime Ripard     2013-02-21  443  	return 0;
-8a6c1dd55168b5 Maxime Ripard     2013-02-21  444  }
-8a6c1dd55168b5 Maxime Ripard     2013-02-21  445  
+Nit: declare and initialize 'dev' on the same line.
 
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests
+> +static struct qcom_ice *qcom_ice_create(struct platform_device *pdev, void __iomem *base)
+> +{
+> +	struct device *dev = &pdev->dev;
+> +	struct device_node *np = dev->of_node;
+> +	struct qcom_ice *engine;
+> +
+> +	if (!qcom_scm_is_available())
+> +		return ERR_PTR(-EPROBE_DEFER);
+> +
+> +	if (!qcom_scm_ice_available()) {
+> +		dev_warn(dev, "ICE SCM interface not found\n");
+> +		return NULL;
+> +	}
+> +
+> +	engine = devm_kzalloc(dev, sizeof(*engine), GFP_KERNEL);
+> +	if (!engine)
+> +		return ERR_PTR(-ENOMEM);
+> +
+> +	engine->dev = &pdev->dev;
+> +	engine->np = np;
+> +	engine->base = base;
+> +
+> +	engine->core_clk = devm_clk_get(dev, NULL);
+> +	if (IS_ERR(engine->core_clk))
+> +		return ERR_CAST(engine->core_clk);
+> +
+> +	if (!qcom_ice_check_supported(engine))
+> +		return ERR_PTR(-EOPNOTSUPP);
+> +
+> +	dev_info(dev, "Registered Qualcomm Inline Crypto Engine\n");
+> +
+> +	return engine;
+
+Shouldn't the !qcom_scm_is_available() and !qcom_ice_check_supported() cases
+have the same return value?  Both mean not supported, right?
+
+And shouldn't it be NULL, not ERR_PTR(-EOPNOTSUPP), so that the caller doesn't
+fail to probe the host controller just because ICE is not supported?
+
+> diff --git a/include/soc/qcom/ice.h b/include/soc/qcom/ice.h
+> new file mode 100644
+> index 000000000000..d4644c9f1bcd
+> --- /dev/null
+> +++ b/include/soc/qcom/ice.h
+> @@ -0,0 +1,39 @@
+> +/* SPDX-License-Identifier: GPL-2.0 */
+> +/*
+> + * Copyright (c) 2023, Linaro Limited
+> + */
+> +
+> +#ifndef __QCOM_ICE_H__
+> +#define __QCOM_ICE_H__
+> +
+> +#include <linux/err.h>
+
+<linux/types.h> would be more appropriate here, I think.
+
+> +
+> +#if IS_ENABLED(CONFIG_QCOM_INLINE_CRYPTO_ENGINE)
+
+This #if does not appear to be necessary.
+
+> +int qcom_ice_enable(struct qcom_ice *ice);
+> +int qcom_ice_resume(struct qcom_ice *ice);
+> +int qcom_ice_suspend(struct qcom_ice *ice);
+> +struct qcom_ice *of_qcom_ice_get(struct device *dev);
+> +int qcom_ice_program_key(struct qcom_ice *ice, u8 crypto_cap_idx,
+> +			 u8 algorithm_id, u8 key_size,
+> +			 const u8 crypto_key[], u8 data_unit_size,
+> +			 int slot);
+
+The crypto_cap_idx parameter is unused and should be removed.
+
+> +int qcom_ice_evict_key(struct qcom_ice *ice, int slot);
+
+Nit: these declarations are in a slightly different order from the definitions
+in the .c file.
+
+- Eric
