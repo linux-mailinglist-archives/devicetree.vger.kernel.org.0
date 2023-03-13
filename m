@@ -2,240 +2,137 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D743B6B7768
-	for <lists+devicetree@lfdr.de>; Mon, 13 Mar 2023 13:27:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8C5D86B777D
+	for <lists+devicetree@lfdr.de>; Mon, 13 Mar 2023 13:30:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229579AbjCMM1L (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Mar 2023 08:27:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47980 "EHLO
+        id S229700AbjCMMa0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Mar 2023 08:30:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54624 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229505AbjCMM1H (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Mar 2023 08:27:07 -0400
-Received: from DM6FTOPR00CU001.outbound.protection.outlook.com (mail-cusazon11020015.outbound.protection.outlook.com [52.101.61.15])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C2EF162B5B;
-        Mon, 13 Mar 2023 05:26:59 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=LsgilusxzhFl9lwtREjvmZ1TKNAgwkc6NXfL+rhFIjFz2pTwKrgXHSs5Gmw6B4EgB6symFdktrRlZRyPTmy5fnahmv0oa8o44z+ghQZY9yurCcSf7Mwt0u6WI/yL5vmXZWg+M4Xiqh/LyUo1FGNsO9HwV0N4uzavQvsv9bYnolupWPyPKy95rZhHU77Dl8Yz70deT56uo/0EbmuHBVijFgxZQO/2otargefofbQiOOtPW/ajaU+PoHHFrWEb8XcVedM2f/2ZGhT3xuRQe/B2c5yAJDJzKmcJ/I1BpEPBMrnSc0BuT7BCHziPTFwWsJByTFy4/8RQbY+8ezALp9xE3Q==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=ak8lwkLMIvBHnoABPvlYF2ckWXhkrReT9z/PxyXty84=;
- b=dujjbKUbHXxXp2rBHZCgOQaL+JgYgQm2AIEy7Iv2c7c43aL4NplKV7C6DLGn0JzzLaCuKBpGnP4LGNLzgpb+X+2wd/0Up+sFynk/qqQ+FwqI7hpOUJCzcCB8Zxgw5vYZdHwmoG9SGoBalA240ajZ1gBXEcSBeugWp6BYcvP0zMQi7K/1I2xuw/6FFhd+GtWDt7gdj70TSJJUM+nJ5toGxqiMeXuqN5cUT1LzZtZ7Ayha+JrH48ysNU2JSgU+xKBQT/jerpfJhFkIhsN1Yz1yKFE5LDagDDhtw7EmTzlwrCXWZ6VyPWk3qnlXL8OdP7xMjSgDJqeZZ0Hqpa68Fr/yKw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=microsoft.com; dmarc=pass action=none
- header.from=microsoft.com; dkim=pass header.d=microsoft.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=ak8lwkLMIvBHnoABPvlYF2ckWXhkrReT9z/PxyXty84=;
- b=AUp9Hl3U8YnLw9dFvqbPOsgq/9Okji34uL8MZX4PvskBa14t1JHaSAarXJftP1mirqC4p7Ztv1EGtY7tamJmJ2y1dvj67lmb3jP/aLizrEaVDvCuB+Le/qF+rMkenxm+5iI5Jh9AsW81sPO7fgeWa0CEd8uyD7ueHlT8yXvyRsU=
-Received: from BYAPR21MB1688.namprd21.prod.outlook.com (2603:10b6:a02:bf::26)
- by MN0PR21MB3049.namprd21.prod.outlook.com (2603:10b6:208:371::13) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6222.3; Mon, 13 Mar
- 2023 12:26:56 +0000
-Received: from BYAPR21MB1688.namprd21.prod.outlook.com
- ([fe80::629a:b75a:482e:2d4a]) by BYAPR21MB1688.namprd21.prod.outlook.com
- ([fe80::629a:b75a:482e:2d4a%4]) with mapi id 15.20.6222.003; Mon, 13 Mar 2023
- 12:26:56 +0000
-From:   "Michael Kelley (LINUX)" <mikelley@microsoft.com>
-To:     Saurabh Singh Sengar <ssengar@linux.microsoft.com>
-CC:     "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        KY Srinivasan <kys@microsoft.com>,
-        Haiyang Zhang <haiyangz@microsoft.com>,
-        "wei.liu@kernel.org" <wei.liu@kernel.org>,
-        Dexuan Cui <decui@microsoft.com>,
-        "daniel.lezcano@linaro.org" <daniel.lezcano@linaro.org>,
-        "tglx@linutronix.de" <tglx@linutronix.de>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-hyperv@vger.kernel.org" <linux-hyperv@vger.kernel.org>,
-        "lenb@kernel.org" <lenb@kernel.org>,
-        "rafael@kernel.org" <rafael@kernel.org>,
-        "linux-acpi@vger.kernel.org" <linux-acpi@vger.kernel.org>
-Subject: RE: [PATCH v7 5/5] Driver: VMBus: Add Devicetree support
-Thread-Topic: [PATCH v7 5/5] Driver: VMBus: Add Devicetree support
-Thread-Index: AQHZR3oO8XCRAJVOTEyd9eleCYLxd674F9KAgAA/zYCAAGYrcA==
-Date:   Mon, 13 Mar 2023 12:26:56 +0000
-Message-ID: <BYAPR21MB16888AD9A473CF15250B59C7D7B99@BYAPR21MB1688.namprd21.prod.outlook.com>
-References: <1677151745-16521-1-git-send-email-ssengar@linux.microsoft.com>
- <1677151745-16521-6-git-send-email-ssengar@linux.microsoft.com>
- <BYAPR21MB1688B84E25DD2173B6023737D7B99@BYAPR21MB1688.namprd21.prod.outlook.com>
- <20230313061603.GA8934@linuxonhyperv3.guj3yctzbm1etfxqx2vob5hsef.xx.internal.cloudapp.net>
-In-Reply-To: <20230313061603.GA8934@linuxonhyperv3.guj3yctzbm1etfxqx2vob5hsef.xx.internal.cloudapp.net>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-msip_labels: MSIP_Label_f42aa342-8706-4288-bd11-ebb85995028c_ActionId=61f91c06-2473-4543-af2e-e09a225b35f9;MSIP_Label_f42aa342-8706-4288-bd11-ebb85995028c_ContentBits=0;MSIP_Label_f42aa342-8706-4288-bd11-ebb85995028c_Enabled=true;MSIP_Label_f42aa342-8706-4288-bd11-ebb85995028c_Method=Standard;MSIP_Label_f42aa342-8706-4288-bd11-ebb85995028c_Name=Internal;MSIP_Label_f42aa342-8706-4288-bd11-ebb85995028c_SetDate=2023-03-13T12:21:43Z;MSIP_Label_f42aa342-8706-4288-bd11-ebb85995028c_SiteId=72f988bf-86f1-41af-91ab-2d7cd011db47;
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=microsoft.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: BYAPR21MB1688:EE_|MN0PR21MB3049:EE_
-x-ms-office365-filtering-correlation-id: c5b3defa-c491-4a4f-38a5-08db23be3c5b
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: nY2gUfwzVaaP/qKEK0odu7CrW697PyIf5R1+8ApPDVk+2vGSuoad3XeFAGB4Eg7aw1mPAVshC4aq340KcS+yIh3h3wcQp+UNrxWyrZZBV2NW+WAMW+0XsnvZy4fkCfFF14ZFvdwv5LKvVkGEfIIBgUHy2STIAAJIjOabaDls4QqwRvVGs4l6GAG/lX5UyppoV9bQN36Y+5Wot6cVU3G9YdppUVxN8ogNTG6tiGLsBlFu3Mpfar//zNmidXWbXMn4sQcuQefZSydU0XOQ6kvAFuVccnNRduNAobGBxBQzIa970EFtTGJON5v9oZFz2pOagYaKoPycR0IgtZUPaDMi1DJYFmlR6LZY/PrYe5bYwWVhPEyIXXKE41yCDRksKEbGRhcjViBf1SNSlxgYfE/0EjclrBoLuQ3ymWWSdimUqW99H08P4AjXHQ6EYNH8+z5nH4Ytn3kamQfz4ALh02DFxeDsGeUHzFWl4PMv9sFONW2YGvfxBsCDms2ZomP2uq3m+dffVR03vOmoa3XI4ADVXrSTuIax3sYXY55o1NNf/stv6ezPNrV1brAhDW4wrJ5JpFGl8m84Zy/D+BLJKswroN7inw8MgitgRF1quBHQgN1mF5+Xu+LoCZ5j/q0jgNo7MWRfmdfMVyWL44EtI/BqLlZlOGIcoDEg2V5JD06GGVeUYprsNERdacEsjyYpuPenRMhWMYQS10EhLOYO2t1nln9zfzgy+PUOUTWFXXw+JWUzO6x17Dna+zEJT4LLhT5G
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BYAPR21MB1688.namprd21.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230025)(4636009)(346002)(396003)(366004)(39860400002)(376002)(136003)(451199018)(5660300002)(7416002)(41300700001)(6862004)(52536014)(55016003)(33656002)(86362001)(38070700005)(122000001)(82960400001)(82950400001)(8936002)(38100700002)(2906002)(478600001)(8990500004)(26005)(6506007)(9686003)(10290500003)(83380400001)(7696005)(71200400001)(66556008)(76116006)(66946007)(66446008)(4326008)(66476007)(64756008)(54906003)(316002)(186003)(8676002);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?pCqWnRZ8ojtKBArdX+OmgEiz5T7/BIopH1sghelPKBLJVa6YaEn0/GyF3gtY?=
- =?us-ascii?Q?zHKMhBE9VtRavMbuE7gEbvQbXKeU/ysjgz0A+cTPgF/ucoroEM2wnyuySeEb?=
- =?us-ascii?Q?jhWbeMLmghTISzgJW4YHfPSibe6Btqg1zsH7VGCq/bJIgCTBGrj+Ae6wRggz?=
- =?us-ascii?Q?javcwHHOFPdmR75x2kuGJEPOVRgXDpw3Zc9+t0CRAkALSDJ3HX33bGs9iFq2?=
- =?us-ascii?Q?6SqaVE5wiHNVPUYx+UsMdZWKyOdTqn9sqA8XSWIx5JtQcF0OO2UaxYhSnlwW?=
- =?us-ascii?Q?HvBYOwrOOAXlsplfuqI4f/0BMBRblAVkPRZlC6JNSxCB4SyNMhdo2uTKsB6W?=
- =?us-ascii?Q?SHfztuMpLKgR5eLMWuH/oiE+WFSVMBpNrKWHe2mzbKnM16ptroKVZPIsK3vl?=
- =?us-ascii?Q?XP0o/MkYzd9Bi9M0LdglpgwE7MNELjx5dbA9KnQ6hcS8Ww06DWyXO6rnRrpt?=
- =?us-ascii?Q?teV8djrhJEPjbx+D7j7HM2IR9whFSlh1l0zXCnTLdynSaPX5p0ILBRBLCdOD?=
- =?us-ascii?Q?WogbvReAVF4CpOoSd4tHBanWdx9Se3VhKI+4/9FDtjWb1365GoUMAK4RnMNf?=
- =?us-ascii?Q?0BV1Hp1AgS87melG10udxBPItZtpC7ohub+yc6cbY7z8HsYy7etuJwSVcNkR?=
- =?us-ascii?Q?teDgYMbrrygyWeLEdrjefDY/HG2rn51g+4TryPquZ8Sg6brHsDNa/SypGrt0?=
- =?us-ascii?Q?vrJFoQjxDWELTcSYy3n05Ar6qf+jf1RonF/HSEpceF5AmOdeLXViU4+44nME?=
- =?us-ascii?Q?KCig04soN8KvvuHvsMZPsHEoVu4OitiMrrmJpj8ojeXa/kpUE4vBvFvCx6dF?=
- =?us-ascii?Q?OAijKE4woFk8yZ98l3474L0UiTShw2TQREFIBagWG9O5eYAm7xM56Pi0VQFK?=
- =?us-ascii?Q?teh6Xd1mzCo8g9ohq2x4PBDNsXdJDRBqMXqryPK1FuWRzitCfvgt/auHBPzt?=
- =?us-ascii?Q?aqJQ9e//In9y6Q4a5PVL6eXJ5XFbV/mR/YGpvi2I19/NrkypEJ3cni2QrYPV?=
- =?us-ascii?Q?obekdQvOgGw7gR1zZx0r57K7BMyYmDrR2Z5ClvMoY4uUGXoozkalw9rcsxBc?=
- =?us-ascii?Q?6TBUrpxKn97Ci7AgMYG+4lEjFZ/H+GkbEK9BNyuhFaMqNK567Wpgb043S/wP?=
- =?us-ascii?Q?ZYMtCaFBrsXzIOZTS6fzjJajzCbEh24CkFMFY1Sjc+FV9JVdlmIgovvoFxKQ?=
- =?us-ascii?Q?dfCx8ktpxXlB2ReNCm3inV80HY69UiPNdo0sJL/AdFWHPW1bN4mjqVw8C3f5?=
- =?us-ascii?Q?5tpxFuly07lZs4wnLmuMxakcKsuYqoaiMaWHqz9jk+7LkD0155UonZX3eQfo?=
- =?us-ascii?Q?igoLnXrqAfNjcThxB+5uTX6d8+8ySqPlWcUAjxCOqn39dYNM/t2B7pqQyX54?=
- =?us-ascii?Q?aQoGPfD00FbskXxtHg2ZVQkxQX3qYfXnpaZ9/fY9hg7z/YuHZr4dnEj93wrB?=
- =?us-ascii?Q?2YWyh3Gn96b8kyT8rZNIpsrrwltpsHPUP8pkLR51RhIUyyf5YUdmUG+0KlMk?=
- =?us-ascii?Q?us5IulDtNbtp6eemhZ7vHjLS0HIlWO/Uso4qxo5IYiUr5qf/pa7gTonxr1vU?=
- =?us-ascii?Q?TFLvE+rbDyZ4oauISinRSkL797KKJylhASMjZR7IoCbyUtgYtzA2ppFpdpyV?=
- =?us-ascii?Q?sA=3D=3D?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+        with ESMTP id S229726AbjCMMaW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Mar 2023 08:30:22 -0400
+Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com [IPv6:2a00:1450:4864:20::52b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C82E56423F
+        for <devicetree@vger.kernel.org>; Mon, 13 Mar 2023 05:30:20 -0700 (PDT)
+Received: by mail-ed1-x52b.google.com with SMTP id h8so4244475ede.8
+        for <devicetree@vger.kernel.org>; Mon, 13 Mar 2023 05:30:20 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1678710619;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=Xmn2nanx9djz8+cvYSEMDrQgDosVq8taY8kBuZP96dQ=;
+        b=Oi4/QA9NHRIFvwt8o68xzUvZ6ZRD3e3g4it/tyEvKJJkr8KURbc4Vo6kqOwolyD1Q5
+         8a/P7oZ1IhcOXtQal2xy7BzMCOhAMxj8ki1ai5zsrhvFEHyFteADBfMc2AdNNWeMLM30
+         e87z7bdg3YQRybWDaRi4Au7DtUVg5ZYN+V8KzdWXfHIRfy7Pc3NyRQESmiCV6HwunXiz
+         umjBmLYJuFwPGsBgfH5KfFfLprUJqMyhxMbC3telhO7S2W6tI5Wjz+M560Xxt2AkerUT
+         y5YDikylUGkVaKbZOx+xNc2r1n68p7Z14zP8r8JWMyoBma70M3hzI6xQG5U7TsmBfOxu
+         3Hog==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1678710619;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=Xmn2nanx9djz8+cvYSEMDrQgDosVq8taY8kBuZP96dQ=;
+        b=iVGxO3vzjPES+H3fa74Ps70CpLaeEz2n8zCT4ebmYKaUpxjD0YXk2qvDki4pFe4qO/
+         A6vh4wwcq8C4AdAUkNkihoU8cc1ANbA+DS3CQz8Clx/CDzrblPS13wyXB6P3xsFqbfEZ
+         JhPgV99QxWL5AmVUMOT8PB0LrwCBjX+JH/9qZAkB6Mza2OPrA21hAwuGlfv+eGpenP34
+         raAqnFuuzHBcaZ/Wkzqi735qGj5mJuHIosB0KvCoqWUoiNFfK2ug/jY79GTNGOmGrYDK
+         Yc+Xz6RwwG+nH7hyibGqcraMJa5fvSAx2Z1WKPv2Fac2DRek2B4VUok9iLpEN1Z3FhKc
+         akVA==
+X-Gm-Message-State: AO0yUKV/9vk1Kl9qL6YbRDExPkKpeJPiEklTn5oDzPGybqfUGaGyJgjR
+        /eRABDv6nRzl8cJI3BUISjn8KZGeZQUtn3fHy64=
+X-Google-Smtp-Source: AK7set8vWnZvlNjQcq0Vh4v0+v2/D3pvGv7QjKi5Zpb1zXBn6XgfOOuoIqOEDpSc2Xt2IGKJW43YoA==
+X-Received: by 2002:a17:907:a602:b0:8b1:76ca:f228 with SMTP id vt2-20020a170907a60200b008b176caf228mr34379930ejc.39.1678710618957;
+        Mon, 13 Mar 2023 05:30:18 -0700 (PDT)
+Received: from ?IPV6:2a02:810d:15c0:828:69db:4882:d071:27c4? ([2a02:810d:15c0:828:69db:4882:d071:27c4])
+        by smtp.gmail.com with ESMTPSA id hz11-20020a1709072ceb00b008e51a1fd7bfsm3426297ejc.172.2023.03.13.05.30.18
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 13 Mar 2023 05:30:18 -0700 (PDT)
+Message-ID: <0499e6e7-ab4e-3e7a-d6de-0979bd0d8cc8@linaro.org>
+Date:   Mon, 13 Mar 2023 13:30:16 +0100
 MIME-Version: 1.0
-X-OriginatorOrg: microsoft.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: BYAPR21MB1688.namprd21.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: c5b3defa-c491-4a4f-38a5-08db23be3c5b
-X-MS-Exchange-CrossTenant-originalarrivaltime: 13 Mar 2023 12:26:56.6096
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 72f988bf-86f1-41af-91ab-2d7cd011db47
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: iuGh/VIR1qN843yz5kBSMfffAl4QbjDI0YLNBolTUpJEwxbQPobPDv1tENFu6dcK/rxosfVDpA34Sv5ckHEyOAnOgyP/8EDoiDu2G/qBXoU=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN0PR21MB3049
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.8.0
+Subject: Re: [PATCH v4 3/3] dt-bindings: gpio: add NPCM sgpio driver bindings
+To:     Jim Liu <jim.t90615@gmail.com>
+Cc:     JJLIU0@nuvoton.com, KWLIU@nuvoton.com, linus.walleij@linaro.org,
+        brgl@bgdev.pl, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        openbmc@lists.ozlabs.org
+References: <20230110083238.19230-1-jim.t90615@gmail.com>
+ <20230110083238.19230-4-jim.t90615@gmail.com>
+ <d56c24c2-a017-8468-0b3a-bd93d6024c69@linaro.org>
+ <CAKUZ0+HiR+GDG4EP8nxyVVMQrkotvyQP3N3Rs7+3d2aTLEtMoA@mail.gmail.com>
+Content-Language: en-US
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <CAKUZ0+HiR+GDG4EP8nxyVVMQrkotvyQP3N3Rs7+3d2aTLEtMoA@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Saurabh Singh Sengar <ssengar@linux.microsoft.com> Sent: Sunday, Marc=
-h 12, 2023 11:16 PM
->=20
-> On Mon, Mar 13, 2023 at 02:33:53AM +0000, Michael Kelley (LINUX) wrote:
-> > From: Saurabh Sengar <ssengar@linux.microsoft.com> Sent: Thursday, Febr=
-uary 23,
-> 2023 3:29 AM
-> > >
-> > > Update the driver to support Devicetree boot as well along with ACPI.
-> > > At present the Devicetree parsing only provides the mmio region info
-> > > and is not the exact copy of ACPI parsing. This is sufficient to cate=
-r
-> > > all the current Devicetree usecases for VMBus.
-> > >
-> > > Currently Devicetree is supported only for x86 systems.
-> > >
-> > > Signed-off-by: Saurabh Sengar <ssengar@linux.microsoft.com>
-> > > ---
-> > > [V7]
-> > > - Use cpu_addr instead of bus_addr
-> > >
-> > >  drivers/hv/Kconfig     |  6 +++--
-> > >  drivers/hv/vmbus_drv.c | 57 ++++++++++++++++++++++++++++++++++++++++=
---
-> > >  2 files changed, 59 insertions(+), 4 deletions(-)
-> > >
-> > > diff --git a/drivers/hv/Kconfig b/drivers/hv/Kconfig
-> > > index 0747a8f1fcee..1a55bf32d195 100644
-> > > --- a/drivers/hv/Kconfig
-> > > +++ b/drivers/hv/Kconfig
-> > > @@ -4,11 +4,13 @@ menu "Microsoft Hyper-V guest support"
-> > >
-> > >  config HYPERV
-> > >  	tristate "Microsoft Hyper-V client drivers"
-> > > -	depends on ACPI && ((X86 && X86_LOCAL_APIC && HYPERVISOR_GUEST) \
-> > > -		|| (ARM64 && !CPU_BIG_ENDIAN))
-> > > +	depends on (X86 && X86_LOCAL_APIC && HYPERVISOR_GUEST) \
-> > > +		|| (ACPI && ARM64 && !CPU_BIG_ENDIAN)
-> > >  	select PARAVIRT
-> > >  	select X86_HV_CALLBACK_VECTOR if X86
-> > >  	select VMAP_PFN
-> > > +	select OF if !ACPI
-> > > +	select OF_EARLY_FLATTREE if !ACPI
-> > >  	help
-> > >  	  Select this option to run Linux as a Hyper-V client operating
-> > >  	  system.
-> >
-> > One further thing occurred to me.  OF_EARLY_FLATTREE really depends
-> > on OF instead of ACPI.   The ACPI dependency is indirect through OF.  S=
-o
-> > I'd suggest doing
-> >
-> > 	select OF_EARLY_FLATTRE if OF
-> >
-> > to express the direct dependency.
->=20
-> As you pointed out OF_EARLY_FLATTRE is anyway dependent on OF, and thus I
-> feel this check is redundant. I see all the Kconfig options which enables
-> both of these flags don't explicitly mention this dependency.
->=20
-> >
-> > Separately, I wonder if the "select OF if !ACPI" is even needed.  It do=
-esn't
-> > hurt anything to leave it, but it seems like any config that doesn't
-> > independently select either ACPI or OF is broken for reasons unrelated
-> > to Hyper-V.  I'm OK with leaving the select of OF if you want, so I'm
-> > more just wondering than asserting it should be removed.   I didn't
-> > see "select OF if !ACPI" anywhere else in the Kconfig files, and it
-> > seems like Hyper-V would not be the only environment where this
-> > is the expectation.
->=20
-> Ok I can remove the !ACPI dependency. Hope kernel size increase due to bo=
-th
-> the code compiled in shouldn't be problem for ACPI systems.
-> And here if config doesn't select ACPI or OF it will assume OF, which is
-> better then selecting none of them.
->=20
->=20
-> To address both of your comments I feel below will be sufficient:
-> select OF
-> select OF_EARLY_FLATTRE
+On 13/03/2023 11:38, Jim Liu wrote:
+> Hi Krzysztof
+> 
+> Sorry for the mistake.
+> I think I need to explain more details about the clock.
 
-Actually, that's not what I was thinking. :-)   I was thinking for the Hype=
-r-V
-Kconfig to be silent on selecting OF, just like it is silent on selecting A=
-CPI.
-Whoever is configuring the kernel build would separately be selecting
-ACPI, or OF, or both, depending on their needs.   I don't think the Hyper-V
-Kconfig should always be selecting OF, because of the reason you noted --
-it drags in code that is not needed for normal VTL 0 usage.  If you take
-that approach, then
+It's still top-posting.
 
-	select OF_EARLY_FLATTREE if OF
+> 
+> The NPCM7xx / NPCM8xx  SGPIO feature have 4 pins.
+> picture is as below:
+> https://drive.google.com/file/d/1E9i_Avh-AZV9IEZO1HLMT4EtgCBe46OV/view?usp=sharing
+> 
+> The clock is generated from npcm7xx APB.
+> The bus frequency is derived from npcm7xx APB not HC595/HC165.
+> Users can connect  1~8 HC595 on DOUT pin to decode the serial data for
+> HC595 A~H pin
+> and can connect  1~8 HC165 on DIN pin to encode the serial data to
+> send to NPCM7xx.
+> 
+> The test device is as below:
+> https://pdf1.alldatasheet.com/datasheet-pdf/view/345467/TI/SN74HC595N.html
+> https://pdf1.alldatasheet.com/datasheet-pdf/view/27899/TI/SN74HC165N.html
+> 
+> NPCM7xx/NPCM8xx have two sgpio modules;
+> each module can support up to 64 output pins,and up to 64 input pins.
+> If the user needs 64 output pins , user needs to connect 8 HC595.
+> If the user needs 64 input pins , user needs to connect 8 HC165.
+> 
+> the HC595 and HC165 connect is as below:
+> NPCM7xx_DOUT    ->   HC595  SER pin
+> NPCM7xx_SCLK     ->   HC595  SRCLK pin
+> NPCM7xx_LDSH    ->    HC595  RCLK pin
+> 
+> NPCM7xx_SCLK     ->   HC165  CLK pin
+> NPCM7xx_LDSH     ->   HC165  SH/LD pin
+> NPCM7xx_DIN        ->    HC165  QH pin
+> 
+> The frequency is not derived from the input clock. so i think maybe
+> the yaml needs to describe it.
 
-is appropriate.
+That's not what your code was saying. It said:
+"Directly connected to APB bus and its shift clock is from APB bus clock
+divided by a programmable value."
 
-Michael
+> if yaml file still didn't need please let me know.
 
+Now read the description of bus-frequency:
+"Legacy property for fixed bus frequencies"
 
+Don't add legacy properties to new bindings. You have
+assigned-clock-rates and clocks properties.
 
->=20
->=20
-> Regards,
-> Saurabh
->=20
-> >
-> > Michael
+Best regards,
+Krzysztof
+
