@@ -2,119 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 843EC6B6FBF
-	for <lists+devicetree@lfdr.de>; Mon, 13 Mar 2023 07:57:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 44AF66B6FE3
+	for <lists+devicetree@lfdr.de>; Mon, 13 Mar 2023 08:14:24 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229796AbjCMG5v (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Mar 2023 02:57:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60266 "EHLO
+        id S229957AbjCMHOV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Mar 2023 03:14:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55334 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229583AbjCMG5v (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Mar 2023 02:57:51 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 106224D62C;
-        Sun, 12 Mar 2023 23:57:42 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id A023D610E7;
-        Mon, 13 Mar 2023 06:57:41 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BF9A8C433EF;
-        Mon, 13 Mar 2023 06:57:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1678690661;
-        bh=yXZd505XmCeN942UNqXIjHQ5Kwm2nMyuVli34Flsl0k=;
-        h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
-        b=OV3Qmz/IfYFypeHG/KN765o4V5OmR9wF58a5r9sl82BrhzjL6RJ0t2BMCNGpw1ntM
-         KjslQkVZ0JESUZldaRATa7IiEt8tChEUY7aZGOsKDbNPnUsdLkk50GUTNcHuQt8uwu
-         /nvJPmC0zq/U3J3CkrwQSJOg3YVsyp9NHgqDbR+vvwKY5uHZfopN5Xhlfq4vRJqL5K
-         2lcLp4KOgNNKzHrc3lBCwzRTQhSEaT9H270FVzm0fOR5LBxNIFif2HMZyuJyMpJZPr
-         JZdom+77L9fbpCIolgn8UTraemz7xWvoDX9JRXWvn+mO+3wAXa1vcYQvfqy6DaFU28
-         H00x/o9omaPFw==
-From:   Kalle Valo <kvalo@kernel.org>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Wolfgang Grandegger <wg@grandegger.com>,
-        Marc Kleine-Budde <mkl@pengutronix.de>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Nicolas Ferre <nicolas.ferre@microchip.com>,
-        Claudiu Beznea <claudiu.beznea@microchip.com>,
-        Wei Fang <wei.fang@nxp.com>,
-        Shenwei Wang <shenwei.wang@nxp.com>,
-        Clark Wang <xiaoning.wang@nxp.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Claudiu Manoil <claudiu.manoil@nxp.com>,
-        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Jose Abreu <joabreu@synopsys.com>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Grygorii Strashko <grygorii.strashko@ti.com>,
-        Francois Romieu <romieu@fr.zoreil.com>,
-        Michal Simek <michal.simek@xilinx.com>,
-        Zhao Qiang <qiang.zhao@nxp.com>,
-        Samuel Mendoza-Jonas <sam@mendozajonas.com>,
-        devicetree@vger.kernel.org, linux-can@vger.kernel.org,
-        netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        linux-arm-kernel@lists.infradead.org, linux-omap@vger.kernel.org,
-        linuxppc-dev@lists.ozlabs.org, linux-wireless@vger.kernel.org
-Subject: Re: [PATCH] net: Use of_property_read_bool() for boolean properties
-References: <20230310144718.1544169-1-robh@kernel.org>
-Date:   Mon, 13 Mar 2023 08:57:31 +0200
-In-Reply-To: <20230310144718.1544169-1-robh@kernel.org> (Rob Herring's message
-        of "Fri, 10 Mar 2023 08:47:16 -0600")
-Message-ID: <87ttypnnok.fsf@kernel.org>
-User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/26.1 (gnu/linux)
+        with ESMTP id S229927AbjCMHOS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Mar 2023 03:14:18 -0400
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5F53034C26;
+        Mon, 13 Mar 2023 00:14:16 -0700 (PDT)
+Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 32D2INKT006885;
+        Mon, 13 Mar 2023 07:13:47 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-transfer-encoding;
+ s=qcppdkim1; bh=OFJDzavBxKhCnrLoHXy25NE3CtzAgaTKwbIfky7Dhgc=;
+ b=dbQXK5IibRvax1T/H0voHpl7rQ7OdEof8oyH1BO0DrkyYZwBlS/XBLNEIZB0uPmUYjG0
+ zV47l47db4c3jx1nK7yq5M4llTqzHIBdKCLSwllnY35DeM7x90WeIGeIs8THtCkMRl6c
+ mjXIMbd5Ew3aCuGmumfkW5RLWvkWqLCYYQYmE8arj64QLsXmTIr1mV4WP8ie0H7PXJLy
+ /x7kbfAo7I4mSvLMefiVMoBIrjzOvNwi5HI/HVSY8qaEH3ziNkAdJImATlRjmeCCVV9c
+ ZyytHs7cX4+SD0I9KmXRiClwwt66tJB7RkwIzqWTBePQJiN+zDd/VJ85gxlAiECbuk4r eQ== 
+Received: from apblrppmta01.qualcomm.com (blr-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.18.19])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3p8jds4141-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Mon, 13 Mar 2023 07:13:46 +0000
+Received: from pps.filterd (APBLRPPMTA01.qualcomm.com [127.0.0.1])
+        by APBLRPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTP id 32D7DgZ6032097;
+        Mon, 13 Mar 2023 07:13:42 GMT
+Received: from pps.reinject (localhost [127.0.0.1])
+        by APBLRPPMTA01.qualcomm.com (PPS) with ESMTP id 3p8jqkkyk1-1;
+        Mon, 13 Mar 2023 07:13:42 +0000
+Received: from APBLRPPMTA01.qualcomm.com (APBLRPPMTA01.qualcomm.com [127.0.0.1])
+        by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 32D7DfF1032092;
+        Mon, 13 Mar 2023 07:13:42 GMT
+Received: from kbajaj-linux.qualcomm.com (kbajaj-linux.qualcomm.com [10.214.66.129])
+        by APBLRPPMTA01.qualcomm.com (PPS) with ESMTP id 32D7Df4B032091;
+        Mon, 13 Mar 2023 07:13:41 +0000
+Received: from kbajaj-linux.qualcomm.com (localhost [127.0.0.1])
+        by kbajaj-linux.qualcomm.com (Postfix) with ESMTP id C4710D8;
+        Mon, 13 Mar 2023 12:43:40 +0530 (IST)
+From:   Komal Bajaj <quic_kbajaj@quicinc.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Abel Vesa <abel.vesa@linaro.org>,
+        Rishabh Bhatnagar <rishabhb@codeaurora.org>,
+        Prakash Ranjan <saiprakash.ranjan@codeaurora.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Andy Gross <agross@kernel.org>
+Cc:     Komal Bajaj <quic_kbajaj@quicinc.com>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org
+Subject: [PATCH 0/5] soc: qcom: llcc: Add support for QDU1000/QRU1000
+Date:   Mon, 13 Mar 2023 12:43:20 +0530
+Message-Id: <20230313071325.21605-1-quic_kbajaj@quicinc.com>
+X-Mailer: git-send-email 2.39.1
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-QCInternal: smtphost
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: -ozMKBk6KJudAV0russ96ojXDRqjiUtE
+X-Proofpoint-GUID: -ozMKBk6KJudAV0russ96ojXDRqjiUtE
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.254,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
+ definitions=2023-03-12_10,2023-03-10_01,2023-02-09_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1011
+ lowpriorityscore=0 impostorscore=0 malwarescore=0 bulkscore=0
+ priorityscore=1501 mlxscore=0 adultscore=0 suspectscore=0 spamscore=0
+ mlxlogscore=852 phishscore=0 classifier=spam adjust=0 reason=mlx
+ scancount=1 engine=8.12.0-2212070000 definitions=main-2303130058
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Rob Herring <robh@kernel.org> writes:
+This patchset refactor LLCC driver and adds LLCC support for the
+Qualcomm QDU1000 and QRU1000 SoCs. Since QDU1000/QRU1000 supports
+multi channel DDR, add support for multi channel DDR configuration
+in LLCC.
 
-> It is preferred to use typed property access functions (i.e.
-> of_property_read_<type> functions) rather than low-level
-> of_get_property/of_find_property functions for reading properties.
-> Convert reading boolean properties to to of_property_read_bool().
->
-> Signed-off-by: Rob Herring <robh@kernel.org>
-> ---
->  drivers/net/can/cc770/cc770_platform.c          | 12 ++++++------
->  drivers/net/ethernet/cadence/macb_main.c        |  2 +-
->  drivers/net/ethernet/davicom/dm9000.c           |  4 ++--
->  drivers/net/ethernet/freescale/fec_main.c       |  2 +-
->  drivers/net/ethernet/freescale/fec_mpc52xx.c    |  2 +-
->  drivers/net/ethernet/freescale/gianfar.c        |  4 ++--
->  drivers/net/ethernet/ibm/emac/core.c            |  8 ++++----
->  drivers/net/ethernet/ibm/emac/rgmii.c           |  2 +-
->  drivers/net/ethernet/stmicro/stmmac/dwmac-imx.c |  3 +--
->  drivers/net/ethernet/sun/niu.c                  |  2 +-
->  drivers/net/ethernet/ti/cpsw-phy-sel.c          |  3 +--
->  drivers/net/ethernet/ti/netcp_ethss.c           |  8 +++-----
->  drivers/net/ethernet/via/via-velocity.c         |  3 +--
->  drivers/net/ethernet/xilinx/ll_temac_main.c     |  9 ++++-----
->  drivers/net/wan/fsl_ucc_hdlc.c                  | 11 +++--------
->  drivers/net/wireless/ti/wlcore/spi.c            |  3 +--
->  net/ncsi/ncsi-manage.c                          |  4 ++--
->  17 files changed, 35 insertions(+), 47 deletions(-)
+Komal Bajaj (5):
+  soc: qcom: llcc: Refactor llcc driver to support multiple
+    configuration
+  dt-bindings: arm: msm: Add bindings for multi channel DDR in LLCC
+  dt-bindings: arm: msm: Add LLCC compatible for QDU1000/QRU1000
+  soc: qcom: Add LLCC support for multi channel DDR
+  soc: qcom: llcc: Add QDU1000 and QRU1000 LLCC support
 
-For wireless:
-
-Acked-by: Kalle Valo <kvalo@kernel.org>
+ .../bindings/arm/msm/qcom,llcc.yaml           |  10 +
+ drivers/soc/qcom/llcc-qcom.c                  | 308 +++++++++++++-----
+ include/linux/soc/qcom/llcc-qcom.h            |   4 +-
+ 3 files changed, 240 insertions(+), 82 deletions(-)
 
 -- 
-https://patchwork.kernel.org/project/linux-wireless/list/
+2.39.1
 
-https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
