@@ -2,310 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EC1726B83EF
-	for <lists+devicetree@lfdr.de>; Mon, 13 Mar 2023 22:25:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 166F96B8425
+	for <lists+devicetree@lfdr.de>; Mon, 13 Mar 2023 22:43:35 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229449AbjCMVZa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Mar 2023 17:25:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37232 "EHLO
+        id S229712AbjCMVnd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Mar 2023 17:43:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34548 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229823AbjCMVZ3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Mar 2023 17:25:29 -0400
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C4A3A2A9A8;
-        Mon, 13 Mar 2023 14:25:23 -0700 (PDT)
-Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 32DJG6f9028052;
-        Mon, 13 Mar 2023 21:25:19 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=mtIbl5E5aEjfnCUTdeThiovCZFU+XhXNyV0568XSXT4=;
- b=O708rpUBNeER/wPuLVDeHnfG3eXnCqkXwvq5dgfpqABXmPsewGPmnvZUlCQH5/CJBwJh
- gtOj7Xax+4yyiDSveTwvSKHz7ZglGuATdOybWujYIPRAc0hgASc82A47TDiG2eqniSkd
- yAIElZZKtqmQS8YX+yH++qBchK78vFRvkVHsKVcMqx6oe3eB7YJVPwoNJ7amrrTj+c18
- uf5yr2MWeMklFZUtE1mLHY9vAjSthez6TeWw3qMYSeFWc7aA4XmWgIHZmxh3tgll730J
- NT6yIJZBhz5V95mn9Oi/48xeKOaeoZRyguQPtZtLAdpht6ZWFxIy6dHL8pOtAAuX54Cl PQ== 
-Received: from nasanppmta03.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3p8hvbp7nh-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Mon, 13 Mar 2023 21:25:19 +0000
-Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
-        by NASANPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 32DLPI6l013333
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Mon, 13 Mar 2023 21:25:18 GMT
-Received: from [10.110.77.0] (10.80.80.8) by nasanex01b.na.qualcomm.com
- (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.41; Mon, 13 Mar
- 2023 14:25:17 -0700
-Message-ID: <3ee969ec-faae-fd9f-d583-6a8e2670b567@quicinc.com>
-Date:   Mon, 13 Mar 2023 14:25:17 -0700
+        with ESMTP id S229627AbjCMVnc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Mar 2023 17:43:32 -0400
+Received: from mail-yb1-xb31.google.com (mail-yb1-xb31.google.com [IPv6:2607:f8b0:4864:20::b31])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 691A5193C7
+        for <devicetree@vger.kernel.org>; Mon, 13 Mar 2023 14:43:27 -0700 (PDT)
+Received: by mail-yb1-xb31.google.com with SMTP id r1so816671ybu.5
+        for <devicetree@vger.kernel.org>; Mon, 13 Mar 2023 14:43:27 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1678743806;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=RSd3V+HZ2T3mn2cPqXWrHfR5YkKZfdZAyYpCo4chbXU=;
+        b=wNETqUCxQ2QTd0peBTohCpYEJ2IuKEYfhzChAAwi15Ax+cZ7Nu5/9on8O8dEN3/Yhk
+         uUGfMvg+3ONZHcO34fS2YEBbMgnkk0EjwRwnZsdKpZoc5KuSgpvVSqF//mB1TCI7rcr4
+         DHyrzg0Rc6r31JQtJXvJJR4kaM/Sb6kinPnzSv/iHCW5UCe6wbyk8dQIZB0PkpSMnWGe
+         ttkmmIR2DJNzR+RoFcTUnKUx/ndmMrYASfV+2JBR/gqgzJDHaSw1/wb3/vHHmbOc5Moj
+         v1D7GhXJa6ikrvJDzXnH1h0rYF3IQJnTCt4v6ikbPATQZBqEJ8YkTZNNhxRUOMTsjBRy
+         T30w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1678743806;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=RSd3V+HZ2T3mn2cPqXWrHfR5YkKZfdZAyYpCo4chbXU=;
+        b=EKywfy9dWHyawqPWLaCmIUJsCBiHwLQqXd6FzvyGhOKWG6akYT4WebvjMvxPERCvT1
+         F8FZU34tqEgOKXmLG84lXIrapIAsKY0wm3JLcCShqZqys2TNaT5DdyTDjmBj6rEMS/xZ
+         DnoeINk6LiMa71DNGj+tKAv9vVyoAUwXmz5LlssCbZrTsa7ArDyGo2xnwGgYRC+bQp/M
+         b7UynzU7lFD7G2zoPQdnRDHDYhuoOn4OaOhPV/OeuZ59Aq+Uw2Yol7hX7UyUEqMJPEiV
+         1F5kD3AYJOs7t1VfyV5URRJNqtKdOxVvzgC766R0sFLlF1Gmd3rfllPA2iSHdB5kxuy1
+         WDNQ==
+X-Gm-Message-State: AO0yUKXazTwgROq2COc0vZSZm9Fety3rfhKV4wMnueSuzsFiKa58qg1D
+        AYQKWnNFZgaGZwJKwGLeKp23giPo0bP/I8fUfFdSAQ==
+X-Google-Smtp-Source: AK7set/44tdYO4dx/yFdy6mWrlex/dEJSg8Dq1+hFA0Q9cUVadFi5fLDSwyepQRkDs4fZQ1h3nRg33KAEHniI/POZO0=
+X-Received: by 2002:a5b:c7:0:b0:b3b:d433:b063 with SMTP id d7-20020a5b00c7000000b00b3bd433b063mr168215ybp.4.1678743806009;
+ Mon, 13 Mar 2023 14:43:26 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.2.2
-Subject: Re: [PATCH v2 1/3] arm64: dts: qcom: qdu1000: Add IPCC, MPSS, AOSS
- nodes
-Content-Language: en-US
-To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
+References: <20230313161138.3598068-1-sean.anderson@seco.com> <20230313161138.3598068-4-sean.anderson@seco.com>
+In-Reply-To: <20230313161138.3598068-4-sean.anderson@seco.com>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Mon, 13 Mar 2023 22:43:14 +0100
+Message-ID: <CACRpkdan3xZPWazk5tS-i9uAvKB=UO3kt5WS0VALkwnUk6ckgg@mail.gmail.com>
+Subject: Re: [PATCH v11 03/13] dt-bindings: Convert gpio-mmio to yaml
+To:     Sean Anderson <sean.anderson@seco.com>
+Cc:     Vinod Koul <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@kernel.org>,
+        linux-phy@lists.infradead.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-CC:     <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-References: <20230306231719.22263-1-quic_molvera@quicinc.com>
- <20230306231719.22263-2-quic_molvera@quicinc.com>
- <af21f499-5895-c564-3e6f-d23ba188544b@linaro.org>
-From:   Melody Olvera <quic_molvera@quicinc.com>
-In-Reply-To: <af21f499-5895-c564-3e6f-d23ba188544b@linaro.org>
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        Camelia Alexandra Groza <camelia.groza@nxp.com>,
+        Madalin Bucur <madalin.bucur@nxp.com>,
+        Bagas Sanjaya <bagasdotme@gmail.com>,
+        Ioana Ciornei <ioana.ciornei@nxp.com>,
+        linuxppc-dev@lists.ozlabs.org, Bartosz Golaszewski <brgl@bgdev.pl>,
+        =?UTF-8?Q?Fern=C3=A1ndez_Rojas?= <noltari@gmail.com>,
+        Jonas Gorski <jonas.gorski@gmail.com>,
+        linux-gpio@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nasanex01b.na.qualcomm.com (10.46.141.250)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: wAgAt_VK1YoUzEo5AhMkm97GOjMf98J6
-X-Proofpoint-GUID: wAgAt_VK1YoUzEo5AhMkm97GOjMf98J6
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
- definitions=2023-03-13_11,2023-03-13_03,2023-02-09_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0 bulkscore=0
- phishscore=0 clxscore=1015 adultscore=0 malwarescore=0 lowpriorityscore=0
- priorityscore=1501 mlxlogscore=999 spamscore=0 impostorscore=0 mlxscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2212070000
- definitions=main-2303130168
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Mon, Mar 13, 2023 at 5:12=E2=80=AFPM Sean Anderson <sean.anderson@seco.c=
+om> wrote:
 
-
-On 3/8/2023 2:23 AM, Konrad Dybcio wrote:
+> This is a generic binding for simple MMIO GPIO controllers. Although we
+> have a single driver for these controllers, they were previously spread
+> over several files. Consolidate them. The register descriptions are
+> adapted from the comments in the source. There is no set order for the
+> registers, so I have not specified one.
 >
-> On 7.03.2023 00:17, Melody Olvera wrote:
->> Add nodes for IPCC, MPSS, and AOSS drivers. Also update
->> the scm node to include its interconnect.
-> Quite a bit of stuff in a single commit, this could be
-> separated into:
+> Rename brcm,bcm6345-gpio to brcm,bcm63xx-gpio to reflect that bcm6345
+> has moved.
 >
-> - scm icc
-> - aoss+ipcc
-> - smp2p+mpss
+> Signed-off-by: Sean Anderson <sean.anderson@seco.com>
+> Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
+> ---
+> Linus or Bartosz, feel free to pick this up as the rest of this series
+> may not be merged any time soon.
 
-Hmm ok. Will split this patch into a few patches.
+I think Bartosz will pick this as soon as the DT maintainers ACK it.
 
->
->> Signed-off-by: Melody Olvera <quic_molvera@quicinc.com>
->> ---
->>  arch/arm64/boot/dts/qcom/qdu1000.dtsi | 104 ++++++++++++++++++++++++++
->>  1 file changed, 104 insertions(+)
->>
->> diff --git a/arch/arm64/boot/dts/qcom/qdu1000.dtsi b/arch/arm64/boot/dts/qcom/qdu1000.dtsi
->> index f234159d2060..6cc96a7c33e8 100644
->> --- a/arch/arm64/boot/dts/qcom/qdu1000.dtsi
->> +++ b/arch/arm64/boot/dts/qcom/qdu1000.dtsi
->> @@ -8,6 +8,7 @@
->>  #include <dt-bindings/dma/qcom-gpi.h>
->>  #include <dt-bindings/interconnect/qcom,qdu1000-rpmh.h>
->>  #include <dt-bindings/interrupt-controller/arm-gic.h>
->> +#include <dt-bindings/mailbox/qcom-ipcc.h>
->>  #include <dt-bindings/power/qcom-rpmpd.h>
->>  #include <dt-bindings/soc/qcom,rpmh-rsc.h>
->>  
->> @@ -141,6 +142,7 @@ CLUSTER_SLEEP_1: cluster-sleep-1 {
->>  	firmware {
->>  		scm {
->>  			compatible = "qcom,scm-qdu1000", "qcom,scm";
->> +			interconnects = <&system_noc MASTER_CRYPTO 0 &mc_virt SLAVE_EBI1 0>;
->>  		};
->>  	};
->>  
->> @@ -326,6 +328,11 @@ q6_mpss_dtb_mem: q6-mpss-dtb@9ec00000 {
->>  			no-map;
->>  		};
->>  
->> +		mpss_dsm_mem: mpss-dsm@9ec80000 {
->> +			reg = <0x0 0x9ec80000 0x0 0x880000>;
->> +			no-map;
->> +		};
->> +
->>  		tenx_mem: tenx@a0000000 {
->>  			reg = <0x0 0xa0000000 0x0 0x19600000>;
->>  			no-map;
->> @@ -347,6 +354,28 @@ ipa_buffer_mem: ipa-buffer@c3200000 {
->>  		};
->>  	};
->>  
->> +	smp2p-modem {
->> +		compatible = "qcom,smp2p";
->> +		qcom,smem = <435>, <428>;
->> +		interrupts-extended = <&ipcc IPCC_CLIENT_MPSS
->> +					   IPCC_MPROC_SIGNAL_SMP2P
->> +					   IRQ_TYPE_EDGE_RISING>;
-> Not sure if thunderfox is acting up again or the indentation here
-> is not quite right
-
-No you're right; let me fix this.
-
->
->> +		mboxes = <&ipcc IPCC_CLIENT_MPSS IPCC_MPROC_SIGNAL_SMP2P>;
->> +		qcom,local-pid = <0>;
->> +		qcom,remote-pid = <1>;
->> +
->> +		smp2p_modem_out: master-kernel {
->> +			qcom,entry-name = "master-kernel";
->> +			#qcom,smem-state-cells = <1>;
->> +		};
->> +
->> +		smp2p_modem_in: slave-kernel {
->> +			qcom,entry-name = "slave-kernel";
->> +			interrupt-controller;
->> +			#interrupt-cells = <2>;
->> +		};
->> +	};
->> +
->>  	soc: soc@0 {
->>  		compatible = "simple-bus";
->>  		#address-cells = <2>;
->> @@ -367,6 +396,15 @@ gcc: clock-controller@80000 {
->>  			#power-domain-cells = <1>;
->>  		};
->>  
->> +		ipcc: mailbox@408000 {
->> +			compatible = "qcom,qdu1000-ipcc", "qcom,ipcc";
->> +			reg = <0x0 0x408000 0x0 0x1000>;
-> The address part should be padded to 8 hex digits. I'd appreciate it
-> if you could submit a fixup for the other nodes in this dtsi!
-
-Sure thing. Will fix here and fix up the other nodes later.
-
->
->> +			interrupts = <GIC_SPI 229 IRQ_TYPE_LEVEL_HIGH>;
->> +			interrupt-controller;
->> +			#interrupt-cells = <3>;
->> +			#mbox-cells = <2>;
->> +		};
->> +
->>  		gpi_dma0: dma-controller@900000  {
->>  			compatible = "qcom,qdu1000-gpi-dma", "qcom,sm6350-gpi-dma";
->>  			reg = <0x0 0x900000 0x0 0x60000>;
->> @@ -842,6 +880,49 @@ tcsr_mutex: hwlock@1f40000 {
->>  			#hwlock-cells = <1>;
->>  		};
->>  
->> +		remoteproc_mpss: remoteproc@4080000 {
->> +			compatible = "qcom,qdu1000-mpss-pas";
->> +			reg = <0x0 0x4080000 0x0 0x4040>,
-> The address part should be padded to 8 hex digits
-
-Got it.
-
->
->> +			      <0x0 0x4180000 0x0 0x1000>;
-> No reg-names?
-
-No; we don't use reg-names in the driver. Lmk if we should be.
-
->> +
->> +			interrupts-extended = <&intc GIC_SPI 264 IRQ_TYPE_EDGE_RISING>,
->> +					      <&smp2p_modem_in 0 IRQ_TYPE_EDGE_RISING>,
->> +					      <&smp2p_modem_in 1 IRQ_TYPE_EDGE_RISING>,
->> +					      <&smp2p_modem_in 2 IRQ_TYPE_EDGE_RISING>,
->> +					      <&smp2p_modem_in 3 IRQ_TYPE_EDGE_RISING>,
->> +					      <&smp2p_modem_in 7 IRQ_TYPE_EDGE_RISING>;
->> +			interrupt-names = "wdog", "fatal", "ready", "handover",
->> +					  "stop-ack", "shutdown-ack";
-> This could be a vertical list, similar to the interrupts-extended itself
-
-Sure thing.
-
->
->> +
->> +			clocks = <&rpmhcc RPMH_CXO_CLK>;
->> +			clock-names = "xo";
->> +
->> +			power-domains = <&rpmhpd QDU1000_CX>,
->> +					<&rpmhpd QDU1000_MSS>;
->> +			power-domain-names = "cx", "mss";
->> +
->> +			memory-region = <&mpss_mem>, <&q6_mpss_dtb_mem>, <&mpss_dsm_mem>;
->> +
->> +			interconnects = <&mc_virt MASTER_LLCC 0 &mc_virt SLAVE_EBI1 0>;
->> +
->> +			qcom,qmp = <&aoss_qmp>;
->> +
->> +			qcom,smem-states = <&smp2p_modem_out 0>;
->> +			qcom,smem-state-names = "stop";
->> +
->> +			status = "disabled";
->> +
->> +			glink-edge {
->> +				interrupts-extended = <&ipcc IPCC_CLIENT_MPSS
->> +							     IPCC_MPROC_SIGNAL_GLINK_QMP
->> +							     IRQ_TYPE_EDGE_RISING>;
->> +				mboxes = <&ipcc IPCC_CLIENT_MPSS
->> +						IPCC_MPROC_SIGNAL_GLINK_QMP>;
->> +				label = "modem";
->> +				qcom,remote-pid = <1>;
->> +			};
->> +		};
->> +
->>  		pdc: interrupt-controller@b220000 {
->>  			compatible = "qcom,qdu1000-pdc", "qcom,pdc";
->>  			reg = <0x0 0xb220000 0x0 0x30000>, <0x0 0x174000f0 0x0 0x64>;
->> @@ -852,6 +933,29 @@ pdc: interrupt-controller@b220000 {
->>  			interrupt-controller;
->>  		};
->>  
->> +		aoss_qmp: qmp@c300000 {
->> +			compatible = "qcom,qdu1000-aoss-qmp", "qcom,aoss-qmp";
->> +			reg = <0x0 0xc300000 0x0 0x400>;
-> The address part should be padded to 8 hex digits
-
-Got it.
-
->
->> +			interrupts-extended = <&ipcc IPCC_CLIENT_AOP
->> +						     IPCC_MPROC_SIGNAL_GLINK_QMP
->> +						     IRQ_TYPE_EDGE_RISING>;
->> +			mboxes = <&ipcc IPCC_CLIENT_AOP IPCC_MPROC_SIGNAL_GLINK_QMP>;
->> +
->> +			#clock-cells = <0>;
->> +
->> +			cx_cdev: cx {
->> +				#cooling-cells = <2>;
->> +			};
->> +
->> +			mx_cdev: mx {
->> +				#cooling-cells = <2>;
->> +			};
->> +
->> +			ebi_cdev: ebi {
->> +				#cooling-cells = <2>;
->> +			};
-> cx
-> ebi
-> mx
->
-> would be alphabetical, unless there's some strong ordering required,
-> not sure
-
-Not to my knowledge. Let me reorder.
-
-Thanks,
-Melody
->
->
-> Konrad
->> +		};
->> +
->>  		spmi_bus: spmi@c400000 {
->>  			compatible = "qcom,spmi-pmic-arb";
->>  			reg = <0x0 0xc400000 0x0 0x3000>,
-
+Yours,
+Linus Walleij
