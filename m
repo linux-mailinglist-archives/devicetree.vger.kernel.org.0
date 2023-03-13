@@ -2,89 +2,132 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 130EB6B7FFF
-	for <lists+devicetree@lfdr.de>; Mon, 13 Mar 2023 19:10:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C21126B8023
+	for <lists+devicetree@lfdr.de>; Mon, 13 Mar 2023 19:13:05 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230130AbjCMSKY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Mar 2023 14:10:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49916 "EHLO
+        id S229573AbjCMSNE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Mar 2023 14:13:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53052 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230211AbjCMSKO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Mar 2023 14:10:14 -0400
-Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8564B76F7B
-        for <devicetree@vger.kernel.org>; Mon, 13 Mar 2023 11:10:13 -0700 (PDT)
-Received: by mail-lf1-x12a.google.com with SMTP id d36so16823190lfv.8
-        for <devicetree@vger.kernel.org>; Mon, 13 Mar 2023 11:10:13 -0700 (PDT)
+        with ESMTP id S229791AbjCMSM7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Mar 2023 14:12:59 -0400
+Received: from mail-oa1-x34.google.com (mail-oa1-x34.google.com [IPv6:2001:4860:4864:20::34])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5F8787B9AC;
+        Mon, 13 Mar 2023 11:12:54 -0700 (PDT)
+Received: by mail-oa1-x34.google.com with SMTP id 586e51a60fabf-17711f56136so14639040fac.12;
+        Mon, 13 Mar 2023 11:12:54 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1678731012;
-        h=to:subject:message-id:date:user-agent:from:references:in-reply-to
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=/UmHmPBg3/KI8KvoUSeeIp1LmuluBX0Sv6TgjKs3d9E=;
-        b=mxXEcHfqp01IK15NmgnwBXXKUc4nQvrXWX21tuzlRrDbwI3AahzL2snAI3dkTc47Hb
-         1isieLtMMUSc6VccPO4Xej39klM4R700IdP2q1ECUf2NqBX7Bu9C2cCilW3xo6MX+NHF
-         gC8cxqBYzc9D2c0RoQ0rBoKPV3ZKfQ9joxva8=
+        d=gmail.com; s=20210112; t=1678731173;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=WGtf6SIwprkjjvb6epaITev79WRWoV5Y4O2K1yfDb1g=;
+        b=qMqZVk3pLC3xbzWkPm4wfcJhhQHPdRhZi/P062twH/OW5f2XPAj4jkyFv381Zi/SVS
+         srkmVayQYr959ujuB0Qvu2D7/iE43qCy9kLlWpiZvguS9Wt7Eb2bJm2Q1jDOjmZC1DkJ
+         31SaMVh56/QZmRqdJuv+ebT2K64l5MH0OMxnrY4XGWi5k9ee/js33P0G13YYGqgb51zJ
+         miLeh4cMguKjBWs5goeTReFPfLnHBWqJyVjPFOLUQe3Oqeku3OAvtvYI0CY0etC724Gv
+         IpGDkMnzYSM/z+Twv6lgJhHIm2BzWl9weHJNOomYKl+CBCCPbtHf3qlV2XS4pJv0bQuq
+         bSyg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678731012;
-        h=to:subject:message-id:date:user-agent:from:references:in-reply-to
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=/UmHmPBg3/KI8KvoUSeeIp1LmuluBX0Sv6TgjKs3d9E=;
-        b=PQriJgFrycO9yuv4C6wwENUOnQGrd2q0JfvCDcsduVChKVGmAe43JS4/s1MsGBwkuL
-         gBq26aXt1INjwMUKphcfwDLWck6Ku/mz3QbtIxKdYfxkcFnlmVjEN5nyHoKBISvuvjvC
-         APv314z3OmKoBGnO8vaWkUuh6JQr6fjo+TiNld6W45i51XF05GJmoIuaJL2uNiyX18NF
-         PGyuig+zw12JiRp/T5gISFJoQnZ0r+fzG1krXGXnidg1FsLR94AxE+YXRg4siW3dJBvb
-         vI4dD/uBVogRohW4wfo0Bl7ojzM8CiexY1T4DM5hM/mWpFvFacjIYnjw6Qe30CgJqfBh
-         F4nw==
-X-Gm-Message-State: AO0yUKXQzRxuyeYWiiHpeKDdMBQlLETEfBZMHw3317UQCS7p68STkqAC
-        ET3d972fopWapshXiGNWVm144QG2q64okSK3BrWeUw==
-X-Google-Smtp-Source: AK7set+f6kjqU/JYMNhvXXZiogIza/ykidaSJZkuSbt2NvCqe/3opxyPqZXqakkXk/QAvNMFkDSKtY+k9GQb21x6vvA=
-X-Received: by 2002:ac2:5312:0:b0:4e1:dbbb:493b with SMTP id
- c18-20020ac25312000000b004e1dbbb493bmr11186617lfh.4.1678731011790; Mon, 13
- Mar 2023 11:10:11 -0700 (PDT)
-Received: from 753933720722 named unknown by gmailapi.google.com with
- HTTPREST; Mon, 13 Mar 2023 11:10:11 -0700
+        d=1e100.net; s=20210112; t=1678731173;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=WGtf6SIwprkjjvb6epaITev79WRWoV5Y4O2K1yfDb1g=;
+        b=YQG4P98LYZAeoPVaqwc5TQS592y3vZLsd90bpD02pPlYABdvtS8kXd0uWdmNV+L8Ww
+         4FWJjv5FYlu7w6xEI+S5Tbv2wkMSpX2fXVYal645mDnDHvJpgQpRslrlXLtBrAsdeTxb
+         SU0yXhT4jilV2hcc4LkFfjcI34YYkBrQ8xxyL9aGwOJRLZXkk6qIyoPqULeEn1HJGGWh
+         +Hva7+EDed9AX7SZLaw1PEUGlYj6AB5uFNoxayAYRvp4++bmyG2P++cln9OUPigb2XRz
+         1aUt6OWlTg1LNoamUP+kSoR0ktQLoVjz3gvEFkkjDS3HA795bOCVeNKFbo1vIHLh7eKy
+         JqyA==
+X-Gm-Message-State: AO0yUKXzjOyI2dXwZO5B1ickowWk94GpUYumQ+OIqzLvPl7yWfsNxT3A
+        dFDKk/qjuNK54RgX8Iky1K+z9qZA6ewiVWeQJatFd3CAuIs=
+X-Google-Smtp-Source: AK7set/m+WIBlxqTBPAs2AyFRkV53zHJpk20UMpb6nDf28b6xYjPLegqpDGBwah+5gYtE/nCTO+FsRO9TFQoxsfBd6o=
+X-Received: by 2002:a05:6870:d20d:b0:172:39d6:edc7 with SMTP id
+ g13-20020a056870d20d00b0017239d6edc7mr5178902oac.4.1678731173552; Mon, 13 Mar
+ 2023 11:12:53 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <20230312183622.460488-4-krzysztof.kozlowski@linaro.org>
-References: <20230312183622.460488-1-krzysztof.kozlowski@linaro.org> <20230312183622.460488-4-krzysztof.kozlowski@linaro.org>
-From:   Stephen Boyd <swboyd@chromium.org>
-User-Agent: alot/0.10
-Date:   Mon, 13 Mar 2023 11:10:11 -0700
-Message-ID: <CAE-0n50=pjP4Quu0grdb12wbetm-gRdxJq_CVEn8Ky=exNYKKw@mail.gmail.com>
-Subject: Re: [PATCH 4/8] arm64: dts: qcom: sc7180-trogdor-pazquel: correct
- trackpad supply
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Douglas Anderson <dianders@chromium.org>,
-        Gustave Monce <gustave.monce@outlook.com>,
-        "Joseph S. Barrera III" <joebar@chromium.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Matthias Kaehlcke <mka@chromium.org>,
-        Rajendra Nayak <rnayak@codeaurora.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Vinod Koul <vkoul@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20230228152205.133582-1-macroalpha82@gmail.com>
+ <20230228152205.133582-3-macroalpha82@gmail.com> <CADcbR4+Onb6RM7grPrqRL8Rth0mbFXykRmPq8R1QxYRGaHQHtA@mail.gmail.com>
+In-Reply-To: <CADcbR4+Onb6RM7grPrqRL8Rth0mbFXykRmPq8R1QxYRGaHQHtA@mail.gmail.com>
+From:   Chris Morgan <macroalpha82@gmail.com>
+Date:   Mon, 13 Mar 2023 13:12:42 -0500
+Message-ID: <CADcbR4L6b9D1FJx9u1jFvZ6jhixNs3_Ky+Mu0rHwtXZ6ATO-Eg@mail.gmail.com>
+Subject: Re: [PATCH 2/3 V4] Bluetooth: hci_h5: btrtl: Add support for RTL8821CS
+To:     linux-bluetooth@vger.kernel.org
+Cc:     linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+        alistair@alistair23.me, anarsoul@gmail.com, luiz.dentz@gmail.com,
+        johan.hedberg@gmail.com, marcel@holtmann.org, heiko@sntech.de,
+        krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
+        Chris Morgan <macromorgan@hotmail.com>
 Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Krzysztof Kozlowski (2023-03-12 11:36:18)
-> The hid-over-i2c takes VDD, not VCC supply.  Fix copy-pasta from other
-> boards which use elan,ekth3000 with valid VCC:
->
->   sc7180-trogdor-pazquel360-lte.dtb: trackpad@15: 'vcc-supply' does not match any of the regexes: 'pinctrl-[0-9]+'
->
-> Fixes: fb69f6adaf88 ("arm64: dts: qcom: sc7180: Add pazquel dts files")
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> ---
+I found the fix, simply put changing the compatible from
+realtek,rtl8822cs-bt to realtek,rtl8732bs-bt fixes it (because it sets
+the "H5_INFO_WAKEUP_DISABLE" flag). Is it too late for a V5, or should
+I submit this as a fix to the devicetree and devicetree documentation?
 
-Reviewed-by: Stephen Boyd <swboyd@chromium.org>
+Thank you.
+
+On Fri, Mar 10, 2023 at 10:25=E2=80=AFAM Chris Morgan <macroalpha82@gmail.c=
+om> wrote:
+>
+> I shudder to bring this up now, but I'm encountering a new bug and
+> might have to withdraw this.
+>
+> I'm receiving errors in dmesg of the following, and I can't seem to
+> figure out the root cause:
+> Bluetooth: hci0: Out-of-order packet arrived
+>
+> Any thoughts on what might cause it?
+> Thank you.
+>
+> On Tue, Feb 28, 2023 at 9:22=E2=80=AFAM Chris Morgan <macroalpha82@gmail.=
+com> wrote:
+> >
+> > From: Chris Morgan <macromorgan@hotmail.com>
+> >
+> > RTL8821CS is a WiFi + Bluetooth combo chip from Realtek that provides
+> > WiFi A/B/G/N/AC over an SDIO interface and Bluetooth 4.2 over a UART
+> > interface.
+> >
+> > Note that the firmware this was tested with was firmware version
+> > 0x75b8f098.
+> >
+> > Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
+> > ---
+> >  drivers/bluetooth/btrtl.c | 8 ++++++++
+> >  1 file changed, 8 insertions(+)
+> >
+> > diff --git a/drivers/bluetooth/btrtl.c b/drivers/bluetooth/btrtl.c
+> > index 69c3fe649ca7..72947d319fa6 100644
+> > --- a/drivers/bluetooth/btrtl.c
+> > +++ b/drivers/bluetooth/btrtl.c
+> > @@ -128,6 +128,14 @@ static const struct id_table ic_id_table[] =3D {
+> >           .fw_name  =3D "rtl_bt/rtl8821c_fw.bin",
+> >           .cfg_name =3D "rtl_bt/rtl8821c_config" },
+> >
+> > +       /* 8821CS */
+> > +       { IC_INFO(RTL_ROM_LMP_8821A, 0xc, 0x8, HCI_UART),
+> > +         .config_needed =3D true,
+> > +         .has_rom_version =3D true,
+> > +         .has_msft_ext =3D true,
+> > +         .fw_name  =3D "rtl_bt/rtl8821cs_fw.bin",
+> > +         .cfg_name =3D "rtl_bt/rtl8821cs_config" },
+> > +
+> >         /* 8761A */
+> >         { IC_INFO(RTL_ROM_LMP_8761A, 0xa, 0x6, HCI_USB),
+> >           .config_needed =3D false,
+> > --
+> > 2.34.1
+> >
