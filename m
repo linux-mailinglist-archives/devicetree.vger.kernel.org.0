@@ -2,189 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BE9906B6DAD
-	for <lists+devicetree@lfdr.de>; Mon, 13 Mar 2023 03:57:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A62D56B6DBA
+	for <lists+devicetree@lfdr.de>; Mon, 13 Mar 2023 04:03:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229550AbjCMC5R (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 12 Mar 2023 22:57:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53624 "EHLO
+        id S229824AbjCMDDY convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Sun, 12 Mar 2023 23:03:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33230 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229473AbjCMC5Q (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 12 Mar 2023 22:57:16 -0400
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 079FB234DC;
-        Sun, 12 Mar 2023 19:57:14 -0700 (PDT)
-Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 32D2FjWv019797;
-        Mon, 13 Mar 2023 02:56:56 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=lqLYkvu2wxu/IOZBe1fyU2RVWR97f7qTklHjVHNfheU=;
- b=h3Z9O4pECcqrfeZyDBhffwRVIjpEp+rdGtOgykRg/nCaaEpa6hYOaP9JHfsyMtM4R30l
- 74U8HP33VzYzjypTWcmLmY0nTpRlnPKRoErErxZgqFeIPDd6JIjQQXgPAMjtoGhy6Fjl
- lBH76kntA5N5np3o8ohmUK8XAf6WL/me4XbJ3O2ksF9NKvMGD4MNnKAlLNaSFNMPW15S
- UaEJ6BZKHBn8CKNi5PmFQEihCc4QqPogsN8m68WrUEbxyElUOKz4hXHZSShxPsYUrRfH
- 2d6JG2yKx+R7bZJuiABpTKzFOOq+jcbcSpciwffS82p9aEwUm8qwkW7lZWDZAxh/i36A Eg== 
-Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3p8gysuh1h-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Mon, 13 Mar 2023 02:56:56 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-        by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 32D2utD0028776
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Mon, 13 Mar 2023 02:56:55 GMT
-Received: from [10.216.43.170] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.41; Sun, 12 Mar
- 2023 19:56:48 -0700
-Message-ID: <87c3f7c6-f288-3aaf-d7dd-cb28ba5c206c@quicinc.com>
-Date:   Mon, 13 Mar 2023 08:26:45 +0530
+        with ESMTP id S229836AbjCMDDT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 12 Mar 2023 23:03:19 -0400
+Received: from fd01.gateway.ufhost.com (fd01.gateway.ufhost.com [61.152.239.71])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 44D9B3AB9;
+        Sun, 12 Mar 2023 20:03:13 -0700 (PDT)
+Received: from EXMBX165.cuchost.com (unknown [175.102.18.54])
+        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+        (Client CN "EXMBX165", Issuer "EXMBX165" (not verified))
+        by fd01.gateway.ufhost.com (Postfix) with ESMTP id 465AD24E3ED;
+        Mon, 13 Mar 2023 11:03:06 +0800 (CST)
+Received: from EXMBX172.cuchost.com (172.16.6.92) by EXMBX165.cuchost.com
+ (172.16.6.75) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Mon, 13 Mar
+ 2023 10:29:13 +0800
+Received: from [192.168.125.74] (183.27.96.115) by EXMBX172.cuchost.com
+ (172.16.6.92) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Mon, 13 Mar
+ 2023 10:29:12 +0800
+Message-ID: <df2464d3-9e9e-c299-675d-0a3f69856361@starfivetech.com>
+Date:   Mon, 13 Mar 2023 10:29:11 +0800
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.12.0
-Subject: Re: [PATCH 3/8] usb: dwc3: core: Skip setting event buffers for host
- only controllers
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.3.2
+Subject: Re: [PATCH v4 10/19] dt-bindings: clock: Add StarFive JH7110
+ always-on clock and reset generator
 Content-Language: en-US
-To:     Dongliang Mu <mudongliangabcd@gmail.com>
-CC:     Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+To:     Geert Uytterhoeven <geert@linux-m68k.org>,
+        Emil Renner Berthing <emil.renner.berthing@canonical.com>
+CC:     <linux-clk@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-riscv@lists.infradead.org>, Stephen Boyd <sboyd@kernel.org>,
+        "Michael Turquette" <mturquette@baylibre.com>,
         Philipp Zabel <p.zabel@pengutronix.de>,
-        "Andy Gross" <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        "Konrad Dybcio" <konrad.dybcio@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Felipe Balbi <balbi@kernel.org>, <linux-usb@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <quic_pkondeti@quicinc.com>,
-        <quic_ppratap@quicinc.com>, <quic_wcheng@quicinc.com>,
-        <quic_jackp@quicinc.com>, <quic_harshq@quicinc.com>,
-        <ahalaney@redhat.com>, <quic_shazhuss@quicinc.com>
-References: <20230310163420.7582-1-quic_kriskura@quicinc.com>
- <20230310163420.7582-4-quic_kriskura@quicinc.com>
- <CAD-N9QVT7qaiUbmPapZc5+6XXDVTPeXG4HD4p-n8WSi9FK2CbQ@mail.gmail.com>
-From:   Krishna Kurapati PSSNV <quic_kriskura@quicinc.com>
-In-Reply-To: <CAD-N9QVT7qaiUbmPapZc5+6XXDVTPeXG4HD4p-n8WSi9FK2CbQ@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: ldITf53Dxyt5EbcJcKYyV3DTbXMyN7Ce
-X-Proofpoint-ORIG-GUID: ldITf53Dxyt5EbcJcKYyV3DTbXMyN7Ce
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
- definitions=2023-03-12_10,2023-03-10_01,2023-02-09_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0 mlxscore=0
- impostorscore=0 lowpriorityscore=0 malwarescore=0 bulkscore=0
- suspectscore=0 adultscore=0 phishscore=0 priorityscore=1501 clxscore=1011
- mlxlogscore=764 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2212070000 definitions=main-2303130024
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        Conor Dooley <conor@kernel.org>,
+        "Palmer Dabbelt" <palmer@dabbelt.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Ben Dooks <ben.dooks@sifive.com>,
+        "Daniel Lezcano" <daniel.lezcano@linaro.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>, <linux-kernel@vger.kernel.org>
+References: <20230221024645.127922-1-hal.feng@starfivetech.com>
+ <20230221024645.127922-11-hal.feng@starfivetech.com>
+ <dc88e0df-4e2f-d2b8-4ecb-514862d01c3c@linux-m68k.org>
+From:   Hal Feng <hal.feng@starfivetech.com>
+In-Reply-To: <dc88e0df-4e2f-d2b8-4ecb-514862d01c3c@linux-m68k.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Originating-IP: [183.27.96.115]
+X-ClientProxiedBy: EXCAS064.cuchost.com (172.16.6.24) To EXMBX172.cuchost.com
+ (172.16.6.92)
+X-YovoleRuleAgent: yovoleflag
+Content-Transfer-Encoding: 8BIT
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 3/13/2023 7:37 AM, Dongliang Mu wrote:
-> On Sat, Mar 11, 2023 at 12:40 AM Krishna Kurapati
-> <quic_kriskura@quicinc.com> wrote:
+On Thu, 9 Mar 2023 15:22:54 +0100, Geert Uytterhoeven wrote:
+>     Hi Hal, Esmil,
+> 
+> On Tue, 21 Feb 2023, Hal Feng wrote:
+>> From: Emil Renner Berthing <kernel@esmil.dk>
 >>
->> On some SoC's like SA8295P where the teritiary controller is host-only
->> capable, GEVTADDRHI/LO, GEVTSIZ, GEVTCOUNT registers are not accessible.
->> Trying to setup them up during core_init leads to a crash.
+>> Add bindings for the always-on clock and reset generator (AONCRG) on the
+>> JH7110 RISC-V SoC by StarFive Ltd.
 >>
->> For DRD/Peripheral supported controllers, event buffer setup is done
->> again in gadget_pullup. Skip setup or cleanup of event buffers if
->> controller is host-only capable.
->>
->> Signed-off-by: Krishna Kurapati <quic_kriskura@quicinc.com>
->> ---
->>   drivers/usb/dwc3/core.c | 20 ++++++++++++++------
->>   1 file changed, 14 insertions(+), 6 deletions(-)
->>
->> diff --git a/drivers/usb/dwc3/core.c b/drivers/usb/dwc3/core.c
->> index 076c0f8a4441..1ca9fa40a66e 100644
->> --- a/drivers/usb/dwc3/core.c
->> +++ b/drivers/usb/dwc3/core.c
->> @@ -840,7 +840,11 @@ static void dwc3_clk_disable(struct dwc3 *dwc)
->>
->>   static void dwc3_core_exit(struct dwc3 *dwc)
->>   {
->> -       dwc3_event_buffers_cleanup(dwc);
->> +       unsigned int    hw_mode;
+>> Reviewed-by: Rob Herring <robh@kernel.org>
+>> Signed-off-by: Emil Renner Berthing <kernel@esmil.dk>
+>> Signed-off-by: Hal Feng <hal.feng@starfivetech.com>
+> 
+> Thanks for your patch!
+> 
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/clock/starfive,jh7110-aoncrg.yaml
+>> @@ -0,0 +1,76 @@
+>> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/clock/starfive,jh7110-aoncrg.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
 >> +
->> +       hw_mode = DWC3_GHWPARAMS0_MODE(dwc->hwparams.hwparams0);
->> +       if (hw_mode != DWC3_GHWPARAMS0_MODE_HOST)
->> +               dwc3_event_buffers_cleanup(dwc);
-> 
-> quick question about dwc3_event_buffers_cleanup, there are other
-> similar sites calling this function.
-> 
-> C symbol: dwc3_event_buffers_cleanup
-> 
->    File   Function                   Line
-> 0 core.h <global>                   1546 void
-> dwc3_event_buffers_cleanup(struct dwc3 *dwc);
-> 1 core.c __dwc3_set_mode             152 dwc3_event_buffers_cleanup(dwc);
-> 2 core.c dwc3_event_buffers_cleanup  522 void
-> dwc3_event_buffers_cleanup(struct dwc3 *dwc)
-> 3 core.c dwc3_core_exit              842 dwc3_event_buffers_cleanup(dwc);
-> 4 core.c dwc3_probe                 1936 dwc3_event_buffers_cleanup(dwc);
-> 5 drd.c  dwc3_otg_update             363 dwc3_event_buffers_cleanup(dwc);
-> 6 drd.c  dwc3_drd_exit               607 dwc3_event_buffers_cleanup(dwc);
-> 
-> For 1, 5, and 6, any need to take care of this situation?
-> 
-Hi Dongliang,
-
-   Thanks for the review.
-In the other places mentioned like set_mode otg_update or drd_exit, 
-cleanup is called if we are in device mode and we want to exit that 
-mode. Since for MP, we have a host only controller those paths won't be 
-accessed I believe.
-
-Regards,
-Krishna,
->>
->>          usb_phy_set_suspend(dwc->usb2_phy, 1);
->>          usb_phy_set_suspend(dwc->usb3_phy, 1);
->> @@ -1177,10 +1181,12 @@ static int dwc3_core_init(struct dwc3 *dwc)
->>          if (ret < 0)
->>                  goto err3;
->>
->> -       ret = dwc3_event_buffers_setup(dwc);
->> -       if (ret) {
->> -               dev_err(dwc->dev, "failed to setup event buffers\n");
->> -               goto err4;
->> +       if (hw_mode != DWC3_GHWPARAMS0_MODE_HOST) {
->> +               ret = dwc3_event_buffers_setup(dwc);
->> +               if (ret) {
->> +                       dev_err(dwc->dev, "failed to setup event buffers\n");
->> +                       goto err4;
->> +               }
->>          }
->>
->>          /*
->> @@ -2008,7 +2014,9 @@ static int dwc3_probe(struct platform_device *pdev)
->>
->>   err5:
->>          dwc3_debugfs_exit(dwc);
->> -       dwc3_event_buffers_cleanup(dwc);
+>> +title: StarFive JH7110 Always-On Clock and Reset Generator
 >> +
->> +       if (hw_mode != DWC3_GHWPARAMS0_MODE_HOST)
->> +               dwc3_event_buffers_cleanup(dwc);
->>
->>          usb_phy_set_suspend(dwc->usb2_phy, 1);
->>          usb_phy_set_suspend(dwc->usb3_phy, 1);
->> --
->> 2.39.0
->>
+>> +maintainers:
+>> +  - Emil Renner Berthing <kernel@esmil.dk>
+>> +
+> 
+> This lacks a top-level "description" section, to anwer the question:
+> What is an "Always-On Clock and Reset Generator"?
+> 
+> To me, "always-on" sounds like it's critical, and thus the driver
+> must always be built-in?
+
+AON is a part of JH7110 circuit which is always powered on, but the
+AON clocks can be turned off if not used. The JH7110 can boot up
+successfully without the AON clock driver, so it's fine to build it
+as a module. Thanks.
+
+Best regards,
+Hal
