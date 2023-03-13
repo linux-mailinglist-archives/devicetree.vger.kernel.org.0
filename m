@@ -2,83 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D51BE6B7314
-	for <lists+devicetree@lfdr.de>; Mon, 13 Mar 2023 10:48:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 84D1E6B7321
+	for <lists+devicetree@lfdr.de>; Mon, 13 Mar 2023 10:49:51 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230019AbjCMJsG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Mar 2023 05:48:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51350 "EHLO
+        id S229616AbjCMJtu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Mar 2023 05:49:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56336 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230190AbjCMJsF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Mar 2023 05:48:05 -0400
-Received: from mail-wm1-x333.google.com (mail-wm1-x333.google.com [IPv6:2a00:1450:4864:20::333])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EAC5DD331
-        for <devicetree@vger.kernel.org>; Mon, 13 Mar 2023 02:48:02 -0700 (PDT)
-Received: by mail-wm1-x333.google.com with SMTP id fm20-20020a05600c0c1400b003ead37e6588so10437742wmb.5
-        for <devicetree@vger.kernel.org>; Mon, 13 Mar 2023 02:48:02 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1678700881;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=fO9QX/weVED953xL0vn6RIJmflSaqBS+exrgijHj8oI=;
-        b=b85l8WtrWPlHcTYMcC9XmvuPHxmv1YATlNgiwIEpU6zuBiAVQyWFjwj9/gnjIHRpd2
-         T7tomEtNXfmsUqRuciHXT/4gfRFgBhbHNQf8vrMQv7vKFCBTsLBjGkrVpPEHhuUmEiZ3
-         qgw9driJQRHzBt8/v7DKZHZqXizLbdXPspu2m/At76e5mbFFMvLUhgC3+4vaGhlbYDsJ
-         DX+SLvi91f6DlxqbfM/2DgLKPr7UMCia1hIc7Q3bpmgL5DcFqDkZRlBIyIvCCqhU0Ziv
-         Eklb3mVfbgSOZOmno1vofozalXoVYmalU86AMcJKW1S4i4SSeB3r61DUnfMcLG5JwiDf
-         ziOA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678700881;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=fO9QX/weVED953xL0vn6RIJmflSaqBS+exrgijHj8oI=;
-        b=xoLpEQPQYIvPQpLIQrxmYiQY3Adak+KhVd1Cw8cR4/1IjzH9U12pVcCJN5O54ApoKU
-         8Lj+CzVLkCbDpaiWgeSv8ms9Knmnlg+Bifl+4eCppgVEG5Ub5YwQLsvsX+jUypK2IUQ3
-         JeCJQmQJRIIXF5OtABkLjlGbRzNI9bm0qeTlbD4awTFcDcWWWj3lGtLI3cqQBo4v0GEL
-         o3xFFBAqXvOIT9ybrIYrWvzClPiVS/aI4Oy7hUdf9xHggF9snoaCF8p++7WejRsPTvcc
-         jnpactCOmiraN39lYKaWmBxktiuq+U3KIrIz3ZbHYPznl5Zrr8yQScbz3IaAsdW3Lnxj
-         bXUA==
-X-Gm-Message-State: AO0yUKWKLKfe/8vrqzyXKkbaDY4S9631P7QcxY6REDo6tpdaKDtMr56K
-        zcvK56xFbYinIZs6N7npvTVA/h8sSatTIwQgbZedWg==
-X-Google-Smtp-Source: AK7set/TwMkM6ahPLSMJJugMHuvHZmsV7Rsb041IebIpECvIRczfyVk1f5r4t2Z9zCTS/4XbIFxxQg==
-X-Received: by 2002:a05:600c:4f86:b0:3ed:29d9:56ae with SMTP id n6-20020a05600c4f8600b003ed29d956aemr191186wmq.6.1678700881411;
-        Mon, 13 Mar 2023 02:48:01 -0700 (PDT)
-Received: from aspen.lan (cpc141216-aztw34-2-0-cust174.18-1.cable.virginm.net. [80.7.220.175])
-        by smtp.gmail.com with ESMTPSA id r16-20020a05600c2f1000b003ed29189777sm980898wmn.47.2023.03.13.02.48.00
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 13 Mar 2023 02:48:01 -0700 (PDT)
-Date:   Mon, 13 Mar 2023 09:47:59 +0000
-From:   Daniel Thompson <daniel.thompson@linaro.org>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Lee Jones <lee@kernel.org>, Jingoo Han <jingoohan1@gmail.com>,
-        Helge Deller <deller@gmx.de>, devicetree@vger.kernel.org,
-        dri-devel@lists.freedesktop.org, linux-fbdev@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] backlight: as3711: Use of_property_read_bool() for
- boolean properties
-Message-ID: <20230313094759.GB55049@aspen.lan>
-References: <20230310144731.1546190-1-robh@kernel.org>
+        with ESMTP id S231337AbjCMJtt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Mar 2023 05:49:49 -0400
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4F3D661AB;
+        Mon, 13 Mar 2023 02:49:35 -0700 (PDT)
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 32D9nQJp110077;
+        Mon, 13 Mar 2023 04:49:26 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1678700966;
+        bh=5tIHLp8mna+dpOxvauCmGw9dgMnWj4HTyDR1d2zhhR4=;
+        h=Date:Subject:To:CC:References:From:In-Reply-To;
+        b=e8B55OML3EtDXIIl+h5Y52/upMe5o6Heo1tQCJF+aBtbLKGUn/t2XkDuhV6jLYWtw
+         ZHsrQCjdtkcauiYS1f+0JnsoV7poaUSevxGF5JWuJGKgz5+14tqmM+1b22gM1b/SSy
+         3don19VqM2CqE4ROH2bj5tm6q30/fhSyJOpZO8UM=
+Received: from DFLE105.ent.ti.com (dfle105.ent.ti.com [10.64.6.26])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 32D9nQuA075729
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Mon, 13 Mar 2023 04:49:26 -0500
+Received: from DFLE105.ent.ti.com (10.64.6.26) by DFLE105.ent.ti.com
+ (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Mon, 13
+ Mar 2023 04:49:25 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE105.ent.ti.com
+ (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
+ Frontend Transport; Mon, 13 Mar 2023 04:49:25 -0500
+Received: from [172.24.218.99] (ileaxei01-snat2.itg.ti.com [10.180.69.6])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 32D9nIDL113095;
+        Mon, 13 Mar 2023 04:49:19 -0500
+Message-ID: <f28489b1-4ece-4f48-e2c0-9bd7755071d8@ti.com>
+Date:   Mon, 13 Mar 2023 15:19:18 +0530
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230310144731.1546190-1-robh@kernel.org>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.8.0
+Subject: Re: [PATCH v3] arm64: dts: ti: k3-j721e-main: Remove ti,strobe-sel
+ property
+To:     Bhavya Kapoor <b-kapoor@ti.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+CC:     <nm@ti.com>, <vigneshr@ti.com>, <kristo@kernel.org>,
+        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <a-govindraju@ti.com>, <kishon@ti.com>, <u-kumar1@ti.com>
+References: <20230203073724.29529-1-b-kapoor@ti.com>
+Content-Language: en-US
+From:   Nitin Yadav <n-yadav@ti.com>
+In-Reply-To: <20230203073724.29529-1-b-kapoor@ti.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_PASS,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Mar 10, 2023 at 08:47:31AM -0600, Rob Herring wrote:
-> It is preferred to use typed property access functions (i.e.
-> of_property_read_<type> functions) rather than low-level
-> of_get_property/of_find_property functions for reading properties.
-> Convert reading boolean properties to to of_property_read_bool().
+On 2/3/2023 1:07 PM, Bhavya Kapoor wrote:
+> According to latest errata of J721e [1], (i2024) 'MMCSD: Peripherals
+> Do Not Support HS400' which applies to MMCSD0 subsystem. Speed modes
+> supported has been already updated in commit eb8f6194e807 ("arm64: dts: ti: k3-j721e-main: Update the speed modes supported and their itap delay values for MMCSD subsystems")
+> but it missed dropping 'ti,strobe-sel' property which is only required
+> by HS400 speed mode.
+> 
+> Thus, drop 'ti,strobe-sel' property from kernel dtsi for J721e SoC.
+> 
+> [1] https://www.ti.com/lit/er/sprz455/sprz455.pdf
+> 
+> Fixes: eb8f6194e807 ("arm64: dts: ti: k3-j721e-main: Update the speed modes supported and their itap delay values for MMCSD subsystems")
+> Signed-off-by: Bhavya Kapoor <b-kapoor@ti.com>
+> ---
+>  arch/arm64/boot/dts/ti/k3-j721e-main.dtsi | 1 -
+>  1 file changed, 1 deletion(-)
+> 
+> diff --git a/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi b/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
+> index c935622f0102..bfa296dce3a3 100644
+> --- a/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
+> +++ b/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
+> @@ -1180,7 +1180,6 @@ main_sdhci0: mmc@4f80000 {
+>  		ti,itap-del-sel-mmc-hs = <0xa>;
+>  		ti,itap-del-sel-ddr52 = <0x3>;
+>  		ti,trm-icp = <0x8>;
+> -		ti,strobe-sel = <0x77>;
+>  		dma-coherent;
+>  	};
 >
-> Signed-off-by: Rob Herring <robh@kernel.org>
-
-Reviewed-by: Daniel Thompson <daniel.thompson@linaro.org>
+Reviewed-by: Nitin Yadav <n-yadav@ti.com>
+  
