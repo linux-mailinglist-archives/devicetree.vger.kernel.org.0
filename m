@@ -2,90 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7AB066B7D4B
-	for <lists+devicetree@lfdr.de>; Mon, 13 Mar 2023 17:20:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A4E546B7DA6
+	for <lists+devicetree@lfdr.de>; Mon, 13 Mar 2023 17:34:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230055AbjCMQUW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Mar 2023 12:20:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39144 "EHLO
+        id S231414AbjCMQeH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Mar 2023 12:34:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36168 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229957AbjCMQUV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Mar 2023 12:20:21 -0400
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 48A461F5ED;
-        Mon, 13 Mar 2023 09:20:18 -0700 (PDT)
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 32DGK956004984;
-        Mon, 13 Mar 2023 11:20:09 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1678724409;
-        bh=Uc2APdIAYB7poq9J28h4dQiY7hK7soScXAAPeXg8vIs=;
-        h=Date:From:To:CC:Subject:References:In-Reply-To;
-        b=oLFZ5reC/TrJfowviVD24QbGoytUeZmk5sO7mxXs8MqztcHN+/nsekiBgfvQAryy/
-         WJAUiMPD9Owyb70/oSy9eb9G4j6swxjsm0WX/6lYuG5E/dUlUBKZbfpQUZdm9GpDGO
-         X6SVKr4EJK03ilwnfDECmFv71VscK2P0HHvfCVHI=
-Received: from DLEE102.ent.ti.com (dlee102.ent.ti.com [157.170.170.32])
-        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 32DGK9SA071070
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Mon, 13 Mar 2023 11:20:09 -0500
-Received: from DLEE100.ent.ti.com (157.170.170.30) by DLEE102.ent.ti.com
- (157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Mon, 13
- Mar 2023 11:20:08 -0500
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE100.ent.ti.com
- (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
- Frontend Transport; Mon, 13 Mar 2023 11:20:08 -0500
-Received: from localhost (ileaxei01-snat2.itg.ti.com [10.180.69.6])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 32DGK8iI065378;
-        Mon, 13 Mar 2023 11:20:08 -0500
-Date:   Mon, 13 Mar 2023 11:20:08 -0500
-From:   Nishanth Menon <nm@ti.com>
-To:     a0502875 <d-dhyani@ti.com>
-CC:     Bhavya Kapoor <b-kapoor@ti.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <vigneshr@ti.com>, <kristo@kernel.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <a-govindraju@ti.com>,
-        <kishon@ti.com>, <u-kumar1@ti.com>
-Subject: Re: [PATCH v3] arm64: dts: ti: k3-j721e-main: Remove ti,strobe-sel
- property
-Message-ID: <20230313162008.faokisdbaeecm55h@swampland>
-References: <20230203073724.29529-1-b-kapoor@ti.com>
- <3279b78d-fa6d-d1f4-3692-87e628bcd737@ti.com>
+        with ESMTP id S231443AbjCMQdu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Mar 2023 12:33:50 -0400
+Received: from mail-lj1-x229.google.com (mail-lj1-x229.google.com [IPv6:2a00:1450:4864:20::229])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2F8ED21954
+        for <devicetree@vger.kernel.org>; Mon, 13 Mar 2023 09:33:15 -0700 (PDT)
+Received: by mail-lj1-x229.google.com with SMTP id by8so13237244ljb.7
+        for <devicetree@vger.kernel.org>; Mon, 13 Mar 2023 09:33:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1678725184;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=IxAObhtaTCcRbG6Hmd9m0sIf05Okzjn3JGLYoGOg1TQ=;
+        b=mI2o8AsFCByJJoFOVVg+b1mlcXkoKIiF2Zq0Cw6+ZI29rpJBoLoP96hOwVfAxZ/l4E
+         i8MGj5FKWzSBCz2+O2EpFZlr+lNJrZxS3FK8Hc294Nnk69anGkqxtILoJrvx3QlzOp4V
+         rQtlYt4YbXAEQWdX2QL/w6wNuugiwlQQEkR0qcVku+IE0reekNBdF7WxkmyFpab++wQ6
+         Z0vJ5cjnPqZ6OZU3bR74ZLbIbDM/LckrH06skfv1/QrcA2NAkPVGvavg9mj6KDsb2y0a
+         FA9P9yqdxw5CWEwwjvPa4evJ/0K6KSXCN3fun8WKcHSj72Y2ueiCMJv03VhofRuJDAaX
+         aIMg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1678725184;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=IxAObhtaTCcRbG6Hmd9m0sIf05Okzjn3JGLYoGOg1TQ=;
+        b=De2Trmzc5xBwYY8NXWGzUbCJHKqDDOehTkMsxSMGZR7D+6qftBOoJJG4KWdJQVhatN
+         4yMGL/6JowV2HVdsoehjsqUl3uH4VDjHDylNJRpTIvvuag9nG1LIZ8meArr+cA7PuO46
+         fTEsnR/+uv8sp/vQMO2FAnfAg+zj3yFm5jqJQQwdVEGBb+5TXpwE+ayOVS2Ih2djC8Ob
+         NThYJKTKgHTx0F6hq3APY8GjLCIo8GwAS7YLD4zicwO2LpLVd9Z3ycxb07tlW8W73qpy
+         n0YkiAZdsbsxbU5vf0ZkNV1bP3DW42AzUtfYxgEFW0nZJV/yeT2Nwhv0CDMeCvhe5Y1g
+         XhOQ==
+X-Gm-Message-State: AO0yUKU8Uvri60jHYDJi7ssxmoE+ARsWtwRxU+DJBJu0NgkVPk9Fd0BU
+        QttPoGX8LVkKl6eNyYltUO5bZA==
+X-Google-Smtp-Source: AK7set+m/oE5niqMhke8f6ER+gWlkruhMxGnwh9/yhr3ujGuX9yQniRUZnfoINzC8OaTg3VoHIgauw==
+X-Received: by 2002:a2e:a9a2:0:b0:298:39e7:75dc with SMTP id x34-20020a2ea9a2000000b0029839e775dcmr12377505ljq.48.1678725184528;
+        Mon, 13 Mar 2023 09:33:04 -0700 (PDT)
+Received: from [192.168.1.101] (abyj16.neoplus.adsl.tpnet.pl. [83.9.29.16])
+        by smtp.gmail.com with ESMTPSA id q62-20020a2e5c41000000b00295765966d9sm57417ljb.86.2023.03.13.09.33.03
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 13 Mar 2023 09:33:03 -0700 (PDT)
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+Subject: [PATCH v2 0/6] Sony SDM845 panel and remoteproc enablement
+Date:   Mon, 13 Mar 2023 17:32:35 +0100
+Message-Id: <20230313-topic-tama_disp-v2-0-37ececf43770@linaro.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <3279b78d-fa6d-d1f4-3692-87e628bcd737@ti.com>
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIACNQD2QC/x2N0QrCMAwAf2Xk2cDaMhF/RUSyNnWB2ZVmE2Hs3
+ xd8vIPjdlBuwgr3bofGX1FZioG/dBAnKm9GScbgex/64AKuS5WIK33olUQr5nAj56558CmDVSM
+ p49ioxMm6ss2zydo4y++/eTyP4wS6PnhNdgAAAA==
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>
+X-Mailer: b4 0.12.1
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1678725183; l=1665;
+ i=konrad.dybcio@linaro.org; s=20230215; h=from:subject:message-id;
+ bh=bKcRsRkpMUUvkJs8OUvRQMB6jCsTJXQ8bRahIpo2/XQ=;
+ b=qDsWTw0Vu7OuwUVVHEI9Dwe7Iqc5fFm97J1DfjlKtJVfC2VOoFTvy/gNouekhbdot/xiXkum119G
+ uXQ4efRMCwEisJg94/wQDO55AVVDpdJD66Y1m5QvnswWA3nXgWxT
+X-Developer-Key: i=konrad.dybcio@linaro.org; a=ed25519;
+ pk=iclgkYvtl2w05SSXO5EjjSYlhFKsJ+5OSZBjOkQuEms=
+X-Spam-Status: No, score=-0.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_SORBS_HTTP,RCVD_IN_SORBS_SOCKS,SPF_HELO_NONE,SPF_PASS
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 14:27-20230313, a0502875 wrote:
-> On 03/02/23 13:07, Bhavya Kapoor wrote:
-> > According to latest errata of J721e [1], (i2024) 'MMCSD: Peripherals
-> > Do Not Support HS400' which applies to MMCSD0 subsystem. Speed modes
-> > supported has been already updated in commit eb8f6194e807 ("arm64: dts: ti: k3-j721e-main: Update the speed modes supported and their itap delay values for MMCSD subsystems")
-> > but it missed dropping 'ti,strobe-sel' property which is only required
-> > by HS400 speed mode.
-> > 
-> > Thus, drop 'ti,strobe-sel' property from kernel dtsi for J721e SoC.
-> > 
-> > [1]https://www.ti.com/lit/er/sprz455/sprz455.pdf
-> > 
-> > Fixes: eb8f6194e807 ("arm64: dts: ti: k3-j721e-main: Update the speed modes supported and their itap delay values for MMCSD subsystems")
-> > Signed-off-by: Bhavya Kapoor<b-kapoor@ti.com>
-> 
-> Reviewed-by: Diwakar Dhyani <d-dhyani@ti.com <mailto:d-dhyani@ti.com>>
+v1 -> v2:
+- Drop akatsuki touch panel as Marijn figures out some sleep-related
+  things
+- No more dependencies, the panel driver has been merged into drm-misc
+  next
+- "*-pin" { -> "*-pins {"
+- treset-gpios -> touch-reset-gpios
+- Drop "Don't use 0x in unit address" (solved)
+- Drop IPA & modem, this keeps crashing for some reason..
 
-Please fix your mailer. I will need to hand apply for now.
+2/7 is a total OF abuse and very RFC-ish..
+
+v1: https://lore.kernel.org/lkml/20220930191049.123256-2-konrad.dybcio@somainline.org/
+
+This series enables display and touch panel on XZ2/XZ2c devices
+equipped with a JDI panel with a TD4353 driver IC and just
+touch panel for all XZ3 phones. It also enables the remote
+processors, GPU&GMU and GPI DMA on all Tama devices.
+
+Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+---
+Konrad Dybcio (6):
+      arm64: dts: qcom: sdm845-tama: Add display nodes
+      [RFC] arm64: dts: qcom: sdm845-tama: Add Synaptics Touchscreen
+      arm64: dts: qcom: sdm845-tama: Add regulator-system-load to l14a/l28a
+      arm64: dts: qcom: sdm845-tama: Enable remoteprocs
+      arm64: dts: qcom: sdm845-tama: Enable GPU
+      arm64: dts: qcom: sdm845-tama: Enable GPI_DMA0/1
+
+ .../dts/qcom/sdm845-sony-xperia-tama-akari.dts     |   4 +
+ .../dts/qcom/sdm845-sony-xperia-tama-akatsuki.dts  |  47 ++++-
+ .../dts/qcom/sdm845-sony-xperia-tama-apollo.dts    |   6 +
+ .../boot/dts/qcom/sdm845-sony-xperia-tama.dtsi     | 203 ++++++++++++++++++++-
+ 4 files changed, 257 insertions(+), 3 deletions(-)
+---
+base-commit: 24469a0e5052ba01a35a15f104717a82b7a4798b
+change-id: 20230313-topic-tama_disp-f38a116f52df
+
+Best regards,
 -- 
-Regards,
-Nishanth Menon
-Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
+Konrad Dybcio <konrad.dybcio@linaro.org>
+
