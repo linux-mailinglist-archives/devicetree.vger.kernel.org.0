@@ -2,153 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1FC7F6B81BC
-	for <lists+devicetree@lfdr.de>; Mon, 13 Mar 2023 20:30:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EE4056B81D1
+	for <lists+devicetree@lfdr.de>; Mon, 13 Mar 2023 20:44:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229749AbjCMTau (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Mar 2023 15:30:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38864 "EHLO
+        id S230022AbjCMToF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Mar 2023 15:44:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56824 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229540AbjCMTat (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Mar 2023 15:30:49 -0400
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4D58D78CBC;
-        Mon, 13 Mar 2023 12:30:48 -0700 (PDT)
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 32DJUcJP106602;
-        Mon, 13 Mar 2023 14:30:38 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1678735838;
-        bh=rr7Jwc4bBK2fTMy+2qtETid9QUJOQqt1I/IMuW1FPAQ=;
-        h=Date:From:To:CC:Subject:References:In-Reply-To;
-        b=XxTqR8gcDqgNZYnHtWbEa9daym8O2EUCwJGQ6ci5epKX48LujrnaXYrhbCdGXBvUS
-         xiAzqXohfNBBMpHN/GVsOrxIqnLw3pHLq+zmv0td13rhrSckEJBEFqecLyR9c8hDMF
-         Fs7Lk6/ju6e+OD/Cy+lEX6GvkQnIRDNH9HHxP98Y=
-Received: from DFLE113.ent.ti.com (dfle113.ent.ti.com [10.64.6.34])
-        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 32DJUceg062484
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Mon, 13 Mar 2023 14:30:38 -0500
-Received: from DFLE103.ent.ti.com (10.64.6.24) by DFLE113.ent.ti.com
- (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Mon, 13
- Mar 2023 14:30:38 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE103.ent.ti.com
- (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
- Frontend Transport; Mon, 13 Mar 2023 14:30:38 -0500
-Received: from localhost (ileaxei01-snat.itg.ti.com [10.180.69.5])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 32DJUcPo028642;
-        Mon, 13 Mar 2023 14:30:38 -0500
-Date:   Mon, 13 Mar 2023 14:30:37 -0500
-From:   Nishanth Menon <nm@ti.com>
-To:     Andrew Davis <afd@ti.com>
-CC:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Arnd Bergmann <arnd@arndb.de>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        Tero Kristo <kristo@kernel.org>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Julien Panis <jpanis@baylibre.com>, Bryan Brattlof <bb@ti.com>,
-        Jason Kridner <jkridner@gmail.com>,
-        Robert Nelson <robertcnelson@gmail.com>
-Subject: Re: [PATCH 2/3] arm64: dts: ti: Add k3-am625-beagleplay
-Message-ID: <20230313193037.55l5sj3htr3mcnsn@spinner>
-References: <20230311111022.23717-1-nm@ti.com>
- <20230311111022.23717-3-nm@ti.com>
- <da7555ae-b56a-f895-96cc-447bfd1c772d@ti.com>
+        with ESMTP id S229953AbjCMTn7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Mar 2023 15:43:59 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3217C82ABC;
+        Mon, 13 Mar 2023 12:43:54 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id D7675B81219;
+        Mon, 13 Mar 2023 19:43:52 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 318A3C433D2;
+        Mon, 13 Mar 2023 19:43:51 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1678736631;
+        bh=AAJ8fexIUs5Qt7ugdJhkcwzCF4TSyWEGeh3eK5e33NI=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:From;
+        b=BxzCay8eGGUAi43a+5Nl70MBgtrA78JIqjxELsmiQq4/OqyxQwbFluQ4ZUXBr52I0
+         II02kWsDTjn5VaFamjBVCpF83x+9T/EwKMVYHeWtafVPUFUp+uwQvxne4mQsoq7KDz
+         HDYrkEutmWtOlKvIr0YUiwHpI6/1EZ/0Vs3PdyMvD21H6nKfLU5MEukeGd3dsGIJMW
+         Vt1iOQEgy0zbkXIFtfgJc4Bx0pteEbsOhQkz0x2iUMp2fLeeA6e+CDoCDEg48RKl/g
+         IKg8Fq1UYWfw0QKfTmepkTCac9ArtUE6FKw0O/lC1oV/KVI6wKzCG2fM/0BHoBXxQs
+         kC/zh3LNTCbTw==
+Date:   Mon, 13 Mar 2023 14:43:49 -0500
+From:   Bjorn Helgaas <helgaas@kernel.org>
+To:     Elad Nachman <enachman@marvell.com>
+Cc:     thomas.petazzoni@bootlin.com, bhelgaas@google.com,
+        lpieralisi@kernel.org, robh@kernel.org, kw@linux.com,
+        krzysztof.kozlowski+dt@linaro.org, linux-pci@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Raz Adashi <raza@marvell.com>
+Subject: Re: [PATCH v4 2/8] PCI: armada8k: Add AC5 SoC support
+Message-ID: <20230313194349.GA1529210@bhelgaas>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <da7555ae-b56a-f895-96cc-447bfd1c772d@ti.com>
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <20230313124016.17102-3-enachman@marvell.com>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12:50-20230313, Andrew Davis wrote:
-> On 3/11/23 5:10 AM, Nishanth Menon wrote:
-> > From: Robert Nelson <robertcnelson@gmail.com>
-> > 
-[...]
-
-> > +		serial1 = &mcu_uart0;
-> > +		serial2 = &main_uart0;
-> > +		serial3 = &main_uart5;
+On Mon, Mar 13, 2023 at 02:40:10PM +0200, Elad Nachman wrote:
+> From: Raz Adashi <raza@marvell.com>
 > 
-> What are we using main_uart5 for, and why does it need to be serial3?
-
-As provided in the documentation (referred to in the dts and commit
-message), Mikrobus, serial3 since that is the 3rd of the uart
-interfaces exposed on the platform.
-
-[...]
-
-> > +		secure_tfa_ddr: tfa@9e780000 {
-> > +			reg = <0x00 0x9e780000 0x00 0x80000>;
-> > +			alignment = <0x1000>;
+> pcie-armada8k driver is utilized to serve also AC5.
 > 
-> "alignment" not needed since we cannot allocate from "no-map" regions anyway. Same
-> for OP-TEE mem below.
+> Driver assumes interrupt mask registers are located
+> in the same address inboth CPUs. This assumption is
+> incorrect - fix it for AC5.
 
-Aargh.. yes... I missed it again.
-> 
-> > +			no-map;
-> > +		};
-> > +
-> > +		secure_ddr: optee@9e800000 {
-> > +			reg = <0x00 0x9e800000 0x00 0x01800000>; /* for OP-TEE */
-> 
-> "for OP-TEE" comment is probably extra now that the node is named "optee".
+s/inboth/in both/
 
-Will drop.
+Rewrap to fill 75 columns.
 
-[...]
-> > +&a53_opp_table {
-> > +		/* Requires VDD_CORE to be at 0.85V */
-> > +		opp-1400000000 {
-> > +			opp-hz = /bits/ 64 <1400000000>;
-> > +			opp-supported-hw = <0x01 0x0004>;
-> > +		};
-> 
-> Seems tabed out too far.
+> +#define PCIE_VENDOR_REGS_OFFSET		0x8000	/* in ac5 is 0x10000 */
 
-Uggh.. will check and fix.
+Don't add this comment in patch [2/8] and then update it in patch
+[6/8].  Make it what you want the first time.  Also nice if you make
+it fit in 80 columns like the rest of the file.
 
-> 
-> > +};
-> > +
-> > +&wkup_i2c0 {
-> > +	pinctrl-names = "default";
-> > +	pinctrl-0 = <&i2c_csi_pins_default>;
-> > +	clock-frequency = <400000>;
-> > +	/* Enable with overlay for camera sensor */
-> 
-> If we don't want to enable it here, why not move all this to the overlay?
+> -static const struct dw_pcie_ops dw_pcie_ops = {
+> +static u32 ac5_xlate_dbi_reg(u32 reg)
+> +{
+> +	/* Handle AC5 ATU access */
+> +	if ((reg & ~0xfffff) == PCIE_ATU_ACCESS_MASK_AC5) {
+> +		reg &= 0xfffff;
+> +		/* ATU registers offset is 0xC00 + 0x200 * n,
+> +		 * from RFU registers.
+> +		 */
+> +		reg = 0xc000 | (0x200 * (reg >> 9)) | (reg & 0xff);
+> +	} else if ((reg & 0xfffff000) == PCIE_VENDOR_REGS_OFFSET) {
+> +		/* PCIe RFU registers in A8K are at offset 0x8000 from base
+> +		 * (0xf2600000) while in AC5 offset is 0x10000 from base
+> +		 * (0x800a0000) therefore need the addition of 0x8000.
+> +		 */
+> +		reg += PCIE_VENDOR_REGS_OFFSET;
 
-Makes no sense in duplicating (and would be error prone). The pinmux
-is always constant, no matter which sensor overlay one uses. So,
-maintaining the common configuration in the board dts itself.
+This is a hidden assumption that the AC5 offset (0x10000) happens to
+be twice PCIE_VENDOR_REGS_OFFSET (0x8000).  I think the AC5 offset
+deserves its own separate #define.
 
-[...]
+Use the conventional multi-line comment style:
 
-> > +&cpsw3g_mdio {
-> > +	/* Workaround for errata i2329 - Use mdio bitbang */
-> > +	status = "disabled";
-> 
-> Should already be disabled, but the comment is nice to have so
-> probably okay to keep IMHO.
+  /*
+   * ...
+   */
 
-Yeah - wanted to be a bit explicit here.
+> +	pci->ops = data->pcie_ops;
+>  	pci->dev = dev;
+> -	pci->ops = &dw_pcie_ops;
 
-Thanks for reviewing..
-
--- 
-Regards,
-Nishanth Menon
-Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
+The diff is easier to read if you don't move the "pci->ops ="
+assignment.  Move it if there's a *reason* to move it, but leave it
+at the same spot otherwise.
