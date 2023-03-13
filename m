@@ -2,170 +2,156 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D37316B71BC
-	for <lists+devicetree@lfdr.de>; Mon, 13 Mar 2023 09:55:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 256BC6B71C8
+	for <lists+devicetree@lfdr.de>; Mon, 13 Mar 2023 09:57:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229928AbjCMIzt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Mar 2023 04:55:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34694 "EHLO
+        id S230043AbjCMI5b (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Mar 2023 04:57:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35088 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229927AbjCMIzY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Mar 2023 04:55:24 -0400
-Received: from mail-ed1-x529.google.com (mail-ed1-x529.google.com [IPv6:2a00:1450:4864:20::529])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 609A6EC6F
-        for <devicetree@vger.kernel.org>; Mon, 13 Mar 2023 01:52:28 -0700 (PDT)
-Received: by mail-ed1-x529.google.com with SMTP id cn21so15305171edb.0
-        for <devicetree@vger.kernel.org>; Mon, 13 Mar 2023 01:52:28 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1678697543;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=hPMZwylYUo5wDbhtVdq3/gT0lUgRPZLRYDKQDG+GTuE=;
-        b=wv5lnmK7r0o1akXslXcI/+5tvQOtFo2E6r1FYnSkVj4AHSF2KI/+fb0Tf2bIFSkdWG
-         hqfN3lSJGZWni1etv1fDsycqEeHGflKXtbaMJQU/gwEZ4oRjeDjYatGxZrOg3bq1CUYn
-         7ENIvTj1BDy9YwVZRU43EjwgZRaiqREbrW23ec8dk4e2alKkoWqkfNyUMbdR2LCGB1rZ
-         3jJr29RSneSwkIvrzt1Gh3QuJijCbvSQ4bRIG6LYhJMhexpvP/w6e/DFLYCLx+5egC8j
-         puARp6ojOeV3todWd4hf28y+3t0GhYA0HHQpL0RD9ZpTlYRHb6YnnFiGiqLCeCEsU2d+
-         AtWw==
+        with ESMTP id S230398AbjCMI4y (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Mar 2023 04:56:54 -0400
+Received: from smtp-relay-internal-1.canonical.com (smtp-relay-internal-1.canonical.com [185.125.188.123])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A626823A73
+        for <devicetree@vger.kernel.org>; Mon, 13 Mar 2023 01:53:39 -0700 (PDT)
+Received: from mail-qk1-f199.google.com (mail-qk1-f199.google.com [209.85.222.199])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 0DA8341B6C
+        for <devicetree@vger.kernel.org>; Mon, 13 Mar 2023 08:53:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+        s=20210705; t=1678697600;
+        bh=rdDSrE0VIq+XmHMRyMrdPIQatR30pRaMUhYB/xPPqz8=;
+        h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+         To:Cc:Content-Type;
+        b=kuuSSMJk3hw+ckPBKbJ8SWBZRfZsr3ER/sfAlmC/FdlRBtBMC0Ddab7SGGQ2LGifp
+         4sQXgMLYj41Ck0etnk713G/62NB3AGoVY3yk+1fiG+AdBn2919/mk70vzZr7oMh6rF
+         woQ4hcLdBMv7SjEv2Lw30ECx3lGzmgU4Fy3K7MUtl7Pr3gMERdpAgh4jf8LPtcS0xY
+         I0fie+jqCv7VhJHHUf7u7zeCP6y72eAQL1kavN65NGD0YZtgXjxZlBKchsICWPfhiw
+         xw4iyeukNBbaoTr7rEXxg6rTkQCbxiJkDpbQSaXxwyHhp81vnVailyi2FPPG0C32Pq
+         Nh93Boayi9abg==
+Received: by mail-qk1-f199.google.com with SMTP id eb13-20020a05620a480d00b00742be8a1a17so6134000qkb.18
+        for <devicetree@vger.kernel.org>; Mon, 13 Mar 2023 01:53:20 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678697543;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=hPMZwylYUo5wDbhtVdq3/gT0lUgRPZLRYDKQDG+GTuE=;
-        b=c9kzzZaEdllVqv3GvIZVK9i87Hb5DyXi8YhLzIh/cKDBUox+bQ4b8lnewQDl7fF5Rj
-         iVkjukXEO2oMe1VV+ywsWp2tInUe7a/gxYGUDWLLgEWSEqtf37SprA2ELC1nh3+uy6N/
-         MgzOurlxtSKgb/OoJNKvFz4n3t9ZcRB8TdTAGwWhWcGC3DrJXAx6bz7sgqRidvGGNK4/
-         2T3hZXPxPybjhW+X6/GFbkyPSZ+zDJRvswZlJ22sY2ibm3Ol2Q/wEFEuy8K9U/BEmMb8
-         jWqjZ+qPOrPfT8ST8843cXW3AkK1gBYixvNJqXcVCdXa0YEUROIfrxKa+aK32GlHsmgy
-         u4hA==
-X-Gm-Message-State: AO0yUKUI5Fn9g13Js01rd/xTqO/4+Tau3ilY445a83PILeI7OlZ60elL
-        a92H4rUicxr9FXEcSi4Wt/TJcA==
-X-Google-Smtp-Source: AK7set+f+tpnts/kWZrebRfrAm05GQR4GXIMJeQuJlR5p3jGMRRneXG8jpt2OwtmWPfezLCV9DDfHw==
-X-Received: by 2002:a17:906:384a:b0:8f0:143d:ee28 with SMTP id w10-20020a170906384a00b008f0143dee28mr32584180ejc.16.1678697542844;
-        Mon, 13 Mar 2023 01:52:22 -0700 (PDT)
-Received: from ?IPV6:2a02:810d:15c0:828:f052:f15:3f90:fcb3? ([2a02:810d:15c0:828:f052:f15:3f90:fcb3])
-        by smtp.gmail.com with ESMTPSA id w5-20020a170906b18500b0090953b9da51sm3148322ejy.194.2023.03.13.01.52.21
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 13 Mar 2023 01:52:22 -0700 (PDT)
-Message-ID: <a924b435-ebe4-e0d1-5d55-ba191154eb0b@linaro.org>
-Date:   Mon, 13 Mar 2023 09:52:21 +0100
+        d=1e100.net; s=20210112; t=1678697598;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=rdDSrE0VIq+XmHMRyMrdPIQatR30pRaMUhYB/xPPqz8=;
+        b=chZN4APwrC3ScxwyNjHnXsX7zY7B28q44kN42a4exTkuvkkj5TA94Lsd0rC34Vj3No
+         Qx79rcq2nDGtCa0JzhSnviaKnw1EptikagEE/+p80kUB8HguJ6GRTjEQdtEFwZ0lNamD
+         oKoQ/nhBkahW/PaYGD3igH4SezpKl2b6QWlBayaOcDFvV+WR2dLBNzjBghi3r+eohemB
+         u0PSVwEFsUrpB8BjcpkeRZLZsmOqF5M1nTwMv9zQr4d6IZ1vKp9aK7Vk8GQo9lK+rO6X
+         0SIwS/sTiBcc0i77FozEg7xqU+FusEPP7U0hE34pa1O2ZV/RTrtk1Nw4qJn3z8wwYaYV
+         gsgw==
+X-Gm-Message-State: AO0yUKWPIteL6hslIe23Q86ISOqZf1icNaIG664GhY/dlYYYaXgEiqIu
+        OQnJ08aKrKd81qPAExE+DDXdcmIUz+qXGUE6mBSflVnrPiR/67QJDR0GPdCbqb5oGMVfMCws8xb
+        KGY1azEmds/8sk0LufpiC6UN66gaVN2u3LMs4znPx8R3RlLy2HcslLGk=
+X-Received: by 2002:ac8:56f7:0:b0:3bf:b9a4:6d41 with SMTP id 23-20020ac856f7000000b003bfb9a46d41mr9407545qtu.5.1678697598308;
+        Mon, 13 Mar 2023 01:53:18 -0700 (PDT)
+X-Google-Smtp-Source: AK7set8AA0sa2nCnrV8w1Osh5NxDD45ICECbteHeANn3sQWk04rh+36JVMJfWLEQ4krvOlUN6FZfm4pVyPz1TdTFshg=
+X-Received: by 2002:ac8:56f7:0:b0:3bf:b9a4:6d41 with SMTP id
+ 23-20020ac856f7000000b003bfb9a46d41mr9407529qtu.5.1678697597999; Mon, 13 Mar
+ 2023 01:53:17 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-Subject: Re: [PATCH v1 3/3] misc: Add meta cld driver
-Content-Language: en-US
-To:     Delphine_CC_Chiu/WYHQ/Wiwynn <Delphine_CC_Chiu@wiwynn.com>,
-        "patrick@stwcx.xyz" <patrick@stwcx.xyz>,
-        Derek Kiernan <derek.kiernan@xilinx.com>,
-        Dragan Cvetic <dragan.cvetic@xilinx.com>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-Cc:     "garnermic@fb.com" <garnermic@fb.com>,
+References: <20230311090733.56918-1-hal.feng@starfivetech.com>
+ <20230311090733.56918-12-hal.feng@starfivetech.com> <34b0473a-91bd-453b-91dd-01defde92d68@spud>
+ <92306b73-d7d2-0d60-de15-87bcd71714ed@starfivetech.com>
+In-Reply-To: <92306b73-d7d2-0d60-de15-87bcd71714ed@starfivetech.com>
+From:   Emil Renner Berthing <emil.renner.berthing@canonical.com>
+Date:   Mon, 13 Mar 2023 09:53:01 +0100
+Message-ID: <CAJM55Z-zps4gEohCGyia0nESWYWqQmoChnJZXkw2Zmi5TPV2Wg@mail.gmail.com>
+Subject: Re: [PATCH v5 11/21] dt-bindings: clock: Add StarFive JH7110 system
+ clock and reset generator
+To:     Hal Feng <hal.feng@starfivetech.com>
+Cc:     Conor Dooley <conor@kernel.org>, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
+        Stephen Boyd <sboyd@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Stanislav Jakubek <stano.jakubek@gmail.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Samuel Holland <samuel@sholland.org>,
-        "linux-i2c@vger.kernel.org" <linux-i2c@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-References: <20230117094425.19004-1-Delphine_CC_Chiu@Wiwynn.com>
- <20230117094425.19004-4-Delphine_CC_Chiu@Wiwynn.com>
- <1e1a23e0-5aa7-9f8d-cb67-e2a847d0b6d5@linaro.org>
- <TY2PR04MB4032AA411F6686EE12280CC183B99@TY2PR04MB4032.apcprd04.prod.outlook.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <TY2PR04MB4032AA411F6686EE12280CC183B99@TY2PR04MB4032.apcprd04.prod.outlook.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Ben Dooks <ben.dooks@sifive.com>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 13/03/2023 09:48, Delphine_CC_Chiu/WYHQ/Wiwynn wrote:
-> Hi Krzysztof,
-> 
-> Thanks for your review comment.
-> 
->> -----Original Message-----
->> From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->> Sent: Tuesday, January 17, 2023 6:55 PM
->> To: Delphine_CC_Chiu/WYHQ/Wiwynn <Delphine_CC_Chiu@wiwynn.com>;
->> patrick@stwcx.xyz; Derek Kiernan <derek.kiernan@xilinx.com>; Dragan Cvetic
->> <dragan.cvetic@xilinx.com>; Arnd Bergmann <arnd@arndb.de>; Greg
->> Kroah-Hartman <gregkh@linuxfoundation.org>
->> Cc: garnermic@fb.com; Rob Herring <robh+dt@kernel.org>; Krzysztof
->> Kozlowski <krzysztof.kozlowski+dt@linaro.org>; Stanislav Jakubek
->> <stano.jakubek@gmail.com>; Linus Walleij <linus.walleij@linaro.org>; Samuel
->> Holland <samuel@sholland.org>; linux-i2c@vger.kernel.org;
->> devicetree@vger.kernel.org; linux-kernel@vger.kernel.org
->> Subject: Re: [PATCH v1 3/3] misc: Add meta cld driver
->>
->>   Security Reminder: Please be aware that this email is sent by an external
->> sender.
->>
->> On 17/01/2023 10:44, Delphine CC Chiu wrote:
->>> Add support for meta control-logic-device driver. The CLD manages the
->>> server system power squence and other state such as host-power-state,
->>> uart-selection and presense-slots. The baseboard management controller
->>> (BMC) can access the CLD through I2C.
->>>
->>> The version 1 of CLD driver is supported. The registers number, name
->>> and mode of CLD can be defined in dts file for version 1. The driver
->>> exports the filesystem following the dts setting.
->>>
->>> Signed-off-by: Delphine CC Chiu <Delphine_CC_Chiu@Wiwynn.com>
->>> Tested-by: Bonnie Lo <Bonnie_Lo@Wiwynn.com>
->>> ---
->>>  MAINTAINERS                         |   6 +
->>>  drivers/misc/Kconfig                |   9 +
->>>  drivers/misc/Makefile               |   1 +
->>>  drivers/misc/control-logic-device.c | 443
->>> ++++++++++++++++++++++++++++
->>>  4 files changed, 459 insertions(+)
->>>  create mode 100644 drivers/misc/control-logic-device.c
->>>
->>> diff --git a/MAINTAINERS b/MAINTAINERS index
->>> 7483853880b6..46e250a2c334 100644
->>> --- a/MAINTAINERS
->>> +++ b/MAINTAINERS
->>> @@ -13388,6 +13388,12 @@ T:   git git://linuxtv.org/media_tree.git
->>>  F:   Documentation/devicetree/bindings/media/amlogic,gx-vdec.yaml
->>>  F:   drivers/staging/media/meson/vdec/
->>>
->>> +META CPLD DRIVER
->>> +M:   Delphine CC Chiu <Delphine_CC_Chiu@Wiwynn.com>
->>> +L:   linux-i2c@vger.kernel.org
->>> +S:   Maintained
->>> +F:
->> Documentation/devicetree/bindings/misc/meta,control-logic-device.txt
->>
->> Missing entries for driver code.
-> 
-> We saw there are entries defined in MAINTAINERS file(M, R, L, S, W, Q, B, C, P, T, F, X, N, K).
-> Could you guide us which entries are must to have?
+On Mon, 13 Mar 2023 at 04:22, Hal Feng <hal.feng@starfivetech.com> wrote:
+> On Sat, 11 Mar 2023 13:11:38 +0000, Conor Dooley wrote:
+> > On Sat, Mar 11, 2023 at 05:07:23PM +0800, Hal Feng wrote:
+> >> From: Emil Renner Berthing <kernel@esmil.dk>
+> >>
+> >> Add bindings for the system clock and reset generator (SYSCRG) on the
+> >> JH7110 RISC-V SoC by StarFive Ltd.
+> >>
+> >> Signed-off-by: Emil Renner Berthing <kernel@esmil.dk>
+> >> Signed-off-by: Hal Feng <hal.feng@starfivetech.com>
+> >> ---
+> >>  .../clock/starfive,jh7110-syscrg.yaml         | 104 +++++++++
+> >>  MAINTAINERS                                   |   8 +-
+> >>  .../dt-bindings/clock/starfive,jh7110-crg.h   | 203 ++++++++++++++++++
+> >>  .../dt-bindings/reset/starfive,jh7110-crg.h   | 142 ++++++++++++
+> >>  4 files changed, 454 insertions(+), 3 deletions(-)
+> >>  create mode 100644 Documentation/devicetree/bindings/clock/starfive,jh7110-syscrg.yaml
+> >>  create mode 100644 include/dt-bindings/clock/starfive,jh7110-crg.h
+> >>  create mode 100644 include/dt-bindings/reset/starfive,jh7110-crg.h
+> >>
+> >> diff --git a/Documentation/devicetree/bindings/clock/starfive,jh7110-syscrg.yaml b/Documentation/devicetree/bindings/clock/starfive,jh7110-syscrg.yaml
+> >> new file mode 100644
+> >> index 000000000000..84373ae31644
+> >> --- /dev/null
+> >> +++ b/Documentation/devicetree/bindings/clock/starfive,jh7110-syscrg.yaml
+> >
+> >> +  clock-names:
+> >> +    oneOf:
+> >> +      - items:
+> >> +          - const: osc
+> >> +          - enum:
+> >> +              - gmac1_rmii_refin
+> >> +              - gmac1_rgmii_rxin
+> >> +          - const: i2stx_bclk_ext
+> >> +          - const: i2stx_lrck_ext
+> >> +          - const: i2srx_bclk_ext
+> >> +          - const: i2srx_lrck_ext
+> >> +          - const: tdm_ext
+> >> +          - const: mclk_ext
+> >> +
+> >> +      - items:
+> >> +          - const: osc
+> >> +          - const: gmac1_rmii_refin
+> >> +          - const: gmac1_rgmii_rxin
+> >> +          - const: i2stx_bclk_ext
+> >> +          - const: i2stx_lrck_ext
+> >> +          - const: i2srx_bclk_ext
+> >> +          - const: i2srx_lrck_ext
+> >> +          - const: tdm_ext
+> >> +          - const: mclk_ext
+> >
+> > Assuming nothing else here is optional,
+> > Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+>
+> Yeah, nothing else here is optional. Thanks for your review.
 
-The driver paths.
+Wait, what kind of optional are we talking about here? Surely all the
+i2s and tdm external clocks are optional in the sense that you don't
+need them on a board that never does any audio processing.
 
->>>  obj-$(CONFIG_OPEN_DICE)              += open-dice.o
->>>  obj-$(CONFIG_GP_PCI1XXXX)    += mchp_pci1xxxx/
->>>  obj-$(CONFIG_VCPU_STALL_DETECTOR)    += vcpu_stall_detector.o
->>> +obj-$(CONFIG_CONTROL_LOGIC_DEVICE) += control-logic-device.o
->>
->> Does not look like ordered by name.
-> 
-> The file look like without ordered by name so we added the configuration in the tail.
+/Emil
 
-Indeed, but don't add stuff to the end. Conflict-prone.
-
-
-
-Best regards,
-Krzysztof
-
+>
+> Best regards,
+> Hal
