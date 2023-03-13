@@ -2,123 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 53C726B7307
-	for <lists+devicetree@lfdr.de>; Mon, 13 Mar 2023 10:45:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EAFD66B7311
+	for <lists+devicetree@lfdr.de>; Mon, 13 Mar 2023 10:47:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230436AbjCMJpV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Mar 2023 05:45:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46698 "EHLO
+        id S230400AbjCMJrU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Mar 2023 05:47:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50054 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230223AbjCMJpO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Mar 2023 05:45:14 -0400
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DEBA123D87;
-        Mon, 13 Mar 2023 02:45:11 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1678700711; x=1710236711;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=1NFfDSORfMlH4hF3O8xRpPjpGjg4L01H/LfaTbjqU6U=;
-  b=eIRxiOhuuEnnbvwwaq9luP2eJZaFrSzVYr0QnTS3UuDu9ihXXkAsaolm
-   W4QOKqVO9cDn//gXCPubvgonVeEvlkvCqRtnuUctgJg35boGlQvhY6M16
-   4YO3cAjxiJaUhc+mRvzoRW+ZP3NKnqDILWGyE1JzFL3FkhH2RHZKaIGH9
-   ecBhE5O63La+0q9tQ3le/xhPMx9jbIx6PDX6EZVAcaBaRQeeN7Jcy+my7
-   g0mvUqcvlcbGAGR06GcOfU10AKLWQerlFcdZSzUmiFNhoHewzVNj4K76z
-   vgvnTwBVTurvyjTLqtMWlVU++3azTALP+qHkMrgzU6+ub0yfbCO/GHC9S
-   g==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10647"; a="334582275"
-X-IronPort-AV: E=Sophos;i="5.98,256,1673942400"; 
-   d="scan'208";a="334582275"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-  by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 13 Mar 2023 02:45:11 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10647"; a="711063568"
-X-IronPort-AV: E=Sophos;i="5.98,256,1673942400"; 
-   d="scan'208";a="711063568"
-Received: from lkp-server01.sh.intel.com (HELO b613635ddfff) ([10.239.97.150])
-  by orsmga001.jf.intel.com with ESMTP; 13 Mar 2023 02:45:08 -0700
-Received: from kbuild by b613635ddfff with local (Exim 4.96)
-        (envelope-from <lkp@intel.com>)
-        id 1pbejr-0005X1-2d;
-        Mon, 13 Mar 2023 09:45:07 +0000
-Date:   Mon, 13 Mar 2023 17:44:11 +0800
-From:   kernel test robot <lkp@intel.com>
-To:     Komal Bajaj <quic_kbajaj@quicinc.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Abel Vesa <abel.vesa@linaro.org>,
-        Rishabh Bhatnagar <rishabhb@codeaurora.org>,
-        Prakash Ranjan <saiprakash.ranjan@codeaurora.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Andy Gross <agross@kernel.org>
-Cc:     oe-kbuild-all@lists.linux.dev,
-        Komal Bajaj <quic_kbajaj@quicinc.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org
-Subject: Re: [PATCH 4/5] soc: qcom: Add LLCC support for multi channel DDR
-Message-ID: <202303131704.RIYLnDCZ-lkp@intel.com>
-References: <20230313071325.21605-5-quic_kbajaj@quicinc.com>
+        with ESMTP id S230420AbjCMJrT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Mar 2023 05:47:19 -0400
+Received: from mail-wm1-x32b.google.com (mail-wm1-x32b.google.com [IPv6:2a00:1450:4864:20::32b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5404A28E47
+        for <devicetree@vger.kernel.org>; Mon, 13 Mar 2023 02:47:14 -0700 (PDT)
+Received: by mail-wm1-x32b.google.com with SMTP id o11-20020a05600c4fcb00b003eb33ea29a8so7397440wmq.1
+        for <devicetree@vger.kernel.org>; Mon, 13 Mar 2023 02:47:14 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1678700833;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=iYmD5MsF3oIPjX0k1aZdNm+DBHk9Xc24//Dz7MF2Y9A=;
+        b=wkmGW7wc2pdyPdIU+Nm357li92G76oKI9w/bmdVrHlXV/QG2Ez37OEMxc7dIJPLvMf
+         Cu666skGNPCFLE5/XrAVnWCBWpeATwrtPxtYqPkwZ7qSYZU2rhOji0tKhTgkHycLKEuL
+         v7QjibKtqqBPtrLnEj1UQxGdp0l2PXSStc1kJxIybIvQu/2WHL6Xn+SpM/UKVfKtSkpl
+         V5XeMo7e470oKaYKCkS4XCIBlq7lddvBH2YR5DjE4bwVe+wpNAxWB1Vekz1n6u4cdYUd
+         I/4RlJ2Uet6JsF8lP4cgafvyKliIrIk64Jkw1JYwRR2xMR0s+Urzuo/WrtGNSVdhgxju
+         Dbrg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1678700833;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=iYmD5MsF3oIPjX0k1aZdNm+DBHk9Xc24//Dz7MF2Y9A=;
+        b=WyFiqhXYaxSqNzPe+yQoRQL67YURE/sqbfb+gkjJbp3C1VAoBOjD0Cozh5zFMZZmpu
+         nDB2hyGEGu2mNPbbj5bzzuds6RSeAc20nX/JSaf146QHyXkiSSJVwPKUtgTkBQaK782l
+         a3r0fDwFqUWxCQJLePlBvY/vyA4h1OAvc7rB1fYzmDM4QIzv/nTy1qqfE9kJkXXMKft/
+         AaFaAOF1FFFToXk109XusZHAt2BQMGE5wfQYk/m1C9dopy4PSwg5VBfBaM+E+h109aLR
+         mGjsmmrHs16Te4TJRBpUHv87rPMiHGYRGbjEpzCWeG6Rrtt8Y0wBcOvWIFq5vxzX27tq
+         IHuw==
+X-Gm-Message-State: AO0yUKVBAi0n5URiUGB8vs/oQd3GhkgTYkT5TtQVuAUUlS7SWBWYcbSU
+        n91UNdiyCWuDIjCmd2djv96X6w==
+X-Google-Smtp-Source: AK7set9Sg80xuB9cO8VB2x2eShv9xTBr9GnHLZPdvslFpUZbRRXOJJT3ZkwrYl/Y1o84knGB9MDhow==
+X-Received: by 2002:a05:600c:4fcb:b0:3eb:2e32:72c3 with SMTP id o11-20020a05600c4fcb00b003eb2e3272c3mr10209094wmq.22.1678700832758;
+        Mon, 13 Mar 2023 02:47:12 -0700 (PDT)
+Received: from aspen.lan (cpc141216-aztw34-2-0-cust174.18-1.cable.virginm.net. [80.7.220.175])
+        by smtp.gmail.com with ESMTPSA id z10-20020a05600c220a00b003ed25c0e124sm1907853wml.35.2023.03.13.02.47.11
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 13 Mar 2023 02:47:12 -0700 (PDT)
+Date:   Mon, 13 Mar 2023 09:47:10 +0000
+From:   Daniel Thompson <daniel.thompson@linaro.org>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Lee Jones <lee@kernel.org>, Jingoo Han <jingoohan1@gmail.com>,
+        Helge Deller <deller@gmx.de>, devicetree@vger.kernel.org,
+        dri-devel@lists.freedesktop.org, linux-fbdev@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] backlight: hx8357: Use of_property_present() for testing
+ DT property presence
+Message-ID: <20230313094710.GA55049@aspen.lan>
+References: <20230310144730.1546101-1-robh@kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230313071325.21605-5-quic_kbajaj@quicinc.com>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <20230310144730.1546101-1-robh@kernel.org>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Komal,
+On Fri, Mar 10, 2023 at 08:47:30AM -0600, Rob Herring wrote:
+> It is preferred to use typed property access functions (i.e.
+> of_property_read_<type> functions) rather than low-level
+> of_get_property/of_find_property functions for reading properties. As
+> part of this, convert of_get_property/of_find_property calls to the
+> recently added of_property_present() helper when we just want to test
+> for presence of a property and nothing more.
+>
+> Signed-off-by: Rob Herring <robh@kernel.org>
 
-Thank you for the patch! Yet something to improve:
-
-[auto build test ERROR on robh/for-next]
-[also build test ERROR on linus/master v6.3-rc2 next-20230310]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
-
-url:    https://github.com/intel-lab-lkp/linux/commits/Komal-Bajaj/soc-qcom-llcc-Refactor-llcc-driver-to-support-multiple-configuration/20230313-151543
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
-patch link:    https://lore.kernel.org/r/20230313071325.21605-5-quic_kbajaj%40quicinc.com
-patch subject: [PATCH 4/5] soc: qcom: Add LLCC support for multi channel DDR
-config: arc-randconfig-r043-20230313 (https://download.01.org/0day-ci/archive/20230313/202303131704.RIYLnDCZ-lkp@intel.com/config)
-compiler: arc-elf-gcc (GCC) 12.1.0
-reproduce (this is a W=1 build):
-        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
-        chmod +x ~/bin/make.cross
-        # https://github.com/intel-lab-lkp/linux/commit/ef96faadeb37bb94f77361aef72e2d863fe6e0f9
-        git remote add linux-review https://github.com/intel-lab-lkp/linux
-        git fetch --no-tags linux-review Komal-Bajaj/soc-qcom-llcc-Refactor-llcc-driver-to-support-multiple-configuration/20230313-151543
-        git checkout ef96faadeb37bb94f77361aef72e2d863fe6e0f9
-        # save the config file
-        mkdir build_dir && cp config build_dir/.config
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.1.0 make.cross W=1 O=build_dir ARCH=arc olddefconfig
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.1.0 make.cross W=1 O=build_dir ARCH=arc SHELL=/bin/bash drivers/soc/qcom/
-
-If you fix the issue, kindly add following tag where applicable
-| Reported-by: kernel test robot <lkp@intel.com>
-| Link: https://lore.kernel.org/oe-kbuild-all/202303131704.RIYLnDCZ-lkp@intel.com/
-
-All errors (new ones prefixed by >>):
-
->> drivers/soc/qcom/llcc-qcom.c:20:10: fatal error: linux/qcom_scm.h: No such file or directory
-      20 | #include <linux/qcom_scm.h>
-         |          ^~~~~~~~~~~~~~~~~~
-   compilation terminated.
-
-
-vim +20 drivers/soc/qcom/llcc-qcom.c
-
-  > 20	#include <linux/qcom_scm.h>
-    21	#include <linux/soc/qcom/llcc-qcom.h>
-    22	
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests
+Reviewed-by: Daniel Thompson <daniel.thompson@linaro.org>
