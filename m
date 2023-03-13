@@ -2,128 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 313DB6B7C4D
-	for <lists+devicetree@lfdr.de>; Mon, 13 Mar 2023 16:45:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 396586B7CEA
+	for <lists+devicetree@lfdr.de>; Mon, 13 Mar 2023 16:59:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230033AbjCMPp3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Mar 2023 11:45:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37936 "EHLO
+        id S230061AbjCMP7X (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Mar 2023 11:59:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36350 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229540AbjCMPp2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Mar 2023 11:45:28 -0400
-Received: from mail-lj1-x236.google.com (mail-lj1-x236.google.com [IPv6:2a00:1450:4864:20::236])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C7567234EE
-        for <devicetree@vger.kernel.org>; Mon, 13 Mar 2023 08:45:26 -0700 (PDT)
-Received: by mail-lj1-x236.google.com with SMTP id a32so13088118ljq.1
-        for <devicetree@vger.kernel.org>; Mon, 13 Mar 2023 08:45:26 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1678722325;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=X/tx4J6LJimmOalWj5bK2cKRpn0NIEM6z3rrObStaYA=;
-        b=Ya6YjiCHxnUQfVRSZBJJBiXWXj/k+vMAMip290SDX1t1E+Mpq2ahwSuTyxkXsvdJUU
-         P37COhxgFaDM1j+SaRPssUYIUGKSyIL1aWTdSO7fyEMpRbE57rk2QMiuMC1BZMd1u3BQ
-         W55H46dz8MAYQDDQeSaJ0igdH6NjPrHIOAu6ZRt9MiWKnARGPPZ9jrci0vI1NN6Jzapo
-         Tzyt1/G/qlkZN5p24YYHI5n77ug5G3uNwIw8c9wTtgL5PZA5VEEf5F3MRKqVIosmpLWj
-         nQFaQdedqLdgJThvop0rlTh2Qo3zf/CsIuzs1zpwn2197HgsD/AmLRtScJqvC2WRiVWB
-         pHQw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678722325;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=X/tx4J6LJimmOalWj5bK2cKRpn0NIEM6z3rrObStaYA=;
-        b=XXH0AggPxWowq3xfyAHQ/YFfmcxkomtU+9jw8VUlYN3yYELGBZglixXZPbkC4DRz6i
-         ggqf7dFXVxcejxEq53y0idPCWIzJGbL3X1OdNKWvumArFepb5l3jOsWjXdRERK1Mawo8
-         h+b7b89Pu6JHdLxMuwql8Si3i2tSEAfZx/eoeR7D+94LLJF4hXlvt2tT2/WRDJqNg+Z0
-         /zRUMWMm3cGayEE7ufwAAA3idW/CY5AsY3zdCtuMAtDGDPSMjRCL1CEFUXlQtpJ18TkS
-         KiZsGEl/VZE+7dXAXknPZGrz9Z7g8+VgjdYSYbIL3Kq5iX3MT9FVTLlJjx+k0HALKcsM
-         F4zQ==
-X-Gm-Message-State: AO0yUKW99k35QuxzTAB0YiOG51a8tf9e6TXunS8JLc/JGiYU7qxvrj4t
-        vui9w5ao3CSXNxVSkmNgmFWnPA==
-X-Google-Smtp-Source: AK7set99IMiMkFYO61NIAvCQKMsK1kLV8VnRO2EYGJDE55ut0yKSLyZJp7D/M6exdw1vpZfmhZVAnA==
-X-Received: by 2002:a2e:b94a:0:b0:293:1565:4353 with SMTP id 10-20020a2eb94a000000b0029315654353mr10480143ljs.10.1678722325079;
-        Mon, 13 Mar 2023 08:45:25 -0700 (PDT)
-Received: from [192.168.1.101] (abyj16.neoplus.adsl.tpnet.pl. [83.9.29.16])
-        by smtp.gmail.com with ESMTPSA id v19-20020a2e87d3000000b002959b1162f0sm35426ljj.96.2023.03.13.08.45.23
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 13 Mar 2023 08:45:24 -0700 (PDT)
-Message-ID: <9305de1e-1ee7-af9f-80b8-ee013108b131@linaro.org>
-Date:   Mon, 13 Mar 2023 16:45:23 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-Subject: Re: [PATCH v2] arm64: dts: qcom: sdm845-xiaomi-beryllium: add
- notification LED
-Content-Language: en-US
-To:     Joel Selvaraj <joelselvaraj.oss@gmail.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
+        with ESMTP id S229516AbjCMP7W (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Mar 2023 11:59:22 -0400
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1BFA937559;
+        Mon, 13 Mar 2023 08:59:21 -0700 (PDT)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 32DFx5wv066717;
+        Mon, 13 Mar 2023 10:59:05 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1678723145;
+        bh=OfA9ZxOZr7FtB/su7Lyham1QTE20EmLyL4SvDjhHFlI=;
+        h=Date:From:To:CC:Subject:References:In-Reply-To;
+        b=jB7UCXedM/4oZCfNUhhM1DOI4SRURtyv76+9Hwipk8sgynV3KU2PM/EVs30wsLqCX
+         4NNFCOxF3ZvZv3x2MeDays4KGHF7yqISrhCsq4874rdMLIWXlI8NnkeZmqa2R389H3
+         fIAm35YSfagO205dDJyMo9K3IkTFTfmZJE/h1Y5g=
+Received: from DFLE113.ent.ti.com (dfle113.ent.ti.com [10.64.6.34])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 32DFx5aD007651
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Mon, 13 Mar 2023 10:59:05 -0500
+Received: from DFLE111.ent.ti.com (10.64.6.32) by DFLE113.ent.ti.com
+ (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Mon, 13
+ Mar 2023 10:59:05 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE111.ent.ti.com
+ (10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
+ Frontend Transport; Mon, 13 Mar 2023 10:59:05 -0500
+Received: from localhost (ileaxei01-snat2.itg.ti.com [10.180.69.6])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 32DFx5FB123713;
+        Mon, 13 Mar 2023 10:59:05 -0500
+Date:   Mon, 13 Mar 2023 10:59:05 -0500
+From:   Nishanth Menon <nm@ti.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+CC:     Sekhar Nori <nsekhar@ti.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org
-References: <20230313154226.136726-1-joelselvaraj.oss@gmail.com>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20230313154226.136726-1-joelselvaraj.oss@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-0.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_SORBS_HTTP,RCVD_IN_SORBS_SOCKS,SPF_HELO_NONE,SPF_PASS
-        autolearn=no autolearn_force=no version=3.4.6
+        Paolo Abeni <pabeni@redhat.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Eric Dumazet <edumazet@google.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        <linux-gpio@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <netdev@vger.kernel.org>, Tero Kristo <kristo@kernel.org>,
+        Vignesh Raghavendra <vigneshr@ti.com>
+Subject: Re: [PATCH 1/2] dt-bindings: net: ti: k3-am654-cpsw-nuss: Drop
+ pinmux header
+Message-ID: <20230313155905.6ltortetuzyhs53z@monthly>
+References: <20230311131325.9750-1-nm@ti.com>
+ <20230311131325.9750-2-nm@ti.com>
+ <75f4c8a8-c0ec-a2e9-ec81-23cebef59c19@linaro.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <75f4c8a8-c0ec-a2e9-ec81-23cebef59c19@linaro.org>
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 13.03.2023 16:42, Joel Selvaraj wrote:
-> The Poco F1 has a single color white notification LED. Enable the
-> Qualcomm Light Pulse Generator (LPG) driver based notification LED.
+On 16:43-20230311, Krzysztof Kozlowski wrote:
+> On 11/03/2023 14:13, Nishanth Menon wrote:
+> > Drop the pinmux header reference. Examples should just show the node
+> > definition.
 > 
-> Signed-off-by: Joel Selvaraj <joelselvaraj.oss@gmail.com>
-> ---
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+> You could mention that it is not used.
+> 
+> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> 
+Yup. will update the series. Thanks for reviewing.
 
-Konrad
-> Changes in v2: (No functional changes)
-> - Fixed the inconsistency in the commit title prefix
-> - Minor update to commit message.
-> 
->  .../boot/dts/qcom/sdm845-xiaomi-beryllium-common.dtsi | 11 +++++++++++
->  1 file changed, 11 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium-common.dtsi b/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium-common.dtsi
-> index e0fda4d754fe..9d11502e5e0e 100644
-> --- a/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium-common.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium-common.dtsi
-> @@ -2,6 +2,7 @@
->  
->  /dts-v1/;
->  
-> +#include <dt-bindings/leds/common.h>
->  #include <dt-bindings/pinctrl/qcom,pmic-gpio.h>
->  #include <dt-bindings/regulator/qcom,rpmh-regulator.h>
->  #include <dt-bindings/sound/qcom,q6afe.h>
-> @@ -322,6 +323,16 @@ vol_up_pin_a: vol-up-active-state {
->  	};
->  };
->  
-> +&pmi8998_lpg {
-> +	status = "okay";
-> +
-> +	led@5 {
-> +		reg = <5>;
-> +		color = <LED_COLOR_ID_WHITE>;
-> +		function = LED_FUNCTION_STATUS;
-> +	};
-> +};
-> +
->  &pmi8998_wled {
->  	status = "okay";
->  	qcom,current-boost-limit = <970>;
+-- 
+Regards,
+Nishanth Menon
+Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
