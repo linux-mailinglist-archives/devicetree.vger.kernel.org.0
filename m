@@ -2,115 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6B50A6B813C
-	for <lists+devicetree@lfdr.de>; Mon, 13 Mar 2023 19:55:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CAD6A6B8152
+	for <lists+devicetree@lfdr.de>; Mon, 13 Mar 2023 20:01:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231443AbjCMSzx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Mar 2023 14:55:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54968 "EHLO
+        id S230469AbjCMTBJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Mar 2023 15:01:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43272 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231428AbjCMSzX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Mar 2023 14:55:23 -0400
-Received: from mailrelay2-1.pub.mailoutpod2-cph3.one.com (mailrelay2-1.pub.mailoutpod2-cph3.one.com [46.30.211.177])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 10FE492
-        for <devicetree@vger.kernel.org>; Mon, 13 Mar 2023 11:54:43 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ravnborg.org; s=rsa2;
-        h=in-reply-to:content-type:mime-version:references:message-id:subject:cc:to:
-         from:date:from;
-        bh=MgrV3LilewuhqmbVjO8RxzUTtaR1+vbnicMyPFFpwAM=;
-        b=vYP0maXsWtgajTiEfra2Tg51b+hBuX1vK9N4+SgVi7WGqRs5pR0lsFVXhISV6Tmw3E9cWr5BHiw75
-         WyNa3VPCN7/o1iW+N8xjpnBAa/Nl3sChif8zRqdddijLc2TkJfVxfrhoDuKD5PM8GsMlGxFTgzanpu
-         vi/yEDuFbHolP+J0hY5szMfqnc+MZeFGtbwDGFx62V62HtJ6o0+YB4GU0wG57m9QjN900vdStfJUWM
-         pH8R8g1INiS5k70ZqmsaN5vZnQnwU5dgZEQh/1UtOV3/kOsshToposSzQYOijsvGH8uBsA4wmiwILk
-         NRjqZI+LlS1kRtF7n+5HoLSV8JqrMWg==
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed;
-        d=ravnborg.org; s=ed2;
-        h=in-reply-to:content-type:mime-version:references:message-id:subject:cc:to:
-         from:date:from;
-        bh=MgrV3LilewuhqmbVjO8RxzUTtaR1+vbnicMyPFFpwAM=;
-        b=MlV8G0UHvhx3766kkcTJrCusIOBh66LFtAdDHT8vshgOmK1DVRVyF5Pm9tsdUZ4F/D4Xqyfin3YmI
-         VelkWMiAQ==
-X-HalOne-ID: 5882c668-c1d0-11ed-90a3-3df7d73157c4
-Received: from ravnborg.org (2-105-2-98-cable.dk.customer.tdc.net [2.105.2.98])
-        by mailrelay2 (Halon) with ESMTPSA
-        id 5882c668-c1d0-11ed-90a3-3df7d73157c4;
-        Mon, 13 Mar 2023 18:53:31 +0000 (UTC)
-Date:   Mon, 13 Mar 2023 19:53:30 +0100
-From:   Sam Ravnborg <sam@ravnborg.org>
-To:     Neil Armstrong <neil.armstrong@linaro.org>
-Cc:     Jianhua Lu <lujianhua000@gmail.com>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org
-Subject: Re: [PATCH v5 2/2] drm/panel: Add driver for Novatek NT36523
-Message-ID: <ZA9xKlScy9/LS753@ravnborg.org>
-References: <20230311123231.20771-1-lujianhua000@gmail.com>
- <20230311123231.20771-2-lujianhua000@gmail.com>
- <904bc493-7160-32fd-9709-1dcb978ddbab@linaro.org>
- <ZAx4KqXw+an555d4@Gentoo>
- <6c02557d-372d-05b1-2998-7c2cde99fac7@linaro.org>
+        with ESMTP id S230453AbjCMTBI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Mar 2023 15:01:08 -0400
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F2B6C24BCD;
+        Mon, 13 Mar 2023 12:00:59 -0700 (PDT)
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 32DJ0nQM100215;
+        Mon, 13 Mar 2023 14:00:49 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1678734049;
+        bh=f7SibJ0g7OCvEYjlRgKkp2c4sXa39uu+i19Q2bLGy2c=;
+        h=Date:From:To:CC:Subject:References:In-Reply-To;
+        b=htI2+aZVFxWYs6TyHljSeQeD9l3GrM89iJ+BECtsO6LmReoY6leU8Txp2VOsvoapI
+         XdOEJ5PHYzGJkyZ9kRwVMJ/i32e80ohTJIqQcHk3IwuZvaA+LyXvG4Fl8tAWeTxG3q
+         sl7qPV/UtiGYBV+tbiZvMKzQ6Hrpuyd6fPcCZvMI=
+Received: from DLEE108.ent.ti.com (dlee108.ent.ti.com [157.170.170.38])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 32DJ0nPF062095
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Mon, 13 Mar 2023 14:00:49 -0500
+Received: from DLEE112.ent.ti.com (157.170.170.23) by DLEE108.ent.ti.com
+ (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Mon, 13
+ Mar 2023 14:00:48 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE112.ent.ti.com
+ (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
+ Frontend Transport; Mon, 13 Mar 2023 14:00:48 -0500
+Received: from localhost (ileaxei01-snat.itg.ti.com [10.180.69.5])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 32DJ0mPj096301;
+        Mon, 13 Mar 2023 14:00:48 -0500
+Date:   Mon, 13 Mar 2023 14:00:48 -0500
+From:   Bryan Brattlof <bb@ti.com>
+To:     Devarsh Thakkar <devarsht@ti.com>
+CC:     <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <robh+dt@kernel.org>,
+        <kristo@kernel.org>, <nm@ti.com>, <vigneshr@ti.com>,
+        <hnagalla@ti.com>, <praneeth@ti.com>, <a-bhatia1@ti.com>,
+        <j-luthra@ti.com>
+Subject: Re: [PATCH v2] arm64: dts: ti: k3-am62a7-sk: Fix DDR size to full 4GB
+Message-ID: <20230313190048.w74clxxsdqxzuhor@bryanbrattlof.com>
+X-PGP-Fingerprint: D3D1 77E4 0A38 DF4D 1853 FEEF 41B9 0D5D 71D5 6CE0
+References: <20230210180317.6157-1-devarsht@ti.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset="utf-8"
 Content-Disposition: inline
-In-Reply-To: <6c02557d-372d-05b1-2998-7c2cde99fac7@linaro.org>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_NONE
-        autolearn=unavailable autolearn_force=no version=3.4.6
+In-Reply-To: <20230210180317.6157-1-devarsht@ti.com>
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Mar 13, 2023 at 09:06:50AM +0100, Neil Armstrong wrote:
-> On 11/03/2023 13:46, Jianhua Lu wrote:
-> > On Sat, Mar 11, 2023 at 01:38:52PM +0100, Konrad Dybcio wrote:
-> > > 
-> > > 
-> > > On 11.03.2023 13:32, Jianhua Lu wrote:
-> > > > Add a driver for panels using the Novatek NT36523 display driver IC.
-> > > > 
-> > > > Signed-off-by: Jianhua Lu <lujianhua000@gmail.com>
-> > > > ---
-> > > [...]
-> > > 
-> > > > +
-> > > > +static int nt36523_get_modes(struct drm_panel *panel,
-> > > > +			       struct drm_connector *connector)
-> > > > +{
-> > > > +	struct panel_info *pinfo = to_panel_info(panel);
-> > > > +	int i;
-> > > > +
-> > > > +	for (i = 0; i < pinfo->desc->num_modes; i++) {
-> > > > +		const struct drm_display_mode *m = &pinfo->desc->modes[i];
-> > > > +		struct drm_display_mode *mode;
-> > > > +
-> > > > +		mode = drm_mode_duplicate(connector->dev, m);
-> > > > +		if (!mode) {
-> > > > +			dev_err(panel->dev, "failed to add mode %ux%u@%u\n",
-> > > > +				m->hdisplay, m->vdisplay, drm_mode_vrefresh(m));
-> > > > +			return -ENOMEM;
-> > > > +		}
-> > > > +
-> > > > +		mode->type = DRM_MODE_TYPE_DRIVER;
-> > > > +		if (pinfo->desc->num_modes == 1)
-> > > > +			mode->type |= DRM_MODE_TYPE_PREFERRED;
-> > > That's not quite correct, as that means "if you have more than one
-> > > defined panel mode (say 60Hz and 120 Hz), there will be no preferred one".
-> > This piece of code I see in the other panels, so I'm not sure if it is
-> > correct.
-Jianhua is correct that the same code exists in several places,
-and from a quick browse I consider all the cases bogus.
+Hi Devarsh!
 
-It would be fine if someone volunteered to fix all the panels so we
-avoid this bug to creep into more panel drivers.
+On February 10, 2023 thus sayeth Devarsh Thakkar:
+> All revisions of AM62A7-SK board have 4GB LPDDR4 Micron
+> MT53E2G32D4DE-046 AUT:B memory. Commit 38c4a08c820c ("arm64: dts: ti:
+> Add support for AM62A7-SK") enabled just 2GB due to a schematics error
+> in early revision of the board. Fix it by enabling full 4GB available on
+> the platform.
+> 
+> Design docs: Link: https://www.ti.com/lit/zip/spruj16
 
-	Sam
+Patch looks great! Though this link doesn't seem to be working. Should 
+we use: https://www.ti.com/lit/zip/sprr459 ?
+
+> 
+> Fixes: 38c4a08c820c ("arm64: dts: ti: Add support for AM62A7-SK")
+> 
+> Signed-off-by: Devarsh Thakkar <devarsht@ti.com>
+> ---
+> Logs:
+> https://gist.github.com/devarsht/e85b6af89c01ddadb3a62f3e5f196af8
+> 
+> Changelog:
+> V2: Update commit message with mention of schematics error
+> ---
+>  arch/arm64/boot/dts/ti/k3-am62a7-sk.dts | 5 +++--
+>  1 file changed, 3 insertions(+), 2 deletions(-)
+> 
+
+A part from that
+
+Reviewed-by: Bryan Brattlof <bb@ti.com>
+
+Thanks for getting this fixed up
+~Bryan
