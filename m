@@ -2,173 +2,229 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0F6D16B7BCB
-	for <lists+devicetree@lfdr.de>; Mon, 13 Mar 2023 16:21:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 733326B7BF6
+	for <lists+devicetree@lfdr.de>; Mon, 13 Mar 2023 16:30:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230126AbjCMPVZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Mar 2023 11:21:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53350 "EHLO
+        id S230449AbjCMPaq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Mar 2023 11:30:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43056 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229663AbjCMPVY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Mar 2023 11:21:24 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CE23667836;
-        Mon, 13 Mar 2023 08:21:23 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id C90D561345;
-        Mon, 13 Mar 2023 15:21:22 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 30B96C433EF;
-        Mon, 13 Mar 2023 15:21:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1678720882;
-        bh=wOHm5m6ReGiTMjg65yU9qaHxrijWEjIw7pPKeJiQgZU=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=OUUHQodE9JDEhnimPb4A+ScsqyQWzs2ZXXN56JZUxx013GW7PBsqzY2YzYB4iYFT/
-         7o4gdJUaWQvP3x5cZhLFhQrnNFyx4J9sfDqS1Bhqo2UnCTtJ1YjjlALi/zckbPdQ5N
-         ymDPvXulN2SHf5q3ji061uodkQKq00m/6YHwHxgBvpgwhSLvStTdfmJZ9I6RmP/XHI
-         rjd0nrnk/s/dFkXEFhLer1DWz5Zbgw8QWbYm1meM45C29w2ChJCzYt2UZYjovp1K9t
-         oPRNcx1c7VtU60XzJQMh5XJNaztVN1Zl6yT3mEmrTgcaadgxieLmCV7WbRVFMyhF8D
-         fxCurl6qT/6Rg==
-Received: by mail-lf1-f42.google.com with SMTP id s22so16167633lfi.9;
-        Mon, 13 Mar 2023 08:21:22 -0700 (PDT)
-X-Gm-Message-State: AO0yUKUOwLHS/SDmajPKi0D8pu0BAtgVl0zLmAxUK8vrHjgks5z9C91d
-        1n40elY/M8yOkjjeMWjTwJHJY4RCyN7rjb2WmA==
-X-Google-Smtp-Source: AK7set8c5sO7hWTagu0j7z99ZxWvxbRa9EwPdzCx0PtR3FDTJLZOe1sVBKQ3Vev10nkQOZOgZI/r80Ju5W7KnZEDkS0=
-X-Received: by 2002:ac2:52a9:0:b0:4e8:3fba:621d with SMTP id
- r9-20020ac252a9000000b004e83fba621dmr1728626lfm.7.1678720880217; Mon, 13 Mar
- 2023 08:21:20 -0700 (PDT)
+        with ESMTP id S230221AbjCMPap (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Mar 2023 11:30:45 -0400
+Received: from mail-oa1-x30.google.com (mail-oa1-x30.google.com [IPv6:2001:4860:4864:20::30])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1EBDE5CC26;
+        Mon, 13 Mar 2023 08:30:44 -0700 (PDT)
+Received: by mail-oa1-x30.google.com with SMTP id 586e51a60fabf-177b78067ffso2951575fac.7;
+        Mon, 13 Mar 2023 08:30:44 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112; t=1678721443;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=0b3TgdJ99fVHE7Fi3WYmDiYFJwk0+grVkre963bfbbA=;
+        b=TLjhRn9e0FF/cUyXqMyPGtTdJCz4IM3iq5yrjZGeOltpRLs+yJKQkEJy9Ma2FonAvu
+         uibvAujnKZT0u79hixIX2oFeCy0f9tVW1kPWD5U0FtZDK3qAk4U+dAWbPmBCzBU4Ol3s
+         DOrcdvKlhAYMRFVx/OK6YWH7mfk7W81J4IcgQbuAPSQBe0tPTxXK2OdK6J2tNGTbxbXR
+         HWMMkWPOAoG8RNgQTjMrq5dn+oKgHzGOo/Ky8ASqMk5kQEknCNg04K4pvyqARzVdkbKU
+         7L0yhzJldp1+mqnmhlHFTFXWB88dSPDNMxszYe7dQnBMnxnvvO9HnMODGfVccqSL3Yu+
+         SmDg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1678721443;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=0b3TgdJ99fVHE7Fi3WYmDiYFJwk0+grVkre963bfbbA=;
+        b=gLdYu2Q4P3x3wbf83qv/YDSSY1lAk/HITVRPH+L9fqtipe23O9XKhKmPrEHwa/Oi24
+         9yANb3TrJnLpLD3Pc0Rls4Nzdj3AOl0QlX1tpkjjlc2s3k6w+gv0ikgn+bWPLQ+Zl9n0
+         TlKCBzdxgovFGekRFJZODm/SMec5UFDtqbHRKuNV0fao2KawUmRyG/N9fPfRsXhpiHjm
+         gmz/drPGHOQ0fcMpEvf3nQIGRbujdqyPqqGXu6hj3T3KM+5xNfVWmLFtsG5wNqgHaHMp
+         OaVnUdG6rwvORUOZcHOEN8zWAx7iqq7/xydS1MwONihgCBwsIeJV9LC4JcOt0wkNL3Nq
+         ZuXA==
+X-Gm-Message-State: AO0yUKUkGh2gKFM1LiBf5YJK2FYwvIzU0xOvY24BWlyJCARkLxznuiff
+        3TtIM0ijUANd6fLEqZgr1xs=
+X-Google-Smtp-Source: AK7set+6TyCLAMTfeShf5HNW6nlU+nm0GqRZLIhFOXlUEPx7J4wa/cjRQ9htKmprms8TICxiBi9pzw==
+X-Received: by 2002:a05:6870:9591:b0:177:8219:ad62 with SMTP id k17-20020a056870959100b001778219ad62mr6346081oao.50.1678721443239;
+        Mon, 13 Mar 2023 08:30:43 -0700 (PDT)
+Received: from ?IPV6:2600:1700:2442:6db0:6822:a477:b6d1:664a? ([2600:1700:2442:6db0:6822:a477:b6d1:664a])
+        by smtp.gmail.com with ESMTPSA id n185-20020acaefc2000000b00383e305597dsm3235820oih.23.2023.03.13.08.30.41
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 13 Mar 2023 08:30:42 -0700 (PDT)
+Message-ID: <8ab5b110-2f46-fb39-894e-64d59669c02a@gmail.com>
+Date:   Mon, 13 Mar 2023 10:30:40 -0500
 MIME-Version: 1.0
-References: <20230220-display-v1-0-45cbc68e188b@baylibre.com> <20230220-display-v1-19-45cbc68e188b@baylibre.com>
-In-Reply-To: <20230220-display-v1-19-45cbc68e188b@baylibre.com>
-From:   Chun-Kuang Hu <chunkuang.hu@kernel.org>
-Date:   Mon, 13 Mar 2023 23:21:08 +0800
-X-Gmail-Original-Message-ID: <CAAOTY_-wEzu6JavEAyRo8njOLRMq3i3wEcemNsuMaK00W9QqpQ@mail.gmail.com>
-Message-ID: <CAAOTY_-wEzu6JavEAyRo8njOLRMq3i3wEcemNsuMaK00W9QqpQ@mail.gmail.com>
-Subject: Re: [PATCH 19/21] drm/mediatek: dpi: add support for dpi clock
-To:     Alexandre Mergnat <amergnat@baylibre.com>
-Cc:     Daniel Vetter <daniel@ffwll.ch>, CK Hu <ck.hu@mediatek.com>,
-        Jitao Shi <jitao.shi@mediatek.com>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Sam Ravnborg <sam@ravnborg.org>,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.1
+Subject: Re: [PATCH 0/8] clk: Add kunit tests for fixed rate and parent data
+Content-Language: en-US
+To:     David Gow <davidgow@google.com>
+Cc:     Stephen Boyd <sboyd@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
+        patches@lists.linux.dev,
+        Brendan Higgins <brendan.higgins@linux.dev>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        "Rafael J . Wysocki" <rafael@kernel.org>,
+        Richard Weinberger <richard@nod.at>,
+        Anton Ivanov <anton.ivanov@cambridgegreys.com>,
+        Johannes Berg <johannes@sipsolutions.net>,
+        Vincent Whitchurch <vincent.whitchurch@axis.com>,
         Rob Herring <robh+dt@kernel.org>,
-        =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= 
-        <u.kleine-koenig@pengutronix.de>,
-        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        David Airlie <airlied@gmail.com>,
+        Christian Marangi <ansuelsmth@gmail.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Xinlei Lee <xinlei.lee@mediatek.com>,
-        Guillaume La Roque <glaroque@baylibre.com>,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org,
-        dri-devel@lists.freedesktop.org,
-        Fabien Parent <fparent@baylibre.com>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        devicetree@vger.kernel.org, linux-um@lists.infradead.org,
+        linux-kselftest@vger.kernel.org, kunit-dev@googlegroups.com
+References: <20230302013822.1808711-1-sboyd@kernel.org>
+ <2ce31cd1-7a0e-18ac-8a5b-ed09d6539241@gmail.com>
+ <CABVgOS=6mLLYDr3ZOmv6iBQKPdFxTGDFP+uy9xgTHvdc03=vPw@mail.gmail.com>
+From:   Frank Rowand <frowand.list@gmail.com>
+In-Reply-To: <CABVgOS=6mLLYDr3ZOmv6iBQKPdFxTGDFP+uy9xgTHvdc03=vPw@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi, Alexandre:
+On 3/10/23 01:48, David Gow wrote:
+> On Sat, 4 Mar 2023 at 23:50, Frank Rowand <frowand.list@gmail.com> wrote:
+>>
+>> On 3/1/23 19:38, Stephen Boyd wrote:
+>>> This patch series adds unit tests for the clk fixed rate basic type and
+>>> the clk registration functions that use struct clk_parent_data. To get
+>>> there, we add support for loading a DTB into the UML kernel that's
+>>> running the unit tests along with probing platform drivers to bind to
+>>> device nodes specified in DT.
+>>>
+>>> With this series, we're able to exercise some of the code in the common
+>>> clk framework that uses devicetree lookups to find parents and the fixed
+>>> rate clk code that scans devicetree directly and creates clks. Please
+>>> review.
+>>
+>> I would _really_ like to _not_ have devicetree tests in two locations:
+>> DT unittests and kunit tests.
+>>
+> 
 
-Alexandre Mergnat <amergnat@baylibre.com> =E6=96=BC 2023=E5=B9=B43=E6=9C=88=
-9=E6=97=A5 =E9=80=B1=E5=9B=9B =E4=B8=8B=E5=8D=8810:23=E5=AF=AB=E9=81=93=EF=
-=BC=9A
->
-> From: Fabien Parent <fparent@baylibre.com>
->
-> MT8365 requires an additional clock for DPI. Add support for that
-> additional clock.
->
-> Signed-off-by: Fabien Parent <fparent@baylibre.com>
-> Signed-off-by: Alexandre Mergnat <amergnat@baylibre.com>
-> ---
->  drivers/gpu/drm/mediatek/mtk_dpi.c | 18 +++++++++++++++++-
->  1 file changed, 17 insertions(+), 1 deletion(-)
->
-> diff --git a/drivers/gpu/drm/mediatek/mtk_dpi.c b/drivers/gpu/drm/mediate=
-k/mtk_dpi.c
-> index 4317595a15d1..474c6e5bbf04 100644
-> --- a/drivers/gpu/drm/mediatek/mtk_dpi.c
-> +++ b/drivers/gpu/drm/mediatek/mtk_dpi.c
-> @@ -68,6 +68,7 @@ struct mtk_dpi {
->         struct device *dev;
->         struct clk *engine_clk;
->         struct clk *pixel_clk;
-> +       struct clk *dpi_clk;
->         struct clk *tvd_clk;
->         int irq;
->         struct drm_display_mode mode;
-> @@ -464,6 +465,7 @@ static void mtk_dpi_power_off(struct mtk_dpi *dpi)
->         mtk_dpi_disable(dpi);
->         clk_disable_unprepare(dpi->pixel_clk);
->         clk_disable_unprepare(dpi->engine_clk);
-> +       clk_disable_unprepare(dpi->dpi_clk);
->  }
->
->  static int mtk_dpi_power_on(struct mtk_dpi *dpi)
-> @@ -473,10 +475,16 @@ static int mtk_dpi_power_on(struct mtk_dpi *dpi)
->         if (++dpi->refcount !=3D 1)
->                 return 0;
->
-> +       ret =3D clk_prepare_enable(dpi->dpi_clk);
-> +       if (ret) {
-> +               dev_err(dpi->dev, "failed to enable dpi clock: %d\n", ret=
-);
-> +               goto err_refcount;
-> +       }
-> +
->         ret =3D clk_prepare_enable(dpi->engine_clk);
->         if (ret) {
->                 dev_err(dpi->dev, "Failed to enable engine clock: %d\n", =
-ret);
-> -               goto err_refcount;
-> +               goto err_engine;
->         }
->
->         ret =3D clk_prepare_enable(dpi->pixel_clk);
-> @@ -489,6 +497,8 @@ static int mtk_dpi_power_on(struct mtk_dpi *dpi)
->
->  err_pixel:
->         clk_disable_unprepare(dpi->engine_clk);
-> +err_engine:
-> +       clk_disable_unprepare(dpi->dpi_clk);
->  err_refcount:
->         dpi->refcount--;
->         return ret;
-> @@ -1044,6 +1054,12 @@ static int mtk_dpi_probe(struct platform_device *p=
-dev)
->                 return ret;
->         }
->
-> +       dpi->dpi_clk =3D devm_clk_get_optional(dev, "dpi");
+This:
 
-For MT8365, DPI clock is not optional, so make sure that MT8365 DPI
-should have this clock.
+> I agree we don't want to split things up needlessly, but I think there
+> is a meaningful distinction between:
+> - Testing the DT infrastructure itself (with DT unittests)
+> - Testing a driver which may have some interaction with DT (via KUnit)
 
-Regards,
-Chun-Kuang.
+> 
+> So, rather than going for a "devicetree" KUnit suite (unless we wanted
+> to port OF_UNITTEST to KUnit, which as you point out, would involve a
+> fair bit of reworking), I think the goal is for there to be lots of
+> driver test suites, each of which may verify that their specific
+> properties can be loaded from the devicetree correctly.
+> 
+> This is also why I prefer the overlay method, if we can get it to
+> work: it makes it clearer that the organisational hierarchy for these
+> tests is [driver]->[devicetree], not [devicetree]->[drvier].
+> 
+>> For my testing, I already build and boot four times on real hardware:
+>>
+>>   1) no DT unittests
+>>   2) CONFIG_OF_UNITTEST
+>>   3) CONFIG_OF_UNITTEST
+>>      CONFIG_OF_DYNAMIC
+>>   4) CONFIG_OF_UNITTEST
+>>      CONFIG_OF_DYNAMIC
+>>      CONFIG_OF_OVERLAY
+>>
+>> I really should also be testing the four configurations on UML, but at
+>> the moment I am not.
+>>
+>> I also check for new compile warnings at various warn levels for all
+>> four configurations.
+>>
+>> If I recall correctly, the kunit framework encourages more (many more?)
+>> kunit config options to select which test(s) are build for a test run.
+>> Someone please correct this paragraph if I am mis-stating.
+> 
+> We do tend to suggest that there is a separate kconfig option for each
+> area being tested (usually one per test suite, but if there are
+> several closely related suites, sticking them under a single config
+> option isn't a problem.)
+> 
+> That being said:
+> - It's possible (and encouraged) to just test once with all of those
+> tests enabled, rather than needing to test every possible combination
+> of configs enabled/disabled.
+> - (Indeed, this is what we do with .kunitconfig files a lot: they're
+> collections of related configs, so you can quickly run, e.g., all DRM
+> tests)
+> - Because a KUnit test being run is an independent action from it
+> being built-in, it's possible to build the tests once and then just
+> run different subsets anyway, or possibly run them after boot if
+> they're compiled as modules.
+> - This of course, depends on two test configs not conflicting with
+> each other: obviously if there were some tests which relied on
+> OF_OVERLAY=n, and others which require OF_OVERLAY=y, you'd need two
+> builds.
+> 
 
-> +       if (IS_ERR(dpi->dpi_clk)) {
-> +               return dev_err_probe(dev, ret, "Failed to get dpi clock: =
-%p\n",
-> +                                    dpi->dpi_clk);
-> +       }
-> +
->         dpi->irq =3D platform_get_irq(pdev, 0);
->         if (dpi->irq <=3D 0)
->                 return -EINVAL;
->
-> --
-> b4 0.10.1
+And this:
+
+> The bigger point is that, if the KUnit tests are focused on individual
+> drivers, rather than the devicetree infrastructure itself, then these
+> probably aren't as critical to run on every devicetree change (the DT
+> unittests should hopefully catch anything which affects devicetree as
+> a whole), but only on tests which affect a specific driver (as they're
+> really intended to make sure the drivers are accessing / interacting
+> with the DT properly, not that the DT infrastructure functions).
+
+Those two paragraphs are correct, and my original assumption was wrong.
+
+These tests appear to mostly be clock related and only minimally and
+indirectly test devicetree functionality.  In more generic terms,
+they are driver tests, not devicetree tests.
+
+Thus I withdraw my concern of making the devicetree test environment
+more complicated.
+
+> 
+> And obviously if this KUnit/devicetree support ends up depending on
+> overlays, that means there's no need to test them with overlays
+> disabled. :-)
+> 
+>>
+>> Adding devicetree tests to kunit adds additional build and boot cycles
+>> and additional test output streams to verify.
+>>
+>> Are there any issues with DT unittests that preclude adding clk tests
+>> into the DT unittests?
+>>
+> 
+> I think at least part of it is that there are already some clk KUnit
+> tests, so it's easier to have all of the clk tests behave similarly
+> (for the same reasons, alas, as using DT unittests makes it easier to
+> keep all of the DT tests in the same place).
+> 
+
+> Of course, as DT unittests move to KTAP, and possibly in the future
+> are able to make use of more KUnit infrastructure, this should get
+> simpler for everyone.
+
+I hope to move DT unitests to create KTAP V2 compatible data as a
+first step.
+
+I highly doubt that DT unittests fit the kunit model, but that would
+be a question that could be considered after DT unittests move to the
+KTAP V2 data format.
+
+> 
+> 
+> Does that seem sensible?
+
+Yes, thanks for the extra explanations.
+
+> 
+> -- David
+
