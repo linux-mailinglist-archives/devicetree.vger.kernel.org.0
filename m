@@ -2,300 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 13C426B7C23
-	for <lists+devicetree@lfdr.de>; Mon, 13 Mar 2023 16:40:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6D16B6B7C41
+	for <lists+devicetree@lfdr.de>; Mon, 13 Mar 2023 16:42:58 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230300AbjCMPkD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Mar 2023 11:40:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56304 "EHLO
+        id S229782AbjCMPmz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Mar 2023 11:42:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32870 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230232AbjCMPkB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Mar 2023 11:40:01 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 52CAA29434;
-        Mon, 13 Mar 2023 08:40:00 -0700 (PDT)
-Received: from cryzen.lan (cpc87451-finc19-2-0-cust61.4-2.cable.virginm.net [82.11.51.62])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: tanureal)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id 993E166030CA;
-        Mon, 13 Mar 2023 15:39:58 +0000 (GMT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1678721999;
-        bh=Ugt/cIk2aYivDAu6VNt7dUsTeai7krVEsAmcZ9e7wWs=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=Bd765l908OmmWhFYITUDBoKLNVSoFBGGRuUHurNuKeVIvs1bZPOlADesrYi7OOlco
-         Mez/I4NgoLPQ398YNO4deXU6KMd93TB29MAQmOv5C6UWfC85zWIXLol41RxxKU2u7Y
-         DOP2fHsD8HZBFaWu2g9tK1X5O3KNvfQ/FuBc1lUI7oBJI2qN9C0uOOgYG344hid3/3
-         4ffWY4ArsApH19WApzPge0qCfs8AJfyhC0CPVD3wj3cQTSVUKgdGBCkOt6s5y8hl/r
-         WZmfAiW4NtGmHPe0NTL7sgIcaRQtmnuuo3t6sddBxW9/D7ad2iZHmvC37yeAaHyTd0
-         JKW/95Q/iLzYA==
-From:   Lucas Tanure <lucas.tanure@collabora.com>
-To:     Vinod Koul <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
+        with ESMTP id S230043AbjCMPmx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Mar 2023 11:42:53 -0400
+Received: from mail-il1-x133.google.com (mail-il1-x133.google.com [IPv6:2607:f8b0:4864:20::133])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 07FB854CAF;
+        Mon, 13 Mar 2023 08:42:37 -0700 (PDT)
+Received: by mail-il1-x133.google.com with SMTP id x10so7121353ill.12;
+        Mon, 13 Mar 2023 08:42:37 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112; t=1678722156;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=X2Ze74Wqiwoy+UoDUCp8J1XaBj1vJnEUZTusFoq9moE=;
+        b=BimnIqxTwSiDYb1RhYLwSmSaSO5/Cc0aYXpkigxTECJcqtYbadTcQNBLUC5Vk3KxDj
+         ubj6NJV8XUm3v+S/96QKe7lkW2iEXGqrTvekYVoYtmlNpNeFGt7g0QZIWKiqiuS04FtR
+         H0/Zi46AWxyrTfF/3Qx7rlETuJ3TExDrDN+AjZQK7TLHPoKO6ZiEL639mvFv2tekKkge
+         hULT41WYfd+97TZzt8ehR2Is9WIZUDHx5cmXfOXlKfnKMNcv18QDAs9XUVbDWuns7fJ1
+         2KPpUL+twkkRO+iX64zlew7iqbGFdb4nU8XAbL/F4CU/ERzpCXkpht5qvvqIgonPIMC1
+         dJhA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1678722156;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=X2Ze74Wqiwoy+UoDUCp8J1XaBj1vJnEUZTusFoq9moE=;
+        b=bGQ/pZGRggj4vpif3qIPL37FmpUxunRtNYden0aOkxKgFmR9oVOIvpdezO+2824GeV
+         oflSCGfHlRe/ygJKB1S+GKhX4BgGBEZ8tMBMBjVlg+H3H5QsjnFNhHUPxl112zAAwZcX
+         +paMsVn6eJRxssqsdnKtapURpaLyaUAFdklmy069wGiMdZH7yvgo+80/3vMu/m7s3txH
+         JQasQGt8umY7c9E3eGWpXKBg3Ih2gj45Qy3AVBV4m0alZ0ch/KmY8qaQFCxc8MEYfMwB
+         YyQaIe8mo5TzS2GHftJEOArZayldT10R2zvGKqITRMhBI6WYS6/i0/uD+N0Xcc41CRBL
+         8zTg==
+X-Gm-Message-State: AO0yUKXaCCpzTCx4jcq6kbLj19/K36PURQ5jy37v371RJ0tpcbjHOSch
+        Ca5PnATPhTC4WiSs057oTtU=
+X-Google-Smtp-Source: AK7set+Vl/0K+UpvklfYvhGTqN6mqCPg2BW/QUGATLZ4AuHk+ZkE2wefb/vvJVJS0kSmEDgVPMwuoA==
+X-Received: by 2002:a92:d186:0:b0:323:504:cff6 with SMTP id z6-20020a92d186000000b003230504cff6mr2294080ilz.3.1678722156328;
+        Mon, 13 Mar 2023 08:42:36 -0700 (PDT)
+Received: from JOEL-DESKTOP.. ([2604:2d80:4d87:cd00:9f51:32d7:1177:67d])
+        by smtp.gmail.com with ESMTPSA id o9-20020a02b809000000b003c4e02148e5sm2509588jam.53.2023.03.13.08.42.35
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 13 Mar 2023 08:42:35 -0700 (PDT)
+From:   Joel Selvaraj <joelselvaraj.oss@gmail.com>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>,
-        Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        Krzysztof Wilczynski <kw@linux.com>,
-        Bjorn Helgaas <bhelgaas@google.com>
-Cc:     Qu Wenruo <wqu@suse.com>,
-        Piotr Oniszczuk <piotr.oniszczuk@gmail.com>,
-        Peter Geis <pgwipeout@gmail.com>,
-        Kever Yang <kever.yang@rock-chips.com>,
-        linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-pci@vger.kernel.org,
-        Lucas Tanure <lucas.tanure@collabora.com>,
-        kernel@collabora.com, Andrew Powers-Holmes <aholmes@omnom.net>
-Subject: [PATCH 4/4] phy: rockchip: Add naneng combo phy support for RK3588
-Date:   Mon, 13 Mar 2023 15:39:53 +0000
-Message-Id: <20230313153953.422375-5-lucas.tanure@collabora.com>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
+        Joel Selvaraj <joelselvaraj.oss@gmail.com>
+Subject: [PATCH v2] arm64: dts: qcom: sdm845-xiaomi-beryllium: add notification LED
+Date:   Mon, 13 Mar 2023 10:42:26 -0500
+Message-Id: <20230313154226.136726-1-joelselvaraj.oss@gmail.com>
 X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20230313153953.422375-1-lucas.tanure@collabora.com>
-References: <20230313153953.422375-1-lucas.tanure@collabora.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add support for RK3588 combo phy
+The Poco F1 has a single color white notification LED. Enable the
+Qualcomm Light Pulse Generator (LPG) driver based notification LED.
 
-This is based on prior work from XiaoDong Huang and
-Peter Geis fixing this issue specifically for Rockchip 356x.
-
-Co-developed-by: Andrew Powers-Holmes <aholmes@omnom.net>
-Signed-off-by: Andrew Powers-Holmes <aholmes@omnom.net>
-Signed-off-by: Lucas Tanure <lucas.tanure@collabora.com>
+Signed-off-by: Joel Selvaraj <joelselvaraj.oss@gmail.com>
 ---
- .../rockchip/phy-rockchip-naneng-combphy.c    | 184 ++++++++++++++++++
- 1 file changed, 184 insertions(+)
+Changes in v2: (No functional changes)
+- Fixed the inconsistency in the commit title prefix
+- Minor update to commit message.
 
-diff --git a/drivers/phy/rockchip/phy-rockchip-naneng-combphy.c b/drivers/phy/rockchip/phy-rockchip-naneng-combphy.c
-index 7b213825fb5d..7b8b001e4f9e 100644
---- a/drivers/phy/rockchip/phy-rockchip-naneng-combphy.c
-+++ b/drivers/phy/rockchip/phy-rockchip-naneng-combphy.c
-@@ -63,6 +63,9 @@
- #define PHYREG18			0x44
- #define PHYREG18_PLL_LOOP		0x32
+ .../boot/dts/qcom/sdm845-xiaomi-beryllium-common.dtsi | 11 +++++++++++
+ 1 file changed, 11 insertions(+)
+
+diff --git a/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium-common.dtsi b/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium-common.dtsi
+index e0fda4d754fe..9d11502e5e0e 100644
+--- a/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium-common.dtsi
++++ b/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium-common.dtsi
+@@ -2,6 +2,7 @@
  
-+#define PHYREG27			0x6C
-+#define PHYREG27_RX_TRIM_RK3588		0x4C
-+
- #define PHYREG32			0x7C
- #define PHYREG32_SSC_MASK		GENMASK(7, 4)
- #define PHYREG32_SSC_DIR_SHIFT		4
-@@ -114,7 +117,10 @@ struct rockchip_combphy_grfcfg {
- 	struct combphy_reg con2_for_sata;
- 	struct combphy_reg con3_for_sata;
- 	struct combphy_reg pipe_con0_for_sata;
-+	struct combphy_reg pipe_con1_for_sata;
- 	struct combphy_reg pipe_xpcs_phy_ready;
-+	struct combphy_reg pipe_pcie1l0_sel;
-+	struct combphy_reg pipe_pcie1l1_sel;
+ /dts-v1/;
+ 
++#include <dt-bindings/leds/common.h>
+ #include <dt-bindings/pinctrl/qcom,pmic-gpio.h>
+ #include <dt-bindings/regulator/qcom,rpmh-regulator.h>
+ #include <dt-bindings/sound/qcom,q6afe.h>
+@@ -322,6 +323,16 @@ vol_up_pin_a: vol-up-active-state {
+ 	};
  };
  
- struct rockchip_combphy_cfg {
-@@ -559,11 +565,189 @@ static const struct rockchip_combphy_cfg rk3568_combphy_cfgs = {
- 	.combphy_cfg	= rk3568_combphy_cfg,
- };
- 
-+static int rk3588_combphy_cfg(struct rockchip_combphy_priv *priv)
-+{
-+	const struct rockchip_combphy_grfcfg *cfg = priv->cfg->grfcfg;
-+	unsigned long rate;
-+	u32 val;
++&pmi8998_lpg {
++	status = "okay";
 +
-+	switch (priv->type) {
-+	case PHY_TYPE_PCIE:
-+		rockchip_combphy_param_write(priv->phy_grf, &cfg->con0_for_pcie, true);
-+		rockchip_combphy_param_write(priv->phy_grf, &cfg->con1_for_pcie, true);
-+		rockchip_combphy_param_write(priv->phy_grf, &cfg->con2_for_pcie, true);
-+		rockchip_combphy_param_write(priv->phy_grf, &cfg->con3_for_pcie, true);
-+		rockchip_combphy_param_write(priv->pipe_grf, &cfg->pipe_pcie1l0_sel, true);
-+		rockchip_combphy_param_write(priv->pipe_grf, &cfg->pipe_pcie1l1_sel, true);
-+		break;
-+	case PHY_TYPE_USB3:
-+		/* Set SSC downward spread spectrum */
-+		rockchip_combphy_updatel(priv, PHYREG32_SSC_MASK,
-+					 PHYREG32_SSC_DOWNWARD << PHYREG32_SSC_DIR_SHIFT,
-+					 PHYREG32);
-+
-+		/* Enable adaptive CTLE for USB3.0 Rx. */
-+		val = readl(priv->mmio + PHYREG15);
-+		val |= PHYREG15_CTLE_EN;
-+		writel(val, priv->mmio + PHYREG15);
-+
-+		/* Set PLL KVCO fine tuning signals. */
-+		rockchip_combphy_updatel(priv, PHYREG33_PLL_KVCO_MASK,
-+					 PHYREG33_PLL_KVCO_VALUE << PHYREG33_PLL_KVCO_SHIFT,
-+					 PHYREG33);
-+
-+		/* Enable controlling random jitter. */
-+		writel(PHYREG12_PLL_LPF_ADJ_VALUE, priv->mmio + PHYREG12);
-+
-+		/* Set PLL input clock divider 1/2. */
-+		rockchip_combphy_updatel(priv, PHYREG6_PLL_DIV_MASK,
-+					 PHYREG6_PLL_DIV_2 << PHYREG6_PLL_DIV_SHIFT,
-+					 PHYREG6);
-+
-+		writel(PHYREG18_PLL_LOOP, priv->mmio + PHYREG18);
-+		writel(PHYREG11_SU_TRIM_0_7, priv->mmio + PHYREG11);
-+
-+		rockchip_combphy_param_write(priv->phy_grf, &cfg->pipe_txcomp_sel, false);
-+		rockchip_combphy_param_write(priv->phy_grf, &cfg->pipe_txelec_sel, false);
-+		rockchip_combphy_param_write(priv->phy_grf, &cfg->usb_mode_set, true);
-+		break;
-+	case PHY_TYPE_SATA:
-+		/* Enable adaptive CTLE for SATA Rx. */
-+		val = readl(priv->mmio + PHYREG15);
-+		val |= PHYREG15_CTLE_EN;
-+		writel(val, priv->mmio + PHYREG15);
-+		/*
-+		 * Set tx_rterm=50ohm and rx_rterm=44ohm for SATA.
-+		 * 0: 60ohm, 8: 50ohm 15: 44ohm (by step abort 1ohm)
-+		 */
-+		val = PHYREG7_TX_RTERM_50OHM << PHYREG7_TX_RTERM_SHIFT;
-+		val |= PHYREG7_RX_RTERM_44OHM << PHYREG7_RX_RTERM_SHIFT;
-+		writel(val, priv->mmio + PHYREG7);
-+
-+		rockchip_combphy_param_write(priv->phy_grf, &cfg->con0_for_sata, true);
-+		rockchip_combphy_param_write(priv->phy_grf, &cfg->con1_for_sata, true);
-+		rockchip_combphy_param_write(priv->phy_grf, &cfg->con2_for_sata, true);
-+		rockchip_combphy_param_write(priv->phy_grf, &cfg->con3_for_sata, true);
-+		rockchip_combphy_param_write(priv->pipe_grf, &cfg->pipe_con0_for_sata, true);
-+		rockchip_combphy_param_write(priv->pipe_grf, &cfg->pipe_con1_for_sata, true);
-+		break;
-+	case PHY_TYPE_SGMII:
-+	case PHY_TYPE_QSGMII:
-+	default:
-+		dev_err(priv->dev, "incompatible PHY type\n");
-+		return -EINVAL;
-+	}
-+
-+	rate = clk_get_rate(priv->refclk);
-+
-+	switch (rate) {
-+	case REF_CLOCK_24MHz:
-+		if (priv->type == PHY_TYPE_USB3 || priv->type == PHY_TYPE_SATA) {
-+			/* Set ssc_cnt[9:0]=0101111101 & 31.5KHz. */
-+			val = PHYREG15_SSC_CNT_VALUE << PHYREG15_SSC_CNT_SHIFT;
-+			rockchip_combphy_updatel(priv, PHYREG15_SSC_CNT_MASK,
-+						 val, PHYREG15);
-+
-+			writel(PHYREG16_SSC_CNT_VALUE, priv->mmio + PHYREG16);
-+		}
-+		break;
-+
-+	case REF_CLOCK_25MHz:
-+		rockchip_combphy_param_write(priv->phy_grf, &cfg->pipe_clk_25m, true);
-+		break;
-+	case REF_CLOCK_100MHz:
-+		rockchip_combphy_param_write(priv->phy_grf, &cfg->pipe_clk_100m, true);
-+		if (priv->type == PHY_TYPE_PCIE) {
-+			/* PLL KVCO fine tuning. */
-+			val = 4 << PHYREG33_PLL_KVCO_SHIFT;
-+			rockchip_combphy_updatel(priv, PHYREG33_PLL_KVCO_MASK,
-+						 val, PHYREG33);
-+
-+			/* Enable controlling random jitter. */
-+			writel(PHYREG12_PLL_LPF_ADJ_VALUE, priv->mmio + PHYREG12);
-+
-+			/* Set up rx_trim: PLL LPF C1 85pf R1 1.25kohm */
-+			writel(PHYREG27_RX_TRIM_RK3588, priv->mmio + PHYREG27);
-+
-+			/* Set up su_trim:  */
-+			writel(PHYREG11_SU_TRIM_0_7, priv->mmio + PHYREG11);
-+		} else if (priv->type == PHY_TYPE_SATA) {
-+			/* downward spread spectrum +500ppm */
-+			val = PHYREG32_SSC_DOWNWARD << PHYREG32_SSC_DIR_SHIFT;
-+			val |= PHYREG32_SSC_OFFSET_500PPM << PHYREG32_SSC_OFFSET_SHIFT;
-+			rockchip_combphy_updatel(priv, PHYREG32_SSC_MASK, val, PHYREG32);
-+		}
-+		break;
-+	default:
-+		dev_err(priv->dev, "Unsupported rate: %lu\n", rate);
-+		return -EINVAL;
-+	}
-+
-+	if (priv->ext_refclk) {
-+		rockchip_combphy_param_write(priv->phy_grf, &cfg->pipe_clk_ext, true);
-+		if (priv->type == PHY_TYPE_PCIE && rate == REF_CLOCK_100MHz) {
-+			val = PHYREG13_RESISTER_HIGH_Z << PHYREG13_RESISTER_SHIFT;
-+			val |= PHYREG13_CKRCV_AMP0;
-+			rockchip_combphy_updatel(priv, PHYREG13_RESISTER_MASK, val, PHYREG13);
-+
-+			val = readl(priv->mmio + PHYREG14);
-+			val |= PHYREG14_CKRCV_AMP1;
-+			writel(val, priv->mmio + PHYREG14);
-+		}
-+	}
-+
-+	if (priv->enable_ssc) {
-+		val = readl(priv->mmio + PHYREG8);
-+		val |= PHYREG8_SSC_EN;
-+		writel(val, priv->mmio + PHYREG8);
-+	}
-+
-+	return 0;
-+}
-+
-+static const struct rockchip_combphy_grfcfg rk3588_combphy_grfcfgs = {
-+	/* pipe-phy-grf */
-+	.pcie_mode_set		= { 0x0000, 5, 0, 0x00, 0x11 },
-+	.usb_mode_set		= { 0x0000, 5, 0, 0x00, 0x04 },
-+	.pipe_rxterm_set	= { 0x0000, 12, 12, 0x00, 0x01 },
-+	.pipe_txelec_set	= { 0x0004, 1, 1, 0x00, 0x01 },
-+	.pipe_txcomp_set	= { 0x0004, 4, 4, 0x00, 0x01 },
-+	.pipe_clk_25m		= { 0x0004, 14, 13, 0x00, 0x01 },
-+	.pipe_clk_100m		= { 0x0004, 14, 13, 0x00, 0x02 },
-+	.pipe_rxterm_sel	= { 0x0008, 8, 8, 0x00, 0x01 },
-+	.pipe_txelec_sel	= { 0x0008, 12, 12, 0x00, 0x01 },
-+	.pipe_txcomp_sel	= { 0x0008, 15, 15, 0x00, 0x01 },
-+	.pipe_clk_ext		= { 0x000c, 9, 8, 0x02, 0x01 },
-+	.pipe_phy_status	= { 0x0034, 6, 6, 0x01, 0x00 },
-+	.con0_for_pcie		= { 0x0000, 15, 0, 0x00, 0x1000 },
-+	.con1_for_pcie		= { 0x0004, 15, 0, 0x00, 0x0000 },
-+	.con2_for_pcie		= { 0x0008, 15, 0, 0x00, 0x0101 },
-+	.con3_for_pcie		= { 0x000c, 15, 0, 0x00, 0x0200 },
-+	.con0_for_sata		= { 0x0000, 15, 0, 0x00, 0x0129 },
-+	.con1_for_sata		= { 0x0004, 15, 0, 0x00, 0x0000 },
-+	.con2_for_sata		= { 0x0008, 15, 0, 0x00, 0x80c1 },
-+	.con3_for_sata		= { 0x000c, 15, 0, 0x00, 0x0407 },
-+	/* pipe-grf */
-+	.pipe_con0_for_sata	= { 0x0000, 11, 5, 0x00, 0x22 },
-+	.pipe_con1_for_sata	= { 0x0000, 2, 0, 0x00, 0x2 },
-+	.pipe_pcie1l0_sel	= { 0x0100, 0, 0, 0x01, 0x0 },
-+	.pipe_pcie1l1_sel	= { 0x0100, 1, 1, 0x01, 0x0 },
++	led@5 {
++		reg = <5>;
++		color = <LED_COLOR_ID_WHITE>;
++		function = LED_FUNCTION_STATUS;
++	};
 +};
 +
-+static const struct rockchip_combphy_cfg rk3588_combphy_cfgs = {
-+	.grfcfg		= &rk3588_combphy_grfcfgs,
-+	.combphy_cfg	= rk3588_combphy_cfg,
-+};
-+
- static const struct of_device_id rockchip_combphy_of_match[] = {
- 	{
- 		.compatible = "rockchip,rk3568-naneng-combphy",
- 		.data = &rk3568_combphy_cfgs,
- 	},
-+	{
-+		.compatible = "rockchip,rk3588-naneng-combphy",
-+		.data = &rk3588_combphy_cfgs,
-+	},
- 	{ },
- };
- MODULE_DEVICE_TABLE(of, rockchip_combphy_of_match);
+ &pmi8998_wled {
+ 	status = "okay";
+ 	qcom,current-boost-limit = <970>;
 -- 
 2.39.2
 
