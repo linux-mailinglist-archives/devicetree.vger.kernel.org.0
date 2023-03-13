@@ -2,58 +2,50 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 918836B85F8
-	for <lists+devicetree@lfdr.de>; Tue, 14 Mar 2023 00:17:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AAAF26B860F
+	for <lists+devicetree@lfdr.de>; Tue, 14 Mar 2023 00:26:53 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229901AbjCMXRc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Mar 2023 19:17:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46632 "EHLO
+        id S229670AbjCMX0v (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Mar 2023 19:26:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34364 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230071AbjCMXRb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Mar 2023 19:17:31 -0400
-Received: from sin.source.kernel.org (sin.source.kernel.org [145.40.73.55])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 758997F015;
-        Mon, 13 Mar 2023 16:17:28 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        with ESMTP id S230061AbjCMX0v (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Mar 2023 19:26:51 -0400
+Received: from relay03.th.seeweb.it (relay03.th.seeweb.it [5.144.164.164])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 21C5565113
+        for <devicetree@vger.kernel.org>; Mon, 13 Mar 2023 16:26:43 -0700 (PDT)
+Received: from SoMainline.org (94-211-6-86.cable.dynamic.v4.ziggo.nl [94.211.6.86])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits) server-digest SHA256)
         (No client certificate requested)
-        by sin.source.kernel.org (Postfix) with ESMTPS id CB530CE1290;
-        Mon, 13 Mar 2023 23:17:26 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D3DA5C433D2;
-        Mon, 13 Mar 2023 23:17:24 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1678749445;
-        bh=rkf+w2R5U9yIyPxz2FD9JcXK7xhs8LnPgBEvZWq+PXw=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=p4uiqAV+1Dom/tq2BBK/v5VM0GdAD+C72IHMEwHM9H8xKqSslhSoJJWeWm9kUAp68
-         FqEqZXgcCQfhwmRRvRxuG6APBkfypGak6gjl5658yMjV+vJxytUgyvyE8aJOy4c4RS
-         5ZSwkfobbVqFcrFdDTr46j9cgzSbY6IKXedhVCswu9hjlObWlFucvzo5bwzVD4FzZf
-         vBm5sJc+4OloxUOZ9fZkHxwst0a1NPq1SGoWXUldtCJmaWZ1a7SpGAIq5qcdTJO8t0
-         TFxKgE7Wg15Qw3sN0us/GNeR27WazFQn89Mec3R4UpKzeF04WQRuXXQb5+O7029qb0
-         RVIIdll/Fkv6A==
-Received: by mercury (Postfix, from userid 1000)
-        id 172041061E59; Tue, 14 Mar 2023 00:17:19 +0100 (CET)
-Date:   Tue, 14 Mar 2023 00:17:19 +0100
-From:   Sebastian Reichel <sre@kernel.org>
-To:     Linus Walleij <linus.walleij@linaro.org>
-Cc:     Matti Vaittinen <mazziesaccount@gmail.com>,
+        by m-r1.th.seeweb.it (Postfix) with ESMTPSA id 4B7C52036C;
+        Tue, 14 Mar 2023 00:26:35 +0100 (CET)
+Date:   Tue, 14 Mar 2023 00:26:32 +0100
+From:   Marijn Suijten <marijn.suijten@somainline.org>
+To:     Konrad Dybcio <konrad.dybcio@linaro.org>
+Cc:     linux-arm-msm@vger.kernel.org, andersson@kernel.org,
+        agross@kernel.org, krzysztof.kozlowski@linaro.org,
+        Rob Clark <robdclark@gmail.com>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Sean Paul <sean@poorly.run>, David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCHv1 04/11] power: supply: generic-adc-battery: fix unit
- scaling
-Message-ID: <1fdf00a0-4830-465a-801c-147472fdcd22@mercury.local>
-References: <20230309225041.477440-1-sre@kernel.org>
- <20230309225041.477440-5-sre@kernel.org>
- <CACRpkdaa6ZOt7U+iLwjrTGx87BdgXX6wbW2Ab_bHye_TNzi9Tg@mail.gmail.com>
+        Krishna Manikandan <quic_mkrishn@quicinc.com>,
+        Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+        dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 1/9] dt-bindings: display/msm: dsi-controller-main:
+ Fix deprecated QCM2290 compatible
+Message-ID: <20230313232632.ahz7wmvt23tslmmp@SoMainline.org>
+References: <20230213121012.1768296-1-konrad.dybcio@linaro.org>
+ <20230213121012.1768296-2-konrad.dybcio@linaro.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="7uyvyepd44usvzdp"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <CACRpkdaa6ZOt7U+iLwjrTGx87BdgXX6wbW2Ab_bHye_TNzi9Tg@mail.gmail.com>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+In-Reply-To: <20230213121012.1768296-2-konrad.dybcio@linaro.org>
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -61,55 +53,31 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 2023-02-13 13:10:04, Konrad Dybcio wrote:
+> The qcom, prefix was missed previously. Fix it.
+> 
+> Fixes: 0c0f65c6dd44 ("dt-bindings: msm: dsi-controller-main: Add compatible strings for every current SoC")
+> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 
---7uyvyepd44usvzdp
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Reviewed-by: Marijn Suijten <marijn.suijten@somainline.org>
 
-Hi,
-
-On Fri, Mar 10, 2023 at 09:23:06AM +0100, Linus Walleij wrote:
-> On Thu, Mar 9, 2023 at 11:50=E2=80=AFPM Sebastian Reichel <sre@kernel.org=
-> wrote:
->=20
-> > power-supply properties are reported in =C2=B5V, =C2=B5A and =C2=B5W.
-> > The IIO API provides mV, mA, mW, so the values need to
-> > be multiplied by 1000.
-> >
-> > Signed-off-by: Sebastian Reichel <sre@kernel.org>
->=20
-> Fixes: tag?
-> Cc: stable@vger.kernel.org
->=20
-> Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
->=20
-> This code can not have seen much testing.
-
-There is no mainline board using this driver and I think there
-never was one. I did add a Fixes tag now, but its probably not worth
-any backporting trouble considering it has no users.
-
--- Sebastian
-
---7uyvyepd44usvzdp
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAmQPrvcACgkQ2O7X88g7
-+pr+5g//boqvVUatIQJz3AYJDUC/o9r62m7SjGB5Zumh4KgV0KuIQmVqm3yxiW6u
-o3Gxo+SrJw5aUmUceXIhjzueK34uaZm9ncHeIch/IcwyepZKvPBEz4o5+hOwwfG7
-b1nDx93sQsOkB2mOiCFGID6DB8M6slRagc6qIbk01lkKppWhTqxnUh1yvG1nURZo
-FaNqXkB8KJbQglknVOZZ4nVsJnkt8jj0L3H5LfoHaSEBJtd48j/22kVfHI4KCdo3
-Shyxh6B8Z+RDPxWmqGEOQd9IrCPxje07M2mq0p1XG4gARUtFc8oS+kWW15Jv2W9x
-DDy5HlPvPQ2legMlLTjsYWcDBDmO8TU1Sj/aTi6h+lV18fi2nfC/FSpUBXHW/tfI
-1/KCzDKziTMxRPAjVa4l+AjJCtOW48uTc1r+OxXpSBjQ4Tj91f+xLR2pgtq7Fvv9
-E3uNigw8WDlfzrvjFXKr5Mrt/mixYexfmfm9hRdAkhs7vMSkhnyDMGgUEylHSYtD
-6ZzLvCrF1ClMSFfN54wgk596TLM1QFIO/LZvc4/820MuprXpGqCK9OLbcyGt9OdW
-PrHSQmdCFmW+u6YGMurTeJMaxTw0fHK6QibluRvZUbLqR974sRJ4ilVfVruMEBNS
-yz1R8ifTVTACoJoKFKcWKp+HLjrTJSP/4yKcoxCoo2doUMyrbXs=
-=+FR2
------END PGP SIGNATURE-----
-
---7uyvyepd44usvzdp--
+> ---
+>  .../devicetree/bindings/display/msm/dsi-controller-main.yaml    | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml b/Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml
+> index e75a3efe4dac..2494817c1bd6 100644
+> --- a/Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml
+> +++ b/Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml
+> @@ -33,7 +33,7 @@ properties:
+>            - const: qcom,mdss-dsi-ctrl
+>        - items:
+>            - enum:
+> -              - dsi-ctrl-6g-qcm2290
+> +              - qcom,dsi-ctrl-6g-qcm2290
+>            - const: qcom,mdss-dsi-ctrl
+>          deprecated: true
+>  
+> -- 
+> 2.39.1
+> 
