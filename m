@@ -2,102 +2,140 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CAD6A6B8152
-	for <lists+devicetree@lfdr.de>; Mon, 13 Mar 2023 20:01:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 410406B816B
+	for <lists+devicetree@lfdr.de>; Mon, 13 Mar 2023 20:08:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230469AbjCMTBJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Mar 2023 15:01:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43272 "EHLO
+        id S230039AbjCMTIs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Mar 2023 15:08:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57362 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230453AbjCMTBI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Mar 2023 15:01:08 -0400
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F2B6C24BCD;
-        Mon, 13 Mar 2023 12:00:59 -0700 (PDT)
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 32DJ0nQM100215;
-        Mon, 13 Mar 2023 14:00:49 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1678734049;
-        bh=f7SibJ0g7OCvEYjlRgKkp2c4sXa39uu+i19Q2bLGy2c=;
-        h=Date:From:To:CC:Subject:References:In-Reply-To;
-        b=htI2+aZVFxWYs6TyHljSeQeD9l3GrM89iJ+BECtsO6LmReoY6leU8Txp2VOsvoapI
-         XdOEJ5PHYzGJkyZ9kRwVMJ/i32e80ohTJIqQcHk3IwuZvaA+LyXvG4Fl8tAWeTxG3q
-         sl7qPV/UtiGYBV+tbiZvMKzQ6Hrpuyd6fPcCZvMI=
-Received: from DLEE108.ent.ti.com (dlee108.ent.ti.com [157.170.170.38])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 32DJ0nPF062095
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Mon, 13 Mar 2023 14:00:49 -0500
-Received: from DLEE112.ent.ti.com (157.170.170.23) by DLEE108.ent.ti.com
- (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Mon, 13
- Mar 2023 14:00:48 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE112.ent.ti.com
- (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
- Frontend Transport; Mon, 13 Mar 2023 14:00:48 -0500
-Received: from localhost (ileaxei01-snat.itg.ti.com [10.180.69.5])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 32DJ0mPj096301;
-        Mon, 13 Mar 2023 14:00:48 -0500
-Date:   Mon, 13 Mar 2023 14:00:48 -0500
-From:   Bryan Brattlof <bb@ti.com>
-To:     Devarsh Thakkar <devarsht@ti.com>
-CC:     <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <robh+dt@kernel.org>,
-        <kristo@kernel.org>, <nm@ti.com>, <vigneshr@ti.com>,
-        <hnagalla@ti.com>, <praneeth@ti.com>, <a-bhatia1@ti.com>,
-        <j-luthra@ti.com>
-Subject: Re: [PATCH v2] arm64: dts: ti: k3-am62a7-sk: Fix DDR size to full 4GB
-Message-ID: <20230313190048.w74clxxsdqxzuhor@bryanbrattlof.com>
-X-PGP-Fingerprint: D3D1 77E4 0A38 DF4D 1853 FEEF 41B9 0D5D 71D5 6CE0
-References: <20230210180317.6157-1-devarsht@ti.com>
+        with ESMTP id S230071AbjCMTIp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Mar 2023 15:08:45 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5C81A2E0D1;
+        Mon, 13 Mar 2023 12:08:24 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 11715B811C0;
+        Mon, 13 Mar 2023 19:08:23 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3E3E6C4339E;
+        Mon, 13 Mar 2023 19:08:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1678734501;
+        bh=UxmK1Rh5GkCgRmvK7nqy0FXnK5ohwNUzJuIxLBCLKU8=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=Mx9YabRVEPtpQa/6LUWQ5j67vTxjTOuk47icPMo+oNFr1Fp9VkHT4IuLXqNOZdJsF
+         27jpGLPgap/NCCxXgTDKvOTzDHCSs2ETj9CAAACGHDODLpl09I+p2qttJyG/cKlOIs
+         dDe/DlUo4TH1bA6oc/9DubtKITSW+a3VGhQ41VDLed2knCUixFggmim5LH5RqF/Y3s
+         L+N8TmiAzy7ehfWVTkKIh1nLl4/LaB8y5BB5r5jeM2SNnq8XlAteRsjTpJNVU1mvsZ
+         RKrvXm7fln09QUpXfDacikqPJTre4NGLffXcC7vNLlMfhCbSLP64CVZYJSMX+ZmufD
+         h5O0Hngy8BGkQ==
+Date:   Mon, 13 Mar 2023 12:08:19 -0700
+From:   Eric Biggers <ebiggers@kernel.org>
+To:     Abel Vesa <abel.vesa@linaro.org>
+Cc:     Ulf Hansson <ulf.hansson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Manivannan Sadhasivam <mani@kernel.org>,
+        Alim Akhtar <alim.akhtar@samsung.com>,
+        Avri Altman <avri.altman@wdc.com>,
+        Bart Van Assche <bvanassche@acm.org>,
+        Adrian Hunter <adrian.hunter@intel.com>,
+        "James E . J . Bottomley" <jejb@linux.ibm.com>,
+        "Martin K . Petersen" <martin.petersen@oracle.com>,
+        Herbert Xu <herbert@gondor.apana.org.au>,
+        "David S . Miller" <davem@davemloft.net>,
+        linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        linux-arm-msm@vger.kernel.org, linux-crypto@vger.kernel.org,
+        linux-scsi@vger.kernel.org
+Subject: Re: [RFC PATCH v3 5/7] scsi: ufs: ufs-qcom: Switch to the new ICE API
+Message-ID: <ZA90o0K6fBHe0Q74@sol.localdomain>
+References: <20230313115202.3960700-1-abel.vesa@linaro.org>
+ <20230313115202.3960700-6-abel.vesa@linaro.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230210180317.6157-1-devarsht@ti.com>
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+In-Reply-To: <20230313115202.3960700-6-abel.vesa@linaro.org>
 X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Devarsh!
+On Mon, Mar 13, 2023 at 01:52:00PM +0200, Abel Vesa wrote:
+> diff --git a/drivers/ufs/host/Makefile b/drivers/ufs/host/Makefile
+> index d7c5bf7fa512..081b332fe7ce 100644
+> --- a/drivers/ufs/host/Makefile
+> +++ b/drivers/ufs/host/Makefile
+> @@ -5,7 +5,6 @@ obj-$(CONFIG_SCSI_UFS_DWC_TC_PLATFORM) += tc-dwc-g210-pltfrm.o ufshcd-dwc.o tc-d
+>  obj-$(CONFIG_SCSI_UFS_CDNS_PLATFORM) += cdns-pltfrm.o
+>  obj-$(CONFIG_SCSI_UFS_QCOM) += ufs_qcom.o
+>  ufs_qcom-y += ufs-qcom.o
+> -ufs_qcom-$(CONFIG_SCSI_UFS_CRYPTO) += ufs-qcom-ice.o
+>  obj-$(CONFIG_SCSI_UFS_EXYNOS) += ufs-exynos.o
+>  obj-$(CONFIG_SCSI_UFSHCD_PCI) += ufshcd-pci.o
+>  obj-$(CONFIG_SCSI_UFSHCD_PLATFORM) += ufshcd-pltfrm.o
 
-On February 10, 2023 thus sayeth Devarsh Thakkar:
-> All revisions of AM62A7-SK board have 4GB LPDDR4 Micron
-> MT53E2G32D4DE-046 AUT:B memory. Commit 38c4a08c820c ("arm64: dts: ti:
-> Add support for AM62A7-SK") enabled just 2GB due to a schematics error
-> in early revision of the board. Fix it by enabling full 4GB available on
-> the platform.
-> 
-> Design docs: Link: https://www.ti.com/lit/zip/spruj16
+Now that ufs-qcom will be single-file again, maybe this should go back to the
+original approach of just:
 
-Patch looks great! Though this link doesn't seem to be working. Should 
-we use: https://www.ti.com/lit/zip/sprr459 ?
+	obj-$(CONFIG_SCSI_UFS_QCOM) += ufs-qcom.o
 
-> 
-> Fixes: 38c4a08c820c ("arm64: dts: ti: Add support for AM62A7-SK")
-> 
-> Signed-off-by: Devarsh Thakkar <devarsht@ti.com>
-> ---
-> Logs:
-> https://gist.github.com/devarsht/e85b6af89c01ddadb3a62f3e5f196af8
-> 
-> Changelog:
-> V2: Update commit message with mention of schematics error
-> ---
->  arch/arm64/boot/dts/ti/k3-am62a7-sk.dts | 5 +++--
->  1 file changed, 3 insertions(+), 2 deletions(-)
-> 
+(Note the dash instead of underscore)
 
-A part from that
+> diff --git a/drivers/ufs/host/ufs-qcom.c b/drivers/ufs/host/ufs-qcom.c
+> index a02cd866e2f8..8f8581dbe09a 100644
+> --- a/drivers/ufs/host/ufs-qcom.c
+> +++ b/drivers/ufs/host/ufs-qcom.c
+> @@ -15,6 +15,8 @@
+>  #include <linux/reset-controller.h>
+>  #include <linux/devfreq.h>
+>  
+> +#include <soc/qcom/ice.h>
+> +
+>  #include <ufs/ufshcd.h>
+>  #include "ufshcd-pltfrm.h"
+>  #include <ufs/unipro.h>
+> @@ -55,6 +57,85 @@ static struct ufs_qcom_host *rcdev_to_ufs_host(struct reset_controller_dev *rcd)
+>  	return container_of(rcd, struct ufs_qcom_host, rcdev);
+>  }
+>  
+> +#ifdef CONFIG_SCSI_UFS_CRYPTO
+> +
+> +static inline void ufs_qcom_ice_enable(struct ufs_qcom_host *host)
+> +{
+> +	qcom_ice_enable(host->ice);
+> +}
+> +
+> +static int ufs_qcom_ice_init(struct ufs_qcom_host *host)
+> +{
+> +	struct ufs_hba *hba = host->hba;
+> +	struct device *dev = hba->dev;
+> +
+> +	host->ice = of_qcom_ice_get(dev);
+> +	if (IS_ERR(host->ice))
+> +		return PTR_ERR(host->ice);
+> +
+> +	return 0;
+> +}
 
-Reviewed-by: Bryan Brattlof <bb@ti.com>
+What happens if ICE is not supported?  I believe we should continue allowing UFS
+to work with crypto support, as was the case before.
 
-Thanks for getting this fixed up
-~Bryan
+Note these lines of code in the original version:
+
+	dev_warn(dev, "Disabling inline encryption support\n");
+	hba->caps &= ~UFSHCD_CAP_CRYPTO;
+
+It's important to clear UFSHCD_CAP_CRYPTO, otherwise the driver will think that
+ICE is supported.
+
+- Eric
