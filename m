@@ -2,157 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E44876B83A6
-	for <lists+devicetree@lfdr.de>; Mon, 13 Mar 2023 22:02:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B5FCE6B83CB
+	for <lists+devicetree@lfdr.de>; Mon, 13 Mar 2023 22:12:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231166AbjCMVC1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Mar 2023 17:02:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49958 "EHLO
+        id S229801AbjCMVMS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Mar 2023 17:12:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42660 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230422AbjCMVCA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Mar 2023 17:02:00 -0400
-Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com [IPv6:2a00:1450:4864:20::52a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2C60C8C955;
-        Mon, 13 Mar 2023 14:00:56 -0700 (PDT)
-Received: by mail-ed1-x52a.google.com with SMTP id j11so54046627edq.4;
-        Mon, 13 Mar 2023 14:00:56 -0700 (PDT)
+        with ESMTP id S229742AbjCMVMQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Mar 2023 17:12:16 -0400
+Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8DB0E8F712
+        for <devicetree@vger.kernel.org>; Mon, 13 Mar 2023 14:11:45 -0700 (PDT)
+Received: by mail-lf1-x131.google.com with SMTP id i28so17483732lfv.0
+        for <devicetree@vger.kernel.org>; Mon, 13 Mar 2023 14:11:45 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112; t=1678741244;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=gA3EusZCOhK627Wk0FirSH/GwKNGmUqwf4ijzEsCNuk=;
-        b=DiOQ7LpQ9BueYA5S5WwnImfMJeB+W428SPYWHW2VPcXaBWdV53EPgkhu8Uunn2HLDX
-         H3l+hmiEN6HwBhf+Bk80dRnMkuOp2Dd+bZwsDGFGfZiYxBqzAIpJf7yPEQHIsA+yoSNp
-         Mj6SHaJJs4wlgjhEdiWuol833lJWGTgED9Nri7CGIr1cYgeicyOw/FDN+oYemLy52Zhj
-         WGTVC2Td3pK4CBvNPuXlNv+7rbvTM8kAP/pJufiN6g4LQ2Y63kzC/A2V3IX1DIqkvrM/
-         KWoG/vb/GelWeH5k1uP5n60zzE8pPCe8SQQgyKAGOQFjwkhG7KLB3GZM6yYfHW9Tc8NI
-         gS/g==
+        d=linaro.org; s=google; t=1678741903;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=+ne8t/EiBvW0vN7e00XtbUoK+necbXV5F7cPmVrqdNM=;
+        b=Xa5untDV6Z4zUJ1e5WluhaMs0w2vf2GB39debve6l/z5T2nsHs4MbLb3/qWSabM+DV
+         ftpE40qQX66Hz9ShI4cQkIsoYTF9pUDJrPNf36huji8h5is4cr3vosPK5/KZV2l6hrpI
+         jj93D60noFuAv15FhNB9EHlrN/nx5MpGnccwvWDB2MD4nGNjeCz1a8Hw3M/JbUTcvm5t
+         JU1Zd1mxQY8p6wVdy0oU8cCUvPQ68yXNpB0bMEbCR/vYUSBqIR6lsq1PhgQS4feHmfd/
+         jhqcWb08Z+XtkeRxADsjL2Agwk1pPf3CEgneQlNPxr5PRm+/98nGUHEfHBuTYILRXULE
+         nO+Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678741244;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=gA3EusZCOhK627Wk0FirSH/GwKNGmUqwf4ijzEsCNuk=;
-        b=ZeQrmvDYd6OvSSweVU+6FsxB8gvlr54m2DXuhh5OXB9T6lTv7ONgxgsd0+hup2PwqQ
-         jWTssI373U++h7BlZU6hNT7w5aGEEZNUXuMcBx3lZs65UtSrJtWGS4GbxvaZanNc6DRa
-         wgLBh9FpWWuih9Xis7pUcq2F1OgkPxING3EHSqL6NECqjv5yChbruAcEES6pCc5x/ceV
-         mOKNMFoihDEMNIWUcZYjhJrut6lmpoqVi9ikV61/MVBIsEbCNlrAVYmABCFhyjIZWfKm
-         D5BXPIIWWM4fd0z4rXvA0a/Hg5hD5o+vTTRklCdSvAzneNyRS/0a45s40u2WYcDwjvT+
-         1r7w==
-X-Gm-Message-State: AO0yUKVALl31+aAUE2s1DAbqEkk+TjFa2sy4WtAp6F2YWsKhjhaI50OF
-        b0cNOVehpakYpZD08Z6RSCA=
-X-Google-Smtp-Source: AK7set+xc/A2AUsEpnkeSAPo/NefGhegXt8FflrkGyYZI98MGsPQwOInyI7rwtArMe68neAJkvQ48A==
-X-Received: by 2002:a17:907:7241:b0:884:fd73:8053 with SMTP id ds1-20020a170907724100b00884fd738053mr46136247ejc.9.1678741244643;
-        Mon, 13 Mar 2023 14:00:44 -0700 (PDT)
-Received: from arinc9-PC.lan ([149.91.1.15])
-        by smtp.gmail.com with ESMTPSA id j11-20020a170906830b00b008ee5356801dsm219853ejx.187.2023.03.13.14.00.42
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 13 Mar 2023 14:00:44 -0700 (PDT)
-From:   arinc9.unal@gmail.com
-X-Google-Original-From: arinc.unal@arinc9.com
-To:     Linus Walleij <linus.walleij@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     =?UTF-8?q?Ar=C4=B1n=C3=A7=20=C3=9CNAL?= <arinc.unal@arinc9.com>,
-        Sergio Paracuellos <sergio.paracuellos@gmail.com>,
-        William Dean <williamsukatube@gmail.com>,
-        Sean Wang <sean.wang@kernel.org>,
-        Andy Teng <andy.teng@mediatek.com>,
-        Del Regno <angelogioacchino.delregno@collabora.com>,
-        Daniel Golle <daniel@makrotopia.org>,
-        Hui Liu <hui.liu@mediatek.com>,
-        Zhiyong Tao <zhiyong.tao@mediatek.com>,
-        =?UTF-8?q?Bernhard=20Rosenkr=C3=A4nzer?= <bero@baylibre.com>,
-        Daniel Santos <daniel.santos@pobox.com>,
-        Luiz Angelo Daros de Luca <luizluca@gmail.com>,
-        Frank Wunderlich <frank-w@public-files.de>,
-        Landen Chao <Landen.Chao@mediatek.com>,
-        DENG Qingfang <dqfext@gmail.com>,
-        Sean Wang <sean.wang@mediatek.com>, erkin.bozoglu@xeront.com,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        linux-mediatek@lists.infradead.org, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-mips@vger.kernel.org
-Subject: [PATCH v2 21/21] MAINTAINERS: move ralink pinctrl to mediatek mips pinctrl
-Date:   Mon, 13 Mar 2023 23:59:21 +0300
-Message-Id: <20230313205921.35342-22-arinc.unal@arinc9.com>
-X-Mailer: git-send-email 2.37.2
-In-Reply-To: <20230313205921.35342-1-arinc.unal@arinc9.com>
-References: <20230313205921.35342-1-arinc.unal@arinc9.com>
+        d=1e100.net; s=20210112; t=1678741903;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=+ne8t/EiBvW0vN7e00XtbUoK+necbXV5F7cPmVrqdNM=;
+        b=YwC77JdKzYF3TUehRsuKTfaSSkFd3rUMQz7aKBrCg0ah2W9e+ofal0XlJoVDSM5I4f
+         nUxSTEaNbT3ziCRokur9FMmPhpTuU6PYYAsu8k2ghdr747lUiYNN2Sx/aEHApYc1Dmxy
+         MXJDsX4HXfc7JACtBkzwMImvGjqOoqwTWiYCWWdlqGsk+vo+VkTmncGCyAGv4Ax18RFd
+         NwHTbbJsSAvsz4sVv0hr8pFLcCfLMocUGaa4H8l+37gkYl7hUqju6t9VGLj6ucdVraI4
+         MTIDSE41UAjYwN3vl7Jx1g44UVMjHzKYJETr75grQCNYTLEQepzUMm/M5D2FSN3FT8G0
+         BY1Q==
+X-Gm-Message-State: AO0yUKWgi2lHMz2a/WgumgsFX0uzsCtoYNid6cKftkoLLq0ZkryAXx79
+        zfzY3cyB8VjOK9dqTKi2TkNyfRiinfyVfBsUA5E=
+X-Google-Smtp-Source: AK7set+4+MDDr8Imm37JZRDfAWvvfr51MtYpj0mcq32Kq6EuEp70Ub2edl/UE0Wce4DElwi6S/mfAA==
+X-Received: by 2002:ac2:44b4:0:b0:4db:1e4a:74a1 with SMTP id c20-20020ac244b4000000b004db1e4a74a1mr9472348lfm.0.1678741425726;
+        Mon, 13 Mar 2023 14:03:45 -0700 (PDT)
+Received: from [192.168.1.101] (abyj16.neoplus.adsl.tpnet.pl. [83.9.29.16])
+        by smtp.gmail.com with ESMTPSA id g22-20020a19ee16000000b004d61af6771dsm101299lfb.41.2023.03.13.14.03.43
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 13 Mar 2023 14:03:44 -0700 (PDT)
+Message-ID: <4b6df5f4-d5e5-30f4-dc1e-a8e5f8c66363@linaro.org>
+Date:   Mon, 13 Mar 2023 22:03:43 +0100
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.8.0
+Subject: Re: [PATCH] arm64: dts: qcom: sm6115: Add remoteproc nodes
+Content-Language: en-US
+To:     Bhupesh Sharma <bhupesh.sharma@linaro.org>,
+        linux-arm-msm@vger.kernel.org, andersson@kernel.org
+Cc:     agross@kernel.org, linux-kernel@vger.kernel.org,
+        bhupesh.linux@gmail.com, linux-remoteproc@vger.kernel.org,
+        robh+dt@kernel.org, devicetree@vger.kernel.org
+References: <20230128054256.2100501-1-bhupesh.sharma@linaro.org>
+ <5922cd55-060c-d1b1-0eb2-0875439e4268@linaro.org>
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <5922cd55-060c-d1b1-0eb2-0875439e4268@linaro.org>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-0.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_SORBS_HTTP,RCVD_IN_SORBS_SOCKS,SPF_HELO_NONE,SPF_PASS
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Arınç ÜNAL <arinc.unal@arinc9.com>
 
-The Ralink pinctrl driver is now under the name of MediaTek MIPS pin
-controller. Move the maintainer information accordingly. Add dt-binding
-schema files. Add linux-mediatek@lists.infradead.org as an associated
-mailing list.
 
-Signed-off-by: Arınç ÜNAL <arinc.unal@arinc9.com>
-Acked-by: Sergio Paracuellos <sergio.paracuellos@gmail.com>
----
- MAINTAINERS | 29 ++++++++++++++++++++++-------
- 1 file changed, 22 insertions(+), 7 deletions(-)
+On 13.03.2023 21:58, Bhupesh Sharma wrote:
+> Hi Bjorn,
+> 
+> On 1/28/23 11:12 AM, Bhupesh Sharma wrote:
+>> Add the adsp, cdsp and modem remoteproc nodes to sm6115.
+>>
+>> Signed-off-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
+>> ---
+>> - Depends on the dt-binding and driver change submitted via [1].
+>> [1]. https://lore.kernel.org/linux-arm-msm/20230128053504.2099620-1-bhupesh.sharma@linaro.org
+> 
+> Gentle Ping. Since the dependencies (dt-bindings and driver changes) have already been merged into linux-next, this patch can now be applied.
+Not really, it won't apply as-is. I suggest applying the version below
+which was rebased, the reg was adjusted for 64bit addressing and the
+-names were turned into vertical lists, I've been carrying it downstream
+for a while and can confirm it works - I even got Wi-Fi up on the Tab P11!
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 6048bbe0e672..f4ee11dab1ab 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -16521,6 +16521,28 @@ F:	Documentation/devicetree/bindings/pinctrl/mediatek,mt7622-pinctrl.yaml
- F:	Documentation/devicetree/bindings/pinctrl/mediatek,mt8183-pinctrl.yaml
- F:	drivers/pinctrl/mediatek/
- 
-+PIN CONTROLLER - MEDIATEK MIPS
-+M:	Arınç ÜNAL <arinc.unal@arinc9.com>
-+M:	Sergio Paracuellos <sergio.paracuellos@gmail.com>
-+L:	linux-mediatek@lists.infradead.org (moderated for non-subscribers)
-+L:	linux-mips@vger.kernel.org
-+S:	Maintained
-+F:	Documentation/devicetree/bindings/pinctrl/mediatek,mt7620-pinctrl.yaml
-+F:	Documentation/devicetree/bindings/pinctrl/mediatek,mt7621-pinctrl.yaml
-+F:	Documentation/devicetree/bindings/pinctrl/mediatek,mt76x8-pinctrl.yaml
-+F:	Documentation/devicetree/bindings/pinctrl/ralink,rt2880-pinctrl.yaml
-+F:	Documentation/devicetree/bindings/pinctrl/ralink,rt305x-pinctrl.yaml
-+F:	Documentation/devicetree/bindings/pinctrl/ralink,rt3352-pinctrl.yaml
-+F:	Documentation/devicetree/bindings/pinctrl/ralink,rt3883-pinctrl.yaml
-+F:	Documentation/devicetree/bindings/pinctrl/ralink,rt5350-pinctrl.yaml
-+F:	drivers/pinctrl/mediatek/pinctrl-mt7620.c
-+F:	drivers/pinctrl/mediatek/pinctrl-mt7621.c
-+F:	drivers/pinctrl/mediatek/pinctrl-mt76x8.c
-+F:	drivers/pinctrl/mediatek/pinctrl-mtmips.*
-+F:	drivers/pinctrl/mediatek/pinctrl-rt2880.c
-+F:	drivers/pinctrl/mediatek/pinctrl-rt305x.c
-+F:	drivers/pinctrl/mediatek/pinctrl-rt3883.c
-+
- PIN CONTROLLER - MICROCHIP AT91
- M:	Ludovic Desroches <ludovic.desroches@microchip.com>
- L:	linux-arm-kernel@lists.infradead.org (moderated for non-subscribers)
-@@ -17496,13 +17518,6 @@ L:	linux-mips@vger.kernel.org
- S:	Maintained
- F:	arch/mips/boot/dts/ralink/mt7621*
- 
--RALINK PINCTRL DRIVER
--M:	Arınç ÜNAL <arinc.unal@arinc9.com>
--M:	Sergio Paracuellos <sergio.paracuellos@gmail.com>
--L:	linux-mips@vger.kernel.org
--S:	Maintained
--F:	drivers/pinctrl/ralink/
--
- RALINK RT2X00 WIRELESS LAN DRIVER
- M:	Stanislaw Gruszka <stf_xl@wp.pl>
- M:	Helmut Schaa <helmut.schaa@googlemail.com>
--- 
-2.37.2
+https://github.com/SoMainline/linux/commit/a34e0bf410318b573820254bd241fef0ea013ea1.patch
 
+(this is a git am-able plaintext patchfile)
+
+
+Konrad
