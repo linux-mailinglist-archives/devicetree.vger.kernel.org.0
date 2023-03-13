@@ -2,80 +2,141 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E32A66B8080
-	for <lists+devicetree@lfdr.de>; Mon, 13 Mar 2023 19:29:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E85776B80DA
+	for <lists+devicetree@lfdr.de>; Mon, 13 Mar 2023 19:39:03 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229682AbjCMS33 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Mar 2023 14:29:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60646 "EHLO
+        id S231392AbjCMSjB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Mar 2023 14:39:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46092 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229712AbjCMS32 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Mar 2023 14:29:28 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F37B882A92;
-        Mon, 13 Mar 2023 11:28:47 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 3D13661468;
-        Mon, 13 Mar 2023 18:27:41 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 01344C433D2;
-        Mon, 13 Mar 2023 18:27:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1678732060;
-        bh=/UptELta1fbfIVlSU3lW1JfbEsBBjNSMIYGDMc0a6Bc=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=VvvKyry0IHRmRY/4zqVRDhYa1hlwWP5XO8DPtmSV86lG3jJNM7uxAeqCM3/hMjEnS
-         /4fGZINOj3BbOFj7VtuSn5/zADgew9/AhucSrWiCDWCAvWqK46vpsQ6ipb+6neCHzX
-         D26bSYYK00ZZp7wS/PyFzdSBom5Fc1YvU4I2sz/4csGzme6PYNmreJ9TJMdSLn2pJ3
-         cgxXHKzmvZ0aDqUoSafiMpZKQIjdbzRSu92/wVYzEbmBwzFm5rb1KpTZ9Ix5kcdW8E
-         IH7F21aKBHvZjZ0vyXFvDpM4UNcMSFajBrFy3LzzWeznIYwqpqWY/2y3YL9Y5Kytyi
-         kj7t2/qKpgCbw==
-Date:   Mon, 13 Mar 2023 11:27:38 -0700
-From:   Eric Biggers <ebiggers@kernel.org>
-To:     Abel Vesa <abel.vesa@linaro.org>
-Cc:     Ulf Hansson <ulf.hansson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Manivannan Sadhasivam <mani@kernel.org>,
-        Alim Akhtar <alim.akhtar@samsung.com>,
-        Avri Altman <avri.altman@wdc.com>,
-        Bart Van Assche <bvanassche@acm.org>,
-        Adrian Hunter <adrian.hunter@intel.com>,
-        "James E . J . Bottomley" <jejb@linux.ibm.com>,
-        "Martin K . Petersen" <martin.petersen@oracle.com>,
-        Herbert Xu <herbert@gondor.apana.org.au>,
-        "David S . Miller" <davem@davemloft.net>,
-        linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-arm-msm@vger.kernel.org, linux-crypto@vger.kernel.org,
-        linux-scsi@vger.kernel.org
-Subject: Re: [RFC PATCH v3 2/7] dt-bindings: mmc: sdhci-msm: Add ICE phandle
- and drop core clock
-Message-ID: <ZA9rGihWeLhUYMdA@sol.localdomain>
-References: <20230313115202.3960700-1-abel.vesa@linaro.org>
- <20230313115202.3960700-3-abel.vesa@linaro.org>
+        with ESMTP id S231396AbjCMSig (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Mar 2023 14:38:36 -0400
+Received: from mail-wr1-x433.google.com (mail-wr1-x433.google.com [IPv6:2a00:1450:4864:20::433])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 80C9086DEB;
+        Mon, 13 Mar 2023 11:37:44 -0700 (PDT)
+Received: by mail-wr1-x433.google.com with SMTP id t15so12226369wrz.7;
+        Mon, 13 Mar 2023 11:37:44 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112; t=1678732609;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=0On3lk8dvxcR+1Ki8IT4nZKbfo+xTeDYisoJbo8GSvQ=;
+        b=QDGq684iFqzHTyROS4kkduB7wenwlNsZLog+SAWAk45PtfTGajIhTWbpg0bpjYsFmO
+         QB22KQfD8+JkZKa9p3z/JH/GpcUUVIp7loT/vGy97FiinJZgkWd7IGe/WEu29xB2wBxi
+         sGvTH6WjcyPoZysIRsV03sEyRF/TeRAYfLC3AK0hzVzIZk5i1frEkgtXrkXKU/9f9kES
+         Z2m9ERBf4f9ntoX061l9HuB8BeVC6M0ip8+LopVFBlvL/5946I5ayzdlHJK+ZIwOwflR
+         gtFxARx99WaiBNyhxk2wzw2lBEE8LapSOxDN2XCh9VT6fse/dgM5iVsst+DfzzTCXL4W
+         VJZA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1678732609;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=0On3lk8dvxcR+1Ki8IT4nZKbfo+xTeDYisoJbo8GSvQ=;
+        b=0wsfU7h4lUO+Svuf7PW1au3RW8qxJRn3pbAk3S02+rp9APGOtKzYcyJP+cQbasbH/s
+         VwP4I8btjG6aqTWxZwTXOWO/4AnPjWL4L62sVw4KTabCQmtImBLRFxdZs/w3SLPUdjSI
+         DHxUMfArXhJaVkR5cDYgC3Us+MDKL0aWajiHNZpmBzOeZheeouJBNn0f+gA0f/cdUc+K
+         /gNzfcWgFwg7P7s2U0dZG8wlWka5GomhrR1smwqMT16ZTaHNtm1vfdUw1bkv98f7Lr89
+         ojEB/bQnxcQ4ALH6/iRjvLm07ACHj19lr/QBWKmai3LN4ikzRZtEw7afw2aBnUbnUBIl
+         J1XA==
+X-Gm-Message-State: AO0yUKVc5qMj3EBue6epmA9QBT5RiWt9tLTG81AVrO89jwoMRHweMoNt
+        lMEGnX2PqrxZUbTQ9yYsCL3NXLVCL4JdVfwpKZA=
+X-Google-Smtp-Source: AK7set8B0dNsqRcONkpmAQzYZpFmKmuWzseRMwzUiu+G+KUHnd9RjQ6h37IsNYiDXaiabSg/eqoZDg7ImeZQGTYO1BM=
+X-Received: by 2002:a5d:4347:0:b0:2c7:1320:7781 with SMTP id
+ u7-20020a5d4347000000b002c713207781mr7187605wrr.13.1678732608854; Mon, 13 Mar
+ 2023 11:36:48 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230313115202.3960700-3-abel.vesa@linaro.org>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+References: <20230228152205.133582-1-macroalpha82@gmail.com>
+ <20230228152205.133582-3-macroalpha82@gmail.com> <CADcbR4+Onb6RM7grPrqRL8Rth0mbFXykRmPq8R1QxYRGaHQHtA@mail.gmail.com>
+ <CADcbR4L6b9D1FJx9u1jFvZ6jhixNs3_Ky+Mu0rHwtXZ6ATO-Eg@mail.gmail.com>
+In-Reply-To: <CADcbR4L6b9D1FJx9u1jFvZ6jhixNs3_Ky+Mu0rHwtXZ6ATO-Eg@mail.gmail.com>
+From:   Vasily Khoruzhick <anarsoul@gmail.com>
+Date:   Mon, 13 Mar 2023 11:36:21 -0700
+Message-ID: <CA+E=qVdjvYn2qPCP+9EaS=90DT_uEVSk0z04tU3DL0X8NumUAQ@mail.gmail.com>
+Subject: Re: [PATCH 2/3 V4] Bluetooth: hci_h5: btrtl: Add support for RTL8821CS
+To:     Chris Morgan <macroalpha82@gmail.com>
+Cc:     linux-bluetooth@vger.kernel.org,
+        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+        alistair@alistair23.me, luiz.dentz@gmail.com,
+        johan.hedberg@gmail.com, marcel@holtmann.org, heiko@sntech.de,
+        krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
+        Chris Morgan <macromorgan@hotmail.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Mar 13, 2023 at 01:51:57PM +0200, Abel Vesa wrote:
-> Subject: Re: [RFC PATCH v3 2/7] dt-bindings: mmc: sdhci-msm: Add ICE phandle
-> and drop core clock
+On Mon, Mar 13, 2023 at 11:12=E2=80=AFAM Chris Morgan <macroalpha82@gmail.c=
+om> wrote:
+>
+> I found the fix, simply put changing the compatible from
+> realtek,rtl8822cs-bt to realtek,rtl8732bs-bt fixes it (because it sets
+> the "H5_INFO_WAKEUP_DISABLE" flag). Is it too late for a V5, or should
+> I submit this as a fix to the devicetree and devicetree documentation?
 
-"and drop core clock" should be removed from the subject now, right?  Same for
-patch 3.
+But is it actually compatible with rtl8723bs-bt though? I think you
+may need to add an entry for 8821cs to rtl_bluetooth_of_match in
+hci_h5.c
 
-- Eric
+> Thank you.
+>
+> On Fri, Mar 10, 2023 at 10:25=E2=80=AFAM Chris Morgan <macroalpha82@gmail=
+.com> wrote:
+> >
+> > I shudder to bring this up now, but I'm encountering a new bug and
+> > might have to withdraw this.
+> >
+> > I'm receiving errors in dmesg of the following, and I can't seem to
+> > figure out the root cause:
+> > Bluetooth: hci0: Out-of-order packet arrived
+> >
+> > Any thoughts on what might cause it?
+> > Thank you.
+> >
+> > On Tue, Feb 28, 2023 at 9:22=E2=80=AFAM Chris Morgan <macroalpha82@gmai=
+l.com> wrote:
+> > >
+> > > From: Chris Morgan <macromorgan@hotmail.com>
+> > >
+> > > RTL8821CS is a WiFi + Bluetooth combo chip from Realtek that provides
+> > > WiFi A/B/G/N/AC over an SDIO interface and Bluetooth 4.2 over a UART
+> > > interface.
+> > >
+> > > Note that the firmware this was tested with was firmware version
+> > > 0x75b8f098.
+> > >
+> > > Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
+> > > ---
+> > >  drivers/bluetooth/btrtl.c | 8 ++++++++
+> > >  1 file changed, 8 insertions(+)
+> > >
+> > > diff --git a/drivers/bluetooth/btrtl.c b/drivers/bluetooth/btrtl.c
+> > > index 69c3fe649ca7..72947d319fa6 100644
+> > > --- a/drivers/bluetooth/btrtl.c
+> > > +++ b/drivers/bluetooth/btrtl.c
+> > > @@ -128,6 +128,14 @@ static const struct id_table ic_id_table[] =3D {
+> > >           .fw_name  =3D "rtl_bt/rtl8821c_fw.bin",
+> > >           .cfg_name =3D "rtl_bt/rtl8821c_config" },
+> > >
+> > > +       /* 8821CS */
+> > > +       { IC_INFO(RTL_ROM_LMP_8821A, 0xc, 0x8, HCI_UART),
+> > > +         .config_needed =3D true,
+> > > +         .has_rom_version =3D true,
+> > > +         .has_msft_ext =3D true,
+> > > +         .fw_name  =3D "rtl_bt/rtl8821cs_fw.bin",
+> > > +         .cfg_name =3D "rtl_bt/rtl8821cs_config" },
+> > > +
+> > >         /* 8761A */
+> > >         { IC_INFO(RTL_ROM_LMP_8761A, 0xa, 0x6, HCI_USB),
+> > >           .config_needed =3D false,
+> > > --
+> > > 2.34.1
+> > >
