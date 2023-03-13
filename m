@@ -2,36 +2,39 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 40FCF6B705C
-	for <lists+devicetree@lfdr.de>; Mon, 13 Mar 2023 08:51:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BD3AD6B705E
+	for <lists+devicetree@lfdr.de>; Mon, 13 Mar 2023 08:51:37 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229642AbjCMHve (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Mar 2023 03:51:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49366 "EHLO
+        id S230071AbjCMHvf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Mar 2023 03:51:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49416 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229663AbjCMHva (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Mar 2023 03:51:30 -0400
-Received: from out-6.mta1.migadu.com (out-6.mta1.migadu.com [IPv6:2001:41d0:203:375::6])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 456E451CAA
+        with ESMTP id S229982AbjCMHvb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Mar 2023 03:51:31 -0400
+Received: from out-27.mta1.migadu.com (out-27.mta1.migadu.com [95.215.58.27])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 17DF551F8E
         for <devicetree@vger.kernel.org>; Mon, 13 Mar 2023 00:51:24 -0700 (PDT)
 X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
-        t=1678693882;
+        t=1678693883;
         h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
          to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding;
-        bh=nxqm+4IZRFfG+BFvC8+di0Y0mHZDeyM6lhNBB5I4L7U=;
-        b=M8Du3949TGpyn2LG7wdznTRteqQh3mthjAdt+w8K8WtFnZHa5Hu7N+eGvYSqaGqGAIGG0/
-        tc99zF7hLgnSbcZesZMdrw7Mr1givl2KLdYRJ47AiExkjebLXDhf6Nl1xzkXy2h7+K+xVg
-        fQwiShy8eNkR/ka+bX4VVDEAC4rQypA=
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=4bM/miEHmfh1REV7eAHhfkIxbroazqqDxZ8/EmkFI7I=;
+        b=XfvqJsF5NveKr8F37DSYZEJokzSo6yGxFVO9ABOTJa3alnb0lPz9GejfU7oo8PglgWg6XL
+        nLyFnUWk7sFmEf37e49ZPa9bjgVT0Hoy9getvi4YbvCP/r+5i46moRB4INZuJtPN5dfSYK
+        yQT0Gg57/W2gnrtB2SXtOqMkudq57lY=
 From:   richard.leitner@linux.dev
-Subject: [PATCH RESEND v2 0/2] panel-simple: Add InnoLux G070ACE-L01
- support
-Date:   Mon, 13 Mar 2023 08:50:15 +0100
-Message-Id: <20230201-innolux-g070ace-v2-0-2371e251dd40@skidata.com>
+Date:   Mon, 13 Mar 2023 08:50:16 +0100
+Subject: [PATCH RESEND v2 1/2] dt-bindings: display: simple: add support
+ for InnoLux G070ACE-L01
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
+Message-Id: <20230201-innolux-g070ace-v2-1-2371e251dd40@skidata.com>
+References: <20230201-innolux-g070ace-v2-0-2371e251dd40@skidata.com>
+In-Reply-To: <20230201-innolux-g070ace-v2-0-2371e251dd40@skidata.com>
 To:     Thierry Reding <thierry.reding@gmail.com>,
         Sam Ravnborg <sam@ravnborg.org>,
         David Airlie <airlied@gmail.com>,
@@ -42,12 +45,12 @@ Cc:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org,
         Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
         Richard Leitner <richard.leitner@skidata.com>
-X-Developer-Signature: v=1; a=openpgp-sha256; l=674;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1068;
  i=richard.leitner@skidata.com; h=from:subject:message-id;
- bh=qICrJNgSNpd/ysAFIuK7QMeqbUpb/LYnyvOjJ/HgBBQ=;
- b=owGbwMvMwCX2R2KahkXN7wuMp9WSGFL4rv7kuNpeIVVdZesScHCv9vqO4NLNQhNaV2sJ/2bUmrZ0
- 7bb1HaUsDGJcDLJiiiz2xlzt7rll7ysVdXJh5rAygQxh4OIUgImErWdkmHFcRVLv7OnVXJ79rIwLS+
- XPBP3zuFMYcduvQ9pXSrOFhZFhjfvKGTfZBa9fEf0WpFhyxedV/5KZt1KUPoqx/N5z79o8HgA=
+ bh=CF2Os/PqFVko/kPoZIdexl6NDlxf1JFkoXB+pjYQTD4=;
+ b=owGbwMvMwCX2R2KahkXN7wuMp9WSGFL4rv7Uq57fZOxUcZHB/1cOU8Tqqm3Razans015565pvXfi
+ vFu3O0pZGMS4GGTFFFnsjbna3XPL3lcq6uTCzGFlAhnCwMUpABPJsmT4zXbdlskiRmdpyLkVtZw3jj
+ s0OxYk3J6hP+XAhFJWIV7xHoa/YjbaD2dEuFkrXDWJWd19sGWV24RLb7/MCX3mbrL0sXgmBwA=
 X-Developer-Key: i=richard.leitner@skidata.com; a=openpgp;
  fpr=3F330A87476D76EF79212C6DFC189628387CFBD0
 X-Migadu-Flow: FLOW_OUT
@@ -60,23 +63,31 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This series adds support for the InnoLux G070ACE-L01 7" 800x480 TFT LCD
-panel with WLED backlight.
+From: Richard Leitner <richard.leitner@skidata.com>
 
+Add Innolux G070ACE-L01 7" WVGA (800x480) TFT LCD panel compatible
+string.
+
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Signed-off-by: Richard Leitner <richard.leitner@skidata.com>
 ---
-Richard Leitner (2):
-      dt-bindings: display: simple: add support for InnoLux G070ACE-L01
-      drm/panel: simple: Add InnoLux G070ACE-L01
+ Documentation/devicetree/bindings/display/panel/panel-simple.yaml | 2 ++
+ 1 file changed, 2 insertions(+)
 
- .../bindings/display/panel/panel-simple.yaml       |  2 ++
- drivers/gpu/drm/panel/panel-simple.c               | 35 ++++++++++++++++++++++
- 2 files changed, 37 insertions(+)
----
-base-commit: c0b67534c95c537f7a506a06b98e5e85d72e2b7d
-change-id: 20230201-innolux-g070ace-fda21c89efe2
+diff --git a/Documentation/devicetree/bindings/display/panel/panel-simple.yaml b/Documentation/devicetree/bindings/display/panel/panel-simple.yaml
+index 18241f4051d2..fd3e5ad769dc 100644
+--- a/Documentation/devicetree/bindings/display/panel/panel-simple.yaml
++++ b/Documentation/devicetree/bindings/display/panel/panel-simple.yaml
+@@ -174,6 +174,8 @@ properties:
+       - innolux,at043tn24
+         # Innolux AT070TN92 7.0" WQVGA TFT LCD panel
+       - innolux,at070tn92
++        # Innolux G070ACE-L01 7" WVGA (800x480) TFT LCD panel
++      - innolux,g070ace-l01
+         # Innolux G070Y2-L01 7" WVGA (800x480) TFT LCD panel
+       - innolux,g070y2-l01
+         # Innolux G070Y2-T02 7" WVGA (800x480) TFT LCD TTL panel
 
-Best regards,
 -- 
-Richard Leitner <richard.leitner@skidata.com>
+2.39.2
 
