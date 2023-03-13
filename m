@@ -2,384 +2,158 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 521C86B8638
-	for <lists+devicetree@lfdr.de>; Tue, 14 Mar 2023 00:43:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B6A786B864B
+	for <lists+devicetree@lfdr.de>; Tue, 14 Mar 2023 00:50:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230051AbjCMXnt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Mar 2023 19:43:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57462 "EHLO
+        id S230199AbjCMXuC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Mar 2023 19:50:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38166 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229528AbjCMXnr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Mar 2023 19:43:47 -0400
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3D5DA1ABD7;
-        Mon, 13 Mar 2023 16:43:44 -0700 (PDT)
-Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 32DL6KeD031757;
-        Mon, 13 Mar 2023 23:43:13 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=CBoOxpzINwgVRVD68GBKhXdxVlkYGDPyGdEJQHpE0PI=;
- b=Qp9N/pZaYPdePCTE9fmcwfP007tbJDG3TErZPCCOrfOunX4NJcQZ0FV6zOr6R/Asb6xI
- F8UiMi13YN/ZMtUa7DyABELF98CWpwKsLgPSvHvAP0vu+Fnpjrd78jzzeHCufb2/xTdj
- asBRzgWjc9bzQda4h3flHaYpQrK8cC9yNSVRR2MJE//OZv5udO9D+OVpGb7IUQ0VqDdf
- jbQKHc1UpQlXdOeMSZP4zWfMBxAlEMRjL+SKsxw2XLt1px3AHrFhgzlpFEb39CzuMS3F
- KMsqd1ct+4kSSvk1Zd+XzH5ZtI1Fo/pVXvt8rQqjUXLSZ47qknvHfircK6wU2ePLd/7J BQ== 
-Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3pa44bshht-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Mon, 13 Mar 2023 23:43:13 +0000
-Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
-        by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 32DNhCoE000821
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Mon, 13 Mar 2023 23:43:12 GMT
-Received: from [10.110.94.159] (10.80.80.8) by nalasex01b.na.qualcomm.com
- (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.41; Mon, 13 Mar
- 2023 16:43:11 -0700
-Message-ID: <684daf86-6c3f-7310-eebf-4ebfc3c480ca@quicinc.com>
-Date:   Mon, 13 Mar 2023 16:43:10 -0700
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.1
-Subject: Re: [PATCH v3 00/28] Introduce QC USB SND audio offloading support
+        with ESMTP id S229528AbjCMXuB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Mar 2023 19:50:01 -0400
+Received: from NAM11-CO1-obe.outbound.protection.outlook.com (mail-co1nam11on2043.outbound.protection.outlook.com [40.107.220.43])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ADDAB6F4B0;
+        Mon, 13 Mar 2023 16:49:56 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=XxxihRhs7AD7N7NVMSbfovw04c22yOsMVfkTK8D+nFg5FWt2RYZDK0Y78HrgE+UwfO1J2HRmPhn7MockDCtoY19N5cN3WstgAgqC9l83BPinMu3ygYYNrhIMnqPWti3ZT79fpA7D0R+NXdOt4R2s0c2FHEbGhQ8PUA+KWR1xBw9sRk7nFAACEhBjAgFUn8cO0ieh70OWrvpt3XjOitsWr/Hgc4LGK9p4ZwQGb7Dyl2JgU2P7vQIILxZJifR0V5ip3Fjdfm5As+WsVeVL2L0Mfvl0FL1cRW5d5TRWSF6szt/Eegx03EGExW4DXXDtiEBaU8W7eh+o4QMnfEwn0xayKQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=Zpp9c+iJbShAA3cacuEpbbk/yHfd+Rzb3/AceYdY538=;
+ b=FWEtZRV1np/vUXzow3gUdTzB7o3b/oA2TpgI58d7TFz3k3qoand5wlqEhlHVuWqbQKB/jKdxxis5QU3DmVemPzhudliBSQmjkqYQxQRUO/eDvlUZCgcWvILXTYe5EA+9B2ZkfYdojnTeKOOYUD7m/C8xN1Xm/4dYWiXTrUBYkHDTcQt3fo4LgC1ZCg10mGWRzYWnCBSsRNf9THsA4pD+dNndjUAldfidyp917dQ5x33uTfW5FIdUUV4/ELw33f7Ri2YeWgWFKwY9ESCYs0MlBFZ5FBo96uq+/PzdRYadJfYP2ecNJ2NmJSBp23SJx+eUwuDp13pNpbxxz/xQz1m22A==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
+ dkim=pass header.d=nvidia.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=Zpp9c+iJbShAA3cacuEpbbk/yHfd+Rzb3/AceYdY538=;
+ b=jFdcqZOfmCcQLEtE3fENvVdmZqj7XC2scY8WTGxRtL17HZm2RZ2D2pnz0vxAssW5thNdYxgLYGQtrZ+5oYDdQg9yXiaU+il+uffSxGL7TqHgydO92ij0Jma1OPKDICpsnfzctVZOuNQH8iKg3tv6bgYlnE+c/naR8e5hmB3e7R62fMFYGa49o+3ctw/XbvQzpc60hCuOb90e+AXSRwMR2eT9mfcQ5fxR56F+Ry3E/Xkj61ERknHaMy3m2xCC916ShlS10akIhIdf6HwNAed0fgez3qRGMev6gFALVWSo6oXOhwcDzLXWNnp7sZmtISe+31NxzVIxnceaohMxwbknYg==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nvidia.com;
+Received: from IA1PR12MB6604.namprd12.prod.outlook.com (2603:10b6:208:3a0::7)
+ by DM4PR12MB6496.namprd12.prod.outlook.com (2603:10b6:8:bd::14) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6156.27; Mon, 13 Mar
+ 2023 23:49:54 +0000
+Received: from IA1PR12MB6604.namprd12.prod.outlook.com
+ ([fe80::735c:fa9:2043:279a]) by IA1PR12MB6604.namprd12.prod.outlook.com
+ ([fe80::735c:fa9:2043:279a%6]) with mapi id 15.20.6178.024; Mon, 13 Mar 2023
+ 23:49:52 +0000
+Message-ID: <798dd219-f4aa-39b3-2368-7a6d072b6de2@nvidia.com>
+Date:   Mon, 13 Mar 2023 16:49:48 -0700
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:102.0)
+ Gecko/20100101 Thunderbird/102.8.0
+Subject: Re: [PATCH V3 2/6] dt-bindings: timestamp: Add Tegra234 support
 Content-Language: en-US
-To:     Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>,
-        <srinivas.kandagatla@linaro.org>, <mathias.nyman@intel.com>,
-        <perex@perex.cz>, <broonie@kernel.org>, <lgirdwood@gmail.com>,
-        <krzysztof.kozlowski+dt@linaro.org>, <agross@kernel.org>,
-        <Thinh.Nguyen@synopsys.com>, <bgoswami@quicinc.com>,
-        <andersson@kernel.org>, <robh+dt@kernel.org>,
-        <gregkh@linuxfoundation.org>, <tiwai@suse.com>
-CC:     <linux-kernel@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <alsa-devel@alsa-project.org>, <devicetree@vger.kernel.org>,
-        <linux-usb@vger.kernel.org>, <quic_jackp@quicinc.com>,
-        <quic_plai@quicinc.com>
-References: <20230308235751.495-1-quic_wcheng@quicinc.com>
- <4f8a66c0-398f-5655-3aa7-a59bc9ba56cc@linux.intel.com>
- <8b2f3ce7-3e0c-bdf0-8d9f-9aeabba09a15@quicinc.com>
- <a211f26d-a045-0729-871f-248d5fce3f3f@linux.intel.com>
-From:   Wesley Cheng <quic_wcheng@quicinc.com>
-In-Reply-To: <a211f26d-a045-0729-871f-248d5fce3f3f@linux.intel.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+To:     Linus Walleij <linus.walleij@linaro.org>
+Cc:     thierry.reding@gmail.com, jonathanh@nvidia.com,
+        linux-kernel@vger.kernel.org, linux-tegra@vger.kernel.org,
+        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-doc@vger.kernel.org, robh+dt@kernel.org,
+        timestamp@lists.linux.dev, krzysztof.kozlowski+dt@linaro.org,
+        brgl@bgdev.pl, corbet@lwn.net, gregkh@linuxfoundation.org
+References: <20230310190634.5053-1-dipenp@nvidia.com>
+ <20230310190634.5053-3-dipenp@nvidia.com>
+ <CACRpkdYmC=eLiWPPPRG7DYBmQfPNCN4pcDhzTCO=hkQDx2HoGw@mail.gmail.com>
+X-Nvconfidentiality: public
+From:   Dipen Patel <dipenp@nvidia.com>
+In-Reply-To: <CACRpkdYmC=eLiWPPPRG7DYBmQfPNCN4pcDhzTCO=hkQDx2HoGw@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01b.na.qualcomm.com (10.47.209.197)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: P6fygNRWuNlfNovaiLokHClcD5DKCRRm
-X-Proofpoint-ORIG-GUID: P6fygNRWuNlfNovaiLokHClcD5DKCRRm
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
- definitions=2023-03-13_11,2023-03-13_03,2023-02-09_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 bulkscore=0
- lowpriorityscore=0 priorityscore=1501 mlxscore=0 suspectscore=0
- malwarescore=0 adultscore=0 phishscore=0 mlxlogscore=999 impostorscore=0
- spamscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2212070000 definitions=main-2303130187
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-ClientProxiedBy: SJ0PR05CA0168.namprd05.prod.outlook.com
+ (2603:10b6:a03:339::23) To IA1PR12MB6604.namprd12.prod.outlook.com
+ (2603:10b6:208:3a0::7)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: IA1PR12MB6604:EE_|DM4PR12MB6496:EE_
+X-MS-Office365-Filtering-Correlation-Id: 90c6a1df-ff2a-498e-9aae-08db241da3d3
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: qXQ6duuCBs/fERTlCBOMQwsMLE8N3ZsCA0qn58oLWSrte9JEh6Yfm9URrsklmJWEr5/tWjRlN9ZuTLL4HI5O28CT6P/+OsJTh8sFhSEg+mAbHkNx1WeyboDeZ7TJnUzPdTscrOTOtrUwto8UFvJp66o+Bt5LZndgc6hHq719ayiZqUHO5VtLQQfJzRY7Ap3BzmIAQE6sN6JuhE/+dBkvq8KQ2egXJEF07iUtv71NUcQpXMNryM21JyGI6Pt8kPeaC1DhNDJ4wZpE8apSH6lm8C+vk8o7/bPx/+M4gI2f2f/0NycSZzFbxdNTYFNjTk9kygmCpixL1MPO6FYpb3+AfooFEDEUiR23E2zz0v2DxdMZIs+Oe5oOBYZcsf0pQGPowntisBnBrSGIi+ozlKhkZaHmzb74eLR1qW0Ec78IUHl1X9Nva2GX0FtMhudyTpgUMdmcrJ5Je+4bOzEYC46XDnh2cboQ7q5eN7KI9lCGxbrj2lmP62//tVUxWZKwMfuKcL3SxdZKHABChO6Tc672enQPo12gL9Gj2KQ3TryQ1zFIA2lDZfqfQblWv7RIj7fqTcglXMdUTLWWOtIHP7PYRUrTZ3g6h0cvMjrChSKm7jpAdGFn+cidOGbkbf2ZiYgokPTkXr6p25LW0npLYniK8czndMRuHHtjeyALWP0oGlTPnm54aWnpUKlIrL/oCm63jePPsrB3Et116LK81Hi+Ebh+J00nE7SwoZHWz4A2+tI=
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:IA1PR12MB6604.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230025)(4636009)(39860400002)(376002)(346002)(136003)(396003)(366004)(451199018)(31686004)(316002)(478600001)(6486002)(6666004)(83380400001)(36756003)(26005)(53546011)(7416002)(31696002)(6512007)(38100700002)(2616005)(186003)(5660300002)(4326008)(4744005)(6506007)(6916009)(66476007)(8936002)(86362001)(8676002)(41300700001)(66946007)(66556008)(2906002)(45980500001)(43740500002);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?U25qN0ZnS1ZPdmRRMjdFbEtWUGVpdXVrT2k3TUJkRDdNV2lFczRVcjRLWmdv?=
+ =?utf-8?B?Vmt4SHp3T1FseTVrRm50ajJwRTJBMStZbHczMmk1SDYxUkJNUHNnZXhDZFpw?=
+ =?utf-8?B?ZHNkSzlmaUV0S3luanQ4dDBTWSsvOVN6WkEwaTNQUkNZMmw2VzFJV2F3RGlO?=
+ =?utf-8?B?S3oxUEhremljeExRcEp3SnIrRE5ZbE90UW1rZlFITDQxZytmWEVEdUdSSDly?=
+ =?utf-8?B?eVZlWmhGTHhxTWJDR3JsZGw3NTVRaUlYZktxTVQ3aFhsR2ZqZS9zMXBIYnBW?=
+ =?utf-8?B?Vk1Hd1FiY0Zpc0k1NUJZMnM3YWFzRGp4Mk1zaEtaZFc1Zi81bHF6dXhIVFpR?=
+ =?utf-8?B?YXByd0s2eDJOUE9teWNuR282ZnVHeWQ1a0dGTjB2a09SdjJrdmdXVVAwQWIw?=
+ =?utf-8?B?RmozU2VDZGQrU1pJYXdXUmpza0JKNjVJNW5UYlcrL3o3N2xXOG56akNSemRW?=
+ =?utf-8?B?Y282NXZ5ajVvbzJ3TTNqWldNMUw2eUhsdS96cXJPdVRRZFc3bEx4aG9pWnc5?=
+ =?utf-8?B?b1FNV2w0SmtQZXJrL29MTnlocXcvZFhLRG9VR1NHb0RLQVZwdjh0c21uQVo5?=
+ =?utf-8?B?MlpYVXJ0NUtVZkhzK0thcE5PQkNNZGt4bnJjVjBMcGQzTnk2NDgrSEMwWitD?=
+ =?utf-8?B?cjZRZEZ3cXVXVFo4Z08rMzdGYkt5UE1YUTRuck1GeWNiZkR5UWpsamh1ZWRz?=
+ =?utf-8?B?SThobXVYUWQ2MDNzL1RMa3V5UFFXekF4S0kxbVNOL1FQbDE0OG9SRllyc1ds?=
+ =?utf-8?B?aElJQ2xwSHUvUmFaVHgyY09CRXpzWnJyYmpZU2lJYTFYYWhWcDhVS3BYQmRI?=
+ =?utf-8?B?UFFHQTZYL01tM3p5MWhjc2JNeXRWSHZPRm91SDdqSnV3cGx5b2dyYWN3RUxV?=
+ =?utf-8?B?ZVBRcy9EejE0T3Zta1hOVzZIUnlLVU5tSlhhazh5VzQ0QVRGZFBteXIrMVV0?=
+ =?utf-8?B?bkV1Q2krL1N6cU9RMkN2YmRuUTY5U3BSQjQvNWtqTUJkZ1pKVUdudmlMREkw?=
+ =?utf-8?B?RlFKZGsvTG52MXJOR05HVkNaZGtZTGZwODJ0U0krUUpDZ05IMWdOVUdzZGRU?=
+ =?utf-8?B?cmF6b1pnUjFYWW5wR2JyS0hvQWlOTTNxV3laTWRZb2EwdHQ3b1BQUitEOHlI?=
+ =?utf-8?B?NTB6Vk82YzE2S1MrSXdNdENxL1Frcm52UHkwRUx1SEJsMWhmdDAyeXNrMVJU?=
+ =?utf-8?B?R0s3TG1zNmM4U2IxU0NmUjlKTm5jOXg5UzdFakhicGZqSHNIUVdSbkM2L3I0?=
+ =?utf-8?B?U2hmT1Bpcy91SGg3UjJvZXBSR2R6aDV4MXovMVpZRUNLcFg2WmRxQWxhNTVM?=
+ =?utf-8?B?RXpyVzEwZUIvdDNmUzRpZTFwR1g5KzArRlNxdGhtemppeHhmVmxDSDZwMTgy?=
+ =?utf-8?B?ZlZGNEptRjZjODVsbG5wcTNRbE51U1pZRmtWaGRUbVpsRmNzWTFiOEprVVE4?=
+ =?utf-8?B?dnhzWXRnUHg3VFlCQjVOaUFlYWhaZTZERmplUmloc2w0UDRmT2l4OHFVU2g3?=
+ =?utf-8?B?K3A5S1Q3V2JBZStieVlEOFVHVE9rTEZIUkg0SnFuTU9PVFBjM3lneUx0Skt4?=
+ =?utf-8?B?WnBEdkJ4MW5taEtSb0xwaHFJUDBLYVZTYkVXTm5wN2NMTXJXVFYxZ3RUS1VE?=
+ =?utf-8?B?TnZGOWo3c2RCOHdHaHpzdS9hOXFlYW1wYzdCLzRFdEM3QWJuSzlBK3pBRGRq?=
+ =?utf-8?B?OXI5aVV1ZmpVdE5xamxMc2U5S0MrdEFwaXdLL1FYNmI2bFhVVFRNbkR6eS9S?=
+ =?utf-8?B?MFhZb2psNG92c1Jzcmo4em5GdFdmc2tKbVh3cjZZLytNejg3L3R0SHhFZW9N?=
+ =?utf-8?B?LzNNbGtPeWt5Rnh0QUNqZWxLRm9NUXl2RGF3MU11TThIUTJPclZXV1FVNTRZ?=
+ =?utf-8?B?VmZGM01oR1R6dDRQdTFUSGdwa2Z2QStWTDczOXQ2TldRUCswcTU5NUN6bkZR?=
+ =?utf-8?B?WXhNZWJqL3h2MHR0RHlXR3Faa0x4Mzl0Y2phdSs2Vyt2M2NHWEVNNlpSaEUx?=
+ =?utf-8?B?REkvUXNhbVhDVDg0UW5TTHRVVko4TXJSUzBtbVZBT3RUbVpqMEhVZUhaaStZ?=
+ =?utf-8?B?WU54TFNQTTJSWmJ0TFhoRWNaenhzakdmT0VoSFphcFRBSVNjZFNJeVRuOGdw?=
+ =?utf-8?Q?qSj8JZEV7Oeh9+ydb/w4N7c53?=
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 90c6a1df-ff2a-498e-9aae-08db241da3d3
+X-MS-Exchange-CrossTenant-AuthSource: IA1PR12MB6604.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Mar 2023 23:49:52.8949
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: Zsqv0oYHytIWJoLRG8GQp/PwjrlXdOiiSnp99jzoP3f1X6NRukKhX6ExdlOKnIUVKLFgREISWlSrz+nmxNAuUg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR12MB6496
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,
+        NICE_REPLY_A,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,
+        SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Pierre,
-
-On 3/9/2023 4:37 PM, Pierre-Louis Bossart wrote:
+On 3/13/23 2:57 PM, Linus Walleij wrote:
+> Hi Dipen,
 > 
->>>> Create vendor ops for the USB SND driver:
->>>> qc_audio_offload: This particular driver has several components
->>>> associated
->>>> with it:
->>>> - QMI stream request handler
->>>> - XHCI interrupter and resource management
->>>> - audio DSP memory management
->>>
->>> so how does this 'qc_audio_offload' interface with 'q6usb' described
->>> above? how are the roles different or complementary?
->>>
->> So in general you can think that the qc_audio_offload is a complement to
->> the USB SND USB class driver, while q6usb is to ASoC.  Since the ASoC
+> thanks for maintaining HTE!
 > 
-> Humm, that is far from clear. I don't get how a something that interacts
-> with the USB class driver can also be in charge of the audio DSP memory
-> management.
+> On Fri, Mar 10, 2023 at 8:06 PM Dipen Patel <dipenp@nvidia.com> wrote:
 > 
-
-This is because the USB class driver is the entity which is going to 
-work with the USB HCD (XHCI) in this case to fetch the required 
-addresses, and map that into memory accessible by the audio DSP.  It 
-would be odd to be doing that from the q6usb end, which is part of the 
-ASoC layer.
-
->> framework doesn't have any communication with USB SND, the ASoC DPCM USB
->> backend (q6usb) will have to be the entity that maintains what is going
->> on in USB SND.  That way, sessions initiated through the ASoC managed
->> sound card can evaluate what is available based on information reported
->> by q6usb.
->>
->> qc_audio_offload and q6usb will have some interaction between each
->> other.  The majority of communication between qc_audio_offload and q6usb
->> is reporting the device connection events.
+>> -  nvidia,slices:
+>> -     $ref: /schemas/types.yaml#/definitions/uint32
 > 
-> It's already complicated to figure out how the DSP and USB class driver
-> might interact and probe/timing dependencies, but with two additional
-> drivers in the mix it's really hard to understand.
+> I would not delete this, just mark it deprecated.
 > 
-
-I did test some cases based on existence of both these drivers 
-(qc_audio_offload and q6usb).  If either one doesn't exist in the 
-system, then the offload path would not work.  I did improve some of 
-these potential sequences in the latest revision, such as patch#28. This 
-would address scenarios where the q6usb ASoC DPCM backend wasn't probed, 
-while the USB SND (and qc_audio_offload) were still detecting device 
-connections.
-
-Once the Q6USB driver is probed, then the offload snd kcontrols would be 
-created, and devices would be properly identified with the rediscover api.
-
-> Maybe ascii-art would help describe the concepts and types of
-> information exchanged. Maintaining a consistent state across multiple
-> drivers is not an easy task.
+> nvidia,slices:
+>     $ref: /schemas/types.yaml#/definitions/uint32
+>     deprecated: true
 > 
-
-Hopefully this might help?  I know its a lot to read through.
-
-      USB                          |            ASoC
---------------------------------------------------------------------
-                                   |  _________________________
-                                   | |sm8250 platform card     |
-                                   | |_________________________|
-                                   |         |           |
-                                   |      ___V____   ____V____
-                                   |     |Q6USB   | |Q6AFE    |  #5
-                                   |     |"codec" | |"cpu"    |
-                                   |     |________| |_________|
-                                   |         ^
-                                   |         |  #6
-                                   |      ___V____
-                                   |     |SOC-USB |
-   ________   #1  ________         #7    |        |
-  |USB SND |<--->|QC offld|<------------>|________|
-  |(card.c)|     |        |<----------       ^
-  |________|     |________|___ #4  | |       |
-      ^               ^       |    | |    ___V__________________
-      | #2            |  #2   |    | |   |APR/GLINK             |
-   __ V_______________V_____  |    | |   |______________________|
-  |USB SND (endpoint.c)     | |    | |              ^
-  |_________________________| |    | | #8           |
-              ^               |    | |   ___________V___________
-              | #3            |    | |->|audio DSP              |
-   ___________V_____________  |    |    |_______________________|
-  |XHCI HCD                 |<-    |
-  |_________________________|      |
-
-
-#1 - USB SND and QC offload:
-Initialization:
-- Register platform operations, to receive connect/disconnect events
-   from USB SND.
-- QC offload creates a QMI handle, in order to receive QMI requests
-   from the audio DSP.
-
-Runtime:
-- USB SND passes along "struct snd_usb_audio" in order for QC offload
-   to reference USB UAC desc parsing/USB SND helper APIs.
-- USB device disconnection events will result in clearing of the chip
-   entry.
-
-#2 - USB SND and QC offload endpoints:
-Runtime:
-- In the non-offloaded path, USB snd will utilize functions exposed by
-   USB SND endpoint, to help with fetching USB EP references and queuing
-   URBs.
-- In the offload path, qc offload will utilize the functions to fetch
-   USB EP references, so that it can use that information to query the
-   XHCI HCD.
-- Likewise, both will clean up endpoints when audio stream is not in use.
-
-#3 - XHCI HCD:
-Initialization:
-- During XHCI probe timing, when the USB HCD is added to the system, it
-   will also initialize the secondary event rings.
-
-Runtime:
-- During USB device plug ins/outs, allocates device slot, assigns eps,
-   and initializes transfer rings.
-
-#4 - QC offload and XHCI:
-Runtime:
-- QC offload needs to reference the transfer ring and secondary event ring
-   addresses by executing XHCI offload management APIs.
-- This happens when audio DSP receives a USB QMI stream request.
-
-#5 - ASoC components:
-Initialization:
-- The SM8250 platform sound card driver fetches DT node entries defining
-   the ASoC links. This chain/link has the components involved for a
-   particular Q6AFE path. (not only USB offload)
-     - "cpu" - this is the ASoC CPU DAI that handles interaction with the
-               Q6 DSP's audio protocol. (AFE ports)
-     - "codec" - the ASoC codec (backend) DAI defined
-- Registers ASoC platform sound card based on links defined in the DT node.
-   - Probes DAI components involved, ie Q6USB and Q6AFE
-
-Runtime:
-- Q6AFE has the bulk of the interaction w/ the audio DSP to start an audio
-   session, such as issuing AFE port start commands (part of the protocol
-   used to communicate the audio session info)
-- Q6USB will be there to now check for if format requested is supported by
-   the device, and maintain offloading status.
-
-#6 - Q6USB and SOC-USB:
-Initialization:
-- Q6USB will query QC offload for USB device connection states. (through
-   soc-usb)
-- Creates a SOC USB entry, that carries information about resources,
-   such as audio DSP memory information and requested XHCI event ring
-   index.
-
-Runtime:
-- SOC-USB will receive connect/disconnect events and propagate to Q6USB.
-   - Q6USB makes devices available for offloading based on these events.
-- Sets Q6AFE port configurations to select the USB SND card# and PCM#.
-
-#7 - SOC-USB and QC offload:
-Initialization:
-- Rediscover USB SND devices when the SOC-USB entry is created (if needed)
-     - For situations where the Q6USB DAI hasn't been probed.
-
-Runtime:
-- Propagate connect/disconnect events.
-
-#8 - audio DSP and QC offload:
-Runtime:
-- Handle QMI requests coming from audio DSP.  These requests come AFTER
-   the Q6AFE port is opened by the Q6AFE DAI(#6)
-- Returns memory information about resources allocated by XHCI.
-- Enables audio playback when this QMI transaction is completed.
-
->>
->>>> When the audio DSP wants to enable a playback stream, the request is
->>>> first
->>>> received by the ASoC platform sound card.  Depending on the selected
->>>> route,
->>>> ASoC will bring up the individual DAIs in the path.  The Q6USB
->>>> backend DAI
->>>> will send an AFE port start command (with enabling the USB playback
->>>> path), and
->>>> the audio DSP will handle the request accordingly.
->>>>
->>>> Part of the AFE USB port start handling will have an exchange of control
->>>> messages using the QMI protocol.  The qc_audio_offload driver will
->>>> populate the
->>>> buffer information:
->>>> - Event ring base address
->>>> - EP transfer ring base address
->>>>
->>>> and pass it along to the audio DSP.  All endpoint management will now
->>>> be handed
->>>> over to the DSP, and the main processor is not involved in transfers.
->>>>
->>>> Overall, implementing this feature will still expose separate sound
->>>> card and PCM
->>>> devices for both the platorm card and USB audio device:
->>>>    0 [SM8250MTPWCD938]: sm8250 - SM8250-MTP-WCD9380-WSA8810-VA-D
->>>>                         SM8250-MTP-WCD9380-WSA8810-VA-DMIC
->>>>    1 [Audio          ]: USB-Audio - USB Audio
->>>>                         Generic USB Audio at usb-xhci-hcd.1.auto-1.4,
->>>> high speed
->>>>
->>>> This is to ensure that userspace ALSA entities can decide which route
->>>> to take
->>>> when executing the audio playback.  In the above, if card#1 is
->>>> selected, then
->>>> USB audio data will take the legacy path over the USB PCM drivers,
->>>> etc...
->>>
->>> I already voiced my concerns about exposing two cards, each with their
->>> own set of volume controls with the same device. It would be much better
->>> to have an additional offloaded PCM device for card0...
->>>
->>> But if the consensus is to have two cards, it's still not clear how the
->>> routing would be selected. In the case where there are two USB audio
->>> devices attached, the offloaded path would only support one of the two.
->>> How would userspace know which of the two is selected?
->>>
->>
->> With patch#24:
->> https://lore.kernel.org/linux-usb/20230308235751.495-25-quic_wcheng@quicinc.com/T/#u
->>
->> Now, userspace can at least choose which device it wants to offload.
->> Part of doing that would mean userspace knows what USB SND card devices
->> are available, so it is aware of which devices are shared (between the
->> offload and USB SND path)
->>
->>> And how would userspace know the difference anyways between two physical
->>> devices attached to the platform with no offload, and one physical
->>> device with one additional offload path? The names you selected can't be
->>> used to identify that card1 is the optimized version of card0.
->>>
->>
->> Is userspace currently able to differentiate between cards that are
->> created by USB SND versus ASoC?  How complex can the userspace card
->> discovery be?  Can it query kcontrols at this point in time?  If so,
->> maybe we can change the names of the newly added ones to reflect that it
->> is an offload device?
->>
->> SND kcontrol names are currently:
->> Q6USB offload status
->> Q6USB offload SND device select
+> (And remove it from required, of course)
 > 
-> I must admit I've never seen kcontrols being used to identify what the
-> card is, and in this case it's a pretend-card that's just an improved
-> version of another. It might be easier to use something else, such as
-> the component strings.
+> This way you do not need to explain about why it was
+> deleted, it's just deprecated, which is fine.
 
-Its not exactly a pretend card, right?  This is part of the overall 
-platform sound card we have in the system.  At the moment, I'm only 
-testing by adding the USB audio routing, but there can be several ASoC 
-links defined in the overall platform card.
-
-The Q6AFE CPU DAI has multiple audio AFE "ports" they can handle.  USB 
-is only one of those.
-
->>
->>> Before we review low-level kernel plumbing, it would be good to give a
->>> better overview of how userspace applications are supposed to interact
->>> with the cards and identify the offloaded path. Testing with
->>> tinyplay/tinymix is fine, but that's a developer-level or CI unit test.
->>> we've got to see the broader picture of how a sound server would use
->>> this USB offload capability.
->>
->> Sure, I think that is fine.  I was hoping that at least adding some of
->> the new kcontrols would help userspace make use of this path in general,
->> but we can add more information if required.
+Great suggestion, thanks, will make changes in the next patch.
 > 
-> Can I ask if this solution has been used with a complete userspace stack
-> already? I could see how this might be used with a relatively fixed
+> Yours,
+> Linus Walleij
 
-Its been used only with the Android HAL.
-
-> Android HAL, where the platform and routing are relatively controlled. I
-> don't see how a more generic audio server would deal with the discovery
-> and routing.
-> 
-
-This is why your input is helpful, since it provides another use case 
-that wasn't considered.  I think in our previous discussions the tagging 
-possibility was a good idea, and was hoping that it could help.  Could 
-tag all USB SND cards to the platform sound card as well, and if the 
-power saving path is chosen, it would issue the playback on the platform 
-sound card. (if not in use)
-
-In this case, the offload path wouldn't be the default routing, and only 
-enabled for power optimized path.
-
-Thanks
-Wesley Cheng
