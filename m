@@ -2,121 +2,164 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8E2226B7A82
-	for <lists+devicetree@lfdr.de>; Mon, 13 Mar 2023 15:38:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 09DC46B7A91
+	for <lists+devicetree@lfdr.de>; Mon, 13 Mar 2023 15:41:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231422AbjCMOiN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Mar 2023 10:38:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54784 "EHLO
+        id S231126AbjCMOlM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Mar 2023 10:41:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60872 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231459AbjCMOiK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Mar 2023 10:38:10 -0400
-Received: from mail-qt1-x831.google.com (mail-qt1-x831.google.com [IPv6:2607:f8b0:4864:20::831])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D3E8A1ACF0
-        for <devicetree@vger.kernel.org>; Mon, 13 Mar 2023 07:38:06 -0700 (PDT)
-Received: by mail-qt1-x831.google.com with SMTP id c18so13320601qte.5
-        for <devicetree@vger.kernel.org>; Mon, 13 Mar 2023 07:38:06 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1678718284;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=uDaRIIqW7/+ly5ySR9hbSflFpXoocSQAnYPTqjUre/k=;
-        b=MAcXl6at3/winOcS4KxrIvBiQSaZHfivydwNQ1x59zIf4Sw3uDOAJWl420fYIAB+ZH
-         MqLh1S5Sjjpl7UW052yl6OHHTZ9WzU1N00DxaBoDcgfwpIEpdqL0DBWhTP3FDLEWBerq
-         CfDkJ70A0LG3I5PCAys7GsLYjfw3npFmBA9mA=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678718284;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=uDaRIIqW7/+ly5ySR9hbSflFpXoocSQAnYPTqjUre/k=;
-        b=lfpbhfMMrRCdFtmD3NXz+iDiBmmhvgQkZFsbMJIxhf+sxYjLCQaixGMMcXnnk7WfWt
-         4bCvjDzEjZ8bGTcZSNIrclkcJ4M0+Asaa8K6nlXpOuzFiVMgqagktvwJrXODZe8grGC7
-         Yydn4P9yZ9sFyiWDodqS9R3fnxV1KJNg+GeLTxn2F2tneuujNqhpfK8tSvDm1+y/+Kyj
-         S74HPYXX2CEs/d/PIUB/fCH9JoJxUDsDSQK6nPKlMBwZX7LhVphnD1ocdZSMtkC8algw
-         pOnzwClF/oRyWwiopsGQ/t0tWe37AJKKxqL0q7GsFWgC1yNHOdjCuK52xHk2ALv+rqTI
-         niCQ==
-X-Gm-Message-State: AO0yUKXgCyLV7PgeBIGMYoaRU5lQejFyw6aAuleJPU0s9MEjoDuMUVdX
-        8+s76jfvrTVd8/TUZznh1iaXgDpbSrHf3nlrvh4=
-X-Google-Smtp-Source: AK7set+/tVyeJUBU7Q1LoP7llgVgjTrZEeKOkBT1/ZG8wRDR6/yr6KAyveP+yLSI48ndRDeMm8/Sig==
-X-Received: by 2002:a05:622a:4cb:b0:3bf:cfdd:7037 with SMTP id q11-20020a05622a04cb00b003bfcfdd7037mr58692231qtx.18.1678718284345;
-        Mon, 13 Mar 2023 07:38:04 -0700 (PDT)
-Received: from mail-yb1-f178.google.com (mail-yb1-f178.google.com. [209.85.219.178])
-        by smtp.gmail.com with ESMTPSA id y11-20020a37f60b000000b0074571b64f0fsm2933620qkj.53.2023.03.13.07.38.03
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 13 Mar 2023 07:38:03 -0700 (PDT)
-Received: by mail-yb1-f178.google.com with SMTP id c200so1995840ybf.3
-        for <devicetree@vger.kernel.org>; Mon, 13 Mar 2023 07:38:03 -0700 (PDT)
-X-Received: by 2002:a25:9c46:0:b0:a5d:3d45:26c with SMTP id
- x6-20020a259c46000000b00a5d3d45026cmr21326349ybo.0.1678718283055; Mon, 13 Mar
- 2023 07:38:03 -0700 (PDT)
+        with ESMTP id S230515AbjCMOlL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Mar 2023 10:41:11 -0400
+Received: from EUR05-AM6-obe.outbound.protection.outlook.com (mail-am6eur05on2045.outbound.protection.outlook.com [40.107.22.45])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7EFA548E35;
+        Mon, 13 Mar 2023 07:41:07 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=AM+GXO+n+h18sEnoNdLSDjfkWcpyxY0qFxuVBLyAqPyKR3bA3a8WxFjYz8IqdCkbXhT3q84rNgGjU/gnu/SJufH9JWgt7FW3zUuoLcKLJDTe5+eg3xkxcrvRSs+fcxUM+KqYYSgj9sVkX9k1CNekvTuU1KOxtYC6kn4qqGdqTncM73o76cFszywddz9ciYjqh5LjP5A218zVGy2w65m/obKSbtzYlLzFAW3Zv6lxRhBA+wdaN7N8Sy3m2z7YzRNErWfDf8IWfYqWeLK5JdO8ESFvi3r54u4AodnuJpZMQXFQI8JbZPmYE124zmZIoPZr1MGsJD4dcsWipsNLlzURPw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=aMROdIwdrwhNN+iwm41m9w8HKuedgaA1/YxzkYHFOtA=;
+ b=EZlyH2NFcaZZcpAdv0sjs47on6OpxQh/RiquTiMH4P9LbSY0tJlaoEX/okyTcVhUTZb/SNYHwklL2vWDpo0bcJUGRLO2HE/3jY9M35Dte5o+NBgpE0wzpsjt+6hjrvmVvm3DHBaeKUJ7GEomXo29awznBiN51IUPOOxbwZHQa64TiqCdY9XDnCnfI4QVmqAuoiTTlwB0EAjJfsVr8cfDMY6CZwt8AcRQ+05IHD9l1W3ukzfgVstgPeChog7wbQ5j/jC31GuNYMmr79SbPYVLRUFCNnqXLdHZMb1lGd74LpPj+TPV6UNEiIfltx6Wv5v/6Y8G57cw4HLvlMByhYI+Gg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=aMROdIwdrwhNN+iwm41m9w8HKuedgaA1/YxzkYHFOtA=;
+ b=Z4LzziEXzjhKydPtZettzPAImcW6yxXJWDXD5yxMz1e9dedKOvVn2QlSrgB3OkUus0bUq19E5d2K7Rhav0lqtKLGe3pPYrxy9BgSg2/wXaoQYFZK6Fsn6ebxQahtGaXVB7DUgpnb9dAIRK8TnLx4hrTuXys4Q7sxJUw4wrqHdn0=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from AM9PR04MB8603.eurprd04.prod.outlook.com (2603:10a6:20b:43a::10)
+ by DB9PR04MB8203.eurprd04.prod.outlook.com (2603:10a6:10:242::18) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6178.24; Mon, 13 Mar
+ 2023 14:41:02 +0000
+Received: from AM9PR04MB8603.eurprd04.prod.outlook.com
+ ([fe80::45d2:ce51:a1c4:8762]) by AM9PR04MB8603.eurprd04.prod.outlook.com
+ ([fe80::45d2:ce51:a1c4:8762%5]) with mapi id 15.20.6178.024; Mon, 13 Mar 2023
+ 14:41:02 +0000
+From:   Neeraj Sanjay Kale <neeraj.sanjaykale@nxp.com>
+To:     davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
+        pabeni@redhat.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, marcel@holtmann.org,
+        johan.hedberg@gmail.com, luiz.dentz@gmail.com,
+        gregkh@linuxfoundation.org, jirislaby@kernel.org,
+        alok.a.tiwari@oracle.com, hdanton@sina.com,
+        ilpo.jarvinen@linux.intel.com, leon@kernel.org,
+        simon.horman@corigine.com
+Cc:     netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-bluetooth@vger.kernel.org,
+        linux-serial@vger.kernel.org, amitkumar.karwar@nxp.com,
+        rohit.fule@nxp.com, sherry.sun@nxp.com, neeraj.sanjaykale@nxp.com
+Subject: [PATCH v10 0/3] Add support for NXP bluetooth chipsets
+Date:   Mon, 13 Mar 2023 20:10:25 +0530
+Message-Id: <20230313144028.3156825-1-neeraj.sanjaykale@nxp.com>
+X-Mailer: git-send-email 2.34.1
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: SG2PR02CA0115.apcprd02.prod.outlook.com
+ (2603:1096:4:92::31) To AM9PR04MB8603.eurprd04.prod.outlook.com
+ (2603:10a6:20b:43a::10)
 MIME-Version: 1.0
-References: <20230312183622.460488-1-krzysztof.kozlowski@linaro.org> <20230312183622.460488-4-krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230312183622.460488-4-krzysztof.kozlowski@linaro.org>
-From:   Doug Anderson <dianders@chromium.org>
-Date:   Mon, 13 Mar 2023 07:37:51 -0700
-X-Gmail-Original-Message-ID: <CAD=FV=Uhpc5idOzPt5Oknzng8qaTFh4Fsibs1hXFfZRsKn+9cA@mail.gmail.com>
-Message-ID: <CAD=FV=Uhpc5idOzPt5Oknzng8qaTFh4Fsibs1hXFfZRsKn+9cA@mail.gmail.com>
-Subject: Re: [PATCH 4/8] arm64: dts: qcom: sc7180-trogdor-pazquel: correct
- trackpad supply
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Matthias Kaehlcke <mka@chromium.org>,
-        "Joseph S. Barrera III" <joebar@chromium.org>,
-        Gustave Monce <gustave.monce@outlook.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Rajendra Nayak <rnayak@codeaurora.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: AM9PR04MB8603:EE_|DB9PR04MB8203:EE_
+X-MS-Office365-Filtering-Correlation-Id: 574a1458-ddac-49ad-ba69-08db23d0f7c9
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: x8zlDJNXVq4OdBZMfo7OOTNTdDmnDv2vAOylij+Q46pduorsyc/27GY6jkVfz46PLzHsLlgntMt7EedFGoyU7WKz2BAaEQdJdY1oi3kPMBX1eijgoJnlhE+ydMPJVxvvdx8JqSLPcE5DBD48B0FXdBihLugrdr9CMRzh2ZJXhY5L14+PaOI8jZNj5JMmJT3cpxm8bkPkWVnRsOIX9v7uhbnt7bvavCsijed2rnMMMca0I6iLHE9Rbndl/+gjU1+8JkTpcWIW3BhH/iyGUeiR4bFyIv8QY2kn5hYhwoLBvniantKIEMyWncVStRIYn+Oq2oYg8gSAqd/cBpKQJAJ92diRlZ9C6c4uQlJTryrZwj2mAO8yPo57o5mNCI1hv8E0NFxzVun7e7IVVsrD8NswQiTBsPklNH8ere47BqvVDdETSuDmiPOeqVRYiauEIkRyGgS2kALQCVTzfKHfk1MLMmxd99uUe7bEUhWb3snknPVesrc5OtCS3FzYmEhS9tBVG21y3pzdaMS8zTTnWoJvBB2hrsvynpMPSlypAhuWpfJpbzI4t8VaLV0GmQNBhoWpimiSF6sBitwypXFmj1U8cop/DvYdM7cUijZVJ+8+/MNwwK95oKfkmWXvNm8Mk4rC+enK32ewLFygZmOY23Ad1xUZoSAYIx9j+2UlMNXxyi9dJQUDos+vIiWsAVsmtZRBRSp5UEmMBQ4GvPceM0D8dIZ/ZxNCJd0jeRlXfQJtNCc=
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM9PR04MB8603.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230025)(4636009)(136003)(396003)(376002)(346002)(39860400002)(366004)(451199018)(38100700002)(38350700002)(921005)(36756003)(86362001)(2906002)(8936002)(7416002)(5660300002)(66556008)(4326008)(41300700001)(66946007)(8676002)(66476007)(2616005)(83380400001)(186003)(26005)(316002)(6506007)(1076003)(6666004)(6512007)(52116002)(478600001)(6486002);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?WjJYalRJM0k1Rmc3d3hVOCtvR1pxclc0cHRmaHlmdDkwa0YzREdPVGJWL0dL?=
+ =?utf-8?B?TzlXWDBvMmVBcDg1Uy9ra0QvLzJlVjhzQ005Y0F1VW95azVPOFB6a1RkVjdl?=
+ =?utf-8?B?ZExaakN2azRKa2dMN29jOXlXWlVjMk9sejJLemUvaEdBd2pYc0tmSCtrWVlX?=
+ =?utf-8?B?UEh2RnFRWWhWMm0rTGR1Z1ZzOFJkcVB5RWM1WkdhUlBtODA1ck13ZUJBUENp?=
+ =?utf-8?B?Mkhoekt5akU5bEFVNGhUSVFZSmloMWZDZjFwZXBYQlhXUjNWVisvdUFnQllX?=
+ =?utf-8?B?K05NUHZlN3FWa3RvSXZhQ3cxZEMwaTdaS0owcVpkKzgyclZhK1I0d0hHYXlD?=
+ =?utf-8?B?NmtLd0dUYmJBUU16WmllQ3FRbk04TUxzMktmL1NUVXFHc2tSVjdHMnF5OVcz?=
+ =?utf-8?B?a0JoeGt2Q3VOQitKZU9lM053RDhsdWxEQTlENFVHM1ArVkpEZ3k1cnhHaytQ?=
+ =?utf-8?B?czNvamdBRit1Q2tVeXFTZ2U4S0wvQUpxaGdJYUhEWWY5enVicGNhd2twa1Ax?=
+ =?utf-8?B?aXRvdHpaSzV3U0EwaTNZamEzemtmTTJYWm5oSnl6UUErbkd5dDRDSlpNOUE4?=
+ =?utf-8?B?MS96TGdLOUp4a0VabHUzYlhjdTJtVjNCNEJ6MDUrTWlMaVVNRHZscjFaNllG?=
+ =?utf-8?B?TE9TNzdaZ2J3QzA3U3FMS2pTSWRkZlpoMHJwYWNKNmhyNkJXZjlVMGx4cllj?=
+ =?utf-8?B?RndFTjdRM2ZZWVVmYzRVN2tyVFhTKys4OFNoa05LMCtOZi85NmRKbzB1cGRk?=
+ =?utf-8?B?NlhUcm1qS2U2TTRRdFdoTm9sQmx6NWJaaDd3bFhmYjViS2NMUmRJaWJGZWZB?=
+ =?utf-8?B?blloSzBuNlc0Q1FoT1NaL29PTGN3NHpDQTdjVlQ3RDIyOHV4SVVORjUvTit2?=
+ =?utf-8?B?MDUrUHVrUSt3cjE3RTl2ZzNvSzF1blJsMVg0NU5URFh5Nmx1anIzSVhyYmFw?=
+ =?utf-8?B?ZFJSNUNQUXNOckFZQkoyQzZmd2ZSTnlncmxScWFrSVlFNS9OS2IyaU1kQ3h1?=
+ =?utf-8?B?NndESXRQSUw2RmNNblZEbGlMUW9mZGM1K0VwOE80N2pYQnVnSUloN1ZmeEsw?=
+ =?utf-8?B?ZlFZSnRJOU52Szc1bGR4TVhZdmI5eHpvSDhXYkMzZmQ1QUppcDZMVVRlaEMv?=
+ =?utf-8?B?RGhxQnM5ZitEVERpS2ZEVzNwZjFqekdIQTJQUEFvVGZQZnN2T0tGdGxVYzh6?=
+ =?utf-8?B?eW9IK1l0eVRCTjlxcXVZZHQ4ZUlFQVRYcWVPY1RCeXZoQkk0UDhmd2hTenBy?=
+ =?utf-8?B?NnJzZktVQkxBdURtUGcyK1JnRG9ib1NlVk1IYkpJblJrTmhDZjdPSGl0MVZl?=
+ =?utf-8?B?dmZQdE9EU3JmTk1OQUZsdURobmNUdjM1c01oU2UvU3JJLzFaczllMExkVDdJ?=
+ =?utf-8?B?N0M4MHZHZ1hLWTQ4UmdQUS8yRFJvTmUrMDJrdStON0JOcDJPM1Vtak1VRk1U?=
+ =?utf-8?B?YlBVM0FrdTNDZytmRVVRQ0VTLzk2Z0x0K0VIMUVKam81RFhxVS9Ddk0rVHMz?=
+ =?utf-8?B?VUMrWnA5cEkzL1RXRVF3M1B5eHZFb0I2Sm5MeVMyM1FNTU1sT1ZhV3NaR1hp?=
+ =?utf-8?B?RmluTmUybU1GNFppV2V2T0VlNlRWbVJKY294c2lZNlBQZGVmdEtCaWlVRmtG?=
+ =?utf-8?B?VjZkbjFUWWNVRExNQ2QrdFNBLzZPMnZ0SDFJMExSY0tES1g1SjIrNGJaOVV1?=
+ =?utf-8?B?T2dUV1cyRHdobmJVM08vRTZiYjF5RjNONEZCbXRibUhNSkVVM1NId0wzMkZs?=
+ =?utf-8?B?NDduMEltZGtRcE1QYk1HK1A3NitiZE1jVDNxMDVNdUlDZ012Q2NSQlAwemR0?=
+ =?utf-8?B?MmlnaDhmNWhGdTlMMy9GM09TU2Z3emxmV3FCRExBWU1YN3pmckU1eGtSbitx?=
+ =?utf-8?B?UW5xMFlKTmpTRDJDV0dwd0dISlNjM2R0dXkxRnhaZndQVGhiYjBpbVZxRVZ6?=
+ =?utf-8?B?eWZWQmFmSGNsSVB6VVpKNEhuV1ZIWE4ySU4yK3hwaGh0RWZDeWhOZG9sQXpa?=
+ =?utf-8?B?cEd6Q2xRZDljd1pObVFXSVpqTGJZMnh5YW5MYWpqRUJieDBDeXVSYm1TczRV?=
+ =?utf-8?B?NVZwOFcxeUY1SDNCVVBabStEV2hpSTJXaWdSOEY1UlA1ZGRaRmpzdzVIa2xz?=
+ =?utf-8?B?V1pZWG1TVk9acnlUSENGaGdpc2pkNlhZOEZyZXVkb2xKQmk5dGhZd2VFVU04?=
+ =?utf-8?B?WXc9PQ==?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 574a1458-ddac-49ad-ba69-08db23d0f7c9
+X-MS-Exchange-CrossTenant-AuthSource: AM9PR04MB8603.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Mar 2023 14:41:02.2606
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: eQz3C2gshDJw6O0aDszBS2SjjTul0/Ooa0MIKmEzMWJbB+YAGpkb3vAfKrVgO8wzgX321y3jzpYzKF0ZZDcuuLPX1i/3t177H7yrJnyLnRg=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB9PR04MB8203
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+This patch adds a driver for NXP bluetooth chipsets.
 
-On Sun, Mar 12, 2023 at 11:36=E2=80=AFAM Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
->
-> The hid-over-i2c takes VDD, not VCC supply.  Fix copy-pasta from other
-> boards which use elan,ekth3000 with valid VCC:
->
->   sc7180-trogdor-pazquel360-lte.dtb: trackpad@15: 'vcc-supply' does not m=
-atch any of the regexes: 'pinctrl-[0-9]+'
->
-> Fixes: fb69f6adaf88 ("arm64: dts: qcom: sc7180: Add pazquel dts files")
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> ---
->  arch/arm64/boot/dts/qcom/sc7180-trogdor-pazquel.dtsi | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
->
-> diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-pazquel.dtsi b/arch/=
-arm64/boot/dts/qcom/sc7180-trogdor-pazquel.dtsi
-> index d06cc4ea3375..8823edbb4d6e 100644
-> --- a/arch/arm64/boot/dts/qcom/sc7180-trogdor-pazquel.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-pazquel.dtsi
-> @@ -39,7 +39,7 @@ trackpad: trackpad@15 {
->                 interrupt-parent =3D <&tlmm>;
->                 interrupts =3D <0 IRQ_TYPE_EDGE_FALLING>;
->
-> -               vcc-supply =3D <&pp3300_fp_tp>;
-> +               vdd-supply =3D <&pp3300_fp_tp>;
+The driver is based on H4 protocol, and uses serdev APIs. It supports host
+to chip power save feature, which is signalled by the host by asserting
+break over UART TX lines, to put the chip into sleep state.
 
-Luckily it didn't matter since this regulator is always on, but good
-to have things described properly.
+To support this feature, break_ctl has also been added to serdev-tty along
+with a new serdev API serdev_device_break_ctl().
 
-Reviewed-by: Douglas Anderson <dianders@chromium.org>
+This driver is capable of downloading firmware into the chip over UART.
+
+The document specifying device tree bindings for this driver is also
+included in this patch series.
+
+Neeraj Sanjay Kale (3):
+  serdev: Add method to assert break signal over tty UART port
+  dt-bindings: net: bluetooth: Add NXP bluetooth support
+  Bluetooth: NXP: Add protocol support for NXP Bluetooth chipsets
+
+ .../net/bluetooth/nxp,88w8987-bt.yaml         |   46 +
+ MAINTAINERS                                   |    7 +
+ drivers/bluetooth/Kconfig                     |   12 +
+ drivers/bluetooth/Makefile                    |    1 +
+ drivers/bluetooth/btnxpuart.c                 | 1293 +++++++++++++++++
+ drivers/tty/serdev/core.c                     |   17 +-
+ drivers/tty/serdev/serdev-ttyport.c           |   16 +-
+ include/linux/serdev.h                        |    6 +
+ 8 files changed, 1393 insertions(+), 5 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/net/bluetooth/nxp,88w8987-bt.yaml
+ create mode 100644 drivers/bluetooth/btnxpuart.c
+
+-- 
+2.34.1
+
