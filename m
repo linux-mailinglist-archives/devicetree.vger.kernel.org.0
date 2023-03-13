@@ -2,97 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 242796B843C
-	for <lists+devicetree@lfdr.de>; Mon, 13 Mar 2023 22:50:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 488D76B845A
+	for <lists+devicetree@lfdr.de>; Mon, 13 Mar 2023 22:58:31 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229985AbjCMVus (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Mar 2023 17:50:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45150 "EHLO
+        id S229830AbjCMV6a (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Mar 2023 17:58:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54038 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229953AbjCMVur (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Mar 2023 17:50:47 -0400
-Received: from mail-yw1-x1131.google.com (mail-yw1-x1131.google.com [IPv6:2607:f8b0:4864:20::1131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 12FC573034
-        for <devicetree@vger.kernel.org>; Mon, 13 Mar 2023 14:50:45 -0700 (PDT)
-Received: by mail-yw1-x1131.google.com with SMTP id 00721157ae682-5418d54d77bso96352467b3.12
-        for <devicetree@vger.kernel.org>; Mon, 13 Mar 2023 14:50:45 -0700 (PDT)
+        with ESMTP id S229769AbjCMV63 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Mar 2023 17:58:29 -0400
+Received: from mail-yw1-x112c.google.com (mail-yw1-x112c.google.com [IPv6:2607:f8b0:4864:20::112c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EDB558FBC0
+        for <devicetree@vger.kernel.org>; Mon, 13 Mar 2023 14:57:51 -0700 (PDT)
+Received: by mail-yw1-x112c.google.com with SMTP id 00721157ae682-53916ab0c6bso268495477b3.7
+        for <devicetree@vger.kernel.org>; Mon, 13 Mar 2023 14:57:51 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1678744244;
+        d=linaro.org; s=google; t=1678744659;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=pCHz2nx6p55EgvQKGZC0kvbgWbyB/L/IeIhJ3qrWExg=;
-        b=O0QtnlfjPghCh3YIXUoOd2ANaGzc/QGxZuL9b7TcCUliwf191AxWceuPEVSHCLBCgj
-         VR6PmUDKGedxn0Bm7PvV7224rtRDmEzyo398XOMtWxJ6W5iHcGWxZm+491UlPEQfemB+
-         d/d6AX/TwQGcA9iPcBHfFwHB8hQnz4ARHMPDOT1Y6Zc0Ufs2isbXCVv1xNLPFNrpDf49
-         ZkRoh8BE4pu456C48aZjdKXFcsxY50E47fURQyKds1XDRPxkiX6ZBB1bhEhUabGTAy1y
-         chn04DWysQtIY5BcV/1fb3eUKUZ1NNpfFzBXughk2igwdC6fNu/NRnYTCMS4E6UANfb8
-         AfMQ==
+        bh=amuk1a8QJGQKUxtyDQZC4FM9pz93ZMG/0KEcjg0E1UA=;
+        b=O34j7Xta6RjeUG7qu9Jk2SaT74AKTuB75yqTIwvbdXJDotHjytsrU4177cwsoGq2lt
+         VcDKThhaDkyHxh2px73H7aXksVMytfUwKAVFbSg+DUAoeWkl/66rsMG5vCdZarV+67Sm
+         uX07By0fNcxu71yB7AucRzbCk1eSlamG7ds5Dqpmww+KSQ/U/xP3fwNe94IPO+poo7qA
+         Sv9ZsH/4S2nzbCqN8kYIoZFq/S5rX4OkdWVzXS2ViUkwokiF+S5d4Jfj2GlE8D0dC+Lz
+         dJMTBSvD/uigLSY5riqc0HcpBr0Fxx/6s7kwJT/Y3P1EO6DWocTzCvVQBxNtNfRQ1D1U
+         NssA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678744244;
+        d=1e100.net; s=20210112; t=1678744659;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=pCHz2nx6p55EgvQKGZC0kvbgWbyB/L/IeIhJ3qrWExg=;
-        b=rBSdw1KX6iQbNge2dRz0tkRdgbhwVH0D7MlP/OvmJNIsxDSAtQAGb9Zyp00KvD4mEk
-         k34iEFm9kEgo8kbLVn8Tkc770Hy+zGu4u9ikOo9ZEbkHpxlO6kx7jAm5YElMpiterchG
-         igrjlzY0a844Ob6Q1oNzmm7CUMaWbSjwxzFyD6BjuROWdIzVCapOqVYv/G324aKRTiha
-         veQrIf9utMhHO3g3Ch8VBX3jMwo7yTL1FwBlsxS7A4ggJkyQDS26o2xordh2+gQxabLw
-         06hg+84a+Lx5ttxv2RHyHi8kFdynPuSRgE3lcqIvO9NGDKUuuU3RT5etj+r49OnId8sq
-         g5Ww==
-X-Gm-Message-State: AO0yUKXL27ksPdpO+4c40+4Ntef97yEihVoyvCniceLHb0+u3J3Zx5Or
-        tQE4EpWDSrsKqfVaKxTK1/POJda/qCNyl+QDpjOBdg==
-X-Google-Smtp-Source: AK7set87ubU8GZDtPahtZba/MrzEpnuE6JhzbhHmiamcnjVaWobwungB6CFhw0/0tsNdyXXWXn/YmmTbX4yJulP2dsA=
-X-Received: by 2002:a05:690c:445:b0:53d:2dcf:890d with SMTP id
- bj5-20020a05690c044500b0053d2dcf890dmr9320437ywb.4.1678744244230; Mon, 13 Mar
- 2023 14:50:44 -0700 (PDT)
+        bh=amuk1a8QJGQKUxtyDQZC4FM9pz93ZMG/0KEcjg0E1UA=;
+        b=0lojx4OKBSWG4XiUgFI4MI6CHoDhJfXgYLw2bXdOOn7Lz5jwknrXMLjtCeVtbhXGjD
+         z1dbSUSYGG2dzXt389X6tj/alZTSz2ZPB0n7FjJd9f4oeGEf//8jS3upj77tgUJbbvM9
+         mLAGb98HY+MrE2qrg4Mvd1CSsfRZFo4IC448E3v3k+ECjBLF/SHWKzPLvzK4zcYCGmu7
+         jg25NXds3k4UPfSFYakNYISL53eQhLhdkXMWB9C8MfNRwsHrAFtoAG8IT1oF71gwept6
+         IKIf7XOtIOjsAOhjJ68fiKJba0qaDcMDMQaEoUDE33H7ErKJP8t7v/R1z68Rc7Z1Jzf9
+         AunQ==
+X-Gm-Message-State: AO0yUKVtsjzkDgYtC0lGTz8U+GhV8bhZl8PKP4A2T63OBDq+3A5aMCBQ
+        ArdgQDfVtIKi0+mkRvyLANK4U/CvHT4AfEFp9A3xiQ==
+X-Google-Smtp-Source: AK7set86KxSVTf43Z5xxBccoEu4aIgx/5QqIi/mCylwIRT9EOGgS1qWtl7k5ozzRyBkcgozrGasSrkeNqxKoojdFi1g=
+X-Received: by 2002:a81:b10a:0:b0:53d:2772:65d with SMTP id
+ p10-20020a81b10a000000b0053d2772065dmr17609048ywh.9.1678744659416; Mon, 13
+ Mar 2023 14:57:39 -0700 (PDT)
 MIME-Version: 1.0
-References: <20230313144557.35856-1-andriy.shevchenko@linux.intel.com>
-In-Reply-To: <20230313144557.35856-1-andriy.shevchenko@linux.intel.com>
+References: <20230310190634.5053-1-dipenp@nvidia.com> <20230310190634.5053-3-dipenp@nvidia.com>
+In-Reply-To: <20230310190634.5053-3-dipenp@nvidia.com>
 From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Mon, 13 Mar 2023 22:50:32 +0100
-Message-ID: <CACRpkdY35RkGPp=smaG30JoK+TDXtXH-=DwrtWeXMTT_Brf2zQ@mail.gmail.com>
-Subject: Re: [rft, PATCH v1 1/1] gpio: Drop unused inclusions from of_gpio.h
-To:     Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Cc:     Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
-        devicetree@vger.kernel.org, linux-gpio@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Bartosz Golaszewski <brgl@bgdev.pl>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>
+Date:   Mon, 13 Mar 2023 22:57:28 +0100
+Message-ID: <CACRpkdYmC=eLiWPPPRG7DYBmQfPNCN4pcDhzTCO=hkQDx2HoGw@mail.gmail.com>
+Subject: Re: [PATCH V3 2/6] dt-bindings: timestamp: Add Tegra234 support
+To:     Dipen Patel <dipenp@nvidia.com>
+Cc:     thierry.reding@gmail.com, jonathanh@nvidia.com,
+        linux-kernel@vger.kernel.org, linux-tegra@vger.kernel.org,
+        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-doc@vger.kernel.org, robh+dt@kernel.org,
+        timestamp@lists.linux.dev, krzysztof.kozlowski+dt@linaro.org,
+        brgl@bgdev.pl, corbet@lwn.net, gregkh@linuxfoundation.org
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Mar 13, 2023 at 3:45=E2=80=AFPM Andy Shevchenko
-<andriy.shevchenko@linux.intel.com> wrote:
+Hi Dipen,
 
-> As a preliminary step, drop unused inclusions from of_gpio.h,
-> so people will use the header only when it's really needed and
-> not as a substitute of any of the dropped ones.
->
-> Signed-off-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-> ---
->
-> For testing purposes on what will fail in CIs. People are also
-> encourage to test this, if have time / chance / wish.
+thanks for maintaining HTE!
 
-Haha the CI gives 6 million errors as usual :D
+On Fri, Mar 10, 2023 at 8:06=E2=80=AFPM Dipen Patel <dipenp@nvidia.com> wro=
+te:
 
-Wella, just nail them all down, that's how we got rid of
-<linux/gpio/driver.h> from <linux/gpio.h> ...
+> -  nvidia,slices:
+> -     $ref: /schemas/types.yaml#/definitions/uint32
 
-The end result will look really good.
+I would not delete this, just mark it deprecated.
 
-Thanks for looking into this!
+nvidia,slices:
+    $ref: /schemas/types.yaml#/definitions/uint32
+    deprecated: true
+
+(And remove it from required, of course)
+
+This way you do not need to explain about why it was
+deleted, it's just deprecated, which is fine.
 
 Yours,
 Linus Walleij
