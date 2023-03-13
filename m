@@ -2,101 +2,157 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 84D1E6B7321
-	for <lists+devicetree@lfdr.de>; Mon, 13 Mar 2023 10:49:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 652626B7333
+	for <lists+devicetree@lfdr.de>; Mon, 13 Mar 2023 10:55:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229616AbjCMJtu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Mar 2023 05:49:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56336 "EHLO
+        id S229919AbjCMJzQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Mar 2023 05:55:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36912 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231337AbjCMJtt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Mar 2023 05:49:49 -0400
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4F3D661AB;
-        Mon, 13 Mar 2023 02:49:35 -0700 (PDT)
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 32D9nQJp110077;
-        Mon, 13 Mar 2023 04:49:26 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1678700966;
-        bh=5tIHLp8mna+dpOxvauCmGw9dgMnWj4HTyDR1d2zhhR4=;
-        h=Date:Subject:To:CC:References:From:In-Reply-To;
-        b=e8B55OML3EtDXIIl+h5Y52/upMe5o6Heo1tQCJF+aBtbLKGUn/t2XkDuhV6jLYWtw
-         ZHsrQCjdtkcauiYS1f+0JnsoV7poaUSevxGF5JWuJGKgz5+14tqmM+1b22gM1b/SSy
-         3don19VqM2CqE4ROH2bj5tm6q30/fhSyJOpZO8UM=
-Received: from DFLE105.ent.ti.com (dfle105.ent.ti.com [10.64.6.26])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 32D9nQuA075729
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Mon, 13 Mar 2023 04:49:26 -0500
-Received: from DFLE105.ent.ti.com (10.64.6.26) by DFLE105.ent.ti.com
- (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Mon, 13
- Mar 2023 04:49:25 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE105.ent.ti.com
- (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
- Frontend Transport; Mon, 13 Mar 2023 04:49:25 -0500
-Received: from [172.24.218.99] (ileaxei01-snat2.itg.ti.com [10.180.69.6])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 32D9nIDL113095;
-        Mon, 13 Mar 2023 04:49:19 -0500
-Message-ID: <f28489b1-4ece-4f48-e2c0-9bd7755071d8@ti.com>
-Date:   Mon, 13 Mar 2023 15:19:18 +0530
+        with ESMTP id S229756AbjCMJzP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Mar 2023 05:55:15 -0400
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DA7EE2687B;
+        Mon, 13 Mar 2023 02:55:12 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1678701312; x=1710237312;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=6MsZIZ9wXPpyDXI+vkAXY5STqCo+1yxkx3xmgRky9to=;
+  b=HKdhA0BmYD/gjRpi+DZC3fpsnRZO3Dco5w4Q0nvpaalfcMrXg7QTFRH2
+   tI8222FkcbqZ+zqNNljOn8f9FvLccPVuEHgnz4gvyv6aXvqDrCDByt8rV
+   rbmvYZR/gx/gznC8k+Wl8hvdbkF9iaegQhxaLZSWpJcyf9A7sgyqBDgUV
+   ZuL/kP4YVx22/dS52tqjbGW5DPq09MvYVT4wptiZNXL62kH0LdGC8BpSa
+   eI1o88PHg15oG9l1f/4/gw0/y9UVexAccI3FWyawgMNdVfSa5WIeYG1Li
+   u2M5PJKBMSlXms8hDPbgIP8D8FXqU/2ubeFq0MZ7hodapGryyrTNsII7h
+   A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10647"; a="338655796"
+X-IronPort-AV: E=Sophos;i="5.98,256,1673942400"; 
+   d="scan'208";a="338655796"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 13 Mar 2023 02:55:12 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6500,9779,10647"; a="671836653"
+X-IronPort-AV: E=Sophos;i="5.98,256,1673942400"; 
+   d="scan'208";a="671836653"
+Received: from lkp-server01.sh.intel.com (HELO b613635ddfff) ([10.239.97.150])
+  by orsmga007.jf.intel.com with ESMTP; 13 Mar 2023 02:55:08 -0700
+Received: from kbuild by b613635ddfff with local (Exim 4.96)
+        (envelope-from <lkp@intel.com>)
+        id 1pbetY-0005Xc-0U;
+        Mon, 13 Mar 2023 09:55:08 +0000
+Date:   Mon, 13 Mar 2023 17:54:45 +0800
+From:   kernel test robot <lkp@intel.com>
+To:     Komal Bajaj <quic_kbajaj@quicinc.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Abel Vesa <abel.vesa@linaro.org>,
+        Rishabh Bhatnagar <rishabhb@codeaurora.org>,
+        Prakash Ranjan <saiprakash.ranjan@codeaurora.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Andy Gross <agross@kernel.org>
+Cc:     llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
+        Komal Bajaj <quic_kbajaj@quicinc.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org
+Subject: Re: [PATCH 4/5] soc: qcom: Add LLCC support for multi channel DDR
+Message-ID: <202303131722.uo5Li701-lkp@intel.com>
+References: <20230313071325.21605-5-quic_kbajaj@quicinc.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-Subject: Re: [PATCH v3] arm64: dts: ti: k3-j721e-main: Remove ti,strobe-sel
- property
-To:     Bhavya Kapoor <b-kapoor@ti.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-CC:     <nm@ti.com>, <vigneshr@ti.com>, <kristo@kernel.org>,
-        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <a-govindraju@ti.com>, <kishon@ti.com>, <u-kumar1@ti.com>
-References: <20230203073724.29529-1-b-kapoor@ti.com>
-Content-Language: en-US
-From:   Nitin Yadav <n-yadav@ti.com>
-In-Reply-To: <20230203073724.29529-1-b-kapoor@ti.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230313071325.21605-5-quic_kbajaj@quicinc.com>
 X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_PASS,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2/3/2023 1:07 PM, Bhavya Kapoor wrote:
-> According to latest errata of J721e [1], (i2024) 'MMCSD: Peripherals
-> Do Not Support HS400' which applies to MMCSD0 subsystem. Speed modes
-> supported has been already updated in commit eb8f6194e807 ("arm64: dts: ti: k3-j721e-main: Update the speed modes supported and their itap delay values for MMCSD subsystems")
-> but it missed dropping 'ti,strobe-sel' property which is only required
-> by HS400 speed mode.
-> 
-> Thus, drop 'ti,strobe-sel' property from kernel dtsi for J721e SoC.
-> 
-> [1] https://www.ti.com/lit/er/sprz455/sprz455.pdf
-> 
-> Fixes: eb8f6194e807 ("arm64: dts: ti: k3-j721e-main: Update the speed modes supported and their itap delay values for MMCSD subsystems")
-> Signed-off-by: Bhavya Kapoor <b-kapoor@ti.com>
-> ---
->  arch/arm64/boot/dts/ti/k3-j721e-main.dtsi | 1 -
->  1 file changed, 1 deletion(-)
-> 
-> diff --git a/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi b/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
-> index c935622f0102..bfa296dce3a3 100644
-> --- a/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
-> +++ b/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
-> @@ -1180,7 +1180,6 @@ main_sdhci0: mmc@4f80000 {
->  		ti,itap-del-sel-mmc-hs = <0xa>;
->  		ti,itap-del-sel-ddr52 = <0x3>;
->  		ti,trm-icp = <0x8>;
-> -		ti,strobe-sel = <0x77>;
->  		dma-coherent;
->  	};
->
-Reviewed-by: Nitin Yadav <n-yadav@ti.com>
-  
+Hi Komal,
+
+Thank you for the patch! Yet something to improve:
+
+[auto build test ERROR on robh/for-next]
+[also build test ERROR on linus/master v6.3-rc2 next-20230310]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Komal-Bajaj/soc-qcom-llcc-Refactor-llcc-driver-to-support-multiple-configuration/20230313-151543
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
+patch link:    https://lore.kernel.org/r/20230313071325.21605-5-quic_kbajaj%40quicinc.com
+patch subject: [PATCH 4/5] soc: qcom: Add LLCC support for multi channel DDR
+config: hexagon-randconfig-r041-20230312 (https://download.01.org/0day-ci/archive/20230313/202303131722.uo5Li701-lkp@intel.com/config)
+compiler: clang version 17.0.0 (https://github.com/llvm/llvm-project 67409911353323ca5edf2049ef0df54132fa1ca7)
+reproduce (this is a W=1 build):
+        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+        chmod +x ~/bin/make.cross
+        # https://github.com/intel-lab-lkp/linux/commit/ef96faadeb37bb94f77361aef72e2d863fe6e0f9
+        git remote add linux-review https://github.com/intel-lab-lkp/linux
+        git fetch --no-tags linux-review Komal-Bajaj/soc-qcom-llcc-Refactor-llcc-driver-to-support-multiple-configuration/20230313-151543
+        git checkout ef96faadeb37bb94f77361aef72e2d863fe6e0f9
+        # save the config file
+        mkdir build_dir && cp config build_dir/.config
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross W=1 O=build_dir ARCH=hexagon olddefconfig
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross W=1 O=build_dir ARCH=hexagon SHELL=/bin/bash drivers/soc/qcom/
+
+If you fix the issue, kindly add following tag where applicable
+| Reported-by: kernel test robot <lkp@intel.com>
+| Link: https://lore.kernel.org/oe-kbuild-all/202303131722.uo5Li701-lkp@intel.com/
+
+All errors (new ones prefixed by >>):
+
+   In file included from drivers/soc/qcom/llcc-qcom.c:11:
+   In file included from include/linux/io.h:13:
+   In file included from arch/hexagon/include/asm/io.h:334:
+   include/asm-generic/io.h:547:31: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
+           val = __raw_readb(PCI_IOBASE + addr);
+                             ~~~~~~~~~~ ^
+   include/asm-generic/io.h:560:61: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
+           val = __le16_to_cpu((__le16 __force)__raw_readw(PCI_IOBASE + addr));
+                                                           ~~~~~~~~~~ ^
+   include/uapi/linux/byteorder/little_endian.h:37:51: note: expanded from macro '__le16_to_cpu'
+   #define __le16_to_cpu(x) ((__force __u16)(__le16)(x))
+                                                     ^
+   In file included from drivers/soc/qcom/llcc-qcom.c:11:
+   In file included from include/linux/io.h:13:
+   In file included from arch/hexagon/include/asm/io.h:334:
+   include/asm-generic/io.h:573:61: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
+           val = __le32_to_cpu((__le32 __force)__raw_readl(PCI_IOBASE + addr));
+                                                           ~~~~~~~~~~ ^
+   include/uapi/linux/byteorder/little_endian.h:35:51: note: expanded from macro '__le32_to_cpu'
+   #define __le32_to_cpu(x) ((__force __u32)(__le32)(x))
+                                                     ^
+   In file included from drivers/soc/qcom/llcc-qcom.c:11:
+   In file included from include/linux/io.h:13:
+   In file included from arch/hexagon/include/asm/io.h:334:
+   include/asm-generic/io.h:584:33: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
+           __raw_writeb(value, PCI_IOBASE + addr);
+                               ~~~~~~~~~~ ^
+   include/asm-generic/io.h:594:59: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
+           __raw_writew((u16 __force)cpu_to_le16(value), PCI_IOBASE + addr);
+                                                         ~~~~~~~~~~ ^
+   include/asm-generic/io.h:604:59: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
+           __raw_writel((u32 __force)cpu_to_le32(value), PCI_IOBASE + addr);
+                                                         ~~~~~~~~~~ ^
+>> drivers/soc/qcom/llcc-qcom.c:20:10: fatal error: 'linux/qcom_scm.h' file not found
+   #include <linux/qcom_scm.h>
+            ^~~~~~~~~~~~~~~~~~
+   6 warnings and 1 error generated.
+
+
+vim +20 drivers/soc/qcom/llcc-qcom.c
+
+  > 20	#include <linux/qcom_scm.h>
+    21	#include <linux/soc/qcom/llcc-qcom.h>
+    22	
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests
