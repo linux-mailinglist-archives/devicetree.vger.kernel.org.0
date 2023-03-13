@@ -2,129 +2,124 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5F43C6B7227
-	for <lists+devicetree@lfdr.de>; Mon, 13 Mar 2023 10:10:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D3CA46B7265
+	for <lists+devicetree@lfdr.de>; Mon, 13 Mar 2023 10:21:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231219AbjCMJKu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Mar 2023 05:10:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35902 "EHLO
+        id S231178AbjCMJVa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Mar 2023 05:21:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33318 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231235AbjCMJKa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Mar 2023 05:10:30 -0400
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C5268AD21;
-        Mon, 13 Mar 2023 02:10:02 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1678698602; x=1710234602;
-  h=message-id:date:mime-version:subject:to:cc:references:
-   from:in-reply-to:content-transfer-encoding;
-  bh=YivqxS+zeFWZMfPdu5ClCSUPNAcBM+7zK7hLm2cpsW4=;
-  b=YvKAV2+yIUJ4Xr1ZHuwqJv40zlJF+SYCOcCMJbdckABCCzZJumm3oF4m
-   yIHWnwdCHJ+mZCV35h9+APqwpJ+LOQEWw15LbypXY9dGRp29ALC8xBErP
-   zYh4VPE1ZhjhizyY6soCSjppW5u/bq3pOQ1jP32UhxGXK9lC7rAl23wNC
-   PtkrYIHvA8C08QKfiwOL7PVwQJkoViZxhiwqihq+AxJMNArjFQgSK2QlA
-   eG2aMXqFxHbS69hkqXjcSKC0GlCi5kSoRrI/xdN58Wuu4UCTSceOQ5ASz
-   Dmo1BtHXxBYoZyWtVT83BBiFFscouuR8oGetW5jg+S2v3zW+OiSbPlvpS
-   g==;
-X-IronPort-AV: E=Sophos;i="5.98,256,1673938800"; 
-   d="scan'208";a="205062965"
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa2.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 13 Mar 2023 02:10:01 -0700
-Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
- chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.21; Mon, 13 Mar 2023 02:09:47 -0700
-Received: from [10.159.245.112] (10.10.115.15) by chn-vm-ex04.mchp-main.com
- (10.10.85.152) with Microsoft SMTP Server id 15.1.2507.21 via Frontend
- Transport; Mon, 13 Mar 2023 02:09:40 -0700
-Message-ID: <21d44d0b-05c0-1912-15de-a5c74d3ff4c6@microchip.com>
-Date:   Mon, 13 Mar 2023 10:09:37 +0100
+        with ESMTP id S231217AbjCMJVU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Mar 2023 05:21:20 -0400
+Received: from mail-wm1-x32e.google.com (mail-wm1-x32e.google.com [IPv6:2a00:1450:4864:20::32e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5DA863CE25
+        for <devicetree@vger.kernel.org>; Mon, 13 Mar 2023 02:21:09 -0700 (PDT)
+Received: by mail-wm1-x32e.google.com with SMTP id bg16-20020a05600c3c9000b003eb34e21bdfso10424332wmb.0
+        for <devicetree@vger.kernel.org>; Mon, 13 Mar 2023 02:21:09 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112; t=1678699268;
+        h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
+         :user-agent:references:from:to:cc:subject:date:message-id:reply-to;
+        bh=NyKmnb2IGGlRYKdA8v+Oi9cQGOt819vf2di9Hwq+CB0=;
+        b=mSVsf+a/ifTL56wAV9Qw2FDlsV5LEVpddsOHAnmgmNWX8ZYxk80hyF4aQqagAEUpRc
+         jDtW5tGU1a1sIXrahUuJD2t838vwVvvnj4Ixlt8aS35T1up5M9BaMB/TiJMSOI2IGuV9
+         4DpczCsw5ChdGLdIiV66BOPSrFanB1m6q32U2VqzOEmNpUIv9k55vB8EjTbMZCdowJuu
+         /SVQvLaRF7kjaEKEuU54weShdspUHgoj7wr916M1wsEnxth4j2CBMJB6SrbWvLaot6br
+         AjjW9ZVSxTuneR96w0vxXlzXrgJAt5qX1svj0H5QfW8P15XTzrOhQpO06GBAV80jJ6Q2
+         9YHg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1678699268;
+        h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
+         :user-agent:references:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=NyKmnb2IGGlRYKdA8v+Oi9cQGOt819vf2di9Hwq+CB0=;
+        b=xXV3TG8Xwoi8A23e6a+0ETTMroH9XRowRSyehZJXr4oEfiy9wn53+pEJnVLvxM5mF8
+         GxiuiONvvuFJWtXEfHEcfDK3Sq4oH4uHa/JVZ8xfe+iWedzW+VACntmSZiVIOmOuO9IV
+         KzMWmsuNb1f7bNYDvqJQqDT5ScI/xHEsyEkhmKywtXpxdsekTZTNkw8qhXM0Lo+RnAar
+         Ajl/ql9XgFHhNjWFEuqqL9+vHFKDvdSQ4yZreKsObmdBRSBdgDIhiDI371Nh4w1kDYoy
+         YRRYZe9M878cF4oP0PuAFMFgmeCVRgBuRbGe9JeXFtvs35914cdi39Vyd5ZTbT6sfJaU
+         MjCw==
+X-Gm-Message-State: AO0yUKWHxb3KSsok29Llr+/N+/U9hm25os/Bu2+dBJsTw4bVBsq8snop
+        Te0A2dpABbuFM1nSt+qMZwLRyQ==
+X-Google-Smtp-Source: AK7set+ffANocDz449+nx/CU8mE/uaLR+A5C2On6Z7RmrE6Px8IYI5sqoAqzr08nkoqwgeu6K+3K2w==
+X-Received: by 2002:a05:600c:1c9a:b0:3ed:2418:6cbe with SMTP id k26-20020a05600c1c9a00b003ed24186cbemr2701778wms.39.1678699267735;
+        Mon, 13 Mar 2023 02:21:07 -0700 (PDT)
+Received: from localhost (82-65-169-74.subs.proxad.net. [82.65.169.74])
+        by smtp.gmail.com with ESMTPSA id o4-20020a05600c378400b003e215a796fasm8292361wmr.34.2023.03.13.02.21.07
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 13 Mar 2023 02:21:07 -0700 (PDT)
+References: <20230301183759.16163-1-ddrokosov@sberdevices.ru>
+ <20230301183759.16163-3-ddrokosov@sberdevices.ru>
+ <1jr0u2azfi.fsf@starbuckisacylon.baylibre.com>
+ <20230306200549.7iuedbl27ejfhf6b@CAB-WSD-L081021>
+ <1jlek60zun.fsf@starbuckisacylon.baylibre.com>
+ <20230309182857.a2fzotcejueio23w@CAB-WSD-L081021>
+User-agent: mu4e 1.8.13; emacs 28.2
+From:   Jerome Brunet <jbrunet@baylibre.com>
+To:     Dmitry Rokosov <ddrokosov@sberdevices.ru>
+Cc:     neil.armstrong@linaro.org, mturquette@baylibre.com,
+        sboyd@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, khilman@baylibre.com,
+        martin.blumenstingl@googlemail.com, jian.hu@amlogic.com,
+        kernel@sberdevices.ru, rockosov@gmail.com,
+        linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v9 2/5] clk: meson: a1: add Amlogic A1 PLL clock
+ controller driver
+Date:   Mon, 13 Mar 2023 10:18:02 +0100
+In-reply-to: <20230309182857.a2fzotcejueio23w@CAB-WSD-L081021>
+Message-ID: <1j5yb50zxz.fsf@starbuckisacylon.baylibre.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-Subject: Re: [PATCH] net: Use of_property_read_bool() for boolean properties
-Content-Language: en-US
-To:     Rob Herring <robh@kernel.org>,
-        Wolfgang Grandegger <wg@grandegger.com>,
-        Marc Kleine-Budde <mkl@pengutronix.de>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Claudiu Beznea <claudiu.beznea@microchip.com>,
-        Wei Fang <wei.fang@nxp.com>,
-        Shenwei Wang <shenwei.wang@nxp.com>,
-        Clark Wang <xiaoning.wang@nxp.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Claudiu Manoil <claudiu.manoil@nxp.com>,
-        "Giuseppe Cavallaro" <peppe.cavallaro@st.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Jose Abreu <joabreu@synopsys.com>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        "Pengutronix Kernel Team" <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Grygorii Strashko <grygorii.strashko@ti.com>,
-        Francois Romieu <romieu@fr.zoreil.com>,
-        "Michal Simek" <michal.simek@xilinx.com>,
-        Zhao Qiang <qiang.zhao@nxp.com>, Kalle Valo <kvalo@kernel.org>,
-        Samuel Mendoza-Jonas <sam@mendozajonas.com>
-CC:     <devicetree@vger.kernel.org>, <linux-can@vger.kernel.org>,
-        <netdev@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-omap@vger.kernel.org>, <linuxppc-dev@lists.ozlabs.org>,
-        <linux-wireless@vger.kernel.org>
-References: <20230310144718.1544169-1-robh@kernel.org>
-From:   Nicolas Ferre <nicolas.ferre@microchip.com>
-Organization: microchip
-In-Reply-To: <20230310144718.1544169-1-robh@kernel.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 10/03/2023 at 15:47, Rob Herring wrote:
-> EXTERNAL EMAIL: Do not click links or open attachments unless you know the content is safe
-> 
-> It is preferred to use typed property access functions (i.e.
-> of_property_read_<type> functions) rather than low-level
-> of_get_property/of_find_property functions for reading properties.
-> Convert reading boolean properties to to of_property_read_bool().
-> 
-> Signed-off-by: Rob Herring <robh@kernel.org>
-> ---
->   drivers/net/can/cc770/cc770_platform.c          | 12 ++++++------
->   drivers/net/ethernet/cadence/macb_main.c        |  2 +-
 
-Acked-by: Nicolas Ferre <nicolas.ferre@microchip.com>
+On Thu 09 Mar 2023 at 21:28, Dmitry Rokosov <ddrokosov@sberdevices.ru> wrote:
 
->   drivers/net/ethernet/davicom/dm9000.c           |  4 ++--
+>> >> 
+>> >> This last poke should not bits otherwise handled by parms.
+>> >> This is a rate init in disguise.
+>> >> 
+>> >
+>> > I believe, you are talking about hifi_pll clk_regmap conflicts with
+>> > hifi_init_regs. The above init sequence shouldn't affect pll regmap setup,
+>> > it doesn't touch them (we assume that default bit values are all zero):
+>> >
+>> >     .en = {
+>> >         .reg_off = ANACTRL_HIFIPLL_CTRL0,
+>> >         .shift   = 28,
+>> >         .width   = 1,
+>> >     },
+>> >     // init_value = 0x01f18440
+>> >     // en_mask    = 0x10000000
+>> >
+>> >     .m = {
+>> >         .reg_off = ANACTRL_HIFIPLL_CTRL0,
+>> >         .shift   = 0,
+>> >         .width   = 8,
+>> >     },
+>> >     // init_value = 0x01f18440
+>> >     // m_mask     = 0x0000000f
+>> 
+>> mask is 0xff with width 8
+>> 
+>
+> Ah, you're right. Anyway, I think this is just init value and it's okay
+> to set it during initialization and rewrite after in parameter
+> propagation stage.
+>
 
-[..]
+... But the magic pokes are there only to initialize the unmanaged part
+of the clock regs. I'd like it to be clear and stay that way.
 
-> --- a/drivers/net/ethernet/cadence/macb_main.c
-> +++ b/drivers/net/ethernet/cadence/macb_main.c
-> @@ -4990,7 +4990,7 @@ static int macb_probe(struct platform_device *pdev)
->                  bp->jumbo_max_len = macb_config->jumbo_max_len;
-> 
->          bp->wol = 0;
-> -       if (of_get_property(np, "magic-packet", NULL))
-> +       if (of_property_read_bool(np, "magic-packet"))
->                  bp->wol |= MACB_WOL_HAS_MAGIC_PACKET;
->          device_set_wakeup_capable(&pdev->dev, bp->wol & MACB_WOL_HAS_MAGIC_PACKET);
+So please, clear the managed fields from the initial poke table.
 
-[..]
-
--- 
-Nicolas Ferre
 
