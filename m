@@ -2,139 +2,142 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DB3736B72BA
-	for <lists+devicetree@lfdr.de>; Mon, 13 Mar 2023 10:36:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 677EC6B72DA
+	for <lists+devicetree@lfdr.de>; Mon, 13 Mar 2023 10:43:16 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230176AbjCMJg5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Mar 2023 05:36:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51334 "EHLO
+        id S229918AbjCMJnO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Mar 2023 05:43:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42002 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230198AbjCMJgn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Mar 2023 05:36:43 -0400
-Received: from mail-pf1-x42b.google.com (mail-pf1-x42b.google.com [IPv6:2607:f8b0:4864:20::42b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0C0BD5A6F7;
-        Mon, 13 Mar 2023 02:34:35 -0700 (PDT)
-Received: by mail-pf1-x42b.google.com with SMTP id o67so544200pfg.10;
-        Mon, 13 Mar 2023 02:34:35 -0700 (PDT)
+        with ESMTP id S229836AbjCMJnM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Mar 2023 05:43:12 -0400
+Received: from mail-wm1-x336.google.com (mail-wm1-x336.google.com [IPv6:2a00:1450:4864:20::336])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 23325D327
+        for <devicetree@vger.kernel.org>; Mon, 13 Mar 2023 02:43:10 -0700 (PDT)
+Received: by mail-wm1-x336.google.com with SMTP id o11-20020a05600c4fcb00b003eb33ea29a8so7389078wmq.1
+        for <devicetree@vger.kernel.org>; Mon, 13 Mar 2023 02:43:09 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112; t=1678700073;
+        d=ventanamicro.com; s=google; t=1678700588;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=OI7Db7BHeqVEz8L9hVGNwbJcVk46KjMrg/IvivHmeU0=;
-        b=dzdnfahlvokvl0+fMpuS0JMeiuX8ty68pK/cITnN9rlO/l+0tuE3mlmAnwfWV/osI7
-         3vSLfYBH9PGTECDWFyJLy81VDQcFqr1g6CbC+v68gwSHpwvCncMMBmCsjO0wheaBsNkr
-         6rDXggn69h3mOlqzYGfxX0rk0o17xEw9ATjr8R76Ci0Sqs/b7aHn/9Nr/Fg/YqRpMAM6
-         x9G8L0R5GjWv4LAuF32BeFZd/FEyNXdTXri9T0uAgc6NzdLdWlQOl15yieRK7POcmql3
-         VJ/xQDYWet6E2GFgBHyoW4tH0zna+QyrqmvwuM/DwD4Cszm2SzvfQewP4QPaHnrcO3+T
-         LwcA==
+        bh=DxxClasutQ5PqW8TvU53BWsXOs7xcuC+RTlUJtJP2sQ=;
+        b=h3TDpuYDAZfdPTrBvLxzsaXRKlJ9Q2jh2tNMraEiLGXymopAzOnui7kQZzxhmFXH8J
+         QUQb19c/7fWEfIxTecp+uIIBJrB4l2pT6kLWe6Lcaz/zDH8THjKLVjJbb0HtACHBiMfZ
+         sPAK1rVIqSfxNdNUlxieZptHZPSRh3jCXGTJG6+12nVcrQ1MA8olf1I7EQKV61Jo7m1N
+         Mme6I5sKzEsCzXwBaISzU8LY/lW8feJ9hfbB39JCJdGmp102x/WISLrY9w13owNvQOuD
+         TixAk0UX6bQnuIMDAOivDU2sfb/YGuYJrrDmJj+peefVIY6wb/UtTVcpuXxE849Hpfgn
+         NcoA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678700073;
+        d=1e100.net; s=20210112; t=1678700588;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=OI7Db7BHeqVEz8L9hVGNwbJcVk46KjMrg/IvivHmeU0=;
-        b=ujCMO0B3ORxGUgaGYQXWxu3GnsaCX2MKKE44nMDyUfsNuweXvTuHFTykmhcO5OVfUA
-         xdrnSM5mkCP5BCAEwdr2Rxi7MXrIVKCeIr6v1uV8Mo9238Q6EKDDWTF/iRY38Zy2jVL6
-         bFkEXTm6QnD9Cd7TgpVBm4NlEoDjZBjZeFzxCSz8mpF1L6Gni5zYI95vNZB/dwOHS/I8
-         PHh3uMA4MaT7QWhYQNBJRrQbESHBgEZoqYFDkgjCdOCBY9myackOJF+TgKfPNO5r0yDB
-         u5OPHa3Kv5PkCHSok7/l+YfrxMARPAZaOiN1SuwioYF1UkkZsi2dOy7BPOUs8WSNpEV+
-         wraQ==
-X-Gm-Message-State: AO0yUKVwtnyl00bRaA4yLPYU974xviq+/I/qBIHIARhRkjtx6Slnr9zC
-        F94QBCKCYkRJ4DxD6qZaL5U=
-X-Google-Smtp-Source: AK7set+YvKu0xE5cKX91dxboKMZosjDQqSF8ZN05inC82xLe1eG6h0f6ThJti9wYHTG+A0zZT5FLTA==
-X-Received: by 2002:a62:1a4c:0:b0:623:79d9:a8e6 with SMTP id a73-20020a621a4c000000b0062379d9a8e6mr3154233pfa.19.1678700072883;
-        Mon, 13 Mar 2023 02:34:32 -0700 (PDT)
-Received: from Gentoo (n220246252084.netvigator.com. [220.246.252.84])
-        by smtp.gmail.com with ESMTPSA id j11-20020aa7800b000000b005b0853a1a3esm4006367pfi.159.2023.03.13.02.34.26
+        bh=DxxClasutQ5PqW8TvU53BWsXOs7xcuC+RTlUJtJP2sQ=;
+        b=1tJ1/rCpxt4pSo9aue/TDung395S6USq3hNxawEUcaPT/7ngvKcJNE5sa1eqV4zhMr
+         QTA7N7dWrc4EQT/uqrtDgE1e5V8XhuWFmAF/j00PviyJbzAyXgvxmYk7jtG/nzNs6RfG
+         VQe6UpOEg4B9b3JzXJGSH8xSZ2tDXRY9kOl315BXRG9x+UT/ywAfZn5u1/SHbg9JiM3e
+         5OniyVwTWPpDgWWquPQv6izNpr5ahJNLXZzfWw+d7NBnCWZp7FemP6mfmLh6KaT0Q/zH
+         yfrtx0SJOAEboY8hWe2N/WZm4yDfQfg/0wPCvXiVWBFAujyo6QlIQp+VmF1IAye/2v57
+         lzlA==
+X-Gm-Message-State: AO0yUKU4D25lRs9iJZGBZN5CXMwjn/Ag8mMw2MAd/tJb06MwWI0gd7KD
+        sVaTPvlxiaMfRg+/D1gx69nuxA==
+X-Google-Smtp-Source: AK7set/gu2v5+Z4pvLuyJomxbp4JRixpfwOaaAR1zN7y2b+8QDashQHnd4D6nxFOJYocB2azbkFjxw==
+X-Received: by 2002:a05:600c:4ed4:b0:3ed:26c1:8e5a with SMTP id g20-20020a05600c4ed400b003ed26c18e5amr1294483wmq.10.1678700588496;
+        Mon, 13 Mar 2023 02:43:08 -0700 (PDT)
+Received: from localhost (cst2-173-16.cust.vodafone.cz. [31.30.173.16])
+        by smtp.gmail.com with ESMTPSA id v7-20020a05600c444700b003e204fdb160sm9192391wmn.3.2023.03.13.02.43.07
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 13 Mar 2023 02:34:32 -0700 (PDT)
-Date:   Mon, 13 Mar 2023 17:34:23 +0800
-From:   Jianhua Lu <lujianhua000@gmail.com>
-To:     Neil Armstrong <neil.armstrong@linaro.org>
-Cc:     Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
+        Mon, 13 Mar 2023 02:43:08 -0700 (PDT)
+Date:   Mon, 13 Mar 2023 10:43:06 +0100
+From:   Andrew Jones <ajones@ventanamicro.com>
+To:     Alexandre Ghiti <alexghiti@rivosinc.com>
+Cc:     Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org
-Subject: Re: [PATCH v5 2/2] drm/panel: Add driver for Novatek NT36523
-Message-ID: <ZA7uH173ZmbGWzv8@Gentoo>
-References: <20230311123231.20771-1-lujianhua000@gmail.com>
- <20230311123231.20771-2-lujianhua000@gmail.com>
- <904bc493-7160-32fd-9709-1dcb978ddbab@linaro.org>
- <ZAx4KqXw+an555d4@Gentoo>
- <6c02557d-372d-05b1-2998-7c2cde99fac7@linaro.org>
+        Frank Rowand <frowand.list@gmail.com>,
+        Mike Rapoport <rppt@kernel.org>,
+        Andrew Morton <akpm@linux-foundation.org>,
+        Anup Patel <anup@brainfault.org>,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-mm@kvack.org
+Subject: Re: [PATCH v7 3/4] arm64: Make use of memblock_isolate_memory for
+ the linear mapping
+Message-ID: <20230313094306.6kslmrdixuw75iqf@orel>
+References: <20230310094539.764357-1-alexghiti@rivosinc.com>
+ <20230310094539.764357-4-alexghiti@rivosinc.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <6c02557d-372d-05b1-2998-7c2cde99fac7@linaro.org>
-X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+In-Reply-To: <20230310094539.764357-4-alexghiti@rivosinc.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Mar 13, 2023 at 09:06:50AM +0100, Neil Armstrong wrote:
-> On 11/03/2023 13:46, Jianhua Lu wrote:
-> > On Sat, Mar 11, 2023 at 01:38:52PM +0100, Konrad Dybcio wrote:
-> >>
-> >>
-> >> On 11.03.2023 13:32, Jianhua Lu wrote:
-> >>> Add a driver for panels using the Novatek NT36523 display driver IC.
-> >>>
-> >>> Signed-off-by: Jianhua Lu <lujianhua000@gmail.com>
-> >>> ---
-> >> [...]
-> >>
-> >>> +
-> >>> +static int nt36523_get_modes(struct drm_panel *panel,
-> >>> +			       struct drm_connector *connector)
-> >>> +{
-> >>> +	struct panel_info *pinfo = to_panel_info(panel);
-> >>> +	int i;
-> >>> +
-> >>> +	for (i = 0; i < pinfo->desc->num_modes; i++) {
-> >>> +		const struct drm_display_mode *m = &pinfo->desc->modes[i];
-> >>> +		struct drm_display_mode *mode;
-> >>> +
-> >>> +		mode = drm_mode_duplicate(connector->dev, m);
-> >>> +		if (!mode) {
-> >>> +			dev_err(panel->dev, "failed to add mode %ux%u@%u\n",
-> >>> +				m->hdisplay, m->vdisplay, drm_mode_vrefresh(m));
-> >>> +			return -ENOMEM;
-> >>> +		}
-> >>> +
-> >>> +		mode->type = DRM_MODE_TYPE_DRIVER;
-> >>> +		if (pinfo->desc->num_modes == 1)
-> >>> +			mode->type |= DRM_MODE_TYPE_PREFERRED;
-> >> That's not quite correct, as that means "if you have more than one
-> >> defined panel mode (say 60Hz and 120 Hz), there will be no preferred one".
-> > This piece of code I see in the other panels, so I'm not sure if it is
-> > correct. Should
-> > if (pinfo->desc->num_modes > 1)
-> > 			mode->type |= DRM_MODE_TYPE_PREFERRED;
-> > is correct?
+On Fri, Mar 10, 2023 at 10:45:38AM +0100, Alexandre Ghiti wrote:
+> In order to isolate the kernel text mapping, we used some sort of hack
+> to isolate the kernel text range which consisted in marking this region
+> as not mappable with memblock_mark_nomap. Simply use the newly introduced
+> memblock_isolate_memory function which does exactly the same but does not
+> uselessly mark the region as not mappable.
 > 
-> I think only a single mode with DRM_MODE_TYPE_PREFERRED is preferred,
-> so:
-> if (i == 0)
-> 	mode->type |= DRM_MODE_TYPE_PREFERRED;		
+> Signed-off-by: Alexandre Ghiti <alexghiti@rivosinc.com>
+> ---
+>  arch/arm64/mm/mmu.c | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
 > 
-> would be the right thing to do.
-Thanks for your explanation.
+> diff --git a/arch/arm64/mm/mmu.c b/arch/arm64/mm/mmu.c
+> index 6f9d8898a025..408dc852805c 100644
+> --- a/arch/arm64/mm/mmu.c
+> +++ b/arch/arm64/mm/mmu.c
+> @@ -552,7 +552,7 @@ static void __init map_mem(pgd_t *pgdp)
+>  	 * So temporarily mark them as NOMAP to skip mappings in
+>  	 * the following for-loop
+>  	 */
+
+The comment above doesn't apply anymore.
+
+> -	memblock_mark_nomap(kernel_start, kernel_end - kernel_start);
+> +	memblock_isolate_memory(kernel_start, kernel_end - kernel_start);
+>  
+>  #ifdef CONFIG_KEXEC_CORE
+>  	if (crash_mem_map) {
+> @@ -568,6 +568,7 @@ static void __init map_mem(pgd_t *pgdp)
+>  	for_each_mem_range(i, &start, &end) {
+>  		if (start >= end)
+>  			break;
+> +
+
+Mark nomap is also used for the crash kernel. Does the new API not work
+for it?
+
+Thanks,
+drew
+
+>  		/*
+>  		 * The linear map must allow allocation tags reading/writing
+>  		 * if MTE is present. Otherwise, it has the same attributes as
+> @@ -589,7 +590,6 @@ static void __init map_mem(pgd_t *pgdp)
+>  	 */
+>  	__map_memblock(pgdp, kernel_start, kernel_end,
+>  		       PAGE_KERNEL, NO_CONT_MAPPINGS);
+> -	memblock_clear_nomap(kernel_start, kernel_end - kernel_start);
+>  
+>  	/*
+>  	 * Use page-level mappings here so that we can shrink the region
+> -- 
+> 2.37.2
 > 
 > 
-> Neil
-> >>
-> >> Konrad
-> >>>
-> 
+> _______________________________________________
+> linux-riscv mailing list
+> linux-riscv@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-riscv
