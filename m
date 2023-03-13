@@ -2,123 +2,160 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4D0FF6B81DA
-	for <lists+devicetree@lfdr.de>; Mon, 13 Mar 2023 20:48:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D74E86B81E0
+	for <lists+devicetree@lfdr.de>; Mon, 13 Mar 2023 20:54:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229938AbjCMTsH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Mar 2023 15:48:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60830 "EHLO
+        id S230038AbjCMTyS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Mar 2023 15:54:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42686 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229473AbjCMTsG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Mar 2023 15:48:06 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 15D79FF13;
-        Mon, 13 Mar 2023 12:48:05 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id A3C6861485;
-        Mon, 13 Mar 2023 19:48:04 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C0959C433D2;
-        Mon, 13 Mar 2023 19:48:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1678736884;
-        bh=G2Dygv9h1k+AsQjs6iEoGo+aHQ82JlNoZoMwg+tfTdg=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:From;
-        b=ThIzozSw+qA+WbXZ5ZEUZMLXLp74nrCv6P5181EvRezMgzJlos3qJmki256PPKMxX
-         WDnRBx6in5H551XdcqfD6ynszY6OtG2WFMEWbbwMsmvMi1Gm/yc8bBUgGnEkas2L2p
-         zrc/lJUXnvSvL1e1M1+dKoPP0q+tQFYIMmmpVjxUnSwx8HTclzh4A1OUlTKomPFyUw
-         SzoANoHq1Dk3hfGgs4VBKSvlL/WXqhgOJTOPw3Q1TSynu7u7Hxh+/Rr54MtO3sJadY
-         Vjl3zt8X7NI73YNsAths7QSOAenXLqB+nDzJT+Z8LlOQcDHDOud1vKclR4NSQqR/yn
-         daLi1fGQJCmJQ==
-Date:   Mon, 13 Mar 2023 14:48:02 -0500
-From:   Bjorn Helgaas <helgaas@kernel.org>
-To:     Elad Nachman <enachman@marvell.com>
-Cc:     thomas.petazzoni@bootlin.com, bhelgaas@google.com,
-        lpieralisi@kernel.org, robh@kernel.org, kw@linux.com,
-        krzysztof.kozlowski+dt@linaro.org, linux-pci@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Serge Semin <Sergey.Semin@baikalelectronics.ru>
-Subject: Re: [PATCH v4 8/8] PCI: dwc: Introduce region limit from DT
-Message-ID: <20230313194802.GA1531673@bhelgaas>
+        with ESMTP id S230008AbjCMTyS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Mar 2023 15:54:18 -0400
+Received: from mail-pj1-x1035.google.com (mail-pj1-x1035.google.com [IPv6:2607:f8b0:4864:20::1035])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3C7D230B18
+        for <devicetree@vger.kernel.org>; Mon, 13 Mar 2023 12:54:15 -0700 (PDT)
+Received: by mail-pj1-x1035.google.com with SMTP id cn6so565526pjb.2
+        for <devicetree@vger.kernel.org>; Mon, 13 Mar 2023 12:54:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1678737254;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=IIRpccnj6QdWaP+7djIK0B82m70OeUvp6oiDbiM2NyY=;
+        b=sBpLJ+pwrdjzadrhoAhhR92IWQPiGL8BV/PZ+8Yv21zLaf0IlPFpjg5aKxThafUlyK
+         cTdd++/jVmnM5xndiaYa1R/iRFObBdqC8qf27vTmeAEJj9iIpmpAtU0blv9EKRVMOJMu
+         kurZdmTYaA1C0GXvQmHSUr59C6Wm5SS+HdXGSi2CWie1vO/zo20fucspo505nB53SFz9
+         yRd+aPqintpYobBQckGgfXFKpa1v6XvnOY6FnSdHubc6OUMVIsVMAEMSjHvOkJJCSWC2
+         51cv12vClcj7koN8DtPEa/ZE9J5VdDXDzAeKEzwAHPejalFzcXTX3yG40gdw4/WQGW8x
+         y/2w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1678737254;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=IIRpccnj6QdWaP+7djIK0B82m70OeUvp6oiDbiM2NyY=;
+        b=Po6hhTshu9d2CE1eNCgn2TZDicB44zNQra2oMEAzaZv7c+b/D9oVRvVcAFevi1Awt5
+         DnLaPAFgSbL31kVoQpOVDFtNLtM9QfcVVwFSvceYBiMmc1zeDHgBjeKmUHU9AXU0pHzJ
+         sLFZTvfXldNiIOLT3WlUuVlNX256aY9CaS/EOI5uTPeL0DXBq8UJah4891rBFffplZDS
+         y8TEsIAsnD6BQU5hHm/mcFHo9mdDPoVuG7xlCUI4Prgp7AKFutoSxBL6JgVdz4kgpyF2
+         /ViUkhWLFxpXtcZ1q5M+r9WVgvQW4ygRWMte3qVdFCq3sMSyqKGwXJr65mZ8T6gl0bIb
+         di5Q==
+X-Gm-Message-State: AO0yUKX8oZ9v/7VGbmD9xC5JKsJdnrIdyO0Ug90eP5Ewh/alPViyOkcL
+        5MSHmwCxy5uM6K8K6bNmQVKxDQ==
+X-Google-Smtp-Source: AK7set+BggVToSySWpaN9jUkKsW5DIa7uiTKL/TI0z17kIwb6FoN7xVsApFGpvy6dzvv/SAvv7uEaQ==
+X-Received: by 2002:a05:6a20:8e07:b0:cd:d13:8a6e with SMTP id y7-20020a056a208e0700b000cd0d138a6emr40737807pzj.21.1678737254616;
+        Mon, 13 Mar 2023 12:54:14 -0700 (PDT)
+Received: from ?IPV6:2401:4900:1c5e:4a3e:15d0:d540:3861:ef0e? ([2401:4900:1c5e:4a3e:15d0:d540:3861:ef0e])
+        by smtp.gmail.com with ESMTPSA id s14-20020a65644e000000b0050362744b63sm99565pgv.90.2023.03.13.12.54.10
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 13 Mar 2023 12:54:14 -0700 (PDT)
+Message-ID: <99b7f8c2-38d5-9912-06aa-65beb723cfcf@linaro.org>
+Date:   Tue, 14 Mar 2023 01:24:08 +0530
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230313124016.17102-9-enachman@marvell.com>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.3.1
+Subject: Re: [PATCH 2/2] dt-bindings: remoteproc: qcom: Add sm6115 pas yaml
+ file
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org
+Cc:     mani@kernel.org, mathieu.poirier@linaro.org, agross@kernel.org,
+        andersson@kernel.org, konrad.dybcio@linaro.org,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        bhupesh.linux@gmail.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org
+References: <20230128053504.2099620-1-bhupesh.sharma@linaro.org>
+ <20230128053504.2099620-2-bhupesh.sharma@linaro.org>
+ <7cbd882d-c71c-ad92-6dbe-0f178043fdfd@linaro.org>
+Content-Language: en-US
+From:   Bhupesh Sharma <bhupesh.sharma@linaro.org>
+In-Reply-To: <7cbd882d-c71c-ad92-6dbe-0f178043fdfd@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-[+cc Serge, who has done most of the recent work in this file]
+Hi Krzysztof,
 
-On Mon, Mar 13, 2023 at 02:40:16PM +0200, Elad Nachman wrote:
-> From: Elad Nachman <enachman@marvell.com>
+On 3/9/23 1:56 PM, Krzysztof Kozlowski wrote:
+> On 28/01/2023 06:35, Bhupesh Sharma wrote:
+>> This documents the aDSP, cDSP and MPSS DSPs present
+>> on the SM6115 SoC.
+>>
+>> Signed-off-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
+>> ---
+>>   .../bindings/remoteproc/qcom,sm6115-pas.yaml  | 143 ++++++++++++++++++
+>>   1 file changed, 143 insertions(+)
+>>   create mode 100644 Documentation/devicetree/bindings/remoteproc/qcom,sm6115-pas.yaml
+>>
+>> diff --git a/Documentation/devicetree/bindings/remoteproc/qcom,sm6115-pas.yaml b/Documentation/devicetree/bindings/remoteproc/qcom,sm6115-pas.yaml
+>> new file mode 100644
+>> index 000000000000..f5d1fa9f45f1
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/remoteproc/qcom,sm6115-pas.yaml
+>> @@ -0,0 +1,143 @@
+>> +# SPDX-License-Identifier: GPL-2.0 OR BSD-2-Clause
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/remoteproc/qcom,sm6115-pas.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: Qualcomm SM6115 Peripheral Authentication Service
+>> +
+>> +maintainers:
+>> +  - Bhupesh Sharma <bhupesh.sharma@linaro.org>
+>> +
+>> +description:
+>> +  Qualcomm SM6115 SoC Peripheral Authentication Service loads and boots
+>> +  firmware on the Qualcomm DSP Hexagon cores.
+>> +
+>> +properties:
+>> +  compatible:
+>> +    enum:
+>> +      - qcom,sm6115-adsp-pas
+>> +      - qcom,sm6115-cdsp-pas
+>> +      - qcom,sm6115-mpss-pas
+>> +
+>> +  reg:
+>> +    maxItems: 1
+>> +
+>> +  clocks:
+>> +    items:
+>> +      - description: XO clock
+>> +
+>> +  clock-names:
+>> +    items:
+>> +      - const: xo
+>> +
+>> +  memory-region:
+>> +    minItems: 1
 > 
-> Allow dts override of region limit for SOCs with older Synopsis
-> Designware PCIe IP but with greater than 32-bit address range support,
-> such as the Armada 7020/7040/8040 family of SOCs by Marvell,
-> when the DT file places the PCIe window above the 4GB region.
-> The Synopsis Designware PCIe IP in these SOCs is too old to specify the
-> highest memory location supported by the PCIe, but practically supports
-> such locations. Allow these locations to be specified in the DT file.
-> DT property is called num-regionmask , and can range between 33 and 64.
-
-s/Synopsis/Synopsys/ (several occurrences)
-
-s/Designware/DesignWare/ (several occurrences)
-
-Remove space before comma.
-
-> Signed-off-by: Elad Nachman <enachman@marvell.com>
-> ---
-> v4:
->    1) Fix blank lines removal / addition
+> maxItems instead
 > 
->    2) Remove usage of variable with same name as dt binding property
+>> +    description: Reference to the reserved-memory for the Hexagon core
+>> +
+>> +  smd-edge: false
+>> +
+>> +  firmware-name:
+>> +    $ref: /schemas/types.yaml#/definitions/string
+>> +    description: Firmware name for the Hexagon core
+>> +
+>> +required:
+>> +  - compatible
+>> +  - reg
 > 
->  drivers/pci/controller/dwc/pcie-designware.c | 12 ++++++++++--
->  1 file changed, 10 insertions(+), 2 deletions(-)
-> 
-> diff --git a/drivers/pci/controller/dwc/pcie-designware.c b/drivers/pci/controller/dwc/pcie-designware.c
-> index 53a16b8b6ac2..9773c110c733 100644
-> --- a/drivers/pci/controller/dwc/pcie-designware.c
-> +++ b/drivers/pci/controller/dwc/pcie-designware.c
-> @@ -735,8 +735,10 @@ static void dw_pcie_link_set_max_speed(struct dw_pcie *pci, u32 link_gen)
->  void dw_pcie_iatu_detect(struct dw_pcie *pci)
->  {
->  	int max_region, ob, ib;
-> -	u32 val, min, dir;
-> +	u32 val, min, dir, ret;
->  	u64 max;
-> +	struct device *dev = pci->dev;
-> +	struct device_node *np = dev->of_node;
->  
->  	val = dw_pcie_readl_dbi(pci, PCIE_ATU_VIEWPORT);
->  	if (val == 0xFFFFFFFF) {
-> @@ -781,7 +783,13 @@ void dw_pcie_iatu_detect(struct dw_pcie *pci)
->  		dw_pcie_writel_atu(pci, dir, 0, PCIE_ATU_UPPER_LIMIT, 0xFFFFFFFF);
->  		max = dw_pcie_readl_atu(pci, dir, 0, PCIE_ATU_UPPER_LIMIT);
->  	} else {
-> -		max = 0;
-> +		/* Allow dts override of region limit for older IP with above 32-bit support: */
+> also memory-region
 
-Reflow comment to fit in 80 columns.
 
-> +		ret = of_property_read_u32(np, "num-regionmask", &val);
-> +		if (!ret && val > 32) {
-> +			max = GENMASK(val - 33, 0);
-> +			dev_info(pci->dev, "Overriding region limit to %u bits\n", val);
-> +		} else
-> +			max = 0;
->  	}
->  
->  	pci->num_ob_windows = ob;
-> -- 
-> 2.17.1
-> 
+Since this patch was already picked up by Bjorn, I will send a fix as 
+per your suggestion as a separate patch shortly.
+
+Thanks,
+Bhupesh
+
