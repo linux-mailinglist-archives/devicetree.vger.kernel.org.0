@@ -2,92 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CF5856B74D4
-	for <lists+devicetree@lfdr.de>; Mon, 13 Mar 2023 11:57:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A21AA6B74FB
+	for <lists+devicetree@lfdr.de>; Mon, 13 Mar 2023 12:00:02 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230213AbjCMK5V (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Mar 2023 06:57:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51854 "EHLO
+        id S229514AbjCMLAA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Mar 2023 07:00:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59096 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230081AbjCMK5U (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Mar 2023 06:57:20 -0400
-Received: from uho.ysoft.cz (uho.ysoft.cz [81.19.3.130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9AB6658494;
-        Mon, 13 Mar 2023 03:57:18 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ysoft.com;
-        s=20160406-ysoft-com; t=1678705036;
-        bh=IPc5NyxVVTlDZKlelVa22MZ0Y0RkYiQXIKb0cIaOS7I=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=gvQ3iNJHZ0GUNQeKO4kUbl5xLLp27lLhIUPr0UB3ZqKm5PnzyGEzpjCIdpUN7hdTq
-         uG5N06rwWnpLvvTLOuHpwp15flbm7wA8PsUnhffZ8d2Ua9+doyKPwvO4JyrJxStUnQ
-         RtmjSiMIXW+emOzz54ce1H0hmoLCYmjYWh2nCZKI=
-Received: from [10.0.29.154] (unknown [10.0.29.154])
-        by uho.ysoft.cz (Postfix) with ESMTP id EBA95A0522;
-        Mon, 13 Mar 2023 11:57:15 +0100 (CET)
-Message-ID: <028f0434-eb66-2481-9576-5d6c312eb81a@ysoft.com>
-Date:   Mon, 13 Mar 2023 11:57:15 +0100
+        with ESMTP id S229831AbjCMK7y (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Mar 2023 06:59:54 -0400
+Received: from mail-pg1-x52e.google.com (mail-pg1-x52e.google.com [IPv6:2607:f8b0:4864:20::52e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0E2BA34C35;
+        Mon, 13 Mar 2023 03:59:25 -0700 (PDT)
+Received: by mail-pg1-x52e.google.com with SMTP id y189so2459178pgb.10;
+        Mon, 13 Mar 2023 03:59:25 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112; t=1678705158;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Vsy2LwxeFUk+ZOJmYzV0ZLx3OS9N/i1hwSUV0kkdxCM=;
+        b=bGuZD/VLxXcb3aGciJIohMPcL7qBZxHLur9yZGiHL7e3FcGESx3W0w2U5CH+lOz7ql
+         GAVxl5ckJKkz/aumySGqDDs9kVdMaaB0zOCwdCegFhftcGvXO9qCWZ9A49/IHaDAOr5u
+         7A8kkbvZHC/PSNJO7y7lMZTNqhimTZs3O2su+S3EjmqtaUwSTmxCuLWtaKrWQRXW+e5d
+         pBh0vrjTfreRS/p5qO5eqfNbLc+B74PqNv2sPBE2f2xP1xTL4bPfHB2rQL1I14u9Uf6A
+         guQ027QE7frLarMNqZk1eFV/6Zs1S/9M2Sp3t8oafiY4BG3c+2mWQp7mlgkpnkbUVc3i
+         pQVA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1678705158;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=Vsy2LwxeFUk+ZOJmYzV0ZLx3OS9N/i1hwSUV0kkdxCM=;
+        b=qx9lAnHEqlvgxpmzEHUvey7Uoctp30INvZvJZWtfX4dmFda53k16Ny4HMGLNVC7ymd
+         AsEmbxn4hmXR8tvs3s6rkGsMUYNf76ZhsYkKc2fvGhm7EVHyb1Zt9XosL+C69Es2odZB
+         lhijNi8HyDkE1fA7kOgGByzWMObAgs5mNoDpik4PgCW44KAu84ffPHRUMgVHMLMzTH56
+         YLSu0k/1bKwkfs/j/qEBBkQivPZT4Xt2OBTnUnWTtnTcBE/ygVgaXgIHQPkU0/VUD1h7
+         hlJ2MNG/DjsBqitYioBQ+xtWz19ZgOemfELNZ08yuB4OYwkgtCU09FB6xuQvzpeBqQ3Y
+         UEfw==
+X-Gm-Message-State: AO0yUKXA8DFo9neqRkb/Nm+uGH1WIZ6oPjNikK9D9HpQto86qp8O7oj2
+        qEA38iDxW9EOHTlM1fkoEl18i28PKp0W6vqqqZA=
+X-Google-Smtp-Source: AK7set9Ehv9CzLEw3Sa0anMtfKyS2uQ3vqf1+BmUiwQX01+JeYZP96vMT79fOk02aIOJdh8qCoKrQCbVt6qSSsI447k=
+X-Received: by 2002:a05:6a00:14d6:b0:5aa:310c:e65b with SMTP id
+ w22-20020a056a0014d600b005aa310ce65bmr14168933pfu.2.1678705158151; Mon, 13
+ Mar 2023 03:59:18 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.1
-Subject: Re: [PATCH 2/6] ARM: dts: imx6dl-yapp4: Change LED channel names
- according to dt-binding
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Shawn Guo <shawnguo@kernel.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-References: <20230210154855.3086900-1-michal.vokac@ysoft.com>
- <20230210154855.3086900-3-michal.vokac@ysoft.com>
- <20230313082834.GO143566@dragon>
- <ea652d10-d910-40d8-9eae-39f2ba722466@linaro.org>
-Content-Language: en-US
-From:   =?UTF-8?B?TWljaGFsIFZva8OhxI0=?= <michal.vokac@ysoft.com>
-In-Reply-To: <ea652d10-d910-40d8-9eae-39f2ba722466@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+References: <20230310144656.1540950-1-robh@kernel.org> <c2191745-714c-7cdc-ba2d-a254245bbdac@linaro.org>
+In-Reply-To: <c2191745-714c-7cdc-ba2d-a254245bbdac@linaro.org>
+From:   Jonas Gorski <jonas.gorski@gmail.com>
+Date:   Mon, 13 Mar 2023 11:59:06 +0100
+Message-ID: <CAOiHx=m+q8ALpESkudkTPL3XKWz2O0-JGGVD0CqWbq3xQ-6dng@mail.gmail.com>
+Subject: Re: [PATCH] mips: Use of_property_read_bool() for boolean properties
+To:     =?UTF-8?Q?Philippe_Mathieu=2DDaud=C3=A9?= <philmd@linaro.org>
+Cc:     Rob Herring <robh@kernel.org>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        devicetree@vger.kernel.org, linux-mips@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 13. 03. 23 9:48, Krzysztof Kozlowski wrote:
-> On 13/03/2023 09:28, Shawn Guo wrote:
->> On Fri, Feb 10, 2023 at 04:48:51PM +0100, Michal Vokáč wrote:
->>> The lp55xx LED controller binding was converted to schema and dtbs_check
->>> now complains:
->>>
->>>    led-controller@30: 'chan@0', 'chan@1', 'chan@2' do not match any of the regexes
->>>
->>> Use correct names to fix that.
->>>
->>> Signed-off-by: Michal Vokáč <michal.vokac@ysoft.com>
->>
->> It's been address as part of this commit:
->>
->> https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id=4b0d1f2738899dbcc7a026d826373530019aa31b
->>
-> 
-> Which is mainline, so it raises the question on what old tree this was
-> based on...
+Hi,
 
-The whole series is based on v6.2-rc7-11-g05ecb680708a which was
-linux-stable tree master branch from February 6th. I was not aware
-of the referenced commit as it was merged later into v6.3-rc.
+On Mon, 13 Mar 2023 at 09:31, Philippe Mathieu-Daud=C3=A9 <philmd@linaro.or=
+g> wrote:
+>
+> Hi Rob,
+>
+> On 10/3/23 15:46, Rob Herring wrote:
+> > It is preferred to use typed property access functions (i.e.
+> > of_property_read_<type> functions) rather than low-level
+> > of_get_property/of_find_property functions for reading properties.
+> > Convert reading boolean properties to to of_property_read_bool().
+> >
+> > Signed-off-by: Rob Herring <robh@kernel.org>
+> > ---
+> >   arch/mips/pci/pci-lantiq.c | 2 +-
+> >   arch/mips/pci/pci-rt3883.c | 2 +-
+> >   2 files changed, 2 insertions(+), 2 deletions(-)
+> >
+> > diff --git a/arch/mips/pci/pci-lantiq.c b/arch/mips/pci/pci-lantiq.c
+> > index d967e4c0cf24..79e29bf42a24 100644
+> > --- a/arch/mips/pci/pci-lantiq.c
+> > +++ b/arch/mips/pci/pci-lantiq.c
+> > @@ -118,7 +118,7 @@ static int ltq_pci_startup(struct platform_device *=
+pdev)
+> >
+> >       /* and enable the clocks */
+> >       clk_enable(clk_pci);
+> > -     if (of_find_property(node, "lantiq,external-clock", NULL))
+> > +     if (of_property_read_bool(node, "lantiq,external-clock"))
+>
+> Just curious, is this property correct? I can't find it and wonder if
+> this is dead code (always disabling the clock)... I'm probably missing
+> something obvious :/
+>
+> >               clk_enable(clk_external);
+> >       else
+> >               clk_disable(clk_external);
 
-Good that it is fixed already, this patch can be skipped.
-It is just unfortunate that I was not Cc'd back then.
+The (whole) binding does seem to be undocumented, at least a quick
+grep didn't find anything for "lantiq,pci-xway" in bindings :-/
 
-Thanks,
-Michal
+The property itself is used in OpenWrt though, e.g.
+https://github.com/openwrt/openwrt/blob/master/target/linux/lantiq/files/ar=
+ch/mips/boot/dts/lantiq/danube_arcadyan_arv7518pw.dts#L209
 
-
+Regards
+Jonas
