@@ -2,119 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 805106B7131
-	for <lists+devicetree@lfdr.de>; Mon, 13 Mar 2023 09:32:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DE1066B7135
+	for <lists+devicetree@lfdr.de>; Mon, 13 Mar 2023 09:33:36 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229999AbjCMIcP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Mar 2023 04:32:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58956 "EHLO
+        id S229950AbjCMIdc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Mar 2023 04:33:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33016 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229853AbjCMIcO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Mar 2023 04:32:14 -0400
-Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A89EA37F0B
-        for <devicetree@vger.kernel.org>; Mon, 13 Mar 2023 01:32:12 -0700 (PDT)
-Received: by mail-lf1-x12a.google.com with SMTP id s22so14608698lfi.9
-        for <devicetree@vger.kernel.org>; Mon, 13 Mar 2023 01:32:12 -0700 (PDT)
+        with ESMTP id S229648AbjCMIdb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Mar 2023 04:33:31 -0400
+Received: from mail-yb1-xb2e.google.com (mail-yb1-xb2e.google.com [IPv6:2607:f8b0:4864:20::b2e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DE94E19F22
+        for <devicetree@vger.kernel.org>; Mon, 13 Mar 2023 01:33:28 -0700 (PDT)
+Received: by mail-yb1-xb2e.google.com with SMTP id t4so10855012ybg.11
+        for <devicetree@vger.kernel.org>; Mon, 13 Mar 2023 01:33:28 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1678696331;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=m/8aoFq3Wt4qRJGdyM50szuohL78RDsQQ4bLouWO7Kc=;
-        b=FwTJWlPNne5zVw7TP82i61UUGFDKCSeE6kqRogUzFfyCHT7MP0rS4f+h98K9ngjqHv
-         YlDwsaLX32Mw25Eh8vpbCsSNQn6oFokUVDKAb4o0sjOSHxNHizddUYWgK2tu5B0bLtXy
-         E5pAsyNur9Wc5UOGWrWCtOnQn8UY0uXeziFpwtA0Wc4Lw5jg1QDR5KruJgx1UGuintAp
-         M8KKLo1F70bAOnG4uHuK7vuf2k5Za3GVu0f8ETLrOvgtcTkPYj0V9JrAJBHTW4r3fyM8
-         kf/xoYj9zgHkot6YrHKoBMrjnfgEA6Lqt2LhHwjxZ40pGs3IFoy7q+4xg3pEjx5ApWrk
-         Q8nQ==
+        d=linaro.org; s=google; t=1678696408;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=7ya0xeR3EOwIf2SQwBchOfop6EHpJp/mskrRR9QbQKU=;
+        b=ulacoDZkaeqpJxaGwNgh41bzF3Mu0/3b4OqyAvKgxKFWQYsb8nRc5fcQ0riYXDY8yt
+         smy4lCoCdN6Rtwj791c+Ib8RAkUysTZAguLKWGAOPk9qq67kF1IgeCFVQTEQfcZlE7t+
+         wbyllsVuvw0dIx5r/r9Uy8290CTjwUdZNicO6KKs6wQOd5AhoR+NQ633EQBiaqA4qUqq
+         leXmeMVZACMGHsRj9I/ZnRnNXLmhsMeD/6UJ/Jr+i6FHYkll0S9SYNXaYmlsBUfdeZHg
+         bhhom6zFIomkoS9E/fCJUM8zWU+lVxzQCAYwqludjFQ+N02O5pXSjVd2NrS2+tVFaCPs
+         V0tA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678696331;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=m/8aoFq3Wt4qRJGdyM50szuohL78RDsQQ4bLouWO7Kc=;
-        b=QFda0md/L6VKseRJiJ+UQVbGEeLvV7DbIP+oV9OSmbEDr2F3Pd99WlOjYRljvIi2V4
-         vLM0C5zG44Pg2L1C/nyyopGWfzysLOYRy+vmYFzpFdiMu3toHm6y0R5RYTKJ0e949Ryh
-         i81FZ1xTiAa1DnOB3AiiqbfHp8jUdtkl9QF1FhaInDGoiBshkWw/e5pop2YgcH12pqpX
-         ODMEws46jsZ+8X5oSHsPp7L7KUQAf4aPGlWtzReAiPWeTAKmBSFeJJBq5sTZL3aST2Tw
-         Ske8c/HXzNd5L2Sr1piYBfdi2ZkZ47Xzs1dPuLIksIqH1cf6UXuadyFcjMju87VOkxGI
-         Ohhg==
-X-Gm-Message-State: AO0yUKXZUwal3J//okoNF8cVmxJ/hwbhhjZ9dy/GPjkON1PgdwNHd2Sk
-        ErsEni8jm76Ylu0y0cPu2Nn7dw==
-X-Google-Smtp-Source: AK7set9mepNuW+zboSNk0nqXRNn14qHxcfk9RKzKaRvRz1VnHLHEsN+6ZEf/F4XWWao5C+mNNVTORQ==
-X-Received: by 2002:a05:6512:24b:b0:4b5:5caf:9d62 with SMTP id b11-20020a056512024b00b004b55caf9d62mr9615247lfo.61.1678696330893;
-        Mon, 13 Mar 2023 01:32:10 -0700 (PDT)
-Received: from [192.168.1.101] (abyj16.neoplus.adsl.tpnet.pl. [83.9.29.16])
-        by smtp.gmail.com with ESMTPSA id w1-20020ac25981000000b004e1b880ba20sm896028lfn.292.2023.03.13.01.32.09
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 13 Mar 2023 01:32:10 -0700 (PDT)
-Message-ID: <5441450e-be39-1033-b3d5-c3eb10950d34@linaro.org>
-Date:   Mon, 13 Mar 2023 09:32:07 +0100
+        d=1e100.net; s=20210112; t=1678696408;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=7ya0xeR3EOwIf2SQwBchOfop6EHpJp/mskrRR9QbQKU=;
+        b=ypl4XJFwflBHXnxZg58lBXzOLycR7/K3T51S0Pyhko8w9/pYtqP0RUuGZ83RG4eOiC
+         1/NyIVqdJegM6jtyHG1hA0APIQ15eawmCM8NfR9yMEq8V+06N6v5N7vatPL+iOyQhY5p
+         cWTVNO20b+jbXeJsBgoIxRax0ch7s0nWA65PFvNVUZ9vTAMSwJFijbGeDymnLPgVvXf0
+         BUoztc+7vo7hS2+hak0Gq9Dqi36HqBYX2s2T772a/ewSW8b14koK4rDhXs2ueyBAnMVP
+         l3HbiaLAouloyKA8KtPjV8IGia6Hl2Wcr4LUsSM+MJ4Q09FwOf5AylYhM2mBQb2NyA/n
+         5A9g==
+X-Gm-Message-State: AO0yUKUZD/gfITRnf8rRO2oMTeZQLYFhINEkyJ1dS9l5AWACI0TbVfJE
+        lXF2+9GSKpK0o75wWp8sRIB+G7mkTMwYYBjUeRdOaQ==
+X-Google-Smtp-Source: AK7set/R4BiH/PF2hRbxzLizFVyNAKs4lvl4ii9te26TFCwaA12bbjRzIKdishRkQRMWInaP7gjjosZtyDFj/LVkRns=
+X-Received: by 2002:a5b:38a:0:b0:ac9:cb97:bd0e with SMTP id
+ k10-20020a5b038a000000b00ac9cb97bd0emr16155629ybp.5.1678696408073; Mon, 13
+ Mar 2023 01:33:28 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-Subject: Re: [PATCH] arm64: dts: qcom: qdu1000: Add
- LLCC/system-cache-controller node
-To:     Komal Bajaj <quic_kbajaj@quicinc.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
+References: <20230309225041.477440-1-sre@kernel.org> <20230309225041.477440-7-sre@kernel.org>
+ <CACRpkdYTD3OZ-44N0oRD93gToxR_DoFSkLhvNjrRpCms2TX5nw@mail.gmail.com> <eaa72600-b85a-fa97-45ff-6412696682b6@gmail.com>
+In-Reply-To: <eaa72600-b85a-fa97-45ff-6412696682b6@gmail.com>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Mon, 13 Mar 2023 09:33:16 +0100
+Message-ID: <CACRpkdaHKZjkvZYM6GAnzXeRgfqFWE1aGMEqkN1HQ-3TX-DjtA@mail.gmail.com>
+Subject: Re: [PATCHv1 06/11] power: supply: generic-adc-battery: drop charge
+ now support
+To:     Matti Vaittinen <mazziesaccount@gmail.com>
+Cc:     Sebastian Reichel <sre@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20230313071757.31533-1-quic_kbajaj@quicinc.com>
-Content-Language: en-US
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20230313071757.31533-1-quic_kbajaj@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-0.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_SORBS_HTTP,RCVD_IN_SORBS_SOCKS,SPF_HELO_NONE,SPF_PASS
-        autolearn=no autolearn_force=no version=3.4.6
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Mon, Mar 13, 2023 at 8:49=E2=80=AFAM Matti Vaittinen
+<mazziesaccount@gmail.com> wrote:
+> On 3/10/23 10:29, Linus Walleij wrote:
+> > On Thu, Mar 9, 2023 at 11:50=E2=80=AFPM Sebastian Reichel <sre@kernel.o=
+rg> wrote:
+> >
+> >> Drop CHARGE_NOW support, which requires a platform specific
+> >> calculation method.
+> >>
+> >> Signed-off-by: Sebastian Reichel <sre@kernel.org>
+> >
+> > I agree. If we want to support this, we should use the generic
+> > methods with interpolation tables defined in DT as well, and it also
+> > ideally requires load compensated resistance calculation to figure
+> > out Ri so this can bring any kind of reasonable precision.
+>
+> I guess you have your reasons, besides you have far better insight to
+> things than I do - hence I am not really objecting this - just asking a
+> question ;)
+>
+> Do we have generic facilities of computing this based on the DT tables /
+> Ri in place(?)
 
+Not yet, for the Samsung batteries I used a static look-up table
+derived from the compatible string for calculating Ri from VBAT
+and from that calculate the capacity from estimated open
+circuit voltage, see
+drivers/power/supply/samsung-sdi-battery.c
 
-On 13.03.2023 08:17, Komal Bajaj wrote:
-> Add a DT node for Last level cache (aka. system cache) controller
-> which provides control over the last level cache present on QDU1000
-> and QRU1000 SoCs.
-> 
-> Signed-off-by: Komal Bajaj <quic_kbajaj@quicinc.com>
-> ---
->  arch/arm64/boot/dts/qcom/qdu1000.dtsi | 10 ++++++++++
->  1 file changed, 10 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/qdu1000.dtsi b/arch/arm64/boot/dts/qcom/qdu1000.dtsi
-> index 801f090335a3..a4816a862344 100644
-> --- a/arch/arm64/boot/dts/qcom/qdu1000.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/qdu1000.dtsi
-> @@ -1321,6 +1321,16 @@ gem_noc: interconnect@19100000 {
->  			qcom,bcm-voters = <&apps_bcm_voter>;
->  			#interconnect-cells = <2>;
->  		};
-> +
-> +		system-cache-controller@19200000 {
-> +			compatible = "qcom,qdu1000-llcc";
-> +			reg = <0 0x19200000 0 0xd80000>,
-> +			      <0 0x1a200000 0 0x80000>,
-> +			      <0 0x221c8128 0 0x4>;
-> +			reg-names = "llcc_base", "llcc_broadcast_base", "multi_channel_register";
-Please turn this into a vertical list, like you did with reg
+> I guess that we do need/see platform specific
+> implementations as long as there is no generic "de-facto" way of doing
+> this available...
 
-> +			multi-ch-bit-off = <24 2>;
-driver-specific properties generally go after the generic ones,
-so swap this one with interrupts
+The method I used with Samsung batteries is fine as long as all you
+need to know to know everything about a battery is the compatible
+string. Pretty much any Lion battery with a clearly defined product
+name can be done this way.
 
-Konrad
-> +			interrupts = <GIC_SPI 266 IRQ_TYPE_LEVEL_HIGH>;
-> +		};
->  	};
->  
->  	arch_timer: timer {
+The only reason to put the interpolation tables into the device
+tree would be to support any random battery, such as one
+that you do not know the model or this can change.
+
+I am however mildly sceptic about adding that: if you know the
+VBAT-to-Ri and OCV-to-capacity tables, you must have a
+datasheet, and then you know the name of the battery product
+and hence you know the right compatible string...
+
+I think the right way to handle any capacity curves for any battery
+would be to create static data like I did for the Samsung batteries.
+
+Yours,
+Linus Walleij
