@@ -2,113 +2,200 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0F2796B764B
-	for <lists+devicetree@lfdr.de>; Mon, 13 Mar 2023 12:42:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 465FE6B7699
+	for <lists+devicetree@lfdr.de>; Mon, 13 Mar 2023 12:50:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231334AbjCMLmi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Mar 2023 07:42:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49382 "EHLO
+        id S230428AbjCMLuc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Mar 2023 07:50:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41508 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231182AbjCMLmG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Mar 2023 07:42:06 -0400
-Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8131865C7A
-        for <devicetree@vger.kernel.org>; Mon, 13 Mar 2023 04:41:34 -0700 (PDT)
-Received: by mail-lf1-x129.google.com with SMTP id n2so15257954lfb.12
-        for <devicetree@vger.kernel.org>; Mon, 13 Mar 2023 04:41:34 -0700 (PDT)
+        with ESMTP id S231133AbjCMLu3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Mar 2023 07:50:29 -0400
+Received: from mail-wm1-x336.google.com (mail-wm1-x336.google.com [IPv6:2a00:1450:4864:20::336])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 39CFC2194D
+        for <devicetree@vger.kernel.org>; Mon, 13 Mar 2023 04:50:02 -0700 (PDT)
+Received: by mail-wm1-x336.google.com with SMTP id r19-20020a05600c459300b003eb3e2a5e7bso7659607wmo.0
+        for <devicetree@vger.kernel.org>; Mon, 13 Mar 2023 04:50:02 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1678707686;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=RH10IfoWhFhfMN7U8guTBq/z8yFM8bycsFPXU+lvHyE=;
-        b=xT30oxgN4y6Rar0wqRH4afPyKNC4nqyZTJ8SIeW/1FIly1DqrAbpUWyajxrBMlL6xa
-         IC1FXWHVX+AI48ZCLgJ58xxG6Bol9YXcvtHOPuaG4YTrwdkqpFtd2v2mtxKPqthncZLV
-         DFF7IXyFJhq/WySK/632zrh+rKhWbl10XPV5Esx0ACxHhSTN1ojE8KYE9vQ2vkOj184c
-         2aXQNlVC6sDdm+H3kH44c3ShSNXQstXCMBEAUg4t4XBFzGLomILmQzdB7FxatkK+FaYH
-         CEJu8+Fv2iRDSx0oRLVT6MGjysxonOiP/duwhSlP1B6I5GQjrLfcIrQFsDlYPGokBTmq
-         MeRw==
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112; t=1678708194;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=a2e76SVF27ZugGmUDflwqLOuHVazSHBJvoHoACHILcw=;
+        b=SHO5FThiChWqlKWWisdxKbcKmWAq5E7zsKeOUnXcnwQBkwC47QFequMG0bYlwzsER8
+         ZXVtPSWZxaliGD1jWU+bemIkR5WPBWIzCkE54EZNrfkDwvlpOpMyAGHEpjdnGzZteM7j
+         D/4JP3omJq8WZ/WqShov0gsd+cytY3CLyYbZDTbVK1Tm1tPQjmoAjDMTebXg+X3CDBv7
+         VTk+q8kFRWLHcqkMoP8bVzuYeuN8BzJ2z3bPsRpVryiAQU9c7Vr4W77NVNQH11jaSxVI
+         OA0/i1wDBQUVN1Mn0skO5xps8iDNOB87TDD/VCrgxRT4XMJzoGZZlx632mT/+VIxU2qB
+         hzlQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678707686;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=RH10IfoWhFhfMN7U8guTBq/z8yFM8bycsFPXU+lvHyE=;
-        b=R/Dwlbu8lWHL8CEH7nAUPLkKNJnmjCug9D1vU5hz62oKcwsHDLVVfMTjnBWdcMmOdi
-         wHH1kcFcgpf7kD1Y2iNT3Pvhlgkh5Yv9sPGCQud9Kitanx1YSQu9c8cRWGJR9PfxxlOR
-         Xd4T3duZ0eXY7kCZmtI4KyxHZ0EpNgxEK24yQSby47lA2mf1W31ZvnJ3J+4YyjE+h3c/
-         8fyS9md4fj7iahjJR9lUi1ffjCqVVyYCqelrikQvPBqYbAJqOgHiJcf6/TL8qoIZW0TN
-         3fsm2S9fg+pYciPRpsWTAgFOtsIHy+gkISFI81dX6F4+PVE3kZhJByKjmycow6thIIkE
-         tCyw==
-X-Gm-Message-State: AO0yUKXlpjKb5mOLbD0+1L9uXvI1QyMQR6kSZX7pil8KF6bMtDJFHPvH
-        2UGBWnPbzlT4QVdOGtnWpAvNqQ==
-X-Google-Smtp-Source: AK7set/tI4nk7AoITBvfoTwGu0Y7NAxmBwOlHtVgi7aTL3sLkjBEvxxpJ+ZblFUd2oU/KXkw05pmFQ==
-X-Received: by 2002:a19:7614:0:b0:4e0:ce21:b92 with SMTP id c20-20020a197614000000b004e0ce210b92mr10348746lff.16.1678707685996;
-        Mon, 13 Mar 2023 04:41:25 -0700 (PDT)
-Received: from [192.168.1.101] (abyj16.neoplus.adsl.tpnet.pl. [83.9.29.16])
-        by smtp.gmail.com with ESMTPSA id i2-20020ac25222000000b004d86808fd33sm948465lfl.15.2023.03.13.04.41.24
+        d=1e100.net; s=20210112; t=1678708194;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=a2e76SVF27ZugGmUDflwqLOuHVazSHBJvoHoACHILcw=;
+        b=QErY3oJZfkL1tvsMjM/j9tmi4dXmqvVpIhQO+kalEk4a3q9FkYnlavOHzHWrGr0Pl9
+         WpkH4NkVXDHQZnFHIEMPFPaJZ4XdCGSoRNVSv+zZ7eXwN4Zpksdb1iEQrA9WHi9FSlAJ
+         SAp/PeASdMfUlvpJ9WwaDZBt/qCQzroRrcVRYaCX2Dtpearz2DVEA+iQnhbGCcdd9XMc
+         bZSXXvVQEYKTrTpVnhQl0Qp03FKxUGhn8MioHAgPMT5FicMRyoh5BoRaSAXqdRqHei6+
+         dYzFACpH0YCDtpy4P05OfcW03YRL4r/poaxFQhdz/yV4BDDGjsY0d0yLR6WRTFFydPie
+         SUZA==
+X-Gm-Message-State: AO0yUKV/34oDyVOz4SN4WuThMU8qyr6kEdWjHfxZniPI603VHkybVgD6
+        YF/f1gil4V+fjowTMtpPG7y+jA==
+X-Google-Smtp-Source: AK7set8meTjPh/Br20yfI40uXRcIqhSc5RR5NsQ7qx9l4QuOIWQ99K59We2ke8ThU4vOtSCCxDgBsw==
+X-Received: by 2002:a05:600c:3c9e:b0:3e1:f8af:8772 with SMTP id bg30-20020a05600c3c9e00b003e1f8af8772mr10250341wmb.9.1678708194053;
+        Mon, 13 Mar 2023 04:49:54 -0700 (PDT)
+Received: from blmsp ([2001:4090:a247:8056:be7d:83e:a6a5:4659])
+        by smtp.gmail.com with ESMTPSA id l7-20020a05600c1d0700b003e209186c07sm9889227wms.19.2023.03.13.04.49.52
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 13 Mar 2023 04:41:25 -0700 (PDT)
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-Date:   Mon, 13 Mar 2023 12:41:13 +0100
-Subject: [PATCH v2 7/7] arm64: dts: qcom: sm8550: Use the correct BWMON
- fallback compatible
+        Mon, 13 Mar 2023 04:49:53 -0700 (PDT)
+Date:   Mon, 13 Mar 2023 12:49:52 +0100
+From:   Markus Schneider-Pargmann <msp@baylibre.com>
+To:     Matthias Brugger <matthias.bgg@gmail.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Chun-Jie Chen <chun-jie.chen@mediatek.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Fabien Parent <parent.f@gmail.com>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org
+Subject: Re: [PATCH 3/8] soc: mediatek: pm-domains: Create bus protection
+ operation functions
+Message-ID: <20230313114952.b6o4qngyyd7eup6d@blmsp>
+References: <20230105170735.1637416-1-msp@baylibre.com>
+ <20230105170735.1637416-4-msp@baylibre.com>
+ <fb36ce3f-dd67-32b5-7ce0-ad15dd3b540a@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20230304-topic-ddr_bwmon-v2-7-04db989db059@linaro.org>
-References: <20230304-topic-ddr_bwmon-v2-0-04db989db059@linaro.org>
-In-Reply-To: <20230304-topic-ddr_bwmon-v2-0-04db989db059@linaro.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Georgi Djakov <djakov@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Thara Gopinath <thara.gopinath@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Konrad Dybcio <konrad.dybcio@linaro.org>
-X-Mailer: b4 0.12.1
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1678707675; l=848;
- i=konrad.dybcio@linaro.org; s=20230215; h=from:subject:message-id;
- bh=jgTEqsKAebB9bsGGIMDxQ30Eg4/dVyljepjgSni4ZzI=;
- b=a3ILA0uJYyR1CR/vHX+MwLfp1w+hxsINjmLCYH+GzvdULrSU2BCmuMMAFNVZPML/8nT5b1Qa8SK2
- DwQCCVKxB/8JKZ1iDcm1Pa2VXyHKOzpxu4GiCwA3IhQOtN9UOmBY
-X-Developer-Key: i=konrad.dybcio@linaro.org; a=ed25519;
- pk=iclgkYvtl2w05SSXO5EjjSYlhFKsJ+5OSZBjOkQuEms=
-X-Spam-Status: No, score=-0.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_SORBS_HTTP,RCVD_IN_SORBS_SOCKS,SPF_HELO_NONE,SPF_PASS
-        autolearn=no autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <fb36ce3f-dd67-32b5-7ce0-ad15dd3b540a@gmail.com>
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Use the correct fallback compatible for the BWMONv4 with merged global and
-monitor register spaces.
+Hi Matthias,
 
-Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
----
- arch/arm64/boot/dts/qcom/sm8550.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+On Fri, Feb 03, 2023 at 01:32:11PM +0100, Matthias Brugger wrote:
+> 
+> 
+> On 05/01/2023 18:07, Markus Schneider-Pargmann wrote:
+> > Separate the register access used for bus protection enable/disable into
+> > their own functions. These will be used later for WAY_EN bits.
+> > 
+> > Signed-off-by: Markus Schneider-Pargmann <msp@baylibre.com>
+> > ---
+> >   drivers/soc/mediatek/mtk-pm-domains.c | 68 +++++++++++++++------------
+> >   1 file changed, 39 insertions(+), 29 deletions(-)
+> > 
+> > diff --git a/drivers/soc/mediatek/mtk-pm-domains.c b/drivers/soc/mediatek/mtk-pm-domains.c
+> > index 4333cd297405..999e1f6c86b0 100644
+> > --- a/drivers/soc/mediatek/mtk-pm-domains.c
+> > +++ b/drivers/soc/mediatek/mtk-pm-domains.c
+> > @@ -117,26 +117,50 @@ static int scpsys_sram_disable(struct scpsys_domain *pd)
+> >   					MTK_POLL_TIMEOUT);
+> >   }
+> > +static int scpsys_bus_protect_clear(const struct scpsys_bus_prot_data *bpd,
+> > +				    struct regmap *regmap)
+> > +{
+> > +	u32 val;
+> > +	u32 sta_mask = bpd->bus_prot_sta_mask;
+> > +
+> > +	if (bpd->bus_prot_reg_update)
+> > +		regmap_clear_bits(regmap, bpd->bus_prot_clr, bpd->bus_prot_set_clr_mask);
+> > +	else
+> > +		regmap_write(regmap, bpd->bus_prot_clr, bpd->bus_prot_set_clr_mask);
+> > +
+> > +	if (bpd->ignore_clr_ack)
+> > +		return 0;
+> > +
+> > +	return regmap_read_poll_timeout(regmap, bpd->bus_prot_sta,
+> > +					val, !(val & sta_mask),
+> > +					MTK_POLL_DELAY_US, MTK_POLL_TIMEOUT);
+> > +}
+> > +
+> 
+> NIT: please move this function below
+> static int scpsys_bus_protect_enable(struct scpsys_domain *pd) {...}
+> 
+> This allows for better readability.
 
-diff --git a/arch/arm64/boot/dts/qcom/sm8550.dtsi b/arch/arm64/boot/dts/qcom/sm8550.dtsi
-index 25f51245fe9b..b5488c6822bd 100644
---- a/arch/arm64/boot/dts/qcom/sm8550.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm8550.dtsi
-@@ -3391,7 +3391,7 @@ opp-8 {
- 		};
- 
- 		pmu@240b6400 {
--			compatible = "qcom,sm8550-cpu-bwmon", "qcom,msm8998-bwmon";
-+			compatible = "qcom,sm8550-cpu-bwmon", "qcom,sdm845-bwmon";
- 			reg = <0 0x240b6400 0 0x600>;
- 			interrupts = <GIC_SPI 581 IRQ_TYPE_LEVEL_HIGH>;
- 			interconnects = <&gem_noc MASTER_APPSS_PROC 3 &gem_noc SLAVE_LLCC 3>;
+With the WAY_EN patch later in this series scpsys_bus_protect_enable()
+is going to use scpsys_bus_protect_clear(). So I would need to add a
+signature in that patch for scpsys_bus_protect_clear() or move it back
+up. I would prefer to avoid adding a signature or moving so I added it
+above these functions here. I could swap scpsys_bus_protect_set() and
+scpscpsys_bus_protect_clear() if that helps readability.
 
--- 
-2.39.2
+Thank you,
+Markus
 
+> 
+> > +static int scpsys_bus_protect_set(const struct scpsys_bus_prot_data *bpd,
+> > +				  struct regmap *regmap)
+> > +{
+> > +	u32 val;
+> > +	u32 sta_mask = bpd->bus_prot_sta_mask;
+> > +
+> > +	if (bpd->bus_prot_reg_update)
+> > +		regmap_set_bits(regmap, bpd->bus_prot_set, bpd->bus_prot_set_clr_mask);
+> > +	else
+> > +		regmap_write(regmap, bpd->bus_prot_set, bpd->bus_prot_set_clr_mask);
+> > +
+> > +	return regmap_read_poll_timeout(regmap, bpd->bus_prot_sta,
+> > +					val, (val & sta_mask) == sta_mask,
+> > +					MTK_POLL_DELAY_US, MTK_POLL_TIMEOUT);
+> > +}
+> > +
+> >   static int _scpsys_bus_protect_enable(const struct scpsys_bus_prot_data *bpd, struct regmap *regmap)
+> >   {
+> >   	int i, ret;
+> >   	for (i = 0; i < SPM_MAX_BUS_PROT_DATA; i++) {
+> > -		u32 val;
+> > -		u32 set_clr_mask = bpd[i].bus_prot_set_clr_mask;
+> > -		u32 sta_mask = bpd[i].bus_prot_sta_mask;
+> > -
+> > -		if (!set_clr_mask)
+> > +		if (!bpd[i].bus_prot_set_clr_mask)
+> >   			break;
+> > -		if (bpd[i].bus_prot_reg_update)
+> > -			regmap_set_bits(regmap, bpd[i].bus_prot_set, set_clr_mask);
+> > -		else
+> > -			regmap_write(regmap, bpd[i].bus_prot_set, set_clr_mask);
+> > -
+> > -		ret = regmap_read_poll_timeout(regmap, bpd[i].bus_prot_sta,
+> > -					       val, (val & sta_mask) == sta_mask,
+> > -					       MTK_POLL_DELAY_US, MTK_POLL_TIMEOUT);
+> > +		ret = scpsys_bus_protect_set(&bpd[i], regmap);
+> >   		if (ret)
+> >   			return ret;
+> >   	}
+> > @@ -161,24 +185,10 @@ static int _scpsys_bus_protect_disable(const struct scpsys_bus_prot_data *bpd,
+> >   	int i, ret;
+> >   	for (i = SPM_MAX_BUS_PROT_DATA - 1; i >= 0; i--) {
+> > -		u32 val;
+> > -		u32 set_clr_mask = bpd[i].bus_prot_set_clr_mask;
+> > -		u32 sta_mask = bpd[i].bus_prot_sta_mask;
+> > -
+> > -		if (!set_clr_mask)
+> > -			continue;
+> > -
+> > -		if (bpd[i].bus_prot_reg_update)
+> > -			regmap_clear_bits(regmap, bpd[i].bus_prot_clr, set_clr_mask);
+> > -		else
+> > -			regmap_write(regmap, bpd[i].bus_prot_clr, set_clr_mask);
+> > -
+> > -		if (bpd[i].ignore_clr_ack)
+> > +		if (!bpd[i].bus_prot_set_clr_mask)
+> >   			continue;
+> > -		ret = regmap_read_poll_timeout(regmap, bpd[i].bus_prot_sta,
+> > -					       val, !(val & sta_mask),
+> > -					       MTK_POLL_DELAY_US, MTK_POLL_TIMEOUT);
+> > +		ret = scpsys_bus_protect_clear(&bpd[i], regmap);
+> >   		if (ret)
+> >   			return ret;
+> >   	}
