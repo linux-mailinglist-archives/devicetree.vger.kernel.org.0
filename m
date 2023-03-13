@@ -2,107 +2,166 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 579676B6D37
-	for <lists+devicetree@lfdr.de>; Mon, 13 Mar 2023 02:53:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DD3646B6D53
+	for <lists+devicetree@lfdr.de>; Mon, 13 Mar 2023 03:10:58 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229473AbjCMBxb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 12 Mar 2023 21:53:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33764 "EHLO
+        id S229437AbjCMCK4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 12 Mar 2023 22:10:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54574 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229450AbjCMBxb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 12 Mar 2023 21:53:31 -0400
-Received: from gate2.alliedtelesis.co.nz (gate2.alliedtelesis.co.nz [IPv6:2001:df5:b000:5::4])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6790C132C9
-        for <devicetree@vger.kernel.org>; Sun, 12 Mar 2023 18:53:25 -0700 (PDT)
-Received: from svr-chch-seg1.atlnz.lc (mmarshal3.atlnz.lc [10.32.18.43])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (Client did not present a certificate)
-        by gate2.alliedtelesis.co.nz (Postfix) with ESMTPS id 15BA32C04A0;
-        Mon, 13 Mar 2023 14:53:24 +1300 (NZDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alliedtelesis.co.nz;
-        s=mail181024; t=1678672404;
-        bh=Z6a/CTUmcb8tPfzzC26tw0NjBYk4oxAmY7/2LQUDgZM=;
-        h=From:To:CC:Subject:Date:References:In-Reply-To:From;
-        b=rtI3/6zVxzZ7j2KwJ4L7eLpvkBfDzXKhBFVKrUN/1JdLFubOGh9fPyjur2Q1nQK+U
-         F7XP0sGbhfkMCvULflCFCVB8qqw563sC3k0hsC+KIlnwqTtDW2weHF4v2P6jyRRBXL
-         MK3QF0cKqcoIpQ5ASNKJFY7RsUDEvP037RCQy/iu0vCG5eu4kLXXLBHU7bw4jnyL11
-         BZzTlEbULW1dNiDjWza1EVkWu5WAYEtC0AjlsZo7pWch+Yp0+AkhBfFbHQZqTeFacB
-         5uFwqkQ+dUbVjefGkeANnHDsKxw/pp2AYWbzht4aUNXspZ/i9gi/E9Upf3CkgDSCxV
-         mCCh4PfScVlrg==
-Received: from svr-chch-ex1.atlnz.lc (Not Verified[2001:df5:b000:bc8::77]) by svr-chch-seg1.atlnz.lc with Trustwave SEG (v8,2,6,11305)
-        id <B640e82140001>; Mon, 13 Mar 2023 14:53:24 +1300
-Received: from svr-chch-ex1.atlnz.lc (2001:df5:b000:bc8:409d:36f5:8899:92e8)
- by svr-chch-ex1.atlnz.lc (2001:df5:b000:bc8:409d:36f5:8899:92e8) with
- Microsoft SMTP Server (TLS) id 15.0.1497.47; Mon, 13 Mar 2023 14:53:23 +1300
-Received: from svr-chch-ex1.atlnz.lc ([fe80::409d:36f5:8899:92e8]) by
- svr-chch-ex1.atlnz.lc ([fe80::409d:36f5:8899:92e8%12]) with mapi id
- 15.00.1497.047; Mon, 13 Mar 2023 14:53:23 +1300
-From:   Chris Packham <Chris.Packham@alliedtelesis.co.nz>
-To:     Andi Shyti <andi.shyti@kernel.org>,
-        "linux-i2c@vger.kernel.org" <linux-i2c@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-CC:     Wolfram Sang <wsa@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
-        Ryan Chen <ryan_chen@aspeedtech.com>
-Subject: Re: [PATCH v3 3/3] i2c: mpc: Use i2c-scl-clk-low-timeout-ms i2c
- property
-Thread-Topic: [PATCH v3 3/3] i2c: mpc: Use i2c-scl-clk-low-timeout-ms i2c
- property
-Thread-Index: AQHZVTuFDX+DgmEDFk23hBmDkBbcm673GMuA
-Date:   Mon, 13 Mar 2023 01:53:23 +0000
-Message-ID: <f3d6760d-f2cc-c725-d7fb-6056ee555b65@alliedtelesis.co.nz>
-References: <20230312233613.303408-1-andi.shyti@kernel.org>
- <20230312233613.303408-4-andi.shyti@kernel.org>
-In-Reply-To: <20230312233613.303408-4-andi.shyti@kernel.org>
-Accept-Language: en-NZ, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-ms-exchange-messagesentrepresentingtype: 1
-x-ms-exchange-transport-fromentityheader: Hosted
-x-originating-ip: [10.32.1.11]
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <F66BACD56264934CA106B4A1804B0779@atlnz.lc>
-Content-Transfer-Encoding: base64
+        with ESMTP id S229660AbjCMCKz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 12 Mar 2023 22:10:55 -0400
+Received: from mail-pf1-x433.google.com (mail-pf1-x433.google.com [IPv6:2607:f8b0:4864:20::433])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5580528EBC;
+        Sun, 12 Mar 2023 19:10:54 -0700 (PDT)
+Received: by mail-pf1-x433.google.com with SMTP id z11so6737098pfh.4;
+        Sun, 12 Mar 2023 19:10:54 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112; t=1678673454;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Es90dgM/38pbbMOCnBftwhrp+O+7jxbqs7ks6Dr8wdE=;
+        b=VgilPI+yzP4fqqGo4u+F4viBOj5a5exaQ1WcJB6Q2gzG9voQteIwZoVoM70lbBmkaK
+         PdnLkaoubTBDBPpgrSpP7uuBSXSKwMjT47jmSCsna4AoIo+QnrS8PoUQJV7lIE79QzFS
+         k69e+OfA51HfJcpNljb34SmIUVvZ9XtK8CX1HQFhTrYNHIrpgPFcPODsE0BgAT7keHvK
+         rjjVcatWdmaVB8eO2Ewti+MqRpyG8voW6NxmF4DTD5MlsN0nBdm1gcTXkCj3M1ir7XCW
+         lZj1fyS04/US3IfNiuKiC4yLQPCs168pqHAYqcJUy15NJJa9ickIYj2puoQ72qZi2lmo
+         5spw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1678673454;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=Es90dgM/38pbbMOCnBftwhrp+O+7jxbqs7ks6Dr8wdE=;
+        b=4YtjgFkCWEvz9R64/FZMrTa01oCZTEgVz66v0kWDJ4QW9uNlOVk+ia1eJKAeuJ9Xp9
+         tj1kqdetQumrvqquFf5lLuhBZQtXgizcnetfkjI568BwVpqy4KOny+tljJyk8sEfaqvo
+         KBwl5BYgk5rpb65yexBUGRM1oRVMR1WUM1jSetp7St4SMYaA379EjNKwHiKtK2AWXkEx
+         bf/YXnJg5JVHn0AvpnFxBneahpWGawYxlEqAhxr9k0yimL++Jt3a2qHIOiEan2BpqQr5
+         lYIwabfBDqpxb2akneRRJkccbFi0Q35w7OVNB4u7HhOiA6gLwD81FKSB0PjSckxRVhD4
+         Xmpg==
+X-Gm-Message-State: AO0yUKU1HpmcKuP4BD8/es22i9a4b3FuGotYmyD3tS03GcfLinWYjO4w
+        OzbKn+OsaPd7IsRrYC6BPzjkUUanJ1/G8AunnY8=
+X-Google-Smtp-Source: AK7set+/8dQSCJVdJgAdJ+Clg6WwA7GZNKo+t8onyBfkmr7i3E0vhl4O2qwIk5lGYfo/Wm2DdmStpzc5FKf9GmgIjhM=
+X-Received: by 2002:a62:1d96:0:b0:61c:67d2:a332 with SMTP id
+ d144-20020a621d96000000b0061c67d2a332mr2897579pfd.3.1678673453637; Sun, 12
+ Mar 2023 19:10:53 -0700 (PDT)
 MIME-Version: 1.0
-X-SEG-SpamProfiler-Analysis: v=2.3 cv=GdlpYjfL c=1 sm=1 tr=0 a=Xf/6aR1Nyvzi7BryhOrcLQ==:117 a=xqWC_Br6kY4A:10 a=oKJsc7D3gJEA:10 a=IkcTkHD0fZMA:10 a=k__wU0fu6RkA:10 a=VwQbUJbxAAAA:8 a=wGBd0DG7BR80vmoGwPEA:9 a=QEXdDO2ut3YA:10 a=AjGcO6oz07-iQ99wixmX:22
-X-SEG-SpamProfiler-Score: 0
+References: <20230310163420.7582-1-quic_kriskura@quicinc.com> <20230310163420.7582-4-quic_kriskura@quicinc.com>
+In-Reply-To: <20230310163420.7582-4-quic_kriskura@quicinc.com>
+From:   Dongliang Mu <mudongliangabcd@gmail.com>
+Date:   Mon, 13 Mar 2023 10:07:50 +0800
+Message-ID: <CAD-N9QVT7qaiUbmPapZc5+6XXDVTPeXG4HD4p-n8WSi9FK2CbQ@mail.gmail.com>
+Subject: Re: [PATCH 3/8] usb: dwc3: core: Skip setting event buffers for host
+ only controllers
+To:     Krishna Kurapati <quic_kriskura@quicinc.com>
+Cc:     Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Felipe Balbi <balbi@kernel.org>, linux-usb@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, quic_pkondeti@quicinc.com,
+        quic_ppratap@quicinc.com, quic_wcheng@quicinc.com,
+        quic_jackp@quicinc.com, quic_harshq@quicinc.com,
+        ahalaney@redhat.com, quic_shazhuss@quicinc.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-DQpPbiAxMy8wMy8yMyAxMjozNiwgQW5kaSBTaHl0aSB3cm90ZToNCj4gImZzbCx0aW1lb3V0IiBp
-cyBtYXJrZWQgYXMgZGVwcmVjYXRlZCBhbmQgcmVwbGFjZWQgYnkgdGhlDQo+ICJpMmMtc2NsLWNs
-ay1sb3ctdGltZW91dC1tcyIgaTJjIHByb3BlcnR5Lg0KPg0KPiBVc2UgdGhpcyBsYXR0ZXIgYW5k
-LCBpbiBjYXNlIGl0IGlzIG1pc3NpbmcsIGZvciBiYWNrDQo+IGNvbXBhdGliaWxpdHksIGNoZWNr
-IHdoZXRoZXIgd2Ugc3RpbGwgaGF2ZSAiZnNsLHRpbWVvdXQiIGRlZmluZWQuDQo+DQo+IFNpZ25l
-ZC1vZmYtYnk6IEFuZGkgU2h5dGkgPGFuZGkuc2h5dGlAa2VybmVsLm9yZz4NCj4gUmV2aWV3ZWQt
-Ynk6IENocmlzIFBhY2toYW0gPGNocmlzLnBhY2toYW1AYWxsaWVkdGVsZXNpcy5jby5uej4NCkdh
-dmUgdGhlIHBhdGNoZXMgYSBzcGluIG9uIGEgUDIwNDFSREIgc28NCg0KVGVzdGVkLWJ5OiBDaHJp
-cyBQYWNraGFtIDxjaHJpcy5wYWNraGFtQGFsbGllZHRlbGVzaXMuY28ubno+DQoNCj4gLS0tDQo+
-ICAgZHJpdmVycy9pMmMvYnVzc2VzL2kyYy1tcGMuYyB8IDEyICsrKysrKysrKysrLQ0KPiAgIDEg
-ZmlsZSBjaGFuZ2VkLCAxMSBpbnNlcnRpb25zKCspLCAxIGRlbGV0aW9uKC0pDQo+DQo+IGRpZmYg
-LS1naXQgYS9kcml2ZXJzL2kyYy9idXNzZXMvaTJjLW1wYy5jIGIvZHJpdmVycy9pMmMvYnVzc2Vz
-L2kyYy1tcGMuYw0KPiBpbmRleCA4N2U1YzE3MjU3NTAuLjI4ZjExZTMwYWM1MCAxMDA2NDQNCj4g
-LS0tIGEvZHJpdmVycy9pMmMvYnVzc2VzL2kyYy1tcGMuYw0KPiArKysgYi9kcml2ZXJzL2kyYy9i
-dXNzZXMvaTJjLW1wYy5jDQo+IEBAIC04NDMsOCArODQzLDE4IEBAIHN0YXRpYyBpbnQgZnNsX2ky
-Y19wcm9iZShzdHJ1Y3QgcGxhdGZvcm1fZGV2aWNlICpvcCkNCj4gICAJCQltcGNfaTJjX3NldHVw
-Xzh4eHgob3AtPmRldi5vZl9ub2RlLCBpMmMsIGNsb2NrKTsNCj4gICAJfQ0KPiAgIA0KPiArCS8q
-DQo+ICsJICogImZzbCx0aW1lb3V0IiBoYXMgYmVlbiBtYXJrZWQgYXMgZGVwcmVjYXRlZCBhbmQs
-IHRvIG1haW50YWluDQo+ICsJICogYmFja3dhcmQgY29tcGF0aWJpbGl0eSwgd2Ugd2lsbCBvbmx5
-IGxvb2sgZm9yIGl0IGlmDQo+ICsJICogImkyYy1zY2wtY2xrLWxvdy10aW1lb3V0LW1zIiBpcyBu
-b3QgcHJlc2VudC4NCj4gKwkgKi8NCj4gICAJcmVzdWx0ID0gb2ZfcHJvcGVydHlfcmVhZF91MzIo
-b3AtPmRldi5vZl9ub2RlLA0KPiAtCQkJCSAgICAgICJmc2wsdGltZW91dCIsICZtcGNfb3BzLnRp
-bWVvdXQpOw0KPiArCQkJCSAgICAgICJpMmMtc2NsLWNsay1sb3ctdGltZW91dC1tcyIsDQo+ICsJ
-CQkJICAgICAgJm1wY19vcHMudGltZW91dCk7DQo+ICsJaWYgKHJlc3VsdCA9PSAtRUlOVkFMKQ0K
-PiArCQlyZXN1bHQgPSBvZl9wcm9wZXJ0eV9yZWFkX3UzMihvcC0+ZGV2Lm9mX25vZGUsDQo+ICsJ
-CQkJCSAgICAgICJmc2wsdGltZW91dCIsICZtcGNfb3BzLnRpbWVvdXQpOw0KPiArDQo+ICAgCWlm
-ICghcmVzdWx0KSB7DQo+ICAgCQltcGNfb3BzLnRpbWVvdXQgKj0gSFogLyAxMDAwMDAwOw0KPiAg
-IAkJaWYgKG1wY19vcHMudGltZW91dCA8IDUp
+On Sat, Mar 11, 2023 at 12:40=E2=80=AFAM Krishna Kurapati
+<quic_kriskura@quicinc.com> wrote:
+>
+> On some SoC's like SA8295P where the teritiary controller is host-only
+> capable, GEVTADDRHI/LO, GEVTSIZ, GEVTCOUNT registers are not accessible.
+> Trying to setup them up during core_init leads to a crash.
+>
+> For DRD/Peripheral supported controllers, event buffer setup is done
+> again in gadget_pullup. Skip setup or cleanup of event buffers if
+> controller is host-only capable.
+>
+> Signed-off-by: Krishna Kurapati <quic_kriskura@quicinc.com>
+> ---
+>  drivers/usb/dwc3/core.c | 20 ++++++++++++++------
+>  1 file changed, 14 insertions(+), 6 deletions(-)
+>
+> diff --git a/drivers/usb/dwc3/core.c b/drivers/usb/dwc3/core.c
+> index 076c0f8a4441..1ca9fa40a66e 100644
+> --- a/drivers/usb/dwc3/core.c
+> +++ b/drivers/usb/dwc3/core.c
+> @@ -840,7 +840,11 @@ static void dwc3_clk_disable(struct dwc3 *dwc)
+>
+>  static void dwc3_core_exit(struct dwc3 *dwc)
+>  {
+> -       dwc3_event_buffers_cleanup(dwc);
+> +       unsigned int    hw_mode;
+> +
+> +       hw_mode =3D DWC3_GHWPARAMS0_MODE(dwc->hwparams.hwparams0);
+> +       if (hw_mode !=3D DWC3_GHWPARAMS0_MODE_HOST)
+> +               dwc3_event_buffers_cleanup(dwc);
+
+quick question about dwc3_event_buffers_cleanup, there are other
+similar sites calling this function.
+
+C symbol: dwc3_event_buffers_cleanup
+
+  File   Function                   Line
+0 core.h <global>                   1546 void
+dwc3_event_buffers_cleanup(struct dwc3 *dwc);
+1 core.c __dwc3_set_mode             152 dwc3_event_buffers_cleanup(dwc);
+2 core.c dwc3_event_buffers_cleanup  522 void
+dwc3_event_buffers_cleanup(struct dwc3 *dwc)
+3 core.c dwc3_core_exit              842 dwc3_event_buffers_cleanup(dwc);
+4 core.c dwc3_probe                 1936 dwc3_event_buffers_cleanup(dwc);
+5 drd.c  dwc3_otg_update             363 dwc3_event_buffers_cleanup(dwc);
+6 drd.c  dwc3_drd_exit               607 dwc3_event_buffers_cleanup(dwc);
+
+For 1, 5, and 6, any need to take care of this situation?
+
+>
+>         usb_phy_set_suspend(dwc->usb2_phy, 1);
+>         usb_phy_set_suspend(dwc->usb3_phy, 1);
+> @@ -1177,10 +1181,12 @@ static int dwc3_core_init(struct dwc3 *dwc)
+>         if (ret < 0)
+>                 goto err3;
+>
+> -       ret =3D dwc3_event_buffers_setup(dwc);
+> -       if (ret) {
+> -               dev_err(dwc->dev, "failed to setup event buffers\n");
+> -               goto err4;
+> +       if (hw_mode !=3D DWC3_GHWPARAMS0_MODE_HOST) {
+> +               ret =3D dwc3_event_buffers_setup(dwc);
+> +               if (ret) {
+> +                       dev_err(dwc->dev, "failed to setup event buffers\=
+n");
+> +                       goto err4;
+> +               }
+>         }
+>
+>         /*
+> @@ -2008,7 +2014,9 @@ static int dwc3_probe(struct platform_device *pdev)
+>
+>  err5:
+>         dwc3_debugfs_exit(dwc);
+> -       dwc3_event_buffers_cleanup(dwc);
+> +
+> +       if (hw_mode !=3D DWC3_GHWPARAMS0_MODE_HOST)
+> +               dwc3_event_buffers_cleanup(dwc);
+>
+>         usb_phy_set_suspend(dwc->usb2_phy, 1);
+>         usb_phy_set_suspend(dwc->usb3_phy, 1);
+> --
+> 2.39.0
+>
