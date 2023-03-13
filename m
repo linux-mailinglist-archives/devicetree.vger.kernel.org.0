@@ -2,130 +2,229 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DD0766B71D4
-	for <lists+devicetree@lfdr.de>; Mon, 13 Mar 2023 09:58:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 33DCE6B71DB
+	for <lists+devicetree@lfdr.de>; Mon, 13 Mar 2023 09:59:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230187AbjCMI6P (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Mar 2023 04:58:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45778 "EHLO
+        id S229810AbjCMI7Z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Mar 2023 04:59:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44332 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230499AbjCMI5a (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Mar 2023 04:57:30 -0400
-Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D7E9C46149
-        for <devicetree@vger.kernel.org>; Mon, 13 Mar 2023 01:54:04 -0700 (PDT)
-Received: by mail-lf1-x135.google.com with SMTP id s20so14674854lfb.11
-        for <devicetree@vger.kernel.org>; Mon, 13 Mar 2023 01:54:04 -0700 (PDT)
+        with ESMTP id S229787AbjCMI7E (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Mar 2023 04:59:04 -0400
+Received: from mail-yw1-x1134.google.com (mail-yw1-x1134.google.com [IPv6:2607:f8b0:4864:20::1134])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3EF865A1B5;
+        Mon, 13 Mar 2023 01:54:56 -0700 (PDT)
+Received: by mail-yw1-x1134.google.com with SMTP id 00721157ae682-5419d4c340aso42933137b3.11;
+        Mon, 13 Mar 2023 01:54:56 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1678697642;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=thVqMC7+HpRMTcybt95+ayTW4ay07A2B/Ji+gmQk5aQ=;
-        b=EuDwLQDzlYNRnpgmaYBnZ2K0/obtIckQCYevgR6u0MuB18T6f36KsPCtm+vZYH8Qul
-         NtCExx2XQNpSoTn6SbEtPulsIUhk0xo2nUdsY/IYEBCrzN/s8c9ffZNNzsqwqSSLNqvE
-         EpVXpysl06IiL4fI0Q3kJQghjgdvUDDpk3hluS/VYlrLWSvQbSn00B4Nkzmt3pqONeVB
-         wpi72bO/C9Sm9rUzfgaeYSild/MB87UoRytarQF0jEEik4xkgKnkVbZooERvDXQl7Fiz
-         AkHUgnFhvJuH5KvLm8+eLQBcbu2C7DvYoUSAVKDlu06GGmqBdINQLVdHnMokYOZKfYA3
-         3aEg==
+        d=gmail.com; s=20210112; t=1678697695;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=4NCgd6tuaHBDOiTZW9CVlzEgxDA28IvutIsaMd7oX50=;
+        b=HZgoB6aKIVi2nBeKfCTqBHjzBjiVkFPw5ki1bB37dD9InxqJ2Wf1ljZ53CDnCz674u
+         KLeAyOlbc1n6TPqS8uxO2KO3WQGhk1BgjPnm2obNoZh5FzrE+h7Ad5am5H/hlTPqciUs
+         G52Y3TnO1JVKgnXaKqHgkKAeQe6+2lnSelFQ2Moffvd5zoRP6MLDd3TnESJKP89vu98r
+         BRsc3dMEejIIByXEJNgK4hRDTfqbV53oWhVs7MyzVeiIlL5J0W+nCTZ/0AlKi9hk+PM0
+         TB8YbtjqtMKY+gkvMwbsfh5ZSBhcepzXKf5jhTMU/mOYL+tO0WJ7KA3rxq6NvO+jUNOe
+         Tcog==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678697642;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=thVqMC7+HpRMTcybt95+ayTW4ay07A2B/Ji+gmQk5aQ=;
-        b=2gjSqIIJxjdakUXOhYpD9JSptJtwbrKqh9ZDNlLjl5nyXTtpoU7fnies8AwXxRaVNI
-         g6aLONQ5CK+wIhyTgEkmXy0qDyNnLFCtP7KtDdQ044W5Bk+COXF3xiTXjeuX2DbQhzO/
-         bLOyo08uTNi984h7IFBmucDeQsxyAiqRhwk04PoL1evgaW2vAEF9DZ8jdy7oo6SENnEN
-         yfutoRQS6i02f0uXg4F9fdfG/5KwJCEFQMnIZX3gZkb0gFEDQxGFtgE7IMZOkHgJYb1j
-         JN/drQdiK+s0Oli/kKNpjGR47/Jh6EF/IsxxjbECLbIptJ79UP5Bqa8jU39T3MHU9mx1
-         VXFQ==
-X-Gm-Message-State: AO0yUKXKUcCt9ZbKBRx/bAUdkJde4mhU7UYFj5sVf4/w9zj6jKGn1Q5w
-        Pwy8eqxa0XMZ69ejoa2idOA5x58qdG478wh9WsM=
-X-Google-Smtp-Source: AK7set8WyDTQWXy5IQPWjA0y0XVqMq5poQM6bVwqWY9LkhJNvBfPwmz0+gxqrfXLKauAi9bmx5Pw9g==
-X-Received: by 2002:a19:f00c:0:b0:4d8:4f53:37b2 with SMTP id p12-20020a19f00c000000b004d84f5337b2mr8303766lfc.1.1678697642286;
-        Mon, 13 Mar 2023 01:54:02 -0700 (PDT)
-Received: from [192.168.1.101] (abyj16.neoplus.adsl.tpnet.pl. [83.9.29.16])
-        by smtp.gmail.com with ESMTPSA id f6-20020ac25326000000b004d85f2acd8esm890012lfh.295.2023.03.13.01.54.01
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 13 Mar 2023 01:54:02 -0700 (PDT)
-Message-ID: <fb8ca99a-15d8-a8b6-9fd1-18d14e68bbcc@linaro.org>
-Date:   Mon, 13 Mar 2023 09:54:00 +0100
+        d=1e100.net; s=20210112; t=1678697695;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=4NCgd6tuaHBDOiTZW9CVlzEgxDA28IvutIsaMd7oX50=;
+        b=vpUnz3AxXd1psCoEuqdgbW+npbZzIeDixinU8fJ4KXON29sg2V+fFe4O/Dr1y69rWg
+         6fsLPOTO41WGLAN1FkkDhMoZsLobx6AgCWRvEVb4SsKF4Rp6NHw7MErIb7JbceVJnoPO
+         jaeVXlSOVBzTjb/G2BhGm28ad2JJcIBXkzIRYt7xPuWwIZy46ssJ7moPsZFjhtdge1Hp
+         A/Hr8HCzMw/wXg4j693s35+nRFxw3Csqsf9+gFpWbzWt1KaWfEIj4FR+BQKAJAJ2IqSt
+         sP9Va+T5vPf5YXht+hOkAq/TUNByCIjXC8bxyPsGZBplSqH6otmZo743yamvwYhEewta
+         ZEOw==
+X-Gm-Message-State: AO0yUKXck0q1UQqAPrBBKZ3XwHhN0MPrKOKKhstGDQhvkvRU3v2Uz/Jw
+        0h8kGoIQ64YpZiB6Yeb8038UiupaFENF98H/0y8=
+X-Google-Smtp-Source: AK7set+5EDJAAXdVYJQM5llasnCzJsaOc111qwF6lT7P251dy0Wjo2jefcmVtKCPdNGGpLx6eJXc0kR+yXyN59PqpmU=
+X-Received: by 2002:a81:b10a:0:b0:53d:2772:65d with SMTP id
+ p10-20020a81b10a000000b0053d2772065dmr16019576ywh.9.1678697695226; Mon, 13
+ Mar 2023 01:54:55 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-Subject: Re: [PATCH 8/8] arm64: dts: qcom: apq8096-db820c: drop unit address
- from PMI8994 regulator
-Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Douglas Anderson <dianders@chromium.org>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Matthias Kaehlcke <mka@chromium.org>,
-        "Joseph S. Barrera III" <joebar@chromium.org>,
-        Gustave Monce <gustave.monce@outlook.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Rajendra Nayak <rnayak@codeaurora.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20230312183622.460488-1-krzysztof.kozlowski@linaro.org>
- <20230312183622.460488-8-krzysztof.kozlowski@linaro.org>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20230312183622.460488-8-krzysztof.kozlowski@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-0.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_SORBS_HTTP,RCVD_IN_SORBS_SOCKS,SPF_HELO_NONE,SPF_PASS
-        autolearn=no autolearn_force=no version=3.4.6
+References: <20230110083238.19230-1-jim.t90615@gmail.com> <20230110083238.19230-4-jim.t90615@gmail.com>
+ <167335661623.1967925.9927691364268671668.robh@kernel.org>
+In-Reply-To: <167335661623.1967925.9927691364268671668.robh@kernel.org>
+From:   Jim Liu <jim.t90615@gmail.com>
+Date:   Mon, 13 Mar 2023 16:54:44 +0800
+Message-ID: <CAKUZ0+HQYiwp0pGLhQUckk9zOYg42MSWucYss6iP68YRmHyAxA@mail.gmail.com>
+Subject: Re: [PATCH v4 3/3] dt-bindings: gpio: add NPCM sgpio driver bindings
+To:     Rob Herring <robh@kernel.org>
+Cc:     linux-gpio@vger.kernel.org, JJLIU0@nuvoton.com, robh+dt@kernel.org,
+        devicetree@vger.kernel.org, KWLIU@nuvoton.com,
+        openbmc@lists.ozlabs.org, brgl@bgdev.pl,
+        linux-kernel@vger.kernel.org, linus.walleij@linaro.org,
+        krzysztof.kozlowski+dt@linaro.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Krzysztof
+
+sorry for reply late.
+I think I need to explain more details about the clock.
+
+The NPCM7xx / NPCM8xx  SGPIO feature have 4 pins.
+picture is as below:
+https://drive.google.com/file/d/1E9i_Avh-AZV9IEZO1HLMT4EtgCBe46OV/view?usp=
+=3Dsharing
+
+The clock is generated from npcm7xx APB.
+The bus frequency is derived from npcm7xx APB not HC595/HC165.
+Users can connect  1~8 HC595 on DOUT pin to decode the serial data for
+HC595 A~H pin
+and can connect  1~8 HC165 on DIN pin to encode the serial data to
+send to NPCM7xx.
+
+The test device is as below:
+https://pdf1.alldatasheet.com/datasheet-pdf/view/345467/TI/SN74HC595N.html
+https://pdf1.alldatasheet.com/datasheet-pdf/view/27899/TI/SN74HC165N.html
+
+NPCM7xx/NPCM8xx have two sgpio modules;
+each module can support up to 64 output pins,and up to 64 input pins.
+If the user needs 64 output pins , user needs to connect 8 HC595.
+If the user needs 64 input pins , user needs to connect 8 HC165.
+
+the HC595 and HC165 connect is as below:
+NPCM7xx_DOUT    ->   HC595  SER pin
+NPCM7xx_SCLK     ->   HC595  SRCLK pin
+NPCM7xx_LDSH    ->    HC595  RCLK pin
+
+NPCM7xx_SCLK     ->   HC165  CLK pin
+NPCM7xx_LDSH     ->   HC165  SH/LD pin
+NPCM7xx_DIN        ->    HC165  QH pin
+
+The frequency is not derived from the input clock. so i think maybe
+the yaml needs to describe it.
+if yaml file still didn't need please let me know.
+
+And if you have any confusion about the sgpio feature or the connect
+test please let me know.
 
 
-On 12.03.2023 19:36, Krzysztof Kozlowski wrote:
-> The PMIC regulators are not supposed to have unit addresses.
-> 
-> Fixes: 2317b87a2a6f ("arm64: dts: qcom: db820c: Add vdd_gfx and tie it into mmcc")
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> ---
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+Best regards,
+Jim
 
-Konrad
->  arch/arm64/boot/dts/qcom/apq8096-db820c.dts | 3 +--
->  arch/arm64/boot/dts/qcom/pmi8994.dtsi       | 2 --
->  2 files changed, 1 insertion(+), 4 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/apq8096-db820c.dts b/arch/arm64/boot/dts/qcom/apq8096-db820c.dts
-> index 5ceaab5d4039..4476e2e22816 100644
-> --- a/arch/arm64/boot/dts/qcom/apq8096-db820c.dts
-> +++ b/arch/arm64/boot/dts/qcom/apq8096-db820c.dts
-> @@ -704,8 +704,7 @@ pmi8994_mpp2_userled4: mpp2-userled4-state {
->  &pmi8994_spmi_regulators {
->  	vdd_s2-supply = <&vph_pwr>;
->  
-> -	vdd_gfx: s2@1700 {
-> -		reg = <0x1700 0x100>;
-> +	vdd_gfx: s2 {
->  		regulator-name = "VDD_GFX";
->  		regulator-min-microvolt = <980000>;
->  		regulator-max-microvolt = <980000>;
-> diff --git a/arch/arm64/boot/dts/qcom/pmi8994.dtsi b/arch/arm64/boot/dts/qcom/pmi8994.dtsi
-> index a0af91698d49..0192968f4d9b 100644
-> --- a/arch/arm64/boot/dts/qcom/pmi8994.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/pmi8994.dtsi
-> @@ -49,8 +49,6 @@ pmi8994_lpg: pwm {
->  
->  		pmi8994_spmi_regulators: regulators {
->  			compatible = "qcom,pmi8994-regulators";
-> -			#address-cells = <1>;
-> -			#size-cells = <1>;
->  		};
->  
->  		pmi8994_wled: wled@d800 {
+On Tue, Jan 10, 2023 at 9:29=E2=80=AFPM Rob Herring <robh@kernel.org> wrote=
+:
+>
+>
+> On Tue, 10 Jan 2023 16:32:38 +0800, Jim Liu wrote:
+> > Add dt-bindings document for the Nuvoton NPCM7xx and NPCM8xx sgpio driv=
+er
+> >
+> > Signed-off-by: Jim Liu <jim.t90615@gmail.com>
+> > ---
+> > Changes for v4:
+> >    - modify in/out property
+> >    - modify bus-frequency property
+> > Changes for v3:
+> >    - modify description
+> >    - modify in/out property name
+> > Changes for v2:
+> >    - modify description
+> > ---
+> >  .../bindings/gpio/nuvoton,sgpio.yaml          | 92 +++++++++++++++++++
+> >  1 file changed, 92 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/gpio/nuvoton,sgpi=
+o.yaml
+> >
+>
+> My bot found errors running 'make DT_CHECKER_FLAGS=3D-m dt_binding_check'
+> on your patch (DT_CHECKER_FLAGS is new in v5.13):
+>
+> yamllint warnings/errors:
+>
+> dtschema/dtc warnings/errors:
+> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/g=
+pio/nuvoton,sgpio.yaml: properties:nuvoton,input-ngpios: 'oneOf' conditiona=
+l failed, one must be fixed:
+>         'type' is a required property
+>                 hint: A vendor boolean property can use "type: boolean"
+>         Additional properties are not allowed ('maximum', 'minimum' were =
+unexpected)
+>                 hint: A vendor boolean property can use "type: boolean"
+>         /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bi=
+ndings/gpio/nuvoton,sgpio.yaml: properties:nuvoton,input-ngpios: 'oneOf' co=
+nditional failed, one must be fixed:
+>                 'enum' is a required property
+>                 'const' is a required property
+>                 hint: A vendor string property with exact values has an i=
+mplicit type
+>                 from schema $id: http://devicetree.org/meta-schemas/vendo=
+r-props.yaml#
+>         /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bi=
+ndings/gpio/nuvoton,sgpio.yaml: properties:nuvoton,input-ngpios: 'oneOf' co=
+nditional failed, one must be fixed:
+>                 '$ref' is a required property
+>                 'allOf' is a required property
+>                 hint: A vendor property needs a $ref to types.yaml
+>                 from schema $id: http://devicetree.org/meta-schemas/vendo=
+r-props.yaml#
+>         hint: Vendor specific properties must have a type and description=
+ unless they have a defined, common suffix.
+>         from schema $id: http://devicetree.org/meta-schemas/vendor-props.=
+yaml#
+> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/g=
+pio/nuvoton,sgpio.yaml: properties:nuvoton,output-ngpios: 'oneOf' condition=
+al failed, one must be fixed:
+>         'type' is a required property
+>                 hint: A vendor boolean property can use "type: boolean"
+>         Additional properties are not allowed ('maximum', 'minimum' were =
+unexpected)
+>                 hint: A vendor boolean property can use "type: boolean"
+>         /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bi=
+ndings/gpio/nuvoton,sgpio.yaml: properties:nuvoton,output-ngpios: 'oneOf' c=
+onditional failed, one must be fixed:
+>                 'enum' is a required property
+>                 'const' is a required property
+>                 hint: A vendor string property with exact values has an i=
+mplicit type
+>                 from schema $id: http://devicetree.org/meta-schemas/vendo=
+r-props.yaml#
+>         /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bi=
+ndings/gpio/nuvoton,sgpio.yaml: properties:nuvoton,output-ngpios: 'oneOf' c=
+onditional failed, one must be fixed:
+>                 '$ref' is a required property
+>                 'allOf' is a required property
+>                 hint: A vendor property needs a $ref to types.yaml
+>                 from schema $id: http://devicetree.org/meta-schemas/vendo=
+r-props.yaml#
+>         hint: Vendor specific properties must have a type and description=
+ unless they have a defined, common suffix.
+>         from schema $id: http://devicetree.org/meta-schemas/vendor-props.=
+yaml#
+>
+> doc reference errors (make refcheckdocs):
+>
+> See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/202301=
+10083238.19230-4-jim.t90615@gmail.com
+>
+> The base for the series is generally the latest rc1. A different dependen=
+cy
+> should be noted in *this* patch.
+>
+> If you already ran 'make dt_binding_check' and didn't see the above
+> error(s), then make sure 'yamllint' is installed and dt-schema is up to
+> date:
+>
+> pip3 install dtschema --upgrade
+>
+> Please check and re-submit after running the above command yourself. Note
+> that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+> your schema. However, it must be unset to test all examples with your sch=
+ema.
+>
