@@ -2,70 +2,152 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 536256B75C2
-	for <lists+devicetree@lfdr.de>; Mon, 13 Mar 2023 12:18:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1C1DD6B75F2
+	for <lists+devicetree@lfdr.de>; Mon, 13 Mar 2023 12:28:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229505AbjCMLSS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Mar 2023 07:18:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35082 "EHLO
+        id S229776AbjCML2q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Mar 2023 07:28:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53312 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229829AbjCMLSP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Mar 2023 07:18:15 -0400
-Received: from mail-vs1-xe34.google.com (mail-vs1-xe34.google.com [IPv6:2607:f8b0:4864:20::e34])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 613CB49D3
-        for <devicetree@vger.kernel.org>; Mon, 13 Mar 2023 04:17:58 -0700 (PDT)
-Received: by mail-vs1-xe34.google.com with SMTP id u16so25808vso.1
-        for <devicetree@vger.kernel.org>; Mon, 13 Mar 2023 04:17:58 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112; t=1678706278;
-        h=to:subject:message-id:date:from:sender:mime-version:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=N3tQa/xAjjFjMbYTIPvabJVdNLC/DkLFMMTZCH3qWNU=;
-        b=ad6YuduEAji9TbSYmDX/5YTrY3hy/hE/ZRprgDFUAZOmxyueWR4ex32VX/WxTQC1bL
-         Vzsam3FfCHR5C5v3861ZvdTOsMtZUni6H5byceWGitQeq2fkc42XqYHt/Wr/hM8U7z6l
-         B5eHpUWiuTnPeWsSUcvuD7Spn+PzuDXkfUry6zM5nB0jbcZd4yljEEIVtTMNRuINcQDw
-         Tzp09smXP7aiogQc5UqvBDqvLvdXY8rKyuvSIcRiU99uuy+43Czuy4Tg7NjH1illgCQP
-         pttNOs9Vokve2NNMEXN8ZP1ZWExg8TFXhkV8MuGgGAxcfPNs9pU0Dwe506abcAJGZxFm
-         lCwQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678706278;
-        h=to:subject:message-id:date:from:sender:mime-version
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=N3tQa/xAjjFjMbYTIPvabJVdNLC/DkLFMMTZCH3qWNU=;
-        b=VLrIzxG5mUktX9KTBpStgBmFrG1+rEX3dx9cK8nUNwjvXnhDbd44u3cOVWTZBXDtJu
-         uV30Vg4qqe21p4L7GBW+BQYRjhUCQndyeDVGRSCnmUTYVxDuvtU9A9thK6cDuz5xsk9S
-         gYmE9N5upLxhsnFp3WP9b/5UtzxHdQODpJI8yu7KDxtB8fKIDZpKb+6wpWZLedhpbZ5Q
-         U+AjZiRxUNUDx7sw68dYBij2rX6qovsruDskJ+hU4F8bkiWnCkxnlgPgjXRDldCdlaJe
-         dXyMffdABPTjawyzEdJxeM56yDXpLYq+vL4nflffLtTynMrD2macOINVBsV/c9f8VWnh
-         eGKA==
-X-Gm-Message-State: AO0yUKWNFc+nch3JpQu7CqgFdyZ/mFhH2WugQ4kD6BUfn5HVTFXDI7L8
-        +QIrqyaYSzBZOjGwSsAedlx9fJ+aPMtUxS8LXZU=
-X-Google-Smtp-Source: AK7set9aLA6NXwCFjiUmD0O5PLxlXy5QmULZQqD45djYlFBJufdggQWT2j3hJgF/NciH9e5QR19BFwVERrUZZcibmJM=
-X-Received: by 2002:a05:6102:11e4:b0:402:9b84:1be2 with SMTP id
- e4-20020a05610211e400b004029b841be2mr21873776vsg.4.1678706277773; Mon, 13 Mar
- 2023 04:17:57 -0700 (PDT)
+        with ESMTP id S229740AbjCML2o (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Mar 2023 07:28:44 -0400
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C92C325952;
+        Mon, 13 Mar 2023 04:28:43 -0700 (PDT)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 32DBSaVS053748;
+        Mon, 13 Mar 2023 06:28:36 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1678706916;
+        bh=V1F1JvB8e0m+TPoTa8JxvlvaAtOxepF/TyIfygWQDIU=;
+        h=From:To:CC:Subject:Date;
+        b=hx9p9QY8jPpFuFeXrOR2g6eSWKdu//Iv1bBU1bVvXax6k6PW1QBdbnNfimIyc1rDU
+         aQBxDQ1Jv3RP2Ym8ZHJbcxxzTfmq8ANp9J2/EOTRkh5Q7hVm4Ij7umjtJVNGYZXpc6
+         SPdxoSdQK7rSRp/hYfBV9OyvyJCTWn1Q6pnak2Ag=
+Received: from DLEE110.ent.ti.com (dlee110.ent.ti.com [157.170.170.21])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 32DBSalm009082
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Mon, 13 Mar 2023 06:28:36 -0500
+Received: from DLEE112.ent.ti.com (157.170.170.23) by DLEE110.ent.ti.com
+ (157.170.170.21) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Mon, 13
+ Mar 2023 06:28:35 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE112.ent.ti.com
+ (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
+ Frontend Transport; Mon, 13 Mar 2023 06:28:35 -0500
+Received: from localhost (ileaxei01-snat2.itg.ti.com [10.180.69.6])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 32DBSZnE030284;
+        Mon, 13 Mar 2023 06:28:35 -0500
+From:   Bhavya Kapoor <b-kapoor@ti.com>
+To:     <devicetree@vger.kernel.org>, <robh+dt@kernel.org>
+CC:     <nm@ti.com>, <vigneshr@ti.com>, <kristo@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>
+Subject: [PATCH v4] arm64: dts: ti: k3-j721s2: Add support for ADC nodes
+Date:   Mon, 13 Mar 2023 16:58:34 +0530
+Message-ID: <20230313112834.16156-1-b-kapoor@ti.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Sender: 2fatimaahmed@gmail.com
-Received: by 2002:a59:cd0f:0:b0:3a6:925f:39d5 with HTTP; Mon, 13 Mar 2023
- 04:17:56 -0700 (PDT)
-From:   Elena Tudorie <elenatudorie987@gmail.com>
-Date:   Mon, 13 Mar 2023 16:47:56 +0530
-X-Google-Sender-Auth: 5BnVfFz9GoiKpNbBumMNKUeUzpc
-Message-ID: <CAH=VxSNmakoKGdVDuMBCSBWT5hZajG4aZCDV8eS16y-poxhzKg@mail.gmail.com>
-Subject: Greetings
-To:     undisclosed-recipients:;
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=0.6 required=5.0 tests=BAYES_50,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-I am Ms Elena Tudorie, I have a important  business  to discuss with you,
-Thanks for your time and  Attention.
-Regards.
-Mrs.Elena Tudorie
+J721s2 has two instances of 8 channel ADCs in MCU domain. Add DT nodes
+for both instances of 8 channel ADCs for J721s2 SoC.
+
+Signed-off-by: Bhavya Kapoor <b-kapoor@ti.com>
+---
+
+Changelog v3->v4:
+- add leading zeroes to reg address to match existing convention
+- change clock names for adc to 'fck'
+- remove spaces from start of line
+
+ .../dts/ti/k3-j721s2-common-proc-board.dts    | 14 +++++++
+ .../boot/dts/ti/k3-j721s2-mcu-wakeup.dtsi     | 40 +++++++++++++++++++
+ 2 files changed, 54 insertions(+)
+
+diff --git a/arch/arm64/boot/dts/ti/k3-j721s2-common-proc-board.dts b/arch/arm64/boot/dts/ti/k3-j721s2-common-proc-board.dts
+index a7aa6cf08acd..3bc4f28c809f 100644
+--- a/arch/arm64/boot/dts/ti/k3-j721s2-common-proc-board.dts
++++ b/arch/arm64/boot/dts/ti/k3-j721s2-common-proc-board.dts
+@@ -309,3 +309,17 @@ &mcu_mcan1 {
+ 	pinctrl-0 = <&mcu_mcan1_pins_default>;
+ 	phys = <&transceiver2>;
+ };
++
++&tscadc0 {
++	status = "okay";
++	adc {
++		ti,adc-channels = <0 1 2 3 4 5 6 7>;
++	};
++};
++
++&tscadc1 {
++	status = "okay";
++	adc {
++		ti,adc-channels = <0 1 2 3 4 5 6 7>;
++	};
++};
+diff --git a/arch/arm64/boot/dts/ti/k3-j721s2-mcu-wakeup.dtsi b/arch/arm64/boot/dts/ti/k3-j721s2-mcu-wakeup.dtsi
+index 0af242aa9816..5da5f0cf7009 100644
+--- a/arch/arm64/boot/dts/ti/k3-j721s2-mcu-wakeup.dtsi
++++ b/arch/arm64/boot/dts/ti/k3-j721s2-mcu-wakeup.dtsi
+@@ -306,4 +306,44 @@ cpts@3d000 {
+ 			ti,cpts-periodic-outputs = <2>;
+ 		};
+ 	};
++
++	tscadc0: tscadc@40200000 {
++		compatible = "ti,am3359-tscadc";
++		reg = <0x00 0x40200000 0x00 0x1000>;
++		interrupts = <GIC_SPI 860 IRQ_TYPE_LEVEL_HIGH>;
++		power-domains = <&k3_pds 0 TI_SCI_PD_EXCLUSIVE>;
++		clocks = <&k3_clks 0 0>;
++		assigned-clocks = <&k3_clks 0 2>;
++		assigned-clock-rates = <60000000>;
++		clock-names = "fck";
++		dmas = <&main_udmap 0x7400>,
++			<&main_udmap 0x7401>;
++		dma-names = "fifo0", "fifo1";
++		status = "disabled";
++
++		adc {
++			#io-channel-cells = <1>;
++			compatible = "ti,am3359-adc";
++		};
++	};
++
++	tscadc1: tscadc@40210000 {
++		compatible = "ti,am3359-tscadc";
++		reg = <0x00 0x40210000 0x00 0x1000>;
++		interrupts = <GIC_SPI 861 IRQ_TYPE_LEVEL_HIGH>;
++		power-domains = <&k3_pds 1 TI_SCI_PD_EXCLUSIVE>;
++		clocks = <&k3_clks 1 0>;
++		assigned-clocks = <&k3_clks 1 2>;
++		assigned-clock-rates = <60000000>;
++		clock-names = "fck";
++		dmas = <&main_udmap 0x7402>,
++			<&main_udmap 0x7403>;
++		dma-names = "fifo0", "fifo1";
++		status = "disabled";
++
++		adc {
++			#io-channel-cells = <1>;
++			compatible = "ti,am3359-adc";
++		};
++	};
+ };
+-- 
+2.34.1
+
