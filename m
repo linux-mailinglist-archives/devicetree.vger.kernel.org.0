@@ -2,53 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2B5E76B76BD
-	for <lists+devicetree@lfdr.de>; Mon, 13 Mar 2023 12:52:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0312C6B76C1
+	for <lists+devicetree@lfdr.de>; Mon, 13 Mar 2023 12:52:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231397AbjCMLwo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Mar 2023 07:52:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44382 "EHLO
+        id S230180AbjCMLwt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Mar 2023 07:52:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44852 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231326AbjCMLwZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Mar 2023 07:52:25 -0400
-Received: from mail-wm1-x330.google.com (mail-wm1-x330.google.com [IPv6:2a00:1450:4864:20::330])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9AAD57EC2
-        for <devicetree@vger.kernel.org>; Mon, 13 Mar 2023 04:52:13 -0700 (PDT)
-Received: by mail-wm1-x330.google.com with SMTP id k25-20020a7bc419000000b003ed23114fa7so2030924wmi.4
-        for <devicetree@vger.kernel.org>; Mon, 13 Mar 2023 04:52:13 -0700 (PDT)
+        with ESMTP id S230379AbjCMLw1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Mar 2023 07:52:27 -0400
+Received: from mail-wm1-x332.google.com (mail-wm1-x332.google.com [IPv6:2a00:1450:4864:20::332])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4096813537
+        for <devicetree@vger.kernel.org>; Mon, 13 Mar 2023 04:52:15 -0700 (PDT)
+Received: by mail-wm1-x332.google.com with SMTP id ay8so2501968wmb.1
+        for <devicetree@vger.kernel.org>; Mon, 13 Mar 2023 04:52:15 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1678708332;
+        d=linaro.org; s=google; t=1678708333;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=A8zljTNF4Pe4dDvsxbbCfXKVrLgdz9C9Te0bWssuxG4=;
-        b=LIKvu/0rcwz5S4cPE3dnmQ3G7EujLWKSt6Qg7bVuNT+6nnsm76nwlXKVJh/CF69Vo4
-         0+uY+jSaHQOGOHQCuwp9jNnU2yqR9W0UqZFOXPk67NUHnwtfobIEeX3vUoqnTe5vB684
-         KLLKkHaTEYCUDfkohy2L3HAm3ln2X7r6F9uqQh77CDH1Rm4+OdIbbW/QJAmHQ3sZa+Lo
-         MBiA+6Wk8burl01cGeSdLpnQAMVqMCE6fGqNIlG9tnwV3hFxgpPbX/KaFYg8FfgWF9oh
-         e9388rXt3xzfD2e4I7xi79OeiqJjtUmSpDVsMsDJE2mtj+qggcVx1DAHbIo6ejgPvf+G
-         SXZg==
+        bh=R2H0CkOqqY9niGb8lT2/yOlC10kv4voB7XBZF/NVVMI=;
+        b=PGwxkIfB+Kos7dLMUF2U5qJibiYverU5hfAwFzFTK7XJfNnJaTIDSa6h6OJybMNv2O
+         H1UZKuChN/17kudrNeyZk+7im3DwBrZ+noyY0IShsjHaKLZmCJG1txslQiHCtcYaX585
+         fJLbJlYhpIIGgfrzleqYhq6XElp2LRnnQc7JclxBM3klB7NhL3DaZfd8jzYAl/0EfFdt
+         z4slSj5Aaawde59gAWJ5QXJSNjCUbwTJzAolfxLxcByrQy/bOh+FwpIMsCPdloHHTK0i
+         VQDfbGzG+bp2C7zMTBqFaGMrb+oIOatZeM/eHFkMqjDM2KIuEXbB53t32YXvPO+w4Maq
+         GyBA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678708332;
+        d=1e100.net; s=20210112; t=1678708333;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=A8zljTNF4Pe4dDvsxbbCfXKVrLgdz9C9Te0bWssuxG4=;
-        b=6vYlWm385UDcngPGs1eE15zLRjEBLQjXs28WgnqOjoCB5h2E2gjPSYRhe2/RU3Ea8G
-         Toh29TBXSDYhLsnHBapTk/ELTznbhI+ohmSCLxyUm4WwieHxM09qPiwJ+k4vfRIMdYWu
-         L7q4pXApzEAuTfuJTKdjzX4s3nI9uGbaJgIaTo1t+kzfu6apHspkJD8JX+0xLhIvDSFe
-         hTrubK0K9vJyIfpxF0PsU7jeMYmr8GJc86bfgYxmqYIzUm1wVKxfiJNb+ru8fcvqaYQb
-         5979470W9CwOVReXLIVVr1tKTew/M5jfNC5sV1LbdGGJph0hrEplefKJPVzSB2vRTjRc
-         a6oQ==
-X-Gm-Message-State: AO0yUKVEBBHn9zQo6IYOT3KmxlrQSb1+I2Oaaqv41Ej+VJ2CX+PncKZM
-        YcXMUZVcLNwA0Abp1d3kHvzJsw==
-X-Google-Smtp-Source: AK7set/eDxqplp8SwG4mA/yLb8hDWH+E1HWLcvcJD9Gxy3aH1WN/n+eqGPvd9Pmsqx+w13r8BQnT1Q==
-X-Received: by 2002:a05:600c:1c95:b0:3ed:29db:cb85 with SMTP id k21-20020a05600c1c9500b003ed29dbcb85mr477035wms.11.1678708332124;
-        Mon, 13 Mar 2023 04:52:12 -0700 (PDT)
+        bh=R2H0CkOqqY9niGb8lT2/yOlC10kv4voB7XBZF/NVVMI=;
+        b=49isxR+WcN9q9IlXqYp7xh0hkttBeaiB9oxvqeQrA0R8RafHK1yf/7DegTjvOFqnXO
+         aMKQ/6LlbFswAUEaomazUeFa2ZcyBUMx9ff4x/KUPBKzedvfbRHIsRPD2nkZ4Oze5VDT
+         hmjiT5fq37vru2tyjyD+aXrSMm4lCrSWtXXDgCmvQWkm41HXd72ThwKOZM0asvVfbWW3
+         LCsBqSGY3o6SRyDaboxOapBjjCY/KnEGtWIy0xvtfLcunABaeboJUiOfVKq2Vsa+P225
+         xJfCc6pJn6lJJbWUz4sXAOEXnT3bQ0zkbxfORMbQQNDO0KmbQ5kIbQy9CknvX0umfosK
+         tPGg==
+X-Gm-Message-State: AO0yUKU8fVIe6XqbAoPY64JobHaK1IQGKahznLYA/+3920jK2MklvVij
+        DA8uY7veN0NzWkFN8VHCZbRjvg==
+X-Google-Smtp-Source: AK7set8B2+uATswZ4wvEtMwdyws1yg+We8smdpDZgmnTRUlEvXLkQjBhfaOjar/FkVynljuYhbpR+Q==
+X-Received: by 2002:a05:600c:35c1:b0:3df:deb5:6ff5 with SMTP id r1-20020a05600c35c100b003dfdeb56ff5mr10502817wmq.24.1678708333677;
+        Mon, 13 Mar 2023 04:52:13 -0700 (PDT)
 Received: from localhost.localdomain ([94.52.112.99])
-        by smtp.gmail.com with ESMTPSA id u15-20020a05600c440f00b003e21dcccf9fsm8801090wmn.16.2023.03.13.04.52.10
+        by smtp.gmail.com with ESMTPSA id u15-20020a05600c440f00b003e21dcccf9fsm8801090wmn.16.2023.03.13.04.52.12
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 13 Mar 2023 04:52:11 -0700 (PDT)
+        Mon, 13 Mar 2023 04:52:13 -0700 (PDT)
 From:   Abel Vesa <abel.vesa@linaro.org>
 To:     Ulf Hansson <ulf.hansson@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
@@ -70,9 +70,9 @@ Cc:     linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
         Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
         linux-arm-msm@vger.kernel.org, linux-crypto@vger.kernel.org,
         linux-scsi@vger.kernel.org
-Subject: [RFC PATCH v3 2/7] dt-bindings: mmc: sdhci-msm: Add ICE phandle and drop core clock
-Date:   Mon, 13 Mar 2023 13:51:57 +0200
-Message-Id: <20230313115202.3960700-3-abel.vesa@linaro.org>
+Subject: [RFC PATCH v3 3/7] dt-bindings: ufs: qcom: Add ICE phandle and drop core clock
+Date:   Mon, 13 Mar 2023 13:51:58 +0200
+Message-Id: <20230313115202.3960700-4-abel.vesa@linaro.org>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20230313115202.3960700-1-abel.vesa@linaro.org>
 References: <20230313115202.3960700-1-abel.vesa@linaro.org>
@@ -97,24 +97,24 @@ Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
 Changes since v2:
  * dropped all changes except the qcom,ice property
 
- Documentation/devicetree/bindings/mmc/sdhci-msm.yaml | 4 ++++
+ Documentation/devicetree/bindings/ufs/qcom,ufs.yaml | 4 ++++
  1 file changed, 4 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/mmc/sdhci-msm.yaml b/Documentation/devicetree/bindings/mmc/sdhci-msm.yaml
-index 64df6919abaf..0ad14d5b722e 100644
---- a/Documentation/devicetree/bindings/mmc/sdhci-msm.yaml
-+++ b/Documentation/devicetree/bindings/mmc/sdhci-msm.yaml
-@@ -120,6 +120,10 @@ properties:
-     $ref: /schemas/types.yaml#/definitions/uint32
-     description: platform specific settings for DLL_CONFIG reg.
+diff --git a/Documentation/devicetree/bindings/ufs/qcom,ufs.yaml b/Documentation/devicetree/bindings/ufs/qcom,ufs.yaml
+index c5a06c048389..7384300c421d 100644
+--- a/Documentation/devicetree/bindings/ufs/qcom,ufs.yaml
++++ b/Documentation/devicetree/bindings/ufs/qcom,ufs.yaml
+@@ -70,6 +70,10 @@ properties:
+   power-domains:
+     maxItems: 1
  
 +  qcom,ice:
 +    $ref: /schemas/types.yaml#/definitions/phandle
 +    description: phandle to the Inline Crypto Engine node
 +
-   iommus:
+   reg:
      minItems: 1
-     maxItems: 8
+     maxItems: 2
 -- 
 2.34.1
 
