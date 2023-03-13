@@ -2,125 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E2EC36B7A4F
-	for <lists+devicetree@lfdr.de>; Mon, 13 Mar 2023 15:28:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 467196B7A58
+	for <lists+devicetree@lfdr.de>; Mon, 13 Mar 2023 15:30:51 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231373AbjCMO2X (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Mar 2023 10:28:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38002 "EHLO
+        id S231425AbjCMOat (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Mar 2023 10:30:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42318 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230333AbjCMO2U (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Mar 2023 10:28:20 -0400
-Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C9BEAFF01
-        for <devicetree@vger.kernel.org>; Mon, 13 Mar 2023 07:28:17 -0700 (PDT)
-Received: by mail-ed1-x533.google.com with SMTP id cn21so19304942edb.0
-        for <devicetree@vger.kernel.org>; Mon, 13 Mar 2023 07:28:17 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1678717696;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=ZtstJD3/hydqzM3cHZ+u7SVJlCO4w3i30mirExqm+ew=;
-        b=n9xc1hix4I04GYTvKHxu6HfVOfV2nhzxwWhUcptyl8ik4Pl5iD9INYXgkGi7q3swIK
-         MWzs+601qEmgn2wWf+cQZxEu2pEEFPmV1LfxjA3v2cunZGiQQwmQOUbUpm4sMGi4mjS/
-         BP0EHnQHp9Gg30gY0PFswGVvgQO3Kr0KF4eDA5WHgIubG8iMlZgqFixc6EDhCWjqKciO
-         EyUTquOGbzpWXt7TLJ5PUKCr4qx9nRXTmeOCZIJ9JACxU1QaO1vdmWN5x9lfKix909S5
-         9HCjH9+e8V2xXOZcLeM7COVGkHriqvvRuKpM1oUa2EX9rbMUcLuKVsnGf7ge0bok+T/2
-         Tm5w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678717696;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=ZtstJD3/hydqzM3cHZ+u7SVJlCO4w3i30mirExqm+ew=;
-        b=WKfMho/gBOKarwUvqjZiLfjAni30rKyZeKfu0ZZsFJoxhZm9v7kW0e+PjjkJuCGmls
-         D3yFRubHodC+KAJQVbDuWaXu+qviJb3WrnG2Y6Zk8wV86+NGZRmDeSU2m0Bbr3ZaQkzN
-         +NFQvmczHfKYH0Z8Jtj+8Tis61E2cvbULU7HP3m4hq0QSKeJEMUsSDdx7jAm+nN88+M8
-         BfksaxybZ0Gbb03Ynz1CB93KLK2ALwJBmhqxi/ifqhFH2Cot5L8SVaz0XLQ0oru7QZif
-         C1xwzYx9wTJ9L2YxOfSNROv/dMJCmMRJgsSR6QV94JJpDhKoIzqre4OFnP3dymCql1UG
-         692g==
-X-Gm-Message-State: AO0yUKXBVGXc7ziKbnOBPO4dWaKcJLAZBB2EO5D9JNTVPhGUh9SUt8jQ
-        PkKHvxlJrZ+CWXY4I/XH7SYzBg==
-X-Google-Smtp-Source: AK7set8mc1JBzDyrckjzGNOvQdHN9mzEXYplLnbsYbsbM/TPKV8zE5W8ruSj2jhdxMG3uwk3aW8NFQ==
-X-Received: by 2002:aa7:d1d5:0:b0:4fb:5795:b7e0 with SMTP id g21-20020aa7d1d5000000b004fb5795b7e0mr5560293edp.31.1678717696370;
-        Mon, 13 Mar 2023 07:28:16 -0700 (PDT)
-Received: from ?IPV6:2a02:810d:15c0:828:69db:4882:d071:27c4? ([2a02:810d:15c0:828:69db:4882:d071:27c4])
-        by smtp.gmail.com with ESMTPSA id x20-20020a170906805400b0091ee4923bb4sm3481210ejw.51.2023.03.13.07.28.15
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 13 Mar 2023 07:28:16 -0700 (PDT)
-Message-ID: <85bbec87-992d-f9a9-2f2b-bc41457933bb@linaro.org>
-Date:   Mon, 13 Mar 2023 15:28:15 +0100
+        with ESMTP id S231411AbjCMOap (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Mar 2023 10:30:45 -0400
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 41EF134008;
+        Mon, 13 Mar 2023 07:30:44 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1678717844; x=1710253844;
+  h=date:from:to:cc:subject:in-reply-to:message-id:
+   references:mime-version;
+  bh=2A5vXcR9dVDQtHTdsgDzpaUet920wYeoo1FeiQYkThg=;
+  b=koRx0upe2e6SBdfahHaT2sSHlqPiWEO6y/N5i/5AbRtxA3HEXQtZNlDG
+   u+2q9UfU4Qi6ttfT9TqWtkvsY0/MGrkXkW0YSeVQa1prXkrsJoDq223Az
+   /lAyMutULsAm9vJQFJbcYHnWwEdaMvf8+kbdDWtO49NJkwfaf0aNmwTqw
+   QDCQN+LVF/Ty3QWYjbLJkGX2r28P4ZTfs/cB0JmoE+zK8j57dkJ3OShJf
+   Q5xl0Y1IwkosZfXNzHjwMWLgHd5wtvnuEByTQA6nmJ2VMd1sKHQvMPZMI
+   /lxHi+A3Fp4rs1FsHTKbqxY26qy+fwlRIO9jOwZaOKogtIl9Uy/PqNubM
+   w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10648"; a="337180473"
+X-IronPort-AV: E=Sophos;i="5.98,257,1673942400"; 
+   d="scan'208";a="337180473"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+  by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 13 Mar 2023 07:30:43 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6500,9779,10648"; a="678701605"
+X-IronPort-AV: E=Sophos;i="5.98,257,1673942400"; 
+   d="scan'208";a="678701605"
+Received: from etsykuno-mobl2.ccr.corp.intel.com ([10.252.47.211])
+  by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 13 Mar 2023 07:30:37 -0700
+Date:   Mon, 13 Mar 2023 16:30:34 +0200 (EET)
+From:   =?ISO-8859-15?Q?Ilpo_J=E4rvinen?= <ilpo.jarvinen@linux.intel.com>
+To:     Neeraj sanjay kale <neeraj.sanjaykale@nxp.com>
+cc:     "davem@davemloft.net" <davem@davemloft.net>,
+        "edumazet@google.com" <edumazet@google.com>,
+        "kuba@kernel.org" <kuba@kernel.org>,
+        "pabeni@redhat.com" <pabeni@redhat.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "marcel@holtmann.org" <marcel@holtmann.org>,
+        "johan.hedberg@gmail.com" <johan.hedberg@gmail.com>,
+        "luiz.dentz@gmail.com" <luiz.dentz@gmail.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Jiri Slaby <jirislaby@kernel.org>,
+        "alok.a.tiwari@oracle.com" <alok.a.tiwari@oracle.com>,
+        "hdanton@sina.com" <hdanton@sina.com>,
+        "leon@kernel.org" <leon@kernel.org>,
+        "simon.horman@corigine.com" <simon.horman@corigine.com>,
+        Netdev <netdev@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        LKML <linux-kernel@vger.kernel.org>,
+        "linux-bluetooth@vger.kernel.org" <linux-bluetooth@vger.kernel.org>,
+        linux-serial <linux-serial@vger.kernel.org>,
+        Amitkumar Karwar <amitkumar.karwar@nxp.com>,
+        Rohit Fule <rohit.fule@nxp.com>,
+        Sherry Sun <sherry.sun@nxp.com>
+Subject: RE: [EXT] Re: [PATCH v9 3/3] Bluetooth: NXP: Add protocol support
+ for NXP Bluetooth chipsets
+In-Reply-To: <AM9PR04MB8603EB5DA53821B12E049649E7B99@AM9PR04MB8603.eurprd04.prod.outlook.com>
+Message-ID: <17a9ffd1-342c-2cf1-2a57-7fabe1fce8b8@linux.intel.com>
+References: <20230313140924.3104691-1-neeraj.sanjaykale@nxp.com> <20230313140924.3104691-4-neeraj.sanjaykale@nxp.com> <b28d1e39-f036-c260-4452-ac1332efca0@linux.intel.com> <AM9PR04MB8603EB5DA53821B12E049649E7B99@AM9PR04MB8603.eurprd04.prod.outlook.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-Subject: Re: [PATCH v3 6/7] media: dt-bindings: samsung,fimc: convert to
- dtschema
-Content-Language: en-US
-To:     Sakari Ailus <sakari.ailus@iki.fi>
-Cc:     Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Alim Akhtar <alim.akhtar@samsung.com>,
-        Sylwester Nawrocki <s.nawrocki@samsung.com>,
-        Andrzej Hajda <andrzej.hajda@intel.com>,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Rob Herring <robh@kernel.org>
-References: <20230216142204.48394-1-krzysztof.kozlowski@linaro.org>
- <20230216142204.48394-7-krzysztof.kozlowski@linaro.org>
- <ZA8YJx+NE0+89YaD@valkosipuli.retiisi.eu>
- <ZA8v98mqm4Xdt2Sl@valkosipuli.retiisi.eu>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <ZA8v98mqm4Xdt2Sl@valkosipuli.retiisi.eu>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Type: multipart/mixed; boundary="8323329-1280341670-1678717842=:2573"
+X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 13/03/2023 15:15, Sakari Ailus wrote:
-> On Mon, Mar 13, 2023 at 02:33:43PM +0200, Sakari Ailus wrote:
->> Hi Krzysztof,
->>
->> On Thu, Feb 16, 2023 at 03:22:03PM +0100, Krzysztof Kozlowski wrote:
->>> Convert the Samsung S5P/Exynos Camera Subsystem (FIMC) bindings to DT
->>> schema.  Changes during conversion - adjust to existing DTS and Linux
->>> driver: add iommus and power-domains.
->>>
->>> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->>> Reviewed-by: Rob Herring <robh@kernel.org>
->>
->> This does not apply on top of -rc1.
->>
->> ...
->>
->>> -- compatible: must be "samsung,fimc"
->>
->> I guess you have another patch removing "simple-bus" here and another
->> location in your tree?
+  This message is in MIME format.  The first part should be readable text,
+  while the remaining parts are likely unreadable without MIME-aware tools.
+
+--8323329-1280341670-1678717842=:2573
+Content-Type: text/plain; charset=iso-8859-1
+Content-Transfer-Encoding: 8BIT
+
+On Mon, 13 Mar 2023, Neeraj sanjay kale wrote:
+
+> > 
+> > Thanks, looks okay to me except this one I just noticed while preparing this
+> > email:
+> > 
+> > > +MODULE_DESCRIPTION("NXP Bluetooth Serial driver v1.0 ");
+> > 
+> > I don't think version numbers belong to the module description.
+> > 
+> I was asked to remove the MODULE_VERSION("v1.0") line in my v2 patch, hence kept it in the description.
+> https://patchwork.kernel.org/project/bluetooth/patch/20230130180504.2029440-4-neeraj.sanjaykale@nxp.com/
 > 
-> Ah, what's missing seems to be this set:
+> Please suggest me the right way to put the version string in this driver.
+
+I think Leon meant you should just drop the version altogether (since this 
+is new code).
+
+-- 
+ i.
+
+> > Reviewed-by: Ilpo Järvinen <ilpo.jarvinen@linux.intel.com>
+> > 
+> > 
+> > --
+> >  i.
 > 
-> <URL:https://patchwork.linuxtv.org/project/linux-media/list/?series=9839>
-
-Yeah, dependency is mention in cover letter.
-
+> Thank you again for reviewing this patch. :D
 > 
-> But also the second patch of that set doesn't seem to apply. :-(
+> -Neeraj
+> 
 
-Yep, I forgot I already sent same patch two months earlier. Let me merge
-two patches, rebase and resent, so everything will be easier for you
-(hopefully). Sorry for the mess.
-
-
-Best regards,
-Krzysztof
-
+--8323329-1280341670-1678717842=:2573--
