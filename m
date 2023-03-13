@@ -2,80 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1DD216B703F
-	for <lists+devicetree@lfdr.de>; Mon, 13 Mar 2023 08:47:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EBF466B7045
+	for <lists+devicetree@lfdr.de>; Mon, 13 Mar 2023 08:49:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229823AbjCMHrK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Mar 2023 03:47:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42364 "EHLO
+        id S229884AbjCMHtT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Mar 2023 03:49:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46884 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229821AbjCMHrI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Mar 2023 03:47:08 -0400
-Received: from out-55.mta0.migadu.com (out-55.mta0.migadu.com [91.218.175.55])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 972B44E5C3
-        for <devicetree@vger.kernel.org>; Mon, 13 Mar 2023 00:47:06 -0700 (PDT)
-Date:   Mon, 13 Mar 2023 08:40:01 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
-        t=1678693203;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=g8JZphjW0n2op01bARpnHNrvcY7IH/n7CLxamm4rdnY=;
-        b=Yw+2ggnAuoTzyU0K3i7WkHmrHAuNZEqxbmMNmfPB9sQmF6Cn11Ikn6T4+tm2HnCFcE0KWP
-        mVFYkcJgNg6MBTIAn7Y+wcAFh8jFXV16TeaJLJ4NbFgj6//b7ncUSm7q4+Y9U1//JNDV8i
-        i6qLKLYAGOjZdDZ6TkEdw6GXXZobsKA=
-X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
-From:   Richard Leitner <richard.leitner@linux.dev>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Peter Chen <peter.chen@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Minas Harutyunyan <hminas@synopsys.com>,
-        Alan Stern <stern@rowland.harvard.edu>,
-        Richard Leitner <richard.leitner@skidata.com>,
-        devicetree@vger.kernel.org, linux-usb@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] usb: Use of_property_read_bool() for boolean properties
-Message-ID: <20230313074001.GA24063@g0hl1n.net>
-References: <20230310144729.1545857-1-robh@kernel.org>
+        with ESMTP id S229779AbjCMHtS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Mar 2023 03:49:18 -0400
+Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D713624488
+        for <devicetree@vger.kernel.org>; Mon, 13 Mar 2023 00:49:15 -0700 (PDT)
+Received: by mail-ed1-x533.google.com with SMTP id cn21so14686833edb.0
+        for <devicetree@vger.kernel.org>; Mon, 13 Mar 2023 00:49:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1678693754;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=5jZ1IbIr7Zjo01eYTloNIdK6OVrxZIVge0vl1sSC9YE=;
+        b=lKQNsIjMsx98tsdY+JngqLf9AyXzUGO8cqatxvtWVsTbR6r5nN6/uDXGfra34R2yPr
+         ExTyaEaXfbiC/Xfp4AiADZzIE93nZC5NDFQOPN0VHCJ3dX/bg5YjXEPps/gybYY2dj8s
+         6OXDVt479ojVZZNpBrWUDG1HZ1I72OyDDaxMLSTFqWuFxs90y2/xhpgFRwq5Xx0heTF9
+         hBAeF3csfwIwOnl8ASiROb758XRrSNEZ9aB7xCmUyZUnbxNat50vBQ5pK6pVOWyTLqVd
+         aVMPazbdovrizIA0nVvpAq/m+GqEEzLU7l/0zpRmcW0mXBH/HWjVZ3nngur8fcNdmiTz
+         Z7gw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1678693754;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=5jZ1IbIr7Zjo01eYTloNIdK6OVrxZIVge0vl1sSC9YE=;
+        b=smhEzpE1o8RH1NI/Imvop2nEgYy8Ic5FuxUOQFU+IcfmPS8ODLn1d910IwVlkQmjz4
+         c00KGpEw2Nw1TD+UQZWnGXmyNSDs6jPN+vJWPCIf3a78AvaaQixaoottFS3AFNYKs9zI
+         ydVu2fVsbLYl6n9GhWoYz0d4SYdukvG3n2ybxxugk8gxVqfOgQNBGlYHkyUvwU45iVHI
+         0TryaI61eyDqv2QwGQzbIvC3KLyNn276JbEvRfjSpA3XHKUXfNo1rovPur6hAQ5Ffwhj
+         aPI5rwXnjbqZL3NeM4QlsfAXqqnb14HlS58rnkaNwzMTpu0kH3eKvzZUJ8lzYBp0Apgo
+         ln9Q==
+X-Gm-Message-State: AO0yUKWuB3t2h/cU3kCYmF/dpH6rgpr3o05A7EXoyIn1KtphwZa5Cbmd
+        AXsWsPNl3HFelGmTt7fBJO9oRg==
+X-Google-Smtp-Source: AK7set/tvTnTSzZy6q1lJj4ECVHedAf0H9uyNqrDdZ/WinBo8XXlu77jRfU2myjfTAFP3kuAx13E3w==
+X-Received: by 2002:a17:906:304a:b0:8ab:4c4:d0f6 with SMTP id d10-20020a170906304a00b008ab04c4d0f6mr30733533ejd.56.1678693754381;
+        Mon, 13 Mar 2023 00:49:14 -0700 (PDT)
+Received: from ?IPV6:2a02:810d:15c0:828:f052:f15:3f90:fcb3? ([2a02:810d:15c0:828:f052:f15:3f90:fcb3])
+        by smtp.gmail.com with ESMTPSA id p8-20020a170906140800b008d044ede804sm3083562ejc.163.2023.03.13.00.49.13
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 13 Mar 2023 00:49:14 -0700 (PDT)
+Message-ID: <ed2dc73d-d4cc-95fc-cd8b-52d37ebf149a@linaro.org>
+Date:   Mon, 13 Mar 2023 08:49:12 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230310144729.1545857-1-robh@kernel.org>
-X-Migadu-Flow: FLOW_OUT
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.8.0
+Subject: Re: [PATCH RESEND v4] dt-bindings: pwm: Convert Amlogic Meson PWM
+ binding
+Content-Language: en-US
+To:     =?UTF-8?Q?Uwe_Kleine-K=c3=b6nig?= <u.kleine-koenig@pengutronix.de>,
+        Heiner Kallweit <hkallweit1@gmail.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        linux-pwm@vger.kernel.org,
+        "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>
+References: <3edc5ba6-bf3d-e45b-377a-9e7ece7642a7@gmail.com>
+ <20230310181135.kiajexld3v655tph@pengutronix.de>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230310181135.kiajexld3v655tph@pengutronix.de>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Mar 10, 2023 at 08:47:28AM -0600, Rob Herring wrote:
-> It is preferred to use typed property access functions (i.e.
-> of_property_read_<type> functions) rather than low-level
-> of_get_property/of_find_property functions for reading properties.
-> Convert reading boolean properties to to of_property_read_bool().
+On 10/03/2023 19:11, Uwe Kleine-König wrote:
+> On Mon, Feb 20, 2023 at 10:19:30PM +0100, Heiner Kallweit wrote:
+>> Convert Amlogic Meson PWM binding to yaml.
+>>
+>> Reviewed-by: Rob Herring <robh@kernel.org>
+>> Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
+>> ---
+>> Seems patch got lost over the question who takes it.
+>> Please apply through the pwm tree.
 > 
-> Signed-off-by: Rob Herring <robh@kernel.org>
-> ---
->  drivers/usb/chipidea/ci_hdrc_imx.c |  6 +++---
->  drivers/usb/chipidea/core.c        |  2 +-
->  drivers/usb/dwc2/params.c          |  3 +--
->  drivers/usb/host/ehci-ppc-of.c     |  6 +++---
->  drivers/usb/host/fsl-mph-dr-of.c   |  7 ++-----
->  drivers/usb/misc/usb251xb.c        | 33 ++++++++++++++----------------
->  6 files changed, 25 insertions(+), 32 deletions(-)
+> Hmm, I found
+> https://lore.kernel.org/linux-pwm/aaa73903-1837-d9c8-8c45-54b4473fd548@gmail.com
+> which had no Reviewed-by tag where Krzysztof Kozlowski replied writing:
+> "You got here a tag and my comment was about minor issue, so please keep
+> that tag." I didn't find a thread where such a tag was given, though. I
+> only found a review reply on v3 where Krzysztof requested a change (and
+> didn't provide a tag).
+> 
+> The Reviewed-by tag for Rob probably originates from
+> https://lore.kernel.org/linux-pwm/20230130212121.GA3468100-robh@kernel.org/.
 
-Thanks for the patch. Please feel free to add
+Yes, Rob provided that tag. Since it is included here, looks fine.
 
-Reviewed-by: Richard Leitner <richard.leitner@skidata.com>
+> 
+> And there is another variant where this patch was part of a series at
+> https://lore.kernel.org/linux-pwm/5b83767e-c53d-316f-df10-45a39dbd9c88@gmail.com
+> where it got an ack from me which wasn't included here.
+> 
+> To fix this:
+> 
+> Acked-by: Uwe Kleine-König <u.kleine-koenig@pengutronix.de>
+> 
+> but please note that you can save some scarce maintainer time if you're
+> more careful here.
 
-for the usb251xb changes.
+Best regards,
+Krzysztof
 
-regards;rl
