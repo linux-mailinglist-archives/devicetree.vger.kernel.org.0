@@ -2,72 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8C5D86B777D
-	for <lists+devicetree@lfdr.de>; Mon, 13 Mar 2023 13:30:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B588F6B7788
+	for <lists+devicetree@lfdr.de>; Mon, 13 Mar 2023 13:32:36 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229700AbjCMMa0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Mar 2023 08:30:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54624 "EHLO
+        id S229674AbjCMMce (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Mar 2023 08:32:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56858 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229726AbjCMMaW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Mar 2023 08:30:22 -0400
+        with ESMTP id S229593AbjCMMcd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Mar 2023 08:32:33 -0400
 Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com [IPv6:2a00:1450:4864:20::52b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C82E56423F
-        for <devicetree@vger.kernel.org>; Mon, 13 Mar 2023 05:30:20 -0700 (PDT)
-Received: by mail-ed1-x52b.google.com with SMTP id h8so4244475ede.8
-        for <devicetree@vger.kernel.org>; Mon, 13 Mar 2023 05:30:20 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0C09F60D69
+        for <devicetree@vger.kernel.org>; Mon, 13 Mar 2023 05:32:32 -0700 (PDT)
+Received: by mail-ed1-x52b.google.com with SMTP id er25so19912466edb.5
+        for <devicetree@vger.kernel.org>; Mon, 13 Mar 2023 05:32:31 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1678710619;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        d=linaro.org; s=google; t=1678710750;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=Xmn2nanx9djz8+cvYSEMDrQgDosVq8taY8kBuZP96dQ=;
-        b=Oi4/QA9NHRIFvwt8o68xzUvZ6ZRD3e3g4it/tyEvKJJkr8KURbc4Vo6kqOwolyD1Q5
-         8a/P7oZ1IhcOXtQal2xy7BzMCOhAMxj8ki1ai5zsrhvFEHyFteADBfMc2AdNNWeMLM30
-         e87z7bdg3YQRybWDaRi4Au7DtUVg5ZYN+V8KzdWXfHIRfy7Pc3NyRQESmiCV6HwunXiz
-         umjBmLYJuFwPGsBgfH5KfFfLprUJqMyhxMbC3telhO7S2W6tI5Wjz+M560Xxt2AkerUT
-         y5YDikylUGkVaKbZOx+xNc2r1n68p7Z14zP8r8JWMyoBma70M3hzI6xQG5U7TsmBfOxu
-         3Hog==
+        bh=qbR/fUsZhAg0lP6P9ObdAu9MnPucNzm4qqeur4JI9QY=;
+        b=ll4UtNcYh/0tvXztxN635HQrvQCFi3ynFljXazOIdlYGc4hiNsy8qVm76emGtxWBfO
+         zgnw7zU0vuv9E6A5wo5I47MaU0VgCQdYMKbzIjGJevAwoTjcEgS4BlYP3ukEVsNwmnj8
+         Ika9PzzbXEILFt7VE+Cisu72aJhhjDZIzPwihBspEo9KAxZX7tR5w6bB+Y7fX9gStp4c
+         wc/ey29l6omG8PtGqToTVCmybfqgl9P9rfQSRo83EpObmaDogkxy3FQOCD7ga4V6JUJv
+         kVcMIIYJQyJWLvqkvQf7By0y5s3X9/2QJc6iilpLwja9B2pf/dj0omwzNDv8FBe0pEdL
+         zzww==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678710619;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20210112; t=1678710750;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Xmn2nanx9djz8+cvYSEMDrQgDosVq8taY8kBuZP96dQ=;
-        b=iVGxO3vzjPES+H3fa74Ps70CpLaeEz2n8zCT4ebmYKaUpxjD0YXk2qvDki4pFe4qO/
-         A6vh4wwcq8C4AdAUkNkihoU8cc1ANbA+DS3CQz8Clx/CDzrblPS13wyXB6P3xsFqbfEZ
-         JhPgV99QxWL5AmVUMOT8PB0LrwCBjX+JH/9qZAkB6Mza2OPrA21hAwuGlfv+eGpenP34
-         raAqnFuuzHBcaZ/Wkzqi735qGj5mJuHIosB0KvCoqWUoiNFfK2ug/jY79GTNGOmGrYDK
-         Yc+Xz6RwwG+nH7hyibGqcraMJa5fvSAx2Z1WKPv2Fac2DRek2B4VUok9iLpEN1Z3FhKc
-         akVA==
-X-Gm-Message-State: AO0yUKV/9vk1Kl9qL6YbRDExPkKpeJPiEklTn5oDzPGybqfUGaGyJgjR
-        /eRABDv6nRzl8cJI3BUISjn8KZGeZQUtn3fHy64=
-X-Google-Smtp-Source: AK7set8vWnZvlNjQcq0Vh4v0+v2/D3pvGv7QjKi5Zpb1zXBn6XgfOOuoIqOEDpSc2Xt2IGKJW43YoA==
-X-Received: by 2002:a17:907:a602:b0:8b1:76ca:f228 with SMTP id vt2-20020a170907a60200b008b176caf228mr34379930ejc.39.1678710618957;
-        Mon, 13 Mar 2023 05:30:18 -0700 (PDT)
+        bh=qbR/fUsZhAg0lP6P9ObdAu9MnPucNzm4qqeur4JI9QY=;
+        b=BGZRIOFMHawYn7j0hxi/s0REDQj6FNF/yT9Ty413mIJ0MHBx+alQfapZwKD/Jur9Gk
+         Xw2Adu2X2AvYcIKhImDNi7AH8NNOeIstHDBULPlre0SELy3eVPi9/8k0geRVTMFDuh00
+         aoXWy5n8Gd7x3d2X2pBkPr1XO1jnvQYflGMajgNEHfF+wXE1V/b2mHugKTw0EfmNQb4P
+         wqIwEdzZQIfB1k+Wb94SiajpeH8iwTpIHsR5sz93H/+noNxuErzMUg7tuncwV1T89fne
+         Lir0Ddzp/pqBTrCgdyn5VvGguANkTNpCB47RbrXOseIDT42ypNLS2v8z6Rad7TCL5Z8B
+         6SvA==
+X-Gm-Message-State: AO0yUKXh9HBDsEo2l1o1VSLTVG4KLPXaETICHVujW5MRSmtYnt0vL4Rh
+        XDFRHTXaWDarPVu5zG2dnXdHsw==
+X-Google-Smtp-Source: AK7set8XlpMn2zDxWX4wLeTSxDL3k2MNsCluAH/knmVLQkSc1I+ql9nCCKqU3TW3fDKA94QVgR3HOQ==
+X-Received: by 2002:a17:906:d8b6:b0:924:943d:7181 with SMTP id qc22-20020a170906d8b600b00924943d7181mr5427752ejb.51.1678710750534;
+        Mon, 13 Mar 2023 05:32:30 -0700 (PDT)
 Received: from ?IPV6:2a02:810d:15c0:828:69db:4882:d071:27c4? ([2a02:810d:15c0:828:69db:4882:d071:27c4])
-        by smtp.gmail.com with ESMTPSA id hz11-20020a1709072ceb00b008e51a1fd7bfsm3426297ejc.172.2023.03.13.05.30.18
+        by smtp.gmail.com with ESMTPSA id y11-20020a1709060a8b00b009245ba892d6sm2268222ejf.103.2023.03.13.05.32.29
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 13 Mar 2023 05:30:18 -0700 (PDT)
-Message-ID: <0499e6e7-ab4e-3e7a-d6de-0979bd0d8cc8@linaro.org>
-Date:   Mon, 13 Mar 2023 13:30:16 +0100
+        Mon, 13 Mar 2023 05:32:30 -0700 (PDT)
+Message-ID: <b55228db-7d83-2a49-2c04-0284693df788@linaro.org>
+Date:   Mon, 13 Mar 2023 13:32:28 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.8.0
-Subject: Re: [PATCH v4 3/3] dt-bindings: gpio: add NPCM sgpio driver bindings
-To:     Jim Liu <jim.t90615@gmail.com>
-Cc:     JJLIU0@nuvoton.com, KWLIU@nuvoton.com, linus.walleij@linaro.org,
-        brgl@bgdev.pl, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        openbmc@lists.ozlabs.org
-References: <20230110083238.19230-1-jim.t90615@gmail.com>
- <20230110083238.19230-4-jim.t90615@gmail.com>
- <d56c24c2-a017-8468-0b3a-bd93d6024c69@linaro.org>
- <CAKUZ0+HiR+GDG4EP8nxyVVMQrkotvyQP3N3Rs7+3d2aTLEtMoA@mail.gmail.com>
+Subject: Re: [PATCH v2 1/2] dt-bindings: gpio: add fcs,fxl6408
 Content-Language: en-US
+To:     Francesco Dolcini <francesco@dolcini.it>,
+        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org
+Cc:     Emanuele Ghidoli <emanuele.ghidoli@toradex.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <brgl@bgdev.pl>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-kernel@vger.kernel.org,
+        Francesco Dolcini <francesco.dolcini@toradex.com>
+References: <20230313113308.157930-1-francesco@dolcini.it>
+ <20230313113308.157930-2-francesco@dolcini.it>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <CAKUZ0+HiR+GDG4EP8nxyVVMQrkotvyQP3N3Rs7+3d2aTLEtMoA@mail.gmail.com>
+In-Reply-To: <20230313113308.157930-2-francesco@dolcini.it>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -80,58 +81,18 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 13/03/2023 11:38, Jim Liu wrote:
-> Hi Krzysztof
+On 13/03/2023 12:33, Francesco Dolcini wrote:
+> From: Emanuele Ghidoli <emanuele.ghidoli@toradex.com>
 > 
-> Sorry for the mistake.
-> I think I need to explain more details about the clock.
+> Add Fairchild FXL6408 8-bit I2C-controlled GPIO expander.
+> 
+> Signed-off-by: Emanuele Ghidoli <emanuele.ghidoli@toradex.com>
+> Signed-off-by: Francesco Dolcini <francesco.dolcini@toradex.com>
+> ---
+> v2:
 
-It's still top-posting.
 
-> 
-> The NPCM7xx / NPCM8xx  SGPIO feature have 4 pins.
-> picture is as below:
-> https://drive.google.com/file/d/1E9i_Avh-AZV9IEZO1HLMT4EtgCBe46OV/view?usp=sharing
-> 
-> The clock is generated from npcm7xx APB.
-> The bus frequency is derived from npcm7xx APB not HC595/HC165.
-> Users can connect  1~8 HC595 on DOUT pin to decode the serial data for
-> HC595 A~H pin
-> and can connect  1~8 HC165 on DIN pin to encode the serial data to
-> send to NPCM7xx.
-> 
-> The test device is as below:
-> https://pdf1.alldatasheet.com/datasheet-pdf/view/345467/TI/SN74HC595N.html
-> https://pdf1.alldatasheet.com/datasheet-pdf/view/27899/TI/SN74HC165N.html
-> 
-> NPCM7xx/NPCM8xx have two sgpio modules;
-> each module can support up to 64 output pins,and up to 64 input pins.
-> If the user needs 64 output pins , user needs to connect 8 HC595.
-> If the user needs 64 input pins , user needs to connect 8 HC165.
-> 
-> the HC595 and HC165 connect is as below:
-> NPCM7xx_DOUT    ->   HC595  SER pin
-> NPCM7xx_SCLK     ->   HC595  SRCLK pin
-> NPCM7xx_LDSH    ->    HC595  RCLK pin
-> 
-> NPCM7xx_SCLK     ->   HC165  CLK pin
-> NPCM7xx_LDSH     ->   HC165  SH/LD pin
-> NPCM7xx_DIN        ->    HC165  QH pin
-> 
-> The frequency is not derived from the input clock. so i think maybe
-> the yaml needs to describe it.
-
-That's not what your code was saying. It said:
-"Directly connected to APB bus and its shift clock is from APB bus clock
-divided by a programmable value."
-
-> if yaml file still didn't need please let me know.
-
-Now read the description of bus-frequency:
-"Legacy property for fixed bus frequencies"
-
-Don't add legacy properties to new bindings. You have
-assigned-clock-rates and clocks properties.
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
