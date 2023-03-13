@@ -2,59 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C67FD6B7198
-	for <lists+devicetree@lfdr.de>; Mon, 13 Mar 2023 09:51:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 838806B719E
+	for <lists+devicetree@lfdr.de>; Mon, 13 Mar 2023 09:51:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230417AbjCMIv1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Mar 2023 04:51:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51996 "EHLO
+        id S230432AbjCMIv5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Mar 2023 04:51:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52504 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229722AbjCMIuo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Mar 2023 04:50:44 -0400
-Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0662B4109D
-        for <devicetree@vger.kernel.org>; Mon, 13 Mar 2023 01:49:02 -0700 (PDT)
-Received: by mail-lf1-x131.google.com with SMTP id g17so14690291lfv.4
-        for <devicetree@vger.kernel.org>; Mon, 13 Mar 2023 01:49:02 -0700 (PDT)
+        with ESMTP id S230443AbjCMIvP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Mar 2023 04:51:15 -0400
+Received: from mail-lj1-x22f.google.com (mail-lj1-x22f.google.com [IPv6:2a00:1450:4864:20::22f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D3721CC0B
+        for <devicetree@vger.kernel.org>; Mon, 13 Mar 2023 01:49:27 -0700 (PDT)
+Received: by mail-lj1-x22f.google.com with SMTP id h3so11761103lja.12
+        for <devicetree@vger.kernel.org>; Mon, 13 Mar 2023 01:49:27 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1678697339;
+        d=linaro.org; s=google; t=1678697363;
         h=content-transfer-encoding:in-reply-to:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=+okBj9+YTOyap+UDm1PgUDE4NHs7gwqOJzJzAUx2O4w=;
-        b=Wgv4OU2aOmxCcxpdbBITu5aDCDFBDZ+UEl1nfVQWtw3Uw/xz6ifR4pByxkeKtzjID+
-         naCaNyfGTOVoITOk04UfU7VUNjWL9ZiKR4ZrX+p4qSVu1JI0VAHQ/d/Dt6thrvAxS/yj
-         U//xFu6obeYwVORh6xckkUEYbasfFpH7GQCX7lw9/v7rqoZV+AAQutn/B/N8o5MGfEbN
-         8nNeXa3+h1obGXm2jxqr3gvyWgquUJBHviA70FeC/dYqYdbX2UqsT7o1FM7YISRcpyX9
-         P+ewGG2MD6YZsrjNFVxudD4qOtfAtGdhMAVIKZAm1YYDGODXEV1RVTfSiloLF6XUxqtm
-         FuLA==
+        bh=I5ZMNZCrruihlPgWnzPscl3vtoNWikyghd/e3GwVD90=;
+        b=u277/x4CALiOzZ41tXMWpbtO/WObG5lRXO+DftvasXs5NJefWo8bGctVxgdsCKKVJB
+         pqmRaWPdCATJ2R3UvUr7/YhIj9b8CpW8UG/+Agzy/ZVUZis9d0eHfK9NuvNSBW/vw8U/
+         cQ/WEFaTwkmplUcdeEtsxv6xegNXBWFaZF1EnkphmGrtlDq9+acdMhpfdfADMk6vQ+oL
+         j2/wO0zEZxCxgzpMNxpAaMKhAuBLyw4D/4Mf/eZP6FzxqJ5twsbU9bfnGy+8o2ufwlTa
+         7hhvKNqRa6Wwc8xex9FFuAWw+amfKSTjj58Tl1CoKwh99/1yI2GqJp9mpvhFR5ggzgrT
+         s81g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678697339;
+        d=1e100.net; s=20210112; t=1678697363;
         h=content-transfer-encoding:in-reply-to:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=+okBj9+YTOyap+UDm1PgUDE4NHs7gwqOJzJzAUx2O4w=;
-        b=urSS/gloORbsgiVqkbj7OJqE5O78RexIzRmpdRp3OXei9PyExAC72VKBNQ1fU5DXkG
-         Cc01VfCr+k9w8fsrxHN6MTHDs2xgNS8wKGsvgaCPqOXnEMbJVHfCEs63fTmHYXGBFthK
-         8Tyvt6CjhWAQneFa2A0flVX6I6WNBvrP28eZJ5GXC+/ECs9Iu5z9mHFhIhsGlySoutsc
-         0vDl6YW1EskzJSssfVofw7IhomfgQUzELBm02o7pr4EqAwOTPbeD2IAhJve8Zms4aR8x
-         Lq4lmV6ANNsPQL/3RCzzQ1rObDn3Wa19ttXT0rY8drrK0qoL7mq08XGIiENweEKUIHXF
-         mvCQ==
-X-Gm-Message-State: AO0yUKVV5KeMZEOA0u5XZea1O6zs3V/UOPj2mN6PF+qWPsSfl6d4TQdZ
-        He2qrGb2xhguP5Va76rcMotq4A==
-X-Google-Smtp-Source: AK7set9z4jCiDG2Fzf+dBk6Uh1F5uu9dcTqK2xnZNfEbnJUXi5eodVIfAhIsf3gj/zUqt6Bie/ZwOg==
-X-Received: by 2002:ac2:44cc:0:b0:4db:25f2:c116 with SMTP id d12-20020ac244cc000000b004db25f2c116mr9150127lfm.18.1678697339378;
-        Mon, 13 Mar 2023 01:48:59 -0700 (PDT)
+        bh=I5ZMNZCrruihlPgWnzPscl3vtoNWikyghd/e3GwVD90=;
+        b=HgUe/yWnlenXz/wW/c8Qt64ePUS9R/Di83bClOOzPM0MWPE5ExRUPhc+tI2MjIz09S
+         Kik4Ii9l1vux3JXnVqB9f0p259j3MEpyvlS8HDT2cW0ItnRz1njvxyX/mfPvTvdOczxi
+         79erNA7qA41ijN8DadSirqIxheqRKGGLv3f2hUQghc5yL6VK7YHB/cRWbtIRJvo3Hsts
+         RqYYTMqMk1qdB9wuxtH/zTIx9MIslcXXB6Iw1GGXRX2Sgkajqbx7krU7qQiNmzmTxiXu
+         GUuueBe4G1ObIegCRMqJt8t3svkbphpBB9xYOrKVVpORwdPL3w3zvMdy5wVHwWjVUM5n
+         QYvw==
+X-Gm-Message-State: AO0yUKWeibTHGrjNmjM9tppOwINhOGoYprB2AvJq03f5/Ztzc9VDlVDz
+        Os0S9E+t4va7R77bjusVjvMeXw==
+X-Google-Smtp-Source: AK7set8Uz17jE+SAAy6tly+2mQG/CkmxqSpe2bf6YkI82O4xoRDnV05hOwHXDqeH+ryMV2LwFtn/WA==
+X-Received: by 2002:a05:651c:115:b0:294:7427:4ec4 with SMTP id a21-20020a05651c011500b0029474274ec4mr9738231ljb.41.1678697363289;
+        Mon, 13 Mar 2023 01:49:23 -0700 (PDT)
 Received: from [192.168.1.101] (abyj16.neoplus.adsl.tpnet.pl. [83.9.29.16])
-        by smtp.gmail.com with ESMTPSA id p3-20020a19f003000000b004b4b600c093sm907135lfc.92.2023.03.13.01.48.58
+        by smtp.gmail.com with ESMTPSA id c3-20020a2e9d83000000b0029352fc39fbsm904924ljj.63.2023.03.13.01.49.22
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 13 Mar 2023 01:48:59 -0700 (PDT)
-Message-ID: <fc42ec1d-76ab-e44d-79a3-1f53bb79337d@linaro.org>
-Date:   Mon, 13 Mar 2023 09:48:57 +0100
+        Mon, 13 Mar 2023 01:49:22 -0700 (PDT)
+Message-ID: <951d238b-731f-7e55-72fb-88b4c5a60408@linaro.org>
+Date:   Mon, 13 Mar 2023 09:49:21 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.8.0
-Subject: Re: [PATCH 2/8] arm64: dts: qcom: sc7280-herobrine-villager: correct
+Subject: Re: [PATCH 3/8] arm64: dts: qcom: sc7180-trogdor-lazor: correct
  trackpad supply
 Content-Language: en-US
 To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
@@ -72,9 +72,9 @@ To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
         linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
 References: <20230312183622.460488-1-krzysztof.kozlowski@linaro.org>
- <20230312183622.460488-2-krzysztof.kozlowski@linaro.org>
+ <20230312183622.460488-3-krzysztof.kozlowski@linaro.org>
 From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20230312183622.460488-2-krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230312183622.460488-3-krzysztof.kozlowski@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-0.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -91,31 +91,29 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 On 12.03.2023 19:36, Krzysztof Kozlowski wrote:
 > The hid-over-i2c takes VDD, not VCC supply.  Fix copy-pasta from other
-> Herobrine boards which use elan,ekth3000 with valid VCC:
+> boards which use elan,ekth3000 with valid VCC:
 > 
->   sc7280-herobrine-villager-r1-lte.dtb: trackpad@2c: 'vcc-supply' does not match any of the regexes: 'pinctrl-[0-9]+'
+>   sc7180-trogdor-lazor-limozeen-nots-r4.dtb: trackpad@2c: 'vcc-supply' does not match any of the regexes: 'pinctrl-[0-9]+'
 > 
-> Fixes: ee2a62116015 ("arm64: dts: qcom: sc7280: Add device tree for herobrine villager")
+> Fixes: 2c26adb8dbab ("arm64: dts: qcom: Add sc7180-lazor-limozeen skus")
 > Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 > ---
-
-
 Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 
 Konrad
->  arch/arm64/boot/dts/qcom/sc7280-herobrine-villager.dtsi | 2 +-
+>  .../boot/dts/qcom/sc7180-trogdor-lazor-limozeen-nots-r4.dts     | 2 +-
 >  1 file changed, 1 insertion(+), 1 deletion(-)
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/sc7280-herobrine-villager.dtsi b/arch/arm64/boot/dts/qcom/sc7280-herobrine-villager.dtsi
-> index 818d4046d2c7..38c8a3679fcb 100644
-> --- a/arch/arm64/boot/dts/qcom/sc7280-herobrine-villager.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sc7280-herobrine-villager.dtsi
-> @@ -33,7 +33,7 @@ trackpad: trackpad@2c {
->  		interrupts = <7 IRQ_TYPE_EDGE_FALLING>;
+> diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-limozeen-nots-r4.dts b/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-limozeen-nots-r4.dts
+> index 850776c5323d..70d5a7aa8873 100644
+> --- a/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-limozeen-nots-r4.dts
+> +++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-limozeen-nots-r4.dts
+> @@ -26,7 +26,7 @@ trackpad: trackpad@2c {
+>  		interrupt-parent = <&tlmm>;
+>  		interrupts = <58 IRQ_TYPE_EDGE_FALLING>;
 >  
+> -		vcc-supply = <&pp3300_fp_tp>;
+> +		vdd-supply = <&pp3300_fp_tp>;
 >  		hid-descr-addr = <0x20>;
-> -		vcc-supply = <&pp3300_z1>;
-> +		vdd-supply = <&pp3300_z1>;
 >  
 >  		wakeup-source;
->  	};
