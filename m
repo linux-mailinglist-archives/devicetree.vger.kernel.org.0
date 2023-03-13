@@ -2,211 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D700C6B77C1
-	for <lists+devicetree@lfdr.de>; Mon, 13 Mar 2023 13:41:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 89A966B77E9
+	for <lists+devicetree@lfdr.de>; Mon, 13 Mar 2023 13:46:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230022AbjCMMlZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Mar 2023 08:41:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44998 "EHLO
+        id S229937AbjCMMqU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Mar 2023 08:46:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55978 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229988AbjCMMlW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Mar 2023 08:41:22 -0400
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EA9BE5AB7D;
-        Mon, 13 Mar 2023 05:41:20 -0700 (PDT)
-Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 32DBAT5W017663;
-        Mon, 13 Mar 2023 12:40:56 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
- subject : date : message-id : in-reply-to : references : mime-version :
- content-transfer-encoding; s=qcppdkim1;
- bh=Mlhqt/TQMW/XaKNhevXXYT1CK62k+l/39EDBwWNGHkE=;
- b=WLx9BsfZTssmxMhYe0jxzm4fRoChUAbebaGR+IZHQy4X6Mabx45Lp5t4aTao8YtH6RWd
- EBYtVaqX8/1KzUdamcAOp6tB0AzBE3l21OP9TOqI7Ct3Wf4VddOGw9CJDw1d/7HSM8qU
- KechRNbrTNUQ5P/2sY42uWP8q7wgKglvW0A/CuCIiEIRhjYtm1DehFLENKu5v5DN6YvK
- 9TdWgOQZ5G/2jyPrNY/EajwheBkfH5nq0PbE1BsJXx2ASPVzd1KRsatYSTegK6KXwZDa
- mwVf4gp3L87DFztgk99HVy4D59q3BBvXCuxHRZvbzkmITERUyHeXhi8dQUHdSXMHWJ2f hw== 
-Received: from apblrppmta01.qualcomm.com (blr-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.18.19])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3p8jtwvtjk-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Mon, 13 Mar 2023 12:40:56 +0000
-Received: from pps.filterd (APBLRPPMTA01.qualcomm.com [127.0.0.1])
-        by APBLRPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTP id 32DCemJU022410;
-        Mon, 13 Mar 2023 12:40:52 GMT
-Received: from pps.reinject (localhost [127.0.0.1])
-        by APBLRPPMTA01.qualcomm.com (PPS) with ESMTP id 3p8jqkna0y-1;
-        Mon, 13 Mar 2023 12:40:52 +0000
-Received: from APBLRPPMTA01.qualcomm.com (APBLRPPMTA01.qualcomm.com [127.0.0.1])
-        by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 32DCeqlS022445;
-        Mon, 13 Mar 2023 12:40:52 GMT
-Received: from kbajaj-linux.qualcomm.com (kbajaj-linux.qualcomm.com [10.214.66.129])
-        by APBLRPPMTA01.qualcomm.com (PPS) with ESMTP id 32DCeqL0022443;
-        Mon, 13 Mar 2023 12:40:52 +0000
-Received: from kbajaj-linux.qualcomm.com (localhost [127.0.0.1])
-        by kbajaj-linux.qualcomm.com (Postfix) with ESMTP id 6F0652A3;
-        Mon, 13 Mar 2023 18:10:51 +0530 (IST)
-From:   Komal Bajaj <quic_kbajaj@quicinc.com>
+        with ESMTP id S229888AbjCMMqT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Mar 2023 08:46:19 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3CF256EBB;
+        Mon, 13 Mar 2023 05:46:00 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id D4C0F61277;
+        Mon, 13 Mar 2023 12:45:59 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id ABDBDC433D2;
+        Mon, 13 Mar 2023 12:45:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1678711559;
+        bh=qVkmwXonH8hmMSSCuPxE/fYZDjtdar66MDKlKu02CYg=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=YviOT9U7ELoxrS3EwLG3X7qlriMbweVhj5Kek/YLMV+E/QrriI1BSExdG/pcc46GW
+         At6bYmXyqHEyOkXbVoMlRLvmSIW65zg13KX53Pi1ISApLImH7x0GnXvHeMaJsF1W1Y
+         g4x6tflym2Dd7Dy4wBUC5yVKPUoMvaKMmvCx4K/d/eey/y+OBgLFkaoIqK2hfpN5Q4
+         Xnut8+nuUTm0IluESvj37VI29Cn/JjQ5dAb2EvHzvui4XbN2hJmhKqEDUOph/rscT5
+         zWRKTs3ogfflZDFof8WeDwgLcTuY9Dim9u7/wP8tRkeBlrFivCA5L6wK194SuSmRy0
+         XJ299IuuVz45Q==
+Date:   Mon, 13 Mar 2023 05:49:23 -0700
+From:   Bjorn Andersson <andersson@kernel.org>
 To:     Rob Herring <robh+dt@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Eric Chanudet <echanude@redhat.com>,
+        Andy Gross <agross@kernel.org>,
         Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Abel Vesa <abel.vesa@linaro.org>,
-        Rishabh Bhatnagar <rishabhb@codeaurora.org>,
-        Prakash Ranjan <saiprakash.ranjan@codeaurora.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andy Gross <agross@kernel.org>
-Cc:     Komal Bajaj <quic_kbajaj@quicinc.com>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org
-Subject: [PATCH v2 5/5] soc: qcom: llcc: Add QDU1000 and QRU1000 LLCC support
-Date:   Mon, 13 Mar 2023 18:10:40 +0530
-Message-Id: <20230313124040.9463-6-quic_kbajaj@quicinc.com>
-X-Mailer: git-send-email 2.39.1
-In-Reply-To: <20230313124040.9463-1-quic_kbajaj@quicinc.com>
-References: <20230313124040.9463-1-quic_kbajaj@quicinc.com>
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] arm64: dts: qcom: sa8775p: add symbols to dtb
+Message-ID: <20230313124923.iwaknvrnitqal3wa@ripper>
+References: <20230309233945.1199358-1-echanude@redhat.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-QCInternal: smtphost
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: jQnTkOtyOMnd6PtDUG2z37wiY9buHtQF
-X-Proofpoint-GUID: jQnTkOtyOMnd6PtDUG2z37wiY9buHtQF
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
- definitions=2023-03-13_05,2023-03-13_02,2023-02-09_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0 impostorscore=0
- phishscore=0 suspectscore=0 priorityscore=1501 clxscore=1015
- malwarescore=0 mlxscore=0 adultscore=0 lowpriorityscore=0 mlxlogscore=999
- bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2212070000 definitions=main-2303130102
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230309233945.1199358-1-echanude@redhat.com>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add LLCC configuration data for QDU1000 and QRU1000 SoCs
-and updating macro name for LLCC_DRE to LLCC_ECC as per
-the latest specification.
+On Thu, Mar 09, 2023 at 06:39:48PM -0500, Eric Chanudet wrote:
+> ABL uses the __symbols__ section to process the DTB before passing it
+> forward. Without it, the bootstrap is interrupted.
+> 
+> Signed-off-by: Eric Chanudet <echanude@redhat.com>
 
-Signed-off-by: Komal Bajaj <quic_kbajaj@quicinc.com>
----
- drivers/soc/qcom/llcc-qcom.c       | 65 +++++++++++++++++++++++++++++-
- include/linux/soc/qcom/llcc-qcom.h |  2 +-
- 2 files changed, 65 insertions(+), 2 deletions(-)
+@Rob, @Krzysztof, it seems useful to be able to use the upstream
+generated DTBs with overlays.
 
-diff --git a/drivers/soc/qcom/llcc-qcom.c b/drivers/soc/qcom/llcc-qcom.c
-index f4d3e266c629..2dd9fc4e2858 100644
---- a/drivers/soc/qcom/llcc-qcom.c
-+++ b/drivers/soc/qcom/llcc-qcom.c
-@@ -188,7 +188,7 @@ static const struct llcc_slice_config sc8280xp_data[] = {
- 	{ LLCC_MMUHWT,   13, 1024, 1, 1, 0xfff, 0x0, 0, 0, 0, 0, 1, 0 },
- 	{ LLCC_DISP,     16, 6144, 1, 1, 0xfff, 0x0, 0, 0, 0, 1, 0, 0 },
- 	{ LLCC_AUDHW,    22, 2048, 1, 1, 0xfff, 0x0, 0, 0, 0, 1, 0, 0 },
--	{ LLCC_DRE,      26, 1024, 1, 1, 0xfff, 0x0, 0, 0, 0, 1, 0, 0 },
-+	{ LLCC_ECC,      26, 1024, 1, 1, 0xfff, 0x0, 0, 0, 0, 1, 0, 0 },
- 	{ LLCC_CVP,      28, 512,  3, 1, 0xfff, 0x0, 0, 0, 0, 1, 0, 0 },
- 	{ LLCC_APTCM,    30, 1024, 3, 1, 0x0,   0x1, 1, 0, 0, 1, 0, 0 },
- 	{ LLCC_WRCACHE,  31, 1024, 1, 1, 0xfff, 0x0, 0, 0, 0, 0, 1, 0 },
-@@ -351,6 +351,36 @@ static const struct llcc_slice_config sm8550_data[] =  {
- 	{LLCC_VIDVSP,   28,  256, 4, 1, 0xFFFFFF, 0x0,   0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, },
- };
- 
-+static const struct llcc_slice_config qdu1000_data_2ch[] = {
-+	{LLCC_MDMHPGRW, 7, 512, 1, 1, 0xFFF, 0x0, 0, 0, 0, 1, 0, 0, 0 },
-+	{LLCC_MODHW,    9, 256, 1, 1, 0xFFF, 0x0, 0, 0, 0, 1, 0, 0, 0 },
-+	{LLCC_MDMPNG,  21, 256, 0, 1,   0x3, 0x0, 0, 0, 0, 1, 0, 0, 0 },
-+	{LLCC_ECC,     26, 512, 3, 1, 0xFFC, 0x0, 0, 0, 0, 0, 1, 0, 0 },
-+	{LLCC_MODPE,   29, 256, 1, 1, 0xFFF, 0x0, 0, 0, 0, 1, 0, 0, 0 },
-+	{LLCC_APTCM,   30, 256, 3, 1,   0x0, 0xC, 1, 0, 0, 1, 0, 0, 0 },
-+	{LLCC_WRCACHE, 31, 128, 1, 1,   0x3, 0x0, 0, 0, 0, 0, 1, 0, 0 },
-+};
-+
-+static const struct llcc_slice_config qdu1000_data_4ch[] = {
-+	{LLCC_MDMHPGRW, 7, 1024, 1, 1, 0xFFF, 0x0, 0, 0, 0, 1, 0, 0, 0 },
-+	{LLCC_MODHW,    9, 512,  1, 1, 0xFFF, 0x0, 0, 0, 0, 1, 0, 0, 0 },
-+	{LLCC_MDMPNG,  21, 512,  0, 1,   0x3, 0x0, 0, 0, 0, 1, 0, 0, 0 },
-+	{LLCC_ECC,     26, 1024, 3, 1, 0xFFC, 0x0, 0, 0, 0, 0, 1, 0, 0 },
-+	{LLCC_MODPE,   29, 512,  1, 1, 0xFFF, 0x0, 0, 0, 0, 1, 0, 0, 0 },
-+	{LLCC_APTCM,   30, 512,  3, 1,   0x0, 0xC, 1, 0, 0, 1, 0, 0, 0 },
-+	{LLCC_WRCACHE, 31, 256,  1, 1,   0x3, 0x0, 0, 0, 0, 0, 1, 0, 0 },
-+};
-+
-+static const struct llcc_slice_config qdu1000_data_8ch[] = {
-+	{LLCC_MDMHPGRW, 7, 2048, 1, 1, 0xFFF, 0x0, 0, 0, 0, 1, 0, 0, 0 },
-+	{LLCC_MODHW,    9, 1024, 1, 1, 0xFFF, 0x0, 0, 0, 0, 1, 0, 0, 0 },
-+	{LLCC_MDMPNG,  21, 1024, 0, 1,   0x3, 0x0, 0, 0, 0, 1, 0, 0, 0 },
-+	{LLCC_ECC,     26, 2048, 3, 1, 0xFFC, 0x0, 0, 0, 0, 0, 1, 0, 0 },
-+	{LLCC_MODPE,   29, 1024, 1, 1, 0xFFF, 0x0, 0, 0, 0, 1, 0, 0, 0 },
-+	{LLCC_APTCM,   30, 1024, 3, 1,   0x0, 0xC, 1, 0, 0, 1, 0, 0, 0 },
-+	{LLCC_WRCACHE, 31, 512,  1, 1,   0x3, 0x0, 0, 0, 0, 0, 1, 0, 0 },
-+};
-+
- static const struct llcc_edac_reg_offset llcc_v1_edac_reg_offset = {
- 	.trp_ecc_error_status0 = 0x20344,
- 	.trp_ecc_error_status1 = 0x20348,
-@@ -538,6 +568,38 @@ static const struct qcom_llcc_config sm8550_cfg[] = {
- 	{ },
- };
- 
-+static const struct qcom_llcc_config qdu1000_cfg[] = {
-+	{
-+		.sct_data       = qdu1000_data_8ch,
-+		.size		= ARRAY_SIZE(qdu1000_data_8ch),
-+		.need_llcc_cfg	= true,
-+		.reg_offset	= llcc_v2_1_reg_offset,
-+		.edac_reg_offset = &llcc_v2_1_edac_reg_offset,
-+	},
-+	{
-+		.sct_data       = qdu1000_data_4ch,
-+		.size           = ARRAY_SIZE(qdu1000_data_4ch),
-+		.need_llcc_cfg  = true,
-+		.reg_offset     = llcc_v2_1_reg_offset,
-+		.edac_reg_offset = &llcc_v2_1_edac_reg_offset,
-+	},
-+	{
-+		.sct_data       = qdu1000_data_4ch,
-+		.size           = ARRAY_SIZE(qdu1000_data_4ch),
-+		.need_llcc_cfg  = true,
-+		.reg_offset     = llcc_v2_1_reg_offset,
-+		.edac_reg_offset = &llcc_v2_1_edac_reg_offset,
-+	},
-+	{
-+		.sct_data       = qdu1000_data_2ch,
-+		.size           = ARRAY_SIZE(qdu1000_data_2ch),
-+		.need_llcc_cfg  = true,
-+		.reg_offset     = llcc_v2_1_reg_offset,
-+		.edac_reg_offset = &llcc_v2_1_edac_reg_offset,
-+	},
-+	{ },
-+};
-+
- static struct llcc_drv_data *drv_data = (void *) -EPROBE_DEFER;
- 
- /**
-@@ -1110,6 +1172,7 @@ static const struct of_device_id qcom_llcc_of_match[] = {
- 	{ .compatible = "qcom,sm8350-llcc", .data = sm8350_cfg },
- 	{ .compatible = "qcom,sm8450-llcc", .data = sm8450_cfg },
- 	{ .compatible = "qcom,sm8550-llcc", .data = sm8550_cfg },
-+	{ .compatible = "qcom,qdu1000-llcc", .data = qdu1000_cfg},
- 	{ }
- };
- MODULE_DEVICE_TABLE(of, qcom_llcc_of_match);
-diff --git a/include/linux/soc/qcom/llcc-qcom.h b/include/linux/soc/qcom/llcc-qcom.h
-index 225891a02f5d..150b2836c8b9 100644
---- a/include/linux/soc/qcom/llcc-qcom.h
-+++ b/include/linux/soc/qcom/llcc-qcom.h
-@@ -30,7 +30,7 @@
- #define LLCC_NPU         23
- #define LLCC_WLHW        24
- #define LLCC_PIMEM       25
--#define LLCC_DRE         26
-+#define LLCC_ECC         26
- #define LLCC_CVP         28
- #define LLCC_MODPE       29
- #define LLCC_APTCM       30
--- 
-2.39.1
+Do you suggest that we enable this on a per-board basis when it's being
+requested, across all devices, or tell the users that they have to
+re-generate the dtbs themselves?
 
+Thanks,
+Bjorn
+
+> ---
+> Depends on initial sa8775p-ride.dts:
+> https://lore.kernel.org/all/20230214092713.211054-3-brgl@bgdev.pl/
+> 
+>  arch/arm64/boot/dts/qcom/Makefile | 4 ++++
+>  1 file changed, 4 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
+> index b63cd1861e68..72e85ab31d74 100644
+> --- a/arch/arm64/boot/dts/qcom/Makefile
+> +++ b/arch/arm64/boot/dts/qcom/Makefile
+> @@ -1,4 +1,8 @@
+>  # SPDX-License-Identifier: GPL-2.0
+> +
+> +# Enable support for device-tree overlays required on sa8775p-ride.
+> +DTC_FLAGS_sa8775p-ride := -@
+> +
+>  dtb-$(CONFIG_ARCH_QCOM)	+= apq8016-sbc.dtb
+>  dtb-$(CONFIG_ARCH_QCOM)	+= apq8094-sony-xperia-kitakami-karin_windy.dtb
+>  dtb-$(CONFIG_ARCH_QCOM)	+= apq8096-db820c.dtb
+> -- 
+> 2.39.1
+> 
