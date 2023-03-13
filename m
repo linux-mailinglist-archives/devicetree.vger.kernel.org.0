@@ -2,112 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 949DD6B77B3
-	for <lists+devicetree@lfdr.de>; Mon, 13 Mar 2023 13:40:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 99DF46B77B8
+	for <lists+devicetree@lfdr.de>; Mon, 13 Mar 2023 13:41:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229524AbjCMMkg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Mar 2023 08:40:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44202 "EHLO
+        id S229950AbjCMMlU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Mar 2023 08:41:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44896 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229689AbjCMMkg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Mar 2023 08:40:36 -0400
-Received: from relmlie5.idc.renesas.com (relmlor1.renesas.com [210.160.252.171])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 3BFEC1CBCC;
-        Mon, 13 Mar 2023 05:40:35 -0700 (PDT)
-X-IronPort-AV: E=Sophos;i="5.98,256,1673881200"; 
-   d="scan'208";a="152420029"
-Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
-  by relmlie5.idc.renesas.com with ESMTP; 13 Mar 2023 21:40:34 +0900
-Received: from localhost.localdomain (unknown [10.166.15.32])
-        by relmlir5.idc.renesas.com (Postfix) with ESMTP id 62D454008558;
-        Mon, 13 Mar 2023 21:40:34 +0900 (JST)
-From:   Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-To:     joro@8bytes.org, will@kernel.org, robin.murphy@arm.com,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org
-Cc:     geert+renesas@glider.be, iommu@lists.linux.dev,
-        devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
-        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-Subject: [PATCH v4] dt-bindings: iommu: renesas, ipmmu-vmsa: Update for R-Car Gen4
-Date:   Mon, 13 Mar 2023 21:40:26 +0900
-Message-Id: <20230313124026.954514-1-yoshihiro.shimoda.uh@renesas.com>
-X-Mailer: git-send-email 2.25.1
+        with ESMTP id S229922AbjCMMlT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Mar 2023 08:41:19 -0400
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BA454509BF;
+        Mon, 13 Mar 2023 05:41:17 -0700 (PDT)
+Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 32DBd9TY032724;
+        Mon, 13 Mar 2023 12:40:50 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-transfer-encoding;
+ s=qcppdkim1; bh=N0KRWluhS5L5mRO1L3dHloPuatYaKu3pUrdYL6ml5KY=;
+ b=U8YggESD22Yx9mA99+rIC4SYLKI2crWA89MUfVOHlFEg7xvdYtfmQdo6VIYl/HzPG1vp
+ 0WkEDAIFhZvBSS43qfvj8brVzC4LjYNUXIPBXrEqloBb8f3XBnG+pJhHPJEnnq5b2EXv
+ AKGCq9YaqxGevxBONV75O+MquvBGmQPLH2w5nJyvZPiZCpxUy5W+GGGrA+SIFgLIB04n
+ cHtbKdjbO4KAxYGX5SVwfH1LkZcaVRT2e/rxvLJH7jFakH9yXr92QZT9vp13UWJr5bvv
+ GYj80fsYtEafvu0OAk9GUgeGnyhLmcyE0Ex+AZQIJ1N/+AA4agt/g4rQ5b8W3HXyYcfN UQ== 
+Received: from apblrppmta01.qualcomm.com (blr-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.18.19])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3pa1qgrcax-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Mon, 13 Mar 2023 12:40:49 +0000
+Received: from pps.filterd (APBLRPPMTA01.qualcomm.com [127.0.0.1])
+        by APBLRPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTP id 32DCejMT022371;
+        Mon, 13 Mar 2023 12:40:45 GMT
+Received: from pps.reinject (localhost [127.0.0.1])
+        by APBLRPPMTA01.qualcomm.com (PPS) with ESMTP id 3p8jqkn9ys-1;
+        Mon, 13 Mar 2023 12:40:45 +0000
+Received: from APBLRPPMTA01.qualcomm.com (APBLRPPMTA01.qualcomm.com [127.0.0.1])
+        by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 32DCejah022366;
+        Mon, 13 Mar 2023 12:40:45 GMT
+Received: from kbajaj-linux.qualcomm.com (kbajaj-linux.qualcomm.com [10.214.66.129])
+        by APBLRPPMTA01.qualcomm.com (PPS) with ESMTP id 32DCeiGf022364;
+        Mon, 13 Mar 2023 12:40:45 +0000
+Received: from kbajaj-linux.qualcomm.com (localhost [127.0.0.1])
+        by kbajaj-linux.qualcomm.com (Postfix) with ESMTP id 17BC52A3;
+        Mon, 13 Mar 2023 18:10:44 +0530 (IST)
+From:   Komal Bajaj <quic_kbajaj@quicinc.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Abel Vesa <abel.vesa@linaro.org>,
+        Rishabh Bhatnagar <rishabhb@codeaurora.org>,
+        Prakash Ranjan <saiprakash.ranjan@codeaurora.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Andy Gross <agross@kernel.org>
+Cc:     Komal Bajaj <quic_kbajaj@quicinc.com>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org
+Subject: [PATCH v2 0/5] soc: qcom: llcc: Add support for QDU1000/QRU1000
+Date:   Mon, 13 Mar 2023 18:10:35 +0530
+Message-Id: <20230313124040.9463-1-quic_kbajaj@quicinc.com>
+X-Mailer: git-send-email 2.39.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-0.4 required=5.0 tests=AC_FROM_MANY_DOTS,BAYES_00,
-        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+X-QCInternal: smtphost
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: sR1O2FPlf1C4ySeNFKILJt8TXod9Pv7C
+X-Proofpoint-GUID: sR1O2FPlf1C4ySeNFKILJt8TXod9Pv7C
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.254,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
+ definitions=2023-03-13_05,2023-03-13_02,2023-02-09_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0
+ malwarescore=0 mlxscore=0 suspectscore=0 phishscore=0 bulkscore=0
+ priorityscore=1501 mlxlogscore=869 spamscore=0 clxscore=1015
+ lowpriorityscore=0 adultscore=0 classifier=spam adjust=0 reason=mlx
+ scancount=1 engine=8.12.0-2212070000 definitions=main-2303130102
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Since R-Car Gen4 does not have the main IPMMU IMSSTR register, update
-the bindings to drop the interrupt bit number from the
-renesas,ipmmu-main property.
+This patchset refactor LLCC driver and adds LLCC support for the
+Qualcomm QDU1000 and QRU1000 SoCs. Since QDU1000/QRU1000 supports
+multi channel DDR, add support for multi channel DDR configuration
+in LLCC.
 
-Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-[geert: Re-add removed items level, add minItems/maxItems constraints]
-Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
----
-Changes from v3:
-https://lore.kernel.org/all/20230209133440.2643228-1-yoshihiro.shimoda.uh@renesas.com/
- - Revise the dt-bindings by Geert-san (Thanks a lot!).
+Changes in v2:
+  - Rebased on top of 6.3-rc2
 
- .../bindings/iommu/renesas,ipmmu-vmsa.yaml    | 32 ++++++++++++++-----
- 1 file changed, 24 insertions(+), 8 deletions(-)
+Komal Bajaj (5):
+  soc: qcom: llcc: Refactor llcc driver to support multiple
+    configuration
+  dt-bindings: arm: msm: Add bindings for multi channel DDR in LLCC
+  dt-bindings: arm: msm: Add LLCC compatible for QDU1000/QRU1000
+  soc: qcom: Add LLCC support for multi channel DDR
+  soc: qcom: llcc: Add QDU1000 and QRU1000 LLCC support
 
-diff --git a/Documentation/devicetree/bindings/iommu/renesas,ipmmu-vmsa.yaml b/Documentation/devicetree/bindings/iommu/renesas,ipmmu-vmsa.yaml
-index 72308a4c14e7..be90f68c11d1 100644
---- a/Documentation/devicetree/bindings/iommu/renesas,ipmmu-vmsa.yaml
-+++ b/Documentation/devicetree/bindings/iommu/renesas,ipmmu-vmsa.yaml
-@@ -74,16 +74,16 @@ properties:
-   renesas,ipmmu-main:
-     $ref: /schemas/types.yaml#/definitions/phandle-array
-     items:
--      - items:
-+      - minItems: 1
-+        items:
-           - description: phandle to main IPMMU
--          - description: the interrupt bit number associated with the particular
--              cache IPMMU device. The interrupt bit number needs to match the main
--              IPMMU IMSSTR register. Only used by cache IPMMU instances.
-+          - description:
-+              The interrupt bit number associated with the particular cache
-+              IPMMU device. If present, the interrupt bit number needs to match
-+              the main IPMMU IMSSTR register. Only used by cache IPMMU
-+              instances.
-     description:
--      Reference to the main IPMMU phandle plus 1 cell. The cell is
--      the interrupt bit number associated with the particular cache IPMMU
--      device. The interrupt bit number needs to match the main IPMMU IMSSTR
--      register. Only used by cache IPMMU instances.
-+      Reference to the main IPMMU.
- 
- required:
-   - compatible
-@@ -109,6 +109,22 @@ allOf:
-       required:
-         - power-domains
- 
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            const: renesas,rcar-gen4-ipmmu-vmsa
-+    then:
-+      properties:
-+        renesas,ipmmu-main:
-+          items:
-+            - maxItems: 1
-+    else:
-+      properties:
-+        renesas,ipmmu-main:
-+          items:
-+            - minItems: 2
-+
- examples:
-   - |
-     #include <dt-bindings/clock/r8a7791-cpg-mssr.h>
+ .../bindings/arm/msm/qcom,llcc.yaml           |  10 +
+ drivers/soc/qcom/llcc-qcom.c                  | 308 +++++++++++++-----
+ include/linux/soc/qcom/llcc-qcom.h            |   4 +-
+ 3 files changed, 240 insertions(+), 82 deletions(-)
+
 -- 
-2.25.1
+2.39.1
 
