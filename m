@@ -2,149 +2,148 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 31EBB6B7DE9
-	for <lists+devicetree@lfdr.de>; Mon, 13 Mar 2023 17:45:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D19606B7DF5
+	for <lists+devicetree@lfdr.de>; Mon, 13 Mar 2023 17:47:55 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229838AbjCMQpj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Mar 2023 12:45:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58842 "EHLO
+        id S229901AbjCMQry (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Mar 2023 12:47:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32978 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229757AbjCMQpi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Mar 2023 12:45:38 -0400
-Received: from lahtoruutu.iki.fi (lahtoruutu.iki.fi [IPv6:2a0b:5c81:1c1::37])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 817131F49B;
-        Mon, 13 Mar 2023 09:45:37 -0700 (PDT)
-Received: from meesny.iki.fi (meesny.iki.fi [IPv6:2001:67c:2b0:1c1::201])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by lahtoruutu.iki.fi (Postfix) with ESMTPS id 4Pb2b33L6sz4BKKQ;
-        Mon, 13 Mar 2023 18:45:35 +0200 (EET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=iki.fi; s=lahtoruutu;
-        t=1678725935;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=09Kna67nVseHs09S+p/lfcaEE+UDENKEBFM4ppU3O54=;
-        b=g+NbnJdEYI7DTohf+uiRvJwnn4Ajcfm3Ki8xt8u9qeFZDC9HCw4yt2kYhMR9BDa/1TpQYA
-        MAXNZxflVEBZYN3fGFZopj+nmbxolaSJowZkcZuTiRWyOAjyuUp353BfBjJTP/d9LwYWFN
-        RVs/g5FXzE1Q5BjA6eEfI4arhvo+9drCsAli+cBpNsWjv33MHUWLkPyOrAs8gxeIR/pZCP
-        WjOmhUbxTBLFlDcU891Dtxt22I1YToSDawmzzbV7wOzULOV5//11IYEn528nQAQkExLC1f
-        NzfC3ZsoVTGtmhDekDf7KW/cvhYqqHf4fcWsnI5LKM1MZC3LXk/irOpqlzYLQg==
-Received: from hillosipuli.retiisi.eu (dkzbhx1tyyyyyyyyyyyyt-3.rev.dnainternet.fi [IPv6:2001:14ba:4502:69d6::1])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: sailus)
-        by meesny.iki.fi (Postfix) with ESMTPSA id 4Pb2Zs43VMzyd2;
-        Mon, 13 Mar 2023 18:45:25 +0200 (EET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=iki.fi; s=meesny;
-        t=1678725928;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=09Kna67nVseHs09S+p/lfcaEE+UDENKEBFM4ppU3O54=;
-        b=ai5fepUEvCxWwNXpPa33iwFrh8MjZE3W+7kr7QvsybpGa0eH7dOhRwHCBAnxx19H0q5rqZ
-        nHVLweGoWlyhc65ScP/w8g+6ImTYY+x2vHlz22Xv2VQO4rr/QbZZm1F+q0CgxWnNKd+13P
-        bfijnEK0CaaPG19Rce1idCjfekR/Bhk=
-ARC-Seal: i=1; s=meesny; d=iki.fi; t=1678725928; a=rsa-sha256; cv=none;
-        b=NtMpv6469vL4zn+gQbcpfDWA5+XVDSauvdi/UjZSwmF28MsKg6y89o4dvH48FtzGTthUq4
-        t2pCmqtlLJxG4ynf5FP56tUH1bXrR6UCWdcsBYTx6/K8OnkBcq5BDcAxreRokzPGbq6CWY
-        XdOiTGmJkGADdQLUJadugeo14VR3afg=
-ARC-Authentication-Results: i=1;
-        ORIGINATING;
-        auth=pass smtp.auth=sailus smtp.mailfrom=sakari.ailus@iki.fi
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=iki.fi;
-        s=meesny; t=1678725928;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=09Kna67nVseHs09S+p/lfcaEE+UDENKEBFM4ppU3O54=;
-        b=FBL7TqR8aL8NgsJby5zCL955cu5hWTrJsQuOrCF5sE+v4InZv7sdKo4fZToSX08RxdFgsA
-        NqDFwUqMkQAG7sOzpThejpgBDu7VqOCm1Bf+1XHeQNGwXYzgGNZ3IkObBqMP0lPsgqdMvH
-        TqXa3mF95J/4vdZ25fFlumUJI1ce/bA=
-Received: from valkosipuli.retiisi.eu (valkosipuli.localdomain [192.168.4.2])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        by hillosipuli.retiisi.eu (Postfix) with ESMTPS id 69F52634C91;
-        Mon, 13 Mar 2023 18:44:27 +0200 (EET)
-Date:   Mon, 13 Mar 2023 18:44:27 +0200
-From:   Sakari Ailus <sakari.ailus@iki.fi>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S229543AbjCMQrx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Mar 2023 12:47:53 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3845A6F629
+        for <devicetree@vger.kernel.org>; Mon, 13 Mar 2023 09:47:51 -0700 (PDT)
+Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <mfe@pengutronix.de>)
+        id 1pblKh-0003ZU-O7; Mon, 13 Mar 2023 17:47:35 +0100
+Received: from mfe by ptx.hi.pengutronix.de with local (Exim 4.92)
+        (envelope-from <mfe@pengutronix.de>)
+        id 1pblKf-0008IJ-PH; Mon, 13 Mar 2023 17:47:33 +0100
+Date:   Mon, 13 Mar 2023 17:47:33 +0100
+From:   Marco Felsch <m.felsch@pengutronix.de>
+To:     sboyd@kernel.org
+Cc:     linux-clk@vger.kernel.org, Peng Fan <peng.fan@nxp.com>,
+        Fabio Estevam <festevam@gmail.com>,
+        Adam Ford <aford173@gmail.com>,
+        Alexander Stein <alexander.stein@ew.tq-group.com>,
+        Abel Vesa <abelvesa@kernel.org>, Jacky Bai <ping.bai@nxp.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Alim Akhtar <alim.akhtar@samsung.com>,
-        Sylwester Nawrocki <s.nawrocki@samsung.com>,
-        Andrzej Hajda <andrzej.hajda@intel.com>,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Rob Herring <robh@kernel.org>
-Subject: Re: [PATCH v3 6/7] media: dt-bindings: samsung,fimc: convert to
- dtschema
-Message-ID: <ZA9S62I1mTedUYSv@valkosipuli.retiisi.eu>
-References: <20230216142204.48394-1-krzysztof.kozlowski@linaro.org>
- <20230216142204.48394-7-krzysztof.kozlowski@linaro.org>
- <ZA8YJx+NE0+89YaD@valkosipuli.retiisi.eu>
- <ZA8v98mqm4Xdt2Sl@valkosipuli.retiisi.eu>
- <85bbec87-992d-f9a9-2f2b-bc41457933bb@linaro.org>
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Luca Ceresoli <luca.ceresoli@bootlin.com>,
+        Lucas Stach <l.stach@pengutronix.de>,
+        Michael Turquette <mturquette@baylibre.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Richard Cochran <richardcochran@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Shawn Guo <shawnguo@kernel.org>, Marek Vasut <marex@denx.de>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v7 1/5] clk: Introduce
+ devm_clk_hw_register_gate_parent_data()
+Message-ID: <20230313164733.wav2s46y3n4sxyzz@pengutronix.de>
+References: <20230301163257.49005-1-marex@denx.de>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <85bbec87-992d-f9a9-2f2b-bc41457933bb@linaro.org>
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <20230301163257.49005-1-marex@denx.de>
+User-Agent: NeoMutt/20180716
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
+X-SA-Exim-Mail-From: mfe@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Krzysztof,
+Hi Stephen,
 
-On Mon, Mar 13, 2023 at 03:28:15PM +0100, Krzysztof Kozlowski wrote:
-> On 13/03/2023 15:15, Sakari Ailus wrote:
-> > On Mon, Mar 13, 2023 at 02:33:43PM +0200, Sakari Ailus wrote:
-> >> Hi Krzysztof,
-> >>
-> >> On Thu, Feb 16, 2023 at 03:22:03PM +0100, Krzysztof Kozlowski wrote:
-> >>> Convert the Samsung S5P/Exynos Camera Subsystem (FIMC) bindings to DT
-> >>> schema.  Changes during conversion - adjust to existing DTS and Linux
-> >>> driver: add iommus and power-domains.
-> >>>
-> >>> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> >>> Reviewed-by: Rob Herring <robh@kernel.org>
-> >>
-> >> This does not apply on top of -rc1.
-> >>
-> >> ...
-> >>
-> >>> -- compatible: must be "samsung,fimc"
-> >>
-> >> I guess you have another patch removing "simple-bus" here and another
-> >> location in your tree?
-> > 
-> > Ah, what's missing seems to be this set:
-> > 
-> > <URL:https://patchwork.linuxtv.org/project/linux-media/list/?series=9839>
+seems like we all agreed on this series. Can you have a look on this as
+well?
+
+Thanks,
+  Marco
+
+On 23-03-01, Marek Vasut wrote:
+> Add an API for clock gate that uses parent_data for the parent instead of
+> a string parent_name.
 > 
-> Yeah, dependency is mention in cover letter.
+> Reviewed-by: Peng Fan <peng.fan@nxp.com>
+> Reviewed-by: Fabio Estevam <festevam@gmail.com>
+> Tested-by: Adam Ford <aford173@gmail.com> #imx8mp-beacon-kit
+> Tested-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+> Signed-off-by: Marek Vasut <marex@denx.de>
+> ---
+> Cc: Abel Vesa <abelvesa@kernel.org>
+> Cc: Alexander Stein <alexander.stein@ew.tq-group.com>
+> Cc: Fabio Estevam <festevam@gmail.com>
+> Cc: Jacky Bai <ping.bai@nxp.com>
+> Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+> Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> Cc: Luca Ceresoli <luca.ceresoli@bootlin.com>
+> Cc: Lucas Stach <l.stach@pengutronix.de>
+> Cc: Marco Felsch <m.felsch@pengutronix.de>
+> Cc: Michael Turquette <mturquette@baylibre.com>
+> Cc: NXP Linux Team <linux-imx@nxp.com>
+> Cc: Peng Fan <peng.fan@nxp.com>
+> Cc: Pengutronix Kernel Team <kernel@pengutronix.de>
+> Cc: Richard Cochran <richardcochran@gmail.com>
+> Cc: Rob Herring <robh+dt@kernel.org>
+> Cc: Sascha Hauer <s.hauer@pengutronix.de>
+> Cc: Shawn Guo <shawnguo@kernel.org>
+> Cc: Stephen Boyd <sboyd@kernel.org>
+> Cc: devicetree@vger.kernel.org
+> Cc: linux-arm-kernel@lists.infradead.org
+> Cc: linux-clk@vger.kernel.org
+> ---
+> V3: New patch
+> V4: - Rebase on next 20230223
+> V5: Add TB from Adam and Alexander
+> V6: Add RB from Fabio
+> V7: Add RB from Peng
+> ---
+>  include/linux/clk-provider.h | 19 +++++++++++++++++++
+>  1 file changed, 19 insertions(+)
 > 
-> > 
-> > But also the second patch of that set doesn't seem to apply. :-(
+> diff --git a/include/linux/clk-provider.h b/include/linux/clk-provider.h
+> index 842e72a5348fa..92b7c794c6272 100644
+> --- a/include/linux/clk-provider.h
+> +++ b/include/linux/clk-provider.h
+> @@ -608,6 +608,25 @@ struct clk *clk_register_gate(struct device *dev, const char *name,
+>  	__devm_clk_hw_register_gate((dev), NULL, (name), (parent_name), NULL, \
+>  			       NULL, (flags), (reg), (bit_idx),		      \
+>  			       (clk_gate_flags), (lock))
+> +
+> +/**
+> + * devm_clk_hw_register_gate - register a gate clock with the clock framework
+> + * @dev: device that is registering this clock
+> + * @name: name of this clock
+> + * @parent_data: parent clk data
+> + * @flags: framework-specific flags for this clock
+> + * @reg: register address to control gating of this clock
+> + * @bit_idx: which bit in the register controls gating of this clock
+> + * @clk_gate_flags: gate-specific flags for this clock
+> + * @lock: shared register lock for this clock
+> + */
+> +#define devm_clk_hw_register_gate_parent_data(dev, name, parent_data, flags,  \
+> +					      reg, bit_idx, clk_gate_flags,   \
+> +					      lock)			      \
+> +	__devm_clk_hw_register_gate((dev), NULL, (name), NULL, NULL,	      \
+> +				    (parent_data), (flags), (reg), (bit_idx), \
+> +				    (clk_gate_flags), (lock))
+> +
+>  void clk_unregister_gate(struct clk *clk);
+>  void clk_hw_unregister_gate(struct clk_hw *hw);
+>  int clk_gate_is_enabled(struct clk_hw *hw);
+> -- 
+> 2.39.2
 > 
-> Yep, I forgot I already sent same patch two months earlier. Let me merge
-> two patches, rebase and resent, so everything will be easier for you
-> (hopefully). Sorry for the mess.
-
-No worries. I was expecting a comment from the author but never saw one...
-
-Thanks for refreshing the set.
-
--- 
-Kind regards,
-
-Sakari Ailus
+> 
