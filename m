@@ -2,103 +2,138 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AFDB36B6DBC
-	for <lists+devicetree@lfdr.de>; Mon, 13 Mar 2023 04:03:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5EA556B6DE1
+	for <lists+devicetree@lfdr.de>; Mon, 13 Mar 2023 04:19:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229593AbjCMDDZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 12 Mar 2023 23:03:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33228 "EHLO
+        id S229957AbjCMDTG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 12 Mar 2023 23:19:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57068 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229842AbjCMDDT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 12 Mar 2023 23:03:19 -0400
-Received: from ex01.ufhost.com (ex01.ufhost.com [61.152.239.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0F4B1EB5B;
-        Sun, 12 Mar 2023 20:03:13 -0700 (PDT)
-Received: from EXMBX165.cuchost.com (unknown [175.102.18.54])
-        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-        (Client CN "EXMBX165", Issuer "EXMBX165" (not verified))
-        by ex01.ufhost.com (Postfix) with ESMTP id B984F24E21A;
-        Mon, 13 Mar 2023 11:03:11 +0800 (CST)
-Received: from EXMBX172.cuchost.com (172.16.6.92) by EXMBX165.cuchost.com
- (172.16.6.75) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Mon, 13 Mar
- 2023 10:49:55 +0800
-Received: from [192.168.125.74] (183.27.96.115) by EXMBX172.cuchost.com
- (172.16.6.92) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Mon, 13 Mar
- 2023 10:49:54 +0800
-Message-ID: <f9be1acb-a3f3-aa31-bcf6-27c4396684d6@starfivetech.com>
-Date:   Mon, 13 Mar 2023 10:49:53 +0800
+        with ESMTP id S229641AbjCMDTE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 12 Mar 2023 23:19:04 -0400
+Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E04EB27990
+        for <devicetree@vger.kernel.org>; Sun, 12 Mar 2023 20:19:01 -0700 (PDT)
+Received: by mail-ed1-x535.google.com with SMTP id s11so43175232edy.8
+        for <devicetree@vger.kernel.org>; Sun, 12 Mar 2023 20:19:01 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=kali.org; s=google; t=1678677540;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=AaTbJOlzDqoyTznkZQew61s0LEM4GBuB+uw2lDWthD4=;
+        b=SreQplaOaiKXW0B6GkZdUz6D9Sa8v+5a40rGEdoJ775vEgiQ7rGzPPoJB2nGkdPgPj
+         MrRQnJrU82a6hHvFFpf8YjH/URrfgV0bOVovjOaGrsudExde0AztAa92HAOCXQNViqP/
+         70pOPj5yn3//8pP7ik8k8O6D36LP6LP71Cx1ezuLAL6B6Tva+t2Yy2yogC3Uqskevt7H
+         LfcBAyBNUUgTv4alNcfEjT3u8gldjn0kYejutF2SuTLxD5whjtZYLSCzsTBFMhRod19Z
+         JSKRelOmYUg2qG+mRrq6BrYlHo7TE/ubAUvDuM/0PqYtFQ9gUS1x0+2HCPBDSDULmXYv
+         wXyg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1678677540;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=AaTbJOlzDqoyTznkZQew61s0LEM4GBuB+uw2lDWthD4=;
+        b=3k8ocgkEqbgBXjhqBqXpR1i9oVQ7UeSqWvPrYtdJLDPy0eghFUPtARQKoiMCA3p6Ur
+         qfvyTz9f/kdwP5WSsklwypgp8SkBd28GVmGmXGP3LwJBIILUT2leZd0m3O7a3I5ckqLS
+         AiaBIMDtb7F1mshD3AW1b4K+u9DpeSk0HT2anESo7tjU282aAvm1FjxfMsLKRlxeb55j
+         7EMSTQ3eXco+DtJkByFBd7JANhzQS5dCL5qs7SQA0Yyn4+8/qt/MadSHENibjm290hP5
+         2WIxJdgeKPcwrYWzANJDviljwbxNNtI5PMDobMdwuqzVUy7pd33AW6cqna3QP4pBnWpX
+         rRSg==
+X-Gm-Message-State: AO0yUKX6EqoHGRLRpdL8BxOi0pThZlYJbCl1/2s/as9RDTsn3kAZufzc
+        gtDAaGDRQkLCHZHu3GomQI6zetr9FJtA7HAmhzUfMQ==
+X-Google-Smtp-Source: AK7set9w8TNcS+IZtR8IG8YLrACA9rb8f2+mU6VRo2IEjowuxVnE18r7Gt3VjLgTfeJg8cMqPLkf4sh/ejlKubZk5g8=
+X-Received: by 2002:a50:9f0b:0:b0:4fb:f19:883 with SMTP id b11-20020a509f0b000000b004fb0f190883mr2233841edf.1.1678677540018;
+ Sun, 12 Mar 2023 20:19:00 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.3.2
-Subject: Re: [PATCH v5 12/21] dt-bindings: clock: Add StarFive JH7110
- always-on clock and reset generator
-Content-Language: en-US
-To:     Rob Herring <robh@kernel.org>
-CC:     Palmer Dabbelt <palmer@dabbelt.com>, <devicetree@vger.kernel.org>,
-        "Albert Ou" <aou@eecs.berkeley.edu>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        <linux-kernel@vger.kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Conor Dooley <conor@kernel.org>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Ben Dooks <ben.dooks@sifive.com>,
-        Marc Zyngier <maz@kernel.org>,
-        <linux-riscv@lists.infradead.org>,
-        Emil Renner Berthing <emil.renner.berthing@canonical.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        <linux-clk@vger.kernel.org>
-References: <20230311090733.56918-1-hal.feng@starfivetech.com>
- <20230311090733.56918-13-hal.feng@starfivetech.com>
- <167854426637.141815.17209731765325744156.robh@kernel.org>
-From:   Hal Feng <hal.feng@starfivetech.com>
-In-Reply-To: <167854426637.141815.17209731765325744156.robh@kernel.org>
+References: <20230209020916.6475-1-steev@kali.org> <20230209020916.6475-3-steev@kali.org>
+ <ZAoS1T9m1lI21Cvn@hovoldconsulting.com> <CAKXuJqhEKB7cuVhEzObbFyYHyKj87M8iWVaoz7gkhS2OQ9tTBA@mail.gmail.com>
+ <ZArb/ZQEmfGDjYyc@hovoldconsulting.com>
+In-Reply-To: <ZArb/ZQEmfGDjYyc@hovoldconsulting.com>
+From:   Steev Klimaszewski <steev@kali.org>
+Date:   Sun, 12 Mar 2023 22:18:48 -0500
+Message-ID: <CAKXuJqhe3z0XrLCMZ3vc3+Ug-rMjayNuMAvh+ucuUkZQpQdb2A@mail.gmail.com>
+Subject: Re: [PATCH v5 2/4] Bluetooth: hci_qca: Add support for QTI Bluetooth
+ chip wcn6855
+To:     Johan Hovold <johan@kernel.org>
+Cc:     "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Marcel Holtmann <marcel@holtmann.org>,
+        Johan Hedberg <johan.hedberg@gmail.com>,
+        Luiz Augusto von Dentz <luiz.dentz@gmail.com>,
+        Sven Peter <sven@svenpeter.dev>, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-bluetooth@vger.kernel.org,
+        Mark Pearson <markpearson@lenovo.com>,
+        Tim Jiang <quic_tjiang@quicinc.com>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [183.27.96.115]
-X-ClientProxiedBy: EXCAS064.cuchost.com (172.16.6.24) To EXMBX172.cuchost.com
- (172.16.6.92)
-X-YovoleRuleAgent: yovoleflag
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, 11 Mar 2023 08:18:03 -0600, Rob Herring wrote:
-> On Sat, 11 Mar 2023 17:07:24 +0800, Hal Feng wrote:
->> From: Emil Renner Berthing <kernel@esmil.dk>
->> 
->> Add bindings for the always-on clock and reset generator (AONCRG) on the
->> JH7110 RISC-V SoC by StarFive Ltd.
->> 
->> Signed-off-by: Emil Renner Berthing <kernel@esmil.dk>
->> Signed-off-by: Hal Feng <hal.feng@starfivetech.com>
->> ---
->>  .../clock/starfive,jh7110-aoncrg.yaml         | 107 ++++++++++++++++++
->>  .../dt-bindings/clock/starfive,jh7110-crg.h   |  18 +++
->>  .../dt-bindings/reset/starfive,jh7110-crg.h   |  12 ++
->>  3 files changed, 137 insertions(+)
->>  create mode 100644 Documentation/devicetree/bindings/clock/starfive,jh7110-aoncrg.yaml
->> 
-> 
-> 
-> Please add Acked-by/Reviewed-by tags when posting new versions. However,
-> there's no need to repost patches *only* to add the tags. The upstream
-> maintainer will do that for acks received on the version they apply.
-> 
-> If a tag was not added on purpose, please state why and what changed.
-> 
-> Missing tags:
-> 
-> Reviewed-by: Rob Herring <robh@kernel.org>
+Hi Johan,
 
-This patch has been changed a lot and I am not sure whether it's still
-the one you want. So I removed the Reviewed-by tag.
+<SNIP>
+> > > As I mentioned elsewhere, you need to update also this function so that
+> > > wcn6855 can be powered down.
+> >
+> > Sorry, I do have that locally, I just haven't pushed a v6 as I was
+> > looking at Tim's v2 of the qca2066 and was wondering if I should or
+> > shouldn't continue working on my version of the driver?
+>
+> I only skimmed that patch a while ago, but that ones not strictly needed
+> for wcn6855, right? Things seems to work well here with just this series
+> applied.
 
-Best regards,
-Hal
+Works, but, not quite well, and with the nvm bits from Tim's patch, we
+end up getting closer?  I think that is the best way to put it.  With
+what we currently have, we end up loading hpnv21.bin for our nvm patch
+file, however, we actually want (at least on my Thinkpad X13s) the
+.b8c file from the Windows partition for our nvm patch; With the b8c
+file symlinked to .bin with just my patch set, I am able to connect a
+pair of Air Pods Gen1 to the ThinkPad and play back audio, as well as
+use them for input.  With the .bin file that comes from
+linux-firmware, they will still connect, however, they will randomly
+disconnect, as well as the audio output is all garbled.  I think,
+ideally, we get v6+ in, and then we can figure out what to do about
+the bits that Tim's patch adds.  I've tried them locally, but I'm not
+confident enough in my knowledge to address the issues that are
+brought up in the code review there.
+
+> > > With power-off handling fixed, this seems to work as quite well on my
+> > > X13s with 6.3-rc1. Nice job!
+> > >
+> > > Btw, apart from the frame reassembly error, I'm also seeing:
+> > >
+> > >         Bluetooth: Received HCI_IBS_WAKE_ACK in tx state 0
+> > >
+> > > during probe.
+> > >
+> > I'm still not sure where the frame reassembly error comes from, and I
+> > don't know how to get more info to figure it out either, if anyone
+> > happens to have any guidance for that, I would love some.
+> > Additionally, it doesn't always happen.  It seems to happen on the
+> > first load of the module, however, running modprobe -r && modprobe in
+> > a loop (with the powerdown properly modified so the log isn't full of
+> > splats),  it doesn't seem to occur every time. Likewise for the
+> > WAKE_ACK.
+>
+> Ok. Looks like the Chromium team tried to suppress these errors when
+> switching line speed by toggling rts, but the frame-assembly error I get
+> appears to happen before that.
+
+I am still trying to figure it out here as well, but I want to get v6 out there.
+
+> Johan
