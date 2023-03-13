@@ -2,53 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F12856B70B1
-	for <lists+devicetree@lfdr.de>; Mon, 13 Mar 2023 08:58:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 30B856B70B4
+	for <lists+devicetree@lfdr.de>; Mon, 13 Mar 2023 08:59:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230131AbjCMH6J (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Mar 2023 03:58:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50380 "EHLO
+        id S230008AbjCMH7I (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Mar 2023 03:59:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59664 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230151AbjCMH4x (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Mar 2023 03:56:53 -0400
-Received: from mail-ed1-x529.google.com (mail-ed1-x529.google.com [IPv6:2a00:1450:4864:20::529])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 76DBD298EF
-        for <devicetree@vger.kernel.org>; Mon, 13 Mar 2023 00:55:15 -0700 (PDT)
-Received: by mail-ed1-x529.google.com with SMTP id o12so44906672edb.9
-        for <devicetree@vger.kernel.org>; Mon, 13 Mar 2023 00:55:15 -0700 (PDT)
+        with ESMTP id S230183AbjCMH6N (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Mar 2023 03:58:13 -0400
+Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 934915709C
+        for <devicetree@vger.kernel.org>; Mon, 13 Mar 2023 00:55:57 -0700 (PDT)
+Received: by mail-ed1-x535.google.com with SMTP id g10so16041561eda.1
+        for <devicetree@vger.kernel.org>; Mon, 13 Mar 2023 00:55:57 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1678694100;
+        d=linaro.org; s=google; t=1678694155;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=quQo6pOhl6y8TGUcX12fIubQW+W2OiQtrC5VDkiwRuk=;
-        b=FOhQOPd5JL9G9LS9ORK5Tji01kJl5AJ98t96Ikcs9U/qDgDFeFkfqxrIzDQsO05JxD
-         y3WIcezf3tcFpujDCymKjzdHTabONYch5BPxnUfO7I8gFbAZTkUnJ9umO6flB7RF7Eu3
-         UA4pXvDc6YXRfw9XQpYdKu8cJYvza1zsppgxR2wwX6p+CjiQrMQV+z+To24UR+SiujKA
-         MLGBGAYgFwLi39jGNxnv//5KN5zzQgw8ZaBTZJ9Ohm3RzVQlunGvv7LzC0x55DEywziY
-         W4y5rsIkZLUaGBPPlkCoWicOfp6ovwqFO8113JI258DA8x7wYOnNQCU+Z+da+hchLoA+
-         O42w==
+        bh=8w5VDTJefrQL5CEvASX0IO0ZHVw+Up+XulFlBqPg140=;
+        b=YUygzuoIl4+mbnorOoZwcJlNJ+waXHrYMKZbIO0F6cxQQrwUtL52vInbWoa4DeKkzz
+         MCCHMaKBB0UjSzrD7dMv/ycuiulPFJwL9+CYikog06VBb1kfGN+BpXJan/DII5uKiedc
+         5hQmRVV10AyxQR3E6OCGKHPwlf8GPKwXDMHaFDN1Tb7TbXNKCx7NVdw8Du6XP/OL6Qum
+         JPR7g3ciRMWRbQHFsYnppXbCeWLkFtp8EVbMe8Bp85KtlaiBC8XmOYcH4XmPF/uT5sqe
+         2EFxkktp+I15IDTivhbj/ZAYQC+VCR3Vm0o3hd2m99scYjElkceDNbHbfo+Jg42gwZob
+         6ENA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678694100;
+        d=1e100.net; s=20210112; t=1678694155;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=quQo6pOhl6y8TGUcX12fIubQW+W2OiQtrC5VDkiwRuk=;
-        b=sg73NUjh6zz5X1TtXnnIM6IzlJoDep91DSW+0kOQYTAGALBpSWePybw3FnryNcn/fq
-         KdFQke/wuT/seHTmUpP0r295oez+m7OBIPaif2dpV93RKXydyCs7Gro1U7QWS4s6UEe9
-         pslTJMDpzz39h3mqrlfjafhHHnlJzTrXoVDHXBJCuAO9rI0JGgsjdCn4jP+dNuJ/dBde
-         q4W3nd4b5fVIeKK42ffIWQbyU5wMvz0JF1jG3AKn3c6M4r77iexF8VLRRKuEyh2tJYIr
-         1CvGv6FCz8P6UkzIQBw3WsF8KEqNgx6ojXxikaq42HiY0YV4TJXms/2iB7VZOHxqNEyt
-         a3Bg==
-X-Gm-Message-State: AO0yUKWQ6ucijx7aigxq6QKz5byp+vtXr3OJPspk5WbPLWJa6HurvQ1J
-        fIq6sxvYZEB9UZD/enLW2JU74w==
-X-Google-Smtp-Source: AK7set/3PbFHdZy0ncdvyVkLVLkp6VS6VNXlpvP6aWjTg5xS1ztRZBKbr4EAVGSBtJBAdS22Zc6Ozw==
-X-Received: by 2002:a17:907:6e03:b0:888:a72f:1599 with SMTP id sd3-20020a1709076e0300b00888a72f1599mr40929581ejc.11.1678694100270;
-        Mon, 13 Mar 2023 00:55:00 -0700 (PDT)
+        bh=8w5VDTJefrQL5CEvASX0IO0ZHVw+Up+XulFlBqPg140=;
+        b=jaUiZgKxB4KiM1tNEryVZzU9VvzY91+ijOR1r/iJ7ofEdnAOoViDRdp4W34coEQ5uR
+         oGai356kqMiaxTM7F5WoK0FmhY1Y5h0rKnxHmWP9aUa1jcSy7Wao8GkXOggbIea3+iwb
+         dLaaJdRkj8COGxw+EOsUtUS3IF5BamKvKAuBVUpzEVs4XBpR+9F011jRs8g59TEZI/1V
+         5F7WEzjxAtmcma8o1g5ibT9JyL0pEDJ3oSvKtU6inTgCb4sM3RHMNlRkpL3xH+VQITaM
+         ojH18hx/mPRLO6+1BjtgNUAKC3KdP04itu+XaEkJprxnylPxxQWhGp81I4XRILsVLreS
+         N1lA==
+X-Gm-Message-State: AO0yUKU3EPqxdDvUWorBfr/LAKL8sBv7Jm5ckjskElhjMHKWx4Ctq9Iv
+        EsLO7yttOc9rhRNGkn30v+5wjw==
+X-Google-Smtp-Source: AK7set8CeifPZKO2i7zODdjAgScxJot/p0i/tkeosN0wjbuu/cqMnyxmXc2u3iHqpoMP42NXB7HECw==
+X-Received: by 2002:a17:906:9c84:b0:877:8ae7:2e44 with SMTP id fj4-20020a1709069c8400b008778ae72e44mr42843027ejc.5.1678694155650;
+        Mon, 13 Mar 2023 00:55:55 -0700 (PDT)
 Received: from krzk-bin.. ([2a02:810d:15c0:828:f052:f15:3f90:fcb3])
-        by smtp.gmail.com with ESMTPSA id g7-20020a1709061c8700b008b980c3e013sm3146943ejh.179.2023.03.13.00.54.59
+        by smtp.gmail.com with ESMTPSA id bg15-20020a170906a04f00b008e09deb6610sm3100113ejb.200.2023.03.13.00.55.54
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 13 Mar 2023 00:54:59 -0700 (PDT)
+        Mon, 13 Mar 2023 00:55:55 -0700 (PDT)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
         Banajit Goswami <bgoswami@quicinc.com>,
@@ -64,9 +64,9 @@ To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
         linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
 Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH v2 9/9] ASoC: codecs: lpass-wsa-macro: add support for SM8550
-Date:   Mon, 13 Mar 2023 08:54:45 +0100
-Message-Id: <20230313075445.17160-9-krzysztof.kozlowski@linaro.org>
+Subject: [PATCH v2 0/9] ASoC: add audio digital codecs for Qualcomm SM8550
+Date:   Mon, 13 Mar 2023 08:55:51 +0100
+Message-Id: <20230313075551.17290-1-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20230313075445.17160-1-krzysztof.kozlowski@linaro.org>
 References: <20230313075445.17160-1-krzysztof.kozlowski@linaro.org>
@@ -82,99 +82,48 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add support for the WSA macro codec on Qualcomm SM8550.  SM8550 does not
-use NPL clock, thus add flags allowing to skip it.
+Hi,
 
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Reviewed-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+Dependencies
+============
+For va-macro bindings:
+https://lore.kernel.org/r/20221118071849.25506-2-srinivas.kandagatla@linaro.org
 
----
+NOT a dependency
+================
+The patchset can be applied independently of my previous fix:
+https://lore.kernel.org/linux-arm-msm/20230310100937.32485-1-krzysztof.kozlowski@linaro.org/T/#u
 
-Changes since v1:
-1. Move the flag define to common header
----
- sound/soc/codecs/lpass-wsa-macro.c | 37 +++++++++++++++++++++++-------
- 1 file changed, 29 insertions(+), 8 deletions(-)
+Logically, better if they were together, but code will work fine other way.
 
-diff --git a/sound/soc/codecs/lpass-wsa-macro.c b/sound/soc/codecs/lpass-wsa-macro.c
-index ba7480f3831e..881b3154cc69 100644
---- a/sound/soc/codecs/lpass-wsa-macro.c
-+++ b/sound/soc/codecs/lpass-wsa-macro.c
-@@ -14,6 +14,8 @@
- #include <linux/pm_runtime.h>
- #include <linux/of_platform.h>
- #include <sound/tlv.h>
-+
-+#include "lpass-macro-common.h"
- #include "lpass-wsa-macro.h"
- 
- #define CDC_WSA_CLK_RST_CTRL_MCLK_CONTROL	(0x0000)
-@@ -2346,7 +2348,10 @@ static int wsa_macro_register_mclk_output(struct wsa_macro *wsa)
- 	struct clk_init_data init;
- 	int ret;
- 
--	parent_clk_name = __clk_get_name(wsa->npl);
-+	if (wsa->npl)
-+		parent_clk_name = __clk_get_name(wsa->npl);
-+	else
-+		parent_clk_name = __clk_get_name(wsa->mclk);
- 
- 	init.name = "mclk";
- 	of_property_read_string(dev_of_node(dev), "clock-output-names",
-@@ -2379,9 +2384,12 @@ static int wsa_macro_probe(struct platform_device *pdev)
- {
- 	struct device *dev = &pdev->dev;
- 	struct wsa_macro *wsa;
-+	kernel_ulong_t flags;
- 	void __iomem *base;
- 	int ret;
- 
-+	flags = (kernel_ulong_t)device_get_match_data(dev);
-+
- 	wsa = devm_kzalloc(dev, sizeof(*wsa), GFP_KERNEL);
- 	if (!wsa)
- 		return -ENOMEM;
-@@ -2398,9 +2406,11 @@ static int wsa_macro_probe(struct platform_device *pdev)
- 	if (IS_ERR(wsa->mclk))
- 		return PTR_ERR(wsa->mclk);
- 
--	wsa->npl = devm_clk_get(dev, "npl");
--	if (IS_ERR(wsa->npl))
--		return PTR_ERR(wsa->npl);
-+	if (flags & LPASS_MACRO_FLAG_HAS_NPL_CLOCK) {
-+		wsa->npl = devm_clk_get(dev, "npl");
-+		if (IS_ERR(wsa->npl))
-+			return PTR_ERR(wsa->npl);
-+	}
- 
- 	wsa->fsgen = devm_clk_get(dev, "fsgen");
- 	if (IS_ERR(wsa->fsgen))
-@@ -2553,10 +2563,21 @@ static const struct dev_pm_ops wsa_macro_pm_ops = {
- };
- 
- static const struct of_device_id wsa_macro_dt_match[] = {
--	{.compatible = "qcom,sc7280-lpass-wsa-macro"},
--	{.compatible = "qcom,sm8250-lpass-wsa-macro"},
--	{.compatible = "qcom,sm8450-lpass-wsa-macro"},
--	{.compatible = "qcom,sc8280xp-lpass-wsa-macro" },
-+	{
-+		.compatible = "qcom,sc7280-lpass-wsa-macro",
-+		.data = (void *)LPASS_MACRO_FLAG_HAS_NPL_CLOCK,
-+	}, {
-+		.compatible = "qcom,sm8250-lpass-wsa-macro",
-+		.data = (void *)LPASS_MACRO_FLAG_HAS_NPL_CLOCK,
-+	}, {
-+		.compatible = "qcom,sm8450-lpass-wsa-macro",
-+		.data = (void *)LPASS_MACRO_FLAG_HAS_NPL_CLOCK,
-+	}, {
-+		.compatible = "qcom,sm8550-lpass-wsa-macro",
-+	}, {
-+		.compatible = "qcom,sc8280xp-lpass-wsa-macro",
-+		.data = (void *)LPASS_MACRO_FLAG_HAS_NPL_CLOCK,
-+	},
- 	{}
- };
- MODULE_DEVICE_TABLE(of, wsa_macro_dt_match);
+Changes since v1
+================
+1. Move the flag define to common header.
+
+Best regards,
+Krzysztof
+
+Krzysztof Kozlowski (9):
+  ASoC: dt-bindings: qcom,lpass-rx-macro: narrow clocks per variants
+  ASoC: dt-bindings: qcom,lpass-rx-macro: Add SM8550 RX macro
+  ASoC: codecs: lpass-rx-macro: add support for SM8550
+  ASoC: dt-bindings: qcom,lpass-tx-macro: narrow clocks per variants
+  ASoC: dt-bindings: qcom,lpass-tx-macro: Add SM8550 TX macro
+  ASoC: codecs: lpass-tx-macro: add support for SM8550
+  ASoC: dt-bindings: qcom,lpass-va-macro: Add SM8550 VA macro
+  ASoC: dt-bindings: qcom,lpass-wsa-macro: Add SM8550 WSA macro
+  ASoC: codecs: lpass-wsa-macro: add support for SM8550
+
+ .../bindings/sound/qcom,lpass-rx-macro.yaml   | 76 +++++++++++++----
+ .../bindings/sound/qcom,lpass-tx-macro.yaml   | 81 +++++++++++++++----
+ .../bindings/sound/qcom,lpass-va-macro.yaml   | 18 +++++
+ .../bindings/sound/qcom,lpass-wsa-macro.yaml  | 23 +++++-
+ sound/soc/codecs/lpass-macro-common.h         |  3 +
+ sound/soc/codecs/lpass-rx-macro.c             | 36 +++++++--
+ sound/soc/codecs/lpass-tx-macro.c             | 35 ++++++--
+ sound/soc/codecs/lpass-wsa-macro.c            | 37 +++++++--
+ 8 files changed, 252 insertions(+), 57 deletions(-)
+
 -- 
 2.34.1
 
