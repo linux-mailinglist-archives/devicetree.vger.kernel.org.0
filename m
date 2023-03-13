@@ -2,192 +2,141 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F0FE06B6F68
-	for <lists+devicetree@lfdr.de>; Mon, 13 Mar 2023 07:13:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id ACA7F6B6F6F
+	for <lists+devicetree@lfdr.de>; Mon, 13 Mar 2023 07:16:16 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229735AbjCMGNO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Mar 2023 02:13:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33684 "EHLO
+        id S229777AbjCMGQO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Mar 2023 02:16:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38528 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229655AbjCMGNL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Mar 2023 02:13:11 -0400
-Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 07476C640;
-        Sun, 12 Mar 2023 23:13:09 -0700 (PDT)
-Received: by mail-lf1-x12d.google.com with SMTP id g17so14265615lfv.4;
-        Sun, 12 Mar 2023 23:13:08 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112; t=1678687987;
-        h=content-transfer-encoding:in-reply-to:subject:from:references:cc:to
-         :content-language:user-agent:mime-version:date:message-id:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=cRhBcf5ZDslUPYrSaszRsi4kzEuDzWr1ClJbjTYi3Tk=;
-        b=hp13GnpJvHNlKW7UrZhp28Yd97f62UyJZWYN3y68MhiJV3kD8xtnWKIYUKu9AX9rcm
-         ZMkTvvkDI6YlvON8BbY6Oado2GtV3pvtFq0sfX/jqmdOZZyD2k9mzBQinDXmHllGNZLc
-         TCOx0pB/OmE3v4djCIF47t3q/t7afpT7FzYdOCm4YKax+dUSRNoZsEcTh0N0cHffrSWF
-         di0i2OUDwit2zlG8Z8jXSng+1+XZXHUsSEtluhDvvmSTrsSKC61c8uQvgb/Gdree6LSs
-         ep8xA/ONXOT8gVPAIsjo8QRAmPr+8IBb/sfPZzAa379OvmE1CkiH4Slon+46EigYXNZh
-         y66w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678687987;
-        h=content-transfer-encoding:in-reply-to:subject:from:references:cc:to
-         :content-language:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=cRhBcf5ZDslUPYrSaszRsi4kzEuDzWr1ClJbjTYi3Tk=;
-        b=EdzSiCifWEPp6ep4AoemwGQpj25vfQ8xj7AZ15ikDpvuzUP3sMgu0HuernuPLHbZ+a
-         JFmTS7NtT1vIzJvY6WGtbwYZ/tpeoSxwAEPfzTWLhLt2gQutYK8XPoQws+FxD5a7e5iK
-         Af6AavvZzjMVz9Yrqt8nyl4bGZKtA+0SpANB/qbP/YK+Mp9aL7KdTBSSE2HTB+g9Ue/i
-         RAVVTvGUZN58J/ozdH/Cwilt/7we7g52ZBiDV+cIKcc769+0Xvqw9EbUpYLUK/WlUe4u
-         5VfC1zG0alovBXZQ9LD+0VutHgwpRH4NP3GCui5z+WSZVv2i2PNXf41K56W1DpBmkmZJ
-         S4Lw==
-X-Gm-Message-State: AO0yUKV2uTKkfZD/EhzItq+PstCyqayBBb/1/nPcBtnd/j8EVncJJQFF
-        PgBkUTvvsoXnaj08mXhuv6biTtk0THU=
-X-Google-Smtp-Source: AK7set8NPLifK38O/uGQzCr4tN5Dn6eLIY7/DHqlA+pCbAZc9r7FYETdy61jrvlaSaiWtwB4W0iifA==
-X-Received: by 2002:a05:6512:1319:b0:4e8:3d0:84b4 with SMTP id x25-20020a056512131900b004e803d084b4mr2527943lfu.24.1678687987108;
-        Sun, 12 Mar 2023 23:13:07 -0700 (PDT)
-Received: from ?IPV6:2001:14ba:16f3:4a00::6? (dc75zzyyyyyyyyyyyyydy-3.rev.dnainternet.fi. [2001:14ba:16f3:4a00::6])
-        by smtp.gmail.com with ESMTPSA id w11-20020a19c50b000000b004dc4b0ca734sm864626lfe.250.2023.03.12.23.13.06
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 12 Mar 2023 23:13:06 -0700 (PDT)
-Message-ID: <7a8d38bb-cfc1-f13b-e108-be0c61928ff0@gmail.com>
-Date:   Mon, 13 Mar 2023 08:13:06 +0200
+        with ESMTP id S229776AbjCMGQM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Mar 2023 02:16:12 -0400
+Received: from linux.microsoft.com (linux.microsoft.com [13.77.154.182])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id E4D1348E36;
+        Sun, 12 Mar 2023 23:16:03 -0700 (PDT)
+Received: by linux.microsoft.com (Postfix, from userid 1127)
+        id 580FF204B51E; Sun, 12 Mar 2023 23:16:03 -0700 (PDT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com 580FF204B51E
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.microsoft.com;
+        s=default; t=1678688163;
+        bh=bBzVq6Vu2i/wsIWWu3PzRRzKof7G7yA2dj2lTYoClD0=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=bfpi3IoaJCC0q7dHUpJvJauZ6PK5P3bQ0z+z8iYgXKwbfIdQ4BVTvBQddd8jFW/JJ
+         cMZgyG0kTQYTeDsrTuXdDd7YalwkJOn33wyBQHK5C2hRr9GAOE8RKrcDpSnt8R2Ocv
+         BvHP+kmDmcWcw7JRfg+fOTQgiLgt7nU/kFUstV9k=
+Date:   Sun, 12 Mar 2023 23:16:03 -0700
+From:   Saurabh Singh Sengar <ssengar@linux.microsoft.com>
+To:     "Michael Kelley (LINUX)" <mikelley@microsoft.com>
+Cc:     "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        KY Srinivasan <kys@microsoft.com>,
+        Haiyang Zhang <haiyangz@microsoft.com>,
+        "wei.liu@kernel.org" <wei.liu@kernel.org>,
+        Dexuan Cui <decui@microsoft.com>,
+        "daniel.lezcano@linaro.org" <daniel.lezcano@linaro.org>,
+        "tglx@linutronix.de" <tglx@linutronix.de>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-hyperv@vger.kernel.org" <linux-hyperv@vger.kernel.org>,
+        "lenb@kernel.org" <lenb@kernel.org>,
+        "rafael@kernel.org" <rafael@kernel.org>,
+        "linux-acpi@vger.kernel.org" <linux-acpi@vger.kernel.org>
+Subject: Re: [PATCH v7 5/5] Driver: VMBus: Add Devicetree support
+Message-ID: <20230313061603.GA8934@linuxonhyperv3.guj3yctzbm1etfxqx2vob5hsef.xx.internal.cloudapp.net>
+References: <1677151745-16521-1-git-send-email-ssengar@linux.microsoft.com>
+ <1677151745-16521-6-git-send-email-ssengar@linux.microsoft.com>
+ <BYAPR21MB1688B84E25DD2173B6023737D7B99@BYAPR21MB1688.namprd21.prod.outlook.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-Content-Language: en-US, en-GB
-To:     Sebastian Reichel <sre@kernel.org>
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org
-References: <20230309225041.477440-1-sre@kernel.org>
- <20230309225041.477440-2-sre@kernel.org>
-From:   Matti Vaittinen <mazziesaccount@gmail.com>
-Subject: Re: [PATCHv1 01/11] dt-bindings: power: supply: adc-battery: add
- binding
-In-Reply-To: <20230309225041.477440-2-sre@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <BYAPR21MB1688B84E25DD2173B6023737D7B99@BYAPR21MB1688.namprd21.prod.outlook.com>
+User-Agent: Mutt/1.5.21 (2010-09-15)
+X-Spam-Status: No, score=-19.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,ENV_AND_HDR_SPF_MATCH,RCVD_IN_DNSWL_MED,
+        SPF_HELO_PASS,SPF_PASS,USER_IN_DEF_DKIM_WL,USER_IN_DEF_SPF_WL
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Sebastian,
-
-On 3/10/23 00:50, Sebastian Reichel wrote:
-> Add binding for a battery that is only monitored via ADC
-> channels and simple status GPIOs.
+On Mon, Mar 13, 2023 at 02:33:53AM +0000, Michael Kelley (LINUX) wrote:
+> From: Saurabh Sengar <ssengar@linux.microsoft.com> Sent: Thursday, February 23, 2023 3:29 AM
+> > 
+> > Update the driver to support Devicetree boot as well along with ACPI.
+> > At present the Devicetree parsing only provides the mmio region info
+> > and is not the exact copy of ACPI parsing. This is sufficient to cater
+> > all the current Devicetree usecases for VMBus.
+> > 
+> > Currently Devicetree is supported only for x86 systems.
+> > 
+> > Signed-off-by: Saurabh Sengar <ssengar@linux.microsoft.com>
+> > ---
+> > [V7]
+> > - Use cpu_addr instead of bus_addr
+> > 
+> >  drivers/hv/Kconfig     |  6 +++--
+> >  drivers/hv/vmbus_drv.c | 57 ++++++++++++++++++++++++++++++++++++++++--
+> >  2 files changed, 59 insertions(+), 4 deletions(-)
+> > 
+> > diff --git a/drivers/hv/Kconfig b/drivers/hv/Kconfig
+> > index 0747a8f1fcee..1a55bf32d195 100644
+> > --- a/drivers/hv/Kconfig
+> > +++ b/drivers/hv/Kconfig
+> > @@ -4,11 +4,13 @@ menu "Microsoft Hyper-V guest support"
+> > 
+> >  config HYPERV
+> >  	tristate "Microsoft Hyper-V client drivers"
+> > -	depends on ACPI && ((X86 && X86_LOCAL_APIC && HYPERVISOR_GUEST) \
+> > -		|| (ARM64 && !CPU_BIG_ENDIAN))
+> > +	depends on (X86 && X86_LOCAL_APIC && HYPERVISOR_GUEST) \
+> > +		|| (ACPI && ARM64 && !CPU_BIG_ENDIAN)
+> >  	select PARAVIRT
+> >  	select X86_HV_CALLBACK_VECTOR if X86
+> >  	select VMAP_PFN
+> > +	select OF if !ACPI
+> > +	select OF_EARLY_FLATTREE if !ACPI
+> >  	help
+> >  	  Select this option to run Linux as a Hyper-V client operating
+> >  	  system.
 > 
-> Signed-off-by: Sebastian Reichel <sre@kernel.org>
-> ---
->   .../bindings/power/supply/adc-battery.yaml    | 67 +++++++++++++++++++
->   1 file changed, 67 insertions(+)
->   create mode 100644 Documentation/devicetree/bindings/power/supply/adc-battery.yaml
+> One further thing occurred to me.  OF_EARLY_FLATTREE really depends
+> on OF instead of ACPI.   The ACPI dependency is indirect through OF.  So
+> I'd suggest doing
 > 
-> diff --git a/Documentation/devicetree/bindings/power/supply/adc-battery.yaml b/Documentation/devicetree/bindings/power/supply/adc-battery.yaml
-> new file mode 100644
-> index 000000000000..9d478bf9d2ee
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/power/supply/adc-battery.yaml
-> @@ -0,0 +1,67 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/power/supply/adc-battery.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: ADC battery
-> +
-> +maintainers:
-> +  - Sebastian Reichel <sre@kernel.org>
-> +
-> +description: |
-> +  Basic Battery, which only reports (in circuit) voltage and optionally
-> +  current via an ADC channel.
-> +
-> +allOf:
-> +  - $ref: power-supply.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    const: adc-battery
-> +
-> +  charged-gpios:
-> +    description:
-> +      GPIO which signals that the battery is fully charged.
-> +    maxItems: 1
-> +
-> +  io-channels:
-> +    minItems: 1
-> +    maxItems: 3
-> +
-> +  io-channel-names:
-> +    oneOf:
-> +      - const: voltage
-> +      - items:
-> +          - const: voltage
-> +          - enum:
-> +              - current
-> +              - power
-> +      - items:
-> +          - const: voltage
-> +          - const: current
-> +          - const: power
+> 	select OF_EARLY_FLATTRE if OF
+> 
+> to express the direct dependency.
 
-Good side of not knowing things is being able to asking for more 
-information ;)
+As you pointed out OF_EARLY_FLATTRE is anyway dependent on OF, and thus I
+feel this check is redundant. I see all the Kconfig options which enables
+both of these flags don't explicitly mention this dependency.
 
-So, just by judging these bindings, we have a battery which provides 
-fuel-gauge information via analog line connected to ADC(?)
+> 
+> Separately, I wonder if the "select OF if !ACPI" is even needed.  It doesn't
+> hurt anything to leave it, but it seems like any config that doesn't
+> independently select either ACPI or OF is broken for reasons unrelated
+> to Hyper-V.  I'm OK with leaving the select of OF if you want, so I'm
+> more just wondering than asserting it should be removed.   I didn't
+> see "select OF if !ACPI" anywhere else in the Kconfig files, and it
+> seems like Hyper-V would not be the only environment where this
+> is the expectation.
 
-Reading the description you have here and comments by Linus allows me to 
-assume the line can represent current flowing out of the battery, or the 
-battery voltage.
+Ok I can remove the !ACPI dependency. Hope kernel size increase due to both
+the code compiled in shouldn't be problem for ACPI systems.
+And here if config doesn't select ACPI or OF it will assume OF, which is
+better then selecting none of them.
 
-My guess then is that the io-channel-names property is going to tell 
-which if these properties is being informed by the specific lines, 
-right(?). Do you think you could add some small description for 
-io-channel-names if you respin the series? I'd like to be more certain I 
-"guessed" things right. ;) Maybe also add the 'power' option in the main 
-description which currently just states voltage and power. (Assuming 
-some devices do actually "expose" power levels via these "channels"?
 
-> +
-> +  monitored-battery: true
-> +
-> +required:
-> +  - compatible
-> +  - io-channels
-> +  - io-channel-names
-> +  - monitored-battery
-> +
-> +unevaluatedProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/gpio/gpio.h>
-> +
-> +    fuel-gauge {
-> +        compatible = "adc-battery";
-> +        charged-gpios = <&gpio 42 GPIO_ACTIVE_HIGH>;
-> +        io-channels = <&adc 13>, <&adc 37>;
-> +        io-channel-names = "voltage", "current";
-> +
-> +        power-supplies = <&charger>;
-> +        monitored-battery = <&battery>;
-> +    };
+To address both of your comments I feel below will be sufficient:
+select OF
+select OF_EARLY_FLATTRE
 
--- 
-Matti Vaittinen
-Linux kernel developer at ROHM Semiconductors
-Oulu Finland
 
-~~ When things go utterly wrong vim users can always type :help! ~~
+Regards,
+Saurabh
 
+> 
+> Michael
