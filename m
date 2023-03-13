@@ -2,96 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 488D76B845A
-	for <lists+devicetree@lfdr.de>; Mon, 13 Mar 2023 22:58:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7551B6B8491
+	for <lists+devicetree@lfdr.de>; Mon, 13 Mar 2023 23:14:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229830AbjCMV6a (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Mar 2023 17:58:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54038 "EHLO
+        id S229715AbjCMWOH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Mar 2023 18:14:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52574 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229769AbjCMV63 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Mar 2023 17:58:29 -0400
-Received: from mail-yw1-x112c.google.com (mail-yw1-x112c.google.com [IPv6:2607:f8b0:4864:20::112c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EDB558FBC0
-        for <devicetree@vger.kernel.org>; Mon, 13 Mar 2023 14:57:51 -0700 (PDT)
-Received: by mail-yw1-x112c.google.com with SMTP id 00721157ae682-53916ab0c6bso268495477b3.7
-        for <devicetree@vger.kernel.org>; Mon, 13 Mar 2023 14:57:51 -0700 (PDT)
+        with ESMTP id S229662AbjCMWOH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Mar 2023 18:14:07 -0400
+Received: from mail-yw1-x1132.google.com (mail-yw1-x1132.google.com [IPv6:2607:f8b0:4864:20::1132])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 14EA94E5F2
+        for <devicetree@vger.kernel.org>; Mon, 13 Mar 2023 15:14:05 -0700 (PDT)
+Received: by mail-yw1-x1132.google.com with SMTP id 00721157ae682-541a05e4124so81533657b3.1
+        for <devicetree@vger.kernel.org>; Mon, 13 Mar 2023 15:14:05 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1678744659;
+        d=linaro.org; s=google; t=1678745644;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=amuk1a8QJGQKUxtyDQZC4FM9pz93ZMG/0KEcjg0E1UA=;
-        b=O34j7Xta6RjeUG7qu9Jk2SaT74AKTuB75yqTIwvbdXJDotHjytsrU4177cwsoGq2lt
-         VcDKThhaDkyHxh2px73H7aXksVMytfUwKAVFbSg+DUAoeWkl/66rsMG5vCdZarV+67Sm
-         uX07By0fNcxu71yB7AucRzbCk1eSlamG7ds5Dqpmww+KSQ/U/xP3fwNe94IPO+poo7qA
-         Sv9ZsH/4S2nzbCqN8kYIoZFq/S5rX4OkdWVzXS2ViUkwokiF+S5d4Jfj2GlE8D0dC+Lz
-         dJMTBSvD/uigLSY5riqc0HcpBr0Fxx/6s7kwJT/Y3P1EO6DWocTzCvVQBxNtNfRQ1D1U
-         NssA==
+        bh=ixG+7bGig9QHUQWnSF4UiYBq7vDEpHXZ8tekX/nmxsQ=;
+        b=i8CxBO0WR7OmBfqqlAHQje/zcyzikon1rCEQV8cWh4onUJHRcEPZyLMZHhYU8qM+wG
+         tJzYFRNjiv1Z/A/sTasyGUOYa4VvMcsgTB5BpgqWnfGW84mjSKI5Mz89MrAdDJnorOwL
+         BwanhOpukWSMVYSZyxO3rXY1pN8mY+BqNm4Beaw6YsLf/JPIPXUbt3MXDFT3t8Y0LK6u
+         zZTkyf3m+KAQ5GPL/bPmsc+4fAsNSOagyt6yPbRI6DD016o5xrlwDmOcru7T9XjoLIPp
+         A7B29wj2g8acbk3A5z+k4Kl0d5CN0tP0/YDsUdxAqmZ1w5q4Uq4UFH5TuzFxn1wneijl
+         AKGQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678744659;
+        d=1e100.net; s=20210112; t=1678745644;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=amuk1a8QJGQKUxtyDQZC4FM9pz93ZMG/0KEcjg0E1UA=;
-        b=0lojx4OKBSWG4XiUgFI4MI6CHoDhJfXgYLw2bXdOOn7Lz5jwknrXMLjtCeVtbhXGjD
-         z1dbSUSYGG2dzXt389X6tj/alZTSz2ZPB0n7FjJd9f4oeGEf//8jS3upj77tgUJbbvM9
-         mLAGb98HY+MrE2qrg4Mvd1CSsfRZFo4IC448E3v3k+ECjBLF/SHWKzPLvzK4zcYCGmu7
-         jg25NXds3k4UPfSFYakNYISL53eQhLhdkXMWB9C8MfNRwsHrAFtoAG8IT1oF71gwept6
-         IKIf7XOtIOjsAOhjJ68fiKJba0qaDcMDMQaEoUDE33H7ErKJP8t7v/R1z68Rc7Z1Jzf9
-         AunQ==
-X-Gm-Message-State: AO0yUKVtsjzkDgYtC0lGTz8U+GhV8bhZl8PKP4A2T63OBDq+3A5aMCBQ
-        ArdgQDfVtIKi0+mkRvyLANK4U/CvHT4AfEFp9A3xiQ==
-X-Google-Smtp-Source: AK7set86KxSVTf43Z5xxBccoEu4aIgx/5QqIi/mCylwIRT9EOGgS1qWtl7k5ozzRyBkcgozrGasSrkeNqxKoojdFi1g=
-X-Received: by 2002:a81:b10a:0:b0:53d:2772:65d with SMTP id
- p10-20020a81b10a000000b0053d2772065dmr17609048ywh.9.1678744659416; Mon, 13
- Mar 2023 14:57:39 -0700 (PDT)
+        bh=ixG+7bGig9QHUQWnSF4UiYBq7vDEpHXZ8tekX/nmxsQ=;
+        b=6/UGDgTx+K0Ow4yl3rr3A+2NlKJfS6icux/W1bH90Tha1zBzXiKJpjWc+upJbDg7rR
+         ycrX1JiL9qRvVcUecIolnugrG+JWCK1uI37WTNgtTKuLC0LhbyxqSlNXr6rm0jby+iY/
+         ZZ8WB3noU3jVy4VN/cE1dHWJYk0MB0tt4PdPRjYGUOO67/XjGSnPhIe6nHfy65fvfHUP
+         AER8/G0WrL8lMACeJ6mZTefnI1xIxlvvztBivfqYLxWI2I4NK82ulv4rn5usq2z9RyoO
+         kkA1MBl5La2qIAkr7EYuBiU6c54EpemVbw8IIidmCXKyb6Qw6ef9II8bajWr4FQPDGf5
+         H8+w==
+X-Gm-Message-State: AO0yUKXketqjFPb7sQ9cxsOfLgY3vcjT4Oxe15QJihWuKJj5SbryqTpD
+        Y5qrQfQS2J2cZfnuRGiG46qwTSGfDmRbw1TwxtdWmw==
+X-Google-Smtp-Source: AK7set+Bv76Po4Imp7oNwzB71WD5iLKQpfUzXDzH+Fp9A4JeoAaFi4DIdhTJ4chpyUfVvGitWyG/QEjZRdrFvDwK63c=
+X-Received: by 2002:a81:4005:0:b0:532:e887:2c23 with SMTP id
+ l5-20020a814005000000b00532e8872c23mr24535003ywn.9.1678745644324; Mon, 13 Mar
+ 2023 15:14:04 -0700 (PDT)
 MIME-Version: 1.0
-References: <20230310190634.5053-1-dipenp@nvidia.com> <20230310190634.5053-3-dipenp@nvidia.com>
-In-Reply-To: <20230310190634.5053-3-dipenp@nvidia.com>
+References: <20230306191535.1917656-1-sean.anderson@seco.com>
+ <20230306191535.1917656-4-sean.anderson@seco.com> <4c039e53-e3ca-29d7-e5ea-f24e385d28b0@linaro.org>
+ <42ccbac0-53e2-f599-fb3d-064b896bde4a@seco.com> <CACRpkdaj-0dyqWdSbQbjyUed+khDLi-awgan1BnuDvuY2JBzFQ@mail.gmail.com>
+ <d26bad8d-82ea-ed18-fa3e-081ba0d5dcf6@ncr.com>
+In-Reply-To: <d26bad8d-82ea-ed18-fa3e-081ba0d5dcf6@ncr.com>
 From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Mon, 13 Mar 2023 22:57:28 +0100
-Message-ID: <CACRpkdYmC=eLiWPPPRG7DYBmQfPNCN4pcDhzTCO=hkQDx2HoGw@mail.gmail.com>
-Subject: Re: [PATCH V3 2/6] dt-bindings: timestamp: Add Tegra234 support
-To:     Dipen Patel <dipenp@nvidia.com>
-Cc:     thierry.reding@gmail.com, jonathanh@nvidia.com,
-        linux-kernel@vger.kernel.org, linux-tegra@vger.kernel.org,
-        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-doc@vger.kernel.org, robh+dt@kernel.org,
-        timestamp@lists.linux.dev, krzysztof.kozlowski+dt@linaro.org,
-        brgl@bgdev.pl, corbet@lwn.net, gregkh@linuxfoundation.org
+Date:   Mon, 13 Mar 2023 23:13:52 +0100
+Message-ID: <CACRpkdbDftrKzSHfRaO8Bk83FT=JwjR-X3M6wyjds4Jo9y8cEw@mail.gmail.com>
+Subject: Re: [PATCH v10 03/13] dt-bindings: Convert gpio-mmio to yaml
+To:     "Leonard, Niall" <Niall.Leonard@ncr.com>
+Cc:     Sean Anderson <sean.anderson@seco.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Vinod Koul <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@kernel.org>,
+        "linux-phy@lists.infradead.org" <linux-phy@lists.infradead.org>,
+        Madalin Bucur <madalin.bucur@nxp.com>,
+        "linuxppc-dev@lists.ozlabs.org" <linuxppc-dev@lists.ozlabs.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        Ioana Ciornei <ioana.ciornei@nxp.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Camelia Alexandra Groza <camelia.groza@nxp.com>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        Bagas Sanjaya <bagasdotme@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Bartosz Golaszewski <brgl@bgdev.pl>,
+        =?UTF-8?Q?Fern=C3=A1ndez_Rojas?= <noltari@gmail.com>,
+        Jonas Gorski <jonas.gorski@gmail.com>,
+        "linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Dipen,
+On Mon, Mar 13, 2023 at 9:53=E2=80=AFAM Leonard, Niall <Niall.Leonard@ncr.c=
+om> wrote:
 
-thanks for maintaining HTE!
+> > Niall are you sending a v3 of this patch soon?
+> > Include Sean on the reviewer list!
 
-On Fri, Mar 10, 2023 at 8:06=E2=80=AFPM Dipen Patel <dipenp@nvidia.com> wro=
-te:
+> I never got around to working on the V3 patch. The hold up for me was
+> the changes to the bindings.
+> I'm now wondering if I should wait on Sean's patch being accepted and
+> then I could re-submit the driver changes.
+> What's the consensus ?
 
-> -  nvidia,slices:
-> -     $ref: /schemas/types.yaml#/definitions/uint32
-
-I would not delete this, just mark it deprecated.
-
-nvidia,slices:
-    $ref: /schemas/types.yaml#/definitions/uint32
-    deprecated: true
-
-(And remove it from required, of course)
-
-This way you do not need to explain about why it was
-deleted, it's just deprecated, which is fine.
+Sean picked it up for shepherding, it looks very good, as soon as
+the DT maintainers give it a nod Bartosz can merge it.
 
 Yours,
 Linus Walleij
