@@ -2,68 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B8C896B7FB2
-	for <lists+devicetree@lfdr.de>; Mon, 13 Mar 2023 18:49:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 37CFF6B7EA5
+	for <lists+devicetree@lfdr.de>; Mon, 13 Mar 2023 18:03:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230212AbjCMRtw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Mar 2023 13:49:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44238 "EHLO
+        id S229656AbjCMRD2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Mar 2023 13:03:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57014 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230481AbjCMRts (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Mar 2023 13:49:48 -0400
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C84D17203A;
-        Mon, 13 Mar 2023 10:49:44 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1678729784; x=1710265784;
-  h=message-id:date:mime-version:subject:to:references:from:
-   in-reply-to:content-transfer-encoding;
-  bh=k1jfQWwUrLRiIUyKxmnw1YYQ/KfXv2xO0bIFnvUL4Dk=;
-  b=nn3k8sWsiIVvipHtNAGG5N1VWkXxoQ35Ns+YEJ5ymnD3Wwu7Ru9xdHVl
-   /+gwbBP243SyOJQCXgu2AxuNcAI9XydFffRugChvJO+64w3Lxdn2tNkRW
-   8x3CdtyvKpZIpLBeaAUIJSZ0Zq9tl2wQOYoFJOun+YyN6+zY7UX1IDoqI
-   M+BT1c7DFSo4+KrW9KzHTrgQkWekrnVNFiiPZdBdWT+/YnLo99HMzQzSO
-   u/L7lxuqGMK8RyNJR7LkPFRD0Qd+cfYjQQh71V1nFsCrXv3ngmCMA//8S
-   Dtp+CPP/h5DesKZqh7rBdY7yQbzrXOYKmgoz2bLENzB5kn2LJFSQTsVrF
-   g==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10648"; a="321069344"
-X-IronPort-AV: E=Sophos;i="5.98,257,1673942400"; 
-   d="scan'208";a="321069344"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
-  by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 13 Mar 2023 10:49:12 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10648"; a="852860027"
-X-IronPort-AV: E=Sophos;i="5.98,257,1673942400"; 
-   d="scan'208";a="852860027"
-Received: from jlewis8x-mobl.amr.corp.intel.com (HELO [10.255.34.75]) ([10.255.34.75])
-  by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 13 Mar 2023 10:49:10 -0700
-Message-ID: <6fbd4471-9f72-c87c-3803-90f7224abce0@linux.intel.com>
-Date:   Mon, 13 Mar 2023 09:46:31 -0500
+        with ESMTP id S229961AbjCMRDM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Mar 2023 13:03:12 -0400
+Received: from mail-lj1-x22a.google.com (mail-lj1-x22a.google.com [IPv6:2a00:1450:4864:20::22a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A00C07C9EB
+        for <devicetree@vger.kernel.org>; Mon, 13 Mar 2023 10:02:26 -0700 (PDT)
+Received: by mail-lj1-x22a.google.com with SMTP id h9so13342727ljq.2
+        for <devicetree@vger.kernel.org>; Mon, 13 Mar 2023 10:02:26 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1678726880;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=f1RDtAGLj0Ru2Y2XZ1WbfrRwXcKezO5xKtNrT7rLq4M=;
+        b=i1ay3requ062Q/P51oQcvpIxd3HoiBx9BQwoVQO1GtfP+yzxTw8KHfJZBVsDkNdwvF
+         FTT9RMf3tIsG7hgHOu5wxE0BdczImUtinFEPCCYjiDFX0l86vBTNANw4uVm05AgktBki
+         YZaKPwua9xHwGRJx72zFISfXk31qhYvUTweQnMGIV39d8yUslUPKfxCaTNvczoqcM2Rs
+         EfQif4dAfLOImmbBoDpVDKktpcv5ineqKKfuoRL35/EK9A7+oj5KkMljtIrWL8MjaGZa
+         0TmsddaTpYbHDk27jt4kJQp4VvvF4Jy+o7T5Nl/lBR68qgRp2cdxlt0XP73ZjZHK8MDA
+         zpdQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1678726880;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=f1RDtAGLj0Ru2Y2XZ1WbfrRwXcKezO5xKtNrT7rLq4M=;
+        b=I+N2mWLUDPzquiuE4WCDrHeILVTyt9SQlFqMOoJdewS0IQDG0Lx6KRMPqjO4T4v7Jt
+         IVed8xkjbMA2e1cSEWBhFwX+/URvcpuJX84XWDLnscUTmipjXkdiLoaBesMKc/xrp2iw
+         HyLAR+GwDWF6GzC2GoLboeYrDRB81evnYBJRjwfyDu5XMHJWF1dJDn/ZLDB6VKZWBcWS
+         t9L4sdQNq3RfaPq7sWw7vV4KNL29P7QOZZMoZvAkp4DU5b/bqydLKkX0AADAY//c+Bm0
+         KbN7gvDUUEn/gH/UzZQpuur616yPmhtpNgFliBKswIw8zgrdZdr3K+R7T2UCBhlHmki5
+         2Qwg==
+X-Gm-Message-State: AO0yUKXlL+aKLz/9ifWzv8gURk6qAvs9facZdsAEBLsAcG43KbrHfiLD
+        B9z6loIqQXDjcgD2T+mK9Y3utg==
+X-Google-Smtp-Source: AK7set9ikAiz3Ii8WfPk13mIVyXmlhmTfMzPl5IqSmp1dTqqDaWFactO+pFjYLfz/l/Tyotkzw2nZQ==
+X-Received: by 2002:a2e:99c4:0:b0:293:4d57:7148 with SMTP id l4-20020a2e99c4000000b002934d577148mr10860247ljj.11.1678726880222;
+        Mon, 13 Mar 2023 10:01:20 -0700 (PDT)
+Received: from [192.168.1.101] (abyj16.neoplus.adsl.tpnet.pl. [83.9.29.16])
+        by smtp.gmail.com with ESMTPSA id q7-20020a2e8747000000b002959f550084sm63352ljj.100.2023.03.13.10.01.19
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 13 Mar 2023 10:01:19 -0700 (PDT)
+Message-ID: <a131ffa0-1e9c-d355-16db-19e679ab0380@linaro.org>
+Date:   Mon, 13 Mar 2023 18:01:13 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Firefox/102.0 Thunderbird/102.7.1
-Subject: Re: [PATCH V2 1/2] ASoC: max98363: add soundwire amplifier driver
+ Thunderbird/102.8.0
+Subject: Re: [PATCH RFC v2 2/6] arm64: dts: qcom: sdm845-tama: Add Synaptics
+ Touchscreen
 Content-Language: en-US
-To:     =?UTF-8?B?4oCcUnlhbg==?= <ryan.lee.analog@gmail.com>,
-        lgirdwood@gmail.com, broonie@kernel.org, perex@perex.cz,
-        tiwai@suse.com, krzysztof.kozlowski@linaro.org,
-        rf@opensource.cirrus.com, ckeepax@opensource.cirrus.com,
-        herve.codina@bootlin.com, wangweidong.a@awinic.com,
-        james.schulman@cirrus.com,
-        ajye_huang@compal.corp-partner.google.com, shumingf@realtek.com,
-        povik+lin@cutebit.org, flatmax@flatmax.com,
-        linux-kernel@vger.kernel.org, alsa-devel@alsa-project.org,
-        robh+dt@kernel.org, devicetree@vger.kernel.org,
-        ryans.lee@analog.com
-References: <20230311011409.210014-1-ryan.lee.analog@gmail.com>
-From:   Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>
-In-Reply-To: <20230311011409.210014-1-ryan.lee.analog@gmail.com>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Konrad Dybcio <konrad.dybcio@somainline.org>
+References: <20230313-topic-tama_disp-v2-0-37ececf43770@linaro.org>
+ <20230313-topic-tama_disp-v2-2-37ececf43770@linaro.org>
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <20230313-topic-tama_disp-v2-2-37ececf43770@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-0.4 required=5.0 tests=BAYES_00,DATE_IN_PAST_03_06,
-        DKIMWL_WL_HIGH,DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,NICE_REPLY_A,
-        SPF_HELO_NONE,SPF_NONE autolearn=no autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-0.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_SORBS_HTTP,RCVD_IN_SORBS_SOCKS,SPF_HELO_NONE,SPF_PASS
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -71,26 +81,55 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
-> +	ret = sdw_stream_add_slave(max98363->slave, &stream_config,
-> +				   &port_config, 1, stream);
-> +	if (ret) {
-> +		dev_err(dai->dev, "Unable to configure port\n");
-> +		return ret;
-> +	}
+
+On 13.03.2023 17:32, Konrad Dybcio wrote:
+> From: Konrad Dybcio <konrad.dybcio@somainline.org>
+> 
+> Add required pins and RMI4 node to the common DT and remove it
+> from Akatsuki, as it uses a different touch.
+> 
+> Since the panels are super high tech proprietary incell, they
+> need to be handled with very precise timings. As such the panel
+> driver sets up the power rails and GPIOs and the touchscreen
+> driver *has to* probe afterwards.
+> 
+> Signed-off-by: Konrad Dybcio <konrad.dybcio@somainline.org>
+> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+> ---
+[...]
+
+>  &i2c5 {
+> -	status = "okay";
+>  	clock-frequency = <400000>;
+> +	status = "okay";
 > +
-> +	if (params_channels(params) > 16) {
-> +		dev_err(component->dev, "Unsupported channels %d\n",
-> +			params_channels(params));
-> +		return -EINVAL;
-> +	}
+> +	touchscreen: touchscreen@2c {
+> +		compatible = "syna,rmi4-i2c";
+> +		reg = <0x2c>;
+> +
+> +		interrupt-parent = <&tlmm>;
+> +		interrupts = <125 IRQ_TYPE_EDGE_FALLING>;
+interrupts-extended
 
-Do you actually support more than 8 channels?
+> +		vdd-supply = <&vreg_l14a_1p8>;
+> +		/*
+> +		 * This is a blatant abuse of OF, but the panel driver *needs*
+> +		 * to probe first, as the power/gpio switching needs to be precisely
+> +		 * timed in order for both the display and touch panel to function properly.
+> +		 */
+> +		incell-supply = <&panel>;
+> +
+> +		syna,reset-delay-ms = <220>;
+> +		syna,startup-delay-ms = <1000>;
+> +
+> +		pinctrl-names = "default", "sleep";
+> +		pinctrl-0 = <&ts_default>;
+> +		pinctrl-1 = <&ts_sleep>;
+swapped
 
-The data port DPnPrepareCtl and DPn_ChannelEn registers expose 8
-channels max. It's always possible to 'cheat' by packing two channels in
-the same sample, but that would require custom signaling between manager
-and peripheral that isn't present.
+>  
+> -	/* Synaptics touchscreen @ 2c, 3c */
+> +		#address-cells = <1>;
+> +		#size-cells = <0>;
+Konrad
 
-Could it be a left-over from a TDM implementation?
-
-The rest of the patch looks fine.
