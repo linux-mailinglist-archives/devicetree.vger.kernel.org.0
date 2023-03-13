@@ -2,61 +2,40 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D19606B7DF5
-	for <lists+devicetree@lfdr.de>; Mon, 13 Mar 2023 17:47:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 47E106B7E3F
+	for <lists+devicetree@lfdr.de>; Mon, 13 Mar 2023 17:56:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229901AbjCMQry (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Mar 2023 12:47:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32978 "EHLO
+        id S230496AbjCMQ4s (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Mar 2023 12:56:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51318 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229543AbjCMQrx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Mar 2023 12:47:53 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3845A6F629
-        for <devicetree@vger.kernel.org>; Mon, 13 Mar 2023 09:47:51 -0700 (PDT)
-Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <mfe@pengutronix.de>)
-        id 1pblKh-0003ZU-O7; Mon, 13 Mar 2023 17:47:35 +0100
-Received: from mfe by ptx.hi.pengutronix.de with local (Exim 4.92)
-        (envelope-from <mfe@pengutronix.de>)
-        id 1pblKf-0008IJ-PH; Mon, 13 Mar 2023 17:47:33 +0100
-Date:   Mon, 13 Mar 2023 17:47:33 +0100
-From:   Marco Felsch <m.felsch@pengutronix.de>
-To:     sboyd@kernel.org
-Cc:     linux-clk@vger.kernel.org, Peng Fan <peng.fan@nxp.com>,
-        Fabio Estevam <festevam@gmail.com>,
-        Adam Ford <aford173@gmail.com>,
-        Alexander Stein <alexander.stein@ew.tq-group.com>,
-        Abel Vesa <abelvesa@kernel.org>, Jacky Bai <ping.bai@nxp.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Luca Ceresoli <luca.ceresoli@bootlin.com>,
-        Lucas Stach <l.stach@pengutronix.de>,
-        Michael Turquette <mturquette@baylibre.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Richard Cochran <richardcochran@gmail.com>,
+        with ESMTP id S230053AbjCMQ4r (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Mar 2023 12:56:47 -0400
+Received: from mail11.truemail.it (mail11.truemail.it [217.194.8.81])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E60FD56159;
+        Mon, 13 Mar 2023 09:56:28 -0700 (PDT)
+Received: from francesco-nb.pivistrello.it (93-49-2-63.ip317.fastwebnet.it [93.49.2.63])
+        by mail11.truemail.it (Postfix) with ESMTPA id B874921E29;
+        Mon, 13 Mar 2023 17:50:44 +0100 (CET)
+From:   Francesco Dolcini <francesco@dolcini.it>
+To:     linux-usb@vger.kernel.org, devicetree@vger.kernel.org
+Cc:     Emanuele Ghidoli <emanuele.ghidoli@toradex.com>,
+        linux-kernel@vger.kernel.org,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Shawn Guo <shawnguo@kernel.org>, Marek Vasut <marex@denx.de>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v7 1/5] clk: Introduce
- devm_clk_hw_register_gate_parent_data()
-Message-ID: <20230313164733.wav2s46y3n4sxyzz@pengutronix.de>
-References: <20230301163257.49005-1-marex@denx.de>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Dongjin Kim <tobetter@gmail.com>,
+        Francesco Dolcini <francesco.dolcini@toradex.com>
+Subject: [PATCH v1 1/3] dt-bindings: usb: smsc,usb3503: Add usb3803
+Date:   Mon, 13 Mar 2023 17:50:37 +0100
+Message-Id: <20230313165039.255579-2-francesco@dolcini.it>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20230313165039.255579-1-francesco@dolcini.it>
+References: <20230313165039.255579-1-francesco@dolcini.it>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230301163257.49005-1-marex@denx.de>
-User-Agent: NeoMutt/20180716
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
-X-SA-Exim-Mail-From: mfe@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,NO_DNS_FOR_FROM,
+        SPF_HELO_PASS,T_SPF_TEMPERROR autolearn=no autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -64,86 +43,115 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Stephen,
+From: Emanuele Ghidoli <emanuele.ghidoli@toradex.com>
 
-seems like we all agreed on this series. Can you have a look on this as
-well?
+Add support for usb3803, compared to usb3503 it uses a regular USB
+connection to upstream instead of HSIC, it has an additional
+low power mode (bypass) and an additional control signal (BYPASS_N).
 
-Thanks,
-  Marco
+In bypass mode the downstream port 3 is connected to the upstream port
+with low switch resistance R_on.
 
-On 23-03-01, Marek Vasut wrote:
-> Add an API for clock gate that uses parent_data for the parent instead of
-> a string parent_name.
-> 
-> Reviewed-by: Peng Fan <peng.fan@nxp.com>
-> Reviewed-by: Fabio Estevam <festevam@gmail.com>
-> Tested-by: Adam Ford <aford173@gmail.com> #imx8mp-beacon-kit
-> Tested-by: Alexander Stein <alexander.stein@ew.tq-group.com>
-> Signed-off-by: Marek Vasut <marex@denx.de>
-> ---
-> Cc: Abel Vesa <abelvesa@kernel.org>
-> Cc: Alexander Stein <alexander.stein@ew.tq-group.com>
-> Cc: Fabio Estevam <festevam@gmail.com>
-> Cc: Jacky Bai <ping.bai@nxp.com>
-> Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-> Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> Cc: Luca Ceresoli <luca.ceresoli@bootlin.com>
-> Cc: Lucas Stach <l.stach@pengutronix.de>
-> Cc: Marco Felsch <m.felsch@pengutronix.de>
-> Cc: Michael Turquette <mturquette@baylibre.com>
-> Cc: NXP Linux Team <linux-imx@nxp.com>
-> Cc: Peng Fan <peng.fan@nxp.com>
-> Cc: Pengutronix Kernel Team <kernel@pengutronix.de>
-> Cc: Richard Cochran <richardcochran@gmail.com>
-> Cc: Rob Herring <robh+dt@kernel.org>
-> Cc: Sascha Hauer <s.hauer@pengutronix.de>
-> Cc: Shawn Guo <shawnguo@kernel.org>
-> Cc: Stephen Boyd <sboyd@kernel.org>
-> Cc: devicetree@vger.kernel.org
-> Cc: linux-arm-kernel@lists.infradead.org
-> Cc: linux-clk@vger.kernel.org
-> ---
-> V3: New patch
-> V4: - Rebase on next 20230223
-> V5: Add TB from Adam and Alexander
-> V6: Add RB from Fabio
-> V7: Add RB from Peng
-> ---
->  include/linux/clk-provider.h | 19 +++++++++++++++++++
->  1 file changed, 19 insertions(+)
-> 
-> diff --git a/include/linux/clk-provider.h b/include/linux/clk-provider.h
-> index 842e72a5348fa..92b7c794c6272 100644
-> --- a/include/linux/clk-provider.h
-> +++ b/include/linux/clk-provider.h
-> @@ -608,6 +608,25 @@ struct clk *clk_register_gate(struct device *dev, const char *name,
->  	__devm_clk_hw_register_gate((dev), NULL, (name), (parent_name), NULL, \
->  			       NULL, (flags), (reg), (bit_idx),		      \
->  			       (clk_gate_flags), (lock))
-> +
-> +/**
-> + * devm_clk_hw_register_gate - register a gate clock with the clock framework
-> + * @dev: device that is registering this clock
-> + * @name: name of this clock
-> + * @parent_data: parent clk data
-> + * @flags: framework-specific flags for this clock
-> + * @reg: register address to control gating of this clock
-> + * @bit_idx: which bit in the register controls gating of this clock
-> + * @clk_gate_flags: gate-specific flags for this clock
-> + * @lock: shared register lock for this clock
-> + */
-> +#define devm_clk_hw_register_gate_parent_data(dev, name, parent_data, flags,  \
-> +					      reg, bit_idx, clk_gate_flags,   \
-> +					      lock)			      \
-> +	__devm_clk_hw_register_gate((dev), NULL, (name), NULL, NULL,	      \
-> +				    (parent_data), (flags), (reg), (bit_idx), \
-> +				    (clk_gate_flags), (lock))
-> +
->  void clk_unregister_gate(struct clk *clk);
->  void clk_hw_unregister_gate(struct clk_hw *hw);
->  int clk_gate_is_enabled(struct clk_hw *hw);
-> -- 
-> 2.39.2
-> 
-> 
+Signed-off-by: Emanuele Ghidoli <emanuele.ghidoli@toradex.com>
+Signed-off-by: Francesco Dolcini <francesco.dolcini@toradex.com>
+---
+ .../devicetree/bindings/usb/smsc,usb3503.yaml | 54 ++++++++++++++++++-
+ 1 file changed, 52 insertions(+), 2 deletions(-)
+
+diff --git a/Documentation/devicetree/bindings/usb/smsc,usb3503.yaml b/Documentation/devicetree/bindings/usb/smsc,usb3503.yaml
+index a09f4528aea3..6156dc26e65c 100644
+--- a/Documentation/devicetree/bindings/usb/smsc,usb3503.yaml
++++ b/Documentation/devicetree/bindings/usb/smsc,usb3503.yaml
+@@ -14,6 +14,7 @@ properties:
+     enum:
+       - smsc,usb3503
+       - smsc,usb3503a
++      - smsc,usb3803
+ 
+   reg:
+     maxItems: 1
+@@ -33,6 +34,12 @@ properties:
+     description: >
+       GPIO for reset
+ 
++  bypass-gpios:
++    maxItems: 1
++    description: >
++      GPIO for bypass.
++      Control signal to select between HUB MODE and BYPASS MODE.
++
+   disabled-ports:
+     $ref: /schemas/types.yaml#/definitions/uint32-array
+     minItems: 1
+@@ -46,9 +53,10 @@ properties:
+ 
+   initial-mode:
+     $ref: /schemas/types.yaml#/definitions/uint32
+-    enum: [1, 2]
+     description: >
+-      Specifies initial mode. 1 for Hub mode, 2 for standby mode.
++      Specifies initial mode. 1 for Hub mode, 2 for standby mode and 3 for bypass mode.
++      In bypass mode the downstream port 3 is connected to the upstream port with low
++      switch resistance R_on.
+ 
+   clocks:
+     maxItems: 1
+@@ -71,6 +79,29 @@ properties:
+ required:
+   - compatible
+ 
++allOf:
++  - if:
++      not:
++        properties:
++          compatible:
++            enum:
++              - smsc,usb3803
++    then:
++      properties:
++        bypass-gpios: false
++
++  - if:
++      required:
++        - bypass-gpios
++    then:
++      properties:
++        initial-mode:
++          enum: [1, 2, 3]
++    else:
++      properties:
++        initial-mode:
++          enum: [1, 2]
++
+ additionalProperties: false
+ 
+ examples:
+@@ -92,6 +123,25 @@ examples:
+           };
+       };
+ 
++  - |
++      i2c {
++          #address-cells = <1>;
++          #size-cells = <0>;
++
++          usb-hub@8 {
++              compatible = "smsc,usb3803";
++              reg = <0x08>;
++              connect-gpios = <&gpx3 0 1>;
++              disabled-ports = <2 3>;
++              intn-gpios = <&gpx3 4 1>;
++              reset-gpios = <&gpx3 5 1>;
++              bypass-gpios = <&gpx3 6 1>;
++              initial-mode = <3>;
++              clocks = <&clks 80>;
++              clock-names = "refclk";
++          };
++      };
++
+   - |
+       #include <dt-bindings/gpio/gpio.h>
+ 
+-- 
+2.25.1
+
