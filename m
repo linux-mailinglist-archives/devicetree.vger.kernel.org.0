@@ -2,132 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C21126B8023
-	for <lists+devicetree@lfdr.de>; Mon, 13 Mar 2023 19:13:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 465D96B8045
+	for <lists+devicetree@lfdr.de>; Mon, 13 Mar 2023 19:20:58 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229573AbjCMSNE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Mar 2023 14:13:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53052 "EHLO
+        id S230356AbjCMSU4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Mar 2023 14:20:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39530 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229791AbjCMSM7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Mar 2023 14:12:59 -0400
-Received: from mail-oa1-x34.google.com (mail-oa1-x34.google.com [IPv6:2001:4860:4864:20::34])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5F8787B9AC;
-        Mon, 13 Mar 2023 11:12:54 -0700 (PDT)
-Received: by mail-oa1-x34.google.com with SMTP id 586e51a60fabf-17711f56136so14639040fac.12;
-        Mon, 13 Mar 2023 11:12:54 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112; t=1678731173;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=WGtf6SIwprkjjvb6epaITev79WRWoV5Y4O2K1yfDb1g=;
-        b=qMqZVk3pLC3xbzWkPm4wfcJhhQHPdRhZi/P062twH/OW5f2XPAj4jkyFv381Zi/SVS
-         srkmVayQYr959ujuB0Qvu2D7/iE43qCy9kLlWpiZvguS9Wt7Eb2bJm2Q1jDOjmZC1DkJ
-         31SaMVh56/QZmRqdJuv+ebT2K64l5MH0OMxnrY4XGWi5k9ee/js33P0G13YYGqgb51zJ
-         miLeh4cMguKjBWs5goeTReFPfLnHBWqJyVjPFOLUQe3Oqeku3OAvtvYI0CY0etC724Gv
-         IpGDkMnzYSM/z+Twv6lgJhHIm2BzWl9weHJNOomYKl+CBCCPbtHf3qlV2XS4pJv0bQuq
-         bSyg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678731173;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=WGtf6SIwprkjjvb6epaITev79WRWoV5Y4O2K1yfDb1g=;
-        b=YQG4P98LYZAeoPVaqwc5TQS592y3vZLsd90bpD02pPlYABdvtS8kXd0uWdmNV+L8Ww
-         4FWJjv5FYlu7w6xEI+S5Tbv2wkMSpX2fXVYal645mDnDHvJpgQpRslrlXLtBrAsdeTxb
-         SU0yXhT4jilV2hcc4LkFfjcI34YYkBrQ8xxyL9aGwOJRLZXkk6qIyoPqULeEn1HJGGWh
-         +Hva7+EDed9AX7SZLaw1PEUGlYj6AB5uFNoxayAYRvp4++bmyG2P++cln9OUPigb2XRz
-         1aUt6OWlTg1LNoamUP+kSoR0ktQLoVjz3gvEFkkjDS3HA795bOCVeNKFbo1vIHLh7eKy
-         JqyA==
-X-Gm-Message-State: AO0yUKXzjOyI2dXwZO5B1ickowWk94GpUYumQ+OIqzLvPl7yWfsNxT3A
-        dFDKk/qjuNK54RgX8Iky1K+z9qZA6ewiVWeQJatFd3CAuIs=
-X-Google-Smtp-Source: AK7set/m+WIBlxqTBPAs2AyFRkV53zHJpk20UMpb6nDf28b6xYjPLegqpDGBwah+5gYtE/nCTO+FsRO9TFQoxsfBd6o=
-X-Received: by 2002:a05:6870:d20d:b0:172:39d6:edc7 with SMTP id
- g13-20020a056870d20d00b0017239d6edc7mr5178902oac.4.1678731173552; Mon, 13 Mar
- 2023 11:12:53 -0700 (PDT)
+        with ESMTP id S230437AbjCMSUl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Mar 2023 14:20:41 -0400
+X-Greylist: delayed 110 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Mon, 13 Mar 2023 11:20:12 PDT
+Received: from violet.fr.zoreil.com (violet.fr.zoreil.com [IPv6:2001:4b98:dc0:41:216:3eff:fe56:8398])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6B02B7E7A4;
+        Mon, 13 Mar 2023 11:20:12 -0700 (PDT)
+Received: from violet.fr.zoreil.com ([127.0.0.1])
+        by violet.fr.zoreil.com (8.17.1/8.17.1) with ESMTP id 32DII48B525011;
+        Mon, 13 Mar 2023 19:18:04 +0100
+DKIM-Filter: OpenDKIM Filter v2.11.0 violet.fr.zoreil.com 32DII48B525011
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=fr.zoreil.com;
+        s=v20220413; t=1678731484;
+        bh=fDODv/JG6TlBswRvg4d33h1IlTOtA6L8xzOB57WlhEM=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=fgYRIeOrOxLUgHicG+sUWCDB30KAfKyx7pLKxPGVFm0PKzSAgF8waEyVG2cGnhwOh
+         W0zMOWOGdf57bj6vCGCNO7R4EoUyDloc2I92XX2u567dapKjA51SzdlaQW20WoTTPy
+         YMiub42DWA6fODW+K7NBHV4wpcjeeS2kNz4ZomCU=
+Received: (from romieu@localhost)
+        by violet.fr.zoreil.com (8.17.1/8.17.1/Submit) id 32DII4dm525010;
+        Mon, 13 Mar 2023 19:18:04 +0100
+Date:   Mon, 13 Mar 2023 19:18:03 +0100
+From:   Francois Romieu <romieu@fr.zoreil.com>
+To:     Rob Herring <robh@kernel.org>
+Cc:     devicetree@vger.kernel.org, netdev@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] net: Use of_property_read_bool() for boolean properties
+Message-ID: <20230313181803.GA524627@electric-eye.fr.zoreil.com>
+References: <20230310144718.1544169-1-robh@kernel.org>
 MIME-Version: 1.0
-References: <20230228152205.133582-1-macroalpha82@gmail.com>
- <20230228152205.133582-3-macroalpha82@gmail.com> <CADcbR4+Onb6RM7grPrqRL8Rth0mbFXykRmPq8R1QxYRGaHQHtA@mail.gmail.com>
-In-Reply-To: <CADcbR4+Onb6RM7grPrqRL8Rth0mbFXykRmPq8R1QxYRGaHQHtA@mail.gmail.com>
-From:   Chris Morgan <macroalpha82@gmail.com>
-Date:   Mon, 13 Mar 2023 13:12:42 -0500
-Message-ID: <CADcbR4L6b9D1FJx9u1jFvZ6jhixNs3_Ky+Mu0rHwtXZ6ATO-Eg@mail.gmail.com>
-Subject: Re: [PATCH 2/3 V4] Bluetooth: hci_h5: btrtl: Add support for RTL8821CS
-To:     linux-bluetooth@vger.kernel.org
-Cc:     linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
-        alistair@alistair23.me, anarsoul@gmail.com, luiz.dentz@gmail.com,
-        johan.hedberg@gmail.com, marcel@holtmann.org, heiko@sntech.de,
-        krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
-        Chris Morgan <macromorgan@hotmail.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230310144718.1544169-1-robh@kernel.org>
+X-Organisation: Land of Sunshine Inc.
+X-Spam-Status: No, score=1.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,RCVD_IN_SBL_CSS,SPF_HELO_PASS,SPF_PASS
+        autolearn=no autolearn_force=no version=3.4.6
+X-Spam-Level: *
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-I found the fix, simply put changing the compatible from
-realtek,rtl8822cs-bt to realtek,rtl8732bs-bt fixes it (because it sets
-the "H5_INFO_WAKEUP_DISABLE" flag). Is it too late for a V5, or should
-I submit this as a fix to the devicetree and devicetree documentation?
+Rob Herring <robh@kernel.org> :
+> It is preferred to use typed property access functions (i.e.
+> of_property_read_<type> functions) rather than low-level
+> of_get_property/of_find_property functions for reading properties.
+> Convert reading boolean properties to to of_property_read_bool().
+> 
+> Signed-off-by: Rob Herring <robh@kernel.org>
+> ---
+[...]
+>  drivers/net/ethernet/via/via-velocity.c         |  3 +--
+[...]
+> diff --git a/drivers/net/ethernet/via/via-velocity.c b/drivers/net/ethernet/via/via-velocity.c
+> index a502812ac418..86f7843b4591 100644
+> --- a/drivers/net/ethernet/via/via-velocity.c
+> +++ b/drivers/net/ethernet/via/via-velocity.c
+> @@ -2709,8 +2709,7 @@ static int velocity_get_platform_info(struct velocity_info *vptr)
+>  	struct resource res;
+>  	int ret;
+>  
+> -	if (of_get_property(vptr->dev->of_node, "no-eeprom", NULL))
+> -		vptr->no_eeprom = 1;
+> +	vptr->no_eeprom = of_property_read_bool(vptr->dev->of_node, "no-eeprom");
+>  
+>  	ret = of_address_to_resource(vptr->dev->of_node, 0, &res);
+>  	if (ret) {
 
-Thank you.
+Acked-by: Francois Romieu <romieu@fr.zoreil.com>
 
-On Fri, Mar 10, 2023 at 10:25=E2=80=AFAM Chris Morgan <macroalpha82@gmail.c=
-om> wrote:
->
-> I shudder to bring this up now, but I'm encountering a new bug and
-> might have to withdraw this.
->
-> I'm receiving errors in dmesg of the following, and I can't seem to
-> figure out the root cause:
-> Bluetooth: hci0: Out-of-order packet arrived
->
-> Any thoughts on what might cause it?
-> Thank you.
->
-> On Tue, Feb 28, 2023 at 9:22=E2=80=AFAM Chris Morgan <macroalpha82@gmail.=
-com> wrote:
-> >
-> > From: Chris Morgan <macromorgan@hotmail.com>
-> >
-> > RTL8821CS is a WiFi + Bluetooth combo chip from Realtek that provides
-> > WiFi A/B/G/N/AC over an SDIO interface and Bluetooth 4.2 over a UART
-> > interface.
-> >
-> > Note that the firmware this was tested with was firmware version
-> > 0x75b8f098.
-> >
-> > Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
-> > ---
-> >  drivers/bluetooth/btrtl.c | 8 ++++++++
-> >  1 file changed, 8 insertions(+)
-> >
-> > diff --git a/drivers/bluetooth/btrtl.c b/drivers/bluetooth/btrtl.c
-> > index 69c3fe649ca7..72947d319fa6 100644
-> > --- a/drivers/bluetooth/btrtl.c
-> > +++ b/drivers/bluetooth/btrtl.c
-> > @@ -128,6 +128,14 @@ static const struct id_table ic_id_table[] =3D {
-> >           .fw_name  =3D "rtl_bt/rtl8821c_fw.bin",
-> >           .cfg_name =3D "rtl_bt/rtl8821c_config" },
-> >
-> > +       /* 8821CS */
-> > +       { IC_INFO(RTL_ROM_LMP_8821A, 0xc, 0x8, HCI_UART),
-> > +         .config_needed =3D true,
-> > +         .has_rom_version =3D true,
-> > +         .has_msft_ext =3D true,
-> > +         .fw_name  =3D "rtl_bt/rtl8821cs_fw.bin",
-> > +         .cfg_name =3D "rtl_bt/rtl8821cs_config" },
-> > +
-> >         /* 8761A */
-> >         { IC_INFO(RTL_ROM_LMP_8761A, 0xa, 0x6, HCI_USB),
-> >           .config_needed =3D false,
-> > --
-> > 2.34.1
-> >
+Simon Horman's comment regarding assignment of bool value to an integer
+typed field also apply here.
+
+-- 
+Ueimor
