@@ -2,229 +2,162 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 33DCE6B71DB
-	for <lists+devicetree@lfdr.de>; Mon, 13 Mar 2023 09:59:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 223866B71E5
+	for <lists+devicetree@lfdr.de>; Mon, 13 Mar 2023 10:02:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229810AbjCMI7Z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Mar 2023 04:59:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44332 "EHLO
+        id S229756AbjCMJB7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Mar 2023 05:01:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44576 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229787AbjCMI7E (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Mar 2023 04:59:04 -0400
-Received: from mail-yw1-x1134.google.com (mail-yw1-x1134.google.com [IPv6:2607:f8b0:4864:20::1134])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3EF865A1B5;
-        Mon, 13 Mar 2023 01:54:56 -0700 (PDT)
-Received: by mail-yw1-x1134.google.com with SMTP id 00721157ae682-5419d4c340aso42933137b3.11;
-        Mon, 13 Mar 2023 01:54:56 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112; t=1678697695;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=4NCgd6tuaHBDOiTZW9CVlzEgxDA28IvutIsaMd7oX50=;
-        b=HZgoB6aKIVi2nBeKfCTqBHjzBjiVkFPw5ki1bB37dD9InxqJ2Wf1ljZ53CDnCz674u
-         KLeAyOlbc1n6TPqS8uxO2KO3WQGhk1BgjPnm2obNoZh5FzrE+h7Ad5am5H/hlTPqciUs
-         G52Y3TnO1JVKgnXaKqHgkKAeQe6+2lnSelFQ2Moffvd5zoRP6MLDd3TnESJKP89vu98r
-         BRsc3dMEejIIByXEJNgK4hRDTfqbV53oWhVs7MyzVeiIlL5J0W+nCTZ/0AlKi9hk+PM0
-         TB8YbtjqtMKY+gkvMwbsfh5ZSBhcepzXKf5jhTMU/mOYL+tO0WJ7KA3rxq6NvO+jUNOe
-         Tcog==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678697695;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=4NCgd6tuaHBDOiTZW9CVlzEgxDA28IvutIsaMd7oX50=;
-        b=vpUnz3AxXd1psCoEuqdgbW+npbZzIeDixinU8fJ4KXON29sg2V+fFe4O/Dr1y69rWg
-         6fsLPOTO41WGLAN1FkkDhMoZsLobx6AgCWRvEVb4SsKF4Rp6NHw7MErIb7JbceVJnoPO
-         jaeVXlSOVBzTjb/G2BhGm28ad2JJcIBXkzIRYt7xPuWwIZy46ssJ7moPsZFjhtdge1Hp
-         A/Hr8HCzMw/wXg4j693s35+nRFxw3Csqsf9+gFpWbzWt1KaWfEIj4FR+BQKAJAJ2IqSt
-         sP9Va+T5vPf5YXht+hOkAq/TUNByCIjXC8bxyPsGZBplSqH6otmZo743yamvwYhEewta
-         ZEOw==
-X-Gm-Message-State: AO0yUKXck0q1UQqAPrBBKZ3XwHhN0MPrKOKKhstGDQhvkvRU3v2Uz/Jw
-        0h8kGoIQ64YpZiB6Yeb8038UiupaFENF98H/0y8=
-X-Google-Smtp-Source: AK7set+5EDJAAXdVYJQM5llasnCzJsaOc111qwF6lT7P251dy0Wjo2jefcmVtKCPdNGGpLx6eJXc0kR+yXyN59PqpmU=
-X-Received: by 2002:a81:b10a:0:b0:53d:2772:65d with SMTP id
- p10-20020a81b10a000000b0053d2772065dmr16019576ywh.9.1678697695226; Mon, 13
- Mar 2023 01:54:55 -0700 (PDT)
+        with ESMTP id S229568AbjCMJBl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Mar 2023 05:01:41 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3126F5F226;
+        Mon, 13 Mar 2023 01:57:47 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id A13A6B80E63;
+        Mon, 13 Mar 2023 08:57:45 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C9392C433EF;
+        Mon, 13 Mar 2023 08:57:43 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+        s=korg; t=1678697864;
+        bh=bAgSafl+YS0IHZeCPHn+gGobAbOyUjtbi8a+ReztEEQ=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=KPewxC17XfHmWrbxIvL0bK7PRx0+7nsnfopEfNb4yBVp0t+clPkB/ysY0Q46E32SY
+         P+s7O4M8r3GcWeHd+LlRR7x/OvG30oB0AYVzsdkKRfe/R/QfMw/TZzhg3MZVCK9jqu
+         PxIvLGa656ps93FGxYsWfO2bS5cj9wEek2Fq4GXI=
+Date:   Mon, 13 Mar 2023 09:57:41 +0100
+From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+To:     Delphine_CC_Chiu/WYHQ/Wiwynn <Delphine_CC_Chiu@wiwynn.com>
+Cc:     "patrick@stwcx.xyz" <patrick@stwcx.xyz>,
+        Derek Kiernan <derek.kiernan@xilinx.com>,
+        Dragan Cvetic <dragan.cvetic@xilinx.com>,
+        Arnd Bergmann <arnd@arndb.de>,
+        "garnermic@fb.com" <garnermic@fb.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Stanislav Jakubek <stano.jakubek@gmail.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Samuel Holland <samuel@sholland.org>,
+        "linux-i2c@vger.kernel.org" <linux-i2c@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v1 3/3] misc: Add meta cld driver
+Message-ID: <ZA7lhcfxzhS5Waz/@kroah.com>
+References: <20230117094425.19004-1-Delphine_CC_Chiu@Wiwynn.com>
+ <20230117094425.19004-4-Delphine_CC_Chiu@Wiwynn.com>
+ <Y8Z1JxsLA6UKi805@kroah.com>
+ <TY2PR04MB40321968150DC2E6FC2F307683B99@TY2PR04MB4032.apcprd04.prod.outlook.com>
 MIME-Version: 1.0
-References: <20230110083238.19230-1-jim.t90615@gmail.com> <20230110083238.19230-4-jim.t90615@gmail.com>
- <167335661623.1967925.9927691364268671668.robh@kernel.org>
-In-Reply-To: <167335661623.1967925.9927691364268671668.robh@kernel.org>
-From:   Jim Liu <jim.t90615@gmail.com>
-Date:   Mon, 13 Mar 2023 16:54:44 +0800
-Message-ID: <CAKUZ0+HQYiwp0pGLhQUckk9zOYg42MSWucYss6iP68YRmHyAxA@mail.gmail.com>
-Subject: Re: [PATCH v4 3/3] dt-bindings: gpio: add NPCM sgpio driver bindings
-To:     Rob Herring <robh@kernel.org>
-Cc:     linux-gpio@vger.kernel.org, JJLIU0@nuvoton.com, robh+dt@kernel.org,
-        devicetree@vger.kernel.org, KWLIU@nuvoton.com,
-        openbmc@lists.ozlabs.org, brgl@bgdev.pl,
-        linux-kernel@vger.kernel.org, linus.walleij@linaro.org,
-        krzysztof.kozlowski+dt@linaro.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <TY2PR04MB40321968150DC2E6FC2F307683B99@TY2PR04MB4032.apcprd04.prod.outlook.com>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Krzysztof
+On Mon, Mar 13, 2023 at 08:47:45AM +0000, Delphine_CC_Chiu/WYHQ/Wiwynn wrote:
+> Hi Greg,
+> 
+> Thanks for your comment!
+> 
+> > -----Original Message-----
+> > From: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+> > Sent: Tuesday, January 17, 2023 6:15 PM
+> > To: Delphine_CC_Chiu/WYHQ/Wiwynn <Delphine_CC_Chiu@wiwynn.com>
+> > Cc: patrick@stwcx.xyz; Derek Kiernan <derek.kiernan@xilinx.com>; Dragan
+> > Cvetic <dragan.cvetic@xilinx.com>; Arnd Bergmann <arnd@arndb.de>;
+> > garnermic@fb.com; Rob Herring <robh+dt@kernel.org>; Krzysztof Kozlowski
+> > <krzysztof.kozlowski+dt@linaro.org>; Stanislav Jakubek
+> > <stano.jakubek@gmail.com>; Linus Walleij <linus.walleij@linaro.org>; Samuel
+> > Holland <samuel@sholland.org>; linux-i2c@vger.kernel.org;
+> > devicetree@vger.kernel.org; linux-kernel@vger.kernel.org
+> > Subject: Re: [PATCH v1 3/3] misc: Add meta cld driver
+> > 
+> >   Security Reminder: Please be aware that this email is sent by an external
+> > sender.
+> > 
+> > On Tue, Jan 17, 2023 at 05:44:22PM +0800, Delphine CC Chiu wrote:
+> > > Add support for meta control-logic-device driver. The CLD manages the
+> > > server system power squence and other state such as host-power-state,
+> > > uart-selection and presense-slots. The baseboard management controller
+> > > (BMC) can access the CLD through I2C.
+> > >
+> > > The version 1 of CLD driver is supported. The registers number, name
+> > > and mode of CLD can be defined in dts file for version 1. The driver
+> > > exports the filesystem following the dts setting.
+> > >
+> > > Signed-off-by: Delphine CC Chiu <Delphine_CC_Chiu@Wiwynn.com>
+> > > Tested-by: Bonnie Lo <Bonnie_Lo@Wiwynn.com>
+> > > ---
+> > >  MAINTAINERS                         |   6 +
+> > >  drivers/misc/Kconfig                |   9 +
+> > >  drivers/misc/Makefile               |   1 +
+> > >  drivers/misc/control-logic-device.c | 443
+> > > ++++++++++++++++++++++++++++
+> > 
+> > That is a very generic name for a very specific driver.  Please make it more
+> > hardware-specific.
+> 
+> In server project, there is a component (control-logic-device). This component manages the server status including whole system power sequence, status and other devices presence status. And baseboard management controller (BMC) on server can acquire the information from CLD device through I2C.
+> Currently, our customer plan to follow the spec to design the computing server. 
+> We would like to change the naming from CLD to "compute CPLD".
+> Do you have any suggestion?
 
-sorry for reply late.
-I think I need to explain more details about the clock.
+Make it something hardware/vendor specific please.  As is, this is very
+generic.  Remember, this is a name you will be using to refer to for the
+next 20+ years.
 
-The NPCM7xx / NPCM8xx  SGPIO feature have 4 pins.
-picture is as below:
-https://drive.google.com/file/d/1E9i_Avh-AZV9IEZO1HLMT4EtgCBe46OV/view?usp=
-=3Dsharing
+> > Also, you add a bunch of undocumented sysfs files here, which require a
+> > Documentation/ABI/ entries so that we can review the code to verify it does
+> > what you all think it does.
+> 
+> We will add the document in Documentation/ABI/testing folder.
+> 
+> > 
+> > And finally, why is this needed to be a kernel driver at all?  Why can't you
+> > control this all through the userspace i2c api?
+> 
+> After discussing with our customer, they prefer the userspace access the physical device through driver not I2C API.
+> There is an example on the OpenBMC Gerrit.
+> https://gerrit.openbmc.org/c/openbmc/phosphor-buttons/+/60807
 
-The clock is generated from npcm7xx APB.
-The bus frequency is derived from npcm7xx APB not HC595/HC165.
-Users can connect  1~8 HC595 on DOUT pin to decode the serial data for
-HC595 A~H pin
-and can connect  1~8 HC165 on DIN pin to encode the serial data to
-send to NPCM7xx.
+I do not understand, if functionalty can be done in userspace, it should
+be done there, UNLESS you have a generic way of handling multiple
+hardware devices as the same type (i.e. keyboard, sensor, etc.)  There
+does not seem to be any generic interface here, so again, why can't you
+just do it all in userspace?  What is forcing a kernel driver for this?
 
-The test device is as below:
-https://pdf1.alldatasheet.com/datasheet-pdf/view/345467/TI/SN74HC595N.html
-https://pdf1.alldatasheet.com/datasheet-pdf/view/27899/TI/SN74HC165N.html
+> > One review comment:
+> > 
+> > > +static int cld_remove(struct i2c_client *client) {
+> > > +     struct device *dev = &client->dev;
+> > > +     struct cld_client *cld = dev_get_drvdata(dev);
+> > > +
+> > > +     if (cld->task) {
+> > > +             kthread_stop(cld->task);
+> > > +             cld->task = NULL;
+> > > +     }
+> > > +
+> > > +     devm_kfree(dev, cld);
+> > 
+> > Whenever you see this line in code, it's almost always a huge red flag that
+> > someone is not using the devm_* api properly.  I think that is most certainly
+> > the case here.
+> 
+> Do you mean the dev_free function is no need in this remove function?
 
-NPCM7xx/NPCM8xx have two sgpio modules;
-each module can support up to 64 output pins,and up to 64 input pins.
-If the user needs 64 output pins , user needs to connect 8 HC595.
-If the user needs 64 input pins , user needs to connect 8 HC165.
+Why do you think it is needed here?  If it is needed, please document it
+with a comment explaining why this is required as it is not how the api
+is designed to be used at all.
 
-the HC595 and HC165 connect is as below:
-NPCM7xx_DOUT    ->   HC595  SER pin
-NPCM7xx_SCLK     ->   HC595  SRCLK pin
-NPCM7xx_LDSH    ->    HC595  RCLK pin
+thanks,
 
-NPCM7xx_SCLK     ->   HC165  CLK pin
-NPCM7xx_LDSH     ->   HC165  SH/LD pin
-NPCM7xx_DIN        ->    HC165  QH pin
-
-The frequency is not derived from the input clock. so i think maybe
-the yaml needs to describe it.
-if yaml file still didn't need please let me know.
-
-And if you have any confusion about the sgpio feature or the connect
-test please let me know.
-
-
-Best regards,
-Jim
-
-On Tue, Jan 10, 2023 at 9:29=E2=80=AFPM Rob Herring <robh@kernel.org> wrote=
-:
->
->
-> On Tue, 10 Jan 2023 16:32:38 +0800, Jim Liu wrote:
-> > Add dt-bindings document for the Nuvoton NPCM7xx and NPCM8xx sgpio driv=
-er
-> >
-> > Signed-off-by: Jim Liu <jim.t90615@gmail.com>
-> > ---
-> > Changes for v4:
-> >    - modify in/out property
-> >    - modify bus-frequency property
-> > Changes for v3:
-> >    - modify description
-> >    - modify in/out property name
-> > Changes for v2:
-> >    - modify description
-> > ---
-> >  .../bindings/gpio/nuvoton,sgpio.yaml          | 92 +++++++++++++++++++
-> >  1 file changed, 92 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/gpio/nuvoton,sgpi=
-o.yaml
-> >
->
-> My bot found errors running 'make DT_CHECKER_FLAGS=3D-m dt_binding_check'
-> on your patch (DT_CHECKER_FLAGS is new in v5.13):
->
-> yamllint warnings/errors:
->
-> dtschema/dtc warnings/errors:
-> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/g=
-pio/nuvoton,sgpio.yaml: properties:nuvoton,input-ngpios: 'oneOf' conditiona=
-l failed, one must be fixed:
->         'type' is a required property
->                 hint: A vendor boolean property can use "type: boolean"
->         Additional properties are not allowed ('maximum', 'minimum' were =
-unexpected)
->                 hint: A vendor boolean property can use "type: boolean"
->         /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bi=
-ndings/gpio/nuvoton,sgpio.yaml: properties:nuvoton,input-ngpios: 'oneOf' co=
-nditional failed, one must be fixed:
->                 'enum' is a required property
->                 'const' is a required property
->                 hint: A vendor string property with exact values has an i=
-mplicit type
->                 from schema $id: http://devicetree.org/meta-schemas/vendo=
-r-props.yaml#
->         /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bi=
-ndings/gpio/nuvoton,sgpio.yaml: properties:nuvoton,input-ngpios: 'oneOf' co=
-nditional failed, one must be fixed:
->                 '$ref' is a required property
->                 'allOf' is a required property
->                 hint: A vendor property needs a $ref to types.yaml
->                 from schema $id: http://devicetree.org/meta-schemas/vendo=
-r-props.yaml#
->         hint: Vendor specific properties must have a type and description=
- unless they have a defined, common suffix.
->         from schema $id: http://devicetree.org/meta-schemas/vendor-props.=
-yaml#
-> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/g=
-pio/nuvoton,sgpio.yaml: properties:nuvoton,output-ngpios: 'oneOf' condition=
-al failed, one must be fixed:
->         'type' is a required property
->                 hint: A vendor boolean property can use "type: boolean"
->         Additional properties are not allowed ('maximum', 'minimum' were =
-unexpected)
->                 hint: A vendor boolean property can use "type: boolean"
->         /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bi=
-ndings/gpio/nuvoton,sgpio.yaml: properties:nuvoton,output-ngpios: 'oneOf' c=
-onditional failed, one must be fixed:
->                 'enum' is a required property
->                 'const' is a required property
->                 hint: A vendor string property with exact values has an i=
-mplicit type
->                 from schema $id: http://devicetree.org/meta-schemas/vendo=
-r-props.yaml#
->         /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bi=
-ndings/gpio/nuvoton,sgpio.yaml: properties:nuvoton,output-ngpios: 'oneOf' c=
-onditional failed, one must be fixed:
->                 '$ref' is a required property
->                 'allOf' is a required property
->                 hint: A vendor property needs a $ref to types.yaml
->                 from schema $id: http://devicetree.org/meta-schemas/vendo=
-r-props.yaml#
->         hint: Vendor specific properties must have a type and description=
- unless they have a defined, common suffix.
->         from schema $id: http://devicetree.org/meta-schemas/vendor-props.=
-yaml#
->
-> doc reference errors (make refcheckdocs):
->
-> See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/202301=
-10083238.19230-4-jim.t90615@gmail.com
->
-> The base for the series is generally the latest rc1. A different dependen=
-cy
-> should be noted in *this* patch.
->
-> If you already ran 'make dt_binding_check' and didn't see the above
-> error(s), then make sure 'yamllint' is installed and dt-schema is up to
-> date:
->
-> pip3 install dtschema --upgrade
->
-> Please check and re-submit after running the above command yourself. Note
-> that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-> your schema. However, it must be unset to test all examples with your sch=
-ema.
->
+greg k-h
