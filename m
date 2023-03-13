@@ -2,61 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2C8456B7DF8
-	for <lists+devicetree@lfdr.de>; Mon, 13 Mar 2023 17:47:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B74616B7DFC
+	for <lists+devicetree@lfdr.de>; Mon, 13 Mar 2023 17:47:58 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230071AbjCMQrz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Mar 2023 12:47:55 -0400
+        id S231138AbjCMQr4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Mar 2023 12:47:56 -0400
 Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32990 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231138AbjCMQrx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Mar 2023 12:47:53 -0400
-Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5131570411
-        for <devicetree@vger.kernel.org>; Mon, 13 Mar 2023 09:47:52 -0700 (PDT)
-Received: by mail-lf1-x12e.google.com with SMTP id s22so16519937lfi.9
-        for <devicetree@vger.kernel.org>; Mon, 13 Mar 2023 09:47:52 -0700 (PDT)
+        with ESMTP id S231185AbjCMQry (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Mar 2023 12:47:54 -0400
+Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6CCF47201D
+        for <devicetree@vger.kernel.org>; Mon, 13 Mar 2023 09:47:53 -0700 (PDT)
+Received: by mail-lf1-x135.google.com with SMTP id j11so16496143lfg.13
+        for <devicetree@vger.kernel.org>; Mon, 13 Mar 2023 09:47:53 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1678726070;
+        d=linaro.org; s=google; t=1678726071;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=a4lJzMktySZ0YxvT+SDsY5Au8uqrj62Y3kZlZfPHm68=;
-        b=boTrP5jaTP5wbIyFAyc03VKpGq56wxAv8y3L6JK0HhCtMKCnCthoms15u9UxecLN1e
-         zO+GLo35CV/xwd4jRcYV+6qAMKphmk1A2t8bxwScOYnI4pLfgwgMMPRFj9/mvGHdN/bw
-         TSWSLqguTDna1QHgFLsOgn/64c+hd/FskGqHoWdetzK/6QPRYTrqzb/PgcfzdOePvhTV
-         nyFuUfJFhJDs91+c9L74CpQ+im87k6prJymi0lKp6M5gs3gi5fZnfpbGve0LinigAV8X
-         HYdkCCYbGuVYt2hK7JJH0oZksyi9Yshi94hPF6hsfxToOa1ZypSlWinG/JnxA1TEMZNr
-         4pvQ==
+        bh=7Yo87SopvSTYFbNwKaVbRwGY2TMdOf6bHGJZD1J1eo0=;
+        b=NKIXcw9uta969+PU2SON02k6GmOgEInQ4anjg2luLs9NPybUADCzQo4nsxCljR1ea9
+         UENy4d1Y7g91IbD85NPKfpIJDN3tHOMRZxJS/xfhk2NXeW4uocgkmCIHyKDvEvPjnjaH
+         2oqmatIOPwWRX2epetvnea0WV6xtxSQFtbHN0O2WZR5UKNmjb0COvLVhjw1GZE/X4CrQ
+         1IZNoQ3nrDXd3eCiBymhAxNpELpO6Dmu+cur8rTiPUm0VIP9hO7GELFy1wTjckuLq06f
+         1y3NfbQLLBtmeTaiSWtnaErnlsyifV6639nvTzbrsGa39zRKPRnglvkH5o7TAhhC1365
+         CKpw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678726070;
+        d=1e100.net; s=20210112; t=1678726071;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=a4lJzMktySZ0YxvT+SDsY5Au8uqrj62Y3kZlZfPHm68=;
-        b=QIBn3pj+rkS4Vjy3/st5tdV3iSMJ4mc7sUKfjivbkRXhnaQo6zqDfGqun53OkgPkP5
-         MYYCpdGq0EEAGXYtnrlEk229eXpgGXcBytMW345xcx5+dh2fUn4SsYGGtw8G01SZLUAs
-         ro7Z4XdMSHBtIpP8mAzLLNThGa3J4Vq80ZnBlr9ylv/9Z2qR0mg8/r9ICaI1RSQiPnMd
-         Ws9tpM6GyL9orvI4uZjaORRIVUM6OvZYNO0aClkCEwGFvpH08tQnZV32hKudLEQgKOJc
-         VIxKguI4qldg9uc6VDXGvHxIXX2pSbgxahfneFBEkQnzCZM3Mh+nH23gIU9mUrxanUc4
-         XwSg==
-X-Gm-Message-State: AO0yUKUKezEIYS31Jy3HOIcquQyIAIapf9gMRDEdaSgmC7WbmWPrsh+0
-        u+f4p8pQV8KXfGisxx5Kc0JsBA==
-X-Google-Smtp-Source: AK7set8L7Mi+oCmpNq3mMebZrFl48jgH+xxOHYNzhp0MzeC9VmghXRGFTN0tznCtAYLpNwWejAPA+Q==
-X-Received: by 2002:ac2:5106:0:b0:4db:3a92:2c85 with SMTP id q6-20020ac25106000000b004db3a922c85mr10136348lfb.67.1678726070516;
-        Mon, 13 Mar 2023 09:47:50 -0700 (PDT)
+        bh=7Yo87SopvSTYFbNwKaVbRwGY2TMdOf6bHGJZD1J1eo0=;
+        b=5eNdU19USw6A+I8Rzvo5sXofaYAhwrW122O7iWBQllfoSzb/nEmgazp8lVLgjPLalb
+         vVhBy2Z6GkwsWvtHezpQ31PswXT5zP4CBNBkHj84IhwDtbAnKHzl+9hmKCJThsHBOkJx
+         htpsXCTgtQtPzJ2foBW+cUXRsMgnkAa8DDJIhgMRxl45yIjlBqPFOTHmFfIMT/lob8Li
+         Srz/SxgXqtmGZKeuJKWCaCK8YyEtl7FsPOLQLW4a2zXSZ0w7g4xj5uVM8CXrzl/Bbxb4
+         iQ0mCG1fJ451yaeCGiX5BCJ6knMbFLSTDp5Tj0sc9hKbLx6AqKoo0nrx9PV4DrFS2RP6
+         VgaQ==
+X-Gm-Message-State: AO0yUKV0j/09lXqtXo0GzOKKS7fu0uOceY+lB1m4OATVA/hCB/huiYJH
+        /aZBofJ0tBujimTyCmMhouSTkg==
+X-Google-Smtp-Source: AK7set/rkSFmEu0jr2YChyXdXriFzdGHdJJd3/0sjw4+ciA0zUlQ7LfW3THGNZB6anXiqPkVMNgzsw==
+X-Received: by 2002:ac2:5df6:0:b0:4b5:964d:499e with SMTP id z22-20020ac25df6000000b004b5964d499emr9528201lfq.8.1678726071789;
+        Mon, 13 Mar 2023 09:47:51 -0700 (PDT)
 Received: from [192.168.1.101] (abyj16.neoplus.adsl.tpnet.pl. [83.9.29.16])
-        by smtp.gmail.com with ESMTPSA id o9-20020a05651238a900b004db48ae69cbsm18134lft.206.2023.03.13.09.47.49
+        by smtp.gmail.com with ESMTPSA id o9-20020a05651238a900b004db48ae69cbsm18134lft.206.2023.03.13.09.47.50
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 13 Mar 2023 09:47:50 -0700 (PDT)
+        Mon, 13 Mar 2023 09:47:51 -0700 (PDT)
 From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-Date:   Mon, 13 Mar 2023 17:44:16 +0100
-Subject: [PATCH v3 1/6] dt-bindings: arm-smmu: Use qcom,smmu compatible for
- MMU500 adreno SMMUs
+Date:   Mon, 13 Mar 2023 17:44:17 +0100
+Subject: [PATCH v3 2/6] dt-bindings: arm-smmu: Add SM8350 Adreno SMMU
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20230313-topic-gpu_smmu_bindings-v3-1-66ab655fbfd5@linaro.org>
+Message-Id: <20230313-topic-gpu_smmu_bindings-v3-2-66ab655fbfd5@linaro.org>
 References: <20230313-topic-gpu_smmu_bindings-v3-0-66ab655fbfd5@linaro.org>
 In-Reply-To: <20230313-topic-gpu_smmu_bindings-v3-0-66ab655fbfd5@linaro.org>
 To:     Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>,
@@ -71,11 +70,11 @@ Cc:     linux-arm-kernel@lists.infradead.org, iommu@lists.linux.dev,
         Konrad Dybcio <konrad.dybcio@linaro.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 X-Mailer: b4 0.12.1
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1678726067; l=1686;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1678726067; l=865;
  i=konrad.dybcio@linaro.org; s=20230215; h=from:subject:message-id;
- bh=w5BAPOiJsD8VMYsyYwieokILoy0RKIWq1n3EcNs9gfQ=;
- b=byr01MF2m7kfZjSutcFjM0A9eVqAI6FA1nVnvJNjcUzTwQWw3sBBCrUPKus0GYr/kwM1H/FC/ATf
- 03em/rC4AziS0Q7TxG9YIjPp9C2QEiMb22PGrLeX+BXKvOO2MPSC
+ bh=B/7JuXvSPkmV63gwiluzQNPX5/X7vrzG//wDw5Uxkl8=;
+ b=HO3ZEEgM++a3WoqurmLBCAItYNMDRWz4wPU32KFIJiUO8nToF2vRRyX8Bmi+72qFjm3KpIhtABWo
+ EP7Mu8yaAlMcZJP0gzblqgeH66+QOL5xDI2AKI61Wuq1xsowsT05
 X-Developer-Key: i=konrad.dybcio@linaro.org; a=ed25519;
  pk=iclgkYvtl2w05SSXO5EjjSYlhFKsJ+5OSZBjOkQuEms=
 X-Spam-Status: No, score=-0.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -88,44 +87,26 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-qcom,smmu-500 was introduced to prevent people from adding new
-compatibles for what seems to roughly be the same hardware. Use it for
-qcom,adreno-smmu-compatible targets as well.
-
-While at it, fix the "arm,smmu-500" -> "arm,mmu-500" typo in the comment.
+Document the Adreno SMMU present on SM8350.
 
 Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 ---
- Documentation/devicetree/bindings/iommu/arm,smmu.yaml | 14 ++++++++++++--
- 1 file changed, 12 insertions(+), 2 deletions(-)
+ Documentation/devicetree/bindings/iommu/arm,smmu.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
 diff --git a/Documentation/devicetree/bindings/iommu/arm,smmu.yaml b/Documentation/devicetree/bindings/iommu/arm,smmu.yaml
-index 807cb511fe18..40f91a2e5f3a 100644
+index 40f91a2e5f3a..a6224b7e5310 100644
 --- a/Documentation/devicetree/bindings/iommu/arm,smmu.yaml
 +++ b/Documentation/devicetree/bindings/iommu/arm,smmu.yaml
-@@ -75,9 +75,19 @@ properties:
-               - qcom,sm8350-smmu-500
-               - qcom,sm8450-smmu-500
-           - const: arm,mmu-500
--
--      - description: Qcom Adreno GPUs implementing "arm,smmu-500"
-+      - description: Qcom Adreno GPUs implementing "qcom,smmu-500" and "arm,mmu-500"
-+        items:
-+          - enum:
-+              - qcom,sc7280-smmu-500
-+              - qcom,sm8150-smmu-500
-+              - qcom,sm8250-smmu-500
-+          - const: qcom,adreno-smmu
-+          - const: qcom,smmu-500
-+          - const: arm,mmu-500
-+      - description: Qcom Adreno GPUs implementing "arm,mmu-500" (legacy binding)
-+        deprecated: true
-         items:
-+          # Do not add additional SoC to this list. Instead use previous list.
-           - enum:
+@@ -81,6 +81,7 @@ properties:
                - qcom,sc7280-smmu-500
                - qcom,sm8150-smmu-500
+               - qcom,sm8250-smmu-500
++              - qcom,sm8350-smmu-500
+           - const: qcom,adreno-smmu
+           - const: qcom,smmu-500
+           - const: arm,mmu-500
 
 -- 
 2.39.2
