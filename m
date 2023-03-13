@@ -2,200 +2,169 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 465FE6B7699
-	for <lists+devicetree@lfdr.de>; Mon, 13 Mar 2023 12:50:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DCADC6B769E
+	for <lists+devicetree@lfdr.de>; Mon, 13 Mar 2023 12:52:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230428AbjCMLuc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Mar 2023 07:50:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41508 "EHLO
+        id S230350AbjCMLwD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Mar 2023 07:52:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43944 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231133AbjCMLu3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Mar 2023 07:50:29 -0400
-Received: from mail-wm1-x336.google.com (mail-wm1-x336.google.com [IPv6:2a00:1450:4864:20::336])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 39CFC2194D
-        for <devicetree@vger.kernel.org>; Mon, 13 Mar 2023 04:50:02 -0700 (PDT)
-Received: by mail-wm1-x336.google.com with SMTP id r19-20020a05600c459300b003eb3e2a5e7bso7659607wmo.0
-        for <devicetree@vger.kernel.org>; Mon, 13 Mar 2023 04:50:02 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112; t=1678708194;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=a2e76SVF27ZugGmUDflwqLOuHVazSHBJvoHoACHILcw=;
-        b=SHO5FThiChWqlKWWisdxKbcKmWAq5E7zsKeOUnXcnwQBkwC47QFequMG0bYlwzsER8
-         ZXVtPSWZxaliGD1jWU+bemIkR5WPBWIzCkE54EZNrfkDwvlpOpMyAGHEpjdnGzZteM7j
-         D/4JP3omJq8WZ/WqShov0gsd+cytY3CLyYbZDTbVK1Tm1tPQjmoAjDMTebXg+X3CDBv7
-         VTk+q8kFRWLHcqkMoP8bVzuYeuN8BzJ2z3bPsRpVryiAQU9c7Vr4W77NVNQH11jaSxVI
-         OA0/i1wDBQUVN1Mn0skO5xps8iDNOB87TDD/VCrgxRT4XMJzoGZZlx632mT/+VIxU2qB
-         hzlQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678708194;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=a2e76SVF27ZugGmUDflwqLOuHVazSHBJvoHoACHILcw=;
-        b=QErY3oJZfkL1tvsMjM/j9tmi4dXmqvVpIhQO+kalEk4a3q9FkYnlavOHzHWrGr0Pl9
-         WpkH4NkVXDHQZnFHIEMPFPaJZ4XdCGSoRNVSv+zZ7eXwN4Zpksdb1iEQrA9WHi9FSlAJ
-         SAp/PeASdMfUlvpJ9WwaDZBt/qCQzroRrcVRYaCX2Dtpearz2DVEA+iQnhbGCcdd9XMc
-         bZSXXvVQEYKTrTpVnhQl0Qp03FKxUGhn8MioHAgPMT5FicMRyoh5BoRaSAXqdRqHei6+
-         dYzFACpH0YCDtpy4P05OfcW03YRL4r/poaxFQhdz/yV4BDDGjsY0d0yLR6WRTFFydPie
-         SUZA==
-X-Gm-Message-State: AO0yUKV/34oDyVOz4SN4WuThMU8qyr6kEdWjHfxZniPI603VHkybVgD6
-        YF/f1gil4V+fjowTMtpPG7y+jA==
-X-Google-Smtp-Source: AK7set8meTjPh/Br20yfI40uXRcIqhSc5RR5NsQ7qx9l4QuOIWQ99K59We2ke8ThU4vOtSCCxDgBsw==
-X-Received: by 2002:a05:600c:3c9e:b0:3e1:f8af:8772 with SMTP id bg30-20020a05600c3c9e00b003e1f8af8772mr10250341wmb.9.1678708194053;
-        Mon, 13 Mar 2023 04:49:54 -0700 (PDT)
-Received: from blmsp ([2001:4090:a247:8056:be7d:83e:a6a5:4659])
-        by smtp.gmail.com with ESMTPSA id l7-20020a05600c1d0700b003e209186c07sm9889227wms.19.2023.03.13.04.49.52
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 13 Mar 2023 04:49:53 -0700 (PDT)
-Date:   Mon, 13 Mar 2023 12:49:52 +0100
-From:   Markus Schneider-Pargmann <msp@baylibre.com>
-To:     Matthias Brugger <matthias.bgg@gmail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S230155AbjCMLwC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Mar 2023 07:52:02 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5606319F32;
+        Mon, 13 Mar 2023 04:51:27 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 0D183B81055;
+        Mon, 13 Mar 2023 11:51:26 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id F38D5C433EF;
+        Mon, 13 Mar 2023 11:51:19 +0000 (UTC)
+Message-ID: <6625db2f-9b60-9f11-87ab-a1f8c4d9fd8e@xs4all.nl>
+Date:   Mon, 13 Mar 2023 12:51:18 +0100
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.8.0
+Subject: Re: [PATCH v5 01/11] dt-bindings: media: mediatek,vcodec: Remove
+ dma-ranges property
+Content-Language: en-US
+To:     Yong Wu <yong.wu@mediatek.com>, Joerg Roedel <joro@8bytes.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Chun-Jie Chen <chun-jie.chen@mediatek.com>,
+        nfraprado@collabora.com, linux-media@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+        iommu@lists.linux.dev,
         AngeloGioacchino Del Regno 
         <angelogioacchino.delregno@collabora.com>,
-        Fabien Parent <parent.f@gmail.com>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org
-Subject: Re: [PATCH 3/8] soc: mediatek: pm-domains: Create bus protection
- operation functions
-Message-ID: <20230313114952.b6o4qngyyd7eup6d@blmsp>
-References: <20230105170735.1637416-1-msp@baylibre.com>
- <20230105170735.1637416-4-msp@baylibre.com>
- <fb36ce3f-dd67-32b5-7ce0-ad15dd3b540a@gmail.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <fb36ce3f-dd67-32b5-7ce0-ad15dd3b540a@gmail.com>
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        mingyuan.ma@mediatek.com, yf.wang@mediatek.com,
+        jianjiao.zeng@mediatek.com, Yunfei Dong <yunfei.dong@mediatek.com>,
+        kyrie wu <kyrie.wu@mediatek.corp-partner.google.com>,
+        chengci.xu@mediatek.com, youlin.pei@mediatek.com,
+        anan.sun@mediatek.com, Tiffany Lin <tiffany.lin@mediatek.com>,
+        Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
+        Rob Herring <robh@kernel.org>
+References: <20230307023507.13306-1-yong.wu@mediatek.com>
+ <20230307023507.13306-2-yong.wu@mediatek.com>
+From:   Hans Verkuil <hverkuil@xs4all.nl>
+In-Reply-To: <20230307023507.13306-2-yong.wu@mediatek.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-6.7 required=5.0 tests=BAYES_00,
+        HEADER_FROM_DIFFERENT_DOMAINS,NICE_REPLY_A,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Matthias,
+On 07/03/2023 03:34, Yong Wu wrote:
+> After commit f1ad5338a4d5 ("of: Fix "dma-ranges" handling for bus
+> controllers"), the dma-ranges of the leaf node doesn't work. Remove
+> it for vcodec here.
+> 
+> 1) For mediatek,vcodec-decoder.yaml and mediatek,vcodec-encoder.yaml,
+> this property is in the leaf node, it is invalid as the above comment.
+> 
+> Currently there is only mt8195 VENC node has this property in upstream.
+> Indeed, VENC is affected, but it is not a fatal issue. Originally it
+> expects its iova range locate at 4GB-8GB. However after that commit, its
+> expectation doesn't come true, it will fall back to 0-4GB iova and also
+> could work well.
+> 
+> 2) For mediatek,vcodec-subdev-decoder.yaml, It already uses parent-child
+> node, this property works. Instead, MediaTek iommu will control the
+> masters' iova ranges by the master's larb/port id internally, then the
+> dma-ranges property is unnecessary for the master's node.
+> 
+> Cc: Tiffany Lin <tiffany.lin@mediatek.com>
+> Cc: Andrew-CT Chen <andrew-ct.chen@mediatek.com>
+> Cc: Yunfei Dong <yunfei.dong@mediatek.com>
+> Cc: Mauro Carvalho Chehab <mchehab@kernel.org>
+> Cc: Matthias Brugger <matthias.bgg@gmail.com>
+> Signed-off-by: Yong Wu <yong.wu@mediatek.com>
+> Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+> Acked-by: Rob Herring <robh@kernel.org>
 
-On Fri, Feb 03, 2023 at 01:32:11PM +0100, Matthias Brugger wrote:
-> 
-> 
-> On 05/01/2023 18:07, Markus Schneider-Pargmann wrote:
-> > Separate the register access used for bus protection enable/disable into
-> > their own functions. These will be used later for WAY_EN bits.
-> > 
-> > Signed-off-by: Markus Schneider-Pargmann <msp@baylibre.com>
-> > ---
-> >   drivers/soc/mediatek/mtk-pm-domains.c | 68 +++++++++++++++------------
-> >   1 file changed, 39 insertions(+), 29 deletions(-)
-> > 
-> > diff --git a/drivers/soc/mediatek/mtk-pm-domains.c b/drivers/soc/mediatek/mtk-pm-domains.c
-> > index 4333cd297405..999e1f6c86b0 100644
-> > --- a/drivers/soc/mediatek/mtk-pm-domains.c
-> > +++ b/drivers/soc/mediatek/mtk-pm-domains.c
-> > @@ -117,26 +117,50 @@ static int scpsys_sram_disable(struct scpsys_domain *pd)
-> >   					MTK_POLL_TIMEOUT);
-> >   }
-> > +static int scpsys_bus_protect_clear(const struct scpsys_bus_prot_data *bpd,
-> > +				    struct regmap *regmap)
-> > +{
-> > +	u32 val;
-> > +	u32 sta_mask = bpd->bus_prot_sta_mask;
-> > +
-> > +	if (bpd->bus_prot_reg_update)
-> > +		regmap_clear_bits(regmap, bpd->bus_prot_clr, bpd->bus_prot_set_clr_mask);
-> > +	else
-> > +		regmap_write(regmap, bpd->bus_prot_clr, bpd->bus_prot_set_clr_mask);
-> > +
-> > +	if (bpd->ignore_clr_ack)
-> > +		return 0;
-> > +
-> > +	return regmap_read_poll_timeout(regmap, bpd->bus_prot_sta,
-> > +					val, !(val & sta_mask),
-> > +					MTK_POLL_DELAY_US, MTK_POLL_TIMEOUT);
-> > +}
-> > +
-> 
-> NIT: please move this function below
-> static int scpsys_bus_protect_enable(struct scpsys_domain *pd) {...}
-> 
-> This allows for better readability.
+Acked-by: Hans Verkuil <hverkuil-cisco@xs4all.nl>
 
-With the WAY_EN patch later in this series scpsys_bus_protect_enable()
-is going to use scpsys_bus_protect_clear(). So I would need to add a
-signature in that patch for scpsys_bus_protect_clear() or move it back
-up. I would prefer to avoid adding a signature or moving so I added it
-above these functions here. I could swap scpsys_bus_protect_set() and
-scpscpsys_bus_protect_clear() if that helps readability.
+Regards,
 
-Thank you,
-Markus
+	Hans
 
+> ---
+>  .../devicetree/bindings/media/mediatek,vcodec-decoder.yaml | 5 -----
+>  .../devicetree/bindings/media/mediatek,vcodec-encoder.yaml | 5 -----
+>  .../bindings/media/mediatek,vcodec-subdev-decoder.yaml     | 7 -------
+>  3 files changed, 17 deletions(-)
 > 
-> > +static int scpsys_bus_protect_set(const struct scpsys_bus_prot_data *bpd,
-> > +				  struct regmap *regmap)
-> > +{
-> > +	u32 val;
-> > +	u32 sta_mask = bpd->bus_prot_sta_mask;
-> > +
-> > +	if (bpd->bus_prot_reg_update)
-> > +		regmap_set_bits(regmap, bpd->bus_prot_set, bpd->bus_prot_set_clr_mask);
-> > +	else
-> > +		regmap_write(regmap, bpd->bus_prot_set, bpd->bus_prot_set_clr_mask);
-> > +
-> > +	return regmap_read_poll_timeout(regmap, bpd->bus_prot_sta,
-> > +					val, (val & sta_mask) == sta_mask,
-> > +					MTK_POLL_DELAY_US, MTK_POLL_TIMEOUT);
-> > +}
-> > +
-> >   static int _scpsys_bus_protect_enable(const struct scpsys_bus_prot_data *bpd, struct regmap *regmap)
-> >   {
-> >   	int i, ret;
-> >   	for (i = 0; i < SPM_MAX_BUS_PROT_DATA; i++) {
-> > -		u32 val;
-> > -		u32 set_clr_mask = bpd[i].bus_prot_set_clr_mask;
-> > -		u32 sta_mask = bpd[i].bus_prot_sta_mask;
-> > -
-> > -		if (!set_clr_mask)
-> > +		if (!bpd[i].bus_prot_set_clr_mask)
-> >   			break;
-> > -		if (bpd[i].bus_prot_reg_update)
-> > -			regmap_set_bits(regmap, bpd[i].bus_prot_set, set_clr_mask);
-> > -		else
-> > -			regmap_write(regmap, bpd[i].bus_prot_set, set_clr_mask);
-> > -
-> > -		ret = regmap_read_poll_timeout(regmap, bpd[i].bus_prot_sta,
-> > -					       val, (val & sta_mask) == sta_mask,
-> > -					       MTK_POLL_DELAY_US, MTK_POLL_TIMEOUT);
-> > +		ret = scpsys_bus_protect_set(&bpd[i], regmap);
-> >   		if (ret)
-> >   			return ret;
-> >   	}
-> > @@ -161,24 +185,10 @@ static int _scpsys_bus_protect_disable(const struct scpsys_bus_prot_data *bpd,
-> >   	int i, ret;
-> >   	for (i = SPM_MAX_BUS_PROT_DATA - 1; i >= 0; i--) {
-> > -		u32 val;
-> > -		u32 set_clr_mask = bpd[i].bus_prot_set_clr_mask;
-> > -		u32 sta_mask = bpd[i].bus_prot_sta_mask;
-> > -
-> > -		if (!set_clr_mask)
-> > -			continue;
-> > -
-> > -		if (bpd[i].bus_prot_reg_update)
-> > -			regmap_clear_bits(regmap, bpd[i].bus_prot_clr, set_clr_mask);
-> > -		else
-> > -			regmap_write(regmap, bpd[i].bus_prot_clr, set_clr_mask);
-> > -
-> > -		if (bpd[i].ignore_clr_ack)
-> > +		if (!bpd[i].bus_prot_set_clr_mask)
-> >   			continue;
-> > -		ret = regmap_read_poll_timeout(regmap, bpd[i].bus_prot_sta,
-> > -					       val, !(val & sta_mask),
-> > -					       MTK_POLL_DELAY_US, MTK_POLL_TIMEOUT);
-> > +		ret = scpsys_bus_protect_clear(&bpd[i], regmap);
-> >   		if (ret)
-> >   			return ret;
-> >   	}
+> diff --git a/Documentation/devicetree/bindings/media/mediatek,vcodec-decoder.yaml b/Documentation/devicetree/bindings/media/mediatek,vcodec-decoder.yaml
+> index aa55ca65d6ed..fad59b486d5d 100644
+> --- a/Documentation/devicetree/bindings/media/mediatek,vcodec-decoder.yaml
+> +++ b/Documentation/devicetree/bindings/media/mediatek,vcodec-decoder.yaml
+> @@ -56,11 +56,6 @@ properties:
+>        List of the hardware port in respective IOMMU block for current Socs.
+>        Refer to bindings/iommu/mediatek,iommu.yaml.
+>  
+> -  dma-ranges:
+> -    maxItems: 1
+> -    description: |
+> -      Describes the physical address space of IOMMU maps to memory.
+> -
+>    mediatek,vpu:
+>      $ref: /schemas/types.yaml#/definitions/phandle
+>      description:
+> diff --git a/Documentation/devicetree/bindings/media/mediatek,vcodec-encoder.yaml b/Documentation/devicetree/bindings/media/mediatek,vcodec-encoder.yaml
+> index 0f2ea8d9a10c..a2051b31fa29 100644
+> --- a/Documentation/devicetree/bindings/media/mediatek,vcodec-encoder.yaml
+> +++ b/Documentation/devicetree/bindings/media/mediatek,vcodec-encoder.yaml
+> @@ -49,11 +49,6 @@ properties:
+>        List of the hardware port in respective IOMMU block for current Socs.
+>        Refer to bindings/iommu/mediatek,iommu.yaml.
+>  
+> -  dma-ranges:
+> -    maxItems: 1
+> -    description: |
+> -      Describes the physical address space of IOMMU maps to memory.
+> -
+>    mediatek,vpu:
+>      $ref: /schemas/types.yaml#/definitions/phandle
+>      description:
+> diff --git a/Documentation/devicetree/bindings/media/mediatek,vcodec-subdev-decoder.yaml b/Documentation/devicetree/bindings/media/mediatek,vcodec-subdev-decoder.yaml
+> index c4f20acdc1f8..290594bc91cc 100644
+> --- a/Documentation/devicetree/bindings/media/mediatek,vcodec-subdev-decoder.yaml
+> +++ b/Documentation/devicetree/bindings/media/mediatek,vcodec-subdev-decoder.yaml
+> @@ -76,11 +76,6 @@ properties:
+>        The node of system control processor (SCP), using
+>        the remoteproc & rpmsg framework.
+>  
+> -  dma-ranges:
+> -    maxItems: 1
+> -    description: |
+> -      Describes the physical address space of IOMMU maps to memory.
+> -
+>    "#address-cells":
+>      const: 2
+>  
+> @@ -203,7 +198,6 @@ required:
+>    - reg
+>    - iommus
+>    - mediatek,scp
+> -  - dma-ranges
+>    - ranges
+>  
+>  if:
+> @@ -236,7 +230,6 @@ examples:
+>              compatible = "mediatek,mt8192-vcodec-dec";
+>              mediatek,scp = <&scp>;
+>              iommus = <&iommu0 M4U_PORT_L4_VDEC_MC_EXT>;
+> -            dma-ranges = <0x1 0x0 0x0 0x40000000 0x0 0xfff00000>;
+>              #address-cells = <2>;
+>              #size-cells = <2>;
+>              ranges = <0 0 0 0x16000000 0 0x40000>;
+
