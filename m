@@ -2,84 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7551B6B8491
-	for <lists+devicetree@lfdr.de>; Mon, 13 Mar 2023 23:14:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6D1456B84D2
+	for <lists+devicetree@lfdr.de>; Mon, 13 Mar 2023 23:35:44 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229715AbjCMWOH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Mar 2023 18:14:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52574 "EHLO
+        id S229820AbjCMWfm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Mar 2023 18:35:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54228 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229662AbjCMWOH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Mar 2023 18:14:07 -0400
-Received: from mail-yw1-x1132.google.com (mail-yw1-x1132.google.com [IPv6:2607:f8b0:4864:20::1132])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 14EA94E5F2
-        for <devicetree@vger.kernel.org>; Mon, 13 Mar 2023 15:14:05 -0700 (PDT)
-Received: by mail-yw1-x1132.google.com with SMTP id 00721157ae682-541a05e4124so81533657b3.1
-        for <devicetree@vger.kernel.org>; Mon, 13 Mar 2023 15:14:05 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1678745644;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=ixG+7bGig9QHUQWnSF4UiYBq7vDEpHXZ8tekX/nmxsQ=;
-        b=i8CxBO0WR7OmBfqqlAHQje/zcyzikon1rCEQV8cWh4onUJHRcEPZyLMZHhYU8qM+wG
-         tJzYFRNjiv1Z/A/sTasyGUOYa4VvMcsgTB5BpgqWnfGW84mjSKI5Mz89MrAdDJnorOwL
-         BwanhOpukWSMVYSZyxO3rXY1pN8mY+BqNm4Beaw6YsLf/JPIPXUbt3MXDFT3t8Y0LK6u
-         zZTkyf3m+KAQ5GPL/bPmsc+4fAsNSOagyt6yPbRI6DD016o5xrlwDmOcru7T9XjoLIPp
-         A7B29wj2g8acbk3A5z+k4Kl0d5CN0tP0/YDsUdxAqmZ1w5q4Uq4UFH5TuzFxn1wneijl
-         AKGQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678745644;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=ixG+7bGig9QHUQWnSF4UiYBq7vDEpHXZ8tekX/nmxsQ=;
-        b=6/UGDgTx+K0Ow4yl3rr3A+2NlKJfS6icux/W1bH90Tha1zBzXiKJpjWc+upJbDg7rR
-         ycrX1JiL9qRvVcUecIolnugrG+JWCK1uI37WTNgtTKuLC0LhbyxqSlNXr6rm0jby+iY/
-         ZZ8WB3noU3jVy4VN/cE1dHWJYk0MB0tt4PdPRjYGUOO67/XjGSnPhIe6nHfy65fvfHUP
-         AER8/G0WrL8lMACeJ6mZTefnI1xIxlvvztBivfqYLxWI2I4NK82ulv4rn5usq2z9RyoO
-         kkA1MBl5La2qIAkr7EYuBiU6c54EpemVbw8IIidmCXKyb6Qw6ef9II8bajWr4FQPDGf5
-         H8+w==
-X-Gm-Message-State: AO0yUKXketqjFPb7sQ9cxsOfLgY3vcjT4Oxe15QJihWuKJj5SbryqTpD
-        Y5qrQfQS2J2cZfnuRGiG46qwTSGfDmRbw1TwxtdWmw==
-X-Google-Smtp-Source: AK7set+Bv76Po4Imp7oNwzB71WD5iLKQpfUzXDzH+Fp9A4JeoAaFi4DIdhTJ4chpyUfVvGitWyG/QEjZRdrFvDwK63c=
-X-Received: by 2002:a81:4005:0:b0:532:e887:2c23 with SMTP id
- l5-20020a814005000000b00532e8872c23mr24535003ywn.9.1678745644324; Mon, 13 Mar
- 2023 15:14:04 -0700 (PDT)
+        with ESMTP id S229534AbjCMWfl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Mar 2023 18:35:41 -0400
+Received: from sin.source.kernel.org (sin.source.kernel.org [145.40.73.55])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0E02429162;
+        Mon, 13 Mar 2023 15:35:37 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by sin.source.kernel.org (Postfix) with ESMTPS id 588D5CE125B;
+        Mon, 13 Mar 2023 22:35:35 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 06B29C433D2;
+        Mon, 13 Mar 2023 22:35:32 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1678746933;
+        bh=/yHInFqeJPGy5sF++iHNAFdKA8mEkzBuADbjREfy4Pw=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=Sjh43UMZdm0xbWKYGy6hOIBadc9oYAx72XYR1AcltIGVRY78TVS5LG6VY1BBbey1y
+         V5H9+mSRwJf0sVqjSNuOByEGDNMQYBkDq1jQobxKlzIn5GSNNy2lh8q6V9c/NvL8Wu
+         L7TDrXsalwt2QmhHsUwVqk3kYYzAZhd2FY/erLoD59KYB4ruiaP1bJ4zadJR+ST9HU
+         TE0tTjSskz9XlNGQcY0Nz4i90lYScte+kK7oVbf4WkWeFE56WTYivQdrY3aNRR7jaa
+         nG3Wn6qCJcB2tLIvEUNHZ78j3vBWzz4383923M5EbUb2p+OdiPSI1+oSdIz9cRNq1Q
+         IFJcwuBoYoCOQ==
+Date:   Mon, 13 Mar 2023 15:35:32 -0700
+From:   Jakub Kicinski <kuba@kernel.org>
+To:     <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Sarath Babu Naidu Gaddam <sarath.babu.naidu.gaddam@amd.com>,
+        <davem@davemloft.net>, <edumazet@google.com>, <pabeni@redhat.com>,
+        <richardcochran@gmail.com>, <netdev@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <yangbo.lu@nxp.com>, <radhey.shyam.pandey@amd.com>,
+        <anirudha.sarangi@amd.com>, <harini.katakam@amd.com>, <git@amd.com>
+Subject: Re: [PATCH net-next V3] dt-bindings: net: ethernet-controller: Add
+ ptp-hardware-clock
+Message-ID: <20230313153532.2ed45ddf@kernel.org>
+In-Reply-To: <20230308054408.1353992-2-sarath.babu.naidu.gaddam@amd.com>
+References: <20230308054408.1353992-1-sarath.babu.naidu.gaddam@amd.com>
+        <20230308054408.1353992-2-sarath.babu.naidu.gaddam@amd.com>
 MIME-Version: 1.0
-References: <20230306191535.1917656-1-sean.anderson@seco.com>
- <20230306191535.1917656-4-sean.anderson@seco.com> <4c039e53-e3ca-29d7-e5ea-f24e385d28b0@linaro.org>
- <42ccbac0-53e2-f599-fb3d-064b896bde4a@seco.com> <CACRpkdaj-0dyqWdSbQbjyUed+khDLi-awgan1BnuDvuY2JBzFQ@mail.gmail.com>
- <d26bad8d-82ea-ed18-fa3e-081ba0d5dcf6@ncr.com>
-In-Reply-To: <d26bad8d-82ea-ed18-fa3e-081ba0d5dcf6@ncr.com>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Mon, 13 Mar 2023 23:13:52 +0100
-Message-ID: <CACRpkdbDftrKzSHfRaO8Bk83FT=JwjR-X3M6wyjds4Jo9y8cEw@mail.gmail.com>
-Subject: Re: [PATCH v10 03/13] dt-bindings: Convert gpio-mmio to yaml
-To:     "Leonard, Niall" <Niall.Leonard@ncr.com>
-Cc:     Sean Anderson <sean.anderson@seco.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Vinod Koul <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
-        "linux-phy@lists.infradead.org" <linux-phy@lists.infradead.org>,
-        Madalin Bucur <madalin.bucur@nxp.com>,
-        "linuxppc-dev@lists.ozlabs.org" <linuxppc-dev@lists.ozlabs.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        Ioana Ciornei <ioana.ciornei@nxp.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Camelia Alexandra Groza <camelia.groza@nxp.com>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        Bagas Sanjaya <bagasdotme@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
-        =?UTF-8?Q?Fern=C3=A1ndez_Rojas?= <noltari@gmail.com>,
-        Jonas Gorski <jonas.gorski@gmail.com>,
-        "linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -87,20 +58,20 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Mar 13, 2023 at 9:53=E2=80=AFAM Leonard, Niall <Niall.Leonard@ncr.c=
-om> wrote:
+On Wed, 8 Mar 2023 11:14:08 +0530 Sarath Babu Naidu Gaddam wrote:
+> There is currently no standard property to pass PTP device index
+> information to ethernet driver when they are independent.
+> 
+> ptp-hardware-clock property will contain phandle to PTP clock node.
+> 
+> Its a generic (optional) property name to link to PTP phandle to
+> Ethernet node. Any future or current ethernet drivers that need
+> a reference to the PHC used on their system can simply use this
+> generic property name instead of using custom property
+> implementation in their device tree nodes."
+> 
+> Signed-off-by: Sarath Babu Naidu Gaddam <sarath.babu.naidu.gaddam@amd.com>
+> Acked-by: Richard Cochran <richardcochran@gmail.com>
 
-> > Niall are you sending a v3 of this patch soon?
-> > Include Sean on the reviewer list!
-
-> I never got around to working on the V3 patch. The hold up for me was
-> the changes to the bindings.
-> I'm now wondering if I should wait on Sean's patch being accepted and
-> then I could re-submit the driver changes.
-> What's the consensus ?
-
-Sean picked it up for shepherding, it looks very good, as soon as
-the DT maintainers give it a nod Bartosz can merge it.
-
-Yours,
-Linus Walleij
+Rob, Krzysztof, any thoughts on this one?
+Looks like the v2 discussion was a bit inconclusive.
