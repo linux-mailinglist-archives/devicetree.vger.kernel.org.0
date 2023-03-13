@@ -2,76 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D2C4B6B8133
-	for <lists+devicetree@lfdr.de>; Mon, 13 Mar 2023 19:54:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6B50A6B813C
+	for <lists+devicetree@lfdr.de>; Mon, 13 Mar 2023 19:55:55 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231562AbjCMSyo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Mar 2023 14:54:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59522 "EHLO
+        id S231443AbjCMSzx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Mar 2023 14:55:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54968 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231542AbjCMSy1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Mar 2023 14:54:27 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 33966D535;
-        Mon, 13 Mar 2023 11:53:04 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id A3C4C61469;
-        Mon, 13 Mar 2023 18:48:00 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0BAB5C433D2;
-        Mon, 13 Mar 2023 18:48:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1678733280;
-        bh=/d48bhLyzRVyeGxbnJF3Qv5h7/XTC0mhguBxZRlvvqU=;
-        h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
-        b=GfHGVKoxU0W/N2wLo63mnd3Wc7tjoxw0cGbP7H/w/QB19ZggiY552NYKNip1AuS7O
-         yyEhBH5QUlTGepcYtQ0rYggBoxFGql5gkm+/6tE56b+9lS7Aszl6U3Uw11ZuLiRxbl
-         icEgjpYGDpuvQaidAQ+DoXKSfAmEC9XMwwHAe5fteGtrtJ8x/7Lx0KXHS9HEmbzWLO
-         RTfX5PzuiaXOTdpdG4PJEil+sMdxq5mEBJWaH60BSkHM8rFfpRuQ3Gzu7rihSDEYUp
-         Hi1BVYbP7E5WI9ncfgl22zSPBmHMqY9zEoEFS18oQT76bnG8/W0hZTazCNFmWO9OX/
-         Tze0GVrUJZQOg==
-Message-ID: <f0333440693d55316a064e3ad1dbd307.sboyd@kernel.org>
-Content-Type: text/plain; charset="utf-8"
+        with ESMTP id S231428AbjCMSzX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Mar 2023 14:55:23 -0400
+Received: from mailrelay2-1.pub.mailoutpod2-cph3.one.com (mailrelay2-1.pub.mailoutpod2-cph3.one.com [46.30.211.177])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 10FE492
+        for <devicetree@vger.kernel.org>; Mon, 13 Mar 2023 11:54:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=ravnborg.org; s=rsa2;
+        h=in-reply-to:content-type:mime-version:references:message-id:subject:cc:to:
+         from:date:from;
+        bh=MgrV3LilewuhqmbVjO8RxzUTtaR1+vbnicMyPFFpwAM=;
+        b=vYP0maXsWtgajTiEfra2Tg51b+hBuX1vK9N4+SgVi7WGqRs5pR0lsFVXhISV6Tmw3E9cWr5BHiw75
+         WyNa3VPCN7/o1iW+N8xjpnBAa/Nl3sChif8zRqdddijLc2TkJfVxfrhoDuKD5PM8GsMlGxFTgzanpu
+         vi/yEDuFbHolP+J0hY5szMfqnc+MZeFGtbwDGFx62V62HtJ6o0+YB4GU0wG57m9QjN900vdStfJUWM
+         pH8R8g1INiS5k70ZqmsaN5vZnQnwU5dgZEQh/1UtOV3/kOsshToposSzQYOijsvGH8uBsA4wmiwILk
+         NRjqZI+LlS1kRtF7n+5HoLSV8JqrMWg==
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed;
+        d=ravnborg.org; s=ed2;
+        h=in-reply-to:content-type:mime-version:references:message-id:subject:cc:to:
+         from:date:from;
+        bh=MgrV3LilewuhqmbVjO8RxzUTtaR1+vbnicMyPFFpwAM=;
+        b=MlV8G0UHvhx3766kkcTJrCusIOBh66LFtAdDHT8vshgOmK1DVRVyF5Pm9tsdUZ4F/D4Xqyfin3YmI
+         VelkWMiAQ==
+X-HalOne-ID: 5882c668-c1d0-11ed-90a3-3df7d73157c4
+Received: from ravnborg.org (2-105-2-98-cable.dk.customer.tdc.net [2.105.2.98])
+        by mailrelay2 (Halon) with ESMTPSA
+        id 5882c668-c1d0-11ed-90a3-3df7d73157c4;
+        Mon, 13 Mar 2023 18:53:31 +0000 (UTC)
+Date:   Mon, 13 Mar 2023 19:53:30 +0100
+From:   Sam Ravnborg <sam@ravnborg.org>
+To:     Neil Armstrong <neil.armstrong@linaro.org>
+Cc:     Jianhua Lu <lujianhua000@gmail.com>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org
+Subject: Re: [PATCH v5 2/2] drm/panel: Add driver for Novatek NT36523
+Message-ID: <ZA9xKlScy9/LS753@ravnborg.org>
+References: <20230311123231.20771-1-lujianhua000@gmail.com>
+ <20230311123231.20771-2-lujianhua000@gmail.com>
+ <904bc493-7160-32fd-9709-1dcb978ddbab@linaro.org>
+ <ZAx4KqXw+an555d4@Gentoo>
+ <6c02557d-372d-05b1-2998-7c2cde99fac7@linaro.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20230206100105.861720-8-angelogioacchino.delregno@collabora.com>
-References: <20230206100105.861720-1-angelogioacchino.delregno@collabora.com> <20230206100105.861720-8-angelogioacchino.delregno@collabora.com>
-Subject: Re: [PATCH v3 7/7] clk: mediatek: mt8195: Add support for frequency hopping through FHCTL
-From:   Stephen Boyd <sboyd@kernel.org>
-Cc:     mturquette@baylibre.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, matthias.bgg@gmail.com,
-        angelogioacchino.delregno@collabora.com,
-        edward-jw.yang@mediatek.com, johnson.wang@mediatek.com,
-        wenst@chromium.org, miles.chen@mediatek.com,
-        chun-jie.chen@mediatek.com, rex-bc.chen@mediatek.com,
-        jose.exposito89@gmail.com, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-        kernel@collabora.com
-To:     AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-Date:   Mon, 13 Mar 2023 11:47:58 -0700
-User-Agent: alot/0.10
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <6c02557d-372d-05b1-2998-7c2cde99fac7@linaro.org>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_NONE
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting AngeloGioacchino Del Regno (2023-02-06 02:01:05)
-> Add FHCTL parameters and register PLLs through FHCTL to add support
-> for frequency hopping and SSC. FHCTL will be enabled only on PLLs
-> specified in devicetree.
->=20
-> This commit brings functional changes only upon addition of
-> devicetree configuration.
->=20
-> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@coll=
-abora.com>
-> ---
+On Mon, Mar 13, 2023 at 09:06:50AM +0100, Neil Armstrong wrote:
+> On 11/03/2023 13:46, Jianhua Lu wrote:
+> > On Sat, Mar 11, 2023 at 01:38:52PM +0100, Konrad Dybcio wrote:
+> > > 
+> > > 
+> > > On 11.03.2023 13:32, Jianhua Lu wrote:
+> > > > Add a driver for panels using the Novatek NT36523 display driver IC.
+> > > > 
+> > > > Signed-off-by: Jianhua Lu <lujianhua000@gmail.com>
+> > > > ---
+> > > [...]
+> > > 
+> > > > +
+> > > > +static int nt36523_get_modes(struct drm_panel *panel,
+> > > > +			       struct drm_connector *connector)
+> > > > +{
+> > > > +	struct panel_info *pinfo = to_panel_info(panel);
+> > > > +	int i;
+> > > > +
+> > > > +	for (i = 0; i < pinfo->desc->num_modes; i++) {
+> > > > +		const struct drm_display_mode *m = &pinfo->desc->modes[i];
+> > > > +		struct drm_display_mode *mode;
+> > > > +
+> > > > +		mode = drm_mode_duplicate(connector->dev, m);
+> > > > +		if (!mode) {
+> > > > +			dev_err(panel->dev, "failed to add mode %ux%u@%u\n",
+> > > > +				m->hdisplay, m->vdisplay, drm_mode_vrefresh(m));
+> > > > +			return -ENOMEM;
+> > > > +		}
+> > > > +
+> > > > +		mode->type = DRM_MODE_TYPE_DRIVER;
+> > > > +		if (pinfo->desc->num_modes == 1)
+> > > > +			mode->type |= DRM_MODE_TYPE_PREFERRED;
+> > > That's not quite correct, as that means "if you have more than one
+> > > defined panel mode (say 60Hz and 120 Hz), there will be no preferred one".
+> > This piece of code I see in the other panels, so I'm not sure if it is
+> > correct.
+Jianhua is correct that the same code exists in several places,
+and from a quick browse I consider all the cases bogus.
 
-Applied to clk-next
+It would be fine if someone volunteered to fix all the panels so we
+avoid this bug to creep into more panel drivers.
+
+	Sam
