@@ -2,78 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BC6D06B71ED
-	for <lists+devicetree@lfdr.de>; Mon, 13 Mar 2023 10:02:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9B07D6B71F9
+	for <lists+devicetree@lfdr.de>; Mon, 13 Mar 2023 10:05:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230526AbjCMJCo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Mar 2023 05:02:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45776 "EHLO
+        id S231366AbjCMJFI convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Mon, 13 Mar 2023 05:05:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55042 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230169AbjCMJCM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Mar 2023 05:02:12 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 373FAE076;
-        Mon, 13 Mar 2023 01:58:13 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id C3964B80DC8;
-        Mon, 13 Mar 2023 08:58:09 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EBBC0C4339B;
-        Mon, 13 Mar 2023 08:58:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1678697888;
-        bh=B2JOWs/sNYNpQQN9MSZD14PHxXQ9aKQuirnw6OklYoY=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=q9baDC9hJkEhL5/j18O8gFMYDhyAHPsVF+c2t4nXQM1UW54CiWumRtl9c8Mb1uguv
-         RRedHsvpven1qEYXcW+0wuZguHQpLYuKiuRUJnbSPloWRgKEWhj6v6VRnQdoLcXXJs
-         0hBq/rZ8Ut7mVtFL8RDZPKwGJ4nxQrFRbIdEvx/jKjTQ9RkTbNLx7bpBV0+tALJSAD
-         bjLMEXogvOfLk+AAroairHTcD11tKhjAunhAm57nQAgWGgx+jw1sdIpaWuUyfkFgl/
-         6/CIZxrUZAFYQSGFVsryL3AbosJA8ivsGmdryULnPnaykCZtY8ybtp3xxrcnKF+mAw
-         b1AGx+NXVBY5g==
-Date:   Mon, 13 Mar 2023 09:58:05 +0100
-From:   Andi Shyti <andi.shyti@kernel.org>
-To:     Chris Packham <Chris.Packham@alliedtelesis.co.nz>
-Cc:     Andi Shyti <andi.shyti@kernel.org>,
-        "linux-i2c@vger.kernel.org" <linux-i2c@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Wolfram Sang <wsa@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Ryan Chen <ryan_chen@aspeedtech.com>
-Subject: Re: [PATCH v3 3/3] i2c: mpc: Use i2c-scl-clk-low-timeout-ms i2c
- property
-Message-ID: <20230313085805.sb7nl6362tcm2mvp@intel.intel>
-References: <20230312233613.303408-1-andi.shyti@kernel.org>
- <20230312233613.303408-4-andi.shyti@kernel.org>
- <f3d6760d-f2cc-c725-d7fb-6056ee555b65@alliedtelesis.co.nz>
+        with ESMTP id S230479AbjCMJEk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Mar 2023 05:04:40 -0400
+Received: from mail-qt1-f179.google.com (mail-qt1-f179.google.com [209.85.160.179])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A5A1B3C29;
+        Mon, 13 Mar 2023 02:01:02 -0700 (PDT)
+Received: by mail-qt1-f179.google.com with SMTP id l18so12414410qtp.1;
+        Mon, 13 Mar 2023 02:01:02 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1678698061;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=JMjv67oqH0XcHnu1slnz7obBOYeNA0kXm4szuRMQips=;
+        b=aw1AdWyNMcEeGLnQunCJe99uq/ZZs0gLThSnXLv+UBhc9Rib6ovcsXKl3FGetg/oI6
+         ELwDiOyJtQjDTNja5v2ZagaJPgs9QPrssPZvAR2Vz3O5XHvJki7Ry/CJEzk45yPkT/LE
+         Idjww0rBB6xtPzaYnzWxrYjHP5XGwhR4VlTHBM9Rz8rXW1Z/OFh8CBGYDxWate6iW781
+         HOwK5AE9Y5kAF9OP9pQ6PY7ESjW7riNLsFouQnySoJlb7CyunaMaHQHtOpq9iBFh7/+C
+         dDd3aHEu8Q27kQM1Wts1lqnAgTacpIgXs01//Igy+aGGfzE8UQkVYjBi1PNxpDI41son
+         dTJg==
+X-Gm-Message-State: AO0yUKW0XN2nKFEHPr37VqxYuhiuf0+D+au45+Lp5+h1X2S9ZQAWjXkJ
+        3eA0TA/xPaXgXIybuo+Q6zMoEka+I/bVoQ==
+X-Google-Smtp-Source: AK7set8WzH26vCM0R1qdZpsSSh6qK0fRhpddR77RNdbVXnu1G9x9/BW/Idu5OTcljORGnqz/50GFlg==
+X-Received: by 2002:a05:622a:1a0e:b0:3b9:cc9b:1d9d with SMTP id f14-20020a05622a1a0e00b003b9cc9b1d9dmr16045605qtb.20.1678698061442;
+        Mon, 13 Mar 2023 02:01:01 -0700 (PDT)
+Received: from mail-yb1-f181.google.com (mail-yb1-f181.google.com. [209.85.219.181])
+        by smtp.gmail.com with ESMTPSA id j6-20020ac86646000000b003bfb820f17csm5074246qtp.63.2023.03.13.02.01.00
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 13 Mar 2023 02:01:01 -0700 (PDT)
+Received: by mail-yb1-f181.google.com with SMTP id t4so10929109ybg.11;
+        Mon, 13 Mar 2023 02:01:00 -0700 (PDT)
+X-Received: by 2002:a25:8b08:0:b0:b14:91e:4d19 with SMTP id
+ i8-20020a258b08000000b00b14091e4d19mr14474451ybl.7.1678698060305; Mon, 13 Mar
+ 2023 02:01:00 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <f3d6760d-f2cc-c725-d7fb-6056ee555b65@alliedtelesis.co.nz>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+References: <20230310144721.1544669-1-robh@kernel.org>
+In-Reply-To: <20230310144721.1544669-1-robh@kernel.org>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Mon, 13 Mar 2023 10:00:48 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdUaeyHs9fQxS+16F62uHaifJYMXKJpL2-xi-SL5HCrTHQ@mail.gmail.com>
+Message-ID: <CAMuHMdUaeyHs9fQxS+16F62uHaifJYMXKJpL2-xi-SL5HCrTHQ@mail.gmail.com>
+Subject: Re: [PATCH] pinctrl: Use of_property_present() for testing DT
+ property presence
+To:     Rob Herring <robh@kernel.org>
+Cc:     Sean Wang <sean.wang@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Tony Lindgren <tony@atomide.com>,
+        Haojian Zhuang <haojian.zhuang@linaro.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Samuel Holland <samuel@sholland.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        devicetree@vger.kernel.org, linux-mediatek@lists.infradead.org,
+        linux-gpio@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-omap@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        linux-renesas-soc@vger.kernel.org, linux-sunxi@lists.linux.dev
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8BIT
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,
+        SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> On 13/03/23 12:36, Andi Shyti wrote:
-> > "fsl,timeout" is marked as deprecated and replaced by the
-> > "i2c-scl-clk-low-timeout-ms" i2c property.
-> >
-> > Use this latter and, in case it is missing, for back
-> > compatibility, check whether we still have "fsl,timeout" defined.
-> >
-> > Signed-off-by: Andi Shyti <andi.shyti@kernel.org>
-> > Reviewed-by: Chris Packham <chris.packham@alliedtelesis.co.nz>
-> Gave the patches a spin on a P2041RDB so
-> 
-> Tested-by: Chris Packham <chris.packham@alliedtelesis.co.nz>
+Hi Rob,
 
-Thanks, Chris!
+On Fri, Mar 10, 2023 at 3:56 PM Rob Herring <robh@kernel.org> wrote:
+> It is preferred to use typed property access functions (i.e.
+> of_property_read_<type> functions) rather than low-level
+> of_get_property/of_find_property functions for reading properties. As
+> part of this, convert of_get_property/of_find_property calls to the
+> recently added of_property_present() helper when we just want to test
+> for presence of a property and nothing more.
+>
+> Signed-off-by: Rob Herring <robh@kernel.org>
 
-Andi
+Thanks for your patch!
+
+> --- a/drivers/pinctrl/renesas/pinctrl.c
+> +++ b/drivers/pinctrl/renesas/pinctrl.c
+> @@ -125,8 +125,8 @@ static int sh_pfc_dt_subnode_to_map(struct pinctrl_dev *pctldev,
+>          * inside a subnode nor across subnodes.
+>          */
+>         if (!pmx->func_prop_name) {
+> -               if (of_find_property(np, "groups", NULL) ||
+> -                   of_find_property(np, "pins", NULL)) {
+> +               if (of_property_present(np, "groups")||
+> +                   of_property_present(np, "pins")) {
+>                         pmx->func_prop_name = "function";
+>                         pmx->groups_prop_name = "groups";
+>                         pmx->pins_prop_name = "pins";
+
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+
+This check is used to auto-detect if the standard property names
+should be used, or the "renesas,"-prefixed ones.
+As the last users of the latter were removed from DTS in v4.10,
+perhaps I should just remove these checks instead?
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
