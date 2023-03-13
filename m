@@ -2,102 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DA5E36B789F
-	for <lists+devicetree@lfdr.de>; Mon, 13 Mar 2023 14:14:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F3C006B78D5
+	for <lists+devicetree@lfdr.de>; Mon, 13 Mar 2023 14:26:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229622AbjCMNOv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Mar 2023 09:14:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50704 "EHLO
+        id S229956AbjCMN0i (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Mar 2023 09:26:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39980 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230411AbjCMNOt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Mar 2023 09:14:49 -0400
-Received: from mail-pg1-x531.google.com (mail-pg1-x531.google.com [IPv6:2607:f8b0:4864:20::531])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7F0348A4E
-        for <devicetree@vger.kernel.org>; Mon, 13 Mar 2023 06:14:48 -0700 (PDT)
-Received: by mail-pg1-x531.google.com with SMTP id x37so2408767pga.1
-        for <devicetree@vger.kernel.org>; Mon, 13 Mar 2023 06:14:48 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112; t=1678713288;
-        h=to:subject:message-id:date:from:reply-to:mime-version:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=CY9AsorMV2lTcvatQ9gGcropbDgZAywplz6MLboUuMk=;
-        b=QBhmDS77fsj958h+tFR+JDZAuuh7K3OUxbXpB0PEqA/T4+CpwrkZWHpd/GIClqiwLY
-         wosv0Ue25eJkyE4u8BPVThrM1Emsp7iLtywrSA4kJIShuNszPXR6UhD4PcLIIQPi54D1
-         ieDhb/YgvWv7g2/vKY/ocDW6F/ojCXzFbfJvzro7n10ee0DfjI2jCveA23IT7cQLfmCg
-         eY5TLypxeL5SpgHR10GenaoP8zc77A7KVFk9G5nZIii0tfr3TtlbrBYs1lt9c06yKUDG
-         dGm9Tdgllu+VfAqpY50wlg9vN82zugxLur0hbmXVLvNh/wT3nPskwgbIu+HAPhqZruYO
-         njjg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678713288;
-        h=to:subject:message-id:date:from:reply-to:mime-version
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=CY9AsorMV2lTcvatQ9gGcropbDgZAywplz6MLboUuMk=;
-        b=QpGE/4rcBU6lME1QwVuLMkwFeEczPJJptfBC6ktYwe3O79PHtZ/IBNCQNcxVGD+eMO
-         vrEk/rWuVKwFh/lqR0mapaYm5uoMS2dhkLe2pWKrqPRNo9K4OnhbkmzHN7l2g3IxThim
-         xQBCKG7Pw/+sOK9gh4hqaf7Pf5wfJ0iSkel4Op4fvJTmLaBFpk/OI+LQ5BSHeQMpzETV
-         5KYpgjAVcuYSG8Cis1k5hpzXOYR3BNpurNB8RmvcxRpVsaq4v8Q67aE7OdBWkJNCgIKp
-         Sy/JhqvzZTIpODRCWTKDdlJfDgnrGFQAYqZXzQc+fdFH8hGpk5TV+96csV1i7+pu1Gka
-         4u4Q==
-X-Gm-Message-State: AO0yUKXCPkLV6zjpXupi5ZrAoNu4IvbboC5eAla6xRprHix6ADwBws0V
-        1lbD16Llsj5p/GASl5WFDAUdyGjuobciH80YRqI=
-X-Google-Smtp-Source: AK7set/hmXJMNWNJ54kpFBHxolpd76wQ9LvM5JyK+MjQwPgtjXLlbEj/4nE2es46KexeM0cWgOdb1acD6vjmG4noq7o=
-X-Received: by 2002:a62:1d41:0:b0:623:1450:a4a with SMTP id
- d62-20020a621d41000000b0062314500a4amr1838774pfd.6.1678713287819; Mon, 13 Mar
- 2023 06:14:47 -0700 (PDT)
+        with ESMTP id S230247AbjCMN0c (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Mar 2023 09:26:32 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CB7D6302A2;
+        Mon, 13 Mar 2023 06:26:25 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 6801AB810F3;
+        Mon, 13 Mar 2023 13:26:24 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CE259C433EF;
+        Mon, 13 Mar 2023 13:26:20 +0000 (UTC)
+Message-ID: <04465497-306b-6e37-9dca-45d194d9d926@xs4all.nl>
+Date:   Mon, 13 Mar 2023 14:26:19 +0100
 MIME-Version: 1.0
-Received: by 2002:a05:6a21:3a82:b0:d4:c10a:ba0a with HTTP; Mon, 13 Mar 2023
- 06:14:47 -0700 (PDT)
-Reply-To: hitnodeby23@yahoo.com
-From:   Hinda Itno Deby <diaboagifty@gmail.com>
-Date:   Mon, 13 Mar 2023 06:14:47 -0700
-Message-ID: <CAKiJAOGe5m3jP3JsUF_1WLKh_pX+hFz437PzXkng1r9EMUQFgA@mail.gmail.com>
-Subject: Reply
-To:     undisclosed-recipients:;
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: Yes, score=7.3 required=5.0 tests=BAYES_50,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,FREEMAIL_REPLYTO,
-        FREEMAIL_REPLYTO_END_DIGIT,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        UNDISC_FREEM,UNDISC_MONEY,URG_BIZ autolearn=no autolearn_force=no
-        version=3.4.6
-X-Spam-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-        *      https://www.dnswl.org/, no trust
-        *      [2607:f8b0:4864:20:0:0:0:531 listed in]
-        [list.dnswl.org]
-        *  0.8 BAYES_50 BODY: Bayes spam probability is 40 to 60%
-        *      [score: 0.5048]
-        * -0.0 SPF_PASS SPF: sender matches SPF record
-        *  0.0 SPF_HELO_NONE SPF: HELO does not publish an SPF Record
-        *  0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-        *      provider
-        *      [diaboagifty[at]gmail.com]
-        *  0.2 FREEMAIL_REPLYTO_END_DIGIT Reply-To freemail username ends in
-        *      digit
-        *      [hitnodeby23[at]yahoo.com]
-        *  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-        *       valid
-        * -0.1 DKIM_VALID_EF Message has a valid DKIM or DK signature from
-        *      envelope-from domain
-        * -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-        *      author's domain
-        * -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-        *  0.6 URG_BIZ Contains urgent matter
-        *  2.9 UNDISC_FREEM Undisclosed recipients + freemail reply-to
-        *  1.0 FREEMAIL_REPLYTO Reply-To/From or Reply-To/body contain
-        *      different freemails
-        *  2.0 UNDISC_MONEY Undisclosed recipients + money/fraud signs
-X-Spam-Level: *******
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.8.0
+Subject: Re: [PATCH] dt-bindings: media: amphion: use hyphen in node name of
+ vpu core
+Content-Language: en-US
+From:   Hans Verkuil <hverkuil-cisco@xs4all.nl>
+To:     Ming Qian <ming.qian@nxp.com>, mchehab@kernel.org,
+        shawnguo@kernel.org
+Cc:     robh+dt@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
+        festevam@gmail.com, linux-imx@nxp.com, aisheng.dong@nxp.com,
+        linux-media@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-devicetree <devicetree@vger.kernel.org>
+References: <20220411074855.25114-1-ming.qian@nxp.com>
+ <7213be47-1746-b7c6-9807-21865adc190a@xs4all.nl>
+In-Reply-To: <7213be47-1746-b7c6-9807-21865adc190a@xs4all.nl>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.0 required=5.0 tests=BAYES_00,
+        HEADER_FROM_DIFFERENT_DOMAINS,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
--- 
-Hello Dear
+Ming,
 
-My name is Hinda Itno Deby Please I want us to discuss Urgent Business
-Proposal, if you are interested kindly reply to me so i can give you
-all the details.
+I recommend reposting this patch if you still want it.
 
-Thanks and God Bless You.
-Ms Hinda Itno Deby
+Regards,
+
+	Hans
+
+On 24/11/2022 09:48, Hans Verkuil wrote:
+> Rob, can you Ack (or nack) this old patch? It looks like it was
+> missed, most likely because the devicetree ML wasn't CCed.
+> 
+> Regards,
+> 
+> 	Hans
+> 
+> On 11/04/2022 09:48, Ming Qian wrote:
+>> Hyphen is recommended in node name than underscore.
+>> So change the node name from "vpu_core" to "vpu-core"
+>>
+>> Signed-off-by: Ming Qian <ming.qian@nxp.com>
+>> ---
+>>  Documentation/devicetree/bindings/media/amphion,vpu.yaml | 8 ++++----
+>>  1 file changed, 4 insertions(+), 4 deletions(-)
+>>
+>> diff --git a/Documentation/devicetree/bindings/media/amphion,vpu.yaml b/Documentation/devicetree/bindings/media/amphion,vpu.yaml
+>> index a9d80eaeeeb6..c0d83d755239 100644
+>> --- a/Documentation/devicetree/bindings/media/amphion,vpu.yaml
+>> +++ b/Documentation/devicetree/bindings/media/amphion,vpu.yaml
+>> @@ -47,7 +47,7 @@ patternProperties:
+>>      $ref: ../mailbox/fsl,mu.yaml#
+>>  
+>>  
+>> -  "^vpu_core@[0-9a-f]+$":
+>> +  "^vpu-core@[0-9a-f]+$":
+>>      description:
+>>        Each core correspond a decoder or encoder, need to configure them
+>>        separately. NXP i.MX8QM SoC has one decoder and two encoder, i.MX8QXP SoC
+>> @@ -143,7 +143,7 @@ examples:
+>>          power-domains = <&pd IMX_SC_R_VPU_MU_2>;
+>>        };
+>>  
+>> -      vpu_core0: vpu_core@2d080000 {
+>> +      vpu_core0: vpu-core@2d080000 {
+>>          compatible = "nxp,imx8q-vpu-decoder";
+>>          reg = <0x2d080000 0x10000>;
+>>          power-domains = <&pd IMX_SC_R_VPU_DEC_0>;
+>> @@ -154,7 +154,7 @@ examples:
+>>          memory-region = <&decoder_boot>, <&decoder_rpc>;
+>>        };
+>>  
+>> -      vpu_core1: vpu_core@2d090000 {
+>> +      vpu_core1: vpu-core@2d090000 {
+>>          compatible = "nxp,imx8q-vpu-encoder";
+>>          reg = <0x2d090000 0x10000>;
+>>          power-domains = <&pd IMX_SC_R_VPU_ENC_0>;
+>> @@ -165,7 +165,7 @@ examples:
+>>          memory-region = <&encoder1_boot>, <&encoder1_rpc>;
+>>        };
+>>  
+>> -      vpu_core2: vpu_core@2d0a0000 {
+>> +      vpu_core2: vpu-core@2d0a0000 {
+>>          reg = <0x2d0a0000 0x10000>;
+>>          compatible = "nxp,imx8q-vpu-encoder";
+>>          power-domains = <&pd IMX_SC_R_VPU_ENC_1>;
+> 
+
