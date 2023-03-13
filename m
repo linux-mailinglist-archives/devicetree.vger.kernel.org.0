@@ -2,122 +2,162 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 467196B7A58
-	for <lists+devicetree@lfdr.de>; Mon, 13 Mar 2023 15:30:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1E83E6B7A77
+	for <lists+devicetree@lfdr.de>; Mon, 13 Mar 2023 15:36:29 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231425AbjCMOat (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Mar 2023 10:30:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42318 "EHLO
+        id S230101AbjCMOg1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Mar 2023 10:36:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51936 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231411AbjCMOap (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Mar 2023 10:30:45 -0400
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 41EF134008;
-        Mon, 13 Mar 2023 07:30:44 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1678717844; x=1710253844;
-  h=date:from:to:cc:subject:in-reply-to:message-id:
-   references:mime-version;
-  bh=2A5vXcR9dVDQtHTdsgDzpaUet920wYeoo1FeiQYkThg=;
-  b=koRx0upe2e6SBdfahHaT2sSHlqPiWEO6y/N5i/5AbRtxA3HEXQtZNlDG
-   u+2q9UfU4Qi6ttfT9TqWtkvsY0/MGrkXkW0YSeVQa1prXkrsJoDq223Az
-   /lAyMutULsAm9vJQFJbcYHnWwEdaMvf8+kbdDWtO49NJkwfaf0aNmwTqw
-   QDCQN+LVF/Ty3QWYjbLJkGX2r28P4ZTfs/cB0JmoE+zK8j57dkJ3OShJf
-   Q5xl0Y1IwkosZfXNzHjwMWLgHd5wtvnuEByTQA6nmJ2VMd1sKHQvMPZMI
-   /lxHi+A3Fp4rs1FsHTKbqxY26qy+fwlRIO9jOwZaOKogtIl9Uy/PqNubM
-   w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10648"; a="337180473"
-X-IronPort-AV: E=Sophos;i="5.98,257,1673942400"; 
-   d="scan'208";a="337180473"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-  by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 13 Mar 2023 07:30:43 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10648"; a="678701605"
-X-IronPort-AV: E=Sophos;i="5.98,257,1673942400"; 
-   d="scan'208";a="678701605"
-Received: from etsykuno-mobl2.ccr.corp.intel.com ([10.252.47.211])
-  by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 13 Mar 2023 07:30:37 -0700
-Date:   Mon, 13 Mar 2023 16:30:34 +0200 (EET)
-From:   =?ISO-8859-15?Q?Ilpo_J=E4rvinen?= <ilpo.jarvinen@linux.intel.com>
-To:     Neeraj sanjay kale <neeraj.sanjaykale@nxp.com>
-cc:     "davem@davemloft.net" <davem@davemloft.net>,
-        "edumazet@google.com" <edumazet@google.com>,
-        "kuba@kernel.org" <kuba@kernel.org>,
-        "pabeni@redhat.com" <pabeni@redhat.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "marcel@holtmann.org" <marcel@holtmann.org>,
-        "johan.hedberg@gmail.com" <johan.hedberg@gmail.com>,
-        "luiz.dentz@gmail.com" <luiz.dentz@gmail.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Jiri Slaby <jirislaby@kernel.org>,
-        "alok.a.tiwari@oracle.com" <alok.a.tiwari@oracle.com>,
-        "hdanton@sina.com" <hdanton@sina.com>,
-        "leon@kernel.org" <leon@kernel.org>,
-        "simon.horman@corigine.com" <simon.horman@corigine.com>,
-        Netdev <netdev@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        LKML <linux-kernel@vger.kernel.org>,
-        "linux-bluetooth@vger.kernel.org" <linux-bluetooth@vger.kernel.org>,
-        linux-serial <linux-serial@vger.kernel.org>,
-        Amitkumar Karwar <amitkumar.karwar@nxp.com>,
-        Rohit Fule <rohit.fule@nxp.com>,
-        Sherry Sun <sherry.sun@nxp.com>
-Subject: RE: [EXT] Re: [PATCH v9 3/3] Bluetooth: NXP: Add protocol support
- for NXP Bluetooth chipsets
-In-Reply-To: <AM9PR04MB8603EB5DA53821B12E049649E7B99@AM9PR04MB8603.eurprd04.prod.outlook.com>
-Message-ID: <17a9ffd1-342c-2cf1-2a57-7fabe1fce8b8@linux.intel.com>
-References: <20230313140924.3104691-1-neeraj.sanjaykale@nxp.com> <20230313140924.3104691-4-neeraj.sanjaykale@nxp.com> <b28d1e39-f036-c260-4452-ac1332efca0@linux.intel.com> <AM9PR04MB8603EB5DA53821B12E049649E7B99@AM9PR04MB8603.eurprd04.prod.outlook.com>
+        with ESMTP id S229915AbjCMOg0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Mar 2023 10:36:26 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8D7A01980;
+        Mon, 13 Mar 2023 07:36:25 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 3694AB8111F;
+        Mon, 13 Mar 2023 14:36:24 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C709BC433A7;
+        Mon, 13 Mar 2023 14:36:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1678718181;
+        bh=yHmE3CK4PUjMZSs461uAsslkr23vQXpACGQ1NBY42hs=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=B8iz5g5WCveFOEXQqlPaoTjL1SmG08N4own9rMBVqtwLNVbyMloglGRtWK/nm/IY8
+         aVuyS0lwoAVQKESQPaakANgwDTdb3ulyqUKJyJSZEuAaGFh7DDncsF9gT1C1ozpWXJ
+         m9bYZhE4Naj6XYCJY2dHCR1uofheFiPM9IXwDzqTt5RV3ujuGi0X1+SY+P6upkY98i
+         79f6AzFhfoS/5ssuhr50H94mDSE9dMhrGZMgzvgfOgGZYBRg3SoujSFOYc9lp6H3TL
+         IS0dbq92Auy8Wbo+Fjg8kBS9RTYIfr+X9cEMalEMismk25YEChlIOUw580WkQ/P0Gr
+         dR8XNtzJ9hu6A==
+Received: by mail-lj1-f170.google.com with SMTP id b10so12887340ljr.0;
+        Mon, 13 Mar 2023 07:36:21 -0700 (PDT)
+X-Gm-Message-State: AO0yUKWQt+lYHOpQ2uqrI0mf5T20ftp0muwptVAH672rNp2NVHdWbW0z
+        wTAqdkB3gCmqtM2429Xeq0PXVFjJmFbtOx2fCw==
+X-Google-Smtp-Source: AK7set/Dt6QdzPA2g5/CmVOJgocA2bwpvyNuirK/Gl06x9LG1R7kvogNrTf8a1qUunnCZkox9DzU0vUuHivXacBmt5M=
+X-Received: by 2002:a2e:b55c:0:b0:295:d632:ba20 with SMTP id
+ a28-20020a2eb55c000000b00295d632ba20mr10841792ljn.10.1678718179737; Mon, 13
+ Mar 2023 07:36:19 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: multipart/mixed; boundary="8323329-1280341670-1678717842=:2573"
-X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+References: <20230306-ccorr-binding-fix-v3-0-7877613a35cb@baylibre.com>
+In-Reply-To: <20230306-ccorr-binding-fix-v3-0-7877613a35cb@baylibre.com>
+From:   Chun-Kuang Hu <chunkuang.hu@kernel.org>
+Date:   Mon, 13 Mar 2023 22:36:07 +0800
+X-Gmail-Original-Message-ID: <CAAOTY__dkDOpyzRXWeevj_agPdZZ60-=-6Vt-HbBTKy8ai20Yg@mail.gmail.com>
+Message-ID: <CAAOTY__dkDOpyzRXWeevj_agPdZZ60-=-6Vt-HbBTKy8ai20Yg@mail.gmail.com>
+Subject: Re: [PATCH v3] dt-bindings: display: mediatek: Fix the duplicated fallback
+To:     Alexandre Mergnat <amergnat@baylibre.com>
+Cc:     AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        David Airlie <airlied@gmail.com>,
+        Allen-KH Cheng <allen-kh.cheng@mediatek.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        Rob Herring <robh@kernel.org>,
+        linux-mediatek@lists.infradead.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-  This message is in MIME format.  The first part should be readable text,
-  while the remaining parts are likely unreadable without MIME-aware tools.
+Hi, Alexandre:
 
---8323329-1280341670-1678717842=:2573
-Content-Type: text/plain; charset=iso-8859-1
-Content-Transfer-Encoding: 8BIT
+Alexandre Mergnat <amergnat@baylibre.com> =E6=96=BC 2023=E5=B9=B43=E6=9C=88=
+7=E6=97=A5 =E9=80=B1=E4=BA=8C =E4=B8=8A=E5=8D=8812:20=E5=AF=AB=E9=81=93=EF=
+=BC=9A
+>
+> The item which have the mediatek,mt8192-disp-ccorr const compatible alrea=
+dy
+> exist above. Remove duplicated fallback.
 
-On Mon, 13 Mar 2023, Neeraj sanjay kale wrote:
+Applied to mediatek-drm-next [1], thanks.
 
-> > 
-> > Thanks, looks okay to me except this one I just noticed while preparing this
-> > email:
-> > 
-> > > +MODULE_DESCRIPTION("NXP Bluetooth Serial driver v1.0 ");
-> > 
-> > I don't think version numbers belong to the module description.
-> > 
-> I was asked to remove the MODULE_VERSION("v1.0") line in my v2 patch, hence kept it in the description.
-> https://patchwork.kernel.org/project/bluetooth/patch/20230130180504.2029440-4-neeraj.sanjaykale@nxp.com/
-> 
-> Please suggest me the right way to put the version string in this driver.
+[1] https://git.kernel.org/pub/scm/linux/kernel/git/chunkuang.hu/linux.git/=
+log/?h=3Dmediatek-drm-next
 
-I think Leon meant you should just drop the version altogether (since this 
-is new code).
+Regards,
+Chun-Kuang.
 
--- 
- i.
-
-> > Reviewed-by: Ilpo Järvinen <ilpo.jarvinen@linux.intel.com>
-> > 
-> > 
-> > --
-> >  i.
-> 
-> Thank you again for reviewing this patch. :D
-> 
-> -Neeraj
-> 
-
---8323329-1280341670-1678717842=:2573--
+>
+> Fixes: 137272ef1b0f ("dt-bindings: display: mediatek: Fix the fallback fo=
+r mediatek,mt8186-disp-ccorr")
+> Signed-off-by: Alexandre Mergnat <amergnat@baylibre.com>
+> ---
+> Fix MTK color correction binding
+>
+> The fallback compatible has been duplicated in the 137272ef1b0f commit.
+>
+> To: Chun-Kuang Hu <chunkuang.hu@kernel.org>
+> To: Philipp Zabel <p.zabel@pengutronix.de>
+> To: David Airlie <airlied@gmail.com>
+> To: Daniel Vetter <daniel@ffwll.ch>
+> To: Rob Herring <robh+dt@kernel.org>
+> To: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+> To: Matthias Brugger <matthias.bgg@gmail.com>
+> To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+> To: Allen-KH Cheng <allen-kh.cheng@mediatek.com>
+> Cc: Rob Herring <robh@kernel.org>
+> Cc: dri-devel@lists.freedesktop.org
+> Cc: linux-mediatek@lists.infradead.org
+> Cc: devicetree@vger.kernel.org
+> Cc: linux-kernel@vger.kernel.org
+> Cc: linux-arm-kernel@lists.infradead.org
+> ---
+> Changes in v3:
+> - Re-order compatible.
+> - Link to v2: https://lore.kernel.org/r/20230306-ccorr-binding-fix-v2-0-4=
+822939a837d@baylibre.com
+>
+> Changes in v2:
+> - Fix commit title.
+> - Link to v1: https://lore.kernel.org/r/20230306-ccorr-binding-fix-v1-0-1=
+77d81d60c69@baylibre.com
+> ---
+>  .../devicetree/bindings/display/mediatek/mediatek,ccorr.yaml         | 5=
+ +----
+>  1 file changed, 1 insertion(+), 4 deletions(-)
+>
+> diff --git a/Documentation/devicetree/bindings/display/mediatek/mediatek,=
+ccorr.yaml b/Documentation/devicetree/bindings/display/mediatek/mediatek,cc=
+orr.yaml
+> index b04820c95b22..bda86e6857f5 100644
+> --- a/Documentation/devicetree/bindings/display/mediatek/mediatek,ccorr.y=
+aml
+> +++ b/Documentation/devicetree/bindings/display/mediatek/mediatek,ccorr.y=
+aml
+> @@ -27,13 +27,10 @@ properties:
+>            - const: mediatek,mt8192-disp-ccorr
+>        - items:
+>            - enum:
+> +              - mediatek,mt8186-disp-ccorr
+>                - mediatek,mt8188-disp-ccorr
+>                - mediatek,mt8195-disp-ccorr
+>            - const: mediatek,mt8192-disp-ccorr
+> -      - items:
+> -          - enum:
+> -              - mediatek,mt8186-disp-ccorr
+> -          - const: mediatek,mt8192-disp-ccorr
+>
+>    reg:
+>      maxItems: 1
+>
+> ---
+> base-commit: add072536971d7ce891fde3cdbf68c55e7cfa95a
+> change-id: 20230306-ccorr-binding-fix-718c6d725088
+>
+> Best regards,
+> --
+> Alexandre Mergnat <amergnat@baylibre.com>
