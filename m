@@ -2,138 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C944F6B9779
-	for <lists+devicetree@lfdr.de>; Tue, 14 Mar 2023 15:14:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DDFE46B978D
+	for <lists+devicetree@lfdr.de>; Tue, 14 Mar 2023 15:19:08 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229626AbjCNOOf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Mar 2023 10:14:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36576 "EHLO
+        id S229535AbjCNOTH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Mar 2023 10:19:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43088 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229525AbjCNOOe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Mar 2023 10:14:34 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 81ECA2D73;
-        Tue, 14 Mar 2023 07:14:31 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id E93C9617A5;
-        Tue, 14 Mar 2023 14:14:30 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 42195C433D2;
-        Tue, 14 Mar 2023 14:14:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1678803270;
-        bh=qhXwhy6Cl+s9k6JRE6nqU7xp7VBDDJnS951Dvre7bkg=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=LY7gjSiuMUB5pPGHUjwLNoTDLnJO+/gmKbfcmqDFZktVM1oJ9unB1E8ayT2zcQyXS
-         sWKlUqkLFdIq2shgcuntAcjnnGwtd34ns6fr0Y8j2RsQZUw3e2jNeR6Se39qlfr2NE
-         F9uGpnbiPsDwmnhlv3xu2EQukcSHeAmH0imBHjUxgEZmpq+G7buXq1QAsIYvT/rHZm
-         ZzQ2ig3GxB2CNjWHt/9PR6kvEQoERyVkcK5sAIm9UhUNNqvpAhmxll6r1/0dBVES9U
-         oxyDZp/yvpkMJiQacmf0ss4/5vvW3zDMoqnUSTirLxKXK79QLT4wOeVWYRnGmV4GX7
-         XSqJLv4C3XyAA==
-Received: from sofa.misterjones.org ([185.219.108.64] helo=goblin-girl.misterjones.org)
-        by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.95)
-        (envelope-from <maz@kernel.org>)
-        id 1pc5Q3-00HaSl-PZ;
-        Tue, 14 Mar 2023 14:14:27 +0000
-Date:   Tue, 14 Mar 2023 14:14:27 +0000
-Message-ID: <86h6unxvwc.wl-maz@kernel.org>
-From:   Marc Zyngier <maz@kernel.org>
-To:     Lucas Tanure <lucas.tanure@collabora.com>
-Cc:     Robin Murphy <robin.murphy@arm.com>,
-        Peter Geis <pgwipeout@gmail.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S229505AbjCNOTG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Mar 2023 10:19:06 -0400
+Received: from fd01.gateway.ufhost.com (fd01.gateway.ufhost.com [61.152.239.71])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0CD9E93EB;
+        Tue, 14 Mar 2023 07:19:04 -0700 (PDT)
+Received: from EXMBX165.cuchost.com (unknown [175.102.18.54])
+        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+        (Client CN "EXMBX165", Issuer "EXMBX165" (not verified))
+        by fd01.gateway.ufhost.com (Postfix) with ESMTP id B666124DCBE;
+        Tue, 14 Mar 2023 22:19:00 +0800 (CST)
+Received: from EXMBX172.cuchost.com (172.16.6.92) by EXMBX165.cuchost.com
+ (172.16.6.75) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Tue, 14 Mar
+ 2023 22:19:00 +0800
+Received: from [192.168.125.74] (113.72.145.194) by EXMBX172.cuchost.com
+ (172.16.6.92) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Tue, 14 Mar
+ 2023 22:18:59 +0800
+Message-ID: <518f47e4-7fc6-7715-93dd-2a3b1b4acadf@starfivetech.com>
+Date:   Tue, 14 Mar 2023 22:18:58 +0800
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.3.2
+Subject: Re: [PATCH v5 11/21] dt-bindings: clock: Add StarFive JH7110 system
+ clock and reset generator
+Content-Language: en-US
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Rob Herring <robh@kernel.org>
+CC:     Marc Zyngier <maz@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Heiko Stuebner <heiko@sntech.de>,
+        Ben Dooks <ben.dooks@sifive.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Stephen Boyd <sboyd@kernel.org>,
+        <linux-riscv@lists.infradead.org>, Conor Dooley <conor@kernel.org>,
+        "Emil Renner Berthing" <emil.renner.berthing@canonical.com>,
         Thomas Gleixner <tglx@linutronix.de>,
-        Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        Krzysztof Wilczynski <kw@linux.com>,
-        Bjorn Helgaas <bhelgaas@google.com>, Qu Wenruo <wqu@suse.com>,
-        Piotr Oniszczuk <piotr.oniszczuk@gmail.com>,
-        Kever Yang <kever.yang@rock-chips.com>,
-        linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-pci@vger.kernel.org, kernel@collabora.com
-Subject: Re: [PATCH 1/7] irqchip/gic-v3: Add a DMA Non-Coherent flag
-In-Reply-To: <93e4d83d-9559-c987-d93b-c49572413275@collabora.com>
-References: <20230310080518.78054-1-lucas.tanure@collabora.com>
-        <20230310080518.78054-2-lucas.tanure@collabora.com>
-        <CAMdYzYpL7V6udw=T7ZChTFi0xOj1tb-5CVHb84u1pL4kj3eDZA@mail.gmail.com>
-        <3db23e11-5fac-f36e-c89e-93c4e8ac2d98@arm.com>
-        <93e4d83d-9559-c987-d93b-c49572413275@collabora.com>
-User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
- FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/28.2
- (aarch64-unknown-linux-gnu) MULE/6.0 (HANACHIRUSATO)
-MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
-Content-Type: text/plain; charset=US-ASCII
-X-SA-Exim-Connect-IP: 185.219.108.64
-X-SA-Exim-Rcpt-To: lucas.tanure@collabora.com, robin.murphy@arm.com, pgwipeout@gmail.com, vkoul@kernel.org, kishon@kernel.org, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, heiko@sntech.de, tglx@linutronix.de, lpieralisi@kernel.org, kw@linux.com, bhelgaas@google.com, wqu@suse.com, piotr.oniszczuk@gmail.com, kever.yang@rock-chips.com, linux-phy@lists.infradead.org, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org, kernel@collabora.com
-X-SA-Exim-Mail-From: maz@kernel.org
-X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        "Daniel Lezcano" <daniel.lezcano@linaro.org>,
+        <linux-clk@vger.kernel.org>,
+        "Michael Turquette" <mturquette@baylibre.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>
+References: <20230311090733.56918-1-hal.feng@starfivetech.com>
+ <20230311090733.56918-12-hal.feng@starfivetech.com>
+ <167854282659.42837.5915012938593380363.robh@kernel.org>
+ <80549148-1bad-9190-c4ea-a9555d15ca38@starfivetech.com>
+ <834fb899-7a03-ba0a-8302-f64ea58c60dd@linaro.org>
+From:   Hal Feng <hal.feng@starfivetech.com>
+In-Reply-To: <834fb899-7a03-ba0a-8302-f64ea58c60dd@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [113.72.145.194]
+X-ClientProxiedBy: EXCAS064.cuchost.com (172.16.6.24) To EXMBX172.cuchost.com
+ (172.16.6.92)
+X-YovoleRuleAgent: yovoleflag
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 14 Mar 2023 13:25:28 +0000,
-Lucas Tanure <lucas.tanure@collabora.com> wrote:
+On Mon, 13 Mar 2023 08:51:20 +0100, Krzysztof Kozlowski wrote:
+> On 13/03/2023 03:47, Hal Feng wrote:
+>> On Sat, 11 Mar 2023 08:17:00 -0600, Rob Herring wrote:
+>>> On Sat, 11 Mar 2023 17:07:23 +0800, Hal Feng wrote:
+>>>> From: Emil Renner Berthing <kernel@esmil.dk>
+>>>>
+>>>> Add bindings for the system clock and reset generator (SYSCRG) on the
+>>>> JH7110 RISC-V SoC by StarFive Ltd.
+>>>>
+>>>> Signed-off-by: Emil Renner Berthing <kernel@esmil.dk>
+>>>> Signed-off-by: Hal Feng <hal.feng@starfivetech.com>
+>>>> ---
+>>>>  .../clock/starfive,jh7110-syscrg.yaml         | 104 +++++++++
+>>>>  MAINTAINERS                                   |   8 +-
+>>>>  .../dt-bindings/clock/starfive,jh7110-crg.h   | 203 ++++++++++++++++++
+>>>>  .../dt-bindings/reset/starfive,jh7110-crg.h   | 142 ++++++++++++
+>>>>  4 files changed, 454 insertions(+), 3 deletions(-)
+>>>>  create mode 100644 Documentation/devicetree/bindings/clock/starfive,jh7110-syscrg.yaml
+>>>>  create mode 100644 include/dt-bindings/clock/starfive,jh7110-crg.h
+>>>>  create mode 100644 include/dt-bindings/reset/starfive,jh7110-crg.h
+>>>>
+>>>
+>>>
+>>> Please add Acked-by/Reviewed-by tags when posting new versions. However,
+>>> there's no need to repost patches *only* to add the tags. The upstream
+>>> maintainer will do that for acks received on the version they apply.
+>>>
+>>> If a tag was not added on purpose, please state why and what changed.
+>>>
+>>> Missing tags:
+>>>
+>>> Reviewed-by: Rob Herring <robh@kernel.org>
+>> 
+>> This patch has been changed a lot and I am not sure whether it's still
+>> the one you want. So I removed the Reviewed-by tag.
 > 
-> On 10-03-2023 12:04, Robin Murphy wrote:
-> > On 2023-03-10 11:41, Peter Geis wrote:
-> >> On Fri, Mar 10, 2023 at 3:05 AM Lucas Tanure
-> >> <lucas.tanure@collabora.com> wrote:
-> >>> 
-> >>> The GIC600 integration in RK356x, used in rk3588, doesn't support
-> >>> any of the shareability or cacheability attributes, and requires
-> >>> both values to be set to 0b00 for all the ITS and Redistributor
-> >>> tables.
-> >>> 
-> >>> This is loosely based on prior work from XiaoDong Huang and
-> >>> Peter Geis fixing this issue specifically for Rockchip 356x.
-> >> 
-> >> Good Morning,
-> >> 
-> >> Since the gic is using dma, would it be reasonable to have all memory
-> >> allocations be requested with the GFP_DMA flag? Otherwise this doesn't
-> >> fully solve the problem for rk356x, where only the lower 4GB range is
-> >> DMA capable, but this tends to get allocated in the upper 4GB on 8GB
-> >> boards.
-> > 
-> > Not really, because there's no fixed definition of what GFP_DMA
-> > actually means, and it may mean nothing (same for GFP_DMA32, which
-> > may or may not be meaningful depending on kernel config and platform
-> > topology). Drivers should really use the DMA API allocation
-> > functions if they care about what they get, which comes back round
-> > to the notion from years ago of converting the ITS driver to a
-> > regular platform driver, so it can benefit from regular DT concepts
-> > like "dma-ranges" automatically.
-> > 
-> > Thanks,
-> > Robin.
-> > 
-> I am looking how to do that conversion to platform driver.
-> But about the communication between irq-gic-v3-its and irq-gic-v3.
-> Should irq-gic-v3-its be a MFD child of irq-gic-v3?
+> Then mention it in changelog, just like Rob asked:
+> "If a tag was not added on purpose, please state why and what changed."
+> I don't see any explanation in the changelog about it.
 
-MFD? I'd rather suggest an VME bus driver. ;-)
+So sorry for missing that. Thank you for your suggestions.
 
-Seriously, this is an interrupt controller. Nothing else. It should
-probe the parent irqdomain, and stack onto that. No parent? Probe
-deferral.
-
-> Or use the component bind/unbind framework?
-
-I don't understand what you mean here.
-
-	M.
-
--- 
-Without deviation from the norm, progress is not possible.
+Best regards,
+Hal
