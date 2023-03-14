@@ -2,170 +2,300 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BFB5E6B90B1
-	for <lists+devicetree@lfdr.de>; Tue, 14 Mar 2023 11:54:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 63BFF6B90A5
+	for <lists+devicetree@lfdr.de>; Tue, 14 Mar 2023 11:53:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229754AbjCNKyC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Mar 2023 06:54:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36256 "EHLO
+        id S229997AbjCNKxP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Mar 2023 06:53:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34658 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229755AbjCNKx4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Mar 2023 06:53:56 -0400
-Received: from laurent.telenet-ops.be (laurent.telenet-ops.be [IPv6:2a02:1800:110:4::f00:19])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 35D1558B46
-        for <devicetree@vger.kernel.org>; Tue, 14 Mar 2023 03:53:25 -0700 (PDT)
-Received: from ramsan.of.borg ([84.195.187.55])
-        by laurent.telenet-ops.be with bizsmtp
-        id YAtN2900G1C8whw01AtNQ8; Tue, 14 Mar 2023 11:53:23 +0100
-Received: from rox.of.borg ([192.168.97.57])
-        by ramsan.of.borg with esmtp (Exim 4.95)
-        (envelope-from <geert@linux-m68k.org>)
-        id 1pc2Cd-00C9kO-OS;
-        Tue, 14 Mar 2023 11:49:01 +0100
-Received: from geert by rox.of.borg with local (Exim 4.95)
-        (envelope-from <geert@linux-m68k.org>)
-        id 1pc2DF-00AoST-4O;
-        Tue, 14 Mar 2023 11:49:01 +0100
-From:   Geert Uytterhoeven <geert+renesas@glider.be>
-To:     Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
-Cc:     alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org,
-        Geert Uytterhoeven <geert+renesas@glider.be>
-Subject: [PATCH] ASoC: dt-bindings: renesas: rsnd: Update example
-Date:   Tue, 14 Mar 2023 11:48:59 +0100
-Message-Id: <ba4ec999dc152ea1f113253e497c093b8789d414.1678790879.git.geert+renesas@glider.be>
-X-Mailer: git-send-email 2.34.1
+        with ESMTP id S229754AbjCNKxJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Mar 2023 06:53:09 -0400
+Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2E5594617E
+        for <devicetree@vger.kernel.org>; Tue, 14 Mar 2023 03:52:37 -0700 (PDT)
+Received: by mail-lf1-x12d.google.com with SMTP id f18so19440503lfa.3
+        for <devicetree@vger.kernel.org>; Tue, 14 Mar 2023 03:52:37 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1678791155;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=XMr9XUMOaddYL79MjMfHtWOWf4Lj3iArHK6IYS86sJ0=;
+        b=PXxhoE3/u5GhpcI263xgFpRT6Q59PNLhzoTjaNd6QCjt2aO/SwMlzA4v9FuE/OwTyO
+         8Du23c6uxthi9lv9cNYBl0o5qf85RgE9dZGAEhiWoH70x6rrKYH37UnXbgKJ1pml9W7l
+         963rChp/ELryqTIoL9BCuZrrP6egyjkFIen5n3UXeQXx2vQ1nEbmhqS6z4OXM1gY86rL
+         AeVkoDBzC++pDC90P/bQ54WiN567hbVzbYWQbW4TtL42BX3fITNgId0M/hMd+E7IDF1/
+         7BJiPUJ4ZJODoZcfWJ0oHmbk2eFJx1ccwQxWBSuehcqB9O3HEgTAEs7i4+cD4Oinp7zO
+         j5zA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1678791155;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=XMr9XUMOaddYL79MjMfHtWOWf4Lj3iArHK6IYS86sJ0=;
+        b=jKQ0q3eqRUCe0mPM9nOz/WhVhpZ/CXxjtJS9eNfKBzdWq5By4O+IzL5TURJI40nT4z
+         ArH47mlxQo4tBFTSH/P/7E9uVTQ1O9zyEa7YojLyNu/yrRpkdDEY5+OTOkl5TQyteaxC
+         Odc3DNQz2ddtEqIBKdupXVkoGyIOvmwxJx95ndzo1ukIC8E+C7g9+2ljhi/7wZr/dUQM
+         LTLylHdfyQn8y1Ad84vUBglZ+dJwmJY377+HATlWGEHCCow7IrF/DVwtz1CG5/E1s6c/
+         Ez+WrvuODBXenKPS4aTDeQ6zZ8e2/nIKfI5+farc/t+iq0ZhHO67S3gihTu29TobPO9r
+         +asg==
+X-Gm-Message-State: AO0yUKWkP3eSIX+gU1TTKpZWHaaPVmIP5ksslZrXTXpYlNDRL5hMTDTS
+        agOrjz8PVAeYswko5/evb95KMg==
+X-Google-Smtp-Source: AK7set9+NUcSouCpNpR9Vv9pRy1Hk+87Unn8vW4rx/LO+ldqtD2wjLeEqvY2n4ADL4duPfkoZAEqVA==
+X-Received: by 2002:a05:6512:941:b0:4b4:6490:cbf1 with SMTP id u1-20020a056512094100b004b46490cbf1mr541424lft.15.1678791155333;
+        Tue, 14 Mar 2023 03:52:35 -0700 (PDT)
+Received: from [192.168.1.101] (abyj16.neoplus.adsl.tpnet.pl. [83.9.29.16])
+        by smtp.gmail.com with ESMTPSA id t16-20020ac25490000000b004d342e1332csm357145lfk.25.2023.03.14.03.52.34
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 14 Mar 2023 03:52:34 -0700 (PDT)
+Message-ID: <8441a928-77d3-6df1-248f-84cacc6ab801@linaro.org>
+Date:   Tue, 14 Mar 2023 11:52:33 +0100
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.3 required=5.0 tests=BAYES_00,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_NONE
-        autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.8.0
+Subject: Re: [PATCH 1/2] arm64: dts: qcom: sdm845: add framebuffer reserved
+ memory
+Content-Language: en-US
+To:     Caleb Connolly <caleb.connolly@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+References: <20230314045812.3673958-1-caleb.connolly@linaro.org>
+ <3ffb4326-ad13-d1c5-51e3-524dfa143930@linaro.org>
+ <80f04aca-23c2-346f-4744-9ed19d58af3f@linaro.org>
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <80f04aca-23c2-346f-4744-9ed19d58af3f@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-0.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_SORBS_HTTP,RCVD_IN_SORBS_SOCKS,SPF_HELO_NONE,SPF_PASS,
+        URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Miscellaneous updates to make the example match reality:
-  - Correct SSI resource region size,
-  - Complete half-conversion to new-style CPG/MSSR bindings,
-  - Add missing power-domains, resets, and reset-names properties,
-  - Use interrupt binding definitions instead of hardcoded numbers,
-  - Correct interrupt flags,
-  - Drop double blank line.
 
-Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
----
- .../bindings/sound/renesas,rsnd.yaml          | 51 ++++++++++++-------
- 1 file changed, 32 insertions(+), 19 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/sound/renesas,rsnd.yaml b/Documentation/devicetree/bindings/sound/renesas,rsnd.yaml
-index 55e5213b90a17d1d..676dfe7a7f1766cd 100644
---- a/Documentation/devicetree/bindings/sound/renesas,rsnd.yaml
-+++ b/Documentation/devicetree/bindings/sound/renesas,rsnd.yaml
-@@ -372,30 +372,33 @@ unevaluatedProperties: false
- 
- examples:
-   - |
-+    #include <dt-bindings/clock/r8a7790-cpg-mssr.h>
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+    #include <dt-bindings/power/r8a7790-sysc.h>
-     rcar_sound: sound@ec500000 {
-         #sound-dai-cells = <1>;
-         compatible = "renesas,rcar_sound-r8a7790", "renesas,rcar_sound-gen2";
-         reg = <0xec500000 0x1000>, /* SCU  */
-               <0xec5a0000 0x100>,  /* ADG  */
-               <0xec540000 0x1000>, /* SSIU */
--              <0xec541000 0x1280>, /* SSI  */
-+              <0xec541000 0x280>,  /* SSI  */
-               <0xec740000 0x200>;  /* Audio DMAC peri peri*/
-         reg-names = "scu", "adg", "ssiu", "ssi", "audmapp";
- 
--        clocks = <&mstp10_clks 1005>,                      /* SSI-ALL    */
--                 <&mstp10_clks 1006>, <&mstp10_clks 1007>, /* SSI9, SSI8 */
--                 <&mstp10_clks 1008>, <&mstp10_clks 1009>, /* SSI7, SSI6 */
--                 <&mstp10_clks 1010>, <&mstp10_clks 1011>, /* SSI5, SSI4 */
--                 <&mstp10_clks 1012>, <&mstp10_clks 1013>, /* SSI3, SSI2 */
--                 <&mstp10_clks 1014>, <&mstp10_clks 1015>, /* SSI1, SSI0 */
--                 <&mstp10_clks 1022>, <&mstp10_clks 1023>, /* SRC9, SRC8 */
--                 <&mstp10_clks 1024>, <&mstp10_clks 1025>, /* SRC7, SRC6 */
--                 <&mstp10_clks 1026>, <&mstp10_clks 1027>, /* SRC5, SRC4 */
--                 <&mstp10_clks 1028>, <&mstp10_clks 1029>, /* SRC3, SRC2 */
--                 <&mstp10_clks 1030>, <&mstp10_clks 1031>, /* SRC1, SRC0 */
--                 <&mstp10_clks 1020>, <&mstp10_clks 1021>, /* MIX1, MIX0 */
--                 <&mstp10_clks 1020>, <&mstp10_clks 1021>, /* CTU1, CTU0 */
--                 <&mstp10_clks 1019>, <&mstp10_clks 1018>, /* DVC0, DVC1 */
-+        clocks = <&cpg CPG_MOD 1005>,                      /* SSI-ALL    */
-+                 <&cpg CPG_MOD 1006>, <&cpg CPG_MOD 1007>, /* SSI9, SSI8 */
-+                 <&cpg CPG_MOD 1008>, <&cpg CPG_MOD 1009>, /* SSI7, SSI6 */
-+                 <&cpg CPG_MOD 1010>, <&cpg CPG_MOD 1011>, /* SSI5, SSI4 */
-+                 <&cpg CPG_MOD 1012>, <&cpg CPG_MOD 1013>, /* SSI3, SSI2 */
-+                 <&cpg CPG_MOD 1014>, <&cpg CPG_MOD 1015>, /* SSI1, SSI0 */
-+                 <&cpg CPG_MOD 1022>, <&cpg CPG_MOD 1023>, /* SRC9, SRC8 */
-+                 <&cpg CPG_MOD 1024>, <&cpg CPG_MOD 1025>, /* SRC7, SRC6 */
-+                 <&cpg CPG_MOD 1026>, <&cpg CPG_MOD 1027>, /* SRC5, SRC4 */
-+                 <&cpg CPG_MOD 1028>, <&cpg CPG_MOD 1029>, /* SRC3, SRC2 */
-+                 <&cpg CPG_MOD 1030>, <&cpg CPG_MOD 1031>, /* SRC1, SRC0 */
-+                 <&cpg CPG_MOD 1020>, <&cpg CPG_MOD 1021>, /* MIX1, MIX0 */
-+                 <&cpg CPG_MOD 1020>, <&cpg CPG_MOD 1021>, /* CTU1, CTU0 */
-+                 <&cpg CPG_MOD 1019>, <&cpg CPG_MOD 1018>, /* DVC0, DVC1 */
-                  <&audio_clk_a>, <&audio_clk_b>,           /* CLKA, CLKB */
-                  <&audio_clk_c>, <&audio_clk_i>;           /* CLKC, CLKI */
- 
-@@ -416,6 +419,17 @@ examples:
-                       "clk_a", "clk_b",
-                       "clk_c", "clk_i";
- 
-+        power-domains = <&sysc R8A7790_PD_ALWAYS_ON>;
-+
-+        resets = <&cpg 1005>,
-+                 <&cpg 1006>, <&cpg 1007>, <&cpg 1008>, <&cpg 1009>,
-+                 <&cpg 1010>, <&cpg 1011>, <&cpg 1012>, <&cpg 1013>,
-+                 <&cpg 1014>, <&cpg 1015>;
-+        reset-names = "ssi-all",
-+                      "ssi.9", "ssi.8", "ssi.7", "ssi.6",
-+                      "ssi.5", "ssi.4", "ssi.3", "ssi.2",
-+                      "ssi.1", "ssi.0";
-+
-         rcar_sound,dvc {
-                dvc0: dvc-0 {
-                     dmas = <&audma0 0xbc>;
-@@ -448,7 +462,7 @@ examples:
-                 status = "disabled";
-             };
-             src1: src-1 {
--                interrupts = <0 353 0>;
-+                interrupts = <GIC_SPI 353 IRQ_TYPE_LEVEL_HIGH>;
-                 dmas = <&audma0 0x87>, <&audma1 0x9c>;
-                 dma-names = "rx", "tx";
-             };
-@@ -469,12 +483,12 @@ examples:
- 
-         rcar_sound,ssi {
-             ssi0: ssi-0 {
--                interrupts = <0 370 1>;
-+                interrupts = <GIC_SPI 370 IRQ_TYPE_LEVEL_HIGH>;
-                 dmas = <&audma0 0x01>, <&audma1 0x02>;
-                 dma-names = "rx", "tx";
-             };
-             ssi1: ssi-1 {
--                interrupts = <0 371 1>;
-+                interrupts = <GIC_SPI 371 IRQ_TYPE_LEVEL_HIGH>;
-                 dmas = <&audma0 0x03>, <&audma1 0x04>;
-                 dma-names = "rx", "tx";
-             };
-@@ -516,7 +530,6 @@ examples:
-         };
-     };
- 
--
-     /* assume audio-graph */
-     codec {
-         port {
--- 
-2.34.1
+On 14.03.2023 11:46, Caleb Connolly wrote:
+> 
+> 
+> On 14/03/2023 10:05, Konrad Dybcio wrote:
+>>
+>>
+>> On 14.03.2023 05:58, Caleb Connolly wrote:
+>>> Almost all of the SDM845 devices actually map the same region for the
+>>> continuous splash / framebuffer. de-dup all the devices that specify it
+>>> manually and put it in sdm845.dtsi instead.
+>>>
+>>> This now reserves it on the OnePlus 6 where it was not reserved before,
+>>> this is intentional.
+>>>
+>>> Signed-off-by: Caleb Connolly <caleb.connolly@linaro.org>
+>>> ---
+>> You didn't explain why is not done on 850 (which I assume has to do with
+>> the windows memory map being different and putting it somewhere else) and
+>> the reasoning for reserving it at all.
+> 
+> Patch 2 reserves it for 850 (not sure I understand you correctly?). The
+> only difference there is the address.
+Okay, but you did not say anything about it in this patch even though
+you made changes to sdm850, perhaps either doing it in one go or
+explaining it here would have been beneficial.
 
+> 
+> The reason for reserving it at all has been previously discussed, when
+> it was added for db845c [1], the conclusion being that a better approach
+> would be nice but didn't seem to be trivial to implement (Cc'd Dmitry).
+> 
+> I acknowledge that reserving this region as we do currently may not be
+> the optimal way of doing so, but I would like to avoid the kernel trying
+> to map memory here and crash my device - and this does that at least :>
+Missing Fixes, then?
+
+> 
+> Basically, my thinking:
+>  * NOT reserving this region is known to cause crashes
+Missing from the commit message
+
+>  * The OnePlus 6 doesn't currently reserve this region, and has some crashes
+The crashing part is missing from the commit message
+
+>  * All the devices that do, reserve it at the same address
+Missing from the commit message
+
+>  * Some don't reserve the full size which is WRONG
+Missing from the commit message
+
+>  * I'll reserve it for the OnePlus 6, de-dup the DT and ensure that the
+> whole size is reserved for all devices.
+Missing from the commit message
+
+>  * ?
+>  * Profit
+Yes
+
+> 
+>>
+>> If that's the framebuffer handoff issue with smmu faults happening, it may
+>> be worth looking into solving that properly, i.e. introducing something like
+>> qcom,framebuffer which would suck up the starting address and figure out the
+>> required size based on MDP5 VIG pipes' registers and could tickle the
+>> autorefresh regs if needed. See how lk2nd does it, the hardware underneath
+>> hasn't changed since msm8974.
+>>
+>> Then, on drm handoff it could free the memory and let drm/msm initialize
+>> its own, new, dynamically-allocated and dynamically-sized region as it wants.
+>>
+>> Or we can use mdss's never-used memory-region property, but that would
+>> kill 35 or so megs of ram for everyone, no matter display their resolution.
+> 
+> Freeing up this ~30mb region sounds like a good improvement to me. I
+> don't see how it's related to this patch though - especially given that
+> commonising the region will make whatever long-term handoff solution we
+> come up with easier anyway.
+> 
+> Apologies if I'm jumping the gun a bit, I'm just trying to avoid
+> blocking this patch on a tangential discussion.
+Okay sure, all of that is valid, but you need to explain these changes,
+or people will just think that you decided to randomly steal RAM from
+them only to commonize some nodes! I'm not saying the contents of this
+patch are very bad, but I am saying that you're not selling it to me
+well enough.
+
+Konrad
+> 
+> [1]:
+> https://lore.kernel.org/linux-arm-msm/dfcc8baa-c0a3-c554-a8cf-75702a1c4cad@linaro.org/
+> [2]:
+> https://lore.kernel.org/linux-arm-msm/2c0a893f-b1c2-a77e-4ad4-409c1c778655@linaro.org/
+>>
+>> Konrad
+>>>  arch/arm64/boot/dts/qcom/sdm845-lg-common.dtsi              | 6 ------
+>>>  arch/arm64/boot/dts/qcom/sdm845-samsung-starqltechn.dts     | 5 -----
+>>>  arch/arm64/boot/dts/qcom/sdm845-shift-axolotl.dts           | 5 -----
+>>>  arch/arm64/boot/dts/qcom/sdm845-sony-xperia-tama.dtsi       | 6 ------
+>>>  .../arm64/boot/dts/qcom/sdm845-xiaomi-beryllium-common.dtsi | 6 ------
+>>>  arch/arm64/boot/dts/qcom/sdm845.dtsi                        | 5 +++++
+>>>  arch/arm64/boot/dts/qcom/sdm850.dtsi                        | 2 ++
+>>>  7 files changed, 7 insertions(+), 28 deletions(-)
+>>>
+>>> diff --git a/arch/arm64/boot/dts/qcom/sdm845-lg-common.dtsi b/arch/arm64/boot/dts/qcom/sdm845-lg-common.dtsi
+>>> index f942c5afea9b..6a1c674a015b 100644
+>>> --- a/arch/arm64/boot/dts/qcom/sdm845-lg-common.dtsi
+>>> +++ b/arch/arm64/boot/dts/qcom/sdm845-lg-common.dtsi
+>>> @@ -93,12 +93,6 @@ spss_mem: memory@99000000 {
+>>>  			no-map;
+>>>  		};
+>>>  
+>>> -		/* Framebuffer region */
+>>> -		memory@9d400000 {
+>>> -			reg = <0x0 0x9d400000 0x0 0x2400000>;
+>>> -			no-map;
+>>> -		};
+>>> -
+>>>  		/* rmtfs lower guard */
+>>>  		memory@f0800000 {
+>>>  			reg = <0 0xf0800000 0 0x1000>;
+>>> diff --git a/arch/arm64/boot/dts/qcom/sdm845-samsung-starqltechn.dts b/arch/arm64/boot/dts/qcom/sdm845-samsung-starqltechn.dts
+>>> index d37a433130b9..7c2457948a32 100644
+>>> --- a/arch/arm64/boot/dts/qcom/sdm845-samsung-starqltechn.dts
+>>> +++ b/arch/arm64/boot/dts/qcom/sdm845-samsung-starqltechn.dts
+>>> @@ -55,11 +55,6 @@ vreg_s4a_1p8: pm8998-smps4 {
+>>>  	};
+>>>  
+>>>  	reserved-memory {
+>>> -		memory@9d400000 {
+>>> -			reg = <0x0 0x9d400000 0x0 0x02400000>;
+>>> -			no-map;
+>>> -		};
+>>> -
+>>>  		memory@a1300000 {
+>>>  			compatible = "ramoops";
+>>>  			reg = <0x0 0xa1300000 0x0 0x100000>;
+>>> diff --git a/arch/arm64/boot/dts/qcom/sdm845-shift-axolotl.dts b/arch/arm64/boot/dts/qcom/sdm845-shift-axolotl.dts
+>>> index b54e304abf71..4f6b1053c15b 100644
+>>> --- a/arch/arm64/boot/dts/qcom/sdm845-shift-axolotl.dts
+>>> +++ b/arch/arm64/boot/dts/qcom/sdm845-shift-axolotl.dts
+>>> @@ -60,11 +60,6 @@ key-vol-up {
+>>>  	};
+>>>  
+>>>  	reserved-memory {
+>>> -		framebuffer_region@9d400000 {
+>>> -			reg = <0x0 0x9d400000 0x0 (1080 * 2160 * 4)>;
+>>> -			no-map;
+>>> -		};
+>>> -
+>>>  		ramoops: ramoops@b0000000 {
+>>>  			compatible = "ramoops";
+>>>  			reg = <0 0xb0000000 0 0x00400000>;
+>>> diff --git a/arch/arm64/boot/dts/qcom/sdm845-sony-xperia-tama.dtsi b/arch/arm64/boot/dts/qcom/sdm845-sony-xperia-tama.dtsi
+>>> index 4984c7496c31..7e273cc0158d 100644
+>>> --- a/arch/arm64/boot/dts/qcom/sdm845-sony-xperia-tama.dtsi
+>>> +++ b/arch/arm64/boot/dts/qcom/sdm845-sony-xperia-tama.dtsi
+>>> @@ -79,12 +79,6 @@ vreg_s4a_1p8: pm8998-smps4 {
+>>>  	};
+>>>  
+>>>  	reserved-memory {
+>>> -		/* SONY was cool and didn't diverge from MTP this time, yay! */
+>>> -		cont_splash_mem: memory@9d400000 {
+>>> -			reg = <0x0 0x9d400000 0x0 0x2400000>;
+>>> -			no-map;
+>>> -		};
+>>> -
+>>>  		ramoops@ffc00000 {
+>>>  			compatible = "ramoops";
+>>>  			reg = <0x0 0xffc00000 0x0 0x100000>;
+>>> diff --git a/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium-common.dtsi b/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium-common.dtsi
+>>> index e0fda4d754fe..191c2664f721 100644
+>>> --- a/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium-common.dtsi
+>>> +++ b/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium-common.dtsi
+>>> @@ -98,12 +98,6 @@ spss_mem: memory@97f00000 {
+>>>  			no-map;
+>>>  		};
+>>>  
+>>> -		/* Cont splash region set up by the bootloader */
+>>> -		cont_splash_mem: framebuffer@9d400000 {
+>>> -			reg = <0 0x9d400000 0 0x2400000>;
+>>> -			no-map;
+>>> -		};
+>>> -
+>>>  		rmtfs_mem: memory@f6301000 {
+>>>  			compatible = "qcom,rmtfs-mem";
+>>>  			reg = <0 0xf6301000 0 0x200000>;
+>>> diff --git a/arch/arm64/boot/dts/qcom/sdm845.dtsi b/arch/arm64/boot/dts/qcom/sdm845.dtsi
+>>> index 479859bd8ab3..ecec2ee46683 100644
+>>> --- a/arch/arm64/boot/dts/qcom/sdm845.dtsi
+>>> +++ b/arch/arm64/boot/dts/qcom/sdm845.dtsi
+>>> @@ -865,6 +865,11 @@ spss_mem: spss@97b00000 {
+>>>  			no-map;
+>>>  		};
+>>>  
+>>> +		cont_splash_mem: framebuffer@9d400000 {
+>>> +			reg = <0 0x9d400000 0 0x2400000>;
+>>> +			no-map;
+>>> +		};
+>>> +
+>>>  		mdata_mem: mpss-metadata {
+>>>  			alloc-ranges = <0 0xa0000000 0 0x20000000>;
+>>>  			size = <0 0x4000>;
+>>> diff --git a/arch/arm64/boot/dts/qcom/sdm850.dtsi b/arch/arm64/boot/dts/qcom/sdm850.dtsi
+>>> index da9f6fbe32f6..b787575c77a5 100644
+>>> --- a/arch/arm64/boot/dts/qcom/sdm850.dtsi
+>>> +++ b/arch/arm64/boot/dts/qcom/sdm850.dtsi
+>>> @@ -7,6 +7,8 @@
+>>>  
+>>>  #include "sdm845.dtsi"
+>>>  
+>>> +/delete-node/ &cont_splash_mem;
+>>> +
+>>>  &cpu4_opp_table {
+>>>  	cpu4_opp33: opp-2841600000 {
+>>>  		opp-hz = /bits/ 64 <2841600000>;
+> 
