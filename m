@@ -2,69 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4BD056B8788
-	for <lists+devicetree@lfdr.de>; Tue, 14 Mar 2023 02:20:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C59946B87A3
+	for <lists+devicetree@lfdr.de>; Tue, 14 Mar 2023 02:39:31 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229960AbjCNBUi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Mar 2023 21:20:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35902 "EHLO
+        id S230023AbjCNBhx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Mar 2023 21:37:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54970 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229880AbjCNBUh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Mar 2023 21:20:37 -0400
-Received: from fudo.makrotopia.org (fudo.makrotopia.org [IPv6:2a07:2ec0:3002::71])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0EA4C5A1BC;
-        Mon, 13 Mar 2023 18:20:37 -0700 (PDT)
-Received: from local
-        by fudo.makrotopia.org with esmtpsa (TLS1.3:TLS_AES_256_GCM_SHA384:256)
-         (Exim 4.96)
-        (envelope-from <daniel@makrotopia.org>)
-        id 1pbtL7-0005j2-0i;
-        Tue, 14 Mar 2023 02:20:33 +0100
-Date:   Tue, 14 Mar 2023 01:18:55 +0000
-From:   Daniel Golle <daniel@makrotopia.org>
-To:     linux-i2c@vger.kernel.org, linux-mediatek@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, Qii Wang <qii.wang@mediatek.com>,
+        with ESMTP id S229901AbjCNBhx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Mar 2023 21:37:53 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 273278F711;
+        Mon, 13 Mar 2023 18:37:52 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id DCE90B81642;
+        Tue, 14 Mar 2023 01:37:50 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A1190C4339B;
+        Tue, 14 Mar 2023 01:37:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1678757869;
+        bh=kaYAeX10da0Sz0xHoCN9cJauQS/JO4mb6Wf+gicdZJo=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=QVjVOSWMh+PBT16fPVp4RJ9G9DiYYg6DwbZou4wn3iEiA/sLMyB6pG8U49dmymdn2
+         xUwVUp89GJWZNbdE8xNU+jKUQnn7pluUdw0VO83jAUK28TmqHehiq40UZmaBhaPaNX
+         7rEysvNpiTaLaU6puYNjitJistu52DKFc8Dao7dVDi4YGlAVGRPDZVvZjdZOi6hUkU
+         3RgOfMcpW1PPbxFMUWD+n3Ng2zUk0jgzXtQdn60wbZKKPjWKTuZ1AXS3oVGByDsCcz
+         WwkntzK3shLzilMZKQ2yTMevr5JgGRHuFPHcKBdsKxX4ZPJpVw1BWRgltZWiSe81LM
+         JT3hW28jlBORA==
+Date:   Tue, 14 Mar 2023 09:37:41 +0800
+From:   Shawn Guo <shawnguo@kernel.org>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-Subject: [PATCH 2/2] dt-bindings: i2c: i2c-mt65xx: add binding for MT7981 SoC
-Message-ID: <f4c351b344113434987b4ffe22db9b51d82a27ae.1678756608.git.daniel@makrotopia.org>
-References: <cover.1678756608.git.daniel@makrotopia.org>
+        Alim Akhtar <alim.akhtar@samsung.com>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        - <patches@opensource.cirrus.com>,
+        Adrien Grassein <adrien.grassein@gmail.com>,
+        Randy Li <ayaka@soulik.info>, alsa-devel@alsa-project.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org, stable@vger.kernel.org
+Subject: Re: [PATCH 2/3] arm64: dts: imx8mm-nitrogen-r2: fix WM8960 clock name
+Message-ID: <20230314013741.GB143566@dragon>
+References: <20230217150627.779764-1-krzysztof.kozlowski@linaro.org>
+ <20230217150627.779764-2-krzysztof.kozlowski@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <cover.1678756608.git.daniel@makrotopia.org>
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <20230217150627.779764-2-krzysztof.kozlowski@linaro.org>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add binding documentation for the I2C controllers found in the
-MediaTek MT7981 SoC.
+On Fri, Feb 17, 2023 at 04:06:26PM +0100, Krzysztof Kozlowski wrote:
+> The WM8960 Linux driver expects the clock to be named "mclk".  Otherwise
+> the clock will be ignored and not prepared/enabled by the driver.
+> 
+> Fixes: 40ba2eda0a7b ("arm64: dts: imx8mm-nitrogen-r2: add audio")
+> Cc: <stable@vger.kernel.org>
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-Signed-off-by: Daniel Golle <daniel@makrotopia.org>
----
- Documentation/devicetree/bindings/i2c/i2c-mt65xx.yaml | 1 +
- 1 file changed, 1 insertion(+)
-
-diff --git a/Documentation/devicetree/bindings/i2c/i2c-mt65xx.yaml b/Documentation/devicetree/bindings/i2c/i2c-mt65xx.yaml
-index 72ae2e01cf22..5ae6769483d7 100644
---- a/Documentation/devicetree/bindings/i2c/i2c-mt65xx.yaml
-+++ b/Documentation/devicetree/bindings/i2c/i2c-mt65xx.yaml
-@@ -23,6 +23,7 @@ properties:
-       - const: mediatek,mt6577-i2c
-       - const: mediatek,mt6589-i2c
-       - const: mediatek,mt7622-i2c
-+      - const: mediatek,mt7981-i2c
-       - const: mediatek,mt7986-i2c
-       - const: mediatek,mt8168-i2c
-       - const: mediatek,mt8173-i2c
--- 
-2.39.2
-
+Applied, thanks!
