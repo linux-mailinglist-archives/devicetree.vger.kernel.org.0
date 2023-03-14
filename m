@@ -2,69 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7BCAE6B9756
-	for <lists+devicetree@lfdr.de>; Tue, 14 Mar 2023 15:10:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CBBD46B9761
+	for <lists+devicetree@lfdr.de>; Tue, 14 Mar 2023 15:11:02 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232373AbjCNOKi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Mar 2023 10:10:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56818 "EHLO
+        id S232616AbjCNOLA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Mar 2023 10:11:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56842 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232396AbjCNOKg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Mar 2023 10:10:36 -0400
-Received: from mail-il1-f169.google.com (mail-il1-f169.google.com [209.85.166.169])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A5C2774A76;
-        Tue, 14 Mar 2023 07:10:34 -0700 (PDT)
-Received: by mail-il1-f169.google.com with SMTP id y12so4479338ilq.4;
-        Tue, 14 Mar 2023 07:10:34 -0700 (PDT)
+        with ESMTP id S232583AbjCNOKu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Mar 2023 10:10:50 -0400
+Received: from mail-io1-f41.google.com (mail-io1-f41.google.com [209.85.166.41])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 285E18E3F2;
+        Tue, 14 Mar 2023 07:10:43 -0700 (PDT)
+Received: by mail-io1-f41.google.com with SMTP id m22so6449809ioy.4;
+        Tue, 14 Mar 2023 07:10:43 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678803034;
+        d=1e100.net; s=20210112; t=1678803042;
         h=date:subject:message-id:references:in-reply-to:cc:to:from
          :mime-version:content-transfer-encoding:x-gm-message-state:from:to
          :cc:subject:date:message-id:reply-to;
-        bh=hNpfc7BgFs/QBGJwy9bFLZmokBPnc2fbGlgGUBh/mSc=;
-        b=BvS337cJ3Pv0esonIvZd0A/1qAfGK00g+k8etS9I52ne9gnBHICrhRpP6purAO4ApS
-         wYPDTT1eH2PjOu4maosoN9TPCUVmzyclEK4Ug4LqQsfl1r7wt7qyKsIj1M4yj2I6mbZm
-         nciNnChZ0INykwcOpNXH/ksBJOA78KOyxXIMoj4Fo2vlfO2758EcxRXsigGrayT1/Auc
-         PpOIF7Bi9WDncUgX6LChrwXXmxkY6JlUgC6FLSKTxkjfjKyCCUfWTgWmypXVa12ThBZ6
-         mkcC/akm8hOQHVV+dO48d1encV8zLbOuJ7kP/sn6IO9qztTT2TySKxi5vSHGibd9GmyY
-         aQGg==
-X-Gm-Message-State: AO0yUKVuhUpbWVuMx4SYQM9XBXJSapcg2yIFTZQv1bW1ECi8XHRxW7tX
-        BXNBXaNz8kXJFTmuBn2NWg==
-X-Google-Smtp-Source: AK7set9LSYW6ANPssoQsKqCg6fbc+vL/1K6HqYJuwjBLyO6XQblN3+7FQuU33PDOnTe1njtyDC1ykQ==
-X-Received: by 2002:a05:6e02:966:b0:311:1168:b9b5 with SMTP id q6-20020a056e02096600b003111168b9b5mr2170694ilt.23.1678803033757;
-        Tue, 14 Mar 2023 07:10:33 -0700 (PDT)
+        bh=Kvo3o7iBOZ0SitIt/v03D3djxGZS2cc9kZtOLnMfPWw=;
+        b=p+ynSjweluMYjr9Nu6hpKU+JPB0SwxmYNY8fbVcaBHlnSidYW0cnHr9LjJkcnRIWEZ
+         FI0lulf83n4LiDm4KPbdI1eywJjw+ry2PvUR+G6K98mZjmAQYLvRhwTh9kkKf2h8vSMP
+         3JDXAN5eCmArjgySp7+4YvstKb2XoWCI4Qr1C/gnum7Rrc9USJf+PelybAA6N9OIseJq
+         TvTngHj8Y6q4f0/GVS7IXHk8cyREFOxZzZjQNpko2HW0YQqoIKb80xMgkw7/ZSReCybr
+         kbHkXOAV81itwihO6T6/SppRP/TxWKOxzen4PVuqXF/9CoJcQ6mUhXIlGxBEbTKoO3xi
+         WO+g==
+X-Gm-Message-State: AO0yUKVWezpxp38qI2TCdhSI2rI2jDdubZNWXEAnDS4HaUXa6umRR44G
+        ZsoNJ/E+vgqCZyfGd78uK2rLOlfPHA==
+X-Google-Smtp-Source: AK7set8ACG0kSoQkv6VrxHrp+10R+OZ6fW7tNemyOQje4bekljWOx5pe5rtb2DbjX232JVkUkLxoyg==
+X-Received: by 2002:a6b:cf05:0:b0:74c:9907:e5b4 with SMTP id o5-20020a6bcf05000000b0074c9907e5b4mr8795099ioa.6.1678803042294;
+        Tue, 14 Mar 2023 07:10:42 -0700 (PDT)
 Received: from robh_at_kernel.org ([64.188.179.249])
-        by smtp.gmail.com with ESMTPSA id a2-20020a924442000000b0031599ebe3a5sm799799ilm.32.2023.03.14.07.10.30
+        by smtp.gmail.com with ESMTPSA id a22-20020a02ac16000000b003ed8808d450sm787450jao.161.2023.03.14.07.10.39
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 14 Mar 2023 07:10:32 -0700 (PDT)
-Received: (nullmailer pid 83798 invoked by uid 1000);
+        Tue, 14 Mar 2023 07:10:40 -0700 (PDT)
+Received: (nullmailer pid 83795 invoked by uid 1000);
         Tue, 14 Mar 2023 14:10:19 -0000
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 MIME-Version: 1.0
 From:   Rob Herring <robh@kernel.org>
-To:     Konrad Dybcio <konrad.dybcio@linaro.org>
-Cc:     Krishna Manikandan <quic_mkrishn@quicinc.com>,
-        Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        freedreno@lists.freedesktop.org, linux-kernel@vger.kernel.org,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        David Airlie <airlied@gmail.com>,
-        Bjorn Andersson <andersson@kernel.org>,
-        linux-arm-msm@vger.kernel.org,
-        Marijn Suijten <marijn.suijten@somainline.org>,
-        Andy Gross <agross@kernel.org>,
-        dri-devel@lists.freedesktop.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-In-Reply-To: <20230307-topic-dsi_qcm-v4-1-54b4898189cb@linaro.org>
-References: <20230307-topic-dsi_qcm-v4-0-54b4898189cb@linaro.org>
- <20230307-topic-dsi_qcm-v4-1-54b4898189cb@linaro.org>
-Message-Id: <167880255009.26088.15283601844060717114.robh@kernel.org>
-Subject: Re: [PATCH v4 01/10] dt-bindings: display/msm:
- dsi-controller-main: Fix deprecated QCM2290 compatible
+To:     Vaishnav Achath <vaishnav.a@ti.com>
+Cc:     bparrot@ti.com, robh+dt@kernel.org, mchehab@kernel.org,
+        tomi.valkeinen@ideasonboard.com, laurent.pinchart@ideasonboard.com,
+        linux-kernel@vger.kernel.org, linux-media@vger.kernel.org,
+        martyn.welch@collabora.com, devicetree@vger.kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, mripard@kernel.org,
+        u-kumar1@ti.com, praneeth@ti.com, nm@ti.com, j-luthra@ti.com,
+        vigneshr@ti.com, devarsht@ti.com,
+        niklas.soderlund+renesas@ragnatech.se, sakari.ailus@linux.intel.com
+In-Reply-To: <20230314115516.667-13-vaishnav.a@ti.com>
+References: <20230314115516.667-1-vaishnav.a@ti.com>
+ <20230314115516.667-13-vaishnav.a@ti.com>
+Message-Id: <167880254910.26054.12313108385082876859.robh@kernel.org>
+Subject: Re: [PATCH v7 12/13] media: dt-bindings: Add DT bindings for TI
+ J721E CSI2RX driver
 Date:   Tue, 14 Mar 2023 09:10:19 -0500
 X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
@@ -78,16 +71,42 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
-On Tue, 14 Mar 2023 13:13:39 +0100, Konrad Dybcio wrote:
-> The qcom, prefix was missed previously. Fix it.
+On Tue, 14 Mar 2023 17:25:15 +0530, Vaishnav Achath wrote:
+> From: Pratyush Yadav <p.yadav@ti.com>
 > 
-> Fixes: 0c0f65c6dd44 ("dt-bindings: msm: dsi-controller-main: Add compatible strings for every current SoC")
-> Acked-by: Rob Herring <robh@kernel.org>
-> Reviewed-by: Marijn Suijten <marijn.suijten@somainline.org>
-> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+> TI's J721E uses the Cadence CSI2RX and DPHY peripherals to facilitate
+> capture over a CSI-2 bus. The TI CSI2RX platform driver glues all the
+> parts together.
+> 
+> Signed-off-by: Pratyush Yadav <p.yadav@ti.com>
+> Signed-off-by: Vaishnav Achath <vaishnav.a@ti.com>
+> Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> Reviewed-by: Rob Herring <robh@kernel.org>
 > ---
->  Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> (no changes since v5)
+> 
+> Changes in v5:
+> - Add Laurent's and Rob's R-by.
+> 
+> Changes in v2:
+> - Rename to ti,j721e-csi2rx.yaml
+> - Add an entry in MAINTAINERS.
+> - Add a description for the binding.
+> - Change compatible to ti,j721e-csi2rx to make it SoC specific.
+> - Remove description from dmas, reg, power-domains.
+> - Remove a limit of 2 from #address-cells and #size-cells.
+> - Fix add ^ to csi-bridge subnode regex.
+> - Make ranges mandatory.
+> - Add unit address in example.
+> - Add a reference to cdns,csi2rx in csi-bridge subnode.
+> - Expand the example to include the csi-bridge subnode as well.
+> - Re-order subject prefixes.
+> 
+>  .../bindings/media/ti,j721e-csi2rx.yaml       | 101 ++++++++++++++++++
+>  MAINTAINERS                                   |   1 +
+>  2 files changed, 102 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/media/ti,j721e-csi2rx.yaml
 > 
 
 My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
@@ -96,22 +115,14 @@ on your patch (DT_CHECKER_FLAGS is new in v5.13):
 yamllint warnings/errors:
 
 dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/display/msm/qcom,sm6115-mdss.example.dtb: dsi@5e94000: compatible: 'oneOf' conditional failed, one must be fixed:
-	['qcom,dsi-ctrl-6g-qcm2290'] is too short
-	'qcom,dsi-ctrl-6g-qcm2290' is not one of ['qcom,apq8064-dsi-ctrl', 'qcom,msm8916-dsi-ctrl', 'qcom,msm8953-dsi-ctrl', 'qcom,msm8974-dsi-ctrl', 'qcom,msm8996-dsi-ctrl', 'qcom,msm8998-dsi-ctrl', 'qcom,qcm2290-dsi-ctrl', 'qcom,sc7180-dsi-ctrl', 'qcom,sc7280-dsi-ctrl', 'qcom,sdm660-dsi-ctrl', 'qcom,sdm845-dsi-ctrl', 'qcom,sm8150-dsi-ctrl', 'qcom,sm8250-dsi-ctrl', 'qcom,sm8350-dsi-ctrl', 'qcom,sm8450-dsi-ctrl', 'qcom,sm8550-dsi-ctrl']
-	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/display/msm/qcom,sm6115-mdss.example.dtb: dsi@5e94000: Unevaluated properties are not allowed ('compatible' was unexpected)
-	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/display/msm/qcom,qcm2290-mdss.example.dtb: dsi@5e94000: compatible: 'oneOf' conditional failed, one must be fixed:
-	['qcom,dsi-ctrl-6g-qcm2290'] is too short
-	'qcom,dsi-ctrl-6g-qcm2290' is not one of ['qcom,apq8064-dsi-ctrl', 'qcom,msm8916-dsi-ctrl', 'qcom,msm8953-dsi-ctrl', 'qcom,msm8974-dsi-ctrl', 'qcom,msm8996-dsi-ctrl', 'qcom,msm8998-dsi-ctrl', 'qcom,qcm2290-dsi-ctrl', 'qcom,sc7180-dsi-ctrl', 'qcom,sc7280-dsi-ctrl', 'qcom,sdm660-dsi-ctrl', 'qcom,sdm845-dsi-ctrl', 'qcom,sm8150-dsi-ctrl', 'qcom,sm8250-dsi-ctrl', 'qcom,sm8350-dsi-ctrl', 'qcom,sm8450-dsi-ctrl', 'qcom,sm8550-dsi-ctrl']
-	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/display/msm/qcom,qcm2290-mdss.example.dtb: dsi@5e94000: Unevaluated properties are not allowed ('compatible' was unexpected)
-	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml
+./Documentation/devicetree/bindings/media/ti,j721e-csi2rx.yaml: Unable to find schema file matching $id: http://devicetree.org/schemas/media/cdns,csi2rx.yaml
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/media/ti,j721e-csi2rx.example.dtb: ticsi2rx@4500000: csi-bridge@4504000: False schema does not allow {'compatible': ['cdns,csi2rx'], 'reg': [[72368128, 4096]], 'clocks': [[4294967295, 26, 2], [4294967295, 26, 0], [4294967295, 26, 2], [4294967295, 26, 2], [4294967295, 26, 3], [4294967295, 26, 3]], 'clock-names': ['sys_clk', 'p_clk', 'pixel_if0_clk', 'pixel_if1_clk', 'pixel_if2_clk', 'pixel_if3_clk'], 'phys': [[4294967295]], 'phy-names': ['dphy'], 'ports': {'#address-cells': [[1]], '#size-cells': [[0]], 'port@0': {'reg': [[0]], 'endpoint': {'remote-endpoint': [[4294967295]], 'bus-type': [[4]], 'clock-lanes': [[0]], 'data-lanes': [[1, 2]]}}}}
+	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/media/ti,j721e-csi2rx.yaml
+Documentation/devicetree/bindings/media/ti,j721e-csi2rx.example.dtb: /example-0/ticsi2rx@4500000/csi-bridge@4504000: failed to match any schema with compatible: ['cdns,csi2rx']
 
 doc reference errors (make refcheckdocs):
 
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20230307-topic-dsi_qcm-v4-1-54b4898189cb@linaro.org
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20230314115516.667-13-vaishnav.a@ti.com
 
 The base for the series is generally the latest rc1. A different dependency
 should be noted in *this* patch.
