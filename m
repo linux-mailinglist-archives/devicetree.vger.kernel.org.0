@@ -2,108 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 534BC6B8D34
-	for <lists+devicetree@lfdr.de>; Tue, 14 Mar 2023 09:24:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id ADABE6B8D45
+	for <lists+devicetree@lfdr.de>; Tue, 14 Mar 2023 09:27:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229845AbjCNIXs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Mar 2023 04:23:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41530 "EHLO
+        id S229537AbjCNI1N (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Mar 2023 04:27:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51164 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229441AbjCNIX3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Mar 2023 04:23:29 -0400
-Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com [IPv6:2a00:1450:4864:20::52b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BF48530E98
-        for <devicetree@vger.kernel.org>; Tue, 14 Mar 2023 01:21:56 -0700 (PDT)
-Received: by mail-ed1-x52b.google.com with SMTP id k10so58458691edk.13
-        for <devicetree@vger.kernel.org>; Tue, 14 Mar 2023 01:21:56 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1678782114;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=/3Pox4XAvLnFNQzaTLmAx4AjLw2hBw8wrTBcLaB41To=;
-        b=ZR/9tsrYEGhcCJThIaIJws7+UnO3wfRjY13AR+L8pTE2iLf/QF/xZDThAuRYQfD+Qr
-         t84kkVrfzgHZLQOSiPzs/zCfAySauI/dsZ1ErxYsyEDRPthrXo57QLEAfQ6kZUCjJ36n
-         drRsxMysV01P38QFssHvXViAXdb0tsNclwCC78SCmKJwiECP1rubYB+GfyhqmrRB5A+v
-         5hfBMe91fHW2gLwIXKGfnzW+NsCnWJRXgTRhKhzmBgy7TABrQddVBusWHXKQTnoqkr/N
-         sub2YvXcga1oolpYAaEzSF32o7lG6LUfXkQhoRxXrg8uTbs3ZO8GfrlF8meSuqXRhfQR
-         bqYw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678782114;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=/3Pox4XAvLnFNQzaTLmAx4AjLw2hBw8wrTBcLaB41To=;
-        b=aNvFpxeo5FoWYfj8BHBodd6qC333XQC7EDFanXfFNTN3UlqfinfXo9Gshpe9wYIWK4
-         cN9SeOiebd3GFB52/WBU6VmWBogE9pCVL89O27uljy9J9AHSILIDbr2fjBo39c5tBNdg
-         cGZmiRbauKp/1SzxZ7CB6X+RYvnK4yTJM2cwuMg9c88YVK3hBqygxRhXdkWsQW9aEO6g
-         bWcH6sbUt4TiSbAZUPtoSjBb34vIjOK4GYj1CSUIFJa8bJD2q2g/KMgt+upyeZccADZc
-         BNnXI38zUxD4W2yIAe2HEA3Q+8j/plfYQJI6qh+43qvUw5/3bqo3nrrbSlcZZ1H66OYK
-         oVQg==
-X-Gm-Message-State: AO0yUKXoBw7Zctvb/3kInvCTHQ4M73o7B2VLT71EoypzTHAA1GfXrMXP
-        NlRLOGqZNV6RJmY2xkw0+0j/yA==
-X-Google-Smtp-Source: AK7set/RGW1Q0rfcXRKAWSYuVzvGhANcYDc1JFQ2Fy3W1FXxaxJXijT7RNC+s1L1k1sgw9XYkMt+0g==
-X-Received: by 2002:a17:906:3986:b0:91f:32f9:82f0 with SMTP id h6-20020a170906398600b0091f32f982f0mr1308617eje.29.1678782114207;
-        Tue, 14 Mar 2023 01:21:54 -0700 (PDT)
-Received: from ?IPV6:2a02:810d:15c0:828:6932:5570:6254:9edd? ([2a02:810d:15c0:828:6932:5570:6254:9edd])
-        by smtp.gmail.com with ESMTPSA id bg23-20020a170906a05700b008d398a4e687sm780554ejb.158.2023.03.14.01.21.53
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 14 Mar 2023 01:21:53 -0700 (PDT)
-Message-ID: <92725aab-a540-b35a-6614-2b91039f433c@linaro.org>
-Date:   Tue, 14 Mar 2023 09:21:52 +0100
+        with ESMTP id S229624AbjCNI04 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Mar 2023 04:26:56 -0400
+Received: from mail11.truemail.it (mail11.truemail.it [IPv6:2001:4b7e:0:8::81])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4CACC38E8F;
+        Tue, 14 Mar 2023 01:25:33 -0700 (PDT)
+Received: from francesco-nb.int.toradex.com (93-49-2-63.ip317.fastwebnet.it [93.49.2.63])
+        by mail11.truemail.it (Postfix) with ESMTPA id B801220B15;
+        Tue, 14 Mar 2023 09:25:28 +0100 (CET)
+Date:   Tue, 14 Mar 2023 09:25:24 +0100
+From:   Francesco Dolcini <francesco@dolcini.it>
+To:     Shawn Guo <shawnguo@kernel.org>
+Cc:     Francesco Dolcini <francesco@dolcini.it>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Philippe Schenker <dev@pschenker.ch>,
+        devicetree@vger.kernel.org, Sascha Hauer <s.hauer@pengutronix.de>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Frank Rowand <frowand.list@gmail.com>,
+        linux-arm-kernel@lists.infradead.org,
+        Fabio Estevam <festevam@gmail.com>,
+        Philippe Schenker <philippe.schenker@toradex.com>,
+        linux-kernel@vger.kernel.org,
+        Marcel Ziswiler <marcel.ziswiler@toradex.com>
+Subject: Re: [PATCH v1 03/25] arm64: dts: colibri-imx8x: Sort properties
+Message-ID: <ZBAvdI/Y0RL7Xf7/@francesco-nb.int.toradex.com>
+References: <20230308125300.58244-1-dev@pschenker.ch>
+ <20230308125300.58244-4-dev@pschenker.ch>
+ <9d213504-d457-21a6-d467-41d8783d53d3@linaro.org>
+ <ZAnOwaXpcqI30jFi@francesco-nb.int.toradex.com>
+ <20230314081735.GE143566@dragon>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-Subject: Re: [PATCH 1/2] dt-bindings: arm: qcom: Add Acer Aspire 1
-Content-Language: en-US
-To:     Nikita Travkin <nikita@trvn.ru>, agross@kernel.org,
-        andersson@kernel.org
-Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        konrad.dybcio@linaro.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht
-References: <20230314064322.65429-1-nikita@trvn.ru>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230314064322.65429-1-nikita@trvn.ru>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230314081735.GE143566@dragon>
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_PASS,
+        SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 14/03/2023 07:43, Nikita Travkin wrote:
-> Acer Aspire 1 is a laptop based on sc7180. Document it's compatible.
+On Tue, Mar 14, 2023 at 04:17:35PM +0800, Shawn Guo wrote:
+> On Thu, Mar 09, 2023 at 01:19:13PM +0100, Francesco Dolcini wrote:
+> > Hello Krzysztof, first thanks for your review.
+> > 
+> > Let's try to get some clarity on this with the help of Shawn.
+> > 
+> > On Wed, Mar 08, 2023 at 01:57:38PM +0100, Krzysztof Kozlowski wrote:
+> > > On 08/03/2023 13:52, Philippe Schenker wrote:
+> > > > From: Philippe Schenker <philippe.schenker@toradex.com>
+> > > > 
+> > > > Sort properties according to the following order and inside these
+> > > > alphabetically.
+> > > > 
+> > > > 1. compatible
+> > > > 2. reg
+> > > > 3. standard properties
+> > > > 4. specific properties
+> > > > 5. status
+> > > 
+> > > Is this approved coding style for IMX DTS?
+> > 
+> > I 100% understand your concerns here.
+> > 
+> > With that said let me try to briefly explain the reasoning here, in
+> > various threads we were asked in the past to move node around based on
+> > some not 100% defined rules [0][1].
+> > 
+> > On Sun, 2023-01-29 at 11:19 +0800, Shawn Guo wrote:
+> > >> +&usbotg1 {
+> > >> +	adp-disable;
+> > >> +	ci-disable-lpm;
+> > >> +	hnp-disable;
+> > >> +	over-current-active-low;
+> > >> +	pinctrl-names = "default";
+> > >> +	pinctrl-0 = <&pinctrl_usbotg1>;
+> > >
+> > >We generally want to put such generic properties before device specific
+> > >ones.
+> > 
+> > In addition to that we find convenient to have properties sorted
+> > alphabetically when no other rule is available, it just prevents any
+> > kind of discussion, minimize merge conflicts and make comparing files
+> > easier.
+> > 
+> > I also agree that the difference between "generic"/"specific" is fuzzy
+> > at best.
+> > 
+> > With all that said ...
+> > 
+> > Shawn: What should we do? We can of course avoid any kind of re-ordering
+> > from now on.
 > 
-> Signed-off-by: Nikita Travkin <nikita@trvn.ru>
-> ---
->  Documentation/devicetree/bindings/arm/qcom.yaml | 5 +++++
->  1 file changed, 5 insertions(+)
+> We are practically asking for 1, 2 and 5 for i.MX DTS files, but pretty
+> flexible for the rest.
 > 
-> diff --git a/Documentation/devicetree/bindings/arm/qcom.yaml b/Documentation/devicetree/bindings/arm/qcom.yaml
-> index 1bb24d46e4ee..903a5ea42cf6 100644
-> --- a/Documentation/devicetree/bindings/arm/qcom.yaml
-> +++ b/Documentation/devicetree/bindings/arm/qcom.yaml
-> @@ -352,6 +352,11 @@ properties:
->                - qcom,qru1000-idp
->            - const: qcom,qru1000
->  
-> +      - items:
-> +          - enum:
-> +              - acer,aspire1
-> +          - const: qcom,sc7180
-> +
->        - description: Qualcomm Technologies, Inc. SC7180 IDP
+> > I am fine to be very pragmatic here, no-reordering on existing DTS
+> > files, newly added DTS files we discuss whatever is the reasoning of the
+> > reviewer/maintainer on a case-by-case basis.
+> 
+> Sounds good to me!  While I personally like your ordering, I do not want
+> it to churn the existing DTS files.
 
-Please merge with this one and drop the description (or rename it to
-something like SC7180-based boards). The sc7180 entries spread a lot and
-it is not helping to read the file.
+Agreed.
 
-Best regards,
-Krzysztof
+> 
+> I'm happy to take this patch as a special case though :)
+
+Philippe just rebased all the stuff getting rid of the sort commit :-)
+No special case needed, he will send an updated series in a hour.
+
+Thanks a lot,
+Francesco
 
