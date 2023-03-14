@@ -2,85 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A2AF76B9BC1
-	for <lists+devicetree@lfdr.de>; Tue, 14 Mar 2023 17:37:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 27D366B9BE1
+	for <lists+devicetree@lfdr.de>; Tue, 14 Mar 2023 17:41:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229590AbjCNQhl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Mar 2023 12:37:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32916 "EHLO
+        id S231159AbjCNQlr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Mar 2023 12:41:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42866 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230487AbjCNQhf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Mar 2023 12:37:35 -0400
-Received: from mail-ed1-x52f.google.com (mail-ed1-x52f.google.com [IPv6:2a00:1450:4864:20::52f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 635C6B5FD4
-        for <devicetree@vger.kernel.org>; Tue, 14 Mar 2023 09:37:07 -0700 (PDT)
-Received: by mail-ed1-x52f.google.com with SMTP id h8so20696746ede.8
-        for <devicetree@vger.kernel.org>; Tue, 14 Mar 2023 09:37:07 -0700 (PDT)
+        with ESMTP id S230511AbjCNQll (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Mar 2023 12:41:41 -0400
+Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1DAABAFBB3
+        for <devicetree@vger.kernel.org>; Tue, 14 Mar 2023 09:41:37 -0700 (PDT)
+Received: by mail-ed1-x533.google.com with SMTP id cn21so34368809edb.0
+        for <devicetree@vger.kernel.org>; Tue, 14 Mar 2023 09:41:37 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1678811826;
+        d=linaro.org; s=google; t=1678812095;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=jlGiPxrBuoe9rTT5t5btZfai4+ZRhJj1KWzKF0d0HFU=;
-        b=FQ/jOD6i4QQu8oqCAAp5ZGGmktZ2aOz+YkkM8ZFiMxN80MnfYP1emmP8nM7ymFNpyz
-         xJYIYUbYxnc/7QnSfRk+sVAS5KzuNa1L9hqn6KyvE9zOYh8H7LmYy+MNSAYfs7zgPj7L
-         ot4J620sW+6KSVfw/+kaYfsoRHI4CtDy1s+MhMyVSSiD7LAKyFmclBYkGDCow1kjyr+l
-         pOYoc4R100uTMGMrnrvA0Pcjft9D+KQ+PMzbPUGaUzG5Zwby6NcEPLrPJ2ph2XhgceH3
-         MktBbOUBaSfdw8pYBQWXQjU33gj+DMnjBRG87wKxifJcbEL8sl3s74LurRBgV1YcSC4D
-         D64g==
+        bh=6SsCCJzWTBiCPh1OsbG9kK3RWsvKGZ056pX9CV7XhZA=;
+        b=jz3L9GpfUAqN42bQ+FcTiVeAwtE2XA7ccj8YMmams3WB19+ew1CZMsRhmve1uimWXX
+         lOOUFFaxymTSywBgI5YbRFn2O+5WcvF7BkM1WDqHRDZFXq/8mq1j9Lekv+ub91NwBJQ1
+         gsIDSwQzmybTLv60ZYBd9hpbqgpLAVN8zgXMZbiQXNs3lYiXeSaEdzPKgLptaEnktOsJ
+         PQmHI5n8/539//UwrNwx9w0aOwAu2QbW3znCnmDxDl38jZaPZ7kpYLT3xKqz7sNMGwMS
+         oYt56TtGG+Vl8fSOTd4SQebrhoudRvPBOwU7GpQSmWFMzC+qVYsRdI7+n08hLPumCPbP
+         i4aw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678811826;
+        d=1e100.net; s=20210112; t=1678812095;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=jlGiPxrBuoe9rTT5t5btZfai4+ZRhJj1KWzKF0d0HFU=;
-        b=zVRQ55TjvRWSCvCXrXWUief+5xfMopCWJ112q85tsJLQJ1G7m4sbT8ic0Xks3CvARY
-         hKv50Pah7Q9SIUo3oCi5gHHHb3wxxunspmrQiW9cAaVBlEAz0IzaGOWChcPg00+DHTCv
-         V1Cudk0jKfNlctZY9eHkMg/QlsTHEu+31mQ/JIj6UsLLynnkWmIiGDZxwqn+szMtYqUA
-         mGbu9EaqOkbBKMFp2L7RhQO/An9zrvH+4tTz4fnnf00Hb5J4+nZt7C3AtX6N/yCw/aA8
-         sZt9rl7N9/cmWDAWG659LDl4OAA3JGJl6PiDtrJUEvUzr7iaYPXExQmROcqe+qd49Phr
-         bDOw==
-X-Gm-Message-State: AO0yUKWxShFRaGzLkt80VmYf++H++ooY6Sp+Li8cEIZ0glkD0ftexQam
-        g4E1tjptwhk+jvhDE5ngksAZVA==
-X-Google-Smtp-Source: AK7set9lnU/c+UFm9vu8VIT38DOdPTI3d2yJvUCDcnXWxLpHH00EYbhYjyI9vtClCCGH+kKcraHy5w==
-X-Received: by 2002:a17:906:950a:b0:92a:32ac:8f3d with SMTP id u10-20020a170906950a00b0092a32ac8f3dmr2935863ejx.66.1678811825873;
-        Tue, 14 Mar 2023 09:37:05 -0700 (PDT)
+        bh=6SsCCJzWTBiCPh1OsbG9kK3RWsvKGZ056pX9CV7XhZA=;
+        b=UBALwscTjRtsV6Rc54pqqgZJ77RWJMbIxBRsvF9+xIg5d3N4WxY5IKPLkxRDv8z9dH
+         KJV4DEY11ee9QQ4e1CUKKdqMBlpMZ4uwK6qQZFEI7cM3bKihse3WpMTVdzBLpfMrHQjB
+         1tkI1RA+1tVEn/BnqzGWfn9Vz2BfqM8eGOesXvYFJweuWJ+5CwY3gDeyWwarkt2g/XRF
+         ylYaVw/t46Z1LeGeEOXw7uYbJJw9kdfGN4C0Vd9R9ECjmQRq1nTHZP0bvCId4ysXT/r0
+         xrcXWFVTv/Q9GnIwb1rTEo7d8pUW4SXObzncsTnnqLhzOdY5HLxjEy9aTIDhgUUhdtSq
+         JjsA==
+X-Gm-Message-State: AO0yUKX2ye13MIoUbRRxmC342XN5FIEbOUwJt9lTq6t8YyMpsKKtqjBe
+        ShiDAMD5mpi0xA0EoOkA1gbuFB7YvK7PagOn9yc=
+X-Google-Smtp-Source: AK7set//SoqnRRnKaLi/E2VlDshAWGHEvIdc5wTaQLtFuAdBQoKbbNHYMSgUJptpD3CmMR27puqFBg==
+X-Received: by 2002:a17:907:a0e:b0:895:58be:957 with SMTP id bb14-20020a1709070a0e00b0089558be0957mr4077263ejc.2.1678812095568;
+        Tue, 14 Mar 2023 09:41:35 -0700 (PDT)
 Received: from ?IPV6:2a02:810d:15c0:828:59be:4b3f:994b:e78c? ([2a02:810d:15c0:828:59be:4b3f:994b:e78c])
-        by smtp.gmail.com with ESMTPSA id mh1-20020a170906eb8100b008eddbd46d7esm1358056ejb.31.2023.03.14.09.37.04
+        by smtp.gmail.com with ESMTPSA id h1-20020a50c381000000b004c0c5864cc5sm1297077edf.25.2023.03.14.09.41.34
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 14 Mar 2023 09:37:05 -0700 (PDT)
-Message-ID: <b9b4d33d-f325-6437-4f4d-f051d2455e2d@linaro.org>
-Date:   Tue, 14 Mar 2023 17:37:04 +0100
+        Tue, 14 Mar 2023 09:41:35 -0700 (PDT)
+Message-ID: <ed2d01ee-4e64-396b-569e-e698ea6fd5da@linaro.org>
+Date:   Tue, 14 Mar 2023 17:41:34 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.8.0
-Subject: Re: [PATCH v10 3/5] dt-bindings: clock: meson: add A1 PLL and
- Peripherals clkcs bindings
+Subject: Re: [PATCH] arm64: dts: marvell: armada-ap810: Fix GICv3 ITS node
+ name
 Content-Language: en-US
-To:     Dmitry Rokosov <ddrokosov@sberdevices.ru>,
-        neil.armstrong@linaro.org
-Cc:     jbrunet@baylibre.com, mturquette@baylibre.com, sboyd@kernel.org,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        khilman@baylibre.com, martin.blumenstingl@googlemail.com,
-        jian.hu@amlogic.com, kernel@sberdevices.ru, rockosov@gmail.com,
-        linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-References: <20230313201259.19998-1-ddrokosov@sberdevices.ru>
- <20230313201259.19998-4-ddrokosov@sberdevices.ru>
- <ffebef1d-8447-181b-1890-3e638d399c62@linaro.org>
- <20230314114825.yiv4vcszr6b7m45w@CAB-WSD-L081021>
- <2d9297e9-dab7-9615-3859-79b3b2980d9a@linaro.org>
- <20230314150107.mwcglcu2jv4ixy3r@CAB-WSD-L081021>
- <9d176288-cd7c-7107-e180-761e372a2b6e@linaro.org>
- <c8fecf94-2581-6cc9-955c-324efdc7c70a@linaro.org>
- <21add21d-4afe-7840-6c49-3786f82761d9@linaro.org>
- <6b7ae52c-d84d-8d08-139c-5c67ec363e85@linaro.org>
- <20230314155641.6iw5vgkrrqcx22n6@CAB-WSD-L081021>
+To:     Andrew Lunn <andrew@lunn.ch>, Rob Herring <robh@kernel.org>
+Cc:     Gregory Clement <gregory.clement@bootlin.com>,
+        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20230207234735.201812-1-robh@kernel.org>
+ <CAL_JsqLitc8rX4aXomgXKSPcW8ejEYe1wB_ecyAg7pgJgR=zyA@mail.gmail.com>
+ <c02f83c4-3796-40ad-8087-d297ba84e5da@lunn.ch>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230314155641.6iw5vgkrrqcx22n6@CAB-WSD-L081021>
+In-Reply-To: <c02f83c4-3796-40ad-8087-d297ba84e5da@lunn.ch>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
@@ -91,55 +80,28 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 14/03/2023 16:56, Dmitry Rokosov wrote:
-> On Tue, Mar 14, 2023 at 04:40:19PM +0100, neil.armstrong@linaro.org wrote:
->> On 14/03/2023 16:37, Krzysztof Kozlowski wrote:
->>> On 14/03/2023 16:33, neil.armstrong@linaro.org wrote:
->>>>> There are many ways - depend on your driver. For example like this:
->>>>> https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/clk/samsung/clk-exynos5420.c#n975
->>>>>
->>>>> The first argument is the clock ID (or ignore).
->>>>>
->>>>> BTW, quite likely the problem is generic to all Meson clock drivers.
->>>>
->>>> This issue about "public" non-continuous defined was already discussed at https://lore.kernel.org/all/c088e01c-0714-82be-8347-6140daf56640@linaro.org/
->>>>
->>>> I don't see what's different with this one.
+On 14/03/2023 17:21, Andrew Lunn wrote:
+> On Tue, Mar 14, 2023 at 10:22:40AM -0500, Rob Herring wrote:
+>> On Tue, Feb 7, 2023 at 5:47 PM Rob Herring <robh@kernel.org> wrote:
 >>>
->>> So you are aware that all undocumented clock IDs are still allowed to
->>> use in DTS and they are ABI? Changing them will be an ABI break.
->>
->> Yes of course.
->>
->> Neil
->>
+>>> The GICv3 ITS is an MSI controller, therefore its node name should be
+>>> 'msi-controller'.
 >>>
->>> Best regards,
->>> Krzysztof
->>>
+>>> Signed-off-by: Rob Herring <robh@kernel.org>
+>>> ---
+>>>  arch/arm64/boot/dts/marvell/armada-ap810-ap0.dtsi | 2 +-
+>>>  1 file changed, 1 insertion(+), 1 deletion(-)
 >>
+>> Ping!
+>>
+>> If not maintained, should I send a patch removing this platform instead?
 > 
-> Sorry, guys, I'm little bit confused.
-> In the discussion pointed by Neil not-by-one-increment ID with public and
-> private parts are acked by Krzysztof due to explicit explanation in the
-> gxbb header. Have I to comment out my situation and stay it as is?
+> Gregory usually picks these up around -rc6.
 
-I did not NAK your solution here. I just pointed my usual remarks that
-it has certain outcome and minuses (undocumented ABI). But it is OK.
+Hm, so they stay in next for just one or two weeks before sending to
+arm-soc? Why? They should be in the next as fast as possible, why waiting?
 
-> 
-> BTW, I think changing IDs value would not affect logic, because
-> it's not connected to driver logic 'by values', but 'by constants
-
-You cannot change the IDs, neither their values nor the names (with
-exceptions). IDs - so the numbers - are ABI.
-
-"Constant names" - I assume you mean the names of defines - do not exist
-after preprocessing, so also not really relevant here...
-
-> names'. We can expose/hide anything from device tree bindings, it will
-> not change the clk driver logic.
-
+Second question, shall I drop it?
 
 Best regards,
 Krzysztof
