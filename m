@@ -2,67 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7EB5C6B975B
-	for <lists+devicetree@lfdr.de>; Tue, 14 Mar 2023 15:10:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 97FED6B974C
+	for <lists+devicetree@lfdr.de>; Tue, 14 Mar 2023 15:10:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232568AbjCNOKt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Mar 2023 10:10:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56820 "EHLO
+        id S231740AbjCNOKa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Mar 2023 10:10:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56450 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232291AbjCNOKi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Mar 2023 10:10:38 -0400
-Received: from mail-io1-f48.google.com (mail-io1-f48.google.com [209.85.166.48])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C4B3C85B36;
-        Tue, 14 Mar 2023 07:10:36 -0700 (PDT)
-Received: by mail-io1-f48.google.com with SMTP id g6so6434995iov.13;
-        Tue, 14 Mar 2023 07:10:36 -0700 (PDT)
+        with ESMTP id S230457AbjCNOK2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Mar 2023 10:10:28 -0400
+Received: from mail-il1-f170.google.com (mail-il1-f170.google.com [209.85.166.170])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EAB6564A9E
+        for <devicetree@vger.kernel.org>; Tue, 14 Mar 2023 07:10:22 -0700 (PDT)
+Received: by mail-il1-f170.google.com with SMTP id a13so2302062ilr.9
+        for <devicetree@vger.kernel.org>; Tue, 14 Mar 2023 07:10:22 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678803036;
+        d=1e100.net; s=20210112; t=1678803022;
         h=date:subject:message-id:references:in-reply-to:cc:to:from
          :mime-version:content-transfer-encoding:x-gm-message-state:from:to
          :cc:subject:date:message-id:reply-to;
-        bh=AO9OtxWO9OtOvd5xefZPHLbbBm6bTV85U6hkSkYPrV8=;
-        b=qfvWYoPONo7+N0dih6SL+t5yGhhiHor2VIxLDrfen9Y2vRWigc7dNEdRR5gxnqKZcS
-         FKHZk5hS4EN5I/RNsxMASwN5X4Aq3oVelvTkkqP/uA71yEnIPM/ADVj6IYy6bq/8C+Ca
-         00qonOUza++I6fZDvQhXfeBsc0o14zcb8HvlEM40ihZ01UNMarweWG4PadYBwImplEx+
-         f0lKLq0HpDMZvtHNgKRPYqNZBUxIM8IYUyNDaAhsZFSPrZ56awgA4nrdRrAMohV26kX9
-         O+qrwGI5/7HzlYHIXMiUPL++Gh7S+6G+ZNtEeg6+tskTWeLcAVs2gwk4ZzXIIl7drA4j
-         yzXg==
-X-Gm-Message-State: AO0yUKW+6Ie1l3A+5rOzJrMzzuWjXjKZgreiPDT8/IEkvXj/DOA1vY47
-        LNMe+4U78TMcu0ikXRt3rg==
-X-Google-Smtp-Source: AK7set9d2oLzX+5QU6qtEvSgErDHV3fNQtwQocr4/uY3w5g3N8Pa9Fta1wUTyAO/xYzhNT6Da8a4Uw==
-X-Received: by 2002:a5d:8594:0:b0:74c:b436:4a9e with SMTP id f20-20020a5d8594000000b0074cb4364a9emr24021636ioj.16.1678803035864;
-        Tue, 14 Mar 2023 07:10:35 -0700 (PDT)
+        bh=J4IxKJvNCPem37WE9sb2G8fFH28w36QHntMu/poKH9M=;
+        b=X3OTQySzugX9KTj/YDzx3wXD25+rxWSJZ8rez+azdwzDmgOHByOF2tsrqLC3+1Pzz5
+         1czH/wwIu6Lt+EfN/YcBzCkGMBsqT9P+csFFCZ4rb/hvL7e9eDqu8YIsgU8wjQF05Fka
+         UcwKxjAK9eAogKEegQtOndI5Bhsb0287+Adw8myIAO+GF4aWm+g37W/D73QFPGj2xqiH
+         GtHpnbBeKPzCVAaJhn4NxmoU0em60M+XJo+HQgMupiy9Q2k7aFOiC1l16uDY1MRKATLR
+         VzPn4O1fyITRlKgV0gWCSGLw3Q0/Y/zIiQKV3PbxyiJPqG42TRkslE5ycabbwEpUZ7xU
+         RHzw==
+X-Gm-Message-State: AO0yUKUKO2fPaeoaUahykkeewZl3bAJosLQt7+BDL81x/U6lyxJOj2eU
+        wwtUh86Vrbha13vFCoW1bI8c+PbYAw==
+X-Google-Smtp-Source: AK7set9SlKS7zd+F8Ye1ypiH0I9v8SwPT4BniplC0Bu9O2AeYdH9GSz3fWEu32E5sqUq2M08p+zWKg==
+X-Received: by 2002:a05:6e02:128b:b0:310:c1b3:9906 with SMTP id y11-20020a056e02128b00b00310c1b39906mr2137148ilq.25.1678803022142;
+        Tue, 14 Mar 2023 07:10:22 -0700 (PDT)
 Received: from robh_at_kernel.org ([64.188.179.249])
-        by smtp.gmail.com with ESMTPSA id g21-20020a02bb95000000b004051a7ef7f3sm800531jan.71.2023.03.14.07.10.34
+        by smtp.gmail.com with ESMTPSA id s27-20020a02cc9b000000b0040610ade715sm207855jap.83.2023.03.14.07.10.20
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 14 Mar 2023 07:10:35 -0700 (PDT)
-Received: (nullmailer pid 83783 invoked by uid 1000);
+        Tue, 14 Mar 2023 07:10:20 -0700 (PDT)
+Received: (nullmailer pid 83768 invoked by uid 1000);
         Tue, 14 Mar 2023 14:10:19 -0000
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 MIME-Version: 1.0
 From:   Rob Herring <robh@kernel.org>
-To:     Komal Bajaj <quic_kbajaj@quicinc.com>
-Cc:     Prakash Ranjan <saiprakash.ranjan@codeaurora.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rishabh Bhatnagar <rishabhb@codeaurora.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        devicetree@vger.kernel.org, Andy Gross <agross@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, Abel Vesa <abel.vesa@linaro.org>
-In-Reply-To: <20230313124040.9463-3-quic_kbajaj@quicinc.com>
-References: <20230313124040.9463-1-quic_kbajaj@quicinc.com>
- <20230313124040.9463-3-quic_kbajaj@quicinc.com>
-Message-Id: <167880254436.25736.2826081458133350078.robh@kernel.org>
-Subject: Re: [PATCH v2 2/5] dt-bindings: arm: msm: Add bindings for multi
- channel DDR in LLCC
+To:     Jan Jasper de Kroon <jajadekroon@gmail.com>
+Cc:     devicetree@vger.kernel.org
+In-Reply-To: <20230311134655.486973-1-jajadekroon@gmail.com>
+References: <20230311134655.486973-1-jajadekroon@gmail.com>
+Message-Id: <167880254118.25298.6305780643962543224.robh@kernel.org>
+Subject: Re: [PATCH] feat: Add 'hold-in-reset-in-suspend' property to
+ goodix touchscreen binding
 Date:   Tue, 14 Mar 2023 09:10:19 -0500
 X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,
-        SPF_PASS,URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.6
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=no autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -70,13 +63,22 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
-On Mon, 13 Mar 2023 18:10:37 +0530, Komal Bajaj wrote:
-> Add description for additional nodes needed to support
-> mulitple channel DDR configurations in LLCC.
+On Sat, 11 Mar 2023 14:46:55 +0100, Jan Jasper de Kroon wrote:
+> This patch adds a new property, 'hold-in-reset-in-suspend', to the Goodix touchscreen
+> device tree binding. When set to true, the touchscreen controller will be held in
+> reset mode during system suspend, reducing power consumption. The property is optional
+> and defaults to false if not present.
 > 
-> Signed-off-by: Komal Bajaj <quic_kbajaj@quicinc.com>
+> I am submitting this patch to the Device Tree mailing list to add a new property to
+> the Goodix touchscreen device tree binding. This patch supplements a related patch
+> sent to the linux-input mailing list, which updates the Goodix touchscreen driver to
+> use this new property.
+> The linux-input patch can be found at:
+> https://lore.kernel.org/all/20230311131534.484700-1-jajadekroon@gmail.com/
+> 
+> Signed-off-by: Jan Jasper de Kroon <jajadekroon@gmail.com>
 > ---
->  Documentation/devicetree/bindings/arm/msm/qcom,llcc.yaml | 9 +++++++++
+>  .../devicetree/bindings/input/touchscreen/goodix.yaml    | 9 +++++++++
 >  1 file changed, 9 insertions(+)
 > 
 
@@ -86,14 +88,15 @@ on your patch (DT_CHECKER_FLAGS is new in v5.13):
 yamllint warnings/errors:
 
 dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/arm/msm/qcom,llcc.example.dtb: system-cache-controller@1100000: reg: [[17825792, 2097152], [19922944, 327680]] is too short
-	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/arm/msm/qcom,llcc.yaml
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/arm/msm/qcom,llcc.example.dtb: system-cache-controller@1100000: reg-names: ['llcc_base', 'llcc_broadcast_base'] is too short
-	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/arm/msm/qcom,llcc.yaml
+Error: Documentation/devicetree/bindings/input/touchscreen/goodix.example.dts:31.41-42 syntax error
+FATAL ERROR: Unable to parse input tree
+make[1]: *** [scripts/Makefile.lib:419: Documentation/devicetree/bindings/input/touchscreen/goodix.example.dtb] Error 1
+make[1]: *** Waiting for unfinished jobs....
+make: *** [Makefile:1512: dt_binding_check] Error 2
 
 doc reference errors (make refcheckdocs):
 
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20230313124040.9463-3-quic_kbajaj@quicinc.com
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20230311134655.486973-1-jajadekroon@gmail.com
 
 The base for the series is generally the latest rc1. A different dependency
 should be noted in *this* patch.
