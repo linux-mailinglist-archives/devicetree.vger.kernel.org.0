@@ -2,349 +2,150 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1E34C6B9DE9
-	for <lists+devicetree@lfdr.de>; Tue, 14 Mar 2023 19:09:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5A6686B9DF6
+	for <lists+devicetree@lfdr.de>; Tue, 14 Mar 2023 19:12:31 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229627AbjCNSJx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Mar 2023 14:09:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57888 "EHLO
+        id S229920AbjCNSM3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Mar 2023 14:12:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60784 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229436AbjCNSJv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Mar 2023 14:09:51 -0400
-Received: from EUR04-HE1-obe.outbound.protection.outlook.com (mail-he1eur04hn2207.outbound.protection.outlook.com [52.100.18.207])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3ACD0AD23;
-        Tue, 14 Mar 2023 11:09:23 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=seco.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=52P1eILC/KGFOMHdkPRh1pKpMT4/zCXCduRccqPPUgQ=;
- b=xiQAq5E9XyEkLpfuKTQt9fwsH1e/VBvQS9/CifmkPhRGhuD8KLGzdDFHCrqIvBOiSDzLZ7K7KstuP1K1sfzmTxepBHw/mM+Ir74v/PIaO8UZmdsKvhz/Kuy4w8O/TCRHWpACH9QFa+Ykd/6h83a2BV+5NWAl1RQyY+N0YfUeQOibmBI9aUL1gWM6DHE+gGvM9MvwBUxa3/CtrL0hHBwMgM31OqDUk/DOCT0kyRnoO7dj3H/DWS88lBZ2Rk2dGgckoxeD+v4UTxj4ckvaV/O2chPH033ZNI+lwUIZaTCg/jn4GWuFh5J7dVq3mKLjOn/Q90kXLIKoRn98Jq5hJwQMdg==
-Received: from DU2PR04CA0079.eurprd04.prod.outlook.com (2603:10a6:10:232::24)
- by PAWPR03MB9762.eurprd03.prod.outlook.com (2603:10a6:102:2f1::20) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6178.24; Tue, 14 Mar
- 2023 18:09:12 +0000
-Received: from DB8EUR05FT038.eop-eur05.prod.protection.outlook.com
- (2603:10a6:10:232:cafe::59) by DU2PR04CA0079.outlook.office365.com
- (2603:10a6:10:232::24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6178.26 via Frontend
- Transport; Tue, 14 Mar 2023 18:09:11 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 20.160.56.85)
- smtp.mailfrom=seco.com; dkim=pass (signature was verified)
- header.d=seco.com;dmarc=pass action=none header.from=seco.com;
-Received-SPF: Pass (protection.outlook.com: domain of seco.com designates
- 20.160.56.85 as permitted sender) receiver=protection.outlook.com;
- client-ip=20.160.56.85; helo=inpost-eu.tmcas.trendmicro.com; pr=C
-Received: from inpost-eu.tmcas.trendmicro.com (20.160.56.85) by
- DB8EUR05FT038.mail.protection.outlook.com (10.233.238.246) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.6199.11 via Frontend Transport; Tue, 14 Mar 2023 18:09:10 +0000
-Received: from outmta (unknown [192.168.82.132])
-        by inpost-eu.tmcas.trendmicro.com (Trend Micro CAS) with ESMTP id 9F74F2008026E;
-        Tue, 14 Mar 2023 18:09:10 +0000 (UTC)
-Received: from EUR05-DB8-obe.outbound.protection.outlook.com (unknown [104.47.17.107])
-        by repre.tmcas.trendmicro.com (Trend Micro CAS) with ESMTPS id C624F2008006F;
-        Tue, 14 Mar 2023 18:08:11 +0000 (UTC)
+        with ESMTP id S229532AbjCNSM0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Mar 2023 14:12:26 -0400
+Received: from NAM12-BN8-obe.outbound.protection.outlook.com (mail-bn8nam12on2060.outbound.protection.outlook.com [40.107.237.60])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B8B248C539;
+        Tue, 14 Mar 2023 11:12:19 -0700 (PDT)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=QppIQrDDfduebvwt7hYsXyqgpPLvcNONJysH3sBQnODgBFvgtMB2P/FYaMYQD3w2mNBmMd9sF6gxs1LkVhfBjtLB0vHNP784P2aM8Ury9QBKKcXOTFT7lLmuY0y2fkUe3tYXA4f1DAsXNVrYOpheJHie/9zB5FPncMLBbeT7YQ9QkwGXLOTj5ri1zyX3LVjBPlVUWgdG653F4bmuNwlPbBaj/VB4VoFev2YyC0jv2mtgoneC8GvZAHfnM8GGvEf+N+XaILE5qnG+WYERX0tw/GI5Fz9LvgzR4rdsV1UkTFayIoMloPhGpfB2lj5bKnXQ3QTBIT9ssH7jqT9vGqlBDw==
+ b=YKb2Foej0xmf+6yUM4ZMp1SNulAEaqro6v1WpqeLENUAc2LcerslODYpIUVlIQCjpXIyZ6Vo87dKSxYi/zvL+8YS46OrGODiXLqqwr80XA4s/VcwW3ue3w7tBG8kP6cj9Y4KkaffXesN4ox2NTOwUCq9uW3Tn6KCXWVgoUew/Kr+lkA2cvh7OvDPzwQlLeekW+2vnO6Fvmsagl97gCCAHX6PnY0tpC9TkXvspCTO5wRHmXVng235iXOceYPuzQ1b+0atowYDB1t6/WVhJa5KtvuVMtV7kJXrPn9Z/hKiLA4VDxpPEncKXAvHHmwXeFH1a2OKdLl93lSpQupaVXRuWg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=52P1eILC/KGFOMHdkPRh1pKpMT4/zCXCduRccqPPUgQ=;
- b=eaBOJxTW5CpKLhuPGffP87EVF0eda2DpRE4vjAVV5lGXPnqd/Hq1i5LfPrttu2/176LY7mPDv0dMHfM+4kuy7ZP5/pRi27G+AjBS3GLtitsIy6eIsZIH3U15GqiVN9//L/lcMeFyoVa5i60AaiQSK8aMuHEPGg1Twp/D+LqbYvFEskuBH1oc3wGGp0aWb8/bvWvZ9WhBIQ4p3AmM5n0Lu1jMrDOwyeRUR3LShxQuPwFGbPvW4XP8cpr6YaGHHnGiCEB43CEFDzRW70rPeZsAJt0e9sYMeks+ca7yhMe16IIN+bZwbj089PQC3lHnITrRXcvNyswlc61t31Fr4/aoxg==
+ bh=1ircwtIb7vB8Mq1O4gP+Chq+LloMhhN2BrHBd4heJr4=;
+ b=W8wFkOSAZlCEwamXuNhw4p3v1H2TwoqlYvjzxIEy/9a5bt12SbnTbkePcsTpFjkI+6nYiev2Lx49sINVLDS8jE6imSO0vqapoPingOABlv+3zkyPvhCc9LYneYML3tb0Kh+nQzsOVNBfDGMSTGuwpehhQhalF0htdjr5+wmJevFZdSYF7vtG4/C5TlL9I6KD+f/mHtFCb0hlC1k5Rx7u9uiYcPJ6AwCC+0JPbXhbHVIw2wgihFAUMMQgEI/Ty0AEIVhKvlHSCzdNLBqrEqi/D1NAOwyOGHJZlrnvkHvEkqmT5gUlthN0rMCAUw66gHpCwHCX/2EpvPhakI3ejAb8KQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=seco.com; dmarc=pass action=none header.from=seco.com;
- dkim=pass header.d=seco.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=seco.com; s=selector1;
+ smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
+ dkim=pass header.d=nvidia.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=52P1eILC/KGFOMHdkPRh1pKpMT4/zCXCduRccqPPUgQ=;
- b=xiQAq5E9XyEkLpfuKTQt9fwsH1e/VBvQS9/CifmkPhRGhuD8KLGzdDFHCrqIvBOiSDzLZ7K7KstuP1K1sfzmTxepBHw/mM+Ir74v/PIaO8UZmdsKvhz/Kuy4w8O/TCRHWpACH9QFa+Ykd/6h83a2BV+5NWAl1RQyY+N0YfUeQOibmBI9aUL1gWM6DHE+gGvM9MvwBUxa3/CtrL0hHBwMgM31OqDUk/DOCT0kyRnoO7dj3H/DWS88lBZ2Rk2dGgckoxeD+v4UTxj4ckvaV/O2chPH033ZNI+lwUIZaTCg/jn4GWuFh5J7dVq3mKLjOn/Q90kXLIKoRn98Jq5hJwQMdg==
-Authentication-Results-Original: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=seco.com;
-Received: from DB9PR03MB8847.eurprd03.prod.outlook.com (2603:10a6:10:3dd::13)
- by GV2PR03MB9377.eurprd03.prod.outlook.com (2603:10a6:150:d2::6) with
+ bh=1ircwtIb7vB8Mq1O4gP+Chq+LloMhhN2BrHBd4heJr4=;
+ b=TZIKuzWnQfLfKdQHoUdmLsDVsL5yzJ+oDvO0ksvj0vrpaNESQuXVDg1uF3p/J7GDvEPVK7LJIBYxZDu+9ZYu/+zqV+AQUBEeCp8uESSDRLVIF6pAJTBhKHTfn0csdos1sKjyYZWY4n//mbY+7RFxvwcmZxO+vJqhvmIvIcTnESdc/EnYzPW9JL4G5n9z1SIWW0SO0/UElK/LrcSjhRz1AL3sU4F7oScL9SSWr45z/OqeKQHA3nPSlzJi5QsRpHodZYxhmW7AJrDEcYiTpGrCg1rFkzAjEx/MupxOmqnCj9Xhi50UPPz0f9hkvwvKJjvqA7LMisLIluM+i/q1rodHbA==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nvidia.com;
+Received: from CO6PR12MB5444.namprd12.prod.outlook.com (2603:10b6:5:35e::8) by
+ IA1PR12MB6332.namprd12.prod.outlook.com (2603:10b6:208:3e2::13) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6178.24; Tue, 14 Mar
- 2023 18:09:05 +0000
-Received: from DB9PR03MB8847.eurprd03.prod.outlook.com
- ([fe80::dbcf:1089:3242:614e]) by DB9PR03MB8847.eurprd03.prod.outlook.com
- ([fe80::dbcf:1089:3242:614e%4]) with mapi id 15.20.6178.024; Tue, 14 Mar 2023
- 18:09:05 +0000
-Message-ID: <3c19e6d2-4df2-6187-36d5-98ceef07235a@seco.com>
-Date:   Tue, 14 Mar 2023 14:09:00 -0400
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6178.26; Tue, 14 Mar
+ 2023 18:12:17 +0000
+Received: from CO6PR12MB5444.namprd12.prod.outlook.com
+ ([fe80::5464:997b:389:4b07]) by CO6PR12MB5444.namprd12.prod.outlook.com
+ ([fe80::5464:997b:389:4b07%9]) with mapi id 15.20.6178.026; Tue, 14 Mar 2023
+ 18:12:17 +0000
+Message-ID: <c9fb8b45-566d-c82d-7d13-cc0ad85c285b@nvidia.com>
+Date:   Tue, 14 Mar 2023 18:12:11 +0000
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.0
-Subject: Re: [PATCH v11 03/13] dt-bindings: Convert gpio-mmio to yaml
+ Thunderbird/102.7.1
+Subject: Re: [PATCH 4/4] arm64: tegra: Add support for P3768+P3767
 Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Vinod Koul <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
-        linux-phy@lists.infradead.org
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        Camelia Alexandra Groza <camelia.groza@nxp.com>,
-        Madalin Bucur <madalin.bucur@nxp.com>,
-        Bagas Sanjaya <bagasdotme@gmail.com>,
-        Ioana Ciornei <ioana.ciornei@nxp.com>,
-        linuxppc-dev@lists.ozlabs.org,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
-        =?UTF-8?Q?Fern=c3=a1ndez_Rojas?= <noltari@gmail.com>,
-        Jonas Gorski <jonas.gorski@gmail.com>,
-        linux-gpio@vger.kernel.org
-References: <20230313161138.3598068-1-sean.anderson@seco.com>
- <20230313161138.3598068-4-sean.anderson@seco.com>
- <684eb04d-aeaa-07e1-34d6-783e85e379f0@linaro.org>
-From:   Sean Anderson <sean.anderson@seco.com>
-In-Reply-To: <684eb04d-aeaa-07e1-34d6-783e85e379f0@linaro.org>
-Content-Type: text/plain; charset=UTF-8
+To:     Thierry Reding <thierry.reding@gmail.com>
+Cc:     linux-tegra@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+References: <20230302093353.3873247-1-thierry.reding@gmail.com>
+ <20230302093353.3873247-4-thierry.reding@gmail.com>
+From:   Jon Hunter <jonathanh@nvidia.com>
+In-Reply-To: <20230302093353.3873247-4-thierry.reding@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: BL0PR03CA0019.namprd03.prod.outlook.com
- (2603:10b6:208:2d::32) To DB9PR03MB8847.eurprd03.prod.outlook.com
- (2603:10a6:10:3dd::13)
+X-ClientProxiedBy: LNXP265CA0028.GBRP265.PROD.OUTLOOK.COM
+ (2603:10a6:600:5c::16) To CO6PR12MB5444.namprd12.prod.outlook.com
+ (2603:10b6:5:35e::8)
 MIME-Version: 1.0
-X-MS-TrafficTypeDiagnostic: DB9PR03MB8847:EE_|GV2PR03MB9377:EE_|DB8EUR05FT038:EE_|PAWPR03MB9762:EE_
-X-MS-Office365-Filtering-Correlation-Id: 8b4383dd-0742-4dc3-6d31-08db24b73636
-X-TrendMicro-CAS-OUT-LOOP-IDENTIFIER: 656f966764b7fb185830381c646b41a1
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CO6PR12MB5444:EE_|IA1PR12MB6332:EE_
+X-MS-Office365-Filtering-Correlation-Id: bb32e9af-06df-4698-3790-08db24b7a556
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam-Untrusted: BCL:0;
-X-Microsoft-Antispam-Message-Info-Original: x8orp9VYmzt2eTw/7J/mjdhA1HV+FNLMJOOXmcJaXgeQw8G+fUNpD6NgabFq9Fezk0CQGQKPphmNAfg6uBUzN0WfKSA1GjFNnYbksqa6CuODI2BcmuGNt5NvBjhBDJZnz9y+ZeOqePfySdFXsDi0dZTeRc+crmz+bBOC0KWYEAgamgfyntBN2X9EbQebZb3knR6wIjRGUIhmEBAaFmHJrHx8ubyrws7X2lyLLvR/jRi4fo+/q5GDgm5u1V/7bAeqUpgl0WNTAJ9sySq9S7Rr5apHVhn2t7efaCXgx8VFMkgiXqqHlHADB1HvZFexALPugEhhebC6bNMbE1AtCmvyqtqlfJ9m2jUQj2vxNM/fXKhIb4ccoirON+9i0Yu1bFrH3ICvcy+92WZcSuUvmaDCGmBQs55jczRhpAToGvcrebNPGzTouSUawnRswueAOIy2d0AqHKcdWQflYMRwauRDzrPOmQ8DHyFkx8BnZYti0eAF5zPdKKnCo+ny7ZC6It54fi+92U8S8uypnN4+6az/bJZZChjt/1qE91NKPdjgXeLKyeO3Qo3nXFWfOvTAW4pjRuI5y6EYT1mkHZi8s3b3VjOOqDiUCLPcSRTwVEmLfw1QwR50jGdwt8/JSiqZYR7CHw38FbW7Z5GPUKUK+OaHcNYx8Tb9St+0PB3+5eK4WjKma5TbAGBzB1Nj0dosLQxatq59I5hQzM1pCmEmT8xOeijM7nHFGs/2UhBzF2HKGf0wLeGIViuoeP9zeafMQNfA
-X-Forefront-Antispam-Report-Untrusted: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB9PR03MB8847.eurprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230025)(346002)(396003)(39850400004)(136003)(366004)(376002)(451199018)(86362001)(36756003)(31696002)(316002)(7416002)(6512007)(41300700001)(6506007)(53546011)(8936002)(5660300002)(4326008)(2616005)(26005)(186003)(52116002)(54906003)(478600001)(6486002)(966005)(66556008)(110136005)(66476007)(8676002)(66946007)(38350700002)(38100700002)(6666004)(2906002)(83380400001)(44832011)(31686004)(45980500001)(43740500002);DIR:OUT;SFP:1101;
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: GV2PR03MB9377
-X-EOPAttributedMessage: 0
-X-MS-Exchange-Transport-CrossTenantHeadersStripped: DB8EUR05FT038.eop-eur05.prod.protection.outlook.com
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id-Prvs: 1b45d7de-9412-46f6-70a1-08db24b732b3
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: YJad0CfHFLo1fwOkCq9pszILtYihsh7R5yMG27dasHZa6WOZOrzPunLNah+fEQ+2pUe33qoBcqjBlhk5nQHI1wt0FID08VTRALDuVGjAjf4Hr5fVKo1bGh3s3/2O3ONuiH1hhXYHj/l0XswjKQYMPRf2Qk5gXV2JcTVrt8qJjQ7Hk13vkOKebLUxiKIory67HvsbG3yKFKjZ4Jm88E2jezuMGy1S9G2CtmfZGjiR4jSoXa+zY44+YeIYiZB2jd+3275KwzJ2zVCKbR0qoaWhilXvpYQC9CubWq+VQ8R1eLfu+gXmtVK38Roj563We5wR9/UZcm8tlOvtyf520hxm/DAJTA3EtIcHGUFIN7ip6//iFDTl+UUqLCXdy1d30WR4rkyPBAPVEBaR1OsGST6lj5mVXVkuN85nhZooShukPX9vHVZlVl9DkXzAmmr7RBGtoBZ0p3XSVI71bNUpYQqB/UzwE5VEXQ5Vzbi3xJELZ1br2swWWWJpeU+huP1veFQVde43HREjY4Rgmundi7a7Xuzr3fkboiugrDn6H/zXPnJeAyXFCY63R4kodGaYgRsliZYF/0UIfZe/fvyx3yXyDBNiimM8fgNjFqbEzig+SOQuoECOiHvrN57aSOnp2K4Bkm9NYiSbR2qHBG/pxVEWpX9+74By0jk79kTF2tmdHdojoNzqM72VirxWxPCD+kF8oC9V55DQDcfip9r3HTt/wF2Uv3SW8aQQzUCkO7IeEd07Rw/bt8NOP4uMkVWMTla3DqWiEfVlbygeziWLy8ovqPYEGwAUIcwwMGOepxbGqKE=
-X-Forefront-Antispam-Report: CIP:20.160.56.85;CTRY:NL;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:inpost-eu.tmcas.trendmicro.com;PTR:inpost-eu.tmcas.trendmicro.com;CAT:NONE;SFS:(13230025)(346002)(396003)(39850400004)(376002)(136003)(451199018)(5400799012)(36840700001)(46966006)(40470700004)(5660300002)(40460700003)(7416002)(44832011)(36756003)(83380400001)(36860700001)(47076005)(336012)(82310400005)(478600001)(6506007)(6512007)(6486002)(6666004)(966005)(26005)(186003)(2616005)(53546011)(4326008)(110136005)(40480700001)(70586007)(70206006)(8676002)(356005)(41300700001)(8936002)(31696002)(54906003)(86362001)(316002)(34020700004)(7596003)(7636003)(31686004)(2906002)(82740400003)(43740500002)(12100799021);DIR:OUT;SFP:1501;
-X-OriginatorOrg: seco.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Mar 2023 18:09:10.9271
+X-Microsoft-Antispam-Message-Info: Iwk+YuMY5Au6GPsJQcuzUurROkMMb1FcpFikUmgTxXB9mNMgykpdEpnvGS24GdcT+4E0jWeffrZEMIw+ndhbp1BXTzj1IfjAGDkwTskwAgh/rOWfzm63uQMTIzX/VutWy0oArK9Xi6Vgn0q8uXsMPzuWO2E4EtkZ+kbWoL+PBAOP+YA1jXNWjaQT8bzJOc7HMgagdHnUNv+dvwz30wJGmKXnvvlOn57bZxys4JIkQg9cp5eGlsLQQ3Bhin8kHI452hphgjsIn90rmqkzGNar5ZmOeE6isLBJg8pJmxfgkA92vZ5E8gWD0BYJm7h+wvEDMN+d4lx3M/707qNhuu4aSLyHC5d+lDT3oyy/VmUAQMdHFj3GvLCe6LKt5QxPnOLLPJghs9rMAxIG4iP79t0+2j5CepASADnZSsaA3Yzaj6jfGAxzaJZTBdwh6MyucloxWkhcXsPGCpxD/Hfc6c0s6tc7b+6oupIbOh61++bqCn2g5D6kVpEc8M4W4kAiJk/c1uWQQ3KywbQ4SOpp8I3vtu3jUg+oA26Wy83nFdxmLcPxy4Lx5qUJaZK9Sz8pBBhbYfuG3KA7MibqqYrexO1o5WxyEUWv+CvmksBKAlYsOp3pRA+ojasWbQmsw5Y6oNSs5PZmttBOus81kgaonxnjwHtrgxVbg4PeO+Ld6VtckUhRdj+d8hJct73CRAkX8gc0dA2HEWojr23HbjgGt79Vr2R7UE28l63TodLyMPELmYo=
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:CO6PR12MB5444.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230025)(4636009)(136003)(376002)(366004)(346002)(396003)(39860400002)(451199018)(31696002)(36756003)(86362001)(38100700002)(2906002)(41300700001)(4744005)(8936002)(5660300002)(4326008)(53546011)(6506007)(2616005)(186003)(6512007)(55236004)(26005)(83380400001)(316002)(66946007)(66476007)(6486002)(66556008)(8676002)(6666004)(6916009)(478600001)(31686004)(45980500001)(43740500002);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?OFJTcHZ1cHdoakRsem42NFdpYTViYjlkdWVZeDdYdDQ3c09HSzVPdGhXOUZs?=
+ =?utf-8?B?TWpCOXlLb2t3d1FVTGoydC9iQ2RXejJrU2R0NENRRHMrOENIWTRSN2dIVjU3?=
+ =?utf-8?B?UHhYc2hraVlmYlEza29DMkYrUmFzc3BYYTRuYys4OGhCK3hqcHZkV3pMWkFP?=
+ =?utf-8?B?Ky9ua1RNRisrS0RxOXlwVnJ6TzZGanRseDY4bU9kWHd6T0JyQkJQdWxZeDlz?=
+ =?utf-8?B?NFFsQUxZSFhnTjBsUTNidTVJaWNtR2x5K05OWGw3a1N6WDM0a1NnbkUycWdC?=
+ =?utf-8?B?WHNKUE5LSm9wOHBnS0ZaMGdaWXNBY1A0dy9zaGJ1TWlreW5tZ3hSVjhWRHNO?=
+ =?utf-8?B?VU9tTmwzMXByejNnS0NyUWI2eXYzaWFRcVBJRmRRMWhmUVhHdm9JMXFaQ2hX?=
+ =?utf-8?B?ei9PR1Ezd29NVUNlTnM3QzQzZWxLTmtnTE5TaGhuOWhqVUdRZHFFR2VseVI4?=
+ =?utf-8?B?Qkl1UWtCai84d2NwLzdwMjIwazM1T2x3Q3d0QzI0WnBacE5oTHhjRUdVd2pl?=
+ =?utf-8?B?c013V0w5KzF6U3ZaQnkyb0N4THltTCtDdC90ZzVmVW1qb3QxdStGNFJIVE9U?=
+ =?utf-8?B?S21UT25NZ3N2aEFYTWFBeUEybmViQWYyczVJQ3p6MmZTbzlVMXVKaEtnTFhy?=
+ =?utf-8?B?bXdacmpUWmZVN3hiZW9ZcXJBVkdNL0UxYWFhTENRb0lhTStWMWs3R0o5ZGY5?=
+ =?utf-8?B?ZzRzdVVRZEhsOE5LNGJvWHlwWlc0M3lXZEwxS3NJelhDdDZ4V2w1dVBHZTZq?=
+ =?utf-8?B?STJXWkdwU2t2NkVVL0R5ak96K2ZYWGJpM3NOODgvT29LTmRHNzU4QmVLSTk5?=
+ =?utf-8?B?SHNrQysyaXErc3dOVXR4dGo1N3BHM1c5MXQwS0lMNGMrdEt0S0VWRENvMlVp?=
+ =?utf-8?B?WjkrOEtaemN1Q1grSjVoZGhCWjZqaE13RlNyZnF1Nmh6VWl4SkZFeWkzSi9N?=
+ =?utf-8?B?VzdodTdNVUhlQzhYdGplZ2JGTkRkdnVsWmRMYlVCdlhIR0VkZE1LRklHeUR3?=
+ =?utf-8?B?TXVxMWh2d2ZDNzljZ1d2Q3BJVUdCbTUwWGxpQVBZUG91L1Y4cXEyNnJYeVhD?=
+ =?utf-8?B?Kzc2TGZRZFdhRUNUWHVXcTBWc2wzM0lrUmNwRFUvUDBLYlFnUmJSVmwxeWdu?=
+ =?utf-8?B?QklzMndnSktyZ3RyQUs3N25YSXVSdXRIYzJQL3hCNTRuV1Y4VUZuZlhDa0dl?=
+ =?utf-8?B?TTJJWURaSy9VVzVEZlRoUlhlTnR5ZjU1VmdOakNaRFBwVkkzMkdqbXB4K0hv?=
+ =?utf-8?B?MnFTSU9IeElGU056SnZxSWpFSEoyNXIzZ1g1SnNNQjVweXd5YlJTQVpyb2tU?=
+ =?utf-8?B?aXpIRmgvbnE3ck1OMFozZ0tUdXRLUFE2UHdKWTlwZUpPRWxQYS9vbjVnUHNZ?=
+ =?utf-8?B?OERTQ3RNSEpFMEFTbmltbHRGN3NINW1ac2tmb3FCaHpZWGNnZGpBY0w4aUll?=
+ =?utf-8?B?c3RtcnN3SEFMcWZ6ODNUMWFVWDZpekNyMnlXZWs4YWNGMm54UHpOMjlnVjBy?=
+ =?utf-8?B?NGVyYUJCZ29LeU1aTFJMQTBWcklJYjBHWmlRaGIrNUJoSFpZd2tlaFFBMG5C?=
+ =?utf-8?B?QjlvcWFFK3pxTGoyaTAybHUrZzl2K3dKNk53bXhmQlNrOWd0ZzdJOGs4Sk1H?=
+ =?utf-8?B?Y3I0Mk1KcTdJVWZtSHJta3pOeEpkVmg3MzVWS1V6MktoYVM2U1dsYVpHckRp?=
+ =?utf-8?B?cVlhMDFseHJCRUpOcVFOaFZETVZJWm8vdnRzR1dpUjlXS0pCbFJHY1YvcUdm?=
+ =?utf-8?B?eFhqRGJCelc4MzhJQUVwa1R6dXZueW8wU01TVW1EbmJyb2xaWW0wUDFRN3hV?=
+ =?utf-8?B?TDVGNTBNUXhmRHQ4bGtkTW9CVHFqdG5ZQVNBYXl5dDk4QWxRWmhSMEh0aXJE?=
+ =?utf-8?B?Q213bzJGdnZyREUrTU1LaEo3YmdwbnQxQ1FmUlEzZ091Mk5KcVdycXdHaWZ4?=
+ =?utf-8?B?VUlkOVdsUXQ5MEc5UVNyblZTMGRyQ2Y1dFNuVzY3UWZrcDZqQ205NkI5dUpN?=
+ =?utf-8?B?UDQxYzNxMDg2R0I2djhHMm5EUW1FbS9Sc2QxWWRWblVHUUdtY0NDeGd5YzZ6?=
+ =?utf-8?B?OEFHZDVCLzQ4bXI5Vyt2NWduVGV5L3dlcWtCRmEzcTV6dW1HeUE5VG44cUlu?=
+ =?utf-8?B?OEpOUXlsaThKWFZ0TDNzWnlxZHZFUUtodUF5VDJCd0ViK1Z6RFhPSDN3aVgv?=
+ =?utf-8?B?bVE9PQ==?=
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: bb32e9af-06df-4698-3790-08db24b7a556
+X-MS-Exchange-CrossTenant-AuthSource: CO6PR12MB5444.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Mar 2023 18:12:17.7375
  (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 8b4383dd-0742-4dc3-6d31-08db24b73636
-X-MS-Exchange-CrossTenant-Id: bebe97c3-6438-442e-ade3-ff17aa50e733
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=bebe97c3-6438-442e-ade3-ff17aa50e733;Ip=[20.160.56.85];Helo=[inpost-eu.tmcas.trendmicro.com]
-X-MS-Exchange-CrossTenant-AuthSource: DB8EUR05FT038.eop-eur05.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PAWPR03MB9762
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,URIBL_BLOCKED autolearn=ham
-        autolearn_force=no version=3.4.6
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: xqP6G/dtCq+eDvg/x7f5Spi6rJDxxUio0PEU3Pi5fp67OMg/CoGIvBdSu/wfNh3i36z9nty8ZvYrNXhoVeb9bA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR12MB6332
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,
+        NICE_REPLY_A,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,
+        SPF_NONE,URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 3/14/23 13:56, Krzysztof Kozlowski wrote:
-> On 13/03/2023 17:11, Sean Anderson wrote:
->> This is a generic binding for simple MMIO GPIO controllers. Although we
->> have a single driver for these controllers, they were previously spread
->> over several files. Consolidate them. The register descriptions are
->> adapted from the comments in the source. There is no set order for the
->> registers, so I have not specified one.
->> 
->> Rename brcm,bcm6345-gpio to brcm,bcm63xx-gpio to reflect that bcm6345
->> has moved.
->> 
->> Signed-off-by: Sean Anderson <sean.anderson@seco.com>
->> Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
->> ---
->> Linus or Bartosz, feel free to pick this up as the rest of this series
->> may not be merged any time soon.
->> 
->> Changes in v11:
->> - Keep empty (or almost-empty) properties on a single line
->> - Don't use | unnecessarily
->> - Use gpio as the node name for examples
->> - Rename brcm,bcm6345-gpio.yaml to brcm,bcm63xx-gpio.yaml
->> 
->> Changes in v10:
->> - New
->> 
->>  ...m6345-gpio.yaml => brcm,bcm63xx-gpio.yaml} |  16 +--
->>  .../devicetree/bindings/gpio/gpio-mmio.yaml   | 134 ++++++++++++++++++
->>  .../bindings/gpio/ni,169445-nand-gpio.txt     |  38 -----
->>  .../devicetree/bindings/gpio/wd,mbl-gpio.txt  |  38 -----
->>  4 files changed, 135 insertions(+), 91 deletions(-)
->>  rename Documentation/devicetree/bindings/gpio/{brcm,bcm6345-gpio.yaml => brcm,bcm63xx-gpio.yaml} (78%)
->>  create mode 100644 Documentation/devicetree/bindings/gpio/gpio-mmio.yaml
->>  delete mode 100644 Documentation/devicetree/bindings/gpio/ni,169445-nand-gpio.txt
->>  delete mode 100644 Documentation/devicetree/bindings/gpio/wd,mbl-gpio.txt
->> 
->> diff --git a/Documentation/devicetree/bindings/gpio/brcm,bcm6345-gpio.yaml b/Documentation/devicetree/bindings/gpio/brcm,bcm63xx-gpio.yaml
->> similarity index 78%
->> rename from Documentation/devicetree/bindings/gpio/brcm,bcm6345-gpio.yaml
->> rename to Documentation/devicetree/bindings/gpio/brcm,bcm63xx-gpio.yaml
->> index 4d69f79df859..e11f4af49c52 100644
->> --- a/Documentation/devicetree/bindings/gpio/brcm,bcm6345-gpio.yaml
->> +++ b/Documentation/devicetree/bindings/gpio/brcm,bcm63xx-gpio.yaml
+
+On 02/03/2023 09:33, Thierry Reding wrote:
+> From: Thierry Reding <treding@nvidia.com>
 > 
+> Add support for the combination of the NVIDIA Jetson Orin NX (P3767)
+> module and the P3768 carrier board.
 > 
->> +
->> +description:
->> +  Some simple GPIO controllers may consist of a single data register or a pair
->> +  of set/clear-bit registers. Such controllers are common for glue logic in
->> +  FPGAs or ASICs. Commonly, these controllers are accessed over memory-mapped
->> +  NAND-style parallel busses.
->> +
->> +properties:
->> +  big-endian: true
->> +
->> +  compatible:
-> 
-> Keep compatible as first property.
+> Signed-off-by: Thierry Reding <treding@nvidia.com>
+> ---
+>   .../nvidia/tegra234-p3768-0000+p3767-0000.dts | 218 ++++++++++++++++++
+>   .../boot/dts/nvidia/tegra234-p3768-0000.dtsi  | 133 +++++++++++
+>   2 files changed, 351 insertions(+)
+>   create mode 100644 arch/arm64/boot/dts/nvidia/tegra234-p3768-0000+p3767-0000.dts
+>   create mode 100644 arch/arm64/boot/dts/nvidia/tegra234-p3768-0000.dtsi
 
-I thought it was alphabetical.
 
->> +    enum:
->> +      - brcm,bcm6345-gpio # Broadcom BCM6345 GPIO controller
->> +      - wd,mbl-gpio # Western Digital MyBook Live memory-mapped GPIO controller
->> +      - ni,169445-nand-gpio # National Instruments 169445 GPIO NAND controller
-> 
-> I think you got comment that these comments are making things
-> unreadable. I don't see here improvement.
+Looks like we are missing a Makefile update in this patch.
 
-That was not the comment I got.
+Cheers
+Jon
 
-| I think you can inline description: statements in the enum instead of
-| the # hash comments, however IIRC you have to use oneOf and
-| const: to do it, like I do in
-| Documentation/devicetree/bindings/input/touchscreen/cypress,cy8ctma340.yaml
-| but don't overinvest in this if it is cumbersome.
-
-I investigated this and determined it was cumbersome.
-
-> For example first comment is useless - you say the same as compatible.
-> Same with last one. So only remaining WD comment should be made in new
-> line so everything is nicely readable.
-
-I don't understand what you mean by "made in new line". Anyway, I will
-leave just the WD comment.
-
-> BTW, order the enum by name.
-
-OK
-
->> +
->> +  '#gpio-cells':
->> +    const: 2
->> +
->> +  gpio-controller:
->> +    true
-> 
-> I am sure I saw comments here...
-> 
-> https://lore.kernel.org/all/20230308231018.GA4039466-robh@kernel.org/
-
-OK
-
->> +
->> +  reg:
->> +    minItems: 1
->> +    description:
->> +      A list of registers in the controller. The width of each register is
->> +      determined by its size.
-> 
-> I don't understand this comment. Aren't you describing now what 'reg' is
-> in DT spec? If so, drop. If not, please share more.
-
-Each register describes exactly one hardware register. In some other
-device, when you see `regs = <0x8000000 0x100>`, then you may have 64
-32-bit registers. But for this device, it would be one 2048-bit
-register.
-
->>  All registers must have the same width. The number
->> +      of GPIOs is set by the width, with bit 0 corresponding to GPIO 0.
->> +    items:
->> +      - description:
->> +          Register to READ the value of the GPIO lines. If GPIO line is high,
->> +          the bit will be set. If the GPIO line is low, the bit will be cleared.
->> +          This register may also be used to drive GPIOs if the SET register is
->> +          omitted.
->> +      - description:
->> +          Register to SET the value of the GPIO lines. Setting a bit in this
->> +          register will drive the GPIO line high.
->> +      - description:
->> +          Register to CLEAR the value of the GPIO lines. Setting a bit in this
->> +          register will drive the GPIO line low. If this register is omitted,
->> +          the SET register will be used to clear the GPIO lines as well, by
->> +          actively writing the line with 0.
->> +      - description:
->> +          Register to set the line as OUTPUT. Setting a bit in this register
->> +          will turn that line into an output line. Conversely, clearing a bit
->> +          will turn that line into an input.
->> +      - description:
->> +          Register to set this line as INPUT. Setting a bit in this register
->> +          will turn that line into an input line. Conversely, clearing a bit
->> +          will turn that line into an output.
->> +
->> +  reg-names:
->> +    minItems: 1
->> +    maxItems: 5
->> +    items:
->> +      enum:
-> 
-> Why this is in any order? Other bindings were here specific, your 'reg'
-> is also specific/fixed.
-
-Some devicetrees have dirout first, and other have dat first. There is no
-mandatory order, and some registers can be included or left out as is
-convenient to the devicetree author.
-
-reg is not specific/fixed either. It is just done that way for
-convenience (and to match the names here).
-
->> +        - dat
->> +        - set
->> +        - clr
->> +        - dirout
->> +        - dirin
->> +
->> +  native-endian: true
->> +
->> +  no-output:
->> +    $ref: /schemas/types.yaml#/definitions/flag
->> +    description:
->> +      If this property is present, the controller cannot drive the GPIO lines.
->> +
->> +required:
->> +  - compatible
->> +  - reg
->> +  - reg-names
->> +  - '#gpio-cells'
->> +  - gpio-controller
->> +
->> +additionalProperties: false
->> +
->> +examples:
->> +  - |
->> +    gpio@1f300010 {
->> +      compatible = "ni,169445-nand-gpio";
->> +      reg = <0x1f300010 0x4>;
->> +      reg-names = "dat";
->> +      gpio-controller;
->> +      #gpio-cells = <2>;
->> +    };
->> +
->> +    gpio@1f300014 {
->> +      compatible = "ni,169445-nand-gpio";
->> +      reg = <0x1f300014 0x4>;
->> +      reg-names = "dat";
->> +      gpio-controller;
->> +      #gpio-cells = <2>;
->> +      no-output;
->> +    };
-> 
-> No need to duplicate examples. Keep only one.
-
-OK
-
-> Everything is the same.
-
-Except no-output.
-
---Sean
+-- 
+nvpublic
