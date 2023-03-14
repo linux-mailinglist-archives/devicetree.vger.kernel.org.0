@@ -2,64 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1DF756BA0C6
-	for <lists+devicetree@lfdr.de>; Tue, 14 Mar 2023 21:32:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9496B6BA0D2
+	for <lists+devicetree@lfdr.de>; Tue, 14 Mar 2023 21:35:38 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229985AbjCNUcx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Mar 2023 16:32:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52820 "EHLO
+        id S229813AbjCNUfg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Mar 2023 16:35:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58708 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229588AbjCNUcx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Mar 2023 16:32:53 -0400
-Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5E8FE51F9B;
-        Tue, 14 Mar 2023 13:32:52 -0700 (PDT)
-Received: by mail-ed1-x533.google.com with SMTP id o12so67140590edb.9;
-        Tue, 14 Mar 2023 13:32:52 -0700 (PDT)
+        with ESMTP id S229636AbjCNUff (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Mar 2023 16:35:35 -0400
+Received: from mail-ed1-x52f.google.com (mail-ed1-x52f.google.com [IPv6:2a00:1450:4864:20::52f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DC00C1A67F;
+        Tue, 14 Mar 2023 13:35:34 -0700 (PDT)
+Received: by mail-ed1-x52f.google.com with SMTP id ek18so36028492edb.6;
+        Tue, 14 Mar 2023 13:35:34 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112; t=1678825971;
+        d=gmail.com; s=20210112; t=1678826133;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=DLFoyfLfdyO7ocn4I91ehlSCtw1QfcrPgCtbPrlB1lQ=;
-        b=OZQCXhqLqja/dOED9oYnGh5ZzK1T5CXLPiHRfTPuPsgIqlJxZBwyhxIkcjHXYESffT
-         GUzc7tofvBNLC2CG39cmcbO4RpIZFP1pyLyqMmR2vw4arkGWkE+a55fMpvZuTsyxQgPv
-         Ic9Urgqyvcp3g+JfyMq0u2Y2D1YCN6+tMAksRo4OcxUO7aYQ4knVnSP4hsIen78KfaGF
-         Pu6tc4goaQUKA09AMqN2pAgXHwS+y9a8WDxJ6wdoOpVwLzfLC4K+5OL8HKa08JWI/SzJ
-         SL+R938Dks+Y4QJktoWX9ze9f/ky/l39GkFrhPRFAFB/R31io1wmuPAAb/jWf66CbFDA
-         5a0g==
+        bh=NxwSO/LBuR46CmjoeXSfo+IWSWZ/3pwKZV8PIGQHNrk=;
+        b=C4ylx+Vos6HtqYmeSZulI1EuEc8EaPUOfBPDLOFgvFEAqZLFPDAkR6+t48XM7KjrYy
+         zb86bFi+M5cyq1+JMrW2h0gT/X5utpQaCzusAngPMCnM1ifzrAotuCOzP/XF2+yaaQkh
+         7dycbEN4zQhpe/z3hawHy56L8Mu2SmKPZNduTRDRE9PItjeYDi083Kobx7bAVbOwKDA0
+         A2qZSTNk0Tppr/6w8gVt3C/4wcT3zMJ/BrSSRvvphwOlWddyRC7NugFJAPfGKSicHAdv
+         7DbnUk5173ijub6f/juCxDAMNr6Lk7toO8ii1/g1bvDzySxLQxbd9D2NpqNGcChRsxEH
+         KvCQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678825971;
+        d=1e100.net; s=20210112; t=1678826133;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=DLFoyfLfdyO7ocn4I91ehlSCtw1QfcrPgCtbPrlB1lQ=;
-        b=our/r7frfstvge2In5HMW0gy8qzJOOLSHWalQjOEAqNin3BnjoiUB9qehW+DM23AVK
-         nZ068Qb0psdH9/ncMXHvaY66b1OIh8jH66+vttx9u55QtNuannS/f7uHlzNrECyTTpXd
-         YUBlK7B/qF7fTQJnwdfuJzpNIuUzxCHvSi500Tv/pssTYGp/sdk478GoGIgznPxqQddN
-         7SOh4hLHirRhxGGsTi6OYq/G3C/d8pyhY5IUxNcsdQIinKMWJ5ZEDwAiivz/RCuXi74b
-         rYxjWNHucugHUQ8u8Uc2NLJxqRHFsZZHUIb6p5iyU4UbbjaHR/i7HswVVSVZFHEY5CRU
-         CSLA==
-X-Gm-Message-State: AO0yUKXfhtjTNk+D01eFfnbP6xbteo7ytevNNOe+aTanK/af5Kp+Z3W2
-        pgucD8Rh0C3K2hBLb2l8uWFTfbJcECWC9i3d
-X-Google-Smtp-Source: AK7set++sOxBoil2fV/AYd0vkfsoNi2NQY+Xq66eS0oKEFztdyuIRLgcGbiy+VyJFSjbI5WVnmFEng==
-X-Received: by 2002:a17:907:2166:b0:8b1:7ae9:647 with SMTP id rl6-20020a170907216600b008b17ae90647mr4833331ejb.76.1678825970910;
-        Tue, 14 Mar 2023 13:32:50 -0700 (PDT)
+        bh=NxwSO/LBuR46CmjoeXSfo+IWSWZ/3pwKZV8PIGQHNrk=;
+        b=a9pEpTOdM6Z+eQj17D4xIU/zGHXntXPrncqj5zrYB0cCp0X9U1IBORj7E+cSO741lp
+         AzDt+uhCNrr7fO8RvOIP59WDs6+EAuTXtkP+M8n2ZQaDoCyiZKNE3MvbKpua6dSydEPH
+         w/xjVHQiE4IiJnwIH6xLMMAwzI9Fpgl7gXndaPvo7ibhjR7aOokk30K7+cU5Vj01fXMt
+         yBPskLTH6L4xUToserWrxNYUsLxv9j8y4mOwhS1lww1jjQSp7/t1W4sRXOL7CnwOIK+8
+         yDRWQKynOO+TW9SIYbxBSJN/tuyTjylByZWyrwd1x/UPRRcFP8/sx7jtkFC6TMgAjRVX
+         ZlzQ==
+X-Gm-Message-State: AO0yUKUm8k23kLHTkGkv3uJ+tcuSQ+06XMHJtGXMZkUC+ENnx7U4JDNM
+        ZSwIQWngwSJPj5/M+OSZrV0=
+X-Google-Smtp-Source: AK7set8qAKElSfLk862Fb1U9iBFSLCsZ8OOml5T1pwcqPd2vA6HdnOUeXnTHL6GcYsNrzwpY2GGN4w==
+X-Received: by 2002:a17:906:2512:b0:87d:f29:3a16 with SMTP id i18-20020a170906251200b0087d0f293a16mr4278916ejb.34.1678826133362;
+        Tue, 14 Mar 2023 13:35:33 -0700 (PDT)
 Received: from jernej-laptop.localnet (82-149-1-233.dynamic.telemach.net. [82.149.1.233])
-        by smtp.gmail.com with ESMTPSA id ja19-20020a170907989300b008cf8c6f5c43sm1557535ejc.83.2023.03.14.13.32.49
+        by smtp.gmail.com with ESMTPSA id go37-20020a1709070da500b00927b85e48b0sm1539379ejc.111.2023.03.14.13.35.32
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 14 Mar 2023 13:32:50 -0700 (PDT)
+        Tue, 14 Mar 2023 13:35:32 -0700 (PDT)
 From:   Jernej =?utf-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
-To:     Chen-Yu Tsai <wens@csie.org>, Samuel Holland <samuel@sholland.org>,
-        Rob Herring <robh@kernel.org>
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] soc: sunxi: Use of_property_present() for testing DT property
- presence
-Date:   Tue, 14 Mar 2023 21:32:49 +0100
-Message-ID: <4252460.ejJDZkT8p0@jernej-laptop>
-In-Reply-To: <20230310144724.1545223-1-robh@kernel.org>
-References: <20230310144724.1545223-1-robh@kernel.org>
+To:     Corentin Labbe <clabbe.montjoie@gmail.com>,
+        Herbert Xu <herbert@gondor.apana.org.au>,
+        "David S . Miller" <davem@davemloft.net>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Samuel Holland <samuel@sholland.org>
+Cc:     Samuel Holland <samuel@sholland.org>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Conor Dooley <conor@kernel.org>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-crypto@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-riscv@lists.infradead.org, linux-sunxi@lists.linux.dev
+Subject: Re: [PATCH v2 3/3] riscv: dts: allwinner: d1: Add crypto engine node
+Date:   Tue, 14 Mar 2023 21:35:31 +0100
+Message-ID: <3544095.R56niFO833@jernej-laptop>
+In-Reply-To: <20221231220146.646-4-samuel@sholland.org>
+References: <20221231220146.646-1-samuel@sholland.org>
+ <20221231220146.646-4-samuel@sholland.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7Bit
 Content-Type: text/plain; charset="us-ascii"
@@ -73,17 +84,12 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Dne petek, 10. marec 2023 ob 15:47:24 CET je Rob Herring napisal(a):
-> It is preferred to use typed property access functions (i.e.
-> of_property_read_<type> functions) rather than low-level
-> of_get_property/of_find_property functions for reading properties. As
-> part of this, convert of_get_property/of_find_property calls to the
-> recently added of_property_present() helper when we just want to test
-> for presence of a property and nothing more.
+Dne sobota, 31. december 2022 ob 23:01:45 CET je Samuel Holland napisal(a):
+> D1 contains a crypto engine which is supported by the sun8i-ce driver.
 > 
-> Signed-off-by: Rob Herring <robh@kernel.org>
+> Signed-off-by: Samuel Holland <samuel@sholland.org>
 
-Applied, thanks!
+Applied patch 3, thanks!
 
 Best regards,
 Jernej
