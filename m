@@ -2,74 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 67D836B8CDC
-	for <lists+devicetree@lfdr.de>; Tue, 14 Mar 2023 09:16:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 236A06B8CE3
+	for <lists+devicetree@lfdr.de>; Tue, 14 Mar 2023 09:18:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229969AbjCNIQ3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Mar 2023 04:16:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50186 "EHLO
+        id S229552AbjCNIRZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Mar 2023 04:17:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60008 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229974AbjCNIQB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Mar 2023 04:16:01 -0400
-Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com [IPv6:2a00:1450:4864:20::52b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 67D1F17163
-        for <devicetree@vger.kernel.org>; Tue, 14 Mar 2023 01:14:27 -0700 (PDT)
-Received: by mail-ed1-x52b.google.com with SMTP id o12so58490881edb.9
-        for <devicetree@vger.kernel.org>; Tue, 14 Mar 2023 01:14:27 -0700 (PDT)
+        with ESMTP id S229674AbjCNIQk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Mar 2023 04:16:40 -0400
+Received: from mail-yw1-x112f.google.com (mail-yw1-x112f.google.com [IPv6:2607:f8b0:4864:20::112f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1CA6D85A57
+        for <devicetree@vger.kernel.org>; Tue, 14 Mar 2023 01:14:59 -0700 (PDT)
+Received: by mail-yw1-x112f.google.com with SMTP id 00721157ae682-5418c2b8ef2so121683417b3.5
+        for <devicetree@vger.kernel.org>; Tue, 14 Mar 2023 01:14:59 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1678781664;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=hILwsYVguO203uGlv5ZObTtNO9bpsD9SoplrKAiLSj4=;
-        b=mNt963QXVOEeTKIWvCmogNQDr1hdrDZ/GX7PSmYFI/mqB0ktUR1WGV7d1km1ezeCJE
-         yKmVI++RIkVyskIlMoRhHJz1pXG8q7VwypdX+sky2kjdGWYoJ75NH8h8pG1mL05d0Z46
-         kOciv3qXMKYysV8sNg4H38oz53GV3y4/+GOQfFwOxaURujp9zDQBYdYg9Aa21XtQg3+q
-         JLlPa1BCYCWqW9mXyy92zWyBWwOeambNyQ2UxwgTQ5bFk+8fm3sfqI1DPYtl0iHzvUlB
-         ic8nfauSiJRXl7zSYUOer6dFSA7tkrnH8zX28D8jspXXNXkxtmKeSUJEVGuoJvpOHh+9
-         PGkQ==
+        d=linaro.org; s=google; t=1678781698;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=CNImQ4Ug8xoniJtv59trmGana2zv4AZXvsOw6yY/IZk=;
+        b=ZESwWyVJww+MC2/YKyK1vRi5uSzGgGP6YywlmCAjypWmeWsfjEwTqxQMtS4Sy2VY4J
+         egCAyZP8W+gAgeML3lkGbYEgvku5Jhn3ox+l/9ywo9jaYdaOWDhuQz1cYXx3u3vbTIna
+         HwnQl4eV0Nchz1tGjkuggZfl6Ddk5F0Iaj9NlbeCDaRKSLNuxTHJnj9INwd4pPGrtEkD
+         mfKSdfq2bVEGavisOvb7wD/cAYdKfLcPqUP2BtuHSZVj9OIZgYO5cB6FtiXcPbCvIpjP
+         XuuKHdricLCqzI0+EqsXD+YIYRobhBys7ZYEyOvo2bb1Xxdtq0rYykraNpO2tqwEcooH
+         mj2w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678781664;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=hILwsYVguO203uGlv5ZObTtNO9bpsD9SoplrKAiLSj4=;
-        b=Uv3tCS6yucckKSwGmYYmqrXIe0V7yHToC8m3GE5bJ2UtM1lMXUBdVDfRTgweqrTo8Z
-         613Hg1x9q06lYnNdLGqXJ/Uc9ThtKCdUMd4FrLf2JrMnKoP7/xUxr7XBADzRtgkA7nAp
-         uw+vcZtt9NPYqVEdVEtJdrKwX9UGIE2V+MHClrBnX3VAFWNlYH2lSLajAn6rdlGjjZ13
-         u1V7c3pwGTqu4RrcVc5QYD5Z2yeZemVcD7YJRYIw04fO34p/5rYJ/n4giUdf4sSpt+f0
-         re4A2qMe8ns1KgkljNxzJlNfQQdOKZ/W+yl2g0Z7HCt4rEwemZz9NGUcUURUbnKxNblz
-         HWJg==
-X-Gm-Message-State: AO0yUKV1NLS6iI20Zh8D2/s42CVYFCbGiC2B6Dol9E3moPu9Vq3S6Y8Q
-        vyrcQ749Zglhxk645uzBEivizw==
-X-Google-Smtp-Source: AK7set83ai8ey1Xq8cs8WcX16ZIX8AaH/SsmCPzB7yBaz8hJWmIDplCbMayvPOAKSgDTQYigdYI9Mw==
-X-Received: by 2002:a17:907:a649:b0:8f2:62a9:6159 with SMTP id vu9-20020a170907a64900b008f262a96159mr1778957ejc.2.1678781664671;
-        Tue, 14 Mar 2023 01:14:24 -0700 (PDT)
-Received: from ?IPV6:2a02:810d:15c0:828:6932:5570:6254:9edd? ([2a02:810d:15c0:828:6932:5570:6254:9edd])
-        by smtp.gmail.com with ESMTPSA id rn22-20020a170906d93600b009245ba892d6sm791368ejb.103.2023.03.14.01.14.23
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 14 Mar 2023 01:14:24 -0700 (PDT)
-Message-ID: <37cff42d-d6a4-8784-c70e-f0184ee84698@linaro.org>
-Date:   Tue, 14 Mar 2023 09:14:23 +0100
+        d=1e100.net; s=20210112; t=1678781698;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=CNImQ4Ug8xoniJtv59trmGana2zv4AZXvsOw6yY/IZk=;
+        b=TWVwRUiBBlV1xp67scuxof/e5A2GRYArauoAWa7r+KylY2r/jRV9XHzDLpMHUp2poa
+         paG0aHjgAxwT0/cAhfDK7aGNMl+YIMAeBATJjeMaYfGvUjHg7rY6rYj2N9rlw1MwVzpD
+         v4xgOHCZ7zqudLqcJIUqRG9uw6dmUuy+GjCQc/FCoDnOFklUsP/nFufyBy/y5QzG6Isz
+         dSgs1OJaiA9ROaFCqUyLd18r63kmnt7Rtjow0p5PIHYGWOh7l16gIOaoNlg8gVxAYe1g
+         eYtlN2ffLVbod4M1MfR52UKbUOJzLjjX9U8HlaLRWSl20kWbEhdVf2dM3mhZoJS2ypfg
+         KNeA==
+X-Gm-Message-State: AO0yUKXRz3WMcuKumyftaVJxDT2h4GqI3bdP1z85tv1tZCfnTTA+TRBG
+        5cgA8/T33+1oCDp0hA3DfsOGrOSpKvvPL79D0si/Nw==
+X-Google-Smtp-Source: AK7set9p5PSnuy8b2Mj9t4qbjMvSgNGjF5/7MtGP9ezjbWqSQGvcnH+t8Y5IMz+134ETL/DJXkO8OG0fpKShJk+8XyI=
+X-Received: by 2002:a81:ad63:0:b0:52a:9f66:80c6 with SMTP id
+ l35-20020a81ad63000000b0052a9f6680c6mr23817685ywk.9.1678781698204; Tue, 14
+ Mar 2023 01:14:58 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-Subject: Re: [PATCH V2 1/3] dt-bindings: mailbox: qcom: use fallback for
- IPQ8074 SoC
-Content-Language: en-US
-To:     Kathiravan T <quic_kathirav@quicinc.com>, agross@kernel.org,
-        andersson@kernel.org, konrad.dybcio@linaro.org,
-        jassisinghbrar@gmail.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, linux-arm-msm@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-References: <20230314050005.10409-1-quic_kathirav@quicinc.com>
- <20230314050005.10409-2-quic_kathirav@quicinc.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230314050005.10409-2-quic_kathirav@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+References: <20230309225041.477440-1-sre@kernel.org> <20230309225041.477440-5-sre@kernel.org>
+ <CACRpkdaa6ZOt7U+iLwjrTGx87BdgXX6wbW2Ab_bHye_TNzi9Tg@mail.gmail.com> <1fdf00a0-4830-465a-801c-147472fdcd22@mercury.local>
+In-Reply-To: <1fdf00a0-4830-465a-801c-147472fdcd22@mercury.local>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Tue, 14 Mar 2023 09:14:46 +0100
+Message-ID: <CACRpkdZFBE=AFtzLShFGCpdRngK-7bZ8iD89_5buZKcXLvJK+g@mail.gmail.com>
+Subject: Re: [PATCHv1 04/11] power: supply: generic-adc-battery: fix unit scaling
+To:     Sebastian Reichel <sre@kernel.org>
+Cc:     Matti Vaittinen <mazziesaccount@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -78,20 +72,15 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 14/03/2023 06:00, Kathiravan T wrote:
-> Since the IPQ8074 mailbox is compatible with the IPQ6018, lets create
-> the fallback to ipq6018 compatible, so that we don't bloat the of_device_id
-> table in the driver.
-> 
-> Suggested-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> Signed-off-by: Kathiravan T <quic_kathirav@quicinc.com>
-> ---
-> Changes in V2:
-> 	- Fixed the dtbs_check warning for IPQ6018
-> 
+On Tue, Mar 14, 2023 at 12:17=E2=80=AFAM Sebastian Reichel <sre@kernel.org>=
+ wrote:
 
-I responded to v1, so for formality: NAK.
+> There is no mainline board using this driver and I think there
+> never was one. I did add a Fixes tag now, but its probably not worth
+> any backporting trouble considering it has no users.
 
-Best regards,
-Krzysztof
+Good point. If a tree falls in the wood an no-one is there to hear it,
+it doesn't make a sound.
 
+Yours,
+Linus Walleij
