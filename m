@@ -2,167 +2,207 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E15136B9A39
-	for <lists+devicetree@lfdr.de>; Tue, 14 Mar 2023 16:47:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 54F586B9A5E
+	for <lists+devicetree@lfdr.de>; Tue, 14 Mar 2023 16:52:35 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231557AbjCNPr1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Mar 2023 11:47:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40040 "EHLO
+        id S231234AbjCNPwd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Mar 2023 11:52:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52716 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229960AbjCNPrN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Mar 2023 11:47:13 -0400
-Received: from mail-ed1-x536.google.com (mail-ed1-x536.google.com [IPv6:2a00:1450:4864:20::536])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 433BE28876
-        for <devicetree@vger.kernel.org>; Tue, 14 Mar 2023 08:46:41 -0700 (PDT)
-Received: by mail-ed1-x536.google.com with SMTP id cy23so63703242edb.12
-        for <devicetree@vger.kernel.org>; Tue, 14 Mar 2023 08:46:41 -0700 (PDT)
+        with ESMTP id S230491AbjCNPwc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Mar 2023 11:52:32 -0400
+Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 847B4A6490
+        for <devicetree@vger.kernel.org>; Tue, 14 Mar 2023 08:52:04 -0700 (PDT)
+Received: by mail-ed1-x533.google.com with SMTP id x13so16572664edd.1
+        for <devicetree@vger.kernel.org>; Tue, 14 Mar 2023 08:52:04 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1678808783;
+        d=linaro.org; s=google; t=1678809122;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=F24AUykmoujwlu8bPOT15t+HLTs3ektTBSdrQH1BgNE=;
-        b=ijHfhSTXyeSBzyOnBwOobVBn6aXLUp9QNdlEdC0nv5pfH35PxfBcLhGAdrG6iyqL4/
-         nMy6dZH4OGdGWCFXiLgM/hO1vEZQaWRdG/mygie3WM1BuznKD7cE/XfCZMv5w4dwx3UN
-         vOdHtSZNCmJBfV6BywNYkd8RSGtIqi0frUGpfC2RS+1aTnsHl3wxuf5vk0aPnDJxgBF3
-         t7Fm5XG9Z12OeB559JsPajSoGiOmrhrI8G9Wz/kP5+gJ4X2np7DgoHvJ/0LmjN8xTuDE
-         32ZorLaQCP9vWjwJ4ovLLJF5+2QwaOWU3zhLwNlfUp0t4b9YtT+YXUGu0cQ2602vtBtd
-         +9tQ==
+        bh=YYIpQBLdwPc6gKjUmGEA5s6ReqUwSq2hqFUeM5rzOMM=;
+        b=MElNr5ac6DZENP4bIdXUnxxnFRTiCCpsM0pfISnhOSZk/ontRmuKehe1b2blycmOzG
+         Cjd5fXYI/B4MobMpWlfeItv7EfEpFUBhKONrfUoYxqoYVZhlmoYfnfIMSyPtdoQyoQ7d
+         eVSb+e+6Hdg5mZiNbC7DzU/TvBs0Ue9QcjsbEUIg5dmnn1zW8AvrkPkHpr8XD6P96wSo
+         8sUwUeyuqx0HMyRDuAKAA8L9HgZIn98c4XSzC/UGIfK/A1hxLLrYKPXoOKUPDTYTIehS
+         ZNlqydne3ShMwRpPTMyRMKGwnQZWmBBA7Ok09bdLNsFQOewQ0WQyJyEDql20zQ/brilR
+         J/rA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678808783;
+        d=1e100.net; s=20210112; t=1678809122;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=F24AUykmoujwlu8bPOT15t+HLTs3ektTBSdrQH1BgNE=;
-        b=6c3izIrUlnRrBXn5L5A1Oxh0G49D2BAwKndApamwilIvQ/IXCkuGXRylbXclShf2tk
-         Lv5AGgUiLM5ekQIdO0ol5cAFXwY8lzAqBjzYa5Tz9vKp8n/XGYhzG2h0CtdCBAJnsQgJ
-         JFMxOSWz48ob67ylYt6yr2o1OS3/n0JDn4HciKg9kw8AGLTNi3K8zT5YI6IFGVSFjDmd
-         UjmcBuDzGSEiUlIWwFPI/d57z+Qr3w1f9tohZumtQB3kgmiPhXgv0qaABP9d+HZGqyLp
-         QTbLEGE7jCcrfdJryzBzmQXQv+aysBAxH1qwzOxDvNzIoixeVyIkqCtTrZfU2LF1E/gz
-         X9Eg==
-X-Gm-Message-State: AO0yUKX4cSH48lDZO4zv22pnez0yUGTLUzdpOmLnN3710XdRFKh0vdBK
-        N5IjD2DMCrzSIAKQU+e+3UjD6Q==
-X-Google-Smtp-Source: AK7set/huwM8TSsgEcLmJAmj81UQJX00g4nQcBlm5bflAXgoDF1dcRvB6W3X97H7hFulTkAnNip3pQ==
-X-Received: by 2002:a17:906:12d8:b0:923:6558:84fb with SMTP id l24-20020a17090612d800b00923655884fbmr2667694ejb.3.1678808783068;
-        Tue, 14 Mar 2023 08:46:23 -0700 (PDT)
+        bh=YYIpQBLdwPc6gKjUmGEA5s6ReqUwSq2hqFUeM5rzOMM=;
+        b=kj3rNYYY2KkgsbEuB9d94SDGGHW4TV6192SlKYO1BlaM+kZ+Bjq7aAPSqx5FDz8Keu
+         KQsr0L5ltgYZ46AuYK/FEDnqlksL+cAeDmprzipU3GV8GnCQ3d0t4VPEQ3S/fl4ig5dI
+         4nwh5qMDPdExSCaUKXAFfE9knYyDrahfAhE/AQbnFq4VNAOD+P21c8L1DHx+567T1DiV
+         OOw68T3SEvt6ZWUuSBYV5XArFfdhcheZj1JNCdrogsXb6vbVSvOgXzN8cZ1e5+lx1X4/
+         YL8NRhhtEtY/S0pKrSk0n6n0nmIl4b3b91URgdy4I024Bs4iItpG81Mm9Vf70Wro26Fr
+         viMA==
+X-Gm-Message-State: AO0yUKUTkOg+aXpAc3CbDJQk38LR5u35Ta/6ds+ryB+946Kl24SNTqFC
+        1s+O6iPvGP2Q8ttnwt1DQdL6kg==
+X-Google-Smtp-Source: AK7set+U4XUbooucF/dDjekfDi7yZIhNFgJAuxmyC5clGg0B41Sd5Pjm71N42E9+zNpHKm7VQUeesw==
+X-Received: by 2002:a17:906:1114:b0:91f:9024:bbab with SMTP id h20-20020a170906111400b0091f9024bbabmr2594280eja.23.1678809122409;
+        Tue, 14 Mar 2023 08:52:02 -0700 (PDT)
 Received: from ?IPV6:2a02:810d:15c0:828:59be:4b3f:994b:e78c? ([2a02:810d:15c0:828:59be:4b3f:994b:e78c])
-        by smtp.gmail.com with ESMTPSA id r6-20020a17090638c600b00925d50190a3sm1298371ejd.80.2023.03.14.08.46.22
+        by smtp.gmail.com with ESMTPSA id v12-20020a17090651cc00b008e938e98046sm1303273ejk.223.2023.03.14.08.52.01
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 14 Mar 2023 08:46:22 -0700 (PDT)
-Message-ID: <c2773010-2367-ba20-e0fa-2e060cb95128@linaro.org>
-Date:   Tue, 14 Mar 2023 16:46:21 +0100
+        Tue, 14 Mar 2023 08:52:01 -0700 (PDT)
+Message-ID: <5d074e6b-7fe1-ab7f-8690-cfb1bead6927@linaro.org>
+Date:   Tue, 14 Mar 2023 16:52:00 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.8.0
-Subject: Re: [PATCH net-next V3] dt-bindings: net: ethernet-controller: Add
- ptp-hardware-clock
+Subject: Re: [PATCH net-next V7] dt-bindings: net: xlnx,axi-ethernet: convert
+ bindings document to yaml
 Content-Language: en-US
 To:     Sarath Babu Naidu Gaddam <sarath.babu.naidu.gaddam@amd.com>,
         davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
-        pabeni@redhat.com, robh+dt@kernel.org, richardcochran@gmail.com
-Cc:     krzysztof.kozlowski+dt@linaro.org, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        yangbo.lu@nxp.com, radhey.shyam.pandey@amd.com,
+        pabeni@redhat.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org
+Cc:     michal.simek@xilinx.com, radhey.shyam.pandey@xilinx.com,
+        netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
         anirudha.sarangi@amd.com, harini.katakam@amd.com, git@amd.com
-References: <20230308054408.1353992-1-sarath.babu.naidu.gaddam@amd.com>
- <20230308054408.1353992-2-sarath.babu.naidu.gaddam@amd.com>
+References: <20230308061223.1358637-1-sarath.babu.naidu.gaddam@amd.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230308054408.1353992-2-sarath.babu.naidu.gaddam@amd.com>
+In-Reply-To: <20230308061223.1358637-1-sarath.babu.naidu.gaddam@amd.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 08/03/2023 06:44, Sarath Babu Naidu Gaddam wrote:
-> There is currently no standard property to pass PTP device index
-> information to ethernet driver when they are independent.
+On 08/03/2023 07:12, Sarath Babu Naidu Gaddam wrote:
+> From: Radhey Shyam Pandey <radhey.shyam.pandey@xilinx.com>
 > 
-> ptp-hardware-clock property will contain phandle to PTP clock node.
+> Convert the bindings document for Xilinx AXI Ethernet Subsystem
+> from txt to yaml. No changes to existing binding description.
 > 
-> Its a generic (optional) property name to link to PTP phandle to
-> Ethernet node. Any future or current ethernet drivers that need
-> a reference to the PHC used on their system can simply use this
-> generic property name instead of using custom property
-> implementation in their device tree nodes."
-> 
-> Signed-off-by: Sarath Babu Naidu Gaddam <sarath.babu.naidu.gaddam@amd.com>
-> Acked-by: Richard Cochran <richardcochran@gmail.com>
-> ---
-> 
-> Freescale driver currently has this implementation but it will be
-> good to agree on a generic (optional) property name to link to PTP
-> phandle to Ethernet node. In future or any current ethernet driver
-> wants to use this method of reading the PHC index,they can simply use
-> this generic name and point their own PTP clock node, instead of
-> creating separate property names in each ethernet driver DT node.
 
-Again, I would like to see an user of this. I asked about this last time
-and nothing was provided.
+(...)
 
-So basically you send the same thing hoping this time will be accepted...
-
-> 
-> axiethernet driver uses this method when PTP support is integrated.
-> 
-> Example:
->     fman0: fman@1a00000 {
->         ptp-hardware-clock = <&ptp_timer0>;
->     }
-> 
->     ptp_timer0: ptp-timer@1afe000 {
->         compatible = "fsl,fman-ptp-timer";
->         reg = <0x0 0x1afe000 0x0 0x1000>;
->     }
-> 
-> DT information:
-> https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/arch/arm64/boot/dts/freescale/qoriq-fman3-0.dtsi#n23
-> 
-> Freescale driver:
-> https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/net/ethernet/freescale/dpaa/dpaa_ethtool.c#n407
-> 
-> Changes in V3:
-> 1) Updated commit description.
-> 2) Add Acked-by: Richard Cochran.
-> 
-> Changes in V2:
-> 1) Changed the ptimer-handle to ptp-hardware-clock based on
->    Richard Cochran's comment.
-> 2) Updated commit description.
-> ---
->  .../devicetree/bindings/net/ethernet-controller.yaml         | 5 +++++
->  1 file changed, 5 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/net/ethernet-controller.yaml b/Documentation/devicetree/bindings/net/ethernet-controller.yaml
-> index 00be387984ac..a97ab25b07a5 100644
-> --- a/Documentation/devicetree/bindings/net/ethernet-controller.yaml
-> +++ b/Documentation/devicetree/bindings/net/ethernet-controller.yaml
-> @@ -161,6 +161,11 @@ properties:
->        - auto
->        - in-band-status
->  
-> +  ptp-hardware-clock:
-> +    $ref: /schemas/types.yaml#/definitions/phandle
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - xlnx,axi-ethernet-1.00.a
+> +      - xlnx,axi-ethernet-1.01.a
+> +      - xlnx,axi-ethernet-2.01.a
+> +
+> +  reg:
 > +    description:
-> +      Specifies a reference to a node representing a IEEE1588 timer.
+> +      Address and length of the IO space, as well as the address
+> +      and length of the AXI DMA controller IO space, unless
+> +      axistream-connected is specified, in which case the reg
+> +      attribute of the node referenced by it is used.
+
+Did you test it with axistream-connected? The schema and description
+feel contradictory and tests would point the issue.
+
+> +    maxItems: 2
+> +
+> +  interrupts:
+> +    items:
+> +      - description: Ethernet core interrupt
+> +      - description: Tx DMA interrupt
+> +      - description: Rx DMA interrupt
+> +    description:
+> +      Ethernet core interrupt is optional. If axistream-connected property is
+> +      present DMA node should contains TX/RX DMA interrupts else DMA interrupt
+> +      resources are mentioned on ethernet node.
+> +    minItems: 1
+> +
+> +  phy-handle: true
+> +
+> +  xlnx,rxmem:
+> +    description:
+> +      Set to allocated memory buffer for Rx/Tx in the hardware.
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +
+> +  phy-mode:
+> +    items:
+> +      - description: MII
+> +      - description: GMII
+> +      - description: RGMII
+> +      - description: SGMII
+> +      - description: 1000BaseX
+
+I have doubts you tested it... Since when this is a list? How does it
+exactly work and what do you want to show here?
+
+connection type is enum.
 
 
-https://lore.kernel.org/all/cfbde0da-9939-e976-52c1-88577de7d4cb@linaro.org/
+> +    minItems: 1
+> +
+> +  xlnx,phy-type:
+> +    description:
+> +      Do not use, but still accepted in preference to phy-mode.
+> +    deprecated: true
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +
+> +  xlnx,txcsum:
+> +    description:
+> +      TX checksum offload. 0 or empty for disabling TX checksum offload,
+> +      1 to enable partial TX checksum offload and 2 to enable full TX
+> +      checksum offload.
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    enum: [0, 1, 2]
+> +
+> +  xlnx,rxcsum:
+> +    description:
+> +      RX checksum offload. 0 or empty for disabling RX checksum offload,
+> +      1 to enable partial RX checksum offload and 2 to enable full RX
+> +      checksum offload.
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    enum: [0, 1, 2]
+> +
+> +  xlnx,switch-x-sgmii:
+> +    type: boolean
+> +    description:
+> +      Indicate the Ethernet core is configured to support both 1000BaseX and
+> +      SGMII modes. If set, the phy-mode should be set to match the mode
+> +      selected on core reset (i.e. by the basex_or_sgmii core input line).
+> +
+> +  clocks:
+> +    items:
+> +      - description: Clock for AXI register slave interface.
+> +      - description: AXI4-Stream clock for TXD RXD TXC and RXS interfaces.
+> +      - description: Ethernet reference clock, used by signal delay primitives
+> +                     and transceivers.
+> +      - description: MGT reference clock (used by optional internal PCS/PMA PHY)
+> +
+> +  clock-names:
+> +    items:
+> +      - const: s_axi_lite_clk
+> +      - const: axis_clk
+> +      - const: ref_clk
+> +      - const: mgt_clk
+> +
+> +  axistream-connected:
+> +    $ref: /schemas/types.yaml#/definitions/phandle
+> +    description: Phandle of AXI DMA controller which contains the resources
+> +      used by this device. If this is specified, the DMA-related resources
+> +      from that device (DMA registers and DMA TX/RX interrupts) rather than
+> +      this one will be used.
+> +
+> +  mdio:
+> +    type: object
+> +
+> +  pcs-handle:
 
-This is a friendly reminder during the review process.
+maxItems: 1
 
-It seems my previous comments were not fully addressed. Maybe my
-feedback got lost between the quotes, maybe you just forgot to apply it.
-Please go back to the previous discussion and either implement all
-requested changes or keep discussing them.
-
-Thank you.
+> +    description: Phandle to the internal PCS/PMA PHY in SGMII or 1000Base-X
+> +      modes, where "pcs-handle" should be used to point to the PCS/PMA PHY,
+> +      and "phy-handle" should point to an external PHY if exists.
 
 Best regards,
 Krzysztof
