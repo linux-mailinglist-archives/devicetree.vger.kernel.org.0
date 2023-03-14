@@ -2,80 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 098D96B8DDD
-	for <lists+devicetree@lfdr.de>; Tue, 14 Mar 2023 09:54:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BA6A36B8DE4
+	for <lists+devicetree@lfdr.de>; Tue, 14 Mar 2023 09:55:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229889AbjCNIyX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Mar 2023 04:54:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44166 "EHLO
+        id S229676AbjCNIzL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Mar 2023 04:55:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46298 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229456AbjCNIyW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Mar 2023 04:54:22 -0400
-Received: from mail-wm1-x336.google.com (mail-wm1-x336.google.com [IPv6:2a00:1450:4864:20::336])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9F3715C9C8
-        for <devicetree@vger.kernel.org>; Tue, 14 Mar 2023 01:54:14 -0700 (PDT)
-Received: by mail-wm1-x336.google.com with SMTP id l7-20020a05600c4f0700b003e79fa98ce1so9545526wmq.2
-        for <devicetree@vger.kernel.org>; Tue, 14 Mar 2023 01:54:14 -0700 (PDT)
+        with ESMTP id S230415AbjCNIzH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Mar 2023 04:55:07 -0400
+Received: from mail-ed1-x52e.google.com (mail-ed1-x52e.google.com [IPv6:2a00:1450:4864:20::52e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6A95A1715D
+        for <devicetree@vger.kernel.org>; Tue, 14 Mar 2023 01:55:05 -0700 (PDT)
+Received: by mail-ed1-x52e.google.com with SMTP id cn21so28733471edb.0
+        for <devicetree@vger.kernel.org>; Tue, 14 Mar 2023 01:55:05 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1678784053;
-        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
-         :content-language:subject:reply-to:from:user-agent:mime-version:date
-         :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=v75KTMuw3KcdDlrLuoPJiGsmVBznB/RJnpqv1/ly5lI=;
-        b=aNjUjLrcpaXjwu/4dbQzHaY4b3Dn3tv81YXVqdiqApk5IEp9oECS4JWIDTNUVppAym
-         y9L7MeJazA4s4euFcL/Y5gSA7r/P00+tXhJhCnkoEqXRKOp1+JYNMppKKi863Fpetisj
-         W71QhvISwvBCfbprWr3tOQL7TGpENcbYc20v7IGGwBE9LLp1raxERYAojlFUxC0ESJ+q
-         8aE/QNqBrbCaIRrd47RcCnBRnbJV3YsxWJi0kuiPG2mmyhtYmRGOhTf2Q6ewrdsUk7f+
-         WzMIEOpjdjbEGoM79qboDF8TTvNBGiDqLFAXsqARGz+ZSY8jVTCAqE8iUvj+1xh2U+40
-         s3Hg==
+        d=linaro.org; s=google; t=1678784104;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=A6U/uGEVGcYZ2SfTqWK2MgrOGjdTMzTC47YcrnnaB+Q=;
+        b=gS7wvuQiexUbPWSR4Wu5b73eEKV6mwSjV7T5a2BsFaoMNrvpHiV1WfUye2RBEUTm3g
+         PNhizCHnBo+wE6dH4aXvvj7K15krxY7j+NgKXRy7AKs1eA9TAJBR42ZeUn5sQl5xMDdG
+         AUfhagi+poWWe9lEA4pO4ehdG8nJF85X/PK3OXmKt8OU2rhf0eecc23ju1CTMVAoaBwM
+         uaNqIZRGj3rHxPR+sqMicND++DeMu2FhbErxICZMEzB1z8xz1f5VMcz771K/749gq9R2
+         La1vbj8mC4ENDZIJzECoiz8sIbRPsq5SEJvSW/cTX53Bo2XwI0gGCRk82L7czK0z5HW7
+         mg+g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678784053;
-        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
-         :content-language:subject:reply-to:from:user-agent:mime-version:date
-         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=v75KTMuw3KcdDlrLuoPJiGsmVBznB/RJnpqv1/ly5lI=;
-        b=1fuqCGZ7//a8INV5Dk9Yw1uySGJk7aSBr/C38kfG0XfPHzaBjteWLYgQt6LfhryFid
-         7RzNh+bQkzKnYpq9PMilu2nLtbH6jDjzWM7yVUvmI4vsv22B5I5npyrNH4Jq7s3prZX/
-         smB3fJbMKeadamwuWLsSplIcMBrr+cEKRXYr3w7RUgRnzK4mnq9uZOPyfngsnVvfA937
-         dHcGD+7ILJNuaJvOVdPhsJgZdh12O2T84kPQ1YQQHs1YosD98kAp/KRiQD6Fot8Eb1NI
-         J73egmoUlMUWAvidqmHLabvRF7Cqacpd6SfdryHS+vAf1qJHo5SKmKqEiMqsSQmBISjZ
-         uwSg==
-X-Gm-Message-State: AO0yUKWdkgVMSvuF+QzOYEc3M6Mmsw3SZH93eSd+s1VXy1j9jX01gGEh
-        JBVeG7tY/st61a3mkcJOHHONAw==
-X-Google-Smtp-Source: AK7set+WZGtNLvW0dZC4TbyqElBmfwd/9FmjaR6AfzRA4EVNJIBui7DLWbnR0qrXHxzQSr5KwXGxCw==
-X-Received: by 2002:a05:600c:4f08:b0:3e2:20c7:6544 with SMTP id l8-20020a05600c4f0800b003e220c76544mr13392562wmq.19.1678784053087;
-        Tue, 14 Mar 2023 01:54:13 -0700 (PDT)
-Received: from ?IPV6:2a01:e0a:982:cbb0:11c3:d4e5:ef75:8eb9? ([2a01:e0a:982:cbb0:11c3:d4e5:ef75:8eb9])
-        by smtp.gmail.com with ESMTPSA id u15-20020a05600c440f00b003dfe549da4fsm2142551wmn.18.2023.03.14.01.54.12
+        d=1e100.net; s=20210112; t=1678784104;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=A6U/uGEVGcYZ2SfTqWK2MgrOGjdTMzTC47YcrnnaB+Q=;
+        b=iqkYlr6jsrzf01eFyxLtBfkMdoMnqwXJkcxeL7THlZGNIKoS8HJbkA+AOC5BRFr+AZ
+         u96N+i5aglUsXBtdRXDVaciCKjTj1jNtgfl+ANF7SFS92REEiCbDwNwLsOdwy9jODRBR
+         4SFWw1CB1ykScvgu4gtliPbiPUd05PZ7HZJbV7ayYGEL4tBt7usljpmxYajNj6oawHzG
+         AckW2sH2AHYxNmVsHiw9Al6P6UXYMcGp/F9SI34VKROZXClTH7FCRAI/QwQvJSbzkW75
+         kWxueWub8ABC3urxekUfRX02qXnODVHO9mAboXJmeUKaqYnPrmdl2iWiWOptZW+NPE4q
+         ctpA==
+X-Gm-Message-State: AO0yUKW01lgwvFCdJcoEkQIuLfQtHNeqeGq2Nc5a4pHq10WbIrRlEna1
+        W8pqDz4UkglB2fnvPZ+aLNnsZw==
+X-Google-Smtp-Source: AK7set88dBI4MNpRSsXzSu4Pa9XR4EBKiSomqWEgimS8om0+IeObYoc4JuH1FJ/mAykHIV3sR8Bwew==
+X-Received: by 2002:a17:906:f193:b0:907:68b9:e04e with SMTP id gs19-20020a170906f19300b0090768b9e04emr1881779ejb.19.1678784103895;
+        Tue, 14 Mar 2023 01:55:03 -0700 (PDT)
+Received: from ?IPV6:2a02:810d:15c0:828:59be:4b3f:994b:e78c? ([2a02:810d:15c0:828:59be:4b3f:994b:e78c])
+        by smtp.gmail.com with ESMTPSA id cf23-20020a170906b2d700b008d6e551e1bcsm836536ejb.2.2023.03.14.01.55.03
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 14 Mar 2023 01:54:12 -0700 (PDT)
-Message-ID: <d7bd6663-516a-a1f9-506c-5853eaa948e4@linaro.org>
-Date:   Tue, 14 Mar 2023 09:54:11 +0100
+        Tue, 14 Mar 2023 01:55:03 -0700 (PDT)
+Message-ID: <63a24be0-da17-5892-f761-5c5f68ea7d87@linaro.org>
+Date:   Tue, 14 Mar 2023 09:55:02 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.2
-From:   Neil Armstrong <neil.armstrong@linaro.org>
-Reply-To: neil.armstrong@linaro.org
-Subject: Re: [PATCH v3 01/12] usb: typec: ucsi: add PMIC Glink UCSI driver
+ Thunderbird/102.8.0
+Subject: Re: [PATCH v4] dt-bindings: pinctrl: Convert Amlogic Meson pinctrl
+ binding
 Content-Language: en-US
-To:     Heikki Krogerus <heikki.krogerus@linux.intel.com>
-Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
+To:     Heiner Kallweit <hkallweit1@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>, linux-kernel@vger.kernel.org,
-        linux-usb@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-References: <20230130-topic-sm8450-upstream-pmic-glink-v3-0-4c860d265d28@linaro.org>
- <20230130-topic-sm8450-upstream-pmic-glink-v3-1-4c860d265d28@linaro.org>
- <ZA7wPtttsWlQRpAR@kuha.fi.intel.com>
-Organization: Linaro Developer Services
-In-Reply-To: <ZA7wPtttsWlQRpAR@kuha.fi.intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        Linus Walleij <linus.walleij@linaro.org>
+Cc:     "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>,
+        "linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>
+References: <26d5c603-41e7-1d38-de2d-7367eed1be05@gmail.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <26d5c603-41e7-1d38-de2d-7367eed1be05@gmail.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
@@ -87,101 +85,212 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 13/03/2023 10:43, Heikki Krogerus wrote:
-> Hi,
+On 12/03/2023 23:06, Heiner Kallweit wrote:
+> Convert Amlogic Meson pin controller binding to yaml.
 > 
-> On Thu, Mar 09, 2023 at 02:27:52PM +0100, Neil Armstrong wrote:
->> +static void pmic_glink_ucsi_register(struct work_struct *work)
->> +{
->> +	struct pmic_glink_ucsi *ucsi = container_of(work, struct pmic_glink_ucsi, register_work);
->> +
->> +	ucsi_register(ucsi->ucsi);
->> +}
->> +
->> +static void pmic_glink_ucsi_callback(const void *data, size_t len, void *priv)
->> +{
->> +	struct pmic_glink_ucsi *ucsi = priv;
->> +	const struct pmic_glink_hdr *hdr = data;
->> +
->> +	switch (hdr->opcode) {
->> +	case UC_UCSI_READ_BUF_REQ:
->> +		pmic_glink_ucsi_read_ack(ucsi, data, len);
->> +		break;
->> +	case UC_UCSI_WRITE_BUF_REQ:
->> +		pmic_glink_ucsi_write_ack(ucsi, data, len);
->> +		break;
->> +	case UC_UCSI_USBC_NOTIFY_IND:
->> +		schedule_work(&ucsi->notify_work);
->> +		break;
->> +	};
->> +}
->> +
->> +static void pmic_glink_ucsi_pdr_notify(void *priv, int state)
->> +{
->> +	struct pmic_glink_ucsi *ucsi = priv;
->> +
->> +	if (state == SERVREG_SERVICE_STATE_UP)
->> +		schedule_work(&ucsi->register_work);
->> +	else if (state == SERVREG_SERVICE_STATE_DOWN)
->> +		ucsi_unregister(ucsi->ucsi);
->> +}
->> +
->> +static int pmic_glink_ucsi_probe(struct auxiliary_device *adev,
->> +				 const struct auxiliary_device_id *id)
->> +{
->> +	struct pmic_glink_ucsi *ucsi;
->> +	struct device *dev = &adev->dev;
->> +
->> +	ucsi = devm_kzalloc(dev, sizeof(*ucsi), GFP_KERNEL);
->> +	if (!ucsi)
->> +		return -ENOMEM;
->> +
->> +	ucsi->dev = dev;
->> +	dev_set_drvdata(dev, ucsi);
->> +
->> +	INIT_WORK(&ucsi->notify_work, pmic_glink_ucsi_notify);
->> +	INIT_WORK(&ucsi->register_work, pmic_glink_ucsi_register);
->> +	init_completion(&ucsi->read_ack);
->> +	init_completion(&ucsi->write_ack);
->> +	init_completion(&ucsi->sync_ack);
->> +	mutex_init(&ucsi->lock);
->> +
->> +	ucsi->ucsi = ucsi_create(dev, &pmic_glink_ucsi_ops);
->> +	if (IS_ERR(ucsi->ucsi))
->> +		return PTR_ERR(ucsi->ucsi);
->> +
->> +	ucsi_set_drvdata(ucsi->ucsi, ucsi);
->> +
->> +	ucsi->client = devm_pmic_glink_register_client(dev,
->> +						       PMIC_GLINK_OWNER_USBC,
->> +						       pmic_glink_ucsi_callback,
->> +						       pmic_glink_ucsi_pdr_notify,
->> +						       ucsi);
->> +	return PTR_ERR_OR_ZERO(ucsi->client);
->> +}
->> +
->> +static const struct auxiliary_device_id pmic_glink_ucsi_id_table[] = {
->> +	{ .name = "pmic_glink.ucsi", },
->> +	{},
->> +};
->> +MODULE_DEVICE_TABLE(auxiliary, pmic_glink_ucsi_id_table);
->> +
->> +static struct auxiliary_driver pmic_glink_ucsi_driver = {
->> +	.name = "pmic_glink_ucsi",
->> +	.probe = pmic_glink_ucsi_probe,
->> +	.id_table = pmic_glink_ucsi_id_table,
->> +};
+> Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
+> ---
+> v2:
+> - consider that more than one compatible can be set
+> - remove bus part from example
+> v3:
+> - remove minItem/maxItem properties for compatible
+> v4:
+> - split patch to be able to deal with the different reg/reg-names
+> ---
+>  .../pinctrl/amlogic,meson-pinctrl-a1.yaml     | 60 ++++++++++++
+>  .../pinctrl/amlogic,meson-pinctrl-common.yaml | 53 +++++++++++
+>  .../amlogic,meson-pinctrl-g12a-aobus.yaml     | 61 ++++++++++++
+>  .../amlogic,meson-pinctrl-g12a-periphs.yaml   | 65 +++++++++++++
+>  .../pinctrl/amlogic,meson8-pinctrl-aobus.yaml | 69 ++++++++++++++
+>  .../pinctrl/amlogic,meson8-pinctrl-cbus.yaml  | 71 ++++++++++++++
+>  .../bindings/pinctrl/meson,pinctrl.txt        | 94 -------------------
+>  7 files changed, 379 insertions(+), 94 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/pinctrl/amlogic,meson-pinctrl-a1.yaml
+>  create mode 100644 Documentation/devicetree/bindings/pinctrl/amlogic,meson-pinctrl-common.yaml
+>  create mode 100644 Documentation/devicetree/bindings/pinctrl/amlogic,meson-pinctrl-g12a-aobus.yaml
+>  create mode 100644 Documentation/devicetree/bindings/pinctrl/amlogic,meson-pinctrl-g12a-periphs.yaml
+>  create mode 100644 Documentation/devicetree/bindings/pinctrl/amlogic,meson8-pinctrl-aobus.yaml
+>  create mode 100644 Documentation/devicetree/bindings/pinctrl/amlogic,meson8-pinctrl-cbus.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/pinctrl/meson,pinctrl.txt
 > 
-> What happens if you remove the module - I think you need to implement
-> the remove callback, no?
+> diff --git a/Documentation/devicetree/bindings/pinctrl/amlogic,meson-pinctrl-a1.yaml b/Documentation/devicetree/bindings/pinctrl/amlogic,meson-pinctrl-a1.yaml
+> new file mode 100644
+> index 000000000..1db9d8453
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/pinctrl/amlogic,meson-pinctrl-a1.yaml
+> @@ -0,0 +1,60 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/pinctrl/amlogic,meson-pinctrl-a1.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Amlogic Meson A1 pinmux controller
+> +
+> +maintainers:
+> +  - Neil Armstrong <neil.armstrong@linaro.org>
+> +
+> +allOf:
+> +  - $ref: amlogic,meson-pinctrl-common.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - amlogic,meson-a1-periphs-pinctrl
+> +      - amlogic,meson-s4-periphs-pinctrl
+> +
+> +additionalProperties: true
 
-You're right, I thought devm_pmic_glink_register_client would call
-pmic_glink_ucsi_pdr_notify which would unregister ucsi, but no so will add.
+No, this cannot be true.
 
-Thanks,
-Neil
+This goes to the same place as in example-schema, so before required.
 
-> 
-> thanks,
-> 
+> +
+> +patternProperties:
+> +  "^bank@[0-9a-z]+$":
+> +    $ref: amlogic,meson-pinctrl-common.yaml#/$defs/meson-gpio
+> +
+> +    properties:
+> +      reg:
+> +        maxItems: 2
+> +
+> +      reg-names:
+> +        items:
+> +          - const: mux
+> +          - const: gpio
+
+Missing required-compatible.
+
+> +
+> +examples:
+> +  - |
+> +    periphs_pinctrl: pinctrl {
+> +      compatible = "amlogic,meson-a1-periphs-pinctrl";
+> +      #address-cells = <1>;
+> +      #size-cells = <1>;
+> +      ranges;
+> +
+> +      bank@400 {
+> +        reg = <0x0400 0x003c>,
+> +              <0x0480 0x0118>;
+> +        reg-names = "mux", "gpio";
+> +        gpio-controller;
+> +        #gpio-cells = <2>;
+> +        gpio-ranges = <&periphs_pinctrl 0 0 62>;
+> +
+> +        cec_ao_a_h_pins: cec_ao_a_h {
+> +          mux {
+> +            groups = "cec_ao_a_h";
+> +            function = "cec_ao_a_h";
+> +            bias-disable;
+> +          };
+> +        };
+> +      };
+> +    };
+> diff --git a/Documentation/devicetree/bindings/pinctrl/amlogic,meson-pinctrl-common.yaml b/Documentation/devicetree/bindings/pinctrl/amlogic,meson-pinctrl-common.yaml
+> new file mode 100644
+> index 000000000..035219f6e
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/pinctrl/amlogic,meson-pinctrl-common.yaml
+> @@ -0,0 +1,53 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/pinctrl/amlogic,meson-pinctrl-common.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Amlogic Meson pinmux controller
+> +
+> +maintainers:
+> +  - Neil Armstrong <neil.armstrong@linaro.org>
+> +
+> +allOf:
+> +  - $ref: pinctrl.yaml#
+> +
+> +properties:
+> +  compatible: true
+
+Drop.
+
+> +  ranges: true
+> +
+> +  "#address-cells":
+> +    enum: [1, 2]
+> +
+> +  "#size-cells":
+> +    enum: [1, 2]
+> +
+> +required:
+> +  - compatible
+
+Drop
+
+> +  - ranges
+> +  - "#address-cells"
+> +  - "#size-cells"
+> +
+> +additionalProperties:
+> +  allOf:
+> +    - $ref: pincfg-node.yaml#
+> +    - $ref: pinmux-node.yaml#
+
+I don't think this readable. Properties should rather reference the
+schema, and now you allow evaluation of anything. Which probably caused
+your wrong additionalProperties in the first place.
+
+This could be part of node definition below.
+
+
+> +
+> +$defs:
+> +  meson-gpio:
+> +    type: object
+> +    properties:
+> +      gpio-controller: true
+> +
+> +      "#gpio-cells":
+> +        const: 2
+> +
+> +      gpio-ranges:
+> +        maxItems: 1
+> +
+> +    required:
+> +      - reg
+> +      - reg-names
+> +      - gpio-controller
+> +      - "#gpio-cells"
+> +      - gpio-ranges
+> diff --git a/Documentation/devicetree/bindings/pinctrl/amlogic,meson-pinctrl-g12a-aobus.yaml b/Documentation/devicetree/bindings/pinctrl/amlogic,meson-pinctrl-g12a-aobus.yaml
+> new file mode 100644
+> index 000000000..5a84e17f3
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/pinctrl/amlogic,meson-pinctrl-g12a-aobus.yaml
+> @@ -0,0 +1,61 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/pinctrl/amlogic,meson-pinctrl-g12a-aobus.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Amlogic Meson G12 AOBUS pinmux controller
+> +
+> +maintainers:
+> +  - Neil Armstrong <neil.armstrong@linaro.org>
+> +
+> +allOf:
+> +  - $ref: amlogic,meson-pinctrl-common.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - amlogic,meson-g12a-aobus-pinctrl
+> +
+> +additionalProperties: true
+
+Same problems... and further as well.
+
+
+Best regards,
+Krzysztof
 
