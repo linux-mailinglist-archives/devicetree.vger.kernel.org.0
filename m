@@ -2,70 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9309F6B9D5B
-	for <lists+devicetree@lfdr.de>; Tue, 14 Mar 2023 18:47:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E97A66B9DA8
+	for <lists+devicetree@lfdr.de>; Tue, 14 Mar 2023 18:57:03 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230313AbjCNRrj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Mar 2023 13:47:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43394 "EHLO
+        id S230234AbjCNR5C (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Mar 2023 13:57:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60958 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230081AbjCNRrg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Mar 2023 13:47:36 -0400
+        with ESMTP id S230035AbjCNR44 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Mar 2023 13:56:56 -0400
 Received: from mail-ed1-x530.google.com (mail-ed1-x530.google.com [IPv6:2a00:1450:4864:20::530])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CDB13B256D
-        for <devicetree@vger.kernel.org>; Tue, 14 Mar 2023 10:47:24 -0700 (PDT)
-Received: by mail-ed1-x530.google.com with SMTP id z21so20484edb.4
-        for <devicetree@vger.kernel.org>; Tue, 14 Mar 2023 10:47:24 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 241F0ABB06
+        for <devicetree@vger.kernel.org>; Tue, 14 Mar 2023 10:56:44 -0700 (PDT)
+Received: by mail-ed1-x530.google.com with SMTP id ek18so34281843edb.6
+        for <devicetree@vger.kernel.org>; Tue, 14 Mar 2023 10:56:44 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1678816043;
+        d=linaro.org; s=google; t=1678816602;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=t+E718iy5nGXGzQKGRneg6M+KHDq68OckDs1UzdQ5Ro=;
-        b=ozrOd+9/Tk6w3m3IF6QbH4X7ltIk8jCXKrqSLN/Xa9AQCZZHpzfIY1HJKhtOdbwprg
-         JmNthFvcVDXzGtdtgvNbkV9t6oRnksOTsqM1Yu7qoPEced/UoJzzcqTSzjGTUY7DqUPt
-         piRii8V9kVmVvH3DqT7ejhuMluQQgTfkoy/m2L69HSvU+GMSslYVfQFCJfHTYVM8zJax
-         eQC1V2QRQ3zV3sbBi9rWWpszfjswwzwUVeYvcg2xPj48S/oLMoeOxLyXH/ykvdmbTCS1
-         xOZ6IptXTzkAFrjCaYANEjqWC7qCWb3QSUzH8Q2xvHEXBBuoGoYHicEFXqFUlVoAKObU
-         SfUg==
+        bh=BBAdudaa5OwS68f0uZK/unstmFHq5M3zw+2tcO53Zq8=;
+        b=IQfJITGI5ZNI33OajIaXutN5rC2BX75h5a7QWvvS7cs+Bsd6qzJI8DIKrMv3iICbBL
+         VgyYu6jTKZedQHe3vQ7bXK9gqO/IT5LkTGA/lSNTLq8Vwtb9qJyAaChDD8v3vTBF3EkZ
+         fqY3FSWFi3DyJDtzlNjMcrZgHq6ohEC50aePxaHLZr9VDf/jdMGadDQKaRZ7s95sSxDR
+         ohvTlInGPaHJjFal0b6r/nRn+ezWiYRAyQV8b0yup8DjXt266T16rPY1w+hhs6Z+mYnh
+         LUUIs5HOzI2rT84gq0uu395D9OjbnmRgTRfB6OR4GthfN4uesaxKIqVSp/sIJkmToc21
+         ryzQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678816043;
+        d=1e100.net; s=20210112; t=1678816602;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=t+E718iy5nGXGzQKGRneg6M+KHDq68OckDs1UzdQ5Ro=;
-        b=YLEMYOF149HSlkACxBXCW3cn+aFwT+uc1wnjusabf0FU7KMaXhTGyUBAqVAjjW3LpR
-         4bIqbyW3B67hUvnLmk6+2M8BzynNQnK55zPjNj6+cxKZShGLvOUDgSTMjKa6xooZ1al7
-         ob19YTr5W9BnRaQqBWsQL8BLoxd678SIBdHZUuCLRXbbQ6LyKKYXYgl7MSsl7PDvM+ck
-         4pTnw6hNS5Ng2OiquU7klwDozZLIEg4Sz6C3cEIwgZRvxpWFi2nG+UQqKOPmqZDlU4g7
-         B3nQb5N/3w6xuaRAN7YEHSZ4cBCK++wJZPzk8fMBdUpqW+ywz5jMiPQ/a4zc3oz412x7
-         FuuQ==
-X-Gm-Message-State: AO0yUKXYD5qNIhvvjQByRqwTfM8yb0ov1+BUkF+UkaFpqB/YuFcw7YB9
-        pWWzTHFM3rjHQSp2UAp96D+F5TP5qOaNLx4b794=
-X-Google-Smtp-Source: AK7set+j1ULehR/i9jv+Y4JWdBHrUcmN3ZqHfD02zBn/fcAhOm7oXsiAzVGmi+a3PxFXAKAZ5kwW/w==
-X-Received: by 2002:a17:906:d210:b0:922:6bde:2530 with SMTP id w16-20020a170906d21000b009226bde2530mr3426520ejz.32.1678816043283;
-        Tue, 14 Mar 2023 10:47:23 -0700 (PDT)
+        bh=BBAdudaa5OwS68f0uZK/unstmFHq5M3zw+2tcO53Zq8=;
+        b=LWQZqmwtOk7cX8EAc8tf58afIR2JK86Y3vXKQJfuN4wcBtIHFX9BmWyZBwnSlAFIRc
+         +TTq9mX485gvFov+MXtBye+VcpIsOQziCGFTy2M6XyG7TkQhV48deOO53PaOGKfWHEZ+
+         OmxS39gldKy6OF/DwM81hPlrr0pf2GsIPKGzhkdKXIQnK3TzVzwOiAq1Ga/iJ1/Q9EyK
+         VyulKAnSOakrtESnWycveDvOC1F8dsrR2yMjFx8Zgx3BN5qYuobnQul3l1eRuTQyFiFT
+         aqdfuENGISHhFfTqWZzfod/yMY4oZxOWVdy94xXIV/7f3bPH1mozkX0YLigZEWI2+I72
+         Heaw==
+X-Gm-Message-State: AO0yUKUmNQulFfJgTJBZR3zk164zlptb5w/K0uidkxqoUYO3lwuGAhL0
+        kKMvct7TYSpYDdYJX6DqA2WxdA==
+X-Google-Smtp-Source: AK7set/VmYsgH6FiXcXVlsj6D3W7RyTlZ0vFACe6rXBooAVbxkCIYcdML6pkyiokc3OU1DDaaYwUAg==
+X-Received: by 2002:aa7:c508:0:b0:4ad:7a9f:a9f0 with SMTP id o8-20020aa7c508000000b004ad7a9fa9f0mr35568684edq.22.1678816602556;
+        Tue, 14 Mar 2023 10:56:42 -0700 (PDT)
 Received: from ?IPV6:2a02:810d:15c0:828:59be:4b3f:994b:e78c? ([2a02:810d:15c0:828:59be:4b3f:994b:e78c])
-        by smtp.gmail.com with ESMTPSA id h1-20020a50c381000000b004c0c5864cc5sm1371885edf.25.2023.03.14.10.47.22
+        by smtp.gmail.com with ESMTPSA id i19-20020a508713000000b004af62273b66sm1392473edb.18.2023.03.14.10.56.41
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 14 Mar 2023 10:47:22 -0700 (PDT)
-Message-ID: <4cdefb22-52ea-8f8f-12d2-7a07478f167c@linaro.org>
-Date:   Tue, 14 Mar 2023 18:47:22 +0100
+        Tue, 14 Mar 2023 10:56:42 -0700 (PDT)
+Message-ID: <684eb04d-aeaa-07e1-34d6-783e85e379f0@linaro.org>
+Date:   Tue, 14 Mar 2023 18:56:40 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.8.0
-Subject: Re: [PATCH v2 1/2] dt-bindings: input: touchscreen: Add
- 'hold-in-reset-in-suspend' property to goodix
+Subject: Re: [PATCH v11 03/13] dt-bindings: Convert gpio-mmio to yaml
 Content-Language: en-US
-To:     Jan Jasper de Kroon <jajadekroon@gmail.com>
-Cc:     devicetree@vger.kernel.org, dmitry.torokhov@gmail.com,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        broonie@kernel.org, alexandre.belloni@bootlin.com,
-        kernel@undef.tools, linux-input@vger.kernel.org
-References: <20230311134655.486973-1-jajadekroon@gmail.com>
- <20230312183106.551840-1-jajadekroon@gmail.com>
+To:     Sean Anderson <sean.anderson@seco.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@kernel.org>,
+        linux-phy@lists.infradead.org
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        Camelia Alexandra Groza <camelia.groza@nxp.com>,
+        Madalin Bucur <madalin.bucur@nxp.com>,
+        Bagas Sanjaya <bagasdotme@gmail.com>,
+        Ioana Ciornei <ioana.ciornei@nxp.com>,
+        linuxppc-dev@lists.ozlabs.org,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <brgl@bgdev.pl>,
+        =?UTF-8?Q?Fern=c3=a1ndez_Rojas?= <noltari@gmail.com>,
+        Jonas Gorski <jonas.gorski@gmail.com>,
+        linux-gpio@vger.kernel.org
+References: <20230313161138.3598068-1-sean.anderson@seco.com>
+ <20230313161138.3598068-4-sean.anderson@seco.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230312183106.551840-1-jajadekroon@gmail.com>
+In-Reply-To: <20230313161138.3598068-4-sean.anderson@seco.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -78,86 +89,177 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12/03/2023 19:31, Jan Jasper de Kroon wrote:
-> This patch adds a new optional property, 'hold-in-reset-in-suspend', to the
-
-Do not use "This commit/patch", but imperative mood. See:
-https://elixir.bootlin.com/linux/v5.17.1/source/Documentation/process/submitting-patches.rst#L95
-
-> Goodix touchscreen device tree binding. When set to true, the touchscreen
-> controller will be held in reset mode during system suspend, reducing
-> power consumption. If not present, the property defaults to false.
+On 13/03/2023 17:11, Sean Anderson wrote:
+> This is a generic binding for simple MMIO GPIO controllers. Although we
+> have a single driver for these controllers, they were previously spread
+> over several files. Consolidate them. The register descriptions are
+> adapted from the comments in the source. There is no set order for the
+> registers, so I have not specified one.
 > 
-> I am submitting this patch to the Device Tree mailing list to add a new
-
-Drop the "I am ..." Same comment as above.
-
-> property to the Goodix touchscreen device tree binding. This patch
-> supplements a related patch sent to the linux-input mailing list, which
-> updates the Goodix touchscreen driver to use this new property.
-
-Anyway entire paragraph does not look related to commit msg. Drop it.
-
-> The
-> linux-input patch can be found at:
-> https://lore.kernel.org/all/20230311131534.484700-1-jajadekroon@gmail.com/
-
-Also this. It should be rather places under ---.
-
+> Rename brcm,bcm6345-gpio to brcm,bcm63xx-gpio to reflect that bcm6345
+> has moved.
 > 
-> Signed-off-by: Jan Jasper de Kroon <jajadekroon@gmail.com>
+> Signed-off-by: Sean Anderson <sean.anderson@seco.com>
+> Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
 > ---
-> V1 -> V2:
-> - Updated subject prefix to match subsystem
-> - Added more detailed description of the change
-> - Fixed formatting issues in commit message
->  .../devicetree/bindings/input/touchscreen/goodix.yaml  | 10 ++++++++++
->  1 file changed, 10 insertions(+)
+> Linus or Bartosz, feel free to pick this up as the rest of this series
+> may not be merged any time soon.
 > 
-> diff --git a/Documentation/devicetree/bindings/input/touchscreen/goodix.yaml b/Documentation/devicetree/bindings/input/touchscreen/goodix.yaml
-> index 3d016b87c8df..cd4dd3d25364 100644
-> --- a/Documentation/devicetree/bindings/input/touchscreen/goodix.yaml
-> +++ b/Documentation/devicetree/bindings/input/touchscreen/goodix.yaml
-> @@ -56,6 +56,15 @@ properties:
->    touchscreen-size-y: true
->    touchscreen-swapped-x-y: true
->  
-> +  hold-in-reset-in-suspend:
-
-Missing vendor prefix.
-
-> +    type: boolean
-> +    default: false
-
-Drop default.
-
-> +    description: |
-> +      When set to true, the touchscreen controller will be held in reset mode
-> +      during system suspend. This can help reduce power consumption, but may
-> +      cause the touchscreen to take longer to resume when the system is woken
-> +      up from suspend. Defaults to false if not present.
-
-Drop last sentence.
-
-Anyway, the property does not look suitable for Devicetree. You describe
-system policy - trade off between energy saving and responsivness to the
-user. DT is not for policies. Use other interfaces for configuring it,
-e.g. some user-space, existing PM interfaces or /sysfs (which is ABI and
-needs its Documentation).
+> Changes in v11:
+> - Keep empty (or almost-empty) properties on a single line
+> - Don't use | unnecessarily
+> - Use gpio as the node name for examples
+> - Rename brcm,bcm6345-gpio.yaml to brcm,bcm63xx-gpio.yaml
+> 
+> Changes in v10:
+> - New
+> 
+>  ...m6345-gpio.yaml => brcm,bcm63xx-gpio.yaml} |  16 +--
+>  .../devicetree/bindings/gpio/gpio-mmio.yaml   | 134 ++++++++++++++++++
+>  .../bindings/gpio/ni,169445-nand-gpio.txt     |  38 -----
+>  .../devicetree/bindings/gpio/wd,mbl-gpio.txt  |  38 -----
+>  4 files changed, 135 insertions(+), 91 deletions(-)
+>  rename Documentation/devicetree/bindings/gpio/{brcm,bcm6345-gpio.yaml => brcm,bcm63xx-gpio.yaml} (78%)
+>  create mode 100644 Documentation/devicetree/bindings/gpio/gpio-mmio.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/gpio/ni,169445-nand-gpio.txt
+>  delete mode 100644 Documentation/devicetree/bindings/gpio/wd,mbl-gpio.txt
+> 
+> diff --git a/Documentation/devicetree/bindings/gpio/brcm,bcm6345-gpio.yaml b/Documentation/devicetree/bindings/gpio/brcm,bcm63xx-gpio.yaml
+> similarity index 78%
+> rename from Documentation/devicetree/bindings/gpio/brcm,bcm6345-gpio.yaml
+> rename to Documentation/devicetree/bindings/gpio/brcm,bcm63xx-gpio.yaml
+> index 4d69f79df859..e11f4af49c52 100644
+> --- a/Documentation/devicetree/bindings/gpio/brcm,bcm6345-gpio.yaml
+> +++ b/Documentation/devicetree/bindings/gpio/brcm,bcm63xx-gpio.yaml
 
 
 > +
->  additionalProperties: false
->  
->  required:
-> @@ -75,6 +84,7 @@ examples:
->          interrupts = <0 0>;
->          irq-gpios = <&gpio1 0 0>;
->          reset-gpios = <&gpio1 1 0>;
-> +        hold-in-reset-in-suspend;
->        };
->      };
->  
+> +description:
+> +  Some simple GPIO controllers may consist of a single data register or a pair
+> +  of set/clear-bit registers. Such controllers are common for glue logic in
+> +  FPGAs or ASICs. Commonly, these controllers are accessed over memory-mapped
+> +  NAND-style parallel busses.
+> +
+> +properties:
+> +  big-endian: true
+> +
+> +  compatible:
+
+Keep compatible as first property.
+
+> +    enum:
+> +      - brcm,bcm6345-gpio # Broadcom BCM6345 GPIO controller
+> +      - wd,mbl-gpio # Western Digital MyBook Live memory-mapped GPIO controller
+> +      - ni,169445-nand-gpio # National Instruments 169445 GPIO NAND controller
+
+I think you got comment that these comments are making things
+unreadable. I don't see here improvement.
+
+For example first comment is useless - you say the same as compatible.
+Same with last one. So only remaining WD comment should be made in new
+line so everything is nicely readable.
+
+BTW, order the enum by name.
+
+
+> +
+> +  '#gpio-cells':
+> +    const: 2
+> +
+> +  gpio-controller:
+> +    true
+
+I am sure I saw comments here...
+
+https://lore.kernel.org/all/20230308231018.GA4039466-robh@kernel.org/
+
+> +
+> +  reg:
+> +    minItems: 1
+> +    description:
+> +      A list of registers in the controller. The width of each register is
+> +      determined by its size.
+
+I don't understand this comment. Aren't you describing now what 'reg' is
+in DT spec? If so, drop. If not, please share more.
+
+>  All registers must have the same width. The number
+> +      of GPIOs is set by the width, with bit 0 corresponding to GPIO 0.
+> +    items:
+> +      - description:
+> +          Register to READ the value of the GPIO lines. If GPIO line is high,
+> +          the bit will be set. If the GPIO line is low, the bit will be cleared.
+> +          This register may also be used to drive GPIOs if the SET register is
+> +          omitted.
+> +      - description:
+> +          Register to SET the value of the GPIO lines. Setting a bit in this
+> +          register will drive the GPIO line high.
+> +      - description:
+> +          Register to CLEAR the value of the GPIO lines. Setting a bit in this
+> +          register will drive the GPIO line low. If this register is omitted,
+> +          the SET register will be used to clear the GPIO lines as well, by
+> +          actively writing the line with 0.
+> +      - description:
+> +          Register to set the line as OUTPUT. Setting a bit in this register
+> +          will turn that line into an output line. Conversely, clearing a bit
+> +          will turn that line into an input.
+> +      - description:
+> +          Register to set this line as INPUT. Setting a bit in this register
+> +          will turn that line into an input line. Conversely, clearing a bit
+> +          will turn that line into an output.
+> +
+> +  reg-names:
+> +    minItems: 1
+> +    maxItems: 5
+> +    items:
+> +      enum:
+
+Why this is in any order? Other bindings were here specific, your 'reg'
+is also specific/fixed.
+
+> +        - dat
+> +        - set
+> +        - clr
+> +        - dirout
+> +        - dirin
+> +
+> +  native-endian: true
+> +
+> +  no-output:
+> +    $ref: /schemas/types.yaml#/definitions/flag
+> +    description:
+> +      If this property is present, the controller cannot drive the GPIO lines.
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - reg-names
+> +  - '#gpio-cells'
+> +  - gpio-controller
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    gpio@1f300010 {
+> +      compatible = "ni,169445-nand-gpio";
+> +      reg = <0x1f300010 0x4>;
+> +      reg-names = "dat";
+> +      gpio-controller;
+> +      #gpio-cells = <2>;
+> +    };
+> +
+> +    gpio@1f300014 {
+> +      compatible = "ni,169445-nand-gpio";
+> +      reg = <0x1f300014 0x4>;
+> +      reg-names = "dat";
+> +      gpio-controller;
+> +      #gpio-cells = <2>;
+> +      no-output;
+> +    };
+
+No need to duplicate examples. Keep only one. Everything is the same.
+
 
 Best regards,
 Krzysztof
