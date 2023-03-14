@@ -2,85 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id ECC2A6B99EF
-	for <lists+devicetree@lfdr.de>; Tue, 14 Mar 2023 16:39:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 49A7E6B99FE
+	for <lists+devicetree@lfdr.de>; Tue, 14 Mar 2023 16:41:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229802AbjCNPjg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Mar 2023 11:39:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43454 "EHLO
+        id S231789AbjCNPlR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Mar 2023 11:41:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56508 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229565AbjCNPjV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Mar 2023 11:39:21 -0400
-Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com [IPv6:2a00:1450:4864:20::532])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6DBFBA729E
-        for <devicetree@vger.kernel.org>; Tue, 14 Mar 2023 08:38:36 -0700 (PDT)
-Received: by mail-ed1-x532.google.com with SMTP id j11so63719135edq.4
-        for <devicetree@vger.kernel.org>; Tue, 14 Mar 2023 08:38:36 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1678808279;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=2TF36IhKXXk6YGbpKzPAtC6Xow3FHaqTfrUySLBDzQc=;
-        b=yMenpJmh6h0dQFb0waXpMdvJuTFRjxpgNLTbnbIHK6DlBmKA7EEuy+FwT5rSljD1DS
-         pLkZtnO4j1rt/C/KhIBdO42UU0o3lw+ksJ8O837YfjkpSmmkiu9lQHb0Rdvkj9TZvkCq
-         b55ApjN6XOlMzG11n9kfI2qHIvMM/g7pjEXZXya0+W44ZUBZTHRM0+j+ReL1wHC1Rw59
-         TrbFXzrAqmsT/7DTbFASErPZHb2dUy7U8hxFJ9rFtHl1Pv6T4GTxQWVJ0UdupAHCev8q
-         YTlhBSEMOITBXK0vnOts68LGZSoNQ5iR27VnKSD7StKMmQJkzF+APxuaR1vydyklinie
-         PBZQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678808279;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=2TF36IhKXXk6YGbpKzPAtC6Xow3FHaqTfrUySLBDzQc=;
-        b=JDowzhkWsUOsvGw34c4SyEevFjCBztA5+k0xp7laLNXZXSZjqF7TO6tBjBLED4W8Ep
-         ESpo1APagWurM1A2Z7Gljwu6tCBde1oOZPNs5jMhF/LFBTaXbRpCYkmlQVqc23BX/j3j
-         cUi8JIy8pXvD19T7A8XZW/lkxJK8uzsyqBLLBebCgEDZzlSEzmYMwz3oT3ANFS3JkrVF
-         5a+o2+Ze+7ylbCfzlQfQd6sX40mTGmhLAJUIWiwISuu0+/NLp09j20URPKRwp3vjU1kV
-         WVe3tSXCQ7+taMJ3By4WVxRGizDjlw8EAJyf2gtiNty+mvEhqKW7lhV/n/fg6q9w5gjv
-         deQQ==
-X-Gm-Message-State: AO0yUKUGoxIKOqwgeHosEOgYK6xAMcS+b885R6VXmOFTz3P9SA99Ky2k
-        YgjDByEys0DB7LyIQBmxcLexbg==
-X-Google-Smtp-Source: AK7set9VlEaie3T4XSfwYSyfX9w55uBK9zmwb3D2/voALZ/htwROvQHC39CEVKRyTaWJmi8tkw0VJg==
-X-Received: by 2002:a17:907:c508:b0:92c:6fbf:28 with SMTP id tq8-20020a170907c50800b0092c6fbf0028mr3153303ejc.64.1678808279056;
-        Tue, 14 Mar 2023 08:37:59 -0700 (PDT)
-Received: from ?IPV6:2a02:810d:15c0:828:59be:4b3f:994b:e78c? ([2a02:810d:15c0:828:59be:4b3f:994b:e78c])
-        by smtp.gmail.com with ESMTPSA id q19-20020a17090676d300b00922f76decefsm1304341ejn.99.2023.03.14.08.37.57
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 14 Mar 2023 08:37:58 -0700 (PDT)
-Message-ID: <21add21d-4afe-7840-6c49-3786f82761d9@linaro.org>
-Date:   Tue, 14 Mar 2023 16:37:57 +0100
+        with ESMTP id S229571AbjCNPku (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Mar 2023 11:40:50 -0400
+Received: from sender4-op-o10.zoho.com (sender4-op-o10.zoho.com [136.143.188.10])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5F7FEAFBBE;
+        Tue, 14 Mar 2023 08:40:20 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1678808324; cv=none; 
+        d=zohomail.com; s=zohoarc; 
+        b=RAOnXKx8Fb4MqB1wVrAAxOBX7beM5WUE8KoKAAw/vni8gi6JlsigmpoPkfqyAJE1U4+kCyKhTOdwqOGhhmgbYdUbHTx1az0uXXIBEtKHLaeCxh6MXkxrz8kMNwBXKwT5MHdQxMDpUHRRLX/3BNeqP6WcK83WuwcaUX6wsZoI7nA=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+        t=1678808324; h=Content-Type:Content-Transfer-Encoding:Cc:Date:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:To; 
+        bh=6olgbthaOhN3f4AFE/3iBlFPFGb625oZX9E4dP1sDhg=; 
+        b=GL95TvrtiRIE/4EbRySqwytvKn4VW5GOSZjZB8tymYHsOzZlxj3JEqkKGJdjRK7idqIUmOnhF8LH1h+hb3CK+EUBIjbWTsT+BXIQC5gxtKLK+WkhfEuiAhZeQXmBRMvk/KZzDM/up3yg7Bm0Ig2JGG1ps/N+MT88TaRzEN1LrEU=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+        dkim=pass  header.i=arinc9.com;
+        spf=pass  smtp.mailfrom=arinc.unal@arinc9.com;
+        dmarc=pass header.from=<arinc.unal@arinc9.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1678808324;
+        s=zmail; d=arinc9.com; i=arinc.unal@arinc9.com;
+        h=Message-ID:Date:Date:MIME-Version:Subject:Subject:To:To:Cc:Cc:References:From:From:In-Reply-To:Content-Type:Content-Transfer-Encoding:Message-Id:Reply-To;
+        bh=6olgbthaOhN3f4AFE/3iBlFPFGb625oZX9E4dP1sDhg=;
+        b=iPKP6Gz/R1TpNa0LjJzAreb6ProiuSXPsWVPDsG+WoHUGHzCtu30dgnnboxtfPpE
+        YHRCLUQBcRTvMNOHanG03z3sV6ubEkSeBA0sK9B+gpmviiOUKDKzRdAQp/RwApF0n+h
+        h+kLW1V3vRWssWZQBNdY7+uEAUd1A0Aw2hc+So2c=
+Received: from [10.10.10.3] (149.91.1.15 [149.91.1.15]) by mx.zohomail.com
+        with SMTPS id 1678808321651755.4458697967328; Tue, 14 Mar 2023 08:38:41 -0700 (PDT)
+Message-ID: <c64d9f88-75ca-3a6c-b5c2-6e4b1a161d5f@arinc9.com>
+Date:   Tue, 14 Mar 2023 18:38:33 +0300
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.8.0
-Subject: Re: [PATCH v10 3/5] dt-bindings: clock: meson: add A1 PLL and
- Peripherals clkcs bindings
+Subject: Re: [PATCH v2 15/21] dt-bindings: pinctrl: {mediatek,ralink}: fix
+ formatting
+To:     Rob Herring <robh@kernel.org>
+Cc:     Sean Wang <sean.wang@mediatek.com>,
+        linux-arm-kernel@lists.infradead.org,
+        Luiz Angelo Daros de Luca <luizluca@gmail.com>,
+        =?UTF-8?Q?Bernhard_Rosenkr=c3=a4nzer?= <bero@baylibre.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Hui Liu <hui.liu@mediatek.com>,
+        Landen Chao <Landen.Chao@mediatek.com>,
+        linux-kernel@vger.kernel.org,
+        Sergio Paracuellos <sergio.paracuellos@gmail.com>,
+        Del Regno <angelogioacchino.delregno@collabora.com>,
+        erkin.bozoglu@xeront.com, linux-gpio@vger.kernel.org,
+        Zhiyong Tao <zhiyong.tao@mediatek.com>,
+        Daniel Santos <daniel.santos@pobox.com>,
+        Frank Wunderlich <frank-w@public-files.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Daniel Golle <daniel@makrotopia.org>,
+        Andy Teng <andy.teng@mediatek.com>,
+        William Dean <williamsukatube@gmail.com>,
+        devicetree@vger.kernel.org,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Sean Wang <sean.wang@kernel.org>,
+        linux-mediatek@lists.infradead.org, linux-mips@vger.kernel.org,
+        DENG Qingfang <dqfext@gmail.com>
+References: <20230313205921.35342-1-arinc.unal@arinc9.com>
+ <20230313205921.35342-16-arinc.unal@arinc9.com>
+ <167880254685.25972.15349420182231511267.robh@kernel.org>
 Content-Language: en-US
-To:     neil.armstrong@linaro.org,
-        Dmitry Rokosov <ddrokosov@sberdevices.ru>
-Cc:     jbrunet@baylibre.com, mturquette@baylibre.com, sboyd@kernel.org,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        khilman@baylibre.com, martin.blumenstingl@googlemail.com,
-        jian.hu@amlogic.com, kernel@sberdevices.ru, rockosov@gmail.com,
-        linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-References: <20230313201259.19998-1-ddrokosov@sberdevices.ru>
- <20230313201259.19998-4-ddrokosov@sberdevices.ru>
- <ffebef1d-8447-181b-1890-3e638d399c62@linaro.org>
- <20230314114825.yiv4vcszr6b7m45w@CAB-WSD-L081021>
- <2d9297e9-dab7-9615-3859-79b3b2980d9a@linaro.org>
- <20230314150107.mwcglcu2jv4ixy3r@CAB-WSD-L081021>
- <9d176288-cd7c-7107-e180-761e372a2b6e@linaro.org>
- <c8fecf94-2581-6cc9-955c-324efdc7c70a@linaro.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <c8fecf94-2581-6cc9-955c-324efdc7c70a@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+From:   =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>
+In-Reply-To: <167880254685.25972.15349420182231511267.robh@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ZohoMailClient: External
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -88,21 +85,68 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 14/03/2023 16:33, neil.armstrong@linaro.org wrote:
->> There are many ways - depend on your driver. For example like this:
->> https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/clk/samsung/clk-exynos5420.c#n975
->>
->> The first argument is the clock ID (or ignore).
->>
->> BTW, quite likely the problem is generic to all Meson clock drivers.
+On 14.03.2023 17:10, Rob Herring wrote:
 > 
-> This issue about "public" non-continuous defined was already discussed at https://lore.kernel.org/all/c088e01c-0714-82be-8347-6140daf56640@linaro.org/
+> On Mon, 13 Mar 2023 23:59:15 +0300, arinc9.unal@gmail.com wrote:
+>> From: Arınç ÜNAL <arinc.unal@arinc9.com>
+>>
+>> Change the style of description properties to plain style where there's no
+>> need to preserve the line endings, and vice versa.
+>>
+>> Fit the schemas to 80 columns for each line.
+>>
+>> Signed-off-by: Arınç ÜNAL <arinc.unal@arinc9.com>
+>> Reviewed-by: Rob Herring <robh@kernel.org>
+>> ---
+>>   .../pinctrl/mediatek,mt65xx-pinctrl.yaml      | 22 +++---
+>>   .../pinctrl/mediatek,mt6779-pinctrl.yaml      | 33 +++++----
+>>   .../pinctrl/mediatek,mt6795-pinctrl.yaml      | 33 +++++----
+>>   .../pinctrl/mediatek,mt7620-pinctrl.yaml      |  2 +-
+>>   .../pinctrl/mediatek,mt7621-pinctrl.yaml      |  2 +-
+>>   .../pinctrl/mediatek,mt7622-pinctrl.yaml      | 26 +++----
+>>   .../pinctrl/mediatek,mt7981-pinctrl.yaml      | 33 +++++----
+>>   .../pinctrl/mediatek,mt7986-pinctrl.yaml      | 68 ++++++++---------
+>>   .../pinctrl/mediatek,mt8183-pinctrl.yaml      | 26 ++++---
+>>   .../pinctrl/mediatek,mt8186-pinctrl.yaml      | 47 ++++++------
+>>   .../pinctrl/mediatek,mt8188-pinctrl.yaml      | 74 ++++++++++---------
+>>   .../pinctrl/mediatek,mt8192-pinctrl.yaml      | 47 ++++++------
+>>   .../pinctrl/mediatek,mt8195-pinctrl.yaml      | 41 +++++-----
+>>   .../pinctrl/mediatek,mt8365-pinctrl.yaml      | 28 +++----
+>>   .../pinctrl/ralink,rt2880-pinctrl.yaml        |  2 +-
+>>   .../pinctrl/ralink,rt305x-pinctrl.yaml        |  2 +-
+>>   .../pinctrl/ralink,rt3883-pinctrl.yaml        |  2 +-
+>>   17 files changed, 254 insertions(+), 234 deletions(-)
+>>
 > 
-> I don't see what's different with this one.
+> My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+> on your patch (DT_CHECKER_FLAGS is new in v5.13):
+> 
+> yamllint warnings/errors:
+> ./Documentation/devicetree/bindings/pinctrl/mediatek,mt6795-pinctrl.yaml:103:16: [warning] wrong indentation: expected 14 but found 15 (indentation)
+> ./Documentation/devicetree/bindings/pinctrl/mediatek,mt6795-pinctrl.yaml:113:16: [warning] wrong indentation: expected 14 but found 15 (indentation)
+> 
+> dtschema/dtc warnings/errors:
+> 
+> doc reference errors (make refcheckdocs):
+> 
+> See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20230313205921.35342-16-arinc.unal@arinc9.com
+> 
+> The base for the series is generally the latest rc1. A different dependency
+> should be noted in *this* patch.
+> 
+> If you already ran 'make dt_binding_check' and didn't see the above
+> error(s), then make sure 'yamllint' is installed and dt-schema is up to
+> date:
+> 
+> pip3 install dtschema --upgrade
+> 
+> Please check and re-submit after running the above command yourself. Note
+> that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+> your schema. However, it must be unset to test all examples with your schema.
 
-So you are aware that all undocumented clock IDs are still allowed to
-use in DTS and they are ABI? Changing them will be an ABI break.
+I do see the warning. Looks like the wrong indentation was there before 
+my patch series. I'll address that as well on this patch on v3.
 
-Best regards,
-Krzysztof
+Will you review the rest of v2?
 
+Arınç
