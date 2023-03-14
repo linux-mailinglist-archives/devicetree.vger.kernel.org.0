@@ -2,202 +2,237 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 39B3A6B985A
-	for <lists+devicetree@lfdr.de>; Tue, 14 Mar 2023 15:53:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9DD396B9876
+	for <lists+devicetree@lfdr.de>; Tue, 14 Mar 2023 16:01:16 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229590AbjCNOxu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Mar 2023 10:53:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53790 "EHLO
+        id S231266AbjCNPBN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Mar 2023 11:01:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37208 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229957AbjCNOxt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Mar 2023 10:53:49 -0400
-Received: from mail-oo1-xc34.google.com (mail-oo1-xc34.google.com [IPv6:2607:f8b0:4864:20::c34])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2AA11EF96;
-        Tue, 14 Mar 2023 07:53:47 -0700 (PDT)
-Received: by mail-oo1-xc34.google.com with SMTP id x19-20020a4a3953000000b00525191358b6so2344353oog.12;
-        Tue, 14 Mar 2023 07:53:47 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112; t=1678805626;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=W4xB8YFLKwjGCy/SgLdu52hAdc8I/Bw00GcLZgZWTsU=;
-        b=e3tkB3wmBpYkJNnmxSWP5pw47gHfyMTpSf/OGbrp4iaYBllcNr3vj+it6hnwaOZR+O
-         nGR0NB+GH8IbCR5qUPsi2fU5ipan9a9OcZqskHwGE7ql37fFvP/LEtf/oR3PYDoSaX1Y
-         4kS0xwC5FvLJSRmGQjqqB1PReF3l3c5JgGsR+KH9dC1rfUcg3pXn75ZBXKtUUzXT00fn
-         FaAHo+WF5yDbhg/l6jyqdNmoTXsiQDcDK42P0POY9VH7jMYnG+BHDaUTzPwgSNxWtnYO
-         X9lXswWNMW0V46q+OthKbbm7PjqQJ5ukntmyX2SmXoHEkE+xEC7glv3BfdhYgcQuh/vY
-         lMIg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678805626;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=W4xB8YFLKwjGCy/SgLdu52hAdc8I/Bw00GcLZgZWTsU=;
-        b=QowuTqkDV8WKXWK+Y4Hg3ia8tc+ZGsVwqEssQELrDuoCAPtC7fawXixXSjk+C2Jcmo
-         W0FQnCxUMXhMc11QjjWFsTB2hpnpIEhWixaA561lCGSiFHo5KljsOS/UFKqy42oBNbAF
-         znl1ddTTiGX+V/TgbIIVFSECxVxxb9M6KbHmaFom1z9a7fTlC8FkfTdVCOBmXZ+8WsRf
-         nyNnHThMcRvi/fJPgBIsVaBZaub4GgYVgGQ8/btkHFwr+oZt+PNuPCyYzE8v6DRymvM4
-         c2FCJlaIEvIUPsTPVtl7tEXi++Zc6l5s20rWSbfpW9+yUOwIuLJoHLr4VULczQt1oZ/5
-         jjmA==
-X-Gm-Message-State: AO0yUKUn58lxIZBbt3IdZBmhHi7eoMEs1wqWHRSaqrhJ0aW0d7aBgGI8
-        emcHZblc5J6a+xmXXNHTtORCEkUv/AxMJTkeuAQ=
-X-Google-Smtp-Source: AK7set+Vbh8WigjwKyxtopSnp2Zi/JlEdRaNuOA7bBY6hnDUKltx7BMj0s8lTr2SsXRyzTQtBY9t4KEQVZs0Im/YJ8Q=
-X-Received: by 2002:a4a:ca0c:0:b0:525:45d5:9de9 with SMTP id
- w12-20020a4aca0c000000b0052545d59de9mr14137931ooq.0.1678805626127; Tue, 14
- Mar 2023 07:53:46 -0700 (PDT)
+        with ESMTP id S230072AbjCNPBN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Mar 2023 11:01:13 -0400
+Received: from mx.sberdevices.ru (mx.sberdevices.ru [45.89.227.171])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9A86386A7;
+        Tue, 14 Mar 2023 08:01:10 -0700 (PDT)
+Received: from s-lin-edge02.sberdevices.ru (localhost [127.0.0.1])
+        by mx.sberdevices.ru (Postfix) with ESMTP id 4F4625FD07;
+        Tue, 14 Mar 2023 18:01:08 +0300 (MSK)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sberdevices.ru;
+        s=mail; t=1678806068;
+        bh=VYtZNHbbMXIq+g24HuL1awnMYFh5ypx+E6yBnfNcl6A=;
+        h=Date:From:To:Subject:Message-ID:MIME-Version:Content-Type;
+        b=qsIgGNq9FJ+V3tMbZis0wrWJCHqgOAd4VH5hKqsP84sHMMyQ126g9D4n8CC8NTKJO
+         Afl9vosImnTrlWVMKzxfDPpOjxrWMdK1sk4SaFNE8dntktMxQRzU2t74V9gSwFXpKp
+         10uMAGSu1bm8lH97M+c6NOdSUeqcgM5inA2oGwOb/kRDUOG8D8aISg26bYcYDbSheg
+         kHA8dDLPO0lEC5OkuKUA9Jh2hh+nT9Bry6FSSDspRZHQvpWX4wDWH90tubUGwn4taT
+         4C/MVlZF48vOsFrnsWz6DcreHu/PcPaTfbDT2szz9BMaB+BV7e/4wxZjxBdtvOzmxu
+         4tNQ8XpHc70eg==
+Received: from S-MS-EXCH01.sberdevices.ru (S-MS-EXCH01.sberdevices.ru [172.16.1.4])
+        by mx.sberdevices.ru (Postfix) with ESMTP;
+        Tue, 14 Mar 2023 18:01:07 +0300 (MSK)
+Date:   Tue, 14 Mar 2023 18:01:07 +0300
+From:   Dmitry Rokosov <ddrokosov@sberdevices.ru>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+CC:     <neil.armstrong@linaro.org>, <jbrunet@baylibre.com>,
+        <mturquette@baylibre.com>, <sboyd@kernel.org>,
+        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <khilman@baylibre.com>, <martin.blumenstingl@googlemail.com>,
+        <jian.hu@amlogic.com>, <kernel@sberdevices.ru>,
+        <rockosov@gmail.com>, <linux-amlogic@lists.infradead.org>,
+        <linux-clk@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>
+Subject: Re: [PATCH v10 3/5] dt-bindings: clock: meson: add A1 PLL and
+ Peripherals clkcs bindings
+Message-ID: <20230314150107.mwcglcu2jv4ixy3r@CAB-WSD-L081021>
+References: <20230313201259.19998-1-ddrokosov@sberdevices.ru>
+ <20230313201259.19998-4-ddrokosov@sberdevices.ru>
+ <ffebef1d-8447-181b-1890-3e638d399c62@linaro.org>
+ <20230314114825.yiv4vcszr6b7m45w@CAB-WSD-L081021>
+ <2d9297e9-dab7-9615-3859-79b3b2980d9a@linaro.org>
 MIME-Version: 1.0
-References: <20230214140858.1133292-1-rick.wertenbroek@gmail.com>
- <ecd09f27-b799-4741-2c5a-a2de99776c51@opensource.wdc.com> <CAAEEuhrk4cSC312UiAL3UwoDZ=urrdDcBThcNHd1dqnAuJTzAw@mail.gmail.com>
- <3c4ed614-f088-928f-2807-deaa5e4b668a@opensource.wdc.com>
-In-Reply-To: <3c4ed614-f088-928f-2807-deaa5e4b668a@opensource.wdc.com>
-From:   Rick Wertenbroek <rick.wertenbroek@gmail.com>
-Date:   Tue, 14 Mar 2023 15:53:09 +0100
-Message-ID: <CAAEEuhqk0scWd3wFbVb9fSgHxPBKotpEPNi+YPG4GD9vLO94mw@mail.gmail.com>
-Subject: Re: [PATCH v2 0/9] PCI: rockchip: Fix RK3399 PCIe endpoint controller driver
-To:     Damien Le Moal <damien.lemoal@opensource.wdc.com>
-Cc:     alberto.dassatti@heig-vd.ch, xxm@rock-chips.com,
-        rick.wertenbroek@heig-vd.ch, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Shawn Lin <shawn.lin@rock-chips.com>,
-        Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Jani Nikula <jani.nikula@intel.com>,
-        Rodrigo Vivi <rodrigo.vivi@intel.com>,
-        Mikko Kovanen <mikko.kovanen@aavamobile.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-pci@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <2d9297e9-dab7-9615-3859-79b3b2980d9a@linaro.org>
+User-Agent: NeoMutt/20220415
+X-Originating-IP: [172.16.1.6]
+X-ClientProxiedBy: S-MS-EXCH02.sberdevices.ru (172.16.1.5) To
+ S-MS-EXCH01.sberdevices.ru (172.16.1.4)
+X-KSMG-Rule-ID: 4
+X-KSMG-Message-Action: clean
+X-KSMG-AntiSpam-Status: not scanned, disabled by settings
+X-KSMG-AntiSpam-Interceptor-Info: not scanned
+X-KSMG-AntiPhishing: not scanned, disabled by settings
+X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 1.1.2.30, bases: 2023/03/14 06:01:00 #20942017
+X-KSMG-AntiVirus-Status: Clean, skipped
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Mar 14, 2023 at 9:10=E2=80=AFAM Damien Le Moal
-<damien.lemoal@opensource.wdc.com> wrote:
->
-> On 3/14/23 16:57, Rick Wertenbroek wrote:
-> > On Tue, Mar 14, 2023 at 1:02=E2=80=AFAM Damien Le Moal
-> > <damien.lemoal@opensource.wdc.com> wrote:
+On Tue, Mar 14, 2023 at 03:05:48PM +0100, Krzysztof Kozlowski wrote:
+> On 14/03/2023 12:48, Dmitry Rokosov wrote:
+> > On Tue, Mar 14, 2023 at 12:28:40PM +0100, Krzysztof Kozlowski wrote:
+> >> On 13/03/2023 21:12, Dmitry Rokosov wrote:
+> > 
+> > [...]
+> > 
+> >>> +#define CLKID_SPIFC		84
+> >>> +#define CLKID_USB_BUS		85
+> >>> +#define CLKID_SD_EMMC		86
+> >>> +#define CLKID_PSRAM		87
+> >>> +#define CLKID_DMC		88
 > >>
-> >> On 2/14/23 23:08, Rick Wertenbroek wrote:
-> >>> This is a series of patches that fixes the PCIe endpoint controller d=
-river
-> >>> for the Rockchip RK3399 SoC. The driver was introduced in
-> >>> cf590b078391 ("PCI: rockchip: Add EP driver for Rockchip PCIe control=
-ler")
-> >>> The original driver had issues and would not allow for the RK3399 to
-> >>> operate in PCIe endpoint mode correctly. This patch series fixes that=
- so
-> >>> that the PCIe core controller of the RK3399 SoC can now act as a PCIe
-> >>> endpoint. This is v2 of the patch series and addresses the concerns t=
-hat
-> >>> were raised during the review of the first version.
+> >> And what is here? Between 88 and 121?
 > >>
-> >> Rick,
+> > 
+> > Explained below.
+> > 
+> >>> +#define CLKID_GEN_SEL		121
+> >>> +
+> >>> +#endif /* __A1_CLKC_H */
+> >>> diff --git a/include/dt-bindings/clock/amlogic,a1-pll-clkc.h b/include/dt-bindings/clock/amlogic,a1-pll-clkc.h
+> >>> new file mode 100644
+> >>> index 000000000000..8e97d3fb9d30
+> >>> --- /dev/null
+> >>> +++ b/include/dt-bindings/clock/amlogic,a1-pll-clkc.h
+> >>> @@ -0,0 +1,20 @@
+> >>> +/* SPDX-License-Identifier: GPL-2.0+ */
 > >>
-> >> Are you going to send a rebased V3 soon ? I have a couple of additiona=
-l
-> >> patches to add on top of your series...
+> >> I found in changelog:
+> >> "fix license issue, it's GPL-2.0+ only in the current version"
+> >> and I do not understand.
 > >>
-> >
-> > I'll try to send a V3 this week. The changes to V2 will be the issues
-> > raised and discussed on the V2 here in the mailing list with the additi=
-onal
-> > code for removing the unsupported MSI-X capability list (was discussed
-> > in the mailing list as well).
->
-> Thanks.
->
-> Additional patch needed to avoid problems with this controller is that
-> we need to set ".align =3D 256" in the features. Otherwise, things do not
-> work well. This is because the ATU drops the low 8-bits of the PCI
-> addresses. It is a one liner patch, so feel free to add it to your series=
-.
->
-> I also noticed random issues wich seem to be due to link-up timing... We
-> probably will need to implement a poll thread to detect and notify with
-> the linkup callback when we actually have the link established with the
-> host (see the dw-ep controller which does something similar).
->
+> >> The license is wrong, so what did you fix?
+> >>
+> > 
+> > Sorry don't get you. Why is it wrong?
+> 
+> Run checkpatch - it will tell you why wrong. The license is not correct.
+> This is part of binding and should be the same as binding.
+> 
 
-Hello Damien,
-I also noticed random issues I suspect to be related to link status or powe=
-r
-state, in my case it sometimes happens that the BARs (0-6) in the config
-space get reset to 0. This is not due to the driver because the driver neve=
-r
-ever accesses these registers (@0xfd80'0010 to 0xfd80'0024 TRM
-17.6.4.1.5-17.6.4.1.10).
-I don't think the host rewrites them because lspci shows the BARs as
-"[virtual]" which means they have been assigned by host but have 0
-value in the endpoint device (when lspci rereads the PCI config header).
-See https://github.com/pciutils/pciutils/blob/master/lspci.c#L422
+I always run checkpatch before sending the next patch series. Checkpatch
+doesn't highlight this problem:
 
-So I suspect the controller detects something related to link status or
-power state and internally (in hardware) resets those registers. It's not
-the kernel code, it never accesses these regs. The problem occurs
-very randomly, sometimes in a few seconds, sometimes I cannot see
-it for a whole day.
+--------------
+$ rg SPDX a1_clkc_v10/v10-0003-dt-bindings-clock-meson-add-A1-PLL-and-Periphera.patch
+32:+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+111:+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+188:+/* SPDX-License-Identifier: GPL-2.0+ */
+294:+/* SPDX-License-Identifier: GPL-2.0+ */
 
-Is this similar to what you are experiencing ?
-Do you have any idea as to what could make these registers to be reset
-(I could not find anything in the TRM, also nothing in the driver seems to
-cause it).
+$ ./scripts/checkpatch.pl --strict a1_clkc_v10/v10-0003-dt-bindings-clock-meson-add-A1-PLL-and-Periphera.patch
+total: 0 errors, 0 warnings, 0 checks, 259 lines checked
 
->
-> From: Damien Le Moal <damien.lemoal@opensource.wdc.com>
-> Date: Thu, 9 Mar 2023 16:37:24 +0900
-> Subject: [PATCH] PCI: rockchip: Set address alignment for endpoint mode
->
-> The address translation unit of the rockchip EP controller does not use
-> the lower 8 bits of a PCIe-space address to map local memory. Thus we
-> must set the align feature field to 256 to let the user know about this
-> constraint.
->
-> Signed-off-by: Damien Le Moal <damien.lemoal@opensource.wdc.com>
-> ---
->  drivers/pci/controller/pcie-rockchip-ep.c | 1 +
->  1 file changed, 1 insertion(+)
->
-> diff --git a/drivers/pci/controller/pcie-rockchip-ep.c
-> b/drivers/pci/controller/pcie-rockchip-ep.c
-> index 12db9a9d92af..c6a23db84967 100644
-> --- a/drivers/pci/controller/pcie-rockchip-ep.c
-> +++ b/drivers/pci/controller/pcie-rockchip-ep.c
-> @@ -471,6 +471,7 @@ static const struct pci_epc_features
-> rockchip_pcie_epc_features =3D {
->         .linkup_notifier =3D false,
->         .msi_capable =3D true,
->         .msix_capable =3D false,
-> +       .align =3D 256,
->  };
->
->  static const struct pci_epc_features*
-> --
-> 2.39.2
->
->
-> --
-> Damien Le Moal
-> Western Digital Research
->
+a1_clkc_v10/v10-0003-dt-bindings-clock-meson-add-A1-PLL-and-Periphera.patch has no obvious style problems and is ready for submission.
+--------------
 
-Do you want me to include this patch in the V3 series or will you
-submit another patch series for the changes you applied on the RK3399 PCIe
-endpoint controller ? I don't know if you prefer to build the V3
-together or if you
-prefer to submit another patch series on top of mine. Let me know.
+I've got your point, will fix in the next version.
 
-Best regards.
-Rick
+> > I've changed all new source files to GPL-2.0+ except yaml, because yaml
+> > dt bindings schemas require the following license:
+> > 
+> >     # SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> > 
+> > I've pointed it in the changelog.
+> 
+> The only thing I found was:
+> "fix license issue, it's GPL-2.0+ only in the current version"
+> 
+> so what exactly you pointed out in changelog? What was to fix? What was
+> fixed? Correct license into incorrect? But why?
+> 
+
+By 'license issue' I meant your comment for the previous version at:
+https://lore.kernel.org/all/6a950a51-fe90-9163-b73d-0a396d7187ee@linaro.org/
+
+I thought you mentioned the problem is in two license usage in the one
+line (GPL + MIT), I've fixed it to GPL2 only, and mentioned it in the
+changelog.
+
+I didn't know about the special requirement for a dt-bindings license, I've
+just checked other clock dt-bindings and found that license is different
+in the many places:
+
+$ grep -r "SPDX" include/dt-bindings/clock | grep -v -e "GPL-2.0.*BSD-2-Clause" | wc -l
+291
+
+And Tegra Car 124 as an example for different license between yaml
+schema and binding header:
+$ grep "SPDX" include/dt-bindings/clock/tegra124-car.h
+/* SPDX-License-Identifier: GPL-2.0 */
+$ grep "SPDX" Documentation/devicetree/bindings/clock/nvidia,tegra124-car.yaml
+# SPDX-License-Identifier: (GPL-2.0+ OR BSD-2-Clause)
+
+Anyway, it's not a problem to fix the license to the same value between
+header and yaml schema, I'll fix it in the next version.
+But based on the above experiments, other clock bindings should be fixed
+as well, checkpatch behavior should be extended for dt bindings headers
+licence checking.
+
+> > 
+> >>> +/*
+> >>> + * Copyright (c) 2019 Amlogic, Inc. All rights reserved.
+> >>> + * Author: Jian Hu <jian.hu@amlogic.com>
+> >>> + *
+> >>> + * Copyright (c) 2023, SberDevices. All Rights Reserved.
+> >>> + * Author: Dmitry Rokosov <ddrokosov@sberdevices.ru>
+> >>> + */
+> >>> +
+> >>> +#ifndef __A1_PLL_CLKC_H
+> >>> +#define __A1_PLL_CLKC_H
+> >>> +
+> >>> +#define CLKID_FIXED_PLL		1
+> >>> +#define CLKID_FCLK_DIV2		6
+> >>> +#define CLKID_FCLK_DIV3		7
+> >>> +#define CLKID_FCLK_DIV5		8
+> >>> +#define CLKID_FCLK_DIV7		9
+> >>> +#define CLKID_HIFI_PLL		10
+> >>
+> >>
+> >> Probably I asked about this... why indices are not continuous? You know
+> >> that consumers are allowed to use number 2 and it will be your ABI, even
+> >> though you did not write it in the binding? That's a tricky and
+> >> confusing pattern for no real gains.
+> > 
+> > Actually, indices are continuou but splitted into two parts: public and
+> > private. The public part is located in the dt bindings and can be included
+> > from device tree sources. The private part is in the drivers/clk/meson
+> > folder, and only clk drivers can use it.
+> > I know, there is some trick when the user just inserts a digit value and
+> > doesn't use constants.
+> 
+> This is not a trick. This is how DTS works. You have only indices/numbers.
+> 
+> > But I'm starting from the assumption that such
+> > dts changes will not be approved by maintainers. In other words, the user
+> > *must* apply defined ABI constants from dt bindings; it's a strong
+> > restriction.
+> 
+> But it is not correct assumption. Defines are very important, but they
+> are just helpers. Otherwise without defines you could not use any clock?
+> We pretty often use IDs - for DTS to allow merging via different trees,
+> for DT binding examples to not rely on headers.
+> 
+> Your driver implements the ABI and the driver exposes for example clock
+> ID=2, even if it is not in the header.
+> 
+> These IDs are unfortunately undocumented ABI and you if you change them,
+> users are allowed to complain.
+> 
+> Solution: don't do this. Have all exposed clock IDs and clocks in sync
+> (and continuous).
+
+I see. But I don't understand how I can restrict access to private
+clock objects. I don't want to open ability to change system clocks
+parents, for example. Or it's under device tree developer responsibility?
+I would appreciate any assistance in determining the best path.
+
+-- 
+Thank you,
+Dmitry
