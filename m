@@ -2,109 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CCC436B89FF
-	for <lists+devicetree@lfdr.de>; Tue, 14 Mar 2023 06:01:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 695806B8A24
+	for <lists+devicetree@lfdr.de>; Tue, 14 Mar 2023 06:14:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229765AbjCNFBD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Mar 2023 01:01:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58384 "EHLO
+        id S229627AbjCNFOQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Mar 2023 01:14:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49832 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229701AbjCNFA7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Mar 2023 01:00:59 -0400
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 91B3B6F4A2;
-        Mon, 13 Mar 2023 22:00:58 -0700 (PDT)
-Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 32E3WWUB009476;
-        Tue, 14 Mar 2023 05:00:54 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
- subject : date : message-id : in-reply-to : references : mime-version :
- content-type; s=qcppdkim1;
- bh=mKRX+iIHmTPEdPX50t4nUgumdMOVSC8osdY6GLBRlKE=;
- b=TMz6COVtMZLK+pzJ5uSlojCMmPt82aiXXWId+IFhitbsf8o/ZL57oTv2Ny++qXlU9mEg
- sJ2THzVR2SipOPsMvu3w37cSSehAyaixoNxaAAWDyf0KmW8QaYhfluND02tzaUHx37pF
- awn+5zkIXyukdbHtqdqybPGUChOE+Mb4CLUj4DtbfmPLaC75Y+fakEEftC1zENOsZoY/
- 6a893Z7wmSC/vmRrFvlINHL1+ZixfVRkmQzVGMmBAY0tYdP+0BAGH6ePi6BL8OumXaUt
- vYGGruqkhE8DTTA5rROPskzgHl/DBdecUw1DoHnDILrsRUOyZ2b/briWrPLnImhSnWqa Fg== 
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3pa203tj4n-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 14 Mar 2023 05:00:54 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-        by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 32E50Wmu017833
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 14 Mar 2023 05:00:32 GMT
-Received: from kathirav-linux.qualcomm.com (10.80.80.8) by
- nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.41; Mon, 13 Mar 2023 22:00:28 -0700
-From:   Kathiravan T <quic_kathirav@quicinc.com>
-To:     <agross@kernel.org>, <andersson@kernel.org>,
-        <konrad.dybcio@linaro.org>, <jassisinghbrar@gmail.com>,
-        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <linux-arm-msm@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>
-CC:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Kathiravan T <quic_kathirav@quicinc.com>
-Subject: [PATCH V2 3/3] arm64: dts: qcom: ipq8074: add compatible fallback to mailbox
-Date:   Tue, 14 Mar 2023 10:30:05 +0530
-Message-ID: <20230314050005.10409-4-quic_kathirav@quicinc.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20230314050005.10409-1-quic_kathirav@quicinc.com>
-References: <20230314050005.10409-1-quic_kathirav@quicinc.com>
+        with ESMTP id S229529AbjCNFOO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Mar 2023 01:14:14 -0400
+Received: from mail-pl1-x62f.google.com (mail-pl1-x62f.google.com [IPv6:2607:f8b0:4864:20::62f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 246067FD59
+        for <devicetree@vger.kernel.org>; Mon, 13 Mar 2023 22:14:13 -0700 (PDT)
+Received: by mail-pl1-x62f.google.com with SMTP id i3so15382586plg.6
+        for <devicetree@vger.kernel.org>; Mon, 13 Mar 2023 22:14:13 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1678770852;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=biu99pOIpHkrxRrUfbbTOFQqLHYffJjiCgW3KZFEeME=;
+        b=rJ/PGmhmBYdQl95T44CdTly9zsIUXu0LWLvp80M2jBhAIGHZInB/+9LwZC5+u5D+uO
+         UyQiNoloYqPgAzTuqTFkUR+t++LcLYJS5w+fJYtAMNyIUxt5fCBX3R/brS10ceRUZ+QX
+         qEUM6QKTHGqeS3YVdRCMFLdS1uMMuQUzCzexaoKVDUZ8pfnd+7YzrAQSyeLEEy3pOHYi
+         YMw1RFeIqpdCCJuT6AUaJ7HC+Dn9q3D36j2l2dz2O8CWb5xmDA2Nly4K9U6beGVbMN0i
+         MqpNGHT1/LJ0WmXvw/WmiZWXqhOobyq9/xobp/Zn/+NAe6X9Q0Fm7wUAtXCQ301/t7KS
+         CKGw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1678770852;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=biu99pOIpHkrxRrUfbbTOFQqLHYffJjiCgW3KZFEeME=;
+        b=UhXSTSjLsIw7+cDaBbVuBnAsBoUNNm8CrSTYqx36ElkijwA/op0gSd/nStg9hi5Fa3
+         rumQluk6EBqdysSEtJoRnY8GQNGlEh20BnPktfxR0DoWbhPgYvhezTcdg5wmrPa+mfFB
+         fm+7WhXjvW5My19+UFb2bTo064RWFgbHIzmWiqa6KlHz1dn2rWPu70NsCBdIai5DfN8P
+         +gshKABmMgeh2oOFAUxEztG9Zku0xsdZZsC6WeccppnUZ0xBnOD/8l7lkpUeWcU5rleo
+         3onxc4OInDAOpR9GMOdd+B+if8ZClL9Bf20I13p9nQYa6sSC2bKJ56l0PbaWbSuxNIlh
+         VdFA==
+X-Gm-Message-State: AO0yUKWl0FphWIX24+hut/zU9fSKu0EdvcM7CzfeTYm95NEgBb9Ckave
+        xv0/3so8nHeSb/BaHFnLrOkE5g==
+X-Google-Smtp-Source: AK7set/7476nZ440mA6EG3nky8n8gyy/ecPL0HpSYIAJHbexzwyUi8sMNEqYPpJvq+mTWNXrGkybzQ==
+X-Received: by 2002:a05:6a20:a021:b0:d0:212d:ead0 with SMTP id p33-20020a056a20a02100b000d0212dead0mr10357208pzj.26.1678770852552;
+        Mon, 13 Mar 2023 22:14:12 -0700 (PDT)
+Received: from localhost.localdomain ([2401:4900:1c5e:4a3e:15d0:d540:3861:ef0e])
+        by smtp.gmail.com with ESMTPSA id z13-20020aa785cd000000b005a852875590sm580533pfn.113.2023.03.13.22.14.07
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 13 Mar 2023 22:14:12 -0700 (PDT)
+From:   Bhupesh Sharma <bhupesh.sharma@linaro.org>
+To:     linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org
+Cc:     konrad.dybcio@linaro.org, wim@linux-watchdog.org,
+        linux@roeck-us.net, agross@kernel.org, andersson@kernel.org,
+        saiprakash.ranjan@codeaurora.org, linux-arm-msm@vger.kernel.org,
+        linux-kernel@vger.kernel.org, bhupesh.linux@gmail.com,
+        bhupesh.sharma@linaro.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH v2] dt-bindings: watchdog: Document Qualcomm SM6115 watchdog
+Date:   Tue, 14 Mar 2023 10:43:51 +0530
+Message-Id: <20230314051351.1754321-1-bhupesh.sharma@linaro.org>
+X-Mailer: git-send-email 2.38.1
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: i70LnQ-FYJo3py1lKzPfy449gBGVNNqn
-X-Proofpoint-GUID: i70LnQ-FYJo3py1lKzPfy449gBGVNNqn
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
- definitions=2023-03-13_13,2023-03-13_03,2023-02-09_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 mlxlogscore=729
- suspectscore=0 spamscore=0 bulkscore=0 malwarescore=0 impostorscore=0
- clxscore=1015 phishscore=0 adultscore=0 priorityscore=1501
- lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2212070000 definitions=main-2303140044
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Add devicetree binding for watchdog present on Qualcomm
+SM6115 SoC.
 
-IPQ8074 mailbox is compatible with IPQ6018.
-
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Signed-off-by: Kathiravan T <quic_kathirav@quicinc.com>
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Signed-off-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
 ---
-Changes in V2:
-	- No changes
+Changes since v1:
+~ v1 can be seen here - https://lore.kernel.org/linux-arm-msm/20230119122619.1020908-1-bhupesh.sharma@linaro.org/
+~ v2 collects Ack from Krzysztof and also fixes the subject as per his
+  v1 review comments.
 
- arch/arm64/boot/dts/qcom/ipq8074.dtsi | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+ Documentation/devicetree/bindings/watchdog/qcom-wdt.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/arch/arm64/boot/dts/qcom/ipq8074.dtsi b/arch/arm64/boot/dts/qcom/ipq8074.dtsi
-index 62d05d740646..3fa7a63db74e 100644
---- a/arch/arm64/boot/dts/qcom/ipq8074.dtsi
-+++ b/arch/arm64/boot/dts/qcom/ipq8074.dtsi
-@@ -687,7 +687,8 @@
- 		};
- 
- 		apcs_glb: mailbox@b111000 {
--			compatible = "qcom,ipq8074-apcs-apps-global";
-+			compatible = "qcom,ipq8074-apcs-apps-global",
-+				     "qcom,ipq6018-apcs-apps-global";
- 			reg = <0x0b111000 0x1000>;
- 			clocks = <&a53pll>, <&xo>;
- 			clock-names = "pll", "xo";
+diff --git a/Documentation/devicetree/bindings/watchdog/qcom-wdt.yaml b/Documentation/devicetree/bindings/watchdog/qcom-wdt.yaml
+index 6448b633c970..4ba61e1831ec 100644
+--- a/Documentation/devicetree/bindings/watchdog/qcom-wdt.yaml
++++ b/Documentation/devicetree/bindings/watchdog/qcom-wdt.yaml
+@@ -28,6 +28,7 @@ properties:
+               - qcom,apss-wdt-sdm845
+               - qcom,apss-wdt-sdx55
+               - qcom,apss-wdt-sdx65
++              - qcom,apss-wdt-sm6115
+               - qcom,apss-wdt-sm6350
+               - qcom,apss-wdt-sm8150
+               - qcom,apss-wdt-sm8250
 -- 
-2.17.1
+2.38.1
 
