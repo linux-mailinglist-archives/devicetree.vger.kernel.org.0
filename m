@@ -2,131 +2,201 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8EBBB6B91D6
-	for <lists+devicetree@lfdr.de>; Tue, 14 Mar 2023 12:40:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D89146B91DE
+	for <lists+devicetree@lfdr.de>; Tue, 14 Mar 2023 12:41:55 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231395AbjCNLkf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Mar 2023 07:40:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44892 "EHLO
+        id S231475AbjCNLlx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Mar 2023 07:41:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46424 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231414AbjCNLkd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Mar 2023 07:40:33 -0400
-Received: from mail-pj1-x1029.google.com (mail-pj1-x1029.google.com [IPv6:2607:f8b0:4864:20::1029])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CF9DF9C980;
-        Tue, 14 Mar 2023 04:40:32 -0700 (PDT)
-Received: by mail-pj1-x1029.google.com with SMTP id e15-20020a17090ac20f00b0023d1b009f52so4769852pjt.2;
-        Tue, 14 Mar 2023 04:40:32 -0700 (PDT)
+        with ESMTP id S231463AbjCNLlw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Mar 2023 07:41:52 -0400
+Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B97529BE0B
+        for <devicetree@vger.kernel.org>; Tue, 14 Mar 2023 04:41:49 -0700 (PDT)
+Received: by mail-lf1-x132.google.com with SMTP id n2so19564011lfb.12
+        for <devicetree@vger.kernel.org>; Tue, 14 Mar 2023 04:41:49 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112; t=1678794032;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=eH82WTYd39GPKAXdpbYy5VSkOFc2jW21usmU+S6UzaM=;
-        b=WkXPZHabqVtCtmPiPhbTpbqbUbZAf7UDuh35/WLuHqxQ0p18Psv889vDS/yPUe1yI2
-         ggWGepP5WBzmK50RVsxuLn/LTsnoSHRXI7VSThcnCfGf6CrdN6VXb0FYTdfyz9sg2fiv
-         XDGhycxUNZa14Wmubkp+cdO+FLTGMlBF57CjDDyicxY6bry1eNQH364qoOasqilO3s2z
-         4VFgfquWKyo05UDWSslDjvS/xrX5SD6SoSS5WKD86sJadAQd2YiGmnKTzgI9FLFhFPVA
-         tbOYgkpNMEo5D5+ORWlpOT1V32oqmlKsQ88Mz6TxO3cxhWYOvxjRN9Nv3q6qM7s9Ly6v
-         vqDA==
+        d=linaro.org; s=google; t=1678794108;
+        h=content-transfer-encoding:in-reply-to:references:cc:to:from
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=8T4+PQuKeTNWP5ozq/P1qnlthI2AuahsAL97gBNb+fc=;
+        b=Czu3gjPEiFWRaNy3nG+rZ64lOym/n3Zhaw3ETVxiW6wNHRu1RobNqcHc1XO63BmaiN
+         XJYTEvC6ivjuBJTBUvVOk8UvHmQNSRbc9iWY8orN4aR+188w4BVphLwYmzNn+xG1POqv
+         Y+6A3J8GmQB9FPqh0QREcWRm8ETYpxPUkdkIdElSodyBSSYHJNI0TeB6SjM7P+kXzjYj
+         XoTho/4lgj2XlfrXPWfViTuE7rnVPhvKiVFDZJpJuTNi8kSyFkmuWMjak9zUtJtgdDtI
+         9rzP25swx6+JjofAIZh9T3O+Li+4TGHVtwo8dsqOTpTD9vuyZa2KtiZ3/A6gGTLKVFKm
+         SwwA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678794032;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=eH82WTYd39GPKAXdpbYy5VSkOFc2jW21usmU+S6UzaM=;
-        b=VAgtv61ObpIUQNbHozUwrNeQQ9BGKBsgOT8wNnk9NTHiSUMZsQePCE5Hjb1apSwgnN
-         YN0gFCm8vqNr20pPlK/Ta0aFZ6bk0hfJKfkM72YkPV3m3CjaxAyFGneEzCj7625ZggUL
-         F2Fu7HUtpG3sDE0zYBMuQzbugPIWzF0uW/s5isN8TJFy7QhNuYxF7urMr49wX03CTU5/
-         +0DI3Pu6EfKrGLu5Lc1Lkpow1798qQC8n7MHu5ibgVv/TyygKJNZdXjCCm2+Hm0MwADc
-         lx4iUyolpw+pa4wo1NrihJW8T5OJhIdJgrFkUEqfs9Wv2yH4OsOowB+UzJ9YpmfWFTjr
-         iOHA==
-X-Gm-Message-State: AO0yUKVXMROPbqwSu3FKLAhCC9sC1L/aBYoyVDCB7LIeg5UGXSoB+xFC
-        zt4J8lOrdFaCbGTjyKeqcCQ=
-X-Google-Smtp-Source: AK7set9ftIWNNWDAHaADJAqiYdsj9tGVmw6svnfxG3uh7QWFxSecTPu9P+X9UtwpFti87PjPTHXSNg==
-X-Received: by 2002:a17:902:f685:b0:19c:d49f:4296 with SMTP id l5-20020a170902f68500b0019cd49f4296mr45244363plg.67.1678794032284;
-        Tue, 14 Mar 2023 04:40:32 -0700 (PDT)
-Received: from Gentoo (n220246252084.netvigator.com. [220.246.252.84])
-        by smtp.gmail.com with ESMTPSA id ju17-20020a170903429100b0019cbd37a335sm1580589plb.93.2023.03.14.04.40.26
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 14 Mar 2023 04:40:31 -0700 (PDT)
-Date:   Tue, 14 Mar 2023 19:40:21 +0800
-From:   Jianhua Lu <lujianhua000@gmail.com>
-To:     Sam Ravnborg <sam@ravnborg.org>
-Cc:     Neil Armstrong <neil.armstrong@linaro.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
+        d=1e100.net; s=20210112; t=1678794108;
+        h=content-transfer-encoding:in-reply-to:references:cc:to:from
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=8T4+PQuKeTNWP5ozq/P1qnlthI2AuahsAL97gBNb+fc=;
+        b=VnltgvQlbS4bdBAnWcxArHpFlUZh/URXXcQFk8to2otWRGtf+Jna8odyncIKz1jJhX
+         Sun+NMUCsMDXIcMETtxJiP7ejuI8qbB6bw90s+oU9g+Kd5gabETt23FFyg6+bzvU+YPA
+         r5HroCugp28XIvS5ENCZ6zuZuGnkjXoC704wD0EOW5iluOHubJAwH4HJ3cWQyHh1BRLB
+         8ZYd25CA4hGz37R2U/5QHBsEPpq9i40gwP7Om1OFf0aBMARqy1J7R/1Z0sdMfG38qXxF
+         dZYie+zyI1+oPZCZ4I0lADoYAFt6YLf+E+okGjp/5RBb8pYRy/j8i+sl0gfX2hAO8BbX
+         8S1g==
+X-Gm-Message-State: AO0yUKXAe4VNX2o5ILkKIcTN4paHpTSkNMN8bEVZPt7jswJRp2K1gWXX
+        gmaFj2DP+HbkAaYBQo4yCeM1nA==
+X-Google-Smtp-Source: AK7set/HlcQydoPl8i6soRhIHSxWSRsADBDN9VwSqcEg0Ovnqs1BMQKEShDx5ZRn1Mjul3laXAds+Q==
+X-Received: by 2002:ac2:59d9:0:b0:4d8:56e2:d0ac with SMTP id x25-20020ac259d9000000b004d856e2d0acmr724228lfn.44.1678794108008;
+        Tue, 14 Mar 2023 04:41:48 -0700 (PDT)
+Received: from [192.168.1.101] (abyj16.neoplus.adsl.tpnet.pl. [83.9.29.16])
+        by smtp.gmail.com with ESMTPSA id w18-20020ac24432000000b004db3e330dcesm369822lfl.178.2023.03.14.04.41.46
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 14 Mar 2023 04:41:47 -0700 (PDT)
+Message-ID: <ee1ebac4-bf18-019a-f770-5cb88703d06b@linaro.org>
+Date:   Tue, 14 Mar 2023 12:41:45 +0100
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.8.0
+Subject: Re: [PATCH 3/3] arm64: dts: qcom: Split out SA8155P and use correct
+ RPMh power domains
+Content-Language: en-US
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+To:     Bjorn Andersson <andersson@kernel.org>
+Cc:     linux-arm-msm@vger.kernel.org, agross@kernel.org,
+        krzysztof.kozlowski@linaro.org, marijn.suijten@somainline.org,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org
-Subject: Re: [PATCH v5 2/2] drm/panel: Add driver for Novatek NT36523
-Message-ID: <ZBBdJcvR6I6HZ4MS@Gentoo>
-References: <20230311123231.20771-1-lujianhua000@gmail.com>
- <20230311123231.20771-2-lujianhua000@gmail.com>
- <904bc493-7160-32fd-9709-1dcb978ddbab@linaro.org>
- <ZAx4KqXw+an555d4@Gentoo>
- <6c02557d-372d-05b1-2998-7c2cde99fac7@linaro.org>
- <ZA9xKlScy9/LS753@ravnborg.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <ZA9xKlScy9/LS753@ravnborg.org>
-X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20230214095435.2192153-1-konrad.dybcio@linaro.org>
+ <20230214095435.2192153-3-konrad.dybcio@linaro.org>
+ <20230314001052.7qvgbwkl73x22oll@ripper>
+ <eaf2ca0d-4d90-b68b-3b36-8bb0148cfb95@linaro.org>
+In-Reply-To: <eaf2ca0d-4d90-b68b-3b36-8bb0148cfb95@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-0.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_SORBS_HTTP,RCVD_IN_SORBS_SOCKS,SPF_HELO_NONE,SPF_PASS,
+        URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Mar 13, 2023 at 07:53:30PM +0100, Sam Ravnborg wrote:
-> On Mon, Mar 13, 2023 at 09:06:50AM +0100, Neil Armstrong wrote:
-> > On 11/03/2023 13:46, Jianhua Lu wrote:
-> > > On Sat, Mar 11, 2023 at 01:38:52PM +0100, Konrad Dybcio wrote:
-> > > > 
-> > > > 
-> > > > On 11.03.2023 13:32, Jianhua Lu wrote:
-> > > > > Add a driver for panels using the Novatek NT36523 display driver IC.
-> > > > > 
-> > > > > Signed-off-by: Jianhua Lu <lujianhua000@gmail.com>
-> > > > > ---
-> > > > [...]
-> > > > 
-> > > > > +
-> > > > > +static int nt36523_get_modes(struct drm_panel *panel,
-> > > > > +			       struct drm_connector *connector)
-> > > > > +{
-> > > > > +	struct panel_info *pinfo = to_panel_info(panel);
-> > > > > +	int i;
-> > > > > +
-> > > > > +	for (i = 0; i < pinfo->desc->num_modes; i++) {
-> > > > > +		const struct drm_display_mode *m = &pinfo->desc->modes[i];
-> > > > > +		struct drm_display_mode *mode;
-> > > > > +
-> > > > > +		mode = drm_mode_duplicate(connector->dev, m);
-> > > > > +		if (!mode) {
-> > > > > +			dev_err(panel->dev, "failed to add mode %ux%u@%u\n",
-> > > > > +				m->hdisplay, m->vdisplay, drm_mode_vrefresh(m));
-> > > > > +			return -ENOMEM;
-> > > > > +		}
-> > > > > +
-> > > > > +		mode->type = DRM_MODE_TYPE_DRIVER;
-> > > > > +		if (pinfo->desc->num_modes == 1)
-> > > > > +			mode->type |= DRM_MODE_TYPE_PREFERRED;
-> > > > That's not quite correct, as that means "if you have more than one
-> > > > defined panel mode (say 60Hz and 120 Hz), there will be no preferred one".
-> > > This piece of code I see in the other panels, so I'm not sure if it is
-> > > correct.
-> Jianhua is correct that the same code exists in several places,
-> and from a quick browse I consider all the cases bogus.
+
+
+On 14.03.2023 12:36, Konrad Dybcio wrote:
 > 
-> It would be fine if someone volunteered to fix all the panels so we
-> avoid this bug to creep into more panel drivers.
-I'm glad to send a patch to fix it soon.
 > 
-> 	Sam
+> On 14.03.2023 01:10, Bjorn Andersson wrote:
+>> On Tue, Feb 14, 2023 at 10:54:35AM +0100, Konrad Dybcio wrote:
+>>> The RPMhPD setup on SA8155P is different compared to SM8150. Correct
+>>> it to ensure the platform will not try accessing forbidden/missing
+>>> RPMh entries at boot, as a bad vote will hang the machine.
+>>>
+>>
+>> I don't see that this will scale, as soon as someone adds a new device
+>> in sm8150.dtsi that has the need to scale a power rail this will be
+>> forgotten and we will have a mix of references to the SM8150 and SA8155P
+>> value space.
+>>
+>> That said, I think it's reasonable to avoid duplicating the entire
+>> sm8150.dtsi.
+> Yeah, this problem has no obvious good solutions and even though it's
+> not very elegant, this seems to be the less bad one..
+> 
+>>
+>> How about making the SA8155P_* macros match the SM8150_* macros?
+>> That way things will fail gracefully if a device node references a
+>> resource not defined for either platform...
+> Okay, let's do that
+Re-thinking it, it's good that the indices don't match, as this way the
+board will (should) refuse to function properly if there's an oversight,
+which may have gone unnoticed if they were matching, so this only guards
+us against programmer error which is not great :/
+
+Konrad
+> 
+> Konrad
+>>
+>> Regards,
+>> Bjorn
+>>
+>>> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+>>> ---
+>>>  arch/arm64/boot/dts/qcom/sa8155p-adp.dts |  2 +-
+>>>  arch/arm64/boot/dts/qcom/sa8155p.dtsi    | 51 ++++++++++++++++++++++++
+>>>  2 files changed, 52 insertions(+), 1 deletion(-)
+>>>  create mode 100644 arch/arm64/boot/dts/qcom/sa8155p.dtsi
+>>>
+>>> diff --git a/arch/arm64/boot/dts/qcom/sa8155p-adp.dts b/arch/arm64/boot/dts/qcom/sa8155p-adp.dts
+>>> index 459384ec8f23..9454e8e4e517 100644
+>>> --- a/arch/arm64/boot/dts/qcom/sa8155p-adp.dts
+>>> +++ b/arch/arm64/boot/dts/qcom/sa8155p-adp.dts
+>>> @@ -7,7 +7,7 @@
+>>>  
+>>>  #include <dt-bindings/regulator/qcom,rpmh-regulator.h>
+>>>  #include <dt-bindings/gpio/gpio.h>
+>>> -#include "sm8150.dtsi"
+>>> +#include "sa8155p.dtsi"
+>>>  #include "pmm8155au_1.dtsi"
+>>>  #include "pmm8155au_2.dtsi"
+>>>  
+>>> diff --git a/arch/arm64/boot/dts/qcom/sa8155p.dtsi b/arch/arm64/boot/dts/qcom/sa8155p.dtsi
+>>> new file mode 100644
+>>> index 000000000000..f2fd7c28764e
+>>> --- /dev/null
+>>> +++ b/arch/arm64/boot/dts/qcom/sa8155p.dtsi
+>>> @@ -0,0 +1,51 @@
+>>> +// SPDX-License-Identifier: BSD-3-Clause
+>>> +/*
+>>> + * Copyright (c) 2023, Linaro Limited
+>>> + *
+>>> + * SA8155P is an automotive variant of SM8150, with some minor changes.
+>>> + * Most notably, the RPMhPD setup differs: MMCX and LCX/LMX rails are gone.
+>>> + */
+>>> +
+>>> +#include "sm8150.dtsi"
+>>> +
+>>> +&dispcc {
+>>> +	power-domains = <&rpmhpd SA8155P_CX>;
+>>> +};
+>>> +
+>>> +&mdss_mdp {
+>>> +	power-domains = <&rpmhpd SA8155P_CX>;
+>>> +};
+>>> +
+>>> +&mdss_dsi0 {
+>>> +	power-domains = <&rpmhpd SA8155P_CX>;
+>>> +};
+>>> +
+>>> +&mdss_dsi1 {
+>>> +	power-domains = <&rpmhpd SA8155P_CX>;
+>>> +};
+>>> +
+>>> +&remoteproc_adsp {
+>>> +	power-domains = <&rpmhpd SA8155P_CX>;
+>>> +};
+>>> +
+>>> +&remoteproc_cdsp {
+>>> +	power-domains = <&rpmhpd SA8155P_CX>;
+>>> +};
+>>> +
+>>> +&remoteproc_mpss {
+>>> +	power-domains = <&rpmhpd SA8155P_CX>,
+>>> +			<&rpmhpd SA8155P_MSS>;
+>>> +};
+>>> +
+>>> +&remoteproc_slpi {
+>>> +	power-domains = <&rpmhpd SA8155P_CX>,
+>>> +			<&rpmhpd SA8155P_MX>;
+>>> +};
+>>> +
+>>> +&rpmhpd {
+>>> +	compatible = "qcom,sa8155p-rpmhpd";
+>>> +};
+>>> +
+>>> +&sdhc_2 {
+>>> +	power-domains = <&rpmhpd SA8155P_CX>;
+>>> +};
+>>> -- 
+>>> 2.39.1
+>>>
