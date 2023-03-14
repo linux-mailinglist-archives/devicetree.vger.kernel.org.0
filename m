@@ -2,123 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A8EF86B8D1C
-	for <lists+devicetree@lfdr.de>; Tue, 14 Mar 2023 09:21:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 534BC6B8D34
+	for <lists+devicetree@lfdr.de>; Tue, 14 Mar 2023 09:24:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229534AbjCNIVn convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Tue, 14 Mar 2023 04:21:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41466 "EHLO
+        id S229845AbjCNIXs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Mar 2023 04:23:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41530 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229872AbjCNIVS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Mar 2023 04:21:18 -0400
-Received: from mail-qt1-f171.google.com (mail-qt1-f171.google.com [209.85.160.171])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 552F695E13;
-        Tue, 14 Mar 2023 01:20:15 -0700 (PDT)
-Received: by mail-qt1-f171.google.com with SMTP id r5so15905234qtp.4;
-        Tue, 14 Mar 2023 01:20:15 -0700 (PDT)
+        with ESMTP id S229441AbjCNIX3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Mar 2023 04:23:29 -0400
+Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com [IPv6:2a00:1450:4864:20::52b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BF48530E98
+        for <devicetree@vger.kernel.org>; Tue, 14 Mar 2023 01:21:56 -0700 (PDT)
+Received: by mail-ed1-x52b.google.com with SMTP id k10so58458691edk.13
+        for <devicetree@vger.kernel.org>; Tue, 14 Mar 2023 01:21:56 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1678782114;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=/3Pox4XAvLnFNQzaTLmAx4AjLw2hBw8wrTBcLaB41To=;
+        b=ZR/9tsrYEGhcCJThIaIJws7+UnO3wfRjY13AR+L8pTE2iLf/QF/xZDThAuRYQfD+Qr
+         t84kkVrfzgHZLQOSiPzs/zCfAySauI/dsZ1ErxYsyEDRPthrXo57QLEAfQ6kZUCjJ36n
+         drRsxMysV01P38QFssHvXViAXdb0tsNclwCC78SCmKJwiECP1rubYB+GfyhqmrRB5A+v
+         5hfBMe91fHW2gLwIXKGfnzW+NsCnWJRXgTRhKhzmBgy7TABrQddVBusWHXKQTnoqkr/N
+         sub2YvXcga1oolpYAaEzSF32o7lG6LUfXkQhoRxXrg8uTbs3ZO8GfrlF8meSuqXRhfQR
+         bqYw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678782014;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=F4lI7q9jGUXAO8uwyJQW1pOS/OekqJ62OeVWS1QjDXo=;
-        b=pChzl4WF4vG8/B023IFFGU07jZ6u1W7FsZkzdP/nJ8jgfShReUbIYN1hSx7alOO8th
-         IafVsykxsqPpeSLmXGvyVd0ZXatz4Wv8wmSGyxShRNwbiSt1gj1VVCuj1TrwK/iwKGJ+
-         QV+nqAzzJfh1soz8J3RWUUkEWSZFMOAMcX0CYIwVa/FZQ3yO4CA/YHcUeMA9Vp0aQIeb
-         dTwXy0nRLb8RztL23viv6hiZejm/01oKYuUlNyuC5kwRpXvh4kO84x5bEcuLqs4ZPSix
-         CPd9wahpxq2gADovrvS1iSHH1odpXDzG4rmx9srCcrIbxoGdFlEZvWtV+fhIYdaib7Ne
-         zh6w==
-X-Gm-Message-State: AO0yUKXvZn9eD/Cd1z/3B4aH+Edd9m+FDf1eI5cXmsyivXWMH0NvkFGt
-        cPQaa10x5HcStmDi2BxdgejhBKJ4FaF2oA==
-X-Google-Smtp-Source: AK7set962J6QcB+c/GwoJ9V/s1IQe5RIZBCUm9yIyDHsUCKBiZ+AR7KBMlwUioGyZ1U7yEdty1AICg==
-X-Received: by 2002:a05:622a:1895:b0:3bf:b504:d5ea with SMTP id v21-20020a05622a189500b003bfb504d5eamr31503547qtc.48.1678782014341;
-        Tue, 14 Mar 2023 01:20:14 -0700 (PDT)
-Received: from mail-yb1-f181.google.com (mail-yb1-f181.google.com. [209.85.219.181])
-        by smtp.gmail.com with ESMTPSA id 71-20020a37054a000000b007436d0e9408sm1293889qkf.127.2023.03.14.01.20.13
+        d=1e100.net; s=20210112; t=1678782114;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=/3Pox4XAvLnFNQzaTLmAx4AjLw2hBw8wrTBcLaB41To=;
+        b=aNvFpxeo5FoWYfj8BHBodd6qC333XQC7EDFanXfFNTN3UlqfinfXo9Gshpe9wYIWK4
+         cN9SeOiebd3GFB52/WBU6VmWBogE9pCVL89O27uljy9J9AHSILIDbr2fjBo39c5tBNdg
+         cGZmiRbauKp/1SzxZ7CB6X+RYvnK4yTJM2cwuMg9c88YVK3hBqygxRhXdkWsQW9aEO6g
+         bWcH6sbUt4TiSbAZUPtoSjBb34vIjOK4GYj1CSUIFJa8bJD2q2g/KMgt+upyeZccADZc
+         BNnXI38zUxD4W2yIAe2HEA3Q+8j/plfYQJI6qh+43qvUw5/3bqo3nrrbSlcZZ1H66OYK
+         oVQg==
+X-Gm-Message-State: AO0yUKXoBw7Zctvb/3kInvCTHQ4M73o7B2VLT71EoypzTHAA1GfXrMXP
+        NlRLOGqZNV6RJmY2xkw0+0j/yA==
+X-Google-Smtp-Source: AK7set/RGW1Q0rfcXRKAWSYuVzvGhANcYDc1JFQ2Fy3W1FXxaxJXijT7RNC+s1L1k1sgw9XYkMt+0g==
+X-Received: by 2002:a17:906:3986:b0:91f:32f9:82f0 with SMTP id h6-20020a170906398600b0091f32f982f0mr1308617eje.29.1678782114207;
+        Tue, 14 Mar 2023 01:21:54 -0700 (PDT)
+Received: from ?IPV6:2a02:810d:15c0:828:6932:5570:6254:9edd? ([2a02:810d:15c0:828:6932:5570:6254:9edd])
+        by smtp.gmail.com with ESMTPSA id bg23-20020a170906a05700b008d398a4e687sm780554ejb.158.2023.03.14.01.21.53
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 14 Mar 2023 01:20:13 -0700 (PDT)
-Received: by mail-yb1-f181.google.com with SMTP id t4so14539774ybg.11;
-        Tue, 14 Mar 2023 01:20:13 -0700 (PDT)
-X-Received: by 2002:a05:6902:188:b0:a99:de9d:d504 with SMTP id
- t8-20020a056902018800b00a99de9dd504mr22847227ybh.12.1678782013408; Tue, 14
- Mar 2023 01:20:13 -0700 (PDT)
+        Tue, 14 Mar 2023 01:21:53 -0700 (PDT)
+Message-ID: <92725aab-a540-b35a-6614-2b91039f433c@linaro.org>
+Date:   Tue, 14 Mar 2023 09:21:52 +0100
 MIME-Version: 1.0
-References: <20230216175347.99778-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20230216175347.99778-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <CAMuHMdXNrBCdLvMKK6kPbMLhSmuxXtd5A+Lt4J0ddVorODqCvw@mail.gmail.com>
- <20230308230001.GF31765@pendragon.ideasonboard.com> <CA+V-a8uQ8fAc-F=7WokcH4otbap0F_ik9Dnw4GpB8ALdVRuWgg@mail.gmail.com>
-In-Reply-To: <CA+V-a8uQ8fAc-F=7WokcH4otbap0F_ik9Dnw4GpB8ALdVRuWgg@mail.gmail.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Tue, 14 Mar 2023 09:20:02 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdVbUqkHOxkJR7_QNa8zstwysHZ0vt45M3dimwQajVfuBA@mail.gmail.com>
-Message-ID: <CAMuHMdVbUqkHOxkJR7_QNa8zstwysHZ0vt45M3dimwQajVfuBA@mail.gmail.com>
-Subject: Re: [PATCH 2/3] arm64: dts: renesas: rzg2l-smarc: Add OV5645 node
-To:     "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Cc:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        =?UTF-8?Q?Niklas_S=C3=B6derlund?= 
-        <niklas.soderlund+renesas@ragnatech.se>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Biju Das <biju.das.jz@bp.renesas.com>,
-        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8BIT
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
-        autolearn=no autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.8.0
+Subject: Re: [PATCH 1/2] dt-bindings: arm: qcom: Add Acer Aspire 1
+Content-Language: en-US
+To:     Nikita Travkin <nikita@trvn.ru>, agross@kernel.org,
+        andersson@kernel.org
+Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        konrad.dybcio@linaro.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        ~postmarketos/upstreaming@lists.sr.ht
+References: <20230314064322.65429-1-nikita@trvn.ru>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230314064322.65429-1-nikita@trvn.ru>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Prabhakar,
+On 14/03/2023 07:43, Nikita Travkin wrote:
+> Acer Aspire 1 is a laptop based on sc7180. Document it's compatible.
+> 
+> Signed-off-by: Nikita Travkin <nikita@trvn.ru>
+> ---
+>  Documentation/devicetree/bindings/arm/qcom.yaml | 5 +++++
+>  1 file changed, 5 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/arm/qcom.yaml b/Documentation/devicetree/bindings/arm/qcom.yaml
+> index 1bb24d46e4ee..903a5ea42cf6 100644
+> --- a/Documentation/devicetree/bindings/arm/qcom.yaml
+> +++ b/Documentation/devicetree/bindings/arm/qcom.yaml
+> @@ -352,6 +352,11 @@ properties:
+>                - qcom,qru1000-idp
+>            - const: qcom,qru1000
+>  
+> +      - items:
+> +          - enum:
+> +              - acer,aspire1
+> +          - const: qcom,sc7180
+> +
+>        - description: Qualcomm Technologies, Inc. SC7180 IDP
 
-On Mon, Mar 13, 2023 at 9:54 PM Lad, Prabhakar
-<prabhakar.csengg@gmail.com> wrote:
-> On Wed, Mar 8, 2023 at 10:59 PM Laurent Pinchart
-> <laurent.pinchart@ideasonboard.com> wrote:
-> > On Mon, Mar 06, 2023 at 08:27:19PM +0100, Geert Uytterhoeven wrote:
-> > > On Thu, Feb 16, 2023 at 6:57 PM Prabhakar <prabhakar.csengg@gmail.com> wrote:
-> > > > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> > > >
-> > > > OV5645 sensor can be connected to the CN1 connector on the
-> > > > carrier board. This patch adds the ov5645 node under i2c0 node.
-> > > >
-> > > > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> > >
-> > > Thanks for your patch!
-> > >
-> > > > --- a/arch/arm64/boot/dts/renesas/r9a07g044l2-smarc.dts
-> > > > +++ b/arch/arm64/boot/dts/renesas/r9a07g044l2-smarc.dts
-> > > > @@ -6,6 +6,10 @@
-> > > >   */
-> > > >
-> > > >  /dts-v1/;
-> > > > +
-> > > > +/* comment the #define statement if OV5645 is not connected to CN1  */
-> > > > +#define CAM_INTERFACE_OV5645   1
-> > >
-> > > I believe the camera is optional ("can be connector" above).
-> > > So shouldn't this be commented out by default?
-> >
-> > Even better, could you turn this into a DT overlay ?
-> >
-> Please let me know your thoughts on this.
+Please merge with this one and drop the description (or rename it to
+something like SC7180-based boards). The sc7180 entries spread a lot and
+it is not helping to read the file.
 
-I agree with Laurent.
+Best regards,
+Krzysztof
 
-Gr{oetje,eeting}s,
-
-                        Geert
-
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
