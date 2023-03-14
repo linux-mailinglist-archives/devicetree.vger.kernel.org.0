@@ -2,237 +2,167 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9DD396B9876
-	for <lists+devicetree@lfdr.de>; Tue, 14 Mar 2023 16:01:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F36B56B9AE9
+	for <lists+devicetree@lfdr.de>; Tue, 14 Mar 2023 17:17:44 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231266AbjCNPBN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Mar 2023 11:01:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37208 "EHLO
+        id S230200AbjCNQRn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Mar 2023 12:17:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45466 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230072AbjCNPBN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Mar 2023 11:01:13 -0400
-Received: from mx.sberdevices.ru (mx.sberdevices.ru [45.89.227.171])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9A86386A7;
-        Tue, 14 Mar 2023 08:01:10 -0700 (PDT)
-Received: from s-lin-edge02.sberdevices.ru (localhost [127.0.0.1])
-        by mx.sberdevices.ru (Postfix) with ESMTP id 4F4625FD07;
-        Tue, 14 Mar 2023 18:01:08 +0300 (MSK)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sberdevices.ru;
-        s=mail; t=1678806068;
-        bh=VYtZNHbbMXIq+g24HuL1awnMYFh5ypx+E6yBnfNcl6A=;
-        h=Date:From:To:Subject:Message-ID:MIME-Version:Content-Type;
-        b=qsIgGNq9FJ+V3tMbZis0wrWJCHqgOAd4VH5hKqsP84sHMMyQ126g9D4n8CC8NTKJO
-         Afl9vosImnTrlWVMKzxfDPpOjxrWMdK1sk4SaFNE8dntktMxQRzU2t74V9gSwFXpKp
-         10uMAGSu1bm8lH97M+c6NOdSUeqcgM5inA2oGwOb/kRDUOG8D8aISg26bYcYDbSheg
-         kHA8dDLPO0lEC5OkuKUA9Jh2hh+nT9Bry6FSSDspRZHQvpWX4wDWH90tubUGwn4taT
-         4C/MVlZF48vOsFrnsWz6DcreHu/PcPaTfbDT2szz9BMaB+BV7e/4wxZjxBdtvOzmxu
-         4tNQ8XpHc70eg==
-Received: from S-MS-EXCH01.sberdevices.ru (S-MS-EXCH01.sberdevices.ru [172.16.1.4])
-        by mx.sberdevices.ru (Postfix) with ESMTP;
-        Tue, 14 Mar 2023 18:01:07 +0300 (MSK)
-Date:   Tue, 14 Mar 2023 18:01:07 +0300
-From:   Dmitry Rokosov <ddrokosov@sberdevices.ru>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-CC:     <neil.armstrong@linaro.org>, <jbrunet@baylibre.com>,
-        <mturquette@baylibre.com>, <sboyd@kernel.org>,
-        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <khilman@baylibre.com>, <martin.blumenstingl@googlemail.com>,
-        <jian.hu@amlogic.com>, <kernel@sberdevices.ru>,
-        <rockosov@gmail.com>, <linux-amlogic@lists.infradead.org>,
-        <linux-clk@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>
-Subject: Re: [PATCH v10 3/5] dt-bindings: clock: meson: add A1 PLL and
- Peripherals clkcs bindings
-Message-ID: <20230314150107.mwcglcu2jv4ixy3r@CAB-WSD-L081021>
-References: <20230313201259.19998-1-ddrokosov@sberdevices.ru>
- <20230313201259.19998-4-ddrokosov@sberdevices.ru>
- <ffebef1d-8447-181b-1890-3e638d399c62@linaro.org>
- <20230314114825.yiv4vcszr6b7m45w@CAB-WSD-L081021>
- <2d9297e9-dab7-9615-3859-79b3b2980d9a@linaro.org>
+        with ESMTP id S230461AbjCNQRg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Mar 2023 12:17:36 -0400
+Received: from mail-wr1-x435.google.com (mail-wr1-x435.google.com [IPv6:2a00:1450:4864:20::435])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AA790B4817;
+        Tue, 14 Mar 2023 09:17:22 -0700 (PDT)
+Received: by mail-wr1-x435.google.com with SMTP id p4so8688045wre.11;
+        Tue, 14 Mar 2023 09:17:22 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112; t=1678810641;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:to
+         :from:from:to:cc:subject:date:message-id:reply-to;
+        bh=X7vTG+HM9wJv+2SsPq5Z6CfXlOJH/VnK+j1wp3/YuB0=;
+        b=Fpzi+wzS1P1O8VnVg03SXwJEshPGh5Zws72EDrJO0L/xMVj+Fxd02Zu28TR/mZrPx3
+         6mo03B9+EJve+qCX2jjp3HeBqa3Ewd4mJN7OwHCpzeSH5fsOEWqk9+R7uikwMhQuQyAN
+         yFiZfzTq1XIpL+TL3v/swxavpL1fnFx9N0o1r4R92KcvBAQvgQYGl2+PcZ4lNKZAU65v
+         2BOuzq6BpBxAfJ4kO+lKPM2Y4aiIckZB18Lvu/MpikuL3xdhNUpL8ewGUJhft5vUYRXC
+         VdyRcnNH6wXZK33Xjc5Kb+3dj0VZRYcu1SG94H5RAV5Y1B+27YCzzx0B9Vc6gjoeR7lB
+         BQCA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1678810641;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:to
+         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=X7vTG+HM9wJv+2SsPq5Z6CfXlOJH/VnK+j1wp3/YuB0=;
+        b=66haYn31UczgBJP1kemYg79zqEB6TBVNYbDO/thOTbGW6qMnHb5OHO1gRPkMWQAcw5
+         4Ac8Kl8UZBc5zybcJbByIJ901XFdw8iX9b0hqyMP5BCZJvSBrCz5pFjfWMzgyl7ABAUB
+         frkEHYKpPxAQPnzGAIwd0WchxVpLp9txroDzRF2ecCOMgrbNi+l7lZ6jR2LOSSI8vPl5
+         d6sD0P0Xrz/HiLJcEygQaF40PdmuTokeAhUDTTwB95G/t8TwGgkqwauXmrMSIKYlpL0J
+         aCzrTsQVkYip2NrGvuaqeTHUyI8VCZdWK9f2U+P+9pqZpfsPHYwwuucKKMNTzVrEJV6u
+         /Vwg==
+X-Gm-Message-State: AO0yUKUqzg1kBzg++UQZvLmZJ6RPfO/JEfRKrvCXhC+bytMG8Eqj4jn1
+        49xTvoBjILOKXDWVW7H3XJg=
+X-Google-Smtp-Source: AK7set+42EfdKL2fbiWypbrek1/lbnXDNrSKamn0m6MK6EhwrJ9cUjCNn6ivQtBty4le29YstiY1Tw==
+X-Received: by 2002:a5d:58ce:0:b0:2ce:9819:1c1e with SMTP id o14-20020a5d58ce000000b002ce98191c1emr8160361wrf.30.1678810640781;
+        Tue, 14 Mar 2023 09:17:20 -0700 (PDT)
+Received: from localhost.localdomain (93-34-89-197.ip49.fastwebnet.it. [93.34.89.197])
+        by smtp.googlemail.com with ESMTPSA id a16-20020a5d4570000000b002c5539171d1sm2426821wrc.41.2023.03.14.09.17.19
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 14 Mar 2023 09:17:20 -0700 (PDT)
+From:   Christian Marangi <ansuelsmth@gmail.com>
+To:     Andrew Lunn <andrew@lunn.ch>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Vladimir Oltean <olteanv@gmail.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Russell King <linux@armlinux.org.uk>,
+        Gregory Clement <gregory.clement@bootlin.com>,
+        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Christian Marangi <ansuelsmth@gmail.com>,
+        John Crispin <john@phrozen.org>, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-arm-msm@vger.kernel.org, Lee Jones <lee@kernel.org>,
+        linux-leds@vger.kernel.org
+Subject: [net-next PATCH v3 00/14] net: Add basic LED support for switch/phy
+Date:   Tue, 14 Mar 2023 11:15:02 +0100
+Message-Id: <20230314101516.20427-1-ansuelsmth@gmail.com>
+X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <2d9297e9-dab7-9615-3859-79b3b2980d9a@linaro.org>
-User-Agent: NeoMutt/20220415
-X-Originating-IP: [172.16.1.6]
-X-ClientProxiedBy: S-MS-EXCH02.sberdevices.ru (172.16.1.5) To
- S-MS-EXCH01.sberdevices.ru (172.16.1.4)
-X-KSMG-Rule-ID: 4
-X-KSMG-Message-Action: clean
-X-KSMG-AntiSpam-Status: not scanned, disabled by settings
-X-KSMG-AntiSpam-Interceptor-Info: not scanned
-X-KSMG-AntiPhishing: not scanned, disabled by settings
-X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 1.1.2.30, bases: 2023/03/14 06:01:00 #20942017
-X-KSMG-AntiVirus-Status: Clean, skipped
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-0.6 required=5.0 tests=BAYES_00,DATE_IN_PAST_06_12,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Mar 14, 2023 at 03:05:48PM +0100, Krzysztof Kozlowski wrote:
-> On 14/03/2023 12:48, Dmitry Rokosov wrote:
-> > On Tue, Mar 14, 2023 at 12:28:40PM +0100, Krzysztof Kozlowski wrote:
-> >> On 13/03/2023 21:12, Dmitry Rokosov wrote:
-> > 
-> > [...]
-> > 
-> >>> +#define CLKID_SPIFC		84
-> >>> +#define CLKID_USB_BUS		85
-> >>> +#define CLKID_SD_EMMC		86
-> >>> +#define CLKID_PSRAM		87
-> >>> +#define CLKID_DMC		88
-> >>
-> >> And what is here? Between 88 and 121?
-> >>
-> > 
-> > Explained below.
-> > 
-> >>> +#define CLKID_GEN_SEL		121
-> >>> +
-> >>> +#endif /* __A1_CLKC_H */
-> >>> diff --git a/include/dt-bindings/clock/amlogic,a1-pll-clkc.h b/include/dt-bindings/clock/amlogic,a1-pll-clkc.h
-> >>> new file mode 100644
-> >>> index 000000000000..8e97d3fb9d30
-> >>> --- /dev/null
-> >>> +++ b/include/dt-bindings/clock/amlogic,a1-pll-clkc.h
-> >>> @@ -0,0 +1,20 @@
-> >>> +/* SPDX-License-Identifier: GPL-2.0+ */
-> >>
-> >> I found in changelog:
-> >> "fix license issue, it's GPL-2.0+ only in the current version"
-> >> and I do not understand.
-> >>
-> >> The license is wrong, so what did you fix?
-> >>
-> > 
-> > Sorry don't get you. Why is it wrong?
-> 
-> Run checkpatch - it will tell you why wrong. The license is not correct.
-> This is part of binding and should be the same as binding.
-> 
+This is a continue of [1]. It was decided to take a more gradual
+approach to implement LEDs support for switch and phy starting with
+basic support and then implementing the hw control part when we have all
+the prereq done.
 
-I always run checkpatch before sending the next patch series. Checkpatch
-doesn't highlight this problem:
+This series implements only the brightness_set() and blink_set() ops.
+An example of switch implementation is done with qca8k.
 
---------------
-$ rg SPDX a1_clkc_v10/v10-0003-dt-bindings-clock-meson-add-A1-PLL-and-Periphera.patch
-32:+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-111:+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-188:+/* SPDX-License-Identifier: GPL-2.0+ */
-294:+/* SPDX-License-Identifier: GPL-2.0+ */
+For PHY a more generic approach is used with implementing the LED
+support in PHY core and with the user (in this case marvell) adding all
+the required functions.
 
-$ ./scripts/checkpatch.pl --strict a1_clkc_v10/v10-0003-dt-bindings-clock-meson-add-A1-PLL-and-Periphera.patch
-total: 0 errors, 0 warnings, 0 checks, 259 lines checked
+Currently we set the default-state as "keep" to not change the default
+configuration of the declared LEDs since almost every switch have a
+default configuration.
 
-a1_clkc_v10/v10-0003-dt-bindings-clock-meson-add-A1-PLL-and-Periphera.patch has no obvious style problems and is ready for submission.
---------------
+[1] https://lore.kernel.org/lkml/20230216013230.22978-1-ansuelsmth@gmail.com/
 
-I've got your point, will fix in the next version.
+Changes in new series v3:
+- Move QCA8K_LEDS Kconfig option from tristate to bool
+- Use new helper led_init_default_state_get for default-state in qca8k
+- Drop cled_qca8k_brightness_get() as there isn't a good way to describe
+  the mode the led is currently in
+- Rework qca8k_led_brightness_get() to return true only when LED is set
+  to always ON
+Changes in new series v2:
+- Add LEDs node for rb3011
+- Fix rb3011 switch node unevaluated properties while running 
+  make dtbs_check
+- Fix a copypaste error in qca8k-leds.c for port 4 required shift
+- Drop phy-handle usage for qca8k and use qca8k_port_to_phy()
+- Add review tag from Andrew
+- Add Christian Marangi SOB in each Andrew patch
+- Add extra description for dsa-port stressing that PHY have no access
+  and LED are controlled by the related MAC
+- Add missing additionalProperties for dsa-port.yaml and ethernet-phy.yaml
 
-> > I've changed all new source files to GPL-2.0+ except yaml, because yaml
-> > dt bindings schemas require the following license:
-> > 
-> >     # SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> > 
-> > I've pointed it in the changelog.
-> 
-> The only thing I found was:
-> "fix license issue, it's GPL-2.0+ only in the current version"
-> 
-> so what exactly you pointed out in changelog? What was to fix? What was
-> fixed? Correct license into incorrect? But why?
-> 
+Changes from the old v8 series:
+- Drop linux,default-trigger set to netdev.
+- Dropped every hw control related patch and implement only
+  blink_set and brightness_set
+- Add default-state to "keep" for each LED node example
 
-By 'license issue' I meant your comment for the previous version at:
-https://lore.kernel.org/all/6a950a51-fe90-9163-b73d-0a396d7187ee@linaro.org/
+Andrew Lunn (6):
+  net: phy: Add a binding for PHY LEDs
+  net: phy: phy_device: Call into the PHY driver to set LED brightness.
+  net: phy: marvell: Add software control of the LEDs
+  net: phy: phy_device: Call into the PHY driver to set LED blinking.
+  net: phy: marvell: Implement led_blink_set()
+  arm: mvebu: dt: Add PHY LED support for 370-rd WAN port
 
-I thought you mentioned the problem is in two license usage in the one
-line (GPL + MIT), I've fixed it to GPL2 only, and mentioned it in the
-changelog.
+Christian Marangi (8):
+  net: dsa: qca8k: move qca8k_port_to_phy() to header
+  net: dsa: qca8k: add LEDs basic support
+  net: dsa: qca8k: add LEDs blink_set() support
+  dt-bindings: net: dsa: dsa-port: Document support for LEDs node
+  dt-bindings: net: dsa: qca8k: add LEDs definition example
+  arm: qcom: dt: Drop unevaluated properties in switch nodes for rb3011
+  arm: qcom: dt: Add Switch LED for each port for rb3011
+  dt-bindings: net: phy: Document support for LEDs node
 
-I didn't know about the special requirement for a dt-bindings license, I've
-just checked other clock dt-bindings and found that license is different
-in the many places:
-
-$ grep -r "SPDX" include/dt-bindings/clock | grep -v -e "GPL-2.0.*BSD-2-Clause" | wc -l
-291
-
-And Tegra Car 124 as an example for different license between yaml
-schema and binding header:
-$ grep "SPDX" include/dt-bindings/clock/tegra124-car.h
-/* SPDX-License-Identifier: GPL-2.0 */
-$ grep "SPDX" Documentation/devicetree/bindings/clock/nvidia,tegra124-car.yaml
-# SPDX-License-Identifier: (GPL-2.0+ OR BSD-2-Clause)
-
-Anyway, it's not a problem to fix the license to the same value between
-header and yaml schema, I'll fix it in the next version.
-But based on the above experiments, other clock bindings should be fixed
-as well, checkpatch behavior should be extended for dt bindings headers
-licence checking.
-
-> > 
-> >>> +/*
-> >>> + * Copyright (c) 2019 Amlogic, Inc. All rights reserved.
-> >>> + * Author: Jian Hu <jian.hu@amlogic.com>
-> >>> + *
-> >>> + * Copyright (c) 2023, SberDevices. All Rights Reserved.
-> >>> + * Author: Dmitry Rokosov <ddrokosov@sberdevices.ru>
-> >>> + */
-> >>> +
-> >>> +#ifndef __A1_PLL_CLKC_H
-> >>> +#define __A1_PLL_CLKC_H
-> >>> +
-> >>> +#define CLKID_FIXED_PLL		1
-> >>> +#define CLKID_FCLK_DIV2		6
-> >>> +#define CLKID_FCLK_DIV3		7
-> >>> +#define CLKID_FCLK_DIV5		8
-> >>> +#define CLKID_FCLK_DIV7		9
-> >>> +#define CLKID_HIFI_PLL		10
-> >>
-> >>
-> >> Probably I asked about this... why indices are not continuous? You know
-> >> that consumers are allowed to use number 2 and it will be your ABI, even
-> >> though you did not write it in the binding? That's a tricky and
-> >> confusing pattern for no real gains.
-> > 
-> > Actually, indices are continuou but splitted into two parts: public and
-> > private. The public part is located in the dt bindings and can be included
-> > from device tree sources. The private part is in the drivers/clk/meson
-> > folder, and only clk drivers can use it.
-> > I know, there is some trick when the user just inserts a digit value and
-> > doesn't use constants.
-> 
-> This is not a trick. This is how DTS works. You have only indices/numbers.
-> 
-> > But I'm starting from the assumption that such
-> > dts changes will not be approved by maintainers. In other words, the user
-> > *must* apply defined ABI constants from dt bindings; it's a strong
-> > restriction.
-> 
-> But it is not correct assumption. Defines are very important, but they
-> are just helpers. Otherwise without defines you could not use any clock?
-> We pretty often use IDs - for DTS to allow merging via different trees,
-> for DT binding examples to not rely on headers.
-> 
-> Your driver implements the ABI and the driver exposes for example clock
-> ID=2, even if it is not in the header.
-> 
-> These IDs are unfortunately undocumented ABI and you if you change them,
-> users are allowed to complain.
-> 
-> Solution: don't do this. Have all exposed clock IDs and clocks in sync
-> (and continuous).
-
-I see. But I don't understand how I can restrict access to private
-clock objects. I don't want to open ability to change system clocks
-parents, for example. Or it's under device tree developer responsibility?
-I would appreciate any assistance in determining the best path.
+ .../devicetree/bindings/net/dsa/dsa-port.yaml |  21 ++
+ .../devicetree/bindings/net/dsa/qca8k.yaml    |  24 ++
+ .../devicetree/bindings/net/ethernet-phy.yaml |  31 +++
+ arch/arm/boot/dts/armada-370-rd.dts           |  14 ++
+ arch/arm/boot/dts/qcom-ipq8064-rb3011.dts     | 124 +++++++++-
+ drivers/net/dsa/qca/Kconfig                   |   7 +
+ drivers/net/dsa/qca/Makefile                  |   1 +
+ drivers/net/dsa/qca/qca8k-8xxx.c              |  19 +-
+ drivers/net/dsa/qca/qca8k-leds.c              | 229 ++++++++++++++++++
+ drivers/net/dsa/qca/qca8k.h                   |  83 +++++++
+ drivers/net/phy/marvell.c                     |  81 ++++++-
+ drivers/net/phy/phy_device.c                  | 115 +++++++++
+ include/linux/phy.h                           |  33 +++
+ 13 files changed, 758 insertions(+), 24 deletions(-)
+ create mode 100644 drivers/net/dsa/qca/qca8k-leds.c
 
 -- 
-Thank you,
-Dmitry
+2.39.2
+
