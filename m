@@ -2,60 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 832FA6B9944
-	for <lists+devicetree@lfdr.de>; Tue, 14 Mar 2023 16:30:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BC2A56B9946
+	for <lists+devicetree@lfdr.de>; Tue, 14 Mar 2023 16:30:08 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231126AbjCNPaF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Mar 2023 11:30:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59608 "EHLO
+        id S231259AbjCNPaG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Mar 2023 11:30:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60256 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231611AbjCNP3L (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Mar 2023 11:29:11 -0400
-Received: from mail-lj1-x22e.google.com (mail-lj1-x22e.google.com [IPv6:2a00:1450:4864:20::22e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EEEE32197B
-        for <devicetree@vger.kernel.org>; Tue, 14 Mar 2023 08:28:59 -0700 (PDT)
-Received: by mail-lj1-x22e.google.com with SMTP id t14so16424574ljd.5
-        for <devicetree@vger.kernel.org>; Tue, 14 Mar 2023 08:28:59 -0700 (PDT)
+        with ESMTP id S231669AbjCNP3W (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Mar 2023 11:29:22 -0400
+Received: from mail-lj1-x232.google.com (mail-lj1-x232.google.com [IPv6:2a00:1450:4864:20::232])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5A99F2007C
+        for <devicetree@vger.kernel.org>; Tue, 14 Mar 2023 08:29:01 -0700 (PDT)
+Received: by mail-lj1-x232.google.com with SMTP id t14so16424668ljd.5
+        for <devicetree@vger.kernel.org>; Tue, 14 Mar 2023 08:29:01 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1678807739;
+        d=linaro.org; s=google; t=1678807741;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=j2eEYWuGcq9/XbTV0ihUo6//o0TPXB2yKOJ5coGxbig=;
-        b=Uzol4Md/G1W/pzYZwQoB3jGmnQryqDT9lSjtfbnPEJsMuuIAT/rm+rH9GGfFYFc9x1
-         NJ7PXtMsH3QnX8E9evFky454dBOsH96V1JasUM0vLVM6Npfn32ijhf67azhMw/cJjDQC
-         DMywU42oXTzkYOPlBsPOT/raFojuHwEbkKyacUbHNQmHXLMIPklH+ed9E1R79gVVOZeh
-         UXF3hThDdQPew3cOhG8DhIShnLtEzshjthaTt7xbM1WK60eLZjhmPRBSx5qq9Tce3stT
-         z0P+qiorh7YadcM7HlL+d2rHp9bbUTd5l6MaUJ2DtSjPtMAgusHCcEfdmC9A1SmELhgN
-         7+3g==
+        bh=/rMi4z3KYpk1VOXDtleM/+v4nMkai2X+NZaj5fWAot0=;
+        b=GV/tteMajEXLkq7QRWvhGA9tMlhuJp/N2TPtYTY0YtLZQlTqkOTuIJ+KJwU0HqvSND
+         xGSr/TymnSrZqWdGV3dGwJHCHSX1GpSUcYgNQe/A8PGmW7SKKznrUpk5ALLQAEMeG9rx
+         /XG2RkujzSZ+Ciah38NKKTrq7vN5WRpzPlvjCFFRy/bNyFYfVt8Ef5kxiuulvIT59XoI
+         vXAa566h15OVTxr35Iz+0GhOW2Nhhnr+7TqUu03lv+f2t6bBBKynYOG4NnrqcVpOFWKJ
+         Zy+TVLtPGwdAQWe9s5RudeIOFXfuel+dLMcI4I3dKyvLmaAfUblEGKcxmRuzgLfwKDD1
+         HIdQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678807739;
+        d=1e100.net; s=20210112; t=1678807741;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=j2eEYWuGcq9/XbTV0ihUo6//o0TPXB2yKOJ5coGxbig=;
-        b=p8VbsY6nJpTQuIHw2kBar8cfM2YiTTcyUPwuAWeaiPSp9I0u2EdOio9GW5B7PZNroP
-         GOdveo6uXkt+B1l81yHS42fJ1umAqvEKVLZKjuPFXzmBMR6Vo9FEx7RszmVo7L2+ob7A
-         UVMff9Rz2bibPww0F+VegIzswvZfPnzrUeG6Jjb6wI2HtELpJdGUlF3hWQNPYJWoZgNO
-         7Z6eHf0fV9R33nOqB6CRCcCl92AoZnBe2dqPO0IqghpegcMXohbfuqatdB8aLaMxH0Yd
-         zkqiCx1lJw0GR4cvwl3vS+mQi7xYZBP5X3RPW+CG6T3UeXz/4V0jhqEKtc19dYkVZ0hS
-         eOaQ==
-X-Gm-Message-State: AO0yUKUdHLSELwwtvSg8X+0robcNbyXJfCfeZSxeTXMIU0opYUuYLsjK
-        5j3LNHOTJuMzWI/msa6z2LbP/Q==
-X-Google-Smtp-Source: AK7set/LWyoYvugiC3rN0mWPEx2Fg0KLPVq4uJ85JfYJmzed5o3Q0zVo/UadHn5Zu5NnDMc1F4XBww==
-X-Received: by 2002:a2e:994f:0:b0:294:6235:b18e with SMTP id r15-20020a2e994f000000b002946235b18emr12097562ljj.14.1678807739431;
-        Tue, 14 Mar 2023 08:28:59 -0700 (PDT)
+        bh=/rMi4z3KYpk1VOXDtleM/+v4nMkai2X+NZaj5fWAot0=;
+        b=73N9YwS4qh/PFHmtJsSaajOaEOxYUmeYmrJwps+3ZifSMATApiMw77IzCNCt7ugrnu
+         kFQlFRhLsVpgN/1TVyIfHQAQU3HHRpQH1KX2EQtPbmjEquFA8G5KnrAXe3pRkPOqefSX
+         AudG/I7vcf+8M0bdL5iIsi9+5nLlGwKv8t8VppcZ8gERORt4fsC40EKDPRwMPvthoOth
+         R4bbsdYoMlovfffIqxQLaKb+Fsps2bDCl7Hwabic0lLkVvVTgpE2Lr68ODSsvFCtiVQb
+         A825x1RQ7608CzZ+4iu/PrXX+hAcNtSs6Z6kHcw4KyQmq402CBlYKhSOvNbEVUE26uRi
+         Kw7Q==
+X-Gm-Message-State: AO0yUKXFJ2PqPHmjzbzrAyDKfV4ZCXg2+LKlwvo98TImRYIZErjUt9Zm
+        2nKMdaPhgdRd77mCJfqcE1XiJw==
+X-Google-Smtp-Source: AK7set/JjpNvsvf8MV9aq3qP6wInMbwMOVpVCJJNFqgxlkKvmA4HfRtybbTeiYUBXGAMluTsvW8RHA==
+X-Received: by 2002:a2e:3610:0:b0:295:acb9:8610 with SMTP id d16-20020a2e3610000000b00295acb98610mr12822310lja.25.1678807740930;
+        Tue, 14 Mar 2023 08:29:00 -0700 (PDT)
 Received: from [192.168.1.101] (abyj16.neoplus.adsl.tpnet.pl. [83.9.29.16])
-        by smtp.gmail.com with ESMTPSA id 27-20020a2e165b000000b002986a977bf2sm491529ljw.90.2023.03.14.08.28.58
+        by smtp.gmail.com with ESMTPSA id 27-20020a2e165b000000b002986a977bf2sm491529ljw.90.2023.03.14.08.28.59
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 14 Mar 2023 08:28:59 -0700 (PDT)
+        Tue, 14 Mar 2023 08:29:00 -0700 (PDT)
 From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-Date:   Tue, 14 Mar 2023 16:28:44 +0100
-Subject: [PATCH v4 13/14] drm/msm/a6xx: Add A619_holi speedbin support
+Date:   Tue, 14 Mar 2023 16:28:45 +0100
+Subject: [PATCH v4 14/14] drm/msm/a6xx: Add A610 speedbin support
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20230223-topic-gmuwrapper-v4-13-e987eb79d03f@linaro.org>
+Message-Id: <20230223-topic-gmuwrapper-v4-14-e987eb79d03f@linaro.org>
 References: <20230223-topic-gmuwrapper-v4-0-e987eb79d03f@linaro.org>
 In-Reply-To: <20230223-topic-gmuwrapper-v4-0-e987eb79d03f@linaro.org>
 To:     Rob Clark <robdclark@gmail.com>,
@@ -74,11 +74,11 @@ Cc:     linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
         Marijn Suijten <marijn.suijten@somainline.org>,
         Konrad Dybcio <konrad.dybcio@linaro.org>
 X-Mailer: b4 0.12.1
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1678807716; l=1972;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1678807716; l=1852;
  i=konrad.dybcio@linaro.org; s=20230215; h=from:subject:message-id;
- bh=YbHID1ebzUgv4FADFLbdTcRo/0BAqs1RT5mt5WqUfTo=;
- b=s3HhnOhKViZbWBYgyMxuzL4UDJa8iVASyV+mQYW3iO3PGPZl+eP/2Aeaw6ZMhwFz3SwSFoCG0y33
- Q/Rx0heHCR/EvUr6sEUzL8fuAOHOSGF3DRC9eEc/4mROb2FGKAb7
+ bh=ZWxWz95kNFsOaOSTnUEHkUaKyj0DdIwF1Eu3I3PdtGk=;
+ b=KpKsSEXRQhg/MQJAmTRWDZjQlF+2ofojhmqZlx7eSqwxni5o+DCOvcHjBxCErE0ijWM2Fb5c/ZYL
+ mYoD898IBUAF5lQbLmP9ZrsLEqozfQMp+QSYOnwJjDo2iYl97Y1+
 X-Developer-Key: i=konrad.dybcio@linaro.org; a=ed25519;
  pk=iclgkYvtl2w05SSXO5EjjSYlhFKsJ+5OSZBjOkQuEms=
 X-Spam-Status: No, score=-0.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -91,65 +91,62 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-A619_holi is implemented on at least two SoCs: SM4350 (holi) and SM6375
-(blair). This is what seems to be a first occurrence of this happening,
-but it's easy to overcome by guarding the SoC-specific fuse values with
-of_machine_is_compatible(). Do just that to enable frequency limiting
-on these SoCs.
+A610 is implemented on at least three SoCs: SM6115 (bengal), SM6125
+(trinket) and SM6225 (khaje). Trinket does not support speed binning
+(only a single SKU exists) and we don't yet support khaje upstream.
+Hence, add a fuse mapping table for bengal to allow for per-chip
+frequency limiting.
 
+Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 ---
- drivers/gpu/drm/msm/adreno/a6xx_gpu.c | 31 +++++++++++++++++++++++++++++++
- 1 file changed, 31 insertions(+)
+ drivers/gpu/drm/msm/adreno/a6xx_gpu.c | 27 +++++++++++++++++++++++++++
+ 1 file changed, 27 insertions(+)
 
 diff --git a/drivers/gpu/drm/msm/adreno/a6xx_gpu.c b/drivers/gpu/drm/msm/adreno/a6xx_gpu.c
-index 71950a5fcc96..27b96a335039 100644
+index 27b96a335039..f9f1a6c50f65 100644
 --- a/drivers/gpu/drm/msm/adreno/a6xx_gpu.c
 +++ b/drivers/gpu/drm/msm/adreno/a6xx_gpu.c
-@@ -2148,6 +2148,34 @@ static u32 a618_get_speed_bin(u32 fuse)
- 	return UINT_MAX;
+@@ -2136,6 +2136,30 @@ static bool a6xx_progress(struct msm_gpu *gpu, struct msm_ringbuffer *ring)
+ 	return progress;
  }
  
-+static u32 a619_holi_get_speed_bin(u32 fuse)
++static u32 a610_get_speed_bin(u32 fuse)
 +{
 +	/*
-+	 * There are (at least) two SoCs implementing A619_holi: SM4350 (holi)
-+	 * and SM6375 (blair). Limit the fuse matching to the corresponding
-+	 * SoC to prevent bogus frequency setting (as improbable as it may be,
-+	 * given unexpected fuse values are.. unexpected! But still possible.)
++	 * There are (at least) three SoCs implementing A610: SM6125 (trinket),
++	 * SM6115 (bengal) and SM6225 (khaje). Trinket does not have speedbinning,
++	 * as only a single SKU exists and we don't support khaje upstream yet.
++	 * Hence, this matching table is only valid for bengal and can be easily
++	 * expanded if need be.
 +	 */
 +
 +	if (fuse == 0)
 +		return 0;
-+
-+	if (of_machine_is_compatible("qcom,sm4350")) {
-+		if (fuse == 138)
-+			return 1;
-+		else if (fuse == 92)
-+			return 2;
-+	} else if (of_machine_is_compatible("qcom,sm6375")) {
-+		if (fuse == 190)
-+			return 1;
-+		else if (fuse == 177)
-+			return 2;
-+	} else
-+		pr_warn("Unknown SoC implementing A619_holi!\n");
++	else if (fuse == 206)
++		return 1;
++	else if (fuse == 200)
++		return 2;
++	else if (fuse == 157)
++		return 3;
++	else if (fuse == 127)
++		return 4;
 +
 +	return UINT_MAX;
 +}
 +
- static u32 a619_get_speed_bin(u32 fuse)
+ static u32 a618_get_speed_bin(u32 fuse)
  {
  	if (fuse == 0)
-@@ -2207,6 +2235,9 @@ static u32 fuse_to_supp_hw(struct device *dev, struct adreno_gpu *adreno_gpu, u3
+@@ -2232,6 +2256,9 @@ static u32 fuse_to_supp_hw(struct device *dev, struct adreno_gpu *adreno_gpu, u3
+ {
+ 	u32 val = UINT_MAX;
+ 
++	if (adreno_is_a610(adreno_gpu))
++		val = a610_get_speed_bin(fuse);
++
  	if (adreno_is_a618(adreno_gpu))
  		val = a618_get_speed_bin(fuse);
- 
-+	else if (adreno_is_a619_holi(adreno_gpu))
-+		val = a619_holi_get_speed_bin(fuse);
-+
- 	else if (adreno_is_a619(adreno_gpu))
- 		val = a619_get_speed_bin(fuse);
  
 
 -- 
