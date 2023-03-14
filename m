@@ -2,60 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8830E6BA09B
-	for <lists+devicetree@lfdr.de>; Tue, 14 Mar 2023 21:23:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B4A2D6BA0AD
+	for <lists+devicetree@lfdr.de>; Tue, 14 Mar 2023 21:26:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229538AbjCNUXK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Mar 2023 16:23:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40142 "EHLO
+        id S231316AbjCNU0I (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Mar 2023 16:26:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45086 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230395AbjCNUXC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Mar 2023 16:23:02 -0400
-Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9E1432A9B8
-        for <devicetree@vger.kernel.org>; Tue, 14 Mar 2023 13:23:00 -0700 (PDT)
-Received: by mail-lf1-x134.google.com with SMTP id bp27so11314454lfb.6
-        for <devicetree@vger.kernel.org>; Tue, 14 Mar 2023 13:23:00 -0700 (PDT)
+        with ESMTP id S231247AbjCNU0A (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Mar 2023 16:26:00 -0400
+Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 870D84FF21
+        for <devicetree@vger.kernel.org>; Tue, 14 Mar 2023 13:25:14 -0700 (PDT)
+Received: by mail-lf1-x12a.google.com with SMTP id br6so3438002lfb.11
+        for <devicetree@vger.kernel.org>; Tue, 14 Mar 2023 13:25:14 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1678825379;
+        d=linaro.org; s=google; t=1678825512;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=jEIZdHCfx9cGTkFeh+07JO8Lboce4xL6m1cAEzuyo8Y=;
-        b=MUPw5BTjDVecsRP8Di8yTaAnTfTLv8FxJ+CiOf8Hbjf7DjiazMBhjZq5CBlEPDM0hj
-         r8ur9FBBAk/ZcYq67N9/TXZnTwK1RuZpnavDfbOHwBW1c+UiENb7cyZ7EjhbS1updTDc
-         PaB/PZh8d22DMOGx54mUy/PW/XQsrpHXQGmHw48/m+44kL6k+K8Tf7ADaWk+7KA+KfwH
-         3DgEd2JNy3JzP8cjc44LJRizpUZ/QG1ZsADY4BBKYnlfyf0J5wUTOQkVUepgFNKwb81W
-         3wXpHLmkykVPP0Q3TaMOBXr3N16CPJ28s+C7ePoSacZIqilIN/R9Hj9DDg/ilzn8b52O
-         Mn5A==
+        bh=5Td1bebZ6aK4cMakRGNCVIAz8u4A34OSTM2iigQ6lUc=;
+        b=huBzCcE5tuvCOmYGf6ZYLhlcfxtyEVs2Z1wFE3X0IQul/+v2S4BIbVfvvacc0pqGDh
+         IAJm1IyTPdduph7Gwr7KhQQ0R/jzKdNlK/8T4f8PkxLLIZusjRNbF5fsNkj0eMBwZxS9
+         WbDBanc6eFHHseKxlVmvxcqjzQ+ms/FOUmCWZ0LhZbqlc/OINPvmigAk+2f5F1/qqSLN
+         LY2aKP3BG22xFM99IkPJgpcVy3CUh30AJxGHUnCPq+GjzNQCk1KVuVYulXmNr4ufKv/X
+         fXoUKY7UyRJ18eiC0R3AAE1ylMb2WZojng1huFDR+ekrKuDoprCVB1968T/ZsxEbOoeC
+         TWgQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678825379;
+        d=1e100.net; s=20210112; t=1678825512;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=jEIZdHCfx9cGTkFeh+07JO8Lboce4xL6m1cAEzuyo8Y=;
-        b=o84Io7N28KFwCuiZBpQQhOCwZrfGNFhBOHnr49ZUMTj7xI4HHAuUjOPJ02HYLw7XVq
-         s62XEzZXfoMPzsV75vYzDMgHTcFy1/MO6mJL1WGIIRYp5DAS0eiJpmnwlzB1gCrJhTvo
-         bRBblKPzmWrnKHD20Z7pM8T/EVDNVKELeJmT3721EFwJ2S6q2Agp2EOMN49ZC8ye0I5z
-         hN97PJbOBy3QD+XJv3LQ81ZlFBV10vJoDPUkmsa1A0/0QETR+UYMV1MPbv6ydmD4FgvO
-         VvYQPJ/ZZOFbuyjbqCpGQJK5GoDOJgx+Z9b8htqjHhuD84W+jHADmk3NpuXl99ISwT89
-         a8YA==
-X-Gm-Message-State: AO0yUKVHvQ5vePwlism0H4UdV46sBrPWRJ7wFnuWcoLwB3hBdt8Gnkaf
-        Y0t07Sbcf8Taz92kpzT/9PzCzQ==
-X-Google-Smtp-Source: AK7set9WxjZkM7fy+9fuq+4jIrZn7/mXAYs1U7lLky5CA0SAQxgruGmIhqElPLk5vT0UoB9o6BlXNw==
-X-Received: by 2002:a05:6512:489:b0:4d8:62e5:4f64 with SMTP id v9-20020a056512048900b004d862e54f64mr1202962lfq.17.1678825378895;
-        Tue, 14 Mar 2023 13:22:58 -0700 (PDT)
+        bh=5Td1bebZ6aK4cMakRGNCVIAz8u4A34OSTM2iigQ6lUc=;
+        b=MaGweStoawscTSzfIyYL94tgDOl+9ZuAQlsdLLnRX74/axd4dt5ayOkdXFpb8xQPP1
+         CpLPinPQuluGJXzyBJDykWOaacvATZb206KT9hgrrJcTn8AXoe2ecW+RQAu4sBB6MVcC
+         BJZlyilg/S+ENku4OTt33URmbi1yB+YP9RMZZdcFThLYaU5aFtByBLKUEx4jtw4juEQv
+         Lqpn7JsQJBWtK/QAzUuLHAXGnp/NEka3wndYVUr+GJzpoSoyHJ7M36aQeMFdpyyObfdu
+         Muh53HW0L4LLxg/FfT/D9T17EA7FJLeIPLKk24PG8r4HHVgG8NfDu+bJxsZNHVVupBj1
+         8AGg==
+X-Gm-Message-State: AO0yUKV/WOo43OSovId3P2GpHQ28jllr2jXraVIL2Amn78+cMw0KjsOE
+        B2PP0k1bi3YoZjNynDkijgfqFw==
+X-Google-Smtp-Source: AK7set9hX7nss9bI3ZSSY0CbtJwbgcUGwmvp4NZuqCHIYpQpKEqzt7AwhMuuPB5JHg7WfW6QApK/Cg==
+X-Received: by 2002:ac2:51ab:0:b0:4d8:6577:d2bf with SMTP id f11-20020ac251ab000000b004d86577d2bfmr1059539lfk.37.1678825512663;
+        Tue, 14 Mar 2023 13:25:12 -0700 (PDT)
 Received: from [192.168.1.101] (abyj16.neoplus.adsl.tpnet.pl. [83.9.29.16])
-        by smtp.gmail.com with ESMTPSA id i14-20020ac25d2e000000b004d8584970b8sm523570lfb.226.2023.03.14.13.22.57
+        by smtp.gmail.com with ESMTPSA id w28-20020ac2443c000000b004ddef915fe4sm518770lfl.274.2023.03.14.13.25.11
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 14 Mar 2023 13:22:58 -0700 (PDT)
-Message-ID: <08dff56d-227a-a791-549c-15ac0f1ac08b@linaro.org>
-Date:   Tue, 14 Mar 2023 21:22:56 +0100
+        Tue, 14 Mar 2023 13:25:12 -0700 (PDT)
+Message-ID: <0fc9ba28-cb78-67fb-4cef-f786c345bc19@linaro.org>
+Date:   Tue, 14 Mar 2023 21:25:10 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.8.0
-Subject: Re: [PATCH 05/14] arm64: dts: qcom: sa8775p: add support for the
- on-board PMICs
+Subject: Re: [PATCH 07/14] arm64: dts: qcom: sa8775p: add the Power On device
+ node
 Content-Language: en-US
 To:     Bartosz Golaszewski <brgl@bgdev.pl>,
         Andy Gross <agross@kernel.org>,
@@ -66,9 +66,9 @@ Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
         Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
 References: <20230314183043.619997-1-brgl@bgdev.pl>
- <20230314183043.619997-6-brgl@bgdev.pl>
+ <20230314183043.619997-8-brgl@bgdev.pl>
 From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20230314183043.619997-6-brgl@bgdev.pl>
+In-Reply-To: <20230314183043.619997-8-brgl@bgdev.pl>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-0.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -86,60 +86,33 @@ X-Mailing-List: devicetree@vger.kernel.org
 On 14.03.2023 19:30, Bartosz Golaszewski wrote:
 > From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
 > 
-> Add a new .dtsi file for sa8775p PMICs and add the four PMICs interfaced
-> to the SoC via SPMI.
+> Add the PON node to PMIC #0 for sa8775p platforms.
 > 
 > Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
 > ---
->  arch/arm64/boot/dts/qcom/sa8775p-pmics.dtsi | 37 +++++++++++++++++++++
->  1 file changed, 37 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/qcom/sa8775p-pmics.dtsi
+>  arch/arm64/boot/dts/qcom/sa8775p-pmics.dtsi | 7 +++++++
+>  1 file changed, 7 insertions(+)
 > 
 > diff --git a/arch/arm64/boot/dts/qcom/sa8775p-pmics.dtsi b/arch/arm64/boot/dts/qcom/sa8775p-pmics.dtsi
-> new file mode 100644
-> index 000000000000..77e2515a7ab9
-> --- /dev/null
+> index 77e2515a7ab9..5d73212fbd16 100644
+> --- a/arch/arm64/boot/dts/qcom/sa8775p-pmics.dtsi
 > +++ b/arch/arm64/boot/dts/qcom/sa8775p-pmics.dtsi
-> @@ -0,0 +1,37 @@
-> +// SPDX-License-Identifier: BSD-3-Clause
-> +/*
-> + * Copyright (c) 2023, Linaro Limited
-> + */
+> @@ -12,6 +12,13 @@ pmk8775_0: pmic@0 {
+>  		reg = <0x0 SPMI_USID>;
+>  		#address-cells = <1>;
+>  		#size-cells = <0>;
 > +
-> +#include <dt-bindings/input/input.h>
-> +#include <dt-bindings/spmi/spmi.h>
-> +
-> +&spmi_bus {
-> +	pmk8775_0: pmic@0 {
-pmk8775..
+> +		pmk8775_0_pon: pon@1200 {
+> +			compatible = "qcom,pmk8350-pon";
+> +			reg = <0x1200>, <0x800>;
+reg-names = "hlos", "pbs"
 
-> +		compatible = "qcom,pmm8654au", "qcom,spmi-pmic";
-..or pmm8654au?
+Also, are you sure hlos shouldn't be @1300?
 
 Konrad
-> +		reg = <0x0 SPMI_USID>;
-> +		#address-cells = <1>;
-> +		#size-cells = <0>;
-> +	};
-> +
-> +	pmk8775_1: pmic@2 {
-> +		compatible = "qcom,pmm8654au", "qcom,spmi-pmic";
-> +		reg = <0x2 SPMI_USID>;
-> +		#address-cells = <1>;
-> +		#size-cells = <0>;
-> +	};
-> +
-> +	pmk8775_2: pmic@4 {
-> +		compatible = "qcom,pmm8654au", "qcom,spmi-pmic";
-> +		reg = <0x4 SPMI_USID>;
-> +		#address-cells = <1>;
-> +		#size-cells = <0>;
-> +	};
-> +
-> +	pmk8775_3: pmic@6 {
-> +		compatible = "qcom,pmm8654au", "qcom,spmi-pmic";
-> +		reg = <0x6 SPMI_USID>;
-> +		#address-cells = <1>;
-> +		#size-cells = <0>;
-> +	};
-> +};
+> +			mode-recovery = <0x1>;
+> +			mode-bootloader = <0x2>;
+> +		};
+>  	};
+>  
+>  	pmk8775_1: pmic@2 {
