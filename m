@@ -2,75 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 533936B975D
-	for <lists+devicetree@lfdr.de>; Tue, 14 Mar 2023 15:10:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A1E7B6B9764
+	for <lists+devicetree@lfdr.de>; Tue, 14 Mar 2023 15:11:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232607AbjCNOKx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Mar 2023 10:10:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56810 "EHLO
+        id S231506AbjCNOLH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Mar 2023 10:11:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57336 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231916AbjCNOKp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Mar 2023 10:10:45 -0400
-Received: from mail-il1-f179.google.com (mail-il1-f179.google.com [209.85.166.179])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BA0F2746E7;
-        Tue, 14 Mar 2023 07:10:39 -0700 (PDT)
-Received: by mail-il1-f179.google.com with SMTP id h7so8694039ila.5;
-        Tue, 14 Mar 2023 07:10:39 -0700 (PDT)
+        with ESMTP id S232602AbjCNOKw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Mar 2023 10:10:52 -0400
+Received: from mail-io1-f49.google.com (mail-io1-f49.google.com [209.85.166.49])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 492989FBDD;
+        Tue, 14 Mar 2023 07:10:46 -0700 (PDT)
+Received: by mail-io1-f49.google.com with SMTP id f14so6450664iow.5;
+        Tue, 14 Mar 2023 07:10:46 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678803039;
+        d=1e100.net; s=20210112; t=1678803045;
         h=date:subject:message-id:references:in-reply-to:cc:to:from
          :mime-version:content-transfer-encoding:x-gm-message-state:from:to
          :cc:subject:date:message-id:reply-to;
-        bh=eS4/esiARLcOTfS3GdLeqZGAcqprgtcpPQrawrBj7eg=;
-        b=Wof+pzJSIpP/hCNcTRLZCf8BALpfc8Kg8hF62PWzeH9cklITZwUr0Py53Y+e66ZCqc
-         XFPMkAzwU2gZSsKszOmd9/2d4XvgjbtCF+hq6I5ijPKqkkIMrWNIT9FEl76XYHKJZap0
-         dyh2U2TNswLOErHc9qH1/BA4HPqm299X0r4MIrssO4oU0K3j6LUGvQ5FklKoApuXMlUi
-         00K1uI1UspuIDru82VkTjWhRKr+czYofEjLV6Mn6dgKc3r36KKC5ABQ4YPodl4mc9M+I
-         zh/GnOVY7hoyHYDdOD/EAy4f8teU6XmLZSMxHBGQdzTqWdG86VZHQrC/5TP+avPCTKmT
-         fX9w==
-X-Gm-Message-State: AO0yUKW15Nh5iSmMcrx6vqxoaExNb/8+Wnfr1TfpF9nIvPMBLj1eZWvt
-        819YceqhI0Z5WwAgXuCvutOnHFCppQ==
-X-Google-Smtp-Source: AK7set9vurV8ePdJ3YUU8JtLsv59fy96jE59gbECky++E2PvPP3k8EJn8p4ZlNE3D5AbxhNRcvvApg==
-X-Received: by 2002:a92:ce12:0:b0:316:e6e5:f0db with SMTP id b18-20020a92ce12000000b00316e6e5f0dbmr2485972ilo.0.1678803038894;
-        Tue, 14 Mar 2023 07:10:38 -0700 (PDT)
+        bh=KPNzf+HQqdCHDIm57ke58vX4Ge6Far2yuTyMjYWrrg8=;
+        b=EgnPdKxiPNAz2yT1kP/ptS/cguAi9KECytbPns2HHHehwXDgtbDLWui/I4apR23QXp
+         3xAblLXrI3Yhozed9tJzbB+xnV+bm0nWYKgQOVfUVmN7Aq09ervme2H4TWzeim3F19sX
+         ZGtL0Lmva2dlTXWZLg7+SIFKZ259PsthZsg+7t+ErFeOJYhR9hueiJLzQ0uJxWBvr+v8
+         HkYfP5Q2skbpzNow1t0C6MS2OoYt9J75MLiaP2QplLY5IPC92Vo1bIzX16PPrJUI6+QT
+         gb0ZbWMSIk1Rph55PuZp+RBml9rVWap0G2nKmYWNbZfef4ENv0cP4kMF0adibQjpYdeD
+         isVw==
+X-Gm-Message-State: AO0yUKV9DLYBFpVYMgREsrXvwctJi/2zWWoaZwX9QmySh2r/6Z8U+L8k
+        bpqaSvKKwap4rSORaMFo0Q==
+X-Google-Smtp-Source: AK7set/ocHiedGVn3EYKa+oI9LdcoqYevEqv/MuedJEJn4ARvKcoiOUJNoQKDEkorOs6HTOylwSY5w==
+X-Received: by 2002:a6b:d216:0:b0:74c:9235:8753 with SMTP id q22-20020a6bd216000000b0074c92358753mr19035122iob.13.1678803045491;
+        Tue, 14 Mar 2023 07:10:45 -0700 (PDT)
 Received: from robh_at_kernel.org ([64.188.179.249])
-        by smtp.gmail.com with ESMTPSA id f12-20020a926a0c000000b003231580e8e2sm841024ilc.6.2023.03.14.07.10.36
+        by smtp.gmail.com with ESMTPSA id s14-20020a6bd30e000000b00734ac8a5ef7sm833864iob.25.2023.03.14.07.10.42
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 14 Mar 2023 07:10:37 -0700 (PDT)
-Received: (nullmailer pid 83774 invoked by uid 1000);
+        Tue, 14 Mar 2023 07:10:43 -0700 (PDT)
+Received: (nullmailer pid 83779 invoked by uid 1000);
         Tue, 14 Mar 2023 14:10:19 -0000
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 MIME-Version: 1.0
 From:   Rob Herring <robh@kernel.org>
-To:     Joel Selvaraj <joelselvaraj.oss@gmail.com>
-Cc:     phone-devel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        Bjorn Andersson <andersson@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        linux-kernel@vger.kernel.org,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Arnd Bergmann <arnd@arndb.de>,
+To:     Andi Shyti <andi.shyti@kernel.org>
+Cc:     linux-i2c@vger.kernel.org, Ryan Chen <ryan_chen@aspeedtech.com>,
+        Wolfram Sang <wsa@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Chris Morgan <macromorgan@hotmail.com>,
-        Robert Jarzmik <robert.jarzmik@free.fr>,
-        Max Krummenacher <max.krummenacher@toradex.com>,
-        linux-input@vger.kernel.org, Caleb Connolly <caleb@connolly.tech>,
-        ~postmarketos/upstreaming@lists.sr.ht,
-        Jeff LaBundy <jeff@labundy.com>, devicetree@vger.kernel.org,
-        Jean Delvare <jdelvare@suse.de>,
-        Job Noorman <job@noorman.info>,
-        Alistair Francis <alistair@alistair23.me>,
-        Markuss Broks <markuss.broks@gmail.com>,
-        Henrik Rydberg <rydberg@bitmath.org>
-In-Reply-To: <20230312093249.1846993-2-joelselvaraj.oss@gmail.com>
-References: <20230312093249.1846993-1-joelselvaraj.oss@gmail.com>
- <20230312093249.1846993-2-joelselvaraj.oss@gmail.com>
-Message-Id: <167880254230.25342.652645660925907921.robh@kernel.org>
-Subject: Re: [PATCH 1/5] dt-bindings: input: touchscreen: add bindings for
- focaltech,fts
+        Chris Packham <chris.packham@alliedtelesis.co.nz>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>
+In-Reply-To: <20230312233613.303408-2-andi.shyti@kernel.org>
+References: <20230312233613.303408-1-andi.shyti@kernel.org>
+ <20230312233613.303408-2-andi.shyti@kernel.org>
+Message-Id: <167880254331.25515.17901856481962486896.robh@kernel.org>
+Subject: Re: [PATCH v3 1/3] dt-bindings: i2c: mpc: Mark "fsl,timeout" as
+ deprecated
 Date:   Tue, 14 Mar 2023 09:10:19 -0500
 X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
@@ -84,15 +69,16 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
-On Sun, 12 Mar 2023 04:32:45 -0500, Joel Selvaraj wrote:
-> Add devicetree bindings for the Focaltech FTS touchscreen drivers.
+On Mon, 13 Mar 2023 00:36:11 +0100, Andi Shyti wrote:
+> Now we have the i2c-scl-clk-low-timeout-ms property defined in
+> the i2c schema.
 > 
-> Signed-off-by: Joel Selvaraj <joelselvaraj.oss@gmail.com>
-> Signed-off-by: Caleb Connolly <caleb@connolly.tech>
+> Mark "fsl,timeout" as deprecated and update the example.
+> 
+> Signed-off-by: Andi Shyti <andi.shyti@kernel.org>
 > ---
->  .../input/touchscreen/focaltech,fts.yaml      | 81 +++++++++++++++++++
->  1 file changed, 81 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/input/touchscreen/focaltech,fts.yaml
+>  Documentation/devicetree/bindings/i2c/i2c-mpc.yaml | 3 ++-
+>  1 file changed, 2 insertions(+), 1 deletion(-)
 > 
 
 My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
@@ -101,15 +87,12 @@ on your patch (DT_CHECKER_FLAGS is new in v5.13):
 yamllint warnings/errors:
 
 dtschema/dtc warnings/errors:
-Error: Documentation/devicetree/bindings/input/touchscreen/focaltech,fts.example.dts:23.9-14 syntax error
-FATAL ERROR: Unable to parse input tree
-make[1]: *** [scripts/Makefile.lib:419: Documentation/devicetree/bindings/input/touchscreen/focaltech,fts.example.dtb] Error 1
-make[1]: *** Waiting for unfinished jobs....
-make: *** [Makefile:1512: dt_binding_check] Error 2
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/i2c/i2c-mpc.example.dtb: i2c@3100: Unevaluated properties are not allowed ('i2c-scl-clk-low-timeout-ms' was unexpected)
+	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/i2c/i2c-mpc.yaml
 
 doc reference errors (make refcheckdocs):
 
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20230312093249.1846993-2-joelselvaraj.oss@gmail.com
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20230312233613.303408-2-andi.shyti@kernel.org
 
 The base for the series is generally the latest rc1. A different dependency
 should be noted in *this* patch.
