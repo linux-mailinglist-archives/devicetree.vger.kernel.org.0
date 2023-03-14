@@ -2,100 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D251D6B98E2
-	for <lists+devicetree@lfdr.de>; Tue, 14 Mar 2023 16:23:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3E8966B98F1
+	for <lists+devicetree@lfdr.de>; Tue, 14 Mar 2023 16:26:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231395AbjCNPW6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Mar 2023 11:22:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47384 "EHLO
+        id S229977AbjCNP0Z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Mar 2023 11:26:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52828 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231316AbjCNPW5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Mar 2023 11:22:57 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8387112BD8;
-        Tue, 14 Mar 2023 08:22:55 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 4371CB81909;
-        Tue, 14 Mar 2023 15:22:54 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 11BABC4339B;
-        Tue, 14 Mar 2023 15:22:53 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1678807373;
-        bh=XBJhJbTIAyYpbcqJf/xqmWNoVmO5mLxIuDa0qf9bsLw=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=sXb/77bl7Gc8uYZvPb3Lbg5B7SdomSIWd+CAMKw3+jUhb2LBxZ5BdnQaT48wV6hzj
-         IhT0KU4nzW713e6ncpsoEQ1zXcBZCvKEVqAKYQq9jt8g2l1bKGYcTNpT2nzJaac6oI
-         yU+zeEw9uzCycZzJs6ZHdAnDCfDBUreorp7BASi0V3HCq0g7Mn2pT8CDFAYsXqhHS3
-         h12LqAiSbTcHZ4Z+1Fu7oWqFfFU7LCBDk9jAypMHz3u+4TcseE0B1u9ukqZK1iFZmL
-         JaughubHbe9ZYAVhfxQ3Mi/u9ncjPV/xnNjE0Kr5tAZB0IjDsCLoF/au8TiqFDhKSy
-         gY05k5eoTLgkQ==
-Received: by mail-ua1-f45.google.com with SMTP id s23so10804866uae.5;
-        Tue, 14 Mar 2023 08:22:53 -0700 (PDT)
-X-Gm-Message-State: AO0yUKUdUn9P7Q/3mtYYsanyrRFIVQqVcpt48JlQ3NXeGPxSjB4JvDb1
-        7zOvytS4JAUlGCvhSUJGCEoa6xEiVTzz0mfVaQ==
-X-Google-Smtp-Source: AK7set+W4y6KHsNtY2KoSvNmtSYBizOPlBePIhYNnYnVb1y4XR1sahNAYveLvJlFASCix6MkFnAgckOZ0UiKEAxZeCc=
-X-Received: by 2002:ab0:4714:0:b0:68e:2ed3:92eb with SMTP id
- h20-20020ab04714000000b0068e2ed392ebmr19673689uac.1.1678807371986; Tue, 14
- Mar 2023 08:22:51 -0700 (PDT)
+        with ESMTP id S231196AbjCNP0Y (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Mar 2023 11:26:24 -0400
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5BADFA90A8;
+        Tue, 14 Mar 2023 08:26:21 -0700 (PDT)
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 32EFQC0s033125;
+        Tue, 14 Mar 2023 10:26:12 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1678807572;
+        bh=rCSe3awC47T3cNdH3EF+HwUDzp5NAPmqi6MhcDNsK94=;
+        h=From:To:CC:Subject:Date;
+        b=htQvNmPc46BB8mi+AiLviv0zOgsa6oPRFi00jeTR34PpUAEpBe10JTvKIjz1vGcaY
+         qnN6pyiA0DZ359kGQ5WF+ZRjROcQnlMmCsKxsMPcjQKYeu727MYTxvTShs74u5lizp
+         b7uAK2q4jjtWE83ozzlKH9M07u1rfFeHcra4+68g=
+Received: from DLEE112.ent.ti.com (dlee112.ent.ti.com [157.170.170.23])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 32EFQCeI104797
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Tue, 14 Mar 2023 10:26:12 -0500
+Received: from DLEE115.ent.ti.com (157.170.170.26) by DLEE112.ent.ti.com
+ (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Tue, 14
+ Mar 2023 10:26:12 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE115.ent.ti.com
+ (157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
+ Frontend Transport; Tue, 14 Mar 2023 10:26:12 -0500
+Received: from localhost (ileaxei01-snat.itg.ti.com [10.180.69.5])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 32EFQBRu001628;
+        Tue, 14 Mar 2023 10:26:12 -0500
+From:   Jayesh Choudhary <j-choudhary@ti.com>
+To:     <nm@ti.com>, <vigneshr@ti.com>
+CC:     <kristo@kernel.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <a-nandan@ti.com>,
+        <hnagalla@ti.com>, <vaishnav.a@ti.com>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <j-choudhary@ti.com>
+Subject: [PATCH v2 0/2] Add Crypto Support for J784S4 SoC
+Date:   Tue, 14 Mar 2023 20:56:09 +0530
+Message-ID: <20230314152611.140969-1-j-choudhary@ti.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-References: <20230207234735.201812-1-robh@kernel.org>
-In-Reply-To: <20230207234735.201812-1-robh@kernel.org>
-From:   Rob Herring <robh@kernel.org>
-Date:   Tue, 14 Mar 2023 10:22:40 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqLitc8rX4aXomgXKSPcW8ejEYe1wB_ecyAg7pgJgR=zyA@mail.gmail.com>
-Message-ID: <CAL_JsqLitc8rX4aXomgXKSPcW8ejEYe1wB_ecyAg7pgJgR=zyA@mail.gmail.com>
-Subject: Re: [PATCH] arm64: dts: marvell: armada-ap810: Fix GICv3 ITS node name
-To:     Andrew Lunn <andrew@lunn.ch>,
-        Gregory Clement <gregory.clement@bootlin.com>,
-        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_PASS,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Feb 7, 2023 at 5:47=E2=80=AFPM Rob Herring <robh@kernel.org> wrote:
->
-> The GICv3 ITS is an MSI controller, therefore its node name should be
-> 'msi-controller'.
->
-> Signed-off-by: Rob Herring <robh@kernel.org>
-> ---
->  arch/arm64/boot/dts/marvell/armada-ap810-ap0.dtsi | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
+This series adds the crypto node for sa2ul for j784s4 platform.
 
-Ping!
+First patch adds the device-id for NAVSS without which the probe
+for dma-controller fails due to 'ti,sci-dev-id' read failure.
+Second patch adds the crypto node.
 
-If not maintained, should I send a patch removing this platform instead?
+This series has functional dependency on j784s4 k3_soc_id[1] and
+PSIL-thread support[2] but it does not affect the boot.
 
->
-> diff --git a/arch/arm64/boot/dts/marvell/armada-ap810-ap0.dtsi b/arch/arm=
-64/boot/dts/marvell/armada-ap810-ap0.dtsi
-> index 8107d120a8a7..2f9ab6b4a2c9 100644
-> --- a/arch/arm64/boot/dts/marvell/armada-ap810-ap0.dtsi
-> +++ b/arch/arm64/boot/dts/marvell/armada-ap810-ap0.dtsi
-> @@ -54,7 +54,7 @@ gic: interrupt-controller@3000000 {
->                                       <0x00d0000 0x1000>,       /* GICH *=
-/
->                                       <0x00e0000 0x2000>;       /* GICV *=
-/
->
-> -                               gic_its_ap0: interrupt-controller@3040000=
- {
-> +                               gic_its_ap0: msi-controller@3040000 {
->                                         compatible =3D "arm,gic-v3-its";
->                                         msi-controller;
->                                         #msi-cells =3D <1>;
-> --
-> 2.39.1
->
+[1]:
+<https://lore.kernel.org/all/20230314085500.10597-1-j-choudhary@ti.com/>
+
+[2]:
+<https://lore.kernel.org/all/20230308201513.116638-1-j-choudhary@ti.com/>
+
+For testing the crypto support, crypto extra tests and self tests were
+enabled and tcrypt tests were used to verify SHA-1/256/512, AES and DES3
+algorithms.
+
+Changelog v1->v2:
+- add deviceID for mcu_navss as well and add the 'Fixes:' tag
+- retain 'Reviewed-by' tag in both patches from v1:
+  <https://lore.kernel.org/all/87v8j3v9fc.fsf@kamlesh.i-did-not-set--mail-host-address--so-tickle-me/>
+
+Jayesh Choudhary (2):
+  arm64: dts: ti: k3-j784s4-*: Add 'ti,sci-dev-id' for NAVSS nodes
+  arm64: dts: ti: k3-j784s4-main: Enable crypto accelerator
+
+ arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi    | 20 +++++++++++++++++++
+ .../boot/dts/ti/k3-j784s4-mcu-wakeup.dtsi     |  1 +
+ 2 files changed, 21 insertions(+)
+
+-- 
+2.25.1
+
