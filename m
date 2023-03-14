@@ -2,265 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E97A66B9DA8
-	for <lists+devicetree@lfdr.de>; Tue, 14 Mar 2023 18:57:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 208C46B9DD9
+	for <lists+devicetree@lfdr.de>; Tue, 14 Mar 2023 19:06:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230234AbjCNR5C (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Mar 2023 13:57:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60958 "EHLO
+        id S230087AbjCNSGm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Mar 2023 14:06:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50800 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230035AbjCNR44 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Mar 2023 13:56:56 -0400
-Received: from mail-ed1-x530.google.com (mail-ed1-x530.google.com [IPv6:2a00:1450:4864:20::530])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 241F0ABB06
-        for <devicetree@vger.kernel.org>; Tue, 14 Mar 2023 10:56:44 -0700 (PDT)
-Received: by mail-ed1-x530.google.com with SMTP id ek18so34281843edb.6
-        for <devicetree@vger.kernel.org>; Tue, 14 Mar 2023 10:56:44 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1678816602;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=BBAdudaa5OwS68f0uZK/unstmFHq5M3zw+2tcO53Zq8=;
-        b=IQfJITGI5ZNI33OajIaXutN5rC2BX75h5a7QWvvS7cs+Bsd6qzJI8DIKrMv3iICbBL
-         VgyYu6jTKZedQHe3vQ7bXK9gqO/IT5LkTGA/lSNTLq8Vwtb9qJyAaChDD8v3vTBF3EkZ
-         fqY3FSWFi3DyJDtzlNjMcrZgHq6ohEC50aePxaHLZr9VDf/jdMGadDQKaRZ7s95sSxDR
-         ohvTlInGPaHJjFal0b6r/nRn+ezWiYRAyQV8b0yup8DjXt266T16rPY1w+hhs6Z+mYnh
-         LUUIs5HOzI2rT84gq0uu395D9OjbnmRgTRfB6OR4GthfN4uesaxKIqVSp/sIJkmToc21
-         ryzQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678816602;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=BBAdudaa5OwS68f0uZK/unstmFHq5M3zw+2tcO53Zq8=;
-        b=LWQZqmwtOk7cX8EAc8tf58afIR2JK86Y3vXKQJfuN4wcBtIHFX9BmWyZBwnSlAFIRc
-         +TTq9mX485gvFov+MXtBye+VcpIsOQziCGFTy2M6XyG7TkQhV48deOO53PaOGKfWHEZ+
-         OmxS39gldKy6OF/DwM81hPlrr0pf2GsIPKGzhkdKXIQnK3TzVzwOiAq1Ga/iJ1/Q9EyK
-         VyulKAnSOakrtESnWycveDvOC1F8dsrR2yMjFx8Zgx3BN5qYuobnQul3l1eRuTQyFiFT
-         aqdfuENGISHhFfTqWZzfod/yMY4oZxOWVdy94xXIV/7f3bPH1mozkX0YLigZEWI2+I72
-         Heaw==
-X-Gm-Message-State: AO0yUKUmNQulFfJgTJBZR3zk164zlptb5w/K0uidkxqoUYO3lwuGAhL0
-        kKMvct7TYSpYDdYJX6DqA2WxdA==
-X-Google-Smtp-Source: AK7set/VmYsgH6FiXcXVlsj6D3W7RyTlZ0vFACe6rXBooAVbxkCIYcdML6pkyiokc3OU1DDaaYwUAg==
-X-Received: by 2002:aa7:c508:0:b0:4ad:7a9f:a9f0 with SMTP id o8-20020aa7c508000000b004ad7a9fa9f0mr35568684edq.22.1678816602556;
-        Tue, 14 Mar 2023 10:56:42 -0700 (PDT)
-Received: from ?IPV6:2a02:810d:15c0:828:59be:4b3f:994b:e78c? ([2a02:810d:15c0:828:59be:4b3f:994b:e78c])
-        by smtp.gmail.com with ESMTPSA id i19-20020a508713000000b004af62273b66sm1392473edb.18.2023.03.14.10.56.41
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 14 Mar 2023 10:56:42 -0700 (PDT)
-Message-ID: <684eb04d-aeaa-07e1-34d6-783e85e379f0@linaro.org>
-Date:   Tue, 14 Mar 2023 18:56:40 +0100
+        with ESMTP id S229636AbjCNSGl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Mar 2023 14:06:41 -0400
+Received: from uho.ysoft.cz (uho.ysoft.cz [81.19.3.130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9EB11AF2AB;
+        Tue, 14 Mar 2023 11:06:39 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ysoft.com;
+        s=20160406-ysoft-com; t=1678817196;
+        bh=Y50vybzJcxi++meRhzVjFFrYYDiXaEQgBQmDbk4WtSk=;
+        h=From:To:Cc:Subject:Date:From;
+        b=Zzkg58ovmLf6ZABdWMynLG/tNpnfACXcrcNK7SGnTWLJYYiQrPpicZXlKVV49Y6W4
+         oedbvEpHmk/z4MJVf1v7Gcr7gAuhW2Qku3H3i5DRk4uU01RKfMSrdouqRLAigAUkuV
+         CrbXBDTT7Y8snkTiX4a8xz+a7vdC2jdxU1fvrOB8=
+Received: from vokac-Latitude-7410.ysoft.local (unknown [10.0.30.161])
+        by uho.ysoft.cz (Postfix) with ESMTP id 7F56DA01E0;
+        Tue, 14 Mar 2023 19:06:36 +0100 (CET)
+From:   =?UTF-8?q?Michal=20Vok=C3=A1=C4=8D?= <michal.vokac@ysoft.com>
+To:     Shawn Guo <shawnguo@kernel.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        =?UTF-8?q?Michal=20Vok=C3=A1=C4=8D?= <michal.vokac@ysoft.com>
+Subject: [PATCH v2 0/5] Add support for new boards in the imx6dl-yapp4 family
+Date:   Tue, 14 Mar 2023 19:06:03 +0100
+Message-Id: <20230314180608.44482-1-michal.vokac@ysoft.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-Subject: Re: [PATCH v11 03/13] dt-bindings: Convert gpio-mmio to yaml
-Content-Language: en-US
-To:     Sean Anderson <sean.anderson@seco.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
-        linux-phy@lists.infradead.org
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        Camelia Alexandra Groza <camelia.groza@nxp.com>,
-        Madalin Bucur <madalin.bucur@nxp.com>,
-        Bagas Sanjaya <bagasdotme@gmail.com>,
-        Ioana Ciornei <ioana.ciornei@nxp.com>,
-        linuxppc-dev@lists.ozlabs.org,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
-        =?UTF-8?Q?Fern=c3=a1ndez_Rojas?= <noltari@gmail.com>,
-        Jonas Gorski <jonas.gorski@gmail.com>,
-        linux-gpio@vger.kernel.org
-References: <20230313161138.3598068-1-sean.anderson@seco.com>
- <20230313161138.3598068-4-sean.anderson@seco.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230313161138.3598068-4-sean.anderson@seco.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 13/03/2023 17:11, Sean Anderson wrote:
-> This is a generic binding for simple MMIO GPIO controllers. Although we
-> have a single driver for these controllers, they were previously spread
-> over several files. Consolidate them. The register descriptions are
-> adapted from the comments in the source. There is no set order for the
-> registers, so I have not specified one.
-> 
-> Rename brcm,bcm6345-gpio to brcm,bcm63xx-gpio to reflect that bcm6345
-> has moved.
-> 
-> Signed-off-by: Sean Anderson <sean.anderson@seco.com>
-> Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
-> ---
-> Linus or Bartosz, feel free to pick this up as the rest of this series
-> may not be merged any time soon.
-> 
-> Changes in v11:
-> - Keep empty (or almost-empty) properties on a single line
-> - Don't use | unnecessarily
-> - Use gpio as the node name for examples
-> - Rename brcm,bcm6345-gpio.yaml to brcm,bcm63xx-gpio.yaml
-> 
-> Changes in v10:
-> - New
-> 
->  ...m6345-gpio.yaml => brcm,bcm63xx-gpio.yaml} |  16 +--
->  .../devicetree/bindings/gpio/gpio-mmio.yaml   | 134 ++++++++++++++++++
->  .../bindings/gpio/ni,169445-nand-gpio.txt     |  38 -----
->  .../devicetree/bindings/gpio/wd,mbl-gpio.txt  |  38 -----
->  4 files changed, 135 insertions(+), 91 deletions(-)
->  rename Documentation/devicetree/bindings/gpio/{brcm,bcm6345-gpio.yaml => brcm,bcm63xx-gpio.yaml} (78%)
->  create mode 100644 Documentation/devicetree/bindings/gpio/gpio-mmio.yaml
->  delete mode 100644 Documentation/devicetree/bindings/gpio/ni,169445-nand-gpio.txt
->  delete mode 100644 Documentation/devicetree/bindings/gpio/wd,mbl-gpio.txt
-> 
-> diff --git a/Documentation/devicetree/bindings/gpio/brcm,bcm6345-gpio.yaml b/Documentation/devicetree/bindings/gpio/brcm,bcm63xx-gpio.yaml
-> similarity index 78%
-> rename from Documentation/devicetree/bindings/gpio/brcm,bcm6345-gpio.yaml
-> rename to Documentation/devicetree/bindings/gpio/brcm,bcm63xx-gpio.yaml
-> index 4d69f79df859..e11f4af49c52 100644
-> --- a/Documentation/devicetree/bindings/gpio/brcm,bcm6345-gpio.yaml
-> +++ b/Documentation/devicetree/bindings/gpio/brcm,bcm63xx-gpio.yaml
+Hi,
 
+Patches 1,2,3 are new in this v2 series and fixes minor issues for
+the already supported boards. Patches 4 and 5 adds support for some
+new redesigned boards based on i.MX6 SoC.
 
-> +
-> +description:
-> +  Some simple GPIO controllers may consist of a single data register or a pair
-> +  of set/clear-bit registers. Such controllers are common for glue logic in
-> +  FPGAs or ASICs. Commonly, these controllers are accessed over memory-mapped
-> +  NAND-style parallel busses.
-> +
-> +properties:
-> +  big-endian: true
-> +
-> +  compatible:
+Michal Vokáč (5):
+  ARM: dts: imx6dl-yapp4: Move phy reset into switch node
+  ARM: dts: imx6dl-yapp4: Move status to the end of property list
+  ARM: dts: imx6dl-yapp4: Remove unneeded status "okay"
+  dt-bindings: arm: fsl: Add Y Soft IOTA Phoenix, Lynx, Pegasus and
+    Pegasus+
+  ARM: dts: imx6dl-yapp43: Add support for new HW revision of the
+    IOTA board
 
-Keep compatible as first property.
+ .../devicetree/bindings/arm/fsl.yaml          |   4 +
+ arch/arm/boot/dts/Makefile                    |   4 +
+ arch/arm/boot/dts/imx6dl-yapp4-common.dtsi    |   7 +-
+ arch/arm/boot/dts/imx6dl-yapp4-lynx.dts       |  58 ++
+ arch/arm/boot/dts/imx6dl-yapp4-phoenix.dts    |  42 ++
+ arch/arm/boot/dts/imx6dl-yapp43-common.dtsi   | 615 ++++++++++++++++++
+ arch/arm/boot/dts/imx6q-yapp4-pegasus.dts     |  58 ++
+ .../boot/dts/imx6qp-yapp4-pegasus-plus.dts    |  58 ++
+ 8 files changed, 841 insertions(+), 5 deletions(-)
+ create mode 100644 arch/arm/boot/dts/imx6dl-yapp4-lynx.dts
+ create mode 100644 arch/arm/boot/dts/imx6dl-yapp4-phoenix.dts
+ create mode 100644 arch/arm/boot/dts/imx6dl-yapp43-common.dtsi
+ create mode 100644 arch/arm/boot/dts/imx6q-yapp4-pegasus.dts
+ create mode 100644 arch/arm/boot/dts/imx6qp-yapp4-pegasus-plus.dts
 
-> +    enum:
-> +      - brcm,bcm6345-gpio # Broadcom BCM6345 GPIO controller
-> +      - wd,mbl-gpio # Western Digital MyBook Live memory-mapped GPIO controller
-> +      - ni,169445-nand-gpio # National Instruments 169445 GPIO NAND controller
-
-I think you got comment that these comments are making things
-unreadable. I don't see here improvement.
-
-For example first comment is useless - you say the same as compatible.
-Same with last one. So only remaining WD comment should be made in new
-line so everything is nicely readable.
-
-BTW, order the enum by name.
-
-
-> +
-> +  '#gpio-cells':
-> +    const: 2
-> +
-> +  gpio-controller:
-> +    true
-
-I am sure I saw comments here...
-
-https://lore.kernel.org/all/20230308231018.GA4039466-robh@kernel.org/
-
-> +
-> +  reg:
-> +    minItems: 1
-> +    description:
-> +      A list of registers in the controller. The width of each register is
-> +      determined by its size.
-
-I don't understand this comment. Aren't you describing now what 'reg' is
-in DT spec? If so, drop. If not, please share more.
-
->  All registers must have the same width. The number
-> +      of GPIOs is set by the width, with bit 0 corresponding to GPIO 0.
-> +    items:
-> +      - description:
-> +          Register to READ the value of the GPIO lines. If GPIO line is high,
-> +          the bit will be set. If the GPIO line is low, the bit will be cleared.
-> +          This register may also be used to drive GPIOs if the SET register is
-> +          omitted.
-> +      - description:
-> +          Register to SET the value of the GPIO lines. Setting a bit in this
-> +          register will drive the GPIO line high.
-> +      - description:
-> +          Register to CLEAR the value of the GPIO lines. Setting a bit in this
-> +          register will drive the GPIO line low. If this register is omitted,
-> +          the SET register will be used to clear the GPIO lines as well, by
-> +          actively writing the line with 0.
-> +      - description:
-> +          Register to set the line as OUTPUT. Setting a bit in this register
-> +          will turn that line into an output line. Conversely, clearing a bit
-> +          will turn that line into an input.
-> +      - description:
-> +          Register to set this line as INPUT. Setting a bit in this register
-> +          will turn that line into an input line. Conversely, clearing a bit
-> +          will turn that line into an output.
-> +
-> +  reg-names:
-> +    minItems: 1
-> +    maxItems: 5
-> +    items:
-> +      enum:
-
-Why this is in any order? Other bindings were here specific, your 'reg'
-is also specific/fixed.
-
-> +        - dat
-> +        - set
-> +        - clr
-> +        - dirout
-> +        - dirin
-> +
-> +  native-endian: true
-> +
-> +  no-output:
-> +    $ref: /schemas/types.yaml#/definitions/flag
-> +    description:
-> +      If this property is present, the controller cannot drive the GPIO lines.
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - reg-names
-> +  - '#gpio-cells'
-> +  - gpio-controller
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    gpio@1f300010 {
-> +      compatible = "ni,169445-nand-gpio";
-> +      reg = <0x1f300010 0x4>;
-> +      reg-names = "dat";
-> +      gpio-controller;
-> +      #gpio-cells = <2>;
-> +    };
-> +
-> +    gpio@1f300014 {
-> +      compatible = "ni,169445-nand-gpio";
-> +      reg = <0x1f300014 0x4>;
-> +      reg-names = "dat";
-> +      gpio-controller;
-> +      #gpio-cells = <2>;
-> +      no-output;
-> +    };
-
-No need to duplicate examples. Keep only one. Everything is the same.
-
-
-Best regards,
-Krzysztof
+-- 
+2.25.1
 
