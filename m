@@ -2,107 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7097E6BA23F
-	for <lists+devicetree@lfdr.de>; Tue, 14 Mar 2023 23:18:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 593E26BA26F
+	for <lists+devicetree@lfdr.de>; Tue, 14 Mar 2023 23:27:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229545AbjCNWSU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Mar 2023 18:18:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55484 "EHLO
+        id S230346AbjCNW1P (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Mar 2023 18:27:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43122 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229794AbjCNWST (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Mar 2023 18:18:19 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A4D7F1B2FD;
-        Tue, 14 Mar 2023 15:17:38 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 4495961A10;
-        Tue, 14 Mar 2023 22:16:26 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2A679C433EF;
-        Tue, 14 Mar 2023 22:16:24 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1678832185;
-        bh=k6ND9M97R7Y6FDO6pJHrq7idbQ0eBx7iEsqSwSpZ06c=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=s2uXLj6lU0F32CIEEKAZl94GLY+fRaVfgi0h2/xRCFmluhqdjPz1qEYgtcbtMg3vS
-         rJa4eQVOKrtR1lGlUJXWdt85OLb4SRgqgIOznjTeCM44hH+uzoUO12NqrySwOGcm8P
-         pvk8bdUwCNOLKp1ixITaGPdW69b/cCK6TOM6evpidXTQ/0vNTZnFa58zTAAJjnVA1T
-         Zv9UywpHGyvHSlL2454Chu8kFFUBLv1FrYE09m8d24CUWpy+9HAc8ZHjDNYIorAHC0
-         lwbwO6S+IkHbNQhCO0QsGIoz+tZUYS9l6ZIx3E/KD2APyRirsJ/LUvFwK4TaaWRL8L
-         jTm/oAyYsOmTg==
-From:   Andi Shyti <andi.shyti@kernel.org>
-To:     linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     Wolfram Sang <wsa@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S230011AbjCNW1P (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Mar 2023 18:27:15 -0400
+Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5A6B420552
+        for <devicetree@vger.kernel.org>; Tue, 14 Mar 2023 15:27:12 -0700 (PDT)
+Received: by mail-lf1-x12e.google.com with SMTP id g17so21984755lfv.4
+        for <devicetree@vger.kernel.org>; Tue, 14 Mar 2023 15:27:12 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1678832830;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=Au+ByXF+T/ttwdvk2E5GvB4Cm4Xo7Y50WRAwY8Nd3PI=;
+        b=Q2LCGvyww4ehVH+wC1KTEGhgAoSUFH1ZX0i1aWgkZRmGHiNPGRfhYGDk3RyIeDNpp9
+         HqGKE4iexBIR9tJGgeMLkaGUoyS7JJ50bgQGIiYWfo/CBSovpvVu7V2omFF8f4wXzXMX
+         qWuwutohj4c+p4kY+5ebx5J8oSYxTuAho0cqgR2RWquDkXAZtil+fH4h6K2bme2gm+oy
+         ddo6qCdr5O6fAm5nYoAZwhix/aT7bi080gRirmCrqERirzZ6ix72nm5oJoL0wsKyUXsQ
+         B2aC9tjI3KsOKzVZbmFtZ79sTI7bLHREVQcojPVagmIe+pNSdD+MHMj0f230ySgOCp/0
+         1GHA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1678832830;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Au+ByXF+T/ttwdvk2E5GvB4Cm4Xo7Y50WRAwY8Nd3PI=;
+        b=2PeeqED0gVOR6gaYiohcHsib2Wcr4f2jf5YOr8sOXCYSDLmWbGyHEmFbRWJCMgaQj/
+         JMCJjpyzNzQjrQPFMxLhMNwAG/YzGEeoKkzIS0nAq7BuDJfxSj3O38z8Q/93ZDuwfMrA
+         pIyH74UEaqPjmYDt7fTyDS95ZGQAXH87+VucMEjM3g3z3g3DYeY0xmUKP+F9IVr+Hua1
+         zbQXybSgGfaFEK3TsbO+/8RNkKfJegZYOrZx0aHe0Cnrz91/MvAF2bmXNIO/eowGxZl5
+         IF4AO6kb/T85hApmwNi4TxVZPyVG5hYVGlIr47xn/di5ukK6J95g+UVDrV47JqOF5p+O
+         HKzg==
+X-Gm-Message-State: AO0yUKVKYn34+A4YcmXxMRs4fSQYs8XbCn1sMyUG2PxG/R81XZKJQMA5
+        DQKHd6L7fJ5l7VKDF+8vryGXoQ==
+X-Google-Smtp-Source: AK7set8LJmuI7xVqgISQ+Y68vWHmnkx+pjP/kmLyFsI2LuWzQ6PRiDvE6l2DC/c+HAJbShrMgoP7ow==
+X-Received: by 2002:ac2:4a91:0:b0:4cb:4374:cc78 with SMTP id l17-20020ac24a91000000b004cb4374cc78mr1497320lfp.26.1678832830643;
+        Tue, 14 Mar 2023 15:27:10 -0700 (PDT)
+Received: from localhost.localdomain (abyj16.neoplus.adsl.tpnet.pl. [83.9.29.16])
+        by smtp.gmail.com with ESMTPSA id c11-20020a19760b000000b004ab52b0bcf9sm562373lff.207.2023.03.14.15.27.09
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 14 Mar 2023 15:27:10 -0700 (PDT)
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+To:     linux-arm-msm@vger.kernel.org, andersson@kernel.org,
+        agross@kernel.org
+Cc:     marijn.suijten@somainline.org,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Chris Packham <chris.packham@alliedtelesis.co.nz>,
-        Ryan Chen <ryan_chen@aspeedtech.com>,
-        Andi Shyti <andi.shyti@kernel.org>
-Subject: [PATCH v5 3/3] i2c: mpc: Use i2c-scl-clk-low-timeout-us i2c property
-Date:   Tue, 14 Mar 2023 23:16:14 +0100
-Message-Id: <20230314221614.24205-1-andi.shyti@kernel.org>
+        Shawn Guo <shawn.guo@linaro.org>, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH] dt-bindings: pinctrl: qcom,qcm2290-tlmm: Allow input-enable
+Date:   Tue, 14 Mar 2023 23:27:05 +0100
+Message-Id: <20230314222705.2940258-1-konrad.dybcio@linaro.org>
 X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20230314215612.23741-4-andi.shyti@kernel.org>
-References: <20230314215612.23741-4-andi.shyti@kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-0.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_SORBS_HTTP,RCVD_IN_SORBS_SOCKS,SPF_HELO_NONE,SPF_PASS,
+        URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-"fsl,timeout" is marked as deprecated and replaced by the
-"i2c-scl-clk-low-timeout-us" i2c property.
+Allow the common input-enable. This was missed with the
+initial submission.
 
-Use this latter and, in case it is missing, for back
-compatibility, check whether we still have "fsl,timeout" defined.
-
-Signed-off-by: Andi Shyti <andi.shyti@kernel.org>
-Reviewed-by: Chris Packham <chris.packham@alliedtelesis.co.nz>
-Tested-by: Chris Packham <chris.packham@alliedtelesis.co.nz>
+Fixes: 5147022214db ("dt-bindings: pinctrl: qcom: Add QCM2290 pinctrl bindings")
+Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 ---
-Hi,
+ Documentation/devicetree/bindings/pinctrl/qcom,qcm2290-tlmm.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
-this should be the only patch where I forgot an 'ms'.
-It should be fixed now.
-
-Thanks, Chris.
-
-V4 -> v5
- - replace /ms/us/ in the commit subject and in the comment.
-
- drivers/i2c/busses/i2c-mpc.c | 12 +++++++++++-
- 1 file changed, 11 insertions(+), 1 deletion(-)
-
-diff --git a/drivers/i2c/busses/i2c-mpc.c b/drivers/i2c/busses/i2c-mpc.c
-index 87e5c1725750f..aec3ac387c579 100644
---- a/drivers/i2c/busses/i2c-mpc.c
-+++ b/drivers/i2c/busses/i2c-mpc.c
-@@ -843,8 +843,18 @@ static int fsl_i2c_probe(struct platform_device *op)
- 			mpc_i2c_setup_8xxx(op->dev.of_node, i2c, clock);
- 	}
+diff --git a/Documentation/devicetree/bindings/pinctrl/qcom,qcm2290-tlmm.yaml b/Documentation/devicetree/bindings/pinctrl/qcom,qcm2290-tlmm.yaml
+index 6271fd15e0b6..032763649336 100644
+--- a/Documentation/devicetree/bindings/pinctrl/qcom,qcm2290-tlmm.yaml
++++ b/Documentation/devicetree/bindings/pinctrl/qcom,qcm2290-tlmm.yaml
+@@ -85,6 +85,7 @@ $defs:
+       bias-pull-up: true
+       bias-disable: true
+       drive-strength: true
++      input-enable: true
+       output-high: true
+       output-low: true
  
-+	/*
-+	 * "fsl,timeout" has been marked as deprecated and, to maintain
-+	 * backward compatibility, we will only look for it if
-+	 * "i2c-scl-clk-low-timeout-us" is not present.
-+	 */
- 	result = of_property_read_u32(op->dev.of_node,
--				      "fsl,timeout", &mpc_ops.timeout);
-+				      "i2c-scl-clk-low-timeout-us",
-+				      &mpc_ops.timeout);
-+	if (result == -EINVAL)
-+		result = of_property_read_u32(op->dev.of_node,
-+					      "fsl,timeout", &mpc_ops.timeout);
-+
- 	if (!result) {
- 		mpc_ops.timeout *= HZ / 1000000;
- 		if (mpc_ops.timeout < 5)
 -- 
 2.39.2
 
