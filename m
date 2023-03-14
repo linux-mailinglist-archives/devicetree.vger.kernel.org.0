@@ -2,65 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A30A56B8759
-	for <lists+devicetree@lfdr.de>; Tue, 14 Mar 2023 02:01:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E95026B875D
+	for <lists+devicetree@lfdr.de>; Tue, 14 Mar 2023 02:04:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229665AbjCNBBh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Mar 2023 21:01:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40202 "EHLO
+        id S229813AbjCNBE1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Mar 2023 21:04:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45084 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229709AbjCNBBg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Mar 2023 21:01:36 -0400
+        with ESMTP id S229621AbjCNBE0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Mar 2023 21:04:26 -0400
 Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2AAD6911CA;
-        Mon, 13 Mar 2023 18:01:35 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0C5BB498A8;
+        Mon, 13 Mar 2023 18:04:26 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id C663AB81690;
-        Tue, 14 Mar 2023 01:01:33 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 79FEFC433D2;
-        Tue, 14 Mar 2023 01:01:29 +0000 (UTC)
+        by ams.source.kernel.org (Postfix) with ESMTPS id AA31BB81690;
+        Tue, 14 Mar 2023 01:04:24 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C0F08C433EF;
+        Tue, 14 Mar 2023 01:04:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1678755692;
-        bh=kGmcgrCDUa6ki8EJtk4PSH441MZFoE6sUS3W8B46Rd4=;
+        s=k20201202; t=1678755863;
+        bh=cvS2ARvwbz05CS1zvBhjzpdTHSJtvIpNjq+oVikH1nE=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=niX8lcqOVhJ37xzhYrZE92MS1uVd473rIP4FgSZXgtsfs+f7BEWTrKww6lfyRuz9l
-         cSjqGvgrHCMtTqyoEYzuzYrRM8pGoBo2QB881wr/CCqPG3//heXBxzg2wNaAhwg+ez
-         V8XNsvt7ytdBuZlZFbRWsY1XzmgTpkUt4Uz8GTaIwRmZAQpbGbPZrt3iCSEdNmVOS0
-         g7w0fJ1qiBGSjxiTZejL2eEAlORG7dfJFeotakCFhT4ty5+T6XubebBRC6WPAPxgBC
-         8uZ913y7N2J+YSbzg9JUey34lwedPPzMJ69mfWPH/b/Pj8xAy8wDnk7XLTnrH5GbqG
-         0tWk/wFrM/UFA==
-Date:   Tue, 14 Mar 2023 09:01:25 +0800
+        b=VNb6BC5GUruLKknZ8+wdNtqPW6Ef2PBz0l4FinUSYBXrz9zeSUu+pwDJIweMf6sKN
+         I8CG92wGqwfQrm+0GDX2pmKLkysNc8a4YLjWeBxeotDX+mo+kOJya9yTWYtsEGU4MX
+         5qAx9bWYENzMfBrAdol0OFg1XujDgxI4GQdHg23bHxOaNpS4+a/262mMnwaHBr0iUn
+         Eb324yKfpNwCrl794qPsq8uHSY8rUYv+QIHG7v65W8qzmml9h3C2Rxj05tNh/hUWIp
+         zv6tmO1GHBJyeBS2nIo8CjPtxDvLu7twPkwFfRFxGR0m7yBRBBGaV/zXclCfkzPX78
+         5BINBxWpY8UVA==
+Date:   Tue, 14 Mar 2023 09:04:15 +0800
 From:   Shawn Guo <shawnguo@kernel.org>
-To:     Jacky Bai <ping.bai@nxp.com>
-Cc:     lee@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, s.hauer@pengutronix.de,
-        dmitry.torokhov@gmail.com, a.zummo@towertech.it,
-        alexandre.belloni@bootlin.com, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-input@vger.kernel.org,
-        linux-rtc@vger.kernel.org, kernel@pengutronix.de,
-        linux-imx@nxp.com, festevam@gmail.com
-Subject: Re: [PATCH v5 3/3] arm64: dts: imx93: Add the bbnsm dts node
-Message-ID: <20230314010125.GW143566@dragon>
-References: <20230215024117.3357341-1-ping.bai@nxp.com>
- <20230215024117.3357341-4-ping.bai@nxp.com>
+To:     Richard Zhu <hongxing.zhu@nxp.com>
+Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        l.stach@pengutronix.de, lorenzo.pieralisi@arm.com,
+        peng.fan@nxp.com, marex@denx.de, marcel.ziswiler@toradex.com,
+        tharvey@gateworks.com, frank.li@nxp.com, linux-pci@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, kernel@pengutronix.de,
+        linux-imx@nxp.com
+Subject: Re: [PATCH DTS RESEND v10 0/4] Add i.MX PCIe EP mode support
+Message-ID: <20230314010415.GX143566@dragon>
+References: <1676441915-1394-1-git-send-email-hongxing.zhu@nxp.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230215024117.3357341-4-ping.bai@nxp.com>
+In-Reply-To: <1676441915-1394-1-git-send-email-hongxing.zhu@nxp.com>
 X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Feb 15, 2023 at 10:41:17AM +0800, Jacky Bai wrote:
-> Add the bbnsm node for RTC & ON/OFF button support
-> 
-> Signed-off-by: Jacky Bai <ping.bai@nxp.com>
+On Wed, Feb 15, 2023 at 02:18:31PM +0800, Richard Zhu wrote:
+> [RESEND v10 1/4] dt-bindings: imx6q-pcie: Restruct i.MX PCIe schema
+> [RESEND v10 2/4] arm64: dts: Add i.MX8MM PCIe EP support
+> [RESEND v10 3/4] arm64: dts: Add i.MX8MQ PCIe EP support
+> [RESEND v10 4/4] arm64: dts: Add i.MX8MP PCIe EP support
 
-Applied, thanks!
+Applied 2 ~ 4, thanks!
