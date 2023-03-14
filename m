@@ -2,161 +2,154 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B54926B9885
-	for <lists+devicetree@lfdr.de>; Tue, 14 Mar 2023 16:07:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E218A6B98B9
+	for <lists+devicetree@lfdr.de>; Tue, 14 Mar 2023 16:14:37 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229842AbjCNPHL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Mar 2023 11:07:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45840 "EHLO
+        id S231789AbjCNPOf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Mar 2023 11:14:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57134 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229590AbjCNPHL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Mar 2023 11:07:11 -0400
-Received: from mail-lj1-x232.google.com (mail-lj1-x232.google.com [IPv6:2a00:1450:4864:20::232])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E7E32AD039;
-        Tue, 14 Mar 2023 08:07:02 -0700 (PDT)
-Received: by mail-lj1-x232.google.com with SMTP id y14so16350746ljq.4;
-        Tue, 14 Mar 2023 08:07:02 -0700 (PDT)
+        with ESMTP id S231723AbjCNPOO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Mar 2023 11:14:14 -0400
+Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CE107AF686
+        for <devicetree@vger.kernel.org>; Tue, 14 Mar 2023 08:13:38 -0700 (PDT)
+Received: by mail-lf1-x12f.google.com with SMTP id g17so20477831lfv.4
+        for <devicetree@vger.kernel.org>; Tue, 14 Mar 2023 08:13:38 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112; t=1678806421;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=vbLXsISyWgbVocJH/scN2oci69TRy0WQAp+UcL8HxWE=;
-        b=p0EHmvR1vBC356rN7/hm4DOqRkE0aTTA91VTR19VIj+t/xskGgPxcVC3Swn6v9ey4F
-         hbZfTPYuaYAyhipmyuQAQiT9RiKEflzSzfvMU8NftKq826q6fQGijvPoAqFXQfhx2YNM
-         DZ0i8d+f5YC8PUInQ/YGggRBNF7L0zduinQoSh/szpA7/UfmEdSQZnXCD88Lw2CyoPd2
-         AsbYncMjY75d3PAIP65fHKB/efe59KSueM5VSxPJOzIxxOgST+XFh4HkqwTZw7xG5WoD
-         H4IY3tz0HYGYUCEVI5Y7rZ2y+Y0sOCOq+odtg7nB0dEuKuiCUypgbTjBbVm/5a2Jzwas
-         QqGA==
+        d=linaro.org; s=google; t=1678806801;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=aWquE/66XhiUdKcAjOZcdT8JwAjOV0jdF3ZReJh+jhU=;
+        b=A70OxIRflPWeFRqLRBN8qDh9Nnpwl6mYudE01YgkwWijNkevncaAafkm4hhBFkYlPY
+         B+r3GEwqp0NgXcsOp5XuGK9r6rRnB/Obx5FjFgTAiep+FKTJN4Wf8YdFdeEt+FGeianQ
+         HKZRv9Gxy6ZXY22rJYBwB5fqIrxLopllTUZDbEXoT8/sDmpetnaCfVfzZjKfHbsVw5Ma
+         sKRrOmFpYtj4/IWOdsY6LEdG6eur/ataMRIvXZhgMnc/+DueCevIubHxa7SwxkyI+bBL
+         soT9s0BQKP1rOM59EGlR7NRgMnjXylMelTjMehReRdJPPj/aP3dV4uNWBeArjdPde47F
+         bsqg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678806421;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=vbLXsISyWgbVocJH/scN2oci69TRy0WQAp+UcL8HxWE=;
-        b=0wIr9/tn4Nwwv7e8J4z7ps/dhSU/ejiOgIlQK7T6knllv8+6iBKjnv7SFU+Z4BFcx7
-         GRErpxkqMTrmxo39/MffqLtu62UhjcebRFY4HMlpWo2cERUQLEBV8R9hUaXGWn7libgx
-         6lBAFynF6be6mEYWvKpQTFSzbyL1Gti2VVXeo6NKvrZhKAQiUELv6DrxwniXfttykLBv
-         O1FmRxisovbztgmrupz3B/yjXpWXCQFmwZRRO97/CzzA+l3TsB787HSHUShAeeZP6QFS
-         TYg8N0GkMv5jKSVQHZMHkRxTIYPqKNoUPsz8c84BfQIu+kUJ6/GHZHoFfrEmaDz22hVY
-         +Ebw==
-X-Gm-Message-State: AO0yUKXnjX7/ro4cwANEL8AAD9HcIEpZ29pdEnKjhMdYzKNKbmxxnFMx
-        iwcK6VT6V4dUUGZ2T2NR/gQ=
-X-Google-Smtp-Source: AK7set+bnaLvSzK+Qv9g7g8oQCKeqApzg3XCPn/W6kdtRZtalZ50JNrzKxOFyptmqs0wq8VDOrJGng==
-X-Received: by 2002:a2e:8e8d:0:b0:298:6f36:dd6c with SMTP id z13-20020a2e8e8d000000b002986f36dd6cmr7223147ljk.11.1678806421025;
-        Tue, 14 Mar 2023 08:07:01 -0700 (PDT)
-Received: from mobilestation ([95.79.133.202])
-        by smtp.gmail.com with ESMTPSA id f14-20020a2e9e8e000000b00295b1b6e063sm482600ljk.34.2023.03.14.08.06.59
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 14 Mar 2023 08:07:00 -0700 (PDT)
-Date:   Tue, 14 Mar 2023 18:06:57 +0300
-From:   Serge Semin <fancer.lancer@gmail.com>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Serge Semin <Sergey.Semin@baikalelectronics.ru>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
-        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Jose Abreu <joabreu@synopsys.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Eric Dumazet <edumazet@google.com>,
-        Biao Huang <biao.huang@mediatek.com>, netdev@vger.kernel.org,
-        Christian Marangi <ansuelsmth@gmail.com>,
-        Yang Yingliang <yangyingliang@huawei.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Richard Cochran <richardcochran@gmail.com>,
-        linux-arm-kernel@lists.infradead.org,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-stm32@st-md-mailman.stormreply.com
-Subject: Re: [PATCH net-next 01/16] dt-bindings: net: dwmac: Validate PBL for
- all IP-cores
-Message-ID: <20230314150657.ytgyegi7qlwao6px@mobilestation>
-References: <20230313225103.30512-1-Sergey.Semin@baikalelectronics.ru>
- <20230313225103.30512-2-Sergey.Semin@baikalelectronics.ru>
- <167880254800.26004.7037306365469081272.robh@kernel.org>
+        d=1e100.net; s=20210112; t=1678806801;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=aWquE/66XhiUdKcAjOZcdT8JwAjOV0jdF3ZReJh+jhU=;
+        b=pwoG2BC8Zh2jEUSNZLpoR6By/+J9hC6f9RaQcuzCJoGb8tHzs8hH+t1oz7QfLCTT7T
+         70ily6xKP8YoEVR9tEme9+ftBN7Yf9Emrij1kqDi5HiLhyqUd8hzbwNTqt76goesSTxT
+         y3FQRt4/0g1tFKVKJr0Q2diiTebjiTgmwosofNGGrWJWuXPCsbHwaG2lo+KnFY/YP/it
+         rmgqy/9rz58QiUZxMjfXlZPvs2YZ6MaqXtr4jzuazU+4fC7BxvCuF3vT03RE0iQmo/Zl
+         vbK1oODNDUwGCKJ1We747xExqemYXp2vfE+dshPxGolFqQ4pcntyblUP1Nvg12WCso6l
+         OdFw==
+X-Gm-Message-State: AO0yUKWUXJDMwIuBeku0JOX8WGkrR94yEH7VluPETZ5OE2D5rfbOAmbG
+        jOHUm3qWiZCcZyP4axyyyZq7AQ==
+X-Google-Smtp-Source: AK7set+0FwZrp2Kqmgi11czNIWqOTIdgsRQEqlYZ+eN8f1lZ8ifft3X4RqJNjukpilWNLQkafq+Kxg==
+X-Received: by 2002:ac2:43ad:0:b0:4dc:4bda:c26f with SMTP id t13-20020ac243ad000000b004dc4bdac26fmr973810lfl.23.1678806801649;
+        Tue, 14 Mar 2023 08:13:21 -0700 (PDT)
+Received: from [192.168.1.101] (abyj16.neoplus.adsl.tpnet.pl. [83.9.29.16])
+        by smtp.gmail.com with ESMTPSA id l7-20020ac24a87000000b004d23763fe96sm431973lfp.72.2023.03.14.08.13.18
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 14 Mar 2023 08:13:20 -0700 (PDT)
+Message-ID: <3f37eede-6d62-fb92-9cff-b308de333ebd@linaro.org>
+Date:   Tue, 14 Mar 2023 16:13:18 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <167880254800.26004.7037306365469081272.robh@kernel.org>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.8.0
+Subject: Re: [PATCH net-next 05/11] clk: qcom: gcc-sc8280xp: Add EMAC GDSCs
+Content-Language: en-US
+To:     Andrew Halaney <ahalaney@redhat.com>, linux-kernel@vger.kernel.org
+Cc:     agross@kernel.org, andersson@kernel.org, davem@davemloft.net,
+        edumazet@google.com, kuba@kernel.org, pabeni@redhat.com,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        vkoul@kernel.org, bhupesh.sharma@linaro.org,
+        mturquette@baylibre.com, sboyd@kernel.org, peppe.cavallaro@st.com,
+        alexandre.torgue@foss.st.com, joabreu@synopsys.com,
+        mcoquelin.stm32@gmail.com, richardcochran@gmail.com,
+        linux@armlinux.org.uk, veekhee@apple.com,
+        tee.min.tan@linux.intel.com, mohammad.athari.ismail@intel.com,
+        jonathanh@nvidia.com, ruppala@nvidia.com, bmasney@redhat.com,
+        andrey.konovalov@linaro.org, linux-arm-msm@vger.kernel.org,
+        netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-clk@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        linux-arm-kernel@lists.infradead.org, ncai@quicinc.com,
+        jsuraj@qti.qualcomm.com, hisunil@quicinc.com
+References: <20230313165620.128463-1-ahalaney@redhat.com>
+ <20230313165620.128463-6-ahalaney@redhat.com>
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <20230313165620.128463-6-ahalaney@redhat.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-0.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_SORBS_HTTP,RCVD_IN_SORBS_SOCKS,SPF_HELO_NONE,SPF_PASS,
+        URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Mar 14, 2023 at 09:10:19AM -0500, Rob Herring wrote:
-> 
-> On Tue, 14 Mar 2023 01:50:48 +0300, Serge Semin wrote:
-> > Indeed the maximum DMA burst length can be programmed not only for DW
-> > xGMACs, Allwinner EMACs and Spear SoC GMAC, but in accordance with [1]
-> > for Generic DW *MAC IP-cores. Moreover the STMMAC set of drivers parse
-> > the property and then apply the configuration for all supported DW MAC
-> > devices. All of that makes the property being available for all IP-cores
-> > the bindings supports. Let's make sure the PBL-related properties are
-> > validated for all of them by the common DW MAC DT schema.
-> > 
-> > [1] DesignWare Cores Ethernet MAC Universal Databook, Revision 3.73a,
-> >     October 2013, p. 380.
-> > 
-> > Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
-> > Reviewed-by: Rob Herring <robh@kernel.org>
-> > 
-> > ---
-> > 
-> > Changelog v1:
-> > - Use correct syntax of the JSON pointers, so the later would begin
-> >   with a '/' after the '#'.
-> > ---
-> >  .../devicetree/bindings/net/snps,dwmac.yaml   | 77 +++++++------------
-> >  1 file changed, 26 insertions(+), 51 deletions(-)
-> > 
-> 
-> My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-> on your patch (DT_CHECKER_FLAGS is new in v5.13):
-> 
-> yamllint warnings/errors:
-> 
-> dtschema/dtc warnings/errors:
-> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/mediatek-dwmac.example.dtb: ethernet@1101c000: snps,txpbl:0:0: 1 is not one of [2, 4, 8]
-> 	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/snps,dwmac.yaml
-> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/mediatek-dwmac.example.dtb: ethernet@1101c000: snps,rxpbl:0:0: 1 is not one of [2, 4, 8]
-> 	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/snps,dwmac.yaml
-> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/mediatek-dwmac.example.dtb: ethernet@1101c000: snps,txpbl:0:0: 1 is not one of [2, 4, 8]
-> 	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/mediatek-dwmac.yaml
-> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/mediatek-dwmac.example.dtb: ethernet@1101c000: snps,rxpbl:0:0: 1 is not one of [2, 4, 8]
-> 	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/mediatek-dwmac.yaml
-> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/mediatek-dwmac.example.dtb: ethernet@1101c000: Unevaluated properties are not allowed ('interrupt-names', 'interrupts', 'mac-address', 'phy-mode', 'reg', 'snps,reset-delays-us', 'snps,reset-gpio', 'snps,rxpbl', 'snps,txpbl' were unexpected)
-> 	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/mediatek-dwmac.yaml
 
-Oops, on rebasing my work from older kernel I missed that the PBL
-properties constraints have already been extended. I'll drop the next
-patch in the series then and fix this one so the already defined
-constraints would be preserved.
 
--Serge(y)
+On 13.03.2023 17:56, Andrew Halaney wrote:
+> Add the EMAC GDSCs to allow the EMAC hardware to be enabled.
+> 
+> Signed-off-by: Andrew Halaney <ahalaney@redhat.com>
+> ---
+Was it tested to not cause issues on access on "normal" 8280xp?
+AFAICS if there would be any, they would happen at registration
+time, as gdsc_init already accesses its registers
 
+Konrad
+>  drivers/clk/qcom/gcc-sc8280xp.c               | 18 ++++++++++++++++++
+>  include/dt-bindings/clock/qcom,gcc-sc8280xp.h |  2 ++
+>  2 files changed, 20 insertions(+)
 > 
-> doc reference errors (make refcheckdocs):
-> 
-> See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20230313225103.30512-2-Sergey.Semin@baikalelectronics.ru
-> 
-> The base for the series is generally the latest rc1. A different dependency
-> should be noted in *this* patch.
-> 
-> If you already ran 'make dt_binding_check' and didn't see the above
-> error(s), then make sure 'yamllint' is installed and dt-schema is up to
-> date:
-> 
-> pip3 install dtschema --upgrade
-> 
-> Please check and re-submit after running the above command yourself. Note
-> that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-> your schema. However, it must be unset to test all examples with your schema.
-> 
+> diff --git a/drivers/clk/qcom/gcc-sc8280xp.c b/drivers/clk/qcom/gcc-sc8280xp.c
+> index b3198784e1c3..04a99dbaa57e 100644
+> --- a/drivers/clk/qcom/gcc-sc8280xp.c
+> +++ b/drivers/clk/qcom/gcc-sc8280xp.c
+> @@ -6873,6 +6873,22 @@ static struct gdsc usb30_sec_gdsc = {
+>  	.pwrsts = PWRSTS_RET_ON,
+>  };
+>  
+> +static struct gdsc emac_0_gdsc = {
+> +	.gdscr = 0xaa004,
+> +	.pd = {
+> +		.name = "emac_0_gdsc",
+> +	},
+> +	.pwrsts = PWRSTS_OFF_ON,
+> +};
+> +
+> +static struct gdsc emac_1_gdsc = {
+> +	.gdscr = 0xba004,
+> +	.pd = {
+> +		.name = "emac_1_gdsc",
+> +	},
+> +	.pwrsts = PWRSTS_OFF_ON,
+> +};
+> +
+>  static struct clk_regmap *gcc_sc8280xp_clocks[] = {
+>  	[GCC_AGGRE_NOC_PCIE0_TUNNEL_AXI_CLK] = &gcc_aggre_noc_pcie0_tunnel_axi_clk.clkr,
+>  	[GCC_AGGRE_NOC_PCIE1_TUNNEL_AXI_CLK] = &gcc_aggre_noc_pcie1_tunnel_axi_clk.clkr,
+> @@ -7351,6 +7367,8 @@ static struct gdsc *gcc_sc8280xp_gdscs[] = {
+>  	[USB30_MP_GDSC] = &usb30_mp_gdsc,
+>  	[USB30_PRIM_GDSC] = &usb30_prim_gdsc,
+>  	[USB30_SEC_GDSC] = &usb30_sec_gdsc,
+> +	[EMAC_0_GDSC] = &emac_0_gdsc,
+> +	[EMAC_1_GDSC] = &emac_1_gdsc,
+>  };
+>  
+>  static const struct clk_rcg_dfs_data gcc_dfs_clocks[] = {
+> diff --git a/include/dt-bindings/clock/qcom,gcc-sc8280xp.h b/include/dt-bindings/clock/qcom,gcc-sc8280xp.h
+> index cb2fb638825c..721105ea4fad 100644
+> --- a/include/dt-bindings/clock/qcom,gcc-sc8280xp.h
+> +++ b/include/dt-bindings/clock/qcom,gcc-sc8280xp.h
+> @@ -492,5 +492,7 @@
+>  #define USB30_MP_GDSC					9
+>  #define USB30_PRIM_GDSC					10
+>  #define USB30_SEC_GDSC					11
+> +#define EMAC_0_GDSC					12
+> +#define EMAC_1_GDSC					13
+>  
+>  #endif
