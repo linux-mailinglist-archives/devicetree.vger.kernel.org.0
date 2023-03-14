@@ -2,30 +2,30 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 924F86B8FF2
-	for <lists+devicetree@lfdr.de>; Tue, 14 Mar 2023 11:27:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 396706B8FFB
+	for <lists+devicetree@lfdr.de>; Tue, 14 Mar 2023 11:27:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230428AbjCNK1F (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Mar 2023 06:27:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58238 "EHLO
+        id S231300AbjCNK1O (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Mar 2023 06:27:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58612 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230523AbjCNK0H (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Mar 2023 06:26:07 -0400
-Received: from smtp-42ae.mail.infomaniak.ch (smtp-42ae.mail.infomaniak.ch [84.16.66.174])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CA01F83F0
-        for <devicetree@vger.kernel.org>; Tue, 14 Mar 2023 03:25:19 -0700 (PDT)
+        with ESMTP id S230408AbjCNK0p (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Mar 2023 06:26:45 -0400
+Received: from smtp-1908.mail.infomaniak.ch (smtp-1908.mail.infomaniak.ch [185.125.25.8])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A97699BA61
+        for <devicetree@vger.kernel.org>; Tue, 14 Mar 2023 03:25:27 -0700 (PDT)
 Received: from smtp-3-0000.mail.infomaniak.ch (unknown [10.4.36.107])
-        by smtp-3-3000.mail.infomaniak.ch (Postfix) with ESMTPS id 4PbV4y3RsszMqHjx;
+        by smtp-3-3000.mail.infomaniak.ch (Postfix) with ESMTPS id 4PbV4z0C4szMqPvK;
+        Tue, 14 Mar 2023 11:24:35 +0100 (CET)
+Received: from unknown by smtp-3-0000.mail.infomaniak.ch (Postfix) with ESMTPA id 4PbV4y4BZMz2MRr;
         Tue, 14 Mar 2023 11:24:34 +0100 (CET)
-Received: from unknown by smtp-3-0000.mail.infomaniak.ch (Postfix) with ESMTPA id 4PbV4x72XDz2MRh;
-        Tue, 14 Mar 2023 11:24:33 +0100 (CET)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=pschenker.ch;
         s=20220412; t=1678789474;
-        bh=IhnvIMbVFoOPFBSGeTNsTYN1/UNZ+m4+0iZvLb6cAiY=;
+        bh=N9TaQZgXOplTwIw4xVY9z8/sZs7dNHHPPmg5EH3mb2w=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=dmmEseyPmyBRZo3xy+KeBMDl/upb2KnWVMtUhQNjVBdpOaifwF+jSwgjLoaw/KLn1
-         xi4cIBxXRaJpvGNoCVRV9W2epY5ZJT4pKb5n1+fmlLwW5lorpPwtybzPVgvGs3WgvG
-         9CUA0wzvXmzGa6CdcFX9cp9E9O/W/PUhWiMfYPSg=
+        b=HMthhfpukpRI2pdo6RsKFnrBR3GKqgja9kBkuqEaiLZ/P/ofKIT+au6GT41C0Qp02
+         CzSAGGu05aeWWe3EF5QOwvoff/DkAvN1PLXn6exRI6HPQF0TZf3E4QQmsiPK5lyE6q
+         bL2MLVBhEV71zl0np6dHZVNT80PtRXLP4fieS9bc=
 From:   Philippe Schenker <dev@pschenker.ch>
 To:     devicetree@vger.kernel.org, Shawn Guo <shawnguo@kernel.org>,
         Sascha Hauer <s.hauer@pengutronix.de>
@@ -38,9 +38,9 @@ Cc:     NXP Linux Team <linux-imx@nxp.com>,
         linux-arm-kernel@lists.infradead.org,
         Philippe Schenker <philippe.schenker@toradex.com>,
         linux-kernel@vger.kernel.org
-Subject: [PATCH v2 22/23] arm64: dts: colibri-imx8x: Add iris carrier board
-Date:   Tue, 14 Mar 2023 11:24:08 +0100
-Message-Id: <20230314102410.424773-23-dev@pschenker.ch>
+Subject: [PATCH v2 23/23] arm64: dts: colibri-imx8x: Add iris v2 carrier board
+Date:   Tue, 14 Mar 2023 11:24:09 +0100
+Message-Id: <20230314102410.424773-24-dev@pschenker.ch>
 X-Mailer: git-send-email 2.39.2
 In-Reply-To: <20230314102410.424773-1-dev@pschenker.ch>
 References: <20230314102410.424773-1-dev@pschenker.ch>
@@ -59,41 +59,47 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 From: Philippe Schenker <philippe.schenker@toradex.com>
 
-Add the Toradex Iris Carrier Board for Colibri iMX8X, small form-factor
+Add the Toradex Iris V2 Carrier Board for Colibri iMX8X, small form-factor
 production ready board.
 
 Additional details available at:
 https://www.toradex.com/products/carrier-boards/iris-carrier-board
 
 Signed-off-by: Philippe Schenker <philippe.schenker@toradex.com>
+
 ---
 
-(no changes since v1)
+Changes in v2:
+- Drop patch
+  "arm64: dts: colibri-imx8x: Sort fec1 node alphabetically"
+- Drop patch
+  "arm64: dts: colibri-imx8x: Sort properties"
+- Adapted cover-letter
 
- arch/arm64/boot/dts/freescale/Makefile        |   1 +
- .../dts/freescale/imx8qxp-colibri-iris.dts    |  16 +++
- .../dts/freescale/imx8x-colibri-iris.dtsi     | 115 ++++++++++++++++++
- 3 files changed, 132 insertions(+)
- create mode 100644 arch/arm64/boot/dts/freescale/imx8qxp-colibri-iris.dts
- create mode 100644 arch/arm64/boot/dts/freescale/imx8x-colibri-iris.dtsi
+ arch/arm64/boot/dts/freescale/Makefile        |  1 +
+ .../dts/freescale/imx8qxp-colibri-iris-v2.dts | 16 +++++++
+ .../dts/freescale/imx8x-colibri-iris-v2.dtsi  | 45 +++++++++++++++++++
+ 3 files changed, 62 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8qxp-colibri-iris-v2.dts
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8x-colibri-iris-v2.dtsi
 
 diff --git a/arch/arm64/boot/dts/freescale/Makefile b/arch/arm64/boot/dts/freescale/Makefile
-index 9f49e47589ab..48bb0fe4a616 100644
+index 48bb0fe4a616..2eb746f6a2c2 100644
 --- a/arch/arm64/boot/dts/freescale/Makefile
 +++ b/arch/arm64/boot/dts/freescale/Makefile
-@@ -131,6 +131,7 @@ dtb-$(CONFIG_ARCH_MXC) += imx8qm-mek.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8qxp-ai_ml.dtb
+@@ -132,6 +132,7 @@ dtb-$(CONFIG_ARCH_MXC) += imx8qxp-ai_ml.dtb
  dtb-$(CONFIG_ARCH_MXC) += imx8qxp-colibri-aster.dtb
  dtb-$(CONFIG_ARCH_MXC) += imx8qxp-colibri-eval-v3.dtb
-+dtb-$(CONFIG_ARCH_MXC) += imx8qxp-colibri-iris.dtb
+ dtb-$(CONFIG_ARCH_MXC) += imx8qxp-colibri-iris.dtb
++dtb-$(CONFIG_ARCH_MXC) += imx8qxp-colibri-iris-v2.dtb
  dtb-$(CONFIG_ARCH_MXC) += imx8qxp-mek.dtb
  dtb-$(CONFIG_ARCH_MXC) += imx8ulp-evk.dtb
  dtb-$(CONFIG_ARCH_MXC) += imx93-11x11-evk.dtb
-diff --git a/arch/arm64/boot/dts/freescale/imx8qxp-colibri-iris.dts b/arch/arm64/boot/dts/freescale/imx8qxp-colibri-iris.dts
+diff --git a/arch/arm64/boot/dts/freescale/imx8qxp-colibri-iris-v2.dts b/arch/arm64/boot/dts/freescale/imx8qxp-colibri-iris-v2.dts
 new file mode 100644
-index 000000000000..fed75b5d4a1c
+index 000000000000..cca33213fa9b
 --- /dev/null
-+++ b/arch/arm64/boot/dts/freescale/imx8qxp-colibri-iris.dts
++++ b/arch/arm64/boot/dts/freescale/imx8qxp-colibri-iris-v2.dts
 @@ -0,0 +1,16 @@
 +// SPDX-License-Identifier: GPL-2.0-or-later OR MIT
 +/*
@@ -103,133 +109,63 @@ index 000000000000..fed75b5d4a1c
 +/dts-v1/;
 +
 +#include "imx8qxp-colibri.dtsi"
-+#include "imx8x-colibri-iris.dtsi"
++#include "imx8x-colibri-iris-v2.dtsi"
 +
 +/ {
-+	model = "Toradex Colibri iMX8QXP on Colibri Iris Board";
-+	compatible = "toradex,colibri-imx8x-iris",
++	model = "Toradex Colibri iMX8QXP on Colibri Iris V2 Board";
++	compatible = "toradex,colibri-imx8x-iris-v2",
 +		     "toradex,colibri-imx8x",
 +		     "fsl,imx8qxp";
 +};
-diff --git a/arch/arm64/boot/dts/freescale/imx8x-colibri-iris.dtsi b/arch/arm64/boot/dts/freescale/imx8x-colibri-iris.dtsi
+diff --git a/arch/arm64/boot/dts/freescale/imx8x-colibri-iris-v2.dtsi b/arch/arm64/boot/dts/freescale/imx8x-colibri-iris-v2.dtsi
 new file mode 100644
-index 000000000000..5f30c88855e7
+index 000000000000..98202a437040
 --- /dev/null
-+++ b/arch/arm64/boot/dts/freescale/imx8x-colibri-iris.dtsi
-@@ -0,0 +1,115 @@
++++ b/arch/arm64/boot/dts/freescale/imx8x-colibri-iris-v2.dtsi
+@@ -0,0 +1,45 @@
 +// SPDX-License-Identifier: GPL-2.0-or-later OR MIT
 +/*
 + * Copyright 2018-2021 Toradex
 + */
 +
-+/ {
-+	aliases {
-+		rtc0 = &rtc_i2c;
-+		rtc1 = &rtc;
-+	};
++#include "imx8x-colibri-iris.dtsi"
 +
-+	reg_3v3: regulator-3v3 {
++/ {
++	reg_3v3_vmmc: regulator-3v3-vmmc {
 +		compatible = "regulator-fixed";
++		pinctrl-names = "default";
++		pinctrl-0 = <&pinctrl_enable_3v3_vmmc>;
++		enable-active-high;
++		gpio = <&lsio_gpio0 31 GPIO_ACTIVE_HIGH>;
 +		regulator-max-microvolt = <3300000>;
 +		regulator-min-microvolt = <3300000>;
-+		regulator-name = "3.3V";
-+	};
-+};
-+
-+&colibri_gpio_keys {
-+	status = "okay";
-+};
-+
-+/* Colibri FastEthernet */
-+&fec1 {
-+	status = "okay";
-+};
-+
-+/* Colibri I2C */
-+&i2c1 {
-+	status = "okay";
-+
-+	/* M41T0M6 real time clock on carrier board */
-+	rtc_i2c: rtc@68 {
-+		compatible = "st,m41t0";
-+		reg = <0x68>;
++		regulator-name = "3v3_vmmc";
++		startup-delay-us = <100>;
 +	};
 +};
 +
 +&iomuxc {
 +	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_gpio_iris>;
++	pinctrl-0 = <&pinctrl_lvds_converter &pinctrl_gpio_iris>;
 +
-+	pinctrl_gpio_iris: gpioirisgrp {
-+		fsl,pins = <IMX8QXP_QSPI0B_DATA3_LSIO_GPIO3_IO21	0x20>,		/* SODIMM  98 */
-+			   <IMX8QXP_USB_SS3_TC1_LSIO_GPIO4_IO04		0x20>,		/* SODIMM 133 */
-+			   <IMX8QXP_SAI0_TXD_LSIO_GPIO0_IO25		0x20>,		/* SODIMM 103 */
-+			   <IMX8QXP_SAI0_TXFS_LSIO_GPIO0_IO28		0x20>,		/* SODIMM 101 */
-+			   <IMX8QXP_SAI0_RXD_LSIO_GPIO0_IO27		0x20>,		/* SODIMM  97 */
-+			   <IMX8QXP_ENET0_RGMII_RXC_LSIO_GPIO5_IO03	0x06000020>,	/* SODIMM  85 */
-+			   <IMX8QXP_SAI0_TXC_LSIO_GPIO0_IO26		0x20>,		/* SODIMM  79 */
-+			   <IMX8QXP_QSPI0A_DATA1_LSIO_GPIO3_IO10	0x06700041>;	/* SODIMM  45 */
++	pinctrl_enable_3v3_vmmc: enable_3v3_vmmc {
++		fsl,pins = <IMX8QXP_SAI1_RXFS_LSIO_GPIO0_IO31	0x20>;	/* SODIMM 100 */
 +	};
 +
-+	pinctrl_uart1_forceoff: uart1forceoffgrp {
-+		fsl,pins = <IMX8QXP_QSPI0A_SS0_B_LSIO_GPIO3_IO14	0x20>;	/* SODIMM 22 */
++	pinctrl_lvds_converter: lcd-lvds {
++		fsl,pins = <IMX8QXP_FLEXCAN1_TX_LSIO_GPIO1_IO18		0x20>,	/* SODIMM  55 */
++			   /* 6B/8B mode. Select LOW - 8B mode (24bit) */
++			   <IMX8QXP_FLEXCAN1_RX_LSIO_GPIO1_IO17		0x20>,	/* SODIMM  63 */
++			   <IMX8QXP_QSPI0B_SCLK_LSIO_GPIO3_IO17		0x20>,	/* SODIMM  95 */
++			   <IMX8QXP_QSPI0B_DATA0_LSIO_GPIO3_IO18	0x20>;	/* SODIMM  99 */
 +	};
-+
-+	pinctrl_uart23_forceoff: uart23forceoffgrp {
-+		fsl,pins = <IMX8QXP_MIPI_DSI1_GPIO0_01_LSIO_GPIO2_IO00	0x20>; /* SODIMM 23 */
-+	};
-+};
-+
-+/* Colibri SPI */
-+&lpspi2 {
-+	status = "okay";
-+};
-+
-+/* Colibri UART_B */
-+&lpuart0 {
-+	status = "okay";
-+};
-+
-+/* Colibri UART_C */
-+&lpuart2 {
-+	status = "okay";
-+};
-+
-+/* Colibri UART_A */
-+&lpuart3 {
-+	status= "okay";
-+};
-+
-+&lsio_gpio3 {
-+	/*
-+	 * This turns the LVDS transceiver on. If one wants to turn the
-+	 * transceiver off, that property has to be deleted and the gpio handled
-+	 * in userspace.
-+	 */
-+	lvds-tx-on-hog {
-+		gpio-hog;
-+		gpios = <18 0>;
-+		output-high;
-+	};
-+};
-+
-+/* Colibri PWM_B */
-+&lsio_pwm0 {
-+	status = "okay";
-+};
-+
-+/* Colibri PWM_C */
-+&lsio_pwm1 {
-+	status = "okay";
-+};
-+
-+/* Colibri PWM_D */
-+&lsio_pwm2 {
-+	status = "okay";
 +};
 +
 +/* Colibri SD/MMC Card */
 +&usdhc2 {
++	cap-power-off-card;
++	/delete-property/ no-1-8-v;
++	vmmc-supply = <&reg_3v3_vmmc>;
 +	status = "okay";
 +};
 -- 
