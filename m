@@ -2,230 +2,157 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CC7B06B8F36
-	for <lists+devicetree@lfdr.de>; Tue, 14 Mar 2023 11:05:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 25F986B8F4E
+	for <lists+devicetree@lfdr.de>; Tue, 14 Mar 2023 11:10:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229881AbjCNKFW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Mar 2023 06:05:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47368 "EHLO
+        id S230077AbjCNKKS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Mar 2023 06:10:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55896 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229920AbjCNKFU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Mar 2023 06:05:20 -0400
-Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 190785B42A
-        for <devicetree@vger.kernel.org>; Tue, 14 Mar 2023 03:05:18 -0700 (PDT)
-Received: by mail-lf1-x135.google.com with SMTP id i28so19293933lfv.0
-        for <devicetree@vger.kernel.org>; Tue, 14 Mar 2023 03:05:18 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1678788316;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=G4RaonSoQjuXRem5niMAEN7QQ5G5pjNC5vMZ5otsYwY=;
-        b=kt0HDj7RMZnnNNQJYgaJugd2clAf+wpBec+QxvFJfyfbEBubCeZsK98/wKSG3LZrOm
-         ecB7DTU+Qt99oMuSomlGn6G1ykfqewfDxQLjRGz/vCqSG+VAv5lXNpZu/hEVGicbEqj2
-         w6zOKR+9dbjN+GBKXFa/z8khg5NvvxdWNVWn2j54/Qq5amJJl7+OaQCRjLs7PhWioZ7w
-         CT4+VbrQr167JKk7b9ikszpEFvfbu3CfYwZziRxfH9YKJuIiEQUvzNM2+CghuT2a6KmD
-         LVlgwqFYYc7YbAOlqLarhvavYalfBfIih8VOWaxZ//I83m2Hu8rp4WzZVYAAD+wCgFD2
-         dGdQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678788316;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=G4RaonSoQjuXRem5niMAEN7QQ5G5pjNC5vMZ5otsYwY=;
-        b=qyC3uiCvGWuhU861lZ60F/ghyVS8rjCvRPsN0c4TN5AazpU38HOZWpbWxpl9olbOyl
-         yVJKxL3w1n1Q6dDM11oHrPiSna/5elu04Ptua95T+n7zseKtFELjhBsMPrX/Z0SESkYu
-         Gw1lMAjUJIkLeKEomXTsSHuN+KU7pTFO3fKHml+rJgT/XB8ZlXt59VGWQfcED7Ttf/vu
-         TUx2x0PCwD4xoKibPDJlrWCufpphLFEc/abv9w9IOTlZgB4iv0soae3ea8zWTtItBVKV
-         qo/WonoBjR7n2wgh/sTyMXBT1g4YYWzW0aOnzxtGS4JwDgKoHjUArPTGn3e9fTKUuQFd
-         va2Q==
-X-Gm-Message-State: AO0yUKV/JvXDITD2yoaHDITsrxhUXh3UrzTJRZUnx3fm+SkTSuSz0XIH
-        0n8FFmyuRc5CU9cXlqmY86ac3Q==
-X-Google-Smtp-Source: AK7set/aAW9Y474CQ14RsNpM2CIslKypga0EGEwbu8lqCYWnONFxEmKxaaE2KIR8shoXhQnC4N4pJA==
-X-Received: by 2002:a19:ac03:0:b0:4db:387f:a3af with SMTP id g3-20020a19ac03000000b004db387fa3afmr610628lfc.4.1678788316308;
-        Tue, 14 Mar 2023 03:05:16 -0700 (PDT)
-Received: from [192.168.1.101] (abyj16.neoplus.adsl.tpnet.pl. [83.9.29.16])
-        by smtp.gmail.com with ESMTPSA id b8-20020ac25e88000000b004e845a08567sm332387lfq.291.2023.03.14.03.05.15
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 14 Mar 2023 03:05:15 -0700 (PDT)
-Message-ID: <3ffb4326-ad13-d1c5-51e3-524dfa143930@linaro.org>
-Date:   Tue, 14 Mar 2023 11:05:14 +0100
+        with ESMTP id S230039AbjCNKKQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Mar 2023 06:10:16 -0400
+Received: from EUR04-VI1-obe.outbound.protection.outlook.com (mail-vi1eur04on2058.outbound.protection.outlook.com [40.107.8.58])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A54D29927A;
+        Tue, 14 Mar 2023 03:10:01 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=jwd4FYmg+UQyMCv6VhykFhIv1eigrNDf+l7c1U4q4X335YoNTkwl5xPWaPr+rBX3YVSDaFKCmLKM2cxVdi4mfbjvANOx/LFtZA7qYG6VOT2Oc63dsbMYDbdFiwhA/j4zkq3MW1uajKZzTfvr/WzPk0QR06A7RhQNBzhRCw26ztwW4Od5ZbvahNv0k6KEtpFSEO7iSZmTFlf23xrns4yX17cNNhnA960RGFHHcr0r9S9qKGlK0b1x8we03eFa+JSyf2y2KoyEmou/pkZh46a1o0RgXoh19Bn1O8n2ENTscEgG93Qf36Eeibe92n0YJoDHO+mmILU/Me4naWavdWb1Pw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=hVuAnwgEIL4YQq0/bJK62tZyqTqnMKhQhytnv/9FPEM=;
+ b=YQi9hX2NzMLppvyEQYIZP3ZHsVB05j5b4yxJgQTcGOysmpbdgLegIhhdN1ng2PiGu4ina91gvnw+tG2Z/2l21i44yXnaNOBihaoh/1FiPkesZw21xjqxcy2aIIqPCIqjHCdyXn8bJz2qWL/2ezSopMVRP8sE+EgjGQUQSCPFhmUZt0nqviVkC23XjKTp5ZEemPt28QSt1pZS3GS/7wRsSVDYbySblBIjMt+XseFs1ApR4QwgmQeVD2SQYSr4IN/S1y/8vC2QTKCbjUyS+JWefOww0Jxl0HlzSaJgcP/GuphHOHocbSel5QcA0QFj5rYP0XUFkxGMFpnd8YhBMSOmEQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=hVuAnwgEIL4YQq0/bJK62tZyqTqnMKhQhytnv/9FPEM=;
+ b=Fta/wc13y73xxbB6uZl+0V9458MwTCYg4iu7VnWC6yGrfXK35babuyKTmE3NYHVCV9vVLhE7MwjpbS/qk5liZm68WsP+Adr9bCWmtC9c8d+iul1E1mb6EW0B+4Dwvd78oGx7it+XL53S5CZkIftVOsaCP3s4qlnM4qqhS3JJRIU=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from AM6PR04MB6341.eurprd04.prod.outlook.com (2603:10a6:20b:d8::14)
+ by DU0PR04MB9346.eurprd04.prod.outlook.com (2603:10a6:10:356::18) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6178.24; Tue, 14 Mar
+ 2023 10:09:58 +0000
+Received: from AM6PR04MB6341.eurprd04.prod.outlook.com
+ ([fe80::89aa:9204:790d:e46b]) by AM6PR04MB6341.eurprd04.prod.outlook.com
+ ([fe80::89aa:9204:790d:e46b%5]) with mapi id 15.20.6178.024; Tue, 14 Mar 2023
+ 10:09:58 +0000
+From:   Ming Qian <ming.qian@nxp.com>
+To:     mchehab@kernel.org, mirela.rabulea@oss.nxp.com,
+        hverkuil-cisco@xs4all.nl
+Cc:     shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
+        festevam@gmail.com, xiahong.bao@nxp.com, linux-imx@nxp.com,
+        linux-media@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: [PATCH v4 00/10] media: imx-jpeg: Add support for 12 bit extended jpeg
+Date:   Tue, 14 Mar 2023 18:08:43 +0800
+Message-Id: <cover.1678788305.git.ming.qian@nxp.com>
+X-Mailer: git-send-email 2.38.1
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: SI1PR02CA0028.apcprd02.prod.outlook.com
+ (2603:1096:4:1f4::6) To AM6PR04MB6341.eurprd04.prod.outlook.com
+ (2603:10a6:20b:d8::14)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-Subject: Re: [PATCH 1/2] arm64: dts: qcom: sdm845: add framebuffer reserved
- memory
-Content-Language: en-US
-To:     Caleb Connolly <caleb.connolly@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org
-References: <20230314045812.3673958-1-caleb.connolly@linaro.org>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20230314045812.3673958-1-caleb.connolly@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-0.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_SORBS_HTTP,RCVD_IN_SORBS_SOCKS,SPF_HELO_NONE,SPF_PASS,
-        URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.6
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: AM6PR04MB6341:EE_|DU0PR04MB9346:EE_
+X-MS-Office365-Filtering-Correlation-Id: ed4c7073-94ea-4e1b-8590-08db24744429
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 2GATGASwZb3X6/oHvZTpkgri9fYf0tbs2jZ9SafLd1NAG0nGLM7npl1/hLDEpEq7HNcxWBZ/10EyRBUHnTTnEGkn8Nlk/VJoFLP/EGjr7m1rk9ROtW4jCLa8GtYbkc4nOiqxviekimq6gL0IHLLQAdvUnnD0kO6jS3Nv5j6K8Dg2oLgonSDQXbn9dAu85x2xZDF7LSG5nZOo0PMz82ptn/WssfoxxJJNkh6qqFKVbouKPw1jRMmMMnBrIJ/nZjUN1V3nHj4oe1zWB8R1b6nJIefsBhX/U+9Icf+aGsNwjVOdAs0hEBhKJjC+mhLTlt4gwT/1VsCA8pIwzbupzqy+QT66sf0AO8dQYSTSTOLDjz76FWwnRDYbNCFQpl50DS9mpCpRQBXthrmbD1Rh8j+Cb2J4lxzWbm+rRSU6W2x/D19KdICqWGi15hdCPkr2d7JXEwj1KWDaJK3kAqB+sHcMe3Ig6O4zgp0qlXMdhGz1URC4ifHAzf6eBpcXA2bar6cSa+iqQYxBxXO/I0qwhb4i+sL0yuV5yfE3mLxd7+20vPhoAKHW95GG+SJx70FeAbSrqYH/ahV3AIee32KpgmTbbGnTdBY1Ondztdp1Qy/r22y7rTSoq7uaB+wWlMNiz9Vumx82beQKEL5UTcGhki/PHiNlnjru6OqjESmCS3cweXyEk5ZV+eaQFD4qdiTurpAamtXIDUtgl6gWfJQ7ReT1Cg==
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM6PR04MB6341.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230025)(4636009)(136003)(396003)(376002)(39860400002)(366004)(346002)(451199018)(2906002)(41300700001)(83380400001)(36756003)(5660300002)(7416002)(44832011)(66946007)(8676002)(66556008)(38350700002)(4326008)(66476007)(86362001)(38100700002)(316002)(8936002)(186003)(2616005)(26005)(6512007)(52116002)(478600001)(6506007)(6486002)(6666004);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?iuslYA3FXkcBX5iPDICLcK1sPmWVwvC7NkU4LqJPMr/yaxWOgqVHxPRgsZ1U?=
+ =?us-ascii?Q?uB2Xzaqachc+hXfwXcWgV8VgLSCHwLV9qLulcDUrLqAAs8rzaFq6dORyTq7z?=
+ =?us-ascii?Q?LWtFKZJQmgRB8RwP3D3S9BWwFvIfKq+/rWCOtseY9s4sNqZUaYrR9ibgz8av?=
+ =?us-ascii?Q?xuCOEzkyIUgtGeUgczuILiR4vH42TMyWFbV4OY27lio4tdgyHvdQIM1rypDT?=
+ =?us-ascii?Q?gO7Ko0VnzK9nHT1mGFtwEnCKvASvLgpLBEqumH9JMmxGcdHR0ZU/jArv2Kvh?=
+ =?us-ascii?Q?Cm8Y0Ffj1tGqfX9L1j99JK12y+9Tv3JjZCBF1cJsTtJlDT8DKmBg/p8s6MOf?=
+ =?us-ascii?Q?gzsGojKtUFsnFWqVhtsjm3XWLdxepqBWpfDZPcEytaJM7RjxrTx1N9sEoyOw?=
+ =?us-ascii?Q?8VU3bTYhsVqberACWqP1RDYLcZSJr6e/0YuAvZzl5VnFs76BLwuuVQxyfnXM?=
+ =?us-ascii?Q?STnGThM4imcrnJ+zb6RWZihwYbC46SBrMwrirYMidGFMONHdDwdnakyX+w4z?=
+ =?us-ascii?Q?wF532SeiUWhLCZ9t45OFuE2OuxhjwhAtwqZaZtpXju10jMNArqVKZG0mzI6I?=
+ =?us-ascii?Q?oJgX7kHyzqjjc/6Jm6B7Ft6j3jVbP+iXTwskzSa5/DrZkdBk+exuVSbjT2F/?=
+ =?us-ascii?Q?pJ/4MAgGp2FPyAz8t4n/ynisl2lYWfDK9UOcCfnfONkXcSxuvq1zBIdVspyn?=
+ =?us-ascii?Q?lkfB466Cn2k+dbFc7sAmH0gWcQnSAb8wdjTzmDPalhjZu5LXEvWdVnMiHnqa?=
+ =?us-ascii?Q?QdR17Z3sAQkvNqJlPC+ZlyefkO0+pagfaELdwz47snV+5gqUAKV8J7JyNlbb?=
+ =?us-ascii?Q?LEwbNb71A60sGwkXnxQEgQRWmewjoYK0+qvk7IFYbjNznavDNYMLUoSuSXf4?=
+ =?us-ascii?Q?qW9TTMrmQjmqjv5uxrL/4vd3ti2Re2WpCMdx1+Jg6Uzo8xFN4sd+EBftVVkK?=
+ =?us-ascii?Q?srUQ5vy2zRNrDIhZRiN5NAIGAbUrKZVmd8mezn7QPgIZNH7P+EZytZuBFh3j?=
+ =?us-ascii?Q?jmM/SONDoezIShUI1ejsnelhMee5yUvt1EPc9wG4gELfQ6Y03WOzl18/DemP?=
+ =?us-ascii?Q?Ic9pVQnkv039hq5EXIaJjQ+UWH7oJ4u6+k1m2kdq0BVmFTfMJA0/A6G6+EAZ?=
+ =?us-ascii?Q?3BSdm4IW5+6glxyAKcqrkgcO/S1fxDFM7xBet6KeTwPqwnj1LnRdlMqLO+EV?=
+ =?us-ascii?Q?kpTrsOF3P0qDpi4NBiK3sCHDH7lFIaL6swm3OHEeCK7nz2rLl9Gx7oSkHIp6?=
+ =?us-ascii?Q?LdRBTnwevI6OGXVgnKSRiFKtrJFzavXRG78BvsGbr5HQkY5wgUGIg+JJL9FQ?=
+ =?us-ascii?Q?+ZnbXIiBsEJq1/QpLMxX2U8og8Tf6sxzaEK+yd6aE0U/stjRBvEvV0VtVRSd?=
+ =?us-ascii?Q?SqP52+yeKftm9HNBvnKZwqZ/ca+xaKskWjV3N6bx5T7hwxybBLr2teN9nB4V?=
+ =?us-ascii?Q?lBesrB9kCDchQXwXgX+JeFGiHnjNP6xjASTw3ROwEZ3cwNxbPKnTeNHjZEmX?=
+ =?us-ascii?Q?0lKLqidERDe7uBoaYCy2AwnHm4RSIAPZdlYgxRPM1uVs29Q6srHPgiEH2U3R?=
+ =?us-ascii?Q?wAWagmPynTobVFoDdosLDMfJBijJVLEOKcxJXfS2?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: ed4c7073-94ea-4e1b-8590-08db24744429
+X-MS-Exchange-CrossTenant-AuthSource: AM6PR04MB6341.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Mar 2023 10:09:58.3466
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: MDH5m6Fgmxnseu+PT1PsHfpLEYtS73clSNzQveKcLY7qg+sUmzjxs6sWh/rFxU9d5VVdJVQro4EQlVS/q5qR/g==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DU0PR04MB9346
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,URIBL_BLOCKED autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+the imx8 jpeg codec support ISO/IEC 10918-1 Standard Baseline and
+Extended Sequential DCT modes.
+it can support 8-bit and 12-bit per color samples.
+Currently we only enable the 8-bit jpeg,
+and we can enable the 12-bit extended jpeg
+with the new defined 12 bit pixel format.
 
+v4
+- drop format yuyv64_12, use Y212 directly
 
-On 14.03.2023 05:58, Caleb Connolly wrote:
-> Almost all of the SDM845 devices actually map the same region for the
-> continuous splash / framebuffer. de-dup all the devices that specify it
-> manually and put it in sdm845.dtsi instead.
-> 
-> This now reserves it on the OnePlus 6 where it was not reserved before,
-> this is intentional.
-> 
-> Signed-off-by: Caleb Connolly <caleb.connolly@linaro.org>
-> ---
-You didn't explain why is not done on 850 (which I assume has to do with
-the windows memory map being different and putting it somewhere else) and
-the reasoning for reserving it at all.
+v3
+- correct the new 12-bit format naming according to Nicolas's comments
 
-If that's the framebuffer handoff issue with smmu faults happening, it may
-be worth looking into solving that properly, i.e. introducing something like
-qcom,framebuffer which would suck up the starting address and figure out the
-required size based on MDP5 VIG pipes' registers and could tickle the
-autorefresh regs if needed. See how lk2nd does it, the hardware underneath
-hasn't changed since msm8974.
+v2
+- correct the new 12-bit format naming according to Hans's comments
 
-Then, on drm handoff it could free the memory and let drm/msm initialize
-its own, new, dynamically-allocated and dynamically-sized region as it wants.
+Ming Qian (10):
+  media: Add P012 and P012M video format
+  media: Add Y012 video format
+  media: Add Y212 v4l2 format info
+  media: Add YUV48_12 video format
+  media: Add BGR48_12 video format
+  media: Add ABGR64_12 video format
+  media: imx-jpeg: Refine the function mxc_jpeg_find_format
+  media: imx-jpeg: Clear slot next desc ptr if config error
+  media: imx-jpeg: Decoder add support for 12bit jpeg
+  media: imx-jpeg: Encoder add support for 12bit jpeg
 
-Or we can use mdss's never-used memory-region property, but that would
-kill 35 or so megs of ram for everyone, no matter display their resolution.
+ .../media/v4l/pixfmt-packed-yuv.rst           |  28 ++
+ .../userspace-api/media/v4l/pixfmt-rgb.rst    |  42 +++
+ .../media/v4l/pixfmt-yuv-luma.rst             |  15 +
+ .../media/v4l/pixfmt-yuv-planar.rst           |  94 +++++
+ .../media/platform/nxp/imx-jpeg/mxc-jpeg-hw.c |  19 +-
+ .../media/platform/nxp/imx-jpeg/mxc-jpeg-hw.h |   5 +-
+ .../media/platform/nxp/imx-jpeg/mxc-jpeg.c    | 326 ++++++++++++++++--
+ drivers/media/v4l2-core/v4l2-common.c         |   6 +
+ drivers/media/v4l2-core/v4l2-ioctl.c          |   6 +
+ include/uapi/linux/videodev2.h                |   8 +
+ 10 files changed, 523 insertions(+), 26 deletions(-)
 
-Konrad
->  arch/arm64/boot/dts/qcom/sdm845-lg-common.dtsi              | 6 ------
->  arch/arm64/boot/dts/qcom/sdm845-samsung-starqltechn.dts     | 5 -----
->  arch/arm64/boot/dts/qcom/sdm845-shift-axolotl.dts           | 5 -----
->  arch/arm64/boot/dts/qcom/sdm845-sony-xperia-tama.dtsi       | 6 ------
->  .../arm64/boot/dts/qcom/sdm845-xiaomi-beryllium-common.dtsi | 6 ------
->  arch/arm64/boot/dts/qcom/sdm845.dtsi                        | 5 +++++
->  arch/arm64/boot/dts/qcom/sdm850.dtsi                        | 2 ++
->  7 files changed, 7 insertions(+), 28 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sdm845-lg-common.dtsi b/arch/arm64/boot/dts/qcom/sdm845-lg-common.dtsi
-> index f942c5afea9b..6a1c674a015b 100644
-> --- a/arch/arm64/boot/dts/qcom/sdm845-lg-common.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sdm845-lg-common.dtsi
-> @@ -93,12 +93,6 @@ spss_mem: memory@99000000 {
->  			no-map;
->  		};
->  
-> -		/* Framebuffer region */
-> -		memory@9d400000 {
-> -			reg = <0x0 0x9d400000 0x0 0x2400000>;
-> -			no-map;
-> -		};
-> -
->  		/* rmtfs lower guard */
->  		memory@f0800000 {
->  			reg = <0 0xf0800000 0 0x1000>;
-> diff --git a/arch/arm64/boot/dts/qcom/sdm845-samsung-starqltechn.dts b/arch/arm64/boot/dts/qcom/sdm845-samsung-starqltechn.dts
-> index d37a433130b9..7c2457948a32 100644
-> --- a/arch/arm64/boot/dts/qcom/sdm845-samsung-starqltechn.dts
-> +++ b/arch/arm64/boot/dts/qcom/sdm845-samsung-starqltechn.dts
-> @@ -55,11 +55,6 @@ vreg_s4a_1p8: pm8998-smps4 {
->  	};
->  
->  	reserved-memory {
-> -		memory@9d400000 {
-> -			reg = <0x0 0x9d400000 0x0 0x02400000>;
-> -			no-map;
-> -		};
-> -
->  		memory@a1300000 {
->  			compatible = "ramoops";
->  			reg = <0x0 0xa1300000 0x0 0x100000>;
-> diff --git a/arch/arm64/boot/dts/qcom/sdm845-shift-axolotl.dts b/arch/arm64/boot/dts/qcom/sdm845-shift-axolotl.dts
-> index b54e304abf71..4f6b1053c15b 100644
-> --- a/arch/arm64/boot/dts/qcom/sdm845-shift-axolotl.dts
-> +++ b/arch/arm64/boot/dts/qcom/sdm845-shift-axolotl.dts
-> @@ -60,11 +60,6 @@ key-vol-up {
->  	};
->  
->  	reserved-memory {
-> -		framebuffer_region@9d400000 {
-> -			reg = <0x0 0x9d400000 0x0 (1080 * 2160 * 4)>;
-> -			no-map;
-> -		};
-> -
->  		ramoops: ramoops@b0000000 {
->  			compatible = "ramoops";
->  			reg = <0 0xb0000000 0 0x00400000>;
-> diff --git a/arch/arm64/boot/dts/qcom/sdm845-sony-xperia-tama.dtsi b/arch/arm64/boot/dts/qcom/sdm845-sony-xperia-tama.dtsi
-> index 4984c7496c31..7e273cc0158d 100644
-> --- a/arch/arm64/boot/dts/qcom/sdm845-sony-xperia-tama.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sdm845-sony-xperia-tama.dtsi
-> @@ -79,12 +79,6 @@ vreg_s4a_1p8: pm8998-smps4 {
->  	};
->  
->  	reserved-memory {
-> -		/* SONY was cool and didn't diverge from MTP this time, yay! */
-> -		cont_splash_mem: memory@9d400000 {
-> -			reg = <0x0 0x9d400000 0x0 0x2400000>;
-> -			no-map;
-> -		};
-> -
->  		ramoops@ffc00000 {
->  			compatible = "ramoops";
->  			reg = <0x0 0xffc00000 0x0 0x100000>;
-> diff --git a/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium-common.dtsi b/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium-common.dtsi
-> index e0fda4d754fe..191c2664f721 100644
-> --- a/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium-common.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium-common.dtsi
-> @@ -98,12 +98,6 @@ spss_mem: memory@97f00000 {
->  			no-map;
->  		};
->  
-> -		/* Cont splash region set up by the bootloader */
-> -		cont_splash_mem: framebuffer@9d400000 {
-> -			reg = <0 0x9d400000 0 0x2400000>;
-> -			no-map;
-> -		};
-> -
->  		rmtfs_mem: memory@f6301000 {
->  			compatible = "qcom,rmtfs-mem";
->  			reg = <0 0xf6301000 0 0x200000>;
-> diff --git a/arch/arm64/boot/dts/qcom/sdm845.dtsi b/arch/arm64/boot/dts/qcom/sdm845.dtsi
-> index 479859bd8ab3..ecec2ee46683 100644
-> --- a/arch/arm64/boot/dts/qcom/sdm845.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sdm845.dtsi
-> @@ -865,6 +865,11 @@ spss_mem: spss@97b00000 {
->  			no-map;
->  		};
->  
-> +		cont_splash_mem: framebuffer@9d400000 {
-> +			reg = <0 0x9d400000 0 0x2400000>;
-> +			no-map;
-> +		};
-> +
->  		mdata_mem: mpss-metadata {
->  			alloc-ranges = <0 0xa0000000 0 0x20000000>;
->  			size = <0 0x4000>;
-> diff --git a/arch/arm64/boot/dts/qcom/sdm850.dtsi b/arch/arm64/boot/dts/qcom/sdm850.dtsi
-> index da9f6fbe32f6..b787575c77a5 100644
-> --- a/arch/arm64/boot/dts/qcom/sdm850.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sdm850.dtsi
-> @@ -7,6 +7,8 @@
->  
->  #include "sdm845.dtsi"
->  
-> +/delete-node/ &cont_splash_mem;
-> +
->  &cpu4_opp_table {
->  	cpu4_opp33: opp-2841600000 {
->  		opp-hz = /bits/ 64 <2841600000>;
+-- 
+2.38.1
+
