@@ -2,123 +2,160 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4CAC06B9F55
-	for <lists+devicetree@lfdr.de>; Tue, 14 Mar 2023 20:06:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4ED936B9F68
+	for <lists+devicetree@lfdr.de>; Tue, 14 Mar 2023 20:15:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231247AbjCNTGw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Mar 2023 15:06:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60678 "EHLO
+        id S231372AbjCNTPB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Mar 2023 15:15:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47426 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230201AbjCNTGu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Mar 2023 15:06:50 -0400
-Received: from lahtoruutu.iki.fi (lahtoruutu.iki.fi [185.185.170.37])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AEB222B2A7;
-        Tue, 14 Mar 2023 12:06:31 -0700 (PDT)
-Received: from hillosipuli.retiisi.eu (82-181-192-243.bb.dnainternet.fi [82.181.192.243])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        with ESMTP id S229875AbjCNTO5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Mar 2023 15:14:57 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B325832507;
+        Tue, 14 Mar 2023 12:14:52 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        (Authenticated sender: sailus)
-        by lahtoruutu.iki.fi (Postfix) with ESMTPSA id 4Pbjg43XnMz49Q4J;
-        Tue, 14 Mar 2023 21:06:24 +0200 (EET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=iki.fi; s=lahtoruutu;
-        t=1678820786;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=yKx+lb5WLm5CP4bEB98GQrBYtZsW8RpnNc4soWPz9D4=;
-        b=GCEeTyGroXJqbf3duk2LvvTfKjzzmdAy+PgL6w6B46hUQiNM3o4bokURg5QjBXbSyRY9op
-        0TVDsZ97gU3wGUqr1pKx1ah7+2BwXDeg52JLvm8CvLtKJrMriaGOmuN0QtR+EkDx+aUkzX
-        9yp7SAAGEsVqAXe7vT2BxC6wFivcaQs4nB0SzTQ/gYG6rW4DqcxasnjafoNajiOJ2CUSln
-        h7husOv4kqXhb80hONmfJNq49mCrRPFWDP402zhFVqf7Iaw6rMTWc7HPx5v+noORJ9HsVc
-        kJ3qjYppdhBZhyf5quHIY+RNWXzk56tipYgHqSjRrW2AhzdMvzROePVYBCj5/g==
-ARC-Seal: i=1; s=lahtoruutu; d=iki.fi; t=1678820786; a=rsa-sha256;
-        cv=none;
-        b=dEZZWFtN3n1ODQxPicIBDbvYKD4exOBi19VkguV7BavPWB5KPAALOL9QE05/eSv63vX7uH
-        nKaT4D4Tq2wBZD2UfbsJSHBO6m80XhEhglz4vQaTyfaUdau+WSuYVj9X/JQdWyBTW+EIS7
-        1sPiF3xEEE10iyWZUpSGDhwmaeUsmfxlMNM0xFUXvfWgLvnOkTL+ueTGQB5bDtc1WSbok7
-        +p/l+dpfrNgi51wvtj8+T7Lul8xgUEEPf17XxdDNqUG6EctECJH/HQNf7j0IBMfNkYKZ2N
-        ct1HrYNpV6kx6oFBl3jck0ZsBqEgujTLM+Q4fyPUe5ZDX6DJeYtib+vq1NXzoA==
-ARC-Authentication-Results: i=1;
-        ORIGINATING;
-        auth=pass smtp.auth=sailus smtp.mailfrom=sakari.ailus@iki.fi
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=iki.fi;
-        s=lahtoruutu; t=1678820786;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=yKx+lb5WLm5CP4bEB98GQrBYtZsW8RpnNc4soWPz9D4=;
-        b=V4mC+rvMKVksYXS+08sydzOyWpNANSqh6qOjG1migkQN+OyAGdosTyCTbxNM3X7A9C8sIn
-        zrWL5Dj2401lqu4rR/xEoEV0l61mKSLTpWY7qyvXYXpxzkt9TLJTCcIm4wsA/i6bZG/l4/
-        F2Wr8fmhVhUE64j60Z5JLz1U3UXeYvoHgj7GJCtNOjCs7Bm37gbpVR+W+Hv6ecoSBpWLRR
-        rkp6dgyGylv/MEJYBlNeut4WaZfmxz68cb25p7p09f+Abi+ux2ByYgq6bk3Me8Q0/glP3f
-        U+OLeyJ4s64GwDO0ngvb0J1OHkFgqNd63+oR6Uk02GZ9n1Ehr39HwBJYYFhYBw==
-Received: from valkosipuli.retiisi.eu (valkosipuli.localdomain [192.168.4.2])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        by hillosipuli.retiisi.eu (Postfix) with ESMTPS id 717B3634C91;
-        Tue, 14 Mar 2023 21:05:21 +0200 (EET)
-Date:   Tue, 14 Mar 2023 21:05:21 +0200
-From:   Sakari Ailus <sakari.ailus@iki.fi>
-To:     shravan kumar <shravan.chippa@microchip.com>
-Cc:     paul.j.murphy@intel.com, daniele.alessandrelli@intel.com,
-        mchehab@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, shawnguo@kernel.org,
-        s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
-        linux-imx@nxp.com, linux-media@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v12 5/5] media: i2c: imx334: update pixel and link
- frequency
-Message-ID: <ZBDFcXYeK0eB9i1v@valkosipuli.retiisi.eu>
-References: <20230301073412.1204574-1-shravan.chippa@microchip.com>
- <20230301073412.1204574-6-shravan.chippa@microchip.com>
+        by ams.source.kernel.org (Postfix) with ESMTPS id 70AB1B81B61;
+        Tue, 14 Mar 2023 19:14:51 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2EBDEC433AF;
+        Tue, 14 Mar 2023 19:14:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1678821290;
+        bh=/o++2orgkh0eYVR24mG2HNDYYvTQagQPn7YxqtJRIGM=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=HOI98Pw9VCCF8s+F6gT0/O1R6qRkVaDVxGLQ8shxkdNBfBdydmcUvFW6EQfLc7YM0
+         vmBilZVquc485LrVfceEBDtZ5LybBi3iYyZJu5Atg66iC/jClxnCI2aezJYdFFoATb
+         zNO4ffMMmIujIN8SSLwFySmlQoHxUQvvxe7gYff9gAP/mw3Qg4H2W8KnmPzBqFmV95
+         G4EAy1yl9InhDz5pDcACZQnS0w4q+XWfFxqzwmWoan2fay6DQ7ZJw+WU+KfGEmfVb6
+         j4wRetXsbLov1/7Zp70w8um2hZFbKP7zYGebUQ5xbc0+mXL+JgIwQSiCO2mSEkyh8Z
+         nDFNqyakCiYkA==
+Received: by mail-vs1-f53.google.com with SMTP id u16so4371382vso.1;
+        Tue, 14 Mar 2023 12:14:50 -0700 (PDT)
+X-Gm-Message-State: AO0yUKWggbywteOCS6gqLO+ZDMp7c0tX5VpUQDA+Uqz52UJXCnuSAd3B
+        dhLZSjd8nKVUoNjSsTW63a/4z0DqStM8R+tjZA==
+X-Google-Smtp-Source: AK7set+w7Dteu6Gz2fQIttAdFvbMZqpID4AHKHx68t3xQwsHx6BtKsv/C7yfYxJySG1yjFVS7BCS5PCUX/PHC6Xr3l0=
+X-Received: by 2002:a67:b142:0:b0:41b:dc0c:a668 with SMTP id
+ z2-20020a67b142000000b0041bdc0ca668mr25692104vsl.7.1678821289005; Tue, 14 Mar
+ 2023 12:14:49 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230301073412.1204574-6-shravan.chippa@microchip.com>
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+References: <20230310144718.1544169-1-robh@kernel.org> <ZAxrBtNdou28yPPB@corigine.com>
+In-Reply-To: <ZAxrBtNdou28yPPB@corigine.com>
+From:   Rob Herring <robh@kernel.org>
+Date:   Tue, 14 Mar 2023 14:14:37 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqJTsgmdwZZTfcMRnqaUfCNbgjO2mshxtAQK-qwoFqwCyw@mail.gmail.com>
+Message-ID: <CAL_JsqJTsgmdwZZTfcMRnqaUfCNbgjO2mshxtAQK-qwoFqwCyw@mail.gmail.com>
+Subject: Re: [PATCH] net: Use of_property_read_bool() for boolean properties
+To:     Simon Horman <simon.horman@corigine.com>
+Cc:     Wolfgang Grandegger <wg@grandegger.com>,
+        Marc Kleine-Budde <mkl@pengutronix.de>,
+        "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Nicolas Ferre <nicolas.ferre@microchip.com>,
+        Claudiu Beznea <claudiu.beznea@microchip.com>,
+        Wei Fang <wei.fang@nxp.com>,
+        Shenwei Wang <shenwei.wang@nxp.com>,
+        Clark Wang <xiaoning.wang@nxp.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Claudiu Manoil <claudiu.manoil@nxp.com>,
+        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Jose Abreu <joabreu@synopsys.com>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Grygorii Strashko <grygorii.strashko@ti.com>,
+        Francois Romieu <romieu@fr.zoreil.com>,
+        Michal Simek <michal.simek@xilinx.com>,
+        Zhao Qiang <qiang.zhao@nxp.com>, Kalle Valo <kvalo@kernel.org>,
+        Samuel Mendoza-Jonas <sam@mendozajonas.com>,
+        devicetree@vger.kernel.org, linux-can@vger.kernel.org,
+        netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        linux-arm-kernel@lists.infradead.org, linux-omap@vger.kernel.org,
+        linuxppc-dev@lists.ozlabs.org, linux-wireless@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Shravan,
+On Sat, Mar 11, 2023 at 5:50=E2=80=AFAM Simon Horman <simon.horman@corigine=
+.com> wrote:
+>
+> On Fri, Mar 10, 2023 at 08:47:16AM -0600, Rob Herring wrote:
+> > It is preferred to use typed property access functions (i.e.
+> > of_property_read_<type> functions) rather than low-level
+> > of_get_property/of_find_property functions for reading properties.
+> > Convert reading boolean properties to to of_property_read_bool().
+> >
+> > Signed-off-by: Rob Herring <robh@kernel.org>
+>
+> Reviewed-by: Simon Horman <simon.horman@corigine.com>
+>
+> ...
+>
+> > diff --git a/drivers/net/ethernet/via/via-velocity.c b/drivers/net/ethe=
+rnet/via/via-velocity.c
+> > index a502812ac418..86f7843b4591 100644
+> > --- a/drivers/net/ethernet/via/via-velocity.c
+> > +++ b/drivers/net/ethernet/via/via-velocity.c
+> > @@ -2709,8 +2709,7 @@ static int velocity_get_platform_info(struct velo=
+city_info *vptr)
+> >       struct resource res;
+> >       int ret;
+> >
+> > -     if (of_get_property(vptr->dev->of_node, "no-eeprom", NULL))
+> > -             vptr->no_eeprom =3D 1;
+> > +     vptr->no_eeprom =3D of_property_read_bool(vptr->dev->of_node, "no=
+-eeprom");
+>
+> As per my comment on "[PATCH] nfc: mrvl: Use of_property_read_bool() for
+> boolean properties".
+>
+> I'm not that enthusiastic about assigning a bool value to a field
+> with an integer type. But that is likely a topic for another patch.
+>
+> >       ret =3D of_address_to_resource(vptr->dev->of_node, 0, &res);
+> >       if (ret) {
+>
+> ...
+>
+> > diff --git a/drivers/net/wan/fsl_ucc_hdlc.c b/drivers/net/wan/fsl_ucc_h=
+dlc.c
+> > index 1c53b5546927..47c2ad7a3e42 100644
+> > --- a/drivers/net/wan/fsl_ucc_hdlc.c
+> > +++ b/drivers/net/wan/fsl_ucc_hdlc.c
+> > @@ -1177,14 +1177,9 @@ static int ucc_hdlc_probe(struct platform_device=
+ *pdev)
+> >       uhdlc_priv->dev =3D &pdev->dev;
+> >       uhdlc_priv->ut_info =3D ut_info;
+> >
+> > -     if (of_get_property(np, "fsl,tdm-interface", NULL))
+> > -             uhdlc_priv->tsa =3D 1;
+> > -
+> > -     if (of_get_property(np, "fsl,ucc-internal-loopback", NULL))
+> > -             uhdlc_priv->loopback =3D 1;
+> > -
+> > -     if (of_get_property(np, "fsl,hdlc-bus", NULL))
+> > -             uhdlc_priv->hdlc_bus =3D 1;
+> > +     uhdlc_priv->tsa =3D of_property_read_bool(np, "fsl,tdm-interface"=
+);
+>
+> Here too.
 
-On Wed, Mar 01, 2023 at 01:04:12PM +0530, shravan kumar wrote:
-> @@ -885,7 +895,13 @@ static int imx334_init_pad_cfg(struct v4l2_subdev *sd,
->  	struct v4l2_subdev_format fmt = { 0 };
->  
->  	fmt.which = sd_state ? V4L2_SUBDEV_FORMAT_TRY : V4L2_SUBDEV_FORMAT_ACTIVE;
-> -	imx334_fill_pad_format(imx334, &supported_modes[0], &fmt);
-> +	fmt->format.code = imx334->cur_code;
+These are already bool. Turns out the only one that needs changing is
+no_eeprom. netdev folks marked this as changes requested, so I'll add
+that in v2.
 
-This does not compile.
-
-> +	imx334_fill_pad_format(imx334, imx334->cur_mode, &fmt);
-> +
-> +	__v4l2_ctrl_modify_range(imx334->link_freq_ctrl, 0,
-> +				 __fls(imx334->menu_skip_mask),
-> +				 ~(imx334->menu_skip_mask),
-> +				 __ffs(imx334->menu_skip_mask));
-
-You're not holding imx334->mutex here, as you should. Also accessing
-imx334->cur_code should only be done while that mutex is acquired.
-
-What's the purpose of calling __v4l2_ctrl_modify_range() here, all these
-values are static once probe() function has been called, aren't they?
-
-I'm dropping this patch for now, taking the first four.
-
->  
->  	return imx334_set_pad_format(sd, sd_state, &fmt);
->  }
-
--- 
-Kind regards,
-
-Sakari Ailus
+Rob
