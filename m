@@ -2,94 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 780336B8B83
-	for <lists+devicetree@lfdr.de>; Tue, 14 Mar 2023 07:49:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C4D986B8B91
+	for <lists+devicetree@lfdr.de>; Tue, 14 Mar 2023 07:56:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230111AbjCNGtt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Mar 2023 02:49:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41686 "EHLO
+        id S229531AbjCNG4K (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Mar 2023 02:56:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49844 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229482AbjCNGts (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Mar 2023 02:49:48 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 578A650F9D;
-        Mon, 13 Mar 2023 23:49:47 -0700 (PDT)
+        with ESMTP id S229468AbjCNG4J (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Mar 2023 02:56:09 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ADBA87B4AF
+        for <devicetree@vger.kernel.org>; Mon, 13 Mar 2023 23:56:05 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id DFE1E61570;
-        Tue, 14 Mar 2023 06:49:46 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5E7B5C433D2;
-        Tue, 14 Mar 2023 06:49:43 +0000 (UTC)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 5BBA7B8189F
+        for <devicetree@vger.kernel.org>; Tue, 14 Mar 2023 06:56:04 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 05A7AC4339B;
+        Tue, 14 Mar 2023 06:56:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1678776586;
-        bh=vCpyz//zBAiE3DDnV70snQunPQySkUISt26QGR58L2M=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=dJ2wjyyy+fGA/jE3q8gu9NJHiF5dAQ8LMCFKH33kpSxe5bNyMgoYDOOjjUQeIMCu+
-         clyABbuIb70AHUF9IMC1ljHMsysbzoUsGvPz7t5bhxRqpOpYnvcMFu0tiTPCsipwAu
-         EMIZ9pSdS+Q+t0Gnk1P6i4WaR+47PbzPiIdlL78qXbXnaY6eMik1L0JHGrrvnKllT1
-         duz7m8/9vWRg6KnND0LIiTfkcEpzdUhhRLeDLNYcirGTB7wBlv1oa4+6om0tg6EMNK
-         rbm9loBWx3NwaCbJY7YY7SlpvDhp/JCgHF68lIkI8HwI5WjRM7BKdhuSGgxx1kfGLq
-         79/CKe1G4vSiQ==
-Message-ID: <6ff60914-0c39-9916-2e3a-a906b4cdef0d@kernel.org>
-Date:   Tue, 14 Mar 2023 07:49:40 +0100
+        s=k20201202; t=1678776963;
+        bh=gtuLoMMUIgTtWAAlnL6A/UdOLkPFpzSyNz844s33oYU=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=GU0Wj+0/GN4jaMhdngxeQrmbN3w7bRaZgoYz7wVBLbYKxdgmsxZYs5ZMJlmzLukN3
+         8+qY++z2a1vsqLxTqiVXvYPZzQ1Hgzo+dwY5/kCo4CSeyzg7Fhxd/JwY/ur+ouiRRl
+         NcJTivFRuSzNyQFyTirPDL1iiAg9Qr9B9Zop3ULJZCmr6bXYVC7Ni2rrm83H9ZQ+a8
+         vjshGrKpfKzNI57o4UBB5GK9oxKJYy9HG+taY1y0SWWQLjo84gb6TaupcLjvEHGMwo
+         0ZdLb3Zk9vz4434tKk8SCAdK64IwhteJbc/z/JPT6jMBWc+ny7YQGDZKZvWGsmo23M
+         rC0VFgtyPPa5A==
+Date:   Tue, 14 Mar 2023 14:55:56 +0800
+From:   Shawn Guo <shawnguo@kernel.org>
+To:     Alexander Stein <alexander.stein@ew.tq-group.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH 1/1] arm64: dts: imx93: add missing #address-cells and
+ #size-cells to i2c nodes
+Message-ID: <20230314065556.GW143566@dragon>
+References: <20230308101720.2781627-1-alexander.stein@ew.tq-group.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-Subject: Re: [PATCH v13 2/2] clk: clk-loongson2: add clock controller driver
- support
-Content-Language: en-US
-To:     Stephen Boyd <sboyd@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        kernel test robot <lkp@intel.com>, linux-clk@vger.kernel.org,
-        linux-kernel@vger.kernel.org, zhuyinbo <zhuyinbo@loongson.cn>
-Cc:     oe-kbuild-all@lists.linux.dev, Jianmin Lv <lvjianmin@loongson.cn>,
-        Liu Peibao <liupeibao@loongson.cn>, wanghongliang@loongson.cn,
-        loongson-kernel@lists.loongnix.cn
-References: <20230307115022.12846-2-zhuyinbo@loongson.cn>
- <202303082037.QPfBP64A-lkp@intel.com>
- <b94ee1d2-b224-f9d5-3f3c-0096634f4c93@loongson.cn>
- <ec1fb4d134181a1b1859bcb884dcd494.sboyd@kernel.org>
- <c03e47f7-bb26-0114-b300-357634b0e581@kernel.org>
- <61eee19400e9a45ce9543bfd92a27eaa.sboyd@kernel.org>
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-In-Reply-To: <61eee19400e9a45ce9543bfd92a27eaa.sboyd@kernel.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230308101720.2781627-1-alexander.stein@ew.tq-group.com>
 X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_HI,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 13/03/2023 19:20, Stephen Boyd wrote:
->>>> The CONFIG_64BIT not enabled in your config file, I will add a depend on 
->>>> "CONFIG_64BIT" in my clock driver to fix this compile error.
->>>
->>> Do you need to use readq() here? Can you read two 32-bit registers with
->>> readl() and put them together for a 64-bit number?
->>
->> If the platform supports 64-bit reads and these are actually one
->> register, then readq makes sense - code is more readable, smaller, more
->> efficient.
->>
+On Wed, Mar 08, 2023 at 11:17:20AM +0100, Alexander Stein wrote:
+> Add them to the SoC .dtsi, so that not every board has to specify them.
 > 
-> Please read the section in Documentation/driver-api/device-io.rst about
-> hi_lo_readq() and <linux/io-64-nonatomic-lo-hi.h>. We shouldn't need to
-> restrict the driver to CONFIG_64BIT. Instead, include one of these
-> header files to get the IO access primitives.
+> Fixes: 1225396fefea ("arm64: dts: imx93: add lpi2c nodes")
+> Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
 
-These primitives are for 32bit access. Quoting: "on 32-bit
-architectures". What's the point of them if the code *will never* run on
-32-bit? It will be a fake choice of linux/io-64-nonatomic-lo-hi.h or
-linux/io-64-nonatomic-hi-lo.h misleading users to think this was tested
-on 32-bit.
-
-Best regards,
-Krzysztof
-
+Applied, thanks!
