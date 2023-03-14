@@ -2,168 +2,345 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1CB4C6B9271
-	for <lists+devicetree@lfdr.de>; Tue, 14 Mar 2023 13:00:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CB8AD6B9278
+	for <lists+devicetree@lfdr.de>; Tue, 14 Mar 2023 13:00:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231646AbjCNMAB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Mar 2023 08:00:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53784 "EHLO
+        id S231592AbjCNMAp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Mar 2023 08:00:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55426 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231685AbjCNL7j (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Mar 2023 07:59:39 -0400
-Received: from EUR04-HE1-obe.outbound.protection.outlook.com (mail-he1eur04on062a.outbound.protection.outlook.com [IPv6:2a01:111:f400:fe0d::62a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C3C2824BE0;
-        Tue, 14 Mar 2023 04:58:59 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=R0tCS4oKu9QJJDI7tHLwdkD6SNm3QAeh5NULYq7hFZRIn4MGyXGil0jqNGoUmDR/+XzaCLZMGwvGTnkpz8knmpUI8d3ncGMm7RsPRaNX7RorepkD1jCtY9vU22pBl6mPBQk6D9n4AOwCRVbxX7j1G/ptK7s7x8fzdFtKVm8MrMUH2/xkVEhABBuHQPDjVp8LKtNjCRp5u/zKEtJTWPbfrP/2oyMwu9D8x8twjgQLEncuv742H5zqTDySa57O7IM3WxLa0XMommjBcF25yFaMD3mVQF63WEhsjfuk13Tvvo+yHZK71zSxvLowVSvnXUl7ysVi1T9ndn26MlF1peKOeA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=iyzrg9ClFD1gCBL4xDfxIUxvo3lZIeCuT3Bu0s0q6mU=;
- b=QP0ctOr3Cb1VKxwtbx7wps8H60qffAgt9PecI6wp9T+MKFG/1oZuPcqgVXgP6iHjR/CvLz3yGSz8QA8bH5Z51ZCtlKx8JsqeJFH3icgROUKQ0P6jP4w3hYr0yVuGHJ3nj8PYlesneGfPIbr9/WW049EX+v6DdDxUL8lNwnHIukgnXoHRJZwHfryVy0ET0m6QvztTXnSMeUKPoLDnyPDy24b5kTw5iNrKIDj+4GtId1QmAdX1gIRdcs7p44zJPXhMElfuZGp3flxvoAJGev3c6SThP1hVe2ENIaz9IBy/hGcOH+a/FMyZZ5gCZUuDEDm7VzSEUN37I6ot/3lCJz+o5w==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=wolfvision.net; dmarc=pass action=none
- header.from=wolfvision.net; dkim=pass header.d=wolfvision.net; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wolfvision.net;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=iyzrg9ClFD1gCBL4xDfxIUxvo3lZIeCuT3Bu0s0q6mU=;
- b=vt8NrAGk+0Wqp3Rv34iMA0/IojGkrm3ZsCofXbZBouj8x0N9KTbAKWxk4ZbWhPNSGuoGb0GXZ785l42Rd+LiumA5d4GlfN4SYtmQGl0GeEbqNXA+FAVin53iSW66UtRhJ5VunE+UY/tLhvlCKE9PKAxp/gf2hXwHdxjqrAP7eM0=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=wolfvision.net;
-Received: from VI1PR08MB4544.eurprd08.prod.outlook.com (2603:10a6:803:100::13)
- by AS8PR08MB9313.eurprd08.prod.outlook.com (2603:10a6:20b:5a4::22) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6178.26; Tue, 14 Mar
- 2023 11:57:10 +0000
-Received: from VI1PR08MB4544.eurprd08.prod.outlook.com
- ([fe80::b094:4fd2:abe3:9f08]) by VI1PR08MB4544.eurprd08.prod.outlook.com
- ([fe80::b094:4fd2:abe3:9f08%4]) with mapi id 15.20.6178.024; Tue, 14 Mar 2023
- 11:57:10 +0000
-From:   Gerald Loacker <gerald.loacker@wolfvision.net>
-To:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     Thierry Reding <thierry.reding@gmail.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        David Airlie <airlied@gmail.com>,
+        with ESMTP id S231683AbjCNMAi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Mar 2023 08:00:38 -0400
+Received: from mail-lj1-x22c.google.com (mail-lj1-x22c.google.com [IPv6:2a00:1450:4864:20::22c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 14E929FE68
+        for <devicetree@vger.kernel.org>; Tue, 14 Mar 2023 05:00:09 -0700 (PDT)
+Received: by mail-lj1-x22c.google.com with SMTP id y14so15745329ljq.4
+        for <devicetree@vger.kernel.org>; Tue, 14 Mar 2023 05:00:09 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1678795183;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=1sKgb2Mq4gRjAq9lF2tbCgSPHex9wjrQCKvZTk86UJY=;
+        b=y5eLJn9+xp0hoNORojvoyotCZKx+cmXw2u8ngcDDlP6ZUKbhoEZEeN/8jJC28XF8rc
+         9HHbfmX7ihAb5iGac0MaOXG/WKmxHza9fGuSiS+I1tlntfiZPkyRHRQxETxvlL4Ef+qX
+         iePB7WptDzDPbvoeOXIQ2uC8weHp+k64mZtVWSGT6ktvNtnvfClK468k+B9lP1PFsAXK
+         UwfEnRPa++dLs1vudM41qvGTXWcATYY3msqY/0j8yeJjlAKhE4rVKzeNO4wXrDGIkwii
+         tynY4if7BQoeW/6Pga3QAsT3XZK9Sps6WNeL3AKYJmLTEtasSM1LGauqSM7+Pq282X9s
+         o/NA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1678795183;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=1sKgb2Mq4gRjAq9lF2tbCgSPHex9wjrQCKvZTk86UJY=;
+        b=FbPT3qWuK0UQ3x9vuKzphiZxbNey5EGrdDTy4bVnfmFUotEHExDQnQgQmIEALdKN6Y
+         sxrt7KMyZAYzB/TKfEIGBFGSrNDJsPgsVm2HNuZ0++fhhsBFYyg+ZTbNsQ+PKyIkcItU
+         eAbUmOss5jcJszzQksSshAxlD6/nfIIWqAKdQJuVc8huqnlTX1bUR9az++4fqt7mbVGk
+         hyJvYBYkCF/QRbJJhFwbsEDIU765G3AVT8yllDuMvM2BMjhL66xCaiqVcDJYID6nzU0v
+         cETZ2a5yBNT+An5pK2JbSceNU9YxtA1YZRKH5uQ2igf4o4N4MYZN9N7YkH/I9Vtdjbf4
+         nMgw==
+X-Gm-Message-State: AO0yUKV/hb2/jZz05d833xtmUMg5KcqzxvVYnsfwyLanxzbfMoknbiA9
+        KzhVlay+qAM2vP1vuCWfrkXgAg==
+X-Google-Smtp-Source: AK7set/DARPmBul9NCqse8wxkiSO55gWa8Vwl3NTZ1oXoRY8LHh5qhoQNHuMitTGhhC5XgD0oyv1wA==
+X-Received: by 2002:a2e:b70e:0:b0:28f:265d:11da with SMTP id j14-20020a2eb70e000000b0028f265d11damr4300985ljo.13.1678795183552;
+        Tue, 14 Mar 2023 04:59:43 -0700 (PDT)
+Received: from [192.168.1.101] (abyj16.neoplus.adsl.tpnet.pl. [83.9.29.16])
+        by smtp.gmail.com with ESMTPSA id bg39-20020a05651c0ba700b00295a36fedadsm415818ljb.26.2023.03.14.04.59.41
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 14 Mar 2023 04:59:42 -0700 (PDT)
+Message-ID: <1eea079d-c0e8-b941-60d2-e0656cbb73be@linaro.org>
+Date:   Tue, 14 Mar 2023 12:59:40 +0100
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.8.0
+Subject: Re: [PATCH v3 03/10] drm/msm/dsi: Fix DSI index detection when
+ version clash occurs
+Content-Language: en-US
+To:     Marijn Suijten <marijn.suijten@somainline.org>
+Cc:     Rob Clark <robdclark@gmail.com>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Sean Paul <sean@poorly.run>, David Airlie <airlied@gmail.com>,
         Daniel Vetter <daniel@ffwll.ch>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Maxime Ripard <mripard@kernel.org>,
-        Michael Riesch <michael.riesch@wolfvision.net>,
-        Gerald Loacker <gerald.loacker@wolfvision.net>
-Subject: [PATCH 7/7] dt-bindings: display: add panel-timing property to sitronix,st7789v
-Date:   Tue, 14 Mar 2023 12:56:44 +0100
-Message-Id: <20230314115644.3775169-8-gerald.loacker@wolfvision.net>
-X-Mailer: git-send-email 2.37.2
-In-Reply-To: <20230314115644.3775169-1-gerald.loacker@wolfvision.net>
-References: <20230314115644.3775169-1-gerald.loacker@wolfvision.net>
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: VI1PR0802CA0032.eurprd08.prod.outlook.com
- (2603:10a6:800:a9::18) To VI1PR08MB4544.eurprd08.prod.outlook.com
- (2603:10a6:803:100::13)
-MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: VI1PR08MB4544:EE_|AS8PR08MB9313:EE_
-X-MS-Office365-Filtering-Correlation-Id: 6eec2d57-fdf5-4ff9-e4f9-08db24833df3
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: r+jPk7yndMG9zzFLnHGquYyUAgIc1hPKRTcDaSbJJ+GQ7Q4lgs1FDJJmssgFtkQchAJIfCoxSl0xMPYnL8xsh7jYg6nVmV9S9x9L7RwD2pdfk8zBUtlQPBybL+mPkFP0QCByIVcnfWPrAcjKeOXVB2/9Or2rV1Z6RsDTZIOrEykQ3ybZ1xXy4xxt/dFYytyNjYIqkUq7I5XV93zl3Wbxh+csmmrDzmi9LcCOfNMpkGxEYKHmaK+kZX7pZBpE70eTbizuc1A0YZzqyGY6of7Ic3DAg6b2pWvVg+z/iBeccxu7WSrSnoPBLzNOBMbHxJ0h6/fgocEIQjxeCR5S6H3QazZYRpNFP/TlMw6U2LoiUy7A9RpMtkIXjxFHZYzCkz0vc7jFrtz0kOV0JnWLzH7soH/vKefi+dQrbch1YRYEjXPm1tRufVdzzoLQbsLM9+XrtP3PlJORq92sPMy7TEL1/6y+m1MlxRMfNVXjp8xHF71sFxKyqhyDSVghQg1kfLNFnfSWaO9ORrnCiW5xbmPy/JqwjyeJdjBhHspqbycV2HADUuvtHPqTXfUgwxzY4Ap+m0kRlYFFEGYQVWs0V+IILRM5A4GwpjpCKeniv/6X5G4hshojbi9FGt5Uce5pcHt3qdMpaH5KChW+0nZ5Y7xC2TBX7WXLR70D7ucBxNFn2121mOlOni5by8KiwNDekcumQR7NgzvejxiMIs4BVylyXg==
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VI1PR08MB4544.eurprd08.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230025)(4636009)(366004)(346002)(376002)(396003)(39850400004)(136003)(451199018)(478600001)(52116002)(186003)(26005)(83380400001)(107886003)(6666004)(6486002)(66556008)(54906003)(66476007)(316002)(6506007)(2616005)(66946007)(6512007)(8676002)(41300700001)(4326008)(1076003)(8936002)(44832011)(5660300002)(7416002)(38100700002)(38350700002)(2906002)(36756003)(86362001);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?ZIctTdp6IT9lGQeUfXGsx6aBI0Tgtitqz2Q68KPYZdkg4sVD0zqPyU6Z6DiP?=
- =?us-ascii?Q?awEk0eifs/XQatH513JwT44Aog9O6oEbk0S4Itad1fmB1YKmwS+iuhaTMM5Q?=
- =?us-ascii?Q?gIw8NnjYxuX6xrQww+TToO3DaBJbJI3kGa9yfJ8hTgiXGpGG9oGrwKDI6vbc?=
- =?us-ascii?Q?Ayc6mCAIMc5YZGINwHZabUjpiN5xDACJJkeNRCHk2gWq3txd/9x2odFOeaMd?=
- =?us-ascii?Q?v4BL/Y8gKY07gnbqmGicpImsM4VM/3f9aUWK/1yNKttvpY1357twYJ7ZBwQQ?=
- =?us-ascii?Q?N2a93TpQk4RuUbnjJS971PR3goQua26yKvSnd76qT7VNmnVDFM8L2HOQS+H3?=
- =?us-ascii?Q?aEKnMLohG+YpbKOnWJrtwehE9zlCnjc1fzvqgb/ixgiaprWu62ADLvsvMjl7?=
- =?us-ascii?Q?J7zXp50pJuAri9SgqyMSrI3vNrLhC6vqucCmE4BNH309U+tyfM7/Bmiip70g?=
- =?us-ascii?Q?VmD4Hu5EtThiMs6rXH/rWGn7f1LGWZW/wkOFeuj/v38MY6Ni//yXK9fpIzAs?=
- =?us-ascii?Q?+vCJYgp6a3x86EK8hHFieEWC1+q5sscUrCLaQ/SPqTyW6J6IAyW628LKRAxk?=
- =?us-ascii?Q?ZqL810kkPehmNFcSaS0SVOH4gbmE2KgKGH8F2BVR2bZStbks7KFMsZsx9eaj?=
- =?us-ascii?Q?45+a4Q13jU5H7L3Z7dsRew+FU3owSYR0qHifOg9wQfAK4gYfstz0+h9fwcBW?=
- =?us-ascii?Q?pkv1e7ewysxfdvW1+WnvJ0w52rvAMOahHNshCZsbygjF1tYbDpBIf2kMLYJ6?=
- =?us-ascii?Q?YvB6Gs0+BcRiW9+6WR18hCVCczCMmDySvdtwHR693ZRuLlfMOGF1GANg1OgL?=
- =?us-ascii?Q?CuZ6kswEymFDMD3lQhEnWTSZ9T16k1Ugq8k5woaIThJ7VVR/USZ+e73dKo+6?=
- =?us-ascii?Q?EtexKl3x3rBGY11TALbYeLde1cQRAsXuP/siR9m1UB3s3TcG+hGh67DAt88/?=
- =?us-ascii?Q?PLFkRXLYDhrzww1cu+5S5xCEItInGuK72Y85uKyPr7uI8P2XGeOXVRIVIp2s?=
- =?us-ascii?Q?YTGCbOljJqIww0VZ28o8qAKvrFBvvvNq2es6HF4dMHm45FcCMTXM5WA4olU3?=
- =?us-ascii?Q?xT2+VcmDheN8IyzjLLPM9aRI25qro04EKQtKLX4GpQtBxAMkeyOg1mLrTcCE?=
- =?us-ascii?Q?hJc0Bn2jIHLxXN32KRwtuIZfv7aoIqR/79eyCrSkn25kzW9txhfMAK/X6x5f?=
- =?us-ascii?Q?ohLtQVT0q653AYFlKESBN5BVh9H2uI977gB2sQW1MXVZsGSNS0m+UuuWNh8K?=
- =?us-ascii?Q?XdrWW5PwqwpEL1ACwDeWhxNHJJ3ovXV0gyLq83FGI7V4vm6APo0aYrc4d4+C?=
- =?us-ascii?Q?QBNJ+ihF1CivU20EIpNAb0VbYFD8P9mzBeJiroYJJftr74U4ALXn5cfMDaMe?=
- =?us-ascii?Q?k7r7SXKjw+jMuqSX4poiKUIQkDV9IyvTNJ3TNt2vjGb/0oSUcX6MJOqZqdHh?=
- =?us-ascii?Q?lOYvuMrPd4lTOufXze+L7IniE0EtmediRzH6hHp9LX2Vlye3ptRC0kjnHe97?=
- =?us-ascii?Q?OEdvFUXFrcTZcfqR1Dq/M4gM21jl0c3ycQUdGBTahLWQIv6N2kKntwnzuHV6?=
- =?us-ascii?Q?Y45H8Al95V9cobClU5oyXZy45MDjob26oz+T0DRgLC2cyDRENXGUllUWdmlt?=
- =?us-ascii?Q?rKQk7vEETSPh7o9IBUVl364=3D?=
-X-OriginatorOrg: wolfvision.net
-X-MS-Exchange-CrossTenant-Network-Message-Id: 6eec2d57-fdf5-4ff9-e4f9-08db24833df3
-X-MS-Exchange-CrossTenant-AuthSource: VI1PR08MB4544.eurprd08.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Mar 2023 11:57:10.3173
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: e94ec9da-9183-471e-83b3-51baa8eb804f
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: vuII/TWDWdLnvurTZb7qisEo1xLTwo4zuvUB8qIcs4NdleyUHgy0b6D0m0yqidC97B0KWEnfavRLCeLBHWTodXOHpFJxwMSBDQTkLPRRm2Y=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS8PR08MB9313
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+        Krishna Manikandan <quic_mkrishn@quicinc.com>,
+        Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Rob Herring <robh@kernel.org>, linux-arm-msm@vger.kernel.org,
+        dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20230307-topic-dsi_qcm-v3-0-8bd7e1add38a@linaro.org>
+ <20230307-topic-dsi_qcm-v3-3-8bd7e1add38a@linaro.org>
+ <20230313235109.u7cpusjr6t2xyxmk@SoMainline.org>
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <20230313235109.u7cpusjr6t2xyxmk@SoMainline.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-0.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_SORBS_HTTP,RCVD_IN_SORBS_SOCKS,SPF_HELO_NONE,SPF_PASS,
+        URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The sitronix-st7789v driver now considers the panel-timing property.
-Add the property to the documentation.
 
-Signed-off-by: Gerald Loacker <gerald.loacker@wolfvision.net>
----
- .../display/panel/sitronix,st7789v.yaml         | 17 +++++++++++++++++
- 1 file changed, 17 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/display/panel/sitronix,st7789v.yaml b/Documentation/devicetree/bindings/display/panel/sitronix,st7789v.yaml
-index ed942cd3620f..8810f123dedf 100644
---- a/Documentation/devicetree/bindings/display/panel/sitronix,st7789v.yaml
-+++ b/Documentation/devicetree/bindings/display/panel/sitronix,st7789v.yaml
-@@ -21,6 +21,7 @@ properties:
-   reset-gpios: true
-   power-supply: true
-   backlight: true
-+  panel-timing: true
-   port: true
-   rotation: true
- 
-@@ -54,6 +55,22 @@ examples:
-             spi-cpol;
-             spi-cpha;
- 
-+            panel-timing {
-+                clock-frequency = <7000000>;
-+                hactive = <240>;
-+                vactive = <320>;
-+                hfront-porch = <38>;
-+                hback-porch = <10>;
-+                hsync-len = <10>;
-+                vfront-porch = <8>;
-+                vback-porch = <4>;
-+                vsync-len = <4>;
-+                hsync-active = <1>;
-+                vsync-active = <1>;
-+                de-active = <1>;
-+                pixelclk-active = <1>;
-+            };
-+
-             port {
-                 panel_input: endpoint {
-                     remote-endpoint = <&tcon0_out_panel>;
--- 
-2.37.2
+On 14.03.2023 00:51, Marijn Suijten wrote:
+> On 2023-03-07 14:01:41, Konrad Dybcio wrote:
+>> Currently, we allow for MAX_DSI entries in io_start to facilitate for
+>> MAX_DSI number of DSI hosts at different addresses. The configuration
+>> is matched against the DSI CTRL hardware revision read back from the
+>> component. We need a way to resolve situations where multiple SoCs
+>> with different register maps may use the same version of DSI CTRL. In
+>> preparation to do so, make msm_dsi_config a 2d array where each entry
+>> represents a set of configurations adequate for a given SoC.
+> 
+> Note that this code isn't fool-proof against different SoCs sharing the
+> same DSI host address but for different indices (for example, the
+> address at variant 0 DSI 0 could be the same as variant 1 DSI 1) and the
+> matching logic would wrongly return ID 0 instead of 1 for SoC variant 1,
+> because that's the first matching address it finds.
+I don't think we've had that happen yet, but if it ever does, that's out
+of scope of this patchset.
 
+> 
+>> This is totally fine to do, as the only differentiating factors
+>> between same-version-different-SoCs configurations are the number of
+>> DSI hosts (1 or 2, at least as of today) and the set of base registers.
+>> The regulator setup is the same, because the DSI hardware is the same,
+>> regardless of the SoC it was implemented in.
+>>
+>> In addition to that, update the matching logic such that it will loop
+>> over VARIANTS_MAX variants, making sure they are all taken into account.
+> 
+> "in addition to that" makes it sound like you're doing a separate new
+> thing in this patch, when the match logic must in fact be updated to
+> make it compatible with the change described above (as in, it doesn't
+> compile if you don't account for the extra depth in the array).
+I really think you're nitpicking here..
+
+> 
+>> Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+>> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+> 
+> Regardless of the above, I don't think it's a problem right now and I
+> really like the direction this is headed in: miles better than having a
+> single distinct SoC with a separate way (compatible) of selecting the
+> host DSI CTRL, rather than the hw revision readback.
+> 
+> Reviewed-by: Marijn Suijten <marijn.suijten@somainline.org>
+Thanks!
+
+Konrad
+> 
+>> ---
+>>  drivers/gpu/drm/msm/dsi/dsi_cfg.c  | 52 ++++++++++++++++++++++++++++----------
+>>  drivers/gpu/drm/msm/dsi/dsi_cfg.h  |  5 +++-
+>>  drivers/gpu/drm/msm/dsi/dsi_host.c | 10 ++++----
+>>  3 files changed, 48 insertions(+), 19 deletions(-)
+>>
+>> diff --git a/drivers/gpu/drm/msm/dsi/dsi_cfg.c b/drivers/gpu/drm/msm/dsi/dsi_cfg.c
+>> index 4515f52b407a..6c192963c100 100644
+>> --- a/drivers/gpu/drm/msm/dsi/dsi_cfg.c
+>> +++ b/drivers/gpu/drm/msm/dsi/dsi_cfg.c
+>> @@ -21,7 +21,9 @@ static const struct msm_dsi_config apq8064_dsi_cfg = {
+>>  	.num_regulators = ARRAY_SIZE(apq8064_dsi_regulators),
+>>  	.bus_clk_names = dsi_v2_bus_clk_names,
+>>  	.num_bus_clks = ARRAY_SIZE(dsi_v2_bus_clk_names),
+>> -	.io_start = { 0x4700000, 0x5800000 },
+>> +	.io_start = {
+>> +		{ 0x4700000, 0x5800000 },
+>> +	},
+>>  };
+>>  
+>>  static const char * const dsi_6g_bus_clk_names[] = {
+>> @@ -40,7 +42,9 @@ static const struct msm_dsi_config msm8974_apq8084_dsi_cfg = {
+>>  	.num_regulators = ARRAY_SIZE(msm8974_apq8084_regulators),
+>>  	.bus_clk_names = dsi_6g_bus_clk_names,
+>>  	.num_bus_clks = ARRAY_SIZE(dsi_6g_bus_clk_names),
+>> -	.io_start = { 0xfd922800, 0xfd922b00 },
+>> +	.io_start = {
+>> +		{ 0xfd922800, 0xfd922b00 },
+>> +	},
+>>  };
+>>  
+>>  static const char * const dsi_8916_bus_clk_names[] = {
+>> @@ -58,7 +62,9 @@ static const struct msm_dsi_config msm8916_dsi_cfg = {
+>>  	.num_regulators = ARRAY_SIZE(msm8916_dsi_regulators),
+>>  	.bus_clk_names = dsi_8916_bus_clk_names,
+>>  	.num_bus_clks = ARRAY_SIZE(dsi_8916_bus_clk_names),
+>> -	.io_start = { 0x1a98000 },
+>> +	.io_start = {
+>> +		{ 0x1a98000 },
+>> +	},
+>>  };
+>>  
+>>  static const char * const dsi_8976_bus_clk_names[] = {
+>> @@ -76,7 +82,9 @@ static const struct msm_dsi_config msm8976_dsi_cfg = {
+>>  	.num_regulators = ARRAY_SIZE(msm8976_dsi_regulators),
+>>  	.bus_clk_names = dsi_8976_bus_clk_names,
+>>  	.num_bus_clks = ARRAY_SIZE(dsi_8976_bus_clk_names),
+>> -	.io_start = { 0x1a94000, 0x1a96000 },
+>> +	.io_start = {
+>> +		{ 0x1a94000, 0x1a96000 },
+>> +	},
+>>  };
+>>  
+>>  static const struct regulator_bulk_data msm8994_dsi_regulators[] = {
+>> @@ -94,7 +102,9 @@ static const struct msm_dsi_config msm8994_dsi_cfg = {
+>>  	.num_regulators = ARRAY_SIZE(msm8994_dsi_regulators),
+>>  	.bus_clk_names = dsi_6g_bus_clk_names,
+>>  	.num_bus_clks = ARRAY_SIZE(dsi_6g_bus_clk_names),
+>> -	.io_start = { 0xfd998000, 0xfd9a0000 },
+>> +	.io_start = {
+>> +		{ 0xfd998000, 0xfd9a0000 },
+>> +	},
+>>  };
+>>  
+>>  static const char * const dsi_8996_bus_clk_names[] = {
+>> @@ -113,7 +123,9 @@ static const struct msm_dsi_config msm8996_dsi_cfg = {
+>>  	.num_regulators = ARRAY_SIZE(msm8996_dsi_regulators),
+>>  	.bus_clk_names = dsi_8996_bus_clk_names,
+>>  	.num_bus_clks = ARRAY_SIZE(dsi_8996_bus_clk_names),
+>> -	.io_start = { 0x994000, 0x996000 },
+>> +	.io_start = {
+>> +		{ 0x994000, 0x996000 },
+>> +	},
+>>  };
+>>  
+>>  static const char * const dsi_msm8998_bus_clk_names[] = {
+>> @@ -131,7 +143,9 @@ static const struct msm_dsi_config msm8998_dsi_cfg = {
+>>  	.num_regulators = ARRAY_SIZE(msm8998_dsi_regulators),
+>>  	.bus_clk_names = dsi_msm8998_bus_clk_names,
+>>  	.num_bus_clks = ARRAY_SIZE(dsi_msm8998_bus_clk_names),
+>> -	.io_start = { 0xc994000, 0xc996000 },
+>> +	.io_start = {
+>> +		{ 0xc994000, 0xc996000 },
+>> +	},
+>>  };
+>>  
+>>  static const char * const dsi_sdm660_bus_clk_names[] = {
+>> @@ -148,7 +162,9 @@ static const struct msm_dsi_config sdm660_dsi_cfg = {
+>>  	.num_regulators = ARRAY_SIZE(sdm660_dsi_regulators),
+>>  	.bus_clk_names = dsi_sdm660_bus_clk_names,
+>>  	.num_bus_clks = ARRAY_SIZE(dsi_sdm660_bus_clk_names),
+>> -	.io_start = { 0xc994000, 0xc996000 },
+>> +	.io_start = {
+>> +		{ 0xc994000, 0xc996000 },
+>> +	},
+>>  };
+>>  
+>>  static const char * const dsi_sdm845_bus_clk_names[] = {
+>> @@ -169,7 +185,9 @@ static const struct msm_dsi_config sdm845_dsi_cfg = {
+>>  	.num_regulators = ARRAY_SIZE(sdm845_dsi_regulators),
+>>  	.bus_clk_names = dsi_sdm845_bus_clk_names,
+>>  	.num_bus_clks = ARRAY_SIZE(dsi_sdm845_bus_clk_names),
+>> -	.io_start = { 0xae94000, 0xae96000 },
+>> +	.io_start = {
+>> +		{ 0xae94000, 0xae96000 },
+>> +	},
+>>  };
+>>  
+>>  static const struct regulator_bulk_data sm8550_dsi_regulators[] = {
+>> @@ -182,7 +200,9 @@ static const struct msm_dsi_config sm8550_dsi_cfg = {
+>>  	.num_regulators = ARRAY_SIZE(sm8550_dsi_regulators),
+>>  	.bus_clk_names = dsi_sdm845_bus_clk_names,
+>>  	.num_bus_clks = ARRAY_SIZE(dsi_sdm845_bus_clk_names),
+>> -	.io_start = { 0xae94000, 0xae96000 },
+>> +	.io_start = {
+>> +		{ 0xae94000, 0xae96000 },
+>> +	},
+>>  };
+>>  
+>>  static const struct regulator_bulk_data sc7180_dsi_regulators[] = {
+>> @@ -195,7 +215,9 @@ static const struct msm_dsi_config sc7180_dsi_cfg = {
+>>  	.num_regulators = ARRAY_SIZE(sc7180_dsi_regulators),
+>>  	.bus_clk_names = dsi_sc7180_bus_clk_names,
+>>  	.num_bus_clks = ARRAY_SIZE(dsi_sc7180_bus_clk_names),
+>> -	.io_start = { 0xae94000 },
+>> +	.io_start = {
+>> +		{ 0xae94000 },
+>> +	},
+>>  };
+>>  
+>>  static const char * const dsi_sc7280_bus_clk_names[] = {
+>> @@ -212,7 +234,9 @@ static const struct msm_dsi_config sc7280_dsi_cfg = {
+>>  	.num_regulators = ARRAY_SIZE(sc7280_dsi_regulators),
+>>  	.bus_clk_names = dsi_sc7280_bus_clk_names,
+>>  	.num_bus_clks = ARRAY_SIZE(dsi_sc7280_bus_clk_names),
+>> -	.io_start = { 0xae94000, 0xae96000 },
+>> +	.io_start = {
+>> +		{ 0xae94000, 0xae96000 },
+>> +	},
+>>  };
+>>  
+>>  static const char * const dsi_qcm2290_bus_clk_names[] = {
+>> @@ -229,7 +253,9 @@ static const struct msm_dsi_config qcm2290_dsi_cfg = {
+>>  	.num_regulators = ARRAY_SIZE(qcm2290_dsi_cfg_regulators),
+>>  	.bus_clk_names = dsi_qcm2290_bus_clk_names,
+>>  	.num_bus_clks = ARRAY_SIZE(dsi_qcm2290_bus_clk_names),
+>> -	.io_start = { 0x5e94000 },
+>> +	.io_start = {
+>> +		{ 0x5e94000 },
+>> +	},
+>>  };
+>>  
+>>  static const struct msm_dsi_host_cfg_ops msm_dsi_v2_host_ops = {
+>> diff --git a/drivers/gpu/drm/msm/dsi/dsi_cfg.h b/drivers/gpu/drm/msm/dsi/dsi_cfg.h
+>> index 6b6b16c5fd25..8772a3631ac1 100644
+>> --- a/drivers/gpu/drm/msm/dsi/dsi_cfg.h
+>> +++ b/drivers/gpu/drm/msm/dsi/dsi_cfg.h
+>> @@ -32,13 +32,16 @@
+>>  
+>>  #define DSI_6G_REG_SHIFT	4
+>>  
+>> +/* Maximum number of configurations matched against the same hw revision */
+>> +#define VARIANTS_MAX			2
+>> +
+>>  struct msm_dsi_config {
+>>  	u32 io_offset;
+>>  	const struct regulator_bulk_data *regulator_data;
+>>  	int num_regulators;
+>>  	const char * const *bus_clk_names;
+>>  	const int num_bus_clks;
+>> -	const resource_size_t io_start[DSI_MAX];
+>> +	const resource_size_t io_start[VARIANTS_MAX][DSI_MAX];
+>>  };
+>>  
+>>  struct msm_dsi_host_cfg_ops {
+>> diff --git a/drivers/gpu/drm/msm/dsi/dsi_host.c b/drivers/gpu/drm/msm/dsi/dsi_host.c
+>> index 9021f0d65515..9cfb9e91bfea 100644
+>> --- a/drivers/gpu/drm/msm/dsi/dsi_host.c
+>> +++ b/drivers/gpu/drm/msm/dsi/dsi_host.c
+>> @@ -1862,16 +1862,16 @@ static int dsi_host_get_id(struct msm_dsi_host *msm_host)
+>>  	struct platform_device *pdev = msm_host->pdev;
+>>  	const struct msm_dsi_config *cfg = msm_host->cfg_hnd->cfg;
+>>  	struct resource *res;
+>> -	int i;
+>> +	int i, j;
+>>  
+>>  	res = platform_get_resource_byname(pdev, IORESOURCE_MEM, "dsi_ctrl");
+>>  	if (!res)
+>>  		return -EINVAL;
+>>  
+>> -	for (i = 0; i < DSI_MAX; i++) {
+>> -		if (cfg->io_start[i] == res->start)
+>> -			return i;
+>> -	}
+>> +	for (i = 0; i < VARIANTS_MAX; i++)
+>> +		for (j = 0; j < DSI_MAX; j++)
+>> +			if (cfg->io_start[i][j] == res->start)
+>> +				return j;
+>>  
+>>  	return -EINVAL;
+>>  }
+>>
+>> -- 
+>> 2.39.2
+>>
