@@ -2,30 +2,30 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D98DC6B8FD3
-	for <lists+devicetree@lfdr.de>; Tue, 14 Mar 2023 11:25:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F03F46B8FF0
+	for <lists+devicetree@lfdr.de>; Tue, 14 Mar 2023 11:27:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230382AbjCNKZ2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Mar 2023 06:25:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58286 "EHLO
+        id S229621AbjCNK1C (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Mar 2023 06:27:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58054 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230522AbjCNKZE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Mar 2023 06:25:04 -0400
-Received: from smtp-bc0e.mail.infomaniak.ch (smtp-bc0e.mail.infomaniak.ch [IPv6:2001:1600:4:17::bc0e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C50F67694
-        for <devicetree@vger.kernel.org>; Tue, 14 Mar 2023 03:24:35 -0700 (PDT)
+        with ESMTP id S231203AbjCNKZn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Mar 2023 06:25:43 -0400
+Received: from smtp-42ae.mail.infomaniak.ch (smtp-42ae.mail.infomaniak.ch [84.16.66.174])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AD32E55BD
+        for <devicetree@vger.kernel.org>; Tue, 14 Mar 2023 03:25:16 -0700 (PDT)
 Received: from smtp-3-0000.mail.infomaniak.ch (unknown [10.4.36.107])
-        by smtp-3-3000.mail.infomaniak.ch (Postfix) with ESMTPS id 4PbV4s3XKTzMqPFr;
+        by smtp-3-3000.mail.infomaniak.ch (Postfix) with ESMTPS id 4PbV4t0pXgzMqQG6;
+        Tue, 14 Mar 2023 11:24:30 +0100 (CET)
+Received: from unknown by smtp-3-0000.mail.infomaniak.ch (Postfix) with ESMTPA id 4PbV4s4JQPz2MRm;
         Tue, 14 Mar 2023 11:24:29 +0100 (CET)
-Received: from unknown by smtp-3-0000.mail.infomaniak.ch (Postfix) with ESMTPA id 4PbV4r6zXWz2N45;
-        Tue, 14 Mar 2023 11:24:28 +0100 (CET)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=pschenker.ch;
-        s=20220412; t=1678789469;
-        bh=LudF0hu2w2JADBbt/W9Ar1NM5GzhCrjnoA+Nvc91nGM=;
+        s=20220412; t=1678789470;
+        bh=aeN02gbGVsJ9TQ+Q8lY6g/jfYyUsHYo+ngOj0QJxr6U=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=jajtVam3AXdw6lYvxWAmL7cURTDlcgqhk58f87e1lEKi+XebpeMAbLSrVNF+9rvlx
-         /Vgfps2mFSNKuSyOn/DUI9z0t9WlFTwAx5OqVuboWTmDPRWTMl6Djv340PfA4JaI9b
-         iCVc6saS14YlazKm61QXbrx7mS3BOUpjo6fOZM08=
+        b=rAqVQT59CsBGWcaDzKj+1suRX8CI4GXvVYqjBeCXs/ARGNCZVgG9LvRGOVn/gCuUw
+         vZ2ViIi8mcHPbme7d9pxAGpYjy9MI1NG7QKluPpHXEobN7Akqd0l7nag883MtX3SA9
+         ++z55K31OwCpGtXoVYwcJHY1J+oITUyW8ateGqDA=
 From:   Philippe Schenker <dev@pschenker.ch>
 To:     devicetree@vger.kernel.org, Shawn Guo <shawnguo@kernel.org>,
         Sascha Hauer <s.hauer@pengutronix.de>
@@ -38,19 +38,19 @@ Cc:     NXP Linux Team <linux-imx@nxp.com>,
         linux-arm-kernel@lists.infradead.org,
         Philippe Schenker <philippe.schenker@toradex.com>,
         linux-kernel@vger.kernel.org
-Subject: [PATCH v2 14/23] arm64: dts: colibri-imx8x: Add colibri pwm b, c, d
-Date:   Tue, 14 Mar 2023 11:24:00 +0100
-Message-Id: <20230314102410.424773-15-dev@pschenker.ch>
+Subject: [PATCH v2 15/23] arm64: dts: colibri-imx8x: eval: Add spi-to-can
+Date:   Tue, 14 Mar 2023 11:24:01 +0100
+Message-Id: <20230314102410.424773-16-dev@pschenker.ch>
 X-Mailer: git-send-email 2.39.2
 In-Reply-To: <20230314102410.424773-1-dev@pschenker.ch>
 References: <20230314102410.424773-1-dev@pschenker.ch>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Infomaniak-Routing: alpha
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -59,76 +59,55 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 From: Philippe Schenker <philippe.schenker@toradex.com>
 
-Add Colibri PWM_B, PWM_C, PWM_D to the module-level device-tree and set
-the status to ok on the eval-board.
+Add mcp2515 spi-to-can to &lpspi2.
 
 Signed-off-by: Philippe Schenker <philippe.schenker@toradex.com>
+
 ---
 
-(no changes since v1)
+Changes in v2:
+- Change clock-16mhz-fixed to clock-16mhz
+- Remove status="okay"
 
- .../dts/freescale/imx8x-colibri-eval-v3.dtsi  | 15 +++++++++++++
- .../boot/dts/freescale/imx8x-colibri.dtsi     | 21 +++++++++++++++++++
- 2 files changed, 36 insertions(+)
+ .../dts/freescale/imx8x-colibri-eval-v3.dtsi   | 18 ++++++++++++++++++
+ 1 file changed, 18 insertions(+)
 
 diff --git a/arch/arm64/boot/dts/freescale/imx8x-colibri-eval-v3.dtsi b/arch/arm64/boot/dts/freescale/imx8x-colibri-eval-v3.dtsi
-index 1d0bad085ad4..68e34516961a 100644
+index 68e34516961a..14d479b50656 100644
 --- a/arch/arm64/boot/dts/freescale/imx8x-colibri-eval-v3.dtsi
 +++ b/arch/arm64/boot/dts/freescale/imx8x-colibri-eval-v3.dtsi
-@@ -51,6 +51,21 @@ &lpuart2 {
+@@ -11,6 +11,13 @@ aliases {
+ 		rtc1 = &rtc;
+ 	};
+ 
++	/* fixed crystal dedicated to mcp25xx */
++	clk16m: clock-16mhz {
++		compatible = "fixed-clock";
++		#clock-cells = <0>;
++		clock-frequency = <16000000>;
++	};
++
+ 	gpio-keys {
+ 		compatible = "gpio-keys";
+ 		pinctrl-names = "default";
+@@ -39,6 +46,17 @@ rtc_i2c: rtc@68 {
+ /* Colibri SPI */
+ &lpspi2 {
  	status = "okay";
++
++	mcp2515: can@0 {
++		compatible = "microchip,mcp2515";
++		reg = <0>;
++		interrupt-parent = <&lsio_gpio3>;
++		interrupts = <13 IRQ_TYPE_EDGE_FALLING>;
++		pinctrl-0 = <&pinctrl_can_int>;
++		pinctrl-names = "default";
++		clocks = <&clk16m>;
++		spi-max-frequency = <10000000>;
++	};
  };
  
-+/* Colibri PWM_B */
-+&lsio_pwm0 {
-+	status = "okay";
-+};
-+
-+/* Colibri PWM_C */
-+&lsio_pwm1 {
-+	status = "okay";
-+};
-+
-+/* Colibri PWM_D */
-+&lsio_pwm2 {
-+	status = "okay";
-+};
-+
- /* Colibri UART_A */
- &lpuart3 {
- 	status = "okay";
-diff --git a/arch/arm64/boot/dts/freescale/imx8x-colibri.dtsi b/arch/arm64/boot/dts/freescale/imx8x-colibri.dtsi
-index 778f2f43a8c0..61033b79e44e 100644
---- a/arch/arm64/boot/dts/freescale/imx8x-colibri.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8x-colibri.dtsi
-@@ -259,6 +259,27 @@ &lsio_gpio5 {
- 			  "UNUSABLE_SODIMM_184";
- };
- 
-+/* Colibri PWM_B */
-+&lsio_pwm0 {
-+	#pwm-cells = <3>;
-+	pinctrl-0 = <&pinctrl_pwm_b>;
-+	pinctrl-names = "default";
-+};
-+
-+/* Colibri PWM_C */
-+&lsio_pwm1 {
-+	#pwm-cells = <3>;
-+	pinctrl-0 = <&pinctrl_pwm_c>;
-+	pinctrl-names = "default";
-+};
-+
-+/* Colibri PWM_D */
-+&lsio_pwm2 {
-+	#pwm-cells = <3>;
-+	pinctrl-0 = <&pinctrl_pwm_d>;
-+	pinctrl-names = "default";
-+};
-+
- /* On-module eMMC */
- &usdhc1 {
- 	bus-width = <8>;
+ /* Colibri UART_B */
 -- 
 2.39.2
 
