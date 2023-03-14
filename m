@@ -2,135 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AE3116B9BA0
-	for <lists+devicetree@lfdr.de>; Tue, 14 Mar 2023 17:34:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A2AF76B9BC1
+	for <lists+devicetree@lfdr.de>; Tue, 14 Mar 2023 17:37:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229969AbjCNQeh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Mar 2023 12:34:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56616 "EHLO
+        id S229590AbjCNQhl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Mar 2023 12:37:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32916 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229656AbjCNQeg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Mar 2023 12:34:36 -0400
-Received: from NAM02-DM3-obe.outbound.protection.outlook.com (mail-dm3nam02on2070f.outbound.protection.outlook.com [IPv6:2a01:111:f400:7e83::70f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8C879A2C2E;
-        Tue, 14 Mar 2023 09:34:11 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=ecMFa5c0kAupOxFbOSB8EMTscxS/Wvs0Iv+BVVT0JwXLR9jxTLjLLHQWaKmsVjIiaqvYd8EacSD83UMIcQVu2bsL9WFE/ftr7Pr3eBZdL7p1B0Glmjd/SkfwSRuHlcCBnLk+ZYPwVKCsYpTbxeYCbSHvBzLp5M1ujzWKnjmHtXJrrH3xWlDGQYxaguHhqzIGkt80vs08wXh0GBeseS6BCYu0NdwG1BroRxoCwZrLjJ59hdRTWvTGhV6KA6aIH+K6idROKH1AvbQ66qQDN7iq4qS+T7xLSwK/MKOqwzTK3FvOIb7sqKBeYrAGXitLUmJgPlmmpONQUohRp0WTXWsOgA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=mrKn5aGROGOID2IiNHgBMWDyOJatysnoEKt2I96HMNs=;
- b=Zm0CWN3Inl7FdfdPRA7kTxTRn+J1jhV0bEow0Bvx9MfJmGG15gggHj/mWGN1SwTYlAMaFuuv+O2dRm9qi4/idLl/Y26UwjSY1nWBLiW5znYybsc6G/wyd1nZ11ak8/dSNvXIhwn579WjQXoYxvn4P0OCL36jdEbF7R8TfCkzD33m33WhTblMRDS0CmhWjsJf44wSxdq/J4xOVowV/qfO6Fjon0Zp4QeUfOE4x8eb8QOzt10DEnPeWksuaMFOO4OC8EZNJzioymsa9DiEOJyzcEhq4oqLP5p1fohWtn72uM+mHUDQgvc2poOns34h8ASeDNGarJzSf8QDepAeCqW4wQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=corigine.com; dmarc=pass action=none header.from=corigine.com;
- dkim=pass header.d=corigine.com; arc=none
+        with ESMTP id S230487AbjCNQhf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Mar 2023 12:37:35 -0400
+Received: from mail-ed1-x52f.google.com (mail-ed1-x52f.google.com [IPv6:2a00:1450:4864:20::52f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 635C6B5FD4
+        for <devicetree@vger.kernel.org>; Tue, 14 Mar 2023 09:37:07 -0700 (PDT)
+Received: by mail-ed1-x52f.google.com with SMTP id h8so20696746ede.8
+        for <devicetree@vger.kernel.org>; Tue, 14 Mar 2023 09:37:07 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=corigine.onmicrosoft.com; s=selector2-corigine-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=mrKn5aGROGOID2IiNHgBMWDyOJatysnoEKt2I96HMNs=;
- b=AAC1Q+IDbvYNGyJw/XAxlb7VFQB0Y7z/2ccDLcArlD2poTrog8mz3GijSWcOkpzS1NxU1yoVVi4c0xkLo3fNOPO0BpUni1l8IRF0fJCAuMcYJl9MHBFoQRhQsB7zGwlCGT9DqFAr3PelkVXFs0VnlxhWHKzznieVQMKWD2bKcfc=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=corigine.com;
-Received: from PH0PR13MB4842.namprd13.prod.outlook.com (2603:10b6:510:78::6)
- by MN2PR13MB3957.namprd13.prod.outlook.com (2603:10b6:208:263::11) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6178.26; Tue, 14 Mar
- 2023 16:34:08 +0000
-Received: from PH0PR13MB4842.namprd13.prod.outlook.com
- ([fe80::85f5:bdb:fb9e:294c]) by PH0PR13MB4842.namprd13.prod.outlook.com
- ([fe80::85f5:bdb:fb9e:294c%2]) with mapi id 15.20.6178.026; Tue, 14 Mar 2023
- 16:34:08 +0000
-Date:   Tue, 14 Mar 2023 17:33:59 +0100
-From:   Simon Horman <simon.horman@corigine.com>
-To:     Neeraj sanjay kale <neeraj.sanjaykale@nxp.com>
-Cc:     "davem@davemloft.net" <davem@davemloft.net>,
-        "edumazet@google.com" <edumazet@google.com>,
-        "kuba@kernel.org" <kuba@kernel.org>,
-        "pabeni@redhat.com" <pabeni@redhat.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "marcel@holtmann.org" <marcel@holtmann.org>,
-        "johan.hedberg@gmail.com" <johan.hedberg@gmail.com>,
-        "luiz.dentz@gmail.com" <luiz.dentz@gmail.com>,
-        "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>,
-        "jirislaby@kernel.org" <jirislaby@kernel.org>,
-        "alok.a.tiwari@oracle.com" <alok.a.tiwari@oracle.com>,
-        "hdanton@sina.com" <hdanton@sina.com>,
-        "ilpo.jarvinen@linux.intel.com" <ilpo.jarvinen@linux.intel.com>,
-        "leon@kernel.org" <leon@kernel.org>,
-        "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-bluetooth@vger.kernel.org" <linux-bluetooth@vger.kernel.org>,
-        "linux-serial@vger.kernel.org" <linux-serial@vger.kernel.org>,
-        Amitkumar Karwar <amitkumar.karwar@nxp.com>,
-        Rohit Fule <rohit.fule@nxp.com>,
-        Sherry Sun <sherry.sun@nxp.com>
-Subject: Re: [PATCH v10 3/3] Bluetooth: NXP: Add protocol support for NXP
- Bluetooth chipsets
-Message-ID: <ZBCh98lGvhlMKQQp@corigine.com>
-References: <20230313144028.3156825-1-neeraj.sanjaykale@nxp.com>
- <20230313144028.3156825-4-neeraj.sanjaykale@nxp.com>
- <ZBBUYDhrnn/udT+Z@corigine.com>
- <AM9PR04MB8603E3F3900DB13502CFCB8DE7BE9@AM9PR04MB8603.eurprd04.prod.outlook.com>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <AM9PR04MB8603E3F3900DB13502CFCB8DE7BE9@AM9PR04MB8603.eurprd04.prod.outlook.com>
-X-ClientProxiedBy: AM3PR04CA0140.eurprd04.prod.outlook.com (2603:10a6:207::24)
- To PH0PR13MB4842.namprd13.prod.outlook.com (2603:10b6:510:78::6)
+        d=linaro.org; s=google; t=1678811826;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=jlGiPxrBuoe9rTT5t5btZfai4+ZRhJj1KWzKF0d0HFU=;
+        b=FQ/jOD6i4QQu8oqCAAp5ZGGmktZ2aOz+YkkM8ZFiMxN80MnfYP1emmP8nM7ymFNpyz
+         xJYIYUbYxnc/7QnSfRk+sVAS5KzuNa1L9hqn6KyvE9zOYh8H7LmYy+MNSAYfs7zgPj7L
+         ot4J620sW+6KSVfw/+kaYfsoRHI4CtDy1s+MhMyVSSiD7LAKyFmclBYkGDCow1kjyr+l
+         pOYoc4R100uTMGMrnrvA0Pcjft9D+KQ+PMzbPUGaUzG5Zwby6NcEPLrPJ2ph2XhgceH3
+         MktBbOUBaSfdw8pYBQWXQjU33gj+DMnjBRG87wKxifJcbEL8sl3s74LurRBgV1YcSC4D
+         D64g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1678811826;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=jlGiPxrBuoe9rTT5t5btZfai4+ZRhJj1KWzKF0d0HFU=;
+        b=zVRQ55TjvRWSCvCXrXWUief+5xfMopCWJ112q85tsJLQJ1G7m4sbT8ic0Xks3CvARY
+         hKv50Pah7Q9SIUo3oCi5gHHHb3wxxunspmrQiW9cAaVBlEAz0IzaGOWChcPg00+DHTCv
+         V1Cudk0jKfNlctZY9eHkMg/QlsTHEu+31mQ/JIj6UsLLynnkWmIiGDZxwqn+szMtYqUA
+         mGbu9EaqOkbBKMFp2L7RhQO/An9zrvH+4tTz4fnnf00Hb5J4+nZt7C3AtX6N/yCw/aA8
+         sZt9rl7N9/cmWDAWG659LDl4OAA3JGJl6PiDtrJUEvUzr7iaYPXExQmROcqe+qd49Phr
+         bDOw==
+X-Gm-Message-State: AO0yUKWxShFRaGzLkt80VmYf++H++ooY6Sp+Li8cEIZ0glkD0ftexQam
+        g4E1tjptwhk+jvhDE5ngksAZVA==
+X-Google-Smtp-Source: AK7set9lnU/c+UFm9vu8VIT38DOdPTI3d2yJvUCDcnXWxLpHH00EYbhYjyI9vtClCCGH+kKcraHy5w==
+X-Received: by 2002:a17:906:950a:b0:92a:32ac:8f3d with SMTP id u10-20020a170906950a00b0092a32ac8f3dmr2935863ejx.66.1678811825873;
+        Tue, 14 Mar 2023 09:37:05 -0700 (PDT)
+Received: from ?IPV6:2a02:810d:15c0:828:59be:4b3f:994b:e78c? ([2a02:810d:15c0:828:59be:4b3f:994b:e78c])
+        by smtp.gmail.com with ESMTPSA id mh1-20020a170906eb8100b008eddbd46d7esm1358056ejb.31.2023.03.14.09.37.04
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 14 Mar 2023 09:37:05 -0700 (PDT)
+Message-ID: <b9b4d33d-f325-6437-4f4d-f051d2455e2d@linaro.org>
+Date:   Tue, 14 Mar 2023 17:37:04 +0100
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH0PR13MB4842:EE_|MN2PR13MB3957:EE_
-X-MS-Office365-Filtering-Correlation-Id: aff92754-da93-4fb2-1809-08db24a9eede
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 8My7SARv5O1sHSoxU6wIy/JJx9vfyhQr1FFdbeEGlnrpR9HT7ifRTZKMMtSV74xRM2wSbSnoVFvPpaloIbPVh69hxNop9dyt92cedBjqTDKd4lZfeGjhxnC+DDo9enaKqae8c9PzlHX4driRiT41pJQarOUGpmxvUugqtb/omAIRWiS0nqzccHVsFTgHPHTRRZUkZnqP98K2pWFzD5sM+ZUbC0UWTonIMN3H6kAXq5cXWZt1WNwKRNWHCkmSw0r9XqC80wToKZP5LYcMvhVy+Qle58ocTcBj5H3eX64AmSSvZFFcRMmHPmYfSMp/wxhxf8C6d83BM5dCDm0GHXJcU3CiOSvA7ghwwUAnGFHPxW2djLl4kdKjYFYrwHbqo/yTvZE8uJQdeGls8JnwiBJqv0F+JAbeJh8iEvrnea/DCNDKBEJDA5VEFT7+M5Y8nODoeUOjvKWFwXIhs+5pFnAyc6LtEwaR2jGZL+UcEiAE5R2387xc28qZkOimZRoXlkk52fSsWusIQHpPTii0l9nK66mee6VcKde+XjWZq6s0nQ+e72TS7XNvykkiG+1gvrmj5+VBnEJ/QhbiFgaIG2k6FKs8JKjQiA/YLJIhi9wqy+tOAEXMOKz/RCQYySdaf5pCiYUj12phnFomugFrIJJeNw==
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PH0PR13MB4842.namprd13.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230025)(4636009)(396003)(346002)(366004)(376002)(136003)(39840400004)(451199018)(86362001)(36756003)(38100700002)(8936002)(41300700001)(2906002)(44832011)(7416002)(5660300002)(4326008)(6916009)(6512007)(2616005)(186003)(6506007)(83380400001)(54906003)(316002)(66946007)(66556008)(66476007)(6666004)(6486002)(478600001)(8676002);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?hZOmY02ePl13XyutcQGyciJcajIULofEGKW7bS+ZvGkE3I7r2v+rLkQxKf28?=
- =?us-ascii?Q?ADUcQhytOp6RfBXTtHBhoBs8PLRZeZ0ZXYoJo0uPcZKqzWGhzpwU5u+ako7R?=
- =?us-ascii?Q?lNyvLnGvRGzMMLlgGNYbmtT4bILjSwUUBY9biVjlFs6pAFjvn+IFZ944eGN8?=
- =?us-ascii?Q?AFPfsWNz4nue7r22askICyGgMXfS/1wyWyVm4HXHy8b/E6YXvUzYjq0zwtu1?=
- =?us-ascii?Q?+HnHdsMi2TsOdkFJJN41DVm5dbzZ2ZnyC2zyvedtBDC5VZwPx3r/9razRaB+?=
- =?us-ascii?Q?vFw8eO6ThldrzF+uXkV8OxZ20BnZ2VfF+AmGXDBIWqSU4JEsLk4M5nbG268g?=
- =?us-ascii?Q?lTbHNgu+2UZoTXgdRThPII5JCVdTv8CUIBHZ4xVKnjKe9cBhuMzAfWIiT/VO?=
- =?us-ascii?Q?/Y1CnZpxfniKr2xzm1MO6yDiBsma+hdHiuIvTkzOdfH7dTB3lGUC/PUBP1yQ?=
- =?us-ascii?Q?JPUoxSR5XUfqBOTw55jeMj/X1BnlY7viE7rtTDTIe2slN6ibFIzHNP9gNOLq?=
- =?us-ascii?Q?5AQldmcMm4DAVDBo0jay/E36ERS2zUhMZQIWetAx9fa2RO/kQDyBO8+m8WJg?=
- =?us-ascii?Q?sMVvnUBPuf95XsyAsP46Fipj10OvzM9K/IX3/2/Y6gkjb2eZyYrmLS78B3+h?=
- =?us-ascii?Q?1QSwU6cmXRxe6xkcmom5F1CSWighgeyyL/5OG3ZtrWkHOPJFwxrRlqOafmXD?=
- =?us-ascii?Q?jmeuC6XGGAeyHbH+EDJG724V4qqRQwARNZQFTmdOZcOzZ5mXTSq4ypoNnM43?=
- =?us-ascii?Q?l/SyOsB9p2Em2sBc45xihyqBbnGcG2O2CWHQxsFMmPsjLaKCi88+Ksi7HnRU?=
- =?us-ascii?Q?IOJw+OkSO5pEsTLtUJCjBsjldwk/DNrnxGYi62aOCJh4yT1yIOQb2THesp3z?=
- =?us-ascii?Q?Sd6NJZTRmvmxwV6u1D82/3saKO7lW422XHvi4XfmkqIwcKUhewXIjpUb0dzc?=
- =?us-ascii?Q?fCDk1Tq+F29rdT78lYYmPVDbFBnlG2GBLl0sEt4LjiXI99rVfX1nCjoV4AvL?=
- =?us-ascii?Q?+ncXy3LlDrjNGIVA4Yc4QwXO/PF3PPZZvSVUro5gERCB5qPCxUD+2TgJL/I4?=
- =?us-ascii?Q?RHpTA9O8zFMlJwTz8aviZzgTqKu/XRL6q0+Od54PkVA+v+0m+hliSMbgP4hY?=
- =?us-ascii?Q?nMlmf8KAwCwxyIH5Faq57NqXE/Fs80UGIPGp2rUBhSFJR/tmSKHS5WJzekSd?=
- =?us-ascii?Q?HIcmrLA+VVW46afW+q1XjNL8zcNEVi+VkL56Sq0ecEkrKmZpPCxj0QY1eOWA?=
- =?us-ascii?Q?B6LoAqzfUbxgtuZltUTsXQOrnluiBSrSbbxl+l2tl5QXU5x5sH2bOAF9XVpG?=
- =?us-ascii?Q?ANP0vJqqSg4JbQdSKSgrjdZ2WgmMxnAfENshCVp4gyGBZq0UnhQ7BpeQPrJs?=
- =?us-ascii?Q?i/9u901cyrUZJolqg/AjOruDJUQZmNIJ6DB85aDUaSU7RlV/NXgH++aTV1FT?=
- =?us-ascii?Q?E+9UdpdNmDCei+Z1hEhoeGaP2mZ+eM7ERtbEgLkqJw1sO+29DyC6CyXi8u+T?=
- =?us-ascii?Q?/ke736Mjjbm/lLQvOfZXP48DC5/ZMbJod6ce6FZQcQ0Hdv9ubcq91aWWqwq6?=
- =?us-ascii?Q?oLx1c9CPniFTPnle2RsKHxUxMh4NCrlINWkwZiVUmrskPytdJHdA7CgrqLtG?=
- =?us-ascii?Q?n4uGL4g3sXp5RqgmRM0y4B1eSRY8iZBKFX6Ro1zW3cUy7gH8WWl0mN4vyu35?=
- =?us-ascii?Q?KqBLsQ=3D=3D?=
-X-OriginatorOrg: corigine.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: aff92754-da93-4fb2-1809-08db24a9eede
-X-MS-Exchange-CrossTenant-AuthSource: PH0PR13MB4842.namprd13.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Mar 2023 16:34:08.0068
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: fe128f2c-073b-4c20-818e-7246a585940c
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 3wzO6CVuOwaD6JKO/qIok7SmO0WTieZ899ZH5fL1nSdhiV/8DV0X6gU9z/cS/7DMtv3SurUJWZ+uwQEu40J55DMHUR4OBCaziugHjgPsJHc=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR13MB3957
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.8.0
+Subject: Re: [PATCH v10 3/5] dt-bindings: clock: meson: add A1 PLL and
+ Peripherals clkcs bindings
+Content-Language: en-US
+To:     Dmitry Rokosov <ddrokosov@sberdevices.ru>,
+        neil.armstrong@linaro.org
+Cc:     jbrunet@baylibre.com, mturquette@baylibre.com, sboyd@kernel.org,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        khilman@baylibre.com, martin.blumenstingl@googlemail.com,
+        jian.hu@amlogic.com, kernel@sberdevices.ru, rockosov@gmail.com,
+        linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+References: <20230313201259.19998-1-ddrokosov@sberdevices.ru>
+ <20230313201259.19998-4-ddrokosov@sberdevices.ru>
+ <ffebef1d-8447-181b-1890-3e638d399c62@linaro.org>
+ <20230314114825.yiv4vcszr6b7m45w@CAB-WSD-L081021>
+ <2d9297e9-dab7-9615-3859-79b3b2980d9a@linaro.org>
+ <20230314150107.mwcglcu2jv4ixy3r@CAB-WSD-L081021>
+ <9d176288-cd7c-7107-e180-761e372a2b6e@linaro.org>
+ <c8fecf94-2581-6cc9-955c-324efdc7c70a@linaro.org>
+ <21add21d-4afe-7840-6c49-3786f82761d9@linaro.org>
+ <6b7ae52c-d84d-8d08-139c-5c67ec363e85@linaro.org>
+ <20230314155641.6iw5vgkrrqcx22n6@CAB-WSD-L081021>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230314155641.6iw5vgkrrqcx22n6@CAB-WSD-L081021>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -138,55 +91,56 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Mar 14, 2023 at 03:40:34PM +0000, Neeraj sanjay kale wrote:
-> Hi Simon
+On 14/03/2023 16:56, Dmitry Rokosov wrote:
+> On Tue, Mar 14, 2023 at 04:40:19PM +0100, neil.armstrong@linaro.org wrote:
+>> On 14/03/2023 16:37, Krzysztof Kozlowski wrote:
+>>> On 14/03/2023 16:33, neil.armstrong@linaro.org wrote:
+>>>>> There are many ways - depend on your driver. For example like this:
+>>>>> https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/clk/samsung/clk-exynos5420.c#n975
+>>>>>
+>>>>> The first argument is the clock ID (or ignore).
+>>>>>
+>>>>> BTW, quite likely the problem is generic to all Meson clock drivers.
+>>>>
+>>>> This issue about "public" non-continuous defined was already discussed at https://lore.kernel.org/all/c088e01c-0714-82be-8347-6140daf56640@linaro.org/
+>>>>
+>>>> I don't see what's different with this one.
+>>>
+>>> So you are aware that all undocumented clock IDs are still allowed to
+>>> use in DTS and they are ABI? Changing them will be an ABI break.
+>>
+>> Yes of course.
+>>
+>> Neil
+>>
+>>>
+>>> Best regards,
+>>> Krzysztof
+>>>
+>>
 > 
-> Thank you for reviewing the patch. I have a comment below:
+> Sorry, guys, I'm little bit confused.
+> In the discussion pointed by Neil not-by-one-increment ID with public and
+> private parts are acked by Krzysztof due to explicit explanation in the
+> gxbb header. Have I to comment out my situation and stay it as is?
+
+I did not NAK your solution here. I just pointed my usual remarks that
+it has certain outcome and minuses (undocumented ABI). But it is OK.
+
 > 
-> > 
-> > > +send_skb:
-> > > +     /* Prepend skb with frame type */
-> > > +     memcpy(skb_push(skb, 1), &hci_skb_pkt_type(skb), 1);
-> > > +     skb_queue_tail(&nxpdev->txq, skb);
-> > > +
-> > > +     btnxpuart_tx_wakeup(nxpdev);
-> > > +ret:
-> > > +     return 0;
-> > > +
-> > > +free_skb:
-> > > +     kfree_skb(skb);
-> > > +     goto ret;
-> > 
-> > nit: I think it would be nicer to simply return 0 here.
-> >      And remove the ret label entirely.
-> > 
-> > > +}
-> > 
-> We need to return from this function without clearing the skbs, unless "goto free_skb" is called.
-> If I remove the ret label and return after kfree_skb() it causes a kernel crash.
-> Keeping this change as it is.
-> 
-> Please let me know if you have any further review comments on the v11 patch.
+> BTW, I think changing IDs value would not affect logic, because
+> it's not connected to driver logic 'by values', but 'by constants
 
-I'll look over v11.
+You cannot change the IDs, neither their values nor the names (with
+exceptions). IDs - so the numbers - are ABI.
 
-But for the record, I meant something like this:
+"Constant names" - I assume you mean the names of defines - do not exist
+after preprocessing, so also not really relevant here...
 
-send_skb:
-     /* Prepend skb with frame type */
-     memcpy(skb_push(skb, 1), &hci_skb_pkt_type(skb), 1);
-     skb_queue_tail(&nxpdev->txq, skb);
+> names'. We can expose/hide anything from device tree bindings, it will
+> not change the clk driver logic.
 
-     btnxpuart_tx_wakeup(nxpdev);
-     return 0;
 
-free_skb:
-     kfree_skb(skb);
-     return 0;
-}
+Best regards,
+Krzysztof
 
-> We need to return from this function without clearing the skbs, unless "goto free_skb" is called.
-> If I remove the ret label and return after kfree_skb() it causes a kernel crash.
-> Keeping this change as it is.
-> 
-> Please let me know if you have any further review comments on the v11 patch.
