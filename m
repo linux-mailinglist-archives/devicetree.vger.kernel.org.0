@@ -2,65 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F23B06B9B5A
-	for <lists+devicetree@lfdr.de>; Tue, 14 Mar 2023 17:27:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A924F6B9B3B
+	for <lists+devicetree@lfdr.de>; Tue, 14 Mar 2023 17:23:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230198AbjCNQ1N (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Mar 2023 12:27:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58232 "EHLO
+        id S230406AbjCNQXS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Mar 2023 12:23:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57842 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229616AbjCNQ1J (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Mar 2023 12:27:09 -0400
-Received: from elvis.franken.de (elvis.franken.de [193.175.24.41])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id D22158482D;
-        Tue, 14 Mar 2023 09:26:57 -0700 (PDT)
-Received: from uucp (helo=alpha)
-        by elvis.franken.de with local-bsmtp (Exim 3.36 #1)
-        id 1pc7UG-00048S-02; Tue, 14 Mar 2023 17:26:56 +0100
-Received: by alpha.franken.de (Postfix, from userid 1000)
-        id F224DC131B; Tue, 14 Mar 2023 17:20:48 +0100 (CET)
-Date:   Tue, 14 Mar 2023 17:20:48 +0100
-From:   Thomas Bogendoerfer <tsbogend@alpha.franken.de>
-To:     Keguang Zhang <keguang.zhang@gmail.com>
-Cc:     linux-mips@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S231320AbjCNQXL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Mar 2023 12:23:11 -0400
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 89BB2B0494;
+        Tue, 14 Mar 2023 09:22:45 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=In-Reply-To:Content-Transfer-Encoding:Content-Disposition:
+        Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:From:
+        Sender:Reply-To:Subject:Date:Message-ID:To:Cc:MIME-Version:Content-Type:
+        Content-Transfer-Encoding:Content-ID:Content-Description:Content-Disposition:
+        In-Reply-To:References; bh=99c/H4RS3sl2GEdCD1SE+7ArTysBbPS45jyna0jwNNY=; b=ge
+        x6fJ9HKvhAiACb7W9YQQDylzGSI27gBjBPsU2viPagfFqiviWzyrSp7ZIgfjdqcavzBqVaMPnrCff
+        26FXqCDw5t+JFlfGNfMgAF9W+In5YrE3CkWR84n40IADpBeJMsScHSHl3WfdAZEpAK+INmMhHXRBm
+        4vntcMOsyrf+vH4=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+        (envelope-from <andrew@lunn.ch>)
+        id 1pc7PS-007JAC-GY; Tue, 14 Mar 2023 17:21:58 +0100
+Date:   Tue, 14 Mar 2023 17:21:58 +0100
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Gregory Clement <gregory.clement@bootlin.com>,
+        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jiaxun Yang <jiaxun.yang@flygoat.com>
-Subject: Re: [PATCH v3] dt-bindings: mips: loongson: Add Loongson-1 based
- boards
-Message-ID: <20230314162048.GC18446@alpha.franken.de>
-References: <20230221110142.2121482-1-keguang.zhang@gmail.com>
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] arm64: dts: marvell: armada-ap810: Fix GICv3 ITS node
+ name
+Message-ID: <c02f83c4-3796-40ad-8087-d297ba84e5da@lunn.ch>
+References: <20230207234735.201812-1-robh@kernel.org>
+ <CAL_JsqLitc8rX4aXomgXKSPcW8ejEYe1wB_ecyAg7pgJgR=zyA@mail.gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20230221110142.2121482-1-keguang.zhang@gmail.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW,
-        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAL_JsqLitc8rX4aXomgXKSPcW8ejEYe1wB_ecyAg7pgJgR=zyA@mail.gmail.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Feb 21, 2023 at 07:01:42PM +0800, Keguang Zhang wrote:
-> Add two Loongson-1 based boards: LSGZ 1B and Smartloong 1C.
+On Tue, Mar 14, 2023 at 10:22:40AM -0500, Rob Herring wrote:
+> On Tue, Feb 7, 2023 at 5:47 PM Rob Herring <robh@kernel.org> wrote:
+> >
+> > The GICv3 ITS is an MSI controller, therefore its node name should be
+> > 'msi-controller'.
+> >
+> > Signed-off-by: Rob Herring <robh@kernel.org>
+> > ---
+> >  arch/arm64/boot/dts/marvell/armada-ap810-ap0.dtsi | 2 +-
+> >  1 file changed, 1 insertion(+), 1 deletion(-)
 > 
-> Signed-off-by: Keguang Zhang <keguang.zhang@gmail.com>
-> ---
-> V2 -> V3: Amend the vendor prefix
-> V1 -> V2: Add the according vendor prefix
->           Change the board string to enum
->           Modify the board description
-> ---
->  .../devicetree/bindings/mips/loongson/devices.yaml   | 12 ++++++++++++
->  .../devicetree/bindings/vendor-prefixes.yaml         |  2 ++
->  2 files changed, 14 insertions(+)
+> Ping!
+> 
+> If not maintained, should I send a patch removing this platform instead?
 
-applied to mips-next.
+Gregory usually picks these up around -rc6.
 
-Thomas.
-
--- 
-Crap can work. Given enough thrust pigs will fly, but it's not necessarily a
-good idea.                                                [ RFC1925, 2.3 ]
+	Andrew
