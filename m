@@ -2,139 +2,167 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AFFA26B9FBF
-	for <lists+devicetree@lfdr.de>; Tue, 14 Mar 2023 20:29:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8BAC76B9FC8
+	for <lists+devicetree@lfdr.de>; Tue, 14 Mar 2023 20:31:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229810AbjCNT3V (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Mar 2023 15:29:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41096 "EHLO
+        id S230194AbjCNTa5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Mar 2023 15:30:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43222 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229743AbjCNT2v (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Mar 2023 15:28:51 -0400
-Received: from mx.sberdevices.ru (mx.sberdevices.ru [45.89.227.171])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EE9D45BAF;
-        Tue, 14 Mar 2023 12:28:47 -0700 (PDT)
-Received: from s-lin-edge02.sberdevices.ru (localhost [127.0.0.1])
-        by mx.sberdevices.ru (Postfix) with ESMTP id 13F265FD1F;
-        Tue, 14 Mar 2023 22:28:45 +0300 (MSK)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sberdevices.ru;
-        s=mail; t=1678822125;
-        bh=I8FmdPnM7dDH9PZcltGUQjyy4agraZazHHbaG/8Vggs=;
-        h=Date:From:To:Subject:Message-ID:MIME-Version:Content-Type;
-        b=R05HmtKuFnX5q9NAxSi9p8n5YBatv1yYtaOoacnekLXwP3JQy/3vPmhQLehD2x8Xs
-         +QVucbtN+RfX95KtzIoSCklc8yGutxcVwqBc6+Z3AfAlv0J2284Or3FD32GDOJqKCX
-         tKglCJVXvXHalqvN3xxCXZ/HBTV5GG4ZEDat86g07YRjqDSJGNJaihlKR3oYyhxz8T
-         u+BTnE09q5nboslp1vPbUPWXWPzNI/QVfkR7EJVlnjga/+l/FuOfBdGqCdgmwt7U7L
-         ugF6jwsIAPhWxdOHfdMlXLp7VADW3/p/iJdVoa3qNGURRy3CmlcFzL2+8isWxhwGbW
-         i+4AlhRsymjfg==
-Received: from S-MS-EXCH01.sberdevices.ru (S-MS-EXCH01.sberdevices.ru [172.16.1.4])
-        by mx.sberdevices.ru (Postfix) with ESMTP;
-        Tue, 14 Mar 2023 22:28:43 +0300 (MSK)
-Date:   Tue, 14 Mar 2023 22:28:43 +0300
-From:   Dmitry Rokosov <ddrokosov@sberdevices.ru>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-CC:     <neil.armstrong@linaro.org>, <jbrunet@baylibre.com>,
-        <mturquette@baylibre.com>, <sboyd@kernel.org>,
-        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <khilman@baylibre.com>, <martin.blumenstingl@googlemail.com>,
-        <jian.hu@amlogic.com>, <kernel@sberdevices.ru>,
-        <rockosov@gmail.com>, <linux-amlogic@lists.infradead.org>,
-        <linux-clk@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>
-Subject: Re: [PATCH v10 3/5] dt-bindings: clock: meson: add A1 PLL and
- Peripherals clkcs bindings
-Message-ID: <20230314192843.ajjfzkn4lxnmjxhc@CAB-WSD-L081021>
-References: <ffebef1d-8447-181b-1890-3e638d399c62@linaro.org>
- <20230314114825.yiv4vcszr6b7m45w@CAB-WSD-L081021>
- <2d9297e9-dab7-9615-3859-79b3b2980d9a@linaro.org>
- <20230314150107.mwcglcu2jv4ixy3r@CAB-WSD-L081021>
- <9d176288-cd7c-7107-e180-761e372a2b6e@linaro.org>
- <c8fecf94-2581-6cc9-955c-324efdc7c70a@linaro.org>
- <21add21d-4afe-7840-6c49-3786f82761d9@linaro.org>
- <6b7ae52c-d84d-8d08-139c-5c67ec363e85@linaro.org>
- <20230314155641.6iw5vgkrrqcx22n6@CAB-WSD-L081021>
- <b9b4d33d-f325-6437-4f4d-f051d2455e2d@linaro.org>
+        with ESMTP id S230372AbjCNTa2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Mar 2023 15:30:28 -0400
+Received: from mail-lj1-x230.google.com (mail-lj1-x230.google.com [IPv6:2a00:1450:4864:20::230])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AF17B29E1B;
+        Tue, 14 Mar 2023 12:30:09 -0700 (PDT)
+Received: by mail-lj1-x230.google.com with SMTP id h9so17144394ljq.2;
+        Tue, 14 Mar 2023 12:30:09 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112; t=1678822207;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Dqgms4mBVohNM7iW30qEDQ+lDG4KIARpTXgSHSORq30=;
+        b=F3bvLAaOVnkJ4xkEZeYyInmloRQNEHJEFV/EjiGaMY54T1YvbiYXjUCin9X7zg00z7
+         Qzq1RUZF6PZb0RqEIJN6q+2jGgRuZyle2FVmH3gRugOUlf56BSUBDE69GWEgm5capqEp
+         0moRLYqoLZ/aV2Iz4vJGXyPYXA94iXPBsqu6gdRduNibfPB+QSE12YFmIzkIWXM2T1IF
+         PAMcGk2EB6XPRVS+hIo3/LQuouSPqgx37meIYtMbly2DZoZsJwUgcTgcm1sghOgDBgHZ
+         E+1Cap+9AYlQuXNsdJtWncpPSYPCeVUqYHuOzb+n7kr1BfJg5hFfFc81ZYwe+wIp8QvW
+         uuag==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1678822207;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=Dqgms4mBVohNM7iW30qEDQ+lDG4KIARpTXgSHSORq30=;
+        b=M9Jba3PzpEN5rmiu+F9Tyu7wvdyJ0f1lU3Sqttsie535zBoUXWv0Jtxs3GbmxHr6lL
+         nOzfgxyq0V9QaDC5kjii0PHAmhQeI5QumVjTYn8cvjlp1IJtGZAsQ9uhMd+vchplecv9
+         XtSlGYmvT9K3qOJ78MnBuaeiXH8Ni6PETs0jQbsx2Z6UD+c4LR2uLI3LmRaEv2R91o1B
+         u+cDQ7MTEZ2B75i9b12YHGTDgBrQU7eKR4+KYUJM9voOd1YrkC2bzs7un0SdKD+BcNlS
+         PLPflQE2NYYs++p1UldGgAc67hqhrWN7I+vhwtiwwCMytS6rimKk9wX34jc97Zi3+dZo
+         QirQ==
+X-Gm-Message-State: AO0yUKV843dpBJu8kZ3atGo4IvJzv6ttgUtZhWmRpFplQVSjnQjPnZ0k
+        lYPr1BiRwNkIsL3GwrxrfKCmB8irM3zO79xyxUY=
+X-Google-Smtp-Source: AK7set+SM7jX1PJsr5O6/4TOBKUpUU46b1xy5TdJHkG86pFItAWyRncMY0cFbgoZ/JH8OMB04G/rLYtXA9opsMA4DS8=
+X-Received: by 2002:a2e:b81a:0:b0:295:a96a:2ea1 with SMTP id
+ u26-20020a2eb81a000000b00295a96a2ea1mr93979ljo.0.1678822207382; Tue, 14 Mar
+ 2023 12:30:07 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <b9b4d33d-f325-6437-4f4d-f051d2455e2d@linaro.org>
-User-Agent: NeoMutt/20220415
-X-Originating-IP: [172.16.1.6]
-X-ClientProxiedBy: S-MS-EXCH02.sberdevices.ru (172.16.1.5) To
- S-MS-EXCH01.sberdevices.ru (172.16.1.4)
-X-KSMG-Rule-ID: 4
-X-KSMG-Message-Action: clean
-X-KSMG-AntiSpam-Status: not scanned, disabled by settings
-X-KSMG-AntiSpam-Interceptor-Info: not scanned
-X-KSMG-AntiPhishing: not scanned, disabled by settings
-X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 1.1.2.30, bases: 2023/03/14 06:01:00 #20942017
-X-KSMG-AntiVirus-Status: Clean, skipped
+References: <20230313144028.3156825-1-neeraj.sanjaykale@nxp.com>
+ <20230313144028.3156825-4-neeraj.sanjaykale@nxp.com> <ZBBUYDhrnn/udT+Z@corigine.com>
+ <AM9PR04MB8603E3F3900DB13502CFCB8DE7BE9@AM9PR04MB8603.eurprd04.prod.outlook.com>
+ <ZBCh98lGvhlMKQQp@corigine.com>
+In-Reply-To: <ZBCh98lGvhlMKQQp@corigine.com>
+From:   Luiz Augusto von Dentz <luiz.dentz@gmail.com>
+Date:   Tue, 14 Mar 2023 12:29:55 -0700
+Message-ID: <CABBYNZ+Zx8r-yJD9qq6B0oiDKTjzrvRa2Je0=C1hBjKvMyjmgA@mail.gmail.com>
+Subject: Re: [PATCH v10 3/3] Bluetooth: NXP: Add protocol support for NXP
+ Bluetooth chipsets
+To:     Simon Horman <simon.horman@corigine.com>
+Cc:     Neeraj sanjay kale <neeraj.sanjaykale@nxp.com>,
+        "davem@davemloft.net" <davem@davemloft.net>,
+        "edumazet@google.com" <edumazet@google.com>,
+        "kuba@kernel.org" <kuba@kernel.org>,
+        "pabeni@redhat.com" <pabeni@redhat.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "marcel@holtmann.org" <marcel@holtmann.org>,
+        "johan.hedberg@gmail.com" <johan.hedberg@gmail.com>,
+        "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>,
+        "jirislaby@kernel.org" <jirislaby@kernel.org>,
+        "alok.a.tiwari@oracle.com" <alok.a.tiwari@oracle.com>,
+        "hdanton@sina.com" <hdanton@sina.com>,
+        "ilpo.jarvinen@linux.intel.com" <ilpo.jarvinen@linux.intel.com>,
+        "leon@kernel.org" <leon@kernel.org>,
+        "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-bluetooth@vger.kernel.org" <linux-bluetooth@vger.kernel.org>,
+        "linux-serial@vger.kernel.org" <linux-serial@vger.kernel.org>,
+        Amitkumar Karwar <amitkumar.karwar@nxp.com>,
+        Rohit Fule <rohit.fule@nxp.com>,
+        Sherry Sun <sherry.sun@nxp.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Mar 14, 2023 at 05:37:04PM +0100, Krzysztof Kozlowski wrote:
-> On 14/03/2023 16:56, Dmitry Rokosov wrote:
-> > On Tue, Mar 14, 2023 at 04:40:19PM +0100, neil.armstrong@linaro.org wrote:
-> >> On 14/03/2023 16:37, Krzysztof Kozlowski wrote:
-> >>> On 14/03/2023 16:33, neil.armstrong@linaro.org wrote:
-> >>>>> There are many ways - depend on your driver. For example like this:
-> >>>>> https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/clk/samsung/clk-exynos5420.c#n975
-> >>>>>
-> >>>>> The first argument is the clock ID (or ignore).
-> >>>>>
-> >>>>> BTW, quite likely the problem is generic to all Meson clock drivers.
-> >>>>
-> >>>> This issue about "public" non-continuous defined was already discussed at https://lore.kernel.org/all/c088e01c-0714-82be-8347-6140daf56640@linaro.org/
-> >>>>
-> >>>> I don't see what's different with this one.
-> >>>
-> >>> So you are aware that all undocumented clock IDs are still allowed to
-> >>> use in DTS and they are ABI? Changing them will be an ABI break.
-> >>
-> >> Yes of course.
-> >>
-> >> Neil
-> >>
-> >>>
-> >>> Best regards,
-> >>> Krzysztof
-> >>>
-> >>
-> > 
-> > Sorry, guys, I'm little bit confused.
-> > In the discussion pointed by Neil not-by-one-increment ID with public and
-> > private parts are acked by Krzysztof due to explicit explanation in the
-> > gxbb header. Have I to comment out my situation and stay it as is?
-> 
-> I did not NAK your solution here. I just pointed my usual remarks that
-> it has certain outcome and minuses (undocumented ABI). But it is OK.
-> 
+Hi,
 
-Got it, thank you.
+On Tue, Mar 14, 2023 at 9:34=E2=80=AFAM Simon Horman <simon.horman@corigine=
+.com> wrote:
+>
+> On Tue, Mar 14, 2023 at 03:40:34PM +0000, Neeraj sanjay kale wrote:
+> > Hi Simon
+> >
+> > Thank you for reviewing the patch. I have a comment below:
+> >
+> > >
+> > > > +send_skb:
+> > > > +     /* Prepend skb with frame type */
+> > > > +     memcpy(skb_push(skb, 1), &hci_skb_pkt_type(skb), 1);
+> > > > +     skb_queue_tail(&nxpdev->txq, skb);
+> > > > +
+> > > > +     btnxpuart_tx_wakeup(nxpdev);
+> > > > +ret:
+> > > > +     return 0;
+> > > > +
+> > > > +free_skb:
+> > > > +     kfree_skb(skb);
+> > > > +     goto ret;
+> > >
+> > > nit: I think it would be nicer to simply return 0 here.
+> > >      And remove the ret label entirely.
+> > >
+> > > > +}
+> > >
+> > We need to return from this function without clearing the skbs, unless =
+"goto free_skb" is called.
+> > If I remove the ret label and return after kfree_skb() it causes a kern=
+el crash.
+> > Keeping this change as it is.
+> >
+> > Please let me know if you have any further review comments on the v11 p=
+atch.
+>
+> I'll look over v11.
+>
+> But for the record, I meant something like this:
+>
+> send_skb:
+>      /* Prepend skb with frame type */
+>      memcpy(skb_push(skb, 1), &hci_skb_pkt_type(skb), 1);
+>      skb_queue_tail(&nxpdev->txq, skb);
+>
+>      btnxpuart_tx_wakeup(nxpdev);
+>      return 0;
 
-> > 
-> > BTW, I think changing IDs value would not affect logic, because
-> > it's not connected to driver logic 'by values', but 'by constants
-> 
-> You cannot change the IDs, neither their values nor the names (with
-> exceptions). IDs - so the numbers - are ABI.
-> 
-> "Constant names" - I assume you mean the names of defines - do not exist
-> after preprocessing, so also not really relevant here...
-> 
++1, perhaps it wouldn't be a bad idea to have the code above in a
+separate function e.g. btnxpuart_queue_skb since this code might be
+common.
 
-Ah, you mean the situation when dtb blob is old and module or kernel
-image is new, so ABI is broken. Yep, agree with you.
+> free_skb:
+>      kfree_skb(skb);
+>      return 0;
+> }
+>
+> > We need to return from this function without clearing the skbs, unless =
+"goto free_skb" is called.
+> > If I remove the ret label and return after kfree_skb() it causes a kern=
+el crash.
+> > Keeping this change as it is.
+> >
+> > Please let me know if you have any further review comments on the v11 p=
+atch.
 
-[...]
 
--- 
-Thank you,
-Dmitry
+
+--=20
+Luiz Augusto von Dentz
