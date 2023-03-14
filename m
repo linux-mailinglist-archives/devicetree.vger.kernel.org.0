@@ -2,105 +2,151 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 533696B8D95
-	for <lists+devicetree@lfdr.de>; Tue, 14 Mar 2023 09:39:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 867AF6B8DB1
+	for <lists+devicetree@lfdr.de>; Tue, 14 Mar 2023 09:43:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229673AbjCNIjY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Mar 2023 04:39:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45836 "EHLO
+        id S230043AbjCNInZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Mar 2023 04:43:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54528 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229621AbjCNIjX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Mar 2023 04:39:23 -0400
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CDD6A98EA7;
-        Tue, 14 Mar 2023 01:38:47 -0700 (PDT)
-Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 32E4OblT000537;
-        Tue, 14 Mar 2023 08:38:19 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=UUIGkRvipVGt2jtssCYaB5NikLL1+G8UZU/LbkOU06g=;
- b=jUpxlmCJw7HLqEthKSwSZMoUtJgd3wE8BOg2eq6gRHH6xQ7RFyxvENexMhP0YBGVA0Ko
- azBqIEP+VKyIVmys8OAylp0UuKaV6Nfn79vKZH9m4flCZaY2uV/pYlx6F7OeEH90pyg8
- QOqaq6/D2nFuY08lcTsv/XVfB2ei9CpLzdjTPUY4zt152omI5H6Ft5uFSJIhPXswWXcC
- PFC9tMoVzflO5B1WPx7/TAFrZXTtR9sKJlbG1uC306AFaOPA00fmHkzCDsMEv/ILWFcp
- PS4ArQlx1D4uAROOUgLQ9/eLQVQobmRxxwaTGZc7o1fFyw3MmKQVDcoBUR8gdcHMACMU qA== 
-Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3pa35wb1c1-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 14 Mar 2023 08:38:19 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-        by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 32E8cIle002962
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 14 Mar 2023 08:38:18 GMT
-Received: from [10.201.2.96] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.41; Tue, 14 Mar
- 2023 01:38:15 -0700
-Message-ID: <f09bf4df-dbf9-578d-3dd2-a670b708bbfa@quicinc.com>
-Date:   Tue, 14 Mar 2023 14:08:12 +0530
+        with ESMTP id S229992AbjCNInW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Mar 2023 04:43:22 -0400
+Received: from mail-ed1-x530.google.com (mail-ed1-x530.google.com [IPv6:2a00:1450:4864:20::530])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EF6815A91D
+        for <devicetree@vger.kernel.org>; Tue, 14 Mar 2023 01:43:17 -0700 (PDT)
+Received: by mail-ed1-x530.google.com with SMTP id da10so58886735edb.3
+        for <devicetree@vger.kernel.org>; Tue, 14 Mar 2023 01:43:17 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1678783396;
+        h=content-transfer-encoding:in-reply-to:content-language:references
+         :to:subject:from:user-agent:mime-version:date:message-id:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=92MwtSwPGSC0xtheTxnGf3j9jdTI96ljx0ZviUFHG1I=;
+        b=oyQ4dMvk2UK11GA1WdnLBvMyOHcESeY2TG2Mmo7ok3Q9m+xGNXdYROfuQAKcVbAeop
+         Ypje+0WERfKpYGPxleCN9OtJzftIVgKUBc5JIb13qfCZFPI/NYFqwKGlUZjN71SIoatX
+         pGOlFeNXz5MQm2TqOl1c1YiZ8U8SrKN3HN0Xa/iRIHXnfGJXKrDUlcEvNKufmwbFp6G/
+         Y1kKx9sjvYjV70mOO8H6g71hlUpPZyhRnjSjmCE92X/8U0Engwihxc/Dh2nNK26HXorc
+         5P+2J/pqtcku5I82Ocxod6uh8zsexw+ZjZSwQdKEF2K8rbJhwNtdYR2Ty8ObFhOiKZxy
+         0oDQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1678783396;
+        h=content-transfer-encoding:in-reply-to:content-language:references
+         :to:subject:from:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=92MwtSwPGSC0xtheTxnGf3j9jdTI96ljx0ZviUFHG1I=;
+        b=c2k+hNCyBWpb3xjG7nb0LpjHmQ47up7pxzOy0Yw0AyK30tP+APQzo43pKdDHcYd/zT
+         eBvgddTzY5u2L0fo9KISg17Q72Ulktql1GbkeL/U2RG33+FekjFNVVhs7WKqpQWZN26+
+         6i4oRZ5vGloJrSWUBxL8fUzugdPLUSFUjv5l2FJzPHsjdISbFzmSH8am+2HghC5huODp
+         yGnKrZZRDXEfydrF0oGfdfD97z3zDazE7PqasZAnM8uwbLcSlf50pGRRXOfq4O36b1Ru
+         A2k9sJ8LEqVI9x/4W6CvL9jFEfLFA1WjAusDgAd+0iWuuyLANYZolu8xJdmm1g5LyNo4
+         SP5w==
+X-Gm-Message-State: AO0yUKVAfVbRO1ICNHC+M4fxd3ZvS8+6eBb/5p0ykC5Lj1c+pz3WGbFu
+        IGbvGgxviFqKuBmP+Xs24Bk/Hw==
+X-Google-Smtp-Source: AK7set901qm2G8O222Nxqy1a/eOE1oERM7/AJ9yV62Vn5yPr980uV5IcS9c7byN3Xdxgf4K2Fu+Tuw==
+X-Received: by 2002:aa7:df83:0:b0:4fc:812a:ec25 with SMTP id b3-20020aa7df83000000b004fc812aec25mr5962025edy.16.1678783396420;
+        Tue, 14 Mar 2023 01:43:16 -0700 (PDT)
+Received: from ?IPV6:2a02:810d:15c0:828:59be:4b3f:994b:e78c? ([2a02:810d:15c0:828:59be:4b3f:994b:e78c])
+        by smtp.gmail.com with ESMTPSA id q11-20020a5085cb000000b004bd6e3ed196sm632505edh.86.2023.03.14.01.43.15
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 14 Mar 2023 01:43:16 -0700 (PDT)
+Message-ID: <c45df83a-a6ac-16bd-1872-64fd0794b421@linaro.org>
+Date:   Tue, 14 Mar 2023 09:43:14 +0100
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.0
-Subject: Re: [PATCH V2 1/3] dt-bindings: mailbox: qcom: use fallback for
- IPQ8074 SoC
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.8.0
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH V3 2/6] dt-bindings: timestamp: Add Tegra234 support
+To:     Dipen Patel <dipenp@nvidia.com>, thierry.reding@gmail.com,
+        jonathanh@nvidia.com, linux-kernel@vger.kernel.org,
+        linux-tegra@vger.kernel.org, linux-gpio@vger.kernel.org,
+        linus.walleij@linaro.org, devicetree@vger.kernel.org,
+        linux-doc@vger.kernel.org, robh+dt@kernel.org,
+        timestamp@lists.linux.dev, krzysztof.kozlowski+dt@linaro.org,
+        brgl@bgdev.pl, corbet@lwn.net, gregkh@linuxfoundation.org
+References: <20230310190634.5053-1-dipenp@nvidia.com>
+ <20230310190634.5053-3-dipenp@nvidia.com>
+ <f6d9c84a-1c75-d9b4-59ed-39d6c5b310a9@linaro.org>
+ <b4195142-6cfe-df3c-6edf-0c40b64ad02a@nvidia.com>
+ <6c5045d9-4f4a-5018-3f3f-7746b08ab2b5@linaro.org>
+ <fad52df6-38e8-ba8a-117a-8514e09af0ee@nvidia.com>
 Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        <agross@kernel.org>, <andersson@kernel.org>,
-        <konrad.dybcio@linaro.org>, <jassisinghbrar@gmail.com>,
-        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <linux-arm-msm@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>
-References: <20230314050005.10409-1-quic_kathirav@quicinc.com>
- <20230314050005.10409-2-quic_kathirav@quicinc.com>
- <37cff42d-d6a4-8784-c70e-f0184ee84698@linaro.org>
-From:   Kathiravan T <quic_kathirav@quicinc.com>
-In-Reply-To: <37cff42d-d6a4-8784-c70e-f0184ee84698@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+In-Reply-To: <fad52df6-38e8-ba8a-117a-8514e09af0ee@nvidia.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: Sg1CZNwritAEpdfRGJ0zwqOwMPio1G4K
-X-Proofpoint-GUID: Sg1CZNwritAEpdfRGJ0zwqOwMPio1G4K
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
- definitions=2023-03-14_02,2023-03-14_01,2023-02-09_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 suspectscore=0
- adultscore=0 phishscore=0 impostorscore=0 malwarescore=0 clxscore=1015
- lowpriorityscore=0 bulkscore=0 spamscore=0 priorityscore=1501
- mlxlogscore=531 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2212070000 definitions=main-2303140073
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-On 3/14/2023 1:44 PM, Krzysztof Kozlowski wrote:
-> On 14/03/2023 06:00, Kathiravan T wrote:
->> Since the IPQ8074 mailbox is compatible with the IPQ6018, lets create
->> the fallback to ipq6018 compatible, so that we don't bloat the of_device_id
->> table in the driver.
+On 13/03/2023 22:49, Dipen Patel wrote:
+> On 3/13/23 10:55 AM, Krzysztof Kozlowski wrote:
+>> On 13/03/2023 18:05, Dipen Patel wrote:
+>>> On 3/12/23 8:47 AM, Krzysztof Kozlowski wrote:
+>>>> On 10/03/2023 20:06, Dipen Patel wrote:
+>>>>> Added timestamp provider support for the Tegra234 in devicetree
+>>>>> bindings. In addition, it addresses review comments from the
+>>>>> previous review round as follows:
+>>>>> - Removes nvidia,slices property. This was not necessary as it
+>>>>> is a constant value and can be hardcoded inside the driver code.
+>>>>> - Adds nvidia,gpio-controller property. This simplifies how GTE driver
+>>>>> retrieves GPIO controller instance, see below explanation.
+>>>>>
+>>>>> Without this property code would look like:
+>>>>> if (of_device_is_compatible(dev->of_node, "nvidia,tegra194-gte-aon"))
+>>>>> 	hte_dev->c = gpiochip_find("tegra194-gpio-aon",
+>>>>> 				   tegra_get_gpiochip_from_name);
+>>>>> else if (of_device_is_compatible(dev->of_node, "nvidia,tegra234-gte-aon"))
+>>>>> 	hte_dev->c = gpiochip_find("tegra234-gpio-aon",
+>>>>> 				   tegra_get_gpiochip_from_name);
+>>>>> else
+>>>>> 	return -ENODEV;
+>>>>>
+>>>>> This means for every future addition of the compatible string, if else
+>>>>> condition statements have to be expanded.
+>>>>>
+>>>>> With the property:
+>>>>> gpio_ctrl = of_parse_phandle(dev->of_node, "nvidia,gpio-controller", 0);
+>>>>> ....
+>>>>> hte_dev->c = gpiochip_find(gpio_ctrl, tegra_get_gpiochip_from_of_node);
+>>>>>
+>>>>> We haven't technically started making use of these bindings, so
+>>>>> backwards-compatibility shouldn't be an issue yet.
+>>>>
+>>>> Unfortunately, I don't understand this statement. The
+>>>> nvidia,tegra194-gte-aon with removed property is in a released kernel
+>>>> v6.2. What does it mean "technically"? It's a released kernel thus it is
+>>>> a released ABI.
+>>>
+>>> There is no active user of that driver, so even if it breaks 6.2, it is fine
+>>> as there is no one to complain about it.
 >>
->> Suggested-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->> Signed-off-by: Kathiravan T <quic_kathirav@quicinc.com>
->> ---
->> Changes in V2:
->> 	- Fixed the dtbs_check warning for IPQ6018
->>
-> I responded to v1, so for formality: NAK.
+>> How do you know? It's a released kernel, thus how can you ask millions
+>> of people if they use it or not?
+> 
+> Please help me understand, if I am targeting these set of changes for the kernel
+> 6.4, wouldn't all the patches land on v6.4 at the same time no matter the tree it
 
-Thanks, I should have waited for some more time.. I see the V2 of your 
-series. I'll drop this series.
+No, that's not how we do things. Changes *must be bisectable* and *DTS
+always* goes to separate branch, so how do you ensure this in your
+current flow? I don't see it. The patch #4 should break the bisectability.
 
-Thanks, Kathiravan T.
+> will go from? Also, if user is at v6.2, how this will break as at that version, it
+> will have the old bindings and old driver, right?
 
+Bindings define ABI. You defined them like this in v6.2 thus someone is
+using them:
+1. In other systems, bootloaders, firmwares, SW.
+2. via DTS written for v6.2 ABI. Newer kernel should not break existing
+DTS and we do not talk about in-kernel DTS, just like we do not talk
+about in-kernel user-space applications when using same argument for
+their compatibility.
+
+
+Best regards,
+Krzysztof
 
