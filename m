@@ -2,152 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CFFB76B9208
-	for <lists+devicetree@lfdr.de>; Tue, 14 Mar 2023 12:48:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C18926B9211
+	for <lists+devicetree@lfdr.de>; Tue, 14 Mar 2023 12:50:49 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231196AbjCNLsm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Mar 2023 07:48:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59202 "EHLO
+        id S231448AbjCNLus (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Mar 2023 07:50:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37100 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231364AbjCNLsl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Mar 2023 07:48:41 -0400
-Received: from mx.sberdevices.ru (mx.sberdevices.ru [45.89.227.171])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AAD1346A3;
-        Tue, 14 Mar 2023 04:48:28 -0700 (PDT)
-Received: from s-lin-edge02.sberdevices.ru (localhost [127.0.0.1])
-        by mx.sberdevices.ru (Postfix) with ESMTP id 5576E5FD1A;
-        Tue, 14 Mar 2023 14:48:27 +0300 (MSK)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sberdevices.ru;
-        s=mail; t=1678794507;
-        bh=marFiN47fr+Q7MFOCmdErjItiqHs7/cgayQIHPn8o7A=;
-        h=Date:From:To:Subject:Message-ID:MIME-Version:Content-Type;
-        b=biN9QXQ+GzSQr7wcFa+QfG5JRntdnWm9/Wu0T6S/6iTOTMHlN0Wy2zlNhadFUno0l
-         0o0zTqvmMr0fn6Tgzh/gWnrqGT1onen90KfpytT34E7+3ffksNeeQlcSmCNgEwAFIz
-         G+92O3ABna3Oiu6dQvkfFhXLcvMYWsI2dJaBpkhAZgw2N6NMMvDB5OY/97dAzsHkvg
-         Qn0n/7J50CbBM801iRfbkkUUXL4voWuGWQWrm3mYpRn0Y8HhSja0vgl3BN6xHKz85l
-         /y62Sn+MrFT+rULGOzT6gD5FH6yZ9txoP8JOqC1S/UvyJLwjvDTfuwZP4TBsVuqPRO
-         XpvKzMr2snI5A==
-Received: from S-MS-EXCH01.sberdevices.ru (S-MS-EXCH01.sberdevices.ru [172.16.1.4])
-        by mx.sberdevices.ru (Postfix) with ESMTP;
-        Tue, 14 Mar 2023 14:48:26 +0300 (MSK)
-Date:   Tue, 14 Mar 2023 14:48:25 +0300
-From:   Dmitry Rokosov <ddrokosov@sberdevices.ru>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-CC:     <neil.armstrong@linaro.org>, <jbrunet@baylibre.com>,
-        <mturquette@baylibre.com>, <sboyd@kernel.org>,
-        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <khilman@baylibre.com>, <martin.blumenstingl@googlemail.com>,
-        <jian.hu@amlogic.com>, <kernel@sberdevices.ru>,
-        <rockosov@gmail.com>, <linux-amlogic@lists.infradead.org>,
-        <linux-clk@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>
-Subject: Re: [PATCH v10 3/5] dt-bindings: clock: meson: add A1 PLL and
- Peripherals clkcs bindings
-Message-ID: <20230314114825.yiv4vcszr6b7m45w@CAB-WSD-L081021>
-References: <20230313201259.19998-1-ddrokosov@sberdevices.ru>
- <20230313201259.19998-4-ddrokosov@sberdevices.ru>
- <ffebef1d-8447-181b-1890-3e638d399c62@linaro.org>
+        with ESMTP id S231346AbjCNLuq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Mar 2023 07:50:46 -0400
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 782BC6B30B;
+        Tue, 14 Mar 2023 04:50:43 -0700 (PDT)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 32EBoXGV050742;
+        Tue, 14 Mar 2023 06:50:33 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1678794633;
+        bh=8FgbK58JybAyDtGSU/0NOI0pYcGWkd9ysHycShu750M=;
+        h=From:To:CC:Subject:In-Reply-To:References:Date;
+        b=sRxen+dkbWG5GeZGuJy6gi8pC6y5XXErOBEs1st8qNtdh+m4GG9iZo1SrT+Dtldj6
+         BT5loN739VgSNmpNtJ7fJ2XtjkSwcY1os60542oPYf8Z/gUyE1mSD5+GT8vHxMVrPc
+         Ntx2muIJvTrLm8oT7ROR0lZ/rtKflxZTlZyaR2Ns=
+Received: from DFLE107.ent.ti.com (dfle107.ent.ti.com [10.64.6.28])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 32EBoXCL000645
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Tue, 14 Mar 2023 06:50:33 -0500
+Received: from DFLE111.ent.ti.com (10.64.6.32) by DFLE107.ent.ti.com
+ (10.64.6.28) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Tue, 14
+ Mar 2023 06:50:32 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE111.ent.ti.com
+ (10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
+ Frontend Transport; Tue, 14 Mar 2023 06:50:32 -0500
+Received: from localhost (ileaxei01-snat2.itg.ti.com [10.180.69.6])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 32EBoWg7108403;
+        Tue, 14 Mar 2023 06:50:32 -0500
+From:   Kamlesh Gurudasani <kamlesh@ti.com>
+To:     Jayesh Choudhary <j-choudhary@ti.com>, <nm@ti.com>,
+        <vigneshr@ti.com>
+CC:     <kristo@kernel.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <j-choudhary@ti.com>
+Subject: Re: [PATCH 0/2] Add Crypto Support for J784S4 SoC
+In-Reply-To: <20230313104721.407071-1-j-choudhary@ti.com>
+References: <20230313104721.407071-1-j-choudhary@ti.com>
+Date:   Tue, 14 Mar 2023 17:20:31 +0530
+Message-ID: <87v8j3v9fc.fsf@kamlesh.i-did-not-set--mail-host-address--so-tickle-me>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <ffebef1d-8447-181b-1890-3e638d399c62@linaro.org>
-User-Agent: NeoMutt/20220415
-X-Originating-IP: [172.16.1.6]
-X-ClientProxiedBy: S-MS-EXCH01.sberdevices.ru (172.16.1.4) To
- S-MS-EXCH01.sberdevices.ru (172.16.1.4)
-X-KSMG-Rule-ID: 4
-X-KSMG-Message-Action: clean
-X-KSMG-AntiSpam-Status: not scanned, disabled by settings
-X-KSMG-AntiSpam-Interceptor-Info: not scanned
-X-KSMG-AntiPhishing: not scanned, disabled by settings
-X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 1.1.2.30, bases: 2023/03/14 06:01:00 #20942017
-X-KSMG-AntiVirus-Status: Clean, skipped
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_PASS,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Mar 14, 2023 at 12:28:40PM +0100, Krzysztof Kozlowski wrote:
-> On 13/03/2023 21:12, Dmitry Rokosov wrote:
+Jayesh Choudhary <j-choudhary@ti.com> writes:
 
-[...]
+> This series adds the crypto node for sa2ul for j784s4 platform.
+>
+> First patch adds the device-id for NAVSS without which the probe
+> for dma-controller fails due to 'ti,sci-dev-id' read failure.
+> Second patch adds the crypto node.
+>
+> This series has functional dependency on j784s4 k3_soc_id[1] and
+> PSIL-thread support[2] but it does not affect the boot.
+>
+> [1]:
+> <https://lore.kernel.org/all/20230313065025.185320-1-j-choudhary@ti.com/>
+>
+> [2]:
+> <https://lore.kernel.org/all/20230308201513.116638-1-j-choudhary@ti.com/>
+>
+> For testing the crypto support, crypto extra tests and self tests were
+> enabled and tcrypt tests were used to verify SHA-1/256/512, AES and DES3
+> algorithms.
+>
+> Testing log:
+> <https://gist.github.com/Jayesh2000/4fe36337af6f9dc96a055359d5d6f4ca>
+>
+> Jayesh Choudhary (2):
+>   arm64: dts: ti: k3-j784s4-main: Add 'ti,sci-dev-id' for main_navss
+>   arm64: dts: ti: k3-j784s4-main: Enable crypto accelerator
+>
+>  arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi | 20 ++++++++++++++++++++
+>  1 file changed, 20 insertions(+)
+>
+> -- 
+> 2.25.1
+Both patches look good to me.
 
-> > +#define CLKID_SPIFC		84
-> > +#define CLKID_USB_BUS		85
-> > +#define CLKID_SD_EMMC		86
-> > +#define CLKID_PSRAM		87
-> > +#define CLKID_DMC		88
-> 
-> And what is here? Between 88 and 121?
-> 
-
-Explained below.
-
-> > +#define CLKID_GEN_SEL		121
-> > +
-> > +#endif /* __A1_CLKC_H */
-> > diff --git a/include/dt-bindings/clock/amlogic,a1-pll-clkc.h b/include/dt-bindings/clock/amlogic,a1-pll-clkc.h
-> > new file mode 100644
-> > index 000000000000..8e97d3fb9d30
-> > --- /dev/null
-> > +++ b/include/dt-bindings/clock/amlogic,a1-pll-clkc.h
-> > @@ -0,0 +1,20 @@
-> > +/* SPDX-License-Identifier: GPL-2.0+ */
-> 
-> I found in changelog:
-> "fix license issue, it's GPL-2.0+ only in the current version"
-> and I do not understand.
-> 
-> The license is wrong, so what did you fix?
-> 
-
-Sorry don't get you. Why is it wrong?
-I've changed all new source files to GPL-2.0+ except yaml, because yaml
-dt bindings schemas require the following license:
-
-    # SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-
-I've pointed it in the changelog.
-
-> > +/*
-> > + * Copyright (c) 2019 Amlogic, Inc. All rights reserved.
-> > + * Author: Jian Hu <jian.hu@amlogic.com>
-> > + *
-> > + * Copyright (c) 2023, SberDevices. All Rights Reserved.
-> > + * Author: Dmitry Rokosov <ddrokosov@sberdevices.ru>
-> > + */
-> > +
-> > +#ifndef __A1_PLL_CLKC_H
-> > +#define __A1_PLL_CLKC_H
-> > +
-> > +#define CLKID_FIXED_PLL		1
-> > +#define CLKID_FCLK_DIV2		6
-> > +#define CLKID_FCLK_DIV3		7
-> > +#define CLKID_FCLK_DIV5		8
-> > +#define CLKID_FCLK_DIV7		9
-> > +#define CLKID_HIFI_PLL		10
-> 
-> 
-> Probably I asked about this... why indices are not continuous? You know
-> that consumers are allowed to use number 2 and it will be your ABI, even
-> though you did not write it in the binding? That's a tricky and
-> confusing pattern for no real gains.
-
-Actually, indices are continuou but splitted into two parts: public and
-private. The public part is located in the dt bindings and can be included
-from device tree sources. The private part is in the drivers/clk/meson
-folder, and only clk drivers can use it.
-I know, there is some trick when the user just inserts a digit value and
-doesn't use constants. But I'm starting from the assumption that such
-dts changes will not be approved by maintainers. In other words, the user
-*must* apply defined ABI constants from dt bindings; it's a strong
-restriction.
-
--- 
-Thank you,
-Dmitry
+Reviewed-by: Kamlesh Gurudasani <kamlesh@ti.com>
