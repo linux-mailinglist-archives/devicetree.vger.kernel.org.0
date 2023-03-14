@@ -2,92 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8A4CB6B8B7E
-	for <lists+devicetree@lfdr.de>; Tue, 14 Mar 2023 07:46:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 780336B8B83
+	for <lists+devicetree@lfdr.de>; Tue, 14 Mar 2023 07:49:51 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229813AbjCNGq5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Mar 2023 02:46:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37032 "EHLO
+        id S230111AbjCNGtt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Mar 2023 02:49:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41686 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229704AbjCNGq4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Mar 2023 02:46:56 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9C3297D55C
-        for <devicetree@vger.kernel.org>; Mon, 13 Mar 2023 23:46:55 -0700 (PDT)
+        with ESMTP id S229482AbjCNGts (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Mar 2023 02:49:48 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 578A650F9D;
+        Mon, 13 Mar 2023 23:49:47 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id CD26EB8189B
-        for <devicetree@vger.kernel.org>; Tue, 14 Mar 2023 06:46:53 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5424AC433EF;
-        Tue, 14 Mar 2023 06:46:50 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id DFE1E61570;
+        Tue, 14 Mar 2023 06:49:46 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5E7B5C433D2;
+        Tue, 14 Mar 2023 06:49:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1678776412;
-        bh=SV9p/MYO9qY63VxctUDH+W5RbX5/DcTBNcOwre9hh4g=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=VT4hXcE/V5BFldD3kkSUnqMZU9ycY+YXiK7fr88azIhlLcZnKJaS8MAlqwHI3bsiw
-         5IeLv0+urkOCmlM/YvdGkeVCtdq+ABGcAzyDmEbKy0lGap+qSoe6xZrxjMxyYrkIxZ
-         UtTwL9/lQHadd14xwJhUSwopb0mA4uo+H83agoef6x7f3nfmVTcdwMFRk3MjBCD9mt
-         SQbGIMhaM+UpF2NisDj9IwudOmeaRJeznhgPVcy+T4LTvlcq3OkHe9K7M1kWZkEhJc
-         avnwNrF7Ek97PnVUDiocEkQ+PukdhJ1fflm5xsIcBYHI0KGOANYpHD96fg7id4BNMQ
-         pBP7wGrdk10jQ==
-Date:   Tue, 14 Mar 2023 14:46:45 +0800
-From:   Shawn Guo <shawnguo@kernel.org>
-To:     Alexander Stein <alexander.stein@ew.tq-group.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 1/1] arm64: dts: imx8mp: fix address length for LCDIF2
-Message-ID: <20230314064645.GU143566@dragon>
-References: <20230308092420.2742432-1-alexander.stein@ew.tq-group.com>
+        s=k20201202; t=1678776586;
+        bh=vCpyz//zBAiE3DDnV70snQunPQySkUISt26QGR58L2M=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=dJ2wjyyy+fGA/jE3q8gu9NJHiF5dAQ8LMCFKH33kpSxe5bNyMgoYDOOjjUQeIMCu+
+         clyABbuIb70AHUF9IMC1ljHMsysbzoUsGvPz7t5bhxRqpOpYnvcMFu0tiTPCsipwAu
+         EMIZ9pSdS+Q+t0Gnk1P6i4WaR+47PbzPiIdlL78qXbXnaY6eMik1L0JHGrrvnKllT1
+         duz7m8/9vWRg6KnND0LIiTfkcEpzdUhhRLeDLNYcirGTB7wBlv1oa4+6om0tg6EMNK
+         rbm9loBWx3NwaCbJY7YY7SlpvDhp/JCgHF68lIkI8HwI5WjRM7BKdhuSGgxx1kfGLq
+         79/CKe1G4vSiQ==
+Message-ID: <6ff60914-0c39-9916-2e3a-a906b4cdef0d@kernel.org>
+Date:   Tue, 14 Mar 2023 07:49:40 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230308092420.2742432-1-alexander.stein@ew.tq-group.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.8.0
+Subject: Re: [PATCH v13 2/2] clk: clk-loongson2: add clock controller driver
+ support
+Content-Language: en-US
+To:     Stephen Boyd <sboyd@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        kernel test robot <lkp@intel.com>, linux-clk@vger.kernel.org,
+        linux-kernel@vger.kernel.org, zhuyinbo <zhuyinbo@loongson.cn>
+Cc:     oe-kbuild-all@lists.linux.dev, Jianmin Lv <lvjianmin@loongson.cn>,
+        Liu Peibao <liupeibao@loongson.cn>, wanghongliang@loongson.cn,
+        loongson-kernel@lists.loongnix.cn
+References: <20230307115022.12846-2-zhuyinbo@loongson.cn>
+ <202303082037.QPfBP64A-lkp@intel.com>
+ <b94ee1d2-b224-f9d5-3f3c-0096634f4c93@loongson.cn>
+ <ec1fb4d134181a1b1859bcb884dcd494.sboyd@kernel.org>
+ <c03e47f7-bb26-0114-b300-357634b0e581@kernel.org>
+ <61eee19400e9a45ce9543bfd92a27eaa.sboyd@kernel.org>
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+In-Reply-To: <61eee19400e9a45ce9543bfd92a27eaa.sboyd@kernel.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_HI,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Mar 08, 2023 at 10:24:19AM +0100, Alexander Stein wrote:
-> 0x238 is the offset for PANIC0_THRES, so the length needs to be 4 bytes
-> greater than that.
+On 13/03/2023 19:20, Stephen Boyd wrote:
+>>>> The CONFIG_64BIT not enabled in your config file, I will add a depend on 
+>>>> "CONFIG_64BIT" in my clock driver to fix this compile error.
+>>>
+>>> Do you need to use readq() here? Can you read two 32-bit registers with
+>>> readl() and put them together for a 64-bit number?
+>>
+>> If the platform supports 64-bit reads and these are actually one
+>> register, then readq makes sense - code is more readable, smaller, more
+>> efficient.
+>>
 > 
-> Fixes: 94e6197dadc9 ("arm64: dts: imx8mp: Add LCDIF2 & LDB nodes")
-> Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
-> ---
-> Does it make sense to increase the length to 0x10000 instead which
-> is the size mentioned in the memory map in the RM?
+> Please read the section in Documentation/driver-api/device-io.rst about
+> hi_lo_readq() and <linux/io-64-nonatomic-lo-hi.h>. We shouldn't need to
+> restrict the driver to CONFIG_64BIT. Instead, include one of these
+> header files to get the IO access primitives.
 
-Makes sense to me.
+These primitives are for 32bit access. Quoting: "on 32-bit
+architectures". What's the point of them if the code *will never* run on
+32-bit? It will be a fake choice of linux/io-64-nonatomic-lo-hi.h or
+linux/io-64-nonatomic-hi-lo.h misleading users to think this was tested
+on 32-bit.
 
-Shawn
+Best regards,
+Krzysztof
 
-> 
->  arch/arm64/boot/dts/freescale/imx8mp.dtsi | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mp.dtsi b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-> index a19224fe1a6a..722e36d7b420 100644
-> --- a/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-> +++ b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-> @@ -1128,7 +1128,7 @@ aips4: bus@32c00000 {
->  
->  			lcdif2: display-controller@32e90000 {
->  				compatible = "fsl,imx8mp-lcdif";
-> -				reg = <0x32e90000 0x238>;
-> +				reg = <0x32e90000 0x23c>;
->  				interrupts = <GIC_SPI 6 IRQ_TYPE_LEVEL_HIGH>;
->  				clocks = <&clk IMX8MP_CLK_MEDIA_DISP2_PIX_ROOT>,
->  					 <&clk IMX8MP_CLK_MEDIA_AXI_ROOT>,
-> -- 
-> 2.34.1
-> 
