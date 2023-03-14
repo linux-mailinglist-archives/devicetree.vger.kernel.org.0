@@ -2,110 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D1BBA6B8922
-	for <lists+devicetree@lfdr.de>; Tue, 14 Mar 2023 04:45:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E9BCE6B8962
+	for <lists+devicetree@lfdr.de>; Tue, 14 Mar 2023 05:15:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229847AbjCNDp5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Mar 2023 23:45:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44710 "EHLO
+        id S229755AbjCNEPu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Mar 2023 00:15:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55048 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229456AbjCNDp4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Mar 2023 23:45:56 -0400
-Received: from mail-pl1-x62d.google.com (mail-pl1-x62d.google.com [IPv6:2607:f8b0:4864:20::62d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8B6B22884E
-        for <devicetree@vger.kernel.org>; Mon, 13 Mar 2023 20:45:54 -0700 (PDT)
-Received: by mail-pl1-x62d.google.com with SMTP id ix20so8720990plb.3
-        for <devicetree@vger.kernel.org>; Mon, 13 Mar 2023 20:45:54 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1678765554;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=vWfZOB/vp5s9CQfk70psxpuLfStVwAPuG8vm3AXMbVw=;
-        b=A03pzeGi/87a/CEGd3BSGBnVCHjVSIdVFN+Y9dTEyPE/i9Pa10dPsNKQlQSHTq2dCj
-         n5e42F9zsyGnyNOo7rHjtUuOWTFndoq0Y5DDkWkY4DxmmQo6yA+29YRuftpzgzFRlEDb
-         QM6BTlbBh+NqHj8d9DbH2s24m/CWUvFc1Mf046Pwm9V2+tM+eW5FvguW6b7CQJ46IISr
-         B7CoJJXGvhu7tHC62xJeQ0PkgNSEpF1YFok5FF6AMvVvuXn5yeyDLCr5vA7dC0/YpMWi
-         isxD+FrtKUL68lF8oM0IAqlBR9ZwX466SC8vXxyrR3CQbOt1/DSxSN+TLolb/1BGwRvJ
-         Sh1A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678765554;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=vWfZOB/vp5s9CQfk70psxpuLfStVwAPuG8vm3AXMbVw=;
-        b=KJYQDUZ55yOEmkRzHZ7j+LfLmjGEZj5ixoeUARlPvZaAQQ2xM/2Y+d6K0MF10CQE0F
-         26bYSwpVXBgKB+NXT++PTgwz/tZZRF/PkPuudNQawIdaiLsfB3j87/PYhpGnBJvCNw5X
-         4EKpbME8knNLU9jMlePhqvdRtFPPU/tLZvlpNd0nXCkiY38xDd2h4WInvAlAN1nvtmYJ
-         Nwodue46sLQ+zyUbqkjRdiaCZ+jb16vnZM2s0dX9Mi2k5kWt+xvshOmiqIORuDrlbCmj
-         vKaPNF1Xz3BnPnAcjXoJaD4AxXrsxVcNoO1z8W2ZPRz8fJ5rZ/WdKgtdPTv6eq1Tz54R
-         bkVQ==
-X-Gm-Message-State: AO0yUKWcqHQ8KxS1Ixe2urfGE48vNSaZx+oGkBQTs1V6+jELJEOCZmWQ
-        PnAd+azMKtgRnEkiRtO5bmh4TA==
-X-Google-Smtp-Source: AK7set90GKcN+w/4U0AuRg6iPs6d/KGH/W2GMNH+vKFp9MJfkZOgAGYBvq4hKrg93Y9OMQ8+BoXuTg==
-X-Received: by 2002:a05:6a20:1609:b0:cc:d44a:bec2 with SMTP id l9-20020a056a20160900b000ccd44abec2mr42619757pzj.1.1678765553966;
-        Mon, 13 Mar 2023 20:45:53 -0700 (PDT)
-Received: from ?IPV6:2401:4900:1c5e:4a3e:15d0:d540:3861:ef0e? ([2401:4900:1c5e:4a3e:15d0:d540:3861:ef0e])
-        by smtp.gmail.com with ESMTPSA id k2-20020aa792c2000000b0056bc5ad4862sm452123pfa.28.2023.03.13.20.45.50
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 13 Mar 2023 20:45:53 -0700 (PDT)
-Message-ID: <55cb151e-b97f-43ee-e06f-63aaa376d6a4@linaro.org>
-Date:   Tue, 14 Mar 2023 09:15:49 +0530
+        with ESMTP id S229448AbjCNEPt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Mar 2023 00:15:49 -0400
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C8CC59035;
+        Mon, 13 Mar 2023 21:15:48 -0700 (PDT)
+Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 32E3WDQp011071;
+        Tue, 14 Mar 2023 04:15:45 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-type; s=qcppdkim1;
+ bh=+m9gUtW7WjTbknqyppngDKvu+Dk6IaA7Thd8taIo7yE=;
+ b=br4liCbnwuDhUIthHwJUJnLpJcdd77gd1f9PYC4fq5wA1xpoD3AKkTb5LnQx4R10jKN6
+ BrBDUw59/mhM2JL7yazX4r4iGdIN3pFMB7+hZjEfLCT1D5ib4LrxQ6bihedA/dd6KsIJ
+ mS8mD8JE/QP/ajaSBt87fuWfDQYhqd2N6bNMUWU0xsYe89k1D4upC7kiA00xdze3bHdO
+ MVHzKvTIbSqx8LlQTFDLfgynrIbcFKTz+10LRZEpwbZkO8sVCLHTTwyfjLgLOQ4BWYhA
+ HFe+rTREjw7b/CgsEcd8GQi73FmNQHhBFzK+wRrdduTvDR3BvoZW2kJCZdylWwjjwcEW jQ== 
+Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3pa44bt568-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 14 Mar 2023 04:15:45 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+        by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 32E4FiZ4018000
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 14 Mar 2023 04:15:44 GMT
+Received: from kathirav-linux.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.41; Mon, 13 Mar 2023 21:15:41 -0700
+From:   Kathiravan T <quic_kathirav@quicinc.com>
+To:     <agross@kernel.org>, <andersson@kernel.org>,
+        <konrad.dybcio@linaro.org>, <jassisinghbrar@gmail.com>,
+        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <linux-arm-msm@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>
+CC:     Kathiravan T <quic_kathirav@quicinc.com>
+Subject: [PATCH 0/3] rework mailbox compatibles for Qualcomm IPQ SoCs
+Date:   Tue, 14 Mar 2023 09:45:12 +0530
+Message-ID: <20230314041515.15883-1-quic_kathirav@quicinc.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.3.1
-Subject: Re: [PATCH] arm64: dts: qcom: sm6115: Add remoteproc nodes
-Content-Language: en-US
-To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
-        linux-arm-msm@vger.kernel.org, andersson@kernel.org
-Cc:     agross@kernel.org, linux-kernel@vger.kernel.org,
-        bhupesh.linux@gmail.com, linux-remoteproc@vger.kernel.org,
-        robh+dt@kernel.org, devicetree@vger.kernel.org
-References: <20230128054256.2100501-1-bhupesh.sharma@linaro.org>
- <5922cd55-060c-d1b1-0eb2-0875439e4268@linaro.org>
- <4b6df5f4-d5e5-30f4-dc1e-a8e5f8c66363@linaro.org>
-From:   Bhupesh Sharma <bhupesh.sharma@linaro.org>
-In-Reply-To: <4b6df5f4-d5e5-30f4-dc1e-a8e5f8c66363@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: mtHOR8dsolWwPwJm7dxaiJRX31bLuYGu
+X-Proofpoint-ORIG-GUID: mtHOR8dsolWwPwJm7dxaiJRX31bLuYGu
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.254,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
+ definitions=2023-03-13_13,2023-03-13_03,2023-02-09_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 bulkscore=0
+ lowpriorityscore=0 priorityscore=1501 mlxscore=0 suspectscore=0
+ malwarescore=0 adultscore=0 phishscore=0 mlxlogscore=579 impostorscore=0
+ spamscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2212070000 definitions=main-2303140037
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+As suggested by Krzysztof[1], we can use the fallback compatible to
+avoid duplicating the same device data.
 
+Krzysztof already submitted a series[2] for this by reworking entire
+binding and driver and it is conflicting with the Dmitry's series as
+mentioned by Krzysztof[3].
 
-On 3/14/23 2:33 AM, Konrad Dybcio wrote:
-> 
-> 
-> On 13.03.2023 21:58, Bhupesh Sharma wrote:
->> Hi Bjorn,
->>
->> On 1/28/23 11:12 AM, Bhupesh Sharma wrote:
->>> Add the adsp, cdsp and modem remoteproc nodes to sm6115.
->>>
->>> Signed-off-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
->>> ---
->>> - Depends on the dt-binding and driver change submitted via [1].
->>> [1]. https://lore.kernel.org/linux-arm-msm/20230128053504.2099620-1-bhupesh.sharma@linaro.org
->>
->> Gentle Ping. Since the dependencies (dt-bindings and driver changes) have already been merged into linux-next, this patch can now be applied.
-> Not really, it won't apply as-is. I suggest applying the version below
-> which was rebased, the reg was adjusted for 64bit addressing and the
-> -names were turned into vertical lists, I've been carrying it downstream
-> for a while and can confirm it works - I even got Wi-Fi up on the Tab P11!
-> 
-> https://github.com/SoMainline/linux/commit/a34e0bf410318b573820254bd241fef0ea013ea1.patch
-> 
-> (this is a git am-able plaintext patchfile)
+So this series addresses IPQ SoCs alone, as I see no dependency with it.
 
-Please send out your version for review, without which remoteproc is 
-currently not functional on SM6115 / SM4250 SoC based boards.
+[1]
+https://lore.kernel.org/linux-arm-msm/1b75ab1a-44c9-c4a8-7fa4-d601fc710d2a@linaro.org/
+[2]
+https://lore.kernel.org/linux-arm-msm/20230202161856.385825-1-krzysztof.kozlowski@linaro.org/
+[3]
+https://lore.kernel.org/linux-arm-msm/fa6dc60c-3799-d384-da24-f282b7cbd3ef@linaro.org/
 
-Thanks,
-Bhupesh
+Kathiravan T (2):
+  dt-bindings: mailbox: qcom: use fallback for IPQ8074 SoC
+  mailbox: qcom-apcs-ipc: drop the IPQ8074 and IPQ5332 compatible
+
+Krzysztof Kozlowski (1):
+  arm64: dts: qcom: ipq8074: add compatible fallback to mailbox
+
+ .../devicetree/bindings/mailbox/qcom,apcs-kpss-global.yaml   | 5 +----
+ arch/arm64/boot/dts/qcom/ipq8074.dtsi                        | 3 ++-
+ drivers/mailbox/qcom-apcs-ipc-mailbox.c                      | 2 --
+ 3 files changed, 3 insertions(+), 7 deletions(-)
+
+-- 
+2.17.1
+
