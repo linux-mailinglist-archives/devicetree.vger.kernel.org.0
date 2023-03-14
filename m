@@ -2,72 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E12E86B8B7B
-	for <lists+devicetree@lfdr.de>; Tue, 14 Mar 2023 07:45:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4EC476B8B7C
+	for <lists+devicetree@lfdr.de>; Tue, 14 Mar 2023 07:46:22 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230173AbjCNGpn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Mar 2023 02:45:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35380 "EHLO
+        id S229789AbjCNGqO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Mar 2023 02:46:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36116 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230129AbjCNGpl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Mar 2023 02:45:41 -0400
-Received: from mail-ed1-x530.google.com (mail-ed1-x530.google.com [IPv6:2a00:1450:4864:20::530])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DC1C073ADE
-        for <devicetree@vger.kernel.org>; Mon, 13 Mar 2023 23:45:39 -0700 (PDT)
-Received: by mail-ed1-x530.google.com with SMTP id j11so57807264edq.4
-        for <devicetree@vger.kernel.org>; Mon, 13 Mar 2023 23:45:39 -0700 (PDT)
+        with ESMTP id S229704AbjCNGqN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Mar 2023 02:46:13 -0400
+Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 42C2D92BF5
+        for <devicetree@vger.kernel.org>; Mon, 13 Mar 2023 23:46:12 -0700 (PDT)
+Received: by mail-lf1-x12f.google.com with SMTP id d36so18622897lfv.8
+        for <devicetree@vger.kernel.org>; Mon, 13 Mar 2023 23:46:12 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1678776338;
-        h=content-transfer-encoding:in-reply-to:from:references:to
+        d=linaro.org; s=google; t=1678776370;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=diffnAOfWc7Vt1DBpcUbHSPpZAZQ80GGOxA9E1+lr1E=;
-        b=qJjklaKNl9q69qJguZ1utGkshe4Ocj/kuU8B0J4/Hoo7dd8Jmf8uBIdJOAINZFrIha
-         kaBrMeLBK1U39hmLGMnnkAg0VUd+nJE6WeJrsNiWNcas5RhdCJGkKPEc/uYa9nDJvioh
-         a3jlSAFGgmGe81pYVI8ZsKlYire8t+mD5nm9CX3+K7kWVI+en6WAttkyN8pBMYkoe+uk
-         LSQ9+XFfH0A0THRSUx5j/Mky0HWdSGHtCONGG+9xws4VhAzTfkykgWkNbB8qExRUjVH3
-         ITR2uCJEvapaOYC13k/W9+C4wEvZ1s4L6JzrXhVnC56TT764vTxlGGSjJLLTdYEJA2vG
-         NUBw==
+        bh=LhbXxJ4vpNqee73M6/vRlz+kqj3z39OL4xPkGR3We6k=;
+        b=GoWSTZrQsLS4XERhO2xMfwRPzK1whV8/7rN0TtUVHDXr6O3pyEMAtvwjGOv+9k0X0b
+         fY3z2pXoNlajopNs9VcuylCpda5CLsWW/4neKFcFVm2ODY+63VagW6eessvxkCtqesVQ
+         VB+eCpTKR6i+TCPxyzXgoNWVwFnzIK34Ql+ePGeI4WNemHqDOofhVWXoMv/jIm8te4Xk
+         6CjPrigAmIAWdgkr+k7dMYjGOs5FsqyEH+1sodzPTVFrCx4V9Q4rlrZ4lh1S720e91Ji
+         BPH46ULT+WyKwZC7wq7xK0Hn7Z21UlMVjiRKiPJxDaMbD14Lr+ybYHCaNVj8Xj1D4MZ5
+         KrFw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678776338;
-        h=content-transfer-encoding:in-reply-to:from:references:to
+        d=1e100.net; s=20210112; t=1678776370;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=diffnAOfWc7Vt1DBpcUbHSPpZAZQ80GGOxA9E1+lr1E=;
-        b=2/2+PddPEtJk/vAoLsL1uBEaR16+ysZylYbpH/c42TXBR5+OJ9Vtux2maYbnoCjCaK
-         skZ303Neqhx2WE5YvtSk3Kuu/nyby8MIafBSBywCLzJWZGeGcMVnrB800jY27/bBzSfo
-         91wqbqN69Vgd6j2IreIqd0awV7Z2FH6I6bCofenmyXgv1yO95l8fgVms3YGTF9vzjlIp
-         /GYaL2vwkATjsqoqXr4vAEuJZfkf1awKHbhVIY8ihH0XQzMtN/w/s1T+uwM4yDTygIsB
-         GGoCsSNGabk9TrTkf1/5s8q/vve5mj5yvo7FCWHpsg/l+EHBlEO62x7jxbicg1viu/7R
-         /c7Q==
-X-Gm-Message-State: AO0yUKWJkywRyI9MXKMV5KhfJGSyZ9OA7C5C5Kl8fzaVNY/n4y+tTo5z
-        gLx4tK3R+XwvT+qSZl/88XBEcA==
-X-Google-Smtp-Source: AK7set88kJIe8uWyyN2A07oBX9EhQPPNb6N+PYl6Ybgbqs7DVNtstN0tvxdsruvV6W8S7wdlbUp5LQ==
-X-Received: by 2002:a17:906:58c6:b0:922:de2c:fdaa with SMTP id e6-20020a17090658c600b00922de2cfdaamr1721096ejs.50.1678776338267;
-        Mon, 13 Mar 2023 23:45:38 -0700 (PDT)
+        bh=LhbXxJ4vpNqee73M6/vRlz+kqj3z39OL4xPkGR3We6k=;
+        b=s7ZXAc7Cc1LF12PI5R4XQAxUzxKjJiC4cTTIpr5GhMR8Ivaw17vE3UaEL3c/tCQr8x
+         fhf5s+OY43BsDD6axLpv6kkkrvtnEHB3+n0c9Z/bcHEaN5giqS4iFIXa2n1MWsYI/a5l
+         16D6+jsTRXemD+FjjOuoFLxnT/Jp4zRGSeQv4TNua7oHDk2A3+fscqs97l8bEdVDAnqA
+         q4uWF/mgXWtGdxGJ+d80/piHwtZGtLp4NxXu/zaz+UWqkAH3UyC5ZYEOC1aaSOhHecu9
+         v/sZW+C6x6U3HtfVaaNItVOrQtQBWZfqEIxF6C8wZUQHnFpwkytgufAupLkBIqrj6zda
+         uXig==
+X-Gm-Message-State: AO0yUKVIqLtXTDGFU0HbDAseDAQF4tdUH5wPUv1Y/SzpH+rbrot0z+hi
+        5AT1E6PNRvM+jQleygQ4DfQ7Sg==
+X-Google-Smtp-Source: AK7set+h2ndOB4p0HTaSRJEa23fwejgd1QQBXJIK8545r8GXILzHRgIM69D8cqAOd6eDDgave0Vz3Q==
+X-Received: by 2002:ac2:4191:0:b0:4e8:401a:3e2b with SMTP id z17-20020ac24191000000b004e8401a3e2bmr448737lfh.5.1678776370465;
+        Mon, 13 Mar 2023 23:46:10 -0700 (PDT)
 Received: from ?IPV6:2a02:810d:15c0:828:6932:5570:6254:9edd? ([2a02:810d:15c0:828:6932:5570:6254:9edd])
-        by smtp.gmail.com with ESMTPSA id z17-20020a1709064e1100b008b69aa62efcsm684050eju.62.2023.03.13.23.45.37
+        by smtp.gmail.com with ESMTPSA id t13-20020a19ad0d000000b004db45096c99sm272438lfc.85.2023.03.13.23.46.08
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 13 Mar 2023 23:45:37 -0700 (PDT)
-Message-ID: <4deec4ba-a905-6460-1d1c-e5a0abd042fc@linaro.org>
-Date:   Tue, 14 Mar 2023 07:45:36 +0100
+        Mon, 13 Mar 2023 23:46:09 -0700 (PDT)
+Message-ID: <4ac7e2e0-9b19-c911-7297-3510e55d6cfd@linaro.org>
+Date:   Tue, 14 Mar 2023 07:46:07 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.8.0
-Subject: Re: [PATCH 3/3] arm64: dts: qcom: ipq8074: add compatible fallback to
- mailbox
+Subject: Re: [PATCH v8 1/7] dt-bindings: mediatek: mt8188: Add binding for MM
+ & INFRA IOMMU
 Content-Language: en-US
-To:     Kathiravan T <quic_kathirav@quicinc.com>, agross@kernel.org,
-        andersson@kernel.org, konrad.dybcio@linaro.org,
-        jassisinghbrar@gmail.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, linux-arm-msm@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-References: <20230314041515.15883-1-quic_kathirav@quicinc.com>
- <20230314041515.15883-4-quic_kathirav@quicinc.com>
+To:     =?UTF-8?B?WW9uZyBXdSAo5ZC05YuHKQ==?= <Yong.Wu@mediatek.com>,
+        "joro@8bytes.org" <joro@8bytes.org>,
+        "will@kernel.org" <will@kernel.org>,
+        "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>
+Cc:     "linux-mediatek@lists.infradead.org" 
+        <linux-mediatek@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        =?UTF-8?B?WW91bGluIFBlaSAo6KO05Y+L5p6XKQ==?= 
+        <youlin.pei@mediatek.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        =?UTF-8?B?SmlhbmppYW8gWmVuZyAo5pu+5YGl5aejKQ==?= 
+        <Jianjiao.Zeng@mediatek.com>,
+        "robin.murphy@arm.com" <robin.murphy@arm.com>,
+        =?UTF-8?B?Q2hlbmdjaSBYdSAo6K645om/6LWQKQ==?= 
+        <Chengci.Xu@mediatek.com>,
+        =?UTF-8?B?WUYgV2FuZyAo546L5LqR6aOeKQ==?= <YF.Wang@mediatek.com>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "iommu@lists.linux.dev" <iommu@lists.linux.dev>,
+        =?UTF-8?B?TWluZ3l1YW4gTWEgKOmprOm4o+i/nCk=?= 
+        <Mingyuan.Ma@mediatek.com>,
+        "angelogioacchino.delregno@collabora.com" 
+        <angelogioacchino.delregno@collabora.com>
+References: <20230307080555.14399-1-yong.wu@mediatek.com>
+ <20230307080555.14399-2-yong.wu@mediatek.com>
+ <388e2274-d46a-68a4-3e85-5bd597085041@linaro.org>
+ <aba29e7fd9a461f2d94c83cf2c7496521433847d.camel@mediatek.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230314041515.15883-4-quic_kathirav@quicinc.com>
+In-Reply-To: <aba29e7fd9a461f2d94c83cf2c7496521433847d.camel@mediatek.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
@@ -78,19 +101,51 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 14/03/2023 05:15, Kathiravan T wrote:
-> From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+On 14/03/2023 03:41, Yong Wu (吴勇) wrote:
+> Hi Krzysztof,
 > 
-> IPQ8074 mailbox is compatible with IPQ6018.
+> Thanks very much for your help review.
 > 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> Signed-off-by: Kathiravan T <quic_kathirav@quicinc.com>
-> ---
->  arch/arm64/boot/dts/qcom/ipq8074.dtsi | 3 ++-
->  1 file changed, 2 insertions(+), 1 deletion(-)
+> On Wed, 2023-03-08 at 11:35 +0100, Krzysztof Kozlowski wrote:
+>> On 07/03/2023 09:05, Yong Wu wrote:
+>>> From: "Chengci.Xu" <chengci.xu@mediatek.com>
+>>>
+>>> Add descriptions for mt8188 IOMMU which also use ARM Short-
+>>> Descriptor
+>>> translation table format.
+>>>
+>>> In mt8188, there are two smi-common HW and IOMMU, one is for
+>>> vdo(video
+>>> output), the other is for vpp(video processing pipe). They connects
+>>> with different smi-larbs, then some setting(larbid_remap) is
+>>> different.
+>>> Differentiate them with the compatible string.
+>>>
+>>> Something like this:
+>>>
+>>>   IOMMU(VDO)          IOMMU(VPP)
+>>>       |                   |
+>>> SMI_COMMON_VDO      SMI_COMMON_VPP
+>>>
+>>> ---------------     ----------------
+>>>   |     |    ...      |     |    ...
+>>> larb0 larb2  ...    larb1 larb3  ...
+>>>
+>>> We also have an IOMMU that is for infra master like PCIe.
+>>> And infra master don't have the larb and ports.
+>>>
+>>> Signed-off-by: Chengci.Xu <chengci.xu@mediatek.com>
+>>> Reviewed-by: Yong Wu <yong.wu@mediatek.com>
+>>> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>>
+>> Indeed, I missed broken checkpatch/DCO chain.
+> 
+> Just confirm what this means.
+> 
+> Do you mean MAINTAINERS need to be updated since we add a prefix
+> "mediatek," for the header file?
 
-What's this? Not even a dependency for something as it is last patch in
-the series. What's the point?
+No it means, run checkpatch.
 
 Best regards,
 Krzysztof
