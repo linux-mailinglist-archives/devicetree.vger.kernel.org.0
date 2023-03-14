@@ -2,122 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 994626B916F
-	for <lists+devicetree@lfdr.de>; Tue, 14 Mar 2023 12:18:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4DDF36B9171
+	for <lists+devicetree@lfdr.de>; Tue, 14 Mar 2023 12:19:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231406AbjCNLS5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Mar 2023 07:18:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50674 "EHLO
+        id S231402AbjCNLTP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Mar 2023 07:19:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49876 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231370AbjCNLSV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Mar 2023 07:18:21 -0400
-Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CA3961ADEB
-        for <devicetree@vger.kernel.org>; Tue, 14 Mar 2023 04:17:48 -0700 (PDT)
-Received: from fabio-Precision-3551.. (unknown [IPv6:2804:14c:485:4b69:d086:7d15:2ce3:1a1b])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
-        (No client certificate requested)
-        (Authenticated sender: festevam@denx.de)
-        by phobos.denx.de (Postfix) with ESMTPSA id 84D16861C5;
-        Tue, 14 Mar 2023 12:17:36 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-        s=phobos-20191101; t=1678792659;
-        bh=5UVq9kWaDSvkl4Rfih2050+zoQO8g2q290YPZ7fsYME=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=p8zxERBlTl6EmELJFG3+3NTNt64GsbVFwAGSB1AwaSC8vCWbffiPnTxxqB0UOBSrO
-         EytfrsQaDut3BNujxc+ImPBrhiMgmW0/sHYf8V13HNaabMyim9Faspi271jeAuun34
-         eH6ilSOtiXXpF/T0bWNCBYWHanBkWi9rQ7bmK0XzKLD+xN7Htgm1qM1Imwki+vjIsL
-         bTuAP++WCZud8uv/ts7B7hmDXgHHNYQYlzhm41IhGv1SJV1uXY/qZvEVifCCVv/iXv
-         7nKq8GzmqAOOAJP7VMqGK5tAVWH4/cHDQh8JIqSMMBzuSx7SxVFY22ofcMH0ahVyqL
-         7RyJNHaXaO0Ig==
-From:   Fabio Estevam <festevam@denx.de>
-To:     neil.armstrong@linaro.org
-Cc:     sam@ravnborg.org, krzysztof.kozlowski+dt@linaro.org,
-        robh+dt@kernel.org, devicetree@vger.kernel.org,
-        dri-devel@lists.freedesktop.org, CPHEALY@gmail.com,
-        Fabio Estevam <festevam@denx.de>
-Subject: [PATCH 2/2] drm/panel: seiko-43wvf1g: Add the 'enable-gpios' property
-Date:   Tue, 14 Mar 2023 08:17:24 -0300
-Message-Id: <20230314111724.1520178-2-festevam@denx.de>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230314111724.1520178-1-festevam@denx.de>
-References: <20230314111724.1520178-1-festevam@denx.de>
+        with ESMTP id S231400AbjCNLS4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Mar 2023 07:18:56 -0400
+Received: from mail-ed1-x52f.google.com (mail-ed1-x52f.google.com [IPv6:2a00:1450:4864:20::52f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 17E178534D
+        for <devicetree@vger.kernel.org>; Tue, 14 Mar 2023 04:18:13 -0700 (PDT)
+Received: by mail-ed1-x52f.google.com with SMTP id cy23so60383659edb.12
+        for <devicetree@vger.kernel.org>; Tue, 14 Mar 2023 04:18:13 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1678792686;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=BTLw347ZTk76CB3YCjWqXtSW/kYt7O7yegt9D9Y6FXA=;
+        b=DfbXKcyFf2lJtqM9kxnIwQgXX5YHPtmETobmmHOm3Xih8xuS22CBz9vhum+UjfNGnT
+         AX/sKetrvq19eNac6gFFkYcUDW6YBAVFgQXHp0yZuDLZpSYPkIMzfI0FWzowlfHnt+Vg
+         37NzIbYf2dKi907JOSf7p5gsNRdYl9kzMZYTJfbO8Hhm9o3V41bI153d7ILKIqjA6vue
+         qJxEVrZnAfIBudOJryrUnv2DX36HSLb0kv7MZFCynatG/tp0k9WpQp0YWQv6HyLnadxU
+         DzejyEjiM9TQ/0IOkDw4drPhRZBZ+wH+gSAyM8Q7/yWZ1UYuvNE0o0xX07pvvqoFd1Cq
+         1DuA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1678792686;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=BTLw347ZTk76CB3YCjWqXtSW/kYt7O7yegt9D9Y6FXA=;
+        b=jVwrLWZa0x7wbyRsjJHTkVWwn4uXvtP4476hyD85QEMvvLNJZz1dhHSuiH+4dKYdRv
+         U12MN3DT2l6V1F5FqP/q/RR08W6qauo3yk3HE/tw/j213Q7oOYSwvqdWSw8hRtGr9YhK
+         IRxYnZBS0DvPdrEcn9CeKcq1NcyZYcdyjqQ34MmdKWAlIAn648lRj4Zm5FUyMhaZyW73
+         AiktYNWe+dw2ovrTsI+x4eaotEnEY/DI1o6NrexcjkejeJM+HYKwusOLpx49t8NaYroe
+         ApAEgQoSwGoWXiufo5rmKKsjxg40yLPHdN/gtovRQX0KPJOZaMDrwN2zGOSX50EoVO4e
+         1aow==
+X-Gm-Message-State: AO0yUKWMJ/qUEpu8fvjh94ogEAXzPjS9sCzYyYTfDrex+9pPf2kbrv5k
+        rZhgu9BbxrBYp4s2uTPsmrJBAQ==
+X-Google-Smtp-Source: AK7set9AeqSbWbMpQSeHyDHFZ0ow4SZlOYcmpT9uXkJZMQnegdxX9KuOMQUBc32BeUqDoZUsjzpCaQ==
+X-Received: by 2002:a17:907:a0e:b0:895:58be:957 with SMTP id bb14-20020a1709070a0e00b0089558be0957mr2625143ejc.2.1678792686070;
+        Tue, 14 Mar 2023 04:18:06 -0700 (PDT)
+Received: from ?IPV6:2a02:810d:15c0:828:59be:4b3f:994b:e78c? ([2a02:810d:15c0:828:59be:4b3f:994b:e78c])
+        by smtp.gmail.com with ESMTPSA id xa13-20020a170907b9cd00b0091ec885e016sm1016273ejc.54.2023.03.14.04.18.04
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 14 Mar 2023 04:18:05 -0700 (PDT)
+Message-ID: <4ca61aac-a901-1bfa-6cf4-8c2917621667@linaro.org>
+Date:   Tue, 14 Mar 2023 12:18:04 +0100
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
-X-Virus-Status: Clean
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.8.0
+Subject: Re: [PATCH 1/4] dt-bindings: PCI: dwc: Add rk3588 compatible line
+Content-Language: en-US
+To:     Lucas Tanure <lucas.tanure@collabora.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>,
+        Lorenzo Pieralisi <lpieralisi@kernel.org>,
+        Krzysztof Wilczynski <kw@linux.com>,
+        Bjorn Helgaas <bhelgaas@google.com>
+Cc:     Qu Wenruo <wqu@suse.com>,
+        Piotr Oniszczuk <piotr.oniszczuk@gmail.com>,
+        Peter Geis <pgwipeout@gmail.com>,
+        Kever Yang <kever.yang@rock-chips.com>,
+        linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-pci@vger.kernel.org, kernel@collabora.com
+References: <20230313153953.422375-1-lucas.tanure@collabora.com>
+ <20230313153953.422375-2-lucas.tanure@collabora.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230313153953.422375-2-lucas.tanure@collabora.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Sometimes a GPIO is needed to turn on/off the display.
+On 13/03/2023 16:39, Lucas Tanure wrote:
+> RK3588 uses the same driver as RK3568
 
-Add support for this usecase by introducing the optional 'enable-gpios'
-property.
+Subject: drop line
 
-Tested on a imx53qsb board.
+Commit msg: drop driver and focus on hardware. Missing full stop.
 
-Signed-off-by: Fabio Estevam <festevam@denx.de>
----
- drivers/gpu/drm/panel/panel-seiko-43wvf1g.c | 12 ++++++++++++
- 1 file changed, 12 insertions(+)
+> 
+> Signed-off-by: Lucas Tanure <lucas.tanure@collabora.com>
+> ---
+>  Documentation/devicetree/bindings/pci/rockchip-dw-pcie.yaml | 1 +
+>  1 file changed, 1 insertion(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/pci/rockchip-dw-pcie.yaml b/Documentation/devicetree/bindings/pci/rockchip-dw-pcie.yaml
+> index 2be72ae1169f..91aa9070ee31 100644
+> --- a/Documentation/devicetree/bindings/pci/rockchip-dw-pcie.yaml
+> +++ b/Documentation/devicetree/bindings/pci/rockchip-dw-pcie.yaml
+> @@ -23,6 +23,7 @@ properties:
+>    compatible:
+>      items:
+>        - const: rockchip,rk3568-pcie
+> +      - const: rockchip,rk3588-pcie
 
-diff --git a/drivers/gpu/drm/panel/panel-seiko-43wvf1g.c b/drivers/gpu/drm/panel/panel-seiko-43wvf1g.c
-index 76160e5d43bd..c250ca36a5b3 100644
---- a/drivers/gpu/drm/panel/panel-seiko-43wvf1g.c
-+++ b/drivers/gpu/drm/panel/panel-seiko-43wvf1g.c
-@@ -7,6 +7,7 @@
-  */
- 
- #include <linux/delay.h>
-+#include <linux/gpio/consumer.h>
- #include <linux/media-bus-format.h>
- #include <linux/module.h>
- #include <linux/of.h>
-@@ -48,6 +49,7 @@ struct seiko_panel {
- 	const struct seiko_panel_desc *desc;
- 	struct regulator *dvdd;
- 	struct regulator *avdd;
-+	struct gpio_desc *enable_gpio;
- };
- 
- static inline struct seiko_panel *to_seiko_panel(struct drm_panel *panel)
-@@ -139,6 +141,8 @@ static int seiko_panel_unprepare(struct drm_panel *panel)
- 	if (!p->prepared)
- 		return 0;
- 
-+	gpiod_set_value_cansleep(p->enable_gpio, 0);
-+
- 	regulator_disable(p->avdd);
- 
- 	/* Add a 100ms delay as per the panel datasheet */
-@@ -174,6 +178,8 @@ static int seiko_panel_prepare(struct drm_panel *panel)
- 		goto disable_dvdd;
- 	}
- 
-+	gpiod_set_value_cansleep(p->enable_gpio, 1);
-+
- 	p->prepared = true;
- 
- 	return 0;
-@@ -252,6 +258,12 @@ static int seiko_panel_probe(struct device *dev,
- 	if (IS_ERR(panel->avdd))
- 		return PTR_ERR(panel->avdd);
- 
-+	panel->enable_gpio = devm_gpiod_get_optional(dev, "enable",
-+						     GPIOD_OUT_LOW);
-+	if (IS_ERR(panel->enable_gpio))
-+		return dev_err_probe(dev, PTR_ERR(panel->enable_gpio),
-+				     "failed to request GPIO\n");
-+
- 	drm_panel_init(&panel->base, dev, &seiko_panel_funcs,
- 		       DRM_MODE_CONNECTOR_DPI);
- 
--- 
-2.34.1
+According to your driver change, these are compatible, so maybe this
+should be expressed in the bindings?
+
+Best regards,
+Krzysztof
 
