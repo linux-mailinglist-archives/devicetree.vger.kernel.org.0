@@ -2,91 +2,176 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CDB646B8BF1
-	for <lists+devicetree@lfdr.de>; Tue, 14 Mar 2023 08:28:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E813A6B8C1C
+	for <lists+devicetree@lfdr.de>; Tue, 14 Mar 2023 08:40:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229656AbjCNH2m (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Mar 2023 03:28:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38818 "EHLO
+        id S229780AbjCNHkM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Mar 2023 03:40:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56786 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229573AbjCNH2l (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Mar 2023 03:28:41 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3F11F7B136;
-        Tue, 14 Mar 2023 00:28:40 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id CD7D7615F1;
-        Tue, 14 Mar 2023 07:28:39 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 87C95C433D2;
-        Tue, 14 Mar 2023 07:28:36 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1678778919;
-        bh=4GeQYSSHLSd9LQKfwfmyBcLuTGZ+RhHXCZYk+FRulas=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=Tb/K4ZDsX66Hj8OlwYAejz3v4AegpO49hXYtb60Pgxi9uAbo1HbH/sogCVA64Pg5D
-         e1vTZLUzDys2D5nW1twHJknL1G/KGzwPDSrDTIDZEp8gacma40oAwTkPP57WKutly5
-         /MD/+fo1e4rxFuGtRFBxjg2BXpCLBXyYxik5/mpw3yKTOwQMvZiaGZEyTg/hntOgwl
-         BxRVit5IyTUJ1TNWuy2hoIvn1CMADCWiBgYyBZdzExfRhL1kN+2qcW1q/FXILUtrzY
-         JXTXpbW5YqVo3QLslBSDv2OQ8BeZYHqoUa+07ta1Gqi80qsi8bt++/QO1eKeuT4Ltt
-         GwWfowmLYM35Q==
-Date:   Tue, 14 Mar 2023 15:28:32 +0800
-From:   Shawn Guo <shawnguo@kernel.org>
-To:     Martin Kepplinger <martin.kepplinger@puri.sm>
-Cc:     robh@kernel.org, krzysztof.kozlowski@linaro.org,
-        s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
-        kernel@puri.sm, linux-imx@nxp.com, devicetree@vger.kernel.org,
-        phone-devel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org,
-        Sebastian Krzyszkowiak <sebastian.krzyszkowiak@puri.sm>
-Subject: Re: [PATCH v1 11/14] arm64: dts: imx8mq-librem5: Remove
- dis_u3_susphy_quirk from usb_dwc3_0
-Message-ID: <20230314072832.GC143566@dragon>
-References: <20230309204608.237605-1-martin.kepplinger@puri.sm>
- <20230309204608.237605-12-martin.kepplinger@puri.sm>
+        with ESMTP id S229531AbjCNHkL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Mar 2023 03:40:11 -0400
+Received: from mail-pl1-x632.google.com (mail-pl1-x632.google.com [IPv6:2607:f8b0:4864:20::632])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8BB138C952
+        for <devicetree@vger.kernel.org>; Tue, 14 Mar 2023 00:40:09 -0700 (PDT)
+Received: by mail-pl1-x632.google.com with SMTP id a9so15636873plh.11
+        for <devicetree@vger.kernel.org>; Tue, 14 Mar 2023 00:40:09 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1678779609;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=sLxEHBJM5aBlcBtcL4I4cmvZzwwEog5yFTPmXjO+FxE=;
+        b=l1IaoeBiQDXzjh5BdZkj9W0IJVdg8Nq68Sk1HEOvpFLmskNoDeAPzSviOqzJWoitpP
+         5Ff5x8ivl+ocb0IHomeemsHYJ93NTC0qqbkoTaXmsbQ33Zw20jaOcTM1GTl/eE/ZbrBs
+         OFibCP0xxKcH6vu2xe/R8pSXEWTpl7OQ2ZSdz7U90wCvQYJgla4nAlK2DSFAS6TLkAnC
+         xQ6ItBZ8IGXDPUEPR/T3vn5Ve300uw5mpn6Rp97uHBv3/ijFo3aQ2AxCoRgFmsjGmoaR
+         VuY+9jDxslKOQHk8Mim2G+65HjpwyCi+uwDXX2ch/ne+uz4ayPJ94Dr8JmpPNckB8qr/
+         P4qw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1678779609;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=sLxEHBJM5aBlcBtcL4I4cmvZzwwEog5yFTPmXjO+FxE=;
+        b=On/dXxHZiED45rls6vQObqXsoIcr0Esv+uPAEkRZIN9les1v9KkhLrx3AJGg7o9acv
+         mGV157pLcpcQH/dL/feAdQrf7AiNnNZudKSsZneKYmCt7j9+Et09amTpglyKAKj9bX+6
+         n4f44yQrP0a1sTmvt+vfHOY/tZ8Rx1yaU8V2BQSGGqZGwWZZEgcCG8HIgiTjrnSnkoX2
+         QYsiTFcSojpl9mqg1uVJ6sDrj0sFCrVxXQBzvFFlbkNyFgsoMqn3VSid1Um8/iQD46b6
+         2zjZ6RpPvsh838u1gVsqCsKKPCck01pAd7/kkr1lwnh+65UzWLiODmtGJ3r13bwrT07v
+         gJRQ==
+X-Gm-Message-State: AO0yUKUqpyd8qv91rtAWEvo+pQn0Vojfp4TJ0JMrkZcEPs9tNuemvalV
+        rshlzGdWEn4rb2qX3n1JidEjtQSzY1jM3epw1ik=
+X-Google-Smtp-Source: AK7set/dwaMw/cLpwuGIFmPavyH96hm2WNMmzFUOdeQrEgcYJxcaoYl77Aekazd00aJnPHJRwwJ+SA==
+X-Received: by 2002:a17:90b:3ecb:b0:23d:3761:6085 with SMTP id rm11-20020a17090b3ecb00b0023d37616085mr1463352pjb.34.1678779608994;
+        Tue, 14 Mar 2023 00:40:08 -0700 (PDT)
+Received: from localhost.localdomain ([2401:4900:1c5e:4a3e:15d0:d540:3861:ef0e])
+        by smtp.gmail.com with ESMTPSA id h14-20020a17090aea8e00b002372106a5c2sm1034602pjz.37.2023.03.14.00.40.05
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 14 Mar 2023 00:40:08 -0700 (PDT)
+From:   Bhupesh Sharma <bhupesh.sharma@linaro.org>
+To:     linux-arm-msm@vger.kernel.org
+Cc:     agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
+        linux-kernel@vger.kernel.org, bhupesh.linux@gmail.com,
+        bhupesh.sharma@linaro.org, robh+dt@kernel.org,
+        devicetree@vger.kernel.org,
+        Marijn Suijten <marijn.suijten@somainline.org>
+Subject: [PATCH v2] arm64: dts: qcom: sm6115: Move SDHC node(s)'s 'pinctrl' properties to dts
+Date:   Tue, 14 Mar 2023 13:10:01 +0530
+Message-Id: <20230314074001.1873781-1-bhupesh.sharma@linaro.org>
+X-Mailer: git-send-email 2.38.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230309204608.237605-12-martin.kepplinger@puri.sm>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Mar 09, 2023 at 09:46:05PM +0100, Martin Kepplinger wrote:
-> From: Sebastian Krzyszkowiak <sebastian.krzyszkowiak@puri.sm>
-> 
-> This reduces power consumption in system suspend by about 10%.
+Normally the 'pinctrl' properties of a SDHC controller and the
+chip detect pin settings are dependent on the type of the slots
+(for e.g uSD card slot), regulators and GPIO(s) available on the
+board(s).
 
-Is there any other impact than this nice power gain?  Otherwise,
-I would wonder why the quirk was enabled in the first place.
+So, move the same from the sm6115 dtsi file to the respective
+board file(s).
 
-Shawn
+Reviewed-by: Marijn Suijten <marijn.suijten@somainline.org>
+Signed-off-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
+---
+Changes since v1:
+- v1 can be seen here: https://lore.kernel.org/linux-arm-msm/20221220113616.1556097-1-bhupesh.sharma@linaro.org/
+- Colleted the R-B from Marijn.
+- Rebased on linux-next/master
 
-> 
-> Signed-off-by: Sebastian Krzyszkowiak <sebastian.krzyszkowiak@puri.sm>
-> Signed-off-by: Martin Kepplinger <martin.kepplinger@puri.sm>
-> ---
->  arch/arm64/boot/dts/freescale/imx8mq-librem5.dtsi | 1 -
->  1 file changed, 1 deletion(-)
-> 
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mq-librem5.dtsi b/arch/arm64/boot/dts/freescale/imx8mq-librem5.dtsi
-> index 0b4b49fa1392a..f557632f574fa 100644
-> --- a/arch/arm64/boot/dts/freescale/imx8mq-librem5.dtsi
-> +++ b/arch/arm64/boot/dts/freescale/imx8mq-librem5.dtsi
-> @@ -1322,7 +1322,6 @@ &usb_dwc3_0 {
->  	#address-cells = <1>;
->  	#size-cells = <0>;
->  	dr_mode = "otg";
-> -	snps,dis_u3_susphy_quirk;
->  	usb-role-switch;
->  	status = "okay";
->  
-> -- 
-> 2.30.2
-> 
+ .../boot/dts/qcom/sm4250-oneplus-billie2.dts  | 10 +++++++++
+ arch/arm64/boot/dts/qcom/sm6115.dtsi          | 22 -------------------
+ 2 files changed, 10 insertions(+), 22 deletions(-)
+
+diff --git a/arch/arm64/boot/dts/qcom/sm4250-oneplus-billie2.dts b/arch/arm64/boot/dts/qcom/sm4250-oneplus-billie2.dts
+index a3f1c7c41fd73..329eb496bbc5f 100644
+--- a/arch/arm64/boot/dts/qcom/sm4250-oneplus-billie2.dts
++++ b/arch/arm64/boot/dts/qcom/sm4250-oneplus-billie2.dts
+@@ -202,12 +202,22 @@ &sdhc_2 {
+ 	vqmmc-supply = <&vreg_l5a>;
+ 
+ 	cd-gpios = <&tlmm 88 GPIO_ACTIVE_HIGH>;
++	pinctrl-names = "default", "sleep";
++	pinctrl-0 = <&sdc2_state_on &sdc2_card_det_n>;
++	pinctrl-1 = <&sdc2_state_off &sdc2_card_det_n>;
+ 
+ 	status = "okay";
+ };
+ 
+ &tlmm {
+ 	gpio-reserved-ranges = <14 4>;
++
++	sdc2_card_det_n: sd-card-det-n-state {
++		pins = "gpio88";
++		function = "gpio";
++		drive-strength = <2>;
++		bias-pull-up;
++	};
+ };
+ 
+ &ufs_mem_hc {
+diff --git a/arch/arm64/boot/dts/qcom/sm6115.dtsi b/arch/arm64/boot/dts/qcom/sm6115.dtsi
+index fbd67d2c8d781..e8e5f2cafebb9 100644
+--- a/arch/arm64/boot/dts/qcom/sm6115.dtsi
++++ b/arch/arm64/boot/dts/qcom/sm6115.dtsi
+@@ -595,13 +595,6 @@ data-pins {
+ 					bias-pull-up;
+ 					drive-strength = <10>;
+ 				};
+-
+-				sd-cd-pins {
+-					pins = "gpio88";
+-					function = "gpio";
+-					bias-pull-up;
+-					drive-strength = <2>;
+-				};
+ 			};
+ 
+ 			sdc2_state_off: sdc2-off-state {
+@@ -622,13 +615,6 @@ data-pins {
+ 					bias-pull-up;
+ 					drive-strength = <2>;
+ 				};
+-
+-				sd-cd-pins {
+-					pins = "gpio88";
+-					function = "gpio";
+-					bias-disable;
+-					drive-strength = <2>;
+-				};
+ 			};
+ 		};
+ 
+@@ -731,10 +717,6 @@ sdhc_1: mmc@4744000 {
+ 				 <&gcc GCC_SDCC1_ICE_CORE_CLK>;
+ 			clock-names = "iface", "core", "xo", "ice";
+ 
+-			pinctrl-0 = <&sdc1_state_on>;
+-			pinctrl-1 = <&sdc1_state_off>;
+-			pinctrl-names = "default", "sleep";
+-
+ 			bus-width = <8>;
+ 			status = "disabled";
+ 		};
+@@ -753,10 +735,6 @@ sdhc_2: mmc@4784000 {
+ 				 <&rpmcc RPM_SMD_XO_CLK_SRC>;
+ 			clock-names = "iface", "core", "xo";
+ 
+-			pinctrl-0 = <&sdc2_state_on>;
+-			pinctrl-1 = <&sdc2_state_off>;
+-			pinctrl-names = "default", "sleep";
+-
+ 			power-domains = <&rpmpd SM6115_VDDCX>;
+ 			operating-points-v2 = <&sdhc2_opp_table>;
+ 			iommus = <&apps_smmu 0x00a0 0x0>;
+-- 
+2.38.1
+
