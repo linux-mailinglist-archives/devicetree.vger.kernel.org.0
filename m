@@ -2,169 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 97BC06B9C85
-	for <lists+devicetree@lfdr.de>; Tue, 14 Mar 2023 18:09:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 792BC6B9CAF
+	for <lists+devicetree@lfdr.de>; Tue, 14 Mar 2023 18:13:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230399AbjCNRJ5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Mar 2023 13:09:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37364 "EHLO
+        id S231238AbjCNRNz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Mar 2023 13:13:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40982 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230388AbjCNRJ4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Mar 2023 13:09:56 -0400
-Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BE2A379B23;
-        Tue, 14 Mar 2023 10:09:50 -0700 (PDT)
-Received: by mail-lf1-x133.google.com with SMTP id m4so7922747lfj.2;
-        Tue, 14 Mar 2023 10:09:50 -0700 (PDT)
+        with ESMTP id S230522AbjCNRNk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Mar 2023 13:13:40 -0400
+Received: from mail-ed1-x52f.google.com (mail-ed1-x52f.google.com [IPv6:2a00:1450:4864:20::52f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 08FC492F09
+        for <devicetree@vger.kernel.org>; Tue, 14 Mar 2023 10:13:39 -0700 (PDT)
+Received: by mail-ed1-x52f.google.com with SMTP id cn21so34769348edb.0
+        for <devicetree@vger.kernel.org>; Tue, 14 Mar 2023 10:13:38 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112; t=1678813789;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=A3mTGYj7JV/DxYx8PY7Jjtyf3i3A4TY4QKPyGUShY+4=;
-        b=Pt9FXMyV5qPTnBsN9S1/ue6ef/xHOAdmSIiLfyYu0b5z8FVXXS1yj4ZK1ucSROuPRG
-         jDyAlusKmNAaEVi6bK3kDVBpf6AGWU9T7G5LNXbgXRxebGCYrJidVsFdZ+6LCbkTcR59
-         xnKKxVKWv9z9kJBHtIXobR8p6nSXCU3GzZTqFQP7wexHJsPLFmx2tZSCK/GA+REeelbu
-         0SxCODAFMY88ynul6wJCGBHe7NI+t6qu825Iptsp1ZbKcS8A9M1zyNkc1e1A84ehOq4o
-         IdU+k74tQ+L39Bk+Fa/ESNr/YZwbgGVjHerqrj0/7/gdEYmlX3/IBoI1i1DggLgPpprn
-         f2+g==
+        d=gmail.com; s=20210112; t=1678814017;
+        h=to:subject:message-id:date:from:reply-to:mime-version:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=7nhQhjF9uDVvwwdV9a8CY5YmhhPKLzAuYzDFk/auc74=;
+        b=EGjEMtk6r6etcP6qEYsZaq2h+9GOhpyU6kdW05TyMfshpaO+OR5NicMYfyIFBGs99n
+         3PloXjL5qTkfqpfnZSMvnafCcmxMmk0+z7rKHPY8ns/6OpvLh2oVhOpml/ZkA+DG7UL+
+         DCWmdIaf1V0mPan5s9cXa/61aYczXC7rDPGYxMY5WJyUSyYoTkVZt1ZjdXhzVpSKfnLJ
+         WaQ+8uFG1A0MEg8O9RkCMsaybqZ+KS8OKfMBarVoqKYEWzLEoZsrArGflOw27K9vhLTg
+         p/3Q6Dmxb4D5iWZSZ1+WlQ92szGhth2sIKv8Fqxu/iGFxxuDOb9ga3wPDZCTOd/6a2jY
+         TdeQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678813789;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=A3mTGYj7JV/DxYx8PY7Jjtyf3i3A4TY4QKPyGUShY+4=;
-        b=Vvp24ywrq1Jzu5HWi+Zxpa77lH+K+uctTX9pfh88EylYZlXXqUBwkA2+U3/gxg0g1d
-         vhwBHMNfwLkyNFs0OVMv8sjesl/CnzF7IudTPzRqYMxo3skLdkgNfjjhA9A2vPeMkI3+
-         00RKxSwwHC/5qDrG8cCaYUwI4+Ia1DMNIARTR4wYNmiEDHP6IW9jWiUXUrafxpUmBWNV
-         j84K0jY8xDZssPtEFVfRZdGDGkO+OD8ryKC9fUSJBqsqOEKh8BkxCexv9WbrmA7n+TJy
-         sIwjLW56JnnEIgDZWYQhCK1ggRXmyBgUC+7iqLL/XHQ6HR7v53TUO/C40RZgVIqnqaVW
-         AtYg==
-X-Gm-Message-State: AO0yUKVlNdkNw1IcDaPcqQKc76RVVbCd73aLfDEsqyuE2O80TfIADrTU
-        VvdXt8QEQLoay4JG8YAjijc=
-X-Google-Smtp-Source: AK7set+uEt5IoqG9OS+mes6VV9AY4oMiyZ0VVvoQaK5iRVnuv11mr63pkW7lH+CP6HBvafiA2+RvoQ==
-X-Received: by 2002:ac2:5449:0:b0:4e7:b481:c1c3 with SMTP id d9-20020ac25449000000b004e7b481c1c3mr1072908lfn.20.1678813788840;
-        Tue, 14 Mar 2023 10:09:48 -0700 (PDT)
-Received: from mobilestation ([95.79.133.202])
-        by smtp.gmail.com with ESMTPSA id b7-20020a056512024700b004caf992bba9sm464219lfo.268.2023.03.14.10.09.47
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 14 Mar 2023 10:09:48 -0700 (PDT)
-Date:   Tue, 14 Mar 2023 20:09:45 +0300
-From:   Serge Semin <fancer.lancer@gmail.com>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Serge Semin <Sergey.Semin@baikalelectronics.ru>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
-        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Jose Abreu <joabreu@synopsys.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Eric Dumazet <edumazet@google.com>,
-        Biao Huang <biao.huang@mediatek.com>, netdev@vger.kernel.org,
-        Christian Marangi <ansuelsmth@gmail.com>,
-        Yang Yingliang <yangyingliang@huawei.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Richard Cochran <richardcochran@gmail.com>,
-        linux-arm-kernel@lists.infradead.org,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-stm32@st-md-mailman.stormreply.com
-Subject: Re: [PATCH net-next 01/16] dt-bindings: net: dwmac: Validate PBL for
- all IP-cores
-Message-ID: <20230314170945.6yow2i5z4jdubwgt@mobilestation>
-References: <20230313225103.30512-1-Sergey.Semin@baikalelectronics.ru>
- <20230313225103.30512-2-Sergey.Semin@baikalelectronics.ru>
- <167880254800.26004.7037306365469081272.robh@kernel.org>
- <20230314150657.ytgyegi7qlwao6px@mobilestation>
+        d=1e100.net; s=20210112; t=1678814017;
+        h=to:subject:message-id:date:from:reply-to:mime-version
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=7nhQhjF9uDVvwwdV9a8CY5YmhhPKLzAuYzDFk/auc74=;
+        b=DI09gnkwLJeCPwI4Ep5k5sQBSkZYu77b7y8bi9Z6T4cAXS3wytpvHSUHruSHgvlRbI
+         RwHZQUkmx83xXJHZMEQXJ9IWoVSAUgxyhNIxlM/jbpdxxDTyiqzbYcu42lf766Ep+k8t
+         foKDAp/sMR0XxAOFYg+kDbkrlg+r6+AHdrxef8jpP/XXUfx7tFmPL3C2iZwMuqyL7tQJ
+         qYd33I0X1nYK+5vMh5LM0ZnYLvnT/mDiJGSmYax82YXFvU4cy6AL8K5s5PjSL3BZK9Gt
+         i3RqCpCzdfs5dfMjqO2bgx9NMkb/2xiPh8aYcmZvP7035yPdboy76wkP4Kz3YlYEG+ww
+         3QyQ==
+X-Gm-Message-State: AO0yUKVA6w+AxaZhkh1EjI9A4cAx/oFDkdmGwrs1ZNIO4PzHAX0g7sWl
+        h19yg/gM+xLhKPDioTf8FN/2cvZrwap8ZlWmHyM=
+X-Google-Smtp-Source: AK7set+qyDiSsO9sAcNRuA7P+IbElsnD9P0v0dxCJ2k3arY4GTbjflPW+zgtv3dEGuGPi0JWrVdNEPa7+PTbte1nqAE=
+X-Received: by 2002:a17:906:7d8c:b0:878:4a24:1a5c with SMTP id
+ v12-20020a1709067d8c00b008784a241a5cmr1630332ejo.6.1678814017492; Tue, 14 Mar
+ 2023 10:13:37 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230314150657.ytgyegi7qlwao6px@mobilestation>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham
+Received: by 2002:a05:7412:e78c:b0:c0:cabe:2561 with HTTP; Tue, 14 Mar 2023
+ 10:13:37 -0700 (PDT)
+Reply-To: godwinrichard700@gmail.com
+From:   Richard Godwin <jw7542463@gmail.com>
+Date:   Tue, 14 Mar 2023 10:13:37 -0700
+Message-ID: <CAHZLPJEFsGfsY0jZoZSo_Vb=aNXyOh0AK9J9k1iuQ=KtROvhFQ@mail.gmail.com>
+Subject: URGENT
+To:     undisclosed-recipients:;
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: Yes, score=5.7 required=5.0 tests=BAYES_60,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,FREEMAIL_REPLYTO,FREEMAIL_REPLYTO_END_DIGIT,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,UNDISC_FREEM autolearn=no
         autolearn_force=no version=3.4.6
+X-Spam-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+        *      https://www.dnswl.org/, no trust
+        *      [2a00:1450:4864:20:0:0:0:52f listed in]
+        [list.dnswl.org]
+        *  1.5 BAYES_60 BODY: Bayes spam probability is 60 to 80%
+        *      [score: 0.7277]
+        * -0.0 SPF_PASS SPF: sender matches SPF record
+        *  0.2 FREEMAIL_ENVFROM_END_DIGIT Envelope-from freemail username ends
+        *       in digit
+        *      [jw7542463[at]gmail.com]
+        *  0.0 SPF_HELO_NONE SPF: HELO does not publish an SPF Record
+        *  0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+        *      provider
+        *      [jw7542463[at]gmail.com]
+        *  0.2 FREEMAIL_REPLYTO_END_DIGIT Reply-To freemail username ends in
+        *      digit
+        *      [godwinrichard700[at]gmail.com]
+        *  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+        *       valid
+        * -0.1 DKIM_VALID_EF Message has a valid DKIM or DK signature from
+        *      envelope-from domain
+        * -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+        *      author's domain
+        * -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+        *  2.9 UNDISC_FREEM Undisclosed recipients + freemail reply-to
+        *  1.0 FREEMAIL_REPLYTO Reply-To/From or Reply-To/body contain
+        *      different freemails
+X-Spam-Level: *****
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Mar 14, 2023 at 06:07:01PM +0300, Serge Semin wrote:
-> On Tue, Mar 14, 2023 at 09:10:19AM -0500, Rob Herring wrote:
-> > 
-> > On Tue, 14 Mar 2023 01:50:48 +0300, Serge Semin wrote:
-> > > Indeed the maximum DMA burst length can be programmed not only for DW
-> > > xGMACs, Allwinner EMACs and Spear SoC GMAC, but in accordance with [1]
-> > > for Generic DW *MAC IP-cores. Moreover the STMMAC set of drivers parse
-> > > the property and then apply the configuration for all supported DW MAC
-> > > devices. All of that makes the property being available for all IP-cores
-> > > the bindings supports. Let's make sure the PBL-related properties are
-> > > validated for all of them by the common DW MAC DT schema.
-> > > 
-> > > [1] DesignWare Cores Ethernet MAC Universal Databook, Revision 3.73a,
-> > >     October 2013, p. 380.
-> > > 
-> > > Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
-> > > Reviewed-by: Rob Herring <robh@kernel.org>
-> > > 
-> > > ---
-> > > 
-> > > Changelog v1:
-> > > - Use correct syntax of the JSON pointers, so the later would begin
-> > >   with a '/' after the '#'.
-> > > ---
-> > >  .../devicetree/bindings/net/snps,dwmac.yaml   | 77 +++++++------------
-> > >  1 file changed, 26 insertions(+), 51 deletions(-)
-> > > 
-> > 
-> > My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-> > on your patch (DT_CHECKER_FLAGS is new in v5.13):
-> > 
-> > yamllint warnings/errors:
-> > 
-> > dtschema/dtc warnings/errors:
-> > /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/mediatek-dwmac.example.dtb: ethernet@1101c000: snps,txpbl:0:0: 1 is not one of [2, 4, 8]
-> > 	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/snps,dwmac.yaml
-> > /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/mediatek-dwmac.example.dtb: ethernet@1101c000: snps,rxpbl:0:0: 1 is not one of [2, 4, 8]
-> > 	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/snps,dwmac.yaml
-> > /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/mediatek-dwmac.example.dtb: ethernet@1101c000: snps,txpbl:0:0: 1 is not one of [2, 4, 8]
-> > 	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/mediatek-dwmac.yaml
-> > /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/mediatek-dwmac.example.dtb: ethernet@1101c000: snps,rxpbl:0:0: 1 is not one of [2, 4, 8]
-> > 	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/mediatek-dwmac.yaml
-> > /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/mediatek-dwmac.example.dtb: ethernet@1101c000: Unevaluated properties are not allowed ('interrupt-names', 'interrupts', 'mac-address', 'phy-mode', 'reg', 'snps,reset-delays-us', 'snps,reset-gpio', 'snps,rxpbl', 'snps,txpbl' were unexpected)
-> > 	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/mediatek-dwmac.yaml
-> 
-> Oops, on rebasing my work from older kernel I missed that the PBL
-> properties constraints have already been extended. I'll drop the next
-> patch in the series then and fix this one so the already defined
-> constraints would be preserved.
+-- 
+Good day,
+How are you doing today, hope you are fine please i have something to
+tell you. If you don't mind.
 
-BTW it's strange I didn't have that bug spotted during my
-dt_binding_check run...
+Am waiting for your response.
 
--Serge(y)
+Bast regards.
 
-> 
-> -Serge(y)
-> 
-> > 
-> > doc reference errors (make refcheckdocs):
-> > 
-> > See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20230313225103.30512-2-Sergey.Semin@baikalelectronics.ru
-> > 
-> > The base for the series is generally the latest rc1. A different dependency
-> > should be noted in *this* patch.
-> > 
-> > If you already ran 'make dt_binding_check' and didn't see the above
-> > error(s), then make sure 'yamllint' is installed and dt-schema is up to
-> > date:
-> > 
-> > pip3 install dtschema --upgrade
-> > 
-> > Please check and re-submit after running the above command yourself. Note
-> > that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-> > your schema. However, it must be unset to test all examples with your schema.
-> > 
+Richard Godwin. Thanks.
