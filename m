@@ -2,93 +2,132 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6EBB66B8CE4
-	for <lists+devicetree@lfdr.de>; Tue, 14 Mar 2023 09:18:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0E71E6B8CF3
+	for <lists+devicetree@lfdr.de>; Tue, 14 Mar 2023 09:19:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229535AbjCNIRY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Mar 2023 04:17:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59956 "EHLO
+        id S230223AbjCNISl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Mar 2023 04:18:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59378 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229552AbjCNIQg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Mar 2023 04:16:36 -0400
-Received: from mail-ed1-x536.google.com (mail-ed1-x536.google.com [IPv6:2a00:1450:4864:20::536])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D348F5F214
-        for <devicetree@vger.kernel.org>; Tue, 14 Mar 2023 01:14:52 -0700 (PDT)
-Received: by mail-ed1-x536.google.com with SMTP id da10so58611250edb.3
-        for <devicetree@vger.kernel.org>; Tue, 14 Mar 2023 01:14:52 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1678781689;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=wboTlz+tvE23niIuCWa5AP83n6xHxsyLfDerF7pTjSM=;
-        b=OMP2Pg2VucXTq3RaZgj0lXYSRxiP1CU+5fgZV/OifjHXkNe3jrAe7fhzW3Lzeix2IF
-         n9OMJc3GsHvLkDu4JiZ2Iwq14i52HSIKWYpPlEL+cio7KhsG79+XiTxSfWPBJzH8NZV6
-         ZavvTnSluRMmpsBDKxSO+Bf5hV35cM0z/UDUpURuk/1UdJlbBARpwFKqnw8WHMX/9qXV
-         lu4GBms2S3lNWQRnb0NGH7EVPH++QGB7epyUfUBPtyc/Gg8AMV4u6TczbtWnq0cnQa3B
-         i5CC2zq0BeZDt64qawKjD4G5ZMtSeuEHU+hv5/V6t4WA+GfQv3NyaSOZGcf2/AxULVuo
-         NnTg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678781689;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=wboTlz+tvE23niIuCWa5AP83n6xHxsyLfDerF7pTjSM=;
-        b=PJyWXqYXldOi7gSXmWlSuXwtawp3qDD7u6kNJU8xxhiu9md8S82AE4HpQpvsadQ8kW
-         oVSMA7bSksYY7mmvGqBrU7TdjPctLiHCXOLuVuyOTOiNayBjrRk9dZ3wCzVrK8OzuDA7
-         eJAntRhe0I2ukLyS2P74E6zX6AiZuA+0NY5xXAbGAzlVUJFuxvAlf1op+jAPHQiiag/7
-         ZhNuwgAQZA4cgoaxZzlL/OFwXRG+0F6jNA6wOS/eR9qHpu2bmie0W37lGxuOWfzC+ZNU
-         KSSUPIDgGm5y+ImXfI753FND+CfW7OeVj6ZaH5lpzl9uAxLA3I1KbshSTKDxaHI/tKg2
-         jhhA==
-X-Gm-Message-State: AO0yUKXRoaLV+F3JLVi/9kfCEZ4ujq0O4VHLjblKuXzsAk/vfbVmBMlD
-        zMW2MVUaSm/0hzo4HdXw0MemPA==
-X-Google-Smtp-Source: AK7set+faacEFbuyaWCfRFYG2V0EhpSmAjWujyP1fyxeJV54nDc+J7N1cs8blrEkU+GccFX2iB7UoQ==
-X-Received: by 2002:aa7:c245:0:b0:4ac:c44e:a493 with SMTP id y5-20020aa7c245000000b004acc44ea493mr36246588edo.2.1678781689499;
-        Tue, 14 Mar 2023 01:14:49 -0700 (PDT)
-Received: from ?IPV6:2a02:810d:15c0:828:6932:5570:6254:9edd? ([2a02:810d:15c0:828:6932:5570:6254:9edd])
-        by smtp.gmail.com with ESMTPSA id v10-20020a50a44a000000b004fd204d180dsm600243edb.64.2023.03.14.01.14.48
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 14 Mar 2023 01:14:49 -0700 (PDT)
-Message-ID: <43a38d58-c105-cdc7-2d83-affd9d724780@linaro.org>
-Date:   Tue, 14 Mar 2023 09:14:48 +0100
+        with ESMTP id S229684AbjCNISG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Mar 2023 04:18:06 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D18D54D2A9;
+        Tue, 14 Mar 2023 01:17:43 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 4C40161640;
+        Tue, 14 Mar 2023 08:17:43 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9B1CBC433D2;
+        Tue, 14 Mar 2023 08:17:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1678781862;
+        bh=Xi2794rdLlEIsfm3cg4qF1ROjcOdCNpLbzUABC/gRQc=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=UzbwfGVIDSHLMLIkX+l3tn4KjEkfQkXi6RDxwh7iaaeUsJOfJiLLVQmX4LMhJuLJZ
+         +JaJlQS4iVuNHM/IsYnVjDiGD/Ytj7WdhN1hn7kFjZvmMg2FtzYAUrnk9CoQ77dVTi
+         32gDeMtT7faxnhvv269AeWv+rjEyCBwW0PzQw+j/tlTPoecrX4Oa4x8pPBcXtDlbnm
+         p2V4mHJhLBvcccYkVARBeMO63/cffNLPhLEfIbey24Lpa/FH3/HSnFJYsUFTeS+Ffy
+         YC/1OObK8qetusWHAkga/TO6zbTxwaHO8Yz0betHqlsa4xQUfiMaMbk44ecMEHJm3S
+         +3sMPf9vXoAWQ==
+Date:   Tue, 14 Mar 2023 16:17:35 +0800
+From:   Shawn Guo <shawnguo@kernel.org>
+To:     Francesco Dolcini <francesco@dolcini.it>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Philippe Schenker <dev@pschenker.ch>,
+        devicetree@vger.kernel.org, Sascha Hauer <s.hauer@pengutronix.de>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Frank Rowand <frowand.list@gmail.com>,
+        linux-arm-kernel@lists.infradead.org,
+        Fabio Estevam <festevam@gmail.com>,
+        Philippe Schenker <philippe.schenker@toradex.com>,
+        linux-kernel@vger.kernel.org,
+        Marcel Ziswiler <marcel.ziswiler@toradex.com>
+Subject: Re: [PATCH v1 03/25] arm64: dts: colibri-imx8x: Sort properties
+Message-ID: <20230314081735.GE143566@dragon>
+References: <20230308125300.58244-1-dev@pschenker.ch>
+ <20230308125300.58244-4-dev@pschenker.ch>
+ <9d213504-d457-21a6-d467-41d8783d53d3@linaro.org>
+ <ZAnOwaXpcqI30jFi@francesco-nb.int.toradex.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-Subject: Re: [PATCH V2 2/3] mailbox: qcom-apcs-ipc: drop the IPQ8074 and
- IPQ5332 compatible
-Content-Language: en-US
-To:     Kathiravan T <quic_kathirav@quicinc.com>, agross@kernel.org,
-        andersson@kernel.org, konrad.dybcio@linaro.org,
-        jassisinghbrar@gmail.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, linux-arm-msm@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-References: <20230314050005.10409-1-quic_kathirav@quicinc.com>
- <20230314050005.10409-3-quic_kathirav@quicinc.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230314050005.10409-3-quic_kathirav@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <ZAnOwaXpcqI30jFi@francesco-nb.int.toradex.com>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 14/03/2023 06:00, Kathiravan T wrote:
-> Since the IPQ8074 and IPQ5332 mailbox are compatible with IPQ6018, we can
-> use the compatible fallback to IPQ6018. With that, we can drop the
-> IPQ8074 and IPQ5332 compatible references, as well we don't bloat the
-> of_device_id table.
+On Thu, Mar 09, 2023 at 01:19:13PM +0100, Francesco Dolcini wrote:
+> Hello Krzysztof, first thanks for your review.
 > 
-> Suggested-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Let's try to get some clarity on this with the help of Shawn.
+> 
+> On Wed, Mar 08, 2023 at 01:57:38PM +0100, Krzysztof Kozlowski wrote:
+> > On 08/03/2023 13:52, Philippe Schenker wrote:
+> > > From: Philippe Schenker <philippe.schenker@toradex.com>
+> > > 
+> > > Sort properties according to the following order and inside these
+> > > alphabetically.
+> > > 
+> > > 1. compatible
+> > > 2. reg
+> > > 3. standard properties
+> > > 4. specific properties
+> > > 5. status
+> > 
+> > Is this approved coding style for IMX DTS?
+> 
+> I 100% understand your concerns here.
+> 
+> With that said let me try to briefly explain the reasoning here, in
+> various threads we were asked in the past to move node around based on
+> some not 100% defined rules [0][1].
+> 
+> On Sun, 2023-01-29 at 11:19 +0800, Shawn Guo wrote:
+> >> +&usbotg1 {
+> >> +	adp-disable;
+> >> +	ci-disable-lpm;
+> >> +	hnp-disable;
+> >> +	over-current-active-low;
+> >> +	pinctrl-names = "default";
+> >> +	pinctrl-0 = <&pinctrl_usbotg1>;
+> >
+> >We generally want to put such generic properties before device specific
+> >ones.
+> 
+> In addition to that we find convenient to have properties sorted
+> alphabetically when no other rule is available, it just prevents any
+> kind of discussion, minimize merge conflicts and make comparing files
+> easier.
+> 
+> I also agree that the difference between "generic"/"specific" is fuzzy
+> at best.
+> 
+> With all that said ...
+> 
+> Shawn: What should we do? We can of course avoid any kind of re-ordering
+> from now on.
 
-I never suggested anything like this, so: NAK
-(also responded to v1)
+We are practically asking for 1, 2 and 5 for i.MX DTS files, but pretty
+flexible for the rest.
 
-Best regards,
-Krzysztof
+> I am fine to be very pragmatic here, no-reordering on existing DTS
+> files, newly added DTS files we discuss whatever is the reasoning of the
+> reviewer/maintainer on a case-by-case basis.
 
+Sounds good to me!  While I personally like your ordering, I do not want
+it to churn the existing DTS files.
+
+I'm happy to take this patch as a special case though :)
+
+Shawn
