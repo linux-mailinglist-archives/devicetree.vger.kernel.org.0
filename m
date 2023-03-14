@@ -2,1017 +2,349 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2F64A6B9DE2
-	for <lists+devicetree@lfdr.de>; Tue, 14 Mar 2023 19:06:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1E34C6B9DE9
+	for <lists+devicetree@lfdr.de>; Tue, 14 Mar 2023 19:09:55 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230464AbjCNSGr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Mar 2023 14:06:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50920 "EHLO
+        id S229627AbjCNSJx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Mar 2023 14:09:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57888 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230020AbjCNSGp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Mar 2023 14:06:45 -0400
-Received: from uho.ysoft.cz (uho.ysoft.cz [81.19.3.130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 987199FE4C;
-        Tue, 14 Mar 2023 11:06:42 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ysoft.com;
-        s=20160406-ysoft-com; t=1678817198;
-        bh=rmg4A4W1CbRV9wINKTLQBgaKx+M5KB6pWdhp232zNHk=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=e2L30ObWdcSeABDz5g2kiIuXSg6X2asFrpo2O/wNTu1xYCdFRiVDM4CCXPLjBvxit
-         mm41L1iNSLjn/o8JEVgF8AIHf8cFsrLfL18DGyo0V1xp1MPnuoTu+mlxcUnpMKfeAy
-         yulJ7GcUhbMPmWCxjUJLYye5dDgxhNrSSKOfjRuc=
-Received: from vokac-Latitude-7410.ysoft.local (unknown [10.0.30.161])
-        by uho.ysoft.cz (Postfix) with ESMTP id 86D46A05E5;
-        Tue, 14 Mar 2023 19:06:38 +0100 (CET)
-From:   =?UTF-8?q?Michal=20Vok=C3=A1=C4=8D?= <michal.vokac@ysoft.com>
-To:     Shawn Guo <shawnguo@kernel.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        =?UTF-8?q?Michal=20Vok=C3=A1=C4=8D?= <michal.vokac@ysoft.com>
-Subject: [PATCH v2 5/5] =?UTF-8?q?ARM:=20dts:=20imx6dl-yapp43:=20Add=20sup?= =?UTF-8?q?port=20for=20new=20HW=20revision=20of=20the=20IOTA=C2=A0board?=
-Date:   Tue, 14 Mar 2023 19:06:08 +0100
-Message-Id: <20230314180608.44482-6-michal.vokac@ysoft.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20230314180608.44482-1-michal.vokac@ysoft.com>
-References: <20230314180608.44482-1-michal.vokac@ysoft.com>
-MIME-Version: 1.0
+        with ESMTP id S229436AbjCNSJv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Mar 2023 14:09:51 -0400
+Received: from EUR04-HE1-obe.outbound.protection.outlook.com (mail-he1eur04hn2207.outbound.protection.outlook.com [52.100.18.207])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3ACD0AD23;
+        Tue, 14 Mar 2023 11:09:23 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=seco.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=52P1eILC/KGFOMHdkPRh1pKpMT4/zCXCduRccqPPUgQ=;
+ b=xiQAq5E9XyEkLpfuKTQt9fwsH1e/VBvQS9/CifmkPhRGhuD8KLGzdDFHCrqIvBOiSDzLZ7K7KstuP1K1sfzmTxepBHw/mM+Ir74v/PIaO8UZmdsKvhz/Kuy4w8O/TCRHWpACH9QFa+Ykd/6h83a2BV+5NWAl1RQyY+N0YfUeQOibmBI9aUL1gWM6DHE+gGvM9MvwBUxa3/CtrL0hHBwMgM31OqDUk/DOCT0kyRnoO7dj3H/DWS88lBZ2Rk2dGgckoxeD+v4UTxj4ckvaV/O2chPH033ZNI+lwUIZaTCg/jn4GWuFh5J7dVq3mKLjOn/Q90kXLIKoRn98Jq5hJwQMdg==
+Received: from DU2PR04CA0079.eurprd04.prod.outlook.com (2603:10a6:10:232::24)
+ by PAWPR03MB9762.eurprd03.prod.outlook.com (2603:10a6:102:2f1::20) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6178.24; Tue, 14 Mar
+ 2023 18:09:12 +0000
+Received: from DB8EUR05FT038.eop-eur05.prod.protection.outlook.com
+ (2603:10a6:10:232:cafe::59) by DU2PR04CA0079.outlook.office365.com
+ (2603:10a6:10:232::24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6178.26 via Frontend
+ Transport; Tue, 14 Mar 2023 18:09:11 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 20.160.56.85)
+ smtp.mailfrom=seco.com; dkim=pass (signature was verified)
+ header.d=seco.com;dmarc=pass action=none header.from=seco.com;
+Received-SPF: Pass (protection.outlook.com: domain of seco.com designates
+ 20.160.56.85 as permitted sender) receiver=protection.outlook.com;
+ client-ip=20.160.56.85; helo=inpost-eu.tmcas.trendmicro.com; pr=C
+Received: from inpost-eu.tmcas.trendmicro.com (20.160.56.85) by
+ DB8EUR05FT038.mail.protection.outlook.com (10.233.238.246) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.6199.11 via Frontend Transport; Tue, 14 Mar 2023 18:09:10 +0000
+Received: from outmta (unknown [192.168.82.132])
+        by inpost-eu.tmcas.trendmicro.com (Trend Micro CAS) with ESMTP id 9F74F2008026E;
+        Tue, 14 Mar 2023 18:09:10 +0000 (UTC)
+Received: from EUR05-DB8-obe.outbound.protection.outlook.com (unknown [104.47.17.107])
+        by repre.tmcas.trendmicro.com (Trend Micro CAS) with ESMTPS id C624F2008006F;
+        Tue, 14 Mar 2023 18:08:11 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=QppIQrDDfduebvwt7hYsXyqgpPLvcNONJysH3sBQnODgBFvgtMB2P/FYaMYQD3w2mNBmMd9sF6gxs1LkVhfBjtLB0vHNP784P2aM8Ury9QBKKcXOTFT7lLmuY0y2fkUe3tYXA4f1DAsXNVrYOpheJHie/9zB5FPncMLBbeT7YQ9QkwGXLOTj5ri1zyX3LVjBPlVUWgdG653F4bmuNwlPbBaj/VB4VoFev2YyC0jv2mtgoneC8GvZAHfnM8GGvEf+N+XaILE5qnG+WYERX0tw/GI5Fz9LvgzR4rdsV1UkTFayIoMloPhGpfB2lj5bKnXQ3QTBIT9ssH7jqT9vGqlBDw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=52P1eILC/KGFOMHdkPRh1pKpMT4/zCXCduRccqPPUgQ=;
+ b=eaBOJxTW5CpKLhuPGffP87EVF0eda2DpRE4vjAVV5lGXPnqd/Hq1i5LfPrttu2/176LY7mPDv0dMHfM+4kuy7ZP5/pRi27G+AjBS3GLtitsIy6eIsZIH3U15GqiVN9//L/lcMeFyoVa5i60AaiQSK8aMuHEPGg1Twp/D+LqbYvFEskuBH1oc3wGGp0aWb8/bvWvZ9WhBIQ4p3AmM5n0Lu1jMrDOwyeRUR3LShxQuPwFGbPvW4XP8cpr6YaGHHnGiCEB43CEFDzRW70rPeZsAJt0e9sYMeks+ca7yhMe16IIN+bZwbj089PQC3lHnITrRXcvNyswlc61t31Fr4/aoxg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=seco.com; dmarc=pass action=none header.from=seco.com;
+ dkim=pass header.d=seco.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=seco.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=52P1eILC/KGFOMHdkPRh1pKpMT4/zCXCduRccqPPUgQ=;
+ b=xiQAq5E9XyEkLpfuKTQt9fwsH1e/VBvQS9/CifmkPhRGhuD8KLGzdDFHCrqIvBOiSDzLZ7K7KstuP1K1sfzmTxepBHw/mM+Ir74v/PIaO8UZmdsKvhz/Kuy4w8O/TCRHWpACH9QFa+Ykd/6h83a2BV+5NWAl1RQyY+N0YfUeQOibmBI9aUL1gWM6DHE+gGvM9MvwBUxa3/CtrL0hHBwMgM31OqDUk/DOCT0kyRnoO7dj3H/DWS88lBZ2Rk2dGgckoxeD+v4UTxj4ckvaV/O2chPH033ZNI+lwUIZaTCg/jn4GWuFh5J7dVq3mKLjOn/Q90kXLIKoRn98Jq5hJwQMdg==
+Authentication-Results-Original: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=seco.com;
+Received: from DB9PR03MB8847.eurprd03.prod.outlook.com (2603:10a6:10:3dd::13)
+ by GV2PR03MB9377.eurprd03.prod.outlook.com (2603:10a6:150:d2::6) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6178.24; Tue, 14 Mar
+ 2023 18:09:05 +0000
+Received: from DB9PR03MB8847.eurprd03.prod.outlook.com
+ ([fe80::dbcf:1089:3242:614e]) by DB9PR03MB8847.eurprd03.prod.outlook.com
+ ([fe80::dbcf:1089:3242:614e%4]) with mapi id 15.20.6178.024; Tue, 14 Mar 2023
+ 18:09:05 +0000
+Message-ID: <3c19e6d2-4df2-6187-36d5-98ceef07235a@seco.com>
+Date:   Tue, 14 Mar 2023 14:09:00 -0400
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.0
+Subject: Re: [PATCH v11 03/13] dt-bindings: Convert gpio-mmio to yaml
+Content-Language: en-US
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Vinod Koul <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@kernel.org>,
+        linux-phy@lists.infradead.org
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        Camelia Alexandra Groza <camelia.groza@nxp.com>,
+        Madalin Bucur <madalin.bucur@nxp.com>,
+        Bagas Sanjaya <bagasdotme@gmail.com>,
+        Ioana Ciornei <ioana.ciornei@nxp.com>,
+        linuxppc-dev@lists.ozlabs.org,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <brgl@bgdev.pl>,
+        =?UTF-8?Q?Fern=c3=a1ndez_Rojas?= <noltari@gmail.com>,
+        Jonas Gorski <jonas.gorski@gmail.com>,
+        linux-gpio@vger.kernel.org
+References: <20230313161138.3598068-1-sean.anderson@seco.com>
+ <20230313161138.3598068-4-sean.anderson@seco.com>
+ <684eb04d-aeaa-07e1-34d6-783e85e379f0@linaro.org>
+From:   Sean Anderson <sean.anderson@seco.com>
+In-Reply-To: <684eb04d-aeaa-07e1-34d6-783e85e379f0@linaro.org>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: BL0PR03CA0019.namprd03.prod.outlook.com
+ (2603:10b6:208:2d::32) To DB9PR03MB8847.eurprd03.prod.outlook.com
+ (2603:10a6:10:3dd::13)
+MIME-Version: 1.0
+X-MS-TrafficTypeDiagnostic: DB9PR03MB8847:EE_|GV2PR03MB9377:EE_|DB8EUR05FT038:EE_|PAWPR03MB9762:EE_
+X-MS-Office365-Filtering-Correlation-Id: 8b4383dd-0742-4dc3-6d31-08db24b73636
+X-TrendMicro-CAS-OUT-LOOP-IDENTIFIER: 656f966764b7fb185830381c646b41a1
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam-Untrusted: BCL:0;
+X-Microsoft-Antispam-Message-Info-Original: x8orp9VYmzt2eTw/7J/mjdhA1HV+FNLMJOOXmcJaXgeQw8G+fUNpD6NgabFq9Fezk0CQGQKPphmNAfg6uBUzN0WfKSA1GjFNnYbksqa6CuODI2BcmuGNt5NvBjhBDJZnz9y+ZeOqePfySdFXsDi0dZTeRc+crmz+bBOC0KWYEAgamgfyntBN2X9EbQebZb3knR6wIjRGUIhmEBAaFmHJrHx8ubyrws7X2lyLLvR/jRi4fo+/q5GDgm5u1V/7bAeqUpgl0WNTAJ9sySq9S7Rr5apHVhn2t7efaCXgx8VFMkgiXqqHlHADB1HvZFexALPugEhhebC6bNMbE1AtCmvyqtqlfJ9m2jUQj2vxNM/fXKhIb4ccoirON+9i0Yu1bFrH3ICvcy+92WZcSuUvmaDCGmBQs55jczRhpAToGvcrebNPGzTouSUawnRswueAOIy2d0AqHKcdWQflYMRwauRDzrPOmQ8DHyFkx8BnZYti0eAF5zPdKKnCo+ny7ZC6It54fi+92U8S8uypnN4+6az/bJZZChjt/1qE91NKPdjgXeLKyeO3Qo3nXFWfOvTAW4pjRuI5y6EYT1mkHZi8s3b3VjOOqDiUCLPcSRTwVEmLfw1QwR50jGdwt8/JSiqZYR7CHw38FbW7Z5GPUKUK+OaHcNYx8Tb9St+0PB3+5eK4WjKma5TbAGBzB1Nj0dosLQxatq59I5hQzM1pCmEmT8xOeijM7nHFGs/2UhBzF2HKGf0wLeGIViuoeP9zeafMQNfA
+X-Forefront-Antispam-Report-Untrusted: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB9PR03MB8847.eurprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230025)(346002)(396003)(39850400004)(136003)(366004)(376002)(451199018)(86362001)(36756003)(31696002)(316002)(7416002)(6512007)(41300700001)(6506007)(53546011)(8936002)(5660300002)(4326008)(2616005)(26005)(186003)(52116002)(54906003)(478600001)(6486002)(966005)(66556008)(110136005)(66476007)(8676002)(66946007)(38350700002)(38100700002)(6666004)(2906002)(83380400001)(44832011)(31686004)(45980500001)(43740500002);DIR:OUT;SFP:1101;
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: GV2PR03MB9377
+X-EOPAttributedMessage: 0
+X-MS-Exchange-Transport-CrossTenantHeadersStripped: DB8EUR05FT038.eop-eur05.prod.protection.outlook.com
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id-Prvs: 1b45d7de-9412-46f6-70a1-08db24b732b3
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: YJad0CfHFLo1fwOkCq9pszILtYihsh7R5yMG27dasHZa6WOZOrzPunLNah+fEQ+2pUe33qoBcqjBlhk5nQHI1wt0FID08VTRALDuVGjAjf4Hr5fVKo1bGh3s3/2O3ONuiH1hhXYHj/l0XswjKQYMPRf2Qk5gXV2JcTVrt8qJjQ7Hk13vkOKebLUxiKIory67HvsbG3yKFKjZ4Jm88E2jezuMGy1S9G2CtmfZGjiR4jSoXa+zY44+YeIYiZB2jd+3275KwzJ2zVCKbR0qoaWhilXvpYQC9CubWq+VQ8R1eLfu+gXmtVK38Roj563We5wR9/UZcm8tlOvtyf520hxm/DAJTA3EtIcHGUFIN7ip6//iFDTl+UUqLCXdy1d30WR4rkyPBAPVEBaR1OsGST6lj5mVXVkuN85nhZooShukPX9vHVZlVl9DkXzAmmr7RBGtoBZ0p3XSVI71bNUpYQqB/UzwE5VEXQ5Vzbi3xJELZ1br2swWWWJpeU+huP1veFQVde43HREjY4Rgmundi7a7Xuzr3fkboiugrDn6H/zXPnJeAyXFCY63R4kodGaYgRsliZYF/0UIfZe/fvyx3yXyDBNiimM8fgNjFqbEzig+SOQuoECOiHvrN57aSOnp2K4Bkm9NYiSbR2qHBG/pxVEWpX9+74By0jk79kTF2tmdHdojoNzqM72VirxWxPCD+kF8oC9V55DQDcfip9r3HTt/wF2Uv3SW8aQQzUCkO7IeEd07Rw/bt8NOP4uMkVWMTla3DqWiEfVlbygeziWLy8ovqPYEGwAUIcwwMGOepxbGqKE=
+X-Forefront-Antispam-Report: CIP:20.160.56.85;CTRY:NL;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:inpost-eu.tmcas.trendmicro.com;PTR:inpost-eu.tmcas.trendmicro.com;CAT:NONE;SFS:(13230025)(346002)(396003)(39850400004)(376002)(136003)(451199018)(5400799012)(36840700001)(46966006)(40470700004)(5660300002)(40460700003)(7416002)(44832011)(36756003)(83380400001)(36860700001)(47076005)(336012)(82310400005)(478600001)(6506007)(6512007)(6486002)(6666004)(966005)(26005)(186003)(2616005)(53546011)(4326008)(110136005)(40480700001)(70586007)(70206006)(8676002)(356005)(41300700001)(8936002)(31696002)(54906003)(86362001)(316002)(34020700004)(7596003)(7636003)(31686004)(2906002)(82740400003)(43740500002)(12100799021);DIR:OUT;SFP:1501;
+X-OriginatorOrg: seco.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Mar 2023 18:09:10.9271
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 8b4383dd-0742-4dc3-6d31-08db24b73636
+X-MS-Exchange-CrossTenant-Id: bebe97c3-6438-442e-ade3-ff17aa50e733
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=bebe97c3-6438-442e-ade3-ff17aa50e733;Ip=[20.160.56.85];Helo=[inpost-eu.tmcas.trendmicro.com]
+X-MS-Exchange-CrossTenant-AuthSource: DB8EUR05FT038.eop-eur05.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PAWPR03MB9762
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,URIBL_BLOCKED autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The PCB used for all the current boards (Ursa, Draco, Hydra, Orion, Crux)
-was slightly redesigned and delivers some new features while some unused
-components were removed.
+On 3/14/23 13:56, Krzysztof Kozlowski wrote:
+> On 13/03/2023 17:11, Sean Anderson wrote:
+>> This is a generic binding for simple MMIO GPIO controllers. Although we
+>> have a single driver for these controllers, they were previously spread
+>> over several files. Consolidate them. The register descriptions are
+>> adapted from the comments in the source. There is no set order for the
+>> registers, so I have not specified one.
+>> 
+>> Rename brcm,bcm6345-gpio to brcm,bcm63xx-gpio to reflect that bcm6345
+>> has moved.
+>> 
+>> Signed-off-by: Sean Anderson <sean.anderson@seco.com>
+>> Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
+>> ---
+>> Linus or Bartosz, feel free to pick this up as the rest of this series
+>> may not be merged any time soon.
+>> 
+>> Changes in v11:
+>> - Keep empty (or almost-empty) properties on a single line
+>> - Don't use | unnecessarily
+>> - Use gpio as the node name for examples
+>> - Rename brcm,bcm6345-gpio.yaml to brcm,bcm63xx-gpio.yaml
+>> 
+>> Changes in v10:
+>> - New
+>> 
+>>  ...m6345-gpio.yaml => brcm,bcm63xx-gpio.yaml} |  16 +--
+>>  .../devicetree/bindings/gpio/gpio-mmio.yaml   | 134 ++++++++++++++++++
+>>  .../bindings/gpio/ni,169445-nand-gpio.txt     |  38 -----
+>>  .../devicetree/bindings/gpio/wd,mbl-gpio.txt  |  38 -----
+>>  4 files changed, 135 insertions(+), 91 deletions(-)
+>>  rename Documentation/devicetree/bindings/gpio/{brcm,bcm6345-gpio.yaml => brcm,bcm63xx-gpio.yaml} (78%)
+>>  create mode 100644 Documentation/devicetree/bindings/gpio/gpio-mmio.yaml
+>>  delete mode 100644 Documentation/devicetree/bindings/gpio/ni,169445-nand-gpio.txt
+>>  delete mode 100644 Documentation/devicetree/bindings/gpio/wd,mbl-gpio.txt
+>> 
+>> diff --git a/Documentation/devicetree/bindings/gpio/brcm,bcm6345-gpio.yaml b/Documentation/devicetree/bindings/gpio/brcm,bcm63xx-gpio.yaml
+>> similarity index 78%
+>> rename from Documentation/devicetree/bindings/gpio/brcm,bcm6345-gpio.yaml
+>> rename to Documentation/devicetree/bindings/gpio/brcm,bcm63xx-gpio.yaml
+>> index 4d69f79df859..e11f4af49c52 100644
+>> --- a/Documentation/devicetree/bindings/gpio/brcm,bcm6345-gpio.yaml
+>> +++ b/Documentation/devicetree/bindings/gpio/brcm,bcm63xx-gpio.yaml
+> 
+> 
+>> +
+>> +description:
+>> +  Some simple GPIO controllers may consist of a single data register or a pair
+>> +  of set/clear-bit registers. Such controllers are common for glue logic in
+>> +  FPGAs or ASICs. Commonly, these controllers are accessed over memory-mapped
+>> +  NAND-style parallel busses.
+>> +
+>> +properties:
+>> +  big-endian: true
+>> +
+>> +  compatible:
+> 
+> Keep compatible as first property.
 
-- External RTC chip with supercap added.
-- Secure element added.
-- LCD display power supply enable/disable signal added.
-- Touch keyboard reset and interrupt signals added.
-- Factory reset GPIO button added.
-- Audio codec LM49350 (EoL) removed and replaced by PWM audio output.
-- QCA8334 switch was replaced by Marvell 88E6141.
-- PCIe completely removed.
-- uSD card removed and replaced by board-to-board expansion connector.
+I thought it was alphabetical.
 
-There are four configuration variants of the new board:
+>> +    enum:
+>> +      - brcm,bcm6345-gpio # Broadcom BCM6345 GPIO controller
+>> +      - wd,mbl-gpio # Western Digital MyBook Live memory-mapped GPIO controller
+>> +      - ni,169445-nand-gpio # National Instruments 169445 GPIO NAND controller
+> 
+> I think you got comment that these comments are making things
+> unreadable. I don't see here improvement.
 
-1. Pegasus
-The board configuration is based on Orion with the following major changes:
+That was not the comment I got.
 
-- Quad core SoC
-- 4GB of RAM
-- RTC with supercap added
-- Secure element added
+| I think you can inline description: statements in the enum instead of
+| the # hash comments, however IIRC you have to use oneOf and
+| const: to do it, like I do in
+| Documentation/devicetree/bindings/input/touchscreen/cypress,cy8ctma340.yaml
+| but don't overinvest in this if it is cumbersome.
 
-2. Pegasus+
-This is the very same board as Pegasus but uses the i.MX6QuadPlus SoC.
+I investigated this and determined it was cumbersome.
 
-3. Lynx
-The board configuration is based on Draco with the following major changes:
+> For example first comment is useless - you say the same as compatible.
+> Same with last one. So only remaining WD comment should be made in new
+> line so everything is nicely readable.
 
-- DualLite SoC
-- 1GB of RAM
-- RTC with supercap added
-- Secure element added
+I don't understand what you mean by "made in new line". Anyway, I will
+leave just the WD comment.
 
-4. Phoenix
-The board configuration is based on Ursa with the following major changes:
+> BTW, order the enum by name.
 
-- DualLite Soc
-- 1GB of RAM
-- RTC with supercap added
-- Secure element added
-- LCD display support removed
-- UART2 removed
-- Factory reset GPIO button added
+OK
 
-Signed-off-by: Michal Vokáč <michal.vokac@ysoft.com>
----
-Changes in v2:
-- properly sorted entry for imx6q-yapp4-pegasus.dtb in Makefile
-- dropped deprecated fec binding for phy-reset-duration and
-  phy-reset-gpios. Reset moved to mdio switch subnode.
-- moved status property to the end in led-controlled device node
-- removed status = "okay" where not needed
+>> +
+>> +  '#gpio-cells':
+>> +    const: 2
+>> +
+>> +  gpio-controller:
+>> +    true
+> 
+> I am sure I saw comments here...
+> 
+> https://lore.kernel.org/all/20230308231018.GA4039466-robh@kernel.org/
 
- arch/arm/boot/dts/Makefile                    |   4 +
- arch/arm/boot/dts/imx6dl-yapp4-lynx.dts       |  58 ++
- arch/arm/boot/dts/imx6dl-yapp4-phoenix.dts    |  42 ++
- arch/arm/boot/dts/imx6dl-yapp43-common.dtsi   | 615 ++++++++++++++++++
- arch/arm/boot/dts/imx6q-yapp4-pegasus.dts     |  58 ++
- .../boot/dts/imx6qp-yapp4-pegasus-plus.dts    |  58 ++
- 6 files changed, 835 insertions(+)
- create mode 100644 arch/arm/boot/dts/imx6dl-yapp4-lynx.dts
- create mode 100644 arch/arm/boot/dts/imx6dl-yapp4-phoenix.dts
- create mode 100644 arch/arm/boot/dts/imx6dl-yapp43-common.dtsi
- create mode 100644 arch/arm/boot/dts/imx6q-yapp4-pegasus.dts
- create mode 100644 arch/arm/boot/dts/imx6qp-yapp4-pegasus-plus.dts
+OK
 
-diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
-index efe4152e5846..4f58dba50f0d 100644
---- a/arch/arm/boot/dts/Makefile
-+++ b/arch/arm/boot/dts/Makefile
-@@ -561,7 +561,9 @@ dtb-$(CONFIG_SOC_IMX6Q) += \
- 	imx6dl-wandboard-revd1.dtb \
- 	imx6dl-yapp4-draco.dtb \
- 	imx6dl-yapp4-hydra.dtb \
-+	imx6dl-yapp4-lynx.dtb \
- 	imx6dl-yapp4-orion.dtb \
-+	imx6dl-yapp4-phoenix.dtb \
- 	imx6dl-yapp4-ursa.dtb \
- 	imx6q-apalis-eval.dtb \
- 	imx6q-apalis-ixora.dtb \
-@@ -668,6 +670,7 @@ dtb-$(CONFIG_SOC_IMX6Q) += \
- 	imx6q-wandboard-revb1.dtb \
- 	imx6q-wandboard-revd1.dtb \
- 	imx6q-yapp4-crux.dtb \
-+	imx6q-yapp4-pegasus.dtb \
- 	imx6q-zii-rdu2.dtb \
- 	imx6qp-mba6b.dtb \
- 	imx6qp-nitrogen6_max.dtb \
-@@ -683,6 +686,7 @@ dtb-$(CONFIG_SOC_IMX6Q) += \
- 	imx6qp-vicutp.dtb \
- 	imx6qp-wandboard-revd1.dtb \
- 	imx6qp-yapp4-crux-plus.dtb \
-+	imx6qp-yapp4-pegasus-plus.dtb \
- 	imx6qp-zii-rdu2.dtb \
- 	imx6s-dhcom-drc02.dtb
- dtb-$(CONFIG_SOC_IMX6SL) += \
-diff --git a/arch/arm/boot/dts/imx6dl-yapp4-lynx.dts b/arch/arm/boot/dts/imx6dl-yapp4-lynx.dts
-new file mode 100644
-index 000000000000..5c2cd517589b
---- /dev/null
-+++ b/arch/arm/boot/dts/imx6dl-yapp4-lynx.dts
-@@ -0,0 +1,58 @@
-+// SPDX-License-Identifier: GPL-2.0
-+//
-+// Copyright (C) 2021 Y Soft Corporation, a.s.
-+
-+/dts-v1/;
-+
-+#include "imx6dl.dtsi"
-+#include "imx6dl-yapp43-common.dtsi"
-+
-+/ {
-+	model = "Y Soft IOTA Lynx i.MX6DualLite board";
-+	compatible = "ysoft,imx6dl-yapp4-lynx", "fsl,imx6dl";
-+
-+	memory@10000000 {
-+		device_type = "memory";
-+		reg = <0x10000000 0x40000000>;
-+	};
-+};
-+
-+&backlight {
-+	status = "okay";
-+};
-+
-+&lcd_display {
-+	status = "okay";
-+};
-+
-+&leds {
-+	status = "okay";
-+};
-+
-+&panel {
-+	status = "okay";
-+};
-+
-+&pwm1 {
-+	status = "okay";
-+};
-+
-+&reg_usb_h1_vbus {
-+	status = "okay";
-+};
-+
-+&touchscreen {
-+	status = "okay";
-+};
-+
-+&uart2 {
-+	status = "okay";
-+};
-+
-+&usbh1 {
-+	status = "okay";
-+};
-+
-+&usbphy2 {
-+	status = "okay";
-+};
-diff --git a/arch/arm/boot/dts/imx6dl-yapp4-phoenix.dts b/arch/arm/boot/dts/imx6dl-yapp4-phoenix.dts
-new file mode 100644
-index 000000000000..e0292f11d03e
---- /dev/null
-+++ b/arch/arm/boot/dts/imx6dl-yapp4-phoenix.dts
-@@ -0,0 +1,42 @@
-+// SPDX-License-Identifier: GPL-2.0
-+//
-+// Copyright (C) 2021 Y Soft Corporation, a.s.
-+
-+/dts-v1/;
-+
-+#include "imx6dl.dtsi"
-+#include "imx6dl-yapp43-common.dtsi"
-+
-+/ {
-+	model = "Y Soft IOTA Phoenix i.MX6DualLite board";
-+	compatible = "ysoft,imx6dl-yapp4-phoenix", "fsl,imx6dl";
-+
-+	memory@10000000 {
-+		device_type = "memory";
-+		reg = <0x10000000 0x40000000>;
-+	};
-+};
-+
-+&aliases {
-+	/delete-property/ ethernet1;
-+};
-+
-+&gpio_keys {
-+	status = "okay";
-+};
-+
-+&reg_usb_h1_vbus {
-+	status = "okay";
-+};
-+
-+&switch_ports {
-+	/delete-node/ port@2;
-+};
-+
-+&usbh1 {
-+	status = "okay";
-+};
-+
-+&usbphy2 {
-+	status = "okay";
-+};
-diff --git a/arch/arm/boot/dts/imx6dl-yapp43-common.dtsi b/arch/arm/boot/dts/imx6dl-yapp43-common.dtsi
-new file mode 100644
-index 000000000000..52a0f6ee426f
---- /dev/null
-+++ b/arch/arm/boot/dts/imx6dl-yapp43-common.dtsi
-@@ -0,0 +1,615 @@
-+// SPDX-License-Identifier: GPL-2.0
-+//
-+// Copyright (C) 2021 Y Soft Corporation, a.s.
-+
-+#include <dt-bindings/gpio/gpio.h>
-+#include <dt-bindings/interrupt-controller/irq.h>
-+#include <dt-bindings/input/input.h>
-+#include <dt-bindings/leds/common.h>
-+#include <dt-bindings/pwm/pwm.h>
-+
-+/ {
-+	aliases: aliases {
-+		ethernet1 = &eth1;
-+		ethernet2 = &eth2;
-+		mmc0 = &usdhc3;
-+		mmc1 = &usdhc4;
-+	};
-+
-+	backlight: backlight {
-+		compatible = "pwm-backlight";
-+		pwms = <&pwm1 0 500000 PWM_POLARITY_INVERTED>;
-+		brightness-levels = <0 32 64 128 255>;
-+		default-brightness-level = <32>;
-+		num-interpolated-steps = <8>;
-+		power-supply = <&sw2_reg>;
-+		status = "disabled";
-+	};
-+
-+	gpio_keys: gpio-keys {
-+		compatible = "gpio-keys";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_gpio_keys>;
-+		status = "disabled";
-+
-+		button {
-+			label = "Factory RESET";
-+			linux,code = <BTN_0>;
-+			gpios = <&gpio1 0 GPIO_ACTIVE_LOW>;
-+		};
-+	};
-+
-+	lcd_display: display {
-+		compatible = "fsl,imx-parallel-display";
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		interface-pix-fmt = "rgb24";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_ipu1>;
-+		status = "disabled";
-+
-+		port@0 {
-+			reg = <0>;
-+
-+			lcd_display_in: endpoint {
-+				remote-endpoint = <&ipu1_di0_disp0>;
-+			};
-+		};
-+
-+		port@1 {
-+			reg = <1>;
-+
-+			lcd_display_out: endpoint {
-+				remote-endpoint = <&lcd_panel_in>;
-+			};
-+		};
-+	};
-+
-+	panel: panel {
-+		compatible = "dataimage,scf0700c48ggu18";
-+		power-supply = <&sw2_reg>;
-+		backlight = <&backlight>;
-+		enable-gpios = <&gpio3 7 GPIO_ACTIVE_HIGH>;
-+		status = "disabled";
-+
-+		port {
-+			lcd_panel_in: endpoint {
-+				remote-endpoint = <&lcd_display_out>;
-+			};
-+		};
-+	};
-+
-+	reg_usb_h1_vbus: regulator-usb-h1-vbus {
-+		compatible = "regulator-fixed";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_usbh1_vbus>;
-+		regulator-name = "usb_h1_vbus";
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
-+		gpio = <&gpio1 29 GPIO_ACTIVE_HIGH>;
-+		enable-active-high;
-+		status = "disabled";
-+	};
-+
-+	reg_usb_otg_vbus: regulator-usb-otg-vbus {
-+		compatible = "regulator-fixed";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_usbotg_vbus>;
-+		regulator-name = "usb_otg_vbus";
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
-+		gpio = <&gpio3 22 GPIO_ACTIVE_HIGH>;
-+		enable-active-high;
-+	};
-+};
-+
-+&fec {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_enet>;
-+	phy-mode = "rgmii-id";
-+	phy-supply = <&sw2_reg>;
-+	status = "okay";
-+
-+	fixed-link {
-+		speed = <1000>;
-+		full-duplex;
-+	};
-+
-+	mdio {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		switch@0 {
-+			compatible = "marvell,mv88e6085";
-+			reg = <0>;
-+			reset-gpios = <&gpio1 25 GPIO_ACTIVE_LOW>;
-+
-+			switch_ports: ports {
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+
-+				ethphy0: port@0 {
-+					reg = <0>;
-+					label = "cpu";
-+					phy-mode = "rgmii-id";
-+					ethernet = <&fec>;
-+
-+					fixed-link {
-+						speed = <1000>;
-+						full-duplex;
-+					};
-+				};
-+
-+				eth2: port@1 {
-+					reg = <1>;
-+					label = "eth2";
-+					phy-handle = <&phy_port1>;
-+				};
-+
-+				eth1: port@2 {
-+					reg = <2>;
-+					label = "eth1";
-+					phy-handle = <&phy_port2>;
-+				};
-+			};
-+
-+			mdio {
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+
-+				phy_port1: switchphy@11 {
-+					reg = <0x11>;
-+				};
-+
-+				phy_port2: switchphy@12 {
-+					reg = <0x12>;
-+				};
-+			};
-+		};
-+	};
-+};
-+
-+&i2c2 {
-+	clock-frequency = <100000>;
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_i2c2>;
-+	status = "okay";
-+
-+	pmic@8 {
-+		compatible = "fsl,pfuze200";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_pmic>;
-+		reg = <0x8>;
-+
-+		regulators {
-+			sw1a_reg: sw1ab {
-+				regulator-min-microvolt = <300000>;
-+				regulator-max-microvolt = <1875000>;
-+				regulator-boot-on;
-+				regulator-always-on;
-+				regulator-ramp-delay = <6250>;
-+			};
-+
-+			sw2_reg: sw2 {
-+				regulator-min-microvolt = <800000>;
-+				regulator-max-microvolt = <3300000>;
-+				regulator-boot-on;
-+				regulator-always-on;
-+			};
-+
-+			sw3a_reg: sw3a {
-+				regulator-min-microvolt = <400000>;
-+				regulator-max-microvolt = <1975000>;
-+				regulator-boot-on;
-+				regulator-always-on;
-+			};
-+
-+			sw3b_reg: sw3b {
-+				regulator-min-microvolt = <400000>;
-+				regulator-max-microvolt = <1975000>;
-+				regulator-boot-on;
-+				regulator-always-on;
-+			};
-+
-+			swbst_reg: swbst {
-+				regulator-min-microvolt = <5000000>;
-+				regulator-max-microvolt = <5150000>;
-+			};
-+
-+			vgen1_reg: vgen1 {
-+				regulator-min-microvolt = <800000>;
-+				regulator-max-microvolt = <1550000>;
-+			};
-+
-+			vgen2_reg: vgen2 {
-+				regulator-min-microvolt = <800000>;
-+				regulator-max-microvolt = <1550000>;
-+			};
-+
-+			vgen3_reg: vgen3 {
-+				regulator-min-microvolt = <1800000>;
-+				regulator-max-microvolt = <3300000>;
-+				regulator-always-on;
-+			};
-+
-+			vgen4_reg: vgen4 {
-+				regulator-min-microvolt = <1800000>;
-+				regulator-max-microvolt = <3300000>;
-+				regulator-always-on;
-+			};
-+
-+			vgen5_reg: vgen5 {
-+				regulator-min-microvolt = <1800000>;
-+				regulator-max-microvolt = <3300000>;
-+				regulator-always-on;
-+			};
-+
-+			vgen6_reg: vgen6 {
-+				regulator-min-microvolt = <1800000>;
-+				regulator-max-microvolt = <3300000>;
-+				regulator-always-on;
-+			};
-+
-+			vref_reg: vrefddr {
-+				regulator-boot-on;
-+				regulator-always-on;
-+			};
-+
-+			vsnvs_reg: vsnvs {
-+				regulator-min-microvolt = <1000000>;
-+				regulator-max-microvolt = <3000000>;
-+				regulator-boot-on;
-+				regulator-always-on;
-+			};
-+		};
-+	};
-+
-+	leds: led-controller@30 {
-+		compatible = "ti,lp5562";
-+		reg = <0x30>;
-+		clock-mode = /bits/ 8 <1>;
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		status = "disabled";
-+
-+		led@0 {
-+			chan-name = "R";
-+			led-cur = /bits/ 8 <0x20>;
-+			max-cur = /bits/ 8 <0x60>;
-+			reg = <0>;
-+			color = <LED_COLOR_ID_RED>;
-+		};
-+
-+		led@1 {
-+			chan-name = "G";
-+			led-cur = /bits/ 8 <0x20>;
-+			max-cur = /bits/ 8 <0x60>;
-+			reg = <1>;
-+			color = <LED_COLOR_ID_GREEN>;
-+		};
-+
-+		led@2 {
-+			chan-name = "B";
-+			led-cur = /bits/ 8 <0x20>;
-+			max-cur = /bits/ 8 <0x60>;
-+			reg = <2>;
-+			color = <LED_COLOR_ID_BLUE>;
-+		};
-+	};
-+
-+	eeprom@57 {
-+		compatible = "atmel,24c128";
-+		reg = <0x57>;
-+		pagesize = <64>;
-+	};
-+
-+	touchscreen: touchscreen@5c {
-+		compatible = "pixcir,pixcir_tangoc";
-+		reg = <0x5c>;
-+		pinctrl-0 = <&pinctrl_touch>;
-+		interrupt-parent = <&gpio4>;
-+		interrupts = <5 IRQ_TYPE_EDGE_FALLING>;
-+		attb-gpio = <&gpio4 5 GPIO_ACTIVE_HIGH>;
-+		reset-gpios = <&gpio1 2 GPIO_ACTIVE_HIGH>;
-+		touchscreen-size-x = <800>;
-+		touchscreen-size-y = <480>;
-+		status = "disabled";
-+	};
-+
-+	rtc: rtc@68 {
-+		compatible = "dallas,ds1341";
-+		reg = <0x68>;
-+	};
-+};
-+
-+&i2c3 {
-+	clock-frequency = <100000>;
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_i2c3>;
-+	status = "disabled";
-+
-+	oled_1309: oled@3c {
-+		compatible = "solomon,ssd1309fb-i2c";
-+		reg = <0x3c>;
-+		solomon,height = <64>;
-+		solomon,width = <128>;
-+		solomon,page-offset = <0>;
-+		solomon,segment-no-remap;
-+		solomon,prechargep2 = <15>;
-+		reset-gpios = <&gpio_oled 1 GPIO_ACTIVE_LOW>;
-+		vbat-supply = <&sw2_reg>;
-+		status = "disabled";
-+	};
-+
-+	oled_1305: oled@3d {
-+		compatible = "solomon,ssd1305fb-i2c";
-+		reg = <0x3d>;
-+		solomon,height = <64>;
-+		solomon,width = <128>;
-+		solomon,page-offset = <0>;
-+		solomon,col-offset = <4>;
-+		solomon,prechargep2 = <15>;
-+		reset-gpios = <&gpio_oled 1 GPIO_ACTIVE_LOW>;
-+		vbat-supply = <&sw2_reg>;
-+		status = "disabled";
-+	};
-+
-+	gpio_oled: gpio@41 {
-+		compatible = "nxp,pca9536";
-+		gpio-controller;
-+		#gpio-cells = <2>;
-+		reg = <0x41>;
-+		vcc-supply = <&sw2_reg>;
-+		status = "disabled";
-+	};
-+
-+	touchkeys: keys@5a {
-+		compatible = "fsl,mpr121-touchkey";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_touchkeys>;
-+		reg = <0x5a>;
-+		vdd-supply = <&sw2_reg>;
-+		autorepeat;
-+		linux,keycodes = <KEY_1>, <KEY_2>, <KEY_3>, <KEY_4>, <KEY_5>,
-+				<KEY_6>, <KEY_7>, <KEY_8>, <KEY_9>,
-+				<KEY_BACKSPACE>, <KEY_0>, <KEY_ENTER>;
-+		poll-interval = <50>;
-+		status = "disabled";
-+	};
-+};
-+
-+&iomuxc {
-+	pinctrl_enet: enetgrp {
-+		fsl,pins = <
-+			MX6QDL_PAD_ENET_MDIO__ENET_MDIO		0x1b020
-+			MX6QDL_PAD_ENET_MDC__ENET_MDC		0x1b020
-+			MX6QDL_PAD_RGMII_TXC__RGMII_TXC		0x1b020
-+			MX6QDL_PAD_RGMII_TD0__RGMII_TD0		0x1b020
-+			MX6QDL_PAD_RGMII_TD1__RGMII_TD1		0x1b020
-+			MX6QDL_PAD_RGMII_TD2__RGMII_TD2		0x1b020
-+			MX6QDL_PAD_RGMII_TD3__RGMII_TD3		0x1b020
-+			MX6QDL_PAD_RGMII_TX_CTL__RGMII_TX_CTL	0x1b020
-+			MX6QDL_PAD_RGMII_RXC__RGMII_RXC		0x1b020
-+			MX6QDL_PAD_RGMII_RD0__RGMII_RD0		0x1b020
-+			MX6QDL_PAD_RGMII_RD1__RGMII_RD1		0x1b020
-+			MX6QDL_PAD_RGMII_RD2__RGMII_RD2		0x1b020
-+			MX6QDL_PAD_RGMII_RD3__RGMII_RD3		0x1b020
-+			MX6QDL_PAD_RGMII_RX_CTL__RGMII_RX_CTL	0x1b020
-+			MX6QDL_PAD_ENET_REF_CLK__ENET_TX_CLK	0x1b010
-+			MX6QDL_PAD_GPIO_16__ENET_REF_CLK	0x1b010
-+			MX6QDL_PAD_ENET_CRS_DV__GPIO1_IO25	0x1b098
-+		>;
-+	};
-+
-+	pinctrl_gpio_keys: gpiokeysgrp {
-+		fsl,pins = <
-+			MX6QDL_PAD_GPIO_0__GPIO1_IO00	0x1b0b0
-+		>;
-+	};
-+
-+	pinctrl_i2c2: i2c2grp {
-+		fsl,pins = <
-+			MX6QDL_PAD_KEY_COL3__I2C2_SCL	0x4001b899
-+			MX6QDL_PAD_KEY_ROW3__I2C2_SDA	0x4001b899
-+		>;
-+	};
-+
-+	pinctrl_i2c3: i2c3grp {
-+		fsl,pins = <
-+			MX6QDL_PAD_GPIO_3__I2C3_SCL	0x4001b899
-+			MX6QDL_PAD_GPIO_6__I2C3_SDA	0x4001b899
-+		>;
-+	};
-+
-+	pinctrl_ipu1: ipu1grp {
-+		fsl,pins = <
-+			MX6QDL_PAD_EIM_DA7__GPIO3_IO07                  0x1b0b0
-+			MX6QDL_PAD_DI0_DISP_CLK__IPU1_DI0_DISP_CLK	0x10
-+			MX6QDL_PAD_DI0_PIN2__IPU1_DI0_PIN02		0x10
-+			MX6QDL_PAD_DI0_PIN3__IPU1_DI0_PIN03		0x10
-+			MX6QDL_PAD_DISP0_DAT0__IPU1_DISP0_DATA00	0x10
-+			MX6QDL_PAD_DISP0_DAT1__IPU1_DISP0_DATA01	0x10
-+			MX6QDL_PAD_DISP0_DAT2__IPU1_DISP0_DATA02	0x10
-+			MX6QDL_PAD_DISP0_DAT3__IPU1_DISP0_DATA03	0x10
-+			MX6QDL_PAD_DISP0_DAT4__IPU1_DISP0_DATA04	0x10
-+			MX6QDL_PAD_DISP0_DAT5__IPU1_DISP0_DATA05	0x10
-+			MX6QDL_PAD_DISP0_DAT6__IPU1_DISP0_DATA06	0x10
-+			MX6QDL_PAD_DISP0_DAT7__IPU1_DISP0_DATA07	0x10
-+			MX6QDL_PAD_DISP0_DAT8__IPU1_DISP0_DATA08	0x10
-+			MX6QDL_PAD_DISP0_DAT9__IPU1_DISP0_DATA09	0x10
-+			MX6QDL_PAD_DISP0_DAT10__IPU1_DISP0_DATA10	0x10
-+			MX6QDL_PAD_DISP0_DAT11__IPU1_DISP0_DATA11	0x10
-+			MX6QDL_PAD_DISP0_DAT12__IPU1_DISP0_DATA12	0x10
-+			MX6QDL_PAD_DISP0_DAT13__IPU1_DISP0_DATA13	0x10
-+			MX6QDL_PAD_DISP0_DAT14__IPU1_DISP0_DATA14	0x10
-+			MX6QDL_PAD_DISP0_DAT15__IPU1_DISP0_DATA15	0x10
-+			MX6QDL_PAD_DISP0_DAT16__IPU1_DISP0_DATA16	0x10
-+			MX6QDL_PAD_DISP0_DAT17__IPU1_DISP0_DATA17	0x10
-+			MX6QDL_PAD_DISP0_DAT18__IPU1_DISP0_DATA18	0x10
-+			MX6QDL_PAD_DISP0_DAT19__IPU1_DISP0_DATA19	0x10
-+			MX6QDL_PAD_DISP0_DAT20__IPU1_DISP0_DATA20	0x10
-+			MX6QDL_PAD_DISP0_DAT21__IPU1_DISP0_DATA21	0x10
-+			MX6QDL_PAD_DISP0_DAT22__IPU1_DISP0_DATA22	0x10
-+			MX6QDL_PAD_DISP0_DAT23__IPU1_DISP0_DATA23	0x10
-+		>;
-+	};
-+
-+	pinctrl_pmic: pmicgrp {
-+		fsl,pins = <
-+			MX6QDL_PAD_GPIO_18__GPIO7_IO13	0x1b098
-+		>;
-+	};
-+
-+	pinctrl_pwm1: pwm1grp {
-+		fsl,pins = <
-+			MX6QDL_PAD_GPIO_9__PWM1_OUT	0x8
-+		>;
-+	};
-+
-+	pinctrl_touch: touchgrp {
-+		fsl,pins = <
-+			MX6QDL_PAD_GPIO_19__GPIO4_IO05	0x1b098
-+			MX6QDL_PAD_GPIO_2__GPIO1_IO02	0x1b098
-+		>;
-+	};
-+
-+	pinctrl_touchkeys: touchkeysgrp {
-+		fsl,pins = <
-+			MX6QDL_PAD_GPIO_17__GPIO7_IO12	0x1b098
-+			MX6QDL_PAD_GPIO_5__GPIO1_IO05	0x1b098
-+		>;
-+	};
-+
-+	pinctrl_uart1: uart1grp {
-+		fsl,pins = <
-+			MX6QDL_PAD_CSI0_DAT10__UART1_TX_DATA	0x1b0a8
-+			MX6QDL_PAD_CSI0_DAT11__UART1_RX_DATA	0x1b0a8
-+		>;
-+	};
-+
-+	pinctrl_uart2: uart2grp {
-+		fsl,pins = <
-+			MX6QDL_PAD_GPIO_7__UART2_TX_DATA	0x1b098
-+			MX6QDL_PAD_GPIO_8__UART2_RX_DATA	0x1b098
-+		>;
-+	};
-+
-+	pinctrl_usbh1: usbh1grp {
-+		fsl,pins = <
-+			MX6QDL_PAD_EIM_D30__USB_H1_OC	0x1b098
-+		>;
-+	};
-+
-+	pinctrl_usbh1_vbus: usbh1-vbus {
-+		fsl,pins = <
-+			MX6QDL_PAD_ENET_TXD1__GPIO1_IO29	0x98
-+		>;
-+	};
-+
-+	pinctrl_usbotg: usbotggrp {
-+		fsl,pins = <
-+			MX6QDL_PAD_ENET_RX_ER__USB_OTG_ID	0x1b098
-+			MX6QDL_PAD_EIM_D21__USB_OTG_OC		0x1b098
-+		>;
-+	};
-+
-+	pinctrl_usbotg_vbus: usbotg-vbus {
-+		fsl,pins = <
-+			MX6QDL_PAD_EIM_D22__GPIO3_IO22	0x98
-+		>;
-+	};
-+
-+	pinctrl_usdhc4: usdhc4grp {
-+		fsl,pins = <
-+			MX6QDL_PAD_SD4_CMD__SD4_CMD	0x1f069
-+			MX6QDL_PAD_SD4_CLK__SD4_CLK	0x10069
-+			MX6QDL_PAD_SD4_DAT0__SD4_DATA0	0x17069
-+			MX6QDL_PAD_SD4_DAT1__SD4_DATA1	0x17069
-+			MX6QDL_PAD_SD4_DAT2__SD4_DATA2	0x17069
-+			MX6QDL_PAD_SD4_DAT3__SD4_DATA3	0x17069
-+			MX6QDL_PAD_SD4_DAT4__SD4_DATA4	0x17069
-+			MX6QDL_PAD_SD4_DAT5__SD4_DATA5	0x17069
-+			MX6QDL_PAD_SD4_DAT6__SD4_DATA6	0x17069
-+			MX6QDL_PAD_SD4_DAT7__SD4_DATA7	0x17069
-+		>;
-+	};
-+
-+	pinctrl_wdog: wdoggrp {
-+		fsl,pins = <
-+			MX6QDL_PAD_GPIO_1__WDOG2_B	0x1b0b0
-+		>;
-+	};
-+};
-+
-+&ipu1_di0_disp0 {
-+	remote-endpoint = <&lcd_display_in>;
-+};
-+
-+&pwm1 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_pwm1>;
-+	status = "disabled";
-+};
-+
-+&uart1 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_uart1>;
-+	status = "okay";
-+};
-+
-+&uart2 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_uart2>;
-+	status = "disabled";
-+};
-+
-+&usbh1 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_usbh1>;
-+	vbus-supply = <&reg_usb_h1_vbus>;
-+	over-current-active-low;
-+	status = "disabled";
-+};
-+
-+&usbotg {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_usbotg>;
-+	vbus-supply = <&reg_usb_otg_vbus>;
-+	over-current-active-low;
-+	srp-disable;
-+	hnp-disable;
-+	adp-disable;
-+	status = "okay";
-+};
-+
-+&usbphy1 {
-+	fsl,tx-d-cal = <106>;
-+	status = "okay";
-+};
-+
-+&usbphy2 {
-+	fsl,tx-d-cal = <109>;
-+	status = "disabled";
-+};
-+
-+&usdhc4 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_usdhc4>;
-+	bus-width = <8>;
-+	non-removable;
-+	no-1-8-v;
-+	keep-power-in-suspend;
-+	vmmc-supply = <&sw2_reg>;
-+	status = "okay";
-+};
-+
-+&wdog1 {
-+	status = "disabled";
-+};
-+
-+&wdog2 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_wdog>;
-+	fsl,ext-reset-output;
-+	status = "okay";
-+};
-diff --git a/arch/arm/boot/dts/imx6q-yapp4-pegasus.dts b/arch/arm/boot/dts/imx6q-yapp4-pegasus.dts
-new file mode 100644
-index 000000000000..ec6651ba4ba2
---- /dev/null
-+++ b/arch/arm/boot/dts/imx6q-yapp4-pegasus.dts
-@@ -0,0 +1,58 @@
-+// SPDX-License-Identifier: GPL-2.0
-+//
-+// Copyright (C) 2021 Y Soft Corporation, a.s.
-+
-+/dts-v1/;
-+
-+#include "imx6q.dtsi"
-+#include "imx6dl-yapp43-common.dtsi"
-+
-+/ {
-+	model = "Y Soft IOTA Pegasus i.MX6Quad board";
-+	compatible = "ysoft,imx6q-yapp4-pegasus", "fsl,imx6q";
-+
-+	memory@10000000 {
-+		device_type = "memory";
-+		reg = <0x10000000 0xf0000000>;
-+	};
-+};
-+
-+&gpio_oled {
-+	status = "okay";
-+};
-+
-+&i2c3 {
-+	status = "okay";
-+};
-+
-+&leds {
-+	status = "okay";
-+};
-+
-+&oled_1305 {
-+	status = "okay";
-+};
-+
-+&oled_1309 {
-+	status = "okay";
-+};
-+
-+&reg_pu {
-+	regulator-always-on;
-+};
-+
-+&reg_usb_h1_vbus {
-+	status = "okay";
-+};
-+
-+&touchkeys {
-+	status = "okay";
-+};
-+
-+&usbh1 {
-+	status = "okay";
-+};
-+
-+&usbphy2 {
-+	status = "okay";
-+};
-diff --git a/arch/arm/boot/dts/imx6qp-yapp4-pegasus-plus.dts b/arch/arm/boot/dts/imx6qp-yapp4-pegasus-plus.dts
-new file mode 100644
-index 000000000000..4a961a33bf2d
---- /dev/null
-+++ b/arch/arm/boot/dts/imx6qp-yapp4-pegasus-plus.dts
-@@ -0,0 +1,58 @@
-+// SPDX-License-Identifier: GPL-2.0
-+//
-+// Copyright (C) 2021 Y Soft Corporation, a.s.
-+
-+/dts-v1/;
-+
-+#include "imx6qp.dtsi"
-+#include "imx6dl-yapp43-common.dtsi"
-+
-+/ {
-+	model = "Y Soft IOTA Pegasus+ i.MX6QuadPlus board";
-+	compatible = "ysoft,imx6qp-yapp4-pegasus-plus", "fsl,imx6qp";
-+
-+	memory@10000000 {
-+		device_type = "memory";
-+		reg = <0x10000000 0xf0000000>;
-+	};
-+};
-+
-+&gpio_oled {
-+	status = "okay";
-+};
-+
-+&i2c3 {
-+	status = "okay";
-+};
-+
-+&leds {
-+	status = "okay";
-+};
-+
-+&oled_1305 {
-+	status = "okay";
-+};
-+
-+&oled_1309 {
-+	status = "okay";
-+};
-+
-+&reg_pu {
-+	regulator-always-on;
-+};
-+
-+&reg_usb_h1_vbus {
-+	status = "okay";
-+};
-+
-+&touchkeys {
-+	status = "okay";
-+};
-+
-+&usbh1 {
-+	status = "okay";
-+};
-+
-+&usbphy2 {
-+	status = "okay";
-+};
--- 
-2.25.1
+>> +
+>> +  reg:
+>> +    minItems: 1
+>> +    description:
+>> +      A list of registers in the controller. The width of each register is
+>> +      determined by its size.
+> 
+> I don't understand this comment. Aren't you describing now what 'reg' is
+> in DT spec? If so, drop. If not, please share more.
 
+Each register describes exactly one hardware register. In some other
+device, when you see `regs = <0x8000000 0x100>`, then you may have 64
+32-bit registers. But for this device, it would be one 2048-bit
+register.
+
+>>  All registers must have the same width. The number
+>> +      of GPIOs is set by the width, with bit 0 corresponding to GPIO 0.
+>> +    items:
+>> +      - description:
+>> +          Register to READ the value of the GPIO lines. If GPIO line is high,
+>> +          the bit will be set. If the GPIO line is low, the bit will be cleared.
+>> +          This register may also be used to drive GPIOs if the SET register is
+>> +          omitted.
+>> +      - description:
+>> +          Register to SET the value of the GPIO lines. Setting a bit in this
+>> +          register will drive the GPIO line high.
+>> +      - description:
+>> +          Register to CLEAR the value of the GPIO lines. Setting a bit in this
+>> +          register will drive the GPIO line low. If this register is omitted,
+>> +          the SET register will be used to clear the GPIO lines as well, by
+>> +          actively writing the line with 0.
+>> +      - description:
+>> +          Register to set the line as OUTPUT. Setting a bit in this register
+>> +          will turn that line into an output line. Conversely, clearing a bit
+>> +          will turn that line into an input.
+>> +      - description:
+>> +          Register to set this line as INPUT. Setting a bit in this register
+>> +          will turn that line into an input line. Conversely, clearing a bit
+>> +          will turn that line into an output.
+>> +
+>> +  reg-names:
+>> +    minItems: 1
+>> +    maxItems: 5
+>> +    items:
+>> +      enum:
+> 
+> Why this is in any order? Other bindings were here specific, your 'reg'
+> is also specific/fixed.
+
+Some devicetrees have dirout first, and other have dat first. There is no
+mandatory order, and some registers can be included or left out as is
+convenient to the devicetree author.
+
+reg is not specific/fixed either. It is just done that way for
+convenience (and to match the names here).
+
+>> +        - dat
+>> +        - set
+>> +        - clr
+>> +        - dirout
+>> +        - dirin
+>> +
+>> +  native-endian: true
+>> +
+>> +  no-output:
+>> +    $ref: /schemas/types.yaml#/definitions/flag
+>> +    description:
+>> +      If this property is present, the controller cannot drive the GPIO lines.
+>> +
+>> +required:
+>> +  - compatible
+>> +  - reg
+>> +  - reg-names
+>> +  - '#gpio-cells'
+>> +  - gpio-controller
+>> +
+>> +additionalProperties: false
+>> +
+>> +examples:
+>> +  - |
+>> +    gpio@1f300010 {
+>> +      compatible = "ni,169445-nand-gpio";
+>> +      reg = <0x1f300010 0x4>;
+>> +      reg-names = "dat";
+>> +      gpio-controller;
+>> +      #gpio-cells = <2>;
+>> +    };
+>> +
+>> +    gpio@1f300014 {
+>> +      compatible = "ni,169445-nand-gpio";
+>> +      reg = <0x1f300014 0x4>;
+>> +      reg-names = "dat";
+>> +      gpio-controller;
+>> +      #gpio-cells = <2>;
+>> +      no-output;
+>> +    };
+> 
+> No need to duplicate examples. Keep only one.
+
+OK
+
+> Everything is the same.
+
+Except no-output.
+
+--Sean
