@@ -2,57 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5F6296B8BBB
-	for <lists+devicetree@lfdr.de>; Tue, 14 Mar 2023 08:09:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DF28F6B8BC3
+	for <lists+devicetree@lfdr.de>; Tue, 14 Mar 2023 08:13:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229811AbjCNHJT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Mar 2023 03:09:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42220 "EHLO
+        id S229840AbjCNHNL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Mar 2023 03:13:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48006 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229735AbjCNHJS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Mar 2023 03:09:18 -0400
+        with ESMTP id S229573AbjCNHNK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Mar 2023 03:13:10 -0400
 Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AEE1B83D1
-        for <devicetree@vger.kernel.org>; Tue, 14 Mar 2023 00:09:16 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7AA0885A71;
+        Tue, 14 Mar 2023 00:13:09 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 41921B818A2
-        for <devicetree@vger.kernel.org>; Tue, 14 Mar 2023 07:09:15 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8EA01C433EF;
-        Tue, 14 Mar 2023 07:09:07 +0000 (UTC)
+        by ams.source.kernel.org (Postfix) with ESMTPS id EFDDBB818A1;
+        Tue, 14 Mar 2023 07:13:07 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BB0D7C433EF;
+        Tue, 14 Mar 2023 07:13:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1678777753;
-        bh=dJiDwvlKwnk919Dv4H3AXKo5uOs1Vovj49gT6cb/jxk=;
+        s=k20201202; t=1678777986;
+        bh=3dXATiQBn1R32lhDSO2gfWD1Ktr4c8ehbkygTblo+aA=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=Q6GdfbTC2MbHRDbOnIBC/47DzX2vfiiY7SZlSEZW+hiM2YhvOyhixQfDAkI2v2P97
-         +99h3BL7fcoY5hbHjneA8iRmoi8pagpgl3P4f6ygcY+ewbJ9UjEcU43kJG8C1SIn1F
-         7rpif6nuy+vhCSKruzIqhwstfPZV4dcZaRng2853tLxw8pE3bhbPFQ23eJGvA5jaDh
-         HoKFo1WW/n3xgZ9OJPfwqQ5+TfoSiWw4dX5td7+3je0WvSAm9Iihl2hgQFwYwbk8cj
-         zwddUmQ/o3m5/PLXLBcblZ8SgEXfX9w0SymDtPJVBUDAcVcMCnuaBwQi77+AwRHVFk
-         o8YYiA/mM4HLw==
-Date:   Tue, 14 Mar 2023 15:08:48 +0800
+        b=UN6juxtnYPVC9IiRrVQ9JXJ9hhQnQt0zbJqVIDQg12/sGTQSETJGTohft+aFNrgag
+         /tJkQwg8JLVhU95vvGP8qcKiIt7q2ewvCShBcZ4cSr13MOz5lU327U8YDdMjp1Wpvn
+         B8o6rN8cAlnMZmFt7zhYfCLL1qwfMviK7AlUmk+J/EZ/hh2Hjs5ojewInolUKiJciN
+         iHbvwjVpom2fq1yWJ7R82LQvYepGkia5gd0MBb5vPcBfnlA6h+/zMTljLMdwaO6orI
+         DoFVpXHa2423cLpWn1d29rEp4Jn4AplbtqKtK1/3vMGRzbpFNLOjnUqnH0X082y0Bw
+         ic0+VVC+9fmDA==
+Date:   Tue, 14 Mar 2023 15:12:55 +0800
 From:   Shawn Guo <shawnguo@kernel.org>
-To:     Sean Anderson <sean.anderson@seco.com>
-Cc:     Vinod Koul <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
-        linux-phy@lists.infradead.org,
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        Camelia Alexandra Groza <camelia.groza@nxp.com>,
-        Madalin Bucur <madalin.bucur@nxp.com>,
-        Bagas Sanjaya <bagasdotme@gmail.com>,
-        Ioana Ciornei <ioana.ciornei@nxp.com>,
-        linuxppc-dev@lists.ozlabs.org, Li Yang <leoyang.li@nxp.com>
-Subject: Re: [PATCH v11 09/13] arm64: dts: ls1046a: Add serdes nodes
-Message-ID: <20230314070848.GA143566@dragon>
-References: <20230313161138.3598068-1-sean.anderson@seco.com>
- <20230313161138.3598068-10-sean.anderson@seco.com>
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] arm64: dts: imx8: align thermal node names with bindings
+Message-ID: <20230314071255.GB143566@dragon>
+References: <20230312201335.498759-1-krzysztof.kozlowski@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230313161138.3598068-10-sean.anderson@seco.com>
+In-Reply-To: <20230312201335.498759-1-krzysztof.kozlowski@linaro.org>
 X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
@@ -62,13 +58,11 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Mar 13, 2023 at 12:11:33PM -0400, Sean Anderson wrote:
-> This adds nodes for the SerDes devices. They are disabled by default
-> to prevent any breakage on existing boards.
+On Sun, Mar 12, 2023 at 09:13:35PM +0100, Krzysztof Kozlowski wrote:
+> Bindings expect thermal node names to end with '-thermal':
 > 
-> Signed-off-by: Sean Anderson <sean.anderson@seco.com>
+>   imx8qxp-mek.dtb: thermal-zones: 'pmic-thermal0' does not match any of the regexes: '^[a-zA-Z][a-zA-Z0-9\\-]{1,12}-thermal$', 'pinctrl-[0-9]+'
+> 
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-The DTS patches look good to me.  Let me know if they are ready to be
-applied.
-
-Shawn
+Applied, thanks!
