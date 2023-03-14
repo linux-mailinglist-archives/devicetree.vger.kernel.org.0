@@ -2,80 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 867AF6B8DB1
-	for <lists+devicetree@lfdr.de>; Tue, 14 Mar 2023 09:43:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3A83E6B8DCE
+	for <lists+devicetree@lfdr.de>; Tue, 14 Mar 2023 09:51:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230043AbjCNInZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Mar 2023 04:43:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54528 "EHLO
+        id S229902AbjCNIva (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Mar 2023 04:51:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38632 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229992AbjCNInW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Mar 2023 04:43:22 -0400
-Received: from mail-ed1-x530.google.com (mail-ed1-x530.google.com [IPv6:2a00:1450:4864:20::530])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EF6815A91D
-        for <devicetree@vger.kernel.org>; Tue, 14 Mar 2023 01:43:17 -0700 (PDT)
-Received: by mail-ed1-x530.google.com with SMTP id da10so58886735edb.3
-        for <devicetree@vger.kernel.org>; Tue, 14 Mar 2023 01:43:17 -0700 (PDT)
+        with ESMTP id S230033AbjCNIvT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Mar 2023 04:51:19 -0400
+Received: from mail-pf1-x432.google.com (mail-pf1-x432.google.com [IPv6:2607:f8b0:4864:20::432])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 545AD5ADCD
+        for <devicetree@vger.kernel.org>; Tue, 14 Mar 2023 01:51:05 -0700 (PDT)
+Received: by mail-pf1-x432.google.com with SMTP id o67so2573236pfg.10
+        for <devicetree@vger.kernel.org>; Tue, 14 Mar 2023 01:51:05 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1678783396;
-        h=content-transfer-encoding:in-reply-to:content-language:references
-         :to:subject:from:user-agent:mime-version:date:message-id:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=92MwtSwPGSC0xtheTxnGf3j9jdTI96ljx0ZviUFHG1I=;
-        b=oyQ4dMvk2UK11GA1WdnLBvMyOHcESeY2TG2Mmo7ok3Q9m+xGNXdYROfuQAKcVbAeop
-         Ypje+0WERfKpYGPxleCN9OtJzftIVgKUBc5JIb13qfCZFPI/NYFqwKGlUZjN71SIoatX
-         pGOlFeNXz5MQm2TqOl1c1YiZ8U8SrKN3HN0Xa/iRIHXnfGJXKrDUlcEvNKufmwbFp6G/
-         Y1kKx9sjvYjV70mOO8H6g71hlUpPZyhRnjSjmCE92X/8U0Engwihxc/Dh2nNK26HXorc
-         5P+2J/pqtcku5I82Ocxod6uh8zsexw+ZjZSwQdKEF2K8rbJhwNtdYR2Ty8ObFhOiKZxy
-         0oDQ==
+        d=huaqin-corp-partner-google-com.20210112.gappssmtp.com; s=20210112; t=1678783865;
+        h=message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=xQPhsRPwIBJSw8lw9/twam5VTJIrUkvEv5SN14Y29N4=;
+        b=6B84mYPTC1ctAxlQ/eWFnqMKDh5XbHqHG2MgCjXBK9diGVC4E9G9CLVUlrPgpt1jk2
+         20sTZ7k+76uAGEkxkMudOPUVilOdjmwYbVCoBdG8WlWH9IcA2pRnMrForTVG1Ua0XHNH
+         2v9UdKK8LAVPvOySJVcRzL3LWNIUMmBIztBQ6I4Kmf/fs/tHMuIvqzFxSU7avFwTYZD6
+         Kw3yf0io7oC20hhq5Fxhm9p5eCBUdLQFQj/MQv1DRuuCq+oBWMf+0Dk3KT8N81jw6STB
+         IQHEW9LgRaBAZ8inqnbZNrkU+wo3G+qqwpGqVXsJtVB9HiISnJqbKS8P8YneDdjDBV9R
+         a+zQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678783396;
-        h=content-transfer-encoding:in-reply-to:content-language:references
-         :to:subject:from:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=92MwtSwPGSC0xtheTxnGf3j9jdTI96ljx0ZviUFHG1I=;
-        b=c2k+hNCyBWpb3xjG7nb0LpjHmQ47up7pxzOy0Yw0AyK30tP+APQzo43pKdDHcYd/zT
-         eBvgddTzY5u2L0fo9KISg17Q72Ulktql1GbkeL/U2RG33+FekjFNVVhs7WKqpQWZN26+
-         6i4oRZ5vGloJrSWUBxL8fUzugdPLUSFUjv5l2FJzPHsjdISbFzmSH8am+2HghC5huODp
-         yGnKrZZRDXEfydrF0oGfdfD97z3zDazE7PqasZAnM8uwbLcSlf50pGRRXOfq4O36b1Ru
-         A2k9sJ8LEqVI9x/4W6CvL9jFEfLFA1WjAusDgAd+0iWuuyLANYZolu8xJdmm1g5LyNo4
-         SP5w==
-X-Gm-Message-State: AO0yUKVAfVbRO1ICNHC+M4fxd3ZvS8+6eBb/5p0ykC5Lj1c+pz3WGbFu
-        IGbvGgxviFqKuBmP+Xs24Bk/Hw==
-X-Google-Smtp-Source: AK7set901qm2G8O222Nxqy1a/eOE1oERM7/AJ9yV62Vn5yPr980uV5IcS9c7byN3Xdxgf4K2Fu+Tuw==
-X-Received: by 2002:aa7:df83:0:b0:4fc:812a:ec25 with SMTP id b3-20020aa7df83000000b004fc812aec25mr5962025edy.16.1678783396420;
-        Tue, 14 Mar 2023 01:43:16 -0700 (PDT)
-Received: from ?IPV6:2a02:810d:15c0:828:59be:4b3f:994b:e78c? ([2a02:810d:15c0:828:59be:4b3f:994b:e78c])
-        by smtp.gmail.com with ESMTPSA id q11-20020a5085cb000000b004bd6e3ed196sm632505edh.86.2023.03.14.01.43.15
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 14 Mar 2023 01:43:16 -0700 (PDT)
-Message-ID: <c45df83a-a6ac-16bd-1872-64fd0794b421@linaro.org>
-Date:   Tue, 14 Mar 2023 09:43:14 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: Re: [PATCH V3 2/6] dt-bindings: timestamp: Add Tegra234 support
-To:     Dipen Patel <dipenp@nvidia.com>, thierry.reding@gmail.com,
-        jonathanh@nvidia.com, linux-kernel@vger.kernel.org,
-        linux-tegra@vger.kernel.org, linux-gpio@vger.kernel.org,
-        linus.walleij@linaro.org, devicetree@vger.kernel.org,
-        linux-doc@vger.kernel.org, robh+dt@kernel.org,
-        timestamp@lists.linux.dev, krzysztof.kozlowski+dt@linaro.org,
-        brgl@bgdev.pl, corbet@lwn.net, gregkh@linuxfoundation.org
-References: <20230310190634.5053-1-dipenp@nvidia.com>
- <20230310190634.5053-3-dipenp@nvidia.com>
- <f6d9c84a-1c75-d9b4-59ed-39d6c5b310a9@linaro.org>
- <b4195142-6cfe-df3c-6edf-0c40b64ad02a@nvidia.com>
- <6c5045d9-4f4a-5018-3f3f-7746b08ab2b5@linaro.org>
- <fad52df6-38e8-ba8a-117a-8514e09af0ee@nvidia.com>
-Content-Language: en-US
-In-Reply-To: <fad52df6-38e8-ba8a-117a-8514e09af0ee@nvidia.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
+        d=1e100.net; s=20210112; t=1678783865;
+        h=message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=xQPhsRPwIBJSw8lw9/twam5VTJIrUkvEv5SN14Y29N4=;
+        b=oVcfEjwE+0vlF7S9E9Ou3xlu/cztSTc9RNa8XdFOSwPWkBgfzmT5jmgjDU6op2GBBu
+         8oClcuwXdLYODzqK5S8DuqLORjCooRhdHRQYvVawuKO2AEm5YOKKlJgnQVTJalBfQ4UB
+         FFjXJToIwx6y/I7QepSSy8iFRmEj0e1zOOR3CQElepLH0incabW6gcwdy9caadXTnbAW
+         9HrVPQxjRdHOQvIZtrTZQsansMShvLWsTvkOSypnTivq84nUnogmMb4IZ0oo8mvxlAk3
+         iFek4O750Pv5IWAC6UXT9mImWoIgXOm7XsDKyUGFoOWsEd/n/YgO8FbPxHfOl4nUJcrI
+         eGYA==
+X-Gm-Message-State: AO0yUKWycHDsK1YflvbBLStc5AopgXSG95fibD5SLMJsD6Cc3LpIlVJX
+        MqedpXjOcqlD96epwSS28Os/Bw==
+X-Google-Smtp-Source: AK7set/msSKdiefdhGB9noxU+oedCQ6Qiq/waQhXwIqseVPcRRTkC/MtnzcJu4d4Nf+an3yT0p/tfQ==
+X-Received: by 2002:aa7:9835:0:b0:624:b4f3:398f with SMTP id q21-20020aa79835000000b00624b4f3398fmr4481754pfl.0.1678783864739;
+        Tue, 14 Mar 2023 01:51:04 -0700 (PDT)
+Received: from chromeos.huaqin.com ([101.78.151.214])
+        by smtp.gmail.com with ESMTPSA id f3-20020a63f103000000b004eecc3080f8sm1080637pgi.29.2023.03.14.01.51.02
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 14 Mar 2023 01:51:04 -0700 (PDT)
+From:   Ruihai Zhou <zhouruihai@huaqin.corp-partner.google.com>
+To:     neil.armstrong@linaro.org, sam@ravnborg.org, airlied@gmail.com,
+        daniel@ffwll.ch, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, thierry.reding@gmail.com
+Cc:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Ruihai Zhou <zhouruihai@huaqin.corp-partner.google.com>
+Subject: [PATCH 1/2] dt-bindings: display: panel: Add compatible for Starry 2081101QFH032011-53G
+Date:   Tue, 14 Mar 2023 16:50:34 +0800
+Message-Id: <20230314085034.6380-1-zhouruihai@huaqin.corp-partner.google.com>
+X-Mailer: git-send-email 2.17.1
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -83,70 +67,28 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 13/03/2023 22:49, Dipen Patel wrote:
-> On 3/13/23 10:55 AM, Krzysztof Kozlowski wrote:
->> On 13/03/2023 18:05, Dipen Patel wrote:
->>> On 3/12/23 8:47 AM, Krzysztof Kozlowski wrote:
->>>> On 10/03/2023 20:06, Dipen Patel wrote:
->>>>> Added timestamp provider support for the Tegra234 in devicetree
->>>>> bindings. In addition, it addresses review comments from the
->>>>> previous review round as follows:
->>>>> - Removes nvidia,slices property. This was not necessary as it
->>>>> is a constant value and can be hardcoded inside the driver code.
->>>>> - Adds nvidia,gpio-controller property. This simplifies how GTE driver
->>>>> retrieves GPIO controller instance, see below explanation.
->>>>>
->>>>> Without this property code would look like:
->>>>> if (of_device_is_compatible(dev->of_node, "nvidia,tegra194-gte-aon"))
->>>>> 	hte_dev->c = gpiochip_find("tegra194-gpio-aon",
->>>>> 				   tegra_get_gpiochip_from_name);
->>>>> else if (of_device_is_compatible(dev->of_node, "nvidia,tegra234-gte-aon"))
->>>>> 	hte_dev->c = gpiochip_find("tegra234-gpio-aon",
->>>>> 				   tegra_get_gpiochip_from_name);
->>>>> else
->>>>> 	return -ENODEV;
->>>>>
->>>>> This means for every future addition of the compatible string, if else
->>>>> condition statements have to be expanded.
->>>>>
->>>>> With the property:
->>>>> gpio_ctrl = of_parse_phandle(dev->of_node, "nvidia,gpio-controller", 0);
->>>>> ....
->>>>> hte_dev->c = gpiochip_find(gpio_ctrl, tegra_get_gpiochip_from_of_node);
->>>>>
->>>>> We haven't technically started making use of these bindings, so
->>>>> backwards-compatibility shouldn't be an issue yet.
->>>>
->>>> Unfortunately, I don't understand this statement. The
->>>> nvidia,tegra194-gte-aon with removed property is in a released kernel
->>>> v6.2. What does it mean "technically"? It's a released kernel thus it is
->>>> a released ABI.
->>>
->>> There is no active user of that driver, so even if it breaks 6.2, it is fine
->>> as there is no one to complain about it.
->>
->> How do you know? It's a released kernel, thus how can you ask millions
->> of people if they use it or not?
-> 
-> Please help me understand, if I am targeting these set of changes for the kernel
-> 6.4, wouldn't all the patches land on v6.4 at the same time no matter the tree it
+The STARRY 2081101QFH032011-53G is a 10.1" WUXGA TFT LCD panel,
+which fits in nicely with the existing panel-boe-tv101wum-nl6
+driver. Hence, we add a new compatible with panel specific config.
 
-No, that's not how we do things. Changes *must be bisectable* and *DTS
-always* goes to separate branch, so how do you ensure this in your
-current flow? I don't see it. The patch #4 should break the bisectability.
+Signed-off-by: Ruihai Zhou <zhouruihai@huaqin.corp-partner.google.com>
+---
+ .../devicetree/bindings/display/panel/boe,tv101wum-nl6.yaml     | 2 ++
+ 1 file changed, 2 insertions(+)
 
-> will go from? Also, if user is at v6.2, how this will break as at that version, it
-> will have the old bindings and old driver, right?
-
-Bindings define ABI. You defined them like this in v6.2 thus someone is
-using them:
-1. In other systems, bootloaders, firmwares, SW.
-2. via DTS written for v6.2 ABI. Newer kernel should not break existing
-DTS and we do not talk about in-kernel DTS, just like we do not talk
-about in-kernel user-space applications when using same argument for
-their compatibility.
-
-
-Best regards,
-Krzysztof
+diff --git a/Documentation/devicetree/bindings/display/panel/boe,tv101wum-nl6.yaml b/Documentation/devicetree/bindings/display/panel/boe,tv101wum-nl6.yaml
+index a2384bd74cf2..f98ed588c750 100644
+--- a/Documentation/devicetree/bindings/display/panel/boe,tv101wum-nl6.yaml
++++ b/Documentation/devicetree/bindings/display/panel/boe,tv101wum-nl6.yaml
+@@ -30,6 +30,8 @@ properties:
+       - boe,tv110c9m-ll3
+         # INX HJ110IZ-01A 10.95" WUXGA TFT LCD panel
+       - innolux,hj110iz-01a
++        # STARRY 2081101QFH032011-53G 10.1" WUXGA TFT LCD panel
++      - starry,2081101qfh032011-53g
+ 
+   reg:
+     description: the virtual channel number of a DSI peripheral
+-- 
+2.17.1
 
