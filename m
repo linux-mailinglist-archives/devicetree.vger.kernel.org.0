@@ -2,279 +2,211 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4FB9F6B9289
-	for <lists+devicetree@lfdr.de>; Tue, 14 Mar 2023 13:02:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 616C16B93ED
+	for <lists+devicetree@lfdr.de>; Tue, 14 Mar 2023 13:35:24 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230378AbjCNMCs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Mar 2023 08:02:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59700 "EHLO
+        id S231159AbjCNMfW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Mar 2023 08:35:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44148 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230211AbjCNMCq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Mar 2023 08:02:46 -0400
-Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5FDD17D9C
-        for <devicetree@vger.kernel.org>; Tue, 14 Mar 2023 05:01:59 -0700 (PDT)
-Received: by mail-lf1-x133.google.com with SMTP id i28so19722156lfv.0
-        for <devicetree@vger.kernel.org>; Tue, 14 Mar 2023 05:01:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1678795291;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=qxdl5EaWW37f/EaoWMzEiM+MDiQ+bRe3oc7oUW6vU3I=;
-        b=xTaL5bWALtWMcWnGtP773pjTvoRnANAUPQsn4XcYFjc8/zqRJsx6TtUYWqSoqERUHi
-         uoDrJx9M9FCI3B6TuBejWMYKN1AyLGKQv5bT61sswdp68OqbodO+/hZlw7AWeQ3fKiJA
-         UoNjzx1AzJYwL6uTbLgKnRKXyT/tRH+XsarLdRIE1b1zcjru9aVX8m9Ms6JdVhiWHoXT
-         VWjBf/fEdzAZhE0kRCtSDn4JynOBQuL79/bn/1FbR1HnFZXMbAcHuOLzkcvudoRWUJvR
-         XliLM43MDSM3vpQwQ89KIMXqyfUWAs7ZeLbiFH6FZBLb0ROjufDvDza6rZFniWoibbq0
-         AoNQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678795291;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=qxdl5EaWW37f/EaoWMzEiM+MDiQ+bRe3oc7oUW6vU3I=;
-        b=kkm1YsgqpJsDljoj0WjzJUwrVi7bnvG5iuhSCd7lxpKNBNOrh3MGkkBF3gj6LHz5wk
-         bDIe96BOD71Xe6fg3MIsiDhpdiwyk9trTMjD8RMMdqHaxPWoVFl3w7NDG5sJfDYaZoZ1
-         pk6i4HFpbfpCsqjoW4Bfs84Ohu3vvpePvzFdoV4qSL32Qr0wmv6+jj9jOaSM5lCJzrya
-         9/OskkehAUNk1GIL66RrxzvJCdinmQoLUSptXsMarYaD5yKV2sG9Yz2ooEyd3UpGuPBM
-         2xhRE3ZXo4c4N05/DS0PGxQwHyBiH2cEGfuVmmqSa1dRnigHIZiHPeQvwqjManeQoloP
-         zDTg==
-X-Gm-Message-State: AO0yUKXqKr7D/PVMUI6TIJ2pkTVpISzjmZ3VDh4QnyVuQFYYqCR4svMH
-        SSCUOQLHwx+ywuH6zsGd5HNquA==
-X-Google-Smtp-Source: AK7set/k/n+CZueG3A0weqw5lpWKf9Y03en5sKrbyHi7IfWC18kdA/dqCvr/rAZCPbuIpQkzDLq4VQ==
-X-Received: by 2002:ac2:55b3:0:b0:4b5:936e:69df with SMTP id y19-20020ac255b3000000b004b5936e69dfmr613091lfg.53.1678795291354;
-        Tue, 14 Mar 2023 05:01:31 -0700 (PDT)
-Received: from [192.168.1.101] (abyj16.neoplus.adsl.tpnet.pl. [83.9.29.16])
-        by smtp.gmail.com with ESMTPSA id r6-20020ac25a46000000b004e849f6836csm376886lfn.167.2023.03.14.05.01.28
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 14 Mar 2023 05:01:30 -0700 (PDT)
-Message-ID: <6a07da47-fcaa-c7e6-36f8-96c055bee0f0@linaro.org>
-Date:   Tue, 14 Mar 2023 13:01:27 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-Subject: Re: [PATCH v3 04/10] drm/msm/dsi: dsi_cfg: Deduplicate identical
- structs
-Content-Language: en-US
-To:     Marijn Suijten <marijn.suijten@somainline.org>
-Cc:     Rob Clark <robdclark@gmail.com>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Sean Paul <sean@poorly.run>, David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
+        with ESMTP id S231234AbjCNMfU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Mar 2023 08:35:20 -0400
+Received: from mx.sberdevices.ru (mx.sberdevices.ru [45.89.227.171])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6D9BB85B02;
+        Tue, 14 Mar 2023 05:34:42 -0700 (PDT)
+Received: from s-lin-edge02.sberdevices.ru (localhost [127.0.0.1])
+        by mx.sberdevices.ru (Postfix) with ESMTP id 338435FD63;
+        Tue, 14 Mar 2023 15:03:01 +0300 (MSK)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sberdevices.ru;
+        s=mail; t=1678795381;
+        bh=PoZz0esBDhQdtYMPU1nKPBm2tPVfWXQDEO6hXS1I7Xo=;
+        h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type;
+        b=oP3rJmKu7dg8gB8bsu3WIWJpxE36wsNc+W+Cf5oVA/vp1VYj/IzwRA9qyHGNhHWBr
+         ZBrs6r6KHa/qhv8j6YYzEJG8TWckiBX4zeAvwFUcD9q0mMrlhTZF/FBtLLoODYwgTH
+         +fNKPS3nEIlVSxNIkRyMvK7R8MtbAa+xTbHp3+MmhiVY4bwjAdRSMXJJWeodPX8oSB
+         CnI1BQLlZumBFLwzuyO7Q/uEafxt/XXPxiES0yHy7lm+sdMreur9x02+zpMB50VEqY
+         CEwEX3IfW3dpJLX6BV5/NKfIpRB7jYM9gcJKpA6iY/ccu8Uu0UFh3fl+2LiO4JGpxH
+         Y6YjauHAMPN/w==
+Received: from S-MS-EXCH01.sberdevices.ru (S-MS-EXCH01.sberdevices.ru [172.16.1.4])
+        by mx.sberdevices.ru (Postfix) with ESMTP;
+        Tue, 14 Mar 2023 15:03:01 +0300 (MSK)
+From:   Martin Kurbanov <mmkurbanov@sberdevices.ru>
+To:     Pavel Machek <pavel@ucw.cz>, Lee Jones <lee@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Krishna Manikandan <quic_mkrishn@quicinc.com>,
-        Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Rob Herring <robh@kernel.org>, linux-arm-msm@vger.kernel.org,
-        dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20230307-topic-dsi_qcm-v3-0-8bd7e1add38a@linaro.org>
- <20230307-topic-dsi_qcm-v3-4-8bd7e1add38a@linaro.org>
- <20230313235550.zo243m5qn23yadey@SoMainline.org>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20230313235550.zo243m5qn23yadey@SoMainline.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-0.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_SORBS_HTTP,RCVD_IN_SORBS_SOCKS,SPF_HELO_NONE,SPF_PASS,
-        URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.6
+        Andy Shevchenko <andy.shevchenko@gmail.com>
+CC:     <linux-leds@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <kernel@sberdevices.ru>, <devicetree@vger.kernel.org>,
+        Martin Kurbanov <mmkurbanov@sberdevices.ru>
+Subject: [PATCH v3 1/2] dt-bindings: leds: add binding for aw200xx
+Date:   Tue, 14 Mar 2023 15:02:51 +0300
+Message-ID: <20230314120252.48263-2-mmkurbanov@sberdevices.ru>
+X-Mailer: git-send-email 2.37.2
+In-Reply-To: <20230314120252.48263-1-mmkurbanov@sberdevices.ru>
+References: <20230314120252.48263-1-mmkurbanov@sberdevices.ru>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [172.16.1.6]
+X-ClientProxiedBy: S-MS-EXCH01.sberdevices.ru (172.16.1.4) To
+ S-MS-EXCH01.sberdevices.ru (172.16.1.4)
+X-KSMG-Rule-ID: 4
+X-KSMG-Message-Action: clean
+X-KSMG-AntiSpam-Status: not scanned, disabled by settings
+X-KSMG-AntiSpam-Interceptor-Info: not scanned
+X-KSMG-AntiPhishing: not scanned, disabled by settings
+X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 1.1.2.30, bases: 2023/03/14 06:01:00 #20942017
+X-KSMG-AntiVirus-Status: Clean, skipped
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Add YAML devicetree binding for AWINIC AW20036/AW20052/AW20074
+led driver.
 
+Signed-off-by: Martin Kurbanov <mmkurbanov@sberdevices.ru>
+---
+ .../bindings/leds/awinic,aw200xx.yaml         | 126 ++++++++++++++++++
+ 1 file changed, 126 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/leds/awinic,aw200xx.yaml
 
-On 14.03.2023 00:55, Marijn Suijten wrote:
-> On 2023-03-07 14:01:42, Konrad Dybcio wrote:
->> Some structs were defined multiple times for no apparent reason.
->> Deduplicate them.
->>
->> Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
->> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
-> 
-> Seems a bit inconsistent to name some of these with their DSI host
-> revision, and keep some named after the SoC.  Also in the name of
-> msm_dsi_config.  Regardless:
-> 
-> Reviewed-by: Marijn Suijten <marijn.suijten@somainline.org>
-I think it's a good indicator of whether it's shared or used
-by just one platform. Truth be told, some of the entries *are*
-actually SoC-specific (think 8996 and its magic MMAGIC additions)
+diff --git a/Documentation/devicetree/bindings/leds/awinic,aw200xx.yaml b/Documentation/devicetree/bindings/leds/awinic,aw200xx.yaml
+new file mode 100644
+index 000000000000..feb5febaf361
+--- /dev/null
++++ b/Documentation/devicetree/bindings/leds/awinic,aw200xx.yaml
+@@ -0,0 +1,126 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/leds/awinic,aw200xx.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: AWINIC AW200XX LED
++
++maintainers:
++  - Martin Kurbanov <mmkurbanov@sberdevices.ru>
++
++description: |
++  This controller is present on AW20036/AW20054/AW20072.
++  It is a 3x12/6x9/6x12 matrix LED programmed via
++  an I2C interface, up to 36/54/72 LEDs or 12/18/24 RGBs,
++  3 pattern controllers for auto breathing or group dimming control.
++
++  For more product information please see the link below:
++  aw20036 - https://www.awinic.com/en/productDetail/AW20036QNR#tech-docs
++  aw20054 - https://www.awinic.com/en/productDetail/AW20054QNR#tech-docs
++  aw20072 - https://www.awinic.com/en/productDetail/AW20072QNR#tech-docs
++
++properties:
++  compatible:
++    enum:
++      - awinic,aw20036
++      - awinic,aw20054
++      - awinic,aw20072
++
++  reg:
++    maxItems: 1
++
++  "#address-cells":
++    const: 1
++
++  "#size-cells":
++    const: 0
++
++  awinic,display-rows:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    description:
++      Leds matrix size
++
++patternProperties:
++  "^led@[0-9a-f]$":
++    type: object
++    $ref: common.yaml#
++    unevaluatedProperties: false
++
++    properties:
++      reg:
++        description:
++          LED number
++        maxItems: 1
++
++      led-max-microamp:
++        default: 9780
++        description: |
++          Note that a driver will take the minimum of all LED limits
++          since the chip has a single global setting.
++          The maximum output current of each LED is calculated by the
++          following formula:
++            IMAXled = 160000 * (592 / 600.5) * (1 / display-rows)
++          And the minimum output current formula:
++            IMINled = 3300 * (592 / 600.5) * (1 / display-rows)
++
++required:
++  - compatible
++  - reg
++  - "#address-cells"
++  - "#size-cells"
++  - awinic,display-rows
++
++allOf:
++  - if:
++      properties:
++        compatible:
++          contains:
++            const: awinic,aw20036
++    then:
++      properties:
++        awinic,display-rows:
++          enum: [1, 2, 3]
++    else:
++      properties:
++        awinic,display-rows:
++          enum: [1, 2, 3, 4, 5, 6, 7]
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/leds/common.h>
++
++    i2c {
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        led-controller@3a {
++            compatible = "awinic,aw20036";
++            reg = <0x3a>;
++            #address-cells = <1>;
++            #size-cells = <0>;
++            awinic,display-rows = <3>;
++
++            led@0 {
++                reg = <0x0>;
++                color = <LED_COLOR_ID_RED>;
++                led-max-microamp = <9780>;
++            };
++
++            led@1 {
++                reg = <0x1>;
++                color = <LED_COLOR_ID_GREEN>;
++                led-max-microamp = <9780>;
++            };
++
++            led@2 {
++                reg = <0x2>;
++                color = <LED_COLOR_ID_BLUE>;
++                led-max-microamp = <9780>;
++            };
++        };
++    };
++
++...
+--
+2.37.2
 
-Konrad
-
-> 
->> ---
->>  drivers/gpu/drm/msm/dsi/dsi_cfg.c | 77 +++++++++++++--------------------------
->>  1 file changed, 26 insertions(+), 51 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/msm/dsi/dsi_cfg.c b/drivers/gpu/drm/msm/dsi/dsi_cfg.c
->> index 6c192963c100..d39521850018 100644
->> --- a/drivers/gpu/drm/msm/dsi/dsi_cfg.c
->> +++ b/drivers/gpu/drm/msm/dsi/dsi_cfg.c
->> @@ -47,41 +47,32 @@ static const struct msm_dsi_config msm8974_apq8084_dsi_cfg = {
->>  	},
->>  };
->>  
->> -static const char * const dsi_8916_bus_clk_names[] = {
->> +static const char * const dsi_v1_3_1_clk_names[] = {
->>  	"mdp_core", "iface", "bus",
->>  };
->>  
->> -static const struct regulator_bulk_data msm8916_dsi_regulators[] = {
->> +static const struct regulator_bulk_data dsi_v1_3_1_regulators[] = {
->>  	{ .supply = "vdda", .init_load_uA = 100000 },	/* 1.2 V */
->>  	{ .supply = "vddio", .init_load_uA = 100000 },	/* 1.8 V */
->>  };
->>  
->>  static const struct msm_dsi_config msm8916_dsi_cfg = {
->>  	.io_offset = DSI_6G_REG_SHIFT,
->> -	.regulator_data = msm8916_dsi_regulators,
->> -	.num_regulators = ARRAY_SIZE(msm8916_dsi_regulators),
->> -	.bus_clk_names = dsi_8916_bus_clk_names,
->> -	.num_bus_clks = ARRAY_SIZE(dsi_8916_bus_clk_names),
->> +	.regulator_data = dsi_v1_3_1_regulators,
->> +	.num_regulators = ARRAY_SIZE(dsi_v1_3_1_regulators),
->> +	.bus_clk_names = dsi_v1_3_1_clk_names,
->> +	.num_bus_clks = ARRAY_SIZE(dsi_v1_3_1_clk_names),
->>  	.io_start = {
->>  		{ 0x1a98000 },
->>  	},
->>  };
->>  
->> -static const char * const dsi_8976_bus_clk_names[] = {
->> -	"mdp_core", "iface", "bus",
->> -};
->> -
->> -static const struct regulator_bulk_data msm8976_dsi_regulators[] = {
->> -	{ .supply = "vdda", .init_load_uA = 100000 },	/* 1.2 V */
->> -	{ .supply = "vddio", .init_load_uA = 100000 },	/* 1.8 V */
->> -};
->> -
->>  static const struct msm_dsi_config msm8976_dsi_cfg = {
->>  	.io_offset = DSI_6G_REG_SHIFT,
->> -	.regulator_data = msm8976_dsi_regulators,
->> -	.num_regulators = ARRAY_SIZE(msm8976_dsi_regulators),
->> -	.bus_clk_names = dsi_8976_bus_clk_names,
->> -	.num_bus_clks = ARRAY_SIZE(dsi_8976_bus_clk_names),
->> +	.regulator_data = dsi_v1_3_1_regulators,
->> +	.num_regulators = ARRAY_SIZE(dsi_v1_3_1_regulators),
->> +	.bus_clk_names = dsi_v1_3_1_clk_names,
->> +	.num_bus_clks = ARRAY_SIZE(dsi_v1_3_1_clk_names),
->>  	.io_start = {
->>  		{ 0x1a94000, 0x1a96000 },
->>  	},
->> @@ -107,10 +98,6 @@ static const struct msm_dsi_config msm8994_dsi_cfg = {
->>  	},
->>  };
->>  
->> -static const char * const dsi_8996_bus_clk_names[] = {
->> -	"mdp_core", "iface", "bus", "core_mmss",
->> -};
->> -
->>  static const struct regulator_bulk_data msm8996_dsi_regulators[] = {
->>  	{ .supply = "vdda", .init_load_uA = 18160 },	/* 1.25 V */
->>  	{ .supply = "vcca", .init_load_uA = 17000 },	/* 0.925 V */
->> @@ -121,8 +108,8 @@ static const struct msm_dsi_config msm8996_dsi_cfg = {
->>  	.io_offset = DSI_6G_REG_SHIFT,
->>  	.regulator_data = msm8996_dsi_regulators,
->>  	.num_regulators = ARRAY_SIZE(msm8996_dsi_regulators),
->> -	.bus_clk_names = dsi_8996_bus_clk_names,
->> -	.num_bus_clks = ARRAY_SIZE(dsi_8996_bus_clk_names),
->> +	.bus_clk_names = dsi_6g_bus_clk_names,
->> +	.num_bus_clks = ARRAY_SIZE(dsi_6g_bus_clk_names),
->>  	.io_start = {
->>  		{ 0x994000, 0x996000 },
->>  	},
->> @@ -167,24 +154,20 @@ static const struct msm_dsi_config sdm660_dsi_cfg = {
->>  	},
->>  };
->>  
->> -static const char * const dsi_sdm845_bus_clk_names[] = {
->> +static const char * const dsi_v2_4_clk_names[] = {
->>  	"iface", "bus",
->>  };
->>  
->> -static const char * const dsi_sc7180_bus_clk_names[] = {
->> -	"iface", "bus",
->> -};
->> -
->> -static const struct regulator_bulk_data sdm845_dsi_regulators[] = {
->> +static const struct regulator_bulk_data dsi_v2_4_regulators[] = {
->>  	{ .supply = "vdda", .init_load_uA = 21800 },	/* 1.2 V */
->>  };
->>  
->>  static const struct msm_dsi_config sdm845_dsi_cfg = {
->>  	.io_offset = DSI_6G_REG_SHIFT,
->> -	.regulator_data = sdm845_dsi_regulators,
->> -	.num_regulators = ARRAY_SIZE(sdm845_dsi_regulators),
->> -	.bus_clk_names = dsi_sdm845_bus_clk_names,
->> -	.num_bus_clks = ARRAY_SIZE(dsi_sdm845_bus_clk_names),
->> +	.regulator_data = dsi_v2_4_regulators,
->> +	.num_regulators = ARRAY_SIZE(dsi_v2_4_regulators),
->> +	.bus_clk_names = dsi_v2_4_clk_names,
->> +	.num_bus_clks = ARRAY_SIZE(dsi_v2_4_clk_names),
->>  	.io_start = {
->>  		{ 0xae94000, 0xae96000 },
->>  	},
->> @@ -198,32 +181,24 @@ static const struct msm_dsi_config sm8550_dsi_cfg = {
->>  	.io_offset = DSI_6G_REG_SHIFT,
->>  	.regulator_data = sm8550_dsi_regulators,
->>  	.num_regulators = ARRAY_SIZE(sm8550_dsi_regulators),
->> -	.bus_clk_names = dsi_sdm845_bus_clk_names,
->> -	.num_bus_clks = ARRAY_SIZE(dsi_sdm845_bus_clk_names),
->> +	.bus_clk_names = dsi_v2_4_clk_names,
->> +	.num_bus_clks = ARRAY_SIZE(dsi_v2_4_clk_names),
->>  	.io_start = {
->>  		{ 0xae94000, 0xae96000 },
->>  	},
->>  };
->>  
->> -static const struct regulator_bulk_data sc7180_dsi_regulators[] = {
->> -	{ .supply = "vdda", .init_load_uA = 21800 },	/* 1.2 V */
->> -};
->> -
->>  static const struct msm_dsi_config sc7180_dsi_cfg = {
->>  	.io_offset = DSI_6G_REG_SHIFT,
->> -	.regulator_data = sc7180_dsi_regulators,
->> -	.num_regulators = ARRAY_SIZE(sc7180_dsi_regulators),
->> -	.bus_clk_names = dsi_sc7180_bus_clk_names,
->> -	.num_bus_clks = ARRAY_SIZE(dsi_sc7180_bus_clk_names),
->> +	.regulator_data = dsi_v2_4_regulators,
->> +	.num_regulators = ARRAY_SIZE(dsi_v2_4_regulators),
->> +	.bus_clk_names = dsi_v2_4_clk_names,
->> +	.num_bus_clks = ARRAY_SIZE(dsi_v2_4_clk_names),
->>  	.io_start = {
->>  		{ 0xae94000 },
->>  	},
->>  };
->>  
->> -static const char * const dsi_sc7280_bus_clk_names[] = {
->> -	"iface", "bus",
->> -};
->> -
->>  static const struct regulator_bulk_data sc7280_dsi_regulators[] = {
->>  	{ .supply = "vdda", .init_load_uA = 8350 },	/* 1.2 V */
->>  };
->> @@ -232,8 +207,8 @@ static const struct msm_dsi_config sc7280_dsi_cfg = {
->>  	.io_offset = DSI_6G_REG_SHIFT,
->>  	.regulator_data = sc7280_dsi_regulators,
->>  	.num_regulators = ARRAY_SIZE(sc7280_dsi_regulators),
->> -	.bus_clk_names = dsi_sc7280_bus_clk_names,
->> -	.num_bus_clks = ARRAY_SIZE(dsi_sc7280_bus_clk_names),
->> +	.bus_clk_names = dsi_v2_4_clk_names,
->> +	.num_bus_clks = ARRAY_SIZE(dsi_v2_4_clk_names),
->>  	.io_start = {
->>  		{ 0xae94000, 0xae96000 },
->>  	},
->>
->> -- 
->> 2.39.2
->>
