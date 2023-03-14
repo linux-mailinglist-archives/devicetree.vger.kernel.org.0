@@ -2,143 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C94676B8EF6
-	for <lists+devicetree@lfdr.de>; Tue, 14 Mar 2023 10:45:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8114D6B8F00
+	for <lists+devicetree@lfdr.de>; Tue, 14 Mar 2023 10:47:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229730AbjCNJpc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Mar 2023 05:45:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46116 "EHLO
+        id S229436AbjCNJq5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Mar 2023 05:46:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46290 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229436AbjCNJpb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Mar 2023 05:45:31 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7EFA4911C5;
-        Tue, 14 Mar 2023 02:45:30 -0700 (PDT)
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits))
-        (No client certificate requested)
-        (Authenticated sender: kholk11)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id 3DCC3660308E;
-        Tue, 14 Mar 2023 09:45:28 +0000 (GMT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1678787129;
-        bh=he80No0jUzUzFg9an8Hlqi16J8qgl1LK/+OP6SgvrHM=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=SM1PQ4XRb7bXX5Y+R1qBLRO70QJA49V2xU3dKXFJG5YiqF7fzN68zXQx0Zu6PZniH
-         yzlcwf5NdWcey+t0PdoDLaBQDp/Mfy40YBIuGRm+VoyZ2/nQydJkGviXWANAbefhiA
-         2k0Vw5Eg/00bEtwWfu0fjYZVJuH0nBozeTqNz6HE7hZRa1U0+pxOcZVjITp4i8ZASf
-         YwhRCoPkT06kW25Zr18ChAdTGjsWN7AqWoYJvEg7eYZITgTvrh+eFnLxk95zjSBMeV
-         SMwSr1BBYg1WnxWfqj594S1/xU7vcOqB68VOYYHND/3mTwK7mnq4ay/QQAGQUmkQ0p
-         hfaBv1FB07C8A==
-Message-ID: <08ccf52a-39bd-ed28-d9ca-3615c4a02c09@collabora.com>
-Date:   Tue, 14 Mar 2023 10:45:25 +0100
+        with ESMTP id S229535AbjCNJq4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Mar 2023 05:46:56 -0400
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 93CC714EBE;
+        Tue, 14 Mar 2023 02:46:54 -0700 (PDT)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 32E9klTR094097;
+        Tue, 14 Mar 2023 04:46:47 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1678787207;
+        bh=tmISwl53EEmJ0UyWepF6LKD4kNk5gNEJdpfnLQ6BEAw=;
+        h=From:To:CC:Subject:Date;
+        b=QC5rl1+KEu6qFKnxte89oLx5dl+AgC+/+dp5bwcO8Y0WWQdsfvbntpS96wp6XZFDi
+         7vfTAYSlob/06o3wZ6uhTxBbyIf6sJmj5hsTxMDY0gjrIsTGYsnKStMdSVybfK5tGe
+         49+lRxdz4fWYkpoDE7l9c1drp57gj+huleZUi7Ig=
+Received: from DLEE105.ent.ti.com (dlee105.ent.ti.com [157.170.170.35])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 32E9kloN024093
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Tue, 14 Mar 2023 04:46:47 -0500
+Received: from DLEE110.ent.ti.com (157.170.170.21) by DLEE105.ent.ti.com
+ (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Tue, 14
+ Mar 2023 04:46:47 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE110.ent.ti.com
+ (157.170.170.21) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
+ Frontend Transport; Tue, 14 Mar 2023 04:46:47 -0500
+Received: from localhost (ileaxei01-snat2.itg.ti.com [10.180.69.6])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 32E9kkAX090240;
+        Tue, 14 Mar 2023 04:46:47 -0500
+From:   Devarsh Thakkar <devarsht@ti.com>
+To:     <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <robh+dt@kernel.org>,
+        <kristo@kernel.org>, <nm@ti.com>, <vigneshr@ti.com>, <bb@ti.com>
+CC:     <hnagalla@ti.com>, <praneeth@ti.com>, <a-bhatia1@ti.com>,
+        <j-luthra@ti.com>, <devarsht@ti.com>
+Subject: [PATCH v3] arm64: dts: ti: k3-am62a7-sk: Fix DDR size to full 4GB
+Date:   Tue, 14 Mar 2023 15:16:45 +0530
+Message-ID: <20230314094645.3411599-1-devarsht@ti.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-Subject: Re: [PATCH v3] media: mediatek: vcodec: Force capture queue format to
- MM21
-Content-Language: en-US
-To:     Yunfei Dong <yunfei.dong@mediatek.com>,
-        Chen-Yu Tsai <wenst@chromium.org>,
-        Nicolas Dufresne <nicolas@ndufresne.ca>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-        =?UTF-8?Q?N=c3=adcolas_F_=2e_R_=2e_A_=2e_Prado?= 
-        <nfraprado@collabora.com>
-Cc:     Matthias Brugger <matthias.bgg@gmail.com>,
-        Hsin-Yi Wang <hsinyi@chromium.org>,
-        Fritz Koenig <frkoenig@chromium.org>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Steve Cho <stevecho@chromium.org>, linux-media@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org,
-        Project_Global_Chrome_Upstream_Group@mediatek.com
-References: <20230314072557.29669-1-yunfei.dong@mediatek.com>
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20230314072557.29669-1-yunfei.dong@mediatek.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_PASS,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 14/03/23 08:25, Yunfei Dong ha scritto:
-> Libyuv is one software library used to covert format. Only covert
-> mediatek uncompressed mode MM21 to standard yuv420 for MT21 is
-> compressed mode. Need to set capture queue format to MM21 in order
-> to use Libyuv when scp firmware support MM21 and MT21.
-> 
-> Fixes: 7501edef6b1f ("media: mediatek: vcodec: Different codec using different capture format")
-> Signed-off-by: Yunfei Dong <yunfei.dong@mediatek.com>
+All revisions of AM62A7-SK board have 4GB LPDDR4 Micron
+MT53E2G32D4DE-046 AUT:B memory. Commit 38c4a08c820c ("arm64: dts: ti:
+Add support for AM62A7-SK") enabled just 2GB due to a schematics error
+in early revision of the board. Fix it by enabling full 4GB available on
+the platform.
 
+Design docs: Link: https://www.ti.com/lit/zip/sprr459
 
-After the firmware gets sent to linux-firmware *and ONLY after that*:
+Fixes: 38c4a08c820c ("arm64: dts: ti: Add support for AM62A7-SK")
 
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Signed-off-by: Devarsh Thakkar <devarsht@ti.com>
+Reviewed-by: Bryan Brattlof <bb@ti.com>
+---
+Logs:
+https://gist.github.com/devarsht/e85b6af89c01ddadb3a62f3e5f196af8
 
-> ---
-> changed with v2:
-> - re-write commit message.
-> - change the driver flow.
-> changed with v1:
-> - add Fixes tag.
-> ---
->   .../platform/mediatek/vcodec/mtk_vcodec_dec.c | 24 +++----------------
->   1 file changed, 3 insertions(+), 21 deletions(-)
-> 
-> diff --git a/drivers/media/platform/mediatek/vcodec/mtk_vcodec_dec.c b/drivers/media/platform/mediatek/vcodec/mtk_vcodec_dec.c
-> index 641f533c417f..c99705681a03 100644
-> --- a/drivers/media/platform/mediatek/vcodec/mtk_vcodec_dec.c
-> +++ b/drivers/media/platform/mediatek/vcodec/mtk_vcodec_dec.c
-> @@ -39,10 +39,9 @@ static bool mtk_vdec_get_cap_fmt(struct mtk_vcodec_ctx *ctx, int format_index)
->   {
->   	const struct mtk_vcodec_dec_pdata *dec_pdata = ctx->dev->vdec_pdata;
->   	const struct mtk_video_fmt *fmt;
-> -	struct mtk_q_data *q_data;
->   	int num_frame_count = 0, i;
-> -	bool ret = true;
->   
-> +	fmt = &dec_pdata->vdec_formats[format_index];
->   	for (i = 0; i < *dec_pdata->num_formats; i++) {
->   		if (dec_pdata->vdec_formats[i].type != MTK_FMT_FRAME)
->   			continue;
-> @@ -50,27 +49,10 @@ static bool mtk_vdec_get_cap_fmt(struct mtk_vcodec_ctx *ctx, int format_index)
->   		num_frame_count++;
->   	}
->   
-> -	if (num_frame_count == 1)
-> +	if (num_frame_count == 1 || fmt->fourcc == V4L2_PIX_FMT_MM21)
->   		return true;
->   
-> -	fmt = &dec_pdata->vdec_formats[format_index];
-> -	q_data = &ctx->q_data[MTK_Q_DATA_SRC];
-> -	switch (q_data->fmt->fourcc) {
-> -	case V4L2_PIX_FMT_VP8_FRAME:
-> -		if (fmt->fourcc == V4L2_PIX_FMT_MM21)
-> -			ret = true;
-> -		break;
-> -	case V4L2_PIX_FMT_H264_SLICE:
-> -	case V4L2_PIX_FMT_VP9_FRAME:
-> -		if (fmt->fourcc == V4L2_PIX_FMT_MM21)
-> -			ret = false;
-> -		break;
-> -	default:
-> -		ret = true;
-> -		break;
-> -	}
-> -
-> -	return ret;
-> +	return false;
->   }
->   
->   static struct mtk_q_data *mtk_vdec_get_q_data(struct mtk_vcodec_ctx *ctx,
+Changelog:
+V2: Update commit message with mention of schematics error
+V3: Add Reviewed-By and update design docs link
+---
+ arch/arm64/boot/dts/ti/k3-am62a7-sk.dts | 5 +++--
+ 1 file changed, 3 insertions(+), 2 deletions(-)
 
+diff --git a/arch/arm64/boot/dts/ti/k3-am62a7-sk.dts b/arch/arm64/boot/dts/ti/k3-am62a7-sk.dts
+index 5c9012141ee2..f6a67f072dca 100644
+--- a/arch/arm64/boot/dts/ti/k3-am62a7-sk.dts
++++ b/arch/arm64/boot/dts/ti/k3-am62a7-sk.dts
+@@ -27,8 +27,9 @@ chosen {
+ 
+ 	memory@80000000 {
+ 		device_type = "memory";
+-		/* 2G RAM */
+-		reg = <0x00000000 0x80000000 0x00000000 0x80000000>;
++		/* 4G RAM */
++		reg = <0x00000000 0x80000000 0x00000000 0x80000000>,
++		      <0x00000008 0x80000000 0x00000000 0x80000000>;
+ 	};
+ 
+ 	reserved-memory {
+-- 
+2.34.1
 
