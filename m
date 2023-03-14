@@ -2,106 +2,238 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8D8886B896B
-	for <lists+devicetree@lfdr.de>; Tue, 14 Mar 2023 05:16:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 265C66B899C
+	for <lists+devicetree@lfdr.de>; Tue, 14 Mar 2023 05:28:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229881AbjCNEQL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Mar 2023 00:16:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55674 "EHLO
+        id S229564AbjCNE2l (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Mar 2023 00:28:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44358 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229899AbjCNEQH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Mar 2023 00:16:07 -0400
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 872981B550;
-        Mon, 13 Mar 2023 21:16:00 -0700 (PDT)
-Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 32E3Xn7w030708;
-        Tue, 14 Mar 2023 04:15:56 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
- subject : date : message-id : in-reply-to : references : mime-version :
- content-type; s=qcppdkim1;
- bh=3FNzmY4IOT0kzg2kmwtUeu6zUmMDU8a08Ddghjl+UYg=;
- b=BF2bUULWxhyvW15Te/BeT9DsCTp/lySdnMyedUeau66Xq6i418NR9qAKpQg1K+W5vUqp
- cqgemOORf5/mHO453S2c1o6ve97zOZDNtDPbh3lB2RUpLUsbVVZOnsaMqOfduZ8WiMpY
- s2Q4DyKhzRU9OD3fJSqtZo3KMHjThLT8/5SXAaGxg0ofUIbcCgenmhqdQJTOraCQMbFz
- sB0YKcwjDWSH1Zt4fd7y9FgnOWQbiecDWMAX7n/+RTG0smCIUs8woDP9uEH1rOpU0v0B
- h2jtB9H/i3Iv7lVQt2mf87Pb6s9KrW3rCuHWVhID5wbrRFdbtTessRDLdrZsAxMr21UU 0w== 
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3pa9gfh3j3-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 14 Mar 2023 04:15:56 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-        by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 32E4FtLG027118
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 14 Mar 2023 04:15:55 GMT
-Received: from kathirav-linux.qualcomm.com (10.80.80.8) by
- nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.41; Mon, 13 Mar 2023 21:15:51 -0700
-From:   Kathiravan T <quic_kathirav@quicinc.com>
-To:     <agross@kernel.org>, <andersson@kernel.org>,
-        <konrad.dybcio@linaro.org>, <jassisinghbrar@gmail.com>,
-        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <linux-arm-msm@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>
-CC:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Kathiravan T <quic_kathirav@quicinc.com>
-Subject: [PATCH 3/3] arm64: dts: qcom: ipq8074: add compatible fallback to mailbox
-Date:   Tue, 14 Mar 2023 09:45:15 +0530
-Message-ID: <20230314041515.15883-4-quic_kathirav@quicinc.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20230314041515.15883-1-quic_kathirav@quicinc.com>
-References: <20230314041515.15883-1-quic_kathirav@quicinc.com>
+        with ESMTP id S229436AbjCNE2j (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Mar 2023 00:28:39 -0400
+Received: from mail-qv1-xf2c.google.com (mail-qv1-xf2c.google.com [IPv6:2607:f8b0:4864:20::f2c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8B0211285F;
+        Mon, 13 Mar 2023 21:28:37 -0700 (PDT)
+Received: by mail-qv1-xf2c.google.com with SMTP id o3so9629029qvr.1;
+        Mon, 13 Mar 2023 21:28:37 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112; t=1678768116;
+        h=content-transfer-encoding:in-reply-to:references:cc:to:from
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=y750kud8mHtJic9GXfaEeGkhfjSIqfKCGoLOtAydFgI=;
+        b=jhKsGFUZuOjlPI/ybjOHKr286JRg/tr9p/GCLssUKypycNpqFBf2O1BMckaPQmUFQ1
+         SXz2/t5C/uYRI9rmCUJbbT6bEF95iQ6HMMOpiaGiAFZrNKKz3J+He3fJzCZ6T4PqsDz5
+         4m+6XviiyUXvipnzxuzLou73qsvCxkI4swtSYQsbWoB90x7YBEEVnqCQbeHOwwWTOGOu
+         nRa8mcVfeBqjZ/S+phnlQcuJjFFfnFKifYvq2SnUUb3YGaWx7/AYTJNv0zeaHmb1ULBS
+         UTiROfwsrTc5NxP/59sAjFHH68VQ0lSi6OVbDVTbonYPKGc0GHGit/yKyYvjiXmfjHSt
+         vdfA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1678768116;
+        h=content-transfer-encoding:in-reply-to:references:cc:to:from
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=y750kud8mHtJic9GXfaEeGkhfjSIqfKCGoLOtAydFgI=;
+        b=sGFh+ufeUf7nPFZFp2sZzIrcIMlOfl7SXcHK891ctfRZYvxgQDvTXcDB1lFevGjm8N
+         yKjaY43t/iTOdkbX6/4RFIB8g+H1cWW9n11Z5DdaaPJJcSLifBAzat8xLuDe7ynmV38Q
+         U6Ts4ZKYtdc3biOuS7GF4g6UJx0e3PW4qVJX/yPeuIhiPYXWaxZ6/sJ19TNGE8FQfi7u
+         eV4LET4QsUWAbvrJyRODVWGlAfqV6Sk3Mx7qe7v6CSIGoNZzI0qjmWHXB06QoSI+QLdm
+         cHS27yLqJJRDmniLKuPLdB71C3EeFy4PKhQpMIsdNP2iirkpp1KRmEhYeY9ETzUeZWJj
+         iwHg==
+X-Gm-Message-State: AO0yUKWMy/GqpC9PVDoKfTMZluELnDmhR0Hkgzmdf0dt9AUmSGxcGIJr
+        bJDrTh2hEuvgf/I+iIPxA/8=
+X-Google-Smtp-Source: AK7set+xkuA4DXyGLm8pCAYjUaEcNydWGbEn4eLnuh/IMmnxDNH9bYBSvQ1VgXD/rEWWwYRYDv7rIw==
+X-Received: by 2002:ad4:5caa:0:b0:5aa:17d5:bbfe with SMTP id q10-20020ad45caa000000b005aa17d5bbfemr6330378qvh.10.1678768116555;
+        Mon, 13 Mar 2023 21:28:36 -0700 (PDT)
+Received: from ?IPV6:2600:1700:2442:6db0:4071:d635:4b20:d09e? ([2600:1700:2442:6db0:4071:d635:4b20:d09e])
+        by smtp.gmail.com with ESMTPSA id s124-20020ae9de82000000b007429ee9482dsm979941qkf.134.2023.03.13.21.28.35
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 13 Mar 2023 21:28:36 -0700 (PDT)
+Message-ID: <e1889f7f-2804-718b-6651-f333aed48e99@gmail.com>
+Date:   Mon, 13 Mar 2023 23:28:35 -0500
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: 7Xo_xXjG3guDMU4OVS58hQJmKG9yVouz
-X-Proofpoint-ORIG-GUID: 7Xo_xXjG3guDMU4OVS58hQJmKG9yVouz
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
- definitions=2023-03-13_13,2023-03-13_03,2023-02-09_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0 mlxscore=0
- mlxlogscore=711 suspectscore=0 adultscore=0 clxscore=1015 phishscore=0
- bulkscore=0 spamscore=0 impostorscore=0 priorityscore=1501
- lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2212070000 definitions=main-2303140036
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.1
+Subject: Re: [PATCH 2/8] of: Enable DTB loading on UML for KUnit tests
+Content-Language: en-US
+From:   Frank Rowand <frowand.list@gmail.com>
+To:     David Gow <davidgow@google.com>, Stephen Boyd <sboyd@kernel.org>
+Cc:     Michael Turquette <mturquette@baylibre.com>,
+        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
+        patches@lists.linux.dev,
+        Brendan Higgins <brendan.higgins@linux.dev>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        "Rafael J . Wysocki" <rafael@kernel.org>,
+        Richard Weinberger <richard@nod.at>,
+        Anton Ivanov <anton.ivanov@cambridgegreys.com>,
+        Johannes Berg <johannes@sipsolutions.net>,
+        Vincent Whitchurch <vincent.whitchurch@axis.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Christian Marangi <ansuelsmth@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        devicetree@vger.kernel.org, linux-um@lists.infradead.org,
+        linux-kselftest@vger.kernel.org, kunit-dev@googlegroups.com
+References: <20230302013822.1808711-1-sboyd@kernel.org>
+ <20230302013822.1808711-3-sboyd@kernel.org>
+ <CABVgOSkomwwgKZ9N0_0YMDL--QaZiTV7ONgSRABU2Ph1Z0CG-g@mail.gmail.com>
+ <a97c9bb3a5addfb34af8ccabaa513026.sboyd@kernel.org>
+ <CABVgOSkJ4mw_DtFzn5EwcsuYixWY_j13YotxEYqWhO+ZCL1KPg@mail.gmail.com>
+ <d64a086ddcb7c5ca5abecab0ca654259.sboyd@kernel.org>
+ <CABVgOSk9gqRe_5yQZweBA2Qg2aGx8rUJtOHywGeT4x7TEyBH0A@mail.gmail.com>
+ <40299ee6-c518-5505-0dc5-874deef03d19@gmail.com>
+In-Reply-To: <40299ee6-c518-5505-0dc5-874deef03d19@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+On 3/13/23 11:02, Frank Rowand wrote:
+> On 3/11/23 00:42, David Gow wrote:
+>> On Sat, 11 Mar 2023 at 07:34, Stephen Boyd <sboyd@kernel.org> wrote:
+>>>
+>>> Quoting David Gow (2023-03-10 00:09:48)
+>>>> On Fri, 10 Mar 2023 at 07:19, Stephen Boyd <sboyd@kernel.org> wrote:
+>>>>>
+>>>>>
+>>>>> Hmm. I think you're suggesting that the unit test data be loaded
+>>>>> whenever CONFIG_OF=y and CONFIG_KUNIT=y. Then tests can check for
+>>>>> CONFIG_OF and skip if it isn't enabled?
+>>>>>
+>>>>
+>>>> More of the opposite: that we should have some way of supporting tests
+>>>> which might want to use a DTB other than the built-in one. Mostly for
+>>>> non-UML situations where an actual devicetree is needed to even boot
+>>>> far enough to get test output (so we wouldn't be able to override it
+>>>> with a compiled-in test one).
+>>>
+>>> Ok, got it.
+>>>
+>>>>
+>>>> I think moving to overlays probably will render this idea obsolete:
+>>>> but the thought was to give test code a way to check for the required
+>>>> devicetree nodes at runtime, and skip the test if they weren't found.
+>>>> That way, the failure mode for trying to boot this on something which
+>>>> required another device tree for, e.g., serial, would be "these tests
+>>>> are skipped because the wrong device tree is loaded", not "I get no
+>>>> output because serial isn't working".
+>>>>
+>>>> Again, though, it's only really needed for non-UML, and just loading
+>>>> overlays as needed should be much more sensible anyway.
+>>>
+>>> I still have one niggle here. Loading overlays requires
+>>> CONFIG_OF_OVERLAY, and the overlay loading API returns -ENOTSUPP when
+>>> CONFIG_OF_OVERLAY=n. For now I'm checking for the config being enabled
+>>> in each test, but I'm thinking it may be better to simply call
+>>> kunit_skip() from the overlay loading function if the config is
+>>> disabled. This way tests can simply call the overlay loading function
+>>> and we'll halt the test immediately if the config isn't enabled.
+>>>
+>>
+>> That sounds sensible, though there is a potential pitfall. If
+>> kunit_skip() is called directly from overlay code, might introduce a
+>> dependency on kunit.ko from the DT overlay, which we might not want.
+>> The solution there is either to have a kunit wrapper function (so the
+>> call is already in kunit.ko), or to have a hook to skip the current
+>> test (which probably makes sense to do anyway, but I think the wrapper
+>> is the better option).
+>>
+>>
+>>>>
+>>>>>>
+>>>>>> That being said, I do think that there's probably some sense in
+>>>>>> supporting the compiled-in DTB as well (it's definitely simpler than
+>>>>>> patching kunit.py to always pass the extra command-line option in, for
+>>>>>> example).
+>>>>>> But maybe it'd be nice to have the command-line option override the
+>>>>>> built-in one if present.
+>>>>>
+>>>>> Got it. I need to test loading another DTB on the commandline still, but
+>>>>> I think this won't be a problem. We'll load the unittest-data DTB even
+>>>>> with KUnit on UML, so assuming that works on UML right now it should be
+>>>>> unchanged by this series once I resend.
+>>>>
+>>>> Again, moving to overlays should render this mostly obsolete, no? Or
+>>>> am I misunderstanding how the overlay stuff will work?
+>>>
+>>> Right, overlays make it largely a moot issue. The way the OF unit tests
+>>> work today is by grafting a DTB onto the live tree. I'm reusing that
+>>> logic to graft a container node target for kunit tests to add their
+>>> overlays too. It will be clearer once I post v2.
+>>>
+>>>>
+>>>> One possible future advantage of being able to test with custom DTs at
+>>>> boot time would be for fuzzing (provide random DT properties, see what
+>>>> happens in the test). We've got some vague plans to support a way of
+>>>> passing custom data to tests to support this kind of case (though, if
+>>>> we're using overlays, maybe the test could just patch those if we
+>>>> wanted to do that).
+>>>
+>>> Ah ok. I can see someone making a fuzzer that modifies devicetree
+>>> properties randomly, e.g. using different strings for clock-names.
+>>>
+>>> This reminds me of another issue I ran into. I wanted to test adding the
+>>> same platform device to the platform bus twice to confirm that the
+>>> second device can't be added. That prints a warning, which makes
+>>> kunit.py think that the test has failed because it printed a warning. Is
+>>> there some way to avoid that? I want something like
+>>>
+>>>         KUNIT_EXPECT_WARNING(test, <call some function>)
+>>>
+>>> so I can test error cases.
+> 
+> DT unittests already have a similar concept.  A test can report that a
+> kernel warning (or any other specific text) either (1) must occur for the
+> test to pass or (2) must _not_ occur for the test to pass.  The check
+> for the kernel warning is done by the test output parsing program
+> scripts/dtc/of_unittest_expect.
+> 
+> The reporting by a test of an expected error in drivers/of/unittest.c
+> is done by EXPECT_BEGIN() and EXPECT_END().  These have been in
+> unittest for a long time.
+> 
+> The reporting by a test of a not expected to occur error is done
+> by EXPECT_NOT_BEGIN() and EXPECT_NOT_END().  These are added to
+> unittest in linux 6.3-rc1.
+> 
+> I discussed this concept in one of the early TAP / KTAP discussion
 
-IPQ8074 mailbox is compatible with IPQ6018.
+The link to the early KTAP discussion on this concept is:
 
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Signed-off-by: Kathiravan T <quic_kathirav@quicinc.com>
----
- arch/arm64/boot/dts/qcom/ipq8074.dtsi | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+   https://lore.kernel.org/all/d38bf9f9-8a39-87a6-8ce7-d37e4a641675@gmail.com/T/#u
 
-diff --git a/arch/arm64/boot/dts/qcom/ipq8074.dtsi b/arch/arm64/boot/dts/qcom/ipq8074.dtsi
-index 62d05d740646..3fa7a63db74e 100644
---- a/arch/arm64/boot/dts/qcom/ipq8074.dtsi
-+++ b/arch/arm64/boot/dts/qcom/ipq8074.dtsi
-@@ -687,7 +687,8 @@
- 		};
- 
- 		apcs_glb: mailbox@b111000 {
--			compatible = "qcom,ipq8074-apcs-apps-global";
-+			compatible = "qcom,ipq8074-apcs-apps-global",
-+				     "qcom,ipq6018-apcs-apps-global";
- 			reg = <0x0b111000 0x1000>;
- 			clocks = <&a53pll>, <&xo>;
- 			clock-names = "pll", "xo";
--- 
-2.17.1
+
+> threads and expect to start a discussion thread on this specific
+> topic in the KTAP Specification V2 context.  I expect the discussion
+> to result in a different implementation than what DT unittests are
+> using (bike shedding likely to ensue) but whatever is agreed to
+> should be easy for DT to switch to.
+
+The link to the KTAP Specification Version 2 process and progress is:
+
+   https://elinux.org/Test_Results_Format_Notes#KTAP_version_2
+
+-Frank
+
+> 
+>>
+>> Hmm... I'd've thought that shouldn't be a problem: kunit.py should
+>> ignore most messages during a test, unless it can't find a valid
+>> result line. What does the raw KTAP output look like? (You can get it
+>> from kunit.py by passing the --raw_output option).
+>>
+>> That being said, a KUNIT_EXPECT_LOG_MESSAGE() or similar is something
+>> we've wanted for a while. I think that the KASAN folks have been
+>> working on something similar using console tracepoints:
+>> https://lore.kernel.org/all/ebf96ea600050f00ed567e80505ae8f242633640.1666113393.git.andreyknvl@google.com/
+>>
+>> Cheers,
+>> -- David
+> 
 
