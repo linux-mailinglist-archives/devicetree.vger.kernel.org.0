@@ -2,174 +2,279 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DC7C66B929A
-	for <lists+devicetree@lfdr.de>; Tue, 14 Mar 2023 13:05:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4FB9F6B9289
+	for <lists+devicetree@lfdr.de>; Tue, 14 Mar 2023 13:02:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231771AbjCNMFj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Mar 2023 08:05:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37614 "EHLO
+        id S230378AbjCNMCs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Mar 2023 08:02:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59700 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231768AbjCNMFe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Mar 2023 08:05:34 -0400
-Received: from lahtoruutu.iki.fi (lahtoruutu.iki.fi [IPv6:2a0b:5c81:1c1::37])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D95D71C58D;
-        Tue, 14 Mar 2023 05:05:02 -0700 (PDT)
-Received: from meesny.iki.fi (meesny.iki.fi [IPv6:2001:67c:2b0:1c1::201])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by lahtoruutu.iki.fi (Postfix) with ESMTPS id 4PbXHw1rpRz4BKJt;
-        Tue, 14 Mar 2023 14:04:11 +0200 (EET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=iki.fi; s=lahtoruutu;
-        t=1678795452;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=qZdVO+o6NVisvLLp0fz85lQ/En55DCtDZZ8CJdoWRLw=;
-        b=Zc1R1I3rg1hRsMfrhRw1YtTL0+SD+swa8meOGKm7k1dEwbQSj16Ii5opPRmeu904Hqk8Wl
-        LHE5P8FZGrVpfCCOf8vh/65UHb1tQzt2L/gy8TBTwYlP5O+G/gvc5DtEhr1YotI5gQfdQs
-        HxmUh1SM/P4O6TkOBGK9Wt5IGrDE7+88Sq8sxmipCtZWAgNALAD3UpUTWEbjDxpUpFIdZk
-        LfTg7MulJNWvhIkOsjVaBmZyqrYALnN8Qy1tToIgzwbwvTspeAR6hOjXTDGz2AyKiqizNH
-        DaXigB1cDHSFeWBI1qap+baUm9Z6arBmJ4mcAEv68pgrRqZ+v6MqUjsA6XnN6g==
-Received: from hillosipuli.retiisi.eu (dkzbhx1tyyyyyyyyyyyyt-3.rev.dnainternet.fi [IPv6:2001:14ba:4502:69d6::1])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: sailus)
-        by meesny.iki.fi (Postfix) with ESMTPSA id 4PbXFG658tzyQx;
-        Tue, 14 Mar 2023 14:01:54 +0200 (EET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=iki.fi; s=meesny;
-        t=1678795317;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=qZdVO+o6NVisvLLp0fz85lQ/En55DCtDZZ8CJdoWRLw=;
-        b=g4p6lmMNIEZi5Hxya3lo2eH88giekGBrGSaNMkJJA1vCIRxaWYSrvMP1xmiMOlptEyoQUs
-        3bCxMoWjbG6wbZmBPCELDT27lHPIUx1OH6sIWi6Pa8cLqNSF9oR/lH3VP+U0h0ta577kRs
-        iWilPkVEVHG8/AmclaxCkJTWVCM0/Ik=
-ARC-Seal: i=1; s=meesny; d=iki.fi; t=1678795317; a=rsa-sha256; cv=none;
-        b=BvgKPCSD9q6pUJSAxUy+VizHYYIbjg9ezjQHh5QXGQbEZT+GCzXbVU1eLEO4U391sDQS4u
-        +HPMyX5cMepisp8vRwjTRTpBuj/bxnPgc8ugDSKe5otTQLiIwOBTjlVt0BbwX3YLPs555f
-        Ud59qiYSrCYs3qTAkg6uXrJLnMsW1z8=
-ARC-Authentication-Results: i=1;
-        ORIGINATING;
-        auth=pass smtp.auth=sailus smtp.mailfrom=sakari.ailus@iki.fi
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=iki.fi;
-        s=meesny; t=1678795317;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=qZdVO+o6NVisvLLp0fz85lQ/En55DCtDZZ8CJdoWRLw=;
-        b=OkKVUPXuzmIvASe6puyQy2dN6TuBvyb+QKZfD0GrMbuycT0e4eQY84BRKIVAr1eXt3p/oW
-        sDfHnF0SOKX0niSvK1QzzepUQvH7HRfkRj4s8yJz10vSBg+ZpFQlzXt5rApHPruLKpbyez
-        SKaN1DNDcC5J3QvHiy/Ig3JeNK3EtcM=
-Received: from valkosipuli.retiisi.eu (valkosipuli.localdomain [192.168.4.2])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        by hillosipuli.retiisi.eu (Postfix) with ESMTPS id CFAAB634C91;
-        Tue, 14 Mar 2023 14:00:52 +0200 (EET)
-Date:   Tue, 14 Mar 2023 14:00:52 +0200
-From:   Sakari Ailus <sakari.ailus@iki.fi>
-To:     Luca Weiss <luca@z3ntu.xyz>
-Cc:     Rob Herring <robh@kernel.org>, linux-kernel@vger.kernel.org,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        ~postmarketos/upstreaming@lists.sr.ht,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-media@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        devicetree@vger.kernel.org,
-        Shunqian Zheng <zhengsq@rock-chips.com>,
-        phone-devel@vger.kernel.org,
-        Helen Koike <helen.koike@collabora.com>
-Subject: Re: [PATCH] media: dt-bindings: ov2685: convert to dtschema
-Message-ID: <ZBBh9Euor7R24euV@valkosipuli.retiisi.eu>
-References: <20230206-ov2685-dtschema-v1-1-9e4da3474c10@z3ntu.xyz>
- <167572017056.1564123.13342855865502188090.robh@kernel.org>
- <2665862.mvXUDI8C0e@z3ntu.xyz>
+        with ESMTP id S230211AbjCNMCq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Mar 2023 08:02:46 -0400
+Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5FDD17D9C
+        for <devicetree@vger.kernel.org>; Tue, 14 Mar 2023 05:01:59 -0700 (PDT)
+Received: by mail-lf1-x133.google.com with SMTP id i28so19722156lfv.0
+        for <devicetree@vger.kernel.org>; Tue, 14 Mar 2023 05:01:59 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1678795291;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=qxdl5EaWW37f/EaoWMzEiM+MDiQ+bRe3oc7oUW6vU3I=;
+        b=xTaL5bWALtWMcWnGtP773pjTvoRnANAUPQsn4XcYFjc8/zqRJsx6TtUYWqSoqERUHi
+         uoDrJx9M9FCI3B6TuBejWMYKN1AyLGKQv5bT61sswdp68OqbodO+/hZlw7AWeQ3fKiJA
+         UoNjzx1AzJYwL6uTbLgKnRKXyT/tRH+XsarLdRIE1b1zcjru9aVX8m9Ms6JdVhiWHoXT
+         VWjBf/fEdzAZhE0kRCtSDn4JynOBQuL79/bn/1FbR1HnFZXMbAcHuOLzkcvudoRWUJvR
+         XliLM43MDSM3vpQwQ89KIMXqyfUWAs7ZeLbiFH6FZBLb0ROjufDvDza6rZFniWoibbq0
+         AoNQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1678795291;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=qxdl5EaWW37f/EaoWMzEiM+MDiQ+bRe3oc7oUW6vU3I=;
+        b=kkm1YsgqpJsDljoj0WjzJUwrVi7bnvG5iuhSCd7lxpKNBNOrh3MGkkBF3gj6LHz5wk
+         bDIe96BOD71Xe6fg3MIsiDhpdiwyk9trTMjD8RMMdqHaxPWoVFl3w7NDG5sJfDYaZoZ1
+         pk6i4HFpbfpCsqjoW4Bfs84Ohu3vvpePvzFdoV4qSL32Qr0wmv6+jj9jOaSM5lCJzrya
+         9/OskkehAUNk1GIL66RrxzvJCdinmQoLUSptXsMarYaD5yKV2sG9Yz2ooEyd3UpGuPBM
+         2xhRE3ZXo4c4N05/DS0PGxQwHyBiH2cEGfuVmmqSa1dRnigHIZiHPeQvwqjManeQoloP
+         zDTg==
+X-Gm-Message-State: AO0yUKXqKr7D/PVMUI6TIJ2pkTVpISzjmZ3VDh4QnyVuQFYYqCR4svMH
+        SSCUOQLHwx+ywuH6zsGd5HNquA==
+X-Google-Smtp-Source: AK7set/k/n+CZueG3A0weqw5lpWKf9Y03en5sKrbyHi7IfWC18kdA/dqCvr/rAZCPbuIpQkzDLq4VQ==
+X-Received: by 2002:ac2:55b3:0:b0:4b5:936e:69df with SMTP id y19-20020ac255b3000000b004b5936e69dfmr613091lfg.53.1678795291354;
+        Tue, 14 Mar 2023 05:01:31 -0700 (PDT)
+Received: from [192.168.1.101] (abyj16.neoplus.adsl.tpnet.pl. [83.9.29.16])
+        by smtp.gmail.com with ESMTPSA id r6-20020ac25a46000000b004e849f6836csm376886lfn.167.2023.03.14.05.01.28
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 14 Mar 2023 05:01:30 -0700 (PDT)
+Message-ID: <6a07da47-fcaa-c7e6-36f8-96c055bee0f0@linaro.org>
+Date:   Tue, 14 Mar 2023 13:01:27 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <2665862.mvXUDI8C0e@z3ntu.xyz>
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.8.0
+Subject: Re: [PATCH v3 04/10] drm/msm/dsi: dsi_cfg: Deduplicate identical
+ structs
+Content-Language: en-US
+To:     Marijn Suijten <marijn.suijten@somainline.org>
+Cc:     Rob Clark <robdclark@gmail.com>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Sean Paul <sean@poorly.run>, David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Krishna Manikandan <quic_mkrishn@quicinc.com>,
+        Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Rob Herring <robh@kernel.org>, linux-arm-msm@vger.kernel.org,
+        dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20230307-topic-dsi_qcm-v3-0-8bd7e1add38a@linaro.org>
+ <20230307-topic-dsi_qcm-v3-4-8bd7e1add38a@linaro.org>
+ <20230313235550.zo243m5qn23yadey@SoMainline.org>
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <20230313235550.zo243m5qn23yadey@SoMainline.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-0.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_SORBS_HTTP,RCVD_IN_SORBS_SOCKS,SPF_HELO_NONE,SPF_PASS,
+        URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Luca,
 
-On Thu, Feb 09, 2023 at 05:46:48PM +0100, Luca Weiss wrote:
-> +CC Helen Koike
+
+On 14.03.2023 00:55, Marijn Suijten wrote:
+> On 2023-03-07 14:01:42, Konrad Dybcio wrote:
+>> Some structs were defined multiple times for no apparent reason.
+>> Deduplicate them.
+>>
+>> Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+>> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 > 
-> On Montag, 6. Februar 2023 22:50:08 CET Rob Herring wrote:
-> > On Mon, 06 Feb 2023 21:23:16 +0100, Luca Weiss wrote:
-> > > Convert the text-based dt-bindings to yaml.
-> > > 
-> > > Changes from original txt:
-> > > * Take wording for various properties from other yaml bindings, this
-> > > 
-> > >   removes e.g. volt amount from schema since it isn't really relevant
-> > >   and the datasheet is a better source.
-> > > 
-> > > * Don't make reset-gpios a required property since it can be tied to
-> > > 
-> > >   DOVDD instead.
-> > > 
-> > > Signed-off-by: Luca Weiss <luca@z3ntu.xyz>
-> > > ---
-> > > 
-> > >  .../devicetree/bindings/media/i2c/ov2685.txt       |  41 ---------
-> > >  .../devicetree/bindings/media/i2c/ovti,ov2685.yaml | 101
-> > >  +++++++++++++++++++++ MAINTAINERS                                       
-> > >  |   1 +
-> > >  3 files changed, 102 insertions(+), 41 deletions(-)
-> > 
-> > My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-> > on your patch (DT_CHECKER_FLAGS is new in v5.13):
-> > 
-> > yamllint warnings/errors:
-> > 
-> > dtschema/dtc warnings/errors:
-> > /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/medi
-> > a/rockchip-isp1.example.dtb: camera@3c: 'clocks' is a required property From
-> > schema:
-> > /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/med
-> > ia/i2c/ovti,ov2685.yaml
-> > /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/med
-> > ia/rockchip-isp1.example.dtb: camera@3c: 'clock-names' is a required
-> > property From schema:
-> > /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/med
-> > ia/i2c/ovti,ov2685.yaml
-> > /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/med
-> > ia/rockchip-isp1.example.dtb: camera@3c: 'dvdd-supply' is a required
-> > property From schema:
-> > /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/med
-> > ia/i2c/ovti,ov2685.yaml
-> > /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/med
-> > ia/rockchip-isp1.example.dtb: camera@3c: 'avdd-supply' is a required
-> > property From schema:
-> > /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/med
-> > ia/i2c/ovti,ov2685.yaml
-> > /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/med
-> > ia/rockchip-isp1.example.dtb: camera@3c: 'dovdd-supply' is a required
-> > property From schema:
-> > /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/med
-> > ia/i2c/ovti,ov2685.yaml
+> Seems a bit inconsistent to name some of these with their DSI host
+> revision, and keep some named after the SoC.  Also in the name of
+> msm_dsi_config.  Regardless:
 > 
-> Looks like rockchip-isp1.yaml uses very incomplete sensor examples in their 
-> binding example, which sort of makes sense since those bindings are showing 
-> the rockchip isp bindings and contain the bare minimum to show how a sensor is 
-> connected in dt.
+> Reviewed-by: Marijn Suijten <marijn.suijten@somainline.org>
+I think it's a good indicator of whether it's shared or used
+by just one platform. Truth be told, some of the entries *are*
+actually SoC-specific (think 8996 and its magic MMAGIC additions)
+
+Konrad
+
 > 
-> Not sure how to solve this - ov2685 is also one of three sensors that are used 
-> very abbreviated there.
-
-Could these regulators be simply made optional?
-
--- 
-Kind regards,
-
-Sakari Ailus
+>> ---
+>>  drivers/gpu/drm/msm/dsi/dsi_cfg.c | 77 +++++++++++++--------------------------
+>>  1 file changed, 26 insertions(+), 51 deletions(-)
+>>
+>> diff --git a/drivers/gpu/drm/msm/dsi/dsi_cfg.c b/drivers/gpu/drm/msm/dsi/dsi_cfg.c
+>> index 6c192963c100..d39521850018 100644
+>> --- a/drivers/gpu/drm/msm/dsi/dsi_cfg.c
+>> +++ b/drivers/gpu/drm/msm/dsi/dsi_cfg.c
+>> @@ -47,41 +47,32 @@ static const struct msm_dsi_config msm8974_apq8084_dsi_cfg = {
+>>  	},
+>>  };
+>>  
+>> -static const char * const dsi_8916_bus_clk_names[] = {
+>> +static const char * const dsi_v1_3_1_clk_names[] = {
+>>  	"mdp_core", "iface", "bus",
+>>  };
+>>  
+>> -static const struct regulator_bulk_data msm8916_dsi_regulators[] = {
+>> +static const struct regulator_bulk_data dsi_v1_3_1_regulators[] = {
+>>  	{ .supply = "vdda", .init_load_uA = 100000 },	/* 1.2 V */
+>>  	{ .supply = "vddio", .init_load_uA = 100000 },	/* 1.8 V */
+>>  };
+>>  
+>>  static const struct msm_dsi_config msm8916_dsi_cfg = {
+>>  	.io_offset = DSI_6G_REG_SHIFT,
+>> -	.regulator_data = msm8916_dsi_regulators,
+>> -	.num_regulators = ARRAY_SIZE(msm8916_dsi_regulators),
+>> -	.bus_clk_names = dsi_8916_bus_clk_names,
+>> -	.num_bus_clks = ARRAY_SIZE(dsi_8916_bus_clk_names),
+>> +	.regulator_data = dsi_v1_3_1_regulators,
+>> +	.num_regulators = ARRAY_SIZE(dsi_v1_3_1_regulators),
+>> +	.bus_clk_names = dsi_v1_3_1_clk_names,
+>> +	.num_bus_clks = ARRAY_SIZE(dsi_v1_3_1_clk_names),
+>>  	.io_start = {
+>>  		{ 0x1a98000 },
+>>  	},
+>>  };
+>>  
+>> -static const char * const dsi_8976_bus_clk_names[] = {
+>> -	"mdp_core", "iface", "bus",
+>> -};
+>> -
+>> -static const struct regulator_bulk_data msm8976_dsi_regulators[] = {
+>> -	{ .supply = "vdda", .init_load_uA = 100000 },	/* 1.2 V */
+>> -	{ .supply = "vddio", .init_load_uA = 100000 },	/* 1.8 V */
+>> -};
+>> -
+>>  static const struct msm_dsi_config msm8976_dsi_cfg = {
+>>  	.io_offset = DSI_6G_REG_SHIFT,
+>> -	.regulator_data = msm8976_dsi_regulators,
+>> -	.num_regulators = ARRAY_SIZE(msm8976_dsi_regulators),
+>> -	.bus_clk_names = dsi_8976_bus_clk_names,
+>> -	.num_bus_clks = ARRAY_SIZE(dsi_8976_bus_clk_names),
+>> +	.regulator_data = dsi_v1_3_1_regulators,
+>> +	.num_regulators = ARRAY_SIZE(dsi_v1_3_1_regulators),
+>> +	.bus_clk_names = dsi_v1_3_1_clk_names,
+>> +	.num_bus_clks = ARRAY_SIZE(dsi_v1_3_1_clk_names),
+>>  	.io_start = {
+>>  		{ 0x1a94000, 0x1a96000 },
+>>  	},
+>> @@ -107,10 +98,6 @@ static const struct msm_dsi_config msm8994_dsi_cfg = {
+>>  	},
+>>  };
+>>  
+>> -static const char * const dsi_8996_bus_clk_names[] = {
+>> -	"mdp_core", "iface", "bus", "core_mmss",
+>> -};
+>> -
+>>  static const struct regulator_bulk_data msm8996_dsi_regulators[] = {
+>>  	{ .supply = "vdda", .init_load_uA = 18160 },	/* 1.25 V */
+>>  	{ .supply = "vcca", .init_load_uA = 17000 },	/* 0.925 V */
+>> @@ -121,8 +108,8 @@ static const struct msm_dsi_config msm8996_dsi_cfg = {
+>>  	.io_offset = DSI_6G_REG_SHIFT,
+>>  	.regulator_data = msm8996_dsi_regulators,
+>>  	.num_regulators = ARRAY_SIZE(msm8996_dsi_regulators),
+>> -	.bus_clk_names = dsi_8996_bus_clk_names,
+>> -	.num_bus_clks = ARRAY_SIZE(dsi_8996_bus_clk_names),
+>> +	.bus_clk_names = dsi_6g_bus_clk_names,
+>> +	.num_bus_clks = ARRAY_SIZE(dsi_6g_bus_clk_names),
+>>  	.io_start = {
+>>  		{ 0x994000, 0x996000 },
+>>  	},
+>> @@ -167,24 +154,20 @@ static const struct msm_dsi_config sdm660_dsi_cfg = {
+>>  	},
+>>  };
+>>  
+>> -static const char * const dsi_sdm845_bus_clk_names[] = {
+>> +static const char * const dsi_v2_4_clk_names[] = {
+>>  	"iface", "bus",
+>>  };
+>>  
+>> -static const char * const dsi_sc7180_bus_clk_names[] = {
+>> -	"iface", "bus",
+>> -};
+>> -
+>> -static const struct regulator_bulk_data sdm845_dsi_regulators[] = {
+>> +static const struct regulator_bulk_data dsi_v2_4_regulators[] = {
+>>  	{ .supply = "vdda", .init_load_uA = 21800 },	/* 1.2 V */
+>>  };
+>>  
+>>  static const struct msm_dsi_config sdm845_dsi_cfg = {
+>>  	.io_offset = DSI_6G_REG_SHIFT,
+>> -	.regulator_data = sdm845_dsi_regulators,
+>> -	.num_regulators = ARRAY_SIZE(sdm845_dsi_regulators),
+>> -	.bus_clk_names = dsi_sdm845_bus_clk_names,
+>> -	.num_bus_clks = ARRAY_SIZE(dsi_sdm845_bus_clk_names),
+>> +	.regulator_data = dsi_v2_4_regulators,
+>> +	.num_regulators = ARRAY_SIZE(dsi_v2_4_regulators),
+>> +	.bus_clk_names = dsi_v2_4_clk_names,
+>> +	.num_bus_clks = ARRAY_SIZE(dsi_v2_4_clk_names),
+>>  	.io_start = {
+>>  		{ 0xae94000, 0xae96000 },
+>>  	},
+>> @@ -198,32 +181,24 @@ static const struct msm_dsi_config sm8550_dsi_cfg = {
+>>  	.io_offset = DSI_6G_REG_SHIFT,
+>>  	.regulator_data = sm8550_dsi_regulators,
+>>  	.num_regulators = ARRAY_SIZE(sm8550_dsi_regulators),
+>> -	.bus_clk_names = dsi_sdm845_bus_clk_names,
+>> -	.num_bus_clks = ARRAY_SIZE(dsi_sdm845_bus_clk_names),
+>> +	.bus_clk_names = dsi_v2_4_clk_names,
+>> +	.num_bus_clks = ARRAY_SIZE(dsi_v2_4_clk_names),
+>>  	.io_start = {
+>>  		{ 0xae94000, 0xae96000 },
+>>  	},
+>>  };
+>>  
+>> -static const struct regulator_bulk_data sc7180_dsi_regulators[] = {
+>> -	{ .supply = "vdda", .init_load_uA = 21800 },	/* 1.2 V */
+>> -};
+>> -
+>>  static const struct msm_dsi_config sc7180_dsi_cfg = {
+>>  	.io_offset = DSI_6G_REG_SHIFT,
+>> -	.regulator_data = sc7180_dsi_regulators,
+>> -	.num_regulators = ARRAY_SIZE(sc7180_dsi_regulators),
+>> -	.bus_clk_names = dsi_sc7180_bus_clk_names,
+>> -	.num_bus_clks = ARRAY_SIZE(dsi_sc7180_bus_clk_names),
+>> +	.regulator_data = dsi_v2_4_regulators,
+>> +	.num_regulators = ARRAY_SIZE(dsi_v2_4_regulators),
+>> +	.bus_clk_names = dsi_v2_4_clk_names,
+>> +	.num_bus_clks = ARRAY_SIZE(dsi_v2_4_clk_names),
+>>  	.io_start = {
+>>  		{ 0xae94000 },
+>>  	},
+>>  };
+>>  
+>> -static const char * const dsi_sc7280_bus_clk_names[] = {
+>> -	"iface", "bus",
+>> -};
+>> -
+>>  static const struct regulator_bulk_data sc7280_dsi_regulators[] = {
+>>  	{ .supply = "vdda", .init_load_uA = 8350 },	/* 1.2 V */
+>>  };
+>> @@ -232,8 +207,8 @@ static const struct msm_dsi_config sc7280_dsi_cfg = {
+>>  	.io_offset = DSI_6G_REG_SHIFT,
+>>  	.regulator_data = sc7280_dsi_regulators,
+>>  	.num_regulators = ARRAY_SIZE(sc7280_dsi_regulators),
+>> -	.bus_clk_names = dsi_sc7280_bus_clk_names,
+>> -	.num_bus_clks = ARRAY_SIZE(dsi_sc7280_bus_clk_names),
+>> +	.bus_clk_names = dsi_v2_4_clk_names,
+>> +	.num_bus_clks = ARRAY_SIZE(dsi_v2_4_clk_names),
+>>  	.io_start = {
+>>  		{ 0xae94000, 0xae96000 },
+>>  	},
+>>
+>> -- 
+>> 2.39.2
+>>
