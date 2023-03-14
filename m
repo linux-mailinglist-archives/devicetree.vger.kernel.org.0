@@ -2,74 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 857A16BA032
-	for <lists+devicetree@lfdr.de>; Tue, 14 Mar 2023 20:58:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A082F6BA038
+	for <lists+devicetree@lfdr.de>; Tue, 14 Mar 2023 20:59:38 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230190AbjCNT6p (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Mar 2023 15:58:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59600 "EHLO
+        id S230284AbjCNT7g (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Mar 2023 15:59:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34408 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229997AbjCNT6o (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Mar 2023 15:58:44 -0400
-Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3B404BBBD;
-        Tue, 14 Mar 2023 12:58:28 -0700 (PDT)
-Received: by mail-ed1-x535.google.com with SMTP id x13so19462253edd.1;
-        Tue, 14 Mar 2023 12:58:28 -0700 (PDT)
+        with ESMTP id S229675AbjCNT7f (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Mar 2023 15:59:35 -0400
+Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B41005263
+        for <devicetree@vger.kernel.org>; Tue, 14 Mar 2023 12:59:26 -0700 (PDT)
+Received: by mail-ed1-x531.google.com with SMTP id eh3so10899058edb.11
+        for <devicetree@vger.kernel.org>; Tue, 14 Mar 2023 12:59:26 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112; t=1678823907;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=xqwHb3pl10s7quxiCLdge3d3HiQ2kieNQ2q19oo8kDs=;
-        b=kCsABlT+HkwgRsyKMRlCb41qMBQ1GsJeb1u/zUZGfUsAzgBXSebzj7zTIdHOMUZ4hm
-         Jddh/W1F1qfjhpUOo0OHPBm+37Xkubd46bVkGO+nzkvBHmgWXgYJxLvi2CIGm3NkwLtt
-         kTUFSwRuOG4YU3Y11mcrYUcfx9+a1mAo3RXJ4kCw3cmIAjNz7A4g6IB638HJRaArVmGZ
-         FkELAXbvLbkwoqaBGrGROnDFSrfeEb/heIyC0YFgIstC2AE3Yw9l6BDMbblzJgcit2De
-         eaOyNCNGLDVUabserU/ISATGn9ccpbBAh0xp94IoBx925GjvIaAd//hykfRIi5NliUk6
-         SMTg==
+        d=linaro.org; s=google; t=1678823965;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=rr3yddhQQtiym6t4yIk1m3Wt6qYddFKcJfpTIfvkXJU=;
+        b=n38EiUE6zuRBbBH2Xn5szv+hHVZi+Ibu+eQuUuWLzCks8g2OyaGeWDKxa5alYz7TeD
+         yYRxo6OfA4V9yzpMhZlLrtdl8pAH0jppon3DEHl6mrqORgHhQ9jD9cc8Mlqlnk45iwNS
+         sR/PjUmC2yFXe9gbW+usnh3vIkG0U+B8GYPEAFnEeceQC9nH3PTMMQgCTNgQT2tbGekS
+         j3k04lOAFQir4MAznrLbliKoP9+64T+EW71Hao0sVG8BIFCSV1zsC5VD9lLtJAlZcjmL
+         MxJ0B0TLDILrAmO4qTrvfyzFjX+cCttv9dEtoFo68vebB1V71whh1SNKNJSjA1tbASPa
+         zb5w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678823907;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=xqwHb3pl10s7quxiCLdge3d3HiQ2kieNQ2q19oo8kDs=;
-        b=o7+Eqv8HzKAuwLFYq/Xim1V9Hm5XrovjXVSQaalLoGdy7qvVHro4sRIImE3FqltYas
-         kpdFqEBfWu4qHR16vqZwJRgDwTDaSwBgl86jLTQjnDMhcBnGJQBupK+5o1LCW48BlXw2
-         NwHMT1/0pH7GN0U89CRs515TYUFQQbX1FvgIE3VlH3gU9fiMDjKUTL7fkNKySWBugo0s
-         r537rEHrrEZg7xUBvATTLLSyQNYqxjqfFs/leyRW54Ve7O3uS8NxRmQ+tdcZCxI5jMU3
-         GHuK1+ufUoRnr9/U51of39hGbyZc5JLu7nGoWBjXho0WOTiio9VWYPbIHh7iNI/FzrC7
-         hDyQ==
-X-Gm-Message-State: AO0yUKVCxuOMvicGHALocg2gAScDSzPJzscbae78zWXLZsprnsu0L4O/
-        B+b+UKfytI6Hxph18K0mAv0=
-X-Google-Smtp-Source: AK7set+c9gXFRmjVi6fFDbFdISN4aKZTF0Ediiw5KyDrz4H9I2ZmJcurfv6q47uliZL8XXT7wR5jVQ==
-X-Received: by 2002:a17:906:6b0c:b0:8aa:be5c:b7c5 with SMTP id q12-20020a1709066b0c00b008aabe5cb7c5mr3670395ejr.41.1678823906634;
-        Tue, 14 Mar 2023 12:58:26 -0700 (PDT)
-Received: from jernej-laptop.localnet (82-149-1-233.dynamic.telemach.net. [82.149.1.233])
-        by smtp.gmail.com with ESMTPSA id de11-20020a1709069bcb00b008d1dc5f5692sm1514491ejc.76.2023.03.14.12.58.25
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 14 Mar 2023 12:58:26 -0700 (PDT)
-From:   Jernej =?utf-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
-To:     Alessandro Zummo <a.zummo@towertech.it>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Samuel Holland <samuel@sholland.org>,
-        Rob Herring <robh@kernel.org>
-Cc:     devicetree@vger.kernel.org, linux-rtc@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] rtc: sun6i: Use of_property_present() for testing DT property
- presence
-Date:   Tue, 14 Mar 2023 20:58:25 +0100
-Message-ID: <1845104.tdWV9SEqCh@jernej-laptop>
-In-Reply-To: <20230310144736.1547041-1-robh@kernel.org>
-References: <20230310144736.1547041-1-robh@kernel.org>
+        d=1e100.net; s=20210112; t=1678823965;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=rr3yddhQQtiym6t4yIk1m3Wt6qYddFKcJfpTIfvkXJU=;
+        b=u1IK2lfPqE425PavVrij9MygR1vIIHG/IlEmI1YnCi989NJJab1mFlc8R14WA6wImU
+         3gOJr8AEk4t9a+fLO71zjlderj5udF7pHtGK2tYfjuW3hXNskwl/s2zwlSfxKqizNpnl
+         JAv5hGck4qPKs2Rh4z/wp6h9VFqHpVP0r/OE25WeQDLMw6ynXIzdRkMqxe9Mf7ihc0xJ
+         PgFOa+gWga+XAjEIZ2ETbImdbP9bhMWZ2b5nry+mYJFt0sf4YSUgGMENul76sI/Gb+Ow
+         ZJctF+FVqu5tLFY2SLBog/n1BQkhA7/O3o2rHOTUgy7M+eL6R2ML6XIPUrjWUEwGPYRQ
+         F2eg==
+X-Gm-Message-State: AO0yUKV0km8Wr4a7VGpHjhVnEs+CgCeaXRjn6QbiN8SF9B/3MYlc/qzM
+        Q7yf87W8wHHi3V5tIVVZYnwiUQ==
+X-Google-Smtp-Source: AK7set/+SCbFFrf18h4uJ8Q3iCIWWPTZZqUrG2OIJLrLkO06zFXJ2cKWTBMvXIGRdjKGZ7sQKU4qdA==
+X-Received: by 2002:a17:906:950b:b0:8b1:77bf:3bdd with SMTP id u11-20020a170906950b00b008b177bf3bddmr4250199ejx.36.1678823965144;
+        Tue, 14 Mar 2023 12:59:25 -0700 (PDT)
+Received: from ?IPV6:2a02:810d:15c0:828:642b:87c2:1efc:c8af? ([2a02:810d:15c0:828:642b:87c2:1efc:c8af])
+        by smtp.gmail.com with ESMTPSA id u11-20020a1709060b0b00b008e22978b98bsm1540234ejg.61.2023.03.14.12.59.23
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 14 Mar 2023 12:59:24 -0700 (PDT)
+Message-ID: <3d34e35f-fb5a-7522-9717-dd3402dd88d3@linaro.org>
+Date:   Tue, 14 Mar 2023 20:59:23 +0100
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.8.0
+Subject: Re: [PATCH v11 03/13] dt-bindings: Convert gpio-mmio to yaml
+Content-Language: en-US
+To:     Sean Anderson <sean.anderson@seco.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@kernel.org>,
+        linux-phy@lists.infradead.org
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        Camelia Alexandra Groza <camelia.groza@nxp.com>,
+        Madalin Bucur <madalin.bucur@nxp.com>,
+        Bagas Sanjaya <bagasdotme@gmail.com>,
+        Ioana Ciornei <ioana.ciornei@nxp.com>,
+        linuxppc-dev@lists.ozlabs.org,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <brgl@bgdev.pl>,
+        =?UTF-8?Q?Fern=c3=a1ndez_Rojas?= <noltari@gmail.com>,
+        Jonas Gorski <jonas.gorski@gmail.com>,
+        linux-gpio@vger.kernel.org
+References: <20230313161138.3598068-1-sean.anderson@seco.com>
+ <20230313161138.3598068-4-sean.anderson@seco.com>
+ <684eb04d-aeaa-07e1-34d6-783e85e379f0@linaro.org>
+ <3c19e6d2-4df2-6187-36d5-98ceef07235a@seco.com>
+ <ad56ca5e-03f7-5e3d-6547-91c64fdb08d3@linaro.org>
+ <7c7311ad-fbdf-3c7e-dab5-28a562fb7e8d@seco.com>
+ <a7fbaea5-927a-e4e8-d990-66b53d586d47@linaro.org>
+ <b7f45fc2-85f5-ad29-2dc4-bc059cac022e@seco.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <b7f45fc2-85f5-ad29-2dc4-bc059cac022e@seco.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -77,39 +95,64 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Dne petek, 10. marec 2023 ob 15:47:36 CET je Rob Herring napisal(a):
-> It is preferred to use typed property access functions (i.e.
-> of_property_read_<type> functions) rather than low-level
-> of_get_property/of_find_property functions for reading properties. As
-> part of this, convert of_get_property/of_find_property calls to the
-> recently added of_property_present() helper when we just want to test
-> for presence of a property and nothing more.
+On 14/03/2023 20:52, Sean Anderson wrote:
+> On 3/14/23 15:45, Krzysztof Kozlowski wrote:
+>> On 14/03/2023 19:50, Sean Anderson wrote:
+>>> On 3/14/23 14:32, Krzysztof Kozlowski wrote:
+>>>> On 14/03/2023 19:09, Sean Anderson wrote:
+>>>>> On 3/14/23 13:56, Krzysztof Kozlowski wrote:
+>>>>>> On 13/03/2023 17:11, Sean Anderson wrote:
+>>>>>> +  reg-names:
+>>>>>>> +    minItems: 1
+>>>>>>> +    maxItems: 5
+>>>>>>> +    items:
+>>>>>>> +      enum:
+>>>>>>
+>>>>>> Why this is in any order? Other bindings were here specific, your 'reg'
+>>>>>> is also specific/fixed.
+>>>>>
+>>>>> Some devicetrees have dirout first, and other have dat first. There is no
+>>>>> mandatory order, and some registers can be included or left out as is
+>>>>> convenient to the devicetree author.
+>>>>>
+>>>>> reg is not specific/fixed either. It is just done that way for
+>>>>> convenience (and to match the names here).
+>>>>
+>>>> The items have order and usually we require strict order from DTS,
+>>>> unless there is a reason. If there is no reason, use fixed order and
+>>>> then fix the DTS.
+>>>
+>>> The items do not have order. That is the whole point of having a
+>>> separate names property. The DTs are not "broken" for taking advantage
+>>> of a longstanding feature. There is no advantage to rewriting them to
+>>> use a fixed order, especially when there is no precedent. This is just
+>>> an area where json schema cannot completely validate devicetrees.
+>>
+>> I don't understand "there is no precedent".There is - we rewrite
+>> hundreds of DTS. Just look at mine and other people commits.
 > 
-> Signed-off-by: Rob Herring <robh@kernel.org>
+> There is no precedent for a fixed order of registers for this device.
+> We have always used reg-names to interpret regs.
 
-Reviewed-by: Jernej Skrabec <jernej.skrabec@gmail.com>
+And who is "we"? Bootloader? Firmware? BSD? Because they all matter. It
+does not matter that one particular driver uses reg-names. The common
+rule is always the same - entries are ordered and fixed (with exceptions).
+
+> 
+>> The reg-names are helper and entries were always expected to be ordered
+> 
+> This is not the case for this device. Registers may be in any order, and
+
+Their physical order does not determine the order of entries in DT.
+
+> some registers may be omitted (and not always the same ones).
+
+OK, that's the reason.
+
+> reg-names is the
+> only way to determine which registers are present.
+
 
 Best regards,
-Jernej
-
-> ---
->  drivers/rtc/rtc-sun6i.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/drivers/rtc/rtc-sun6i.c b/drivers/rtc/rtc-sun6i.c
-> index 7038f47d77ff..dc76537f1b62 100644
-> --- a/drivers/rtc/rtc-sun6i.c
-> +++ b/drivers/rtc/rtc-sun6i.c
-> @@ -260,7 +260,7 @@ static void __init sun6i_rtc_clk_init(struct device_node
-> *node, }
-> 
->  	/* Switch to the external, more precise, oscillator, if present */
-> -	if (of_get_property(node, "clocks", NULL)) {
-> +	if (of_property_present(node, "clocks")) {
->  		reg |= SUN6I_LOSC_CTRL_EXT_OSC;
->  		if (rtc->data->has_losc_en)
->  			reg |= SUN6I_LOSC_CTRL_EXT_LOSC_EN;
-
-
-
+Krzysztof
 
