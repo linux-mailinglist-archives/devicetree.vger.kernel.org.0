@@ -2,61 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3B9916B9923
-	for <lists+devicetree@lfdr.de>; Tue, 14 Mar 2023 16:29:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DE7426B9927
+	for <lists+devicetree@lfdr.de>; Tue, 14 Mar 2023 16:29:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231484AbjCNP3I (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Mar 2023 11:29:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58556 "EHLO
+        id S231741AbjCNP3J (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Mar 2023 11:29:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58564 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231553AbjCNP2z (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Mar 2023 11:28:55 -0400
-Received: from mail-lj1-x232.google.com (mail-lj1-x232.google.com [IPv6:2a00:1450:4864:20::232])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E2AEA6EB98
-        for <devicetree@vger.kernel.org>; Tue, 14 Mar 2023 08:28:49 -0700 (PDT)
-Received: by mail-lj1-x232.google.com with SMTP id t14so16423956ljd.5
-        for <devicetree@vger.kernel.org>; Tue, 14 Mar 2023 08:28:49 -0700 (PDT)
+        with ESMTP id S231567AbjCNP24 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Mar 2023 11:28:56 -0400
+Received: from mail-lj1-x22c.google.com (mail-lj1-x22c.google.com [IPv6:2a00:1450:4864:20::22c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 70867A908C
+        for <devicetree@vger.kernel.org>; Tue, 14 Mar 2023 08:28:50 -0700 (PDT)
+Received: by mail-lj1-x22c.google.com with SMTP id a32so16412883ljr.9
+        for <devicetree@vger.kernel.org>; Tue, 14 Mar 2023 08:28:50 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1678807728;
+        d=linaro.org; s=google; t=1678807730;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=159lZK1VC8AnArbTbfywvfz47MuAlqr+e0q9A9rUbAY=;
-        b=ybkS1ks85NwBg0oo4KVc4YOEPbJDHyxaTPYyY5Ix/0wWYBycqMFQxYFzrOVQ6wjypO
-         fQmQycMbmWZvRFv7EduPzK10eesNeyMeiZJvpoHNqbbImGbWHlCu0F/fNvwSaVttOIlN
-         JSbW0fOGV5ZttCFGvf6VYxPo8gUKcGGVxpMglgQDoUl30mV6R4KoNhgzpaQ2j9Glukbz
-         RMENp5oNU5cfRTprvVqD6orxx+uicybh/W3zYauQtLBj6JZRMKQ45UVZCOvhq+SHvDd6
-         lJWX0KvsUlPjFe6eyjd21Ka+W3Hcqs8eiTJMKR6z32H0p0/HpJqW2tyDrqH1IaokaCXz
-         +56A==
+        bh=WABs2uqkSr8euv93L/sU63WnoiH4PZRdu/LdvY8ve98=;
+        b=e4HxELOY7IfiLDgpEbVVOCpGxJQiGn7MmAADHLeIQ9dSonULA0bldiz8CgMI2737lY
+         rOYV31erKzdYtlM7ceiSmc4zGlTZSeSSeyEkywbYCAfh92/Oxa7gr0GGEXdLxtwTNR2V
+         ai9M1XsFH/RFvDU6O1udDwUKU5YAnpsfNSyFV0bvD/OrN0ZHX7R9UpaN/uTE7lkFnlXh
+         9fJTy5GbjRFmoTRlViDpEun63yit9z8jUaQX2/CJnYEbnaw3RySP5xBWpzFUpAPX0hI7
+         8Vp0HsbB95wYBXPFG+N/BlrhRc/mdCCI/fdDT98qBSu10uo7fpWu4/XOcLnq36C3O/zu
+         oGLQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678807728;
+        d=1e100.net; s=20210112; t=1678807730;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=159lZK1VC8AnArbTbfywvfz47MuAlqr+e0q9A9rUbAY=;
-        b=DqoJvwyJsNawoux0tX+4q0PxeJg9v25qF9RyrKljXZ7zzeuiVgrZN8pCzwkpkL3J3s
-         hOkKP/p62set0gpiw5gmZYsixXAQdShVUPEWLkk4hf7qFXRV4FNmc6mvAnajvROlJ4rX
-         v1b0cn9TKNAj2Byo3ViWXDEx84mtbshTB00a9bJGAjBo/jl9pl5qgifqqhDcD60WqA/o
-         yJV0G6c4+jtGi3ZT+plcJ5qbh0vC7AFdtQGYv7JHbKcREsHUpZHle53ZrvQeP7UaLrXZ
-         wseZhGb2+PemtnPNYwIIh8xCTJq+q72VjBUKMMsQ0gqU8JdTfux7/1AuOjuj0bA/40AQ
-         duXg==
-X-Gm-Message-State: AO0yUKWxrSRd7mHio7AUh0zlbbyBHci+87CjDgUVgeKT8iMUfeNECi0f
-        x3eb42S7MYdeXxjPt99vEsN87A==
-X-Google-Smtp-Source: AK7set95lDIxfeW2sbimzmWl+O6poG1xg+59izmaVd4VGvYk/eNDDUxvFvJ4rN1VRn8SyfcPqBex6Q==
-X-Received: by 2002:a05:651c:1059:b0:295:b96e:ca99 with SMTP id x25-20020a05651c105900b00295b96eca99mr14017598ljm.50.1678807728292;
-        Tue, 14 Mar 2023 08:28:48 -0700 (PDT)
+        bh=WABs2uqkSr8euv93L/sU63WnoiH4PZRdu/LdvY8ve98=;
+        b=UpcVNH50Nadfp2NiT4pX78DbQCYhsfYHGYlYQk3+IyCo/F1dDjp4r3uD8AtN3S11Mo
+         nuuQXTlBxQFKUMc8jK/3SWGCitNYsrUlBHndqp08tOcu46HQNsfu6CdLsFwvT+JF4zb2
+         zG8UxsqJ04ZH2yAtfImheT3KLwup2jtScYFNOE9LMyIOHjmgolOJnuzHdA2+hV5TI08F
+         gikO1X5IknYa4TrTUnMRPY3bY3PACA1yadZgo2lITNyXe/j9g54y98M3sqmn3bT9cQ+d
+         xUvzRhtETsRuspujFy/WVU7kpmnVCN3d/ZbesZieco6wp7EP+hMGj2A7ycxgIaJTzAbB
+         peEQ==
+X-Gm-Message-State: AO0yUKVpGBobulNW8qa66m+mFtz+CsKLrpkolcZfkxwQ6B/wD/7VEctF
+        pJNpv70Un/WfEu7APRJ1flNJjg==
+X-Google-Smtp-Source: AK7set9p0iUmEJFj1wIHWX+7ggS+PnzEj2OdhTv2x6pIfkB92M1XoFxzoYiBOSMe86wKID/Dj0pPdA==
+X-Received: by 2002:a2e:9911:0:b0:295:a50b:3693 with SMTP id v17-20020a2e9911000000b00295a50b3693mr10743151lji.44.1678807729879;
+        Tue, 14 Mar 2023 08:28:49 -0700 (PDT)
 Received: from [192.168.1.101] (abyj16.neoplus.adsl.tpnet.pl. [83.9.29.16])
-        by smtp.gmail.com with ESMTPSA id 27-20020a2e165b000000b002986a977bf2sm491529ljw.90.2023.03.14.08.28.46
+        by smtp.gmail.com with ESMTPSA id 27-20020a2e165b000000b002986a977bf2sm491529ljw.90.2023.03.14.08.28.48
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 14 Mar 2023 08:28:48 -0700 (PDT)
+        Tue, 14 Mar 2023 08:28:49 -0700 (PDT)
 From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-Date:   Tue, 14 Mar 2023 16:28:37 +0100
-Subject: [PATCH v4 06/14] drm/msm/a6xx: Remove both GBIF and RBBM GBIF halt
- on hw init
+Date:   Tue, 14 Mar 2023 16:28:38 +0100
+Subject: [PATCH v4 07/14] drm/msm/adreno: Disable has_cached_coherent in
+ GMU wrapper configurations
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20230223-topic-gmuwrapper-v4-6-e987eb79d03f@linaro.org>
+Message-Id: <20230223-topic-gmuwrapper-v4-7-e987eb79d03f@linaro.org>
 References: <20230223-topic-gmuwrapper-v4-0-e987eb79d03f@linaro.org>
 In-Reply-To: <20230223-topic-gmuwrapper-v4-0-e987eb79d03f@linaro.org>
 To:     Rob Clark <robdclark@gmail.com>,
@@ -75,11 +75,11 @@ Cc:     linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
         Marijn Suijten <marijn.suijten@somainline.org>,
         Konrad Dybcio <konrad.dybcio@linaro.org>
 X-Mailer: b4 0.12.1
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1678807716; l=1251;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1678807716; l=1374;
  i=konrad.dybcio@linaro.org; s=20230215; h=from:subject:message-id;
- bh=SQf5xqv6dgkFv8lqaRaSsqR3oatLGI4JEKv+JlvqW4k=;
- b=j0wqavMQyp9JVzEUb+dyZ3aehx3l+F1HEWpU/j8PV1u7+qyWbwNnPl8Ix1vohsIlZY8QP7XOf0G8
- gFxAnV4NCSDkUzx+xsz2mPlEqsuMhpdcxfpQLRfk7YgDSyVTBnNy
+ bh=BrQq/uUq7axESPCyxyyfFuley6Eq3n1FbD/qjV9Gfd4=;
+ b=I4rxN89h6z/5WvdM1z4Z8cq5KsNXVn/10Wqx0Zr2wNmgPlC7+VHm5VhNifsczU7WOBF58BWKvqWC
+ uCkX0n4MCwgu+b3mjjVKTvTab+06TYtgi6LYzZfedym+c58dba/a
 X-Developer-Key: i=konrad.dybcio@linaro.org; a=ed25519;
  pk=iclgkYvtl2w05SSXO5EjjSYlhFKsJ+5OSZBjOkQuEms=
 X-Spam-Status: No, score=-0.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -92,36 +92,39 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Currently we're only deasserting REG_A6XX_RBBM_GBIF_HALT, but we also
-need REG_A6XX_GBIF_HALT to be set to 0. For GMU-equipped GPUs this is
-done in a6xx_bus_clear_pending_transactions(), but for the GMU-less
-ones we have to do it *somewhere*. Unhalting both side by side sounds
-like a good plan and it won't cause any issues if it's unnecessary.
-
-Also, add a memory barrier to ensure it's gone through.
+A610 and A619_holi don't support the feature. Disable it to make the GPU stop
+crashing after almost each and every submission - the received data on
+the GPU end was simply incomplete in garbled, resulting in almost nothing
+being executed properly. Extend the disablement to adreno_has_gmu_wrapper,
+as none of the GMU wrapper Adrenos that don't support yet seem to feature it.
 
 Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 ---
- drivers/gpu/drm/msm/adreno/a6xx_gpu.c | 6 +++++-
- 1 file changed, 5 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/msm/adreno/adreno_device.c | 5 ++++-
+ 1 file changed, 4 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/msm/adreno/a6xx_gpu.c b/drivers/gpu/drm/msm/adreno/a6xx_gpu.c
-index a90847a3379a..70e9bd21ba3b 100644
---- a/drivers/gpu/drm/msm/adreno/a6xx_gpu.c
-+++ b/drivers/gpu/drm/msm/adreno/a6xx_gpu.c
-@@ -1015,8 +1015,12 @@ static int hw_init(struct msm_gpu *gpu)
- 	}
+diff --git a/drivers/gpu/drm/msm/adreno/adreno_device.c b/drivers/gpu/drm/msm/adreno/adreno_device.c
+index f35392c034f7..6513c6094865 100644
+--- a/drivers/gpu/drm/msm/adreno/adreno_device.c
++++ b/drivers/gpu/drm/msm/adreno/adreno_device.c
+@@ -540,7 +540,6 @@ static int adreno_bind(struct device *dev, struct device *master, void *data)
+ 		config.rev.minor, config.rev.patchid);
  
- 	/* Clear GBIF halt in case GX domain was not collapsed */
--	if (a6xx_has_gbif(adreno_gpu))
-+	if (a6xx_has_gbif(adreno_gpu)) {
-+		gpu_write(gpu, REG_A6XX_GBIF_HALT, 0);
- 		gpu_write(gpu, REG_A6XX_RBBM_GBIF_HALT, 0);
-+		/* Let's make extra sure that the GPU can access the memory.. */
-+		mb();
-+	}
+ 	priv->is_a2xx = config.rev.core == 2;
+-	priv->has_cached_coherent = config.rev.core >= 6;
  
- 	gpu_write(gpu, REG_A6XX_RBBM_SECVID_TSB_CNTL, 0);
+ 	gpu = info->init(drm);
+ 	if (IS_ERR(gpu)) {
+@@ -552,6 +551,10 @@ static int adreno_bind(struct device *dev, struct device *master, void *data)
+ 	if (ret)
+ 		return ret;
+ 
++	if (config.rev.core >= 6)
++		if (!adreno_has_gmu_wrapper(to_adreno_gpu(gpu)))
++			priv->has_cached_coherent = true;
++
+ 	return 0;
+ }
  
 
 -- 
