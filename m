@@ -2,81 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0B5AF6B8751
-	for <lists+devicetree@lfdr.de>; Tue, 14 Mar 2023 02:00:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A30A56B8759
+	for <lists+devicetree@lfdr.de>; Tue, 14 Mar 2023 02:01:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229840AbjCNBAU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Mar 2023 21:00:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38930 "EHLO
+        id S229665AbjCNBBh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Mar 2023 21:01:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40202 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229456AbjCNBAT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Mar 2023 21:00:19 -0400
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 954F51117E;
-        Mon, 13 Mar 2023 18:00:18 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-        bh=y6fsAeAZisUsOyM9bq21nKdUzGuVcfPdezi6Gdsvp+Y=; b=fOVzAogDt3T/HacpWZZ6HE1vWu
-        jAjiKi7RNHNnADZ8lpo5gJmnxCUdocuklB81QexvrEheh9C9O3Tv7bMksMRuVhBS1SjQLecD6H9he
-        VPPaJO1yKphC28NLSZq/F8ZCtC6fmdHe/tnCMbwxyRLNHU3LRsbko2PM/+uIwaD35TA0=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-        (envelope-from <andrew@lunn.ch>)
-        id 1pbt0t-007FMJ-0v; Tue, 14 Mar 2023 01:59:39 +0100
-Date:   Tue, 14 Mar 2023 01:59:39 +0100
-From:   Andrew Lunn <andrew@lunn.ch>
-To:     Andrew Halaney <ahalaney@redhat.com>
-Cc:     linux-kernel@vger.kernel.org, agross@kernel.org,
-        andersson@kernel.org, konrad.dybcio@linaro.org,
-        davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
-        pabeni@redhat.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, vkoul@kernel.org,
-        bhupesh.sharma@linaro.org, mturquette@baylibre.com,
-        sboyd@kernel.org, peppe.cavallaro@st.com,
-        alexandre.torgue@foss.st.com, joabreu@synopsys.com,
-        mcoquelin.stm32@gmail.com, richardcochran@gmail.com,
-        linux@armlinux.org.uk, veekhee@apple.com,
-        tee.min.tan@linux.intel.com, mohammad.athari.ismail@intel.com,
-        jonathanh@nvidia.com, ruppala@nvidia.com, bmasney@redhat.com,
-        andrey.konovalov@linaro.org, linux-arm-msm@vger.kernel.org,
-        netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-clk@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        linux-arm-kernel@lists.infradead.org, ncai@quicinc.com,
-        jsuraj@qti.qualcomm.com, hisunil@quicinc.com
-Subject: Re: [PATCH net-next 08/11] net: stmmac: Add EMAC3 variant of dwmac4
-Message-ID: <9dc9eb28-43a9-4eca-b6de-302ce27388bf@lunn.ch>
-References: <20230313165620.128463-1-ahalaney@redhat.com>
- <20230313165620.128463-9-ahalaney@redhat.com>
+        with ESMTP id S229709AbjCNBBg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Mar 2023 21:01:36 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2AAD6911CA;
+        Mon, 13 Mar 2023 18:01:35 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id C663AB81690;
+        Tue, 14 Mar 2023 01:01:33 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 79FEFC433D2;
+        Tue, 14 Mar 2023 01:01:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1678755692;
+        bh=kGmcgrCDUa6ki8EJtk4PSH441MZFoE6sUS3W8B46Rd4=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=niX8lcqOVhJ37xzhYrZE92MS1uVd473rIP4FgSZXgtsfs+f7BEWTrKww6lfyRuz9l
+         cSjqGvgrHCMtTqyoEYzuzYrRM8pGoBo2QB881wr/CCqPG3//heXBxzg2wNaAhwg+ez
+         V8XNsvt7ytdBuZlZFbRWsY1XzmgTpkUt4Uz8GTaIwRmZAQpbGbPZrt3iCSEdNmVOS0
+         g7w0fJ1qiBGSjxiTZejL2eEAlORG7dfJFeotakCFhT4ty5+T6XubebBRC6WPAPxgBC
+         8uZ913y7N2J+YSbzg9JUey34lwedPPzMJ69mfWPH/b/Pj8xAy8wDnk7XLTnrH5GbqG
+         0tWk/wFrM/UFA==
+Date:   Tue, 14 Mar 2023 09:01:25 +0800
+From:   Shawn Guo <shawnguo@kernel.org>
+To:     Jacky Bai <ping.bai@nxp.com>
+Cc:     lee@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, s.hauer@pengutronix.de,
+        dmitry.torokhov@gmail.com, a.zummo@towertech.it,
+        alexandre.belloni@bootlin.com, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-input@vger.kernel.org,
+        linux-rtc@vger.kernel.org, kernel@pengutronix.de,
+        linux-imx@nxp.com, festevam@gmail.com
+Subject: Re: [PATCH v5 3/3] arm64: dts: imx93: Add the bbnsm dts node
+Message-ID: <20230314010125.GW143566@dragon>
+References: <20230215024117.3357341-1-ping.bai@nxp.com>
+ <20230215024117.3357341-4-ping.bai@nxp.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230313165620.128463-9-ahalaney@redhat.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <20230215024117.3357341-4-ping.bai@nxp.com>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> diff --git a/drivers/net/ethernet/stmicro/stmmac/stmmac_mdio.c b/drivers/net/ethernet/stmicro/stmmac/stmmac_mdio.c
-> index 21aaa2730ac8..9e3d8e1202bd 100644
-> --- a/drivers/net/ethernet/stmicro/stmmac/stmmac_mdio.c
-> +++ b/drivers/net/ethernet/stmicro/stmmac/stmmac_mdio.c
-> @@ -281,9 +281,8 @@ static int stmmac_mdio_read_c22(struct mii_bus *bus, int phyaddr, int phyreg)
->  	value |= (phyreg << priv->hw->mii.reg_shift) & priv->hw->mii.reg_mask;
->  	value |= (priv->clk_csr << priv->hw->mii.clk_csr_shift)
->  		& priv->hw->mii.clk_csr_mask;
-> -	if (priv->plat->has_gmac4) {
-> +	if (priv->plat->has_gmac4 || priv->plat->has_emac3)
->  		value |= MII_GMAC4_READ;
-> -	}
+On Wed, Feb 15, 2023 at 10:41:17AM +0800, Jacky Bai wrote:
+> Add the bbnsm node for RTC & ON/OFF button support
+> 
+> Signed-off-by: Jacky Bai <ping.bai@nxp.com>
 
-Removing the {} is correct in terms of the coding style, but it should
-be done as part of a separate patch.
-
-	Andrew
+Applied, thanks!
