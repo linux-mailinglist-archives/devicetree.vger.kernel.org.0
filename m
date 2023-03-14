@@ -2,188 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3827C6B92AE
-	for <lists+devicetree@lfdr.de>; Tue, 14 Mar 2023 13:07:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BAC166B92C8
+	for <lists+devicetree@lfdr.de>; Tue, 14 Mar 2023 13:13:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230421AbjCNMHZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Mar 2023 08:07:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39750 "EHLO
+        id S229849AbjCNMMy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Mar 2023 08:12:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53186 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231283AbjCNMHV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Mar 2023 08:07:21 -0400
-Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D52C09FE77
-        for <devicetree@vger.kernel.org>; Tue, 14 Mar 2023 05:06:45 -0700 (PDT)
-Received: by mail-lf1-x135.google.com with SMTP id d36so19687359lfv.8
-        for <devicetree@vger.kernel.org>; Tue, 14 Mar 2023 05:06:45 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1678795575;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=e6PMzxNPu0tsz3tjRajBCZnSPtI1e5mB9Su+fsMf3bk=;
-        b=Dkuwu1dFGFoMSVkuxQVa1GD2Nl2OPE0YFBafjm4iaAtc+EQ3/NFUJ+GST24b3ymsk6
-         um+RZQxhy6h4v6XpKGwQxpxPqWHbeAlSvSMmMMY/SS+evvb/aJN7KzCddo/jt0n6ifFk
-         AKIB8DZ+nAbo5tzq8nFdIYGXgfQiBDidop5k9mLq/HcuNnmauJaZjtkceAQilJhSVqzD
-         ynqDM13h6tIfchnN5G+2V2a8vEmaxKx6YmStmk+soihKqtVx/mr4lOgFQJ9CLdKKY5mF
-         qUSxVkozbLLnGjWcffoaHK9E2+Dq301aqJYS1TI5TQ5jcmHLJF+VlULpRU+TE5LVuN+v
-         IXMg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678795575;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=e6PMzxNPu0tsz3tjRajBCZnSPtI1e5mB9Su+fsMf3bk=;
-        b=qYb4loV0Hy5pr7zeaboMGW5SYE1tKtqH5pSLHFstPYDyoNOTCQZJh1PLnH0YAgEPid
-         S0j6aaS1703Jd3PM4WO7VwpNyKGfSuErdyMFMDyGSWpJskbkS9KzgZyk9SGFfkTvDzkT
-         Ll1j1PjjDzXQgRtsWv2amK8VnVCm1eB7DBKtw83EdTFUkvyyrUm9NFhGvYYZYg70kd/C
-         i0HD5XaHiziL5nvHALDf1e6epZjZh2Jr+Cv63pUtOjm7ktz96oCWhw4Me9Vsbs/ZotJL
-         EPAIBe9+GwDDWSb0WDE1lV1IjtI9kBEOYLcez25D7YDZvw0UPoC+KdQeGc+6sNI2isMs
-         jBdg==
-X-Gm-Message-State: AO0yUKUfJggO/1txyZ1jA3YlPlCCECqSj6yNoXEVpwRHHFJ4tY9AisA+
-        0gbBC0liiCY+/HfqPlqyEP7ZdA==
-X-Google-Smtp-Source: AK7set8y1S3Ew42r0fNJc7kHIb75SA1cUzze9ztJfgE0b5T6mi+HLLRdUIRz6wmiM+EMjWdU5uLedg==
-X-Received: by 2002:ac2:4189:0:b0:4dd:ad88:ba5c with SMTP id z9-20020ac24189000000b004ddad88ba5cmr712969lfh.4.1678795575616;
-        Tue, 14 Mar 2023 05:06:15 -0700 (PDT)
-Received: from [192.168.1.101] (abyj16.neoplus.adsl.tpnet.pl. [83.9.29.16])
-        by smtp.gmail.com with ESMTPSA id f25-20020ac251b9000000b004dab932248fsm378828lfk.180.2023.03.14.05.06.13
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 14 Mar 2023 05:06:14 -0700 (PDT)
-Message-ID: <20ebe4a3-1352-ae02-a56b-672ff3fcf12d@linaro.org>
-Date:   Tue, 14 Mar 2023 13:06:12 +0100
+        with ESMTP id S230231AbjCNMMx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Mar 2023 08:12:53 -0400
+Received: from mx.sberdevices.ru (mx.sberdevices.ru [45.89.227.171])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 31B4FA0F21;
+        Tue, 14 Mar 2023 05:12:32 -0700 (PDT)
+Received: from s-lin-edge02.sberdevices.ru (localhost [127.0.0.1])
+        by mx.sberdevices.ru (Postfix) with ESMTP id 6213B5FD65;
+        Tue, 14 Mar 2023 15:12:30 +0300 (MSK)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sberdevices.ru;
+        s=mail; t=1678795950;
+        bh=w3RTBim1Vx37finckZA+KqMI4p8SkyD3OYJF9V7g55g=;
+        h=Message-ID:Date:MIME-Version:Subject:To:From:Content-Type;
+        b=qokZEkmxkR1n9wn74YZLDJqjd9WjNoZ03eAGfPgbgfAtWmyoFdOzwddKxzrZaMxX7
+         oETrDazA3pfhhnVPimEFYKRbTrOu7qVNdDWI5mvH18ROMhRpbFZN7ErFfeHgMNwLIG
+         UewRdIkRG6tBDZ/QKbygI2AFwZkWFI6p0GTMzQHt/AcWknq86MPN6CPNUtpGMhJSjY
+         cavdu5Mct5DGwwElkAakRLRAtrzvS2HZCiavaTIn9cMODLvqG5ttrYdl0vj//IQ1JM
+         ySpdWJHp7RGEd8LZyCr2bmhOxudMmrM/POn2JzovPPGLTfswdMV0rIQZPGS7ajdEYg
+         /ILvAj4WugrNQ==
+Received: from S-MS-EXCH01.sberdevices.ru (S-MS-EXCH01.sberdevices.ru [172.16.1.4])
+        by mx.sberdevices.ru (Postfix) with ESMTP;
+        Tue, 14 Mar 2023 15:12:30 +0300 (MSK)
+Message-ID: <3b920b9e-07dc-7bda-4fe1-d15d07e708cc@sberdevices.ru>
+Date:   Tue, 14 Mar 2023 15:12:29 +0300
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
  Thunderbird/102.8.0
-Subject: Re: [PATCH v3 06/10] drm/msm/dsi: Switch the QCM2290-specific
- compatible to index autodetection
+Subject: Re: [PATCH v3 2/2] leds: add aw20xx driver
 Content-Language: en-US
-To:     Marijn Suijten <marijn.suijten@somainline.org>
-Cc:     Rob Clark <robdclark@gmail.com>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Sean Paul <sean@poorly.run>, David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
+To:     Andy Shevchenko <andy.shevchenko@gmail.com>
+CC:     Pavel Machek <pavel@ucw.cz>, Lee Jones <lee@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Krishna Manikandan <quic_mkrishn@quicinc.com>,
-        Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Rob Herring <robh@kernel.org>, linux-arm-msm@vger.kernel.org,
-        dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20230307-topic-dsi_qcm-v3-0-8bd7e1add38a@linaro.org>
- <20230307-topic-dsi_qcm-v3-6-8bd7e1add38a@linaro.org>
- <20230314000322.ptxs5d5mx54vdopa@SoMainline.org>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20230314000322.ptxs5d5mx54vdopa@SoMainline.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-0.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_SORBS_HTTP,RCVD_IN_SORBS_SOCKS,SPF_HELO_NONE,SPF_PASS,
-        URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.6
+        <linux-leds@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <kernel@sberdevices.ru>, <devicetree@vger.kernel.org>
+References: <20230314120252.48263-1-mmkurbanov@sberdevices.ru>
+ <20230314120252.48263-3-mmkurbanov@sberdevices.ru>
+From:   Martin Kurbanov <mmkurbanov@sberdevices.ru>
+In-Reply-To: <20230314120252.48263-3-mmkurbanov@sberdevices.ru>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-Originating-IP: [172.16.1.6]
+X-ClientProxiedBy: S-MS-EXCH02.sberdevices.ru (172.16.1.5) To
+ S-MS-EXCH01.sberdevices.ru (172.16.1.4)
+X-KSMG-Rule-ID: 4
+X-KSMG-Message-Action: clean
+X-KSMG-AntiSpam-Status: not scanned, disabled by settings
+X-KSMG-AntiSpam-Interceptor-Info: not scanned
+X-KSMG-AntiPhishing: not scanned, disabled by settings
+X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 1.1.2.30, bases: 2023/03/14 06:01:00 #20942017
+X-KSMG-AntiVirus-Status: Clean, skipped
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hello Andy. Thank you for review.
+I have fixed most of your comments. Please take a look below.
+
+On 2023-03-01 00:51, Andy Shevchenko wrote:
+>> +       /* The output current of each LED (see p.14 of datasheet for formula) */
+>> +       return (duty * global_imax_microamp) / 1000U;
+> 
+> units.h ?
+
+These constants are needed to improve the accuracy of calculations.
+units.h doesn’t have any helpful definitions to use here.
+
+>> +static int aw200xx_set_imax(const struct aw200xx *const chip,
+>> +                           u32 led_imax_microamp)
+>> +{
+>> +       struct imax_global {
+>> +               u32 regval;
+>> +               u32 microamp;
+>> +       } imaxs[] = {
+>> +               { 8,  3300 },
+>> +               { 9,  6700 },
+>> +               { 0,  10000 },
+>> +               { 11, 13300 },
+>> +               { 1,  20000 },
+>> +               { 13, 26700 },
+>> +               { 2,  30000 },
+>> +               { 3,  40000 },
+>> +               { 15, 53300 },
+>> +               { 4,  60000 },
+>> +               { 5,  80000 },
+>> +               { 6,  120000 },
+>> +               { 7,  160000 },
+> 
+> This looks a bit random. Is there any pattern on how value is
+> connected to the register value?
+
+There is no ability to create any pattern here, because this table data
+doesn’t have any regularity.
 
 
-On 14.03.2023 01:03, Marijn Suijten wrote:
-> On 2023-03-07 14:01:44, Konrad Dybcio wrote:
->> Now that the logic can handle multiple sets of registers, move
->> the QCM2290 to the common logic and mark it deprecated. This allows us
->> to remove a couple of structs, saving some memory.
->>
->> Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
->> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
->> ---
->>  drivers/gpu/drm/msm/dsi/dsi.c     |  4 +++-
->>  drivers/gpu/drm/msm/dsi/dsi_cfg.c | 28 ++--------------------------
->>  2 files changed, 5 insertions(+), 27 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/msm/dsi/dsi.c b/drivers/gpu/drm/msm/dsi/dsi.c
->> index 31fdee2052be..90d43628b22b 100644
->> --- a/drivers/gpu/drm/msm/dsi/dsi.c
->> +++ b/drivers/gpu/drm/msm/dsi/dsi.c
->> @@ -174,7 +174,9 @@ static int dsi_dev_remove(struct platform_device *pdev)
->>  
->>  static const struct of_device_id dt_match[] = {
->>  	{ .compatible = "qcom,mdss-dsi-ctrl", .data = NULL /* autodetect cfg */ },
->> -	{ .compatible = "qcom,dsi-ctrl-6g-qcm2290", .data = &qcm2290_dsi_cfg_handler },
->> +
->> +	/* Deprecated, don't use */
->> +	{ .compatible = "qcom,dsi-ctrl-6g-qcm2290", .data = NULL },
->>  	{}
->>  };
->>  
->> diff --git a/drivers/gpu/drm/msm/dsi/dsi_cfg.c b/drivers/gpu/drm/msm/dsi/dsi_cfg.c
->> index 6d4b2ce4b918..29ccd755cc2e 100644
->> --- a/drivers/gpu/drm/msm/dsi/dsi_cfg.c
->> +++ b/drivers/gpu/drm/msm/dsi/dsi_cfg.c
->> @@ -169,7 +169,8 @@ static const struct msm_dsi_config sdm845_dsi_cfg = {
->>  	.bus_clk_names = dsi_v2_4_clk_names,
->>  	.num_bus_clks = ARRAY_SIZE(dsi_v2_4_clk_names),
->>  	.io_start = {
->> -		{ 0xae94000, 0xae96000 }, /* SDM845 / SDM670 / SC7180 */
->> +		{ 0xae94000, 0xae96000 }, /* SDM845 / SDM670 */
->> +		{ 0x5e94000 }, /* QCM2290 / SM6115 / SM6125 / SM6375 */
->>  	},
->>  };
->>  
->> @@ -203,25 +204,6 @@ static const struct msm_dsi_config sc7280_dsi_cfg = {
->>  	},
->>  };
->>  
->> -static const char * const dsi_qcm2290_bus_clk_names[] = {
->> -	"iface", "bus",
->> -};
->> -
->> -static const struct regulator_bulk_data qcm2290_dsi_cfg_regulators[] = {
->> -	{ .supply = "vdda", .init_load_uA = 21800 },	/* 1.2 V */
->> -};
-> 
-> These two consts should really have already been deleted as part of
-> 04/10: drm/msm/dsi: dsi_cfg: Deduplicate identical structs.
-Right, will fix
+-- 
+Best Regards,
+Kurbanov Martin
 
-> 
->> -static const struct msm_dsi_config qcm2290_dsi_cfg = {
->> -	.io_offset = DSI_6G_REG_SHIFT,
->> -	.regulator_data = qcm2290_dsi_cfg_regulators,
->> -	.num_regulators = ARRAY_SIZE(qcm2290_dsi_cfg_regulators),
->> -	.bus_clk_names = dsi_qcm2290_bus_clk_names,
->> -	.num_bus_clks = ARRAY_SIZE(dsi_qcm2290_bus_clk_names),
->> -	.io_start = {
->> -		{ 0x5e94000 },
->> -	},
->> -};
->> -
->>  static const struct msm_dsi_host_cfg_ops msm_dsi_v2_host_ops = {
->>  	.link_clk_set_rate = dsi_link_clk_set_rate_v2,
->>  	.link_clk_enable = dsi_link_clk_enable_v2,
->> @@ -312,9 +294,3 @@ const struct msm_dsi_cfg_handler *msm_dsi_cfg_get(u32 major, u32 minor)
->>  
->>  	return cfg_hnd;
->>  }
->> -
->> -/*  Non autodetect configs */
->> -const struct msm_dsi_cfg_handler qcm2290_dsi_cfg_handler = {
->> -	.cfg = &qcm2290_dsi_cfg,
->> -	.ops = &msm_dsi_6g_v2_host_ops,
->> -};
-> 
-> And how do you think dsi.c is able to reference this... don't forget to
-> remove it from dsi_cfg.h in v4.  In fact, if you look at how this was
-> implemented you should also be able to remove #include "dsi_cfg.h" from
-> dsi.c.  A clean revert of that patch would be nice, or just use it as
-> reference to find the remnants:
-> 
-> https://lore.kernel.org/all/1644853060-12222-2-git-send-email-loic.poulain@linaro.org/
-Ack
-
-Konrad
-> 
-> - Marijn
