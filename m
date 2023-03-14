@@ -2,106 +2,230 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A4C8A6B8F31
-	for <lists+devicetree@lfdr.de>; Tue, 14 Mar 2023 11:04:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CC7B06B8F36
+	for <lists+devicetree@lfdr.de>; Tue, 14 Mar 2023 11:05:23 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229446AbjCNKEr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Mar 2023 06:04:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45738 "EHLO
+        id S229881AbjCNKFW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Mar 2023 06:05:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47368 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229814AbjCNKEp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Mar 2023 06:04:45 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E8E23125BD;
-        Tue, 14 Mar 2023 03:04:44 -0700 (PDT)
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits))
-        (No client certificate requested)
-        (Authenticated sender: kholk11)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id CA1356603090;
-        Tue, 14 Mar 2023 10:04:42 +0000 (GMT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1678788283;
-        bh=MrQ2ho4+U1CGbnQubBJQGWN0CEELi3nQ2ogNYmD/lU4=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=DLvT6mWizq3XCuPv3EXpL3j79t4hic7fz9G2iONCuJPEmYkwIj2AQYfEsMCVLc3XG
-         GqDk1NsiCzwquWSt/FhCn8+52Uc23673cMavtfGd3eZcrVbbwVlyXGZnuwV3Uz+HD2
-         o353GbxwYOfQAKpSjrMDt9xItPekEl/wmWXO74jKX7CzUM49QqFnvptcvZokyK2XxL
-         iodmv6yHEIfaVuGu4nJT98mWhPgNawpasg3kNuUvF2bKw2mbbg7J1f4Tso/c4F4PFK
-         +dVd5LgeW/yQx2IIKbMPizqJVDB+Xs/gVwIeU6RPZ/E3CLTWfe3saBqz/SbOHqS/um
-         FZs7725LZDMOA==
-Message-ID: <df791ee6-de96-3dfd-ce88-9a5ea7f60a04@collabora.com>
-Date:   Tue, 14 Mar 2023 11:04:40 +0100
+        with ESMTP id S229920AbjCNKFU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Mar 2023 06:05:20 -0400
+Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 190785B42A
+        for <devicetree@vger.kernel.org>; Tue, 14 Mar 2023 03:05:18 -0700 (PDT)
+Received: by mail-lf1-x135.google.com with SMTP id i28so19293933lfv.0
+        for <devicetree@vger.kernel.org>; Tue, 14 Mar 2023 03:05:18 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1678788316;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=G4RaonSoQjuXRem5niMAEN7QQ5G5pjNC5vMZ5otsYwY=;
+        b=kt0HDj7RMZnnNNQJYgaJugd2clAf+wpBec+QxvFJfyfbEBubCeZsK98/wKSG3LZrOm
+         ecB7DTU+Qt99oMuSomlGn6G1ykfqewfDxQLjRGz/vCqSG+VAv5lXNpZu/hEVGicbEqj2
+         w6zOKR+9dbjN+GBKXFa/z8khg5NvvxdWNVWn2j54/Qq5amJJl7+OaQCRjLs7PhWioZ7w
+         CT4+VbrQr167JKk7b9ikszpEFvfbu3CfYwZziRxfH9YKJuIiEQUvzNM2+CghuT2a6KmD
+         LVlgwqFYYc7YbAOlqLarhvavYalfBfIih8VOWaxZ//I83m2Hu8rp4WzZVYAAD+wCgFD2
+         dGdQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1678788316;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=G4RaonSoQjuXRem5niMAEN7QQ5G5pjNC5vMZ5otsYwY=;
+        b=qyC3uiCvGWuhU861lZ60F/ghyVS8rjCvRPsN0c4TN5AazpU38HOZWpbWxpl9olbOyl
+         yVJKxL3w1n1Q6dDM11oHrPiSna/5elu04Ptua95T+n7zseKtFELjhBsMPrX/Z0SESkYu
+         Gw1lMAjUJIkLeKEomXTsSHuN+KU7pTFO3fKHml+rJgT/XB8ZlXt59VGWQfcED7Ttf/vu
+         TUx2x0PCwD4xoKibPDJlrWCufpphLFEc/abv9w9IOTlZgB4iv0soae3ea8zWTtItBVKV
+         qo/WonoBjR7n2wgh/sTyMXBT1g4YYWzW0aOnzxtGS4JwDgKoHjUArPTGn3e9fTKUuQFd
+         va2Q==
+X-Gm-Message-State: AO0yUKV/JvXDITD2yoaHDITsrxhUXh3UrzTJRZUnx3fm+SkTSuSz0XIH
+        0n8FFmyuRc5CU9cXlqmY86ac3Q==
+X-Google-Smtp-Source: AK7set/aAW9Y474CQ14RsNpM2CIslKypga0EGEwbu8lqCYWnONFxEmKxaaE2KIR8shoXhQnC4N4pJA==
+X-Received: by 2002:a19:ac03:0:b0:4db:387f:a3af with SMTP id g3-20020a19ac03000000b004db387fa3afmr610628lfc.4.1678788316308;
+        Tue, 14 Mar 2023 03:05:16 -0700 (PDT)
+Received: from [192.168.1.101] (abyj16.neoplus.adsl.tpnet.pl. [83.9.29.16])
+        by smtp.gmail.com with ESMTPSA id b8-20020ac25e88000000b004e845a08567sm332387lfq.291.2023.03.14.03.05.15
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 14 Mar 2023 03:05:15 -0700 (PDT)
+Message-ID: <3ffb4326-ad13-d1c5-51e3-524dfa143930@linaro.org>
+Date:   Tue, 14 Mar 2023 11:05:14 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.8.0
-Subject: Re: [PATCH v8 02/11] arm64: dts: mediatek: Update the node name of
- SCP rpmsg subnode
-To:     Tinghan Shen <tinghan.shen@mediatek.com>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>
-Cc:     linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org,
-        Project_Global_Chrome_Upstream_Group@mediatek.com
-References: <20230303083355.3378-1-tinghan.shen@mediatek.com>
- <20230303083355.3378-3-tinghan.shen@mediatek.com>
+Subject: Re: [PATCH 1/2] arm64: dts: qcom: sdm845: add framebuffer reserved
+ memory
 Content-Language: en-US
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20230303083355.3378-3-tinghan.shen@mediatek.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+To:     Caleb Connolly <caleb.connolly@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org
+References: <20230314045812.3673958-1-caleb.connolly@linaro.org>
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <20230314045812.3673958-1-caleb.connolly@linaro.org>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-0.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_SORBS_HTTP,RCVD_IN_SORBS_SOCKS,SPF_HELO_NONE,SPF_PASS,
+        URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 03/03/23 09:33, Tinghan Shen ha scritto:
-> Align the node name with the definition in SCP bindings.
+
+
+On 14.03.2023 05:58, Caleb Connolly wrote:
+> Almost all of the SDM845 devices actually map the same region for the
+> continuous splash / framebuffer. de-dup all the devices that specify it
+> manually and put it in sdm845.dtsi instead.
 > 
-> Signed-off-by: Tinghan Shen <tinghan.shen@mediatek.com>
-
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-
+> This now reserves it on the OnePlus 6 where it was not reserved before,
+> this is intentional.
+> 
+> Signed-off-by: Caleb Connolly <caleb.connolly@linaro.org>
 > ---
->   arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi   | 2 +-
->   arch/arm64/boot/dts/mediatek/mt8192-asurada.dtsi | 2 +-
->   2 files changed, 2 insertions(+), 2 deletions(-)
+You didn't explain why is not done on 850 (which I assume has to do with
+the windows memory map being different and putting it somewhere else) and
+the reasoning for reserving it at all.
+
+If that's the framebuffer handoff issue with smmu faults happening, it may
+be worth looking into solving that properly, i.e. introducing something like
+qcom,framebuffer which would suck up the starting address and figure out the
+required size based on MDP5 VIG pipes' registers and could tickle the
+autorefresh regs if needed. See how lk2nd does it, the hardware underneath
+hasn't changed since msm8974.
+
+Then, on drm handoff it could free the memory and let drm/msm initialize
+its own, new, dynamically-allocated and dynamically-sized region as it wants.
+
+Or we can use mdss's never-used memory-region property, but that would
+kill 35 or so megs of ram for everyone, no matter display their resolution.
+
+Konrad
+>  arch/arm64/boot/dts/qcom/sdm845-lg-common.dtsi              | 6 ------
+>  arch/arm64/boot/dts/qcom/sdm845-samsung-starqltechn.dts     | 5 -----
+>  arch/arm64/boot/dts/qcom/sdm845-shift-axolotl.dts           | 5 -----
+>  arch/arm64/boot/dts/qcom/sdm845-sony-xperia-tama.dtsi       | 6 ------
+>  .../arm64/boot/dts/qcom/sdm845-xiaomi-beryllium-common.dtsi | 6 ------
+>  arch/arm64/boot/dts/qcom/sdm845.dtsi                        | 5 +++++
+>  arch/arm64/boot/dts/qcom/sdm850.dtsi                        | 2 ++
+>  7 files changed, 7 insertions(+), 28 deletions(-)
 > 
-> diff --git a/arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi b/arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi
-> index fbe14b13051a..a259eb043de5 100644
-> --- a/arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi
-> +++ b/arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi
-> @@ -810,7 +810,7 @@
->   	pinctrl-names = "default";
->   	pinctrl-0 = <&scp_pins>;
->   
-> -	cros_ec {
-> +	cros-ec-rpmsg {
->   		compatible = "google,cros-ec-rpmsg";
->   		mediatek,rpmsg-name = "cros-ec-rpmsg";
->   	};
-> diff --git a/arch/arm64/boot/dts/mediatek/mt8192-asurada.dtsi b/arch/arm64/boot/dts/mediatek/mt8192-asurada.dtsi
-> index 9f12257ab4e7..8f14b633c1e1 100644
-> --- a/arch/arm64/boot/dts/mediatek/mt8192-asurada.dtsi
-> +++ b/arch/arm64/boot/dts/mediatek/mt8192-asurada.dtsi
-> @@ -1260,7 +1260,7 @@
->   	pinctrl-names = "default";
->   	pinctrl-0 = <&scp_pins>;
->   
-> -	cros-ec {
-> +	cros-ec-rpmsg {
->   		compatible = "google,cros-ec-rpmsg";
->   		mediatek,rpmsg-name = "cros-ec-rpmsg";
->   	};
-
-
+> diff --git a/arch/arm64/boot/dts/qcom/sdm845-lg-common.dtsi b/arch/arm64/boot/dts/qcom/sdm845-lg-common.dtsi
+> index f942c5afea9b..6a1c674a015b 100644
+> --- a/arch/arm64/boot/dts/qcom/sdm845-lg-common.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sdm845-lg-common.dtsi
+> @@ -93,12 +93,6 @@ spss_mem: memory@99000000 {
+>  			no-map;
+>  		};
+>  
+> -		/* Framebuffer region */
+> -		memory@9d400000 {
+> -			reg = <0x0 0x9d400000 0x0 0x2400000>;
+> -			no-map;
+> -		};
+> -
+>  		/* rmtfs lower guard */
+>  		memory@f0800000 {
+>  			reg = <0 0xf0800000 0 0x1000>;
+> diff --git a/arch/arm64/boot/dts/qcom/sdm845-samsung-starqltechn.dts b/arch/arm64/boot/dts/qcom/sdm845-samsung-starqltechn.dts
+> index d37a433130b9..7c2457948a32 100644
+> --- a/arch/arm64/boot/dts/qcom/sdm845-samsung-starqltechn.dts
+> +++ b/arch/arm64/boot/dts/qcom/sdm845-samsung-starqltechn.dts
+> @@ -55,11 +55,6 @@ vreg_s4a_1p8: pm8998-smps4 {
+>  	};
+>  
+>  	reserved-memory {
+> -		memory@9d400000 {
+> -			reg = <0x0 0x9d400000 0x0 0x02400000>;
+> -			no-map;
+> -		};
+> -
+>  		memory@a1300000 {
+>  			compatible = "ramoops";
+>  			reg = <0x0 0xa1300000 0x0 0x100000>;
+> diff --git a/arch/arm64/boot/dts/qcom/sdm845-shift-axolotl.dts b/arch/arm64/boot/dts/qcom/sdm845-shift-axolotl.dts
+> index b54e304abf71..4f6b1053c15b 100644
+> --- a/arch/arm64/boot/dts/qcom/sdm845-shift-axolotl.dts
+> +++ b/arch/arm64/boot/dts/qcom/sdm845-shift-axolotl.dts
+> @@ -60,11 +60,6 @@ key-vol-up {
+>  	};
+>  
+>  	reserved-memory {
+> -		framebuffer_region@9d400000 {
+> -			reg = <0x0 0x9d400000 0x0 (1080 * 2160 * 4)>;
+> -			no-map;
+> -		};
+> -
+>  		ramoops: ramoops@b0000000 {
+>  			compatible = "ramoops";
+>  			reg = <0 0xb0000000 0 0x00400000>;
+> diff --git a/arch/arm64/boot/dts/qcom/sdm845-sony-xperia-tama.dtsi b/arch/arm64/boot/dts/qcom/sdm845-sony-xperia-tama.dtsi
+> index 4984c7496c31..7e273cc0158d 100644
+> --- a/arch/arm64/boot/dts/qcom/sdm845-sony-xperia-tama.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sdm845-sony-xperia-tama.dtsi
+> @@ -79,12 +79,6 @@ vreg_s4a_1p8: pm8998-smps4 {
+>  	};
+>  
+>  	reserved-memory {
+> -		/* SONY was cool and didn't diverge from MTP this time, yay! */
+> -		cont_splash_mem: memory@9d400000 {
+> -			reg = <0x0 0x9d400000 0x0 0x2400000>;
+> -			no-map;
+> -		};
+> -
+>  		ramoops@ffc00000 {
+>  			compatible = "ramoops";
+>  			reg = <0x0 0xffc00000 0x0 0x100000>;
+> diff --git a/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium-common.dtsi b/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium-common.dtsi
+> index e0fda4d754fe..191c2664f721 100644
+> --- a/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium-common.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium-common.dtsi
+> @@ -98,12 +98,6 @@ spss_mem: memory@97f00000 {
+>  			no-map;
+>  		};
+>  
+> -		/* Cont splash region set up by the bootloader */
+> -		cont_splash_mem: framebuffer@9d400000 {
+> -			reg = <0 0x9d400000 0 0x2400000>;
+> -			no-map;
+> -		};
+> -
+>  		rmtfs_mem: memory@f6301000 {
+>  			compatible = "qcom,rmtfs-mem";
+>  			reg = <0 0xf6301000 0 0x200000>;
+> diff --git a/arch/arm64/boot/dts/qcom/sdm845.dtsi b/arch/arm64/boot/dts/qcom/sdm845.dtsi
+> index 479859bd8ab3..ecec2ee46683 100644
+> --- a/arch/arm64/boot/dts/qcom/sdm845.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sdm845.dtsi
+> @@ -865,6 +865,11 @@ spss_mem: spss@97b00000 {
+>  			no-map;
+>  		};
+>  
+> +		cont_splash_mem: framebuffer@9d400000 {
+> +			reg = <0 0x9d400000 0 0x2400000>;
+> +			no-map;
+> +		};
+> +
+>  		mdata_mem: mpss-metadata {
+>  			alloc-ranges = <0 0xa0000000 0 0x20000000>;
+>  			size = <0 0x4000>;
+> diff --git a/arch/arm64/boot/dts/qcom/sdm850.dtsi b/arch/arm64/boot/dts/qcom/sdm850.dtsi
+> index da9f6fbe32f6..b787575c77a5 100644
+> --- a/arch/arm64/boot/dts/qcom/sdm850.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sdm850.dtsi
+> @@ -7,6 +7,8 @@
+>  
+>  #include "sdm845.dtsi"
+>  
+> +/delete-node/ &cont_splash_mem;
+> +
+>  &cpu4_opp_table {
+>  	cpu4_opp33: opp-2841600000 {
+>  		opp-hz = /bits/ 64 <2841600000>;
