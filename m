@@ -2,66 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BCDA46B8D74
-	for <lists+devicetree@lfdr.de>; Tue, 14 Mar 2023 09:36:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 376416B8D7A
+	for <lists+devicetree@lfdr.de>; Tue, 14 Mar 2023 09:37:24 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230198AbjCNIgW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Mar 2023 04:36:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39534 "EHLO
+        id S229456AbjCNIhW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Mar 2023 04:37:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40862 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230149AbjCNIgQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Mar 2023 04:36:16 -0400
-Received: from mail-yw1-x1130.google.com (mail-yw1-x1130.google.com [IPv6:2607:f8b0:4864:20::1130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0CB7D93855
-        for <devicetree@vger.kernel.org>; Tue, 14 Mar 2023 01:36:05 -0700 (PDT)
-Received: by mail-yw1-x1130.google.com with SMTP id 00721157ae682-54195ef155aso111224647b3.9
-        for <devicetree@vger.kernel.org>; Tue, 14 Mar 2023 01:36:05 -0700 (PDT)
+        with ESMTP id S229537AbjCNIhV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Mar 2023 04:37:21 -0400
+Received: from mail-pj1-x102e.google.com (mail-pj1-x102e.google.com [IPv6:2607:f8b0:4864:20::102e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 471256A2ED
+        for <devicetree@vger.kernel.org>; Tue, 14 Mar 2023 01:36:49 -0700 (PDT)
+Received: by mail-pj1-x102e.google.com with SMTP id h12-20020a17090aea8c00b0023d1311fab3so4826407pjz.1
+        for <devicetree@vger.kernel.org>; Tue, 14 Mar 2023 01:36:49 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1678782965;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=lB6BaE9PQJlFgjFssuLDs/1pNB2B4wE60UwmllOQKpo=;
-        b=VtcOJxgORj62aKYqzvzFIs9Br4dJKBMCAEWt93DXbXwwsXDVO7+MGIv3c7MbPZbr10
-         vyRB8SldCFFr3jeV7LmFMZ/MTcigZTzh3EQcEPJhoQVdlh9tihXccGEABIbfK0oK3kCX
-         4sDZPavb02Ylwi8kGp7f81navOLC7IDuU+tM4BiRrr4P+EU12hOH/VNN0AgDnMofxmrD
-         GqVSTa5k4zWmfAYdvlERb7DRuYbLpKA4R3aaV8npy6kBTzG9jKu4jJpbQxBec3GM90PI
-         DNMWtpnjk+uv58HdlQW+WQ6+Ap0qLb4JuFBcgZkbE1FVPAapHcJvWVtCrlySFUpMsr9d
-         9Zug==
+        d=linaro.org; s=google; t=1678783009;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=Ep4FbqH2ivKVLrPSEdoGqO90JFBOp5Qq0eV9bigyzfQ=;
+        b=gpiRvT9ut1uJuy+xY2utEz+E6QTxxgLvyQh/KiodtNZgfIBCPC1R9FKFISqD3YLA3O
+         A9nM+vWyzCTGzwJBVddW8t/PsVmcj0mm6ewyYY4z6BWFv8AzijVMyqyOvmH5gosqTWlD
+         sSCZxjQx+9M6OcYRiZeE6y8iIvax93P5lc8Nb8iLvkEE8qwknsKjhWEJ2L6caJa+dpkH
+         NHAiHzvngCdZWRaJmkIPui4ZhM2+5SdTRwEuxJvN/rA5ZmbKvOAEBB6ofYffNcyraVpH
+         rgzulq61ulb++IG/6vl7U4YG4XOrWFVOtkxEqsC1jMVnsw+gxlsgddOsgf35YDK+Krg7
+         6+Bg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678782965;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+        d=1e100.net; s=20210112; t=1678783009;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=lB6BaE9PQJlFgjFssuLDs/1pNB2B4wE60UwmllOQKpo=;
-        b=PYCu2etZ7MPCFHh2LNA/OCVIbfjbYEh29OSjpGlhFOmN/VORZv0+tkGr6DUfoL4lgh
-         HeIw1vprXJ/nM9byApAeQq2jrpExwtGzeqAqoEkrjf/PTnyI3Y8p6oF39zJxeNCfYkGX
-         hbZDm0iPaPZ3srnLfHqHrzJXTtcYMtmWW00HhcT+lNlupy2z1f7PRWLiFyiV2t8/SDKl
-         O7BykRzCfBzuRQ8hTiCH5RIMnq77iolnagASP2dinr/zcSSZxxpKF8ftZBEpzi2aM2Gd
-         AVHryq/36KOYGJizfNWVuj3C+YAxZ+NtSx2uNuzymk+G3uHchkuPjEisFBgJ0n0+SJKG
-         Midg==
-X-Gm-Message-State: AO0yUKUMVrwjaq6XHbwpPkITJtVx7peUVy008i0FumHgWqfnqmnXBjhx
-        O/zncO0lWsOM/mDGuQ3mUEqkm5O1rpe3dpfa4agygA==
-X-Google-Smtp-Source: AK7set9zsq4G3HjB2UmY3GdM4HjLIJpqrBod3QW00SMBURajfHD1KhUPcUBu7rZpTvJJrigEfTbcfa9NLeKNv+p89is=
-X-Received: by 2002:a81:b10a:0:b0:53d:2772:65d with SMTP id
- p10-20020a81b10a000000b0053d2772065dmr18614375ywh.9.1678782964942; Tue, 14
- Mar 2023 01:36:04 -0700 (PDT)
+        bh=Ep4FbqH2ivKVLrPSEdoGqO90JFBOp5Qq0eV9bigyzfQ=;
+        b=cPl3Ay2uXbcm4HE0r5IsBmCX6p1CmDI5E+TP2QDDTcCQlIricD9g8wzwKyNlCS6mhP
+         dTUzPMKS8A1GyGFOWG/vtONZ5Ved1pI88E+PUjq14W1iHAx3XMSbZ6vD/1ljYNPO3MIh
+         cesOTup2aohiz8Ta6vdPKqHL2zsMkzqCjMo+1GJU3VLhiNZGerH5YkcLKawdh1IPPpdS
+         UnKPaq3A32kAYwt9NS8xrIHZ8SrEL2duU8MZNx5jWNYI3YfFLXdZi2FGmLPTBwaQvWyO
+         ANSs9k/gLnuAl1EYGDlvRLVMdOvcn79nnFjS97IYh+8qIbDUyM+ir/kFjU5wnScgzVa5
+         QkzA==
+X-Gm-Message-State: AO0yUKXAr7QVhL4vIehLazj9ucrpWcHSrwvhAcqVMRB5AhNcsikyIQAR
+        n8FYdYX9zq/l1BKC22S3OmJ4Zw==
+X-Google-Smtp-Source: AK7set9RhE0UvOCriYS53PUEwOykVkUBNcW5NhAdkJmcMTYWbPTbsd6rc3W9A5cVrgQ3lhYURp9NQQ==
+X-Received: by 2002:a05:6a20:1e62:b0:cc:4db0:f2b5 with SMTP id cy34-20020a056a201e6200b000cc4db0f2b5mr32516543pzb.48.1678783008610;
+        Tue, 14 Mar 2023 01:36:48 -0700 (PDT)
+Received: from localhost.localdomain ([2401:4900:1c5e:4a3e:15d0:d540:3861:ef0e])
+        by smtp.gmail.com with ESMTPSA id g3-20020a631103000000b00502ecb91940sm1020980pgl.55.2023.03.14.01.36.44
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 14 Mar 2023 01:36:48 -0700 (PDT)
+From:   Bhupesh Sharma <bhupesh.sharma@linaro.org>
+To:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
+Cc:     agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
+        linux-kernel@vger.kernel.org, bhupesh.linux@gmail.com,
+        bhupesh.sharma@linaro.org, robh+dt@kernel.org,
+        krzysztof.kozlowski@linaro.org
+Subject: [PATCH v4 0/2] arm64: dts: sm6115: Perform USB node related cleanups
+Date:   Tue, 14 Mar 2023 14:06:31 +0530
+Message-Id: <20230314083633.1882214-1-bhupesh.sharma@linaro.org>
+X-Mailer: git-send-email 2.38.1
 MIME-Version: 1.0
-References: <20230310190634.5053-1-dipenp@nvidia.com> <20230310190634.5053-3-dipenp@nvidia.com>
- <CACRpkdYmC=eLiWPPPRG7DYBmQfPNCN4pcDhzTCO=hkQDx2HoGw@mail.gmail.com>
- <798dd219-f4aa-39b3-2368-7a6d072b6de2@nvidia.com> <bceedc91-cccd-258a-1cab-57a79f5a294d@nvidia.com>
-In-Reply-To: <bceedc91-cccd-258a-1cab-57a79f5a294d@nvidia.com>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Tue, 14 Mar 2023 09:35:53 +0100
-Message-ID: <CACRpkdYkYBimR_9-hDRk7Gsi+qq78_WYvD8PMAJwtE_n2zVs1w@mail.gmail.com>
-Subject: Re: [PATCH V3 2/6] dt-bindings: timestamp: Add Tegra234 support
-To:     Dipen Patel <dipenp@nvidia.com>
-Cc:     thierry.reding@gmail.com, jonathanh@nvidia.com,
-        linux-kernel@vger.kernel.org, linux-tegra@vger.kernel.org,
-        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-doc@vger.kernel.org, robh+dt@kernel.org,
-        timestamp@lists.linux.dev, krzysztof.kozlowski+dt@linaro.org,
-        brgl@bgdev.pl, corbet@lwn.net, gregkh@linuxfoundation.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
@@ -72,24 +70,40 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Mar 14, 2023 at 1:02 AM Dipen Patel <dipenp@nvidia.com> wrote:
+Changes since v3:
+-----------------
+- v3 can be seen here: https://lore.kernel.org/linux-arm-msm/20221215094532.589291-1-bhupesh.sharma@linaro.org/
+- Split the series into two - this patchset proposes only 'fixes'.
+  The USB SS qmp phy change will be sent out separately now that we need
+  a driver change as well.
+- Also fix the recently added sm6115p lenovo dts.
 
-> However, as I understood, current point of contention/discussion is addition of the
-> nvidia,gpio-controller property.
+Changes since v2:
+-----------------
+- v2 can be seen here: https://lore.kernel.org/linux-arm-msm/20221214203124.564537-1-bhupesh.sharma@linaro.org/
+- Fixed a blank line issue in [PATCH 3/3]
 
-No I think you are talking past each other. Krzysztof talks about
-a "removed property":
+Changes since v1:
+-----------------
+- v1 can be seen here: https://lore.kernel.org/linux-arm-msm/20221213123823.455731-1-bhupesh.sharma@linaro.org/
+- Addressed the review comments from Konrad and Krzysztof regarding the
+  USB HS and SS Phy usage in sm4250 oneplus board dts ([PATCH 3/3]).
+- Collected R-B received from Konrad on v1 patches [1/3] and [2/3].
 
-> Unfortunately, I don't understand this statement. The
-> nvidia,tegra194-gte-aon with removed property is in a released kernel
-> v6.2. What does it mean "technically"? It's a released kernel thus it is
-> a released ABI.
+This series performs some USB related cleanups in sm6115 dtsi.
 
-The only property you remove is nvidia,slices, so deprecate it instead,
-problem solved.
+Note that this series is rebased on linux-next/master.
 
-I don't think the added phandle is a problem, it can't cause backward
-compatibility issues since it is new.
+Bhupesh Sharma (2):
+  arm64: dts: qcom: sm6115: Cleanup USB node's label
+  arm64: dts: qcom: sm6115: Move USB node's 'maximum-speed' and
+    'dr_mode' properties to dts
 
-Yours,
-Linus Walleij
+ arch/arm64/boot/dts/qcom/sm4250-oneplus-billie2.dts |  9 +++++++--
+ arch/arm64/boot/dts/qcom/sm6115.dtsi                | 10 ++++------
+ arch/arm64/boot/dts/qcom/sm6115p-lenovo-j606f.dts   |  9 +++++++--
+ 3 files changed, 18 insertions(+), 10 deletions(-)
+
+-- 
+2.38.1
+
