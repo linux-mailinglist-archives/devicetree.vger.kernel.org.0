@@ -2,137 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 37A3A6B9749
-	for <lists+devicetree@lfdr.de>; Tue, 14 Mar 2023 15:09:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7EB5C6B975B
+	for <lists+devicetree@lfdr.de>; Tue, 14 Mar 2023 15:10:51 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231499AbjCNOJg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Mar 2023 10:09:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53988 "EHLO
+        id S232568AbjCNOKt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Mar 2023 10:10:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56820 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230457AbjCNOJf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Mar 2023 10:09:35 -0400
-Received: from fd01.gateway.ufhost.com (fd01.gateway.ufhost.com [61.152.239.71])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 532D7A2F2A;
-        Tue, 14 Mar 2023 07:09:32 -0700 (PDT)
-Received: from EXMBX166.cuchost.com (unknown [175.102.18.54])
-        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-        (Client CN "EXMBX166", Issuer "EXMBX166" (not verified))
-        by fd01.gateway.ufhost.com (Postfix) with ESMTP id DD9D824E289;
-        Tue, 14 Mar 2023 22:09:29 +0800 (CST)
-Received: from EXMBX172.cuchost.com (172.16.6.92) by EXMBX166.cuchost.com
- (172.16.6.76) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Tue, 14 Mar
- 2023 22:09:29 +0800
-Received: from [192.168.125.74] (113.72.145.194) by EXMBX172.cuchost.com
- (172.16.6.92) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Tue, 14 Mar
- 2023 22:09:28 +0800
-Message-ID: <8e2f923a-34d6-e188-c845-471d4ef5acc1@starfivetech.com>
-Date:   Tue, 14 Mar 2023 22:09:27 +0800
+        with ESMTP id S232291AbjCNOKi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Mar 2023 10:10:38 -0400
+Received: from mail-io1-f48.google.com (mail-io1-f48.google.com [209.85.166.48])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C4B3C85B36;
+        Tue, 14 Mar 2023 07:10:36 -0700 (PDT)
+Received: by mail-io1-f48.google.com with SMTP id g6so6434995iov.13;
+        Tue, 14 Mar 2023 07:10:36 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1678803036;
+        h=date:subject:message-id:references:in-reply-to:cc:to:from
+         :mime-version:content-transfer-encoding:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=AO9OtxWO9OtOvd5xefZPHLbbBm6bTV85U6hkSkYPrV8=;
+        b=qfvWYoPONo7+N0dih6SL+t5yGhhiHor2VIxLDrfen9Y2vRWigc7dNEdRR5gxnqKZcS
+         FKHZk5hS4EN5I/RNsxMASwN5X4Aq3oVelvTkkqP/uA71yEnIPM/ADVj6IYy6bq/8C+Ca
+         00qonOUza++I6fZDvQhXfeBsc0o14zcb8HvlEM40ihZ01UNMarweWG4PadYBwImplEx+
+         f0lKLq0HpDMZvtHNgKRPYqNZBUxIM8IYUyNDaAhsZFSPrZ56awgA4nrdRrAMohV26kX9
+         O+qrwGI5/7HzlYHIXMiUPL++Gh7S+6G+ZNtEeg6+tskTWeLcAVs2gwk4ZzXIIl7drA4j
+         yzXg==
+X-Gm-Message-State: AO0yUKW+6Ie1l3A+5rOzJrMzzuWjXjKZgreiPDT8/IEkvXj/DOA1vY47
+        LNMe+4U78TMcu0ikXRt3rg==
+X-Google-Smtp-Source: AK7set9d2oLzX+5QU6qtEvSgErDHV3fNQtwQocr4/uY3w5g3N8Pa9Fta1wUTyAO/xYzhNT6Da8a4Uw==
+X-Received: by 2002:a5d:8594:0:b0:74c:b436:4a9e with SMTP id f20-20020a5d8594000000b0074cb4364a9emr24021636ioj.16.1678803035864;
+        Tue, 14 Mar 2023 07:10:35 -0700 (PDT)
+Received: from robh_at_kernel.org ([64.188.179.249])
+        by smtp.gmail.com with ESMTPSA id g21-20020a02bb95000000b004051a7ef7f3sm800531jan.71.2023.03.14.07.10.34
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 14 Mar 2023 07:10:35 -0700 (PDT)
+Received: (nullmailer pid 83783 invoked by uid 1000);
+        Tue, 14 Mar 2023 14:10:19 -0000
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.3.2
-Subject: Re: [PATCH v5 11/21] dt-bindings: clock: Add StarFive JH7110 system
- clock and reset generator
-Content-Language: en-US
-To:     Emil Renner Berthing <emil.renner.berthing@canonical.com>
-CC:     Conor Dooley <conor@kernel.org>, <linux-clk@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-riscv@lists.infradead.org>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        "Philipp Zabel" <p.zabel@pengutronix.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Ben Dooks <ben.dooks@sifive.com>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        "Marc Zyngier" <maz@kernel.org>, <linux-kernel@vger.kernel.org>
-References: <20230311090733.56918-1-hal.feng@starfivetech.com>
- <20230311090733.56918-12-hal.feng@starfivetech.com>
- <34b0473a-91bd-453b-91dd-01defde92d68@spud>
- <92306b73-d7d2-0d60-de15-87bcd71714ed@starfivetech.com>
- <CAJM55Z-zps4gEohCGyia0nESWYWqQmoChnJZXkw2Zmi5TPV2Wg@mail.gmail.com>
-From:   Hal Feng <hal.feng@starfivetech.com>
-In-Reply-To: <CAJM55Z-zps4gEohCGyia0nESWYWqQmoChnJZXkw2Zmi5TPV2Wg@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [113.72.145.194]
-X-ClientProxiedBy: EXCAS066.cuchost.com (172.16.6.26) To EXMBX172.cuchost.com
- (172.16.6.92)
-X-YovoleRuleAgent: yovoleflag
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+From:   Rob Herring <robh@kernel.org>
+To:     Komal Bajaj <quic_kbajaj@quicinc.com>
+Cc:     Prakash Ranjan <saiprakash.ranjan@codeaurora.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rishabh Bhatnagar <rishabhb@codeaurora.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        devicetree@vger.kernel.org, Andy Gross <agross@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, Abel Vesa <abel.vesa@linaro.org>
+In-Reply-To: <20230313124040.9463-3-quic_kbajaj@quicinc.com>
+References: <20230313124040.9463-1-quic_kbajaj@quicinc.com>
+ <20230313124040.9463-3-quic_kbajaj@quicinc.com>
+Message-Id: <167880254436.25736.2826081458133350078.robh@kernel.org>
+Subject: Re: [PATCH v2 2/5] dt-bindings: arm: msm: Add bindings for multi
+ channel DDR in LLCC
+Date:   Tue, 14 Mar 2023 09:10:19 -0500
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,
+        SPF_PASS,URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 13 Mar 2023 09:53:01 +0100, Emil Renner Berthing wrote:
-> On Mon, 13 Mar 2023 at 04:22, Hal Feng <hal.feng@starfivetech.com> wrote:
->> On Sat, 11 Mar 2023 13:11:38 +0000, Conor Dooley wrote:
->> > On Sat, Mar 11, 2023 at 05:07:23PM +0800, Hal Feng wrote:
->> >> From: Emil Renner Berthing <kernel@esmil.dk>
->> >>
->> >> Add bindings for the system clock and reset generator (SYSCRG) on the
->> >> JH7110 RISC-V SoC by StarFive Ltd.
->> >>
->> >> Signed-off-by: Emil Renner Berthing <kernel@esmil.dk>
->> >> Signed-off-by: Hal Feng <hal.feng@starfivetech.com>
->> >> ---
->> >>  .../clock/starfive,jh7110-syscrg.yaml         | 104 +++++++++
->> >>  MAINTAINERS                                   |   8 +-
->> >>  .../dt-bindings/clock/starfive,jh7110-crg.h   | 203 ++++++++++++++++++
->> >>  .../dt-bindings/reset/starfive,jh7110-crg.h   | 142 ++++++++++++
->> >>  4 files changed, 454 insertions(+), 3 deletions(-)
->> >>  create mode 100644 Documentation/devicetree/bindings/clock/starfive,jh7110-syscrg.yaml
->> >>  create mode 100644 include/dt-bindings/clock/starfive,jh7110-crg.h
->> >>  create mode 100644 include/dt-bindings/reset/starfive,jh7110-crg.h
->> >>
->> >> diff --git a/Documentation/devicetree/bindings/clock/starfive,jh7110-syscrg.yaml b/Documentation/devicetree/bindings/clock/starfive,jh7110-syscrg.yaml
->> >> new file mode 100644
->> >> index 000000000000..84373ae31644
->> >> --- /dev/null
->> >> +++ b/Documentation/devicetree/bindings/clock/starfive,jh7110-syscrg.yaml
->> >
->> >> +  clock-names:
->> >> +    oneOf:
->> >> +      - items:
->> >> +          - const: osc
->> >> +          - enum:
->> >> +              - gmac1_rmii_refin
->> >> +              - gmac1_rgmii_rxin
->> >> +          - const: i2stx_bclk_ext
->> >> +          - const: i2stx_lrck_ext
->> >> +          - const: i2srx_bclk_ext
->> >> +          - const: i2srx_lrck_ext
->> >> +          - const: tdm_ext
->> >> +          - const: mclk_ext
->> >> +
->> >> +      - items:
->> >> +          - const: osc
->> >> +          - const: gmac1_rmii_refin
->> >> +          - const: gmac1_rgmii_rxin
->> >> +          - const: i2stx_bclk_ext
->> >> +          - const: i2stx_lrck_ext
->> >> +          - const: i2srx_bclk_ext
->> >> +          - const: i2srx_lrck_ext
->> >> +          - const: tdm_ext
->> >> +          - const: mclk_ext
->> >
->> > Assuming nothing else here is optional,
->> > Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
->>
->> Yeah, nothing else here is optional. Thanks for your review.
+
+On Mon, 13 Mar 2023 18:10:37 +0530, Komal Bajaj wrote:
+> Add description for additional nodes needed to support
+> mulitple channel DDR configurations in LLCC.
 > 
-> Wait, what kind of optional are we talking about here? Surely all the
-> i2s and tdm external clocks are optional in the sense that you don't
-> need them on a board that never does any audio processing.
+> Signed-off-by: Komal Bajaj <quic_kbajaj@quicinc.com>
+> ---
+>  Documentation/devicetree/bindings/arm/msm/qcom,llcc.yaml | 9 +++++++++
+>  1 file changed, 9 insertions(+)
+> 
 
-I think the "optional" means whether the clock is optional in the sense
-that we run all functions on the SoC.
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-Best regards,
-Hal
+yamllint warnings/errors:
+
+dtschema/dtc warnings/errors:
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/arm/msm/qcom,llcc.example.dtb: system-cache-controller@1100000: reg: [[17825792, 2097152], [19922944, 327680]] is too short
+	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/arm/msm/qcom,llcc.yaml
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/arm/msm/qcom,llcc.example.dtb: system-cache-controller@1100000: reg-names: ['llcc_base', 'llcc_broadcast_base'] is too short
+	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/arm/msm/qcom,llcc.yaml
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20230313124040.9463-3-quic_kbajaj@quicinc.com
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
+
