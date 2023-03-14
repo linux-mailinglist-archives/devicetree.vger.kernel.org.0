@@ -2,100 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EEEF76B8BB8
-	for <lists+devicetree@lfdr.de>; Tue, 14 Mar 2023 08:08:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5F6296B8BBB
+	for <lists+devicetree@lfdr.de>; Tue, 14 Mar 2023 08:09:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229796AbjCNHIQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Mar 2023 03:08:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39128 "EHLO
+        id S229811AbjCNHJT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Mar 2023 03:09:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42220 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230173AbjCNHIO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Mar 2023 03:08:14 -0400
-Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2660B10FB
-        for <devicetree@vger.kernel.org>; Tue, 14 Mar 2023 00:08:10 -0700 (PDT)
-Received: by mail-ed1-x535.google.com with SMTP id o12so57954632edb.9
-        for <devicetree@vger.kernel.org>; Tue, 14 Mar 2023 00:08:10 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1678777688;
-        h=content-transfer-encoding:in-reply-to:references:to:from
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=Zc2CAzqoPUyyp7nnHUds3QOGxWAQByBM0H4ZExogEF4=;
-        b=OC7ijyrcfR+Vk3JrwDgTpQPh+nLY3gh3bMqyFcu/xUt77amFEfh9yXgjGGqYDPebnS
-         g7DOqyvE3R2rq1vuT4RIsNjK4W7GmkVzdve/+4ebT/v7xzKEHzziizg3tikt/tCIaYX/
-         LaeKKNzasHoimVhlYBO3tJJaDNqkY0NB27/LRhMV5ka0nIfwLRCZKfYme41qvvfgA0Xs
-         UwK57LHhuBsx/ScbulF5xiqP3v0MWiRg4W5+kogK3Fg3rIziWVgHaa62kU2JtQJWXpqL
-         UT+uXipezckQSZIPMsm2AeG6GCuXKeu1xY0TTEDSAfckBrzx27vACrBEGoq1TkI0hbL1
-         Al9g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678777688;
-        h=content-transfer-encoding:in-reply-to:references:to:from
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Zc2CAzqoPUyyp7nnHUds3QOGxWAQByBM0H4ZExogEF4=;
-        b=blHirhw98OfSVTNuwa5viL9E16QZ+21iVAKVu2UuhjmUf2tlabWC4cg3HIRxoPZoEt
-         +b4qZv3BPdpCZKGtYtUm8I+rf924/XnepCwfr1fjjyea9Nrid0PInjif+l41gdb9mTPU
-         mnzGI8F4cTw/6GqyT+SuhjmnQy+u/JErvqhy7Mda+W7rLIwiYsDrNRag8E2dTCnZ10a4
-         Gvd6wzp7WYDWu9lg2MSE++eRGF9+wHdckP5zRZJkV6zQMxO5Mw/M492RGBcymOrP+UL5
-         RHYU5U9GNPX5ZfOPED5g1WdnJiQnTE8y83QhXRdgi/QoQEOfog5aG2+dWWSWqRIij9Au
-         hmPA==
-X-Gm-Message-State: AO0yUKX0HRUL/2ibo0Ny0iH7yJqooKVAPuUkgGfHVvSjv9/X67UAUxfr
-        R/Ss/UYXnQwq7Gdt1sBnYYRo6g==
-X-Google-Smtp-Source: AK7set/wZ/4G9KK2Bfk/+low7BMNDEqiBsEDPx88cLIcs10zzu6byiGS6x8pRQggQv89IJFNMHAoew==
-X-Received: by 2002:a17:906:4ac2:b0:92b:7e6a:bca1 with SMTP id u2-20020a1709064ac200b0092b7e6abca1mr1597578ejt.20.1678777688673;
-        Tue, 14 Mar 2023 00:08:08 -0700 (PDT)
-Received: from ?IPV6:2a02:810d:15c0:828:6932:5570:6254:9edd? ([2a02:810d:15c0:828:6932:5570:6254:9edd])
-        by smtp.gmail.com with ESMTPSA id cb15-20020a170906a44f00b009226f644a07sm692851ejb.139.2023.03.14.00.08.07
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 14 Mar 2023 00:08:08 -0700 (PDT)
-Message-ID: <e2d2bbcb-409e-2b13-114f-ee17a3f6c894@linaro.org>
-Date:   Tue, 14 Mar 2023 08:08:07 +0100
+        with ESMTP id S229735AbjCNHJS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Mar 2023 03:09:18 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AEE1B83D1
+        for <devicetree@vger.kernel.org>; Tue, 14 Mar 2023 00:09:16 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 41921B818A2
+        for <devicetree@vger.kernel.org>; Tue, 14 Mar 2023 07:09:15 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8EA01C433EF;
+        Tue, 14 Mar 2023 07:09:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1678777753;
+        bh=dJiDwvlKwnk919Dv4H3AXKo5uOs1Vovj49gT6cb/jxk=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=Q6GdfbTC2MbHRDbOnIBC/47DzX2vfiiY7SZlSEZW+hiM2YhvOyhixQfDAkI2v2P97
+         +99h3BL7fcoY5hbHjneA8iRmoi8pagpgl3P4f6ygcY+ewbJ9UjEcU43kJG8C1SIn1F
+         7rpif6nuy+vhCSKruzIqhwstfPZV4dcZaRng2853tLxw8pE3bhbPFQ23eJGvA5jaDh
+         HoKFo1WW/n3xgZ9OJPfwqQ5+TfoSiWw4dX5td7+3je0WvSAm9Iihl2hgQFwYwbk8cj
+         zwddUmQ/o3m5/PLXLBcblZ8SgEXfX9w0SymDtPJVBUDAcVcMCnuaBwQi77+AwRHVFk
+         o8YYiA/mM4HLw==
+Date:   Tue, 14 Mar 2023 15:08:48 +0800
+From:   Shawn Guo <shawnguo@kernel.org>
+To:     Sean Anderson <sean.anderson@seco.com>
+Cc:     Vinod Koul <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@kernel.org>,
+        linux-phy@lists.infradead.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        Camelia Alexandra Groza <camelia.groza@nxp.com>,
+        Madalin Bucur <madalin.bucur@nxp.com>,
+        Bagas Sanjaya <bagasdotme@gmail.com>,
+        Ioana Ciornei <ioana.ciornei@nxp.com>,
+        linuxppc-dev@lists.ozlabs.org, Li Yang <leoyang.li@nxp.com>
+Subject: Re: [PATCH v11 09/13] arm64: dts: ls1046a: Add serdes nodes
+Message-ID: <20230314070848.GA143566@dragon>
+References: <20230313161138.3598068-1-sean.anderson@seco.com>
+ <20230313161138.3598068-10-sean.anderson@seco.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-Subject: Re: [PATCH 3/3] arm64: dts: qcom: ipq8074: add compatible fallback to
- mailbox
-Content-Language: en-US
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Kathiravan T <quic_kathirav@quicinc.com>, agross@kernel.org,
-        andersson@kernel.org, konrad.dybcio@linaro.org,
-        jassisinghbrar@gmail.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, linux-arm-msm@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-References: <20230314041515.15883-1-quic_kathirav@quicinc.com>
- <20230314041515.15883-4-quic_kathirav@quicinc.com>
- <4deec4ba-a905-6460-1d1c-e5a0abd042fc@linaro.org>
-In-Reply-To: <4deec4ba-a905-6460-1d1c-e5a0abd042fc@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230313161138.3598068-10-sean.anderson@seco.com>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 14/03/2023 07:45, Krzysztof Kozlowski wrote:
-> On 14/03/2023 05:15, Kathiravan T wrote:
->> From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->>
->> IPQ8074 mailbox is compatible with IPQ6018.
->>
->> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->> Signed-off-by: Kathiravan T <quic_kathirav@quicinc.com>
->> ---
->>  arch/arm64/boot/dts/qcom/ipq8074.dtsi | 3 ++-
->>  1 file changed, 2 insertions(+), 1 deletion(-)
+On Mon, Mar 13, 2023 at 12:11:33PM -0400, Sean Anderson wrote:
+> This adds nodes for the SerDes devices. They are disabled by default
+> to prevent any breakage on existing boards.
 > 
-> What's this? Not even a dependency for something as it is last patch in
-> the series. What's the point?
+> Signed-off-by: Sean Anderson <sean.anderson@seco.com>
 
-To be clear - that's a NAK.
+The DTS patches look good to me.  Let me know if they are ready to be
+applied.
 
-Best regards,
-Krzysztof
-
+Shawn
