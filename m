@@ -2,96 +2,178 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5DAE56BA15F
-	for <lists+devicetree@lfdr.de>; Tue, 14 Mar 2023 22:22:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B2DD66BA16A
+	for <lists+devicetree@lfdr.de>; Tue, 14 Mar 2023 22:25:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229734AbjCNVWb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Mar 2023 17:22:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34680 "EHLO
+        id S230141AbjCNVZ3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Mar 2023 17:25:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39114 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229707AbjCNVWb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Mar 2023 17:22:31 -0400
-Received: from mail-pl1-x630.google.com (mail-pl1-x630.google.com [IPv6:2607:f8b0:4864:20::630])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4F88E4E5C6
-        for <devicetree@vger.kernel.org>; Tue, 14 Mar 2023 14:22:30 -0700 (PDT)
-Received: by mail-pl1-x630.google.com with SMTP id u5so17997574plq.7
-        for <devicetree@vger.kernel.org>; Tue, 14 Mar 2023 14:22:30 -0700 (PDT)
+        with ESMTP id S229733AbjCNVZ2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Mar 2023 17:25:28 -0400
+Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8950250733
+        for <devicetree@vger.kernel.org>; Tue, 14 Mar 2023 14:25:26 -0700 (PDT)
+Received: by mail-lf1-x131.google.com with SMTP id r27so21773651lfe.10
+        for <devicetree@vger.kernel.org>; Tue, 14 Mar 2023 14:25:26 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112; t=1678828950;
+        d=linaro.org; s=google; t=1678829125;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=oSMMYpMwHGejyn9j/p82E+qqcEr4QAovjETTUKuYHjg=;
-        b=kxmhvfXC2L8Vtf/NGg9j3iGmdAGayE9lLLATblVcHzVTONhJ5rP5K6VEoO2lUDbnlD
-         asr47dpydH0puaJIeAEqINQhJ1OF3B9Ngz3o3hCb5rlAqXdRTaJ4qUFmGRs2/+awQG0P
-         xstFDq3CCvkzTjEjbgE3JzAfy5UuUGfRJ1d3WBSVbfR/YxAZToLB3YV+JaTMq2bfIlG2
-         mPO+V0LpsOy6YlEnKG3OMB8UaFfHCVZcxivvK17b0E/zIaELe9Z32BVOKye1WXCszFr3
-         8jlAZLfoVirlITcNuXQiq7DpSw3F+2iEhU6v8nf04HJXV1JNv4sLon6iP8JfM9us00Vj
-         dx5A==
+        bh=50UwLTbKlwNfvKUJ1gsJb9YQw+ZsuESdyjxW59v0kZ8=;
+        b=yJmRxbIOWc+j9la5lSYMbBLbEDJEeW5YsbGyqfRIGyHhQjJocCMXUgWObRmN8YxAI7
+         2jmvxcAdGNiJEA3E0lOJbgxigY+TVDf8CHkfXml5Xkihfg0QvqIFh37M4fxP5keMWfWx
+         OBYElNGqLP+XMaEqIAJa2OmDIvJebgkquLTRloLgcJXloC2PhhpYsoP3RGSVrYDKFarM
+         qESQkXKhInUMS8vJBeiLvsRVwVsGMt1EAIDtETzWq/HPCFcXGffoxFgcXLvISbb3I3K2
+         rsdEffgdIJHLoHYuU+kc/11yf2a5lgInMxLsokOAuQTcobYxnRdnx79lxaa1sCxSF6zV
+         hWUA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678828950;
+        d=1e100.net; s=20210112; t=1678829125;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=oSMMYpMwHGejyn9j/p82E+qqcEr4QAovjETTUKuYHjg=;
-        b=FQOH6pvKHhclII3gkfbb+GcWOs2fiVhk7O1daD3xb22SLOvNjOIcHQeqXVTbUJ54XJ
-         HAHbdQqH7FIbw7bQHd58cq4NY2cmy5iqA6JdjDKyUeCSN/YXFCrhE55DohnDkitbXWaI
-         XEvJ4LnYuHyH+Anc0ouuK5ApIxeCgsEjiMd+n6ErpgcPogs+0I0vcuuMtumrF7yOJsRm
-         /eu34a7J3eb77f2uZgY7g11FYJGTRX+jdzhm4H9FXRXjTMPO1ACAMv2W2i8/BHwPx+wF
-         /UU4gPwnuekUamwQiCKtNjxiEGBs6stNsp3QiEkf2hErsRK0eNgwFu+fHNyc7SSIKneC
-         YSOQ==
-X-Gm-Message-State: AO0yUKW+nl4SjdoKGgws5NhqLnFAzwWMW8I9wvqzdAqwBwlR74TVQtkF
-        hx4U5GXmqxXWzh4UsBUcc2A=
-X-Google-Smtp-Source: AK7set8aYU6Hhs7iCJ8LGNRAZBL7E3rCQ6u2UK1UmEavXDUkgAv8dP5mAyW0QhtaMLIO5KaUXwcBfw==
-X-Received: by 2002:a05:6a20:4da7:b0:bc:a2a9:1aa with SMTP id gj39-20020a056a204da700b000bca2a901aamr36318508pzb.55.1678828949668;
-        Tue, 14 Mar 2023 14:22:29 -0700 (PDT)
-Received: from [10.67.48.245] ([192.19.223.252])
-        by smtp.googlemail.com with ESMTPSA id y10-20020aa7854a000000b0056d7cc80ea4sm2030520pfn.110.2023.03.14.14.22.26
+        bh=50UwLTbKlwNfvKUJ1gsJb9YQw+ZsuESdyjxW59v0kZ8=;
+        b=a5M+Up6TWhzYkXvlVqCUf+B2RtAb9TojIOIe8rUWuezIiEuaDVa99h6k9o+jQBWx9t
+         3M66onHgM6ud7x26pNb/VdwkgwfscxImJj/h1lPADDBSgqCOhkZCf8lrqcukv0vIwAQK
+         WNqggbpLosB7WW/gZdJqRsBMqvA+lE6RufHcY/VlOi6P22Gv+SgMxL6HfOFNr/KADYk2
+         jOdzg1bWtROgQJRysMnzpmHGY92h+eBbOIRY7j65WllcemtQKQ17b2rkk0pXtBZiV2WE
+         vK1IvIExRZ9eqQLy10qZwH9OKqY2PtJKZuWKHT7g6Z/g9eQoVfQgIMAJcHokzRF1sQ2a
+         EdoA==
+X-Gm-Message-State: AO0yUKUzxVIYCT5ZLoESa3D/tDtorM8tANVQwO89ZBveJw3IMQn/lZUz
+        almJvPec77vqovh3AjAFPus+6Q==
+X-Google-Smtp-Source: AK7set8j0nqXk3lBMWjIrrbTX3xKuH/R3B6iXPCyXbuTXWXSoqZJJUhA3Mwkv+qn697EUtptxfObvg==
+X-Received: by 2002:ac2:5a0f:0:b0:4e1:36a:eda5 with SMTP id q15-20020ac25a0f000000b004e1036aeda5mr1363025lfn.30.1678829124814;
+        Tue, 14 Mar 2023 14:25:24 -0700 (PDT)
+Received: from [192.168.1.101] (abyj16.neoplus.adsl.tpnet.pl. [83.9.29.16])
+        by smtp.gmail.com with ESMTPSA id w21-20020ac254b5000000b004dc7fae3cfcsm545559lfk.75.2023.03.14.14.25.23
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 14 Mar 2023 14:22:28 -0700 (PDT)
-Message-ID: <bc15cbf2-4b4c-b132-7b50-d3a1edc422b1@gmail.com>
-Date:   Tue, 14 Mar 2023 14:22:25 -0700
+        Tue, 14 Mar 2023 14:25:24 -0700 (PDT)
+Message-ID: <09b49716-fa77-710c-92ec-3c0d7c154bc3@linaro.org>
+Date:   Tue, 14 Mar 2023 22:25:22 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.1
-Subject: Re: [PATCH 1/3] arm64: dts: broadcom: bcmbca: bcm4908: add on-SoC USB
- ports
+ Thunderbird/102.8.0
+Subject: Re: [PATCH 2/2] arm64: dts: qcom: Add base qrb4210-rb2 board dts
 Content-Language: en-US
-To:     =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
-        Florian Fainelli <f.fainelli@gmail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        William Zhang <william.zhang@broadcom.com>,
-        Anand Gore <anand.gore@broadcom.com>,
-        Kursad Oney <kursad.oney@broadcom.com>,
-        bcm-kernel-feedback-list@broadcom.com, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
-References: <20230228144520.21816-1-zajec5@gmail.com>
-From:   Florian Fainelli <f.fainelli@gmail.com>
-In-Reply-To: <20230228144520.21816-1-zajec5@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+To:     Bhupesh Sharma <bhupesh.sharma@linaro.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
+Cc:     agross@kernel.org, andersson@kernel.org,
+        linux-kernel@vger.kernel.org, bhupesh.linux@gmail.com,
+        robh+dt@kernel.org, krzysztof.kozlowski@linaro.org
+References: <20230314210828.2049720-1-bhupesh.sharma@linaro.org>
+ <20230314210828.2049720-3-bhupesh.sharma@linaro.org>
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <20230314210828.2049720-3-bhupesh.sharma@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-0.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_SORBS_HTTP,RCVD_IN_SORBS_SOCKS,SPF_HELO_NONE,SPF_PASS,
+        URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2/28/23 06:45, Rafał Miłecki wrote:
-> From: Rafał Miłecki <rafal@milecki.pl>
-> 
-> BCM4908 has 3 USB controllers each with 2 USB ports. Home routers often
-> have LEDs indicating state of selected USB ports. Describe those SoC USB
-> ports to allow using them as LED trigger sources.
-> 
-> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
 
-Also applied all 3 to devicetree-arm64/next, thanks!
--- 
-Florian
 
+On 14.03.2023 22:08, Bhupesh Sharma wrote:
+> Add DTS for Qualcomm qrb4210-rb2 board which uses SM4250 SoC.
+> 
+> This adds debug uart, emmc, uSD and tlmm support along with
+> regulators found on this board.
+> 
+> Also defines the 'xo_board' and 'sleep_clk' frequencies for
+> this board.
+> 
+> Signed-off-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
+> ---
+[...]
+
+> +#include <dt-bindings/regulator/qcom,rpmh-regulator.h>
+This SoC does not feature RPMh, drop.
+
+> +#include "sm4250.dtsi"
+> +
+> +/ {
+> +	model = "Qualcomm Technologies, Inc. QRB4210 RB2";
+> +	compatible = "qcom,qrb4210-rb2", "qcom,sm4250";
+Please add a qcom,qrb4210 between the board-specific and the common SoC
+compatibles so that we can address QRB-specific quirks if such ever arise.
+
+> +
+> +	aliases {
+> +		serial0 = &uart4;
+> +	};
+> +
+[...]
+
+> +&xo_board {
+> +	clock-frequency = <19200000>;
+> +};
+> +
+> +&sleep_clk {
+> +	clock-frequency = <32000>;
+> +};
+Out of alphanumerical order
+
+
+> +
+> +&qupv3_id_0 {
+> +	status = "okay";
+> +};
+> +
+> +&uart4 {
+> +	status = "okay";
+> +};
+> +
+> +&rpm_requests {
+Out of alphanumerical order
+
+> +	regulators-0 {
+Will there be more PMICs under this node? If not, drop the -0.
+
+[...]
+
+> +&tlmm {
+> +	gpio-reserved-ranges = <37 5>, <43 2>, <47 1>,
+> +			       <49 1>, <52 1>, <54 1>,
+> +			       <56 3>, <61 2>, <64 1>,
+> +			       <68 1>, <72 8>, <96 1>;
+> +};
+Are there *really* so many? Does the board refuse to boot if
+you knock off any of these entries? If so, they probably
+don't belong here.
+
+
+> +
+> +&sdhc_1 {
+> +	status = "okay";
+Status should go last
+> +
+> +	vmmc-supply = <&vreg_l24a_2p96>; /* emmc power line */
+> +	vqmmc-supply = <&vreg_l11a_1p8>; /* emmc vddq */
+The comments are not very useful, drop please.
+
+> +	bus-width = <8>;
+This is defined in the SoC dtsi already
+
+> +	no-sdio;
+> +	non-removable;
+> +};
+> +
+> +&sdhc_2 {
+> +	status = "okay";
+> +
+> +	cd-gpios = <&tlmm 88 GPIO_ACTIVE_HIGH>; /* card detect gpio */
+> +	vmmc-supply = <&vreg_l22a_2p96>; /* Card power line */
+> +	vqmmc-supply = <&vreg_l5a_2p96>; /* IO line power */
+> +	bus-width = <4>;
+> +	no-sdio;
+> +	no-emmc;
+Ditto
+
+Konrad
+> +};
