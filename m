@@ -2,91 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 17B546B9805
-	for <lists+devicetree@lfdr.de>; Tue, 14 Mar 2023 15:32:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DB4236B9802
+	for <lists+devicetree@lfdr.de>; Tue, 14 Mar 2023 15:30:58 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229785AbjCNOck (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Mar 2023 10:32:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43496 "EHLO
+        id S231335AbjCNOa5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Mar 2023 10:30:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34684 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229538AbjCNOcj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Mar 2023 10:32:39 -0400
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D92843AA6;
-        Tue, 14 Mar 2023 07:32:37 -0700 (PDT)
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 32EAf2JJ037449;
-        Tue, 14 Mar 2023 05:41:02 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1678790462;
-        bh=/sLCUCc51jsN4wcZ3//dbGQXaUgVsgJSfSidFarfnMM=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=XWZTcTXixWCb7522EmXhsdfkcTSpjNUCQwCKPxlYE7qFTRtrrPxHsc4aCTgqkbnf+
-         ihcNdp1t8JEiziBx+JRPghhcv1Zw3+P8VO2y8zgKd2i29KpGkRDTJwCc1Yc5FWgH4/
-         QFg5IWVV9NDsk0YpIzU/EvpfZu3jKvnZZV6UsWNM=
-Received: from DFLE101.ent.ti.com (dfle101.ent.ti.com [10.64.6.22])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 32EAf2pS024547
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Tue, 14 Mar 2023 05:41:02 -0500
-Received: from DFLE113.ent.ti.com (10.64.6.34) by DFLE101.ent.ti.com
- (10.64.6.22) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Tue, 14
- Mar 2023 05:41:02 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE113.ent.ti.com
- (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
- Frontend Transport; Tue, 14 Mar 2023 05:41:02 -0500
-Received: from uda0492258.dhcp.ti.com (ileaxei01-snat.itg.ti.com [10.180.69.5])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 32EAetN3124205;
-        Tue, 14 Mar 2023 05:40:59 -0500
-From:   Siddharth Vadapalli <s-vadapalli@ti.com>
-To:     <nm@ti.com>, <vigneshr@ti.com>, <kristo@kernel.org>,
-        <robh+dt@kernel.org>, <krzysztof.kozlowski@linaro.org>,
-        <krzysztof.kozlowski+dt@linaro.org>
-CC:     <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <srk@ti.com>,
-        <s-vadapalli@ti.com>
-Subject: [PATCH 1/2] arm64: dts: ti: k3-j784s4-mcu-wakeup: Add device id property for mcu_navss
-Date:   Tue, 14 Mar 2023 16:10:54 +0530
-Message-ID: <20230314104055.1475054-2-s-vadapalli@ti.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20230314104055.1475054-1-s-vadapalli@ti.com>
-References: <20230314104055.1475054-1-s-vadapalli@ti.com>
+        with ESMTP id S231343AbjCNOaa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Mar 2023 10:30:30 -0400
+Received: from mx.sberdevices.ru (mx.sberdevices.ru [45.89.227.171])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 73DE22C654;
+        Tue, 14 Mar 2023 07:30:24 -0700 (PDT)
+Received: from s-lin-edge02.sberdevices.ru (localhost [127.0.0.1])
+        by mx.sberdevices.ru (Postfix) with ESMTP id C80C55FD62;
+        Tue, 14 Mar 2023 15:03:00 +0300 (MSK)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sberdevices.ru;
+        s=mail; t=1678795380;
+        bh=jjpy6DCx05VoZ+mAapsIt74dyDOi6BiXXaYW1L+8OeA=;
+        h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type;
+        b=BO+/6xXjLHbfTrjKomCsZYI90orCZj9neHT8C1hHGvIPQ5VW71qVlKae+s2OlRSaJ
+         a77fNW+BdVVSDx9ad7XeSr3DN/cUkRcKSmlZbwk9VA1eXJAhH2YaNprKhqOCQ1VoIC
+         b4zH7dn25Jpa5xOpzTKBu/n7J6QlCb+8S8SCgYrotnX6xe4kfd+Fm2cBHE0BgAEGh6
+         5kxd3g+/dswG4DrB1W1wXilDCLpmXuGYh2TfarTplCgw8h3odAe7JFS7CXc2iO9xOQ
+         hagpVkJeCAeWaMRC/Lccm4toesY7/6czghogjLGpr4ZEFA3DjZ4SoJL9yaMcsbiqQz
+         oJKpbcfXTJn1g==
+Received: from S-MS-EXCH01.sberdevices.ru (S-MS-EXCH01.sberdevices.ru [172.16.1.4])
+        by mx.sberdevices.ru (Postfix) with ESMTP;
+        Tue, 14 Mar 2023 15:02:59 +0300 (MSK)
+From:   Martin Kurbanov <mmkurbanov@sberdevices.ru>
+To:     Pavel Machek <pavel@ucw.cz>, Lee Jones <lee@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Andy Shevchenko <andy.shevchenko@gmail.com>
+CC:     <linux-leds@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <kernel@sberdevices.ru>, <devicetree@vger.kernel.org>,
+        Martin Kurbanov <mmkurbanov@sberdevices.ru>
+Subject: [PATCH v3 0/2] leds: add aw20xx driver
+Date:   Tue, 14 Mar 2023 15:02:50 +0300
+Message-ID: <20230314120252.48263-1-mmkurbanov@sberdevices.ru>
+X-Mailer: git-send-email 2.37.2
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_PASS,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+X-Originating-IP: [172.16.1.6]
+X-ClientProxiedBy: S-MS-EXCH01.sberdevices.ru (172.16.1.4) To
+ S-MS-EXCH01.sberdevices.ru (172.16.1.4)
+X-KSMG-Rule-ID: 4
+X-KSMG-Message-Action: clean
+X-KSMG-AntiSpam-Status: not scanned, disabled by settings
+X-KSMG-AntiSpam-Interceptor-Info: not scanned
+X-KSMG-AntiPhishing: not scanned, disabled by settings
+X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 1.1.2.30, bases: 2023/03/14 06:01:00 #20942017
+X-KSMG-AntiVirus-Status: Clean, skipped
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The "ti,sci-dev-id" property used to indicate the Device ID is missing
-for mcu_navss device-tree node. Add it.
+This patch series adds support for AWINIC AW20036/AW20054/AW20072 LED
+driver programmed via an I2C interface.
 
-Signed-off-by: Siddharth Vadapalli <s-vadapalli@ti.com>
----
- arch/arm64/boot/dts/ti/k3-j784s4-mcu-wakeup.dtsi | 2 ++
- 1 file changed, 2 insertions(+)
+This driver supports following AW200XX features:
+  - Individual 64-level DIM currents
 
-diff --git a/arch/arm64/boot/dts/ti/k3-j784s4-mcu-wakeup.dtsi b/arch/arm64/boot/dts/ti/k3-j784s4-mcu-wakeup.dtsi
-index 93952af618f6..52311da15579 100644
---- a/arch/arm64/boot/dts/ti/k3-j784s4-mcu-wakeup.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-j784s4-mcu-wakeup.dtsi
-@@ -212,6 +212,8 @@ mcu_navss: bus@28380000{
- 		dma-coherent;
- 		dma-ranges;
- 
-+		ti,sci-dev-id = <323>;
-+
- 		mcu_ringacc: ringacc@2b800000 {
- 			compatible = "ti,am654-navss-ringacc";
- 			reg = <0x00 0x2b800000 0x00 0x400000>,
--- 
-2.25.1
+Datasheet:
+  aw20036 - https://www.awinic.com/en/productDetail/AW20036QNR#tech-docs
+  aw20054 - https://www.awinic.com/en/productDetail/AW20054QNR#tech-docs
+  aw20072 - https://www.awinic.com/en/productDetail/AW20072QNR#tech-docs
+
+Add YAML dt-binding schema for AW200XX.
+
+Changelog:
+v2 -> v3:
+  - Update datasheet links
+  - Make cosmetic changes as Andy suggested at [1]
+
+v1 -> v2:
+  - Remove the hardware pattern support (I will send a separate patch)
+  - Support the 'led-max-microamp' property
+
+[1] https://lore.kernel.org/all/20230228211046.109693-1-mmkurbanov@sberdevices.ru/
+
+Martin Kurbanov (2):
+  dt-bindings: leds: add binding for aw200xx
+  leds: add aw20xx driver
+
+ .../testing/sysfs-class-led-driver-aw200xx    |   5 +
+ .../bindings/leds/awinic,aw200xx.yaml         | 126 ++++
+ drivers/leds/Kconfig                          |  14 +
+ drivers/leds/Makefile                         |   1 +
+ drivers/leds/leds-aw200xx.c                   | 638 ++++++++++++++++++
+ 5 files changed, 784 insertions(+)
+ create mode 100644 Documentation/ABI/testing/sysfs-class-led-driver-aw200xx
+ create mode 100644 Documentation/devicetree/bindings/leds/awinic,aw200xx.yaml
+ create mode 100644 drivers/leds/leds-aw200xx.c
+
+--
+2.37.2
 
