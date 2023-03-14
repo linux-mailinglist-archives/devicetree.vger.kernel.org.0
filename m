@@ -2,192 +2,191 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2D4BB6B91A3
-	for <lists+devicetree@lfdr.de>; Tue, 14 Mar 2023 12:29:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 22EEF6B91BB
+	for <lists+devicetree@lfdr.de>; Tue, 14 Mar 2023 12:36:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230356AbjCNL35 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Mar 2023 07:29:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53870 "EHLO
+        id S230210AbjCNLgY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Mar 2023 07:36:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35416 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229926AbjCNL3z (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Mar 2023 07:29:55 -0400
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 808EAAC;
-        Tue, 14 Mar 2023 04:29:54 -0700 (PDT)
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 32EBTfgj051738;
-        Tue, 14 Mar 2023 06:29:41 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1678793381;
-        bh=w73ME4BqNLG1jQWq7o3E8JXdQsx94xFuptDNByH+I7U=;
-        h=From:To:CC:Subject:Date;
-        b=b/xpA8nEHutUQM/OcljYb3+JDRGCnKn+2D9xYe2pAqA1aq/zwbhJtZ6A+BGxUvtls
-         A8ds/o+nlgXP8MfiKKHs2/pDAErSV6Uu60KwFlgxuW7pqebTqwhRWSFZ0/dS7GFNCw
-         Tky3T/heZxD/1Hkqy6TY5UrNbZLi9sEy22ypl+QM=
-Received: from DFLE114.ent.ti.com (dfle114.ent.ti.com [10.64.6.35])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 32EBTf5f099463
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Tue, 14 Mar 2023 06:29:41 -0500
-Received: from DFLE110.ent.ti.com (10.64.6.31) by DFLE114.ent.ti.com
- (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Tue, 14
- Mar 2023 06:29:41 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE110.ent.ti.com
- (10.64.6.31) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
- Frontend Transport; Tue, 14 Mar 2023 06:29:41 -0500
-Received: from localhost (ileaxei01-snat2.itg.ti.com [10.180.69.6])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 32EBTejn012980;
-        Tue, 14 Mar 2023 06:29:40 -0500
-From:   Bhavya Kapoor <b-kapoor@ti.com>
-To:     <devicetree@vger.kernel.org>, <robh+dt@kernel.org>
-CC:     <nm@ti.com>, <vigneshr@ti.com>, <kristo@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>
-Subject: [PATCH v6] arm64: dts: ti: k3-j721s2: Add support for ADC nodes
-Date:   Tue, 14 Mar 2023 16:59:39 +0530
-Message-ID: <20230314112939.139894-1-b-kapoor@ti.com>
-X-Mailer: git-send-email 2.34.1
+        with ESMTP id S229769AbjCNLgY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Mar 2023 07:36:24 -0400
+Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 79B276A6D
+        for <devicetree@vger.kernel.org>; Tue, 14 Mar 2023 04:36:22 -0700 (PDT)
+Received: by mail-lf1-x12f.google.com with SMTP id g17so19597530lfv.4
+        for <devicetree@vger.kernel.org>; Tue, 14 Mar 2023 04:36:22 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1678793781;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=OEdKVYCW4wWuB3A77aE8lOd0heUdcbQjHdyZrhzSn44=;
+        b=cQgt9aOMPcNdwPslS+LAdXqKvBbg9vqm+yaZh6EYuCP9Ts3d9FrqSNjcgJw9XQnjNc
+         RzYYydo0qcvqPoeJaJcsZNGZa53ZaJ59ORhebrdu/gEzdp2RccNdIsfsTK3oePFjJlZs
+         zQRVfKB5DeLYVt6oPnj+hO18epG1+2cQYNiAAEKs1Alf6+qaLMJT41m00PgJVR+4v/MB
+         Q6xCD7DX7IBvXQaidBeCSGABOmARlVwElPf4mqsavF5TpntfMNLIHF+u6ItD6EdvB5Zs
+         USXCxL0VQPdEUy1OfJgez05gjmZ5zHZS3BGTJYzpH2wuYxg2W7rXFyw4sIMm0J6RXLX9
+         hQ5g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1678793781;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=OEdKVYCW4wWuB3A77aE8lOd0heUdcbQjHdyZrhzSn44=;
+        b=kBJo3wn66rU6vVN0JfLCFFRHnhdY7qkQAN9AsLtuB+P3qmoPIMjv919wGsTcOu/rkE
+         LTrbrha9iul6fipUlrLxgO8M0jdhvbmtqmbGK6LbzuXZqmU/D58TkrX18yVIT7aCvssn
+         TfKFRmmOldXdg7fC95Kfz7sbx+nhsEt8jJP6fE2QDd9YAbEVVkUJ+vfnGNhdr+5lBztj
+         TaOSPUJPeTzN4xtBftC45kPQMgYFh5vm99UBX5T9XvMyD1k+wj82bX5yXpBTfmvPMrvG
+         heyZWHmJfsqK9TOSgkng9Y7KfbW8rCL0JTsim5usDAvgGVmq3UMyJhMzISoU5/IPaYvy
+         vyww==
+X-Gm-Message-State: AO0yUKWHS76ZDYiMfl5nwT2zXV7S2MYHvLhfTYAsf+T5KG7+cdjQC7rC
+        CMja4lKiSgdgixDz3e7aLh3LNwC/DF5lJLRN1FY=
+X-Google-Smtp-Source: AK7set9TURs4/AAkObPILWiuPwjmkEavqIu7X0iSrkWD9PKVAwCoHaOsUTOmnpKddraLJ/VeAKL7EQ==
+X-Received: by 2002:ac2:4e4d:0:b0:4e8:4a44:aabf with SMTP id f13-20020ac24e4d000000b004e84a44aabfmr675223lfr.58.1678793780717;
+        Tue, 14 Mar 2023 04:36:20 -0700 (PDT)
+Received: from [192.168.1.101] (abyj16.neoplus.adsl.tpnet.pl. [83.9.29.16])
+        by smtp.gmail.com with ESMTPSA id w16-20020ac254b0000000b004d51b590772sm368070lfk.255.2023.03.14.04.36.19
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 14 Mar 2023 04:36:20 -0700 (PDT)
+Message-ID: <eaf2ca0d-4d90-b68b-3b36-8bb0148cfb95@linaro.org>
+Date:   Tue, 14 Mar 2023 12:36:18 +0100
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_PASS,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.8.0
+Subject: Re: [PATCH 3/3] arm64: dts: qcom: Split out SA8155P and use correct
+ RPMh power domains
+Content-Language: en-US
+To:     Bjorn Andersson <andersson@kernel.org>
+Cc:     linux-arm-msm@vger.kernel.org, agross@kernel.org,
+        krzysztof.kozlowski@linaro.org, marijn.suijten@somainline.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20230214095435.2192153-1-konrad.dybcio@linaro.org>
+ <20230214095435.2192153-3-konrad.dybcio@linaro.org>
+ <20230314001052.7qvgbwkl73x22oll@ripper>
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <20230314001052.7qvgbwkl73x22oll@ripper>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-0.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_SORBS_HTTP,RCVD_IN_SORBS_SOCKS,SPF_HELO_NONE,SPF_PASS,
+        URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-J721s2 has two instances of 8 channel ADCs in MCU domain. Add support
-for both ADC nodes.
 
-Signed-off-by: Bhavya Kapoor <b-kapoor@ti.com>
----
 
-Changelog v5->v6:
-- Added pinmux for ADCs
+On 14.03.2023 01:10, Bjorn Andersson wrote:
+> On Tue, Feb 14, 2023 at 10:54:35AM +0100, Konrad Dybcio wrote:
+>> The RPMhPD setup on SA8155P is different compared to SM8150. Correct
+>> it to ensure the platform will not try accessing forbidden/missing
+>> RPMh entries at boot, as a bad vote will hang the machine.
+>>
+> 
+> I don't see that this will scale, as soon as someone adds a new device
+> in sm8150.dtsi that has the need to scale a power rail this will be
+> forgotten and we will have a mix of references to the SM8150 and SA8155P
+> value space.
+> 
+> That said, I think it's reasonable to avoid duplicating the entire
+> sm8150.dtsi.
+Yeah, this problem has no obvious good solutions and even though it's
+not very elegant, this seems to be the less bad one..
 
-link to v5 patch : https://lore.kernel.org/all/20230314095553.110559-1-b-kapoor@ti.com/
+> 
+> How about making the SA8155P_* macros match the SM8150_* macros?
+> That way things will fail gracefully if a device node references a
+> resource not defined for either platform...
+Okay, let's do that
 
-Testlog for v6 : https://gist.github.com/a0498981/c70327e178cb11c09b8df757e772e9be
-
- .../dts/ti/k3-j721s2-common-proc-board.dts    | 44 +++++++++++++++++++
- .../boot/dts/ti/k3-j721s2-mcu-wakeup.dtsi     | 40 +++++++++++++++++
- 2 files changed, 84 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/ti/k3-j721s2-common-proc-board.dts b/arch/arm64/boot/dts/ti/k3-j721s2-common-proc-board.dts
-index a7aa6cf08acd..b4b9edfe2d12 100644
---- a/arch/arm64/boot/dts/ti/k3-j721s2-common-proc-board.dts
-+++ b/arch/arm64/boot/dts/ti/k3-j721s2-common-proc-board.dts
-@@ -197,6 +197,32 @@ mcu_mcan1_gpio_pins_default: mcu-mcan1-gpio-pins-default {
- 			J721S2_WKUP_IOPAD(0x0c8, PIN_INPUT, 7) /* (C28) WKUP_GPIO0_2 */
- 		>;
- 	};
-+
-+	mcu_adc0_pins_default: mcu-adc0-pins-default {
-+		pinctrl-single,pins = <
-+			J721S2_WKUP_IOPAD(0x134, PIN_INPUT, 0) /* (L25) MCU_ADC0_AIN0 */
-+			J721S2_WKUP_IOPAD(0x138, PIN_INPUT, 0) /* (K25) MCU_ADC0_AIN1 */
-+			J721S2_WKUP_IOPAD(0x13c, PIN_INPUT, 0) /* (M24) MCU_ADC0_AIN2 */
-+			J721S2_WKUP_IOPAD(0x140, PIN_INPUT, 0) /* (L24) MCU_ADC0_AIN3 */
-+			J721S2_WKUP_IOPAD(0x144, PIN_INPUT, 0) /* (L27) MCU_ADC0_AIN4 */
-+			J721S2_WKUP_IOPAD(0x148, PIN_INPUT, 0) /* (K24) MCU_ADC0_AIN5 */
-+			J721S2_WKUP_IOPAD(0x14c, PIN_INPUT, 0) /* (M27) MCU_ADC0_AIN6 */
-+			J721S2_WKUP_IOPAD(0x150, PIN_INPUT, 0) /* (M26) MCU_ADC0_AIN7 */
-+		>;
-+	};
-+
-+	mcu_adc1_pins_default: mcu-adc1-pins-default {
-+		pinctrl-single,pins = <
-+			J721S2_WKUP_IOPAD(0x154, PIN_INPUT, 0) /* (P25) MCU_ADC1_AIN0 */
-+			J721S2_WKUP_IOPAD(0x158, PIN_INPUT, 0) /* (R25) MCU_ADC1_AIN1 */
-+			J721S2_WKUP_IOPAD(0x15c, PIN_INPUT, 0) /* (P28) MCU_ADC1_AIN2 */
-+			J721S2_WKUP_IOPAD(0x160, PIN_INPUT, 0) /* (P27) MCU_ADC1_AIN3 */
-+			J721S2_WKUP_IOPAD(0x164, PIN_INPUT, 0) /* (N25) MCU_ADC1_AIN4 */
-+			J721S2_WKUP_IOPAD(0x168, PIN_INPUT, 0) /* (P26) MCU_ADC1_AIN5 */
-+			J721S2_WKUP_IOPAD(0x16c, PIN_INPUT, 0) /* (N26) MCU_ADC1_AIN6 */
-+			J721S2_WKUP_IOPAD(0x170, PIN_INPUT, 0) /* (N27) MCU_ADC1_AIN7 */
-+		>;
-+	};
- };
- 
- &main_gpio2 {
-@@ -309,3 +335,21 @@ &mcu_mcan1 {
- 	pinctrl-0 = <&mcu_mcan1_pins_default>;
- 	phys = <&transceiver2>;
- };
-+
-+&tscadc0 {
-+	pinctrl-0 = <&mcu_adc0_pins_default>;
-+	pinctrl-names = "default";
-+	status = "okay";
-+	adc {
-+		ti,adc-channels = <0 1 2 3 4 5 6 7>;
-+	};
-+};
-+
-+&tscadc1 {
-+	pinctrl-0 = <&mcu_adc1_pins_default>;
-+	pinctrl-names = "default";
-+	status = "okay";
-+	adc {
-+		ti,adc-channels = <0 1 2 3 4 5 6 7>;
-+	};
-+};
-diff --git a/arch/arm64/boot/dts/ti/k3-j721s2-mcu-wakeup.dtsi b/arch/arm64/boot/dts/ti/k3-j721s2-mcu-wakeup.dtsi
-index 0af242aa9816..5da5f0cf7009 100644
---- a/arch/arm64/boot/dts/ti/k3-j721s2-mcu-wakeup.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-j721s2-mcu-wakeup.dtsi
-@@ -306,4 +306,44 @@ cpts@3d000 {
- 			ti,cpts-periodic-outputs = <2>;
- 		};
- 	};
-+
-+	tscadc0: tscadc@40200000 {
-+		compatible = "ti,am3359-tscadc";
-+		reg = <0x00 0x40200000 0x00 0x1000>;
-+		interrupts = <GIC_SPI 860 IRQ_TYPE_LEVEL_HIGH>;
-+		power-domains = <&k3_pds 0 TI_SCI_PD_EXCLUSIVE>;
-+		clocks = <&k3_clks 0 0>;
-+		assigned-clocks = <&k3_clks 0 2>;
-+		assigned-clock-rates = <60000000>;
-+		clock-names = "fck";
-+		dmas = <&main_udmap 0x7400>,
-+			<&main_udmap 0x7401>;
-+		dma-names = "fifo0", "fifo1";
-+		status = "disabled";
-+
-+		adc {
-+			#io-channel-cells = <1>;
-+			compatible = "ti,am3359-adc";
-+		};
-+	};
-+
-+	tscadc1: tscadc@40210000 {
-+		compatible = "ti,am3359-tscadc";
-+		reg = <0x00 0x40210000 0x00 0x1000>;
-+		interrupts = <GIC_SPI 861 IRQ_TYPE_LEVEL_HIGH>;
-+		power-domains = <&k3_pds 1 TI_SCI_PD_EXCLUSIVE>;
-+		clocks = <&k3_clks 1 0>;
-+		assigned-clocks = <&k3_clks 1 2>;
-+		assigned-clock-rates = <60000000>;
-+		clock-names = "fck";
-+		dmas = <&main_udmap 0x7402>,
-+			<&main_udmap 0x7403>;
-+		dma-names = "fifo0", "fifo1";
-+		status = "disabled";
-+
-+		adc {
-+			#io-channel-cells = <1>;
-+			compatible = "ti,am3359-adc";
-+		};
-+	};
- };
--- 
-2.34.1
-
+Konrad
+> 
+> Regards,
+> Bjorn
+> 
+>> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+>> ---
+>>  arch/arm64/boot/dts/qcom/sa8155p-adp.dts |  2 +-
+>>  arch/arm64/boot/dts/qcom/sa8155p.dtsi    | 51 ++++++++++++++++++++++++
+>>  2 files changed, 52 insertions(+), 1 deletion(-)
+>>  create mode 100644 arch/arm64/boot/dts/qcom/sa8155p.dtsi
+>>
+>> diff --git a/arch/arm64/boot/dts/qcom/sa8155p-adp.dts b/arch/arm64/boot/dts/qcom/sa8155p-adp.dts
+>> index 459384ec8f23..9454e8e4e517 100644
+>> --- a/arch/arm64/boot/dts/qcom/sa8155p-adp.dts
+>> +++ b/arch/arm64/boot/dts/qcom/sa8155p-adp.dts
+>> @@ -7,7 +7,7 @@
+>>  
+>>  #include <dt-bindings/regulator/qcom,rpmh-regulator.h>
+>>  #include <dt-bindings/gpio/gpio.h>
+>> -#include "sm8150.dtsi"
+>> +#include "sa8155p.dtsi"
+>>  #include "pmm8155au_1.dtsi"
+>>  #include "pmm8155au_2.dtsi"
+>>  
+>> diff --git a/arch/arm64/boot/dts/qcom/sa8155p.dtsi b/arch/arm64/boot/dts/qcom/sa8155p.dtsi
+>> new file mode 100644
+>> index 000000000000..f2fd7c28764e
+>> --- /dev/null
+>> +++ b/arch/arm64/boot/dts/qcom/sa8155p.dtsi
+>> @@ -0,0 +1,51 @@
+>> +// SPDX-License-Identifier: BSD-3-Clause
+>> +/*
+>> + * Copyright (c) 2023, Linaro Limited
+>> + *
+>> + * SA8155P is an automotive variant of SM8150, with some minor changes.
+>> + * Most notably, the RPMhPD setup differs: MMCX and LCX/LMX rails are gone.
+>> + */
+>> +
+>> +#include "sm8150.dtsi"
+>> +
+>> +&dispcc {
+>> +	power-domains = <&rpmhpd SA8155P_CX>;
+>> +};
+>> +
+>> +&mdss_mdp {
+>> +	power-domains = <&rpmhpd SA8155P_CX>;
+>> +};
+>> +
+>> +&mdss_dsi0 {
+>> +	power-domains = <&rpmhpd SA8155P_CX>;
+>> +};
+>> +
+>> +&mdss_dsi1 {
+>> +	power-domains = <&rpmhpd SA8155P_CX>;
+>> +};
+>> +
+>> +&remoteproc_adsp {
+>> +	power-domains = <&rpmhpd SA8155P_CX>;
+>> +};
+>> +
+>> +&remoteproc_cdsp {
+>> +	power-domains = <&rpmhpd SA8155P_CX>;
+>> +};
+>> +
+>> +&remoteproc_mpss {
+>> +	power-domains = <&rpmhpd SA8155P_CX>,
+>> +			<&rpmhpd SA8155P_MSS>;
+>> +};
+>> +
+>> +&remoteproc_slpi {
+>> +	power-domains = <&rpmhpd SA8155P_CX>,
+>> +			<&rpmhpd SA8155P_MX>;
+>> +};
+>> +
+>> +&rpmhpd {
+>> +	compatible = "qcom,sa8155p-rpmhpd";
+>> +};
+>> +
+>> +&sdhc_2 {
+>> +	power-domains = <&rpmhpd SA8155P_CX>;
+>> +};
+>> -- 
+>> 2.39.1
+>>
