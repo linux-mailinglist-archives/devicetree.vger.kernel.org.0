@@ -2,132 +2,166 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0E71E6B8CF3
-	for <lists+devicetree@lfdr.de>; Tue, 14 Mar 2023 09:19:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5037B6B8D24
+	for <lists+devicetree@lfdr.de>; Tue, 14 Mar 2023 09:21:54 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230223AbjCNISl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Mar 2023 04:18:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59378 "EHLO
+        id S230235AbjCNIVb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Mar 2023 04:21:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40370 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229684AbjCNISG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Mar 2023 04:18:06 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D18D54D2A9;
-        Tue, 14 Mar 2023 01:17:43 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 4C40161640;
-        Tue, 14 Mar 2023 08:17:43 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9B1CBC433D2;
-        Tue, 14 Mar 2023 08:17:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1678781862;
-        bh=Xi2794rdLlEIsfm3cg4qF1ROjcOdCNpLbzUABC/gRQc=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=UzbwfGVIDSHLMLIkX+l3tn4KjEkfQkXi6RDxwh7iaaeUsJOfJiLLVQmX4LMhJuLJZ
-         +JaJlQS4iVuNHM/IsYnVjDiGD/Ytj7WdhN1hn7kFjZvmMg2FtzYAUrnk9CoQ77dVTi
-         32gDeMtT7faxnhvv269AeWv+rjEyCBwW0PzQw+j/tlTPoecrX4Oa4x8pPBcXtDlbnm
-         p2V4mHJhLBvcccYkVARBeMO63/cffNLPhLEfIbey24Lpa/FH3/HSnFJYsUFTeS+Ffy
-         YC/1OObK8qetusWHAkga/TO6zbTxwaHO8Yz0betHqlsa4xQUfiMaMbk44ecMEHJm3S
-         +3sMPf9vXoAWQ==
-Date:   Tue, 14 Mar 2023 16:17:35 +0800
-From:   Shawn Guo <shawnguo@kernel.org>
-To:     Francesco Dolcini <francesco@dolcini.it>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Philippe Schenker <dev@pschenker.ch>,
-        devicetree@vger.kernel.org, Sascha Hauer <s.hauer@pengutronix.de>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Frank Rowand <frowand.list@gmail.com>,
-        linux-arm-kernel@lists.infradead.org,
-        Fabio Estevam <festevam@gmail.com>,
-        Philippe Schenker <philippe.schenker@toradex.com>,
-        linux-kernel@vger.kernel.org,
-        Marcel Ziswiler <marcel.ziswiler@toradex.com>
-Subject: Re: [PATCH v1 03/25] arm64: dts: colibri-imx8x: Sort properties
-Message-ID: <20230314081735.GE143566@dragon>
-References: <20230308125300.58244-1-dev@pschenker.ch>
- <20230308125300.58244-4-dev@pschenker.ch>
- <9d213504-d457-21a6-d467-41d8783d53d3@linaro.org>
- <ZAnOwaXpcqI30jFi@francesco-nb.int.toradex.com>
+        with ESMTP id S229670AbjCNIUw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Mar 2023 04:20:52 -0400
+Received: from mail-ua1-x936.google.com (mail-ua1-x936.google.com [IPv6:2607:f8b0:4864:20::936])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7F3371165B
+        for <devicetree@vger.kernel.org>; Tue, 14 Mar 2023 01:20:03 -0700 (PDT)
+Received: by mail-ua1-x936.google.com with SMTP id r7so5893316uaj.2
+        for <devicetree@vger.kernel.org>; Tue, 14 Mar 2023 01:20:03 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=bgdev-pl.20210112.gappssmtp.com; s=20210112; t=1678782002;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=7bF78zWHqqUKIbB+xlRsQAspCq+3mase5H2df6Yb8uE=;
+        b=uO/M/lBFzN1NhnakSxMnQma72lpAmMuuAKbc8WB8FwmzTOwnC15y+R2JfuPRVdj5lW
+         r0w3HLjzR1vGn3hMmiutkqxU+jSim+s7vFF0HHFiIWjdFWYjpKnvEw2yGAaanstNyam1
+         6ahdLW6dDps/loVFTDENGciMnrd306PI7gLVaX8PqXwfVTIA+Uz8cK2LuD5AUUbVGGGJ
+         VfIk99CslB97vA/iAdK1p47QGLK4jP+p1ijwMeaA4+1kiHB3z2ca5EDfD0vgpbHem0e+
+         cpwG6k6kNnfPrPCbM7R2pBvnBtAXo4/tFiNuCc50B2LV5ZpEid5s7QNEF4e/4NRyjVLr
+         r2fQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1678782002;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=7bF78zWHqqUKIbB+xlRsQAspCq+3mase5H2df6Yb8uE=;
+        b=IMi6zBSfgookjb8BxHn/sUbwXZ2Io1VyCimqDjKpl1tGL6WZq48hARj991kHU7g9VU
+         JoSD1fMV6IBq1Imt4Xd5OWwMco3Ew7Ac3PjvvunpoCZZq8yrxXhouaB2aReKC49J2U8A
+         4i9VCgGgVBoAKYQbFDIrUIC1jwhXBxJv0hUV/NVUC2Dku7lv58dfB9dhXHcbzbHYWDhM
+         2Q+TvG+sCmZGH7VrG5xyM96hp4YeI8SXrP2MrCPfxbXFL4u2iSxzgAWsSSzbbuLFlHTT
+         JO0UDKPPm9zs+cDLuQrJzZIhgmwjaQjfWr+TNR5gSNLUzEyss/MJ1v/X1ISNlpPdyDrm
+         3dhQ==
+X-Gm-Message-State: AO0yUKX9Ix0l3MGoHXm+1DupWuPyUtXlaewbE4vBURhD7Yx6RPkPLmeS
+        F9zpEY7EVO85tB+eDFXC8F3FP5fwqD+GS9QjtHMr/TGBeAdDh6Yl
+X-Google-Smtp-Source: AK7set88xziaapI3MIwlyigAiRg99oEfYMDSpfr79hKFVygFT4iuLDdkEALMtXXIR3k9yA5C5Nzwe8mAVzlvww6R6yw=
+X-Received: by 2002:ab0:14c5:0:b0:67a:2833:5ceb with SMTP id
+ f5-20020ab014c5000000b0067a28335cebmr8399660uae.0.1678782002582; Tue, 14 Mar
+ 2023 01:20:02 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <ZAnOwaXpcqI30jFi@francesco-nb.int.toradex.com>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+References: <20230214092713.211054-1-brgl@bgdev.pl> <20230214092713.211054-3-brgl@bgdev.pl>
+ <a2cad9e8-53a7-3a1e-1c40-b360ed1c1b08@quicinc.com>
+In-Reply-To: <a2cad9e8-53a7-3a1e-1c40-b360ed1c1b08@quicinc.com>
+From:   Bartosz Golaszewski <brgl@bgdev.pl>
+Date:   Tue, 14 Mar 2023 09:19:51 +0100
+Message-ID: <CAMRc=Mf=3wuCL4rWYoeWyL8eHe8nuWEB__jTeEPmdO56oVQ46w@mail.gmail.com>
+Subject: Re: [PATCH v4 2/2] arm64: dts: qcom: add initial support for qcom sa8775p-ride
+To:     Shazad Hussain <quic_shazhuss@quicinc.com>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Manivannan Sadhasivam <mani@kernel.org>,
+        Jassi Brar <jassisinghbrar@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Mar 09, 2023 at 01:19:13PM +0100, Francesco Dolcini wrote:
-> Hello Krzysztof, first thanks for your review.
-> 
-> Let's try to get some clarity on this with the help of Shawn.
-> 
-> On Wed, Mar 08, 2023 at 01:57:38PM +0100, Krzysztof Kozlowski wrote:
-> > On 08/03/2023 13:52, Philippe Schenker wrote:
-> > > From: Philippe Schenker <philippe.schenker@toradex.com>
-> > > 
-> > > Sort properties according to the following order and inside these
-> > > alphabetically.
-> > > 
-> > > 1. compatible
-> > > 2. reg
-> > > 3. standard properties
-> > > 4. specific properties
-> > > 5. status
-> > 
-> > Is this approved coding style for IMX DTS?
-> 
-> I 100% understand your concerns here.
-> 
-> With that said let me try to briefly explain the reasoning here, in
-> various threads we were asked in the past to move node around based on
-> some not 100% defined rules [0][1].
-> 
-> On Sun, 2023-01-29 at 11:19 +0800, Shawn Guo wrote:
-> >> +&usbotg1 {
-> >> +	adp-disable;
-> >> +	ci-disable-lpm;
-> >> +	hnp-disable;
-> >> +	over-current-active-low;
-> >> +	pinctrl-names = "default";
-> >> +	pinctrl-0 = <&pinctrl_usbotg1>;
+On Tue, Mar 14, 2023 at 7:26=E2=80=AFAM Shazad Hussain
+<quic_shazhuss@quicinc.com> wrote:
+>
+>
+>
+> On 2/14/2023 2:57 PM, Bartosz Golaszewski wrote:
+> > From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
 > >
-> >We generally want to put such generic properties before device specific
-> >ones.
-> 
-> In addition to that we find convenient to have properties sorted
-> alphabetically when no other rule is available, it just prevents any
-> kind of discussion, minimize merge conflicts and make comparing files
-> easier.
-> 
-> I also agree that the difference between "generic"/"specific" is fuzzy
-> at best.
-> 
-> With all that said ...
-> 
-> Shawn: What should we do? We can of course avoid any kind of re-ordering
-> from now on.
+> > This adds basic support for the Qualcomm sa8775p platform and the
+> > reference board: sa8775p-ride. The dt files describe the basics of the
+> > SoC and enable booting to shell.
+> >
+> > Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+> > Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+> > ---
+> >   arch/arm64/boot/dts/qcom/Makefile         |   1 +
+> >   arch/arm64/boot/dts/qcom/sa8775p-ride.dts |  47 ++
+> >   arch/arm64/boot/dts/qcom/sa8775p.dtsi     | 805 +++++++++++++++++++++=
++
+> >   3 files changed, 853 insertions(+)
+> >   create mode 100644 arch/arm64/boot/dts/qcom/sa8775p-ride.dts
+> >   create mode 100644 arch/arm64/boot/dts/qcom/sa8775p.dtsi
+> >
+> > diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qc=
+om/Makefile
+> > index 31aa54f0428c..b63cd1861e68 100644
+> > --- a/arch/arm64/boot/dts/qcom/Makefile
+> > +++ b/arch/arm64/boot/dts/qcom/Makefile
+> > @@ -75,6 +75,7 @@ dtb-$(CONFIG_ARCH_QCOM)     +=3D qru1000-idp.dtb
+> >   dtb-$(CONFIG_ARCH_QCOM)     +=3D sa8155p-adp.dtb
+> >   dtb-$(CONFIG_ARCH_QCOM)     +=3D sa8295p-adp.dtb
+> >   dtb-$(CONFIG_ARCH_QCOM)     +=3D sa8540p-ride.dtb
+> > +dtb-$(CONFIG_ARCH_QCOM)      +=3D sa8775p-ride.dtb
+> >   dtb-$(CONFIG_ARCH_QCOM)     +=3D sc7180-idp.dtb
+> >   dtb-$(CONFIG_ARCH_QCOM)     +=3D sc7180-trogdor-coachz-r1.dtb
+> >   dtb-$(CONFIG_ARCH_QCOM)     +=3D sc7180-trogdor-coachz-r1-lte.dtb
+> > diff --git a/arch/arm64/boot/dts/qcom/sa8775p-ride.dts b/arch/arm64/boo=
+t/dts/qcom/sa8775p-ride.dts
+> > new file mode 100644
+> > index 000000000000..3adf7349f4e5
+> > --- /dev/null
+> > +++ b/arch/arm64/boot/dts/qcom/sa8775p-ride.dts
+> > @@ -0,0 +1,47 @@
+> > +// SPDX-License-Identifier: BSD-3-Clause
+> > +/*
+> > + * Copyright (c) 2023, Linaro Limited
+> > + */
+> > +
+> > +/dts-v1/;
+> > +
+> > +#include "sa8775p.dtsi"
+> > +
+> > +/ {
+> > +     model =3D "Qualcomm SA8775P Ride";
+> > +     compatible =3D "qcom,sa8775p-ride", "qcom,sa8775p";
+> > +
+> > +     aliases {
+> > +             serial0 =3D &uart10;
+> > +     };
+> > +
+> > +     chosen {
+> > +             stdout-path =3D "serial0:115200n8";
+> > +     };
+> > +};
+> > +
+> > +&qupv3_id_1 {
+> > +     status =3D "okay";
+> > +};
+> > +
+> > +&sleep_clk {
+> > +     clock-frequency =3D <32764>;
+> > +};
+> > +
+> > +&tlmm {
+> > +     qup_uart10_default: qup-uart10-state {
+> > +             pins =3D "gpio46", "gpio47";
+> > +             function =3D "qup1_se3";
+> > +     };
+> > +};
+>
+> Can we keep &tlmm at the end ? As this would be expanding.
+>
 
-We are practically asking for 1, 2 and 5 for i.MX DTS files, but pretty
-flexible for the rest.
+The overridden nodes are ordered alphabetically. Why would expanding
+them be a reason to put it at the end?
 
-> I am fine to be very pragmatic here, no-reordering on existing DTS
-> files, newly added DTS files we discuss whatever is the reasoning of the
-> reviewer/maintainer on a case-by-case basis.
+Bart
 
-Sounds good to me!  While I personally like your ordering, I do not want
-it to churn the existing DTS files.
-
-I'm happy to take this patch as a special case though :)
-
-Shawn
+[...]
