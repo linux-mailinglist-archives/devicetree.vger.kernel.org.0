@@ -2,118 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3A9436B90BD
-	for <lists+devicetree@lfdr.de>; Tue, 14 Mar 2023 11:55:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7C8C96B90C7
+	for <lists+devicetree@lfdr.de>; Tue, 14 Mar 2023 11:58:22 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229690AbjCNKzs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Mar 2023 06:55:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40612 "EHLO
+        id S229675AbjCNK6V convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Tue, 14 Mar 2023 06:58:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44166 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229811AbjCNKzr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Mar 2023 06:55:47 -0400
-Received: from mail-lj1-x22a.google.com (mail-lj1-x22a.google.com [IPv6:2a00:1450:4864:20::22a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 012EB12068
-        for <devicetree@vger.kernel.org>; Tue, 14 Mar 2023 03:55:39 -0700 (PDT)
-Received: by mail-lj1-x22a.google.com with SMTP id h3so15527169lja.12
-        for <devicetree@vger.kernel.org>; Tue, 14 Mar 2023 03:55:39 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1678791338;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=re23c7fupDWtZISMx2IbChMkhr35xKPDFSxvyKtpfxo=;
-        b=m4RxTZ2X3MJiwm/xt4qU9PIEaaRSfIbj0/OHRhXbH2zfPgvqYJagXbChpBA8VJ/lhJ
-         znEDPgSfJcsCEsIbWmFcZLl//gzsn0JUMnyHAQQjAQTZ5xw4CA/11ZBzlK2DRU88x7tw
-         sHWpiHIkcltQd6mUWhbX2P6X/H9ZkHsQokECgSohIhVrRpRtELNJSJl8SODgs1rRFm4Z
-         TRlt0FuBlxesAaeYDzmib8Llco7I2dpe6NCjbHJdQTKIRi5mZ6Oi33/MlbqRRr9s7tLb
-         4BZzUnE3p7wiQnBA1tZoeTNbR+t1GJiQK4ew4krlWk2m292QZYafKffjFzVlwUJA12W5
-         TNWA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678791338;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=re23c7fupDWtZISMx2IbChMkhr35xKPDFSxvyKtpfxo=;
-        b=rGCIKPg8y1HlJ9mBKP3sdPbhs/0hu+6yodruUUF/CiYE2ilveHRZb/5MTjcYPIBhoJ
-         0/69Qb1DDbTuI8BIhuDzd7OnfRjcZNJPOijkcKg7QkPwOS4Egf3e0I7U6kHV1i7mdHix
-         hsOTDM/XYop9Md6SfqZQUgI95NwdwCLFpnB/93AzmuOW6JbgcFdute9G6jlUDKU524SL
-         CQAhA/9BP0neI5iLq65gl6hoSjiIe1N+6HrTZHQPewY6Xq0HzmArCGAF5MJjAs6aovF5
-         gJ6fkA6Et6P5RBFsILa1X7ZoBs4M0I68vPpVcXw18gvry38PJZnuGwT+q7eWLsUOWZ8F
-         PoOA==
-X-Gm-Message-State: AO0yUKWoSDZ4kTNRw2oLLJPqup31j73r41CPetGAA3ubUGIHSLqG9VeI
-        ZDD4ZbKAwvwlLOg/KvjQSAiDFQ==
-X-Google-Smtp-Source: AK7set/5HooW7gzV6w7VTOua1pVMOoDrespv5T6+y35lZ3AvKWz3vRZwNuBZk9AIlEAqvsVza/09xg==
-X-Received: by 2002:a2e:7804:0:b0:295:b3df:4942 with SMTP id t4-20020a2e7804000000b00295b3df4942mr11011312ljc.40.1678791338255;
-        Tue, 14 Mar 2023 03:55:38 -0700 (PDT)
-Received: from [192.168.1.101] (abyj16.neoplus.adsl.tpnet.pl. [83.9.29.16])
-        by smtp.gmail.com with ESMTPSA id e11-20020a05651c038b00b00295a583a20bsm391337ljp.74.2023.03.14.03.55.36
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 14 Mar 2023 03:55:37 -0700 (PDT)
-Message-ID: <4d7d3d5a-4a3c-44ab-6f32-ddee2cb621fc@linaro.org>
-Date:   Tue, 14 Mar 2023 11:55:36 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-Subject: Re: [PATCH v2 1/3] arm64: dts: qcom: qdu1000: Add IPCC, MPSS, AOSS
- nodes
-Content-Language: en-US
-To:     Melody Olvera <quic_molvera@quicinc.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
+        with ESMTP id S229626AbjCNK6U (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Mar 2023 06:58:20 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E977BCC2D
+        for <devicetree@vger.kernel.org>; Tue, 14 Mar 2023 03:58:18 -0700 (PDT)
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <p.zabel@pengutronix.de>)
+        id 1pc2Lu-0000nD-Cz; Tue, 14 Mar 2023 11:57:58 +0100
+Received: from [2a0a:edc0:0:900:1d::4e] (helo=lupine)
+        by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.94.2)
+        (envelope-from <p.zabel@pengutronix.de>)
+        id 1pc2Ls-0043Zf-Vk; Tue, 14 Mar 2023 11:57:56 +0100
+Received: from pza by lupine with local (Exim 4.94.2)
+        (envelope-from <p.zabel@pengutronix.de>)
+        id 1pc2Ls-0003rQ-4L; Tue, 14 Mar 2023 11:57:56 +0100
+Message-ID: <480b8008828f2c17553e2a6575fe1b75e95d296b.camel@pengutronix.de>
+Subject: Re: [PATCH v6 0/2] drm/imx/lcdc: Implement DRM driver for imx25
+From:   Philipp Zabel <p.zabel@pengutronix.de>
+To:     Uwe =?ISO-8859-1?Q?Kleine-K=F6nig?= 
+        <u.kleine-koenig@pengutronix.de>, David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20230306231719.22263-1-quic_molvera@quicinc.com>
- <20230306231719.22263-2-quic_molvera@quicinc.com>
- <af21f499-5895-c564-3e6f-d23ba188544b@linaro.org>
- <3ee969ec-faae-fd9f-d583-6a8e2670b567@quicinc.com>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <3ee969ec-faae-fd9f-d583-6a8e2670b567@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-0.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_SORBS_HTTP,RCVD_IN_SORBS_SOCKS,SPF_HELO_NONE,SPF_PASS,
-        URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.6
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Sam Ravnborg <sam@ravnborg.org>, Liu Ying <victor.liu@nxp.com>,
+        Danilo Krummrich <dakr@redhat.com>,
+        Lucas Stach <l.stach@pengutronix.de>
+Cc:     Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Date:   Tue, 14 Mar 2023 11:57:56 +0100
+In-Reply-To: <20230306115249.2223042-1-u.kleine-koenig@pengutronix.de>
+References: <20230306115249.2223042-1-u.kleine-koenig@pengutronix.de>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8BIT
+User-Agent: Evolution 3.38.3-1+deb11u1 
+MIME-Version: 1.0
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: p.zabel@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Mo, 2023-03-06 at 12:52 +0100, Uwe Kleine-König wrote:
+> Hello,
+> 
+> in response to Philipp's reply to v5 here comes a v6. The code changes are:
 
+Thank you, pushed to drm-misc-next.
 
-On 13.03.2023 22:25, Melody Olvera wrote:
-> 
-> 
-> On 3/8/2023 2:23 AM, Konrad Dybcio wrote:
->>
->> On 7.03.2023 00:17, Melody Olvera wrote:
->>> Add nodes for IPCC, MPSS, and AOSS drivers. Also update
->>> the scm node to include its interconnect.
->> Quite a bit of stuff in a single commit, this could be
->> separated into:
->>
->> - scm icc
->> - aoss+ipcc
->> - smp2p+mpss
-> 
-> Hmm ok. Will split this patch into a few patches.
-> 
->>
->>> Signed-off-by: Melody Olvera <quic_molvera@quicinc.com>
->>> ---
-[...]
-
->>> +			      <0x0 0x4180000 0x0 0x1000>;
->> No reg-names?
-> 
-> No; we don't use reg-names in the driver. Lmk if we should be.
-> 
-qcom_q6v5_mss.c / qcom_q6v5_wcss.c get the 'rmb' region with
-[...]_byname and I think it'd scale better if we did the same here,
-as one day there may be a weird SoC that'd have an "XYZ" region,
-different to "base" and "rmb", which we would need to handle.. somehow..
-
-Konrad
+regards
+Philipp
