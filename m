@@ -2,150 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5A6686B9DF6
-	for <lists+devicetree@lfdr.de>; Tue, 14 Mar 2023 19:12:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C47136B9E37
+	for <lists+devicetree@lfdr.de>; Tue, 14 Mar 2023 19:23:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229920AbjCNSM3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Mar 2023 14:12:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60784 "EHLO
+        id S229836AbjCNSX6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Mar 2023 14:23:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53390 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229532AbjCNSM0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Mar 2023 14:12:26 -0400
-Received: from NAM12-BN8-obe.outbound.protection.outlook.com (mail-bn8nam12on2060.outbound.protection.outlook.com [40.107.237.60])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B8B248C539;
-        Tue, 14 Mar 2023 11:12:19 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=YKb2Foej0xmf+6yUM4ZMp1SNulAEaqro6v1WpqeLENUAc2LcerslODYpIUVlIQCjpXIyZ6Vo87dKSxYi/zvL+8YS46OrGODiXLqqwr80XA4s/VcwW3ue3w7tBG8kP6cj9Y4KkaffXesN4ox2NTOwUCq9uW3Tn6KCXWVgoUew/Kr+lkA2cvh7OvDPzwQlLeekW+2vnO6Fvmsagl97gCCAHX6PnY0tpC9TkXvspCTO5wRHmXVng235iXOceYPuzQ1b+0atowYDB1t6/WVhJa5KtvuVMtV7kJXrPn9Z/hKiLA4VDxpPEncKXAvHHmwXeFH1a2OKdLl93lSpQupaVXRuWg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=1ircwtIb7vB8Mq1O4gP+Chq+LloMhhN2BrHBd4heJr4=;
- b=W8wFkOSAZlCEwamXuNhw4p3v1H2TwoqlYvjzxIEy/9a5bt12SbnTbkePcsTpFjkI+6nYiev2Lx49sINVLDS8jE6imSO0vqapoPingOABlv+3zkyPvhCc9LYneYML3tb0Kh+nQzsOVNBfDGMSTGuwpehhQhalF0htdjr5+wmJevFZdSYF7vtG4/C5TlL9I6KD+f/mHtFCb0hlC1k5Rx7u9uiYcPJ6AwCC+0JPbXhbHVIw2wgihFAUMMQgEI/Ty0AEIVhKvlHSCzdNLBqrEqi/D1NAOwyOGHJZlrnvkHvEkqmT5gUlthN0rMCAUw66gHpCwHCX/2EpvPhakI3ejAb8KQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
- dkim=pass header.d=nvidia.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=1ircwtIb7vB8Mq1O4gP+Chq+LloMhhN2BrHBd4heJr4=;
- b=TZIKuzWnQfLfKdQHoUdmLsDVsL5yzJ+oDvO0ksvj0vrpaNESQuXVDg1uF3p/J7GDvEPVK7LJIBYxZDu+9ZYu/+zqV+AQUBEeCp8uESSDRLVIF6pAJTBhKHTfn0csdos1sKjyYZWY4n//mbY+7RFxvwcmZxO+vJqhvmIvIcTnESdc/EnYzPW9JL4G5n9z1SIWW0SO0/UElK/LrcSjhRz1AL3sU4F7oScL9SSWr45z/OqeKQHA3nPSlzJi5QsRpHodZYxhmW7AJrDEcYiTpGrCg1rFkzAjEx/MupxOmqnCj9Xhi50UPPz0f9hkvwvKJjvqA7LMisLIluM+i/q1rodHbA==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nvidia.com;
-Received: from CO6PR12MB5444.namprd12.prod.outlook.com (2603:10b6:5:35e::8) by
- IA1PR12MB6332.namprd12.prod.outlook.com (2603:10b6:208:3e2::13) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6178.26; Tue, 14 Mar
- 2023 18:12:17 +0000
-Received: from CO6PR12MB5444.namprd12.prod.outlook.com
- ([fe80::5464:997b:389:4b07]) by CO6PR12MB5444.namprd12.prod.outlook.com
- ([fe80::5464:997b:389:4b07%9]) with mapi id 15.20.6178.026; Tue, 14 Mar 2023
- 18:12:17 +0000
-Message-ID: <c9fb8b45-566d-c82d-7d13-cc0ad85c285b@nvidia.com>
-Date:   Tue, 14 Mar 2023 18:12:11 +0000
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.1
-Subject: Re: [PATCH 4/4] arm64: tegra: Add support for P3768+P3767
-Content-Language: en-US
-To:     Thierry Reding <thierry.reding@gmail.com>
-Cc:     linux-tegra@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-References: <20230302093353.3873247-1-thierry.reding@gmail.com>
- <20230302093353.3873247-4-thierry.reding@gmail.com>
-From:   Jon Hunter <jonathanh@nvidia.com>
-In-Reply-To: <20230302093353.3873247-4-thierry.reding@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: LNXP265CA0028.GBRP265.PROD.OUTLOOK.COM
- (2603:10a6:600:5c::16) To CO6PR12MB5444.namprd12.prod.outlook.com
- (2603:10b6:5:35e::8)
+        with ESMTP id S229813AbjCNSXz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Mar 2023 14:23:55 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1AB0D8C53E;
+        Tue, 14 Mar 2023 11:23:53 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 81BD9B81AE2;
+        Tue, 14 Mar 2023 18:23:52 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3E402C4339C;
+        Tue, 14 Mar 2023 18:23:51 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1678818231;
+        bh=j01ms7fQ8/WV8ubqSC9MEojfQXw9ejsapB/+MdCiCyI=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=jwzFueE5mIaxM82APaZiRVKMMcHgn1bKOb9Q63AuNqAlsibX/Tv0qI8TRzxfHeT52
+         cwa46v9lig1HWBeZBcEeUID2cZNYIZWly0bBQLv9Awxw0y5o6K4uo86OUw301HeIf4
+         r/aR1P/fcPDmgz6VbY7b6+F4zRTxSRWibqeQ9wVb51BMrABXK49ssBkXKYL58kMf2/
+         WdxugL13EEjQsKJlpwD6h4Ptmc48O3MDLUUf8sUmNFd7rzEwEZwae5rZ8ct8Xt2Au3
+         mGr9CCwLG1DPT/14Sj4d875XLEOeIl9I1uGEh32ApFzsiEri+0R7JNc6BF4PsDGBhW
+         LU8N7b/gVFL1Q==
+Received: by mail-vs1-f46.google.com with SMTP id k11so6104873vsq.13;
+        Tue, 14 Mar 2023 11:23:51 -0700 (PDT)
+X-Gm-Message-State: AO0yUKUVrQDhmVRnofdhZ8a7dEeD6RsXyoGWKw/5uz7C9OPKw6zPl/SV
+        Xs8hj1LA6+JeuNWkqNl2R3HHwTvvidmOHWtllw==
+X-Google-Smtp-Source: AK7set/3ndAJft4VM1NU2S/PyG7HbW6nCCeH4Zi1Tbt435zS0Q/Zy3ycvUndNjGIweBnoGWbJimT3sPfBdfRqFUGCCw=
+X-Received: by 2002:a05:6102:913:b0:421:eabb:cd6a with SMTP id
+ x19-20020a056102091300b00421eabbcd6amr17959167vsh.7.1678818230166; Tue, 14
+ Mar 2023 11:23:50 -0700 (PDT)
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CO6PR12MB5444:EE_|IA1PR12MB6332:EE_
-X-MS-Office365-Filtering-Correlation-Id: bb32e9af-06df-4698-3790-08db24b7a556
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: Iwk+YuMY5Au6GPsJQcuzUurROkMMb1FcpFikUmgTxXB9mNMgykpdEpnvGS24GdcT+4E0jWeffrZEMIw+ndhbp1BXTzj1IfjAGDkwTskwAgh/rOWfzm63uQMTIzX/VutWy0oArK9Xi6Vgn0q8uXsMPzuWO2E4EtkZ+kbWoL+PBAOP+YA1jXNWjaQT8bzJOc7HMgagdHnUNv+dvwz30wJGmKXnvvlOn57bZxys4JIkQg9cp5eGlsLQQ3Bhin8kHI452hphgjsIn90rmqkzGNar5ZmOeE6isLBJg8pJmxfgkA92vZ5E8gWD0BYJm7h+wvEDMN+d4lx3M/707qNhuu4aSLyHC5d+lDT3oyy/VmUAQMdHFj3GvLCe6LKt5QxPnOLLPJghs9rMAxIG4iP79t0+2j5CepASADnZSsaA3Yzaj6jfGAxzaJZTBdwh6MyucloxWkhcXsPGCpxD/Hfc6c0s6tc7b+6oupIbOh61++bqCn2g5D6kVpEc8M4W4kAiJk/c1uWQQ3KywbQ4SOpp8I3vtu3jUg+oA26Wy83nFdxmLcPxy4Lx5qUJaZK9Sz8pBBhbYfuG3KA7MibqqYrexO1o5WxyEUWv+CvmksBKAlYsOp3pRA+ojasWbQmsw5Y6oNSs5PZmttBOus81kgaonxnjwHtrgxVbg4PeO+Ld6VtckUhRdj+d8hJct73CRAkX8gc0dA2HEWojr23HbjgGt79Vr2R7UE28l63TodLyMPELmYo=
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:CO6PR12MB5444.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230025)(4636009)(136003)(376002)(366004)(346002)(396003)(39860400002)(451199018)(31696002)(36756003)(86362001)(38100700002)(2906002)(41300700001)(4744005)(8936002)(5660300002)(4326008)(53546011)(6506007)(2616005)(186003)(6512007)(55236004)(26005)(83380400001)(316002)(66946007)(66476007)(6486002)(66556008)(8676002)(6666004)(6916009)(478600001)(31686004)(45980500001)(43740500002);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?OFJTcHZ1cHdoakRsem42NFdpYTViYjlkdWVZeDdYdDQ3c09HSzVPdGhXOUZs?=
- =?utf-8?B?TWpCOXlLb2t3d1FVTGoydC9iQ2RXejJrU2R0NENRRHMrOENIWTRSN2dIVjU3?=
- =?utf-8?B?UHhYc2hraVlmYlEza29DMkYrUmFzc3BYYTRuYys4OGhCK3hqcHZkV3pMWkFP?=
- =?utf-8?B?Ky9ua1RNRisrS0RxOXlwVnJ6TzZGanRseDY4bU9kWHd6T0JyQkJQdWxZeDlz?=
- =?utf-8?B?NFFsQUxZSFhnTjBsUTNidTVJaWNtR2x5K05OWGw3a1N6WDM0a1NnbkUycWdC?=
- =?utf-8?B?WHNKUE5LSm9wOHBnS0ZaMGdaWXNBY1A0dy9zaGJ1TWlreW5tZ3hSVjhWRHNO?=
- =?utf-8?B?VU9tTmwzMXByejNnS0NyUWI2eXYzaWFRcVBJRmRRMWhmUVhHdm9JMXFaQ2hX?=
- =?utf-8?B?ei9PR1Ezd29NVUNlTnM3QzQzZWxLTmtnTE5TaGhuOWhqVUdRZHFFR2VseVI4?=
- =?utf-8?B?Qkl1UWtCai84d2NwLzdwMjIwazM1T2x3Q3d0QzI0WnBacE5oTHhjRUdVd2pl?=
- =?utf-8?B?c013V0w5KzF6U3ZaQnkyb0N4THltTCtDdC90ZzVmVW1qb3QxdStGNFJIVE9U?=
- =?utf-8?B?S21UT25NZ3N2aEFYTWFBeUEybmViQWYyczVJQ3p6MmZTbzlVMXVKaEtnTFhy?=
- =?utf-8?B?bXdacmpUWmZVN3hiZW9ZcXJBVkdNL0UxYWFhTENRb0lhTStWMWs3R0o5ZGY5?=
- =?utf-8?B?ZzRzdVVRZEhsOE5LNGJvWHlwWlc0M3lXZEwxS3NJelhDdDZ4V2w1dVBHZTZq?=
- =?utf-8?B?STJXWkdwU2t2NkVVL0R5ak96K2ZYWGJpM3NOODgvT29LTmRHNzU4QmVLSTk5?=
- =?utf-8?B?SHNrQysyaXErc3dOVXR4dGo1N3BHM1c5MXQwS0lMNGMrdEt0S0VWRENvMlVp?=
- =?utf-8?B?WjkrOEtaemN1Q1grSjVoZGhCWjZqaE13RlNyZnF1Nmh6VWl4SkZFeWkzSi9N?=
- =?utf-8?B?VzdodTdNVUhlQzhYdGplZ2JGTkRkdnVsWmRMYlVCdlhIR0VkZE1LRklHeUR3?=
- =?utf-8?B?TXVxMWh2d2ZDNzljZ1d2Q3BJVUdCbTUwWGxpQVBZUG91L1Y4cXEyNnJYeVhD?=
- =?utf-8?B?Kzc2TGZRZFdhRUNUWHVXcTBWc2wzM0lrUmNwRFUvUDBLYlFnUmJSVmwxeWdu?=
- =?utf-8?B?QklzMndnSktyZ3RyQUs3N25YSXVSdXRIYzJQL3hCNTRuV1Y4VUZuZlhDa0dl?=
- =?utf-8?B?TTJJWURaSy9VVzVEZlRoUlhlTnR5ZjU1VmdOakNaRFBwVkkzMkdqbXB4K0hv?=
- =?utf-8?B?MnFTSU9IeElGU056SnZxSWpFSEoyNXIzZ1g1SnNNQjVweXd5YlJTQVpyb2tU?=
- =?utf-8?B?aXpIRmgvbnE3ck1OMFozZ0tUdXRLUFE2UHdKWTlwZUpPRWxQYS9vbjVnUHNZ?=
- =?utf-8?B?OERTQ3RNSEpFMEFTbmltbHRGN3NINW1ac2tmb3FCaHpZWGNnZGpBY0w4aUll?=
- =?utf-8?B?c3RtcnN3SEFMcWZ6ODNUMWFVWDZpekNyMnlXZWs4YWNGMm54UHpOMjlnVjBy?=
- =?utf-8?B?NGVyYUJCZ29LeU1aTFJMQTBWcklJYjBHWmlRaGIrNUJoSFpZd2tlaFFBMG5C?=
- =?utf-8?B?QjlvcWFFK3pxTGoyaTAybHUrZzl2K3dKNk53bXhmQlNrOWd0ZzdJOGs4Sk1H?=
- =?utf-8?B?Y3I0Mk1KcTdJVWZtSHJta3pOeEpkVmg3MzVWS1V6MktoYVM2U1dsYVpHckRp?=
- =?utf-8?B?cVlhMDFseHJCRUpOcVFOaFZETVZJWm8vdnRzR1dpUjlXS0pCbFJHY1YvcUdm?=
- =?utf-8?B?eFhqRGJCelc4MzhJQUVwa1R6dXZueW8wU01TVW1EbmJyb2xaWW0wUDFRN3hV?=
- =?utf-8?B?TDVGNTBNUXhmRHQ4bGtkTW9CVHFqdG5ZQVNBYXl5dDk4QWxRWmhSMEh0aXJE?=
- =?utf-8?B?Q213bzJGdnZyREUrTU1LaEo3YmdwbnQxQ1FmUlEzZ091Mk5KcVdycXdHaWZ4?=
- =?utf-8?B?VUlkOVdsUXQ5MEc5UVNyblZTMGRyQ2Y1dFNuVzY3UWZrcDZqQ205NkI5dUpN?=
- =?utf-8?B?UDQxYzNxMDg2R0I2djhHMm5EUW1FbS9Sc2QxWWRWblVHUUdtY0NDeGd5YzZ6?=
- =?utf-8?B?OEFHZDVCLzQ4bXI5Vyt2NWduVGV5L3dlcWtCRmEzcTV6dW1HeUE5VG44cUlu?=
- =?utf-8?B?OEpOUXlsaThKWFZ0TDNzWnlxZHZFUUtodUF5VDJCd0ViK1Z6RFhPSDN3aVgv?=
- =?utf-8?B?bVE9PQ==?=
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: bb32e9af-06df-4698-3790-08db24b7a556
-X-MS-Exchange-CrossTenant-AuthSource: CO6PR12MB5444.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Mar 2023 18:12:17.7375
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: xqP6G/dtCq+eDvg/x7f5Spi6rJDxxUio0PEU3Pi5fp67OMg/CoGIvBdSu/wfNh3i36z9nty8ZvYrNXhoVeb9bA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR12MB6332
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,
-        NICE_REPLY_A,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,
-        SPF_NONE,URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+References: <20230207234735.201812-1-robh@kernel.org> <CAL_JsqLitc8rX4aXomgXKSPcW8ejEYe1wB_ecyAg7pgJgR=zyA@mail.gmail.com>
+ <c02f83c4-3796-40ad-8087-d297ba84e5da@lunn.ch>
+In-Reply-To: <c02f83c4-3796-40ad-8087-d297ba84e5da@lunn.ch>
+From:   Rob Herring <robh@kernel.org>
+Date:   Tue, 14 Mar 2023 13:23:38 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqLz3jMLGi=waCArD4vafBBNybqhD=uch-m3wtPHhA5O=Q@mail.gmail.com>
+Message-ID: <CAL_JsqLz3jMLGi=waCArD4vafBBNybqhD=uch-m3wtPHhA5O=Q@mail.gmail.com>
+Subject: Re: [PATCH] arm64: dts: marvell: armada-ap810: Fix GICv3 ITS node name
+To:     Andrew Lunn <andrew@lunn.ch>
+Cc:     Gregory Clement <gregory.clement@bootlin.com>,
+        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Tue, Mar 14, 2023 at 11:22=E2=80=AFAM Andrew Lunn <andrew@lunn.ch> wrote=
+:
+>
+> On Tue, Mar 14, 2023 at 10:22:40AM -0500, Rob Herring wrote:
+> > On Tue, Feb 7, 2023 at 5:47=E2=80=AFPM Rob Herring <robh@kernel.org> wr=
+ote:
+> > >
+> > > The GICv3 ITS is an MSI controller, therefore its node name should be
+> > > 'msi-controller'.
+> > >
+> > > Signed-off-by: Rob Herring <robh@kernel.org>
+> > > ---
+> > >  arch/arm64/boot/dts/marvell/armada-ap810-ap0.dtsi | 2 +-
+> > >  1 file changed, 1 insertion(+), 1 deletion(-)
+> >
+> > Ping!
+> >
+> > If not maintained, should I send a patch removing this platform instead=
+?
+>
+> Gregory usually picks these up around -rc6.
 
-On 02/03/2023 09:33, Thierry Reding wrote:
-> From: Thierry Reding <treding@nvidia.com>
-> 
-> Add support for the combination of the NVIDIA Jetson Orin NX (P3767)
-> module and the P3768 carrier board.
-> 
-> Signed-off-by: Thierry Reding <treding@nvidia.com>
-> ---
->   .../nvidia/tegra234-p3768-0000+p3767-0000.dts | 218 ++++++++++++++++++
->   .../boot/dts/nvidia/tegra234-p3768-0000.dtsi  | 133 +++++++++++
->   2 files changed, 351 insertions(+)
->   create mode 100644 arch/arm64/boot/dts/nvidia/tegra234-p3768-0000+p3767-0000.dts
->   create mode 100644 arch/arm64/boot/dts/nvidia/tegra234-p3768-0000.dtsi
+Ignoring patches for up to 2 months is not a great experience for submitter=
+s.
 
-
-Looks like we are missing a Makefile update in this patch.
-
-Cheers
-Jon
-
--- 
-nvpublic
+Rob
