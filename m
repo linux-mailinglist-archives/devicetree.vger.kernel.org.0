@@ -2,118 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DDFE46B978D
-	for <lists+devicetree@lfdr.de>; Tue, 14 Mar 2023 15:19:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DDB666B978F
+	for <lists+devicetree@lfdr.de>; Tue, 14 Mar 2023 15:19:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229535AbjCNOTH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Mar 2023 10:19:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43088 "EHLO
+        id S229748AbjCNOTL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Mar 2023 10:19:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43290 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229505AbjCNOTG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Mar 2023 10:19:06 -0400
-Received: from fd01.gateway.ufhost.com (fd01.gateway.ufhost.com [61.152.239.71])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0CD9E93EB;
-        Tue, 14 Mar 2023 07:19:04 -0700 (PDT)
-Received: from EXMBX165.cuchost.com (unknown [175.102.18.54])
-        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-        (Client CN "EXMBX165", Issuer "EXMBX165" (not verified))
-        by fd01.gateway.ufhost.com (Postfix) with ESMTP id B666124DCBE;
-        Tue, 14 Mar 2023 22:19:00 +0800 (CST)
-Received: from EXMBX172.cuchost.com (172.16.6.92) by EXMBX165.cuchost.com
- (172.16.6.75) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Tue, 14 Mar
- 2023 22:19:00 +0800
-Received: from [192.168.125.74] (113.72.145.194) by EXMBX172.cuchost.com
- (172.16.6.92) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Tue, 14 Mar
- 2023 22:18:59 +0800
-Message-ID: <518f47e4-7fc6-7715-93dd-2a3b1b4acadf@starfivetech.com>
-Date:   Tue, 14 Mar 2023 22:18:58 +0800
+        with ESMTP id S229666AbjCNOTJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Mar 2023 10:19:09 -0400
+Received: from mail-ed1-x536.google.com (mail-ed1-x536.google.com [IPv6:2a00:1450:4864:20::536])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 75CF393EB
+        for <devicetree@vger.kernel.org>; Tue, 14 Mar 2023 07:19:07 -0700 (PDT)
+Received: by mail-ed1-x536.google.com with SMTP id fd5so28802550edb.7
+        for <devicetree@vger.kernel.org>; Tue, 14 Mar 2023 07:19:07 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1678803546;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=Tzwhm0LPrsueJQUzNpmDvfEU1erjGiAua9OJJ0vez5U=;
+        b=ry8akAUPiIY8CIFco0HZfHacY9Crzbgwhm363n62QRFryL6jYzwo4m9AW3wfELkm6C
+         csHVaHnnOnAdgfbyedV7UpIY3bKxizCdcB2PevlEIAIW+BDwXmUHgNaI9X7EgdLBVzi/
+         SlJSw8aEdqp5YWGYIO5XySZ+XTFu5GhwD9Q0D9G2fmcBwkyhqgdQiaXKxV3o0lpkVobI
+         aGB4qSPsXDZZvuHyLaQeVqmlf36VZv1c0hXwAQquserj2cKTxA5fZrnEZzXDny40TGiU
+         cjhdb/500vPvavqmqLWJvEz1ZJbrQsWi5EI0J7flZ+dxXus51m5GUd2oPVHEou7t7tch
+         zNIQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1678803546;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=Tzwhm0LPrsueJQUzNpmDvfEU1erjGiAua9OJJ0vez5U=;
+        b=rfj42kfD69aFTc+EjHVXWYli/ZPCb7UiCbrTfMbec81bfkqPlhDtDm0tX1koNuYwON
+         N9YEmF1d9HRfdpUn5zPuW78CQGXlbna1l53vNgCektFImR9Xeqq+FvVRk6MTmqZhoSfr
+         xxD2oZdixtZ5MHNkZLXGn9yn/z6X6FfeJOaPVx9lAsVTme92Vv9l4ZYXTC8ku8M3BIjD
+         kBviDnlCMZ7k0J8PeFxSQV7Ut5PdsmaThgNnjN9eEWVswMQc8O3PcTDsZVL/TY6a5Fmd
+         hNkKOG1sIvlzw8BWV//Q8qK9dv/oV3ggpGHVVEMfOwjgVXs1aS8KARaE3c+cdHB7XFEV
+         Oyjg==
+X-Gm-Message-State: AO0yUKUqUVvdwsh3B2EJNB1BUI1QuJ29AcTt+p3Q0gIVDLORcU0VwpaR
+        FcYBo78mzMpvlaHLCfzp8SEPSg==
+X-Google-Smtp-Source: AK7set8aL4PQ9QF8IDj4skxLN9UJXh6bArs/MRV2sCe1hNkSmXxHrlrmqgg3M0MMY3Rx4aJxHiYqpg==
+X-Received: by 2002:a17:906:e093:b0:921:a224:cd15 with SMTP id gh19-20020a170906e09300b00921a224cd15mr2629062ejb.15.1678803545955;
+        Tue, 14 Mar 2023 07:19:05 -0700 (PDT)
+Received: from ?IPV6:2a02:810d:15c0:828:59be:4b3f:994b:e78c? ([2a02:810d:15c0:828:59be:4b3f:994b:e78c])
+        by smtp.gmail.com with ESMTPSA id lf28-20020a170907175c00b00923221f4062sm1208885ejc.112.2023.03.14.07.19.05
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 14 Mar 2023 07:19:05 -0700 (PDT)
+Message-ID: <8fec16af-c8a9-36b9-ff78-f5dde944c4f0@linaro.org>
+Date:   Tue, 14 Mar 2023 15:19:04 +0100
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.3.2
-Subject: Re: [PATCH v5 11/21] dt-bindings: clock: Add StarFive JH7110 system
- clock and reset generator
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.8.0
+Subject: Re: [PATCH v3 1/3] dt-bindings: i2c: mpc: Mark "fsl,timeout" as
+ deprecated
 Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Rob Herring <robh@kernel.org>
-CC:     Marc Zyngier <maz@kernel.org>,
+To:     Rob Herring <robh@kernel.org>, Andi Shyti <andi.shyti@kernel.org>
+Cc:     linux-i2c@vger.kernel.org, Ryan Chen <ryan_chen@aspeedtech.com>,
+        Wolfram Sang <wsa@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Ben Dooks <ben.dooks@sifive.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Stephen Boyd <sboyd@kernel.org>,
-        <linux-riscv@lists.infradead.org>, Conor Dooley <conor@kernel.org>,
-        "Emil Renner Berthing" <emil.renner.berthing@canonical.com>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        "Daniel Lezcano" <daniel.lezcano@linaro.org>,
-        <linux-clk@vger.kernel.org>,
-        "Michael Turquette" <mturquette@baylibre.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>
-References: <20230311090733.56918-1-hal.feng@starfivetech.com>
- <20230311090733.56918-12-hal.feng@starfivetech.com>
- <167854282659.42837.5915012938593380363.robh@kernel.org>
- <80549148-1bad-9190-c4ea-a9555d15ca38@starfivetech.com>
- <834fb899-7a03-ba0a-8302-f64ea58c60dd@linaro.org>
-From:   Hal Feng <hal.feng@starfivetech.com>
-In-Reply-To: <834fb899-7a03-ba0a-8302-f64ea58c60dd@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
+        Chris Packham <chris.packham@alliedtelesis.co.nz>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>
+References: <20230312233613.303408-1-andi.shyti@kernel.org>
+ <20230312233613.303408-2-andi.shyti@kernel.org>
+ <167880254331.25515.17901856481962486896.robh@kernel.org>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <167880254331.25515.17901856481962486896.robh@kernel.org>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Originating-IP: [113.72.145.194]
-X-ClientProxiedBy: EXCAS064.cuchost.com (172.16.6.24) To EXMBX172.cuchost.com
- (172.16.6.92)
-X-YovoleRuleAgent: yovoleflag
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 13 Mar 2023 08:51:20 +0100, Krzysztof Kozlowski wrote:
-> On 13/03/2023 03:47, Hal Feng wrote:
->> On Sat, 11 Mar 2023 08:17:00 -0600, Rob Herring wrote:
->>> On Sat, 11 Mar 2023 17:07:23 +0800, Hal Feng wrote:
->>>> From: Emil Renner Berthing <kernel@esmil.dk>
->>>>
->>>> Add bindings for the system clock and reset generator (SYSCRG) on the
->>>> JH7110 RISC-V SoC by StarFive Ltd.
->>>>
->>>> Signed-off-by: Emil Renner Berthing <kernel@esmil.dk>
->>>> Signed-off-by: Hal Feng <hal.feng@starfivetech.com>
->>>> ---
->>>>  .../clock/starfive,jh7110-syscrg.yaml         | 104 +++++++++
->>>>  MAINTAINERS                                   |   8 +-
->>>>  .../dt-bindings/clock/starfive,jh7110-crg.h   | 203 ++++++++++++++++++
->>>>  .../dt-bindings/reset/starfive,jh7110-crg.h   | 142 ++++++++++++
->>>>  4 files changed, 454 insertions(+), 3 deletions(-)
->>>>  create mode 100644 Documentation/devicetree/bindings/clock/starfive,jh7110-syscrg.yaml
->>>>  create mode 100644 include/dt-bindings/clock/starfive,jh7110-crg.h
->>>>  create mode 100644 include/dt-bindings/reset/starfive,jh7110-crg.h
->>>>
->>>
->>>
->>> Please add Acked-by/Reviewed-by tags when posting new versions. However,
->>> there's no need to repost patches *only* to add the tags. The upstream
->>> maintainer will do that for acks received on the version they apply.
->>>
->>> If a tag was not added on purpose, please state why and what changed.
->>>
->>> Missing tags:
->>>
->>> Reviewed-by: Rob Herring <robh@kernel.org>
->> 
->> This patch has been changed a lot and I am not sure whether it's still
->> the one you want. So I removed the Reviewed-by tag.
+On 14/03/2023 15:10, Rob Herring wrote:
 > 
-> Then mention it in changelog, just like Rob asked:
-> "If a tag was not added on purpose, please state why and what changed."
-> I don't see any explanation in the changelog about it.
+> On Mon, 13 Mar 2023 00:36:11 +0100, Andi Shyti wrote:
+>> Now we have the i2c-scl-clk-low-timeout-ms property defined in
+>> the i2c schema.
+>>
+>> Mark "fsl,timeout" as deprecated and update the example.
+>>
+>> Signed-off-by: Andi Shyti <andi.shyti@kernel.org>
+>> ---
+>>  Documentation/devicetree/bindings/i2c/i2c-mpc.yaml | 3 ++-
+>>  1 file changed, 2 insertions(+), 1 deletion(-)
+>>
+> 
+> My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+> on your patch (DT_CHECKER_FLAGS is new in v5.13):
+> 
+> yamllint warnings/errors:
+> 
+> dtschema/dtc warnings/errors:
+> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/i2c/i2c-mpc.example.dtb: i2c@3100: Unevaluated properties are not allowed ('i2c-scl-clk-low-timeout-ms' was unexpected)
 
-So sorry for missing that. Thank you for your suggestions.
+That's expected as it depends on:
+https://github.com/devicetree-org/dt-schema/pull/102
 
 Best regards,
-Hal
+Krzysztof
+
