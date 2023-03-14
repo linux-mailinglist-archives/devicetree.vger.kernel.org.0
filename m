@@ -2,93 +2,659 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C428C6B8E2F
-	for <lists+devicetree@lfdr.de>; Tue, 14 Mar 2023 10:10:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 914FF6B8E43
+	for <lists+devicetree@lfdr.de>; Tue, 14 Mar 2023 10:13:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230341AbjCNJKv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Mar 2023 05:10:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43314 "EHLO
+        id S230186AbjCNJMr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Mar 2023 05:12:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46054 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230305AbjCNJKt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Mar 2023 05:10:49 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5DD1A91B6C;
-        Tue, 14 Mar 2023 02:10:48 -0700 (PDT)
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits))
+        with ESMTP id S229548AbjCNJMo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Mar 2023 05:12:44 -0400
+Received: from box.trvn.ru (box.trvn.ru [194.87.146.52])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 793D358493;
+        Tue, 14 Mar 2023 02:12:41 -0700 (PDT)
+Received: from authenticated-user (box.trvn.ru [194.87.146.52])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
         (No client certificate requested)
-        (Authenticated sender: kholk11)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id C810F6603089;
-        Tue, 14 Mar 2023 09:10:45 +0000 (GMT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1678785047;
-        bh=/JnhxMieB4QtSnsBxyC6QFaTCEZesuuyuB0kMdcSOHQ=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=bH0vJ5ldKG15K6Z0QkpQvKAXFHbLtW/tXYRcpNDQ0i8QUsXDI9u2p1fPZSyUWm/q6
-         TJkMpDlSOtMwSTMM8b1sUyO97gt/hbQUkQ3uyam99cyajGeeSMtd3/zGEto1jOntoi
-         ndpfb5j8U1g8JHjTfL20UXH8gFjHBe8mBfoyt3rid1/kPzYO90QoVDE4gSXYEXbI+z
-         4Jlm2w4saP7DYRnCVtVKPKEcmPq0g9xsWFpoggYjGYUSOti4djjNq9QkO77N6ixwrp
-         +Jg1Ed3W46B5DwbFENG8Neso9US211CuxFZpdFyxJGkG1sYZF56vlt7gRbAGl0ILWe
-         aMGpcG7VmoyDA==
-Message-ID: <69ae7cc9-5f75-20a1-922c-a0d505a94fef@collabora.com>
-Date:   Tue, 14 Mar 2023 10:10:43 +0100
+        by box.trvn.ru (Postfix) with ESMTPSA id 57D1B4183B;
+        Tue, 14 Mar 2023 14:12:37 +0500 (+05)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=trvn.ru; s=mail;
+        t=1678785158; bh=UyHhpq2/wnOp+S9dMA1ZgpVfNd8rlkhcR2fWl5Ewx1M=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=Q6oRH87GnlKgRohXz9d0AGFk0gWbOxAyoYkKMbj+IaKGt9Z98vuVmI5NBTfGYqrJA
+         q+twcrUdWAJEu74Xom8CkwYv+EG+rk8EWy+Ft9FQWR70VlvA/MJgLd9VngI9SWVVd4
+         R2uVsO1HaIqwkTkfLPWPiu0lKD87MvOa1xlPMD5tb5qfhZAW2PhGawvtce3evvnBIO
+         5LnI2iT2gLkl4Ms85274xt4Pl9BK8FBprk3kBR1vzlY3bTe+Q0VS0mgRNUy0cM1Hrf
+         PYje4KptbS7yPQfyxwcsHSQ3pfh2hFgDHmXxy/FB9dlA4UO/YT+UqmbwryieAoFFBh
+         zQzyS9w+noMTQ==
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-Subject: Re: [PATCH v6 08/19] clk: mediatek: Add MT8188 imgsys clock support
-Content-Language: en-US
-To:     "Garmin.Chang" <Garmin.Chang@mediatek.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Richard Cochran <richardcochran@gmail.com>
-Cc:     Project_Global_Chrome_Upstream_Group@mediatek.com,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org,
-        linux-clk@vger.kernel.org, netdev@vger.kernel.org
-References: <20230309135419.30159-1-Garmin.Chang@mediatek.com>
- <20230309135419.30159-9-Garmin.Chang@mediatek.com>
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20230309135419.30159-9-Garmin.Chang@mediatek.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Date:   Tue, 14 Mar 2023 14:12:36 +0500
+From:   Nikita Travkin <nikita@trvn.ru>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     agross@kernel.org, andersson@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, konrad.dybcio@linaro.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht
+Subject: Re: [PATCH 2/2] arm64: dts: qcom: Add Acer Aspire 1
+In-Reply-To: <7042213c-1f2a-d877-a0b0-0ed1c6eee477@linaro.org>
+References: <20230314064322.65429-1-nikita@trvn.ru>
+ <20230314064322.65429-2-nikita@trvn.ru>
+ <7042213c-1f2a-d877-a0b0-0ed1c6eee477@linaro.org>
+Message-ID: <ac0531a79da83a2228667a256fd0e4bc@trvn.ru>
+X-Sender: nikita@trvn.ru
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 09/03/23 14:54, Garmin.Chang ha scritto:
-> Add MT8188 imgsys clock controllers which provide clock gate
-> control for image IP blocks.
+Krzysztof Kozlowski писал(а) 14.03.2023 13:26:
+> On 14/03/2023 07:43, Nikita Travkin wrote:
+>> Acer Aspire 1 is a WoA laptop based on Snapdragon 7c gen1 platform.
+>>
+>> The laptop design is similar to trogdor in the choice of primary
+>> components but the specifics on usage of those differ slightly.
+>>
+>> Add the devicetree for the laptop with support for most of the
+>> hardware present.
+>>
 > 
-> Signed-off-by: Garmin.Chang <Garmin.Chang@mediatek.com>
-> ---
->   drivers/clk/mediatek/Makefile         |   2 +-
->   drivers/clk/mediatek/clk-mt8188-img.c | 110 ++++++++++++++++++++++++++
->   2 files changed, 111 insertions(+), 1 deletion(-)
->   create mode 100644 drivers/clk/mediatek/clk-mt8188-img.c
+> Thank you for your patch. There is something to discuss/improve.
 > 
-> diff --git a/drivers/clk/mediatek/Makefile b/drivers/clk/mediatek/Makefile
-> index fb66d25e98fd..935805632018 100644
-> --- a/drivers/clk/mediatek/Makefile
-> +++ b/drivers/clk/mediatek/Makefile
-> @@ -93,7 +93,7 @@ obj-$(CONFIG_COMMON_CLK_MT8186) += clk-mt8186-mcu.o clk-mt8186-topckgen.o clk-mt
->   				   clk-mt8186-cam.o clk-mt8186-mdp.o clk-mt8186-ipe.o
->   obj-$(CONFIG_COMMON_CLK_MT8188) += clk-mt8188-apmixedsys.o clk-mt8188-topckgen.o \
->   				   clk-mt8188-peri_ao.o clk-mt8188-infra_ao.o \
-> -				   clk-mt8188-cam.o clk-mt8188-ccu.o
-> +				   clk-mt8188-cam.o clk-mt8188-ccu.o clk-mt8188-img.o
+>> +/ {
+>> +	model = "Acer Aspire 1";
+>> +	compatible = "acer,aspire1", "qcom,sc7180";
+>> +	chassis-type = "laptop";
+>> +
+>> +	reserved-memory {
+> 
+> Wrong ordering. Top-level nodes go alphanumeric.
+> 
 
-imgsys can go under a different config option.
+Oops, missed it. I will sort the DT spec nodes (this, aliases, chosen)
+but I would like to still keep them on top to separate them from
+devices. If you think the nodes must be sorted regardless of the semantics,
+please let me know.
 
-I won't send any more comments on the other 10 clocks for the same reason, so
-please split the clocks as needed. Check the others like MT8186, MT8192, MT8195.
+>> +		zap_mem: zap-shader@80840000 {
+>> +			reg = <0 0x80840000 0 0x2000>;
+>> +			no-map;
+>> +		};
+>> +
+>> +		venus_mem: venus@85b00000 {
+>> +			reg = <0 0x85b00000 0 0x500000>;
+>> +			no-map;
+>> +		};
+>> +
+>> +		mpss_mem: mpss@86000000 {
+>> +			reg = <0x0 0x86000000 0x0 0x2000000>;
+>> +			no-map;
+>> +		};
+>> +
+>> +		adsp_mem: adsp@8e400000 {
+>> +			reg = <0x0 0x8e400000 0x0 0x2800000>;
+>> +			no-map;
+>> +		};
+>> +
+>> +		wlan_mem: wlan@93900000 {
+>> +			reg = <0x0 0x93900000 0x0 0x200000>;
+>> +			no-map;
+>> +		};
+>> +	};
+>> +
+>> +	aliases {
+>> +		bluetooth0 = &bluetooth;
+>> +		hsuart0 = &uart3;
+>> +		serial0 = &uart8;
+>> +		wifi0 = &wifi;
+>> +	};
+>> +
+>> +	chosen {
+>> +		stdout-path = "serial0:115200n8";
+>> +	};
+>> +
+>> +	max98357a: audio-codec-0 {
+> 
+> Do you have second audio-codec? If not, drop -0.
+> 
+There are two physical chips (L,R) but I think they are represented
+by a single node. I will check if I missed something while
+"inheriting" this but will probably drop the suffix.
 
+> 
+>> +		compatible = "maxim,max98357a";
+>> +		sdmode-gpios = <&tlmm 23 GPIO_ACTIVE_HIGH>;
+>> +
+>> +		pinctrl-0 = <&amp_sd_mode_default>;
+>> +		pinctrl-names = "default";
+>> +
+>> +		#sound-dai-cells = <0>;
+>> +	};
+>> +
+>> +	backlight: backlight {
+>> +		compatible = "pwm-backlight";
+>> +		pwms = <&sn65dsi86_bridge 1000000>;
+>> +		enable-gpios = <&tlmm 10 GPIO_ACTIVE_HIGH>;
+>> +
+>> +		pinctrl-0 = <&soc_bkoff_default>;
+>> +		pinctrl-names = "default";
+>> +	};
+>> +
+>> +	reg_brij_1p2: bridge-1p2-regulator {
+>> +		compatible = "regulator-fixed";
+>> +		regulator-name = "brij_1p2";
+>> +		regulator-min-microvolt = <1200000>;
+>> +		regulator-max-microvolt = <1200000>;
+>> +
+>> +		gpio = <&tlmm 19 GPIO_ACTIVE_HIGH>;
+>> +		enable-active-high;
+>> +
+>> +		pinctrl-0 = <&reg_edp_1p2_en_default>;
+>> +		pinctrl-names = "default";
+>> +	};
+>> +
+>> +	reg_brij_1p8: bridge-regulator {
+>> +		compatible = "regulator-fixed";
+>> +		regulator-name = "brij_1p8";
+>> +		regulator-min-microvolt = <1800000>;
+>> +		regulator-max-microvolt = <1800000>;
+>> +
+>> +		vin-supply = <&vreg_l8c_1p8>;
+>> +
+>> +		gpio = <&tlmm 20 GPIO_ACTIVE_HIGH>;
+>> +		enable-active-high;
+>> +
+>> +		pinctrl-0 = <&reg_edp_1p8_en_default>;
+>> +		pinctrl-names = "default";
+>> +	};
+>> +
+>> +	reg_codec_3p3: codec-regulator {
+>> +		compatible = "regulator-fixed";
+>> +		regulator-name = "codec_3p3";
+>> +		regulator-min-microvolt = <3300000>;
+>> +		regulator-max-microvolt = <3300000>;
+>> +
+>> +		gpio = <&tlmm 83 GPIO_ACTIVE_HIGH>;
+>> +		enable-active-high;
+>> +
+>> +		pinctrl-0 = <&reg_audio_en_default>;
+>> +		pinctrl-names = "default";
+>> +	};
+>> +
+>> +	reg_lcm_3p3: panel-regulator {
+>> +		compatible = "regulator-fixed";
+>> +		regulator-name = "lcm_3p3";
+>> +		regulator-min-microvolt = <3300000>;
+>> +		regulator-max-microvolt = <3300000>;
+>> +
+> 
+> 		/*
+> 		 * Comment starts here
+> 
+
+Will fix all comments, wraps and alignments.
+
+> 
+>> +		/* HACK: Display fails with
+>> +		 *
+>> +		 * *ERROR* Unexpected max rate (0x0); assuming 5.4 GHz
+>> +		 * *ERROR* Link training failed, link is off (-5)
+>> +		 *
+>> +		 * if the power to the panel was ever cut
+>> +		 */
+> 
+> 
+>> +};
+>> +
+>> +&camcc { status = "disabled"; };
+> 
+> Don't wrap nodes.
+> 
+>> +
+>> +&dsi0 {
+>> +	vdda-supply = <&vreg_l3c_1p2>;
+>> +	status = "okay";
+>> +};
+>> +
+>> +&dsi0_out {
+>> +	remote-endpoint = <&sn65dsi86_in>;
+>> +	data-lanes = <0 1 2 3>;
+>> +};
+>> +
+>> +&dsi_phy {
+>> +	vdds-supply = <&vreg_l4a_0p8>;
+>> +	status = "okay";
+>> +};
+>> +
+>> +&i2c2 {
+>> +	clock-frequency = <400000>;
+>> +	status = "okay";
+>> +
+>> +	/* embedded-controller@76 */
+>> +};
+>> +
+>> +&i2c4 {
+>> +	clock-frequency = <400000>;
+>> +	status = "okay";
+>> +
+>> +	/*
+>> +	 * NOTE: DSDT defines two possible touchpads, other one is
+>> +	 *
+>> +	 * reg = <0x15>;
+>> +	 * hid-descr-addr = <0x1>;
+>> +	 */
+>> +
+>> +	touchpad@2c {
+>> +		compatible = "hid-over-i2c";
+>> +		reg = <0x2c>;
+>> +		hid-descr-addr = <0x20>;
+>> +
+>> +		vdd-supply = <&reg_tp_3p3>;
+>> +
+>> +		interrupts-extended = <&tlmm 94 IRQ_TYPE_LEVEL_LOW>;
+>> +
+>> +		pinctrl-0 = <&hid_touchpad_default>;
+>> +		pinctrl-names = "default";
+>> +	};
+>> +
+>> +	keyboard@3a {
+>> +		compatible = "hid-over-i2c";
+>> +		reg = <0x3a>;
+>> +		hid-descr-addr = <0x1>;
+>> +
+>> +		interrupts-extended = <&tlmm 33 IRQ_TYPE_LEVEL_LOW>;
+>> +
+>> +		pinctrl-0 = <&hid_keyboard_default>;
+>> +		pinctrl-names = "default";
+>> +
+>> +		wakeup-source;
+>> +	};
+>> +};
+>> +
+>> +&i2c9 {
+>> +	clock-frequency = <400000>;
+>> +	status = "okay";
+>> +
+>> +	alc5682: codec@1a {
+>> +		compatible = "realtek,rt5682i";
+>> +		reg = <0x1a>;
+>> +
+>> +		#sound-dai-cells = <1>;
+>> +
+>> +		interrupt-parent = <&tlmm>;
+>> +		/*
+>> +		 * This will get ignored because the interrupt type
+>> +		 * is set in rt5682.c.
+> 
+> Don't add Linux driver stuff to DTS. Not relevant, so drop the comment.
+> 
+
+I think this was "inherited" from sc7180-trogdor.dtsi
+Will drop.
+
+>> +		 */
+>> +		interrupts = <28 IRQ_TYPE_EDGE_BOTH>;
+>> +
+>> +		pinctrl-0 = <&codec_irq_default>;
+>> +		pinctrl-names = "default";
+>> +
+>> +		AVDD-supply = <&vreg_l15a_1p8>;
+>> +		MICVDD-supply = <&reg_codec_3p3>;
+>> +		VBAT-supply = <&reg_codec_3p3>;
+>> +
+>> +		realtek,dmic1-data-pin = <1>;
+>> +		realtek,dmic1-clk-pin = <1>;
+>> +		realtek,jd-src = <1>;
+>> +	};
+>> +};
+>> +
+>> +&i2c10 {
+>> +	clock-frequency = <400000>;
+>> +	status = "okay";
+>> +
+>> +	sn65dsi86_bridge: bridge@2c {
+>> +		compatible = "ti,sn65dsi86";
+>> +		reg = <0x2c>;
+>> +		gpio-controller;
+>> +		#gpio-cells = <2>;
+>> +		#pwm-cells = <1>;
+>> +
+>> +		interrupt-parent = <&tlmm>;
+>> +		interrupts = <11 IRQ_TYPE_LEVEL_HIGH>;
+>> +
+>> +		enable-gpios = <&tlmm 51 GPIO_ACTIVE_HIGH>;
+>> +		suspend-gpios = <&tlmm 22 GPIO_ACTIVE_LOW>;
+>> +
+>> +		pinctrl-0 = <&bridge_en_default>,
+>> +			<&edp_bridge_irq_default>,
+>> +			<&bridge_suspend_default>;
+> 
+> Align entries.
+> 
+>> +		pinctrl-names = "default";
+>> +
+>> +		vpll-supply = <&reg_brij_1p8>;
+>> +		vccio-supply = <&reg_brij_1p8>;
+>> +		vcca-supply = <&reg_brij_1p2>;
+>> +		vcc-supply = <&reg_brij_1p2>;
+>> +
+>> +		clocks = <&rpmhcc RPMH_LN_BB_CLK3>;
+>> +		clock-names = "refclk";
+>> +
+>> +		ports {
+>> +			#address-cells = <1>;
+>> +			#size-cells = <0>;
+>> +
+>> +			port@0 {
+>> +				reg = <0>;
+>> +
+>> +				sn65dsi86_in: endpoint {
+>> +					remote-endpoint = <&dsi0_out>;
+>> +				};
+>> +			};
+>> +
+>> +			port@1 {
+>> +				reg = <1>;
+>> +
+>> +				sn65dsi86_out: endpoint {
+>> +					data-lanes = <0 1>;
+>> +					remote-endpoint = <&panel_in_edp>;
+>> +				};
+>> +			};
+>> +		};
+>> +
+>> +		aux-bus {
+>> +			panel: panel {
+>> +				compatible = "edp-panel";
+>> +				power-supply = <&reg_lcm_3p3>;
+>> +				backlight = <&backlight>;
+>> +
+>> +				port {
+>> +					panel_in_edp: endpoint {
+>> +						remote-endpoint = <&sn65dsi86_out>;
+>> +					};
+>> +				};
+>> +			};
+>> +		};
+>> +	};
+>> +};
+>> +
+>> +&gpu {
+>> +	status = "okay";
+>> +
+>> +	zap-shader {
+>> +		memory-region = <&zap_mem>;
+>> +		firmware-name = "qcom/sc7180-acer-aspire1/qcdxkmsuc7180.mbn";
+>> +	};
+>> +};
+>> +
+>> +/* Seems like ADSP really insists on managing those itself */
+>> +&lpasscc { status = "disabled"; };
+>> +&lpass_hm { status = "disabled"; };
+> 
+> No wrapping.
+> 
+>> +
+>> +&mdp {
+>> +	status = "okay";
+>> +};
+>> +
+>> +&mdss {
+>> +	status = "okay";
+>> +};
+>> +
+>> +&pm6150_adc {
+>> +	thermistor@4e {
+>> +		reg = <ADC5_AMUX_THM2_100K_PU>;
+>> +		qcom,ratiometric;
+>> +		qcom,hw-settle-time = <200>;
+>> +	};
+>> +
+>> +	charger-thermistor@4f {
+>> +		reg = <ADC5_AMUX_THM3_100K_PU>;
+>> +		qcom,ratiometric;
+>> +		qcom,hw-settle-time = <200>;
+>> +	};
+>> +};
+>> +
+>> +&pm6150_adc_tm {
+>> +	status = "okay";
+>> +
+>> +	charger-thermistor@0 {
+>> +		reg = <0>;
+>> +		io-channels = <&pm6150_adc ADC5_AMUX_THM3_100K_PU>;
+>> +		qcom,ratiometric;
+>> +		qcom,hw-settle-time-us = <200>;
+>> +	};
+>> +
+>> +	thermistor@1 {
+>> +		reg = <1>;
+>> +		io-channels = <&pm6150_adc ADC5_AMUX_THM2_100K_PU>;
+>> +		qcom,ratiometric;
+>> +		qcom,hw-settle-time-us = <200>;
+>> +	};
+>> +};
+>> +
+>> +&pm6150_pon { status = "disabled"; };
+>> +
+>> +&qupv3_id_0 {
+>> +	status = "okay";
+>> +};
+>> +
+>> +&qupv3_id_1 {
+>> +	status = "okay";
+>> +};
+>> +
+>> +&remoteproc_mpss {
+>> +	firmware-name = "qcom/sc7180-acer-aspire1/qcmpss7180_nm.mbn";
+>> +	status = "okay";
+>> +};
+>> +
+>> +&sdhc_1 {
+>> +	pinctrl-0 = <&sdc1_default>;
+>> +	pinctrl-1 = <&sdc1_sleep>;
+>> +	pinctrl-names = "default", "sleep";
+>> +	vmmc-supply = <&vreg_l19a_2p9>;
+>> +	vqmmc-supply = <&vreg_l12a_1p8>;
+>> +
+>> +	status = "okay";
+>> +};
+>> +
+>> +&uart3 {
+>> +	/delete-property/interrupts;
+>> +	interrupts-extended = <&intc GIC_SPI 604 IRQ_TYPE_LEVEL_HIGH>,
+>> +				<&tlmm 41 IRQ_TYPE_EDGE_FALLING>;
+> 
+> Looks not aligned.
+> 
+>> +
+>> +	pinctrl-1 = <&qup_uart3_sleep>;
+>> +	pinctrl-names = "default", "sleep";
+>> +
+>> +	status = "okay";
+>> +
+>> +	bluetooth: bluetooth {
+>> +		compatible = "qcom,wcn3991-bt";
+>> +		vddio-supply = <&vreg_l10a_1p8>;
+>> +		vddxo-supply = <&vreg_l1c_1p8>;
+>> +		vddrf-supply = <&vreg_l2c_1p3>;
+>> +		vddch0-supply = <&vreg_l10c_3p3>;
+>> +		max-speed = <3200000>;
+>> +	};
+>> +};
+>> +
+>> +&uart8 {
+>> +	status = "okay";
+>> +};
+>> +
+>> +&usb_1 {
+>> +	status = "okay";
+>> +};
+>> +
+>> +&usb_1_dwc3 {
+>> +	dr_mode = "host";
+>> +	#address-cells = <1>;
+>> +	#size-cells = <0>;
+>> +
+>> +	usb_hub_2_x: hub@1 {
+>> +		compatible = "usbbda,5411";
+>> +		reg = <1>;
+>> +		peer-hub = <&usb_hub_3_x>;
+>> +	};
+>> +
+>> +	usb_hub_3_x: hub@2 {
+>> +		compatible = "usbbda,411";
+>> +		reg = <2>;
+>> +		peer-hub = <&usb_hub_2_x>;
+>> +	};
+>> +};
+>> +
+>> +&usb_1_hsphy {
+>> +	vdd-supply = <&vreg_l4a_0p8>;
+>> +	vdda-pll-supply = <&vreg_l11a_1p8>;
+>> +	vdda-phy-dpdm-supply = <&vreg_l17a_3p0>;
+>> +	qcom,imp-res-offset-value = <8>;
+>> +	qcom,preemphasis-level = <QUSB2_V2_PREEMPHASIS_15_PERCENT>;
+>> +	qcom,preemphasis-width = <QUSB2_V2_PREEMPHASIS_WIDTH_HALF_BIT>;
+>> +	qcom,bias-ctrl-value = <0x22>;
+>> +	qcom,charge-ctrl-value = <3>;
+>> +	qcom,hsdisc-trim-value = <0>;
+>> +
+>> +	status = "okay";
+>> +};
+>> +
+>> +&usb_1_qmpphy {
+>> +	vdda-phy-supply = <&vreg_l3c_1p2>;
+>> +	vdda-pll-supply = <&vreg_l4a_0p8>;
+>> +	status = "okay";
+>> +};
+>> +
+>> +&venus {
+>> +	firmware-name = "qcom/sc7180-acer-aspire1/qcvss7180.mbn";
+>> +};
+>> +
+>> +&wifi {
+>> +	vdd-0.8-cx-mx-supply = <&vreg_l9a_0p6>;
+>> +	vdd-1.8-xo-supply = <&vreg_l1c_1p8>;
+>> +	vdd-1.3-rfa-supply = <&vreg_l2c_1p3>;
+>> +	vdd-3.3-ch0-supply = <&vreg_l10c_3p3>;
+>> +	vdd-3.3-ch1-supply = <&vreg_l11c_3p3>;
+>> +	status = "okay";
+>> +};
+>> +
+>> +&apps_rsc {
+>> +	pm6150-rpmh-regulators {
+> 
+> regulators-0
+> 
+
+Oops, I guess I've missed this warning, will do.
+
+Thanks for the review!
+Nikita
+
+> We fixed it some time ago, so:
+> Does not look like you tested the DTS against bindings. Please run `make
+> dtbs_check` (see Documentation/devicetree/bindings/writing-schema.rst
+> for instructions).
+> 
+>> +		compatible = "qcom,pm6150-rpmh-regulators";
+>> +		qcom,pmic-id = "a";
+>> +
+>> +		vreg_s1a_1p1: smps1 {
+>> +			regulator-min-microvolt = <1128000>;
+>> +			regulator-max-microvolt = <1128000>;
+>> +		};
+>> +
+>> +		vreg_l4a_0p8: ldo4 {
+>> +			regulator-min-microvolt = <824000>;
+>> +			regulator-max-microvolt = <928000>;
+>> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
+>> +		};
+>> +
+>> +		vreg_l9a_0p6: ldo9 {
+>> +			regulator-min-microvolt = <488000>;
+>> +			regulator-max-microvolt = <800000>;
+>> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
+>> +		};
+>> +
+>> +		vreg_l10a_1p8: ldo10 {
+>> +			regulator-min-microvolt = <1800000>;
+>> +			regulator-max-microvolt = <1800000>;
+>> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
+>> +
+>> +			regulator-always-on;
+>> +			regulator-boot-on;
+>> +		};
+>> +
+>> +		vreg_l11a_1p8: ldo11 {
+>> +			regulator-min-microvolt = <1800000>;
+>> +			regulator-max-microvolt = <1800000>;
+>> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
+>> +		};
+>> +
+>> +		vreg_l12a_1p8: ldo12 {
+>> +			regulator-min-microvolt = <1800000>;
+>> +			regulator-max-microvolt = <1800000>;
+>> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
+>> +		};
+>> +
+>> +		vreg_l13a_1p8: ldo13 {
+>> +			regulator-min-microvolt = <1800000>;
+>> +			regulator-max-microvolt = <1800000>;
+>> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
+>> +		};
+>> +
+>> +		vreg_l14a_1p8: ldo14 {
+>> +			regulator-min-microvolt = <1800000>;
+>> +			regulator-max-microvolt = <1800000>;
+>> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
+>> +		};
+>> +
+>> +		vreg_l15a_1p8: ldo15 {
+>> +			regulator-min-microvolt = <1800000>;
+>> +			regulator-max-microvolt = <1800000>;
+>> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
+>> +		};
+>> +
+>> +		vreg_l16a_2p7: ldo16 {
+>> +			regulator-min-microvolt = <2496000>;
+>> +			regulator-max-microvolt = <3304000>;
+>> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
+>> +		};
+>> +
+>> +		vreg_l17a_3p0: ldo17 {
+>> +			regulator-min-microvolt = <2920000>;
+>> +			regulator-max-microvolt = <3232000>;
+>> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
+>> +		};
+>> +
+>> +		vreg_l18a_2p8: ldo18 {
+>> +			regulator-min-microvolt = <2496000>;
+>> +			regulator-max-microvolt = <3304000>;
+>> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
+>> +		};
+>> +
+>> +		vreg_l19a_2p9: ldo19 {
+>> +			regulator-min-microvolt = <2960000>;
+>> +			regulator-max-microvolt = <2960000>;
+>> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
+>> +		};
+>> +	};
+>> +
+>> +	pm6150l-rpmh-regulators {
+> 
+> Does not look like you tested the DTS against bindings. Please run `make
+> dtbs_check` (see Documentation/devicetree/bindings/writing-schema.rst
+> for instructions).
+> 
+> 
+> 
+> Best regards,
+> Krzysztof
