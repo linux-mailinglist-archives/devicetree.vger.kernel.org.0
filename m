@@ -2,52 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CB97C6B9E61
-	for <lists+devicetree@lfdr.de>; Tue, 14 Mar 2023 19:31:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 950DC6B9E67
+	for <lists+devicetree@lfdr.de>; Tue, 14 Mar 2023 19:31:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230254AbjCNSbH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Mar 2023 14:31:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41008 "EHLO
+        id S230238AbjCNSbL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Mar 2023 14:31:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41096 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230242AbjCNSbG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Mar 2023 14:31:06 -0400
-Received: from mail-wm1-x32c.google.com (mail-wm1-x32c.google.com [IPv6:2a00:1450:4864:20::32c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 01D74C662
-        for <devicetree@vger.kernel.org>; Tue, 14 Mar 2023 11:30:54 -0700 (PDT)
-Received: by mail-wm1-x32c.google.com with SMTP id p23-20020a05600c1d9700b003ead4835046so1058625wms.0
-        for <devicetree@vger.kernel.org>; Tue, 14 Mar 2023 11:30:54 -0700 (PDT)
+        with ESMTP id S230290AbjCNSbI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Mar 2023 14:31:08 -0400
+Received: from mail-wm1-x32f.google.com (mail-wm1-x32f.google.com [IPv6:2a00:1450:4864:20::32f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 05A7C16302
+        for <devicetree@vger.kernel.org>; Tue, 14 Mar 2023 11:30:56 -0700 (PDT)
+Received: by mail-wm1-x32f.google.com with SMTP id o38-20020a05600c512600b003e8320d1c11so1053603wms.1
+        for <devicetree@vger.kernel.org>; Tue, 14 Mar 2023 11:30:55 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bgdev-pl.20210112.gappssmtp.com; s=20210112; t=1678818653;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=biRoXUfCSoBabbn7G7XULvRIrTxmpZeZ/Vb1VeQ6ge4=;
-        b=0+29f8IgQGz4s/l4jb3Jnw7cu19o+AnYx6sN+h0C3houydiWAjujLofs3yYa3XsM1F
-         L7ztxbmqoNMhKY4JbrtqM1WcTDKXa5HuGAPqGo3/vCBv7rtAiePZEIDdsRXx2EhDVWAV
-         JwDzQHyGX3H+jVh7vngc9p1ovDFXYFxENBGkSbdmhMeVmdgkhENPddsoSgzCn+iICKDR
-         JsFyip0agDboWmEhcWQiTl2rTobEG38Xhp6D8jNyIZGdFVOKCPEorNAEqaOXTdux2kH3
-         iniP5fh+1nYqCpHxoTWeg3eGmRA7CyByp9fwJYT1hLeDe4xwuRnHLxr7z8dkwDyvjYBd
-         gOLw==
+        d=bgdev-pl.20210112.gappssmtp.com; s=20210112; t=1678818654;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=/vO0yyz37sCPjmTdBPnxOQssiPwo3vE8UW/JvvEZOCQ=;
+        b=4Gp6JaA+LlrNYraBYA8mWAWkIYN3+2QBmR2ZoCgv8mKrhj6OaBkVzALZZ2IsHQ8rj8
+         rf/HpQHGt8QAXJ7mTNyCxkSkRiP98EP5KTwCZJtwj18BmHTcbQaqIvfSkQbd4Yxbmxw+
+         a+xuPPLUPgdZk81+OFWDNm2/OdZQt4CjthOly5yO52BbthRyKKqCboq/icw/GoDwPI6M
+         myseMTmicelOqnfW2JSIvIDIsUMiaOofIMcK3JViQRbZtGo6E+Fpt12ZuM5X7RRSXFz+
+         ne/Gv6RWef3bgCaK1QtxI3nWAIgk78WFLl9Jar5OQZxHoSTUhqFPFPHC0WxpnyRucP6a
+         FJFw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678818653;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=biRoXUfCSoBabbn7G7XULvRIrTxmpZeZ/Vb1VeQ6ge4=;
-        b=sv7k89mLyYMGlum45WDFfYk1AUcEk8HJoAJKrUVzapcH7ENHkltOKrwXTWWxugcH46
-         NL11EUsWmg0E++1z3vWr4rkYi0bCNBw/pQwqT7W785E8WBVVznBDAPAdx90h5XlwOIMq
-         aIA3GkBKkNUP/TXp4JcACpWd4YBgz/LSfFOCXIJ/xfJzQs+LHg7F1OE/E7CekulJKKBI
-         C0ABvknIdatiVs1SAP9oAtlZ+5CtQT/zm03zTMU1V/rXgsD3wUwmuRhDYe7y33M6yYLd
-         nzlsNN1j4EoH6uPZUYR7Qrn532wmxiGoPkiTedgYpNAeW08RYpfoIYFekiFiQuCsUxtj
-         8NZA==
-X-Gm-Message-State: AO0yUKUT8kyqY9vRJdFixkffMs59+u38XQFElDyeKJzvqQh0YgSZoPHU
-        3qc8W8exxvRpOBSM3Iqk2N8yEA==
-X-Google-Smtp-Source: AK7set/SDpfta3UW8p39l4owg58MtFbG/jBYddMbmOgOxxLaQY/v7NBG1bRqrBqRGmKNApHoHdxc9w==
-X-Received: by 2002:a05:600c:4448:b0:3dc:1687:9ba2 with SMTP id v8-20020a05600c444800b003dc16879ba2mr15041651wmn.35.1678818653479;
-        Tue, 14 Mar 2023 11:30:53 -0700 (PDT)
+        d=1e100.net; s=20210112; t=1678818654;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=/vO0yyz37sCPjmTdBPnxOQssiPwo3vE8UW/JvvEZOCQ=;
+        b=GgIa/9UZqOYXx2Gkt1Fx8I7IPVK4iygxYETpi7RYJhBulXEEHC0sR5LyNEcbmfjWIm
+         kZphf5wQRKOIk+0lxZmO49/vGwrNCkqSlKVBP05Uh9CoqOVtOpuEaUvEVOWA3AomY27V
+         1Wqhh6y7Tmp9HSRWV2dYrFKd5IKd7Or8QJZey6E4Fga32fkU9Mxt+z389y9ODR89uHG3
+         aX1wrY/0Pgr8vQsnBH3SaUWefSIwqx59ybEI69haT6Kr7nKTNWQxgqXI85piJ/S6mlgc
+         FGgJ38IXyCnx7+OUBReBWav0wEudgBOjV0gMWeoW6E/At3HH2BGux3MA27w0u2/XTWox
+         eOOA==
+X-Gm-Message-State: AO0yUKXCnaGFjTOiHPfyRfbwSQXXEn4meLBZtV8hLUHhfQplnZpCDIOt
+        xdQ15CJPcWjG11gsxWr/AfHNqAQSR3RTLiWtY8w=
+X-Google-Smtp-Source: AK7set98JiTo2th2oPGQJOngAEPw6VLt3IgHn4vuukzs7XUq7gqA87KwXNTJBZ1jsCbvcr/7apwWvA==
+X-Received: by 2002:a05:600c:4ecf:b0:3eb:29fe:70ec with SMTP id g15-20020a05600c4ecf00b003eb29fe70ecmr16501913wmq.27.1678818654514;
+        Tue, 14 Mar 2023 11:30:54 -0700 (PDT)
 Received: from brgl-uxlite.home ([2a01:cb1d:334:ac00:fd14:bd52:b53b:d94c])
-        by smtp.gmail.com with ESMTPSA id k28-20020a05600c1c9c00b003e209b45f6bsm4083938wms.29.2023.03.14.11.30.52
+        by smtp.gmail.com with ESMTPSA id k28-20020a05600c1c9c00b003e209b45f6bsm4083938wms.29.2023.03.14.11.30.53
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 14 Mar 2023 11:30:53 -0700 (PDT)
+        Tue, 14 Mar 2023 11:30:54 -0700 (PDT)
 From:   Bartosz Golaszewski <brgl@bgdev.pl>
 To:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
@@ -56,16 +57,20 @@ To:     Andy Gross <agross@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
 Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
-        Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-Subject: [PATCH 00/14] arm64: dts: qcom: sa8775p: add basic PMIC support
-Date:   Tue, 14 Mar 2023 19:30:29 +0100
-Message-Id: <20230314183043.619997-1-brgl@bgdev.pl>
+        Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>
+Subject: [PATCH 01/14] dt-bindings: interrupt-controller: qcom-pdc: add compatible for sa8775p
+Date:   Tue, 14 Mar 2023 19:30:30 +0100
+Message-Id: <20230314183043.619997-2-brgl@bgdev.pl>
 X-Mailer: git-send-email 2.37.2
+In-Reply-To: <20230314183043.619997-1-brgl@bgdev.pl>
+References: <20230314183043.619997-1-brgl@bgdev.pl>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -74,42 +79,27 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
 
-This adds support for a number of PMIC functionalities on sa8775p. The PMIC
-used on the reference board is pm8654au which is another variant of the SPMI
-PMIC from Qualcomm. This series doesn't yet add regulators as these will be
-added separately together with upcoming users (UFS, USB, etc.). The RTC
-doesn't allow setting time and needs to be used in conjunction with SDAM
-the support for which will also be added separately.
+Add a compatible for the Power Domain Controller on SA8775p platforms.
 
-Bartosz Golaszewski (14):
-  dt-bindings: interrupt-controller: qcom-pdc: add compatible for
-    sa8775p
-  arm64: dts: qcom: sa8775p: add the pdc node
-  arm64: dts: qcom: sa8775p: add the spmi node
-  dt-bindings: mfd: qcom,spmi-pmic: add compatible for pmm8654au
-  arm64: dts: qcom: sa8775p: add support for the on-board PMICs
-  arm64: dts: qcom: sa8775p-ride: enable PMIC support
-  arm64: dts: qcom: sa8775p: add the Power On device node
-  arm64: dts: qcom: sa8775p: pmic: add the power key
-  arm64: dts: qcom: sa8775p-ride: enable the power key
-  arm64: dts: qcom: sa8775p: pmic: add support for the pmm8654 RESIN
-    input
-  arm64: dts: qcom: sa8775p: pmic: add thermal zones
-  dt-bindings: pinctrl: qcom,pmic-gpio: add compatible for
-    pmm8654au-gpio
-  pinctrl: qcom: spmi-gpio: add support for pmm8654au-gpio
-  arm64: dts: qcom: sa8775p: add PMIC GPIO controller nodes
+Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+Cc: Thomas Gleixner <tglx@linutronix.de>
+Cc: Marc Zyngier <maz@kernel.org>
+---
+ .../devicetree/bindings/interrupt-controller/qcom,pdc.yaml       | 1 +
+ 1 file changed, 1 insertion(+)
 
- .../interrupt-controller/qcom,pdc.yaml        |   1 +
- .../bindings/mfd/qcom,spmi-pmic.yaml          |   1 +
- .../bindings/pinctrl/qcom,pmic-gpio.yaml      |   2 +
- arch/arm64/boot/dts/qcom/sa8775p-pmics.dtsi   | 136 ++++++++++++++++++
- arch/arm64/boot/dts/qcom/sa8775p-ride.dts     |   5 +
- arch/arm64/boot/dts/qcom/sa8775p.dtsi         |  59 ++++++++
- drivers/pinctrl/qcom/pinctrl-spmi-gpio.c      |   1 +
- 7 files changed, 205 insertions(+)
- create mode 100644 arch/arm64/boot/dts/qcom/sa8775p-pmics.dtsi
-
+diff --git a/Documentation/devicetree/bindings/interrupt-controller/qcom,pdc.yaml b/Documentation/devicetree/bindings/interrupt-controller/qcom,pdc.yaml
+index 94791e261c42..25c4662a0280 100644
+--- a/Documentation/devicetree/bindings/interrupt-controller/qcom,pdc.yaml
++++ b/Documentation/devicetree/bindings/interrupt-controller/qcom,pdc.yaml
+@@ -26,6 +26,7 @@ properties:
+   compatible:
+     items:
+       - enum:
++          - qcom,sa8775p-pdc
+           - qcom,sc7180-pdc
+           - qcom,sc7280-pdc
+           - qcom,sc8280xp-pdc
 -- 
 2.37.2
 
