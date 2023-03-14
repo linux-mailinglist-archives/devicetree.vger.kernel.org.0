@@ -2,92 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C47136B9E37
-	for <lists+devicetree@lfdr.de>; Tue, 14 Mar 2023 19:23:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CB97C6B9E61
+	for <lists+devicetree@lfdr.de>; Tue, 14 Mar 2023 19:31:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229836AbjCNSX6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Mar 2023 14:23:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53390 "EHLO
+        id S230254AbjCNSbH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Mar 2023 14:31:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41008 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229813AbjCNSXz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Mar 2023 14:23:55 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1AB0D8C53E;
-        Tue, 14 Mar 2023 11:23:53 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 81BD9B81AE2;
-        Tue, 14 Mar 2023 18:23:52 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3E402C4339C;
-        Tue, 14 Mar 2023 18:23:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1678818231;
-        bh=j01ms7fQ8/WV8ubqSC9MEojfQXw9ejsapB/+MdCiCyI=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=jwzFueE5mIaxM82APaZiRVKMMcHgn1bKOb9Q63AuNqAlsibX/Tv0qI8TRzxfHeT52
-         cwa46v9lig1HWBeZBcEeUID2cZNYIZWly0bBQLv9Awxw0y5o6K4uo86OUw301HeIf4
-         r/aR1P/fcPDmgz6VbY7b6+F4zRTxSRWibqeQ9wVb51BMrABXK49ssBkXKYL58kMf2/
-         WdxugL13EEjQsKJlpwD6h4Ptmc48O3MDLUUf8sUmNFd7rzEwEZwae5rZ8ct8Xt2Au3
-         mGr9CCwLG1DPT/14Sj4d875XLEOeIl9I1uGEh32ApFzsiEri+0R7JNc6BF4PsDGBhW
-         LU8N7b/gVFL1Q==
-Received: by mail-vs1-f46.google.com with SMTP id k11so6104873vsq.13;
-        Tue, 14 Mar 2023 11:23:51 -0700 (PDT)
-X-Gm-Message-State: AO0yUKUVrQDhmVRnofdhZ8a7dEeD6RsXyoGWKw/5uz7C9OPKw6zPl/SV
-        Xs8hj1LA6+JeuNWkqNl2R3HHwTvvidmOHWtllw==
-X-Google-Smtp-Source: AK7set/3ndAJft4VM1NU2S/PyG7HbW6nCCeH4Zi1Tbt435zS0Q/Zy3ycvUndNjGIweBnoGWbJimT3sPfBdfRqFUGCCw=
-X-Received: by 2002:a05:6102:913:b0:421:eabb:cd6a with SMTP id
- x19-20020a056102091300b00421eabbcd6amr17959167vsh.7.1678818230166; Tue, 14
- Mar 2023 11:23:50 -0700 (PDT)
+        with ESMTP id S230242AbjCNSbG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Mar 2023 14:31:06 -0400
+Received: from mail-wm1-x32c.google.com (mail-wm1-x32c.google.com [IPv6:2a00:1450:4864:20::32c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 01D74C662
+        for <devicetree@vger.kernel.org>; Tue, 14 Mar 2023 11:30:54 -0700 (PDT)
+Received: by mail-wm1-x32c.google.com with SMTP id p23-20020a05600c1d9700b003ead4835046so1058625wms.0
+        for <devicetree@vger.kernel.org>; Tue, 14 Mar 2023 11:30:54 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=bgdev-pl.20210112.gappssmtp.com; s=20210112; t=1678818653;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=biRoXUfCSoBabbn7G7XULvRIrTxmpZeZ/Vb1VeQ6ge4=;
+        b=0+29f8IgQGz4s/l4jb3Jnw7cu19o+AnYx6sN+h0C3houydiWAjujLofs3yYa3XsM1F
+         L7ztxbmqoNMhKY4JbrtqM1WcTDKXa5HuGAPqGo3/vCBv7rtAiePZEIDdsRXx2EhDVWAV
+         JwDzQHyGX3H+jVh7vngc9p1ovDFXYFxENBGkSbdmhMeVmdgkhENPddsoSgzCn+iICKDR
+         JsFyip0agDboWmEhcWQiTl2rTobEG38Xhp6D8jNyIZGdFVOKCPEorNAEqaOXTdux2kH3
+         iniP5fh+1nYqCpHxoTWeg3eGmRA7CyByp9fwJYT1hLeDe4xwuRnHLxr7z8dkwDyvjYBd
+         gOLw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1678818653;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=biRoXUfCSoBabbn7G7XULvRIrTxmpZeZ/Vb1VeQ6ge4=;
+        b=sv7k89mLyYMGlum45WDFfYk1AUcEk8HJoAJKrUVzapcH7ENHkltOKrwXTWWxugcH46
+         NL11EUsWmg0E++1z3vWr4rkYi0bCNBw/pQwqT7W785E8WBVVznBDAPAdx90h5XlwOIMq
+         aIA3GkBKkNUP/TXp4JcACpWd4YBgz/LSfFOCXIJ/xfJzQs+LHg7F1OE/E7CekulJKKBI
+         C0ABvknIdatiVs1SAP9oAtlZ+5CtQT/zm03zTMU1V/rXgsD3wUwmuRhDYe7y33M6yYLd
+         nzlsNN1j4EoH6uPZUYR7Qrn532wmxiGoPkiTedgYpNAeW08RYpfoIYFekiFiQuCsUxtj
+         8NZA==
+X-Gm-Message-State: AO0yUKUT8kyqY9vRJdFixkffMs59+u38XQFElDyeKJzvqQh0YgSZoPHU
+        3qc8W8exxvRpOBSM3Iqk2N8yEA==
+X-Google-Smtp-Source: AK7set/SDpfta3UW8p39l4owg58MtFbG/jBYddMbmOgOxxLaQY/v7NBG1bRqrBqRGmKNApHoHdxc9w==
+X-Received: by 2002:a05:600c:4448:b0:3dc:1687:9ba2 with SMTP id v8-20020a05600c444800b003dc16879ba2mr15041651wmn.35.1678818653479;
+        Tue, 14 Mar 2023 11:30:53 -0700 (PDT)
+Received: from brgl-uxlite.home ([2a01:cb1d:334:ac00:fd14:bd52:b53b:d94c])
+        by smtp.gmail.com with ESMTPSA id k28-20020a05600c1c9c00b003e209b45f6bsm4083938wms.29.2023.03.14.11.30.52
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 14 Mar 2023 11:30:53 -0700 (PDT)
+From:   Bartosz Golaszewski <brgl@bgdev.pl>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
+        Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+Subject: [PATCH 00/14] arm64: dts: qcom: sa8775p: add basic PMIC support
+Date:   Tue, 14 Mar 2023 19:30:29 +0100
+Message-Id: <20230314183043.619997-1-brgl@bgdev.pl>
+X-Mailer: git-send-email 2.37.2
 MIME-Version: 1.0
-References: <20230207234735.201812-1-robh@kernel.org> <CAL_JsqLitc8rX4aXomgXKSPcW8ejEYe1wB_ecyAg7pgJgR=zyA@mail.gmail.com>
- <c02f83c4-3796-40ad-8087-d297ba84e5da@lunn.ch>
-In-Reply-To: <c02f83c4-3796-40ad-8087-d297ba84e5da@lunn.ch>
-From:   Rob Herring <robh@kernel.org>
-Date:   Tue, 14 Mar 2023 13:23:38 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqLz3jMLGi=waCArD4vafBBNybqhD=uch-m3wtPHhA5O=Q@mail.gmail.com>
-Message-ID: <CAL_JsqLz3jMLGi=waCArD4vafBBNybqhD=uch-m3wtPHhA5O=Q@mail.gmail.com>
-Subject: Re: [PATCH] arm64: dts: marvell: armada-ap810: Fix GICv3 ITS node name
-To:     Andrew Lunn <andrew@lunn.ch>
-Cc:     Gregory Clement <gregory.clement@bootlin.com>,
-        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Mar 14, 2023 at 11:22=E2=80=AFAM Andrew Lunn <andrew@lunn.ch> wrote=
-:
->
-> On Tue, Mar 14, 2023 at 10:22:40AM -0500, Rob Herring wrote:
-> > On Tue, Feb 7, 2023 at 5:47=E2=80=AFPM Rob Herring <robh@kernel.org> wr=
-ote:
-> > >
-> > > The GICv3 ITS is an MSI controller, therefore its node name should be
-> > > 'msi-controller'.
-> > >
-> > > Signed-off-by: Rob Herring <robh@kernel.org>
-> > > ---
-> > >  arch/arm64/boot/dts/marvell/armada-ap810-ap0.dtsi | 2 +-
-> > >  1 file changed, 1 insertion(+), 1 deletion(-)
-> >
-> > Ping!
-> >
-> > If not maintained, should I send a patch removing this platform instead=
-?
->
-> Gregory usually picks these up around -rc6.
+From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
 
-Ignoring patches for up to 2 months is not a great experience for submitter=
-s.
+This adds support for a number of PMIC functionalities on sa8775p. The PMIC
+used on the reference board is pm8654au which is another variant of the SPMI
+PMIC from Qualcomm. This series doesn't yet add regulators as these will be
+added separately together with upcoming users (UFS, USB, etc.). The RTC
+doesn't allow setting time and needs to be used in conjunction with SDAM
+the support for which will also be added separately.
 
-Rob
+Bartosz Golaszewski (14):
+  dt-bindings: interrupt-controller: qcom-pdc: add compatible for
+    sa8775p
+  arm64: dts: qcom: sa8775p: add the pdc node
+  arm64: dts: qcom: sa8775p: add the spmi node
+  dt-bindings: mfd: qcom,spmi-pmic: add compatible for pmm8654au
+  arm64: dts: qcom: sa8775p: add support for the on-board PMICs
+  arm64: dts: qcom: sa8775p-ride: enable PMIC support
+  arm64: dts: qcom: sa8775p: add the Power On device node
+  arm64: dts: qcom: sa8775p: pmic: add the power key
+  arm64: dts: qcom: sa8775p-ride: enable the power key
+  arm64: dts: qcom: sa8775p: pmic: add support for the pmm8654 RESIN
+    input
+  arm64: dts: qcom: sa8775p: pmic: add thermal zones
+  dt-bindings: pinctrl: qcom,pmic-gpio: add compatible for
+    pmm8654au-gpio
+  pinctrl: qcom: spmi-gpio: add support for pmm8654au-gpio
+  arm64: dts: qcom: sa8775p: add PMIC GPIO controller nodes
+
+ .../interrupt-controller/qcom,pdc.yaml        |   1 +
+ .../bindings/mfd/qcom,spmi-pmic.yaml          |   1 +
+ .../bindings/pinctrl/qcom,pmic-gpio.yaml      |   2 +
+ arch/arm64/boot/dts/qcom/sa8775p-pmics.dtsi   | 136 ++++++++++++++++++
+ arch/arm64/boot/dts/qcom/sa8775p-ride.dts     |   5 +
+ arch/arm64/boot/dts/qcom/sa8775p.dtsi         |  59 ++++++++
+ drivers/pinctrl/qcom/pinctrl-spmi-gpio.c      |   1 +
+ 7 files changed, 205 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/qcom/sa8775p-pmics.dtsi
+
+-- 
+2.37.2
+
