@@ -2,320 +2,145 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 07A386B90DE
-	for <lists+devicetree@lfdr.de>; Tue, 14 Mar 2023 12:01:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6D0F26B914A
+	for <lists+devicetree@lfdr.de>; Tue, 14 Mar 2023 12:14:49 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229834AbjCNLB4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Mar 2023 07:01:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52750 "EHLO
+        id S231359AbjCNLOr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Mar 2023 07:14:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49828 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230191AbjCNLBw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Mar 2023 07:01:52 -0400
-Received: from meesny.iki.fi (meesny.iki.fi [IPv6:2001:67c:2b0:1c1::201])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C83FC74DE3;
-        Tue, 14 Mar 2023 04:01:49 -0700 (PDT)
-Received: from hillosipuli.retiisi.eu (82-181-192-243.bb.dnainternet.fi [82.181.192.243])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: sailus)
-        by meesny.iki.fi (Postfix) with ESMTPSA id 4PbVvs1B6QzyQx;
-        Tue, 14 Mar 2023 13:01:45 +0200 (EET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=iki.fi; s=meesny;
-        t=1678791706;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=1h6tYodatFLzfE0ast1Inp6RrLfiG9v5fLVwKJIT+MQ=;
-        b=VgPHk5tyg/IrDSjWlu9IibBHCme1uMmKZ8u8doFH+J/00L0z1QEhR4igIMNEYPqUOVKM22
-        2uY5rPP+4/FzKcIdYwPD8wSPx0DG416WjiXHsOUkvYuVGtsMnBCzPK48o0h0OoUAGIexek
-        3MFu5DGjkH1d/020JX4G2DCz+UfHzVk=
-ARC-Seal: i=1; s=meesny; d=iki.fi; t=1678791706; a=rsa-sha256; cv=none;
-        b=FFTDadmhNKPt5Pu1UVnTloLJGXnaJ2bum9SyG+W0bqgZwz9rsl3F3aON6mBqyT+5/fohTD
-        9AstyZCCgWjWFV8b2d6sdm8Pu2IRTIAnKR8F7qH1sBS+Vssz/N08pQN17Wpt+BPKkPgTK0
-        ogyGmtDUvUyDr5snLAnh/wn/S8wjiiE=
-ARC-Authentication-Results: i=1;
-        ORIGINATING;
-        auth=pass smtp.auth=sailus smtp.mailfrom=sakari.ailus@iki.fi
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=iki.fi;
-        s=meesny; t=1678791706;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=1h6tYodatFLzfE0ast1Inp6RrLfiG9v5fLVwKJIT+MQ=;
-        b=ck6F+ovTtTDK5aG69CKNh7dI1vcOadrSt/RRirqpIaqe0WU3h+EK+2faDbdfGMkKQAsrIF
-        Va3dhB813L1iTa05J7tGd6qLQBEOuwC3rsGf7uzcWqS/j36cT/z+yUyEGAgVHhDFGikxAb
-        h2CBbrm2K3kFrf0fMmWsHYbmf8JgEfY=
-Received: from valkosipuli.retiisi.eu (valkosipuli.localdomain [192.168.4.2])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        by hillosipuli.retiisi.eu (Postfix) with ESMTPS id 80EB1634C91;
-        Tue, 14 Mar 2023 13:00:41 +0200 (EET)
-Date:   Tue, 14 Mar 2023 13:00:41 +0200
-From:   Sakari Ailus <sakari.ailus@iki.fi>
-To:     Svyatoslav Ryhel <clamor95@gmail.com>
-Cc:     Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Luca Ceresoli <luca.ceresoli@bootlin.com>,
-        Jean Delvare <jdelvare@suse.de>,
-        Sebastian Reichel <sebastian.reichel@collabora.com>,
-        Daniel Jeong <gshark.jeong@gmail.com>,
-        Ldd-Mlp <ldd-mlp@list.ti.com>, linux-media@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v1 2/2] media: lm3560: convent to OF
-Message-ID: <ZBBT2WM2lWz2Ab7u@valkosipuli.retiisi.eu>
-References: <20230308095209.14700-1-clamor95@gmail.com>
- <20230308095209.14700-3-clamor95@gmail.com>
+        with ESMTP id S230480AbjCNLOX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Mar 2023 07:14:23 -0400
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A3F2C241DC;
+        Tue, 14 Mar 2023 04:13:53 -0700 (PDT)
+Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 32EAStMn011960;
+        Tue, 14 Mar 2023 10:36:26 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=iuYODt/BIaTecACDqyh4KGwhpgU9lb9OttnSUYRLZGc=;
+ b=FQNsKetSmzXdDRQ9la7L71PxnYh5hPOFcCeD5RL2x2OPicjBRFgrvZxvDHLPZJ6+hs/c
+ oyLq5ctVSDcOZkcJ95t+2KMrwdZ0pOy41LLDgUh60jNrWhZS+Iu9fcbuAJHgu200FfP9
+ My+nakQSZUHvIyLSZlG8J3y+Mg1AhSp82CF3blciHUFanmamBLTDqd+eGw48db+VmP/t
+ dPfvGRP1h8+ctFahKDWaVvYHWUu7c0I3MAd+iErUOcR9NLXlTOyaZm/jFke7YsdZSEDK
+ YgBHGucZXF9t1o+3ec1hVJoFlDe+W1ADCZhs8vMS3VdqR4tZQ/q7U3qrZzRPVV5egcge xQ== 
+Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3pa203ufqt-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 14 Mar 2023 10:36:26 +0000
+Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
+        by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 32EAaP1U032647
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 14 Mar 2023 10:36:25 GMT
+Received: from [10.201.3.182] (10.80.80.8) by nalasex01c.na.qualcomm.com
+ (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.41; Tue, 14 Mar
+ 2023 03:36:21 -0700
+Message-ID: <e02980a9-34ca-9b9a-389a-01c599612140@quicinc.com>
+Date:   Tue, 14 Mar 2023 16:06:07 +0530
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230308095209.14700-3-clamor95@gmail.com>
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.8.0
+Subject: Re: [PATCH v3 19/19] PCI: qcom: Expose link transition counts via
+ debugfs for v2.4.0
+Content-Language: en-US
+To:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        <andersson@kernel.org>, <lpieralisi@kernel.org>, <kw@linux.com>,
+        <krzysztof.kozlowski+dt@linaro.org>, <robh@kernel.org>
+CC:     <konrad.dybcio@linaro.org>, <linux-arm-msm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-pci@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+References: <20230310040816.22094-1-manivannan.sadhasivam@linaro.org>
+ <20230310040816.22094-20-manivannan.sadhasivam@linaro.org>
+From:   Sricharan Ramabadhran <quic_srichara@quicinc.com>
+In-Reply-To: <20230310040816.22094-20-manivannan.sadhasivam@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01c.na.qualcomm.com (10.47.97.35)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: mVH93BPhgc0AC0-Lq2E8qKoJzNaeZ-zm
+X-Proofpoint-GUID: mVH93BPhgc0AC0-Lq2E8qKoJzNaeZ-zm
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.254,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
+ definitions=2023-03-14_04,2023-03-14_02,2023-02-09_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 mlxlogscore=999
+ suspectscore=0 spamscore=0 bulkscore=0 malwarescore=0 impostorscore=0
+ clxscore=1015 phishscore=0 adultscore=0 priorityscore=1501
+ lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2212070000 definitions=main-2303140090
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Svyatoslav,
 
-Thanks for the patch.
 
-On Wed, Mar 08, 2023 at 11:52:09AM +0200, Svyatoslav Ryhel wrote:
-> If no pdata is available, try to read from device tree.
-
-I think platform data support could be even dropped these days. But it
-should probably be a separate patch. I think either before or after this
-one would be fine.
-
+On 3/10/2023 9:38 AM, Manivannan Sadhasivam wrote:
+> Qualcomm PCIe controllers of version v2.4.0 have debug registers in the
+> PARF region that count PCIe link transitions. Expose them over debugfs to
+> userspace to help debug the low power issues.
 > 
-> Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
+> Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
 > ---
->  drivers/media/i2c/lm3560.c | 128 +++++++++++++++++++++++++++----------
->  1 file changed, 93 insertions(+), 35 deletions(-)
+>   drivers/pci/controller/dwc/pcie-qcom.c | 33 ++++++++++++++++++++++++++
+>   1 file changed, 33 insertions(+)
 > 
-> diff --git a/drivers/media/i2c/lm3560.c b/drivers/media/i2c/lm3560.c
-> index 5ef613604be7..5541051616b7 100644
-> --- a/drivers/media/i2c/lm3560.c
-> +++ b/drivers/media/i2c/lm3560.c
-> @@ -11,6 +11,7 @@
->  
->  #include <linux/delay.h>
->  #include <linux/module.h>
-> +#include <linux/gpio.h>
->  #include <linux/i2c.h>
->  #include <linux/slab.h>
->  #include <linux/mutex.h>
-> @@ -22,16 +23,16 @@
->  
->  /* registers definitions */
->  #define REG_ENABLE		0x10
-> -#define REG_TORCH_BR	0xa0
-> -#define REG_FLASH_BR	0xb0
-> -#define REG_FLASH_TOUT	0xc0
-> +#define REG_TORCH_BR		0xa0
-> +#define REG_FLASH_BR		0xb0
-> +#define REG_FLASH_TOUT		0xc0
->  #define REG_FLAG		0xd0
->  #define REG_CONFIG1		0xe0
->  
->  /* fault mask */
-> -#define FAULT_TIMEOUT	(1<<0)
-> -#define FAULT_OVERTEMP	(1<<1)
-> -#define FAULT_SHORT_CIRCUIT	(1<<2)
-> +#define FAULT_TIMEOUT		BIT(0)
-> +#define FAULT_OVERTEMP		BIT(1)
-> +#define FAULT_SHORT_CIRCUIT	BIT(2)
->  
->  enum led_enable {
->  	MODE_SHDN = 0x0,
-> @@ -54,6 +55,7 @@ struct lm3560_flash {
->  	struct device *dev;
->  	struct lm3560_platform_data *pdata;
->  	struct regmap *regmap;
-> +	struct gpio_desc *hwen_gpio;
->  	struct mutex lock;
->  
->  	enum v4l2_flash_led_mode led_mode;
-> @@ -356,12 +358,19 @@ static int lm3560_subdev_init(struct lm3560_flash *flash,
->  	flash->subdev_led[led_no].flags |= V4L2_SUBDEV_FL_HAS_DEVNODE;
->  	strscpy(flash->subdev_led[led_no].name, led_name,
->  		sizeof(flash->subdev_led[led_no].name));
+> diff --git a/drivers/pci/controller/dwc/pcie-qcom.c b/drivers/pci/controller/dwc/pcie-qcom.c
+> index f99b7e7f3f73..0b41f007fa90 100644
+> --- a/drivers/pci/controller/dwc/pcie-qcom.c
+> +++ b/drivers/pci/controller/dwc/pcie-qcom.c
+> @@ -37,6 +37,7 @@
+>   /* PARF registers */
+>   #define PARF_SYS_CTRL				0x00
+>   #define PARF_PM_CTRL				0x20
+> +#define PARF_PM_STTS				0x24
+>   #define PARF_PCS_DEEMPH				0x34
+>   #define PARF_PCS_SWING				0x38
+>   #define PARF_PHY_CTRL				0x40
+> @@ -84,6 +85,12 @@
+>   /* PARF_PM_CTRL register fields */
+>   #define REQ_NOT_ENTR_L1				BIT(5)
+>   
+> +/* PARF_PM_STTS register fields */
+> +#define PM_LINKST_IN_L1SUB			BIT(8)
+> +#define PM_LINKST_IN_L0S			BIT(7)
+> +#define PM_LINKST_IN_L2				BIT(5)
+> +#define PM_LINKST_IN_L1				BIT(4)
 > +
->  	rval = lm3560_init_controls(flash, led_no);
-> -	if (rval)
-> +	if (rval) {
-> +		dev_err(flash->dev, "failed to init controls: %d\n", rval);
->  		goto err_out;
-> +	}
-> +
->  	rval = media_entity_pads_init(&flash->subdev_led[led_no].entity, 0, NULL);
-> -	if (rval < 0)
-> +	if (rval < 0) {
-> +		dev_err(flash->dev, "failed to init media entity pads: %d\n", rval);
->  		goto err_out;
-> +	}
-> +
->  	flash->subdev_led[led_no].entity.function = MEDIA_ENT_F_FLASH;
->  
->  	return rval;
-> @@ -391,6 +400,49 @@ static int lm3560_init_device(struct lm3560_flash *flash)
->  	return rval;
->  }
->  
-> +static int lm3560_of_probe(struct lm3560_flash *flash)
+>   /* PARF_PCS_DEEMPH register fields */
+>   #define PCS_DEEMPH_TX_DEEMPH_GEN1(x)		FIELD_PREP(GENMASK(21, 16), x)
+>   #define PCS_DEEMPH_TX_DEEMPH_GEN2_3_5DB(x)	FIELD_PREP(GENMASK(13, 8), x)
+> @@ -737,6 +744,31 @@ static int qcom_pcie_post_init_2_4_0(struct qcom_pcie *pcie)
+>   	return 0;
+>   }
+>   
+> +static int qcom_pcie_debugfs_func_2_4_0(struct seq_file *s, void *data)
 > +{
-> +	struct lm3560_platform_data *pdata;
-> +	struct fwnode_handle *node;
-> +	int ret, reg;
+> +	struct qcom_pcie *pcie = (struct qcom_pcie *) dev_get_drvdata(s->private);
 > +
-> +	pdata = devm_kzalloc(flash->dev, sizeof(*pdata), GFP_KERNEL);
-> +	if (!pdata)
-> +		return -ENODEV;
+> +	seq_printf(s, "L0s transition count: %u\n",
+> +		   readl_relaxed(pcie->parf + PM_LINKST_IN_L0S));
 > +
-> +	ret = device_property_read_u32(flash->dev,
-> +				       "ti,peak-current", &pdata->peak);
-> +	if (ret)
-> +		pdata->peak = LM3560_PEAK_3600mA;
+> +	seq_printf(s, "L1 transition count: %u\n",
+> +		   readl_relaxed(pcie->parf + PM_LINKST_IN_L1));
 > +
-> +	ret = device_property_read_u32(flash->dev,
-> +				       "ti,max-flash-timeout",
-> +				       &pdata->max_flash_timeout);
-> +	if (ret)
-> +		pdata->max_flash_timeout = LM3560_FLASH_TOUT_MAX;
+> +	seq_printf(s, "L1.1 transition count: %u\n",
+> +		   readl_relaxed(pcie->parf + PM_LINKST_IN_L1SUB));
 > +
-> +	device_for_each_child_node(flash->dev, node) {
-> +		fwnode_property_read_u32(node, "reg", &reg);
+> +	seq_printf(s, "L2 transition count: %u\n",
+> +		   readl_relaxed(pcie->parf + PM_LINKST_IN_L2));
 > +
-> +		if (reg == LM3560_LED0 || reg == LM3560_LED1) {
-> +			ret = device_property_read_u32(flash->dev,
-> +						       "ti,max-flash-current",
-> +						       &pdata->max_flash_brt[reg]);
-> +			if (ret)
-> +				pdata->max_flash_brt[reg] = LM3560_FLASH_TOUT_MAX;
-> +
-> +			ret = device_property_read_u32(flash->dev,
-> +						       "ti,max-torch-current",
-> +						       &pdata->max_torch_brt[reg]);
-> +			if (ret)
-> +				pdata->max_torch_brt[reg] = LM3560_TORCH_BRT_MAX;
-> +		}
-> +	}
-> +	flash->pdata = pdata;
-> +
-> +	return 0;
-> +}
-> +
->  static int lm3560_probe(struct i2c_client *client)
->  {
->  	struct lm3560_flash *flash;
-> @@ -398,44 +450,41 @@ static int lm3560_probe(struct i2c_client *client)
->  	int rval;
->  
->  	flash = devm_kzalloc(&client->dev, sizeof(*flash), GFP_KERNEL);
-> -	if (flash == NULL)
-> +	if (!flash)
->  		return -ENOMEM;
->  
->  	flash->regmap = devm_regmap_init_i2c(client, &lm3560_regmap);
-> -	if (IS_ERR(flash->regmap)) {
-> -		rval = PTR_ERR(flash->regmap);
-> -		return rval;
-> -	}
-> +	if (IS_ERR(flash->regmap))
-> +		return dev_err_probe(&client->dev, PTR_ERR(flash->regmap),
-> +				     "failed to init regmap\n");
->  
-> -	/* if there is no platform data, use chip default value */
-> -	if (pdata == NULL) {
-> -		pdata = devm_kzalloc(&client->dev, sizeof(*pdata), GFP_KERNEL);
-> -		if (pdata == NULL)
-> -			return -ENODEV;
-> -		pdata->peak = LM3560_PEAK_3600mA;
-> -		pdata->max_flash_timeout = LM3560_FLASH_TOUT_MAX;
-> -		/* led 1 */
-> -		pdata->max_flash_brt[LM3560_LED0] = LM3560_FLASH_BRT_MAX;
-> -		pdata->max_torch_brt[LM3560_LED0] = LM3560_TORCH_BRT_MAX;
-> -		/* led 2 */
-> -		pdata->max_flash_brt[LM3560_LED1] = LM3560_FLASH_BRT_MAX;
-> -		pdata->max_torch_brt[LM3560_LED1] = LM3560_TORCH_BRT_MAX;
-> -	}
-> -	flash->pdata = pdata;
->  	flash->dev = &client->dev;
->  	mutex_init(&flash->lock);
->  
-> +	/* if there is no platform data, try to read from device tree */
-> +	if (!pdata)
-> +		lm3560_of_probe(flash);
-> +
-> +	flash->hwen_gpio = devm_gpiod_get_optional(flash->dev, "enable",
-> +						   GPIOD_OUT_HIGH);
-> +	if (IS_ERR(flash->hwen_gpio))
-> +		return dev_err_probe(&client->dev, PTR_ERR(flash->hwen_gpio),
-> +				     "failed to get hwen gpio\n");
-> +
->  	rval = lm3560_subdev_init(flash, LM3560_LED0, "lm3560-led0");
->  	if (rval < 0)
-> -		return rval;
-> +		return dev_err_probe(&client->dev, rval,
-> +				     "failed to init led0 subdev\n");
->  
->  	rval = lm3560_subdev_init(flash, LM3560_LED1, "lm3560-led1");
->  	if (rval < 0)
-> -		return rval;
-> +		return dev_err_probe(&client->dev, rval,
-> +				     "failed to init led1 subdev\n");
->  
->  	rval = lm3560_init_device(flash);
->  	if (rval < 0)
-> -		return rval;
-> +		return dev_err_probe(&client->dev, rval,
-> +				     "failed to init device\n");
->  
->  	i2c_set_clientdata(client, flash);
->  
-> @@ -452,21 +501,30 @@ static void lm3560_remove(struct i2c_client *client)
->  		v4l2_ctrl_handler_free(&flash->ctrls_led[i]);
->  		media_entity_cleanup(&flash->subdev_led[i].entity);
->  	}
-> +
-> +	gpiod_set_value_cansleep(flash->hwen_gpio, 0);
->  }
->  
-> +static const struct of_device_id lm3560_match[] = {
-> +	{ .compatible = "ti,lm3559" },
-> +	{ .compatible = "ti,lm3560" },
-> +	{ }
-> +};
-> +MODULE_DEVICE_TABLE(of, lm3560_match);
-> +
->  static const struct i2c_device_id lm3560_id_table[] = {
->  	{LM3559_NAME, 0},
->  	{LM3560_NAME, 0},
->  	{}
->  };
-> -
->  MODULE_DEVICE_TABLE(i2c, lm3560_id_table);
->  
->  static struct i2c_driver lm3560_i2c_driver = {
->  	.driver = {
-> -		   .name = LM3560_NAME,
-> -		   .pm = NULL,
-> -		   },
-> +		.name = LM3560_NAME,
-> +		.pm = NULL,
-> +		.of_match_table = lm3560_match,
-> +	},
->  	.probe_new = lm3560_probe,
->  	.remove = lm3560_remove,
->  	.id_table = lm3560_id_table,
 
--- 
-Kind regards,
+  Using bitmask as register offset ? instead use PM_STTS and bitmask it ?
 
-Sakari Ailus
+Regards,
+  Sricharan
