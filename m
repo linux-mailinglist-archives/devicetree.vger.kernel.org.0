@@ -2,92 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 011686B8DE9
-	for <lists+devicetree@lfdr.de>; Tue, 14 Mar 2023 09:56:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DE1546B8DF7
+	for <lists+devicetree@lfdr.de>; Tue, 14 Mar 2023 09:59:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229853AbjCNI4D (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Mar 2023 04:56:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47600 "EHLO
+        id S230325AbjCNI7S (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Mar 2023 04:59:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53266 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230139AbjCNI4B (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Mar 2023 04:56:01 -0400
-Received: from box.trvn.ru (box.trvn.ru [194.87.146.52])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7476472B0B;
-        Tue, 14 Mar 2023 01:55:52 -0700 (PDT)
-Received: from authenticated-user (box.trvn.ru [194.87.146.52])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
-        (No client certificate requested)
-        by box.trvn.ru (Postfix) with ESMTPSA id 822A94183B;
-        Tue, 14 Mar 2023 13:55:47 +0500 (+05)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=trvn.ru; s=mail;
-        t=1678784148; bh=L0zF40kbsxnf25i5ghpBFl6J1z50oeGFvrl5F0tRH0o=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=YKA/K+utQtx7cKzzk3+jfvrVFDvPoRmeStiLzAsslUC6JESXZbURqF0WkVnUk+6yi
-         6Kg/2V64BhP5eHsdb3g/EQIq8LeLQNUvjvk/UASdEObzA82lf8a5IVvPjnryaJpH0N
-         udVqhQqio6OcbM/muOkfpseMbp5DOFLe8bT69MxJVrwj0u1yrHGx0ah5clDviwae7p
-         HQM1rvarKzvAas+3Z7bTSB/bpT8ql5vVNPcpnBlG7izJzotdvWS84nzr+57X5W/jYl
-         k/kEvuEHl1gdVkT8h2L+GiTPjJcLvp/UNNX9jJ+RtkavAm50mLrCVNQHb+mVu5skAt
-         k6FvKVrv2jGtA==
+        with ESMTP id S230210AbjCNI7L (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Mar 2023 04:59:11 -0400
+Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com [IPv6:2a00:1450:4864:20::52b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 13D569385D
+        for <devicetree@vger.kernel.org>; Tue, 14 Mar 2023 01:59:09 -0700 (PDT)
+Received: by mail-ed1-x52b.google.com with SMTP id r11so7307339edd.5
+        for <devicetree@vger.kernel.org>; Tue, 14 Mar 2023 01:59:09 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1678784347;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=ts5E2sXV5q4edQqbRirKYvhO74M+RYRaYKodfMUcirQ=;
+        b=iicfWPR3lBSHsyCrq40UcWRog8OWEFrzUbTXz9m9SdgjiscGI1iKnif8rFKLdM4fq3
+         +Q5iyufNvMZufKCrDDR93yFxYvoUJUOcOhKaqlwgBGKVTwsa8D3hsJoeLFoX8GDw61rN
+         3KmfsT9dUKEdSOLFKFpdUc+MsUBo/4YCr/3XMz/vbs6DT5AGRtvebNy0cutDoNMdOJ53
+         beCJbASv8ZkvpzViWIqXPc+CQm/8Eb7qZCOPCMzyuYFRFnncgtMVWgbBboO0+hEwA4ku
+         HDIlx27qHVQUwN+7dTIxuaMQ4EBp0MVOez1CQay+WqK1aTRFAPW+7MuISABO1XLBX2sO
+         hYQQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1678784347;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=ts5E2sXV5q4edQqbRirKYvhO74M+RYRaYKodfMUcirQ=;
+        b=Ij7w2+faMeZbf25vLsWRr5Dop/NReUuvegC2vqImP9t73cE+17PudzF/Q9+VwFfdKI
+         FbOSPsazSAZTi/CeguGcOvmRCDxhQhBC/kC8xz8KasUEMZhVuj0zE3CuruF4oEgfO+nj
+         ODYbMfiGwRvsdTQmiqAJ9oA2ROT0jSSOG6qI/1Hq+OoOVoVXVX5doBcfW+HPYryZIIwW
+         9SmkbXkAFidcjKoqwfXJM/SGu5wgs3jek4tVryIYSh6Dy2r6XPLHCSBL3fkQChlgBjFg
+         dUueCquPvWQVrzCdfP9474z+iZZWyrjX5FQ4X0xq7cadqd1lrlb3fj+cgKpFfUz7qcMq
+         LmNA==
+X-Gm-Message-State: AO0yUKUb7tcq7B2dQ6+qVEHl4P1FxjSTWNcwT4diMB31ji2iOkQ0M43+
+        RgK2aTmyibocfARJ50toF0WwlA==
+X-Google-Smtp-Source: AK7set8lPVQtf/O3goUKBQW0LJ3wMGByz1frmbj0AsmC0okH05SeQ67LrbiCtH+SKdv9XJ69QOj1rA==
+X-Received: by 2002:a50:fa97:0:b0:4fb:999:e04b with SMTP id w23-20020a50fa97000000b004fb0999e04bmr8145031edr.39.1678784347630;
+        Tue, 14 Mar 2023 01:59:07 -0700 (PDT)
+Received: from ?IPV6:2a02:810d:15c0:828:59be:4b3f:994b:e78c? ([2a02:810d:15c0:828:59be:4b3f:994b:e78c])
+        by smtp.gmail.com with ESMTPSA id b3-20020a170906660300b008c16025b318sm819538ejp.155.2023.03.14.01.59.06
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 14 Mar 2023 01:59:07 -0700 (PDT)
+Message-ID: <f2330802-da0e-f446-e9ac-ce256ba7acaf@linaro.org>
+Date:   Tue, 14 Mar 2023 09:59:06 +0100
 MIME-Version: 1.0
-Date:   Tue, 14 Mar 2023 13:55:45 +0500
-From:   Nikita Travkin <nikita@trvn.ru>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     agross@kernel.org, andersson@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, konrad.dybcio@linaro.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht
-Subject: Re: [PATCH 1/2] dt-bindings: arm: qcom: Add Acer Aspire 1
-In-Reply-To: <92725aab-a540-b35a-6614-2b91039f433c@linaro.org>
-References: <20230314064322.65429-1-nikita@trvn.ru>
- <92725aab-a540-b35a-6614-2b91039f433c@linaro.org>
-Message-ID: <f09056264510944fbc35a0ad27e99c93@trvn.ru>
-X-Sender: nikita@trvn.ru
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.8.0
+Subject: Re: [PATCH v1 1/3] dt-bindings: usb: smsc,usb3503: Add usb3803
+Content-Language: en-US
+To:     Francesco Dolcini <francesco@dolcini.it>,
+        linux-usb@vger.kernel.org, devicetree@vger.kernel.org
+Cc:     Emanuele Ghidoli <emanuele.ghidoli@toradex.com>,
+        linux-kernel@vger.kernel.org,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Dongjin Kim <tobetter@gmail.com>,
+        Francesco Dolcini <francesco.dolcini@toradex.com>
+References: <20230313165039.255579-1-francesco@dolcini.it>
+ <20230313165039.255579-2-francesco@dolcini.it>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230313165039.255579-2-francesco@dolcini.it>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Krzysztof Kozlowski писал(а) 14.03.2023 13:21:
-> On 14/03/2023 07:43, Nikita Travkin wrote:
->> Acer Aspire 1 is a laptop based on sc7180. Document it's compatible.
->>
->> Signed-off-by: Nikita Travkin <nikita@trvn.ru>
->> ---
->>  Documentation/devicetree/bindings/arm/qcom.yaml | 5 +++++
->>  1 file changed, 5 insertions(+)
->>
->> diff --git a/Documentation/devicetree/bindings/arm/qcom.yaml b/Documentation/devicetree/bindings/arm/qcom.yaml
->> index 1bb24d46e4ee..903a5ea42cf6 100644
->> --- a/Documentation/devicetree/bindings/arm/qcom.yaml
->> +++ b/Documentation/devicetree/bindings/arm/qcom.yaml
->> @@ -352,6 +352,11 @@ properties:
->>                - qcom,qru1000-idp
->>            - const: qcom,qru1000
->>
->> +      - items:
->> +          - enum:
->> +              - acer,aspire1
->> +          - const: qcom,sc7180
->> +
->>        - description: Qualcomm Technologies, Inc. SC7180 IDP
+On 13/03/2023 17:50, Francesco Dolcini wrote:
+> From: Emanuele Ghidoli <emanuele.ghidoli@toradex.com>
 > 
-> Please merge with this one and drop the description (or rename it to
-> something like SC7180-based boards). The sc7180 entries spread a lot and
-> it is not helping to read the file.
+> Add support for usb3803, compared to usb3503 it uses a regular USB
+> connection to upstream instead of HSIC, it has an additional
+> low power mode (bypass) and an additional control signal (BYPASS_N).
 > 
+> In bypass mode the downstream port 3 is connected to the upstream port
+> with low switch resistance R_on.
+> 
+> Signed-off-by: Emanuele Ghidoli <emanuele.ghidoli@toradex.com>
+> Signed-off-by: Francesco Dolcini <francesco.dolcini@toradex.com>
 
-I was debating whether to copy CrOS style or the majority for this one.
-Will merge with IDP (dropping the description to be in line with all others)
-but will not touch any other sc7180 boards.
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-Thanks,
-Nikita
+Best regards,
+Krzysztof
 
-> Best regards,
-> Krzysztof
