@@ -2,195 +2,145 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B09926BA1D2
-	for <lists+devicetree@lfdr.de>; Tue, 14 Mar 2023 23:08:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9EDEE6BA218
+	for <lists+devicetree@lfdr.de>; Tue, 14 Mar 2023 23:13:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230365AbjCNWI2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Mar 2023 18:08:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37788 "EHLO
+        id S230458AbjCNWNS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Mar 2023 18:13:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40424 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229997AbjCNWI1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Mar 2023 18:08:27 -0400
-Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4589B1D92A
-        for <devicetree@vger.kernel.org>; Tue, 14 Mar 2023 15:08:22 -0700 (PDT)
-Received: by mail-lf1-x136.google.com with SMTP id x17so5791952lfu.5
-        for <devicetree@vger.kernel.org>; Tue, 14 Mar 2023 15:08:22 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1678831701;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=fpQg81yl9mySeLnnw04fGp4olFldyfTH5VBKKs6Zih4=;
-        b=Dy4ETYlRyvi3QRl3pV1d9C02qf8vHUJD1dT8tIrbC0WzeGy93RyBLGCr8Avx5Mhifn
-         U+DgoTN9lP/8h2uH+LhlL20xkkESGeO6K4er3tNlbTH86L02R5ZW0OmhxLicsArk/rzB
-         g/ZMQjlC+4QpwwJ5lbSsOxI0AJt/dDKlvSOfKTb6YtcmM6SnGchJiYQw3kTtd//y0mdw
-         U1pQphrAPHTogtlUTXOvtojsRHbLi2SG0ayykxSTo7IHFt283run08UYwasl47bRJ7B1
-         8M23H+eBcIbNkdZTNQyfJDoaZU3C0Ocd7GCWPkxfZ+uN/TD9APxjfyi/zuwHlEKOwZ0b
-         Nd+w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678831701;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=fpQg81yl9mySeLnnw04fGp4olFldyfTH5VBKKs6Zih4=;
-        b=ULgwPak6tQKOlr6mrAU2BKhJJpnCrD7s+R5r2ywb5CO6ncIrz0eswxtYxQgJgEnoT0
-         dkzwW5eV9Od3n61ht1VIXDdz/jV7vg5iwuO3mhk2BYNZgHVnTUCTG5ZCoVj6/w55YpMG
-         hVVgwHp5OmuWoB/W70AbOcPtUSTyHv6q8iKV6uCIEhvmzdtRz3HmYsM7pClLmkbOBGfI
-         tJtOlP7DfaLWODwoGwZnsBd6G96Rxw96vPsCYzkAXGZQokr8SpGUFhYkWwIIJopTpAj8
-         iPkdwpUl6EUcDjxAgTMlTfPJ6rNMbtkuuMCTa9feaZXpCyvn6DMqverY2d2F19zcMeFh
-         ezsQ==
-X-Gm-Message-State: AO0yUKXSZYERWVQpgl/LHdkpn7/qC+dVddQrtvyOTOyDatwVugztoKl6
-        lhH0yXTfPOFQRAunT0iOPnZGxA==
-X-Google-Smtp-Source: AK7set8vWGX8EOeviKXO4a7BWI18uh6P2CeHD7ulV2zPVJ3wdp+z35onfAxJ36mJ0Oq+S136kCLsJA==
-X-Received: by 2002:ac2:4a91:0:b0:4e8:3f36:414a with SMTP id l17-20020ac24a91000000b004e83f36414amr1335781lfp.55.1678831700894;
-        Tue, 14 Mar 2023 15:08:20 -0700 (PDT)
-Received: from [192.168.1.101] (abyj16.neoplus.adsl.tpnet.pl. [83.9.29.16])
-        by smtp.gmail.com with ESMTPSA id m4-20020a056512014400b004dc6070e121sm555029lfo.83.2023.03.14.15.08.19
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 14 Mar 2023 15:08:20 -0700 (PDT)
-Message-ID: <c8c586f5-ac65-5164-eea6-8a0a53e62e08@linaro.org>
-Date:   Tue, 14 Mar 2023 23:08:18 +0100
+        with ESMTP id S231387AbjCNWM6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Mar 2023 18:12:58 -0400
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 70B4F3D935;
+        Tue, 14 Mar 2023 15:11:30 -0700 (PDT)
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 32EMALNI053772;
+        Tue, 14 Mar 2023 17:10:21 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1678831821;
+        bh=FGrRdCUskDHxiRKlUY5IFIH/E1bvVi55QQQBTFD0E3c=;
+        h=Date:Subject:To:CC:References:From:In-Reply-To;
+        b=llJV0+BKWsnbL5TPedZzFsx/DbSOWzVCQf4SP5vRVlAgnKwYPzv2OVuYWnv6fzR06
+         mmTMxg6rFmcsAEdI80KwFLrm/HuyF1FvDK5lc3iH1bpzFseqe804xhsLrM/cP8ALit
+         s+Diph5hI//N5T5+zILFVhb4f5UMQb+B0cv+J4G0=
+Received: from DFLE113.ent.ti.com (dfle113.ent.ti.com [10.64.6.34])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 32EMALIp076180
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Tue, 14 Mar 2023 17:10:21 -0500
+Received: from DFLE101.ent.ti.com (10.64.6.22) by DFLE113.ent.ti.com
+ (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Tue, 14
+ Mar 2023 17:10:21 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE101.ent.ti.com
+ (10.64.6.22) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
+ Frontend Transport; Tue, 14 Mar 2023 17:10:21 -0500
+Received: from [10.250.33.160] (ileaxei01-snat.itg.ti.com [10.180.69.5])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 32EMAKXu041877;
+        Tue, 14 Mar 2023 17:10:20 -0500
+Message-ID: <88e8617c-7b88-238d-2097-bfc25c0f9bf7@ti.com>
+Date:   Tue, 14 Mar 2023 17:10:20 -0500
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-Subject: Re: [PATCH v4 2/5] arm64: dts: qcom: sm8350: switch to combo usb3/dp
- phy
+ Thunderbird/102.7.1
+Subject: Re: [PATCH 2/2] arm64: dts: ti: k3-j784s4-evm: Enable MCU CPSW2G
 Content-Language: en-US
-To:     Neil Armstrong <neil.armstrong@linaro.org>,
-        Rob Clark <robdclark@gmail.com>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Sean Paul <sean@poorly.run>, David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Kuogee Hsieh <quic_khsieh@quicinc.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>
-Cc:     linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20230206-topic-sm8450-upstream-dp-controller-v4-0-dca33f531e0d@linaro.org>
- <20230206-topic-sm8450-upstream-dp-controller-v4-2-dca33f531e0d@linaro.org>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20230206-topic-sm8450-upstream-dp-controller-v4-2-dca33f531e0d@linaro.org>
-Content-Type: text/plain; charset=UTF-8
+To:     Siddharth Vadapalli <s-vadapalli@ti.com>, <nm@ti.com>,
+        <vigneshr@ti.com>, <kristo@kernel.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski@linaro.org>,
+        <krzysztof.kozlowski+dt@linaro.org>
+CC:     <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <srk@ti.com>
+References: <20230314104055.1475054-1-s-vadapalli@ti.com>
+ <20230314104055.1475054-3-s-vadapalli@ti.com>
+From:   Andrew Davis <afd@ti.com>
+In-Reply-To: <20230314104055.1475054-3-s-vadapalli@ti.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-0.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_SORBS_HTTP,RCVD_IN_SORBS_SOCKS,SPF_HELO_NONE,SPF_PASS,
-        URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.6
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_PASS,SPF_PASS,URIBL_BLOCKED autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 9.03.2023 10:19, Neil Armstrong wrote:
-> The first QMP PHY is an USB3/DP combo phy, switch to the newly
-> documented bindings and register the clocks to the GCC
-> and DISPCC controllers.
+On 3/14/23 5:40 AM, Siddharth Vadapalli wrote:
+> Add device tree support to enable MCU CPSW with J784S4 EVM.
 > 
-> Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> Tested-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org> #SM8350-HDK
-> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+> Signed-off-by: Siddharth Vadapalli <s-vadapalli@ti.com>
 > ---
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
-
-Konrad
->  arch/arm64/boot/dts/qcom/sm8350.dtsi | 42 +++++++++++++-----------------------
->  1 file changed, 15 insertions(+), 27 deletions(-)
+>   arch/arm64/boot/dts/ti/k3-j784s4-evm.dts | 47 ++++++++++++++++++++++++
+>   1 file changed, 47 insertions(+)
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/sm8350.dtsi b/arch/arm64/boot/dts/qcom/sm8350.dtsi
-> index 1c97e28da6ad..94e85313f15d 100644
-> --- a/arch/arm64/boot/dts/qcom/sm8350.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sm8350.dtsi
-> @@ -13,6 +13,7 @@
->  #include <dt-bindings/gpio/gpio.h>
->  #include <dt-bindings/interconnect/qcom,sm8350.h>
->  #include <dt-bindings/mailbox/qcom-ipcc.h>
-> +#include <dt-bindings/phy/phy-qcom-qmp.h>
->  #include <dt-bindings/power/qcom-rpmpd.h>
->  #include <dt-bindings/soc/qcom,rpmh-rsc.h>
->  #include <dt-bindings/thermal/thermal.h>
-> @@ -653,7 +654,7 @@ gcc: clock-controller@100000 {
->  				 <&ufs_mem_phy_lanes 0>,
->  				 <&ufs_mem_phy_lanes 1>,
->  				 <&ufs_mem_phy_lanes 2>,
-> -				 <0>,
-> +				 <&usb_1_qmpphy QMP_USB43DP_USB3_PIPE_CLK>,
->  				 <0>;
->  		};
->  
-> @@ -2125,37 +2126,24 @@ usb_2_hsphy: phy@88e4000 {
->  			resets = <&gcc GCC_QUSB2PHY_SEC_BCR>;
->  		};
->  
-> -		usb_1_qmpphy: phy-wrapper@88e9000 {
-> -			compatible = "qcom,sm8350-qmp-usb3-phy";
-> -			reg = <0 0x088e9000 0 0x200>,
-> -			      <0 0x088e8000 0 0x20>;
-> -			status = "disabled";
-> -			#address-cells = <2>;
-> -			#size-cells = <2>;
-> -			ranges;
-> +		usb_1_qmpphy: phy@88e9000 {
-> +			compatible = "qcom,sm8350-qmp-usb3-dp-phy";
-> +			reg = <0 0x088e8000 0 0x3000>;
->  
->  			clocks = <&gcc GCC_USB3_PRIM_PHY_AUX_CLK>,
->  				 <&rpmhcc RPMH_CXO_CLK>,
-> -				 <&gcc GCC_USB3_PRIM_PHY_COM_AUX_CLK>;
-> -			clock-names = "aux", "ref_clk_src", "com_aux";
-> +				 <&gcc GCC_USB3_PRIM_PHY_COM_AUX_CLK>,
-> +				 <&gcc GCC_USB3_PRIM_PHY_PIPE_CLK>;
-> +			clock-names = "aux", "ref", "com_aux", "usb3_pipe";
->  
->  			resets = <&gcc GCC_USB3_DP_PHY_PRIM_BCR>,
->  				 <&gcc GCC_USB3_PHY_PRIM_BCR>;
->  			reset-names = "phy", "common";
->  
-> -			usb_1_ssphy: phy@88e9200 {
-> -				reg = <0 0x088e9200 0 0x200>,
-> -				      <0 0x088e9400 0 0x200>,
-> -				      <0 0x088e9c00 0 0x400>,
-> -				      <0 0x088e9600 0 0x200>,
-> -				      <0 0x088e9800 0 0x200>,
-> -				      <0 0x088e9a00 0 0x100>;
-> -				#phy-cells = <0>;
-> -				#clock-cells = <0>;
-> -				clocks = <&gcc GCC_USB3_PRIM_PHY_PIPE_CLK>;
-> -				clock-names = "pipe0";
-> -				clock-output-names = "usb3_phy_pipe_clk_src";
-> -			};
-> +			#clock-cells = <1>;
-> +			#phy-cells = <1>;
+> diff --git a/arch/arm64/boot/dts/ti/k3-j784s4-evm.dts b/arch/arm64/boot/dts/ti/k3-j784s4-evm.dts
+> index 8cd4a7ecc121..05db64ed0706 100644
+> --- a/arch/arm64/boot/dts/ti/k3-j784s4-evm.dts
+> +++ b/arch/arm64/boot/dts/ti/k3-j784s4-evm.dts
+> @@ -140,6 +140,32 @@ J784S4_IOPAD(0x020, PIN_INPUT, 7) /* (AJ35) MCAN15_RX.GPIO0_8 */
+>   	};
+>   };
+>   
+> +&wkup_pmx0 {
+> +	mcu_cpsw_pins_default: mcu-cpsw-pins-default {
+> +		pinctrl-single,pins = <
+> +			J784S4_WKUP_IOPAD(0x094, PIN_INPUT, 0) /* (A35) MCU_RGMII1_RD0 */
+> +			J784S4_WKUP_IOPAD(0x090, PIN_INPUT, 0) /* (B36) MCU_RGMII1_RD1 */
+> +			J784S4_WKUP_IOPAD(0x08c, PIN_INPUT, 0) /* (C36) MCU_RGMII1_RD2 */
+> +			J784S4_WKUP_IOPAD(0x088, PIN_INPUT, 0) /* (D36) MCU_RGMII1_RD3 */
+> +			J784S4_WKUP_IOPAD(0x084, PIN_INPUT, 0) /* (B37) MCU_RGMII1_RXC */
+> +			J784S4_WKUP_IOPAD(0x06c, PIN_INPUT, 0) /* (C37) MCU_RGMII1_RX_CTL */
+> +			J784S4_WKUP_IOPAD(0x07c, PIN_OUTPUT, 0) /* (D37) MCU_RGMII1_TD0 */
+> +			J784S4_WKUP_IOPAD(0x078, PIN_OUTPUT, 0) /* (D38) MCU_RGMII1_TD1 */
+> +			J784S4_WKUP_IOPAD(0x074, PIN_OUTPUT, 0) /* (E37) MCU_RGMII1_TD2 */
+> +			J784S4_WKUP_IOPAD(0x070, PIN_OUTPUT, 0) /* (E38) MCU_RGMII1_TD3 */
+> +			J784S4_WKUP_IOPAD(0x080, PIN_OUTPUT, 0) /* (E36) MCU_RGMII1_TXC */
+> +			J784S4_WKUP_IOPAD(0x068, PIN_OUTPUT, 0) /* (C38) MCU_RGMII1_TX_CTL */
+> +		>;
+> +	};
 > +
-> +			status = "disabled";
->  		};
->  
->  		usb_2_qmpphy: phy-wrapper@88eb000 {
-> @@ -2258,7 +2246,7 @@ usb_1_dwc3: usb@a600000 {
->  				iommus = <&apps_smmu 0x0 0x0>;
->  				snps,dis_u2_susphy_quirk;
->  				snps,dis_enblslpm_quirk;
-> -				phys = <&usb_1_hsphy>, <&usb_1_ssphy>;
-> +				phys = <&usb_1_hsphy>, <&usb_1_qmpphy QMP_USB43DP_USB3_PHY>;
->  				phy-names = "usb2-phy", "usb3-phy";
->  			};
->  		};
-> @@ -2623,8 +2611,8 @@ dispcc: clock-controller@af00000 {
->  			clocks = <&rpmhcc RPMH_CXO_CLK>,
->  				 <&mdss_dsi0_phy 0>, <&mdss_dsi0_phy 1>,
->  				 <&mdss_dsi1_phy 0>, <&mdss_dsi1_phy 1>,
-> -				 <0>,
-> -				 <0>;
-> +				 <&usb_1_qmpphy QMP_USB43DP_DP_LINK_CLK>,
-> +				 <&usb_1_qmpphy QMP_USB43DP_DP_VCO_DIV_CLK>;
->  			clock-names = "bi_tcxo",
->  				      "dsi0_phy_pll_out_byteclk",
->  				      "dsi0_phy_pll_out_dsiclk",
-> 
+> +	mcu_mdio_pins_default: mcu-mdio-pins-default {
+> +		pinctrl-single,pins = <
+> +			J784S4_WKUP_IOPAD(0x09c, PIN_OUTPUT, 0) /* (A36) MCU_MDIO0_MDC */
+> +			J784S4_WKUP_IOPAD(0x098, PIN_INPUT, 0) /* (B35) MCU_MDIO0_MDIO */
+> +		>;
+> +	};
+> +};
+> +
+>   &main_uart8 {
+>   	status = "okay";
+>   	pinctrl-names = "default";
+> @@ -194,3 +220,24 @@ &main_sdhci1 {
+>   &main_gpio0 {
+>   	status = "okay";
+>   };
+> +
+> +&mcu_cpsw {
+> +	status = "okay";
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&mcu_cpsw_pins_default &mcu_mdio_pins_default>;
+
+Move the mcu_mdio_pins_default pinctrl to the mdio node below.
+
+Andrew
+
+> +};
+> +
+> +&davinci_mdio {
+> +	mcu_phy0: ethernet-phy@0 {
+> +		reg = <0>;
+> +		ti,rx-internal-delay = <DP83867_RGMIIDCTL_2_00_NS>;
+> +		ti,fifo-depth = <DP83867_PHYCR_FIFO_DEPTH_4_B_NIB>;
+> +		ti,min-output-impedance;
+> +	};
+> +};
+> +
+> +&mcu_cpsw_port1 {
+> +	status = "okay";
+> +	phy-mode = "rgmii-rxid";
+> +	phy-handle = <&mcu_phy0>;
+> +};
