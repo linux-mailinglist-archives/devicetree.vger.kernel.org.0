@@ -2,93 +2,132 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2363F6BA055
-	for <lists+devicetree@lfdr.de>; Tue, 14 Mar 2023 21:02:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F1B866BA05B
+	for <lists+devicetree@lfdr.de>; Tue, 14 Mar 2023 21:03:51 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230304AbjCNUCw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Mar 2023 16:02:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40524 "EHLO
+        id S230029AbjCNUDu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Mar 2023 16:03:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43326 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230453AbjCNUCs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Mar 2023 16:02:48 -0400
-Received: from mail-ed1-x536.google.com (mail-ed1-x536.google.com [IPv6:2a00:1450:4864:20::536])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E4A0123A7A
-        for <devicetree@vger.kernel.org>; Tue, 14 Mar 2023 13:02:33 -0700 (PDT)
-Received: by mail-ed1-x536.google.com with SMTP id eg48so7599983edb.13
-        for <devicetree@vger.kernel.org>; Tue, 14 Mar 2023 13:02:33 -0700 (PDT)
+        with ESMTP id S229950AbjCNUDs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Mar 2023 16:03:48 -0400
+Received: from mail-ed1-x530.google.com (mail-ed1-x530.google.com [IPv6:2a00:1450:4864:20::530])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B67DA222E9;
+        Tue, 14 Mar 2023 13:03:12 -0700 (PDT)
+Received: by mail-ed1-x530.google.com with SMTP id eg48so7606738edb.13;
+        Tue, 14 Mar 2023 13:03:12 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1678824152;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=bAzDU1mImdiKGcR4/W+a+MvUJR8ih1RoGLE1OTXKBwg=;
-        b=t2kIyis4PP4N6JuCVsaZkFIpCZKgxPvSO8O9Ue/Wgv+uif2LmHAFg5AhlM122J3XbM
-         TDpqf4fbrieiX2DS6WNlYA8EI7OZkpMz/i5n7LcjRXflo5RsMHNoYAE2fGUh/+xyvKk7
-         fwqsMKunoKJxD++gbh0on47IEVX9UL0/fbNEqAIeNGpQcyTeIf7qXn2XsjzcIRfJG9jq
-         8dL4iVlADTYCP4PrQtMN3HrnEjo71GB4XP9gqFPnXK/jDFiZw9NmLgBey2NBHS8Af6Sm
-         NSnmvf1SSHfYfVAgVjykb96h86HeuU9b6MA/77SDJIlmyu5i1AaAOchnppeGB3fJjAkf
-         r0cw==
+        d=gmail.com; s=20210112; t=1678824189;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=V84C+zNYhTlp2thKSex9zBHkOQB0B2Kt996/f1MwII0=;
+        b=pd2f42sABaBIjI1MNHhZXr6SfwcrVdAV3DKrfovymQ9je4mY71Nr9bPNeIWhMNPda4
+         Qeeh1t20fBxJqOxLei6KBdiRA0aGPv3pqBMW1kz0qlZ+1ceSdY5h3x7awC7KMsqYtt6Y
+         tH64mw5kqiO0OMloPkZ23HBMN7O/lmvSPy8EihuVcwCn2sgQkz+IqJW6s09He6njMcqH
+         5c2m7uFn9tICf4U3KZLmdL25Y59FLjOKIR5CJgnirSInsOVfc/rLmOJWQn66ysC+NES5
+         B/T7Tvbpiu7GXbDkv78MA97Ae1kQuj6riDeHwLQRk4EcFNl80RKXDYx1i11XyJccSOxU
+         2TBQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678824152;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=bAzDU1mImdiKGcR4/W+a+MvUJR8ih1RoGLE1OTXKBwg=;
-        b=kAZFRfv9qYGdzNmxZ1RKi/mxcDJT8L7oy8KpN1al9zWMB+5nOFECrDSuJ4GrVXSZ+V
-         5CpFI6kYMZ9DCTziW9g/S1Zu8R+xsCRdvcS2CejVqcVx9xH1FsNyLAKdml+D993iaDVU
-         Qh9AFfI3r48ofSXyc+36LhpyhbhhOxdQuw0FrtQ+6g503Ms4DVojFhpEZxM6j2ZD1pxg
-         4dfT4g22KHwReRrZ/AIkDhqcyqzhgNfOmJzUmabq9AVJ5tNLPX0IvyHiXAv0mjNMO+4Q
-         axl2vW6oFwwPCnpnUR7zeNrP3QrOab3mi3plE55RiQnRl3ciOUuesxUGTC9nr8t8lzVD
-         kMlA==
-X-Gm-Message-State: AO0yUKWZ8TYchNVOjNGXWlqk5eOdj94P1Dx3AH8qXpdRLt0my4FRbw79
-        WddRYzqGJHS4H/90+SabutW/Vw==
-X-Google-Smtp-Source: AK7set/r+LOwRRG6wfa3d2yhkYaXx59Ow0QzNK09x9uwVfaNqf6Y8hwO5Z50plClC/cSYAbI1wnt4w==
-X-Received: by 2002:a17:906:51a:b0:8cf:fda0:5b9b with SMTP id j26-20020a170906051a00b008cffda05b9bmr3851283eja.22.1678824152274;
-        Tue, 14 Mar 2023 13:02:32 -0700 (PDT)
-Received: from ?IPV6:2a02:810d:15c0:828:642b:87c2:1efc:c8af? ([2a02:810d:15c0:828:642b:87c2:1efc:c8af])
-        by smtp.gmail.com with ESMTPSA id xa13-20020a170907b9cd00b0091ec885e016sm1551841ejc.54.2023.03.14.13.02.31
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 14 Mar 2023 13:02:31 -0700 (PDT)
-Message-ID: <672c01c9-e52b-c4ad-690b-4b6b5f6e15f9@linaro.org>
-Date:   Tue, 14 Mar 2023 21:02:30 +0100
+        d=1e100.net; s=20210112; t=1678824189;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=V84C+zNYhTlp2thKSex9zBHkOQB0B2Kt996/f1MwII0=;
+        b=d6OBr9lEf5Qcw2d8QtCImEWFXdch4lLNlZDekH0Iu3tYSJXNlCFt0ZuBLhmidzRIxz
+         +KJj5i3+fDVnKsvmUnymgDMao30o0I6ONFw/5PfJk0BOmWLJvLVLkL37GPkuuJmGzJo4
+         YhkImbe7I5VreVgPi6Jf56RRAcq28rK75c3QYLJZRvouVo17oAg+36bEBT5VUj9o7mZ7
+         RYVsBOhEst3X9W8N/wF+MLqs5sKGnz+ct26tDnLn2xfSc11HeKrTpL+nFZBOJbF8nbZb
+         RJMRZXQ51STLrJ9v/KMnv1IkVQrHPTOQpOhUalVfMywDMqgykW2fof2QKXg1Y9QtquHx
+         2Cfg==
+X-Gm-Message-State: AO0yUKX6YTohhlb73KFaEXbnv+WyDuXDmLvonvze7AFy3t72znS8qAbG
+        48w9uYfgjNzqaBSPZqkOKKM=
+X-Google-Smtp-Source: AK7set/tGK3i4/wh7V/kGHlS+gxB46+6uCjikXR7Cf/3tLigyXQLtTyfHOLyi19AB/HefjV28ihqYA==
+X-Received: by 2002:a17:906:edcc:b0:928:a2:904e with SMTP id sb12-20020a170906edcc00b0092800a2904emr3708551ejb.54.1678824188955;
+        Tue, 14 Mar 2023 13:03:08 -0700 (PDT)
+Received: from jernej-laptop.localnet (82-149-1-233.dynamic.telemach.net. [82.149.1.233])
+        by smtp.gmail.com with ESMTPSA id jw22-20020a17090776b600b00926a3155fd0sm1548733ejc.98.2023.03.14.13.03.07
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 14 Mar 2023 13:03:08 -0700 (PDT)
+From:   Jernej =?utf-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
+To:     Vinod Koul <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@kernel.org>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Samuel Holland <samuel@sholland.org>,
+        Rob Herring <robh@kernel.org>
+Cc:     devicetree@vger.kernel.org, linux-phy@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] phy: Use of_property_present() for testing DT property presence
+Date:   Tue, 14 Mar 2023 21:03:07 +0100
+Message-ID: <8191654.T7Z3S40VBb@jernej-laptop>
+In-Reply-To: <20230310144720.1544600-1-robh@kernel.org>
+References: <20230310144720.1544600-1-robh@kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-Subject: Re: [PATCH 2/2] soc: qcom: socinfo: Add IDs for IPQ9574 and its
- variants
-Content-Language: en-US
-To:     Varadarajan Narayanan <quic_varada@quicinc.com>, agross@kernel.org,
-        andersson@kernel.org, devicetree@vger.kernel.org,
-        konrad.dybcio@linaro.org, krzysztof.kozlowski+dt@linaro.org,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        robh+dt@kernel.org
-References: <1678774414-14414-1-git-send-email-quic_varada@quicinc.com>
- <1678774414-14414-3-git-send-email-quic_varada@quicinc.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <1678774414-14414-3-git-send-email-quic_varada@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 14/03/2023 07:13, Varadarajan Narayanan wrote:
-> Add SOC ID for Qualcomm IPQ9574, IPQ9570, IPQ9554, IPQ9550,
-> IPQ9514 and IPQ9510
+Dne petek, 10. marec 2023 ob 15:47:20 CET je Rob Herring napisal(a):
+> It is preferred to use typed property access functions (i.e.
+> of_property_read_<type> functions) rather than low-level
+> of_get_property/of_find_property functions for reading properties. As
+> part of this, convert of_get_property/of_find_property calls to the
+> recently added of_property_present() helper when we just want to test
+> for presence of a property and nothing more.
 > 
-> Signed-off-by: Varadarajan Narayanan <quic_varada@quicinc.com>
+> Signed-off-by: Rob Herring <robh@kernel.org>
 > ---
->  drivers/soc/qcom/socinfo.c | 6 ++++++
+>  drivers/phy/allwinner/phy-sun4i-usb.c  | 2 +-
 
-
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+for sun4i:
+Reviewed-by: Jernej Skrabec <jernej.skrabec@gmail.com>
 
 Best regards,
-Krzysztof
+Jernej
+
+>  drivers/phy/broadcom/phy-bcm-ns-usb2.c | 2 +-
+>  2 files changed, 2 insertions(+), 2 deletions(-)
+> 
+> diff --git a/drivers/phy/allwinner/phy-sun4i-usb.c
+> b/drivers/phy/allwinner/phy-sun4i-usb.c index fbcd7014ab43..fc9f6fb447a0
+> 100644
+> --- a/drivers/phy/allwinner/phy-sun4i-usb.c
+> +++ b/drivers/phy/allwinner/phy-sun4i-usb.c
+> @@ -758,7 +758,7 @@ static int sun4i_usb_phy_probe(struct platform_device
+> *pdev) return PTR_ERR(data->vbus_det_gpio);
+>  	}
+> 
+> -	if (of_find_property(np, "usb0_vbus_power-supply", NULL)) {
+> +	if (of_property_present(np, "usb0_vbus_power-supply")) {
+>  		data->vbus_power_supply = 
+devm_power_supply_get_by_phandle(dev,
+>  						     
+"usb0_vbus_power-supply");
+>  		if (IS_ERR(data->vbus_power_supply)) {
+> diff --git a/drivers/phy/broadcom/phy-bcm-ns-usb2.c
+> b/drivers/phy/broadcom/phy-bcm-ns-usb2.c index 6a36e187d100..269564bdf687
+> 100644
+> --- a/drivers/phy/broadcom/phy-bcm-ns-usb2.c
+> +++ b/drivers/phy/broadcom/phy-bcm-ns-usb2.c
+> @@ -107,7 +107,7 @@ static int bcm_ns_usb2_probe(struct platform_device
+> *pdev) return -ENOMEM;
+>  	usb2->dev = dev;
+> 
+> -	if (of_find_property(dev->of_node, "brcm,syscon-clkset", NULL)) {
+> +	if (of_property_present(dev->of_node, "brcm,syscon-clkset")) {
+>  		usb2->base = devm_platform_ioremap_resource(pdev, 0);
+>  		if (IS_ERR(usb2->base)) {
+>  			dev_err(dev, "Failed to map control reg\n");
+
+
+
 
