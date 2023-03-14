@@ -2,167 +2,134 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8BAC76B9FC8
-	for <lists+devicetree@lfdr.de>; Tue, 14 Mar 2023 20:31:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DB48D6B9FED
+	for <lists+devicetree@lfdr.de>; Tue, 14 Mar 2023 20:46:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230194AbjCNTa5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Mar 2023 15:30:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43222 "EHLO
+        id S229925AbjCNTqK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Mar 2023 15:46:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37942 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230372AbjCNTa2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Mar 2023 15:30:28 -0400
-Received: from mail-lj1-x230.google.com (mail-lj1-x230.google.com [IPv6:2a00:1450:4864:20::230])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AF17B29E1B;
-        Tue, 14 Mar 2023 12:30:09 -0700 (PDT)
-Received: by mail-lj1-x230.google.com with SMTP id h9so17144394ljq.2;
-        Tue, 14 Mar 2023 12:30:09 -0700 (PDT)
+        with ESMTP id S229464AbjCNTqJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Mar 2023 15:46:09 -0400
+Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com [IPv6:2a00:1450:4864:20::534])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 156AB29169
+        for <devicetree@vger.kernel.org>; Tue, 14 Mar 2023 12:46:02 -0700 (PDT)
+Received: by mail-ed1-x534.google.com with SMTP id eh3so10752579edb.11
+        for <devicetree@vger.kernel.org>; Tue, 14 Mar 2023 12:46:02 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112; t=1678822207;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Dqgms4mBVohNM7iW30qEDQ+lDG4KIARpTXgSHSORq30=;
-        b=F3bvLAaOVnkJ4xkEZeYyInmloRQNEHJEFV/EjiGaMY54T1YvbiYXjUCin9X7zg00z7
-         Qzq1RUZF6PZb0RqEIJN6q+2jGgRuZyle2FVmH3gRugOUlf56BSUBDE69GWEgm5capqEp
-         0moRLYqoLZ/aV2Iz4vJGXyPYXA94iXPBsqu6gdRduNibfPB+QSE12YFmIzkIWXM2T1IF
-         PAMcGk2EB6XPRVS+hIo3/LQuouSPqgx37meIYtMbly2DZoZsJwUgcTgcm1sghOgDBgHZ
-         E+1Cap+9AYlQuXNsdJtWncpPSYPCeVUqYHuOzb+n7kr1BfJg5hFfFc81ZYwe+wIp8QvW
-         uuag==
+        d=linaro.org; s=google; t=1678823160;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=XhnhusYpso9h8+/nIXY/oJLXEHrnKb2XiVlsQ9b08H4=;
+        b=ONDiRQagLTVyvzhrwFbGYhO7MweGA6aPWx0XzV66MsRpmOqC6Koe729Wn1HCEVWNFQ
+         D3o27iD9GCWZfCNB4KhCIsODlMZxTigsYuoteSZOS9Y7p11mUUaRrQkvKBvltukPpzuR
+         YwCcPUUdHntD26Vgi/eXntOrEzlV/zygRL/d/wkxClarxgzUrqu3sWTkkYcHVspsILbB
+         SN36+f4tzy7P6L/PCVmwVJ3s6mm8+I4nLQ4z+4q9fzE6weT6jOG+/nwCjMV7AAEJdvVD
+         rBzagmtkh6wwMMixWUcbRj32wjyYdywdmT0HdUzyUQWa7C4uGFnVNmvmVH9wGDf434Tw
+         iD6Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678822207;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Dqgms4mBVohNM7iW30qEDQ+lDG4KIARpTXgSHSORq30=;
-        b=M9Jba3PzpEN5rmiu+F9Tyu7wvdyJ0f1lU3Sqttsie535zBoUXWv0Jtxs3GbmxHr6lL
-         nOzfgxyq0V9QaDC5kjii0PHAmhQeI5QumVjTYn8cvjlp1IJtGZAsQ9uhMd+vchplecv9
-         XtSlGYmvT9K3qOJ78MnBuaeiXH8Ni6PETs0jQbsx2Z6UD+c4LR2uLI3LmRaEv2R91o1B
-         u+cDQ7MTEZ2B75i9b12YHGTDgBrQU7eKR4+KYUJM9voOd1YrkC2bzs7un0SdKD+BcNlS
-         PLPflQE2NYYs++p1UldGgAc67hqhrWN7I+vhwtiwwCMytS6rimKk9wX34jc97Zi3+dZo
-         QirQ==
-X-Gm-Message-State: AO0yUKV843dpBJu8kZ3atGo4IvJzv6ttgUtZhWmRpFplQVSjnQjPnZ0k
-        lYPr1BiRwNkIsL3GwrxrfKCmB8irM3zO79xyxUY=
-X-Google-Smtp-Source: AK7set+SM7jX1PJsr5O6/4TOBKUpUU46b1xy5TdJHkG86pFItAWyRncMY0cFbgoZ/JH8OMB04G/rLYtXA9opsMA4DS8=
-X-Received: by 2002:a2e:b81a:0:b0:295:a96a:2ea1 with SMTP id
- u26-20020a2eb81a000000b00295a96a2ea1mr93979ljo.0.1678822207382; Tue, 14 Mar
- 2023 12:30:07 -0700 (PDT)
+        d=1e100.net; s=20210112; t=1678823160;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=XhnhusYpso9h8+/nIXY/oJLXEHrnKb2XiVlsQ9b08H4=;
+        b=f3LYlLUABkO/CwYxLxVUBkCRNH2oXu2PSUo3x02DLrtGj0t6KeP2gHI4c2TNK6rVin
+         lvPcq/kWzMhxTRDI+0jFjhAK9hoAICCnOibELrllW6xenC0Q+5GIUaQej/8Somj/9DpV
+         deWfxBkR6ySyDQSaT6igOw3VX4s3q7NlhTR+wX5OGTbGFS42y2HCM9ih1+H7i5mgBtYJ
+         j1lOSE6bFkw9WAAUsAjJ/tMxfCQJ8Wq1DX85h8lFxETxA60r/mlBGbxhec23yQ/rDQyR
+         hPixzIW69bZ9YiJS1Y9D5zk9oFk48JYrkIev/UE7W2fVbuD+JX3p3iOB9cwSlUl+mOhV
+         LS4A==
+X-Gm-Message-State: AO0yUKVx5RBquocdyZhTMamHztoh+01ZuS+d67Qwt2hUoBXXFzx39yPU
+        Ui7qoZIvDnc4sTClA6fyUacMVQ==
+X-Google-Smtp-Source: AK7set8dJIX6MG0tfCB9Nt2ztaf3oOfZDw/JWQK995BqtVEHbWKwofAbRL4CvEuHlmwte2N8XPGQCA==
+X-Received: by 2002:a17:906:32d4:b0:878:7f6e:38a7 with SMTP id k20-20020a17090632d400b008787f6e38a7mr3667050ejk.44.1678823160567;
+        Tue, 14 Mar 2023 12:46:00 -0700 (PDT)
+Received: from ?IPV6:2a02:810d:15c0:828:642b:87c2:1efc:c8af? ([2a02:810d:15c0:828:642b:87c2:1efc:c8af])
+        by smtp.gmail.com with ESMTPSA id hb12-20020a170907160c00b008d9ddd2da88sm1533268ejc.6.2023.03.14.12.45.59
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 14 Mar 2023 12:46:00 -0700 (PDT)
+Message-ID: <a7fbaea5-927a-e4e8-d990-66b53d586d47@linaro.org>
+Date:   Tue, 14 Mar 2023 20:45:58 +0100
 MIME-Version: 1.0
-References: <20230313144028.3156825-1-neeraj.sanjaykale@nxp.com>
- <20230313144028.3156825-4-neeraj.sanjaykale@nxp.com> <ZBBUYDhrnn/udT+Z@corigine.com>
- <AM9PR04MB8603E3F3900DB13502CFCB8DE7BE9@AM9PR04MB8603.eurprd04.prod.outlook.com>
- <ZBCh98lGvhlMKQQp@corigine.com>
-In-Reply-To: <ZBCh98lGvhlMKQQp@corigine.com>
-From:   Luiz Augusto von Dentz <luiz.dentz@gmail.com>
-Date:   Tue, 14 Mar 2023 12:29:55 -0700
-Message-ID: <CABBYNZ+Zx8r-yJD9qq6B0oiDKTjzrvRa2Je0=C1hBjKvMyjmgA@mail.gmail.com>
-Subject: Re: [PATCH v10 3/3] Bluetooth: NXP: Add protocol support for NXP
- Bluetooth chipsets
-To:     Simon Horman <simon.horman@corigine.com>
-Cc:     Neeraj sanjay kale <neeraj.sanjaykale@nxp.com>,
-        "davem@davemloft.net" <davem@davemloft.net>,
-        "edumazet@google.com" <edumazet@google.com>,
-        "kuba@kernel.org" <kuba@kernel.org>,
-        "pabeni@redhat.com" <pabeni@redhat.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "marcel@holtmann.org" <marcel@holtmann.org>,
-        "johan.hedberg@gmail.com" <johan.hedberg@gmail.com>,
-        "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>,
-        "jirislaby@kernel.org" <jirislaby@kernel.org>,
-        "alok.a.tiwari@oracle.com" <alok.a.tiwari@oracle.com>,
-        "hdanton@sina.com" <hdanton@sina.com>,
-        "ilpo.jarvinen@linux.intel.com" <ilpo.jarvinen@linux.intel.com>,
-        "leon@kernel.org" <leon@kernel.org>,
-        "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-bluetooth@vger.kernel.org" <linux-bluetooth@vger.kernel.org>,
-        "linux-serial@vger.kernel.org" <linux-serial@vger.kernel.org>,
-        Amitkumar Karwar <amitkumar.karwar@nxp.com>,
-        Rohit Fule <rohit.fule@nxp.com>,
-        Sherry Sun <sherry.sun@nxp.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.8.0
+Subject: Re: [PATCH v11 03/13] dt-bindings: Convert gpio-mmio to yaml
+To:     Sean Anderson <sean.anderson@seco.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@kernel.org>,
+        linux-phy@lists.infradead.org
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        Camelia Alexandra Groza <camelia.groza@nxp.com>,
+        Madalin Bucur <madalin.bucur@nxp.com>,
+        Bagas Sanjaya <bagasdotme@gmail.com>,
+        Ioana Ciornei <ioana.ciornei@nxp.com>,
+        linuxppc-dev@lists.ozlabs.org,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <brgl@bgdev.pl>,
+        =?UTF-8?Q?Fern=c3=a1ndez_Rojas?= <noltari@gmail.com>,
+        Jonas Gorski <jonas.gorski@gmail.com>,
+        linux-gpio@vger.kernel.org
+References: <20230313161138.3598068-1-sean.anderson@seco.com>
+ <20230313161138.3598068-4-sean.anderson@seco.com>
+ <684eb04d-aeaa-07e1-34d6-783e85e379f0@linaro.org>
+ <3c19e6d2-4df2-6187-36d5-98ceef07235a@seco.com>
+ <ad56ca5e-03f7-5e3d-6547-91c64fdb08d3@linaro.org>
+ <7c7311ad-fbdf-3c7e-dab5-28a562fb7e8d@seco.com>
+Content-Language: en-US
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <7c7311ad-fbdf-3c7e-dab5-28a562fb7e8d@seco.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+On 14/03/2023 19:50, Sean Anderson wrote:
+> On 3/14/23 14:32, Krzysztof Kozlowski wrote:
+>> On 14/03/2023 19:09, Sean Anderson wrote:
+>>> On 3/14/23 13:56, Krzysztof Kozlowski wrote:
+>>>> On 13/03/2023 17:11, Sean Anderson wrote:
+>>>> +  reg-names:
+>>>>> +    minItems: 1
+>>>>> +    maxItems: 5
+>>>>> +    items:
+>>>>> +      enum:
+>>>>
+>>>> Why this is in any order? Other bindings were here specific, your 'reg'
+>>>> is also specific/fixed.
+>>>
+>>> Some devicetrees have dirout first, and other have dat first. There is no
+>>> mandatory order, and some registers can be included or left out as is
+>>> convenient to the devicetree author.
+>>>
+>>> reg is not specific/fixed either. It is just done that way for
+>>> convenience (and to match the names here).
+>>
+>> The items have order and usually we require strict order from DTS,
+>> unless there is a reason. If there is no reason, use fixed order and
+>> then fix the DTS.
+> 
+> The items do not have order. That is the whole point of having a
+> separate names property. The DTs are not "broken" for taking advantage
+> of a longstanding feature. There is no advantage to rewriting them to
+> use a fixed order, especially when there is no precedent. This is just
+> an area where json schema cannot completely validate devicetrees.
 
-On Tue, Mar 14, 2023 at 9:34=E2=80=AFAM Simon Horman <simon.horman@corigine=
-.com> wrote:
->
-> On Tue, Mar 14, 2023 at 03:40:34PM +0000, Neeraj sanjay kale wrote:
-> > Hi Simon
-> >
-> > Thank you for reviewing the patch. I have a comment below:
-> >
-> > >
-> > > > +send_skb:
-> > > > +     /* Prepend skb with frame type */
-> > > > +     memcpy(skb_push(skb, 1), &hci_skb_pkt_type(skb), 1);
-> > > > +     skb_queue_tail(&nxpdev->txq, skb);
-> > > > +
-> > > > +     btnxpuart_tx_wakeup(nxpdev);
-> > > > +ret:
-> > > > +     return 0;
-> > > > +
-> > > > +free_skb:
-> > > > +     kfree_skb(skb);
-> > > > +     goto ret;
-> > >
-> > > nit: I think it would be nicer to simply return 0 here.
-> > >      And remove the ret label entirely.
-> > >
-> > > > +}
-> > >
-> > We need to return from this function without clearing the skbs, unless =
-"goto free_skb" is called.
-> > If I remove the ret label and return after kfree_skb() it causes a kern=
-el crash.
-> > Keeping this change as it is.
-> >
-> > Please let me know if you have any further review comments on the v11 p=
-atch.
->
-> I'll look over v11.
->
-> But for the record, I meant something like this:
->
-> send_skb:
->      /* Prepend skb with frame type */
->      memcpy(skb_push(skb, 1), &hci_skb_pkt_type(skb), 1);
->      skb_queue_tail(&nxpdev->txq, skb);
->
->      btnxpuart_tx_wakeup(nxpdev);
->      return 0;
+I don't understand "there is no precedent". There is - we rewrite
+hundreds of DTS. Just look at mine and other people commits. The
+reg-names are helper and entries were always expected to be ordered. On
+the other hand if different devices use different order, then it cannot
+be changed obviously (as the order is fixed).
 
-+1, perhaps it wouldn't be a bad idea to have the code above in a
-separate function e.g. btnxpuart_queue_skb since this code might be
-common.
+Best regards,
+Krzysztof
 
-> free_skb:
->      kfree_skb(skb);
->      return 0;
-> }
->
-> > We need to return from this function without clearing the skbs, unless =
-"goto free_skb" is called.
-> > If I remove the ret label and return after kfree_skb() it causes a kern=
-el crash.
-> > Keeping this change as it is.
-> >
-> > Please let me know if you have any further review comments on the v11 p=
-atch.
-
-
-
---=20
-Luiz Augusto von Dentz
