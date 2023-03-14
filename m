@@ -2,118 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6E4F56B96F3
-	for <lists+devicetree@lfdr.de>; Tue, 14 Mar 2023 14:56:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 505846B96FE
+	for <lists+devicetree@lfdr.de>; Tue, 14 Mar 2023 14:57:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231307AbjCNN4E (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Mar 2023 09:56:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46666 "EHLO
+        id S232578AbjCNN5Y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Mar 2023 09:57:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47506 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232577AbjCNNzp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Mar 2023 09:55:45 -0400
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 165351A950
-        for <devicetree@vger.kernel.org>; Tue, 14 Mar 2023 06:53:15 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-        s=mimecast20190719; t=1678801995;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=27KQYZgjkZx3cO9u5MRtjq+WwG0d0GtPOCjo6zjWpFI=;
-        b=c6lhnQrz648sEL3L/d9qHl4MvPYuoYmHpbnulT/qDgA7Bb39hyMT1tiq/GrRXNyJjqHQO/
-        pmFy5H+INiOvXHr3J9gD5GPQhUxNFpnlOOPkc85ULl1kFJkxui9SfZTK0vwH0qTeN7e41/
-        XtUei5ZbqZpZAj/POsYybSREc8gvlic=
-Received: from mail-oi1-f199.google.com (mail-oi1-f199.google.com
- [209.85.167.199]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-131-Qvvuw2yhOc2gSD1cQsdmYw-1; Tue, 14 Mar 2023 09:53:14 -0400
-X-MC-Unique: Qvvuw2yhOc2gSD1cQsdmYw-1
-Received: by mail-oi1-f199.google.com with SMTP id be41-20020a05680821a900b0038464ba0c1eso6905890oib.3
-        for <devicetree@vger.kernel.org>; Tue, 14 Mar 2023 06:53:13 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678801993;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=27KQYZgjkZx3cO9u5MRtjq+WwG0d0GtPOCjo6zjWpFI=;
-        b=CVdsOkxcx6+njeaw9D4hcFCK5c0DKVwrVrSsU0XlcNf0bm2TRN8Y0gELIiiyfE5eEQ
-         5ZtQs2fCYnJige2ksZ1aCDHmZKe/vUYZFGlmSUuQ8APUFsjpRgn2mlzUs+3Um4d/QV1/
-         sVx+dTT19ncwuBsxzzuRfYPLGL+3P9xr67G2NTEGAznPYxbcZgDfGZf60LRZBUU678BB
-         fJ/i/dt4WKClN49UmjBvZiL5xIs0HigMDjZu+MArA/SjjfMWv6iGtTb5bnG6jmET04HV
-         uX7Le4v73DxN+yVM3T7n+spAx6HC8jmfbU4Mj2VW2ScQHKhoQ5s03yg13m5IsTwQ9BHy
-         hZcQ==
-X-Gm-Message-State: AO0yUKWHNbteb8gukSMEoZ6+n1qlTUqHZcWBGaQWu5QApp8JEZMLjVJR
-        4PzSwZcNKFz4cZeg0sE7hRtj3RGsyucmR6D9QsVKFveeMH6Bh3n/sPtQRS9tOARXT6wsZzPCuu5
-        L33D935pZG+271NWbXtWYLQ==
-X-Received: by 2002:a05:6870:40c5:b0:177:9f48:6282 with SMTP id l5-20020a05687040c500b001779f486282mr5967640oal.53.1678801992953;
-        Tue, 14 Mar 2023 06:53:12 -0700 (PDT)
-X-Google-Smtp-Source: AK7set865OV+J0WHIBTC/561ECQlv4RbYP6x5QMO3SK6tB+6M0mPsz58Rsx3evTgj9Holgi7Z6/nvg==
-X-Received: by 2002:a05:6870:40c5:b0:177:9f48:6282 with SMTP id l5-20020a05687040c500b001779f486282mr5967618oal.53.1678801992726;
-        Tue, 14 Mar 2023 06:53:12 -0700 (PDT)
-Received: from halaney-x13s (104-53-165-62.lightspeed.stlsmo.sbcglobal.net. [104.53.165.62])
-        by smtp.gmail.com with ESMTPSA id an36-20020a056871b1a400b00177c314a358sm1088290oac.22.2023.03.14.06.53.10
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 14 Mar 2023 06:53:12 -0700 (PDT)
-Date:   Tue, 14 Mar 2023 08:53:09 -0500
-From:   Andrew Halaney <ahalaney@redhat.com>
-To:     Stephen Boyd <sboyd@kernel.org>, andersson@kernel.org
-Cc:     linux-kernel@vger.kernel.org, agross@kernel.org,
-        andersson@kernel.org, konrad.dybcio@linaro.org,
-        davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
-        pabeni@redhat.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, vkoul@kernel.org,
-        bhupesh.sharma@linaro.org, mturquette@baylibre.com,
-        peppe.cavallaro@st.com, alexandre.torgue@foss.st.com,
-        joabreu@synopsys.com, mcoquelin.stm32@gmail.com,
-        richardcochran@gmail.com, linux@armlinux.org.uk, veekhee@apple.com,
-        tee.min.tan@linux.intel.com, mohammad.athari.ismail@intel.com,
-        jonathanh@nvidia.com, ruppala@nvidia.com, bmasney@redhat.com,
-        andrey.konovalov@linaro.org, linux-arm-msm@vger.kernel.org,
-        netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-clk@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        linux-arm-kernel@lists.infradead.org, ncai@quicinc.com,
-        jsuraj@qti.qualcomm.com, hisunil@quicinc.com
-Subject: Re: [PATCH net-next 05/11] clk: qcom: gcc-sc8280xp: Add EMAC GDSCs
-Message-ID: <20230314135309.o7y2ofzdvpowu53j@halaney-x13s>
-References: <20230313165620.128463-1-ahalaney@redhat.com>
- <20230313165620.128463-6-ahalaney@redhat.com>
- <e5cb46e8874b12dbe438be12ee0cf949.sboyd@kernel.org>
+        with ESMTP id S232396AbjCNN46 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Mar 2023 09:56:58 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D672D7A8F;
+        Tue, 14 Mar 2023 06:56:00 -0700 (PDT)
+Received: from cryzen.lan (cpc87451-finc19-2-0-cust61.4-2.cable.virginm.net [82.11.51.62])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: tanureal)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 2B8C16603089;
+        Tue, 14 Mar 2023 13:55:59 +0000 (GMT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1678802159;
+        bh=6DQmp7EOc/vZBH7Agp0m4MGPepgjsuaiBjh47b5ACbc=;
+        h=From:To:Cc:Subject:Date:From;
+        b=KFeu9bmgQCCt7vY17t9enfuXXo172EBdEpRc3cgQxMbZZM8OqdV7NsT2SzFUZWUul
+         40mttmj1eCPqRUDLqu5oENEtn5xJS/eWk7CtmtnqBdr5Uj8yQ2QVqOi03zTm4UbDcl
+         binjMFjerBQHYMUgxSkbzXRkUJnSx/yCsW2kFv3xj8dF9vugAAvqYoa8NMiLDrNHOG
+         +xHUCWR034ujStkdwDIrcYnGLrTM6K/nGdxlSgaOVUlbhQng9aINSkrO0rf37qbueE
+         XXjCHza1TJiIfzV7u1ZMcU9q2oGCRJ29YA/YlT07xW6LBiSU1OIB7O2X7cvbgrYk26
+         cnTTZ+XO8aGkQ==
+From:   Lucas Tanure <lucas.tanure@collabora.com>
+To:     Vinod Koul <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>,
+        Lorenzo Pieralisi <lpieralisi@kernel.org>,
+        Krzysztof Wilczynski <kw@linux.com>,
+        Bjorn Helgaas <bhelgaas@google.com>
+Cc:     Qu Wenruo <wqu@suse.com>,
+        Piotr Oniszczuk <piotr.oniszczuk@gmail.com>,
+        Peter Geis <pgwipeout@gmail.com>,
+        Kever Yang <kever.yang@rock-chips.com>,
+        linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-pci@vger.kernel.org,
+        Lucas Tanure <lucas.tanure@collabora.com>, kernel@collabora.com
+Subject: [PATCHv2 0/3] Add PCIe2 driver support for Rockchip
+Date:   Tue, 14 Mar 2023 13:55:52 +0000
+Message-Id: <20230314135555.44162-1-lucas.tanure@collabora.com>
+X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <e5cb46e8874b12dbe438be12ee0cf949.sboyd@kernel.org>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_NONE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Bjorn,
+I am assisting with PCIe and networking bring-up for Rock Pi 5B (RK3588).
+We sent this series a few days ago:
+https://lore.kernel.org/all/20230310080518.78054-1-lucas.tanure@collabora.com/
 
-On Mon, Mar 13, 2023 at 03:57:27PM -0700, Stephen Boyd wrote:
-> Quoting Andrew Halaney (2023-03-13 09:56:14)
-> > Add the EMAC GDSCs to allow the EMAC hardware to be enabled.
-> > 
-> > Signed-off-by: Andrew Halaney <ahalaney@redhat.com>
-> > ---
-> 
-> Acked-by: Stephen Boyd <sboyd@kernel.org>
-> 
-> I'm not sure if Bjorn Andersson is planning on modifying this file too,
-> so please confirm it can go through netdev tree.
-> 
+From that conversation we decided to send patches for Rockchip that don't
+require GIC/ITS implementation. We will send that in a separed series.
+Making easier for reviews and unblocking patches that don't require
+GIC/ITS implementation.
 
-Can you please help respond to Stephen's comment above? I admittedly
-don't have much experience sending patch series that span across
-multiple subsystems, so if there's something I should be doing
-differently (to indicate who takes what patches, etc) in submission
-please do not hesitate to be overly verbose in instructing me!
+This is work based on prior work from XiaoDong Huang and
+Peter Geis fixing this issue specifically for Rockchip 356x.
+Plus comments of Robin Murphy about Non-Coherent properties.
 
-Thanks,
-Andrew
+Since v1:
+ - Don't add compatible string to PCIe driver, only to DT Bindings
+ - Improve commit message for "Add rk3588 compatible"
+
+Lucas Tanure (3):
+  dt-bindings: PCI: dwc: Add rk3588 compatible
+  dt-bindings: phy: rockchip: Add rk3588 compatible
+  phy: rockchip: Add naneng combo phy support for RK3588
+
+ .../bindings/pci/rockchip-dw-pcie.yaml        |   6 +-
+ .../phy/phy-rockchip-naneng-combphy.yaml      |   1 +
+ .../rockchip/phy-rockchip-naneng-combphy.c    | 184 ++++++++++++++++++
+ 3 files changed, 190 insertions(+), 1 deletion(-)
+
+-- 
+2.39.2
 
