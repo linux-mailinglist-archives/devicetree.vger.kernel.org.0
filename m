@@ -2,91 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 003816BA05F
-	for <lists+devicetree@lfdr.de>; Tue, 14 Mar 2023 21:05:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6720E6BA06C
+	for <lists+devicetree@lfdr.de>; Tue, 14 Mar 2023 21:08:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229988AbjCNUE7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Mar 2023 16:04:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44748 "EHLO
+        id S230284AbjCNUIh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Mar 2023 16:08:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49864 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230453AbjCNUEp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Mar 2023 16:04:45 -0400
-Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com [IPv6:2a00:1450:4864:20::532])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7561222CB9;
-        Tue, 14 Mar 2023 13:04:15 -0700 (PDT)
-Received: by mail-ed1-x532.google.com with SMTP id eh3so10952790edb.11;
-        Tue, 14 Mar 2023 13:04:15 -0700 (PDT)
+        with ESMTP id S230051AbjCNUIg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Mar 2023 16:08:36 -0400
+Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 80CB0457E9
+        for <devicetree@vger.kernel.org>; Tue, 14 Mar 2023 13:08:34 -0700 (PDT)
+Received: by mail-ed1-x533.google.com with SMTP id z21so1598904edb.4
+        for <devicetree@vger.kernel.org>; Tue, 14 Mar 2023 13:08:34 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112; t=1678824253;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=FPsjGLHEk2fgihOY0CRt86zGCJvphTuiaNQiTQsSdI8=;
-        b=niwvqGj4rz9lE9IYdY/3oo8dPQUpl+arw5E1AnCutPKcaNCEP3cksSZrxw89aTHZh9
-         MImVlNjxF6RRXBEUPA23BzAj0QZJj0KoRfM0h2M6T5T6u5qO78weld3wkfTN2Ca+A3If
-         hPu7PGGeAHrftZ9QCXZTWmMzxwvReK69bRahRthU0LX/c5De42X0MdxrWSmk5Gmr93KB
-         9vNzhvNx3QjNVOqSw68H8GVSmFXaeKVB1Y8Y/0nEGjY5M9LQ3BDLZuJd1QmDSdO7xFwr
-         P0fNTtQIWFuFa+MoR4b1zDkfFalD2vqIvdhql41+DhjVShW8ZUZz8WxbXI+F9kNjI34i
-         JeNA==
+        d=linaro.org; s=google; t=1678824513;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=RBqd5amS3Q98CpQpuE067MY7M8nGht8QO6g+M3bT6Yo=;
+        b=G0G0/dj90Qw/R7avrs3s5KD3DVZHkx3Z4+Vs+/Smz3XwKe/tS4eW8/FUg2yGPJRzSb
+         2JqUKnnoUUL08vumPeEn31lCAXctdzeWEWsw6hK7nb0CGLnvWpPX3r1v6hvYR5eioJ1k
+         8Q7AI/sM+XckV0UkUvGJkIhsD/NMWKHGFwMZNc2i603J/FpwSmS0dUmJA2/aAxYGUUhq
+         aJngMAS2Ui5BZlThhgobbaUSp/Wqi6DQQa5uZLg3q0htcl92fdE2dbHEw/g4ffhoHdAw
+         6rHq5n/U3JNpAuie362YL/pl9OQYTzFTvHpxvDCvfK/czWHU/qO7snqCRpy+RxeuQfSB
+         aXCw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678824253;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=FPsjGLHEk2fgihOY0CRt86zGCJvphTuiaNQiTQsSdI8=;
-        b=20JJW9dhWcNtXc8+6lSkrO1DE61+Ua8w2bnPfSrw5eWjWCI+k1JfabLRlWsNMq6VHF
-         +CUub4LYSS66xVA77YqL9RrmxPupTSJ6bxAPkV/RyoLtLdRcNJDObERJAb799wPScsLh
-         /vZGafPVB+cfjvdSCHJUAN3+KegCOGYwEY2/eO0TDlOHck/7N63r7YAOdMdsOO3zyw5t
-         asFFNC+hRqkLC5le6KXEqsH+490KoTrH7jsrFZVBxeu3D7kTXijH7lQy20hqaNOfGx6/
-         aDGv5/goAyhpIPjIGjidrQZfdgRVFH4U/lshu0l/V1s1UEpufwIXMOAdlvgnouurj3Lh
-         FjiA==
-X-Gm-Message-State: AO0yUKUCO6Al4andfcDQFUZycaCsBvUQK8K0GgjAE8c2bjl4kNXMLdt5
-        x94k35gufwTpjSvKDUfclGU=
-X-Google-Smtp-Source: AK7set+oYbAeJ/U09NE2UZA16bmg8V2CkrqR5DzKLghgbnkXuMEp72tKp2I0vc56SOYdAmC9FNqhOw==
-X-Received: by 2002:a17:906:9f0a:b0:92b:d4f6:7f4c with SMTP id fy10-20020a1709069f0a00b0092bd4f67f4cmr4526093ejc.2.1678824253254;
-        Tue, 14 Mar 2023 13:04:13 -0700 (PDT)
-Received: from jernej-laptop.localnet (82-149-1-233.dynamic.telemach.net. [82.149.1.233])
-        by smtp.gmail.com with ESMTPSA id r9-20020a1709061ba900b0092b65c54379sm1527520ejg.104.2023.03.14.13.04.11
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 14 Mar 2023 13:04:12 -0700 (PDT)
-From:   Jernej =?utf-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
-To:     Liu Ying <victor.liu@nxp.com>,
-        Andrzej Hajda <andrzej.hajda@intel.com>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Robert Foss <rfoss@kernel.org>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Jonas Karlman <jonas@kwiboo.se>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        Rob Clark <robdclark@gmail.com>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Sean Paul <sean@poorly.run>, Chen-Yu Tsai <wens@csie.org>,
-        Samuel Holland <samuel@sholland.org>,
-        Emma Anholt <emma@anholt.net>, Rob Herring <robh@kernel.org>
-Cc:     devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org,
-        linux-sunxi@lists.linux.dev
-Subject: Re: [PATCH] drm: Use of_property_present() for testing DT property presence
-Date:   Tue, 14 Mar 2023 21:04:10 +0100
-Message-ID: <2217075.iZASKD2KPV@jernej-laptop>
-In-Reply-To: <20230310144705.1542207-1-robh@kernel.org>
-References: <20230310144705.1542207-1-robh@kernel.org>
+        d=1e100.net; s=20210112; t=1678824513;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=RBqd5amS3Q98CpQpuE067MY7M8nGht8QO6g+M3bT6Yo=;
+        b=tA3QQ3FucTKJn8Yp7JVk6afHd2N0ZBXAxxbW1ZtSaCDSnOmNT8f6sagZRan6RNIN7F
+         xI7i0EtPJxncUw9BwgJhnf5dboB09DJwQIUFHgz7XpvqZtjasQN0d73P26UyltmwnmwU
+         PVqXrSDbFJHNpW+aR1iYDxX438nrK3OYg6CdQLmgrahflgkGuHXzQgNvnCfeMePPKPaT
+         5A/ZlfRYllV8FJesf1OfdkwotdbGtXsIQTnQ3GxIrMCzlGkBRKfPFLZMTkXR/ueneFqV
+         NfHgCESYp0yOXkW2FuXO0pfs9DTqN0Q+BLL+04GBy8rom3ldRTT+s5qDzg3OrqqnC2e/
+         6aqQ==
+X-Gm-Message-State: AO0yUKVWc7v8TRT9CSKIQjASP5QyKl82o+gpQpzMdE+PPGlFUiV1S/t2
+        W/rr0HPPXtCLBULdx4A58IgME4QfDcA0E2+uOac=
+X-Google-Smtp-Source: AK7set8gHLu8iAvvUbC57h4H7l9g7Gv4fvpCS6pcJ5Gxw6P3Oy7kpW4+ew8pi9V+n0A25RKIyb0Skg==
+X-Received: by 2002:aa7:d54d:0:b0:4fa:cbd8:3f6f with SMTP id u13-20020aa7d54d000000b004facbd83f6fmr328618edr.6.1678824512964;
+        Tue, 14 Mar 2023 13:08:32 -0700 (PDT)
+Received: from ?IPV6:2a02:810d:15c0:828:642b:87c2:1efc:c8af? ([2a02:810d:15c0:828:642b:87c2:1efc:c8af])
+        by smtp.gmail.com with ESMTPSA id b12-20020a170906038c00b00924d38bbdc0sm1545981eja.105.2023.03.14.13.08.31
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 14 Mar 2023 13:08:32 -0700 (PDT)
+Message-ID: <9a9f25b2-5279-8fbf-6451-b2c6af5bc981@linaro.org>
+Date:   Tue, 14 Mar 2023 21:08:31 +0100
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.8.0
+Subject: Re: [PATCH v7 2/3] dt-bindings: remoteproc: ti: Add new compatible
+ for AM62 SoC family
+Content-Language: en-US
+To:     Devarsh Thakkar <devarsht@ti.com>, andersson@kernel.org,
+        devicetree@vger.kernel.org, mathieu.poirier@linaro.org,
+        p.zabel@pengutronix.de, linux-remoteproc@vger.kernel.org,
+        robh+dt@kernel.org, linux-kernel@vger.kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, s-anna@ti.com
+Cc:     hnagalla@ti.com, praneeth@ti.com, nm@ti.com, vigneshr@ti.com,
+        a-bhatia1@ti.com, j-luthra@ti.com, rogerq@kernel.org
+References: <20230310162544.3468365-1-devarsht@ti.com>
+ <20230310162544.3468365-3-devarsht@ti.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230310162544.3468365-3-devarsht@ti.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -94,120 +80,23 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Dne petek, 10. marec 2023 ob 15:47:05 CET je Rob Herring napisal(a):
-> It is preferred to use typed property access functions (i.e.
-> of_property_read_<type> functions) rather than low-level
-> of_get_property/of_find_property functions for reading properties. As
-> part of this, convert of_get_property/of_find_property calls to the
-> recently added of_property_present() helper when we just want to test
-> for presence of a property and nothing more.
+On 10/03/2023 17:25, Devarsh Thakkar wrote:
+> AM62 family of devices don't have a R5F cluster, instead they have
+> single core DM R5F.  Add new compatible string ti,am62-r5fss to support
+> this scenario.
 > 
-> Signed-off-by: Rob Herring <robh@kernel.org>
+> When this new compatible is used cluster-mode property can only be set
+> to value 3 i.e.  CLUSTER_MODE_SINGLECORE which is also the default value
+> in case cluster-mode is not defined in device-tree.
+> 
+> While at it, also sort the compatible lists in alphabetical order.
+> 
+> Signed-off-by: Devarsh Thakkar <devarsht@ti.com>
 > ---
->  drivers/gpu/drm/bridge/imx/imx8qxp-pixel-link.c | 2 +-
->  drivers/gpu/drm/drm_mipi_dsi.c                  | 2 +-
->  drivers/gpu/drm/msm/adreno/adreno_gpu.c         | 2 +-
->  drivers/gpu/drm/sun4i/sun4i_backend.c           | 2 +-
->  drivers/gpu/drm/sun4i/sun8i_mixer.c             | 2 +-
 
-For sun4i:
-Reviewed-by: Jernej Skrabec <jernej.skrabec@gmail.com>
+
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
-Jernej
-
->  drivers/gpu/drm/vc4/vc4_hdmi.c                  | 2 +-
->  6 files changed, 6 insertions(+), 6 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/bridge/imx/imx8qxp-pixel-link.c
-> b/drivers/gpu/drm/bridge/imx/imx8qxp-pixel-link.c index
-> 9e5f2b4dc2e5..fab139b324af 100644
-> --- a/drivers/gpu/drm/bridge/imx/imx8qxp-pixel-link.c
-> +++ b/drivers/gpu/drm/bridge/imx/imx8qxp-pixel-link.c
-> @@ -313,7 +313,7 @@ imx8qxp_pixel_link_find_next_bridge(struct
-> imx8qxp_pixel_link *pl) }
-> 
->  		/* specially select the next bridge with companion 
-PXL2DPI */
-> -		if (of_find_property(remote, "fsl,companion-pxl2dpi", 
-NULL))
-> +		if (of_property_present(remote, "fsl,companion-
-pxl2dpi"))
->  			bridge_sel = ep_cnt;
-> 
->  		ep_cnt++;
-> diff --git a/drivers/gpu/drm/drm_mipi_dsi.c b/drivers/gpu/drm/drm_mipi_dsi.c
-> index b41aaf2bb9f1..7900a4707d7c 100644
-> --- a/drivers/gpu/drm/drm_mipi_dsi.c
-> +++ b/drivers/gpu/drm/drm_mipi_dsi.c
-> @@ -329,7 +329,7 @@ int mipi_dsi_host_register(struct mipi_dsi_host *host)
-> 
->  	for_each_available_child_of_node(host->dev->of_node, node) {
->  		/* skip nodes without reg property */
-> -		if (!of_find_property(node, "reg", NULL))
-> +		if (!of_property_present(node, "reg"))
->  			continue;
->  		of_mipi_dsi_device_add(host, node);
->  	}
-> diff --git a/drivers/gpu/drm/msm/adreno/adreno_gpu.c
-> b/drivers/gpu/drm/msm/adreno/adreno_gpu.c index ce6b76c45b6f..2359dca80492
-> 100644
-> --- a/drivers/gpu/drm/msm/adreno/adreno_gpu.c
-> +++ b/drivers/gpu/drm/msm/adreno/adreno_gpu.c
-> @@ -964,7 +964,7 @@ static void adreno_get_pwrlevels(struct device *dev,
->  	gpu->fast_rate = 0;
-> 
->  	/* You down with OPP? */
-> -	if (!of_find_property(dev->of_node, "operating-points-v2", NULL))
-> +	if (!of_property_present(dev->of_node, "operating-points-v2"))
->  		ret = adreno_get_legacy_pwrlevels(dev);
->  	else {
->  		ret = devm_pm_opp_of_add_table(dev);
-> diff --git a/drivers/gpu/drm/sun4i/sun4i_backend.c
-> b/drivers/gpu/drm/sun4i/sun4i_backend.c index 38070fc261f3..b11dbd50d73e
-> 100644
-> --- a/drivers/gpu/drm/sun4i/sun4i_backend.c
-> +++ b/drivers/gpu/drm/sun4i/sun4i_backend.c
-> @@ -792,7 +792,7 @@ static int sun4i_backend_bind(struct device *dev, struct
-> device *master, dev_set_drvdata(dev, backend);
->  	spin_lock_init(&backend->frontend_lock);
-> 
-> -	if (of_find_property(dev->of_node, "interconnects", NULL)) {
-> +	if (of_property_present(dev->of_node, "interconnects")) {
->  		/*
->  		 * This assume we have the same DMA constraints for all 
-our the
->  		 * devices in our pipeline (all the backends, but also 
-the
-> diff --git a/drivers/gpu/drm/sun4i/sun8i_mixer.c
-> b/drivers/gpu/drm/sun4i/sun8i_mixer.c index bafee05f6b24..11d5244a5aa5
-> 100644
-> --- a/drivers/gpu/drm/sun4i/sun8i_mixer.c
-> +++ b/drivers/gpu/drm/sun4i/sun8i_mixer.c
-> @@ -391,7 +391,7 @@ static int sun8i_mixer_bind(struct device *dev, struct
-> device *master, mixer->engine.ops = &sun8i_engine_ops;
->  	mixer->engine.node = dev->of_node;
-> 
-> -	if (of_find_property(dev->of_node, "iommus", NULL)) {
-> +	if (of_property_present(dev->of_node, "iommus")) {
->  		/*
->  		 * This assume we have the same DMA constraints for
->  		 * all our the mixers in our pipeline. This sounds
-> diff --git a/drivers/gpu/drm/vc4/vc4_hdmi.c b/drivers/gpu/drm/vc4/vc4_hdmi.c
-> index ea22c9bf223a..bec1e0cdddb3 100644
-> --- a/drivers/gpu/drm/vc4/vc4_hdmi.c
-> +++ b/drivers/gpu/drm/vc4/vc4_hdmi.c
-> @@ -3018,7 +3018,7 @@ static int vc4_hdmi_cec_init(struct vc4_hdmi
-> *vc4_hdmi) struct device *dev = &pdev->dev;
->  	int ret;
-> 
-> -	if (!of_find_property(dev->of_node, "interrupts", NULL)) {
-> +	if (!of_property_present(dev->of_node, "interrupts")) {
->  		dev_warn(dev, "'interrupts' DT property is missing, no 
-CEC\n");
->  		return 0;
->  	}
-
-
-
+Krzysztof
 
