@@ -2,83 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4DDF36B9171
-	for <lists+devicetree@lfdr.de>; Tue, 14 Mar 2023 12:19:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A4D3D6B917D
+	for <lists+devicetree@lfdr.de>; Tue, 14 Mar 2023 12:20:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231402AbjCNLTP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Mar 2023 07:19:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49876 "EHLO
+        id S231207AbjCNLUY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Mar 2023 07:20:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34220 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231400AbjCNLS4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Mar 2023 07:18:56 -0400
-Received: from mail-ed1-x52f.google.com (mail-ed1-x52f.google.com [IPv6:2a00:1450:4864:20::52f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 17E178534D
-        for <devicetree@vger.kernel.org>; Tue, 14 Mar 2023 04:18:13 -0700 (PDT)
-Received: by mail-ed1-x52f.google.com with SMTP id cy23so60383659edb.12
-        for <devicetree@vger.kernel.org>; Tue, 14 Mar 2023 04:18:13 -0700 (PDT)
+        with ESMTP id S231545AbjCNLUI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Mar 2023 07:20:08 -0400
+Received: from mail-ed1-x52c.google.com (mail-ed1-x52c.google.com [IPv6:2a00:1450:4864:20::52c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0B5EA9EF76
+        for <devicetree@vger.kernel.org>; Tue, 14 Mar 2023 04:19:39 -0700 (PDT)
+Received: by mail-ed1-x52c.google.com with SMTP id ek18so29358985edb.6
+        for <devicetree@vger.kernel.org>; Tue, 14 Mar 2023 04:19:38 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1678792686;
+        d=linaro.org; s=google; t=1678792776;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=BTLw347ZTk76CB3YCjWqXtSW/kYt7O7yegt9D9Y6FXA=;
-        b=DfbXKcyFf2lJtqM9kxnIwQgXX5YHPtmETobmmHOm3Xih8xuS22CBz9vhum+UjfNGnT
-         AX/sKetrvq19eNac6gFFkYcUDW6YBAVFgQXHp0yZuDLZpSYPkIMzfI0FWzowlfHnt+Vg
-         37NzIbYf2dKi907JOSf7p5gsNRdYl9kzMZYTJfbO8Hhm9o3V41bI153d7ILKIqjA6vue
-         qJxEVrZnAfIBudOJryrUnv2DX36HSLb0kv7MZFCynatG/tp0k9WpQp0YWQv6HyLnadxU
-         DzejyEjiM9TQ/0IOkDw4drPhRZBZ+wH+gSAyM8Q7/yWZ1UYuvNE0o0xX07pvvqoFd1Cq
-         1DuA==
+        bh=LfuSyrbgYklZNRYuX498I2Gj36dx2cQqVAnZUrMSsiA=;
+        b=Ez1hwm6zCZNgiJrYGZKnwO37CFP0s9UVxeeQfBZ39E0sRGNdXmc3jXnV52tZZZ+PuF
+         quwSnxfxRatAylNCuPoLqO6dcYhQnN2oDSJCm1o8FwICm3zXkspR1ID/uoUaxMoMTgfR
+         Oz488I0qrhX06gAHHs1OwJkQC6cl9iYLmw0/2wVwDTbBRss/Hdng46P/LHpkVR9deZV/
+         OLFIczi0Qh+PPXrGuv5QQXykifMrO9Sp2BikhVYleI7K6P1Y8WWOpqjt3Gf3APhxKUH8
+         ZvuX3g45w/0xsGyIRaWrhSKKzBeSZjCHVOeC8vsuKe01x/S8XZFHast3t4pPWOEjVJOf
+         fDUg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678792686;
+        d=1e100.net; s=20210112; t=1678792776;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=BTLw347ZTk76CB3YCjWqXtSW/kYt7O7yegt9D9Y6FXA=;
-        b=jVwrLWZa0x7wbyRsjJHTkVWwn4uXvtP4476hyD85QEMvvLNJZz1dhHSuiH+4dKYdRv
-         U12MN3DT2l6V1F5FqP/q/RR08W6qauo3yk3HE/tw/j213Q7oOYSwvqdWSw8hRtGr9YhK
-         IRxYnZBS0DvPdrEcn9CeKcq1NcyZYcdyjqQ34MmdKWAlIAn648lRj4Zm5FUyMhaZyW73
-         AiktYNWe+dw2ovrTsI+x4eaotEnEY/DI1o6NrexcjkejeJM+HYKwusOLpx49t8NaYroe
-         ApAEgQoSwGoWXiufo5rmKKsjxg40yLPHdN/gtovRQX0KPJOZaMDrwN2zGOSX50EoVO4e
-         1aow==
-X-Gm-Message-State: AO0yUKWMJ/qUEpu8fvjh94ogEAXzPjS9sCzYyYTfDrex+9pPf2kbrv5k
-        rZhgu9BbxrBYp4s2uTPsmrJBAQ==
-X-Google-Smtp-Source: AK7set9AeqSbWbMpQSeHyDHFZ0ow4SZlOYcmpT9uXkJZMQnegdxX9KuOMQUBc32BeUqDoZUsjzpCaQ==
-X-Received: by 2002:a17:907:a0e:b0:895:58be:957 with SMTP id bb14-20020a1709070a0e00b0089558be0957mr2625143ejc.2.1678792686070;
-        Tue, 14 Mar 2023 04:18:06 -0700 (PDT)
+        bh=LfuSyrbgYklZNRYuX498I2Gj36dx2cQqVAnZUrMSsiA=;
+        b=5gzDVJyFHCfOkg9HAsuIGIDP+g05vKAmqfDHGzKxfygXSXta1AbkKoruuP08qFRP7r
+         zSpOBPHadmCloZriz6XKr93QKmUtR/hRo+du+FsDaJ5WnZ3HNRFl7SSIxbob7vsdAtz1
+         dekO1HEZDJm8shfVP0Vy3ZdzZp6dSyFR5aFXrabzWtvIcgQoWKcjVIFxsY63YsTnr6Pv
+         kvFMZwmUqX6N/VAJ6M4nopZR4h9rMhLpaGF0mPN01rl03mnTLkNgezJotHwKrETr8+5B
+         SfFo26BEty9X89E3NvoYKFYqf+GtSe85ngp1LmTOMOQAv5B0O/YEUfbA7lL8axkdNuna
+         Mo5A==
+X-Gm-Message-State: AO0yUKWXgAREPk8US2hIw92jFPcHw3IQ6yT5OJN1Xz44y0DEPI3bnyul
+        zMSibaQXml6Lj40JSbbJTRRJZw==
+X-Google-Smtp-Source: AK7set8+S0OeYa45ddASmejw+HGDXlolNs2ImcYbzLEefmpVjwJ95EUrTVXLHu44Ydqk4f2fBgUGDQ==
+X-Received: by 2002:a17:907:e8e:b0:92c:a80e:2259 with SMTP id ho14-20020a1709070e8e00b0092ca80e2259mr2174660ejc.1.1678792776356;
+        Tue, 14 Mar 2023 04:19:36 -0700 (PDT)
 Received: from ?IPV6:2a02:810d:15c0:828:59be:4b3f:994b:e78c? ([2a02:810d:15c0:828:59be:4b3f:994b:e78c])
-        by smtp.gmail.com with ESMTPSA id xa13-20020a170907b9cd00b0091ec885e016sm1016273ejc.54.2023.03.14.04.18.04
+        by smtp.gmail.com with ESMTPSA id h7-20020a17090634c700b0092be625d981sm1010231ejb.91.2023.03.14.04.19.35
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 14 Mar 2023 04:18:05 -0700 (PDT)
-Message-ID: <4ca61aac-a901-1bfa-6cf4-8c2917621667@linaro.org>
-Date:   Tue, 14 Mar 2023 12:18:04 +0100
+        Tue, 14 Mar 2023 04:19:35 -0700 (PDT)
+Message-ID: <5ca73037-799b-2110-8a72-cc6a7e71850f@linaro.org>
+Date:   Tue, 14 Mar 2023 12:19:34 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.8.0
-Subject: Re: [PATCH 1/4] dt-bindings: PCI: dwc: Add rk3588 compatible line
+Subject: Re: [RFC PATCH v3 1/7] dt-bindings: crypto: Add Qualcomm Inline
+ Crypto Engine
 Content-Language: en-US
-To:     Lucas Tanure <lucas.tanure@collabora.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
+To:     Abel Vesa <abel.vesa@linaro.org>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>,
-        Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        Krzysztof Wilczynski <kw@linux.com>,
-        Bjorn Helgaas <bhelgaas@google.com>
-Cc:     Qu Wenruo <wqu@suse.com>,
-        Piotr Oniszczuk <piotr.oniszczuk@gmail.com>,
-        Peter Geis <pgwipeout@gmail.com>,
-        Kever Yang <kever.yang@rock-chips.com>,
-        linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-pci@vger.kernel.org, kernel@collabora.com
-References: <20230313153953.422375-1-lucas.tanure@collabora.com>
- <20230313153953.422375-2-lucas.tanure@collabora.com>
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Manivannan Sadhasivam <mani@kernel.org>,
+        Alim Akhtar <alim.akhtar@samsung.com>,
+        Avri Altman <avri.altman@wdc.com>,
+        Bart Van Assche <bvanassche@acm.org>,
+        Adrian Hunter <adrian.hunter@intel.com>,
+        "James E . J . Bottomley" <jejb@linux.ibm.com>,
+        "Martin K . Petersen" <martin.petersen@oracle.com>,
+        Herbert Xu <herbert@gondor.apana.org.au>,
+        "David S . Miller" <davem@davemloft.net>,
+        Eric Biggers <ebiggers@kernel.org>
+Cc:     linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        linux-arm-msm@vger.kernel.org, linux-crypto@vger.kernel.org,
+        linux-scsi@vger.kernel.org
+References: <20230313115202.3960700-1-abel.vesa@linaro.org>
+ <20230313115202.3960700-2-abel.vesa@linaro.org>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230313153953.422375-2-lucas.tanure@collabora.com>
+In-Reply-To: <20230313115202.3960700-2-abel.vesa@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -91,31 +94,13 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 13/03/2023 16:39, Lucas Tanure wrote:
-> RK3588 uses the same driver as RK3568
-
-Subject: drop line
-
-Commit msg: drop driver and focus on hardware. Missing full stop.
-
+On 13/03/2023 12:51, Abel Vesa wrote:
+> Add schema file for new Qualcomm Inline Crypto Engine driver.
 > 
-> Signed-off-by: Lucas Tanure <lucas.tanure@collabora.com>
-> ---
->  Documentation/devicetree/bindings/pci/rockchip-dw-pcie.yaml | 1 +
->  1 file changed, 1 insertion(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/pci/rockchip-dw-pcie.yaml b/Documentation/devicetree/bindings/pci/rockchip-dw-pcie.yaml
-> index 2be72ae1169f..91aa9070ee31 100644
-> --- a/Documentation/devicetree/bindings/pci/rockchip-dw-pcie.yaml
-> +++ b/Documentation/devicetree/bindings/pci/rockchip-dw-pcie.yaml
-> @@ -23,6 +23,7 @@ properties:
->    compatible:
->      items:
->        - const: rockchip,rk3568-pcie
-> +      - const: rockchip,rk3588-pcie
+> Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
 
-According to your driver change, these are compatible, so maybe this
-should be expressed in the bindings?
+
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
