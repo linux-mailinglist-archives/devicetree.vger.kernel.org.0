@@ -2,134 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DB48D6B9FED
-	for <lists+devicetree@lfdr.de>; Tue, 14 Mar 2023 20:46:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6CE226B9FF2
+	for <lists+devicetree@lfdr.de>; Tue, 14 Mar 2023 20:47:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229925AbjCNTqK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Mar 2023 15:46:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37942 "EHLO
+        id S229973AbjCNTrc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Mar 2023 15:47:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38920 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229464AbjCNTqJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Mar 2023 15:46:09 -0400
-Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com [IPv6:2a00:1450:4864:20::534])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 156AB29169
-        for <devicetree@vger.kernel.org>; Tue, 14 Mar 2023 12:46:02 -0700 (PDT)
-Received: by mail-ed1-x534.google.com with SMTP id eh3so10752579edb.11
-        for <devicetree@vger.kernel.org>; Tue, 14 Mar 2023 12:46:02 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1678823160;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=XhnhusYpso9h8+/nIXY/oJLXEHrnKb2XiVlsQ9b08H4=;
-        b=ONDiRQagLTVyvzhrwFbGYhO7MweGA6aPWx0XzV66MsRpmOqC6Koe729Wn1HCEVWNFQ
-         D3o27iD9GCWZfCNB4KhCIsODlMZxTigsYuoteSZOS9Y7p11mUUaRrQkvKBvltukPpzuR
-         YwCcPUUdHntD26Vgi/eXntOrEzlV/zygRL/d/wkxClarxgzUrqu3sWTkkYcHVspsILbB
-         SN36+f4tzy7P6L/PCVmwVJ3s6mm8+I4nLQ4z+4q9fzE6weT6jOG+/nwCjMV7AAEJdvVD
-         rBzagmtkh6wwMMixWUcbRj32wjyYdywdmT0HdUzyUQWa7C4uGFnVNmvmVH9wGDf434Tw
-         iD6Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678823160;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=XhnhusYpso9h8+/nIXY/oJLXEHrnKb2XiVlsQ9b08H4=;
-        b=f3LYlLUABkO/CwYxLxVUBkCRNH2oXu2PSUo3x02DLrtGj0t6KeP2gHI4c2TNK6rVin
-         lvPcq/kWzMhxTRDI+0jFjhAK9hoAICCnOibELrllW6xenC0Q+5GIUaQej/8Somj/9DpV
-         deWfxBkR6ySyDQSaT6igOw3VX4s3q7NlhTR+wX5OGTbGFS42y2HCM9ih1+H7i5mgBtYJ
-         j1lOSE6bFkw9WAAUsAjJ/tMxfCQJ8Wq1DX85h8lFxETxA60r/mlBGbxhec23yQ/rDQyR
-         hPixzIW69bZ9YiJS1Y9D5zk9oFk48JYrkIev/UE7W2fVbuD+JX3p3iOB9cwSlUl+mOhV
-         LS4A==
-X-Gm-Message-State: AO0yUKVx5RBquocdyZhTMamHztoh+01ZuS+d67Qwt2hUoBXXFzx39yPU
-        Ui7qoZIvDnc4sTClA6fyUacMVQ==
-X-Google-Smtp-Source: AK7set8dJIX6MG0tfCB9Nt2ztaf3oOfZDw/JWQK995BqtVEHbWKwofAbRL4CvEuHlmwte2N8XPGQCA==
-X-Received: by 2002:a17:906:32d4:b0:878:7f6e:38a7 with SMTP id k20-20020a17090632d400b008787f6e38a7mr3667050ejk.44.1678823160567;
-        Tue, 14 Mar 2023 12:46:00 -0700 (PDT)
-Received: from ?IPV6:2a02:810d:15c0:828:642b:87c2:1efc:c8af? ([2a02:810d:15c0:828:642b:87c2:1efc:c8af])
-        by smtp.gmail.com with ESMTPSA id hb12-20020a170907160c00b008d9ddd2da88sm1533268ejc.6.2023.03.14.12.45.59
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 14 Mar 2023 12:46:00 -0700 (PDT)
-Message-ID: <a7fbaea5-927a-e4e8-d990-66b53d586d47@linaro.org>
-Date:   Tue, 14 Mar 2023 20:45:58 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-Subject: Re: [PATCH v11 03/13] dt-bindings: Convert gpio-mmio to yaml
-To:     Sean Anderson <sean.anderson@seco.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
-        linux-phy@lists.infradead.org
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        with ESMTP id S229873AbjCNTrb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Mar 2023 15:47:31 -0400
+Received: from gate2.alliedtelesis.co.nz (gate2.alliedtelesis.co.nz [202.36.163.20])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ECC283BD88
+        for <devicetree@vger.kernel.org>; Tue, 14 Mar 2023 12:47:29 -0700 (PDT)
+Received: from svr-chch-seg1.atlnz.lc (mmarshal3.atlnz.lc [10.32.18.43])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (Client did not present a certificate)
+        by gate2.alliedtelesis.co.nz (Postfix) with ESMTPS id 2D2E62C057F;
+        Wed, 15 Mar 2023 08:47:27 +1300 (NZDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alliedtelesis.co.nz;
+        s=mail181024; t=1678823247;
+        bh=32RPrOsNxzm9u3tObDahxXuzlRkiprFhZo16+RSnJQM=;
+        h=From:To:CC:Subject:Date:References:In-Reply-To:From;
+        b=1pD3vOuvoKD/xo7OeMESCAKtvhLP86FAMfO7Gb/kdS2LwpaEOpmr1nMEbUh7PPbeG
+         6NrKnTa772fGtfXnkigEgPUT67TNFY7uATjRgmLUs5ygQbKw+ZsOoi82gSXDT0X5BN
+         WPySdsU5cPfJ427w4NWKmF7WDj3wHWOU343FrNtSduoB9irWdZqHdu2zx3BSVUZWX0
+         EkfhuXTpHW9+q7nEIWIoQ85X0+9ZF7e4ML6H27AT7+GZeu+AvF0ncFDQ00yqk4PPQH
+         6NXu1ZOVGq5Q63gE9+ydqR2EI4zZTp2iWS5nMnx4AWUVoXd34CzgCfqzGqIKAe55QY
+         axyprDYqPFS3g==
+Received: from svr-chch-ex1.atlnz.lc (Not Verified[2001:df5:b000:bc8::77]) by svr-chch-seg1.atlnz.lc with Trustwave SEG (v8,2,6,11305)
+        id <B6410cf4f0001>; Wed, 15 Mar 2023 08:47:27 +1300
+Received: from svr-chch-ex1.atlnz.lc (2001:df5:b000:bc8:409d:36f5:8899:92e8)
+ by svr-chch-ex1.atlnz.lc (2001:df5:b000:bc8:409d:36f5:8899:92e8) with
+ Microsoft SMTP Server (TLS) id 15.0.1497.47; Wed, 15 Mar 2023 08:47:26 +1300
+Received: from svr-chch-ex1.atlnz.lc ([fe80::409d:36f5:8899:92e8]) by
+ svr-chch-ex1.atlnz.lc ([fe80::409d:36f5:8899:92e8%12]) with mapi id
+ 15.00.1497.047; Wed, 15 Mar 2023 08:47:26 +1300
+From:   Chris Packham <Chris.Packham@alliedtelesis.co.nz>
+To:     Andi Shyti <andi.shyti@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+CC:     "linux-i2c@vger.kernel.org" <linux-i2c@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Wolfram Sang <wsa@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        Camelia Alexandra Groza <camelia.groza@nxp.com>,
-        Madalin Bucur <madalin.bucur@nxp.com>,
-        Bagas Sanjaya <bagasdotme@gmail.com>,
-        Ioana Ciornei <ioana.ciornei@nxp.com>,
-        linuxppc-dev@lists.ozlabs.org,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
-        =?UTF-8?Q?Fern=c3=a1ndez_Rojas?= <noltari@gmail.com>,
-        Jonas Gorski <jonas.gorski@gmail.com>,
-        linux-gpio@vger.kernel.org
-References: <20230313161138.3598068-1-sean.anderson@seco.com>
- <20230313161138.3598068-4-sean.anderson@seco.com>
- <684eb04d-aeaa-07e1-34d6-783e85e379f0@linaro.org>
- <3c19e6d2-4df2-6187-36d5-98ceef07235a@seco.com>
- <ad56ca5e-03f7-5e3d-6547-91c64fdb08d3@linaro.org>
- <7c7311ad-fbdf-3c7e-dab5-28a562fb7e8d@seco.com>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Ryan Chen <ryan_chen@aspeedtech.com>
+Subject: Re: [PATCH v3 3/3] i2c: mpc: Use i2c-scl-clk-low-timeout-ms i2c
+ property
+Thread-Topic: [PATCH v3 3/3] i2c: mpc: Use i2c-scl-clk-low-timeout-ms i2c
+ property
+Thread-Index: AQHZVTuFDX+DgmEDFk23hBmDkBbcm675fIcAgAAO4QCAAEvNAA==
+Date:   Tue, 14 Mar 2023 19:47:26 +0000
+Message-ID: <32777854-fbf6-dad2-ef54-1d1c04086f0b@alliedtelesis.co.nz>
+References: <20230312233613.303408-1-andi.shyti@kernel.org>
+ <20230312233613.303408-4-andi.shyti@kernel.org>
+ <ec504c7d-66d4-a4b7-547e-7272e012cdf9@linaro.org>
+ <20230314151608.nr7ft7spsbylqclo@intel.intel>
+In-Reply-To: <20230314151608.nr7ft7spsbylqclo@intel.intel>
+Accept-Language: en-NZ, en-US
 Content-Language: en-US
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <7c7311ad-fbdf-3c7e-dab5-28a562fb7e8d@seco.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-ms-exchange-messagesentrepresentingtype: 1
+x-ms-exchange-transport-fromentityheader: Hosted
+x-originating-ip: [10.32.1.11]
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <6358C44943B4A245A2BB15D337B6A19B@atlnz.lc>
+Content-Transfer-Encoding: base64
+MIME-Version: 1.0
+X-SEG-SpamProfiler-Analysis: v=2.3 cv=GdlpYjfL c=1 sm=1 tr=0 a=Xf/6aR1Nyvzi7BryhOrcLQ==:117 a=xqWC_Br6kY4A:10 a=oKJsc7D3gJEA:10 a=IkcTkHD0fZMA:10 a=k__wU0fu6RkA:10 a=VwQbUJbxAAAA:8 a=Rh0-FL4JVTv9qmeE3dMA:9 a=QEXdDO2ut3YA:10 a=AjGcO6oz07-iQ99wixmX:22
+X-SEG-SpamProfiler-Score: 0
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 14/03/2023 19:50, Sean Anderson wrote:
-> On 3/14/23 14:32, Krzysztof Kozlowski wrote:
->> On 14/03/2023 19:09, Sean Anderson wrote:
->>> On 3/14/23 13:56, Krzysztof Kozlowski wrote:
->>>> On 13/03/2023 17:11, Sean Anderson wrote:
->>>> +  reg-names:
->>>>> +    minItems: 1
->>>>> +    maxItems: 5
->>>>> +    items:
->>>>> +      enum:
->>>>
->>>> Why this is in any order? Other bindings were here specific, your 'reg'
->>>> is also specific/fixed.
->>>
->>> Some devicetrees have dirout first, and other have dat first. There is no
->>> mandatory order, and some registers can be included or left out as is
->>> convenient to the devicetree author.
->>>
->>> reg is not specific/fixed either. It is just done that way for
->>> convenience (and to match the names here).
->>
->> The items have order and usually we require strict order from DTS,
->> unless there is a reason. If there is no reason, use fixed order and
->> then fix the DTS.
-> 
-> The items do not have order. That is the whole point of having a
-> separate names property. The DTs are not "broken" for taking advantage
-> of a longstanding feature. There is no advantage to rewriting them to
-> use a fixed order, especially when there is no precedent. This is just
-> an area where json schema cannot completely validate devicetrees.
-
-I don't understand "there is no precedent". There is - we rewrite
-hundreds of DTS. Just look at mine and other people commits. The
-reg-names are helper and entries were always expected to be ordered. On
-the other hand if different devices use different order, then it cannot
-be changed obviously (as the order is fixed).
-
-Best regards,
-Krzysztof
-
+SGkgQW5kaSwNCg0KT24gMTUvMDMvMjMgMDQ6MTYsIEFuZGkgU2h5dGkgd3JvdGU6DQo+IEhpLA0K
+Pg0KPiBPbiBUdWUsIE1hciAxNCwgMjAyMyBhdCAwMzoyMjo1MlBNICswMTAwLCBLcnp5c3p0b2Yg
+S296bG93c2tpIHdyb3RlOg0KPj4gT24gMTMvMDMvMjAyMyAwMDozNiwgQW5kaSBTaHl0aSB3cm90
+ZToNCj4+PiAiZnNsLHRpbWVvdXQiIGlzIG1hcmtlZCBhcyBkZXByZWNhdGVkIGFuZCByZXBsYWNl
+ZCBieSB0aGUNCj4+PiAiaTJjLXNjbC1jbGstbG93LXRpbWVvdXQtbXMiIGkyYyBwcm9wZXJ0eS4N
+Cj4+Pg0KPj4+IFVzZSB0aGlzIGxhdHRlciBhbmQsIGluIGNhc2UgaXQgaXMgbWlzc2luZywgZm9y
+IGJhY2sNCj4+PiBjb21wYXRpYmlsaXR5LCBjaGVjayB3aGV0aGVyIHdlIHN0aWxsIGhhdmUgImZz
+bCx0aW1lb3V0IiBkZWZpbmVkLg0KPj4+DQo+Pj4gU2lnbmVkLW9mZi1ieTogQW5kaSBTaHl0aSA8
+YW5kaS5zaHl0aUBrZXJuZWwub3JnPg0KPj4+IFJldmlld2VkLWJ5OiBDaHJpcyBQYWNraGFtIDxj
+aHJpcy5wYWNraGFtQGFsbGllZHRlbGVzaXMuY28ubno+DQo+Pj4gLS0tDQo+Pj4gICBkcml2ZXJz
+L2kyYy9idXNzZXMvaTJjLW1wYy5jIHwgMTIgKysrKysrKysrKystDQo+Pj4gICAxIGZpbGUgY2hh
+bmdlZCwgMTEgaW5zZXJ0aW9ucygrKSwgMSBkZWxldGlvbigtKQ0KPj4+DQo+Pj4gZGlmZiAtLWdp
+dCBhL2RyaXZlcnMvaTJjL2J1c3Nlcy9pMmMtbXBjLmMgYi9kcml2ZXJzL2kyYy9idXNzZXMvaTJj
+LW1wYy5jDQo+Pj4gaW5kZXggODdlNWMxNzI1NzUwLi4yOGYxMWUzMGFjNTAgMTAwNjQ0DQo+Pj4g
+LS0tIGEvZHJpdmVycy9pMmMvYnVzc2VzL2kyYy1tcGMuYw0KPj4+ICsrKyBiL2RyaXZlcnMvaTJj
+L2J1c3Nlcy9pMmMtbXBjLmMNCj4+PiBAQCAtODQzLDggKzg0MywxOCBAQCBzdGF0aWMgaW50IGZz
+bF9pMmNfcHJvYmUoc3RydWN0IHBsYXRmb3JtX2RldmljZSAqb3ApDQo+Pj4gICAJCQltcGNfaTJj
+X3NldHVwXzh4eHgob3AtPmRldi5vZl9ub2RlLCBpMmMsIGNsb2NrKTsNCj4+PiAgIAl9DQo+Pj4g
+ICANCj4+PiArCS8qDQo+Pj4gKwkgKiAiZnNsLHRpbWVvdXQiIGhhcyBiZWVuIG1hcmtlZCBhcyBk
+ZXByZWNhdGVkIGFuZCwgdG8gbWFpbnRhaW4NCj4+PiArCSAqIGJhY2t3YXJkIGNvbXBhdGliaWxp
+dHksIHdlIHdpbGwgb25seSBsb29rIGZvciBpdCBpZg0KPj4+ICsJICogImkyYy1zY2wtY2xrLWxv
+dy10aW1lb3V0LW1zIiBpcyBub3QgcHJlc2VudC4NCj4+PiArCSAqLw0KPj4+ICAgCXJlc3VsdCA9
+IG9mX3Byb3BlcnR5X3JlYWRfdTMyKG9wLT5kZXYub2Zfbm9kZSwNCj4+PiAtCQkJCSAgICAgICJm
+c2wsdGltZW91dCIsICZtcGNfb3BzLnRpbWVvdXQpOw0KPj4+ICsJCQkJICAgICAgImkyYy1zY2wt
+Y2xrLWxvdy10aW1lb3V0LW1zIiwNCj4+PiArCQkJCSAgICAgICZtcGNfb3BzLnRpbWVvdXQpOw0K
+Pj4+ICsJaWYgKHJlc3VsdCA9PSAtRUlOVkFMKQ0KPj4+ICsJCXJlc3VsdCA9IG9mX3Byb3BlcnR5
+X3JlYWRfdTMyKG9wLT5kZXYub2Zfbm9kZSwNCj4+PiArCQkJCQkgICAgICAiZnNsLHRpbWVvdXQi
+LCAmbXBjX29wcy50aW1lb3V0KTsNCj4+IFdhc24ndCBvbGQgcHJvcGVydHkgaW4gdXMgYW5kIG5l
+dyBvbmUgaXMgaW4gbXM/DQo+IFRoYW5rcywgS3J6eXN6dG9mISBHb29kIGNhdGNoIQ0KPg0KPiBD
+aHJpcywgeW91IGFyZSB0aGUgb25seSB1c2VyIG9mIHRoaXMgcHJvcGVydHksIGFzIG9mIG5vdy4g
+SXMgaXQNCj4gT0sgaWYgd2Uga2VlcCBpdCBtcz8gSSB3aWxsIHNlbmQgYSBwcm9wZXIgcGF0Y2gg
+dG8gZG8gdGhlDQo+IGNvbnZlcnNpb24uDQo+DQo+IFRvIG1lIGl0IGRvZXNuJ3QgbWFrZSBtdWNo
+IHNlbnNlIHRvIGhhdmUgdGhlIHRpbWVvdXQgZGVmaW5lZCBpbg0KPiB1cyBhcyB0aGF0J3Mgb2Yg
+dGhlIHNhbWUgb3JkZXIgb2YgdGhlIHJhaXNpbmcgYW5kIGZhbGxpbmcgdGltZQ0KPiBvZiB0aGUg
+Y2xvY2suIEFueSBvcGluaW9uPw0KSSB0aGluayBpdCdkIGJlIGVhc2llciB0byBzdGljayB0byB1
+cyBhcyB0aGVuIHRoZSBzYW1lIGNvZGUgY2FuIGJlIHVzZWQgDQp0byBwcm9iZSBib3RoIHRoZSBv
+bGQgcHJvcGVydHkgYW5kIHRoZSBuZXcgb25lLiBIb3dldmVyIEkgd29uJ3Qgb2JqZWN0IA0KaWYg
+eW91IGFkanVzdCBmb3IgdGhlIHVzIHRvIG1zIGNvbnZlcnNpb24gYmV0d2VlbiBoYW5kbGluZyB0
+aGUgbmV3IA0KcHJvcGVydHkgdnMgdGhlIG9sZCBvbmUuDQo+DQo+IEFuZGk=
