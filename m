@@ -2,134 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A35086B9AAE
-	for <lists+devicetree@lfdr.de>; Tue, 14 Mar 2023 17:08:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 06E816B9B58
+	for <lists+devicetree@lfdr.de>; Tue, 14 Mar 2023 17:27:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229690AbjCNQIa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Mar 2023 12:08:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55438 "EHLO
+        id S229800AbjCNQ1N (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Mar 2023 12:27:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58260 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229636AbjCNQI2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Mar 2023 12:08:28 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 66E602B296;
-        Tue, 14 Mar 2023 09:08:27 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 0AD60B81A31;
-        Tue, 14 Mar 2023 16:08:26 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6F2D7C4339B;
-        Tue, 14 Mar 2023 16:08:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1678810104;
-        bh=wA9DCnSggZ7AMT9yojgtSsTiqRDWjhLpUyEUud8IvmE=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=dAbWryZpUw6TZWSzeXV/L6G7XErOuD5W4Xe6WLiyuLNeL5oEXrwhuvOWjDanp/69q
-         hgoQeZ5BmogcMEB440DbybHqh9Egk7TDdok25Z9tVdHbNLFe3es76W8aPjqv6FZ0wq
-         kUmqHRPOsl67nHr1DQqXGxnXQcqheiprkRAhmfm6xlwY6nN/6z4kGsPjPhaACjCjHk
-         cbEtMPzPOssPONhgcuAWztD9X5JkNuK+AN/wX3wPmtVss/ayeNF1dBIqjd8YBZoe+k
-         BdIy+OoFmSKUHA0dV4YWkvvGdkLgebsG+aJ8geyRfS4suXrOTRHAlII9BwhvPH6i+o
-         sBBgS3bHSLV9g==
-Date:   Tue, 14 Mar 2023 09:08:21 -0700
-From:   Nathan Chancellor <nathan@kernel.org>
-To:     Michael Riesch <michael.riesch@wolfvision.net>
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
-        dri-devel@lists.freedesktop.org, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Sandy Huang <hjc@rock-chips.com>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Sascha Hauer <sha@pengutronix.de>,
-        kernel test robot <lkp@intel.com>,
-        Dan Carpenter <error27@gmail.com>, llvm@lists.linux.dev
-Subject: Re: [PATCH v3 1/6] drm/rockchip: vop2: initialize possible_crtcs
- properly
-Message-ID: <20230314160821.GA13416@dev-arch.thelio-3990X>
-References: <20230124054706.3921383-1-michael.riesch@wolfvision.net>
- <20230124054706.3921383-2-michael.riesch@wolfvision.net>
+        with ESMTP id S230045AbjCNQ1I (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Mar 2023 12:27:08 -0400
+Received: from elvis.franken.de (elvis.franken.de [193.175.24.41])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 48E284FAA9;
+        Tue, 14 Mar 2023 09:26:57 -0700 (PDT)
+Received: from uucp (helo=alpha)
+        by elvis.franken.de with local-bsmtp (Exim 3.36 #1)
+        id 1pc7UG-00048S-00; Tue, 14 Mar 2023 17:26:56 +0100
+Received: by alpha.franken.de (Postfix, from userid 1000)
+        id 7B753C12F6; Tue, 14 Mar 2023 17:18:30 +0100 (CET)
+Date:   Tue, 14 Mar 2023 17:18:30 +0100
+From:   Thomas Bogendoerfer <tsbogend@alpha.franken.de>
+To:     Rob Herring <robh@kernel.org>
+Cc:     devicetree@vger.kernel.org, linux-mips@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] mips: Use of_property_read_bool() for boolean properties
+Message-ID: <20230314161830.GA18446@alpha.franken.de>
+References: <20230310144656.1540950-1-robh@kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230124054706.3921383-2-michael.riesch@wolfvision.net>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <20230310144656.1540950-1-robh@kernel.org>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW,
+        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Michael,
-
-On Tue, Jan 24, 2023 at 06:47:01AM +0100, Michael Riesch wrote:
-> The variable possible_crtcs is only initialized for primary and
-> overlay planes. Since the VOP2 driver only supports these plane
-> types at the moment, the current code is safe. However, in order
-> to provide a future-proof solution, fix the initialization of
-> the variable.
+On Fri, Mar 10, 2023 at 08:46:56AM -0600, Rob Herring wrote:
+> It is preferred to use typed property access functions (i.e.
+> of_property_read_<type> functions) rather than low-level
+> of_get_property/of_find_property functions for reading properties.
+> Convert reading boolean properties to to of_property_read_bool().
 > 
-> Reported-by: kernel test robot <lkp@intel.com>
-> Reported-by: Dan Carpenter <error27@gmail.com>
-> Signed-off-by: Michael Riesch <michael.riesch@wolfvision.net>
+> Signed-off-by: Rob Herring <robh@kernel.org>
 > ---
-> v3:
->  - no changes
-> v2:
->  - new patch
-> 
->  drivers/gpu/drm/rockchip/rockchip_drm_vop2.c | 7 ++++---
->  1 file changed, 4 insertions(+), 3 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c b/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c
-> index 8cecf81a5ae0..374ef821b453 100644
-> --- a/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c
-> +++ b/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c
-> @@ -2322,10 +2322,11 @@ static int vop2_create_crtc(struct vop2 *vop2)
->  				/* change the unused primary window to overlay window */
->  				win->type = DRM_PLANE_TYPE_OVERLAY;
->  			}
-> -		}
-> -
-> -		if (win->type == DRM_PLANE_TYPE_OVERLAY)
-> +		} else if (win->type == DRM_PLANE_TYPE_OVERLAY) {
->  			possible_crtcs = (1 << nvps) - 1;
-> +		} else {
-> +			possible_crtcs = 0;
-> +		}
->  
->  		ret = vop2_plane_init(vop2, win, possible_crtcs);
->  		if (ret) {
-> -- 
-> 2.30.2
-> 
+>  arch/mips/pci/pci-lantiq.c | 2 +-
+>  arch/mips/pci/pci-rt3883.c | 2 +-
+>  2 files changed, 2 insertions(+), 2 deletions(-)
 
-This patch is now in -next as commit 368419a2d429 ("drm/rockchip: vop2:
-initialize possible_crtcs properly") and it actually appears to
-introduce a path where possible_crtcs could be used uninitialized.
+applied to mips-next.
 
-  drivers/gpu/drm/rockchip/rockchip_drm_vop2.c:2316:8: error: variable 'possible_crtcs' is used uninitialized whenever 'if' condition is false [-Werror,-Wsometimes-uninitialized]
-                          if (vp) {
-                              ^~
-  drivers/gpu/drm/rockchip/rockchip_drm_vop2.c:2330:36: note: uninitialized use occurs here
-                  ret = vop2_plane_init(vop2, win, possible_crtcs);
-                                                   ^~~~~~~~~~~~~~
-  drivers/gpu/drm/rockchip/rockchip_drm_vop2.c:2316:4: note: remove the 'if' if its condition is always true
-                          if (vp) {
-                          ^~~~~~~~
-  drivers/gpu/drm/rockchip/rockchip_drm_vop2.c:2298:21: note: initialize the variable 'possible_crtcs' to silence this warning
-                  u32 possible_crtcs;
-                                    ^
-                                     = 0
-  1 error generated.
+Thomas.
 
-Prior to this change, if that else path was hit, clang recognized based on
-the assignment that the next if statement would always be true. Now, if
-the else path is taken, the possible_crtcs assignment will be missed. Is
-that intentional?
-
-Cheers,
-Nathan
+-- 
+Crap can work. Given enough thrust pigs will fly, but it's not necessarily a
+good idea.                                                [ RFC1925, 2.3 ]
