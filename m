@@ -2,63 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6E7C96B8717
-	for <lists+devicetree@lfdr.de>; Tue, 14 Mar 2023 01:40:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E56BD6B8720
+	for <lists+devicetree@lfdr.de>; Tue, 14 Mar 2023 01:42:54 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229646AbjCNAkv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Mar 2023 20:40:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34312 "EHLO
+        id S229456AbjCNAmx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Mar 2023 20:42:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37174 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229616AbjCNAkt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Mar 2023 20:40:49 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EA56F87A14;
-        Mon, 13 Mar 2023 17:40:12 -0700 (PDT)
+        with ESMTP id S229807AbjCNAmk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Mar 2023 20:42:40 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 64F8C84F7B;
+        Mon, 13 Mar 2023 17:42:12 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 95E3F6157B;
-        Tue, 14 Mar 2023 00:39:07 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CD300C433D2;
-        Tue, 14 Mar 2023 00:39:05 +0000 (UTC)
+        by ams.source.kernel.org (Postfix) with ESMTPS id A6B0DB81689;
+        Tue, 14 Mar 2023 00:42:10 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DF0D9C433D2;
+        Tue, 14 Mar 2023 00:42:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1678754347;
-        bh=I5IHq5bn2nVWOr2WOI4rN3AaQ6amvwyigKJTJsYavWY=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=RruQ+s06WTk+cgWdUxjMHNjDsZv9dZeRSQBbtDz0mm8ecHaKRqyke90dcSCWbvpdf
-         xOy6FZr9xiRMMF/3D/cbp9YhCSUxmF4asMpc9X0jdYOSBJLfzwpXIkETHdpLgvYyCO
-         6ogWtkTJZhcch7QFSxcA7085rNO2EqjU0h3aQ5qvpCp+OQCJK1bpQylahTJj4TH7b1
-         flkn6Ia7DtYZvHaLvyfmfKFMEcEqxDyH8NMzkQuRtlTccvCTa0Xd09hJOJ+cftRDxb
-         aGOg+4Wf3ZWGxTxeTiNbrB9hUFlgB2r1+ebAK0+DVcjF0WdYdNoqS3IqP3KOrhN7iK
-         GIEJl2rq3Q6LQ==
-Date:   Mon, 13 Mar 2023 17:39:04 -0700
-From:   Jakub Kicinski <kuba@kernel.org>
-To:     Andrew Halaney <ahalaney@redhat.com>
-Cc:     linux-kernel@vger.kernel.org, agross@kernel.org,
-        andersson@kernel.org, konrad.dybcio@linaro.org,
-        davem@davemloft.net, edumazet@google.com, pabeni@redhat.com,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        vkoul@kernel.org, bhupesh.sharma@linaro.org,
-        mturquette@baylibre.com, sboyd@kernel.org, peppe.cavallaro@st.com,
-        alexandre.torgue@foss.st.com, joabreu@synopsys.com,
-        mcoquelin.stm32@gmail.com, richardcochran@gmail.com,
-        linux@armlinux.org.uk, veekhee@apple.com,
-        tee.min.tan@linux.intel.com, mohammad.athari.ismail@intel.com,
-        jonathanh@nvidia.com, ruppala@nvidia.com, bmasney@redhat.com,
-        andrey.konovalov@linaro.org, linux-arm-msm@vger.kernel.org,
-        netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-clk@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        linux-arm-kernel@lists.infradead.org, ncai@quicinc.com,
-        jsuraj@qti.qualcomm.com, hisunil@quicinc.com
-Subject: Re: [PATCH net-next 08/11] net: stmmac: Add EMAC3 variant of dwmac4
-Message-ID: <20230313173904.3d611e83@kernel.org>
-In-Reply-To: <20230313165620.128463-9-ahalaney@redhat.com>
-References: <20230313165620.128463-1-ahalaney@redhat.com>
-        <20230313165620.128463-9-ahalaney@redhat.com>
+        s=k20201202; t=1678754529;
+        bh=rhuR0525d0xOEscAwkyPRV01tY0JwoVYr5/YHEfeQxg=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=lf3spT6fwbRActGeXR3v1Lq8Gdg2kOKUDlGjBDVYzmeODfsl+caccIDw58C2y590h
+         9GaXw8kfhcznQvGmvbczHfUUUlAiDrhHfvwT2KV8GtE9ulfiGj4rDx8RTU4A0+eWmp
+         fhhgyLrI5ujgw/uDXZxUjP2C3ocEzs2A+8qFBgHomgzJVVaXn11lDUXLins+HZINC7
+         fx0YaYN9CHe7B6dHzuX45MbCEKeizkl6mzG/VVWrEqDSVJ0tlr4ECE6ZiC+aQIQnqF
+         /4Ii1NNh6YJoR1q9gsOsjYCjs+53MyNoZ+1kqBjbLkBNnNK4ESEkMA9UyMR45Tnnu3
+         aOWTzXt/LZ2ZQ==
+Date:   Tue, 14 Mar 2023 08:42:01 +0800
+From:   Shawn Guo <shawnguo@kernel.org>
+To:     Michal =?utf-8?B?Vm9rw6HEjQ==?= <michal.vokac@ysoft.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH 5/6] ARM: dts: =?iso-8859-1?Q?i?=
+ =?iso-8859-1?Q?mx6dl-yapp43=3A_Add_support_for_new_HW_revision_of_the_IOT?=
+ =?iso-8859-1?Q?A=A0board?=
+Message-ID: <20230314004201.GS143566@dragon>
+References: <20230210154855.3086900-1-michal.vokac@ysoft.com>
+ <20230210154855.3086900-6-michal.vokac@ysoft.com>
+ <20230313082348.GM143566@dragon>
+ <6a942ff5-4bf4-ae23-fe78-900d1965e821@ysoft.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <6a942ff5-4bf4-ae23-fe78-900d1965e821@ysoft.com>
 X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
@@ -68,13 +65,26 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 13 Mar 2023 11:56:17 -0500 Andrew Halaney wrote:
-> EMAC3 is a Qualcomm variant of dwmac4 that functions the same, but has a
-> different address space layout for MTL and DMA registers. This makes the
-> patch a bit more complicated than we would like so let's explain why the
-> current approach was used.
+On Mon, Mar 13, 2023 at 05:42:21PM +0100, Michal Vokáč wrote:
+> > > +	eeprom@57 {
+> > > +		compatible = "atmel,24c128";
+> > > +		reg = <0x57>;
+> > > +		pagesize = <64>;
+> > > +		status = "okay";
+> > 
+> > The "okay" status is only needed to flip a "disabled" one.
+> 
+> OK, I will remove the status "okay" from all device nodes defined
+> by this dtsi that should be enabled by default.
+> 
+> I assume that using status "okay" (or "disabled") for referenced
+> nodes coming from included SoC dtsi files is fine even if these
+> nodes already have the required status at the moment.
 
-Please drop all the static inlines in C sources, you're wrapping 
-a single function call, the compiler will do the right thing.
+Yeah, that would be fine.
 
-Please no more than 6 function arguments.
+Shawn
+
+> Otherwise I see no guarantee that the node will have my required
+> status in the future as well. The status in the included files
+> may be changed by someone else for whatever reason.
