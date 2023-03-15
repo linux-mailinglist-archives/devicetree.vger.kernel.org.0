@@ -2,55 +2,54 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 469F66BC139
-	for <lists+devicetree@lfdr.de>; Thu, 16 Mar 2023 00:33:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9BD6E6BC177
+	for <lists+devicetree@lfdr.de>; Thu, 16 Mar 2023 00:35:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233221AbjCOXdq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Mar 2023 19:33:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46740 "EHLO
+        id S233253AbjCOXfk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Mar 2023 19:35:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45162 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233151AbjCOXdH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Mar 2023 19:33:07 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BE05A26C0D;
-        Wed, 15 Mar 2023 16:32:34 -0700 (PDT)
+        with ESMTP id S233262AbjCOXfL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Mar 2023 19:35:11 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 708A8A8EB8;
+        Wed, 15 Mar 2023 16:34:09 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id BCD8B61ECA;
-        Wed, 15 Mar 2023 23:32:31 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4FCFCC433A7;
-        Wed, 15 Mar 2023 23:32:30 +0000 (UTC)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 9BE4FB81E92;
+        Wed, 15 Mar 2023 23:32:34 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9C82CC433D2;
+        Wed, 15 Mar 2023 23:32:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1678923151;
-        bh=zsCo8PRAuCu3L013TIzei1I1N89ExJiAAD0ecw4R4F4=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=UciPNDUS6kF+uIPY9e2FQujq7cWrlrafJlk+M9iomXDcA0+Oztux3Ig+xy/ESi1Iz
-         3lKItyOa3X8jWkuI8Qkg4+2aR0E3AYINImuCl5CoHRf6h53njpyU3oVsw5HVoO6VWp
-         jI2Sf5FMl+bndzOlm43Rr8zUyCCWlqRpYiqEa1yHsL/Ac94cMeKfQ733qqCqmO4WAP
-         RogKGUHk1RSmVLTqeld0z965bisOx9WznKRDaerNri/WNZDPtyMu9DIltlitpPHSjR
-         5op7xgeNnyQBP96fl2DHnt3s0rsyY5j1aBaW92YXd9QsltQiHBYMddhS18C1YWlvd/
-         Qej9zoYjWr1aA==
+        s=k20201202; t=1678923153;
+        bh=X++4OxDCwnuSh5dN1appXAT4R+9fEiDgyTJXnrsbdb4=;
+        h=From:To:Subject:Date:In-Reply-To:References:From;
+        b=BZfVBbGiJNwgTAsvQrwz/kUoiTiEXHbxHnaMDQERyTqAwzMdWXn1NqqPhGASkWfLy
+         e/REQol88Se55H2viaASjNljC9UWKFA43aD7CT2v7D0ETysP4edcZJl8vVtEJRQFaT
+         KJKpg4w4x2QT4ooqlyoSYKaQn7h4o6C9NDpXoFpkyQHV+TyXPfs+prvlFDISY5uwRx
+         FRaIrlK48sfLF+/lv6V/CQ++EVbPsl/wV6+idYS4OdUZefIhBzwz/5rCbke3pvFzp9
+         AATLF6ndMCwhEgOolqtDDzDzijjJKo3ObD54BlhvegqG1pwEPEwfGmAw1n6ISuw6u5
+         Uh6nHrau5tscw==
 From:   Bjorn Andersson <andersson@kernel.org>
-To:     agross@kernel.org, linux-arm-msm@vger.kernel.org,
-        Konrad Dybcio <konrad.dybcio@linaro.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
+To:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-msm@vger.kernel.org,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        linux-pm@vger.kernel.org, marijn.suijten@somainline.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Sebastian Reichel <sre@kernel.org>
-Subject: Re: (subset) [PATCH v2 1/3] dt-bindings: power: supply: pm8941-coincell: Add PM8998 compatible
-Date:   Wed, 15 Mar 2023 16:35:01 -0700
-Message-Id: <167892332565.4030021.17653631572421416966.b4-ty@kernel.org>
+        Andy Gross <agross@kernel.org>
+Subject: Re: (subset) [PATCH 1/2] arm64: dts: qcom: msm8996: move WCD9335 audio codec to boards
+Date:   Wed, 15 Mar 2023 16:35:04 -0700
+Message-Id: <167892332566.4030021.5794681413787875009.b4-ty@kernel.org>
 X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20230214090849.2186370-1-konrad.dybcio@linaro.org>
-References: <20230214090849.2186370-1-konrad.dybcio@linaro.org>
+In-Reply-To: <20230220094339.47370-1-krzysztof.kozlowski@linaro.org>
+References: <20230220094339.47370-1-krzysztof.kozlowski@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -58,15 +57,19 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 14 Feb 2023 10:08:47 +0100, Konrad Dybcio wrote:
-> Add a specific compatible for the coincell charger present on PM8998.
+On Mon, 20 Feb 2023 10:43:38 +0100, Krzysztof Kozlowski wrote:
+> The WCD9335 audio codec on Slimbus is a property of a board, not SoC,
+> thus it should not be present in MSM8996 DTSI.  Keep it in specific
+> boards, so it won't appear incomplete in the boards not having it.
 > 
 > 
 
 Applied, thanks!
 
-[3/3] arm64: dts: qcom: pm8998: Add a specific compatible for coincell chg
-      commit: 0d589dc92fca4679186a949194fc7c452d37c575
+[1/2] arm64: dts: qcom: msm8996: move WCD9335 audio codec to boards
+      commit: 5a1816cc2d8caa054aa8b254efea9739aa8a68c6
+[2/2] arm64: dts: qcom: apq8096-db820c: fix indentation
+      commit: aec576821e6fd233ae895f4aa57ff1b511a71e8e
 
 Best regards,
 -- 
