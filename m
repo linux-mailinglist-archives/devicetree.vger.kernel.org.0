@@ -2,92 +2,161 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EFAAF6BBBA5
-	for <lists+devicetree@lfdr.de>; Wed, 15 Mar 2023 19:05:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4782D6BBC16
+	for <lists+devicetree@lfdr.de>; Wed, 15 Mar 2023 19:32:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231623AbjCOSFH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Mar 2023 14:05:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33180 "EHLO
+        id S231244AbjCOSck (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Mar 2023 14:32:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44870 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230452AbjCOSFG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Mar 2023 14:05:06 -0400
-Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0386514201
-        for <devicetree@vger.kernel.org>; Wed, 15 Mar 2023 11:05:04 -0700 (PDT)
-Received: by mail-ed1-x531.google.com with SMTP id w9so8073798edc.3
-        for <devicetree@vger.kernel.org>; Wed, 15 Mar 2023 11:05:03 -0700 (PDT)
+        with ESMTP id S230134AbjCOScj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Mar 2023 14:32:39 -0400
+Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4BD418C83A
+        for <devicetree@vger.kernel.org>; Wed, 15 Mar 2023 11:32:37 -0700 (PDT)
+Received: by mail-lf1-x130.google.com with SMTP id j11so25421907lfg.13
+        for <devicetree@vger.kernel.org>; Wed, 15 Mar 2023 11:32:37 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1678903502;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=E/DrEtagZyubG0GW8f8e+FbSp5ZRsII6bZr+2KW/IQg=;
-        b=AAZPSGzHgpvb2mKQ1EoGLFO95CSAAbfquebCvYCd688R8f4AoOP6aHBj7qNlyQLwLU
-         x21AI2rII0od88aoRBE/quUEdiFHSjnTbtdYb+Z92zR6p5p9plnkw08qtrnknbBluhP4
-         4gIIcnWxK42Y9XYGYSOHDf4598wXLeQzPPRRB5S3kaWGiwjwFsdY1AxAniePMCKyp0DO
-         F5VmG9mXfjdaGnUjOqvBvF2UivghqBxi6cThWaEuIy2VKokEL8yzaCtuBdHF1fpoqZWZ
-         jALpAXWVarRUWdu8X2nkXYorfAFBWPm+oApijZJqHNE1WiN/pfy0LpOcrMiZBEeq1AhF
-         5+hA==
+        d=linaro.org; s=google; t=1678905155;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=lUa8//lyKnSdOFUjOl9afhkYQARVR2uYtRvHFtnhi3o=;
+        b=eKFUyQaNYExzyKv2KyBxlWlFlntkR3/ausD8bBmO1R162fNhYqgy6EvoyyBXfU1yTG
+         rUUc8nN1cfP9Qg4Vn26/KLh2rkK3bM8zcTOX5aJN1LajWV6ai+QM2INZFXK+P5nnP9xP
+         oJUpO8aJE7hqqh2jdHYOAYAHB6jqtOiFzK2rkdtpvDUt/wHp7cSol30MNdiVaNpQudom
+         RC2r95g0EqBL2e7TOCcVczzlU8tx4WqZWiBDxGArLvL0tbJm9VrZycctKGzGaWF6wWe+
+         t6VX/sCQTiocGjflq/IOz0gREie/gtiaTFoiok4MuJzLRnrbDnNCYOtNwSiBY4KHp4BL
+         YaHQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678903502;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=E/DrEtagZyubG0GW8f8e+FbSp5ZRsII6bZr+2KW/IQg=;
-        b=nrhPcd/h+Ik+ElXncgGqIvk0b7tUeftNEgYUsHlF/OIjeCHHidmGNQxt77vDch76iG
-         XykWuFpXVj1g2li7Fhbpprmp4M8s+CWUJbEl7FKjqtsw3lyMxCwoAhE8LHNOA66yYUl7
-         7hXuuYXXmjFCPrlV+1gIzLDQrfFMssUGkBH74LiIQWbNyg6DY+y1ZXpQJS+8qRNS5tFz
-         yW/+RixdPxIM4FW2h82XWaWj/+4C70EZXwGJeVFjFDmkClbaySGx5kk7h3K87mggOT+y
-         u2NRzm1DMRBU0AxJCt0S54D7R6futGPB5qGdBn9iHe8KZSZYoegr/T/OvVkW2VzzRz/p
-         tLsw==
-X-Gm-Message-State: AO0yUKXRkbKTkedQsUdbNPXjHi07PgVFVrE1kG4ch4YYvOY2/1BDx0HD
-        1qwjl0uex1Mmksvdn5GEkz2LXg==
-X-Google-Smtp-Source: AK7set/EWeiL4CgaEmnMtfP0zRZdsE9IOHcGPR3AKFbB+w0h9JcDvRCUagIkM7fkBOaR4uCpAh3x9Q==
-X-Received: by 2002:a17:906:4e14:b0:8b1:779c:a8b1 with SMTP id z20-20020a1709064e1400b008b1779ca8b1mr7049606eju.5.1678903502469;
-        Wed, 15 Mar 2023 11:05:02 -0700 (PDT)
-Received: from ?IPV6:2a02:810d:15c0:828:940e:8615:37dc:c2bd? ([2a02:810d:15c0:828:940e:8615:37dc:c2bd])
-        by smtp.gmail.com with ESMTPSA id c17-20020a170906d19100b008e57b5e0ce9sm2823703ejz.108.2023.03.15.11.05.01
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 15 Mar 2023 11:05:02 -0700 (PDT)
-Message-ID: <fd6c0fe4-3d53-95fe-0aa0-c56cc2e3daf0@linaro.org>
-Date:   Wed, 15 Mar 2023 19:04:59 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-Subject: Re: [PATCH] ASoC: dt-bindings: maxim,max9759: Convert to DT schema.
-Content-Language: en-US
-To:     Otabek Nazrullaev <otabeknazrullaev1998@gmail.com>
-Cc:     Daniel Baluta <daniel.baluta@nxp.com>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
+        d=1e100.net; s=20210112; t=1678905155;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=lUa8//lyKnSdOFUjOl9afhkYQARVR2uYtRvHFtnhi3o=;
+        b=dTxSU9Twt4UqqPEEfVycdVS3pgeGsfOl4JBuh1A9EpPlkJv0PxTlQwd8BckSfmWlfO
+         mSLXQTQCEv44tr23HN3FFl7fuppWNB5NbFGDydg3VFnBtoo3B1zG67WIx3Oyxsgis3+8
+         DifD9OsOiYKd616imQgqzInF+orVshV/iNoxGlWxDsZBEqwksxkRWZYcWlnFMgRU54xp
+         //+DEe2VfPgLPDg1G7jAce+O9QX8xZRyeqbmBn1xTgU2oODFs3Hgt+rL24ih8OrvhCTF
+         UvoFk2MuEVnS+tbcRwvSmmOqsa82GyZlF858kJ9H2kNH3/+MN85e6rRkIFLLDPGU5I7X
+         j9oQ==
+X-Gm-Message-State: AO0yUKVwYe9EBzpitz2xetS8ngho8vdf7pZXeI+LUUeXBhCw95HMFvqt
+        F+V9KYYNahjW8R88enfmVOdtPurkp5YxvBz9iwk=
+X-Google-Smtp-Source: AK7set/J+tOaVF7js9psDTI0PrQjsCzzhIunhHjs7+U0fO5D3KKmiLApCLY1PjhSfTHqjx4pOZ8beQ==
+X-Received: by 2002:a05:6512:408:b0:4db:3877:817a with SMTP id u8-20020a056512040800b004db3877817amr2558622lfk.28.1678905155551;
+        Wed, 15 Mar 2023 11:32:35 -0700 (PDT)
+Received: from localhost.localdomain (abyj16.neoplus.adsl.tpnet.pl. [83.9.29.16])
+        by smtp.gmail.com with ESMTPSA id i10-20020a056512006a00b004d0b1327b75sm911033lfo.61.2023.03.15.11.32.34
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 15 Mar 2023 11:32:35 -0700 (PDT)
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+To:     linux-arm-msm@vger.kernel.org, andersson@kernel.org,
+        agross@kernel.org
+Cc:     marijn.suijten@somainline.org,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        Bhupesh Sharma <bhupesh.sharma@linaro.org>,
+        linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
-References: <20230315173404.7215-1-otabeknazrullaev1998@gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230315173404.7215-1-otabeknazrullaev1998@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+Subject: [PATCH] dt-bindings: remoteproc: qcom: sm6115-pas: Add QCM2290
+Date:   Wed, 15 Mar 2023 19:32:31 +0100
+Message-Id: <20230315183231.3562580-1-konrad.dybcio@linaro.org>
+X-Mailer: git-send-email 2.39.2
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-0.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_SORBS_HTTP,RCVD_IN_SORBS_SOCKS,SPF_HELO_NONE,SPF_PASS,
+        URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 15/03/2023 18:33, Otabek Nazrullaev wrote:
-> Convert Maxim MAX9759 Speaker Amplifier bindings to DT schema.
-> Add missing gpio header file into examples section
+QCM2290 is more or less a fork of the same design that SM6115 is based
+on. As a result, the ADSP and modem found on it are identical.
 
-Subject: drop full stop.
+Add compatibles for the QCM2290 with SM6115 fallbacks so as not to
+require any driver changes. Change the allOf:if:properties clauses
+to look for the presence of SM6115 compatibles and not an exact match.
 
+Note that QCM2290 lacks a CDSP.
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+---
+ .../bindings/remoteproc/qcom,sm6115-pas.yaml  | 36 ++++++++++++-------
+ 1 file changed, 24 insertions(+), 12 deletions(-)
 
-Best regards,
-Krzysztof
+diff --git a/Documentation/devicetree/bindings/remoteproc/qcom,sm6115-pas.yaml b/Documentation/devicetree/bindings/remoteproc/qcom,sm6115-pas.yaml
+index f5d1fa9f45f1..95a76b98f693 100644
+--- a/Documentation/devicetree/bindings/remoteproc/qcom,sm6115-pas.yaml
++++ b/Documentation/devicetree/bindings/remoteproc/qcom,sm6115-pas.yaml
+@@ -15,10 +15,19 @@ description:
+ 
+ properties:
+   compatible:
+-    enum:
+-      - qcom,sm6115-adsp-pas
+-      - qcom,sm6115-cdsp-pas
+-      - qcom,sm6115-mpss-pas
++    oneOf:
++      - enum:
++          - qcom,sm6115-adsp-pas
++          - qcom,sm6115-cdsp-pas
++          - qcom,sm6115-mpss-pas
++
++      - items:
++          - const: qcom,qcm2290-adsp-pas
++          - const: qcom,sm6115-adsp-pas
++
++      - items:
++          - const: qcom,qcm2290-mpss-pas
++          - const: qcom,sm6115-mpss-pas
+ 
+   reg:
+     maxItems: 1
+@@ -50,9 +59,10 @@ allOf:
+   - if:
+       properties:
+         compatible:
+-          enum:
+-            - qcom,sm6115-adsp-pas
+-            - qcom,sm6115-cdsp-pas
++          contains:
++            enum:
++              - qcom,sm6115-adsp-pas
++              - qcom,sm6115-cdsp-pas
+     then:
+       properties:
+         interrupts:
+@@ -69,9 +79,10 @@ allOf:
+   - if:
+       properties:
+         compatible:
+-          enum:
+-            - qcom,sm6115-cdsp-pas
+-            - qcom,sm6115-mpss-pas
++          contains:
++            enum:
++              - qcom,sm6115-cdsp-pas
++              - qcom,sm6115-mpss-pas
+     then:
+       properties:
+         power-domains:
+@@ -84,8 +95,9 @@ allOf:
+   - if:
+       properties:
+         compatible:
+-          enum:
+-            - qcom,sm6115-adsp-pas
++          contains:
++            enum:
++              - qcom,sm6115-adsp-pas
+     then:
+       properties:
+         power-domains:
+-- 
+2.39.2
 
