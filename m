@@ -2,76 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 46DB26BAA01
-	for <lists+devicetree@lfdr.de>; Wed, 15 Mar 2023 08:52:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B62C66BAA06
+	for <lists+devicetree@lfdr.de>; Wed, 15 Mar 2023 08:52:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231971AbjCOHwO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Mar 2023 03:52:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55090 "EHLO
+        id S231963AbjCOHwk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Mar 2023 03:52:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55166 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231978AbjCOHvp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Mar 2023 03:51:45 -0400
-Received: from mail-ed1-x52e.google.com (mail-ed1-x52e.google.com [IPv6:2a00:1450:4864:20::52e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7397A20552
-        for <devicetree@vger.kernel.org>; Wed, 15 Mar 2023 00:51:18 -0700 (PDT)
-Received: by mail-ed1-x52e.google.com with SMTP id x3so71864848edb.10
-        for <devicetree@vger.kernel.org>; Wed, 15 Mar 2023 00:51:18 -0700 (PDT)
+        with ESMTP id S231559AbjCOHwP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Mar 2023 03:52:15 -0400
+Received: from mail-ed1-x530.google.com (mail-ed1-x530.google.com [IPv6:2a00:1450:4864:20::530])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4CAEA73892
+        for <devicetree@vger.kernel.org>; Wed, 15 Mar 2023 00:51:48 -0700 (PDT)
+Received: by mail-ed1-x530.google.com with SMTP id cy23so71810622edb.12
+        for <devicetree@vger.kernel.org>; Wed, 15 Mar 2023 00:51:48 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1678866675;
+        d=linaro.org; s=google; t=1678866708;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=d911BX05CiPkms8AKztZoQp6q7GS5syhqZ58jXzG8VE=;
-        b=ZOMey7ZhXDYxrd6lgeXdkjCnUX0Xam3eF9j80XI2IE8e3FEzxvB6zLkFKz4qE0kLUl
-         mJ+4Sn2A1b6wmIXVS61RepqHwS8ZIr2iLW96gqt89Z4wFiylSSOYYDOuRdloaptLqQZE
-         t5VHemA7dW9Qq4X5d13Yd8NQ2SkxIjYlxWgMAF1bE0Rhievdnrt5J9ALMtSo65L5r4Z0
-         kWeAr8T71uEaD5WwNLTk8ArZ3aiMWCOHJkxlHOdb2UQMOLxt2CAbrZ+Qxszl5Zy+/Hgj
-         tvAAswePut3Mbr6HmtPT8Q2hCRCSFNlueFzhSAFd33p7vfHFkSwrkUosXXkfatxlzCJX
-         lYQA==
+        bh=Rtzm0dNUyTJmBG5J/B6707/S4Pte/iFJwCqbn2gvJ4Q=;
+        b=K0IWxPweceXAJvkwMSWgRYi4I0hvq6aPbbv364Bjric9zjIFEbo3n9Igv48yqx2rqI
+         XHYD6/H9RT/RK0ZV7w2eqjM9mc4nUEVICafT/otoipMQcv/TgDQGpLqMsDHabxSsuLP0
+         SIIVhUDvPaL34MBChXeH5dmhvF6l9TPXW8mky5o+/3v/rkxWC5lfxUfZlFmFvcYnREUk
+         +d2aNLRQQY7h0ur9ZgNASYWxheITEDCirxa2lxqzKPUPsuWzNGMmb7T/KWDFLg/+x+R9
+         +lV9F2o8uZy34GGYwCSpQil7pG8hKYb6v7KuOXP9HkStLHIOz+0d0QavdbW2ZWhdj90w
+         2PIg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678866675;
+        d=1e100.net; s=20210112; t=1678866708;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=d911BX05CiPkms8AKztZoQp6q7GS5syhqZ58jXzG8VE=;
-        b=qnMwjCyl3RbGQjwAcQ183RKQZMByFObtHpQmDqPyKthDq0U7UhBbiOT90HQyQwTDbT
-         /advZBrMWID1ctkHUG6Y2VDOA6K6/FNpAFDKGUm2RHFuHv7NkS8DjN6CAnrmfL6sOMXf
-         7HIP+esdDM1baxj5Zbqcgn4SpYruYGp35RR1AoQdFYYCvcqrgRFOLqMy4RfiThGRu48C
-         EmP1LQdt1qhp9ckISvDNrA6PkO3Y/4sYOAmMgq3XkZhvcB35Y90+evrmuYRzGf4duECQ
-         lzyA0Q3HtWoN6o5CNq9uBCkosPcd74N7Lu6LOI+e7i98Xtei3N1SiDTGu4KTdPnzHzeW
-         hOlQ==
-X-Gm-Message-State: AO0yUKV8u9DUKyM53y8Z1T/Y12bpmL5fbFB4Y8VxjXpo0kvm10ZAaVvW
-        0iPYAgF1cbSoOzGTCIIhg/lMjQ==
-X-Google-Smtp-Source: AK7set9EccNsOU9Upy9ZTTa9EUYd+AKvXz7iJKuDZ8Q/NNbXPcskakPQHUFzolc0AD1cp5Jh0j+hjQ==
-X-Received: by 2002:a50:fa93:0:b0:500:2a9d:1870 with SMTP id w19-20020a50fa93000000b005002a9d1870mr989231edr.13.1678866675656;
-        Wed, 15 Mar 2023 00:51:15 -0700 (PDT)
+        bh=Rtzm0dNUyTJmBG5J/B6707/S4Pte/iFJwCqbn2gvJ4Q=;
+        b=OJ7n2VK9FLu2hIas3u72Boxr1y6LHwiB3N00/aLrkj22ZqN7JCVlkhyaJmAqI0lj/p
+         km/UBV09FKmc6SnxOaKbfqNS33E/0RNmzcO+UnQC6nF9QgGaR9i84g/EqTjrYJ1OVN3y
+         +PdNEN2qByPKDEttV+wpzGrm51LyIeYe/YrDhsdWwnCpnKETf05UbXulBhNPuoTucFyV
+         qXAeqqBY2Dtk3c8R5F0MD2nNxH8JBuxkOAyXfAPfD0aTOyK3ixwPEfottUbI+IaBPFCt
+         hdcWX9OwSHPlWKTxfXhd6+j/wrFtb9i7WxB9TufgKM7pq3XzKuxKnrLwWqNqYKqDiuZV
+         6x6A==
+X-Gm-Message-State: AO0yUKWlnBSw0MWXuULDb9Z5hnwD8EwcFdSA2tb7UKquXiG3ORhke9Uk
+        DmCpHQJkIvCCWTngxDLQINjmuQ==
+X-Google-Smtp-Source: AK7set/yWRYjCKp5mLx+kg3wkMH72NDHq+jXSu/2+L2Vhk3CVxWK3EAQVP3YmAnhLQmqFJQLGyRcuQ==
+X-Received: by 2002:aa7:cc18:0:b0:4ac:b614:dd00 with SMTP id q24-20020aa7cc18000000b004acb614dd00mr1439146edt.30.1678866707846;
+        Wed, 15 Mar 2023 00:51:47 -0700 (PDT)
 Received: from ?IPV6:2a02:810d:15c0:828:940e:8615:37dc:c2bd? ([2a02:810d:15c0:828:940e:8615:37dc:c2bd])
-        by smtp.gmail.com with ESMTPSA id q11-20020a5085cb000000b004bd6e3ed196sm1933242edh.86.2023.03.15.00.51.14
+        by smtp.gmail.com with ESMTPSA id 18-20020a508e12000000b004fa380a14e7sm1974222edw.77.2023.03.15.00.51.46
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 15 Mar 2023 00:51:15 -0700 (PDT)
-Message-ID: <a6d8d360-f379-1382-7700-7bb04de6d9a0@linaro.org>
-Date:   Wed, 15 Mar 2023 08:51:14 +0100
+        Wed, 15 Mar 2023 00:51:47 -0700 (PDT)
+Message-ID: <8ce4e54d-1e90-99ec-3fb3-00c70adb6bf9@linaro.org>
+Date:   Wed, 15 Mar 2023 08:51:46 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.8.0
-Subject: Re: [PATCH 7/7] dt-bindings: display: add panel-timing property to
- sitronix,st7789v
+Subject: Re: [PATCH 1/2] dt-bindings: display: seiko,43wvf1g: Add the
+ 'enable-gpios' property
 Content-Language: en-US
-To:     Gerald Loacker <gerald.loacker@wolfvision.net>,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     Thierry Reding <thierry.reding@gmail.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Maxime Ripard <mripard@kernel.org>,
-        Michael Riesch <michael.riesch@wolfvision.net>
-References: <20230314115644.3775169-1-gerald.loacker@wolfvision.net>
- <20230314115644.3775169-8-gerald.loacker@wolfvision.net>
+To:     Fabio Estevam <festevam@denx.de>, neil.armstrong@linaro.org
+Cc:     sam@ravnborg.org, krzysztof.kozlowski+dt@linaro.org,
+        robh+dt@kernel.org, devicetree@vger.kernel.org,
+        dri-devel@lists.freedesktop.org, CPHEALY@gmail.com
+References: <20230314111724.1520178-1-festevam@denx.de>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230314115644.3775169-8-gerald.loacker@wolfvision.net>
+In-Reply-To: <20230314111724.1520178-1-festevam@denx.de>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -84,11 +76,12 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 14/03/2023 12:56, Gerald Loacker wrote:
-> The sitronix-st7789v driver now considers the panel-timing property.
-> Add the property to the documentation.
+On 14/03/2023 12:17, Fabio Estevam wrote:
+> Add an optional 'enable-gpios' property that can be used to turn on/off
+> the display.
 > 
-> Signed-off-by: Gerald Loacker <gerald.loacker@wolfvision.net>
+> Signed-off-by: Fabio Estevam <festevam@denx.de>
+> ---
 
 
 Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
