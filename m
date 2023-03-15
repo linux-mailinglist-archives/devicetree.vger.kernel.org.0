@@ -2,152 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 303C16BBA14
-	for <lists+devicetree@lfdr.de>; Wed, 15 Mar 2023 17:43:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 852506BBA79
+	for <lists+devicetree@lfdr.de>; Wed, 15 Mar 2023 18:08:02 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232817AbjCOQny (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Mar 2023 12:43:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49380 "EHLO
+        id S232473AbjCORH7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Mar 2023 13:07:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60570 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232412AbjCOQnc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Mar 2023 12:43:32 -0400
-Received: from box.trvn.ru (box.trvn.ru [194.87.146.52])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4A26382ABB;
-        Wed, 15 Mar 2023 09:42:32 -0700 (PDT)
-Received: from authenticated-user (box.trvn.ru [194.87.146.52])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
-        (No client certificate requested)
-        by box.trvn.ru (Postfix) with ESMTPSA id 4308641853;
-        Wed, 15 Mar 2023 21:41:38 +0500 (+05)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=trvn.ru; s=mail;
-        t=1678898498; bh=4rN3OclD+DIXhDrK5IXWGA7Kf0vsIK1+LnpasFhlIbU=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=Mn+pvXoA1bVcdM8vUn8Y+TPOFfmmZGesXLCu00LWlgdu4yiDIio2gbmhr/S/Sf/bz
-         0iN5SObu/nZDCkbuhfHmaCmkrx+JMnqYUqJ7xanctm7tVBmkXxpgzojMT//Xvg055d
-         3UUu5ZeTrTV7SB1MiPmbc2SMLwuHyac71UTecn4eGQIOPZNbfS20nYYzNdAdgOksQL
-         HkoU7aHT07QrzVVlPxt5+Mf2qe1Iribi7u53Jg2vgTPTm6nnlfIkjX4N8dAifAl5oY
-         uSTtP5HuLiaZOOh/rqLJPDF/TPCQGCCeK2lizkg++9dls8lXZfYOea6wvT2AMD+d6y
-         L4FTYTVaAlbyg==
+        with ESMTP id S232334AbjCORH5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Mar 2023 13:07:57 -0400
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ACE447B125;
+        Wed, 15 Mar 2023 10:07:28 -0700 (PDT)
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 32FH7GQS038316;
+        Wed, 15 Mar 2023 12:07:16 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1678900036;
+        bh=Ww0Oyj0dSqYDH67ojGalqkxWVXfqvNiW1L8xrMBe1ho=;
+        h=From:To:CC:Subject:Date;
+        b=k9j7HMl5luuXvey6X6GIQn47Qt/0Dp3TFmvLWjJBTn0bmqdZKjH8Qm8L3CgL3zELv
+         AQANs2QE8kxA74S353vkBvrT7D5mWFl9+bHcvGf5xrFcAPtvnKevEtKae/tc3lG6be
+         9KPf9yd0Vz9aDv2TxgLH+x6e7pFkQEoXyipKwq20=
+Received: from DFLE104.ent.ti.com (dfle104.ent.ti.com [10.64.6.25])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 32FH7G44118089
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Wed, 15 Mar 2023 12:07:16 -0500
+Received: from DFLE101.ent.ti.com (10.64.6.22) by DFLE104.ent.ti.com
+ (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Wed, 15
+ Mar 2023 12:07:16 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE101.ent.ti.com
+ (10.64.6.22) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
+ Frontend Transport; Wed, 15 Mar 2023 12:07:16 -0500
+Received: from localhost (ileaxei01-snat.itg.ti.com [10.180.69.5])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 32FH7Gla017985;
+        Wed, 15 Mar 2023 12:07:16 -0500
+From:   Nishanth Menon <nm@ti.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>
+CC:     <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        Tero Kristo <kristo@kernel.org>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Nishanth Menon <nm@ti.com>
+Subject: [PATCH V2 0/2] arm64: dts: ti: k3-am62: Add watchdog and rtc nodes
+Date:   Wed, 15 Mar 2023 12:07:04 -0500
+Message-ID: <20230315170706.1598977-1-nm@ti.com>
+X-Mailer: git-send-email 2.40.0
 MIME-Version: 1.0
-Date:   Wed, 15 Mar 2023 21:41:37 +0500
-From:   Nikita Travkin <nikita@trvn.ru>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     agross@kernel.org, andersson@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, konrad.dybcio@linaro.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht
-Subject: Re: [PATCH v3 4/4] arm64: dts: qcom: Add Acer Aspire 1
-In-Reply-To: <b8805711-d720-8f91-c198-10b0553417a4@linaro.org>
-References: <20230315154311.37299-1-nikita@trvn.ru>
- <20230315154311.37299-5-nikita@trvn.ru>
- <b8805711-d720-8f91-c198-10b0553417a4@linaro.org>
-Message-ID: <e901b4f51d258a505b771b1acec6bc64@trvn.ru>
-X-Sender: nikita@trvn.ru
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_PASS,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Krzysztof Kozlowski писал(а) 15.03.2023 21:09:
-> On 15/03/2023 16:43, Nikita Travkin wrote:
->> Acer Aspire 1 is a WoA laptop based on Snapdragon 7c gen1 platform.
->>
->> The laptop design is similar to trogdor in the choice of primary
->> components but the specifics on usage of those differ slightly.
->>
->> Add the devicetree for the laptop with support for most of the
->> hardware present.
->>
->> Signed-off-by: Nikita Travkin <nikita@trvn.ru>
->> ---
->> Changed in v2:
->>  - Various styling, ordering and node naming issues fixed. (Krzysztof)
->>
->> Changed in v3:
->>  - Kepp camcc on, wakeup on touchpad, minor style issues. (Konrad)
->> ---
->>  arch/arm64/boot/dts/qcom/Makefile             |   1 +
->>  .../boot/dts/qcom/sc7180-acer-aspire1.dts     | 859 ++++++++++++++++++
->>  2 files changed, 860 insertions(+)
->>  create mode 100644 arch/arm64/boot/dts/qcom/sc7180-acer-aspire1.dts
->>
->> diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
->> index 89e23a74bc7f..4bd4b4079b17 100644
->> --- a/arch/arm64/boot/dts/qcom/Makefile
->> +++ b/arch/arm64/boot/dts/qcom/Makefile
->> @@ -76,6 +76,7 @@ dtb-$(CONFIG_ARCH_QCOM)	+= sa8155p-adp.dtb
->>  dtb-$(CONFIG_ARCH_QCOM)	+= sa8295p-adp.dtb
->>  dtb-$(CONFIG_ARCH_QCOM)	+= sa8540p-ride.dtb
->>  dtb-$(CONFIG_ARCH_QCOM)	+= sa8775p-ride.dtb
->> +dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-acer-aspire1.dtb
->>  dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-idp.dtb
->>  dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-coachz-r1.dtb
->>  dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-coachz-r1-lte.dtb
->> diff --git a/arch/arm64/boot/dts/qcom/sc7180-acer-aspire1.dts b/arch/arm64/boot/dts/qcom/sc7180-acer-aspire1.dts
->> new file mode 100644
->> index 000000000000..b4161f1f21a7
->> --- /dev/null
->> +++ b/arch/arm64/boot/dts/qcom/sc7180-acer-aspire1.dts
->> @@ -0,0 +1,859 @@
->> +// SPDX-License-Identifier: BSD-3-Clause
->> +
->> +/dts-v1/;
->> +
->> +#include <dt-bindings/gpio/gpio.h>
->> +#include <dt-bindings/regulator/qcom,rpmh-regulator.h>
->> +
->> +#include "sc7180.dtsi"
->> +
->> +#include "pm6150.dtsi"
->> +#include "pm6150l.dtsi"
->> +
->> +/delete-node/ &tz_mem;
->> +/delete-node/ &ipa_fw_mem;
->> +
->> +/ {
->> +	model = "Acer Aspire 1";
->> +	compatible = "acer,aspire1", "qcom,sc7180";
->> +	chassis-type = "laptop";
->> +
->> +	aliases {
->> +		bluetooth0 = &bluetooth;
->> +		hsuart0 = &uart3;
->> +		serial0 = &uart8;
->> +		wifi0 = &wifi;
->> +	};
->> +
->> +	chosen {
->> +		stdout-path = "serial0:115200n8";
->> +	};
->> +
->> +	reserved-memory {
-> 
-> I still don't think it is ordered by name.... "r" is definitely after "a".
+Hi,
+Couple of Misc patches
 
-Yes, as I said before, I want to separate the "special" DT spec nodes
-(aliases, chosen, reserved-memory, ... that are defined in the
-chapter 3 of the DT spec) from the other, device nodes.
+Changes since v1:
+ - Marked the mcu wdt as reserved to not break M4F.
 
-I see them on the top on many other boards and I believe this separation
-makes sense since those are not really devices but "more extended"
-properties of the board as a whole.
+V1: https://lore.kernel.org/all/20230311105850.21811-1-nm@ti.com/#t
 
-If you still believe those must be mixed together and sorted, please 
-explicitly let me know that and I will change the order.
+Julien Panis (1):
+  arm64: dts: ti: k3-am62: Add watchdog nodes
 
-Also, if there is any documentation that already enforces the order,
-making clear that my opinion is wrong, I would appreciate you pointing
-me to that.
+Nishanth Menon (1):
+  arm64: dts: ti: k3-am62-wakeup: Introduce RTC node
 
-Regards,
-Nikita
+ arch/arm64/boot/dts/ti/k3-am62-main.dtsi   | 45 ++++++++++++++++++++++
+ arch/arm64/boot/dts/ti/k3-am62-mcu.dtsi    | 11 ++++++
+ arch/arm64/boot/dts/ti/k3-am62-wakeup.dtsi | 21 ++++++++++
+ 3 files changed, 77 insertions(+)
 
-> 
-> Best regards,
-> Krzysztof
+-- 
+2.40.0
+
