@@ -2,164 +2,175 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5F0A76BB522
-	for <lists+devicetree@lfdr.de>; Wed, 15 Mar 2023 14:49:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A052C6BB540
+	for <lists+devicetree@lfdr.de>; Wed, 15 Mar 2023 14:55:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232655AbjCONtJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Mar 2023 09:49:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41006 "EHLO
+        id S232424AbjCONzE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Mar 2023 09:55:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54146 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232420AbjCONs5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Mar 2023 09:48:57 -0400
-Received: from mail-pj1-x102e.google.com (mail-pj1-x102e.google.com [IPv6:2607:f8b0:4864:20::102e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2E3489E303
-        for <devicetree@vger.kernel.org>; Wed, 15 Mar 2023 06:48:30 -0700 (PDT)
-Received: by mail-pj1-x102e.google.com with SMTP id qe8-20020a17090b4f8800b0023f07253a2cso1116100pjb.3
-        for <devicetree@vger.kernel.org>; Wed, 15 Mar 2023 06:48:30 -0700 (PDT)
+        with ESMTP id S232953AbjCONyy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Mar 2023 09:54:54 -0400
+X-Greylist: delayed 2662 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Wed, 15 Mar 2023 06:54:50 PDT
+Received: from egress-ip4b.ess.de.barracuda.com (egress-ip4b.ess.de.barracuda.com [18.185.115.208])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AD5B139283
+        for <devicetree@vger.kernel.org>; Wed, 15 Mar 2023 06:54:50 -0700 (PDT)
+Received: from mail-lj1-f198.google.com (mail-lj1-f198.google.com [209.85.208.198]) by mx-outbound18-193.eu-central-1b.ess.aws.cudaops.com (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NO); Wed, 15 Mar 2023 13:54:47 +0000
+Received: by mail-lj1-f198.google.com with SMTP id e8-20020a05651c038800b002904f23836bso5695018ljp.17
+        for <devicetree@vger.kernel.org>; Wed, 15 Mar 2023 06:54:47 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1678888104;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=RohM7g63YzmsEtzZiKZg0oSdjOmQlTEZe9G6sSdZJOs=;
-        b=pr93/7EIkBZHtJ/3EpdL6o/7gjj2Yixz0EyCbU7yO9l5bYNjsEDOJumFdRDjJ3+6O/
-         xsN/GzTavGiYZjssQe8oGrDlvDrQWogR0IU4VaWqpG6O9mG1aC7Pv6XN/26a1LvjQ4CA
-         sDG9MEaQmVDn8KDuhUvKYvofaO/8ggoLFQQoIHBtsKbGUVzynSjPlr8tgPmN6Mv7Uz70
-         fdCn3FZ4LMdOTLHAsh3owTp0EajQ7e9TQlvTdNpj9mJ4D661SWWWwsAhX7nG56wcVibG
-         RcgqCqUA7KxA9oEUOtwbXjKQa6Is4dj0uibkzQlRjUW0Zy3Tu8pYq16HWliiw4rE6B0u
-         PU/Q==
+        d=mistralsolutions.com; s=google; t=1678888487;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=BtDnCZh4EzHEMb/EfbyOFogrbL5+iaRwEv2S7+7Vv5I=;
+        b=eCXf/ZMP5CofpuqO12QCLBMiBCGngkADnDV4IkyhmD8QhS7WbiJnSeDHc/NSG48tPJ
+         hSYmKYdnlcgYx9M9WPo+8PGBUxgXLsc1yJISAHUJEMyeFlOYmC2Vq+771KeYXCte+mLY
+         oXF0G6553kuQSgxyK64KO+g5/Ai2mL2vG6VWI=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678888104;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=RohM7g63YzmsEtzZiKZg0oSdjOmQlTEZe9G6sSdZJOs=;
-        b=KlXkgS1t1ryxTg2tDWR3Al24Obun6fmL13kXFkZqmqiDmppnl9Am6VINruxc9q4Nuh
-         lUIWA0B8xNfKzIsQO3i8hB6wFU5/Ii1dlrzlLqMuDUSs4nfCbVsNpATZEGBHQZ45cmYf
-         OYIIgC2V57raThh7WgdR8+0DgSr2BkPqUk4FT3yicGNiQxpYt/z7zUmc7kUX86/m7v2r
-         vJNoQLyD00ItPyBo1e8EQVCBif82StiG6XOE3RUbxL4E9HqZGsht4R/TEgvC1tjtB9s1
-         PSmuZFuJ5qhpED3R5VYDi7wCMLGUI54hTos+s0YmMAQq0LK9AgABMlZPp5aIA7GiBJmn
-         qNHw==
-X-Gm-Message-State: AO0yUKXaXTzmL+yran48+RPI7BYfYKVfImgPbJfvgUO6HwAmH1HP35n1
-        hZB5+U65OfBWDoAIF/rRXJBsDll7gCtJXer+og==
-X-Google-Smtp-Source: AK7set+/sZVJgTWXQ3bBaMNuMjzjypYC1DIqXC4Hs4szGWBLOsqrl2YZU/bmePzufYzgNZ0W2tzrLQ==
-X-Received: by 2002:a05:6a20:8428:b0:d6:26a3:98d with SMTP id c40-20020a056a20842800b000d626a3098dmr2781816pzd.46.1678888102898;
-        Wed, 15 Mar 2023 06:48:22 -0700 (PDT)
-Received: from thinkpad ([117.207.30.24])
-        by smtp.gmail.com with ESMTPSA id bn10-20020a056a00324a00b005a7bd10bb2asm3575850pfb.79.2023.03.15.06.48.18
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 15 Mar 2023 06:48:22 -0700 (PDT)
-Date:   Wed, 15 Mar 2023 19:18:14 +0530
-From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Komal Bajaj <quic_kbajaj@quicinc.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Abel Vesa <abel.vesa@linaro.org>,
-        Rishabh Bhatnagar <rishabhb@codeaurora.org>,
-        Prakash Ranjan <saiprakash.ranjan@codeaurora.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andy Gross <agross@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org
-Subject: Re: [PATCH v2 2/5] dt-bindings: arm: msm: Add bindings for multi
- channel DDR in LLCC
-Message-ID: <20230315134814.GA98488@thinkpad>
-References: <20230313124040.9463-1-quic_kbajaj@quicinc.com>
- <20230313124040.9463-3-quic_kbajaj@quicinc.com>
- <2b3e39b9-ea70-db9b-89f7-09054df363c3@linaro.org>
+        d=1e100.net; s=20210112; t=1678888487;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=BtDnCZh4EzHEMb/EfbyOFogrbL5+iaRwEv2S7+7Vv5I=;
+        b=cw2D55Mkk69KMZwXovKN8W1aSYHUHJnpBWUEyTU2cZqVlRFW5WURg4Sc+oSBa6lDxR
+         gzP38zkk1Gw+Lkj/Ojs6TZCsxHjT8KAbNrNQgOZ6mRnU14kYjlWN+4eJUJ8rYV41/5Hi
+         ff5HyuoNSfZX9rbryHeqqv+yU87t+yfNZl+WJNKT1aoS7iLt2JmG3cHAwLGVP53bSv+q
+         UbX6GbJ2aejNaChoqNbmUBkgXC1BBBOriQRSxZwqNK6OR4yUVGP8GSunriqfkzrW+1Di
+         2Nh6oKDZyF7NBIPS3I4xH1x/ib8uGDMwZsM0XBBB5eXVUkL87lUr8UcSV5kN4KVJPsE6
+         QNcA==
+X-Gm-Message-State: AO0yUKVU+ytYyeI4zoblxzwdC8g3zlZe7spzwR+oEAVbbm4JGihiQX+r
+        FzHJ7nEJzogLkz9R9a/82n5GIiMD7tnQ3uhIeRAnJyXDxqXY9ovLYElv3QvmRzH+5jOlDyIBoW6
+        L/0uPDiNTzJN7BfNvSgCRkcB4gvm0lWk6XKNlXQPKaLMYpZu83cXXG0ojBiU08ZnCYUflYfTSyA
+        ==
+X-Received: by 2002:ac2:5977:0:b0:4db:1ceb:dc38 with SMTP id h23-20020ac25977000000b004db1cebdc38mr1980293lfp.9.1678888487051;
+        Wed, 15 Mar 2023 06:54:47 -0700 (PDT)
+X-Google-Smtp-Source: AK7set9IH8D280aEoocF/A7gXgQbTaixQ+IuO2Hq+LIITinB2Z3WM1lPZzlJQ8Oi5IzqiFLxAnBOBmi1Wg80q1n6vN4=
+X-Received: by 2002:ac2:5977:0:b0:4db:1ceb:dc38 with SMTP id
+ h23-20020ac25977000000b004db1cebdc38mr1980279lfp.9.1678888486724; Wed, 15 Mar
+ 2023 06:54:46 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <2b3e39b9-ea70-db9b-89f7-09054df363c3@linaro.org>
+References: <20230315120934.16954-1-sinthu.raja@ti.com> <20230315134656.bt3mczw73h3z2j57@privacy>
+In-Reply-To: <20230315134656.bt3mczw73h3z2j57@privacy>
+From:   Sinthu Raja M <sinthu.raja@mistralsolutions.com>
+Date:   Wed, 15 Mar 2023 19:24:33 +0530
+Message-ID: <CAEd-yTQV2k=-W3LXYgq-4jrLCtR_ncij8UAPWWfd4xsJzGU2tg@mail.gmail.com>
+Subject: Re: [PATCH] arm64: dts: ti: k3-am68-sk-base-board: Update IO EXP GPIO
+ lines for Rev E2
+To:     Nishanth Menon <nm@ti.com>
+Cc:     Tero Kristo <kristo@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Sinthu Raja <sinthu.raja@ti.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-BESS-ID: 1678888487-304801-5452-22626-1
+X-BESS-VER: 2019.1_20230310.1716
+X-BESS-Apparent-Source-IP: 209.85.208.198
+X-BESS-Parts: H4sIAAAAAAACA4uuVkqtKFGyUioBkjpK+cVKVkZmFpZAVgZQMDnZyCIl0cAgyS
+        LJyDjNwszU3DjZ0tTMKNEi2Sw5ydhIqTYWAGBiANRBAAAA
+X-BESS-Outbound-Spam-Score: 0.00
+X-BESS-Outbound-Spam-Report: Code version 3.2, rules version 3.2.2.246813 [from 
+        cloudscan23-25.eu-central-1b.ess.aws.cudaops.com]
+        Rule breakdown below
+         pts rule name              description
+        ---- ---------------------- --------------------------------
+        0.00 BSF_BESS_OUTBOUND      META: BESS Outbound 
+        0.00 BSF_SC0_MISMATCH_TO    META: Envelope rcpt doesn't match header 
+X-BESS-Outbound-Spam-Status: SCORE=0.00 using account:ESS91090 scores of KILL_LEVEL=7.0 tests=BSF_BESS_OUTBOUND, BSF_SC0_MISMATCH_TO
+X-BESS-BRTS-Status: 1
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,
+        SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Mar 15, 2023 at 08:41:21AM +0100, Krzysztof Kozlowski wrote:
-> On 13/03/2023 13:40, Komal Bajaj wrote:
-> > Add description for additional nodes needed to support
-> > mulitple channel DDR configurations in LLCC.
-> > 
-> > Signed-off-by: Komal Bajaj <quic_kbajaj@quicinc.com>
-> 
-> +Cc Mani,
-> 
-
-Thanks, Krzysztof!
-
-> This will conflict with:
-> https://lore.kernel.org/all/20230314080443.64635-3-manivannan.sadhasivam@linaro.org/
-> 
-> Please rebase on top of Mani's patches (assuming they are not
-> conflicting in principle)
-> 
+On Wed, Mar 15, 2023 at 7:17=E2=80=AFPM Nishanth Menon <nm@ti.com> wrote:
+>
+> On 17:39-20230315, Sinthu Raja wrote:
+> > From: Sinthu Raja <sinthu.raja@ti.com>
+> >
+> > Rev E2 of the AM68 SK baseboard has updated the GPIO IO expander pins
+> > functionality. To match the Rev E2 schematics, update existing IO expan=
+der
+> > GPIO line names and the corresponding node which uses the expansion(exp=
+1)
+> > node.
+> >
+> > Signed-off-by: Sinthu Raja <sinthu.raja@ti.com>
 > > ---
-> >  Documentation/devicetree/bindings/arm/msm/qcom,llcc.yaml | 9 +++++++++
-> >  1 file changed, 9 insertions(+)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/arm/msm/qcom,llcc.yaml b/Documentation/devicetree/bindings/arm/msm/qcom,llcc.yaml
-> > index 38efcad56dbd..9a4a76caf490 100644
-> > --- a/Documentation/devicetree/bindings/arm/msm/qcom,llcc.yaml
-> > +++ b/Documentation/devicetree/bindings/arm/msm/qcom,llcc.yaml
-> > @@ -37,15 +37,24 @@ properties:
-> >      items:
-> 
-> minItems: 2
-> 
-> >        - description: LLCC base register region
-> >        - description: LLCC broadcast base register region
-> > +      - description: Feature register to decide which LLCC configuration
-> > +                     to use, this is optional
-> >  
-> >    reg-names:
-> 
-> minItems: 2
-> 
-> >      items:
-> >        - const: llcc_base
-> >        - const: llcc_broadcast_base
-> > +      - const: multi_channel_register
+> >
+> > Schematics Ref: https://www.ti.com/lit/zip/sprr463
+>
+> Looking at https://www.ti.com/tool/SK-AM68 looks like E1 never hit
+> production, is that correct?
+Yes, E1 didn't hit production.
+>
+> Does this need a "Fixes" tag?
+It is a migration from E1 to E2 so I assume that a Fixes tag is not require=
+d.
 
-Is this the actual register region or a specific register offset? We generally
-try to pass the base address of the region along with the size and use the
-offset inside the driver to access any specific registers.
+Regards
+Sinthu Raja
+>
+> >
+> >  arch/arm64/boot/dts/ti/k3-am68-sk-base-board.dts | 12 +++++-------
+> >  1 file changed, 5 insertions(+), 7 deletions(-)
+> >
+> > diff --git a/arch/arm64/boot/dts/ti/k3-am68-sk-base-board.dts b/arch/ar=
+m64/boot/dts/ti/k3-am68-sk-base-board.dts
+> > index 2091cd2431fb..27a43a8ecffd 100644
+> > --- a/arch/arm64/boot/dts/ti/k3-am68-sk-base-board.dts
+> > +++ b/arch/arm64/boot/dts/ti/k3-am68-sk-base-board.dts
+> > @@ -60,7 +60,7 @@ vdd_mmc1: regulator-sd {
+> >               regulator-boot-on;
+> >               enable-active-high;
+> >               vin-supply =3D <&vsys_3v3>;
+> > -             gpio =3D <&exp1 10 GPIO_ACTIVE_HIGH>;
+> > +             gpio =3D <&exp1 8 GPIO_ACTIVE_HIGH>;
+> >       };
+> >
+> >       vdd_sd_dv: regulator-tlv71033 {
+> > @@ -264,12 +264,10 @@ exp1: gpio@21 {
+> >               reg =3D <0x21>;
+> >               gpio-controller;
+> >               #gpio-cells =3D <2>;
+> > -             gpio-line-names =3D "CSI_VIO_SEL", "CSI_SEL_FPC_EXPn", "H=
+DMI_PDn",
+> > -                                     "HDMI_LS_OE", "DP0_3V3 _EN", "BOA=
+RDID_EEPROM_WP",
+> > -                                     "CAN_STB", " ", "GPIO_uSD_PWR_EN"=
+, "eDP_ENABLE",
+> > -                                     "IO_EXP_PCIe1_M.2_RTSz", "IO_EXP_=
+MCU_RGMII_RSTz",
+> > -                                     "IO_EXP_CSI2_EXP_RSTz", " ", "CSI=
+0_B_GPIO1",
+> > -                                     "CSI1_B_GPIO1";
+> > +             gpio-line-names =3D " ", " ", " ", " ", " ",
+> > +                               "BOARDID_EEPROM_WP", "CAN_STB", " ",
+> > +                               "GPIO_uSD_PWR_EN", " ", "IO_EXP_PCIe1_M=
+.2_RTSz",
+> > +                               "IO_EXP_MCU_RGMII_RST#", " ", " ", " ",=
+ " ";
+> >       };
+> >  };
+> >
+> > --
+> > 2.36.1
+> >
+>
+> --
+> Regards,
+> Nishanth Menon
+> Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DD=
+B5 849D 1736 249D
 
-Thanks,
-Mani
 
-> >  
-> >    interrupts:
-> >      maxItems: 1
-> >  
-> > +  multi-ch-bit-off:
-> > +    items:
-> > +      - description: Specifies the offset in bits into the multi_channel_register
-> > +                     and the number of bits used to decide which LLCC configuration
-> > +                     to use
-> 
-> There are here few issues.
-> First, I don't fully understand the property. What is an LLCC
-> configuration? Like some fused values?
-> 
-> Second, don't make it a register specific, it will not scale easily to
-> any new version of this interface. Although how this should look like
-> depends on what is it.
-> 
-> Third, you need vendor prefix and type (unless this is a generic
-> property, but does not look like). Then "items" is probably wrong. Line
-> break after "description: "
-> 
-> Best regards,
-> Krzysztof
-> 
 
--- 
-மணிவண்ணன் சதாசிவம்
+--=20
+With Regards
+Sinthu Raja
