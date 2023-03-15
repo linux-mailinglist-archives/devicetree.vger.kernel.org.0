@@ -2,164 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EFDD66BA3FC
-	for <lists+devicetree@lfdr.de>; Wed, 15 Mar 2023 01:23:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C35256BA40A
+	for <lists+devicetree@lfdr.de>; Wed, 15 Mar 2023 01:26:29 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230129AbjCOAWq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Mar 2023 20:22:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47156 "EHLO
+        id S229673AbjCOA02 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Mar 2023 20:26:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53274 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229540AbjCOAWp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Mar 2023 20:22:45 -0400
-Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C17F446148;
-        Tue, 14 Mar 2023 17:22:43 -0700 (PDT)
-Received: by mail-ed1-x535.google.com with SMTP id r11so17483472edd.5;
-        Tue, 14 Mar 2023 17:22:43 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112; t=1678839762;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=L6eritjJV4LmiZbdr9lP3yT7o1szXMCHsn5LCiyfRYA=;
-        b=MlYQbfvWe5d9Ry+P+Vx41YBQ1gL4OtfOQt8b4E0T1AHEtZSohp+M0zt3W6JgqeXI1k
-         5Ua7MqtpxoZcOf9mdxWmVqygm20lTj+rqEKPQ+Ghq8fUDsQDltZlFgBnyg5ZJ/u55q/8
-         CNekHNxQ6Wr87imnsoRBo0TiE/5BD+NCU8HuP2znUCSod+EWWgDpM4QmmoRyXjfSDeln
-         mkYv3yAXq3Rz6wKFueC82MBqn0CGREbh5qD9nPJl8i5h+5ABl8a/MRubv84EtfzyCSqh
-         Qgq0fd7yU+hNdgTi+s7ntYP8rAuiMqTQeQyuCPw3iAaB0+BHL1aOihVFlkzZATDGCpMO
-         gYKg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678839762;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=L6eritjJV4LmiZbdr9lP3yT7o1szXMCHsn5LCiyfRYA=;
-        b=VmOeAUOXbuKAS5pLYys41jqvfEJiwiTV/g2XdOXHBom+etz8h5V8kL01OvR4V+P9pJ
-         JGGWO18pLFDhlXWfnnb1Ybj6jYl6AtvXmmICLBJC0MWfGC/ExgWdGj0Nlbtd10X5HRtt
-         P1QA+ULh4efsMlb5bq/IT3ZRY3UmXYsz9BnCpoOmqN4VEwzYh+X+jGtDYi20n7Aye7wl
-         N4dfY+1A+EYn0lYFIr5XVlRIf2V+oso2u628Ajt4Ct3PZlfd1+lvMDfo/6rswwO4yOPN
-         luFfeG7U2u+WTM5kbHCGWGurz/bhH3zALdfTuB4IUyvTbFA5tuxDR1Exxmv5mZCiH+MN
-         stFw==
-X-Gm-Message-State: AO0yUKWwy85CFG0p+4/F8Iz+fsKtjtH4MOXpzp/KzhfZ7CGP8mJwIN7c
-        f0Zeics4npBy2CrMztmQc8Y=
-X-Google-Smtp-Source: AK7set/0jp0llLgxtutMBA0b7r+ILPHtzlYr7jAT9FHTqx5rUM1ZuuQ0b8I5XKt4RCtv+JUlnJp6KQ==
-X-Received: by 2002:a17:906:58c6:b0:922:de2c:fdaa with SMTP id e6-20020a17090658c600b00922de2cfdaamr5934299ejs.50.1678839762231;
-        Tue, 14 Mar 2023 17:22:42 -0700 (PDT)
-Received: from skbuf ([188.27.184.189])
-        by smtp.gmail.com with ESMTPSA id ko22-20020a170907987600b008d325e167f3sm1746110ejc.201.2023.03.14.17.22.40
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 14 Mar 2023 17:22:41 -0700 (PDT)
-Date:   Wed, 15 Mar 2023 02:22:39 +0200
-From:   Vladimir Oltean <olteanv@gmail.com>
-To:     Christian Marangi <ansuelsmth@gmail.com>
-Cc:     Andrew Lunn <andrew@lunn.ch>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Russell King <linux@armlinux.org.uk>,
-        Gregory Clement <gregory.clement@bootlin.com>,
-        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        John Crispin <john@phrozen.org>, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-arm-msm@vger.kernel.org, Lee Jones <lee@kernel.org>,
-        linux-leds@vger.kernel.org
-Subject: Re: [net-next PATCH v3 02/14] net: dsa: qca8k: add LEDs basic support
-Message-ID: <20230315002239.ticvivruobuwcvwz@skbuf>
-References: <20230314101516.20427-1-ansuelsmth@gmail.com>
- <20230314101516.20427-1-ansuelsmth@gmail.com>
- <20230314101516.20427-3-ansuelsmth@gmail.com>
- <20230314101516.20427-3-ansuelsmth@gmail.com>
+        with ESMTP id S229494AbjCOA02 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Mar 2023 20:26:28 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A4D86279B0;
+        Tue, 14 Mar 2023 17:26:24 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 3A62961A85;
+        Wed, 15 Mar 2023 00:26:24 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 877FAC433D2;
+        Wed, 15 Mar 2023 00:26:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1678839983;
+        bh=lobEGi0h71abQ+OUCFajCF1V21Qb2ZNrY1ahlNRzi/E=;
+        h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
+        b=RvUKfhl4lZ0LRKM49iRT91oXmLfZowNPYgnLuQg0uheJx7lUGg7anCRq3QhGKcIH8
+         LOWLa8LTzvvhE2xbKhMrSk17QXlRt9l/h9cS9tQB8iOjnZwPs+W9DDN97puQpyNBWg
+         EjrkQZpkMaxsV7zGV+jYmRJNra1H+w/rICx0T7aFLQCaEq8w/+0E82nOmThQHovakA
+         Zm2xh/Vx+FOqtiJl1twuJOSKqfj1u30jNYl1tJ/792ZMOJinHAaM8SN1yy3xUVU3Qq
+         1faBtCXuZUakV2QASJDcMIaFYx/pjH1uuBYnGumdradVFaB87lfr0Z/Hh9/WXG9KIR
+         1Rp/U/fcxYd1A==
+Message-ID: <c9e0e9b838cc046637059e771755f995.sboyd@kernel.org>
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230314101516.20427-3-ansuelsmth@gmail.com>
- <20230314101516.20427-3-ansuelsmth@gmail.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <6ff60914-0c39-9916-2e3a-a906b4cdef0d@kernel.org>
+References: <20230307115022.12846-2-zhuyinbo@loongson.cn> <202303082037.QPfBP64A-lkp@intel.com> <b94ee1d2-b224-f9d5-3f3c-0096634f4c93@loongson.cn> <ec1fb4d134181a1b1859bcb884dcd494.sboyd@kernel.org> <c03e47f7-bb26-0114-b300-357634b0e581@kernel.org> <61eee19400e9a45ce9543bfd92a27eaa.sboyd@kernel.org> <6ff60914-0c39-9916-2e3a-a906b4cdef0d@kernel.org>
+Subject: Re: [PATCH v13 2/2] clk: clk-loongson2: add clock controller driver support
+From:   Stephen Boyd <sboyd@kernel.org>
+Cc:     oe-kbuild-all@lists.linux.dev, Jianmin Lv <lvjianmin@loongson.cn>,
+        Liu Peibao <liupeibao@loongson.cn>, wanghongliang@loongson.cn,
+        loongson-kernel@lists.loongnix.cn
+To:     Krzysztof Kozlowski <krzk@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        kernel test robot <lkp@intel.com>, linux-clk@vger.kernel.org,
+        linux-kernel@vger.kernel.org, zhuyinbo <zhuyinbo@loongson.cn>
+Date:   Tue, 14 Mar 2023 17:26:21 -0700
+User-Agent: alot/0.10
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Mar 14, 2023 at 11:15:04AM +0100, Christian Marangi wrote:
-> Add LEDs basic support for qca8k Switch Family by adding basic
-> brightness_set() support.
-> 
-> Since these LEDs refelect port status, the default label is set to
-> ":port". DT binding should describe the color, function and number of
-> the leds using standard LEDs api.
-> 
-> These LEDs supports only blocking variant of the brightness_set()
-> function since they can sleep during access of the switch leds to set
-> the brightness.
-> 
-> While at it add to the qca8k header file each mode defined by the Switch
-> Documentation for future use.
-> 
-> Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
-> ---
->  drivers/net/dsa/qca/Kconfig      |   7 ++
->  drivers/net/dsa/qca/Makefile     |   1 +
->  drivers/net/dsa/qca/qca8k-8xxx.c |   4 +
->  drivers/net/dsa/qca/qca8k-leds.c | 191 +++++++++++++++++++++++++++++++
->  drivers/net/dsa/qca/qca8k.h      |  69 +++++++++++
->  5 files changed, 272 insertions(+)
->  create mode 100644 drivers/net/dsa/qca/qca8k-leds.c
-> 
-> diff --git a/drivers/net/dsa/qca/Kconfig b/drivers/net/dsa/qca/Kconfig
-> index ba339747362c..9ed9d9cf80eb 100644
-> --- a/drivers/net/dsa/qca/Kconfig
-> +++ b/drivers/net/dsa/qca/Kconfig
-> @@ -15,3 +15,10 @@ config NET_DSA_QCA8K
->  	help
->  	  This enables support for the Qualcomm Atheros QCA8K Ethernet
->  	  switch chips.
-> +
-> +config NET_DSA_QCA8K_LEDS_SUPPORT
-> +	bool "Qualcomm Atheros QCA8K Ethernet switch family LEDs support"
-> +	depends on NET_DSA_QCA8K
-> +	help
-> +	  This enabled support for LEDs present on the Qualcomm Atheros
-> +	  QCA8K Ethernet switch chips.
-> diff --git a/drivers/net/dsa/qca/Makefile b/drivers/net/dsa/qca/Makefile
-> index 701f1d199e93..330ae389e489 100644
-> --- a/drivers/net/dsa/qca/Makefile
-> +++ b/drivers/net/dsa/qca/Makefile
-> @@ -2,3 +2,4 @@
->  obj-$(CONFIG_NET_DSA_AR9331)	+= ar9331.o
->  obj-$(CONFIG_NET_DSA_QCA8K)	+= qca8k.o
->  qca8k-y 			+= qca8k-common.o qca8k-8xxx.o
-> +obj-$(CONFIG_NET_DSA_QCA8K_LEDS_SUPPORT) += qca8k-leds.o
+Quoting Krzysztof Kozlowski (2023-03-13 23:49:40)
+> On 13/03/2023 19:20, Stephen Boyd wrote:
+> >>>> The CONFIG_64BIT not enabled in your config file, I will add a depen=
+d on=20
+> >>>> "CONFIG_64BIT" in my clock driver to fix this compile error.
+> >>>
+> >>> Do you need to use readq() here? Can you read two 32-bit registers wi=
+th
+> >>> readl() and put them together for a 64-bit number?
+> >>
+> >> If the platform supports 64-bit reads and these are actually one
+> >> register, then readq makes sense - code is more readable, smaller, more
+> >> efficient.
+> >>
+> >=20
+> > Please read the section in Documentation/driver-api/device-io.rst about
+> > hi_lo_readq() and <linux/io-64-nonatomic-lo-hi.h>. We shouldn't need to
+> > restrict the driver to CONFIG_64BIT. Instead, include one of these
+> > header files to get the IO access primitives.
+>=20
+> These primitives are for 32bit access. Quoting: "on 32-bit
+> architectures". What's the point of them if the code *will never* run on
+> 32-bit?
 
-Isn't this what you want instead?
+They're there to make drivers portable.
 
-ifdef CONFIG_NET_DSA_QCA8K_LEDS_SUPPORT
-qca8k-y 			+= qca8k-leds.o
-endif
+> It will be a fake choice of linux/io-64-nonatomic-lo-hi.h or
+> linux/io-64-nonatomic-hi-lo.h misleading users to think this was tested
+> on 32-bit.
+>=20
 
-you don't want to have to export the qca8k_setup_led_ctrl() symbol...
-you want it to be part of the same module AFAIU.
+I don't think anyone is really going to care that it hasn't been tested.
+It's not like the Linux kernel driver is the source of truth for
+integrating IP blocks into different architectures. If it's wrong
+someone will fix it when they try to use the hardware on 32-bit systems.
 
-> +/* Leds Support function */
-> +#ifdef CONFIG_NET_DSA_QCA8K_LEDS_SUPPORT
-> +int qca8k_setup_led_ctrl(struct qca8k_priv *priv);
-> +#else
-> +static inline int qca8k_setup_led_ctrl(struct qca8k_priv *priv)
-> +{
-> +	return 0;
-> +}
-> +#endif
+Can the register handle being read/written with two 32-bit accesses? I
+still don't think we've had any answer to that question. If so, pick the
+one that makes the most sense and move on.
 
-Could there be just a qca8k-leds.h with the function prototypes exported
-by qca8k-leds.c?
+In Linux, we try to write portable drivers. This way anyone can compile
+the driver on any host architecture with whatever compiler they're
+using. Otherwise, they have to download a cross compiler for the target
+architecture to simply build test the code. Also, the Linux kernel is
+fairly portable. We try to limit architecture specific code to arch/ and
+so anything in drivers/ is ideally portable code.
