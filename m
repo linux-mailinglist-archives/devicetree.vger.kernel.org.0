@@ -2,152 +2,161 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DEF056BAA92
-	for <lists+devicetree@lfdr.de>; Wed, 15 Mar 2023 09:17:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3A0196BAB09
+	for <lists+devicetree@lfdr.de>; Wed, 15 Mar 2023 09:46:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231600AbjCOIRj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Mar 2023 04:17:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37920 "EHLO
+        id S231191AbjCOIqL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Mar 2023 04:46:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49696 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231563AbjCOIRi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Mar 2023 04:17:38 -0400
-Received: from mail-yw1-x112c.google.com (mail-yw1-x112c.google.com [IPv6:2607:f8b0:4864:20::112c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7CB6969238
-        for <devicetree@vger.kernel.org>; Wed, 15 Mar 2023 01:17:37 -0700 (PDT)
-Received: by mail-yw1-x112c.google.com with SMTP id 00721157ae682-5418d54d77bso181471397b3.12
-        for <devicetree@vger.kernel.org>; Wed, 15 Mar 2023 01:17:37 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112; t=1678868256;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=7cFDHkDhzKIIZdfQe731ScSWbZ+pa4Y9mnpJSsgdej0=;
-        b=Cqc1RbAoAG7SPoHu55E0XZTM+z8BoLE9CzEd+0gppfbO0rvJ2HIPlImz3fPiqXHwje
-         0fylYt8YoL+Gqaz/wp/yr9FDY7oRovbssk+gZAtfdzJ8JiqF/fFjweB/p7mubvXKXdvg
-         TrMAIk1i5uLDH8eB1VxrwaegWVd9al7bQPhlSbOFVxdC4ByBhbQZo2BA74lasOO4aiW0
-         seUHl2jWTwnySkP4StLrYKWKwEqTurfN0Skj7FyUEbPOuInFam228Kc3LyPgyEarQ1k9
-         UYP++NomYQE1tVK4OpR60XKwJGPVk0d7cfVCZ+WYms8b8MdYDcddn9RTbWnl1xg8zFVI
-         aWeQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678868256;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=7cFDHkDhzKIIZdfQe731ScSWbZ+pa4Y9mnpJSsgdej0=;
-        b=G9uVfBKAkDagD0QNjQLWVLaiq7tTKmSvkJDnp/ItX3QT0rcK18UpbpXazyF59uwCG3
-         G6FZUmzpdyJCCovDnD7t8n6mAkl87b2rlfck8as1EqVpVKsfKhjYnlC0HtlDlmNHcv9i
-         oo36n35A/Ud0iQ0Dc73OmZrG0RuQSvoiFDjDPjxqFXpFFMFZkfXMCidB/lExcyisOLDC
-         Vmr8bqZ1CEGX5E/ytptNluCXDZ0Hpt57sPmNp3kEhJ6gfic8Nvfwis6K9cJvWSc8oZPK
-         ttub30oO6KSonpFUmyM6CQJXG1hIfellggi4MrBXJLu1dYCXX6X/RHyXb2/gLOAVYqkR
-         f1iw==
-X-Gm-Message-State: AO0yUKUGVyX3xy/5n1M+5ZGGutSqau4KltX+PrdHEdFuR/YmkZsy7QXI
-        A2ewz72/a1IjlpT6NH2Vt6iD7TdAxDyX5ocYf8xl6g==
-X-Google-Smtp-Source: AK7set+vWYd9VC1u2ZYEyLnKAP2XlPt0kks70Y2AA7nxYNvRmd9OC+0WRfKFUao5ZMBw0zKT8aiEIEKpKMidYl4M3XU=
-X-Received: by 2002:a81:b247:0:b0:52f:24ac:9575 with SMTP id
- q68-20020a81b247000000b0052f24ac9575mr26775509ywh.3.1678868256601; Wed, 15
- Mar 2023 01:17:36 -0700 (PDT)
-MIME-Version: 1.0
-References: <20230220-display-v1-0-45cbc68e188b@baylibre.com>
- <20230220-display-v1-15-45cbc68e188b@baylibre.com> <ea8aaec1-948d-832b-ff24-b35abd3a59a2@linaro.org>
- <CAFGrd9p0qmfypP2DDJN1vEhJYciVfgFXZWLmvQOdpE=qgSDvKQ@mail.gmail.com>
-In-Reply-To: <CAFGrd9p0qmfypP2DDJN1vEhJYciVfgFXZWLmvQOdpE=qgSDvKQ@mail.gmail.com>
-From:   Alexandre Mergnat <amergnat@baylibre.com>
-Date:   Wed, 15 Mar 2023 09:17:25 +0100
-Message-ID: <CAFGrd9pHB_ACHRHHv41cX+hCoC6ZxoJc=x52wt_=WQcDHWf29g@mail.gmail.com>
-Subject: Re: [PATCH 15/21] dt-bindings: soc: mediatek: add display mutex for
- MT8365 SoC
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Daniel Vetter <daniel@ffwll.ch>, CK Hu <ck.hu@mediatek.com>,
-        Jitao Shi <jitao.shi@mediatek.com>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Sam Ravnborg <sam@ravnborg.org>,
+        with ESMTP id S230096AbjCOIqK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Mar 2023 04:46:10 -0400
+X-Greylist: delayed 600 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Wed, 15 Mar 2023 01:46:07 PDT
+Received: from wnew1-smtp.messagingengine.com (wnew1-smtp.messagingengine.com [64.147.123.26])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E3A0F72019;
+        Wed, 15 Mar 2023 01:46:06 -0700 (PDT)
+Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
+        by mailnew.west.internal (Postfix) with ESMTP id 9E7482B05BCC;
+        Wed, 15 Mar 2023 04:28:01 -0400 (EDT)
+Received: from mailfrontend2 ([10.202.2.163])
+  by compute5.internal (MEProxy); Wed, 15 Mar 2023 04:28:04 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=cc
+        :cc:content-type:content-type:date:date:from:from:in-reply-to
+        :in-reply-to:message-id:mime-version:references:reply-to:sender
+        :subject:subject:to:to; s=fm3; t=1678868881; x=1678876081; bh=sm
+        BXPA4tzaw5CWmCbZopn1Nv/tcbeL+d7+B00EOaE7Q=; b=n2jAfdmkzr4/x+CsBm
+        W3h1fdrXzPUm2M6yIwhfuUk5NhMWT/Re0vBrmd65xKAFLeiEY/BPKjvG849fGvop
+        r6lZ+pB/zktfi8PfRRRsZZxxY+cJG9Y8XIUnSYR9FzjNY1hbRY7wB2Ioqdk4Xy3J
+        +zrsJ8pM3pJUgMLZjLnB8owsf1EKqCBVtyimEGpJnrWHHZ3GZnmthFkeDTmiy15O
+        wCZ248asyrS8sfn/G2SctX82+c9wYjoqkwx6H14GvynjhkvaV69ZxuBKI07kZWqS
+        2BAIxwRWGRkc/xYuv+WUF6S3KnnkiwzWwTt5cjAY1pXxu+1AGKpNS0+LHt0g4mQo
+        YeYQ==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:cc:content-type:content-type:date:date
+        :feedback-id:feedback-id:from:from:in-reply-to:in-reply-to
+        :message-id:mime-version:references:reply-to:sender:subject
+        :subject:to:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
+        :x-sasl-enc; s=fm2; t=1678868881; x=1678876081; bh=smBXPA4tzaw5C
+        WmCbZopn1Nv/tcbeL+d7+B00EOaE7Q=; b=F9iSSzvNOuBHmzJ/Fjk/0R6964S6p
+        odwOiiFpi55tKtu3VaUMm/rZY8Hu73NPU/2nn66mTZdMKLH8z/G73bZUoVgOWQFM
+        lEWHDM0Q2GsVNtwgXiIvtw2V6JnAQICZbxMDCGFQDJZ/8O21qcOEE8PnqOSr5G9A
+        3wQswbd0yMxi8kTTJn0befLjm5ZI/PjqJc8f8Uxh70MlAUPiQgVdyUXZGbE9DRPc
+        Bn+XLdW5kusQNFnzzSJbTu7HS1CQJggtArNUcghVl+C6huIpTLQmhFd8CeMpgu4n
+        2H/PoTPP4AVPhupCfieoBLln5iLfbSLiVx/apAN0+A5evGjnGtX8rK5yg==
+X-ME-Sender: <xms:j4ERZN7n63PUVZA5NQrmfriOeymxN4S23oD5CkVe-P3ocMm_vkMwlQ>
+    <xme:j4ERZK5JYdqTXwxHgRekqf6m27BGyMd_lx9Ec8m9TYMiyd5PZcUPhlqfa71AtXer5
+    wk4VwFJLw8gv0WXAO0>
+X-ME-Received: <xmr:j4ERZEcLZytM7Ewc974LmNDKPijeBjzfR8JPNjQs-XBCokHRLLKVOWLF7SN8FXMBglnYsw>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvhedrvddvjedguddujecutefuodetggdotefrod
+    ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfgh
+    necuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmd
+    enucfjughrpeffhffvvefukfhfgggtuggjsehgtderredttddvnecuhfhrohhmpeforgig
+    ihhmvgcutfhiphgrrhguuceomhgrgihimhgvsegtvghrnhhordhtvggthheqnecuggftrf
+    grthhtvghrnheptdelkeejiedufedvhfeiffetlefhiedvleeigfeiuefghfdvleeiffej
+    ieegteejnecuffhomhgrihhnpehkvghrnhgvlhdrohhrghenucevlhhushhtvghrufhiii
+    gvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpehmrgigihhmvgestggvrhhnohdrthgv
+    tghh
+X-ME-Proxy: <xmx:kIERZGIDWUucWnPXTT6Llkt_3om4aQKgR9mx6sRYPcZI6RP9JmCYlw>
+    <xmx:kIERZBJBjGTvnhJuADp3ZCN0-GwhVdn4XlaIdYwb_uE-SevZEmx0jA>
+    <xmx:kIERZPx8rOuY_jmxv_1O3qoQ0Sr341i5gKbvpdvQiYLdBZegosqI7Q>
+    <xmx:kYERZJcsvqLRjqXppPj219cma-IgLDluKHxkQFfUdPILE_e9JwFd8mgOnf8>
+Feedback-ID: i8771445c:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Wed,
+ 15 Mar 2023 04:27:59 -0400 (EDT)
+Date:   Wed, 15 Mar 2023 09:27:56 +0100
+From:   Maxime Ripard <maxime@cerno.tech>
+To:     Stephen Boyd <sboyd@kernel.org>
+Cc:     David Gow <davidgow@google.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
+        patches@lists.linux.dev,
+        Brendan Higgins <brendan.higgins@linux.dev>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        "Rafael J . Wysocki" <rafael@kernel.org>,
+        Richard Weinberger <richard@nod.at>,
+        Anton Ivanov <anton.ivanov@cambridgegreys.com>,
+        Johannes Berg <johannes@sipsolutions.net>,
+        Vincent Whitchurch <vincent.whitchurch@axis.com>,
         Rob Herring <robh+dt@kernel.org>,
-        =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= 
-        <u.kleine-koenig@pengutronix.de>,
-        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        David Airlie <airlied@gmail.com>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Christian Marangi <ansuelsmth@gmail.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Xinlei Lee <xinlei.lee@mediatek.com>,
-        Guillaume La Roque <glaroque@baylibre.com>,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org,
-        dri-devel@lists.freedesktop.org,
-        Fabien Parent <fparent@baylibre.com>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        devicetree@vger.kernel.org, linux-um@lists.infradead.org,
+        linux-kselftest@vger.kernel.org, kunit-dev@googlegroups.com
+Subject: Re: [PATCH 3/8] kunit: Add test managed platform_device/driver APIs
+Message-ID: <20230315082756.ynq3dpbv7udrcbds@houat>
+References: <20230302013822.1808711-1-sboyd@kernel.org>
+ <20230302013822.1808711-4-sboyd@kernel.org>
+ <CABVgOSmR0_u8Tw0E8C1mRFxSiGKwdKG5ka_+X_36Hj4VNLdg2g@mail.gmail.com>
+ <20230303143528.2dovipmqlms74vp2@houat>
+ <dea61f59ea83c772b693b18db43c3eb7.sboyd@kernel.org>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="mrd2rsrmiq2ziig6"
+Content-Disposition: inline
+In-Reply-To: <dea61f59ea83c772b693b18db43c3eb7.sboyd@kernel.org>
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_PASS,
+        SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Maybe "oneOf" should be added at least ?
 
-  compatible:
-    oneOf:
-      - enum:
+--mrd2rsrmiq2ziig6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Regards,
-Alex
+Hi Stephen,
 
-Le mer. 15 mars 2023 =C3=A0 09:01, Alexandre Mergnat
-<amergnat@baylibre.com> a =C3=A9crit :
+On Thu, Mar 09, 2023 at 03:31:15PM -0800, Stephen Boyd wrote:
+> Quoting Maxime Ripard (2023-03-03 06:35:28)
+> > On Fri, Mar 03, 2023 at 03:15:31PM +0800, David Gow wrote:
+> > >=20
+> > > DRM has a similar thing already (albeit with a root_device, which is
+> > > more common with KUnit tests generally):
+> > > https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tr=
+ee/include/drm/drm_kunit_helpers.h
+> > >=20
+> > > But that's reasonably drm-specific, so it makes sense that it lives
+> > > with DRM stuff. platform_device is a bit more generic.
+> >=20
+> > I'd be very happy to get something from the core to address the same
+> > thing.
+> >=20
+> > I think the main thing we needed that isn't covered by this patch is we
+> > wanted the device to be bound to its driver, so with probe being called
+> > before calling the test (see 57a84a97bbda).
 >
-> Le ven. 10 mars 2023 =C3=A0 09:39, Krzysztof Kozlowski
-> <krzysztof.kozlowski@linaro.org> a =C3=A9crit :
-> >
-> > On 09/03/2023 15:23, Alexandre Mergnat wrote:
-> > > Add compatible for the MT8365 SoC.
-> > >
-> > > Signed-off-by: Alexandre Mergnat <amergnat@baylibre.com>
-> > > ---
-> > >  Documentation/devicetree/bindings/soc/mediatek/mediatek,mutex.yaml |=
- 1 +
-> > >  1 file changed, 1 insertion(+)
-> > >
-> > > diff --git a/Documentation/devicetree/bindings/soc/mediatek/mediatek,=
-mutex.yaml b/Documentation/devicetree/bindings/soc/mediatek/mediatek,mutex.=
-yaml
-> > > index ca0ca549257d..931d66893dff 100644
-> > > --- a/Documentation/devicetree/bindings/soc/mediatek/mediatek,mutex.y=
-aml
-> > > +++ b/Documentation/devicetree/bindings/soc/mediatek/mediatek,mutex.y=
-aml
-> > > @@ -34,6 +34,7 @@ properties:
-> > >        - mediatek,mt8186-mdp3-mutex
-> > >        - mediatek,mt8192-disp-mutex
-> > >        - mediatek,mt8195-disp-mutex
-> > > +      - mediatek,mt8365-disp-mutex
-> >
-> > All these look compatible. Either make mt8635 compatible with something
-> > or even rework entire list and make everything compatible.
->
-> All of them use "mtk_mutec.c" but have specific data.
->
->       .data =3D &mt8173_mutex_driver_data},
->     { .compatible =3D "mediatek,mt8183-disp-mutex",
->       .data =3D &mt8183_mutex_driver_data},
->     { .compatible =3D "mediatek,mt8186-disp-mutex",
->       .data =3D &mt8186_mutex_driver_data},
->     { .compatible =3D "mediatek,mt8186-mdp3-mutex",
->       .data =3D &mt8186_mdp_mutex_driver_data},
->     { .compatible =3D "mediatek,mt8192-disp-mutex",
->       .data =3D &mt8192_mutex_driver_data},
->     { .compatible =3D "mediatek,mt8195-disp-mutex",
->       .data =3D &mt8195_mutex_driver_data},
->     { .compatible =3D "mediatek,mt8365-disp-mutex",
->       .data =3D &mt8365_mutex_driver_data},
->
-> I don't see any SoC compatible with mt8635, and I have no idea which
-> rework you have in mind. Can you please point me an example ?
->
-> Thanks
-> Alex
+> Can you clarify? This patch makes a poor attempt at waiting for the
+> platform driver to bind, but in reality it may not be bound by the time
+> the driver register function returns.
+
+The issue was that devm will only clean up the resources if the device
+was bound to a driver so we were exhausting resources when running
+dozens of test in a sequence.
+
+The way I solved it for vc4 was to create a dumb platform driver with a
+waitqueue, and wait for probe to be called.
+
+I think we could make it more generic by allowing a pointer to a probe
+function and calling it into our own probe implementation. What do you
+think?
+
+Maxime
+
+--mrd2rsrmiq2ziig6
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCZBGBhwAKCRDj7w1vZxhR
+xQfJAP9d8Mk6W6LsnZWjdC2ZVCNtlVeMbIMPi7JwuKzAFKJrnwD+P0T5lH1uMYyg
+Q4LeS+MNoLW1jvZenhi+zkdv6wRJswU=
+=1NPj
+-----END PGP SIGNATURE-----
+
+--mrd2rsrmiq2ziig6--
