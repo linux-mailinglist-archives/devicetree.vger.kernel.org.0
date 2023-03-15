@@ -2,114 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C96D06BB6C3
-	for <lists+devicetree@lfdr.de>; Wed, 15 Mar 2023 15:57:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DB66D6BB7D4
+	for <lists+devicetree@lfdr.de>; Wed, 15 Mar 2023 16:31:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233276AbjCOO5w (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Mar 2023 10:57:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36542 "EHLO
+        id S232365AbjCOPa7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Mar 2023 11:30:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40372 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232339AbjCOO5f (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Mar 2023 10:57:35 -0400
-Received: from NAM12-BN8-obe.outbound.protection.outlook.com (mail-bn8nam12on2071e.outbound.protection.outlook.com [IPv6:2a01:111:f400:fe5b::71e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 09E464C17;
-        Wed, 15 Mar 2023 07:57:07 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=WwFy//QfivXLNRenISiwahwZPn3u1pXPSyghD/uy/c6/KFp5gkfDcifQQKh69Mg4u/f6VXIW6YKbeFMQiSpcWhiDc20vcZc24vOjaR89Xgn9+AHVO0tsniLoQ8WfKUIbJY2s6nLwRSjn4TlOuRhsnJ6jsWJBvRtz3DAnkw34ySqtDiXkEuGJarjEORta0Q20WtV8KPHDHzO2bF8Cq9Rsl7p0GNNUJcUskI5HtxjwFhlvXZgZlpodyVwk9lc3iMwcmjwl+YkSiYuQGCYzixbjHcjF440T8j54LLmsrLdbngSoPTNXZ+nGHrGWufh67WrRyMHRL8JwI5hHSjzhKZyxig==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=KJy6t9fDVbIQTUqHywLZb+xqlfua5oz4KgaCNOPSDNc=;
- b=dqsIwqN6Hl3iYw+DP/QDVxfegxCC7Prhy/gkF91dGqWPhnYZ6+S9l9XmcKelEn8YWlTFdxwsLop+4QOHcvWfogom8YL3RVoQpkMcBb8P+4trdcoK4DLlGa3m68glxTm3jK2ke+28F1V93wgc2He7+HQ29LaQu3ud9VuThWFSeuGktlYPuaSymeembm2Z0DkO2UmAPAkT9laQup9MZmbmpcCbVRAq4Yp6gibAJW5XuP6+ZlUC9ox5n4MaZBKOJGaFC0VL/loCRm98/uvWb4vN9PCaYIq46BvMMWQ4rCeFfqAyPiWgaX7EOB8TuZb1xjITeB2X1GQqRuivYqnFCltvxA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=corigine.com; dmarc=pass action=none header.from=corigine.com;
- dkim=pass header.d=corigine.com; arc=none
+        with ESMTP id S232324AbjCOPaz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Mar 2023 11:30:55 -0400
+Received: from mail-ed1-x52f.google.com (mail-ed1-x52f.google.com [IPv6:2a00:1450:4864:20::52f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5CC911C306
+        for <devicetree@vger.kernel.org>; Wed, 15 Mar 2023 08:30:54 -0700 (PDT)
+Received: by mail-ed1-x52f.google.com with SMTP id cn21so46918289edb.0
+        for <devicetree@vger.kernel.org>; Wed, 15 Mar 2023 08:30:54 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=corigine.onmicrosoft.com; s=selector2-corigine-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=KJy6t9fDVbIQTUqHywLZb+xqlfua5oz4KgaCNOPSDNc=;
- b=qYwz53W54idqSYEypKNYjXtD9GXGgTaE5ovwUTqf6nYlNlQHwd8IOu0FO1d1jWwSQIHNP7EoGvQ1wM5Hhdn6Px0vEK1yLkU5FSwaI+2xcBiwtdbCbgCWub3Rz08Kq18BU6yHawiRH9OR4W3Q708F0kykNHaBHxMuRIjTYJmgFuk=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=corigine.com;
-Received: from PH0PR13MB4842.namprd13.prod.outlook.com (2603:10b6:510:78::6)
- by CH2PR13MB3621.namprd13.prod.outlook.com (2603:10b6:610:99::13) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6178.29; Wed, 15 Mar
- 2023 14:56:09 +0000
-Received: from PH0PR13MB4842.namprd13.prod.outlook.com
- ([fe80::85f5:bdb:fb9e:294c]) by PH0PR13MB4842.namprd13.prod.outlook.com
- ([fe80::85f5:bdb:fb9e:294c%2]) with mapi id 15.20.6178.030; Wed, 15 Mar 2023
- 14:56:08 +0000
-Date:   Wed, 15 Mar 2023 15:56:01 +0100
-From:   Simon Horman <simon.horman@corigine.com>
-To:     Alex Elder <elder@linaro.org>
-Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        andersson@kernel.org, konrad.dybcio@linaro.org, agross@kernel.org,
-        devicetree@vger.kernel.org, davem@davemloft.net,
-        edumazet@google.com, kuba@kernel.org, pabeni@redhat.com,
-        elder@kernel.org, netdev@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH net-next] dt-bindings: net: qcom,ipa: add SDX65 compatible
-Message-ID: <ZBHcgYp4YRng/VP5@corigine.com>
-References: <20230314210628.1579816-1-elder@linaro.org>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230314210628.1579816-1-elder@linaro.org>
-X-ClientProxiedBy: AM3PR05CA0120.eurprd05.prod.outlook.com
- (2603:10a6:207:2::22) To PH0PR13MB4842.namprd13.prod.outlook.com
- (2603:10b6:510:78::6)
+        d=linaro.org; s=google; t=1678894253;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=KClxxgRQukl7kvRgovwy9/J2dhtuP4MRXvjFVgkceug=;
+        b=L/wXf5gztwqfwhlh5WQgUuPqA0Kc8XZBuYjW+UUeEUqMycvz1/pjqxEUhdOHaontfN
+         A06734KLTus/PajJS7Ktyota8nvM35HdvAg+Vyu3kWf62DnqjCDIpQ6EQIKG2twFd34y
+         Ncfj4UsEhe+xQeE0gXZvpvwQ5kmuATafHJLQlmQn1SeBCmHT/yY2XxP7Ujo16JhQ+VlW
+         TO+e33FR2sHrs8heOWjOW1bznspMjqn+aGd/VkM3ecLxJF9OB6PP6sKLBf3t2Njuikrn
+         jYOqiHRM/Zdaz6nxcFgVsjQtKisAcECWu/MoxGp0Y2Io+eWqh1u3/KxfohuUI9AI+vDK
+         vvKw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1678894253;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=KClxxgRQukl7kvRgovwy9/J2dhtuP4MRXvjFVgkceug=;
+        b=vXf3nm/SBN2a1bRTkeGRvsch1UFhv/IxgbuTo3hasSWR3xIsQho/rTixT6C8U5r1+x
+         j6iKro+F3fMkAv5/AEB1mAQXSQDL/2TsTzgjdmYv1ccwv/JcAjIGLFgeeaGCefVM/z3I
+         f/RaJvgFI/X4P7DuNYYLbj0j5SOskYI7jdCQ233hjz3bHGUcME9Od4hHwcIMWFx7pHDm
+         yo/luDPGVOv7VxV9wUSkv01362XtO57S4KlsdLJ4S4Ece3GOC8blVdJxa6hNKoKE109H
+         RzMgXAybHk24OR7PKRuEHp/ejyG+AKc/gO3NYf+ZNCfkd8CFdNFgxNIkYwEy1/ZZZl+o
+         lMBw==
+X-Gm-Message-State: AO0yUKVu8eiJ6Hx9HwcPfWzrSau7x/bGidr8InBLtexXJniS8HD7HPYU
+        XoNBnUVzbenaaO9mDl8DdGoLzQ==
+X-Google-Smtp-Source: AK7set8b2eblWRwblvgFpekETWIpmI2Wm7H5FUzfxTTdQp6TGeC1Z4KrokuznG5NSYOxoI/uQa4XzA==
+X-Received: by 2002:a17:906:2a49:b0:8e9:afb1:65c6 with SMTP id k9-20020a1709062a4900b008e9afb165c6mr2338665eje.13.1678894252893;
+        Wed, 15 Mar 2023 08:30:52 -0700 (PDT)
+Received: from ?IPV6:2a02:810d:15c0:828:940e:8615:37dc:c2bd? ([2a02:810d:15c0:828:940e:8615:37dc:c2bd])
+        by smtp.gmail.com with ESMTPSA id i19-20020a508713000000b004af62273b66sm2633194edb.18.2023.03.15.08.30.52
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 15 Mar 2023 08:30:52 -0700 (PDT)
+Message-ID: <f852216a-51ec-4c9c-19b5-7de7c9ce321f@linaro.org>
+Date:   Wed, 15 Mar 2023 16:30:51 +0100
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH0PR13MB4842:EE_|CH2PR13MB3621:EE_
-X-MS-Office365-Filtering-Correlation-Id: bd7bf288-7f97-45b0-ad2d-08db256568ed
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: k0vF+I/zxoL1XU6dRuZmF8UOBFdITEaqjwvp/ufLwonbX78rVgfe1poAEJO6Uncm/N2WBeRT6X7l8oCsa+z+ynZSocyxqlQwvTY6uR7qpD2tQn9NhXLnap8pqPZ47zBPc13ttS3wm0n9A3j0u74TDON/iKh01HFWXQPBCOAzgS8jA5tzkb09Np9XML+IAISxTejsWaRISmf9rtXMVtkDiVZ5X5amRXycdFEn8DcLwBVjFFjvKTHQGZTo1ujCGan0nuw8WyLCa69vpSqqArY+2zNhZOcF6i9tdbHF2bFoedQ9b3libUzPd3RHrNDqC89mkJTOtiwL/1vNAOaqGAYxsDyAPZagGarS2UrK+6YOPjYNkHVnteqS42VDVgu2aLrMzqhDjqFcXugYyrFMYQw/jFTBCZvOcke4L1brX4S8kDSsvg8VFh+B0NlSMjVPtPcMQblbEP7Edu+yAXPCU6coAv9sHWMCHfiSsnUo9bavWWgs8++VIzmzxvcbK43kegrfmA04DPRuf6KyfKgNI2isWE96uecTZE/C7uKqsNlzVZeT5RUPMenFI34Vnr/yrbQG/xQB8v3JMARM23PGo5lystTFpRBsMyju6UxcVQnliE6e8vkOEgVo46amq39P3NdSvat5lbA5560Iw5M2wQ/Sj0u4ngnV8PNMbatYc/bTnR0jqbbbDMQNW7Wq8rRdF+Kv
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PH0PR13MB4842.namprd13.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230025)(4636009)(39840400004)(396003)(366004)(346002)(136003)(376002)(451199018)(44832011)(36756003)(7416002)(5660300002)(478600001)(6666004)(6486002)(6506007)(6512007)(2616005)(186003)(66556008)(8676002)(66946007)(41300700001)(6916009)(4326008)(8936002)(66476007)(558084003)(86362001)(316002)(38100700002)(2906002);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?ryl3yvgNDnPkx50kS6i+F/ngGWo2ztL0pEDuC0R/agkFltzp2Kz5NC3OXgRi?=
- =?us-ascii?Q?RCfeLJnyoAvx1hmDZJ99EmnJ7oHVfwXWMdg8cXs9E1jEh2RRVbJZftRWBGSQ?=
- =?us-ascii?Q?q6Gj7Ygva+umvp05aG8nncQf9Q+71qHfrKw0s2ci9uwuQt66fFG7iWLjXp9q?=
- =?us-ascii?Q?p5J1SqTjbfj2dZy+xaFnfOTmHAU5UwVCCL7Jsnbcf94SDJH+jD1nQoATSXoH?=
- =?us-ascii?Q?GNeV3JP8hXUZDR1ZL6Xba+315iFy/WDU116L7toNMuS0pCLYYt+UvQVxp5lL?=
- =?us-ascii?Q?YobHU+MtUJ+yO4FlaUEkeBqyp3aUvl/9cw10iUQg29OcohJzzw9TonpdDqh7?=
- =?us-ascii?Q?oq5ZXg64xW0CNmMNQih8zU/kiwn8TMhAFihSqp/TV++6b633JW7UvGvSW8Vb?=
- =?us-ascii?Q?JLgHmo2VnzXtmVmRoBl1yaZlWg12QyZqn0wCaEUCNqpm76Pu8/V3Ntf6Z01m?=
- =?us-ascii?Q?VuAI4wcISCjgSMNBUlXQaia/znBy60InCLtYZGu2xXSHyUzjPwkUeyGck9/F?=
- =?us-ascii?Q?ULaqnWknHdSa70NSKPIsFoDSQT9mYvVQ3Xay0paCH2+CTptJFJ3UvUxInZLh?=
- =?us-ascii?Q?3b7bGBNrrRdpJXPZ2ggdeMrzOCKhpTcdLU72pfKiJ1J9mESZg3lhzL6fBeoZ?=
- =?us-ascii?Q?a8zWv4cxjqmiFGmqU9h0ICghLy1fFj4VFJqonxtyLkF8T/mQpCX6dQHQSVUQ?=
- =?us-ascii?Q?dWvhudvAICEYttrg6iiZHb9CHhhPpYynMq41PKrKvqHB7aXAhOsH9FWyawLm?=
- =?us-ascii?Q?C16jFOdbb5njr0gL+7xbksw6a8clVs8jb37993SieQT8FPT6w6FamvZJiUyx?=
- =?us-ascii?Q?pxeGji3XAacm4QaKEJyXXyZVaxRnBVhM6TFr8ZgIK1Wlpw0ubgtL79GcCyac?=
- =?us-ascii?Q?ysRLMFvAQ2UKiIboj3AY2MC9K1j7XYwZQoIm/7TX2kk1PLX+BNsmXostg5sN?=
- =?us-ascii?Q?3q9J+5DV7zhsBfrBDX+sMNUMOGlAAUPSVB5Iak2rYB0G6Lb61/PhLwRyUp4m?=
- =?us-ascii?Q?6CFiQNZfZIEdxl3BNg7l4X7bd3M97DdYbyUbwDODp4m1OVKOMIMlIeRtyVTm?=
- =?us-ascii?Q?hF5PVJmUysafcYFXev4RUvaFhXzMbxHlpkQ5ssfxNekEEdSXQsXyiuXVtHwv?=
- =?us-ascii?Q?Ri4vtYf6gHB36BJizzqgY6gTee+4eGfCs9aa0SX52uW+odBqFDaLMYsTlQnj?=
- =?us-ascii?Q?J+E0cVr/EWhCxuZT52qi6nAQea1AAlZeC3UrmY7CaK9mMfVpSAhP0AnCLtii?=
- =?us-ascii?Q?HFxi7tnqPz/3Bj5Q5vSwNWd5jgbExVwL2aq+luRpCpFxBj6CS/vCQJN9E2Is?=
- =?us-ascii?Q?171Bs6YPYaMMrxyLv3Fg0TUrS6RBpV1zxaklBuheEFco/dGGskX8AYPAD3PN?=
- =?us-ascii?Q?zMlAUgWB5xxsjFyJh0RqsB2HEH2Bbm+pmshUCZhk96OCUCsfcKlaPSMNmfTC?=
- =?us-ascii?Q?cLWy8exJnsCmoMb9dk3Ws4lIbTaPwE07M7D1NepfVJ0SCD3LPa6IY3qMPm1G?=
- =?us-ascii?Q?iYi4e0wbLxeA4u/D81skjMaR6CFOhVIQagPQebXr+IN8ifqm/XrUg1JuIZTI?=
- =?us-ascii?Q?4VSih2xzqhwZCt/HsFR4rXY1CGJjf0KtEjtXB2ur6K7eLPg0DCax3PfOjmBy?=
- =?us-ascii?Q?bvJTMTnO74yEVpEduk6zeCcu6AAR3qevOb7Ite3Izo0ymg0uTL5kH7sdBsyq?=
- =?us-ascii?Q?9+FENQ=3D=3D?=
-X-OriginatorOrg: corigine.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: bd7bf288-7f97-45b0-ad2d-08db256568ed
-X-MS-Exchange-CrossTenant-AuthSource: PH0PR13MB4842.namprd13.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Mar 2023 14:56:08.7888
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: fe128f2c-073b-4c20-818e-7246a585940c
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: T6j0x8X/K/xe803bPidbplJEWie2C6KsCVsYEcH/UlnCzs8URq0fnBVYZmdjqD528CfTdE+XbPo95hy4YJPjmBR05SbZUnhYGBCOevGys9c=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH2PR13MB3621
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.8.0
+Subject: Re: [PATCH] arm64: dts: cisco: add device tree for Cisco CrayAr
+ Argos.
+To:     "Daniel Walker (danielwa)" <danielwa@cisco.com>
+Cc:     Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
+        Olof Johansson <olof@lixom.net>,
+        "soc@kernel.org" <soc@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        "xe-linux-external(mailer list)" <xe-linux-external@cisco.com>,
+        "Marcin Wierzbicki -X (mawierzb - GLOBALLOGIC INC at Cisco)" 
+        <mawierzb@cisco.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>
+References: <20230315010920.2473206-1-danielwa@cisco.com>
+ <d6f7a967-a0ea-c5d0-93f5-683e02673ed1@linaro.org>
+ <20230315144654.GY15751@zorba>
+Content-Language: en-US
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230315144654.GY15751@zorba>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -117,9 +88,28 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Mar 14, 2023 at 04:06:28PM -0500, Alex Elder wrote:
-> Add support for SDX65, which uses IPA v5.0.
-> 
-> Signed-off-by: Alex Elder <elder@linaro.org>
+On 15/03/2023 15:46, Daniel Walker (danielwa) wrote:
+> On Wed, Mar 15, 2023 at 07:38:52AM +0100, Krzysztof Kozlowski wrote:
+>> On 15/03/2023 02:09, Daniel Walker wrote:
+>>> From: Marcin Wierzbicki <mawierzb@cisco.com>
+>>
+>> Also few nits: subject: drop full stop.
+>  
+> I don't know what your asking here.
 
-Reviewed-by: Simon Horman <simon.horman@corigine.com>
+I am asking to drop full stop from Subject.
+
+> 
+>>>
+>>> This adds device tree include file for Cisco CrayAR SoC and
+>>
+>> Do not use "This commit/patch", but imperative mood. See:
+>> https://elixir.bootlin.com/linux/v5.17.1/source/Documentation/process/submitting-patches.rst#L95
+> 
+> Ok, I'll consider it.
+
+Use Linux coding style, not your own.
+
+Best regards,
+Krzysztof
+
