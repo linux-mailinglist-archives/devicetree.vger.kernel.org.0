@@ -2,193 +2,164 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BD78F6BA3E5
-	for <lists+devicetree@lfdr.de>; Wed, 15 Mar 2023 01:09:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EFDD66BA3FC
+	for <lists+devicetree@lfdr.de>; Wed, 15 Mar 2023 01:23:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229525AbjCOAJm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Mar 2023 20:09:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34928 "EHLO
+        id S230129AbjCOAWq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Mar 2023 20:22:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47156 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229571AbjCOAJl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Mar 2023 20:09:41 -0400
-Received: from mail-pj1-x1036.google.com (mail-pj1-x1036.google.com [IPv6:2607:f8b0:4864:20::1036])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 61459360AF;
-        Tue, 14 Mar 2023 17:09:35 -0700 (PDT)
-Received: by mail-pj1-x1036.google.com with SMTP id p13-20020a17090a284d00b0023d2e945aebso2253456pjf.0;
-        Tue, 14 Mar 2023 17:09:35 -0700 (PDT)
+        with ESMTP id S229540AbjCOAWp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Mar 2023 20:22:45 -0400
+Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C17F446148;
+        Tue, 14 Mar 2023 17:22:43 -0700 (PDT)
+Received: by mail-ed1-x535.google.com with SMTP id r11so17483472edd.5;
+        Tue, 14 Mar 2023 17:22:43 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112; t=1678838975;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=kzy0B/VYnSJRvZ8pGtdA2kQJazW5NtKMyoTehvrQmDw=;
-        b=nKOf8FBfQ9KPvrSmoworRlZ9jZ+EREKalj7RmCUGg+12gvO+Kz8OmKTqPxKDCEhRK4
-         GlHqyJOzZXf3XHHWBNFvDKuQPO2ZL6ltay52IIctGgpB8PbiQcryGNPjij+UJ6Q0LZlc
-         V6TKnxmfIGPQd4zs5TSEs99VjZhOgep/lyARwv3k5vuiYOtcC415KSCwnEzjWEteuGav
-         4Z+ohFCXB+0NR5NttQbQrcYFRTu7nmIDeE4jVNkB7PxQVGGCKHmH5mIE7dPHiRzWFoZ8
-         Dvb7DPR7sucMV8QhGjTJ4JTln6J838YrJPaWtgicGKGLbxfyJjUbHXoj0bO07hYmmxuB
-         rhYA==
+        d=gmail.com; s=20210112; t=1678839762;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=L6eritjJV4LmiZbdr9lP3yT7o1szXMCHsn5LCiyfRYA=;
+        b=MlYQbfvWe5d9Ry+P+Vx41YBQ1gL4OtfOQt8b4E0T1AHEtZSohp+M0zt3W6JgqeXI1k
+         5Ua7MqtpxoZcOf9mdxWmVqygm20lTj+rqEKPQ+Ghq8fUDsQDltZlFgBnyg5ZJ/u55q/8
+         CNekHNxQ6Wr87imnsoRBo0TiE/5BD+NCU8HuP2znUCSod+EWWgDpM4QmmoRyXjfSDeln
+         mkYv3yAXq3Rz6wKFueC82MBqn0CGREbh5qD9nPJl8i5h+5ABl8a/MRubv84EtfzyCSqh
+         Qgq0fd7yU+hNdgTi+s7ntYP8rAuiMqTQeQyuCPw3iAaB0+BHL1aOihVFlkzZATDGCpMO
+         gYKg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678838975;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=kzy0B/VYnSJRvZ8pGtdA2kQJazW5NtKMyoTehvrQmDw=;
-        b=CseWKZpJgp61ZmDArIAyOFHHUaz8q7SOf9gRXktEETcITOYw7XSrn88fjp+uLWagN+
-         ADba2DCNVcUKScFmyj9k3FCGjVDNldwVaaEsvKqwkdasnyW0WJBs8kQVXIQl3JsLIGBI
-         qbPiDPejTvLzbSkNKWS7rd2DAWUxY4VCLoxw04/vYJEgWRYgD4S1va6akUjH0GKsKT21
-         qOK4Im5RIIMpVuo67gTIvYZoLuesTv1vJcOyL2wflpePWYPLcR1jeTIxXdtV7/p7whhP
-         clVnKdHOEcDJR84hsCCtKGGyMv4LIqkQiznunV7vdOA4V8EbZDBC2Wf6YkTZtF3RaVMb
-         m4wg==
-X-Gm-Message-State: AO0yUKVxlNGE0RGv5+4g7qXdk+lWZqONVHbfX5K/7pVpGp4OiWw0hoeB
-        tx/Tvzv38cQPgOVDvhhXf0w=
-X-Google-Smtp-Source: AK7set8TUYkpg5z/wkWn9Qm4PGh31BVMHTj0nRUVT2NCG7126FC8rPOANB99aIRkUDre4XDFPNTU8Q==
-X-Received: by 2002:a05:6a20:9146:b0:9d:efbe:52ae with SMTP id x6-20020a056a20914600b0009defbe52aemr38231916pzc.30.1678838974492;
-        Tue, 14 Mar 2023 17:09:34 -0700 (PDT)
-Received: from localhost.localdomain ([14.139.38.154])
-        by smtp.googlemail.com with ESMTPSA id z19-20020a634c13000000b00502f017657dsm2080157pga.83.2023.03.14.17.09.30
-        (version=TLS1_3 cipher=TLS_CHACHA20_POLY1305_SHA256 bits=256/256);
-        Tue, 14 Mar 2023 17:09:33 -0700 (PDT)
-From:   Vijaya Anand <sunrockers8@gmail.com>
-To:     lgirdwood@gmail.com, broonie@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, alsa-devel@alsa-project.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc:     Vijaya Anand <sunrockers8@gmail.com>,
-        Daniel Baluta <daniel.baluta@nxp.com>
-Subject: [RFC PATCH v2] ASoC: dt-bindings: adi,adau17x1: Convert to DT schema
-Date:   Wed, 15 Mar 2023 05:39:14 +0530
-Message-Id: <20230315000914.99083-1-sunrockers8@gmail.com>
-X-Mailer: git-send-email 2.37.1 (Apple Git-137.1)
+        d=1e100.net; s=20210112; t=1678839762;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=L6eritjJV4LmiZbdr9lP3yT7o1szXMCHsn5LCiyfRYA=;
+        b=VmOeAUOXbuKAS5pLYys41jqvfEJiwiTV/g2XdOXHBom+etz8h5V8kL01OvR4V+P9pJ
+         JGGWO18pLFDhlXWfnnb1Ybj6jYl6AtvXmmICLBJC0MWfGC/ExgWdGj0Nlbtd10X5HRtt
+         P1QA+ULh4efsMlb5bq/IT3ZRY3UmXYsz9BnCpoOmqN4VEwzYh+X+jGtDYi20n7Aye7wl
+         N4dfY+1A+EYn0lYFIr5XVlRIf2V+oso2u628Ajt4Ct3PZlfd1+lvMDfo/6rswwO4yOPN
+         luFfeG7U2u+WTM5kbHCGWGurz/bhH3zALdfTuB4IUyvTbFA5tuxDR1Exxmv5mZCiH+MN
+         stFw==
+X-Gm-Message-State: AO0yUKWwy85CFG0p+4/F8Iz+fsKtjtH4MOXpzp/KzhfZ7CGP8mJwIN7c
+        f0Zeics4npBy2CrMztmQc8Y=
+X-Google-Smtp-Source: AK7set/0jp0llLgxtutMBA0b7r+ILPHtzlYr7jAT9FHTqx5rUM1ZuuQ0b8I5XKt4RCtv+JUlnJp6KQ==
+X-Received: by 2002:a17:906:58c6:b0:922:de2c:fdaa with SMTP id e6-20020a17090658c600b00922de2cfdaamr5934299ejs.50.1678839762231;
+        Tue, 14 Mar 2023 17:22:42 -0700 (PDT)
+Received: from skbuf ([188.27.184.189])
+        by smtp.gmail.com with ESMTPSA id ko22-20020a170907987600b008d325e167f3sm1746110ejc.201.2023.03.14.17.22.40
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 14 Mar 2023 17:22:41 -0700 (PDT)
+Date:   Wed, 15 Mar 2023 02:22:39 +0200
+From:   Vladimir Oltean <olteanv@gmail.com>
+To:     Christian Marangi <ansuelsmth@gmail.com>
+Cc:     Andrew Lunn <andrew@lunn.ch>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Russell King <linux@armlinux.org.uk>,
+        Gregory Clement <gregory.clement@bootlin.com>,
+        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        John Crispin <john@phrozen.org>, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-arm-msm@vger.kernel.org, Lee Jones <lee@kernel.org>,
+        linux-leds@vger.kernel.org
+Subject: Re: [net-next PATCH v3 02/14] net: dsa: qca8k: add LEDs basic support
+Message-ID: <20230315002239.ticvivruobuwcvwz@skbuf>
+References: <20230314101516.20427-1-ansuelsmth@gmail.com>
+ <20230314101516.20427-1-ansuelsmth@gmail.com>
+ <20230314101516.20427-3-ansuelsmth@gmail.com>
+ <20230314101516.20427-3-ansuelsmth@gmail.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230314101516.20427-3-ansuelsmth@gmail.com>
+ <20230314101516.20427-3-ansuelsmth@gmail.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert the binding document for adi,adau17x1 from txt to yaml
-so one could validate dt-entries correctly and any future additions
-can go into yaml format. Add address and size cells to example to
-prevent errors regarding reg format.
+On Tue, Mar 14, 2023 at 11:15:04AM +0100, Christian Marangi wrote:
+> Add LEDs basic support for qca8k Switch Family by adding basic
+> brightness_set() support.
+> 
+> Since these LEDs refelect port status, the default label is set to
+> ":port". DT binding should describe the color, function and number of
+> the leds using standard LEDs api.
+> 
+> These LEDs supports only blocking variant of the brightness_set()
+> function since they can sleep during access of the switch leds to set
+> the brightness.
+> 
+> While at it add to the qca8k header file each mode defined by the Switch
+> Documentation for future use.
+> 
+> Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
+> ---
+>  drivers/net/dsa/qca/Kconfig      |   7 ++
+>  drivers/net/dsa/qca/Makefile     |   1 +
+>  drivers/net/dsa/qca/qca8k-8xxx.c |   4 +
+>  drivers/net/dsa/qca/qca8k-leds.c | 191 +++++++++++++++++++++++++++++++
+>  drivers/net/dsa/qca/qca8k.h      |  69 +++++++++++
+>  5 files changed, 272 insertions(+)
+>  create mode 100644 drivers/net/dsa/qca/qca8k-leds.c
+> 
+> diff --git a/drivers/net/dsa/qca/Kconfig b/drivers/net/dsa/qca/Kconfig
+> index ba339747362c..9ed9d9cf80eb 100644
+> --- a/drivers/net/dsa/qca/Kconfig
+> +++ b/drivers/net/dsa/qca/Kconfig
+> @@ -15,3 +15,10 @@ config NET_DSA_QCA8K
+>  	help
+>  	  This enables support for the Qualcomm Atheros QCA8K Ethernet
+>  	  switch chips.
+> +
+> +config NET_DSA_QCA8K_LEDS_SUPPORT
+> +	bool "Qualcomm Atheros QCA8K Ethernet switch family LEDs support"
+> +	depends on NET_DSA_QCA8K
+> +	help
+> +	  This enabled support for LEDs present on the Qualcomm Atheros
+> +	  QCA8K Ethernet switch chips.
+> diff --git a/drivers/net/dsa/qca/Makefile b/drivers/net/dsa/qca/Makefile
+> index 701f1d199e93..330ae389e489 100644
+> --- a/drivers/net/dsa/qca/Makefile
+> +++ b/drivers/net/dsa/qca/Makefile
+> @@ -2,3 +2,4 @@
+>  obj-$(CONFIG_NET_DSA_AR9331)	+= ar9331.o
+>  obj-$(CONFIG_NET_DSA_QCA8K)	+= qca8k.o
+>  qca8k-y 			+= qca8k-common.o qca8k-8xxx.o
+> +obj-$(CONFIG_NET_DSA_QCA8K_LEDS_SUPPORT) += qca8k-leds.o
 
-Signed-off-by: Vijaya Anand <sunrockers8@gmail.com>
-Cc: Daniel Baluta <daniel.baluta@nxp.com>
----
-Changes since v1:
-- added 'Codec' in title to clarify type of devices
-- put compatible devices in lexographic order
-- changed description of clocks
-- changed 'unevaluatedProperties' to 'additionalProperties'
-- changed node names to be generic
+Isn't this what you want instead?
 
----
- .../bindings/sound/adi,adau17x1.txt           | 32 ------------
- .../bindings/sound/adi,adau17x1.yaml          | 52 +++++++++++++++++++
- 2 files changed, 52 insertions(+), 32 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/sound/adi,adau17x1.txt
- create mode 100644 Documentation/devicetree/bindings/sound/adi,adau17x1.yaml
+ifdef CONFIG_NET_DSA_QCA8K_LEDS_SUPPORT
+qca8k-y 			+= qca8k-leds.o
+endif
 
-diff --git a/Documentation/devicetree/bindings/sound/adi,adau17x1.txt b/Documentation/devicetree/bindings/sound/adi,adau17x1.txt
-deleted file mode 100644
-index 1447dec28125..000000000000
---- a/Documentation/devicetree/bindings/sound/adi,adau17x1.txt
-+++ /dev/null
-@@ -1,32 +0,0 @@
--Analog Devices ADAU1361/ADAU1461/ADAU1761/ADAU1961/ADAU1381/ADAU1781
--
--Required properties:
--
-- - compatible:		Should contain one of the following:
--			"adi,adau1361"
--			"adi,adau1461"
--			"adi,adau1761"
--			"adi,adau1961"
--			"adi,adau1381"
--			"adi,adau1781"
--
-- - reg:			The i2c address. Value depends on the state of ADDR0
--			and ADDR1, as wired in hardware.
--
--Optional properties:
-- - clock-names:		If provided must be "mclk".
-- - clocks:		phandle + clock-specifiers for the clock that provides
--			the audio master clock for the device.
--
--Examples:
--#include <dt-bindings/sound/adau17x1.h>
--
--	i2c_bus {
--		adau1361@38 {
--			compatible = "adi,adau1761";
--			reg = <0x38>;
--
--			clock-names = "mclk";
--			clocks = <&audio_clock>;
--		};
--	};
-diff --git a/Documentation/devicetree/bindings/sound/adi,adau17x1.yaml b/Documentation/devicetree/bindings/sound/adi,adau17x1.yaml
-new file mode 100644
-index 000000000000..8ef1e7f6ec91
---- /dev/null
-+++ b/Documentation/devicetree/bindings/sound/adi,adau17x1.yaml
-@@ -0,0 +1,52 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/sound/adi,adau17x1.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title:
-+ Analog Devices ADAU1361/ADAU1461/ADAU1761/ADAU1961/ADAU1381/ADAU1781 Codec
-+
-+maintainers:
-+  - Lars-Peter Clausen <lars@metafoo.de>
-+
-+properties:
-+  compatible:
-+    enum:
-+      - adi,adau1361
-+      - adi,adau1381
-+      - adi,adau1461
-+      - adi,adau1761
-+      - adi,adau1781
-+      - adi,adau1961
-+
-+  reg:
-+    maxItems: 1
-+    description:
-+      The i2c address. Value depends on the state of ADDR0 and ADDR1,
-+      as wired in hardware.
-+
-+  clock-names:
-+    const: mclk
-+
-+  clocks:
-+    items:
-+      - description: provides the audio master clock for the device.
-+
-+required:
-+  - compatible
-+  - reg
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    i2c {
-+      #address-cells = <1>;
-+      #size-cells = <0>;
-+      audio-codec@38 {
-+        compatible = "adi,adau1761";
-+        reg = <0x38>;
-+        clock-names = "mclk";
-+        clocks = <&audio_clock>;
-+      };
-+    };
--- 
-2.37.1 (Apple Git-137.1)
+you don't want to have to export the qca8k_setup_led_ctrl() symbol...
+you want it to be part of the same module AFAIU.
 
+> +/* Leds Support function */
+> +#ifdef CONFIG_NET_DSA_QCA8K_LEDS_SUPPORT
+> +int qca8k_setup_led_ctrl(struct qca8k_priv *priv);
+> +#else
+> +static inline int qca8k_setup_led_ctrl(struct qca8k_priv *priv)
+> +{
+> +	return 0;
+> +}
+> +#endif
+
+Could there be just a qca8k-leds.h with the function prototypes exported
+by qca8k-leds.c?
