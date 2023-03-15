@@ -2,103 +2,221 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 61B006BAC43
-	for <lists+devicetree@lfdr.de>; Wed, 15 Mar 2023 10:36:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B7F5A6BAC50
+	for <lists+devicetree@lfdr.de>; Wed, 15 Mar 2023 10:40:55 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230056AbjCOJgN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Mar 2023 05:36:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44408 "EHLO
+        id S231360AbjCOJkx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Mar 2023 05:40:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50222 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231513AbjCOJgM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Mar 2023 05:36:12 -0400
-Received: from mail-yw1-x112b.google.com (mail-yw1-x112b.google.com [IPv6:2607:f8b0:4864:20::112b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6CB565B80
-        for <devicetree@vger.kernel.org>; Wed, 15 Mar 2023 02:36:09 -0700 (PDT)
-Received: by mail-yw1-x112b.google.com with SMTP id 00721157ae682-540cb2fb5b9so251925817b3.3
-        for <devicetree@vger.kernel.org>; Wed, 15 Mar 2023 02:36:09 -0700 (PDT)
+        with ESMTP id S232077AbjCOJkt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Mar 2023 05:40:49 -0400
+Received: from mail-pl1-x631.google.com (mail-pl1-x631.google.com [IPv6:2607:f8b0:4864:20::631])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 744FE25E19;
+        Wed, 15 Mar 2023 02:40:47 -0700 (PDT)
+Received: by mail-pl1-x631.google.com with SMTP id v21so9268170ple.9;
+        Wed, 15 Mar 2023 02:40:47 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112; t=1678872968;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=bYQoOskS+fbvCREhTpPzMDMuJWMQA/zd7RgkP+TyrM0=;
-        b=IQN/hY56AbzZ1v2FNrGKUmXjBUm+cmnyDS6LJ1GMiRmH1s6fI7E3mQs9CP1LWCfVP1
-         h1Ig6rWIWGZ6Uui0rrAERUJMswRoZTiXS6BjtL4PsrONzJkeYRpdh/Oij44FVXpPdhLa
-         U70GNF6Ggj/OYTWlhdHy+ppyU3tEVKA8+CdUQIcoyJmB2cwJ3qIDzvVuh4Dd9Dj8QIK4
-         4Iv+eFEL1FUlyfxOWTIOYABtdbDa4dv6+O/fAizrqtML9621qRECcljq7DSUdzYc1yXY
-         QejbhKMIgmAqy6hSLZ39y3qyKMig7JYxK54ljrnNUwSNRZG4uTe6g697VkNtlWe5UMdM
-         lC5w==
+        d=gmail.com; s=20210112; t=1678873247;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=CUmZOl7yFbAslfZae1XifMRIfdwLVM4dYa2IRmn1anc=;
+        b=F1xmis1TeCnQy/jxjjr8pdN5VL5T8m8W/j1TYsgoQ+jkFM9vqKXmSowU+KFd0Srn1B
+         9oCyfjILS55Kmop2iSme3/7cN9GgCpMJT9VisAF/ghxQqGtIrZcHLhOeObCSSF0YbXab
+         9cGhp2pRdC1QOJ3Tv/nB3+cFyEHKX4pZuDjioh4dsCiV9wvngdGIvRnfvGkqL4oM89tx
+         Lw63JE3cTiq7/WRTWrUdoDzmAr7GmQfIpmpKEqi/y2kOCyLNG/oCIS9ebIqdT3HoS53g
+         U8PUWLz8c27reaCmujybHnPI2BiIRD9fjZZBQ7JrV8fMREjev78R5qdBgGHJB/lBrwTD
+         laMw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678872968;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=bYQoOskS+fbvCREhTpPzMDMuJWMQA/zd7RgkP+TyrM0=;
-        b=cWXIcEv3HWH7cw65iPBguY/TZo+0JTsO6cAwuYqAOYg3D+w8zdEl2yPclebEf7VSYP
-         iqmniRO6YX+8vB2k76nmcOhvgE/KAku9aPJa4HmtqE/Z/v2Z6JjGDZ/CLbrJjVQrth1g
-         3FQfKnggPFnGjva0boxaDIdhqglrVviZ7XUo6j6zk4zC+H9ht8yBAjSaBqm5jJBHWBO2
-         UDnwjMlvVDBRBvg32tor5x+9nmnRhfIPRjaWRWT7ldZ/hMS0V+ak/+qbK3Af9nIHlhYZ
-         gXD+K9PIlFMlk/bVL2VtLHlNNkXpIhZiUOBvM7VqS6lXOjf9MtPb6vJChQ/7IntUN8Va
-         Sq8Q==
-X-Gm-Message-State: AO0yUKXStDfpMqh8k/rfVddcEF2Yeft+gwZqEtzswlA1qm1iqYaxVZlT
-        hwjsrdgB3m/njZISXbkk8xba/OLj5zltbhe5xFe61Q==
-X-Google-Smtp-Source: AK7set9G1e6Y6bwnztfxt/btqXMvwl4/wb2VsLK7KvPZgdg17nAVO2TJC+1fSD6PY4UewmkcTq3WBx4R9IGiqLo9n3o=
-X-Received: by 2002:a81:ae4a:0:b0:541:8995:5334 with SMTP id
- g10-20020a81ae4a000000b0054189955334mr8175964ywk.3.1678872968658; Wed, 15 Mar
- 2023 02:36:08 -0700 (PDT)
+        d=1e100.net; s=20210112; t=1678873247;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=CUmZOl7yFbAslfZae1XifMRIfdwLVM4dYa2IRmn1anc=;
+        b=HvAFl5W3g17kryxCvEcSyppxVNJ7fkTllP/gS9Vb4ourkbmmTACHqQNyX7kN6v9Z55
+         1PYrrS2bp+zslZdzu5PW4j3tvStwhXlQHwIU3vqlZ6MfwRyox488L4IgggU21MkVvs1G
+         d+lYqz95SnGvn+NzQuG1mkNgN9chq2N5KtzfZnapBYDW/o5Hg4BW7sUuo4oV5txCGCZu
+         KUiC3l5ZmrjdcEo/uLdy3uBoDgzzZoqZi7uqE+FwwWMPX05N6h6/nq6OFnxwy4i9904I
+         uYSXNScDPKHmis5/cgztQX4DHUoCmKGbRF4dTx656NNJfwRMT23SrsrVFChY3vYKrSBo
+         Y7xQ==
+X-Gm-Message-State: AO0yUKXzgG84NHm5a7eEOszjMmmsYh1o1raxy+cjOthqHF/Q2GjsQAJ5
+        TXkBtiu0+rsmtNv2UW1BUpY=
+X-Google-Smtp-Source: AK7set9gI7Qlayqr5HrVS1HMVK6osS0lsw8VedIc68RBUGWXjUVRi3fZHeq7GFZY8PJw17lUqDVD+Q==
+X-Received: by 2002:a17:903:22c5:b0:19e:8452:1944 with SMTP id y5-20020a17090322c500b0019e84521944mr2480130plg.5.1678873246757;
+        Wed, 15 Mar 2023 02:40:46 -0700 (PDT)
+Received: from [172.19.1.47] (60-250-192-107.hinet-ip.hinet.net. [60.250.192.107])
+        by smtp.gmail.com with ESMTPSA id y9-20020a1709029b8900b001a076b5a193sm1195806plp.145.2023.03.15.02.40.44
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 15 Mar 2023 02:40:46 -0700 (PDT)
+Message-ID: <20fc81c9-5517-ce1e-639a-3b425cf27759@gmail.com>
+Date:   Wed, 15 Mar 2023 17:40:43 +0800
 MIME-Version: 1.0
-References: <20230220-display-v1-0-45cbc68e188b@baylibre.com>
- <20230220-display-v1-19-45cbc68e188b@baylibre.com> <CAAOTY_-wEzu6JavEAyRo8njOLRMq3i3wEcemNsuMaK00W9QqpQ@mail.gmail.com>
-In-Reply-To: <CAAOTY_-wEzu6JavEAyRo8njOLRMq3i3wEcemNsuMaK00W9QqpQ@mail.gmail.com>
-From:   Alexandre Mergnat <amergnat@baylibre.com>
-Date:   Wed, 15 Mar 2023 10:35:57 +0100
-Message-ID: <CAFGrd9pa3c3eZcuGg7AmHL8kOAkyx96hwjwnMuO-G9BR1ORJ_w@mail.gmail.com>
-Subject: Re: [PATCH 19/21] drm/mediatek: dpi: add support for dpi clock
-To:     Chun-Kuang Hu <chunkuang.hu@kernel.org>
-Cc:     Daniel Vetter <daniel@ffwll.ch>, CK Hu <ck.hu@mediatek.com>,
-        Jitao Shi <jitao.shi@mediatek.com>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= 
-        <u.kleine-koenig@pengutronix.de>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        David Airlie <airlied@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Xinlei Lee <xinlei.lee@mediatek.com>,
-        Guillaume La Roque <glaroque@baylibre.com>,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org,
-        dri-devel@lists.freedesktop.org,
-        Fabien Parent <fparent@baylibre.com>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.1
+Subject: Re: [PATCH 14/15] tty: serial: Add Nuvoton ma35d1 serial driver
+ support
+Content-Language: en-US
+To:     Greg KH <gregkh@linuxfoundation.org>
+Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        lee@kernel.org, mturquette@baylibre.com, sboyd@kernel.org,
+        p.zabel@pengutronix.de, jirislaby@kernel.org,
+        devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org,
+        schung@nuvoton.com, Jacky Huang <ychuang3@nuvoton.com>
+References: <20230315072902.9298-1-ychuang570808@gmail.com>
+ <20230315072902.9298-15-ychuang570808@gmail.com> <ZBF1z5Bx9jnrpxox@kroah.com>
+From:   Jacky Huang <ychuang570808@gmail.com>
+In-Reply-To: <ZBF1z5Bx9jnrpxox@kroah.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Le lun. 13 mars 2023 =C3=A0 16:21, Chun-Kuang Hu <chunkuang.hu@kernel.org> =
-a =C3=A9crit :
->
-> >
-> > +       dpi->dpi_clk =3D devm_clk_get_optional(dev, "dpi");
->
-> For MT8365, DPI clock is not optional, so make sure that MT8365 DPI
-> should have this clock.
+Dear Greg,
 
-This should be check and notified at build time thanks to the
-device-tree binding. Do you prefer this?:
-#IF MT8365_SOC
-    dpi->dpi_clk =3D devm_clk_get(dev, "dpi");
+Thank you for your review.
 
-Regards,
-Alex
+
+On 2023/3/15 下午 03:37, Greg KH wrote:
+> On Wed, Mar 15, 2023 at 07:29:01AM +0000, Jacky Huang wrote:
+>> From: Jacky Huang <ychuang3@nuvoton.com>
+>>
+>> This adds UART and console driver for Nuvoton ma35d1 Soc.
+>>
+>> MA35D1 SoC provides up to 17 UART controllers, each with one uart port.
+>> The ma35d1 uart controller is not compatible with 8250.
+> A new UART being designed that is not an 8250 compatible?  Why????
+>
+> Anyway, some minor comments:
+
+This UART controller was designed for over 15 years ago and was used on 
+many Nuvoton chips.
+The register interface is not compatible with 8250, so the 8250 driver 
+cannot be applied, but
+the functions are compatible.
+
+>>   drivers/tty/serial/ma35d1_serial.c | 842 +++++++++++++++++++++++++++++
+>>   drivers/tty/serial/ma35d1_serial.h |  93 ++++
+> Why do you have a .h file for only a single .c file?  Please just put
+> them both together into one .c file.
+
+OK, we will put the .h into .c in the next version.
+
+>>   include/uapi/linux/serial_core.h   |   3 +
+> Why do you need this #define?  Are you using it in userspace now?  If
+> not, why have it?
+
+Actually, we do not use it from userspace. I will remove it in the next 
+version.
+
+
+>> +static void
+>> +receive_chars(struct uart_ma35d1_port *up)
+> Please just put all one one line.
+>
+
+OK, I will fix it.
+
+>> +{
+>> +	u8 ch;
+>> +	u32 fsr;
+>> +	u32 isr;
+>> +	u32 dcnt;
+>> +	char flag;
+>> +
+>> +	isr = serial_in(up, UART_REG_ISR);
+>> +	fsr = serial_in(up, UART_REG_FSR);
+>> +
+>> +	while (!(fsr & RX_EMPTY)) {
+> You have no way out if the hardware is stuck?  That feels wrong.
+
+Thanks for pointing this out. I will add a timeout check to this 
+infinite loop.
+
+>> +static int ma35d1serial_ioctl(struct uart_port *port, u32 cmd, unsigned long arg)
+>> +{
+>> +	switch (cmd) {
+>> +	default:
+>> +		return -ENOIOCTLCMD;
+>> +	}
+>> +	return 0;
+>> +}
+> You do not need to handle any ioctls?
+
+Yes, we do not handle ioctls.
+I will remove both ma35d1serial_ioctl() and "ioctl  = 
+ma35d1serial_ioctl," in the next version.
+
+
+>> +static void ma35d1serial_console_putchar(struct uart_port *port,
+>> +					 unsigned char ch)
+>> +{
+>> +	struct uart_ma35d1_port *up = (struct uart_ma35d1_port *)port;
+>> +
+>> +	do {
+>> +	} while ((serial_in(up, UART_REG_FSR) & TX_FULL));
+> Again, no way out if this gets stuck in a loop?
+
+OK, we will fix it in the next version.
+
+>> +/**
+>> + *  Suspend one serial port.
+>> + */
+>> +void ma35d1serial_suspend_port(int line)
+>> +{
+>> +	uart_suspend_port(&ma35d1serial_reg, &ma35d1serial_ports[line].port);
+>> +}
+>> +EXPORT_SYMBOL(ma35d1serial_suspend_port);
+> Why is this exported?  Who uses it?
+>
+> And why not EXPORT_SYMBOL_GPL()?
+>
+>> +
+>> +/**
+>> + *  Resume one serial port.
+>> + */
+>> +void ma35d1serial_resume_port(int line)
+>> +{
+>> +	struct uart_ma35d1_port *up = &ma35d1serial_ports[line];
+>> +
+>> +	uart_resume_port(&ma35d1serial_reg, &up->port);
+>> +}
+>> +EXPORT_SYMBOL(ma35d1serial_resume_port);
+> Same here, who calls this and why?
+
+The ma35d1serial_suspend_port() and ma35d1serial_resume_port() were used in
+previous ARM9 projects for userspace proprietary suspend/resume control.
+
+As it's obsoleted in ma35s1, I will remove these two functions in the 
+next version.
+
+>> --- a/include/uapi/linux/serial_core.h
+>> +++ b/include/uapi/linux/serial_core.h
+>> @@ -279,4 +279,7 @@
+>>   /* Sunplus UART */
+>>   #define PORT_SUNPLUS	123
+>>   
+>> +/* Nuvoton MA35D1 UART */
+>> +#define PORT_MA35D1	124
+> Again, why is this define needed?
+
+As replied above, we will remove the serial_core.h modification from 
+this patch.
+
+
+> thanks,
+>
+> greg k-h
+
+Best Regards,
+
+Jacky Huang
+
