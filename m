@@ -2,113 +2,138 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3DB1B6BB2FA
-	for <lists+devicetree@lfdr.de>; Wed, 15 Mar 2023 13:40:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 457E16BB55C
+	for <lists+devicetree@lfdr.de>; Wed, 15 Mar 2023 14:57:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232754AbjCOMkr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Mar 2023 08:40:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36972 "EHLO
+        id S231962AbjCON5s (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Mar 2023 09:57:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59310 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232978AbjCOMk1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Mar 2023 08:40:27 -0400
-Received: from node.akkea.ca (li1434-30.members.linode.com [45.33.107.30])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 2C3E2132CF
-        for <devicetree@vger.kernel.org>; Wed, 15 Mar 2023 05:39:16 -0700 (PDT)
-Received: from localhost (localhost [127.0.0.1])
-        by node.akkea.ca (Postfix) with ESMTP id C285B4E201A;
-        Wed, 15 Mar 2023 12:30:34 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=akkea.ca; s=mail;
-        t=1678883434; bh=aRhr7S0XMb4dCpigar/jzyprQ8sUWsPeIEm67TGLNu0=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References;
-        b=ljkGLcoIB+xvl/ej0cua1hyQmS5e8R+6EdKcEjxruR0Eo0khXOIjo10pR2WOlyegy
-         qPKw9jA3jrzK1+ePTcA/k/Bs1xufcsF35zliCbY4GTPCjQTxC93IdFjqnqJpjagAhz
-         QxqTEgcXSasnrmwFTy0XEUISZiHbf3RpemrKAVqg=
-X-Virus-Scanned: Debian amavisd-new at mail.akkea.ca
-Received: from node.akkea.ca ([127.0.0.1])
-        by localhost (mail.akkea.ca [127.0.0.1]) (amavisd-new, port 10024)
-        with ESMTP id jhaUJqO1qIO0; Wed, 15 Mar 2023 12:30:34 +0000 (UTC)
-Received: from www.akkea.ca (localhost [127.0.0.1])
-        by node.akkea.ca (Postfix) with ESMTP id 2F9154E2010;
-        Wed, 15 Mar 2023 12:30:34 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=akkea.ca; s=mail;
-        t=1678883434; bh=aRhr7S0XMb4dCpigar/jzyprQ8sUWsPeIEm67TGLNu0=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References;
-        b=ljkGLcoIB+xvl/ej0cua1hyQmS5e8R+6EdKcEjxruR0Eo0khXOIjo10pR2WOlyegy
-         qPKw9jA3jrzK1+ePTcA/k/Bs1xufcsF35zliCbY4GTPCjQTxC93IdFjqnqJpjagAhz
-         QxqTEgcXSasnrmwFTy0XEUISZiHbf3RpemrKAVqg=
+        with ESMTP id S232882AbjCON5o (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Mar 2023 09:57:44 -0400
+X-Greylist: delayed 6473 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Wed, 15 Mar 2023 06:57:41 PDT
+Received: from egress-ip4a.ess.de.barracuda.com (egress-ip4a.ess.de.barracuda.com [18.184.203.227])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A4A6D58C20
+        for <devicetree@vger.kernel.org>; Wed, 15 Mar 2023 06:57:41 -0700 (PDT)
+Received: from mail-yb1-f197.google.com (mail-yb1-f197.google.com [209.85.219.197]) by mx-outbound46-204.eu-central-1c.ess.aws.cudaops.com (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NO); Wed, 15 Mar 2023 13:57:38 +0000
+Received: by mail-yb1-f197.google.com with SMTP id e20-20020a25d314000000b00b33355abd3dso15109883ybf.14
+        for <devicetree@vger.kernel.org>; Wed, 15 Mar 2023 06:57:38 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=mistralsolutions.com; s=google; t=1678888658;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=gq45/aTsPc3VfJfslzwPgA8R01rxpja2ayPseefo/Ts=;
+        b=miixDDNEwhxZzSa7/zlHkXc57fPPupE2Rjm7HI5hFztsnZ3PolDDdB5hXOM23KfkTJ
+         HeBYKUolu1uIEdXQ6lqx4P2aKlEbaqpVxGLzx8XcCmVH1Ghw2996B5tTxVGE13fzCSma
+         c/iO8kcAaYnDspPVIFnFnw+xxf3mfNS66e5xA=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1678888658;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=gq45/aTsPc3VfJfslzwPgA8R01rxpja2ayPseefo/Ts=;
+        b=q2OAdSlwjbyO9tyoi8IaqA8dC7NgF/NcELEhBGb+763LL7QAdXM4nB6Zdw6SpdsVQ2
+         uG8e33XbkwOsBeMNzCX8MTTp6XdqulVINuVHxX3yita3prqw8/b5MoPGVnjWDHc0PqVi
+         jTEqOcUVQO7glkN66/+fpBb5gw6rGvZ8Bv91IyyHBSVTJDrA+4grBawe5BpwvVuAP7xe
+         22OVlNlhm28AjMIVHN5iKUQzDBTa1j1KhL5ughMIEZ8Brzf0CIX7CfUdEo2JZ4FEh+Mb
+         hyjW4RKaaMtjKp74Keie7QAU1b+iwh7yGDv0qHx4i0xBQ9E3gvg4Ha0De7fc81F+XCzL
+         hJ0A==
+X-Gm-Message-State: AO0yUKVN7Eb20M8fHZauo9JLO31hZo1L4wqDoYGkTUIvZ0ojvKjOtN26
+        ap9ul82+KBFP2qr1+KwGuFww26QqgsCFz27ODj26H8wJ2HZ8dtyIcnlxrINlVRlsIjpEoEwDcHP
+        DjDF8x1HJ+/+ZrXLu9yUhGFgdbgbplJhc10gjxrfwkN7ZDyjwQz3xPCetVA==
+X-Received: by 2002:a05:6a20:8e0a:b0:c7:6a98:5bd8 with SMTP id y10-20020a056a208e0a00b000c76a985bd8mr27588957pzj.0.1678882184290;
+        Wed, 15 Mar 2023 05:09:44 -0700 (PDT)
+X-Google-Smtp-Source: AK7set8ErCxPeOlq5ZfGnI2EzU8xgcCdovh/xZZ01dLY1MDuWVd0WzbziSF7awS6m5xwBp8qWj0feA==
+X-Received: by 2002:a05:6a20:8e0a:b0:c7:6a98:5bd8 with SMTP id y10-20020a056a208e0a00b000c76a985bd8mr27588926pzj.0.1678882183835;
+        Wed, 15 Mar 2023 05:09:43 -0700 (PDT)
+Received: from localhost.localdomain ([49.207.203.68])
+        by smtp.gmail.com with ESMTPSA id m7-20020a655307000000b004fb8732a2f9sm3251343pgq.88.2023.03.15.05.09.40
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 15 Mar 2023 05:09:43 -0700 (PDT)
+From:   Sinthu Raja <sinthu.raja@mistralsolutions.com>
+X-Google-Original-From: Sinthu Raja <sinthu.raja@ti.com>
+To:     Nishanth Menon <nm@ti.com>, Tero Kristo <kristo@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     Vignesh Raghavendra <vigneshr@ti.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Sinthu Raja <sinthu.raja@ti.com>
+Subject: [PATCH] arm64: dts: ti: k3-am68-sk-base-board: Update IO EXP GPIO lines for Rev E2
+Date:   Wed, 15 Mar 2023 17:39:34 +0530
+Message-Id: <20230315120934.16954-1-sinthu.raja@ti.com>
+X-Mailer: git-send-email 2.36.1
 MIME-Version: 1.0
-Date:   Wed, 15 Mar 2023 05:30:34 -0700
-From:   Angus Ainslie <angus@akkea.ca>
-To:     Shawn Guo <shawnguo@kernel.org>
-Cc:     Martin Kepplinger <martin.kepplinger@puri.sm>, robh@kernel.org,
-        krzysztof.kozlowski@linaro.org, s.hauer@pengutronix.de,
-        kernel@pengutronix.de, festevam@gmail.com, kernel@puri.sm,
-        linux-imx@nxp.com, devicetree@vger.kernel.org,
-        phone-devel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org,
-        Sebastian Krzyszkowiak <sebastian.krzyszkowiak@puri.sm>
-Subject: Re: [PATCH v1 11/14] arm64: dts: imx8mq-librem5: Remove
- dis_u3_susphy_quirk from usb_dwc3_0
-In-Reply-To: <20230314072832.GC143566@dragon>
-References: <20230309204608.237605-1-martin.kepplinger@puri.sm>
- <20230309204608.237605-12-martin.kepplinger@puri.sm>
- <20230314072832.GC143566@dragon>
-Message-ID: <c2cf4eb5fc984aec8a21adfc440b511e@akkea.ca>
-X-Sender: angus@akkea.ca
-User-Agent: Roundcube Webmail/1.3.17
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-BESS-ID: 1678888658-311980-5505-20648-1
+X-BESS-VER: 2019.1_20230310.1716
+X-BESS-Apparent-Source-IP: 209.85.219.197
+X-BESS-Parts: H4sIAAAAAAACA4uuVkqtKFGyUirNy1bSUcovVrIyNDM0BrIygIJpSRbmhkZJZu
+        aJBpYGlqnGhikmlilJKQbG5skpKYYWBkq1sQCuCMYbQQAAAA==
+X-BESS-Outbound-Spam-Score: 0.00
+X-BESS-Outbound-Spam-Report: Code version 3.2, rules version 3.2.2.246813 [from 
+        cloudscan19-35.eu-central-1b.ess.aws.cudaops.com]
+        Rule breakdown below
+         pts rule name              description
+        ---- ---------------------- --------------------------------
+        0.00 BSF_SC0_MISMATCH_TO    META: Envelope rcpt doesn't match header 
+        0.00 BSF_BESS_OUTBOUND      META: BESS Outbound 
+X-BESS-Outbound-Spam-Status: SCORE=0.00 using account:ESS91090 scores of KILL_LEVEL=7.0 tests=BSF_SC0_MISMATCH_TO, BSF_BESS_OUTBOUND
+X-BESS-BRTS-Status: 1
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_PASS,URIBL_BLOCKED autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Shawn,
+From: Sinthu Raja <sinthu.raja@ti.com>
 
-On 2023-03-14 00:28, Shawn Guo wrote:
-> On Thu, Mar 09, 2023 at 09:46:05PM +0100, Martin Kepplinger wrote:
->> From: Sebastian Krzyszkowiak <sebastian.krzyszkowiak@puri.sm>
->> 
->> This reduces power consumption in system suspend by about 10%.
-> 
-> Is there any other impact than this nice power gain?  Otherwise,
-> I would wonder why the quirk was enabled in the first place.
-> 
+Rev E2 of the AM68 SK baseboard has updated the GPIO IO expander pins
+functionality. To match the Rev E2 schematics, update existing IO expander
+GPIO line names and the corresponding node which uses the expansion(exp1)
+node.
 
-This comes from the early days of board bring-up and IIRC it seemed to 
-stabilize flashing using the mfgtools over USB. Whatever gremlin was in 
-those early boards is long gone and this is no longer needed.
+Signed-off-by: Sinthu Raja <sinthu.raja@ti.com>
+---
 
-Cheers
-Angus
+Schematics Ref: https://www.ti.com/lit/zip/sprr463
 
-> Shawn
-> 
->> 
->> Signed-off-by: Sebastian Krzyszkowiak <sebastian.krzyszkowiak@puri.sm>
->> Signed-off-by: Martin Kepplinger <martin.kepplinger@puri.sm>
->> ---
->>  arch/arm64/boot/dts/freescale/imx8mq-librem5.dtsi | 1 -
->>  1 file changed, 1 deletion(-)
->> 
->> diff --git a/arch/arm64/boot/dts/freescale/imx8mq-librem5.dtsi 
->> b/arch/arm64/boot/dts/freescale/imx8mq-librem5.dtsi
->> index 0b4b49fa1392a..f557632f574fa 100644
->> --- a/arch/arm64/boot/dts/freescale/imx8mq-librem5.dtsi
->> +++ b/arch/arm64/boot/dts/freescale/imx8mq-librem5.dtsi
->> @@ -1322,7 +1322,6 @@ &usb_dwc3_0 {
->>  	#address-cells = <1>;
->>  	#size-cells = <0>;
->>  	dr_mode = "otg";
->> -	snps,dis_u3_susphy_quirk;
->>  	usb-role-switch;
->>  	status = "okay";
->> 
->> --
->> 2.30.2
->> 
+ arch/arm64/boot/dts/ti/k3-am68-sk-base-board.dts | 12 +++++-------
+ 1 file changed, 5 insertions(+), 7 deletions(-)
+
+diff --git a/arch/arm64/boot/dts/ti/k3-am68-sk-base-board.dts b/arch/arm64/boot/dts/ti/k3-am68-sk-base-board.dts
+index 2091cd2431fb..27a43a8ecffd 100644
+--- a/arch/arm64/boot/dts/ti/k3-am68-sk-base-board.dts
++++ b/arch/arm64/boot/dts/ti/k3-am68-sk-base-board.dts
+@@ -60,7 +60,7 @@ vdd_mmc1: regulator-sd {
+ 		regulator-boot-on;
+ 		enable-active-high;
+ 		vin-supply = <&vsys_3v3>;
+-		gpio = <&exp1 10 GPIO_ACTIVE_HIGH>;
++		gpio = <&exp1 8 GPIO_ACTIVE_HIGH>;
+ 	};
+ 
+ 	vdd_sd_dv: regulator-tlv71033 {
+@@ -264,12 +264,10 @@ exp1: gpio@21 {
+ 		reg = <0x21>;
+ 		gpio-controller;
+ 		#gpio-cells = <2>;
+-		gpio-line-names = "CSI_VIO_SEL", "CSI_SEL_FPC_EXPn", "HDMI_PDn",
+-					"HDMI_LS_OE", "DP0_3V3 _EN", "BOARDID_EEPROM_WP",
+-					"CAN_STB", " ", "GPIO_uSD_PWR_EN", "eDP_ENABLE",
+-					"IO_EXP_PCIe1_M.2_RTSz", "IO_EXP_MCU_RGMII_RSTz",
+-					"IO_EXP_CSI2_EXP_RSTz", " ", "CSI0_B_GPIO1",
+-					"CSI1_B_GPIO1";
++		gpio-line-names = " ", " ", " ", " ", " ",
++				  "BOARDID_EEPROM_WP", "CAN_STB", " ",
++				  "GPIO_uSD_PWR_EN", " ", "IO_EXP_PCIe1_M.2_RTSz",
++				  "IO_EXP_MCU_RGMII_RST#", " ", " ", " ", " ";
+ 	};
+ };
+ 
+-- 
+2.36.1
+
