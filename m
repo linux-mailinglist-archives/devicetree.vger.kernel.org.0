@@ -2,112 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DA3406BA960
-	for <lists+devicetree@lfdr.de>; Wed, 15 Mar 2023 08:32:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0297C6BA970
+	for <lists+devicetree@lfdr.de>; Wed, 15 Mar 2023 08:37:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231820AbjCOHco (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Mar 2023 03:32:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38828 "EHLO
+        id S231365AbjCOHhh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Mar 2023 03:37:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51540 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230455AbjCOHbR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Mar 2023 03:31:17 -0400
-Received: from mail-pl1-x62d.google.com (mail-pl1-x62d.google.com [IPv6:2607:f8b0:4864:20::62d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 394112C67C;
-        Wed, 15 Mar 2023 00:29:48 -0700 (PDT)
-Received: by mail-pl1-x62d.google.com with SMTP id p20so19075721plw.13;
-        Wed, 15 Mar 2023 00:29:48 -0700 (PDT)
+        with ESMTP id S231374AbjCOHhV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Mar 2023 03:37:21 -0400
+Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com [IPv6:2a00:1450:4864:20::532])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 332526C1A6
+        for <devicetree@vger.kernel.org>; Wed, 15 Mar 2023 00:34:51 -0700 (PDT)
+Received: by mail-ed1-x532.google.com with SMTP id cn21so41638841edb.0
+        for <devicetree@vger.kernel.org>; Wed, 15 Mar 2023 00:34:51 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112; t=1678865386;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=F+0n8wKmHMGFlWU1/ByhfOV+TIKgh3PvnfTP4gSWN6c=;
-        b=FJNkGFc1fBYMnFsOVBLm5Em8WKPJpxIb+jBfT4o/tV0eqQ/ks/Zq/htHrhu9t/SETC
-         Ygo9oN8pWNozdI1yHJFx0PKHnOm4LzFbYchtcZbeRtfIY01LDbDoWfl2eVqAR+fU1Pyl
-         hOTnVLwjkHzyVBLSI51G2qIBzp7tXnzL1nn688DM/QgpaMx1Nwcc3YvqPLA/1CwQ6PRb
-         4jy6VjOI6lmQKLKOCy6xmE6fRJ5cQltUmkO5r+Xu0POU5UEOj2fk1QIiA2trmklC8F0q
-         Dt6Knc98nAQmw9s2K8kcr5zy567ka7KBXOsi3z3MJzSUkibKZP1dw33avMx/V67tCVHE
-         zANw==
+        d=linaro.org; s=google; t=1678865670;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=YN6r/G4j178xAjD35LALol+t2Sqvd6w3ZE7XijssN4g=;
+        b=ZV9MRWcMuD5W3H+dCtdHJKEvYW0JBVWKD/o0dp+I/pdHGzIAnaQb0FKDlLGCa02veg
+         e3bqHSwI1ScFeCycrdJQB/RndpFerXOlMviUhpRWYIxD7ANT0jDS85KK87kNjONicTYq
+         /pBZgAhACkm4hGdIqGT9OvBMaoOXVbKYNhlRST4+ARFc8moWToWVKXxx7PK5L+zdBqpg
+         IJuoYwlW54zwBaaIUM1//XE/SIn01FXNlHTWQ+h21VIO8yl9NaC5AiAV3+TG+V5U7ibd
+         NWrhpDpP2+pzWej4MWgWSXpd+R4c42X+ws91oQBAgKzoG5RNhMpj94H6PL6uLestB6Yd
+         5dUg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678865386;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=F+0n8wKmHMGFlWU1/ByhfOV+TIKgh3PvnfTP4gSWN6c=;
-        b=EnMny5Ru8GvfKnUTY++lSqNBVZA+EXhUy+ormbL/C7g0mTtPdPtr3NHQsE96FICIVJ
-         GfD/EHjxkZv8JEZIucChZEBn3ZcSQe1xNixxFZk9Oy2tDDcNaa/zwmRtsKtfF0eO1hWA
-         7+WBNgyblYGu9e7CReJA/u4Ro21ukWe6HyG/m5WgY3tZjFraNiUYd5NRubd7J8ymIXFy
-         mk4I/OVaOWttIRNVYeuYYBLNPd658Nv5cEsQdYl4GglvdcUsrIcvk8Z2FvggQPuen477
-         +WK4lZeIcd+JgbXqOXHdmDpy9+OB22AMYXT06wj+yGvEEDwAQRJTZlLzzYEbvaiUP5Lp
-         VmRA==
-X-Gm-Message-State: AO0yUKX1YXzZbi6YFDz68zi8jUdt+Z6UNabcH3vpW7jJem3yqb2ymJcJ
-        jjffUxUXltGbQQEBweD42bjsTOVwqfZkjw==
-X-Google-Smtp-Source: AK7set806ujFMhHwrHJdvnKd7BUTN0cJlXk+28UtebQsAjiXy0G6lEBlXx1eYlTUq+1iMufAUO/DGQ==
-X-Received: by 2002:a17:902:e38a:b0:19f:1e3e:a84d with SMTP id g10-20020a170902e38a00b0019f1e3ea84dmr1341206ple.64.1678865386563;
-        Wed, 15 Mar 2023 00:29:46 -0700 (PDT)
-Received: from a28aa0606c51.. (60-250-192-107.hinet-ip.hinet.net. [60.250.192.107])
-        by smtp.gmail.com with ESMTPSA id kz11-20020a170902f9cb00b001a0667822c8sm2740003plb.94.2023.03.15.00.29.44
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 15 Mar 2023 00:29:46 -0700 (PDT)
-From:   Jacky Huang <ychuang570808@gmail.com>
-To:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        lee@kernel.org, mturquette@baylibre.com, sboyd@kernel.org,
-        p.zabel@pengutronix.de, gregkh@linuxfoundation.org,
-        jirislaby@kernel.org
-Cc:     devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org,
-        schung@nuvoton.com, Jacky Huang <ychuang3@nuvoton.com>
-Subject: [PATCH 15/15] MAINTAINERS: Add entry for NUVOTON MA35
-Date:   Wed, 15 Mar 2023 07:29:02 +0000
-Message-Id: <20230315072902.9298-16-ychuang570808@gmail.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20230315072902.9298-1-ychuang570808@gmail.com>
-References: <20230315072902.9298-1-ychuang570808@gmail.com>
+        d=1e100.net; s=20210112; t=1678865670;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=YN6r/G4j178xAjD35LALol+t2Sqvd6w3ZE7XijssN4g=;
+        b=GTaNTvL6wbTWzG+IsMFUIXWgBxTwjWWrA9eOnFQT3n/XA+GszgFE0BdZxYimuKhbvU
+         lMLS7m3h6bF5Uei4fQSPJCIDmqIHX00xeHfIA6O34WkskDa6v9WLbWwbhs78wWedD8uq
+         tHThVOUYBiowAumAKrtwuLncsTDjzs8augFemrfwKJCtmHxBJuf7i9LkjpBiLaXzT/i7
+         eNEDCQcemXIqz5IR3BXoMPmhRD2chOL/uR7CGsNTxenYQIasx1L3cWoNNX/Vtc5Uro6G
+         6eh4/iO7LyMFMWBPBy4cTDBwzaaXwrVBnm4u27NUo4iTU/WfT15YioHRz7F79XblmpHD
+         1dcA==
+X-Gm-Message-State: AO0yUKUbEpM1uTT+NoZOOl1RvBVITvgkZYvsgIWt75+kfU6Dv4gCRepG
+        /95whc05x6gV0GCvXgozSnJQpw==
+X-Google-Smtp-Source: AK7set98BUNTb9ud39ZhAsKm9MP2kP5HH64Ghd6xz6wWcQ+TbJD9CROcMbK6qmdzMzUlMWZgD0/s8g==
+X-Received: by 2002:a17:906:1781:b0:92b:f019:d5eb with SMTP id t1-20020a170906178100b0092bf019d5ebmr4736336eje.44.1678865670361;
+        Wed, 15 Mar 2023 00:34:30 -0700 (PDT)
+Received: from ?IPV6:2a02:810d:15c0:828:940e:8615:37dc:c2bd? ([2a02:810d:15c0:828:940e:8615:37dc:c2bd])
+        by smtp.gmail.com with ESMTPSA id ro16-20020a170907881000b0092f38a6d082sm213748ejc.209.2023.03.15.00.34.29
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 15 Mar 2023 00:34:29 -0700 (PDT)
+Message-ID: <86a63e92-445f-ef67-119e-ab605db6bae2@linaro.org>
+Date:   Wed, 15 Mar 2023 08:34:28 +0100
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.8.0
+Subject: Re: [PATCH v2 4/5] soc: qcom: Add LLCC support for multi channel DDR
+Content-Language: en-US
+To:     Komal Bajaj <quic_kbajaj@quicinc.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Abel Vesa <abel.vesa@linaro.org>,
+        Rishabh Bhatnagar <rishabhb@codeaurora.org>,
+        Prakash Ranjan <saiprakash.ranjan@codeaurora.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Andy Gross <agross@kernel.org>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org
+References: <20230313124040.9463-1-quic_kbajaj@quicinc.com>
+ <20230313124040.9463-5-quic_kbajaj@quicinc.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230313124040.9463-5-quic_kbajaj@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Jacky Huang <ychuang3@nuvoton.com>
+On 13/03/2023 13:40, Komal Bajaj wrote:
+> Add LLCC support for multi channel DDR configurations
+> based off of a feature register.
+> 
+> Signed-off-by: Komal Bajaj <quic_kbajaj@quicinc.com>
+> ---
+>  drivers/soc/qcom/llcc-qcom.c       | 56 ++++++++++++++++++++++++++++--
 
-Add entry for Nuvton ma35d1 maintainer and files
+kernel robot still reports some issues here. You might be missing some
+dependency or symbol export.
 
-Signed-off-by: Jacky Huang <ychuang3@nuvoton.com>
----
- MAINTAINERS | 12 ++++++++++++
- 1 file changed, 12 insertions(+)
-
-diff --git a/MAINTAINERS b/MAINTAINERS
-index ec57c42ed544..b42d5c052863 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -2535,6 +2535,18 @@ F:	arch/arm/mach-npcm/wpcm450.c
- F:	drivers/*/*/*wpcm*
- F:	drivers/*/*wpcm*
- 
-+ARM/NUVOTON MA35 ARCHITECTURE
-+M:	Jacky Huang <ychuang3@nuvoton.com>
-+M:	Shan-Chun Hung <schung@nuvoton.com>
-+L:	linux-arm-kernel@lists.infradead.org (moderated for non-subscribers)
-+S:	Supported
-+F:	Documentation/devicetree/bindings/*/*nuvoton*
-+F:	arch/arm64/boot/dts/nuvoton/
-+F:	drivers/*/*/*ma35d1*
-+F:	drivers/*/*ma35d1*
-+F:	include/dt-bindings/*/*ma35d1*
-+F:	include/linux/mfd/ma35d1-sys.h
-+
- ARM/NXP S32G ARCHITECTURE
- M:	Chester Lin <clin@suse.com>
- R:	Andreas Färber <afaerber@suse.de>
--- 
-2.34.1
+Best regards,
+Krzysztof
 
