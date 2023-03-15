@@ -2,113 +2,138 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6D1476BBE77
-	for <lists+devicetree@lfdr.de>; Wed, 15 Mar 2023 22:04:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 39AA86BBE84
+	for <lists+devicetree@lfdr.de>; Wed, 15 Mar 2023 22:07:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232412AbjCOVE5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Mar 2023 17:04:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41018 "EHLO
+        id S229854AbjCOVHK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Mar 2023 17:07:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45434 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231971AbjCOVE4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Mar 2023 17:04:56 -0400
-Received: from mail-yw1-f173.google.com (mail-yw1-f173.google.com [209.85.128.173])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9106E199E4;
-        Wed, 15 Mar 2023 14:04:20 -0700 (PDT)
-Received: by mail-yw1-f173.google.com with SMTP id 00721157ae682-544787916d9so64859037b3.13;
-        Wed, 15 Mar 2023 14:04:20 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678914196;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=ebjbFrpz/+X5Ecv3vTakODOSpqaDbNAgDhn1xxmZU9U=;
-        b=tttn2P0p+WyKEMVzQUJ6YjjobMsWOQNPJnwI83c4Jw8lyZaOnvcR8WCt9AqIfc9E2w
-         GjrDpyyC98mHo+ZZarmdPgTiKfI/mtrQEBsyjq400j0W4f6EV1REW4GoGL6daEZ17i7b
-         iSD625DW0QzrW4ffQvOMjA8Q6DBtt5n6R3TVZrMCWj1oWyODVCSH2h2Tze2CGjqU/HcJ
-         bbdZiy9Dx6ga6yYbwIzf/i4QDTOsSIXL0ikGTPbOZh5n4Lvzuhtvp4BKIzflGHe1dMHZ
-         BGgK5XAOYl+iAUrKUTOt5nJg9iL8+i7FAxcURkybzWQb9iKSRIgw5rOwX5ds/DrvLSks
-         vrLQ==
-X-Gm-Message-State: AO0yUKX2D8GQwH1W7OTcBGLlZ4oYIytUztbW3UH6zSFMErfdw9f9jMsO
-        oLGaKtdkjel5cEcl6hmvcsuWOvJAxU3rPP3ppFk=
-X-Google-Smtp-Source: AK7set8e62pYUbve18yCJPm1tnWapIagB1amLfxYzcrmp2PVa0ygDPClmkdqYSa+gmKrEF5fpCTg0Pmh3w2ZgUi4VaQ=
-X-Received: by 2002:a81:aa0c:0:b0:530:b21f:d604 with SMTP id
- i12-20020a81aa0c000000b00530b21fd604mr751829ywh.9.1678914196433; Wed, 15 Mar
- 2023 14:03:16 -0700 (PDT)
+        with ESMTP id S229916AbjCOVHJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Mar 2023 17:07:09 -0400
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8039D46AE;
+        Wed, 15 Mar 2023 14:06:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1678914403; x=1710450403;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=zgcxU04kk7R74eIwM5VvQS7PnF5BOcPygMlUIObyV7o=;
+  b=YaG1QmxeKE8oDytogeRtw9Jq0aHWgk+gbhmLjlZkokQUlj/f1QakR0q0
+   MGkFDiotBrqX7aV2BcWMTYeGH8+msT6s0oxt9CsK7FxR0opeXPW2jjbmW
+   iREOgt3Rd5/vqLK/BobAkyV4r0NI9hQZLuT4jI/JHPo33DjcDmiA+Oj/7
+   5vnr+SsHZdyAYeLwikZQ5oTvqJ/G/eEdARsSUGm5t8CbLONxNt9MVQlOR
+   W5n5AFVRptTHMk4v56j9FBesqQS24EstHiTwLFqCL8Gpy2r2JDqtErSbM
+   i/xIC0QvIYEIwNT6PRpZcUM91WlutnLAqAPeSCOhFrlRAEGa+N6lI+z0B
+   g==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10650"; a="337835815"
+X-IronPort-AV: E=Sophos;i="5.98,262,1673942400"; 
+   d="scan'208";a="337835815"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+  by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 15 Mar 2023 14:05:11 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6500,9779,10650"; a="822941919"
+X-IronPort-AV: E=Sophos;i="5.98,262,1673942400"; 
+   d="scan'208";a="822941919"
+Received: from lkp-server01.sh.intel.com (HELO b613635ddfff) ([10.239.97.150])
+  by fmsmga001.fm.intel.com with ESMTP; 15 Mar 2023 14:05:08 -0700
+Received: from kbuild by b613635ddfff with local (Exim 4.96)
+        (envelope-from <lkp@intel.com>)
+        id 1pcYJ1-00082F-15;
+        Wed, 15 Mar 2023 21:05:07 +0000
+Date:   Thu, 16 Mar 2023 05:04:54 +0800
+From:   kernel test robot <lkp@intel.com>
+To:     Herve Codina via Alsa-devel <alsa-devel@alsa-project.org>,
+        Herve Codina <herve.codina@bootlin.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Derek Kiernan <derek.kiernan@xilinx.com>,
+        Dragan Cvetic <dragan.cvetic@xilinx.com>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>
+Cc:     oe-kbuild-all@lists.linux.dev, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, alsa-devel@alsa-project.org,
+        Christophe Leroy <christophe.leroy@csgroup.eu>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH 2/7] drivers: misc: Add support for the Lantiq PEF2256
+ framer
+Message-ID: <202303160430.HUK3FkVq-lkp@intel.com>
+References: <167888778959.26.12757990479414568225@mailman-core.alsa-project.org>
 MIME-Version: 1.0
-References: <20230315055813.94740-1-william.qiu@starfivetech.com> <20230315055813.94740-3-william.qiu@starfivetech.com>
-In-Reply-To: <20230315055813.94740-3-william.qiu@starfivetech.com>
-From:   Emil Renner Berthing <kernel@esmil.dk>
-Date:   Wed, 15 Mar 2023 22:03:05 +0100
-Message-ID: <CANBLGcx1r0Uws5ob5iAwpVdBxvxt4-bHaNyLajxp4oMUoWHFEw@mail.gmail.com>
-Subject: Re: [RESEND v6 2/2] riscv: dts: starfive: Add syscon node
-To:     William Qiu <william.qiu@starfivetech.com>
-Cc:     devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
-        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
-        autolearn=no autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <167888778959.26.12757990479414568225@mailman-core.alsa-project.org>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_NONE,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 15 Mar 2023 at 06:58, William Qiu <william.qiu@starfivetech.com> wrote:
->
-> Add stg_syscon/sys_syscon/aon_syscon node for JH7110 Soc.
->
-> Signed-off-by: William Qiu <william.qiu@starfivetech.com>
+Hi Herve,
 
-Reviewed-by: Emil Renner Berthing <emil.renner.berthing@canonical.com>
+Thank you for the patch! Perhaps something to improve:
 
-> ---
->  arch/riscv/boot/dts/starfive/jh7110.dtsi | 15 +++++++++++++++
->  1 file changed, 15 insertions(+)
->
-> diff --git a/arch/riscv/boot/dts/starfive/jh7110.dtsi b/arch/riscv/boot/dts/starfive/jh7110.dtsi
-> index d484ecdf93f7..49dd62276b0d 100644
-> --- a/arch/riscv/boot/dts/starfive/jh7110.dtsi
-> +++ b/arch/riscv/boot/dts/starfive/jh7110.dtsi
-> @@ -362,6 +362,11 @@ i2c2: i2c@10050000 {
->                         status = "disabled";
->                 };
->
-> +               stg_syscon: syscon@10240000 {
-> +                       compatible = "starfive,jh7110-stg-syscon", "syscon";
-> +                       reg = <0x0 0x10240000 0x0 0x1000>;
-> +               };
-> +
->                 uart3: serial@12000000 {
->                         compatible = "snps,dw-apb-uart";
->                         reg = <0x0 0x12000000 0x0 0x10000>;
-> @@ -466,6 +471,11 @@ syscrg: clock-controller@13020000 {
->                         #reset-cells = <1>;
->                 };
->
-> +               sys_syscon: syscon@13030000 {
-> +                       compatible = "starfive,jh7110-sys-syscon", "syscon";
-> +                       reg = <0x0 0x13030000 0x0 0x1000>;
-> +               };
-> +
->                 sysgpio: pinctrl@13040000 {
->                         compatible = "starfive,jh7110-sys-pinctrl";
->                         reg = <0x0 0x13040000 0x0 0x10000>;
-> @@ -495,6 +505,11 @@ aoncrg: clock-controller@17000000 {
->                         #reset-cells = <1>;
->                 };
->
-> +               aon_syscon: syscon@17010000 {
-> +                       compatible = "starfive,jh7110-aon-syscon", "syscon";
-> +                       reg = <0x0 0x17010000 0x0 0x1000>;
-> +               };
-> +
->                 aongpio: pinctrl@17020000 {
->                         compatible = "starfive,jh7110-aon-pinctrl";
->                         reg = <0x0 0x17020000 0x0 0x10000>;
-> --
-> 2.34.1
->
+[auto build test WARNING on broonie-sound/for-next]
+[also build test WARNING on robh/for-next char-misc/char-misc-testing char-misc/char-misc-next char-misc/char-misc-linus linus/master v6.3-rc2 next-20230315]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Herve-Codina-via-Alsa-devel/drivers-misc-Add-support-for-the-Lantiq-PEF2256-framer/20230315-214833
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
+patch link:    https://lore.kernel.org/r/167888778959.26.12757990479414568225%40mailman-core.alsa-project.org
+patch subject: [PATCH 2/7] drivers: misc: Add support for the Lantiq PEF2256 framer
+config: sparc-allyesconfig (https://download.01.org/0day-ci/archive/20230316/202303160430.HUK3FkVq-lkp@intel.com/config)
+compiler: sparc64-linux-gcc (GCC) 12.1.0
+reproduce (this is a W=1 build):
+        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+        chmod +x ~/bin/make.cross
+        # https://github.com/intel-lab-lkp/linux/commit/93791052da597151cddbe64bc3013d9fec19550f
+        git remote add linux-review https://github.com/intel-lab-lkp/linux
+        git fetch --no-tags linux-review Herve-Codina-via-Alsa-devel/drivers-misc-Add-support-for-the-Lantiq-PEF2256-framer/20230315-214833
+        git checkout 93791052da597151cddbe64bc3013d9fec19550f
+        # save the config file
+        mkdir build_dir && cp config build_dir/.config
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.1.0 make.cross W=1 O=build_dir ARCH=sparc olddefconfig
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.1.0 make.cross W=1 O=build_dir ARCH=sparc SHELL=/bin/bash drivers/misc/
+
+If you fix the issue, kindly add following tag where applicable
+| Reported-by: kernel test robot <lkp@intel.com>
+| Link: https://lore.kernel.org/oe-kbuild-all/202303160430.HUK3FkVq-lkp@intel.com/
+
+All warnings (new ones prefixed by >>):
+
+>> drivers/misc/pef2256.c:1054:38: warning: duplicate 'const' declaration specifier [-Wduplicate-decl-specifier]
+    1054 | static const struct pinctrl_pin_desc const pef2256_v12_pins[] = {
+         |                                      ^~~~~
+   drivers/misc/pef2256.c:1065:38: warning: duplicate 'const' declaration specifier [-Wduplicate-decl-specifier]
+    1065 | static const struct pinctrl_pin_desc const pef2256_v2x_pins[] = {
+         |                                      ^~~~~
+
+
+vim +/const +1054 drivers/misc/pef2256.c
+
+  1053	
+> 1054	static const struct pinctrl_pin_desc const pef2256_v12_pins[] = {
+  1055		PEF2256_PINCTRL_PIN(0, "RPA", PEF2256_PC1, PEF2256_12_PC_RPC_MASK),
+  1056		PEF2256_PINCTRL_PIN(1, "RPB", PEF2256_PC2, PEF2256_12_PC_RPC_MASK),
+  1057		PEF2256_PINCTRL_PIN(2, "RPC", PEF2256_PC3, PEF2256_12_PC_RPC_MASK),
+  1058		PEF2256_PINCTRL_PIN(3, "RPD", PEF2256_PC4, PEF2256_12_PC_RPC_MASK),
+  1059		PEF2256_PINCTRL_PIN(4, "XPA", PEF2256_PC1, PEF2256_12_PC_XPC_MASK),
+  1060		PEF2256_PINCTRL_PIN(5, "XPB", PEF2256_PC2, PEF2256_12_PC_XPC_MASK),
+  1061		PEF2256_PINCTRL_PIN(6, "XPC", PEF2256_PC3, PEF2256_12_PC_XPC_MASK),
+  1062		PEF2256_PINCTRL_PIN(7, "XPD", PEF2256_PC4, PEF2256_12_PC_XPC_MASK),
+  1063	};
+  1064	
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests
