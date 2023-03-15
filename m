@@ -2,156 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0AD0B6BADFD
-	for <lists+devicetree@lfdr.de>; Wed, 15 Mar 2023 11:44:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0C11F6BAE13
+	for <lists+devicetree@lfdr.de>; Wed, 15 Mar 2023 11:47:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232420AbjCOKoX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Mar 2023 06:44:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42140 "EHLO
+        id S232501AbjCOKrV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Mar 2023 06:47:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43680 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232262AbjCOKoW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Mar 2023 06:44:22 -0400
-Received: from fd01.gateway.ufhost.com (fd01.gateway.ufhost.com [61.152.239.71])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9A5C27C974;
-        Wed, 15 Mar 2023 03:44:20 -0700 (PDT)
-Received: from EXMBX165.cuchost.com (unknown [175.102.18.54])
-        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-        (Client CN "EXMBX165", Issuer "EXMBX165" (not verified))
-        by fd01.gateway.ufhost.com (Postfix) with ESMTP id 3CD1624E391;
-        Wed, 15 Mar 2023 18:44:19 +0800 (CST)
-Received: from EXMBX071.cuchost.com (172.16.6.81) by EXMBX165.cuchost.com
- (172.16.6.75) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Wed, 15 Mar
- 2023 18:44:19 +0800
-Received: from ubuntu.localdomain (113.72.145.194) by EXMBX071.cuchost.com
- (172.16.6.81) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Wed, 15 Mar
- 2023 18:44:18 +0800
-From:   Minda Chen <minda.chen@starfivetech.com>
-To:     Emil Renner Berthing <emil.renner.berthing@canonical.com>,
-        Conor Dooley <conor@kernel.org>, Vinod Koul <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Pawel Laszczak <pawell@cadence.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Peter Chen <peter.chen@kernel.org>,
-        Roger Quadros <rogerq@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>
-CC:     <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-phy@lists.infradead.org>, <linux-usb@vger.kernel.org>,
-        <linux-riscv@lists.infradead.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        "Minda Chen" <minda.chen@starfivetech.com>
-Subject: [PATCH v3 5/5] dts: usb: add StarFive JH7110 USB dts configuration.
-Date:   Wed, 15 Mar 2023 18:44:11 +0800
-Message-ID: <20230315104411.73614-6-minda.chen@starfivetech.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20230315104411.73614-1-minda.chen@starfivetech.com>
-References: <20230315104411.73614-1-minda.chen@starfivetech.com>
+        with ESMTP id S232360AbjCOKqq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Mar 2023 06:46:46 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C091E7E7B8;
+        Wed, 15 Mar 2023 03:46:06 -0700 (PDT)
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits))
+        (No client certificate requested)
+        (Authenticated sender: kholk11)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 41C8D66015F1;
+        Wed, 15 Mar 2023 10:45:59 +0000 (GMT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1678877160;
+        bh=2lu6PO85yn+bXYwQVx0BtD+c64sEAEGM7jdKQhcGME8=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=XiamhNz3BoS2Am/A916XWJivnLGJ5CbmEZpenv49PmVgRCy5qL1V/oXw16h6Mnotl
+         Z94E0gppdt/i81ppf7yISjD6rvxasFgEInXQPNXHDlX3uS8J6ayjDYaAhNHcywlCeg
+         1iuk1I6lqn39B6HRHiUSBqH7GDRIuKL3uoU2u3Oj4ob/DGjeeI4+qpmj0ErBLFkKgw
+         uwPEGsOULUOvOZwmlK6orcLbZr2fcPnaWkQdEonEXQFnJdynrI+8iw0r/TbinPVYnI
+         o6qiJhlEpNs7qK7S0eYk2ECctMGxZveWgc9Pt2T6+RwJ2tAlPC2ZFdl4yKFtU+tYZ/
+         Y1W0EDhUVPbtA==
+Message-ID: <e55bc87c-c174-6acb-d48e-9a05b9551754@collabora.com>
+Date:   Wed, 15 Mar 2023 11:45:56 +0100
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [113.72.145.194]
-X-ClientProxiedBy: EXCAS066.cuchost.com (172.16.6.26) To EXMBX071.cuchost.com
- (172.16.6.81)
-X-YovoleRuleAgent: yovoleflag
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.8.0
+Subject: Re: [PATCH v2 03/18] dt-bindings: pinctrl: mediatek,mt8365-pinctrl:
+ add drive strength property
+Content-Language: en-US
+To:     Alexandre Mergnat <amergnat@baylibre.com>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Zhiyong Tao <zhiyong.tao@mediatek.com>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        =?UTF-8?Q?Bernhard_Rosenkr=c3=a4nzer?= <bero@baylibre.com>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Chaotian Jing <chaotian.jing@mediatek.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Wenbin Mei <wenbin.mei@mediatek.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        linux-mmc@vger.kernel.org, Alexandre Bailon <abailon@baylibre.com>,
+        devicetree@vger.kernel.org,
+        Amjad Ouled-Ameur <aouledameur@baylibre.com>,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-gpio@vger.kernel.org, linux-watchdog@vger.kernel.org,
+        linux-mediatek@lists.infradead.org,
+        Fabien Parent <fparent@baylibre.com>
+References: <20230203-evk-board-support-v2-0-6ec7cdb10ccf@baylibre.com>
+ <20230203-evk-board-support-v2-3-6ec7cdb10ccf@baylibre.com>
+ <3b7c6f28-57bd-33de-5531-8c4eae8cf6eb@linaro.org>
+ <6e08d78f-ef4c-b228-f7d2-d63767ea87b8@collabora.com>
+ <62ed2988-2347-9fd9-82f9-6dcc9ae75808@collabora.com>
+ <CAFGrd9rZxwtxx5f8Gp35-5152EPGiyEdZjps1Mhn5bL6QfufnA@mail.gmail.com>
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <CAFGrd9rZxwtxx5f8Gp35-5152EPGiyEdZjps1Mhn5bL6QfufnA@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-USB Glue layer and Cadence USB subnode configuration,
-also includes USB and PCIe phy dts configuration.
+Il 15/03/23 09:11, Alexandre Mergnat ha scritto:
+> Le ven. 10 mars 2023 à 10:49, AngeloGioacchino Del Regno
+> <angelogioacchino.delregno@collabora.com> a écrit :
+>>
+>> Il 10/03/23 10:46, AngeloGioacchino Del Regno ha scritto:
+>>>
+>>> Anyway, Alexandre: can you please perform a cleanup to the MT8365 pinctrl binding?
+> 
+> Yes I can ! :D
+> Should I do it directly in this patch series or (I prefer) in a new one ?
+> 
 
-Signed-off-by: Minda Chen <minda.chen@starfivetech.com>
----
- .../jh7110-starfive-visionfive-2.dtsi         |  7 +++
- arch/riscv/boot/dts/starfive/jh7110.dtsi      | 54 +++++++++++++++++++
- 2 files changed, 61 insertions(+)
+Doing that in a new one is fine... it's a cleanup that is not strictly related to
+what you're introducing in this series.
 
-diff --git a/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi b/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi
-index a132debb9b53..c64476aebc1a 100644
---- a/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi
-+++ b/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi
-@@ -236,3 +236,10 @@
- 	pinctrl-0 = <&uart0_pins>;
- 	status = "okay";
- };
-+
-+&usb0 {
-+	status = "okay";
-+	usbdrd_cdns3: usb@0 {
-+		dr_mode = "peripheral";
-+	};
-+};
-diff --git a/arch/riscv/boot/dts/starfive/jh7110.dtsi b/arch/riscv/boot/dts/starfive/jh7110.dtsi
-index f70a4ed47eb4..17722fd1be62 100644
---- a/arch/riscv/boot/dts/starfive/jh7110.dtsi
-+++ b/arch/riscv/boot/dts/starfive/jh7110.dtsi
-@@ -362,6 +362,60 @@
- 			status = "disabled";
- 		};
- 
-+		usb0: usb@10100000 {
-+			compatible = "starfive,jh7110-usb";
-+			clocks = <&stgcrg JH7110_STGCLK_USB0_LPM>,
-+				 <&stgcrg JH7110_STGCLK_USB0_STB>,
-+				 <&stgcrg JH7110_STGCLK_USB0_APB>,
-+				 <&stgcrg JH7110_STGCLK_USB0_AXI>,
-+				 <&stgcrg JH7110_STGCLK_USB0_UTMI_APB>;
-+			clock-names = "lpm", "stb", "apb", "axi", "utmi_apb";
-+			resets = <&stgcrg JH7110_STGRST_USB0_PWRUP>,
-+				 <&stgcrg JH7110_STGRST_USB0_APB>,
-+				 <&stgcrg JH7110_STGRST_USB0_AXI>,
-+				 <&stgcrg JH7110_STGRST_USB0_UTMI_APB>;
-+			starfive,stg-syscon = <&stg_syscon 0x4 0xc4 0x148 0x1f4>;
-+			starfive,sys-syscon = <&sys_syscon 0x18>;
-+			status = "disabled";
-+			#address-cells = <1>;
-+			#size-cells = <1>;
-+			ranges = <0x0 0x0 0x10100000 0x100000>;
-+
-+			usbdrd_cdns3: usb@0 {
-+				compatible = "cdns,usb3";
-+				reg = <0x0 0x10000>,
-+				      <0x10000 0x10000>,
-+				      <0x20000 0x10000>;
-+				reg-names = "otg", "xhci", "dev";
-+				interrupts = <100>, <108>, <110>;
-+				interrupt-names = "host", "peripheral", "otg";
-+				phys = <&usbphy0>;
-+				phy-names = "cdns3,usb2-phy";
-+				maximum-speed = "super-speed";
-+			};
-+		};
-+
-+		usbphy0: phy@10200000 {
-+			compatible = "starfive,jh7110-usb-phy";
-+			reg = <0x0 0x10200000 0x0 0x10000>;
-+			clocks = <&syscrg JH7110_SYSCLK_USB_125M>,
-+				 <&stgcrg JH7110_STGCLK_USB0_APP_125>;
-+			clock-names = "125m", "app_125";
-+			#phy-cells = <0>;
-+		};
-+
-+		pciephy0: phy@10210000 {
-+			compatible = "starfive,jh7110-pcie-phy";
-+			reg = <0x0 0x10210000 0x0 0x10000>;
-+			#phy-cells = <0>;
-+		};
-+
-+		pciephy1: phy@10220000 {
-+			compatible = "starfive,jh7110-pcie-phy";
-+			reg = <0x0 0x10220000 0x0 0x10000>;
-+			#phy-cells = <0>;
-+		};
-+
- 		stgcrg: clock-controller@10230000 {
- 			compatible = "starfive,jh7110-stgcrg";
- 			reg = <0x0 0x10230000 0x0 0x10000>;
--- 
-2.17.1
+>>> The cleanup means you're setting mediatek,drive-strength-adv as deprecated and
+>>> adding the right properties (...and possibly changing the devicetrees to use it).
+>>>
+>>> For more information, you can look at commit history for the (unfortunately, named
+>>> incorrectly) MT8195 pinctrl documentation: bindings/pinctrl/pinctrl-mt8195.yaml
+>>> where we performed the same cleanup that I'm asking you to do, except we didn't
+>>> have to set any property as deprecated because there was *no devicetree upstream*
+>>> that was actually using that property (hence not an ABI breakage).
+> 
+> Thanks for the information, that helps.
+
+You're welcome!
+
+Regards,
+Angelo
 
