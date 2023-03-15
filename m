@@ -2,101 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D5D746BAA61
-	for <lists+devicetree@lfdr.de>; Wed, 15 Mar 2023 09:04:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8330E6BAA70
+	for <lists+devicetree@lfdr.de>; Wed, 15 Mar 2023 09:08:33 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230491AbjCOIEf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Mar 2023 04:04:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49180 "EHLO
+        id S231636AbjCOIIb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Mar 2023 04:08:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54620 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231313AbjCOIEe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Mar 2023 04:04:34 -0400
-Received: from mail-yb1-xb2b.google.com (mail-yb1-xb2b.google.com [IPv6:2607:f8b0:4864:20::b2b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 31C721E9E4
-        for <devicetree@vger.kernel.org>; Wed, 15 Mar 2023 01:04:27 -0700 (PDT)
-Received: by mail-yb1-xb2b.google.com with SMTP id t4so18256493ybg.11
-        for <devicetree@vger.kernel.org>; Wed, 15 Mar 2023 01:04:27 -0700 (PDT)
+        with ESMTP id S231517AbjCOIIa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Mar 2023 04:08:30 -0400
+Received: from mail-pl1-x629.google.com (mail-pl1-x629.google.com [IPv6:2607:f8b0:4864:20::629])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 689BB20573
+        for <devicetree@vger.kernel.org>; Wed, 15 Mar 2023 01:08:28 -0700 (PDT)
+Received: by mail-pl1-x629.google.com with SMTP id v21so9065734ple.9
+        for <devicetree@vger.kernel.org>; Wed, 15 Mar 2023 01:08:28 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1678867466;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=V+zV0RFa8oIGvR8so6Lb7nDRwP3ctkQ16ptH6NCpKUY=;
-        b=qY5/Bw8dUq8MYbVZia3UMIeCV7qmnjHMeYaTOQE7JWUOdLDOKn/fJcIYEeF6Z38rs/
-         deLSzQtS7C1TnR/+RkrI/pTtP7iHJXvo1DWjAN1eoxk650NuTFz4TC7s+pZgRjVBdctc
-         us9fn/LfZxkpV+RoH5rGoSJqHyyJyrcG9RNFwomxDFBpEi4f6xB5r1X4ONTnw6Al4GEK
-         Zu5K5kA2Zt6f3RVWqsN1xjC6LX1nAgGk3yjMI9A/1VMsRqVpLnEzpZSVA+YwAMi9AVZi
-         b8OsJDhv0ahJgtgNFF3T9brcT1oduLiHHMXrmIUE/zInum9bpOBb8kC588KZS/l4O+fe
-         H0sA==
+        d=linaro.org; s=google; t=1678867708;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=zf3SxA1nvFsp+aFJOgDiIaFeqD0uKMLVMNAFYzhVXhY=;
+        b=NddB9feiL1/IHj0GWjT60uDVka3Coer/8QqM++x5QCJ4AUdYzHQ1ZmXgIlgRBFmI8X
+         vj4FdOqUWme3kwggjcL21D4384w100HngzyCxLHJjksA2CATht/g77//QzSpXm+dG3ke
+         XaSwyEfJYikUNUn1MhOj7LZfqQtArIIRl1x0ABE+gZxtlNzkkQY9n3cDaDMAN/m4Lpdq
+         FkK/yQH7Y2jtO9wWz++8rSM9cLdvJZ/2pKlJ4nJbdN191rRpgFbeAF9E02SQn7jHOtv8
+         8f1B6GKwx297IGiqZbB9a8lkEYxk6iG1hnJhjdhWN8mW6niN5hY7kdQGGA7EXf/B9/Ae
+         9CFg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678867466;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=V+zV0RFa8oIGvR8so6Lb7nDRwP3ctkQ16ptH6NCpKUY=;
-        b=uUXtAhxsPaXyUq4MWarB0vl9Mp2lk3xppTjQKiaNZx9kmQc6mzTpdbk1kPrKZ4xT5L
-         /gBqqvxDrlaY4fNJQymFbH4hJhePOXNZluEOHn/axxpwkjxWARwuQbnT/1aBBe2symSZ
-         x11IMZIqjh1IE95SpB1MGZmSjmgYKUGqy8Y2/xeCkT6MDtfYtuzcxkkzoeDrgXZwGXoU
-         zGWHHGBx37InukAcR9oQKjf3LDSpZvNIcivSf76ja8buBx/iR4Z9lC+sceMT1putkenQ
-         7VFjgY8XLGZsAxyNF9AGkHwMh6RtTe1O88TEpYKmOh1oG6Iod6Oo3AM2HGmwDQPvZXyI
-         W75g==
-X-Gm-Message-State: AO0yUKVWx98cBisPsOIFmvaTCj4VPwQpUHFBOov8qwrnB+jCrJR6ToPl
-        Zz0seVrRYkRT6gEKbrsKpcFMIoDbxIICC5radr9PPA==
-X-Google-Smtp-Source: AK7set8OklXSPGzCdENW3Fmdkp8oZ9PjQvODAAlE8618tRjhBD249J3mc0P/EGE19AQZWSLy35WGJ+YXjJy+I1PHQD4=
-X-Received: by 2002:a5b:1cb:0:b0:a6b:bc64:a0af with SMTP id
- f11-20020a5b01cb000000b00a6bbc64a0afmr25410441ybp.4.1678867466394; Wed, 15
- Mar 2023 01:04:26 -0700 (PDT)
+        d=1e100.net; s=20210112; t=1678867708;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=zf3SxA1nvFsp+aFJOgDiIaFeqD0uKMLVMNAFYzhVXhY=;
+        b=CltyTDuDKgZ6eR4PMPj1e7gv8Px+msxqmIGFOwymWHeVHthGOadAWkwFgCZjYzVpra
+         7t0zMjOeQXqOjWA+fDgcofgrraNWAlrRotKQftCMIUQGnk4JSt8mR351g9vlPJoShPEi
+         vXN1o9FNE3U8m2R3gXO/FWKlFj0MWYWicGoaTVIpFumnFYb4oEOS28hBFCJToJJFJS4L
+         xi72opqDPogOoB17nTuVicorBPFehFT5dU5w5rwgrKoR676NXQWiHfgJbPQhRj+/mxnt
+         gvZ6k7/eTSM8YPjn7Qoo9XQsnayIzk/aI/PB6Ry3c9Dj3EOoWQExOtZ8lUIgf9MjPqfJ
+         A4Mw==
+X-Gm-Message-State: AO0yUKVumwlFjcdBOyIrON8ppx8qaCqlQ7+9M8HwYUZZ9dbh+F43BOsb
+        y8xtKBs8iordGvPuqyOYkjPuNw==
+X-Google-Smtp-Source: AK7set9WhF84SIf5aXDDBaPgWwRatZNX9vVlgGWyHt2WrilP2gD6F91uKuAeYewh/yYjTj8F8aXAgg==
+X-Received: by 2002:a17:903:283:b0:1a0:4341:4cd9 with SMTP id j3-20020a170903028300b001a043414cd9mr2220842plr.31.1678867707615;
+        Wed, 15 Mar 2023 01:08:27 -0700 (PDT)
+Received: from ?IPV6:2401:4900:1c61:1acb:9af6:bd7f:78e7:7ae6? ([2401:4900:1c61:1acb:9af6:bd7f:78e7:7ae6])
+        by smtp.gmail.com with ESMTPSA id p16-20020a170902ebd000b001994e74c094sm2961131plg.275.2023.03.15.01.08.24
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 15 Mar 2023 01:08:27 -0700 (PDT)
+Message-ID: <6d7f60b6-bdb4-a22d-4396-c72fd9114d84@linaro.org>
+Date:   Wed, 15 Mar 2023 13:38:23 +0530
 MIME-Version: 1.0
-References: <20230314225535.1321736-1-sre@kernel.org> <20230314225535.1321736-11-sre@kernel.org>
-In-Reply-To: <20230314225535.1321736-11-sre@kernel.org>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Wed, 15 Mar 2023 09:04:15 +0100
-Message-ID: <CACRpkdZ0j8HQzzXtDbVcxAJkBsdRXUKNJm3BmLB583JfnetAWw@mail.gmail.com>
-Subject: Re: [PATCHv2 10/12] power: supply: generic-adc-battery: add
- temperature support
-To:     Sebastian Reichel <sre@kernel.org>
-Cc:     Matti Vaittinen <mazziesaccount@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        Sebastian Reichel <sebastian.reichel@collabora.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.3.1
+Subject: Re: [PATCH 1/2] dt-bindings: arm: qcom: Document the Qualcomm
+ qrb4210-rb2 board
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
+Cc:     agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
+        linux-kernel@vger.kernel.org, bhupesh.linux@gmail.com,
+        robh+dt@kernel.org
+References: <20230314210828.2049720-1-bhupesh.sharma@linaro.org>
+ <20230314210828.2049720-2-bhupesh.sharma@linaro.org>
+ <3104977d-b93f-3c55-70d0-cb54cb48da81@linaro.org>
+Content-Language: en-US
+From:   Bhupesh Sharma <bhupesh.sharma@linaro.org>
+In-Reply-To: <3104977d-b93f-3c55-70d0-cb54cb48da81@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Mar 14, 2023 at 11:55=E2=80=AFPM Sebastian Reichel <sre@kernel.org>=
- wrote:
 
-> From: Sebastian Reichel <sebastian.reichel@collabora.com>
->
-> Another typical thing to monitor via an ADC line is
-> the battery temperature.
->
-> Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
+On 3/15/23 12:07 PM, Krzysztof Kozlowski wrote:
+> On 14/03/2023 22:08, Bhupesh Sharma wrote:
+>> Document the Qualcomm qrb4210-rb2 board based on SM4250 SoC.
+>>
+>> Signed-off-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
+>> ---
+>>   Documentation/devicetree/bindings/arm/qcom.yaml | 1 +
+> 
+> Subject: fix double space before "Qualcomm"
 
-Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
+Sure, I will fix this in v2.
 
->  static bool gab_charge_finished(struct gab *adc_bat)
-> @@ -115,6 +118,8 @@ static int gab_get_property(struct power_supply *psy,
->                 return read_channel(adc_bat, GAB_CURRENT, &val->intval);
->         case POWER_SUPPLY_PROP_POWER_NOW:
->                 return read_channel(adc_bat, GAB_POWER, &val->intval);
-> +       case POWER_SUPPLY_PROP_TEMP:
-> +               return read_channel(adc_bat, GAB_TEMP, &val->intval);
+> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-Hm. I wonder if these should rather all use read_channel_processed()?
-
-The difference is that you will then support ADCs with internal scaling
-which is beneficial. Most of the time it doesn't matter.
-
-Yours,
-Linus Walleij
+Thanks.
