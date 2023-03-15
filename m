@@ -2,58 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5194C6BA47A
-	for <lists+devicetree@lfdr.de>; Wed, 15 Mar 2023 02:14:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7103F6BA493
+	for <lists+devicetree@lfdr.de>; Wed, 15 Mar 2023 02:27:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229578AbjCOBOc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Mar 2023 21:14:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52668 "EHLO
+        id S229620AbjCOB1A (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Mar 2023 21:27:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33380 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229506AbjCOBOc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Mar 2023 21:14:32 -0400
-X-Greylist: delayed 122 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Tue, 14 Mar 2023 18:14:30 PDT
-Received: from rcdn-iport-2.cisco.com (rcdn-iport-2.cisco.com [173.37.86.73])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 53E23298C0
-        for <devicetree@vger.kernel.org>; Tue, 14 Mar 2023 18:14:30 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=cisco.com; i=@cisco.com; l=11737; q=dns/txt;
-  s=iport; t=1678842870; x=1680052470;
-  h=from:to:cc:subject:date:message-id:mime-version:
-   content-transfer-encoding;
-  bh=fxxMH1qK51FWuV3D1FHFCUB/mdPSOyEhh4DNzU0Aq6c=;
-  b=hd+3DRfiN/1raDLcSD1DBZ7q6ZpqJh9ewPoNKIcA2td3ohdYwfRA+JkK
-   EMzu30hLTiJDiI8AN+c3eeZsehy3csgx6D/Wpn0gHT+EhEa6dnKd54eyg
-   cNwsdjDH2kY/rMXZ2GseccuxU4C0At8lyfTP7dp+dJn+6H+4T1/UkwEv2
-   8=;
-X-IronPort-AV: E=Sophos;i="5.98,261,1673913600"; 
-   d="scan'208";a="33193871"
-Received: from alln-core-11.cisco.com ([173.36.13.133])
-  by rcdn-iport-2.cisco.com with ESMTP/TLS/DHE-RSA-SEED-SHA; 15 Mar 2023 01:11:22 +0000
-Received: from zorba.cisco.com ([10.25.131.118])
-        by alln-core-11.cisco.com (8.15.2/8.15.2) with ESMTP id 32F1BKkM030822;
-        Wed, 15 Mar 2023 01:11:21 GMT
-From:   Daniel Walker <danielwa@cisco.com>
-To:     Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
-        Olof Johansson <olof@lixom.net>, soc@kernel.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        xe-linux-external@cisco.com
-Cc:     Marcin Wierzbicki <mawierzb@cisco.com>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: [PATCH] arm64: dts: cisco: add device tree for Cisco CrayAr Argos.
-Date:   Tue, 14 Mar 2023 18:09:18 -0700
-Message-Id: <20230315010920.2473206-1-danielwa@cisco.com>
-X-Mailer: git-send-email 2.25.1
+        with ESMTP id S229487AbjCOB07 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Mar 2023 21:26:59 -0400
+Received: from esa1.hgst.iphmx.com (esa1.hgst.iphmx.com [68.232.141.245])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 53517298CA
+        for <devicetree@vger.kernel.org>; Tue, 14 Mar 2023 18:26:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=wdc.com; i=@wdc.com; q=dns/txt; s=dkim.wdc.com;
+  t=1678843617; x=1710379617;
+  h=message-id:date:mime-version:subject:to:cc:references:
+   from:in-reply-to:content-transfer-encoding;
+  bh=AOLVY8ScLhOLSLHr/VjLvAiC26pb7LJQs/YD3vXc8OI=;
+  b=camK4kA60bXTvS0N8Ix4mGX41G9Ov+biK0Wf7vBT1J3QA1fMiGQUmcUE
+   0+IJGC2rrPkq1BJ6ohLTF0YdfmIWmTNQwUOKoMsXVbuPHFmig/yPHDg+g
+   olEhCL/QckgC1uB+ExRzkxHKHZc0i4aXuGXmQii9EsFidCHWT3IYSOP3x
+   BecfjkBNOOEDoBnfcmhKTBQN18GQE4iILyN7kpIwLjq0nNMy+8HfZnKm1
+   aMohmateznfDdwuus4hcO93Ge7G+9l9czufwWzSvAAjf2/sD2Pyfv7t2I
+   04awSBp4Gn/K2LFv/g2y2Wx5zJuNrKgAyI3eNVFcWkxTesQV8dvZCXNsJ
+   g==;
+X-IronPort-AV: E=Sophos;i="5.98,261,1673884800"; 
+   d="scan'208";a="337671827"
+Received: from uls-op-cesaip02.wdc.com (HELO uls-op-cesaep02.wdc.com) ([199.255.45.15])
+  by ob1.hgst.iphmx.com with ESMTP; 15 Mar 2023 09:26:55 +0800
+IronPort-SDR: qdymI11yT3mIgcI9BBumIAGIufewnSl3ejNQXMo2gakcDvjfIzsrLO0jFUtGRYeI5+mrc9rr8a
+ M8HeZa3slBG5qPP+8JZl9RSP8wSydfpu/TWajBqDs8OsbZ8X4P4sKiRvyy8VczET6+Tu9sKzMJ
+ NGc+PPX1gKkMUurBwhzlGL4zrn4tRWxdnW+EGDCm21R9n2Z+tSEqTd50+Y5KxsV2w2WsNgZS1V
+ jCAZW1BQ+29n15ftk7ir1+DAOtYNXyLFBTmuPGXFNMYPTm3x3nHDc7ZD/UR1eDo23//dybXMjc
+ PwA=
+Received: from uls-op-cesaip02.wdc.com ([10.248.3.37])
+  by uls-op-cesaep02.wdc.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 14 Mar 2023 17:37:42 -0700
+IronPort-SDR: 7ac84GMHEeDGdPok9mkr1UfmOku0WewZWyI+pjIBiTr1tD6hTqAS/fTpiXFbsNUaI0ymujGy8M
+ 3ckRcrnHNrc3S70cZ5WyJ0nl52ZSChCBxzly/AZeGbIZ3Yj5MIjI4VkP1RTyrUSUKIiQ97PYVP
+ 88lDqrKMI/OBQmPytSdCpcdH2drnElUzoj7Vx211TBvXPxwWsa2/LKcT8NtKLilhpx+8z7OXct
+ 0sKqW62rP/tjCIonHkS/sm7iwP25q4RQQ2rQje05Ca0qQSda6xqQ2zqceP8FecSXESj/wXGmtZ
+ 1xE=
+WDCIronportException: Internal
+Received: from usg-ed-osssrv.wdc.com ([10.3.10.180])
+  by uls-op-cesaip02.wdc.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 14 Mar 2023 18:26:55 -0700
+Received: from usg-ed-osssrv.wdc.com (usg-ed-osssrv.wdc.com [127.0.0.1])
+        by usg-ed-osssrv.wdc.com (Postfix) with ESMTP id 4Pbt670mxZz1RtVx
+        for <devicetree@vger.kernel.org>; Tue, 14 Mar 2023 18:26:55 -0700 (PDT)
+Authentication-Results: usg-ed-osssrv.wdc.com (amavisd-new); dkim=pass
+        reason="pass (just generated, assumed good)"
+        header.d=opensource.wdc.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=
+        opensource.wdc.com; h=content-transfer-encoding:content-type
+        :in-reply-to:organization:from:references:to:content-language
+        :subject:user-agent:mime-version:date:message-id; s=dkim; t=
+        1678843614; x=1681435615; bh=AOLVY8ScLhOLSLHr/VjLvAiC26pb7LJQs/Y
+        D3vXc8OI=; b=rdpJw30Y1fiXHSXoIUj1CirsSMNQQrW2blOBtl+hLqoJBbmTupm
+        Wtek/7LLWelcd8SB7ocHF8J3jXrfrwvALOJknPPLmFOPrbSsyFEh2qlLe28POFpf
+        2nBI38Zo2hesIBCR215un2dBZdCIEMWvzUYIa8ki94mPt7JEYoJx92RNmWitVb+4
+        j3PfurWSanRiyp5WiIrctPloeS2ubGlu94WfXv7EY8XwfWueGQBOY1Ow6jefm79e
+        uhX5sV/V/mylXbd5vLY91yiq0anHo+VBfX3gkXCgYBZlba+sgZswnvEpDGESVYef
+        UO0pfd+rMXikQSf9X+6gGqP5fPPLLVHEkrQ==
+X-Virus-Scanned: amavisd-new at usg-ed-osssrv.wdc.com
+Received: from usg-ed-osssrv.wdc.com ([127.0.0.1])
+        by usg-ed-osssrv.wdc.com (usg-ed-osssrv.wdc.com [127.0.0.1]) (amavisd-new, port 10026)
+        with ESMTP id MeOT4Harr1z2 for <devicetree@vger.kernel.org>;
+        Tue, 14 Mar 2023 18:26:54 -0700 (PDT)
+Received: from [10.225.163.84] (unknown [10.225.163.84])
+        by usg-ed-osssrv.wdc.com (Postfix) with ESMTPSA id 4Pbt644vprz1RtVm;
+        Tue, 14 Mar 2023 18:26:52 -0700 (PDT)
+Message-ID: <16cc37a4-0d97-9881-9a30-a3a3efa2c244@opensource.wdc.com>
+Date:   Wed, 15 Mar 2023 10:26:51 +0900
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Auto-Response-Suppress: DR, OOF, AutoReply
-X-Outbound-SMTP-Client: 10.25.131.118, [10.25.131.118]
-X-Outbound-Node: alln-core-11.cisco.com
-X-Spam-Status: No, score=-11.9 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIMWL_WL_MED,DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-        RCVD_IN_DNSWL_MED,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,
-        SPF_NONE,URIBL_BLOCKED,USER_IN_DEF_DKIM_WL autolearn=unavailable
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.8.0
+Subject: Re: [PATCH] ata: Use of_property_present() for testing DT property
+ presence
+Content-Language: en-US
+To:     Rob Herring <robh@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Hans de Goede <hdegoede@redhat.com>,
+        Jens Axboe <axboe@kernel.dk>
+Cc:     devicetree@vger.kernel.org, linux-ide@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org
+References: <20230310144700.1541414-1-robh@kernel.org>
+From:   Damien Le Moal <damien.lemoal@opensource.wdc.com>
+Organization: Western Digital Research
+In-Reply-To: <20230310144700.1541414-1-robh@kernel.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
+        SPF_HELO_PASS,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -61,483 +104,20 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Marcin Wierzbicki <mawierzb@cisco.com>
+On 3/10/23 23:47, Rob Herring wrote:
+> It is preferred to use typed property access functions (i.e.
+> of_property_read_<type> functions) rather than low-level
+> of_get_property/of_find_property functions for reading properties. As
+> part of this, convert of_get_property/of_find_property calls to the
+> recently added of_property_present() helper when we just want to test
+> for presence of a property and nothing more.
+> 
+> Signed-off-by: Rob Herring <robh@kernel.org>
 
-This adds device tree include file for Cisco CrayAR SoC and
-device tree file for Cisco CrayAR Argos EVB board.
+Applied to for-6.4. Thanks !
 
-Cc: xe-linux-external@cisco.com
-Signed-off-by: Marcin Wierzbicki <mawierzb@cisco.com>
-Signed-off-by: Daniel Walker <danielwa@cisco.com>
----
- .../devicetree/bindings/arm/cisco/crayar.yaml |  27 ++
- MAINTAINERS                                   |   5 +
- arch/arm64/Kconfig.platforms                  |   5 +
- arch/arm64/boot/dts/Makefile                  |   1 +
- arch/arm64/boot/dts/cisco/Makefile            |   2 +
- arch/arm64/boot/dts/cisco/crayar.dtsi         | 326 ++++++++++++++++++
- arch/arm64/boot/dts/cisco/crayar_argos.dts    |  32 ++
- 7 files changed, 398 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/arm/cisco/crayar.yaml
- create mode 100644 arch/arm64/boot/dts/cisco/Makefile
- create mode 100644 arch/arm64/boot/dts/cisco/crayar.dtsi
- create mode 100644 arch/arm64/boot/dts/cisco/crayar_argos.dts
 
-diff --git a/Documentation/devicetree/bindings/arm/cisco/crayar.yaml b/Documentation/devicetree/bindings/arm/cisco/crayar.yaml
-new file mode 100644
-index 000000000000..3975ca4fd07a
---- /dev/null
-+++ b/Documentation/devicetree/bindings/arm/cisco/crayar.yaml
-@@ -0,0 +1,27 @@
-+# SPDX-License-Identifier: GPL-2.0
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/arm/cisco/crayar.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Cisco CrayAR based Platforms Device Tree Bindings
-+
-+maintainers:
-+  - xe-linux-external@cisco.com
-+
-+description: |
-+  Cisco CrayAR boards with CrayAR SOC
-+
-+properties:
-+  $nodename:
-+    const: '/'
-+  compatible:
-+    oneOf:
-+      - description: Cisco CrayAR Argos evaluation board
-+        items:
-+          - const: cisco,crayar-argos
-+          - const: cisco,crayar
-+
-+additionalProperties: true
-+
-+...
-diff --git a/MAINTAINERS b/MAINTAINERS
-index ec57c42ed544..f94d769c6f88 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -4793,6 +4793,11 @@ X:	drivers/char/ipmi/
- X:	drivers/char/random.c
- X:	drivers/char/tpm/
- 
-+CISCO ARM64 DEVICE TREE SUPPORT
-+M:	xe-linux-external@cisco.com
-+S:	Supported
-+F:	arch/arm64/boot/dts/cisco/
-+
- CHECKPATCH
- M:	Andy Whitcroft <apw@canonical.com>
- M:	Joe Perches <joe@perches.com>
-diff --git a/arch/arm64/Kconfig.platforms b/arch/arm64/Kconfig.platforms
-index 89a0b13b058d..740099c56382 100644
---- a/arch/arm64/Kconfig.platforms
-+++ b/arch/arm64/Kconfig.platforms
-@@ -94,6 +94,11 @@ config ARCH_BITMAIN
- 	help
- 	  This enables support for the Bitmain SoC Family.
- 
-+config ARCH_CISCO_CRAYAR_ARGOS
-+	bool "Cisco Argos Platform"
-+	help
-+	  This enables support for the Cisco Argos Platform.
-+
- config ARCH_EXYNOS
- 	bool "Samsung Exynos SoC family"
- 	select COMMON_CLK_SAMSUNG
-diff --git a/arch/arm64/boot/dts/Makefile b/arch/arm64/boot/dts/Makefile
-index 7b107fa7414b..3f83583f9996 100644
---- a/arch/arm64/boot/dts/Makefile
-+++ b/arch/arm64/boot/dts/Makefile
-@@ -11,6 +11,7 @@ subdir-y += arm
- subdir-y += bitmain
- subdir-y += broadcom
- subdir-y += cavium
-+subdir-y += cisco
- subdir-y += exynos
- subdir-y += freescale
- subdir-y += hisilicon
-diff --git a/arch/arm64/boot/dts/cisco/Makefile b/arch/arm64/boot/dts/cisco/Makefile
-new file mode 100644
-index 000000000000..b1d4220df2f4
---- /dev/null
-+++ b/arch/arm64/boot/dts/cisco/Makefile
-@@ -0,0 +1,2 @@
-+# SPDX-License-Identifier: GPL-2.0
-+dtb-$(CONFIG_ARCH_CISCO_CRAYAR_ARGOS) += crayar_argos.dtb
-diff --git a/arch/arm64/boot/dts/cisco/crayar.dtsi b/arch/arm64/boot/dts/cisco/crayar.dtsi
-new file mode 100644
-index 000000000000..22579406e65c
---- /dev/null
-+++ b/arch/arm64/boot/dts/cisco/crayar.dtsi
-@@ -0,0 +1,326 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Device Tree Include file for Cisco CrayAR family SoC.
-+ *
-+ * Copyright (C) 2022 Cisco
-+ */
-+
-+#include <dt-bindings/interrupt-controller/arm-gic.h>
-+#include <dt-bindings/interrupt-controller/irq.h>
-+
-+/ {
-+	compatible = "cisco,crayar";
-+	interrupt-parent = <&gic>;
-+	#address-cells = <0x2>;
-+	#size-cells = <0x2>;
-+
-+	base_clk: base-clk {
-+		compatible = "fixed-clock";
-+		#clock-cells = <0>;
-+		clock-frequency = <500000000>;
-+	};
-+
-+	cpus {
-+		#address-cells = <0x1>;
-+		#size-cells = <0x0>;
-+
-+		cpu0: cpu@0 {
-+			device_type = "cpu";
-+			compatible = "arm,cortex-a75", "arm,armv8";
-+			reg = <0x00000>;
-+			enable-method = "spin-table";
-+			cpu-release-addr = <0x0 0x7003FFF8>;
-+			next-level-cache = <&l2_0>;
-+		};
-+
-+		cpu1: cpu@100 {
-+			device_type = "cpu";
-+			compatible = "arm,cortex-a75", "arm,armv8";
-+			reg = <0x00100>;
-+			enable-method = "spin-table";
-+			cpu-release-addr = <0x0 0x7003FFF8>;
-+			next-level-cache = <&l2_1>;
-+		};
-+
-+		cpu2: cpu@200 {
-+			device_type = "cpu";
-+			compatible = "arm,cortex-a75", "arm,armv8";
-+			reg = <0x00200>;
-+			enable-method = "spin-table";
-+			cpu-release-addr = <0x0 0x7003FFF8>;
-+			next-level-cache = <&l2_2>;
-+		};
-+
-+		cpu3: cpu@300 {
-+			device_type = "cpu";
-+			compatible = "arm,cortex-a75", "arm,armv8";
-+			reg = <0x00300>;
-+			enable-method = "spin-table";
-+			cpu-release-addr = <0x0 0x7003FFF8>;
-+			next-level-cache = <&l2_3>;
-+		};
-+
-+		cpu4: cpu@10000 {
-+			device_type = "cpu";
-+			compatible = "arm,cortex-a75", "arm,armv8";
-+			reg = <0x10000>;
-+			enable-method = "spin-table";
-+			cpu-release-addr = <0x0 0x7003FFF8>;
-+			next-level-cache = <&l2_4>;
-+		};
-+
-+		cpu5: cpu@10100 {
-+			device_type = "cpu";
-+			compatible = "arm,cortex-a75", "arm,armv8";
-+			reg = <0x10100>;
-+			enable-method = "spin-table";
-+			cpu-release-addr = <0x0 0x7003FFF8>;
-+			next-level-cache = <&l2_5>;
-+		};
-+
-+		cpu6: cpu@10200 {
-+			device_type = "cpu";
-+			compatible = "arm,cortex-a75", "arm,armv8";
-+			reg = <0x10200>;
-+			enable-method = "spin-table";
-+			cpu-release-addr = <0x0 0x7003FFF8>;
-+			next-level-cache = <&l2_6>;
-+		};
-+
-+		cpu7: cpu@10300 {
-+			device_type = "cpu";
-+			compatible = "arm,cortex-a75", "arm,armv8";
-+			reg = <0x10300>;
-+			enable-method = "spin-table";
-+			cpu-release-addr = <0x0 0x7003FFF8>;
-+			next-level-cache = <&l2_7>;
-+		};
-+
-+		cpu-map {
-+			cluster0 {
-+				core0 {
-+					cpu = <&cpu0>;
-+				};
-+				core1 {
-+					cpu = <&cpu1>;
-+				};
-+				core2 {
-+					cpu = <&cpu2>;
-+				};
-+				core3 {
-+					cpu = <&cpu3>;
-+				};
-+			};
-+			cluster1 {
-+				core0 {
-+					cpu = <&cpu4>;
-+				};
-+				core1 {
-+					cpu = <&cpu5>;
-+				};
-+				core2 {
-+					cpu = <&cpu6>;
-+				};
-+				core3 {
-+					cpu = <&cpu7>;
-+				};
-+			};
-+		};
-+
-+		l2_0: l2-cache0 {
-+			compatible = "cache";
-+			next-level-cache = <&l3_0>;
-+		};
-+
-+		l2_1: l2-cache1 {
-+			compatible = "cache";
-+			next-level-cache = <&l3_0>;
-+		};
-+
-+		l2_2: l2-cache2 {
-+			compatible = "cache";
-+			next-level-cache = <&l3_0>;
-+		};
-+
-+		l2_3: l2-cache3 {
-+			compatible = "cache";
-+			next-level-cache = <&l3_0>;
-+		};
-+
-+		l2_4: l2-cache4 {
-+			compatible = "cache";
-+			next-level-cache = <&l3_1>;
-+		};
-+
-+		l2_5: l2-cache5 {
-+			compatible = "cache";
-+			next-level-cache = <&l3_1>;
-+		};
-+
-+		l2_6: l2-cache6 {
-+			compatible = "cache";
-+			next-level-cache = <&l3_1>;
-+		};
-+
-+		l2_7: l2-cache7 {
-+			compatible = "cache";
-+			next-level-cache = <&l3_1>;
-+		};
-+
-+		l3_0: l3-cache0 {
-+			compatible = "cache";
-+		};
-+
-+		l3_1: l3-cache1 {
-+			compatible = "cache";
-+		};
-+	};
-+
-+	cci: cci@2E000000 {
-+		compatible = "arm,cci-550";
-+		#address-cells = <0x1>;
-+		#size-cells = <0x1>;
-+		reg = <0x0 0x2E000000 0x0 0x1000>;
-+		ranges = <0x0 0x0 0x2E000000 0x6000>;
-+
-+		secondary-if@1000 {
-+			compatible = "arm,cci-550-ctrl-if";
-+			interface-type = "ace-lite";
-+			reg = <0x1000 0x1000>;
-+		};
-+
-+		secondary-if@2000 {
-+			compatible = "arm,cci-550-ctrl-if";
-+			interface-type = "ace-lite";
-+			reg = <0x2000 0x1000>;
-+		};
-+
-+		secondary-if@3000 {
-+			compatible = "arm,cci-550-ctrl-if";
-+			interface-type = "ace-lite";
-+			reg = <0x3000 0x1000>;
-+		};
-+
-+		secondary-if@4000 {
-+			compatible = "arm,cci-550-ctrl-if";
-+			interface-type = "ace";
-+			reg = <0x4000 0x1000>;
-+		};
-+
-+		secondary-if@5000 {
-+			compatible = "arm,cci-550-ctrl-if";
-+			interface-type = "ace";
-+			reg = <0x5000 0x1000>;
-+		};
-+
-+		secondary-if@6000 {
-+			compatible = "arm,cci-550-ctrl-if";
-+			interface-type = "ace";
-+			reg = <0x6000 0x1000>;
-+		};
-+
-+		secondary-if@7000 {
-+			compatible = "arm,cci-550-ctrl-if";
-+			interface-type = "ace";
-+			reg = <0x6000 0x1000>;
-+		};
-+
-+		pm-cntr@10000 {
-+			compatible = "arm,cci-550-pmu";
-+			reg = <0x10000 0x10000>;
-+		};
-+
-+		pm-cntr@20000 {
-+			compatible = "arm,cci-550-pmu";
-+			reg = <0x20000 0x10000>;
-+		};
-+
-+		pm-cntr@30000 {
-+			compatible = "arm,cci-550-pmu";
-+			reg = <0x30000 0x10000>;
-+		};
-+
-+		pm-cntr@40000 {
-+			compatible = "arm,cci-550-pmu";
-+			reg = <0x40000 0x10000>;
-+		};
-+
-+		pm-cntr@50000 {
-+			compatible = "arm,cci-550-pmu";
-+			reg = <0x50000 0x10000>;
-+		};
-+
-+		pm-cntr@60000 {
-+			compatible = "arm,cci-550-pmu";
-+			reg = <0x60000 0x10000>;
-+		};
-+
-+		pm-cntr@70000 {
-+			compatible = "arm,cci-550-pmu";
-+			reg = <0x70000 0x10000>;
-+		};
-+
-+		pm-cntr@80000 {
-+			compatible = "arm,cci-550-pmu";
-+			reg = <0x80000 0x10000>;
-+		};
-+	};
-+
-+	timer: timer {
-+		compatible = "arm,armv8-timer";
-+		interrupt-parent = <&gic>;
-+		interrupts =	<GIC_PPI 13 IRQ_TYPE_LEVEL_HIGH>,
-+				<GIC_PPI 14 IRQ_TYPE_LEVEL_HIGH>,
-+				<GIC_PPI 11 IRQ_TYPE_LEVEL_HIGH>,
-+				<GIC_PPI 10 IRQ_TYPE_LEVEL_HIGH>;
-+	};
-+
-+	gic: interrupt-controller@20000000 {
-+		compatible = "arm,gic-v3";
-+		#interrupt-cells = <3>;
-+		#address-cells = <2>;
-+		#size-cells = <2>;
-+		ranges;
-+		interrupt-controller;
-+		reg =	<0x0 0x20000000 0x0 0x10000>,	/* GICD */
-+			<0x0 0x20060000 0x0 0x100000>;	/* GICR */
-+
-+		interrupts = <GIC_PPI 9 IRQ_TYPE_LEVEL_HIGH>;
-+
-+		its: its@20040000 {
-+			compatible = "arm,gic-v3-its";
-+			msi-controller;
-+			mbi-ranges = <256 224>;
-+			reg = <0x0 0x20040000 0x0 0x10000>;
-+		};
-+	};
-+
-+	soc {
-+		compatible = "simple-bus";
-+		#address-cells = <0x2>;
-+		#size-cells = <0x2>;
-+		ranges = <0x0 0x0 0x0 0x0 0x100 0x0>;
-+
-+		uart0: serial@23f80000 {
-+			compatible = "ns16550a";
-+			reg = <0x0 0x23f80000 0x0 0x100>;
-+			interrupts = <GIC_SPI 129 IRQ_TYPE_LEVEL_HIGH>;
-+			reg-shift = <0x2>;
-+			reg-io-width = <0x4>;
-+			clocks = <&base_clk>;
-+			current-speed = <9600>;
-+			status = "disabled";
-+		};
-+
-+		uart1: serial@23fc0000 {
-+			compatible = "ns16550a";
-+			reg = <0x0 0x23fc0000 0x0 0x100>;
-+			interrupts = <GIC_SPI 130 IRQ_TYPE_LEVEL_HIGH>;
-+			reg-shift = <0x2>;
-+			reg-io-width = <0x4>;
-+			clocks = <&base_clk>;
-+			current-speed = <9600>;
-+			status = "disabled";
-+		};
-+	};
-+};
-diff --git a/arch/arm64/boot/dts/cisco/crayar_argos.dts b/arch/arm64/boot/dts/cisco/crayar_argos.dts
-new file mode 100644
-index 000000000000..d415427c145f
---- /dev/null
-+++ b/arch/arm64/boot/dts/cisco/crayar_argos.dts
-@@ -0,0 +1,32 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Device Tree file for Cisco CrayAR Argos EVB board.
-+ *
-+ * Copyright (C) 2022 Cisco
-+ */
-+
-+/dts-v1/;
-+#include "crayar.dtsi"
-+
-+/ {
-+	compatible = "cisco,crayar-argos", "cisco,crayar";
-+	model = "Cisco CrayAr Argos EVB";
-+	version = <0x00000001>;
-+
-+	aliases {
-+		serial0 = &uart0;
-+	};
-+
-+	chosen {
-+		stdout-path = "serial0:9600n8";
-+	};
-+
-+	memory {
-+		device_type = "memory";
-+		reg = <0x0 0x80000000 0x0 0x80000000>;
-+	};
-+};
-+
-+&uart0 {
-+	status = "okay";
-+};
 -- 
-2.25.1
+Damien Le Moal
+Western Digital Research
 
