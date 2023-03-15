@@ -2,94 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 97B5B6BAF33
-	for <lists+devicetree@lfdr.de>; Wed, 15 Mar 2023 12:28:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 179166BAF5E
+	for <lists+devicetree@lfdr.de>; Wed, 15 Mar 2023 12:35:49 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229725AbjCOL2u (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Mar 2023 07:28:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55376 "EHLO
+        id S231974AbjCOLfr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Mar 2023 07:35:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60054 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229720AbjCOL2t (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Mar 2023 07:28:49 -0400
-Received: from mail-pl1-x629.google.com (mail-pl1-x629.google.com [IPv6:2607:f8b0:4864:20::629])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 96DE841B41;
-        Wed, 15 Mar 2023 04:28:47 -0700 (PDT)
-Received: by mail-pl1-x629.google.com with SMTP id h8so19626137plf.10;
-        Wed, 15 Mar 2023 04:28:47 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112; t=1678879727;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=87xfMD7UQA1N/7YEjQnUAZ8ToPUTZcVN7DincnMmFNk=;
-        b=dXesCEdKlXZiopMIxtSNihWcxN1g4tWxCcOWMfHB7/H6EcFXBehwV80JnXBtFdw3rd
-         xFawUdfQAzyYH3y75eLjfO7khLiyv+NsauE0frs1DwloPuNDGI/2wC3XTgkbdRdVORaJ
-         fT8WXUM7NFQ0ls7hGIOmGWgh+C7Caqe4jzwg8sgkimiHM2StvkCX38JjYman90BNs9xE
-         O2vGX3qJ/JfJFX3/NUlDH77lgIOuHuLryZ3WJykENBjWHyaCgrLsR1EEJZ794GPHP5jH
-         6+YV+QhisLwCHdRkHb6N8jv+0qoeoDxV12jGgK/q/Cvv7iKJkuc3wzlXfyqHXoV7O8qT
-         mTxw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678879727;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=87xfMD7UQA1N/7YEjQnUAZ8ToPUTZcVN7DincnMmFNk=;
-        b=NmXhh8J7oGNtZH3l71+hjOEfSRaCeo8zySLHnArksGH4I8nrdINeO/9ZZ3Wy4ZZLvN
-         pwvkPugGvoIGO7qqMCPE/xvLYAxHY6hRxdFg/QqYgs5wMk6zFK3oqZ6GBMm0vbP31eEJ
-         cgALD9aiDYTJlS+i0UziNG6ZC8nDhYyBfhsKDxcJ6kn8YH3fjQU9ppydfKE0ApacSxyF
-         50rTgcK+bUCCxjCh13UAk38a9DAM8NHWe3MSYMoxm/rZ3O/tJxbzBVVbIhOXboxfwTkp
-         BGkxcwiTmbZuR5zg/PenVse19onVThF+joXQ2KaN9ZlBGNQhv4nna9jHQqCTRSlmWmjA
-         S+mA==
-X-Gm-Message-State: AO0yUKVQcFKKkh4u4tuFaj7+KhT3MRtt3MCEZS6hpiLFkSbcgvXpOljY
-        zZ9MI/kH9GKm/rcFWUTbwrc=
-X-Google-Smtp-Source: AK7set+wwbzqo/hqWOvUJUA1eDtzfTw0LQaoCkEHHLMaSGTnBVZ3dqLponC/KQy/GvW1Z8xeq9i+QA==
-X-Received: by 2002:a17:902:e195:b0:19e:6b56:7d8c with SMTP id y21-20020a170902e19500b0019e6b567d8cmr1945493pla.9.1678879727011;
-        Wed, 15 Mar 2023 04:28:47 -0700 (PDT)
-Received: from d.home.yangfl.dn42 ([104.28.245.199])
-        by smtp.gmail.com with ESMTPSA id ku13-20020a170903288d00b0019acd3151d0sm3435931plb.114.2023.03.15.04.28.41
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 15 Mar 2023 04:28:46 -0700 (PDT)
-From:   David Yang <mmyangfl@gmail.com>
-To:     mmyangfl@gmail.com
-Cc:     Wei Xu <xuwei5@hisilicon.com>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH] arm64: dts: hi3798cv200: Correct 'clock-names' in sd0
-Date:   Wed, 15 Mar 2023 19:28:29 +0800
-Message-Id: <20230315112829.165884-1-mmyangfl@gmail.com>
-X-Mailer: git-send-email 2.39.2
+        with ESMTP id S231504AbjCOLf1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Mar 2023 07:35:27 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 62D691E9DF;
+        Wed, 15 Mar 2023 04:34:53 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 6BA81B818E7;
+        Wed, 15 Mar 2023 11:34:50 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AAF2EC433D2;
+        Wed, 15 Mar 2023 11:34:48 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+        s=korg; t=1678880089;
+        bh=DkN8+5TAyEZUWL+rBe778x9Ih1mzAhT3eM0Oe0+aTXM=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=KH+101ZMTqJgfpFD12xDL+3dY8j3RGXchEriC91Rd2CoVCcIrTnBKqyFvsKfckuLN
+         DM20LGsFMwiuwazW8rNdWc/A2JHLAAlFQ7KUzKe3p+QNQ+oaHkh1dC8HD3LLLFvL0S
+         C5bzIT9xOon46lCrkkzLVL+eX0i6aVbPxzsKyLFU=
+Date:   Wed, 15 Mar 2023 12:34:46 +0100
+From:   Greg KH <gregkh@linuxfoundation.org>
+To:     Julien Panis <jpanis@baylibre.com>
+Cc:     lee@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, corbet@lwn.net, arnd@arndb.de,
+        derek.kiernan@xilinx.com, dragan.cvetic@xilinx.com,
+        eric.auger@redhat.com, jgg@ziepe.ca, razor@blackwall.org,
+        stephen@networkplumber.org, davem@davemloft.net,
+        christian.koenig@amd.com, contact@emersion.fr,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-doc@vger.kernel.org, sterzik@ti.com, u-kumar1@ti.com,
+        eblanc@baylibre.com, jneanne@baylibre.com
+Subject: Re: [PATCH v2 4/4] misc: tps6594-pfsm: Add driver for TI TPS6594 PFSM
+Message-ID: <ZBGtVuI6YTfENUNr@kroah.com>
+References: <20230315110736.35506-1-jpanis@baylibre.com>
+ <20230315110736.35506-5-jpanis@baylibre.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230315110736.35506-5-jpanis@baylibre.com>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-"ciu" and "biu" were incorrectly swapped. Fix them to match 'clocks'.
+On Wed, Mar 15, 2023 at 12:07:36PM +0100, Julien Panis wrote:
+> +// SPDX-License-Identifier: GPL-2.0-or-later
 
-Signed-off-by: David Yang <mmyangfl@gmail.com>
----
- arch/arm64/boot/dts/hisilicon/hi3798cv200.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Are you sure about "or-later"?  (I have to ask.)
 
-diff --git a/arch/arm64/boot/dts/hisilicon/hi3798cv200.dtsi b/arch/arm64/boot/dts/hisilicon/hi3798cv200.dtsi
-index a83b9d4f1..7112f9933 100644
---- a/arch/arm64/boot/dts/hisilicon/hi3798cv200.dtsi
-+++ b/arch/arm64/boot/dts/hisilicon/hi3798cv200.dtsi
-@@ -304,7 +304,7 @@ sd0: mmc@9820000 {
- 			interrupts = <GIC_SPI 34 IRQ_TYPE_LEVEL_HIGH>;
- 			clocks = <&crg HISTB_SDIO0_CIU_CLK>,
- 				 <&crg HISTB_SDIO0_BIU_CLK>;
--			clock-names = "biu", "ciu";
-+			clock-names = "ciu", "biu";
- 			resets = <&crg 0x9c 4>;
- 			reset-names = "reset";
- 			status = "disabled";
--- 
-2.39.2
+> +/*
+> + * PFSM (Pre-configurable Finite State Machine) driver for TI TPS6594/TPS6593/LP8764X PMICs
+> + *
+> + * Copyright (C) 2022 BayLibre Incorporated - https://www.baylibre.com/
+
+It's 2023 now :)
 
