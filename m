@@ -2,62 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AA1756BB8F1
-	for <lists+devicetree@lfdr.de>; Wed, 15 Mar 2023 17:02:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 694DE6BB8F4
+	for <lists+devicetree@lfdr.de>; Wed, 15 Mar 2023 17:02:54 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231933AbjCOQCt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Mar 2023 12:02:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36390 "EHLO
+        id S232718AbjCOQCw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Mar 2023 12:02:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36424 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232921AbjCOQCc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Mar 2023 12:02:32 -0400
-Received: from mail-pg1-x531.google.com (mail-pg1-x531.google.com [IPv6:2607:f8b0:4864:20::531])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4312E234D0
-        for <devicetree@vger.kernel.org>; Wed, 15 Mar 2023 09:02:11 -0700 (PDT)
-Received: by mail-pg1-x531.google.com with SMTP id q189so11064544pga.9
-        for <devicetree@vger.kernel.org>; Wed, 15 Mar 2023 09:02:11 -0700 (PDT)
+        with ESMTP id S232934AbjCOQCd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Mar 2023 12:02:33 -0400
+Received: from mail-pj1-x102f.google.com (mail-pj1-x102f.google.com [IPv6:2607:f8b0:4864:20::102f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 432B714EA0
+        for <devicetree@vger.kernel.org>; Wed, 15 Mar 2023 09:02:12 -0700 (PDT)
+Received: by mail-pj1-x102f.google.com with SMTP id gp15-20020a17090adf0f00b0023d1bbd9f9eso2370785pjb.0
+        for <devicetree@vger.kernel.org>; Wed, 15 Mar 2023 09:02:12 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1678896125;
+        d=linaro.org; s=google; t=1678896129;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=s/Lsu5smiLBa9MSeSGWc1WGcnC/b/RQv3FtSyR7SFF4=;
-        b=FgJU1ov+oT6SE1jCig02atP/jcu4Ky1MMsOM1FlYtRFqjFVv1R2X91E1B44pRjXW72
-         XhwL0NdpyrC/pI+RXSlf95HXcW8FZRLXMJvbW095TirxYMv9dn82SCbbwVxemSNiD/UJ
-         wEUkY7Es/JycBM9us9jPaOGcr5gxd/LjDtcHOJoWcaYOrtbtZ8yGFv4wVNovau9zv+lL
-         aig8HVp6iirjZRsa68QqeoY5AlsnNaTFt4V/SUJGYxBSBqdC2y0gERpwZbTs3cf6xrB+
-         33qpxOA2kyoPaGaXl9pYnlk4SNmgJSZgRvFMuemLaa2Jj+8+UeSprGD6JFiAbjqwXAmj
-         PSyQ==
+        bh=NzfnJ/fl2EOzAuf3MTrOySXsOi45cg44bO61w+XqodU=;
+        b=JCyL/2azMQT8TR2/0Oh7RhfDNYsdJYPC5P5lM+jjQD/1hyZkaOMo59ZOHUVgQ6bUP4
+         zLeCq4Sad/f2NXYv9xctUzJwdRD0CO1UpOAwI6pmi7eNcF+G0aWtdo3574SQlhzm02ZQ
+         d7biN7johrGfUDPh96Mn2Ttj/FmbrZhiHImaKNEUCCDKfMpyGbQkiqQ0bjIgSUcQTvjn
+         4j3P5tv5NklC0/CUO9OiDo6oMGuSXhLIMDdqwn/4+Isfu2fAE8x3I9T97aGXKzYWljOQ
+         2iozRk76Nv9PldAJEdEpMkMLdT5E3+FgKy1/hkyfLTqado3w5bpfFoDPpt7URASHTnpt
+         cTqQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678896125;
+        d=1e100.net; s=20210112; t=1678896129;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=s/Lsu5smiLBa9MSeSGWc1WGcnC/b/RQv3FtSyR7SFF4=;
-        b=tA9JLo/vQRPdupAov7YIeUvzbqXKJi0bzO/MVVMqNEwmQz2K8PDmz83WAPOtznM0FQ
-         s9+kvjs6inF+hGa4R+XD5qUBQzQD8Xx+IdIMdkRIL9O0n5335DHC1wIOKWp0aOdQwdCf
-         GRoVjaLFmjA6ZTTSEyJW9aP91N1v5KaTFloiwKmu2efHcxwt+2kY5P5LNCjtqh9DeppV
-         MfKXcVEEGA6KMHe4/OMBiwdmwV43mayoD2yk4nItD/w4gWIU9W6xXYNhfISfj8P+T3Si
-         8dPtSPWN3Rg9PXRziy36EdzPZxkdZGY1/3owcb+IP/MdwgwHSsELC7xFbaK9wg2o4PP6
-         9KYQ==
-X-Gm-Message-State: AO0yUKW5NXqYfOHm4ds2urn6KoxfVeGvGftQRbJAgrmDVuZsZvDmTyts
-        k+t4YROmogCGBnOq/NQBrEWcuA==
-X-Google-Smtp-Source: AK7set8Z4HGNMWRt5GVuA9st6blRtNG8gAmAR6OHCAZyk1xzCzctYdB2+DaMPJ97/T59reoxXbfTbg==
-X-Received: by 2002:a62:64c9:0:b0:5aa:4db8:9ab1 with SMTP id y192-20020a6264c9000000b005aa4db89ab1mr4981pfb.23.1678896125274;
-        Wed, 15 Mar 2023 09:02:05 -0700 (PDT)
+        bh=NzfnJ/fl2EOzAuf3MTrOySXsOi45cg44bO61w+XqodU=;
+        b=zNmG+7kO0totbN2lR1SLnX0O31gSnvVLaHrzV+I6dTLmqlzLBazhd6iet24um7bvht
+         0ZiIFrKCEe38noR47ZLXcin3MX97L4Bmarmro4dzq4OoH8D/tSaxTsbnOHew6hIbrKti
+         PktalmAQ3jeAeDPJlmuUR5F969Dxv266Sv2XEKNY+2rbNrWbknHEdILmqovrFLsy5Wrr
+         BGz0nAzHF2CQOxEJUjGdGxRISkqrplKte4j/o2B9xz3Y/bwrd7SgnQ3J9nRL1qK5sukS
+         BkCRBYIzVff5TFgC+0xhk0AEZeZBK+d6YfBazE7yYAdRDtWLzgtDgPuGCUVG0G77+U/l
+         Y3Kg==
+X-Gm-Message-State: AO0yUKU/NRLGZeU2gIk4/hvmcT2tPbZseLaNzLJmdzSWw3cKQOCTPPPE
+        cHQNcI3Gn/vuP7CUocsts72MRg==
+X-Google-Smtp-Source: AK7set+DwWhs0BqEGWSy2aNG4vjhj0iL2tYjxNAji0NOiSYrG7Bh4yq42ZuWovwE0vNH32pgebJ9mw==
+X-Received: by 2002:a05:6a20:7d94:b0:cd:c79:514b with SMTP id v20-20020a056a207d9400b000cd0c79514bmr511744pzj.2.1678896129266;
+        Wed, 15 Mar 2023 09:02:09 -0700 (PDT)
 Received: from localhost.localdomain ([2401:4900:1c61:1acb:9af6:bd7f:78e7:7ae6])
-        by smtp.gmail.com with ESMTPSA id o1-20020a655bc1000000b00502dc899394sm3457170pgr.66.2023.03.15.09.02.01
+        by smtp.gmail.com with ESMTPSA id o1-20020a655bc1000000b00502dc899394sm3457170pgr.66.2023.03.15.09.02.05
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 15 Mar 2023 09:02:04 -0700 (PDT)
+        Wed, 15 Mar 2023 09:02:08 -0700 (PDT)
 From:   Bhupesh Sharma <bhupesh.sharma@linaro.org>
 To:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
 Cc:     agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
         linux-kernel@vger.kernel.org, bhupesh.linux@gmail.com,
         bhupesh.sharma@linaro.org, robh+dt@kernel.org,
         krzysztof.kozlowski@linaro.org
-Subject: [PATCH 1/2] dt-bindings: arm: qcom,ids: Add IDs for QRB4210
-Date:   Wed, 15 Mar 2023 21:31:50 +0530
-Message-Id: <20230315160151.2166861-2-bhupesh.sharma@linaro.org>
+Subject: [PATCH 2/2] soc: qcom: socinfo: Add IDs for QRB4210
+Date:   Wed, 15 Mar 2023 21:31:51 +0530
+Message-Id: <20230315160151.2166861-3-bhupesh.sharma@linaro.org>
 X-Mailer: git-send-email 2.38.1
 In-Reply-To: <20230315160151.2166861-1-bhupesh.sharma@linaro.org>
 References: <20230315160151.2166861-1-bhupesh.sharma@linaro.org>
@@ -77,21 +77,21 @@ Add the ID for QRB4210 variant.
 
 Signed-off-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
 ---
- include/dt-bindings/arm/qcom,ids.h | 1 +
+ drivers/soc/qcom/socinfo.c | 1 +
  1 file changed, 1 insertion(+)
 
-diff --git a/include/dt-bindings/arm/qcom,ids.h b/include/dt-bindings/arm/qcom,ids.h
-index c3c078a8c0dab..6bfd35e00c5fa 100644
---- a/include/dt-bindings/arm/qcom,ids.h
-+++ b/include/dt-bindings/arm/qcom,ids.h
-@@ -229,6 +229,7 @@
- #define QCOM_ID_SC7180P			495
- #define QCOM_ID_SM6375			507
- #define QCOM_ID_SM8550			519
-+#define QCOM_ID_QRB4210			523
- #define QCOM_ID_SA8775P			534
- #define QCOM_ID_QRU1000			539
- #define QCOM_ID_QDU1000			545
+diff --git a/drivers/soc/qcom/socinfo.c b/drivers/soc/qcom/socinfo.c
+index 89081ec34dbac..fcef116ffc25a 100644
+--- a/drivers/soc/qcom/socinfo.c
++++ b/drivers/soc/qcom/socinfo.c
+@@ -447,6 +447,7 @@ static const struct soc_id soc_id[] = {
+ 	{ qcom_board_id(SC7180P) },
+ 	{ qcom_board_id(SM6375) },
+ 	{ qcom_board_id(SM8550) },
++	{ qcom_board_id(QRB4210) },
+ 	{ qcom_board_id(SA8775P) },
+ 	{ qcom_board_id(QRU1000) },
+ 	{ qcom_board_id(QDU1000) },
 -- 
 2.38.1
 
