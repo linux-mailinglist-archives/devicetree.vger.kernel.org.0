@@ -2,85 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id ECD566BBCAE
-	for <lists+devicetree@lfdr.de>; Wed, 15 Mar 2023 19:49:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1DCBF6BBCCE
+	for <lists+devicetree@lfdr.de>; Wed, 15 Mar 2023 19:57:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232569AbjCOStv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Mar 2023 14:49:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50712 "EHLO
+        id S230212AbjCOS5i (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Mar 2023 14:57:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60616 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232665AbjCOStu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Mar 2023 14:49:50 -0400
-Received: from mx0a-001b2d01.pphosted.com (mx0a-001b2d01.pphosted.com [148.163.156.1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 05CC41284D;
-        Wed, 15 Mar 2023 11:49:49 -0700 (PDT)
-Received: from pps.filterd (m0098410.ppops.net [127.0.0.1])
-        by mx0a-001b2d01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 32FHBIaD031841;
-        Wed, 15 Mar 2023 18:49:45 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=from : to : cc : subject
- : date : message-id : mime-version : content-transfer-encoding; s=pp1;
- bh=2DAycKkNR5JzI421DzdYC9jkhTO5VG8838Qgc06IF9c=;
- b=gjBAxHMfaIgOKmznyLxeGV9niFNj85vCgFfj2RUvteB95Fx9M7SgcZV3UYieZaXWV0my
- oBtGmDMakdyOJgVSeMgB9qqkM2ai+kbisUeeofh0lnxAlrtG2LhOx18Z/lJZR0YavKN/
- OU8z+Lvuf4zE9W8tXAZEKAfWsL6Qy9xEAyCKkRTtoCERJPW+nFQF0s3HRqdPv3pDC5BS
- +Z43K0OEX6fXO+8NDFigfTKJkIfA3GUmHq5AGCM4CF91kk6aytfsMqZC2XPKpe/dRozl
- IdWVTUiiF7wrnzM2xb7zee/WmxGZTTUHQtZmO5K3JFeuuFz90z0L9FIVbmIwCDf2vSLL Bg== 
-Received: from pps.reinject (localhost [127.0.0.1])
-        by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 3pbgey5ktt-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 15 Mar 2023 18:49:45 +0000
-Received: from m0098410.ppops.net (m0098410.ppops.net [127.0.0.1])
-        by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 32FFCYni000384;
-        Wed, 15 Mar 2023 18:49:44 GMT
-Received: from ppma03dal.us.ibm.com (b.bd.3ea9.ip4.static.sl-reverse.com [169.62.189.11])
-        by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 3pbgey5kt3-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 15 Mar 2023 18:49:44 +0000
-Received: from pps.filterd (ppma03dal.us.ibm.com [127.0.0.1])
-        by ppma03dal.us.ibm.com (8.17.1.19/8.17.1.19) with ESMTP id 32FGiuTE018975;
-        Wed, 15 Mar 2023 18:49:43 GMT
-Received: from smtprelay07.dal12v.mail.ibm.com ([9.208.130.99])
-        by ppma03dal.us.ibm.com (PPS) with ESMTPS id 3pb29pdytu-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 15 Mar 2023 18:49:43 +0000
-Received: from smtpav05.wdc07v.mail.ibm.com (smtpav05.wdc07v.mail.ibm.com [10.39.53.232])
-        by smtprelay07.dal12v.mail.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 32FIngfZ34275614
-        (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-        Wed, 15 Mar 2023 18:49:42 GMT
-Received: from smtpav05.wdc07v.mail.ibm.com (unknown [127.0.0.1])
-        by IMSVA (Postfix) with ESMTP id 66F3458061;
-        Wed, 15 Mar 2023 18:49:42 +0000 (GMT)
-Received: from smtpav05.wdc07v.mail.ibm.com (unknown [127.0.0.1])
-        by IMSVA (Postfix) with ESMTP id 51E1A5805F;
-        Wed, 15 Mar 2023 18:49:42 +0000 (GMT)
-Received: from gfwa600.aus.stglabs.ibm.com (unknown [9.3.84.101])
-        by smtpav05.wdc07v.mail.ibm.com (Postfix) with ESMTPS;
-        Wed, 15 Mar 2023 18:49:42 +0000 (GMT)
-Received: by gfwa600.aus.stglabs.ibm.com (Postfix, from userid 181152)
-        id 880E574A47B; Wed, 15 Mar 2023 13:49:41 -0500 (CDT)
-From:   Lakshmi Yadlapati <lakshmiy@us.ibm.com>
-To:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc:     ylakshmi@yahoo.com, Lakshmi Yadlapati <lakshmiy@us.ibm.com>
-Subject: [PATCH 2/4] dt-bindings: trivial-devices: Add acbel,crps
-Date:   Wed, 15 Mar 2023 13:49:21 -0500
-Message-Id: <20230315184921.846813-1-lakshmiy@us.ibm.com>
-X-Mailer: git-send-email 2.37.2
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-TM-AS-GCONF: 00
-X-Proofpoint-GUID: SLta1oyOqAlhqZ_tU9sVbuDQIcH2sJwv
-X-Proofpoint-ORIG-GUID: F0foyglH7reGDBBenEZY5fTQeoUGVL0C
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
- definitions=2023-03-15_10,2023-03-15_01,2023-02-09_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
- bulkscore=0 spamscore=0 clxscore=1015 malwarescore=0 impostorscore=0
- adultscore=0 mlxscore=0 mlxlogscore=725 suspectscore=0 lowpriorityscore=0
- phishscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2302240000 definitions=main-2303150155
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,SPF_HELO_NONE,SPF_NONE autolearn=ham
+        with ESMTP id S232623AbjCOS5h (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Mar 2023 14:57:37 -0400
+Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 574481DBAD
+        for <devicetree@vger.kernel.org>; Wed, 15 Mar 2023 11:57:36 -0700 (PDT)
+Received: by mail-lf1-x135.google.com with SMTP id r27so25517395lfe.10
+        for <devicetree@vger.kernel.org>; Wed, 15 Mar 2023 11:57:36 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112; t=1678906654;
+        h=subject:in-reply-to:cc:to:from:date:message-id:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=g+Z6yMufViGivHBpi3ybAlT526oTlR6qrL1yn4estsw=;
+        b=OkIq98wv6L2ZdNeoE3MDLfVGXm56bsoejk4ZRlxz+sKGkxVY8FZOWvi+qF6EYHhw9B
+         NYFabJFIlcmLLyMqiDh/Ehm8Mf7Z50Luo7AabEu7mI8ZzPwc0rs6QPPmcLzhTIBYBwuc
+         1HmaQbRwUr5Smk/4AsNTTpW+AfyoAnEgm7L8v5mWYoo6SWVaHrNqtJgwG5zn3+u4uZ0C
+         WNwc9a897FBA7NLhqSCFQm8wEX532Gqt1kgMLHhpl5iHK4AGjzsPGaJ6NKE3fKELlMjS
+         pGGlGdPZgtM23bvksNxirb3xIolRW9Bp4Eapw7sCE6YY/0x2hHMNpiqcpHMjxFw1UVga
+         8jRw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1678906654;
+        h=subject:in-reply-to:cc:to:from:date:message-id:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=g+Z6yMufViGivHBpi3ybAlT526oTlR6qrL1yn4estsw=;
+        b=RjE+A/Mlicbm6Bpx3qe/oiQ2CV3sZg7XANTMSG+I7OSLfjHP1XkTDaYelFRVxahzkB
+         YnlcCqPwlaMkE4CTqflUhqm3zbmHBmMMD06Kyxv56XyXgQfeGG83f9HYWHBaxAl9+I4s
+         kBpty2HyNfILjD3GYEaF6ZGJppVgDgDsMyfmhCdQCvgRCO2vEjvhXKlSuvwV3beGti1f
+         8YrEcJFppkiyvr1hxJ/s68jmdk59QotjXdhftcPMR072UY90CAO/tjuMkOpspe/z1X1C
+         cFwvYafyl3A2WU8xk+LjYpsQ+C5Fmrne+QR57HoqG19T3hxgfSdhbZVibst//CGdNAUz
+         Yh3g==
+X-Gm-Message-State: AO0yUKVCb5SHePWuYUfAVsAE/joo2KUDRho6FamNLO8ztUij7pmLv3Qo
+        JGnfBE6CbFobQm/di3zj6CKft/T/T9ySIOjm
+X-Google-Smtp-Source: AK7set/NG5W4apOZwiskwnkFo4dtGcsIMBB6VqqvRqSc5hZoV5tTkp7wZL40rkxJq0DE2fk7xQEdKA==
+X-Received: by 2002:a19:ae0f:0:b0:4d2:c70a:fe24 with SMTP id f15-20020a19ae0f000000b004d2c70afe24mr2147320lfc.1.1678906654402;
+        Wed, 15 Mar 2023 11:57:34 -0700 (PDT)
+Received: from letter.txt (46-138-144-249.dynamic.spd-mgts.ru. [46.138.144.249])
+        by smtp.gmail.com with ESMTPSA id w13-20020a05651203cd00b004cc9c2932a9sm913242lfp.302.2023.03.15.11.57.33
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 15 Mar 2023 11:57:34 -0700 (PDT)
+Message-ID: <6412151e.050a0220.83a6d.3303@mx.google.com>
+Date:   Wed, 15 Mar 2023 11:57:34 -0700 (PDT)
+From:   Sergey Lisov <sleirsgoevy@gmail.com>
+To:     Ulf Hansson <ulf.hansson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Alim Akhtar <alim.akhtar@samsung.com>,
+        Jaehoon Chung <jh80.chung@samsung.com>
+Cc:     linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org
+In-Reply-To: <1bd962b1-2fbc-9bdb-8b7a-9f2c70c316e2@linaro.org>
+Subject: Re: [PATCH v5 1/3] dt-bindings: exynos-dw-mshc-common: add exynos7885
+ variants
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -88,26 +72,13 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add Acbel CRPS Series power supply to trivial devices.
+>> +      - samsung,exynos7885-dw-mshc
+>> +      - samsung,exynos7885-dw-mshc-smu
+> 
+> What about the if-then at the end? Since this is pretty compatible with
+> exynos7, then I would expect being added also there.
 
-Signed-off-by: Lakshmi Yadlapati <lakshmiy@us.ibm.com>
----
- Documentation/devicetree/bindings/trivial-devices.yaml | 2 ++
- 1 file changed, 2 insertions(+)
-
-diff --git a/Documentation/devicetree/bindings/trivial-devices.yaml b/Documentation/devicetree/bindings/trivial-devices.yaml
-index 6f482a254a1d..ae2cf4411b39 100644
---- a/Documentation/devicetree/bindings/trivial-devices.yaml
-+++ b/Documentation/devicetree/bindings/trivial-devices.yaml
-@@ -30,6 +30,8 @@ properties:
-     items:
-       - enum:
-             # SMBus/I2C Digital Temperature Sensor in 6-Pin SOT with SMBus Alert and Over Temperature Pin
-+          - acbel,crps
-+            # Acbel CRPS Series power supply
-           - ad,ad7414
-             # ADM9240: Complete System Hardware Monitor for uProcessor-Based Systems
-           - ad,adm9240
--- 
-2.37.2
+Makes sense. Also it probably makes sense to add "samsung,exynos7-dw-mshc"
+as a fallback compatible to the jackpotlte.dts, because it probably
+somewhat worked for whoever contributed that.
 
