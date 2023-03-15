@@ -2,151 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6A7356BB675
-	for <lists+devicetree@lfdr.de>; Wed, 15 Mar 2023 15:48:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D1D0D6BB6B2
+	for <lists+devicetree@lfdr.de>; Wed, 15 Mar 2023 15:55:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232114AbjCOOse (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Mar 2023 10:48:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55236 "EHLO
+        id S233265AbjCOOzr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Mar 2023 10:55:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37364 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232319AbjCOOsd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Mar 2023 10:48:33 -0400
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 84D8A2714;
-        Wed, 15 Mar 2023 07:48:31 -0700 (PDT)
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 32FEmLKv005313;
-        Wed, 15 Mar 2023 09:48:21 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1678891701;
-        bh=7+9A8QTOsGfnCng+WGV2/97G5RjeXWiEdM1CDDOAook=;
-        h=Date:Subject:To:CC:References:From:In-Reply-To;
-        b=TOk6msmgMRvARbBJqFzb5nZHmyhnE7YDod37FtB5Nf1u3ib+qZTz8ijBbEsqxrwyu
-         d7JWt0vvMNtev6lAENS4Vg9WSkXmFyyFrVVSHNoe+nnXOD6QkvxQ3hpeiPnrO3CR13
-         YS96OKd1cVoNRZOX+/SQ11nDypAXq2HMnDpK7X7w=
-Received: from DFLE102.ent.ti.com (dfle102.ent.ti.com [10.64.6.23])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 32FEmLBJ031641
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Wed, 15 Mar 2023 09:48:21 -0500
-Received: from DFLE109.ent.ti.com (10.64.6.30) by DFLE102.ent.ti.com
- (10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Wed, 15
- Mar 2023 09:48:21 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE109.ent.ti.com
- (10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
- Frontend Transport; Wed, 15 Mar 2023 09:48:21 -0500
-Received: from [10.249.34.133] (ileaxei01-snat2.itg.ti.com [10.180.69.6])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 32FEmK9q028391;
-        Wed, 15 Mar 2023 09:48:20 -0500
-Message-ID: <1563e38e-e561-280f-bcf3-997d3be3d256@ti.com>
-Date:   Wed, 15 Mar 2023 09:48:20 -0500
+        with ESMTP id S233262AbjCOOzY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Mar 2023 10:55:24 -0400
+Received: from albert.telenet-ops.be (albert.telenet-ops.be [IPv6:2a02:1800:110:4::f00:1a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AF41B11160
+        for <devicetree@vger.kernel.org>; Wed, 15 Mar 2023 07:54:29 -0700 (PDT)
+Received: from ramsan.of.borg ([84.195.187.55])
+        by albert.telenet-ops.be with bizsmtp
+        id Yeu9290031C8whw06eu9fC; Wed, 15 Mar 2023 15:54:09 +0100
+Received: from rox.of.borg ([192.168.97.57])
+        by ramsan.of.borg with esmtp (Exim 4.95)
+        (envelope-from <geert@linux-m68k.org>)
+        id 1pcSVO-00CIIr-Hn;
+        Wed, 15 Mar 2023 15:54:09 +0100
+Received: from geert by rox.of.borg with local (Exim 4.95)
+        (envelope-from <geert@linux-m68k.org>)
+        id 1pcSW0-00D2JO-UQ;
+        Wed, 15 Mar 2023 15:54:08 +0100
+From:   Geert Uytterhoeven <geert+renesas@glider.be>
+To:     Mark Brown <broonie@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org,
+        Geert Uytterhoeven <geert+renesas@glider.be>
+Subject: [PATCH] dt-bindings: spi: renesas,sh-msiof: Miscellaneous improvements
+Date:   Wed, 15 Mar 2023 15:54:07 +0100
+Message-Id: <052af97ecbaa9ba6e0d406883dd3389fa397579a.1678891999.git.geert+renesas@glider.be>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.1
-Subject: Re: [PATCH v3 0/4] Add DT support for J721E CPSW9G and J7200 CPSW5G
-Content-Language: en-US
-To:     Siddharth Vadapalli <s-vadapalli@ti.com>, <nm@ti.com>,
-        <vigneshr@ti.com>, <kristo@kernel.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski@linaro.org>,
-        <krzysztof.kozlowski+dt@linaro.org>
-CC:     <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <srk@ti.com>
-References: <20230315062307.1612220-1-s-vadapalli@ti.com>
-From:   Andrew Davis <afd@ti.com>
-In-Reply-To: <20230315062307.1612220-1-s-vadapalli@ti.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_PASS,SPF_PASS,URIBL_BLOCKED autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.3 required=5.0 tests=BAYES_00,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_NONE
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 3/15/23 1:23 AM, Siddharth Vadapalli wrote:
-> Hello,
-> 
-> This series adds the device-tree nodes for the CPSW9G instance of CPSW
-> Ethernet Switch on TI's J721E SoC and the CPSW5G instance of CPSW
-> Ethernet Switch on TI's J7200 SoC. Additionally, overlays are also added
-> to individually enable CPSW9G on J721E SoC and CPSW5G on J7200 SoC in
-> QSGMII mode with the Add-On J7 QUAD Port Ethernet expansion QSGMII
-> daughtercard.
-> 
-> This series combines the v2 series for J721E CPSW9G at:
-> https://lore.kernel.org/r/20230310103504.731845-1-s-vadapalli@ti.com/
-> and the v1 series for J7200 CPSW5G at:
-> https://lore.kernel.org/r/20230310101407.722334-1-s-vadapalli@ti.com/
-> 
-> The suggestions for the v2 series for J721E are implemented for the J7200
-> series as well in this patch series.
-> 
+Make "clocks" and "power-domains" required everywhere.
+Make "resets" required on R-Car Gen2 and newer (i.e. all but SH-Mobile).
 
-Looks much better, thanks for the changes,
+Update the example to match reality:
+  - Use interrupt binding definitions instead of hardcoded numbers,
+  - Convert to new-style CPG/MSSR bindings,
+  - Add missing "power-domains" and "resets" properties.
 
-Reviewed-by: Andrew Davis <afd@ti.com>
+Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+---
+ .../bindings/spi/renesas,sh-msiof.yaml        | 23 +++++++++++++++----
+ 1 file changed, 19 insertions(+), 4 deletions(-)
 
-> ---
-> Changes from v2 for J721E CPSW9G series:
-> 1. Rename the overlay k3-j721e-quad-port-eth-exp.dtso as
->     k3-j721e-evm-quad-port-eth-exp.dtso.
-> 2. Update arch/arm64/boot/dts/ti/Makefile to build k3-j721e-evm.dtb as the
->     result of applying k3-j721e-evm-quad-port-eth-exp.dtbo to
->     k3-j721e-common-proc-board.dtb.
-> 3. Use the newer "&{/} {" style instead of the "fragments" style in
->     k3-j721e-evm-quad-port-eth-exp.dtso.
-> 4. Move the "mdio0_pins_default" pinctrl from cpsw0 node into the
->     "cpsw9g_mdio" node.
-> 5. Disable individual "cpsw0_port" nodes in the main.dtsi file, enabling
->     only the required nodes in the overlay.
-> 6. Disable the "cpsw9g_mdio" node in the main.dtsi file.
-> 
-> Changes from v1 for J721E CPSW9G series:
-> 1. Rename node name "mdio_pins_default" to "mdio0-pins-default", since
->     node names shouldn't contain underscores.
-> 2. Change node label "mdio_pins_default" to "mdio0_pins_default".
-> 
-> Changes from v1 for J7200 CPSW5G series:
-> 1. Rename the overlay k3-j7200-quad-port-eth-exp.dtso as
->     k3-j7200-evm-quad-port-eth-exp.dtso.
-> 2. Update arch/arm64/boot/dts/ti/Makefile to build k3-j7200-evm.dtb as the
->     result of applying k3-j7200-evm-quad-port-eth-exp.dtbo to
->     k3-j7200-common-proc-board.dtb.
-> 3. Use the newer "&{/} {" style instead of the "fragments" style in
->     k3-j7200-evm-quad-port-eth-exp.dtso.
-> 4. Move the "mdio0_pins_default" pinctrl from cpsw0 node into the
->     "cpsw5g_mdio" node.
-> 5. Disable individual "cpsw0_port" nodes in the main.dtsi file, enabling
->     only the required nodes in the overlay.
-> 6. Disable the "cpsw5g_mdio" node in the main.dtsi file.
-> 
-> J721E CPSW9G v2 series:
-> https://lore.kernel.org/r/20230310103504.731845-1-s-vadapalli@ti.com/
-> J721E CPSW9G v1 series:
-> https://lore.kernel.org/r/20230310092804.692303-1-s-vadapalli@ti.com/
-> J7200 CPSW5G v1 series:
-> https://lore.kernel.org/r/20230310101407.722334-1-s-vadapalli@ti.com/
-> 
-> Siddharth Vadapalli (4):
->    arm64: dts: ti: k3-j721e: Add CPSW9G nodes
->    arm64: dts: ti: k3-j721e: Add overlay to enable CPSW9G ports in QSGMII
->      mode
->    arm64: dts: ti: j7200-main: Add CPSW5G nodes
->    arm64: dts: ti: k3-j7200: Add overlay to enable CPSW5G ports in QSGMII
->      mode
-> 
->   arch/arm64/boot/dts/ti/Makefile               |   6 +-
->   .../ti/k3-j7200-evm-quad-port-eth-exp.dtso    | 100 +++++++++++++
->   arch/arm64/boot/dts/ti/k3-j7200-main.dtsi     |  88 ++++++++++++
->   .../ti/k3-j721e-evm-quad-port-eth-exp.dtso    | 132 ++++++++++++++++++
->   arch/arm64/boot/dts/ti/k3-j721e-main.dtsi     | 116 +++++++++++++++
->   arch/arm64/boot/dts/ti/k3-j721e.dtsi          |   1 +
->   6 files changed, 441 insertions(+), 2 deletions(-)
->   create mode 100644 arch/arm64/boot/dts/ti/k3-j7200-evm-quad-port-eth-exp.dtso
->   create mode 100644 arch/arm64/boot/dts/ti/k3-j721e-evm-quad-port-eth-exp.dtso
-> 
+diff --git a/Documentation/devicetree/bindings/spi/renesas,sh-msiof.yaml b/Documentation/devicetree/bindings/spi/renesas,sh-msiof.yaml
+index 491a695a2deb3b83..00acbbb0f65dcf57 100644
+--- a/Documentation/devicetree/bindings/spi/renesas,sh-msiof.yaml
++++ b/Documentation/devicetree/bindings/spi/renesas,sh-msiof.yaml
+@@ -149,23 +149,38 @@ required:
+   - compatible
+   - reg
+   - interrupts
++  - clocks
++  - power-domains
+   - '#address-cells'
+   - '#size-cells'
+ 
++if:
++  not:
++    properties:
++      compatible:
++        contains:
++          const: renesas,sh-mobile-msiof
++then:
++  required:
++    - resets
++
+ unevaluatedProperties: false
+ 
+ examples:
+   - |
+-    #include <dt-bindings/clock/r8a7791-clock.h>
+-    #include <dt-bindings/interrupt-controller/irq.h>
++    #include <dt-bindings/clock/r8a7791-cpg-mssr.h>
++    #include <dt-bindings/interrupt-controller/arm-gic.h>
++    #include <dt-bindings/power/r8a7791-sysc.h>
+ 
+     msiof0: spi@e6e20000 {
+         compatible = "renesas,msiof-r8a7791", "renesas,rcar-gen2-msiof";
+         reg = <0xe6e20000 0x0064>;
+-        interrupts = <0 156 IRQ_TYPE_LEVEL_HIGH>;
+-        clocks = <&mstp0_clks R8A7791_CLK_MSIOF0>;
++        interrupts = <GIC_SPI 156 IRQ_TYPE_LEVEL_HIGH>;
++        clocks = <&cpg CPG_MOD 000>;
+         dmas = <&dmac0 0x51>, <&dmac0 0x52>;
+         dma-names = "tx", "rx";
++        power-domains = <&sysc R8A7791_PD_ALWAYS_ON>;
++        resets = <&cpg 0>;
+         #address-cells = <1>;
+         #size-cells = <0>;
+     };
+-- 
+2.34.1
+
