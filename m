@@ -2,193 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5F5886BC0A8
-	for <lists+devicetree@lfdr.de>; Thu, 16 Mar 2023 00:11:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 93BA36BC0F3
+	for <lists+devicetree@lfdr.de>; Thu, 16 Mar 2023 00:32:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231405AbjCOXLT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Mar 2023 19:11:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46316 "EHLO
+        id S230404AbjCOXcM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Mar 2023 19:32:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44380 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230369AbjCOXLT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Mar 2023 19:11:19 -0400
-Received: from mail-pj1-x1029.google.com (mail-pj1-x1029.google.com [IPv6:2607:f8b0:4864:20::1029])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BBFAD196AF;
-        Wed, 15 Mar 2023 16:11:17 -0700 (PDT)
-Received: by mail-pj1-x1029.google.com with SMTP id d13so3746pjh.0;
-        Wed, 15 Mar 2023 16:11:17 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112; t=1678921877;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=kzy0B/VYnSJRvZ8pGtdA2kQJazW5NtKMyoTehvrQmDw=;
-        b=kSOKXaLA2XOfIn6OLaCrF7ohz5hyFI9gZZMaZu62+ifKfKT+mpEtUk7LbMNO8nsoda
-         zZ4dpu2h1nnINsgPWb6laXAilEFF4M+hvfyO0USrhjhjkol45xsvEzR7qw631mk+Vjt5
-         NKRRMTEsF1jZxH90kXSw9eN7SeegJWB/zU3SoTZGfTOA8l8s7tu2A22/rjj/d/ya7BF2
-         2s4FTetw1dgkoqGLk1Dux1vanxLFT0mAm0J3lCY+hPmGC0BWhadUDpB0fz+zjNZrgG0p
-         /FIqa6uw7NN0ka16S1u1YlHXWNiz+0aEheoFLWxwqXjqTWD30JZ/K+mT6lXXOhtWb/Qy
-         2K5Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678921877;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=kzy0B/VYnSJRvZ8pGtdA2kQJazW5NtKMyoTehvrQmDw=;
-        b=o0vdKuohchOqlIiEQSOCBY7/DzvOJudFFwjtgVm+rZ9J3o5bMQrB/y0ZzcHQ0FIHny
-         RJrCm5K/YnC7tcucxOctvp33jARxbvOmhMJE275AKnqx0HGrFupxXnmPyONekaEISv8k
-         soYIPNfLnV+Hg505bWtX9YKpoDD3xT5UR5o2zxYtFZ79xYqeadNmOqymmg4/gp9CTOyb
-         77eImC/vRIN9NBPlEn+9+Ldn/g7TFYunEZLkk2P3pw+UT993ZGVfUskQSfII6s4VK74D
-         WGu/yUy5YB7qNexooVz5ODFwUZx9fMvgKC9kW6epOcsELWss5t6RDsDSq+9oG2NjF6fQ
-         MUjw==
-X-Gm-Message-State: AO0yUKV4est7cOLFdtFOk1pP8YT5emLd/k/q3eBpAEH0Gwc0Nc0UkVeI
-        rVRFXKwoODSMjeeOZhe3eqI=
-X-Google-Smtp-Source: AK7set9wsbdkZ1LjU01R5iAlOExPzKZm3vwKjuDjqLuZR0UayRfcjyyy0SFPQvHT2QRZ2N2EQDGl1w==
-X-Received: by 2002:a05:6a20:8e2a:b0:cb:f76c:e1a8 with SMTP id y42-20020a056a208e2a00b000cbf76ce1a8mr1604364pzj.15.1678921877048;
-        Wed, 15 Mar 2023 16:11:17 -0700 (PDT)
-Received: from localhost.localdomain ([14.139.38.154])
-        by smtp.googlemail.com with ESMTPSA id m123-20020a632681000000b0050bebfe464dsm212616pgm.53.2023.03.15.16.11.13
-        (version=TLS1_3 cipher=TLS_CHACHA20_POLY1305_SHA256 bits=256/256);
-        Wed, 15 Mar 2023 16:11:16 -0700 (PDT)
-From:   Vijaya Anand <sunrockers8@gmail.com>
-To:     lgirdwood@gmail.com, broonie@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, alsa-devel@alsa-project.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc:     Vijaya Anand <sunrockers8@gmail.com>,
-        Daniel Baluta <daniel.baluta@nxp.com>
-Subject: [PATCH v2] ASoC: dt-bindings: adi,adau17x1: Convert to DT schema
-Date:   Thu, 16 Mar 2023 04:40:55 +0530
-Message-Id: <20230315231055.3067-1-sunrockers8@gmail.com>
-X-Mailer: git-send-email 2.37.1 (Apple Git-137.1)
+        with ESMTP id S230333AbjCOXcL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Mar 2023 19:32:11 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2C35923A6C;
+        Wed, 15 Mar 2023 16:32:10 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 6FC5C61EAA;
+        Wed, 15 Mar 2023 23:32:09 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CBA8AC433D2;
+        Wed, 15 Mar 2023 23:32:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1678923128;
+        bh=FEmtlcIqqS89abT0ssoEBTavV/1rty8NOhTw/nMtYX4=;
+        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+        b=mgz6l6/MxdMd4DqHkEWJBJMf7ada+yO0vtLuy22PcKklMd82Ka6ixwwEGqJX1gugR
+         nE21JSPVDDpAXp9CWsJkRBngGVIbfuNzm8ucDtDVOAWvsAOBvqzT+i7Hu9qLJ9hQIA
+         mtLPc8bWd86yo1gmX0OGw8MAWeWfvSzDrk2dSbLG8h7GEhTYeaY/H1LC8NSurFm3vJ
+         fCWYyq9MZbEXBh/+DZhKrctiiuEai4kUwBval2xzyzTUrz3OsEXNs/Gwqg8NCWksof
+         InRGbzzv0o0lqT8VQytv22imatSjsJ6wjx72ZB2xnULWiAyz5RywrGesIX/Q1mAPME
+         jUpq4mHf1yphw==
+From:   Bjorn Andersson <andersson@kernel.org>
+To:     Johan Hovold <johan+linaro@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        vkoul@kernel.org, Rob Herring <robh@kernel.org>,
+        Lee Jones <lee@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Abel Vesa <abel.vesa@linaro.org>,
+        Kishon Vijay Abraham I <kishon@kernel.org>,
+        Andy Gross <agross@kernel.org>
+Cc:     Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-phy@lists.infradead.org
+Subject: Re: (subset) [PATCH v5 0/7] sm8550: Add support for eUSB2 repeater
+Date:   Wed, 15 Mar 2023 16:34:38 -0700
+Message-Id: <167892332564.4030021.4228411970991027965.b4-ty@kernel.org>
+X-Mailer: git-send-email 2.39.2
+In-Reply-To: <20230208190200.2966723-1-abel.vesa@linaro.org>
+References: <20230208190200.2966723-1-abel.vesa@linaro.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert the binding document for adi,adau17x1 from txt to yaml
-so one could validate dt-entries correctly and any future additions
-can go into yaml format. Add address and size cells to example to
-prevent errors regarding reg format.
+On Wed, 8 Feb 2023 21:01:53 +0200, Abel Vesa wrote:
+> This patchset adds support for the eUSB2 repeater found in pmic PM8550B,
+> used along with SM8550. Since there is no dedicated generic framework
+> for eUSB2 repeaters, the most appropriate subsystem to model it is the
+> generic phy. This patchset also adds support for such repeater to the
+> eUSB2 PHY found in SM8550. Basically, the eUSB2 PHY will have its own
+> "phy" which is actually a repeater.
+> 
+> [...]
 
-Signed-off-by: Vijaya Anand <sunrockers8@gmail.com>
-Cc: Daniel Baluta <daniel.baluta@nxp.com>
----
-Changes since v1:
-- added 'Codec' in title to clarify type of devices
-- put compatible devices in lexographic order
-- changed description of clocks
-- changed 'unevaluatedProperties' to 'additionalProperties'
-- changed node names to be generic
+Applied, thanks!
 
----
- .../bindings/sound/adi,adau17x1.txt           | 32 ------------
- .../bindings/sound/adi,adau17x1.yaml          | 52 +++++++++++++++++++
- 2 files changed, 52 insertions(+), 32 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/sound/adi,adau17x1.txt
- create mode 100644 Documentation/devicetree/bindings/sound/adi,adau17x1.yaml
+[6/7] arm64: dts: qcom: pm8550b: Add eUSB2 repeater node
+      commit: fdaa922585f4474c88fbfaa129f8114f38200660
+[7/7] arm64: dts: qcom: sm8550-mtp: Add eUSB2 repeater node
+      commit: 749078e38e1ee28357e8fdcd4eac382a465bd1e7
 
-diff --git a/Documentation/devicetree/bindings/sound/adi,adau17x1.txt b/Documentation/devicetree/bindings/sound/adi,adau17x1.txt
-deleted file mode 100644
-index 1447dec28125..000000000000
---- a/Documentation/devicetree/bindings/sound/adi,adau17x1.txt
-+++ /dev/null
-@@ -1,32 +0,0 @@
--Analog Devices ADAU1361/ADAU1461/ADAU1761/ADAU1961/ADAU1381/ADAU1781
--
--Required properties:
--
-- - compatible:		Should contain one of the following:
--			"adi,adau1361"
--			"adi,adau1461"
--			"adi,adau1761"
--			"adi,adau1961"
--			"adi,adau1381"
--			"adi,adau1781"
--
-- - reg:			The i2c address. Value depends on the state of ADDR0
--			and ADDR1, as wired in hardware.
--
--Optional properties:
-- - clock-names:		If provided must be "mclk".
-- - clocks:		phandle + clock-specifiers for the clock that provides
--			the audio master clock for the device.
--
--Examples:
--#include <dt-bindings/sound/adau17x1.h>
--
--	i2c_bus {
--		adau1361@38 {
--			compatible = "adi,adau1761";
--			reg = <0x38>;
--
--			clock-names = "mclk";
--			clocks = <&audio_clock>;
--		};
--	};
-diff --git a/Documentation/devicetree/bindings/sound/adi,adau17x1.yaml b/Documentation/devicetree/bindings/sound/adi,adau17x1.yaml
-new file mode 100644
-index 000000000000..8ef1e7f6ec91
---- /dev/null
-+++ b/Documentation/devicetree/bindings/sound/adi,adau17x1.yaml
-@@ -0,0 +1,52 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/sound/adi,adau17x1.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title:
-+ Analog Devices ADAU1361/ADAU1461/ADAU1761/ADAU1961/ADAU1381/ADAU1781 Codec
-+
-+maintainers:
-+  - Lars-Peter Clausen <lars@metafoo.de>
-+
-+properties:
-+  compatible:
-+    enum:
-+      - adi,adau1361
-+      - adi,adau1381
-+      - adi,adau1461
-+      - adi,adau1761
-+      - adi,adau1781
-+      - adi,adau1961
-+
-+  reg:
-+    maxItems: 1
-+    description:
-+      The i2c address. Value depends on the state of ADDR0 and ADDR1,
-+      as wired in hardware.
-+
-+  clock-names:
-+    const: mclk
-+
-+  clocks:
-+    items:
-+      - description: provides the audio master clock for the device.
-+
-+required:
-+  - compatible
-+  - reg
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    i2c {
-+      #address-cells = <1>;
-+      #size-cells = <0>;
-+      audio-codec@38 {
-+        compatible = "adi,adau1761";
-+        reg = <0x38>;
-+        clock-names = "mclk";
-+        clocks = <&audio_clock>;
-+      };
-+    };
+Best regards,
 -- 
-2.37.1 (Apple Git-137.1)
-
+Bjorn Andersson <andersson@kernel.org>
