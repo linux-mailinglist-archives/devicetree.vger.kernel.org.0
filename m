@@ -2,172 +2,178 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C3FAD6BBCDF
-	for <lists+devicetree@lfdr.de>; Wed, 15 Mar 2023 20:00:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2AB7F6BBD70
+	for <lists+devicetree@lfdr.de>; Wed, 15 Mar 2023 20:43:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230473AbjCOTAw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Mar 2023 15:00:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37994 "EHLO
+        id S229459AbjCOTnG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Mar 2023 15:43:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43108 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231513AbjCOTAi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Mar 2023 15:00:38 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 79B8CC178;
-        Wed, 15 Mar 2023 12:00:37 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 0F0A761E25;
-        Wed, 15 Mar 2023 19:00:37 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E85A7C433D2;
-        Wed, 15 Mar 2023 19:00:34 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1678906836;
-        bh=m/Dz2eAH8r1EV3V2rwIMfNhkNPorhKim7P/EDMsa3YQ=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=O+P1b+XcKWZKOJGHvyC9nle6hIYaAvxJ4CMKvXS9yhO19Kt6ZvfoUxsRfAbrWiHFB
-         fy9U5Ndnm/2kit/ILOFcKkafM6HXGsf3Z53Osxsp1z2773fCGWydPdfmUUbZTbF+1I
-         kY9Nqs20jHCQzXABamSFNrqdNJgyZa6N3c1tKYeZ2zwpeD9eSNnxi/xzmtR3xD5Zc6
-         KoFKAJbhXO/BeJAdTvsAsv5l7M1+Lsnc1EFX8ngLDVhktqkggSMj2TR0BZAbGoj/S3
-         YyjGkVF+ijjxXOLIhJ/yhU2qYSYCNHmMx3G2//lieY6gR0UGhtR/wuGk0NMM4432zj
-         fslsVc4SJN3sg==
-Date:   Wed, 15 Mar 2023 19:00:32 +0000
-From:   Conor Dooley <conor@kernel.org>
-To:     William Qiu <william.qiu@starfivetech.com>
-Cc:     devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
-        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Emil Renner Berthing <kernel@esmil.dk>
-Subject: Re: [RESEND v6 1/2] dt-bindings: soc: starfive: Add StarFive syscon
- doc
-Message-ID: <043a859e-76fb-436b-9ce1-bc03aeb62ad0@spud>
-References: <20230315055813.94740-1-william.qiu@starfivetech.com>
- <20230315055813.94740-2-william.qiu@starfivetech.com>
+        with ESMTP id S231393AbjCOTnF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Mar 2023 15:43:05 -0400
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1F9DE6A7E;
+        Wed, 15 Mar 2023 12:43:02 -0700 (PDT)
+Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 32FHWBGh009822;
+        Wed, 15 Mar 2023 19:42:18 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=UnNZ0Qza82ZwkIodDa+CZPI1WtPjgaViLzXC+xG7KXM=;
+ b=GrKcb3jTcyKeKoXJgD3dmQ981zcorIM1VswdoAGx5+oEDTWzLPUtxLMz079LJxE6zu5Y
+ oujKGx95bUFB7tW8WWxRzVNH7BMBcRKBoyZugsJ1EQ/thKOlkR6eARoYoCM6pUpz6k+Y
+ 53URSVsbw05wcJAJupadxlfyCPdbYuKZcrcSC3H4v18x0CjREAxqWU+aK7zRo1Tbp6Jn
+ 2nV0eSuHKdwV8oWWknP7C9/ekgfblcPJY1oMfUfpIUE2RhfY3+9bNKlADPV4QbyEQDJx
+ 16YGt/BtwCHxYY4wXshrY1of2XKr9BoBhkG3n6NFO1islieVlNvTEpmnXOP9FL5383q2 8A== 
+Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3pb2csarxp-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Wed, 15 Mar 2023 19:42:18 +0000
+Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
+        by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 32FJgGTf009399
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Wed, 15 Mar 2023 19:42:16 GMT
+Received: from [10.110.29.17] (10.80.80.8) by nalasex01b.na.qualcomm.com
+ (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.41; Wed, 15 Mar
+ 2023 12:42:15 -0700
+Message-ID: <3d332f71-cccd-651a-88b1-9e33a81592e5@quicinc.com>
+Date:   Wed, 15 Mar 2023 12:42:08 -0700
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="MvUt9aa5WIR6VgtF"
-Content-Disposition: inline
-In-Reply-To: <20230315055813.94740-2-william.qiu@starfivetech.com>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.9.1
+Subject: Re: [PATCH v3 00/28] Introduce QC USB SND audio offloading support
+Content-Language: en-US
+To:     Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>,
+        <srinivas.kandagatla@linaro.org>, <mathias.nyman@intel.com>,
+        <perex@perex.cz>, <broonie@kernel.org>, <lgirdwood@gmail.com>,
+        <krzysztof.kozlowski+dt@linaro.org>, <agross@kernel.org>,
+        <Thinh.Nguyen@synopsys.com>, <bgoswami@quicinc.com>,
+        <andersson@kernel.org>, <robh+dt@kernel.org>,
+        <gregkh@linuxfoundation.org>, <tiwai@suse.com>
+CC:     <linux-kernel@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <alsa-devel@alsa-project.org>, <devicetree@vger.kernel.org>,
+        <linux-usb@vger.kernel.org>, <quic_jackp@quicinc.com>,
+        <quic_plai@quicinc.com>
+References: <20230308235751.495-1-quic_wcheng@quicinc.com>
+ <4f8a66c0-398f-5655-3aa7-a59bc9ba56cc@linux.intel.com>
+ <8b2f3ce7-3e0c-bdf0-8d9f-9aeabba09a15@quicinc.com>
+ <a211f26d-a045-0729-871f-248d5fce3f3f@linux.intel.com>
+ <684daf86-6c3f-7310-eebf-4ebfc3c480ca@quicinc.com>
+ <8a37ccd3-f19e-b30d-d736-04e81b49f3a0@linux.intel.com>
+ <0810f951-f4a6-a51d-97e3-43691b05f702@quicinc.com>
+ <b671e263-5cb8-18e5-dc28-648ab1133c6c@linux.intel.com>
+ <14d726a7-6ffc-705c-b012-0c08d7dd7b9b@quicinc.com>
+ <6b811766-cd2a-54c0-d090-640812686a45@linux.intel.com>
+From:   Wesley Cheng <quic_wcheng@quicinc.com>
+In-Reply-To: <6b811766-cd2a-54c0-d090-640812686a45@linux.intel.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01b.na.qualcomm.com (10.47.209.197)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: ZZbgBR25cZPwlBw3awt6TXvZlDFYrySt
+X-Proofpoint-GUID: ZZbgBR25cZPwlBw3awt6TXvZlDFYrySt
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.254,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
+ definitions=2023-03-15_10,2023-03-15_01,2023-02-09_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015
+ lowpriorityscore=0 spamscore=0 mlxscore=0 adultscore=0 impostorscore=0
+ malwarescore=0 phishscore=0 suspectscore=0 mlxlogscore=999
+ priorityscore=1501 bulkscore=0 classifier=spam adjust=0 reason=mlx
+ scancount=1 engine=8.12.0-2302240000 definitions=main-2303150164
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Pierre,
 
---MvUt9aa5WIR6VgtF
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On 3/15/2023 7:30 AM, Pierre-Louis Bossart wrote:
+> Hi Wesley,
+> 
+>> Sorry made a mistake on the diagram.  There is no connection from
+>> SOC-USB to the APR/GLINK.  The Q6USB driver will be the one that is
+>> going to configure some of the Q6AFE ports along withe the Q6AFE DAI
+>> driver.
+>>
+>> |            ASoC
+>> ----------------------------------
+>> |  _________________________
+>> | |sm8250 platform card     |
+>> | |_________________________|
+>> |         |           |
+>> |      ___V____   ____V____
+>> |     |Q6USB   | |Q6AFE    |  #5
+>> |     |"codec" | |"cpu"    |
+>> |     |________| |_________|
+>> |         ^  ^        ^
+>> |      #6 |  |________|
+>> |      ___V____     |
+>> |     |SOC-USB |    |
+>> #7    |        |    |
+>> ----->|________|    |
+>> ---                 |
+>> | |                 |
+>> | |    _____________V________
+>> | |   |APR/GLINK             |
+>> | |   |______________________|
+>> | |              ^
+>> | | #8           |
+>> | |   ___________V___________
+>> | |->|audio DSP              |
+>> |    |_______________________|
+>> |
+>> |
+>>
+>>>>
+> 
+> Makes sense now, thank you for the clarification.
+> 
+> I'll have to dig more in this 'soc-usb' block, it's clearly a key
+> component that will have to maintain a consistent state across two
+> different parts of the stack and deal with probe/remove/shutdown.
+> 
+>>> My initial thought was to add a 'DSP offload' PCM to the USB card, you
+>>> added a "USB offload" PCM to the DSP card. Nice logical swap!
+>>>
+>>> Your proposal might be easier in practice since there's typically a
+>>> vendor-specific configuration file (UCM or custom) file for the DSP,
+>>> where USB information can be added.
+>>>
+>>> It's more problematic to change a generic USB card as we know it today
+>>> and bolt vendor-specific DSP information on top.
+>>>
+>>> The only open I have with your option is that there are still two
+>>> control paths to e.g. set the volume. It would be so much easier for
+>>> userspace if there was a single volume control no matter what path is
+>>> used for data, or make sure the kcontrols are 'mirrored' somehow. If we
+>>> found a way to address this issue that would be ideal.
+>>>
+>>
+>> Got it.  Let me look to see if that is something we can address/add.  I
+>> think the current implementation is that USB SND will expose some mixer
+>> controls based on the UAC descriptor parsing.  Then when they want to
+>> change the volume (for example) it will result in a USB SETUP transaction.
+>>
+>> So USB SND will eventually be the entity controlling these changes.
+> 
+> That's probably ok then, am I getting this right that the the DSP card
+> would not expose any USB-related kcontrols then, i.e. the ONLY path to
+> change volumes, etc.,  would through the regular USB card kcontrols?
+> 
+> That would limit the changes in the platform sound card to the addition
+> of a PCM USB device.
 
-On Wed, Mar 15, 2023 at 01:58:12PM +0800, William Qiu wrote:
-> Add documentation to describe StarFive System Controller Registers.
->=20
-> Signed-off-by: William Qiu <william.qiu@starfivetech.com>
+Yes, that's correct.  There won't be any exposed USB volume controls 
+from the DSP card.
 
-I thought I'd already left an R-b tag against this, but w/e, here it is
-again:
-Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
-
-I'll pick this one up once either Krzysztof or Rob have reviewed it.
-
-Cheers,
-Conor.
-
-> ---
->  .../soc/starfive/starfive,jh7110-syscon.yaml  | 41 +++++++++++++++++++
->  MAINTAINERS                                   |  5 +++
->  2 files changed, 46 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/soc/starfive/starfi=
-ve,jh7110-syscon.yaml
->=20
-> diff --git a/Documentation/devicetree/bindings/soc/starfive/starfive,jh71=
-10-syscon.yaml b/Documentation/devicetree/bindings/soc/starfive/starfive,jh=
-7110-syscon.yaml
-> new file mode 100644
-> index 000000000000..ae7f1d6916af
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/soc/starfive/starfive,jh7110-sysc=
-on.yaml
-> @@ -0,0 +1,41 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/soc/starfive/starfive,jh7110-syscon.y=
-aml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: StarFive JH7110 SoC system controller
-> +
-> +maintainers:
-> +  - William Qiu <william.qiu@starfivetech.com>
-> +
-> +description: |
-> +  The StarFive JH7110 SoC system controller provides register informatio=
-n such
-> +  as offset, mask and shift to configure related modules such as MMC and=
- PCIe.
-> +
-> +properties:
-> +  compatible:
-> +    items:
-> +      - enum:
-> +          - starfive,jh7110-aon-syscon
-> +          - starfive,jh7110-stg-syscon
-> +          - starfive,jh7110-sys-syscon
-> +      - const: syscon
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    syscon@10240000 {
-> +        compatible =3D "starfive,jh7110-stg-syscon", "syscon";
-> +        reg =3D <0x10240000 0x1000>;
-> +    };
-> +
-> +...
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index 958b7ec118b4..fdad60cc9f2e 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -19964,6 +19964,11 @@ S:	Supported
->  F:	Documentation/devicetree/bindings/rng/starfive*
->  F:	drivers/char/hw_random/jh7110-trng.c
->=20
-> +STARFIVE JH7110 SYSCON
-> +M:	William Qiu <william.qiu@starfivetech.com>
-> +S:	Supported
-> +F:	Documentation/devicetree/bindings/soc/starfive/starfive,jh7110-syscon=
-=2Eyaml
-> +
->  STATIC BRANCH/CALL
->  M:	Peter Zijlstra <peterz@infradead.org>
->  M:	Josh Poimboeuf <jpoimboe@kernel.org>
-> --
-> 2.34.1
->=20
-
---MvUt9aa5WIR6VgtF
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZBIV0AAKCRB4tDGHoIJi
-0ncRAP9N8OlC2y/fRbeW1DcwuUBENLFl90G1z5d28plldK4JLQD9GCVw2YMd1xU0
-xL5j+vQM1pgeWmLjKkA8I9ZcBKzyrgg=
-=f5ML
------END PGP SIGNATURE-----
-
---MvUt9aa5WIR6VgtF--
+Thanks
+Wesley Cheng
