@@ -2,71 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 179166BAF5E
-	for <lists+devicetree@lfdr.de>; Wed, 15 Mar 2023 12:35:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 31FF56BAF7B
+	for <lists+devicetree@lfdr.de>; Wed, 15 Mar 2023 12:48:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231974AbjCOLfr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Mar 2023 07:35:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60054 "EHLO
+        id S231465AbjCOLsQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Mar 2023 07:48:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54004 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231504AbjCOLf1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Mar 2023 07:35:27 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 62D691E9DF;
-        Wed, 15 Mar 2023 04:34:53 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        with ESMTP id S230377AbjCOLsP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Mar 2023 07:48:15 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C17B81C5AC;
+        Wed, 15 Mar 2023 04:48:13 -0700 (PDT)
+Received: from localhost (unknown [188.24.156.231])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest SHA256)
         (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 6BA81B818E7;
-        Wed, 15 Mar 2023 11:34:50 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AAF2EC433D2;
-        Wed, 15 Mar 2023 11:34:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-        s=korg; t=1678880089;
-        bh=DkN8+5TAyEZUWL+rBe778x9Ih1mzAhT3eM0Oe0+aTXM=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=KH+101ZMTqJgfpFD12xDL+3dY8j3RGXchEriC91Rd2CoVCcIrTnBKqyFvsKfckuLN
-         DM20LGsFMwiuwazW8rNdWc/A2JHLAAlFQ7KUzKe3p+QNQ+oaHkh1dC8HD3LLLFvL0S
-         C5bzIT9xOon46lCrkkzLVL+eX0i6aVbPxzsKyLFU=
-Date:   Wed, 15 Mar 2023 12:34:46 +0100
-From:   Greg KH <gregkh@linuxfoundation.org>
-To:     Julien Panis <jpanis@baylibre.com>
-Cc:     lee@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, corbet@lwn.net, arnd@arndb.de,
-        derek.kiernan@xilinx.com, dragan.cvetic@xilinx.com,
-        eric.auger@redhat.com, jgg@ziepe.ca, razor@blackwall.org,
-        stephen@networkplumber.org, davem@davemloft.net,
-        christian.koenig@amd.com, contact@emersion.fr,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-doc@vger.kernel.org, sterzik@ti.com, u-kumar1@ti.com,
-        eblanc@baylibre.com, jneanne@baylibre.com
-Subject: Re: [PATCH v2 4/4] misc: tps6594-pfsm: Add driver for TI TPS6594 PFSM
-Message-ID: <ZBGtVuI6YTfENUNr@kroah.com>
-References: <20230315110736.35506-1-jpanis@baylibre.com>
- <20230315110736.35506-5-jpanis@baylibre.com>
+        (Authenticated sender: cristicc)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 9185666003AC;
+        Wed, 15 Mar 2023 11:48:11 +0000 (GMT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1678880891;
+        bh=QMdRoHZDA4Dzb4ZItQ6gCETIH96B+vuVwaf66nkbnMQ=;
+        h=From:To:Cc:Subject:Date:From;
+        b=bj2xu6gGH92QEICLrGXFl386kUFglMAxEePZm/i3SmcJEKbpiM06LNDvC992CaPby
+         NM5t+sCRjcezTbr2NabWD08SWWwBmtibVsTapQxEK5mmB3qBMqm6A3ZR3zGvTqK2X/
+         kq1tpf4ei/myrqWjdSjmx33y1vbA3Buej4dDpK5R58c44aTHtliZQbl8QPa5lGIgMm
+         1Wde+f/mne8pQmnJ8dV2Z1/44cIZWLAcw0wV8eDw5pqm2mchbH57paOvrdGTazIPO3
+         Haypn6anq0fRgT56oE4lMtcT9wJBSs1PwqkREBZoFgiIm6TTJ8E18JZQyaJqgJ6+sB
+         vwoxdhZxRe/tA==
+From:   Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
+To:     Sudeep Holla <sudeep.holla@arm.com>,
+        Cristian Marussi <cristian.marussi@arm.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Nicolas Frattaroli <frattaroli.nicolas@gmail.com>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Daniel Drake <drake@endlessm.com>,
+        Katsuhiro Suzuki <katsuhiro@katsuster.net>
+Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org,
+        alsa-devel@alsa-project.org, linux-rockchip@lists.infradead.org,
+        linux-riscv@lists.infradead.org, kernel@collabora.com
+Subject: [PATCH 00/11] Enable I2S support for RK3588/RK3588S SoCs
+Date:   Wed, 15 Mar 2023 13:47:55 +0200
+Message-Id: <20230315114806.3819515-1-cristian.ciocaltea@collabora.com>
+X-Mailer: git-send-email 2.39.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230315110736.35506-5-jpanis@baylibre.com>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Mar 15, 2023 at 12:07:36PM +0100, Julien Panis wrote:
-> +// SPDX-License-Identifier: GPL-2.0-or-later
+There are five I2S/PCM/TDM controllers and two I2S/PCM controllers embedded 
+in the RK3588 and RK3588S SoCs. Furthermore, RK3588 provides four additional
+I2S/PCM/TDM controllers.
 
-Are you sure about "or-later"?  (I have to ask.)
+This patch series adds the required device tree nodes to support all the above.
 
-> +/*
-> + * PFSM (Pre-configurable Finite State Machine) driver for TI TPS6594/TPS6593/LP8764X PMICs
-> + *
-> + * Copyright (C) 2022 BayLibre Incorporated - https://www.baylibre.com/
+Additionally, it enables analog audio support for the Rock 5B SBC, which has
+been used to test both audio playback and recording.
 
-It's 2023 now :)
+Note that some of the DT bindings fixes in this series are not particularly
+related to I2S, but are required for a proper dtbs_check validation.
+
+Cristian Ciocaltea (11):
+  dt-bindings: firmware: arm,scmi: Document assigned-clocks and
+    assigned-clock-rates
+  dt-bindings: serial: snps-dw-apb-uart: Relax dma-names order
+    constraint
+  ASoC: dt-bindings: everest,es8316: Document audio graph port
+  ASoC: dt-bindings: rockchip: Document audio graph port
+  ASoC: dt-bindings: rockchip: i2s-tdm: Document audio graph port
+  ASoC: dt-bindings: rockchip: i2s-tdm: Document power-domains
+  ASoC: dt-bindings: rockchip: Add compatible for RK3588
+  ASoC: rockchip: i2s: Add compatible for RK3588
+  arm64: dts: rockchip: rk3588s: Add I2S nodes
+  arm64: dts: rockchip: rk3588: Add I2S nodes
+  arm64: dts: rockchip: rk3588-rock-5b: Add analog audio
+
+ .../bindings/firmware/arm,scmi.yaml           |   3 +
+ .../bindings/serial/snps-dw-apb-uart.yaml     |  10 +-
+ .../bindings/sound/everest,es8316.yaml        |   4 +
+ .../bindings/sound/rockchip,i2s-tdm.yaml      |   7 +
+ .../bindings/sound/rockchip-i2s.yaml          |   5 +
+ .../boot/dts/rockchip/rk3588-rock-5b.dts      |  62 ++++++++
+ arch/arm64/boot/dts/rockchip/rk3588.dtsi      |  68 ++++++++
+ arch/arm64/boot/dts/rockchip/rk3588s.dtsi     | 148 ++++++++++++++++++
+ sound/soc/rockchip/rockchip_i2s.c             |   1 +
+ 9 files changed, 305 insertions(+), 3 deletions(-)
+
+-- 
+2.39.1
 
