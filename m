@@ -2,112 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 662316BAA41
-	for <lists+devicetree@lfdr.de>; Wed, 15 Mar 2023 09:00:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0F4EE6BAA51
+	for <lists+devicetree@lfdr.de>; Wed, 15 Mar 2023 09:02:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231919AbjCOIAa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Mar 2023 04:00:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40950 "EHLO
+        id S231945AbjCOIB5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Mar 2023 04:01:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43594 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231741AbjCOIAU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Mar 2023 04:00:20 -0400
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2F4576C184;
-        Wed, 15 Mar 2023 01:00:17 -0700 (PDT)
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 32F80407054869;
-        Wed, 15 Mar 2023 03:00:04 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1678867205;
-        bh=o1Xy3YzcsNOmVloP5gcFnX+KR+X0F0/tjFEx4dNex18=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=I2PP6IQdxow197DImG2XWC2RMd3yjZ52TsJQRKa8JT7FmPdcqwA962nMFrMkbTS1s
-         hGnZrY/SDVonMifzrgzfjcgCgJtaQaoh63q8DiBLnsihWZQV+RaS3sE73GWkuq2c7r
-         DuuUyaxbVstIlbYHY3i1JawJSz7Mtyc+amVenLHU=
-Received: from DLEE109.ent.ti.com (dlee109.ent.ti.com [157.170.170.41])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 32F803c8023501
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Wed, 15 Mar 2023 03:00:04 -0500
-Received: from DLEE108.ent.ti.com (157.170.170.38) by DLEE109.ent.ti.com
- (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Wed, 15
- Mar 2023 03:00:02 -0500
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE108.ent.ti.com
- (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
- Frontend Transport; Wed, 15 Mar 2023 03:00:02 -0500
-Received: from uda0492258.dhcp.ti.com (ileaxei01-snat.itg.ti.com [10.180.69.5])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 32F7xmKd042755;
-        Wed, 15 Mar 2023 02:59:58 -0500
-From:   Siddharth Vadapalli <s-vadapalli@ti.com>
-To:     <davem@davemloft.net>, <edumazet@google.com>, <kuba@kernel.org>,
-        <pabeni@redhat.com>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski@linaro.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <nsekhar@ti.com>,
-        <rogerq@kernel.org>
-CC:     <netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <srk@ti.com>,
-        <s-vadapalli@ti.com>
-Subject: [PATCH net-next 2/2] dt-bindings: net: ti: k3-am654-cpsw-nuss: Add J784S4 CPSW9G support
-Date:   Wed, 15 Mar 2023 13:29:48 +0530
-Message-ID: <20230315075948.1683120-3-s-vadapalli@ti.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20230315075948.1683120-1-s-vadapalli@ti.com>
-References: <20230315075948.1683120-1-s-vadapalli@ti.com>
+        with ESMTP id S231892AbjCOIBv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Mar 2023 04:01:51 -0400
+Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com [IPv6:2a00:1450:4864:20::434])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5F0106FFC2
+        for <devicetree@vger.kernel.org>; Wed, 15 Mar 2023 01:01:44 -0700 (PDT)
+Received: by mail-wr1-x434.google.com with SMTP id j2so16430361wrh.9
+        for <devicetree@vger.kernel.org>; Wed, 15 Mar 2023 01:01:44 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1678867303;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=5wswi1DyAuYzJFWHWsqSArP17cSfb+M+N1FHnH+AfhA=;
+        b=bXvkz/yX64lIDsHFesL+52hM15LEw2hh1hd9XLiSKXK5vxE8pVYfQHdqOkZ0FMGcXc
+         F4R5ESNK1Tk/rqBaN0eR6oFsui0szxNHXCWqekofsh7DM5r+IptlZ9qE6WEFyLlaf6Hl
+         KyYDpbpee/rxB5EBAcwllKXsRlAQjufynXVfD1GFQI7wSV+pAvgHZ/75PWUPIUueSqqe
+         X8oXiF17AMiftJmvXhVXWltm3IFGEYPlkPuMRzwSea4ejcU7QjVql4IPqo5vAqru7CPX
+         VBlxrDOKNoKvMyfxoC+fMZHuoZV9ch6sgrWqlaARYDZJfBWMuQOEw47ZkZv/mCkjtBDH
+         sFBg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1678867303;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=5wswi1DyAuYzJFWHWsqSArP17cSfb+M+N1FHnH+AfhA=;
+        b=vr9o9ig8JfDI/117jIwLtx50c4darYgluN6pQLLTTD3GTzM10lXEcjocwd9+abejj1
+         fXoHE//K2wT60f0AKhaexsSFJpQeIhpvDJVCsI+YamD4P1ENrQQmXXd2Fc2wtz8KKAgO
+         9uy/kgxmhNK1wkdiAmkR+B+H6xJKLyKOWTjbNL9E0bolrXmaGfyZ06iucj2EbUNBciE8
+         DL4UYgAleMxTzvhQUwLiWU51GCw0ERMxQgfHlm3iSyrxGQXPmjb3XR6thBIuKXcTyQul
+         sVIt0rijeN5MVCn5U7II/MvjM9EJslEYzZKiNbuctgxiRV5RLRbdFkqEMX27F0UuBMmN
+         Or3Q==
+X-Gm-Message-State: AO0yUKWpnJlushtFSWonfepTz0iKNvMQhFIoXoBhm+50U0CAJDgD7Gkd
+        vfi7M4811s2n8nKTUCUMlBHQqv/O6KoH0w0eaatj7g==
+X-Google-Smtp-Source: AK7set/zDwpw5tmgpQkQE93auoU6m0X9eMFuTR84C2UImSDMGqPTyR5wis50nno6pRellvCAciITc3dcaQs8FlsxmTE=
+X-Received: by 2002:a5d:65cc:0:b0:2ce:a3a6:79f6 with SMTP id
+ e12-20020a5d65cc000000b002cea3a679f6mr365503wrw.4.1678867300640; Wed, 15 Mar
+ 2023 01:01:40 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_PASS,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+References: <20230314-topic-2290_compats-v1-0-47e26c3c0365@linaro.org>
+In-Reply-To: <20230314-topic-2290_compats-v1-0-47e26c3c0365@linaro.org>
+From:   Bhupesh Sharma <bhupesh.sharma@linaro.org>
+Date:   Wed, 15 Mar 2023 13:31:29 +0530
+Message-ID: <CAH=2NtxHrk4XnFAzUD82ngqihsEPHKztz_7OJJ36U4X=DA9wGQ@mail.gmail.com>
+Subject: Re: [PATCH 0/6] QCM2290 compatibles
+To:     Konrad Dybcio <konrad.dybcio@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Prakash Ranjan <saiprakash.ranjan@codeaurora.org>,
+        Vinod Koul <vkoul@kernel.org>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Wesley Cheng <quic_wcheng@quicinc.com>,
+        Amit Kucheria <amitk@kernel.org>,
+        Thara Gopinath <thara.gopinath@gmail.com>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Zhang Rui <rui.zhang@intel.com>, linux-arm-msm@vger.kernel.org,
+        linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, dmaengine@vger.kernel.org,
+        linux-mmc@vger.kernel.org, linux-usb@vger.kernel.org,
+        linux-pm@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Update bindings for TI K3 J784S4 SoC which contains 9 ports (8 external
-ports) CPSW9G module and add compatible for it.
+On Tue, 14 Mar 2023 at 18:23, Konrad Dybcio <konrad.dybcio@linaro.org> wrote:
+>
+> Document a couple of compatibles for IPs found on the QCM2290 that don't
+> require any specific driver changes
+>
+> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+> ---
+> Konrad Dybcio (6):
+>       dt-bindings: watchdog: qcom-wdt: add QCM2290
+>       dt-bindings: dmaengine: qcom: gpi: Add QCM2290 GPI DMA
+>       dt-bindings: nvmem: Add compatible for QCM2290
+>       dt-bindings: mmc: sdhci-msm: Document QCM2290 SDHCI
+>       dt-bindings: usb: dwc3: Add QCM2290 compatible
+>       dt-bindings: thermal: tsens: Add QCM2290
+>
+>  Documentation/devicetree/bindings/dma/qcom,gpi.yaml       | 1 +
+>  Documentation/devicetree/bindings/mmc/sdhci-msm.yaml      | 1 +
+>  Documentation/devicetree/bindings/nvmem/qcom,qfprom.yaml  | 1 +
+>  Documentation/devicetree/bindings/thermal/qcom-tsens.yaml | 1 +
+>  Documentation/devicetree/bindings/usb/qcom,dwc3.yaml      | 2 ++
+>  Documentation/devicetree/bindings/watchdog/qcom-wdt.yaml  | 1 +
+>  6 files changed, 7 insertions(+)
+> ---
+> base-commit: ec0fa9a0a6fac454745c930bdb8619d0a354bac9
+> change-id: 20230314-topic-2290_compats-5bec96afeeb0
+>
+> Best regards,
+> --
+> Konrad Dybcio <konrad.dybcio@linaro.org>
 
-Signed-off-by: Siddharth Vadapalli <s-vadapalli@ti.com>
----
- .../devicetree/bindings/net/ti,k3-am654-cpsw-nuss.yaml      | 6 +++++-
- 1 file changed, 5 insertions(+), 1 deletion(-)
+Thanks for posting this, for the series (with the assumption that the
+board dts will follow soon):
 
-diff --git a/Documentation/devicetree/bindings/net/ti,k3-am654-cpsw-nuss.yaml b/Documentation/devicetree/bindings/net/ti,k3-am654-cpsw-nuss.yaml
-index 6f56add1919b..306709bcc9e9 100644
---- a/Documentation/devicetree/bindings/net/ti,k3-am654-cpsw-nuss.yaml
-+++ b/Documentation/devicetree/bindings/net/ti,k3-am654-cpsw-nuss.yaml
-@@ -59,6 +59,7 @@ properties:
-       - ti,j7200-cpswxg-nuss
-       - ti,j721e-cpsw-nuss
-       - ti,j721e-cpswxg-nuss
-+      - ti,j784s4-cpswxg-nuss
- 
-   reg:
-     maxItems: 1
-@@ -197,7 +198,9 @@ allOf:
-         properties:
-           compatible:
-             contains:
--              const: ti,j721e-cpswxg-nuss
-+              enum:
-+                - ti,j721e-cpswxg-nuss
-+                - ti,j784s4-cpswxg-nuss
-     then:
-       properties:
-         ethernet-ports:
-@@ -217,6 +220,7 @@ allOf:
-               enum:
-                 - ti,j7200-cpswxg-nuss
-                 - ti,j721e-cpswxg-nuss
-+                - ti,j784s4-cpswxg-nuss
-     then:
-       properties:
-         ethernet-ports:
--- 
-2.25.1
-
+Reviewed-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
