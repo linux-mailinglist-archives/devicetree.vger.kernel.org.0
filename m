@@ -2,71 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0A0AA6BABDE
-	for <lists+devicetree@lfdr.de>; Wed, 15 Mar 2023 10:14:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 07F5E6BAC14
+	for <lists+devicetree@lfdr.de>; Wed, 15 Mar 2023 10:24:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232064AbjCOJOn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Mar 2023 05:14:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37170 "EHLO
+        id S231759AbjCOJY3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Mar 2023 05:24:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54564 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231481AbjCOJOV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Mar 2023 05:14:21 -0400
-Received: from mail-wm1-x336.google.com (mail-wm1-x336.google.com [IPv6:2a00:1450:4864:20::336])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D65F67C943
-        for <devicetree@vger.kernel.org>; Wed, 15 Mar 2023 02:13:52 -0700 (PDT)
-Received: by mail-wm1-x336.google.com with SMTP id m18-20020a05600c3b1200b003ed2a3d635eso662238wms.4
-        for <devicetree@vger.kernel.org>; Wed, 15 Mar 2023 02:13:52 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1678871630;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=0wZm7ql20rMJKCtfDir4y8dhV/8MRg5f2HHVArWMyHE=;
-        b=msgjES3Ds6zTYgNAad7SZAc3slkU+646dKpyVPzCi3BOyNQHL52Pjy58omFPaDKLzN
-         f7o4QmohTE3c2vrtJhMrBe83tKMgFJg9A2/Xop1/Q3XVNhzE6/uJHe/hzO5ikj642L43
-         62Rr5V5er+wTb70rsQAPTAwntaPEAMr96sUcXY13Qb3vJ3ojQlNGU0Madlu+OVhuyQmZ
-         lBnQlp61UOV8R70SmKJzPKOqiuXGIxowAjx1VpAA/FPXA8G0X16pbEut/E63MdU2LXWx
-         Mz0pM2njpHAQP2IMA2EPAAd5ACdak4gEBObotJe4UnEPAHbkjiYmItPcNF+ZTW722gjK
-         nUZg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678871630;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=0wZm7ql20rMJKCtfDir4y8dhV/8MRg5f2HHVArWMyHE=;
-        b=Xf4mHtuHVjtiIvSVhEqVBGaiCJ1xcxrGoWGvmLCbZ0+aTVyH8SSkeqKbGQB57MJDRl
-         3D8XjWLpmFOBJxKFM72vu5/yzN44dfqzu1+Gw0XXEtD+G10Ur2oxGS834hkititZSbdS
-         FUSOYi2tgY5UDRJFc8djZgSfzv4Lpl/hhMAN+ZZGL065ZzMwkW+WveDr3EU4xTw7jdJx
-         X1bCqjMQdnt4i1tOf/jaZxOdIGkZOW7bYwmu+ysbAE4S+fX8bxgX+UbZymrG5XgGyGXn
-         RCysDQ0JAyEklJzRba82bPbw9HhRXjQl4Sn4ORTe9eYs1BPOdE6p7d1xEKgLjwwiiRHB
-         bScQ==
-X-Gm-Message-State: AO0yUKWvjImIUdel+7CAzPzI3uJbc068A5RX5sxwSGbtYfu0tIkYi+co
-        YgIDyNbXZgImZLtaVSukvXqKHw==
-X-Google-Smtp-Source: AK7set9WvwBXpYyvhdXU6tW5hUtBLFeDNVy92t8NWESSmxzsb3T0IUxy2e0vq8po0ilcv1sJ1Ed4VQ==
-X-Received: by 2002:a05:600c:35cd:b0:3ed:1ea4:e5bb with SMTP id r13-20020a05600c35cd00b003ed1ea4e5bbmr12580184wmq.32.1678871630268;
-        Wed, 15 Mar 2023 02:13:50 -0700 (PDT)
-Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:52eb:f6ff:feb3:451a])
-        by smtp.gmail.com with ESMTPSA id y16-20020a05600c365000b003ed23845666sm1136212wmq.45.2023.03.15.02.13.49
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 15 Mar 2023 02:13:49 -0700 (PDT)
-From:   Neil Armstrong <neil.armstrong@linaro.org>
-To:     Fabio Estevam <festevam@denx.de>
-Cc:     sam@ravnborg.org, krzysztof.kozlowski+dt@linaro.org,
-        robh+dt@kernel.org, devicetree@vger.kernel.org,
-        dri-devel@lists.freedesktop.org, CPHEALY@gmail.com
-In-Reply-To: <20230314111724.1520178-1-festevam@denx.de>
-References: <20230314111724.1520178-1-festevam@denx.de>
-Subject: Re: [PATCH 1/2] dt-bindings: display: seiko,43wvf1g: Add the
- 'enable-gpios' property
-Message-Id: <167887162959.2174720.18189027719777152587.b4-ty@linaro.org>
-Date:   Wed, 15 Mar 2023 10:13:49 +0100
+        with ESMTP id S231927AbjCOJY1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Mar 2023 05:24:27 -0400
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E0B2822A1A;
+        Wed, 15 Mar 2023 02:24:20 -0700 (PDT)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 32F9OD5V076003;
+        Wed, 15 Mar 2023 04:24:13 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1678872253;
+        bh=kN5HfLaSDZw2gaUqS4ucdoReUGJEGmout9fy809fv6o=;
+        h=From:To:CC:Subject:Date;
+        b=b3BX8snHa1faIoUo8QBr+GbwARRcAahOJ9P4DV4DiwdUsJ/l7ZxJn3kw8xwcz4jrw
+         aCg22h/UgxGCNy0RWCHo9sBSTfBY3/EROcesdcbUwoaJjnVvfAUOvir8PLFC5kTO0j
+         QfixD2+hM7+FPgzzOdzZBWN9/q+65w0xe7UphR+Y=
+Received: from DFLE103.ent.ti.com (dfle103.ent.ti.com [10.64.6.24])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 32F9ODAj022902
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Wed, 15 Mar 2023 04:24:13 -0500
+Received: from DFLE108.ent.ti.com (10.64.6.29) by DFLE103.ent.ti.com
+ (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Wed, 15
+ Mar 2023 04:24:12 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE108.ent.ti.com
+ (10.64.6.29) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
+ Frontend Transport; Wed, 15 Mar 2023 04:24:12 -0500
+Received: from uda0492258.dhcp.ti.com (ileaxei01-snat2.itg.ti.com [10.180.69.6])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 32F9O9oi071738;
+        Wed, 15 Mar 2023 04:24:09 -0500
+From:   Siddharth Vadapalli <s-vadapalli@ti.com>
+To:     <vkoul@kernel.org>, <kishon@kernel.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski@linaro.org>,
+        <krzysztof.kozlowski+dt@linaro.org>
+CC:     <linux-phy@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <srk@ti.com>,
+        <s-vadapalli@ti.com>
+Subject: [PATCH] dt-bindings: phy: ti: phy-gmii-sel: Add support for J784S4 CPSW9G
+Date:   Wed, 15 Mar 2023 14:54:08 +0530
+Message-ID: <20230315092408.1722114-1-s-vadapalli@ti.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.12.1
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_PASS,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -74,21 +65,52 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+The CPSW9G instance of CPSW Ethernet Switch on TI's J784S4 SoC supports
+additional PHY modes like QSGMII. Add a compatible for it.
 
-On Tue, 14 Mar 2023 08:17:23 -0300, Fabio Estevam wrote:
-> Add an optional 'enable-gpios' property that can be used to turn on/off
-> the display.
-> 
-> 
+Enable the use of "ti,qsgmii-main-ports" property for J784S4 CPSW9G.
 
-Thanks, Applied to https://anongit.freedesktop.org/git/drm/drm-misc.git (drm-misc-next-fixes)
+Signed-off-by: Siddharth Vadapalli <s-vadapalli@ti.com>
+---
+ Documentation/devicetree/bindings/phy/ti,phy-gmii-sel.yaml | 4 ++++
+ 1 file changed, 4 insertions(+)
 
-[1/2] dt-bindings: display: seiko,43wvf1g: Add the 'enable-gpios' property
-      https://cgit.freedesktop.org/drm/drm-misc/commit/?id=1afdbd475adc609d829e560389d33eb90501660f
-[2/2] drm/panel: seiko-43wvf1g: Add the 'enable-gpios' property
-      https://cgit.freedesktop.org/drm/drm-misc/commit/?id=e2945e6c5111726536c6046eaa1b840636e066a8
-
+diff --git a/Documentation/devicetree/bindings/phy/ti,phy-gmii-sel.yaml b/Documentation/devicetree/bindings/phy/ti,phy-gmii-sel.yaml
+index 6d46f57fa1b4..3f2c5e2a11d5 100644
+--- a/Documentation/devicetree/bindings/phy/ti,phy-gmii-sel.yaml
++++ b/Documentation/devicetree/bindings/phy/ti,phy-gmii-sel.yaml
+@@ -55,6 +55,7 @@ properties:
+       - ti,am654-phy-gmii-sel
+       - ti,j7200-cpsw5g-phy-gmii-sel
+       - ti,j721e-cpsw9g-phy-gmii-sel
++      - ti,j784s4-cpsw9g-phy-gmii-sel
+ 
+   reg:
+     maxItems: 1
+@@ -87,6 +88,7 @@ allOf:
+               - ti,am654-phy-gmii-sel
+               - ti,j7200-cpsw5g-phy-gmii-sel
+               - ti,j721e-cpsw9g-phy-gmii-sel
++              - ti,j784s4-cpsw9g-phy-gmii-sel
+     then:
+       properties:
+         '#phy-cells':
+@@ -113,6 +115,7 @@ allOf:
+           contains:
+             enum:
+               - ti,j721e-cpsw9g-phy-gmii-sel
++              - ti,j784s4-cpsw9g-phy-gmii-sel
+     then:
+       properties:
+         ti,qsgmii-main-ports:
+@@ -130,6 +133,7 @@ allOf:
+               enum:
+                 - ti,j7200-cpsw5g-phy-gmii-sel
+                 - ti,j721e-cpsw9g-phy-gmii-sel
++                - ti,j784s4-cpsw9g-phy-gmii-sel
+     then:
+       properties:
+         ti,qsgmii-main-ports: false
 -- 
-Neil
+2.25.1
 
