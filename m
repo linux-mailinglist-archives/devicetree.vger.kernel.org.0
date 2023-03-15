@@ -2,73 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8D01B6BA818
-	for <lists+devicetree@lfdr.de>; Wed, 15 Mar 2023 07:44:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 096616BA83A
+	for <lists+devicetree@lfdr.de>; Wed, 15 Mar 2023 07:45:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231428AbjCOGoC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Mar 2023 02:44:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58516 "EHLO
+        id S231517AbjCOGpC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Mar 2023 02:45:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58548 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231368AbjCOGoA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Mar 2023 02:44:00 -0400
-Received: from mail-ed1-x536.google.com (mail-ed1-x536.google.com [IPv6:2a00:1450:4864:20::536])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 20F812CC6C
-        for <devicetree@vger.kernel.org>; Tue, 14 Mar 2023 23:43:38 -0700 (PDT)
-Received: by mail-ed1-x536.google.com with SMTP id w9so636057edc.3
-        for <devicetree@vger.kernel.org>; Tue, 14 Mar 2023 23:43:38 -0700 (PDT)
+        with ESMTP id S231563AbjCOGoc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Mar 2023 02:44:32 -0400
+Received: from mail-ed1-x52d.google.com (mail-ed1-x52d.google.com [IPv6:2a00:1450:4864:20::52d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 51E9B37B6E
+        for <devicetree@vger.kernel.org>; Tue, 14 Mar 2023 23:44:02 -0700 (PDT)
+Received: by mail-ed1-x52d.google.com with SMTP id y4so41972607edo.2
+        for <devicetree@vger.kernel.org>; Tue, 14 Mar 2023 23:44:02 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1678862616;
+        d=linaro.org; s=google; t=1678862637;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=bOa0WQsy6rjgPrmZmoGvG+kj2BjHn9uHAJOnHryaHDE=;
-        b=W53RfkmTAM+krIrvhhjC7t3aQVcpgwsBWYDxifRoEGjAQG30P46JqbEphXpWsFkX1I
-         gNULgXIuqyQu+TRVwtzRSypJ6kLBZYgoP/D/uqlSrmODKjPGbDNsvXuCd2PsDMY+XLRy
-         z7UDry8hpQqOCqfr+2bKY5QuaFcsP26t3LCD82uCYJmbyb/mGVDCvhTwE11E+mDKCFUt
-         ATZPwiC7gp8vUa3nSR3efYYi3vAv8YGf433WGubqQqFm5t/Ten2X0j5lpj33ymhVE21r
-         M3K9VQDsbjk2YJm9M4772Ygc1vBCiHXJGQOo0dgPMfbzZFBkFzAqvkuvjnNxdwa7/cOs
-         cDBg==
+        bh=9Igrmt5V9yzytVg5K/E/KsrHYKAvQNgfPbYcTDvqYxQ=;
+        b=f2HRmsjB5wc74FMj9jehEoePOfsQm8m0W+mI6MhhhEV7kGkiyV9N+qmB8q06w/xcAM
+         pcdMV0Yz+jlMNlTT9fU+yfTSwu08xojPmxgv1dJfak6BMx3Bl7kJE0kdgFryta0kYrbn
+         XyeChxTvCOTyd3tHg9CTYd3poEXhrRDY7ZaocX+NW/8VHAwphoInWkr94kpZBlH3GswQ
+         9PS+9Gx7eoG65Ac3sFSumK/dhD2Jntbv3K3Ib3gbtSnE7i2xHJCOHA88nfpLOEN/Tw1x
+         qUplsZJh/s46R2EwSqP921xhMlCUDPGMlipnepxpkIUEi1eugdc8eipx0devwD54Js4r
+         eyYA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678862616;
+        d=1e100.net; s=20210112; t=1678862637;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=bOa0WQsy6rjgPrmZmoGvG+kj2BjHn9uHAJOnHryaHDE=;
-        b=S+9WJeT+K/j4JQ0Sk01Q/TZGg3GpP6AYgLsNjhZmkt8463P8yi0uUz3QEkozkuoXyr
-         t95WYdVQDZXQK6ekpqmkUfWSSd/39k278L0ASZ50HrcHJearTg4L+pK2jePrftqunzRX
-         +W7N7BRVowS72DXh0X7g2+csATj9bVauXGu2hBnL102cWD0hiNdpRFatpt96IF79JD1e
-         UY9CACTL5qMweXbw6/tjzecFtN/jgiS68nGKN0qUha8g94ncqUTswbLHI4O8617JXxCu
-         BHQp77RihrJOPuDMdY9tevEcyRWxtxp5TCWniHYBo+8BR3OBfXXIk5SY2C8wUFwDpyCj
-         g3CQ==
-X-Gm-Message-State: AO0yUKUCNIv1HWS6lnssQTC7OJkeT440ksoicYjTeqsIpD1gznbBRZ6Z
-        9skcFJ0ijQ9r0e47QTbfWSx5Mg==
-X-Google-Smtp-Source: AK7set9QKOIRDNTWFKYHPmSPe7kxYDMGZw6L5D3m/QvOiZHAwDn7nygVP4kLxb8dCZyAr0ddrJI/ag==
-X-Received: by 2002:a17:906:702:b0:913:ff28:59bd with SMTP id y2-20020a170906070200b00913ff2859bdmr5220664ejb.52.1678862616630;
-        Tue, 14 Mar 2023 23:43:36 -0700 (PDT)
+        bh=9Igrmt5V9yzytVg5K/E/KsrHYKAvQNgfPbYcTDvqYxQ=;
+        b=SJoAKkwNIuzjO6BOKqRZNfpQScTT8PROpfW0GKX3KxajJXjGlHYaGcy5WHgIm6U1VA
+         HTkaDD/DwUWlyHaE6/qeTlrd3vfNGeR12T3eKBKLphAUmVvFJgU5SalhuV11naOX3F7W
+         SWJxKt1LhpgIUheDFFesJZz/cJBmAOf6pCjM4Fks01raZnxfWzfZ7VeUp3BL/TVLWIQY
+         /1pPnZYJVAIWqKx0jaDuaa6ROO0+shaxGwyyfdTCfVa4ozfVKxIPekKLuKpkUsebrR+m
+         O+AzZAe5nM2ggHTH0drR9BrrCA2X+By3snPwKoYqAbw9yLDU2mDj0+BNtTC/YUrvTU/L
+         wR8g==
+X-Gm-Message-State: AO0yUKUPm4xnJN65uBcQKtODvOlkS8xQmV4yELSBIf7WYANTdL/lx6+T
+        b3yVd016tvp49fASR6PifNkPVA==
+X-Google-Smtp-Source: AK7set8wtsK5fUOkNDWX9RoG3LFq/DqpKz+JpaVGTBmVf00PthmWH2c2uGAoUbTqhmun8tDAhcMgiQ==
+X-Received: by 2002:a17:907:3fa6:b0:878:7189:a457 with SMTP id hr38-20020a1709073fa600b008787189a457mr6027737ejc.51.1678862637025;
+        Tue, 14 Mar 2023 23:43:57 -0700 (PDT)
 Received: from ?IPV6:2a02:810d:15c0:828:940e:8615:37dc:c2bd? ([2a02:810d:15c0:828:940e:8615:37dc:c2bd])
-        by smtp.gmail.com with ESMTPSA id n6-20020a170906724600b008ec793ac3f4sm2031952ejk.192.2023.03.14.23.43.35
+        by smtp.gmail.com with ESMTPSA id a12-20020a1709066d4c00b00914001c91fcsm2054072ejt.86.2023.03.14.23.43.56
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 14 Mar 2023 23:43:36 -0700 (PDT)
-Message-ID: <edaa631b-9bf7-5cc7-bd92-fe5420553fa8@linaro.org>
-Date:   Wed, 15 Mar 2023 07:43:35 +0100
+        Tue, 14 Mar 2023 23:43:56 -0700 (PDT)
+Message-ID: <9698192b-6e23-b4fb-0af9-33e8bb0f802e@linaro.org>
+Date:   Wed, 15 Mar 2023 07:43:55 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.8.0
-Subject: Re: [PATCH 1/2] dt-bindings: arm: qcom,ids: Add IDs for
- QCM2290/QRB2210
+Subject: Re: [PATCHv2 01/12] dt-bindings: power: supply: adc-battery: add
+ binding
 Content-Language: en-US
-To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
+To:     Sebastian Reichel <sre@kernel.org>
+Cc:     Linus Walleij <linus.walleij@linaro.org>,
+        Matti Vaittinen <mazziesaccount@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Marijn Suijten <marijn.suijten@somainline.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20230314-topic-scuba_socinfo-v1-0-acd7a7ab9d46@linaro.org>
- <20230314-topic-scuba_socinfo-v1-1-acd7a7ab9d46@linaro.org>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org
+References: <20230314225535.1321736-1-sre@kernel.org>
+ <20230314225535.1321736-2-sre@kernel.org>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230314-topic-scuba_socinfo-v1-1-acd7a7ab9d46@linaro.org>
+In-Reply-To: <20230314225535.1321736-2-sre@kernel.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -81,16 +80,14 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 14/03/2023 22:41, Konrad Dybcio wrote:
-> Add the missing IDs for scuba and its QRB variant.
+On 14/03/2023 23:55, Sebastian Reichel wrote:
+> Add binding for a battery that is only monitored via ADC
+> channels and simple status GPIOs.
 > 
-> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
-> ---
->  include/dt-bindings/arm/qcom,ids.h | 2 ++
->  1 file changed, 2 insertions(+)
+> Signed-off-by: Sebastian Reichel <sre@kernel.org>
 
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
