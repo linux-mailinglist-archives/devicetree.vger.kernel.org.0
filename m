@@ -2,156 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E262D6BAE34
-	for <lists+devicetree@lfdr.de>; Wed, 15 Mar 2023 11:52:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 46B9E6BAEBD
+	for <lists+devicetree@lfdr.de>; Wed, 15 Mar 2023 12:09:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231426AbjCOKw1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Mar 2023 06:52:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53756 "EHLO
+        id S231984AbjCOLJP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Mar 2023 07:09:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44368 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231508AbjCOKwU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Mar 2023 06:52:20 -0400
-Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F2B7811647
-        for <devicetree@vger.kernel.org>; Wed, 15 Mar 2023 03:52:17 -0700 (PDT)
-Received: by mail-lf1-x12d.google.com with SMTP id s22so23726668lfi.9
-        for <devicetree@vger.kernel.org>; Wed, 15 Mar 2023 03:52:17 -0700 (PDT)
+        with ESMTP id S232086AbjCOLHr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Mar 2023 07:07:47 -0400
+Received: from mail-pl1-x634.google.com (mail-pl1-x634.google.com [IPv6:2607:f8b0:4864:20::634])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 440D888EEB;
+        Wed, 15 Mar 2023 04:07:06 -0700 (PDT)
+Received: by mail-pl1-x634.google.com with SMTP id u5so19585070plq.7;
+        Wed, 15 Mar 2023 04:07:06 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1678877536;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=bdl0RlZFPypGKRGyzZFN/ydDgJu/V+/+Pk1xTXyKWrI=;
-        b=bqtJQZOe55DYn/2V+wznVWxy6nZ9Wp3VqQW89I9EWdQ5Sc1pQKJ+55BLPd6qARroYR
-         ok3YTg8gNeR+PQR343hvM3X7i2OTddQDCGH1C1Uantxt/ZN8WRKz/7TdZ4NQorRIbr/U
-         1gMHvIbro+4yOWVSanJaSamYVBgmS7Vzc7idGVgFS6zHs6/iG40DBA8ysfJxoi+kOkzf
-         FluAufnB5w9MFoCpm5dfLoJFLiN0B4Ern587udYVh3n7Ils0oqut/9pIFuidwZQr++L/
-         N/cQfkTsx77WL2xVP83j57rbt959e5uPJ969Ohkdm7hvX9CjChjJs2NnzxZp4Ztx7ZRW
-         E+pg==
+        d=gmail.com; s=20210112; t=1678878422;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=yAqG1Kr2Uolyjf/GxkqX22B3ljt5De835XrdxJINeQY=;
+        b=CZnaHbV27A42TrjHQe+T4hgAkd3u0QBLJNrHYmNxQh/vgyC8J2YcmmNSWutL9J4Ceh
+         jFvMJLrlcj98Gmxelxu78rQJ+W9C5z/G8aNNp4wA3M5345xKwGE++1U12GrwffHbss//
+         twoi1SXVewa8Dy3kWjjUcRr4MqWM/wXwhM+ahex2r36hNOUrUP84eq+1PgciW7SVwPlu
+         veRBkUwUOmi9wnLLkW9kGMgBkO15+BJCNVVzbG0TkWt91a5r6uWrtdUdar3rPurkr5j+
+         pw0APzRkjBpjUr3grHd/PA+YV/Z7dtTeqGyqDzLu3rpAMbX0GtnOOq/dFbQZpBF8Zn36
+         l2tg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678877536;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=bdl0RlZFPypGKRGyzZFN/ydDgJu/V+/+Pk1xTXyKWrI=;
-        b=kF33TYPSt6LoPiGR1Dv0nVD4aq+aCM/EISovtbCe70kW6Vp9gUqcTPtnbUmO+5VTVo
-         mDi3gCwlWRSPK3AIGdKAf34vTFH4DWpQSuH3yNkXs/llcS/6o415OSmK22Pn64JTo/5y
-         BcTH02IA0Y4quOYdNik4hOe23oHMfQPRQhyO/ZtaejPxAqjawZW9d9iV9IpcZPheJMfs
-         CombBN70dbR8KthWBjrDEOgXSzAxiDIqRuWdAVz1i4suSR9BoGKN6tu1P0s/7Egihwrj
-         UHYODPGifVzMFpFQWAHMTTsRkCIrH5/gU9Pz0qVl57mgrGfX4NcxjqJ3v0dsi92GQ845
-         Nj0A==
-X-Gm-Message-State: AO0yUKVNybns715y2uS9gJc3lI1BZl8Esf+KZyZ6mh+XybXFt3xJJIcP
-        RseZozIHAv/rsrqpQe2UQGZjOw==
-X-Google-Smtp-Source: AK7set+IBx9i/5w+IF1PkXqQMsvGoGIQHXi/vOHvJHD2FU+IheSn2dkE6FAGqhbQ5zS0W7yJdyE2sw==
-X-Received: by 2002:ac2:494b:0:b0:4b5:b06d:4300 with SMTP id o11-20020ac2494b000000b004b5b06d4300mr1435118lfi.29.1678877536315;
-        Wed, 15 Mar 2023 03:52:16 -0700 (PDT)
-Received: from [192.168.1.101] (abyj16.neoplus.adsl.tpnet.pl. [83.9.29.16])
-        by smtp.gmail.com with ESMTPSA id q3-20020ac25fc3000000b004d856fe5121sm767791lfg.194.2023.03.15.03.52.14
+        d=1e100.net; s=20210112; t=1678878422;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=yAqG1Kr2Uolyjf/GxkqX22B3ljt5De835XrdxJINeQY=;
+        b=eEtSWBZfllFGlqR680AX4YrJRJ7yUYAum5COJg5Ip9y12WcoZOlrP9It/MQycISf2t
+         PB6vb8MS9ICqFShUxl3gXxvoCpL+a1tV+ZnCKnRYFUahJa0QgtiKWjDawwp9zmDvKoLg
+         XnzBdyOvUUwltfrCEnSePKF/g0evAbRhOSQdKqKScACH2b/kndRq0kJcnkT8TrI1Pd0b
+         zym53upag1iMev3LIOiqZAFia0S9fC1l1l6TR9QX9Nw3oUGMJvSWn1R1eJQPxmeeu1EG
+         ckjefMLVLoLxUe4nZCvtPhhJSwes9UxGcg4+8g0S6gBzKhDaL418aja/p0w1pmIXv3vc
+         +lNQ==
+X-Gm-Message-State: AO0yUKVE/YgiuMG4J40OtKnBpDr5JCvhc3YTcozPS8oq2eSmnwbvP7G3
+        BJrtxtcsC+A9F7DRYdX3x56mH9GYPH3+3A==
+X-Google-Smtp-Source: AK7set/3Y3jEPnvR1RngK4q5SDmu6erxClP8orPtqlpRlvLoscW0Q5Hkc86iiluUlokORxnGbKaTSw==
+X-Received: by 2002:a05:6a20:6914:b0:d4:90ce:ae1d with SMTP id q20-20020a056a20691400b000d490ceae1dmr9879234pzj.20.1678878422327;
+        Wed, 15 Mar 2023 04:07:02 -0700 (PDT)
+Received: from kelvin-ThinkPad-L14-Gen-1.. (94.130.220.35.bc.googleusercontent.com. [35.220.130.94])
+        by smtp.gmail.com with ESMTPSA id v4-20020aa78084000000b005892ea4f092sm3337489pff.95.2023.03.15.04.06.57
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 15 Mar 2023 03:52:15 -0700 (PDT)
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-Date:   Wed, 15 Mar 2023 11:52:09 +0100
-Subject: [PATCH 2/2] arm64: dts: qcom: sm6115: Add GPUCC and Adreno SMMU
-MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20230315-topic-kamorta_adrsmmu-v1-2-d1c0dea90bd9@linaro.org>
-References: <20230315-topic-kamorta_adrsmmu-v1-0-d1c0dea90bd9@linaro.org>
-In-Reply-To: <20230315-topic-kamorta_adrsmmu-v1-0-d1c0dea90bd9@linaro.org>
-To:     Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>,
-        Joerg Roedel <joro@8bytes.org>,
+        Wed, 15 Mar 2023 04:07:01 -0700 (PDT)
+From:   Keguang Zhang <keguang.zhang@gmail.com>
+To:     linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-mips@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc:     Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <brgl@bgdev.pl>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>
-Cc:     Marijn Suijten <marijn.suijten@somainline.org>,
-        linux-arm-kernel@lists.infradead.org, iommu@lists.linux.dev,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org,
-        Konrad Dybcio <konrad.dybcio@linaro.org>
-X-Mailer: b4 0.12.1
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1678877530; l=2214;
- i=konrad.dybcio@linaro.org; s=20230215; h=from:subject:message-id;
- bh=4Yr3jyIzx6Uo9VaD9+bKTUbQOMghksaMqVasI0YJqlQ=;
- b=/y5MREEnqichNpxqBG3CJz98rlDwF4UBmNYM4I8LMIk7z/75bl5dTtaQnNOR+3cO5oLdVtpcbvki
- 1dlAXAJ2AM5G7jWobn1L5qakyP2sN3ftFFqJP9QHLZJD5Jqj7kxA
-X-Developer-Key: i=konrad.dybcio@linaro.org; a=ed25519;
- pk=iclgkYvtl2w05SSXO5EjjSYlhFKsJ+5OSZBjOkQuEms=
-X-Spam-Status: No, score=-0.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_SORBS_HTTP,RCVD_IN_SORBS_SOCKS,SPF_HELO_NONE,SPF_PASS,
-        URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.6
+        Keguang Zhang <keguang.zhang@gmail.com>
+Subject: [PATCH v3 0/4] Devicetree support for Loongson-1 GPIO
+Date:   Wed, 15 Mar 2023 19:06:46 +0800
+Message-Id: <20230315110650.142577-1-keguang.zhang@gmail.com>
+X-Mailer: git-send-email 2.34.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add GPUCC and Adreno SMMU nodes in preparation for adding the GPU
-itself.
+Update the driver to add DT support and dt-binding document,
+along with other minor changes.
 
-Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
----
- arch/arm64/boot/dts/qcom/sm6115.dtsi | 38 ++++++++++++++++++++++++++++++++++++
- 1 file changed, 38 insertions(+)
+Changelog
+V2 -> V3: Explain the reason for changing the author name in commit message
+          Drop the patch "gpio: loongson1: Use readl() & writel()"
+          Restore the calling of __raw_readl() & __raw_writel()
+          Add Reviewed-by tag from Krzysztof Kozlowski
+V1 -> V2: Keep GPLv2, just convert to SPDX identifier
+          Split the change of calling readl() & writel() to a separate patch
+          Let gpiolib parse ngpios property
+          Remove unnecessary alias id parsing
+          Remove superfluous initialization done by bgpio_init()
+          Add MODULE_DEVICE_TABLE()
+          Other minor fixes
+          Use the same consistent quotes
+          Delete superfluous examples
 
-diff --git a/arch/arm64/boot/dts/qcom/sm6115.dtsi b/arch/arm64/boot/dts/qcom/sm6115.dtsi
-index c56738633431..c1844abc4d9f 100644
---- a/arch/arm64/boot/dts/qcom/sm6115.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm6115.dtsi
-@@ -5,6 +5,7 @@
- 
- #include <dt-bindings/clock/qcom,gcc-sm6115.h>
- #include <dt-bindings/clock/qcom,sm6115-dispcc.h>
-+#include <dt-bindings/clock/qcom,sm6115-gpucc.h>
- #include <dt-bindings/clock/qcom,rpmcc.h>
- #include <dt-bindings/dma/qcom-gpi.h>
- #include <dt-bindings/gpio/gpio.h>
-@@ -1135,6 +1136,43 @@ usb_1_dwc3: usb@4e00000 {
- 			};
- 		};
- 
-+		gpucc: clock-controller@5990000 {
-+			compatible = "qcom,sm6115-gpucc";
-+			reg = <0x0 0x05990000 0x0 0x9000>;
-+			clocks = <&rpmcc RPM_SMD_XO_CLK_SRC>,
-+				 <&gcc GCC_GPU_GPLL0_CLK_SRC>,
-+				 <&gcc GCC_GPU_GPLL0_DIV_CLK_SRC>;
-+			#clock-cells = <1>;
-+			#reset-cells = <1>;
-+			#power-domain-cells = <1>;
-+		};
-+
-+		adreno_smmu: iommu@59a0000 {
-+			compatible = "qcom,sm6115-smmu-500", "qcom,adreno-smmu",
-+				     "qcom,smmu-500", "arm,mmu-500";
-+			reg = <0x0 0x059a0000 0x0 0x10000>;
-+			interrupts = <GIC_SPI 163 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 167 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 168 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 169 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 170 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 171 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 172 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 173 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 174 IRQ_TYPE_LEVEL_HIGH>;
-+
-+			clocks = <&gcc GCC_GPU_MEMNOC_GFX_CLK>,
-+				 <&gpucc GPU_CC_HLOS1_VOTE_GPU_SMMU_CLK>,
-+				 <&gcc GCC_GPU_SNOC_DVM_GFX_CLK>;
-+			clock-names = "mem",
-+				      "hlos",
-+				      "iface";
-+			power-domains = <&gpucc GPU_CX_GDSC>;
-+
-+			#global-interrupts = <1>;
-+			#iommu-cells = <2>;
-+		};
-+
- 		mdss: display-subsystem@5e00000 {
- 			compatible = "qcom,sm6115-mdss";
- 			reg = <0x0 0x05e00000 0x0 0x1000>;
+Keguang Zhang (4):
+  gpio: loongson1: Convert to SPDX identifier
+  gpio: loongson1: Introduce ls1x_gpio_chip struct
+  gpio: loongson1: Add DT support
+  dt-bindings: gpio: Add Loongson-1 GPIO
 
+ .../bindings/gpio/loongson,ls1x-gpio.yaml     | 49 +++++++++++++
+ drivers/gpio/gpio-loongson1.c                 | 71 +++++++++++--------
+ 2 files changed, 92 insertions(+), 28 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/gpio/loongson,ls1x-gpio.yaml
+
+
+base-commit: 0c14f3aa388d3becd38923869e17f9947a5e5926
 -- 
-2.39.2
+2.34.1
 
