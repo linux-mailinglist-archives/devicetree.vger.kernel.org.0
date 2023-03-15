@@ -2,47 +2,47 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0D6B56BC164
-	for <lists+devicetree@lfdr.de>; Thu, 16 Mar 2023 00:35:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D863F6BC167
+	for <lists+devicetree@lfdr.de>; Thu, 16 Mar 2023 00:35:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233058AbjCOXfB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Mar 2023 19:35:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46750 "EHLO
+        id S233066AbjCOXfE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Mar 2023 19:35:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45978 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232894AbjCOXej (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Mar 2023 19:34:39 -0400
+        with ESMTP id S233080AbjCOXem (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Mar 2023 19:34:42 -0400
 Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2084DA881A;
-        Wed, 15 Mar 2023 16:33:29 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0C55BA72A0;
+        Wed, 15 Mar 2023 16:33:32 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id A3192B81FA7;
+        by ams.source.kernel.org (Postfix) with ESMTPS id D4394B81F97;
+        Wed, 15 Mar 2023 23:32:47 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DBBB9C433AC;
         Wed, 15 Mar 2023 23:32:45 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B9AADC4339C;
-        Wed, 15 Mar 2023 23:32:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1678923164;
-        bh=4VXlS4g8PoGWjOMxYGW39zGYuUNb0UtK5O8C+5jw0Us=;
+        s=k20201202; t=1678923166;
+        bh=jBs6pMzD2j7fxNvrhZNGt6mKNoP+X//nIqAWVmGR7Fc=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=Tnl6SkiXGmWnfV5ssvdq/cTzZPVH46Qx7/1D458hNtrbP2Hyl6YVyKlFtrCjXhrv5
-         u8MZGRVBC7/uwrDHutPPJqK5vbytJYyWoSMfOYgGgFUqrFql12fy5suA1XFoIcU/Ra
-         5z3jRIxCRfeYb8nJ09YmZmBX1bClB24QEv/EBw7ZqcJcnKlQ7UrbccEzgfK17CDx64
-         i/w2ufBaQz1H+kFLoNre51/9uqstH/qZx5OoaMk2d+At3NQFqXzmiP8Z+u9UwXL7JK
-         U59j9uOSkH9wW1RWsnraKB8D2O4bu6iQsYLsmIdA3Eqt0Ko9H/L2eUwRDH4amcrK+7
-         UDCIjByiyS9pA==
+        b=IvQRicoKr0NUqHPPl7EIuyZBOWh9LIRPtd07T5VlAStwrAiQS98Vw7TSJyVNBGXvr
+         5vZNqZNwcU6lGASXpxEGfOebOmtJgOHUmtHOwSYkMzAUvAP7ISXqlyh2RBh61MB6RD
+         a4tH8wM07miX256bJh4aXrJEnTArwdm2gCNCp4dKc4K/I6ANmY56gPIr9U3k33329N
+         aEEz6CtmTYetF0O8d3mPKQwTXRUHgWOmT0F7g3D8zyYTNZirWka+M8WTn/cT/NNhIv
+         +RksrN9pYjrg+XEowNsSJdIEfSSvrngWaDqpMlWtkUI1KFXjEDjyZSFJNTPsQgr3vl
+         2RDVfWchnuEMA==
 From:   Bjorn Andersson <andersson@kernel.org>
-To:     robh+dt@kernel.org,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        krzysztof.kozlowski+dt@linaro.org
-Cc:     konrad.dybcio@linaro.org, devicetree@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] arm64: dts: qcom: sm8550: Mark UFS controller as cache coherent
-Date:   Wed, 15 Mar 2023 16:35:16 -0700
-Message-Id: <167892332562.4030021.17298373449890846833.b4-ty@kernel.org>
+To:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Cc:     linux-arm-msm@vger.kernel.org, konrad.dybcio@linaro.org,
+        viresh.kumar@linaro.org, robh+dt@kernel.org,
+        devicetree@vger.kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [RESEND PATCH 00/12] arm64: dts: qcom: Supply clock from cpufreq node to CPUs
+Date:   Wed, 15 Mar 2023 16:35:18 -0700
+Message-Id: <167892332566.4030021.3841746461139459755.b4-ty@kernel.org>
 X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20230308054630.7202-1-manivannan.sadhasivam@linaro.org>
-References: <20230308054630.7202-1-manivannan.sadhasivam@linaro.org>
+In-Reply-To: <20230215070400.5901-1-manivannan.sadhasivam@linaro.org>
+References: <20230215070400.5901-1-manivannan.sadhasivam@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
@@ -55,16 +55,43 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 8 Mar 2023 11:16:30 +0530, Manivannan Sadhasivam wrote:
-> The UFS controller on SM8550 supports cache coherency, hence add the
-> "dma-coherent" property to mark it as such.
+On Wed, 15 Feb 2023 12:33:48 +0530, Manivannan Sadhasivam wrote:
+> As a follow-up of [1], this series adds support for supplying clock from
+> cpufreq node to CPUs for rest of the SoCs.
 > 
+> This series has been tested on SDM845, SM8450 and SC8280XP based boards.
 > 
+> Thanks,
+> Mani
+> 
+> [...]
 
 Applied, thanks!
 
-[1/1] arm64: dts: qcom: sm8550: Mark UFS controller as cache coherent
-      commit: ee1d5100c37e7a95af506c7addf018f652545ce6
+[01/12] arm64: dts: qcom: sdm845: Supply clock from cpufreq node to CPUs
+        commit: 2af2ef08c0ba052aefca20609572d67e0633b1ef
+[02/12] arm64: dts: qcom: sc7280: Supply clock from cpufreq node to CPUs
+        commit: 667d8a2039608c4c848179cb45282204eadeb157
+[03/12] arm64: dts: qcom: sm6350: Supply clock from cpufreq node to CPUs
+        commit: afa34380d973491e87ab01d13c387528e2e1c476
+[04/12] arm64: dts: qcom: sm8550: Supply clock from cpufreq node to CPUs
+        commit: 1b0911fe3edb0895c43db4c19729b3c300028189
+[05/12] arm64: dts: qcom: sm8250: Supply clock from cpufreq node to CPUs
+        commit: d78cb07dbc1d384a8665b08918d188ee670ec45b
+[06/12] arm64: dts: qcom: qdu1000: Supply clock from cpufreq node to CPUs
+        commit: fcca74d893f3511a1e95869b1b3db3abb69bfb3b
+[07/12] arm64: dts: qcom: sc7180: Supply clock from cpufreq node to CPUs
+        commit: 7b39c98ff7e80f7e2bdf3c73829480e6ac123fb5
+[08/12] arm64: dts: qcom: sm8150: Supply clock from cpufreq node to CPUs
+        commit: fc7258948c4a9e5dd2670adfcc80b13c621fbcd1
+[09/12] arm64: dts: qcom: sm8350: Supply clock from cpufreq node to CPUs
+        commit: c2a18730f0aaa2088a259f123e5fedf05f8a7041
+[10/12] arm64: dts: qcom: sc8280xp: Supply clock from cpufreq node to CPUs
+        commit: 2051f735b37d8e49f84914df11eb7b4a3a16349f
+[11/12] arm64: dts: qcom: sm6375: Supply clock from cpufreq node to CPUs
+        commit: d9ab57eec39db8bf72951e00cde5ab117bcad6d8
+[12/12] arm64: dts: qcom: sm6115: Supply clock from cpufreq node to CPUs
+        commit: 0e6538e2d973bdfdf4d65a7d4b8baf1b7cdf75f0
 
 Best regards,
 -- 
