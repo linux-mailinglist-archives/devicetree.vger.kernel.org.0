@@ -2,205 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AC60C6BAB3D
-	for <lists+devicetree@lfdr.de>; Wed, 15 Mar 2023 09:54:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5463A6BAB5C
+	for <lists+devicetree@lfdr.de>; Wed, 15 Mar 2023 10:00:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229459AbjCOIyn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Mar 2023 04:54:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35126 "EHLO
+        id S231814AbjCOJAc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Mar 2023 05:00:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43862 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229648AbjCOIyn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Mar 2023 04:54:43 -0400
-Received: from smtp-relay-internal-0.canonical.com (smtp-relay-internal-0.canonical.com [185.125.188.122])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C89AF11652
-        for <devicetree@vger.kernel.org>; Wed, 15 Mar 2023 01:54:41 -0700 (PDT)
-Received: from mail-ed1-f72.google.com (mail-ed1-f72.google.com [209.85.208.72])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        with ESMTP id S231899AbjCOJA1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Mar 2023 05:00:27 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 028BD637E4;
+        Wed, 15 Mar 2023 02:00:21 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id 77380445B8
-        for <devicetree@vger.kernel.org>; Wed, 15 Mar 2023 08:54:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1678870480;
-        bh=HiWu2W94YYgRN40iF7FPu1SrLEkU/cI9C2mh8nOQZeA=;
-        h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-         MIME-Version:Content-Type;
-        b=vOrjwafSqdM0RG4tkNFkrfoDmol0983zWXwUvyNNb6dmeiOq5653a5NM78ax/SsPt
-         bp8EADdU3Z/e5b832dJ2uhO/Bahi3gowf5ADdMJhm1uv4sPQcBD2K/LaUFyM7d+gzp
-         guWsTJleCKtjQKEK/Q3qBgsAD/h6voz3V5BQqd1T59EbXgPx+I2rm7dP2YyvOybQ2e
-         BHcwUEQ2kYCReJ4rHmydxXZ4Ohi/1gHkEhjpK4pUkuvhAc0Ut6y9CMX/InLUGhDsJo
-         pHoCYKAaIuS7PMcIUi9XJ2Wl7a8fo1rIu6T6Q6LRSibXmGzTS/MIyOtrGnTBpO8FQp
-         gHHRu6V0+A/Gg==
-Received: by mail-ed1-f72.google.com with SMTP id k12-20020a50c8cc000000b004accf30f6d3so25885347edh.14
-        for <devicetree@vger.kernel.org>; Wed, 15 Mar 2023 01:54:40 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678870480;
-        h=mime-version:organization:references:in-reply-to:message-id:subject
-         :cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=HiWu2W94YYgRN40iF7FPu1SrLEkU/cI9C2mh8nOQZeA=;
-        b=y6frICzUxj3w9OaplyHi2+6YyjWbq1U4XhSXjqG29MlB8aL3XVo+7wKNk8P3JGNHrI
-         VSKmn9GRbodJKVZ/x9Bhz0ghsPt0SnrK/sJzxRLz/lGyvod0ENgj8dhVThRGYb+J+V9A
-         YGN6TMOpMMDljosBJ2mzGke+ZQfX2ZI/faQj7IpKsrBiSUurpQi46RWOKEKL9GxP5r5J
-         kfOUbFXr66eFnsoIN6I5qesPOA/dI2PmSSJQf2y9z2oCg6zmm3XNVUhUr494ddWIDKTa
-         k5PYvSobEOg6yXRFcCl1yEk+TAT6M1RzaL2mi8J4e57NLYJ6COctbYv4cIkhJi+us/rZ
-         a7fA==
-X-Gm-Message-State: AO0yUKVxSaZuC4Fi1Me4DKWHjIs7ZYo4aW6D21yEtMCqYlbrhvhQgzIA
-        DtM3Tj4FpXJmRHZ+aZxrS5/RF3GESuAzcxwKqQ73rXpuPzG4P3CcUNaUj4fKJjYUSvMYj3d/hNB
-        GUTeBvpUX2SdnFNBt95TLqfYfg27WZue+LwNR8eA=
-X-Received: by 2002:a17:906:2971:b0:881:23a:aba5 with SMTP id x17-20020a170906297100b00881023aaba5mr4890296ejd.11.1678870479811;
-        Wed, 15 Mar 2023 01:54:39 -0700 (PDT)
-X-Google-Smtp-Source: AK7set/qa2HuVSNOw2hf3XmUa+m93olZa39OcmpjpQyaKyLZ0fcVXpPF+zL/J0+fHonODOddvRRVLA==
-X-Received: by 2002:a17:906:2971:b0:881:23a:aba5 with SMTP id x17-20020a170906297100b00881023aaba5mr4890279ejd.11.1678870479505;
-        Wed, 15 Mar 2023 01:54:39 -0700 (PDT)
-Received: from gollum ([194.191.244.86])
-        by smtp.gmail.com with ESMTPSA id m4-20020a509304000000b004fccef39ec9sm2048413eda.70.2023.03.15.01.54.38
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 15 Mar 2023 01:54:38 -0700 (PDT)
-Date:   Wed, 15 Mar 2023 09:54:37 +0100
-From:   Juerg Haefliger <juerg.haefliger@canonical.com>
-To:     Bjorn Andersson <quic_bjorande@quicinc.com>
-Cc:     Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Clark <robdclark@gmail.com>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Sean Paul <sean@poorly.run>,
-        Akhil P Oommen <quic_akhilpo@quicinc.com>,
-        Bjorn Andersson <andersson@kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <dri-devel@lists.freedesktop.org>,
-        <freedreno@lists.freedesktop.org>, <johan@kernel.org>,
-        <mani@kernel.org>
-Subject: Re: [PATCH 1/3] drm/msm/adreno: Add Adreno A690 support
-Message-ID: <20230315095437.187ac10c@gollum>
-In-Reply-To: <20230315095008.7d650ebe@gollum>
-References: <20230208034052.2047681-1-quic_bjorande@quicinc.com>
-        <20230208034052.2047681-2-quic_bjorande@quicinc.com>
-        <20230315095008.7d650ebe@gollum>
-Organization: Canonical Ltd
-X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 676F0B81DAA;
+        Wed, 15 Mar 2023 09:00:20 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPS id EB4FBC433A0;
+        Wed, 15 Mar 2023 09:00:18 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1678870819;
+        bh=zg85Y3KVT7sBvQP4OrW5AAcolBWcX/lD9WhGvmRd3JY=;
+        h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
+        b=uHFE5USFiTRb3GnTCINqQcMLR275M+LsaT0aY1M9D6oQbXTiuCvH+z4zS68mhnWh+
+         8xZXSnPaTiGciyEIju0JnitCBEZSGWoXj19RBdkqTHShiBOKDNd34jzjlsFPHdWNSy
+         fPXba8xwCjaOik5q5VlR4PJE6FfttOIqi0Tk83kJkut7lc+OJLkNAjsuJvkBfjAoM5
+         iiBZqbkFtv7j7bj4+RgfIWSyrEuGNLTNjxCLhHipxEB1QNPRWLgT8hjQCByvDTDFAI
+         hXPu8GAy2VBUWlVKTGo4CvyogxOXt4ZRC4z1mDDzEeoRAElf880TO4dxP4uzqJ0ox6
+         QwB31EeRhc29w==
+Received: from aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
+        by aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (Postfix) with ESMTP id CBE97E66CBA;
+        Wed, 15 Mar 2023 09:00:18 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="Sig_/GGWg/YjOnTQy0UNl1WNw7rd";
- protocol="application/pgp-signature"; micalg=pgp-sha512
+Content-Transfer-Encoding: 8bit
+Subject: Re: [PATCH net 0/2] net: ethernet: mtk_eth_soc: minor SGMII fixes
+From:   patchwork-bot+netdevbpf@kernel.org
+Message-Id: <167887081883.17591.12121593716328275431.git-patchwork-notify@kernel.org>
+Date:   Wed, 15 Mar 2023 09:00:18 +0000
+References: <cover.1678753669.git.daniel@makrotopia.org>
+In-Reply-To: <cover.1678753669.git.daniel@makrotopia.org>
+To:     Daniel Golle <daniel@makrotopia.org>
+Cc:     devicetree@vger.kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, netdev@vger.kernel.org,
+        linux-mediatek@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux@armlinux.org.uk, hkallweit1@gmail.com, lorenzo@kernel.org,
+        Mark-MC.Lee@mediatek.com, john@phrozen.org, nbd@nbd.name,
+        angelogioacchino.delregno@collabora.com, matthias.bgg@gmail.com,
+        dqfext@gmail.com, Landen.Chao@mediatek.com, sean.wang@mediatek.com,
+        pabeni@redhat.com, kuba@kernel.org, edumazet@google.com,
+        davem@davemloft.net, olteanv@gmail.com, f.fainelli@gmail.com,
+        andrew@lunn.ch, vladimir.oltean@nxp.com, bjorn@mork.no,
+        frank-w@public-files.de, lynxis@fe80.eu
 X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
-        autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
---Sig_/GGWg/YjOnTQy0UNl1WNw7rd
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: quoted-printable
+Hello:
 
-> > diff --git a/drivers/gpu/drm/msm/adreno/adreno_device.c b/drivers/gpu/d=
-rm/msm/adreno/adreno_device.c
-> > index ca38b837dedb..437515e46e5a 100644
-> > --- a/drivers/gpu/drm/msm/adreno/adreno_device.c
-> > +++ b/drivers/gpu/drm/msm/adreno/adreno_device.c
-> > @@ -355,6 +355,20 @@ static const struct adreno_info gpulist[] =3D {
-> >  		.init =3D a6xx_gpu_init,
-> >  		.zapfw =3D "a640_zap.mdt",
-> >  		.hwcg =3D a640_hwcg,
-> > +	}, {
-> > +		.rev =3D ADRENO_REV(6, 9, 0, ANY_ID),
-> > +		.revn =3D 690,
-> > +		.name =3D "A690",
-> > +		.fw =3D {
-> > +			[ADRENO_FW_SQE] =3D "a660_sqe.fw",
-> > +			[ADRENO_FW_GMU] =3D "a690_gmu.bin",
-> > +		},
-> > +		.gmem =3D SZ_4M,
-> > +		.inactive_period =3D DRM_MSM_INACTIVE_PERIOD,
-> > +		.init =3D a6xx_gpu_init,
-> > +		.zapfw =3D "a690_zap.mdt",
-> > +		.hwcg =3D a690_hwcg,
-> > +		.address_space_size =3D SZ_16G,
-> >  	},
-> >  }; =20
->=20
-> This needs
->=20
-> MODULE_FIRMWARE("qcom/a660_sqe.fw");
-> MODULE_FIRMWARE("qcom/a690_gmu.bin");
-> MODULE_FIRMWARE("qcom/a690_zap.mbn");
+This series was applied to netdev/net.git (main)
+by David S. Miller <davem@davemloft.net>:
+
+On Tue, 14 Mar 2023 00:34:05 +0000 you wrote:
+> This small series brings two minor fixes for the SGMII unit found in
+> MediaTek's router SoCs.
+> 
+> The first patch resets the PCS internal state machine on major
+> configuration changes, just like it is also done in MediaTek's SDK.
+> 
+> The second patch makes sure we only write values and restart AN if
+> actually needed, thus preventing unnesseray loss of an existing link
+> in some cases.
+> 
+> [...]
+
+Here is the summary with links:
+  - [1/2] net: ethernet: mtk_eth_soc: reset PCS state
+    https://git.kernel.org/netdev/net/c/611e2dabb4b3
+  - [2/2] net: ethernet: mtk_eth_soc: only write values if needed
+    https://git.kernel.org/netdev/net/c/6e933a804c7d
+
+You are awesome, thank you!
+-- 
+Deet-doot-dot, I am a bot.
+https://korg.docs.kernel.org/patchwork/pwbot.html
 
 
-Eek. That should be
-
-MODULE_FIRMWARE("qcom/a690_zap.mdt");
-
-
->=20
-> ...Juerg
->=20
->  =20
-> > diff --git a/drivers/gpu/drm/msm/adreno/adreno_gpu.h b/drivers/gpu/drm/=
-msm/adreno/adreno_gpu.h
-> > index b4f9b1343d63..da29bd392388 100644
-> > --- a/drivers/gpu/drm/msm/adreno/adreno_gpu.h
-> > +++ b/drivers/gpu/drm/msm/adreno/adreno_gpu.h
-> > @@ -55,7 +55,7 @@ struct adreno_reglist {
-> >  	u32 value;
-> >  };
-> > =20
-> > -extern const struct adreno_reglist a615_hwcg[], a630_hwcg[], a640_hwcg=
-[], a650_hwcg[], a660_hwcg[];
-> > +extern const struct adreno_reglist a615_hwcg[], a630_hwcg[], a640_hwcg=
-[], a650_hwcg[], a660_hwcg[], a690_hwcg[];
-> > =20
-> >  struct adreno_info {
-> >  	struct adreno_rev rev;
-> > @@ -272,6 +272,11 @@ static inline int adreno_is_a660(struct adreno_gpu=
- *gpu)
-> >  	return gpu->revn =3D=3D 660;
-> >  }
-> > =20
-> > +static inline int adreno_is_a690(struct adreno_gpu *gpu)
-> > +{
-> > +	return gpu->revn =3D=3D 690;
-> > +};
-> > +
-> >  /* check for a615, a616, a618, a619 or any derivatives */
-> >  static inline int adreno_is_a615_family(struct adreno_gpu *gpu)
-> >  {
-> > @@ -286,7 +291,8 @@ static inline int adreno_is_a660_family(struct adre=
-no_gpu *gpu)
-> >  /* check for a650, a660, or any derivatives */
-> >  static inline int adreno_is_a650_family(struct adreno_gpu *gpu)
-> >  {
-> > -	return gpu->revn =3D=3D 650 || gpu->revn =3D=3D 620 || adreno_is_a660=
-_family(gpu);
-> > +	return gpu->revn =3D=3D 650 || gpu->revn =3D=3D 620  || gpu->revn =3D=
-=3D 690 ||
-> > +	       adreno_is_a660_family(gpu);
-> >  }
-> > =20
-> >  u64 adreno_private_address_space_size(struct msm_gpu *gpu); =20
->=20
-
-
---Sig_/GGWg/YjOnTQy0UNl1WNw7rd
-Content-Type: application/pgp-signature
-Content-Description: OpenPGP digital signature
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAEBCgAdFiEEhZfU96IuprviLdeLD9OLCQumQrcFAmQRh80ACgkQD9OLCQum
-Qrc2YRAAjOTspDuzpGhFACIBgWLDaVOfk/W1mrvvof8VG9j+tV3MeQPlcP9ynWRL
-QFf2w9eNJPchsd6B0kZOcmA3UnSna4pjYoB4opW777d45QTSowdI9LjH8+XUXQbd
-At9jc+1436AGoz5v3skB+1moSlzBG85y6r0tYG7GJ8jdm3b8iWydDr9j3yKPHvtK
-qgqEB54MasKNBVl9DBo9Ug6zP7t4QLliwMbgLUe1yQXZFMLWQaHRPwCZnJ2M/Vo3
-O/Xay7M/kjBXDzLCHv5HzrA3Cb0q5kS8yvdUrYN9F/mi3wc92ApSN57KTJzybkuS
-gSguyERQclupty7/pBqYoJe2iTdMfYufAROsTan49q7cKFJW9la7PyV3yNOLa2EH
-mavRY+Kl0T9Mr2pXqJ/6c/N3Jb27bjjq2xHejYyXpCI2NkmSMktrSDD47sgOAW4L
-qR98YOrchNgW/XGYEDOFxQT8hGbFOiyZac0PU/qm5/yTXxHM7RWo9v2gux9UXjRt
-p3Ln2/p8OfOFZCdYp3eXS1XDLFFbkxGOqXbUOf2mhnUvSVvMtrLIg00h8Lxqj8jE
-15Hie6b47X6shyTyhm1u2rs6Q8Dw/b88//VOUBQuHHWBaSdYsd7+gH/gK0LG+CQS
-sE99KAtdaT8xN15xO+3r42kRvn5E/Qu3q8qeI0oGWCUyxJ8tjkg=
-=54KF
------END PGP SIGNATURE-----
-
---Sig_/GGWg/YjOnTQy0UNl1WNw7rd--
