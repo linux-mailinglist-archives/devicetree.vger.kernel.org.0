@@ -2,144 +2,258 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3C0506BA65F
-	for <lists+devicetree@lfdr.de>; Wed, 15 Mar 2023 05:54:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0419D6BA664
+	for <lists+devicetree@lfdr.de>; Wed, 15 Mar 2023 05:55:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229648AbjCOEye (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Mar 2023 00:54:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51720 "EHLO
+        id S229696AbjCOEzy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Mar 2023 00:55:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53216 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229629AbjCOEyd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Mar 2023 00:54:33 -0400
-Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com [IPv6:2a00:1450:4864:20::532])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C4A4622CA3
-        for <devicetree@vger.kernel.org>; Tue, 14 Mar 2023 21:54:31 -0700 (PDT)
-Received: by mail-ed1-x532.google.com with SMTP id cy23so70611815edb.12
-        for <devicetree@vger.kernel.org>; Tue, 14 Mar 2023 21:54:31 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=brainfault-org.20210112.gappssmtp.com; s=20210112; t=1678856070;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Ok1v60C5hPiwt9Qd3eQGKQsz4sLfFgPUGqenltTPq64=;
-        b=kSGujrpCi7S9oQQcF+KXLiXF2AFyWye+S4QzPP8Efci6YdYY31CKrqR6+MAqfh8PD8
-         k/mA0O5wQOviXpwVIGZPBJKSxCVdonLlRAMh0Y0Pr0lCcU63qrKu38cwOny1VOsQkSiY
-         Bx00WTN+Q0Y7gdHO6ooWtTUWqMBug6rtCiLJ95XQ3NGUkA/oq0VLVG5Af12ALFMwc5N+
-         +zvCEKO7e4qEVcnoRzyUqS1BVnT6XhYtoyC7oJa3b/YocKVq+Jf7vrqvJVS4PxBWpVXW
-         1DcoiQr3tq20itKfd9/RdTtGAPL6wf0EMqHaca0Ey6cX4Lvmgbsoo+NnsjR4KQQbXsvE
-         zgAg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678856070;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Ok1v60C5hPiwt9Qd3eQGKQsz4sLfFgPUGqenltTPq64=;
-        b=APZ1PkQWFNCCTPc94exCooZYN47nL6VkC/EE61Scwk4CZ26xVXhDvy/7FVRVqToT2n
-         RpdGT4UsUtUdikzlXHRHyx7e1ichpnso8lg8a2zj0vc5ItASk1p0V3qze/zNfG9fMt4E
-         sPBUDvZoFVl7MtWwWJAAdLRiOKhWN6q5qg0H2PEGR1s58QgbCvzpbNX53OhsHnMkZdP+
-         Hcnx0mfWuhFEqyfvU+iq7nGEOGIc7YrbjIkMMEwpug5YNLOM2IS6YggyRpJLduCMjDVy
-         YSBdwkEy/xslpbo3GvUPPwOnL8TzNunWaWa/PwV1MuJ+Iuo+ivn+2lVXTZojx5zYuxNB
-         yXSQ==
-X-Gm-Message-State: AO0yUKXO3LbCNl291LrvF0U3JWZl9IZTwvB6fb+GVsxaqjDY+aKre79J
-        NUBq0vs5yKZfQDhVn/vUtwtiOXkVvnxZbZQq/Dk/Mw==
-X-Google-Smtp-Source: AK7set/1nnqVtUQCG1aacxcLFFzizJxqkOES2bKXzjpRS7IsRswJfaU17038Z0AGjDb5rVIlx+1ThTGZ/2P7CxosKTo=
-X-Received: by 2002:a17:907:7ba6:b0:92b:f0f9:427a with SMTP id
- ne38-20020a1709077ba600b0092bf0f9427amr2706405ejc.13.1678856070062; Tue, 14
- Mar 2023 21:54:30 -0700 (PDT)
+        with ESMTP id S230425AbjCOEzw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Mar 2023 00:55:52 -0400
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C4E265F6C7;
+        Tue, 14 Mar 2023 21:55:24 -0700 (PDT)
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 32F4tHUg007545;
+        Tue, 14 Mar 2023 23:55:17 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1678856117;
+        bh=FtPQJHNOYm4nXgFhWN4TXnIl75lV3txCUFYCDWZlXSQ=;
+        h=Date:CC:Subject:To:References:From:In-Reply-To;
+        b=YSrg5k11urhyAm9raEcY0wGxh9Pq3N35ddgxeeiB4ktHMVZ20+NYp9xlr7Ts6f7Ce
+         DI5CsgleppgVcVWeN7EhMgXJBqiagNGnnNsNZ2hWp9ntNSdWffxltp+KjLPgbrbZ29
+         aG9n8ofrBqPBh4M6Nibxu/qtw+AnP/zHC+SWxDYU=
+Received: from DFLE102.ent.ti.com (dfle102.ent.ti.com [10.64.6.23])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 32F4tH5v049326
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Tue, 14 Mar 2023 23:55:17 -0500
+Received: from DFLE105.ent.ti.com (10.64.6.26) by DFLE102.ent.ti.com
+ (10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Tue, 14
+ Mar 2023 23:55:17 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE105.ent.ti.com
+ (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
+ Frontend Transport; Tue, 14 Mar 2023 23:55:17 -0500
+Received: from [172.24.145.61] (ileaxei01-snat2.itg.ti.com [10.180.69.6])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 32F4tDAL065875;
+        Tue, 14 Mar 2023 23:55:14 -0500
+Message-ID: <114ec507-1a22-1b21-961b-881ba345d76d@ti.com>
+Date:   Wed, 15 Mar 2023 10:25:13 +0530
 MIME-Version: 1.0
-References: <20230224162631.405473-9-ajones@ventanamicro.com> <mhng-f27eaa3e-34e3-4843-abdb-4b17cbe24ddb@palmer-ri-x1c9a>
-In-Reply-To: <mhng-f27eaa3e-34e3-4843-abdb-4b17cbe24ddb@palmer-ri-x1c9a>
-From:   Anup Patel <anup@brainfault.org>
-Date:   Wed, 15 Mar 2023 10:24:19 +0530
-Message-ID: <CAAhSdy1qOH25QdwkikwGU9xnhz_+UUGqAcXqU2Hd2d7RoaP9Vg@mail.gmail.com>
-Subject: Re: [PATCH v6 8/8] RISC-V: KVM: Expose Zicboz to the guest
-To:     Palmer Dabbelt <palmer@dabbelt.com>
-Cc:     ajones@ventanamicro.com, apatel@ventanamicro.com,
-        linux-riscv@lists.infradead.org, kvm-riscv@lists.infradead.org,
-        devicetree@vger.kernel.org,
-        Conor Dooley <conor.dooley@microchip.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        sudip.mukherjee@codethink.co.uk, ben.dooks@codethink.co.uk,
-        Atish Patra <atishp@rivosinc.com>, aou@eecs.berkeley.edu,
-        krzysztof.kozlowski+dt@linaro.org, robh@kernel.org,
-        jszhang@kernel.org, heiko@sntech.de
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.8.0
+CC:     <nm@ti.com>, <vigneshr@ti.com>, <kristo@kernel.org>,
+        <robh+dt@kernel.org>, <krzysztof.kozlowski@linaro.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <srk@ti.com>,
+        <s-vadapalli@ti.com>
+Subject: Re: [PATCH v2 2/2] arm64: dts: ti: k3-j721e: Add overlay to enable
+ CPSW9G ports in QSGMII mode
+Content-Language: en-US
+To:     Andrew Davis <afd@ti.com>
+References: <20230310103504.731845-1-s-vadapalli@ti.com>
+ <20230310103504.731845-3-s-vadapalli@ti.com>
+ <8e6442c8-e4ef-705d-1378-7d1f8b74e84d@ti.com>
+From:   Siddharth Vadapalli <s-vadapalli@ti.com>
+In-Reply-To: <8e6442c8-e4ef-705d-1378-7d1f8b74e84d@ti.com>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_PASS,SPF_PASS,URIBL_BLOCKED autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Mar 15, 2023 at 10:08=E2=80=AFAM Palmer Dabbelt <palmer@dabbelt.com=
-> wrote:
->
-> On Fri, 24 Feb 2023 08:26:31 PST (-0800), ajones@ventanamicro.com wrote:
-> > Guests may use the cbo.zero instruction when the CPU has the Zicboz
-> > extension and the hypervisor sets henvcfg.CBZE.
-> >
-> > Add Zicboz support for KVM guests which may be enabled and
-> > disabled from KVM userspace using the ISA extension ONE_REG API.
-> >
-> > Signed-off-by: Andrew Jones <ajones@ventanamicro.com>
-> > Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
-> > Reviewed-by: Anup Patel <anup@brainfault.org>
->
-> Sorry, I guess I wasn't looking closely enough.  It's just a review, not
-> an ack.
->
-> Anup: is it OK if this goes along with the others?
+Hello Andrew,
 
-Yes, no problem.
+On 15/03/23 03:12, Andrew Davis wrote:
+> On 3/10/23 4:35 AM, Siddharth Vadapalli wrote:
+>> The J7 Quad Port Add-On Ethernet Card for J721E Common-Proc-Board supports
+>> QSGMII mode. Use the overlay to configure CPSW9G ports in QSGMII mode.
+>>
+>> Add support to reset the PHY from kernel by using gpio-hog and gpio-reset.
+>>
+>> Add aliases for CPSW9G ports to enable kernel to fetch MAC addresses
+>> directly from U-Boot.
+>>
+>> Signed-off-by: Siddharth Vadapalli <s-vadapalli@ti.com>
+>> ---
+>>   arch/arm64/boot/dts/ti/Makefile               |   4 +
+>>   .../dts/ti/k3-j721e-quad-port-eth-exp.dtso    | 148 ++++++++++++++++++
+>>   2 files changed, 152 insertions(+)
+>>   create mode 100644 arch/arm64/boot/dts/ti/k3-j721e-quad-port-eth-exp.dtso
+>>
+>> diff --git a/arch/arm64/boot/dts/ti/Makefile b/arch/arm64/boot/dts/ti/Makefile
+>> index 6acd12409d59..167bcd9b09b7 100644
+>> --- a/arch/arm64/boot/dts/ti/Makefile
+>> +++ b/arch/arm64/boot/dts/ti/Makefile
+>> @@ -45,3 +45,7 @@ dtb-$(CONFIG_ARCH_K3) += k3-j784s4-evm.dtb
+>>     # Enable support for device-tree overlays
+>>   DTC_FLAGS_k3-am6548-iot2050-advanced-m2 += -@
+>> +DTC_FLAGS_k3-j721e-common-proc-board += -@
+>> +
+>> +# Device-tree overlays
+>> +dtb-$(CONFIG_ARCH_K3) += k3-j721e-quad-port-eth-exp.dtbo
+> 
+> I'd recommend this; since the EVM as sold comes with the quad port
+> expansion, let's call that the J721e "EVM". That will allow us to
+> keep it separate from the Beagle and SK boards. Since this overlay
+> applies only to the EVM it should named like this:
+> 
+> k3-j721e-evm-quad-port-eth-exp.dtbo
+> 
+> and then when it is applied to the common-proc-board then the result
+> is called:
+> 
+> k3-j721e-evm.dtb
+> 
+> This way you can take the EVM and run it with that DTB or take the
+> base board DTB and apply different overlays (there are the GESI and
+> the Infotainment overlays next). So the full change to this Makefile
+> in this patch should be this:
+> 
+> 
+> 
+> --- a/arch/arm64/boot/dts/ti/Makefile
+> +++ b/arch/arm64/boot/dts/ti/Makefile
+> @@ -31,8 +31,9 @@ dtb-$(CONFIG_ARCH_K3) += k3-am654-base-board.dtb
+>  dtb-$(CONFIG_ARCH_K3) += k3-j7200-common-proc-board.dtb
+>  
+>  # Boards with J721e SoC
+> +k3-j721e-evm-dtbs := k3-j721e-common-proc-board.dtb
+> k3-j721e-evm-quad-port-eth-exp.dtbo
+>  dtb-$(CONFIG_ARCH_K3) += k3-j721e-beagleboneai64.dtb
+> -dtb-$(CONFIG_ARCH_K3) += k3-j721e-common-proc-board.dtb
+> +dtb-$(CONFIG_ARCH_K3) += k3-j721e-evm.dtb
+>  dtb-$(CONFIG_ARCH_K3) += k3-j721e-sk.dtb
+> 
+> 
+> 
+> Notice we do not need to do that " += -@" stuff either, since
+> an overlay is applied to make the k3-j721e-evm.dtb, the base DT,
+> 
+> k3-j721e-common-proc-board.dtb
+> 
+> is given symbols automatically.
+> 
+> Yet another benefit is this causes the build to test applying the
+> overlay and warn us of any missing symbols.
 
-Acked-by: Anup Patel <anup@brainfault.org>
+I will implement this. I had posted another series for J7200 at:
+https://lore.kernel.org/r/20230310101407.722334-1-s-vadapalli@ti.com/
+which also attempts to add an overlay with the same approach as done by this
+series. I will combine both series, implementing the new approach for both of them.
+
+> 
+>> diff --git a/arch/arm64/boot/dts/ti/k3-j721e-quad-port-eth-exp.dtso
+>> b/arch/arm64/boot/dts/ti/k3-j721e-quad-port-eth-exp.dtso
+>> new file mode 100644
+>> index 000000000000..d7977d16c921
+>> --- /dev/null
+>> +++ b/arch/arm64/boot/dts/ti/k3-j721e-quad-port-eth-exp.dtso
+>> @@ -0,0 +1,148 @@
+>> +// SPDX-License-Identifier: GPL-2.0
+>> +/**
+>> + * DT Overlay for CPSW9G in QSGMII mode using J7 Quad Port ETH EXP Add-On
+>> Ethernet Card with
+>> + * J721E board.
+>> + *
+>> + * Copyright (C) 2023 Texas Instruments Incorporated - https://www.ti.com/
+>> + */
+>> +
+>> +/dts-v1/;
+>> +/plugin/;
+>> +
+>> +#include <dt-bindings/gpio/gpio.h>
+>> +#include <dt-bindings/mux/ti-serdes.h>
+>> +#include <dt-bindings/pinctrl/k3.h>
+>> +#include <dt-bindings/phy/phy.h>
+>> +#include <dt-bindings/phy/phy-cadence.h>
+>> +
+>> +/ {
+>> +    fragment@102 {
+>> +        target-path = "/";
+> 
+> This is the old style for fragments, just use
+> 
+> &{/} {
+>     aliases {
+> 
+> 
+
+I will fix this.
+
+>> +        __overlay__ {
+>> +            aliases {
+>> +                ethernet1 =
+>> "/bus@100000/ethernet@c000000/ethernet-ports/port@1";
+>> +                ethernet2 =
+>> "/bus@100000/ethernet@c000000/ethernet-ports/port@2";
+>> +                ethernet3 =
+>> "/bus@100000/ethernet@c000000/ethernet-ports/port@3";
+>> +                ethernet4 =
+>> "/bus@100000/ethernet@c000000/ethernet-ports/port@4";
+>> +            };
+>> +        };
+>> +    };
+>> +};
+>> +
+>> +&cpsw0 {
+>> +    status = "okay";
+>> +    pinctrl-names = "default";
+>> +    pinctrl-0 = <&mdio0_pins_default>;
+> 
+> The MDIO pinmux belongs in the mdio node. Then since it doesn't need
+> any extra info here, leave this node enabled in the base dtbs.
+
+I will do so.
+
+> 
+>> +};
+>> +
+>> +&cpsw0_port1 {
+>> +    phy-handle = <&cpsw9g_phy0>;
+>> +    phy-mode = "qsgmii";
+>> +    mac-address = [00 00 00 00 00 00];
+>> +    phys = <&cpsw0_phy_gmii_sel 1>;
+>> +};
+>> +
+>> +&cpsw0_port2 {
+>> +    phy-handle = <&cpsw9g_phy1>;
+>> +    phy-mode = "qsgmii";
+>> +    mac-address = [00 00 00 00 00 00];
+>> +    phys = <&cpsw0_phy_gmii_sel 2>;
+>> +};
+>> +
+>> +&cpsw0_port3 {
+>> +    phy-handle = <&cpsw9g_phy2>;
+>> +    phy-mode = "qsgmii";
+>> +    mac-address = [00 00 00 00 00 00];
+>> +    phys = <&cpsw0_phy_gmii_sel 3>;
+>> +};
+>> +
+>> +&cpsw0_port4 {
+>> +    phy-handle = <&cpsw9g_phy3>;
+>> +    phy-mode = "qsgmii";
+>> +    mac-address = [00 00 00 00 00 00];
+>> +    phys = <&cpsw0_phy_gmii_sel 4>;
+>> +};
+>> +
+>> +&cpsw0_port5 {
+>> +    status = "disabled";
+> 
+> Since these need phy handles to function, disable them in the base
+> dtb and only enable the ones connected in this overlay.
+
+I will implement this change and post the v3 series.
 
 Regards,
-Anup
-
->
-> > ---
-> >  arch/riscv/include/uapi/asm/kvm.h | 1 +
-> >  arch/riscv/kvm/vcpu.c             | 4 ++++
-> >  2 files changed, 5 insertions(+)
-> >
-> > diff --git a/arch/riscv/include/uapi/asm/kvm.h b/arch/riscv/include/uap=
-i/asm/kvm.h
-> > index c1a1bb0fa91c..e44c1e90eaa7 100644
-> > --- a/arch/riscv/include/uapi/asm/kvm.h
-> > +++ b/arch/riscv/include/uapi/asm/kvm.h
-> > @@ -106,6 +106,7 @@ enum KVM_RISCV_ISA_EXT_ID {
-> >       KVM_RISCV_ISA_EXT_SVINVAL,
-> >       KVM_RISCV_ISA_EXT_ZIHINTPAUSE,
-> >       KVM_RISCV_ISA_EXT_ZICBOM,
-> > +     KVM_RISCV_ISA_EXT_ZICBOZ,
-> >       KVM_RISCV_ISA_EXT_MAX,
-> >  };
-> >
-> > diff --git a/arch/riscv/kvm/vcpu.c b/arch/riscv/kvm/vcpu.c
-> > index e5126cefbc87..198ee86cad38 100644
-> > --- a/arch/riscv/kvm/vcpu.c
-> > +++ b/arch/riscv/kvm/vcpu.c
-> > @@ -63,6 +63,7 @@ static const unsigned long kvm_isa_ext_arr[] =3D {
-> >       KVM_ISA_EXT_ARR(SVPBMT),
-> >       KVM_ISA_EXT_ARR(ZIHINTPAUSE),
-> >       KVM_ISA_EXT_ARR(ZICBOM),
-> > +     KVM_ISA_EXT_ARR(ZICBOZ),
-> >  };
-> >
-> >  static unsigned long kvm_riscv_vcpu_base2isa_ext(unsigned long base_ex=
-t)
-> > @@ -865,6 +866,9 @@ static void kvm_riscv_vcpu_update_config(const unsi=
-gned long *isa)
-> >       if (riscv_isa_extension_available(isa, ZICBOM))
-> >               henvcfg |=3D (ENVCFG_CBIE | ENVCFG_CBCFE);
-> >
-> > +     if (riscv_isa_extension_available(isa, ZICBOZ))
-> > +             henvcfg |=3D ENVCFG_CBZE;
-> > +
-> >       csr_write(CSR_HENVCFG, henvcfg);
-> >  #ifdef CONFIG_32BIT
-> >       csr_write(CSR_HENVCFGH, henvcfg >> 32);
+Siddharth.
