@@ -2,639 +2,142 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6FB426BB471
-	for <lists+devicetree@lfdr.de>; Wed, 15 Mar 2023 14:22:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1D7C36BB4B9
+	for <lists+devicetree@lfdr.de>; Wed, 15 Mar 2023 14:32:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231971AbjCONWh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Mar 2023 09:22:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48302 "EHLO
+        id S232005AbjCONcT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Mar 2023 09:32:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37972 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231859AbjCONWh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Mar 2023 09:22:37 -0400
-Received: from box.trvn.ru (box.trvn.ru [194.87.146.52])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1C43C7EA1C;
-        Wed, 15 Mar 2023 06:22:17 -0700 (PDT)
-Received: from authenticated-user (box.trvn.ru [194.87.146.52])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
-        (No client certificate requested)
-        by box.trvn.ru (Postfix) with ESMTPSA id 28B3B40AC9;
-        Wed, 15 Mar 2023 18:22:14 +0500 (+05)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=trvn.ru; s=mail;
-        t=1678886534; bh=207VNANZ73QdqrRfmDys/vt9ElFqJCOqQCanwPkBVd8=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=mvoTAm6mvV2sbJti5d4BDnmZdgbXhzMFn6wRZP/t517+eZFWnB88z45F0Z2lOPhkO
-         sVIq9ZiypQPKiI1AulB5ATWjJspwfPf1DuYb76AMuQLz76d1AcPLEXPJD1yCI0NI24
-         FYCJVCfCQtW7Py3eeF39rgmWqSne/wx30FMFJnI+MWukcBkHhBzs7UycjPXBFKeV4M
-         J1LB551UEaZDp+wcBbH+eh5Af5+tXn5W296orh3aEYdDOrXt9LOWDk/HamO3plSvwB
-         +kl5ZxUPJrdBcjn3MVtP8t/PzJCIirvH2rD7gqBHXnfDxHhT5ISLki4jplo28KiSLg
-         wcl37ejkXoTkQ==
-MIME-Version: 1.0
-Date:   Wed, 15 Mar 2023 18:22:13 +0500
-From:   Nikita Travkin <nikita@trvn.ru>
+        with ESMTP id S230147AbjCONcS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Mar 2023 09:32:18 -0400
+Received: from mail-pl1-x62e.google.com (mail-pl1-x62e.google.com [IPv6:2607:f8b0:4864:20::62e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1CE7493E02
+        for <devicetree@vger.kernel.org>; Wed, 15 Mar 2023 06:31:40 -0700 (PDT)
+Received: by mail-pl1-x62e.google.com with SMTP id a2so20024402plm.4
+        for <devicetree@vger.kernel.org>; Wed, 15 Mar 2023 06:31:40 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1678887099;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=1umFQFep3VeRVxL/2QOHz0Xbwyv0Y2jIwYRUg9n+RZQ=;
+        b=t9FZ0nqkNjZnpc+EfAhhcqfUHyiyD9NGbxd/eUMt9Vj3g+hrbja3xu9dShgvH+V5Kx
+         ik0q4c8kYpW4deQsZ7oakqtpCskXxm++Z4dd9lJB3H30j5Z/+f+3xO917fTZ7pt2596H
+         L+HrLR76LRlmE2s7iQXofBhmDkurDEhfs6shvl3CNiwikXMYkN+OFXMdqI6UxBIfSX0W
+         jVEPSsmiKVGDMb2++cTsgCc8KOQwfO3XlBAaXcGJwX1HUFOO8hTmF8J8M+EqWOd3kq3h
+         SO8GzLknSMq3WmFCpr2X9FwUANgvLgHm4FZUUckI8VlceY7Tb5PoCaNEzr9AeatsEhvb
+         08ew==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1678887099;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=1umFQFep3VeRVxL/2QOHz0Xbwyv0Y2jIwYRUg9n+RZQ=;
+        b=FmHhBMKdclb25vXulsbn53RulE3flAolczV+S7bVdBInIX5qr9c0VNYYDoW7AsvR3f
+         4tp5RAQKdtOJOjnzdTbLBNnBsVyVGVp32IsY2J+nlphXp6g1cXeh3xppQUueD86LSKa8
+         +UesWcaDbjfNrKdT86btdY7szELS5IJrQ7sLGpZiQdmI9xymx0KTMqd/pwCVgegcZIw1
+         w2oPUDVcDpaRnfvXPgtjHCsYjnYcZti1ZiwrGyoJs98zzd/jtzoko/YNYXlErdc/u6SA
+         wqdUROddU8YWsRFpIm6sis6+h20iCwbEB6X8MIhU2M9X7GLSL49o7nlWcosWjuZhpFmY
+         nBiQ==
+X-Gm-Message-State: AO0yUKWsHuxPKAm5lW2q/RJCqgoPsBkjl0B6Ozd/x2tQIWGOaBVl7yhe
+        ndsER27Eo6wq/RVNV4mWGI9m
+X-Google-Smtp-Source: AK7set/6pkkXcPa9ad9aqSnFLR9LabDIdkMEszn3dlthApizssp7HnhLd8f1ZJld9zC7ttt36nGrwA==
+X-Received: by 2002:a17:902:9887:b0:1a0:49eb:4c8c with SMTP id s7-20020a170902988700b001a049eb4c8cmr2293357plp.0.1678887098585;
+        Wed, 15 Mar 2023 06:31:38 -0700 (PDT)
+Received: from thinkpad ([117.207.30.24])
+        by smtp.gmail.com with ESMTPSA id kz13-20020a170902f9cd00b0019f3da8c2a4sm3673054plb.69.2023.03.15.06.31.32
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 15 Mar 2023 06:31:37 -0700 (PDT)
+Date:   Wed, 15 Mar 2023 19:01:23 +0530
+From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
 To:     Konrad Dybcio <konrad.dybcio@linaro.org>
-Cc:     agross@kernel.org, andersson@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht
-Subject: Re: [PATCH v2 2/2] arm64: dts: qcom: Add Acer Aspire 1
-In-Reply-To: <b39dadeb-12d2-9f36-c749-c1f1a17bf90e@linaro.org>
-References: <20230315051220.5614-1-nikita@trvn.ru>
- <20230315051220.5614-2-nikita@trvn.ru>
- <b39dadeb-12d2-9f36-c749-c1f1a17bf90e@linaro.org>
-Message-ID: <9be0242117cfe9086d94132f4abbe290@trvn.ru>
-X-Sender: nikita@trvn.ru
-Content-Type: text/plain; charset=UTF-8
+Cc:     andersson@kernel.org, lpieralisi@kernel.org, kw@linux.com,
+        krzysztof.kozlowski+dt@linaro.org, robh@kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-pci@vger.kernel.org, linux-kernel@vger.kernel.org,
+        quic_srichara@quicinc.com
+Subject: Re: [PATCH v4 05/18] PCI: qcom: Use lower case for hex
+Message-ID: <20230315133106.GA98059@thinkpad>
+References: <20230315064255.15591-1-manivannan.sadhasivam@linaro.org>
+ <20230315064255.15591-6-manivannan.sadhasivam@linaro.org>
+ <6425fcb2-2ce9-0986-ed28-64717dee240a@linaro.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <6425fcb2-2ce9-0986-ed28-64717dee240a@linaro.org>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Konrad Dybcio писал(а) 15.03.2023 15:33:
-> On 15.03.2023 06:12, Nikita Travkin wrote:
->> Acer Aspire 1 is a WoA laptop based on Snapdragon 7c gen1 platform.
->>
->> The laptop design is similar to trogdor in the choice of primary
->> components but the specifics on usage of those differ slightly.
->>
->> Add the devicetree for the laptop with support for most of the
->> hardware present.
->>
->> Signed-off-by: Nikita Travkin <nikita@trvn.ru>
->> ---
-> [...]
+On Wed, Mar 15, 2023 at 11:34:13AM +0100, Konrad Dybcio wrote:
 > 
->> +
->> +&camcc {
->> +	status = "disabled";
->> +};
-> Any particular reason? The clocks should park themselves and
-> not even waste power
-
-Just on the basis of it not being used.
-Will drop the disable if you say it stops the block properly.
-
 > 
->> +
->> +&dsi0 {
->> +	vdda-supply = <&vreg_l3c_1p2>;
->> +	status = "okay";
->> +};
-> 
-> [...]
-> 
->> +
->> +	touchpad@2c {
->> +		compatible = "hid-over-i2c";
->> +		reg = <0x2c>;
->> +		hid-descr-addr = <0x20>;
->> +
->> +		vdd-supply = <&reg_tp_3p3>;
->> +
->> +		interrupts-extended = <&tlmm 94 IRQ_TYPE_LEVEL_LOW>;
->> +
->> +		pinctrl-0 = <&hid_touchpad_default>;
->> +		pinctrl-names = "default";
->> +	};
-> No wakeup-source on the touchpad? My (different) laptop wakes
-> up when I press on it
-
-Deliberately omitted it but I guess it was based on a personal
-preference than on something objective. Will add.
-
-> 
->> +
->> +	keyboard@3a {
->> +		compatible = "hid-over-i2c";
->> +		reg = <0x3a>;
-> [...]
-> 
->> +&gpu {
->> +	status = "okay";
->> +
->> +	zap-shader {
->> +		memory-region = <&zap_mem>;
->> +		firmware-name = "qcom/sc7180-acer-aspire1/qcdxkmsuc7180.mbn";
-> qcom/sc7180/acer/(aspire1|alice)/qc..
-> 
-> ?
-
-Will change.
-
-> 
->> +	};
->> +};
->> +
->> +/* Seems like ADSP really insists on managing those lpass bits itself */
->> +&lpasscc {
->> +	status = "disabled";
->> +};
->> +
->> +&lpass_hm {
->> +	status = "disabled";
->> +};
-> These clocks are only accessible from HLOS on Chrome devices. I'd say
-> disabling them by default in sc7180.dtsi would be sensible.
+> On 15.03.2023 07:42, Manivannan Sadhasivam wrote:
+> > To maintain uniformity, let's use lower case for representing hexadecimal
+> > numbers.
+> > 
+> > Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+> > ---
+> To be fair, preprocessor defines are the only place where uppercase
+> hex is widely used
 > 
 
-I can add a patch to v3 doing that over all 7c1 boards.
+I perfer lower hex all over the driver and in this case, I also want to match
+what is being done for pcie-qcom-ep so that it helps me in maintaining both
+drivers.
 
-> 
->> +
->> +&mdp {
->> +	status = "okay";
->> +};
-> Remove the status=disabled from SoC DT, MDSS is useless without MDP and
-> one toggle is enough.
+Thanks,
+Mani
 
-... and for that too.
-
-> 
->> +
->> +&mdss {
->> +	status = "okay";
->> +};
->> +
->> +&pm6150_adc {
->> +	thermistor@4e {
->> +		reg = <ADC5_AMUX_THM2_100K_PU>;
->> +		qcom,ratiometric;
->> +		qcom,hw-settle-time = <200>;
->> +	};
->> +
->> +	charger-thermistor@4f {
->> +		reg = <ADC5_AMUX_THM3_100K_PU>;
->> +		qcom,ratiometric;
->> +		qcom,hw-settle-time = <200>;
->> +	};
->> +};
->> +
->> +&pm6150_adc_tm {
->> +	status = "okay";
->> +
->> +	charger-thermistor@0 {
->> +		reg = <0>;
->> +		io-channels = <&pm6150_adc ADC5_AMUX_THM3_100K_PU>;
->> +		qcom,ratiometric;
->> +		qcom,hw-settle-time-us = <200>;
->> +	};
->> +
->> +	thermistor@1 {
->> +		reg = <1>;
->> +		io-channels = <&pm6150_adc ADC5_AMUX_THM2_100K_PU>;
->> +		qcom,ratiometric;
->> +		qcom,hw-settle-time-us = <200>;
->> +	};
->> +};
->> +
->> +&pm6150_pon { status = "disabled"; };
-> Not even for reboot control?
-
-The power key never arrives (even on Windows...) so I disabled it,
-mimicking trogdor. I suppose I could drop the pwrkey instead but
-not sure how much useful the pon registers are with the EFI on this
-board...
-
-> 
->> +
->> +&qupv3_id_0 {
->> +	status = "okay";
->> +};
-> 
-> [...]
-> 
->> +
->> +&usb_1_hsphy {
->> +	vdd-supply = <&vreg_l4a_0p8>;
->> +	vdda-pll-supply = <&vreg_l11a_1p8>;
->> +	vdda-phy-dpdm-supply = <&vreg_l17a_3p0>;
->> +	qcom,imp-res-offset-value = <8>;
->> +	qcom,preemphasis-level = <QUSB2_V2_PREEMPHASIS_15_PERCENT>;
->> +	qcom,preemphasis-width = <QUSB2_V2_PREEMPHASIS_WIDTH_HALF_BIT>;
->> +	qcom,bias-ctrl-value = <0x22>;
->> +	qcom,charge-ctrl-value = <3>;
->> +	qcom,hsdisc-trim-value = <0>;
->> +
->> +	status = "okay";
->> +};
->> +
->> +&usb_1_qmpphy {
->> +	vdda-phy-supply = <&vreg_l3c_1p2>;
->> +	vdda-pll-supply = <&vreg_l4a_0p8>;
->> +	status = "okay";
-> Please be consistent with newlines before status.
-
-Will fix.
-
-> 
->> +};
->> +
->> +&venus {
->> +	firmware-name = "qcom/sc7180-acer-aspire1/qcvss7180.mbn";
-> See previous note about the firmware path
-
-Ack.
-
-> 
->> +};
->> +
->> +&wifi {
->> +	vdd-0.8-cx-mx-supply = <&vreg_l9a_0p6>;
->> +	vdd-1.8-xo-supply = <&vreg_l1c_1p8>;
->> +	vdd-1.3-rfa-supply = <&vreg_l2c_1p3>;
->> +	vdd-3.3-ch0-supply = <&vreg_l10c_3p3>;
->> +	vdd-3.3-ch1-supply = <&vreg_l11c_3p3>;
->> +	status = "okay";
->> +};
-> 
-> [...]
-> 
->> +
->> +		vreg_l10a_1p8: ldo10 {
->> +			regulator-min-microvolt = <1800000>;
->> +			regulator-max-microvolt = <1800000>;
->> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
->> +
-> Unexpected newline
-> 
-
-Will drop.
-
-Thanks!
-Nikita
-
-> 
 > Konrad
->> +			regulator-always-on;
->> +			regulator-boot-on;
->> +		};
->> +
->> +		vreg_l11a_1p8: ldo11 {
->> +			regulator-min-microvolt = <1800000>;
->> +			regulator-max-microvolt = <1800000>;
->> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
->> +		};
->> +
->> +		vreg_l12a_1p8: ldo12 {
->> +			regulator-min-microvolt = <1800000>;
->> +			regulator-max-microvolt = <1800000>;
->> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
->> +		};
->> +
->> +		vreg_l13a_1p8: ldo13 {
->> +			regulator-min-microvolt = <1800000>;
->> +			regulator-max-microvolt = <1800000>;
->> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
->> +		};
->> +
->> +		vreg_l14a_1p8: ldo14 {
->> +			regulator-min-microvolt = <1800000>;
->> +			regulator-max-microvolt = <1800000>;
->> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
->> +		};
->> +
->> +		vreg_l15a_1p8: ldo15 {
->> +			regulator-min-microvolt = <1800000>;
->> +			regulator-max-microvolt = <1800000>;
->> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
->> +		};
->> +
->> +		vreg_l16a_2p7: ldo16 {
->> +			regulator-min-microvolt = <2496000>;
->> +			regulator-max-microvolt = <3304000>;
->> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
->> +		};
->> +
->> +		vreg_l17a_3p0: ldo17 {
->> +			regulator-min-microvolt = <2920000>;
->> +			regulator-max-microvolt = <3232000>;
->> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
->> +		};
->> +
->> +		vreg_l18a_2p8: ldo18 {
->> +			regulator-min-microvolt = <2496000>;
->> +			regulator-max-microvolt = <3304000>;
->> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
->> +		};
->> +
->> +		vreg_l19a_2p9: ldo19 {
->> +			regulator-min-microvolt = <2960000>;
->> +			regulator-max-microvolt = <2960000>;
->> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
->> +		};
->> +	};
->> +
->> +	regulators-1 {
->> +		compatible = "qcom,pm6150l-rpmh-regulators";
->> +		qcom,pmic-id = "c";
->> +
->> +		vreg_s8c_1p3: smps8 {
->> +			regulator-min-microvolt = <1120000>;
->> +			regulator-max-microvolt = <1408000>;
->> +		};
->> +
->> +		vreg_l1c_1p8: ldo1 {
->> +			regulator-min-microvolt = <1616000>;
->> +			regulator-max-microvolt = <1984000>;
->> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
->> +		};
->> +
->> +		vreg_l2c_1p3: ldo2 {
->> +			regulator-min-microvolt = <1168000>;
->> +			regulator-max-microvolt = <1304000>;
->> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
->> +		};
->> +
->> +		vreg_l3c_1p2: ldo3 {
->> +			regulator-min-microvolt = <1144000>;
->> +			regulator-max-microvolt = <1304000>;
->> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
->> +		};
->> +
->> +		vreg_l4c_1p8: ldo4 {
->> +			regulator-min-microvolt = <1648000>;
->> +			regulator-max-microvolt = <3304000>;
->> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_LPM>;
->> +		};
->> +
->> +		vreg_l5c_1p8: ldo5 {
->> +			regulator-min-microvolt = <1648000>;
->> +			regulator-max-microvolt = <3304000>;
->> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_LPM>;
->> +		};
->> +
->> +		vreg_l6c_2p9: ldo6 {
->> +			regulator-min-microvolt = <1800000>;
->> +			regulator-max-microvolt = <2950000>;
->> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
->> +		};
->> +
->> +		vreg_l7c_3p0: ldo7 {
->> +			regulator-min-microvolt = <3000000>;
->> +			regulator-max-microvolt = <3312000>;
->> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_LPM>;
->> +		};
->> +
->> +		vreg_l8c_1p8: ldo8 {
->> +			regulator-min-microvolt = <1800000>;
->> +			regulator-max-microvolt = <1800000>;
->> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
->> +		};
->> +
->> +		vreg_l9c_2p9: ldo9 {
->> +			regulator-min-microvolt = <2952000>;
->> +			regulator-max-microvolt = <2952000>;
->> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
->> +		};
->> +
->> +		vreg_l10c_3p3: ldo10 {
->> +			regulator-min-microvolt = <3000000>;
->> +			regulator-max-microvolt = <3400000>;
->> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
->> +		};
->> +
->> +		vreg_l11c_3p3: ldo11 {
->> +			regulator-min-microvolt = <3000000>;
->> +			regulator-max-microvolt = <3400000>;
->> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
->> +		};
->> +
->> +		vreg_bob: bob {
->> +			regulator-min-microvolt = <3008000>;
->> +			regulator-max-microvolt = <3960000>;
->> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_AUTO>;
->> +		};
->> +	};
->> +};
->> +
->> +&qup_i2c2_default {
->> +	drive-strength = <2>;
->> +
->> +	/* Has external pullup */
->> +	bias-disable;
->> +};
->> +
->> +&qup_i2c4_default {
->> +	drive-strength = <2>;
->> +
->> +	/* Has external pullup */
->> +	bias-disable;
->> +};
->> +
->> +&qup_i2c9_default {
->> +	drive-strength = <2>;
->> +
->> +	/* Has external pullup */
->> +	bias-disable;
->> +};
->> +
->> +&qup_i2c10_default {
->> +	drive-strength = <2>;
->> +
->> +	/* Has external pullup */
->> +	bias-disable;
->> +};
->> +
->> +&tlmm {
->> +	/*
->> +	 * The TZ seem to protect those because some boards can have
->> +	 * fingerprint sensor connected to this range. Not connected
->> +	 * on this board
->> +	 */
->> +	gpio-reserved-ranges = <58 5>;
->> +
->> +	amp_sd_mode_default: amp-sd-mode-deault-state {
->> +		pins = "gpio23";
->> +		function = "gpio";
->> +		drive-strength = <16>;
->> +		bias-disable;
->> +	};
->> +
->> +	bridge_en_default: bridge-en-default-state {
->> +		pins = "gpio51";
->> +		function = "gpio";
->> +		drive-strength = <16>;
->> +		bias-disable;
->> +	};
->> +
->> +	bridge_suspend_default: bridge-suspend-default-state {
->> +		pins = "gpio22";
->> +		function = "gpio";
->> +		drive-strength = <16>;
->> +		bias-pull-up;
->> +	};
->> +
->> +	codec_irq_default: codec-irq-deault-state {
->> +		pins = "gpio28";
->> +		function = "gpio";
->> +		drive-strength = <2>;
->> +		bias-disable;
->> +	};
->> +
->> +	edp_bridge_irq_default: edp-bridge-irq-default-state {
->> +		pins = "gpio11";
->> +		function = "gpio";
->> +		drive-strength = <2>;
->> +		bias-pull-down;
->> +	};
->> +
->> +	hid_keyboard_default: hid-keyboard-default-state {
->> +		pins = "gpio33";
->> +		function = "gpio";
->> +		drive-strength = <2>;
->> +		bias-disable;
->> +	};
->> +
->> +	hid_touchpad_default: hid-touchpad-default-state {
->> +		pins = "gpio94";
->> +		function = "gpio";
->> +		drive-strength = <2>;
->> +		bias-disable;
->> +	};
->> +
->> +	qup_uart3_sleep: qup-uart3-sleep-state {
->> +		cts-pins {
->> +			/*
->> +			 * Configure a pull-down on CTS to match the pull of
->> +			 * the Bluetooth module.
->> +			 */
->> +			pins = "gpio38";
->> +			function = "gpio";
->> +			bias-pull-down;
->> +		};
->> +
->> +		rts-pins {
->> +			/*
->> +			 * Configure pull-down on RTS. As RTS is active low
->> +			 * signal, pull it low to indicate the BT SoC that it
->> +			 * can wakeup the system anytime from suspend state by
->> +			 * pulling RX low (by sending wakeup bytes).
->> +			 */
->> +			pins = "gpio39";
->> +			function = "gpio";
->> +			bias-pull-down;
->> +		};
->> +
->> +		tx-pins {
->> +			/*
->> +			 * Configure pull-up on TX when it isn't actively driven
->> +			 * to prevent BT SoC from receiving garbage during sleep.
->> +			 */
->> +			pins = "gpio40";
->> +			function = "gpio";
->> +			bias-pull-up;
->> +		};
->> +
->> +		rx-pins {
->> +			/*
->> +			 * Configure a pull-up on RX. This is needed to avoid
->> +			 * garbage data when the TX pin of the Bluetooth module
->> +			 * is floating which may cause spurious wakeups.
->> +			 */
->> +			pins = "gpio41";
->> +			function = "gpio";
->> +			bias-pull-up;
->> +		};
->> +	};
->> +
->> +	reg_edp_1p2_en_default: reg-edp-1p2-en-deault-state {
->> +		pins = "gpio19";
->> +		function = "gpio";
->> +		drive-strength = <16>;
->> +		bias-disable;
->> +	};
->> +
->> +	reg_edp_1p8_en_default: reg-edp-1p8-en-deault-state {
->> +		pins = "gpio20";
->> +		function = "gpio";
->> +		drive-strength = <16>;
->> +		bias-disable;
->> +	};
->> +
->> +	reg_lcm_en_default: reg-lcm-en-deault-state {
->> +		pins = "gpio26";
->> +		function = "gpio";
->> +		drive-strength = <16>;
->> +		bias-disable;
->> +	};
->> +
->> +	reg_audio_en_default: reg-audio-en-deault-state {
->> +		pins = "gpio83";
->> +		function = "gpio";
->> +		drive-strength = <2>;
->> +		bias-disable;
->> +	};
->> +
->> +	reg_tp_en_default: reg-tp-en-deault-state {
->> +		pins = "gpio25";
->> +		function = "gpio";
->> +		drive-strength = <2>;
->> +		bias-disable;
->> +	};
->> +
->> +	soc_bkoff_default: soc-bkoff-deault-state {
->> +		pins = "gpio10";
->> +		function = "gpio";
->> +		drive-strength = <16>;
->> +		bias-disable;
->> +	};
->> +
->> +	sdc1_default: sdc1-default-state {
->> +		clk-pins {
->> +			pins = "sdc1_clk";
->> +			bias-disable;
->> +			drive-strength = <16>;
->> +		};
->> +
->> +		cmd-pins {
->> +			pins = "sdc1_cmd";
->> +			bias-pull-up;
->> +			drive-strength = <16>;
->> +		};
->> +
->> +		data-pins {
->> +			pins = "sdc1_data";
->> +			bias-pull-up;
->> +			drive-strength = <16>;
->> +		};
->> +
->> +		rclk-pins {
->> +			pins = "sdc1_rclk";
->> +			bias-pull-down;
->> +		};
->> +	};
->> +
->> +	sdc1_sleep: sdc1-sleep-state {
->> +		clk-pins {
->> +			pins = "sdc1_clk";
->> +			bias-disable;
->> +			drive-strength = <2>;
->> +		};
->> +
->> +		cmd-pins {
->> +			pins = "sdc1_cmd";
->> +			bias-pull-up;
->> +			drive-strength = <2>;
->> +		};
->> +
->> +		data-pins {
->> +			pins = "sdc1_data";
->> +			bias-pull-up;
->> +			drive-strength = <2>;
->> +		};
->> +
->> +		rclk-pins {
->> +			pins = "sdc1_rclk";
->> +			bias-pull-down;
->> +		};
->> +	};
->> +
->> +	ter_mi2s_active: ter-mi2s-active-state {
->> +		pins = "gpio63", "gpio64", "gpio65";
->> +		function = "mi2s_2";
->> +	};
->> +};
+> >  drivers/pci/controller/dwc/pcie-qcom.c | 14 +++++++-------
+> >  1 file changed, 7 insertions(+), 7 deletions(-)
+> > 
+> > diff --git a/drivers/pci/controller/dwc/pcie-qcom.c b/drivers/pci/controller/dwc/pcie-qcom.c
+> > index 926a531fda3a..4179ac973147 100644
+> > --- a/drivers/pci/controller/dwc/pcie-qcom.c
+> > +++ b/drivers/pci/controller/dwc/pcie-qcom.c
+> > @@ -39,17 +39,17 @@
+> >  #define PARF_PCS_DEEMPH				0x34
+> >  #define PARF_PCS_SWING				0x38
+> >  #define PARF_PHY_CTRL				0x40
+> > -#define PARF_PHY_REFCLK				0x4C
+> > +#define PARF_PHY_REFCLK				0x4c
+> >  #define PARF_CONFIG_BITS			0x50
+> >  #define PARF_DBI_BASE_ADDR			0x168
+> > -#define PARF_SLV_ADDR_SPACE_SIZE_2_3_3		0x16C /* Register offset specific to IP ver 2.3.3 */
+> > +#define PARF_SLV_ADDR_SPACE_SIZE_2_3_3		0x16c /* Register offset specific to IP ver 2.3.3 */
+> >  #define PARF_MHI_CLOCK_RESET_CTRL		0x174
+> >  #define PARF_AXI_MSTR_WR_ADDR_HALT		0x178
+> > -#define PARF_AXI_MSTR_WR_ADDR_HALT_V2		0x1A8
+> > -#define PARF_Q2A_FLUSH				0x1AC
+> > -#define PARF_LTSSM				0x1B0
+> > +#define PARF_AXI_MSTR_WR_ADDR_HALT_V2		0x1a8
+> > +#define PARF_Q2A_FLUSH				0x1ac
+> > +#define PARF_LTSSM				0x1b0
+> >  #define PARF_SID_OFFSET				0x234
+> > -#define PARF_BDF_TRANSLATE_CFG			0x24C
+> > +#define PARF_BDF_TRANSLATE_CFG			0x24c
+> >  #define PARF_SLV_ADDR_SPACE_SIZE		0x358
+> >  #define PARF_DEVICE_TYPE			0x1000
+> >  #define PARF_BDF_TO_SID_TABLE_N			0x2000
+> > @@ -60,7 +60,7 @@
+> >  /* DBI registers */
+> >  #define AXI_MSTR_RESP_COMP_CTRL0		0x818
+> >  #define AXI_MSTR_RESP_COMP_CTRL1		0x81c
+> > -#define MISC_CONTROL_1_REG			0x8BC
+> > +#define MISC_CONTROL_1_REG			0x8bc
+> >  
+> >  /* PARF_SYS_CTRL register fields */
+> >  #define MAC_PHY_POWERDOWN_IN_P2_D_MUX_EN	BIT(29)
+
+-- 
+மணிவண்ணன் சதாசிவம்
