@@ -2,77 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1CB0B6BA98C
-	for <lists+devicetree@lfdr.de>; Wed, 15 Mar 2023 08:41:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C683D6BA9A3
+	for <lists+devicetree@lfdr.de>; Wed, 15 Mar 2023 08:45:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231231AbjCOHlu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Mar 2023 03:41:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59276 "EHLO
+        id S231508AbjCOHpR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Mar 2023 03:45:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40786 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231755AbjCOHld (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Mar 2023 03:41:33 -0400
-Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com [IPv6:2a00:1450:4864:20::532])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A825DCA34
-        for <devicetree@vger.kernel.org>; Wed, 15 Mar 2023 00:41:24 -0700 (PDT)
-Received: by mail-ed1-x532.google.com with SMTP id h8so28065740ede.8
-        for <devicetree@vger.kernel.org>; Wed, 15 Mar 2023 00:41:24 -0700 (PDT)
+        with ESMTP id S231873AbjCOHpD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Mar 2023 03:45:03 -0400
+Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9D84712F25
+        for <devicetree@vger.kernel.org>; Wed, 15 Mar 2023 00:44:59 -0700 (PDT)
+Received: by mail-ed1-x533.google.com with SMTP id y4so42435786edo.2
+        for <devicetree@vger.kernel.org>; Wed, 15 Mar 2023 00:44:59 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1678866083;
+        d=linaro.org; s=google; t=1678866298;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=o0KhlGWXaQvnZJhV1oSsNdPCBAKJbouheIOtj7npGYk=;
-        b=YBBTDpvNzHs/0H49YlerltAikbw/Jmf3Nd/So97eSTLWxTvmgz/onV2Vd5EbQcED+9
-         0XUxEHoucWRhtsidJpj6Xog8jBDvGxyPEXhd3ABMfjq5BqmwqEMEcX3lCf6VCnX8vVxa
-         fkQTlsVdClzxFyJGiiX1t1+fWSeqk/huvGy3wQZmxhD7p7jvP9bn83dC7YinT31jEfGf
-         z+ShZ+ti9xT61VJoMsfYmk76Mlep/cukGCvR5mrL2DXt5JAbU5Nw7ZbQqLlDjD3un88N
-         Yu9WQr/u2Jonl+SG91lOwzxG5lt9wFSLYw8ExW26UMWpljO5AemlUWezJrU732i+ECft
-         1okQ==
+        bh=9Xq5wxRGanCU084dldf05/HLWqQy9WdlKKe6PD7Zt8M=;
+        b=OmGVRs5Os7Vv+4EkKyX2c3gkOv4cEACqA9RfB4BA3Y7h2bXUIn9Gy5W85dzNvp0wwy
+         v1BaO4kV4DX96jVUVEFH/YSEKz7k6AqzRrq+35HRdy5y11Hx7CcckKX01MzQ5E41Aszt
+         15VJQPsU6kJX9PmuPZk9THD0dfPFdaf5T4PUANohFk9OKD/co2OSpJn0GSH7XiXSkCfY
+         E4WMg0e0kgpF5WRqywdG7L1Tagq+Xa7TEerHJEJcNLB7JtyHloHe6FkPVFSQtIKewUql
+         pXexBNM0s4QKQ5z2CvIQ0OsYTsylLEKbYmoaoofP87kg+tRlEyMdWwrt9OjPIflCOEEA
+         lhQA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678866083;
+        d=1e100.net; s=20210112; t=1678866298;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=o0KhlGWXaQvnZJhV1oSsNdPCBAKJbouheIOtj7npGYk=;
-        b=2KUpE5LQ3zOPC3rNfMxWGlCP0+KaHot1n/bJYRK9s3VDvW3TSACOc+bpequncbR0QQ
-         p/5U3KRdZniUNZNiRh52Mdqvnmlc+rkIliZuY69p1uz4akHV7VffSwIrFwVMnOW6iRHV
-         nkuDFhDJ5eNq53Hnalrr1c5TfxyAxcR1LOlgOfJxW+X9LVxExkrhItPYyWGbErZIeiHf
-         pJjKcJQfecpZdkHwdG0LqT3EBmZKL5IdodM68tdRRKSIn+PyU1Ub97QKZH3tStzg3XEL
-         nm2w7yzcTfqPtM6L5j6+mXCmyWkLdVPPLGZTKYUP23/7oNLSQoP1wPJjboQ9wMStaNWs
-         l0cA==
-X-Gm-Message-State: AO0yUKVrMUYfm69W3JA3i0mh68ecplvMlO8IrRgXxlCi7PgbOukTF6rN
-        m01IySYhFnrcm2XLxWSwMKYYTQ==
-X-Google-Smtp-Source: AK7set9Rrx9ge1r9G4dbyMIZf+2ce8Es0KpH7l15XaniS+dAetrOiLVGW+bUv4hTSdzjnjE7120OZA==
-X-Received: by 2002:aa7:cc83:0:b0:4fe:f19f:ac46 with SMTP id p3-20020aa7cc83000000b004fef19fac46mr1652409edt.6.1678866083130;
-        Wed, 15 Mar 2023 00:41:23 -0700 (PDT)
+        bh=9Xq5wxRGanCU084dldf05/HLWqQy9WdlKKe6PD7Zt8M=;
+        b=czRfCbPHqslc5WeLdHwhanipFxnQPpejwDJfB6s2QXP+z6icO1Nl6tZ7ZuCcdoy378
+         9RvYaplAHZuR/C8MbW71dl7zAB3y7hI8+ZY9SeIrrmG8h+KsLwpRzzWVUK5V5JUc6gQ4
+         volKcmEHNpPWEkNPQ09OR2kzaPcfOlD+tTIHnyi0HhpizJ3j1pE2SvSJcEfQ4Syhrf+6
+         c+YY3utjXEYpOYKJoesM4MeIBlSDPBgvL++4zTyfcQ3PmwmDNo15mwJClasPylrDxl7l
+         gRnsTEB01IHIZFPBec37zRzQGOvT9J2yu7KmqdyBKKmJnvbgIbDbLimc7Jad7WInEYjn
+         xiLA==
+X-Gm-Message-State: AO0yUKVI0A+HCldNXdxeYY5KoG3NbhxBCPHZfLbyaewgWWN1dH3adTzI
+        PmFUc9x8QKwX2KpGR1WRY27jZQ==
+X-Google-Smtp-Source: AK7set8MzP2lTGcLn28jbRXX6z+gna8IQ/2by8rQSHPJejx9TZ2M1EDVo+jHIfkYeCPA1UQx/UEr0Q==
+X-Received: by 2002:a17:906:b88d:b0:8b1:806b:7dbb with SMTP id hb13-20020a170906b88d00b008b1806b7dbbmr5176621ejb.51.1678866298091;
+        Wed, 15 Mar 2023 00:44:58 -0700 (PDT)
 Received: from ?IPV6:2a02:810d:15c0:828:940e:8615:37dc:c2bd? ([2a02:810d:15c0:828:940e:8615:37dc:c2bd])
-        by smtp.gmail.com with ESMTPSA id d7-20020a50f687000000b004fe9386b259sm1416507edn.41.2023.03.15.00.41.21
+        by smtp.gmail.com with ESMTPSA id sa35-20020a1709076d2300b0092ce7c94332sm1738605ejc.148.2023.03.15.00.44.57
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 15 Mar 2023 00:41:22 -0700 (PDT)
-Message-ID: <2b3e39b9-ea70-db9b-89f7-09054df363c3@linaro.org>
-Date:   Wed, 15 Mar 2023 08:41:21 +0100
+        Wed, 15 Mar 2023 00:44:57 -0700 (PDT)
+Message-ID: <3649d489-5783-8a66-63f3-a2c0d59e10c3@linaro.org>
+Date:   Wed, 15 Mar 2023 08:44:56 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.8.0
-Subject: Re: [PATCH v2 2/5] dt-bindings: arm: msm: Add bindings for multi
- channel DDR in LLCC
+Subject: Re: [PATCH v7 12/13] media: dt-bindings: Add DT bindings for TI J721E
+ CSI2RX driver
 Content-Language: en-US
-To:     Komal Bajaj <quic_kbajaj@quicinc.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Abel Vesa <abel.vesa@linaro.org>,
-        Rishabh Bhatnagar <rishabhb@codeaurora.org>,
-        Prakash Ranjan <saiprakash.ranjan@codeaurora.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org
-References: <20230313124040.9463-1-quic_kbajaj@quicinc.com>
- <20230313124040.9463-3-quic_kbajaj@quicinc.com>
+To:     Vaishnav Achath <vaishnav.a@ti.com>, linux-media@vger.kernel.org,
+        devicetree@vger.kernel.org, mripard@kernel.org, mchehab@kernel.org,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        laurent.pinchart@ideasonboard.com, sakari.ailus@linux.intel.com,
+        tomi.valkeinen@ideasonboard.com
+Cc:     linux-kernel@vger.kernel.org, bparrot@ti.com,
+        niklas.soderlund+renesas@ragnatech.se, j-luthra@ti.com,
+        devarsht@ti.com, praneeth@ti.com, u-kumar1@ti.com, vigneshr@ti.com,
+        nm@ti.com, martyn.welch@collabora.com
+References: <20230314115516.667-1-vaishnav.a@ti.com>
+ <20230314115516.667-13-vaishnav.a@ti.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230313124040.9463-3-quic_kbajaj@quicinc.com>
+In-Reply-To: <20230314115516.667-13-vaishnav.a@ti.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -85,67 +82,72 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 13/03/2023 13:40, Komal Bajaj wrote:
-> Add description for additional nodes needed to support
-> mulitple channel DDR configurations in LLCC.
+On 14/03/2023 12:55, Vaishnav Achath wrote:
+> From: Pratyush Yadav <p.yadav@ti.com>
 > 
-> Signed-off-by: Komal Bajaj <quic_kbajaj@quicinc.com>
-
-+Cc Mani,
-
-This will conflict with:
-https://lore.kernel.org/all/20230314080443.64635-3-manivannan.sadhasivam@linaro.org/
-
-Please rebase on top of Mani's patches (assuming they are not
-conflicting in principle)
-
+> TI's J721E uses the Cadence CSI2RX and DPHY peripherals to facilitate
+> capture over a CSI-2 bus. The TI CSI2RX platform driver glues all the
+> parts together.
+> 
+> Signed-off-by: Pratyush Yadav <p.yadav@ti.com>
+> Signed-off-by: Vaishnav Achath <vaishnav.a@ti.com>
+> Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> Reviewed-by: Rob Herring <robh@kernel.org>
 > ---
->  Documentation/devicetree/bindings/arm/msm/qcom,llcc.yaml | 9 +++++++++
->  1 file changed, 9 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/arm/msm/qcom,llcc.yaml b/Documentation/devicetree/bindings/arm/msm/qcom,llcc.yaml
-> index 38efcad56dbd..9a4a76caf490 100644
-> --- a/Documentation/devicetree/bindings/arm/msm/qcom,llcc.yaml
-> +++ b/Documentation/devicetree/bindings/arm/msm/qcom,llcc.yaml
-> @@ -37,15 +37,24 @@ properties:
->      items:
 
-minItems: 2
 
->        - description: LLCC base register region
->        - description: LLCC broadcast base register region
-> +      - description: Feature register to decide which LLCC configuration
-> +                     to use, this is optional
->  
->    reg-names:
+> +$id: http://devicetree.org/schemas/media/ti,j721e-csi2rx.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: TI J721E CSI2RX Wrapper Device Tree Bindings
 
-minItems: 2
+Drop "Device Tree Bindings"
 
->      items:
->        - const: llcc_base
->        - const: llcc_broadcast_base
-> +      - const: multi_channel_register
->  
->    interrupts:
->      maxItems: 1
->  
-> +  multi-ch-bit-off:
+> +
+> +description: |
+> +  The TI J721E CSI2RX Wrapper is a wrapper around Cadence CSI2RX bridge that
+> +  enables sending captured frames to memory over PSI-L DMA. In the J721E
+> +  Technical Reference Manual (SPRUIL1B) it is referred to as "SHIM" under the
+> +  CSI_RX_IF section.
+> +
+> +maintainers:
+> +  - Pratyush Yadav <p.yadav@ti.com>
+> +
+> +properties:
+> +  compatible:
 > +    items:
-> +      - description: Specifies the offset in bits into the multi_channel_register
-> +                     and the number of bits used to decide which LLCC configuration
-> +                     to use
 
-There are here few issues.
-First, I don't fully understand the property. What is an LLCC
-configuration? Like some fused values?
+Drop items
 
-Second, don't make it a register specific, it will not scale easily to
-any new version of this interface. Although how this should look like
-depends on what is it.
+> +      - const: ti,j721e-csi2rx
+> +
+> +  dmas:
+> +    maxItems: 1
+> +
+> +  dma-names:
+> +    items:
+> +      - const: rx0
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  power-domains:
+> +    maxItems: 1
+> +
+> +  ranges: true
+> +
+> +  "#address-cells": true
+> +
+> +  "#size-cells": true
+> +
+> +patternProperties:
+> +  "^csi-bridge@":
+> +    type: object
+> +    description: CSI2 bridge node.
+> +    $ref: cdns,csi2rx.yaml#
 
-Third, you need vendor prefix and type (unless this is a generic
-property, but does not look like). Then "items" is probably wrong. Line
-break after "description: "
+Your patch fails here. This error must be fixed or explain as dependency
+in the patch changelog. Patch cannot be taken without that dependency.
 
 Best regards,
 Krzysztof
