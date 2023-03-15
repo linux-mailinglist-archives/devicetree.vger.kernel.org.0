@@ -2,143 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1910F6BC1C6
-	for <lists+devicetree@lfdr.de>; Thu, 16 Mar 2023 00:52:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 059846BC1CF
+	for <lists+devicetree@lfdr.de>; Thu, 16 Mar 2023 00:54:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233038AbjCOXwU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Mar 2023 19:52:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56608 "EHLO
+        id S233080AbjCOXyt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Mar 2023 19:54:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33156 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233058AbjCOXwR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Mar 2023 19:52:17 -0400
-Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A473D26C0E
-        for <devicetree@vger.kernel.org>; Wed, 15 Mar 2023 16:52:13 -0700 (PDT)
-Received: by mail-lf1-x129.google.com with SMTP id r27so173955lfe.10
-        for <devicetree@vger.kernel.org>; Wed, 15 Mar 2023 16:52:13 -0700 (PDT)
+        with ESMTP id S230147AbjCOXys (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Mar 2023 19:54:48 -0400
+Received: from mail-wm1-x32c.google.com (mail-wm1-x32c.google.com [IPv6:2a00:1450:4864:20::32c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 121894B824;
+        Wed, 15 Mar 2023 16:54:47 -0700 (PDT)
+Received: by mail-wm1-x32c.google.com with SMTP id bg16-20020a05600c3c9000b003eb34e21bdfso2079944wmb.0;
+        Wed, 15 Mar 2023 16:54:46 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1678924332;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=BTkT6oATf2mknBlo+CEz3GQDcOlS8+L67bLlAy6zbmY=;
-        b=RWtv1MwFi8oZoOEq/QNzWdgHkzGNSwmQD9Pq4li+wte5asL7TZ06kLryPmxbnaJI+9
-         sex0BOne07tCELRgLvSWi9HnwCRX3oPZUvgdUIYyo/uRwerMqBXLiQH1+JXh23X+EzqQ
-         yzPK4/t6cEo5nym01JzQZ4oXjlAKrZGAl6T8pXWbcZOzzZDneWF4sVlby7dPDvB+qD2u
-         5HVeHEnq0gg6f4okP+wlN9JgSW/hsFu225hvvTcPIR/poaysXw2aSpdWf4VQusNP7whE
-         Gu8jQ9TtJechVWkOwG/OTR8mNtg51otANVHWC72ymWxHPxI9ldrHAMx7gm5yyiaj2Vyn
-         ajug==
+        d=gmail.com; s=20210112; t=1678924485;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=VaBC8VbXPeoS4Rhzpa1x7rfgBVJkXDyo8VEwCQbyxgY=;
+        b=KRagSc0q5Ts39y9KYANs228UbpMEAjveR9gsU9dG9HY8+V2/OSekEJS2J0bBDWqyVI
+         l7vrGExr1bsZS2sN3M22EavsRQXv8z0w+06kcWBwV1K1ES3hh8VoY7R6h9nGa63Aarjk
+         7SNLTfoPpTsveVczJ/vHV2/QVzUlEm+UqlHh5V0yta61BCbZl9gaZnUohhAKjgfggFAV
+         dzLElYqNNkatAF0S87bOvVOTFcqwtyIHhm3AiXvY0JVxGjag6Nu8+evXFwT65Jn83ILF
+         qczmuwbUwdluhSfZGcYSssriD0qoLBboM+8+Avfua94OrP4sefDHExsW+DGrL68NFzuK
+         tvoA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678924332;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=BTkT6oATf2mknBlo+CEz3GQDcOlS8+L67bLlAy6zbmY=;
-        b=QxrrbyzVih4cSiXjc4w6kWnQNbW+hQ9DOgJyuqOX6ACQ2Ps2iAGOhasNcDaJUYXtRf
-         8NcVPT4TP8uEWQLz5uBfEsySLiFxKpclkExFFPNE+Lw7NlPyFmRh3g94L/U/+dUJbfHi
-         mQ0wnJ6jl7IermNpZv8FBMmTlkoM1C9iT4sjiFaKxDPS6MVjQOi1INMlAXLGXOGosYgG
-         lne77UpK7aVIVGdufSTU45WvcGhavFUXCM3090+4VFsYPphwLUBBo5P+80xDYrmxrs/7
-         d++KDncSaQZWxQt/XtdF1Im3yNTAND59u3FZJR2SmCQF/tytfHnWXewjnNF4l9+SA3ak
-         7xAw==
-X-Gm-Message-State: AO0yUKWaiIMJq3//yXJ/FgB3T8+O4qnhowbuWGalfhcpxrXrea0/LEPA
-        DY7oXBv2WYzGhuUOhSGl7WLb13yQLR3xaEUtiqg=
-X-Google-Smtp-Source: AK7set/YXODHkQ0JbL6pGCYu1xosbNt66OnbqLBMIJEMqg5lhcgh9tU8bVvelH1qBZvsWCNxp0gTDA==
-X-Received: by 2002:ac2:52ad:0:b0:4e8:3f1f:3646 with SMTP id r13-20020ac252ad000000b004e83f1f3646mr2501910lfm.55.1678924331882;
-        Wed, 15 Mar 2023 16:52:11 -0700 (PDT)
-Received: from [192.168.1.101] (abyj16.neoplus.adsl.tpnet.pl. [83.9.29.16])
-        by smtp.gmail.com with ESMTPSA id b17-20020ac25631000000b004cc7026d95asm986461lff.259.2023.03.15.16.52.10
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 15 Mar 2023 16:52:11 -0700 (PDT)
-Message-ID: <79731f2a-83e5-1e35-d450-456492cc5df2@linaro.org>
-Date:   Thu, 16 Mar 2023 00:52:10 +0100
+        d=1e100.net; s=20210112; t=1678924485;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=VaBC8VbXPeoS4Rhzpa1x7rfgBVJkXDyo8VEwCQbyxgY=;
+        b=BckD2fiQhayDpYoFFyfybRItqSls9PRbJ7lcLDxJWnUqxgXQ6gCCj/C7sJnaqMqFR2
+         +DtPMmQtRKSDOp7lAsqhxvw1nT8oq67keCROp6NoeoK2yrWAKzoCFerDkmoq6KqkhKii
+         JtYTkr6YjUEGkwkSfc+pvJrUijQmL0/GJ7sb5wPfzfcoNukfAuyNAwQUwkIQvpfIJqFM
+         pFZoJZKIE1F9dQV/ePUlN9v1awrsNePYFBsyQ6WjlG6L2S6tAAi6YBdqjBZ9x9FNCuYD
+         VPKF73X3OIhVgJOhcrAVqfUsTez35+N+8+3+0o1TuWX0EDKy1uxyOrn0mz2Rtu5Oxqed
+         dHdQ==
+X-Gm-Message-State: AO0yUKXpZ3sEEBZoST+1ml8VKpPZF6yXEmFoHPlmxXM8th81ObApp1BG
+        74HLMdAEd1Z+XP64ltTGFxcyqAwUJRkpKNP+5Rk=
+X-Google-Smtp-Source: AK7set9KWyqo4l8uXCJJtkj2AlRPkIOnFBuxBmSkyLnEZIV4Mw+VWV8nkO0wKXUaQZ0aClFi8oLMzH7dSRAdQenQRqs=
+X-Received: by 2002:a05:600c:5114:b0:3ea:8ed9:8e4b with SMTP id
+ o20-20020a05600c511400b003ea8ed98e4bmr5590816wms.6.1678924485358; Wed, 15 Mar
+ 2023 16:54:45 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-Subject: Re: [PATCH v2 2/2] arm64: dts: qcom: Add base qrb4210-rb2 board dts
-Content-Language: en-US
-To:     Bjorn Andersson <andersson@kernel.org>,
-        Bhupesh Sharma <bhupesh.sharma@linaro.org>
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        agross@kernel.org, linux-kernel@vger.kernel.org,
-        bhupesh.linux@gmail.com, robh+dt@kernel.org,
-        krzysztof.kozlowski@linaro.org
-References: <20230315210145.2221116-1-bhupesh.sharma@linaro.org>
- <20230315210145.2221116-3-bhupesh.sharma@linaro.org>
- <20230315223604.ofy7vm3bpccf5aul@ripper>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20230315223604.ofy7vm3bpccf5aul@ripper>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-0.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_SORBS_HTTP,RCVD_IN_SORBS_SOCKS,SPF_HELO_NONE,SPF_PASS,
-        URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.6
+References: <20230315160228.2362-1-cnsztl@gmail.com> <20230315160228.2362-6-cnsztl@gmail.com>
+In-Reply-To: <20230315160228.2362-6-cnsztl@gmail.com>
+From:   Vasily Khoruzhick <anarsoul@gmail.com>
+Date:   Wed, 15 Mar 2023 16:54:18 -0700
+Message-ID: <CA+E=qVcL1PNMcJ5M1zHQhZNpajxLJWWGQoXYeLER+OmV5Qz33A@mail.gmail.com>
+Subject: Re: [PATCH 5/5] arm64: dts: rockchip: enable rk809 audio codec on the
+ NanoPi R5 series
+To:     Tianling Shen <cnsztl@gmail.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Jagan Teki <jagan@amarulasolutions.com>,
+        Peter Geis <pgwipeout@gmail.com>, Andy Yan <andyshrk@163.com>,
+        Brian Norris <briannorris@chromium.org>,
+        Chris Morgan <macromorgan@hotmail.com>,
+        Sebastian Reichel <sebastian.reichel@collabora.com>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Michael Riesch <michael.riesch@wolfvision.net>,
+        Maya Matuszczyk <maccraft123mc@gmail.com>,
+        Andrew Powers-Holmes <aholmes@omnom.net>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Wed, Mar 15, 2023 at 9:03=E2=80=AFAM Tianling Shen <cnsztl@gmail.com> wr=
+ote:
 
+Hi Tianling,
 
-On 15.03.2023 23:36, Bjorn Andersson wrote:
-> On Thu, Mar 16, 2023 at 02:31:45AM +0530, Bhupesh Sharma wrote:
->> Add DTS for Qualcomm qrb4210-rb2 board which uses SM4250 SoC.
->>
->> This adds debug uart, emmc, uSD and tlmm support along with
->> regulators found on this board.
->>
->> Also defines the 'xo_board' and 'sleep_clk' frequencies for
->> this board.
->>
->> Signed-off-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
->> ---
-[...]
+> +       rk809-sound {
 
->> +	vmmc-supply = <&vreg_l24a_2p96>;
-> 
-> Is there any reason why this platform doesn't require the vmmc supply to
-> be driven to HPM? This has traditionally been coming back biting us
-> through some stability issues later.
-Do we even support HPM/LPM on SMD RPM?
+There is no audio jack on my R5S, see [1] and I don't see it on R5C
+either, see [2]. I don't see audio output on the pin header either.
+How is it supposed to work?
 
-Konrad
-> 
-> Regards,
-> Bjorn
-> 
->> +	vqmmc-supply = <&vreg_l11a_1p8>;
->> +	no-sdio;
->> +	non-removable;
->> +};
->> +
->> +&sdhc_2 {
->> +	status = "okay";
->> +
->> +	cd-gpios = <&tlmm 88 GPIO_ACTIVE_HIGH>; /* card detect gpio */
->> +	vmmc-supply = <&vreg_l22a_2p96>;
->> +	vqmmc-supply = <&vreg_l5a_2p96>;
->> +	no-sdio;
->> +};
->> +
->> +&sleep_clk {
->> +	clock-frequency = <32000>;
->> +};
->> +
->> +&tlmm {
->> +	gpio-reserved-ranges = <37 5>, <43 2>, <47 1>,
->> +			       <49 1>, <52 1>, <54 1>,
->> +			       <56 3>, <61 2>, <64 1>,
->> +			       <68 1>, <72 8>, <96 1>;
->> +};
->> +
->> +&uart4 {
->> +	status = "okay";
->> +};
->> +
->> +&xo_board {
->> +	clock-frequency = <19200000>;
->> +};
->> -- 
->> 2.38.1
->>
+> +               compatible =3D "simple-audio-card";
+> +               simple-audio-card,format =3D "i2s";
+> +               simple-audio-card,name =3D "Analog RK809";
+> +               simple-audio-card,mclk-fs =3D <256>;
+> +
+> +               simple-audio-card,cpu {
+> +                       sound-dai =3D <&i2s1_8ch>;
+> +               };
+> +
+> +               simple-audio-card,codec {
+> +                       sound-dai =3D <&rk809>;
+
+It looks like rk809 doesn't have #sound-dai-cells property and it
+results in a warning:
+
+arch/arm64/boot/dts/rockchip/rk3568-nanopi-r5s.dtsi:48.27-50.5:
+Warning (sound_dai_property): /rk809-sound/simple-audio-card,codec:
+Missing property '#sound-dai-cells' in node /i2c@fdd40000/pmic@20 or
+bad phandle (referred from sound-dai[0])
+
+Regards,
+Vasily
+
+[1] https://wiki.friendlyelec.com/wiki/index.php/NanoPi_R5S
+[2] https://wiki.friendlyelec.com/wiki/index.php/NanoPi_R5C
