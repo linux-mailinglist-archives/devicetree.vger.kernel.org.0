@@ -2,101 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 58F656BBD76
-	for <lists+devicetree@lfdr.de>; Wed, 15 Mar 2023 20:43:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9FE716BBDF5
+	for <lists+devicetree@lfdr.de>; Wed, 15 Mar 2023 21:28:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231393AbjCOTnQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Mar 2023 15:43:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43484 "EHLO
+        id S231725AbjCOU17 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Mar 2023 16:27:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49462 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232069AbjCOTnO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Mar 2023 15:43:14 -0400
-Received: from mail-qt1-x831.google.com (mail-qt1-x831.google.com [IPv6:2607:f8b0:4864:20::831])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B90A2206AB
-        for <devicetree@vger.kernel.org>; Wed, 15 Mar 2023 12:43:09 -0700 (PDT)
-Received: by mail-qt1-x831.google.com with SMTP id y10so17527385qtj.2
-        for <devicetree@vger.kernel.org>; Wed, 15 Mar 2023 12:43:09 -0700 (PDT)
+        with ESMTP id S232496AbjCOU16 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Mar 2023 16:27:58 -0400
+Received: from mail-wm1-x334.google.com (mail-wm1-x334.google.com [IPv6:2a00:1450:4864:20::334])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 15D0B574E5
+        for <devicetree@vger.kernel.org>; Wed, 15 Mar 2023 13:27:55 -0700 (PDT)
+Received: by mail-wm1-x334.google.com with SMTP id m18-20020a05600c3b1200b003ed2a3d635eso2092006wms.4
+        for <devicetree@vger.kernel.org>; Wed, 15 Mar 2023 13:27:55 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1678909389;
+        d=bgdev-pl.20210112.gappssmtp.com; s=20210112; t=1678912073;
         h=content-transfer-encoding:mime-version:message-id:date:subject:cc
          :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=Ms61MPG4grbrr20EEED6cJ0Mv4lkKhi5d9EK9H3ZypY=;
-        b=zNdlvKK2I7ZEzwLkENduEJjfo7YlDmbGRnwRCPz6us9u/51FjOo5YvV3aM8uCro7BF
-         r0auxGnmk7QcnLWESZkQrXWCyHcvm/hYp1m4VDB7jzqSUEDbWriwJofHtlPGbMkmaHVg
-         kUWGL0PRU9q5DDgwR+gjUDpBKsPzubknocExoiU/ytHSaomj3ZlPnYeafyVbLMWG9i6V
-         wf4EAm77aP1gmKa5nUTSHHPre6pmm5lZWLWOG92hQy+uMIBY5Y35Ff0KuiYTJuIJTW9M
-         8QpJ2+NjVe4etupf9QpEH/SVD3fAL5EUokXDL6br7fppWjwvq1J2PTCrBzX916VMiE6Y
-         +fqQ==
+        bh=Fr9J0FxGpasTPmc3K9y6UFyT8zV90z0HoVcry+6uE6E=;
+        b=2L9jwWtjQgMw4Wom5XCjvanMAxWUjvJaBTlUTFrZ57EgTRnL5zTrT4kcfGROxAwolc
+         YfP6EQdhUAwSCxkD7HUA405gTuzmsJG4cXKmfwbY6kEEwWsuag/xTNEnGTwybtdCIN6f
+         EQ1/tJ14wEccoNfklaPktvMV1A75wlBjWVumE8yDY9Tv3tJk6OJmcELD2p4jeqoP/eXZ
+         sIRhM9PyO0NCWH7uTO1VtFBze+debapi0IeEEgqH85y/YVKjc7nN7oLzNUt4qrWbls7O
+         TBGVmDtKpH6SFFxQBvR+wmyf7oYgIXwDLWanH5nlX7YikcBlhq7T5twGH0LkLGlWO8A7
+         J7ug==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678909389;
+        d=1e100.net; s=20210112; t=1678912073;
         h=content-transfer-encoding:mime-version:message-id:date:subject:cc
          :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=Ms61MPG4grbrr20EEED6cJ0Mv4lkKhi5d9EK9H3ZypY=;
-        b=phIAdIaTJFxs+An14zdcNNx/bqdBDLn6KBc7xnmOquIQ0PtGmPAzm6gMHb0XWQpDKQ
-         qYw2gSWV2um8+qzpiYUBc3G1iTdQyYZ849YXkqfM1M48dARrGL+zpzZvUWn5ZoTH9DDh
-         A2YKe1/4CeEEx1AQgLcrsigLjn98b0kvjjEReQPbbfb/ORFC1S3gCABMNVAHef/iCDh4
-         OF6ty+QLFi3k2VePiUNfPbIVPwBr/+9AMVOxYyOCb+TU7HxB19AaJ/iRyutT4cm3ksE5
-         Yk20IofLS2bCCnex2gMPFf9Kj3pSDPHxzLWqxE1G/iPDX+IUjVSULR+EdLRHx/44mLn7
-         nd9w==
-X-Gm-Message-State: AO0yUKURNVx6mPj32RSwaq9xPPXiBsc7sFyNzXZoOf+7BS06y9B953gs
-        Ze6Z5TBY+eeZa8Yc/BGfYY5h1g==
-X-Google-Smtp-Source: AK7set/x5UBMtqCy9v/PIxIZJDrWNhq9W52nDHQwWHAzKvFDSqNltXTu5PRSW6B1V9gpEkB6cDIQ+g==
-X-Received: by 2002:a05:622a:1991:b0:3d6:43fc:2a52 with SMTP id u17-20020a05622a199100b003d643fc2a52mr1692100qtc.42.1678909388628;
-        Wed, 15 Mar 2023 12:43:08 -0700 (PDT)
-Received: from localhost.localdomain ([98.61.227.136])
-        by smtp.gmail.com with ESMTPSA id g126-20020a37b684000000b00742a23cada8sm4246382qkf.131.2023.03.15.12.43.07
+        bh=Fr9J0FxGpasTPmc3K9y6UFyT8zV90z0HoVcry+6uE6E=;
+        b=LyyGC+tRM6erxdNW1HpiB9187v2efx28I+LJEYLfsIwI5EwsIAW2YWXPbn5ji+g63Z
+         FPGZ13f3JaPvHe1CztC2ymYREPXuioX+j2OjF9ABLsvaVirUVbVTdzRl48MUnY5/Ydcy
+         LjDBDRdFraiF8ju6en0qSyuX+I8B3Ag2mWWCAEKQkzzJoD/Njpn1B3G4hxFzcxHQGR6p
+         NhJzQ5aauAypqRDmV5q4DIembYvsqu95ZElJ2JI08IT/aY3YPP7eslIUmaakU5G+iCni
+         y7BPm88ATdRIksqGmt4KqFAxbRWJVxsIcJDq5BbzV3OqTNHzALigCrPZPwajzzFGSZhx
+         lp1Q==
+X-Gm-Message-State: AO0yUKXCRwyjiOwY3LJ5TLan6XThjeFRueS6uxCifm3df/Ps9lRuZEvT
+        u4FX6Dw/It/CF8/Kj7zLe2HgqQ==
+X-Google-Smtp-Source: AK7set8feVb5qr4tXzszszSx/y6GB+vQiduw8991Xje8cOUTvcJG+PH0bhx+FBWagDu5Bu/l+pWxIw==
+X-Received: by 2002:a05:600c:1c0a:b0:3ed:22b3:6263 with SMTP id j10-20020a05600c1c0a00b003ed22b36263mr13127306wms.12.1678912073633;
+        Wed, 15 Mar 2023 13:27:53 -0700 (PDT)
+Received: from brgl-uxlite.home ([2a01:cb1d:334:ac00:dc34:6420:c408:f64e])
+        by smtp.gmail.com with ESMTPSA id n7-20020a05600c294700b003ebf9e36cd6sm2897478wmd.26.2023.03.15.13.27.52
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 15 Mar 2023 12:43:08 -0700 (PDT)
-From:   Alex Elder <elder@linaro.org>
-To:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org
-Cc:     andersson@kernel.org, konrad.dybcio@linaro.org, agross@kernel.org,
-        devicetree@vger.kernel.org, davem@davemloft.net,
-        edumazet@google.com, kuba@kernel.org, pabeni@redhat.com,
-        elder@kernel.org, netdev@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Simon Horman <simon.horman@corigine.com>
-Subject: [PATCH v2] dt-bindings: net: qcom,ipa: add SDX65 compatible
-Date:   Wed, 15 Mar 2023 14:43:05 -0500
-Message-Id: <20230315194305.1647311-1-elder@linaro.org>
-X-Mailer: git-send-email 2.34.1
+        Wed, 15 Mar 2023 13:27:53 -0700 (PDT)
+From:   Bartosz Golaszewski <brgl@bgdev.pl>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+Subject: [PATCH] arm64: dts: qcom: sm8150: fix the uart9 label
+Date:   Wed, 15 Mar 2023 21:27:51 +0100
+Message-Id: <20230315202751.1518543-1-brgl@bgdev.pl>
+X-Mailer: git-send-email 2.37.2
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add support for SDX65, which uses IPA v5.0.
+From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
 
-Reviewed-by: Simon Horman <simon.horman@corigine.com>
-Signed-off-by: Alex Elder <elder@linaro.org>
+There's a typo in the @<address> part of the uart9 label. Fix it.
+
+Fixes: 10d900a834da ("arm64: dts: sm8150: add the QUPv3 high-speed UART node")
+Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
 ---
-v2: Add review tag; base on linux-next/master; drop "net-next" in subject
+ arch/arm64/boot/dts/qcom/sm8150.dtsi | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-It is my intention to have this patch be taken via the Qualcomm
-repository (not net-next).
-
- Documentation/devicetree/bindings/net/qcom,ipa.yaml | 1 +
- 1 file changed, 1 insertion(+)
-
-diff --git a/Documentation/devicetree/bindings/net/qcom,ipa.yaml b/Documentation/devicetree/bindings/net/qcom,ipa.yaml
-index 4aeda379726fa..2d5e4ffb2f9ef 100644
---- a/Documentation/devicetree/bindings/net/qcom,ipa.yaml
-+++ b/Documentation/devicetree/bindings/net/qcom,ipa.yaml
-@@ -49,6 +49,7 @@ properties:
-       - qcom,sc7280-ipa
-       - qcom,sdm845-ipa
-       - qcom,sdx55-ipa
-+      - qcom,sdx65-ipa
-       - qcom,sm6350-ipa
-       - qcom,sm8350-ipa
+diff --git a/arch/arm64/boot/dts/qcom/sm8150.dtsi b/arch/arm64/boot/dts/qcom/sm8150.dtsi
+index 926f40d85603..4e012c8ce10c 100644
+--- a/arch/arm64/boot/dts/qcom/sm8150.dtsi
++++ b/arch/arm64/boot/dts/qcom/sm8150.dtsi
+@@ -1342,7 +1342,7 @@ spi9: spi@a84000 {
+ 				status = "disabled";
+ 			};
  
+-			uart9: serial@a8c000 {
++			uart9: serial@a84000 {
+ 				compatible = "qcom,geni-uart";
+ 				reg = <0x0 0x00a84000 0x0 0x4000>;
+ 				reg-names = "se";
 -- 
-2.34.1
+2.37.2
 
