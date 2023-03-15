@@ -2,200 +2,193 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CB2106BC041
-	for <lists+devicetree@lfdr.de>; Wed, 15 Mar 2023 23:57:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5F5886BC0A8
+	for <lists+devicetree@lfdr.de>; Thu, 16 Mar 2023 00:11:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229721AbjCOW5H (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Mar 2023 18:57:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57056 "EHLO
+        id S231405AbjCOXLT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Mar 2023 19:11:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46316 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230209AbjCOW5H (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Mar 2023 18:57:07 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 87A53265AF;
-        Wed, 15 Mar 2023 15:57:05 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 37974B81F93;
-        Wed, 15 Mar 2023 22:57:04 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 460F9C433D2;
-        Wed, 15 Mar 2023 22:57:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1678921023;
-        bh=WYdSkFlklt/aLVMWRbk3cQYdrAgkrVG+2rIXXjj8NvA=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=ManoxYmz3/Gmm0JnkEQCYIlLOtDkYeMMovTzwhQY8Q4RjqZ7T6Cc8Mr0AajlivAGM
-         z5/X5Bm/PdgBC8AL5O/FTR9lWZlTYHCaGoSOmPznFIArdYxKu6sI/6inlODN9864M7
-         x3HbOsa6FeeL8lOa8ZtYUcA/BzXcqirb6uH2xbj1V+tj/solavN0KGL8D4QAmIlx+i
-         m2Ey2fok6dok0SmnL4ME3BKMl3seyJ/XJjUEy8v+nPGsNawuTBBwc8JBsFoTF/HvjI
-         /cGGP5nUp0Yik/IIqMZXK1dEWNOnALq1wFXVBklHlC545mJFfDLIUFVfYP9ha4ETX6
-         I++gd8hQi0vSg==
-Date:   Wed, 15 Mar 2023 16:00:24 -0700
-From:   Bjorn Andersson <andersson@kernel.org>
-To:     Konrad Dybcio <konrad.dybcio@linaro.org>
-Cc:     linux-arm-msm@vger.kernel.org, agross@kernel.org,
-        krzysztof.kozlowski@linaro.org, marijn.suijten@somainline.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        with ESMTP id S230369AbjCOXLT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Mar 2023 19:11:19 -0400
+Received: from mail-pj1-x1029.google.com (mail-pj1-x1029.google.com [IPv6:2607:f8b0:4864:20::1029])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BBFAD196AF;
+        Wed, 15 Mar 2023 16:11:17 -0700 (PDT)
+Received: by mail-pj1-x1029.google.com with SMTP id d13so3746pjh.0;
+        Wed, 15 Mar 2023 16:11:17 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112; t=1678921877;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=kzy0B/VYnSJRvZ8pGtdA2kQJazW5NtKMyoTehvrQmDw=;
+        b=kSOKXaLA2XOfIn6OLaCrF7ohz5hyFI9gZZMaZu62+ifKfKT+mpEtUk7LbMNO8nsoda
+         zZ4dpu2h1nnINsgPWb6laXAilEFF4M+hvfyO0USrhjhjkol45xsvEzR7qw631mk+Vjt5
+         NKRRMTEsF1jZxH90kXSw9eN7SeegJWB/zU3SoTZGfTOA8l8s7tu2A22/rjj/d/ya7BF2
+         2s4FTetw1dgkoqGLk1Dux1vanxLFT0mAm0J3lCY+hPmGC0BWhadUDpB0fz+zjNZrgG0p
+         /FIqa6uw7NN0ka16S1u1YlHXWNiz+0aEheoFLWxwqXjqTWD30JZ/K+mT6lXXOhtWb/Qy
+         2K5Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1678921877;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=kzy0B/VYnSJRvZ8pGtdA2kQJazW5NtKMyoTehvrQmDw=;
+        b=o0vdKuohchOqlIiEQSOCBY7/DzvOJudFFwjtgVm+rZ9J3o5bMQrB/y0ZzcHQ0FIHny
+         RJrCm5K/YnC7tcucxOctvp33jARxbvOmhMJE275AKnqx0HGrFupxXnmPyONekaEISv8k
+         soYIPNfLnV+Hg505bWtX9YKpoDD3xT5UR5o2zxYtFZ79xYqeadNmOqymmg4/gp9CTOyb
+         77eImC/vRIN9NBPlEn+9+Ldn/g7TFYunEZLkk2P3pw+UT993ZGVfUskQSfII6s4VK74D
+         WGu/yUy5YB7qNexooVz5ODFwUZx9fMvgKC9kW6epOcsELWss5t6RDsDSq+9oG2NjF6fQ
+         MUjw==
+X-Gm-Message-State: AO0yUKV4est7cOLFdtFOk1pP8YT5emLd/k/q3eBpAEH0Gwc0Nc0UkVeI
+        rVRFXKwoODSMjeeOZhe3eqI=
+X-Google-Smtp-Source: AK7set9wsbdkZ1LjU01R5iAlOExPzKZm3vwKjuDjqLuZR0UayRfcjyyy0SFPQvHT2QRZ2N2EQDGl1w==
+X-Received: by 2002:a05:6a20:8e2a:b0:cb:f76c:e1a8 with SMTP id y42-20020a056a208e2a00b000cbf76ce1a8mr1604364pzj.15.1678921877048;
+        Wed, 15 Mar 2023 16:11:17 -0700 (PDT)
+Received: from localhost.localdomain ([14.139.38.154])
+        by smtp.googlemail.com with ESMTPSA id m123-20020a632681000000b0050bebfe464dsm212616pgm.53.2023.03.15.16.11.13
+        (version=TLS1_3 cipher=TLS_CHACHA20_POLY1305_SHA256 bits=256/256);
+        Wed, 15 Mar 2023 16:11:16 -0700 (PDT)
+From:   Vijaya Anand <sunrockers8@gmail.com>
+To:     lgirdwood@gmail.com, broonie@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, alsa-devel@alsa-project.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 3/3] arm64: dts: qcom: Split out SA8155P and use correct
- RPMh power domains
-Message-ID: <20230315230024.wxuqthay74i5zgrq@ripper>
-References: <20230214095435.2192153-1-konrad.dybcio@linaro.org>
- <20230214095435.2192153-3-konrad.dybcio@linaro.org>
- <20230314001052.7qvgbwkl73x22oll@ripper>
- <eaf2ca0d-4d90-b68b-3b36-8bb0148cfb95@linaro.org>
- <ee1ebac4-bf18-019a-f770-5cb88703d06b@linaro.org>
+Cc:     Vijaya Anand <sunrockers8@gmail.com>,
+        Daniel Baluta <daniel.baluta@nxp.com>
+Subject: [PATCH v2] ASoC: dt-bindings: adi,adau17x1: Convert to DT schema
+Date:   Thu, 16 Mar 2023 04:40:55 +0530
+Message-Id: <20230315231055.3067-1-sunrockers8@gmail.com>
+X-Mailer: git-send-email 2.37.1 (Apple Git-137.1)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <ee1ebac4-bf18-019a-f770-5cb88703d06b@linaro.org>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Mar 14, 2023 at 12:41:45PM +0100, Konrad Dybcio wrote:
-> 
-> 
-> On 14.03.2023 12:36, Konrad Dybcio wrote:
-> > 
-> > 
-> > On 14.03.2023 01:10, Bjorn Andersson wrote:
-> >> On Tue, Feb 14, 2023 at 10:54:35AM +0100, Konrad Dybcio wrote:
-> >>> The RPMhPD setup on SA8155P is different compared to SM8150. Correct
-> >>> it to ensure the platform will not try accessing forbidden/missing
-> >>> RPMh entries at boot, as a bad vote will hang the machine.
-> >>>
-> >>
-> >> I don't see that this will scale, as soon as someone adds a new device
-> >> in sm8150.dtsi that has the need to scale a power rail this will be
-> >> forgotten and we will have a mix of references to the SM8150 and SA8155P
-> >> value space.
-> >>
-> >> That said, I think it's reasonable to avoid duplicating the entire
-> >> sm8150.dtsi.
-> > Yeah, this problem has no obvious good solutions and even though it's
-> > not very elegant, this seems to be the less bad one..
-> > 
-> >>
-> >> How about making the SA8155P_* macros match the SM8150_* macros?
-> >> That way things will fail gracefully if a device node references a
-> >> resource not defined for either platform...
-> > Okay, let's do that
-> Re-thinking it, it's good that the indices don't match, as this way the
-> board will (should) refuse to function properly if there's an oversight,
-> which may have gone unnoticed if they were matching, so this only guards
-> us against programmer error which is not great :/
-> 
+Convert the binding document for adi,adau17x1 from txt to yaml
+so one could validate dt-entries correctly and any future additions
+can go into yaml format. Add address and size cells to example to
+prevent errors regarding reg format.
 
-Right, ensuring that the resource indices never collides would be a good
-way to capture this issue, as well as copy-paste errors etc. My
-pragmatic proposal is that we make SA8155P_x == SM8150_x where a match
-exist, and for the ones that doesn't match we pick numbers that doesn't
-collide between the platforms.
+Signed-off-by: Vijaya Anand <sunrockers8@gmail.com>
+Cc: Daniel Baluta <daniel.baluta@nxp.com>
+---
+Changes since v1:
+- added 'Codec' in title to clarify type of devices
+- put compatible devices in lexographic order
+- changed description of clocks
+- changed 'unevaluatedProperties' to 'additionalProperties'
+- changed node names to be generic
 
-The alternative is to start SA8155P_x at 11, but it's different and
-forces sa8155p.dtsi to redefine every single power-domains property...
+---
+ .../bindings/sound/adi,adau17x1.txt           | 32 ------------
+ .../bindings/sound/adi,adau17x1.yaml          | 52 +++++++++++++++++++
+ 2 files changed, 52 insertions(+), 32 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/sound/adi,adau17x1.txt
+ create mode 100644 Documentation/devicetree/bindings/sound/adi,adau17x1.yaml
 
+diff --git a/Documentation/devicetree/bindings/sound/adi,adau17x1.txt b/Documentation/devicetree/bindings/sound/adi,adau17x1.txt
+deleted file mode 100644
+index 1447dec28125..000000000000
+--- a/Documentation/devicetree/bindings/sound/adi,adau17x1.txt
++++ /dev/null
+@@ -1,32 +0,0 @@
+-Analog Devices ADAU1361/ADAU1461/ADAU1761/ADAU1961/ADAU1381/ADAU1781
+-
+-Required properties:
+-
+- - compatible:		Should contain one of the following:
+-			"adi,adau1361"
+-			"adi,adau1461"
+-			"adi,adau1761"
+-			"adi,adau1961"
+-			"adi,adau1381"
+-			"adi,adau1781"
+-
+- - reg:			The i2c address. Value depends on the state of ADDR0
+-			and ADDR1, as wired in hardware.
+-
+-Optional properties:
+- - clock-names:		If provided must be "mclk".
+- - clocks:		phandle + clock-specifiers for the clock that provides
+-			the audio master clock for the device.
+-
+-Examples:
+-#include <dt-bindings/sound/adau17x1.h>
+-
+-	i2c_bus {
+-		adau1361@38 {
+-			compatible = "adi,adau1761";
+-			reg = <0x38>;
+-
+-			clock-names = "mclk";
+-			clocks = <&audio_clock>;
+-		};
+-	};
+diff --git a/Documentation/devicetree/bindings/sound/adi,adau17x1.yaml b/Documentation/devicetree/bindings/sound/adi,adau17x1.yaml
+new file mode 100644
+index 000000000000..8ef1e7f6ec91
+--- /dev/null
++++ b/Documentation/devicetree/bindings/sound/adi,adau17x1.yaml
+@@ -0,0 +1,52 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/sound/adi,adau17x1.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title:
++ Analog Devices ADAU1361/ADAU1461/ADAU1761/ADAU1961/ADAU1381/ADAU1781 Codec
++
++maintainers:
++  - Lars-Peter Clausen <lars@metafoo.de>
++
++properties:
++  compatible:
++    enum:
++      - adi,adau1361
++      - adi,adau1381
++      - adi,adau1461
++      - adi,adau1761
++      - adi,adau1781
++      - adi,adau1961
++
++  reg:
++    maxItems: 1
++    description:
++      The i2c address. Value depends on the state of ADDR0 and ADDR1,
++      as wired in hardware.
++
++  clock-names:
++    const: mclk
++
++  clocks:
++    items:
++      - description: provides the audio master clock for the device.
++
++required:
++  - compatible
++  - reg
++
++additionalProperties: false
++
++examples:
++  - |
++    i2c {
++      #address-cells = <1>;
++      #size-cells = <0>;
++      audio-codec@38 {
++        compatible = "adi,adau1761";
++        reg = <0x38>;
++        clock-names = "mclk";
++        clocks = <&audio_clock>;
++      };
++    };
+-- 
+2.37.1 (Apple Git-137.1)
 
-This does bring back the feeling that it was a mistake to include the
-platform name in these defines in the first place... Not sure if it's
-worth mixing generic defines into the picture at this point, given that
-we I don't see a way to use them on any existing platform.
-
-Regards,
-Bjorn
-
-> Konrad
-> > 
-> > Konrad
-> >>
-> >> Regards,
-> >> Bjorn
-> >>
-> >>> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
-> >>> ---
-> >>>  arch/arm64/boot/dts/qcom/sa8155p-adp.dts |  2 +-
-> >>>  arch/arm64/boot/dts/qcom/sa8155p.dtsi    | 51 ++++++++++++++++++++++++
-> >>>  2 files changed, 52 insertions(+), 1 deletion(-)
-> >>>  create mode 100644 arch/arm64/boot/dts/qcom/sa8155p.dtsi
-> >>>
-> >>> diff --git a/arch/arm64/boot/dts/qcom/sa8155p-adp.dts b/arch/arm64/boot/dts/qcom/sa8155p-adp.dts
-> >>> index 459384ec8f23..9454e8e4e517 100644
-> >>> --- a/arch/arm64/boot/dts/qcom/sa8155p-adp.dts
-> >>> +++ b/arch/arm64/boot/dts/qcom/sa8155p-adp.dts
-> >>> @@ -7,7 +7,7 @@
-> >>>  
-> >>>  #include <dt-bindings/regulator/qcom,rpmh-regulator.h>
-> >>>  #include <dt-bindings/gpio/gpio.h>
-> >>> -#include "sm8150.dtsi"
-> >>> +#include "sa8155p.dtsi"
-> >>>  #include "pmm8155au_1.dtsi"
-> >>>  #include "pmm8155au_2.dtsi"
-> >>>  
-> >>> diff --git a/arch/arm64/boot/dts/qcom/sa8155p.dtsi b/arch/arm64/boot/dts/qcom/sa8155p.dtsi
-> >>> new file mode 100644
-> >>> index 000000000000..f2fd7c28764e
-> >>> --- /dev/null
-> >>> +++ b/arch/arm64/boot/dts/qcom/sa8155p.dtsi
-> >>> @@ -0,0 +1,51 @@
-> >>> +// SPDX-License-Identifier: BSD-3-Clause
-> >>> +/*
-> >>> + * Copyright (c) 2023, Linaro Limited
-> >>> + *
-> >>> + * SA8155P is an automotive variant of SM8150, with some minor changes.
-> >>> + * Most notably, the RPMhPD setup differs: MMCX and LCX/LMX rails are gone.
-> >>> + */
-> >>> +
-> >>> +#include "sm8150.dtsi"
-> >>> +
-> >>> +&dispcc {
-> >>> +	power-domains = <&rpmhpd SA8155P_CX>;
-> >>> +};
-> >>> +
-> >>> +&mdss_mdp {
-> >>> +	power-domains = <&rpmhpd SA8155P_CX>;
-> >>> +};
-> >>> +
-> >>> +&mdss_dsi0 {
-> >>> +	power-domains = <&rpmhpd SA8155P_CX>;
-> >>> +};
-> >>> +
-> >>> +&mdss_dsi1 {
-> >>> +	power-domains = <&rpmhpd SA8155P_CX>;
-> >>> +};
-> >>> +
-> >>> +&remoteproc_adsp {
-> >>> +	power-domains = <&rpmhpd SA8155P_CX>;
-> >>> +};
-> >>> +
-> >>> +&remoteproc_cdsp {
-> >>> +	power-domains = <&rpmhpd SA8155P_CX>;
-> >>> +};
-> >>> +
-> >>> +&remoteproc_mpss {
-> >>> +	power-domains = <&rpmhpd SA8155P_CX>,
-> >>> +			<&rpmhpd SA8155P_MSS>;
-> >>> +};
-> >>> +
-> >>> +&remoteproc_slpi {
-> >>> +	power-domains = <&rpmhpd SA8155P_CX>,
-> >>> +			<&rpmhpd SA8155P_MX>;
-> >>> +};
-> >>> +
-> >>> +&rpmhpd {
-> >>> +	compatible = "qcom,sa8155p-rpmhpd";
-> >>> +};
-> >>> +
-> >>> +&sdhc_2 {
-> >>> +	power-domains = <&rpmhpd SA8155P_CX>;
-> >>> +};
-> >>> -- 
-> >>> 2.39.1
-> >>>
