@@ -2,96 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8330E6BAA70
-	for <lists+devicetree@lfdr.de>; Wed, 15 Mar 2023 09:08:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 06A9E6BAA7F
+	for <lists+devicetree@lfdr.de>; Wed, 15 Mar 2023 09:11:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231636AbjCOIIb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Mar 2023 04:08:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54620 "EHLO
+        id S231776AbjCOILh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Mar 2023 04:11:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58114 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231517AbjCOIIa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Mar 2023 04:08:30 -0400
-Received: from mail-pl1-x629.google.com (mail-pl1-x629.google.com [IPv6:2607:f8b0:4864:20::629])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 689BB20573
-        for <devicetree@vger.kernel.org>; Wed, 15 Mar 2023 01:08:28 -0700 (PDT)
-Received: by mail-pl1-x629.google.com with SMTP id v21so9065734ple.9
-        for <devicetree@vger.kernel.org>; Wed, 15 Mar 2023 01:08:28 -0700 (PDT)
+        with ESMTP id S231441AbjCOILd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Mar 2023 04:11:33 -0400
+Received: from mail-yb1-xb31.google.com (mail-yb1-xb31.google.com [IPv6:2607:f8b0:4864:20::b31])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E32D32F7B7
+        for <devicetree@vger.kernel.org>; Wed, 15 Mar 2023 01:11:22 -0700 (PDT)
+Received: by mail-yb1-xb31.google.com with SMTP id z83so14348073ybb.2
+        for <devicetree@vger.kernel.org>; Wed, 15 Mar 2023 01:11:22 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1678867708;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=zf3SxA1nvFsp+aFJOgDiIaFeqD0uKMLVMNAFYzhVXhY=;
-        b=NddB9feiL1/IHj0GWjT60uDVka3Coer/8QqM++x5QCJ4AUdYzHQ1ZmXgIlgRBFmI8X
-         vj4FdOqUWme3kwggjcL21D4384w100HngzyCxLHJjksA2CATht/g77//QzSpXm+dG3ke
-         XaSwyEfJYikUNUn1MhOj7LZfqQtArIIRl1x0ABE+gZxtlNzkkQY9n3cDaDMAN/m4Lpdq
-         FkK/yQH7Y2jtO9wWz++8rSM9cLdvJZ/2pKlJ4nJbdN191rRpgFbeAF9E02SQn7jHOtv8
-         8f1B6GKwx297IGiqZbB9a8lkEYxk6iG1hnJhjdhWN8mW6niN5hY7kdQGGA7EXf/B9/Ae
-         9CFg==
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112; t=1678867882;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Pvx2PL8LGDK3W8+E79pZBCoBzTKmBaY+LVdR8n5TD/g=;
+        b=MADLCMC7roVI8wwfAlxv6wEFm5zfJjNwB3x2CYtI/1xlOad5kMNBsm+9wMB1y2vb/o
+         426UTDd7tLaZlGxGEGQB3jyu+LNU4kQqXlnpSD+KWHAjH+q+iFRib6Q0dD4YXaiFRA9F
+         QJkGlLx0mO6VNDaY7KeG+RLoj94r8PqDhp5SHTCBLH5VUzQwtcN+F+pJcUSpGDj7Mpjh
+         1sPr3i+6R1l53pYS2+ib2V2t6wEj0Y9G72h6mYJtyVwBjDOXecFbWxOtIRf1FwKzNMzM
+         PgFzBGDqHoyXvW9VlzHbIo5zLl0wM5Z7Y8/oAoa/DrA2ApWE4tGM9BTkxkT72lfvtcPy
+         4LmA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678867708;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=zf3SxA1nvFsp+aFJOgDiIaFeqD0uKMLVMNAFYzhVXhY=;
-        b=CltyTDuDKgZ6eR4PMPj1e7gv8Px+msxqmIGFOwymWHeVHthGOadAWkwFgCZjYzVpra
-         7t0zMjOeQXqOjWA+fDgcofgrraNWAlrRotKQftCMIUQGnk4JSt8mR351g9vlPJoShPEi
-         vXN1o9FNE3U8m2R3gXO/FWKlFj0MWYWicGoaTVIpFumnFYb4oEOS28hBFCJToJJFJS4L
-         xi72opqDPogOoB17nTuVicorBPFehFT5dU5w5rwgrKoR676NXQWiHfgJbPQhRj+/mxnt
-         gvZ6k7/eTSM8YPjn7Qoo9XQsnayIzk/aI/PB6Ry3c9Dj3EOoWQExOtZ8lUIgf9MjPqfJ
-         A4Mw==
-X-Gm-Message-State: AO0yUKVumwlFjcdBOyIrON8ppx8qaCqlQ7+9M8HwYUZZ9dbh+F43BOsb
-        y8xtKBs8iordGvPuqyOYkjPuNw==
-X-Google-Smtp-Source: AK7set9WhF84SIf5aXDDBaPgWwRatZNX9vVlgGWyHt2WrilP2gD6F91uKuAeYewh/yYjTj8F8aXAgg==
-X-Received: by 2002:a17:903:283:b0:1a0:4341:4cd9 with SMTP id j3-20020a170903028300b001a043414cd9mr2220842plr.31.1678867707615;
-        Wed, 15 Mar 2023 01:08:27 -0700 (PDT)
-Received: from ?IPV6:2401:4900:1c61:1acb:9af6:bd7f:78e7:7ae6? ([2401:4900:1c61:1acb:9af6:bd7f:78e7:7ae6])
-        by smtp.gmail.com with ESMTPSA id p16-20020a170902ebd000b001994e74c094sm2961131plg.275.2023.03.15.01.08.24
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 15 Mar 2023 01:08:27 -0700 (PDT)
-Message-ID: <6d7f60b6-bdb4-a22d-4396-c72fd9114d84@linaro.org>
-Date:   Wed, 15 Mar 2023 13:38:23 +0530
+        d=1e100.net; s=20210112; t=1678867882;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=Pvx2PL8LGDK3W8+E79pZBCoBzTKmBaY+LVdR8n5TD/g=;
+        b=vRooBSURez1rcWyS6O7l+RRV/SlAhDnZZEq1RPOXPq00CJkCnmtCQTi7YJEb8CGcd3
+         a72uDCPknlwEDZlbvdn2BJLLTvVf5NJjz2zpri92BRDQsK5nAsmlFTx5u3ekZISlT8Hy
+         CS3s+4hH40juRhYi9fZnmZ5AxzE9XYcT8VtpH+Sdz6thwHrqpWM4z0M9jSAKo8gVSXTv
+         rn9g3jUooNbVHWUvMiSjPHmFwLTTZkCLhI/jTwxXLRAnOF8UScMgg1MEH55AiufnLiHi
+         12uTA1PsHr8IGRJBVRvi49pmY4TO1/fIhG6fpUBXAUcNjkp6icH5XPONxddj06bX5Lqc
+         sGRg==
+X-Gm-Message-State: AO0yUKU+q9HosUHeQNQpMVRFCcwFVdtuopL2B72YHVBB6MAC+rEvtVlK
+        XoWNaZaFbVDLSjiFLF47tS9FONUt7ezsYN0/ABZkMA==
+X-Google-Smtp-Source: AK7set9A2zYI6pMRgNbXuK7nABMIl97HViLafw5PcRY262FGkwm8Z05z1Fr8by8LQaDAAqC5HXIwCelI1ertWu8vEmg=
+X-Received: by 2002:a25:8d89:0:b0:b33:531b:3dd4 with SMTP id
+ o9-20020a258d89000000b00b33531b3dd4mr8108839ybl.1.1678867882064; Wed, 15 Mar
+ 2023 01:11:22 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.3.1
-Subject: Re: [PATCH 1/2] dt-bindings: arm: qcom: Document the Qualcomm
- qrb4210-rb2 board
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
-Cc:     agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
-        linux-kernel@vger.kernel.org, bhupesh.linux@gmail.com,
-        robh+dt@kernel.org
-References: <20230314210828.2049720-1-bhupesh.sharma@linaro.org>
- <20230314210828.2049720-2-bhupesh.sharma@linaro.org>
- <3104977d-b93f-3c55-70d0-cb54cb48da81@linaro.org>
-Content-Language: en-US
-From:   Bhupesh Sharma <bhupesh.sharma@linaro.org>
-In-Reply-To: <3104977d-b93f-3c55-70d0-cb54cb48da81@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
-        autolearn_force=no version=3.4.6
+References: <20230203-evk-board-support-v2-0-6ec7cdb10ccf@baylibre.com>
+ <20230203-evk-board-support-v2-3-6ec7cdb10ccf@baylibre.com>
+ <3b7c6f28-57bd-33de-5531-8c4eae8cf6eb@linaro.org> <6e08d78f-ef4c-b228-f7d2-d63767ea87b8@collabora.com>
+ <62ed2988-2347-9fd9-82f9-6dcc9ae75808@collabora.com>
+In-Reply-To: <62ed2988-2347-9fd9-82f9-6dcc9ae75808@collabora.com>
+From:   Alexandre Mergnat <amergnat@baylibre.com>
+Date:   Wed, 15 Mar 2023 09:11:11 +0100
+Message-ID: <CAFGrd9rZxwtxx5f8Gp35-5152EPGiyEdZjps1Mhn5bL6QfufnA@mail.gmail.com>
+Subject: Re: [PATCH v2 03/18] dt-bindings: pinctrl: mediatek,mt8365-pinctrl:
+ add drive strength property
+To:     AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Zhiyong Tao <zhiyong.tao@mediatek.com>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        =?UTF-8?Q?Bernhard_Rosenkr=C3=A4nzer?= <bero@baylibre.com>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Chaotian Jing <chaotian.jing@mediatek.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Wenbin Mei <wenbin.mei@mediatek.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        linux-mmc@vger.kernel.org, Alexandre Bailon <abailon@baylibre.com>,
+        devicetree@vger.kernel.org,
+        Amjad Ouled-Ameur <aouledameur@baylibre.com>,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-gpio@vger.kernel.org, linux-watchdog@vger.kernel.org,
+        linux-mediatek@lists.infradead.org,
+        Fabien Parent <fparent@baylibre.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Le ven. 10 mars 2023 =C3=A0 10:49, AngeloGioacchino Del Regno
+<angelogioacchino.delregno@collabora.com> a =C3=A9crit :
+>
+> Il 10/03/23 10:46, AngeloGioacchino Del Regno ha scritto:
+> >
+> > Anyway, Alexandre: can you please perform a cleanup to the MT8365 pinct=
+rl binding?
 
-On 3/15/23 12:07 PM, Krzysztof Kozlowski wrote:
-> On 14/03/2023 22:08, Bhupesh Sharma wrote:
->> Document the Qualcomm qrb4210-rb2 board based on SM4250 SoC.
->>
->> Signed-off-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
->> ---
->>   Documentation/devicetree/bindings/arm/qcom.yaml | 1 +
-> 
-> Subject: fix double space before "Qualcomm"
+Yes I can ! :D
+Should I do it directly in this patch series or (I prefer) in a new one ?
 
-Sure, I will fix this in v2.
+> > The cleanup means you're setting mediatek,drive-strength-adv as depreca=
+ted and
+> > adding the right properties (...and possibly changing the devicetrees t=
+o use it).
+> >
+> > For more information, you can look at commit history for the (unfortuna=
+tely, named
+> > incorrectly) MT8195 pinctrl documentation: bindings/pinctrl/pinctrl-mt8=
+195.yaml
+> > where we performed the same cleanup that I'm asking you to do, except w=
+e didn't
+> > have to set any property as deprecated because there was *no devicetree=
+ upstream*
+> > that was actually using that property (hence not an ABI breakage).
 
-> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Thanks for the information, that helps.
 
-Thanks.
+Regards,
+Alex
