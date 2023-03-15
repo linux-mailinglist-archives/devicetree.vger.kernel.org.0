@@ -2,154 +2,163 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CCB916BB60E
-	for <lists+devicetree@lfdr.de>; Wed, 15 Mar 2023 15:31:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9638B6BB658
+	for <lists+devicetree@lfdr.de>; Wed, 15 Mar 2023 15:43:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232608AbjCOObg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Mar 2023 10:31:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57696 "EHLO
+        id S232113AbjCOOnS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Mar 2023 10:43:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47482 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231513AbjCOObb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Mar 2023 10:31:31 -0400
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F18A11F5EB;
-        Wed, 15 Mar 2023 07:31:11 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1678890672; x=1710426672;
-  h=message-id:date:mime-version:subject:to:cc:references:
-   from:in-reply-to:content-transfer-encoding;
-  bh=z2C/BkfaVtAyVUV8tLuReKIAo/iPls0ApsKzq+thVY0=;
-  b=VgdG8qYWeAcG7mZFIZWx/IXWVHZ3c6OzVOxuEOnAgzWjWeFqw63SW4M0
-   iqSVn6HaDRbcgx5n+eUUNY/awnk7BGIcRUcqZQPs2GZcB4Uo4f3CPOO9A
-   /ZMsdCNVR3YFrOyJbn9uMUbaMLeBfV6LBLsHIuqgvNCfr3Oo38DvuLR0J
-   jzKo8FBsJ6pArENgYrbg3SZehwfLZnjjiC7vnTw3MGqgNyT00KWZvsD1A
-   cVlpo1AQAgx1JXeZAO3w5WRs0PwOrnnGtZ+3/UvR+ZTUMn3Y9GAP1XseX
-   yKsPg/9MmSs+g+B5N7UeRCvgJGwvGew6DcdKDuUTK3gbkDzC3WTs/9P8p
-   A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10649"; a="423987752"
-X-IronPort-AV: E=Sophos;i="5.98,262,1673942400"; 
-   d="scan'208";a="423987752"
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
-  by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 15 Mar 2023 07:31:01 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10649"; a="748450293"
-X-IronPort-AV: E=Sophos;i="5.98,262,1673942400"; 
-   d="scan'208";a="748450293"
-Received: from rperez12-mobl.amr.corp.intel.com (HELO [10.255.35.81]) ([10.255.35.81])
-  by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 15 Mar 2023 07:30:59 -0700
-Message-ID: <6b811766-cd2a-54c0-d090-640812686a45@linux.intel.com>
-Date:   Wed, 15 Mar 2023 09:30:58 -0500
+        with ESMTP id S231769AbjCOOnR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Mar 2023 10:43:17 -0400
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DB8AF4C6E5;
+        Wed, 15 Mar 2023 07:43:14 -0700 (PDT)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 32FEh0SW067924;
+        Wed, 15 Mar 2023 09:43:00 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1678891380;
+        bh=QGyjpIjn3DpE0rG+THwFRSE4f2SV9+fJPSp01OLV4NQ=;
+        h=Date:Subject:To:CC:References:From:In-Reply-To;
+        b=eE0IKYY48JQqiBVLFVYC8B1wIX9D1WuEXZ4CaI06dA7k6g4g8lFxYl8Ms0dDZgUWy
+         DaLZgzIKSopmrOOKfdTtb9Sztd0QAuxM6c6Jb7gjYLLAMDKZkANOuXuBKkksSjLXJ8
+         6sXbeKovMMwhJeyzGLo5d5YwNbqsTB0jsKJfSowk=
+Received: from DLEE115.ent.ti.com (dlee115.ent.ti.com [157.170.170.26])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 32FEh08m028294
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Wed, 15 Mar 2023 09:43:00 -0500
+Received: from DLEE103.ent.ti.com (157.170.170.33) by DLEE115.ent.ti.com
+ (157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Wed, 15
+ Mar 2023 09:43:00 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE103.ent.ti.com
+ (157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
+ Frontend Transport; Wed, 15 Mar 2023 09:43:00 -0500
+Received: from [10.249.34.133] (ileaxei01-snat2.itg.ti.com [10.180.69.6])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 32FEgxdd014168;
+        Wed, 15 Mar 2023 09:42:59 -0500
+Message-ID: <51621d96-bba1-4919-0402-b9300492bc50@ti.com>
+Date:   Wed, 15 Mar 2023 09:42:59 -0500
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Firefox/102.0 Thunderbird/102.8.0
-Subject: Re: [PATCH v3 00/28] Introduce QC USB SND audio offloading support
-To:     Wesley Cheng <quic_wcheng@quicinc.com>,
-        srinivas.kandagatla@linaro.org, mathias.nyman@intel.com,
-        perex@perex.cz, broonie@kernel.org, lgirdwood@gmail.com,
-        krzysztof.kozlowski+dt@linaro.org, agross@kernel.org,
-        Thinh.Nguyen@synopsys.com, bgoswami@quicinc.com,
-        andersson@kernel.org, robh+dt@kernel.org,
-        gregkh@linuxfoundation.org, tiwai@suse.com
-Cc:     linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        linux-usb@vger.kernel.org, quic_jackp@quicinc.com,
-        quic_plai@quicinc.com
-References: <20230308235751.495-1-quic_wcheng@quicinc.com>
- <4f8a66c0-398f-5655-3aa7-a59bc9ba56cc@linux.intel.com>
- <8b2f3ce7-3e0c-bdf0-8d9f-9aeabba09a15@quicinc.com>
- <a211f26d-a045-0729-871f-248d5fce3f3f@linux.intel.com>
- <684daf86-6c3f-7310-eebf-4ebfc3c480ca@quicinc.com>
- <8a37ccd3-f19e-b30d-d736-04e81b49f3a0@linux.intel.com>
- <0810f951-f4a6-a51d-97e3-43691b05f702@quicinc.com>
- <b671e263-5cb8-18e5-dc28-648ab1133c6c@linux.intel.com>
- <14d726a7-6ffc-705c-b012-0c08d7dd7b9b@quicinc.com>
+ Thunderbird/102.7.1
+Subject: Re: [PATCH v2] arm64: dts: ti: k3-j784s4-evm: Enable MCU CPSW2G
+To:     Siddharth Vadapalli <s-vadapalli@ti.com>, <nm@ti.com>,
+        <vigneshr@ti.com>, <kristo@kernel.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski@linaro.org>,
+        <krzysztof.kozlowski+dt@linaro.org>
+CC:     <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <srk@ti.com>
+References: <20230315042548.1500528-1-s-vadapalli@ti.com>
 Content-Language: en-US
-From:   Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>
-In-Reply-To: <14d726a7-6ffc-705c-b012-0c08d7dd7b9b@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_NONE,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+From:   Andrew Davis <afd@ti.com>
+In-Reply-To: <20230315042548.1500528-1-s-vadapalli@ti.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_PASS,SPF_PASS,URIBL_BLOCKED autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Wesley,
-
-> Sorry made a mistake on the diagram.  There is no connection from
-> SOC-USB to the APR/GLINK.  The Q6USB driver will be the one that is
-> going to configure some of the Q6AFE ports along withe the Q6AFE DAI
-> driver.
+On 3/14/23 11:25 PM, Siddharth Vadapalli wrote:
+> Add device tree support to enable MCU CPSW with J784S4 EVM.
 > 
-> |            ASoC
-> ----------------------------------
-> |  _________________________
-> | |sm8250 platform card     |
-> | |_________________________|
-> |         |           |
-> |      ___V____   ____V____
-> |     |Q6USB   | |Q6AFE    |  #5
-> |     |"codec" | |"cpu"    |
-> |     |________| |_________|
-> |         ^  ^        ^
-> |      #6 |  |________|
-> |      ___V____     |
-> |     |SOC-USB |    |
-> #7    |        |    |
-> ----->|________|    |
-> ---                 |
-> | |                 |
-> | |    _____________V________
-> | |   |APR/GLINK             |
-> | |   |______________________|
-> | |              ^
-> | | #8           |
-> | |   ___________V___________
-> | |->|audio DSP              |
-> |    |_______________________|
-> |
-> |
+> Signed-off-by: Siddharth Vadapalli <s-vadapalli@ti.com>
+> ---
+> Hello,
 > 
->>>
-
-Makes sense now, thank you for the clarification.
-
-I'll have to dig more in this 'soc-usb' block, it's clearly a key
-component that will have to maintain a consistent state across two
-different parts of the stack and deal with probe/remove/shutdown.
-
->> My initial thought was to add a 'DSP offload' PCM to the USB card, you
->> added a "USB offload" PCM to the DSP card. Nice logical swap!
->>
->> Your proposal might be easier in practice since there's typically a
->> vendor-specific configuration file (UCM or custom) file for the DSP,
->> where USB information can be added.
->>
->> It's more problematic to change a generic USB card as we know it today
->> and bolt vendor-specific DSP information on top.
->>
->> The only open I have with your option is that there are still two
->> control paths to e.g. set the volume. It would be so much easier for
->> userspace if there was a single volume control no matter what path is
->> used for data, or make sure the kcontrols are 'mirrored' somehow. If we
->> found a way to address this issue that would be ideal.
->>
+> Please do not merge this patch until the following have been merged:
+> 1. https://lore.kernel.org/r/20230314085500.10597-1-j-choudhary@ti.com/
+> 2. https://lore.kernel.org/r/20230314152611.140969-2-j-choudhary@ti.com/
+> 3. https://lore.kernel.org/r/20230308201513.116638-1-j-choudhary@ti.com/
 > 
-> Got it.  Let me look to see if that is something we can address/add.  I
-> think the current implementation is that USB SND will expose some mixer
-> controls based on the UAC descriptor parsing.  Then when they want to
-> change the volume (for example) it will result in a USB SETUP transaction.
+> Changes from v1:
+> 1. Drop patch for adding device id property for mcu_navss. This patch is
+>     now a part of another series at:
+>     https://lore.kernel.org/r/20230314152611.140969-2-j-choudhary@ti.com/
+> 2. Move "mcu_mdio_pins_default" pinctrl to the "davinci_mdio" node.
 > 
-> So USB SND will eventually be the entity controlling these changes.
 
-That's probably ok then, am I getting this right that the the DSP card
-would not expose any USB-related kcontrols then, i.e. the ONLY path to
-change volumes, etc.,  would through the regular USB card kcontrols?
+LGTM,
 
-That would limit the changes in the platform sound card to the addition
-of a PCM USB device.
+Reviewed-by: Andrew Davis <afd@ti.com>
+
+> v1:
+> https://lore.kernel.org/r/20230314104055.1475054-1-s-vadapalli@ti.com/
+> 
+>   arch/arm64/boot/dts/ti/k3-j784s4-evm.dts | 50 ++++++++++++++++++++++++
+>   1 file changed, 50 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/ti/k3-j784s4-evm.dts b/arch/arm64/boot/dts/ti/k3-j784s4-evm.dts
+> index 8cd4a7ecc121..476ad8915c5b 100644
+> --- a/arch/arm64/boot/dts/ti/k3-j784s4-evm.dts
+> +++ b/arch/arm64/boot/dts/ti/k3-j784s4-evm.dts
+> @@ -140,6 +140,32 @@ J784S4_IOPAD(0x020, PIN_INPUT, 7) /* (AJ35) MCAN15_RX.GPIO0_8 */
+>   	};
+>   };
+>   
+> +&wkup_pmx0 {
+> +	mcu_cpsw_pins_default: mcu-cpsw-pins-default {
+> +		pinctrl-single,pins = <
+> +			J784S4_WKUP_IOPAD(0x094, PIN_INPUT, 0) /* (A35) MCU_RGMII1_RD0 */
+> +			J784S4_WKUP_IOPAD(0x090, PIN_INPUT, 0) /* (B36) MCU_RGMII1_RD1 */
+> +			J784S4_WKUP_IOPAD(0x08c, PIN_INPUT, 0) /* (C36) MCU_RGMII1_RD2 */
+> +			J784S4_WKUP_IOPAD(0x088, PIN_INPUT, 0) /* (D36) MCU_RGMII1_RD3 */
+> +			J784S4_WKUP_IOPAD(0x084, PIN_INPUT, 0) /* (B37) MCU_RGMII1_RXC */
+> +			J784S4_WKUP_IOPAD(0x06c, PIN_INPUT, 0) /* (C37) MCU_RGMII1_RX_CTL */
+> +			J784S4_WKUP_IOPAD(0x07c, PIN_OUTPUT, 0) /* (D37) MCU_RGMII1_TD0 */
+> +			J784S4_WKUP_IOPAD(0x078, PIN_OUTPUT, 0) /* (D38) MCU_RGMII1_TD1 */
+> +			J784S4_WKUP_IOPAD(0x074, PIN_OUTPUT, 0) /* (E37) MCU_RGMII1_TD2 */
+> +			J784S4_WKUP_IOPAD(0x070, PIN_OUTPUT, 0) /* (E38) MCU_RGMII1_TD3 */
+> +			J784S4_WKUP_IOPAD(0x080, PIN_OUTPUT, 0) /* (E36) MCU_RGMII1_TXC */
+> +			J784S4_WKUP_IOPAD(0x068, PIN_OUTPUT, 0) /* (C38) MCU_RGMII1_TX_CTL */
+> +		>;
+> +	};
+> +
+> +	mcu_mdio_pins_default: mcu-mdio-pins-default {
+> +		pinctrl-single,pins = <
+> +			J784S4_WKUP_IOPAD(0x09c, PIN_OUTPUT, 0) /* (A36) MCU_MDIO0_MDC */
+> +			J784S4_WKUP_IOPAD(0x098, PIN_INPUT, 0) /* (B35) MCU_MDIO0_MDIO */
+> +		>;
+> +	};
+> +};
+> +
+>   &main_uart8 {
+>   	status = "okay";
+>   	pinctrl-names = "default";
+> @@ -194,3 +220,27 @@ &main_sdhci1 {
+>   &main_gpio0 {
+>   	status = "okay";
+>   };
+> +
+> +&mcu_cpsw {
+> +	status = "okay";
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&mcu_cpsw_pins_default>;
+> +};
+> +
+> +&davinci_mdio {
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&mcu_mdio_pins_default>;
+> +
+> +	mcu_phy0: ethernet-phy@0 {
+> +		reg = <0>;
+> +		ti,rx-internal-delay = <DP83867_RGMIIDCTL_2_00_NS>;
+> +		ti,fifo-depth = <DP83867_PHYCR_FIFO_DEPTH_4_B_NIB>;
+> +		ti,min-output-impedance;
+> +	};
+> +};
+> +
+> +&mcu_cpsw_port1 {
+> +	status = "okay";
+> +	phy-mode = "rgmii-rxid";
+> +	phy-handle = <&mcu_phy0>;
+> +};
