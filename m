@@ -2,105 +2,144 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 32D816BA76F
-	for <lists+devicetree@lfdr.de>; Wed, 15 Mar 2023 06:58:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 337446BA7B9
+	for <lists+devicetree@lfdr.de>; Wed, 15 Mar 2023 07:23:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230359AbjCOF62 convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Wed, 15 Mar 2023 01:58:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57258 "EHLO
+        id S230155AbjCOGX0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Mar 2023 02:23:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58518 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229799AbjCOF60 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Mar 2023 01:58:26 -0400
-Received: from ex01.ufhost.com (ex01.ufhost.com [61.152.239.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0AE3829E3D;
-        Tue, 14 Mar 2023 22:58:17 -0700 (PDT)
-Received: from EXMBX165.cuchost.com (unknown [175.102.18.54])
-        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-        (Client CN "EXMBX165", Issuer "EXMBX165" (not verified))
-        by ex01.ufhost.com (Postfix) with ESMTP id E536324E18D;
-        Wed, 15 Mar 2023 13:58:15 +0800 (CST)
-Received: from EXMBX068.cuchost.com (172.16.6.68) by EXMBX165.cuchost.com
- (172.16.6.75) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Wed, 15 Mar
- 2023 13:58:15 +0800
-Received: from williamqiu-virtual-machine.starfivetech.com (171.223.208.138)
- by EXMBX068.cuchost.com (172.16.6.68) with Microsoft SMTP Server (TLS) id
- 15.0.1497.42; Wed, 15 Mar 2023 13:58:14 +0800
-From:   William Qiu <william.qiu@starfivetech.com>
-To:     <devicetree@vger.kernel.org>, <linux-riscv@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>
-CC:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor@kernel.org>,
-        "Emil Renner Berthing" <kernel@esmil.dk>,
-        William Qiu <william.qiu@starfivetech.com>
-Subject: [RESEND v6 2/2] riscv: dts: starfive: Add syscon node
-Date:   Wed, 15 Mar 2023 13:58:13 +0800
-Message-ID: <20230315055813.94740-3-william.qiu@starfivetech.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230315055813.94740-1-william.qiu@starfivetech.com>
-References: <20230315055813.94740-1-william.qiu@starfivetech.com>
+        with ESMTP id S230421AbjCOGXZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Mar 2023 02:23:25 -0400
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0D16F30EA8;
+        Tue, 14 Mar 2023 23:23:22 -0700 (PDT)
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 32F6NCrl033939;
+        Wed, 15 Mar 2023 01:23:12 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1678861392;
+        bh=aEgd9XPuLQCR59sQocm1j89Ty0kcJwLrMZIDQCf67fQ=;
+        h=From:To:CC:Subject:Date;
+        b=gykANu25PYJv0FTC/bkyN5pldAFBEJjn4+n9mO3DTk/loMbdJN5L0B0iOoN9sHp/9
+         bTManLCL5sCdOg/17uwe4Oiin8l6q1HrH9M7L/4vpVTHZm/J5VNhXZkJxf+YmhMLKN
+         0/jdFPBCpV64nTmdyrN8Gkuo1u+OGkuTTxBtyj28=
+Received: from DLEE102.ent.ti.com (dlee102.ent.ti.com [157.170.170.32])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 32F6NCnY104448
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Wed, 15 Mar 2023 01:23:12 -0500
+Received: from DLEE112.ent.ti.com (157.170.170.23) by DLEE102.ent.ti.com
+ (157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Wed, 15
+ Mar 2023 01:23:11 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE112.ent.ti.com
+ (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
+ Frontend Transport; Wed, 15 Mar 2023 01:23:11 -0500
+Received: from uda0492258.dhcp.ti.com (ileaxei01-snat2.itg.ti.com [10.180.69.6])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 32F6N7br024744;
+        Wed, 15 Mar 2023 01:23:08 -0500
+From:   Siddharth Vadapalli <s-vadapalli@ti.com>
+To:     <nm@ti.com>, <vigneshr@ti.com>, <kristo@kernel.org>,
+        <robh+dt@kernel.org>, <krzysztof.kozlowski@linaro.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <afd@ti.com>
+CC:     <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <srk@ti.com>,
+        <s-vadapalli@ti.com>
+Subject: [PATCH v3 0/4] Add DT support for J721E CPSW9G and J7200 CPSW5G
+Date:   Wed, 15 Mar 2023 11:53:03 +0530
+Message-ID: <20230315062307.1612220-1-s-vadapalli@ti.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
-X-Originating-IP: [171.223.208.138]
-X-ClientProxiedBy: EXCAS066.cuchost.com (172.16.6.26) To EXMBX068.cuchost.com
- (172.16.6.68)
-X-YovoleRuleAgent: yovoleflag
-Content-Transfer-Encoding: 8BIT
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_PASS,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add stg_syscon/sys_syscon/aon_syscon node for JH7110 Soc.
+Hello,
 
-Signed-off-by: William Qiu <william.qiu@starfivetech.com>
+This series adds the device-tree nodes for the CPSW9G instance of CPSW
+Ethernet Switch on TI's J721E SoC and the CPSW5G instance of CPSW
+Ethernet Switch on TI's J7200 SoC. Additionally, overlays are also added
+to individually enable CPSW9G on J721E SoC and CPSW5G on J7200 SoC in
+QSGMII mode with the Add-On J7 QUAD Port Ethernet expansion QSGMII
+daughtercard.
+
+This series combines the v2 series for J721E CPSW9G at:
+https://lore.kernel.org/r/20230310103504.731845-1-s-vadapalli@ti.com/
+and the v1 series for J7200 CPSW5G at:
+https://lore.kernel.org/r/20230310101407.722334-1-s-vadapalli@ti.com/
+
+The suggestions for the v2 series for J721E are implemented for the J7200
+series as well in this patch series.
+
 ---
- arch/riscv/boot/dts/starfive/jh7110.dtsi | 15 +++++++++++++++
- 1 file changed, 15 insertions(+)
+Changes from v2 for J721E CPSW9G series:
+1. Rename the overlay k3-j721e-quad-port-eth-exp.dtso as
+   k3-j721e-evm-quad-port-eth-exp.dtso.
+2. Update arch/arm64/boot/dts/ti/Makefile to build k3-j721e-evm.dtb as the
+   result of applying k3-j721e-evm-quad-port-eth-exp.dtbo to
+   k3-j721e-common-proc-board.dtb.
+3. Use the newer "&{/} {" style instead of the "fragments" style in
+   k3-j721e-evm-quad-port-eth-exp.dtso.
+4. Move the "mdio0_pins_default" pinctrl from cpsw0 node into the
+   "cpsw9g_mdio" node.
+5. Disable individual "cpsw0_port" nodes in the main.dtsi file, enabling
+   only the required nodes in the overlay.
+6. Disable the "cpsw9g_mdio" node in the main.dtsi file.
 
-diff --git a/arch/riscv/boot/dts/starfive/jh7110.dtsi b/arch/riscv/boot/dts/starfive/jh7110.dtsi
-index d484ecdf93f7..49dd62276b0d 100644
---- a/arch/riscv/boot/dts/starfive/jh7110.dtsi
-+++ b/arch/riscv/boot/dts/starfive/jh7110.dtsi
-@@ -362,6 +362,11 @@ i2c2: i2c@10050000 {
- 			status = "disabled";
- 		};
+Changes from v1 for J721E CPSW9G series:
+1. Rename node name "mdio_pins_default" to "mdio0-pins-default", since
+   node names shouldn't contain underscores.
+2. Change node label "mdio_pins_default" to "mdio0_pins_default".
 
-+		stg_syscon: syscon@10240000 {
-+			compatible = "starfive,jh7110-stg-syscon", "syscon";
-+			reg = <0x0 0x10240000 0x0 0x1000>;
-+		};
-+
- 		uart3: serial@12000000 {
- 			compatible = "snps,dw-apb-uart";
- 			reg = <0x0 0x12000000 0x0 0x10000>;
-@@ -466,6 +471,11 @@ syscrg: clock-controller@13020000 {
- 			#reset-cells = <1>;
- 		};
+Changes from v1 for J7200 CPSW5G series:
+1. Rename the overlay k3-j7200-quad-port-eth-exp.dtso as
+   k3-j7200-evm-quad-port-eth-exp.dtso.
+2. Update arch/arm64/boot/dts/ti/Makefile to build k3-j7200-evm.dtb as the
+   result of applying k3-j7200-evm-quad-port-eth-exp.dtbo to
+   k3-j7200-common-proc-board.dtb.
+3. Use the newer "&{/} {" style instead of the "fragments" style in
+   k3-j7200-evm-quad-port-eth-exp.dtso.
+4. Move the "mdio0_pins_default" pinctrl from cpsw0 node into the
+   "cpsw5g_mdio" node.
+5. Disable individual "cpsw0_port" nodes in the main.dtsi file, enabling
+   only the required nodes in the overlay.
+6. Disable the "cpsw5g_mdio" node in the main.dtsi file.
 
-+		sys_syscon: syscon@13030000 {
-+			compatible = "starfive,jh7110-sys-syscon", "syscon";
-+			reg = <0x0 0x13030000 0x0 0x1000>;
-+		};
-+
- 		sysgpio: pinctrl@13040000 {
- 			compatible = "starfive,jh7110-sys-pinctrl";
- 			reg = <0x0 0x13040000 0x0 0x10000>;
-@@ -495,6 +505,11 @@ aoncrg: clock-controller@17000000 {
- 			#reset-cells = <1>;
- 		};
+J721E CPSW9G v2 series:
+https://lore.kernel.org/r/20230310103504.731845-1-s-vadapalli@ti.com/
+J721E CPSW9G v1 series:
+https://lore.kernel.org/r/20230310092804.692303-1-s-vadapalli@ti.com/
+J7200 CPSW5G v1 series:
+https://lore.kernel.org/r/20230310101407.722334-1-s-vadapalli@ti.com/
 
-+		aon_syscon: syscon@17010000 {
-+			compatible = "starfive,jh7110-aon-syscon", "syscon";
-+			reg = <0x0 0x17010000 0x0 0x1000>;
-+		};
-+
- 		aongpio: pinctrl@17020000 {
- 			compatible = "starfive,jh7110-aon-pinctrl";
- 			reg = <0x0 0x17020000 0x0 0x10000>;
---
-2.34.1
+Siddharth Vadapalli (4):
+  arm64: dts: ti: k3-j721e: Add CPSW9G nodes
+  arm64: dts: ti: k3-j721e: Add overlay to enable CPSW9G ports in QSGMII
+    mode
+  arm64: dts: ti: j7200-main: Add CPSW5G nodes
+  arm64: dts: ti: k3-j7200: Add overlay to enable CPSW5G ports in QSGMII
+    mode
+
+ arch/arm64/boot/dts/ti/Makefile               |   6 +-
+ .../ti/k3-j7200-evm-quad-port-eth-exp.dtso    | 100 +++++++++++++
+ arch/arm64/boot/dts/ti/k3-j7200-main.dtsi     |  88 ++++++++++++
+ .../ti/k3-j721e-evm-quad-port-eth-exp.dtso    | 132 ++++++++++++++++++
+ arch/arm64/boot/dts/ti/k3-j721e-main.dtsi     | 116 +++++++++++++++
+ arch/arm64/boot/dts/ti/k3-j721e.dtsi          |   1 +
+ 6 files changed, 441 insertions(+), 2 deletions(-)
+ create mode 100644 arch/arm64/boot/dts/ti/k3-j7200-evm-quad-port-eth-exp.dtso
+ create mode 100644 arch/arm64/boot/dts/ti/k3-j721e-evm-quad-port-eth-exp.dtso
+
+-- 
+2.25.1
 
