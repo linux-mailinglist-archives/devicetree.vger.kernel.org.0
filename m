@@ -2,104 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A85F16BAA25
-	for <lists+devicetree@lfdr.de>; Wed, 15 Mar 2023 08:56:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 565346BAA3A
+	for <lists+devicetree@lfdr.de>; Wed, 15 Mar 2023 09:00:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231657AbjCOH4H (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Mar 2023 03:56:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34418 "EHLO
+        id S231826AbjCOIAQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Mar 2023 04:00:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40872 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231545AbjCOH4E (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Mar 2023 03:56:04 -0400
-Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3161134025
-        for <devicetree@vger.kernel.org>; Wed, 15 Mar 2023 00:56:02 -0700 (PDT)
-Received: by mail-ed1-x535.google.com with SMTP id w9so1188063edc.3
-        for <devicetree@vger.kernel.org>; Wed, 15 Mar 2023 00:56:02 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1678866960;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=HH3s1nadjYLiGCsTK9aOpzfD2+JERQeAQNU/Lvtc2Ow=;
-        b=pyIUeB4eDEi6hzASiyAIA1sVSMEqON/+DatgKxKBc3woH5HcE8oKUMp65LSlTt42S2
-         DIJvaCPExRHWYZyq6IN8N3DysbTvmhll3GL+WvT9XDMqSQP151PRcYdV4asn6GOP7Z+E
-         RE4Wb4AJFD69kSj1LNkWSfTjBSHA1vTRylCNk4c/dVZ6gMIAhQb/2/bjY2bBdX7sPTa9
-         OKDBk25hrlbHK/ZzN2WT7KBZdM17ZZgj0kSdpABOkdEY60fZrIqo+E4eOPIRSpptV7uD
-         Np6lkFrUKCD3nYCdNtJMpyvOWNSKhrMBZwYbugwPtBEI3LWuEWOEZnaXBa6hrZh7FmlO
-         inxw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678866960;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=HH3s1nadjYLiGCsTK9aOpzfD2+JERQeAQNU/Lvtc2Ow=;
-        b=iTQEu12NHVCxDMydpeCDuREU08lfPJBzOKHXYbtu6WP7t4MlWwWrB79iiibOzGbpFA
-         RLfaOtC++tIUyel+V0W2n69T5GZ72+FQaoCHck18+jpA+at9PvB0BSsUf5cGRwRtPygL
-         d6yNwsRe5Veuq7C5422WyIvsY+gFRbA6grdI/wQWiPIl0tuvLcE4sPk7DQ2nNCQjgEv5
-         s3wiNZPY4Fx6T9oR82prJ3JHwyJH+rPXkg8OKgOD4NBmqGzKpMIvuo9DlSek765jgYuK
-         5Nj6qDdjR33/rb1lEVLkD+P1ICBEZKeDQzpU9IHIC5J8TQrdl5+T3oojJFAku26mwmsl
-         xl6g==
-X-Gm-Message-State: AO0yUKULAsUMKGztPiYiElZFq5AitFxw9OHuKjhNpe2yuEyT11RGVrJg
-        FqnHywHpJeAzfbXTXWZuZ6+Dow==
-X-Google-Smtp-Source: AK7set/ErDnbn3BQv8IhC67ttVzVAWaZY78GHDI3wn5ScSSkGhKNg62brrkV32t3unAb7CJcGuQqcw==
-X-Received: by 2002:a05:6402:899:b0:4fc:183d:ee18 with SMTP id e25-20020a056402089900b004fc183dee18mr1717845edy.35.1678866960639;
-        Wed, 15 Mar 2023 00:56:00 -0700 (PDT)
-Received: from ?IPV6:2a02:810d:15c0:828:940e:8615:37dc:c2bd? ([2a02:810d:15c0:828:940e:8615:37dc:c2bd])
-        by smtp.gmail.com with ESMTPSA id co2-20020a0564020c0200b004fce9ff4830sm1945756edb.88.2023.03.15.00.55.59
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 15 Mar 2023 00:56:00 -0700 (PDT)
-Message-ID: <478974c3-7302-e773-8d70-fcb2323f65ea@linaro.org>
-Date:   Wed, 15 Mar 2023 08:55:59 +0100
+        with ESMTP id S231741AbjCOIAO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Mar 2023 04:00:14 -0400
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EA1E366D3D;
+        Wed, 15 Mar 2023 01:00:12 -0700 (PDT)
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 32F7xrH9054826;
+        Wed, 15 Mar 2023 02:59:53 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1678867193;
+        bh=/chdimC1GrtyDSZ38Uw6LyuDnCvg7dvq6j5vQRR9ksc=;
+        h=From:To:CC:Subject:Date;
+        b=BcBukwp+o9XXJfaK8N90ZB5UnVz8TzJi1BFEAj8JW/4HTYpiSTC9ho4ruN6Qnd38T
+         FdGOiA4ieRyA9cRfVoM7q+jvb9IzHB1aWyk/vxnc8BFuIs1CL6deH+geBbCKw1FZ8r
+         u80Gj9VxMYrbG52KNxMftLa7hF30TapZUNbPVos0=
+Received: from DFLE103.ent.ti.com (dfle103.ent.ti.com [10.64.6.24])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 32F7xr3b048296
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Wed, 15 Mar 2023 02:59:53 -0500
+Received: from DFLE109.ent.ti.com (10.64.6.30) by DFLE103.ent.ti.com
+ (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Wed, 15
+ Mar 2023 02:59:53 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE109.ent.ti.com
+ (10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
+ Frontend Transport; Wed, 15 Mar 2023 02:59:53 -0500
+Received: from uda0492258.dhcp.ti.com (ileaxei01-snat.itg.ti.com [10.180.69.5])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 32F7xmKb042755;
+        Wed, 15 Mar 2023 02:59:49 -0500
+From:   Siddharth Vadapalli <s-vadapalli@ti.com>
+To:     <davem@davemloft.net>, <edumazet@google.com>, <kuba@kernel.org>,
+        <pabeni@redhat.com>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski@linaro.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <nsekhar@ti.com>,
+        <rogerq@kernel.org>
+CC:     <netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <srk@ti.com>,
+        <s-vadapalli@ti.com>
+Subject: [PATCH net-next 0/2] Add J784S4 CPSW9G NET Bindings
+Date:   Wed, 15 Mar 2023 13:29:46 +0530
+Message-ID: <20230315075948.1683120-1-s-vadapalli@ti.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-Subject: Re: [PATCH v3 01/11] dt-bindings: clock: Add StarFive JH7110
- System-Top-Group clock and reset generator
-Content-Language: en-US
-To:     Xingyu Wu <xingyu.wu@starfivetech.com>,
-        linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Emil Renner Berthing <kernel@esmil.dk>
-Cc:     Rob Herring <robh+dt@kernel.org>, Conor Dooley <conor@kernel.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Hal Feng <hal.feng@starfivetech.com>,
-        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org
-References: <20230314124404.117592-1-xingyu.wu@starfivetech.com>
- <20230314124404.117592-2-xingyu.wu@starfivetech.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230314124404.117592-2-xingyu.wu@starfivetech.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_PASS,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 14/03/2023 13:43, Xingyu Wu wrote:
-> Add bindings for the System-Top-Group clock and reset generator (STGCRG)
-> on the JH7110 RISC-V SoC by StarFive Ltd.
-> 
-> Signed-off-by: Xingyu Wu <xingyu.wu@starfivetech.com>
-> ---
->  .../clock/starfive,jh7110-stgcrg.yaml         | 82 +++++++++++++++++++
->  .../dt-bindings/clock/starfive,jh7110-crg.h   | 34 ++++++++
->  .../dt-bindings/reset/starfive,jh7110-crg.h   | 28 +++++++
->  3 files changed, 144 insertions(+)
+Hello,
 
+This series cleans up the bindings by reordering the compatibles, followed
+by adding the bindings for CPSW9G instance of CPSW Ethernet Switch on TI's
+J784S4 SoC.
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Siddharth Vadapalli (2):
+  dt-bindings: net: ti: k3-am654-cpsw-nuss: Fix compatible order
+  dt-bindings: net: ti: k3-am654-cpsw-nuss: Add J784S4 CPSW9G support
 
-Best regards,
-Krzysztof
+ .../devicetree/bindings/net/ti,k3-am654-cpsw-nuss.yaml | 10 +++++++---
+ 1 file changed, 7 insertions(+), 3 deletions(-)
+
+-- 
+2.25.1
 
