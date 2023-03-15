@@ -2,68 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 02D756BA5DF
-	for <lists+devicetree@lfdr.de>; Wed, 15 Mar 2023 05:03:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 69D216BA60C
+	for <lists+devicetree@lfdr.de>; Wed, 15 Mar 2023 05:12:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230170AbjCOEDW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Mar 2023 00:03:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50496 "EHLO
+        id S231309AbjCOEMR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Mar 2023 00:12:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59206 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229624AbjCOEDV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Mar 2023 00:03:21 -0400
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D480346A0;
-        Tue, 14 Mar 2023 21:03:16 -0700 (PDT)
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 32F432C4062250;
-        Tue, 14 Mar 2023 23:03:02 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1678852982;
-        bh=qlQUxniJ6i66+BGGVI0UwvibIVfhqDScGE+wexyMUsI=;
-        h=Date:CC:Subject:To:References:From:In-Reply-To;
-        b=D6Z9T23rY2dviD7KqEFDajwav6eYi0QT2DH+wlmkRhXuTIDDFJyVWHZzNbQ/p269d
-         h5cfyFz2X93GMciafNeqFlxlGprnfefflVRTn5PMfWIgr0VQcVGykthDEQQKHwNvZ6
-         tROIEHE0hPcSqbuL7DBmnolJDylwoY0mkVxQXQeY=
-Received: from DLEE115.ent.ti.com (dlee115.ent.ti.com [157.170.170.26])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 32F4324m043826
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Tue, 14 Mar 2023 23:03:02 -0500
-Received: from DLEE107.ent.ti.com (157.170.170.37) by DLEE115.ent.ti.com
- (157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Tue, 14
- Mar 2023 23:03:01 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE107.ent.ti.com
- (157.170.170.37) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
- Frontend Transport; Tue, 14 Mar 2023 23:03:01 -0500
-Received: from [172.24.145.61] (ileaxei01-snat.itg.ti.com [10.180.69.5])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 32F42vVi021513;
-        Tue, 14 Mar 2023 23:02:58 -0500
-Message-ID: <32f57c8a-61a4-13ec-a4ce-e1f5d45e45d7@ti.com>
-Date:   Wed, 15 Mar 2023 09:32:57 +0530
+        with ESMTP id S231158AbjCOELx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Mar 2023 00:11:53 -0400
+Received: from mail-pf1-x432.google.com (mail-pf1-x432.google.com [IPv6:2607:f8b0:4864:20::432])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2BDC35D8B4
+        for <devicetree@vger.kernel.org>; Tue, 14 Mar 2023 21:11:15 -0700 (PDT)
+Received: by mail-pf1-x432.google.com with SMTP id ay18so10983403pfb.2
+        for <devicetree@vger.kernel.org>; Tue, 14 Mar 2023 21:11:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google; t=1678853474;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=HKoujjtc9hCGDl1d2RjrGi/c9c1GCO8QdPXGn1k1ZhE=;
+        b=PqGSN9BYMdbfE0eWEVmbysbCyChbr6sF9pWxkj85Kz5mkziotP9bSFSXW4C9708ksD
+         PdMQdDG3U9RhQxCC+RljHg5ufQoAaOkiDJ7qb1zQhp+AnWEBYLxLDrsn+104v9cVnufh
+         r8yR10WUyRReQ9MTec2gjjnuTMDIY3sM0fsUc=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1678853474;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=HKoujjtc9hCGDl1d2RjrGi/c9c1GCO8QdPXGn1k1ZhE=;
+        b=4P3tEfEViUq8pe8JZVOmbt9eEaFMKSBQUJBsAYgCjH1Z91Ot9RfFKQoEOg8WX9yG/P
+         iwEuIPF35fL/DvnVxabzD6BG1kQ3hiKZEWQ+isyxKfwhInFAFxm/yabvd6yb4EaA21ag
+         nk9P5/mZ0NJm3714Lv8FKmgvrolODEWU2KnlcsQiphi5AsCxIpXlJIllosIHwC2VhZSL
+         bp0OstP1yBXuufGZAQzXPxFqbfrKvS7VyUUWEW6gCWwLS8xbxZAvUWRm5B0a5cEuIDPu
+         +0ZFWyKr/9HUUzAdLLdsCuSOhbOCNjo+kYzqT+JfgisCxlk+IrqLsCBznuY5UnNrnH5+
+         hmnQ==
+X-Gm-Message-State: AO0yUKWnlhH6NrNl/a7x/0WL32ogsNtVaqoPb6t7WmvY8t1yd6n5s8Th
+        3q5n3+x6xmSBcLOJz58cHZcI8A==
+X-Google-Smtp-Source: AK7set9NjRWMOlC2eXp/43o2DAvOdU92TkqxbQHze5KccUrQJ7/Ck6guDEaybokQOD5ue/W6vTf3/Q==
+X-Received: by 2002:a62:53c3:0:b0:5d7:637a:abcf with SMTP id h186-20020a6253c3000000b005d7637aabcfmr33159484pfb.32.1678853474423;
+        Tue, 14 Mar 2023 21:11:14 -0700 (PDT)
+Received: from treapking.tpe.corp.google.com ([2401:fa00:1:10:3a77:bf68:24f0:1c75])
+        by smtp.gmail.com with ESMTPSA id d13-20020aa7814d000000b0059261bd5bacsm2338685pfn.202.2023.03.14.21.11.12
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 14 Mar 2023 21:11:14 -0700 (PDT)
+From:   Pin-yen Lin <treapking@chromium.org>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-mediatek@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org,
+        Pin-yen Lin <treapking@chromium.org>
+Subject: [PATCH] Revert "arm64: dts: mediatek: mt8173-elm: Move display to ps8640 auxiliary bus"
+Date:   Wed, 15 Mar 2023 12:11:07 +0800
+Message-Id: <20230315041107.2886940-1-treapking@chromium.org>
+X-Mailer: git-send-email 2.40.0.rc1.284.g88254d51c5-goog
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-CC:     <nm@ti.com>, <vigneshr@ti.com>, <kristo@kernel.org>,
-        <robh+dt@kernel.org>, <krzysztof.kozlowski@linaro.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <srk@ti.com>,
-        <s-vadapalli@ti.com>
-Subject: Re: [PATCH 2/2] arm64: dts: ti: k3-j784s4-evm: Enable MCU CPSW2G
-To:     Andrew Davis <afd@ti.com>
-References: <20230314104055.1475054-1-s-vadapalli@ti.com>
- <20230314104055.1475054-3-s-vadapalli@ti.com>
- <88e8617c-7b88-238d-2097-bfc25c0f9bf7@ti.com>
-Content-Language: en-US
-From:   Siddharth Vadapalli <s-vadapalli@ti.com>
-In-Reply-To: <88e8617c-7b88-238d-2097-bfc25c0f9bf7@ti.com>
-Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 8bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_PASS,SPF_PASS,URIBL_BLOCKED autolearn=ham
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -71,69 +71,63 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello Andrew,
+This reverts commit c2d94f72140a28d0f516b7c5e8274a9c185a04ff.
 
-On 15/03/23 03:40, Andrew Davis wrote:
-> On 3/14/23 5:40 AM, Siddharth Vadapalli wrote:
->> Add device tree support to enable MCU CPSW with J784S4 EVM.
->>
->> Signed-off-by: Siddharth Vadapalli <s-vadapalli@ti.com>
->> ---
->>   arch/arm64/boot/dts/ti/k3-j784s4-evm.dts | 47 ++++++++++++++++++++++++
->>   1 file changed, 47 insertions(+)
->>
->> diff --git a/arch/arm64/boot/dts/ti/k3-j784s4-evm.dts
->> b/arch/arm64/boot/dts/ti/k3-j784s4-evm.dts
->> index 8cd4a7ecc121..05db64ed0706 100644
->> --- a/arch/arm64/boot/dts/ti/k3-j784s4-evm.dts
->> +++ b/arch/arm64/boot/dts/ti/k3-j784s4-evm.dts
->> @@ -140,6 +140,32 @@ J784S4_IOPAD(0x020, PIN_INPUT, 7) /* (AJ35)
->> MCAN15_RX.GPIO0_8 */
->>       };
->>   };
->>   +&wkup_pmx0 {
->> +    mcu_cpsw_pins_default: mcu-cpsw-pins-default {
->> +        pinctrl-single,pins = <
->> +            J784S4_WKUP_IOPAD(0x094, PIN_INPUT, 0) /* (A35) MCU_RGMII1_RD0 */
->> +            J784S4_WKUP_IOPAD(0x090, PIN_INPUT, 0) /* (B36) MCU_RGMII1_RD1 */
->> +            J784S4_WKUP_IOPAD(0x08c, PIN_INPUT, 0) /* (C36) MCU_RGMII1_RD2 */
->> +            J784S4_WKUP_IOPAD(0x088, PIN_INPUT, 0) /* (D36) MCU_RGMII1_RD3 */
->> +            J784S4_WKUP_IOPAD(0x084, PIN_INPUT, 0) /* (B37) MCU_RGMII1_RXC */
->> +            J784S4_WKUP_IOPAD(0x06c, PIN_INPUT, 0) /* (C37) MCU_RGMII1_RX_CTL */
->> +            J784S4_WKUP_IOPAD(0x07c, PIN_OUTPUT, 0) /* (D37) MCU_RGMII1_TD0 */
->> +            J784S4_WKUP_IOPAD(0x078, PIN_OUTPUT, 0) /* (D38) MCU_RGMII1_TD1 */
->> +            J784S4_WKUP_IOPAD(0x074, PIN_OUTPUT, 0) /* (E37) MCU_RGMII1_TD2 */
->> +            J784S4_WKUP_IOPAD(0x070, PIN_OUTPUT, 0) /* (E38) MCU_RGMII1_TD3 */
->> +            J784S4_WKUP_IOPAD(0x080, PIN_OUTPUT, 0) /* (E36) MCU_RGMII1_TXC */
->> +            J784S4_WKUP_IOPAD(0x068, PIN_OUTPUT, 0) /* (C38)
->> MCU_RGMII1_TX_CTL */
->> +        >;
->> +    };
->> +
->> +    mcu_mdio_pins_default: mcu-mdio-pins-default {
->> +        pinctrl-single,pins = <
->> +            J784S4_WKUP_IOPAD(0x09c, PIN_OUTPUT, 0) /* (A36) MCU_MDIO0_MDC */
->> +            J784S4_WKUP_IOPAD(0x098, PIN_INPUT, 0) /* (B35) MCU_MDIO0_MDIO */
->> +        >;
->> +    };
->> +};
->> +
->>   &main_uart8 {
->>       status = "okay";
->>       pinctrl-names = "default";
->> @@ -194,3 +220,24 @@ &main_sdhci1 {
->>   &main_gpio0 {
->>       status = "okay";
->>   };
->> +
->> +&mcu_cpsw {
->> +    status = "okay";
->> +    pinctrl-names = "default";
->> +    pinctrl-0 = <&mcu_cpsw_pins_default &mcu_mdio_pins_default>;
-> 
-> Move the mcu_mdio_pins_default pinctrl to the mdio node below.
+The `lg_lp120up1_mode` defined in panel-edp.c is not working for some
+panels used on elm/hana devices. Move the panel node out of the aux-bus
+subnode so the driver only uses the modes retrieved from the EDID.
 
-Thank you for reviewing the patch. I will fix it and post the v2 patch.
+Signed-off-by: Pin-yen Lin <treapking@chromium.org>
 
-Regards,
-Siddharth.
+---
+
+ arch/arm64/boot/dts/mediatek/mt8173-elm.dtsi | 26 +++++++++-----------
+ 1 file changed, 12 insertions(+), 14 deletions(-)
+
+diff --git a/arch/arm64/boot/dts/mediatek/mt8173-elm.dtsi b/arch/arm64/boot/dts/mediatek/mt8173-elm.dtsi
+index d452cab28c67..d45a2aeb0eb1 100644
+--- a/arch/arm64/boot/dts/mediatek/mt8173-elm.dtsi
++++ b/arch/arm64/boot/dts/mediatek/mt8173-elm.dtsi
+@@ -90,6 +90,18 @@ switch-volume-up {
+ 		};
+ 	};
+ 
++	panel: panel {
++		compatible = "lg,lp120up1";
++		power-supply = <&panel_fixed_3v3>;
++		backlight = <&backlight>;
++
++		port {
++			panel_in: endpoint {
++				remote-endpoint = <&ps8640_out>;
++			};
++		};
++	};
++
+ 	panel_fixed_3v3: regulator1 {
+ 		compatible = "regulator-fixed";
+ 		regulator-name = "PANEL_3V3";
+@@ -282,20 +294,6 @@ ps8640_out: endpoint {
+ 				};
+ 			};
+ 		};
+-
+-		aux-bus {
+-			panel: panel {
+-				compatible = "lg,lp120up1";
+-				power-supply = <&panel_fixed_3v3>;
+-				backlight = <&backlight>;
+-
+-				port {
+-					panel_in: endpoint {
+-						remote-endpoint = <&ps8640_out>;
+-					};
+-				};
+-			};
+-		};
+ 	};
+ };
+ 
+-- 
+2.40.0.rc1.284.g88254d51c5-goog
+
