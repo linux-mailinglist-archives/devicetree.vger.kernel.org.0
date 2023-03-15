@@ -2,138 +2,136 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 457E16BB55C
-	for <lists+devicetree@lfdr.de>; Wed, 15 Mar 2023 14:57:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 358A06BB3EC
+	for <lists+devicetree@lfdr.de>; Wed, 15 Mar 2023 14:08:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231962AbjCON5s (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Mar 2023 09:57:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59310 "EHLO
+        id S231142AbjCONIR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Mar 2023 09:08:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51432 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232882AbjCON5o (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Mar 2023 09:57:44 -0400
-X-Greylist: delayed 6473 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Wed, 15 Mar 2023 06:57:41 PDT
-Received: from egress-ip4a.ess.de.barracuda.com (egress-ip4a.ess.de.barracuda.com [18.184.203.227])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A4A6D58C20
-        for <devicetree@vger.kernel.org>; Wed, 15 Mar 2023 06:57:41 -0700 (PDT)
-Received: from mail-yb1-f197.google.com (mail-yb1-f197.google.com [209.85.219.197]) by mx-outbound46-204.eu-central-1c.ess.aws.cudaops.com (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NO); Wed, 15 Mar 2023 13:57:38 +0000
-Received: by mail-yb1-f197.google.com with SMTP id e20-20020a25d314000000b00b33355abd3dso15109883ybf.14
-        for <devicetree@vger.kernel.org>; Wed, 15 Mar 2023 06:57:38 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=mistralsolutions.com; s=google; t=1678888658;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=gq45/aTsPc3VfJfslzwPgA8R01rxpja2ayPseefo/Ts=;
-        b=miixDDNEwhxZzSa7/zlHkXc57fPPupE2Rjm7HI5hFztsnZ3PolDDdB5hXOM23KfkTJ
-         HeBYKUolu1uIEdXQ6lqx4P2aKlEbaqpVxGLzx8XcCmVH1Ghw2996B5tTxVGE13fzCSma
-         c/iO8kcAaYnDspPVIFnFnw+xxf3mfNS66e5xA=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678888658;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=gq45/aTsPc3VfJfslzwPgA8R01rxpja2ayPseefo/Ts=;
-        b=q2OAdSlwjbyO9tyoi8IaqA8dC7NgF/NcELEhBGb+763LL7QAdXM4nB6Zdw6SpdsVQ2
-         uG8e33XbkwOsBeMNzCX8MTTp6XdqulVINuVHxX3yita3prqw8/b5MoPGVnjWDHc0PqVi
-         jTEqOcUVQO7glkN66/+fpBb5gw6rGvZ8Bv91IyyHBSVTJDrA+4grBawe5BpwvVuAP7xe
-         22OVlNlhm28AjMIVHN5iKUQzDBTa1j1KhL5ughMIEZ8Brzf0CIX7CfUdEo2JZ4FEh+Mb
-         hyjW4RKaaMtjKp74Keie7QAU1b+iwh7yGDv0qHx4i0xBQ9E3gvg4Ha0De7fc81F+XCzL
-         hJ0A==
-X-Gm-Message-State: AO0yUKVN7Eb20M8fHZauo9JLO31hZo1L4wqDoYGkTUIvZ0ojvKjOtN26
-        ap9ul82+KBFP2qr1+KwGuFww26QqgsCFz27ODj26H8wJ2HZ8dtyIcnlxrINlVRlsIjpEoEwDcHP
-        DjDF8x1HJ+/+ZrXLu9yUhGFgdbgbplJhc10gjxrfwkN7ZDyjwQz3xPCetVA==
-X-Received: by 2002:a05:6a20:8e0a:b0:c7:6a98:5bd8 with SMTP id y10-20020a056a208e0a00b000c76a985bd8mr27588957pzj.0.1678882184290;
-        Wed, 15 Mar 2023 05:09:44 -0700 (PDT)
-X-Google-Smtp-Source: AK7set8ErCxPeOlq5ZfGnI2EzU8xgcCdovh/xZZ01dLY1MDuWVd0WzbziSF7awS6m5xwBp8qWj0feA==
-X-Received: by 2002:a05:6a20:8e0a:b0:c7:6a98:5bd8 with SMTP id y10-20020a056a208e0a00b000c76a985bd8mr27588926pzj.0.1678882183835;
-        Wed, 15 Mar 2023 05:09:43 -0700 (PDT)
-Received: from localhost.localdomain ([49.207.203.68])
-        by smtp.gmail.com with ESMTPSA id m7-20020a655307000000b004fb8732a2f9sm3251343pgq.88.2023.03.15.05.09.40
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 15 Mar 2023 05:09:43 -0700 (PDT)
-From:   Sinthu Raja <sinthu.raja@mistralsolutions.com>
-X-Google-Original-From: Sinthu Raja <sinthu.raja@ti.com>
-To:     Nishanth Menon <nm@ti.com>, Tero Kristo <kristo@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     Vignesh Raghavendra <vigneshr@ti.com>,
+        with ESMTP id S231166AbjCONIQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Mar 2023 09:08:16 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C549F7C3EF;
+        Wed, 15 Mar 2023 06:08:08 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 293FE61D5F;
+        Wed, 15 Mar 2023 13:08:07 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5BBE2C433D2;
+        Wed, 15 Mar 2023 13:08:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1678885686;
+        bh=ahnyU6khLIrLfE27kDoS3JLqJu42CyF8cY/A5JRVX6U=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=GjFwpQfazRPGkPim50d40D4kK3O5UHdL8AU2KwkCjsCiZpVFFOjgis4y4KVZ8x7mP
+         aoupG/zkCYeJwf6A7oZs2JSTUpOCtEUZ0ciNjFEmzOyg6PWiwU2tsoLqOKFpcz+zqz
+         TEPjGHGOpDE1yRN/XedWbzhY6ldaWWq8NJoXS/ez3yqhgCTq2ntD69rEyviqARIxpa
+         TCYyXJWbC+wnsXZBXHgoUKTjhlLJTALj6tv3MMcGuar0/29W8c4sN7D8kV67/hvKUn
+         AMe99rb1yt3kU7Uxv8py8ytSHgPvOEQc/EmfwGxxYVKkvOKS0gawIhDHbWJ+jtZ1DY
+         2MqKBGyAMV6yQ==
+Received: by mercury (Postfix, from userid 1000)
+        id A1D8B1061C80; Wed, 15 Mar 2023 14:08:03 +0100 (CET)
+Date:   Wed, 15 Mar 2023 14:08:03 +0100
+From:   Sebastian Reichel <sre@kernel.org>
+To:     Linus Walleij <linus.walleij@linaro.org>
+Cc:     Matti Vaittinen <mazziesaccount@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Sinthu Raja <sinthu.raja@ti.com>
-Subject: [PATCH] arm64: dts: ti: k3-am68-sk-base-board: Update IO EXP GPIO lines for Rev E2
-Date:   Wed, 15 Mar 2023 17:39:34 +0530
-Message-Id: <20230315120934.16954-1-sinthu.raja@ti.com>
-X-Mailer: git-send-email 2.36.1
+        linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCHv2 10/12] power: supply: generic-adc-battery: add
+ temperature support
+Message-ID: <20230315130803.aold4bo7x27x3hza@mercury.elektranox.org>
+References: <20230314225535.1321736-1-sre@kernel.org>
+ <20230314225535.1321736-11-sre@kernel.org>
+ <CACRpkdZ0j8HQzzXtDbVcxAJkBsdRXUKNJm3BmLB583JfnetAWw@mail.gmail.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-BESS-ID: 1678888658-311980-5505-20648-1
-X-BESS-VER: 2019.1_20230310.1716
-X-BESS-Apparent-Source-IP: 209.85.219.197
-X-BESS-Parts: H4sIAAAAAAACA4uuVkqtKFGyUirNy1bSUcovVrIyNDM0BrIygIJpSRbmhkZJZu
-        aJBpYGlqnGhikmlilJKQbG5skpKYYWBkq1sQCuCMYbQQAAAA==
-X-BESS-Outbound-Spam-Score: 0.00
-X-BESS-Outbound-Spam-Report: Code version 3.2, rules version 3.2.2.246813 [from 
-        cloudscan19-35.eu-central-1b.ess.aws.cudaops.com]
-        Rule breakdown below
-         pts rule name              description
-        ---- ---------------------- --------------------------------
-        0.00 BSF_SC0_MISMATCH_TO    META: Envelope rcpt doesn't match header 
-        0.00 BSF_BESS_OUTBOUND      META: BESS Outbound 
-X-BESS-Outbound-Spam-Status: SCORE=0.00 using account:ESS91090 scores of KILL_LEVEL=7.0 tests=BSF_SC0_MISMATCH_TO, BSF_BESS_OUTBOUND
-X-BESS-BRTS-Status: 1
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS,URIBL_BLOCKED autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="hiy7k232xoaf3bj7"
+Content-Disposition: inline
+In-Reply-To: <CACRpkdZ0j8HQzzXtDbVcxAJkBsdRXUKNJm3BmLB583JfnetAWw@mail.gmail.com>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Sinthu Raja <sinthu.raja@ti.com>
 
-Rev E2 of the AM68 SK baseboard has updated the GPIO IO expander pins
-functionality. To match the Rev E2 schematics, update existing IO expander
-GPIO line names and the corresponding node which uses the expansion(exp1)
-node.
+--hiy7k232xoaf3bj7
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Signed-off-by: Sinthu Raja <sinthu.raja@ti.com>
----
+Hi Linus,
 
-Schematics Ref: https://www.ti.com/lit/zip/sprr463
+On Wed, Mar 15, 2023 at 09:04:15AM +0100, Linus Walleij wrote:
+> On Tue, Mar 14, 2023 at 11:55=E2=80=AFPM Sebastian Reichel <sre@kernel.or=
+g> wrote:
+> > From: Sebastian Reichel <sebastian.reichel@collabora.com>
+> > Another typical thing to monitor via an ADC line is
+> > the battery temperature.
+> >
+> > Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
+>=20
+> Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
+>=20
+> >  static bool gab_charge_finished(struct gab *adc_bat)
+> > @@ -115,6 +118,8 @@ static int gab_get_property(struct power_supply *ps=
+y,
+> >                 return read_channel(adc_bat, GAB_CURRENT, &val->intval);
+> >         case POWER_SUPPLY_PROP_POWER_NOW:
+> >                 return read_channel(adc_bat, GAB_POWER, &val->intval);
+> > +       case POWER_SUPPLY_PROP_TEMP:
+> > +               return read_channel(adc_bat, GAB_TEMP, &val->intval);
+>=20
+> Hm. I wonder if these should rather all use read_channel_processed()?
+>=20
+> The difference is that you will then support ADCs with internal scaling
+> which is beneficial. Most of the time it doesn't matter.
 
- arch/arm64/boot/dts/ti/k3-am68-sk-base-board.dts | 12 +++++-------
- 1 file changed, 5 insertions(+), 7 deletions(-)
+read_channel is a local helper, the driver uses the processed
+variant of iio_read_channel:
 
-diff --git a/arch/arm64/boot/dts/ti/k3-am68-sk-base-board.dts b/arch/arm64/boot/dts/ti/k3-am68-sk-base-board.dts
-index 2091cd2431fb..27a43a8ecffd 100644
---- a/arch/arm64/boot/dts/ti/k3-am68-sk-base-board.dts
-+++ b/arch/arm64/boot/dts/ti/k3-am68-sk-base-board.dts
-@@ -60,7 +60,7 @@ vdd_mmc1: regulator-sd {
- 		regulator-boot-on;
- 		enable-active-high;
- 		vin-supply = <&vsys_3v3>;
--		gpio = <&exp1 10 GPIO_ACTIVE_HIGH>;
-+		gpio = <&exp1 8 GPIO_ACTIVE_HIGH>;
- 	};
- 
- 	vdd_sd_dv: regulator-tlv71033 {
-@@ -264,12 +264,10 @@ exp1: gpio@21 {
- 		reg = <0x21>;
- 		gpio-controller;
- 		#gpio-cells = <2>;
--		gpio-line-names = "CSI_VIO_SEL", "CSI_SEL_FPC_EXPn", "HDMI_PDn",
--					"HDMI_LS_OE", "DP0_3V3 _EN", "BOARDID_EEPROM_WP",
--					"CAN_STB", " ", "GPIO_uSD_PWR_EN", "eDP_ENABLE",
--					"IO_EXP_PCIe1_M.2_RTSz", "IO_EXP_MCU_RGMII_RSTz",
--					"IO_EXP_CSI2_EXP_RSTz", " ", "CSI0_B_GPIO1",
--					"CSI1_B_GPIO1";
-+		gpio-line-names = " ", " ", " ", " ", " ",
-+				  "BOARDID_EEPROM_WP", "CAN_STB", " ",
-+				  "GPIO_uSD_PWR_EN", " ", "IO_EXP_PCIe1_M.2_RTSz",
-+				  "IO_EXP_MCU_RGMII_RST#", " ", " ", " ", " ";
- 	};
- };
- 
--- 
-2.36.1
+static int read_channel(struct gab *adc_bat, enum gab_chan_type channel,
+                int *result)
+{
+        int ret;
 
+        ret =3D iio_read_channel_processed(adc_bat->channel[channel], resul=
+t);
+        if (ret < 0)
+                pr_err("read channel error\n");
+        else
+                *result *=3D 1000;
+
+        return ret;
+} =20
+
+-- Sebastian
+
+--hiy7k232xoaf3bj7
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAmQRwygACgkQ2O7X88g7
++posVQ/9EN49adbU7MGa07ofbn9QEThOKKK7sZpl+dk5sebGmmgklHLBifQpAsFV
+L54r2G3VeKr7OHlEReVM3hqBWSgLizSoJuA4mc3T3SR8eOlH4MfVHJcw0sGh5dmN
+7x+K8xiU0dxPgPXy1YCs3qKRIaGceTWUdO7N/kcGkef2PUNmtPB2+tSREpwtw2A7
+zCRZNDwb7mw6OohlK9cueMim1daE2nnDukAXPmgON6Tazm/TB4ugVZHDUrpv3cPM
+pVYc71yrO3ZiQ1fW5VI/xsNoY7CJDDWkNeaE7LD3vm6icnhvSQLTD8p1d4uOzjCm
+z+fF8IqyuoaiUogE0QcGjeGqd/4nXUJSuxHf5NYplMdOwgQiso4gxqb4AMsu5SeL
+Pft2dz8kBcnTetCoNHi0aRJxSRF+V5zrXDGexKs+MIJ6qFw1xNnfs0JsrR7FTpg/
+CgfAF8s5CAvoh795kDROwVb+lMNt0dzm5mbP6Ka60ECtLRKpr0odhhW3I50uvO1t
+N9IghkXuVOgKDwhd0UFhiJGBLcorpyhLpPE4ZxfrWZq11hZS0au9TuYPZsudx88N
+4ZSzK+l3RQrPPhlDgJv3S2WMaVXp1XK9rwj2YQyf0jwu/3aPrtuvIyZ+s3ag76p2
+tGnTiVEn+2C4fKcSP68Dlt8AtzCK86lYpuim6fgB/KvdjRY33Lw=
+=1aSX
+-----END PGP SIGNATURE-----
+
+--hiy7k232xoaf3bj7--
