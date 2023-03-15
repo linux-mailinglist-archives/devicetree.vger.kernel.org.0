@@ -2,177 +2,339 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9AAF36BA3D2
-	for <lists+devicetree@lfdr.de>; Wed, 15 Mar 2023 00:58:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 83C406BA3D6
+	for <lists+devicetree@lfdr.de>; Wed, 15 Mar 2023 01:00:58 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230365AbjCNX6A (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Mar 2023 19:58:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49554 "EHLO
+        id S229545AbjCOAA4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Mar 2023 20:00:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53532 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230250AbjCNX57 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Mar 2023 19:57:59 -0400
-Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 656DE5AB5A
-        for <devicetree@vger.kernel.org>; Tue, 14 Mar 2023 16:57:55 -0700 (PDT)
-Received: by mail-lf1-x129.google.com with SMTP id y15so12682891lfa.7
-        for <devicetree@vger.kernel.org>; Tue, 14 Mar 2023 16:57:55 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1678838273;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=aN4RFzxPl53NEPH6mcAZ76PnFwWs2sCpg6jdulGDfz4=;
-        b=p1kdN9n8iQ66a3wqyEKOARChYxLd6XFWH2SzWccJluze2vB/0Ng8lfv78xIyfylnIZ
-         iKrjwojzdeICtwuyIivQkme62hqmnZWd8MXSTz9xPv0zom/WDvuUcYmc66W5S/XsRWEs
-         FDQtG67SYZxUcslXIMGn9OW0ga+QJV/i+kbzsM92edJxw0zpRxJ7pWlnEEgAvGRGPjhJ
-         R47yn8w/UexDHdWDfnEcx4rRmFlMewF6w19+VljVv03JnR2ORT3z5TD2uk2qUzbJE04r
-         NsZ0v6KiouFi6soYloc+yZ3om7hc5Jfb+hxGPuP5slR84IFoB7P0lzhvZNM23OaPO4Rr
-         rZIQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678838273;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=aN4RFzxPl53NEPH6mcAZ76PnFwWs2sCpg6jdulGDfz4=;
-        b=JdMYuIWcupMQrbqnFVX+hkCFhEd/iu+i539Pm3QbPViIAgjsXvEB0c0GNwqbKIyuqy
-         goO5AIU5jJykCc8SHGAwIEe+cfbqE5oSEhIPyGGL+KqGGJZPxT+3OjJBawfUKPyt8mVD
-         DNal84WGAfMm2QrnA6J/2LnOOxhxy3mj6yaN+r8zlGS3y3qz5lT5r0AKLbhvuug1Rctb
-         GYPvV9WxeLBzfQE/HW2CC4Dl/D6baxXvUd4X2TXWWEcRXiG+YiQo+xB6miyh1/p7/g+V
-         bAXdMhsbwf7N0P1m0zkpGyqXMOx7iLPeXkFiIJNXf8/a46Dm6Tbxrtg46tndu4CTn86Z
-         pJZQ==
-X-Gm-Message-State: AO0yUKUX8e8l5Qez+GAU6y+DYLRwybhZhQd1/y6ThVmpzPAwSaJURLLZ
-        NvUMaI2+PAxcj938vydxbQroWw==
-X-Google-Smtp-Source: AK7set+puZ2tGimAgVlxw/q4UwXqtRXPDbxxa0kHDBZ0r/f0xE9gPf1dE+rK3zKk05T0XDNH8EwL8w==
-X-Received: by 2002:a05:6512:408:b0:4dc:65c0:c74e with SMTP id u8-20020a056512040800b004dc65c0c74emr1385832lfk.29.1678838273627;
-        Tue, 14 Mar 2023 16:57:53 -0700 (PDT)
-Received: from [192.168.1.101] (abyj16.neoplus.adsl.tpnet.pl. [83.9.29.16])
-        by smtp.gmail.com with ESMTPSA id t16-20020ac24c10000000b004d4d7fb0e07sm585254lfq.216.2023.03.14.16.57.52
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 14 Mar 2023 16:57:53 -0700 (PDT)
-Message-ID: <adb3a64f-2542-6123-4306-3ed6eac928dc@linaro.org>
-Date:   Wed, 15 Mar 2023 00:57:51 +0100
+        with ESMTP id S229436AbjCOAA4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Mar 2023 20:00:56 -0400
+Received: from esa1.hgst.iphmx.com (esa1.hgst.iphmx.com [68.232.141.245])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 43EDB2B9FC
+        for <devicetree@vger.kernel.org>; Tue, 14 Mar 2023 17:00:50 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=wdc.com; i=@wdc.com; q=dns/txt; s=dkim.wdc.com;
+  t=1678838450; x=1710374450;
+  h=message-id:date:mime-version:subject:from:to:cc:
+   references:in-reply-to;
+  bh=X1YHXuUVchLV9noeB2/flcYh3ZszOSKCrWX1/iB730Y=;
+  b=SCDSpKu96Kewmg/YQ7yGPgDNy6grdL7QSM2atVgmwqE/rPmUhOpPbXAr
+   EVyD90pTj0vietjLKOkNH0H5S6M9if5CObM6arHmPbVcADDusE5uPeY/T
+   JhOpiW168ntXbY7eOESG8ADQMPv6khzWA/kIu/NGOkYY9GwAEC3pTjPuy
+   SS830YMDs2cRYybKXgv+a1KxfpGmrEAbqXZIhYkNIK4MfRjzSwbLc5Qjy
+   Z6CBiwIJMxSKxjOd2e2VJ+/CGtJjiQWaRXHpuE+80IBnJ4yvfOxJiW+uV
+   Vz0xAlXJuB7xV6cXt/eR2lM3ZJPgY9zGubRm12V+tHlQazewzYiy4L64c
+   g==;
+X-IronPort-AV: E=Sophos;i="5.98,261,1673884800"; 
+   d="scan'208,223";a="337665968"
+Received: from uls-op-cesaip02.wdc.com (HELO uls-op-cesaep02.wdc.com) ([199.255.45.15])
+  by ob1.hgst.iphmx.com with ESMTP; 15 Mar 2023 08:00:49 +0800
+IronPort-SDR: +LG7GxFfbE57CKztMAsfPeS1SKIlGqNLXlANY6G0FyY0K67mA7IdDRyCofjnvrd3u/GBmK9nTa
+ PBWxTctihH+qq8UFT08UvTxLO9htM3PZKDGaf2mEaiQ8Ez0iWs1CCHHyMLePRp7L5ADfW4l6ND
+ apbyBTBiPGzfgEvdUwmLKao4oLl2RJWoDkYYh84hMyeuAp6gDmBSlCLWEixYzQp1NCLuDXSvKj
+ A+nLrh9aGaaUXIoYfWuLKpx886VzgF94dwuyRlxmGXawYsl9suP1NrNzIRr5PKro1knIm8S1vV
+ gUw=
+Received: from uls-op-cesaip02.wdc.com ([10.248.3.37])
+  by uls-op-cesaep02.wdc.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 14 Mar 2023 16:11:35 -0700
+IronPort-SDR: at95G7+nzJTRsJSMkCBCLLwn9xwhYQQd0WzB8hO4V+Gc7dl2Otwly+fksSPi/hQptMtm/m6lY7
+ mii/yHQoYyJttNVdfzqQXZ+zdtc0AfVrgfAJ8kBRi8WWFZSIzoe0hyU46cfK80KkX4HYOnF3yy
+ wKdcjFCc6wrqIhKH0j0d6QGjumM/0/cg+DqQXTYeB5OUtdpin4DaWNey0vM1Aw2SzbDZwndDiM
+ bOpbCf4F6S4tnNq6Yx2OO8eElgJ9iWi2yrhVTdi3rwbZgmfjKbFK7gYNSdiW/dUNFgsfOW5NbU
+ huo=
+WDCIronportException: Internal
+Received: from usg-ed-osssrv.wdc.com ([10.3.10.180])
+  by uls-op-cesaip02.wdc.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 14 Mar 2023 17:00:49 -0700
+Received: from usg-ed-osssrv.wdc.com (usg-ed-osssrv.wdc.com [127.0.0.1])
+        by usg-ed-osssrv.wdc.com (Postfix) with ESMTP id 4PbrBl6HG0z1RtVv
+        for <devicetree@vger.kernel.org>; Tue, 14 Mar 2023 17:00:47 -0700 (PDT)
+Authentication-Results: usg-ed-osssrv.wdc.com (amavisd-new); dkim=pass
+        reason="pass (just generated, assumed good)"
+        header.d=opensource.wdc.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=
+        opensource.wdc.com; h=in-reply-to:organization:references:to
+        :from:content-language:subject:user-agent:mime-version:date
+        :message-id:content-type; s=dkim; t=1678838445; x=1681430446;
+         bh=X1YHXuUVchLV9noeB2/flcYh3ZszOSKCrWX1/iB730Y=; b=eoGva/xLZawm
+        98OMt/MmXkI4Do+nISx1cQubHUhlp70vVoY79CE7cX1126p5kDhRbmdTfU4vjmzD
+        7KLYz0QjjEyUph5qKvU7rR/HTCOclhqh6vMYBMFZFlgsejfxIsKtJzb1x/uhk8qW
+        5C12Yrn2/ZE9Od3Re9fuMQ0QpQR9kYaS3dl/49eZGseAL8Q9DFB1mHRQBrdactR+
+        iQo0VDrPtbTjEIlbskr7GrZ6F3BIDbjGg7YzrZ/h3YNoI7YyfxDVh4zeZBM2BtUb
+        NpIfVKtRtoItOP9vsTPXV0YUUv7u2Z5oJi0bnRP6Etu9yDF/b6zndf/++kInOM4m
+        BiLl3sSXEg==
+X-Virus-Scanned: amavisd-new at usg-ed-osssrv.wdc.com
+Received: from usg-ed-osssrv.wdc.com ([127.0.0.1])
+        by usg-ed-osssrv.wdc.com (usg-ed-osssrv.wdc.com [127.0.0.1]) (amavisd-new, port 10026)
+        with ESMTP id YbYBVb0aPlfv for <devicetree@vger.kernel.org>;
+        Tue, 14 Mar 2023 17:00:45 -0700 (PDT)
+Received: from [10.225.163.84] (unknown [10.225.163.84])
+        by usg-ed-osssrv.wdc.com (Postfix) with ESMTPSA id 4PbrBf1mWkz1RtVm;
+        Tue, 14 Mar 2023 17:00:41 -0700 (PDT)
+Content-Type: multipart/mixed; boundary="------------esXA1Txh2YMjp00vl8W3xCHC"
+Message-ID: <1e8184e9-7e0b-2598-cc5a-e46d6c2f152a@opensource.wdc.com>
+Date:   Wed, 15 Mar 2023 09:00:40 +0900
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.8.0
-Subject: Re: [PATCH 12/15] arm64: dts: qcom: sm6375: Introduce MPM support
-To:     Amit Kucheria <amitk@kernel.org>,
-        Thara Gopinath <thara.gopinath@gmail.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Zhang Rui <rui.zhang@intel.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Georgi Djakov <djakov@kernel.org>,
-        Sibi Sankar <quic_sibis@quicinc.com>
-Cc:     linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20230303-topic-sm6375_features0_dts-v1-0-8c8d94fba6f0@linaro.org>
- <20230303-topic-sm6375_features0_dts-v1-12-8c8d94fba6f0@linaro.org>
+Subject: Re: [PATCH v2 0/9] PCI: rockchip: Fix RK3399 PCIe endpoint controller
+ driver
 Content-Language: en-US
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20230303-topic-sm6375_features0_dts-v1-12-8c8d94fba6f0@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-0.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_SORBS_HTTP,RCVD_IN_SORBS_SOCKS,SPF_HELO_NONE,SPF_PASS,
-        URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.6
+From:   Damien Le Moal <damien.lemoal@opensource.wdc.com>
+To:     Rick Wertenbroek <rick.wertenbroek@gmail.com>
+Cc:     alberto.dassatti@heig-vd.ch, xxm@rock-chips.com,
+        rick.wertenbroek@heig-vd.ch, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Shawn Lin <shawn.lin@rock-chips.com>,
+        Lorenzo Pieralisi <lpieralisi@kernel.org>,
+        =?UTF-8?Q?Krzysztof_Wilczy=c5=84ski?= <kw@linux.com>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Jani Nikula <jani.nikula@intel.com>,
+        Rodrigo Vivi <rodrigo.vivi@intel.com>,
+        Mikko Kovanen <mikko.kovanen@aavamobile.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-pci@vger.kernel.org
+References: <20230214140858.1133292-1-rick.wertenbroek@gmail.com>
+ <ecd09f27-b799-4741-2c5a-a2de99776c51@opensource.wdc.com>
+ <CAAEEuhrk4cSC312UiAL3UwoDZ=urrdDcBThcNHd1dqnAuJTzAw@mail.gmail.com>
+ <3c4ed614-f088-928f-2807-deaa5e4b668a@opensource.wdc.com>
+ <CAAEEuhqk0scWd3wFbVb9fSgHxPBKotpEPNi+YPG4GD9vLO94mw@mail.gmail.com>
+ <8392a7de-666a-bce6-dc9f-b60d6dd93013@opensource.wdc.com>
+Organization: Western Digital Research
+In-Reply-To: <8392a7de-666a-bce6-dc9f-b60d6dd93013@opensource.wdc.com>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
+        SPF_HELO_PASS,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+This is a multi-part message in MIME format.
+--------------esXA1Txh2YMjp00vl8W3xCHC
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
+On 3/15/23 07:54, Damien Le Moal wrote:
+> On 3/14/23 23:53, Rick Wertenbroek wrote:
+>> Hello Damien,
+>> I also noticed random issues I suspect to be related to link status or power
+>> state, in my case it sometimes happens that the BARs (0-6) in the config
+>> space get reset to 0. This is not due to the driver because the driver never
+>> ever accesses these registers (@0xfd80'0010 to 0xfd80'0024 TRM
+>> 17.6.4.1.5-17.6.4.1.10).
+>> I don't think the host rewrites them because lspci shows the BARs as
+>> "[virtual]" which means they have been assigned by host but have 0
+>> value in the endpoint device (when lspci rereads the PCI config header).
+>> See https://github.com/pciutils/pciutils/blob/master/lspci.c#L422
+>>
+>> So I suspect the controller detects something related to link status or
+>> power state and internally (in hardware) resets those registers. It's not
+>> the kernel code, it never accesses these regs. The problem occurs
+>> very randomly, sometimes in a few seconds, sometimes I cannot see
+>> it for a whole day.
+>>
+>> Is this similar to what you are experiencing ?
+> 
+> Yes. I sometimes get NMIs after starting the function driver, when my function
+> driver starts probing the bar registers after seeing the host changing one
+> register. And the link also comes up with 4 lanes or 2 lanes, random.
+> 
+>> Do you have any idea as to what could make these registers to be reset
+>> (I could not find anything in the TRM, also nothing in the driver seems to
+>> cause it).
+> 
+> My thinking is that since we do not have a linkup notifier, the function driver
+> starts setting things up without the link established (e.g. when the host is
+> still powered down). Once the host start booting and pic link is established,
+> things may be reset in the hardware... That is the only thing I can think of.
+> 
+> And yes, there are definitely something going on with the power states too I
+> think: if I let things idle for a few minutes, everything stops working: no
+> activity seen on the endpoint over the BARs. I tried enabling the sys and client
+> interrupts to see if I can see power state changes, or if clearing the
+> interrupts helps (they are masked by default), but no change. And booting the
+> host with pci_aspm=off does not help either. Also tried to change all the
+> capabilities related to link & power states to "off" (not supported), and no
+> change either. So currently, I am out of ideas regarding that one.
+> 
+> I am trying to make progress on my endpoint driver (nvme function) to be sure it
+> is not a bug there that breaks things. I may still have something bad because
+> when I enable the BIOS native NVMe driver on the host, either the host does not
+> boot, or grub crashes with memory corruptions. Overall, not yet very stable and
+> still trying to sort out the root cause of that.
 
-On 3.03.2023 22:58, Konrad Dybcio wrote:
-> Add a node for MPM and wire it up on consumers that use it. This also
-> fixes a very bad and sad assumption I made when initially porting this
-> SoC that the downstream MPM-TLMM mappings were 1-1. That apparently
-> changed some time ago, so with this patch the MPM consumers will actually
-> be hooked up to the correct interrupt lines.
-> 
-> Fixes: 59d34ca97f91 ("arm64: dts: qcom: Add initial device tree for SM6375")
-> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
-> ---
-As agreed with Krzysztof offline, this one is a no-go.
-Awaiting resolution on RPM MSG RAM bindings.
+By the way, enabling the interrupts to see the error notifications, I do see a
+lot of retry timeout and other recoverable errors. So the issues I am seeing
+could be due to my PCI cable setup that is not ideal (bad signal, ground loops,
+... ?). Not sure. I do not have a PCI analyzer handy :)
 
-Konrad
->  arch/arm64/boot/dts/qcom/sm6375.dtsi | 32 ++++++++++++++++++++++++++------
->  1 file changed, 26 insertions(+), 6 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sm6375.dtsi b/arch/arm64/boot/dts/qcom/sm6375.dtsi
-> index 94bb373f8d97..ecb654357288 100644
-> --- a/arch/arm64/boot/dts/qcom/sm6375.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sm6375.dtsi
-> @@ -315,6 +315,7 @@ CPU_PD7: power-domain-cpu7 {
->  
->  		CLUSTER_PD: power-domain-cpu-cluster0 {
->  			#power-domain-cells = <0>;
-> +			power-domains = <&wakegic>;
->  			domain-idle-states = <&CLUSTER_SLEEP_0>;
->  		};
->  	};
-> @@ -633,7 +634,7 @@ tlmm: pinctrl@500000 {
->  			reg = <0 0x00500000 0 0x800000>;
->  			interrupts = <GIC_SPI 227 IRQ_TYPE_LEVEL_HIGH>;
->  			gpio-ranges = <&tlmm 0 0 157>;
-> -			/* TODO: Hook up MPM as wakeup-parent when it's there */
-> +			wakeup-parent = <&wakegic>;
->  			interrupt-controller;
->  			gpio-controller;
->  			#interrupt-cells = <2>;
-> @@ -755,7 +756,7 @@ spmi_bus: spmi@1c40000 {
->  			      <0 0x01c0a000 0 0x26000>;
->  			reg-names = "core", "chnls", "obsrvr", "intr", "cnfg";
->  			interrupt-names = "periph_irq";
-> -			interrupts = <GIC_SPI 86 IRQ_TYPE_LEVEL_HIGH>;
-> +			interrupts-extended = <&wakegic 86 IRQ_TYPE_LEVEL_HIGH>;
->  			qcom,ee = <0>;
->  			qcom,channel = <0>;
->  			#address-cells = <2>;
-> @@ -791,6 +792,25 @@ rpm_msg_ram: sram@45f0000 {
->  			reg = <0 0x045f0000 0 0x7000>;
->  		};
->  
-> +		wakegic: interrupt-controller@45f01b8 {
-> +			compatible = "qcom,mpm";
-> +			reg = <0 0x045f01b8 0 0x1000>;
-> +			interrupts = <GIC_SPI 197 IRQ_TYPE_EDGE_RISING>;
-> +			mboxes = <&ipcc IPCC_CLIENT_AOP IPCC_MPROC_SIGNAL_SMP2P>;
-> +			interrupt-controller;
-> +			#interrupt-cells = <2>;
-> +			#power-domain-cells = <0>;
-> +			interrupt-parent = <&intc>;
-> +			qcom,mpm-pin-count = <96>;
-> +			qcom,mpm-pin-map = <5 296>,  /* Soundwire wake_irq */
-> +					   <12 422>, /* DWC3 ss_phy_irq */
-> +					   <86 183>, /* MPM wake, SPMI */
-> +					   <89 314>, /* TSENS0 0C */
-> +					   <90 315>, /* TSENS1 0C */
-> +					   <93 164>, /* DWC3 dm_hs_phy_irq */
-> +					   <94 165>; /* DWC3 dp_hs_phy_irq */
-> +		};
-> +
->  		sram@4690000 {
->  			compatible = "qcom,rpm-stats";
->  			reg = <0 0x04690000 0 0x400>;
-> @@ -1185,10 +1205,10 @@ usb_1: usb@4ef8800 {
->  					  <&gcc GCC_USB30_PRIM_MASTER_CLK>;
->  			assigned-clock-rates = <19200000>, <133333333>;
->  
-> -			interrupts = <GIC_SPI 302 IRQ_TYPE_LEVEL_HIGH>,
-> -				     <GIC_SPI 12 IRQ_TYPE_LEVEL_HIGH>,
-> -				     <GIC_SPI 93 IRQ_TYPE_LEVEL_HIGH>,
-> -				     <GIC_SPI 94 IRQ_TYPE_LEVEL_HIGH>;
-> +			interrupts-extended = <&intc GIC_SPI 302 IRQ_TYPE_LEVEL_HIGH>,
-> +					      <&wakegic 12 IRQ_TYPE_LEVEL_HIGH>,
-> +					      <&wakegic 93 IRQ_TYPE_LEVEL_HIGH>,
-> +					      <&wakegic 94 IRQ_TYPE_LEVEL_HIGH>;
->  			interrupt-names = "hs_phy_irq",
->  					  "ss_phy_irq",
->  					  "dm_hs_phy_irq",
-> 
+I attached the patches I used to enable the EP interrupts. Enabling debug prints
+will tell you what is going on. That may give you some hints on your setup ?
+
+-- 
+Damien Le Moal
+Western Digital Research
+
+--------------esXA1Txh2YMjp00vl8W3xCHC
+Content-Type: text/x-patch; charset=UTF-8;
+ name="0001-arm-rk3399-rockpro64-Add-interrupts-to-PCI-endpoint-.patch"
+Content-Disposition: attachment;
+ filename*0="0001-arm-rk3399-rockpro64-Add-interrupts-to-PCI-endpoint-.pa";
+ filename*1="tch"
+Content-Transfer-Encoding: base64
+
+RnJvbSBmZGU2NjdlODg5NTQ4YTA2NDAwOWM0NWVhNDg5MWI3ODk3Nzk2MmI5IE1vbiBTZXAg
+MTcgMDA6MDA6MDAgMjAwMQpGcm9tOiBEYW1pZW4gTGUgTW9hbCA8ZGFtaWVuLmxlbW9hbEBv
+cGVuc291cmNlLndkYy5jb20+CkRhdGU6IFR1ZSwgMjggRmViIDIwMjMgMTc6MDA6MzIgKzA5
+MDAKU3ViamVjdDogW1BBVENIXSBhcm06IHJrMzM5OS1yb2NrcHJvNjQ6IEFkZCBpbnRlcnJ1
+cHRzIHRvIFBDSSBlbmRwb2ludCBtb2RlIERUCiBub2RlCgpBZGQgc3Vic3lzdGVtIGFuZCBj
+bGllbnQgaW50ZXJydXB0cyBkZWZpbml0aW9ucyB0byB0aGUgcm9ja2NoaXAgUENJCmVlbmRw
+b2ludCBub2RlLgoKU2lnbmVkLW9mZi1ieTogRGFtaWVuIExlIE1vYWwgPGRhbWllbi5sZW1v
+YWxAb3BlbnNvdXJjZS53ZGMuY29tPgotLS0KIGFyY2gvYXJtNjQvYm9vdC9kdHMvcm9ja2No
+aXAvcmszMzk5LmR0c2kgfCAzICsrKwogMSBmaWxlIGNoYW5nZWQsIDMgaW5zZXJ0aW9ucygr
+KQoKZGlmZiAtLWdpdCBhL2FyY2gvYXJtNjQvYm9vdC9kdHMvcm9ja2NoaXAvcmszMzk5LmR0
+c2kgYi9hcmNoL2FybTY0L2Jvb3QvZHRzL3JvY2tjaGlwL3JrMzM5OS5kdHNpCmluZGV4IGMz
+NDg5YmUzODUyZC4uOTJlYjU0MWZkZTlkIDEwMDY0NAotLS0gYS9hcmNoL2FybTY0L2Jvb3Qv
+ZHRzL3JvY2tjaGlwL3JrMzM5OS5kdHNpCisrKyBiL2FyY2gvYXJtNjQvYm9vdC9kdHMvcm9j
+a2NoaXAvcmszMzk5LmR0c2kKQEAgLTI3NCw2ICsyNzQsOSBAQCBwY2llMF9lcDogcGNpZS1l
+cEBmODAwMDAwMCB7CiAJCQk8JmNydSBQQ0xLX1BDSUU+LCA8JmNydSBTQ0xLX1BDSUVfUE0+
+OwogCQljbG9jay1uYW1lcyA9ICJhY2xrIiwgImFjbGstcGVyZiIsCiAJCQkJImhjbGsiLCAi
+cG0iOworCQlpbnRlcnJ1cHRzID0gPEdJQ19TUEkgNDkgSVJRX1RZUEVfTEVWRUxfSElHSCAw
+PiwKKwkJCSAgICAgPEdJQ19TUEkgNTEgSVJRX1RZUEVfTEVWRUxfSElHSCAwPjsKKwkJaW50
+ZXJydXB0LW5hbWVzID0gInN5cyIsICJjbGllbnQiOwogCQltYXgtZnVuY3Rpb25zID0gL2Jp
+dHMvIDggPDg+OwogCQludW0tbGFuZXMgPSA8ND47CiAJCXJlZyA9IDwweDAgMHhmZDAwMDAw
+MCAweDAgMHgxMDAwMDAwPiwgPDB4MCAweGZhMDAwMDAwIDB4MCAweDIwMDAwMDA+OwotLSAK
+Mi4zOS4yCgo=
+--------------esXA1Txh2YMjp00vl8W3xCHC
+Content-Type: text/x-patch; charset=UTF-8;
+ name="0001-PCI-rockchip-Add-client-and-subsys-interrupts-for-en.patch"
+Content-Disposition: attachment;
+ filename*0="0001-PCI-rockchip-Add-client-and-subsys-interrupts-for-en.pa";
+ filename*1="tch"
+Content-Transfer-Encoding: base64
+
+RnJvbSA5ZjIzNmI5YWMwMmU1MjQwN2VhOWQ4ODkyMGFkYTI4ODdjZWM4NzJjIE1vbiBTZXAg
+MTcgMDA6MDA6MDAgMjAwMQpGcm9tOiBEYW1pZW4gTGUgTW9hbCA8ZGFtaWVuLmxlbW9hbEBv
+cGVuc291cmNlLndkYy5jb20+CkRhdGU6IFR1ZSwgMjggRmViIDIwMjMgMTY6NTc6MDEgKzA5
+MDAKU3ViamVjdDogW1BBVENIXSBQQ0k6IHJvY2tjaGlwOiBBZGQgY2xpZW50IGFuZCBzdWJz
+eXMgaW50ZXJydXB0cyBmb3IgZW5kcG9pbnQKIG1vZGUKCkFkZCBhbiBpbnRlcnJ1cHQgaGFu
+ZGxlciBmb3IgdGhlIGNsaWVudCBhbmQgc3Vic3lzdGVtIGludGVycnVwdHMgdG8KdGhlIHJv
+Y2tjaGlwIGVuZHBvaW50IGRyaXZlci4gQ2xlYXJpbmcgdGhlc2UgaW50ZXJydXB0cyBpcyBu
+ZWNlc3NzYXJ5CnRvIGF2b2lkIHNlZWluZyB0aGUgY29udHJvbGxlciBnZXR0aW5nIHN0dWNr
+IG9uIG5vbiBmYXRhbCBlcnJvcnMuCgpTaWduZWQtb2ZmLWJ5OiBEYW1pZW4gTGUgTW9hbCA8
+ZGFtaWVuLmxlbW9hbEBvcGVuc291cmNlLndkYy5jb20+Ci0tLQogZHJpdmVycy9wY2kvY29u
+dHJvbGxlci9wY2llLXJvY2tjaGlwLWVwLmMgfCAxNzYgKysrKysrKysrKysrKysrKysrKysr
+KwogMSBmaWxlIGNoYW5nZWQsIDE3NiBpbnNlcnRpb25zKCspCgpkaWZmIC0tZ2l0IGEvZHJp
+dmVycy9wY2kvY29udHJvbGxlci9wY2llLXJvY2tjaGlwLWVwLmMgYi9kcml2ZXJzL3BjaS9j
+b250cm9sbGVyL3BjaWUtcm9ja2NoaXAtZXAuYwppbmRleCAxMmRiOWE5ZDkyYWYuLmMxZDM5
+ZDNiNDVkYSAxMDA2NDQKLS0tIGEvZHJpdmVycy9wY2kvY29udHJvbGxlci9wY2llLXJvY2tj
+aGlwLWVwLmMKKysrIGIvZHJpdmVycy9wY2kvY29udHJvbGxlci9wY2llLXJvY2tjaGlwLWVw
+LmMKQEAgLTUwLDYgKzUwLDE3NiBAQCBzdHJ1Y3Qgcm9ja2NoaXBfcGNpZV9lcCB7CiAJdTgJ
+CQlpcnFfcGVuZGluZzsKIH07CiAKK3N0YXRpYyB2b2lkIHJvY2tjaGlwX3BjaWVfZXBfaGFu
+ZGxlX2xvY2FsX2ludChzdHJ1Y3Qgcm9ja2NoaXBfcGNpZSAqcm9ja2NoaXApCit7CisJc3Ry
+dWN0IGRldmljZSAqZGV2ID0gcm9ja2NoaXAtPmRldjsKKwl1MzIgcmVnOworCisJZGV2X2Ri
+ZyhkZXYsICJsb2NhbCBpbnRlcnJ1cHQgcmVjZWl2ZWRcbiIpOworCisJcmVnID0gcm9ja2No
+aXBfcGNpZV9yZWFkKHJvY2tjaGlwLCBQQ0lFX0NPUkVfSU5UX1NUQVRVUyk7CisJaWYgKHJl
+ZyAmIFBDSUVfQ09SRV9JTlRfUFJGUEUpCisJCWRldl9kYmcoZGV2LCAicGFyaXR5IGVycm9y
+IGRldGVjdGVkIHdoaWxlIHJlYWRpbmcgZnJvbSB0aGUgUE5QIHJlY2VpdmUgRklGTyBSQU1c
+biIpOworCisJaWYgKHJlZyAmIFBDSUVfQ09SRV9JTlRfQ1JGUEUpCisJCWRldl9kYmcoZGV2
+LCAicGFyaXR5IGVycm9yIGRldGVjdGVkIHdoaWxlIHJlYWRpbmcgZnJvbSB0aGUgQ29tcGxl
+dGlvbiBSZWNlaXZlIEZJRk8gUkFNXG4iKTsKKworCWlmIChyZWcgJiBQQ0lFX0NPUkVfSU5U
+X1JSUEUpCisJCWRldl9kYmcoZGV2LCAicGFyaXR5IGVycm9yIGRldGVjdGVkIHdoaWxlIHJl
+YWRpbmcgZnJvbSByZXBsYXkgYnVmZmVyIFJBTVxuIik7CisKKwlpZiAocmVnICYgUENJRV9D
+T1JFX0lOVF9QUkZPKQorCQlkZXZfZGJnKGRldiwgIm92ZXJmbG93IG9jY3VycmVkIGluIHRo
+ZSBQTlAgcmVjZWl2ZSBGSUZPXG4iKTsKKworCWlmIChyZWcgJiBQQ0lFX0NPUkVfSU5UX0NS
+Rk8pCisJCWRldl9kYmcoZGV2LCAib3ZlcmZsb3cgb2NjdXJyZWQgaW4gdGhlIGNvbXBsZXRp
+b24gcmVjZWl2ZSBGSUZPXG4iKTsKKworCWlmIChyZWcgJiBQQ0lFX0NPUkVfSU5UX1JUKQor
+CQlkZXZfZGJnKGRldiwgInJlcGxheSB0aW1lciB0aW1lZCBvdXRcbiIpOworCisJaWYgKHJl
+ZyAmIFBDSUVfQ09SRV9JTlRfUlRSKQorCQlkZXZfZGJnKGRldiwgInJlcGxheSB0aW1lciBy
+b2xsZWQgb3ZlciBhZnRlciA0IHRyYW5zbWlzc2lvbnMgb2YgdGhlIHNhbWUgVExQXG4iKTsK
+KworCWlmIChyZWcgJiBQQ0lFX0NPUkVfSU5UX1BFKQorCQlkZXZfZGJnKGRldiwgInBoeSBl
+cnJvciBkZXRlY3RlZCBvbiByZWNlaXZlIHNpZGVcbiIpOworCisJaWYgKHJlZyAmIFBDSUVf
+Q09SRV9JTlRfTVRSKQorCQlkZXZfZGJnKGRldiwgIm1hbGZvcm1lZCBUTFAgcmVjZWl2ZWQg
+ZnJvbSB0aGUgbGlua1xuIik7CisKKwlpZiAocmVnICYgUENJRV9DT1JFX0lOVF9VQ1IpCisJ
+CWRldl9kYmcoZGV2LCAibWFsZm9ybWVkIFRMUCByZWNlaXZlZCBmcm9tIHRoZSBsaW5rXG4i
+KTsKKworCWlmIChyZWcgJiBQQ0lFX0NPUkVfSU5UX0ZDRSkKKwkJZGV2X2RiZyhkZXYsICJh
+biBlcnJvciB3YXMgb2JzZXJ2ZWQgaW4gdGhlIGZsb3cgY29udHJvbCBhZHZlcnRpc2VtZW50
+cyBmcm9tIHRoZSBvdGhlciBzaWRlXG4iKTsKKworCWlmIChyZWcgJiBQQ0lFX0NPUkVfSU5U
+X0NUKQorCQlkZXZfZGJnKGRldiwgImEgcmVxdWVzdCB0aW1lZCBvdXQgd2FpdGluZyBmb3Ig
+Y29tcGxldGlvblxuIik7CisKKwlpZiAocmVnICYgUENJRV9DT1JFX0lOVF9VVEMpCisJCWRl
+dl9kYmcoZGV2LCAidW5tYXBwZWQgVEMgZXJyb3JcbiIpOworCisJaWYgKHJlZyAmIFBDSUVf
+Q09SRV9JTlRfTU1WQykKKwkJZGV2X2RiZyhkZXYsICJNU0kgbWFzayByZWdpc3RlciBjaGFu
+Z2VzXG4iKTsKKworCXJvY2tjaGlwX3BjaWVfd3JpdGUocm9ja2NoaXAsIHJlZywgUENJRV9D
+T1JFX0lOVF9TVEFUVVMpOworfQorCitzdGF0aWMgaXJxcmV0dXJuX3Qgcm9ja2NoaXBfcGNp
+ZV9lcF9pcnFfaGFuZGxlcihpbnQgaXJxLCB2b2lkICphcmcpCit7CisJc3RydWN0IHJvY2tj
+aGlwX3BjaWUgKnJvY2tjaGlwID0gYXJnOworCXN0cnVjdCBkZXZpY2UgKmRldiA9IHJvY2tj
+aGlwLT5kZXY7CisJdTMyIHJlZywgbWFzayA9IDA7CisKKwlyZWcgPSByb2NrY2hpcF9wY2ll
+X3JlYWQocm9ja2NoaXAsIFBDSUVfQ0xJRU5UX0lOVF9TVEFUVVMpOworCisJaWYgKHJlZyAm
+IFBDSUVfQ0xJRU5UX0lOVF9MRUdBQ1lfRE9ORSkgeworCQlkZXZfZGJnKGRldiwgImxlZ2Fj
+eSBkb25lIGludGVycnVwdCByZWNlaXZlZFxuIik7CisJCW1hc2sgfD0gUENJRV9DTElFTlRf
+SU5UX0xFR0FDWV9ET05FOworCX0KKworCWlmIChyZWcgJiBQQ0lFX0NMSUVOVF9JTlRfTVNH
+KSB7CisJCWRldl9kYmcoZGV2LCAibWVzc2FnZSBkb25lIGludGVycnVwdCByZWNlaXZlZFxu
+Iik7CisJCW1hc2sgfD0gUENJRV9DTElFTlRfSU5UX01TRzsKKwl9CisKKwlpZiAocmVnICYg
+UENJRV9DTElFTlRfSU5UX0hPVF9SU1QpIHsKKwkJZGV2X2RiZyhkZXYsICJob3QgcmVzZXQg
+aW50ZXJydXB0IHJlY2VpdmVkXG4iKTsKKwkJbWFzayB8PSBQQ0lFX0NMSUVOVF9JTlRfSE9U
+X1JTVDsKKwl9CisKKwlpZiAocmVnICYgUENJRV9DTElFTlRfSU5UX0RQQSkgeworCQlkZXZf
+ZGJnKGRldiwgImRwYSBpbnRlcnJ1cHQgcmVjZWl2ZWRcbiIpOworCQltYXNrIHw9IFBDSUVf
+Q0xJRU5UX0lOVF9EUEE7CisJfQorCisJaWYgKHJlZyAmIFBDSUVfQ0xJRU5UX0lOVF9GQVRB
+TF9FUlIpIHsKKwkJZGV2X2RiZyhkZXYsICJmYXRhbCBlcnJvciBpbnRlcnJ1cHQgcmVjZWl2
+ZWRcbiIpOworCQltYXNrIHw9IFBDSUVfQ0xJRU5UX0lOVF9GQVRBTF9FUlI7CisJfQorCisJ
+aWYgKHJlZyAmIFBDSUVfQ0xJRU5UX0lOVF9ORkFUQUxfRVJSKSB7CisJCWRldl9kYmcoZGV2
+LCAibm8gZmF0YWwgZXJyb3IgaW50ZXJydXB0IHJlY2VpdmVkXG4iKTsKKwkJbWFzayB8PSBQ
+Q0lFX0NMSUVOVF9JTlRfTkZBVEFMX0VSUjsKKwl9CisKKwlpZiAocmVnICYgUENJRV9DTElF
+TlRfSU5UX0NPUlJfRVJSKSB7CisJCWRldl9kYmcoZGV2LCAiY29ycmVjdGFibGUgZXJyb3Ig
+aW50ZXJydXB0IHJlY2VpdmVkXG4iKTsKKwkJbWFzayB8PSBQQ0lFX0NMSUVOVF9JTlRfQ09S
+Ul9FUlI7CisJfQorCisJaWYgKHJlZyAmIFBDSUVfQ0xJRU5UX0lOVF9MT0NBTCkgeworCQly
+b2NrY2hpcF9wY2llX2VwX2hhbmRsZV9sb2NhbF9pbnQocm9ja2NoaXApOworCQltYXNrIHw9
+IFBDSUVfQ0xJRU5UX0lOVF9MT0NBTDsKKwl9CisKKwlpZiAocmVnICYgUENJRV9DTElFTlRf
+SU5UX1VETUEpIHsKKwkJZGV2X2RiZyhkZXYsICJ1RE1BIGludGVycnVwdCByZWNlaXZlZFxu
+Iik7CisJCW1hc2sgfD0gUENJRV9DTElFTlRfSU5UX1VETUE7CisJfQorCisJaWYgKHJlZyAm
+IFBDSUVfQ0xJRU5UX0lOVF9QSFkpIHsKKwkJZGV2X2RiZyhkZXYsICJwaHkgaW50ZXJydXB0
+IHJlY2VpdmVkXG4iKTsKKwkJbWFzayB8PSBQQ0lFX0NMSUVOVF9JTlRfUEhZOworCX0KKwor
+CWlmIChyZWcgJiBQQ0lFX0NMSUVOVF9JTlRfUFdSX1NUQ0cpIHsKKwkJZGV2X2RiZyhkZXYs
+ICJQb3dlciBzdGF0ZSBjaGFuZ2UgaW50ZXJydXB0IHJlY2VpdmVkXG4iKTsKKwkJbWFzayB8
+PSBQQ0lFX0NMSUVOVF9JTlRfUFdSX1NUQ0c7CisJfQorCisJcm9ja2NoaXBfcGNpZV93cml0
+ZShyb2NrY2hpcCwgcmVnICYgbWFzaywgUENJRV9DTElFTlRfSU5UX1NUQVRVUyk7CisKKwly
+ZXR1cm4gSVJRX0hBTkRMRUQ7Cit9CisKK3N0YXRpYyBpbnQgcm9ja2NoaXBfcGNpZV9lcF9z
+ZXR1cF9pcnEoc3RydWN0IHJvY2tjaGlwX3BjaWUgKnJvY2tjaGlwKQoreworCWludCBpcnEs
+IGVycjsKKwlzdHJ1Y3QgZGV2aWNlICpkZXYgPSByb2NrY2hpcC0+ZGV2OworCXN0cnVjdCBw
+bGF0Zm9ybV9kZXZpY2UgKnBkZXYgPSB0b19wbGF0Zm9ybV9kZXZpY2UoZGV2KTsKKworCWly
+cSA9IHBsYXRmb3JtX2dldF9pcnFfYnluYW1lKHBkZXYsICJzeXMiKTsKKwlpZiAoaXJxIDwg
+MCkKKwkJcmV0dXJuIGlycTsKKworCS8qIFBDSWUgc3Vic3lzdGVtIGludGVycnVwdCAqLwor
+CWVyciA9IGRldm1fcmVxdWVzdF9pcnEoZGV2LCBpcnEsIHJvY2tjaGlwX3BjaWVfZXBfaXJx
+X2hhbmRsZXIsCisJCQkgICAgICAgSVJRRl9TSEFSRUQsICJwY2llLWVwLXN5cyIsIHJvY2tj
+aGlwKTsKKwlpZiAoZXJyKSB7CisJCWRldl9lcnIoZGV2LCAiUmVxdWVzdCBQQ0llIHN1YnN5
+c3RlbSBJUlEgZmFpbGVkXG4iKTsKKwkJcmV0dXJuIGVycjsKKwl9CisKKwkvKiBQQ0llIGNs
+aWVudCBpbnRlcnJ1cHQgKi8KKwlpcnEgPSBwbGF0Zm9ybV9nZXRfaXJxX2J5bmFtZShwZGV2
+LCAiY2xpZW50Iik7CisJaWYgKGlycSA8IDApCisJCXJldHVybiBpcnE7CisKKwllcnIgPSBk
+ZXZtX3JlcXVlc3RfaXJxKGRldiwgaXJxLCByb2NrY2hpcF9wY2llX2VwX2lycV9oYW5kbGVy
+LAorCQkJICAgICAgIElSUUZfU0hBUkVELCAicGNpZS1lcC1jbGllbnQiLCByb2NrY2hpcCk7
+CisJaWYgKGVycikgeworCQlkZXZfZXJyKGRldiwgIlJlcXVlc3QgUENJZSBjbGllbnQgSVJR
+IGZhaWxlZFxuIik7CisJCXJldHVybiBlcnI7CisJfQorCisJcmV0dXJuIDA7Cit9CisKK3N0
+YXRpYyB2b2lkIHJvY2tjaGlwX3BjaWVfZXBfZW5hYmxlX2ludGVycnVwdHMoc3RydWN0IHJv
+Y2tjaGlwX3BjaWUgKnJvY2tjaGlwKQoreworCXUzMiBjbGllbnRfbWFzayA9IFBDSUVfQ0xJ
+RU5UX0lOVF9MRUdBQ1lfRE9ORSB8CisJCVBDSUVfQ0xJRU5UX0lOVF9NU0cgfCBQQ0lFX0NM
+SUVOVF9JTlRfRFBBIHwKKwkJUENJRV9DTElFTlRfSU5UX0ZBVEFMX0VSUiB8IFBDSUVfQ0xJ
+RU5UX0lOVF9ORkFUQUxfRVJSIHwKKwkJUENJRV9DTElFTlRfSU5UX0NPUlJfRVJSIHwKKwkJ
+UENJRV9DTElFTlRfSU5UX0xPQ0FMIHwgUENJRV9DTElFTlRfSU5UX1VETUEgfAorCQlQQ0lF
+X0NMSUVOVF9JTlRfUFdSX1NUQ0c7CisKKwlyb2NrY2hpcF9wY2llX3dyaXRlKHJvY2tjaGlw
+LCAoY2xpZW50X21hc2sgPDwgMTYpICYgfmNsaWVudF9tYXNrLAorCQkJICAgIFBDSUVfQ0xJ
+RU5UX0lOVF9NQVNLKTsKKworCXJvY2tjaGlwX3BjaWVfd3JpdGUocm9ja2NoaXAsICh1MzIp
+KH5QQ0lFX0NPUkVfSU5UKSwKKwkJCSAgICBQQ0lFX0NPUkVfSU5UX01BU0spOworfQorCiBz
+dGF0aWMgaW5saW5lIGludCByb2NrY2hpcF9vYl9yZWdpb24odTY0IHBoeXNfYWRkcikKIHsK
+IAlyZXR1cm4gKHBoeXNfYWRkciA+PiBpbG9nMihTWl8xTSkpICYgMHgxZjsKQEAgLTYzNyw2
+ICs4MDcsMTIgQEAgc3RhdGljIGludCByb2NrY2hpcF9wY2llX2VwX3Byb2JlKHN0cnVjdCBw
+bGF0Zm9ybV9kZXZpY2UgKnBkZXYpCiAKIAlyb2NrY2hpcF9wY2llX3dyaXRlKHJvY2tjaGlw
+LCBQQ0lFX0NMSUVOVF9DT05GX0VOQUJMRSwgUENJRV9DTElFTlRfQ09ORklHKTsKIAorCWVy
+ciA9IHJvY2tjaGlwX3BjaWVfZXBfc2V0dXBfaXJxKHJvY2tjaGlwKTsKKwlpZiAoZXJyKQor
+CQlnb3RvIGVycl9lcGNfbWVtX2V4aXQ7CisKKwlyb2NrY2hpcF9wY2llX2VwX2VuYWJsZV9p
+bnRlcnJ1cHRzKHJvY2tjaGlwKTsKKwogCXJldHVybiAwOwogZXJyX2VwY19tZW1fZXhpdDoK
+IAlwY2lfZXBjX21lbV9leGl0KGVwYyk7Ci0tIAoyLjM5LjIKCg==
+
+--------------esXA1Txh2YMjp00vl8W3xCHC--
