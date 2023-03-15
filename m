@@ -2,77 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 48BB66BBAFA
-	for <lists+devicetree@lfdr.de>; Wed, 15 Mar 2023 18:35:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EFC5A6BBB05
+	for <lists+devicetree@lfdr.de>; Wed, 15 Mar 2023 18:37:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231779AbjCORfg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Mar 2023 13:35:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42766 "EHLO
+        id S232122AbjCORhJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Mar 2023 13:37:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44742 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231743AbjCORff (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Mar 2023 13:35:35 -0400
-Received: from mail-pl1-x62b.google.com (mail-pl1-x62b.google.com [IPv6:2607:f8b0:4864:20::62b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6DA94231C5
-        for <devicetree@vger.kernel.org>; Wed, 15 Mar 2023 10:35:29 -0700 (PDT)
-Received: by mail-pl1-x62b.google.com with SMTP id a2so20875682plm.4
-        for <devicetree@vger.kernel.org>; Wed, 15 Mar 2023 10:35:29 -0700 (PDT)
+        with ESMTP id S231743AbjCORhI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Mar 2023 13:37:08 -0400
+Received: from mail-ot1-x330.google.com (mail-ot1-x330.google.com [IPv6:2607:f8b0:4864:20::330])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 85670233EA;
+        Wed, 15 Mar 2023 10:37:06 -0700 (PDT)
+Received: by mail-ot1-x330.google.com with SMTP id o4-20020a9d6d04000000b00694127788f4so10577939otp.6;
+        Wed, 15 Mar 2023 10:37:06 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1678901729;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=mXziicv2uYfxyPIhD3Zm1hNxYuWnUEu3waNVg+uvUJE=;
-        b=fkLlxUwfoqSQHAO6oaqAO7XW8uw0SRJENlx1a6WanyTBPduDiqnW1Flid+CdRIZen4
-         npJjplws76ONO61ktvNoD/uZnlfHK5SvRoidwhwcxhPfOQz3FZBABkyvFIMImFo4i8u6
-         b/r3LljfIzFMIwjhGjERRjctXBfpbVvs0N0Be425ywz3G1mO2VVyEfrWZNX83LDkjROH
-         Qy7ZbXHqcqKEOaEz8mnSvLRHLsEHL4mgbIX1EjmhtpU1lv8u6vKIRV7fMtcKY5Jdrtj6
-         6l0jLLtnUzQeDHA1RdSruCEoe80y0/mgHn2AKveyI2NR53TBAARSa4i/y6wLLEle2nfJ
-         qESQ==
+        d=gmail.com; s=20210112; t=1678901824;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=mTPdfXZz7TdYFcy/x5+HjC8JRJTWloTy01FYnVAwbHA=;
+        b=Ku6XlJh1PziEg8LMmPPAm/Jophfxs7ETRkjqLTCfwsmN/Si2RJEeZSEvrc2uRbRyfq
+         xUKX4OoCT0Sk79BO12m4FbOQqnlN5/tsrwSu8/NteBHHerr22/iL8zsIkEQt7DSj51H/
+         CKaUuGisGEIIUjEYzEqSxsS1qFuA2hdc0x1eFeldLcjkiwneCq2QdqKhn7h3T0yBvEY5
+         8aA2YK6zhbOVEVeCCJFDsNFflQWpYK+q8RS8G8QlhW5LWl8kTMxKhhBMA0KsHoNLzhOd
+         7dq+K8RazFJhXP0f7hheLvV2F4XrU8/zYzXCN74sZIA5nouw5hFch+G78qPVzdC4isc6
+         drUQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678901729;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=mXziicv2uYfxyPIhD3Zm1hNxYuWnUEu3waNVg+uvUJE=;
-        b=XQnBh7bCn7eTKP2zqIHgsedGlgLMuyiqQlwy3XlR5PAtYQm/Ls137rM+mgXccuTFmQ
-         BI3mXvwbqPlqCX5LjkULRXxgLfYbmP965YU2bXT44lz+zOX+ioncM+gjix+VnBspMH1c
-         KQWfe+lo76h25r04EHABFc/cWmi4ehIqEOBBVl1fEXDDuinhf8ScPoV5BF/ek5OtcnQJ
-         1zFLgCCuWWWltEFOeo30zlwMvvrpg/DypM4SoeoQ7fFiBYColSK6ABV3Yh3baS6tlOEV
-         cXlWHD+naf8eb/rARSu4qHFKGvloL42mPm7GWKQ0BXyLP5/lTNpXdaKbxiGKzJCahdpr
-         5PrQ==
-X-Gm-Message-State: AO0yUKWXFTfpukJ4OZGO9MuqLrAK1l1DEi+555wDJvqJ9wmzAq1OsDpo
-        rDF/ZB73/NwsGRP5UdoHTB+euQ==
-X-Google-Smtp-Source: AK7set9IdG4vaM5Q83M61wkjdQOyn5rQzQLAMeHMzSFiLlu8+VEy+S5l6kmmjS2QXhyoKMs5tmECtg==
-X-Received: by 2002:a17:90a:34d:b0:23c:ffe0:ccf9 with SMTP id 13-20020a17090a034d00b0023cffe0ccf9mr511760pjf.39.1678901728834;
-        Wed, 15 Mar 2023 10:35:28 -0700 (PDT)
-Received: from p14s ([2604:3d09:148c:c800:c20b:6fb4:a029:ed06])
-        by smtp.gmail.com with ESMTPSA id s13-20020a170902988d00b0019a7363e752sm3880048plp.276.2023.03.15.10.35.27
+        d=1e100.net; s=20210112; t=1678901824;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=mTPdfXZz7TdYFcy/x5+HjC8JRJTWloTy01FYnVAwbHA=;
+        b=yvD4T6SHImH4Rwkbe4u27AArmTHBlaUe+J5AEwv3Y83r3hbYIwH2VfTaCjSECuELmm
+         QMKUUHi7gfee3hXST33KrYWVkPit4JsaUbVxVvf42PJ5zMKnMnvU3/jkzNUhzLZu+gw5
+         0DKmnX7BpEKXJoF080fL+1410HKhZ7SwEvGobv58IPy0B/WzeUuoWw2Gp1FwanEefgHx
+         7Nro37KNEP734b52wwGWZt5ER3WZpK0DdmXfTsjNFBisgaRGVWAQ5B/EltzAaavTUezD
+         fJ9DY9T33VdTBTen3aKJdWVJhKIqxnct6J3JkrCU0nUn26+XPLCVa3OIt/S79lXRpmBO
+         sedg==
+X-Gm-Message-State: AO0yUKVHJEIBf2SYXuYQxWzIWZM0cT7cGAO5JdVaeK5TkGnrNAtDtzcw
+        D3g8NSdR9kqhezTkLklSA7+B1RjSS70=
+X-Google-Smtp-Source: AK7set/fkNgmYshbuJ/7NBJdbsQWcG3G+YfTmP8N/EOcGgvXruu6pr2EUvLoGlXFHhfBM/JX0ie3hw==
+X-Received: by 2002:a9d:6503:0:b0:68b:9e3b:3758 with SMTP id i3-20020a9d6503000000b0068b9e3b3758mr17868724otl.9.1678901823748;
+        Wed, 15 Mar 2023 10:37:03 -0700 (PDT)
+Received: from localhost.localdomain (76-244-6-13.lightspeed.rcsntx.sbcglobal.net. [76.244.6.13])
+        by smtp.gmail.com with ESMTPSA id a23-20020a9d3e17000000b0068abc8e786fsm2562044otd.10.2023.03.15.10.37.03
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 15 Mar 2023 10:35:28 -0700 (PDT)
-Date:   Wed, 15 Mar 2023 11:35:26 -0600
-From:   Mathieu Poirier <mathieu.poirier@linaro.org>
-To:     Tinghan Shen <tinghan.shen@mediatek.com>
-Cc:     Bjorn Andersson <andersson@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org,
-        Project_Global_Chrome_Upstream_Group@mediatek.com
-Subject: Re: [PATCH v8 05/11] remoteproc: mediatek: Extract remoteproc
- initialization flow
-Message-ID: <20230315173526.GB2357129@p14s>
-References: <20230303083355.3378-1-tinghan.shen@mediatek.com>
- <20230303083355.3378-6-tinghan.shen@mediatek.com>
+        Wed, 15 Mar 2023 10:37:03 -0700 (PDT)
+From:   Chris Morgan <macroalpha82@gmail.com>
+To:     linux-bluetooth@vger.kernel.org
+Cc:     linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+        alistair@alistair23.me, anarsoul@gmail.com, luiz.dentz@gmail.com,
+        johan.hedberg@gmail.com, marcel@holtmann.org, heiko@sntech.de,
+        krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
+        Chris Morgan <macromorgan@hotmail.com>
+Subject: [PATCH 0/3 V5] Bluetooth: Add support for RTL8821CS
+Date:   Wed, 15 Mar 2023 12:36:54 -0500
+Message-Id: <20230315173657.28692-1-macroalpha82@gmail.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230303083355.3378-6-tinghan.shen@mediatek.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -80,134 +71,55 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Mar 03, 2023 at 04:33:49PM +0800, Tinghan Shen wrote:
-> This is the preparation for probing multi-core SCP. The remoteproc
-> initialization flow is similar on cores and is reuesd to avoid
-> redundant code.
-> 
-> The registers of config and l1tcm are shared for multi-core
-> SCP. Reuse the mapped addresses for all cores.
-> 
-> Signed-off-by: Tinghan Shen <tinghan.shen@mediatek.com>
-> Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-> ---
->  drivers/remoteproc/mtk_scp.c | 62 ++++++++++++++++++++++++------------
->  1 file changed, 42 insertions(+), 20 deletions(-)
-> 
-> diff --git a/drivers/remoteproc/mtk_scp.c b/drivers/remoteproc/mtk_scp.c
-> index a3b9bc158cd9..bdb5d87eeaa3 100644
-> --- a/drivers/remoteproc/mtk_scp.c
-> +++ b/drivers/remoteproc/mtk_scp.c
-> @@ -23,6 +23,13 @@
->  #define MAX_CODE_SIZE 0x500000
->  #define SECTION_NAME_IPI_BUFFER ".ipi_buffer"
->  
-> +struct mtk_scp_of_regs {
-> +	void __iomem *reg_base;
-> +	void __iomem *l1tcm_base;
-> +	size_t l1tcm_size;
-> +	phys_addr_t l1tcm_phys;
-> +};
-> +
->  /**
->   * scp_get() - get a reference to SCP.
->   *
-> @@ -855,7 +862,8 @@ static void scp_remove_rpmsg_subdev(struct mtk_scp *scp)
->  	}
->  }
->  
-> -static int scp_probe(struct platform_device *pdev)
-> +static int scp_rproc_init(struct platform_device *pdev,
-> +			  struct mtk_scp_of_regs *of_regs)
->  {
->  	struct device *dev = &pdev->dev;
->  	struct device_node *np = dev->of_node;
-> @@ -879,6 +887,11 @@ static int scp_probe(struct platform_device *pdev)
->  	scp->data = of_device_get_match_data(dev);
->  	platform_set_drvdata(pdev, scp);
->  
-> +	scp->reg_base = of_regs->reg_base;
-> +	scp->l1tcm_base = of_regs->l1tcm_base;
-> +	scp->l1tcm_size = of_regs->l1tcm_size;
-> +	scp->l1tcm_phys = of_regs->l1tcm_phys;
-> +
->  	res = platform_get_resource_byname(pdev, IORESOURCE_MEM, "sram");
->  	scp->sram_base = devm_ioremap_resource(dev, res);
->  	if (IS_ERR(scp->sram_base))
-> @@ -888,24 +901,6 @@ static int scp_probe(struct platform_device *pdev)
->  	scp->sram_size = resource_size(res);
->  	scp->sram_phys = res->start;
->  
-> -	/* l1tcm is an optional memory region */
-> -	res = platform_get_resource_byname(pdev, IORESOURCE_MEM, "l1tcm");
-> -	scp->l1tcm_base = devm_ioremap_resource(dev, res);
-> -	if (IS_ERR(scp->l1tcm_base)) {
-> -		ret = PTR_ERR(scp->l1tcm_base);
-> -		if (ret != -EINVAL) {
-> -			return dev_err_probe(dev, ret, "Failed to map l1tcm memory\n");
-> -		}
-> -	} else {
-> -		scp->l1tcm_size = resource_size(res);
-> -		scp->l1tcm_phys = res->start;
-> -	}
-> -
-> -	scp->reg_base = devm_platform_ioremap_resource_byname(pdev, "cfg");
-> -	if (IS_ERR(scp->reg_base))
-> -		return dev_err_probe(dev, PTR_ERR(scp->reg_base),
-> -				     "Failed to parse and map cfg memory\n");
-> -
->  	ret = scp->data->scp_clk_get(scp);
->  	if (ret)
->  		return ret;
-> @@ -933,7 +928,6 @@ static int scp_probe(struct platform_device *pdev)
->  	ret = devm_request_threaded_irq(dev, platform_get_irq(pdev, 0), NULL,
->  					scp_irq_handler, IRQF_ONESHOT,
->  					pdev->name, scp);
-> -
->  	if (ret) {
->  		dev_err(dev, "failed to request irq\n");
->  		goto remove_subdev;
-> @@ -957,6 +951,34 @@ static int scp_probe(struct platform_device *pdev)
->  	return ret;
->  }
->  
-> +static int scp_probe(struct platform_device *pdev)
-> +{
-> +	struct device *dev = &pdev->dev;
-> +	struct resource *res;
-> +	struct mtk_scp_of_regs scp_regs;
-> +	int ret;
-> +
+From: Chris Morgan <macromorgan@hotmail.com>
 
-        struct device *dev = &pdev->dev;
-        struct mtk_scp_of_regs scp_regs;
-        struct resource *res;
-        int ret;
+This patch series is to add support for the RTL8821CS Bluetooth
+controller found on the RTL8821CS WiFi/Bluetooth combo chip.
 
-> +	res = platform_get_resource_byname(pdev, IORESOURCE_MEM, "cfg");
-> +	scp_regs.reg_base = devm_ioremap_resource(dev, res);
-> +	if (IS_ERR(scp_regs.reg_base))
-> +		return dev_err_probe(dev, PTR_ERR(scp_regs.reg_base),
-> +				     "Failed to parse and map cfg memory\n");
-> +
-> +	/* l1tcm is an optional memory region */
-> +	res = platform_get_resource_byname(pdev, IORESOURCE_MEM, "l1tcm");
-> +	scp_regs.l1tcm_base = devm_ioremap_resource(dev, res);
-> +	if (IS_ERR(scp_regs.l1tcm_base)) {
-> +		ret = PTR_ERR(scp_regs.l1tcm_base);
-> +		if (ret != -EINVAL)
-> +			return dev_err_probe(dev, ret, "Failed to map l1tcm memory\n");
-> +	} else {
-> +		scp_regs.l1tcm_size = resource_size(res);
-> +		scp_regs.l1tcm_phys = res->start;
-> +	}
-> +
-> +	return scp_rproc_init(pdev, &scp_regs);
-> +}
-> +
->  static int scp_remove(struct platform_device *pdev)
->  {
->  	struct mtk_scp *scp = platform_get_drvdata(pdev);
-> -- 
-> 2.18.0
-> 
+This has been tested with firmware version 0x75b8f098 which has been
+submitted by Realtek for inclusion in linux-firmware.
+
+https://lore.kernel.org/linux-firmware/20230223062453.181239-1-max.chou@realtek.com/
+
+Changes from V4:
+ - After extensive testing it was found that there are problems with
+   using the bluetooth that were not caught with the initial testing.
+   This can be mitigated by setting the "H5_INFO_WAKEUP_DISABLE" flag.
+   The easiest way to accomplish that is to change the fallback
+   compatible string to "realtek,rtl8723bs-bt". Updated the binding
+   documentation and binding to reflect this. No change to the driver
+   from V4 was necessary. Removed "reviewed-by" from documentation due
+   to this change.
+
+Changes from V3:
+ - Corrected bindings so that all but the 8821 use enum, and 8821 uses
+   items.
+
+Changes from V2:
+ - Corrected devicetree documentation to change compatible from const
+   back to enum.
+ - Removed "reviewed-by" from Alistair Francis as binding documentation
+   updated with changes.
+
+Changes from V1:
+ - Switched to use a fallback string for the rtl8822cs so as to not add
+   an extra entry to the of_device_id table. The driver is capable of
+   selecting the correct firmware blob to load.
+ - Updated the messages to note a new version of the firmware was
+   tested and that Realtek has submitted this firmware upstream.
+ - Updated the devicetree node on the Anbernic RGxx3 series to use the
+   fallback string of realtek,rtl8822cs-bt.
+
+Chris Morgan (3):
+  dt-bindings: net: realtek-bluetooth: Add RTL8821CS
+  Bluetooth: hci_h5: btrtl: Add support for RTL8821CS
+  arm64: dts: rockchip: Update compatible for bluetooth
+
+ .../bindings/net/realtek-bluetooth.yaml       | 24 ++++++++++++-------
+ .../dts/rockchip/rk3566-anbernic-rgxx3.dtsi   |  2 +-
+ drivers/bluetooth/btrtl.c                     |  8 +++++++
+ 3 files changed, 24 insertions(+), 10 deletions(-)
+
+-- 
+2.34.1
+
