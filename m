@@ -2,120 +2,139 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0F4EE6BAA51
-	for <lists+devicetree@lfdr.de>; Wed, 15 Mar 2023 09:02:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9D89F6BAA4D
+	for <lists+devicetree@lfdr.de>; Wed, 15 Mar 2023 09:01:58 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231945AbjCOIB5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Mar 2023 04:01:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43594 "EHLO
+        id S231325AbjCOIB4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Mar 2023 04:01:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43410 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231892AbjCOIBv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Mar 2023 04:01:51 -0400
-Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com [IPv6:2a00:1450:4864:20::434])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5F0106FFC2
-        for <devicetree@vger.kernel.org>; Wed, 15 Mar 2023 01:01:44 -0700 (PDT)
-Received: by mail-wr1-x434.google.com with SMTP id j2so16430361wrh.9
-        for <devicetree@vger.kernel.org>; Wed, 15 Mar 2023 01:01:44 -0700 (PDT)
+        with ESMTP id S231691AbjCOIBu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Mar 2023 04:01:50 -0400
+Received: from mail-yb1-xb32.google.com (mail-yb1-xb32.google.com [IPv6:2607:f8b0:4864:20::b32])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3A1196EBB6
+        for <devicetree@vger.kernel.org>; Wed, 15 Mar 2023 01:01:42 -0700 (PDT)
+Received: by mail-yb1-xb32.google.com with SMTP id r1so5602275ybu.5
+        for <devicetree@vger.kernel.org>; Wed, 15 Mar 2023 01:01:42 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1678867303;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=5wswi1DyAuYzJFWHWsqSArP17cSfb+M+N1FHnH+AfhA=;
-        b=bXvkz/yX64lIDsHFesL+52hM15LEw2hh1hd9XLiSKXK5vxE8pVYfQHdqOkZ0FMGcXc
-         F4R5ESNK1Tk/rqBaN0eR6oFsui0szxNHXCWqekofsh7DM5r+IptlZ9qE6WEFyLlaf6Hl
-         KyYDpbpee/rxB5EBAcwllKXsRlAQjufynXVfD1GFQI7wSV+pAvgHZ/75PWUPIUueSqqe
-         X8oXiF17AMiftJmvXhVXWltm3IFGEYPlkPuMRzwSea4ejcU7QjVql4IPqo5vAqru7CPX
-         VBlxrDOKNoKvMyfxoC+fMZHuoZV9ch6sgrWqlaARYDZJfBWMuQOEw47ZkZv/mCkjtBDH
-         sFBg==
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112; t=1678867301;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=GLmw2pWkt+2UlVCNqfxLlIyJordQ48jgkm7yvgM5sos=;
+        b=kfzb/qXnb2Lz2It2VeCU2JPOke00lu76iOWT0N8lzXzxgMgNVNJo8c992euigO3pOg
+         2cTHApKRAs0MW4AwdKmoVT4E4lTpbiyLxDNjYykxKPYMO82GHOnWvLWC8eKRvhL3LBdX
+         0GgIpT3UnwnxLJGXs830kO/zF3o+VhktcReF1q88KLkn2rG7/9fSv5hJxIEgVsOXZA+T
+         V68WfMU1jJi88lfhhD2mNqlQoYp+CdcBAi2HBFu+egrPostJEcOHf4/w8AN6L9cdMRQf
+         GzNRgl2nZ098e2UH8AS+5knHhmlK+uMTSlMPnkOYBJWhmuY9qF7ZIshgWM9U9lMG8YFU
+         G49w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678867303;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=5wswi1DyAuYzJFWHWsqSArP17cSfb+M+N1FHnH+AfhA=;
-        b=vr9o9ig8JfDI/117jIwLtx50c4darYgluN6pQLLTTD3GTzM10lXEcjocwd9+abejj1
-         fXoHE//K2wT60f0AKhaexsSFJpQeIhpvDJVCsI+YamD4P1ENrQQmXXd2Fc2wtz8KKAgO
-         9uy/kgxmhNK1wkdiAmkR+B+H6xJKLyKOWTjbNL9E0bolrXmaGfyZ06iucj2EbUNBciE8
-         DL4UYgAleMxTzvhQUwLiWU51GCw0ERMxQgfHlm3iSyrxGQXPmjb3XR6thBIuKXcTyQul
-         sVIt0rijeN5MVCn5U7II/MvjM9EJslEYzZKiNbuctgxiRV5RLRbdFkqEMX27F0UuBMmN
-         Or3Q==
-X-Gm-Message-State: AO0yUKWpnJlushtFSWonfepTz0iKNvMQhFIoXoBhm+50U0CAJDgD7Gkd
-        vfi7M4811s2n8nKTUCUMlBHQqv/O6KoH0w0eaatj7g==
-X-Google-Smtp-Source: AK7set/zDwpw5tmgpQkQE93auoU6m0X9eMFuTR84C2UImSDMGqPTyR5wis50nno6pRellvCAciITc3dcaQs8FlsxmTE=
-X-Received: by 2002:a5d:65cc:0:b0:2ce:a3a6:79f6 with SMTP id
- e12-20020a5d65cc000000b002cea3a679f6mr365503wrw.4.1678867300640; Wed, 15 Mar
- 2023 01:01:40 -0700 (PDT)
+        d=1e100.net; s=20210112; t=1678867301;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=GLmw2pWkt+2UlVCNqfxLlIyJordQ48jgkm7yvgM5sos=;
+        b=1EYcpaWt0L5+XyG/klY7tb1LPulxrIxRqfJxfyuMWmV7nfWtzI/WICWVg3qNUgVDGO
+         1OB9kWV8zDjDafyNiD3N0jE1ZGRX68bXYfEpHVNOqcfc8933QKc27FMnnpSzc9fxov0Q
+         sx1+sJIqupLwhijKQz7/iqt84ZRVp4bzU93rZdjZmA1j/CFQhEdBDmB4a/t/wgkboG7R
+         pkYDz5VSdTG8aMvTZEBUEWrwOzdcieEERWXAxAI7K6Zw135j4/WjI23q1XRrHKfCqqd0
+         FU0B+5Acq9quqIPQ8cicOvzvxCOa3cLMZOwm40Y4JvT9Mzeatb8lm39gWrEcDTGxC72X
+         50IQ==
+X-Gm-Message-State: AO0yUKUv7k3DJdvG6h8JKKcZknr6s4OvL3DnkLeam0sW9O2hZjjEaAwr
+        6KFZCXinH+kSbVT/ATkp89uaqOacfQ6k4u57lyw4EA==
+X-Google-Smtp-Source: AK7set9LpeP+JeZx2ldhs9oY8bVS2Fz4YRdUKtYi/IMSTV0qIeC8WW+E425cUJjwgqA/oB9hoYpKIBLTZzuVNM14JVg=
+X-Received: by 2002:a05:6902:10e:b0:98e:6280:74ca with SMTP id
+ o14-20020a056902010e00b0098e628074camr23087865ybh.1.1678867301383; Wed, 15
+ Mar 2023 01:01:41 -0700 (PDT)
 MIME-Version: 1.0
-References: <20230314-topic-2290_compats-v1-0-47e26c3c0365@linaro.org>
-In-Reply-To: <20230314-topic-2290_compats-v1-0-47e26c3c0365@linaro.org>
-From:   Bhupesh Sharma <bhupesh.sharma@linaro.org>
-Date:   Wed, 15 Mar 2023 13:31:29 +0530
-Message-ID: <CAH=2NtxHrk4XnFAzUD82ngqihsEPHKztz_7OJJ36U4X=DA9wGQ@mail.gmail.com>
-Subject: Re: [PATCH 0/6] QCM2290 compatibles
-To:     Konrad Dybcio <konrad.dybcio@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Guenter Roeck <linux@roeck-us.net>,
+References: <20230220-display-v1-0-45cbc68e188b@baylibre.com>
+ <20230220-display-v1-15-45cbc68e188b@baylibre.com> <ea8aaec1-948d-832b-ff24-b35abd3a59a2@linaro.org>
+In-Reply-To: <ea8aaec1-948d-832b-ff24-b35abd3a59a2@linaro.org>
+From:   Alexandre Mergnat <amergnat@baylibre.com>
+Date:   Wed, 15 Mar 2023 09:01:30 +0100
+Message-ID: <CAFGrd9p0qmfypP2DDJN1vEhJYciVfgFXZWLmvQOdpE=qgSDvKQ@mail.gmail.com>
+Subject: Re: [PATCH 15/21] dt-bindings: soc: mediatek: add display mutex for
+ MT8365 SoC
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Daniel Vetter <daniel@ffwll.ch>, CK Hu <ck.hu@mediatek.com>,
+        Jitao Shi <jitao.shi@mediatek.com>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Sam Ravnborg <sam@ravnborg.org>,
         Rob Herring <robh+dt@kernel.org>,
+        =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= 
+        <u.kleine-koenig@pengutronix.de>,
+        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        David Airlie <airlied@gmail.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Prakash Ranjan <saiprakash.ranjan@codeaurora.org>,
-        Vinod Koul <vkoul@kernel.org>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Wesley Cheng <quic_wcheng@quicinc.com>,
-        Amit Kucheria <amitk@kernel.org>,
-        Thara Gopinath <thara.gopinath@gmail.com>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Zhang Rui <rui.zhang@intel.com>, linux-arm-msm@vger.kernel.org,
-        linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, dmaengine@vger.kernel.org,
-        linux-mmc@vger.kernel.org, linux-usb@vger.kernel.org,
-        linux-pm@vger.kernel.org
+        Xinlei Lee <xinlei.lee@mediatek.com>,
+        Guillaume La Roque <glaroque@baylibre.com>,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org,
+        dri-devel@lists.freedesktop.org,
+        Fabien Parent <fparent@baylibre.com>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 14 Mar 2023 at 18:23, Konrad Dybcio <konrad.dybcio@linaro.org> wrote:
+Le ven. 10 mars 2023 =C3=A0 09:39, Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> a =C3=A9crit :
 >
-> Document a couple of compatibles for IPs found on the QCM2290 that don't
-> require any specific driver changes
+> On 09/03/2023 15:23, Alexandre Mergnat wrote:
+> > Add compatible for the MT8365 SoC.
+> >
+> > Signed-off-by: Alexandre Mergnat <amergnat@baylibre.com>
+> > ---
+> >  Documentation/devicetree/bindings/soc/mediatek/mediatek,mutex.yaml | 1=
+ +
+> >  1 file changed, 1 insertion(+)
+> >
+> > diff --git a/Documentation/devicetree/bindings/soc/mediatek/mediatek,mu=
+tex.yaml b/Documentation/devicetree/bindings/soc/mediatek/mediatek,mutex.ya=
+ml
+> > index ca0ca549257d..931d66893dff 100644
+> > --- a/Documentation/devicetree/bindings/soc/mediatek/mediatek,mutex.yam=
+l
+> > +++ b/Documentation/devicetree/bindings/soc/mediatek/mediatek,mutex.yam=
+l
+> > @@ -34,6 +34,7 @@ properties:
+> >        - mediatek,mt8186-mdp3-mutex
+> >        - mediatek,mt8192-disp-mutex
+> >        - mediatek,mt8195-disp-mutex
+> > +      - mediatek,mt8365-disp-mutex
 >
-> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
-> ---
-> Konrad Dybcio (6):
->       dt-bindings: watchdog: qcom-wdt: add QCM2290
->       dt-bindings: dmaengine: qcom: gpi: Add QCM2290 GPI DMA
->       dt-bindings: nvmem: Add compatible for QCM2290
->       dt-bindings: mmc: sdhci-msm: Document QCM2290 SDHCI
->       dt-bindings: usb: dwc3: Add QCM2290 compatible
->       dt-bindings: thermal: tsens: Add QCM2290
->
->  Documentation/devicetree/bindings/dma/qcom,gpi.yaml       | 1 +
->  Documentation/devicetree/bindings/mmc/sdhci-msm.yaml      | 1 +
->  Documentation/devicetree/bindings/nvmem/qcom,qfprom.yaml  | 1 +
->  Documentation/devicetree/bindings/thermal/qcom-tsens.yaml | 1 +
->  Documentation/devicetree/bindings/usb/qcom,dwc3.yaml      | 2 ++
->  Documentation/devicetree/bindings/watchdog/qcom-wdt.yaml  | 1 +
->  6 files changed, 7 insertions(+)
-> ---
-> base-commit: ec0fa9a0a6fac454745c930bdb8619d0a354bac9
-> change-id: 20230314-topic-2290_compats-5bec96afeeb0
->
-> Best regards,
-> --
-> Konrad Dybcio <konrad.dybcio@linaro.org>
+> All these look compatible. Either make mt8635 compatible with something
+> or even rework entire list and make everything compatible.
 
-Thanks for posting this, for the series (with the assumption that the
-board dts will follow soon):
+All of them use "mtk_mutec.c" but have specific data.
 
-Reviewed-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
+      .data =3D &mt8173_mutex_driver_data},
+    { .compatible =3D "mediatek,mt8183-disp-mutex",
+      .data =3D &mt8183_mutex_driver_data},
+    { .compatible =3D "mediatek,mt8186-disp-mutex",
+      .data =3D &mt8186_mutex_driver_data},
+    { .compatible =3D "mediatek,mt8186-mdp3-mutex",
+      .data =3D &mt8186_mdp_mutex_driver_data},
+    { .compatible =3D "mediatek,mt8192-disp-mutex",
+      .data =3D &mt8192_mutex_driver_data},
+    { .compatible =3D "mediatek,mt8195-disp-mutex",
+      .data =3D &mt8195_mutex_driver_data},
+    { .compatible =3D "mediatek,mt8365-disp-mutex",
+      .data =3D &mt8365_mutex_driver_data},
+
+I don't see any SoC compatible with mt8635, and I have no idea which
+rework you have in mind. Can you please point me an example ?
+
+Thanks
+Alex
