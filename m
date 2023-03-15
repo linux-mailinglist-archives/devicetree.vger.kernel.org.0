@@ -2,96 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 44AC26BBC68
-	for <lists+devicetree@lfdr.de>; Wed, 15 Mar 2023 19:39:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 294C66BBCA3
+	for <lists+devicetree@lfdr.de>; Wed, 15 Mar 2023 19:47:38 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232702AbjCOSjc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Mar 2023 14:39:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58064 "EHLO
+        id S230147AbjCOSrg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Mar 2023 14:47:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46112 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232657AbjCOSjJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Mar 2023 14:39:09 -0400
-Received: from mail-lj1-x232.google.com (mail-lj1-x232.google.com [IPv6:2a00:1450:4864:20::232])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 32875457EC
-        for <devicetree@vger.kernel.org>; Wed, 15 Mar 2023 11:38:37 -0700 (PDT)
-Received: by mail-lj1-x232.google.com with SMTP id x36so619046ljq.7
-        for <devicetree@vger.kernel.org>; Wed, 15 Mar 2023 11:38:37 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1678905504;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=cVubaIqvmyZcVmODQ4m0c66Rfjv3Ax4FAubBWjKvyUI=;
-        b=NbsCYa1ped90PCQfFoECGkBtGykaKc5PmrnpfStkvX1VprhPanvIWZBTfNi629EIxy
-         YDtrJwiS6hNH4l5Axz3ZUCkTGvqAx2kIntIExbPwW4IJaYuULXML/7y8gQCEd5o7UFqs
-         nWRYcFfZ/Xoa7XfcYucXBbTRgN+/Uf/cQ16OiO+7Y/ztTOTewBf8szDUH4VXWML9ncce
-         n/+YV9CFW0h+4g3Om1s5/BvB4yTE0E6JpNNLRtoY7ylYb4x6I8G2I2ZyR3C6asdUSsac
-         JcDHfGzS7tv02fCXxuDY2CHGFX/OQ0DtahpZfF+p/f2V62+qSaTGqq+4QR0hoVZG5p4D
-         l0BQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678905505;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=cVubaIqvmyZcVmODQ4m0c66Rfjv3Ax4FAubBWjKvyUI=;
-        b=RmHdlP6L6V1qewoExOTraJ+/HLjbCuQdQiCyeAN/VGCD/84Op0SfeaYWWULzGp+8ix
-         7EuPvpBsmo2+vPxBg5+ZxwduLhDzJA9cp3V5roiXZNTfYOaeKyzrluFM//LzqmCC9OWL
-         7N3HZX46WH4S5F4pyMKJTj2fTnVBcV74lai6bZdTf4O48e795J/RZdVaIXuu8tjqXvV4
-         ckC4kLK7gFiknSAzMltmsGzuUoie4+k1r6HpOYyiCqHXBn0IwhsCcJeOwB9yjGy3ueub
-         OG0nXQV1/EuJyHVmXh5vzqlVh811WSucg0jXGOC7nslY6npZe2UTO5w4e0j6VN5DoCaF
-         UcVg==
-X-Gm-Message-State: AO0yUKVeWUXYiHD4oy2jDra9OwZg0LPK4FeeltrqWRlQjIevEA/gbYB3
-        Rgvcxu1l0CfoUO0ElrUQuBA+Jg==
-X-Google-Smtp-Source: AK7set84NzHICTZHh+Hel5/BN/OKTrtw1DK3YnyugJrhQvB1cG5i0IemvtS8crWDlETL4lCsusCg3A==
-X-Received: by 2002:a2e:a58e:0:b0:295:a280:45e4 with SMTP id m14-20020a2ea58e000000b00295a28045e4mr1760515ljp.36.1678905504709;
-        Wed, 15 Mar 2023 11:38:24 -0700 (PDT)
-Received: from localhost.localdomain (abyj16.neoplus.adsl.tpnet.pl. [83.9.29.16])
-        by smtp.gmail.com with ESMTPSA id k7-20020a2e2407000000b00298699aad60sm951261ljk.52.2023.03.15.11.38.21
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 15 Mar 2023 11:38:24 -0700 (PDT)
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-To:     linux-arm-msm@vger.kernel.org, andersson@kernel.org,
-        agross@kernel.org
-Cc:     marijn.suijten@somainline.org,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Lee Jones <lee@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Stephen Boyd <sboyd@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH] dt-bindings: mfd: qcom,spmi-pmic: Add PM2250
-Date:   Wed, 15 Mar 2023 19:38:19 +0100
-Message-Id: <20230315183819.3563704-1-konrad.dybcio@linaro.org>
-X-Mailer: git-send-email 2.39.2
-MIME-Version: 1.0
+        with ESMTP id S231319AbjCOSrf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Mar 2023 14:47:35 -0400
+Received: from mx0b-001b2d01.pphosted.com (mx0b-001b2d01.pphosted.com [148.163.158.5])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CD71C21974;
+        Wed, 15 Mar 2023 11:47:07 -0700 (PDT)
+Received: from pps.filterd (m0098417.ppops.net [127.0.0.1])
+        by mx0a-001b2d01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 32FGg4dY023383;
+        Wed, 15 Mar 2023 18:46:59 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=from : to : cc : subject
+ : date : message-id : content-transfer-encoding : mime-version; s=pp1;
+ bh=FUwOquj9z1MgPQVXWJffGH5SCJGct9pa82QsRDPwz70=;
+ b=atDszGfnREgynZx4wKwJ4hgPLH7igeZGGUXS5s281Y2mmF4vATv1/35Vwc75TVrejMQi
+ qVZIkXZYwu/PcrcOKMgVJeOOLBWlNpQ4cxUFXlMz0MmotTNOqSd3hcyMqfS57RcaHYjn
+ 6Uv2okOlUa8p9PrOZoNFkRIk29bRrIbNEC6Mz2Kam7bVpTtA731kG9CcPsfAPRf4RnkI
+ E/3WRGQ9jlUnb5v2rX8MiR699jtMZ8O+7BZutvi/Wk/BXjEsifhH9ovOJyKNbWN7OgvZ
+ QA1i/VzHxVlPpF7NP4o77vm6Tg998Jnq6oqTYG3v3OZX1BixCUB03wYF9sucP0vUPPb1 eg== 
+Received: from pps.reinject (localhost [127.0.0.1])
+        by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 3pbh02ux0c-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Wed, 15 Mar 2023 18:46:58 +0000
+Received: from m0098417.ppops.net (m0098417.ppops.net [127.0.0.1])
+        by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 32FGgpRB025630;
+        Wed, 15 Mar 2023 18:46:58 GMT
+Received: from ppma03wdc.us.ibm.com (ba.79.3fa9.ip4.static.sl-reverse.com [169.63.121.186])
+        by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 3pbh02ux02-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Wed, 15 Mar 2023 18:46:58 +0000
+Received: from pps.filterd (ppma03wdc.us.ibm.com [127.0.0.1])
+        by ppma03wdc.us.ibm.com (8.17.1.19/8.17.1.19) with ESMTP id 32FHIN4J019825;
+        Wed, 15 Mar 2023 18:46:57 GMT
+Received: from smtprelay07.dal12v.mail.ibm.com ([9.208.130.99])
+        by ppma03wdc.us.ibm.com (PPS) with ESMTPS id 3pb29svs2q-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Wed, 15 Mar 2023 18:46:57 +0000
+Received: from smtpav02.dal12v.mail.ibm.com (smtpav02.dal12v.mail.ibm.com [10.241.53.101])
+        by smtprelay07.dal12v.mail.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 32FIkviZ38863268
+        (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+        Wed, 15 Mar 2023 18:46:57 GMT
+Received: from smtpav02.dal12v.mail.ibm.com (unknown [127.0.0.1])
+        by IMSVA (Postfix) with ESMTP id F37275805A;
+        Wed, 15 Mar 2023 18:46:56 +0000 (GMT)
+Received: from smtpav02.dal12v.mail.ibm.com (unknown [127.0.0.1])
+        by IMSVA (Postfix) with ESMTP id E54ED5805F;
+        Wed, 15 Mar 2023 18:46:56 +0000 (GMT)
+Received: from gfwa600.aus.stglabs.ibm.com (unknown [9.3.84.101])
+        by smtpav02.dal12v.mail.ibm.com (Postfix) with ESMTPS;
+        Wed, 15 Mar 2023 18:46:56 +0000 (GMT)
+Received: by gfwa600.aus.stglabs.ibm.com (Postfix, from userid 181152)
+        id 995A474A47B; Wed, 15 Mar 2023 13:46:56 -0500 (CDT)
+From:   Lakshmi Yadlapati <lakshmiy@us.ibm.com>
+To:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc:     ylakshmi@yahoo.com, Lakshmi Yadlapati <lakshmiy@us.ibm.com>
+Subject: [PATCH 1/4] dt-bindings: vendor-prefixes: Add prefix for acbel
+Date:   Wed, 15 Mar 2023 13:46:33 -0500
+Message-Id: <20230315184633.766968-1-lakshmiy@us.ibm.com>
+X-Mailer: git-send-email 2.37.2
+X-TM-AS-GCONF: 00
+X-Proofpoint-ORIG-GUID: C-NDakY5UXl72Ke6HJMNOvXpBXrXykNv
+X-Proofpoint-GUID: ByD7ezcjNfFyTdygG1UNnaw9DCcmV0mR
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-0.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_SORBS_HTTP,RCVD_IN_SORBS_SOCKS,SPF_HELO_NONE,SPF_PASS,
-        URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.6
+X-Proofpoint-UnRewURL: 0 URL was un-rewritten
+MIME-Version: 1.0
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.254,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
+ definitions=2023-03-15_10,2023-03-15_01,2023-02-09_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0
+ priorityscore=1501 spamscore=0 malwarescore=0 bulkscore=0 adultscore=0
+ mlxscore=0 mlxlogscore=662 suspectscore=0 impostorscore=0 clxscore=1011
+ lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2302240000 definitions=main-2303150155
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_NONE,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add a compatible for PM2250, commonly found with QCM2290.
+Add a vendor prefix entry for acbel (https://www.acbel.com)
 
-Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+Signed-off-by: Lakshmi Yadlapati <lakshmiy@us.ibm.com>
 ---
- Documentation/devicetree/bindings/mfd/qcom,spmi-pmic.yaml | 1 +
- 1 file changed, 1 insertion(+)
+ Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
+ 1 file changed, 2 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/mfd/qcom,spmi-pmic.yaml b/Documentation/devicetree/bindings/mfd/qcom,spmi-pmic.yaml
-index 8f076bb622b1..975c30aad23c 100644
---- a/Documentation/devicetree/bindings/mfd/qcom,spmi-pmic.yaml
-+++ b/Documentation/devicetree/bindings/mfd/qcom,spmi-pmic.yaml
-@@ -33,6 +33,7 @@ properties:
-   compatible:
-     items:
-       - enum:
-+          - qcom,pm2250
-           - qcom,pm6125
-           - qcom,pm6150
-           - qcom,pm6150l
+diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+index ed64e06ecca4..9dbb8f69be65 100644
+--- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
++++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+@@ -37,6 +37,8 @@ patternProperties:
+     description: Abracon Corporation
+   "^abt,.*":
+     description: ShenZhen Asia Better Technology Ltd.
++  "^acbel,.*":
++    description: Acbel Polytech Inc.
+   "^acer,.*":
+     description: Acer Inc.
+   "^acme,.*":
 -- 
-2.39.2
+2.37.2
 
