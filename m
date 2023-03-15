@@ -2,96 +2,205 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 383246BAB3A
-	for <lists+devicetree@lfdr.de>; Wed, 15 Mar 2023 09:54:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AC60C6BAB3D
+	for <lists+devicetree@lfdr.de>; Wed, 15 Mar 2023 09:54:44 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231827AbjCOIyH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Mar 2023 04:54:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34602 "EHLO
+        id S229459AbjCOIyn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Mar 2023 04:54:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35126 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231778AbjCOIyG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Mar 2023 04:54:06 -0400
-Received: from mail-ed1-x529.google.com (mail-ed1-x529.google.com [IPv6:2a00:1450:4864:20::529])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CBD2515CBB
-        for <devicetree@vger.kernel.org>; Wed, 15 Mar 2023 01:53:59 -0700 (PDT)
-Received: by mail-ed1-x529.google.com with SMTP id o12so72472735edb.9
-        for <devicetree@vger.kernel.org>; Wed, 15 Mar 2023 01:53:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ventanamicro.com; s=google; t=1678870438;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=dolOVvlYZWJ9nCYk9trJ6kMCdZW/oXPHELzwkmem5Uk=;
-        b=MFbGxr4qvdjII5+dP1fGSBYixXjYcuZKIHk2d+ShrWlGblspW3sZJrwNZ77vZ2V+eK
-         fgjmeAR71wlzoh04kgfZyy/wKlgmFHqWkQcTiHUIu6/qDb0h9WxiNYOdgj2uFKleJ5j5
-         YCuu9Z/XL1VPPaKS92QHrBKFYKUTTNgL7WdfFo9gXAUbxC6uVtEN8dOC6rwN2wbyBRcK
-         XvfX7uANctyKHvt1OSlJUt4CH3bBksiUtpNFSpVXUqZHh8P4kcPIHoHEPYLJboALHC41
-         0ASsFEw18ovuOQD6hBQIifRRcXo2+f38PYlF76J4KxBjajuq7a/RRgwCdfFPzY0OIVTH
-         fn5w==
+        with ESMTP id S229648AbjCOIyn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Mar 2023 04:54:43 -0400
+Received: from smtp-relay-internal-0.canonical.com (smtp-relay-internal-0.canonical.com [185.125.188.122])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C89AF11652
+        for <devicetree@vger.kernel.org>; Wed, 15 Mar 2023 01:54:41 -0700 (PDT)
+Received: from mail-ed1-f72.google.com (mail-ed1-f72.google.com [209.85.208.72])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id 77380445B8
+        for <devicetree@vger.kernel.org>; Wed, 15 Mar 2023 08:54:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+        s=20210705; t=1678870480;
+        bh=HiWu2W94YYgRN40iF7FPu1SrLEkU/cI9C2mh8nOQZeA=;
+        h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+         MIME-Version:Content-Type;
+        b=vOrjwafSqdM0RG4tkNFkrfoDmol0983zWXwUvyNNb6dmeiOq5653a5NM78ax/SsPt
+         bp8EADdU3Z/e5b832dJ2uhO/Bahi3gowf5ADdMJhm1uv4sPQcBD2K/LaUFyM7d+gzp
+         guWsTJleCKtjQKEK/Q3qBgsAD/h6voz3V5BQqd1T59EbXgPx+I2rm7dP2YyvOybQ2e
+         BHcwUEQ2kYCReJ4rHmydxXZ4Ohi/1gHkEhjpK4pUkuvhAc0Ut6y9CMX/InLUGhDsJo
+         pHoCYKAaIuS7PMcIUi9XJ2Wl7a8fo1rIu6T6Q6LRSibXmGzTS/MIyOtrGnTBpO8FQp
+         gHHRu6V0+A/Gg==
+Received: by mail-ed1-f72.google.com with SMTP id k12-20020a50c8cc000000b004accf30f6d3so25885347edh.14
+        for <devicetree@vger.kernel.org>; Wed, 15 Mar 2023 01:54:40 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678870438;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+        d=1e100.net; s=20210112; t=1678870480;
+        h=mime-version:organization:references:in-reply-to:message-id:subject
+         :cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=dolOVvlYZWJ9nCYk9trJ6kMCdZW/oXPHELzwkmem5Uk=;
-        b=qTdqZ4NW6tSImXeBpMUo/ASw0eaYg9Lgiyq9+dAt3f03EU28WD15NGgFS+/BVYb5yb
-         VZk3DbewJlLCpLcIYRi+xknDDEnme0frXLNN4fT79A9ZFqvSvK1JxFgxEpehADymn0Nj
-         ygqj5kr3mHNXGDvQHCM62P+WkGDX2r1zQ24U0+tT2QWLNKGsUHlkybD6YI8xj9DbkFlL
-         iL8nXAWJM8pMx4gnFFaO5btaFntudf1RQU0zQXYQ7IxwYYfrAxCBS01tLhJa0ZBmMXGs
-         FnlU65uNABUuml7JjTboMO+MdxuAc7EHbTpFV+uhizF3DBNmGMmKDOu2l4wmC/Sdjy3k
-         VJ7A==
-X-Gm-Message-State: AO0yUKUFsnObc77agRidGcYAWQohjLx1PwX4bIr8n5PzUEXVe0pTqeTd
-        TpYVqXHZma72dw7X61nmSSwsaQ==
-X-Google-Smtp-Source: AK7set/VungzdGD3dRLBeKZZ7z4IK2H1QDutRY3N3WNFbdIsaJWOnMSmwzQBDqASChuqOZoNS4OOzA==
-X-Received: by 2002:a17:906:6cf:b0:8aa:875d:9d9a with SMTP id v15-20020a17090606cf00b008aa875d9d9amr5855591ejb.50.1678870438268;
-        Wed, 15 Mar 2023 01:53:58 -0700 (PDT)
-Received: from localhost (cst2-173-16.cust.vodafone.cz. [31.30.173.16])
-        by smtp.gmail.com with ESMTPSA id rp15-20020a170906d96f00b00929fc8d264dsm2252847ejb.17.2023.03.15.01.53.57
+        bh=HiWu2W94YYgRN40iF7FPu1SrLEkU/cI9C2mh8nOQZeA=;
+        b=y6frICzUxj3w9OaplyHi2+6YyjWbq1U4XhSXjqG29MlB8aL3XVo+7wKNk8P3JGNHrI
+         VSKmn9GRbodJKVZ/x9Bhz0ghsPt0SnrK/sJzxRLz/lGyvod0ENgj8dhVThRGYb+J+V9A
+         YGN6TMOpMMDljosBJ2mzGke+ZQfX2ZI/faQj7IpKsrBiSUurpQi46RWOKEKL9GxP5r5J
+         kfOUbFXr66eFnsoIN6I5qesPOA/dI2PmSSJQf2y9z2oCg6zmm3XNVUhUr494ddWIDKTa
+         k5PYvSobEOg6yXRFcCl1yEk+TAT6M1RzaL2mi8J4e57NLYJ6COctbYv4cIkhJi+us/rZ
+         a7fA==
+X-Gm-Message-State: AO0yUKVxSaZuC4Fi1Me4DKWHjIs7ZYo4aW6D21yEtMCqYlbrhvhQgzIA
+        DtM3Tj4FpXJmRHZ+aZxrS5/RF3GESuAzcxwKqQ73rXpuPzG4P3CcUNaUj4fKJjYUSvMYj3d/hNB
+        GUTeBvpUX2SdnFNBt95TLqfYfg27WZue+LwNR8eA=
+X-Received: by 2002:a17:906:2971:b0:881:23a:aba5 with SMTP id x17-20020a170906297100b00881023aaba5mr4890296ejd.11.1678870479811;
+        Wed, 15 Mar 2023 01:54:39 -0700 (PDT)
+X-Google-Smtp-Source: AK7set/qa2HuVSNOw2hf3XmUa+m93olZa39OcmpjpQyaKyLZ0fcVXpPF+zL/J0+fHonODOddvRRVLA==
+X-Received: by 2002:a17:906:2971:b0:881:23a:aba5 with SMTP id x17-20020a170906297100b00881023aaba5mr4890279ejd.11.1678870479505;
+        Wed, 15 Mar 2023 01:54:39 -0700 (PDT)
+Received: from gollum ([194.191.244.86])
+        by smtp.gmail.com with ESMTPSA id m4-20020a509304000000b004fccef39ec9sm2048413eda.70.2023.03.15.01.54.38
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 15 Mar 2023 01:53:57 -0700 (PDT)
-Date:   Wed, 15 Mar 2023 09:53:56 +0100
-From:   Andrew Jones <ajones@ventanamicro.com>
-To:     Palmer Dabbelt <palmer@dabbelt.com>
-Cc:     linux-riscv@lists.infradead.org, kvm-riscv@lists.infradead.org,
-        devicetree@vger.kernel.org,
-        Conor Dooley <conor.dooley@microchip.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        sudip.mukherjee@codethink.co.uk, ben.dooks@codethink.co.uk,
-        Atish Patra <atishp@rivosinc.com>, aou@eecs.berkeley.edu,
-        apatel@ventanamicro.com, krzysztof.kozlowski+dt@linaro.org,
-        robh@kernel.org, jszhang@kernel.org, heiko@sntech.de
-Subject: Re: [PATCH v6 0/8] RISC-V: Apply Zicboz to clear_page
-Message-ID: <20230315085356.zlmiz5qkz44d5ndf@orel>
-References: <20230224162631.405473-1-ajones@ventanamicro.com>
- <mhng-72607fed-a923-4921-896f-7f703434083a@palmer-ri-x1c9a>
+        Wed, 15 Mar 2023 01:54:38 -0700 (PDT)
+Date:   Wed, 15 Mar 2023 09:54:37 +0100
+From:   Juerg Haefliger <juerg.haefliger@canonical.com>
+To:     Bjorn Andersson <quic_bjorande@quicinc.com>
+Cc:     Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Clark <robdclark@gmail.com>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Sean Paul <sean@poorly.run>,
+        Akhil P Oommen <quic_akhilpo@quicinc.com>,
+        Bjorn Andersson <andersson@kernel.org>,
+        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <dri-devel@lists.freedesktop.org>,
+        <freedreno@lists.freedesktop.org>, <johan@kernel.org>,
+        <mani@kernel.org>
+Subject: Re: [PATCH 1/3] drm/msm/adreno: Add Adreno A690 support
+Message-ID: <20230315095437.187ac10c@gollum>
+In-Reply-To: <20230315095008.7d650ebe@gollum>
+References: <20230208034052.2047681-1-quic_bjorande@quicinc.com>
+        <20230208034052.2047681-2-quic_bjorande@quicinc.com>
+        <20230315095008.7d650ebe@gollum>
+Organization: Canonical Ltd
+X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <mhng-72607fed-a923-4921-896f-7f703434083a@palmer-ri-x1c9a>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Type: multipart/signed; boundary="Sig_/GGWg/YjOnTQy0UNl1WNw7rd";
+ protocol="application/pgp-signature"; micalg=pgp-sha512
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Mar 14, 2023 at 09:35:09PM -0700, Palmer Dabbelt wrote:
-> On Fri, 24 Feb 2023 08:26:23 PST (-0800), ajones@ventanamicro.com wrote:
-> > When the Zicboz extension is available we can more rapidly zero naturally
-> > aligned Zicboz block sized chunks of memory. As pages are always page
-> 
-> I guess we're sort of in a grey area here: this is just a performance thing
-> so in theory some sort of benchmark should be required, but IMO it's OK to
-> just hand wave this one away -- if the "zero a cache block" instruction
-> doesn't make "zero a page" go faster then something has gone so far off the
-> rails it's probably better to just pretend the machine doesn't implement
-> Zicboz.
-> 
-> This all LGTM, so unless anyone's opposed or it blows up on testing
-> overnight then it'll be on for-next.
+--Sig_/GGWg/YjOnTQy0UNl1WNw7rd
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: quoted-printable
 
-Thanks, Palmer!
+> > diff --git a/drivers/gpu/drm/msm/adreno/adreno_device.c b/drivers/gpu/d=
+rm/msm/adreno/adreno_device.c
+> > index ca38b837dedb..437515e46e5a 100644
+> > --- a/drivers/gpu/drm/msm/adreno/adreno_device.c
+> > +++ b/drivers/gpu/drm/msm/adreno/adreno_device.c
+> > @@ -355,6 +355,20 @@ static const struct adreno_info gpulist[] =3D {
+> >  		.init =3D a6xx_gpu_init,
+> >  		.zapfw =3D "a640_zap.mdt",
+> >  		.hwcg =3D a640_hwcg,
+> > +	}, {
+> > +		.rev =3D ADRENO_REV(6, 9, 0, ANY_ID),
+> > +		.revn =3D 690,
+> > +		.name =3D "A690",
+> > +		.fw =3D {
+> > +			[ADRENO_FW_SQE] =3D "a660_sqe.fw",
+> > +			[ADRENO_FW_GMU] =3D "a690_gmu.bin",
+> > +		},
+> > +		.gmem =3D SZ_4M,
+> > +		.inactive_period =3D DRM_MSM_INACTIVE_PERIOD,
+> > +		.init =3D a6xx_gpu_init,
+> > +		.zapfw =3D "a690_zap.mdt",
+> > +		.hwcg =3D a690_hwcg,
+> > +		.address_space_size =3D SZ_16G,
+> >  	},
+> >  }; =20
+>=20
+> This needs
+>=20
+> MODULE_FIRMWARE("qcom/a660_sqe.fw");
+> MODULE_FIRMWARE("qcom/a690_gmu.bin");
+> MODULE_FIRMWARE("qcom/a690_zap.mbn");
 
-drew
+
+Eek. That should be
+
+MODULE_FIRMWARE("qcom/a690_zap.mdt");
+
+
+>=20
+> ...Juerg
+>=20
+>  =20
+> > diff --git a/drivers/gpu/drm/msm/adreno/adreno_gpu.h b/drivers/gpu/drm/=
+msm/adreno/adreno_gpu.h
+> > index b4f9b1343d63..da29bd392388 100644
+> > --- a/drivers/gpu/drm/msm/adreno/adreno_gpu.h
+> > +++ b/drivers/gpu/drm/msm/adreno/adreno_gpu.h
+> > @@ -55,7 +55,7 @@ struct adreno_reglist {
+> >  	u32 value;
+> >  };
+> > =20
+> > -extern const struct adreno_reglist a615_hwcg[], a630_hwcg[], a640_hwcg=
+[], a650_hwcg[], a660_hwcg[];
+> > +extern const struct adreno_reglist a615_hwcg[], a630_hwcg[], a640_hwcg=
+[], a650_hwcg[], a660_hwcg[], a690_hwcg[];
+> > =20
+> >  struct adreno_info {
+> >  	struct adreno_rev rev;
+> > @@ -272,6 +272,11 @@ static inline int adreno_is_a660(struct adreno_gpu=
+ *gpu)
+> >  	return gpu->revn =3D=3D 660;
+> >  }
+> > =20
+> > +static inline int adreno_is_a690(struct adreno_gpu *gpu)
+> > +{
+> > +	return gpu->revn =3D=3D 690;
+> > +};
+> > +
+> >  /* check for a615, a616, a618, a619 or any derivatives */
+> >  static inline int adreno_is_a615_family(struct adreno_gpu *gpu)
+> >  {
+> > @@ -286,7 +291,8 @@ static inline int adreno_is_a660_family(struct adre=
+no_gpu *gpu)
+> >  /* check for a650, a660, or any derivatives */
+> >  static inline int adreno_is_a650_family(struct adreno_gpu *gpu)
+> >  {
+> > -	return gpu->revn =3D=3D 650 || gpu->revn =3D=3D 620 || adreno_is_a660=
+_family(gpu);
+> > +	return gpu->revn =3D=3D 650 || gpu->revn =3D=3D 620  || gpu->revn =3D=
+=3D 690 ||
+> > +	       adreno_is_a660_family(gpu);
+> >  }
+> > =20
+> >  u64 adreno_private_address_space_size(struct msm_gpu *gpu); =20
+>=20
+
+
+--Sig_/GGWg/YjOnTQy0UNl1WNw7rd
+Content-Type: application/pgp-signature
+Content-Description: OpenPGP digital signature
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAEBCgAdFiEEhZfU96IuprviLdeLD9OLCQumQrcFAmQRh80ACgkQD9OLCQum
+Qrc2YRAAjOTspDuzpGhFACIBgWLDaVOfk/W1mrvvof8VG9j+tV3MeQPlcP9ynWRL
+QFf2w9eNJPchsd6B0kZOcmA3UnSna4pjYoB4opW777d45QTSowdI9LjH8+XUXQbd
+At9jc+1436AGoz5v3skB+1moSlzBG85y6r0tYG7GJ8jdm3b8iWydDr9j3yKPHvtK
+qgqEB54MasKNBVl9DBo9Ug6zP7t4QLliwMbgLUe1yQXZFMLWQaHRPwCZnJ2M/Vo3
+O/Xay7M/kjBXDzLCHv5HzrA3Cb0q5kS8yvdUrYN9F/mi3wc92ApSN57KTJzybkuS
+gSguyERQclupty7/pBqYoJe2iTdMfYufAROsTan49q7cKFJW9la7PyV3yNOLa2EH
+mavRY+Kl0T9Mr2pXqJ/6c/N3Jb27bjjq2xHejYyXpCI2NkmSMktrSDD47sgOAW4L
+qR98YOrchNgW/XGYEDOFxQT8hGbFOiyZac0PU/qm5/yTXxHM7RWo9v2gux9UXjRt
+p3Ln2/p8OfOFZCdYp3eXS1XDLFFbkxGOqXbUOf2mhnUvSVvMtrLIg00h8Lxqj8jE
+15Hie6b47X6shyTyhm1u2rs6Q8Dw/b88//VOUBQuHHWBaSdYsd7+gH/gK0LG+CQS
+sE99KAtdaT8xN15xO+3r42kRvn5E/Qu3q8qeI0oGWCUyxJ8tjkg=
+=54KF
+-----END PGP SIGNATURE-----
+
+--Sig_/GGWg/YjOnTQy0UNl1WNw7rd--
