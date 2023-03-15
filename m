@@ -2,229 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 52CBD6BB119
-	for <lists+devicetree@lfdr.de>; Wed, 15 Mar 2023 13:24:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B5BA76BB164
+	for <lists+devicetree@lfdr.de>; Wed, 15 Mar 2023 13:27:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232425AbjCOMYl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Mar 2023 08:24:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56936 "EHLO
+        id S232498AbjCOM1F (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Mar 2023 08:27:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57406 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232395AbjCOMYY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Mar 2023 08:24:24 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7B8CF94A78;
-        Wed, 15 Mar 2023 05:23:18 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 376C961D55;
-        Wed, 15 Mar 2023 12:22:25 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5C3ABC4339B;
-        Wed, 15 Mar 2023 12:22:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1678882944;
-        bh=4GJSSVGMwZD38/Ejk6Cy5qgk/cy1eMuVjzNzpQ7gzOs=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=TsonW231iv0jJ+vihZdxLLaHHQHIIr77MPaTTDEFCRVthe9u2jV6VIb7oTKZdtJSG
-         RA2WhLyTjGB2NuBTVoYl/VXcOBKWf7gdd1zONoSJf7y7glKaLbP0yoogvZiw8VzsLe
-         IR9UiUWOBRMNLLU2/GAlV/IQECXHinZcaNK9EohcRhLETsuCR/NM8tsoYcizPoaVhu
-         Veg1JTp6tFYPRDRafKnGRlQBhA61WLHcrD691moWlnaBR/2OaChI1Ms95XGwcG+wqh
-         aFu5ykoDA9DqXRPm9AJQx1SOWqGLHoZiv2yTotXOxmV/1hGKXkL4j79DxhAD9YArHn
-         Bdf3J+r8ZnuwQ==
-Message-ID: <d168e7dd-42a0-b728-5c4c-e97209c13871@kernel.org>
-Date:   Wed, 15 Mar 2023 14:22:18 +0200
+        with ESMTP id S232356AbjCOM0r (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Mar 2023 08:26:47 -0400
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DACF574A5D;
+        Wed, 15 Mar 2023 05:25:53 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1678883153; x=1710419153;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=sqa5ETRPA8mWWtxvPChxrgVub4MEZRvt0xOoJBar2EI=;
+  b=KRwbziyEAfpz2/ctQFmbnsQ4Hp3DgwGMTPzo9uZmIF3aiBg5nk0b4Byr
+   7a53MCYO4KsPS2NTI9MBscdPGCc8kEtEOKcvipiRjtxZ4ComWn+Gqan8T
+   2PYkCr+c7WMJAolO7+A0XuPUVC67wPnlL9p0g4Ss+iOnpBMUoXZC7RfV4
+   6hEqOXtmltIy9xG/7wi9Hxjh5BMj8dobmD7NbwscpZun6x59r9UOV5lXS
+   V1BEzyxLH4dw+hfQqvaudZCLnvL5fueuiurl/1JRkuxv1IDds/IVRALNm
+   ogBBQZVifXvwWIJww3kl3SJLJrVT6d6BGfvQYDcWjSOhxLmvjNmSYQINu
+   w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10649"; a="335171849"
+X-IronPort-AV: E=Sophos;i="5.98,262,1673942400"; 
+   d="scan'208";a="335171849"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+  by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 15 Mar 2023 05:23:50 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6500,9779,10649"; a="768464686"
+X-IronPort-AV: E=Sophos;i="5.98,262,1673942400"; 
+   d="scan'208";a="768464686"
+Received: from lkp-server01.sh.intel.com (HELO b613635ddfff) ([10.239.97.150])
+  by FMSMGA003.fm.intel.com with ESMTP; 15 Mar 2023 05:23:46 -0700
+Received: from kbuild by b613635ddfff with local (Exim 4.96)
+        (envelope-from <lkp@intel.com>)
+        id 1pcQAT-0007f8-0r;
+        Wed, 15 Mar 2023 12:23:45 +0000
+Date:   Wed, 15 Mar 2023 20:23:24 +0800
+From:   kernel test robot <lkp@intel.com>
+To:     Sean Anderson <sean.anderson@seco.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@kernel.org>,
+        linux-phy@lists.infradead.org
+Cc:     oe-kbuild-all@lists.linux.dev,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        Camelia Alexandra Groza <camelia.groza@nxp.com>,
+        Madalin Bucur <madalin.bucur@nxp.com>,
+        Bagas Sanjaya <bagasdotme@gmail.com>,
+        Ioana Ciornei <ioana.ciornei@nxp.com>,
+        linuxppc-dev@lists.ozlabs.org,
+        Sean Anderson <sean.anderson@seco.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <brgl@bgdev.pl>,
+        =?iso-8859-1?Q?Fern=E1ndez?= Rojas <noltari@gmail.com>,
+        Jonas Gorski <jonas.gorski@gmail.com>,
+        linux-gpio@vger.kernel.org
+Subject: Re: [PATCH v11 03/13] dt-bindings: Convert gpio-mmio to yaml
+Message-ID: <202303152008.kxRjSW73-lkp@intel.com>
+References: <20230313161138.3598068-4-sean.anderson@seco.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-Subject: Re: [PATCH v4 4/5] soc: ti: pruss: Add helper functions to set GPI
- mode, MII_RT_event and XFR
-Content-Language: en-US
-To:     MD Danish Anwar <danishanwar@ti.com>,
-        "Andrew F. Davis" <afd@ti.com>, Suman Anna <s-anna@ti.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Santosh Shilimkar <ssantosh@kernel.org>,
-        Nishanth Menon <nm@ti.com>
-Cc:     linux-remoteproc@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-omap@vger.kernel.org, srk@ti.com, devicetree@vger.kernel.org,
-        netdev@vger.kernel.org
-References: <20230313111127.1229187-1-danishanwar@ti.com>
- <20230313111127.1229187-5-danishanwar@ti.com>
-From:   Roger Quadros <rogerq@kernel.org>
-In-Reply-To: <20230313111127.1229187-5-danishanwar@ti.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_HI,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230313161138.3598068-4-sean.anderson@seco.com>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_NONE,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Sean,
 
+I love your patch! Perhaps something to improve:
 
-On 13/03/2023 13:11, MD Danish Anwar wrote:
-> From: Suman Anna <s-anna@ti.com>
-> 
-> The PRUSS CFG module is represented as a syscon node and is currently
-> managed by the PRUSS platform driver. Add easy accessor functions to set
-> GPI mode, MII_RT event enable/disable and XFR (XIN XOUT) enable/disable
-> to enable the PRUSS Ethernet usecase. These functions reuse the generic
-> pruss_cfg_update() API function.
-> 
-> Signed-off-by: Suman Anna <s-anna@ti.com>
-> Co-developed-by: Grzegorz Jaszczyk <grzegorz.jaszczyk@linaro.org>
-> Signed-off-by: Grzegorz Jaszczyk <grzegorz.jaszczyk@linaro.org>
-> Signed-off-by: Puranjay Mohan <p-mohan@ti.com>
-> Signed-off-by: MD Danish Anwar <danishanwar@ti.com>
-> ---
->  drivers/soc/ti/pruss.c           | 60 ++++++++++++++++++++++++++++++++
->  include/linux/remoteproc/pruss.h | 22 ++++++++++++
->  2 files changed, 82 insertions(+)
-> 
-> diff --git a/drivers/soc/ti/pruss.c b/drivers/soc/ti/pruss.c
-> index 26d8129b515c..2f04b7922ddb 100644
-> --- a/drivers/soc/ti/pruss.c
-> +++ b/drivers/soc/ti/pruss.c
-> @@ -203,6 +203,66 @@ static int pruss_cfg_update(struct pruss *pruss, unsigned int reg,
->  	return regmap_update_bits(pruss->cfg_regmap, reg, mask, val);
->  }
->  
-> +/**
-> + * pruss_cfg_gpimode() - set the GPI mode of the PRU
-> + * @pruss: the pruss instance handle
-> + * @pru_id: id of the PRU core within the PRUSS
-> + * @mode: GPI mode to set
-> + *
-> + * Sets the GPI mode for a given PRU by programming the
-> + * corresponding PRUSS_CFG_GPCFGx register
-> + *
-> + * Return: 0 on success, or an error code otherwise
-> + */
-> +int pruss_cfg_gpimode(struct pruss *pruss, enum pruss_pru_id pru_id,
-> +		      enum pruss_gpi_mode mode)
-> +{
-> +	if (pru_id < 0 || pru_id >= PRUSS_NUM_PRUS)
-> +		return -EINVAL;
-> +
-> +	if (mode < 0 || mode > PRUSS_GPI_MODE_MAX)
-> +		return -EINVAL;
-> +
-> +	return pruss_cfg_update(pruss, PRUSS_CFG_GPCFG(pru_id),
-> +				PRUSS_GPCFG_PRU_GPI_MODE_MASK,
-> +				mode << PRUSS_GPCFG_PRU_GPI_MODE_SHIFT);
-> +}
-> +EXPORT_SYMBOL_GPL(pruss_cfg_gpimode);
-> +
-> +/**
-> + * pruss_cfg_miirt_enable() - Enable/disable MII RT Events
-> + * @pruss: the pruss instance
-> + * @enable: enable/disable
-> + *
-> + * Enable/disable the MII RT Events for the PRUSS.
-> + *
-> + * Return: 0 on success, or an error code otherwise
-> + */
-> +int pruss_cfg_miirt_enable(struct pruss *pruss, bool enable)
-> +{
-> +	u32 set = enable ? PRUSS_MII_RT_EVENT_EN : 0;
-> +
-> +	return pruss_cfg_update(pruss, PRUSS_CFG_MII_RT,
-> +				PRUSS_MII_RT_EVENT_EN, set);
-> +}
-> +EXPORT_SYMBOL_GPL(pruss_cfg_miirt_enable);
-> +
-> +/**
-> + * pruss_cfg_xfr_enable() - Enable/disable XIN XOUT shift functionality
-> + * @pruss: the pruss instance
-> + * @enable: enable/disable
-> + * @mask: Mask for PRU / RTU
+[auto build test WARNING on shawnguo/for-next]
+[also build test WARNING on brgl/gpio/for-next clk/clk-next linus/master v6.3-rc2 next-20230315]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-You should not expect the user to provide the mask but only
-the core type e.g. 
+url:    https://github.com/intel-lab-lkp/linux/commits/Sean-Anderson/dt-bindings-phy-Add-2500BASE-X-and-10GBASE-R/20230314-001522
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/shawnguo/linux.git for-next
+patch link:    https://lore.kernel.org/r/20230313161138.3598068-4-sean.anderson%40seco.com
+patch subject: [PATCH v11 03/13] dt-bindings: Convert gpio-mmio to yaml
+reproduce:
+        # https://github.com/intel-lab-lkp/linux/commit/2d1e86be168e32ea3d3f11325881f7cb1e5492f8
+        git remote add linux-review https://github.com/intel-lab-lkp/linux
+        git fetch --no-tags linux-review Sean-Anderson/dt-bindings-phy-Add-2500BASE-X-and-10GBASE-R/20230314-001522
+        git checkout 2d1e86be168e32ea3d3f11325881f7cb1e5492f8
+        make menuconfig
+        # enable CONFIG_COMPILE_TEST, CONFIG_WARN_MISSING_DOCUMENTS, CONFIG_WARN_ABI_ERRORS
+        make htmldocs
 
-enum pru_type {
-        PRU_TYPE_PRU = 0,
-        PRU_TYPE_RTU,
-        PRU_TYPE_TX_PRU,
-        PRU_TYPE_MAX,
-};
+If you fix the issue, kindly add following tag where applicable
+| Reported-by: kernel test robot <lkp@intel.com>
+| Link: https://lore.kernel.org/oe-kbuild-all/202303152008.kxRjSW73-lkp@intel.com/
 
-Then you figure out the mask in the function.
-Also check for invalid pru_type and return error if so.
+All warnings (new ones prefixed by >>):
 
-> + *
-> + * Return: 0 on success, or an error code otherwise
-> + */
-> +int pruss_cfg_xfr_enable(struct pruss *pruss, bool enable, u32 mask)
+>> Warning: Documentation/devicetree/bindings/mfd/brcm,bcm6318-gpio-sysctl.yaml references a file that doesn't exist: Documentation/devicetree/bindings/gpio/brcm,bcm6345-gpio.yaml
+>> Warning: Documentation/devicetree/bindings/mfd/brcm,bcm63268-gpio-sysctl.yaml references a file that doesn't exist: Documentation/devicetree/bindings/gpio/brcm,bcm6345-gpio.yaml
+>> Warning: Documentation/devicetree/bindings/mfd/brcm,bcm6328-gpio-sysctl.yaml references a file that doesn't exist: Documentation/devicetree/bindings/gpio/brcm,bcm6345-gpio.yaml
+>> Warning: Documentation/devicetree/bindings/mfd/brcm,bcm6358-gpio-sysctl.yaml references a file that doesn't exist: Documentation/devicetree/bindings/gpio/brcm,bcm6345-gpio.yaml
+>> Warning: Documentation/devicetree/bindings/mfd/brcm,bcm6362-gpio-sysctl.yaml references a file that doesn't exist: Documentation/devicetree/bindings/gpio/brcm,bcm6345-gpio.yaml
+>> Warning: Documentation/devicetree/bindings/mfd/brcm,bcm6368-gpio-sysctl.yaml references a file that doesn't exist: Documentation/devicetree/bindings/gpio/brcm,bcm6345-gpio.yaml
 
-re-arrange so it is (struct pruss, enum pru_type, bool enable)
-
-> +{
-> +	u32 set = enable ? mask : 0;
-> +
-> +	return pruss_cfg_update(pruss, PRUSS_CFG_SPP, mask, set);
-> +}
-> +EXPORT_SYMBOL_GPL(pruss_cfg_xfr_enable);
-> +
->  static void pruss_of_free_clk_provider(void *data)
->  {
->  	struct device_node *clk_mux_np = data;
-> diff --git a/include/linux/remoteproc/pruss.h b/include/linux/remoteproc/pruss.h
-> index 12ef10b9fe9a..51a3eedd2be6 100644
-> --- a/include/linux/remoteproc/pruss.h
-> +++ b/include/linux/remoteproc/pruss.h
-> @@ -101,6 +101,7 @@ enum pruss_gpi_mode {
->  	PRUSS_GPI_MODE_PARALLEL,
->  	PRUSS_GPI_MODE_28BIT_SHIFT,
->  	PRUSS_GPI_MODE_MII,
-> +	PRUSS_GPI_MODE_MAX,
-
-This could have come as part of patch 3.
-
->  };
->  
->  /**
-> @@ -165,6 +166,10 @@ int pruss_request_mem_region(struct pruss *pruss, enum pruss_mem mem_id,
->  			     struct pruss_mem_region *region);
->  int pruss_release_mem_region(struct pruss *pruss,
->  			     struct pruss_mem_region *region);
-> +int pruss_cfg_gpimode(struct pruss *pruss, enum pruss_pru_id pru_id,
-> +		      enum pruss_gpi_mode mode);
-> +int pruss_cfg_miirt_enable(struct pruss *pruss, bool enable);
-> +int pruss_cfg_xfr_enable(struct pruss *pruss, bool enable, u32 mask);
->  
->  #else
->  
-> @@ -188,6 +193,23 @@ static inline int pruss_release_mem_region(struct pruss *pruss,
->  	return -EOPNOTSUPP;
->  }
->  
-> +static inline int pruss_cfg_gpimode(struct pruss *pruss,
-> +				    enum pruss_pru_id pru_id,
-> +				    enum pruss_gpi_mode mode)
-> +{
-> +	return ERR_PTR(-EOPNOTSUPP);
-> +}
-> +
-> +static inline int pruss_cfg_miirt_enable(struct pruss *pruss, bool enable)
-> +{
-> +	return ERR_PTR(-EOPNOTSUPP);
-> +}
-> +
-> +static inline int pruss_cfg_xfr_enable(struct pruss *pruss, bool enable, u32 mask)
-> +{
-> +	return ERR_PTR(-EOPNOTSUPP);
-> +}
-> +
->  #endif /* CONFIG_TI_PRUSS */
->  
->  #if IS_ENABLED(CONFIG_PRU_REMOTEPROC)
-
-cheers,
--roger
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests
