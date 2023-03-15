@@ -2,84 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 379A46BAB83
-	for <lists+devicetree@lfdr.de>; Wed, 15 Mar 2023 10:04:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 58A346BABBE
+	for <lists+devicetree@lfdr.de>; Wed, 15 Mar 2023 10:10:47 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231788AbjCOJEZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Mar 2023 05:04:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50562 "EHLO
+        id S231995AbjCOJKp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Mar 2023 05:10:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52850 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231442AbjCOJEU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Mar 2023 05:04:20 -0400
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C53926EBAB;
-        Wed, 15 Mar 2023 02:03:56 -0700 (PDT)
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 32F93mLA127362;
-        Wed, 15 Mar 2023 04:03:48 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1678871028;
-        bh=0lYrIScH+yNn1X25mqEMmFmR/i3+JO5JFvUIYx6TOGw=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=bFeC/h6T4k3ESORquN6FmF3TQIYYJ0YjgJV6va9A34UUnZC076qIabDrsFwaEVuOL
-         vbqC3HgOMPVPQp9tZwH+L8RmHIvT5JcAmgy+lHsoWha9WLSNfnmYn2eYNu1Kt+jQen
-         7i2+z/cYd161jwxhzRhTH4josOJK65vCLpKK5cbE=
-Received: from DLEE106.ent.ti.com (dlee106.ent.ti.com [157.170.170.36])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 32F93mOA005980
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Wed, 15 Mar 2023 04:03:48 -0500
-Received: from DLEE112.ent.ti.com (157.170.170.23) by DLEE106.ent.ti.com
- (157.170.170.36) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Wed, 15
- Mar 2023 04:03:47 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE112.ent.ti.com
- (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
- Frontend Transport; Wed, 15 Mar 2023 04:03:47 -0500
-Received: from localhost (ileaxei01-snat2.itg.ti.com [10.180.69.6])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 32F93kmd055400;
-        Wed, 15 Mar 2023 04:03:47 -0500
-From:   Jai Luthra <j-luthra@ti.com>
-To:     Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
-        Tero Kristo <kristo@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>, Mark Brown <broonie@kernel.org>
-CC:     <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        Andrew Davis <afd@ti.com>,
-        Jayesh Choudhary <j-choudhary@ti.com>,
-        Devarsh Thakkar <devarsht@ti.com>,
-        Aradhya Bhatia <a-bhatia1@ti.com>, Jai Luthra <j-luthra@ti.com>
-Subject: [PATCH v6 6/6] arm64: dts: ti: k3-am62a7-sk: Enable audio on AM62A
-Date:   Wed, 15 Mar 2023 14:33:35 +0530
-Message-ID: <20230313-mcasp_upstream-v6-6-77685d7cbeb8@ti.com>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20230313-mcasp_upstream-v6-0-77685d7cbeb8@ti.com>
-References: <20230313-mcasp_upstream-v6-0-77685d7cbeb8@ti.com>
+        with ESMTP id S232123AbjCOJJ7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Mar 2023 05:09:59 -0400
+Received: from mail-wm1-x332.google.com (mail-wm1-x332.google.com [IPv6:2a00:1450:4864:20::332])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 21FBA113C2
+        for <devicetree@vger.kernel.org>; Wed, 15 Mar 2023 02:09:54 -0700 (PDT)
+Received: by mail-wm1-x332.google.com with SMTP id l7-20020a05600c1d0700b003eb5e6d906bso650696wms.5
+        for <devicetree@vger.kernel.org>; Wed, 15 Mar 2023 02:09:54 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1678871392;
+        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
+         :content-language:subject:reply-to:from:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=0ehhM3WDQ0BzcG7Zytg5ZL1CgQcuprrt2BD+PBU8s/g=;
+        b=uu+kBBddtJuRli4OXM4hbKnuLhtKkv/jS2KMvYUIZ7/Q/9PDSiQt9KGu5zKmTnJk4d
+         KPtdQGA2+JGzcJrNSjc2URvoz7GUwfLIG5uU8RC7xtA8tgUkK6ZVUbuVdtprmgmL2tF7
+         OiPUxtcEzGcqr4NIxJAJ+dDIzlw/qqzALwSx+ezpzXzhGLUX0eREVVkhpp2/Abc2Qfr3
+         2Vnl6zp6B81OTjTyf3GWl2XsuAG+wUswTU5rftAIVkxL7WzebWNRnFQwQRL84CkSGNqz
+         JV2sNtGMs2Nz6BrkidcaMwiJS0d4TGY3vmgTFv64cUnUn+EErZIOyr7Y/XZ+/H6kR4+O
+         PNJg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1678871392;
+        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
+         :content-language:subject:reply-to:from:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=0ehhM3WDQ0BzcG7Zytg5ZL1CgQcuprrt2BD+PBU8s/g=;
+        b=lmNWYyFvT0XlceKlPRXhLIRFy6Ybws5uNuKLN1UGW7VBPS0PaiEtuZ4ceCAHGyWLGb
+         QZmb88vONOj6U/otYI7hZ7jSWPjAaMCbCp8I7e5t726RRZcBx5+DW9Yp8xdopsnTCsm7
+         8N+AVxciAQeKTh4h/2xMkbBPGrWkPPy69wjRo6XFBVwkzsD6toDxHPqD5zzIIRuFK91k
+         Ff/U3CLt/R65Ib0En6EuzOm5NAD4vadcwNeC3xm9TeV6Jvw78AiQvAmgeT/fWMTLmm9e
+         nIJYh4GhmnH4qV12UnVy4nW3EanytdvLsk3sAovd2xzHDSW0Gb+rgU5yHkaitMT9VECo
+         63TA==
+X-Gm-Message-State: AO0yUKVqzHYaRylw5IJQST2ZCrchbr2qqOfYt/+a3vO+wcTiCCidb5AL
+        xd7laK0HYscInIvUq/xOLb0GOg==
+X-Google-Smtp-Source: AK7set/UeVut8iVUM290qZrMIefOCnYRx2T85bTcp5RQsIKw/HHzpHn4F9JE6YWxp5XDl5Ui6/6g+Q==
+X-Received: by 2002:a05:600c:4f44:b0:3eb:383c:1870 with SMTP id m4-20020a05600c4f4400b003eb383c1870mr16290455wmq.11.1678871392578;
+        Wed, 15 Mar 2023 02:09:52 -0700 (PDT)
+Received: from ?IPV6:2a01:e0a:982:cbb0:5d2d:8427:397b:8fe7? ([2a01:e0a:982:cbb0:5d2d:8427:397b:8fe7])
+        by smtp.gmail.com with ESMTPSA id 4-20020a05600c024400b003eb966d39desm1252244wmj.2.2023.03.15.02.09.51
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 15 Mar 2023 02:09:52 -0700 (PDT)
+Message-ID: <aa9bfab7-220e-9488-8972-9a32fb11b0ff@linaro.org>
+Date:   Wed, 15 Mar 2023 10:09:51 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-X-Developer-Signature: v=1; a=openpgp-sha256; l=3410; i=j-luthra@ti.com;
- h=from:subject:message-id; bh=mbTjZi6u12cwf6QVpxp0isgwDzQXw7xYfsdeXS3858g=;
- b=owEBbQKS/ZANAwAIAUPekfkkmnFFAcsmYgBkEYdbb4YNVXTXdqXRxfr6iVIS5Yr7OXhefyKZW
- yUWU68llqqJAjMEAAEIAB0WIQRN4NgY5dV16NRar8VD3pH5JJpxRQUCZBGHWwAKCRBD3pH5JJpx
- Rf2yD/oCcNtGVcH7HJelvXLqlIEa9MM5tHFR8pfJO0HGwghNt0Gt3BfZQbu2OfJpjriYbKCPsNO
- iu0Ar+ZEJd52TxfQ8qFwyMwMjFKWWEx1Ef8m0LKkNyCoEzm4l2Qbpc+IvGFS9oiF6mHEOCdCqMr
- DWveudrQSrvQFBogmHJJ06wil0YDEV69hiqNvNa1iTJBQh2YO1ABdYGcArUXpcWniQmzZXGk6Sr
- FlRAG02u/SCkSR3AoKRQTxICE9mjPIKP1a+gkxBZ5XU2S6W+muuqh6TxSk1HTZsXg4zi3Vf62Is
- Y7CO1GF+d2AqAHXdXY0+x5DRSvunDLwQBBtckvfE/gvUThM/Uhm7y2CP7aZgzqC3vOaliGoDP3o
- mSJ1MjdnBS0r67MZJAYLD7ialbjYqn69zszodkQiqONKIaYDog1C3LFOe4Fo7xBBcn+mP5kD5jd
- 7MiVHY6Hig+tPHkgIsoOqKFa48wK6NUXiWutf1oXDXPvJLkHhh3Sx+53sFWds5Xg9RcWD69WR6S
- BjZiJ+ZC1s5WteVwnv3jMQ8AHJEGP9ggxlSwOpqmLuxBvq4ut0CfbU5v7Fy2mzlRJAVoMURmKDr
- FR6ynrrPp7ODy+005aj4Kdf45uYNYSfcczISFD3ER3ZOlnqDT2khOw8Mr1A7vFwYcjCP8EoTBOH
- iHEiXT1YNS7C0dg==
-X-Developer-Key: i=j-luthra@ti.com; a=openpgp; fpr=4DE0D818E5D575E8D45AAFC543DE91F9249A7145
-Content-Transfer-Encoding: 8bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_PASS,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.8.0
+From:   neil.armstrong@linaro.org
+Reply-To: neil.armstrong@linaro.org
+Subject: Re: [PATCH 2/2] drm/panel: seiko-43wvf1g: Add the 'enable-gpios'
+ property
+Content-Language: en-US
+To:     Fabio Estevam <festevam@denx.de>
+Cc:     sam@ravnborg.org, krzysztof.kozlowski+dt@linaro.org,
+        robh+dt@kernel.org, devicetree@vger.kernel.org,
+        dri-devel@lists.freedesktop.org, CPHEALY@gmail.com
+References: <20230314111724.1520178-1-festevam@denx.de>
+ <20230314111724.1520178-2-festevam@denx.de>
+Organization: Linaro Developer Services
+In-Reply-To: <20230314111724.1520178-2-festevam@denx.de>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -87,125 +80,70 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add nodes for audio codec and sound card, enable the audio serializer
-(McASP1) under use and update pinmux.
+On 14/03/2023 12:17, Fabio Estevam wrote:
+> Sometimes a GPIO is needed to turn on/off the display.
+> 
+> Add support for this usecase by introducing the optional 'enable-gpios'
+> property.
+> 
+> Tested on a imx53qsb board.
+> 
+> Signed-off-by: Fabio Estevam <festevam@denx.de>
+> ---
+>   drivers/gpu/drm/panel/panel-seiko-43wvf1g.c | 12 ++++++++++++
+>   1 file changed, 12 insertions(+)
+> 
+> diff --git a/drivers/gpu/drm/panel/panel-seiko-43wvf1g.c b/drivers/gpu/drm/panel/panel-seiko-43wvf1g.c
+> index 76160e5d43bd..c250ca36a5b3 100644
+> --- a/drivers/gpu/drm/panel/panel-seiko-43wvf1g.c
+> +++ b/drivers/gpu/drm/panel/panel-seiko-43wvf1g.c
+> @@ -7,6 +7,7 @@
+>    */
+>   
+>   #include <linux/delay.h>
+> +#include <linux/gpio/consumer.h>
+>   #include <linux/media-bus-format.h>
+>   #include <linux/module.h>
+>   #include <linux/of.h>
+> @@ -48,6 +49,7 @@ struct seiko_panel {
+>   	const struct seiko_panel_desc *desc;
+>   	struct regulator *dvdd;
+>   	struct regulator *avdd;
+> +	struct gpio_desc *enable_gpio;
+>   };
+>   
+>   static inline struct seiko_panel *to_seiko_panel(struct drm_panel *panel)
+> @@ -139,6 +141,8 @@ static int seiko_panel_unprepare(struct drm_panel *panel)
+>   	if (!p->prepared)
+>   		return 0;
+>   
+> +	gpiod_set_value_cansleep(p->enable_gpio, 0);
+> +
+>   	regulator_disable(p->avdd);
+>   
+>   	/* Add a 100ms delay as per the panel datasheet */
+> @@ -174,6 +178,8 @@ static int seiko_panel_prepare(struct drm_panel *panel)
+>   		goto disable_dvdd;
+>   	}
+>   
+> +	gpiod_set_value_cansleep(p->enable_gpio, 1);
+> +
+>   	p->prepared = true;
+>   
+>   	return 0;
+> @@ -252,6 +258,12 @@ static int seiko_panel_probe(struct device *dev,
+>   	if (IS_ERR(panel->avdd))
+>   		return PTR_ERR(panel->avdd);
+>   
+> +	panel->enable_gpio = devm_gpiod_get_optional(dev, "enable",
+> +						     GPIOD_OUT_LOW);
+> +	if (IS_ERR(panel->enable_gpio))
+> +		return dev_err_probe(dev, PTR_ERR(panel->enable_gpio),
+> +				     "failed to request GPIO\n");
+> +
+>   	drm_panel_init(&panel->base, dev, &seiko_panel_funcs,
+>   		       DRM_MODE_CONNECTOR_DPI);
+>   
 
-The codec (TLV320AIC3106) is also supplied with a DVDD 1.8V supply from
-the PMIC (TPS6593x) on the SK. As the PMIC driver and devicetree node is
-missing, skip describing DVDD for now and manually set the OCMV voltage.
 
-Signed-off-by: Jai Luthra <j-luthra@ti.com>
-Reviewed-by: Jayesh Choudhary <j-choudhary@ti.com>
----
- arch/arm64/boot/dts/ti/k3-am62a7-sk.dts | 77 +++++++++++++++++++++++++++++++++
- 1 file changed, 77 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/ti/k3-am62a7-sk.dts b/arch/arm64/boot/dts/ti/k3-am62a7-sk.dts
-index 063e69e45163..2ee894340be1 100644
---- a/arch/arm64/boot/dts/ti/k3-am62a7-sk.dts
-+++ b/arch/arm64/boot/dts/ti/k3-am62a7-sk.dts
-@@ -122,6 +122,41 @@ led-0 {
- 			default-state = "off";
- 		};
- 	};
-+
-+	tlv320_mclk: clk-0 {
-+		#clock-cells = <0>;
-+		compatible = "fixed-clock";
-+		clock-frequency = <12288000>;
-+	};
-+
-+	codec_audio: sound {
-+		compatible = "simple-audio-card";
-+		simple-audio-card,name = "AM62Ax-SKEVM";
-+		simple-audio-card,widgets =
-+			"Headphone",	"Headphone Jack",
-+			"Line",		"Line In",
-+			"Microphone",	"Microphone Jack";
-+		simple-audio-card,routing =
-+			"Headphone Jack",	"HPLOUT",
-+			"Headphone Jack",	"HPROUT",
-+			"LINE1L",		"Line In",
-+			"LINE1R",		"Line In",
-+			"MIC3R",		"Microphone Jack",
-+			"Microphone Jack",	"Mic Bias";
-+		simple-audio-card,format = "dsp_b";
-+		simple-audio-card,bitclock-master = <&sound_master>;
-+		simple-audio-card,frame-master = <&sound_master>;
-+		simple-audio-card,bitclock-inversion;
-+
-+		simple-audio-card,cpu {
-+			sound-dai = <&mcasp1>;
-+		};
-+
-+		sound_master: simple-audio-card,codec {
-+			sound-dai = <&tlv320aic3106>;
-+			clocks = <&tlv320_mclk>;
-+		};
-+	};
- };
- 
- &main_pmx0 {
-@@ -200,6 +235,15 @@ AM62AX_IOPAD(0x130, PIN_INPUT, 0) /* (AB17) RGMII1_TXC */
- 			AM62AX_IOPAD(0x12c, PIN_INPUT, 0) /* (W16) RGMII1_TX_CTL */
- 		>;
- 	};
-+
-+	main_mcasp1_pins_default: main-mcasp1-pins-default {
-+		pinctrl-single,pins = <
-+			AM62AX_IOPAD(0x090, PIN_INPUT, 2) /* (L19) GPMC0_BE0n_CLE.MCASP1_ACLKX */
-+			AM62AX_IOPAD(0x098, PIN_INPUT, 2) /* (R18) GPMC0_WAIT0.MCASP1_AFSX */
-+			AM62AX_IOPAD(0x08c, PIN_OUTPUT, 2) /* (K19) GPMC0_WEn.MCASP1_AXR0 */
-+			AM62AX_IOPAD(0x084, PIN_INPUT, 2) /* (L18) GPMC0_ADVn_ALE.MCASP1_AXR2 */
-+		>;
-+	};
- };
- 
- &main_i2c0 {
-@@ -234,6 +278,19 @@ exp1: gpio@22 {
- 				   "MCASP1_FET_SEL", "UART1_FET_SEL",
- 				   "PD_I2C_IRQ", "IO_EXP_TEST_LED";
- 	};
-+
-+	tlv320aic3106: audio-codec@1b {
-+		#sound-dai-cells = <0>;
-+		compatible = "ti,tlv320aic3106";
-+		reg = <0x1b>;
-+		ai3x-micbias-vg = <1>;	/* 2.0V */
-+		ai3x-ocmv = <1>;	/* 1.5V */
-+
-+		/* Regulators */
-+		AVDD-supply = <&vcc_3v3_sys>;
-+		IOVDD-supply = <&vcc_3v3_sys>;
-+		DRVDD-supply = <&vcc_3v3_sys>;
-+	};
- };
- 
- &sdhci1 {
-@@ -302,3 +359,23 @@ cpsw3g_phy0: ethernet-phy@0 {
- 		ti,min-output-impedance;
- 	};
- };
-+
-+&mcasp1 {
-+	status = "okay";
-+	#sound-dai-cells = <0>;
-+
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&main_mcasp1_pins_default>;
-+
-+	op-mode = <0>;          /* MCASP_IIS_MODE */
-+	tdm-slots = <2>;
-+
-+	serial-dir = <  /* 0: INACTIVE, 1: TX, 2: RX */
-+	       1 0 2 0
-+	       0 0 0 0
-+	       0 0 0 0
-+	       0 0 0 0
-+	>;
-+	tx-num-evt = <32>;
-+	rx-num-evt = <32>;
-+};
-
--- 
-2.39.2
+Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
