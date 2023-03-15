@@ -2,73 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5BBD66BA8DE
-	for <lists+devicetree@lfdr.de>; Wed, 15 Mar 2023 08:17:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BD9716BA8ED
+	for <lists+devicetree@lfdr.de>; Wed, 15 Mar 2023 08:21:44 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231531AbjCOHRB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Mar 2023 03:17:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50956 "EHLO
+        id S231439AbjCOHVl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Mar 2023 03:21:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56912 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231466AbjCOHQy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Mar 2023 03:16:54 -0400
-Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com [IPv6:2a00:1450:4864:20::532])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6C1A62B29F
-        for <devicetree@vger.kernel.org>; Wed, 15 Mar 2023 00:16:52 -0700 (PDT)
-Received: by mail-ed1-x532.google.com with SMTP id eh3so15756292edb.11
-        for <devicetree@vger.kernel.org>; Wed, 15 Mar 2023 00:16:52 -0700 (PDT)
+        with ESMTP id S231552AbjCOHVS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Mar 2023 03:21:18 -0400
+Received: from mail-ed1-x52f.google.com (mail-ed1-x52f.google.com [IPv6:2a00:1450:4864:20::52f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1F59D5AB7C
+        for <devicetree@vger.kernel.org>; Wed, 15 Mar 2023 00:21:12 -0700 (PDT)
+Received: by mail-ed1-x52f.google.com with SMTP id z21so6378378edb.4
+        for <devicetree@vger.kernel.org>; Wed, 15 Mar 2023 00:21:11 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1678864611;
+        d=linaro.org; s=google; t=1678864870;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=l12j+5DZPIr3CM2plc1IPPLtAzb+IPIK3UVC9/MBJgA=;
-        b=Salfcnwr7cE3680LEI6UokKNQ23hdAFfxBkXrk9OgvhcU7KAr2nZaOfrWy4aD19rc3
-         WVFdvRJ4PhHH88B9nj8sBQc3sfeI+DyQWYi4o+HFGp43wAT7n1XsMPd3uKioTlz1FY0/
-         Y69J1H6q+OGPmVT8f9gYmtVgsbdOFoJPIsoini5Rd0rQDjOJGWC+hcKKq3qdcRYv+z3g
-         Q2dOlIuRxfejp40fuDIXjGE/NTvS3RRVpccmql11Rr0I41Cm0+rMqn/FzVlH0geas9kf
-         83Wot/qXX9/5BN0nFnq1Z3S0Nfcf4+iXTMDImerQaoJEuNxbb38CT7KuJY1OF5EK6BXh
-         +ZyQ==
+        bh=ozR0dnqnJVp0BhWFNtiQ9uNm8JZDF8pkJ8MCkHvyY9o=;
+        b=bPtJfDFvUiUczE1oDcphFrtGfzybJ+GtT3roYXYiD7BKtGzqLhKO1dYTGLgQggtBZC
+         sf9/zhUnw+InkJoSLs8kicjxpWYRyR1uYuSVRKugyy1rzfVU65DW/b3u5XJZcSyXE05v
+         lD6Wh3aBQRPokpSiTxpWx3ajoxSUfKZHkYMRE1tTjCQg4u7goqz8sxJ0FtSA9fS4aTjp
+         mVY8YoEOsI9p7kVZLRVgnrUP6CmEnoFYDTyI25CWi3r9NCoq9ewQlT6wO9VNVtNTQUUO
+         ha+4tZ4Gl1Alkc84fnMjsBu/7nw9HhnJ0yblQkkIVjnLdaSxsX3bDG79CWHiO2B2mHHU
+         dkew==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678864611;
+        d=1e100.net; s=20210112; t=1678864870;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=l12j+5DZPIr3CM2plc1IPPLtAzb+IPIK3UVC9/MBJgA=;
-        b=2rhC6vO466pUjZ5EaYEpRzkodKtpH5l/7AS2wfB7oCsdd+ItpSBUg/E8fGLcaVblvA
-         /GWsAwdSapjVuzxP3KwqKEacIOcbXz3ifl2A9Zj55ibe5L2FsSBdQpGj108tHwOS0PMA
-         A04QLqzZc/NTdTuFGpChgfQpGf/ENpcI+81drNV63QBp6VmIsnUfvA72Q0eKj7QHGmLz
-         facK0DTfYI39T9gVIoIOj9Hz7Otz358pzHAf2edS5ll+t7/C6RXeuyxLr62GouWb2wUy
-         h3JTeXCTv1unS3J9E6GRD0cefsGgv1Ax/a1uQZjQ+LtrbfvgY4yv7DUG0qmAiYoZECIj
-         CMmg==
-X-Gm-Message-State: AO0yUKWq0jzyG38qplG+aygy/DsPfiqMlTDY5X+VEt7tgwE3MiQvwcI1
-        p80FRr3NW6LXcpbV1K9FCU9tPQ==
-X-Google-Smtp-Source: AK7set+Cw/lpF35VCg0jANWxJglVMzoNi7c/Kjdm3hf/RwhjGB4/m0AFAUdJGGQ4tg4dqD1K2Oyidg==
-X-Received: by 2002:a17:907:c78a:b0:91f:5f9c:5db6 with SMTP id tz10-20020a170907c78a00b0091f5f9c5db6mr442065ejc.52.1678864610933;
-        Wed, 15 Mar 2023 00:16:50 -0700 (PDT)
+        bh=ozR0dnqnJVp0BhWFNtiQ9uNm8JZDF8pkJ8MCkHvyY9o=;
+        b=efSqIAMMbcMTCUNe/KxFiNiP3htej4l/QUEoxbva59WIYTJCWMiRzUIXQi8osj7YyM
+         fTL1FhbwUmgZJRCq3FPpVaND1qGApbSLuTVtGoKB2V2DWQszabvXffxoqRcuTdOybFPr
+         NcVXrFbzGq0j6DjVUAy2WSQ2bRdlwajqLnpb4MH2XSvsEHrcD9Zk2l+tj/8VdiHTRGAt
+         SqO//1BtPUN61u6gNlVzA1WZOO5b7rn3s8JhVhyCwQf0uj0YUpGD78BXd6CH9uPfZePr
+         mNJhtKoWrb7wT5YsWOCAd6JEGDu5MeD9Bgwj/177SIidTqv3Pbp1Sf76JHITLIsTxKWj
+         Odag==
+X-Gm-Message-State: AO0yUKXGJZftd4B8tmHVIso/DfxR0K9SwiZn3TsiKllcSADL5pjnfLZB
+        eFIA/kBSIUNikeOAmZ2ltgdCUQ==
+X-Google-Smtp-Source: AK7set+tTTuF2Ln4iUAaub4ZI6VDeCChGk/zyzpT6o0EnVUWmuOlHgrEHzbo4nPYtVK6Xv5L8jB/TA==
+X-Received: by 2002:a17:906:8494:b0:87f:89f2:c012 with SMTP id m20-20020a170906849400b0087f89f2c012mr5638543ejx.24.1678864870206;
+        Wed, 15 Mar 2023 00:21:10 -0700 (PDT)
 Received: from ?IPV6:2a02:810d:15c0:828:940e:8615:37dc:c2bd? ([2a02:810d:15c0:828:940e:8615:37dc:c2bd])
-        by smtp.gmail.com with ESMTPSA id qq11-20020a17090720cb00b008c6c47f59c1sm2105301ejb.48.2023.03.15.00.16.50
+        by smtp.gmail.com with ESMTPSA id op13-20020a170906bced00b008c607dd7cefsm2093286ejb.79.2023.03.15.00.21.09
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 15 Mar 2023 00:16:50 -0700 (PDT)
-Message-ID: <b1e0cc91-4a67-6417-eb4e-e044ce6dd03b@linaro.org>
-Date:   Wed, 15 Mar 2023 08:16:49 +0100
+        Wed, 15 Mar 2023 00:21:09 -0700 (PDT)
+Message-ID: <aa7f656c-d022-7b7c-3f30-ce92f219c94e@linaro.org>
+Date:   Wed, 15 Mar 2023 08:21:08 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.8.0
-Subject: Re: [PATCH 1/2] dt-bindings: arm: rockchip: Add Khadas Edge2 board
+Subject: Re: [PATCH v2 1/7] dt-bindings: interconnect: qcom,msm8998-bwmon:
+ Resolve MSM8998 support
 Content-Language: en-US
-To:     Yixun Lan <dlan@gentoo.org>, Heiko Stuebner <heiko@sntech.de>,
+To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Georgi Djakov <djakov@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Sebastian Reichel <sebastian.reichel@collabora.com>
-Cc:     Jagan Teki <jagan@amarulasolutions.com>,
-        Christopher Obbard <chris.obbard@collabora.com>,
-        Nick Xie <nick@khadas.com>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20230315033441.32719-1-dlan@gentoo.org>
- <20230315033441.32719-2-dlan@gentoo.org>
+        Thara Gopinath <thara.gopinath@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20230304-topic-ddr_bwmon-v2-0-04db989db059@linaro.org>
+ <20230304-topic-ddr_bwmon-v2-1-04db989db059@linaro.org>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230315033441.32719-2-dlan@gentoo.org>
+In-Reply-To: <20230304-topic-ddr_bwmon-v2-1-04db989db059@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -81,13 +82,23 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 15/03/2023 04:34, Yixun Lan wrote:
-> Edge2 is an ultraslim, credit-card sized ARM PC designed by Khadas.
-> It has quite a few rich peripherals.
+On 13/03/2023 12:41, Konrad Dybcio wrote:
+> BWMONv4 has two sets of registers: one for handling the monitor itself
+> and one called "global" which hosts some sort of a headswitch and an
+> interrupt control register. We did not handle that one before, as on
+> SoCs starting with SDM845 they have been merged into a single contiguous
+> range.
 > 
+> To make the qcom,msm8998-bwmon less confusing and in preparation for
+> actual MSM8998 support, describe the global register space and introduce
+> new "qcom,sdm845-cpu-bwmon" compatible while keeping the
+> "qcom,sdm845-bwmon" as a fallback for SoCs with this merged register space
+> scheme.
+> 
+> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
