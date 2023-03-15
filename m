@@ -2,47 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0002A6BC118
-	for <lists+devicetree@lfdr.de>; Thu, 16 Mar 2023 00:32:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 71B9B6BC122
+	for <lists+devicetree@lfdr.de>; Thu, 16 Mar 2023 00:33:08 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233095AbjCOXcs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Mar 2023 19:32:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45166 "EHLO
+        id S233053AbjCOXdG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Mar 2023 19:33:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45928 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232891AbjCOXc2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Mar 2023 19:32:28 -0400
+        with ESMTP id S233017AbjCOXco (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Mar 2023 19:32:44 -0400
 Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4641F2ED6F;
-        Wed, 15 Mar 2023 16:32:22 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5E90324484;
+        Wed, 15 Mar 2023 16:32:24 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 9958761EAE;
-        Wed, 15 Mar 2023 23:32:21 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 350BCC4339C;
-        Wed, 15 Mar 2023 23:32:20 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 9923061EB8;
+        Wed, 15 Mar 2023 23:32:23 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 14520C4339B;
+        Wed, 15 Mar 2023 23:32:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1678923141;
-        bh=95QohC5HZZa7/gRCWlqQ5Hmlrk86RQ41dEtKTxfBfx4=;
+        s=k20201202; t=1678923143;
+        bh=twdYEQ0P4kTyElulfalQGVpJPxrIZ7fHl/Cxxq7/zpc=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=tjgcDP7TIlONIBpX9a9yauWm/l6DvxIUqKBnoO1mxt1oMB3lf1xm4J+2W9BRo+L3t
-         OTsqYQQ9K8jDY+xodlZ982wvuzRum+Vly0RlkPhdhatst9JweEp8IHf20QhmY3ngq3
-         orEswS67Qb2NnLuETSQJWl8qobpCyoz2eimTGwwFkHiLCp/VjoiERZ1bZJqIVF1FPI
-         n69m7j4SYn6RneQCpUfJnZ8SpEvsJbbZKGm2yZKzkLJCMNT9LUtsQvRtgRKKcnMFW9
-         awcauU6DRInqfSxbmLYXfdYvDzUxc5MPKY1P0bHnRlsXxo1ybfVTS8f+EkYtgmUUaq
-         MLv1P5ZTl6Y8A==
+        b=nHqVOl5jcXwR0ZiZUd2g3gYSaWLXn7HtRlrgwOmaYZtxubC2zCtweGbhoT8rSOZMI
+         lwLIsN7nl2obDAf3iI2+ISmsyxx9+GJf0dgvgKiVgq1ON2zZpypzKbdPLE7lEYxBlz
+         f4NcL98Wfv4IQsNo71wrGCxu10lRbg7PLnRpC1qmG47aKhaLa51bNrNwWKlWwuXUjP
+         G28JgAykux5WCiGFDGmUVSXrIQsPZZbKYX62KOkclM/TClcvimB9Xk+DgfApxYJQc2
+         Q82UqwbiZ4llPOMFpm72bur5I1nS4KA/ysdU7PBzwsQa32o17N7fo/90Wdu1dAT3ln
+         2sVZo+ghWh/Gw==
 From:   Bjorn Andersson <andersson@kernel.org>
-To:     sboyd@kernel.org, konrad.dybcio@linaro.org, agross@kernel.org,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        Danila Tikhonov <danila@jiaxyga.com>, mturquette@baylibre.com
-Cc:     devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: (subset) [PATCH v4 0/2] clk: qcom: Add GCC support for SM7150
-Date:   Wed, 15 Mar 2023 16:34:50 -0700
-Message-Id: <167892332565.4030021.4505402734060998642.b4-ty@kernel.org>
+To:     agross@kernel.org, linux-arm-msm@vger.kernel.org,
+        Konrad Dybcio <konrad.dybcio@linaro.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Robin Murphy <robin.murphy@arm.com>,
+        linux-arm-kernel@lists.infradead.org,
+        marijn.suijten@somainline.org, Joerg Roedel <joro@8bytes.org>,
+        devicetree@vger.kernel.org, iommu@lists.linux.dev,
+        linux-kernel@vger.kernel.org, Will Deacon <will@kernel.org>
+Subject: Re: (subset) [PATCH 1/5] dt-bindings: arm-smmu: Add SM8350 Adreno SMMU
+Date:   Wed, 15 Mar 2023 16:34:52 -0700
+Message-Id: <167892332566.4030021.5101665756298971397.b4-ty@kernel.org>
 X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20230213165318.127160-1-danila@jiaxyga.com>
-References: <20230213165318.127160-1-danila@jiaxyga.com>
+In-Reply-To: <20230216145646.4095336-1-konrad.dybcio@linaro.org>
+References: <20230216145646.4095336-1-konrad.dybcio@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
@@ -55,24 +59,21 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 13 Feb 2023 19:53:16 +0300, Danila Tikhonov wrote:
-> Add the Global Clock Controller for SM7150.
+On Thu, 16 Feb 2023 15:56:42 +0100, Konrad Dybcio wrote:
+> Document the Adreno SMMU present on SM8350.
 > 
-> Changes in v4:
-> - Keep the critical clocks always-ON
-> - Added Krzysztof Reviewed-by on patch 1
 > 
-> Changes in v3:
-> - Dropped entire property, it's coming from gcc.yaml
-> - Included original work copyrights
-> - Link to v2: https://lore.kernel.org/linux-clk/20230122192924.119636-1-danila@jiaxyga.com/
-> 
-> [...]
 
 Applied, thanks!
 
-[2/2] clk: qcom: Add Global Clock Controller (GCC) driver for SM7150
-      commit: a808d58ddf29c5d593da497053bcb2af1696031b
+[2/5] arm64: dts: qcom: sc7280: Add qcom,smmu-500 to Adreno SMMU
+      commit: c564b69984a78ce7811f22437794c9bb2afc11fd
+[3/5] arm64: dts: qcom: sm8150: Add qcom,smmu-500 to Adreno SMMU
+      commit: 3e5c00256881f35b8664e1cf0b9fbf42cd9f24a1
+[4/5] arm64: dts: qcom: sm8250: Add qcom,smmu-500 to Adreno SMMU
+      commit: 8347b12e905b99f445067d09326e4a1cc490f9cc
+[5/5] arm64: dts: qcom: sm8350: Add qcom,smmu-500 to Adreno SMMU
+      commit: 78c61b6b2c33041940f2b22b47b058e83684b3f5
 
 Best regards,
 -- 
