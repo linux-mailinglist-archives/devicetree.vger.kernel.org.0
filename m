@@ -2,162 +2,151 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D50A96BA97B
-	for <lists+devicetree@lfdr.de>; Wed, 15 Mar 2023 08:39:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1CB0B6BA98C
+	for <lists+devicetree@lfdr.de>; Wed, 15 Mar 2023 08:41:54 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229487AbjCOHji (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Mar 2023 03:39:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58026 "EHLO
+        id S231231AbjCOHlu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Mar 2023 03:41:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59276 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231641AbjCOHjO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Mar 2023 03:39:14 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A887137F17;
-        Wed, 15 Mar 2023 00:37:56 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 3160CB81CCE;
-        Wed, 15 Mar 2023 07:37:55 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 70AF8C433EF;
-        Wed, 15 Mar 2023 07:37:53 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-        s=korg; t=1678865874;
-        bh=I4qlfV5mv2+OQ3PEUfgFdAU+FA2UpcPIsZUMmCKtaP8=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=ee5w8MnRQk6LLqSIVMK4OU23IhD14jL1y/+REVgu3MlkDgONkk5t9tS4QaIJyDLNQ
-         jM5wpONJkHdkIIqIlg2WuJ+Y1BYBDXXMV3Fmt1+PrYUWletPtUHKFdOIlg6u4LJ8Ze
-         xETWFLMV5rQmb72IlpIX1wb4nTwXnakSmibv7er0=
-Date:   Wed, 15 Mar 2023 08:37:51 +0100
-From:   Greg KH <gregkh@linuxfoundation.org>
-To:     Jacky Huang <ychuang570808@gmail.com>
-Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        lee@kernel.org, mturquette@baylibre.com, sboyd@kernel.org,
-        p.zabel@pengutronix.de, jirislaby@kernel.org,
-        devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org,
-        schung@nuvoton.com, Jacky Huang <ychuang3@nuvoton.com>
-Subject: Re: [PATCH 14/15] tty: serial: Add Nuvoton ma35d1 serial driver
- support
-Message-ID: <ZBF1z5Bx9jnrpxox@kroah.com>
-References: <20230315072902.9298-1-ychuang570808@gmail.com>
- <20230315072902.9298-15-ychuang570808@gmail.com>
+        with ESMTP id S231755AbjCOHld (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Mar 2023 03:41:33 -0400
+Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com [IPv6:2a00:1450:4864:20::532])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A825DCA34
+        for <devicetree@vger.kernel.org>; Wed, 15 Mar 2023 00:41:24 -0700 (PDT)
+Received: by mail-ed1-x532.google.com with SMTP id h8so28065740ede.8
+        for <devicetree@vger.kernel.org>; Wed, 15 Mar 2023 00:41:24 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1678866083;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=o0KhlGWXaQvnZJhV1oSsNdPCBAKJbouheIOtj7npGYk=;
+        b=YBBTDpvNzHs/0H49YlerltAikbw/Jmf3Nd/So97eSTLWxTvmgz/onV2Vd5EbQcED+9
+         0XUxEHoucWRhtsidJpj6Xog8jBDvGxyPEXhd3ABMfjq5BqmwqEMEcX3lCf6VCnX8vVxa
+         fkQTlsVdClzxFyJGiiX1t1+fWSeqk/huvGy3wQZmxhD7p7jvP9bn83dC7YinT31jEfGf
+         z+ShZ+ti9xT61VJoMsfYmk76Mlep/cukGCvR5mrL2DXt5JAbU5Nw7ZbQqLlDjD3un88N
+         Yu9WQr/u2Jonl+SG91lOwzxG5lt9wFSLYw8ExW26UMWpljO5AemlUWezJrU732i+ECft
+         1okQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1678866083;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=o0KhlGWXaQvnZJhV1oSsNdPCBAKJbouheIOtj7npGYk=;
+        b=2KUpE5LQ3zOPC3rNfMxWGlCP0+KaHot1n/bJYRK9s3VDvW3TSACOc+bpequncbR0QQ
+         p/5U3KRdZniUNZNiRh52Mdqvnmlc+rkIliZuY69p1uz4akHV7VffSwIrFwVMnOW6iRHV
+         nkuDFhDJ5eNq53Hnalrr1c5TfxyAxcR1LOlgOfJxW+X9LVxExkrhItPYyWGbErZIeiHf
+         pJjKcJQfecpZdkHwdG0LqT3EBmZKL5IdodM68tdRRKSIn+PyU1Ub97QKZH3tStzg3XEL
+         nm2w7yzcTfqPtM6L5j6+mXCmyWkLdVPPLGZTKYUP23/7oNLSQoP1wPJjboQ9wMStaNWs
+         l0cA==
+X-Gm-Message-State: AO0yUKVrMUYfm69W3JA3i0mh68ecplvMlO8IrRgXxlCi7PgbOukTF6rN
+        m01IySYhFnrcm2XLxWSwMKYYTQ==
+X-Google-Smtp-Source: AK7set9Rrx9ge1r9G4dbyMIZf+2ce8Es0KpH7l15XaniS+dAetrOiLVGW+bUv4hTSdzjnjE7120OZA==
+X-Received: by 2002:aa7:cc83:0:b0:4fe:f19f:ac46 with SMTP id p3-20020aa7cc83000000b004fef19fac46mr1652409edt.6.1678866083130;
+        Wed, 15 Mar 2023 00:41:23 -0700 (PDT)
+Received: from ?IPV6:2a02:810d:15c0:828:940e:8615:37dc:c2bd? ([2a02:810d:15c0:828:940e:8615:37dc:c2bd])
+        by smtp.gmail.com with ESMTPSA id d7-20020a50f687000000b004fe9386b259sm1416507edn.41.2023.03.15.00.41.21
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 15 Mar 2023 00:41:22 -0700 (PDT)
+Message-ID: <2b3e39b9-ea70-db9b-89f7-09054df363c3@linaro.org>
+Date:   Wed, 15 Mar 2023 08:41:21 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230315072902.9298-15-ychuang570808@gmail.com>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.8.0
+Subject: Re: [PATCH v2 2/5] dt-bindings: arm: msm: Add bindings for multi
+ channel DDR in LLCC
+Content-Language: en-US
+To:     Komal Bajaj <quic_kbajaj@quicinc.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Abel Vesa <abel.vesa@linaro.org>,
+        Rishabh Bhatnagar <rishabhb@codeaurora.org>,
+        Prakash Ranjan <saiprakash.ranjan@codeaurora.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org
+References: <20230313124040.9463-1-quic_kbajaj@quicinc.com>
+ <20230313124040.9463-3-quic_kbajaj@quicinc.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230313124040.9463-3-quic_kbajaj@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Mar 15, 2023 at 07:29:01AM +0000, Jacky Huang wrote:
-> From: Jacky Huang <ychuang3@nuvoton.com>
+On 13/03/2023 13:40, Komal Bajaj wrote:
+> Add description for additional nodes needed to support
+> mulitple channel DDR configurations in LLCC.
 > 
-> This adds UART and console driver for Nuvoton ma35d1 Soc.
+> Signed-off-by: Komal Bajaj <quic_kbajaj@quicinc.com>
+
++Cc Mani,
+
+This will conflict with:
+https://lore.kernel.org/all/20230314080443.64635-3-manivannan.sadhasivam@linaro.org/
+
+Please rebase on top of Mani's patches (assuming they are not
+conflicting in principle)
+
+> ---
+>  Documentation/devicetree/bindings/arm/msm/qcom,llcc.yaml | 9 +++++++++
+>  1 file changed, 9 insertions(+)
 > 
-> MA35D1 SoC provides up to 17 UART controllers, each with one uart port.
-> The ma35d1 uart controller is not compatible with 8250.
+> diff --git a/Documentation/devicetree/bindings/arm/msm/qcom,llcc.yaml b/Documentation/devicetree/bindings/arm/msm/qcom,llcc.yaml
+> index 38efcad56dbd..9a4a76caf490 100644
+> --- a/Documentation/devicetree/bindings/arm/msm/qcom,llcc.yaml
+> +++ b/Documentation/devicetree/bindings/arm/msm/qcom,llcc.yaml
+> @@ -37,15 +37,24 @@ properties:
+>      items:
 
-A new UART being designed that is not an 8250 compatible?  Why????
+minItems: 2
 
-Anyway, some minor comments:
-
->  drivers/tty/serial/ma35d1_serial.c | 842 +++++++++++++++++++++++++++++
->  drivers/tty/serial/ma35d1_serial.h |  93 ++++
-
-Why do you have a .h file for only a single .c file?  Please just put
-them both together into one .c file.
-
->  include/uapi/linux/serial_core.h   |   3 +
-
-Why do you need this #define?  Are you using it in userspace now?  If
-not, why have it?
-
-> +static void
-> +receive_chars(struct uart_ma35d1_port *up)
-
-Please just put all one one line.
-
-
-> +{
-> +	u8 ch;
-> +	u32 fsr;
-> +	u32 isr;
-> +	u32 dcnt;
-> +	char flag;
-> +
-> +	isr = serial_in(up, UART_REG_ISR);
-> +	fsr = serial_in(up, UART_REG_FSR);
-> +
-> +	while (!(fsr & RX_EMPTY)) {
-
-You have no way out if the hardware is stuck?  That feels wrong.
-
-> +static int ma35d1serial_ioctl(struct uart_port *port, u32 cmd, unsigned long arg)
-> +{
-> +	switch (cmd) {
-> +	default:
-> +		return -ENOIOCTLCMD;
-> +	}
-> +	return 0;
-> +}
-
-You do not need to handle any ioctls?
-
-> +static void ma35d1serial_console_putchar(struct uart_port *port,
-> +					 unsigned char ch)
-> +{
-> +	struct uart_ma35d1_port *up = (struct uart_ma35d1_port *)port;
-> +
-> +	do {
-> +	} while ((serial_in(up, UART_REG_FSR) & TX_FULL));
-
-Again, no way out if this gets stuck in a loop?
-
-> +/**
-> + *  Suspend one serial port.
-> + */
-> +void ma35d1serial_suspend_port(int line)
-> +{
-> +	uart_suspend_port(&ma35d1serial_reg, &ma35d1serial_ports[line].port);
-> +}
-> +EXPORT_SYMBOL(ma35d1serial_suspend_port);
-
-Why is this exported?  Who uses it?
-
-And why not EXPORT_SYMBOL_GPL()?
-
-> +
-> +/**
-> + *  Resume one serial port.
-> + */
-> +void ma35d1serial_resume_port(int line)
-> +{
-> +	struct uart_ma35d1_port *up = &ma35d1serial_ports[line];
-> +
-> +	uart_resume_port(&ma35d1serial_reg, &up->port);
-> +}
-> +EXPORT_SYMBOL(ma35d1serial_resume_port);
-
-Same here, who calls this and why?
-
-> --- a/include/uapi/linux/serial_core.h
-> +++ b/include/uapi/linux/serial_core.h
-> @@ -279,4 +279,7 @@
->  /* Sunplus UART */
->  #define PORT_SUNPLUS	123
+>        - description: LLCC base register region
+>        - description: LLCC broadcast base register region
+> +      - description: Feature register to decide which LLCC configuration
+> +                     to use, this is optional
 >  
-> +/* Nuvoton MA35D1 UART */
-> +#define PORT_MA35D1	124
+>    reg-names:
 
-Again, why is this define needed?
+minItems: 2
 
-thanks,
+>      items:
+>        - const: llcc_base
+>        - const: llcc_broadcast_base
+> +      - const: multi_channel_register
+>  
+>    interrupts:
+>      maxItems: 1
+>  
+> +  multi-ch-bit-off:
+> +    items:
+> +      - description: Specifies the offset in bits into the multi_channel_register
+> +                     and the number of bits used to decide which LLCC configuration
+> +                     to use
 
-greg k-h
+There are here few issues.
+First, I don't fully understand the property. What is an LLCC
+configuration? Like some fused values?
+
+Second, don't make it a register specific, it will not scale easily to
+any new version of this interface. Although how this should look like
+depends on what is it.
+
+Third, you need vendor prefix and type (unless this is a generic
+property, but does not look like). Then "items" is probably wrong. Line
+break after "description: "
+
+Best regards,
+Krzysztof
+
