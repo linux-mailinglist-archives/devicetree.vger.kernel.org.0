@@ -2,133 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2C9816BADBE
-	for <lists+devicetree@lfdr.de>; Wed, 15 Mar 2023 11:34:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 628BA6BADD2
+	for <lists+devicetree@lfdr.de>; Wed, 15 Mar 2023 11:40:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232363AbjCOKe1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Mar 2023 06:34:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56580 "EHLO
+        id S232007AbjCOKkl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Mar 2023 06:40:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36584 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232271AbjCOKeZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Mar 2023 06:34:25 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1A51E206A4;
-        Wed, 15 Mar 2023 03:34:21 -0700 (PDT)
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: kholk11)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id 32B9C66015F1;
-        Wed, 15 Mar 2023 10:34:19 +0000 (GMT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1678876459;
-        bh=FlyNjljVXfQH8sXqQul+9FStNcj5UQa68vjRYr8bIj4=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=ZtBAzml0yzK/Dr2SNII7uZoStPKI9wVCgDn4+MmcAuhEA/Psq9w+6+B0ayJl9bq9U
-         f2oJ77jcHyHREAxp1NDUctgXfCO6+jgcC6G50nj85wolvUHIofSU98AG5LF05sgQAB
-         v9o7Vl5PfjaEPu2r+ne/giu9bYUzjJcGcIoS6rHksEF0ArNpQm14ZiryYnuIhC5gI2
-         57RQj3HBsUkqfy/Hq8if2xEMaRFM2rJKPNW/xnFYoEEgeKtxqubuJmyJvKUN/cI5uo
-         PenS7w8SIfBlnsKrZaF2nUIPck1nsRWqsG0cMbEiZOJxtAcm/Mp8tauAweWI0SLwso
-         7Ynx9GUCILxUA==
-Message-ID: <e15eac65-94d4-6a70-cab1-4fdb550116f7@collabora.com>
-Date:   Wed, 15 Mar 2023 11:34:16 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-Subject: Re: [PATCH] Revert "arm64: dts: mediatek: mt8173-elm: Move display to
- ps8640 auxiliary bus"
-To:     Pin-yen Lin <treapking@chromium.org>,
+        with ESMTP id S230455AbjCOKkk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Mar 2023 06:40:40 -0400
+Received: from mx.kernkonzept.com (serv1.kernkonzept.com [IPv6:2a01:4f8:1c1c:b490::2])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CBF1A166D0;
+        Wed, 15 Mar 2023 03:40:37 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=kernkonzept.com; s=mx1; h=Content-Transfer-Encoding:MIME-Version:Message-Id
+        :Date:Subject:Cc:To:From:References:In-Reply-To:Sender:Reply-To:Content-Type:
+        Content-ID:Content-Description;
+        bh=SUExAIYL6xAykAwwtW+IW90OBx4NSv0nC4YM+9xejtQ=; b=F6VWacqY5FQtpaW2LSR5iiSxff
+        a1hSY0TlJOP8n7HNQAPSbdLdUy+0JsyPrL7Kl0rIFzPRYbA5359t4e43ID32FOwfT/Dn5LaCGJO6W
+        D9Bykk7AbznOdQvM+lv0AKZAwTTv7S9JmWr38MBHw7TcaKHp7RS7hJUQVfL+/pPs5Z0OQsOZEvkoV
+        NThfKunmBEOMtTcWBB1X5P9lU1V+DHQBxSt1uGTOBw/F1rb/X7fqd2lx6q7ObEJ+wD745rWw23SFm
+        dIBrz+eaCQUpiHCuBHcw6LBiQOtV4ZEsYN27c6ULJBumjCL9ZQ+lshPXT+MpJW/A+kpFMtTqZo2rx
+        0imTSNKA==;
+Received: from [10.22.3.24] (helo=kernkonzept.com)
+        by mx.kernkonzept.com with esmtpsa (TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim 4.94.2)
+        id 1pcOYN-00GsYJ-Mu; Wed, 15 Mar 2023 11:40:19 +0100
+From:   Stephan Gerhold <stephan.gerhold@kernkonzept.com>
+To:     Daniel Lezcano <daniel.lezcano@linaro.org>,
+        "Rafael J. Wysocki" <rafael@kernel.org>
+Cc:     Amit Kucheria <amitk@kernel.org>,
+        Thara Gopinath <thara.gopinath@gmail.com>,
+        Zhang Rui <rui.zhang@intel.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-mediatek@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org
-References: <20230315041107.2886940-1-treapking@chromium.org>
-Content-Language: en-US
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20230315041107.2886940-1-treapking@chromium.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+        Bjorn Andersson <andersson@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, Stephan Gerhold <stephan@gerhold.net>,
+        Stephan Gerhold <stephan.gerhold@kernkonzept.com>
+Subject: [PATCH v3 0/6] thermal: qcom: tsens: Fix MDM9607, add MSM8909
+Date:   Wed, 15 Mar 2023 11:39:44 +0100
+Message-Id: <20230315103950.2679317-1-stephan.gerhold@kernkonzept.com>
+X-Mailer: git-send-email 2.30.2
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 15/03/23 05:11, Pin-yen Lin ha scritto:
-> This reverts commit c2d94f72140a28d0f516b7c5e8274a9c185a04ff.
-> 
-> The `lg_lp120up1_mode` defined in panel-edp.c is not working for some
-> panels used on elm/hana devices. Move the panel node out of the aux-bus
-> subnode so the driver only uses the modes retrieved from the EDID.
-> 
-> Signed-off-by: Pin-yen Lin <treapking@chromium.org>
-> 
+Make the MDM9607 thermal sensor support consistent with Qualcomm's
+vendor kernel (msm-3.18) by applying the correct default slope values
+and adding "correction factors" to the factory calibration values in the
+fuses. Use the same functionality to add the very similar MSM8909 SoC to
+the tsens driver.
 
-This commit was sent to fix display functionality on MT8173-Elm (Acer Chromebook
-R13).... apparently this should get fixed with [1].
+---
+Changes in v3: Drop now unused definition reported by kernel test robot
+Changes in v2:
+  - Rewrite on top of per-sensor nvmem cell changes that landed in 6.3
+  - Add patches to fix existing support for MDM9607
 
-Investigating if this is the case.
+Stephan Gerhold (6):
+  thermal: qcom: tsens: Drop unused legacy structs
+  thermal: qcom: tsens-v0_1: Fix mdm9607 slope values
+  thermal: qcom: tsens-v0_1: Add mdm9607 correction offsets
+  dt-bindings: thermal: qcom-tsens: Drop redundant compatibles
+  dt-bindings: thermal: qcom-tsens: Add MSM8909 compatible
+  thermal: qcom: tsens-v0_1: Add MSM8909 data
 
-Regards,
-Angelo
+ .../bindings/thermal/qcom-tsens.yaml          | 23 +----
+ drivers/thermal/qcom/tsens-v0_1.c             | 95 +++++++++++--------
+ drivers/thermal/qcom/tsens-v1.c               | 22 -----
+ drivers/thermal/qcom/tsens.c                  | 19 +++-
+ drivers/thermal/qcom/tsens.h                  |  6 +-
+ 5 files changed, 80 insertions(+), 85 deletions(-)
 
-[1]: 
-https://patchwork.kernel.org/project/dri-devel/patch/20230315035508.2874915-1-treapking@chromium.org/
-
-> ---
-> 
->   arch/arm64/boot/dts/mediatek/mt8173-elm.dtsi | 26 +++++++++-----------
->   1 file changed, 12 insertions(+), 14 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/mediatek/mt8173-elm.dtsi b/arch/arm64/boot/dts/mediatek/mt8173-elm.dtsi
-> index d452cab28c67..d45a2aeb0eb1 100644
-> --- a/arch/arm64/boot/dts/mediatek/mt8173-elm.dtsi
-> +++ b/arch/arm64/boot/dts/mediatek/mt8173-elm.dtsi
-> @@ -90,6 +90,18 @@ switch-volume-up {
->   		};
->   	};
->   
-> +	panel: panel {
-> +		compatible = "lg,lp120up1";
-> +		power-supply = <&panel_fixed_3v3>;
-> +		backlight = <&backlight>;
-> +
-> +		port {
-> +			panel_in: endpoint {
-> +				remote-endpoint = <&ps8640_out>;
-> +			};
-> +		};
-> +	};
-> +
->   	panel_fixed_3v3: regulator1 {
->   		compatible = "regulator-fixed";
->   		regulator-name = "PANEL_3V3";
-> @@ -282,20 +294,6 @@ ps8640_out: endpoint {
->   				};
->   			};
->   		};
-> -
-> -		aux-bus {
-> -			panel: panel {
-> -				compatible = "lg,lp120up1";
-> -				power-supply = <&panel_fixed_3v3>;
-> -				backlight = <&backlight>;
-> -
-> -				port {
-> -					panel_in: endpoint {
-> -						remote-endpoint = <&ps8640_out>;
-> -					};
-> -				};
-> -			};
-> -		};
->   	};
->   };
->   
+-- 
+2.30.2
 
