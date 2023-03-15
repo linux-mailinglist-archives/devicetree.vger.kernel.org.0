@@ -2,76 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 58A346BABBE
-	for <lists+devicetree@lfdr.de>; Wed, 15 Mar 2023 10:10:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 152F16BABDD
+	for <lists+devicetree@lfdr.de>; Wed, 15 Mar 2023 10:14:42 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231995AbjCOJKp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Mar 2023 05:10:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52850 "EHLO
+        id S232051AbjCOJOk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Mar 2023 05:14:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37100 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232123AbjCOJJ7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Mar 2023 05:09:59 -0400
-Received: from mail-wm1-x332.google.com (mail-wm1-x332.google.com [IPv6:2a00:1450:4864:20::332])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 21FBA113C2
-        for <devicetree@vger.kernel.org>; Wed, 15 Mar 2023 02:09:54 -0700 (PDT)
-Received: by mail-wm1-x332.google.com with SMTP id l7-20020a05600c1d0700b003eb5e6d906bso650696wms.5
-        for <devicetree@vger.kernel.org>; Wed, 15 Mar 2023 02:09:54 -0700 (PDT)
+        with ESMTP id S232054AbjCOJOT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Mar 2023 05:14:19 -0400
+Received: from mail-wm1-x334.google.com (mail-wm1-x334.google.com [IPv6:2a00:1450:4864:20::334])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C5A967BA2C
+        for <devicetree@vger.kernel.org>; Wed, 15 Mar 2023 02:13:50 -0700 (PDT)
+Received: by mail-wm1-x334.google.com with SMTP id fm20-20020a05600c0c1400b003ead37e6588so611623wmb.5
+        for <devicetree@vger.kernel.org>; Wed, 15 Mar 2023 02:13:50 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1678871392;
-        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
-         :content-language:subject:reply-to:from:user-agent:mime-version:date
-         :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=0ehhM3WDQ0BzcG7Zytg5ZL1CgQcuprrt2BD+PBU8s/g=;
-        b=uu+kBBddtJuRli4OXM4hbKnuLhtKkv/jS2KMvYUIZ7/Q/9PDSiQt9KGu5zKmTnJk4d
-         KPtdQGA2+JGzcJrNSjc2URvoz7GUwfLIG5uU8RC7xtA8tgUkK6ZVUbuVdtprmgmL2tF7
-         OiPUxtcEzGcqr4NIxJAJ+dDIzlw/qqzALwSx+ezpzXzhGLUX0eREVVkhpp2/Abc2Qfr3
-         2Vnl6zp6B81OTjTyf3GWl2XsuAG+wUswTU5rftAIVkxL7WzebWNRnFQwQRL84CkSGNqz
-         JV2sNtGMs2Nz6BrkidcaMwiJS0d4TGY3vmgTFv64cUnUn+EErZIOyr7Y/XZ+/H6kR4+O
-         PNJg==
+        d=linaro.org; s=google; t=1678871628;
+        h=content-transfer-encoding:mime-version:date:message-id:subject
+         :references:in-reply-to:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=xGIgG+nfQ3uyl4drl9en2yuuyKPUqcLJi9WOxBRKmpM=;
+        b=POVA8cuflMM+b1KPOZ+/fjiWcXC+mQMXKztdD1MrgwV/FEb7jjy4lH1/TuLRY7/nYb
+         2zxJGbCq0rzzeYZ9fiHCeBrNFPQWsC4JH0EN6PwMNojafbtgN1DxaRE81irRrMUYJr8u
+         OVb6kpra+GUOAwcWcwWQEmMEz9GCPAUb+4zZbU64YwahtuqQcjmQofa3Xm3x51zPRU4O
+         kqX3nATOm/NdqnT36AL/Nek/vjaRj/Swea1Zhkv0Vv70COhbtzgN4vNtafBtJu56awur
+         j15ULP+voQKu78bUWAHDelMg3opitMCgVQ9dTprkbmM+pzDrlKvsVEO2sGHyPcXtteuT
+         GiGA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678871392;
-        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
-         :content-language:subject:reply-to:from:user-agent:mime-version:date
-         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=0ehhM3WDQ0BzcG7Zytg5ZL1CgQcuprrt2BD+PBU8s/g=;
-        b=lmNWYyFvT0XlceKlPRXhLIRFy6Ybws5uNuKLN1UGW7VBPS0PaiEtuZ4ceCAHGyWLGb
-         QZmb88vONOj6U/otYI7hZ7jSWPjAaMCbCp8I7e5t726RRZcBx5+DW9Yp8xdopsnTCsm7
-         8N+AVxciAQeKTh4h/2xMkbBPGrWkPPy69wjRo6XFBVwkzsD6toDxHPqD5zzIIRuFK91k
-         Ff/U3CLt/R65Ib0En6EuzOm5NAD4vadcwNeC3xm9TeV6Jvw78AiQvAmgeT/fWMTLmm9e
-         nIJYh4GhmnH4qV12UnVy4nW3EanytdvLsk3sAovd2xzHDSW0Gb+rgU5yHkaitMT9VECo
-         63TA==
-X-Gm-Message-State: AO0yUKVqzHYaRylw5IJQST2ZCrchbr2qqOfYt/+a3vO+wcTiCCidb5AL
-        xd7laK0HYscInIvUq/xOLb0GOg==
-X-Google-Smtp-Source: AK7set/UeVut8iVUM290qZrMIefOCnYRx2T85bTcp5RQsIKw/HHzpHn4F9JE6YWxp5XDl5Ui6/6g+Q==
-X-Received: by 2002:a05:600c:4f44:b0:3eb:383c:1870 with SMTP id m4-20020a05600c4f4400b003eb383c1870mr16290455wmq.11.1678871392578;
-        Wed, 15 Mar 2023 02:09:52 -0700 (PDT)
-Received: from ?IPV6:2a01:e0a:982:cbb0:5d2d:8427:397b:8fe7? ([2a01:e0a:982:cbb0:5d2d:8427:397b:8fe7])
-        by smtp.gmail.com with ESMTPSA id 4-20020a05600c024400b003eb966d39desm1252244wmj.2.2023.03.15.02.09.51
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 15 Mar 2023 02:09:52 -0700 (PDT)
-Message-ID: <aa9bfab7-220e-9488-8972-9a32fb11b0ff@linaro.org>
-Date:   Wed, 15 Mar 2023 10:09:51 +0100
+        d=1e100.net; s=20210112; t=1678871628;
+        h=content-transfer-encoding:mime-version:date:message-id:subject
+         :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=xGIgG+nfQ3uyl4drl9en2yuuyKPUqcLJi9WOxBRKmpM=;
+        b=HJjaXko04UQYVPRE+pfc03IReLfxRUQqvrBKIQl6iXS4j/o9jx+XGs/N6ukLwmef6d
+         894r//NrrHru1pBQegJE6reWeVjkX9Jy6VXagBtKbswDhBIWB8EMLoJVCxjlE2LgAV7R
+         g9CmauYJWdrz3PjNQn5SKYu7n65PwRMet+RRNFieWfvrAuA46QIJgvywhunmGqbpIjX/
+         SgCU90hLJwQViq96swnHzA89tHxQtlFuXrAD8PKcOq/YMcmo7+2IdkwuWY0hJApMzLY7
+         smrHZrVjqEnSK9afT4nCJn8nGl52wryHS7oMbeZqhQjHiJPcTL+irTK3k6jW1w0uzVdn
+         ckyA==
+X-Gm-Message-State: AO0yUKX034J1ezCgEpeQKya1Hs7DKFK8OpPawOKwCtVzFmV0KJ1sdn43
+        +abeHtIjrA6H4MPnQlSg3tz2Mw==
+X-Google-Smtp-Source: AK7set/Dn9l8p8DdE3Dci/nG0+h7h2RMwo75JEjKq6kRPJnyXo0lQGRS9k1C3pTqAw7FS3w+tp2r/A==
+X-Received: by 2002:a05:600c:3503:b0:3ea:e7f6:f8fa with SMTP id h3-20020a05600c350300b003eae7f6f8famr16434518wmq.10.1678871628832;
+        Wed, 15 Mar 2023 02:13:48 -0700 (PDT)
+Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:52eb:f6ff:feb3:451a])
+        by smtp.gmail.com with ESMTPSA id y16-20020a05600c365000b003ed23845666sm1136212wmq.45.2023.03.15.02.13.48
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 15 Mar 2023 02:13:48 -0700 (PDT)
+From:   Neil Armstrong <neil.armstrong@linaro.org>
+To:     sam@ravnborg.org, airlied@gmail.com, daniel@ffwll.ch,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        thierry.reding@gmail.com,
+        Ruihai Zhou <zhouruihai@huaqin.corp-partner.google.com>
+Cc:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+In-Reply-To: <20230314085034.6380-1-zhouruihai@huaqin.corp-partner.google.com>
+References: <20230314085034.6380-1-zhouruihai@huaqin.corp-partner.google.com>
+Subject: Re: [PATCH 1/2] dt-bindings: display: panel: Add compatible for
+ Starry 2081101QFH032011-53G
+Message-Id: <167887162800.2174720.1844367111418757005.b4-ty@linaro.org>
+Date:   Wed, 15 Mar 2023 10:13:48 +0100
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-From:   neil.armstrong@linaro.org
-Reply-To: neil.armstrong@linaro.org
-Subject: Re: [PATCH 2/2] drm/panel: seiko-43wvf1g: Add the 'enable-gpios'
- property
-Content-Language: en-US
-To:     Fabio Estevam <festevam@denx.de>
-Cc:     sam@ravnborg.org, krzysztof.kozlowski+dt@linaro.org,
-        robh+dt@kernel.org, devicetree@vger.kernel.org,
-        dri-devel@lists.freedesktop.org, CPHEALY@gmail.com
-References: <20230314111724.1520178-1-festevam@denx.de>
- <20230314111724.1520178-2-festevam@denx.de>
-Organization: Linaro Developer Services
-In-Reply-To: <20230314111724.1520178-2-festevam@denx.de>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.12.1
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -80,70 +76,20 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 14/03/2023 12:17, Fabio Estevam wrote:
-> Sometimes a GPIO is needed to turn on/off the display.
-> 
-> Add support for this usecase by introducing the optional 'enable-gpios'
-> property.
-> 
-> Tested on a imx53qsb board.
-> 
-> Signed-off-by: Fabio Estevam <festevam@denx.de>
-> ---
->   drivers/gpu/drm/panel/panel-seiko-43wvf1g.c | 12 ++++++++++++
->   1 file changed, 12 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/panel/panel-seiko-43wvf1g.c b/drivers/gpu/drm/panel/panel-seiko-43wvf1g.c
-> index 76160e5d43bd..c250ca36a5b3 100644
-> --- a/drivers/gpu/drm/panel/panel-seiko-43wvf1g.c
-> +++ b/drivers/gpu/drm/panel/panel-seiko-43wvf1g.c
-> @@ -7,6 +7,7 @@
->    */
->   
->   #include <linux/delay.h>
-> +#include <linux/gpio/consumer.h>
->   #include <linux/media-bus-format.h>
->   #include <linux/module.h>
->   #include <linux/of.h>
-> @@ -48,6 +49,7 @@ struct seiko_panel {
->   	const struct seiko_panel_desc *desc;
->   	struct regulator *dvdd;
->   	struct regulator *avdd;
-> +	struct gpio_desc *enable_gpio;
->   };
->   
->   static inline struct seiko_panel *to_seiko_panel(struct drm_panel *panel)
-> @@ -139,6 +141,8 @@ static int seiko_panel_unprepare(struct drm_panel *panel)
->   	if (!p->prepared)
->   		return 0;
->   
-> +	gpiod_set_value_cansleep(p->enable_gpio, 0);
-> +
->   	regulator_disable(p->avdd);
->   
->   	/* Add a 100ms delay as per the panel datasheet */
-> @@ -174,6 +178,8 @@ static int seiko_panel_prepare(struct drm_panel *panel)
->   		goto disable_dvdd;
->   	}
->   
-> +	gpiod_set_value_cansleep(p->enable_gpio, 1);
-> +
->   	p->prepared = true;
->   
->   	return 0;
-> @@ -252,6 +258,12 @@ static int seiko_panel_probe(struct device *dev,
->   	if (IS_ERR(panel->avdd))
->   		return PTR_ERR(panel->avdd);
->   
-> +	panel->enable_gpio = devm_gpiod_get_optional(dev, "enable",
-> +						     GPIOD_OUT_LOW);
-> +	if (IS_ERR(panel->enable_gpio))
-> +		return dev_err_probe(dev, PTR_ERR(panel->enable_gpio),
-> +				     "failed to request GPIO\n");
-> +
->   	drm_panel_init(&panel->base, dev, &seiko_panel_funcs,
->   		       DRM_MODE_CONNECTOR_DPI);
->   
+Hi,
 
+On Tue, 14 Mar 2023 16:50:34 +0800, Ruihai Zhou wrote:
+> The STARRY 2081101QFH032011-53G is a 10.1" WUXGA TFT LCD panel,
+> which fits in nicely with the existing panel-boe-tv101wum-nl6
+> driver. Hence, we add a new compatible with panel specific config.
+> 
+> 
 
-Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
+Thanks, Applied to https://anongit.freedesktop.org/git/drm/drm-misc.git (drm-misc-next-fixes)
+
+[1/2] dt-bindings: display: panel: Add compatible for Starry 2081101QFH032011-53G
+      https://cgit.freedesktop.org/drm/drm-misc/commit/?id=c4969c95266c672b5dc0c6a1ac070b6d647fea22
+
+-- 
+Neil
+
