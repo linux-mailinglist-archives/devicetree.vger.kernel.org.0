@@ -2,113 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 294C66BBCA3
-	for <lists+devicetree@lfdr.de>; Wed, 15 Mar 2023 19:47:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id ECD566BBCAE
+	for <lists+devicetree@lfdr.de>; Wed, 15 Mar 2023 19:49:51 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230147AbjCOSrg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Mar 2023 14:47:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46112 "EHLO
+        id S232569AbjCOStv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Mar 2023 14:49:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50712 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231319AbjCOSrf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Mar 2023 14:47:35 -0400
-Received: from mx0b-001b2d01.pphosted.com (mx0b-001b2d01.pphosted.com [148.163.158.5])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CD71C21974;
-        Wed, 15 Mar 2023 11:47:07 -0700 (PDT)
-Received: from pps.filterd (m0098417.ppops.net [127.0.0.1])
-        by mx0a-001b2d01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 32FGg4dY023383;
-        Wed, 15 Mar 2023 18:46:59 GMT
+        with ESMTP id S232665AbjCOStu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Mar 2023 14:49:50 -0400
+Received: from mx0a-001b2d01.pphosted.com (mx0a-001b2d01.pphosted.com [148.163.156.1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 05CC41284D;
+        Wed, 15 Mar 2023 11:49:49 -0700 (PDT)
+Received: from pps.filterd (m0098410.ppops.net [127.0.0.1])
+        by mx0a-001b2d01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 32FHBIaD031841;
+        Wed, 15 Mar 2023 18:49:45 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=from : to : cc : subject
- : date : message-id : content-transfer-encoding : mime-version; s=pp1;
- bh=FUwOquj9z1MgPQVXWJffGH5SCJGct9pa82QsRDPwz70=;
- b=atDszGfnREgynZx4wKwJ4hgPLH7igeZGGUXS5s281Y2mmF4vATv1/35Vwc75TVrejMQi
- qVZIkXZYwu/PcrcOKMgVJeOOLBWlNpQ4cxUFXlMz0MmotTNOqSd3hcyMqfS57RcaHYjn
- 6Uv2okOlUa8p9PrOZoNFkRIk29bRrIbNEC6Mz2Kam7bVpTtA731kG9CcPsfAPRf4RnkI
- E/3WRGQ9jlUnb5v2rX8MiR699jtMZ8O+7BZutvi/Wk/BXjEsifhH9ovOJyKNbWN7OgvZ
- QA1i/VzHxVlPpF7NP4o77vm6Tg998Jnq6oqTYG3v3OZX1BixCUB03wYF9sucP0vUPPb1 eg== 
+ : date : message-id : mime-version : content-transfer-encoding; s=pp1;
+ bh=2DAycKkNR5JzI421DzdYC9jkhTO5VG8838Qgc06IF9c=;
+ b=gjBAxHMfaIgOKmznyLxeGV9niFNj85vCgFfj2RUvteB95Fx9M7SgcZV3UYieZaXWV0my
+ oBtGmDMakdyOJgVSeMgB9qqkM2ai+kbisUeeofh0lnxAlrtG2LhOx18Z/lJZR0YavKN/
+ OU8z+Lvuf4zE9W8tXAZEKAfWsL6Qy9xEAyCKkRTtoCERJPW+nFQF0s3HRqdPv3pDC5BS
+ +Z43K0OEX6fXO+8NDFigfTKJkIfA3GUmHq5AGCM4CF91kk6aytfsMqZC2XPKpe/dRozl
+ IdWVTUiiF7wrnzM2xb7zee/WmxGZTTUHQtZmO5K3JFeuuFz90z0L9FIVbmIwCDf2vSLL Bg== 
 Received: from pps.reinject (localhost [127.0.0.1])
-        by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 3pbh02ux0c-1
+        by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 3pbgey5ktt-1
         (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 15 Mar 2023 18:46:58 +0000
-Received: from m0098417.ppops.net (m0098417.ppops.net [127.0.0.1])
-        by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 32FGgpRB025630;
-        Wed, 15 Mar 2023 18:46:58 GMT
-Received: from ppma03wdc.us.ibm.com (ba.79.3fa9.ip4.static.sl-reverse.com [169.63.121.186])
-        by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 3pbh02ux02-1
+        Wed, 15 Mar 2023 18:49:45 +0000
+Received: from m0098410.ppops.net (m0098410.ppops.net [127.0.0.1])
+        by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 32FFCYni000384;
+        Wed, 15 Mar 2023 18:49:44 GMT
+Received: from ppma03dal.us.ibm.com (b.bd.3ea9.ip4.static.sl-reverse.com [169.62.189.11])
+        by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 3pbgey5kt3-1
         (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 15 Mar 2023 18:46:58 +0000
-Received: from pps.filterd (ppma03wdc.us.ibm.com [127.0.0.1])
-        by ppma03wdc.us.ibm.com (8.17.1.19/8.17.1.19) with ESMTP id 32FHIN4J019825;
-        Wed, 15 Mar 2023 18:46:57 GMT
+        Wed, 15 Mar 2023 18:49:44 +0000
+Received: from pps.filterd (ppma03dal.us.ibm.com [127.0.0.1])
+        by ppma03dal.us.ibm.com (8.17.1.19/8.17.1.19) with ESMTP id 32FGiuTE018975;
+        Wed, 15 Mar 2023 18:49:43 GMT
 Received: from smtprelay07.dal12v.mail.ibm.com ([9.208.130.99])
-        by ppma03wdc.us.ibm.com (PPS) with ESMTPS id 3pb29svs2q-1
+        by ppma03dal.us.ibm.com (PPS) with ESMTPS id 3pb29pdytu-1
         (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 15 Mar 2023 18:46:57 +0000
-Received: from smtpav02.dal12v.mail.ibm.com (smtpav02.dal12v.mail.ibm.com [10.241.53.101])
-        by smtprelay07.dal12v.mail.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 32FIkviZ38863268
+        Wed, 15 Mar 2023 18:49:43 +0000
+Received: from smtpav05.wdc07v.mail.ibm.com (smtpav05.wdc07v.mail.ibm.com [10.39.53.232])
+        by smtprelay07.dal12v.mail.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 32FIngfZ34275614
         (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-        Wed, 15 Mar 2023 18:46:57 GMT
-Received: from smtpav02.dal12v.mail.ibm.com (unknown [127.0.0.1])
-        by IMSVA (Postfix) with ESMTP id F37275805A;
-        Wed, 15 Mar 2023 18:46:56 +0000 (GMT)
-Received: from smtpav02.dal12v.mail.ibm.com (unknown [127.0.0.1])
-        by IMSVA (Postfix) with ESMTP id E54ED5805F;
-        Wed, 15 Mar 2023 18:46:56 +0000 (GMT)
+        Wed, 15 Mar 2023 18:49:42 GMT
+Received: from smtpav05.wdc07v.mail.ibm.com (unknown [127.0.0.1])
+        by IMSVA (Postfix) with ESMTP id 66F3458061;
+        Wed, 15 Mar 2023 18:49:42 +0000 (GMT)
+Received: from smtpav05.wdc07v.mail.ibm.com (unknown [127.0.0.1])
+        by IMSVA (Postfix) with ESMTP id 51E1A5805F;
+        Wed, 15 Mar 2023 18:49:42 +0000 (GMT)
 Received: from gfwa600.aus.stglabs.ibm.com (unknown [9.3.84.101])
-        by smtpav02.dal12v.mail.ibm.com (Postfix) with ESMTPS;
-        Wed, 15 Mar 2023 18:46:56 +0000 (GMT)
+        by smtpav05.wdc07v.mail.ibm.com (Postfix) with ESMTPS;
+        Wed, 15 Mar 2023 18:49:42 +0000 (GMT)
 Received: by gfwa600.aus.stglabs.ibm.com (Postfix, from userid 181152)
-        id 995A474A47B; Wed, 15 Mar 2023 13:46:56 -0500 (CDT)
+        id 880E574A47B; Wed, 15 Mar 2023 13:49:41 -0500 (CDT)
 From:   Lakshmi Yadlapati <lakshmiy@us.ibm.com>
 To:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
 Cc:     ylakshmi@yahoo.com, Lakshmi Yadlapati <lakshmiy@us.ibm.com>
-Subject: [PATCH 1/4] dt-bindings: vendor-prefixes: Add prefix for acbel
-Date:   Wed, 15 Mar 2023 13:46:33 -0500
-Message-Id: <20230315184633.766968-1-lakshmiy@us.ibm.com>
+Subject: [PATCH 2/4] dt-bindings: trivial-devices: Add acbel,crps
+Date:   Wed, 15 Mar 2023 13:49:21 -0500
+Message-Id: <20230315184921.846813-1-lakshmiy@us.ibm.com>
 X-Mailer: git-send-email 2.37.2
-X-TM-AS-GCONF: 00
-X-Proofpoint-ORIG-GUID: C-NDakY5UXl72Ke6HJMNOvXpBXrXykNv
-X-Proofpoint-GUID: ByD7ezcjNfFyTdygG1UNnaw9DCcmV0mR
-Content-Transfer-Encoding: 8bit
-X-Proofpoint-UnRewURL: 0 URL was un-rewritten
 MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-TM-AS-GCONF: 00
+X-Proofpoint-GUID: SLta1oyOqAlhqZ_tU9sVbuDQIcH2sJwv
+X-Proofpoint-ORIG-GUID: F0foyglH7reGDBBenEZY5fTQeoUGVL0C
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.254,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
  definitions=2023-03-15_10,2023-03-15_01,2023-02-09_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0
- priorityscore=1501 spamscore=0 malwarescore=0 bulkscore=0 adultscore=0
- mlxscore=0 mlxlogscore=662 suspectscore=0 impostorscore=0 clxscore=1011
- lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
+ bulkscore=0 spamscore=0 clxscore=1015 malwarescore=0 impostorscore=0
+ adultscore=0 mlxscore=0 mlxlogscore=725 suspectscore=0 lowpriorityscore=0
+ phishscore=0 classifier=spam adjust=0 reason=mlx scancount=1
  engine=8.12.0-2302240000 definitions=main-2303150155
 X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_NONE,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_EF,SPF_HELO_NONE,SPF_NONE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add a vendor prefix entry for acbel (https://www.acbel.com)
+Add Acbel CRPS Series power supply to trivial devices.
 
 Signed-off-by: Lakshmi Yadlapati <lakshmiy@us.ibm.com>
 ---
- Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
+ Documentation/devicetree/bindings/trivial-devices.yaml | 2 ++
  1 file changed, 2 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-index ed64e06ecca4..9dbb8f69be65 100644
---- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
-+++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-@@ -37,6 +37,8 @@ patternProperties:
-     description: Abracon Corporation
-   "^abt,.*":
-     description: ShenZhen Asia Better Technology Ltd.
-+  "^acbel,.*":
-+    description: Acbel Polytech Inc.
-   "^acer,.*":
-     description: Acer Inc.
-   "^acme,.*":
+diff --git a/Documentation/devicetree/bindings/trivial-devices.yaml b/Documentation/devicetree/bindings/trivial-devices.yaml
+index 6f482a254a1d..ae2cf4411b39 100644
+--- a/Documentation/devicetree/bindings/trivial-devices.yaml
++++ b/Documentation/devicetree/bindings/trivial-devices.yaml
+@@ -30,6 +30,8 @@ properties:
+     items:
+       - enum:
+             # SMBus/I2C Digital Temperature Sensor in 6-Pin SOT with SMBus Alert and Over Temperature Pin
++          - acbel,crps
++            # Acbel CRPS Series power supply
+           - ad,ad7414
+             # ADM9240: Complete System Hardware Monitor for uProcessor-Based Systems
+           - ad,adm9240
 -- 
 2.37.2
 
