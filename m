@@ -2,145 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 12BD36BAC94
-	for <lists+devicetree@lfdr.de>; Wed, 15 Mar 2023 10:51:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B1F736BAC9A
+	for <lists+devicetree@lfdr.de>; Wed, 15 Mar 2023 10:51:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232171AbjCOJvV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Mar 2023 05:51:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38096 "EHLO
+        id S232199AbjCOJvi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Mar 2023 05:51:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36350 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230280AbjCOJuh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Mar 2023 05:50:37 -0400
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2F09365455;
+        with ESMTP id S231819AbjCOJuv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Mar 2023 05:50:51 -0400
+Received: from mail-lj1-x229.google.com (mail-lj1-x229.google.com [IPv6:2a00:1450:4864:20::229])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1F5E980E2A
+        for <devicetree@vger.kernel.org>; Wed, 15 Mar 2023 02:49:50 -0700 (PDT)
+Received: by mail-lj1-x229.google.com with SMTP id l22so693074ljc.11
+        for <devicetree@vger.kernel.org>; Wed, 15 Mar 2023 02:49:49 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1678873788;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=i8+OBFMHUqSZ5z1YaHCvkK/kxvR+7HJ17A1AzYgKFRQ=;
+        b=uq9x0jumOYOVgQaT+BS8CFb2Zbt/rPcVSFl30E1PpihJxIT7JAqTr+6dmb/4GpwZQA
+         9Tbwy4xZ56wf/IpS5TyQEjDfJYniIp88ri+YVhGvd+PPS21831TlBFj/t+yYp9VknmQr
+         Lpl1XA5tzX7anr0szpik5JfuBbfbDleXfif4ksZ1tmbdpk1zjZa+c68HDNrTISupBs6z
+         FnaOsxe5UQl4wKAB88la1BKKeaem6VV+Xq3/0AcIfvBVY2JP1kYE0vBA4Uob584gtQD5
+         7+eGxjp6lk7BdakX7Orm27YWs0tA2J1tLzP4TwfJC/MkSZHhMUbhj6ENcrH9DAgGB+TU
+         kghg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1678873788;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=i8+OBFMHUqSZ5z1YaHCvkK/kxvR+7HJ17A1AzYgKFRQ=;
+        b=5aTofMYpId5qSR5qc46rcJ2Li3DM65yUAasxfWumnmsSCNVTdBoJFP9NN6eaIE/QvZ
+         mDMnF83MlZqIgU6ZVK3r5rBkDENzzuI+t2nC4d0oTpIkweNZidDEgxqPV5rTcpixnXIq
+         Yj6KzJN+52EdtaI3LyDEZvMJPYfhu5QCKqG+QKFpxT8InCo/J63mHzzXsta9rCDk23Ea
+         B2nGXMnLJvVI2QruHAXfV/JnteKmd/kG4LC2jkD7o8AHOJi6vvxmi91fcxtS3xpQFpsp
+         JyvNUwKQuvh5tJhVdsLjfIMkC5ytl0Aj7TBEfpouIBc1ktK1px1zyjGeQOHL1nNf0+r2
+         79Yg==
+X-Gm-Message-State: AO0yUKVhI1A2Zuo+lOirubMSih/+AKDKC0nQ5t+l35h8MO28DStR6mJN
+        BTjo1k0j02DkfPvymd/TK9uZhw==
+X-Google-Smtp-Source: AK7set9YBZAkod0KIa27E7sPHHRoFxRok5uIBVImIJbZw9bS1TMrn/bu1HL00PJTcECy00Pfxdj0dg==
+X-Received: by 2002:a2e:8e7a:0:b0:293:45dc:8b0f with SMTP id t26-20020a2e8e7a000000b0029345dc8b0fmr573112ljk.26.1678873788291;
+        Wed, 15 Mar 2023 02:49:48 -0700 (PDT)
+Received: from [192.168.1.101] (abyj16.neoplus.adsl.tpnet.pl. [83.9.29.16])
+        by smtp.gmail.com with ESMTPSA id a1-20020a2e9801000000b00293534d9760sm782175ljj.127.2023.03.15.02.49.45
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
         Wed, 15 Mar 2023 02:49:47 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1678873787; x=1710409787;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=QSWH2oZrN6AG+LRQTmSkhiJhJRLWiR4GmeXcU4sJXws=;
-  b=nO+X2Yp8Rg0S3XMDuGd/a1hN0K0WucYhnRO7oquelVhg2hghruYAUL4y
-   tPXM3U9gkSLS1DvQ+lfett9TMsgp2A2Kz3T2bKP1F+jsTkV5dqP4zawNp
-   lX1+hNHifqhrCtll9pypUUxdmL/e9Am1rVvTD+MUSRoIyYtbD4kC6aI79
-   JFSEtkAOxDC4YPEj7fDQKOEmbzvCUsax93cSmi02ogh/LzKHprniG8k9Y
-   GoNFwqugTHCjZ5JYGiVSLV88fLDlQer4KH64F43QmDBSxXZ/W6HNZjCB8
-   SoP0zr1Mpwd2ZcJLu+akvc6jfhUpw5VGh35IJIhdwqQmYCuZzNK758C4p
-   g==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10649"; a="318053410"
-X-IronPort-AV: E=Sophos;i="5.98,262,1673942400"; 
-   d="scan'208";a="318053410"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
-  by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 15 Mar 2023 02:49:46 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10649"; a="853553720"
-X-IronPort-AV: E=Sophos;i="5.98,262,1673942400"; 
-   d="scan'208";a="853553720"
-Received: from lkp-server01.sh.intel.com (HELO b613635ddfff) ([10.239.97.150])
-  by orsmga005.jf.intel.com with ESMTP; 15 Mar 2023 02:49:42 -0700
-Received: from kbuild by b613635ddfff with local (Exim 4.96)
-        (envelope-from <lkp@intel.com>)
-        id 1pcNlN-0007ay-2v;
-        Wed, 15 Mar 2023 09:49:41 +0000
-Date:   Wed, 15 Mar 2023 17:48:45 +0800
-From:   kernel test robot <lkp@intel.com>
-To:     Jacky Huang <ychuang570808@gmail.com>, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, lee@kernel.org,
-        mturquette@baylibre.com, sboyd@kernel.org, p.zabel@pengutronix.de,
-        gregkh@linuxfoundation.org, jirislaby@kernel.org
-Cc:     oe-kbuild-all@lists.linux.dev, devicetree@vger.kernel.org,
-        linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-serial@vger.kernel.org, schung@nuvoton.com,
-        Jacky Huang <ychuang3@nuvoton.com>
-Subject: Re: [PATCH 14/15] tty: serial: Add Nuvoton ma35d1 serial driver
- support
-Message-ID: <202303151754.XvPyacT7-lkp@intel.com>
-References: <20230315072902.9298-15-ychuang570808@gmail.com>
+Message-ID: <933da956-27fa-f1ca-674f-af049d86e6fb@linaro.org>
+Date:   Wed, 15 Mar 2023 10:49:45 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230315072902.9298-15-ychuang570808@gmail.com>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_NONE,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.8.0
+Subject: Re: [PATCH 0/6] QCM2290 compatibles
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Prakash Ranjan <saiprakash.ranjan@codeaurora.org>,
+        Vinod Koul <vkoul@kernel.org>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Bhupesh Sharma <bhupesh.sharma@linaro.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Wesley Cheng <quic_wcheng@quicinc.com>,
+        Amit Kucheria <amitk@kernel.org>,
+        Thara Gopinath <thara.gopinath@gmail.com>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Zhang Rui <rui.zhang@intel.com>
+Cc:     linux-arm-msm@vger.kernel.org, linux-watchdog@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        dmaengine@vger.kernel.org, linux-mmc@vger.kernel.org,
+        linux-usb@vger.kernel.org, linux-pm@vger.kernel.org
+References: <20230314-topic-2290_compats-v1-0-47e26c3c0365@linaro.org>
+ <33ae98be-480e-8951-88d8-7624a695fcc9@linaro.org>
+Content-Language: en-US
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <33ae98be-480e-8951-88d8-7624a695fcc9@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-0.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_SORBS_HTTP,RCVD_IN_SORBS_SOCKS,SPF_HELO_NONE,SPF_PASS,
+        URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Jacky,
-
-Thank you for the patch! Perhaps something to improve:
-
-[auto build test WARNING on robh/for-next]
-[also build test WARNING on clk/clk-next tty/tty-testing tty/tty-next tty/tty-linus linus/master v6.3-rc2 next-20230315]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
-
-url:    https://github.com/intel-lab-lkp/linux/commits/Jacky-Huang/arm64-Kconfig-platforms-Add-config-for-Nuvoton-MA35-platform/20230315-153355
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
-patch link:    https://lore.kernel.org/r/20230315072902.9298-15-ychuang570808%40gmail.com
-patch subject: [PATCH 14/15] tty: serial: Add Nuvoton ma35d1 serial driver support
-config: sparc-allyesconfig (https://download.01.org/0day-ci/archive/20230315/202303151754.XvPyacT7-lkp@intel.com/config)
-compiler: sparc64-linux-gcc (GCC) 12.1.0
-reproduce (this is a W=1 build):
-        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
-        chmod +x ~/bin/make.cross
-        # https://github.com/intel-lab-lkp/linux/commit/064028d2f2d911398012103aef3ce8666342ddfc
-        git remote add linux-review https://github.com/intel-lab-lkp/linux
-        git fetch --no-tags linux-review Jacky-Huang/arm64-Kconfig-platforms-Add-config-for-Nuvoton-MA35-platform/20230315-153355
-        git checkout 064028d2f2d911398012103aef3ce8666342ddfc
-        # save the config file
-        mkdir build_dir && cp config build_dir/.config
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.1.0 make.cross W=1 O=build_dir ARCH=sparc olddefconfig
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.1.0 make.cross W=1 O=build_dir ARCH=sparc SHELL=/bin/bash drivers/tty/serial/
-
-If you fix the issue, kindly add following tag where applicable
-| Reported-by: kernel test robot <lkp@intel.com>
-| Link: https://lore.kernel.org/oe-kbuild-all/202303151754.XvPyacT7-lkp@intel.com/
-
-All warnings (new ones prefixed by >>):
-
->> drivers/tty/serial/ma35d1_serial.c:672:6: warning: no previous prototype for 'ma35d1serial_suspend_port' [-Wmissing-prototypes]
-     672 | void ma35d1serial_suspend_port(int line)
-         |      ^~~~~~~~~~~~~~~~~~~~~~~~~
->> drivers/tty/serial/ma35d1_serial.c:681:6: warning: no previous prototype for 'ma35d1serial_resume_port' [-Wmissing-prototypes]
-     681 | void ma35d1serial_resume_port(int line)
-         |      ^~~~~~~~~~~~~~~~~~~~~~~~
---
->> drivers/tty/serial/ma35d1_serial.c:670: warning: This comment starts with '/**', but isn't a kernel-doc comment. Refer Documentation/doc-guide/kernel-doc.rst
-    *  Suspend one serial port.
-   drivers/tty/serial/ma35d1_serial.c:679: warning: This comment starts with '/**', but isn't a kernel-doc comment. Refer Documentation/doc-guide/kernel-doc.rst
-    *  Resume one serial port.
 
 
-vim +/ma35d1serial_suspend_port +672 drivers/tty/serial/ma35d1_serial.c
+On 15.03.2023 08:47, Krzysztof Kozlowski wrote:
+> On 14/03/2023 13:52, Konrad Dybcio wrote:
+>> Document a couple of compatibles for IPs found on the QCM2290 that don't
+>> require any specific driver changes
+>>
+>> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+> 
+> I assume this is what you talked about that DTS will follow a bit later?
+Yep, right after we resolve the RPM MSG RAM situation!
 
-   668	
-   669	/**
- > 670	 *  Suspend one serial port.
-   671	 */
- > 672	void ma35d1serial_suspend_port(int line)
-   673	{
-   674		uart_suspend_port(&ma35d1serial_reg, &ma35d1serial_ports[line].port);
-   675	}
-   676	EXPORT_SYMBOL(ma35d1serial_suspend_port);
-   677	
-   678	/**
-   679	 *  Resume one serial port.
-   680	 */
- > 681	void ma35d1serial_resume_port(int line)
-   682	{
-   683		struct uart_ma35d1_port *up = &ma35d1serial_ports[line];
-   684	
-   685		uart_resume_port(&ma35d1serial_reg, &up->port);
-   686	}
-   687	EXPORT_SYMBOL(ma35d1serial_resume_port);
-   688	
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests
+Konrad
+> 
+> Best regards,
+> Krzysztof
+> 
