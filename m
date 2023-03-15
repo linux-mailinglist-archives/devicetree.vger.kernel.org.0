@@ -2,125 +2,150 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C2ADF6BB8A8
-	for <lists+devicetree@lfdr.de>; Wed, 15 Mar 2023 16:54:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 78F3E6BB8E3
+	for <lists+devicetree@lfdr.de>; Wed, 15 Mar 2023 17:00:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231953AbjCOPyb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Mar 2023 11:54:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46890 "EHLO
+        id S233039AbjCOQAn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Mar 2023 12:00:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60936 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231220AbjCOPyN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Mar 2023 11:54:13 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DF3527DD27;
-        Wed, 15 Mar 2023 08:53:33 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 011C56195F;
-        Wed, 15 Mar 2023 15:53:31 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DE4F0C433A1;
-        Wed, 15 Mar 2023 15:53:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1678895610;
-        bh=GijnEnwapIxu1USeSwtlaQ6GTo451/9eeqsBEokQgV0=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=mUhDkUNunOBmj/bilJo0s1rrpOzfTvb+L3Ahg6tBlJhyTI7iiiQ495RQvjRMgqiHr
-         h0z+sZseKdZGUusSd3Iw1apJSJPqpiZwWHHhxg14Ij4Ac0NvhuwI7x934M3IamMdSN
-         VhdwkaTIJG/NeLwpBz3tbHuiSmouqHW7AuGFKMO5r166Oq+yiZ3AqZQS3XZrZjshOT
-         eneERMa+gkdnS0BlwpJTlO+MJs42qCDYwB82TY3lD6sksIsZTleOtAAuPU7fFGDNdo
-         MyIVHt+uTWCjb1myASK2BV5OSmK3f1JIOoRld3kgal+/PNxbaIL8wLUCdp3uaW0taC
-         VKP5B8MskzYCg==
-Date:   Wed, 15 Mar 2023 15:53:24 +0000
-From:   Lee Jones <lee@kernel.org>
-To:     Jean-Jacques Hiblot <jjhiblot@traphandler.com>
-Cc:     lee.jones@linaro.org, pavel@ucw.cz, robh+dt@kernel.org,
-        sven.schwermer@disruptive-technologies.com,
-        krzysztof.kozlowski+dt@linaro.org, johan+linaro@kernel.org,
-        marijn.suijten@somainline.org, andy.shevchenko@gmail.com,
-        jacek.anaszewski@gmail.com, linux-leds@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v7 0/6] Add a multicolor LED driver for groups of
- monochromatic LEDs
-Message-ID: <20230315155324.GB9667@google.com>
-References: <20230102081021.138648-1-jjhiblot@traphandler.com>
+        with ESMTP id S232951AbjCOQAb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Mar 2023 12:00:31 -0400
+Received: from mail-yb1-xb29.google.com (mail-yb1-xb29.google.com [IPv6:2607:f8b0:4864:20::b29])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A8BF47DD2D
+        for <devicetree@vger.kernel.org>; Wed, 15 Mar 2023 08:59:58 -0700 (PDT)
+Received: by mail-yb1-xb29.google.com with SMTP id e71so11509287ybc.0
+        for <devicetree@vger.kernel.org>; Wed, 15 Mar 2023 08:59:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112; t=1678895980;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=4Hkb0Z/tYYZSdI2YGR7CKQ+EDo9PzMXn0G/3i+Y5MwM=;
+        b=HAvxY2y0K98/w3C339mOOAQzkXNU7suKDrE+oReOnAWfju0KoSCgolXdK+X4r8CHgN
+         afroLwSaC3Wk3W9YQ9WmLcLtBWLq8ohidkk5GyWA1ua9r58tBWi716eqikZ6WWjMnjX6
+         3HpK5Y2MjFvO5Aecw1aUn4xEjsk4IEZARbMPHMmUNRYnyEhc0dERnPIcwEuIIkioSz7v
+         qKI+pEHFV4AV5vKJV1pVlmlnx2C71iwjsEtqfre5+RK9YuC6r4JpoqlgV4jx+mwjv5MN
+         YZZwlGAnv7UcksfYDh5vmrh1x+tyvVOnmpRCxVj0cqWkzGXgUIafjbjn2mn/k7pBylNJ
+         wBpQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1678895980;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=4Hkb0Z/tYYZSdI2YGR7CKQ+EDo9PzMXn0G/3i+Y5MwM=;
+        b=mg/svZsc88CIzq+cJmZP6RWZ6UrgUnv4jZmrcBeRMH4ww7ELqxkR650vw5SgtlwWRL
+         864WrEr+E4tExAWvG/0Uvb+ZD+aVxMrdR9EJOVZlUlk/h+gdEjMGl0qmm5zr9Lz0M6Cr
+         xldkyo1Zws6DcOqsqQIaCGpuLJVKbo2WuLOH9oobZfurw2oIMfuo0Z6axhhWn4NguAdl
+         TTmD3/4+qvN8Hj0tCWml1BYNzrwFIi+y0V02WbEurHzwJMOaxc5blu9diXwZpEv5gLCa
+         PsB6wnjO3m/xKcTpIKeLblIu1aNLPwPf6FQ6GFEa2UIeSwuCLUpJXkRbqOffYrtFqkEZ
+         bgeA==
+X-Gm-Message-State: AO0yUKUqncrCHusnxD/lt1GoCPeY9yipGV+YSsxNUOEgYWfpBnIVHVK9
+        98uWuVEynK/arFGcWz9jx9Dj4JjPMKbjHalFnCWAgg==
+X-Google-Smtp-Source: AK7set+cRmZtlbO9MMeDKr/hukXl0wpMQ3FA/Xz+syeKJfKfZEuF5mOSKngD+5GIMx1/X8Swm2YFxI5NP785yU6JIh0=
+X-Received: by 2002:a5b:386:0:b0:b0a:7108:71e9 with SMTP id
+ k6-20020a5b0386000000b00b0a710871e9mr12111573ybp.4.1678895980181; Wed, 15 Mar
+ 2023 08:59:40 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20230102081021.138648-1-jjhiblot@traphandler.com>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+References: <20230220-display-v1-0-45cbc68e188b@baylibre.com>
+ <20230220-display-v1-21-45cbc68e188b@baylibre.com> <4b4d4749-c5ea-3a02-190e-3db703623977@linaro.org>
+In-Reply-To: <4b4d4749-c5ea-3a02-190e-3db703623977@linaro.org>
+From:   Alexandre Mergnat <amergnat@baylibre.com>
+Date:   Wed, 15 Mar 2023 16:59:29 +0100
+Message-ID: <CAFGrd9pQJWYpdruUvbZNcQRZk5viyOAUCDpJcu5anA13E26Unw@mail.gmail.com>
+Subject: Re: [PATCH 21/21] panel: startek-kd070fhfid015: add support of this display
+To:     neil.armstrong@linaro.org
+Cc:     Daniel Vetter <daniel@ffwll.ch>, CK Hu <ck.hu@mediatek.com>,
+        Jitao Shi <jitao.shi@mediatek.com>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= 
+        <u.kleine-koenig@pengutronix.de>,
+        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        David Airlie <airlied@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Xinlei Lee <xinlei.lee@mediatek.com>,
+        Guillaume La Roque <glaroque@baylibre.com>,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org,
+        dri-devel@lists.freedesktop.org,
+        Fabien Parent <fparent@baylibre.com>,
+        linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 02 Jan 2023, Jean-Jacques Hiblot wrote:
+Hi Neil,
 
+Le jeu. 9 mars 2023 =C3=A0 15:51, Neil Armstrong
+<neil.armstrong@linaro.org> a =C3=A9crit :
+> > +
+> > +#include <drm/drm_crtc.h>
 >
-> Some HW design implement multicolor LEDs with several monochromatic LEDs.
-> Grouping the monochromatic LEDs allows to configure them in sync and use
-> the triggers.
-> The PWM multicolor LED driver implements such grouping but only for
-> PWM-based LEDs. As this feature is also desirable for the other types of
-> LEDs, this series implements it for any kind of LED device.
->
-> changes v6->v7:
->  - in led_mcg_probe() increment the counter at the end of the loop for
->    clarity.
->
-> changes v5->v6:
->  - restore sysfs access to the leds when the device is removed
->
-> changes v4->v5:
->  - Use "depends on COMPILE_TEST || OF" in Kconfig to indicate that OF
->    is a functional requirement, not just a requirement for the
->    compilation.
->  - in led_mcg_probe() check if devm_of_led_get_optional() returns an
->    error before testing for the end of the list.
->  - use sysfs_emit() instead of sprintf() in color_show().
->  - some grammar fixes in the comments and the commit logs.
->
-> changes v2->v3, only minor changes:
->  - rephrased the Kconfig descritpion
->  - make the sysfs interface of underlying LEDs read-only only if the probe
->    is successful.
->  - sanitize the header files
->  - removed the useless call to dev_set_drvdata()
->  - use dev_fwnode() to get the fwnode to the device.
->
-> changes v1->v2:
->  - Followed Rob Herrings's suggestion to make the dt binding much simpler.
->  - Added a patch to store the color property of a LED in its class
->    structure (struct led_classdev).
->
->
-> Jean-Jacques Hiblot (6):
->   devres: provide devm_krealloc_array()
->   leds: class: simplify the implementation of devm_of_led_get()
->   leds: provide devm_of_led_get_optional()
->   leds: class: store the color index in struct led_classdev
->   dt-bindings: leds: Add binding for a multicolor group of LEDs
->   leds: Add a multicolor LED driver to group monochromatic LEDs
->
->  Documentation/ABI/testing/sysfs-class-led     |   9 +
->  .../bindings/leds/leds-group-multicolor.yaml  |  64 +++++++
->  drivers/leds/led-class.c                      |  65 +++++--
->  drivers/leds/rgb/Kconfig                      |  10 ++
->  drivers/leds/rgb/Makefile                     |   1 +
->  drivers/leds/rgb/leds-group-multicolor.c      | 166 ++++++++++++++++++
->  include/linux/device.h                        |  13 ++
->  include/linux/leds.h                          |   3 +
->  8 files changed, 317 insertions(+), 14 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/leds/leds-group-multicolor.yaml
->  create mode 100644 drivers/leds/rgb/leds-group-multicolor.c
+> Is this include needed ?
 
-Most patches are good to go.
+Seems not, I remove it.
 
-Once you've fixed up patch 6, I'll apply the set.
+> > +     struct gpio_desc *enable_gpio;
+> > +     struct gpio_desc *reset_gpio;
+> > +     struct gpio_desc *dcdc_en_gpio;
+>
+> Isn't this "DCDC" a regulator ???
 
---
-Lee Jones [李琼斯]
+According to the panel datasheet, this is an input signal needed
+passing through TFT connector (PIN30):
+"Power IC supply enable, High active"
+
+> > +     /* Interface setting, video mode */
+> > +     ret =3D mipi_dsi_generic_write(dsi,
+> > +                     (u8[]){DSI_REG_IS, 0x14, 0x08, 0x00, 0x22, 0x00},=
+ 6);
+> > +     if (ret < 0) {
+> > +             dev_err(dev, "failed to set display interface setting: %d=
+\n",
+> > +                     ret);
+> > +             return ret;
+> > +     }
+>
+> Use mipi_dsi_generic_write_seq(dsi, DSI_REG_IS, 0x14, 0x08, 0x00, 0x22, 0=
+x00); instead,
+> it's simpler and doesn't need explicit return check.
+
+"mipi_dsi_generic_write_seq" doesn't exist but I will add it below
+"mipi_dsi_dcs_write_seq" in drm_mipi_dsi.h
+I must keep the return check to jump out of "stk_panel_init" if
+something goes wrong, but I can drop the error print.
+
+> > +static int stk_panel_enable(struct drm_panel *panel)
+> > +{
+> > +     struct stk_panel *stk =3D to_stk_panel(panel);
+> > +
+> > +     if (stk->enabled)
+> > +             return 0;
+> > +
+> > +     backlight_enable(stk->backlight);
+> > +
+> > +     stk->enabled =3D true;
+> > +
+> > +     return 0;
+> > +}
+>
+> Is this really needed ? the backlight core will enable it automatically.
+
+Ok, it's managed by drm_panel.c driver.
+Then I can also remove stuff from stk_panel_disable.
+
+
+Regards,
+Alex
