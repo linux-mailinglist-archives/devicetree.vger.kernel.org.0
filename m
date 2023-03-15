@@ -2,979 +2,275 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EBAE16BA68D
-	for <lists+devicetree@lfdr.de>; Wed, 15 Mar 2023 06:12:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id ABFA06BA717
+	for <lists+devicetree@lfdr.de>; Wed, 15 Mar 2023 06:29:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231231AbjCOFMm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Mar 2023 01:12:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44432 "EHLO
+        id S229784AbjCOF3i (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Mar 2023 01:29:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45216 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231236AbjCOFMk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Mar 2023 01:12:40 -0400
-Received: from box.trvn.ru (box.trvn.ru [194.87.146.52])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A0EAF60418;
-        Tue, 14 Mar 2023 22:12:32 -0700 (PDT)
-Received: from authenticated-user (box.trvn.ru [194.87.146.52])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
-        (No client certificate requested)
-        by box.trvn.ru (Postfix) with ESMTPSA id D3D8441857;
-        Wed, 15 Mar 2023 10:12:27 +0500 (+05)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=trvn.ru; s=mail;
-        t=1678857148; bh=LyQgUmm7E5znX4AeqU0wAmb9yedDWZca3C2awHLu1og=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=fPj+XBc9L2dfwUDyJBxi6xUDudm9hLZLRsEQF0o28ARYF7HWqBaQSfe8aZu8NjmS9
-         oWdbg5s1dAPTXA089hHvJ/bUmn3xdwqganPRH9PK3m8VM68HhVV8p3l0gC6uIz4dsK
-         CjOIvrcSGe3Nx6jS86pJWx2bALzbL0KuNjVlbN1arggqsNs8R16gTTNNe4eg6KePCH
-         pRIvPRc32BUzQ4mszADJ7BmxnJCt9/VqvBaoBeDWckXRZvCxpZ/fpoLH2a7YRMKlRs
-         IohKwoLj9J2CbCHdrULf4tQTucU9G0ekTq0aivy/dbs4/3bBEwAVP/MhHGRDn/yClH
-         HC146B2AxioUQ==
-From:   Nikita Travkin <nikita@trvn.ru>
-To:     agross@kernel.org, andersson@kernel.org
-Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        konrad.dybcio@linaro.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht,
-        Nikita Travkin <nikita@trvn.ru>
-Subject: [PATCH v2 2/2] arm64: dts: qcom: Add Acer Aspire 1
-Date:   Wed, 15 Mar 2023 10:12:20 +0500
-Message-Id: <20230315051220.5614-2-nikita@trvn.ru>
-In-Reply-To: <20230315051220.5614-1-nikita@trvn.ru>
-References: <20230315051220.5614-1-nikita@trvn.ru>
+        with ESMTP id S229552AbjCOF3h (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Mar 2023 01:29:37 -0400
+Received: from linux.microsoft.com (linux.microsoft.com [13.77.154.182])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id A2603234CC;
+        Tue, 14 Mar 2023 22:29:00 -0700 (PDT)
+Received: by linux.microsoft.com (Postfix, from userid 1127)
+        id 5C13F2057010; Tue, 14 Mar 2023 22:27:42 -0700 (PDT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com 5C13F2057010
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.microsoft.com;
+        s=default; t=1678858062;
+        bh=QxvQUVNnhLTuqBxADNo5TTbNZEOLG7Nm2goh3OWfNMg=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=VOjqZSPQfEvXIfQk1vJY6ri2b84OqqnMx3icSVtl85aD/N/ZxBJHsOEzE/+nRoF2V
+         Sp8ncYG8vJUqpGjRn004n+AWQg5QqBaVStTUOdO4bvjhkCEdnh6cPjojKsrfYC8mlq
+         Ljq9OuaYgD/qJZ8qL53fVWbB/a4STufnz/OkUEQk=
+Date:   Tue, 14 Mar 2023 22:27:42 -0700
+From:   Saurabh Singh Sengar <ssengar@linux.microsoft.com>
+To:     "Michael Kelley (LINUX)" <mikelley@microsoft.com>
+Cc:     "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        KY Srinivasan <kys@microsoft.com>,
+        Haiyang Zhang <haiyangz@microsoft.com>,
+        "wei.liu@kernel.org" <wei.liu@kernel.org>,
+        Dexuan Cui <decui@microsoft.com>,
+        "daniel.lezcano@linaro.org" <daniel.lezcano@linaro.org>,
+        "tglx@linutronix.de" <tglx@linutronix.de>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-hyperv@vger.kernel.org" <linux-hyperv@vger.kernel.org>,
+        "lenb@kernel.org" <lenb@kernel.org>,
+        "rafael@kernel.org" <rafael@kernel.org>,
+        "linux-acpi@vger.kernel.org" <linux-acpi@vger.kernel.org>
+Subject: Re: [PATCH v8 5/5] Driver: VMBus: Add Devicetree support
+Message-ID: <20230315052742.GA30684@linuxonhyperv3.guj3yctzbm1etfxqx2vob5hsef.xx.internal.cloudapp.net>
+References: <1678785350-20400-1-git-send-email-ssengar@linux.microsoft.com>
+ <1678785350-20400-6-git-send-email-ssengar@linux.microsoft.com>
+ <BYAPR21MB1688962642EBF09FA8C7FAEBD7BE9@BYAPR21MB1688.namprd21.prod.outlook.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <BYAPR21MB1688962642EBF09FA8C7FAEBD7BE9@BYAPR21MB1688.namprd21.prod.outlook.com>
+User-Agent: Mutt/1.5.21 (2010-09-15)
+X-Spam-Status: No, score=-19.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,ENV_AND_HDR_SPF_MATCH,RCVD_IN_DNSWL_MED,
+        SPF_HELO_PASS,SPF_PASS,USER_IN_DEF_DKIM_WL,USER_IN_DEF_SPF_WL
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Acer Aspire 1 is a WoA laptop based on Snapdragon 7c gen1 platform.
+On Tue, Mar 14, 2023 at 09:21:32PM +0000, Michael Kelley (LINUX) wrote:
+> From: Saurabh Sengar <ssengar@linux.microsoft.com> Sent: Tuesday, March 14, 2023 2:16 AM
+> > 
+> > Update the driver to support Devicetree boot as well along with ACPI.
+> > At present the Devicetree parsing only provides the mmio region info
+> > and is not the exact copy of ACPI parsing. This is sufficient to cater
+> > all the current Devicetree usecases for VMBus.
+> > 
+> > Currently Devicetree is supported only for x86 systems.
+> > 
+> > Signed-off-by: Saurabh Sengar <ssengar@linux.microsoft.com>
+> > ---
+> > [V8]
+> > - Remove the auto select of CONFIG_OF
+> > - Remove the dependency on !ACPI for OF_EARLY_FLATTREE
+> > - Used acpi_disabled instead of #ifdef and hence added a dummy function
+> >   for vmbus_acpi_add
+> > - GFP_ATOMIC -> GFP_KERNEL
+> > - used range.flags instead of hard coding flags
+> > - used __maybe_unused for acpi device id, removed #ifdef
+> > 
+> >  drivers/hv/Kconfig     |  5 ++--
+> >  drivers/hv/vmbus_drv.c | 64 +++++++++++++++++++++++++++++++++++++++---
+> >  2 files changed, 63 insertions(+), 6 deletions(-)
+> > 
+> > diff --git a/drivers/hv/Kconfig b/drivers/hv/Kconfig
+> > index 0747a8f1fcee..47132b30b7ee 100644
+> > --- a/drivers/hv/Kconfig
+> > +++ b/drivers/hv/Kconfig
+> > @@ -4,11 +4,12 @@ menu "Microsoft Hyper-V guest support"
+> > 
+> >  config HYPERV
+> >  	tristate "Microsoft Hyper-V client drivers"
+> > -	depends on ACPI && ((X86 && X86_LOCAL_APIC && HYPERVISOR_GUEST) \
+> > -		|| (ARM64 && !CPU_BIG_ENDIAN))
+> > +	depends on (X86 && X86_LOCAL_APIC && HYPERVISOR_GUEST) \
+> > +		|| (ACPI && ARM64 && !CPU_BIG_ENDIAN)
+> >  	select PARAVIRT
+> >  	select X86_HV_CALLBACK_VECTOR if X86
+> >  	select VMAP_PFN
+> > +	select OF_EARLY_FLATTREE if OF
+> >  	help
+> >  	  Select this option to run Linux as a Hyper-V client operating
+> >  	  system.
+> > diff --git a/drivers/hv/vmbus_drv.c b/drivers/hv/vmbus_drv.c
+> > index 3ad2fa2b92e7..15097e1f3f2b 100644
+> > --- a/drivers/hv/vmbus_drv.c
+> > +++ b/drivers/hv/vmbus_drv.c
+> > @@ -20,6 +20,7 @@
+> >  #include <linux/completion.h>
+> >  #include <linux/hyperv.h>
+> >  #include <linux/kernel_stat.h>
+> > +#include <linux/of_address.h>
+> >  #include <linux/clockchips.h>
+> >  #include <linux/cpu.h>
+> >  #include <linux/sched/isolation.h>
+> > @@ -2143,7 +2144,7 @@ void vmbus_device_unregister(struct hv_device *device_obj)
+> >  	device_unregister(&device_obj->device);
+> >  }
+> > 
+> > -
+> > +#ifdef CONFIG_ACPI
+> >  /*
+> >   * VMBUS is an acpi enumerated device. Get the information we
+> >   * need from DSDT.
+> > @@ -2253,6 +2254,7 @@ static acpi_status vmbus_walk_resources(struct acpi_resource
+> > *res, void *ctx)
+> > 
+> >  	return AE_OK;
+> >  }
+> > +#endif
+> > 
+> >  static void vmbus_mmio_remove(void)
+> >  {
+> > @@ -2273,7 +2275,7 @@ static void vmbus_mmio_remove(void)
+> >  	}
+> >  }
+> > 
+> > -static void vmbus_reserve_fb(void)
+> > +static void __maybe_unused vmbus_reserve_fb(void)
+> >  {
+> >  	resource_size_t start = 0, size;
+> >  	struct pci_dev *pdev;
+> > @@ -2433,6 +2435,7 @@ void vmbus_free_mmio(resource_size_t start, resource_size_t
+> > size)
+> >  }
+> >  EXPORT_SYMBOL_GPL(vmbus_free_mmio);
+> > 
+> > +#ifdef CONFIG_ACPI
+> >  static int vmbus_acpi_add(struct platform_device *pdev)
+> >  {
+> >  	acpi_status result;
+> > @@ -2485,10 +2488,52 @@ static int vmbus_acpi_add(struct platform_device *pdev)
+> >  		vmbus_mmio_remove();
+> >  	return ret_val;
+> >  }
+> > +#else
+> > +static int vmbus_acpi_add(struct platform_device *pdev)
+> > +{
+> > +	return 0;
+> > +}
+> > +#endif
+> > +
+> > +static int vmbus_device_add(struct platform_device *pdev)
+> > +{
+> > +	struct resource **cur_res = &hyperv_mmio;
+> > +	struct of_range range;
+> > +	struct of_range_parser parser;
+> > +	struct device_node *np = pdev->dev.of_node;
+> > +	int ret;
+> > +
+> > +	hv_dev = &pdev->dev;
+> > +
+> > +	ret = of_range_parser_init(&parser, np);
+> > +	if (ret)
+> > +		return ret;
+> > +
+> > +	for_each_of_range(&parser, &range) {
+> > +		struct resource *res;
+> > +
+> > +		res = kzalloc(sizeof(*res), GFP_KERNEL);
+> > +		if (!res)
+> > +			return -ENOMEM;
+> 
+> I should have looked at this more closely in the previous
+> revision.  But if this error path is taken, does any cleanup
+> need to be done of 'res' entries that were allocated in
+> previous iterations of the for_each_of_range() loop?  It
+> seems like the cleanup and releasing of previously allocated
+> memory should be done.
 
-The laptop design is similar to trogdor in the choice of primary
-components but the specifics on usage of those differ slightly.
+No problem, thanks for pointing this.
+For now we have only one range in device tree so this case may not occur,
+but for completeness I agree we should add that, in future we might
+have multiple ranges supported.
 
-Add the devicetree for the laptop with support for most of the
-hardware present.
+I will add vmbus_mmio_remove() in case of error here, I guess that
+should be sufficient.
 
-Signed-off-by: Nikita Travkin <nikita@trvn.ru>
----
+> 
+> > +
+> > +		res->name = "hyperv mmio";
+> > +		res->flags = range.flags;
+> > +		res->start = range.cpu_addr;
+> > +		res->end = range.cpu_addr + range.size;
+> > +
+> > +		*cur_res = res;
+> > +		cur_res = &res->sibling;
+> > +	}
+> > +
+> > +	return ret;
+> > +}
+> > 
+> >  static int vmbus_platform_driver_probe(struct platform_device *pdev)
+> >  {
+> > -	return vmbus_acpi_add(pdev);
+> > +	if (!acpi_disabled)
+> > +		return vmbus_acpi_add(pdev);
+> > +	else
+> > +		return vmbus_device_add(pdev);
+> 
+> Nit: Usually when there's a negated test with if/else, it's best to flip the
+> if and else clauses so as to eliminate the negation.  It's just slightly less
+> semantic load for the human reader to parse through.  So:
+> 
+> 	if (acpi_disabled)
+> 		return vmbus_device_add(pdev);
+> 	else
+> 		return vmbus_acpi_add(pdev);
+> 
+> Everything else looks good to me.
 
-Notable features absent from this patch:
-- Sound
-    While the dedicated sound components are defined, since the
-    ADSP must be used, sound requires additions of that remoteproc
-    as well some extra "glue" to connect the i2s outputs to it.
-    I was able to hack together some sound based on sm8250 stuff
-    but it needs more work.
-- Embedded Controller
-    The laptop has a dedicated EC that controls, notably,
-    battery/charger and notifies the device about the USB-C DisplayPort
-    HPD events. As per this patch, there is no battery status
-    indication and external display support. Also, due to the EC
-    defaults, the fn key is disabled. I have an experimental driver that
-    implements all of that, which needs more work and will be submitted
-    at a later date.
+Sure will fix.
 
-Changed in v2:
- - Various styling, ordering and node naming issues fixed. (Krzysztof)
----
- arch/arm64/boot/dts/qcom/Makefile             |   1 +
- .../boot/dts/qcom/sc7180-acer-aspire1.dts     | 871 ++++++++++++++++++
- 2 files changed, 872 insertions(+)
- create mode 100644 arch/arm64/boot/dts/qcom/sc7180-acer-aspire1.dts
+Regards,
+Saurabh
 
-diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
-index 89e23a74bc7f..4bd4b4079b17 100644
---- a/arch/arm64/boot/dts/qcom/Makefile
-+++ b/arch/arm64/boot/dts/qcom/Makefile
-@@ -76,6 +76,7 @@ dtb-$(CONFIG_ARCH_QCOM)	+= sa8155p-adp.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sa8295p-adp.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sa8540p-ride.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sa8775p-ride.dtb
-+dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-acer-aspire1.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-idp.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-coachz-r1.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-coachz-r1-lte.dtb
-diff --git a/arch/arm64/boot/dts/qcom/sc7180-acer-aspire1.dts b/arch/arm64/boot/dts/qcom/sc7180-acer-aspire1.dts
-new file mode 100644
-index 000000000000..669b44494e6e
---- /dev/null
-+++ b/arch/arm64/boot/dts/qcom/sc7180-acer-aspire1.dts
-@@ -0,0 +1,871 @@
-+// SPDX-License-Identifier: BSD-3-Clause
-+
-+/dts-v1/;
-+
-+#include <dt-bindings/gpio/gpio.h>
-+#include <dt-bindings/regulator/qcom,rpmh-regulator.h>
-+
-+#include "sc7180.dtsi"
-+
-+#include "pm6150.dtsi"
-+#include "pm6150l.dtsi"
-+
-+/delete-node/ &tz_mem;
-+/delete-node/ &ipa_fw_mem;
-+
-+/ {
-+	model = "Acer Aspire 1";
-+	compatible = "acer,aspire1", "qcom,sc7180";
-+	chassis-type = "laptop";
-+
-+	aliases {
-+		bluetooth0 = &bluetooth;
-+		hsuart0 = &uart3;
-+		serial0 = &uart8;
-+		wifi0 = &wifi;
-+	};
-+
-+	chosen {
-+		stdout-path = "serial0:115200n8";
-+	};
-+
-+	reserved-memory {
-+		zap_mem: zap-shader@80840000 {
-+			reg = <0 0x80840000 0 0x2000>;
-+			no-map;
-+		};
-+
-+		venus_mem: venus@85b00000 {
-+			reg = <0 0x85b00000 0 0x500000>;
-+			no-map;
-+		};
-+
-+		mpss_mem: mpss@86000000 {
-+			reg = <0x0 0x86000000 0x0 0x2000000>;
-+			no-map;
-+		};
-+
-+		adsp_mem: adsp@8e400000 {
-+			reg = <0x0 0x8e400000 0x0 0x2800000>;
-+			no-map;
-+		};
-+
-+		wlan_mem: wlan@93900000 {
-+			reg = <0x0 0x93900000 0x0 0x200000>;
-+			no-map;
-+		};
-+	};
-+
-+	max98357a: audio-codec {
-+		compatible = "maxim,max98357a";
-+		sdmode-gpios = <&tlmm 23 GPIO_ACTIVE_HIGH>;
-+
-+		pinctrl-0 = <&amp_sd_mode_default>;
-+		pinctrl-names = "default";
-+
-+		#sound-dai-cells = <0>;
-+	};
-+
-+	backlight: backlight {
-+		compatible = "pwm-backlight";
-+		pwms = <&sn65dsi86_bridge 1000000>;
-+		enable-gpios = <&tlmm 10 GPIO_ACTIVE_HIGH>;
-+
-+		pinctrl-0 = <&soc_bkoff_default>;
-+		pinctrl-names = "default";
-+	};
-+
-+	reg_brij_1p2: bridge-1p2-regulator {
-+		compatible = "regulator-fixed";
-+		regulator-name = "brij_1p2";
-+		regulator-min-microvolt = <1200000>;
-+		regulator-max-microvolt = <1200000>;
-+
-+		gpio = <&tlmm 19 GPIO_ACTIVE_HIGH>;
-+		enable-active-high;
-+
-+		pinctrl-0 = <&reg_edp_1p2_en_default>;
-+		pinctrl-names = "default";
-+	};
-+
-+	reg_brij_1p8: bridge-regulator {
-+		compatible = "regulator-fixed";
-+		regulator-name = "brij_1p8";
-+		regulator-min-microvolt = <1800000>;
-+		regulator-max-microvolt = <1800000>;
-+
-+		vin-supply = <&vreg_l8c_1p8>;
-+
-+		gpio = <&tlmm 20 GPIO_ACTIVE_HIGH>;
-+		enable-active-high;
-+
-+		pinctrl-0 = <&reg_edp_1p8_en_default>;
-+		pinctrl-names = "default";
-+	};
-+
-+	reg_codec_3p3: codec-regulator {
-+		compatible = "regulator-fixed";
-+		regulator-name = "codec_3p3";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+
-+		gpio = <&tlmm 83 GPIO_ACTIVE_HIGH>;
-+		enable-active-high;
-+
-+		pinctrl-0 = <&reg_audio_en_default>;
-+		pinctrl-names = "default";
-+	};
-+
-+	reg_lcm_3p3: panel-regulator {
-+		compatible = "regulator-fixed";
-+		regulator-name = "lcm_3p3";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+
-+		/*
-+		 * HACK: Display fails with
-+		 *
-+		 * *ERROR* Unexpected max rate (0x0); assuming 5.4 GHz
-+		 * *ERROR* Link training failed, link is off (-5)
-+		 *
-+		 * if the power to the panel was ever cut
-+		 */
-+		regulator-always-on;
-+
-+		gpio = <&tlmm 26 GPIO_ACTIVE_HIGH>;
-+		enable-active-high;
-+
-+		pinctrl-0 = <&reg_lcm_en_default>;
-+		pinctrl-names = "default";
-+	};
-+
-+	reg_tp_3p3: touchpad-regulator {
-+		compatible = "regulator-fixed";
-+		regulator-name = "tp_3p3";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+
-+		gpio = <&tlmm 25 GPIO_ACTIVE_HIGH>;
-+		enable-active-high;
-+
-+		pinctrl-0 = <&reg_tp_en_default>;
-+		pinctrl-names = "default";
-+	};
-+};
-+
-+&camcc {
-+	status = "disabled";
-+};
-+
-+&dsi0 {
-+	vdda-supply = <&vreg_l3c_1p2>;
-+	status = "okay";
-+};
-+
-+&dsi0_out {
-+	remote-endpoint = <&sn65dsi86_in>;
-+	data-lanes = <0 1 2 3>;
-+};
-+
-+&dsi_phy {
-+	vdds-supply = <&vreg_l4a_0p8>;
-+	status = "okay";
-+};
-+
-+&i2c2 {
-+	clock-frequency = <400000>;
-+	status = "okay";
-+
-+	/* embedded-controller@76 */
-+};
-+
-+&i2c4 {
-+	clock-frequency = <400000>;
-+	status = "okay";
-+
-+	/*
-+	 * NOTE: DSDT defines two possible touchpads, other one is
-+	 *
-+	 * reg = <0x15>;
-+	 * hid-descr-addr = <0x1>;
-+	 */
-+
-+	touchpad@2c {
-+		compatible = "hid-over-i2c";
-+		reg = <0x2c>;
-+		hid-descr-addr = <0x20>;
-+
-+		vdd-supply = <&reg_tp_3p3>;
-+
-+		interrupts-extended = <&tlmm 94 IRQ_TYPE_LEVEL_LOW>;
-+
-+		pinctrl-0 = <&hid_touchpad_default>;
-+		pinctrl-names = "default";
-+	};
-+
-+	keyboard@3a {
-+		compatible = "hid-over-i2c";
-+		reg = <0x3a>;
-+		hid-descr-addr = <0x1>;
-+
-+		interrupts-extended = <&tlmm 33 IRQ_TYPE_LEVEL_LOW>;
-+
-+		pinctrl-0 = <&hid_keyboard_default>;
-+		pinctrl-names = "default";
-+
-+		wakeup-source;
-+	};
-+};
-+
-+&i2c9 {
-+	clock-frequency = <400000>;
-+	status = "okay";
-+
-+	alc5682: codec@1a {
-+		compatible = "realtek,rt5682i";
-+		reg = <0x1a>;
-+
-+		#sound-dai-cells = <1>;
-+
-+		interrupt-parent = <&tlmm>;
-+		interrupts = <28 IRQ_TYPE_EDGE_BOTH>;
-+
-+		pinctrl-0 = <&codec_irq_default>;
-+		pinctrl-names = "default";
-+
-+		AVDD-supply = <&vreg_l15a_1p8>;
-+		MICVDD-supply = <&reg_codec_3p3>;
-+		VBAT-supply = <&reg_codec_3p3>;
-+
-+		realtek,dmic1-data-pin = <1>;
-+		realtek,dmic1-clk-pin = <1>;
-+		realtek,jd-src = <1>;
-+	};
-+};
-+
-+&i2c10 {
-+	clock-frequency = <400000>;
-+	status = "okay";
-+
-+	sn65dsi86_bridge: bridge@2c {
-+		compatible = "ti,sn65dsi86";
-+		reg = <0x2c>;
-+		gpio-controller;
-+		#gpio-cells = <2>;
-+		#pwm-cells = <1>;
-+
-+		interrupt-parent = <&tlmm>;
-+		interrupts = <11 IRQ_TYPE_LEVEL_HIGH>;
-+
-+		enable-gpios = <&tlmm 51 GPIO_ACTIVE_HIGH>;
-+		suspend-gpios = <&tlmm 22 GPIO_ACTIVE_LOW>;
-+
-+		pinctrl-0 = <&bridge_en_default>,
-+			    <&edp_bridge_irq_default>,
-+			    <&bridge_suspend_default>;
-+		pinctrl-names = "default";
-+
-+		vpll-supply = <&reg_brij_1p8>;
-+		vccio-supply = <&reg_brij_1p8>;
-+		vcca-supply = <&reg_brij_1p2>;
-+		vcc-supply = <&reg_brij_1p2>;
-+
-+		clocks = <&rpmhcc RPMH_LN_BB_CLK3>;
-+		clock-names = "refclk";
-+
-+		ports {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+
-+			port@0 {
-+				reg = <0>;
-+
-+				sn65dsi86_in: endpoint {
-+					remote-endpoint = <&dsi0_out>;
-+				};
-+			};
-+
-+			port@1 {
-+				reg = <1>;
-+
-+				sn65dsi86_out: endpoint {
-+					data-lanes = <0 1>;
-+					remote-endpoint = <&panel_in_edp>;
-+				};
-+			};
-+		};
-+
-+		aux-bus {
-+			panel: panel {
-+				compatible = "edp-panel";
-+				power-supply = <&reg_lcm_3p3>;
-+				backlight = <&backlight>;
-+
-+				port {
-+					panel_in_edp: endpoint {
-+						remote-endpoint = <&sn65dsi86_out>;
-+					};
-+				};
-+			};
-+		};
-+	};
-+};
-+
-+&gpu {
-+	status = "okay";
-+
-+	zap-shader {
-+		memory-region = <&zap_mem>;
-+		firmware-name = "qcom/sc7180-acer-aspire1/qcdxkmsuc7180.mbn";
-+	};
-+};
-+
-+/* Seems like ADSP really insists on managing those lpass bits itself */
-+&lpasscc {
-+	status = "disabled";
-+};
-+
-+&lpass_hm {
-+	status = "disabled";
-+};
-+
-+&mdp {
-+	status = "okay";
-+};
-+
-+&mdss {
-+	status = "okay";
-+};
-+
-+&pm6150_adc {
-+	thermistor@4e {
-+		reg = <ADC5_AMUX_THM2_100K_PU>;
-+		qcom,ratiometric;
-+		qcom,hw-settle-time = <200>;
-+	};
-+
-+	charger-thermistor@4f {
-+		reg = <ADC5_AMUX_THM3_100K_PU>;
-+		qcom,ratiometric;
-+		qcom,hw-settle-time = <200>;
-+	};
-+};
-+
-+&pm6150_adc_tm {
-+	status = "okay";
-+
-+	charger-thermistor@0 {
-+		reg = <0>;
-+		io-channels = <&pm6150_adc ADC5_AMUX_THM3_100K_PU>;
-+		qcom,ratiometric;
-+		qcom,hw-settle-time-us = <200>;
-+	};
-+
-+	thermistor@1 {
-+		reg = <1>;
-+		io-channels = <&pm6150_adc ADC5_AMUX_THM2_100K_PU>;
-+		qcom,ratiometric;
-+		qcom,hw-settle-time-us = <200>;
-+	};
-+};
-+
-+&pm6150_pon { status = "disabled"; };
-+
-+&qupv3_id_0 {
-+	status = "okay";
-+};
-+
-+&qupv3_id_1 {
-+	status = "okay";
-+};
-+
-+&remoteproc_mpss {
-+	firmware-name = "qcom/sc7180-acer-aspire1/qcmpss7180_nm.mbn";
-+	status = "okay";
-+};
-+
-+&sdhc_1 {
-+	pinctrl-0 = <&sdc1_default>;
-+	pinctrl-1 = <&sdc1_sleep>;
-+	pinctrl-names = "default", "sleep";
-+	vmmc-supply = <&vreg_l19a_2p9>;
-+	vqmmc-supply = <&vreg_l12a_1p8>;
-+
-+	status = "okay";
-+};
-+
-+&uart3 {
-+	/delete-property/interrupts;
-+	interrupts-extended = <&intc GIC_SPI 604 IRQ_TYPE_LEVEL_HIGH>,
-+			      <&tlmm 41 IRQ_TYPE_EDGE_FALLING>;
-+
-+	pinctrl-1 = <&qup_uart3_sleep>;
-+	pinctrl-names = "default", "sleep";
-+
-+	status = "okay";
-+
-+	bluetooth: bluetooth {
-+		compatible = "qcom,wcn3991-bt";
-+		vddio-supply = <&vreg_l10a_1p8>;
-+		vddxo-supply = <&vreg_l1c_1p8>;
-+		vddrf-supply = <&vreg_l2c_1p3>;
-+		vddch0-supply = <&vreg_l10c_3p3>;
-+		max-speed = <3200000>;
-+	};
-+};
-+
-+&uart8 {
-+	status = "okay";
-+};
-+
-+&usb_1 {
-+	status = "okay";
-+};
-+
-+&usb_1_dwc3 {
-+	dr_mode = "host";
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+
-+	usb_hub_2_x: hub@1 {
-+		compatible = "usbbda,5411";
-+		reg = <1>;
-+		peer-hub = <&usb_hub_3_x>;
-+	};
-+
-+	usb_hub_3_x: hub@2 {
-+		compatible = "usbbda,411";
-+		reg = <2>;
-+		peer-hub = <&usb_hub_2_x>;
-+	};
-+};
-+
-+&usb_1_hsphy {
-+	vdd-supply = <&vreg_l4a_0p8>;
-+	vdda-pll-supply = <&vreg_l11a_1p8>;
-+	vdda-phy-dpdm-supply = <&vreg_l17a_3p0>;
-+	qcom,imp-res-offset-value = <8>;
-+	qcom,preemphasis-level = <QUSB2_V2_PREEMPHASIS_15_PERCENT>;
-+	qcom,preemphasis-width = <QUSB2_V2_PREEMPHASIS_WIDTH_HALF_BIT>;
-+	qcom,bias-ctrl-value = <0x22>;
-+	qcom,charge-ctrl-value = <3>;
-+	qcom,hsdisc-trim-value = <0>;
-+
-+	status = "okay";
-+};
-+
-+&usb_1_qmpphy {
-+	vdda-phy-supply = <&vreg_l3c_1p2>;
-+	vdda-pll-supply = <&vreg_l4a_0p8>;
-+	status = "okay";
-+};
-+
-+&venus {
-+	firmware-name = "qcom/sc7180-acer-aspire1/qcvss7180.mbn";
-+};
-+
-+&wifi {
-+	vdd-0.8-cx-mx-supply = <&vreg_l9a_0p6>;
-+	vdd-1.8-xo-supply = <&vreg_l1c_1p8>;
-+	vdd-1.3-rfa-supply = <&vreg_l2c_1p3>;
-+	vdd-3.3-ch0-supply = <&vreg_l10c_3p3>;
-+	vdd-3.3-ch1-supply = <&vreg_l11c_3p3>;
-+	status = "okay";
-+};
-+
-+&apps_rsc {
-+	regulators-0 {
-+		compatible = "qcom,pm6150-rpmh-regulators";
-+		qcom,pmic-id = "a";
-+
-+		vreg_s1a_1p1: smps1 {
-+			regulator-min-microvolt = <1128000>;
-+			regulator-max-microvolt = <1128000>;
-+		};
-+
-+		vreg_l4a_0p8: ldo4 {
-+			regulator-min-microvolt = <824000>;
-+			regulator-max-microvolt = <928000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_l9a_0p6: ldo9 {
-+			regulator-min-microvolt = <488000>;
-+			regulator-max-microvolt = <800000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_l10a_1p8: ldo10 {
-+			regulator-min-microvolt = <1800000>;
-+			regulator-max-microvolt = <1800000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+
-+			regulator-always-on;
-+			regulator-boot-on;
-+		};
-+
-+		vreg_l11a_1p8: ldo11 {
-+			regulator-min-microvolt = <1800000>;
-+			regulator-max-microvolt = <1800000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_l12a_1p8: ldo12 {
-+			regulator-min-microvolt = <1800000>;
-+			regulator-max-microvolt = <1800000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_l13a_1p8: ldo13 {
-+			regulator-min-microvolt = <1800000>;
-+			regulator-max-microvolt = <1800000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_l14a_1p8: ldo14 {
-+			regulator-min-microvolt = <1800000>;
-+			regulator-max-microvolt = <1800000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_l15a_1p8: ldo15 {
-+			regulator-min-microvolt = <1800000>;
-+			regulator-max-microvolt = <1800000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_l16a_2p7: ldo16 {
-+			regulator-min-microvolt = <2496000>;
-+			regulator-max-microvolt = <3304000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_l17a_3p0: ldo17 {
-+			regulator-min-microvolt = <2920000>;
-+			regulator-max-microvolt = <3232000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_l18a_2p8: ldo18 {
-+			regulator-min-microvolt = <2496000>;
-+			regulator-max-microvolt = <3304000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_l19a_2p9: ldo19 {
-+			regulator-min-microvolt = <2960000>;
-+			regulator-max-microvolt = <2960000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+	};
-+
-+	regulators-1 {
-+		compatible = "qcom,pm6150l-rpmh-regulators";
-+		qcom,pmic-id = "c";
-+
-+		vreg_s8c_1p3: smps8 {
-+			regulator-min-microvolt = <1120000>;
-+			regulator-max-microvolt = <1408000>;
-+		};
-+
-+		vreg_l1c_1p8: ldo1 {
-+			regulator-min-microvolt = <1616000>;
-+			regulator-max-microvolt = <1984000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_l2c_1p3: ldo2 {
-+			regulator-min-microvolt = <1168000>;
-+			regulator-max-microvolt = <1304000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_l3c_1p2: ldo3 {
-+			regulator-min-microvolt = <1144000>;
-+			regulator-max-microvolt = <1304000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_l4c_1p8: ldo4 {
-+			regulator-min-microvolt = <1648000>;
-+			regulator-max-microvolt = <3304000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_LPM>;
-+		};
-+
-+		vreg_l5c_1p8: ldo5 {
-+			regulator-min-microvolt = <1648000>;
-+			regulator-max-microvolt = <3304000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_LPM>;
-+		};
-+
-+		vreg_l6c_2p9: ldo6 {
-+			regulator-min-microvolt = <1800000>;
-+			regulator-max-microvolt = <2950000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_l7c_3p0: ldo7 {
-+			regulator-min-microvolt = <3000000>;
-+			regulator-max-microvolt = <3312000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_LPM>;
-+		};
-+
-+		vreg_l8c_1p8: ldo8 {
-+			regulator-min-microvolt = <1800000>;
-+			regulator-max-microvolt = <1800000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_l9c_2p9: ldo9 {
-+			regulator-min-microvolt = <2952000>;
-+			regulator-max-microvolt = <2952000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_l10c_3p3: ldo10 {
-+			regulator-min-microvolt = <3000000>;
-+			regulator-max-microvolt = <3400000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_l11c_3p3: ldo11 {
-+			regulator-min-microvolt = <3000000>;
-+			regulator-max-microvolt = <3400000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_bob: bob {
-+			regulator-min-microvolt = <3008000>;
-+			regulator-max-microvolt = <3960000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_AUTO>;
-+		};
-+	};
-+};
-+
-+&qup_i2c2_default {
-+	drive-strength = <2>;
-+
-+	/* Has external pullup */
-+	bias-disable;
-+};
-+
-+&qup_i2c4_default {
-+	drive-strength = <2>;
-+
-+	/* Has external pullup */
-+	bias-disable;
-+};
-+
-+&qup_i2c9_default {
-+	drive-strength = <2>;
-+
-+	/* Has external pullup */
-+	bias-disable;
-+};
-+
-+&qup_i2c10_default {
-+	drive-strength = <2>;
-+
-+	/* Has external pullup */
-+	bias-disable;
-+};
-+
-+&tlmm {
-+	/*
-+	 * The TZ seem to protect those because some boards can have
-+	 * fingerprint sensor connected to this range. Not connected
-+	 * on this board
-+	 */
-+	gpio-reserved-ranges = <58 5>;
-+
-+	amp_sd_mode_default: amp-sd-mode-deault-state {
-+		pins = "gpio23";
-+		function = "gpio";
-+		drive-strength = <16>;
-+		bias-disable;
-+	};
-+
-+	bridge_en_default: bridge-en-default-state {
-+		pins = "gpio51";
-+		function = "gpio";
-+		drive-strength = <16>;
-+		bias-disable;
-+	};
-+
-+	bridge_suspend_default: bridge-suspend-default-state {
-+		pins = "gpio22";
-+		function = "gpio";
-+		drive-strength = <16>;
-+		bias-pull-up;
-+	};
-+
-+	codec_irq_default: codec-irq-deault-state {
-+		pins = "gpio28";
-+		function = "gpio";
-+		drive-strength = <2>;
-+		bias-disable;
-+	};
-+
-+	edp_bridge_irq_default: edp-bridge-irq-default-state {
-+		pins = "gpio11";
-+		function = "gpio";
-+		drive-strength = <2>;
-+		bias-pull-down;
-+	};
-+
-+	hid_keyboard_default: hid-keyboard-default-state {
-+		pins = "gpio33";
-+		function = "gpio";
-+		drive-strength = <2>;
-+		bias-disable;
-+	};
-+
-+	hid_touchpad_default: hid-touchpad-default-state {
-+		pins = "gpio94";
-+		function = "gpio";
-+		drive-strength = <2>;
-+		bias-disable;
-+	};
-+
-+	qup_uart3_sleep: qup-uart3-sleep-state {
-+		cts-pins {
-+			/*
-+			 * Configure a pull-down on CTS to match the pull of
-+			 * the Bluetooth module.
-+			 */
-+			pins = "gpio38";
-+			function = "gpio";
-+			bias-pull-down;
-+		};
-+
-+		rts-pins {
-+			/*
-+			 * Configure pull-down on RTS. As RTS is active low
-+			 * signal, pull it low to indicate the BT SoC that it
-+			 * can wakeup the system anytime from suspend state by
-+			 * pulling RX low (by sending wakeup bytes).
-+			 */
-+			pins = "gpio39";
-+			function = "gpio";
-+			bias-pull-down;
-+		};
-+
-+		tx-pins {
-+			/*
-+			 * Configure pull-up on TX when it isn't actively driven
-+			 * to prevent BT SoC from receiving garbage during sleep.
-+			 */
-+			pins = "gpio40";
-+			function = "gpio";
-+			bias-pull-up;
-+		};
-+
-+		rx-pins {
-+			/*
-+			 * Configure a pull-up on RX. This is needed to avoid
-+			 * garbage data when the TX pin of the Bluetooth module
-+			 * is floating which may cause spurious wakeups.
-+			 */
-+			pins = "gpio41";
-+			function = "gpio";
-+			bias-pull-up;
-+		};
-+	};
-+
-+	reg_edp_1p2_en_default: reg-edp-1p2-en-deault-state {
-+		pins = "gpio19";
-+		function = "gpio";
-+		drive-strength = <16>;
-+		bias-disable;
-+	};
-+
-+	reg_edp_1p8_en_default: reg-edp-1p8-en-deault-state {
-+		pins = "gpio20";
-+		function = "gpio";
-+		drive-strength = <16>;
-+		bias-disable;
-+	};
-+
-+	reg_lcm_en_default: reg-lcm-en-deault-state {
-+		pins = "gpio26";
-+		function = "gpio";
-+		drive-strength = <16>;
-+		bias-disable;
-+	};
-+
-+	reg_audio_en_default: reg-audio-en-deault-state {
-+		pins = "gpio83";
-+		function = "gpio";
-+		drive-strength = <2>;
-+		bias-disable;
-+	};
-+
-+	reg_tp_en_default: reg-tp-en-deault-state {
-+		pins = "gpio25";
-+		function = "gpio";
-+		drive-strength = <2>;
-+		bias-disable;
-+	};
-+
-+	soc_bkoff_default: soc-bkoff-deault-state {
-+		pins = "gpio10";
-+		function = "gpio";
-+		drive-strength = <16>;
-+		bias-disable;
-+	};
-+
-+	sdc1_default: sdc1-default-state {
-+		clk-pins {
-+			pins = "sdc1_clk";
-+			bias-disable;
-+			drive-strength = <16>;
-+		};
-+
-+		cmd-pins {
-+			pins = "sdc1_cmd";
-+			bias-pull-up;
-+			drive-strength = <16>;
-+		};
-+
-+		data-pins {
-+			pins = "sdc1_data";
-+			bias-pull-up;
-+			drive-strength = <16>;
-+		};
-+
-+		rclk-pins {
-+			pins = "sdc1_rclk";
-+			bias-pull-down;
-+		};
-+	};
-+
-+	sdc1_sleep: sdc1-sleep-state {
-+		clk-pins {
-+			pins = "sdc1_clk";
-+			bias-disable;
-+			drive-strength = <2>;
-+		};
-+
-+		cmd-pins {
-+			pins = "sdc1_cmd";
-+			bias-pull-up;
-+			drive-strength = <2>;
-+		};
-+
-+		data-pins {
-+			pins = "sdc1_data";
-+			bias-pull-up;
-+			drive-strength = <2>;
-+		};
-+
-+		rclk-pins {
-+			pins = "sdc1_rclk";
-+			bias-pull-down;
-+		};
-+	};
-+
-+	ter_mi2s_active: ter-mi2s-active-state {
-+		pins = "gpio63", "gpio64", "gpio65";
-+		function = "mi2s_2";
-+	};
-+};
--- 
-2.39.2
-
+> 
+> Michael
+> 
+> >  }
+> > 
+> >  static int vmbus_platform_driver_remove(struct platform_device *pdev)
+> > @@ -2634,7 +2679,17 @@ static int vmbus_bus_resume(struct device *dev)
+> >  #define vmbus_bus_resume NULL
+> >  #endif /* CONFIG_PM_SLEEP */
+> > 
+> > -static const struct acpi_device_id vmbus_acpi_device_ids[] = {
+> > +static const __maybe_unused struct of_device_id vmbus_of_match[] = {
+> > +	{
+> > +		.compatible = "microsoft,vmbus",
+> > +	},
+> > +	{
+> > +		/* sentinel */
+> > +	},
+> > +};
+> > +MODULE_DEVICE_TABLE(of, vmbus_of_match);
+> > +
+> > +static const __maybe_unused struct acpi_device_id vmbus_acpi_device_ids[] = {
+> >  	{"VMBUS", 0},
+> >  	{"VMBus", 0},
+> >  	{"", 0},
+> > @@ -2668,6 +2723,7 @@ static struct platform_driver vmbus_platform_driver = {
+> >  	.driver = {
+> >  		.name = "vmbus",
+> >  		.acpi_match_table = ACPI_PTR(vmbus_acpi_device_ids),
+> > +		.of_match_table = of_match_ptr(vmbus_of_match),
+> >  		.pm = &vmbus_bus_pm,
+> >  		.probe_type = PROBE_FORCE_SYNCHRONOUS,
+> >  	}
+> > --
+> > 2.34.1
