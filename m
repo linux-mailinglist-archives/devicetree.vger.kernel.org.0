@@ -2,91 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7A1FF6BB4F1
-	for <lists+devicetree@lfdr.de>; Wed, 15 Mar 2023 14:43:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3A9E46BB517
+	for <lists+devicetree@lfdr.de>; Wed, 15 Mar 2023 14:48:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232034AbjCONmz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Mar 2023 09:42:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57088 "EHLO
+        id S232186AbjCONsN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Mar 2023 09:48:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39732 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232377AbjCONmw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Mar 2023 09:42:52 -0400
-Received: from relay2-d.mail.gandi.net (relay2-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::222])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 34CD18EA3B;
-        Wed, 15 Mar 2023 06:42:50 -0700 (PDT)
-Received: (Authenticated sender: herve.codina@bootlin.com)
-        by mail.gandi.net (Postfix) with ESMTPA id 57D2740009;
-        Wed, 15 Mar 2023 13:42:47 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1678887768;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=DV4CC5O5iyRa+8OQdtxcgwDs8G2cCnQDmrmdt77V24E=;
-        b=UCbgN/TTtdKV/9x8toXtsODqKW0O040mbJ9e/phujjg/Qc+3nYDRI99siod/Tu9ZcK8hZD
-        iYBqUY7ePJgaGyROhbCesrw0CsU0DG9qZt3XyONF+/6KkCVI7hegBXoS4seKuiphZc8zqr
-        VJi2j9xVRYyRYeM8sBX7GHyUFj7bdBoLBz65A/RvAx13Uzn9/Ahbu89I163QhpxxQ4YaN5
-        3CUm0DvwoFocoKE8yCgpIWbN+vnqHmW6JaM4VUEuZrGRhrN8VEbFVD6Zgy6Qlh2LZ44jkA
-        vl937cZXH16OQLXz6RvyWU7dF3I8AQvBf5Fykoa0/Fjc8uTZxvxzuTCakr7R+Q==
-From:   Herve Codina <herve.codina@bootlin.com>
-To:     Herve Codina <herve.codina@bootlin.com>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S232420AbjCONsH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Mar 2023 09:48:07 -0400
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6F22227993;
+        Wed, 15 Mar 2023 06:47:37 -0700 (PDT)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 32FDkv2j120549;
+        Wed, 15 Mar 2023 08:46:57 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1678888017;
+        bh=EtqTPcSnfVc0LoUbtO5WMNgw5dncuifjT+kor26LEik=;
+        h=Date:From:To:CC:Subject:References:In-Reply-To;
+        b=vJFbImRcVQJe1Vbv/GRPA1opyPaCc9Kd1v8v1hpjb6qbddm4TN4Lq9Tals9h3IQzK
+         xtRBycAegRvNbAKbZwEKvwSAi/URSfUr5Ls5UhGoPGhC39YIwdKAn+amI+Po/EBvaF
+         QZQvhYrB+QtixL5KzywvMU8ev1lQFmCxPQcjD7M4=
+Received: from DLEE109.ent.ti.com (dlee109.ent.ti.com [157.170.170.41])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 32FDkvRu025008
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Wed, 15 Mar 2023 08:46:57 -0500
+Received: from DLEE110.ent.ti.com (157.170.170.21) by DLEE109.ent.ti.com
+ (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Wed, 15
+ Mar 2023 08:46:56 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE110.ent.ti.com
+ (157.170.170.21) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
+ Frontend Transport; Wed, 15 Mar 2023 08:46:56 -0500
+Received: from localhost (ileaxei01-snat2.itg.ti.com [10.180.69.6])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 32FDkusv001488;
+        Wed, 15 Mar 2023 08:46:56 -0500
+Date:   Wed, 15 Mar 2023 08:46:56 -0500
+From:   Nishanth Menon <nm@ti.com>
+To:     Sinthu Raja <sinthu.raja@mistralsolutions.com>
+CC:     Tero Kristo <kristo@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Derek Kiernan <derek.kiernan@xilinx.com>,
-        Dragan Cvetic <dragan.cvetic@xilinx.com>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>
-Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        alsa-devel@alsa-project.org,
-        Christophe Leroy <christophe.leroy@csgroup.eu>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: [PATCH 7/7] MAINTAINERS: Add the Lantiq PEF2256 ASoC codec entry
-Date:   Wed, 15 Mar 2023 14:42:31 +0100
-Message-Id: <20230315134231.233193-8-herve.codina@bootlin.com>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20230315134231.233193-1-herve.codina@bootlin.com>
-References: <20230315134231.233193-1-herve.codina@bootlin.com>
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        Sinthu Raja <sinthu.raja@ti.com>
+Subject: Re: [PATCH] arm64: dts: ti: k3-am68-sk-base-board: Update IO EXP
+ GPIO lines for Rev E2
+Message-ID: <20230315134656.bt3mczw73h3z2j57@privacy>
+References: <20230315120934.16954-1-sinthu.raja@ti.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <20230315120934.16954-1-sinthu.raja@ti.com>
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_PASS,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-After contributing the codec, add myself as the maintainer for the
-Lantiq PEF2256 codec.
+On 17:39-20230315, Sinthu Raja wrote:
+> From: Sinthu Raja <sinthu.raja@ti.com>
+> 
+> Rev E2 of the AM68 SK baseboard has updated the GPIO IO expander pins
+> functionality. To match the Rev E2 schematics, update existing IO expander
+> GPIO line names and the corresponding node which uses the expansion(exp1)
+> node.
+> 
+> Signed-off-by: Sinthu Raja <sinthu.raja@ti.com>
+> ---
+> 
+> Schematics Ref: https://www.ti.com/lit/zip/sprr463
 
-Signed-off-by: Herve Codina <herve.codina@bootlin.com>
----
- MAINTAINERS | 7 +++++++
- 1 file changed, 7 insertions(+)
+Looking at https://www.ti.com/tool/SK-AM68 looks like E1 never hit
+production, is that correct?
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index b258498aa8ac..81c17580b402 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -11651,6 +11651,13 @@ S:	Maintained
- F:	arch/mips/lantiq
- F:	drivers/soc/lantiq
- 
-+LANTIQ PEF2256 ASoC CODEC
-+M:	Herve Codina <herve.codina@bootlin.com>
-+L:	alsa-devel@alsa-project.org (moderated for non-subscribers)
-+S:	Maintained
-+F:	Documentation/devicetree/bindings/sound/lantiq,pef2256-codec.yaml
-+F:	sound/soc/codecs/pef2256-codec.c
-+
- LANTIQ PEF2256 DRIVER
- M:	Herve Codina <herve.codina@bootlin.com>
- S:	Maintained
+Does this need a "Fixes" tag?
+
+> 
+>  arch/arm64/boot/dts/ti/k3-am68-sk-base-board.dts | 12 +++++-------
+>  1 file changed, 5 insertions(+), 7 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/ti/k3-am68-sk-base-board.dts b/arch/arm64/boot/dts/ti/k3-am68-sk-base-board.dts
+> index 2091cd2431fb..27a43a8ecffd 100644
+> --- a/arch/arm64/boot/dts/ti/k3-am68-sk-base-board.dts
+> +++ b/arch/arm64/boot/dts/ti/k3-am68-sk-base-board.dts
+> @@ -60,7 +60,7 @@ vdd_mmc1: regulator-sd {
+>  		regulator-boot-on;
+>  		enable-active-high;
+>  		vin-supply = <&vsys_3v3>;
+> -		gpio = <&exp1 10 GPIO_ACTIVE_HIGH>;
+> +		gpio = <&exp1 8 GPIO_ACTIVE_HIGH>;
+>  	};
+>  
+>  	vdd_sd_dv: regulator-tlv71033 {
+> @@ -264,12 +264,10 @@ exp1: gpio@21 {
+>  		reg = <0x21>;
+>  		gpio-controller;
+>  		#gpio-cells = <2>;
+> -		gpio-line-names = "CSI_VIO_SEL", "CSI_SEL_FPC_EXPn", "HDMI_PDn",
+> -					"HDMI_LS_OE", "DP0_3V3 _EN", "BOARDID_EEPROM_WP",
+> -					"CAN_STB", " ", "GPIO_uSD_PWR_EN", "eDP_ENABLE",
+> -					"IO_EXP_PCIe1_M.2_RTSz", "IO_EXP_MCU_RGMII_RSTz",
+> -					"IO_EXP_CSI2_EXP_RSTz", " ", "CSI0_B_GPIO1",
+> -					"CSI1_B_GPIO1";
+> +		gpio-line-names = " ", " ", " ", " ", " ",
+> +				  "BOARDID_EEPROM_WP", "CAN_STB", " ",
+> +				  "GPIO_uSD_PWR_EN", " ", "IO_EXP_PCIe1_M.2_RTSz",
+> +				  "IO_EXP_MCU_RGMII_RST#", " ", " ", " ", " ";
+>  	};
+>  };
+>  
+> -- 
+> 2.36.1
+> 
+
 -- 
-2.39.2
-
+Regards,
+Nishanth Menon
+Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
