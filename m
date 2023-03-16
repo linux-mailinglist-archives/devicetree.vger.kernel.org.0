@@ -2,90 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D9FEC6BD568
-	for <lists+devicetree@lfdr.de>; Thu, 16 Mar 2023 17:21:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EC6B56BD58E
+	for <lists+devicetree@lfdr.de>; Thu, 16 Mar 2023 17:29:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230298AbjCPQVL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Mar 2023 12:21:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45902 "EHLO
+        id S229826AbjCPQ3J (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Mar 2023 12:29:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60306 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230110AbjCPQVH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Mar 2023 12:21:07 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0FE6D4FF10;
-        Thu, 16 Mar 2023 09:20:48 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id B8CC2B82280;
-        Thu, 16 Mar 2023 16:20:46 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2C718C433EF;
-        Thu, 16 Mar 2023 16:20:41 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1678983645;
-        bh=h71BjMhOZMMG4djc5Zr7EDNKJL2J78Ensp7aau93MzA=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=A9XUQLp0wzDffjwD32BGHTpw79X8+J5ZHHIAYgidV4YNaKm4DVaqXe6P8KGJZ8HCY
-         wZZdWAuLDEkHyS39o+iCixyCUylRhULb6s0aiVeZ0O9tIlxCcU5WrepnJxuc5x18JA
-         3zVePxd90KnGCKYhITEa2CaivoQN8BR3uu3BOGla8ZumAhgGEPV7HfHuUmCYIvbfWy
-         laTDGQMJBF8rOkugU8o/Yy0BkC4O3bq0nrsAkFbj0mns8eSefBRqxX9wjq3i5+jQXB
-         8+UTItjt4yy4Lm7tuT9yztoAeQ5vZa4GSn5taKUmiKJQXqQTvQq8GBNkBAcc+j3i0Y
-         B0q2AEeTpoYzA==
-Date:   Thu, 16 Mar 2023 16:20:37 +0000
-From:   Lee Jones <lee@kernel.org>
-To:     Julien Panis <jpanis@baylibre.com>
-Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        corbet@lwn.net, arnd@arndb.de, gregkh@linuxfoundation.org,
-        derek.kiernan@xilinx.com, dragan.cvetic@xilinx.com,
-        eric.auger@redhat.com, jgg@ziepe.ca, razor@blackwall.org,
-        stephen@networkplumber.org, davem@davemloft.net,
-        christian.koenig@amd.com, contact@emersion.fr,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-doc@vger.kernel.org, sterzik@ti.com, u-kumar1@ti.com,
-        eblanc@baylibre.com, jneanne@baylibre.com
-Subject: Re: [PATCH v2 2/4] mfd: tps6594: Add driver for TI TPS6594 PMIC
-Message-ID: <20230316162037.GW9667@google.com>
-References: <20230315110736.35506-1-jpanis@baylibre.com>
- <20230315110736.35506-3-jpanis@baylibre.com>
+        with ESMTP id S229540AbjCPQ3I (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Mar 2023 12:29:08 -0400
+Received: from relay9-d.mail.gandi.net (relay9-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::229])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1277276B0;
+        Thu, 16 Mar 2023 09:29:04 -0700 (PDT)
+Received: (Authenticated sender: herve.codina@bootlin.com)
+        by mail.gandi.net (Postfix) with ESMTPSA id CF611FF811;
+        Thu, 16 Mar 2023 16:29:00 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1678984143;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=jeRzDs4ihJbeI7tp32i3vf2hG703FkbCNPgA50D/FNA=;
+        b=mXFzboS07wKLrh31pNwHjrVSBN14J/n9oejyp51jQ/bRh1ex0pQ7a21J4KKzxljg005gqX
+        pp45HUxC6IHCfX+F8PGrmOOe/FB8XqVLKHmpyjW1yXy3R2vmaaqTe+RfLiqjIa572fiwh1
+        RiXLGu+b5LQW2DT+RLrmq9+oiqzS89YrL38unneeJIJ+7SpG81P2m+vSnxwz88EdkoB1sF
+        VyzyCQSwkEHO3RqJ+C/o/N3qLhutNpOSA87VuQciRtJpa83iHr0vAJYZb7YRZTLMvqUb8f
+        K4JbNS/lXslxJ//oyVuBGcG7p/c1fqW0TZPO/CAIRgW7v1iHsyAMjBZ955oItA==
+Date:   Thu, 16 Mar 2023 17:29:00 +0100
+From:   Herve Codina <herve.codina@bootlin.com>
+To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Derek Kiernan <derek.kiernan@xilinx.com>,
+        Dragan Cvetic <dragan.cvetic@xilinx.com>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, alsa-devel@alsa-project.org,
+        Christophe Leroy <christophe.leroy@csgroup.eu>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH v2 2/7] drivers: misc: Add support for the Lantiq
+ PEF2256 framer
+Message-ID: <20230316172900.2bb49a13@bootlin.com>
+In-Reply-To: <ZBMQTxFsrKQesd4v@kroah.com>
+References: <20230316122741.577663-1-herve.codina@bootlin.com>
+        <20230316122741.577663-3-herve.codina@bootlin.com>
+        <ZBMQTxFsrKQesd4v@kroah.com>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.1.1 (GTK 3.24.37; x86_64-redhat-linux-gnu)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20230315110736.35506-3-jpanis@baylibre.com>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 15 Mar 2023, Julien Panis wrote:
+Hi Greg,
 
-> This patch adds support for TPS6594 PMIC MFD core. It provides
-> communication through the I2C and SPI interfaces, and supports
-> protocols with embedded CRC data fields for safety applications.
->
-> Signed-off-by: Julien Panis <jpanis@baylibre.com>
-> ---
->  drivers/mfd/Kconfig         |   32 ++
->  drivers/mfd/Makefile        |    3 +
->  drivers/mfd/tps6594-core.c  |  453 ++++++++++++++++
->  drivers/mfd/tps6594-i2c.c   |  244 +++++++++
->  drivers/mfd/tps6594-spi.c   |  129 +++++
->  include/linux/mfd/tps6594.h | 1020 +++++++++++++++++++++++++++++++++++
->  6 files changed, 1881 insertions(+)
->  create mode 100644 drivers/mfd/tps6594-core.c
->  create mode 100644 drivers/mfd/tps6594-i2c.c
->  create mode 100644 drivers/mfd/tps6594-spi.c
->  create mode 100644 include/linux/mfd/tps6594.h
+On Thu, 16 Mar 2023 13:49:19 +0100
+Greg Kroah-Hartman <gregkh@linuxfoundation.org> wrote:
 
-Once you have the misc Acks, I plan to take this via MFD:
+> On Thu, Mar 16, 2023 at 01:27:36PM +0100, Herve Codina wrote:
+> > +EXPORT_SYMBOL(pef2256_get_byphandle); =20
+>=20
+> You have a mixture of EXPORT_SYMBOL() and EXPORT_SYMBOL_GPL() in the
+> same file here.  As this one:
+>=20
+> > +
+> > +void pef2256_put(struct pef2256 *pef2256)
+> > +{
+> > +	put_device(pef2256->dev);
+> > +}
+> > +EXPORT_SYMBOL(pef2256_put); =20
+>=20
+> Is just a wrapper around a EXPORT_SYMBOL_GPL() function, please revisit
+> and perhaps make them all EXPORT_SYMBOL_GPL() calls?
+>=20
 
-For my own reference (apply this as-is to your sign-off block):
+Indeed.
+I will make them consistent in the v3 series.
 
-Acked-for-MFD-by: Lee Jones <lee@kernel.org>
-
---
-Lee Jones [李琼斯]
+Thanks for pointing that out.
+Herv=C3=A9
+--=20
+Herv=C3=A9 Codina, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
