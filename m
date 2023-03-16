@@ -2,139 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 698AE6BD29A
-	for <lists+devicetree@lfdr.de>; Thu, 16 Mar 2023 15:44:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id ABD426BD2A8
+	for <lists+devicetree@lfdr.de>; Thu, 16 Mar 2023 15:48:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231237AbjCPOo1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Mar 2023 10:44:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52122 "EHLO
+        id S230252AbjCPOsJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Mar 2023 10:48:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57414 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229659AbjCPOo0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Mar 2023 10:44:26 -0400
-Received: from out5-smtp.messagingengine.com (out5-smtp.messagingengine.com [66.111.4.29])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C942D15566;
-        Thu, 16 Mar 2023 07:44:24 -0700 (PDT)
-Received: from compute6.internal (compute6.nyi.internal [10.202.2.47])
-        by mailout.nyi.internal (Postfix) with ESMTP id 3F3195C00DD;
-        Thu, 16 Mar 2023 10:44:24 -0400 (EDT)
-Received: from imap51 ([10.202.2.101])
-  by compute6.internal (MEProxy); Thu, 16 Mar 2023 10:44:24 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arndb.de; h=cc
-        :cc:content-type:content-type:date:date:from:from:in-reply-to
-        :in-reply-to:message-id:mime-version:references:reply-to:sender
-        :subject:subject:to:to; s=fm1; t=1678977864; x=1679064264; bh=lN
-        HiUop2duty04Hs1IhDp2V9CWKLAvzuo8xtH3K/m4E=; b=Jo4HzIW3VinYSAtEQN
-        b0LVtuA5dAWWEz9b4IRmCu6FUdmgCc6fmX4HgLPtD9dwpDQqX9yMXYCZVaS+YVWr
-        v3DMeo7DMFNjPpiDgukp+QpxLCaHqevZBcDVXGYlisF6qIjda180UkQx2pH8z4Mk
-        7bREmchtVfabi5Fn55qmIELyItv+VY5PH4R/KbJnHbfQ9LrJ+onwcZP+3qq+RzpO
-        N7+MZYLy4ed9IJDLkssWBnhigPXmrIJOCIDb/LJPS+aajkp2aeUj7YLdjn7O3WbI
-        bFcdrpchyuFQnoapGu+e/BxnvK6ZQRRhpH/jQSk4n1L933paRclqTN2tHO2SUvuL
-        fcag==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:cc:content-type:content-type:date:date
-        :feedback-id:feedback-id:from:from:in-reply-to:in-reply-to
-        :message-id:mime-version:references:reply-to:sender:subject
-        :subject:to:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
-        :x-sasl-enc; s=fm2; t=1678977864; x=1679064264; bh=lNHiUop2duty0
-        4Hs1IhDp2V9CWKLAvzuo8xtH3K/m4E=; b=M7tzRWi7bGJClvV94YgQn7KXb1cm7
-        GnzDvPNdNDDDhGb4Eino3/o65cLWuRB4J+94f8QDlCLELBtV08exeXuMrqL8lpk7
-        mhPG92fv7wNT3YVlBDjSDYGtwczFgABTtBN7ZY320b0xq+7CzO9q9iUU7RmEESTB
-        fTLuAJZPNrnmK+ewFDMlOvtL3eJ7ICB/qpRiy3Wih7cpJNl2YJe54wXYshRnnJUo
-        4AN7PrsyXUjtvpvHYYhA6RcX8ZzkkE95DtPGE62af628tYAWw2QXeXeSBD8LDjNF
-        j2gY1ikZy4Fp0CMxSnCYelEm8Ogs9xGhF8N98Z1PQyADlL/OPOQXHNdbw==
-X-ME-Sender: <xms:RysTZFeWPbpS_ilMGdpFmfOk7aR4j9mBWM8h_hmBBBVhf1NeqbdlBQ>
-    <xme:RysTZDNJdfPJCKOuF_zMzIG_4PVKcQxCmhLg894n8SAC4d2bt0K-lYsaItY6SihyS
-    nUzX7icE1tYfQK1Fig>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvhedrvdeftddgieelucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhepofgfggfkjghffffhvfevufgtsehttdertderredtnecuhfhrohhmpedftehr
-    nhguuceuvghrghhmrghnnhdfuceorghrnhgusegrrhhnuggsrdguvgeqnecuggftrfgrth
-    htvghrnhepffehueegteeihfegtefhjefgtdeugfegjeelheejueethfefgeeghfektdek
-    teffnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomheprg
-    hrnhgusegrrhhnuggsrdguvg
-X-ME-Proxy: <xmx:RysTZOhUGLVJs7XQeyesBf5V08Q_XHpcORQzrGsDiGYOox6aqJrruA>
-    <xmx:RysTZO8CaLJsl1VMBf7VDSLvQRJIqyYLS6a_AmC8NUcsgqhDJMfoVg>
-    <xmx:RysTZBu-g5v-rzx_mPObIsjyO_qqPCWoIHKy8PLkAyfGrcJu0l_L5A>
-    <xmx:SCsTZKG6kcYe4SFbDdU8Uow8qw_MfsssFueHjjUQjerrgkrzJJdX2A>
-Feedback-ID: i56a14606:Fastmail
-Received: by mailuser.nyi.internal (Postfix, from userid 501)
-        id B692EB60086; Thu, 16 Mar 2023 10:44:23 -0400 (EDT)
-X-Mailer: MessagingEngine.com Webmail Interface
-User-Agent: Cyrus-JMAP/3.9.0-alpha0-221-gec32977366-fm-20230306.001-gec329773
-Mime-Version: 1.0
-Message-Id: <fa966844-2750-4951-9a40-ecc2653aab77@app.fastmail.com>
-In-Reply-To: <20230315072902.9298-4-ychuang570808@gmail.com>
-References: <20230315072902.9298-1-ychuang570808@gmail.com>
- <20230315072902.9298-4-ychuang570808@gmail.com>
-Date:   Thu, 16 Mar 2023 15:44:04 +0100
-From:   "Arnd Bergmann" <arnd@arndb.de>
-To:     "Jacky Huang" <ychuang570808@gmail.com>,
-        "Rob Herring" <robh+dt@kernel.org>,
-        krzysztof.kozlowski+dt@linaro.org, "Lee Jones" <lee@kernel.org>,
-        "Michael Turquette" <mturquette@baylibre.com>,
-        "Stephen Boyd" <sboyd@kernel.org>,
-        "Philipp Zabel" <p.zabel@pengutronix.de>,
-        "Greg Kroah-Hartman" <gregkh@linuxfoundation.org>,
-        "Jiri Slaby" <jirislaby@kernel.org>
-Cc:     devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org,
-        schung@nuvoton.com, "Jacky Huang" <ychuang3@nuvoton.com>
-Subject: Re: [PATCH 03/15] mfd: Add the header file of Nuvoton ma35d1 system manager
-Content-Type: text/plain
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_PASS,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        with ESMTP id S230129AbjCPOsI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Mar 2023 10:48:08 -0400
+Received: from mail-ed1-x529.google.com (mail-ed1-x529.google.com [IPv6:2a00:1450:4864:20::529])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4E52A132E1;
+        Thu, 16 Mar 2023 07:48:06 -0700 (PDT)
+Received: by mail-ed1-x529.google.com with SMTP id fd5so8651162edb.7;
+        Thu, 16 Mar 2023 07:48:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112; t=1678978085;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=iKWEEXtwpzWyoke4EDt/SjsZs9hzq1bNd8Ga2FZNSkY=;
+        b=R2baROw3Ek92CnTov526LJmaVacryhnvdk1pmAOCFMq0bxAt8jLYnm/3vwU0Xtyebd
+         tciViUG94zTQf6BBD1yMAqUykGu40R45DlkwuCeZ7kdOY2DWawvscv1JZqcw1jRa4tw9
+         alitaa+86NgYQX4u48ENXgyRqPqLVnjiQbGW3ZUrZpGmeD/DGNkq5BGYjueTM1QNNgzw
+         ULe/wHcltfT9nsmGMbWRHbKf2VUlGEsHzjFk070gyhYlMmpmy5ny7xzc+ZpkNwnnss68
+         qx5fs2QW7uT+KSv0+Z/Lek2F+aLUU3qv1Hhfd/DQ0flZHcg2ptaBoUnGA11rbLPm5Pb/
+         /7kA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1678978085;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=iKWEEXtwpzWyoke4EDt/SjsZs9hzq1bNd8Ga2FZNSkY=;
+        b=fTbHJ/PJvFfnmhkGvM/n2myllXfz3v3qhQFjz7F08KAj5Q2oPqCbmIULJ2atB+G3zN
+         OAdlVrSiOlg8iJHQOZwEs8tkAeg0bgfjlUBamGQgnf89y8+5F5e9sDyjv105clSWy121
+         RRpoTNxRBbRHceiIBXtg6PFfp8hG/VxhWh22V4sAUzpJNL3zZLK9zZZ6gGNUstgb6qWp
+         yw+FFiNS4mhK0RVzNqJtTajvA3rst+nurLSC+2pZI9Hx2CMBLPFzBo6RcdJbPPj/G12c
+         pg50swcUB8p9b/wEC1LU4ClrtRY+Cnpzw7dL8bMT5hdSzvN3f4LFan12LdmfOXNKpbew
+         J2ig==
+X-Gm-Message-State: AO0yUKWhGoa5SeZEK1Arqv/fij5cucKEz2xKrashSn5yoMCOKn+xnP1m
+        NFj5NxsoVFoLAvBvtdkSgKWiQN+YEYnqbiyq71A=
+X-Google-Smtp-Source: AK7set/xWVcJOMfkQHMVyXDiy81VQPzKWcMSSS6wnn/vPpsZk8RESi9bQhzNLJ68PkVD0u1TpUCENB3mosHwO6afNtk=
+X-Received: by 2002:a50:99d6:0:b0:4fb:f19:883 with SMTP id n22-20020a5099d6000000b004fb0f190883mr3700885edb.1.1678978084578;
+ Thu, 16 Mar 2023 07:48:04 -0700 (PDT)
+MIME-Version: 1.0
+References: <20230315160228.2362-1-cnsztl@gmail.com> <20230315160228.2362-5-cnsztl@gmail.com>
+ <CA+E=qVei7T4T0FWhdUFnr5JbCWSgFbGLcmU2OHxx54yvnNR6mw@mail.gmail.com>
+ <CAOP2_TiU815F528jVGvDbcg3kSG+ykepU-ZYz7VWMO84GgcwMg@mail.gmail.com>
+ <71b16513-49b1-d9b3-b0b9-4c47e68563ba@kwiboo.se> <CAOP2_TgieY2PNBJz9tE_+hxX14wBQ7RtFNfFhYd2_MCSnoZLxg@mail.gmail.com>
+In-Reply-To: <CAOP2_TgieY2PNBJz9tE_+hxX14wBQ7RtFNfFhYd2_MCSnoZLxg@mail.gmail.com>
+From:   Tianling Shen <cnsztl@gmail.com>
+Date:   Thu, 16 Mar 2023 22:47:53 +0800
+Message-ID: <CAOP2_Tii7auK7rHrFF1FT76LnC5coBfhZtGaEpk6Nd=az0UQVg@mail.gmail.com>
+Subject: Re: [PATCH 4/5] arm64: dts: rockchip: fix gmac support for NanoPi R5S
+To:     Jonas Karlman <jonas@kwiboo.se>
+Cc:     Vasily Khoruzhick <anarsoul@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Jagan Teki <jagan@amarulasolutions.com>,
+        Peter Geis <pgwipeout@gmail.com>, Andy Yan <andyshrk@163.com>,
+        Brian Norris <briannorris@chromium.org>,
+        Chris Morgan <macromorgan@hotmail.com>,
+        Sebastian Reichel <sebastian.reichel@collabora.com>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Michael Riesch <michael.riesch@wolfvision.net>,
+        Maya Matuszczyk <maccraft123mc@gmail.com>,
+        Andrew Powers-Holmes <aholmes@omnom.net>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Mar 15, 2023, at 08:28, Jacky Huang wrote:
-> From: Jacky Huang <ychuang3@nuvoton.com>
+Hi,
+
+On Thu, Mar 16, 2023 at 4:46=E2=80=AFPM Tianling Shen <cnsztl@gmail.com> wr=
+ote:
 >
-> The system manager is a set of registers used for power control,
-> multi-function pin control, USB phy control, IP reset, and other
-> miscellaneous controls. It also contains some registers that
-> provide SoC information and status.
+> Hi Jonas,
 >
-> Signed-off-by: Jacky Huang <ychuang3@nuvoton.com>
-> ---
->  include/linux/mfd/ma35d1-sys.h | 95 ++++++++++++++++++++++++++++++++++
->  1 file changed, 95 insertions(+)
->  create mode 100644 include/linux/mfd/ma35d1-sys.h
+> On Thu, Mar 16, 2023 at 3:37=E2=80=AFPM Jonas Karlman <jonas@kwiboo.se> w=
+rote:
+> >
+
+[...]
+
+> >
+> > Generic ethernet phy driver is not resetting the phy in the same way
+> > that snsp,reset-gpio does, please see top two commits at [1].
+> >
+> > I have been meaning to send that out as an RFC but I got stuck in a
+> > u-boot rabbit hole, and I also do not know what the correct way to fix
+> > this would be, so I played with both device tree and code changes.
+> > Will prioritize this and send out a RFC later today.
+> >
+> > [1] https://github.com/Kwiboo/linux-rockchip/commits/rk3568-eth-phy-res=
+et
 >
-> diff --git a/include/linux/mfd/ma35d1-sys.h b/include/linux/mfd/ma35d1-sys.h
-> new file mode 100644
-> index 000000000000..dcd85231125d
-> --- /dev/null
-> +++ b/include/linux/mfd/ma35d1-sys.h
+> Thanks for the hint! I will test your patches tonight.
 
-> +
-> +#define REG_SYS_PDID		(0x000) /* Product and Device Identifier */
-> +#define REG_SYS_PWRONOTP	(0x004) /* Power-on Setting OTP Source */
-> +#define REG_SYS_PWRONPIN	(0x008) /* Power-on Setting Pin Source */
-> +#define REG_SYS_RSTSTS		(0x010) /* Reset Source Active Status */
-...
+I'm currently playing your patches at
+https://github.com/1715173329/imoutowrt/commits/master-rockchip-mdio
 
-It is a bit odd to have a header file in include/linux/mfd/
-but only have the register numbers in there, and not an
-actual drivers/mfd/ driver to go along with them.
+I applied commit 8597fcfa0c5c792dabb44a2db7b283c56c99ec6a to NanoPi
+R5S, it worked perfectly.
 
-I think what we often do is to just list the individual register
-numbers in the drivers that need them and not have the central
-header at all. On the other hand, I can see it's useful to
-have this documented in one place, and we clearly don't want
-to add a driver if none is needed.
+However, with commit c338ed260bfd87277c41aa0290f1f2aad8d629b1 + moving
+reset properties into the phy node,
+the driver still failed to lookup phy. I'm not sure if I missed /
+misunderstood anything.
 
-Maybe Lee has a suggestion for how he'd like to handle this.
+Thanks,
+Tianling.
 
-> +void ma35d1_reg_lock(void);
-> +void ma35d1_reg_unlock(void);
-
-These look like they were left over from an earlier version
-of the code. Since you use the regmap framework, I think this
-will take care of the locking for you.
-
-       Arnd
+[...]
