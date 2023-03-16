@@ -2,88 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4257E6BD976
-	for <lists+devicetree@lfdr.de>; Thu, 16 Mar 2023 20:45:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8847B6BD996
+	for <lists+devicetree@lfdr.de>; Thu, 16 Mar 2023 20:54:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229489AbjCPTpo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Mar 2023 15:45:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53050 "EHLO
+        id S229913AbjCPTyo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Mar 2023 15:54:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36492 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229455AbjCPTpn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Mar 2023 15:45:43 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 21817968FF;
-        Thu, 16 Mar 2023 12:45:43 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id A17C962100;
-        Thu, 16 Mar 2023 19:45:42 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 03B3BC4339B;
-        Thu, 16 Mar 2023 19:45:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1678995942;
-        bh=E92zL3S0Wimh6vAEN3pu2tsbqcS9PJeZ980curFNxDw=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=WyyxY3xocNQCtRBg1YQrT+Cz8DKbNuzwPfWzDf065WBxlGrLsjulPnLsjOTyfA6q/
-         6u837by1tGT7oPBCZDwafix+nDv9IyehzoThti0i/N6zs6ntjZHTQzz2oHl7y7P5au
-         O8D+8O354Y7cCA2Jj2UDdehrYqxRRlVE3lWf8+YsR7o7VE2h3L0EmEVe2GIseAqkRy
-         QUPNyTL4u93xYJqfrJSmNKr8koqaF2X14/VxKPJxoytiD4JdzCKyDq0Vufc8nkEns3
-         26HP9+8W32ymNo7AM2qVaGFqxUMQJpU2pINSoWGawLnPAtC5SvQE+V3FLOCBFmre4L
-         lHke2x04q10JA==
-Date:   Thu, 16 Mar 2023 19:45:36 +0000
-From:   Mark Brown <broonie@kernel.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     lgirdwood@gmail.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, alsa-devel@alsa-project.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Vijaya Anand <sunrockers8@gmail.com>,
-        Daniel Baluta <daniel.baluta@nxp.com>
-Subject: Re: [PATCH v2] ASoC: dt-bindings: adi,adau17x1: Convert to DT schema
-Message-ID: <1cfd50ed-f7fc-46c0-9e6b-5a35b1a9572d@sirena.org.uk>
-References: <20230315231055.3067-1-sunrockers8@gmail.com>
- <167897628543.92626.6326219364017588458.b4-ty@kernel.org>
- <a3f7b1bf-b37a-1e42-1e43-02b82fbd895b@linaro.org>
+        with ESMTP id S229436AbjCPTyn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Mar 2023 15:54:43 -0400
+Received: from mx.sberdevices.ru (mx.sberdevices.ru [45.89.227.171])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2D136B71B3;
+        Thu, 16 Mar 2023 12:54:40 -0700 (PDT)
+Received: from s-lin-edge02.sberdevices.ru (localhost [127.0.0.1])
+        by mx.sberdevices.ru (Postfix) with ESMTP id D53D45FD0A;
+        Thu, 16 Mar 2023 22:54:36 +0300 (MSK)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sberdevices.ru;
+        s=mail; t=1678996476;
+        bh=ZUnhBF1GKB12uouzQcwq5NkFuvf0D+yP3oyrcilkSUU=;
+        h=Message-ID:Date:MIME-Version:Subject:To:From:Content-Type;
+        b=UG6MgLmmNg+shviK0QA+u9wVj4Eq54Vz39hPzFkGG4VrEO+5CAKOAhvEXtqDejf9f
+         wz1lshwMzb++n1KbEtKFvg177VKOtRCWb80ejN+aQKfCEuqyAgx/f8uKqD8kuS7hYP
+         YOoYb8fYs44HTnIVFDH7y7e7i/4f1Szun4TDzrVDW/dJiChvsemDuSIxEGNjDk4rHb
+         P3gZhZQsuVZYztesMHhtD4aKCrtagioNm9n19vK6+Ig83+RBUBWmdB4P26+lN3IhGR
+         TDOwLSE3saggyYPkfhTr1DrYpWNdAn4+GNppROLgrEGRAcXdGiJS1SG1CDnbI6RdeB
+         ElFPIaGcuZu8w==
+Received: from S-MS-EXCH01.sberdevices.ru (S-MS-EXCH01.sberdevices.ru [172.16.1.4])
+        by mx.sberdevices.ru (Postfix) with ESMTP;
+        Thu, 16 Mar 2023 22:54:35 +0300 (MSK)
+Message-ID: <d0d9dbe3-ed4c-9212-e145-8fb8eee956ba@sberdevices.ru>
+Date:   Thu, 16 Mar 2023 22:54:37 +0300
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="ZgF76LVo/Z0d02h/"
-Content-Disposition: inline
-In-Reply-To: <a3f7b1bf-b37a-1e42-1e43-02b82fbd895b@linaro.org>
-X-Cookie: ... I have read the INSTRUCTIONS ...
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.8.0
+Subject: Re: [PATCH v3 1/2] dt-bindings: leds: add binding for aw200xx
+To:     Lee Jones <lee@kernel.org>
+CC:     Pavel Machek <pavel@ucw.cz>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Andy Shevchenko <andy.shevchenko@gmail.com>,
+        <linux-leds@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <kernel@sberdevices.ru>, <devicetree@vger.kernel.org>
+References: <20230314120252.48263-1-mmkurbanov@sberdevices.ru>
+ <20230314120252.48263-2-mmkurbanov@sberdevices.ru>
+ <20230316164031.GX9667@google.com>
+Content-Language: en-US
+From:   Martin Kurbanov <mmkurbanov@sberdevices.ru>
+In-Reply-To: <20230316164031.GX9667@google.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-Originating-IP: [172.16.1.6]
+X-ClientProxiedBy: S-MS-EXCH02.sberdevices.ru (172.16.1.5) To
+ S-MS-EXCH01.sberdevices.ru (172.16.1.4)
+X-KSMG-Rule-ID: 4
+X-KSMG-Message-Action: clean
+X-KSMG-AntiSpam-Status: not scanned, disabled by settings
+X-KSMG-AntiSpam-Interceptor-Info: not scanned
+X-KSMG-AntiPhishing: not scanned, disabled by settings
+X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 1.1.2.30, bases: 2023/03/16 16:49:00 #20959649
+X-KSMG-AntiVirus-Status: Clean, skipped
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 2023-03-16 19:40, Lee Jones wrote:
+> On Tue, 14 Mar 2023, Martin Kurbanov wrote:
+> 
+>> Add YAML devicetree binding for AWINIC AW20036/AW20052/AW20074
+>> led driver.
+>>
+>> Signed-off-by: Martin Kurbanov <mmkurbanov@sberdevices.ru>
+>> ---
+>>  .../bindings/leds/awinic,aw200xx.yaml         | 126 ++++++++++++++++++
+>>  1 file changed, 126 insertions(+)
+>>  create mode 100644 Documentation/devicetree/bindings/leds/awinic,aw200xx.yaml
+> 
+> Applied, thanks
+> 
+> --
+> Lee Jones [李琼斯]
 
---ZgF76LVo/Z0d02h/
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Hello Lee,
+Thank you for quick feedback! Sorry, I don't understand one thing.
+Driver implementation from the patch series must be improved, so
+currently it's not applied. Does dt bindings make sense without it?
+I don't think so. Please fix me if I'm wrong.
 
-On Thu, Mar 16, 2023 at 08:16:29PM +0100, Krzysztof Kozlowski wrote:
+-- 
+Best Regards,
+Kurbanov Martin
 
-> There was a warning from Rob's bot. Can you drop the patch or you expect
-> follow-up?
-
-A followup would be easiest.
-
---ZgF76LVo/Z0d02h/
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmQTcd8ACgkQJNaLcl1U
-h9DsTAf8COhC2pYYz9C1xAjzWXwZ7K7F9iiVeuAZ8EkgtUw7oU9A1EzLHrmK/xBA
-0KLVVpsysPJzNlEExUN2c96lB7iz+4zA/IAlFYZN9vuDWIdbPUpyFdr9jl8gpy44
-VUL5UFsT0/aGqya1VCWErVJ3nsGjN1Mw6SM2P74OVpn9kn34Ewxk/2LKiO54Nr44
-ZJ5giEg5jp6aMSx1FPeauRjm1hkHVkuucFfbTxsu5y+4q4UvCCkNnc46Zy5AWZfm
-CbqlKPNYRruRvkdGq5Zi4xJw8SDI9fhS75pyTklnIvMSNGt2W4E/0rc2xno38hHM
-QDfeuev0Bi7MhuNoAxVH8akMzTtZyQ==
-=Cjpn
------END PGP SIGNATURE-----
-
---ZgF76LVo/Z0d02h/--
