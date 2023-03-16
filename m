@@ -2,116 +2,187 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D57016BC6B0
-	for <lists+devicetree@lfdr.de>; Thu, 16 Mar 2023 08:14:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A30986BC6EA
+	for <lists+devicetree@lfdr.de>; Thu, 16 Mar 2023 08:19:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230063AbjCPHOD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Mar 2023 03:14:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41542 "EHLO
+        id S230235AbjCPHTH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Mar 2023 03:19:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50458 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230061AbjCPHOB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Mar 2023 03:14:01 -0400
-Received: from mail-lj1-x233.google.com (mail-lj1-x233.google.com [IPv6:2a00:1450:4864:20::233])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DB45FADC11;
-        Thu, 16 Mar 2023 00:13:39 -0700 (PDT)
-Received: by mail-lj1-x233.google.com with SMTP id a32so618262ljr.9;
-        Thu, 16 Mar 2023 00:13:39 -0700 (PDT)
+        with ESMTP id S229899AbjCPHS7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Mar 2023 03:18:59 -0400
+Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com [IPv6:2a00:1450:4864:20::534])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 075955CC02
+        for <devicetree@vger.kernel.org>; Thu, 16 Mar 2023 00:18:47 -0700 (PDT)
+Received: by mail-ed1-x534.google.com with SMTP id eh3so3685031edb.11
+        for <devicetree@vger.kernel.org>; Thu, 16 Mar 2023 00:18:47 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112; t=1678950818;
-        h=content-transfer-encoding:in-reply-to:references:cc:to:from
+        d=linaro.org; s=google; t=1678951126;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=F2wFT7CrRqcdyw8L0sjGieOy+9WgGuAwjTPbuLH379I=;
-        b=AFZJv8f0LnZQ0fM7TsswxbUC8egy/hgi+pKDIFZnbGJyZicjuFs+lKy4jytlsC1VbR
-         KkA2qJJTH1nNsThH8SdG4AyIb++pNptf/eT4c81KKQxuJwAIqZQBotg0fRx1sNmEwILo
-         8Vpf2q8SkRmfx/gZMIwO3oZjPtz7znR8+OHM25x4suC5PQgC/W0zo7gC04rnEhLuIoUR
-         Sn781dn8NyRnKUwFIzSyOcVRXmAiiHtp5Q92oUq1AZLfsx1Bj4a/OP2CwAXbHiOTfpja
-         Z66ZYWwy9gDvI4r37kODI/cJpcvhkdt8Lwk/PIGi2EKaY0mCj+f1tQ9iuQvcmNXqcYUc
-         nMMA==
+        bh=NnXgwqMa80GgQcjZaphhuCryiuQqQv6hvEmtAcagRtY=;
+        b=Y6rCA9o2f/NI+S8BIN3TvXbjfq9ybMB1G7Q9KQX3B+K4Cp2J0Ehi5nlbqDi/MjIz3C
+         D7csLNuQSuZRrKjPRxEvZJyJTwlyECGyVgp3ERZx4Xg53boHF8Zy0MNE3q9itV1Vm30Q
+         eXwA2APfJHxQcYMFPjsRyyPusvx5XoIry2qv0gYOEcq1WtP/NtXcLNYG+ve+JO18nxHs
+         nWLnDsFFbh1+shFw70JrGq3+adeq8zrsnxXIwxPDPb7OSV2hgx/JkUj0gc7z/TP4HT0w
+         gJ8wfmgek9zr2TQnF3A0MMqKPjqwvt2Ad1i20sN6cGg2d8MDAXls9pbOnkC/sfmk7SEX
+         Hs6Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678950818;
-        h=content-transfer-encoding:in-reply-to:references:cc:to:from
+        d=1e100.net; s=20210112; t=1678951126;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=F2wFT7CrRqcdyw8L0sjGieOy+9WgGuAwjTPbuLH379I=;
-        b=XmwElcI0/2nr2BsgRNuk46OUlXcUdnjt2UrngOXZJf19XtZedtpMYX1bOxOiWM7YM/
-         cDeRzFjHcvKHtKDnD1xbxfSsAclQfvgLWRNeq+D4ogAgwvW4vHr2zgEWeFMSzlxAD8NE
-         9ZPzIMrvbGyWqwchFWGTBoRVCtqmU5VjbUn/Cd+2TK3Zi5aTJSVBmobeB6Cv2vT1HspI
-         +jyusPuTbez7ad91ihBqJqXqSacAcK6Dw6ZRd7e/Rqe5cihQJC6GQAcCHY3HPm6gEpCF
-         bNE/hP6KEBCYxAHDCFPKAPjUNx8+UiJlXQcAsNIjjW5CDvAqJUSWYEuPUJV22GVS9q32
-         s69Q==
-X-Gm-Message-State: AO0yUKVH4Ztn2jy5fDurNv2sJub35lWkhSDMM8OqGu+NQc8NIK4zbLV0
-        8j0cL0M3InSKVzjS1CgU4EQ=
-X-Google-Smtp-Source: AK7set+QXuT4Phd7o0BtowhfYtOterzcc0ah/2EqaDQmwvsYz8jF5sUdZeNB2iugK3zTYb4BrkcsRQ==
-X-Received: by 2002:a05:651c:10cf:b0:28f:8fa4:7c25 with SMTP id l15-20020a05651c10cf00b0028f8fa47c25mr1421917ljn.25.1678950818031;
-        Thu, 16 Mar 2023 00:13:38 -0700 (PDT)
-Received: from ?IPV6:2001:14ba:16f3:4a00::6? (dc75zzyyyyyyyyyyyyydy-3.rev.dnainternet.fi. [2001:14ba:16f3:4a00::6])
-        by smtp.gmail.com with ESMTPSA id t17-20020a2e9d11000000b0029353caa593sm1124713lji.5.2023.03.16.00.13.37
+        bh=NnXgwqMa80GgQcjZaphhuCryiuQqQv6hvEmtAcagRtY=;
+        b=OT6JZZilXngivC4jBCPMoTzrIgSXoqmNS+kFGehf15s0bALYx660ZlJBdFayMtVW1q
+         AHhz9WUK1VRRgBgCS/6BMQ1EHnqgoKslwfQc6zd9DkRkvee5hFjIAO4oxPm82T/rFITm
+         MgCJ8cKC0OaZuORV6y5KEnCbE+KxHpIwLRwbPJS+FEkHp6fFIpbEQ0Zud/sYb5CuT65y
+         xeZ7WYqbgab8jlrPjOm0Zm8RvIc96jpUNlwQBcmH4E2glruIGQtU6TYzO7xxYerdOY95
+         CEgoH0KRF2E7vBgolPnn1mU+vei914Yf4yAWqgGlUXsPMRFE620Fv9JilVv3znpjpm60
+         tDgQ==
+X-Gm-Message-State: AO0yUKXedihX2f5rlKYI8ci9z2pwRCe2OmUl2IrpKWVaXP4hvsbnCp/Z
+        yktv0d+I6s9+oGFUk4gTq1se+g==
+X-Google-Smtp-Source: AK7set8KeJ1ASIpRhtbE5CF8uaaqBb8UCVuakG6IHDgYISCsD2RCx+znpN/mu0oRZl2mQ+YHVYN89A==
+X-Received: by 2002:aa7:c04f:0:b0:4fa:b302:84d0 with SMTP id k15-20020aa7c04f000000b004fab30284d0mr5511978edo.15.1678951122577;
+        Thu, 16 Mar 2023 00:18:42 -0700 (PDT)
+Received: from ?IPV6:2a02:810d:15c0:828:9827:5f65:8269:a95f? ([2a02:810d:15c0:828:9827:5f65:8269:a95f])
+        by smtp.gmail.com with ESMTPSA id v1-20020a50c401000000b004acbda55f6bsm3401675edf.27.2023.03.16.00.18.40
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 16 Mar 2023 00:13:37 -0700 (PDT)
-Message-ID: <f581a290-4f10-5f32-7640-8c5dea0ccfce@gmail.com>
-Date:   Thu, 16 Mar 2023 09:13:36 +0200
+        Thu, 16 Mar 2023 00:18:42 -0700 (PDT)
+Message-ID: <d3dd5001-1b97-cc94-0a78-0420dc97614b@linaro.org>
+Date:   Thu, 16 Mar 2023 08:18:40 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.8.0
-Subject: Re: [PATCHv2 02/12] power: supply: core: auto-exposure of
- simple-battery data
-Content-Language: en-US, en-GB
-From:   Matti Vaittinen <mazziesaccount@gmail.com>
-To:     Sebastian Reichel <sre@kernel.org>
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org
-References: <20230314225535.1321736-1-sre@kernel.org>
- <20230314225535.1321736-3-sre@kernel.org>
- <baffa307-173c-6ba1-0289-e7287049c0f5@gmail.com>
- <20230316004121.rwieru4aj7d6mwgb@mercury.elektranox.org>
- <de0848f7-7f33-b170-54b7-f0fbf4e5d7d6@gmail.com>
-In-Reply-To: <de0848f7-7f33-b170-54b7-f0fbf4e5d7d6@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Subject: Re: [PATCH net-next 03/11] dt-bindings: net: qcom,ethqos: Convert
+ bindings to yaml
+Content-Language: en-US
+To:     Andrew Halaney <ahalaney@redhat.com>, linux-kernel@vger.kernel.org
+Cc:     agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
+        davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
+        pabeni@redhat.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, vkoul@kernel.org,
+        bhupesh.sharma@linaro.org, mturquette@baylibre.com,
+        sboyd@kernel.org, peppe.cavallaro@st.com,
+        alexandre.torgue@foss.st.com, joabreu@synopsys.com,
+        mcoquelin.stm32@gmail.com, richardcochran@gmail.com,
+        linux@armlinux.org.uk, veekhee@apple.com,
+        tee.min.tan@linux.intel.com, mohammad.athari.ismail@intel.com,
+        jonathanh@nvidia.com, ruppala@nvidia.com, bmasney@redhat.com,
+        andrey.konovalov@linaro.org, linux-arm-msm@vger.kernel.org,
+        netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-clk@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        linux-arm-kernel@lists.infradead.org, ncai@quicinc.com,
+        jsuraj@qti.qualcomm.com, hisunil@quicinc.com
+References: <20230313165620.128463-1-ahalaney@redhat.com>
+ <20230313165620.128463-4-ahalaney@redhat.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230313165620.128463-4-ahalaney@redhat.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 3/16/23 09:10, Matti Vaittinen wrote:
-> On 3/16/23 02:41, Sebastian Reichel wrote:
->> Hi,
->> [08/12] power: supply: generic-adc-battery: use simple-battery API
+On 13/03/2023 17:56, Andrew Halaney wrote:
+> From: Bhupesh Sharma <bhupesh.sharma@linaro.org>
 > 
-> This one did look good to me but as it was pretty trivial one I didn't 
-> think my review made much of a difference :) I can reply with my tag on 
-> that one though as I did review what there was to review.
-
-Sorry! I mixed this patch with another one. This indeed did have some 
-changes - I must've accidentally skipped this one. Will check this after 
-eating my breakfast :)
-
-> 
->>
->>> [...]
->>
->> Thanks for your reviews,
-> 
-> Thanks to you! You are the one making things better here, I am just 
-> treating this as an opportunity to learn ;)
-> 
-> Yours,
->      -- Matti
+> Convert Qualcomm ETHQOS Ethernet devicetree binding to YAML.
 > 
 
--- 
-Matti Vaittinen
-Linux kernel developer at ROHM Semiconductors
-Oulu Finland
+(...)
 
-~~ When things go utterly wrong vim users can always type :help! ~~
+> diff --git a/Documentation/devicetree/bindings/net/qcom,ethqos.yaml b/Documentation/devicetree/bindings/net/qcom,ethqos.yaml
+> new file mode 100644
+> index 000000000000..68ef43fb283d
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/net/qcom,ethqos.yaml
+> @@ -0,0 +1,112 @@
+> +# SPDX-License-Identifier: GPL-2.0 OR BSD-2-Clause
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/net/qcom,ethqos.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Qualcomm Ethernet ETHQOS device
+> +
+> +maintainers:
+> +  - Bhupesh Sharma <bhupesh.sharma@linaro.org>
+> +
+> +description:
+> +  This binding describes the dwmmac based Qualcomm ethernet devices which
+
+Drio "This binding describes", but say what is the hardware here.
+
+> +  support Gigabit ethernet (version v2.3.0 onwards).
+> +
+> +  So, this file documents platform glue layer for dwmmac stmmac based Qualcomm
+> +  ethernet devices.
+> +
+> +allOf:
+> +  - $ref: snps,dwmac.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - qcom,qcs404-ethqos
+> +      - qcom,sm8150-ethqos
+> +
+> +  reg:
+> +    maxItems: 2
+> +
+> +  reg-names:
+> +    items:
+> +      - const: stmmaceth
+> +      - const: rgmii
+> +
+> +  interrupts:
+> +    items:
+> +      - description: Combined signal for various interrupt events
+> +      - description: The interrupt that occurs when Rx exits the LPI state
+> +
+> +  interrupt-names:
+> +    items:
+> +      - const: macirq
+> +      - const: eth_lpi
+> +
+> +  clocks:
+> +    maxItems: 4
+> +
+> +  clock-names:
+> +    items:
+> +      - const: stmmaceth
+> +      - const: pclk
+> +      - const: ptp_ref
+> +      - const: rgmii
+> +
+> +  iommus:
+> +    maxItems: 1
+
+Isn't this new property? Last time I asked to mention the changes to the
+binding done during conversion. Explain shortly why you are adding new
+properties.
+
+> +
+> +required:
+> +  - compatible
+> +  - clocks
+> +  - clock-names
+
+reg-names
+
+> +
+> +unevaluatedProperties: false
+> +
+
+
+Best regards,
+Krzysztof
 
