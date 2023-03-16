@@ -2,67 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 925BE6BDCC5
-	for <lists+devicetree@lfdr.de>; Fri, 17 Mar 2023 00:18:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 117A66BDCD4
+	for <lists+devicetree@lfdr.de>; Fri, 17 Mar 2023 00:21:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229845AbjCPXSQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Mar 2023 19:18:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34496 "EHLO
+        id S229962AbjCPXVj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Mar 2023 19:21:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40624 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229832AbjCPXSQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Mar 2023 19:18:16 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 28B4F7A9C;
-        Thu, 16 Mar 2023 16:18:15 -0700 (PDT)
+        with ESMTP id S229488AbjCPXVd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Mar 2023 19:21:33 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ED7BD60AB4;
+        Thu, 16 Mar 2023 16:21:31 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id C11626215C;
-        Thu, 16 Mar 2023 23:18:14 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BE9C1C433D2;
-        Thu, 16 Mar 2023 23:18:12 +0000 (UTC)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 518C9B82396;
+        Thu, 16 Mar 2023 23:21:30 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B8B27C433D2;
+        Thu, 16 Mar 2023 23:21:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1679008694;
-        bh=OYxBo4djlS61XYzgafFcijG0gwXMYYjumjcr57f8sII=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=rWb1M0TbcYdWvys6U7qm+pWzcbxM7BHmg+3uLg8AfqIyld4olOVBoV7jkl+r81Jqj
-         f+RYlS2hnjRsQhaxz9CTN25s8fDp/fsMetItOKM8tj+8I64oI3bgs+2g/8CpvLHz+V
-         i2QtxX2WI2LbSernJmYN7v8czmwcu+VELH30cD2EWMDSt/cjjLxP45bEUVDsqO/mDC
-         pW7SpbAbEmFGp9EuTGd4JfmBm1fU7ZDOWfsyPg6pBOfMYFUwqgP4vtvlG7jrH97Xej
-         IlUUblIFivZyHGgsbp2ciNDZtBzbljRkS8veHt81beTxQIGhLQQ5NZykN4zVwtay8L
-         rvOAS06RYJB+Q==
-Date:   Thu, 16 Mar 2023 16:18:11 -0700
-From:   Jakub Kicinski <kuba@kernel.org>
-To:     "Russell King (Oracle)" <linux@armlinux.org.uk>
-Cc:     Andrew Halaney <ahalaney@redhat.com>, linux-kernel@vger.kernel.org,
-        agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
-        davem@davemloft.net, edumazet@google.com, pabeni@redhat.com,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        vkoul@kernel.org, bhupesh.sharma@linaro.org,
-        mturquette@baylibre.com, sboyd@kernel.org, peppe.cavallaro@st.com,
-        alexandre.torgue@foss.st.com, joabreu@synopsys.com,
-        mcoquelin.stm32@gmail.com, richardcochran@gmail.com,
-        veekhee@apple.com, tee.min.tan@linux.intel.com,
-        mohammad.athari.ismail@intel.com, jonathanh@nvidia.com,
-        ruppala@nvidia.com, bmasney@redhat.com,
-        andrey.konovalov@linaro.org, linux-arm-msm@vger.kernel.org,
-        netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-clk@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        linux-arm-kernel@lists.infradead.org, ncai@quicinc.com,
-        jsuraj@qti.qualcomm.com, hisunil@quicinc.com
-Subject: Re: [PATCH net-next 08/11] net: stmmac: Add EMAC3 variant of dwmac4
-Message-ID: <20230316161811.64d14cb3@kernel.org>
-In-Reply-To: <ZBOfuSBifFO7O/xQ@shell.armlinux.org.uk>
-References: <20230313165620.128463-1-ahalaney@redhat.com>
-        <20230313165620.128463-9-ahalaney@redhat.com>
-        <20230313173904.3d611e83@kernel.org>
-        <20230316183609.a3ymuku2cmhpyrpc@halaney-x13s>
-        <20230316115234.393bca5d@kernel.org>
-        <ZBOfuSBifFO7O/xQ@shell.armlinux.org.uk>
+        s=k20201202; t=1679008888;
+        bh=3Oui75984P2dEQ09SAAqFYPA7I0ywfps+4tuLUL6s5I=;
+        h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
+        b=eKvZ3xfxssXXsEZv1JYx9bh2g9vo0NqPIAnxSRHcKoK8Ld7bv1+VX9h+6RA2iF4g6
+         kl3IqiX+whbFZDIoQ6QbFFT5Z8GPKmEkcLd42aftfL1IjgFffIAeLNiDY7gfWfw1Wt
+         7LtfXNAlpFXaJRG9y/IZ2Qn1gXbDBgQUW+HFmAkWlcQmg409x7Np7kcqYQKhnaabJ9
+         0+uodqEFP6AlrPDERW/oKvggmM32IT3BmaLSPrZBYiCPNwmXNv1okjeW7TZdJGeJ5U
+         j1EGbqE7Y+wqgS/fgZyG7UtrjvUeVd5fUzXTE2pEC7/lB4U788ukUpEhqI/KorLU4X
+         8PYShIgCVG11Q==
+Message-ID: <2f5f469817d637883c73e49a924530ac.sboyd@kernel.org>
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20230307153617.643260-2-sebastian.reichel@collabora.com>
+References: <20230307153617.643260-1-sebastian.reichel@collabora.com> <20230307153617.643260-2-sebastian.reichel@collabora.com>
+Subject: Re: [PATCHv7 01/11] clk: RK808: reduce 'struct rk808' usage
+From:   Stephen Boyd <sboyd@kernel.org>
+Cc:     Michael Turquette <mturquette@baylibre.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Mark Brown <broonie@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Alessandro Zummo <a.zummo@towertech.it>,
+        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Sebastian Reichel <sebastian.reichel@collabora.com>,
+        kernel@collabora.com
+To:     Heiko Stuebner <heiko@sntech.de>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Lee Jones <lee@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Sebastian Reichel <sebastian.reichel@collabora.com>
+Date:   Thu, 16 Mar 2023 16:21:26 -0700
+User-Agent: alot/0.10
 X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
@@ -72,38 +64,13 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 16 Mar 2023 23:01:13 +0000 Russell King (Oracle) wrote:
-> What I would say is be careful with that - make sure "struct bla" is
-> specific to the interface being called and not generic.
-> 
-> I had that mistake with struct phylink_state... and there is an
-> endless stream of people who don't seem to bother reading the
-> documentation, who blindly access whatever members of that they
-> damn well please because it suits them, even when either they
-> shouldn't be writing to them, or when phylink doesn't guarantee
-> their contents, they read them.
+Quoting Sebastian Reichel (2023-03-07 07:36:07)
+> Reduce usage of 'struct rk808' (driver data of the parent MFD), so
+> that only the chip variant field is still being accessed directly.
+> This allows restructuring the MFD driver to support SPI based
+> PMICs.
+>=20
+> Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
+> ---
 
-Right, gotta take it case by case. I really like structs for
-const capabilities of the driver / device, which need to be
-communicated to the core.
-
-> As a result, I'm now of the opinion that using a struct to pass
-> arguments is in principle a bad idea.
-> 
-> There's other reasons why it's a bad idea. Many ABIs are capable of
-> passing arguments to functions via processor registers. As soon as
-> one uses a struct, they typically end up being written to memory.
-> Not only does that potentially cause cache line churn, it also
-> means that there could be more slow memory accesses that have to be
-> made at some point, potentially making other accesses slow.
-> 
-> So, all in all, I'm really not a fan of the struct approach for
-> all the reasons above.
-
-Also true, one has to be careful on the fast paths. There are cases
-where similar set of arguments is passed multiple functions down.
-Making the code hard to follow and extend. But you're right, structs
-will be slower for the most part.
-
-For stmmac I figured it can only help. The driver is touched my very
-many people, it has layers and confusions...
+Acked-by: Stephen Boyd <sboyd@kernel.org>
