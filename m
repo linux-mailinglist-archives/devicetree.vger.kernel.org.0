@@ -2,131 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C5B716BCEB3
-	for <lists+devicetree@lfdr.de>; Thu, 16 Mar 2023 12:48:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 564416BCEEB
+	for <lists+devicetree@lfdr.de>; Thu, 16 Mar 2023 13:06:05 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229807AbjCPLsR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Mar 2023 07:48:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47692 "EHLO
+        id S229755AbjCPMGD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Mar 2023 08:06:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45882 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230134AbjCPLsP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Mar 2023 07:48:15 -0400
-Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1F1E1BD4D3
-        for <devicetree@vger.kernel.org>; Thu, 16 Mar 2023 04:48:13 -0700 (PDT)
-Received: by mail-lf1-x135.google.com with SMTP id y15so1959393lfa.7
-        for <devicetree@vger.kernel.org>; Thu, 16 Mar 2023 04:48:12 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1678967291;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=mTZh2YGOKCD6ObCcKdxtN9WVXxV2EOgpOmxavrmWfT0=;
-        b=zXe1vnI6M/xM41XSqvsnHBqtU+qvIuErQs9OBY9HFblT1K5NSW8wDQx9wXomvwKz8s
-         GuQ8lqsC7EYEbC+J3bP1nyldIObtulzKHvTa84QK/sUUU8439kchpcdc2JoaEJSIruuM
-         hHcLKTYJUAHf+jNwxgbPoYPnZRZW4qn0EYcvV1k3GdpShUMOX3IL+uQRT2+PrOWmCgBN
-         Iqghp1CjJfbw07WtgUt9KQjqQb5kI7QQRnNkXv8R/AQhT+H+fXzufDtnoV5bfQnXpRIO
-         mQiU5VIDUhFU4MxOPh1cMU1gCXpV301ABxLiJShoYQavUlYB5r5BApHil8TLLMArkz6L
-         JeSA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678967291;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=mTZh2YGOKCD6ObCcKdxtN9WVXxV2EOgpOmxavrmWfT0=;
-        b=T1WOhucONH/aRl6t/lS7hrEfoKXn47iiIZOQMg8cAVt0E5jZxPUG2TCS4uLDPi2X43
-         Af+ZgjYdtPMWbvaaMFCiWb647r/va3NrMzNSS1TIX5nkICBc5GaaHJ4SCWzaTBhuHLGo
-         uPL5c1FJeO4ALuIrr7f32nFz0yq5EBNW6v0oMDV7azaWglV/7MtNkw3CWkDGm2vuf2O+
-         2VESLAvO9hVMkfwzcno3GQDZW7VjarSznUdUYwHQLnsLY2l4LmIFtWCdgIcVNt9JCz9H
-         5BuPF62+zPhapxMRSFl7y4IizXTzYVgJ4Mu9IlcYTXMavrifB/VZrhe1k5B5UKGAMYq9
-         nejg==
-X-Gm-Message-State: AO0yUKXv0hDQ0O/J8yWpQRNFG7WDUQ+ye/j7uVtDCSX/OMbLS3CyfqS2
-        WSipiT3BLf0vFSyIqnPFUHu3dw==
-X-Google-Smtp-Source: AK7set/dfPMrO+INaTGjLTo9Hn0MVYP5+g25TBUty0eN7zLTMKTrEKR4h0PYC90Dog4PmpGHesM0Ow==
-X-Received: by 2002:a05:6512:390a:b0:4cb:d3:3b99 with SMTP id a10-20020a056512390a00b004cb00d33b99mr2753855lfu.36.1678967291271;
-        Thu, 16 Mar 2023 04:48:11 -0700 (PDT)
-Received: from [192.168.1.101] (abyj16.neoplus.adsl.tpnet.pl. [83.9.29.16])
-        by smtp.gmail.com with ESMTPSA id a14-20020a056512390e00b004d5a720e689sm1198443lfu.126.2023.03.16.04.48.10
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 16 Mar 2023 04:48:11 -0700 (PDT)
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-Date:   Thu, 16 Mar 2023 12:48:05 +0100
-Subject: [PATCH 2/2] clk: qcom: dispcc-qcm2290: Add MDSS_CORE reset
-MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20230316-topic-qcm_dispcc_reset-v1-2-dd3708853014@linaro.org>
-References: <20230316-topic-qcm_dispcc_reset-v1-0-dd3708853014@linaro.org>
-In-Reply-To: <20230316-topic-qcm_dispcc_reset-v1-0-dd3708853014@linaro.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Marijn Suijten <marijn.suijten@somainline.org>,
-        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Konrad Dybcio <konrad.dybcio@linaro.org>
-X-Mailer: b4 0.12.1
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1678967287; l=1246;
- i=konrad.dybcio@linaro.org; s=20230215; h=from:subject:message-id;
- bh=Onphm3eGwIsdqNCztm3twTm8oxjqL4WoJkseLjfhVRI=;
- b=KefS+jK5dQq+akWaS7mbsJFrPC4cM5qjQ7cFDJJZf+ymqIQZ04xzm2i9pN++v6JNl8t2M4hQ7dhz
- cQj23S0dC0Sf1q+AKAyy+9JMy7ke7zQ07yoAsEUrw9q9cNPKJ3F3
-X-Developer-Key: i=konrad.dybcio@linaro.org; a=ed25519;
- pk=iclgkYvtl2w05SSXO5EjjSYlhFKsJ+5OSZBjOkQuEms=
-X-Spam-Status: No, score=-0.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_SORBS_HTTP,RCVD_IN_SORBS_SOCKS,SPF_HELO_NONE,SPF_PASS
-        autolearn=no autolearn_force=no version=3.4.6
+        with ESMTP id S229621AbjCPMGC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Mar 2023 08:06:02 -0400
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E4C5F65A6;
+        Thu, 16 Mar 2023 05:06:01 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1678968361; x=1710504361;
+  h=from:to:cc:subject:date:message-id;
+  bh=OzAcioscik7j5ytPlocSBa883d3OO/wP/79fGOzLC2g=;
+  b=lDNHnbwQllzfrz77U2jWV+ivEMJSJnBYuP313okst6JJ8Sz9+PLHknNH
+   fD5PkUGi4mt3bY76B5pzOQXXB+dtGOxVqPvMwiCtnKTGX72XksVFcLBol
+   rJdvq9b7g1B5QIDDqyEj3wiWcg7H+AOzlUZZTHcWNvOhj4bR2GFl1hIJM
+   qRQXd7U4VFux6DJ5RQLIAItfgTBu1/WWjXNYgoSrHSS2G3gPBDpr9JDFP
+   O2yAUZziRJC9ln/JoVVJA8spEyLVQJYVIxIJ6m7L/ySWiQ8EWpizX40BX
+   Pn8VlwKGSda9r7v3N0UdxJCv/WcWSjJZFS4WygQuzzUXWZBoPL/gqCzTY
+   g==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10650"; a="365656967"
+X-IronPort-AV: E=Sophos;i="5.98,265,1673942400"; 
+   d="scan'208";a="365656967"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+  by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 16 Mar 2023 05:05:55 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6500,9779,10650"; a="768911547"
+X-IronPort-AV: E=Sophos;i="5.98,265,1673942400"; 
+   d="scan'208";a="768911547"
+Received: from coresw01.iind.intel.com ([10.106.46.194])
+  by FMSMGA003.fm.intel.com with ESMTP; 16 Mar 2023 05:05:49 -0700
+From:   rashmi.a@intel.com
+To:     ulf.hansson@linaro.org, michal.simek@xilinx.com,
+        p.zabel@pengutronix.de, linux-mmc@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, vkoul@kernel.org, kishon@kernel.org,
+        yuancan@huawei.com, andriy.shevchenko@linux.intel.com,
+        linux-phy@lists.infradead.org, mgross@linux.intel.com
+Cc:     kris.pan@linux.intel.com, adrian.hunter@intel.com,
+        mahesh.r.vaidya@intel.com, nandhini.srikandan@intel.com,
+        vasavi.v.itha@intel.com, kenchappa.demakkanavar@intel.com,
+        furong.zhou@intel.com, mallikarjunappa.sangannavar@intel.com,
+        rashmi.a@intel.com
+Subject: [PATCH v2 0/4] Remove Intel Thunder Bay emmc patches
+Date:   Thu, 16 Mar 2023 17:35:45 +0530
+Message-Id: <20230316120549.21486-1-rashmi.a@intel.com>
+X-Mailer: git-send-email 2.17.1
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the MDSS_CORE reset which can be asserted to reset the state of
-the entire MDSS.
+From: Rashmi A <rashmi.a@intel.com>
 
-Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
----
- drivers/clk/qcom/dispcc-qcm2290.c | 7 +++++++
- 1 file changed, 7 insertions(+)
+Remove Thunder Bay specific code as the product got cancelled and 
+there are no end customers or users.
 
-diff --git a/drivers/clk/qcom/dispcc-qcm2290.c b/drivers/clk/qcom/dispcc-qcm2290.c
-index 2ebd9a02b895..cbb5f1ec6a54 100644
---- a/drivers/clk/qcom/dispcc-qcm2290.c
-+++ b/drivers/clk/qcom/dispcc-qcm2290.c
-@@ -20,6 +20,7 @@
- #include "clk-regmap-divider.h"
- #include "common.h"
- #include "gdsc.h"
-+#include "reset.h"
- 
- enum {
- 	P_BI_TCXO,
-@@ -445,6 +446,10 @@ static struct clk_branch disp_cc_sleep_clk = {
- 	},
- };
- 
-+static const struct qcom_reset_map disp_cc_qcm2290_resets[] = {
-+	[DISP_CC_MDSS_CORE_BCR] = { 0x2000 },
-+};
-+
- static struct gdsc mdss_gdsc = {
- 	.gdscr = 0x3000,
- 	.pd = {
-@@ -494,6 +499,8 @@ static const struct qcom_cc_desc disp_cc_qcm2290_desc = {
- 	.num_clks = ARRAY_SIZE(disp_cc_qcm2290_clocks),
- 	.gdscs = disp_cc_qcm2290_gdscs,
- 	.num_gdscs = ARRAY_SIZE(disp_cc_qcm2290_gdscs),
-+	.resets = disp_cc_qcm2290_resets,
-+	.num_resets = ARRAY_SIZE(disp_cc_qcm2290_resets),
- };
- 
- static const struct of_device_id disp_cc_qcm2290_match_table[] = {
+In V2, cover letter has been added for the patchset, modified commit 
+msg and patch subject in all the patches.
+
+
+Thanks
+
+A, Rashmi (4):
+  mmc: sdhci-of-arasan: Remove Intel Thunder Bay SOC support
+  dt-bindings: mmc: Remove bindings for Intel Thunder Bay SoC"
+  phy: intel: Remove Thunder Bay eMMC PHY support
+  dt-bindings: phy: intel: Remove Thunder Bay eMMC PHY bindings
+
+ .../devicetree/bindings/mmc/arasan,sdhci.yaml |  25 -
+ .../phy/intel,phy-thunderbay-emmc.yaml        |  45 --
+ MAINTAINERS                                   |   7 -
+ drivers/mmc/host/sdhci-of-arasan.c            |  29 +-
+ drivers/phy/intel/Kconfig                     |  10 -
+ drivers/phy/intel/Makefile                    |   1 -
+ drivers/phy/intel/phy-intel-thunderbay-emmc.c | 509 ------------------
+ 7 files changed, 1 insertion(+), 625 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/phy/intel,phy-thunderbay-emmc.yaml
+ delete mode 100644 drivers/phy/intel/phy-intel-thunderbay-emmc.c
 
 -- 
-2.39.2
+2.17.1
 
