@@ -2,174 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EA9236BDB60
-	for <lists+devicetree@lfdr.de>; Thu, 16 Mar 2023 23:10:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C578A6BDB99
+	for <lists+devicetree@lfdr.de>; Thu, 16 Mar 2023 23:25:16 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229516AbjCPWKj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Mar 2023 18:10:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48150 "EHLO
+        id S229955AbjCPWZO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Mar 2023 18:25:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33538 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229523AbjCPWKi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Mar 2023 18:10:38 -0400
-Received: from esa1.hgst.iphmx.com (esa1.hgst.iphmx.com [68.232.141.245])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8019E7DF9E
-        for <devicetree@vger.kernel.org>; Thu, 16 Mar 2023 15:10:03 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=wdc.com; i=@wdc.com; q=dns/txt; s=dkim.wdc.com;
-  t=1679004603; x=1710540603;
-  h=message-id:date:mime-version:subject:to:cc:references:
-   from:in-reply-to:content-transfer-encoding;
-  bh=BwhFewWBTGHcR2L3lWIABhEO48EgoTHYXLzjzl/RGDE=;
-  b=G8ksdJvgmnZYIWKgul0QUsmkuMhdgC79hTu9pka7wmJAKsrJiJpyP1yL
-   1bCUmkDQtxFkTSYbRW4LckxvxGvrNJgrWTIto+344/Vkd+k+MHVF/makE
-   066VITTR2bg+G+Ewux+U7+A7j3neVOjuy2wkp+zhINcCHtYifoUOTGrRW
-   /UCc+EIIxsjrNwm1MF8PdUOS1A6yRUfSV4ZGJZVrI4XDAXLd1LkTSrHMS
-   /9hfVxsNjsxBF2FhahcU9zaBHyBJtPFtczT807T7cBtVwSv9m5OMTFk19
-   rsILhD0CfuexGxyFNWtVlOIejgxMThbU4D47RQzZ0byggaeB5yNdYnXxW
-   g==;
-X-IronPort-AV: E=Sophos;i="5.98,265,1673884800"; 
-   d="scan'208";a="337850927"
-Received: from h199-255-45-14.hgst.com (HELO uls-op-cesaep01.wdc.com) ([199.255.45.14])
-  by ob1.hgst.iphmx.com with ESMTP; 17 Mar 2023 06:09:09 +0800
-IronPort-SDR: s+qEofaLFhc+704aUnYm4ZwOHrzyMj6BHZ3vF5m2H0+YkxwouATBJLXAh/unJdGBSINalJuqVN
- vOpf9m3ngV30QLBNcN8yek8S/5Nkx+xV2Xf/Xy7ekzTaSPuIjIp9hXY4HL/F1rNzdFrxDTqcoH
- Key9hqwNe60t8kDxIo1KzrtlK9N66VlgjMF65s6UKyWIjI0RhqvJtTQ5RIHWl2RTtUQbcfYMzS
- I6PHoxyRcgM18oayF6amF+01GIDkQvc6qib5uCpxYKOA3JOU9H7Hox3+thORQxXKbJfoiyn5XJ
- m6o=
-Received: from uls-op-cesaip02.wdc.com ([10.248.3.37])
-  by uls-op-cesaep01.wdc.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 16 Mar 2023 14:25:34 -0700
-IronPort-SDR: WGGpM1n/haYB1m4teZGvg/1mKJNcbZ9ttcMxWhJxnGDqj0Ox+XE+I4IIr2CqeU0C/jXepPpck3
- r9ug3Em2oauPlDvkSTMCAQj5eWBCyOHpVB1YcmyBS0KnjwYN9dGWDGwUDOOJCA7ptV47KDPJ4G
- GClBfI1HA4mihHFcWGwPx3hVaX6tjJtAriv6vzvEFK95Ieldl248sDpLZoZCWMeJQ0FIN+v2fa
- ShTtkCUpwpsPO0MjHDhkgsVA9xcEMbTB1R28WRpI27T6vCnVfNUWAyNhgQuHUkr+81meTjsT3J
- wDk=
-WDCIronportException: Internal
-Received: from usg-ed-osssrv.wdc.com ([10.3.10.180])
-  by uls-op-cesaip02.wdc.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 16 Mar 2023 15:09:10 -0700
-Received: from usg-ed-osssrv.wdc.com (usg-ed-osssrv.wdc.com [127.0.0.1])
-        by usg-ed-osssrv.wdc.com (Postfix) with ESMTP id 4Pd1d12GH4z1RtVn
-        for <devicetree@vger.kernel.org>; Thu, 16 Mar 2023 15:09:09 -0700 (PDT)
-Authentication-Results: usg-ed-osssrv.wdc.com (amavisd-new); dkim=pass
-        reason="pass (just generated, assumed good)"
-        header.d=opensource.wdc.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=
-        opensource.wdc.com; h=content-transfer-encoding:content-type
-        :in-reply-to:organization:from:content-language:references:to
-        :subject:user-agent:mime-version:date:message-id; s=dkim; t=
-        1679004548; x=1681596549; bh=BwhFewWBTGHcR2L3lWIABhEO48EgoTHYXLz
-        jzl/RGDE=; b=aokn1OA+f94YRY/4ymkhcYE3bMoK8reCMjT/KpuQH4ZVr+2mq9w
-        5e7pZgOHZWubNv4okXqZdY+Y8qXjm6sLsAowCBJ1rAuCPFwxGMt3t/K9oqwyBpu9
-        QtPZ+65osCY2fA8Z+k57qDR+MdICOJzpwp3dNRpRZ/bvm1mfKIbtPX3PHffijL1B
-        36LuyYyV5fDYN5k6mMmx38XuBxqIoTTj0yQ5+Gj0EB+n/M1I75c9FH7GQznNLpx4
-        l+G543xbtjd9v5buOaU3OqNDNsbgLQcw/2q2dz4IdVYNdMjBFt5L9tL/L2j69CNr
-        WB6Oh11cwKBj/jmzvdLM2N3EJzPmKfdkDQA==
-X-Virus-Scanned: amavisd-new at usg-ed-osssrv.wdc.com
-Received: from usg-ed-osssrv.wdc.com ([127.0.0.1])
-        by usg-ed-osssrv.wdc.com (usg-ed-osssrv.wdc.com [127.0.0.1]) (amavisd-new, port 10026)
-        with ESMTP id 35pYDXg6K50G for <devicetree@vger.kernel.org>;
-        Thu, 16 Mar 2023 15:09:08 -0700 (PDT)
-Received: from [10.225.163.88] (unknown [10.225.163.88])
-        by usg-ed-osssrv.wdc.com (Postfix) with ESMTPSA id 4Pd1cx56X6z1RtVm;
-        Thu, 16 Mar 2023 15:09:05 -0700 (PDT)
-Message-ID: <15208569-b3d7-b9f7-6676-9d9122cac84a@opensource.wdc.com>
-Date:   Fri, 17 Mar 2023 07:09:04 +0900
+        with ESMTP id S229977AbjCPWZA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Mar 2023 18:25:00 -0400
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A7BF1B950D
+        for <devicetree@vger.kernel.org>; Thu, 16 Mar 2023 15:23:14 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+        s=mimecast20190719; t=1679005336;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=/Rowjv41usgCF4QQ+kI7SHFbssbiYFWw5qAQUMEZc44=;
+        b=aaszGrksTxfH39qalHIMFbcegGiXmnMkEAL3U0Rl+RECbPNxwMqmuiUyiPnPHVkdJFxxwQ
+        fHwPpxb26gdqlNbwYU+xebF69nkaxWL+YFqN7evdO0sW+AlwVgLotUpr4HblTw+IwF0WIp
+        yONAk2umM+ZWAf5RqwTazuZFWichj00=
+Received: from mail-oi1-f198.google.com (mail-oi1-f198.google.com
+ [209.85.167.198]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-623-iPTmMKFhPmaBIJi19UECFQ-1; Thu, 16 Mar 2023 18:22:00 -0400
+X-MC-Unique: iPTmMKFhPmaBIJi19UECFQ-1
+Received: by mail-oi1-f198.google.com with SMTP id e15-20020a056808148f00b003844fd09434so1551170oiw.5
+        for <devicetree@vger.kernel.org>; Thu, 16 Mar 2023 15:22:00 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1679005319;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=/Rowjv41usgCF4QQ+kI7SHFbssbiYFWw5qAQUMEZc44=;
+        b=jNKA3/ULo5W9k1w+2tC6bKafWWwSLH7hLwPVltaK21c03Ml54bxMFrxJAkTLEikKu0
+         C/+02asJ3nGUspK89hBt0BRb6DXC7Wbwda2dNjNHTFtCRSxa4mHMAl8lXXMDCnfhqECA
+         YglQrhAtQBFwffVz5VlurbqULGEkTQIVBpkRUmzJmRXOThUASfWpUisw7RvcbKOPgkq8
+         Dgo1QUrlkDp+tkdNzEUNZNwi689SifhRScdiNvlDaC3w265o01s/KlccM6c4L5A7RMtf
+         htxXfppoCxyLd5KH2N0xvJ1ctxq9d5OONllJk3xoOnAB6qkvcGSMkZnlw6M2BYjV9Nei
+         PKEg==
+X-Gm-Message-State: AO0yUKXhpFa2q7Mpt9q1v30tYWrfeNh/A8tGIBh3gYPQHPzg5x0NmVD/
+        4DOk2p/pwaKyjqguSxbwr1UW+DmlZNE7+So+9dP9V91DlqnsXjepgXS+wJD6Fc4CY8/xB5yBYzE
+        cB5zzVn1lqEH5W//NSSYO6A==
+X-Received: by 2002:a05:6808:288e:b0:37f:ab79:a18a with SMTP id eu14-20020a056808288e00b0037fab79a18amr3573029oib.6.1679005319341;
+        Thu, 16 Mar 2023 15:21:59 -0700 (PDT)
+X-Google-Smtp-Source: AK7set/j+kh5lDpmaLzdIllCWV+e60+QESfodsxPJwbhNxsMnnYpD889YVRRc7aq7J3P6t24SdXMeg==
+X-Received: by 2002:a05:6808:288e:b0:37f:ab79:a18a with SMTP id eu14-20020a056808288e00b0037fab79a18amr3572986oib.6.1679005317656;
+        Thu, 16 Mar 2023 15:21:57 -0700 (PDT)
+Received: from halaney-x13s (104-53-165-62.lightspeed.stlsmo.sbcglobal.net. [104.53.165.62])
+        by smtp.gmail.com with ESMTPSA id r130-20020acaf388000000b00383f58e7e95sm245725oih.17.2023.03.16.15.21.55
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 16 Mar 2023 15:21:56 -0700 (PDT)
+Date:   Thu, 16 Mar 2023 17:21:53 -0500
+From:   Andrew Halaney <ahalaney@redhat.com>
+To:     Konrad Dybcio <konrad.dybcio@linaro.org>
+Cc:     linux-kernel@vger.kernel.org, agross@kernel.org,
+        andersson@kernel.org, davem@davemloft.net, edumazet@google.com,
+        kuba@kernel.org, pabeni@redhat.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, vkoul@kernel.org,
+        bhupesh.sharma@linaro.org, mturquette@baylibre.com,
+        sboyd@kernel.org, peppe.cavallaro@st.com,
+        alexandre.torgue@foss.st.com, joabreu@synopsys.com,
+        mcoquelin.stm32@gmail.com, richardcochran@gmail.com,
+        linux@armlinux.org.uk, veekhee@apple.com,
+        tee.min.tan@linux.intel.com, mohammad.athari.ismail@intel.com,
+        jonathanh@nvidia.com, ruppala@nvidia.com, bmasney@redhat.com,
+        andrey.konovalov@linaro.org, linux-arm-msm@vger.kernel.org,
+        netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-clk@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        linux-arm-kernel@lists.infradead.org, ncai@quicinc.com,
+        jsuraj@qti.qualcomm.com, hisunil@quicinc.com
+Subject: Re: [PATCH net-next 05/11] clk: qcom: gcc-sc8280xp: Add EMAC GDSCs
+Message-ID: <20230316222153.43wzb4nv7s4d3wwz@halaney-x13s>
+References: <20230313165620.128463-1-ahalaney@redhat.com>
+ <20230313165620.128463-6-ahalaney@redhat.com>
+ <3f37eede-6d62-fb92-9cff-b308de333ebd@linaro.org>
+ <20230314160818.2yopv6yeczne7gfi@halaney-x13s>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-Subject: Re: [PATCH v2 0/9] PCI: rockchip: Fix RK3399 PCIe endpoint controller
- driver
-To:     Rick Wertenbroek <rick.wertenbroek@gmail.com>
-Cc:     alberto.dassatti@heig-vd.ch, xxm@rock-chips.com,
-        rick.wertenbroek@heig-vd.ch, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Shawn Lin <shawn.lin@rock-chips.com>,
-        Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        =?UTF-8?Q?Krzysztof_Wilczy=c5=84ski?= <kw@linux.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Jani Nikula <jani.nikula@intel.com>,
-        Rodrigo Vivi <rodrigo.vivi@intel.com>,
-        Mikko Kovanen <mikko.kovanen@aavamobile.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-pci@vger.kernel.org
-References: <20230214140858.1133292-1-rick.wertenbroek@gmail.com>
- <ecd09f27-b799-4741-2c5a-a2de99776c51@opensource.wdc.com>
- <CAAEEuhrk4cSC312UiAL3UwoDZ=urrdDcBThcNHd1dqnAuJTzAw@mail.gmail.com>
- <3c4ed614-f088-928f-2807-deaa5e4b668a@opensource.wdc.com>
- <CAAEEuhqk0scWd3wFbVb9fSgHxPBKotpEPNi+YPG4GD9vLO94mw@mail.gmail.com>
- <8392a7de-666a-bce6-dc9f-b60d6dd93013@opensource.wdc.com>
- <1e8184e9-7e0b-2598-cc5a-e46d6c2f152a@opensource.wdc.com>
- <CAAEEuhoB2LqL=B_BQ0X2T-E+Yt83kPUiv-R9dgU0O-f22ukcWg@mail.gmail.com>
- <CAAEEuhp5WTkaPDRLa8frc9Sc43A3HwApW647v-E9Bse6p5Df5Q@mail.gmail.com>
-Content-Language: en-US
-From:   Damien Le Moal <damien.lemoal@opensource.wdc.com>
-Organization: Western Digital Research
-In-Reply-To: <CAAEEuhp5WTkaPDRLa8frc9Sc43A3HwApW647v-E9Bse6p5Df5Q@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
-        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230314160818.2yopv6yeczne7gfi@halaney-x13s>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_NONE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 3/17/23 01:34, Rick Wertenbroek wrote:
->>> By the way, enabling the interrupts to see the error notifications, I do see a
->>> lot of retry timeout and other recoverable errors. So the issues I am seeing
->>> could be due to my PCI cable setup that is not ideal (bad signal, ground loops,
->>> ... ?). Not sure. I do not have a PCI analyzer handy :)
+On Tue, Mar 14, 2023 at 11:08:18AM -0500, Andrew Halaney wrote:
+> On Tue, Mar 14, 2023 at 04:13:18PM +0100, Konrad Dybcio wrote:
+> > 
+> > 
+> > On 13.03.2023 17:56, Andrew Halaney wrote:
+> > > Add the EMAC GDSCs to allow the EMAC hardware to be enabled.
+> > > 
+> > > Signed-off-by: Andrew Halaney <ahalaney@redhat.com>
+> > > ---
+> > Was it tested to not cause issues on access on "normal" 8280xp?
+> > AFAICS if there would be any, they would happen at registration
+> > time, as gdsc_init already accesses its registers
 > 
-> I have enabled the IRQs and messages thanks to your patches but I don't get
-> messages from the IRQs (it seems no IRQs are fired). My PCIe link seems stable.
-> The main issue I face is still that after a random amount of time, the BARs are
-> reset to 0, I don't have a PCIe analyzer so I cannot chase config space TLPs
-> (e.g., host writing the BAR values to the config header), but I don't think that
-> the problem comes from a TLP issued from the host. (it might be).
-
-Hmmm... I am getting lots of IRQs, especially the ones signaling "replay timer
-timed out" and "replay timer rolled over after 4 transmissions of the same TLP"
-but also some "phy error detected on receive side"... Need to try to rework my
-cable setup I guess.
-
-As for the BARs being reset to 0, I have not checked, but it may be why I see
-things not working after some inactivity. Will check that. We may be seeing the
-same regarding that.
-
-> I don't think it's a buffer overflow / out-of-bounds access by kernel
-> code for two reasons
-> 1) The values in the config space around the BARs is coherent and unchanged
-> 2) The bars are reset to 0 and not a random value
+> No, I've only tested this series on the sa8540p-ride. I luckily also am
+> working from an x13s, I will use that to confirm nothing strange happens
+> with this applied before sending v2 and confirm the results.
 > 
-> I suspect a hardware reset of those registers issued internally in the
-> PCIe controller,
-> I don't know why (it might be a link related event or power state
-> related event).
-> 
-> I have also experienced very slow behavior with the PCI endpoint test driver,
-> e.g., pcitest -w 1024 -d would take tens of seconds to complete. It seems to
-> come from LCRC errors, when I check the "LCRC Error count register"
-> @0xFD90'0214 I can see it drastically increase between two calls of pcitest
-> (when I mean drastically it means by 6607 (0x19CF) for example).
-> 
-> The "ECC Correctable Error Count Register" @0xFD90'0218 reads 0 though.
-> 
-> I have tried to shorten the cabling by removing one of the PCIe extenders, that
-> didn't change the issues much.
-> 
-> Any ideas as to why I see a large number of TLPs with LCRC errors in them ?
-> Do you experience the same ? What are your values in 0xFD90'0214 when
-> running e.g., pcitest -w 1024 -d (note: you can reset the counter by writing
-> 0xFFFF to it in case it reaches the maximum value of 0xFFFF).
 
-I have not checked. But I will look at these counters to see what I have there.
+Writing from my x13s with this applied, things seem ok to me :)
 
-
--- 
-Damien Le Moal
-Western Digital Research
+Thanks,
+Andrew
 
