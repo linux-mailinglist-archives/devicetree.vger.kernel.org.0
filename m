@@ -2,251 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8A9FD6BDAF2
-	for <lists+devicetree@lfdr.de>; Thu, 16 Mar 2023 22:28:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1CB2E6BDB2A
+	for <lists+devicetree@lfdr.de>; Thu, 16 Mar 2023 22:57:42 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229838AbjCPV17 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Mar 2023 17:27:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53634 "EHLO
+        id S230011AbjCPV5j (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Mar 2023 17:57:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58240 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230079AbjCPV14 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Mar 2023 17:27:56 -0400
-Received: from EUR03-AM7-obe.outbound.protection.outlook.com (mail-am7eur03on2047.outbound.protection.outlook.com [40.107.105.47])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D12B4E5024;
-        Thu, 16 Mar 2023 14:27:44 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=E2rIxPHFEMzHYRVmaSRhmmTGGQqtp9D84ypeAVA07HGJIK6iG8eogaNTN5igICRmlWnZPu3T3bg5YoRRMqf0UqbqD/OFDi/1uYeYdN5AMRXZ6CkvAj/yb/cIeHn82XCKmxmUVgWG2BqrDcnd6C2tehEzRIE5QRlZBreLwoH8esWKbIYDudwK95zsACu1cwo13KETVHyVUxcZIA3DyAbMJjDDt6gNdEBmMCeGupRff/yS1grXJlF5d3uQVNV37KKW8TJpr9dbclg2KszwlG44lEOxp/CGjMCVFiboCfZOlDLfWobf502bFL2BCRkO0ZQI7Tlq9tGroHaAEw4c7kUO6w==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=u7o9y1Z5tDig9CwgQlfGYEvKmYlwQtYljplWQC01wCU=;
- b=CtmuUFC1N/5qo7+M9LxEUgnOeC3Sm4Ph3g7b5c70aY0oDj9ntZPtLmPxCozfVv659TkHl7n/z7pjUTZL5optpuAoZ+x8+83bSQ0/VDWwUtsRTkMHZF8bK1+VW7Kj/bk+gpKLx5d4jba2zoBm1X9et+HvlQOQnxPXH42DU5yiHzEsBpkTNzPWrMFe/ou0PkQ54wBaH5j4TOYO3KHjpwv6hywkT0FT/yUdJfyVD5VzWhafQE3zyOqgSFCJ2qQK+TYiVURlFmFYsLrgHxFKYshNECHqDp4mV8a4vUM7lIIxb94X50cGkMCltk7ZZdd3uMsWlbh9pLrU0VchwXQ5r3dakA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=u7o9y1Z5tDig9CwgQlfGYEvKmYlwQtYljplWQC01wCU=;
- b=fiTsEHgP3lVf5nu/eJZQFgGzcaHSaxJCe3SyyYykHseR2gd5oY4W6ViYQTZkGgH+KbYBTILcymsTdbxyw7q9Do/S6OnQDmFtyMj3D4xeZBQDu3ata1bzyIYO9NKvIaFFVVUQews1euq9JW+F6s9mL8tKRECpi737oXg2bPuIb58=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from AM6PR04MB4838.eurprd04.prod.outlook.com (2603:10a6:20b:4::16)
- by AM8PR04MB7332.eurprd04.prod.outlook.com (2603:10a6:20b:1db::15) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6178.35; Thu, 16 Mar
- 2023 21:27:39 +0000
-Received: from AM6PR04MB4838.eurprd04.prod.outlook.com
- ([fe80::fb2a:a683:b78e:b9b5]) by AM6PR04MB4838.eurprd04.prod.outlook.com
- ([fe80::fb2a:a683:b78e:b9b5%4]) with mapi id 15.20.6178.029; Thu, 16 Mar 2023
- 21:27:39 +0000
-From:   Frank Li <Frank.Li@nxp.com>
-To:     shawnguo@kernel.org
-Cc:     Frank.Li@nxp.com, devicetree@vger.kernel.org, festevam@gmail.com,
-        imx@lists.linux.dev, kernel@pengutronix.de,
-        krzysztof.kozlowski+dt@linaro.org,
-        linux-arm-kernel@lists.infradead.org, linux-imx@nxp.com,
-        linux-kernel@vger.kernel.org, robh+dt@kernel.org,
-        s.hauer@pengutronix.de
-Subject: [PATCH v2 3/3] arm64: dts: freescale: imx8qxp-mek: enable cadence usb3
-Date:   Thu, 16 Mar 2023 17:27:11 -0400
-Message-Id: <20230316212712.2426542-4-Frank.Li@nxp.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230316212712.2426542-1-Frank.Li@nxp.com>
-References: <20230316212712.2426542-1-Frank.Li@nxp.com>
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: SJ0PR05CA0035.namprd05.prod.outlook.com
- (2603:10b6:a03:33f::10) To AM6PR04MB4838.eurprd04.prod.outlook.com
- (2603:10a6:20b:4::16)
+        with ESMTP id S229812AbjCPV5j (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Mar 2023 17:57:39 -0400
+Received: from mail-io1-f52.google.com (mail-io1-f52.google.com [209.85.166.52])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 59FB260A95;
+        Thu, 16 Mar 2023 14:57:38 -0700 (PDT)
+Received: by mail-io1-f52.google.com with SMTP id g6so1451087iov.13;
+        Thu, 16 Mar 2023 14:57:38 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1679003857;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=VCX8Q0KiFWBenYq33JmGKJRfWkS+jFykJMHbbG7dBoQ=;
+        b=cIJ48kvpSVdmLMZodfgcDjQW7a8TB9rAZBEw8EqL9yunVoSsF3qKdv4AyM0gYpeEid
+         +k7hr574e2ZEDhr6Sp3eNKetU8XXnyXxI6D2E6xCaMBpQErdkykwYNvMxHEueiNoUqR9
+         sGDt9iWIdH864NaYcErn5jhIbfLcX4Jel4tD8rxUj6FvjkdbTFJSmtr/zJxSIXXO2bGr
+         tByXrT1Dio/jMVudjhunB4GQSbwZ5slq6JebI+u2GUu5n7X7JG+aeNYyyx5yhCK9lwjP
+         zYxy5YIftk0juwuM3lx2GKCBmwVyBI2l0c2EpPHV5j3r09C+jND/5ttz+52rm1Rqj1c0
+         gMWw==
+X-Gm-Message-State: AO0yUKX43X7EkP+nEy21aHdlNcRPj2GhHOLFi3zL2UxLUX7yp9B5pc9U
+        yQ8mBZPSlhSa973JaD6KjQ==
+X-Google-Smtp-Source: AK7set/1ioEGwLLlKvF20+unEkGcnCNWjn2iYIU36TopHqxFzHe7QejHEg/KOrCEWBF56csPo4ShDQ==
+X-Received: by 2002:a6b:5b12:0:b0:745:4726:b228 with SMTP id v18-20020a6b5b12000000b007454726b228mr335948ioh.17.1679003857572;
+        Thu, 16 Mar 2023 14:57:37 -0700 (PDT)
+Received: from robh_at_kernel.org ([64.188.179.249])
+        by smtp.gmail.com with ESMTPSA id x3-20020a056638248300b003ee9720740esm121887jat.153.2023.03.16.14.57.36
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 16 Mar 2023 14:57:37 -0700 (PDT)
+Received: (nullmailer pid 3948932 invoked by uid 1000);
+        Thu, 16 Mar 2023 21:57:35 -0000
+Date:   Thu, 16 Mar 2023 16:57:35 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Gerald Loacker <gerald.loacker@wolfvision.net>
+Cc:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Maxime Ripard <mripard@kernel.org>,
+        Michael Riesch <michael.riesch@wolfvision.net>
+Subject: Re: [PATCH 7/7] dt-bindings: display: add panel-timing property to
+ sitronix,st7789v
+Message-ID: <20230316215735.GA3940832-robh@kernel.org>
+References: <20230314115644.3775169-1-gerald.loacker@wolfvision.net>
+ <20230314115644.3775169-8-gerald.loacker@wolfvision.net>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: AM6PR04MB4838:EE_|AM8PR04MB7332:EE_
-X-MS-Office365-Filtering-Correlation-Id: ff2ea676-ebae-48d2-a77c-08db2665451d
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: qTeXzOBFeyAC0EzEsG6HqC0zIE0JwcGYUMd86EAp7/QNtUcB2eZW8tUXcU9f54B5WbduPZauoS2/H3cbhapEIrDrdC4ht5wnqt30utS5NQgJ9+uMo+vxqNHiQBTedTjppyfa0V91ZLMGkFJ0KEpxvuJ5K88YVPSzU8CAXKt1s7/AU1mqTugXkVgSp/EaLBfST3SP2u+iKndnjhappyZSd/ZEADB4wtdxDhJwVUUnudofpASDQvTRGQ1fLi8DhJ1BuCtjGhHLo4wEW0JGO1XsNp0SzDfg7zQiFsWP+68Glmjh35L3qPucHx0Dii7tJHJwEouGwvR7OvUN7DbFQXbtQPxNlgbrgmdVdEWxmXioBM4oYkjlMcg9PXSrVe+0N0KpXD4+ikCgINPIN2qXB/YPphRGuTWM2RK5Kk9aawTMbq7mA5vqTQoDvbQ2xcaaZxPUhqLAyXNgIgYpG/NhnRGeZzdLwWnHsMRJjJJ7guTKNdPsZYFnB8gXlsiYYkAQI2OgH6JsMt/ReLzOGtJ189E7hCbw8egQZmfZvCEL3lD6dWj1cRZFdRjLNwwNplH9X6qxHX5XWHWZv7SkhaIXTgr2dY7pYF+/SqKLjGq4ajRtBprUcTnX3drOJiz9zlTLMJHVq9/AHdkwZ04VhHyBlZOxKwBTe0ferfKR97TVQYDALtI26rvA2/YGFwHitLodqccrcMSbnh0b+mA3nrzaxPzBsXEZIZqP3+nVBPreDYMnRnSPlkgFia9xnQnWR6wQdcqj
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM6PR04MB4838.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230025)(4636009)(346002)(136003)(39860400002)(396003)(366004)(376002)(451199018)(38100700002)(38350700002)(86362001)(36756003)(2906002)(41300700001)(7416002)(8936002)(5660300002)(4326008)(6506007)(6512007)(1076003)(26005)(186003)(2616005)(316002)(8676002)(6916009)(66476007)(66556008)(66946007)(6486002)(6666004)(478600001)(52116002)(32563001)(473944003);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?0W0xtir7ijH4v9ocahKs7ZOKMVhRHxLm4z7VNWlfKXp3Ke/5zCNhKuE1Ueuv?=
- =?us-ascii?Q?A0e4fsVqbWM6zoiEEp0TPF/ARwBLT9AuPfbPQMR2fMplqXrHXe5lRL9z5fuo?=
- =?us-ascii?Q?xpceTJOVxRBWN3PR9cpvq/O+77eoPj80tzUSBxB3+IE3WPH0qniKMUyhbUIa?=
- =?us-ascii?Q?NYYLhCNYBWHbvfoCoEa30zjboO76nwi2xMPNg7/hIQdN/wPI3gUGU2IegzBG?=
- =?us-ascii?Q?+a4Rj9eoseMxNF1meizyuxL0UNBx6tN5RLA4NEFRFQxPQLizsIRnlxYk6hZI?=
- =?us-ascii?Q?vs++f295rqhguIWclJDo55nNZBhMzAGpDTeXzOuXmwDTKzRvqNuEnhMUdN9e?=
- =?us-ascii?Q?M6af+HrPX0VjrpwqKHgSdQOg1Fc3p5RP9DktzP+ooM4vA1bft9XKYeVDEYEh?=
- =?us-ascii?Q?hwiRmv29wjbgOxvz3jCXW4+oh97ejQqjpZAIOX1vyAbq9zFNB1jwo0Q3pKws?=
- =?us-ascii?Q?D9cwZbHGyo5xj3ebGyE5SZiUF00GothfIVzKdM22l0oDOUgaQ0YYR79WI0MJ?=
- =?us-ascii?Q?2X5Wp0pFBd/3kp5tFKlPgz338KMVX+aROw6kZPn4QxxtrkEvUnyUB4XudPPv?=
- =?us-ascii?Q?odAZzW+lG2Y1GZfad0KO2V/rC5CJZIFwtDO6jMU1qMrX34Cl5n96Z5uM5fGC?=
- =?us-ascii?Q?e6X0jxFsuApmCK5eVUsYXVCLZtuiNj7ETnJAvPMpzFKxz3Cep7BUzdULqiI7?=
- =?us-ascii?Q?/vLscIZUvAX5h0BQxl1iRDnk6NCzUlK0Xl42EobKJOP3AOub0t+3EJbv4xZm?=
- =?us-ascii?Q?ZrbyegRnP8EEW6ZFB/I9RGAa0mpIDi9jV803Jjbl785CRp90Mquaa2IxW6qt?=
- =?us-ascii?Q?lf0Gxb7sVCDO5ePD28RTpQRz8gy33beAmUhGMh2F4MZe8NG/Q+ua7//TypTB?=
- =?us-ascii?Q?zRDkUCh1uTFhShl+sG6cQuTGkHgW6porvF8hQ6t+s8V6OB8gEw9hfs75Qxnk?=
- =?us-ascii?Q?+1A+F1RMEdX1rjuT/KD87IBWCGbB7Sor8mE6sEkoB6bdaIxApyuy9fUYY3Tp?=
- =?us-ascii?Q?bqXtu8BwWNFvG2FGiFWYzlFYiamkfRQtkY1J1NrC7RKpvQpCi2eGRw5iB0KO?=
- =?us-ascii?Q?BQXtuf+i1yl+OA7to/jYmzmSib4oPPcbqJVsHCY7XGqmlRaqlvXhtVqZJAsd?=
- =?us-ascii?Q?CqdRjSHtILS64Q8d9eRb6Alht5VcJ1WTt+5Yv+pTRg64MRS9K3FCeaO6NTG1?=
- =?us-ascii?Q?YwPKSb/WBERMWZiqQUNLg6S4xgtp/7lz49e6xxAl0mCXmU/Tf2x8/zb0d13Z?=
- =?us-ascii?Q?jms2lG9d6x7BlOrp2WCWIBb2zAsdjn1cN79/Zzxl/jzp7zC5zj93ghAALoDf?=
- =?us-ascii?Q?7Y09GsQmNLALaPHxU/zPgA4KsFDPZmLcR3e1oJ/iVClrAyJGsyy5NXixm0Uy?=
- =?us-ascii?Q?Ew+nUFTk0km0htr0eN0qbR36/HVuR0eT8X1+JGXFc2qKaN2n+SI6p7uP3kGw?=
- =?us-ascii?Q?ZAF/CPx1qg8gCnBVTqCL8o6GnbpGmkQQxTA7BiOnTuQxY24jWXN/+3e+6X0L?=
- =?us-ascii?Q?+TaV4LAHofx/dBJhjd5zzRs2ixZahw3lXZ8ZrK7wSbZjNmNZEA4pdqwB0+z6?=
- =?us-ascii?Q?xqQOg0vRtt4BCF4MBoQJExi0pBtSoHPi+8qLD3ow?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: ff2ea676-ebae-48d2-a77c-08db2665451d
-X-MS-Exchange-CrossTenant-AuthSource: AM6PR04MB4838.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Mar 2023 21:27:39.7587
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: qLxwHQsf1EUA2F5Oy1xiTyMjq9crnpXfKcEN1esMQ7W42qdongY1lIrs1kANEJsG0ixWpKOIsyzmJMtN2VFVrA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM8PR04MB7332
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230314115644.3775169-8-gerald.loacker@wolfvision.net>
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Enable USB3 controller, phy and typec related nodes.
+On Tue, Mar 14, 2023 at 12:56:44PM +0100, Gerald Loacker wrote:
+> The sitronix-st7789v driver now considers the panel-timing property.
 
-Signed-off-by: Frank Li <Frank.Li@nxp.com>
----
- arch/arm64/boot/dts/freescale/imx8qxp-mek.dts | 85 +++++++++++++++++++
- 1 file changed, 85 insertions(+)
+I read the patch for that and still don't know 'why'. Commit messages 
+should answer why.
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8qxp-mek.dts b/arch/arm64/boot/dts/freescale/imx8qxp-mek.dts
-index afa883389456..9ba4c72f0006 100644
---- a/arch/arm64/boot/dts/freescale/imx8qxp-mek.dts
-+++ b/arch/arm64/boot/dts/freescale/imx8qxp-mek.dts
-@@ -6,6 +6,7 @@
- /dts-v1/;
- 
- #include "imx8qxp.dtsi"
-+#include <dt-bindings/usb/pd.h>
- 
- / {
- 	model = "Freescale i.MX8QXP MEK";
-@@ -28,6 +29,21 @@ reg_usdhc2_vmmc: usdhc2-vmmc {
- 		gpio = <&lsio_gpio4 19 GPIO_ACTIVE_HIGH>;
- 		enable-active-high;
- 	};
-+
-+	gpio-sbu-mux {
-+		compatible = "gpio-sbu-mux";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_typec_mux>;
-+		select-gpios = <&lsio_gpio5 9 GPIO_ACTIVE_HIGH>;
-+		enable-gpios = <&pca9557_a 7 GPIO_ACTIVE_LOW>;
-+		orientation-switch;
-+
-+		port {
-+			usb3_data_ss: endpoint {
-+				remote-endpoint = <&typec_con_ss>;
-+			};
-+		};
-+	};
- };
- 
- &dsp {
-@@ -127,6 +143,42 @@ light-sensor@44 {
- 			};
- 		};
- 	};
-+
-+	ptn5110: tcpc@50 {
-+		compatible = "nxp,ptn5110";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_typec>;
-+		reg = <0x50>;
-+		interrupt-parent = <&lsio_gpio1>;
-+		interrupts = <3 IRQ_TYPE_LEVEL_LOW>;
-+
-+		port {
-+			typec_dr_sw: endpoint {
-+				remote-endpoint = <&usb3_drd_sw>;
-+			};
-+		};
-+
-+		usb_con1: connector {
-+			compatible = "usb-c-connector";
-+			label = "USB-C";
-+			power-role = "source";
-+			data-role = "dual";
-+			source-pdos = <PDO_FIXED(5000, 3000, PDO_FIXED_USB_COMM)>;
-+
-+			ports {
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+
-+				port@1 {
-+					reg = <1>;
-+					typec_con_ss: endpoint {
-+						remote-endpoint = <&usb3_data_ss>;
-+					};
-+				};
-+			};
-+		};
-+	};
-+
- };
- 
- &lpuart0 {
-@@ -204,6 +256,27 @@ &usdhc2 {
- 	status = "okay";
- };
- 
-+&usb3_phy {
-+	status = "okay";
-+};
-+
-+&usbotg3 {
-+	status = "okay";
-+};
-+
-+&usbotg3_cdns3 {
-+	dr_mode = "otg";
-+	usb-role-switch;
-+	status = "okay";
-+
-+	port {
-+		usb3_drd_sw: endpoint {
-+			remote-endpoint = <&typec_dr_sw>;
-+		};
-+	};
-+};
-+
-+
- &vpu {
- 	compatible = "nxp,imx8qxp-vpu";
- 	status = "okay";
-@@ -267,6 +340,18 @@ IMX8QXP_UART0_TX_ADMA_UART0_TX				0x06000020
- 		>;
- 	};
- 
-+	pinctrl_typec: typecgrp {
-+		fsl,pins = <
-+			IMX8QXP_SPI2_SCK_LSIO_GPIO1_IO03                        0x06000021
-+		>;
-+	};
-+
-+	pinctrl_typec_mux: typecmuxgrp {
-+		fsl,pins = <
-+			IMX8QXP_ENET0_REFCLK_125M_25M_LSIO_GPIO5_IO09           0x60
-+		>;
-+	};
-+
- 	pinctrl_usdhc1: usdhc1grp {
- 		fsl,pins = <
- 			IMX8QXP_EMMC0_CLK_CONN_EMMC0_CLK			0x06000041
--- 
-2.34.1
+> Add the property to the documentation.
 
+We generally don't put timings in DT for panels. Why is this one 
+special?
+
+> 
+> Signed-off-by: Gerald Loacker <gerald.loacker@wolfvision.net>
+> ---
+>  .../display/panel/sitronix,st7789v.yaml         | 17 +++++++++++++++++
+>  1 file changed, 17 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/display/panel/sitronix,st7789v.yaml b/Documentation/devicetree/bindings/display/panel/sitronix,st7789v.yaml
+> index ed942cd3620f..8810f123dedf 100644
+> --- a/Documentation/devicetree/bindings/display/panel/sitronix,st7789v.yaml
+> +++ b/Documentation/devicetree/bindings/display/panel/sitronix,st7789v.yaml
+> @@ -21,6 +21,7 @@ properties:
+>    reset-gpios: true
+>    power-supply: true
+>    backlight: true
+> +  panel-timing: true
+>    port: true
+>    rotation: true
+>  
+> @@ -54,6 +55,22 @@ examples:
+>              spi-cpol;
+>              spi-cpha;
+>  
+> +            panel-timing {
+> +                clock-frequency = <7000000>;
+> +                hactive = <240>;
+> +                vactive = <320>;
+> +                hfront-porch = <38>;
+> +                hback-porch = <10>;
+> +                hsync-len = <10>;
+> +                vfront-porch = <8>;
+> +                vback-porch = <4>;
+> +                vsync-len = <4>;
+> +                hsync-active = <1>;
+> +                vsync-active = <1>;
+> +                de-active = <1>;
+> +                pixelclk-active = <1>;
+> +            };
+> +
+>              port {
+>                  panel_input: endpoint {
+>                      remote-endpoint = <&tcon0_out_panel>;
+> -- 
+> 2.37.2
+> 
