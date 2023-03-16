@@ -2,162 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1283F6BDB33
-	for <lists+devicetree@lfdr.de>; Thu, 16 Mar 2023 23:00:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 029936BDB56
+	for <lists+devicetree@lfdr.de>; Thu, 16 Mar 2023 23:08:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229516AbjCPWAB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Mar 2023 18:00:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33270 "EHLO
+        id S230162AbjCPWIQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Mar 2023 18:08:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42774 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229890AbjCPV77 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Mar 2023 17:59:59 -0400
-Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 86C546C6A4
-        for <devicetree@vger.kernel.org>; Thu, 16 Mar 2023 14:59:55 -0700 (PDT)
-Received: by mail-lf1-x132.google.com with SMTP id y15so4197845lfa.7
-        for <devicetree@vger.kernel.org>; Thu, 16 Mar 2023 14:59:55 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1679003993;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=4WnuH0tDUQQiCiidSW3pVthhXMOkg/CiHZeKLgJRDi8=;
-        b=mzKXqXEprAJxkA/4iwBC4eey4i+THlJstnm9u9xDmRjyjKsWq+c+28426DRxwbHEv3
-         0ivz8AQaJmSsdcZP8LKSf+MePjciu1g4MMd50V4zFWhf6kFadF/EVcGjKylW0+kTJQor
-         F1jP/U5u5k+TuDlLVFc39comjUIEIPVbBP81skbNVwp2pCqwDFsrHpHsUGOU3eMPB/Cl
-         NerxyE1eAV47ctqI5ZYs1ykyRLjoXOoPk/wOgQhLaRa4qBJHIACkpJSsHzmsAsX+OIof
-         VeOVRAtwr2f3W5CS9/XVY0Dx5JY5anU3nsD9zRJ6J6FDxWXpouy8OvgdNzeVuH9/3Wpl
-         iZRA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679003993;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=4WnuH0tDUQQiCiidSW3pVthhXMOkg/CiHZeKLgJRDi8=;
-        b=GBp0zNgaBfhxW95v+LQ8Vpo4zvc6n4he7jUIedBUqvq2zOVmP+xBVBTvJyE/uUmnqa
-         AJXU7biNHqRcs2VmieDdId+TkJULWvNWNYBWo6a9T6zyqJnxDalc093JDGwh2d9zC94l
-         u8vGVwxio1WLbEW9KTGVcKhn22tGDasmgnnghMtoRW94Q+9mgrZzwBgTK75nSNtc6iTR
-         lhR+naGaalg5t4i6sXDup20hMJL3i4EO4oC6y18ipaUWvLtAGW6I6xco8boGNIRLiaHg
-         nLtnvPIUqBfmzbNA1VxyAciZJ0P+zqyZED0Toysi9ZDWGNYj7+sNRjfOOwfXQWbE8gga
-         FByw==
-X-Gm-Message-State: AO0yUKXe5Dd9hiL4pbKOLM7qWMihVTaoOcoLseGGp2iCjUnW1NP5TAQE
-        8JHxCRCUKy0DyrnFXYvxMcsjcQ==
-X-Google-Smtp-Source: AK7set99CIYF1Pv6CeuPL1oexcu5fMRViDQnG1Yr2+FSi/X30ppXKy3KB91K86Jvi//hx/Vp1Jwr0A==
-X-Received: by 2002:ac2:4314:0:b0:4d5:a689:7f9d with SMTP id l20-20020ac24314000000b004d5a6897f9dmr3276370lfh.57.1679003993293;
-        Thu, 16 Mar 2023 14:59:53 -0700 (PDT)
-Received: from [192.168.1.101] (abyj16.neoplus.adsl.tpnet.pl. [83.9.29.16])
-        by smtp.gmail.com with ESMTPSA id c26-20020ac244ba000000b004dc4feeb7c6sm60070lfm.65.2023.03.16.14.59.50
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 16 Mar 2023 14:59:52 -0700 (PDT)
-Message-ID: <d260b390-f6f2-493a-071c-f88c36582881@linaro.org>
-Date:   Thu, 16 Mar 2023 22:59:49 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-Subject: Re: [PATCH 1/2] dt-bindings: arm-smmu: Document SM61[12]5 GPU SMMU
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Will Deacon <will@kernel.org>,
-        Robin Murphy <robin.murphy@arm.com>,
-        Joerg Roedel <joro@8bytes.org>,
+        with ESMTP id S229780AbjCPWII (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Mar 2023 18:08:08 -0400
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 70D4EB4224;
+        Thu, 16 Mar 2023 15:07:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1679004471; x=1710540471;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=NUccJEQeyuFmY2OUH22+mD2DNXjeXrjGLxyTCvS9pEY=;
+  b=lMznxs/qshTbSSZkv+DZPVCDfunz3h4iUTefMNEBg1rsspKbv5ywpLVM
+   rqEkZdQLdkiW6DmeybcQXcA8tAh8t2085IaXBA50n3+hMN8f8Oym24vgP
+   6Px2NtaBw/mXJao1KZrW+gKdZanrIQ9fDmmDEcBqrPtROzNWckvp8OTTf
+   qHLwDuD5OqUhDhOghPKVqE6aH1OcgVGqpO7ZlVYkO7Io4kfOWHP7VnpOe
+   cE0GKvsyo4EBNEQyj/Zb5j86ew6kjBZhnIYvmrXLSHGMnuJrRmN95056f
+   ljxCo+RdCIZHVs3Y6JOF1R2NnDMYfuIrA5HXnoohd+jMjSFStBzJJdBQP
+   g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10651"; a="339665734"
+X-IronPort-AV: E=Sophos;i="5.98,265,1673942400"; 
+   d="scan'208";a="339665734"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 16 Mar 2023 15:07:50 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10651"; a="854217836"
+X-IronPort-AV: E=Sophos;i="5.98,265,1673942400"; 
+   d="scan'208";a="854217836"
+Received: from lkp-server01.sh.intel.com (HELO b613635ddfff) ([10.239.97.150])
+  by orsmga005.jf.intel.com with ESMTP; 16 Mar 2023 15:07:46 -0700
+Received: from kbuild by b613635ddfff with local (Exim 4.96)
+        (envelope-from <lkp@intel.com>)
+        id 1pcvlB-0008rW-0U;
+        Thu, 16 Mar 2023 22:07:45 +0000
+Date:   Fri, 17 Mar 2023 06:07:11 +0800
+From:   kernel test robot <lkp@intel.com>
+To:     Christian Marangi <ansuelsmth@gmail.com>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Vladimir Oltean <olteanv@gmail.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>
-Cc:     Marijn Suijten <marijn.suijten@somainline.org>,
-        linux-arm-kernel@lists.infradead.org, iommu@lists.linux.dev,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org
-References: <20230315-topic-kamorta_adrsmmu-v1-0-d1c0dea90bd9@linaro.org>
- <20230315-topic-kamorta_adrsmmu-v1-1-d1c0dea90bd9@linaro.org>
- <f09e93e1-235a-ea0a-902d-4f41a8c90ee5@linaro.org>
-Content-Language: en-US
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <f09e93e1-235a-ea0a-902d-4f41a8c90ee5@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-0.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_SORBS_HTTP,RCVD_IN_SORBS_SOCKS,SPF_HELO_NONE,SPF_PASS
-        autolearn=no autolearn_force=no version=3.4.6
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Russell King <linux@armlinux.org.uk>,
+        Gregory Clement <gregory.clement@bootlin.com>,
+        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+        John Crispin <john@phrozen.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Lee Jones <lee@kernel.org>, linux-leds@vger.kernel.org
+Cc:     oe-kbuild-all@lists.linux.dev, netdev@vger.kernel.org
+Subject: Re: [net-next PATCH 01/11] net: dsa: qca8k: add LEDs basic support
+Message-ID: <202303170529.8ag9rmM4-lkp@intel.com>
+References: <20230307170046.28917-2-ansuelsmth@gmail.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230307170046.28917-2-ansuelsmth@gmail.com>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Christian,
+
+Thank you for the patch! Yet something to improve:
+
+[auto build test ERROR on net-next/master]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Christian-Marangi/net-dsa-qca8k-add-LEDs-basic-support/20230308-063832
+patch link:    https://lore.kernel.org/r/20230307170046.28917-2-ansuelsmth%40gmail.com
+patch subject: [net-next PATCH 01/11] net: dsa: qca8k: add LEDs basic support
+config: m68k-allmodconfig (https://download.01.org/0day-ci/archive/20230317/202303170529.8ag9rmM4-lkp@intel.com/config)
+compiler: m68k-linux-gcc (GCC) 12.1.0
+reproduce (this is a W=1 build):
+        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+        chmod +x ~/bin/make.cross
+        # https://github.com/intel-lab-lkp/linux/commit/ce1977c679b8737815636b72f4e65c2de59e8f7d
+        git remote add linux-review https://github.com/intel-lab-lkp/linux
+        git fetch --no-tags linux-review Christian-Marangi/net-dsa-qca8k-add-LEDs-basic-support/20230308-063832
+        git checkout ce1977c679b8737815636b72f4e65c2de59e8f7d
+        # save the config file
+        mkdir build_dir && cp config build_dir/.config
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.1.0 make.cross W=1 O=build_dir ARCH=m68k olddefconfig
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.1.0 make.cross W=1 O=build_dir ARCH=m68k SHELL=/bin/bash drivers/net/dsa/qca/
+
+If you fix the issue, kindly add following tag where applicable
+| Reported-by: kernel test robot <lkp@intel.com>
+| Link: https://lore.kernel.org/oe-kbuild-all/202303170529.8ag9rmM4-lkp@intel.com/
+
+All errors (new ones prefixed by >>):
+
+>> drivers/net/dsa/qca/qca8k-leds.c:171:1: error: redefinition of 'qca8k_setup_led_ctrl'
+     171 | qca8k_setup_led_ctrl(struct qca8k_priv *priv)
+         | ^~~~~~~~~~~~~~~~~~~~
+   In file included from drivers/net/dsa/qca/qca8k-leds.c:5:
+   drivers/net/dsa/qca/qca8k.h:577:19: note: previous definition of 'qca8k_setup_led_ctrl' with type 'int(struct qca8k_priv *)'
+     577 | static inline int qca8k_setup_led_ctrl(struct qca8k_priv *priv)
+         |                   ^~~~~~~~~~~~~~~~~~~~
 
 
-On 16.03.2023 20:29, Krzysztof Kozlowski wrote:
-> On 15/03/2023 11:52, Konrad Dybcio wrote:
->> Both of these SoCs have a Qualcomm MMU500 implementation of SMMU
->> in front of their GPUs that expect 3 clocks. Both of them also have
->> an APPS SMMU that expects no clocks. Remove qcom,sm61[12]5-smmu-500
->> from the "no clocks" list (intentionally 'breaking' the schema checks
->> of APPS SMMU, as now it *can* accept clocks - with the current
->> structure of this file it would have taken a wastefully-long time to
->> sort this out properly..) and add necessary yaml to describe the
->> clocks required by the GPU SMMUs.
-> 
-> 
->> +      properties:
->> +        compatible:
->> +          items:
->> +            - enum:
->> +                - qcom,sm6115-smmu-500
->> +                - qcom,sm6125-smmu-500
->> +            - const: qcom,adreno-smmu
->> +            - const: qcom,smmu-500
->> +            - const: arm,mmu-500
-> 
-> If you drop the hunk later (from allOf:if), then what clocks do you
-> expect for non-GPU SMMU?
-Both 6115 and 6125 require no clocks under the APPS (non-GPU) SMMU.
-However, the list below uses a `contains:` which means I'd have
-to add a whole another hunk like
+vim +/qca8k_setup_led_ctrl +171 drivers/net/dsa/qca/qca8k-leds.c
 
-	- items:
-            - enum:
-                - qcom,sm6115-smmu-500
-                - qcom,sm6125-smmu-500
-            - const: qcom,smmu-500
-            - const: arm,mmu-500
+   169	
+   170	int
+ > 171	qca8k_setup_led_ctrl(struct qca8k_priv *priv)
 
-and add another level of indentation to the previous one
-
-I figured skipping that was less messy (I think we discussed this
-once as well), but if you prefer to keep it strict, I can.
-
-Konrad
-	
-> 
->> +    then:
->> +      properties:
->> +        clock-names:
->> +          items:
->> +            - const: mem
->> +            - const: hlos
->> +            - const: iface
->> +
->> +        clocks:
->> +          items:
->> +            - description: GPU memory bus clock
->> +            - description: Voter clock required for HLOS SMMU access
->> +            - description: Interface clock required for register access
->> +
->>    # Disallow clocks for all other platforms with specific compatibles
->>    - if:
->>        properties:
->> @@ -394,8 +420,6 @@ allOf:
->>                - qcom,sdm845-smmu-500
->>                - qcom,sdx55-smmu-500
->>                - qcom,sdx65-smmu-500
->> -              - qcom,sm6115-smmu-500
->> -              - qcom,sm6125-smmu-500
->>                - qcom,sm6350-smmu-500
->>                - qcom,sm6375-smmu-500
->>                - qcom,sm8350-smmu-500
->>
-> 
-> Best regards,
-> Krzysztof
-> 
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests
