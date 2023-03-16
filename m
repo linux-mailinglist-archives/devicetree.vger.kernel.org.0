@@ -2,207 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 38D9D6BC61C
-	for <lists+devicetree@lfdr.de>; Thu, 16 Mar 2023 07:31:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 911E16BC626
+	for <lists+devicetree@lfdr.de>; Thu, 16 Mar 2023 07:36:16 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229534AbjCPGbR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Mar 2023 02:31:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41444 "EHLO
+        id S229707AbjCPGgO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Mar 2023 02:36:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47264 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229477AbjCPGbQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Mar 2023 02:31:16 -0400
-Received: from mail-ed1-x536.google.com (mail-ed1-x536.google.com [IPv6:2a00:1450:4864:20::536])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 984A59FE57
-        for <devicetree@vger.kernel.org>; Wed, 15 Mar 2023 23:31:14 -0700 (PDT)
-Received: by mail-ed1-x536.google.com with SMTP id ek18so3431464edb.6
-        for <devicetree@vger.kernel.org>; Wed, 15 Mar 2023 23:31:14 -0700 (PDT)
+        with ESMTP id S229705AbjCPGgM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Mar 2023 02:36:12 -0400
+Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com [IPv6:2a00:1450:4864:20::534])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AEF7BAB0B0
+        for <devicetree@vger.kernel.org>; Wed, 15 Mar 2023 23:36:08 -0700 (PDT)
+Received: by mail-ed1-x534.google.com with SMTP id h8so3426309ede.8
+        for <devicetree@vger.kernel.org>; Wed, 15 Mar 2023 23:36:08 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1678948273;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        d=linaro.org; s=google; t=1678948567;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=r9j8GQrtbHhtegURmxB3PLCY1oXF2JoBLNnpXVqbpVM=;
-        b=DOE9hQAN6fOzn+o/ztsM5Jcw8cu/mQ/ARao0w4j1eT+bb2zW1Xf1pXHcKozM34BjwH
-         iKpgLf9MjQWOBtBd7/9zvdrkX/O35KFOZH85Z4gemDZnNQwPlBAK515ba3PRctbm/MP5
-         2w4qPBdmYjd1M9ZcrKkGxQE2VBsQ46hedHLo0AEol6nOoPcn7QmYTaZrnQ9SSIAzlJTo
-         zc0M3tsia2kxJnZCJfV6893dKtPlRMCgQ/Eq8fl351N5NBuZgN825b/9mPvKOskwKuci
-         Pl1rHnJFP+3SIZEXJ2KeWnkucKJnEnWEJfJrco2K3ltS/H3ifTat5/wpXrhYStl05lA7
-         UHoQ==
+        bh=fovyIQAjFmbxZjHrRNqlRgLVptlFZhMPqR9qekHWsJg=;
+        b=O/O6Xeye8p4jA9+skOZPgQ9oY/7XkY3bTEEBwWtZWGRorC1oiSGkpyle/ycSCRM7lI
+         8izECdvRQ9w5+PoaVJKJc/y0f2HJ7GH8WJB95EEKdi3kNCzXFBJJw5o9RyScfnz8mleU
+         aXr7koiwvgq0ARhr++0G2+jcQSvx6eiCKju7mvwiAVcnE5h0q/0HU/KQH0wfmCVcsz6O
+         vDlIJCXJCiyvFrH6/lJ6QK+8Dc/acZudEqODEfRkdXPNYaRKwKsLrSQTz9cvYJvuO8uh
+         dZrhlL4nZlYVjPyLXPYnIKkYLDreZ20rljM4APGtnfi5EzDB77av0pNMmcKEx+VE/NpA
+         5fPg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678948273;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20210112; t=1678948567;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=r9j8GQrtbHhtegURmxB3PLCY1oXF2JoBLNnpXVqbpVM=;
-        b=Mp4oiMEqQpARO1dybwmy0x7QivKNMd0E3RjDxZhZW+U3P3qO0n4N30EFCos0TJkFUa
-         wKVbtINi2NNAMjXrOvOWtETvdbjW31YGHZFnLhRpGE4NhP816vNAgxFj/G9EgtdCj873
-         HwEA4zCo2XyZUGzN1K5rs4Vk+mgWpBGwqj1ye61q77yU0/Yrm+80DuR2L3QjmC7/o0Fk
-         z1gqbq+ItfDFI8ma5E4OuQkeLhOV9agVkem7N8qQUdE3g1tFvivs7QctOExQ25W956X/
-         BQ9ApInaTbTPW4Xddx/Fu5EFmWsNtOYA+x7vgvhn3Ic6MQ6tCQ0atODGdN7qWRzxEh3Q
-         DQeg==
-X-Gm-Message-State: AO0yUKUdU32ElCQCun9TzAn5re0dH6WKo7NDRPOuB9ktQRRJTX5OQ7gy
-        I81h6H4yS9GCz4zpQwSM3XsMbw==
-X-Google-Smtp-Source: AK7set//6drX8/WV32h0Hq7ln8wNthIukaVT2fKbs7oH3weuhTKlatV+vwcvLqfs8GyzHamupsNjug==
-X-Received: by 2002:a17:906:14c9:b0:8ab:4c4:d0f6 with SMTP id y9-20020a17090614c900b008ab04c4d0f6mr8694921ejc.56.1678948273080;
-        Wed, 15 Mar 2023 23:31:13 -0700 (PDT)
+        bh=fovyIQAjFmbxZjHrRNqlRgLVptlFZhMPqR9qekHWsJg=;
+        b=mjsITj7TXjBVkJ6+Q02gubsJskwlMTJiP5bPFXlSwK8PspMEF9omTisPC2dMgedQZy
+         ojRi840FD4+0LeQc39E7uH2Yuf5Bn0SbsHZzgyw8LVEPIcKQjR2sCUnmGwjh6+buyPpl
+         PObX9tVsJuGUBRgamPHO3PlyhKUFu57Dfzj2QTF/i13YjwBuArt1N69fNQqeobOYczqk
+         YF/f94HE6ohh6FYuy8ma7DSGu1J9TK166uswu+4vXiqE3l67xtH5LA29TNAqnSvel0Wx
+         ozrBxn5h5HBUyCo/N8fjVnzA5UjS8IqBX3a+WrdpIeUzSF74vhaFaTE77qmv9K4o3RQ0
+         UqMQ==
+X-Gm-Message-State: AO0yUKU93XMLqZ7Zu1H17hh8790BxulJDVc1PrKcqUQhV+h2J80L9iTg
+        pHm287Pq3fMqbwd12euMz46T0w==
+X-Google-Smtp-Source: AK7set+z25Iv9a+H5iw4e/zFhuh98gKh8sTZxrAFPzyJTLf5GgKWIR8yViwOIldZlCXPQ1uTzgXeqg==
+X-Received: by 2002:a05:6402:444:b0:4fd:22a4:e88c with SMTP id p4-20020a056402044400b004fd22a4e88cmr4577999edw.39.1678948567003;
+        Wed, 15 Mar 2023 23:36:07 -0700 (PDT)
 Received: from ?IPV6:2a02:810d:15c0:828:9827:5f65:8269:a95f? ([2a02:810d:15c0:828:9827:5f65:8269:a95f])
-        by smtp.gmail.com with ESMTPSA id oy17-20020a170907105100b008e385438c76sm3427088ejb.55.2023.03.15.23.31.12
+        by smtp.gmail.com with ESMTPSA id e12-20020a50a68c000000b004ac54d4da22sm3344864edc.71.2023.03.15.23.36.05
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 15 Mar 2023 23:31:12 -0700 (PDT)
-Message-ID: <b04eb48e-c9aa-0404-33ec-bef623b8282f@linaro.org>
-Date:   Thu, 16 Mar 2023 07:31:11 +0100
+        Wed, 15 Mar 2023 23:36:06 -0700 (PDT)
+Message-ID: <eecb70bd-2738-eb28-21de-f936620769cd@linaro.org>
+Date:   Thu, 16 Mar 2023 07:36:05 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.8.0
-Subject: Re: [PATCH v29 1/7] dt-bindings: mediatek: add ethdr definition for
- mt8195
-To:     =?UTF-8?B?TmFuY3kgTGluICjmnpfmrKPonqIp?= <Nancy.Lin@mediatek.com>,
-        "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
-        "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
-        "chunkuang.hu@kernel.org" <chunkuang.hu@kernel.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>
-Cc:     "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-mediatek@lists.infradead.org" 
-        <linux-mediatek@lists.infradead.org>,
-        =?UTF-8?B?U2luZ28gQ2hhbmcgKOW8teiIiOWciyk=?= 
-        <Singo.Chang@mediatek.com>,
-        "nathan@kernel.org" <nathan@kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "daniel@ffwll.ch" <daniel@ffwll.ch>,
-        =?UTF-8?B?Q0sgSHUgKOiDoeS/iuWFiSk=?= <ck.hu@mediatek.com>,
-        "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
-        Project_Global_Chrome_Upstream_Group 
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "clang-built-linux@googlegroups.com" 
-        <clang-built-linux@googlegroups.com>,
-        "ndesaulniers@google.com" <ndesaulniers@google.com>
-References: <20221227081011.6426-1-nancy.lin@mediatek.com>
- <20221227081011.6426-2-nancy.lin@mediatek.com>
- <4aff6a7a3b606f26ec793192d9c75774276935e0.camel@mediatek.com>
- <2700bd6c-f00d-fa99-b730-2fcdf89089fa@linaro.org>
- <1d65e8b2de708db18b5f7a0faaa53834e1002d9f.camel@mediatek.com>
+Subject: Re: [PATCH V2 2/3] arm64: dts: ti: Use local header for pinctrl
+ register values
 Content-Language: en-US
+To:     Nishanth Menon <nm@ti.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Eric Dumazet <edumazet@google.com>,
+        "David S. Miller" <davem@davemloft.net>
+Cc:     Sekhar Nori <nsekhar@ti.com>, linux-gpio@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, netdev@vger.kernel.org,
+        Tero Kristo <kristo@kernel.org>,
+        Vignesh Raghavendra <vigneshr@ti.com>
+References: <20230315155228.1566883-1-nm@ti.com>
+ <20230315155228.1566883-3-nm@ti.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <1d65e8b2de708db18b5f7a0faaa53834e1002d9f.camel@mediatek.com>
+In-Reply-To: <20230315155228.1566883-3-nm@ti.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 16/03/2023 07:19, Nancy Lin (林欣螢) wrote:
-> On Wed, 2023-03-15 at 08:16 +0100, Krzysztof Kozlowski wrote:
->> On 15/03/2023 04:45, Nancy Lin (林欣螢) wrote:
->>
->> Trim the replies and remove unneeded context. You want to get the
->> attention of other people, not force them to read entire email.
->>
->>>> +  mediatek,gce-client-reg:>> +    $ref:
->>>> /schemas/types.yaml#/definitions/phandle-array
->>>> +    description: The register of display function block to be
->>>> set by
->>>> gce.
->>>> +      There are 4 arguments in this property, gce node, subsys
->>>> id,
->>>> offset and
->>>> +      register size. The subsys id is defined in the gce header
->>>> of
->>>> each chips
->>>> +      include/dt-bindings/gce/<chip>-gce.h, mapping to the
->>>> register
->>>> of display
->>>> +      function block.
->>>> +    items:
->>>> +      items:
->>>> +        - description: phandle of GCE
->>>> +        - description: GCE subsys id
->>>> +        - description: register offset
->>>> +        - description: register size
->>>> +    minItems: 7
->>>> +    maxItems: 7
->>>> +
->>>
->>> Hi Rob and krzysztof,
->>>
->>> I got the two messages when running dt_binding_check [1]. This
->>> binding
->>> patch was sent previously in [2]. 
->>>
->>> If I remove the following items/minItems/maxItems in the
->>> mediatek,gce-
->>> client property, the two message disappear. I don't know what's
->>> wrong
->>> with the original syntax. Do you have any suggestions for this?
->>>
->>> -    items:
->>> -      items:
->>> -        - description: phandle of GCE
->>> -        - description: GCE subsys id
->>> -        - description: register offset
->>> -        - description: register size
->>> -    minItems: 7
->>> -    maxItems: 7
->>>
->>>
->>> [1].
->>> Documentation/devicetree/bindings/display/mediatek/mediatek,ethdr.e
->>> xamp
->>> le.dtb
->>> /proj/mtk19347/cros/src/third_party/kernel/v5.10/Documentation/devi
->>> cetr
->>> ee/bindings/display/mediatek/mediatek,ethdr.example.dtb: 
->>> hdr-engine@1c114000: mediatek,gce-client-reg:0: [4294967295, 7,
->>> 16384,
->>> 4096, 4294967295, 7, 20480, 4096, 4294967295, 7, 28672, 4096,
->>> 4294967295, 7, 36864, 4096, 4294967295, 7, 40960, 4096, 4294967295,
->>> 7,
->>> 45056, 4096, 4294967295, 7, 49152, 4096] is too long
->>>         From schema:
->>
->> This looks like known issue with phandles with variable number of
->> arguments. Either we add it to the exceptions or just define it in
->> reduced way like in other cases - only maxItems: 1 without describing
->> items.
->>
->>
->> Best regards,
->> Krzysztof
+On 15/03/2023 16:52, Nishanth Menon wrote:
+> The DTS uses hardware register values directly in pin controller pin
+> configuration and not an abstraction of any form.
 > 
+> These definitions were previously put in the bindings header to avoid
+> code duplication and to provide some context meaning (name), but they
+> do not fit the purpose of bindings.
 > 
-> Hi Krzysztof,
+> Store the constants in a header next to DTS and use them instead of
+> bindings.
 > 
-> Thanks for the comment.
-> 
-> But I have several items for this vendor property in the binding
-> example.
+> Suggested-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Suggested-by: Linus Walleij <linus.walleij@linaro.org>
+> Link: https://lore.kernel.org/all/c4d53e9c-dac0-8ccc-dc86-faada324beba@linaro.org/
+> Signed-off-by: Nishanth Menon <nm@ti.com>
+> ---
 
-Do you? I thought you have one phandle?
-
-> Can I remove maxItems? Change the mediatek,gce-client-reg as [1].
-> 
-> [1]
->   mediatek,gce-client-reg:
->     $ref: /schemas/types.yaml#/definitions/phandle-array
->     description: The register of display function block to be set by
-> gce.
->       There are 4 arguments in this property, gce node, subsys id,
-> offset and
->       register size. The subsys id is defined in the gce header of each
-> chips
->       include/dt-bindings/gce/<chip>-gce.h, mapping to the register of
-> display
->       function block.
-
-No, this needs some constraints.
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
