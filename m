@@ -2,78 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 691696BC62A
-	for <lists+devicetree@lfdr.de>; Thu, 16 Mar 2023 07:37:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A39F86BC635
+	for <lists+devicetree@lfdr.de>; Thu, 16 Mar 2023 07:38:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229727AbjCPGhS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Mar 2023 02:37:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48720 "EHLO
+        id S229706AbjCPGiv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Mar 2023 02:38:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51560 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229726AbjCPGhQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Mar 2023 02:37:16 -0400
-Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B7D72A90AE
-        for <devicetree@vger.kernel.org>; Wed, 15 Mar 2023 23:36:58 -0700 (PDT)
-Received: by mail-ed1-x535.google.com with SMTP id w9so3518052edc.3
-        for <devicetree@vger.kernel.org>; Wed, 15 Mar 2023 23:36:58 -0700 (PDT)
+        with ESMTP id S229698AbjCPGit (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Mar 2023 02:38:49 -0400
+Received: from mail-ed1-x52f.google.com (mail-ed1-x52f.google.com [IPv6:2a00:1450:4864:20::52f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6672312F31
+        for <devicetree@vger.kernel.org>; Wed, 15 Mar 2023 23:38:42 -0700 (PDT)
+Received: by mail-ed1-x52f.google.com with SMTP id z21so3520012edb.4
+        for <devicetree@vger.kernel.org>; Wed, 15 Mar 2023 23:38:42 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1678948617;
+        d=linaro.org; s=google; t=1678948721;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=av/tqDDKKhxpDzt2MvIK/BO/pYsWdyny3iBroUh8N5w=;
-        b=HvwtSh7Q+hEijwXrOgOErle3K6lILbfTzZLTN8S0W4xkLKWdLQ9XS/UwBD6j1K4sFd
-         BjOQxFMrvc/jSJcz8ibY94S7AVV/I5bA9pIRLgvynSzr5CPzHm0sg7dAnZWj76uYph4n
-         FfT3spDyTHH76PkSHXTJI76epTsNdh6fQDH+P4mF/R22lQEdDDXTbDIv8HA2IxlnxSmV
-         737QXuGjA9Q2xVPpmZv/uI0YnuQPFiNktWsfxLT4S0qyisOg3QSB8Ug1fOdPXaLrXrr2
-         HjIWoVoCjV9pBa7DNmti1NDWjAje18reN64myG0MQlBfbqzP0fhPbZw4EfxxcErh/Rcv
-         E99Q==
+        bh=xL+tQUaguCrAG8l0bkW/PCaQ1TD4pHeaAzMmhUx5yak=;
+        b=GJLu4dtPSlYfjkqUrhni5FdbLbtDMHfFrsLuqMQP7bK8iqMtcFhtlFo05kS62jRI9j
+         qQwzNPlZnFQMuRhwom3D1yqt+GQ+iY4j0w2GPXAjlPc8VNjkecbQnjhNv3hNdmxqm0bV
+         HqB2S4Y2Pq9OhcEma24Mmi3EATBwnsiIaGRl6f3Z/QAyn/lo6HD3N69dwa7h1Z/5Axvt
+         O4XpUNFJrC4UEEsQDaT8ydIoUWTxW9CoNCow26TfdF9+O9wbXz7R6WvAz+qVW1fEzwVu
+         HZ2QnxBKGv+G/vd8GE0Amlk6C1jug/Wv+57dh7aFNEMiNYaO8918T0gJmMeKeI3kc475
+         FrHw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678948617;
+        d=1e100.net; s=20210112; t=1678948721;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=av/tqDDKKhxpDzt2MvIK/BO/pYsWdyny3iBroUh8N5w=;
-        b=6kxjxPRL9PoSPGpX4BYz+I5oxE1hITLp+eTn9JMdG80UQjSoe43xWWclqZ+GxksOfb
-         NpFrEfFBs9GQosV3zmWgo6AUDq/o8Kt6q04y4DFmIsZExJtZYVYEmDM0HFMgzzssUXEl
-         o3tigZhYn//iUnF+fUuZ7Ln/9h7cTE0gZNOClAjk90mgTtGHQVzoYuFaIfydjg0NZXZa
-         6XNoW4T2m1+mPJ6kqGo81x+qO+bOlFFRCASoApYlHoIk8LqRUGLrlDaRVOYP+TO5+Zlp
-         6NE0kRWJpOt48iulb45a8qikLT5/lfg6hNf+X9hBTaBHUNzbJ1PWdxvML8LHib2IK7/A
-         EKKQ==
-X-Gm-Message-State: AO0yUKVrZMR0cLgtWJ5244ndft6Es/XfOzJfXms2a13h+U+XIK/H9xTb
-        DYgjj/0+nJ21G0IYlIowjNVWSA==
-X-Google-Smtp-Source: AK7set9U6K671sZ1LAjH8kt45mPJjlYKj/AWN5njbDj/sltxWQWaw/4J2Kj+ynE5o2nniFzRLVqA+w==
-X-Received: by 2002:aa7:d88f:0:b0:4fb:6796:14c0 with SMTP id u15-20020aa7d88f000000b004fb679614c0mr4959482edq.22.1678948617242;
-        Wed, 15 Mar 2023 23:36:57 -0700 (PDT)
+        bh=xL+tQUaguCrAG8l0bkW/PCaQ1TD4pHeaAzMmhUx5yak=;
+        b=iLxHKPOWDN5kO8R1vKgjk651cEg2QmIhEkZy7V+QecSwRzw6TCI9LidWh2p0Ig55MQ
+         QieJOzKsOCC6nreAQUvsuUtzElKOBJw+nYifhD49ls4dHATvOFKNv+fjKBzblKQ26KFb
+         iaZzsNLiMn/dGZWU7AhyvVjx9JdLtIKFAaR+xPz0lnN4naANdoQZDY11R9Fl99OqqV2Z
+         4ebYKem71GKWfVE4dSXQRjZQCiFiQ0bLRPCLZFDtxv9zm/Ry9LUeuc6FX3eAUxYOMdEE
+         KFmln9sOAdoUytzNYJhvwB2MNwAw/OmJz5pH+dRjmezB8cWnwyyik1j1MHFe9rVDm3Yt
+         3z1w==
+X-Gm-Message-State: AO0yUKWKkrOIbincJ7jhKgOSny/9o/waOmQqNI1A6WYZMnzrnsG/Qeaq
+        fFCQlhGnjFodtvREmZWthor6Dw==
+X-Google-Smtp-Source: AK7set94Ab19Zp1BPD8CT8jZdiZ769ZZ4uU4+xoBhiCSndgApyJ4hQhGGlAbgv1hSR6rb6PHkMnN6Q==
+X-Received: by 2002:aa7:d051:0:b0:4af:69b8:52af with SMTP id n17-20020aa7d051000000b004af69b852afmr5211176edo.24.1678948720855;
+        Wed, 15 Mar 2023 23:38:40 -0700 (PDT)
 Received: from ?IPV6:2a02:810d:15c0:828:9827:5f65:8269:a95f? ([2a02:810d:15c0:828:9827:5f65:8269:a95f])
-        by smtp.gmail.com with ESMTPSA id h1-20020a50c381000000b004c0c5864cc5sm3353074edf.25.2023.03.15.23.36.56
+        by smtp.gmail.com with ESMTPSA id y29-20020a50ce1d000000b004fa99a22c3bsm3349593edi.61.2023.03.15.23.38.40
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 15 Mar 2023 23:36:56 -0700 (PDT)
-Message-ID: <b168a98c-686d-9908-18af-c4b4915be92f@linaro.org>
-Date:   Thu, 16 Mar 2023 07:36:55 +0100
+        Wed, 15 Mar 2023 23:38:40 -0700 (PDT)
+Message-ID: <0f5003b8-588c-2477-2d82-e6cabd77277b@linaro.org>
+Date:   Thu, 16 Mar 2023 07:38:39 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.8.0
-Subject: Re: [PATCH V2 3/3] dt-bindings: pinctrl: k3: Deprecate header with
- register constants
+Subject: Re: [PATCH v3 3/7] soc: qcom: icc-bwmon: Handle global registers
+ correctly
 Content-Language: en-US
-To:     Nishanth Menon <nm@ti.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Georgi Djakov <djakov@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Eric Dumazet <edumazet@google.com>,
-        "David S. Miller" <davem@davemloft.net>
-Cc:     Sekhar Nori <nsekhar@ti.com>, linux-gpio@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, netdev@vger.kernel.org,
-        Tero Kristo <kristo@kernel.org>,
-        Vignesh Raghavendra <vigneshr@ti.com>
-References: <20230315155228.1566883-1-nm@ti.com>
- <20230315155228.1566883-4-nm@ti.com>
+        Thara Gopinath <thara.gopinath@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Marijn Suijten <marijn.suijten@somainline.org>
+References: <20230304-topic-ddr_bwmon-v3-0-77a050c2fbda@linaro.org>
+ <20230304-topic-ddr_bwmon-v3-3-77a050c2fbda@linaro.org>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230315155228.1566883-4-nm@ti.com>
+In-Reply-To: <20230304-topic-ddr_bwmon-v3-3-77a050c2fbda@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -86,33 +83,37 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 15/03/2023 16:52, Nishanth Menon wrote:
-> For convenience (less code duplication), the pin controller pin
-> configuration register values were defined in the bindings header.
-> These are not some IDs or other abstraction layer but raw numbers used
-> in the registers.
+On 15/03/2023 15:11, Konrad Dybcio wrote:
+> The BWMON hardware has two sets of registers: one for the monitor itself
+> and one called "global". It has what seems to be some kind of a head
+> switch and an interrupt control register. It's usually 0x200 in size.
 > 
-> These constants do not fit the purpose of bindings. They do not
-> provide any abstraction, any hardware and driver independent ID. In
-> fact, the Linux pinctrl-single driver actually do not use the bindings
-> header at all.
+> On fairly recent SoCs (with the starting point seemingly being moving
+> the OSM programming to the firmware) these two register sets are
+> contiguous and overlapping, like this (on sm8450):
 > 
-> All of the constants were moved already to headers local to DTS
-> (residing in DTS directory), so remove any references to the bindings
-> header and add a warning that it is deprecated.
+> /* notice how base.start == global_base.start+0x100 */
+> reg = <0x90b6400 0x300>, <0x90b6300 0x200>;
+> reg-names = "base", "global_base";
 > 
-> Suggested-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> Link: https://lore.kernel.org/linux-arm-kernel/71c7feff-4189-f12f-7353-bce41a61119d@linaro.org/
-> Signed-off-by: Nishanth Menon <nm@ti.com>
+> Which led to some confusion and the assumption that since the
+> "interesting" global registers begin right after global_base+0x100,
+> there's no need to map two separate regions and one can simply subtract
+> 0x100 from the offsets.
+> 
+> This is however not the case for anything older than SDM845, as the
+> global region can appear in seemingly random spots on the register map.
+> 
+> Handle the case where the global registers are mapped separately to allow
+> proper functioning of BWMONv4 on MSM8998 and older. Add specific
+> compatibles for 845, 8280xp, 7280 and 8550 (all of which use the single
+> reg space scheme) to keep backwards compatibility with old DTs.
+> 
+> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 > ---
-> New patch in V2 series and we expect to remove this header after a kernel
-> rev.
+>  drivers/soc/qcom/icc-bwmon.c | 230 +++++++++++++++++++++++++++++++++++++++----
+>  1 file changed, 209 insertions(+), 21 deletions(-)
 > 
->  include/dt-bindings/pinctrl/k3.h | 7 +++++++
->  1 file changed, 7 insertions(+)
-
-This should go to the same branch as DTS, so not pinctrl tree, to avoid
-warnings.
 
 Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
