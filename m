@@ -2,64 +2,40 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D5B826BC8D4
-	for <lists+devicetree@lfdr.de>; Thu, 16 Mar 2023 09:20:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 898336BC919
+	for <lists+devicetree@lfdr.de>; Thu, 16 Mar 2023 09:29:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229436AbjCPIUa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Mar 2023 04:20:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48632 "EHLO
+        id S229830AbjCPI3C convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Thu, 16 Mar 2023 04:29:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36696 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229755AbjCPIU3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Mar 2023 04:20:29 -0400
-Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com [IPv6:2a00:1450:4864:20::52a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 259CA23C6F
-        for <devicetree@vger.kernel.org>; Thu, 16 Mar 2023 01:20:08 -0700 (PDT)
-Received: by mail-ed1-x52a.google.com with SMTP id x3so4211977edb.10
-        for <devicetree@vger.kernel.org>; Thu, 16 Mar 2023 01:20:08 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1678954805;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=BynrooWKIxkWeQyg7mnmSJ2ueKqYW94JcoiUOzTY5V4=;
-        b=vkBiUbvG/+vI40uyHOAzlaDtm41eW8cO0hQ5d/d7/CKQOmZ2ZB7RyW9C3bbzIiF4Pi
-         8d0v5MpmyIgLBIrbh/z1TSS1Yd2Ud1QkqtrGdGHS8iZs5DJzIFtnFqsAURZ1JV+JBLND
-         wqrkwPNcwJ0hW6jBrL1HKjACeL+s43lLtaJlV8ND+78p+ZHiQzuhGAr9lr5XCUiKMoHU
-         DvnjMArYvi0rz6Ah/xD22s62iK1DxRsHv0v0QRsvKV+xmm/K52GWYpLoJ+k04GerG650
-         6Id5O6ixn2cmqFWkXAbUMhPPBRqTIH4bs81mhA9aIWHKiRrOF4moQjaepOqyiPV7r1LX
-         Lcqw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678954805;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=BynrooWKIxkWeQyg7mnmSJ2ueKqYW94JcoiUOzTY5V4=;
-        b=rEnmZKuYv3p/jXXQbKGqWAOoPeENyhhKevypSJbE39Q64Cp/GaWvmgdkEt3Uj4sTBf
-         keqGFWAkAh9smHWpx7Fezwm077pi3sXPosWaQztL7uHnbtMlaGKLsUT5DBOd5sV/rjjs
-         mSAkUk/waallt1A3aIjHwPQfmqy7S4Bp24M3Qlb636V2uJ5IYRqmLPqWxzCQkiUH/i7j
-         MfmW0Ii+FGDHttNE6hbiEKAF2Hyt+DHGyLp06y1c00aC6blWKXNLt4JZS9kWq088u6mK
-         MwyoAJW9eD0ohGneSR/UEFdAHrGVJX6cEGDM9P2zLuQu0DdJltdVuEeGI43AcCIqaVDN
-         HmdQ==
-X-Gm-Message-State: AO0yUKXt1KTwPGgjlY1ESL3eeEyRS5Wz/oTOqvr/GPxkWKORjW/TFv/P
-        9u2yIYJcGU358jFHpQfZWRQFDA==
-X-Google-Smtp-Source: AK7set8dYeIq31oR9827BEvtiAOuEvaOYnqpP/1mG7zuAMx51MqASoiJh2B18rkUSChPrWKIdOuorQ==
-X-Received: by 2002:a17:906:ca02:b0:88a:2e57:9813 with SMTP id jt2-20020a170906ca0200b0088a2e579813mr8973409ejb.33.1678954805151;
-        Thu, 16 Mar 2023 01:20:05 -0700 (PDT)
-Received: from ?IPV6:2a02:810d:15c0:828:9827:5f65:8269:a95f? ([2a02:810d:15c0:828:9827:5f65:8269:a95f])
-        by smtp.gmail.com with ESMTPSA id w11-20020a1709062f8b00b00923bb9f0c36sm3534063eji.127.2023.03.16.01.20.03
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 16 Mar 2023 01:20:04 -0700 (PDT)
-Message-ID: <c716e535-7426-56da-ca6f-51c7d7d69bb3@linaro.org>
-Date:   Thu, 16 Mar 2023 09:20:03 +0100
+        with ESMTP id S229645AbjCPI3B (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Mar 2023 04:29:01 -0400
+Received: from fd01.gateway.ufhost.com (fd01.gateway.ufhost.com [61.152.239.71])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DBB4D7DB6;
+        Thu, 16 Mar 2023 01:28:42 -0700 (PDT)
+Received: from EXMBX165.cuchost.com (unknown [175.102.18.54])
+        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+        (Client CN "EXMBX165", Issuer "EXMBX165" (not verified))
+        by fd01.gateway.ufhost.com (Postfix) with ESMTP id 7A0B224E2E2;
+        Thu, 16 Mar 2023 16:28:41 +0800 (CST)
+Received: from EXMBX162.cuchost.com (172.16.6.72) by EXMBX165.cuchost.com
+ (172.16.6.75) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Thu, 16 Mar
+ 2023 16:28:41 +0800
+Received: from [192.168.120.42] (171.223.208.138) by EXMBX162.cuchost.com
+ (172.16.6.72) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Thu, 16 Mar
+ 2023 16:28:40 +0800
+Message-ID: <b7766151-cf21-a5b4-e0ef-7b070e9e5c33@starfivetech.com>
+Date:   Thu, 16 Mar 2023 16:28:38 +0800
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.1
 Subject: Re: [PATCH v7 4/6] dt-bindings: net: Add support StarFive dwmac
 Content-Language: en-US
-To:     Guo Samin <samin.guo@starfivetech.com>,
-        linux-riscv@lists.infradead.org, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc:     "David S . Miller" <davem@davemloft.net>,
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        <linux-riscv@lists.infradead.org>, <netdev@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+CC:     "David S . Miller" <davem@davemloft.net>,
         Eric Dumazet <edumazet@google.com>,
         Jakub Kicinski <kuba@kernel.org>,
         Paolo Abeni <pabeni@redhat.com>,
@@ -78,41 +54,58 @@ References: <20230316043714.24279-1-samin.guo@starfivetech.com>
  <93a3b4bb-35a4-da7c-6816-21225b42f79b@starfivetech.com>
  <9038dba0-6f72-44a1-9f57-1c08b03b9c31@linaro.org>
  <d2bb7fa5-206f-2059-bde0-b65e1acc44de@starfivetech.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <d2bb7fa5-206f-2059-bde0-b65e1acc44de@starfivetech.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+ <c716e535-7426-56da-ca6f-51c7d7d69bb3@linaro.org>
+From:   Guo Samin <samin.guo@starfivetech.com>
+In-Reply-To: <c716e535-7426-56da-ca6f-51c7d7d69bb3@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Originating-IP: [171.223.208.138]
+X-ClientProxiedBy: EXCAS066.cuchost.com (172.16.6.26) To EXMBX162.cuchost.com
+ (172.16.6.72)
+X-YovoleRuleAgent: yovoleflag
+Content-Transfer-Encoding: 8BIT
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 16/03/2023 09:15, Guo Samin wrote:
->>>> interrupts: ???
->>>>
->>>
->>> Hi Krzysztof, 
->>>
->>> snps,dwmac.yaml has defined the reg/interrupt/interrupt-names nodes,
->>> and the JH7110 SoC is also applicable.
->>> Maybe just add reg/interrupt/interrupt-names to the required ?
->>
->> You need to constrain them.
-> 
-> 
-> I see. I will add reg constraints in the next version, thanks.
-> 
-> I have one more question, the interrupts/interrup-names of JH7110 SoC's gmac are exactly the same as snps,dwmac.yaml,
-> do these also need to be constrained?
 
-The interrupts on common binding are variable, so you need to constrain
-them - you have fixed number of them, right?
+
+-------- 原始信息 --------
+主题: Re: [PATCH v7 4/6] dt-bindings: net: Add support StarFive dwmac
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+收件人: Guo Samin <samin.guo@starfivetech.com>, linux-riscv@lists.infradead.org, netdev@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+日期: 2023/3/16
+
+> On 16/03/2023 09:15, Guo Samin wrote:
+>>>>> interrupts: ???
+>>>>>
+>>>>
+>>>> Hi Krzysztof, 
+>>>>
+>>>> snps,dwmac.yaml has defined the reg/interrupt/interrupt-names nodes,
+>>>> and the JH7110 SoC is also applicable.
+>>>> Maybe just add reg/interrupt/interrupt-names to the required ?
+>>>
+>>> You need to constrain them.
+>>
+>>
+>> I see. I will add reg constraints in the next version, thanks.
+>>
+>> I have one more question, the interrupts/interrup-names of JH7110 SoC's gmac are exactly the same as snps,dwmac.yaml,
+>> do these also need to be constrained?
+> 
+> The interrupts on common binding are variable, so you need to constrain
+> them - you have fixed number of them, right?
+> 
+> Best regards,
+> Krzysztof
+> 
+
+Yes, JH7110 fixed is 3 pcs. Thanks, I will constrain them.
 
 Best regards,
-Krzysztof
-
+Samin
