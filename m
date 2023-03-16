@@ -2,140 +2,160 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A61426BC249
-	for <lists+devicetree@lfdr.de>; Thu, 16 Mar 2023 01:17:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 922456BC262
+	for <lists+devicetree@lfdr.de>; Thu, 16 Mar 2023 01:23:58 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231199AbjCPARF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Mar 2023 20:17:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43270 "EHLO
+        id S231918AbjCPAX4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Mar 2023 20:23:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53068 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230457AbjCPARE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Mar 2023 20:17:04 -0400
-Received: from mail-wr1-x42a.google.com (mail-wr1-x42a.google.com [IPv6:2a00:1450:4864:20::42a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 046F762B71;
-        Wed, 15 Mar 2023 17:16:59 -0700 (PDT)
-Received: by mail-wr1-x42a.google.com with SMTP id m2so13599wrh.6;
-        Wed, 15 Mar 2023 17:16:58 -0700 (PDT)
+        with ESMTP id S232082AbjCPAXz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Mar 2023 20:23:55 -0400
+Received: from mail-il1-x12d.google.com (mail-il1-x12d.google.com [IPv6:2607:f8b0:4864:20::12d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D803F1259B
+        for <devicetree@vger.kernel.org>; Wed, 15 Mar 2023 17:23:53 -0700 (PDT)
+Received: by mail-il1-x12d.google.com with SMTP id h7so131588ila.5
+        for <devicetree@vger.kernel.org>; Wed, 15 Mar 2023 17:23:53 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112; t=1678925817;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=lTV9EnLtEgkBc71Ccit1w3PTMeFKwTnDyhAhw89XVNI=;
-        b=hQ3dQ4U3LsqaKJ5WcJzbeOWMpFCEwWkMEhQyaeWkxDNosIIMYFJh5XPwDi0XutMGx3
-         iWeL6vUkJrFVx851HEDZcEFrKA96ldy1hzI0eyixb9G2BVNjusRi+sRGBX8f3RrVLFuy
-         ZWJaAxZ0NQRwPE0U5lneRBzHTh8Lob3yfWTEHY4f0QPNu0/UifRt51b+tRRjfWzBfQPb
-         L1DynkWDgb5gq67C6Hb95hg+zcK+hASUdlXQb0em6ecML5TfoQJAfP3J7uVB2g24bra4
-         Igdob8AJR/kAn9LTWjMk8r1HyUQn5NPhi5QGiRzpO1I1+XaM2CYCXZzuIj/aUldbv8DS
-         YLdA==
+        d=chromium.org; s=google; t=1678926233;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=jlAFS2ptLbb09Z2fk4u0nRnOMwaR/p+cy4WdKwMS5KE=;
+        b=O7Ma84nGqQRrwnDGLKZepKEFD5Rxht1S15njoHqb9jkbekoJFYRhIqJZtKSeJz1fCA
+         eHD5ZjNJRrz7uxDWX0lq7HkFVtuU40BwtSnof1g8D/TJxn41D7JRWSa01wyQjG9pVqVD
+         dSf9z2TTFnXBpm44lI2BZ4Xj+DLAVN1Hx4Srg=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678925817;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=lTV9EnLtEgkBc71Ccit1w3PTMeFKwTnDyhAhw89XVNI=;
-        b=M5G6AunkCtCEzc4tE34umIG+qUilc42mzOzCCRwyMoAfztFK6zWZHStObnLTK7oOM/
-         sf+Zv+p6E4UerN1HnsrE+t9ht3AjT8ZqBbCpso5JC0Wu0rrm5HQW7tgyPPnXDgLXyZ+q
-         GSUqYuDyN6AmAqT0DZTTo5MKawMl1POnh0+Gxi7oqdLY7SYYGsLKxc6Z+Se0K5LeH6Rh
-         x1biznpyVfl/kmyzFqAEYIYFpkwEgUk8dBe1tlR4XejkY2rCg2wIzXnGE2K/0PnoC10y
-         CaTPp+DTXLQSdaiY/bzAkPLHHmRPwFNHijsE5gLGb1CdmfgVg3tACPhuELr2CC2Gga/i
-         Uz3Q==
-X-Gm-Message-State: AO0yUKU5dzg/AKg1JneF9BTbyX8CzQkdQta12qMW9FBzN77iHx2wJl3Q
-        kapv85921J+o5l3DCc1mcev2YwKshO2NcxaUaOw=
-X-Google-Smtp-Source: AK7set/pluI8RhE5QmBIHGlQNxPKXPr3AZKOWkXiMh/E85uReVoHRs8JGxaSYzON7hxQ26BbpJUfIjxf2X9EZICRXzY=
-X-Received: by 2002:a5d:63d1:0:b0:2ce:ac97:6f51 with SMTP id
- c17-20020a5d63d1000000b002ceac976f51mr763875wrw.13.1678925817370; Wed, 15 Mar
- 2023 17:16:57 -0700 (PDT)
+        d=1e100.net; s=20210112; t=1678926233;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=jlAFS2ptLbb09Z2fk4u0nRnOMwaR/p+cy4WdKwMS5KE=;
+        b=0tkia0VLAq3+mIIZDhWze3IZrrlSEQeiS88mGJ0jt62ZxwtFDk2drG/1adSmIqb7JR
+         PoFVoveBUmBFNTzDDkU6Y0gSak/eyk6MwiZSqYu9GSQRe1muVkDFty4l7qUAINSSlG7R
+         wb866C1EGgNdJryJDPZBkShiaEQLQaPaLFJgI/FIbOsL1WApG8JtH87K57f5uTJXuH0O
+         usGKdCionl9K0Vc9+Jc7NaOs4cia+TtYfXndAqBa8IdJDc+AzDYDu2MtKBfr8Ww9vf0v
+         EN5SiUooPF1dPZqkIhGj2vKyCFUGmJgLaXFE+G9egYAdBn7PugTsq4suwwZV7UP3pmHO
+         J9bg==
+X-Gm-Message-State: AO0yUKUBBbxqS8X/EgcTPh6o0vju7ISGTOjAwSs1aLFSCqWjIRlz5qRc
+        H1ttIHdoDlItjratXJwAkAy9MA==
+X-Google-Smtp-Source: AK7set/jVZJYGrNvI1a5w7tJAIRRuOUPioI5Snz6rKF9dWqIzp4qMZlZJdnWHxwzaYJ95W6rLqRDAQ==
+X-Received: by 2002:a92:dd08:0:b0:315:4449:cb50 with SMTP id n8-20020a92dd08000000b003154449cb50mr5413182ilm.16.1678926233242;
+        Wed, 15 Mar 2023 17:23:53 -0700 (PDT)
+Received: from localhost (30.23.70.34.bc.googleusercontent.com. [34.70.23.30])
+        by smtp.gmail.com with UTF8SMTPSA id o12-20020a056e02068c00b003179b81610csm1994591ils.17.2023.03.15.17.23.52
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 15 Mar 2023 17:23:52 -0700 (PDT)
+Date:   Thu, 16 Mar 2023 00:23:52 +0000
+From:   Matthias Kaehlcke <mka@chromium.org>
+To:     Doug Anderson <dianders@chromium.org>
+Cc:     Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Nikita Travkin <nikita@trvn.ru>, agross@kernel.org,
+        andersson@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        ~postmarketos/upstreaming@lists.sr.ht,
+        Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>,
+        Judy Hsiao <judyhsiao@chromium.org>
+Subject: Re: [PATCH v3 1/4] arm64: dts: qcom: sc7180: Don't enable lpass
+ clocks by default
+Message-ID: <ZBJhmDd3zK/AiwBD@google.com>
+References: <20230315154311.37299-1-nikita@trvn.ru>
+ <20230315154311.37299-2-nikita@trvn.ru>
+ <3557aa94-6a83-d054-a9d9-81751165eb8a@linaro.org>
+ <CAD=FV=WFXS96V=-Edi1f+9UcTuzOdn4W01WeW_yV1m5FyLk-rQ@mail.gmail.com>
 MIME-Version: 1.0
-References: <20230315160228.2362-1-cnsztl@gmail.com> <20230315160228.2362-5-cnsztl@gmail.com>
-In-Reply-To: <20230315160228.2362-5-cnsztl@gmail.com>
-From:   Vasily Khoruzhick <anarsoul@gmail.com>
-Date:   Wed, 15 Mar 2023 17:16:30 -0700
-Message-ID: <CA+E=qVei7T4T0FWhdUFnr5JbCWSgFbGLcmU2OHxx54yvnNR6mw@mail.gmail.com>
-Subject: Re: [PATCH 4/5] arm64: dts: rockchip: fix gmac support for NanoPi R5S
-To:     Tianling Shen <cnsztl@gmail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Jagan Teki <jagan@amarulasolutions.com>,
-        Peter Geis <pgwipeout@gmail.com>, Andy Yan <andyshrk@163.com>,
-        Brian Norris <briannorris@chromium.org>,
-        Chris Morgan <macromorgan@hotmail.com>,
-        Sebastian Reichel <sebastian.reichel@collabora.com>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Michael Riesch <michael.riesch@wolfvision.net>,
-        Maya Matuszczyk <maccraft123mc@gmail.com>,
-        Andrew Powers-Holmes <aholmes@omnom.net>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAD=FV=WFXS96V=-Edi1f+9UcTuzOdn4W01WeW_yV1m5FyLk-rQ@mail.gmail.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Mar 15, 2023 at 9:02=E2=80=AFAM Tianling Shen <cnsztl@gmail.com> wr=
-ote:
+On Wed, Mar 15, 2023 at 05:06:04PM -0700, Doug Anderson wrote:
+> Hi,
+> 
+> On Wed, Mar 15, 2023 at 9:12 AM Konrad Dybcio <konrad.dybcio@linaro.org> wrote:
+> >
+> >
+> >
+> > On 15.03.2023 16:43, Nikita Travkin wrote:
+> > > lpass clocks are usually blocked from HLOS by the firmware and
+> > > instead are managed by the ADSP. Mark them as reserved and explicitly
+> > > enable in the CrOS boards that have special, cooperative firmware.
+> > >
+> > > Signed-off-by: Nikita Travkin <nikita@trvn.ru>
+> > > ---
+> > +CC Doug
+> >
+> > Please confirm whether this also applies to IDP (in which case
+> > this would have been a bugfix).
+> 
+> Thanks for the CC! Actually, Judy (and maybe Matthias) might be
+> better. The audio stuff makes my head spin a little bit and I know
+> they've kept track of it much better than I have. If they don't have
+> time, I can dig more into it myself. I also added Srinivasa just in
+> case.
 >
-> - Changed phy-mode to rgmii.
->
-> - Fixed pull type in pinctrl for gmac0.
->
-> - Removed duplicate properties in mdio node.
->   These properties are defined in the gmac0 node already.
->
-> Signed-off-by: Tianling Shen <cnsztl@gmail.com>
-> ---
->  arch/arm64/boot/dts/rockchip/rk3568-nanopi-r5s.dts | 7 ++-----
->  1 file changed, 2 insertions(+), 5 deletions(-)
->
-> diff --git a/arch/arm64/boot/dts/rockchip/rk3568-nanopi-r5s.dts b/arch/ar=
-m64/boot/dts/rockchip/rk3568-nanopi-r5s.dts
-> index e9adf5e66529..2a1118f15c29 100644
-> --- a/arch/arm64/boot/dts/rockchip/rk3568-nanopi-r5s.dts
-> +++ b/arch/arm64/boot/dts/rockchip/rk3568-nanopi-r5s.dts
-> @@ -57,7 +57,7 @@
->         assigned-clock-rates =3D <0>, <125000000>;
->         clock_in_out =3D "output";
->         phy-handle =3D <&rgmii_phy0>;
-> -       phy-mode =3D "rgmii-id";
-> +       phy-mode =3D "rgmii";
->         pinctrl-names =3D "default";
->         pinctrl-0 =3D <&gmac0_miim
->                      &gmac0_tx_bus2
-> @@ -79,9 +79,6 @@
->                 reg =3D <1>;
->                 pinctrl-0 =3D <&eth_phy0_reset_pin>;
->                 pinctrl-names =3D "default";
-> -               reset-assert-us =3D <10000>;
-> -               reset-deassert-us =3D <50000>;
-> -               reset-gpios =3D <&gpio0 RK_PC4 GPIO_ACTIVE_LOW>;
+> In general, though, I think people at Google don't interact with IDP
+> very much. It's a reference board from Qualcomm and not the right form
+> factor. It also doesn't support most of the tooling that folks at
+> Google on the ChromeOS team expect. I don't know if audio was ever
+> really supported on IDP. Probably not since there's no "sound" node in
+> the IDP device tree file.
 
-Hmm, I don't see RK_PC4 being used anywhere else. gmac0 has RK_PC5 as
-snsp,reset-gpio. So it essentially drops reset for the PHY. Is it
-expected?
+I don't know about the history of audio on the IDP either, I share Doug's
+assessment that it looks like it was never supported.
 
->         };
->  };
->
-> @@ -115,7 +112,7 @@
->  &pinctrl {
->         gmac0 {
->                 eth_phy0_reset_pin: eth-phy0-reset-pin {
-> -                       rockchip,pins =3D <0 RK_PC4 RK_FUNC_GPIO &pcfg_pu=
-ll_down>;
-> +                       rockchip,pins =3D <0 RK_PC4 RK_FUNC_GPIO &pcfg_pu=
-ll_up>;
->                 };
->         };
->
-> --
-> 2.17.1
->
+> > Konrad
+> > >  arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi | 8 ++++++++
+> > >  arch/arm64/boot/dts/qcom/sc7180.dtsi         | 4 ++++
+> > >  2 files changed, 12 insertions(+)
+> > >
+> > > diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi b/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
+> > > index 423630c4d02c..26def6e12723 100644
+> > > --- a/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
+> > > +++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
+> > > @@ -785,6 +785,14 @@ alc5682: codec@1a {
+> > >       };
+> > >  };
+> > >
+> > > +&lpasscc {
+> > > +     status = "okay";
+> > > +};
+> > > +
+> > > +&lpass_hm {
+> > > +     status = "okay";
+> > > +};
+> > > +
+> > >  &lpass_cpu {
+> > >       status = "okay";
+> > >
+> > > diff --git a/arch/arm64/boot/dts/qcom/sc7180.dtsi b/arch/arm64/boot/dts/qcom/sc7180.dtsi
+> > > index 53f0076f20f6..f0de177981f9 100644
+> > > --- a/arch/arm64/boot/dts/qcom/sc7180.dtsi
+> > > +++ b/arch/arm64/boot/dts/qcom/sc7180.dtsi
+> > > @@ -3623,6 +3623,8 @@ lpasscc: clock-controller@62d00000 {
+> > >                       power-domains = <&lpass_hm LPASS_CORE_HM_GDSCR>;
+> > >                       #clock-cells = <1>;
+> > >                       #power-domain-cells = <1>;
+> > > +
+> > > +                     status = "reserved"; /* Controlled by ADSP */
+> > >               };
+> > >
+> > >               lpass_cpu: lpass@62d87000 {
+> > > @@ -3671,6 +3673,8 @@ lpass_hm: clock-controller@63000000 {
+> > >
+> > >                       #clock-cells = <1>;
+> > >                       #power-domain-cells = <1>;
+> > > +
+> > > +                     status = "reserved"; /* Controlled by ADSP */
+> > >               };
+> > >       };
+> > >
