@@ -2,261 +2,273 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B05B16BCBF4
-	for <lists+devicetree@lfdr.de>; Thu, 16 Mar 2023 11:05:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E3A6F6BCC2C
+	for <lists+devicetree@lfdr.de>; Thu, 16 Mar 2023 11:12:44 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229727AbjCPKFi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Mar 2023 06:05:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51192 "EHLO
+        id S230300AbjCPKMn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Mar 2023 06:12:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34622 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230018AbjCPKFg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Mar 2023 06:05:36 -0400
-Received: from mail-wm1-x333.google.com (mail-wm1-x333.google.com [IPv6:2a00:1450:4864:20::333])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E1B4B62FDA
-        for <devicetree@vger.kernel.org>; Thu, 16 Mar 2023 03:05:28 -0700 (PDT)
-Received: by mail-wm1-x333.google.com with SMTP id r19-20020a05600c459300b003eb3e2a5e7bso689613wmo.0
-        for <devicetree@vger.kernel.org>; Thu, 16 Mar 2023 03:05:28 -0700 (PDT)
+        with ESMTP id S230308AbjCPKM2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Mar 2023 06:12:28 -0400
+Received: from mail-yw1-x1131.google.com (mail-yw1-x1131.google.com [IPv6:2607:f8b0:4864:20::1131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 46413BCB93
+        for <devicetree@vger.kernel.org>; Thu, 16 Mar 2023 03:12:09 -0700 (PDT)
+Received: by mail-yw1-x1131.google.com with SMTP id 00721157ae682-5445009c26bso21084757b3.8
+        for <devicetree@vger.kernel.org>; Thu, 16 Mar 2023 03:12:09 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1678961127;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=LgYCZHGkMxWxLNxSIypAzujsXqtz2VniUuNUBnk+gis=;
-        b=VSiX4ak9m2Fbpeodc2znc0DO1Ptd/zIBs8O7Y8ughyQyMMYMUIXgqe1dCOAFuRvVwc
-         tWcGRawnoOh+glRb8/e5G2dCJYbzJQIhTEHtu1DqCrAknzoNLoIdH2rm8rIajeqxnlo6
-         w1HaoqmMwKg8RkgvbcJjaKu4ocB8AIYT4FQ7MPciNJd3fr1a6oqXK1j/6Z4B74gj97iY
-         jxMMlzv+zvU2XLgi2ZO2ok+GmZjqHraissXWmUjI7hRXKw+E5XqJu2Kq+NfD26pb32Ml
-         BPVzN5lRw5/lvK3he1qB4E2E6ut7p+wNH9MRoyVXbe3hYObOauKxNU80Kzs19zE8GT8z
-         G6OA==
+        d=linaro.org; s=google; t=1678961528;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=HUXMtYCJCytkJaYrRDzWMzdMH+FzcGdy44GMw4xZIbw=;
+        b=qrgea51T34DMF4J459mkcIfZM1O5H1D7Blf2NqQVaiHCYu/S0yJheRooxcaRzkLKA8
+         o/qVX9Z5kPl+ZfI2iQMguYLIjfKBVzZ/51FeU9TxUjsn21UWVJRd8bkLeLExN+2r/t9C
+         45dK+4coBBS0nCQo/mOSU3oqeFUNMQfD0NX0r49iCClhHAW/fcHlu/dqbB/fgBjBk390
+         bWnb+0+NO+OPFq5zMlxdFnzT+Ug9A8QfqOeZrVpa+1ikFXFkqKb9IEE3Cl9JP69IlFoN
+         gMlRtPTcKjpVX08WqHkJdp4oZzjNf+lUIWzemFJQ3SKZD40b09+Qkie46tTorxxT0epL
+         5G1A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678961127;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=LgYCZHGkMxWxLNxSIypAzujsXqtz2VniUuNUBnk+gis=;
-        b=OnRKt7dptRJHjkpv8IycA//ARNuTlWaV32ZiSIFE8LasJVHhdB+iy8iDkb2OACfopg
-         PsPJYdJL74Xos3+doe7GTc7rDMWSQCAUIeGSev9m7mdjVr9vccFkP+019O+/WldCJnLc
-         H08ReE16m6X3F5pSsADAfhJUtbpQiytFT4g3EfqyYUcVzKuaSI5B7/c0OvNDhGU6r3+U
-         r/KY/mh++M5NtIyJUWCAnMuKNMpgJ3peKCUVDnhQM+CrRri/fs12fT24gxYRSVZCdkgu
-         4vcmwfTqe5IYxzMUXfEV6zRXhhPy1UaKFAO9Z1oQVOihIwtqoB28ND8Iel2Ozmamlx2O
-         8XXw==
-X-Gm-Message-State: AO0yUKWBb43t+J06EQN35+G54mI0CatJC2Fit90URqKtBrDUMjisNk3i
-        LalkXa7kj5hq3Ttd2fHF3XsYQQ==
-X-Google-Smtp-Source: AK7set+ZBAEGyPlBeMSevhv7QLiyPYaj5v7LU+lQDc2C6qWm+uykJB1zOxqDuqALnVB1LKmFbDZYXA==
-X-Received: by 2002:a05:600c:4691:b0:3ed:33a1:ba8e with SMTP id p17-20020a05600c469100b003ed33a1ba8emr4766778wmo.1.1678961126625;
-        Thu, 16 Mar 2023 03:05:26 -0700 (PDT)
-Received: from ?IPV6:2a05:6e02:1041:c10:cd3c:7f23:e93c:fbb4? ([2a05:6e02:1041:c10:cd3c:7f23:e93c:fbb4])
-        by smtp.googlemail.com with ESMTPSA id e4-20020a05600c4e4400b003e8f0334db8sm4601879wmq.5.2023.03.16.03.05.25
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 16 Mar 2023 03:05:26 -0700 (PDT)
-Message-ID: <bae80282-cb80-462d-e554-1934d090e216@linaro.org>
-Date:   Thu, 16 Mar 2023 11:05:25 +0100
+        d=1e100.net; s=20210112; t=1678961528;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=HUXMtYCJCytkJaYrRDzWMzdMH+FzcGdy44GMw4xZIbw=;
+        b=bmUXZrLziHoscA9VBG5OecfIcmaDLaan/TqaAEZZOtEAl4+keAQVppVDBqgjgnuF5P
+         L1/x/Yx2LwM6MEfy2uUFYOrq5av8GpAmhEC0Bfa77YV9xwEgDSdHC60pNsuTbHwbuzR6
+         TqsiaVsNgoYD6lXd5OBryazyjhbuB6WJf0HdWUfnS5JM4lng2GPiL/fCL8AI146ZwA3w
+         SmibMVV0S6rilqfhe+DXNn0HPUxGyx0I3RKx9fuEdYhOMIW0qaw7Xv/hJ/7/07kNcFzR
+         yzf+xxwT2UoQLouF90zs5ANAFHIjbtTHjCeMaz731wjsrhlIcQvrq8PRmHwOiROsAWGF
+         cNFw==
+X-Gm-Message-State: AO0yUKXnj855Jd+jghmamAU6y9ivLR7QT5dYJJxgVFZzqjjfYRvSYozu
+        Fv4xJ3X6mF7M3T6Fx2XgSviNWiLVRLtbL251LdSD9w==
+X-Google-Smtp-Source: AK7set/KxCCnM2xscrt5p3IwN8pijGV3hZwQNY4jhHYrQ6X7R+dhtMmXWquofPXgEnNNKJko0qibO1BNsjyewjnx8Xk=
+X-Received: by 2002:a81:d84d:0:b0:543:9065:b225 with SMTP id
+ n13-20020a81d84d000000b005439065b225mr1963135ywl.5.1678961528178; Thu, 16 Mar
+ 2023 03:12:08 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.1
-Subject: Re: [RESEND] [PATCHv3 4/7] thermal: rockchip: Simplify channel id
- logic
-Content-Language: en-US
-To:     Sebastian Reichel <sebastian.reichel@collabora.com>,
-        Heiko Stuebner <heiko@sntech.de>
-Cc:     "Rafael J. Wysocki" <rafael@kernel.org>,
-        Amit Kucheria <amitk@kernel.org>,
-        Zhang Rui <rui.zhang@intel.com>,
-        Rob Herring <robh+dt@kernel.org>,
+References: <20230316083049.29979-1-quic_tdas@quicinc.com> <20230316083049.29979-3-quic_tdas@quicinc.com>
+In-Reply-To: <20230316083049.29979-3-quic_tdas@quicinc.com>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date:   Thu, 16 Mar 2023 12:11:57 +0200
+Message-ID: <CAA8EJpqxtRyVKoqNsY01FmHaa10WK9LT49ydenztoJ1q0ah0+A@mail.gmail.com>
+Subject: Re: [PATCH 2/3] clk: qcom: videocc-sm8450: Add video clock controller
+ driver for SM8450
+To:     Taniya Das <quic_tdas@quicinc.com>
+Cc:     Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-pm@vger.kernel.org, linux-rockchip@lists.infradead.org,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        kernel@collabora.com
-References: <20230308112253.15659-1-sebastian.reichel@collabora.com>
- <20230308112253.15659-5-sebastian.reichel@collabora.com>
- <6c13708d-d51a-73b8-bf01-d6893eae2af4@linaro.org>
- <ec66d4e7-cb82-46c6-84ae-bd51df7cab7c@mercury.local>
-From:   Daniel Lezcano <daniel.lezcano@linaro.org>
-In-Reply-To: <ec66d4e7-cb82-46c6-84ae-bd51df7cab7c@mercury.local>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+        quic_skakitap@quicinc.com, quic_jkona@quicinc.com
+Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Thu, 16 Mar 2023 at 10:31, Taniya Das <quic_tdas@quicinc.com> wrote:
+>
+> Add support for the video clock controller driver for peripheral clock
+> clients to be able to request for video cc clocks.
+>
+> Signed-off-by: Taniya Das <quic_tdas@quicinc.com>
+> ---
+>  drivers/clk/qcom/Kconfig          |   9 +
+>  drivers/clk/qcom/Makefile         |   1 +
+>  drivers/clk/qcom/videocc-sm8450.c | 464 ++++++++++++++++++++++++++++++
+>  3 files changed, 474 insertions(+)
+>  create mode 100644 drivers/clk/qcom/videocc-sm8450.c
+>
+> diff --git a/drivers/clk/qcom/Kconfig b/drivers/clk/qcom/Kconfig
+> index 5ab4b7dfe3c2..81909e179bc7 100644
+> --- a/drivers/clk/qcom/Kconfig
+> +++ b/drivers/clk/qcom/Kconfig
+> @@ -892,4 +892,13 @@ config CLK_GFM_LPASS_SM8250
+>           Support for the Glitch Free Mux (GFM) Low power audio
+>            subsystem (LPASS) clocks found on SM8250 SoCs.
+>
+> +config SM_VIDEOCC_8450
+> +       tristate "SM8450 Video Clock Controller"
+> +       select SM_GCC_8450
+> +       select QCOM_GDSC
+> +       help
+> +         Support for the video clock controller on Qualcomm Technologies, Inc.
+> +         SM8450 devices.
+> +         Say Y if you want to support video devices and functionality such as
+> +         video encode/decode.
+>  endif
+> diff --git a/drivers/clk/qcom/Makefile b/drivers/clk/qcom/Makefile
+> index c743805a9cbb..5cbd0eedd6d9 100644
+> --- a/drivers/clk/qcom/Makefile
+> +++ b/drivers/clk/qcom/Makefile
+> @@ -119,6 +119,7 @@ obj-$(CONFIG_SM_GPUCC_8350) += gpucc-sm8350.o
+>  obj-$(CONFIG_SM_TCSRCC_8550) += tcsrcc-sm8550.o
+>  obj-$(CONFIG_SM_VIDEOCC_8150) += videocc-sm8150.o
+>  obj-$(CONFIG_SM_VIDEOCC_8250) += videocc-sm8250.o
+> +obj-$(CONFIG_SM_VIDEOCC_8450) += videocc-sm8450.o
+>  obj-$(CONFIG_SPMI_PMIC_CLKDIV) += clk-spmi-pmic-div.o
+>  obj-$(CONFIG_KPSS_XCC) += kpss-xcc.o
+>  obj-$(CONFIG_QCOM_HFPLL) += hfpll.o
+> diff --git a/drivers/clk/qcom/videocc-sm8450.c b/drivers/clk/qcom/videocc-sm8450.c
+> new file mode 100644
+> index 000000000000..ca60f3be587d
+> --- /dev/null
+> +++ b/drivers/clk/qcom/videocc-sm8450.c
+> @@ -0,0 +1,464 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
+> +/*
+> + * Copyright (c) 2023, Qualcomm Innovation Center, Inc. All rights reserved.
+> + */
+> +
+> +#include <linux/clk-provider.h>
+> +#include <linux/module.h>
+> +#include <linux/of_device.h>
+> +#include <linux/pm_runtime.h>
+> +#include <linux/regmap.h>
+> +
+> +#include <dt-bindings/clock/qcom,videocc-sm8450.h>
+> +
+> +#include "clk-alpha-pll.h"
+> +#include "clk-branch.h"
+> +#include "clk-rcg.h"
+> +#include "clk-regmap.h"
+> +#include "clk-regmap-divider.h"
+> +#include "common.h"
+> +#include "gdsc.h"
+> +#include "reset.h"
+> +
+> +enum {
+> +       P_BI_TCXO,
+> +       P_VIDEO_CC_PLL0_OUT_MAIN,
+> +       P_VIDEO_CC_PLL1_OUT_MAIN,
+> +};
+> +
+> +static const struct pll_vco lucid_evo_vco[] = {
+> +       { 249600000, 2020000000, 0 },
+> +};
+> +
+> +static const struct alpha_pll_config video_cc_pll0_config = {
+> +       .l = 0x1E,
+> +       .alpha = 0x0,
+> +       .config_ctl_val = 0x20485699,
+> +       .config_ctl_hi_val = 0x00182261,
+> +       .config_ctl_hi1_val = 0x32AA299C,
+> +       .user_ctl_val = 0x00000000,
+> +       .user_ctl_hi_val = 0x00000805,
+> +};
+> +
+> +static struct clk_alpha_pll video_cc_pll0 = {
+> +       .offset = 0x0,
+> +       .vco_table = lucid_evo_vco,
+> +       .num_vco = ARRAY_SIZE(lucid_evo_vco),
+> +       .regs = clk_alpha_pll_regs[CLK_ALPHA_PLL_TYPE_LUCID_EVO],
+> +       .clkr = {
+> +               .hw.init = &(const struct clk_init_data){
+> +                       .name = "video_cc_pll0",
+> +                       .parent_data = &(const struct clk_parent_data){
+> +                               .fw_name = "bi_tcxo",
 
-Hi Heiko,
+Could you please follow the last of recent drivers and use DT indices
+instead of clock-names?
 
-On 08/03/2023 19:42, Sebastian Reichel wrote:
-> Hi Daniel,
-> 
-> On Wed, Mar 08, 2023 at 07:13:22PM +0100, Daniel Lezcano wrote:
->> On 08/03/2023 12:22, Sebastian Reichel wrote:
->>> Replace the channel ID lookup table by a simple offset, since
->>> the channel IDs are consecutive.
->>>
->>> Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
->>
->> As all the other patches are reviewed by Heiko, is the tag missing here?
-> 
-> Heiko was not happy with this in PATCHv2, when he reviewed most
-> of the patches:
-> 
-> https://lore.kernel.org/all/3601039.e9J7NaK4W3@phil/
-> 
-> I replied, but never got a response, so I kept it as is:
-> 
-> https://lore.kernel.org/all/20221206170232.xsm4kcbfwrmlrriw@mercury.elektranox.org/
-> 
-> FWIW it is essential for the series and cannot be dropped, because
-> RK3588 has more than 2 channels.
+Also, as a syntax nit, could you please add whitespaces between ) and { ?
 
-Do you have a suggestion to improve the proposed change ?
+> +                       },
+> +                       .num_parents = 1,
+> +                       .ops = &clk_alpha_pll_lucid_evo_ops,
+> +               },
+> +       },
+> +};
+> +
 
-Thanks
-    -- Daniel
+[skipped]
 
 
->>> ---
->>>    drivers/thermal/rockchip_thermal.c | 48 +++++++++++++-----------------
->>>    1 file changed, 21 insertions(+), 27 deletions(-)
->>>
->>> diff --git a/drivers/thermal/rockchip_thermal.c b/drivers/thermal/rockchip_thermal.c
->>> index 9ed45b318344..bcbdd618daae 100644
->>> --- a/drivers/thermal/rockchip_thermal.c
->>> +++ b/drivers/thermal/rockchip_thermal.c
->>> @@ -39,15 +39,6 @@ enum tshut_polarity {
->>>    	TSHUT_HIGH_ACTIVE,
->>>    };
->>> -/*
->>> - * The system has two Temperature Sensors.
->>> - * sensor0 is for CPU, and sensor1 is for GPU.
->>> - */
->>> -enum sensor_id {
->>> -	SENSOR_CPU = 0,
->>> -	SENSOR_GPU,
->>> -};
->>> -
->>>    /*
->>>     * The conversion table has the adc value and temperature.
->>>     * ADC_DECREMENT: the adc value is of diminishing.(e.g. rk3288_code_table)
->>> @@ -82,7 +73,7 @@ struct chip_tsadc_table {
->>>    /**
->>>     * struct rockchip_tsadc_chip - hold the private data of tsadc chip
->>> - * @chn_id: array of sensor ids of chip corresponding to the channel
->>> + * @chn_offset: the channel offset of the first channel
->>>     * @chn_num: the channel number of tsadc chip
->>>     * @tshut_temp: the hardware-controlled shutdown temperature value
->>>     * @tshut_mode: the hardware-controlled shutdown mode (0:CRU 1:GPIO)
->>> @@ -98,7 +89,7 @@ struct chip_tsadc_table {
->>>     */
->>>    struct rockchip_tsadc_chip {
->>>    	/* The sensor id of chip correspond to the ADC channel */
->>> -	int chn_id[SOC_MAX_SENSORS];
->>> +	int chn_offset;
->>>    	int chn_num;
->>>    	/* The hardware-controlled tshut property */
->>> @@ -925,8 +916,8 @@ static void rk_tsadcv2_tshut_mode(int chn, void __iomem *regs,
->>>    }
->>>    static const struct rockchip_tsadc_chip px30_tsadc_data = {
->>> -	.chn_id[SENSOR_CPU] = 0, /* cpu sensor is channel 0 */
->>> -	.chn_id[SENSOR_GPU] = 1, /* gpu sensor is channel 1 */
->>> +	/* cpu, gpu */
->>> +	.chn_offset = 0,
->>>    	.chn_num = 2, /* 2 channels for tsadc */
->>>    	.tshut_mode = TSHUT_MODE_CRU, /* default TSHUT via CRU */
->>> @@ -949,7 +940,8 @@ static const struct rockchip_tsadc_chip px30_tsadc_data = {
->>>    };
->>>    static const struct rockchip_tsadc_chip rv1108_tsadc_data = {
->>> -	.chn_id[SENSOR_CPU] = 0, /* cpu sensor is channel 0 */
->>> +	/* cpu */
->>> +	.chn_offset = 0,
->>>    	.chn_num = 1, /* one channel for tsadc */
->>>    	.tshut_mode = TSHUT_MODE_GPIO, /* default TSHUT via GPIO give PMIC */
->>> @@ -973,7 +965,8 @@ static const struct rockchip_tsadc_chip rv1108_tsadc_data = {
->>>    };
->>>    static const struct rockchip_tsadc_chip rk3228_tsadc_data = {
->>> -	.chn_id[SENSOR_CPU] = 0, /* cpu sensor is channel 0 */
->>> +	/* cpu */
->>> +	.chn_offset = 0,
->>>    	.chn_num = 1, /* one channel for tsadc */
->>>    	.tshut_mode = TSHUT_MODE_GPIO, /* default TSHUT via GPIO give PMIC */
->>> @@ -997,8 +990,8 @@ static const struct rockchip_tsadc_chip rk3228_tsadc_data = {
->>>    };
->>>    static const struct rockchip_tsadc_chip rk3288_tsadc_data = {
->>> -	.chn_id[SENSOR_CPU] = 1, /* cpu sensor is channel 1 */
->>> -	.chn_id[SENSOR_GPU] = 2, /* gpu sensor is channel 2 */
->>> +	/* cpu, gpu */
->>> +	.chn_offset = 1,
->>>    	.chn_num = 2, /* two channels for tsadc */
->>>    	.tshut_mode = TSHUT_MODE_GPIO, /* default TSHUT via GPIO give PMIC */
->>> @@ -1022,7 +1015,8 @@ static const struct rockchip_tsadc_chip rk3288_tsadc_data = {
->>>    };
->>>    static const struct rockchip_tsadc_chip rk3328_tsadc_data = {
->>> -	.chn_id[SENSOR_CPU] = 0, /* cpu sensor is channel 0 */
->>> +	/* cpu */
->>> +	.chn_offset = 0,
->>>    	.chn_num = 1, /* one channels for tsadc */
->>>    	.tshut_mode = TSHUT_MODE_CRU, /* default TSHUT via CRU */
->>> @@ -1045,8 +1039,8 @@ static const struct rockchip_tsadc_chip rk3328_tsadc_data = {
->>>    };
->>>    static const struct rockchip_tsadc_chip rk3366_tsadc_data = {
->>> -	.chn_id[SENSOR_CPU] = 0, /* cpu sensor is channel 0 */
->>> -	.chn_id[SENSOR_GPU] = 1, /* gpu sensor is channel 1 */
->>> +	/* cpu, gpu */
->>> +	.chn_offset = 0,
->>>    	.chn_num = 2, /* two channels for tsadc */
->>>    	.tshut_mode = TSHUT_MODE_GPIO, /* default TSHUT via GPIO give PMIC */
->>> @@ -1070,8 +1064,8 @@ static const struct rockchip_tsadc_chip rk3366_tsadc_data = {
->>>    };
->>>    static const struct rockchip_tsadc_chip rk3368_tsadc_data = {
->>> -	.chn_id[SENSOR_CPU] = 0, /* cpu sensor is channel 0 */
->>> -	.chn_id[SENSOR_GPU] = 1, /* gpu sensor is channel 1 */
->>> +	/* cpu, gpu */
->>> +	.chn_offset = 0,
->>>    	.chn_num = 2, /* two channels for tsadc */
->>>    	.tshut_mode = TSHUT_MODE_GPIO, /* default TSHUT via GPIO give PMIC */
->>> @@ -1095,8 +1089,8 @@ static const struct rockchip_tsadc_chip rk3368_tsadc_data = {
->>>    };
->>>    static const struct rockchip_tsadc_chip rk3399_tsadc_data = {
->>> -	.chn_id[SENSOR_CPU] = 0, /* cpu sensor is channel 0 */
->>> -	.chn_id[SENSOR_GPU] = 1, /* gpu sensor is channel 1 */
->>> +	/* cpu, gpu */
->>> +	.chn_offset = 0,
->>>    	.chn_num = 2, /* two channels for tsadc */
->>>    	.tshut_mode = TSHUT_MODE_GPIO, /* default TSHUT via GPIO give PMIC */
->>> @@ -1120,8 +1114,8 @@ static const struct rockchip_tsadc_chip rk3399_tsadc_data = {
->>>    };
->>>    static const struct rockchip_tsadc_chip rk3568_tsadc_data = {
->>> -	.chn_id[SENSOR_CPU] = 0, /* cpu sensor is channel 0 */
->>> -	.chn_id[SENSOR_GPU] = 1, /* gpu sensor is channel 1 */
->>> +	/* cpu, gpu */
->>> +	.chn_offset = 0,
->>>    	.chn_num = 2, /* two channels for tsadc */
->>>    	.tshut_mode = TSHUT_MODE_GPIO, /* default TSHUT via GPIO give PMIC */
->>> @@ -1404,7 +1398,7 @@ static int rockchip_thermal_probe(struct platform_device *pdev)
->>>    	for (i = 0; i < thermal->chip->chn_num; i++) {
->>>    		error = rockchip_thermal_register_sensor(pdev, thermal,
->>>    						&thermal->sensors[i],
->>> -						thermal->chip->chn_id[i]);
->>> +						thermal->chip->chn_offset + i);
->>>    		if (error)
->>>    			return dev_err_probe(&pdev->dev, error,
->>>    				"failed to register sensor[%d].\n", i);
->>
->> -- 
->> <http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
->>
->> Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
->> <http://twitter.com/#!/linaroorg> Twitter |
->> <http://www.linaro.org/linaro-blog/> Blog
->>
+> +
+> +static void video_cc_sm8450_pm_runtime_disable(void *data)
+> +{
+> +       pm_runtime_disable(data);
+> +}
+> +
+> +static int video_cc_sm8450_probe(struct platform_device *pdev)
+> +{
+> +       struct regmap *regmap;
+> +       int ret;
+> +
+> +       pm_runtime_enable(&pdev->dev);
+> +
+> +       ret = devm_add_action_or_reset(&pdev->dev, video_cc_sm8450_pm_runtime_disable, &pdev->dev);
+> +       if (ret)
+> +               return ret;
+
+Could you please shift to using devm_pm_runtime_enable()?
+
+> +
+> +       ret = pm_runtime_resume_and_get(&pdev->dev);
+> +       if (ret)
+> +               return ret;
+> +
+> +       regmap = qcom_cc_map(pdev, &video_cc_sm8450_desc);
+> +       if (IS_ERR(regmap)) {
+> +               pm_runtime_put(&pdev->dev);
+> +               return PTR_ERR(regmap);
+> +       }
+> +
+> +       clk_lucid_evo_pll_configure(&video_cc_pll0, regmap, &video_cc_pll0_config);
+> +       clk_lucid_evo_pll_configure(&video_cc_pll1, regmap, &video_cc_pll1_config);
+> +
+> +       /*
+> +        * Keep clocks always enabled:
+> +        *      video_cc_ahb_clk
+> +        *      video_cc_sleep_clk
+> +        *      video_cc_xo_clk
+> +        */
+> +       regmap_update_bits(regmap, 0x80e4, BIT(0), BIT(0));
+> +       regmap_update_bits(regmap, 0x8130, BIT(0), BIT(0));
+> +       regmap_update_bits(regmap, 0x8114, BIT(0), BIT(0));
+> +
+> +       ret = qcom_cc_really_probe(pdev, &video_cc_sm8450_desc, regmap);
+> +
+> +       pm_runtime_put(&pdev->dev);
+> +
+> +       return ret;
+> +}
+> +
+> +static struct platform_driver video_cc_sm8450_driver = {
+> +       .probe = video_cc_sm8450_probe,
+> +       .driver = {
+> +               .name = "video_cc-sm8450",
+> +               .of_match_table = video_cc_sm8450_match_table,
+> +       },
+> +};
+> +
+> +static int __init video_cc_sm8450_init(void)
+> +{
+> +       return platform_driver_register(&video_cc_sm8450_driver);
+> +}
+> +subsys_initcall(video_cc_sm8450_init);
+> +
+> +static void __exit video_cc_sm8450_exit(void)
+> +{
+> +       platform_driver_unregister(&video_cc_sm8450_driver);
+> +}
+> +module_exit(video_cc_sm8450_exit);
+> +
+> +MODULE_DESCRIPTION("QTI VIDEO_CC SM8450 Driver");
+> +MODULE_LICENSE("GPL v2");
+
+I think this should be just "GPL" nowaways.
+
+> --
+> 2.17.1
+>
+
 
 -- 
-<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
-
-Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
-<http://twitter.com/#!/linaroorg> Twitter |
-<http://www.linaro.org/linaro-blog/> Blog
-
+With best wishes
+Dmitry
