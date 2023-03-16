@@ -2,135 +2,182 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C597B6BCB6D
-	for <lists+devicetree@lfdr.de>; Thu, 16 Mar 2023 10:52:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E0B9A6BCB90
+	for <lists+devicetree@lfdr.de>; Thu, 16 Mar 2023 10:54:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230089AbjCPJwG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Mar 2023 05:52:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54460 "EHLO
+        id S231240AbjCPJyO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Mar 2023 05:54:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58456 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230047AbjCPJwF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Mar 2023 05:52:05 -0400
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 324C96F482;
-        Thu, 16 Mar 2023 02:52:03 -0700 (PDT)
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 32G9pp3x003437;
-        Thu, 16 Mar 2023 04:51:51 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1678960311;
-        bh=2Bdl5oAYnWPD4WIAem+ZJ2urGghTCxyS84U//SSC8GY=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=WYAjX4AJvXmmIXN3td+mqWjnHInY+Q20keBLvcw5RmzIE45VaeRhRXfmE4c6yYFOi
-         SJzeKE3HIte0d9KTgiTiTkn0FsiHwZDdvg5byLE0aDnt929PLVKZBxFXe0tUJkoKVG
-         3aSWh5srx+8llpDCUsABo30VjFtSVOJGliPMrNlU=
-Received: from DFLE100.ent.ti.com (dfle100.ent.ti.com [10.64.6.21])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 32G9ppgn016412
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Thu, 16 Mar 2023 04:51:51 -0500
-Received: from DFLE103.ent.ti.com (10.64.6.24) by DFLE100.ent.ti.com
- (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Thu, 16
- Mar 2023 04:51:51 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE103.ent.ti.com
- (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
- Frontend Transport; Thu, 16 Mar 2023 04:51:51 -0500
-Received: from localhost (ileaxei01-snat.itg.ti.com [10.180.69.5])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 32G9poQO024469;
-        Thu, 16 Mar 2023 04:51:50 -0500
-From:   Bhavya Kapoor <b-kapoor@ti.com>
-To:     <devicetree@vger.kernel.org>, <robh+dt@kernel.org>
-CC:     <nm@ti.com>, <vigneshr@ti.com>, <kristo@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <b-kapoor@ti.com>
-Subject: [PATCH v7 2/2] arm64: dts: ti: k3-j721s2-common-proc-board: Add pinmux information for ADC
-Date:   Thu, 16 Mar 2023 15:21:46 +0530
-Message-ID: <20230316095146.498999-3-b-kapoor@ti.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230316095146.498999-1-b-kapoor@ti.com>
-References: <20230316095146.498999-1-b-kapoor@ti.com>
+        with ESMTP id S230508AbjCPJyA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Mar 2023 05:54:00 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 291B5733A4;
+        Thu, 16 Mar 2023 02:53:52 -0700 (PDT)
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: kholk11)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id AE59F660309E;
+        Thu, 16 Mar 2023 09:53:48 +0000 (GMT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1678960429;
+        bh=U016GfVVdnxsip9oeySV3RsjrHt+GbtN8I0vEam86cw=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=D1ZYug/Rc7GC9oaJibLCGVC1ot6HrZSJaaD6dBId+/IevQCU8BtC3krYiV1jYB1vG
+         QntG3e3/vTGxkEjKz92r3TfeVbI0b974DjcPXf4GI2j705nXTtC9lwiOAd2/AnY/F6
+         z0CXJd7cBrVcF76ENARf0NTaYVTa7yGwdM/0MVCXo3vZlYh0D5bvxoNXrF0aymJ3Zb
+         F8uYdm9tAIDz6DQWBRSVg36L9plmJGvA5FyZrNRsHMRHMDyI3PxKybudbJIEiuNwVP
+         V/QFPGh4hL2xHjhAFEFAKBm5yn+8gIYX9WiQd8Y0uE7XWaJ+xmz5ux83Th4WlKzPyS
+         T+JmIMMYGK3Ig==
+Message-ID: <e5ceec9e-d51b-2aeb-1db7-b79b151bd44c@collabora.com>
+Date:   Thu, 16 Mar 2023 10:53:45 +0100
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.8.0
+Subject: Re: [PATCH v29 1/7] dt-bindings: mediatek: add ethdr definition for
+ mt8195
+Content-Language: en-US
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        =?UTF-8?B?TmFuY3kgTGluICjmnpfmrKPonqIp?= <Nancy.Lin@mediatek.com>,
+        "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
+        "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
+        "chunkuang.hu@kernel.org" <chunkuang.hu@kernel.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>
+Cc:     "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-mediatek@lists.infradead.org" 
+        <linux-mediatek@lists.infradead.org>,
+        =?UTF-8?B?U2luZ28gQ2hhbmcgKOW8teiIiOWciyk=?= 
+        <Singo.Chang@mediatek.com>,
+        "nathan@kernel.org" <nathan@kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "daniel@ffwll.ch" <daniel@ffwll.ch>,
+        =?UTF-8?B?Q0sgSHUgKOiDoeS/iuWFiSk=?= <ck.hu@mediatek.com>,
+        "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+        Project_Global_Chrome_Upstream_Group 
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "clang-built-linux@googlegroups.com" 
+        <clang-built-linux@googlegroups.com>,
+        "ndesaulniers@google.com" <ndesaulniers@google.com>
+References: <20221227081011.6426-1-nancy.lin@mediatek.com>
+ <20221227081011.6426-2-nancy.lin@mediatek.com>
+ <4aff6a7a3b606f26ec793192d9c75774276935e0.camel@mediatek.com>
+ <2700bd6c-f00d-fa99-b730-2fcdf89089fa@linaro.org>
+ <1d65e8b2de708db18b5f7a0faaa53834e1002d9f.camel@mediatek.com>
+ <b04eb48e-c9aa-0404-33ec-bef623b8282f@linaro.org>
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <b04eb48e-c9aa-0404-33ec-bef623b8282f@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-J721s2 has two instances of 8 channel ADCs in MCU domain. Add pinmux
-information for both ADC nodes.
+Il 16/03/23 07:31, Krzysztof Kozlowski ha scritto:
+> On 16/03/2023 07:19, Nancy Lin (林欣螢) wrote:
+>> On Wed, 2023-03-15 at 08:16 +0100, Krzysztof Kozlowski wrote:
+>>> On 15/03/2023 04:45, Nancy Lin (林欣螢) wrote:
+>>>
 
-Signed-off-by: Bhavya Kapoor <b-kapoor@ti.com>
----
- .../dts/ti/k3-j721s2-common-proc-board.dts    | 44 +++++++++++++++++++
- 1 file changed, 44 insertions(+)
+..snip..
 
-diff --git a/arch/arm64/boot/dts/ti/k3-j721s2-common-proc-board.dts b/arch/arm64/boot/dts/ti/k3-j721s2-common-proc-board.dts
-index a7aa6cf08acd..b4b9edfe2d12 100644
---- a/arch/arm64/boot/dts/ti/k3-j721s2-common-proc-board.dts
-+++ b/arch/arm64/boot/dts/ti/k3-j721s2-common-proc-board.dts
-@@ -197,6 +197,32 @@ mcu_mcan1_gpio_pins_default: mcu-mcan1-gpio-pins-default {
- 			J721S2_WKUP_IOPAD(0x0c8, PIN_INPUT, 7) /* (C28) WKUP_GPIO0_2 */
- 		>;
- 	};
-+
-+	mcu_adc0_pins_default: mcu-adc0-pins-default {
-+		pinctrl-single,pins = <
-+			J721S2_WKUP_IOPAD(0x134, PIN_INPUT, 0) /* (L25) MCU_ADC0_AIN0 */
-+			J721S2_WKUP_IOPAD(0x138, PIN_INPUT, 0) /* (K25) MCU_ADC0_AIN1 */
-+			J721S2_WKUP_IOPAD(0x13c, PIN_INPUT, 0) /* (M24) MCU_ADC0_AIN2 */
-+			J721S2_WKUP_IOPAD(0x140, PIN_INPUT, 0) /* (L24) MCU_ADC0_AIN3 */
-+			J721S2_WKUP_IOPAD(0x144, PIN_INPUT, 0) /* (L27) MCU_ADC0_AIN4 */
-+			J721S2_WKUP_IOPAD(0x148, PIN_INPUT, 0) /* (K24) MCU_ADC0_AIN5 */
-+			J721S2_WKUP_IOPAD(0x14c, PIN_INPUT, 0) /* (M27) MCU_ADC0_AIN6 */
-+			J721S2_WKUP_IOPAD(0x150, PIN_INPUT, 0) /* (M26) MCU_ADC0_AIN7 */
-+		>;
-+	};
-+
-+	mcu_adc1_pins_default: mcu-adc1-pins-default {
-+		pinctrl-single,pins = <
-+			J721S2_WKUP_IOPAD(0x154, PIN_INPUT, 0) /* (P25) MCU_ADC1_AIN0 */
-+			J721S2_WKUP_IOPAD(0x158, PIN_INPUT, 0) /* (R25) MCU_ADC1_AIN1 */
-+			J721S2_WKUP_IOPAD(0x15c, PIN_INPUT, 0) /* (P28) MCU_ADC1_AIN2 */
-+			J721S2_WKUP_IOPAD(0x160, PIN_INPUT, 0) /* (P27) MCU_ADC1_AIN3 */
-+			J721S2_WKUP_IOPAD(0x164, PIN_INPUT, 0) /* (N25) MCU_ADC1_AIN4 */
-+			J721S2_WKUP_IOPAD(0x168, PIN_INPUT, 0) /* (P26) MCU_ADC1_AIN5 */
-+			J721S2_WKUP_IOPAD(0x16c, PIN_INPUT, 0) /* (N26) MCU_ADC1_AIN6 */
-+			J721S2_WKUP_IOPAD(0x170, PIN_INPUT, 0) /* (N27) MCU_ADC1_AIN7 */
-+		>;
-+	};
- };
- 
- &main_gpio2 {
-@@ -309,3 +335,21 @@ &mcu_mcan1 {
- 	pinctrl-0 = <&mcu_mcan1_pins_default>;
- 	phys = <&transceiver2>;
- };
-+
-+&tscadc0 {
-+	pinctrl-0 = <&mcu_adc0_pins_default>;
-+	pinctrl-names = "default";
-+	status = "okay";
-+	adc {
-+		ti,adc-channels = <0 1 2 3 4 5 6 7>;
-+	};
-+};
-+
-+&tscadc1 {
-+	pinctrl-0 = <&mcu_adc1_pins_default>;
-+	pinctrl-names = "default";
-+	status = "okay";
-+	adc {
-+		ti,adc-channels = <0 1 2 3 4 5 6 7>;
-+	};
-+};
--- 
-2.34.1
+>>>>
+>>>>
+>>>> [1].
+>>>> Documentation/devicetree/bindings/display/mediatek/mediatek,ethdr.e
+>>>> xamp
+>>>> le.dtb
+>>>> /proj/mtk19347/cros/src/third_party/kernel/v5.10/Documentation/devi
+>>>> cetr
+>>>> ee/bindings/display/mediatek/mediatek,ethdr.example.dtb:
+>>>> hdr-engine@1c114000: mediatek,gce-client-reg:0: [4294967295, 7,
+>>>> 16384,
+>>>> 4096, 4294967295, 7, 20480, 4096, 4294967295, 7, 28672, 4096,
+>>>> 4294967295, 7, 36864, 4096, 4294967295, 7, 40960, 4096, 4294967295,
+>>>> 7,
+>>>> 45056, 4096, 4294967295, 7, 49152, 4096] is too long
+>>>>          From schema:
+>>>
+>>> This looks like known issue with phandles with variable number of
+>>> arguments. Either we add it to the exceptions or just define it in
+>>> reduced way like in other cases - only maxItems: 1 without describing
+>>> items.
+>>>
 
+...
+
+>>
+>> But I have several items for this vendor property in the binding
+>> example.
+> 
+> Do you? I thought you have one phandle?
+> 
+>> Can I remove maxItems? Change the mediatek,gce-client-reg as [1].
+>>
+>> [1]
+>>    mediatek,gce-client-reg:
+>>      $ref: /schemas/types.yaml#/definitions/phandle-array
+>>      description: The register of display function block to be set by
+>> gce.
+>>        There are 4 arguments in this property, gce node, subsys id,
+>> offset and
+>>        register size. The subsys id is defined in the gce header of each
+>> chips
+>>        include/dt-bindings/gce/<chip>-gce.h, mapping to the register of
+>> display
+>>        function block.
+> 
+> No, this needs some constraints.
+
+Hello Krzysztof, Nancy,
+
+Since this series has reached v29, can we please reach an agreement on the bindings
+to use here, so that we can get this finally upstreamed?
+
+I will put some examples to try to get this issue resolved.
+
+### Example 1: Constrain the number of GCE entries to *seven* array elements (7x4!)
+
+   mediatek,gce-client-reg:
+     $ref: /schemas/types.yaml#/definitions/phandle-array
+     maxItems: 1
+     description: The register of display function block to be set by gce.
+       There are 4 arguments in this property, gce node, subsys id, offset and
+       register size. The subsys id is defined in the gce header of each chips
+       include/dt-bindings/gce/<chip>-gce.h, mapping to the register of display
+       function block.
+     items:
+       minItems: 28
+       maxItems: 28
+       items:                     <----- this block doesn't seem to get checked :\
+         - description: phandle of GCE
+         - description: GCE subsys id
+         - description: register offset
+         - description: register size
+
+
+### Example 2: Don't care about constraining the number of arguments
+
+   mediatek,gce-client-reg:
+     $ref: /schemas/types.yaml#/definitions/phandle-array
+     maxItems: 1
+     description: The register of display function block to be set by gce.
+       There are 4 arguments in this property, gce node, subsys id, offset and
+       register size. The subsys id is defined in the gce header of each chips
+       include/dt-bindings/gce/<chip>-gce.h, mapping to the register of display
+       function block.
+
+
+Regards,
+Angelo
