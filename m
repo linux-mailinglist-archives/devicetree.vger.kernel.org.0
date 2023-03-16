@@ -2,123 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 659316BD0EC
-	for <lists+devicetree@lfdr.de>; Thu, 16 Mar 2023 14:35:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F03EF6BD11C
+	for <lists+devicetree@lfdr.de>; Thu, 16 Mar 2023 14:41:24 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229743AbjCPNft (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Mar 2023 09:35:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59466 "EHLO
+        id S230355AbjCPNlX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Mar 2023 09:41:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39548 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229506AbjCPNfs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Mar 2023 09:35:48 -0400
-Received: from mail-pj1-x1032.google.com (mail-pj1-x1032.google.com [IPv6:2607:f8b0:4864:20::1032])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 825C37DD2A;
-        Thu, 16 Mar 2023 06:35:46 -0700 (PDT)
-Received: by mail-pj1-x1032.google.com with SMTP id rj10so1657296pjb.4;
-        Thu, 16 Mar 2023 06:35:46 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112; t=1678973746;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=cWReiIxPiu3lWTgfQW7DAo5O3p+FWpN4lR44L3foEj4=;
-        b=BcChq6vFcL2Qf5V4rA/m0CDQ/E+Aq2iFuKunm2PUs1QSWAUHyrQLRSZMTvMUtHeJAX
-         3qVgWK5yN/ZmvIitKfy2uVDRIYugps+52YRjFFQOEEy7qakaOPbSxLDrelp+jcWXbyRv
-         SFrjY9F0Fmh3siiAYKPZyrBzxgyGOosRFci9JpNXaCozsudiT7zaq96XrF/SD5NlQQUJ
-         Zh7/llMYYgMazeO7Tm3bQjBUP7qR3rIhXmoYW2cbsQnVSZlwi2t/WuZ8+6HZWDjOppcV
-         5diLUKeRaW44vqFWYQutxJux3kCLlmmE2Lr7M1PTdlwu82cIvIhkl7SIur6g27/yNSw0
-         Svag==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678973746;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=cWReiIxPiu3lWTgfQW7DAo5O3p+FWpN4lR44L3foEj4=;
-        b=AmnwccVS4ifhl+jj+b9yRvMEj5Sj9l0+wLpGk2DYK1jezDtROdpsYQE5pHqVbnhTh9
-         RndjsIOyogKH1R0tUGH345cdaHWt7dzX25j9P6AwkwccXJ+sI5x4ZDkm/J0wu83M60jR
-         NiyTjju8HMxyyBlIV5yYg7seTN3oXfwFHADhI7kpYopDtY8nn0VUrSqbR1TcU6NLMitw
-         FlLG0Eivpi9wKX2Ot7M+wi0RaFkDBgPACTBM4xS8OSAheKcBfusMC1UKbUIkfMmI0AQm
-         e6qZyS7E0dtiNX0D+XbegfP2fA9gyn8L+qpg95MnlBnIZUjolubyUbbSHtQS+tmcFUZ4
-         RILg==
-X-Gm-Message-State: AO0yUKW3Ld+il2yA6ftxRYS844yuBtTm9Jo9g6FFox0vTZX7/uIDE6zH
-        /EZeYkhZyPeVBqWNJxN4Z50=
-X-Google-Smtp-Source: AK7set+xfxWsEPAmUNEyfEISpAvlFkDeCty32g2j/9Anp0cZ+TPdCkceJlYcmQHzO1B+ulpUgcyj0Q==
-X-Received: by 2002:a17:90b:3e82:b0:233:f393:f6cd with SMTP id rj2-20020a17090b3e8200b00233f393f6cdmr3860657pjb.5.1678973745917;
-        Thu, 16 Mar 2023 06:35:45 -0700 (PDT)
-Received: from [172.19.1.47] (60-250-192-107.hinet-ip.hinet.net. [60.250.192.107])
-        by smtp.gmail.com with ESMTPSA id l4-20020a17090a660400b00230b572e90csm3223063pjj.35.2023.03.16.06.35.43
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 16 Mar 2023 06:35:45 -0700 (PDT)
-Message-ID: <fd60a5af-8831-3d58-41b0-b220130c9e05@gmail.com>
-Date:   Thu, 16 Mar 2023 21:35:41 +0800
+        with ESMTP id S230261AbjCPNlW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Mar 2023 09:41:22 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C61A0C2D8A;
+        Thu, 16 Mar 2023 06:41:13 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 78032B82181;
+        Thu, 16 Mar 2023 13:41:12 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 49D2DC4339E;
+        Thu, 16 Mar 2023 13:41:09 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1678974071;
+        bh=UoWgFGxsRnsnVe4rYV63fJUjTvJZMyz5VdmFkUdrVyk=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=MXXLnDu24MnGfaRpzzthO5wmZnQ+yQNTBdA99S1VMebLTdMUGRYvQyT3cAUBavamD
+         I9JX7MtksnVbBjQ52LzIM3JggMaTdTcEHNesvyEtT+zUr2j4Ls4ASpvRYY2HouYD0B
+         bSdxhwcZFFsfW3kHDXlLXX8i82FdNCZictjpx2bHbggS8LiKibLo5aAlnXQ6Lls+Vw
+         0ulzjBhICJlg+EtMB/7Dq4MuRjhbE8dy87r2rPkb78k+WvOL/xeFNxH16BWma4jgYR
+         DXGM75sf5JyrPWu+pErsOkHPMELDR3elIUU4277Nap42ky/EMpcHpV5m4LXQNl7g7z
+         zJGux/hYo56Jw==
+Date:   Thu, 16 Mar 2023 13:41:06 +0000
+From:   Lee Jones <lee@kernel.org>
+To:     =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Pavel Machek <pavel@ucw.cz>,
+        Jacek Anaszewski <jacek.anaszewski@gmail.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        devicetree@vger.kernel.org, linux-leds@vger.kernel.org,
+        =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
+Subject: Re: [PATCH V2] dt-bindings: leds: add "usbport" trigger
+Message-ID: <20230316134106.GN9667@google.com>
+References: <20230308065424.29113-1-zajec5@gmail.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.1
-Subject: Re: [PATCH 04/15] dt-bindings: clock: nuvoton: add binding for ma35d1
- clock controller
-Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        lee@kernel.org, mturquette@baylibre.com, sboyd@kernel.org,
-        p.zabel@pengutronix.de, gregkh@linuxfoundation.org,
-        jirislaby@kernel.org
-Cc:     devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org,
-        schung@nuvoton.com, Jacky Huang <ychuang3@nuvoton.com>
-References: <20230315072902.9298-1-ychuang570808@gmail.com>
- <20230315072902.9298-5-ychuang570808@gmail.com>
- <a64bbd77-cd5c-8149-51e6-262122fe954e@linaro.org>
-From:   Jacky Huang <ychuang570808@gmail.com>
-In-Reply-To: <a64bbd77-cd5c-8149-51e6-262122fe954e@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <20230308065424.29113-1-zajec5@gmail.com>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Wed, 08 Mar 2023, Rafał Miłecki wrote:
 
-Dear Krzysztof,
-
-
-
-On 2023/3/16 下午 03:31, Krzysztof Kozlowski wrote:
-> On 15/03/2023 08:28, Jacky Huang wrote:
->> From: Jacky Huang <ychuang3@nuvoton.com>
->>
->> Add the dt-bindings header for Nuvoton ma35d1, that gets shared
->> between the clock controller and clock references in the dts.
-> I don't see the device binding. They come together.
-
-I should move 
-Documentation/devicetree/bindings/clock/nuvoton,ma35d1-clk.yaml
-into this patch, right?
-
+> From: Rafał Miłecki <rafal@milecki.pl>
 >
->> Signed-off-by: Jacky Huang <ychuang3@nuvoton.com>
->> ---
->>   .../dt-bindings/clock/nuvoton,ma35d1-clk.h    | 253 ++++++++++++++++++
->>   1 file changed, 253 insertions(+)
->>   create mode 100644 include/dt-bindings/clock/nuvoton,ma35d1-clk.h
->>
->> diff --git a/include/dt-bindings/clock/nuvoton,ma35d1-clk.h b/include/dt-bindings/clock/nuvoton,ma35d1-clk.h
->> new file mode 100644
->> index 000000000000..6c569fdd6e06
->> --- /dev/null
->> +++ b/include/dt-bindings/clock/nuvoton,ma35d1-clk.h
->> @@ -0,0 +1,253 @@
->> +/* SPDX-License-Identifier: GPL-2.0 */
-> Dual license.
+> Linux's "usbport" trigger is a bit specific one. It allows LED to follow
+> state of multiple USB ports which have to be selected additionally
+> (there isn't a single trigger for each port).
+>
+> Default list of USB ports to monitor can be specified using
+> "trigger-sources" DT property. Theoretically it should be possible for
+> Linux to deduce applicable trigger based on the references nodes in the
+> "trigger-sources". It hasn't been implemented however (probably due to
+> laziness).
+>
+> Milk spilled - we already have DT files specifying "usbport" manually -
+> allow that value in the binding. This fixes validation of in-kernel and
+> external DT files.
+>
+> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
+> ---
+>  Documentation/devicetree/bindings/leds/common.yaml | 1 +
+>  1 file changed, 1 insertion(+)
 
-OK, I will fix it.
+Doesn't apply.  Please rebase onto -next.
 
+Hint: Requires a line of documentation above the new property.
 
-> Best regards,
-> Krzysztof
+> diff --git a/Documentation/devicetree/bindings/leds/common.yaml b/Documentation/devicetree/bindings/leds/common.yaml
+> index 15e3f6645682..95b316ee3146 100644
+> --- a/Documentation/devicetree/bindings/leds/common.yaml
+> +++ b/Documentation/devicetree/bindings/leds/common.yaml
+> @@ -99,6 +99,7 @@ properties:
+>            - pattern
+>            - usb-gadget
+>            - usb-host
+> +          - usbport
+>        - pattern: "^cpu[0-9]*$"
+>        - pattern: "^hci[0-9]+-power$"
+>          # LED is triggered by Bluetooth activity
+> --
+> 2.34.1
 >
 
+--
+Lee Jones [李琼斯]
