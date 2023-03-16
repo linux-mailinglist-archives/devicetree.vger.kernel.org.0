@@ -2,238 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 354686BC4F2
-	for <lists+devicetree@lfdr.de>; Thu, 16 Mar 2023 04:50:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4E2ED6BC51D
+	for <lists+devicetree@lfdr.de>; Thu, 16 Mar 2023 05:08:23 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229938AbjCPDs3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Mar 2023 23:48:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39916 "EHLO
+        id S229473AbjCPEIV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Mar 2023 00:08:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35492 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229866AbjCPDsM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Mar 2023 23:48:12 -0400
-Received: from mail-oo1-xc29.google.com (mail-oo1-xc29.google.com [IPv6:2607:f8b0:4864:20::c29])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3CB199BE0F
-        for <devicetree@vger.kernel.org>; Wed, 15 Mar 2023 20:48:10 -0700 (PDT)
-Received: by mail-oo1-xc29.google.com with SMTP id a23-20020a4ad5d7000000b005250867d3d9so52093oot.10
-        for <devicetree@vger.kernel.org>; Wed, 15 Mar 2023 20:48:10 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=kali.org; s=google; t=1678938489;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=MviEEWSTJxxSnXQ8MTU0qt5CxziP8W4MnnoSp2fynjs=;
-        b=XWl8vLRg8SWI+k7I74n/oowWqeKyPcjyMWA1lH1QzC2rDjJLZXfwRheUyKbLXuiN2e
-         /iOUiLF7OQcqv2an0KOFsoh5jUVWiJMRSlcNzV/sWLhjc00F8twiykhe4mncckWWyMBU
-         bikDI/5mXlnBz+Cmbrh3a5W56A6f5R1OEr/xF8nDQ8U4rSd68bwvWiGhloB/4PILWup9
-         ylD8uXJk2lvidmyjGn9YfGsAiKF/flB8o1QWdaHka8hyOhL9zjBgi7FO48x6Z5KRn1ec
-         y2ybe9MSGq91TQKPuqIw3+4H6spkIvl/fEtetMp2I0GRsE5HlTy+PXmtd/aGptkV+aiW
-         o0Cg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678938489;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=MviEEWSTJxxSnXQ8MTU0qt5CxziP8W4MnnoSp2fynjs=;
-        b=LGdtY2Un8D6cLYazq6q6IuKeylUMF3CfWGjyLUOJ2pV1aAMtVLmDeGKqJYe9GG7QSH
-         pHZvt8dGAFC90OOpjNHdPzw4KMDYBdrVpDwSHAGDzofDnc5By7UTulgxaiZ5gKE99XI0
-         03irr1/1N+Jyb4noOzRw4fvqBhEMzUN1uS6OlLvqMusvc+7Adqz2px7ifyjvpsXeCmUn
-         IxkfjZ3Mo/KaB2SDrqaQF3TG7s8qHiWuU/Wfai1tVOEpxkJHJ6ljoRWSvF55UiyBb31l
-         R5J6ooHysSvaRXEPfurP0jAA3XXmCdC7xKE6JqTLCRh3O6ntoCdAZrTpl2OjfEmWAu1G
-         zxfQ==
-X-Gm-Message-State: AO0yUKUd4+NQomxqHGGwtEXkojq6ZCvdnd7QMFtKzxTBrRhuF629zwKM
-        afevCwb5rKZTc2lp1ZCCh8OywQ==
-X-Google-Smtp-Source: AK7set+5yVTtbc+9dBUUCDW5xTHgd8ufHL8cPwAZ0n2vsAuStk3stYLCvHf+RRuXDZIsnLHWOvywQA==
-X-Received: by 2002:a4a:d286:0:b0:525:3dc9:c39b with SMTP id h6-20020a4ad286000000b005253dc9c39bmr11389658oos.0.1678938489411;
-        Wed, 15 Mar 2023 20:48:09 -0700 (PDT)
-Received: from localhost (23-118-233-243.lightspeed.snantx.sbcglobal.net. [23.118.233.243])
-        by smtp.gmail.com with ESMTPSA id b3-20020a9d4783000000b0068bc48c61a5sm3054659otf.19.2023.03.15.20.48.08
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 15 Mar 2023 20:48:09 -0700 (PDT)
-From:   Steev Klimaszewski <steev@kali.org>
-To:     Steev Klimaszewski <steev@kali.org>
-Cc:     "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Marcel Holtmann <marcel@holtmann.org>,
-        Johan Hedberg <johan.hedberg@gmail.com>,
-        Luiz Augusto von Dentz <luiz.dentz@gmail.com>,
-        Sven Peter <sven@svenpeter.dev>, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-bluetooth@vger.kernel.org,
-        Mark Pearson <markpearson@lenovo.com>,
-        Johan Hovold <johan@kernel.org>
-Subject: [PATCH v6 4/4] arm64: dts: qcom: sc8280xp-x13s: Add bluetooth
-Date:   Wed, 15 Mar 2023 22:47:58 -0500
-Message-Id: <20230316034759.73489-5-steev@kali.org>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20230316034759.73489-1-steev@kali.org>
-References: <20230316034759.73489-1-steev@kali.org>
+        with ESMTP id S229454AbjCPEIU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Mar 2023 00:08:20 -0400
+Received: from gandalf.ozlabs.org (mail.ozlabs.org [IPv6:2404:9400:2221:ea00::3])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9524648E3F;
+        Wed, 15 Mar 2023 21:08:18 -0700 (PDT)
+Received: from authenticated.ozlabs.org (localhost [127.0.0.1])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        by mail.ozlabs.org (Postfix) with ESMTPSA id 4PcYdr5yxtz4x8y;
+        Thu, 16 Mar 2023 15:08:16 +1100 (AEDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ellerman.id.au;
+        s=201909; t=1678939696;
+        bh=g2OWqF0mAjEpJrGYYr2T5h+uBC+Pw/kX/9ClZSCqSjY=;
+        h=From:To:Cc:Subject:In-Reply-To:References:Date:From;
+        b=VISYNtWHpEUkudxNCuT7gbLLBmFJKnpuc1SA/GF8v3b+KmHFoJoBbXazx9392CLtM
+         W+QlbAfbTQBv1nyG1Q59q0TomG2pIYPg+N0Q+lP5u4EMKGtFSjBfWhMqSM3KcT3Hp2
+         pjjYFDST9KLJTTMc5ROewS5eqxfT7NQFEayEbAdFLttfD1P/iRb8cJ5pyhs4reaEdO
+         Kuc6veCELVQJbJz1/IjqKyWWJAu2Qx4fylyS3QUsP+24YeCNga2k3iu9SDcOZPubol
+         U+UkbmeGnBFMzj5m6BFKrEOLc3lEUBiZYD4kCDxPQcEDZ7DPw+7sLcJDWsQhn08aXj
+         MEMQDDBlDR6BA==
+From:   Michael Ellerman <mpe@ellerman.id.au>
+To:     Rob Herring <robh@kernel.org>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Viresh Kumar <viresh.kumar@linaro.org>,
+        Nicholas Piggin <npiggin@gmail.com>,
+        Christophe Leroy <christophe.leroy@csgroup.eu>
+Cc:     devicetree@vger.kernel.org, linux-pm@vger.kernel.org,
+        linuxppc-dev@lists.ozlabs.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] cpufreq: pmac32: Use of_property_read_bool() for
+ boolean properties
+In-Reply-To: <20230310144703.1541819-1-robh@kernel.org>
+References: <20230310144703.1541819-1-robh@kernel.org>
+Date:   Thu, 16 Mar 2023 15:08:16 +1100
+Message-ID: <87o7otmj7z.fsf@mpe.ellerman.id.au>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_PASS,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The Lenovo Thinkpad X13s has a WCN6855 Bluetooth controller on uart2,
-add this.
+Rob Herring <robh@kernel.org> writes:
+> It is preferred to use typed property access functions (i.e.
+> of_property_read_<type> functions) rather than low-level
+> of_get_property/of_find_property functions for reading properties.
+> Convert reading boolean properties to to of_property_read_bool().
+>
+> Signed-off-by: Rob Herring <robh@kernel.org>
+> ---
+>  drivers/cpufreq/pmac32-cpufreq.c | 6 +++---
+>  1 file changed, 3 insertions(+), 3 deletions(-)
 
-Signed-off-by: Steev Klimaszewski <steev@kali.org>
----
-Changes since v5:
- * Update patch subject
- * Specify initial mode (via guess) for vreg_s1c
- * Drop uart17 definition
- * Rename bt_en to bt_default because configuring more than one pin
- * Correct (maybe) bias configurations
- * Correct cts gpio
- * Split rts-tx into two nodes
- * Drop incorrect link in the commit message
+Reviewed-by: Michael Ellerman <mpe@ellerman.id.au>
 
-Changes since v4:
- * Address Konrad's review comments.
+cheers
 
-Changes since v3:
- * Add vreg_s1c
- * Add regulators and not dead code
- * Fix commit message changelog
-
-Changes since v2:
- * Remove dead code and add TODO comment
- * Make dtbs_check happy with the pin definitions
-
- .../qcom/sc8280xp-lenovo-thinkpad-x13s.dts    | 80 +++++++++++++++++++
- 1 file changed, 80 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts b/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts
-index 53ae75fb52ed..b3221c27903a 100644
---- a/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts
-+++ b/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts
-@@ -24,6 +24,7 @@ / {
- 	aliases {
- 		i2c4 = &i2c4;
- 		i2c21 = &i2c21;
-+		serial1 = &uart2;
- 	};
- 
- 	wcd938x: audio-codec {
-@@ -431,6 +432,16 @@ regulators-1 {
- 		qcom,pmic-id = "c";
- 		vdd-bob-supply = <&vreg_vph_pwr>;
- 
-+		vreg_s1c: smps1 {
-+			regulator-name = "vreg_s1c";
-+			regulator-min-microvolt = <1880000>;
-+			regulator-max-microvolt = <1900000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+			regulator-allowed-modes = <RPMH_REGULATOR_MODE_AUTO>,
-+						  <RPMH_REGULATOR_MODE_RET>;
-+			regulator-allow-set-load;
-+		};
-+
- 		vreg_l1c: ldo1 {
- 			regulator-name = "vreg_l1c";
- 			regulator-min-microvolt = <1800000>;
-@@ -901,6 +912,32 @@ &qup0 {
- 	status = "okay";
- };
- 
-+&uart2 {
-+	pinctrl-0 = <&uart2_default>;
-+	pinctrl-names = "default";
-+
-+	status = "okay";
-+
-+	bluetooth {
-+		compatible = "qcom,wcn6855-bt";
-+
-+		vddio-supply = <&vreg_s10b>;
-+		vddbtcxmx-supply = <&vreg_s12b>;
-+		vddrfacmn-supply = <&vreg_s12b>;
-+		vddrfa0p8-supply = <&vreg_s12b>;
-+		vddrfa1p2-supply = <&vreg_s11b>;
-+		vddrfa1p7-supply = <&vreg_s1c>;
-+
-+		max-speed = <3200000>;
-+
-+		enable-gpios = <&tlmm 133 GPIO_ACTIVE_HIGH>;
-+		swctrl-gpios = <&tlmm 132 GPIO_ACTIVE_HIGH>;
-+
-+		pinctrl-0 = <&bt_default>;
-+		pinctrl-names = "default";
-+	};
-+};
-+
- &qup1 {
- 	status = "okay";
- };
-@@ -1175,6 +1212,21 @@ hastings_reg_en: hastings-reg-en-state {
- &tlmm {
- 	gpio-reserved-ranges = <70 2>, <74 6>, <83 4>, <125 2>, <128 2>, <154 7>;
- 
-+	bt_default: bt-default-state {
-+		hstp-sw-ctrl-pins {
-+			pins = "gpio132";
-+			function = "gpio";
-+			bias-pull-down;
-+		};
-+
-+		hstp-bt-en-pins {
-+			pins = "gpio133";
-+			function = "gpio";
-+			drive-strength = <16>;
-+			bias-disable;
-+		};
-+	};
-+
- 	edp_reg_en: edp-reg-en-state {
- 		pins = "gpio25";
- 		function = "gpio";
-@@ -1196,6 +1248,34 @@ i2c4_default: i2c4-default-state {
- 		bias-disable;
- 	};
- 
-+	uart2_default: uart2-default-state {
-+		cts-pins {
-+			pins = "gpio121";
-+			function = "qup2";
-+			bias-pull-down;
-+		};
-+
-+		rts-pins {
-+			pins = "gpio122";
-+			function = "qup2";
-+			drive-strength = <2>;
-+			bias-disable;
-+		};
-+
-+		tx-pins {
-+			pins = "gpio123";
-+			function = "qup2";
-+			drive-strength = <2>;
-+			bias-disable;
-+		};
-+
-+		rx-pins {
-+			pins = "gpio124";
-+			function = "qup2";
-+			bias-pull-up;
-+		};
-+	};
-+
- 	i2c21_default: i2c21-default-state {
- 		pins = "gpio81", "gpio82";
- 		function = "qup21";
--- 
-2.39.2
-
+> diff --git a/drivers/cpufreq/pmac32-cpufreq.c b/drivers/cpufreq/pmac32-cpufreq.c
+> index 4b8ee2014da6..7ec6d1bb4592 100644
+> --- a/drivers/cpufreq/pmac32-cpufreq.c
+> +++ b/drivers/cpufreq/pmac32-cpufreq.c
+> @@ -546,7 +546,7 @@ static int pmac_cpufreq_init_7447A(struct device_node *cpunode)
+>  {
+>  	struct device_node *volt_gpio_np;
+>  
+> -	if (of_get_property(cpunode, "dynamic-power-step", NULL) == NULL)
+> +	if (!of_property_read_bool(cpunode, "dynamic-power-step"))
+>  		return 1;
+>  
+>  	volt_gpio_np = of_find_node_by_name(NULL, "cpu-vcore-select");
+> @@ -576,7 +576,7 @@ static int pmac_cpufreq_init_750FX(struct device_node *cpunode)
+>  	u32 pvr;
+>  	const u32 *value;
+>  
+> -	if (of_get_property(cpunode, "dynamic-power-step", NULL) == NULL)
+> +	if (!of_property_read_bool(cpunode, "dynamic-power-step"))
+>  		return 1;
+>  
+>  	hi_freq = cur_freq;
+> @@ -632,7 +632,7 @@ static int __init pmac_cpufreq_setup(void)
+>  
+>  	/*  Check for 7447A based MacRISC3 */
+>  	if (of_machine_is_compatible("MacRISC3") &&
+> -	    of_get_property(cpunode, "dynamic-power-step", NULL) &&
+> +	    of_property_read_bool(cpunode, "dynamic-power-step") &&
+>  	    PVR_VER(mfspr(SPRN_PVR)) == 0x8003) {
+>  		pmac_cpufreq_init_7447A(cpunode);
+>  
+> -- 
+> 2.39.2
