@@ -2,90 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AEF3E6BC84B
-	for <lists+devicetree@lfdr.de>; Thu, 16 Mar 2023 09:09:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7CC9E6BC858
+	for <lists+devicetree@lfdr.de>; Thu, 16 Mar 2023 09:11:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230377AbjCPIJo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Mar 2023 04:09:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53916 "EHLO
+        id S230398AbjCPILl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Mar 2023 04:11:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57792 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230206AbjCPIJn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Mar 2023 04:09:43 -0400
-Received: from mail-ed1-x52d.google.com (mail-ed1-x52d.google.com [IPv6:2a00:1450:4864:20::52d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 414CD89F0F
-        for <devicetree@vger.kernel.org>; Thu, 16 Mar 2023 01:09:40 -0700 (PDT)
-Received: by mail-ed1-x52d.google.com with SMTP id o12so4128289edb.9
-        for <devicetree@vger.kernel.org>; Thu, 16 Mar 2023 01:09:40 -0700 (PDT)
+        with ESMTP id S230358AbjCPILk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Mar 2023 04:11:40 -0400
+Received: from mail-pg1-x534.google.com (mail-pg1-x534.google.com [IPv6:2607:f8b0:4864:20::534])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5DA89B257E
+        for <devicetree@vger.kernel.org>; Thu, 16 Mar 2023 01:11:32 -0700 (PDT)
+Received: by mail-pg1-x534.google.com with SMTP id z10so431687pgr.8
+        for <devicetree@vger.kernel.org>; Thu, 16 Mar 2023 01:11:32 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1678954179;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=qsSpi02AtRNWSprHN4Cl76ayMyVQlvN90GOQNuiLzbY=;
-        b=iOdoB48DSlJTxzYGvDakUwMgdpYpWIUL4nfKitoVvMKmpNSyhwjFVq5uG8uzBnOUTW
-         x/rivZ/fOZlHihUW0EUlamLr9+U3JqiPhma3II2aEWX2H2cN7KeBfxWXgOitFL3S3jca
-         duHj69oaASj2MjNwQZd1rqfDb0suikr7FoD5Rc5SckWkmQMaf3gOUAH8b2ejtUmFp3Lb
-         aWFIeNUEtYqYQzPS2/LdlPFDEjFTr34eqfTcbB6ICYL3fwBAQbhXVRairVx5zmKMFpss
-         i7boP9CRkkaiO7mbTly7kJanoyzHwc5jtEGZbGklG1O0kvBZlUg+GVImBpiIFZgSS2tz
-         fjwA==
+        d=linaro.org; s=google; t=1678954292;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=l1Eav/oAmJq7++65cUHMGIBG7P16aXoRr06VncT/cPA=;
+        b=LLQMzBCn7bNMEiEz7dBQ0oXXCRYOcZ0jXobLEaKxSia7TzUYMeyA85zYN43hczA0jG
+         b8kQ2IMizEY09EnSjYmH7f/tqI7r9Et47KH52Bb6JIAUd/qVYJYc18x1g8D7LDejjYbf
+         sFnEbJ7b37f32gPziyciXwL8V7/8Xls4BpxBD7RmQyaRLFAPbXrWXnZVxH9mKs/ipY4n
+         DYq5CFbKYHV8ZGRKkyy08Tszju2u+LVgpVWi0R4Uz8aQh4mgrD/eVUtMQeOod9yCGwE1
+         xCXQ2WLgOB77nAJ2PKQaJ6kT2+37ABES7HpEUKGyF5ZpjbjHRTswWYUPvp+5Yhw25Bgz
+         ahlQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678954179;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=qsSpi02AtRNWSprHN4Cl76ayMyVQlvN90GOQNuiLzbY=;
-        b=0dTXH8OycoOD/6lMwpcLpzGT4OieKliexNey8s3lQ0Cwwkgh+uMLsYE1d+7eSFVzk0
-         Wz8dzjPMCwjqlZvVpKI40jCshQs6164jB+zQNlkGH6ezpvVZ+rBTQE2pqY65uPx9rUZT
-         vmj3uQDR2SiRUUORJs9PFWHDwIMH5y41YNn+huwEqn4tdI03QNT4ScbFITSpFcGm69c7
-         QpWJ2pwxDm2OYXUSXpeMDQmjiSuC1DoI5rz0vO47OFjSyfqboMJ2gyuBXvIHRGXD+YfL
-         Msbkd3PFWVRHtVijs4E86sVIQb0U5r7xp9cP6P8vR5mclKpQcTX+8cLa5zp8L0Zv2ziJ
-         agAA==
-X-Gm-Message-State: AO0yUKXGUriRDzVratHFYFnBX74+xEOvASdLr4z/YgeZsAkMINNVYG+x
-        pDm1Vd28sJy0eNZsJ8lPpPcR+g==
-X-Google-Smtp-Source: AK7set9qRwS9KK6hBBohaRF3L5B2ru2zJVrTS4WbmbGRiLcPQJ7BzlvfGx8yi9xnXwYWSRhxP+9xSg==
-X-Received: by 2002:a17:907:c22:b0:930:1178:2220 with SMTP id ga34-20020a1709070c2200b0093011782220mr2685504ejc.40.1678954178709;
-        Thu, 16 Mar 2023 01:09:38 -0700 (PDT)
-Received: from ?IPV6:2a02:810d:15c0:828:9827:5f65:8269:a95f? ([2a02:810d:15c0:828:9827:5f65:8269:a95f])
-        by smtp.gmail.com with ESMTPSA id td10-20020a1709078c8a00b009256a5c3b2dsm3559556ejc.90.2023.03.16.01.09.37
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 16 Mar 2023 01:09:38 -0700 (PDT)
-Message-ID: <faf70823-f87b-ba50-ac72-3552de1cc7e3@linaro.org>
-Date:   Thu, 16 Mar 2023 09:09:37 +0100
+        d=1e100.net; s=20210112; t=1678954292;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=l1Eav/oAmJq7++65cUHMGIBG7P16aXoRr06VncT/cPA=;
+        b=V+BiaRc2j+dQusgpaIGetqkhnFlHIHpP6JJZSWJ/bbHW1IkXA9+7006+cYbzUdhIPB
+         qOB0PQNx8BbyMo9zoa3NGQ/sz9d7wnYTFul60aEhgCPQe6HK8ymCBnrZLAM3KPxQarlb
+         7mdkcblZO6daX085CSbM//M/bUlx9MV5Fmc4Me1RXJ3+ZDe3leutWtYYS1rKOb3h/3/h
+         PV5gOBeBv3p6FA0oan58kR9eKuFfB107cbvvYe1SnAIVWu3oZpRlboXkmWZrsIKQh+rt
+         cUQ5bgyQOtjt5iKKuwAsNq7JCBR00zyFrjvbRZq6TtQ5pUudmfM6/WMwmK4jz8tRDFFX
+         j2Jw==
+X-Gm-Message-State: AO0yUKW/+JGAmuNIXuc77hYUgCrQgowqjLXF0b9biflRnb021jOmRPtd
+        tHlgPoANiA9X8QH9kgPC6woJ
+X-Google-Smtp-Source: AK7set8qfktCpq6pLH72bdHlC8cQoC3t8oOkYGlbJhdbXnZXlWwt2bVL0i0p8f97J2ctxFGr2zG1HQ==
+X-Received: by 2002:a62:8491:0:b0:625:db7a:da08 with SMTP id k139-20020a628491000000b00625db7ada08mr2645671pfd.9.1678954291820;
+        Thu, 16 Mar 2023 01:11:31 -0700 (PDT)
+Received: from localhost.localdomain ([117.207.30.24])
+        by smtp.gmail.com with ESMTPSA id 13-20020aa7910d000000b005d9984a947bsm4804422pfh.139.2023.03.16.01.11.27
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 16 Mar 2023 01:11:31 -0700 (PDT)
+From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+To:     andersson@kernel.org, lpieralisi@kernel.org, kw@linux.com,
+        krzysztof.kozlowski+dt@linaro.org, robh@kernel.org
+Cc:     konrad.dybcio@linaro.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-pci@vger.kernel.org,
+        linux-kernel@vger.kernel.org, quic_srichara@quicinc.com,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Subject: [PATCH v5 00/19] Qcom PCIe cleanups and improvements
+Date:   Thu, 16 Mar 2023 13:40:58 +0530
+Message-Id: <20230316081117.14288-1-manivannan.sadhasivam@linaro.org>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-Subject: Re: [PATCH net-next 14/16] dt-bindings: net: dwmac: Use flag
- definition instead of booleans
-Content-Language: en-US
-To:     Serge Semin <Sergey.Semin@baikalelectronics.ru>,
-        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Jose Abreu <joabreu@synopsys.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Serge Semin <fancer.lancer@gmail.com>,
-        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
-        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
-        Christian Marangi <ansuelsmth@gmail.com>,
-        Richard Cochran <richardcochran@gmail.com>,
-        Biao Huang <biao.huang@mediatek.com>,
-        Yang Yingliang <yangyingliang@huawei.com>,
-        devicetree@vger.kernel.org, netdev@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20230313225103.30512-1-Sergey.Semin@baikalelectronics.ru>
- <20230313225103.30512-15-Sergey.Semin@baikalelectronics.ru>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230313225103.30512-15-Sergey.Semin@baikalelectronics.ru>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -94,34 +71,86 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 13/03/2023 23:51, Serge Semin wrote:
-> Currently some of the boolean properties defined in the DT-schema are
-> marked to have the basic boolean type meanwhile the rest referencing the
-> /schemas/types.yaml#/definitions/flag schema. For the sake of unification
-> let's convert the first group to referencing the pre-defined flag schema.
-> Thus bindings will look a bit more coherent and the DT-bindings
-> maintainers will have a better control over the booleans defined in the
-> schema (if ever needed).
-> 
-> Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
-> ---
->  .../devicetree/bindings/net/snps,dwmac.yaml   | 45 ++++++++++++-------
->  1 file changed, 30 insertions(+), 15 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/net/snps,dwmac.yaml b/Documentation/devicetree/bindings/net/snps,dwmac.yaml
-> index 69be39d55403..a863b5860566 100644
-> --- a/Documentation/devicetree/bindings/net/snps,dwmac.yaml
-> +++ b/Documentation/devicetree/bindings/net/snps,dwmac.yaml
-> @@ -120,11 +120,13 @@ properties:
->          maximum: 12
->  
->        snps,rx-sched-sp:
-> -        type: boolean
-> +        $ref: /schemas/types.yaml#/definitions/flag
->          description: Strict priority
+Hi,
 
-If ever touching this, it should be other way -> boolean.
+This series brings in several code cleanups and improvements to the
+Qualcomm PCIe controller drivers (RC and EP). The cleanup part mostly
+cleans up the bitfield definitions and transitions to bulk APIs for clocks,
+and resets. The improvement part adds the debugfs entries to track link
+transition counts in RC driver.
 
-Best regards,
-Krzysztof
+Testing
+-------
+
+This series has been tested on SDM845, SM8250, SC8280XP, IPQ4019 based
+platforms.
+
+Merging Strategy
+----------------
+
+Binding and driver patches through PCI tree and DTS patches through Qcom
+tree.
+
+NOTE: For the sake of maintaining dependency, I've clubbed both cleanup and
+improvement patches in the same series. If any of the maintainers prefer to
+have them splitted, please let me know.
+
+Thanks,
+Mani
+
+Changes in v5:
+
+* Added a new patch to fix an incorrect register usage in config v2.7.0
+* Added Reviewed-by tag to the binding which got missed in v4.
+
+Changes in v4:
+
+* Dropped the debugfs patch for v2.4.0 as the registers only expose the status
+  and not the transition count which is not useful
+* Modified the existing debugfs patch to be applicable for all SoCs that define
+  "mhi" region
+
+Changes in v3:
+
+* Introduced init_debugfs callback for defining the debugfs interface specific
+  to IP versions
+* Added a debugfs patch for v2.4.0
+* Added a patch to rename qcom_pcie_config_sid_sm8250() function
+* Added tested-by for patch 11/19
+
+Changes in v2:
+
+* Moved the "mhi" region to last in the binding and dtsi's
+* Dropped the patches renaming the "mmio" region
+
+Manivannan Sadhasivam (19):
+  PCI: qcom: Fix the incorrect register usage in v2.7.0 config
+  PCI: qcom: Remove PCIE20_ prefix from register definitions
+  PCI: qcom: Sort and group registers and bitfield definitions
+  PCI: qcom: Use bitfield definitions for register fields
+  PCI: qcom: Add missing macros for register fields
+  PCI: qcom: Use lower case for hex
+  PCI: qcom: Use bulk reset APIs for handling resets for IP rev 2.1.0
+  PCI: qcom: Use bulk clock APIs for handling clocks for IP rev 1.0.0
+  PCI: qcom: Use bulk clock APIs for handling clocks for IP rev 2.3.2
+  PCI: qcom: Use bulk clock APIs for handling clocks for IP rev 2.3.3
+  PCI: qcom: Use bulk reset APIs for handling resets for IP rev 2.3.3
+  PCI: qcom: Use bulk reset APIs for handling resets for IP rev 2.4.0
+  PCI: qcom: Use macros for defining total no. of clocks & supplies
+  PCI: qcom: Rename qcom_pcie_config_sid_sm8250() to reflect IP version
+  dt-bindings: PCI: qcom: Add "mhi" register region to supported SoCs
+  arm64: dts: qcom: sdm845: Add "mhi" region to the PCIe nodes
+  arm64: dts: qcom: sm8250: Add "mhi" region to the PCIe nodes
+  arm64: dts: qcom: sc8280xp: Add "mhi" region to the PCIe nodes
+  PCI: qcom: Expose link transition counts via debugfs
+
+ .../devicetree/bindings/pci/qcom,pcie.yaml    |   12 +-
+ arch/arm64/boot/dts/qcom/sc8280xp.dtsi        |   25 +-
+ arch/arm64/boot/dts/qcom/sdm845.dtsi          |   10 +-
+ arch/arm64/boot/dts/qcom/sm8250.dtsi          |   15 +-
+ drivers/pci/controller/dwc/pcie-qcom.c        | 1158 +++++++----------
+ 5 files changed, 476 insertions(+), 744 deletions(-)
+
+-- 
+2.25.1
 
