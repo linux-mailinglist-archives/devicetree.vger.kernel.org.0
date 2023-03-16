@@ -2,77 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1BBC06BC807
-	for <lists+devicetree@lfdr.de>; Thu, 16 Mar 2023 09:01:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 294A26BC81A
+	for <lists+devicetree@lfdr.de>; Thu, 16 Mar 2023 09:02:55 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229797AbjCPIBC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Mar 2023 04:01:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37204 "EHLO
+        id S230316AbjCPICt convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Thu, 16 Mar 2023 04:02:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39816 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229544AbjCPIBB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Mar 2023 04:01:01 -0400
-Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D058DD2
-        for <devicetree@vger.kernel.org>; Thu, 16 Mar 2023 01:00:58 -0700 (PDT)
-Received: by mail-ed1-x535.google.com with SMTP id y4so4172113edo.2
-        for <devicetree@vger.kernel.org>; Thu, 16 Mar 2023 01:00:58 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1678953657;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=5DSdjDU0w5FQnEaCXOhop9s0Twb0u6rluswiSnrTsDE=;
-        b=j+P13YR0eUjpy79tY7AywvIQ9PlyVKEU1GaEf/tSNfcXlIEM7FV9zUVXy6j2pKXPYM
-         Kut6xeuKYtDZaPV4kGjFtF4D7JSF7B1B7gC5wDMO7QJh0hlqxq3BbmKL/Zqle7GYmqQI
-         Rpkl26zeayrfJLOU9/oTdPpArj4gP0ZdJfIkjQrvgWiyWuVfDErO85CFI9p4+InQHRn0
-         E7qexJPA1tPJu8wouLaqykbQe5i5ydFGjwMsMOMcElkhOsxvEvKSt9pgcC+Mx0486HCp
-         UN8d7bMya8WAlZvdQycZUuWmZfyBdyZmMmwa9FtOnliLRCyNce9bXtO36uG4DRh+3/9x
-         Inug==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678953657;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=5DSdjDU0w5FQnEaCXOhop9s0Twb0u6rluswiSnrTsDE=;
-        b=C/z0fqSRYgbGPW0Pr4jch1Xvwg9cVm+0gyoe+rKSTFnvFJ0qyV5wakFs/n9ITejNEl
-         0ocqE4ltwz5Ol0+XN7Uaire/scLOC8xvARv51w7nqSUE5TCQdsvgkKVe7dFfUrh/YHrv
-         aQ8ZastaitqLORfvgZUshrIC1YDkaE7k/HaSQxHVwnJ2O+NHQVlJPb/Si37KWEo+D/O7
-         joe/YSMUPReii97t0uImhRxaG+VDk6ktcyo3sD6NasGPeOY5XmDmDRoviltGGAqfICkl
-         ktYTggDu2hbQPBQcoieUz1r7eASgU+/GY3g2Vom7UO2nBVdOqWL5RSedrapmQSvkXu6/
-         27UA==
-X-Gm-Message-State: AO0yUKVMJqARRkIwLzO3XYB447WUcO6M/Pge5Xvl4WyiCp1gCRuGxkBn
-        ymv+SFyqQuvOPvij2cTnRbaoqA==
-X-Google-Smtp-Source: AK7set/iWxJbPG/O+5nY7JnlCh+pWaxI5PWWttcrRji7J2jZ3aDvxnXWCfa6qUW0dG/SzIXNfytG5g==
-X-Received: by 2002:a17:906:4715:b0:8b1:812f:2578 with SMTP id y21-20020a170906471500b008b1812f2578mr8955146ejq.45.1678953657355;
-        Thu, 16 Mar 2023 01:00:57 -0700 (PDT)
-Received: from ?IPV6:2a02:810d:15c0:828:9827:5f65:8269:a95f? ([2a02:810d:15c0:828:9827:5f65:8269:a95f])
-        by smtp.gmail.com with ESMTPSA id d14-20020a170906370e00b008d53ea69227sm3494678ejc.224.2023.03.16.01.00.56
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 16 Mar 2023 01:00:57 -0700 (PDT)
-Message-ID: <bd3d21bf-24bc-a074-957f-a223105d34a9@linaro.org>
-Date:   Thu, 16 Mar 2023 09:00:55 +0100
+        with ESMTP id S230109AbjCPICq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Mar 2023 04:02:46 -0400
+Received: from ex01.ufhost.com (ex01.ufhost.com [61.152.239.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3CCFB559DA;
+        Thu, 16 Mar 2023 01:02:32 -0700 (PDT)
+Received: from EXMBX166.cuchost.com (unknown [175.102.18.54])
+        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+        (Client CN "EXMBX166", Issuer "EXMBX166" (not verified))
+        by ex01.ufhost.com (Postfix) with ESMTP id 960CA24E201;
+        Thu, 16 Mar 2023 16:02:30 +0800 (CST)
+Received: from EXMBX162.cuchost.com (172.16.6.72) by EXMBX166.cuchost.com
+ (172.16.6.76) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Thu, 16 Mar
+ 2023 16:02:30 +0800
+Received: from [192.168.120.42] (171.223.208.138) by EXMBX162.cuchost.com
+ (172.16.6.72) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Thu, 16 Mar
+ 2023 16:02:29 +0800
+Message-ID: <93a3b4bb-35a4-da7c-6816-21225b42f79b@starfivetech.com>
+Date:   Thu, 16 Mar 2023 16:02:27 +0800
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-Subject: Re: [PATCH] dt-bindings: remoteproc: qcom: sm6115-pas: Add QCM2290
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.1
+Subject: Re: [PATCH v7 4/6] dt-bindings: net: Add support StarFive dwmac
 Content-Language: en-US
-To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
-        linux-arm-msm@vger.kernel.org, andersson@kernel.org,
-        agross@kernel.org
-Cc:     marijn.suijten@somainline.org,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        <linux-riscv@lists.infradead.org>, <netdev@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+CC:     "David S . Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Bhupesh Sharma <bhupesh.sharma@linaro.org>,
-        linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20230315183231.3562580-1-konrad.dybcio@linaro.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230315183231.3562580-1-konrad.dybcio@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        Emil Renner Berthing <kernel@esmil.dk>,
+        Richard Cochran <richardcochran@gmail.com>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Peter Geis <pgwipeout@gmail.com>,
+        Yanhong Wang <yanhong.wang@starfivetech.com>,
+        Tommaso Merciai <tomm.merciai@gmail.com>
+References: <20230316043714.24279-1-samin.guo@starfivetech.com>
+ <20230316043714.24279-5-samin.guo@starfivetech.com>
+ <cfeec762-de75-f90f-7ba1-6c0bd8b70dff@linaro.org>
+From:   Guo Samin <samin.guo@starfivetech.com>
+In-Reply-To: <cfeec762-de75-f90f-7ba1-6c0bd8b70dff@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Originating-IP: [171.223.208.138]
+X-ClientProxiedBy: EXCAS066.cuchost.com (172.16.6.26) To EXMBX162.cuchost.com
+ (172.16.6.72)
+X-YovoleRuleAgent: yovoleflag
+Content-Transfer-Encoding: 8BIT
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,NICE_REPLY_A,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -80,19 +67,158 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 15/03/2023 19:32, Konrad Dybcio wrote:
-> QCM2290 is more or less a fork of the same design that SM6115 is based
-> on. As a result, the ADSP and modem found on it are identical.
+
+
+-------- 原始信息 --------
+主题: Re: [PATCH v7 4/6] dt-bindings: net: Add support StarFive dwmac
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+收件人: Samin Guo <samin.guo@starfivetech.com>, linux-riscv@lists.infradead.org, netdev@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+日期: 2023/3/16
+
+> On 16/03/2023 05:37, Samin Guo wrote:
+>> From: Yanhong Wang <yanhong.wang@starfivetech.com>
+>>
+>> Add documentation to describe StarFive dwmac driver(GMAC).
+>>
+> Thank you for your patch. There is something to discuss/improve.
 > 
-> Add compatibles for the QCM2290 with SM6115 fallbacks so as not to
-> require any driver changes. Change the allOf:if:properties clauses
-> to look for the presence of SM6115 compatibles and not an exact match.
+>> Signed-off-by: Yanhong Wang <yanhong.wang@starfivetech.com>
+>> Signed-off-by: Samin Guo <samin.guo@starfivetech.com>
+>> Tested-by: Tommaso Merciai <tomm.merciai@gmail.com>
+>> ---
+>>  .../devicetree/bindings/net/snps,dwmac.yaml   |   1 +
+>>  .../bindings/net/starfive,jh7110-dwmac.yaml   | 130 ++++++++++++++++++
+>>  MAINTAINERS                                   |   6 +
+>>  3 files changed, 137 insertions(+)
+>>  create mode 100644 Documentation/devicetree/bindings/net/starfive,jh7110-dwmac.yaml
+>>
+>> diff --git a/Documentation/devicetree/bindings/net/snps,dwmac.yaml b/Documentation/devicetree/bindings/net/snps,dwmac.yaml
+>> index e4519cf722ab..245f7d713261 100644
+>> --- a/Documentation/devicetree/bindings/net/snps,dwmac.yaml
+>> +++ b/Documentation/devicetree/bindings/net/snps,dwmac.yaml
+>> @@ -91,6 +91,7 @@ properties:
+>>          - snps,dwmac-5.20
+>>          - snps,dwxgmac
+>>          - snps,dwxgmac-2.10
+>> +        - starfive,jh7110-dwmac
+>>  
+>>    reg:
+>>      minItems: 1
+>> diff --git a/Documentation/devicetree/bindings/net/starfive,jh7110-dwmac.yaml b/Documentation/devicetree/bindings/net/starfive,jh7110-dwmac.yaml
+>> new file mode 100644
+>> index 000000000000..b59e6bd8201f
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/net/starfive,jh7110-dwmac.yaml
+>> @@ -0,0 +1,130 @@
+>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>> +# Copyright (C) 2022 StarFive Technology Co., Ltd.
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/net/starfive,jh7110-dwmac.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: StarFive JH7110 DWMAC glue layer
+>> +
+>> +maintainers:
+>> +  - Emil Renner Berthing <kernel@esmil.dk>
+>> +  - Samin Guo <samin.guo@starfivetech.com>
+>> +
+>> +select:
+>> +  properties:
+>> +    compatible:
+>> +      contains:
+>> +        enum:
+>> +          - starfive,jh7110-dwmac
+>> +  required:
+>> +    - compatible
+>> +
+>> +properties:
+>> +  compatible:
+>> +    items:
+>> +      - enum:
+>> +          - starfive,jh7110-dwmac
+>> +      - const: snps,dwmac-5.20
+>> +
 > 
-> Note that QCM2290 lacks a CDSP.
+> reg:
+>   maxItems: 1
+
+> 
+>> +  clocks:
+>> +    items:
+>> +      - description: GMAC main clock
+>> +      - description: GMAC AHB clock
+>> +      - description: PTP clock
+>> +      - description: TX clock
+>> +      - description: GTX clock
+>> +
+>> +  clock-names:
+>> +    items:
+>> +      - const: stmmaceth
+>> +      - const: pclk
+>> +      - const: ptp_ref
+>> +      - const: tx
+>> +      - const: gtx
+>> +
+> 
+> interrupts: ???
 > 
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Hi Krzysztof, 
+
+snps,dwmac.yaml has defined the reg/interrupt/interrupt-names nodes,
+and the JH7110 SoC is also applicable.
+Maybe just add reg/interrupt/interrupt-names to the required ?
+
+
+  required:
+    - compatible
++   - reg
+    - clocks
+    - clock-names
++   - interrupts
++   - interrupt-names
+    - resets
+    - reset-names
 
 Best regards,
-Krzysztof
+Samin
+
+>> +  resets:
+>> +    items:
+>> +      - description: MAC Reset signal.
+>> +      - description: AHB Reset signal.
+>> +
+>> +  reset-names:
+>> +    items:
+>> +      - const: stmmaceth
+>> +      - const: ahb
+>> +
+>> +  starfive,tx-use-rgmii-clk:
+>> +    description:
+>> +      Tx clock is provided by external rgmii clock.
+>> +    type: boolean
+>> +
+>> +  starfive,syscon:
+>> +    $ref: /schemas/types.yaml#/definitions/phandle-array
+>> +    items:
+>> +      - items:
+>> +          - description: phandle to syscon that configures phy mode
+>> +          - description: Offset of phy mode selection
+>> +          - description: Shift of phy mode selection
+>> +    description:
+>> +      A phandle to syscon with two arguments that configure phy mode.
+>> +      The argument one is the offset of phy mode selection, the
+>> +      argument two is the shift of phy mode selection.
+>> +
+>> +allOf:
+>> +  - $ref: snps,dwmac.yaml#
+>> +
+>> +unevaluatedProperties: false
+>> +
+> Best regards,
+> Krzysztof
+> 
+
+
 
