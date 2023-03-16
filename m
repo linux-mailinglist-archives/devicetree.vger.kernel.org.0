@@ -2,104 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F03EF6BD11C
-	for <lists+devicetree@lfdr.de>; Thu, 16 Mar 2023 14:41:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B1B696BD17B
+	for <lists+devicetree@lfdr.de>; Thu, 16 Mar 2023 14:53:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230355AbjCPNlX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Mar 2023 09:41:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39548 "EHLO
+        id S230457AbjCPNxu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Mar 2023 09:53:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57732 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230261AbjCPNlW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Mar 2023 09:41:22 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C61A0C2D8A;
-        Thu, 16 Mar 2023 06:41:13 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 78032B82181;
-        Thu, 16 Mar 2023 13:41:12 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 49D2DC4339E;
-        Thu, 16 Mar 2023 13:41:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1678974071;
-        bh=UoWgFGxsRnsnVe4rYV63fJUjTvJZMyz5VdmFkUdrVyk=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=MXXLnDu24MnGfaRpzzthO5wmZnQ+yQNTBdA99S1VMebLTdMUGRYvQyT3cAUBavamD
-         I9JX7MtksnVbBjQ52LzIM3JggMaTdTcEHNesvyEtT+zUr2j4Ls4ASpvRYY2HouYD0B
-         bSdxhwcZFFsfW3kHDXlLXX8i82FdNCZictjpx2bHbggS8LiKibLo5aAlnXQ6Lls+Vw
-         0ulzjBhICJlg+EtMB/7Dq4MuRjhbE8dy87r2rPkb78k+WvOL/xeFNxH16BWma4jgYR
-         DXGM75sf5JyrPWu+pErsOkHPMELDR3elIUU4277Nap42ky/EMpcHpV5m4LXQNl7g7z
-         zJGux/hYo56Jw==
-Date:   Thu, 16 Mar 2023 13:41:06 +0000
-From:   Lee Jones <lee@kernel.org>
-To:     =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Pavel Machek <pavel@ucw.cz>,
-        Jacek Anaszewski <jacek.anaszewski@gmail.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        devicetree@vger.kernel.org, linux-leds@vger.kernel.org,
-        =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
-Subject: Re: [PATCH V2] dt-bindings: leds: add "usbport" trigger
-Message-ID: <20230316134106.GN9667@google.com>
-References: <20230308065424.29113-1-zajec5@gmail.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+        with ESMTP id S230346AbjCPNxm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Mar 2023 09:53:42 -0400
+Received: from mail-io1-f43.google.com (mail-io1-f43.google.com [209.85.166.43])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A13A0166D0;
+        Thu, 16 Mar 2023 06:53:39 -0700 (PDT)
+Received: by mail-io1-f43.google.com with SMTP id t129so796685iof.12;
+        Thu, 16 Mar 2023 06:53:39 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1678974819;
+        h=date:subject:message-id:references:in-reply-to:cc:to:from
+         :mime-version:content-transfer-encoding:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=mUdpbi5TGJoaUXHkv97gIa7NonUCQAJZsK/HjadTtxE=;
+        b=44LZq5r8ideSKcJ3Hns8mVcwNb279O0bY/u82qd83ZSk4PlL1Rvyn8o4V/075x66DS
+         4AtyK07RukpMcCTtN0xlCJZ8DTv78IBEjis+tvGRooqY1WSfimCQytvxlCpMOqsYyf7t
+         xZHGZ3q0YaW/FyKEDGypFTKVM1K48SFhHZXsITWr3m9edb4cWLNyHtpScAigtYsDTfg8
+         Gt2D0p5E+cQy87wGFcZ0BfTcM8pkZqQsg+SALr+CmgVBvD8FENUDMDt772sI6x0QvmZA
+         61bTww4DMePyEzd0xsOWch0LLK/1CComU2rb1WMxWy1FxksG3w8GZ8qVqJ1/dEwQG9/N
+         maDw==
+X-Gm-Message-State: AO0yUKWuw9+DF2GQAZ8lZcBj85RwG55UWsHb9KRik1+Ej+W3u10TfXmX
+        pYAKfqhcBaYW7iHOewmaLOq3cSeIEg==
+X-Google-Smtp-Source: AK7set8W8UPFeVE0DXWj4IT3uiG6YG5+JfpqujbxicCe7RzbD9be9VSYYcqSzrSQFSB/MR4qFE0y2w==
+X-Received: by 2002:a5d:9544:0:b0:74c:7db1:47cf with SMTP id a4-20020a5d9544000000b0074c7db147cfmr16981351ios.14.1678974818768;
+        Thu, 16 Mar 2023 06:53:38 -0700 (PDT)
+Received: from robh_at_kernel.org ([64.188.179.249])
+        by smtp.gmail.com with ESMTPSA id r23-20020a02c857000000b004061d6abcd2sm1151352jao.146.2023.03.16.06.53.36
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 16 Mar 2023 06:53:38 -0700 (PDT)
+Received: (nullmailer pid 2744948 invoked by uid 1000);
+        Thu, 16 Mar 2023 13:53:34 -0000
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20230308065424.29113-1-zajec5@gmail.com>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+MIME-Version: 1.0
+From:   Rob Herring <robh@kernel.org>
+To:     Konrad Dybcio <konrad.dybcio@linaro.org>
+Cc:     devicetree@vger.kernel.org, David Airlie <airlied@gmail.com>,
+        Rob Clark <robdclark@gmail.com>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Daniel Vetter <daniel@ffwll.ch>, linux-arm-msm@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Marijn Suijten <marijn.suijten@somainline.org>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        Andy Gross <agross@kernel.org>,
+        Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, Sean Paul <sean@poorly.run>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        dri-devel@lists.freedesktop.org,
+        Krishna Manikandan <quic_mkrishn@quicinc.com>,
+        freedreno@lists.freedesktop.org
+In-Reply-To: <20230307-topic-dsi_qcm-v5-1-9d4235b77f4f@linaro.org>
+References: <20230307-topic-dsi_qcm-v5-0-9d4235b77f4f@linaro.org>
+ <20230307-topic-dsi_qcm-v5-1-9d4235b77f4f@linaro.org>
+Message-Id: <167897435368.2729763.13155358018368815833.robh@kernel.org>
+Subject: Re: [PATCH v5 01/10] dt-bindings: display/msm:
+ dsi-controller-main: Fix deprecated QCM2290 compatible
+Date:   Thu, 16 Mar 2023 08:53:34 -0500
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 08 Mar 2023, Rafał Miłecki wrote:
 
-> From: Rafał Miłecki <rafal@milecki.pl>
->
-> Linux's "usbport" trigger is a bit specific one. It allows LED to follow
-> state of multiple USB ports which have to be selected additionally
-> (there isn't a single trigger for each port).
->
-> Default list of USB ports to monitor can be specified using
-> "trigger-sources" DT property. Theoretically it should be possible for
-> Linux to deduce applicable trigger based on the references nodes in the
-> "trigger-sources". It hasn't been implemented however (probably due to
-> laziness).
->
-> Milk spilled - we already have DT files specifying "usbport" manually -
-> allow that value in the binding. This fixes validation of in-kernel and
-> external DT files.
->
-> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
+On Thu, 16 Mar 2023 09:51:07 +0100, Konrad Dybcio wrote:
+> The qcom, prefix was missed previously. Fix it.
+> 
+> Fixes: 0c0f65c6dd44 ("dt-bindings: msm: dsi-controller-main: Add compatible strings for every current SoC")
+> Acked-by: Rob Herring <robh@kernel.org>
+> Reviewed-by: Marijn Suijten <marijn.suijten@somainline.org>
+> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 > ---
->  Documentation/devicetree/bindings/leds/common.yaml | 1 +
->  1 file changed, 1 insertion(+)
+>  Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
 
-Doesn't apply.  Please rebase onto -next.
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-Hint: Requires a line of documentation above the new property.
+yamllint warnings/errors:
 
-> diff --git a/Documentation/devicetree/bindings/leds/common.yaml b/Documentation/devicetree/bindings/leds/common.yaml
-> index 15e3f6645682..95b316ee3146 100644
-> --- a/Documentation/devicetree/bindings/leds/common.yaml
-> +++ b/Documentation/devicetree/bindings/leds/common.yaml
-> @@ -99,6 +99,7 @@ properties:
->            - pattern
->            - usb-gadget
->            - usb-host
-> +          - usbport
->        - pattern: "^cpu[0-9]*$"
->        - pattern: "^hci[0-9]+-power$"
->          # LED is triggered by Bluetooth activity
-> --
-> 2.34.1
->
+dtschema/dtc warnings/errors:
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/display/msm/qcom,sm6115-mdss.example.dtb: dsi@5e94000: compatible: 'oneOf' conditional failed, one must be fixed:
+	['qcom,dsi-ctrl-6g-qcm2290'] is too short
+	'qcom,dsi-ctrl-6g-qcm2290' is not one of ['qcom,apq8064-dsi-ctrl', 'qcom,msm8916-dsi-ctrl', 'qcom,msm8953-dsi-ctrl', 'qcom,msm8974-dsi-ctrl', 'qcom,msm8996-dsi-ctrl', 'qcom,msm8998-dsi-ctrl', 'qcom,qcm2290-dsi-ctrl', 'qcom,sc7180-dsi-ctrl', 'qcom,sc7280-dsi-ctrl', 'qcom,sdm660-dsi-ctrl', 'qcom,sdm845-dsi-ctrl', 'qcom,sm8150-dsi-ctrl', 'qcom,sm8250-dsi-ctrl', 'qcom,sm8350-dsi-ctrl', 'qcom,sm8450-dsi-ctrl', 'qcom,sm8550-dsi-ctrl']
+	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/display/msm/qcom,sm6115-mdss.example.dtb: dsi@5e94000: Unevaluated properties are not allowed ('compatible' was unexpected)
+	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/display/msm/qcom,qcm2290-mdss.example.dtb: dsi@5e94000: compatible: 'oneOf' conditional failed, one must be fixed:
+	['qcom,dsi-ctrl-6g-qcm2290'] is too short
+	'qcom,dsi-ctrl-6g-qcm2290' is not one of ['qcom,apq8064-dsi-ctrl', 'qcom,msm8916-dsi-ctrl', 'qcom,msm8953-dsi-ctrl', 'qcom,msm8974-dsi-ctrl', 'qcom,msm8996-dsi-ctrl', 'qcom,msm8998-dsi-ctrl', 'qcom,qcm2290-dsi-ctrl', 'qcom,sc7180-dsi-ctrl', 'qcom,sc7280-dsi-ctrl', 'qcom,sdm660-dsi-ctrl', 'qcom,sdm845-dsi-ctrl', 'qcom,sm8150-dsi-ctrl', 'qcom,sm8250-dsi-ctrl', 'qcom,sm8350-dsi-ctrl', 'qcom,sm8450-dsi-ctrl', 'qcom,sm8550-dsi-ctrl']
+	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/display/msm/qcom,qcm2290-mdss.example.dtb: dsi@5e94000: Unevaluated properties are not allowed ('compatible' was unexpected)
+	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml
 
---
-Lee Jones [李琼斯]
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20230307-topic-dsi_qcm-v5-1-9d4235b77f4f@linaro.org
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
+
