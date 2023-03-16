@@ -2,113 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 847846BD230
-	for <lists+devicetree@lfdr.de>; Thu, 16 Mar 2023 15:18:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EF0A16BD237
+	for <lists+devicetree@lfdr.de>; Thu, 16 Mar 2023 15:18:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230464AbjCPOSS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Mar 2023 10:18:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43218 "EHLO
+        id S231280AbjCPOSz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Mar 2023 10:18:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44444 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230305AbjCPOSP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Mar 2023 10:18:15 -0400
-Received: from out5-smtp.messagingengine.com (out5-smtp.messagingengine.com [66.111.4.29])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A9992D5A55;
-        Thu, 16 Mar 2023 07:17:52 -0700 (PDT)
-Received: from compute6.internal (compute6.nyi.internal [10.202.2.47])
-        by mailout.nyi.internal (Postfix) with ESMTP id 642455C00E0;
-        Thu, 16 Mar 2023 10:17:28 -0400 (EDT)
-Received: from imap51 ([10.202.2.101])
-  by compute6.internal (MEProxy); Thu, 16 Mar 2023 10:17:28 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arndb.de; h=cc
-        :cc:content-type:content-type:date:date:from:from:in-reply-to
-        :in-reply-to:message-id:mime-version:references:reply-to:sender
-        :subject:subject:to:to; s=fm1; t=1678976248; x=1679062648; bh=8w
-        xnkIWEzkhjMo7BKbmq74RrBygIPUH/mVfy06Uygmo=; b=ts/SLG4ImxnmdL6+o/
-        aKc3AdM6jEjIA5ZhM59htl39G1imJQQghYOvbZrz2T8kQVj6gr82Mdnbcds9RqlS
-        psYQZL/3vPO+sMCegy8Ndih0oAIlrUymHFgXRNffDL5ovZKD3S+hny8Gcm9L6+YZ
-        1hCXwCaDv5QAQ7IKUeLbgGkDyxBNQ3H5Dlf7zH1szI6FUWQplqdUghXGWfLq7z7y
-        dHtyXE2SRUUrUd1Iy7F3DMfEwiqGnAMfg0srcvQSpWLpDEiMX5KHxBZkZu8B5RVR
-        XhKyuHhXKMqMZVdyRTbrafRbKwHiELSpRroiZPWxgVn2XHwHw1i0tZsC12uJYZf6
-        P+5A==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:cc:content-type:content-type:date:date
-        :feedback-id:feedback-id:from:from:in-reply-to:in-reply-to
-        :message-id:mime-version:references:reply-to:sender:subject
-        :subject:to:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
-        :x-sasl-enc; s=fm2; t=1678976248; x=1679062648; bh=8wxnkIWEzkhjM
-        o7BKbmq74RrBygIPUH/mVfy06Uygmo=; b=eRmiEccPVtifJQgiiRpZTBTlBZBYG
-        Sc9KGn5McagRonfU37jhoEZTz3KF7eeMxOC6hfIKBE22XNDrXGJXC+4uVmjLzcpL
-        kylgp5kx2nLfLgrensOamXbLB7CrNcfT3IHNZY1e97g4OijJz+eKGk8rNf4ibL8V
-        k0cUtu2W0B6qSI7xnFisHOAiYHJRjNOSp9QTuma1663ZjCGBzazKetCXOZ0s5/W+
-        1L2y622d9qKEoO7PbqAWRnfiJ83wXx2AmUloRIFWfHyx9PuqlOfdsUyJW6fUof4u
-        qTzCqvYpAIu14Lqtrm90cd84Py8RFWTNMBujSbn6j2TsAPb8ODaMhJf8w==
-X-ME-Sender: <xms:9yQTZBmnLOlQtmUeVCuAlzMqV92BCcKX2NP3kSvIAB7CPV8j4ly8eQ>
-    <xme:9yQTZM23JWdW9M9E1aIw-8dlzA06Reobk12iHlcCnLIlojDY9VTj4AzkHpyB5Xv6-
-    9Hn_oR4FZLkYlvTZn4>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvhedrvdeftddgieefucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhepofgfggfkjghffffhvfevufgtsehttdertderredtnecuhfhrohhmpedftehr
-    nhguuceuvghrghhmrghnnhdfuceorghrnhgusegrrhhnuggsrdguvgeqnecuggftrfgrth
-    htvghrnhepffehueegteeihfegtefhjefgtdeugfegjeelheejueethfefgeeghfektdek
-    teffnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomheprg
-    hrnhgusegrrhhnuggsrdguvg
-X-ME-Proxy: <xmx:9yQTZHrIjfzdnzH0sW1_ufHPE0MdYtyYO0HdheyLDdvyOYfU9R-l-Q>
-    <xmx:9yQTZBlk18uvWK5GXyU0JKM6WKzwliYG3JVR5EhbxcAwdplN9_JRDw>
-    <xmx:9yQTZP3Y838o8HUWNN_qIjfOqaxZZI4EEMf8OpY8N58z3L52ZEqakw>
-    <xmx:-CQTZNOlrTA0zXCTBjIOmabhR6Sql852XrOaWN3joGJWqpQ2FIn4dQ>
-Feedback-ID: i56a14606:Fastmail
-Received: by mailuser.nyi.internal (Postfix, from userid 501)
-        id 7D1A8B60089; Thu, 16 Mar 2023 10:17:27 -0400 (EDT)
-X-Mailer: MessagingEngine.com Webmail Interface
-User-Agent: Cyrus-JMAP/3.9.0-alpha0-221-gec32977366-fm-20230306.001-gec329773
-Mime-Version: 1.0
-Message-Id: <2063c6d1-85ed-43d9-b572-a762b6ce18c1@app.fastmail.com>
-In-Reply-To: <20230315072902.9298-12-ychuang570808@gmail.com>
-References: <20230315072902.9298-1-ychuang570808@gmail.com>
- <20230315072902.9298-12-ychuang570808@gmail.com>
-Date:   Thu, 16 Mar 2023 15:17:07 +0100
-From:   "Arnd Bergmann" <arnd@arndb.de>
-To:     "Jacky Huang" <ychuang570808@gmail.com>,
-        "Rob Herring" <robh+dt@kernel.org>,
-        krzysztof.kozlowski+dt@linaro.org, "Lee Jones" <lee@kernel.org>,
-        "Michael Turquette" <mturquette@baylibre.com>,
-        "Stephen Boyd" <sboyd@kernel.org>,
-        "Philipp Zabel" <p.zabel@pengutronix.de>,
-        "Greg Kroah-Hartman" <gregkh@linuxfoundation.org>,
-        "Jiri Slaby" <jirislaby@kernel.org>
-Cc:     devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org,
-        schung@nuvoton.com, "Jacky Huang" <ychuang3@nuvoton.com>
-Subject: Re: [PATCH 11/15] arm64: dts: nuvoton: Add initial ma35d1 device tree
-Content-Type: text/plain
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_PASS,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        with ESMTP id S230307AbjCPOSh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Mar 2023 10:18:37 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D582F227A0;
+        Thu, 16 Mar 2023 07:18:17 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id A016DB821E9;
+        Thu, 16 Mar 2023 14:18:06 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 237B8C433D2;
+        Thu, 16 Mar 2023 14:18:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1678976285;
+        bh=98zjYF4qPdU7E5+W0pjvEly3t4PzMPxRXgQA3FyuV20=;
+        h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+        b=cq/2eBWekY/DtQUoH8V4SMuY0JDOu4a+mwkNWpkfSz1iSs6nkKlKp/jjBKUAgv7DV
+         3guczbA6rCGiawhfcmoISmuPe7qLSBOAa8trRfGz6w/QYJaZM6hh8Q+ly0dAX5AVbZ
+         30tnqvFiW0PwrZhD1csFw8f6QQeR/FbSdA3PfjOtm9J0yer1u1/KbSbRJvPYfL0BUC
+         kSrk5uSoUbeMCgf6blqakPnS9vQn3jjzyOSr9DamN0U4WClDIXUIFBORU6Fqqapic2
+         mdgp+wcUQgq0ADDpvP2qK2oZHt4mrq/yQPvcYjIUaHlGDBH5189pZBJ6So/JVEIQju
+         ECugjNRdqjiyw==
+From:   Mark Brown <broonie@kernel.org>
+To:     Otabek Nazrullaev <otabeknazrullaev1998@gmail.com>
+Cc:     Daniel Baluta <daniel.baluta@nxp.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+In-Reply-To: <20230315173404.7215-1-otabeknazrullaev1998@gmail.com>
+References: <20230315173404.7215-1-otabeknazrullaev1998@gmail.com>
+Subject: Re: [PATCH] ASoC: dt-bindings: maxim,max9759: Convert to DT
+ schema.
+Message-Id: <167897628282.92626.2266406042057860602.b4-ty@kernel.org>
+Date:   Thu, 16 Mar 2023 14:18:02 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.13-dev-bd1bf
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Mar 15, 2023, at 08:28, Jacky Huang wrote:
-> +	mem: memory@80000000 {
-> +		device_type = "memory";
-> +		reg = <0x00000000 0x80000000 0 0x20000000>; /* 512M DRAM */
-> +	};
-> +};
+On Thu, 16 Mar 2023 02:33:30 +0900, Otabek Nazrullaev wrote:
+> Convert Maxim MAX9759 Speaker Amplifier bindings to DT schema.
+> Add missing gpio header file into examples section
+> 
+> 
 
-In most machines, the memory size is detected by the boot loader
-and filled in the dtb in memory before starting the kernel, so
-you should not need two separate files here for the two common
-memory configurations.
+Applied to
 
-Since the machine is called 'som', I would assume that this is a
-module that is integrated on another board, so more commonly one
-would have a dtsi file for the som in addition to the one for the
-soc, and have all the components of the module listed in this
-file, while the dts file that includes the som.dtsi lists the
-devices on the carrier board and enables the on-chip devices
-that are connected to the outside.
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
 
-       Arnd
+Thanks!
+
+[1/1] ASoC: dt-bindings: maxim,max9759: Convert to DT schema.
+      commit: 1d8777d21fbb36c4a0e103eb128ca86f9761e61c
+
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+Thanks,
+Mark
+
