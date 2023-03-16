@@ -2,136 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 736466BD178
-	for <lists+devicetree@lfdr.de>; Thu, 16 Mar 2023 14:53:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 33B296BD198
+	for <lists+devicetree@lfdr.de>; Thu, 16 Mar 2023 14:56:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230432AbjCPNxm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Mar 2023 09:53:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57732 "EHLO
+        id S230139AbjCPN4h (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Mar 2023 09:56:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34436 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230420AbjCPNxi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Mar 2023 09:53:38 -0400
-Received: from mail-il1-f173.google.com (mail-il1-f173.google.com [209.85.166.173])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D4C071968C;
-        Thu, 16 Mar 2023 06:53:36 -0700 (PDT)
-Received: by mail-il1-f173.google.com with SMTP id s7so1005383ilv.12;
-        Thu, 16 Mar 2023 06:53:36 -0700 (PDT)
+        with ESMTP id S229929AbjCPN4g (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Mar 2023 09:56:36 -0400
+Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C8511BCB9C;
+        Thu, 16 Mar 2023 06:56:12 -0700 (PDT)
+Received: by mail-lf1-x135.google.com with SMTP id g17so2495891lfv.4;
+        Thu, 16 Mar 2023 06:56:12 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112; t=1678974971;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=vSKKJxYQPkav8jnlnExMx5aoBByX6BMBB/8LW2t3irg=;
+        b=UJ9we3/VNrUf0SmkUyvjHx/5MLfHro1DF0B6xmMa7LxGhysek7zTkW4pY9auUlP5yG
+         T2lveYWFzHlPS03sM8Z/JQtfh3HQntWNCF9t+T2rRFJcALTp0zZXTgpgrOWJiYi1WWwR
+         vnTePQHLCbm5sCuw1iL93hj10go9x3IkjTZSVTcylgvcKeTvGUyW+nN64zYRAsVWl45+
+         OazN8ZuQLylCnDp87zuOCK7V8QiIkLN73niYpVPm15rts6AkyDK0vWFzmlqfI58fwOwu
+         GZJBkPgYYzN79OQyWcw++zjKQbXCueQU6zL6pziujTa1AvmAr9kcXzhGPSdwSTDl1LoO
+         GJjQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678974816;
-        h=date:subject:message-id:references:in-reply-to:cc:to:from
-         :mime-version:content-transfer-encoding:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=D2YWliqp5lNeWu2afRd3ESu/UMsrFmX/tSRvg7IvURw=;
-        b=Gv/VYHm07FjHFR/tABOWCAFQUfwWhJoU0l9mcKOLLg0TH5Ix3qv5DUdL9zfzddzvR+
-         rr1Fnc7GvTop8ffc8yaGMtlv1ImROHhL7CYR8L2dPlLXcouQWrKlBMg3FJ8a+/ZetfpO
-         WkBailZRMUIkmWrMbh3L4tKD916zRvB7AsocUQDkAxYjU2WFfJWV6thCQetWLpDi10pM
-         YJYWvmcELCu3y2myIZrQRQ6ln+QS5y/ZFIffjt3oMDLWLjPVn3/PBEqTU+AgDTOtVCzB
-         mECuc6e94j/AO3yypdZSyw3JG0NLNizbOYYkxMzJsC5ffAYijebonHllTcgw2tJTJX3u
-         7pgQ==
-X-Gm-Message-State: AO0yUKXyVrwaZkuK+1VwLZ39kLkWtoe7wnmRT2A/W4He5UN7h6quFFTF
-        X++kImoj8hUOh2AZQDlI7A==
-X-Google-Smtp-Source: AK7set9+ROvBZ84DStyZ/uJRXWEQwE8vC++tqt8GomgY6VU/ZPg3glzuUD1UFHjHk1y+Mx6YW2MsHA==
-X-Received: by 2002:a05:6e02:1a2f:b0:316:6c68:73df with SMTP id g15-20020a056e021a2f00b003166c6873dfmr9633016ile.31.1678974815995;
-        Thu, 16 Mar 2023 06:53:35 -0700 (PDT)
-Received: from robh_at_kernel.org ([64.188.179.249])
-        by smtp.gmail.com with ESMTPSA id k26-20020a02c77a000000b003eb1eee43a7sm2515373jao.112.2023.03.16.06.53.34
+        d=1e100.net; s=20210112; t=1678974971;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=vSKKJxYQPkav8jnlnExMx5aoBByX6BMBB/8LW2t3irg=;
+        b=oZNRQq6chI4vZDJsxS3uY1P3/BR5gsQKfJfNkoEc1cGDKl5juTL8cyWAQsKxKTWzTd
+         W5FPCyx29mTGuTnWQvkKf5iovBib6DNfjKH7SR3aqlVt78OHfUux5uKVUprOnFxqZ6yY
+         XOQCy21L4c5ECceBcxHKekLEyIER5vDPxZnJqEu3k14N/O4EiLHyO9kNOLTDNlaUWyd8
+         oDioxBfTiqJAiZQZ2NBvrPrpFrKcKH9Eb3KkphxKtocXXSB19hhlkapSdByCF0ivkipH
+         7Ys12WLByvtDzt/ySQ1fWvhdwD7gMKhPEpL4aB+TXfJrDLCZ5gzAdmj5apSk3Dxo9h/0
+         0oIg==
+X-Gm-Message-State: AO0yUKVr5BJEEJNs+9TYpM+XxOBHn4ukprVdopww2Ov2jenyt1BcAeLk
+        u1xmVIyvPvh/JJmQesKZmLw=
+X-Google-Smtp-Source: AK7set9kMAqRI/Dka2TwaqtsN9R4P8ZAlFiVxbZV4o/xtedtGwcKIcVmflzwg0KlohzAc5uvfY/3Cw==
+X-Received: by 2002:a19:700b:0:b0:4e8:55ec:b17 with SMTP id h11-20020a19700b000000b004e855ec0b17mr2412139lfc.7.1678974970633;
+        Thu, 16 Mar 2023 06:56:10 -0700 (PDT)
+Received: from localhost.lan (ip-194-187-74-233.konfederacka.maverick.com.pl. [194.187.74.233])
+        by smtp.gmail.com with ESMTPSA id g4-20020a19ee04000000b004d40e22c1eesm1234338lfb.252.2023.03.16.06.56.09
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 16 Mar 2023 06:53:35 -0700 (PDT)
-Received: (nullmailer pid 2744941 invoked by uid 1000);
-        Thu, 16 Mar 2023 13:53:34 -0000
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+        Thu, 16 Mar 2023 06:56:10 -0700 (PDT)
+From:   =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Pavel Machek <pavel@ucw.cz>, Lee Jones <lee@kernel.org>,
+        Jacek Anaszewski <jacek.anaszewski@gmail.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        devicetree@vger.kernel.org, linux-leds@vger.kernel.org,
+        =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>
+Subject: [PATCH V2 REBASED] dt-bindings: leds: add "usbport" trigger
+Date:   Thu, 16 Mar 2023 14:55:46 +0100
+Message-Id: <20230316135546.9162-1-zajec5@gmail.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-From:   Rob Herring <robh@kernel.org>
-To:     Heiner Kallweit <hkallweit1@gmail.com>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>,
-        Rob Herring <robh+dt@kernel.org>, linux-gpio@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        devicetree@vger.kernel.org,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Kevin Hilman <khilman@baylibre.com>
-In-Reply-To: <2c2fa53f-ff8d-6b7d-3037-4d11a9fb82df@gmail.com>
-References: <2c2fa53f-ff8d-6b7d-3037-4d11a9fb82df@gmail.com>
-Message-Id: <167897435071.2729635.1810239851912837866.robh@kernel.org>
-Subject: Re: [PATCH v5] dt-bindings: pinctrl: Convert Amlogic Meson pinctrl
- binding
-Date:   Thu, 16 Mar 2023 08:53:34 -0500
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+From: Rafał Miłecki <rafal@milecki.pl>
 
-On Wed, 15 Mar 2023 22:23:57 +0100, Heiner Kallweit wrote:
-> Convert Amlogic Meson pin controller binding to yaml.
-> 
-> Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
-> ---
-> v2:
-> - consider that more than one compatible can be set
-> - remove bus part from example
-> v3:
-> - remove minItem/maxItem properties for compatible
-> v4:
-> - split patch to be able to deal with the different reg/reg-names
-> v5:
-> - remove compatible definition from common yaml
-> - move pincfg-node and pinmux-node definition to meson-gpio object definition
-> ---
->  .../pinctrl/amlogic,meson-pinctrl-a1.yaml     | 63 +++++++++++++
->  .../pinctrl/amlogic,meson-pinctrl-common.yaml | 52 ++++++++++
->  .../amlogic,meson-pinctrl-g12a-aobus.yaml     | 64 +++++++++++++
->  .../amlogic,meson-pinctrl-g12a-periphs.yaml   | 68 ++++++++++++++
->  .../pinctrl/amlogic,meson8-pinctrl-aobus.yaml | 72 ++++++++++++++
->  .../pinctrl/amlogic,meson8-pinctrl-cbus.yaml  | 74 +++++++++++++++
->  .../bindings/pinctrl/meson,pinctrl.txt        | 94 -------------------
->  7 files changed, 393 insertions(+), 94 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/pinctrl/amlogic,meson-pinctrl-a1.yaml
->  create mode 100644 Documentation/devicetree/bindings/pinctrl/amlogic,meson-pinctrl-common.yaml
->  create mode 100644 Documentation/devicetree/bindings/pinctrl/amlogic,meson-pinctrl-g12a-aobus.yaml
->  create mode 100644 Documentation/devicetree/bindings/pinctrl/amlogic,meson-pinctrl-g12a-periphs.yaml
->  create mode 100644 Documentation/devicetree/bindings/pinctrl/amlogic,meson8-pinctrl-aobus.yaml
->  create mode 100644 Documentation/devicetree/bindings/pinctrl/amlogic,meson8-pinctrl-cbus.yaml
->  delete mode 100644 Documentation/devicetree/bindings/pinctrl/meson,pinctrl.txt
-> 
+Linux's "usbport" trigger is a bit specific one. It allows LED to follow
+state of multiple USB ports which have to be selected additionally
+(there isn't a single trigger for each port).
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+Default list of USB ports to monitor can be specified using
+"trigger-sources" DT property. Theoretically it should be possible for
+Linux to deduce applicable trigger based on the references nodes in the
+"trigger-sources". It hasn't been implemented however (probably due to
+laziness).
 
-yamllint warnings/errors:
+Milk spilled - we already have DT files specifying "usbport" manually -
+allow that value in the binding. This fixes validation of in-kernel and
+external DT files.
 
-dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pinctrl/amlogic,meson8-pinctrl-cbus.yaml: 'unevaluedProperties' is not one of ['$id', '$schema', 'title', 'description', 'examples', 'required', 'allOf', 'anyOf', 'oneOf', 'definitions', '$defs', 'additionalProperties', 'dependencies', 'dependentRequired', 'dependentSchemas', 'patternProperties', 'properties', 'if', 'then', 'else', 'unevaluatedProperties', 'deprecated', 'maintainers', 'select', '$ref']
-	from schema $id: http://devicetree.org/meta-schemas/base.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pinctrl/amlogic,meson8-pinctrl-cbus.yaml: 'oneOf' conditional failed, one must be fixed:
-	'unevaluatedProperties' is a required property
-	'additionalProperties' is a required property
-	hint: Either unevaluatedProperties or additionalProperties must be present
-	from schema $id: http://devicetree.org/meta-schemas/core.yaml#
+Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
+---
+ Documentation/devicetree/bindings/leds/common.yaml | 2 ++
+ 1 file changed, 2 insertions(+)
 
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/2c2fa53f-ff8d-6b7d-3037-4d11a9fb82df@gmail.com
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
+diff --git a/Documentation/devicetree/bindings/leds/common.yaml b/Documentation/devicetree/bindings/leds/common.yaml
+index 61e63ed81ced..11aedf1650a1 100644
+--- a/Documentation/devicetree/bindings/leds/common.yaml
++++ b/Documentation/devicetree/bindings/leds/common.yaml
+@@ -125,6 +125,8 @@ properties:
+           - usb-gadget
+             # LED indicates USB host activity
+           - usb-host
++            # LED indicates USB port state
++          - usbport
+         # LED is triggered by CPU activity
+       - pattern: "^cpu[0-9]*$"
+         # LED is triggered by Bluetooth activity
+-- 
+2.34.1
 
