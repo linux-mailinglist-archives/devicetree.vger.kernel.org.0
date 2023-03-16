@@ -2,249 +2,240 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D962A6BCCB3
-	for <lists+devicetree@lfdr.de>; Thu, 16 Mar 2023 11:25:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9ADB26BCCD5
+	for <lists+devicetree@lfdr.de>; Thu, 16 Mar 2023 11:32:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231258AbjCPKZy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Mar 2023 06:25:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50494 "EHLO
+        id S229659AbjCPKcN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Mar 2023 06:32:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40742 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230104AbjCPKZk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Mar 2023 06:25:40 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B5F3BBD4DD;
-        Thu, 16 Mar 2023 03:25:08 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id AF393B820C9;
-        Thu, 16 Mar 2023 10:25:04 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 660EDC433D2;
-        Thu, 16 Mar 2023 10:25:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1678962303;
-        bh=fbzlKO+X2sefQ2LynJlI2Eu7OSdIGiE5+gSyuITPnq0=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=WOqyNA9AaiDMXiTO1+8wCOMJ16PjLN0cv2MzroH6sXthFkAMb/5/XUfg29drHtTp2
-         AEoZ8au5U2kdXnYrOm0/75ATC0gaVbBzeQny7sYMfAMpe5ijjFlz3/kuk0LLF97Up9
-         OFbQ2D281ChNcQWYdqq9FXuDIITnksEa7z1ZuISIWLM2U5eG2XurE0fAm/Zv+yZkdq
-         DnsVqDVFflEIoTG4Ggkbc3qIfDwKSXu4jGILT8wgPlL59uwliZb+px/y/AiV3jEv4I
-         bxqQqOdreV7mEW378oTZvSOog7iLJsup2/YymmUEq19xHtavXNCT4m0rOSI2tJl7pZ
-         bNcnvV4wURjEw==
-Received: from johan by xi.lan with local (Exim 4.94.2)
-        (envelope-from <johan@kernel.org>)
-        id 1pckoG-0001gb-8T; Thu, 16 Mar 2023 11:26:12 +0100
-Date:   Thu, 16 Mar 2023 11:26:12 +0100
-From:   Johan Hovold <johan@kernel.org>
-To:     Steev Klimaszewski <steev@kali.org>,
-        Bjorn Andersson <andersson@kernel.org>
-Cc:     "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Marcel Holtmann <marcel@holtmann.org>,
-        Johan Hedberg <johan.hedberg@gmail.com>,
-        Luiz Augusto von Dentz <luiz.dentz@gmail.com>,
-        Sven Peter <sven@svenpeter.dev>, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-bluetooth@vger.kernel.org,
-        Mark Pearson <markpearson@lenovo.com>
-Subject: Re: [PATCH v6 4/4] arm64: dts: qcom: sc8280xp-x13s: Add bluetooth
-Message-ID: <ZBLuxFxFvCY+0XHG@hovoldconsulting.com>
-References: <20230316034759.73489-1-steev@kali.org>
- <20230316034759.73489-5-steev@kali.org>
+        with ESMTP id S229951AbjCPKcM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Mar 2023 06:32:12 -0400
+Received: from mailout1.w1.samsung.com (mailout1.w1.samsung.com [210.118.77.11])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 10BC59E662
+        for <devicetree@vger.kernel.org>; Thu, 16 Mar 2023 03:32:07 -0700 (PDT)
+Received: from eucas1p2.samsung.com (unknown [182.198.249.207])
+        by mailout1.w1.samsung.com (KnoxPortal) with ESMTP id 20230316103204euoutp014b0613128ab0e4de10aabe7e0f01a7c0~M37PG4Jni1075310753euoutp017
+        for <devicetree@vger.kernel.org>; Thu, 16 Mar 2023 10:32:04 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.w1.samsung.com 20230316103204euoutp014b0613128ab0e4de10aabe7e0f01a7c0~M37PG4Jni1075310753euoutp017
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+        s=mail20170921; t=1678962724;
+        bh=RMjrJyTwtzr03vsG7RrGU7iTtezv0HO8dRVEwqfEyzc=;
+        h=Date:Subject:To:From:In-Reply-To:References:From;
+        b=k00Oswv0DOrHXdWvUUzqt6H+EMzVeZVdgAc8QUJTHfuSpwC10cPnFT62VSRHwNZTZ
+         PRLzgIFVrTNJjS6OUkGafLPnG91Z/ZFxInXePnJHNdQxobinHIVCzy0qI9xbnAMjWj
+         rheE4y7JwIC6pQl6tCNr0tivALlGbyrjZgNBxYqk=
+Received: from eusmges3new.samsung.com (unknown [203.254.199.245]) by
+        eucas1p2.samsung.com (KnoxPortal) with ESMTP id
+        20230316103204eucas1p2d41d0c4cdcfc010e79523152b09ff783~M37O0TBFd3193731937eucas1p2C;
+        Thu, 16 Mar 2023 10:32:04 +0000 (GMT)
+Received: from eucas1p1.samsung.com ( [182.198.249.206]) by
+        eusmges3new.samsung.com (EUCPMTA) with SMTP id 98.D2.10014.320F2146; Thu, 16
+        Mar 2023 10:32:03 +0000 (GMT)
+Received: from eusmtrp2.samsung.com (unknown [182.198.249.139]) by
+        eucas1p2.samsung.com (KnoxPortal) with ESMTPA id
+        20230316103203eucas1p2adc02a5104f496cf1cbb69040bb9bb9e~M37Oay6243234432344eucas1p2S;
+        Thu, 16 Mar 2023 10:32:03 +0000 (GMT)
+Received: from eusmgms1.samsung.com (unknown [182.198.249.179]) by
+        eusmtrp2.samsung.com (KnoxPortal) with ESMTP id
+        20230316103203eusmtrp29622781fdbd5274f4b9be33a3bb3ff1f~M37OZ9lfa3232132321eusmtrp2a;
+        Thu, 16 Mar 2023 10:32:03 +0000 (GMT)
+X-AuditID: cbfec7f5-ba1ff7000000271e-f4-6412f0230c31
+Received: from eusmtip1.samsung.com ( [203.254.199.221]) by
+        eusmgms1.samsung.com (EUCPMTA) with SMTP id 86.BD.08862.320F2146; Thu, 16
+        Mar 2023 10:32:03 +0000 (GMT)
+Received: from [106.210.134.192] (unknown [106.210.134.192]) by
+        eusmtip1.samsung.com (KnoxPortal) with ESMTPA id
+        20230316103202eusmtip11c0f6e6b0d611898e76192da6302a9a7~M37Nk1kkE1710117101eusmtip14;
+        Thu, 16 Mar 2023 10:32:02 +0000 (GMT)
+Message-ID: <b9d3a220-e7a1-73d0-56bf-af1291cd58ee@samsung.com>
+Date:   Thu, 16 Mar 2023 11:32:01 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230316034759.73489-5-steev@kali.org>
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0)
+        Gecko/20100101 Thunderbird/102.8.0
+Subject: Re: [PATCH v4 1/2] ARM: dts: exynos: replace mshc0 alias with
+ mmc-ddr-1_8v property
+Content-Language: en-US
+To:     Henrik Grimler <henrik@grimler.se>, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, alim.akhtar@samsung.com,
+        jenneron@protonmail.com, markuss.broks@gmail.com,
+        martin.juecker@gmail.com, virag.david003@gmail.com,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org,
+        phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht
+From:   Marek Szyprowski <m.szyprowski@samsung.com>
+In-Reply-To: <20230315212644.15764-2-henrik@grimler.se>
+Content-Transfer-Encoding: 7bit
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFrrCKsWRmVeSWpSXmKPExsWy7djPc7rKH4RSDM63WFo8mLeNzWL+kXOs
+        Fm+X7GK02HHpAqtF34uHzBabHl9jtbi8aw6bxYzz+5gszh1Yx2xx5t9UFosFf+wsWvceYbc4
+        /v4xo8Xm738ZHfg8ds66y+5x9Mo9Vo9NqzrZPO5c28PmsXlJvcf/O2vZPXraNjF59G1Zxejx
+        eZNcAGcUl01Kak5mWWqRvl0CV0bv8p0sBV9UKxat/s3awHhCtouRk0NCwETibsMj5i5GLg4h
+        gRWMEi+2f2eDcL4wSnx8v5YJwvnMKLF5x0RWmJajM3uhEssZJXZ9XMQC4XxklPjVtJARpIpX
+        wE7i/5sNbCA2i4CqRNOjNhaIuKDEyZlPwGxRgRSJHed3s4PYwgJxEs2X28HqmQXEJW49mQ+2
+        QURgPbPE09NPwIrYBAwlut52gRVxCphL/Nh6iAmiQV5i+9s5YF9ICMznlGi4vpcZ4lYXiXdr
+        njBB2MISr45vYYewZST+74TYICHQziix4Pd9KGcCo0TD81uMEFXWEnfO/QJaxwG0QlNi/S59
+        iLCjxNF5p8HCEgJ8EjfeCkIcwScxadt0Zogwr0RHmxBEtZrErOPr4NYevHAJqsRDYsbhlAmM
+        irOQgmUWkvdnIflsFsIJCxhZVjGKp5YW56anFhvnpZbrFSfmFpfmpesl5+duYgQmvNP/jn/d
+        wbji1Ue9Q4xMHIyHGCU4mJVEeMNZBFKEeFMSK6tSi/Lji0pzUosPMUpzsCiJ82rbnkwWEkhP
+        LEnNTk0tSC2CyTJxcEo1MDV87v/81fK+c6Nxg0PntO69h1dPXSIyd1VW6BmruZIWzFuDEiq8
+        5f8ERM8Nbm2+tvbppLwE35jNqxkPXFpyf+fmkhdfPv8Im7H4zyS2PbsvJ51+tr5zguKfXsu0
+        q/nnBCbdNbiXt7/f8ETl7aONmx2Sf7RUb97fbTot4PKEZdn3uScnLdG6YMxy5NfidVc1FUTD
+        f254xW5/eaJb4kXJtSUvo4WUPfnazNl8FG9HrQnQ1n7ssPur6+bF7y8cll2WZhDOe69q3y5d
+        ObFUnt92VdPFix/y3xb6py4iH94UF/JcgPlN9US+g7MMxe+uXe3B7mJvJaWk9rwx7e6DS1P0
+        DE/nplRvz1/baMTabCabuFSJpTgj0VCLuag4EQAU9GQh5wMAAA==
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFrrJIsWRmVeSWpSXmKPExsVy+t/xu7rKH4RSDB41SVk8mLeNzWL+kXOs
+        Fm+X7GK02HHpAqtF34uHzBabHl9jtbi8aw6bxYzz+5gszh1Yx2xx5t9UFosFf+wsWvceYbc4
+        /v4xo8Xm738ZHfg8ds66y+5x9Mo9Vo9NqzrZPO5c28PmsXlJvcf/O2vZPXraNjF59G1Zxejx
+        eZNcAGeUnk1RfmlJqkJGfnGJrVK0oYWRnqGlhZ6RiaWeobF5rJWRqZK+nU1Kak5mWWqRvl2C
+        Xkbv8p0sBV9UKxat/s3awHhCtouRk0NCwETi6MxeJhBbSGApo8SFxYYQcRmJk9MaWCFsYYk/
+        17rYuhi5gGreM0rsOX6EESTBK2An8f/NBjYQm0VAVaLpURsLRFxQ4uTMJ0A2B4eoQIrE7C4d
+        kLCwQJxE8+V2sHJmAXGJW0/mM4HMFBFYzyyxanI3O8SC7YwS57qXgl3EJmAo0fW2C6yDU8Bc
+        4sfWQ0wQ3WYSXVu7GCFseYntb+cwT2AUnIVk9ywkS2YhaZmFpGUBI8sqRpHU0uLc9NxiQ73i
+        xNzi0rx0veT83E2MwDjeduzn5h2M81591DvEyMTBeIhRgoNZSYQ3nEUgRYg3JbGyKrUoP76o
+        NCe1+BCjKTAAJjJLiSbnAxNJXkm8oZmBqaGJmaWBqaWZsZI4r2dBR6KQQHpiSWp2ampBahFM
+        HxMHp1QDU6Mbj0PB4ugVkdOOcexhvV2UezJAa0n70iMrTTUmPw64mf6xxCeQaf6EGyk/jr1/
+        UTK1uKz55wert7OMSlO2Rlm15eQ/uZPx7ceufY9yP7176rJFbkrNKf7N/GxBSTMblHXSrkic
+        U+Z53dHzser/9TZL0x9nBMPvvi9f3blil3nhQROvGSGTc+/9qr9psDNP1iFw22aOS5JBnY6y
+        7ZxKc1l5dtm+T2njk2W3uxgxr83ULMXlnK+U/5812yfK3ePzmrD37qGHB6Tsg2/V8D2aHD7b
+        JfweT97a+vO2clacQsHJW0O9YzU5rrAc0RQROHCglJ09/K9qSyTjdgmbsx0yL8rNP7qIOF69
+        t16tju2+EktxRqKhFnNRcSIAbL5+cWwDAAA=
+X-CMS-MailID: 20230316103203eucas1p2adc02a5104f496cf1cbb69040bb9bb9e
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-RootMTR: 20230315212730eucas1p1bf80678add8f33024c3655e129157adb
+X-EPHeader: CA
+CMS-TYPE: 201P
+X-CMS-RootMailID: 20230315212730eucas1p1bf80678add8f33024c3655e129157adb
+References: <20230315212644.15764-1-henrik@grimler.se>
+        <CGME20230315212730eucas1p1bf80678add8f33024c3655e129157adb@eucas1p1.samsung.com>
+        <20230315212644.15764-2-henrik@grimler.se>
 X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_HI,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,
+        SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Mar 15, 2023 at 10:47:58PM -0500, Steev Klimaszewski wrote:
-> The Lenovo Thinkpad X13s has a WCN6855 Bluetooth controller on uart2,
-> add this.
-> 
-> Signed-off-by: Steev Klimaszewski <steev@kali.org>
+Hi Henrik
+
+On 15.03.2023 22:26, Henrik Grimler wrote:
+> Previously, the mshc0 alias has been necessary so that
+> MMC_CAP_1_8V_DDR | MMC_CAP_8_BIT_DATA are set for mshc_0/mmc_0.
+> However, these capabilities should be described in the device tree so
+> that we do not have to rely on the alias.
+>
+> The property mmc-ddr-1_8v replaces MMC_CAP_1_8V_DDR, while bus_width =
+> <8>, which is already set for all the mshc0/mmc0 nodes, replaces
+> MMC_CAP_8_BIT_DATA.
+>
+> Also drop other mshc aliases as they are not needed.
+>
+> Signed-off-by: Henrik Grimler <henrik@grimler.se>
 > ---
-> Changes since v5:
->  * Update patch subject
->  * Specify initial mode (via guess) for vreg_s1c
->  * Drop uart17 definition
->  * Rename bt_en to bt_default because configuring more than one pin
->  * Correct (maybe) bias configurations
->  * Correct cts gpio
->  * Split rts-tx into two nodes
->  * Drop incorrect link in the commit message
-> 
-> Changes since v4:
->  * Address Konrad's review comments.
-> 
+>
 > Changes since v3:
->  * Add vreg_s1c
->  * Add regulators and not dead code
->  * Fix commit message changelog
-> 
+> * Drop attempt at node sorting/cleaning
+> * Move two mmc alias additions to the other patch
+> * Update commit message
+>
 > Changes since v2:
->  * Remove dead code and add TODO comment
->  * Make dtbs_check happy with the pin definitions
-> 
->  .../qcom/sc8280xp-lenovo-thinkpad-x13s.dts    | 80 +++++++++++++++++++
->  1 file changed, 80 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts b/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts
-> index 53ae75fb52ed..b3221c27903a 100644
-> --- a/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts
-> +++ b/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts
-> @@ -24,6 +24,7 @@ / {
->  	aliases {
->  		i2c4 = &i2c4;
->  		i2c21 = &i2c21;
-> +		serial1 = &uart2;
->  	};
->  
->  	wcd938x: audio-codec {
-> @@ -431,6 +432,16 @@ regulators-1 {
->  		qcom,pmic-id = "c";
->  		vdd-bob-supply = <&vreg_vph_pwr>;
->  
-> +		vreg_s1c: smps1 {
-> +			regulator-name = "vreg_s1c";
-> +			regulator-min-microvolt = <1880000>;
-> +			regulator-max-microvolt = <1900000>;
-> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-> +			regulator-allowed-modes = <RPMH_REGULATOR_MODE_AUTO>,
-> +						  <RPMH_REGULATOR_MODE_RET>;
-> +			regulator-allow-set-load;
+> * Set mmc-ddr-1_8v in device trees for mshc_0/mmc_0
+>
+>   arch/arm/boot/dts/exynos3250-artik5.dtsi            | 1 +
+>   arch/arm/boot/dts/exynos3250-monk.dts               | 1 +
+>   arch/arm/boot/dts/exynos3250-rinato.dts             | 1 +
+>   arch/arm/boot/dts/exynos4210-i9100.dts              | 1 +
+>   arch/arm/boot/dts/exynos4210-origen.dts             | 1 +
+>   arch/arm/boot/dts/exynos4210-trats.dts              | 1 +
+>   arch/arm/boot/dts/exynos4210-universal_c210.dts     | 1 +
+>   arch/arm/boot/dts/exynos4412-itop-scp-core.dtsi     | 1 +
+>   arch/arm/boot/dts/exynos4412-midas.dtsi             | 1 +
+>   arch/arm/boot/dts/exynos4412-odroid-common.dtsi     | 1 +
+>   arch/arm/boot/dts/exynos4412-origen.dts             | 1 +
+>   arch/arm/boot/dts/exynos4412-p4note.dtsi            | 1 +
+>   arch/arm/boot/dts/exynos4412.dtsi                   | 1 -
+>   arch/arm/boot/dts/exynos5250-arndale.dts            | 1 +
+>   arch/arm/boot/dts/exynos5250-smdk5250.dts           | 1 +
+>   arch/arm/boot/dts/exynos5250-snow-common.dtsi       | 1 +
+>   arch/arm/boot/dts/exynos5250-spring.dts             | 1 +
+>   arch/arm/boot/dts/exynos5250.dtsi                   | 4 ----
+>   arch/arm/boot/dts/exynos5260-xyref5260.dts          | 1 +
+>   arch/arm/boot/dts/exynos5410-odroidxu.dts           | 1 +
+>   arch/arm/boot/dts/exynos5410-smdk5410.dts           | 1 +
+>   arch/arm/boot/dts/exynos5420-arndale-octa.dts       | 1 +
+>   arch/arm/boot/dts/exynos5420-galaxy-tab-common.dtsi | 1 +
+>   arch/arm/boot/dts/exynos5420-peach-pit.dts          | 1 +
+>   arch/arm/boot/dts/exynos5420-smdk5420.dts           | 1 +
+>   arch/arm/boot/dts/exynos5420.dtsi                   | 3 ---
+>   arch/arm/boot/dts/exynos5422-odroidxu3-common.dtsi  | 1 +
+>   arch/arm/boot/dts/exynos5422-samsung-k3g.dts        | 1 +
+>   arch/arm/boot/dts/exynos5800-peach-pi.dts           | 1 +
+>   29 files changed, 26 insertions(+), 8 deletions(-)
+>
 
-So this does not look quite right still as you're specifying an initial
-mode which is not listed as allowed.
+> ...
 
-Also there are no other in-tree users of RPMH_REGULATOR_MODE_RET and
-AUTO is used to switch mode automatically which seems odd to use with
-allow-set-load.
+> diff --git a/arch/arm/boot/dts/exynos4210-i9100.dts b/arch/arm/boot/dts/exynos4210-i9100.dts
+> index bba85011ecc9..a370a5fa20d8 100644
+> --- a/arch/arm/boot/dts/exynos4210-i9100.dts
+> +++ b/arch/arm/boot/dts/exynos4210-i9100.dts
+> @@ -776,6 +776,7 @@ &sdhci_0 {
+>   	status = "okay";
+>   
+>   	bus-width = <8>;
+> +	mmc-ddr-1_8v;
+>   	non-removable;
+>   	vmmc-supply = <&vemmc_reg>;
+>   
+> diff --git a/arch/arm/boot/dts/exynos4210-origen.dts b/arch/arm/boot/dts/exynos4210-origen.dts
+> index 1103e7f92b57..d8dd13ce29e1 100644
+> --- a/arch/arm/boot/dts/exynos4210-origen.dts
+> +++ b/arch/arm/boot/dts/exynos4210-origen.dts
+> @@ -326,6 +326,7 @@ max8997_irq: max8997-irq-pins {
+>   
+>   &sdhci_0 {
+>   	bus-width = <4>;
+> +	mmc-ddr-1_8v;
+>   	pinctrl-0 = <&sd0_clk &sd0_cmd &sd0_bus4 &sd0_cd>;
+>   	pinctrl-names = "default";
+>   	vmmc-supply = <&mmc_reg>;
+> diff --git a/arch/arm/boot/dts/exynos4210-trats.dts b/arch/arm/boot/dts/exynos4210-trats.dts
+> index b8e9dd23fc51..d757228a5676 100644
+> --- a/arch/arm/boot/dts/exynos4210-trats.dts
+> +++ b/arch/arm/boot/dts/exynos4210-trats.dts
+> @@ -491,6 +491,7 @@ &rtc {
+>   
+>   &sdhci_0 {
+>   	bus-width = <8>;
+> +	mmc-ddr-1_8v;
+>   	non-removable;
+>   	pinctrl-0 = <&sd0_clk &sd0_cmd &sd0_bus8>;
+>   	pinctrl-names = "default";
+> diff --git a/arch/arm/boot/dts/exynos4210-universal_c210.dts b/arch/arm/boot/dts/exynos4210-universal_c210.dts
+> index 140abfb38e1d..57dbed908131 100644
+> --- a/arch/arm/boot/dts/exynos4210-universal_c210.dts
+> +++ b/arch/arm/boot/dts/exynos4210-universal_c210.dts
+> @@ -584,6 +584,7 @@ &rtc {
+>   
+>   &sdhci_0 {
+>   	bus-width = <8>;
+> +	mmc-ddr-1_8v;
+>   	non-removable;
+>   	pinctrl-0 = <&sd0_clk &sd0_cmd &sd0_bus8>;
+>   	pinctrl-names = "default";
 
-This regulator is in fact also used by the wifi part of the chip and as
-that driver does not set any loads so we may end up with a regulator in
-retention mode while wifi is in use.
+SDHCI is a different MMC controller than MSHC (DW-MMC), so please drop 
+the above changes as they break SDHCI based MMC device operation (tested 
+on Exynos4210 based Trats). With that fixed, feel free to add:
 
-Perhaps Bjorn can enlighten us, but my guess is that this should just be
-"intial-mode = AUTO" (or even HPM, but I have no idea where this came
-from originally).
+Tested-by: Marek Szyprowski <m.szyprowski@samsung.com>
 
-> +		};
-> +
->  		vreg_l1c: ldo1 {
->  			regulator-name = "vreg_l1c";
->  			regulator-min-microvolt = <1800000>;
-> @@ -901,6 +912,32 @@ &qup0 {
->  	status = "okay";
->  };
->  
-> +&uart2 {
-> +	pinctrl-0 = <&uart2_default>;
-> +	pinctrl-names = "default";
-> +
-> +	status = "okay";
-> +
-> +	bluetooth {
-> +		compatible = "qcom,wcn6855-bt";
-> +
-> +		vddio-supply = <&vreg_s10b>;
-> +		vddbtcxmx-supply = <&vreg_s12b>;
-> +		vddrfacmn-supply = <&vreg_s12b>;
-> +		vddrfa0p8-supply = <&vreg_s12b>;
-> +		vddrfa1p2-supply = <&vreg_s11b>;
-> +		vddrfa1p7-supply = <&vreg_s1c>;
-> +
-> +		max-speed = <3200000>;
-> +
-> +		enable-gpios = <&tlmm 133 GPIO_ACTIVE_HIGH>;
-> +		swctrl-gpios = <&tlmm 132 GPIO_ACTIVE_HIGH>;
-> +
-> +		pinctrl-0 = <&bt_default>;
-> +		pinctrl-names = "default";
-> +	};
-> +};
-> +
->  &qup1 {
->  	status = "okay";
->  };
-> @@ -1175,6 +1212,21 @@ hastings_reg_en: hastings-reg-en-state {
->  &tlmm {
->  	gpio-reserved-ranges = <70 2>, <74 6>, <83 4>, <125 2>, <128 2>, <154 7>;
->  
-> +	bt_default: bt-default-state {
-> +		hstp-sw-ctrl-pins {
-> +			pins = "gpio132";
-> +			function = "gpio";
-> +			bias-pull-down;
-> +		};
-> +
-> +		hstp-bt-en-pins {
-> +			pins = "gpio133";
-> +			function = "gpio";
-> +			drive-strength = <16>;
-> +			bias-disable;
-> +		};
-> +	};
-> +
->  	edp_reg_en: edp-reg-en-state {
->  		pins = "gpio25";
->  		function = "gpio";
-> @@ -1196,6 +1248,34 @@ i2c4_default: i2c4-default-state {
->  		bias-disable;
->  	};
->  
-> +	uart2_default: uart2-default-state {
-> +		cts-pins {
-> +			pins = "gpio121";
-> +			function = "qup2";
-> +			bias-pull-down;
 
-So I believe this should be 'bias-bus-hold' even if the pinctrl binding
-may need to be updated to suppress the corresponding dtb check warning.
+Best regards
+-- 
+Marek Szyprowski, PhD
+Samsung R&D Institute Poland
 
-I'll send a patch for that.
-
-> +		};
-> +
-> +		rts-pins {
-> +			pins = "gpio122";
-> +			function = "qup2";
-> +			drive-strength = <2>;
-> +			bias-disable;
-> +		};
-> +
-> +		tx-pins {
-
-nit: tx should go after rx for alphabetical sorting.
-
-> +			pins = "gpio123";
-> +			function = "qup2";
-> +			drive-strength = <2>;
-> +			bias-disable;
-> +		};
-> +
-> +		rx-pins {
-> +			pins = "gpio124";
-> +			function = "qup2";
-> +			bias-pull-up;
-> +		};
-> +	};
-> +
->  	i2c21_default: i2c21-default-state {
->  		pins = "gpio81", "gpio82";
->  		function = "qup21";
-
-Johan
