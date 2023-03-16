@@ -2,68 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EE9636BDCA1
-	for <lists+devicetree@lfdr.de>; Fri, 17 Mar 2023 00:05:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C09DF6BDCAA
+	for <lists+devicetree@lfdr.de>; Fri, 17 Mar 2023 00:06:56 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229522AbjCPXFP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Mar 2023 19:05:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49484 "EHLO
+        id S229907AbjCPXGz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Mar 2023 19:06:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51544 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229516AbjCPXFO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Mar 2023 19:05:14 -0400
-Received: from mail-il1-f169.google.com (mail-il1-f169.google.com [209.85.166.169])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 008B3DF71D;
-        Thu, 16 Mar 2023 16:05:13 -0700 (PDT)
-Received: by mail-il1-f169.google.com with SMTP id i19so1861056ila.10;
-        Thu, 16 Mar 2023 16:05:13 -0700 (PDT)
+        with ESMTP id S229488AbjCPXGy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Mar 2023 19:06:54 -0400
+Received: from mail-il1-f181.google.com (mail-il1-f181.google.com [209.85.166.181])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ACCDBE6DBC
+        for <devicetree@vger.kernel.org>; Thu, 16 Mar 2023 16:06:53 -0700 (PDT)
+Received: by mail-il1-f181.google.com with SMTP id l9so1882175iln.1
+        for <devicetree@vger.kernel.org>; Thu, 16 Mar 2023 16:06:53 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679007913;
+        d=1e100.net; s=20210112; t=1679008013;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=thMkU6ted+c8alWkbLjie9Y71TBDBsMu8SDhF9nCN7s=;
-        b=zYY9KedhrnB2A826wquGNeVcom8a7YnfPiY50orNl6oSJqIahh32u2yWAzaetKYsi0
-         BGQFU6jXY95nAeT1LbqyNZiAjlEEIXvYnqlDCLlJ5KlJ9ysfEGeLcUR7CAgRhJPmt+BE
-         dlbyBB8Cd6HHLYyGyWPH4E4QiJ4CrMTXwCiCm45wi0R7asXIn8+51K7fU/UKD3qaiWJ0
-         cmdnZlQDZOs9cRBHcQ6S25mbGBjIJNjBjRdP64ArcWoXZxLZ2Hc6+gHU58Z7YE8R1fhq
-         N5x6hCeVAr2+uXW7u7qM0SyiURtwLdQaa2U4E+/DaTnF5K3/qT2r46mrnUiJmdsn5CBn
-         YO6Q==
-X-Gm-Message-State: AO0yUKXpkHqX1HOydv5h/3zxIIkZmdUUixkISpUmgcZgrFHI9jI3RV1z
-        q6OYVcbgCQyD4Vyyf9Cr0A==
-X-Google-Smtp-Source: AK7set+8oLHhJQmH6Hy7Rz+7+N2cSYpk23KfiyKAuIipRqOturr9duw5L/q51oU+HA1VHJOKO87qdA==
-X-Received: by 2002:a05:6e02:1d04:b0:317:9891:8a28 with SMTP id i4-20020a056e021d0400b0031798918a28mr10902176ila.26.1679007913243;
-        Thu, 16 Mar 2023 16:05:13 -0700 (PDT)
+        bh=uqbFkLv206A82F4UnTo9FrJjnI0yaYZWl4SReXRwGaE=;
+        b=hQVAjl8yS2Cjf7y9RIzYqY6x786k4I6pNqlgRwBXaVqOZDnJ0A+r2ejdczwkceJC/P
+         3VJ8uS6tO10hNzJx9YWoOeDL/9Ln1+yWgAzGdL9Zjl1xMbofKJ4yJUPrEDJfLI/gnAaG
+         eDk/ZHoW7Qh37emK3o7u+KtKQq4f/eRJPGp6y8zodqVWe2holX3rS5w8NtJaWDkHF2nr
+         C2bWgbQB1iaVGbGYKEFTUWVpgWAIIIT8JldvmB82nOE7bpIMfiOB1hIMu1AORMEHfgjP
+         pIgS/EbVZx8yfek3yXJ6MsjEFPzjQFlsM2fZN28yUpoHMmi8jS1NyMoaJ6gGUSHMHZJB
+         zLEg==
+X-Gm-Message-State: AO0yUKUj+PL6H3JVdOuekjb+Gcd27gTZSho3SX+pYAr0eHPsTKsvU8yv
+        VMmqb+gpN/32UROyL6sKA3kYddEJ4w==
+X-Google-Smtp-Source: AK7set8v6x2OU8EwDveW2kRtrUr8aXE+PtEkKWyatVoFTyUtk3bV8Hbe1zJtTCgquOEQVVQVEkMJ1Q==
+X-Received: by 2002:a92:d7ce:0:b0:323:338:cc24 with SMTP id g14-20020a92d7ce000000b003230338cc24mr7703929ilq.12.1679008012962;
+        Thu, 16 Mar 2023 16:06:52 -0700 (PDT)
 Received: from robh_at_kernel.org ([64.188.179.249])
-        by smtp.gmail.com with ESMTPSA id f46-20020a02242e000000b003c4e02148e5sm177775jaa.53.2023.03.16.16.05.11
+        by smtp.gmail.com with ESMTPSA id g26-20020a02271a000000b003a60da2bf58sm180538jaa.39.2023.03.16.16.06.51
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 16 Mar 2023 16:05:12 -0700 (PDT)
-Received: (nullmailer pid 4052527 invoked by uid 1000);
-        Thu, 16 Mar 2023 23:05:10 -0000
-Date:   Thu, 16 Mar 2023 18:05:10 -0500
+        Thu, 16 Mar 2023 16:06:52 -0700 (PDT)
+Received: (nullmailer pid 4054450 invoked by uid 1000);
+        Thu, 16 Mar 2023 23:06:51 -0000
+Date:   Thu, 16 Mar 2023 18:06:51 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Banajit Goswami <bgoswami@quicinc.com>,
-        Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>,
-        alsa-devel@alsa-project.org, linux-kernel@vger.kernel.org,
-        Mark Brown <broonie@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Venkata Prasad Potturu <quic_potturu@quicinc.com>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-arm-msm@vger.kernel.org,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        stable@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH] ASoC: dt-bindings: qcom,lpass-rx-macro: correct minItems
- for clocks
-Message-ID: <167900791031.4052474.90763164656557078.robh@kernel.org>
-References: <20230310100937.32485-1-krzysztof.kozlowski@linaro.org>
+To:     Xu Yang <xu.yang_2@nxp.com>
+Cc:     festevam@gmail.com, frank.li@nxp.com, mark.rutland@arm.com,
+        linux-imx@nxp.com, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, shawnguo@kernel.org,
+        robh+dt@kernel.org, will@kernel.org
+Subject: Re: [PATCH 2/3] dt-bindings: perf: fsl-imx-ddr: Add i.MX93 compatible
+Message-ID: <167900801047.4054366.8591311615821573287.robh@kernel.org>
+References: <20230310101916.2825788-1-xu.yang_2@nxp.com>
+ <20230310101916.2825788-2-xu.yang_2@nxp.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230310100937.32485-1-krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230310101916.2825788-2-xu.yang_2@nxp.com>
 X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
         HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
@@ -75,20 +65,15 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
-On Fri, 10 Mar 2023 11:09:37 +0100, Krzysztof Kozlowski wrote:
-> The RX macro codec comes on some platforms in two variants - ADSP
-> and ADSP bypassed - thus the clock-names varies from 3 to 5.  The clocks
-> must vary as well:
+On Fri, 10 Mar 2023 18:19:15 +0800, Xu Yang wrote:
+> i.MX93 ddr pmu shares the same device node format as i.MX8. This will
+> add a compatible for i.MX93 and modify the title.
 > 
->   sc7280-idp.dtb: codec@3200000: clocks: [[202, 8], [202, 7], [203]] is too short
-> 
-> Fixes: 852fda58d99a ("ASoC: qcom: dt-bindings: Update bindings for clocks in lpass digital codes")
-> Cc: <stable@vger.kernel.org>
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Signed-off-by: Xu Yang <xu.yang_2@nxp.com>
 > ---
->  Documentation/devicetree/bindings/sound/qcom,lpass-rx-macro.yaml | 1 +
->  1 file changed, 1 insertion(+)
+>  Documentation/devicetree/bindings/perf/fsl-imx-ddr.yaml | 3 ++-
+>  1 file changed, 2 insertions(+), 1 deletion(-)
 > 
 
-Acked-by: Rob Herring <robh@kernel.org>
+Reviewed-by: Rob Herring <robh@kernel.org>
 
