@@ -2,258 +2,123 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D18C96BCF3F
-	for <lists+devicetree@lfdr.de>; Thu, 16 Mar 2023 13:19:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 658826BCF65
+	for <lists+devicetree@lfdr.de>; Thu, 16 Mar 2023 13:28:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229743AbjCPMTV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Mar 2023 08:19:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35970 "EHLO
+        id S229701AbjCPM17 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Mar 2023 08:27:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46460 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229479AbjCPMTU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Mar 2023 08:19:20 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2280F26C1D;
-        Thu, 16 Mar 2023 05:19:19 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id C9C83B8213F;
-        Thu, 16 Mar 2023 12:19:17 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D91E0C4339B;
-        Thu, 16 Mar 2023 12:19:12 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1678969156;
-        bh=hbKOvEwKovlGoJYefBxKQZ367EL/i6RYcMcuImKZkZQ=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=kR5QVIrBJ9m5dBdeldQYjOL2yMiKiZUlNhv5gk9sB198hjvyqoPeU9hCjqXS1PrCc
-         VBFFzoQCLhoVoxMbW72ErLDOkGrhi+J+CtDKVBJ0BUATLbpbWVBb6E2qmkfw1q26PU
-         uJebGUsfmdNChhnmO4fI9IPRl13qgrT7F96xM/BaiXoTEpx5jZshRPPu8mR5J1wWQw
-         vUHT+gh+eDHVerZzinN5jz+gAtAHUw2gKIBO4uZCn78vIfkemghMj/FBPn5sScAlsj
-         hfyHVkwze0tYmegXxq/x9dsw391XQsWFmE6UqXHG2dj8KqIfi/EsXjyMjuAWPiYoZy
-         DI052+tp2x+Hw==
-Message-ID: <e49b9a78-5e35-209e-7ecc-2333478b98b0@kernel.org>
-Date:   Thu, 16 Mar 2023 14:19:10 +0200
+        with ESMTP id S230154AbjCPM16 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Mar 2023 08:27:58 -0400
+Received: from relay8-d.mail.gandi.net (relay8-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::228])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 656366BC33;
+        Thu, 16 Mar 2023 05:27:56 -0700 (PDT)
+Received: (Authenticated sender: herve.codina@bootlin.com)
+        by mail.gandi.net (Postfix) with ESMTPA id 912291BF212;
+        Thu, 16 Mar 2023 12:27:52 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1678969675;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:
+         content-transfer-encoding:content-transfer-encoding;
+        bh=cgavJDYqAWGIAp5BiGO9sOYQn1s1K0nDOa7y/oa06lI=;
+        b=kMNJwkwIWZUd7PR2gbTggNSgppd16lsjL+yAZAM8MK4iF2tOS36r8ycPhRxaTtXPHIbPFK
+        RQyOBUb9F8XD/2yMd15f0nL3zH/y+6BkZEiYMMwaOsCTnfCVDqvJLMfsDc1tFAj1lKsk0o
+        XQyMBYB6XvhMUJzbmPjc10eCZC33esiGpr8nB/eoqC/Ub1kAl75uZJ1fn0dpCw8lqI1XCs
+        O7lJo7ose6FEBRT3TdXhn/H08Fy2+RVJdgDlb9oeNAWPu8hPNtlMPTHnH9xPN9rwtdWRuG
+        2wi4g60ZR9y9pTuJNfX1L28f2PthKs6C3lYTEMYtC9VFLrWFGOmE7yQv2QPFsA==
+From:   Herve Codina <herve.codina@bootlin.com>
+To:     Herve Codina <herve.codina@bootlin.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Derek Kiernan <derek.kiernan@xilinx.com>,
+        Dragan Cvetic <dragan.cvetic@xilinx.com>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>
+Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        alsa-devel@alsa-project.org,
+        Christophe Leroy <christophe.leroy@csgroup.eu>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: [PATCH v2 0/7] Add the Lantiq PEF2256 audio support
+Date:   Thu, 16 Mar 2023 13:27:34 +0100
+Message-Id: <20230316122741.577663-1-herve.codina@bootlin.com>
+X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-Subject: Re: [PATCH v4 4/5] soc: ti: pruss: Add helper functions to set GPI
- mode, MII_RT_event and XFR
-Content-Language: en-US
-To:     Md Danish Anwar <a0501179@ti.com>,
-        MD Danish Anwar <danishanwar@ti.com>,
-        "Andrew F. Davis" <afd@ti.com>, Suman Anna <s-anna@ti.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Santosh Shilimkar <ssantosh@kernel.org>,
-        Nishanth Menon <nm@ti.com>
-Cc:     linux-remoteproc@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-omap@vger.kernel.org, srk@ti.com, devicetree@vger.kernel.org,
-        netdev@vger.kernel.org
-References: <20230313111127.1229187-1-danishanwar@ti.com>
- <20230313111127.1229187-5-danishanwar@ti.com>
- <d168e7dd-42a0-b728-5c4c-e97209c13871@kernel.org>
- <b1409f34-86b5-14e8-f352-5032aa57ca46@ti.com>
- <60e73395-f670-6eaa-0eb7-389553320a71@kernel.org>
- <20718115-7606-a77b-7e4d-511ca9c1d798@ti.com>
-From:   Roger Quadros <rogerq@kernel.org>
-In-Reply-To: <20718115-7606-a77b-7e4d-511ca9c1d798@ti.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_HI,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi,
 
+This series adds support for audio using the Lantiq PEF2256 framer.
 
-On 16/03/2023 13:44, Md Danish Anwar wrote:
-> 
-> On 16/03/23 17:06, Roger Quadros wrote:
->> Hi,
->>
->> On 16/03/2023 13:05, Md Danish Anwar wrote:
->>> Hi Roger,
->>>
->>> On 15/03/23 17:52, Roger Quadros wrote:
->>>>
->>>>
->>>> On 13/03/2023 13:11, MD Danish Anwar wrote:
->>>>> From: Suman Anna <s-anna@ti.com>
->>>>>
->>>>> The PRUSS CFG module is represented as a syscon node and is currently
->>>>> managed by the PRUSS platform driver. Add easy accessor functions to set
->>>>> GPI mode, MII_RT event enable/disable and XFR (XIN XOUT) enable/disable
->>>>> to enable the PRUSS Ethernet usecase. These functions reuse the generic
->>>>> pruss_cfg_update() API function.
->>>>>
->>>>> Signed-off-by: Suman Anna <s-anna@ti.com>
->>>>> Co-developed-by: Grzegorz Jaszczyk <grzegorz.jaszczyk@linaro.org>
->>>>> Signed-off-by: Grzegorz Jaszczyk <grzegorz.jaszczyk@linaro.org>
->>>>> Signed-off-by: Puranjay Mohan <p-mohan@ti.com>
->>>>> Signed-off-by: MD Danish Anwar <danishanwar@ti.com>
->>>>> ---
->>>>>  drivers/soc/ti/pruss.c           | 60 ++++++++++++++++++++++++++++++++
->>>>>  include/linux/remoteproc/pruss.h | 22 ++++++++++++
->>>>>  2 files changed, 82 insertions(+)
->>>>>
->>>>> diff --git a/drivers/soc/ti/pruss.c b/drivers/soc/ti/pruss.c
->>>>> index 26d8129b515c..2f04b7922ddb 100644
->>>>> --- a/drivers/soc/ti/pruss.c
->>>>> +++ b/drivers/soc/ti/pruss.c
->>>>> @@ -203,6 +203,66 @@ static int pruss_cfg_update(struct pruss *pruss, unsigned int reg,
->>>>>  	return regmap_update_bits(pruss->cfg_regmap, reg, mask, val);
->>>>>  }
->>>>>  
->>>>> +/**
->>>>> + * pruss_cfg_gpimode() - set the GPI mode of the PRU
->>>>> + * @pruss: the pruss instance handle
->>>>> + * @pru_id: id of the PRU core within the PRUSS
->>>>> + * @mode: GPI mode to set
->>>>> + *
->>>>> + * Sets the GPI mode for a given PRU by programming the
->>>>> + * corresponding PRUSS_CFG_GPCFGx register
->>>>> + *
->>>>> + * Return: 0 on success, or an error code otherwise
->>>>> + */
->>>>> +int pruss_cfg_gpimode(struct pruss *pruss, enum pruss_pru_id pru_id,
->>>>> +		      enum pruss_gpi_mode mode)
->>>>> +{
->>>>> +	if (pru_id < 0 || pru_id >= PRUSS_NUM_PRUS)
->>>>> +		return -EINVAL;
->>>>> +
->>>>> +	if (mode < 0 || mode > PRUSS_GPI_MODE_MAX)
->>>>> +		return -EINVAL;
->>>>> +
->>>>> +	return pruss_cfg_update(pruss, PRUSS_CFG_GPCFG(pru_id),
->>>>> +				PRUSS_GPCFG_PRU_GPI_MODE_MASK,
->>>>> +				mode << PRUSS_GPCFG_PRU_GPI_MODE_SHIFT);
->>>>> +}
->>>>> +EXPORT_SYMBOL_GPL(pruss_cfg_gpimode);
->>>>> +
->>>>> +/**
->>>>> + * pruss_cfg_miirt_enable() - Enable/disable MII RT Events
->>>>> + * @pruss: the pruss instance
->>>>> + * @enable: enable/disable
->>>>> + *
->>>>> + * Enable/disable the MII RT Events for the PRUSS.
->>>>> + *
->>>>> + * Return: 0 on success, or an error code otherwise
->>>>> + */
->>>>> +int pruss_cfg_miirt_enable(struct pruss *pruss, bool enable)
->>>>> +{
->>>>> +	u32 set = enable ? PRUSS_MII_RT_EVENT_EN : 0;
->>>>> +
->>>>> +	return pruss_cfg_update(pruss, PRUSS_CFG_MII_RT,
->>>>> +				PRUSS_MII_RT_EVENT_EN, set);
->>>>> +}
->>>>> +EXPORT_SYMBOL_GPL(pruss_cfg_miirt_enable);
->>>>> +
->>>>> +/**
->>>>> + * pruss_cfg_xfr_enable() - Enable/disable XIN XOUT shift functionality
->>>>> + * @pruss: the pruss instance
->>>>> + * @enable: enable/disable
->>>>> + * @mask: Mask for PRU / RTU
->>>>
->>>> You should not expect the user to provide the mask but only
->>>> the core type e.g. 
->>>>
->>>> enum pru_type {
->>>>         PRU_TYPE_PRU = 0,
->>>>         PRU_TYPE_RTU,
->>>>         PRU_TYPE_TX_PRU,
->>>>         PRU_TYPE_MAX,
->>>> };
->>>>
->>>> Then you figure out the mask in the function.
->>>> Also check for invalid pru_type and return error if so.
->>>>
->>>
->>> Sure Roger, I will create a enum and take it as parameter in API. Based on
->>> these enum I will calculate mask and do XFR shifting inside the API
->>> pruss_cfg_xfr_enable().
->>>
->>> There are two registers for XFR shift.
->>>
->>> #define PRUSS_SPP_XFER_SHIFT_EN                 BIT(1)
->>> #define PRUSS_SPP_RTU_XFR_SHIFT_EN              BIT(3)
->>>
->>> For PRU XFR shifting, the mask should be PRUSS_SPP_XFER_SHIFT_EN,
->>> for RTU shifting mask should be PRUSS_SPP_RTU_XFR_SHIFT_EN and for PRU and RTU
->>> shifting mask should be (PRUSS_SPP_XFER_SHIFT_EN | PRUSS_SPP_RTU_XFR_SHIFT_EN)
->>>
->>> So the enum would be something like this.
->>>
->>> /**
->>>  * enum xfr_shift_type - XFR shift type
->>>  * @XFR_SHIFT_PRU: Enables XFR shift for PRU
->>>  * @XFR_SHIFT_RTU: Enables XFR shift for RTU
->>>  * @XFR_SHIFT_PRU_RTU: Enables XFR shift for both PRU and RTU
->>
->> This is not required. User can call the API twice. once for PRU and once for RTU.
->>
->>>  * @XFR_SHIFT_MAX: Total number of XFR shift types available.
->>>  *
->>>  */
->>>
->>> enum xfr_shift_type {
->>>         XFR_SHIFT_PRU = 0,
->>>         XFR_SHIFT_RTU,
->>>         XFR_SHIFT_PRU_RTU,
->>>         XFR_SHIFT_MAX,
->>> };
->>
->> Why do you need this new enum definition?
->> We already have pru_type defined somewhere. You can move it to a public header
->> if not there yet.
->>
->> enum pru_type {
->>          PRU_TYPE_PRU = 0,
->>          PRU_TYPE_RTU,
->>          PRU_TYPE_TX_PRU,
->>          PRU_TYPE_MAX,
->> };
->>
-> 
-> This enum is present in drivers/remoteproc/pru_rproc.c file. But the problem
-> with this enum is that in [1] we need to enable XFR shift for both PRU and RTU
-> for which the mask will be OR of PRUSS_SPP_XFER_SHIFT_EN (mask for PRU) and
-> PRUSS_SPP_RTU_XFR_SHIFT_EN (mask of RTU).
+The Lantiq PEF2256 is a framer and line interface component designed to
+fulfill all required interfacing between an analog E1/T1/J1 line and the
+digital PCM system highway/H.100 bus.
 
-Is there any limitation that you have to enable both simultaneously?
-The driver can first do enable for PRU and then later for RTU.
+The first part of this series (patches 1 to 4) adds the Lantiq PEF2256
+driver core.
+The second part (patches 5 to 7) adds the audio support using the Lantiq
+PEF2256 driver core.
 
-As you will do a read modify write, the previous enable state of register
-shouldn't be affected.
+The consumer/provider relation between the codec and the driver core
+allows to use the PEF2256 framer for other purpose than audio support.
 
-> 
-> Now this enum doesn't have a field for both PRU and RTU. Also we don't need
-> need the XFR shift for PRU_TYPE_TX_PRU as only two XFR shift register bits are
-> defined.
+This v2 series fixes issues raised by the kernel test robot
+  - devm_platform_ioremap_resource symbol undefined
+  - duplicate const qualifier
+  - Block quote ends without a blank line
 
-That is OK. You can return error if not RTU or PRU.
+Best regards,
+Herve Codina
 
-> 
-> That is why I thought of introducing new enum.
-> 
-> [1] drivers/net/ethernet/ti/icssg_config.c
-> 
-> /* enable XFR shift for PRU and RTU */
-> 	mask = PRUSS_SPP_XFER_SHIFT_EN | PRUSS_SPP_RTU_XFR_SHIFT_EN;
+Changes v1 -> v2
+  - Patch 2
+    Remove duplicate const qualifiers.
+    Add HAS_IOMEM as a dependency
 
-Driver can do like so
+  - Patch 3
+    Fix a "Block quote ends without a blank line; unexpected unindent"
+    syntax issue.
 
-	pruss_cfg_xfr_enable(pruss, PRU_TYPE_PRU, true);
-	pruss_cfg_xfr_enable(pruss, PRU_TYPE_RTU, true);
+Herve Codina (7):
+  dt-bindings: misc: Add the Lantiq  PEF2466 E1/T1/J1 framer
+  drivers: misc: Add support for the Lantiq PEF2256 framer
+  Documentation: sysfs: Document the Lantiq PEF2256 sysfs entry
+  MAINTAINERS: Add the Lantiq PEF2256 driver entry
+  dt-bindings: sound: Add support for the Lantiq PEF2256 codec
+  ASoC: codecs: Add support for the Lantiq PEF2256 codec
+  MAINTAINERS: Add the Lantiq PEF2256 ASoC codec entry
 
-The second call should not disable the PRU XFR as you will do a
-read-modify-write only affecting the RTU bit.
+ .../sysfs-bus-platform-devices-pef2256        |   12 +
+ .../bindings/misc/lantiq,pef2256.yaml         |  190 +++
+ .../bindings/sound/lantiq,pef2256-codec.yaml  |   57 +
+ MAINTAINERS                                   |   15 +
+ drivers/misc/Kconfig                          |   17 +
+ drivers/misc/Makefile                         |    1 +
+ drivers/misc/pef2256.c                        | 1441 +++++++++++++++++
+ include/linux/pef2256.h                       |   36 +
+ sound/soc/codecs/Kconfig                      |   14 +
+ sound/soc/codecs/Makefile                     |    2 +
+ sound/soc/codecs/pef2256-codec.c              |  395 +++++
+ 11 files changed, 2180 insertions(+)
+ create mode 100644 Documentation/ABI/testing/sysfs-bus-platform-devices-pef2256
+ create mode 100644 Documentation/devicetree/bindings/misc/lantiq,pef2256.yaml
+ create mode 100644 Documentation/devicetree/bindings/sound/lantiq,pef2256-codec.yaml
+ create mode 100644 drivers/misc/pef2256.c
+ create mode 100644 include/linux/pef2256.h
+ create mode 100644 sound/soc/codecs/pef2256-codec.c
 
-cheers,
--roger
+-- 
+2.39.2
+
