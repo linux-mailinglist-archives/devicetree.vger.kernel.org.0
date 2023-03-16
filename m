@@ -2,52 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id ABC1C6BD610
-	for <lists+devicetree@lfdr.de>; Thu, 16 Mar 2023 17:41:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8888F6BD622
+	for <lists+devicetree@lfdr.de>; Thu, 16 Mar 2023 17:45:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231338AbjCPQld (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Mar 2023 12:41:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52404 "EHLO
+        id S231127AbjCPQpF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Mar 2023 12:45:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37680 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231366AbjCPQlR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Mar 2023 12:41:17 -0400
+        with ESMTP id S230495AbjCPQpE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Mar 2023 12:45:04 -0400
 Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 72FEFE487B;
-        Thu, 16 Mar 2023 09:40:41 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B86F914223;
+        Thu, 16 Mar 2023 09:44:35 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 69E57620AC;
-        Thu, 16 Mar 2023 16:40:37 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D18EFC4339E;
-        Thu, 16 Mar 2023 16:40:34 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 1634762071;
+        Thu, 16 Mar 2023 16:44:35 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 64545C433D2;
+        Thu, 16 Mar 2023 16:44:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1678984836;
-        bh=fgyKwRL/T1cLqthLNrN4XUnF7P+4QZwjgQbMtSXajt0=;
+        s=k20201202; t=1678985074;
+        bh=yfx4iiucYGIUOEIaNe/Ybg77Apth21Lr71vscJTJmnk=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=EF0h1Jc+CTaVADE0xVeymNEt6MOkX17wDm5ADUo9qyqsLhqLF0S0x5Obe6gGFwPsL
-         0hRHMnoP0PeEDdULtGtDDAu1rkjZUS8L7UBrArJ8YgK1x8Me7pXS3pQCJqTECrPjc+
-         isGDOTCpmEF18JTjng/rHlNMobvengRsf/gb8+uSoVXnspKpJy8KOyaltSFcbYjXdN
-         mMDBpvrVDZmwTM2hBZwiT9U+Yry1jgCMiEE7f8RoryTpgJEJR0CJRQrgg745J44ClM
-         sIU2M6OoxcW+5c/m50lnuuH3Q/DxoOCRERiKXvfi2JaHLXWJMUolCo2xs1IsAUeZp6
-         4nGeEgV2OyK/w==
-Date:   Thu, 16 Mar 2023 16:40:31 +0000
+        b=XE+bKJewW8yN3Sbjp9vsvxlMkgKiA8UP1lu/rPOiFJ1ot1S+Q5yW+RbWxgLqS9wm+
+         oHaimwJphGUcJWzgf+b6ZkqmG1cR7KMDqSlTBl6MTP45jrs++dITnej253R+MM+cop
+         ixw+FWVouml+2bMnyrdHP2UIF8Wvmir55NMp/0AFhyuzdvFDf7y8+15zccnl/m4RDp
+         Qhaex5OPg7QDaKQPhoa9qY/HRjAGq4SE9puythuzkoU2wL3pbuqejsH9Mia3g0Gqzr
+         2ltD9oQZ6k9veA1kjuVvKix09uz/C25If9nm6++t87qSRZ8mfSYcEMFoUmEkydWski
+         YMoyEV+N0QMIQ==
+Date:   Thu, 16 Mar 2023 16:44:28 +0000
 From:   Lee Jones <lee@kernel.org>
-To:     Martin Kurbanov <mmkurbanov@sberdevices.ru>
-Cc:     Pavel Machek <pavel@ucw.cz>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andy Shevchenko <andy.shevchenko@gmail.com>,
-        linux-leds@vger.kernel.org, linux-kernel@vger.kernel.org,
-        kernel@sberdevices.ru, devicetree@vger.kernel.org
-Subject: Re: [PATCH v3 1/2] dt-bindings: leds: add binding for aw200xx
-Message-ID: <20230316164031.GX9667@google.com>
-References: <20230314120252.48263-1-mmkurbanov@sberdevices.ru>
- <20230314120252.48263-2-mmkurbanov@sberdevices.ru>
+To:     Arnd Bergmann <arnd@arndb.de>
+Cc:     Jacky Huang <ychuang570808@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        krzysztof.kozlowski+dt@linaro.org,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Jiri Slaby <jirislaby@kernel.org>, devicetree@vger.kernel.org,
+        linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-serial@vger.kernel.org, schung@nuvoton.com,
+        Jacky Huang <ychuang3@nuvoton.com>
+Subject: Re: [PATCH 11/15] arm64: dts: nuvoton: Add initial ma35d1 device tree
+Message-ID: <20230316164428.GY9667@google.com>
+References: <20230315072902.9298-1-ychuang570808@gmail.com>
+ <20230315072902.9298-12-ychuang570808@gmail.com>
+ <2063c6d1-85ed-43d9-b572-a762b6ce18c1@app.fastmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20230314120252.48263-2-mmkurbanov@sberdevices.ru>
+In-Reply-To: <2063c6d1-85ed-43d9-b572-a762b6ce18c1@app.fastmail.com>
 X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
@@ -57,18 +64,29 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 14 Mar 2023, Martin Kurbanov wrote:
+On Thu, 16 Mar 2023, Arnd Bergmann wrote:
 
-> Add YAML devicetree binding for AWINIC AW20036/AW20052/AW20074
-> led driver.
+> On Wed, Mar 15, 2023, at 08:28, Jacky Huang wrote:
+> > +	mem: memory@80000000 {
+> > +		device_type = "memory";
+> > +		reg = <0x00000000 0x80000000 0 0x20000000>; /* 512M DRAM */
+> > +	};
+> > +};
 >
-> Signed-off-by: Martin Kurbanov <mmkurbanov@sberdevices.ru>
-> ---
->  .../bindings/leds/awinic,aw200xx.yaml         | 126 ++++++++++++++++++
->  1 file changed, 126 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/leds/awinic,aw200xx.yaml
+> In most machines, the memory size is detected by the boot loader
+> and filled in the dtb in memory before starting the kernel, so
+> you should not need two separate files here for the two common
+> memory configurations.
+>
+> Since the machine is called 'som', I would assume that this is a
+> module that is integrated on another board, so more commonly one
+> would have a dtsi file for the som in addition to the one for the
+> soc, and have all the components of the module listed in this
+> file, while the dts file that includes the som.dtsi lists the
+> devices on the carrier board and enables the on-chip devices
+> that are connected to the outside.
 
-Applied, thanks
+It's using syscon and simple-mfd by the looks of it.
 
 --
 Lee Jones [李琼斯]
