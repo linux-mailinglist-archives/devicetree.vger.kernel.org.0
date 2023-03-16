@@ -2,61 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 581606BD214
-	for <lists+devicetree@lfdr.de>; Thu, 16 Mar 2023 15:14:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 799396BD219
+	for <lists+devicetree@lfdr.de>; Thu, 16 Mar 2023 15:14:24 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231258AbjCPOOP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Mar 2023 10:14:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35112 "EHLO
+        id S231326AbjCPOOW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Mar 2023 10:14:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35276 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230329AbjCPONq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Mar 2023 10:13:46 -0400
-Received: from mail-lj1-x22f.google.com (mail-lj1-x22f.google.com [IPv6:2a00:1450:4864:20::22f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C78FBA7AAF
-        for <devicetree@vger.kernel.org>; Thu, 16 Mar 2023 07:13:22 -0700 (PDT)
-Received: by mail-lj1-x22f.google.com with SMTP id a32so1830053ljr.9
-        for <devicetree@vger.kernel.org>; Thu, 16 Mar 2023 07:13:22 -0700 (PDT)
+        with ESMTP id S231330AbjCPONv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Mar 2023 10:13:51 -0400
+Received: from mail-lj1-x22b.google.com (mail-lj1-x22b.google.com [IPv6:2a00:1450:4864:20::22b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2AA7AACBBE
+        for <devicetree@vger.kernel.org>; Thu, 16 Mar 2023 07:13:26 -0700 (PDT)
+Received: by mail-lj1-x22b.google.com with SMTP id by8so629866ljb.12
+        for <devicetree@vger.kernel.org>; Thu, 16 Mar 2023 07:13:25 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1678976002;
+        d=linaro.org; s=google; t=1678976004;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=piy00ze27cjmP3sGzL7P6bitkrLZh8ic/pO7qFj7OPM=;
-        b=Bh1hxScNUZDwRSRTQn//qBTILDXyyQwMC4kYaXpzqk2hB82rnzKtO8PO/swehYNbUN
-         n33LC0ZB18/x/hrBJEwOnBTTYdfHONNjONchKWMmUZN8b76GS2U83J8BvsKdp6/Gql3K
-         bATEpiI2h6Xr+4QG1FtFfksi7BdCwEqpVr3Ibksw5R7uS2WdVPaS9As9HVbRDnU72ayY
-         +l9BXgVgw/Oo+FD5qWUsFmCwgnK4W9dJNcBU92za7IE/TLb5mbAy0yduOLWX0pptlakI
-         vtwb6/+88SWs1JpAcw5V0DsCg9llwoY/8T2tDRIhuMLZKtvm/0BvqFnpovoegXcg3eNO
-         ACBg==
+        bh=N1o/g/RY/F8tw5gI99MfNC1MgutCzKG48oc2MA5z/Ao=;
+        b=Qrr803nV2RNxyMhr4k1CujiqeMiu6xeEfZDomigDzlgOJ2+LAoow9y4SpnULqM533W
+         JGYU4zjecXMNVzRMcYjhYBo9bJKzgh9fndduUqthz5eV7m0AegygBhQ+m1SwDg1hCTN/
+         rnHE2vUTqT5qun7CkRIHPNhcCN2biGs4H9UjkIKTUfCCMvjN4tOS2/1osalKAkFcJB+S
+         9GXXMgz+BHuHgPrKWIluWCd1qhoHJ6ZiQCleccrZYMrDoQe116QM7kTG4KQKrlbgq3Q3
+         hlL4xAJbs94Mc1ULnoRauUdmiuxvn0lHeBTU3GqdlA7B+wCkZXGaFUvQPY+eoSYTGGD1
+         b6Bw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678976002;
+        d=1e100.net; s=20210112; t=1678976004;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=piy00ze27cjmP3sGzL7P6bitkrLZh8ic/pO7qFj7OPM=;
-        b=j2xPm/+rEBF4FDX02DCUndouO9uPH5+v74o9op9jeSY1lWIdO8Yy9bkS0HE23rPG2O
-         27cLV8sixh6l7WcQZ+/V6+KnOo/3NtywUPA3VqhSZwqold5/i6YQ+AzDSUdzCOA+9KgR
-         W0JOY/DtVe7m09wn8sT6tMq92lZP9rdDSaCkJ20sRH01kavIT3b91fy/cQ1/uJVI9nXP
-         iLKifTqlFmXt9/8F/N6VanQSifU54d1Y1K590k78ja7fIgvbwecn6szUNNNHPT7sy8Ak
-         Yo9VnZ0Z24kZ9CdmSuHRYF9X7v/kIBX2vlYdx/2whT4CNKWq+s0l0oFKlgIPWQBOD6ID
-         y9UA==
-X-Gm-Message-State: AO0yUKWZkzQmm7PEFQK/UNjh8WGaUmKYMTmjDa9osj+WP+8Z2fGLeis5
-        i1XtyHb2TywUJ5+yP/diJxl6SQ==
-X-Google-Smtp-Source: AK7set9Hpl/z7MnJUp36/maR2mCB6ZRxpD7AZ4o8yJBa0qE4onNKcSgKX+qfcXq4bSTrWQTCW6aKwg==
-X-Received: by 2002:a2e:9682:0:b0:299:aa9d:cea1 with SMTP id q2-20020a2e9682000000b00299aa9dcea1mr736947lji.47.1678976002152;
-        Thu, 16 Mar 2023 07:13:22 -0700 (PDT)
+        bh=N1o/g/RY/F8tw5gI99MfNC1MgutCzKG48oc2MA5z/Ao=;
+        b=qge9aXG4NuMkOVyuPw4jNJ+mE4+wdISQyN8XixPHse/VmGpa9UWM1TopjMxzLssebD
+         ZO5b5rs1pYSmuYt36bLHeaIe+z4kntMIbvqaiTnqMb2B4SoS9Icyai3Vc20u+pAXtWiJ
+         kazbyWZvuHGFe9eAJJM4ynMMjuHjtb5rA4J4DwdK28EZyUiofThpUi/bUPzOg/JVbwt3
+         VQhC7RvfPieYTY6JvOJ0n3XL7tywIab8aHppm/iWQXuJDU2x83rZvFrdqeJ9TiYvZnDa
+         A5SqGr42K2t60drOwQAe6ElVlS58sjvdhVUlbysks/d9y7cB5jGEewAvv1+IyQqk2jna
+         ujkw==
+X-Gm-Message-State: AO0yUKXRGDrvB4VX889pBXUlZfb7WsGCHmTN7eq0E0EZNmQNr/a4xVzr
+        MzbodsZn9nu+huu4FcHQuuKNXA==
+X-Google-Smtp-Source: AK7set/UGvfpSQFBo90NawVNe6QbJ7gg6a+/gN9CBL5rHc7OuxYMSwd/oOp6n4BYEocyNvy2n8HwXA==
+X-Received: by 2002:a2e:be12:0:b0:298:a841:4d0f with SMTP id z18-20020a2ebe12000000b00298a8414d0fmr3091124ljq.52.1678976003979;
+        Thu, 16 Mar 2023 07:13:23 -0700 (PDT)
 Received: from [192.168.1.101] (abyj16.neoplus.adsl.tpnet.pl. [83.9.29.16])
-        by smtp.gmail.com with ESMTPSA id a9-20020a2eb549000000b00295735991edsm1261639ljn.38.2023.03.16.07.13.20
+        by smtp.gmail.com with ESMTPSA id a9-20020a2eb549000000b00295735991edsm1261639ljn.38.2023.03.16.07.13.22
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 16 Mar 2023 07:13:21 -0700 (PDT)
+        Thu, 16 Mar 2023 07:13:23 -0700 (PDT)
 From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-Date:   Thu, 16 Mar 2023 15:13:02 +0100
-Subject: [PATCH v2 13/14] arm64: dts: qcom: sm6375: Introduce C3 power
- state for both ARM clusters
+Date:   Thu, 16 Mar 2023 15:13:03 +0100
+Subject: [PATCH v2 14/14] arm64: dts: qcom: sm6375-pdx225: Add volume down
+ GPIO key
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20230303-topic-sm6375_features0_dts-v2-13-708b8191f7eb@linaro.org>
+Message-Id: <20230303-topic-sm6375_features0_dts-v2-14-708b8191f7eb@linaro.org>
 References: <20230303-topic-sm6375_features0_dts-v2-0-708b8191f7eb@linaro.org>
 In-Reply-To: <20230303-topic-sm6375_features0_dts-v2-0-708b8191f7eb@linaro.org>
 To:     Amit Kucheria <amitk@kernel.org>,
@@ -75,11 +75,11 @@ Cc:     linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
         Marijn Suijten <marijn.suijten@somainline.org>,
         Konrad Dybcio <konrad.dybcio@linaro.org>
 X-Mailer: b4 0.12.1
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1678975978; l=3486;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1678975978; l=1409;
  i=konrad.dybcio@linaro.org; s=20230215; h=from:subject:message-id;
- bh=UTbmkp3WiwW+dRCBFpoWA3Dx76pcDEsLxGUPbgpPkms=;
- b=gCDDJGxaHaFaoA1Q1yXkbwsAPqik9mDAOA4+iE8WuLxR/oTio+6KB2PC3tQdI9UJyw+DXZb3LvG4
- K5XPI6yoDNAX+LCYL+JUhIDEolOtkgHRFO8kob55LXPKT3gv3m4p
+ bh=lUoSxwe6wDxHMv1iTDzFHuYZxKLyt1OMfELUkCo9Rp0=;
+ b=6DAUo0XuzRtK0oppQWVoexEKvP1e3HUzo7m6yHp02zNfdQCZy++x2swjD+iPpuCPGEqXhadgLXw1
+ vUFy4zVZC4oEvOr9UIOEQQso+Cesl5GsmGvY9LDCbFthxOsz9AIm
 X-Developer-Key: i=konrad.dybcio@linaro.org; a=ed25519;
  pk=iclgkYvtl2w05SSXO5EjjSYlhFKsJ+5OSZBjOkQuEms=
 X-Spam-Status: No, score=-0.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -92,110 +92,59 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Introduce the C3 power state, which - to the best of my understanding -
-gates the CPU clock, but does not shut off the power rail.
+Add the required nodes to enable the volume down key on the Sony
+Xperia 10 IV.
 
 Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 ---
- arch/arm64/boot/dts/qcom/sm6375.dtsi | 36 ++++++++++++++++++++++++++++--------
- 1 file changed, 28 insertions(+), 8 deletions(-)
+ .../dts/qcom/sm6375-sony-xperia-murray-pdx225.dts  | 27 ++++++++++++++++++++++
+ 1 file changed, 27 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/qcom/sm6375.dtsi b/arch/arm64/boot/dts/qcom/sm6375.dtsi
-index d9b8c8b921be..bab64034a8d5 100644
---- a/arch/arm64/boot/dts/qcom/sm6375.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm6375.dtsi
-@@ -207,6 +207,16 @@ core7 {
- 		idle-states {
- 			entry-method = "psci";
+diff --git a/arch/arm64/boot/dts/qcom/sm6375-sony-xperia-murray-pdx225.dts b/arch/arm64/boot/dts/qcom/sm6375-sony-xperia-murray-pdx225.dts
+index b691c3834b6b..8220e6f44117 100644
+--- a/arch/arm64/boot/dts/qcom/sm6375-sony-xperia-murray-pdx225.dts
++++ b/arch/arm64/boot/dts/qcom/sm6375-sony-xperia-murray-pdx225.dts
+@@ -46,6 +46,23 @@ framebuffer: framebuffer@85200000 {
+ 		};
+ 	};
  
-+			LITTLE_CPU_SLEEP_0: cpu-sleep-0-0 {
-+				compatible = "arm,idle-state";
-+				idle-state-name = "silver-power-collapse";
-+				arm,psci-suspend-param = <0x40000003>;
-+				entry-latency-us = <549>;
-+				exit-latency-us = <901>;
-+				min-residency-us = <1774>;
-+				local-timer-stop;
-+			};
++	gpio-keys {
++		compatible = "gpio-keys";
++		label = "gpio-keys";
 +
- 			LITTLE_CPU_SLEEP_1: cpu-sleep-0-1 {
- 				compatible = "arm,idle-state";
- 				idle-state-name = "silver-rail-power-collapse";
-@@ -217,6 +227,16 @@ LITTLE_CPU_SLEEP_1: cpu-sleep-0-1 {
- 				local-timer-stop;
- 			};
- 
-+			BIG_CPU_SLEEP_0: cpu-sleep-1-0 {
-+				compatible = "arm,idle-state";
-+				idle-state-name = "gold-power-collapse";
-+				arm,psci-suspend-param = <0x40000003>;
-+				entry-latency-us = <523>;
-+				exit-latency-us = <1244>;
-+				min-residency-us = <2207>;
-+				local-timer-stop;
-+			};
++		pinctrl-0 = <&vol_down_n>;
++		pinctrl-names = "default";
 +
- 			BIG_CPU_SLEEP_1: cpu-sleep-1-1 {
- 				compatible = "arm,idle-state";
- 				idle-state-name = "gold-rail-power-collapse";
-@@ -268,49 +288,49 @@ psci {
- 		CPU_PD0: power-domain-cpu0 {
- 			#power-domain-cells = <0>;
- 			power-domains = <&CLUSTER_PD>;
--			domain-idle-states = <&LITTLE_CPU_SLEEP_1>;
-+			domain-idle-states = <&LITTLE_CPU_SLEEP_0 &LITTLE_CPU_SLEEP_1>;
- 		};
++		key-volume-down {
++			label = "Volume Down";
++			linux,code = <KEY_VOLUMEDOWN>;
++			gpios = <&pmr735a_gpios 1 GPIO_ACTIVE_LOW>;
++			debounce-interval = <15>;
++			linux,can-disable;
++			wakeup-source;
++		};
++	};
++
+ 	reserved-memory {
+ 		cont_splash_mem: memory@85200000 {
+ 			reg = <0 0x85200000 0 0xc00000>;
+@@ -133,6 +150,16 @@ &pmk8350_rtc {
+ 	status = "okay";
+ };
  
- 		CPU_PD1: power-domain-cpu1 {
- 			#power-domain-cells = <0>;
- 			power-domains = <&CLUSTER_PD>;
--			domain-idle-states = <&LITTLE_CPU_SLEEP_1>;
-+			domain-idle-states = <&LITTLE_CPU_SLEEP_0 &LITTLE_CPU_SLEEP_1>;
- 		};
- 
- 		CPU_PD2: power-domain-cpu2 {
- 			#power-domain-cells = <0>;
- 			power-domains = <&CLUSTER_PD>;
--			domain-idle-states = <&LITTLE_CPU_SLEEP_1>;
-+			domain-idle-states = <&LITTLE_CPU_SLEEP_0 &LITTLE_CPU_SLEEP_1>;
- 		};
- 
- 		CPU_PD3: power-domain-cpu3 {
- 			#power-domain-cells = <0>;
- 			power-domains = <&CLUSTER_PD>;
--			domain-idle-states = <&LITTLE_CPU_SLEEP_1>;
-+			domain-idle-states = <&LITTLE_CPU_SLEEP_0 &LITTLE_CPU_SLEEP_1>;
- 		};
- 
- 		CPU_PD4: power-domain-cpu4 {
- 			#power-domain-cells = <0>;
- 			power-domains = <&CLUSTER_PD>;
--			domain-idle-states = <&LITTLE_CPU_SLEEP_1>;
-+			domain-idle-states = <&LITTLE_CPU_SLEEP_0 &LITTLE_CPU_SLEEP_1>;
- 		};
- 
- 		CPU_PD5: power-domain-cpu5 {
- 			#power-domain-cells = <0>;
- 			power-domains = <&CLUSTER_PD>;
--			domain-idle-states = <&LITTLE_CPU_SLEEP_1>;
-+			domain-idle-states = <&LITTLE_CPU_SLEEP_0 &LITTLE_CPU_SLEEP_1>;
- 		};
- 
- 		CPU_PD6: power-domain-cpu6 {
- 			#power-domain-cells = <0>;
- 			power-domains = <&CLUSTER_PD>;
--			domain-idle-states = <&BIG_CPU_SLEEP_1>;
-+			domain-idle-states = <&BIG_CPU_SLEEP_0 &BIG_CPU_SLEEP_1>;
- 		};
- 
- 		CPU_PD7: power-domain-cpu7 {
- 			#power-domain-cells = <0>;
- 			power-domains = <&CLUSTER_PD>;
--			domain-idle-states = <&BIG_CPU_SLEEP_1>;
-+			domain-idle-states = <&BIG_CPU_SLEEP_0 &BIG_CPU_SLEEP_1>;
- 		};
- 
- 		CLUSTER_PD: power-domain-cpu-cluster0 {
++&pmr735a_gpios {
++	vol_down_n: vol-down-n-state {
++		pins = "gpio1";
++		function = "normal";
++		power-source = <1>;
++		bias-pull-up;
++		input-enable;
++	};
++};
++
+ &pon_pwrkey {
+ 	status = "okay";
+ };
 
 -- 
 2.39.2
