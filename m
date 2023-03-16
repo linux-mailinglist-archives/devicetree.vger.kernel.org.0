@@ -2,182 +2,135 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E0B9A6BCB90
-	for <lists+devicetree@lfdr.de>; Thu, 16 Mar 2023 10:54:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DD5186BCBB8
+	for <lists+devicetree@lfdr.de>; Thu, 16 Mar 2023 10:58:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231240AbjCPJyO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Mar 2023 05:54:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58456 "EHLO
+        id S231140AbjCPJ66 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Mar 2023 05:58:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38784 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230508AbjCPJyA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Mar 2023 05:54:00 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 291B5733A4;
-        Thu, 16 Mar 2023 02:53:52 -0700 (PDT)
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: kholk11)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id AE59F660309E;
-        Thu, 16 Mar 2023 09:53:48 +0000 (GMT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1678960429;
-        bh=U016GfVVdnxsip9oeySV3RsjrHt+GbtN8I0vEam86cw=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=D1ZYug/Rc7GC9oaJibLCGVC1ot6HrZSJaaD6dBId+/IevQCU8BtC3krYiV1jYB1vG
-         QntG3e3/vTGxkEjKz92r3TfeVbI0b974DjcPXf4GI2j705nXTtC9lwiOAd2/AnY/F6
-         z0CXJd7cBrVcF76ENARf0NTaYVTa7yGwdM/0MVCXo3vZlYh0D5bvxoNXrF0aymJ3Zb
-         F8uYdm9tAIDz6DQWBRSVg36L9plmJGvA5FyZrNRsHMRHMDyI3PxKybudbJIEiuNwVP
-         V/QFPGh4hL2xHjhAFEFAKBm5yn+8gIYX9WiQd8Y0uE7XWaJ+xmz5ux83Th4WlKzPyS
-         T+JmIMMYGK3Ig==
-Message-ID: <e5ceec9e-d51b-2aeb-1db7-b79b151bd44c@collabora.com>
-Date:   Thu, 16 Mar 2023 10:53:45 +0100
+        with ESMTP id S230244AbjCPJ6s (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Mar 2023 05:58:48 -0400
+Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com [IPv6:2a00:1450:4864:20::52b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A8573769C6
+        for <devicetree@vger.kernel.org>; Thu, 16 Mar 2023 02:58:25 -0700 (PDT)
+Received: by mail-ed1-x52b.google.com with SMTP id x13so5293719edd.1
+        for <devicetree@vger.kernel.org>; Thu, 16 Mar 2023 02:58:25 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1678960704;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=7rGyVHn72S3f+yP1Dpa8iV3gyVbOxOtWl0FDsXatOAo=;
+        b=wotGgL7cieAvnZJI1ayV9RrXnV5X/12AOH5ogveYXgGa4RTFpKtGAdB5mDKcpBO8+D
+         7s9zugMXv9XO4iJWNTddZo58NpTxi4FkZVJwn/6/InkPGE9hc2Zo3n8PdZCc41z/gN+L
+         I0dNoX/+1vJ9MIeb51CJC8m0HBeXhe8KylNjXAw5JrPwgcfMy5FJGIwaW8NLsPOmaxFh
+         suzxwhZmovIFO2X7pDnjfCboClsW+ASPPqV3xMg42Ep4BYR6aAjnRAlCWNQY0kKF+gUj
+         JcXs8ddLMCkHZvP9D0FSskVVRkXal0qqppGP91erVttch6wFrtMzNYB5BDnx6BJKIZgx
+         aP/Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1678960704;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=7rGyVHn72S3f+yP1Dpa8iV3gyVbOxOtWl0FDsXatOAo=;
+        b=5SImmXSUiMntmlQOlzVtGkkdUbvayBRi9/xytObsI1RcOMvm5aNz8yTdU/efW3Vs2v
+         zIPqEWB2wmAUas+o6fbUoZdyuF9ewHBwSO/ztMQubAa3g8sa2SoBIpVl32FUr6fzu2Ik
+         Vg9Mxprl7ZSctxeYm7EhMdG3ceZqSyd3y1TNZ62GyFcW4UUeUuuv8c2wwA3aS64UVDny
+         +rgyVmeBLpZFxazAfvUV+AWMXh06Qng++MGO4z/r4hIXyEoElltl8Qpw7AthzwIJ7p7f
+         ipGcBw7pofNsQBzXw13VrTP6liNx+8iyJTwKoaJfAsQNccDvaExHors1G2Akffk3FA1n
+         RLpw==
+X-Gm-Message-State: AO0yUKVta3gOKJzzG006HZsMy2SHLnDi1el0FvxaZlZqWqo5m8GiNbKY
+        iOoseqFXFkbGGkrPJsPqDB1dOA==
+X-Google-Smtp-Source: AK7set+uFvdmcmTzTE5XT99s0No3h1JbE0DG2UjhiIjcQ+/02A3xmqNlG8+ZhcJq7kpCG02F0bNZag==
+X-Received: by 2002:a17:907:d482:b0:8e5:2a12:8ec0 with SMTP id vj2-20020a170907d48200b008e52a128ec0mr9457794ejc.31.1678960704057;
+        Thu, 16 Mar 2023 02:58:24 -0700 (PDT)
+Received: from ?IPV6:2a02:810d:15c0:828:9827:5f65:8269:a95f? ([2a02:810d:15c0:828:9827:5f65:8269:a95f])
+        by smtp.gmail.com with ESMTPSA id l9-20020a50d6c9000000b004fc649481basm3614242edj.58.2023.03.16.02.58.22
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 16 Mar 2023 02:58:23 -0700 (PDT)
+Message-ID: <d2eda9a8-f532-d7f0-7ef3-b3b8e1a0a79f@linaro.org>
+Date:   Thu, 16 Mar 2023 10:58:22 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.8.0
-Subject: Re: [PATCH v29 1/7] dt-bindings: mediatek: add ethdr definition for
- mt8195
+Subject: Re: [PATCH v7 4/6] dt-bindings: net: Add support StarFive dwmac
 Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        =?UTF-8?B?TmFuY3kgTGluICjmnpfmrKPonqIp?= <Nancy.Lin@mediatek.com>,
-        "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
-        "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
-        "chunkuang.hu@kernel.org" <chunkuang.hu@kernel.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>
-Cc:     "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-mediatek@lists.infradead.org" 
-        <linux-mediatek@lists.infradead.org>,
-        =?UTF-8?B?U2luZ28gQ2hhbmcgKOW8teiIiOWciyk=?= 
-        <Singo.Chang@mediatek.com>,
-        "nathan@kernel.org" <nathan@kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "daniel@ffwll.ch" <daniel@ffwll.ch>,
-        =?UTF-8?B?Q0sgSHUgKOiDoeS/iuWFiSk=?= <ck.hu@mediatek.com>,
-        "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
-        Project_Global_Chrome_Upstream_Group 
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "clang-built-linux@googlegroups.com" 
-        <clang-built-linux@googlegroups.com>,
-        "ndesaulniers@google.com" <ndesaulniers@google.com>
-References: <20221227081011.6426-1-nancy.lin@mediatek.com>
- <20221227081011.6426-2-nancy.lin@mediatek.com>
- <4aff6a7a3b606f26ec793192d9c75774276935e0.camel@mediatek.com>
- <2700bd6c-f00d-fa99-b730-2fcdf89089fa@linaro.org>
- <1d65e8b2de708db18b5f7a0faaa53834e1002d9f.camel@mediatek.com>
- <b04eb48e-c9aa-0404-33ec-bef623b8282f@linaro.org>
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <b04eb48e-c9aa-0404-33ec-bef623b8282f@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+To:     Guo Samin <samin.guo@starfivetech.com>,
+        linux-riscv@lists.infradead.org, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc:     "David S . Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Emil Renner Berthing <kernel@esmil.dk>,
+        Richard Cochran <richardcochran@gmail.com>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Peter Geis <pgwipeout@gmail.com>,
+        Yanhong Wang <yanhong.wang@starfivetech.com>,
+        Tommaso Merciai <tomm.merciai@gmail.com>
+References: <20230316043714.24279-1-samin.guo@starfivetech.com>
+ <20230316043714.24279-5-samin.guo@starfivetech.com>
+ <cfeec762-de75-f90f-7ba1-6c0bd8b70dff@linaro.org>
+ <93a3b4bb-35a4-da7c-6816-21225b42f79b@starfivetech.com>
+ <9038dba0-6f72-44a1-9f57-1c08b03b9c31@linaro.org>
+ <d2bb7fa5-206f-2059-bde0-b65e1acc44de@starfivetech.com>
+ <c716e535-7426-56da-ca6f-51c7d7d69bb3@linaro.org>
+ <b7766151-cf21-a5b4-e0ef-7b070e9e5c33@starfivetech.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <b7766151-cf21-a5b4-e0ef-7b070e9e5c33@starfivetech.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 16/03/23 07:31, Krzysztof Kozlowski ha scritto:
-> On 16/03/2023 07:19, Nancy Lin (林欣螢) wrote:
->> On Wed, 2023-03-15 at 08:16 +0100, Krzysztof Kozlowski wrote:
->>> On 15/03/2023 04:45, Nancy Lin (林欣螢) wrote:
->>>
-
-..snip..
-
+On 16/03/2023 09:28, Guo Samin wrote:
+> 
+> 
+> -------- 原始信息 --------
+> 主题: Re: [PATCH v7 4/6] dt-bindings: net: Add support StarFive dwmac
+> From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> 收件人: Guo Samin <samin.guo@starfivetech.com>, linux-riscv@lists.infradead.org, netdev@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+> 日期: 2023/3/16
+> 
+>> On 16/03/2023 09:15, Guo Samin wrote:
+>>>>>> interrupts: ???
+>>>>>>
+>>>>>
+>>>>> Hi Krzysztof, 
+>>>>>
+>>>>> snps,dwmac.yaml has defined the reg/interrupt/interrupt-names nodes,
+>>>>> and the JH7110 SoC is also applicable.
+>>>>> Maybe just add reg/interrupt/interrupt-names to the required ?
 >>>>
->>>>
->>>> [1].
->>>> Documentation/devicetree/bindings/display/mediatek/mediatek,ethdr.e
->>>> xamp
->>>> le.dtb
->>>> /proj/mtk19347/cros/src/third_party/kernel/v5.10/Documentation/devi
->>>> cetr
->>>> ee/bindings/display/mediatek/mediatek,ethdr.example.dtb:
->>>> hdr-engine@1c114000: mediatek,gce-client-reg:0: [4294967295, 7,
->>>> 16384,
->>>> 4096, 4294967295, 7, 20480, 4096, 4294967295, 7, 28672, 4096,
->>>> 4294967295, 7, 36864, 4096, 4294967295, 7, 40960, 4096, 4294967295,
->>>> 7,
->>>> 45056, 4096, 4294967295, 7, 49152, 4096] is too long
->>>>          From schema:
+>>>> You need to constrain them.
 >>>
->>> This looks like known issue with phandles with variable number of
->>> arguments. Either we add it to the exceptions or just define it in
->>> reduced way like in other cases - only maxItems: 1 without describing
->>> items.
 >>>
-
-...
-
+>>> I see. I will add reg constraints in the next version, thanks.
+>>>
+>>> I have one more question, the interrupts/interrup-names of JH7110 SoC's gmac are exactly the same as snps,dwmac.yaml,
+>>> do these also need to be constrained?
 >>
->> But I have several items for this vendor property in the binding
->> example.
-> 
-> Do you? I thought you have one phandle?
-> 
->> Can I remove maxItems? Change the mediatek,gce-client-reg as [1].
+>> The interrupts on common binding are variable, so you need to constrain
+>> them - you have fixed number of them, right?
 >>
->> [1]
->>    mediatek,gce-client-reg:
->>      $ref: /schemas/types.yaml#/definitions/phandle-array
->>      description: The register of display function block to be set by
->> gce.
->>        There are 4 arguments in this property, gce node, subsys id,
->> offset and
->>        register size. The subsys id is defined in the gce header of each
->> chips
->>        include/dt-bindings/gce/<chip>-gce.h, mapping to the register of
->> display
->>        function block.
+>> Best regards,
+>> Krzysztof
+>>
 > 
-> No, this needs some constraints.
+> Yes, JH7110 fixed is 3 pcs. Thanks, I will constrain them.
 
-Hello Krzysztof, Nancy,
+Then just minItems: 3, maxItems: 3 here should be enough
 
-Since this series has reached v29, can we please reach an agreement on the bindings
-to use here, so that we can get this finally upstreamed?
+Best regards,
+Krzysztof
 
-I will put some examples to try to get this issue resolved.
-
-### Example 1: Constrain the number of GCE entries to *seven* array elements (7x4!)
-
-   mediatek,gce-client-reg:
-     $ref: /schemas/types.yaml#/definitions/phandle-array
-     maxItems: 1
-     description: The register of display function block to be set by gce.
-       There are 4 arguments in this property, gce node, subsys id, offset and
-       register size. The subsys id is defined in the gce header of each chips
-       include/dt-bindings/gce/<chip>-gce.h, mapping to the register of display
-       function block.
-     items:
-       minItems: 28
-       maxItems: 28
-       items:                     <----- this block doesn't seem to get checked :\
-         - description: phandle of GCE
-         - description: GCE subsys id
-         - description: register offset
-         - description: register size
-
-
-### Example 2: Don't care about constraining the number of arguments
-
-   mediatek,gce-client-reg:
-     $ref: /schemas/types.yaml#/definitions/phandle-array
-     maxItems: 1
-     description: The register of display function block to be set by gce.
-       There are 4 arguments in this property, gce node, subsys id, offset and
-       register size. The subsys id is defined in the gce header of each chips
-       include/dt-bindings/gce/<chip>-gce.h, mapping to the register of display
-       function block.
-
-
-Regards,
-Angelo
