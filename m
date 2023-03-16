@@ -2,40 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C68486BC90B
-	for <lists+devicetree@lfdr.de>; Thu, 16 Mar 2023 09:26:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D5B826BC8D4
+	for <lists+devicetree@lfdr.de>; Thu, 16 Mar 2023 09:20:31 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229597AbjCPI0j convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Thu, 16 Mar 2023 04:26:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60562 "EHLO
+        id S229436AbjCPIUa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Mar 2023 04:20:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48632 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229487AbjCPI0i (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Mar 2023 04:26:38 -0400
-Received: from ex01.ufhost.com (ex01.ufhost.com [61.152.239.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BBC5EB4F49;
-        Thu, 16 Mar 2023 01:26:13 -0700 (PDT)
-Received: from EXMBX166.cuchost.com (unknown [175.102.18.54])
-        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-        (Client CN "EXMBX166", Issuer "EXMBX166" (not verified))
-        by ex01.ufhost.com (Postfix) with ESMTP id 8944824E231;
-        Thu, 16 Mar 2023 16:15:09 +0800 (CST)
-Received: from EXMBX162.cuchost.com (172.16.6.72) by EXMBX166.cuchost.com
- (172.16.6.76) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Thu, 16 Mar
- 2023 16:15:09 +0800
-Received: from [192.168.120.42] (171.223.208.138) by EXMBX162.cuchost.com
- (172.16.6.72) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Thu, 16 Mar
- 2023 16:15:08 +0800
-Message-ID: <d2bb7fa5-206f-2059-bde0-b65e1acc44de@starfivetech.com>
-Date:   Thu, 16 Mar 2023 16:15:06 +0800
+        with ESMTP id S229755AbjCPIU3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Mar 2023 04:20:29 -0400
+Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com [IPv6:2a00:1450:4864:20::52a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 259CA23C6F
+        for <devicetree@vger.kernel.org>; Thu, 16 Mar 2023 01:20:08 -0700 (PDT)
+Received: by mail-ed1-x52a.google.com with SMTP id x3so4211977edb.10
+        for <devicetree@vger.kernel.org>; Thu, 16 Mar 2023 01:20:08 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1678954805;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=BynrooWKIxkWeQyg7mnmSJ2ueKqYW94JcoiUOzTY5V4=;
+        b=vkBiUbvG/+vI40uyHOAzlaDtm41eW8cO0hQ5d/d7/CKQOmZ2ZB7RyW9C3bbzIiF4Pi
+         8d0v5MpmyIgLBIrbh/z1TSS1Yd2Ud1QkqtrGdGHS8iZs5DJzIFtnFqsAURZ1JV+JBLND
+         wqrkwPNcwJ0hW6jBrL1HKjACeL+s43lLtaJlV8ND+78p+ZHiQzuhGAr9lr5XCUiKMoHU
+         DvnjMArYvi0rz6Ah/xD22s62iK1DxRsHv0v0QRsvKV+xmm/K52GWYpLoJ+k04GerG650
+         6Id5O6ixn2cmqFWkXAbUMhPPBRqTIH4bs81mhA9aIWHKiRrOF4moQjaepOqyiPV7r1LX
+         Lcqw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1678954805;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=BynrooWKIxkWeQyg7mnmSJ2ueKqYW94JcoiUOzTY5V4=;
+        b=rEnmZKuYv3p/jXXQbKGqWAOoPeENyhhKevypSJbE39Q64Cp/GaWvmgdkEt3Uj4sTBf
+         keqGFWAkAh9smHWpx7Fezwm077pi3sXPosWaQztL7uHnbtMlaGKLsUT5DBOd5sV/rjjs
+         mSAkUk/waallt1A3aIjHwPQfmqy7S4Bp24M3Qlb636V2uJ5IYRqmLPqWxzCQkiUH/i7j
+         MfmW0Ii+FGDHttNE6hbiEKAF2Hyt+DHGyLp06y1c00aC6blWKXNLt4JZS9kWq088u6mK
+         MwyoAJW9eD0ohGneSR/UEFdAHrGVJX6cEGDM9P2zLuQu0DdJltdVuEeGI43AcCIqaVDN
+         HmdQ==
+X-Gm-Message-State: AO0yUKXt1KTwPGgjlY1ESL3eeEyRS5Wz/oTOqvr/GPxkWKORjW/TFv/P
+        9u2yIYJcGU358jFHpQfZWRQFDA==
+X-Google-Smtp-Source: AK7set8dYeIq31oR9827BEvtiAOuEvaOYnqpP/1mG7zuAMx51MqASoiJh2B18rkUSChPrWKIdOuorQ==
+X-Received: by 2002:a17:906:ca02:b0:88a:2e57:9813 with SMTP id jt2-20020a170906ca0200b0088a2e579813mr8973409ejb.33.1678954805151;
+        Thu, 16 Mar 2023 01:20:05 -0700 (PDT)
+Received: from ?IPV6:2a02:810d:15c0:828:9827:5f65:8269:a95f? ([2a02:810d:15c0:828:9827:5f65:8269:a95f])
+        by smtp.gmail.com with ESMTPSA id w11-20020a1709062f8b00b00923bb9f0c36sm3534063eji.127.2023.03.16.01.20.03
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 16 Mar 2023 01:20:04 -0700 (PDT)
+Message-ID: <c716e535-7426-56da-ca6f-51c7d7d69bb3@linaro.org>
+Date:   Thu, 16 Mar 2023 09:20:03 +0100
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.1
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.8.0
 Subject: Re: [PATCH v7 4/6] dt-bindings: net: Add support StarFive dwmac
 Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        <linux-riscv@lists.infradead.org>, <netdev@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-CC:     "David S . Miller" <davem@davemloft.net>,
+To:     Guo Samin <samin.guo@starfivetech.com>,
+        linux-riscv@lists.infradead.org, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc:     "David S . Miller" <davem@davemloft.net>,
         Eric Dumazet <edumazet@google.com>,
         Jakub Kicinski <kuba@kernel.org>,
         Paolo Abeni <pabeni@redhat.com>,
@@ -53,158 +77,42 @@ References: <20230316043714.24279-1-samin.guo@starfivetech.com>
  <cfeec762-de75-f90f-7ba1-6c0bd8b70dff@linaro.org>
  <93a3b4bb-35a4-da7c-6816-21225b42f79b@starfivetech.com>
  <9038dba0-6f72-44a1-9f57-1c08b03b9c31@linaro.org>
-From:   Guo Samin <samin.guo@starfivetech.com>
-In-Reply-To: <9038dba0-6f72-44a1-9f57-1c08b03b9c31@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Originating-IP: [171.223.208.138]
-X-ClientProxiedBy: EXCAS061.cuchost.com (172.16.6.21) To EXMBX162.cuchost.com
- (172.16.6.72)
-X-YovoleRuleAgent: yovoleflag
-Content-Transfer-Encoding: 8BIT
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+ <d2bb7fa5-206f-2059-bde0-b65e1acc44de@starfivetech.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <d2bb7fa5-206f-2059-bde0-b65e1acc44de@starfivetech.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-Re: [PATCH v7 4/6] dt-bindings: net: Add support StarFive dwmac
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-to: Guo Samin <samin.guo@starfivetech.com>, linux-riscv@lists.infradead.org, netdev@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-data: 2023/3/16
-
-> On 16/03/2023 09:02, Guo Samin wrote:
->>
->>
->> -------- 原始信息 --------
->> 主题: Re: [PATCH v7 4/6] dt-bindings: net: Add support StarFive dwmac
->> From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->> 收件人: Samin Guo <samin.guo@starfivetech.com>, linux-riscv@lists.infradead.org, netdev@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
->> 日期: 2023/3/16
->>
->>> On 16/03/2023 05:37, Samin Guo wrote:
->>>> From: Yanhong Wang <yanhong.wang@starfivetech.com>
+On 16/03/2023 09:15, Guo Samin wrote:
+>>>> interrupts: ???
 >>>>
->>>> Add documentation to describe StarFive dwmac driver(GMAC).
->>>>
->>> Thank you for your patch. There is something to discuss/improve.
 >>>
->>>> Signed-off-by: Yanhong Wang <yanhong.wang@starfivetech.com>
->>>> Signed-off-by: Samin Guo <samin.guo@starfivetech.com>
->>>> Tested-by: Tommaso Merciai <tomm.merciai@gmail.com>
->>>> ---
->>>>  .../devicetree/bindings/net/snps,dwmac.yaml   |   1 +
->>>>  .../bindings/net/starfive,jh7110-dwmac.yaml   | 130 ++++++++++++++++++
->>>>  MAINTAINERS                                   |   6 +
->>>>  3 files changed, 137 insertions(+)
->>>>  create mode 100644 Documentation/devicetree/bindings/net/starfive,jh7110-dwmac.yaml
->>>>
->>>> diff --git a/Documentation/devicetree/bindings/net/snps,dwmac.yaml b/Documentation/devicetree/bindings/net/snps,dwmac.yaml
->>>> index e4519cf722ab..245f7d713261 100644
->>>> --- a/Documentation/devicetree/bindings/net/snps,dwmac.yaml
->>>> +++ b/Documentation/devicetree/bindings/net/snps,dwmac.yaml
->>>> @@ -91,6 +91,7 @@ properties:
->>>>          - snps,dwmac-5.20
->>>>          - snps,dwxgmac
->>>>          - snps,dwxgmac-2.10
->>>> +        - starfive,jh7110-dwmac
->>>>  
->>>>    reg:
->>>>      minItems: 1
->>>> diff --git a/Documentation/devicetree/bindings/net/starfive,jh7110-dwmac.yaml b/Documentation/devicetree/bindings/net/starfive,jh7110-dwmac.yaml
->>>> new file mode 100644
->>>> index 000000000000..b59e6bd8201f
->>>> --- /dev/null
->>>> +++ b/Documentation/devicetree/bindings/net/starfive,jh7110-dwmac.yaml
->>>> @@ -0,0 +1,130 @@
->>>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->>>> +# Copyright (C) 2022 StarFive Technology Co., Ltd.
->>>> +%YAML 1.2
->>>> +---
->>>> +$id: http://devicetree.org/schemas/net/starfive,jh7110-dwmac.yaml#
->>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->>>> +
->>>> +title: StarFive JH7110 DWMAC glue layer
->>>> +
->>>> +maintainers:
->>>> +  - Emil Renner Berthing <kernel@esmil.dk>
->>>> +  - Samin Guo <samin.guo@starfivetech.com>
->>>> +
->>>> +select:
->>>> +  properties:
->>>> +    compatible:
->>>> +      contains:
->>>> +        enum:
->>>> +          - starfive,jh7110-dwmac
->>>> +  required:
->>>> +    - compatible
->>>> +
->>>> +properties:
->>>> +  compatible:
->>>> +    items:
->>>> +      - enum:
->>>> +          - starfive,jh7110-dwmac
->>>> +      - const: snps,dwmac-5.20
->>>> +
+>>> Hi Krzysztof, 
 >>>
->>> reg:
->>>   maxItems: 1
+>>> snps,dwmac.yaml has defined the reg/interrupt/interrupt-names nodes,
+>>> and the JH7110 SoC is also applicable.
+>>> Maybe just add reg/interrupt/interrupt-names to the required ?
 >>
->>>
->>>> +  clocks:
->>>> +    items:
->>>> +      - description: GMAC main clock
->>>> +      - description: GMAC AHB clock
->>>> +      - description: PTP clock
->>>> +      - description: TX clock
->>>> +      - description: GTX clock
->>>> +
->>>> +  clock-names:
->>>> +    items:
->>>> +      - const: stmmaceth
->>>> +      - const: pclk
->>>> +      - const: ptp_ref
->>>> +      - const: tx
->>>> +      - const: gtx
->>>> +
->>>
->>> interrupts: ???
->>>
->>
->> Hi Krzysztof, 
->>
->> snps,dwmac.yaml has defined the reg/interrupt/interrupt-names nodes,
->> and the JH7110 SoC is also applicable.
->> Maybe just add reg/interrupt/interrupt-names to the required ?
+>> You need to constrain them.
 > 
-> You need to constrain them.
+> 
+> I see. I will add reg constraints in the next version, thanks.
+> 
+> I have one more question, the interrupts/interrup-names of JH7110 SoC's gmac are exactly the same as snps,dwmac.yaml,
+> do these also need to be constrained?
 
-
-I see. I will add reg constraints in the next version, thanks.
-
-I have one more question, the interrupts/interrup-names of JH7110 SoC's gmac are exactly the same as snps,dwmac.yaml,
-do these also need to be constrained?
-
+The interrupts on common binding are variable, so you need to constrain
+them - you have fixed number of them, right?
 
 Best regards,
-Samin
-> 
->>
->>
->>   required:
->>     - compatible
->> +   - reg
->>     - clocks
->>     - clock-names
->> +   - interrupts
->> +   - interrupt-names
->>     - resets
->>     - reset-names
-> Best regards,
-> Krzysztof
-> 
-
+Krzysztof
 
