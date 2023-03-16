@@ -2,184 +2,151 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AD4A76BD947
-	for <lists+devicetree@lfdr.de>; Thu, 16 Mar 2023 20:34:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4494C6BD95C
+	for <lists+devicetree@lfdr.de>; Thu, 16 Mar 2023 20:36:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230306AbjCPTeM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Mar 2023 15:34:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36310 "EHLO
+        id S230350AbjCPTgc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Mar 2023 15:36:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39988 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230220AbjCPTeK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Mar 2023 15:34:10 -0400
-Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com [IPv6:2a00:1450:4864:20::52b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 530BA2822D
-        for <devicetree@vger.kernel.org>; Thu, 16 Mar 2023 12:34:08 -0700 (PDT)
-Received: by mail-ed1-x52b.google.com with SMTP id eg48so11810388edb.13
-        for <devicetree@vger.kernel.org>; Thu, 16 Mar 2023 12:34:08 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1678995247;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=dyciw28w72xcQW9mQh3xwrk42HtEkqAkTnLwxCjUt1I=;
-        b=jDqdnQW7R9aFerJ6wrorsKPfOTU+aKBneRLhQVGtss9S/T+e8qLZ/WtyuHSPazKXlP
-         LCLGXb1WbkdfS45+Npn8Nl0lKy1f84TjB4kQ8fy8EG/c9bwDun7ozcmubXSESQemTOzR
-         h8ULyf3hwJtSIEP97mfo4O9wZyhKn/gZHDHoI73gViztzppizQXDBT5AYu0sxRRhDv2q
-         IdGW3c8psvYjfBnse59HncFk0Bvr7+ObRp+8rLhKCLJvqQ4DEiqoJKstGX1bawSQZWwv
-         1x7GY5SqbwcSUNZLLvaSUufn5E40ozOsYJj5tvPI70FDX6AEWkCBsACJUm/YtG/2Tirl
-         iSIw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678995247;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=dyciw28w72xcQW9mQh3xwrk42HtEkqAkTnLwxCjUt1I=;
-        b=UKlYlRk8Ox2BkgSmP7pGhGGUze00aHMSoNhj61KT6QnoEyIIpbFXwPbq2VDqM0noZi
-         n1HXjt8oBUfPp59+P7AGXgyEL8Hk8LikEvLOnxLJuUUKUQOVBO6SlSVdN5x6xcwm5f07
-         5kXDEpz7QE/y0GAugEMeLGa2T2VvcWyH6L7DmBpQJVauuU3ipNXaRV08j8VoSUC77cPT
-         OSoygpv/SHuClEGzW2J1D8X+pXs8uz9mGBE3M9cgd/StIkrBjD9CyTe0L+aleuZXJrsO
-         /bGEnKLwFjILgiRNPk5/RKCLjnwBWkYI7LBeZP3d6kuk0njViX73PhPE2ws6RuJaGPZ8
-         koag==
-X-Gm-Message-State: AO0yUKW0wW3eiXlDxFC0VEnuNAzSYJu15irpy8PCKCwOIdB2MS6MwSv9
-        oOCiAM7TnRJ0DIR+KOXdyr9XoA==
-X-Google-Smtp-Source: AK7set/v1W7Ns5+ZlsqTjhJvhjWCh0bXOH6bccxxSpksf19UNwSeZsMDyZ3fw5BSDUUO2F7XNaAskg==
-X-Received: by 2002:a17:906:cc54:b0:884:37fd:bf4c with SMTP id mm20-20020a170906cc5400b0088437fdbf4cmr11914784ejb.19.1678995246860;
-        Thu, 16 Mar 2023 12:34:06 -0700 (PDT)
-Received: from ?IPV6:2a02:810d:15c0:828:9827:5f65:8269:a95f? ([2a02:810d:15c0:828:9827:5f65:8269:a95f])
-        by smtp.gmail.com with ESMTPSA id r5-20020a1709064d0500b00923f05b2931sm16291eju.118.2023.03.16.12.34.05
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 16 Mar 2023 12:34:06 -0700 (PDT)
-Message-ID: <7424bab4-6a92-7d71-b110-454819101678@linaro.org>
-Date:   Thu, 16 Mar 2023 20:34:05 +0100
+        with ESMTP id S230346AbjCPTg2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Mar 2023 15:36:28 -0400
+Received: from NAM11-CO1-obe.outbound.protection.outlook.com (mail-co1nam11olkn2075.outbound.protection.outlook.com [40.92.18.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0350097B53;
+        Thu, 16 Mar 2023 12:36:26 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=NZUpKaxFQcNhgql83gRb/MqGxZtt7QaGN9ZZmvLRV+2dhqO0Ag91extUx4HpjWIqZZbR8my4f6a0IGIKjG3QM+FMjBn32WQs/+wEJCDiPcvNIWsMaqPzpHeak4gSp/E9IpgZ/R8LBR9vpIQCmUpfMFhGGSqNur6c1A0wkaR8HPv2us+C2Bpemjwuaq2oFm3sWyoR96j+e5XZXobJ6uz71XEJ7CMV0va2mmpYt2P8QkohaHngbCg8DDCR5hisVffog4kk8P7gIRQTkC0XHmFiRWCCxz4HDZyX5s6gUXQ3HQw0G9jSm9jgOvsSwMkLIRcQPp1RqsiH59Dae2haQ9dcsw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=LygNJWXcUFxLmYWWBC3zyPrXiNSEmS0bSK9YpVFjiAc=;
+ b=kK70rjEAD0bu0jkR25YziIB4PxfHGz4urTFPspOv6AvU9V3f9bTHxU4dFqEcAMl9DTKVt6HcmN+GEdyBeZ7Vq6jZhS3FncOQD/LfkmRBDx0mXQ1n/RrYbdffNCLigDl47BDwmUQOAYogOFbEkBYf6JSAeoa/e3w+iZ1Mn+L9Uhn/E85JQvnrcT2y08WFzSQrAkcFN2DD9SUFzOQUOF9QxC5BBSWicJvTs52Xz06hoDkvXLyoXr6YgdYM43rEWjBJgT4jnlO6oilTcY2xj1oIWhZ9dHfGOLba3GW8PkriqcM5jF18b23G8XeP50T2PZKG2o3HpnJ26QiclF54xckihQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
+ dkim=none; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=hotmail.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=LygNJWXcUFxLmYWWBC3zyPrXiNSEmS0bSK9YpVFjiAc=;
+ b=vPb31rEhYsFOdO/j/P9+2Ucik9NyXACinfNnsYB4tf3IyjlFeDcGAra70hyTYPzu+/NkYBnIIxig37bo2jpi/oAFfL0GXsjQsWtusdpLJSZBsRmazsh4PGpRl40zycHZ0UWJRmDvUpZ8tfNuSklmWTv/LjCSm+vm9RTe9dKean+vnhqLlbYZdziAb3+dR6xoA6HC9453+iGGba6VR7g+LlP/kPBjhJ/04ZhXbL71eiLREpqB5oZsVq49GNaZZjRp1rIkQ9ypkjkbu8hmdKlvTiG/n72zubi1bank8USTRUAboApkgzfyXtmGs2y6OayA/0g+/Am9qfhrOeZ+HeYEFg==
+Received: from SN6PR06MB5342.namprd06.prod.outlook.com (2603:10b6:805:f9::31)
+ by MWHPR06MB2813.namprd06.prod.outlook.com (2603:10b6:300:11f::18) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6178.29; Thu, 16 Mar
+ 2023 19:36:23 +0000
+Received: from SN6PR06MB5342.namprd06.prod.outlook.com
+ ([fe80::1ba2:9d51:aaa6:2f4a]) by SN6PR06MB5342.namprd06.prod.outlook.com
+ ([fe80::1ba2:9d51:aaa6:2f4a%6]) with mapi id 15.20.6178.029; Thu, 16 Mar 2023
+ 19:36:23 +0000
+Date:   Thu, 16 Mar 2023 14:36:19 -0500
+From:   Chris Morgan <macromorgan@hotmail.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Chris Morgan <macroalpha82@gmail.com>,
+        linux-bluetooth@vger.kernel.org,
+        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+        alistair@alistair23.me, anarsoul@gmail.com, luiz.dentz@gmail.com,
+        johan.hedberg@gmail.com, marcel@holtmann.org, heiko@sntech.de,
+        krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org
+Subject: Re: [PATCH 1/3 V5] dt-bindings: net: realtek-bluetooth: Add RTL8821CS
+Message-ID: <SN6PR06MB53428BC8A46EE990EED72DACA5BC9@SN6PR06MB5342.namprd06.prod.outlook.com>
+References: <20230315173657.28692-1-macroalpha82@gmail.com>
+ <20230315173657.28692-2-macroalpha82@gmail.com>
+ <66c41be5-eeeb-9b3c-9bf1-414e03118578@linaro.org>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <66c41be5-eeeb-9b3c-9bf1-414e03118578@linaro.org>
+X-TMN:  [vGPCowReQi6XfPmuDN5OK94yssmcVn1F]
+X-ClientProxiedBy: SA0PR11CA0036.namprd11.prod.outlook.com
+ (2603:10b6:806:d0::11) To SN6PR06MB5342.namprd06.prod.outlook.com
+ (2603:10b6:805:f9::31)
+X-Microsoft-Original-Message-ID: <ZBNvs/TMnn0kYl/i@wintermute.localhost.fail>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.0
-Subject: Re: [PATCH 1/3] dt-bindings: clock: qcom: Add bindings for videocc on
- SM8450
-Content-Language: en-US
-To:     Taniya Das <quic_tdas@quicinc.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andy Gross <agross@kernel.org>
-Cc:     Bjorn Andersson <andersson@kernel.org>,
-        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        quic_skakitap@quicinc.com, quic_jkona@quicinc.com
-References: <20230316083049.29979-1-quic_tdas@quicinc.com>
- <20230316083049.29979-2-quic_tdas@quicinc.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230316083049.29979-2-quic_tdas@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+X-MS-Exchange-MessageSentRepresentingType: 1
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SN6PR06MB5342:EE_|MWHPR06MB2813:EE_
+X-MS-Office365-Filtering-Correlation-Id: 7c5f9173-5f62-4162-1f42-08db2655b99f
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 6qQGtTLaQFt5ledYKE+4nRbPZ2rz3rPpmOF18yxKLIkNMoEmd+rXv1rd8ieXzadzpWssEb/11+k6N+4kpYZqLndYMRAI0qz7wrcFvaX85kzTcnPW9/vWUzCK4CaTn2XSwwiPzLBBsW4Wdn6IF1NmokVd4o+D0MfQD5Ton156DBA10siplieYIjS98yKi+iLwrXldnk0KSjbCA2fhRRO08Dfy1YP/uDtg+n53ysqIYuxsB2gcwrf/JBFD+H3g1iNdJDZNlbzTGCx4DUxkmZ8SknsTHc5ZBeOi5+7mvgzOY+vK5MRnLs+3YSTegPWJjTWe8/TUg6hLhZ1lKcMhoprFE6t5HWg21ibzc6gR0xvWtCQDGY1ECSxw+rSICphzhqf+JHm/YBNkU1BL7oLHmZ93qZFlEa/IX5jhVqWd0fAIewZyydQvf9PQGo1yhf6egb8ZSlZlIVY4PS8tO6T0Zou4XlKyOChLOlRGFsw/kuwYE9pI6gWi221Gj8fcRy3tCTuTEbACWRNqW7o5FzzCQR3Co1JL6gb7SNJw/etS6wKOFT2KUpCDb2GnkvgaaRZXClvY1XUfZBqFEKEiD4oEbFi6rrRsd8KCIGIyfFqYxLxUlk1OLqNOy2DLszkGon8uTxsS
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?uxi9hUI9n5Y9ZhhuawBKPfMSUgNN6cHz9Bi0avKvr5kzzKraX45IMi54z7ZN?=
+ =?us-ascii?Q?X+uZoVl6U08Zrwdkg2kGEEHp7wDEL5fiu72w2kn/NdJkrnfROn98hKWvoCBk?=
+ =?us-ascii?Q?rdcCx+WqlEk7fkqpSsl5v7Q6oBaneHjL/xw05ZpIiNvh4zBK+dPz+ina2rX0?=
+ =?us-ascii?Q?lwFSYNH9kqLk1IEV5rCYqSnXIi77cfrDQrPj/XmaNnyA89dmOjvY9oS9gHda?=
+ =?us-ascii?Q?sGB5W4Tht70EcZesUKfzSWK7VOa34hZcy6nEpQSdGeO4TsClCmXjqHJKcueg?=
+ =?us-ascii?Q?vE/sXJCzaMyGA1WkcUZthyBkycG8P4cJbdZyAOKTWkfI9r6p+hZ/z+0NplAT?=
+ =?us-ascii?Q?6V5QyXMOKRdiGn8pTI4v1P0Ev18+u7J13mdUWPbovga88nOz60/2ODeYuLCB?=
+ =?us-ascii?Q?J5/JZKEq67P+eFt3/4EEyxsf9sp/7n+ImWo9QP9vkwMPDWxfUpLI9jUem+Uk?=
+ =?us-ascii?Q?tc+tfRKEKMLjGhAxCERyU7Dyc4L9ZhIpNg8e53HSYmjirMHe2ZY6TnSdyfla?=
+ =?us-ascii?Q?nBd4b66QQ8tuSTKVZFbRbjLjzOlqbe0HiVmf3mO1cuHwqgMFULQwXTVVAjCA?=
+ =?us-ascii?Q?QJq3kzPnmv0BUS+3xepMjkRkX7DPo1zOAM/CAPorYxV4NOph+gNeZQzpMJxU?=
+ =?us-ascii?Q?+6cjINxWOeP9IGKrKohEuBPqeDAscSBcthBL9TKsg9zboXOWia/iLeFGbUBT?=
+ =?us-ascii?Q?yG0/ciS6TfyPVZf2uUEXpURQq7b4YmJmNSmqrf9dIB4RArvB7BnK+g9vhy8m?=
+ =?us-ascii?Q?4EJlYLXP6lfMbx3v3+QjRPvvtdvMeNylYcqBo17VqmkdYkHyb9is7d1ZPfvX?=
+ =?us-ascii?Q?/iuattuoBKHMm4pMbbTnGg0DletT5hRen7TlksHS0LwLPVCR7N2zOrnUIVEf?=
+ =?us-ascii?Q?BZhYBtCIliXhq9MndqPTmkHSdw+S1zb4GP8p6aDyrmtBTpbOyUmk4HWPVwp6?=
+ =?us-ascii?Q?ZCV5vlbm2A+IjFIss9GMeasVr+vX9tzmFVVQY63zFy1IT9N1vNgr7HPchSfY?=
+ =?us-ascii?Q?luLvAOqSdYuMdaQvs6XrlVG+bO99Ynlt/NuevU6FR9pjxALxFl5m0HJAZd3Q?=
+ =?us-ascii?Q?auhtqhdl7UQ9Aql2mLXw/4bSTrgjVBrR71QD4VGQ/Z5AgPH4oMlRtQW+DEtK?=
+ =?us-ascii?Q?hxnvaSZskT9Sn7KDzrMAyf65V/rUoQst8lYSSnsrIBxIcVZw7MV1aq/v2DIy?=
+ =?us-ascii?Q?RWHwSg8uZeL/101SR1L0DzP4j1oupc704mW4wO5nq8Im2AjKRsGGg739rZKF?=
+ =?us-ascii?Q?12nCo+c08KzgPWFopk7H2p/DNTSJXeOvva4bWZf+rQ=3D=3D?=
+X-OriginatorOrg: sct-15-20-4755-11-msonline-outlook-89723.templateTenant
+X-MS-Exchange-CrossTenant-Network-Message-Id: 7c5f9173-5f62-4162-1f42-08db2655b99f
+X-MS-Exchange-CrossTenant-AuthSource: SN6PR06MB5342.namprd06.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Mar 2023 19:36:23.7126
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg: 00000000-0000-0000-0000-000000000000
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MWHPR06MB2813
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 16/03/2023 09:30, Taniya Das wrote:
-> Add device tree bindings for the video clock controller on Qualcomm
-> SM8450 platform.
+On Thu, Mar 16, 2023 at 08:55:13AM +0100, Krzysztof Kozlowski wrote:
+> On 15/03/2023 18:36, Chris Morgan wrote:
+> > From: Chris Morgan <macromorgan@hotmail.com>
+> > 
+> > Add compatible string for RTL8821CS for existing Realtek Bluetooth
+> > driver.
+> > 
+> > Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
+> > ---
+> >  .../bindings/net/realtek-bluetooth.yaml       | 24 ++++++++++++-------
+> >  1 file changed, 15 insertions(+), 9 deletions(-)
+> > 
+> 
+> This is a friendly reminder during the review process.
+> 
+> It looks like you received a tag and forgot to add it.
 
-Subject: drop second/last, redundant "bindings for". The "dt-bindings"
-prefix is already stating that these are bindings.
+I removed it on purpose and noted it in the cover letter because I
+changed the bindings. I apologize if that's not correct.
+
+I changed the fallback from "realtek,rtl8822cs-bt" to
+"realtek,rtl8723bs-bt". From the driver perspective that causes it to
+disable runtime power management, but otherwise it's identical to V4.
+
+Thank you.
 
 > 
-> Signed-off-by: Taniya Das <quic_tdas@quicinc.com>
-> ---
->  .../bindings/clock/qcom,sm8450-videocc.yaml   | 84 +++++++++++++++++++
->  .../dt-bindings/clock/qcom,videocc-sm8450.h   | 38 +++++++++
->  2 files changed, 122 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/clock/qcom,sm8450-videocc.yaml
->  create mode 100644 include/dt-bindings/clock/qcom,videocc-sm8450.h
+> If you do not know the process, here is a short explanation:
+> Please add Acked-by/Reviewed-by/Tested-by tags when posting new
+> versions. However, there's no need to repost patches *only* to add the
+> tags. The upstream maintainer will do that for acks received on the
+> version they apply.
 > 
-> diff --git a/Documentation/devicetree/bindings/clock/qcom,sm8450-videocc.yaml b/Documentation/devicetree/bindings/clock/qcom,sm8450-videocc.yaml
-> new file mode 100644
-> index 000000000000..909da704c123
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/clock/qcom,sm8450-videocc.yaml
-> @@ -0,0 +1,84 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/clock/qcom,sm8450-videocc.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Qualcomm Video Clock & Reset Controller on SM8450
-> +
-> +maintainers:
-> +  - Taniya Das <quic_tdas@quicinc.com>
-> +
-> +description: |
-> +  Qualcomm video clock control module provides the clocks, resets and power
-> +  domains on SM8450.
-> +
-> +  See also:: include/dt-bindings/clock/qcom,videocc-sm8450.h
-> +
-> +properties:
-> +  compatible:
-> +    const: qcom,sm8450-videocc
-> +
-> +  clocks:
-> +    items:
-> +      - description: Video AHB clock from GCC
-> +      - description: Board XO source
-> +
-> +  clock-names:
-> +    items:
-> +      - const: iface
-> +      - const: bi_tcxo
-> +
-> +  power-domains:
-> +    maxItems: 1
-> +    description:
-> +      A phandle and PM domain specifier for the MMCX power domain.
-
-Drop "A phandle and PM domain specifier for the"
-
-> +
-> +  required-opps:
-> +    maxItems: 1
-> +    description:
-> +      A phandle to an OPP node describing required MMCX performance point.
-> +
-> +  '#clock-cells':
-> +    const: 1
-> +
-> +  '#reset-cells':
-> +    const: 1
-> +
-> +  '#power-domain-cells':
-> +    const: 1
-> +
-> +  reg:
-> +    maxItems: 1
-
-That's a unusual ordering. Either order elements by name or use some
-custom order... but then reg is always second property.
-
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - clocks
-> +  - clock-names
-> +  - power-domains
-> +  - required-opps
-> +  - '#clock-cells'
-> +  - '#reset-cells'
-> +  - '#power-domain-cells'
-
-And keep same order in required.
-
-> +
-> +additionalProperties: false
-
-
-Best regards,
-Krzysztof
-
+> https://elixir.bootlin.com/linux/v5.17/source/Documentation/process/submitting-patches.rst#L540
+> 
+> If a tag was not added on purpose, please state why and what changed.
+> 
+> 
+> Best regards,
+> Krzysztof
+> 
