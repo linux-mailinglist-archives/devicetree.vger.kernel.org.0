@@ -2,75 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F39976BDA38
-	for <lists+devicetree@lfdr.de>; Thu, 16 Mar 2023 21:34:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DC50E6BDA4B
+	for <lists+devicetree@lfdr.de>; Thu, 16 Mar 2023 21:40:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230284AbjCPUei (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Mar 2023 16:34:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41576 "EHLO
+        id S229639AbjCPUkn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Mar 2023 16:40:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48438 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230139AbjCPUef (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Mar 2023 16:34:35 -0400
-Received: from mail-io1-f53.google.com (mail-io1-f53.google.com [209.85.166.53])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 25FF426C3C;
-        Thu, 16 Mar 2023 13:34:21 -0700 (PDT)
-Received: by mail-io1-f53.google.com with SMTP id s4so1359186ioj.11;
-        Thu, 16 Mar 2023 13:34:21 -0700 (PDT)
+        with ESMTP id S229581AbjCPUkm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Mar 2023 16:40:42 -0400
+Received: from mail-il1-f171.google.com (mail-il1-f171.google.com [209.85.166.171])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4528DD58BF;
+        Thu, 16 Mar 2023 13:40:41 -0700 (PDT)
+Received: by mail-il1-f171.google.com with SMTP id h5so1677734ile.13;
+        Thu, 16 Mar 2023 13:40:41 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678998860;
+        d=1e100.net; s=20210112; t=1678999240;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=7CYbM47sU5ai4TXEql000Ah99D8S1/cVmeQxmiAsqhs=;
-        b=d6o8KRbRGgUKwJryRq6B7MVsOiSXjD6THITo3k0KK0P7oVyv+Cutma5r1IegYxBaRV
-         SFQcOSYUVYO4G+oxCeq8kl51+PkDPOD0ibd0BKNthpKM2oRokUIKqYQMMV6bq9oMDzIJ
-         uwn0FMhfhVD+n1r1Fe4d5FCdL1BSkHGQvZ4pqtuQA4Qi8DRlVJydwfutB4F6LDP9v5Ly
-         JN3ss3JvzOXX3PcfT5xN2uzpu6AZfN5HXSiZO3Pwi8OsvjtBdjTu0O/3LbdbEI7weYsL
-         jXQRNfwA8/1ULtr3Mi2uW/D0w1SKqsCcE0Rb1NUg2fYDH5FnnkzNThQN175KrQNTOncN
-         cfMw==
-X-Gm-Message-State: AO0yUKUIy+SHWERcwduhCdAb+g9/cGm8OuRjo3k42C+nTr/g3PL5PG/g
-        Dlv0smXUiQJrVRs0LkuNdQ==
-X-Google-Smtp-Source: AK7set95htVCepu2fkqTuH63ymkWubjwHz01woOvMx5gt6cqqYiqMELyvuyd4SP0vC6lmQKNMoI68A==
-X-Received: by 2002:a5d:980e:0:b0:74c:8b56:42bb with SMTP id a14-20020a5d980e000000b0074c8b5642bbmr102686iol.8.1678998860080;
-        Thu, 16 Mar 2023 13:34:20 -0700 (PDT)
+        bh=D2MOq1ae2jmvldoEjIFleYkdU8muYIA0Owxizbdn6tU=;
+        b=4rTp/gOpoCl3PFWORQnZ2F9WObJJ9Ft6PdpNi212uI24YmJl5EPz0u8YlpLTaCTfsk
+         v9baAN/HoNmKslRHimc2jenMJDr1RGCVnUsOXkjmR5tfRLZ3av23a/U7/T/WySRsnf5U
+         IzXG5S5UjNRqs0Min7YzdtXx+5KAD0cV4FFJgrXemOuNSFTpZ9EL++LPIwxnsXXGhRC3
+         S2QQzQuqsqzw9/pTTMHNJYACR/cmomfhqn6MfzsH4jIG5dIzmqErKhmHdo7kR0RywAdL
+         bIXfix6catMWXKICn2TTEKFyI2Q3O5RHXfFD8q4RVIjXvEre9xZ8a5l/xqxRQcTYjjNh
+         9Qfg==
+X-Gm-Message-State: AO0yUKUF23QucrG0EqPJN7ZummLuE7qOV8fbm4Te7Y6u5s92m+mH/NHI
+        OE01LxLlTlLKUk/vtxuByQ==
+X-Google-Smtp-Source: AK7set9VGmL4NQP8ptL/AQeYRXFeHQSoAkCWC9EhuNamHjr8AzWdzLTX5M2cZtySvCE9EkSC6peA6w==
+X-Received: by 2002:a92:d090:0:b0:317:99d0:8ad1 with SMTP id h16-20020a92d090000000b0031799d08ad1mr8619161ilh.21.1678999239994;
+        Thu, 16 Mar 2023 13:40:39 -0700 (PDT)
 Received: from robh_at_kernel.org ([64.188.179.249])
-        by smtp.gmail.com with ESMTPSA id q15-20020a6bf20f000000b00704608527d1sm43269ioh.37.2023.03.16.13.34.17
+        by smtp.gmail.com with ESMTPSA id m21-20020a0566380dd500b003eac69029e5sm81952jaj.79.2023.03.16.13.40.38
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 16 Mar 2023 13:34:19 -0700 (PDT)
-Received: (nullmailer pid 3837822 invoked by uid 1000);
-        Thu, 16 Mar 2023 20:34:17 -0000
-Date:   Thu, 16 Mar 2023 15:34:17 -0500
+        Thu, 16 Mar 2023 13:40:39 -0700 (PDT)
+Received: (nullmailer pid 3845579 invoked by uid 1000);
+        Thu, 16 Mar 2023 20:40:37 -0000
+Date:   Thu, 16 Mar 2023 15:40:37 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Cristian Ciocaltea <cristian.ciocaltea@collabora.com>,
-        Stephen Boyd <sboyd@kernel.org>
-Cc:     Sudeep Holla <sudeep.holla@arm.com>,
-        Cristian Marussi <cristian.marussi@arm.com>,
+To:     Serge Semin <fancer.lancer@gmail.com>
+Cc:     Serge Semin <Sergey.Semin@baikalelectronics.ru>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Nicolas Frattaroli <frattaroli.nicolas@gmail.com>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Daniel Drake <drake@endlessm.com>,
-        Katsuhiro Suzuki <katsuhiro@katsuster.net>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org,
-        alsa-devel@alsa-project.org, linux-rockchip@lists.infradead.org,
-        linux-riscv@lists.infradead.org, kernel@collabora.com
-Subject: Re: [PATCH 01/11] dt-bindings: firmware: arm,scmi: Document
- assigned-clocks and assigned-clock-rates
-Message-ID: <20230316203417.GA3833267-robh@kernel.org>
-References: <20230315114806.3819515-1-cristian.ciocaltea@collabora.com>
- <20230315114806.3819515-2-cristian.ciocaltea@collabora.com>
+        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
+        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Jose Abreu <joabreu@synopsys.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Eric Dumazet <edumazet@google.com>,
+        Biao Huang <biao.huang@mediatek.com>, netdev@vger.kernel.org,
+        Christian Marangi <ansuelsmth@gmail.com>,
+        Yang Yingliang <yangyingliang@huawei.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Richard Cochran <richardcochran@gmail.com>,
+        linux-arm-kernel@lists.infradead.org,
+        linux-stm32@st-md-mailman.stormreply.com
+Subject: Re: [PATCH net-next 01/16] dt-bindings: net: dwmac: Validate PBL for
+ all IP-cores
+Message-ID: <20230316204037.GA3844212-robh@kernel.org>
+References: <20230313225103.30512-1-Sergey.Semin@baikalelectronics.ru>
+ <20230313225103.30512-2-Sergey.Semin@baikalelectronics.ru>
+ <167880254800.26004.7037306365469081272.robh@kernel.org>
+ <20230314150657.ytgyegi7qlwao6px@mobilestation>
+ <20230314170945.6yow2i5z4jdubwgt@mobilestation>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230315114806.3819515-2-cristian.ciocaltea@collabora.com>
+In-Reply-To: <20230314170945.6yow2i5z4jdubwgt@mobilestation>
 X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
         HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
@@ -81,17 +83,58 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-+Stephen
-
-On Wed, Mar 15, 2023 at 01:47:56PM +0200, Cristian Ciocaltea wrote:
-> Since commit df4fdd0db475 ("dt-bindings: firmware: arm,scmi: Restrict
-> protocol child node properties") the following dtbs_check warning is
-> shown:
+On Tue, Mar 14, 2023 at 08:09:45PM +0300, Serge Semin wrote:
+> On Tue, Mar 14, 2023 at 06:07:01PM +0300, Serge Semin wrote:
+> > On Tue, Mar 14, 2023 at 09:10:19AM -0500, Rob Herring wrote:
+> > > 
+> > > On Tue, 14 Mar 2023 01:50:48 +0300, Serge Semin wrote:
+> > > > Indeed the maximum DMA burst length can be programmed not only for DW
+> > > > xGMACs, Allwinner EMACs and Spear SoC GMAC, but in accordance with [1]
+> > > > for Generic DW *MAC IP-cores. Moreover the STMMAC set of drivers parse
+> > > > the property and then apply the configuration for all supported DW MAC
+> > > > devices. All of that makes the property being available for all IP-cores
+> > > > the bindings supports. Let's make sure the PBL-related properties are
+> > > > validated for all of them by the common DW MAC DT schema.
+> > > > 
+> > > > [1] DesignWare Cores Ethernet MAC Universal Databook, Revision 3.73a,
+> > > >     October 2013, p. 380.
+> > > > 
+> > > > Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
+> > > > Reviewed-by: Rob Herring <robh@kernel.org>
+> > > > 
+> > > > ---
+> > > > 
+> > > > Changelog v1:
+> > > > - Use correct syntax of the JSON pointers, so the later would begin
+> > > >   with a '/' after the '#'.
+> > > > ---
+> > > >  .../devicetree/bindings/net/snps,dwmac.yaml   | 77 +++++++------------
+> > > >  1 file changed, 26 insertions(+), 51 deletions(-)
+> > > > 
+> > > 
+> > > My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+> > > on your patch (DT_CHECKER_FLAGS is new in v5.13):
+> > > 
+> > > yamllint warnings/errors:
+> > > 
+> > > dtschema/dtc warnings/errors:
+> > > /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/mediatek-dwmac.example.dtb: ethernet@1101c000: snps,txpbl:0:0: 1 is not one of [2, 4, 8]
+> > > 	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/snps,dwmac.yaml
+> > > /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/mediatek-dwmac.example.dtb: ethernet@1101c000: snps,rxpbl:0:0: 1 is not one of [2, 4, 8]
+> > > 	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/snps,dwmac.yaml
+> > > /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/mediatek-dwmac.example.dtb: ethernet@1101c000: snps,txpbl:0:0: 1 is not one of [2, 4, 8]
+> > > 	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/mediatek-dwmac.yaml
+> > > /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/mediatek-dwmac.example.dtb: ethernet@1101c000: snps,rxpbl:0:0: 1 is not one of [2, 4, 8]
+> > > 	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/mediatek-dwmac.yaml
+> > > /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/mediatek-dwmac.example.dtb: ethernet@1101c000: Unevaluated properties are not allowed ('interrupt-names', 'interrupts', 'mac-address', 'phy-mode', 'reg', 'snps,reset-delays-us', 'snps,reset-gpio', 'snps,rxpbl', 'snps,txpbl' were unexpected)
+> > > 	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/mediatek-dwmac.yaml
+> > 
+> > Oops, on rebasing my work from older kernel I missed that the PBL
+> > properties constraints have already been extended. I'll drop the next
+> > patch in the series then and fix this one so the already defined
+> > constraints would be preserved.
 > 
->   rk3588-rock-5b.dtb: scmi: protocol@14: Unevaluated properties are not allowed ('assigned-clock-rates', 'assigned-clocks' were unexpected)
+> BTW it's strange I didn't have that bug spotted during my
+> dt_binding_check run...
 
-I think that's a somewhat questionable use of assigned-clock-rates. It 
-should be located with the consumer rather than the provider IMO. The 
-consumers of those 2 clocks are the CPU nodes.
-
-Rob
+Perhaps because you set DT_SCHEMA_FILES?
