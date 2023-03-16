@@ -2,33 +2,33 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BE67D6BD1BD
-	for <lists+devicetree@lfdr.de>; Thu, 16 Mar 2023 15:07:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 971C76BD1C1
+	for <lists+devicetree@lfdr.de>; Thu, 16 Mar 2023 15:07:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229829AbjCPOHK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Mar 2023 10:07:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49684 "EHLO
+        id S230502AbjCPOH0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Mar 2023 10:07:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50800 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230493AbjCPOHC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Mar 2023 10:07:02 -0400
+        with ESMTP id S230515AbjCPOHU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Mar 2023 10:07:20 -0400
 Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D3285D7C29
-        for <devicetree@vger.kernel.org>; Thu, 16 Mar 2023 07:06:52 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 79349D5A7A
+        for <devicetree@vger.kernel.org>; Thu, 16 Mar 2023 07:07:03 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
   d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1678975613; x=1710511613;
-  h=from:to:cc:subject:date:message-id:mime-version:
-   content-transfer-encoding;
-  bh=C3m9C8ny4D14mwISVitYguRr9lTk6KYmz46eR1YoXC0=;
-  b=mBbZje4+TguYUq+J0DlzI4/YkUQcmEoWfO0gr3kboE5GjLDLRcnBmpzT
-   nSe4Hcd/+AVveQQ1AVjFDHLBzGSIDSXgfMLSZUW5Aakyek+vMqrC3Dntl
-   QnITufjLXZm8ubavobw1+2HyIf367dSy2gthfd0mjwrqganFq1bi0mETw
-   vWFT1U5QhJyj8DZweJ4zzweFn3bFLi8da5m9Q9/Tlo2Iroocy4rRQORcW
-   TBjmeCSVEb5shA8MqDWSCeubXsqE1A3/DpjC/+Z9D2SbzdNt2g6qKxs10
-   4xzmaySzkCWw3gkTQNIbPipnfSHgUK7XsHjmNE0clcsdqogZ0wBy6a61c
-   w==;
+  t=1678975623; x=1710511623;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=SCu1xyqd9gojM4xFCSEDULqeIxKa/DMmpKWiwNOmU7w=;
+  b=T5mpnZ+S6CSuLdavhXJZvfTSWnLqp1SR+1i2NTC6OURGzRbWmmB+DrX4
+   yu9D5Wvw6c5AXXoNsLtsvFXdHpjqby/AZi62+WQXBDWt0JCB5jtBS1u5P
+   pLLNgwcOvVm6JHzi0ruNbNxEPlp53dqds3rlD1mLYr/zotcR62L4e1twV
+   7wpTd0wrJrF+n59fQozBBSREpQBB5rtx/berutPA3UXeXo67LrNrNlFSO
+   2HH/Woj18XsJ75q2SHo53R8JR4Vq2fFXGUs+9b1uvHw3rpzquCnrn5Ue+
+   uCi1LyIBuPzBcAe5iLDpQb69d44o0AgiTknlJ/qY8ch5YCHzSXxUl6ygd
+   Q==;
 X-IronPort-AV: E=Sophos;i="5.98,265,1673910000"; 
-   d="scan'208";a="29741181"
+   d="scan'208";a="29741183"
 Received: from unknown (HELO tq-pgp-pr1.tq-net.de) ([192.168.6.15])
   by mx1-pgp.tq-group.com with ESMTP; 16 Mar 2023 15:06:50 +0100
 Received: from mx1.tq-group.com ([192.168.6.7])
@@ -39,25 +39,25 @@ X-PGP-Universal: processed;
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
   d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
   t=1678975610; x=1710511610;
-  h=from:to:cc:subject:date:message-id:mime-version:
-   content-transfer-encoding;
-  bh=C3m9C8ny4D14mwISVitYguRr9lTk6KYmz46eR1YoXC0=;
-  b=FUzM9C/I450uv8wIX6oh6quzr80agvhAqebY/AbxR4U3S1F+1SmaVn7W
-   6ffc9fv4HOJ2vkw3Vm64zaKn3vQeQLI+qmmnE6S9+lRA0gzWXKC2P1Dbz
-   LtGbPGUcs5Mjd1gezMom/DyKsNOngJL0UnDmdA5SxRPyxrQb/3xTfAqt5
-   b5gtEAwowg7HUvuVM2uJyTcejxqBFtawzk0B+6IG9kfJZMSulqQc/pSaF
-   o+v0oig7ptOZC9NicQPt6Cw54SrVQ5qEaI3TqozsoR0ESWMFVi0Qm4UDb
-   iKN2WxY+cc2qxO2zYxawrnuMAb7xAGo4i9tHY+vacxMGha3qIShCpNpDD
-   g==;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=SCu1xyqd9gojM4xFCSEDULqeIxKa/DMmpKWiwNOmU7w=;
+  b=OUY+rx78/j9AymvsXJKOjv7/TfKtIW1UektbhSUA8ewjkTH9JrZn8Clg
+   ytCCorXtDroikv+B4gpeiOt38N2TmhIoe26LUHX6D7+bNz3CsbFDFolbn
+   6U507h4g4Q4IVGwRUSfuOmznCJ1dDlrWKV+CngkG/nxHSYFbXeO1chvHd
+   EhyfgBIwyAdRCjyH7jHnmnuSMUozo+jbcW8BaKgLrvoux+Y+wVe5dKEC/
+   8nCtGVsi2FiS4BWe/9RDJLW/wNmQpkwknCGMe19s8T14njZnb1fuHb2a/
+   K5du74zI/mlhEkMlDS+IKTH0rRnLgJhQF7PF1iltm/pTtUspSuZtsZn1B
+   w==;
 X-IronPort-AV: E=Sophos;i="5.98,265,1673910000"; 
-   d="scan'208";a="29741180"
+   d="scan'208";a="29741182"
 Received: from vtuxmail01.tq-net.de ([10.115.0.20])
   by mx1.tq-group.com with ESMTP; 16 Mar 2023 15:06:50 +0100
 Received: from steina-w.tq-net.de (unknown [10.123.53.21])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
         (No client certificate requested)
-        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id C5D1D280056;
-        Thu, 16 Mar 2023 15:06:49 +0100 (CET)
+        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id 0872F280072;
+        Thu, 16 Mar 2023 15:06:50 +0100 (CET)
 From:   Alexander Stein <alexander.stein@ew.tq-group.com>
 To:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
@@ -68,10 +68,12 @@ To:     Rob Herring <robh+dt@kernel.org>,
         NXP Linux Team <linux-imx@nxp.com>
 Cc:     Alexander Stein <alexander.stein@ew.tq-group.com>,
         devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: [PATCH 1/2] arm64: dts: imx8mm: Fix lcdif compatible
-Date:   Thu, 16 Mar 2023 15:06:45 +0100
-Message-Id: <20230316140646.489626-1-alexander.stein@ew.tq-group.com>
+Subject: [PATCH 2/2] arm64: dts: imx8mm: Fix lcdif clock order
+Date:   Thu, 16 Mar 2023 15:06:46 +0100
+Message-Id: <20230316140646.489626-2-alexander.stein@ew.tq-group.com>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20230316140646.489626-1-alexander.stein@ew.tq-group.com>
+References: <20230316140646.489626-1-alexander.stein@ew.tq-group.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -83,26 +85,32 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-imx8mm-lcdif is compatible to imx6sx-lcdif.
+Fixes the dtbs_check warnings:
+lcdif@32e00000: clock-names:1: 'axi' was expected
+lcdif@32e00000: clock-names:2: 'disp_axi' was expected
 
 Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
 ---
- arch/arm64/boot/dts/freescale/imx8mm.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ arch/arm64/boot/dts/freescale/imx8mm.dtsi | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
 
 diff --git a/arch/arm64/boot/dts/freescale/imx8mm.dtsi b/arch/arm64/boot/dts/freescale/imx8mm.dtsi
-index fedd32cfa47a..1de455ba21da 100644
+index 1de455ba21da..1474c7fa9312 100644
 --- a/arch/arm64/boot/dts/freescale/imx8mm.dtsi
 +++ b/arch/arm64/boot/dts/freescale/imx8mm.dtsi
-@@ -1120,7 +1120,7 @@ aips4: bus@32c00000 {
- 			ranges = <0x32c00000 0x32c00000 0x400000>;
- 
- 			lcdif: lcdif@32e00000 {
--				compatible = "fsl,imx28-lcdif";
-+				compatible = "fsl,imx8mm-lcdif", "fsl,imx6sx-lcdif";
+@@ -1123,9 +1123,9 @@ lcdif: lcdif@32e00000 {
+ 				compatible = "fsl,imx8mm-lcdif", "fsl,imx6sx-lcdif";
  				reg = <0x32e00000 0x10000>;
  				clocks = <&clk IMX8MM_CLK_LCDIF_PIXEL>,
- 					 <&clk IMX8MM_CLK_DISP_AXI_ROOT>,
+-					 <&clk IMX8MM_CLK_DISP_AXI_ROOT>,
+-					 <&clk IMX8MM_CLK_DISP_APB_ROOT>;
+-				clock-names = "pix", "disp_axi", "axi";
++					 <&clk IMX8MM_CLK_DISP_APB_ROOT>,
++					 <&clk IMX8MM_CLK_DISP_AXI_ROOT>;
++				clock-names = "pix", "axi", "disp_axi";
+ 				assigned-clocks = <&clk IMX8MM_CLK_LCDIF_PIXEL>,
+ 						  <&clk IMX8MM_CLK_DISP_AXI>,
+ 						  <&clk IMX8MM_CLK_DISP_APB>;
 -- 
 2.34.1
 
