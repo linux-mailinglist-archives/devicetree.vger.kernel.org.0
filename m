@@ -2,198 +2,172 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8EC066BC9A8
-	for <lists+devicetree@lfdr.de>; Thu, 16 Mar 2023 09:46:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6D9F96BC9EE
+	for <lists+devicetree@lfdr.de>; Thu, 16 Mar 2023 09:52:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231135AbjCPIqa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Mar 2023 04:46:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37822 "EHLO
+        id S231252AbjCPIwh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Mar 2023 04:52:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46122 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231139AbjCPIqX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Mar 2023 04:46:23 -0400
-Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 900F7B5B65;
-        Thu, 16 Mar 2023 01:46:15 -0700 (PDT)
-Received: by mail-ed1-x531.google.com with SMTP id r11so4542509edd.5;
-        Thu, 16 Mar 2023 01:46:15 -0700 (PDT)
+        with ESMTP id S229950AbjCPIwR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Mar 2023 04:52:17 -0400
+Received: from mail-lj1-x232.google.com (mail-lj1-x232.google.com [IPv6:2a00:1450:4864:20::232])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EDBFA1CAE9
+        for <devicetree@vger.kernel.org>; Thu, 16 Mar 2023 01:51:15 -0700 (PDT)
+Received: by mail-lj1-x232.google.com with SMTP id x36so841355ljq.7
+        for <devicetree@vger.kernel.org>; Thu, 16 Mar 2023 01:51:15 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112; t=1678956374;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=F6P34+TGOqywF+lggu+lGsmpFltJF4GPVAdpCFRSroU=;
-        b=PoY8ZKY5Ot9FwFQM0eQpIQoEo/+4/RAoN7eRKGnzYSLtbum4cpkSKwqWj2Jw1/NmGv
-         +q3thyHAabSwfUEJKRaShlT6ZcySEMcH2HPpUdt9EsK2T+2WTdISwROG3iyzzQgb8cn/
-         7zr4ZSIroP20IjlRLyHZC2SOe4/a4Qw85INvbCKYU1a2VHG2w8d+0J0nk8ianUzhYOo5
-         61dOsQFKQwCVWB1rVbpJrMKWP/vGuiFmDUN0imPnxFFpnGlZW84OE6wZg1QQ5gw8MEMM
-         qSr41lcQhqbgt4G/1agqp/8i4fOT73h1tH0rRjWpzaF1tM/5p3zWpcxLZitrfjacuFac
-         Fagw==
+        d=linaro.org; s=google; t=1678956670;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=MRHfhPkQQmxxwKiYMeDcsdJG0r8Xhcdja24C67w7tIY=;
+        b=hcC4eZRs2DELd3vLetjO82Iol3rJDXo/hCDQeg7tLZ8kRDgvSECRSnk5OlDwcew6av
+         7xzBBWWC5yqVlMyzlfugZ0Zrx9zNXqmofTO435INIk5aZ6FnVTUZMlY8sWv0JECxfBwT
+         RPf2E2Uq7nXrhtYSt2KU9u9bAq4CjojNQKNZ97VBZ12POg3p5vLreaDJ0Bs+0w4PF4Wo
+         JDJ7FOVXgPln5OozfBzmIixxydOtpi8TVgpuaHYhJCEIhEmR+rlcQgeqNZYptg5soARF
+         mY3GXopOkb65xykCKCHPm6mTiWQOPgjAVuHT4BXxrn5TjFWJv89xo79O75Bs76Rpr7XF
+         EZig==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678956374;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=F6P34+TGOqywF+lggu+lGsmpFltJF4GPVAdpCFRSroU=;
-        b=mwcVBNEXehCCgg3FNFY8n076sQxVENEXIHD+BEmQwl3bu2UVjfJh97N5KzBOUbusH0
-         8SxM6ifsRTXg4nax5QcI6QWgu78xdit8thgITlz6+Bo1RpDH7lO7JLfbs/OQJMtiZ4BZ
-         T7Lmgq3leYr5auVgmXpA1gyEQ6U8iwPOMt8t/2ROnC76dy0Ha+xzj9bgTxQUDX+p65Lc
-         kkljJG/GGcMRnHBKGwHM0j/bszg/cbA5okhAtu9pLoHTq2LhwO2yk0x8OCkzQKN/BbIV
-         eIXIOmFRTTB1RwTtlxdRInmD9KvB2trPROptsgQCHRhZ8+AjQOjoIVXVM8U+uYeehqHh
-         0+xg==
-X-Gm-Message-State: AO0yUKUBs5lveTMlTOBoCQeJgulcSC5T46DVTZVd8jB1lM8SNfAoA4u8
-        vtr6BqcRC+LMjAmQwsvLyXSjoEAHXrtDmMlvlwQ=
-X-Google-Smtp-Source: AK7set+twqeimaEY47S7j8LHdHqS8lxV0WNRWhT6uLCEjZeTtafnFxPK4wcwlhf/MxfD0gJGf9iU5bOpZjIrvdeVCx4=
-X-Received: by 2002:a17:906:8455:b0:930:f984:c56f with SMTP id
- e21-20020a170906845500b00930f984c56fmr53532ejy.12.1678956373887; Thu, 16 Mar
- 2023 01:46:13 -0700 (PDT)
+        d=1e100.net; s=20210112; t=1678956670;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=MRHfhPkQQmxxwKiYMeDcsdJG0r8Xhcdja24C67w7tIY=;
+        b=ezhrZOJbG1DcMIZvJdgU/YqJ/4fMitJeKKuPvwN4QX5ft18dbTDf6g6w8tddNMTACP
+         OGaMV92GNrkHl/YMjsaNWWMMlAPWmfPl+pknosm3nkimRZPaJsQnaGgKgsbsLXGlgw03
+         QFrEb7wJklXvdRDeJMAL2q+smXaX3XiUODV0R7Twz0v928KwBgAhqsVh9nXvDZ0GAvEU
+         1KF93R/yFkxan1DpnehPdVgw53sqtu5qFgSD4Qv8FIMn6FXGMm+AuJgoigzwmckoqd5s
+         FTKIXgWDnl8AW1+vpy6lnU/4lWLnpKKVyMTRRlHvkSMCL7J7yCp7oHX7Ma7/TWQWpdIF
+         ApBg==
+X-Gm-Message-State: AO0yUKWlrITssPug+YGlCxX2OQfPceoF/7tZYO9EzC/TytwmDQNO8bLc
+        FrHgfaXBqMIs1NUAv1vETGp+Ew==
+X-Google-Smtp-Source: AK7set++f4e0zAJlzPQd1RsCU44TuFEl32Qs7tdY3yyXR48HHNXGbN1BTY5YuC7B0ioIHD0vd8DTJg==
+X-Received: by 2002:a2e:be89:0:b0:298:6cfa:3773 with SMTP id a9-20020a2ebe89000000b002986cfa3773mr2251503ljr.37.1678956670439;
+        Thu, 16 Mar 2023 01:51:10 -0700 (PDT)
+Received: from [192.168.1.101] (abyj16.neoplus.adsl.tpnet.pl. [83.9.29.16])
+        by smtp.gmail.com with ESMTPSA id o11-20020a2e730b000000b002991baef49bsm251566ljc.12.2023.03.16.01.51.08
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 16 Mar 2023 01:51:10 -0700 (PDT)
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+Subject: [PATCH v5 00/10] Fix DSI host idx detection on HW revision clash
+Date:   Thu, 16 Mar 2023 09:51:06 +0100
+Message-Id: <20230307-topic-dsi_qcm-v5-0-9d4235b77f4f@linaro.org>
 MIME-Version: 1.0
-References: <20230315160228.2362-1-cnsztl@gmail.com> <20230315160228.2362-5-cnsztl@gmail.com>
- <CA+E=qVei7T4T0FWhdUFnr5JbCWSgFbGLcmU2OHxx54yvnNR6mw@mail.gmail.com>
- <CAOP2_TiU815F528jVGvDbcg3kSG+ykepU-ZYz7VWMO84GgcwMg@mail.gmail.com> <71b16513-49b1-d9b3-b0b9-4c47e68563ba@kwiboo.se>
-In-Reply-To: <71b16513-49b1-d9b3-b0b9-4c47e68563ba@kwiboo.se>
-From:   Tianling Shen <cnsztl@gmail.com>
-Date:   Thu, 16 Mar 2023 16:46:02 +0800
-Message-ID: <CAOP2_TgieY2PNBJz9tE_+hxX14wBQ7RtFNfFhYd2_MCSnoZLxg@mail.gmail.com>
-Subject: Re: [PATCH 4/5] arm64: dts: rockchip: fix gmac support for NanoPi R5S
-To:     Jonas Karlman <jonas@kwiboo.se>
-Cc:     Vasily Khoruzhick <anarsoul@gmail.com>,
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAHrYEmQC/32Nyw6CMBREf4V0bU2hJRRX/ocxpi/gJthii42G8
+ O9e2LnQ5ZnJmVlIchFcIqdiIdFlSBA8Qn0oiBmU7x0Fi0wqVnHGWUPnMIGhNsHtYe60NpZxg1U
+ nO4KOVslRHZU3A1r+OY4YTtF18NpPLlfkAdIc4nv/zHxLf81nThmV2jauVNZyqc4jeBXDMcSeb
+ FNZ/NUF6rXQQraylK3RX/q6rh+D9Gtl/wAAAA==
+To:     Rob Clark <robdclark@gmail.com>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Sean Paul <sean@poorly.run>, David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Jagan Teki <jagan@amarulasolutions.com>,
-        Peter Geis <pgwipeout@gmail.com>, Andy Yan <andyshrk@163.com>,
-        Brian Norris <briannorris@chromium.org>,
-        Chris Morgan <macromorgan@hotmail.com>,
-        Sebastian Reichel <sebastian.reichel@collabora.com>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Michael Riesch <michael.riesch@wolfvision.net>,
-        Maya Matuszczyk <maccraft123mc@gmail.com>,
-        Andrew Powers-Holmes <aholmes@omnom.net>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        Krishna Manikandan <quic_mkrishn@quicinc.com>,
+        Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>
+Cc:     Rob Herring <robh@kernel.org>, linux-arm-msm@vger.kernel.org,
+        dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Marijn Suijten <marijn.suijten@somainline.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>
+X-Mailer: b4 0.12.1
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1678956668; l=3422;
+ i=konrad.dybcio@linaro.org; s=20230215; h=from:subject:message-id;
+ bh=0MXjDNpERjKFXSKU2j+B9Z5K/vxYRzMBl75jFNCiDc4=;
+ b=WjlkY2e3xNCFyGqRWQA0InNPbPPw+tF84Td75phjejo9KwAUuyMPrP7ckVQhBDi1lB6JP3W4wMKF
+ sariP+AfDFWIBtINMU0tfylRvVlgTIlnlbd1V5V0I8TuzR3qz1U7
+X-Developer-Key: i=konrad.dybcio@linaro.org; a=ed25519;
+ pk=iclgkYvtl2w05SSXO5EjjSYlhFKsJ+5OSZBjOkQuEms=
+X-Spam-Status: No, score=-0.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_SORBS_HTTP,RCVD_IN_SORBS_SOCKS,SPF_HELO_NONE,SPF_PASS
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Jonas,
+v4 -> v5:
+- Drop superfluous items: level in [8/10]
+- Remove the header define for the qcm2290 config in [6/10] instead of
+  [7/10]
+- Pick up tags
 
-On Thu, Mar 16, 2023 at 3:37=E2=80=AFPM Jonas Karlman <jonas@kwiboo.se> wro=
-te:
->
-> Hi Tianling,
-> On 2023-03-16 06:34, Tianling Shen wrote:
-> > Hi Vasily,
-> >
-> > On Thu, Mar 16, 2023 at 8:16=E2=80=AFAM Vasily Khoruzhick <anarsoul@gma=
-il.com> wrote:
-> >>
-> >> On Wed, Mar 15, 2023 at 9:02=E2=80=AFAM Tianling Shen <cnsztl@gmail.co=
-m> wrote:
-> >>>
-> >>> - Changed phy-mode to rgmii.
-> >>>
-> >>> - Fixed pull type in pinctrl for gmac0.
-> >>>
-> >>> - Removed duplicate properties in mdio node.
-> >>>   These properties are defined in the gmac0 node already.
-> >>>
-> >>> Signed-off-by: Tianling Shen <cnsztl@gmail.com>
-> >>> ---
-> >>>  arch/arm64/boot/dts/rockchip/rk3568-nanopi-r5s.dts | 7 ++-----
-> >>>  1 file changed, 2 insertions(+), 5 deletions(-)
-> >>>
-> >>> diff --git a/arch/arm64/boot/dts/rockchip/rk3568-nanopi-r5s.dts b/arc=
-h/arm64/boot/dts/rockchip/rk3568-nanopi-r5s.dts
-> >>> index e9adf5e66529..2a1118f15c29 100644
-> >>> --- a/arch/arm64/boot/dts/rockchip/rk3568-nanopi-r5s.dts
-> >>> +++ b/arch/arm64/boot/dts/rockchip/rk3568-nanopi-r5s.dts
-> >>> @@ -57,7 +57,7 @@
-> >>>         assigned-clock-rates =3D <0>, <125000000>;
-> >>>         clock_in_out =3D "output";
-> >>>         phy-handle =3D <&rgmii_phy0>;
-> >>> -       phy-mode =3D "rgmii-id";
-> >>> +       phy-mode =3D "rgmii";
-> >>>         pinctrl-names =3D "default";
-> >>>         pinctrl-0 =3D <&gmac0_miim
-> >>>                      &gmac0_tx_bus2
-> >>> @@ -79,9 +79,6 @@
-> >>>                 reg =3D <1>;
-> >>>                 pinctrl-0 =3D <&eth_phy0_reset_pin>;
-> >>>                 pinctrl-names =3D "default";
-> >>> -               reset-assert-us =3D <10000>;
-> >>> -               reset-deassert-us =3D <50000>;
-> >>> -               reset-gpios =3D <&gpio0 RK_PC4 GPIO_ACTIVE_LOW>;
-> >>
-> >> Hmm, I don't see RK_PC4 being used anywhere else. gmac0 has RK_PC5 as
-> >
-> > Yes, it's a typo, it should be RK_RC5.
-> >
-> >> snsp,reset-gpio. So it essentially drops reset for the PHY. Is it
-> >> expected?
-> >
-> > snsp,reset-gpio defined reset already, so we don't need to set it here =
-again.
-> >
-> > ---
-> >
-> > snsp,reset-gpio is the legacy binding, but I still have no idea why
-> > reset-gpios doesn't work,
-> > the dwmac driver will fail to lookup phy:
-> >
-> > [   10.398514] rk_gmac-dwmac fe2a0000.ethernet eth0: no phy found
-> > [   10.399061] rk_gmac-dwmac fe2a0000.ethernet eth0: __stmmac_open:
-> > Cannot attach to PHY (error: -19)
-> >
-> > Any ideas would be appreciated.
->
-> Generic ethernet phy driver is not resetting the phy in the same way
-> that snsp,reset-gpio does, please see top two commits at [1].
->
-> I have been meaning to send that out as an RFC but I got stuck in a
-> u-boot rabbit hole, and I also do not know what the correct way to fix
-> this would be, so I played with both device tree and code changes.
-> Will prioritize this and send out a RFC later today.
->
-> [1] https://github.com/Kwiboo/linux-rockchip/commits/rk3568-eth-phy-reset
+v4: https://lore.kernel.org/r/20230307-topic-dsi_qcm-v4-0-54b4898189cb@linaro.org
 
-Thanks for the hint! I will test your patches tonight.
+v3 -> v4:
+- Use the shiny new compatible in the 6115 bindings example [9/10]
+- Remove the leftover include and header definition [6, 7/10]
+- Deduplicate the qcm2290 clks/regs in the common deduplication commit
+  instead of doing it separately
+- Pick up tags
+- Rebase on next-20230314 (nothing seems to have changed fwiw)
 
-Thanks,
-Tianling.
+v3: https://lore.kernel.org/r/20230307-topic-dsi_qcm-v3-0-8bd7e1add38a@linaro.org
 
->
-> Regards,
-> Jonas
->
-> >
-> > Thanks,
-> > Tianling.
-> >
-> >>
-> >>>         };
-> >>>  };
-> >>>
-> >>> @@ -115,7 +112,7 @@
-> >>>  &pinctrl {
-> >>>         gmac0 {
-> >>>                 eth_phy0_reset_pin: eth-phy0-reset-pin {
-> >>> -                       rockchip,pins =3D <0 RK_PC4 RK_FUNC_GPIO &pcf=
-g_pull_down>;
-> >>> +                       rockchip,pins =3D <0 RK_PC4 RK_FUNC_GPIO &pcf=
-g_pull_up>;
-> >>>                 };
-> >>>         };
-> >>>
-> >>> --
-> >>> 2.17.1
-> >>>
->
+v2 -> v3:
+- Merge with [1], I should have done that earlier..
+  - Squash 6115 compatible patches into one
+- Pick up tags (except Rob's ack in 6115 compatible addition, as it was changed)
+- Use b4 (sorry if you got an incomplete set of messages before..)
+
+[1] https://lore.kernel.org/linux-arm-msm/145066db-5723-6baa-237d-7c2b8fd476d9@linaro.org/
+v2: https://lore.kernel.org/linux-arm-msm/20230213121012.1768296-1-konrad.dybcio@linaro.org/
+
+v1 -> v2:
+- squash the 2d-array-ification and fixing up the logic into one patch
+- drop num_variants, loop over VARIANTS_MAX*DSI_MAX unconditionally
+- drop inadequate Fixes: tags
+- pick up rbs
+
+v1: https://lore.kernel.org/linux-arm-msm/20230211115110.1462920-1-konrad.dybcio@linaro.org/
+
+Some DSI host versions are implemented on multiple SoCs which use
+vastly different register maps. This messes with our current
+assumptions of being able to map {dsi0, dsi1} to {reg0, reg1}.
+Solve that by adding a way of specifying multiple sets of base
+registers and try comparing them against the register specified in DT
+until we find a match.
+
+This removes the need for the QCM2290-specific compatible which was
+used in the SM6115 DT (which uses DSIv2.4.1, just like SC7180).
+The series also takes care of that.
+
+Tested on SM6115P Lenovo Tab P11 and SM8350 PDX215
+
+Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+---
+Konrad Dybcio (10):
+      dt-bindings: display/msm: dsi-controller-main: Fix deprecated QCM2290 compatible
+      drm/msm/dsi: Get rid of msm_dsi_config::num_dsi
+      drm/msm/dsi: Fix DSI index detection when version clash occurs
+      drm/msm/dsi: dsi_cfg: Deduplicate identical structs
+      drm/msm/dsi: dsi_cfg: Merge SC7180 config into SDM845
+      drm/msm/dsi: Switch the QCM2290-specific compatible to index autodetection
+      drm/msm/dsi: Remove custom DSI config handling
+      dt-bindings: display/msm: dsi-controller-main: Fix deprecated compatible
+      dt-bindings: display/msm: dsi-controller-main: Add SM6115
+      arm64: dts: qcom: sm6115: Use the correct DSI compatible
+
+ .../bindings/display/msm/dsi-controller-main.yaml  |   9 +-
+ .../bindings/display/msm/qcom,sm6115-mdss.yaml     |  10 +-
+ arch/arm64/boot/dts/qcom/sm6115.dtsi               |   2 +-
+ drivers/gpu/drm/msm/dsi/dsi.c                      |   7 +-
+ drivers/gpu/drm/msm/dsi/dsi_cfg.c                  | 161 ++++++++-------------
+ drivers/gpu/drm/msm/dsi/dsi_cfg.h                  |   9 +-
+ drivers/gpu/drm/msm/dsi/dsi_host.c                 |  14 +-
+ 7 files changed, 84 insertions(+), 128 deletions(-)
+---
+base-commit: ec0fa9a0a6fac454745c930bdb8619d0a354bac9
+change-id: 20230307-topic-dsi_qcm-5cd03c230f8f
+
+Best regards,
+-- 
+Konrad Dybcio <konrad.dybcio@linaro.org>
+
