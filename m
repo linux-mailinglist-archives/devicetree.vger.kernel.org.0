@@ -2,273 +2,177 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E3A6F6BCC2C
-	for <lists+devicetree@lfdr.de>; Thu, 16 Mar 2023 11:12:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8DC546BCC60
+	for <lists+devicetree@lfdr.de>; Thu, 16 Mar 2023 11:19:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230300AbjCPKMn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Mar 2023 06:12:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34622 "EHLO
+        id S230240AbjCPKTC convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Thu, 16 Mar 2023 06:19:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45666 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230308AbjCPKM2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Mar 2023 06:12:28 -0400
-Received: from mail-yw1-x1131.google.com (mail-yw1-x1131.google.com [IPv6:2607:f8b0:4864:20::1131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 46413BCB93
-        for <devicetree@vger.kernel.org>; Thu, 16 Mar 2023 03:12:09 -0700 (PDT)
-Received: by mail-yw1-x1131.google.com with SMTP id 00721157ae682-5445009c26bso21084757b3.8
-        for <devicetree@vger.kernel.org>; Thu, 16 Mar 2023 03:12:09 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1678961528;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=HUXMtYCJCytkJaYrRDzWMzdMH+FzcGdy44GMw4xZIbw=;
-        b=qrgea51T34DMF4J459mkcIfZM1O5H1D7Blf2NqQVaiHCYu/S0yJheRooxcaRzkLKA8
-         o/qVX9Z5kPl+ZfI2iQMguYLIjfKBVzZ/51FeU9TxUjsn21UWVJRd8bkLeLExN+2r/t9C
-         45dK+4coBBS0nCQo/mOSU3oqeFUNMQfD0NX0r49iCClhHAW/fcHlu/dqbB/fgBjBk390
-         bWnb+0+NO+OPFq5zMlxdFnzT+Ug9A8QfqOeZrVpa+1ikFXFkqKb9IEE3Cl9JP69IlFoN
-         gMlRtPTcKjpVX08WqHkJdp4oZzjNf+lUIWzemFJQ3SKZD40b09+Qkie46tTorxxT0epL
-         5G1A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678961528;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=HUXMtYCJCytkJaYrRDzWMzdMH+FzcGdy44GMw4xZIbw=;
-        b=bmUXZrLziHoscA9VBG5OecfIcmaDLaan/TqaAEZZOtEAl4+keAQVppVDBqgjgnuF5P
-         L1/x/Yx2LwM6MEfy2uUFYOrq5av8GpAmhEC0Bfa77YV9xwEgDSdHC60pNsuTbHwbuzR6
-         TqsiaVsNgoYD6lXd5OBryazyjhbuB6WJf0HdWUfnS5JM4lng2GPiL/fCL8AI146ZwA3w
-         SmibMVV0S6rilqfhe+DXNn0HPUxGyx0I3RKx9fuEdYhOMIW0qaw7Xv/hJ/7/07kNcFzR
-         yzf+xxwT2UoQLouF90zs5ANAFHIjbtTHjCeMaz731wjsrhlIcQvrq8PRmHwOiROsAWGF
-         cNFw==
-X-Gm-Message-State: AO0yUKXnj855Jd+jghmamAU6y9ivLR7QT5dYJJxgVFZzqjjfYRvSYozu
-        Fv4xJ3X6mF7M3T6Fx2XgSviNWiLVRLtbL251LdSD9w==
-X-Google-Smtp-Source: AK7set/KxCCnM2xscrt5p3IwN8pijGV3hZwQNY4jhHYrQ6X7R+dhtMmXWquofPXgEnNNKJko0qibO1BNsjyewjnx8Xk=
-X-Received: by 2002:a81:d84d:0:b0:543:9065:b225 with SMTP id
- n13-20020a81d84d000000b005439065b225mr1963135ywl.5.1678961528178; Thu, 16 Mar
- 2023 03:12:08 -0700 (PDT)
+        with ESMTP id S230200AbjCPKS5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Mar 2023 06:18:57 -0400
+Received: from fd01.gateway.ufhost.com (fd01.gateway.ufhost.com [61.152.239.71])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 172C8BCB9C;
+        Thu, 16 Mar 2023 03:18:49 -0700 (PDT)
+Received: from EXMBX166.cuchost.com (unknown [175.102.18.54])
+        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+        (Client CN "EXMBX166", Issuer "EXMBX166" (not verified))
+        by fd01.gateway.ufhost.com (Postfix) with ESMTP id D3AC224E3AD;
+        Thu, 16 Mar 2023 18:18:47 +0800 (CST)
+Received: from EXMBX162.cuchost.com (172.16.6.72) by EXMBX166.cuchost.com
+ (172.16.6.76) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Thu, 16 Mar
+ 2023 18:18:47 +0800
+Received: from [192.168.120.42] (171.223.208.138) by EXMBX162.cuchost.com
+ (172.16.6.72) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Thu, 16 Mar
+ 2023 18:18:46 +0800
+Message-ID: <ed8dbe90-ee1d-405a-5aa6-cbc16a0057ac@starfivetech.com>
+Date:   Thu, 16 Mar 2023 18:18:44 +0800
 MIME-Version: 1.0
-References: <20230316083049.29979-1-quic_tdas@quicinc.com> <20230316083049.29979-3-quic_tdas@quicinc.com>
-In-Reply-To: <20230316083049.29979-3-quic_tdas@quicinc.com>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date:   Thu, 16 Mar 2023 12:11:57 +0200
-Message-ID: <CAA8EJpqxtRyVKoqNsY01FmHaa10WK9LT49ydenztoJ1q0ah0+A@mail.gmail.com>
-Subject: Re: [PATCH 2/3] clk: qcom: videocc-sm8450: Add video clock controller
- driver for SM8450
-To:     Taniya Das <quic_tdas@quicinc.com>
-Cc:     Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.1
+Subject: Re: [PATCH v7 4/6] dt-bindings: net: Add support StarFive dwmac
+Content-Language: en-US
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        <linux-riscv@lists.infradead.org>, <netdev@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+CC:     "David S . Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        quic_skakitap@quicinc.com, quic_jkona@quicinc.com
+        Emil Renner Berthing <kernel@esmil.dk>,
+        Richard Cochran <richardcochran@gmail.com>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Peter Geis <pgwipeout@gmail.com>,
+        Yanhong Wang <yanhong.wang@starfivetech.com>,
+        Tommaso Merciai <tomm.merciai@gmail.com>
+References: <20230316043714.24279-1-samin.guo@starfivetech.com>
+ <20230316043714.24279-5-samin.guo@starfivetech.com>
+ <cfeec762-de75-f90f-7ba1-6c0bd8b70dff@linaro.org>
+ <93a3b4bb-35a4-da7c-6816-21225b42f79b@starfivetech.com>
+ <9038dba0-6f72-44a1-9f57-1c08b03b9c31@linaro.org>
+ <d2bb7fa5-206f-2059-bde0-b65e1acc44de@starfivetech.com>
+ <c716e535-7426-56da-ca6f-51c7d7d69bb3@linaro.org>
+ <b7766151-cf21-a5b4-e0ef-7b070e9e5c33@starfivetech.com>
+ <d2eda9a8-f532-d7f0-7ef3-b3b8e1a0a79f@linaro.org>
+From:   Guo Samin <samin.guo@starfivetech.com>
+In-Reply-To: <d2eda9a8-f532-d7f0-7ef3-b3b8e1a0a79f@linaro.org>
 Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Originating-IP: [171.223.208.138]
+X-ClientProxiedBy: EXCAS066.cuchost.com (172.16.6.26) To EXMBX162.cuchost.com
+ (172.16.6.72)
+X-YovoleRuleAgent: yovoleflag
+Content-Transfer-Encoding: 8BIT
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 16 Mar 2023 at 10:31, Taniya Das <quic_tdas@quicinc.com> wrote:
->
-> Add support for the video clock controller driver for peripheral clock
-> clients to be able to request for video cc clocks.
->
-> Signed-off-by: Taniya Das <quic_tdas@quicinc.com>
-> ---
->  drivers/clk/qcom/Kconfig          |   9 +
->  drivers/clk/qcom/Makefile         |   1 +
->  drivers/clk/qcom/videocc-sm8450.c | 464 ++++++++++++++++++++++++++++++
->  3 files changed, 474 insertions(+)
->  create mode 100644 drivers/clk/qcom/videocc-sm8450.c
->
-> diff --git a/drivers/clk/qcom/Kconfig b/drivers/clk/qcom/Kconfig
-> index 5ab4b7dfe3c2..81909e179bc7 100644
-> --- a/drivers/clk/qcom/Kconfig
-> +++ b/drivers/clk/qcom/Kconfig
-> @@ -892,4 +892,13 @@ config CLK_GFM_LPASS_SM8250
->           Support for the Glitch Free Mux (GFM) Low power audio
->            subsystem (LPASS) clocks found on SM8250 SoCs.
->
-> +config SM_VIDEOCC_8450
-> +       tristate "SM8450 Video Clock Controller"
-> +       select SM_GCC_8450
-> +       select QCOM_GDSC
-> +       help
-> +         Support for the video clock controller on Qualcomm Technologies, Inc.
-> +         SM8450 devices.
-> +         Say Y if you want to support video devices and functionality such as
-> +         video encode/decode.
->  endif
-> diff --git a/drivers/clk/qcom/Makefile b/drivers/clk/qcom/Makefile
-> index c743805a9cbb..5cbd0eedd6d9 100644
-> --- a/drivers/clk/qcom/Makefile
-> +++ b/drivers/clk/qcom/Makefile
-> @@ -119,6 +119,7 @@ obj-$(CONFIG_SM_GPUCC_8350) += gpucc-sm8350.o
->  obj-$(CONFIG_SM_TCSRCC_8550) += tcsrcc-sm8550.o
->  obj-$(CONFIG_SM_VIDEOCC_8150) += videocc-sm8150.o
->  obj-$(CONFIG_SM_VIDEOCC_8250) += videocc-sm8250.o
-> +obj-$(CONFIG_SM_VIDEOCC_8450) += videocc-sm8450.o
->  obj-$(CONFIG_SPMI_PMIC_CLKDIV) += clk-spmi-pmic-div.o
->  obj-$(CONFIG_KPSS_XCC) += kpss-xcc.o
->  obj-$(CONFIG_QCOM_HFPLL) += hfpll.o
-> diff --git a/drivers/clk/qcom/videocc-sm8450.c b/drivers/clk/qcom/videocc-sm8450.c
-> new file mode 100644
-> index 000000000000..ca60f3be587d
-> --- /dev/null
-> +++ b/drivers/clk/qcom/videocc-sm8450.c
-> @@ -0,0 +1,464 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +/*
-> + * Copyright (c) 2023, Qualcomm Innovation Center, Inc. All rights reserved.
-> + */
-> +
-> +#include <linux/clk-provider.h>
-> +#include <linux/module.h>
-> +#include <linux/of_device.h>
-> +#include <linux/pm_runtime.h>
-> +#include <linux/regmap.h>
-> +
-> +#include <dt-bindings/clock/qcom,videocc-sm8450.h>
-> +
-> +#include "clk-alpha-pll.h"
-> +#include "clk-branch.h"
-> +#include "clk-rcg.h"
-> +#include "clk-regmap.h"
-> +#include "clk-regmap-divider.h"
-> +#include "common.h"
-> +#include "gdsc.h"
-> +#include "reset.h"
-> +
-> +enum {
-> +       P_BI_TCXO,
-> +       P_VIDEO_CC_PLL0_OUT_MAIN,
-> +       P_VIDEO_CC_PLL1_OUT_MAIN,
-> +};
-> +
-> +static const struct pll_vco lucid_evo_vco[] = {
-> +       { 249600000, 2020000000, 0 },
-> +};
-> +
-> +static const struct alpha_pll_config video_cc_pll0_config = {
-> +       .l = 0x1E,
-> +       .alpha = 0x0,
-> +       .config_ctl_val = 0x20485699,
-> +       .config_ctl_hi_val = 0x00182261,
-> +       .config_ctl_hi1_val = 0x32AA299C,
-> +       .user_ctl_val = 0x00000000,
-> +       .user_ctl_hi_val = 0x00000805,
-> +};
-> +
-> +static struct clk_alpha_pll video_cc_pll0 = {
-> +       .offset = 0x0,
-> +       .vco_table = lucid_evo_vco,
-> +       .num_vco = ARRAY_SIZE(lucid_evo_vco),
-> +       .regs = clk_alpha_pll_regs[CLK_ALPHA_PLL_TYPE_LUCID_EVO],
-> +       .clkr = {
-> +               .hw.init = &(const struct clk_init_data){
-> +                       .name = "video_cc_pll0",
-> +                       .parent_data = &(const struct clk_parent_data){
-> +                               .fw_name = "bi_tcxo",
-
-Could you please follow the last of recent drivers and use DT indices
-instead of clock-names?
-
-Also, as a syntax nit, could you please add whitespaces between ) and { ?
-
-> +                       },
-> +                       .num_parents = 1,
-> +                       .ops = &clk_alpha_pll_lucid_evo_ops,
-> +               },
-> +       },
-> +};
-> +
-
-[skipped]
 
 
-> +
-> +static void video_cc_sm8450_pm_runtime_disable(void *data)
-> +{
-> +       pm_runtime_disable(data);
-> +}
-> +
-> +static int video_cc_sm8450_probe(struct platform_device *pdev)
-> +{
-> +       struct regmap *regmap;
-> +       int ret;
-> +
-> +       pm_runtime_enable(&pdev->dev);
-> +
-> +       ret = devm_add_action_or_reset(&pdev->dev, video_cc_sm8450_pm_runtime_disable, &pdev->dev);
-> +       if (ret)
-> +               return ret;
+-------- 原始信息 --------
+Re: [PATCH v7 4/6] dt-bindings: net: Add support StarFive dwmac
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+to : Guo Samin <samin.guo@starfivetech.com>, linux-riscv@lists.infradead.org, netdev@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+data: 2023/3/16
 
-Could you please shift to using devm_pm_runtime_enable()?
+> On 16/03/2023 09:28, Guo Samin wrote:
+>>
+>>
+>> -------- 原始信息 --------
+>> 主题: Re: [PATCH v7 4/6] dt-bindings: net: Add support StarFive dwmac
+>> From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>> 收件人: Guo Samin <samin.guo@starfivetech.com>, linux-riscv@lists.infradead.org, netdev@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+>> 日期: 2023/3/16
+>>
+>>> On 16/03/2023 09:15, Guo Samin wrote:
+>>>>>>> interrupts: ???
+>>>>>>>
+>>>>>>
+>>>>>> Hi Krzysztof, 
+>>>>>>
+>>>>>> snps,dwmac.yaml has defined the reg/interrupt/interrupt-names nodes,
+>>>>>> and the JH7110 SoC is also applicable.
+>>>>>> Maybe just add reg/interrupt/interrupt-names to the required ?
+>>>>>
+>>>>> You need to constrain them.
+>>>>
+>>>>
+>>>> I see. I will add reg constraints in the next version, thanks.
+>>>>
+>>>> I have one more question, the interrupts/interrup-names of JH7110 SoC's gmac are exactly the same as snps,dwmac.yaml,
+>>>> do these also need to be constrained?
+>>>
+>>> The interrupts on common binding are variable, so you need to constrain
+>>> them - you have fixed number of them, right?
+>>>
+>>> Best regards,
+>>> Krzysztof
+>>>
+>>
+>> Yes, JH7110 fixed is 3 pcs. Thanks, I will constrain them.
+> 
+> Then just minItems: 3, maxItems: 3 here should be enough
+> 
+> Best regards,
+> Krzysztof
+> 
 
-> +
-> +       ret = pm_runtime_resume_and_get(&pdev->dev);
-> +       if (ret)
-> +               return ret;
-> +
-> +       regmap = qcom_cc_map(pdev, &video_cc_sm8450_desc);
-> +       if (IS_ERR(regmap)) {
-> +               pm_runtime_put(&pdev->dev);
-> +               return PTR_ERR(regmap);
-> +       }
-> +
-> +       clk_lucid_evo_pll_configure(&video_cc_pll0, regmap, &video_cc_pll0_config);
-> +       clk_lucid_evo_pll_configure(&video_cc_pll1, regmap, &video_cc_pll1_config);
-> +
-> +       /*
-> +        * Keep clocks always enabled:
-> +        *      video_cc_ahb_clk
-> +        *      video_cc_sleep_clk
-> +        *      video_cc_xo_clk
-> +        */
-> +       regmap_update_bits(regmap, 0x80e4, BIT(0), BIT(0));
-> +       regmap_update_bits(regmap, 0x8130, BIT(0), BIT(0));
-> +       regmap_update_bits(regmap, 0x8114, BIT(0), BIT(0));
-> +
-> +       ret = qcom_cc_really_probe(pdev, &video_cc_sm8450_desc, regmap);
-> +
-> +       pm_runtime_put(&pdev->dev);
-> +
-> +       return ret;
-> +}
-> +
-> +static struct platform_driver video_cc_sm8450_driver = {
-> +       .probe = video_cc_sm8450_probe,
-> +       .driver = {
-> +               .name = "video_cc-sm8450",
-> +               .of_match_table = video_cc_sm8450_match_table,
-> +       },
-> +};
-> +
-> +static int __init video_cc_sm8450_init(void)
-> +{
-> +       return platform_driver_register(&video_cc_sm8450_driver);
-> +}
-> +subsys_initcall(video_cc_sm8450_init);
-> +
-> +static void __exit video_cc_sm8450_exit(void)
-> +{
-> +       platform_driver_unregister(&video_cc_sm8450_driver);
-> +}
-> +module_exit(video_cc_sm8450_exit);
-> +
-> +MODULE_DESCRIPTION("QTI VIDEO_CC SM8450 Driver");
-> +MODULE_LICENSE("GPL v2");
+Hi Krzysztof,
 
-I think this should be just "GPL" nowaways.
-
-> --
-> 2.17.1
->
+Thank you for the suggestion. 
+I'll change it like this in the next version, is right?
 
 
--- 
-With best wishes
-Dmitry
+$ git diff
+--- a/Documentation/devicetree/bindings/net/starfive,jh7110-dwmac.yaml
++++ b/Documentation/devicetree/bindings/net/starfive,jh7110-dwmac.yaml
+@@ -27,6 +27,9 @@ properties:
+           - starfive,jh7110-dwmac
+       - const: snps,dwmac-5.20
+ 
++  reg:
++    maxItems: 1
++
+   clocks:
+     items:
+       - description: GMAC main clock
+@@ -43,6 +46,14 @@ properties:
+       - const: tx
+       - const: gtx
+ 
++  interrupts:
++    minItems: 3
++    maxItems: 3
++
++  interrupt-names:
++    minItems: 3
++    maxItems: 3
++
+   resets:
+     items:
+       - description: MAC Reset signal.
+@@ -77,8 +88,11 @@ unevaluatedProperties: false
+ 
+ required:
+   - compatible
++  - reg
+   - clocks
+   - clock-names
++  - interrupts
++  - interrupt-names
+   - resets
+   - reset-names
+
+
+
+
+
+Best regards,
+Samin
