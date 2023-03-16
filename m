@@ -2,150 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 799396BD219
-	for <lists+devicetree@lfdr.de>; Thu, 16 Mar 2023 15:14:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 847846BD230
+	for <lists+devicetree@lfdr.de>; Thu, 16 Mar 2023 15:18:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231326AbjCPOOW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Mar 2023 10:14:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35276 "EHLO
+        id S230464AbjCPOSS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Mar 2023 10:18:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43218 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231330AbjCPONv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Mar 2023 10:13:51 -0400
-Received: from mail-lj1-x22b.google.com (mail-lj1-x22b.google.com [IPv6:2a00:1450:4864:20::22b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2AA7AACBBE
-        for <devicetree@vger.kernel.org>; Thu, 16 Mar 2023 07:13:26 -0700 (PDT)
-Received: by mail-lj1-x22b.google.com with SMTP id by8so629866ljb.12
-        for <devicetree@vger.kernel.org>; Thu, 16 Mar 2023 07:13:25 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1678976004;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=N1o/g/RY/F8tw5gI99MfNC1MgutCzKG48oc2MA5z/Ao=;
-        b=Qrr803nV2RNxyMhr4k1CujiqeMiu6xeEfZDomigDzlgOJ2+LAoow9y4SpnULqM533W
-         JGYU4zjecXMNVzRMcYjhYBo9bJKzgh9fndduUqthz5eV7m0AegygBhQ+m1SwDg1hCTN/
-         rnHE2vUTqT5qun7CkRIHPNhcCN2biGs4H9UjkIKTUfCCMvjN4tOS2/1osalKAkFcJB+S
-         9GXXMgz+BHuHgPrKWIluWCd1qhoHJ6ZiQCleccrZYMrDoQe116QM7kTG4KQKrlbgq3Q3
-         hlL4xAJbs94Mc1ULnoRauUdmiuxvn0lHeBTU3GqdlA7B+wCkZXGaFUvQPY+eoSYTGGD1
-         b6Bw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678976004;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=N1o/g/RY/F8tw5gI99MfNC1MgutCzKG48oc2MA5z/Ao=;
-        b=qge9aXG4NuMkOVyuPw4jNJ+mE4+wdISQyN8XixPHse/VmGpa9UWM1TopjMxzLssebD
-         ZO5b5rs1pYSmuYt36bLHeaIe+z4kntMIbvqaiTnqMb2B4SoS9Icyai3Vc20u+pAXtWiJ
-         kazbyWZvuHGFe9eAJJM4ynMMjuHjtb5rA4J4DwdK28EZyUiofThpUi/bUPzOg/JVbwt3
-         VQhC7RvfPieYTY6JvOJ0n3XL7tywIab8aHppm/iWQXuJDU2x83rZvFrdqeJ9TiYvZnDa
-         A5SqGr42K2t60drOwQAe6ElVlS58sjvdhVUlbysks/d9y7cB5jGEewAvv1+IyQqk2jna
-         ujkw==
-X-Gm-Message-State: AO0yUKXRGDrvB4VX889pBXUlZfb7WsGCHmTN7eq0E0EZNmQNr/a4xVzr
-        MzbodsZn9nu+huu4FcHQuuKNXA==
-X-Google-Smtp-Source: AK7set/UGvfpSQFBo90NawVNe6QbJ7gg6a+/gN9CBL5rHc7OuxYMSwd/oOp6n4BYEocyNvy2n8HwXA==
-X-Received: by 2002:a2e:be12:0:b0:298:a841:4d0f with SMTP id z18-20020a2ebe12000000b00298a8414d0fmr3091124ljq.52.1678976003979;
-        Thu, 16 Mar 2023 07:13:23 -0700 (PDT)
-Received: from [192.168.1.101] (abyj16.neoplus.adsl.tpnet.pl. [83.9.29.16])
-        by smtp.gmail.com with ESMTPSA id a9-20020a2eb549000000b00295735991edsm1261639ljn.38.2023.03.16.07.13.22
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 16 Mar 2023 07:13:23 -0700 (PDT)
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-Date:   Thu, 16 Mar 2023 15:13:03 +0100
-Subject: [PATCH v2 14/14] arm64: dts: qcom: sm6375-pdx225: Add volume down
- GPIO key
-MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20230303-topic-sm6375_features0_dts-v2-14-708b8191f7eb@linaro.org>
-References: <20230303-topic-sm6375_features0_dts-v2-0-708b8191f7eb@linaro.org>
-In-Reply-To: <20230303-topic-sm6375_features0_dts-v2-0-708b8191f7eb@linaro.org>
-To:     Amit Kucheria <amitk@kernel.org>,
-        Thara Gopinath <thara.gopinath@gmail.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Zhang Rui <rui.zhang@intel.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Georgi Djakov <djakov@kernel.org>,
-        Sibi Sankar <quic_sibis@quicinc.com>
-Cc:     linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Marijn Suijten <marijn.suijten@somainline.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>
-X-Mailer: b4 0.12.1
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1678975978; l=1409;
- i=konrad.dybcio@linaro.org; s=20230215; h=from:subject:message-id;
- bh=lUoSxwe6wDxHMv1iTDzFHuYZxKLyt1OMfELUkCo9Rp0=;
- b=6DAUo0XuzRtK0oppQWVoexEKvP1e3HUzo7m6yHp02zNfdQCZy++x2swjD+iPpuCPGEqXhadgLXw1
- vUFy4zVZC4oEvOr9UIOEQQso+Cesl5GsmGvY9LDCbFthxOsz9AIm
-X-Developer-Key: i=konrad.dybcio@linaro.org; a=ed25519;
- pk=iclgkYvtl2w05SSXO5EjjSYlhFKsJ+5OSZBjOkQuEms=
-X-Spam-Status: No, score=-0.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_SORBS_HTTP,RCVD_IN_SORBS_SOCKS,SPF_HELO_NONE,SPF_PASS
-        autolearn=no autolearn_force=no version=3.4.6
+        with ESMTP id S230305AbjCPOSP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Mar 2023 10:18:15 -0400
+Received: from out5-smtp.messagingengine.com (out5-smtp.messagingengine.com [66.111.4.29])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A9992D5A55;
+        Thu, 16 Mar 2023 07:17:52 -0700 (PDT)
+Received: from compute6.internal (compute6.nyi.internal [10.202.2.47])
+        by mailout.nyi.internal (Postfix) with ESMTP id 642455C00E0;
+        Thu, 16 Mar 2023 10:17:28 -0400 (EDT)
+Received: from imap51 ([10.202.2.101])
+  by compute6.internal (MEProxy); Thu, 16 Mar 2023 10:17:28 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arndb.de; h=cc
+        :cc:content-type:content-type:date:date:from:from:in-reply-to
+        :in-reply-to:message-id:mime-version:references:reply-to:sender
+        :subject:subject:to:to; s=fm1; t=1678976248; x=1679062648; bh=8w
+        xnkIWEzkhjMo7BKbmq74RrBygIPUH/mVfy06Uygmo=; b=ts/SLG4ImxnmdL6+o/
+        aKc3AdM6jEjIA5ZhM59htl39G1imJQQghYOvbZrz2T8kQVj6gr82Mdnbcds9RqlS
+        psYQZL/3vPO+sMCegy8Ndih0oAIlrUymHFgXRNffDL5ovZKD3S+hny8Gcm9L6+YZ
+        1hCXwCaDv5QAQ7IKUeLbgGkDyxBNQ3H5Dlf7zH1szI6FUWQplqdUghXGWfLq7z7y
+        dHtyXE2SRUUrUd1Iy7F3DMfEwiqGnAMfg0srcvQSpWLpDEiMX5KHxBZkZu8B5RVR
+        XhKyuHhXKMqMZVdyRTbrafRbKwHiELSpRroiZPWxgVn2XHwHw1i0tZsC12uJYZf6
+        P+5A==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:cc:content-type:content-type:date:date
+        :feedback-id:feedback-id:from:from:in-reply-to:in-reply-to
+        :message-id:mime-version:references:reply-to:sender:subject
+        :subject:to:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
+        :x-sasl-enc; s=fm2; t=1678976248; x=1679062648; bh=8wxnkIWEzkhjM
+        o7BKbmq74RrBygIPUH/mVfy06Uygmo=; b=eRmiEccPVtifJQgiiRpZTBTlBZBYG
+        Sc9KGn5McagRonfU37jhoEZTz3KF7eeMxOC6hfIKBE22XNDrXGJXC+4uVmjLzcpL
+        kylgp5kx2nLfLgrensOamXbLB7CrNcfT3IHNZY1e97g4OijJz+eKGk8rNf4ibL8V
+        k0cUtu2W0B6qSI7xnFisHOAiYHJRjNOSp9QTuma1663ZjCGBzazKetCXOZ0s5/W+
+        1L2y622d9qKEoO7PbqAWRnfiJ83wXx2AmUloRIFWfHyx9PuqlOfdsUyJW6fUof4u
+        qTzCqvYpAIu14Lqtrm90cd84Py8RFWTNMBujSbn6j2TsAPb8ODaMhJf8w==
+X-ME-Sender: <xms:9yQTZBmnLOlQtmUeVCuAlzMqV92BCcKX2NP3kSvIAB7CPV8j4ly8eQ>
+    <xme:9yQTZM23JWdW9M9E1aIw-8dlzA06Reobk12iHlcCnLIlojDY9VTj4AzkHpyB5Xv6-
+    9Hn_oR4FZLkYlvTZn4>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvhedrvdeftddgieefucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhepofgfggfkjghffffhvfevufgtsehttdertderredtnecuhfhrohhmpedftehr
+    nhguuceuvghrghhmrghnnhdfuceorghrnhgusegrrhhnuggsrdguvgeqnecuggftrfgrth
+    htvghrnhepffehueegteeihfegtefhjefgtdeugfegjeelheejueethfefgeeghfektdek
+    teffnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomheprg
+    hrnhgusegrrhhnuggsrdguvg
+X-ME-Proxy: <xmx:9yQTZHrIjfzdnzH0sW1_ufHPE0MdYtyYO0HdheyLDdvyOYfU9R-l-Q>
+    <xmx:9yQTZBlk18uvWK5GXyU0JKM6WKzwliYG3JVR5EhbxcAwdplN9_JRDw>
+    <xmx:9yQTZP3Y838o8HUWNN_qIjfOqaxZZI4EEMf8OpY8N58z3L52ZEqakw>
+    <xmx:-CQTZNOlrTA0zXCTBjIOmabhR6Sql852XrOaWN3joGJWqpQ2FIn4dQ>
+Feedback-ID: i56a14606:Fastmail
+Received: by mailuser.nyi.internal (Postfix, from userid 501)
+        id 7D1A8B60089; Thu, 16 Mar 2023 10:17:27 -0400 (EDT)
+X-Mailer: MessagingEngine.com Webmail Interface
+User-Agent: Cyrus-JMAP/3.9.0-alpha0-221-gec32977366-fm-20230306.001-gec329773
+Mime-Version: 1.0
+Message-Id: <2063c6d1-85ed-43d9-b572-a762b6ce18c1@app.fastmail.com>
+In-Reply-To: <20230315072902.9298-12-ychuang570808@gmail.com>
+References: <20230315072902.9298-1-ychuang570808@gmail.com>
+ <20230315072902.9298-12-ychuang570808@gmail.com>
+Date:   Thu, 16 Mar 2023 15:17:07 +0100
+From:   "Arnd Bergmann" <arnd@arndb.de>
+To:     "Jacky Huang" <ychuang570808@gmail.com>,
+        "Rob Herring" <robh+dt@kernel.org>,
+        krzysztof.kozlowski+dt@linaro.org, "Lee Jones" <lee@kernel.org>,
+        "Michael Turquette" <mturquette@baylibre.com>,
+        "Stephen Boyd" <sboyd@kernel.org>,
+        "Philipp Zabel" <p.zabel@pengutronix.de>,
+        "Greg Kroah-Hartman" <gregkh@linuxfoundation.org>,
+        "Jiri Slaby" <jirislaby@kernel.org>
+Cc:     devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org,
+        schung@nuvoton.com, "Jacky Huang" <ychuang3@nuvoton.com>
+Subject: Re: [PATCH 11/15] arm64: dts: nuvoton: Add initial ma35d1 device tree
+Content-Type: text/plain
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_PASS,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the required nodes to enable the volume down key on the Sony
-Xperia 10 IV.
+On Wed, Mar 15, 2023, at 08:28, Jacky Huang wrote:
+> +	mem: memory@80000000 {
+> +		device_type = "memory";
+> +		reg = <0x00000000 0x80000000 0 0x20000000>; /* 512M DRAM */
+> +	};
+> +};
 
-Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
----
- .../dts/qcom/sm6375-sony-xperia-murray-pdx225.dts  | 27 ++++++++++++++++++++++
- 1 file changed, 27 insertions(+)
+In most machines, the memory size is detected by the boot loader
+and filled in the dtb in memory before starting the kernel, so
+you should not need two separate files here for the two common
+memory configurations.
 
-diff --git a/arch/arm64/boot/dts/qcom/sm6375-sony-xperia-murray-pdx225.dts b/arch/arm64/boot/dts/qcom/sm6375-sony-xperia-murray-pdx225.dts
-index b691c3834b6b..8220e6f44117 100644
---- a/arch/arm64/boot/dts/qcom/sm6375-sony-xperia-murray-pdx225.dts
-+++ b/arch/arm64/boot/dts/qcom/sm6375-sony-xperia-murray-pdx225.dts
-@@ -46,6 +46,23 @@ framebuffer: framebuffer@85200000 {
- 		};
- 	};
- 
-+	gpio-keys {
-+		compatible = "gpio-keys";
-+		label = "gpio-keys";
-+
-+		pinctrl-0 = <&vol_down_n>;
-+		pinctrl-names = "default";
-+
-+		key-volume-down {
-+			label = "Volume Down";
-+			linux,code = <KEY_VOLUMEDOWN>;
-+			gpios = <&pmr735a_gpios 1 GPIO_ACTIVE_LOW>;
-+			debounce-interval = <15>;
-+			linux,can-disable;
-+			wakeup-source;
-+		};
-+	};
-+
- 	reserved-memory {
- 		cont_splash_mem: memory@85200000 {
- 			reg = <0 0x85200000 0 0xc00000>;
-@@ -133,6 +150,16 @@ &pmk8350_rtc {
- 	status = "okay";
- };
- 
-+&pmr735a_gpios {
-+	vol_down_n: vol-down-n-state {
-+		pins = "gpio1";
-+		function = "normal";
-+		power-source = <1>;
-+		bias-pull-up;
-+		input-enable;
-+	};
-+};
-+
- &pon_pwrkey {
- 	status = "okay";
- };
+Since the machine is called 'som', I would assume that this is a
+module that is integrated on another board, so more commonly one
+would have a dtsi file for the som in addition to the one for the
+soc, and have all the components of the module listed in this
+file, while the dts file that includes the som.dtsi lists the
+devices on the carrier board and enables the on-chip devices
+that are connected to the outside.
 
--- 
-2.39.2
-
+       Arnd
