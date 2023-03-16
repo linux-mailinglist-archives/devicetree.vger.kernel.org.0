@@ -2,115 +2,132 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0CE936BD8F3
-	for <lists+devicetree@lfdr.de>; Thu, 16 Mar 2023 20:22:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D2B7F6BD904
+	for <lists+devicetree@lfdr.de>; Thu, 16 Mar 2023 20:24:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230214AbjCPTWf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Mar 2023 15:22:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45210 "EHLO
+        id S230227AbjCPTYk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Mar 2023 15:24:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49706 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229704AbjCPTWd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Mar 2023 15:22:33 -0400
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A230E4742D;
-        Thu, 16 Mar 2023 12:22:14 -0700 (PDT)
-Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 32G2QNNa025819;
-        Thu, 16 Mar 2023 19:22:10 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
- subject : date : message-id : in-reply-to : references : mime-version :
- content-transfer-encoding : content-type; s=qcppdkim1;
- bh=uC3HXNI4QBm0EiaHcUPhip9SORNZC6pNzDdy00a3LE0=;
- b=UKP99nSHJ8GvRoAVzVVUsbaXJWobek9RFQVy3Z9pvJ+nfKZ1ZL31K1PXWED1VORq1LyN
- 9Z1XFYTCZogcDO0lsgD3CZnKlFWDUZu8q11GMTmeEYE8B6izQ8iUGaxAu75B9WMK0Nxy
- mMDU12pCjWNbd1dGUOTM58qQ3lD4GKACag3N3I7CccP476bLkyRjouRmTr6UB8b3Q/p2
- tiAHrNvrF3LYasy+L5co4qtJ/wJAy2fhB14Kqx1CvCRqJS7XhNBU4viSlbJrf2/JO6TE
- sOEQtJAfYmRg93WqZScRO6KvojbDLw6DzPKf0j8AMNCwx2CbMsJBkxlIACmVz9wZ7GCz 1Q== 
-Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3pbpxju011-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 16 Mar 2023 19:22:09 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-        by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 32GJM9MM022489
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 16 Mar 2023 19:22:09 GMT
-Received: from hu-amelende-lv.qualcomm.com (10.49.16.6) by
- nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.41; Thu, 16 Mar 2023 12:22:08 -0700
-From:   Anjelique Melendez <quic_amelende@quicinc.com>
-To:     <pavel@ucw.cz>, <lee@kernel.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <andersson@kernel.org>
-CC:     <linux-leds@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <quic_c_skakit@quicinc.com>,
-        "Anjelique Melendez" <quic_amelende@quicinc.com>
-Subject: [PATCH 3/3] leds: rgb: leds-qcom-lpg: Add support for PMK8550 PWM
-Date:   Thu, 16 Mar 2023 12:21:34 -0700
-Message-ID: <20230316192134.26436-4-quic_amelende@quicinc.com>
-X-Mailer: git-send-email 2.39.0
-In-Reply-To: <20230316192134.26436-1-quic_amelende@quicinc.com>
-References: <20230316192134.26436-1-quic_amelende@quicinc.com>
+        with ESMTP id S230271AbjCPTYd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Mar 2023 15:24:33 -0400
+Received: from mail-ed1-x52c.google.com (mail-ed1-x52c.google.com [IPv6:2a00:1450:4864:20::52c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 231CDC5AD2
+        for <devicetree@vger.kernel.org>; Thu, 16 Mar 2023 12:24:10 -0700 (PDT)
+Received: by mail-ed1-x52c.google.com with SMTP id cy23so11732275edb.12
+        for <devicetree@vger.kernel.org>; Thu, 16 Mar 2023 12:24:10 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1678994649;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=SzpppHgdp3HaoNlsJcnGIedojO2IG2V6oWwyMef5ZzU=;
+        b=SyLW7vL3Tn3yQ2sLcLkqMAbdCOxJhaNmygl1xALrzLufsF5n/p9TAqJoBTPVQEsygS
+         ynAJlWo7kGe3KrLI1oczcsA+fmf+cKrlt3borfuHX2bysAzRuiyN/OB6e+DDUFX5vhmw
+         beqJQi8Q0WR9EYFN5cdNFFL45TNClLYGWPKqBAj8KH87lEft+OAELJCX4wqRCSLCOC0b
+         r+/PNjXn/oAjClPaUW447ppL1Y+P9v+qBaDuogGyboolKcyHpqadYfXRss8GcX7zJWZ4
+         wR4oAudAEArnf/ehWWUMK8WI5w80iKdPVoCHCh2XtDGcajEvHdsXbeGJ9Qt7tUpvdRkH
+         nwig==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1678994649;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=SzpppHgdp3HaoNlsJcnGIedojO2IG2V6oWwyMef5ZzU=;
+        b=FipYfTH5x57fh+3J9SAk1iucjX2JDETBPKysyatb2FAgiHzbCvFdG6UYEMQ35FPIlZ
+         kCxyhl4Ie5iri+ddvCHRmSLfte/IcDMXIKXBDLCU9VXJAunYBxh8oGTRzjrtOcNS8G0J
+         vaH3i1zdKTXr27cEKtqHsEwsmJ+FmCEJWS0qk5h7sn0WDFT2MwPnCbATvfa7YGLUAT9/
+         lSuxqRkuskG20dPpfIRm1bIpo1iCofxZIyG8J/4jBZF+CduL5cvjbL0oux11w4k8qNyY
+         cmAwTIAPir6H2S5/wCSxOAYswYVNiSk1mZgRunChzvI4JI/fh8lE4N0woTuMlFjee4vG
+         BtFg==
+X-Gm-Message-State: AO0yUKU5LuCazV+aydZhlzGQC1aakX8vnRXXPSjeIQGSdoivaIgJhJU0
+        oJb4IYxAv3D8g+zeh3/P2VvfXQ==
+X-Google-Smtp-Source: AK7set8gHfAjemPrL6RUamqLp74FM/6pqGNqaxHeGFQnw8reoXzMaHfjYhzOaALtINM5R6UDMskg0g==
+X-Received: by 2002:a17:906:9f26:b0:92e:c4c9:7a43 with SMTP id fy38-20020a1709069f2600b0092ec4c97a43mr6844035ejc.25.1678994649358;
+        Thu, 16 Mar 2023 12:24:09 -0700 (PDT)
+Received: from ?IPV6:2a02:810d:15c0:828:9827:5f65:8269:a95f? ([2a02:810d:15c0:828:9827:5f65:8269:a95f])
+        by smtp.gmail.com with ESMTPSA id v19-20020a17090651d300b0092b86d41dbasm10006ejk.114.2023.03.16.12.24.08
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 16 Mar 2023 12:24:08 -0700 (PDT)
+Message-ID: <f30be3ad-bcb0-b423-e4f9-e7c645131887@linaro.org>
+Date:   Thu, 16 Mar 2023 20:24:08 +0100
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.49.16.6]
-X-ClientProxiedBy: nalasex01a.na.qualcomm.com (10.47.209.196) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: nw948F-dMnoWmBWlqrRE8z2ae3hhqvD_
-X-Proofpoint-ORIG-GUID: nw948F-dMnoWmBWlqrRE8z2ae3hhqvD_
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
- definitions=2023-03-16_12,2023-03-16_02,2023-02-09_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0
- priorityscore=1501 phishscore=0 malwarescore=0 lowpriorityscore=0
- adultscore=0 impostorscore=0 mlxscore=0 bulkscore=0 clxscore=1015
- mlxlogscore=883 suspectscore=0 classifier=spam adjust=0 reason=mlx
- scancount=1 engine=8.12.0-2303150002 definitions=main-2303160146
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.0
+Subject: Re: [PATCH v2 1/2] dt-bindings: input: touchscreen: Add
+ 'hold-in-reset-in-suspend' property to goodix
+Content-Language: en-US
+To:     Jan Jasper de Kroon <jajadekroon@gmail.com>
+Cc:     devicetree@vger.kernel.org, dmitry.torokhov@gmail.com,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        broonie@kernel.org, alexandre.belloni@bootlin.com,
+        kernel@undef.tools, linux-input@vger.kernel.org
+References: <20230311134655.486973-1-jajadekroon@gmail.com>
+ <20230312183106.551840-1-jajadekroon@gmail.com>
+ <4cdefb22-52ea-8f8f-12d2-7a07478f167c@linaro.org>
+ <e33fbb3b-0ca2-f13c-607d-23e28f3c2cf4@gmail.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <e33fbb3b-0ca2-f13c-607d-23e28f3c2cf4@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add support for pmk8550 compatible and lpg_data.
+On 16/03/2023 16:41, Jan Jasper de Kroon wrote:
+>> Anyway, the property does not look suitable for Devicetree. You describe
+>> system policy - trade off between energy saving and responsivness to the
+>> user. DT is not for policies. Use other interfaces for configuring it,
+>> e.g. some user-space, existing PM interfaces or /sysfs (which is ABI and
+>> needs its Documentation).
+>>
+>>
+>>> +
+>>>   additionalProperties: false
+>>>   
+>>>   required:
+>>> @@ -75,6 +84,7 @@ examples:
+>>>           interrupts = <0 0>;
+>>>           irq-gpios = <&gpio1 0 0>;
+>>>           reset-gpios = <&gpio1 1 0>;
+>>> +        hold-in-reset-in-suspend;
+>>>         };
+>>>       };
+>>>   
+>> Best regards,
+>> Krzysztof
+>>
+> I think the latest patch covers most of the feedback you provided.
+> Regarding the addition of this feature to the DeviceTree. Currently this
+> is only used on the Linux powered PinePhone Original and PinePhone Pro. It
+> also isn't really a policy change, 
 
-Signed-off-by: Anjelique Melendez <quic_amelende@quicinc.com>
----
- drivers/leds/rgb/leds-qcom-lpg.c | 9 +++++++++
- 1 file changed, 9 insertions(+)
+What is "policy change"? I said it is system policy.
 
-diff --git a/drivers/leds/rgb/leds-qcom-lpg.c b/drivers/leds/rgb/leds-qcom-lpg.c
-index 534ca4c0dea4..0fe51fcb42b0 100644
---- a/drivers/leds/rgb/leds-qcom-lpg.c
-+++ b/drivers/leds/rgb/leds-qcom-lpg.c
-@@ -1487,6 +1487,14 @@ static const struct lpg_data pm8350c_pwm_data = {
- 	},
- };
- 
-+static const struct lpg_data pmk8550_pwm_data = {
-+	.num_channels = 2,
-+	.channels = (const struct lpg_channel_data[]) {
-+		{ .base = 0xe800 },
-+		{ .base = 0xe900 },
-+	},
-+};
-+
- static const struct of_device_id lpg_of_table[] = {
- 	{ .compatible = "qcom,pm8150b-lpg", .data = &pm8150b_lpg_data },
- 	{ .compatible = "qcom,pm8150l-lpg", .data = &pm8150l_lpg_data },
-@@ -1497,6 +1505,7 @@ static const struct of_device_id lpg_of_table[] = {
- 	{ .compatible = "qcom,pmi8994-lpg", .data = &pmi8994_lpg_data },
- 	{ .compatible = "qcom,pmi8998-lpg", .data = &pmi8998_lpg_data },
- 	{ .compatible = "qcom,pmc8180c-lpg", .data = &pm8150l_lpg_data },
-+	{ .compatible = "qcom,pmk8550-pwm", .data = &pmk8550_pwm_data },
- 	{}
- };
- MODULE_DEVICE_TABLE(of, lpg_of_table);
--- 
-2.39.0
+> but rather an attempt to minimize
+> battery consumption on these power hungry devices.
+
+We do not talk about the goal, but whether this is property of
+Devicetree or not.
+
+>  Developers made a lot
+> of tweaks here and there, to make the PinePhone get through a day of light
+> use. This is one of these tweaks.
+
+Awesome, how is this related to my concerns that it is not suitable for
+Devicetree? Developers can invent thousands of things, shall we put them
+all to Devicetree?
+
+Bring specific arguments to my questions. Arguing that it is not a
+"policy change" is not related to my question. Just like calling
+something tweaks.
+
+
+Best regards,
+Krzysztof
 
