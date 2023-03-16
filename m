@@ -2,60 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AB1676BC844
-	for <lists+devicetree@lfdr.de>; Thu, 16 Mar 2023 09:08:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AEF3E6BC84B
+	for <lists+devicetree@lfdr.de>; Thu, 16 Mar 2023 09:09:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230321AbjCPII4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Mar 2023 04:08:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51954 "EHLO
+        id S230377AbjCPIJo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Mar 2023 04:09:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53916 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230309AbjCPIIx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Mar 2023 04:08:53 -0400
-Received: from mail-ed1-x52c.google.com (mail-ed1-x52c.google.com [IPv6:2a00:1450:4864:20::52c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 18BF722100
-        for <devicetree@vger.kernel.org>; Thu, 16 Mar 2023 01:08:52 -0700 (PDT)
-Received: by mail-ed1-x52c.google.com with SMTP id eh3so4096027edb.11
-        for <devicetree@vger.kernel.org>; Thu, 16 Mar 2023 01:08:52 -0700 (PDT)
+        with ESMTP id S230206AbjCPIJn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Mar 2023 04:09:43 -0400
+Received: from mail-ed1-x52d.google.com (mail-ed1-x52d.google.com [IPv6:2a00:1450:4864:20::52d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 414CD89F0F
+        for <devicetree@vger.kernel.org>; Thu, 16 Mar 2023 01:09:40 -0700 (PDT)
+Received: by mail-ed1-x52d.google.com with SMTP id o12so4128289edb.9
+        for <devicetree@vger.kernel.org>; Thu, 16 Mar 2023 01:09:40 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1678954130;
+        d=linaro.org; s=google; t=1678954179;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=jqgjNRTTYxXEBu4RgHLIKOV2OMvEZgDykND/jjBfs/c=;
-        b=XTd0nL85CNSMECdA4C0i9h2sZ1dQYnlDTfsrFcWMv+qzAfAn7WxJzdm1xCKhhE7S7J
-         Ech53iIFir39KilPHOrlU/+sIwThxbSkxKevwxwJgQrUV8y//OufCdPPpOZDwSGwQtae
-         gmvkUUH9eR4WIvKMhs0lRFEHq3gJpzoUb2IlQmQfbvQjhmk6vIXnWesO+7eMbatY8Lt/
-         +ZNN4lZnwWFvJ2jEUDajXhf/6Lt/mpOZYn4mdwuJGbe0aUkZqbNAuOqFtcfOo12lrnoz
-         B0A36PWIIW2NzOd+lKVvXDoKQYzM37r0ZhJGJEcPuau22/2e/aOb+QqbAmamRkWoV+gp
-         VHzA==
+        bh=qsSpi02AtRNWSprHN4Cl76ayMyVQlvN90GOQNuiLzbY=;
+        b=iOdoB48DSlJTxzYGvDakUwMgdpYpWIUL4nfKitoVvMKmpNSyhwjFVq5uG8uzBnOUTW
+         x/rivZ/fOZlHihUW0EUlamLr9+U3JqiPhma3II2aEWX2H2cN7KeBfxWXgOitFL3S3jca
+         duHj69oaASj2MjNwQZd1rqfDb0suikr7FoD5Rc5SckWkmQMaf3gOUAH8b2ejtUmFp3Lb
+         aWFIeNUEtYqYQzPS2/LdlPFDEjFTr34eqfTcbB6ICYL3fwBAQbhXVRairVx5zmKMFpss
+         i7boP9CRkkaiO7mbTly7kJanoyzHwc5jtEGZbGklG1O0kvBZlUg+GVImBpiIFZgSS2tz
+         fjwA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678954130;
+        d=1e100.net; s=20210112; t=1678954179;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=jqgjNRTTYxXEBu4RgHLIKOV2OMvEZgDykND/jjBfs/c=;
-        b=LdkFCZ9u7fxOZOCMSFl5jFtSgRj+h4+amRqduDdTCGQ7nGH7g6u0DqvO2yzSvgamCU
-         3nvF+Thu4HcMCZjkvpdZr4LIXXHad2cZ755nARNkiJmJ4rjgevPZgv6pKrWJ2fDb2rX9
-         Y58+9AZ2tCEYxqLmIdjCX2y9myJnz21YgKHQMdU01I4JIacE1GVuN7aXfWsjt7v0QCnd
-         hrFUaveIvLtqSgbmqo6X1z74JEX4JcssfVIzX246/VNL1zAMzcnh6PTs0h9pgk7L0wsr
-         c9odD0VDsRaVBlhbR9EBtyw+TiGhi9Vo8bhyA3kZn/3zhVNwjzKrbguctDx9wPgts3zi
-         RLNw==
-X-Gm-Message-State: AO0yUKVYAIcm6wXB1eeysFSyjCGMJtGxbcZglw4EVv+Er8xxfe1dC8eR
-        FZClF3FU0spEQBXYtF9+ZfPPXw==
-X-Google-Smtp-Source: AK7set/VThqElekS4hBXOwTeyPSy1a3TkMzQZlRz5q5wXZ64tA34znN1il3ES/tPjl0A/Zuqi4OL+A==
-X-Received: by 2002:a17:906:8248:b0:8b1:2614:fbf2 with SMTP id f8-20020a170906824800b008b12614fbf2mr9306868ejx.70.1678954130576;
-        Thu, 16 Mar 2023 01:08:50 -0700 (PDT)
+        bh=qsSpi02AtRNWSprHN4Cl76ayMyVQlvN90GOQNuiLzbY=;
+        b=0dTXH8OycoOD/6lMwpcLpzGT4OieKliexNey8s3lQ0Cwwkgh+uMLsYE1d+7eSFVzk0
+         Wz8dzjPMCwjqlZvVpKI40jCshQs6164jB+zQNlkGH6ezpvVZ+rBTQE2pqY65uPx9rUZT
+         vmj3uQDR2SiRUUORJs9PFWHDwIMH5y41YNn+huwEqn4tdI03QNT4ScbFITSpFcGm69c7
+         QpWJ2pwxDm2OYXUSXpeMDQmjiSuC1DoI5rz0vO47OFjSyfqboMJ2gyuBXvIHRGXD+YfL
+         Msbkd3PFWVRHtVijs4E86sVIQb0U5r7xp9cP6P8vR5mclKpQcTX+8cLa5zp8L0Zv2ziJ
+         agAA==
+X-Gm-Message-State: AO0yUKXGUriRDzVratHFYFnBX74+xEOvASdLr4z/YgeZsAkMINNVYG+x
+        pDm1Vd28sJy0eNZsJ8lPpPcR+g==
+X-Google-Smtp-Source: AK7set9qRwS9KK6hBBohaRF3L5B2ru2zJVrTS4WbmbGRiLcPQJ7BzlvfGx8yi9xnXwYWSRhxP+9xSg==
+X-Received: by 2002:a17:907:c22:b0:930:1178:2220 with SMTP id ga34-20020a1709070c2200b0093011782220mr2685504ejc.40.1678954178709;
+        Thu, 16 Mar 2023 01:09:38 -0700 (PDT)
 Received: from ?IPV6:2a02:810d:15c0:828:9827:5f65:8269:a95f? ([2a02:810d:15c0:828:9827:5f65:8269:a95f])
-        by smtp.gmail.com with ESMTPSA id c17-20020a170906d19100b008e57b5e0ce9sm3519551ejz.108.2023.03.16.01.08.49
+        by smtp.gmail.com with ESMTPSA id td10-20020a1709078c8a00b009256a5c3b2dsm3559556ejc.90.2023.03.16.01.09.37
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 16 Mar 2023 01:08:50 -0700 (PDT)
-Message-ID: <cee5e3d7-132c-2c6a-de11-c02ca6499231@linaro.org>
-Date:   Thu, 16 Mar 2023 09:08:48 +0100
+        Thu, 16 Mar 2023 01:09:38 -0700 (PDT)
+Message-ID: <faf70823-f87b-ba50-ac72-3552de1cc7e3@linaro.org>
+Date:   Thu, 16 Mar 2023 09:09:37 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.8.0
-Subject: Re: [PATCH net-next 13/16] dt-bindings: net: dwmac: Fix MTL Tx Queue
- props description
+Subject: Re: [PATCH net-next 14/16] dt-bindings: net: dwmac: Use flag
+ definition instead of booleans
 Content-Language: en-US
 To:     Serge Semin <Sergey.Semin@baikalelectronics.ru>,
         Giuseppe Cavallaro <peppe.cavallaro@st.com>,
@@ -67,8 +67,7 @@ To:     Serge Semin <Sergey.Semin@baikalelectronics.ru>,
         Paolo Abeni <pabeni@redhat.com>,
         Maxime Coquelin <mcoquelin.stm32@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Joao Pinto <Joao.Pinto@synopsys.com>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
 Cc:     Serge Semin <fancer.lancer@gmail.com>,
         Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
         Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
@@ -80,9 +79,9 @@ Cc:     Serge Semin <fancer.lancer@gmail.com>,
         linux-stm32@st-md-mailman.stormreply.com,
         linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
 References: <20230313225103.30512-1-Sergey.Semin@baikalelectronics.ru>
- <20230313225103.30512-14-Sergey.Semin@baikalelectronics.ru>
+ <20230313225103.30512-15-Sergey.Semin@baikalelectronics.ru>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230313225103.30512-14-Sergey.Semin@baikalelectronics.ru>
+In-Reply-To: <20230313225103.30512-15-Sergey.Semin@baikalelectronics.ru>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -96,19 +95,32 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 13/03/2023 23:51, Serge Semin wrote:
-> Invalid MTL Tx Queues DT-properties description was added right at the
-> initial DCB/AVB features patch. Most likely due to copy-paste mistake the
-> text currently matches to what is specified for the AXI-bus config
-> properties. Let's fix that by providing correct descriptions for MTL Tx
-> Queue DT-properties utilized for the AVB feature (CBS algorithm) tuning.
+> Currently some of the boolean properties defined in the DT-schema are
+> marked to have the basic boolean type meanwhile the rest referencing the
+> /schemas/types.yaml#/definitions/flag schema. For the sake of unification
+> let's convert the first group to referencing the pre-defined flag schema.
+> Thus bindings will look a bit more coherent and the DT-bindings
+> maintainers will have a better control over the booleans defined in the
+> schema (if ever needed).
 > 
-> Fixes: 19d918731797 ("net: stmmac: configuration of CBS in case of a TX AVB queue")
-
-Fixes must be first in the patchset.
-
 > Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
 > ---
+>  .../devicetree/bindings/net/snps,dwmac.yaml   | 45 ++++++++++++-------
+>  1 file changed, 30 insertions(+), 15 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/net/snps,dwmac.yaml b/Documentation/devicetree/bindings/net/snps,dwmac.yaml
+> index 69be39d55403..a863b5860566 100644
+> --- a/Documentation/devicetree/bindings/net/snps,dwmac.yaml
+> +++ b/Documentation/devicetree/bindings/net/snps,dwmac.yaml
+> @@ -120,11 +120,13 @@ properties:
+>          maximum: 12
+>  
+>        snps,rx-sched-sp:
+> -        type: boolean
+> +        $ref: /schemas/types.yaml#/definitions/flag
+>          description: Strict priority
 
+If ever touching this, it should be other way -> boolean.
 
 Best regards,
 Krzysztof
