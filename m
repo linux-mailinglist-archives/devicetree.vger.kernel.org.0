@@ -2,54 +2,54 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4D1196BCE9F
-	for <lists+devicetree@lfdr.de>; Thu, 16 Mar 2023 12:44:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B031B6BCECA
+	for <lists+devicetree@lfdr.de>; Thu, 16 Mar 2023 12:57:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229900AbjCPLo2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Mar 2023 07:44:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43908 "EHLO
+        id S229960AbjCPL5R (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Mar 2023 07:57:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59874 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230130AbjCPLo1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Mar 2023 07:44:27 -0400
-X-Greylist: delayed 3380 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Thu, 16 Mar 2023 04:44:21 PDT
+        with ESMTP id S229796AbjCPL5Q (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Mar 2023 07:57:16 -0400
 Received: from egress-ip4a.ess.de.barracuda.com (egress-ip4a.ess.de.barracuda.com [18.184.203.227])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3A8833B853
-        for <devicetree@vger.kernel.org>; Thu, 16 Mar 2023 04:44:20 -0700 (PDT)
-Received: from mail-yw1-f199.google.com (mail-yw1-f199.google.com [209.85.128.199]) by mx-outbound40-126.eu-central-1c.ess.aws.cudaops.com (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NO); Thu, 16 Mar 2023 11:44:18 +0000
-Received: by mail-yw1-f199.google.com with SMTP id 00721157ae682-544b71b3114so1351327b3.13
-        for <devicetree@vger.kernel.org>; Thu, 16 Mar 2023 04:44:18 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C81B8BCB9B
+        for <devicetree@vger.kernel.org>; Thu, 16 Mar 2023 04:57:15 -0700 (PDT)
+Received: from mail-yb1-f199.google.com (mail-yb1-f199.google.com [209.85.219.199]) by mx-outbound40-126.eu-central-1c.ess.aws.cudaops.com (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NO); Thu, 16 Mar 2023 11:57:13 +0000
+Received: by mail-yb1-f199.google.com with SMTP id m13-20020a25800d000000b00b3dfeba6814so1571141ybk.11
+        for <devicetree@vger.kernel.org>; Thu, 16 Mar 2023 04:57:13 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=mistralsolutions.com; s=google; t=1678967057;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=DAO3s9WIPu6FGtr1O/SymD5IC2bA74jcQnX8JFNXRUo=;
-        b=BXG9FtUqe1FxCOAIwSlAzKhdadins25jxS8TU88NlBSHvU2MfFQko5eOkR1U0uiXLs
-         vcd+sBYpg18CXCAug4VjFD+PKF4+00cvXHpnAsD4c0Gs8vUQbwVEymLAxSv4isdYaH4P
-         54/90BRJo4VjPFQJuY3hIBrQlTmWGDyluZ9yU=
+        d=mistralsolutions.com; s=google; t=1678967832;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=IqVmEyOrJQJn3pfCA5li10O2ni8RXk5d8AsC0ChXTIA=;
+        b=XzY2ql5PLSJl6ZK8/4y4ur8opoPaXHmYoInVaCJu2oHnuxa5WxdMhDX19PKejDOn/+
+         yxe/NVdHg2EudnNXMwQamWb1nWjF6zQH6YFmt4FvSKxAbObm90ypo7QL2Pl4/homBeMg
+         fQNIqCR+7ILT9pRA784XErK1lFtnak1Duk/Vg=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678967057;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=DAO3s9WIPu6FGtr1O/SymD5IC2bA74jcQnX8JFNXRUo=;
-        b=5cg+JtJwamP8VgaHrrUiLUI6qyvsWEePdzNw+aVIh18a61cCDtNgu6RqyNKZ8Wfz3U
-         Hpa1QuIiw5uxGMbb9K4yXOPqwrvB2lhmUD9mVSsWwHOuNDhHOH90kfPiHDmoOf1qAACv
-         CDFxAJlPaD43eFvN70yRFI8waqqqaasfG+O4W0ImFnK2yG5xloC01TTkyy0ApriaeuRF
-         VSzRRqXxDPAF9qvUXGnfa2TDo7TeS+SnOaDWLVubp7fJ3j5M09AfAbvIEZ2FmgKL2CWG
-         o4VZSpOWBpjMHxp2NGT6yHGOzxUPVnh4Mf2KMvDJ3Ih32M3w11cNmSxDo3JEFAPP5M+V
-         XWzw==
-X-Gm-Message-State: AO0yUKVOkNlb0axgq/9gU4JSSdXAeDM16mmRphQYS+9as7TNT6dUhXiO
-        cQgPRnymuA3ZtVtsYswX6TyCWE4ue7qCmoR6aqo9vsjHWsDpEHL6+oWWlv79Tz1FyQifke+ILBC
-        XZ1EkKDmWCJQ1R2or7U44BpJ4TkooXGG+j0Ol8X8BREYeRFXZ3/jAqi439unwTFZ/xg==
-X-Received: by 2002:aa7:9d12:0:b0:625:a102:9a34 with SMTP id k18-20020aa79d12000000b00625a1029a34mr2467803pfp.24.1678963675646;
-        Thu, 16 Mar 2023 03:47:55 -0700 (PDT)
-X-Google-Smtp-Source: AK7set8ZIHqpxTj5SShM5wZfbAekKBVo4SSDbXQqCraFeWsiUcsOMKa5qAMss1F1qq9ZExPt1dhZLA==
-X-Received: by 2002:aa7:9d12:0:b0:625:a102:9a34 with SMTP id k18-20020aa79d12000000b00625a1029a34mr2467791pfp.24.1678963675351;
-        Thu, 16 Mar 2023 03:47:55 -0700 (PDT)
+        d=1e100.net; s=20210112; t=1678967832;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=IqVmEyOrJQJn3pfCA5li10O2ni8RXk5d8AsC0ChXTIA=;
+        b=KCiPC/lE58f5uvbc3ZE0gClb3b2fqgGaBm0Tu9sScbbbkZd4BN9SHdR+gsoBHFb/3y
+         CcNVDMFhgbqQKXRK/5W907BNfrWTjtNvYCztspfY3SDtjMvV2StizjQVR6LqANgPGVMI
+         HSPHFPryuDXuhpAx2i70CZstZaLirBbvsp7qVkfhORb3VyYhDBvszFnyv343I41+Lsec
+         9u6ECyNjTkknmVpuJMLoPXmOb1nMAAW+QFF1Kg1inoUApv/2/PVbChPY+sLZo03XmJnb
+         Uo+g4LL7/ancKBP5gbCrabKuO30esC0JJ38lYKaWTNjiJ/ccF36TwoiVrvqX2GOX2QGW
+         7i8g==
+X-Gm-Message-State: AO0yUKWz3utLuLYOOZKHyAt3QLc/WDdvtUZgFwtEhGz07/caFkB91Zyb
+        LaLgxr8dC9qwiGPyjrPXZnrQbINTFtI3TrS68OpnBfqyChywnmCTwLJMXid3LzfxhwDbiPOt6id
+        7ImiHCtjWGJsiurN2aZD9IYgsrKTk22f5uISB/za+Zc8uKUWI6azPf/pNGw==
+X-Received: by 2002:aa7:9413:0:b0:625:e1b9:3cdf with SMTP id x19-20020aa79413000000b00625e1b93cdfmr2620442pfo.8.1678963679397;
+        Thu, 16 Mar 2023 03:47:59 -0700 (PDT)
+X-Google-Smtp-Source: AK7set/WjlblZ9Q81pgj+1uSx+QauOrpihkzi0fcL0bwzVV92S6AK9583K//KSL7MQIv/ro/zTD6dg==
+X-Received: by 2002:aa7:9413:0:b0:625:e1b9:3cdf with SMTP id x19-20020aa79413000000b00625e1b93cdfmr2620426pfo.8.1678963679117;
+        Thu, 16 Mar 2023 03:47:59 -0700 (PDT)
 Received: from localhost.localdomain ([106.51.227.150])
-        by smtp.gmail.com with ESMTPSA id f26-20020aa78b1a000000b005a8c92f7c27sm5108744pfd.212.2023.03.16.03.47.50
+        by smtp.gmail.com with ESMTPSA id f26-20020aa78b1a000000b005a8c92f7c27sm5108744pfd.212.2023.03.16.03.47.55
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 16 Mar 2023 03:47:55 -0700 (PDT)
+        Thu, 16 Mar 2023 03:47:58 -0700 (PDT)
 From:   sabiya.d@mistralsolutions.com
 X-Google-Original-From: sabiya.d@ti.com
 To:     nm@ti.com, vigneshr@ti.com, kristo@kernel.org, robh+dt@kernel.org,
@@ -57,17 +57,19 @@ To:     nm@ti.com, vigneshr@ti.com, kristo@kernel.org, robh+dt@kernel.org,
 Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
         linux-kernel@vger.kernel.org, sabiya.d@mistralsolutions.com,
         Dasnavis Sabiya <sabiya.d@ti.com>
-Subject: [PATCH 0/2] Fix WKUP domain IO PADCONFIG size issue and RPi header support
-Date:   Thu, 16 Mar 2023 16:17:41 +0530
-Message-Id: <20230316104743.482972-1-sabiya.d@ti.com>
+Subject: [PATCH 1/2] arm64: dts: ti: k3-j784s4-mcu-wakeup: Fix IO PADCONFIG size for wakeup domain
+Date:   Thu, 16 Mar 2023 16:17:42 +0530
+Message-Id: <20230316104743.482972-2-sabiya.d@ti.com>
 X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20230316104743.482972-1-sabiya.d@ti.com>
+References: <20230316104743.482972-1-sabiya.d@ti.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-BESS-ID: 1678967058-310366-5552-16359-1
+X-BESS-ID: 1678967833-310366-5549-17066-1
 X-BESS-VER: 2019.1_20230310.1716
-X-BESS-Apparent-Source-IP: 209.85.128.199
-X-BESS-Parts: H4sIAAAAAAACA4uuVkqtKFGyUirNy1bSUcovVrIyNbcEMjKAYikGKYZpyYYWlo
-        bGieYmiWYWlgZmFmZGaYnmxqlmKSYGSrWxAPGtUx9AAAAA
+X-BESS-Apparent-Source-IP: 209.85.219.199
+X-BESS-Parts: H4sIAAAAAAACA4uuVkqtKFGyUirNy1bSUcovVrIyNDA2BrIygIKGSYYmqWZGho
+        kppqkmxklplonJRompJmapZslmBmlJSUq1sQDHxzw1QQAAAA==
 X-BESS-Outbound-Spam-Score: 0.00
 X-BESS-Outbound-Spam-Report: Code version 3.2, rules version 3.2.2.246833 [from 
         cloudscan15-95.eu-central-1a.ess.aws.cudaops.com]
@@ -90,21 +92,29 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 From: Dasnavis Sabiya <sabiya.d@ti.com>
 
-Hi All,
+The size of IO PADCONFIG register set of the wakeup domain is incorrect for
+J784S4. Update the PADCONFIG offset size to the correct value for
+J784S4 SoC.
 
-This patch series include the below changes:
-1. Fix the incorrect IO PADCONFIG offset size of the wakeup domain for J784S4 SoC
-2. Add RPi expansion header support for AM69 SK.
+Fixes: 4664ebd8346a ("arm64: dts: ti: Add initial support for J784S4 SoC")
+Signed-off-by: Dasnavis Sabiya <sabiya.d@ti.com>
+---
+ arch/arm64/boot/dts/ti/k3-j784s4-mcu-wakeup.dtsi | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-Dasnavis Sabiya (2):
-  arm64: dts: ti: k3-j784s4-mcu-wakeup: Fix IO PADCONFIG size for wakeup
-    domain
-  arm64: dts: ti: k3-am69-sk: Add pinmux for RPi Header
-
- arch/arm64/boot/dts/ti/k3-am69-sk.dts         | 72 +++++++++++++++++++
- .../boot/dts/ti/k3-j784s4-mcu-wakeup.dtsi     |  2 +-
- 2 files changed, 73 insertions(+), 1 deletion(-)
-
+diff --git a/arch/arm64/boot/dts/ti/k3-j784s4-mcu-wakeup.dtsi b/arch/arm64/boot/dts/ti/k3-j784s4-mcu-wakeup.dtsi
+index 64bd3dee14aa..c0103513c64c 100644
+--- a/arch/arm64/boot/dts/ti/k3-j784s4-mcu-wakeup.dtsi
++++ b/arch/arm64/boot/dts/ti/k3-j784s4-mcu-wakeup.dtsi
+@@ -50,7 +50,7 @@ mcu_ram: sram@41c00000 {
+ 	wkup_pmx0: pinctrl@4301c000 {
+ 		compatible = "pinctrl-single";
+ 		/* Proxy 0 addressing */
+-		reg = <0x00 0x4301c000 0x00 0x178>;
++		reg = <0x00 0x4301c000 0x00 0x194>;
+ 		#pinctrl-cells = <1>;
+ 		pinctrl-single,register-width = <32>;
+ 		pinctrl-single,function-mask = <0xffffffff>;
 -- 
 2.25.1
 
