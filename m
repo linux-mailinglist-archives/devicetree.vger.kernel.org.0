@@ -2,177 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8DC546BCC60
-	for <lists+devicetree@lfdr.de>; Thu, 16 Mar 2023 11:19:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0A08C6BCC7E
+	for <lists+devicetree@lfdr.de>; Thu, 16 Mar 2023 11:21:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230240AbjCPKTC convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Thu, 16 Mar 2023 06:19:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45666 "EHLO
+        id S230471AbjCPKVH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Mar 2023 06:21:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49050 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230200AbjCPKS5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Mar 2023 06:18:57 -0400
-Received: from fd01.gateway.ufhost.com (fd01.gateway.ufhost.com [61.152.239.71])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 172C8BCB9C;
-        Thu, 16 Mar 2023 03:18:49 -0700 (PDT)
-Received: from EXMBX166.cuchost.com (unknown [175.102.18.54])
-        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-        (Client CN "EXMBX166", Issuer "EXMBX166" (not verified))
-        by fd01.gateway.ufhost.com (Postfix) with ESMTP id D3AC224E3AD;
-        Thu, 16 Mar 2023 18:18:47 +0800 (CST)
-Received: from EXMBX162.cuchost.com (172.16.6.72) by EXMBX166.cuchost.com
- (172.16.6.76) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Thu, 16 Mar
- 2023 18:18:47 +0800
-Received: from [192.168.120.42] (171.223.208.138) by EXMBX162.cuchost.com
- (172.16.6.72) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Thu, 16 Mar
- 2023 18:18:46 +0800
-Message-ID: <ed8dbe90-ee1d-405a-5aa6-cbc16a0057ac@starfivetech.com>
-Date:   Thu, 16 Mar 2023 18:18:44 +0800
+        with ESMTP id S230224AbjCPKUz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Mar 2023 06:20:55 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A70B4BCB9F;
+        Thu, 16 Mar 2023 03:20:47 -0700 (PDT)
+Received: from IcarusMOD.eternityproject.eu (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: kholk11)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 3B853660309D;
+        Thu, 16 Mar 2023 10:20:45 +0000 (GMT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1678962046;
+        bh=NPP6VaAVOFpEI44miN6/IaqfO8tqUxpgcETYimQyu0Q=;
+        h=From:To:Cc:Subject:Date:From;
+        b=PXAB0N+wx5EOPC+IogVvomG7eWUXntn+btEZFsu7NDc5hp6DDZHdNz/wqRjNrh2uv
+         tKYtrLZU6Oz3vj+StpfVirreU5JG7sF7KG7aFBmPSuB2mhUQMSG18l3RUteB3fugi1
+         D+Pd3gqJ1YelF0l3xGgWSZqvfoxMvsyTJiruNvIcYY87FblCM9Bl8RG2Lt83lNcgWI
+         /WVevAuBtWbv+wNR4YWcmEbAUbAEo1Udkn7bWO6w8fNqfFXS1AEl3LcevFsdh4Ww+A
+         yumreiQnOmgui8cTl5bF+b9R5aAdoHsS55ssO37X7hDbGV3aBLOiX4Ptrd2SdxbVVZ
+         kQrEMEgqyS8Tg==
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+To:     airlied@gmail.com
+Cc:     daniel@ffwll.ch, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, steven.price@arm.com,
+        alyssa.rosenzweig@collabora.com, matthias.bgg@gmail.com,
+        robh@kernel.org, dri-devel@lists.freedesktop.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, wenst@chromium.org,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+Subject: [PATCH v5 00/12] Panfrost: Improve and add MediaTek SoCs support
+Date:   Thu, 16 Mar 2023 11:20:29 +0100
+Message-Id: <20230316102041.210269-1-angelogioacchino.delregno@collabora.com>
+X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.1
-Subject: Re: [PATCH v7 4/6] dt-bindings: net: Add support StarFive dwmac
-Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        <linux-riscv@lists.infradead.org>, <netdev@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-CC:     "David S . Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Emil Renner Berthing <kernel@esmil.dk>,
-        Richard Cochran <richardcochran@gmail.com>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Peter Geis <pgwipeout@gmail.com>,
-        Yanhong Wang <yanhong.wang@starfivetech.com>,
-        Tommaso Merciai <tomm.merciai@gmail.com>
-References: <20230316043714.24279-1-samin.guo@starfivetech.com>
- <20230316043714.24279-5-samin.guo@starfivetech.com>
- <cfeec762-de75-f90f-7ba1-6c0bd8b70dff@linaro.org>
- <93a3b4bb-35a4-da7c-6816-21225b42f79b@starfivetech.com>
- <9038dba0-6f72-44a1-9f57-1c08b03b9c31@linaro.org>
- <d2bb7fa5-206f-2059-bde0-b65e1acc44de@starfivetech.com>
- <c716e535-7426-56da-ca6f-51c7d7d69bb3@linaro.org>
- <b7766151-cf21-a5b4-e0ef-7b070e9e5c33@starfivetech.com>
- <d2eda9a8-f532-d7f0-7ef3-b3b8e1a0a79f@linaro.org>
-From:   Guo Samin <samin.guo@starfivetech.com>
-In-Reply-To: <d2eda9a8-f532-d7f0-7ef3-b3b8e1a0a79f@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Originating-IP: [171.223.208.138]
-X-ClientProxiedBy: EXCAS066.cuchost.com (172.16.6.26) To EXMBX162.cuchost.com
- (172.16.6.72)
-X-YovoleRuleAgent: yovoleflag
-Content-Transfer-Encoding: 8BIT
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Changes in v5:
+ - Changed minItems for power-domain-names in base schema as
+   suggested by Rob
 
+Changes in v4:
+ - Refactored power-domains and power-domain-names exclusions as
+   suggested by Krzysztof
+ - Small changes in MT8192 bindings addition
 
--------- 原始信息 --------
-Re: [PATCH v7 4/6] dt-bindings: net: Add support StarFive dwmac
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-to : Guo Samin <samin.guo@starfivetech.com>, linux-riscv@lists.infradead.org, netdev@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-data: 2023/3/16
+Changes in v3:
+ - Changed MT8186 bindings to declare only two power domains
+ - Added a commit introducing MT8186 specific platform data to
+   panfrost_drv
 
-> On 16/03/2023 09:28, Guo Samin wrote:
->>
->>
->> -------- 原始信息 --------
->> 主题: Re: [PATCH v7 4/6] dt-bindings: net: Add support StarFive dwmac
->> From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->> 收件人: Guo Samin <samin.guo@starfivetech.com>, linux-riscv@lists.infradead.org, netdev@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
->> 日期: 2023/3/16
->>
->>> On 16/03/2023 09:15, Guo Samin wrote:
->>>>>>> interrupts: ???
->>>>>>>
->>>>>>
->>>>>> Hi Krzysztof, 
->>>>>>
->>>>>> snps,dwmac.yaml has defined the reg/interrupt/interrupt-names nodes,
->>>>>> and the JH7110 SoC is also applicable.
->>>>>> Maybe just add reg/interrupt/interrupt-names to the required ?
->>>>>
->>>>> You need to constrain them.
->>>>
->>>>
->>>> I see. I will add reg constraints in the next version, thanks.
->>>>
->>>> I have one more question, the interrupts/interrup-names of JH7110 SoC's gmac are exactly the same as snps,dwmac.yaml,
->>>> do these also need to be constrained?
->>>
->>> The interrupts on common binding are variable, so you need to constrain
->>> them - you have fixed number of them, right?
->>>
->>> Best regards,
->>> Krzysztof
->>>
->>
->> Yes, JH7110 fixed is 3 pcs. Thanks, I will constrain them.
-> 
-> Then just minItems: 3, maxItems: 3 here should be enough
-> 
-> Best regards,
-> Krzysztof
-> 
+Changes in v2:
+ - Add power-domain-names commit from Chen-Yu to the series
+ - Kept sram-supply in base schema, overridden for non-MediaTek
+ - Added Reviewed-by tags from Steven Price to the driver commits
+   (as released in reply to v1's cover letter - thanks!)
 
-Hi Krzysztof,
+This series adds support for new MediaTek SoCs (MT8186/MT8192/MT8195)
+and improves MT8183 support: since the mtk-regulator-coupler driver
+was picked, it is now useless for Panfrost to look for, and manage,
+two regulators (GPU Vcore and GPU SRAM) on MediaTek;
 
-Thank you for the suggestion. 
-I'll change it like this in the next version, is right?
+The aforementioned driver will take care of keeping the voltage
+relation (/constraints) of the two regulators on its own when a
+voltage change request is sent to the Vcore, solving the old time
+issue with not working DVFS on Panfrost+MediaTek (due to devfreq
+supporting only single regulator).
 
+In the specific case of MT8183, in order to not break the ABI, it
+was necessary to add a new compatible for enabling DVFS.
 
-$ git diff
---- a/Documentation/devicetree/bindings/net/starfive,jh7110-dwmac.yaml
-+++ b/Documentation/devicetree/bindings/net/starfive,jh7110-dwmac.yaml
-@@ -27,6 +27,9 @@ properties:
-           - starfive,jh7110-dwmac
-       - const: snps,dwmac-5.20
- 
-+  reg:
-+    maxItems: 1
-+
-   clocks:
-     items:
-       - description: GMAC main clock
-@@ -43,6 +46,14 @@ properties:
-       - const: tx
-       - const: gtx
- 
-+  interrupts:
-+    minItems: 3
-+    maxItems: 3
-+
-+  interrupt-names:
-+    minItems: 3
-+    maxItems: 3
-+
-   resets:
-     items:
-       - description: MAC Reset signal.
-@@ -77,8 +88,11 @@ unevaluatedProperties: false
- 
- required:
-   - compatible
-+  - reg
-   - clocks
-   - clock-names
-+  - interrupts
-+  - interrupt-names
-   - resets
-   - reset-names
+Alyssa Rosenzweig (3):
+  drm/panfrost: Increase MAX_PM_DOMAINS to 5
+  drm/panfrost: Add the MT8192 GPU ID
+  drm/panfrost: Add mediatek,mt8192-mali compatible
 
+AngeloGioacchino Del Regno (9):
+  dt-bindings: gpu: mali-bifrost: Split out MediaTek power-domains
+    variation
+  dt-bindings: gpu: mali-bifrost: Set power-domains maxItems to 5
+  dt-bindings: gpu: mali-bifrost: Fix power-domain-names validation
+  dt-bindings: gpu: mali-bifrost: Add sub-schema for MT8192's power
+    domains
+  dt-bindings: gpu: mali-bifrost: Add new MT8183 compatible
+  dt-bindings: gpu: mali-bifrost: Add support for MediaTek MT8186
+  dt-bindings: gpu: mali-bifrost: Add compatible for MT8195 SoC
+  drm/panfrost: Add new compatible for Mali on the MT8183 SoC
+  drm/panfrost: Add support for Mali on the MT8186 SoC
 
+ .../bindings/gpu/arm,mali-bifrost.yaml        | 80 ++++++++++++++++++-
+ drivers/gpu/drm/panfrost/panfrost_device.h    |  2 +-
+ drivers/gpu/drm/panfrost/panfrost_drv.c       | 37 +++++++++
+ drivers/gpu/drm/panfrost/panfrost_gpu.c       |  8 ++
+ 4 files changed, 123 insertions(+), 4 deletions(-)
 
+-- 
+2.39.2
 
-
-Best regards,
-Samin
