@@ -2,223 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E58626BD25D
-	for <lists+devicetree@lfdr.de>; Thu, 16 Mar 2023 15:28:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 18D216BD26B
+	for <lists+devicetree@lfdr.de>; Thu, 16 Mar 2023 15:32:54 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230488AbjCPO22 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Mar 2023 10:28:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60504 "EHLO
+        id S230330AbjCPOcw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Mar 2023 10:32:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38076 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230396AbjCPO2Y (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Mar 2023 10:28:24 -0400
-Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E954115C92
-        for <devicetree@vger.kernel.org>; Thu, 16 Mar 2023 07:28:11 -0700 (PDT)
-Received: by mail-lf1-x135.google.com with SMTP id r27so2596511lfe.10
-        for <devicetree@vger.kernel.org>; Thu, 16 Mar 2023 07:28:11 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112; t=1678976890;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to:subject
-         :user-agent:mime-version:date:message-id:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=it9aeYnxGWWMKUhD9kMlVYQPDO4LCr+X6cTL/NBM1V4=;
-        b=hE4Pctc0UoYOjpdhHgG5gbMpADrAfdnujllgPy6IWkgw+aRdZx5fqDWts1+ljbkXWd
-         YvRZ3n+5UY7QlSakRpf27TQ45XNwTPf2GKtIiLzxMkEK0ASd4KzpKZNjzpg4XAOAVDkh
-         Pa0cQBza0mQYPgg5k5h+z5MPeS/3eSJufeztf+ZMASiNWHCPtUpjihODmjUft7wSYUbx
-         FZBcH8yQiTsr414Kh2cfVQ/5bzucKCWWhjcyv4zvv/YDl5CFJAiFyveTJFXZJ3KGL0Uw
-         wzkSRy0VCgoK4BL9fVSKSrdfvfmnzExdzCAtZmJZQiLU7MxrHzW3aZyKvNyKGOvKEG2r
-         pK3A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678976890;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to:subject
-         :user-agent:mime-version:date:message-id:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=it9aeYnxGWWMKUhD9kMlVYQPDO4LCr+X6cTL/NBM1V4=;
-        b=0l1nb6zJ9Utm+yedrPMLA74gXVcrYoDaeUvsueWsxGD66j1rYjDHvrssfTbgN8so9w
-         xCMAmxVXoqb9rQEGsPtUwIu+QCzMMNYWjAPeTFJi8XBbWxyCWROrqoGEcx7Wmvc3g42N
-         ZBNFYQncnbYTujhl5IWUexfeY86snrAyTOq+CP60s4IdkjHBiD8w2RuACk7WAXdPOB+N
-         rxNp1IE8NIvr0NYo4O8wd6++np+LG55yqu3w/L1zKZ/g2JKe5uMGLSqflIREHrttodTc
-         ccqAL0NlEdhwmp5wy9c+s9LH0a4df6REKhGBUAUuzVy7n7uAmI3WGFcCtJYJ+ZmEjmTQ
-         3EiA==
-X-Gm-Message-State: AO0yUKXfUxk1qHBcguM33vHFmZpuqICaUC0gzMCqus8LU3vgahUFy+Yy
-        chXerPagbuyqSFBLUkVA4ic=
-X-Google-Smtp-Source: AK7set+uUKMPZ7JADhmNhaXXZqPitHdtc8HwflwyErfYhlV309mrVwgb3leFUbuXWa1cpJaIJubuQw==
-X-Received: by 2002:a05:6512:3769:b0:4e8:5e39:6234 with SMTP id z9-20020a056512376900b004e85e396234mr1762176lft.16.1678976889708;
-        Thu, 16 Mar 2023 07:28:09 -0700 (PDT)
-Received: from [192.168.26.149] (ip-194-187-74-233.konfederacka.maverick.com.pl. [194.187.74.233])
-        by smtp.googlemail.com with ESMTPSA id u5-20020a056512094500b004cafa2bfb7dsm1241553lft.133.2023.03.16.07.28.08
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 16 Mar 2023 07:28:09 -0700 (PDT)
-Message-ID: <b2810924-169d-0bad-8f20-6ec2e683d170@gmail.com>
-Date:   Thu, 16 Mar 2023 15:28:07 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:96.0) Gecko/20100101
- Thunderbird/96.0
-Subject: Re: [PATCH v3 2/2] ASoC: dt-bindings: renesas,rsnd.yaml: add R-Car
- Gen4 support
-To:     Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
-        Rob Herring <robh@kernel.org>, Mark Brown <broonie@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Linux-DT <devicetree@vger.kernel.org>,
-        Linux-ALSA <alsa-devel@alsa-project.org>,
-        Geert Uytterhoeven <geert@linux-m68k.org>
-References: <87ttzq8ga4.wl-kuninori.morimoto.gx@renesas.com>
- <87sffa8g99.wl-kuninori.morimoto.gx@renesas.com>
-From:   =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
-In-Reply-To: <87sffa8g99.wl-kuninori.morimoto.gx@renesas.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+        with ESMTP id S229985AbjCPOcv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Mar 2023 10:32:51 -0400
+Received: from out5-smtp.messagingengine.com (out5-smtp.messagingengine.com [66.111.4.29])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B9EDC525D;
+        Thu, 16 Mar 2023 07:32:50 -0700 (PDT)
+Received: from compute6.internal (compute6.nyi.internal [10.202.2.47])
+        by mailout.nyi.internal (Postfix) with ESMTP id 3234A5C0102;
+        Thu, 16 Mar 2023 10:32:50 -0400 (EDT)
+Received: from imap51 ([10.202.2.101])
+  by compute6.internal (MEProxy); Thu, 16 Mar 2023 10:32:50 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arndb.de; h=cc
+        :cc:content-type:content-type:date:date:from:from:in-reply-to
+        :in-reply-to:message-id:mime-version:references:reply-to:sender
+        :subject:subject:to:to; s=fm1; t=1678977170; x=1679063570; bh=7i
+        jgDLmeD93wpp+M55EYZJS5ULGYTFy+YLaAjY5QCeg=; b=ipcazilBXEO0ZY6s1W
+        9WuRMl/4v/E6eQQC71UmnrLZtozKVeban5Rh678kB1G4H8vw8F+xPKIURPWzB03k
+        njVVIoTJwK1ZCp4bv+xj5S7Hov3vQaJI26ybjsQRjFtbqNsyBfcgdyoLnb8lAWZD
+        ghMsZi6OhqU3VbW3NeOil/HLNpXLSUluKkKSa9ye4/6FJaq4V3rZe57liIqOecX/
+        nAxjp3b1T8/XjoMpfjN6OLBGRme+MoefdBfmjYnec52LFGs5DOp12D8klrDxhHFo
+        WdgWjssHtFDhKFgsTu91+PYt6+yx6KCk5FwkHPGeryXVQ0itjYV/NwfgMR/k/8Jy
+        uU0Q==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:cc:content-type:content-type:date:date
+        :feedback-id:feedback-id:from:from:in-reply-to:in-reply-to
+        :message-id:mime-version:references:reply-to:sender:subject
+        :subject:to:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
+        :x-sasl-enc; s=fm2; t=1678977170; x=1679063570; bh=7ijgDLmeD93wp
+        p+M55EYZJS5ULGYTFy+YLaAjY5QCeg=; b=StR/rei+APjw5flVCNJNOHwtDB/2J
+        JZSyTHAXTiTVonUxXgRHQAbz/leve8o/WT3UX5S//khmPU6hHk/Ee/rwENThT1Ce
+        FclrG9F2GteA9N2dO13RewnRv4Vv7Us1DPKeYlIvJ94ecanyfvVUMlYEffdBd0XR
+        Wv1RWGXbKL3LSjOHSlOgrC8Ugknt6NHJ5nZ1bLYEFfUVVZdy8oRl7qA5aPxcqphS
+        7nLbnYchav8x/ma05Qza7PpHcx7rTeyB/aBEVmavyyOP8W6T3YwUu2H+rA6NiTjT
+        HgoDxnk2S7V0oCPplLIgqH2bbTHyEyXhalJQrNmSdbtGIY7Mwv3ueoh3w==
+X-ME-Sender: <xms:kSgTZPU0vxEOGguKyhWR-y6yTqbicRbDFJ6ZEPhRAedFETwveavCmw>
+    <xme:kSgTZHnGz-fBMfXDnTgWPVCe9XgjY-EJDTuLw6mPOK5fKV-ng3GdKSh2njm5F3f4j
+    YDX1VFU8gD5aC866xc>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvhedrvdeftddgieeiucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhepofgfggfkjghffffhvfevufgtsehttdertderredtnecuhfhrohhmpedftehr
+    nhguuceuvghrghhmrghnnhdfuceorghrnhgusegrrhhnuggsrdguvgeqnecuggftrfgrth
+    htvghrnhepffehueegteeihfegtefhjefgtdeugfegjeelheejueethfefgeeghfektdek
+    teffnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomheprg
+    hrnhgusegrrhhnuggsrdguvg
+X-ME-Proxy: <xmx:kigTZLaPtDxlQBy5FunB_zqckRha-lfISqU_tZm0EJjNrdWD_7leow>
+    <xmx:kigTZKUgqqaCJax5KdYEF3izN02GjJnLMkrkXlt5jlRETJdttw5dCw>
+    <xmx:kigTZJnoIzrgTkXn2BQ5SWiwEqgWPnA3Mf6LCDjdVSraNRd3J9E23w>
+    <xmx:kigTZLkM2Lwr7pPMVD4Tmtz60u1_hTXzKnpK0prhnhgFrlyWLb4A2g>
+Feedback-ID: i56a14606:Fastmail
+Received: by mailuser.nyi.internal (Postfix, from userid 501)
+        id EAD3DB60086; Thu, 16 Mar 2023 10:32:49 -0400 (EDT)
+X-Mailer: MessagingEngine.com Webmail Interface
+User-Agent: Cyrus-JMAP/3.9.0-alpha0-221-gec32977366-fm-20230306.001-gec329773
+Mime-Version: 1.0
+Message-Id: <235fcb71-9e96-4f28-bb8c-6843d4d85cea@app.fastmail.com>
+In-Reply-To: <f8b323b4-fd07-f5fd-70cf-31450e9ef204@linaro.org>
+References: <20230315072902.9298-1-ychuang570808@gmail.com>
+ <20230315072902.9298-8-ychuang570808@gmail.com>
+ <f8b323b4-fd07-f5fd-70cf-31450e9ef204@linaro.org>
+Date:   Thu, 16 Mar 2023 15:32:07 +0100
+From:   "Arnd Bergmann" <arnd@arndb.de>
+To:     "Krzysztof Kozlowski" <krzysztof.kozlowski@linaro.org>,
+        "Jacky Huang" <ychuang570808@gmail.com>,
+        "Rob Herring" <robh+dt@kernel.org>,
+        krzysztof.kozlowski+dt@linaro.org, "Lee Jones" <lee@kernel.org>,
+        "Michael Turquette" <mturquette@baylibre.com>,
+        "Stephen Boyd" <sboyd@kernel.org>,
+        "Philipp Zabel" <p.zabel@pengutronix.de>,
+        "Greg Kroah-Hartman" <gregkh@linuxfoundation.org>,
+        "Jiri Slaby" <jirislaby@kernel.org>
+Cc:     devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org,
+        schung@nuvoton.com, "Jacky Huang" <ychuang3@nuvoton.com>
+Subject: Re: [PATCH 07/15] dt-bindings: arm: Add initial bindings for Nuvoton platform
+Content-Type: text/plain
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_PASS,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 13.02.2023 03:13, Kuninori Morimoto wrote:
-> From: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
-> 
-> There are no compatible for "reg/reg-names" and "clock-name"
-> between previous R-Car series and R-Car Gen4.
-> 
-> "reg/reg-names" needs 3 categorize (for Gen1, for Gen2/Gen3, for Gen4),
-> therefore, use 3 if-then to avoid nested if-then-else.
-> 
-> Move "clock-name" detail properties to under allOf to use if-then-else
-> for Gen4 or others.
+On Thu, Mar 16, 2023, at 08:33, Krzysztof Kozlowski wrote:
+> On 15/03/2023 08:28, Jacky Huang wrote:
+>> From: Jacky Huang <ychuang3@nuvoton.com>
+>> 
+>> Add binding for ARMv8 based Nuvotn SoCs and platform boards.
+>> Add initial bindings for ma35d1 series development boards.
+>> 
+>> Signed-off-by: Jacky Huang <ychuang3@nuvoton.com>
+>> ---
+>>  .../devicetree/bindings/arm/nuvoton.yaml      | 30 +++++++++++++++++++
+>
+> And what is npcm for? Why it was made an directory?
+>
+> All these should be just one Nuvoton.
 
-Hi, this patch seems to add errors for me. Are my tools outdated or is
-it a real issue? See below.
+npcm is an unrelated product line, so I think it would be best
+to rename the npcm directory to nuvoton and move the new
+file in there, though I'm not sure about the name or what the
+other chips are called.
 
+My impression is that this one is more closely related to
+the older Arm9 nuc900/w90x900/n9 chips that we dropped from
+the kernel a while ago, while the npcm family has a different
+origin.
 
-> Link: https://lore.kernel.org/all/87zg9vk0ex.wl-kuninori.morimoto.gx@renesas.com/#r
-> Link: https://lore.kernel.org/all/87r0v2uvm7.wl-kuninori.morimoto.gx@renesas.com/#r
-> Link: https://lore.kernel.org/all/87r0v1t02h.wl-kuninori.morimoto.gx@renesas.com/#r
-> Link: https://lore.kernel.org/all/87y1p7bpma.wl-kuninori.morimoto.gx@renesas.com/#r
-> Reported-by: Geert Uytterhoeven <geert+renesas@glider.be>
-> Signed-off-by: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
-> ---
->   .../bindings/sound/renesas,rsnd.yaml          | 76 ++++++++++++++++---
->   1 file changed, 64 insertions(+), 12 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/sound/renesas,rsnd.yaml b/Documentation/devicetree/bindings/sound/renesas,rsnd.yaml
-> index 12ccf29338d9..55e5213b90a1 100644
-> --- a/Documentation/devicetree/bindings/sound/renesas,rsnd.yaml
-> +++ b/Documentation/devicetree/bindings/sound/renesas,rsnd.yaml
-> @@ -101,17 +101,7 @@ properties:
->   
->     clock-names:
->       description: List of necessary clock names.
-> -    minItems: 1
-> -    maxItems: 31
-> -    items:
-> -      oneOf:
-> -        - const: ssi-all
-> -        - pattern: '^ssi\.[0-9]$'
-> -        - pattern: '^src\.[0-9]$'
-> -        - pattern: '^mix\.[0-1]$'
-> -        - pattern: '^ctu\.[0-1]$'
-> -        - pattern: '^dvc\.[0-1]$'
-> -        - pattern: '^clk_(a|b|c|i)$'
-> +    # details are defined below
->   
->     ports:
->       $ref: audio-graph-port.yaml#/definitions/port-base
-> @@ -288,6 +278,11 @@ required:
->   
->   allOf:
->     - $ref: dai-common.yaml#
-> +
-> +  #--------------------
-> +  # reg/reg-names
-> +  #--------------------
-> +  # for Gen1
-
-This seems to cause:
-
-./Documentation/devicetree/bindings/sound/renesas,rsnd.yaml:282:4: [error] missing starting space in comment (comments)
-./Documentation/devicetree/bindings/sound/renesas,rsnd.yaml:284:4: [error] missing starting space in comment (comments)
-./Documentation/devicetree/bindings/sound/renesas,rsnd.yaml:339:4: [error] missing starting space in comment (comments)
-./Documentation/devicetree/bindings/sound/renesas,rsnd.yaml:341:4: [error] missing starting space in comment (comments)
-
-
->     - if:
->         properties:
->           compatible:
-> @@ -303,7 +298,15 @@ allOf:
->                 - scu
->                 - ssi
->                 - adg
-> -    else:
-> +  # for Gen2/Gen3
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - renesas,rcar_sound-gen2
-> +              - renesas,rcar_sound-gen3
-> +    then:
->         properties:
->           reg:
->             minItems: 5
-> @@ -315,6 +318,55 @@ allOf:
->                 - ssiu
->                 - ssi
->                 - audmapp
-> +  # for Gen4
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            const: renesas,rcar_sound-gen4
-> +    then:
-> +      properties:
-> +        reg:
-> +          maxItems: 4
-> +        reg-names:
-> +          items:
-> +            enum:
-> +              - adg
-> +              - ssiu
-> +              - ssi
-> +              - sdmc
-> +
-> +  #--------------------
-> +  # clock-names
-> +  #--------------------
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            const: renesas,rcar_sound-gen4
-> +    then:
-> +      properties:
-> +        clock-names:
-> +          maxItems: 3
-> +          items:
-> +            enum:
-> +              - ssi.0
-> +              - ssiu.0
-> +              - clkin
-> +    else:
-> +      properties:
-> +        clock-names:
-> +          minItems: 1
-> +          maxItems: 31
-> +          items:
-> +            oneOf:
-> +              - const: ssi-all
-> +              - pattern: '^ssi\.[0-9]$'
-> +              - pattern: '^src\.[0-9]$'
-> +              - pattern: '^mix\.[0-1]$'
-> +              - pattern: '^ctu\.[0-1]$'
-> +              - pattern: '^dvc\.[0-1]$'
-> +              - pattern: '^clk_(a|b|c|i)$'
->   
->   unevaluatedProperties: false
->   
-
+    Arnd
